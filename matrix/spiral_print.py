@@ -9,7 +9,7 @@ This problem has been solved through recursive way.
 
 def check_matrix(matrix: list[list[int]]) -> bool:
     # must be
-    matrix = list(list(row) for row in matrix)
+    matrix = [list(row) for row in matrix]
     if matrix and isinstance(matrix, list):
         if isinstance(matrix[0], list):
             prev_len = 0
@@ -44,7 +44,7 @@ def spiral_print_clockwise(a: list[list[int]]) -> None:
     7
     """
     if check_matrix(a) and len(a) > 0:
-        a = list(list(row) for row in a)
+        a = [list(row) for row in a]
         mat_row = len(a)
         if isinstance(a[0], list):
             mat_col = len(a[0])

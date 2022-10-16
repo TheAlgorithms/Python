@@ -24,7 +24,7 @@ def radix_sort(list_of_ints: list[int]) -> list[int]:
     max_digit = max(list_of_ints)
     while placement <= max_digit:
         # declare and initialize empty buckets
-        buckets: list[list] = [list() for _ in range(RADIX)]
+        buckets: list[list] = [[] for _ in range(RADIX)]
         # split list_of_ints between the buckets
         for i in list_of_ints:
             tmp = int((i / placement) % RADIX)

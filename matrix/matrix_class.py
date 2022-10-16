@@ -286,7 +286,7 @@ class Matrix:
     # MATRIX OPERATIONS
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Matrix):
-            raise TypeError("A Matrix can only be compared with another Matrix")
+            return NotImplemented
         return self.rows == other.rows
 
     def __ne__(self, other: object) -> bool:
