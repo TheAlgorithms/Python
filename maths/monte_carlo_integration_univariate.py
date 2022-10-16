@@ -28,7 +28,7 @@ def function_to_be_integrated(univariate_variable: int) -> float:
     0
     """
 
-    return np.sin(univariate_variable)  # example function
+    return np.sin(univariate_variable)
 
 
 def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> float:
@@ -72,7 +72,7 @@ def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> 
         # we get the answer by the formula derived adobe
         answer = (upper_limit - lower_limit) / float(number_of_sections) * integral
         # appends the solution to a list for plotting the graph
-        plt_vals.append(ans)
+        plt_vals.append(answer)
 
     """
     #--------PLOT SECTION (OPTIONAL)----------#
