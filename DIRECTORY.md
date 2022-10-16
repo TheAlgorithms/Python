@@ -279,8 +279,6 @@
   * [Fast Fibonacci](dynamic_programming/fast_fibonacci.py)
   * [Fibonacci](dynamic_programming/fibonacci.py)
   * [Floyd Warshall](dynamic_programming/floyd_warshall.py)
-  * [Fractional Knapsack](dynamic_programming/fractional_knapsack.py)
-  * [Fractional Knapsack 2](dynamic_programming/fractional_knapsack_2.py)
   * [Integer Partition](dynamic_programming/integer_partition.py)
   * [Iterating Through Submasks](dynamic_programming/iterating_through_submasks.py)
   * [Knapsack](dynamic_programming/knapsack.py)
@@ -396,6 +394,8 @@
     * [Test Min Spanning Tree Prim](graphs/tests/test_min_spanning_tree_prim.py)
 
 ## Greedy Methods
+  * [Fractional Knapsack](greedy_methods/fractional_knapsack.py)
+  * [Fractional Knapsack 2](greedy_methods/fractional_knapsack_2.py)
   * [Optimal Merge Pattern](greedy_methods/optimal_merge_pattern.py)
 
 ## Hashes
