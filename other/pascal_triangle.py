@@ -11,9 +11,33 @@ for more info about this triangle.
 """
 
 
-def generate_pascal_triangle(num_rows: int) -> list[list[int]]:
+def print_pascal_triangle(num_rows: int) -> None:
     """
     Print Pascal's triangle for different number of rows
+    >>> print_pascal_triangle(5)
+        1
+       1 1
+      1 2 1
+     1 3 3 1
+    1 4 6 4 1
+    """
+    triangle = generate_pascal_triangle(num_rows)
+    for row_idx in range(num_rows):
+        # Print left spaces
+        for _ in range(num_rows - row_idx - 1):
+            print(end=" ")
+        # Print row values
+        for col_idx in range(row_idx + 1):
+            if col_idx != row_idx:
+                print(triangle[row_idx][col_idx], end=" ")
+            else:
+                print(triangle[row_idx][col_idx], end="")
+        print()
+
+
+def generate_pascal_triangle(num_rows: int) -> list[list[int]]:
+    """
+    Create Pascal's triangle for different number of rows
     >>> generate_pascal_triangle(1)
     [[1]]
     >>> generate_pascal_triangle(2)
