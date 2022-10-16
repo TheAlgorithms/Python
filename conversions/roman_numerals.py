@@ -1,3 +1,20 @@
+ROMAN = [
+    (1000, "M"),
+    (900, "CM"),
+    (500, "D"),
+    (400, "CD"),
+    (100, "C"),
+    (90, "XC"),
+    (50, "L"),
+    (40, "XL"),
+    (10, "X"),
+    (9, "IX"),
+    (5, "V"),
+    (4, "IV"),
+    (1, "I"),
+]
+
+
 def roman_to_int(roman: str) -> int:
     """
     LeetCode No. 13 Roman to Integer
@@ -29,21 +46,6 @@ def int_to_roman(number: int) -> str:
     >>> all(int_to_roman(value) == key for key, value in tests.items())
     True
     """
-    ROMAN = [  # noqa: N806
-        (1000, "M"),
-        (900, "CM"),
-        (500, "D"),
-        (400, "CD"),
-        (100, "C"),
-        (90, "XC"),
-        (50, "L"),
-        (40, "XL"),
-        (10, "X"),
-        (9, "IX"),
-        (5, "V"),
-        (4, "IV"),
-        (1, "I"),
-    ]
     result = []
     for (arabic, roman) in ROMAN:
         (factor, number) = divmod(number, arabic)

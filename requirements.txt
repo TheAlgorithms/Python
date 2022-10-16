@@ -9,7 +9,7 @@ pandas
 pillow
 qiskit
 requests
-# scikit-fuzzy  # Causing broken builds
+scikit-fuzzy
 sklearn
 statsmodels
 sympy

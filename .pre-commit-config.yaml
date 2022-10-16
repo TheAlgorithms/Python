@@ -39,6 +39,7 @@ repos:
         additional_dependencies:
           - flake8-bugbear
           - flake8-builtins
+          - flake8-broken-line
           - flake8-comprehensions
           - pep8-naming
 
