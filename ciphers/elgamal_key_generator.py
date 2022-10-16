@@ -49,11 +49,11 @@ def make_key_files(name: str, key_size: int) -> None:
     public_key, private_key = generate_key(key_size)
     print(f"\nWriting public key to file {name}_pubkey.txt...")
     with open(f"{name}_pubkey.txt", "w") as fo:
-        fo.write(",".join((public_key[0], public_key[1], public_key[2], public_key[3])))
+        fo.write(f"{public_key[0]},{public_key[1]},{public_key[2]},{public_key[3]}")
 
     print(f"Writing private key to file {name}_privkey.txt...")
     with open(f"{name}_privkey.txt", "w") as fo:
-        fo.write(",".join((private_key[0], private_key[1])))
+        fo.write(f"{private_key[0]},{private_key[1]}")
 
 
 def main() -> None:
