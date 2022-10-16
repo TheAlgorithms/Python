@@ -33,8 +33,7 @@ def nand_gate(input1: int, input2: int) -> int:
 
     if input1 == input2 == 1:
         return 0
-    else:
-        return 1
+    return 1
 
 
 def main() -> None:
