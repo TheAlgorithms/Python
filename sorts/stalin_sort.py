@@ -11,6 +11,7 @@ def stalin_sort(collection: list) -> list:
     """Pure python implementation of the stalin sort algorithm in Python
     :param collection: a list of comparable items
     :return: all of the items that were in order
+    
     Examples:
     >>> stalin_sort([0, 5, 3, 2, 2])
     [0, 5]
