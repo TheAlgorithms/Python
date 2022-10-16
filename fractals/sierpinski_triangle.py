@@ -24,7 +24,7 @@ Usage:
   - $python sierpinski_triangle.py <int:depth_for_fractal>
 
 Credits: This code was written by editing the code from
-http://www.riannetrujillo.com/blog/python-fractal/
+https://www.riannetrujillo.com/blog/python-fractal/
 
 """
 import sys

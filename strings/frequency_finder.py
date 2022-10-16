@@ -2,7 +2,7 @@
 
 import string
 
-# frequency taken from http://en.wikipedia.org/wiki/Letter_frequency
+# frequency taken from https://en.wikipedia.org/wiki/Letter_frequency
 english_letter_freq = {
     "E": 12.70,
     "T": 9.06,
