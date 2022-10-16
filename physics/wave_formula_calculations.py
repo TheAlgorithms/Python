@@ -1,4 +1,4 @@
-# Wave Formula Calculations
+# Wave Formula Calculations / Formulas Rlated to waves
 
 """
 Background:
