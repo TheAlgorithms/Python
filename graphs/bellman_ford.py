@@ -58,7 +58,7 @@ if __name__ == "__main__":
     V = int(input("Enter number of vertices: ").strip())
     E = int(input("Enter number of edges: ").strip())
 
-    graph: list[dict[str, int]] = [dict() for j in range(E)]
+    graph: list[dict[str, int]] = [{} for _ in range(E)]
 
     for i in range(E):
         print("Edge ", i + 1)

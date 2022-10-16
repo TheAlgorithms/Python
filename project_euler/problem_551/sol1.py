@@ -13,7 +13,7 @@ Find a(10^15)
 """
 
 
-ks = [k for k in range(2, 20 + 1)]
+ks = range(2, 20 + 1)
 base = [10**k for k in range(ks[-1] + 1)]
 memo: dict[int, dict[int, list[list[int]]]] = {}
 
