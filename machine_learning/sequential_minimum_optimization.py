@@ -28,7 +28,6 @@ Usage:
 Reference:
     https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/smo-book.pdf
     https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-98-14.pdf
-    https://web.cs.iastate.edu/~honavar/smo-svm.pdf
 """
 
 
