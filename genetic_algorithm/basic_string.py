@@ -172,7 +172,7 @@ if __name__ == "__main__":
         " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklm"
         "nopqrstuvwxyz.,;!?+-*#@^'èéòà€ù=)(&%$£/\\"
     )
+    generation, population, target = basic(target_str, genes_list)
     print(
-        "\nGeneration: %s\nTotal Population: %s\nTarget: %s"
-        % basic(target_str, genes_list)
+        f"\nGeneration: {generation}\nTotal Population: {population}\nTarget: {target}"
     )

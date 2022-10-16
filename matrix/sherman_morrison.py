@@ -31,14 +31,14 @@ class Matrix:
         """
 
         # Prefix
-        s = "Matrix consist of %d rows and %d columns\n" % (self.row, self.column)
+        s = f"Matrix consist of {self.row} rows and {self.column} columns\n"
 
         # Make string identifier
         max_element_length = 0
         for row_vector in self.array:
             for obj in row_vector:
                 max_element_length = max(max_element_length, len(str(obj)))
-        string_format_identifier = "%%%ds" % (max_element_length,)
+        string_format_identifier = f"%{max_element_length}s"
 
         # Make string and return
         def single_line(row_vector: list[float]) -> str:
@@ -252,7 +252,7 @@ if __name__ == "__main__":
         v[0, 0], v[1, 0], v[2, 0] = 4, -2, 5
         print(f"u is {u}")
         print(f"v is {v}")
-        print("uv^T is %s" % (u * v.transpose()))
+        print(f"uv^T is {u * v.transpose()}")
         # Sherman Morrison
         print(f"(a + uv^T)^(-1) is {ainv.sherman_morrison(u, v)}")
 
