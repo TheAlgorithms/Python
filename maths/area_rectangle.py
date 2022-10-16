@@ -7,7 +7,7 @@ https://en.wikipedia.org/wiki/Rectangle
 """
 
 
-def area(length:int, breadth:int) -> int:
+def area(length: int, breadth: int) -> int:
     """
     Find the area of recatngle.
     >>> area(5,6)
