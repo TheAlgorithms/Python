@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+
 def resistor_parallel(
     resistors: list[float],
 ) -> float:  # Req = 1/ (1/R1 + 1/R2 + ... + 1/Rn)
@@ -27,6 +28,7 @@ def resistor_parallel(
         index += 1
     return 1 / first_Sum
 
+
 def resistor_series(resistors: list[float]) -> float:  # Req = R1 + R2 + ... + Rn
     """
     This function can calculate the equivalent resistance for any number of
@@ -47,6 +49,7 @@ def resistor_series(resistors: list[float]) -> float:  # Req = R1 + R2 + ... + R
             raise ValueError(f"Resistor at index {index} has a negative value!")
         index += 1
     return sum
+
 
 if __name__ == "__main__":
     import doctest
