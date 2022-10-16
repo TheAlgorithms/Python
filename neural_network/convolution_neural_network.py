@@ -219,7 +219,7 @@ class CNN:
         mse = 10000
         while rp < n_repeat and mse >= error_accuracy:
             error_count = 0
-            print("-------------Learning Time %d--------------" % rp)
+            print(f"-------------Learning Time {rp}--------------")
             for p in range(len(datas_train)):
                 # print('------------Learning Image: %d--------------'%p)
                 data_train = np.asmatrix(datas_train[p])
