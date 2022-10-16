@@ -30,11 +30,11 @@ class EditDistance:
 
     def solve(self, word1: str, word2: str) -> int:
         """
-        >>> self.solve("intention", "execution")
+        >>> EditDistance().solve("intention", "execution")
         5
-        >>> self.solve("intention", "")
+        >>> EditDistance().solve("intention", "")
         9
-        >>> self.solve("", "")
+        >>> EditDistance().solve("", "")
         0
         """
         self.__prepare(word1, word2)
