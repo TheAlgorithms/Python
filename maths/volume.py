@@ -1,6 +1,7 @@
 """
-Find Volumes of Various Shapes.
-Wikipedia reference: https://en.wikipedia.org/wiki/Volume
+Find the volume of various shapes.
+* https://en.wikipedia.org/wiki/Volume
+* https://en.wikipedia.org/wiki/Spherical_cap
 """
 from __future__ import annotations
 
@@ -30,8 +31,7 @@ def vol_cube(side_length: int | float) -> float:
 
 def vol_spherical_cap(height: float, radius: float) -> float:
     """
-    Calculate the Volume of the spherical cap.
-    :return 1/3 pi * height ^ 2 * (3 * radius - height)
+    Calculate the volume of the spherical cap.
     >>> vol_spherical_cap(1, 2)
     5.235987755982988
     >>> vol_spherical_cap(1.6, 2.6)
@@ -49,6 +49,7 @@ def vol_spherical_cap(height: float, radius: float) -> float:
     """
     if height < 0 or radius < 0:
         raise ValueError("vol_spherical_cap() only accepts non-negative values")
+    # Volume is 1/3 pi * height squared * (3 * radius - height)
     return 1 / 3 * pi * pow(height, 2) * (3 * radius - height)
 
 
@@ -263,6 +264,7 @@ def vol_sphere(radius: float) -> float:
     """
     if radius < 0:
         raise ValueError("vol_sphere() only accepts non-negative values")
+    # Volume is 4/3 * pi * radius cubed
     return 4 / 3 * pi * pow(radius, 3)
 
 
@@ -274,7 +276,7 @@ def vol_hemisphere(radius: float) -> float:
     >>> vol_hemisphere(1)
     2.0943951023931953
     >>> vol_hemisphere(7)
-    718.3775201208659
+    718.377520120866
     >>> vol_hemisphere(1.6)
     8.57864233940253
     >>> vol_hemisphere(0)
@@ -286,7 +288,8 @@ def vol_hemisphere(radius: float) -> float:
     """
     if radius < 0:
         raise ValueError("vol_hemisphere() only accepts non-negative values")
-    return 2 / 3 * pi * pow(radius, 3)
+    # Volume is radius cubed * pi * 2/3
+    return pow(radius, 3) * pi * 2 / 3
 
 
 def vol_circular_cylinder(radius: float, height: float) -> float:
@@ -312,7 +315,8 @@ def vol_circular_cylinder(radius: float, height: float) -> float:
     """
     if height < 0 or radius < 0:
         raise ValueError("vol_circular_cylinder() only accepts non-negative values")
-    return pi * pow(radius, 2) * height
+    # Volume is radius squared * height * pi
+    return pow(radius, 2) * height * pi
 
 
 def vol_hollow_circular_cylinder(
@@ -344,6 +348,7 @@ def vol_hollow_circular_cylinder(
         ...
     ValueError: outer_radius must be greater than inner_radius
     """
+    # Volume - (outer_radius squared - inner_radius squared) * pi * height
     if inner_radius < 0 or outer_radius < 0 or height < 0:
         raise ValueError(
             "vol_hollow_circular_cylinder() only accepts non-negative values"
@@ -356,7 +361,7 @@ def vol_hollow_circular_cylinder(
 def vol_conical_frustum(height: float, radius_1: float, radius_2: float) -> float:
     """Calculate the Volume of a Conical Frustum.
     Wikipedia reference: https://en.wikipedia.org/wiki/Frustum
-    :return 1/3 * pi * height * (radius_1^2 + radius_top^2 + radius_1 * radius_2)
+
     >>> vol_conical_frustum(45, 7, 28)
     48490.482608158454
     >>> vol_conical_frustum(1, 1, 2)
@@ -378,6 +383,8 @@ def vol_conical_frustum(height: float, radius_1: float, radius_2: float) -> floa
         ...
     ValueError: vol_conical_frustum() only accepts non-negative values
     """
+    # Volume is 1/3 * pi * height *
+    #           (radius_1 squared + radius_2 squared + radius_1 * radius_2)
     if radius_1 < 0 or radius_2 < 0 or height < 0:
         raise ValueError("vol_conical_frustum() only accepts non-negative values")
     return (

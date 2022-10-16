@@ -21,4 +21,4 @@ if __name__ == "__main__":
         if link.text == "Maps":
             webbrowser.open(link.get("href"))
         else:
-            webbrowser.open(f"http://google.com{link.get('href')}")
+            webbrowser.open(f"https://google.com{link.get('href')}")
