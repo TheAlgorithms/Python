@@ -5,7 +5,7 @@ a row index of r and column index of c can be derived
 as follows:
 triangle[r][c] = triangle[r-1][c-1]+triangle[r-1][c]
 What is Pascal's triangle?
-- It is a triangular array containing binomial coefficients. 
+- It is a triangular array containing binomial coefficients.
 Refer to (https://en.wikipedia.org/wiki/Pascal%27s_triangle)
 for more info about this triangle.
 """
