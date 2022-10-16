@@ -10,7 +10,6 @@ import pprint
 
 import requests
 
-
 API_ENDPOINT_URL = "https://zenquotes.io/api"
 
 
