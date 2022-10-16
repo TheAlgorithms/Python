@@ -4,12 +4,6 @@ Stalin sort iterates over the list, comparing each element with the
 previous one, and removes any that are out of order.
 More information at: https://github.com/gustavo-depaula/stalin-sort
 
-For doctests run following command:
-python -m doctest -v stalin_sort.py
-or
-python3 -m doctest -v stalin_sort.py
-For manual testing run:
-python stalin_sort.py
 """
 
 
