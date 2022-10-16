@@ -1,6 +1,7 @@
 # Wave Formula Calculations / Formulas Rlated to waves
 
 """
+Physics Classroom - https://www.physicsclassroom.com/class/waves/Lesson-2/The-Wave-Equation
 Background:
 The Wave Formulas are for calculating the characteristics
 of a wave.
