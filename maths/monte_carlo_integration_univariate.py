@@ -70,7 +70,7 @@ def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> 
             integral += function_to_be_integrated(i)
 
         # we get the answer by the formula derived adobe
-        ans = (upper_limit - lower_limit) / float(number_of_sections) * integral
+        answer = (upper_limit - lower_limit) / float(number_of_sections) * integral
         # appends the solution to a list for plotting the graph
         plt_vals.append(ans)
 
