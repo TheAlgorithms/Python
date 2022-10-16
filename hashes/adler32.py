@@ -8,6 +8,8 @@
     source: https://en.wikipedia.org/wiki/Adler-32
 """
 
+MOD_ADLER = 65521
+
 
 def adler32(plain_text: str) -> int:
     """
@@ -20,7 +22,6 @@ def adler32(plain_text: str) -> int:
     >>> adler32('go adler em all')
     708642122
     """
-    MOD_ADLER = 65521  # noqa: N806
     a = 1
     b = 0
     for plain_chr in plain_text:
