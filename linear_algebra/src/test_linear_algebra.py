@@ -89,7 +89,7 @@ class Test(unittest.TestCase):
         """
         test for global function zero_vector()
         """
-        self.assertTrue(str(zero_vector(10)).count("0") == 10)
+        self.assertEqual(str(zero_vector(10)).count("0"), 10)
 
     def test_unit_basis_vector(self) -> None:
         """

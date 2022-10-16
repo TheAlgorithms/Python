@@ -34,12 +34,11 @@ def solution():
         words = f.readline()
 
     words = [word.strip('"') for word in words.strip("\r\n").split(",")]
-    words = list(
-        filter(
-            lambda word: word in TRIANGULAR_NUMBERS,
-            (sum(ord(x) - 64 for x in word) for word in words),
-        )
-    )
+    words = [
+        word
+        for word in [sum(ord(x) - 64 for x in word) for word in words]
+        if word in TRIANGULAR_NUMBERS
+    ]
     return len(words)
 
 

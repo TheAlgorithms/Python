@@ -93,7 +93,7 @@ def emails_from_url(url: str = "https://github.com") -> list[str]:
             except ValueError:
                 pass
     except ValueError:
-        exit(-1)
+        raise SystemExit(1)
 
     # Finally return a sorted list of email addresses with no duplicates.
     return sorted(valid_emails)
