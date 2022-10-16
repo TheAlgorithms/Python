@@ -1,9 +1,12 @@
 """
-wissamfawaz12@gmail.com | github.com/wissamfawaz
 This implementation demonstrates how to generate the
-elements of a Pascal's triangle.
+elements of a Pascal's triangle. The element having
+a row index of r and column index of c can be derived
+as follows:
+triangle[r][c] = triangle[r-1][c-1]+triangle[r-1][c]
 What is Pascal's triangle?
-- Refer to (https://en.wikipedia.org/wiki/Pascal%27s_triangle)
+- It is a triangular array containing binomial coefficients.
+Refer to (https://en.wikipedia.org/wiki/Pascal%27s_triangle)
 for more info about this triangle.
 """
 
