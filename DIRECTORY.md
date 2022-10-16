@@ -652,7 +652,6 @@
 
 ## Other
 
-- [Pascal Triangle](other/pascal_triangle.py)
 - [Activity Selection](other/activity_selection.py)
 - [Alternative List Arrange](other/alternative_list_arrange.py)
 - [Check Strong Password](other/check_strong_password.py)

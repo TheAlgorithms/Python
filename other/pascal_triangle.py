@@ -8,7 +8,7 @@ for more info about this triangle.
 """
 
 
-def generate_pascal_triangle(num_rows: int) -> None:
+def generate_pascal_triangle(num_rows: int) -> list[list[int]]:
     """
     Print Pascal's triangle for different number of rows
     >>> generate_pascal_triangle(1)
@@ -24,19 +24,16 @@ def generate_pascal_triangle(num_rows: int) -> None:
     """
     triangle: list[list[int]] = []
     for current_row_idx in range(num_rows):
-        populate_current_row(triangle, current_row_idx)
-    print(triangle)
+        current_row = populate_current_row(triangle, current_row_idx)
+        triangle.append(current_row)
+    return triangle
 
 
-def populate_current_row(triangle: list[list[int]], current_row_idx: int) -> None:
+def populate_current_row(triangle: list[list[int]], current_row_idx: int) -> list[int]:
     """
     >>> triangle = [[1]]
     >>> populate_current_row(triangle, 1)
-    >>> triangle
-    [[1], [1, 1]]
-    >>> populate_current_row(triangle, 2)
-    >>> triangle
-    [[1], [1, 1], [1, 2, 1]]
+    [1, 1]
     """
     current_row = [-1] * (current_row_idx + 1)
     # first and last elements of current row are equal to 1
@@ -45,7 +42,7 @@ def populate_current_row(triangle: list[list[int]], current_row_idx: int) -> Non
         calculate_current_element(
             triangle, current_row, current_row_idx, current_col_idx
         )
-    triangle.append(current_row)
+    return current_row
 
 
 def calculate_current_element(
