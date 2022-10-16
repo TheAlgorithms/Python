@@ -8,7 +8,7 @@ velocity and position brought about by these forces. Softening is used to preven
 numerical divergences when a particle comes too close to another (and the force
 goes to infinity).
 (Description adapted from https://en.wikipedia.org/wiki/N-body_simulation )
-(See also http://www.shodor.org/refdesk/Resources/Algorithms/EulersMethod/ )
+(See also https://www.shodor.org/refdesk/Resources/Algorithms/EulersMethod/ )
 """
 
 
@@ -18,6 +18,12 @@ import random
 
 from matplotlib import animation
 from matplotlib import pyplot as plt
+
+# Frame rate of the animation
+INTERVAL = 20
+
+# Time between time steps in seconds
+DELTA_TIME = INTERVAL / 1000
 
 
 class Body:
@@ -219,12 +225,6 @@ def plot(
     Utility function to plot how the given body-system evolves over time.
     No doctest provided since this function does not have a return value.
     """
-    # Frame rate of the animation
-    INTERVAL = 20  # noqa: N806
-
-    # Time between time steps in seconds
-    DELTA_TIME = INTERVAL / 1000  # noqa: N806
-
     fig = plt.figure()
     fig.canvas.set_window_title(title)
     ax = plt.axes(
@@ -258,7 +258,7 @@ def example_1() -> BodySystem:
     Example 1: figure-8 solution to the 3-body-problem
     This example can be seen as a test of the implementation: given the right
     initial conditions, the bodies should move in a figure-8.
-    (initial conditions taken from http://www.artcompsci.org/vol_1/v1_web/node56.html)
+    (initial conditions taken from https://www.artcompsci.org/vol_1/v1_web/node56.html)
     >>> body_system = example_1()
     >>> len(body_system)
     3

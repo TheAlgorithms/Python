@@ -8,7 +8,7 @@ def frac_knapsack(vl, wt, w, n):
     240.0
     """
 
-    r = list(sorted(zip(vl, wt), key=lambda x: x[0] / x[1], reverse=True))
+    r = sorted(zip(vl, wt), key=lambda x: x[0] / x[1], reverse=True)
     vl, wt = [i[0] for i in r], [i[1] for i in r]
     acc = list(accumulate(wt))
     k = bisect(acc, w)
