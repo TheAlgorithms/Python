@@ -66,11 +66,6 @@ def calculate_current_element(
     current_row[current_col_idx] = above_to_left_elt + above_to_right_elt
 
 
-def main() -> None:
-    num_rows = int(input("Rows count of Pascal's triangle: ").strip())
-    generate_pascal_triangle(num_rows)
-
-
 if __name__ == "__main__":
     import doctest
 
