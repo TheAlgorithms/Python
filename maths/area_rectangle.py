@@ -7,7 +7,7 @@ https://en.wikipedia.org/wiki/Rectangle
 """
 
 
-def area(length, breadth)-> int:
+def area(length, breadth) -> int:
     """
     Find the area of recatngle.
     >>> area(5,6)
@@ -21,7 +21,6 @@ def area(length, breadth)-> int:
 
 
 if __name__ == "__main__":
-   import doctest
+    import doctest
 
-   doctest.testmod(name ='area', verbose = True)
-
+    doctest.testmod(name="area", verbose=True)
