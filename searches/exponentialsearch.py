@@ -29,7 +29,7 @@ def binarysearch(arr: list, x: int, l: int, r: int) -> int:
     """
 
     if r >= l:
-        mid = l + (r-l) // 2
+        mid = l + (r - l) // 2
 
         # If the element is present at
         # the middle itself
@@ -49,6 +49,7 @@ def binarysearch(arr: list, x: int, l: int, r: int) -> int:
     # We reach here if the element is not present
     return -1
 
+
 # Returns the position of first
 # occurrence of x in array
 
@@ -66,8 +67,7 @@ def exponentialsearch(arr: list, n: int, x: int):
         i = i * 2
 
     # Call binary search for the found range
-    return binarysearch(arr, x, i // 2,
-                        min(i, n-1))
+    return binarysearch(arr, x, i // 2, min(i, n - 1))
 
 
 # Driver Code
@@ -84,6 +84,6 @@ else:
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod(name='binarysearch', verbose=True)
+    doctest.testmod(name="binarysearch", verbose=True)
 
 # URL:- https://www.tutorialspoint.com/Exponential-Search
