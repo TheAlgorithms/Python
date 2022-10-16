@@ -1,7 +1,7 @@
 """
 Basic of this concept..
 The area of a rectangle is defined as the product  of its two adjacent sides.
-For more information 
+For more information
 https://en.wikipedia.org/wiki/Rectangle
 
 """
@@ -18,7 +18,7 @@ def area(length, breadth):
     1500
     This functio will return integer value
     """
-    return length * breadth 
+    return length * breadth
 
 
 if __name__ == "__main__":
