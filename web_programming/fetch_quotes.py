@@ -11,14 +11,15 @@ import pprint
 import requests
 
 
+API_ENDPOINT_URL = "https://zenquotes.io/api"
+
+
 def quote_of_the_day() -> list:
-    api_endpoint_url = "https://zenquotes.io/api/today/"
-    return requests.get(api_endpoint_url).json()
+    return requests.get(API_ENDPOINT_URL + "/today").json()
 
 
 def random_quotes() -> list:
-    api_endpoint_url = "https://zenquotes.io/api/random/"
-    return requests.get(api_endpoint_url).json()
+    return requests.get(API_ENDPOINT_URL + "/random").json()
 
 
 if __name__ == "__main__":
