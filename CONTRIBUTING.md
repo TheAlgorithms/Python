@@ -2,7 +2,7 @@
 
 ## Before contributing
 
-Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you **read the whole guidelines**. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms).
+Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms).
 
 ## Contributing
 
@@ -15,51 +15,47 @@ We are very happy that you consider implementing algorithms and data structures 
 - Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged
 - Your submitted work fulfils or mostly fulfils our styles and standards
 
-**New implementation** is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity but **identical implementation** of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
+__New implementation__ is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity but __identical implementation__ of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
 
-**Improving comments** and **writing proper tests** are also highly welcome.
+__Improving comments__ and __writing proper tests__ are also highly welcome.
 
 ### Contribution
 
 We appreciate any contribution, from fixing a grammar mistake in a comment to implementing complex algorithms. Please read this section if you are contributing your work.
 
-Your contribution will be tested by our [automated testing on GitHub Actions](https://github.com/TheAlgorithms/Python/actions) to save time and mental energy. After you have submitted your pull request, you should see the GitHub Actions tests start to run at the bottom of your submission page. If those tests fail, then click on the **_details_** button try to read through the GitHub Actions output to understand the failure. If you do not understand, please leave a comment on your submission page and a community member will try to help.
+Your contribution will be tested by our [automated testing on GitHub Actions](https://github.com/TheAlgorithms/Python/actions) to save time and mental energy.  After you have submitted your pull request, you should see the GitHub Actions tests start to run at the bottom of your submission page.  If those tests fail, then click on the ___details___ button try to read through the GitHub Actions output to understand the failure.  If you do not understand, please leave a comment on your submission page and a community member will try to help.
 
 Please help us keep our issue list small by adding fixes: #{$ISSUE_NO} to the commit message of pull requests that resolve open issues. GitHub will use this tag to auto-close the issue when the PR is merged.
 
 #### What is an Algorithm?
 
 An Algorithm is one or more functions (or classes) that:
-
-- take one or more inputs,
-- perform some internal calculations or data manipulations,
-- return one or more outputs,
-- have minimal side effects (Ex. `print()`, `plot()`, `read()`, `write()`).
+* take one or more inputs,
+* perform some internal calculations or data manipulations,
+* return one or more outputs,
+* have minimal side effects (Ex. `print()`, `plot()`, `read()`, `write()`).
 
 Algorithms should be packaged in a way that would make it easy for readers to put them into larger programs.
 
 Algorithms should:
+* have intuitive class and function names that make their purpose clear to readers
+* use Python naming conventions and intuitive variable names to ease comprehension
+* be flexible to take different input values
+* have Python type hints for their input parameters and return values
+* raise Python exceptions (`ValueError`, etc.) on erroneous input values
+* have docstrings with clear explanations and/or URLs to source materials
+* contain doctests that test both valid and erroneous input values
+* return all calculation results instead of printing or plotting them
 
-- have intuitive class and function names that make their purpose clear to readers
-- use Python naming conventions and intuitive variable names to ease comprehension
-- be flexible to take different input values
-- have Python type hints for their input parameters and return values
-- raise Python exceptions (`ValueError`, etc.) on erroneous input values
-- have docstrings with clear explanations and/or URLs to source materials
-- contain doctests that test both valid and erroneous input values
-- return all calculation results instead of printing or plotting them
-
-Algorithms in this repo should not be how-to examples for existing Python packages. Instead, they should perform internal calculations or manipulations to convert input values into different output values. Those calculations or manipulations can use data types, classes, or functions of existing Python packages but each algorithm in this repo should add unique value.
+Algorithms in this repo should not be how-to examples for existing Python packages.  Instead, they should perform internal calculations or manipulations to convert input values into different output values.  Those calculations or manipulations can use data types, classes, or functions of existing Python packages but each algorithm in this repo should add unique value.
 
 #### Pre-commit plugin
-
 Use [pre-commit](https://pre-commit.com/#installation) to automatically format your code to match our coding style:
 
 ```bash
 python3 -m pip install pre-commit  # only required the first time
 pre-commit install
 ```
-
 That's it! The plugin will run every time you commit any changes. If there are any errors found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
 
 ```bash
@@ -70,16 +66,15 @@ pre-commit run --all-files --show-diff-on-failure
 
 We want your work to be readable by others; therefore, we encourage you to note the following:
 
-- Please write in Python 3.9+. For instance: `print()` is a function in Python 3 so `print "Hello"` will _not_ work but `print("Hello")` will.
-- Please focus hard on the naming of functions, classes, and variables. Help your reader by using **descriptive names** that can help you to remove redundant comments.
-
-  - Single letter variable names are _old school_ so please avoid them unless their life only spans a few lines.
+- Please write in Python 3.9+. For instance:  `print()` is a function in Python 3 so `print "Hello"` will *not* work but `print("Hello")` will.
+- Please focus hard on the naming of functions, classes, and variables.  Help your reader by using __descriptive names__ that can help you to remove redundant comments.
+  - Single letter variable names are *old school* so please avoid them unless their life only spans a few lines.
   - Expand acronyms because `gcd()` is hard to understand but `greatest_common_divisor()` is not.
   - Please follow the [Python Naming Conventions](https://pep8.org/#prescriptive-naming-conventions) so variable_names and function_names should be lower_case, CONSTANTS in UPPERCASE, ClassNames should be CamelCase, etc.
 
 - We encourage the use of Python [f-strings](https://realpython.com/python-f-strings/#f-strings-a-new-and-improved-way-to-format-strings-in-python) where they make the code easier to read.
 
-- Please consider running [**psf/black**](https://github.com/python/black) on your Python file(s) before submitting your pull request. This is not yet a requirement but it does make your code more readable and automatically aligns it with much of [PEP 8](https://www.python.org/dev/peps/pep-0008/). There are other code formatters (autopep8, yapf) but the **black** formatter is now hosted by the Python Software Foundation. To use it,
+- Please consider running [__psf/black__](https://github.com/python/black) on your Python file(s) before submitting your pull request.  This is not yet a requirement but it does make your code more readable and automatically aligns it with much of [PEP 8](https://www.python.org/dev/peps/pep-0008/). There are other code formatters (autopep8, yapf) but the __black__ formatter is now hosted by the Python Software Foundation. To use it,
 
   ```bash
   python3 -m pip install black  # only required the first time
@@ -117,7 +112,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
       return a + b
   ```
 
-- Write tests (especially [**doctests**](https://docs.python.org/3/library/doctest.html)) to illustrate and verify your work. We highly encourage the use of _doctests on all functions_.
+- Write tests (especially [__doctests__](https://docs.python.org/3/library/doctest.html)) to illustrate and verify your work.  We highly encourage the use of _doctests on all functions_.
 
   ```python
   def sum_ab(a, b):
@@ -139,7 +134,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   python3 -m doctest -v my_submission.py
   ```
 
-  The use of the Python builtin `input()` function is **not** encouraged:
+  The use of the Python builtin `input()` function is __not__ encouraged:
 
   ```python
   input('Enter your input:')
@@ -153,7 +148,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   starting_value = int(input("Please enter a starting value: ").strip())
   ```
 
-  The use of [Python type hints](https://docs.python.org/3/library/typing.html) is encouraged for function parameters and return values. Our automated testing will run [mypy](http://mypy-lang.org) so run that locally before making your submission.
+  The use of [Python type hints](https://docs.python.org/3/library/typing.html) is encouraged for function parameters and return values.  Our automated testing will run [mypy](http://mypy-lang.org) so run that locally before making your submission.
 
   ```python
   def sum_ab(a: int, b: int) -> int:
@@ -162,27 +157,26 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
   Instructions on how to install mypy can be found [here](https://github.com/python/mypy). Please use the command `mypy --ignore-missing-imports .` to test all files or `mypy --ignore-missing-imports path/to/file.py` to test a specific file.
 
-- [**List comprehensions and generators**](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) are preferred over the use of `lambda`, `map`, `filter`, `reduce` but the important thing is to demonstrate the power of Python in code that is easy to read and maintain.
+- [__List comprehensions and generators__](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) are preferred over the use of `lambda`, `map`, `filter`, `reduce` but the important thing is to demonstrate the power of Python in code that is easy to read and maintain.
 
 - Avoid importing external libraries for basic algorithms. Only use those libraries for complicated algorithms.
-- If you need a third-party module that is not in the file **requirements.txt**, please add it to that file as part of your submission.
+- If you need a third-party module that is not in the file __requirements.txt__, please add it to that file as part of your submission.
 
 #### Other Requirements for Submissions
-
 - If you are submitting code in the `project_euler/` directory, please also read [the dedicated Guideline](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md) before contributing to our Project Euler library.
 - The file extension for code files should be `.py`. Jupyter Notebooks should be submitted to [TheAlgorithms/Jupyter](https://github.com/TheAlgorithms/Jupyter).
 - Strictly use snake_case (underscore_separated) in your file_name, as it will be easy to parse in future using scripts.
 - Please avoid creating new directories if at all possible. Try to fit your work into the existing directory structure.
-- If possible, follow the standard _within_ the folder you are submitting to.
+- If possible, follow the standard *within* the folder you are submitting to.
 - If you have modified/added code work, make sure the code compiles before submitting.
 - If you have modified/added documentation work, ensure your language is concise and contains no grammar errors.
 - Do not update the README.md or DIRECTORY.md file which will be periodically autogenerated by our GitHub Actions processes.
 - Add a corresponding explanation to [Algorithms-Explanation](https://github.com/TheAlgorithms/Algorithms-Explanation) (Optional but recommended).
-- All submissions will be tested with [**mypy**](http://www.mypy-lang.org) so we encourage you to add [**Python type hints**](https://docs.python.org/3/library/typing.html) where it makes sense to do so.
+- All submissions will be tested with [__mypy__](http://www.mypy-lang.org) so we encourage you to add [__Python type hints__](https://docs.python.org/3/library/typing.html) where it makes sense to do so.
 
 - Most importantly,
-  - **Be consistent in the use of these guidelines when submitting.**
-  - **Join** us on [Discord](https://discord.com/invite/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms) **now!**
+  - __Be consistent in the use of these guidelines when submitting.__
+  - __Join__ us on [Discord](https://discord.com/invite/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms) __now!__
   - Happy coding!
 
 Writer [@poyea](https://github.com/poyea), Jun 2019.
