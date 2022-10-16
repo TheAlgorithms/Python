@@ -4,7 +4,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     https://www.apache.org/licenses/LICENSE-2.0
+#     http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -33,7 +33,7 @@ from tensorflow.python.util.deprecation import deprecated
 
 _Datasets = collections.namedtuple("_Datasets", ["train", "validation", "test"])
 
-# CVDF mirror of https://yann.lecun.com/exdb/mnist/
+# CVDF mirror of http://yann.lecun.com/exdb/mnist/
 DEFAULT_SOURCE_URL = "https://storage.googleapis.com/cvdf-datasets/mnist/"
 
 
