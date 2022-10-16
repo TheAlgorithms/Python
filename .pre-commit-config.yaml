@@ -42,6 +42,7 @@ repos:
           - flake8-broken-line
           - flake8-comprehensions
           - pep8-naming
+          - yesqa
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v0.982
