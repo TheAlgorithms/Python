@@ -1,5 +1,4 @@
 """
-wissamfawaz12@gmail.com | github.com/wissamfawaz
 This implementation demonstrates how to generate the
 elements of a Pascal's triangle.
 What is Pascal's triangle?
