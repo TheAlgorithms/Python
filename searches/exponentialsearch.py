@@ -7,7 +7,7 @@
 # present, otherwise -1
 def binarySearch(arr, l, r, x):
     if r >= l:
-        mid = l + (r-l) // 2
+        mid = l + (r - l) // 2
 
         # If the element is present at
         # the middle itself
@@ -27,6 +27,7 @@ def binarySearch(arr, l, r, x):
     # We reach here if the element is not present
     return -1
 
+
 # Returns the position of first
 # occurrence of x in array
 
@@ -44,8 +45,7 @@ def exponentialSearch(arr, n, x):
         i = i * 2
 
     # Call binary search for the found range
-    return binarySearch(arr, i // 2,
-                        min(i, n-1), x)
+    return binarySearch(arr, i // 2, min(i, n - 1), x)
 
 
 # Driver Code
