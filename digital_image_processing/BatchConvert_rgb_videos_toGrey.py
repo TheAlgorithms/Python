@@ -15,13 +15,14 @@ Options:
   --version     Show version.
 """
 
-import docopt
-import cv2 as cv
-import os
-import time
-import matplotlib.pyplot as plt
 import glob
+import os
 import sys
+import time
+
+import cv2 as cv
+import docopt
+import matplotlib.pyplot as plt
 
 
 def process_video(video_inpath, video_outpath):
@@ -33,7 +34,7 @@ def process_video(video_inpath, video_outpath):
     # print(gray_video_path)
     cap = cv.VideoCapture(video_inpath)
     # Define the codec and create VideoWriter object
-    fourcc = cv.VideoWriter_fourcc(*'mp4v')  # use xvid for .avi
+    fourcc = cv.VideoWriter_fourcc(*"mp4v")  # use xvid for .avi
     # enter appropriate fps and frame size
     out = cv.VideoWriter(video_outpath, fourcc, 23.98, (1280, 720), False)
     while cap.isOpened():
@@ -58,15 +59,15 @@ def process_video(video_inpath, video_outpath):
 
 def main(in_path, out_path):
     if not os.path.isdir(in_path):
-        print('Error: <in_path> must be a directory', file=sys.stderr)
+        print("Error: <in_path> must be a directory", file=sys.stderr)
         return
 
     if out_path is None:
         dirname = os.path.dirname(in_path)
-        out_path = dirname + 'Converted'
+        out_path = dirname + "Converted"
 
     if not os.path.exists(out_path):
-        print('Creating directory', out_path)
+        print("Creating directory", out_path)
         os.mkdir(out_path)
 
     x = []  # number of files
@@ -77,22 +78,22 @@ def main(in_path, out_path):
     end_time = time.time()
     y.append(end_time - start_time)  # marking origin time for better graph view
 
-    for in_file in glob.glob(in_path + '/*'):
+    for in_file in glob.glob(in_path + "/*"):
         filename = os.path.basename(in_file)
-        out_file = out_path + '/' + filename
+        out_file = out_path + "/" + filename
         process_video(in_file, out_file)
         if i in [1, 2, 3, 4, 5, 6, 7, 8]:
             x.append(i)
             end_time = time.time()
             y.append(end_time - start_time)
         i += 1
-    plt.plot(x, y, 'ko-')
-    plt.xlabel('Number of files -> ')
-    plt.ylabel('Time taken (s) ->')
+    plt.plot(x, y, "ko-")
+    plt.xlabel("Number of files -> ")
+    plt.ylabel("Time taken (s) ->")
     plt.title(label="using openCV", fontsize=15, color="red")
     plt.show()
 
 
-if __name__ == '__main__':
-    args = docopt.docopt(__doc__, version='Greyscale converter v2.0')
-    main(args['<in_path>'], args['<out_path>'])
+if __name__ == "__main__":
+    args = docopt.docopt(__doc__, version="Greyscale converter v2.0")
+    main(args["<in_path>"], args["<out_path>"])
