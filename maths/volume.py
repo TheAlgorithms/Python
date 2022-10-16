@@ -276,7 +276,7 @@ def vol_hemisphere(radius: float) -> float:
     >>> vol_hemisphere(1)
     2.0943951023931953
     >>> vol_hemisphere(7)
-    718.3775201208659
+    718.377520120866
     >>> vol_hemisphere(1.6)
     8.57864233940253
     >>> vol_hemisphere(0)
@@ -383,7 +383,8 @@ def vol_conical_frustum(height: float, radius_1: float, radius_2: float) -> floa
         ...
     ValueError: vol_conical_frustum() only accepts non-negative values
     """
-    # Volume - 1/3 * pi * height * (radius_1 squared + radius_2 squared + radius_1 * radius_2)
+    # Volume is 1/3 * pi * height * 
+    #           (radius_1 squared + radius_2 squared + radius_1 * radius_2)
     if radius_1 < 0 or radius_2 < 0 or height < 0:
         raise ValueError("vol_conical_frustum() only accepts non-negative values")
     return (
