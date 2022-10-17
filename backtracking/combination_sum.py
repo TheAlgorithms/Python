@@ -32,8 +32,8 @@ def backtrack(
 
 
 def combination_sum(candidates: list, target: int) -> list:
-    path = []
-    answer = []
+    path = []  # type: List[int]
+    answer = []  # type: List[int]
     backtrack(candidates, path, answer, target, 0)
     return answer
 
