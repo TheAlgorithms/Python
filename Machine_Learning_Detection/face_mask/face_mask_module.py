@@ -6,24 +6,24 @@ import mediapipe as mp
 
 class FaceMeshDetector:
     def __init__(
-        self, staticMode=False, maxFaces=2, minDetectionCon=0.5, minTrackCon=0.5
+        self, staticmode=False, maxFaces=2, mindetectioncon=0.5, minTrackCon=0.5
     ):
 
-        self.staticMode = staticMode
+        self.staticmode = staticmode
         self.maxFaces = maxFaces
-        self.minDetectionCon = minDetectionCon
+        self.mindetectioncon = mindetectioncon
         self.minTrackCon = minTrackCon
 
         self.mpDraw = mp.solutions.drawing_utils
         self.mpFaceMesh = mp.solutions.face_mesh
         self.faceMesh = self.mpFaceMesh.FaceMesh(
-            self.staticMode, self.maxFaces, self.minDetectionCon, self.minTrackCon
+            self.staticmode, self.maxFaces, self.mindetectioncon, self.minTrackCon
         )
         self.drawSpec = self.mpDraw.DrawingSpec(thickness=1, circle_radius=2)
 
     def findFaceMesh(self, img, draw=True):
-        self.imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        self.results = self.faceMesh.process(self.imgRGB)
+        self.imgrgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        self.results = self.faceMesh.process(self.imgrgb)
         faces = []
         if self.results.multi_face_landmarks:
             for faceLms in self.results.multi_face_landmarks:
@@ -51,7 +51,7 @@ class FaceMeshDetector:
 
 def main():
     cap = cv2.VideoCapture(0)
-    pTime = 0
+    ptime = 0
     detector = FaceMeshDetector(maxFaces=2)
     while True:
         success, img = cap.read()
@@ -60,8 +60,8 @@ def main():
             print(faces[0])
 
         cTime = time.time()
-        fps = 1 / (cTime - pTime)
-        pTime = cTime
+        fps = 1 / (cTime - ptime)
+        ptime = cTime
         cv2.putText(
             img, f"FPS: {int(fps)}", (20, 70), cv2.FONT_HERSHEY_PLAIN, 3, (0, 255, 0), 3
         )
