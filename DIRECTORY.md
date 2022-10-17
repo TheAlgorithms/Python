@@ -465,7 +465,7 @@
   * [Holistic Face Tracking](machine_learning_detection\holistic_face_tracking\main.py)
   * [Objectron](machine_learning_detection\objectron\main.py)
   * [Pose Tracking](machine_learning_detection\pose_tracking\pose_module.py)
-  
+
 ## Maths
   * [3N Plus 1](maths/3n_plus_1.py)
   * [Abs](maths/abs.py)

@@ -3,6 +3,7 @@ fake_useragent
 keras
 lxml
 matplotlib
+mediapipe
 numpy
 opencv-python
 pandas
@@ -18,4 +19,3 @@ texttable
 tweepy
 xgboost
 yulewalker
-mediapipe
