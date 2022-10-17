@@ -41,22 +41,19 @@ def make_key_files(name: str, key_size: int) -> None:
     if os.path.exists(f"{name}_pubkey.txt") or os.path.exists(f"{name}_privkey.txt"):
         print("\nWARNING:")
         print(
-            '"%s_pubkey.txt" or "%s_privkey.txt" already exists. \n'
+            f'"{name}_pubkey.txt" or "{name}_privkey.txt" already exists. \n'
             "Use a different name or delete these files and re-run this program."
-            % (name, name)
         )
         sys.exit()
 
     public_key, private_key = generate_key(key_size)
     print(f"\nWriting public key to file {name}_pubkey.txt...")
     with open(f"{name}_pubkey.txt", "w") as fo:
-        fo.write(
-            "%d,%d,%d,%d" % (public_key[0], public_key[1], public_key[2], public_key[3])
-        )
+        fo.write(f"{public_key[0]},{public_key[1]},{public_key[2]},{public_key[3]}")
 
     print(f"Writing private key to file {name}_privkey.txt...")
     with open(f"{name}_privkey.txt", "w") as fo:
-        fo.write("%d,%d" % (private_key[0], private_key[1]))
+        fo.write(f"{private_key[0]},{private_key[1]}")
 
 
 def main() -> None:

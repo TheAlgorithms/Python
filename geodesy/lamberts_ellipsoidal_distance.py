@@ -2,6 +2,10 @@ from math import atan, cos, radians, sin, tan
 
 from .haversine_distance import haversine_distance
 
+AXIS_A = 6378137.0
+AXIS_B = 6356752.314245
+EQUATORIAL_RADIUS = 6378137
+
 
 def lamberts_ellipsoidal_distance(
     lat1: float, lon1: float, lat2: float, lon2: float
@@ -45,10 +49,6 @@ def lamberts_ellipsoidal_distance(
 
     # CONSTANTS per WGS84 https://en.wikipedia.org/wiki/World_Geodetic_System
     # Distance in metres(m)
-    AXIS_A = 6378137.0  # noqa: N806
-    AXIS_B = 6356752.314245  # noqa: N806
-    EQUATORIAL_RADIUS = 6378137  # noqa: N806
-
     # Equation Parameters
     # https://en.wikipedia.org/wiki/Geographical_distance#Lambert's_formula_for_long_lines
     flattening = (AXIS_A - AXIS_B) / AXIS_A

@@ -155,12 +155,12 @@ def construct_graph(cluster, nodes):
     cluster[max(cluster.keys()) + 1] = "Header"
     graph = {}
     for i in x:
-        if tuple(["Header"]) in graph:
-            graph[tuple(["Header"])].append(x[i])
+        if (["Header"],) in graph:
+            graph[(["Header"],)].append(x[i])
         else:
-            graph[tuple(["Header"])] = [x[i]]
+            graph[(["Header"],)] = [x[i]]
     for i in x:
-        graph[tuple(x[i])] = [["Header"]]
+        graph[(x[i],)] = [["Header"]]
     i = 1
     while i < max(cluster) - 1:
         create_edge(nodes, graph, cluster, i)
@@ -186,7 +186,7 @@ def find_freq_subgraph_given_support(s, cluster, graph):
     """
     k = int(s / 100 * (len(cluster) - 1))
     for i in cluster[k].keys():
-        my_dfs(graph, tuple(cluster[k][i]), tuple(["Header"]))
+        my_dfs(graph, tuple(cluster[k][i]), (["Header"],))
 
 
 def freq_subgraphs_edge_list(paths):

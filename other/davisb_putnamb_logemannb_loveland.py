@@ -317,7 +317,7 @@ def dpll_algorithm(
     if p:
         tmp_model = model
         tmp_model[p] = value
-        tmp_symbols = [i for i in symbols]
+        tmp_symbols = list(symbols)
         if p in tmp_symbols:
             tmp_symbols.remove(p)
         return dpll_algorithm(clauses, tmp_symbols, tmp_model)
@@ -329,7 +329,7 @@ def dpll_algorithm(
     if p:
         tmp_model = model
         tmp_model[p] = value
-        tmp_symbols = [i for i in symbols]
+        tmp_symbols = list(symbols)
         if p in tmp_symbols:
             tmp_symbols.remove(p)
         return dpll_algorithm(clauses, tmp_symbols, tmp_model)
