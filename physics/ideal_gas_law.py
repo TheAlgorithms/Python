@@ -18,7 +18,7 @@ T	=	Absolute temperature (Kelvin)
 (Description adapted from https://en.wikipedia.org/wiki/Ideal_gas_law )
 """
 
-UNIVERSAL_GAS_CONSTANT = 8.314462
+UNIVERSAL_GAS_CONSTANT = 8.314462  # Unit - J mol-1 K-1
 
 
 def pressure_of_gas_system(moles: float, kelvin: float, volume: float) -> float:
@@ -30,8 +30,7 @@ def pressure_of_gas_system(moles: float, kelvin: float, volume: float) -> float:
     """
     if moles < 0 or kelvin < 0 or volume < 0:
         raise Exception("Invalid inputs. Enter positive value.")
-    pressure: float = moles * kelvin * UNIVERSAL_GAS_CONSTANT / volume
-    return pressure
+    return moles * kelvin * UNIVERSAL_GAS_CONSTANT / volume
 
 
 def volume_of_gas_system(moles: float, kelvin: float, pressure: float) -> float:
@@ -43,7 +42,6 @@ def volume_of_gas_system(moles: float, kelvin: float, pressure: float) -> float:
     """
     if moles < 0 or kelvin < 0 or pressure < 0:
         raise Exception("Invalid inputs. Enter positive value.")
-    volume: float = moles * kelvin * UNIVERSAL_GAS_CONSTANT / pressure
     return moles * kelvin * UNIVERSAL_GAS_CONSTANT / pressure
 
 
@@ -51,31 +49,3 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-
-    # Example 1
-    example_1_volume = 5
-    example_1_moles = 2
-    example_1_kelvin = 100
-    example_1_pressure = pressure_of_gas_system(
-        example_1_moles, example_1_kelvin, example_1_volume
-    )
-    print(
-        f"""Pressure(P) of a gas system with V = {example_1_volume} [m^3],
-        n = {example_1_moles} [mol], T = {example_1_kelvin} [K]:"""
-    )
-    print(f"{example_1_pressure} [Pa]")
-
-    print()
-
-    # Example 2
-    example_2_pressure = 0.004
-    example_2_moles = 0.5
-    example_2_kelvin = 273
-    examle_2_volume = volume_of_gas_system(
-        example_2_moles, example_2_kelvin, example_2_pressure
-    )
-    print(
-        f"""Volume(V) of a gas system with P = {example_2_pressure} [Pa],
-        n = {example_2_moles} [mol], T = {example_2_kelvin} [K]:"""
-    )
-    print(f"{examle_2_volume} [m^3]")
