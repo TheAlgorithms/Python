@@ -15,8 +15,8 @@ from dataclasses import dataclass
 @dataclass
 class TreeNode:
     val: int
-    left: TreeNode = None
-    right: TreeNode = None
+    left: TreeNode | None = None
+    right: TreeNode | None = None
 
 
 def make_tree() -> TreeNode:
