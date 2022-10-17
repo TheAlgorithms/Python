@@ -3,18 +3,21 @@ This script demonstrates the implementation of the Swish function.
 
 The function takes a vector x of K real numbers as input and then
 returns x * sigmoid(x).
-It is a smooth, non-monotonic function that consistently matches
-or outperforms ReLU on deep networks, it is unbounded above and
-bounded below.
+Swish is a smooth, non-monotonic function defined as
+f(x) = x ·sigmoid(x).
+Extensive experiments shows that Swish consistently
+matches or outperforms ReLU on deep networks applied to a variety
+of challenging domains such as image classification and
+machine translation.
 
-Script inspired from its corresponding Tensorflow documentation,
-https://www.tensorflow.org/api_docs/python/tf/keras/activations/swish
+Script inspired from its corresponding research paper
+https://arxiv.org/abs/1710.05941
 """
 
 import numpy as np
 
 
-def sigmoid(vector: np.array):
+def sigmoid(vector: np.array) -> np.array:
     """
     Swish function can be implemented easily with the help of
     sigmoid function
@@ -22,7 +25,7 @@ def sigmoid(vector: np.array):
     return 1 / (1 + np.exp(-vector))
 
 
-def swish(vector: np.array):
+def swish(vector: np.array) -> np.array:
     """
     Implements the swish function
 
