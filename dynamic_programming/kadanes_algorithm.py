@@ -22,11 +22,11 @@ def kadane(array: list[int]) -> int:
     n = len(array)              # Initialization of n as length of array.
     mxsm = float("-inf")        # Initialization of mxsm as negative infinity.
     tempsm = 0                  # Initialization of tempsm as 0.
-    
+
     for i in range(n):
-        
+
         tempsm += array[i]
-        
+
         if tempsm > mxsm:       # mxsm will take the value of tempsm whenever
             mxsm = tempsm       # tempsm will exceed it.
 >>>>>>> Stashed changes
@@ -40,7 +40,7 @@ def kadane(array: list[int]) -> int:
 
         if tempsm < 0:  # tempsm will be 0 whenever it becomes negative
             tempsm = 0
-    
+
     return mxsm
 
 <<<<<<< Updated upstream
@@ -55,5 +55,5 @@ print(
 =======
 if __name__ == "__main__":
     import doctest
-    doctest.testmod() 
+    doctest.testmod()
 >>>>>>> Stashed changes
