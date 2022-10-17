@@ -15,7 +15,6 @@ from sklearn.model_selection import train_test_split
 # In[10]:
 
 
-
 house_df, house_dict = data_loading("house_prices")
 
 
