@@ -15,7 +15,7 @@ def kadane(array: list[int]) -> int:
     46
     """
     n = len(array)  # Initialization of n as length of array.
-    mxsm = -sys.maxint  # Initialization of mxsm as negative infinity.
+    mxsm = -sys.maxsize  # Initialization of mxsm as negative infinity.
     tempsm = 0  # Initialization of tempsm as 0.
 
     for i in range(n):
