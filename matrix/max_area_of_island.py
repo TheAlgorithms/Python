@@ -12,7 +12,6 @@ def is_safe(row: int, col: int, rows: int, cols: int) -> bool:
 
     >>> is_safe(0, 0, 5, 5)
     True
-
     >>> is_safe(-1,-1, 5, 5)
     False
     """
