@@ -1,64 +1,14 @@
-"""
-Problem:
-Given root of binary Tree, print the
-
+r"""
+Problem: Given root of a binary tree, return the:
 1. binary-tree-right-side-view
 2. binary-tree-left-side-view
 3. binary-tree-top-side-view
 4. binary-tree-bottom-side-view
-
-
-1. binary-tree-right-side-view
-
-    3       <-  3
-   / \
-  9   20    <-  20
-     /  \
-    15   7  <-  7
-
-Output: [3, 20, 7]
-
-
-2. binary-tree-left-side-view
-
-3  ->    3
-        / \
-9  ->  9   20
-          /  \
-15 ->    15   7
-
-Output: [3, 9, 15]
-
-
-3. binary-tree-top-side-view
-
-  9 3 20 7
-  ⬇ ⬇ ⬇  ⬇
-
-    3
-   / \
-  9   20
-     /  \
-    15   7
-
-Output: [9, 3, 20, 7]
-
-4. binary-tree-bottom-side-view
-
-    3
-   / \
-  9   20
-     /  \
-    15   7
-  ↑  ↑ ↑  ↑
-  9 15 20 7
-
-Output: [9, 15, 20, 7]
-
 """
 
 from __future__ import annotations
 
+from collections import defaultdict
 from dataclasses import dataclass
 
 
@@ -69,24 +19,31 @@ class TreeNode:
     right: TreeNode | None = None
 
 
-def make_tree() -> TreeNode | None:
+def make_tree() -> TreeNode:
+    """
+    >>> make_tree().val
+    3
+    """
     return TreeNode(3, TreeNode(9), TreeNode(20, TreeNode(15), TreeNode(7)))
 
 
-def binary_tree_right_side_view(root: TreeNode | None) -> list[int]:
-    """
+def binary_tree_right_side_view(root: TreeNode) -> list[int]:
+    r"""
     Function returns the right side view of binary tree.
 
-    >>> binary_tree_right_side_view(None)
-    []
+       3       <-  3
+     / \
+    9   20    <-  20
+       /  \
+      15   7  <-  7
 
     >>> binary_tree_right_side_view(make_tree())
     [3, 20, 7]
+    >>> binary_tree_right_side_view(None)
+    []
     """
 
-    def depth_first_search(
-        root: TreeNode | None, depth: int, right_view: list[int]
-    ) -> None:
+    def depth_first_search(root: TreeNode, depth: int, right_view: list[int]) -> None:
         """
         A depth first search preorder traversal to append the values at
         right side of tree.
@@ -109,19 +66,22 @@ def binary_tree_right_side_view(root: TreeNode | None) -> list[int]:
 
 
 def binary_tree_left_side_view(root: TreeNode | None) -> list[int]:
-    """
+    r"""
     Function returns the left side view of binary tree.
 
-    >>> binary_tree_left_side_view(None)
-    []
+    3  ->    3
+            / \
+    9  ->  9   20
+              /  \
+    15 ->    15   7
 
     >>> binary_tree_left_side_view(make_tree())
     [3, 9, 15]
+    >>> binary_tree_left_side_view(None)
+    []
     """
 
-    def depth_first_search(
-        root: TreeNode | None, depth: int, left_view: list[int]
-    ) -> None:
+    def depth_first_search(root: TreeNode, depth: int, left_view: list[int]) -> None:
         """
         A depth first search preorder traversal to append the values
         at left side of tree.
@@ -143,17 +103,24 @@ def binary_tree_left_side_view(root: TreeNode | None) -> list[int]:
     return left_view
 
 
-def binary_tree_top_side_view(root: TreeNode | None) -> list[int]:
-    """
+def binary_tree_top_side_view(root: TreeNode) -> list[int]:
+    r"""
     Function returns the top side view of binary tree.
 
-    >>> binary_tree_top_side_view(None)
-    []
+    9 3 20 7
+    ⬇ ⬇ ⬇  ⬇
+
+      3
+     / \
+    9   20
+       /  \
+      15   7
 
     >>> binary_tree_top_side_view(make_tree())
     [9, 3, 20, 7]
+    >>> binary_tree_top_side_view(None)
+    []
     """
-    from collections import defaultdict
 
     def breadth_first_search(root: TreeNode, top_view: list[int]) -> None:
         """
@@ -186,14 +153,21 @@ def binary_tree_top_side_view(root: TreeNode | None) -> list[int]:
 
 
 def binary_tree_bottom_side_view(root: TreeNode | None) -> list[int]:
-    """
+    r"""
     Function returns the bottom side view of binary tree
 
-    >>> binary_tree_bottom_side_view(None)
-    []
+      3
+     / \
+    9   20
+       /  \
+      15   7
+    ↑  ↑ ↑  ↑
+    9 15 20 7
 
     >>> binary_tree_bottom_side_view(make_tree())
     [9, 15, 20, 7]
+    >>> binary_tree_bottom_side_view(None)
+    []
     """
     from collections import defaultdict
 
