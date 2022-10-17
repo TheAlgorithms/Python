@@ -168,7 +168,7 @@ def binary_tree_top_side_view(root: TreeNode | None) -> list[int]:
     """
     from collections import defaultdict
 
-    def bfs(root: TreeNode, top_view: list[int]) -> None:
+    def breadth_first_search(root: TreeNode, top_view: list[int]) -> None:
         """
         A breadth first search traversal with defaultdict ds to append
         the values of tree from top view
