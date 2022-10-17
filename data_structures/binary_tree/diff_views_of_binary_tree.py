@@ -43,7 +43,9 @@ def binary_tree_right_side_view(root: TreeNode) -> list[int]:
     []
     """
 
-    def depth_first_search(root: TreeNode | None, depth: int, right_view: list[int]) -> None:
+    def depth_first_search(
+        root: TreeNode | None, depth: int, right_view: list[int]
+    ) -> None:
         """
         A depth first search preorder traversal to append the values at
         right side of tree.
@@ -81,7 +83,9 @@ def binary_tree_left_side_view(root: TreeNode) -> list[int]:
     []
     """
 
-    def depth_first_search(root: TreeNode | None, depth: int, left_view: list[int]) -> None:
+    def depth_first_search(
+        root: TreeNode | None, depth: int, left_view: list[int]
+    ) -> None:
         """
         A depth first search preorder traversal to append the values
         at left side of tree.
