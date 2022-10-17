@@ -36,4 +36,4 @@ def columnartransposition(key, pl_txt):
     return "".join(res)
 
 
-print(columnartransposition(in_key,inpl_txt))
+print(columnartransposition(in_key, inpl_txt))
