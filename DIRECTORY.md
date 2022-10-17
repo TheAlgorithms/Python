@@ -458,6 +458,13 @@
   * [Support Vector Machines](machine_learning/support_vector_machines.py)
   * [Word Frequency Functions](machine_learning/word_frequency_functions.py)
 
+## Machine Learning Detection (Mediapipe)
+  * [Face Mask](Machine_Learning_Detection\FaceMask\FaceMaskModule.py)
+  * [Face Tracking](Machine_Learning_Detection\FaceTracking\FaceTrackingModule.py)
+  * [Hand Tracking](Machine_Learning_Detection\HandTracking\HandTrackingModule.py)
+  * [Holistic Face Tracking](Machine_Learning_Detection\HolisticFaceTracking\main.py)
+  * [Objectron](Machine_Learning_Detection\Objectron\main.py)
+  * [Pose Tracking](Machine_Learning_Detection\PoseTracking\PoseModule.py)
 ## Maths
   * [3N Plus 1](maths/3n_plus_1.py)
   * [Abs](maths/abs.py)

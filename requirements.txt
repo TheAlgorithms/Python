@@ -18,3 +18,4 @@ texttable
 tweepy
 xgboost
 yulewalker
+mediapipe
