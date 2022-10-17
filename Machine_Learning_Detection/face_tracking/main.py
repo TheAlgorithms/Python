@@ -8,13 +8,13 @@ ptime = 0
 
 mpfacedetection = mp.solutions.face_detection
 mpdraw = mp.solutions.drawing_utils
-faceDetection = mpfacedetection.FaceDetection(0.75)
+facedetection = mpfacedetection.FaceDetection(0.75)
 
 while True:
     success, img = cap.read()
 
     imgrgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    results = faceDetection.process(imgrgb)
+    results = facedetection.process(imgrgb)
     print(results)
 
     if results.detections:

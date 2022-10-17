@@ -11,12 +11,12 @@ class FaceDetector:
 
         self.mpfacedetection = mp.solutions.face_detection
         self.mpdraw = mp.solutions.drawing_utils
-        self.faceDetection = self.mpfacedetection.FaceDetection(self.mindetectioncon)
+        self.facedetection = self.mpfacedetection.FaceDetection(self.mindetectioncon)
 
     def findfaces(self, img, draw=True):
 
         imgrgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        self.results = self.faceDetection.process(imgrgb)
+        self.results = self.facedetection.process(imgrgb)
         # print(self.results)
         bboxs = []
 

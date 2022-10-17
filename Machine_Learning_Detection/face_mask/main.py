@@ -8,19 +8,19 @@ ptime = 0
 
 mpdraw = mp.solutions.drawing_utils
 mpfacemesh = mp.solutions.face_mesh
-faceMesh = mpfacemesh.FaceMesh(max_num_faces=2)
-drawSpec = mpdraw.DrawingSpec(thickness=1, circle_radius=2)
+facemesh = mpfacemesh.FaceMesh(max_num_faces=2)
+drawspec = mpdraw.DrawingSpec(thickness=1, circle_radius=2)
 
 while True:
     success, img = cap.read()
     imgrgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    results = faceMesh.process(imgrgb)
+    results = facemesh.process(imgrgb)
     if results.multi_face_landmarks:
         for facelms in results.multi_face_landmarks:
             mpdraw.draw_landmarks(
-                img, facelms, mpfacemesh.FACEMESH_TESSELATION, drawSpec, drawSpec
+                img, facelms, mpfacemesh.FACEMESH_TESSELATION, drawspec, drawspec
             )
-            # mpdraw.draw_landmarks(img, facelms, mpfacemesh.FACEMESH_CONTOURS ,drawSpec,drawSpec)
+            # mpdraw.draw_landmarks(img, facelms, mpfacemesh.FACEMESH_CONTOURS ,drawspec,drawspec)
         for id, lm in enumerate(facelms.landmark):
             # print(lm)
             ih, iw, ic = img.shape

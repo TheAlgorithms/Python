@@ -6,24 +6,24 @@ import mediapipe as mp
 
 class FaceMeshDetector:
     def __init__(
-        self, staticmode=False, maxfaces=2, mindetectioncon=0.5, minTrackCon=0.5
+        self, staticmode=False, maxfaces=2, mindetectioncon=0.5, mintrackcon=0.5
     ):
 
         self.staticmode = staticmode
         self.maxfaces = maxfaces
         self.mindetectioncon = mindetectioncon
-        self.minTrackCon = minTrackCon
+        self.mintrackcon = mintrackcon
 
         self.mpdraw = mp.solutions.drawing_utils
         self.mpfacemesh = mp.solutions.face_mesh
-        self.faceMesh = self.mpfacemesh.FaceMesh(
-            self.staticmode, self.maxfaces, self.mindetectioncon, self.minTrackCon
+        self.facemesh = self.mpfacemesh.FaceMesh(
+            self.staticmode, self.maxfaces, self.mindetectioncon, self.mintrackcon
         )
-        self.drawSpec = self.mpdraw.DrawingSpec(thickness=1, circle_radius=2)
+        self.drawspec = self.mpdraw.DrawingSpec(thickness=1, circle_radius=2)
 
     def findfacemesh(self, img, draw=True):
         self.imgrgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        self.results = self.faceMesh.process(self.imgrgb)
+        self.results = self.facemesh.process(self.imgrgb)
         faces = []
         if self.results.multi_face_landmarks:
             for facelms in self.results.multi_face_landmarks:
@@ -32,8 +32,8 @@ class FaceMeshDetector:
                         img,
                         facelms,
                         self.mpfacemesh.FACE_CONNECTIONS,
-                        self.drawSpec,
-                        self.drawSpec,
+                        self.drawspec,
+                        self.drawspec,
                     )
             face = []
             for id, lm in enumerate(facelms.landmark):

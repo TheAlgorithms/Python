@@ -5,14 +5,14 @@ import mediapipe as mp
 
 
 class handdetector:
-    def __init__(self, mode=False, maxhands=2, detectionCon=0.5, trackCon=0.5):
+    def __init__(self, mode=False, maxhands=2, detectioncon=0.5, trackCon=0.5):
         self.mode = mode
         self.maxhands = maxhands
-        self.detectionCon = detectionCon
+        self.detectioncon = detectioncon
         self.trackCon = trackCon
         self.mphands = mp.solutions.hands
         # self.hands = self.mphands.Hands(self.mode, self.maxhands,
-        #                                 self.detectionCon, self.trackCon)
+        #                                 self.detectioncon, self.trackCon)
         self.hands = self.mphands.Hands()
         self.mpdraw = mp.solutions.drawing_utils
 
@@ -28,19 +28,19 @@ class handdetector:
                     )
         return img
 
-    def findposition(self, img, handNo=0, draw=True):
-        lmList = []
+    def findposition(self, img, handno=0, draw=True):
+        imlist = []
         if self.results.multi_hand_landmarks:
-            myhand = self.results.multi_hand_landmarks[handNo]
+            myhand = self.results.multi_hand_landmarks[handno]
             for id, lm in enumerate(myhand.landmark):
                 # print(id, lm)
                 h, w, c = img.shape
                 cx, cy = int(lm.x * w), int(lm.y * h)
                 # print(id, cx, cy)
-                lmList.append([id, cx, cy])
+                imlist.append([id, cx, cy])
                 if draw:
                     cv2.circle(img, (cx, cy), 5, (255, 0, 255), cv2.FILLED)
-        return lmList
+        return imlist
 
 
 def main():
@@ -51,9 +51,9 @@ def main():
     while True:
         success, img = cap.read()
         img = detector.findhands(img)
-        lmList = detector.findposition(img)
-        if len(lmList) != 0:
-            print(lmList[4])
+        imlist = detector.findposition(img)
+        if len(imlist) != 0:
+            print(imlist[4])
         ctime = time.time()
         fps = 1 / (ctime - ptime)
         ptime = ctime

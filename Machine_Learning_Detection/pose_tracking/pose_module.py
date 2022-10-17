@@ -7,17 +7,17 @@ import mediapipe as mp
 
 class posedetector:
     def __init__(
-        self, mode=False, upBody=False, smooth=True, detectionCon=0.5, trackCon=0.5
+        self, mode=False, upbody=False, smooth=True, detectioncon=0.5, trackCon=0.5
     ):
         self.mode = mode
-        self.upBody = upBody
+        self.upbody = upbody
         self.smooth = smooth
-        self.detectionCon = detectionCon
+        self.detectioncon = detectioncon
         self.trackCon = trackCon
         self.mpdraw = mp.solutions.drawing_utils
         self.mppose = mp.solutions.pose
         self.pose = self.mppose.Pose(
-            self.mode, self.upBody, self.smooth, self.detectionCon, self.trackCon
+            self.mode, self.upbody, self.smooth, self.detectioncon, self.trackCon
         )
 
     def findpose(self, img, draw=True):
@@ -31,16 +31,16 @@ class posedetector:
         return img
 
     def findposition(self, img, draw=True):
-        self.lmList = []
+        self.imlist = []
         if self.results.pose_landmarks:
             for id, lm in enumerate(self.results.pose_landmarks.landmark):
                 h, w, c = img.shape
                 # print(id, lm)
                 cx, cy = int(lm.x * w), int(lm.y * h)
-                self.lmList.append([id, cx, cy])
+                self.imlist.append([id, cx, cy])
                 if draw:
                     cv2.circle(img, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
-        return self.lmList
+        return self.imlist
 
 
 def main():
@@ -50,10 +50,10 @@ def main():
     while True:
         success, img = cap.read()
         img = detector.findpose(img)
-        lmList = detector.findposition(img, draw=False)
-        if len(lmList) != 0:
-            print(lmList[14])
-            cv2.circle(img, (lmList[14][1], lmList[14][2]), 15, (0, 0, 255), cv2.FILLED)
+        imlist = detector.findposition(img, draw=False)
+        if len(imlist) != 0:
+            print(imlist[14])
+            cv2.circle(img, (imlist[14][1], imlist[14][2]), 15, (0, 0, 255), cv2.FILLED)
         ctime = time.time()
         fps = 1 / (ctime - ptime)
         ptime = ctime
