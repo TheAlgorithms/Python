@@ -15,8 +15,8 @@ from dataclasses import dataclass
 @dataclass
 class TreeNode:
     val: int
-    left: TreeNode | None = None
-    right: TreeNode | None = None
+    left: TreeNode = None
+    right: TreeNode = None
 
 
 def make_tree() -> TreeNode:
@@ -65,7 +65,7 @@ def binary_tree_right_side_view(root: TreeNode) -> list[int]:
     return right_view
 
 
-def binary_tree_left_side_view(root: TreeNode | None) -> list[int]:
+def binary_tree_left_side_view(root: TreeNode) -> list[int]:
     r"""
     Function returns the left side view of binary tree.
 
@@ -152,7 +152,7 @@ def binary_tree_top_side_view(root: TreeNode) -> list[int]:
     return top_view
 
 
-def binary_tree_bottom_side_view(root: TreeNode | None) -> list[int]:
+def binary_tree_bottom_side_view(root: TreeNode) -> list[int]:
     r"""
     Function returns the bottom side view of binary tree
 
