@@ -58,6 +58,7 @@ Output: [9, 15, 20, 7]
 """
 
 from __future__ import annotations
+
 from dataclasses import dataclass
 
 
@@ -83,7 +84,9 @@ def binary_tree_right_side_view(root: TreeNode | None) -> list[int]:
     [3, 20, 7]
     """
 
-    def depth_first_search(root: TreeNode | None, depth: int, right_view: list[int]) -> None:
+    def depth_first_search(
+        root: TreeNode | None, depth: int, right_view: list[int]
+    ) -> None:
         """
         A depth first search preorder traversal to append the values at
         right side of tree.
@@ -116,7 +119,9 @@ def binary_tree_left_side_view(root: TreeNode | None) -> list[int]:
     [3, 9, 15]
     """
 
-    def depth_first_search(root: TreeNode | None, depth: int, left_view: list[int]) -> None:
+    def depth_first_search(
+        root: TreeNode | None, depth: int, left_view: list[int]
+    ) -> None:
         """
         A depth first search preorder traversal to append the values
         at left side of tree.
