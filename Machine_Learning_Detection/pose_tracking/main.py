@@ -20,9 +20,9 @@ while True:
             print(id, lm)
             cx, cy = int(lm.x * w), int(lm.y * h)
             cv2.circle(img, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
-    cTime = time.time()
-    fps = 1 / (cTime - ptime)
-    ptime = cTime
+    ctime = time.time()
+    fps = 1 / (ctime - ptime)
+    ptime = ctime
     cv2.putText(img, str(int(fps)), (70, 50), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
     cv2.imshow("Image", img)
     cv2.waitKey(1)

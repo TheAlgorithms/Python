@@ -10,7 +10,7 @@ hands = mphands.Hands()
 mpdraw = mp.solutions.drawing_utils
 
 ptime = 0
-cTime = 0
+ctime = 0
 
 while True:
     success, img = cap.read()
@@ -20,9 +20,9 @@ while True:
 
     if results.multi_hand_landmarks:
         # deect points
-        for handLms in results.multi_hand_landmarks:
+        for handlms in results.multi_hand_landmarks:
             # color circle at id point
-            for id, lm in enumerate(handLms.landmark):
+            for id, lm in enumerate(handlms.landmark):
                 # print(id, lm)
                 h, w, c = img.shape
                 # converting ratio to
@@ -31,12 +31,12 @@ while True:
                 # if id == 4:
                 cv2.circle(img, (cx, cy), 15, (255, 0, 255), cv2.FILLED)
 
-            mpdraw.draw_landmarks(img, handLms, mphands.HAND_CONNECTIONS)
+            mpdraw.draw_landmarks(img, handlms, mphands.HAND_CONNECTIONS)
 
     # frame per second
-    cTime = time.time()
-    fps = 1 / (cTime - ptime)
-    ptime = cTime
+    ctime = time.time()
+    fps = 1 / (ctime - ptime)
+    ptime = ctime
 
     cv2.putText(
         img, str(int(fps)), (10, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 255), 3

@@ -6,9 +6,9 @@ import mediapipe as mp
 cap = cv2.VideoCapture(1)
 ptime = 0
 
-mpFaceDetection = mp.solutions.face_detection
+mpfacedetection = mp.solutions.face_detection
 mpDraw = mp.solutions.drawing_utils
-faceDetection = mpFaceDetection.FaceDetection(0.75)
+faceDetection = mpfacedetection.FaceDetection(0.75)
 
 while True:
     success, img = cap.read()
@@ -42,9 +42,9 @@ while True:
                 2,
             )
 
-    cTime = time.time()
-    fps = 1 / (cTime - ptime)
-    ptime = cTime
+    ctime = time.time()
+    fps = 1 / (ctime - ptime)
+    ptime = ctime
     cv2.putText(
         img, f"FPS: {int(fps)}", (20, 70), cv2.FONT_HERSHEY_PLAIN, 3, (0, 255, 0), 2
     )

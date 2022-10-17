@@ -9,11 +9,11 @@ class FaceDetector:
 
         self.mindetectioncon = mindetectioncon
 
-        self.mpFaceDetection = mp.solutions.face_detection
+        self.mpfacedetection = mp.solutions.face_detection
         self.mpDraw = mp.solutions.drawing_utils
-        self.faceDetection = self.mpFaceDetection.FaceDetection(self.mindetectioncon)
+        self.faceDetection = self.mpfacedetection.FaceDetection(self.mindetectioncon)
 
-    def findFaces(self, img, draw=True):
+    def findfaces(self, img, draw=True):
 
         imgrgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         self.results = self.faceDetection.process(imgrgb)
@@ -72,14 +72,14 @@ def main():
     while True:
         success, img = cap.read()
         try:
-            img, bboxs = detector.findFaces(img)
+            img, bboxs = detector.findfaces(img)
         except:
             pass
         # print(bboxs)
 
-        cTime = time.time()
-        fps = 1 / (cTime - ptime)
-        ptime = cTime
+        ctime = time.time()
+        fps = 1 / (ctime - ptime)
+        ptime = ctime
         cv2.putText(
             img, f"FPS: {int(fps)}", (20, 70), cv2.FONT_HERSHEY_PLAIN, 3, (0, 255, 0), 2
         )
