@@ -18,6 +18,6 @@ if __name__ == "__main__":
                 break
             out_file.write(data)  # Write data to a file
 
-    print("Successfully got the file")
+    print("Successfully received the file")
     sock.close()
     print("Connection closed")
