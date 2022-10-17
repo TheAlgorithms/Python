@@ -1,7 +1,7 @@
 """
 This is a pure implementation of simple swap sort algorithm in Python.
 It counts the number of smaller values and then swap the element
-with the matching digit. It uses minimum number of swaps: 
+with the matching digit. It uses minimum number of swaps:
 https://geeksforgeeks.org/minimum-number-swaps-required-sort-array/?ref=lbp
 Each element may only occur ones.
 
