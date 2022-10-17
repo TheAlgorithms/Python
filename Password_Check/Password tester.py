@@ -1,7 +1,7 @@
 from itertools import product
 
 
-def findPassword(chars, function, show=50, format_="%s"):
+def findPass(chars, passcheck1, show=50, format_="%s"):
 
     password = None
     attempts = 0
@@ -20,7 +20,7 @@ def findPassword(chars, function, show=50, format_="%s"):
                 """
                 print(format_ % password)
 
-            if function(password):
+            if passcheck1(password):
                 """
                 condition runs every time when a new password is generated and  equal to given password.
                 """
@@ -41,12 +41,10 @@ def getChars():
 
     for id_ in range(ord("A"), ord("Z") + 1):
         chars.append(chr(id_))
-
     for id_ in range(ord("a"), ord("z") + 1):
         chars.append(chr(id_))
     for number in range(10):
         chars.append(str(number))
-
     return chars
 
 
@@ -70,7 +68,7 @@ if __name__ == "__main__":
     pw = input("\n Please enter the password which you want to check: ")
     print("\n")
 
-    def testFunction(password):
+    def passcheck(password):
         """
         function to check whether the generated password match to given password or not.
         if match return true else return false
@@ -82,14 +80,7 @@ if __name__ == "__main__":
             return False
 
     chars = getChars()
-
     t = time.process_time()
-
-    password, attempts = findPassword(
-        chars, testFunction, show=1000, format_=" Trying %s"
-    )
-
+    password, attempts = findPass(chars, passcheck, show=1000, format_=" Trying %s")
     t = datetime.timedelta(seconds=int(time.process_time() - t))
-    print(
-        f"\n\n Password found: {password}\n No Of Attempts: {attempts}\n Time to found: {t}\n"
-    )
+    print(f"\n\n Password found: {password}\n No Of Attempts: {attempts}\n Time to found: {t}\n")
