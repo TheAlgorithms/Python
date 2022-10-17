@@ -19,7 +19,7 @@ class Node:
 class SortedLinkedList:
     def __init__(self, ints: Iterable[int]) -> None:
         self.head: Node | None = None
-        for i in reversed(sorted(ints)):
+        for i in sorted(ints, reverse=True):
             self.head = Node(i, self.head)
 
     def __iter__(self) -> Iterator[int]:
