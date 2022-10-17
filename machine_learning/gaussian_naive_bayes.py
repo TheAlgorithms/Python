@@ -17,19 +17,19 @@ def main():
     iris = load_iris()
 
     # Split dataset into train and test data
-    X = iris["data"]  # features
-    Y = iris["target"]
+    x = iris["data"]  # features
+    y = iris["target"]
     x_train, x_test, y_train, y_test = train_test_split(
-        X, Y, test_size=0.3, random_state=1
+        x, y, test_size=0.3, random_state=1
     )
 
     # Gaussian Naive Bayes
-    NB_model = GaussianNB()
-    NB_model.fit(x_train, y_train)
+    nb_model = GaussianNB()
+    nb_model.fit(x_train, y_train)
 
     # Display Confusion Matrix
     plot_confusion_matrix(
-        NB_model,
+        nb_model,
         x_test,
         y_test,
         display_labels=iris["target_names"],

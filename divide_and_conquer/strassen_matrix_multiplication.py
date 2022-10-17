@@ -132,12 +132,12 @@ def strassen(matrix1: list, matrix2: list) -> list:
     # power of 2
     for i in range(0, maxim):
         if i < dimension1[0]:
-            for j in range(dimension1[1], maxim):
+            for _ in range(dimension1[1], maxim):
                 new_matrix1[i].append(0)
         else:
             new_matrix1.append([0] * maxim)
         if i < dimension2[0]:
-            for j in range(dimension2[1], maxim):
+            for _ in range(dimension2[1], maxim):
                 new_matrix2[i].append(0)
         else:
             new_matrix2.append([0] * maxim)
@@ -147,7 +147,7 @@ def strassen(matrix1: list, matrix2: list) -> list:
     # Removing the additional zeros
     for i in range(0, maxim):
         if i < dimension1[0]:
-            for j in range(dimension2[1], maxim):
+            for _ in range(dimension2[1], maxim):
                 final_matrix[i].pop()
         else:
             final_matrix.pop()

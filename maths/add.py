@@ -3,7 +3,7 @@ Just to check
 """
 
 
-def add(a, b):
+def add(a: float, b: float) -> float:
     """
     >>> add(2, 2)
     4

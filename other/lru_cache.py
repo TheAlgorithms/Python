@@ -321,7 +321,7 @@ class LRUCache(Generic[T, U]):
             def cache_info() -> LRUCache[T, U]:
                 return cls.decorator_function_to_instance_map[func]
 
-            setattr(cache_decorator_wrapper, "cache_info", cache_info)
+            setattr(cache_decorator_wrapper, "cache_info", cache_info)  # noqa: B010
 
             return cache_decorator_wrapper
 

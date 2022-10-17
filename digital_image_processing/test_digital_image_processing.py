@@ -62,8 +62,8 @@ def test_gen_gaussian_kernel_filter():
 
 def test_convolve_filter():
     # laplace diagonals
-    Laplace = array([[0.25, 0.5, 0.25], [0.5, -3, 0.5], [0.25, 0.5, 0.25]])
-    res = conv.img_convolve(gray, Laplace).astype(uint8)
+    laplace = array([[0.25, 0.5, 0.25], [0.5, -3, 0.5], [0.25, 0.5, 0.25]])
+    res = conv.img_convolve(gray, laplace).astype(uint8)
     assert res.any()
 
 

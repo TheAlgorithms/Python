@@ -2,8 +2,8 @@ import math
 
 
 class SegmentTree:
-    def __init__(self, A):
-        self.N = len(A)
+    def __init__(self, a):
+        self.N = len(a)
         self.st = [0] * (
             4 * self.N
         )  # approximate the overall size of segment tree with array N
@@ -58,11 +58,11 @@ class SegmentTree:
         q2 = self.query_recursive(self.right(idx), mid + 1, r, a, b)
         return max(q1, q2)
 
-    def showData(self):
-        showList = []
+    def show_data(self):
+        show_list = []
         for i in range(1, N + 1):
-            showList += [self.query(i, i)]
-        print(showList)
+            show_list += [self.query(i, i)]
+        print(show_list)
 
 
 if __name__ == "__main__":
@@ -75,4 +75,4 @@ if __name__ == "__main__":
     segt.update(1, 3, 111)
     print(segt.query(1, 15))
     segt.update(7, 8, 235)
-    segt.showData()
+    segt.show_data()

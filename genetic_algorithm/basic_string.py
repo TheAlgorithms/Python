@@ -80,7 +80,7 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
             score = len(
                 [g for position, g in enumerate(item) if g == main_target[position]]
             )
-            return (item, float(score))
+            return (item, float(score))  # noqa: B023
 
         # Adding a bit of concurrency can make everything faster,
         #
@@ -129,7 +129,10 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
             child_n = int(parent_1[1] * 100) + 1
             child_n = 10 if child_n >= 10 else child_n
             for _ in range(child_n):
-                parent_2 = population_score[random.randint(0, N_SELECTED)][0]
+                parent_2 = population_score[  # noqa: B023
+                    random.randint(0, N_SELECTED)
+                ][0]
+
                 child_1, child_2 = crossover(parent_1[0], parent_2)
                 # Append new string to the population list
                 pop.append(mutate(child_1))
@@ -169,7 +172,7 @@ if __name__ == "__main__":
         " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklm"
         "nopqrstuvwxyz.,;!?+-*#@^'èéòà€ù=)(&%$£/\\"
     )
+    generation, population, target = basic(target_str, genes_list)
     print(
-        "\nGeneration: %s\nTotal Population: %s\nTarget: %s"
-        % basic(target_str, genes_list)
+        f"\nGeneration: {generation}\nTotal Population: {population}\nTarget: {target}"
     )

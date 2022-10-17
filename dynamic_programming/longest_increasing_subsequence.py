@@ -34,12 +34,12 @@ def longest_subsequence(array: list[int]) -> list[int]:  # This function is recu
         return array
         # Else
     pivot = array[0]
-    isFound = False
+    is_found = False
     i = 1
     longest_subseq: list[int] = []
-    while not isFound and i < array_length:
+    while not is_found and i < array_length:
         if array[i] < pivot:
-            isFound = True
+            is_found = True
             temp_array = [element for element in array[i:] if element >= array[i]]
             temp_array = longest_subsequence(temp_array)
             if len(temp_array) > len(longest_subseq):
