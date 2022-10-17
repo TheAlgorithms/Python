@@ -23,7 +23,7 @@ house_df, house_dict = data_loading("house_prices")
 
 
 y_df = house_df["SalePrice"].to_frame()
-X_df = house_df[house_df.columns.difference(["SalePrice"])]
+x_df = house_df[house_df.columns.difference(["SalePrice"])]
 
 
 # In[12]:
@@ -45,13 +45,13 @@ house_df.head()
 
 from category_encoders import OrdinalEncoder
 
-categorical_features = [col for col in X_df.columns if X_df[col].dtype == "object"]
+categorical_features = [col for col in x_df.columns if x_df[col].dtype == "object"]
 
 encoder = OrdinalEncoder(
     cols=categorical_features, handle_unknown="ignore", return_df=True
 ).fit(X_df)
 
-X_df = encoder.transform(X_df)
+x_df = encoder.transform(X_df)
 
 
 # # Train / Test Split
@@ -59,8 +59,8 @@ X_df = encoder.transform(X_df)
 # In[16]:
 
 
-Xtrain, Xtest, ytrain, ytest = train_test_split(
-    X_df, y_df, train_size=0.75, random_state=1
+xtrain, xtest, ytrain, ytest = train_test_split(
+    x_df, y_df, train_size=0.75, random_state=1
 )
 
 
@@ -111,7 +111,7 @@ app = xpl.run_app(title_story="House Prices")
 app.kill()
 
 
-# # Export local explaination in DataFrame
+# # Export local explanation in DataFrame
 
 # In[23]:
 
