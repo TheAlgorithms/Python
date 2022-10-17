@@ -174,7 +174,7 @@ def binary_tree_top_side_view(root: TreeNode | None) -> list[int]:
             if node.right:
                 queue.append((node.right, hd + 1))
 
-        for key, val in sorted(lookup.items(), key=lambda each: each[0]):
+        for _key, val in sorted(lookup.items(), key=lambda each: each[0]):
             top_view.append(val[0])
 
     top_view: list = []
@@ -215,7 +215,7 @@ def binary_tree_bottom_side_view(root: TreeNode | None) -> list[int]:
             if node.right:
                 queue.append((node.right, hd + 1))
 
-        for key, val in sorted(lookup.items(), key=lambda each: each[0]):
+        for _key, val in sorted(lookup.items(), key=lambda each: each[0]):
             bottom_view.append(val[-1])
 
     bottom_view: list = []
