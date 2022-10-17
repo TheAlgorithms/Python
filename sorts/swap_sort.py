@@ -12,7 +12,7 @@ python3 swap_sort.py
 """
 
 
-def swap_sort(collection):
+def swap_sort(collection: list) -> list:
     """Pure implementation of simple swap sort algorithm in Python.
 
     :param collection: some mutable ordered collection
