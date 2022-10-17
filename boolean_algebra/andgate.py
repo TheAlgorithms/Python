@@ -1,12 +1,12 @@
 """ An AND Gate is a logic gate in boolean algebra which results to false(0)
     if any of the input is 0, and True(1) if  both the inputs are 1.
     """
-def and_gate(input_1, input_2):
+def and_gate(input_1: int, input_2: int) -> int:
 
     return input_1*input_2
 
 
-def main() :
+def main() -> None:
     print("Truth Table of AND Gate:")
     print("| Input 1 |", " Input 2 |", " Output |")
     print("|      0      |", "     0      |     ", and_gate(0, 0), "     |")
