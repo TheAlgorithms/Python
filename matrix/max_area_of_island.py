@@ -20,12 +20,12 @@ def is_safe(row: int, col: int, rows: int, cols: int) -> bool:
     return not (row < 0 or col < 0 or row >= rows or col >= cols)
 
 
-def dfs(
+def depth_first_search(
     row: int, col: int, rows: int, cols: int, seen: set, mat: list[list[int]]
 ) -> int:
     """
     Returns the current area of the island
-    >>> dfs(0,0, 8,8,set(), [ \
+    >>> depth_first_search(0,0, 8,8,set(), [
         [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0], \
         [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0], \
         [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0], \
@@ -40,10 +40,10 @@ def dfs(
         seen.add((row, col))
         return (
             1
-            + dfs(row + 1, col, rows, cols, seen, mat)
-            + dfs(row - 1, col, rows, cols, seen, mat)
-            + dfs(row, col + 1, rows, cols, seen, mat)
-            + dfs(row, col - 1, rows, cols, seen, mat)
+            + depth_first_search(row + 1, col, rows, cols, seen, mat)
+            + depth_first_search(row - 1, col, rows, cols, seen, mat)
+            + depth_first_search(row, col + 1, rows, cols, seen, mat)
+            + depth_first_search(row, col - 1, rows, cols, seen, mat)
         )
     else:
         return 0
@@ -74,7 +74,7 @@ def count_max_area(mat: list[list[int]]) -> int:
         for col in range(cols):
             if mat[row][col] == 1 and (row, col) not in seen:
                 # Maximizing the area
-                max_area = max(max_area, dfs(row, col, rows, cols, seen, mat))
+                max_area = max(max_area, depth_first_search(row, col, rows, cols, seen, mat))
     return max_area
 
 
