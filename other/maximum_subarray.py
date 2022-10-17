@@ -21,6 +21,5 @@ def max_subarray(nums: list[int]) -> int:
 
 
 if __name__ == "__main__":
-    n = int(input("Enter number of elements : ").strip())
-    array = list(map(int, input("\nEnter the numbers : ").strip().split()))[:n]
+    array = list(map(int, input("\nEnter the numbers : ").strip().split()))
     print(max_subarray(array))
