@@ -36,6 +36,6 @@ def swap_sort(collection: list) -> list:
 
 
 if __name__ == "__main__":
-    user_input = input("Enter different numbers seperated by a comma:\n").strip()
+    user_input = input("Enter different numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
     print(swap_sort(unsorted))
