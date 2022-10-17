@@ -23,7 +23,7 @@ class EditDistance:
         self.word2 = ""
         self.dp = []
 
-    def __min_dist_top_down_dp(self, m, n):
+    def __min_dist_top_down_dp(self, m: int, n: int) -> int:
         if m == -1:
             return n + 1
         elif n == -1:
