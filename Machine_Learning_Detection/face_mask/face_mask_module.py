@@ -6,20 +6,20 @@ import mediapipe as mp
 
 class FaceMeshDetector:
     def __init__(
-        self, staticmode=False, maxFaces=2, mindetectioncon=0.5, minTrackCon=0.5
+        self, staticmode=False, maxfaces=2, mindetectioncon=0.5, minTrackCon=0.5
     ):
 
         self.staticmode = staticmode
-        self.maxFaces = maxFaces
+        self.maxfaces = maxfaces
         self.mindetectioncon = mindetectioncon
         self.minTrackCon = minTrackCon
 
-        self.mpDraw = mp.solutions.drawing_utils
+        self.mpdraw = mp.solutions.drawing_utils
         self.mpfacemesh = mp.solutions.face_mesh
         self.faceMesh = self.mpfacemesh.FaceMesh(
-            self.staticmode, self.maxFaces, self.mindetectioncon, self.minTrackCon
+            self.staticmode, self.maxfaces, self.mindetectioncon, self.minTrackCon
         )
-        self.drawSpec = self.mpDraw.DrawingSpec(thickness=1, circle_radius=2)
+        self.drawSpec = self.mpdraw.DrawingSpec(thickness=1, circle_radius=2)
 
     def findfacemesh(self, img, draw=True):
         self.imgrgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -28,7 +28,7 @@ class FaceMeshDetector:
         if self.results.multi_face_landmarks:
             for facelms in self.results.multi_face_landmarks:
                 if draw:
-                    self.mpDraw.draw_landmarks(
+                    self.mpdraw.draw_landmarks(
                         img,
                         facelms,
                         self.mpfacemesh.FACE_CONNECTIONS,
@@ -52,7 +52,7 @@ class FaceMeshDetector:
 def main():
     cap = cv2.VideoCapture(0)
     ptime = 0
-    detector = FaceMeshDetector(maxFaces=2)
+    detector = FaceMeshDetector(maxfaces=2)
     while True:
         success, img = cap.read()
         img, faces = detector.findfacemesh(img)

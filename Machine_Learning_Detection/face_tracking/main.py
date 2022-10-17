@@ -7,7 +7,7 @@ cap = cv2.VideoCapture(1)
 ptime = 0
 
 mpfacedetection = mp.solutions.face_detection
-mpDraw = mp.solutions.drawing_utils
+mpdraw = mp.solutions.drawing_utils
 faceDetection = mpfacedetection.FaceDetection(0.75)
 
 while True:
@@ -19,7 +19,7 @@ while True:
 
     if results.detections:
         for id, detection in enumerate(results.detections):
-            mpDraw.draw_detection(img, detection)
+            mpdraw.draw_detection(img, detection)
             # print(id, detection)
             # print(detection.score)
             # print(detection.location_data.relative_bounding_box)

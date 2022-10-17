@@ -10,7 +10,7 @@ class FaceDetector:
         self.mindetectioncon = mindetectioncon
 
         self.mpfacedetection = mp.solutions.face_detection
-        self.mpDraw = mp.solutions.drawing_utils
+        self.mpdraw = mp.solutions.drawing_utils
         self.faceDetection = self.mpfacedetection.FaceDetection(self.mindetectioncon)
 
     def findfaces(self, img, draw=True):
@@ -32,7 +32,7 @@ class FaceDetector:
                 )
                 bboxs.append([id, bbox, detection.score])
                 if draw:
-                    img = self.fancyDraw(img, bbox)
+                    img = self.fancydraw(img, bbox)
                     cv2.putText(
                         img,
                         f"{int(detection.score[0] * 100)}%",
@@ -45,7 +45,7 @@ class FaceDetector:
 
             return img, bboxs
 
-    def fancyDraw(self, img, bbox, l=30, t=5, rt=1):
+    def fancydraw(self, img, bbox, l=30, t=5, rt=1):
         x, y, w, h = bbox
         x1, y1 = x + w, y + h
 

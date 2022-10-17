@@ -14,7 +14,7 @@ class posedetector:
         self.smooth = smooth
         self.detectionCon = detectionCon
         self.trackCon = trackCon
-        self.mpDraw = mp.solutions.drawing_utils
+        self.mpdraw = mp.solutions.drawing_utils
         self.mppose = mp.solutions.pose
         self.pose = self.mppose.Pose(
             self.mode, self.upBody, self.smooth, self.detectionCon, self.trackCon
@@ -25,12 +25,12 @@ class posedetector:
         self.results = self.pose.process(imgrgb)
         if self.results.pose_landmarks:
             if draw:
-                self.mpDraw.draw_landmarks(
+                self.mpdraw.draw_landmarks(
                     img, self.results.pose_landmarks, self.mppose.POSE_CONNECTIONS
                 )
         return img
 
-    def findPosition(self, img, draw=True):
+    def findposition(self, img, draw=True):
         self.lmList = []
         if self.results.pose_landmarks:
             for id, lm in enumerate(self.results.pose_landmarks.landmark):
@@ -50,7 +50,7 @@ def main():
     while True:
         success, img = cap.read()
         img = detector.findpose(img)
-        lmList = detector.findPosition(img, draw=False)
+        lmList = detector.findposition(img, draw=False)
         if len(lmList) != 0:
             print(lmList[14])
             cv2.circle(img, (lmList[14][1], lmList[14][2]), 15, (0, 0, 255), cv2.FILLED)

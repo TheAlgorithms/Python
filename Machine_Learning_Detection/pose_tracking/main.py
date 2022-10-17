@@ -3,7 +3,7 @@ import time
 import cv2
 import mediapipe as mp
 
-mpDraw = mp.solutions.drawing_utils
+mpdraw = mp.solutions.drawing_utils
 mppose = mp.solutions.pose
 pose = mppose.Pose()
 cap = cv2.VideoCapture(1)
@@ -14,7 +14,7 @@ while True:
     results = pose.process(imgrgb)
     # print(results.pose_landmarks)
     if results.pose_landmarks:
-        mpDraw.draw_landmarks(img, results.pose_landmarks, mppose.POSE_CONNECTIONS)
+        mpdraw.draw_landmarks(img, results.pose_landmarks, mppose.POSE_CONNECTIONS)
         for id, lm in enumerate(results.pose_landmarks.landmark):
             h, w, c = img.shape
             print(id, lm)
