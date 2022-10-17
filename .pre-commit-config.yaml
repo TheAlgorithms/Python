@@ -60,7 +60,7 @@ repos:
       - id: codespell
         args:
           - --ignore-words-list=ans,crate,damon,fo,followings,hist,iff,mater,secant,som,sur,tim,zar
-          - --skip="./.*,*.txt"
+          - --skip="./.*,./ciphers/prehistoric_men.txt,./strings/dictionary.txt,./strings/words.txt,./project_euler/problem_022/p022_names.txt"
         exclude: |
           (?x)^(
               strings/dictionary.txt |
