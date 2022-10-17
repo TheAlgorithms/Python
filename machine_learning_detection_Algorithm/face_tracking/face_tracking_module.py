@@ -21,7 +21,7 @@ class FaceDetector:
         bboxs = []
 
         if self.results.detections:
-            for id, detection in enumerate(self.results.detections):
+            for id_, detection in enumerate(self.results.detections):
                 bboxc = detection.location_data.relative_bounding_box
                 ih, iw, ic = img.shape
                 bbox = (
@@ -30,7 +30,7 @@ class FaceDetector:
                     int(bboxc.width * iw),
                     int(bboxc.height * ih),
                 )
-                bboxs.append([id, bbox, detection.score])
+                bboxs.append([id_, bbox, detection.score])
                 if draw:
                     img = self.fancydraw(img, bbox)
                     cv2.putText(

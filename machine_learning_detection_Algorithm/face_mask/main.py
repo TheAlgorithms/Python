@@ -21,11 +21,11 @@ while True:
                 img, facelms, mpfacemesh.FACEMESH_TESSELATION, drawspec, drawspec
             )
             # mpdraw.draw_landmarks(img, facelms, mpfacemesh.FACEMESH_CONTOURS ,drawspec,drawspec)
-        for id, lm in enumerate(facelms.landmark):
+        for id_, lm in enumerate(facelms.landmark):
             # print(lm)
             ih, iw, ic = img.shape
             x, y = int(lm.x * iw), int(lm.y * ih)
-            print(id, x, y)
+            print(id_, x, y)
 
     ctime = time.time()
     fps = 1 / (ctime - ptime)

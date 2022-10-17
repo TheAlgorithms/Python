@@ -15,9 +15,9 @@ while True:
     # print(results.pose_landmarks)
     if results.pose_landmarks:
         mpdraw.draw_landmarks(img, results.pose_landmarks, mppose.POSE_CONNECTIONS)
-        for id, lm in enumerate(results.pose_landmarks.landmark):
+        for id_, lm in enumerate(results.pose_landmarks.landmark):
             h, w, c = img.shape
-            print(id, lm)
+            print(id_, lm)
             cx, cy = int(lm.x * w), int(lm.y * h)
             cv2.circle(img, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
     ctime = time.time()

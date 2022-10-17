@@ -5,14 +5,14 @@ import mediapipe as mp
 
 
 class handdetector:
-    def __init__(self, mode=False, maxhands=2, detectioncon=0.5, trackCon=0.5):
+    def __init__(self, mode=False, maxhands=2, detectioncon=0.5, trackcon=0.5):
         self.mode = mode
         self.maxhands = maxhands
         self.detectioncon = detectioncon
-        self.trackCon = trackCon
+        self.trackcon = trackcon
         self.mphands = mp.solutions.hands
         # self.hands = self.mphands.Hands(self.mode, self.maxhands,
-        #                                 self.detectioncon, self.trackCon)
+        #                                 self.detectioncon, self.trackcon)
         self.hands = self.mphands.Hands()
         self.mpdraw = mp.solutions.drawing_utils
 
@@ -32,12 +32,12 @@ class handdetector:
         imlist = []
         if self.results.multi_hand_landmarks:
             myhand = self.results.multi_hand_landmarks[handno]
-            for id, lm in enumerate(myhand.landmark):
-                # print(id, lm)
+            for id_, lm in enumerate(myhand.landmark):
+                # print(id_, lm)
                 h, w, c = img.shape
                 cx, cy = int(lm.x * w), int(lm.y * h)
-                # print(id, cx, cy)
-                imlist.append([id, cx, cy])
+                # print(id_, cx, cy)
+                imlist.append([id_, cx, cy])
                 if draw:
                     cv2.circle(img, (cx, cy), 5, (255, 0, 255), cv2.FILLED)
         return imlist

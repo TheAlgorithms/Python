@@ -7,17 +7,17 @@ import mediapipe as mp
 
 class posedetector:
     def __init__(
-        self, mode=False, upbody=False, smooth=True, detectioncon=0.5, trackCon=0.5
+        self, mode=False, upbody=False, smooth=True, detectioncon=0.5, trackcon=0.5
     ):
         self.mode = mode
         self.upbody = upbody
         self.smooth = smooth
         self.detectioncon = detectioncon
-        self.trackCon = trackCon
+        self.trackcon = trackcon
         self.mpdraw = mp.solutions.drawing_utils
         self.mppose = mp.solutions.pose
         self.pose = self.mppose.Pose(
-            self.mode, self.upbody, self.smooth, self.detectioncon, self.trackCon
+            self.mode, self.upbody, self.smooth, self.detectioncon, self.trackcon
         )
 
     def findpose(self, img, draw=True):
@@ -33,11 +33,11 @@ class posedetector:
     def findposition(self, img, draw=True):
         self.imlist = []
         if self.results.pose_landmarks:
-            for id, lm in enumerate(self.results.pose_landmarks.landmark):
+            for id_, lm in enumerate(self.results.pose_landmarks.landmark):
                 h, w, c = img.shape
-                # print(id, lm)
+                # print(id_, lm)
                 cx, cy = int(lm.x * w), int(lm.y * h)
-                self.imlist.append([id, cx, cy])
+                self.imlist.append([id_, cx, cy])
                 if draw:
                     cv2.circle(img, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
         return self.imlist

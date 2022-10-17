@@ -21,14 +21,14 @@ while True:
     if results.multi_hand_landmarks:
         # deect points
         for handlms in results.multi_hand_landmarks:
-            # color circle at id point
-            for id, lm in enumerate(handlms.landmark):
-                # print(id, lm)
+            # color circle at id_ point
+            for id_, lm in enumerate(handlms.landmark):
+                # print(id_, lm)
                 h, w, c = img.shape
                 # converting ratio to
                 cx, cy = int(lm.x * w), int(lm.y * h)
-                print(id, cx, cy)
-                # if id == 4:
+                print(id_, cx, cy)
+                # if id_ == 4:
                 cv2.circle(img, (cx, cy), 15, (255, 0, 255), cv2.FILLED)
 
             mpdraw.draw_landmarks(img, handlms, mphands.HAND_CONNECTIONS)

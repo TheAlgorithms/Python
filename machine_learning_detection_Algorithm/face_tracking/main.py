@@ -18,9 +18,9 @@ while True:
     print(results)
 
     if results.detections:
-        for id, detection in enumerate(results.detections):
+        for id_, detection in enumerate(results.detections):
             mpdraw.draw_detection(img, detection)
-            # print(id, detection)
+            # print(id_, detection)
             # print(detection.score)
             # print(detection.location_data.relative_bounding_box)
             bboxc = detection.location_data.relative_bounding_box
