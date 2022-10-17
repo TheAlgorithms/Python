@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# coding: utf-8
 
 # In[5]:
 
@@ -7,24 +6,24 @@
 import pandas as pd
 from category_encoders import OrdinalEncoder
 from lightgbm import LGBMRegressor
-from sklearn.model_selection import train_test_split
+from shapash.data.data_loader import data_loading
 from sklearn.ensemble import ExtraTreesRegressor
-
+from sklearn.model_selection import train_test_split
 
 # # Building Supervized Model
 
 # In[10]:
 
 
-from shapash.data.data_loader import data_loading
-house_df, house_dict = data_loading('house_prices')
+
+house_df, house_dict = data_loading("house_prices")
 
 
 # In[11]:
 
 
-y_df=house_df['SalePrice'].to_frame()
-X_df=house_df[house_df.columns.difference(['SalePrice'])]
+y_df = house_df["SalePrice"].to_frame()
+X_df = house_df[house_df.columns.difference(["SalePrice"])]
 
 
 # In[12]:
@@ -46,14 +45,13 @@ house_df.head()
 
 from category_encoders import OrdinalEncoder
 
-categorical_features = [col for col in X_df.columns if X_df[col].dtype == 'object']
+categorical_features = [col for col in X_df.columns if X_df[col].dtype == "object"]
 
 encoder = OrdinalEncoder(
-    cols=categorical_features,
-    handle_unknown='ignore',
-    return_df=True).fit(X_df)
+    cols=categorical_features, handle_unknown="ignore", return_df=True
+).fit(X_df)
 
-X_df=encoder.transform(X_df)
+X_df = encoder.transform(X_df)
 
 
 # # Train / Test Split
@@ -61,7 +59,9 @@ X_df=encoder.transform(X_df)
 # In[16]:
 
 
-Xtrain, Xtest, ytrain, ytest = train_test_split(X_df, y_df, train_size=0.75, random_state=1)
+Xtrain, Xtest, ytrain, ytest = train_test_split(
+    X_df, y_df, train_size=0.75, random_state=1
+)
 
 
 # # Model Fitting
@@ -69,7 +69,7 @@ Xtrain, Xtest, ytrain, ytest = train_test_split(X_df, y_df, train_size=0.75, ran
 # In[17]:
 
 
-regressor = LGBMRegressor(n_estimators=200).fit(Xtrain,ytrain)
+regressor = LGBMRegressor(n_estimators=200).fit(Xtrain, ytrain)
 
 
 # # Declare and Compile SmartExplainer
@@ -79,14 +79,13 @@ regressor = LGBMRegressor(n_estimators=200).fit(Xtrain,ytrain)
 
 from shapash import SmartExplainer
 
-
 # In[19]:
 
 
 xpl = SmartExplainer(
     model=regressor,
-    preprocessing=encoder,   # Optional: compile step can use inverse_transform method
-    features_dict=house_dict # optional parameter, specifies label for features name
+    preprocessing=encoder,  # Optional: compile step can use inverse_transform method
+    features_dict=house_dict,  # optional parameter, specifies label for features name
 )
 
 
@@ -101,7 +100,7 @@ xpl.compile(x=Xtest)
 # In[21]:
 
 
-app = xpl.run_app(title_story='House Prices')
+app = xpl.run_app(title_story="House Prices")
 
 
 # # Stop WebApp
@@ -117,8 +116,8 @@ app.kill()
 # In[23]:
 
 
-summary_df= xpl.to_pandas(
-    max_contrib=3, # Number Max of features to show in summary
+summary_df = xpl.to_pandas(
+    max_contrib=3,  # Number Max of features to show in summary
     threshold=5000,
 )
 
@@ -134,7 +133,7 @@ summary_df.head()
 # In[25]:
 
 
-y_pred = pd.DataFrame(regressor.predict(Xtest),columns=['pred'],index=Xtest.index)
+y_pred = pd.DataFrame(regressor.predict(Xtest), columns=["pred"], index=Xtest.index)
 
 
 # In[26]:
@@ -166,7 +165,7 @@ xpl.plot.contribution_plot("Second floor square feet")
 # In[30]:
 
 
-xpl.filter(max_contrib=8,threshold=100)
+xpl.filter(max_contrib=8, threshold=100)
 
 
 # # Display local plot, applying your filter
@@ -182,8 +181,8 @@ xpl.plot.local_plot(index=560)
 # In[32]:
 
 
-summary_df= xpl.to_pandas(
-    max_contrib=3, # Number Max of features to show in summary
+summary_df = xpl.to_pandas(
+    max_contrib=3,  # Number Max of features to show in summary
     threshold=5000,
 )
 
@@ -195,7 +194,3 @@ summary_df.head()
 
 
 # In[ ]:
-
-
-
-
