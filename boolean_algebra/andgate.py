@@ -20,3 +20,6 @@ if __name__ == "__main__":
 
     doctest.testmod()
     main()
+
+"""Contributed by Aanya Jain
+Wikipedia link for AND GAte: https://en.wikipedia.org/wiki/AND_gate"""
