@@ -17,7 +17,7 @@ def is_safe(row: int, col: int, rows: int, cols: int) -> bool:
     >>> is_safe(-1,-1, 5, 5)
     False
     """
-    return not (row < 0 or col < 0 or row >= rows or col >= cols)
+    return 0 <= row < rows and 0 <= col < cols
 
 
 def depth_first_search(
