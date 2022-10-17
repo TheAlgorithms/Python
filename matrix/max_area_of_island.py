@@ -74,7 +74,9 @@ def count_max_area(mat: list[list[int]]) -> int:
         for col in range(cols):
             if mat[row][col] == 1 and (row, col) not in seen:
                 # Maximizing the area
-                max_area = max(max_area, depth_first_search(row, col, rows, cols, seen, mat))
+                max_area = max(
+                    max_area, depth_first_search(row, col, rows, cols, seen, mat)
+                )
     return max_area
 
 
