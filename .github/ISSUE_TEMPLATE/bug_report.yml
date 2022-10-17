@@ -7,7 +7,7 @@ body:
       value: >
         Before requesting please search [existing issues](https://github.com/TheAlgorithms/Python/labels/bug).
         Usage questions such as "How do I...?"  belong on the
-        [Discord](https://discord.gg/c7MnfGFGa6) and will be closed.
+        [Discord](https://the-algorithms.com/discord/) and will be closed.
 
   - type: input
     attributes:
