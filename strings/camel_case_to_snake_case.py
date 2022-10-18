@@ -72,7 +72,7 @@ def to_snake_case(word: str) -> str:
         return snake_case
 
     else:
-        raise Exception("Provide camel case eg: helloWorld")
+        raise TypeError("Provide camel case eg: helloWorld")
 
 
 if __name__ == "__main__":
