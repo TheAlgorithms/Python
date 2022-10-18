@@ -34,11 +34,6 @@ def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> 
     """
     Monte Carlo integration function
 
-    :param lower_limit: int
-    :param upper_limit: int
-    :param N: int
-    :return: float
-
     >>> round(monte_carlo(0, np.pi, 1000))
     2
     """
