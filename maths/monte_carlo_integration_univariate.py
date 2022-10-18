@@ -14,7 +14,6 @@ import numpy as np
 
 
 # function to calculate the sin of a particular value of x
-# define your function
 def function_to_be_integrated(univariate_variable: int) -> float:
 
     # Doctest
