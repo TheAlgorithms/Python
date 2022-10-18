@@ -37,9 +37,8 @@ def make_key_files(name: str, key_size: int) -> None:
     if os.path.exists(f"{name}_pubkey.txt") or os.path.exists(f"{name}_privkey.txt"):
         print("\nWARNING:")
         print(
-            '"%s_pubkey.txt" or "%s_privkey.txt" already exists. \n'
+            f'"{name}_pubkey.txt" or "{name}_privkey.txt" already exists. \n'
             "Use a different name or delete these files and re-run this program."
-            % (name, name)
         )
         sys.exit()
 

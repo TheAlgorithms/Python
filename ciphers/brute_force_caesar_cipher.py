@@ -1,3 +1,6 @@
+import string
+
+
 def decrypt(message: str) -> None:
     """
     >>> decrypt('TMDETUX PMDVU')
@@ -28,16 +31,15 @@ def decrypt(message: str) -> None:
     Decryption using Key #24: VOFGVWZ ROFXW
     Decryption using Key #25: UNEFUVY QNEWV
     """
-    LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"  # noqa: N806
-    for key in range(len(LETTERS)):
+    for key in range(len(string.ascii_uppercase)):
         translated = ""
         for symbol in message:
-            if symbol in LETTERS:
-                num = LETTERS.find(symbol)
+            if symbol in string.ascii_uppercase:
+                num = string.ascii_uppercase.find(symbol)
                 num = num - key
                 if num < 0:
-                    num = num + len(LETTERS)
-                translated = translated + LETTERS[num]
+                    num = num + len(string.ascii_uppercase)
+                translated = translated + string.ascii_uppercase[num]
             else:
                 translated = translated + symbol
         print(f"Decryption using Key #{key}: {translated}")
