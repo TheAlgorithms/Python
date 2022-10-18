@@ -66,9 +66,7 @@ def find_max_area(mat: list[list[int]]) -> int:
         for col, item in enumerate(line):
             if item == 1 and (row, col) not in seen:
                 # Maximizing the area
-                max_area = max(
-                    max_area, depth_first_search(row, col, seen, mat)
-                )
+                max_area = max(max_area, depth_first_search(row, col, seen, mat))
     return max_area
 
 
