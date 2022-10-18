@@ -43,12 +43,16 @@ def minimax(
     if depth == height:
         return scores[node_index]
 
-    return max(
-        minimax(depth + 1, node_index * 2, False, scores, height),
-        minimax(depth + 1, node_index * 2 + 1, False, scores, height),
-    ) if is_max else min(
-        minimax(depth + 1, node_index * 2, True, scores, height),
-        minimax(depth + 1, node_index * 2 + 1, True, scores, height),
+    return (
+        max(
+            minimax(depth + 1, node_index * 2, False, scores, height),
+            minimax(depth + 1, node_index * 2 + 1, False, scores, height),
+        )
+        if is_max
+        else min(
+            minimax(depth + 1, node_index * 2, True, scores, height),
+            minimax(depth + 1, node_index * 2 + 1, True, scores, height),
+        )
     )
 
 
