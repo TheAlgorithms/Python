@@ -19,29 +19,29 @@ def median_of_two_arrays(nums1: list[float], nums2: list[float]) -> float:
       ...
     IndexError: list index out of range
     """
-    A = nums1
-    B = nums2
+    a = nums1
+    b = nums2
     if len(nums1) > len(nums2):
-        A, B = B, A
-    totalLength = len(A) + len(B)
-    half = totalLength // 2
+        a, b = b, a
+    total_length = len(a) + len(b)
+    half = total_length // 2
     low = 0
-    high = len(A) - 1
+    high = len(a) - 1
     while True:
         mid = (low + high) // 2
         partition = half - mid - 2
-        Aleftmin = A[mid] if mid >= 0 else float("-inf")
-        Arightmin = A[mid + 1] if (mid + 1) < len(A) else float("inf")
-        Bleftmax = B[partition] if partition >= 0 else float("-inf")
-        Brightmax = B[partition + 1] if (partition + 1) < len(B) else float("inf")
+        a_leftmin = a[mid] if mid >= 0 else float("-inf")
+        a_rightmin = a[mid + 1] if (mid + 1) < len(a) else float("inf")
+        b_leftmax = b[partition] if partition >= 0 else float("-inf")
+        b_rightmax = b[partition + 1] if (partition + 1) < len(b) else float("inf")
         # partition is correct
-        if Aleftmin <= Brightmax and Bleftmax <= Arightmin:
+        if a_leftmin <= b_rightmax and b_leftmax <= a_rightmin:
             # odd
-            if totalLength % 2:
-                return min(Arightmin, Brightmax)
+            if total_length % 2:
+                return min(a_rightmin, b_rightmax)
             # even
-            return (max(Aleftmin, Bleftmax) + min(Arightmin, Brightmax)) / 2
-        elif Aleftmin > Brightmax:
+            return (max(a_leftmin, b_leftmax) + min(a_rightmin, b_rightmax)) / 2
+        elif a_leftmin > b_rightmax:
             high = mid - 1
         else:
             low = mid + 1
