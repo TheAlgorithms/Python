@@ -24,8 +24,10 @@ def function_to_be_integrated(univariate_variable: float) -> float:
     """
     return np.sin(univariate_variable)
 
+
 # declaring list to store all the values for plotting, globally
 plt_vals: List[float] = []
+
 
 def monte_carlo(
     lower_limit: float, upper_limit: float, number_of_sections: int
