@@ -3,13 +3,12 @@ Implementation of regular expression matching with support for '.' and '*'.
 '.' Matches any single character.
 '*' Matches zero or more of the preceding element.
 The matching should cover the entire input string (not partial).
-
 """
 
 
 def match_pattern(input_string: str, pattern: str) -> bool:
     """
-    uses bottom-up dynamic programming solution for matching the input
+    Uses bottom-up dynamic programming solution for matching the input
     string with a given pattern.
 
     Runtime : O(len(input_string)*len(pattern))
