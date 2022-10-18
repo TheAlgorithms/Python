@@ -7,7 +7,6 @@ is also plotted. (PLOT SECTION -> Optional implementation)
 
 Link to source material:
 https://towardsdatascience.com/the-basics-of-monte-carlo-integration-5fe16b40482d
-
 """
 
 import doctest
