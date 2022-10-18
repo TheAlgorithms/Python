@@ -15,63 +15,63 @@ def to_snake_case(word: str) -> str:
     >>> to_snake_case('hacktoberFest')
     'hacktober_fest'
     >>> to_snake_case('')
-    'Provide camel case eg: helloWorld'
+    Traceback (most recent call last):
+    Exception: Provide camel case eg: helloWorld
     >>> to_snake_case('HelloWorld')
-    'Provide camel case eg: helloWorld'
+    Traceback (most recent call last):
+    Exception: Provide camel case eg: helloWorld
     >>> to_snake_case(' ')
-    'Provide camel case eg: helloWorld'
+    Traceback (most recent call last):
+    Exception: Provide camel case eg: helloWorld
     """
 
     """
     Raising the error if inputted data is not in the required format
     """
-    try:
-        # checks if the word has capital character in it,
-        # and first character is not the capital.
-        if word != word.lower() and word[0] == word[0].lower():
-            snake_case = ""
-            index_list = []
-            # check number of Capital letter and append their indexes in list
-            for character in word:
-                if character != character.lower():
-                    index_list.append(word.index(character))
 
-            # append one more element
-            index_list.append(100)
+    # checks if the word has capital character in it,
+    # and first character is not the capital.
+    if word != word.lower() and word[0] == word[0].lower():
+        snake_case = ""
+        index_list = []
+        # check number of Capital letter and append their indexes in list
+        for character in word:
+            if character != character.lower():
+                index_list.append(word.index(character))
 
-            # initializing few variables
-            i = 0
-            temp = 1
+        # append one more element
+        index_list.append(100)
 
-            # changing original string to lowercase
-            word = word.lower()
+        # initializing few variables
+        i = 0
+        temp = 1
 
-            for index in index_list:  # iterates over list of indexes
-                """
-                # checks if the temp is less than length of the list
-                # (temp variables checks the number of Capital letters index
-                # as we don't want to add underscore at the end
-                # of the return string)"""
-                if temp < len(index_list):
-                    # adds substring to snake_case strings
-                    snake_case = snake_case + word[i:index] + "_"
+        # changing original string to lowercase
+        word = word.lower()
 
-                # if temp value more than the length of the index list
-                # it executes this statement
-                # as we don't want to add (_) at the end.
-                elif temp >= len(index_list):
-                    snake_case = snake_case + word[i:]
-                temp += 1
-                i = index
+        for index in index_list:  # iterates over list of indexes
+            """
+            # checks if the temp is less than length of the list
+            # (temp variables checks the number of Capital letters index
+            # as we don't want to add underscore at the end
+            # of the return string)"""
+            if temp < len(index_list):
+                # adds substring to snake_case strings
+                snake_case = snake_case + word[i:index] + "_"
 
-            # Returns the string
-            return snake_case
+            # if temp value more than the length of the index list
+            # it executes this statement
+            # as we don't want to add (_) at the end.
+            elif temp >= len(index_list):
+                snake_case = snake_case + word[i:]
+            temp += 1
+            i = index
 
-        else:
-            raise Exception  # raising RuntimeError
+        # Returns the string
+        return snake_case
 
-    except Exception:
-        return "Provide camel case eg: helloWorld"
+    else:
+        raise Exception("Provide camel case eg: helloWorld")
 
 
 if __name__ == "__main__":
@@ -80,4 +80,4 @@ if __name__ == "__main__":
     doctest.testmod()
 
     # Example
-    print(to_snake_case("HelloWorld"))  # --> hello_world
+    # print(to_snake_case("helloWorld"))  # --> hello_world
