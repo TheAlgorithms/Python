@@ -135,7 +135,8 @@ if __name__ == "__main__":
         print("NUMBER OF SECTIONS MUST HAVE INTEGRAL VALUE")
 
     # function call
-    # the final area under the curve(integration) value is considered as the average
+    # the final area under the curve(integration)
+    # value is considered as the average
     # of all the individual areas calculated
     else:
         print(
