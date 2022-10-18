@@ -141,6 +141,6 @@ if __name__ == "__main__":
     else:
         number_of_sections = int(number_of_sections)
         print(
-            f"Approx. value: {monte_carlo(lower_limit,upper_limit,int(number_of_sections))}"
+            f"Approx. value: {monte_carlo(lower_limit,upper_limit,number_of_sections)}"
         )
         # plot_monte_carlo_integration(plt_vals)
