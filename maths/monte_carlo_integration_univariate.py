@@ -17,8 +17,6 @@ import numpy as np
 
 
 def function_to_be_integrated(univariate_variable: int) -> float:
-
-    # Doctest
     """
     Function to calculate the sin of a particular value of x
 
