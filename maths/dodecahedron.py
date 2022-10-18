@@ -71,7 +71,5 @@ def dodecahedron_volume(edge: float) -> float:
 
 
 if __name__ == "__main__":
-    edge = 5
-    print("Dodecahedron edge:", edge)
-    print("Surface area: ", dodecahedron_surface_area(edge=edge))
-    print("Volume: ", dodecahedron_volume(edge=edge))
+    import doctest
+    doctest.testmod()
