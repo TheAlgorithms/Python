@@ -3,9 +3,8 @@ import random
 # Wave Formula Calculations / Formulas Related to waves
 
 """
-Physics Classroom :-
+Physics Classroom :- 
 https://www.physicsclassroom.com/class/waves/Lesson-2/The-Wave-Equation
-
 Background:
 The Wave Formulas are for calculating the characteristics
 of a wave.
@@ -33,10 +32,17 @@ v = 0  # in m/s
 wavelength = 0  # in meters
 frequency = 0  # in Hz
 calc_to_do = random.randint(1, 3)
-
-
-def wave_formula(calc_to_do):
+    
+def wave_formula(calc_to_do: int) -> float:
     global wavelength, v, frequency
+
+    """
+    Random Wave Equation Selected
+    
+    Wavelength = Wave Speed / Frequency    |
+    Wavelength = 97 / 30                   | 
+    Wavelength = 3.2333333333333334m       |
+    """
 
     if calc_to_do == 1:
 
@@ -47,13 +53,11 @@ def wave_formula(calc_to_do):
         wavelength_str = str(wavelength)
         frequency_str = str(frequency)
 
-        print(
-            f"""
+        print(f"""
 Wave Speed = Wavelength * Frequency
 v = {wavelength_str} * {frequency_str}
 v = {v_str}m/s
-"""
-        )
+""")
 
     if calc_to_do == 2:
         v = random.randint(1, 100)
@@ -63,13 +67,11 @@ v = {v_str}m/s
         wavelength_str = str(wavelength)
         frequency_str = str(frequency)
 
-        print(
-            f"""
+        print(f"""
 Wavelength = Wave Speed / Frequency
 Wavelength = {v_str} / {frequency_str}
 Wavelength = {wavelength_str}m
-"""
-        )
+""")
 
     if calc_to_do == 3:
 
@@ -80,13 +82,10 @@ Wavelength = {wavelength_str}m
         wavelength_str = str(wavelength)
         frequency_str = str(frequency)
 
-        print(
-            f"""
+        print(f"""
 Frequency = Wave Speed / Wavelength
 Frequency = {v_str} / {wavelength_str}
 Frequency = {frequency_str}Hz
-"""
-        )
-
+""")
 
 wave_formula(calc_to_do)
