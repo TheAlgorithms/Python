@@ -5,7 +5,7 @@ def median_of_two_arrays(nums1: list[float], nums2: list[float]) -> float:
     """
     Time-Complexity - O(min(log M, log N)): Since we are applying binary search on the smaller sized array
     Space-Complexity - O(1)
-    
+
     >>> median_of_two_arrays([1, 2], [3])
     2
     >>> median_of_two_arrays([0, -1.1], [2.5, 1])
@@ -20,7 +20,7 @@ def median_of_two_arrays(nums1: list[float], nums2: list[float]) -> float:
     IndexError: list index out of range
     """
     A = nums1
-    B= nums2
+    B = nums2
     if len(nums1) > len(nums2):
         A, B = B, A
     totalLength = len(A) + len(B)
@@ -28,12 +28,12 @@ def median_of_two_arrays(nums1: list[float], nums2: list[float]) -> float:
     low = 0
     high = len(A) - 1
     while True:
-        mid = (low+high)//2
-        partition = half - mid -2
-        Aleftmin = A[mid] if mid >= 0 else float('-inf')
-        Arightmin = A[mid + 1] if (mid + 1) < len(A) else float('inf')
-        Bleftmax = B[partition] if partition >= 0 else float('-inf')
-        Brightmax = B[partition + 1] if (partition + 1) < len(B) else float('inf')
+        mid = (low + high) // 2
+        partition = half - mid - 2
+        Aleftmin = A[mid] if mid >= 0 else float("-inf")
+        Arightmin = A[mid + 1] if (mid + 1) < len(A) else float("inf")
+        Bleftmax = B[partition] if partition >= 0 else float("-inf")
+        Brightmax = B[partition + 1] if (partition + 1) < len(B) else float("inf")
         # partition is correct
         if Aleftmin <= Brightmax and Bleftmax <= Arightmin:
             # odd
