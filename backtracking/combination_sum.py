@@ -2,7 +2,14 @@
 In the Combination Sum problem, we are given a list consisting of distinct integers.
 We need to find all the combinations whose sum equals to target given.
 We can use an element more than one.
-Time complexity(Average Case): O(n!),
+
+Time complexity(Average Case): O(n!)
+
+Constraints:
+1 <= candidates.length <= 30
+2 <= candidates[i] <= 40
+All elements of candidates are distinct.
+1 <= target <= 40
 """
 
 
@@ -37,8 +44,6 @@ def combination_sum(candidates: list, target: int) -> list:
     [[2, 2, 2, 2], [2, 3, 3], [3, 5]]
     >>> combination_sum([2, 3, 6, 7], 7)
     [[2, 2, 3], [7]]
-    >>> combination_sum([-8, 2.3, 0], 1)
-    Put the right answer here
     """
     path = []  # type: list[int]
     answer = []  # type: list[int]
