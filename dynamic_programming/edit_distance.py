@@ -99,7 +99,7 @@ if __name__ == "__main__":
     S2 = input("Enter the second string: ").strip()
 
     print()
-    print("The minimum Edit Distance is: %d" % (solver.solve(S1, S2)))
-    print("The minimum Edit Distance is: %d" % (min_distance_bottom_up(S1, S2)))
+    print(f"The minimum Edit Distance is: {solver.solve(S1, S2)}")
+    print(f"The minimum Edit Distance is: {min_distance_bottom_up(S1, S2)}")
     print()
     print("*************** End of Testing Edit Distance DP Algorithm ***************")
