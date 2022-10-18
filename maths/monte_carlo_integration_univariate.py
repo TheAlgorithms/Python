@@ -8,7 +8,9 @@ is also plotted. (PLOT SECTION -> Optional implementation)
 
 import doctest
 import random
+
 import numpy as np
+
 
 def function_to_be_integrated(univariate_variable: int) -> float:
 
@@ -73,7 +75,7 @@ def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> 
 
     """
     #--------PLOT SECTION (OPTIONAL)----------#
-    
+
     # import matplotlib.pyplot as plt
 
     # details of the plot to be generated
@@ -92,9 +94,10 @@ def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> 
 
     return sum(plt_vals) / number_of_sections  # taking the average value
 
+
 if __name__ == "__main__":
     doctest.testmod()
-    
+
     # define parameters
     # limits of integration (specify limits)
     # example limits
