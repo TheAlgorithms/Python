@@ -23,7 +23,6 @@ def function_to_be_integrated(univariate_variable: int) -> float:
     >>> round(function_to_be_integrated(0))
     0
     """
-
     return np.sin(univariate_variable)
 
 
