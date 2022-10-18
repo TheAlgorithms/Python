@@ -36,6 +36,11 @@
 
 Implementations are for learning purposes only. They may be less efficient than the implementations in the Python standard library. Use them at your discretion.
 
+## Introduction
+
+An Algorithm is a step by step procedure, in which intructions are given to the system which needs to be executed in a specific way. There are many algorithms available for different languages. We will look into Algorithms basically in Python Programming Language. Algorithms also play a very vital role in coding interviews and it is therefore suggested to have a strong grip on them!
+Best of Luck and Practice Hard :)
+
 ## Getting Started
 
 Read through our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
