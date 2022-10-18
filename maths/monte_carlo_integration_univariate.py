@@ -20,9 +20,6 @@ def function_to_be_integrated(univariate_variable: int) -> float:
     """
     Function to calculate the sin of a particular value of x
 
-    :param univariate_variable: int
-    :return: float
-
     >>> round(function_to_be_integrated(0))
     0
     """
