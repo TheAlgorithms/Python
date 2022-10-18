@@ -24,7 +24,9 @@ def function_to_be_integrated(univariate_variable: float) -> float:
     """
     return np.sin(univariate_variable)
 
+
 plt_vals = []
+
 
 def monte_carlo(
     lower_limit: float, upper_limit: float, number_of_sections: int
