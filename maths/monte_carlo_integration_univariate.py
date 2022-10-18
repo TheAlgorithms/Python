@@ -26,7 +26,7 @@ def function_to_be_integrated(univariate_variable: float) -> float:
 
 
 # declaring list to store all the values for plotting, globally
-plt_vals: List[float] = []
+plt_vals: list[float] = []
 
 
 def monte_carlo(
