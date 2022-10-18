@@ -8,16 +8,14 @@ is also plotted. (PLOT SECTION -> Optional implementation)
 
 import doctest
 import random
-
-# import matplotlib.pyplot as plt
 import numpy as np
 
-
-# function to calculate the sin of a particular value of x
 def function_to_be_integrated(univariate_variable: int) -> float:
 
     # Doctest
     """
+    Function to calculate the sin of a particular value of x
+
     :param univariate_variable: int
     :return: float
 
@@ -32,6 +30,8 @@ def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> 
 
     # Doctest
     """
+    Monte Carlo integration function
+
     :param lower_limit: int
     :param upper_limit: int
     :param N: int
@@ -73,6 +73,8 @@ def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> 
 
     """
     #--------PLOT SECTION (OPTIONAL)----------#
+    
+    # import matplotlib.pyplot as plt
 
     # details of the plot to be generated
     # sets the title of the plot
@@ -90,19 +92,18 @@ def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> 
 
     return sum(plt_vals) / number_of_sections  # taking the average value
 
+if __name__ == "__main__":
+    doctest.testmod()
+    
+    # define parameters
+    # limits of integration (specify limits)
+    # example limits
+    lower_limit = 0
+    upper_limit = np.pi  # gets the value of pi
 
-doctest.testmod()
+    number_of_sections = 1000  # Number of individual ares to be considered
 
-
-# define parameters
-# limits of integration (specify limits)
-# example limits
-lower_limit = 0
-upper_limit = np.pi  # gets the value of pi
-
-number_of_sections = 1000  # Number of individual ares to be considered
-
-# function call
-# the final area under the curve(integration) value is considered as the average
-# of all the individual areas calculated
-print(f"Approx. value: {monte_carlo(lower_limit,upper_limit,number_of_sections)}.")
+    # function call
+    # the final area under the curve(integration) value is considered as the average
+    # of all the individual areas calculated
+    print(f"Approx. value: {monte_carlo(lower_limit,upper_limit,number_of_sections)}.")
