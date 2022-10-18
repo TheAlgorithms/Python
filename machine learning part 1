@@ -1,0 +1,219 @@
+Machine Learning is the field of study that gives computers the capability to learn without being explicitly programmed. ML is one of the most exciting technologies that one would have ever come across. As it is evident from the name, it gives the computer that makes it more similar to humans: The ability to learn. Machine learning is actively being used today, perhaps in many more places than one would expect.
+Introduction :
+
+# Getting Started with Machine Learning
+1.An Introduction to Machine Learning
+2.What is Machine Learning ?
+3.Introduction to Data in Machine Learning
+4.Demystifying Machine Learning
+5.ML – Applications
+6.Best Python libraries for Machine Learning
+7.Artificial Intelligence | An Introduction
+8.Machine Learning and Artificial Intelligence
+9.Difference between Machine learning and Artificial Intelligence
+10.Agents in Artificial Intelligence
+
+# Data and It’s Processing:
+
+.Introduction to Data in Machine Learning
+.Understanding Data Processing
+.Python | Create Test DataSets using Sklearn
+.Python | Generate test datasets for Machine learning
+.Python | Data Preprocessing in Python
+ # Data Cleaning
+.Feature Scaling – Part 1
+.Feature Scaling – Part 2
+.Python | Label Encoding of datasets
+.Python | One Hot Encoding of datasets
+.Handling Imbalanced Data with SMOTE and Near Miss Algorithm in Python
+.Dummy variable trap in Regression Models
+#Supervised learning :
+
+.Getting started with Classification
+.Basic Concept of Classification
+.Types of Regression Techniques
+.Classification vs Regression
+.ML | Types of Learning – Supervised Learning
+.Multiclass classification using scikit-learn
+ # Gradient Descent :
+.Gradient Descent algorithm and its variants
+.Stochastic Gradient Descent (SGD)
+.Mini-Batch Gradient Descent with Python
+.Optimization techniques for Gradient Descent
+.Introduction to Momentum-based Gradient Optimizer
+# Linear Regression :
+.Introduction to Linear Regression
+.Gradient Descent in Linear Regression
+.Mathematical explanation for Linear Regression working
+.Normal Equation in Linear Regression
+.Linear Regression (Python Implementation)
+.Simple Linear-Regression using R
+.Univariate Linear Regression in Python
+.Multiple Linear Regression using Python
+.Multiple Linear Regression using R
+.Locally weighted Linear Regression
+.Generalized Linear Models
+.Python | Linear Regression using sklearn
+.Linear Regression Using Tensorflow
+.A Practical approach to Simple Linear Regression using R
+.Linear Regression using PyTorch
+.Pyspark | Linear regression using Apache MLlib
+.ML | Boston Housing Kaggle Challenge with Linear Regression
+.Python | Implementation of Polynomial Regression
+.Softmax Regression using TensorFlow
+# Logistic Regression :
+.Understanding Logistic Regression
+.Why Logistic Regression in Classification ?
+.Logistic Regression using Python
+.Cost function in Logistic Regression
+.Logistic Regression using Tensorflow
+.Naive Bayes Classifiers
+ # Support Vector:
+.Support Vector Machines(SVMs) in Python
+.SVM Hyperparameter Tuning using GridSearchCV
+.Support Vector Machines(SVMs) in R
+.Using SVM to perform classification on a non-linear dataset
+.Decision Tree:
+.Decision Tree
+.Decision Tree Regression using sklearn
+.Decision Tree Introduction with example
+.Decision tree implementation using Python
+.Decision Tree in Software Engineering
+# Random Forest:
+.Random Forest Regression in Python
+.Ensemble Classifier
+.Voting Classifier using Sklearn
+.Bagging classifier
+# Unsupervised learning :
+
+.ML | Types of Learning – Unsupervised Learning
+.Supervised and Unsupervised learning
+.Clustering in Machine Learning
+.Different Types of Clustering Algorithm
+.K means Clustering – Introduction
+.Elbow Method for optimal value of k in KMeans
+.Random Initialization Trap in K-Means
+.ML | K-means++ Algorithm
+.Analysis of test data using K-Means Clustering in Python
+.Mini Batch K-means clustering algorithm
+.Mean-Shift Clustering
+.DBSCAN – Density based clustering
+.Implementing DBSCAN algorithm using Sklearn
+.Fuzzy Clustering
+.Spectral Clustering
+.OPTICS Clustering
+.OPTICS Clustering Implementing using Sklearn
+.Hierarchical clustering (Agglomerative and Divisive clustering)
+.Implementing Agglomerative Clustering using Sklearn
+.Gaussian Mixture Model
+#Reinforcement Learning:
+
+.Reinforcement learning
+.Reinforcement Learning Algorithm : Python Implementation using Q-learning
+.Introduction to Thompson Sampling
+.Genetic Algorithm for Reinforcement Learning
+.SARSA Reinforcement Learning
+.Q-Learning in Python
+# Dimensionality Reduction :
+
+.Introduction to Dimensionality Reduction
+.Introduction to Kernel PCA
+.Principal Component Analysis(PCA)
+.Principal Component Analysis with Python
+.Low-Rank Approximations
+.Overview of Linear Discriminant Analysis (LDA)
+.Mathematical Explanation of Linear Discriminant Analysis (LDA)
+.Generalized Discriminant Analysis (GDA)
+.Independent Component Analysis
+.Feature Mapping
+.Extra Tree Classifier for Feature Selection
+.Chi-Square Test for Feature Selection – Mathematical Explanation
+.ML | T-distributed Stochastic Neighbor Embedding (t-SNE) Algorithm
+.Python | How and where to apply Feature Scaling?
+.Parameters for Feature Selection
+.Underfitting and Overfitting in Machine Learning
+# Natural Language Processing :
+
+.Introduction to Natural Language Processing
+.Text Preprocessing in Python | Set – 1
+.Text Preprocessing in Python | Set 2
+.Removing stop words with NLTK in Python
+.Tokenize text using NLTK in python
+.How tokenizing text, sentence, words works
+.Introduction to Stemming
+.Stemming words with NLTK
+.Lemmatization with NLTK
+.Lemmatization with TextBlob
+.How to get synonyms/antonyms from NLTK WordNet in Python?
+# Neural Networks :
+
+.Introduction to Artificial Neutral Networks | Set 1
+.Introduction to Artificial Neural Network | Set 2
+.Introduction to ANN (Artificial Neural Networks) | Set 3 (Hybrid Systems)
+.Introduction to ANN | Set 4 (Network Architectures)
+.Activation functions
+.Implementing Artificial Neural Network training process in Python
+.A single neuron neural network in Python
+.Convolutional Neural Networks
+.Introduction to Convolution Neural Network
+.Introduction to Pooling Layer
+.Introduction to Padding
+.Types of padding in convolution layer
+.Applying Convolutional Neural Network on mnist dataset
+.Recurrent Neural Networks
+.Introduction to Recurrent Neural Network
+.Recurrent Neural Networks Explanation
+.seq2seq model
+.Introduction to Long Short Term Memory
+.Long Short Term Memory Networks Explanation
+.Gated Recurrent Unit Networks(GAN)
+.Text Generation using Gated Recurrent Unit Networks
+.GANs – Generative Adversarial Network
+.Introduction to Generative Adversarial Network
+.Generative Adversarial Networks (GANs)
+.Use Cases of Generative Adversarial Networks
+.Building a Generative Adversarial Network using Keras
+.Modal Collapse in GANs
+.Introduction to Deep Q-Learning
+.Implementing Deep Q-Learning using Tensorflow
+# ML – Deployment :
+
+.Deploy your Machine Learning web app (Streamlit) on Heroku
+.Deploy a Machine Learning Model using Streamlit Library
+.Deploy Machine Learning Model using Flask
+.Python – Create UIs for prototyping Machine Learning model with Gradio
+.How to Prepare Data Before Deploying a Machine Learning Model?
+.Deploying Scrapy spider on ScrapingHub
+ # ML – Applications :
+
+.Rainfall prediction using Linear regression
+.Identifying handwritten digits using Logistic Regression in PyTorch
+.Kaggle Breast Cancer Wisconsin Diagnosis using Logistic Regression
+.Python | Implementation of Movie Recommender System
+.Support Vector Machine to recognize facial features in C++
+.Decision Trees – Fake (Counterfeit) Coin Puzzle (12 Coin Puzzle)
+.Credit Card Fraud Detection
+.NLP analysis of Restaurant reviews
+.Applying Multinomial Naive Bayes to NLP Problems
+.Image compression using K-means clustering
+.Deep learning | Image Caption Generation using the Avengers EndGames Characters
+.How Does Google Use Machine Learning?
+.How Does NASA Use Machine Learning?
+.5 Mind-Blowing Ways Facebook Uses Machine Learning
+.Targeted Advertising using Machine Learning
+.How Machine Learning Is Used by Famous Companies?
+# Misc :
+
+.Pattern Recognition | Introduction
+.Calculate Efficiency Of Binary Classifier
+.Logistic Regression v/s Decision Tree Classification
+.R vs Python in Datascience
+.Explanation of Fundamental Functions involved in A3C algorithm
+.Differential Privacy and Deep Learning
+.Artificial intelligence vs Machine Learning vs Deep Learning
+.Introduction to Multi-Task Learning(MTL) for Deep Learning
+.Top 10 Algorithms every Machine Learning Engineer should know
+.Azure Virtual Machine for Machine Learning
+.30 minutes to machine learning
+.What is AutoML in Machine Learning?
+.Confusion Matrix in Machine Learning
