@@ -4,6 +4,9 @@ a specified function within specified limits using Monte Carlo integration metho
 
 Further, a graph of the individual areas under the curve considered for the calculation
 is also plotted. (PLOT SECTION -> Optional implementation)
+
+Link to source material: https://towardsdatascience.com/the-basics-of-monte-carlo-integration-5fe16b40482d
+
 """
 
 import doctest
