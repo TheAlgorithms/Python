@@ -96,7 +96,7 @@ Frequency = {v_str} / {wavelength_str}
 Frequency = {frequency_str}Hz
 """
         )
-    return "Done." 
+    return "Done."
 
 
 wave_formula(calc_to_do)
