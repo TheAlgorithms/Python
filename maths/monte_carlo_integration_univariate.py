@@ -11,7 +11,9 @@ https://towardsdatascience.com/the-basics-of-monte-carlo-integration-5fe16b40482
 
 import doctest
 import random
+
 import numpy as np
+
 
 def function_to_be_integrated(univariate_variable: float) -> float:
     """
@@ -22,7 +24,10 @@ def function_to_be_integrated(univariate_variable: float) -> float:
     """
     return np.sin(univariate_variable)
 
-def monte_carlo(lower_limit: float, upper_limit: float, number_of_sections: int) -> float:
+
+def monte_carlo(
+    lower_limit: float, upper_limit: float, number_of_sections: int
+) -> float:
     """
     Monte Carlo integration function (Doctests written w.r.t sin(x))
 
@@ -68,8 +73,9 @@ def monte_carlo(lower_limit: float, upper_limit: float, number_of_sections: int)
         answer = (upper_limit - lower_limit) / float(number_of_sections) * integral
         # appends the solution to a list for plotting the graph
         plt_vals.append(answer)
-    
+
     return sum(plt_vals) / number_of_sections  # taking the average value
+
 
 '''
 #--------PLOT SECTION (OPTIONAL)----------#
@@ -112,15 +118,21 @@ if __name__ == "__main__":
 
     number_of_sections = 1000  # Number of individual ares to be considered
 
-    if type(lower_limit) == str or type(upper_limit) == str or type(number_of_sections) == str:
-        print('INVALID PARAMETERS: string values are not supported')
-    
+    if (
+        type(lower_limit) == str
+        or type(upper_limit) == str
+        or type(number_of_sections) == str
+    ):
+        print("INVALID PARAMETERS: string values are not supported")
+
     elif number_of_sections != int(number_of_sections):
-        print('NUMBER OF SECTIONS MUST HAVE INTEGRAL VALUE')
+        print("NUMBER OF SECTIONS MUST HAVE INTEGRAL VALUE")
 
     # function call
     # the final area under the curve(integration) value is considered as the average
     # of all the individual areas calculated
     else:
-        print(f"Approx. value: {monte_carlo(lower_limit,upper_limit,int(number_of_sections))}")
-        #plot_monte_carlo_integration(plt_vals)
+        print(
+            f"Approx. value: {monte_carlo(lower_limit,upper_limit,int(number_of_sections))}"
+        )
+        # plot_monte_carlo_integration(plt_vals)
