@@ -139,6 +139,7 @@ if __name__ == "__main__":
     # value is considered as the average
     # of all the individual areas calculated
     else:
+        number_of_sections = int(number_of_sections)
         print(
             f"Approx. value: {monte_carlo(lower_limit,upper_limit,int(number_of_sections))}"
         )
