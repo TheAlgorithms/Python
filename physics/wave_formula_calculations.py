@@ -34,7 +34,7 @@ frequency = 0  # in Hz
 calc_to_do = random.randint(1, 3)
 
 
-def wave_formula(calc_to_do: int) -> str:
+def wave_formula(calc_to_do: int) -> float:
     # function only leaves a side effect, no return
     # just returning a string to not cause errors
     global wavelength, v, frequency
@@ -96,7 +96,7 @@ Frequency = {v_str} / {wavelength_str}
 Frequency = {frequency_str}Hz
 """
         )
-    return "Done."
+    return v, wavelength, frequency
 
 
 wave_formula(calc_to_do)
