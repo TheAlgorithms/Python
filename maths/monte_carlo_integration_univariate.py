@@ -31,8 +31,6 @@ def function_to_be_integrated(univariate_variable: int) -> float:
 
 
 def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> float:
-
-    # Doctest
     """
     Monte Carlo integration function
 
