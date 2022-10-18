@@ -101,7 +101,7 @@ if __name__ == "__main__":
     # limits of integration (specify limits)
     # example limits
     lower_limit = 0
-    upper_limit = 1000 #np.pi  # gets the value of pi
+    upper_limit = 1000  # np.pi  # gets the value of pi
 
     number_of_sections = 1000  # Number of individual ares to be considered
 
