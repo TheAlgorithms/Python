@@ -23,6 +23,7 @@
   * [All Permutations](backtracking/all_permutations.py)
   * [All Subsequences](backtracking/all_subsequences.py)
   * [Coloring](backtracking/coloring.py)
+  * [Combination Sum](backtracking/combination_sum.py)
   * [Hamiltonian Cycle](backtracking/hamiltonian_cycle.py)
   * [Knight Tour](backtracking/knight_tour.py)
   * [Minimax](backtracking/minimax.py)
