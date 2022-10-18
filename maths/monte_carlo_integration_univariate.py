@@ -28,10 +28,18 @@ def function_to_be_integrated(univariate_variable: int) -> float:
 
 def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> float:
     """
-    Monte Carlo integration function
+    Monte Carlo integration function (Doctests written w.r.t sin(x))
 
     >>> round(monte_carlo(0, np.pi, 1000))
     2
+    >>> round(monte_carlo(0, np.pi, 100))
+    2
+    >>> round(monte_carlo(0, np.pi, 10))
+    2
+    >>> round(monte_carlo(0, 2*np.pi, 1000))
+    0
+    >>> round(monte_carlo(-2*np.pi, 2*np.pi, 1000))
+    0
     """
 
     # list to store all the values for plotting
@@ -93,11 +101,11 @@ if __name__ == "__main__":
     # limits of integration (specify limits)
     # example limits
     lower_limit = 0
-    upper_limit = np.pi  # gets the value of pi
+    upper_limit = 1000 #np.pi  # gets the value of pi
 
     number_of_sections = 1000  # Number of individual ares to be considered
 
     # function call
     # the final area under the curve(integration) value is considered as the average
     # of all the individual areas calculated
-    print(f"Approx. value: {monte_carlo(lower_limit,upper_limit,number_of_sections)}.")
+    print(f"Approx. value: {monte_carlo(lower_limit,upper_limit,number_of_sections)}")
