@@ -11,11 +11,9 @@ https://towardsdatascience.com/the-basics-of-monte-carlo-integration-5fe16b40482
 
 import doctest
 import random
-
 import numpy as np
 
-
-def function_to_be_integrated(univariate_variable: int) -> float:
+def function_to_be_integrated(univariate_variable: float) -> float:
     """
     Function to calculate the sin of a particular value of x
 
@@ -24,14 +22,11 @@ def function_to_be_integrated(univariate_variable: int) -> float:
     """
     return np.sin(univariate_variable)
 
-
-def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> float:
+def monte_carlo(lower_limit: float, upper_limit: float, number_of_sections: float) -> float:
     """
     Monte Carlo integration function (Doctests written w.r.t sin(x))
 
     >>> round(monte_carlo(0, np.pi, 1000))
-    2
-    >>> round(monte_carlo(0, np.pi, 100))
     2
     >>> round(monte_carlo(0, np.pi, 10))
     2
@@ -39,9 +34,26 @@ def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> 
     0
     >>> round(monte_carlo(-2*np.pi, 2*np.pi, 1000))
     0
+    >>> round(monte_carlo(-10.2345678, 1.89712, 1000))
+    0
+    >>> monte_carlo("0", np.pi, 1000)
+    'INVALID PARAMETERS: string values are not supported'
+
+    >>> monte_carlo("0", "100", 1000)
+    'INVALID PARAMETERS: string values are not supported'
+
+    >>> monte_carlo(0, np.pi, "1000")
+    'INVALID PARAMETERS: string values are not supported'
+
+    >>> monte_carlo("0", "100", "1000")
+    'INVALID PARAMETERS: string values are not supported'
     """
 
+    if type(lower_limit) == str or type(upper_limit) == str or type(number_of_sections) == str:
+        return 'INVALID PARAMETERS: string values are not supported'
+
     # list to store all the values for plotting
+    global plt_vals
     plt_vals = []
 
     # array of zeros of length N
@@ -70,11 +82,24 @@ def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> 
         answer = (upper_limit - lower_limit) / float(number_of_sections) * integral
         # appends the solution to a list for plotting the graph
         plt_vals.append(answer)
+    
+    return sum(plt_vals) / number_of_sections  # taking the average value
 
+'''
+#--------PLOT SECTION (OPTIONAL)----------#
+
+import matplotlib.pyplot as plt
+
+def plot_monte_carlo_integration(plt_vals: list) -> None:
     """
-    #--------PLOT SECTION (OPTIONAL)----------#
+    Plot the Monte Carlo Integration.
+    The the individual areas considered for the integration
+    are plotted in this function
 
-    # import matplotlib.pyplot as plt
+    >>> plt.plot([]) #doctest: +SKIP
+    >>> plt.show() #doctest: +SKIP
+    >>> plt.close() #doctest: +SKIP
+    """
 
     # details of the plot to be generated
     # sets the title of the plot
@@ -87,11 +112,8 @@ def monte_carlo(lower_limit: int, upper_limit: int, number_of_sections: int) -> 
     plt.xlabel("Areas")
     plt.show() # shows the plot
 
-    #-----END OF PLOT SECTION (OPTIONAL)------#
-    """
-
-    return sum(plt_vals) / number_of_sections  # taking the average value
-
+#-----END OF PLOT SECTION (OPTIONAL)------#
+'''
 
 if __name__ == "__main__":
     doctest.testmod()
@@ -100,11 +122,17 @@ if __name__ == "__main__":
     # limits of integration (specify limits)
     # example limits
     lower_limit = 0
-    upper_limit = 1000  # np.pi  # gets the value of pi
+    upper_limit = np.pi  # gets the value of pi
 
     number_of_sections = 1000  # Number of individual ares to be considered
 
     # function call
     # the final area under the curve(integration) value is considered as the average
     # of all the individual areas calculated
-    print(f"Approx. value: {monte_carlo(lower_limit,upper_limit,number_of_sections)}")
+
+    res = monte_carlo(lower_limit,upper_limit,number_of_sections)
+    if type(res) == str:
+        print(res)
+    else:
+        print(f"Approx. value: {res}")
+        #plot_monte_carlo_integration(plt_vals)
