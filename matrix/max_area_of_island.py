@@ -1,16 +1,26 @@
 """
-Given an m x n binary matrix grid. An island is a group of 1's
-(representing land) connected 4-directionally (horizontal or vertical.)
-You may assume all four edges of the grid are surrounded by water.
-The area of an island is the number of cells with a value 1 in the island.
-Return the maximum area of an island in a grid.
-If there is no island, return 0.
+Given an two dimensional binary matrix grid. An island is a group of 1's (representing
+land) connected 4-directionally (horizontal or vertical.) You may assume all four edges
+ofthe grid are surrounded by water.  The area of an island is the number of cells with
+a value 1 in the island. Return the maximum area of an island in a grid. If there is no
+island, return 0.
 """
+
+matrix = [
+    [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+    [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0],
+    [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
+]
 
 
 def is_safe(row: int, col: int, rows: int, cols: int) -> bool:
     """
-    Checking weather coordinate (row,col) is valid or not.
+    Checking whether coordinate (row, col) is valid or not.
 
     >>> is_safe(0, 0, 5, 5)
     True
@@ -20,62 +30,44 @@ def is_safe(row: int, col: int, rows: int, cols: int) -> bool:
     return 0 <= row < rows and 0 <= col < cols
 
 
-def depth_first_search(
-    row: int, col: int, rows: int, cols: int, seen: set, mat: list[list[int]]
-) -> int:
+def depth_first_search(row: int, col: int, seen: set, mat: list[list[int]]) -> int:
     """
     Returns the current area of the island
-    >>> depth_first_search(0,0, 8,8,set(), [
-    ... [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-    ... [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
-    ... [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-    ... [0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0],
-    ... [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],
-    ... [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-    ... [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
-    ... [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]])
+
+    >>> depth_first_search(0, 0, set(), matrix)
     0
     """
+    rows = len(mat)
+    cols = len(mat[0])
     if is_safe(row, col, rows, cols) and (row, col) not in seen and mat[row][col] == 1:
         seen.add((row, col))
         return (
             1
-            + depth_first_search(row + 1, col, rows, cols, seen, mat)
-            + depth_first_search(row - 1, col, rows, cols, seen, mat)
-            + depth_first_search(row, col + 1, rows, cols, seen, mat)
-            + depth_first_search(row, col - 1, rows, cols, seen, mat)
+            + depth_first_search(row + 1, col, seen, mat)
+            + depth_first_search(row - 1, col, seen, mat)
+            + depth_first_search(row, col + 1, seen, mat)
+            + depth_first_search(row, col - 1, seen, mat)
         )
     else:
         return 0
 
 
-def count_max_area(mat: list[list[int]]) -> int:
+def find_max_area(mat: list[list[int]]) -> int:
     """
     Finds the area of all islands and returns the maximum area.
 
-    >>> count_max_area([
-    ... [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-    ... [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
-    ... [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-    ... [0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0],
-    ... [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],
-    ... [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-    ... [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
-    ... [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]])
+    >>> find_max_area(matrix)
     6
     """
-
-    rows = len(mat)
-    cols = len(mat[0])
     seen: set = set()
 
     max_area = 0
-    for row in range(rows):
-        for col in range(cols):
-            if mat[row][col] == 1 and (row, col) not in seen:
+    for row, line in enumerate(mat):
+        for col, item in enumerate(line):
+            if item == 1 and (row, col) not in seen:
                 # Maximizing the area
                 max_area = max(
-                    max_area, depth_first_search(row, col, rows, cols, seen, mat)
+                    max_area, depth_first_search(row, col, seen, mat)
                 )
     return max_area
 
@@ -83,42 +75,27 @@ def count_max_area(mat: list[list[int]]) -> int:
 if __name__ == "__main__":
     import doctest
 
-    # Example 1:
-    mat = [
-        [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
-        [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0],
-        [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0],
-    ]
-
-    print(count_max_area(mat))  # Output -> 6
+    print(find_max_area(matrix))  # Output -> 6
 
     """
     Explanation:
-    We are allowed to move 4-directionally (horizontal or vertical.)
-    so the possible
+    We are allowed to move in four directions (horizontal or vertical) so the possible
     in a matrix if we are at x and y position the possible moving are
 
-    >> directions = [(x,y+1),(x,y-1),(x+1,y),(x-1,y)]
-    also, we need to care of boundary cases as well
-    which are x and y can not be smaller than 0 and greater than a number
-    of rows and columns respectively.
-
+    Directions are [(x, y+1), (x, y-1), (x+1, y), (x-1, y)] but we need to take care of
+    boundary cases as well which are x and y can not be smaller than 0 and greater than
+    the number of rows and columns respectively.
 
     Visualization
     mat = [
-    [0,0,A,0,0,0,0,B,0,0,0,0,0],
-    [0,0,0,0,0,0,0,B,B,B,0,0,0],
-    [0,C,C,0,D,0,0,0,0,0,0,0,0],
-    [0,C,0,0,D,D,0,0,E,0,E,0,0],
-    [0,C,0,0,D,D,0,0,E,E,E,0,0],
-    [0,0,0,0,0,0,0,0,0,0,E,0,0],
-    [0,0,0,0,0,0,0,F,F,F,0,0,0],
-    [0,0,0,0,0,0,0,F,F,0,0,0,0]
+        [0,0,A,0,0,0,0,B,0,0,0,0,0],
+        [0,0,0,0,0,0,0,B,B,B,0,0,0],
+        [0,C,C,0,D,0,0,0,0,0,0,0,0],
+        [0,C,0,0,D,D,0,0,E,0,E,0,0],
+        [0,C,0,0,D,D,0,0,E,E,E,0,0],
+        [0,0,0,0,0,0,0,0,0,0,E,0,0],
+        [0,0,0,0,0,0,0,F,F,F,0,0,0],
+        [0,0,0,0,0,0,0,F,F,0,0,0,0]
     ]
 
     For visualization, I have defined the connected island with letters
