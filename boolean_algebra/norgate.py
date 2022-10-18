@@ -1,5 +1,5 @@
 """ A NOR Gate is a logic gate in boolean algebra which results to false(0)
-    if any of the input is 1, and True(1) if  both the inputs are 0.
+    if any of the input is 1, and True(1) if both the inputs are 0.
    Following is the truth table of an NOR Gate:
    | Input 1 | Input 2 |  Output |
    |      0      |     0      |      1      |
