@@ -7,7 +7,6 @@ is also plotted. (PLOT SECTION -> Optional implementation)
 """
 
 import doctest
-
 # importing the modules
 import random
 
