@@ -74,7 +74,7 @@ def match_pattern(input_string: str, pattern: str) -> bool:
     # since string of zero length will match with pattern where there
     # is at least one * alternatively
     for j in range(1, len_pattern):
-        if pattern[j - 1] == "*" :
+        if pattern[j - 1] == "*":
             dp[0][j] = dp[0][j - 2]
         else:
             dp[0][j] = 0
