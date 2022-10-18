@@ -24,13 +24,13 @@ class DecisionTree:
             estimate the labels
         >>> tester = DecisionTree()
         >>> test_labels = np.array([1,2,3,4,5,6,7,8,9,10])
-        >>> test_prediction = np.float(6)
+        >>> test_prediction = float(6)
         >>> tester.mean_squared_error(test_labels, test_prediction) == (
         ...     TestDecisionTree.helper_mean_squared_error_test(test_labels,
         ...         test_prediction))
         True
         >>> test_labels = np.array([1,2,3])
-        >>> test_prediction = np.float(2)
+        >>> test_prediction = float(2)
         >>> tester.mean_squared_error(test_labels, test_prediction) == (
         ...     TestDecisionTree.helper_mean_squared_error_test(test_labels,
         ...         test_prediction))
@@ -145,11 +145,11 @@ class TestDecisionTree:
         @param prediction: a floating point value
         return value: helper_mean_squared_error_test calculates the mean squared error
         """
-        squared_error_sum = np.float(0)
+        squared_error_sum = float(0)
         for label in labels:
             squared_error_sum += (label - prediction) ** 2
 
-        return np.float(squared_error_sum / labels.size)
+        return float(squared_error_sum / labels.size)
 
 
 def main():
