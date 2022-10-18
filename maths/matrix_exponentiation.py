@@ -5,7 +5,7 @@ import timeit
 """
 Matrix Exponentiation is a technique to solve linear recurrences in logarithmic time.
 You read more about it here:
-http://zobayer.blogspot.com/2010/11/matrix-exponentiation.html
+https://zobayer.blogspot.com/2010/11/matrix-exponentiation.html
 https://www.hackerearth.com/practice/notes/matrix-exponentiation-1/
 """
 

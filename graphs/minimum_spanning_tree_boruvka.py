@@ -63,7 +63,7 @@ class Graph:
         for tail in self.adjacency:
             for head in self.adjacency[tail]:
                 weight = self.adjacency[head][tail]
-                string += "%d -> %d == %d\n" % (head, tail, weight)
+                string += f"{head} -> {tail} == {weight}\n"
         return string.rstrip("\n")
 
     def get_edges(self):

@@ -276,7 +276,7 @@ if __name__ == "__main__":
     queue = deque([P1, P2, P3, P4])
 
     if len(time_slices) != number_of_queues - 1:
-        exit()
+        raise SystemExit(0)
 
     doctest.testmod(extraglobs={"queue": deque([P1, P2, P3, P4])})
 
