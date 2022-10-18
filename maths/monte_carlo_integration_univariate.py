@@ -11,7 +11,9 @@ https://towardsdatascience.com/the-basics-of-monte-carlo-integration-5fe16b40482
 
 import doctest
 import random
+
 import numpy as np
+
 
 def function_to_be_integrated(univariate_variable: float) -> float:
     """
@@ -22,7 +24,10 @@ def function_to_be_integrated(univariate_variable: float) -> float:
     """
     return np.sin(univariate_variable)
 
-def monte_carlo(lower_limit: float, upper_limit: float, number_of_sections: float) -> float:
+
+def monte_carlo(
+    lower_limit: float, upper_limit: float, number_of_sections: float
+) -> float:
     """
     Monte Carlo integration function (Doctests written w.r.t sin(x))
 
@@ -49,8 +54,12 @@ def monte_carlo(lower_limit: float, upper_limit: float, number_of_sections: floa
     'INVALID PARAMETERS: string values are not supported'
     """
 
-    if type(lower_limit) == str or type(upper_limit) == str or type(number_of_sections) == str:
-        return 'INVALID PARAMETERS: string values are not supported'
+    if (
+        type(lower_limit) == str
+        or type(upper_limit) == str
+        or type(number_of_sections) == str
+    ):
+        return "INVALID PARAMETERS: string values are not supported"
 
     # list to store all the values for plotting
     global plt_vals
@@ -82,8 +91,9 @@ def monte_carlo(lower_limit: float, upper_limit: float, number_of_sections: floa
         answer = (upper_limit - lower_limit) / float(number_of_sections) * integral
         # appends the solution to a list for plotting the graph
         plt_vals.append(answer)
-    
+
     return sum(plt_vals) / number_of_sections  # taking the average value
+
 
 '''
 #--------PLOT SECTION (OPTIONAL)----------#
@@ -130,9 +140,9 @@ if __name__ == "__main__":
     # the final area under the curve(integration) value is considered as the average
     # of all the individual areas calculated
 
-    res = monte_carlo(lower_limit,upper_limit,number_of_sections)
+    res = monte_carlo(lower_limit, upper_limit, number_of_sections)
     if type(res) == str:
         print(res)
     else:
         print(f"Approx. value: {res}")
-        #plot_monte_carlo_integration(plt_vals)
+        # plot_monte_carlo_integration(plt_vals)
