@@ -4,17 +4,27 @@ from sklearn.datasets import load_iris
 from sklearn.metrics import plot_confusion_matrix
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
+import numpy as np
 
 
 def data_handling(data: dict) -> tuple:
     # Split dataset into train and test data
-    features = data["data"]  # data is features
-    target = data["target"]
-    x = train_test_split(features, target, test_size=0.25)
+    # data is features
+    """
+    >>> data_handling(({'data':'[5.1, 3.5, 1.4, 0.2],[4.6, 3.4, 1.4, 0.3]','target':([0,1])}))
+    ('[5.1, 3.5, 1.4, 0.2],[4.6, 3.4, 1.4, 0.3]', [0, 1])
+    >>> data_handling({'data':'[4.9, 3. , 1.4, 0.2],[4.7, 3.2, 1.3, 0.2],[4.6, 3.1, 1.5, 0.2],[5. , 3.6, 1.4, 0.2],[5.4, 3.9, 1.7, 0.4]','target':([0,0, 0, 0, 0])})
+    ('[4.9, 3. , 1.4, 0.2],[4.7, 3.2, 1.3, 0.2],[4.6, 3.1, 1.5, 0.2],[5. , 3.6, 1.4, 0.2],[5.4, 3.9, 1.7, 0.4]', [0, 0, 0, 0, 0])
+    """
+    x = (data["data"],data["target"])
     return x
 
 
-def xgboost(features: list, target: list):  # -> returns a trained model:
+def xgboost(features: np.ndarray, target: np.ndarray): -> XGBClassifier:
+    """
+    >>> xgboost(np.array([[5.1, 3.5, 1.4, 0.2],[4.6, 3.4, 1.4, 0.3]]), np.array([1,2]))
+    XGBClassifier()
+    """
     classifier = XGBClassifier()
     classifier.fit(features, target)
     return classifier
@@ -23,6 +33,8 @@ def xgboost(features: list, target: list):  # -> returns a trained model:
 def main() -> None:
 
     """
+    >>> main()
+
     The Url for the algorithm
     https://xgboost.readthedocs.io/en/stable/
     Iris type dataset is used to demonstrate algorithm.
@@ -30,10 +42,11 @@ def main() -> None:
 
     # Load Iris dataset
     iris = load_iris()
+    features,targets= data_handling(iris)
+    x_train, x_test, y_train, y_test=train_test_split(features, targets, test_size=0.25)
 
     names = iris["target_names"]
 
-    x_train, x_test, y_train, y_test = data_handling(iris)
 
     # XGBoost Classifier
     xgb = xgboost(x_train, y_train)
