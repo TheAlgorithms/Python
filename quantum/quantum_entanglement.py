@@ -29,8 +29,8 @@ def quantum_entanglement(qubits: int = 2) -> qiskit.result.counts.Counts:
     """
     classical_bits = qubits
 
-    # Using Aer's qasm_simulator
-    simulator = qiskit.Aer.get_backend("qasm_simulator")
+    # Using Aer's simulator
+    simulator = qiskit.Aer.get_backend("aer_simulator")
 
     # Creating a Quantum Circuit acting on the q register
     circuit = qiskit.QuantumCircuit(qubits, classical_bits)
@@ -48,7 +48,7 @@ def quantum_entanglement(qubits: int = 2) -> qiskit.result.counts.Counts:
     # Now measuring any one qubit would affect other qubits to collapse
     # their super position and have same state as the measured one.
 
-    # Executing the circuit on the qasm simulator
+    # Executing the circuit on the simulator
     job = qiskit.execute(circuit, simulator, shots=1000)
 
     return job.result().get_counts(circuit)
