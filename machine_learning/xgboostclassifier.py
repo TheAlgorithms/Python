@@ -20,7 +20,7 @@ def data_handling(data: dict) -> tuple:
     return x
 
 
-def xgboost(features: np.ndarray, target: np.ndarray): -> XGBClassifier:
+def xgboost(features: np.ndarray, target: np.ndarray) -> XGBClassifier:
     """
     >>> xgboost(np.array([[5.1, 3.5, 1.4, 0.2],[4.6, 3.4, 1.4, 0.3]]), np.array([1,2]))
     XGBClassifier()
