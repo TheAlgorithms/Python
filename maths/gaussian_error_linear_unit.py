@@ -29,7 +29,7 @@ def sigmoid(vector: np.array) -> np.array:
 
 def gaussian_error_linear_unit(vector: np.array) -> np.array:
     """
-    Implements the Gelu function
+    Implements the Gaussian Error Linear Unit (GELU) function
 
     Parameters:
         vector (np.array): A  numpy array of shape (1,n)
