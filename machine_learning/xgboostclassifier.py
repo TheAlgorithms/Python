@@ -11,10 +11,10 @@ def data_handling(data: dict) -> tuple:
     # Split dataset into train and test data
     # data is features
     """
-    >>> data_handling(({'data':'[5.1, 3.5, 1.4, 0.2],[4.6, 3.4, 1.4, 0.3]','target':([0,1])}))
+    >>> data_handling(({'data':'[5.1, 3.5, 1.4, 0.2]','target':([0])}))
     ('[5.1, 3.5, 1.4, 0.2],[4.6, 3.4, 1.4, 0.3]', [0, 1])
-    >>> data_handling({'data':'[4.9, 3. , 1.4, 0.2],[4.7, 3.2, 1.3, 0.2],[4.6, 3.1, 1.5, 0.2],[5. , 3.6, 1.4, 0.2],[5.4, 3.9, 1.7, 0.4]','target':([0,0, 0, 0, 0])})
-    ('[4.9, 3. , 1.4, 0.2],[4.7, 3.2, 1.3, 0.2],[4.6, 3.1, 1.5, 0.2],[5. , 3.6, 1.4, 0.2],[5.4, 3.9, 1.7, 0.4]', [0, 0, 0, 0, 0])
+    >>> data_handling({'data':'[4.9, 3. , 1.4, 0.2],[4.7, 3.2, 1.3, 0.2],[4.6, 3.1, 1.5, 0.2]','target':([0,0, 0])})
+    ('[4.9, 3. , 1.4, 0.2],[4.7, 3.2, 1.3, 0.2],[4.6, 3.1, 1.5, 0.2]', [0, 0, 0])
     """
     x = (data["data"], data["target"])
     return x
@@ -22,7 +22,7 @@ def data_handling(data: dict) -> tuple:
 
 def xgboost(features: np.ndarray, target: np.ndarray) -> XGBClassifier:
     """
-    >>> xgboost(np.array([[5.1, 3.5, 1.4, 0.2],[4.6, 3.4, 1.4, 0.3]]), np.array([1,2]))
+    >>> xgboost(np.array([[5.1, 3.6, 1.4, 0.2],[4.6, 3.4, 1.4, 0.7]]), np.array([1,2]))
     XGBClassifier()
     """
     classifier = XGBClassifier()
