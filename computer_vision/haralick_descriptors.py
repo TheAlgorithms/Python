@@ -36,7 +36,7 @@ def normalize_image(image: np.ndarray, cap: float = 255) -> np.ndarray:
     return normalized.astype(np.uint8)
 
 
-def normalize_array(array, cap: float = 1):
+def normalize_array(array: np.ndarray, cap: float = 1) -> np.ndarray:
     """Normalizes a 1D array, between ranges 0-cap.
 
     Args:
@@ -55,7 +55,7 @@ def grayscale(image: np.ndarray) -> np.ndarray:
     return np.dot(image[:, :, 0:3], [0.299, 0.587, 0.114]).astype(np.uint8)
 
 
-def binarize(image, threshold_value):
+def binarize(image: np.ndarray, threshold_value) -> np.ndarray:
     """
     Binarizes a grayscale image based on a given threshold value,
     setting values to 1 or 0 accordingly.
@@ -65,7 +65,7 @@ def binarize(image, threshold_value):
     return binarized
 
 
-def transform(image, kind, kernel=None):
+def transform(image: np.ndarray, kind, kernel=None) -> np.ndarray:
     """
     Simple image transformation using one of two available filter functions:
     Erosion and Dilation.
@@ -108,7 +108,7 @@ def transform(image, kind, kernel=None):
     return transformed
 
 
-def opening_filter(image, kernel=None):
+def opening_filter(image: np.ndarray, kernel: np.ndarray = None) -> np.ndarray:
     """
     Opening filter, defined as the sequence of
     erosion and then a dilation filter on the same image.
@@ -119,7 +119,7 @@ def opening_filter(image, kernel=None):
     return transform(transform(image, "dilation", kernel), "erosion", kernel)
 
 
-def closing_filter(image, kernel=None):
+def closing_filter(image: np.ndarray, kernel: np.ndarray = None) -> np.ndarray:
     """
     Opening filter, defined as the sequence of
     dilation and then erosion filter on the same image.
@@ -130,7 +130,7 @@ def closing_filter(image, kernel=None):
     return transform(transform(image, "erosion", kernel), "dilation", kernel)
 
 
-def binary_mask(image_gray, image_map):
+def binary_mask(image_gray: np.ndarray, image_map: np.ndarray) -> np.ndarray:
     """
     Apply binary mask, or thresholding based
     on bit mask value (mapping mask is 1 or 0).
@@ -144,7 +144,7 @@ def binary_mask(image_gray, image_map):
     return true_mask, false_mask
 
 
-def matrix_concurrency(image, coordinate):
+def matrix_concurrency(image: np.ndarray, coordinate) -> np.ndarray:
     """
     Calculate sample co-occurrence matrix based on input image
     as well as selected coordinates on image.
@@ -166,7 +166,7 @@ def matrix_concurrency(image, coordinate):
     return matrix / np.sum(matrix)
 
 
-def haralick_descriptors(matrix):
+def haralick_descriptors(matrix: np.ndarray) -> list:
     """Calculates all 8 Haralick descriptors based on co-occurence input matrix.
     All descriptors are as follows:
     Maximum probability, Inverse Difference, Homogeneity, Entropy,
@@ -213,7 +213,7 @@ def haralick_descriptors(matrix):
     return descriptors
 
 
-def get_descriptors(masks, coordinate):
+def get_descriptors(masks, coordinate) -> np.ndarray:
     """
     Calculate all Haralick descriptors for a sequence of
     different co-occurrence matrices, given input masks and coordinates.
@@ -227,7 +227,7 @@ def get_descriptors(masks, coordinate):
     return np.concatenate(descriptors, axis=None)
 
 
-def euclidean(point_1: np.ndarray, point_2: np.ndarray):
+def euclidean(point_1: np.ndarray, point_2: np.ndarray) -> np.float32:
     """
     Simple method for calculating the euclidean distance between two points,
     with type np.ndarray.
@@ -235,7 +235,7 @@ def euclidean(point_1: np.ndarray, point_2: np.ndarray):
     return np.sqrt(np.sum(np.square(point_1 - point_2)))
 
 
-def get_distances(descriptors, base):
+def get_distances(descriptors, base) -> np.ndarray:
     """
     Calculate all Euclidean distances between a selected base descriptor
     and all other Haralick descriptors
