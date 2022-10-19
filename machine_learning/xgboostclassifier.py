@@ -16,7 +16,7 @@ def data_handling(data: dict) -> tuple:
     >>> data_handling({'data':'[4.9, 3. , 1.4, 0.2],[4.7, 3.2, 1.3, 0.2],[4.6, 3.1, 1.5, 0.2],[5. , 3.6, 1.4, 0.2],[5.4, 3.9, 1.7, 0.4]','target':([0,0, 0, 0, 0])})
     ('[4.9, 3. , 1.4, 0.2],[4.7, 3.2, 1.3, 0.2],[4.6, 3.1, 1.5, 0.2],[5. , 3.6, 1.4, 0.2],[5.4, 3.9, 1.7, 0.4]', [0, 0, 0, 0, 0])
     """
-    x = (data["data"],data["target"])
+    x = (data["data"], data["target"])
     return x
 
 
@@ -42,11 +42,12 @@ def main() -> None:
 
     # Load Iris dataset
     iris = load_iris()
-    features,targets= data_handling(iris)
-    x_train, x_test, y_train, y_test=train_test_split(features, targets, test_size=0.25)
+    features, targets = data_handling(iris)
+    x_train, x_test, y_train, y_test = train_test_split(
+        features, targets, test_size=0.25
+    )
 
     names = iris["target_names"]
-
 
     # XGBoost Classifier
     xgb = xgboost(x_train, y_train)
