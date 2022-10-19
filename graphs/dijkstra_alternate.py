@@ -62,7 +62,7 @@ class Graph:
         3 		 10000000.0
         """
 
-        distances = [1e7] * self.vertices  # distances from the source
+        distances = [int(1e7)] * self.vertices  # distances from the source
         distances[source] = 0
         sptset = [False] * self.vertices
 
