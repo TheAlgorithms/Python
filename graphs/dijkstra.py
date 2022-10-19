@@ -1,7 +1,7 @@
 class Graph:
     def __init__(self, vertices):
         self.V = vertices
-        self.graph = [[0 for column in range(vertices)] for row in range(vertices)]
+        self.graph = [[0] * vertices for row in range(vertices)]
 
     def printsolution(self, dist):
         print("Vertex \t Distance from Source")
