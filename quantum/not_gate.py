@@ -6,21 +6,23 @@ times and print the total count of the states finally observed.
 Qiskit Docs: https://qiskit.org/documentation/getting_started.html
 """
 
-import qiskit as q
+import qiskit
 
 
-def single_qubit_measure(qubits: int, classical_bits: int) -> q.result.counts.Counts:
+def single_qubit_measure(
+    qubits: int, classical_bits: int
+) -> qiskit.result.counts.Counts:
     """
     >>> single_qubit_measure(2, 2)
     {'11': 1000}
     >>> single_qubit_measure(4, 4)
     {'0011': 1000}
     """
-    # Use Aer's qasm_simulator
-    simulator = q.Aer.get_backend("qasm_simulator")
+    # Use Aer's simulator
+    simulator = qiskit.Aer.get_backend("aer_simulator")
 
     # Create a Quantum Circuit acting on the q register
-    circuit = q.QuantumCircuit(qubits, classical_bits)
+    circuit = qiskit.QuantumCircuit(qubits, classical_bits)
 
     # Apply X (NOT) Gate to Qubits 0 & 1
     circuit.x(0)
@@ -30,7 +32,7 @@ def single_qubit_measure(qubits: int, classical_bits: int) -> q.result.counts.Co
     circuit.measure([0, 1], [0, 1])
 
     # Execute the circuit on the qasm simulator
-    job = q.execute(circuit, simulator, shots=1000)
+    job = qiskit.execute(circuit, simulator, shots=1000)
 
     # Return the histogram data of the results of the experiment.
     return job.result().get_counts(circuit)
