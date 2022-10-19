@@ -1,8 +1,8 @@
 """
 This script demonstrates the implementation of the Sigmoid Linear Unit (SiLU)
 or swish function.
-https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
-https://en.wikipedia.org/wiki/Swish_function
+* https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
+* https://en.wikipedia.org/wiki/Swish_function
 
 The function takes a vector x of K real numbers as input and returns x * sigmoid(x).
 Swish is a smooth, non-monotonic function defined as f(x) = x * sigmoid(x).
@@ -11,7 +11,7 @@ on deep networks applied to a variety of challenging domains such as
 image classification and machine translation.
 
 This script is inspired by a corresponding research paper.
-https://arxiv.org/abs/1710.05941
+* https://arxiv.org/abs/1710.05941
 """
 
 import numpy as np
