@@ -515,6 +515,7 @@
   * [Gamma](maths/gamma.py)
   * [Gamma Recursive](maths/gamma_recursive.py)
   * [Gaussian](maths/gaussian.py)
+  * [Gaussian Error Linear Unit](maths/gaussian_error_linear_unit.py)
   * [Greatest Common Divisor](maths/greatest_common_divisor.py)
   * [Greedy Coin Change](maths/greedy_coin_change.py)
   * [Hamming Numbers](maths/hamming_numbers.py)
