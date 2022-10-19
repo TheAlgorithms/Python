@@ -30,7 +30,7 @@ def resonant_frequency(inductance: float, capacitance: float) -> tuple:
 
     else:
         return (
-            "resonant_frequency",
+            "Resonant frequency",
             float(1 / (2 * pi * (sqrt(inductance * capacitance)))),
         )
 
