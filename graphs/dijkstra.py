@@ -3,7 +3,7 @@ class Graph:
         self.V = vertices
         self.graph = [[0] * vertices for row in range(vertices)]
 
-    def printsolution(self, dist):
+    def print_solution(self, distances: list[int]):
         print("Vertex \t Distance from Source")
         for node in range(self.V):
             print(node, "\t\t", dist[node])
