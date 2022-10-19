@@ -1,5 +1,6 @@
-from math import sqrt
 from doctest import testmod
+from math import sqrt
+
 
 def factors_of_a_number(num: int) -> list:
     """
@@ -27,6 +28,7 @@ def factors_of_a_number(num: int) -> list:
                 facs.append(d)  # we have found another factor
     facs.sort()
     return facs
+
 
 if __name__ == "__main__":
     testmod(name="factors_of_a_number", verbose=True)
