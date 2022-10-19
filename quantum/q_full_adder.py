@@ -9,11 +9,13 @@ https://www.quantum-inspire.com/kbase/full-adder/
 """
 
 import math
+
 import qiskit as q
 
 
-def quantum_full_adder(input_1: int = 1, input_2: int = 1, carry_in: int = 1) \
-        -> q.result.counts.Counts:
+def quantum_full_adder(
+    input_1: int = 1, input_2: int = 1, carry_in: int = 1
+) -> q.result.counts.Counts:
     """
     # >>> q_full_adder(inp_1, inp_2, cin)
     # the inputs can be 0/1 for qubits in define
