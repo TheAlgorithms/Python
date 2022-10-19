@@ -8,7 +8,7 @@ while True:
     answer=input("Ready?")
     if answer.lower()=='yes': # .lower removes any capitalisation issues with user input vs sought input
         print("Great!")
-        pass
+        break
     else:
         print("See you later!")
         continue
