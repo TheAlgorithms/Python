@@ -41,7 +41,7 @@ import random
           continue
       score += 1
       print(correct_answer)
-          
+
 
   print("⭐ Congratulations! You've made it! ⭐\nYou answered",score,"questions correctly!")
   mark=(score/total_questions)*100
