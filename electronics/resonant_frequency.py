@@ -19,7 +19,7 @@ def resonant_frequency(inductance: float, capacitance: float) -> tuple:
       ...
     ValueError: Capacitance cannot be 0 or negative
     >>> resonant_frequency(inductance=10, capacitance=5)
-    ('resonant_frequency', 0.022507907903927652)
+    ('Resonant frequency', 0.022507907903927652)
     """
 
     if inductance <= 0:
