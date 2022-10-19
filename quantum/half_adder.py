@@ -24,8 +24,8 @@ def half_adder(bit0: int, bit1: int) -> q.result.counts.Counts:
     >>> half_adder(1, 1)
     {'10': 1000}
     """
-    # Use Aer's qasm_simulator
-    simulator = q.Aer.get_backend("qasm_simulator")
+    # Use Aer's simulator
+    simulator = q.Aer.get_backend("aer_simulator")
 
     qc_ha = q.QuantumCircuit(4, 2)
     # encode inputs in qubits 0 and 1
@@ -50,7 +50,7 @@ def half_adder(bit0: int, bit1: int) -> q.result.counts.Counts:
     # Execute the circuit on the qasm simulator
     job = q.execute(qc_ha, simulator, shots=1000)
 
-    # Return the histogram data of the results of the experiment.
+    # Return the histogram data of the results of the experiment
     return job.result().get_counts(qc_ha)
 
 
