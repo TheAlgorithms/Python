@@ -8,10 +8,10 @@ the actions performed on one of the particles affects the other,
 no matter the distance between two particles.
 """
 
-import qiskit as q
+import qiskit
 
 
-def quantum_entanglement(qubits: int = 2) -> q.result.counts.Counts:
+def quantum_entanglement(qubits: int = 2) -> qiskit.result.counts.Counts:
     """
     # >>> quantum_entanglement(2)
     # {'00': 500, '11': 500}
@@ -30,10 +30,10 @@ def quantum_entanglement(qubits: int = 2) -> q.result.counts.Counts:
     classical_bits = qubits
 
     # Using Aer's simulator
-    simulator = q.Aer.get_backend("aer_simulator")
+    simulator = qiskit.Aer.get_backend("aer_simulator")
 
     # Creating a Quantum Circuit acting on the q register
-    circuit = q.QuantumCircuit(qubits, classical_bits)
+    circuit = qiskit.QuantumCircuit(qubits, classical_bits)
 
     # Adding a H gate on qubit 0 (now q0 in superposition)
     circuit.h(0)
@@ -49,7 +49,7 @@ def quantum_entanglement(qubits: int = 2) -> q.result.counts.Counts:
     # their super position and have same state as the measured one.
 
     # Executing the circuit on the simulator
-    job = q.execute(circuit, simulator, shots=1000)
+    job = qiskit.execute(circuit, simulator, shots=1000)
 
     return job.result().get_counts(circuit)
 

@@ -22,10 +22,10 @@ References:
 """
 
 import numpy as np
-import qiskit as q
+import qiskit
 
 
-def dj_oracle(case: str, num_qubits: int) -> q.QuantumCircuit:
+def dj_oracle(case: str, num_qubits: int) -> qiskit.QuantumCircuit:
     """
     Returns a Quantum Circuit for the Oracle function.
     The circuit returned can represent balanced or constant function,
@@ -33,7 +33,7 @@ def dj_oracle(case: str, num_qubits: int) -> q.QuantumCircuit:
     """
     # This circuit has num_qubits+1 qubits: the size of the input,
     # plus one output qubit
-    oracle_qc = q.QuantumCircuit(num_qubits + 1)
+    oracle_qc = qiskit.QuantumCircuit(num_qubits + 1)
 
     # First, let's deal with the case in which oracle is balanced
     if case == "balanced":
@@ -70,13 +70,15 @@ def dj_oracle(case: str, num_qubits: int) -> q.QuantumCircuit:
     return oracle_gate
 
 
-def dj_algorithm(oracle: q.QuantumCircuit, num_qubits: int) -> q.QuantumCircuit:
+def dj_algorithm(
+    oracle: qiskit.QuantumCircuit, num_qubits: int
+) -> qiskit.QuantumCircuit:
     """
     Returns the complete Deutsch-Jozsa Quantum Circuit,
     adding Input & Output registers and Hadamard & Measurement Gates,
     to the Oracle Circuit passed in arguments
     """
-    dj_circuit = q.QuantumCircuit(num_qubits + 1, num_qubits)
+    dj_circuit = qiskit.QuantumCircuit(num_qubits + 1, num_qubits)
     # Set up the output qubit:
     dj_circuit.x(num_qubits)
     dj_circuit.h(num_qubits)
@@ -95,7 +97,7 @@ def dj_algorithm(oracle: q.QuantumCircuit, num_qubits: int) -> q.QuantumCircuit:
     return dj_circuit
 
 
-def deutsch_jozsa(case: str, num_qubits: int) -> q.result.counts.Counts:
+def deutsch_jozsa(case: str, num_qubits: int) -> qiskit.result.counts.Counts:
     """
     Main function that builds the circuit using other helper functions,
     runs the experiment 1000 times & returns the resultant qubit counts
@@ -105,13 +107,13 @@ def deutsch_jozsa(case: str, num_qubits: int) -> q.result.counts.Counts:
     {'111': 1000}
     """
     # Use Aer's simulator
-    simulator = q.Aer.get_backend("aer_simulator")
+    simulator = qiskit.Aer.get_backend("aer_simulator")
 
     oracle_gate = dj_oracle(case, num_qubits)
     dj_circuit = dj_algorithm(oracle_gate, num_qubits)
 
     # Execute the circuit on the simulator
-    job = q.execute(dj_circuit, simulator, shots=1000)
+    job = qiskit.execute(dj_circuit, simulator, shots=1000)
 
     # Return the histogram data of the results of the experiment.
     return job.result().get_counts(dj_circuit)

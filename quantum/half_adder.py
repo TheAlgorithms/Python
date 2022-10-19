@@ -10,10 +10,10 @@ https://en.wikipedia.org/wiki/Adder_(electronics)
 https://qiskit.org/textbook/ch-states/atoms-computation.html#4.2-Remembering-how-to-add-
 """
 
-import qiskit as q
+import qiskit
 
 
-def half_adder(bit0: int, bit1: int) -> q.result.counts.Counts:
+def half_adder(bit0: int, bit1: int) -> qiskit.result.counts.Counts:
     """
     >>> half_adder(0, 0)
     {'00': 1000}
@@ -25,9 +25,9 @@ def half_adder(bit0: int, bit1: int) -> q.result.counts.Counts:
     {'10': 1000}
     """
     # Use Aer's simulator
-    simulator = q.Aer.get_backend("aer_simulator")
+    simulator = qiskit.Aer.get_backend("aer_simulator")
 
-    qc_ha = q.QuantumCircuit(4, 2)
+    qc_ha = qiskit.QuantumCircuit(4, 2)
     # encode inputs in qubits 0 and 1
     if bit0 == 1:
         qc_ha.x(0)
@@ -48,7 +48,7 @@ def half_adder(bit0: int, bit1: int) -> q.result.counts.Counts:
     qc_ha.measure(3, 1)  # extract AND value
 
     # Execute the circuit on the qasm simulator
-    job = q.execute(qc_ha, simulator, shots=1000)
+    job = qiskit.execute(qc_ha, simulator, shots=1000)
 
     # Return the histogram data of the results of the experiment
     return job.result().get_counts(qc_ha)
