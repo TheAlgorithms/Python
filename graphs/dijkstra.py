@@ -3,18 +3,18 @@ class Graph:
         self.V = vertices
         self.graph = [[0 for column in range(vertices)] for row in range(vertices)]
 
-    def printSolution(self, dist):
+    def printsolution(self, dist):
         print("Vertex \t Distance from Source")
         for node in range(self.V):
             print(node, "\t\t", dist[node])
 
-    def minDistance(self, dist, sptSet):
+    def mindistance(self, dist, sptSet):
 
-        min = 1e7
+        minm = 1e7
 
         for v in range(self.V):
-            if dist[v] < min and sptSet[v] == False:
-                min = dist[v]
+            if dist[v] < minm and sptSet[v] == False:
+                minm = dist[v]
                 min_index = v
 
         return min_index
@@ -23,22 +23,22 @@ class Graph:
 
         dist = [1e7] * self.V
         dist[src] = 0
-        sptSet = [False] * self.V
+        sptset = [False] * self.V
 
         for cout in range(self.V):
 
-            u = self.minDistance(dist, sptSet)
-            sptSet[u] = True
+            u = self.mindistance(dist, sptset)
+            sptset[u] = True
 
             for v in range(self.V):
                 if (
                     self.graph[u][v] > 0
-                    and sptSet[v] == False
+                    and sptset[v] == False
                     and dist[v] > dist[u] + self.graph[u][v]
                 ):
                     dist[v] = dist[u] + self.graph[u][v]
 
-        self.printSolution(dist)
+        self.printsolution(dist)
 
 
 # Driver program
