@@ -1,58 +1,75 @@
-class Graph:
-    def __init__(self, vertices):
-        self.V = vertices
-        self.graph = [[0] * vertices for row in range(vertices)]
+class Graph():
 
-    def print_solution(self, distances: list[int]):
-        print("Vertex \t Distance from Source")
-        for node in range(self.V):
-            print(node, "\t\t", dist[node])
+	def __init__(self, vertices):
+		self.V = vertices
+		self.graph = [[0 for column in range(vertices)]
+					for row in range(vertices)]
 
-    def minimum_distance(self, distances, spt_set) -> int:
+	def printsolution(self, dist):
+		print("Vertex \t Distance from Source")
+		for node in range(self.V):
+			print(node, "\t\t", dist[node])
 
-        minm = 1e7
+	# A utility function to find the vertex with
+	# minimum distance value, from the set of vertices
+	# not yet included in shortest path tree
+	def mindistance(self, dist, sptset):
 
-        for v in range(self.V):
-            if dist[v] < minm and sptSet[v] == False:
-                minm = dist[v]
-                min_index = v
+		# Initialize minimum distance for next node
+		minimum = 1e7
 
-        return min_index
+		# Search not nearest vertex not in the
+		# shortest path tree
+		for v in range(self.V):
+			if dist[v] < minimum and sptset[v] == False:
+				minimum = dist[v]
+				min_index = v
 
-    def dijkstra(self, src):
+		return min_index
 
-        dist = [1e7] * self.V
-        dist[src] = 0
-        sptset = [False] * self.V
+	# Function that implements Dijkstra's single source
+	# shortest path algorithm for a graph represented
+	# using adjacency matrix representation
+	def dijkstra(self, src):
 
-        for cout in range(self.V):
+		dist = [1e7] * self.V
+		dist[src] = 0
+		sptset = [False] * self.V
 
-            u = self.mindistance(dist, sptset)
-            sptset[u] = True
+		for cout in range(self.V):
 
-            for v in range(self.V):
-                if (
-                    self.graph[u][v] > 0
-                    and sptset[v] == False
-                    and dist[v] > dist[u] + self.graph[u][v]
-                ):
-                    dist[v] = dist[u] + self.graph[u][v]
+			# Pick the minimum distance vertex from
+			# the set of vertices not yet processed.
+			# u is always equal to src in first iteration
+			u = self.mindistance(dist, sptset)
 
-        self.printsolution(dist)
+			# Put the minimum distance vertex in the
+			# shortest path tree
+			sptset[u] = True
 
+			# Update dist value of the adjacent vertices
+			# of the picked vertex only if the current
+			# distance is greater than new distance and
+			# the vertex in not in the shortest path tree
+			for v in range(self.V):
+				if (self.graph[u][v] > 0 and
+				sptset[v] == False and
+				dist[v] > dist[u] + self.graph[u][v]):
+					dist[v] = dist[u] + self.graph[u][v]
+
+		self.printsolution(dist)
 
 # Driver program
 g = Graph(9)
-g.graph = [
-    [0, 4, 0, 0, 0, 0, 0, 8, 0],
-    [4, 0, 8, 0, 0, 0, 0, 11, 0],
-    [0, 8, 0, 7, 0, 4, 0, 0, 2],
-    [0, 0, 7, 0, 9, 14, 0, 0, 0],
-    [0, 0, 0, 9, 0, 10, 0, 0, 0],
-    [0, 0, 4, 14, 10, 0, 2, 0, 0],
-    [0, 0, 0, 0, 0, 2, 0, 1, 6],
-    [8, 11, 0, 0, 0, 0, 1, 0, 7],
-    [0, 0, 2, 0, 0, 0, 6, 7, 0],
-]
+g.graph = [[0, 4, 0, 0, 0, 0, 0, 8, 0],
+		[4, 0, 8, 0, 0, 0, 0, 11, 0],
+		[0, 8, 0, 7, 0, 4, 0, 0, 2],
+		[0, 0, 7, 0, 9, 14, 0, 0, 0],
+		[0, 0, 0, 9, 0, 10, 0, 0, 0],
+		[0, 0, 4, 14, 10, 0, 2, 0, 0],
+		[0, 0, 0, 0, 0, 2, 0, 1, 6],
+		[8, 11, 0, 0, 0, 0, 1, 0, 7],
+		[0, 0, 2, 0, 0, 0, 6, 7, 0]
+		]
 
 g.dijkstra(0)
