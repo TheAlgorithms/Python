@@ -36,11 +36,12 @@ import random
 
   for question, right_answer in questions:
       answer = input(f"{question}")
-      if answer.lower() == right_answer:
-          score += 1
-          print(correct_answer)
-      else:
+      if answer.lower() != right_answer:
           print(incorrect_answer)
+          continue
+      score += 1
+      print(correct_answer)
+          
 
   print("⭐ Congratulations! You've made it! ⭐\nYou answered",score,"questions correctly!")
   mark=(score/total_questions)*100
