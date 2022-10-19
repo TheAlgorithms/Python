@@ -17,8 +17,7 @@ class Graph:
 
     def print_solution(self, distances_from_source: list[int]) -> None:
         """
-        >>> graph = Graph(0)
-        >>> graph.print_solution([])  # doctest: +NORMALIZE_WHITESPACE
+        >>> Graph(0).print_solution([])  # doctest: +NORMALIZE_WHITESPACE
         Vertex 	 Distance from Source
         """
         print("Vertex \t Distance from Source")
@@ -32,8 +31,7 @@ class Graph:
         A utility function to find the vertex with minimum distance value, from the set
         of vertices not yet included in shortest path tree.
 
-        >>> graph = Graph(3)
-        >>> graph.minimum_distance([1, 2, 3], [False, False, True])
+        >>> Graph(3).minimum_distance([1, 2, 3], [False, False, True])
         0
         """
 
@@ -53,13 +51,12 @@ class Graph:
         Function that implements Dijkstra's single source shortest path algorithm for a
         graph represented using adjacency matrix representation.
 
-        >>> graph = Graph(4)
-        >>> graph.dijkstra(1)  # doctest: +NORMALIZE_WHITESPACE
+        >>> Graph(4).dijkstra(1)  # doctest: +NORMALIZE_WHITESPACE
         Vertex  Distance from Source
-        0 		 10000000.0
+        0 		 10000000
         1 		 0
-        2 		 10000000.0
-        3 		 10000000.0
+        2 		 10000000
+        3 		 10000000
         """
 
         distances = [int(1e7)] * self.vertices  # distances from the source
