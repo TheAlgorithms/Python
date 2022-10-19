@@ -7,7 +7,9 @@ from xgboost import XGBRegressor
 
 def dataset(datatype: dict) -> tuple:
     # Split dataset into train and test data
-    x = (datatype["data"], datatype["target"])  # features
+    features=datatype["data"]
+    target=datatype["target"]
+    x = (train_test_split(features, target, test_size=0.25))
     return x
 
 
@@ -17,6 +19,7 @@ def xgboost(features: list, target: list, test_features: list) -> list:
     # Predict target for test data
     predictions = xgb.predict(test_features)
     predictions = predictions.reshape(len(predictions), 1)
+    print(type(predictions))
     return predictions
 
 
@@ -29,12 +32,8 @@ def main() -> None:
     """
     # Load Boston house price dataset
     boston = load_boston()
-    print(boston.keys())
 
-    features, target = dataset(boston)
-    x_train, x_test, y_train, y_test = train_test_split(
-        features, target, test_size=0.25, random_state=1
-    )
+    x_train, x_test, y_train, y_test = dataset(boston) 
     predictions = xgboost(x_train, y_train, x_test)
 
     # Error printing
