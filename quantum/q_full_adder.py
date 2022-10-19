@@ -35,25 +35,25 @@ def quantum_full_adder(input_1: int = 1, input_2: int = 1, carry_in: int = 1) \
         carry_in: carry in for the circuit.
     Returns:
         qiskit.result.counts.Counts: sum result counts.
-    >>> quantum_full_adder(1,1,1)
+    >>> quantum_full_adder(1, 1, 1)
     {'11': 1000}
-    >>> quantum_full_adder(0,0,1)
+    >>> quantum_full_adder(0, 0, 1)
     {'01': 1000}
-    >>> quantum_full_adder(1,0,1)
+    >>> quantum_full_adder(1, 0, 1)
     {'10': 1000}
-    >>> quantum_full_adder(1,-4,1)
+    >>> quantum_full_adder(1, -4, 1)
     Traceback (most recent call last):
         ...
     ValueError: inputs must be positive.
-    >>> quantum_full_adder('q',0,1)
+    >>> quantum_full_adder('q', 0, 1)
     Traceback (most recent call last):
         ...
     TypeError: inputs must be integers.
-    >>> quantum_full_adder(0.5,0,1)
+    >>> quantum_full_adder(0.5, 0, 1)
     Traceback (most recent call last):
         ...
     ValueError: inputs must be exact integers.
-    >>> quantum_full_adder(0,1,3)
+    >>> quantum_full_adder(0, 1, 3)
     Traceback (most recent call last):
         ...
     ValueError: inputs must be less or equal to 2.
@@ -106,4 +106,4 @@ def quantum_full_adder(input_1: int = 1, input_2: int = 1, carry_in: int = 1) \
 
 
 if __name__ == "__main__":
-    print(f"Total sum count for state is: {quantum_full_adder(1,1,1)}")
+    print(f"Total sum count for state is: {quantum_full_adder(1, 1, 1)}")
