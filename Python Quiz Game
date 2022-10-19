@@ -1,49 +1,57 @@
-import random
+import random #allows for the order of the questions to be randomised later on
 
-  print("Welcome to Q-Quiz!\nGood luck")
+print("Welcome to Q-Quiz!\nGood luck")
 
-  answer=input("Ready?")
-  score=0
+score=0
 
-  if answer.lower()=='yes':
-      print("Great!")
-  else:
-      print("See you later!")
+while True:
+    answer=input("Ready?")
+    if answer.lower()=='yes': # .lower removes any capitalisation issues with user input vs sought input       
+        print("Great!")
+        pass
+    else: 
+        print("See you later!")
+        continue
 
-  QUESTIONS = [
-      ('#question1', '#answer1'),
-      ('#question2', '#answer2'),
-      ('#question3', '#answer3'),
-  ]
+#input range of questions with corresponding answers
+QUESTIONS = [
+    ('#question1', '#answer1'),
+    ('#question2', '#answer2'),
+    ('#question3', '#answer3'),
+]
 
-  num_questions=len(QUESTIONS)
-  questions = random.sample(list(QUESTIONS), k = num_questions)
-  num = random.randint(0,#n)
-  CORRECT = [
-      "#output1",
-      "#output2",
-      "#output3",
-  ]
+#radomise question order
+num_questions=len(QUESTIONS)
+questions = random.sample(list(QUESTIONS), k = num_questions)
+num = random.randint(0,num_questions)
+CORRECT = [
+    "#output1",
+    "#output2",
+    "#output3",
+]
 
-  INCORRECT = [
-      "#output1",
-      "#output2",
-      "#output3",
-  ]
+INCORRECT = [
+    "#output1",
+    "#output2",
+    "#output3",
+]
 
-  correct_answer = CORRECT[num]
-  incorrect_answer = INCORRECT[num]
+#provide a score for the whole quiz to the user
 
-  for question, right_answer in questions:
-      answer = input(f"{question}")
-      if answer.lower() != right_answer:
-          print(incorrect_answer)
-          continue
-      score += 1
-      print(correct_answer)
+correct_answer = CORRECT[num]
+incorrect_answer = INCORRECT[num]
 
+for question, right_answer in questions:
+    answer = input(f"{question}")
+    if answer.lower() != right_answer:
+        print(incorrect_answer)
+        continue
+    score += 1
+    print(correct_answer)
 
-  print("⭐ Congratulations! You've made it! ⭐\nYou answered",score,"questions correctly!")
-  mark=(score/total_questions)*100
-  print('Total marks:',mark)
-  print('Thank you for playing, I hope you had fun!')
+#end the quiz
+print("⭐ Congratulations! You've made it! ⭐\nYou answered",score,"questions correctly!")
+mark=(score/num_questions)*100
+print('Total marks:',mark)
+print('Thank you for playing, I hope you had fun!')
+exit()
