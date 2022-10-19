@@ -14,8 +14,8 @@ def single_qubit_measure(qubits: int, classical_bits: int) -> q.result.counts.Co
     >>> single_qubit_measure(1, 1)
     {'0': 1000}
     """
-    # Use Aer's qasm_simulator
-    simulator = q.Aer.get_backend("qasm_simulator")
+    # Use Aer's simulator
+    simulator = q.Aer.get_backend("aer_simulator")
 
     # Create a Quantum Circuit acting on the q register
     circuit = q.QuantumCircuit(qubits, classical_bits)
@@ -23,7 +23,7 @@ def single_qubit_measure(qubits: int, classical_bits: int) -> q.result.counts.Co
     # Map the quantum measurement to the classical bits
     circuit.measure([0], [0])
 
-    # Execute the circuit on the qasm simulator
+    # Execute the circuit on the simulator
     job = q.execute(circuit, simulator, shots=1000)
 
     # Return the histogram data of the results of the experiment.
