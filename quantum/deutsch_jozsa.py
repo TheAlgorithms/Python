@@ -104,13 +104,13 @@ def deutsch_jozsa(case: str, num_qubits: int) -> q.result.counts.Counts:
     >>> deutsch_jozsa("balanced", 3)
     {'111': 1000}
     """
-    # Use Aer's qasm_simulator
-    simulator = q.Aer.get_backend("qasm_simulator")
+    # Use Aer's simulator
+    simulator = q.Aer.get_backend("aer_simulator")
 
     oracle_gate = dj_oracle(case, num_qubits)
     dj_circuit = dj_algorithm(oracle_gate, num_qubits)
 
-    # Execute the circuit on the qasm simulator
+    # Execute the circuit on the simulator
     job = q.execute(dj_circuit, simulator, shots=1000)
 
     # Return the histogram data of the results of the experiment.
