@@ -457,6 +457,7 @@ def area_rhombus(diagonal_1: float, diagonal_2: float) -> float:
         raise ValueError("area_rhombus() only accepts non-negative values")
     return 1 / 2 * diagonal_1 * diagonal_2
 
+
 def area_reg_polygon(sides: int, length: float) -> float:
     """
     Calculate the area of a regular polygon.
@@ -484,10 +485,14 @@ def area_reg_polygon(sides: int, length: float) -> float:
     ValueError: area_reg_polygon() only accepts integers greater than or equal to three as number of sides
     """
     if not isinstance(sides, int) or sides < 3:
-        raise ValueError("area_reg_polygon() only accepts integers greater than or equal to three as number of sides")
+        raise ValueError(
+            "area_reg_polygon() only accepts integers greater than or equal to three as number of sides"
+        )
     elif length < 0:
-        raise ValueError("area_reg_polygon() only accepts non-negative values as length of a side")
-    return (sides*length**2)/(4*tan(pi/sides))
+        raise ValueError(
+            "area_reg_polygon() only accepts non-negative values as length of a side"
+        )
+    return (sides * length**2) / (4 * tan(pi / sides))
 
 
 if __name__ == "__main__":
