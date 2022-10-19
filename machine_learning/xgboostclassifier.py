@@ -8,9 +8,9 @@ from xgboost import XGBClassifier
 
 def data_handling(data: dict) -> tuple:
     # Split dataset into train and test data
-    features = data["data"] # data is features
+    features = data["data"]  # data is features
     target = data["target"]
-    x=(train_test_split(features, target, test_size=0.25))
+    x = train_test_split(features, target, test_size=0.25)
     return x
 
 
@@ -33,7 +33,7 @@ def main() -> None:
 
     names = iris["target_names"]
 
-    x_train, x_test, y_train, y_test = data_handling(iris) 
+    x_train, x_test, y_train, y_test = data_handling(iris)
 
     # XGBoost Classifier
     xgb = xgboost(x_train, y_train)
