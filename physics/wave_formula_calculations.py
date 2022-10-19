@@ -27,10 +27,9 @@ Not sure if this can work for really big numbers.
 
 # ----- Demo -----#
 
-# Initializing variables to 0
-v = 0  # in m/s
-wavelength = 0  # in meters
-frequency = 0  # in Hz
+# v is in m/s
+# wavelength is in meters
+# frequency is in Hz
 calc_to_do = random.randint(1, 3)
 
 
