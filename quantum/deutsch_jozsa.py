@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Deutsch-Josza Algorithm is one of the first examples of a quantum
+Deutsch-Jozsa Algorithm is one of the first examples of a quantum
 algorithm that is exponentially faster than any possible deterministic
 classical algorithm
 
@@ -43,7 +43,7 @@ def dj_oracle(case: str, num_qubits: int) -> q.QuantumCircuit:
         # Next, format 'b' as a binary string of length 'n', padded with zeros:
         b_str = format(b, f"0{num_qubits}b")
         # Next, we place the first X-gates. Each digit in our binary string
-        # correspopnds to a qubit, if the digit is 0, we do nothing, if it's 1
+        # corresponds to a qubit, if the digit is 0, we do nothing, if it's 1
         # we apply an X-gate to that qubit:
         for index, bit in enumerate(b_str):
             if bit == "1":
@@ -72,7 +72,7 @@ def dj_oracle(case: str, num_qubits: int) -> q.QuantumCircuit:
 
 def dj_algorithm(oracle: q.QuantumCircuit, num_qubits: int) -> q.QuantumCircuit:
     """
-    Returns the complete Deustch-Jozsa Quantum Circuit,
+    Returns the complete Deutsch-Jozsa Quantum Circuit,
     adding Input & Output registers and Hadamard & Measurement Gates,
     to the Oracle Circuit passed in arguments
     """
