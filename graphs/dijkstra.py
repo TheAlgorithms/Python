@@ -19,7 +19,7 @@ class Graph:
         # Search not nearest vertex not in the
         # shortest path tree
         for v in range(self.V):
-            if dist[v] < minimum and sptset[v] == False:
+            if dist[v] < minimum and sptset[v] is False:
                 minimum = dist[v]
                 min_index = v
 
@@ -34,7 +34,7 @@ class Graph:
         dist[src] = 0
         sptset = [False] * self.V
 
-        for cout in range(self.V):
+        for _ in range(self.V):
             u = self.mindistance(dist, sptset)
             sptset[u] = True
 
@@ -45,7 +45,7 @@ class Graph:
             for v in range(self.V):
                 if (
                     self.graph[u][v] > 0
-                    and sptset[v] == False
+                    and sptset[v] is False
                     and dist[v] > dist[u] + self.graph[u][v]
                 ):
                     dist[v] = dist[u] + self.graph[u][v]
