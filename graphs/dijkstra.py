@@ -8,7 +8,7 @@ class Graph:
         for node in range(self.V):
             print(node, "\t\t", dist[node])
 
-    def mindistance(self, dist, sptSet):
+    def minimum_distance(self, distances, spt_set) -> int:
 
         minm = 1e7
 
