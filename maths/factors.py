@@ -1,5 +1,5 @@
 from math import sqrt
-
+from doctest import testmod
 
 def factors_of_a_number(num: int) -> list:
     """
@@ -28,8 +28,5 @@ def factors_of_a_number(num: int) -> list:
     facs.sort()
     return facs
 
-
 if __name__ == "__main__":
-    num = int(input("Enter a number to find its factors: "))
-    factors = factors_of_a_number(num)
-    print(f"{num} has {len(factors)} factors: {', '.join(str(f) for f in factors)}")
+    testmod(name="factors_of_a_number", verbose=True)
