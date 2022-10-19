@@ -1,15 +1,13 @@
 """
-This script demonstrates an implementation of the
-Gaussian Error Linear Unit function.
-https://en.wikipedia.org/wiki/Activation_function#Comparison_of_activation_functions
+This script demonstrates an implementation of the Gaussian Error Linear Unit function.
+* https://en.wikipedia.org/wiki/Activation_function#Comparison_of_activation_functions
 
-The function takes a vector x of K real numbers as input and
-returns x * sigmoid(1.702*x).
-The Gaussian Error Linear Unit (GELU), is a high-performing neural
-network activation function.
+The function takes a vector of K real numbers as input and returns x * sigmoid(1.702*x).
+Gaussian Error Linear Unit (GELU) is a high-performing neural network activation
+function.
 
-Script inspired from its corresponding research paper
-https://arxiv.org/abs/1606.08415
+This script is inspired by a corresponding research paper.
+* https://arxiv.org/abs/1606.08415
 """
 
 import numpy as np
@@ -17,8 +15,8 @@ import numpy as np
 
 def sigmoid(vector: np.array) -> np.array:
     """
-    Mathematical function sigmoid takes a vector x of K real numbers
-    as input and returns 1/ (1 + e^-x).
+    Mathematical function sigmoid takes a vector x of K real numbers as input and
+    returns 1/ (1 + e^-x).
     https://en.wikipedia.org/wiki/Sigmoid_function
 
     >>> sigmoid(np.array([-1.0, 1.0, 2.0]))
