@@ -9,14 +9,11 @@ https://www.quantum-inspire.com/kbase/full-adder/
 """
 
 import math
-
-import qiskit
-from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
+import qiskit as q
 
 
-def quantum_full_adder(
-    input_1: int = 1, input_2: int = 1, carry_in: int = 1
-) -> qiskit.result.counts.Counts:
+def quantum_full_adder(input_1: int = 1, input_2: int = 1, carry_in: int = 1) \
+        -> q.result.counts.Counts:
     """
     # >>> q_full_adder(inp_1, inp_2, cin)
     # the inputs can be 0/1 for qubits in define
@@ -78,12 +75,12 @@ def quantum_full_adder(
         raise ValueError("inputs must be less or equal to 2.")
 
     # build registers
-    qr = QuantumRegister(4, "qr")
-    cr = ClassicalRegister(2, "cr")
+    qr = q.QuantumRegister(4, "qr")
+    cr = q.ClassicalRegister(2, "cr")
     # list the entries
     entry = [input_1, input_2, carry_in]
 
-    quantum_circuit = QuantumCircuit(qr, cr)
+    quantum_circuit = q.QuantumCircuit(qr, cr)
 
     for i in range(0, 3):
         if entry[i] == 2:
@@ -102,8 +99,8 @@ def quantum_full_adder(
 
     quantum_circuit.measure([2, 3], cr)  # measure the last two qbits
 
-    backend = Aer.get_backend("aer_simulator")
-    job = execute(quantum_circuit, backend, shots=1000)
+    backend = q.Aer.get_backend("aer_simulator")
+    job = q.execute(quantum_circuit, backend, shots=1000)
 
     return job.result().get_counts(quantum_circuit)
 
