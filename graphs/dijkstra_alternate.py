@@ -25,7 +25,9 @@ class Graph:
         for vertex in range(self.vertices):
             print(vertex, "\t\t", distances_from_source[vertex])
 
-    def minimum_distance(self, distances_from_source: list[int], sptset: list[bool]) -> int:
+    def minimum_distance(
+        self, distances_from_source: list[int], sptset: list[bool]
+    ) -> int:
         """
         A utility function to find the vertex with minimum distance value, from the set
         of vertices not yet included in shortest path tree.
