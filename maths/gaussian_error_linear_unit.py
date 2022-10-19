@@ -1,8 +1,10 @@
 """
-This script demonstrates the implementation of the Gelu function.
+This script demonstrates an implementation of the
+Gaussian Error Linear Unit function.
+https://en.wikipedia.org/wiki/Activation_function#Comparison_of_activation_functions
 
 The function takes a vector x of K real numbers as input and
-resukts x * sigmoid(1.702*x).
+returns x * sigmoid(1.702*x).
 The Gaussian Error Linear Unit (GELU), is a high-performing neural
 network activation function.
 
@@ -15,13 +17,17 @@ import numpy as np
 
 def sigmoid(vector: np.array) -> np.array:
     """
-    Gelu function can be implemented easily with the help of
-    sigmoid function
+    Mathematical function sigmoid takes a vector x of K real numbers
+    as input and returns 1/ (1 + e^-x).
+    https://en.wikipedia.org/wiki/Sigmoid_function
+
+    >>> sigmoid(np.array([-1.0, 1.0, 2.0]))
+    array([0.26894142, 0.73105858, 0.88079708])
     """
     return 1 / (1 + np.exp(-vector))
 
 
-def gelu(vector: np.array) -> np.array:
+def gaussian_error_linear_unit(vector: np.array) -> np.array:
     """
     Implements the Gelu function
 
@@ -34,10 +40,10 @@ def gelu(vector: np.array) -> np.array:
         gelu.
 
     Examples:
-    >>> gelu(np.array([-1.0, 1.0, 2.0]))
+    >>> gaussian_error_linear_unit(np.array([-1.0, 1.0, 2.0]))
     array([-0.15420423,  0.84579577,  1.93565862])
 
-    >>> gelu(np.array([-3]))
+    >>> gaussian_error_linear_unit(np.array([-3]))
     array([-0.01807131])
     """
     return vector * sigmoid(1.702 * vector)
