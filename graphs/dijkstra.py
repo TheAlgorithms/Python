@@ -35,14 +35,7 @@ class Graph:
         sptset = [False] * self.V
 
         for cout in range(self.V):
-
-            # Pick the minimum distance vertex from
-            # the set of vertices not yet processed.
-            # u is always equal to src in first iteration
             u = self.mindistance(dist, sptset)
-
-            # Put the minimum distance vertex in the
-            # shortest path tree
             sptset[u] = True
 
             # Update dist value of the adjacent vertices
