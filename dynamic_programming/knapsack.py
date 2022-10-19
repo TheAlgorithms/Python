@@ -27,7 +27,7 @@ def mf_knapsack(i, wt, val, j):
 
 
 def knapsack(w, wt, val, n):
-    dp = [[0 for _ in range(w + 1)] for _ in range(n + 1)]
+    dp = [[0] * (w + 1) for _ in range(n + 1)]
 
     for i in range(1, n + 1):
         for w_ in range(1, w + 1):
