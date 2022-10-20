@@ -1,22 +1,28 @@
 """
     Algorithm:
-    1.	Maintain a variable ‘ longest_length = 1 ‘ (for storing longest palindromic substring length) and ‘ start =0 ‘ (for storing index of longest palindromic substring length).
-    2.	The idea is very simple, we will traverse through the entire string with i=0 to i<(length of string) while traversing, initialize ‘start‘ and ‘end‘ pointer such that start= i-1 and end= i+1.
-    3.	keep incrementing ‘end’ until str[end]==str[i]  similarly keep decrementing ‘start’ until str[start]==str[i].
-    4.	Finally we will keep incrementing ‘end’ and decrementing ‘start’ until str[start]==str[end].
-    5.	calculate length=end-start-1, if length > longest_length then longest_length = length and start = start+1 .
+    1.	Maintain a variable ‘ longest_length = 1 ‘ 
+    (for storing longest palindromic substring length) and ‘ start =0 ‘.
+    2.	The idea is very simple, we will traverse through the entire 
+    string with i=0 to i<(length of string) while traversing, initialize 
+    ‘start‘ and ‘end‘ pointer such that start= i-1 and end= i+1.
+    3.	keep incrementing ‘end’ until str[end]==str[i]  similarly 
+    keep decrementing ‘start’ until str[start]==str[i].
+    4.	Finally we will keep incrementing ‘end’ and decrementing 
+    ‘start’ until str[start]==str[end].
+    5.	calculate length=end-start-1, if length > longest_length 
+    then longest_length = length and start = start+1 .
     6.	Return the longest palindromic substring.
     """
 
 
-def longestPalindromicSubstring(string: str) -> str:
+def longest_palindromic_substring(string: str) -> str:
     """
     Returns the longest palindromic substring present in given string.
-    >>> longestPalindromicSubstring("malayalam")
+    >>> longest_palindromic_substring("malayalam")
     'malayalam'
-    >>> longestPalindromicSubstring("cabad")
+    >>> longest_palindromic_substring("cabad")
     'aba'
-    >>> longestPalindromicSubstring("zxyzzzx")
+    >>> longest_palindromic_substring("zxyzzzx")
     'zzz'
     """
     length = len(string)  # calculating the length of string
@@ -43,10 +49,10 @@ def longestPalindromicSubstring(string: str) -> str:
 
 
 if __name__ == "__main__":
-    print("Longest Palindromic Substring is: " + longestPalindromicSubstring("cabad"))
-    print("Longest Palindromic Substring is: " + longestPalindromicSubstring("zxyzzzx"))
+    print("Longest Palindromic Substring is: " + longest_palindromic_substring("cabad"))
+    print("Longest Palindromic Substring is: " + longest_palindromic_substring("zxyzzzx"))
     print(
-        "Longest Palindromic Substring is: " + longestPalindromicSubstring("malayalam")
+        "Longest Palindromic Substring is: " + longest_palindromic_substring("malayalam")
     )
 
 
