@@ -15,7 +15,7 @@
     """
 
 
-def longest_palindromic_substring(string):
+def longest_palindromic_substring(string) -> str:
     """
     Returns the longest palindromic substring present in given string.
     >>> longest_palindromic_substring("malayalam")
@@ -46,17 +46,6 @@ def longest_palindromic_substring(string):
             start_index = start + 1
 
     return string[start_index : start_index + longest_length]
-
-
-if __name__ == "__main__":
-    print("Longest Palindromic Substring is: " + longest_palindromic_substring("cabad"))
-    print(
-        "Longest Palindromic Substring is: " + longest_palindromic_substring("zxyzzzx")
-    )
-    print(
-        "Longest Palindromic Substring is: "
-        + longest_palindromic_substring("malayalam")
-    )
 
 
 # This program takes O(n^2) time complexity to find the longest palindromic substring
