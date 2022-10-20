@@ -36,14 +36,20 @@ def maclaurin_sin(theta, accuracy=30):
     ValueError: maclaurin_sin() requires an int or float value for theta and positive int for accuracy
     """
 
-    if not isinstance(accuracy, int) or accuracy <= 0 or type(theta) not in [int, float]:
-        raise ValueError('maclaurin_sin() requires an int or float value for theta and positive int for accuracy')
+    if (
+        not isinstance(accuracy, int)
+        or accuracy <= 0
+        or type(theta) not in [int, float]
+    ):
+        raise ValueError(
+            "maclaurin_sin() requires an int or float value for theta and positive int for accuracy"
+        )
 
     theta = float(theta)
 
     _total = 0
     for r in range(accuracy):
-        _total += ((-1)**r)*((theta**(2*r+1))/(factorial(2*r+1)))
+        _total += ((-1) ** r) * ((theta ** (2 * r + 1)) / (factorial(2 * r + 1)))
     return _total
 
 
