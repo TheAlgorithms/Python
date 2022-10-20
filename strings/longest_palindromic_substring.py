@@ -15,7 +15,7 @@
     """
 
 
-def longest_palindromic_substring(string: str) -> str:
+def longest_palindromic_substring(string):
     """
     Returns the longest palindromic substring present in given string.
     >>> longest_palindromic_substring("malayalam")
