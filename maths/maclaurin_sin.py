@@ -56,11 +56,4 @@ def maclaurin_sin(theta: float, accuracy: int = 30) -> float:
 
 
 if __name__ == "__main__":
-    print(maclaurin_sin(10))
-    print(maclaurin_sin(-10))
     print(maclaurin_sin(10, 15))
-    print(maclaurin_sin(-10, 15))
-    print(maclaurin_sin("10"))
-    print(maclaurin_sin(10, -30))
-    print(maclaurin_sin(10, 30.5))
-    print(maclaurin_sin(10, "30"))
