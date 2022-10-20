@@ -11,7 +11,7 @@ def electric_conductivity(
     """
     This function can calculate any one of the three -
     1. Conductivity
-    2, Conductivity
+    2. Electron Concentration
     3. Electron Mobility
     This is calculated from the other two provided values
     Examples -
