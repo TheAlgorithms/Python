@@ -3,7 +3,7 @@ def is_palindrome(s: str) -> bool:
     Determine whether the string is palindrome
     :param s:
     :return: Boolean
-    >>> is_palindrome("a man a plan a canal panama".replace(" ", ""))
+    >>> is_palindrome("A man, A plan, A canal -- Panama!")
     True
     >>> is_palindrome("Hello")
     False
