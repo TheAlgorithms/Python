@@ -182,8 +182,10 @@ class RedBlackTree:
                     if child is None:
                         # This node and its child are black
                         if self.parent is None:
+                            # Remove root node
+                            self.label = None
                             # The tree is now empty
-                            return RedBlackTree(None)
+                            return self
                         else:
                             self._remove_repair()
                             if self.is_left():
@@ -704,6 +706,21 @@ def test_tree_chaining() -> bool:
     return True
 
 
+def test_add_del_one() -> bool:
+    """Tests adding and removing single label."""
+    tree = RedBlackTree()
+    val = 5
+    if tree.label is not None:
+        return False
+    tree.insert(val)
+    if tree.label != val:
+        return False
+    tree.remove(val)
+    if tree.label is not None:
+        return False
+    return True
+
+
 def print_results(msg: str, passes: bool) -> None:
     print(str(msg), "works!" if passes else "doesn't work :(")
 
@@ -722,6 +739,7 @@ def main() -> None:
     """
     >>> pytests()
     """
+    print_results("Add and remove single label", test_add_del_one())
     print_results("Rotating right and left", test_rotations())
     print_results("Inserting", test_insert())
     print_results("Searching", test_insert_and_search())
