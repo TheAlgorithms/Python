@@ -34,12 +34,12 @@ def longest_palindromic_substring(string: str) -> str:
         return string
     start_index = 0
     longest_length = 1
-    for i in range(length):
+    for i, char in enumerate(string):
         start = i - 1
         end = i + 1
-        while end < length and string[end] == string[i]:
-            end = end + 1
-        while start >= 0 and string[start] == string[i]:
+        while end < length and string[end] == char:
+            end += 1
+        while start >= 0 and string[start] == char:
             start = start - 1
         while start >= 0 and end < length and string[start] == string[end]:
             start = start - 1
