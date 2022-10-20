@@ -1,14 +1,14 @@
 """
 this function focuses on converting camel case (eg: camelCase)
 to snake case (snake_case)
--"Camel case" combines words by capitalizing all words following 
-the first word and removing the space eg: userLoginCount 
-This is a very popular way to combine words to form a single concept. 
+-"Camel case" combines words by capitalizing all words following
+the first word and removing the space eg: userLoginCount
+This is a very popular way to combine words to form a single concept.
 It is often used as a convention in variable declaration in many languages.
 -Snake case combines words by replacing each space with an underscore (_) and,
-in the all caps version, all letters are capitalized eg: user_login_count 
-This style, when capitalized, is often used as a convention 
-in declaring constants in many languages. 
+in the all caps version, all letters are capitalized eg: user_login_count
+This style, when capitalized, is often used as a convention
+in declaring constants in many languages.
 When lower cased, it is used conventionally in declaring database field names
 """
 
@@ -81,6 +81,7 @@ def to_snake_case(word: str) -> str:
 
     # Returns the string
     return snake_case
+
 
 if __name__ == "__main__":
     import doctest

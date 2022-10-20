@@ -1,6 +1,6 @@
 """
-A vowel is a sound such as the ones represented in writing 
-by the letters 'a', 'e', 'i', ' o', and 'u', 
+A vowel is a sound such as the ones represented in writing
+by the letters 'a', 'e', 'i', ' o', and 'u',
 which you pronounce with your mouth open, allowing the air to flow through it.
 
 This function removes all the vowels present in the given sentence or a word.
@@ -13,7 +13,7 @@ def remove_vowels(sentence: str) -> str:
     """
     This remove_vowels function removes all the vowels
     from a given sentence or a word
-    
+
     >>> remove_vowels('Hello world')
     'Hll wrld'
     >>> remove_vowels('Programming is my passion')
