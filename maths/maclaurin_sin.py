@@ -41,7 +41,7 @@ def maclaurin_sin(theta: float, accuracy: int = 30) -> float:
     if (
         not isinstance(accuracy, int)
         or accuracy <= 0
-        or type(theta) not in [int, float]
+        or not isinstance(theta, (int, float))
     ):
         raise ValueError(
             "maclaurin_sin() requires int/float for theta and +ive int for accuracy"
