@@ -2,34 +2,34 @@
 N = 1000001
 
 # array to store inverse of 1 to N
-factorialNumInverse = [None] * (N + 1)
+factorial_num_inverse = [None] * (N + 1)
 
 # array to precompute inverse of 1! to N!
-naturalNumInverse = [None] * (N + 1)
+natural_num_inverse = [None] * (N + 1)
 
 # array to store factorial of
 # first N numbers
 fact = [None] * (N + 1)
 
 # Function to precompute inverse of numbers
-def InverseofNumber(p):
-	naturalNumInverse[0] = naturalNumInverse[1] = 1
+def inverse_of_num(p) -> None:
+	natural_num_inverse[0] = natural_num_inverse[1] = 1
 	for i in range(2, N + 1, 1):
-		naturalNumInverse[i] = (naturalNumInverse[p % i] *
+		natural_num_inverse[i] = (natural_num_inverse[p % i] *
 								(p - int(p / i)) % p)
 
 # Function to precompute inverse
 # of factorials
-def InverseofFactorial(p):
-	factorialNumInverse[0] = factorialNumInverse[1] = 1
+def InverseofFactorial(p) -> None:
+	factorial_num_inverse[0] = factorial_num_inverse[1] = 1
 
 	# precompute inverse of natural numbers
 	for i in range(2, N + 1, 1):
-		factorialNumInverse[i] = (naturalNumInverse[i] *
-								factorialNumInverse[i - 1]) % p
+		factorial_num_inverse[i] = (natural_num_inverse[i] *
+								factorial_num_inverse[i - 1]) % p
 
 # Function to calculate factorial of 1 to N
-def factorial(p):
+def factorial(p) -> None:
 	fact[0] = 1
 
 	# precompute factorials
@@ -40,8 +40,8 @@ def factorial(p):
 def Binomial(N, R, p):
 	
 	# n C r = n!*inverse(r!)*inverse((n-r)!)
-	ans = ((fact[N] * factorialNumInverse[R])% p *
-					factorialNumInverse[N - R])% p
+	ans = ((fact[N] * factorial_num_inverse[R])% p *
+					factorial_num_inverse[N - R])% p
 	return ans
 
 # Driver Code
@@ -51,7 +51,7 @@ if __name__ == '__main__':
 	# required arrays which will be required
 	# to answer every query in O(1)
 	p = 1000000007
-	InverseofNumber(p)
+	inverse_of_num(p)
 	InverseofFactorial(p)
 	factorial(p)
 
