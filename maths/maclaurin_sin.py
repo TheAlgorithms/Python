@@ -23,36 +23,37 @@ def maclaurin_sin(theta: float, accuracy: int = 30) -> float:
     >>> maclaurin_sin("10")
     Traceback (most recent call last):
     ...
-    ValueError: maclaurin_sin() requires int/float for theta and +ive int for accuracy
+    ValueError: maclaurin_sin() requires a int or float for theta
     >>> maclaurin_sin(10, -30)
     Traceback (most recent call last):
     ...
-    ValueError: maclaurin_sin() requires int/float for theta and +ive int for accuracy
+    ValueError: maclaurin_sin() requires a positive int for accuracy
     >>> maclaurin_sin(10, 30.5)
     Traceback (most recent call last):
     ...
-    ValueError: maclaurin_sin() requires int/float for theta and +ive int for accuracy
+    ValueError: maclaurin_sin() requires a positive int for accuracy
     >>> maclaurin_sin(10, "30")
     Traceback (most recent call last):
     ...
-    ValueError: maclaurin_sin() requires int/float for theta and +ive int for accuracy
+    ValueError: maclaurin_sin() requires a positive int for accuracy
     """
 
-    if (
-        not isinstance(accuracy, int)
-        or accuracy <= 0
-        or not isinstance(theta, (int, float))
-    ):
+    if not isinstance(theta, (int, float)):
         raise ValueError(
-            "maclaurin_sin() requires int/float for theta and +ive int for accuracy"
+            "maclaurin_sin() requires a int or float for theta"
+        )
+
+    if not isinstance(accuracy, int) or accuracy <= 0:
+        raise ValueError(
+            "maclaurin_sin() requires a positive int for accuracy"
         )
 
     theta = float(theta)
 
-    _total = 0
+    total = 0
     for r in range(accuracy):
-        _total += ((-1) ** r) * ((theta ** (2 * r + 1)) / (factorial(2 * r + 1)))
-    return float(_total)
+        total += ((-1) ** r) * ((theta ** (2 * r + 1)) / (factorial(2 * r + 1)))
+    return float(total)
 
 
 if __name__ == "__main__":
