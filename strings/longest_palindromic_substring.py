@@ -27,7 +27,7 @@ def longest_palindromic_substring(string : str) -> str:
     >>> longest_palindromic_substring("zxyzzzx")
     'zzz'
     """
-    length = len(string)  # calculating the length of string
+    length = len(string)
     if length < 2:
         return length
     start_index = 0
