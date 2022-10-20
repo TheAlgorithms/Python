@@ -1,9 +1,10 @@
 import doctest
+
 import projectq
 from projectq.ops import H, Measure
 
 
-def get_random_number(quantum_engine : projectq.cengines._main.MainEngine) -> int:
+def get_random_number(quantum_engine: projectq.cengines._main.MainEngine) -> int:
     # """
     # >>> instance(get_random_number(MainEngine()), int)
     # True
@@ -16,7 +17,7 @@ def get_random_number(quantum_engine : projectq.cengines._main.MainEngine) -> in
 
 if __name__ == "__main__":
     doctest.testmod()
-    
+
     # initialises a new quantum backend
     quantum_engine = MainEngine()
 
