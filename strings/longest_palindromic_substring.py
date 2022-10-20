@@ -1,18 +1,17 @@
 """
-    Algorithm:
-    1.	Maintain a variable ‘ longest_length = 1 ‘
-    (for storing longest palindromic substring length) and ‘ start =0 ‘.
-    2.	The idea is very simple, we will traverse through the entire
-    string with i=0 to i<(length of string) while traversing, initialize
-    ‘start‘ and ‘end‘ pointer such that start= i-1 and end= i+1.
-    3.	keep incrementing ‘end’ until str[end]==str[i]  similarly
-    keep decrementing ‘start’ until str[start]==str[i].
-    4.	Finally we will keep incrementing ‘end’ and decrementing
-    ‘start’ until str[start]==str[end].
-    5.	calculate length=end-start-1, if length > longest_length
-    then longest_length = length and start = start+1 .
-    6.	Return the longest palindromic substring.
-    """
+1. Maintain a variable ‘ longest_length = 1 ‘
+(for storing longest palindromic substring length) and ‘ start =0 ‘.
+2.	The idea is very simple, we will traverse through the entire
+string with i=0 to i<(length of string) while traversing, initialize
+’start‘ and ‘end‘ pointer such that start= i-1 and end= i+1.
+3.	keep incrementing ‘end’ until str[end]==str[i]  similarly
+keep decrementing ‘start’ until str[start]==str[i].
+4.	Finally we will keep incrementing ‘end’ and decrementing
+‘start’ until str[start]==str[end].
+5.	calculate length=end-start-1, if length > longest_length
+then longest_length = length and start = start+1 .
+6.	Return the longest palindromic substring.
+"""
 
 import doctest
 
