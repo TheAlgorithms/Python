@@ -1,12 +1,8 @@
 import doctest
-
 from projectq import MainEngine
 from projectq.ops import H, Measure
 
-if __name__ == "__main__":
-    doctest.testmod()
-
-    def get_random_number(quantum_engine: projectq.cengines._main.MainEngine) -> int:
+def get_random_number(quantum_engine: projectq.cengines._main.MainEngine) -> int:
         """
         >>> instance(get_random_number(MainEngine()), int)
         True
@@ -16,6 +12,9 @@ if __name__ == "__main__":
         Measure | qubit
         return int(qubit)
 
+if __name__ == "__main__":
+    doctest.testmod()
+    
     # This list is used to store our random numbers
     random_numbers_list = []
 
