@@ -1,6 +1,7 @@
 from projectq import MainEngine
 from projectq.ops import H, Measure
 
+
 def get_random_number(quantum_engine) -> int:
     qubit = quantum_engine.allocate_qubit()
     H | qubit
@@ -23,5 +24,5 @@ print("Random numbers", random_numbers_list)
 
 if __name__ == "__main__":
     import doctest
-    doctest.testmod()
 
+    doctest.testmod()
