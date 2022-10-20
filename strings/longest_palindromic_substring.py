@@ -13,7 +13,6 @@ then longest_length = length and start = start+1 .
 6.	Return the longest palindromic substring.
 """
 
-import doctest
 
 
 def longest_palindromic_substring(string: str) -> str:
@@ -52,4 +51,5 @@ def longest_palindromic_substring(string: str) -> str:
 
 
 if __name__ == "__main__":
+    import doctest
     doctest.testmod()
