@@ -1,20 +1,23 @@
 import doctest
+
 from projectq import MainEngine
 from projectq.ops import H, Measure
 
+
 def get_random_number(quantum_engine: projectq.cengines._main.MainEngine) -> int:
-        """
-        >>> instance(get_random_number(MainEngine()), int)
-        True
-        """
-        qubit = quantum_engine.allocate_qubit()
-        H | qubit
-        Measure | qubit
-        return int(qubit)
+    """
+    >>> instance(get_random_number(MainEngine()), int)
+    True
+    """
+    qubit = quantum_engine.allocate_qubit()
+    H | qubit
+    Measure | qubit
+    return int(qubit)
+
 
 if __name__ == "__main__":
     doctest.testmod()
-    
+
     # This list is used to store our random numbers
     random_numbers_list = []
 
