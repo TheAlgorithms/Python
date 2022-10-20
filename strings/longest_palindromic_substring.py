@@ -37,10 +37,10 @@ def longest_palindromic_substring(string: str) -> str:
         while end < length and string[end] == char:
             end += 1
         while start >= 0 and string[start] == char:
-            start = start - 1
+            start -= 1
         while start >= 0 and end < length and string[start] == string[end]:
-            start = start - 1
-            end = end + 1
+            start -= 1
+            end += 1
         curr_length = end - start - 1
         if longest_length < curr_length:
             longest_length = curr_length
