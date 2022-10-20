@@ -13,11 +13,12 @@ def data_handling(data: dict) -> tuple:
     """
     >>> data_handling(({'data':'[5.1, 3.5, 1.4, 0.2]','target':([0])}))
     ('[5.1, 3.5, 1.4, 0.2]', [0])
-    >>> data_handling({'data':'[4.9, 3. , 1.4, 0.2],[4.7, 3.2, 1.3, 0.2]','target':([0, 0])})
+    >>> data_handling(
+    ...     {'data': '[4.9, 3.0, 1.4, 0.2], [4.7, 3.2, 1.3, 0.2]', 'target': ([0, 0])}
+    ... )
     ('[4.9, 3. , 1.4, 0.2],[4.7, 3.2, 1.3, 0.2],[4.6, 3.1, 1.5, 0.2]', [0, 0, 0])
     """
-    x = (data["data"], data["target"])
-    return x
+    return (data["data"], data["target"])
 
 
 def xgboost(features: np.ndarray, target: np.ndarray) -> XGBClassifier:
@@ -33,9 +34,7 @@ def xgboost(features: np.ndarray, target: np.ndarray) -> XGBClassifier:
 def main() -> None:
 
     """
-    >>> main()
-
-    The Url for the algorithm
+    Url for the algorithm:
     https://xgboost.readthedocs.io/en/stable/
     Iris type dataset is used to demonstrate algorithm.
     """
@@ -49,13 +48,12 @@ def main() -> None:
 
     names = iris["target_names"]
 
-    # XGBoost Classifier
-    xgb = xgboost(x_train, y_train)
+    # Create an XGBoost Classifier from the training data
+    xgboost_classifier = xgboost(x_train, y_train)
 
-    # Display Confusion Matrix of Classifier
-    # with both train and test sets
+    # Display the confusion matrix of the classifier with both the training and test sets
     plot_confusion_matrix(
-        xgb,
+        xgboost_classifier,
         x_test,
         y_test,
         display_labels=names,
@@ -69,7 +67,5 @@ def main() -> None:
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod(name="main", verbose=True)
-    doctest.testmod(name="xgboost", verbose=True)
-    doctest.testmod(name="data_handling", verbose=True)
+    doctest.testmod(verbose=True)
     main()
