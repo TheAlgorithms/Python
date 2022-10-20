@@ -20,7 +20,7 @@ def is_palindrome(s: str) -> bool:
 
 
 if __name__ == "__main__":
-    s = input("Please enter string to see if it is a palindrome: ")
+    s = input("Please enter a string to see if it is a palindrome: ")
     if is_palindrome(s):
         print(f"'{s}' is a palindrome.")
     else:
