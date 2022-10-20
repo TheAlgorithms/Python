@@ -14,7 +14,6 @@ then longest_length = length and start = start+1 .
 """
 
 
-
 def longest_palindromic_substring(string: str) -> str:
     """
     This program takes O(n^2) time complexity to find the longest palindromic substring
@@ -52,4 +51,5 @@ def longest_palindromic_substring(string: str) -> str:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
