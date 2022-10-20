@@ -8,8 +8,8 @@ def electrical_impedance(
     resistance: float, reactance: float, impedance: float
 ) -> dict[str, float]:
     """
-    Apply Electrical Impedance formula, on any two given electrical values,  
-    which can be resistance, reactance, and impedance, and then in a Python dict 
+    Apply Electrical Impedance formula, on any two given electrical values,
+    which can be resistance, reactance, and impedance, and then in a Python dict
     return name/value pair of the zero value.
 
     >>> electrical_impedance(3,4,0)
