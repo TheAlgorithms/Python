@@ -2,6 +2,7 @@
 # In this Algorithm we just care about the order that the processes arrived
 # without carring about their duration time
 # https://en.wikipedia.org/wiki/Scheduling_(computing)#First_come,_first_served
+#code starts
 from __future__ import annotations
 
 
