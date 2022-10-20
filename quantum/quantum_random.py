@@ -19,7 +19,7 @@ if __name__ == "__main__":
     doctest.testmod()
 
     # initialises a new quantum backend
-    quantum_engine = MainEngine()
+    quantum_engine = projectq.MainEngine()
 
     # Generate a list of 10 random numbers
     random_numbers_list = [get_random_number(quantum_engine) for _ in range(10)]
