@@ -17,6 +17,8 @@
 
 def longest_palindromic_substring(string) -> str:
     """
+    This program takes O(n^2) time complexity to find the longest palindromic substring
+    This program takes O(1) space complexity to find the longest palindromic substring
     Returns the longest palindromic substring present in given string.
     >>> longest_palindromic_substring("malayalam")
     'malayalam'
