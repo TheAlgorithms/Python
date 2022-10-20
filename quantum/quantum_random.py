@@ -16,8 +16,7 @@ def get_random_number(quantum_engine : projectq.cengines._main.MainEngine) -> in
 
 if __name__ == "__main__":
     doctest.testmod()
-
-    # This list is used to store our random numbers
+    
     # initialises a new quantum backend
     quantum_engine = MainEngine()
 
