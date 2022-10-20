@@ -16,7 +16,7 @@ def data_handling(data: dict) -> tuple:
     >>> data_handling(
     ...     {'data': '[4.9, 3.0, 1.4, 0.2], [4.7, 3.2, 1.3, 0.2]', 'target': ([0, 0])}
     ... )
-    ('[4.9, 3. , 1.4, 0.2],[4.7, 3.2, 1.3, 0.2],[4.6, 3.1, 1.5, 0.2]', [0, 0, 0])
+    ('[4.9, 3. , 1.4, 0.2],[4.7, 3.2, 1.3, 0.2]', [0, 0])
     """
     return (data["data"], data["target"])
 
@@ -51,7 +51,7 @@ def main() -> None:
     # Create an XGBoost Classifier from the training data
     xgboost_classifier = xgboost(x_train, y_train)
 
-    # Display the confusion matrix of the classifier with both the training and test sets
+    # Display the confusion matrix of the classifier with both training and test sets
     plot_confusion_matrix(
         xgboost_classifier,
         x_test,
