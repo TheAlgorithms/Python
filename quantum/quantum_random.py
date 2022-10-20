@@ -23,6 +23,7 @@ if __name__ == "__main__":
 
     # Generate a list of 10 random numbers
     random_numbers_list = [get_random_number(quantum_engine) for _ in range(10)]
+
     # Flushes the quantum engine from memory
     quantum_engine.flush()
 
