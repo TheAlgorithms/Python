@@ -8,7 +8,7 @@ from xgboost import XGBClassifier
 
 
 def data_handling(data: dict) -> tuple:
-    # Split dataset into train and test data
+    # Split dataset into features and target
     # data is features
     """
     >>> data_handling(({'data':'[5.1, 3.5, 1.4, 0.2]','target':([0])}))
@@ -33,8 +33,7 @@ def xgboost(features: np.ndarray, target: np.ndarray) -> XGBClassifier:
                   max_delta_step=0, max_depth=6, max_leaves=0, min_child_weight=1,
                   missing=nan, monotone_constraints='()', n_estimators=100,
                   n_jobs=0, num_parallel_tree=1, predictor='auto', random_state=0,
-                  reg_alpha=0, reg_lambda=1,scale_pos_weight: 1, seed: None,
-                  silent: None, subsample: 1, verbosity: 1)
+                  reg_alpha=0, reg_lambda=1, ...)
     """
     classifier = XGBClassifier()
     classifier.fit(features, target)
