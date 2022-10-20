@@ -360,6 +360,7 @@
   * [Dijkstra](graphs/dijkstra.py)
   * [Dijkstra 2](graphs/dijkstra_2.py)
   * [Dijkstra Algorithm](graphs/dijkstra_algorithm.py)
+  * [Dijkstra Alternate](graphs/dijkstra_alternate.py)
   * [Dinic](graphs/dinic.py)
   * [Directed And Undirected (Weighted) Graph](graphs/directed_and_undirected_(weighted)_graph.py)
   * [Edmonds Karp Multiple Source And Sink](graphs/edmonds_karp_multiple_source_and_sink.py)
@@ -936,6 +937,7 @@
   * [Not Gate](quantum/not_gate.py)
   * [Q Full Adder](quantum/q_full_adder.py)
   * [Quantum Entanglement](quantum/quantum_entanglement.py)
+  * [Quantum Random](quantum/quantum_random.py)
   * [Ripple Adder Classic](quantum/ripple_adder_classic.py)
   * [Single Qubit Measure](quantum/single_qubit_measure.py)
 
