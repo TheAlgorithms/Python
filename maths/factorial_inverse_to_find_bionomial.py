@@ -62,7 +62,7 @@ def factorial(p):
 # Function to return nCr % p in O(1) time
 def Binomial(N, R, p):
 <<<<<<< HEAD
-	
+
 	# n C r = n!*inverse(r!)*inverse((n-r)!)
 	ans = ((fact[N] * factorial_num_inverse[R])% p *
 					factorial_num_inverse[N - R])% p
@@ -70,7 +70,7 @@ def Binomial(N, R, p):
 
 # Driver Code
 if __name__ == '__main__':
-	
+
 	# Calling functions to precompute the
 	# required arrays which will be required
 	# to answer every query in O(1)
