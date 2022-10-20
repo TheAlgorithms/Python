@@ -25,7 +25,7 @@ class Graph:
             print(vertex, "\t\t", distances_from_source[vertex])
 
     def minimum_distance(
-        self, distances_from_source: list[int], sptset: list[bool]
+        self, distances_from_source: list[int], visited: list[bool]
     ) -> int:
         """
         A utility function to find the vertex with minimum distance value, from the set
@@ -41,7 +41,7 @@ class Graph:
 
         # Search not nearest vertex not in the shortest path tree
         for vertex in range(self.vertices):
-            if distances_from_source[vertex] < minimum and sptset[vertex] is False:
+            if distances_from_source[vertex] < minimum and visited[vertex] is False:
                 minimum = distances_from_source[vertex]
                 min_index = vertex
         return min_index
@@ -61,11 +61,11 @@ class Graph:
 
         distances = [int(1e7)] * self.vertices  # distances from the source
         distances[source] = 0
-        sptset = [False] * self.vertices
+        visited = [False] * self.vertices
 
         for _ in range(self.vertices):
-            u = self.minimum_distance(distances, sptset)
-            sptset[u] = True
+            u = self.minimum_distance(distances, visited)
+            visited[u] = True
 
             # Update dist value of the adjacent vertices
             # of the picked vertex only if the current
@@ -74,7 +74,7 @@ class Graph:
             for v in range(self.vertices):
                 if (
                     self.graph[u][v] > 0
-                    and sptset[v] is False
+                    and visited[v] is False
                     and distances[v] > distances[u] + self.graph[u][v]
                 ):
                     distances[v] = distances[u] + self.graph[u][v]
