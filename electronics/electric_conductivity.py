@@ -40,7 +40,7 @@ def electric_conductivity(
             "electron_conc",
             conductivity / (mobility * ELECTRON_CHARGE),
         )
-    elif mobility == 0:
+    else:
         return (
             "mobility",
             conductivity / (electron_conc * ELECTRON_CHARGE),
