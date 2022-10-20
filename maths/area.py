@@ -1,7 +1,7 @@
 """
 Find the area of various geometric shapes
 """
-from math import pi, sqrt
+from math import pi, sqrt, tan
 
 
 def surface_area_cube(side_length: float) -> float:
@@ -457,6 +457,46 @@ def area_rhombus(diagonal_1: float, diagonal_2: float) -> float:
         raise ValueError("area_rhombus() only accepts non-negative values")
     return 1 / 2 * diagonal_1 * diagonal_2
 
+def area_reg_polygon(sides: int, length: float) -> float:
+    """
+    Calculate the area of a regular polygon.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Polygon#Regular_polygons
+    Formula: (n*s^2*cot(pi/n))/4
+    >>> area_reg_polygon(3, 10)
+    43.301270189221945
+    >>> area_reg_polygon(4, 10)
+    100.00000000000001
+    >>> area_reg_polygon(5, 10)
+    172.04774005889672
+    >>> area_reg_polygon(0, 0)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_reg_polygon() only accepts integers greater than or equal to \
+three as number of sides
+    >>> area_reg_polygon(-1, -2)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_reg_polygon() only accepts integers greater than or equal to \
+three as number of sides
+    >>> area_reg_polygon(5, -2)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_reg_polygon() only accepts non-negative values as \
+length of a side
+    >>> area_reg_polygon(-1, 2)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_reg_polygon() only accepts integers greater than or equal to \
+three as number of sides
+    """
+    if not isinstance(sides, int) or sides < 3:
+        raise ValueError("area_reg_polygon() only accepts integers greater than or \
+equal to three as number of sides")
+    elif length < 0:
+        raise ValueError("area_reg_polygon() only accepts non-negative values as \
+length of a side")
+    return (sides*length**2)/(4*tan(pi/sides))
+
 
 if __name__ == "__main__":
     import doctest
@@ -481,3 +521,6 @@ if __name__ == "__main__":
     print(f"Cone: {surface_area_cone(10, 20) = }")
     print(f"Conical Frustum: {surface_area_conical_frustum(10, 20, 30) = }")
     print(f"Cylinder: {surface_area_cylinder(10, 20) = }")
+    print(f"Equilateral Triangle: {area_reg_polygon(3, 10) = }")
+    print(f"Square: {area_reg_polygon(4, 10) = }")
+    print(f"Reqular Pentagon: {area_reg_polygon(-5, 10) = }")
