@@ -45,8 +45,6 @@ def electric_conductivity(
             "mobility",
             conductivity / (electron_conc * ELECTRON_CHARGE),
         )
-    else:
-        return (-1, -1)
 
 
 if __name__ == "__main__":
