@@ -15,7 +15,8 @@ then longest_length = length and start = start+1 .
 
 import doctest
 
-def longest_palindromic_substring(string : str) -> str:
+
+def longest_palindromic_substring(string: str) -> str:
     """
     This program takes O(n^2) time complexity to find the longest palindromic substring
     This program takes O(1) space complexity to find the longest palindromic substring
