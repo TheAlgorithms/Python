@@ -23,6 +23,7 @@ def to_snake_case(word: str) -> str:
     Exception: Provide camel case eg: helloWorld
     >>> to_snake_case(' ')
     Traceback (most recent call last):
+    ...
     Exception: Provide camel case eg: helloWorld
     """
 
