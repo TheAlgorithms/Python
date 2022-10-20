@@ -28,4 +28,4 @@ print("Random numbers", random_numbers_list)
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod(name="get_random_number")
+    doctest.testmod()
