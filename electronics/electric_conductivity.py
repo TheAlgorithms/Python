@@ -1,20 +1,19 @@
 from __future__ import annotations
 
 ELECTRON_CHARGE = 1.6021e-19  # units = C
-5 * 2
 
 
 def electric_conductivity(
     conductivity: float,
     electron_conc: float,
     mobility: float,
-) -> tuple:
+) -> tuple[str, float]:
     """
     This function can calculate any one of the three -
     1. Conductivity
     2, Conductivity
     3. Electron Mobility
-    given the other two.
+    This is calculated from the other two provided values
     Examples -
     >>> electric_conductivity(conductivity=25, electron_conc=100, mobility=0)
     ('mobility', 1.5604519068722301e+18)
@@ -28,7 +27,7 @@ def electric_conductivity(
     elif conductivity < 0:
         raise ValueError("Conductivity cannot be negative")
     elif electron_conc < 0:
-        raise ValueError("Electron concentration cannot be negative ")
+        raise ValueError("Electron concentration cannot be negative")
     elif mobility < 0:
         raise ValueError("mobility cannot be negative")
     elif conductivity == 0:
