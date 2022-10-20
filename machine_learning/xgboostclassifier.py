@@ -34,6 +34,8 @@ def xgboost(features: np.ndarray, target: np.ndarray) -> XGBClassifier:
 def main() -> None:
 
     """
+    >>> main()
+    
     Url for the algorithm:
     https://xgboost.readthedocs.io/en/stable/
     Iris type dataset is used to demonstrate algorithm.
