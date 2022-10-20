@@ -10,8 +10,7 @@ def get_random_number(quantum_engine: projectq.cengines._main.MainEngine) -> int
     qubit = quantum_engine.allocate_qubit()
     H | qubit
     Measure | qubit
-    random_number = int(qubit)
-    return random_number
+    return int(qubit)
 
 
 # This list is used to store our random numbers
