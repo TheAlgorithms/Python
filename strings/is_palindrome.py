@@ -1,6 +1,6 @@
 def is_palindrome(s: str) -> bool:
     """
-    Determine whether the string s is palindrome.
+    Determine if the string s is palindrome.
     
     >>> is_palindrome("A man, A plan, A canal -- Panama!")
     True
