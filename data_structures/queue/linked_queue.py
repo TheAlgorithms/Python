@@ -22,7 +22,7 @@ class LinkedQueue:
     >>> queue.put(5)
     >>> queue.put(9)
     >>> queue.put('python')
-    >>> queue.is_empty();
+    >>> queue.is_empty()
     False
     >>> queue.get()
     5

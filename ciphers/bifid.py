@@ -9,16 +9,17 @@ https://www.braingle.com/brainteasers/codes/bifid.php
 
 import numpy as np
 
+SQUARE = [
+    ["a", "b", "c", "d", "e"],
+    ["f", "g", "h", "i", "k"],
+    ["l", "m", "n", "o", "p"],
+    ["q", "r", "s", "t", "u"],
+    ["v", "w", "x", "y", "z"],
+]
+
 
 class BifidCipher:
     def __init__(self) -> None:
-        SQUARE = [  # noqa: N806
-            ["a", "b", "c", "d", "e"],
-            ["f", "g", "h", "i", "k"],
-            ["l", "m", "n", "o", "p"],
-            ["q", "r", "s", "t", "u"],
-            ["v", "w", "x", "y", "z"],
-        ]
         self.SQUARE = np.array(SQUARE)
 
     def letter_to_numbers(self, letter: str) -> np.ndarray:

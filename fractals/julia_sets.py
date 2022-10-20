@@ -12,7 +12,7 @@ The examples presented here are:
 https://en.wikipedia.org/wiki/File:Julia_z2%2B0,25.png
 - Other examples from https://en.wikipedia.org/wiki/Julia_set
 - An exponential map Julia set, ambiantly homeomorphic to the examples in
-http://www.math.univ-toulouse.fr/~cheritat/GalII/galery.html
+https://www.math.univ-toulouse.fr/~cheritat/GalII/galery.html
  and
 https://ddd.uab.cat/pub/pubmat/02141493v43n1/02141493v43n1p27.pdf
 

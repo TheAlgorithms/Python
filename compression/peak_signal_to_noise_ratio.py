@@ -11,14 +11,15 @@ import os
 import cv2
 import numpy as np
 
+PIXEL_MAX = 255.0
 
-def psnr(original: float, contrast: float) -> float:
+
+def peak_signal_to_noise_ratio(original: float, contrast: float) -> float:
     mse = np.mean((original - contrast) ** 2)
     if mse == 0:
         return 100
-    PIXEL_MAX = 255.0  # noqa: N806
-    PSNR = 20 * math.log10(PIXEL_MAX / math.sqrt(mse))  # noqa: N806
-    return PSNR
+
+    return 20 * math.log10(PIXEL_MAX / math.sqrt(mse))
 
 
 def main() -> None:
@@ -34,11 +35,11 @@ def main() -> None:
 
     # Value expected: 29.73dB
     print("-- First Test --")
-    print(f"PSNR value is {psnr(original, contrast)} dB")
+    print(f"PSNR value is {peak_signal_to_noise_ratio(original, contrast)} dB")
 
     # # Value expected: 31.53dB (Wikipedia Example)
     print("\n-- Second Test --")
-    print(f"PSNR value is {psnr(original2, contrast2)} dB")
+    print(f"PSNR value is {peak_signal_to_noise_ratio(original2, contrast2)} dB")
 
 
 if __name__ == "__main__":

@@ -1,3 +1,8 @@
 [flake8]
+max-line-length = 88
+max-complexity = 25
 extend-ignore =
     A003  # Class attribute is shadowing a python builtin
+    # Formatting style for `black`
+    E203  # Whitespace before ':'
+    W503  # Line break occurred before a binary operator

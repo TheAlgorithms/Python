@@ -51,7 +51,7 @@ def generate_neighbours(path):
     with open(path) as f:
         for line in f:
             if line.split()[0] not in dict_of_neighbours:
-                _list = list()
+                _list = []
                 _list.append([line.split()[1], line.split()[2]])
                 dict_of_neighbours[line.split()[0]] = _list
             else:
@@ -59,7 +59,7 @@ def generate_neighbours(path):
                     [line.split()[1], line.split()[2]]
                 )
             if line.split()[1] not in dict_of_neighbours:
-                _list = list()
+                _list = []
                 _list.append([line.split()[0], line.split()[2]])
                 dict_of_neighbours[line.split()[1]] = _list
             else:
@@ -206,7 +206,7 @@ def tabu_search(
     """
     count = 1
     solution = first_solution
-    tabu_list = list()
+    tabu_list = []
     best_cost = distance_of_first_solution
     best_solution_ever = solution
 

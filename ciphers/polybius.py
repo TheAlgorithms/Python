@@ -8,16 +8,18 @@ https://www.braingle.com/brainteasers/codes/polybius.php
 
 import numpy as np
 
+SQUARE = [
+    ["a", "b", "c", "d", "e"],
+    ["f", "g", "h", "i", "k"],
+    ["l", "m", "n", "o", "p"],
+    ["q", "r", "s", "t", "u"],
+    ["v", "w", "x", "y", "z"],
+]
+
 
 class PolybiusCipher:
     def __init__(self) -> None:
-        SQUARE = [  # noqa: N806
-            ["a", "b", "c", "d", "e"],
-            ["f", "g", "h", "i", "k"],
-            ["l", "m", "n", "o", "p"],
-            ["q", "r", "s", "t", "u"],
-            ["v", "w", "x", "y", "z"],
-        ]
+
         self.SQUARE = np.array(SQUARE)
 
     def letter_to_numbers(self, letter: str) -> np.ndarray:

@@ -17,10 +17,3 @@ body:
         implementations.
     validations:
       required: true
-
-  - type: checkboxes
-    attributes:
-      label: Would you like to work on this feature?
-      options:
-        - label: Yes, I want to work on this feature!
-          required: false
