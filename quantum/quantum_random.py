@@ -6,7 +6,7 @@ from projectq.ops import H, Measure
 
 def get_random_number(quantum_engine: projectq.cengines._main.MainEngine) -> int:
     """
-    >>> isinstance(get_random_number(MainEngine()), int)
+    >>> isinstance(get_random_number(projectq.MainEngine()), int)
     True
     """
     qubit = quantum_engine.allocate_qubit()
