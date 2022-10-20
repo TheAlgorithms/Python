@@ -14,8 +14,9 @@
     6.	Return the longest palindromic substring.
     """
 
+import doctest
 
-def longest_palindromic_substring(string) -> str:
+def longest_palindromic_substring(string : str) -> str:
     """
     This program takes O(n^2) time complexity to find the longest palindromic substring
     This program takes O(1) space complexity to find the longest palindromic substring
@@ -50,5 +51,5 @@ def longest_palindromic_substring(string) -> str:
     return string[start_index : start_index + longest_length]
 
 
-# This program takes O(n^2) time complexity to find the longest palindromic substring
-# This program takes O(1) space complexity to find the longest palindromic substring
+if __name__ == "__main__":
+    doctest.testmod()
