@@ -1,5 +1,6 @@
-from projectq.ops import H, Measure
 from projectq import MainEngine
+from projectq.ops import H, Measure
+
 
 def get_random_number(quantum_engine):
     qubit = quantum_engine.allocate_qubit()
@@ -7,6 +8,7 @@ def get_random_number(quantum_engine):
     Measure | qubit
     random_number = int(qubit)
     return random_number
+
 
 # This list is used to store our random numbers
 random_numbers_list = []
@@ -18,4 +20,4 @@ for i in range(10):
     random_numbers_list.append(get_random_number(quantum_engine))
 # Flushes the quantum engine from memory
 quantum_engine.flush()
-print('Random numbers', random_numbers_list)
+print("Random numbers", random_numbers_list)
