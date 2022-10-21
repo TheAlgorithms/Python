@@ -1,0 +1,34 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import sklearn as sk
+
+from sklearn.linear_model import LinearRegression
+
+model = LinearRegression()
+
+def sim_r2(n):
+    x=np.random.randn(n).reshape(-1, 1)
+    y=[1 + np.random.randn() + v for v in x]
+    model = LinearRegression()
+    model.fit(x,y) ##
+    r2_score=sk.metrics.r2_score(y,model.predict(x))
+    return r2_score
+
+rep=10**6
+r_2_mean=[]
+r_2_q5=[]
+r_2_q95=[]
+
+for s in range(10,210,10):
+    result=np.array([sim_r2(s) for _ in range(1,rep)])
+    r_2_mean.append(result.mean())
+    r_2_q5.append(np.quantile(result,0.05))
+    r_2_q95.append(np.quantile(result,0.95))
+
+plt.scatter(np.arange(10,210,10), np.array(r_2_mean),c="blue")
+plt.plot(np.arange(10,210,10), np.array(r_2_q5),color="black")
+plt.plot(np.arange(10,210,10), np.array(r_2_q95),color="black")
+
+plt.xlabel("sample size")
+plt.ylabel("R²")
+plt.show()
