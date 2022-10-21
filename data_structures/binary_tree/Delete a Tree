@@ -1,0 +1,17 @@
+def add(self, value): 
+  if self.key is None:
+      self.key = data 
+      return
+  if self.key == value:  
+      return              
+  if value < self.key:  
+     if self.leftchild:
+       self.leftchild.add(value) 
+      else:   
+         self.leftchild = binary_tree(value)
+  else:   
+    if self.rightchild:     
+      self.rightchild.add(value)  
+      else:
+        self.rightchild = binary_tree(value) 
+    ##End of search of our binary tree
