@@ -36,7 +36,7 @@ def xgboost(
     return predictions
 
 
-def main() -> print:
+def main() -> None:
 
     """
     >>> main()
