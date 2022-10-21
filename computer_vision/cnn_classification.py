@@ -30,12 +30,12 @@ from tensorflow.keras import layers, models
 if __name__ == "__main__":
 
     # Initialising the CNN
-    #(Sequential- Building the model layer by layer)
+    # (Sequential- Building the model layer by layer)
     classifier = models.Sequential()
 
     # Step 1 - Convolution
-    #Here 64,64 are the length & breadth of dataset images and 3 is for RGB channel
-    #(3,3) is the kernel size (filter matrix)
+    # Here 64,64 are the length & breadth of dataset images and 3 is for RGB channel
+    # (3,3) is the kernel size (filter matrix)
     classifier.add(
         layers.Conv2D(32, (3, 3), input_shape=(64, 64, 3), activation="relu")
     )
