@@ -33,7 +33,6 @@ def xgboost(
     # Predict target for test data
     predictions = xgb.predict(test_features)
     predictions = predictions.reshape(len(predictions), 1)
-    # print("this is the type ",(features[1],target[1],test_features[1]))
     return predictions
 
 
@@ -41,8 +40,7 @@ def main() -> print:
 
     """
     >>> main()
-    Mean Absolute Error :	 0.37270180506441014
-    Mean Square Error  :	 0.2933464701930606
+
 
 
     The Url for the algorithm
