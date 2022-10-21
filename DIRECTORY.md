@@ -642,6 +642,7 @@
   * [Maximum Subarray](other/maximum_subarray.py)
   * [Nested Brackets](other/nested_brackets.py)
   * [Password Generator](other/password_generator.py)
+  * [Roman to Decimal](other/roman_to_decimal.py)
   * [Scoring Algorithm](other/scoring_algorithm.py)
   * [Sdes](other/sdes.py)
   * [Tower Of Hanoi](other/tower_of_hanoi.py)
