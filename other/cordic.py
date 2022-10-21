@@ -8,10 +8,8 @@ SHIFT_BASE = 65536
 # (1/scale_factor) which scale factor is Π(cos(arctan(2^-i)))
 SCALE_CONSTANT = 1.64676
 
-"""
-The elementary angles for the lookup table. They correspond to
-arctan(2^-i) and then shifted left by 8 bits in an integer format
-"""
+#  The elementary angles for the lookup table. They correspond to
+#  arctan(2^-i) and then shifted left by 8 bits in an integer format
 ELEM_ANGLE = [
     2949120,
     1740967,
@@ -161,7 +159,7 @@ class Cordic:
 
     @staticmethod
     def float_to_fixed(flt: float) -> int:
-        return (int)(flt * SHIFT_BASE)
+        return int(flt * SHIFT_BASE)
 
 
 if __name__ == "__main__":
