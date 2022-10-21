@@ -40,7 +40,8 @@ def main() -> None:
 
     """
     >>> main()
-
+    Mean Absolute Error :	 0.30957163379906033
+    Mean Square Error  :	 0.22611560196662744
 
 
     The Url for the algorithm
