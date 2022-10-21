@@ -34,7 +34,7 @@ if __name__ == "__main__":
     classifier = models.Sequential()
 
     # Step 1 - Convolution
-    # Here 64,64 are the length & breadth of dataset images and 3 is for RGB channel
+    # Here 64,64 is the length & breadth of dataset images and 3 is for the RGB channel
     # (3,3) is the kernel size (filter matrix)
     classifier.add(
         layers.Conv2D(32, (3, 3), input_shape=(64, 64, 3), activation="relu")
