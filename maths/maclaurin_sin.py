@@ -49,13 +49,12 @@ def maclaurin_sin(theta: float, accuracy: int = 30) -> float:
         raise ValueError("maclaurin_sin() requires a positive int for accuracy")
 
     theta = float(theta)
-
     div = theta // (2 * pi)
-    theta = theta - (2 * div * pi)
-
-    total = 0
-    for r in range(accuracy):
-        total += ((-1) ** r) * ((theta ** (2 * r + 1)) / (factorial(2 * r + 1)))
+    theta -= 2 * div * pi
+    return sum(
+        ((-1) ** r) * ((theta ** (2 * r + 1)) / factorial(2 * r + 1))
+        for r in range(accuracy)
+    )
     return total
 
 
