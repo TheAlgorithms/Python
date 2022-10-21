@@ -418,19 +418,19 @@ def vol_conical_frustum(height: float, radius_1: float, radius_2: float) -> floa
 def main():
     """Print the Results of Various Volume Calculations."""
     print("Volumes:")
-    print("Cube: " + str(vol_cube(2)))  # = 8
-    print("Cuboid: " + str(vol_cuboid(2, 2, 2)))  # = 8
-    print("Cone: " + str(vol_cone(2, 2)))  # ~= 1.33
-    print("Right Circular Cone: " + str(vol_right_circ_cone(2, 2)))  # ~= 8.38
-    print("Prism: " + str(vol_prism(2, 2)))  # = 4
-    print("Pyramid: " + str(vol_pyramid(2, 2)))  # ~= 1.33
-    print("Sphere: " + str(vol_sphere(2)))  # ~= 33.5
-    print("Hemisphere: " + str(vol_hemisphere(2)))  # ~= 16.75
-    print("Circular Cylinder: " + str(vol_circular_cylinder(2, 2)))  # ~= 25.1
-    print("Conical Frustum: " + str(vol_conical_frustum(2, 2, 4)))  # ~= 58.6
-    print("Spherical cap: " + str(vol_spherical_cap(1, 2)))  # ~= 5.24
-    print("Spheres intersetion: " + str(vol_spheres_intersect(2, 2, 1)))  # ~= 21.21
-    print("Spheres union: " + str(vol_spheres_union(2, 2, 1)))  # ~= 45.81
+    print(f"Cube: {vol_cube(2) = }")  # = 8
+    print(f"Cuboid: {vol_cuboid(2, 2, 2) = }")  # = 8
+    print(f"Cone: {vol_cone(2, 2) = }")  # ~= 1.33
+    print(f"Right Circular Cone: {vol_right_circ_cone(2, 2) = }")  # ~= 8.38
+    print(f"Prism: {vol_prism(2, 2) = }")  # = 4
+    print(f"Pyramid: {vol_pyramid(2, 2) = }")  # ~= 1.33
+    print(f"Sphere: {vol_sphere(2) = }")  # ~= 33.5
+    print(f"Hemisphere: {vol_hemisphere(2) = }")  # ~= 16.75
+    print(f"Circular Cylinder: {vol_circular_cylinder(2, 2) = }")  # ~= 25.1
+    print(f"Conical Frustum: {vol_conical_frustum(2, 2, 4) = }")  # ~= 58.6
+    print(f"Spherical cap: {vol_spherical_cap(1, 2) = }")  # ~= 5.24
+    print(f"Spheres intersetion: {vol_spheres_intersect(2, 2, 1) = }")  # ~= 21.21
+    print(f"Spheres union: {vol_spheres_union(2, 2, 1) = }")  # ~= 45.81
     print(
         f"Hollow Circular Cylinder: {vol_hollow_circular_cylinder(1, 2, 3) = }"
     )  # ~= 28.3
