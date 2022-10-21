@@ -1,9 +1,10 @@
 # XGBoost Regressor Example
+import numpy as np
 from sklearn.datasets import fetch_california_housing
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split
 from xgboost import XGBRegressor
-import numpy as np
+
 
 def data_handling(data: dict) -> tuple:
     # Split dataset into features and target
@@ -16,7 +17,10 @@ def data_handling(data: dict) -> tuple:
     """
     return (data["data"], data["target"])
 
-def xgboost(features: np.ndarray, target: np.ndarray, test_features: np.ndarray) -> np.ndarray:
+
+def xgboost(
+    features: np.ndarray, target: np.ndarray, test_features: np.ndarray
+) -> np.ndarray:
     """
     >>> xgboost(np.array([[ 2.3571 ,   52. , 6.00813008, 1.06775068,
     ...    907. , 2.45799458,   40.58 , -124.26]]),np.array([1.114]),
@@ -24,13 +28,14 @@ def xgboost(features: np.ndarray, target: np.ndarray, test_features: np.ndarray)
     ...    1.14300000e+03,  2.60958904e+00,  3.67800000e+01, -1.19780000e+02]]))
     array([[1.1103648]], dtype=float32)
     """
-    xgb = XGBRegressor(verbosity = 0,random_state=42)
+    xgb = XGBRegressor(verbosity=0, random_state=42)
     xgb.fit(features, target)
     # Predict target for test data
     predictions = xgb.predict(test_features)
     predictions = predictions.reshape(len(predictions), 1)
-    #print("this is the type ",(features[1],target[1],test_features[1]))
+    # print("this is the type ",(features[1],target[1],test_features[1]))
     return predictions
+
 
 def main() -> print:
 
@@ -38,7 +43,7 @@ def main() -> print:
     >>> main()
     Mean Absolute Error :	 0.37270180506441014
     Mean Square Error  :	 0.2933464701930606
-    
+
 
     The Url for the algorithm
     https://xgboost.readthedocs.io/en/stable/
@@ -61,5 +66,6 @@ def main() -> print:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)
     main()
