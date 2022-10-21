@@ -6,7 +6,7 @@ Example:"abcdef", "xabded" have the length of longest common substring 2 ("ab" o
 """
 
 
-def longest_common_substring(t1: str, t2: str):
+def longest_common_substring(t1: str, t2: str) -> int:
     """
     Finds the length of longest common substring between two strings.
 
@@ -30,6 +30,7 @@ def longest_common_substring(t1: str, t2: str):
 
     >>> longest_common_substring("a", "a")
     1
+
     >>> longest_common_substring("abcdef", "bcd")
     3
 
