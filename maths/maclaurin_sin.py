@@ -55,7 +55,6 @@ def maclaurin_sin(theta: float, accuracy: int = 30) -> float:
         ((-1) ** r) * ((theta ** (2 * r + 1)) / factorial(2 * r + 1))
         for r in range(accuracy)
     )
-    return total
 
 
 if __name__ == "__main__":
