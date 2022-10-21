@@ -40,8 +40,8 @@ def main() -> None:
 
     """
     >>> main()
-    Mean Absolute Error :	 0.30957163379906033
-    Mean Square Error  :	 0.22611560196662744
+    Mean Absolute Error : 0.30957163379906033
+    Mean Square Error  : 0.22611560196662744
 
 
     The Url for the algorithm
@@ -59,8 +59,8 @@ def main() -> None:
     predictions = xgboost(x_train, y_train, x_test)
 
     # Error printing
-    print(f"Mean Absolute Error :\t {mean_absolute_error(y_test, predictions)}")
-    print(f"Mean Square Error  :\t {mean_squared_error(y_test, predictions)}")
+    print(f"Mean Absolute Error : {mean_absolute_error(y_test, predictions)}")
+    print(f"Mean Square Error  : {mean_squared_error(y_test, predictions)}")
 
 
 if __name__ == "__main__":
