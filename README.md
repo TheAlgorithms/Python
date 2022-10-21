@@ -31,7 +31,7 @@
     <img src="https://img.shields.io/static/v1?label=code%20style&message=black&color=black&style=flat-square" height="20" alt="code style: black">
   </a>
 <!-- Short description: -->
-  <h3>All algorithms implemented in Python - for education</h3>
+  <h3>Python implementation of algorithms - for education</h3>
 </div>
 
 Implementations are for learning purposes only. They may be less efficient than the implementations in the Python standard library. Use them at your discretion.
