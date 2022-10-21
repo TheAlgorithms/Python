@@ -4,14 +4,14 @@
 roman = input().strip()
 
 # Storing values in a dictionary
-d = {"I" : 1, "V" : 5, "X" : 10, "L" : 50, "C" : 100, "M" : 1000}
+d = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "M": 1000}
 
 # Initializing some values
 decimal = 0
 largest = d[roman[-1]]
 
 # In case only one digit is given as input, we just output its value
-if(len(roman) == 1):
+if len(roman) == 1:
     decimal = d[roman]
     print(decimal)
 
@@ -22,7 +22,7 @@ else:
 
         # If we encounter a digit less than the largest so far, we subtract that
         # digit's value from the integer value so far
-        if(d[roman[i]] < largest):
+        if d[roman[i]] < largest:
             decimal -= d[roman[i]]
 
         # Otherwise we simply add the value of the current digit to the integer
@@ -30,5 +30,5 @@ else:
         else:
             decimal += d[roman[i]]
             largest = d[roman[i]]
-    
+
     print(decimal)
