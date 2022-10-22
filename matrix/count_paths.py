@@ -1,4 +1,4 @@
-def dfs(grid : list(list(int)), r: int, c: int, visit: set()) -> int:
+def dfs(grid: list(list(int)), r: int, c: int, visit: set()) -> int:
     """
     Recursive Backtracking Depth First Search Algorithm
 
@@ -29,6 +29,7 @@ def dfs(grid : list(list(int)), r: int, c: int, visit: set()) -> int:
 
     visit.remove((r, c))
     return count
+
 
 if __name__ == "__main__":
     import doctest
