@@ -11,14 +11,6 @@ def longest_common_substring(t1: str, t2: str) -> int:
     """
     Finds the length of longest common substring between two strings.
 
-    Parameters
-    ----------
-    t1: str, one of the strings
-    t2: str, the other string
-
-    Returns
-    -------
-    ans: int, the length of the longest common substring.
 
     >>> longest_common_substring("", "")
     0
