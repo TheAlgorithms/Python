@@ -1,4 +1,3 @@
-# https://en.wikipedia.org/wiki/Electrical_impedance
 
 """Electrical impedance is the measure of the opposition that a
 circuit presents to a current when a voltage is applied.
