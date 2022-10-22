@@ -29,3 +29,8 @@ def dfs(grid, r, c, visit):
 
     visit.remove((r, c))
     return count
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
