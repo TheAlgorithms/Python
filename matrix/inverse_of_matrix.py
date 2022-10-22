@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from decimal import Decimal
 
+from numpy import array
+
 
 def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
     """
@@ -18,7 +20,7 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
     [[0.0, 0.5], [0.2, -0.2]]
     >>> inverse_of_matrix([[2.5, 5], [1, 2]])
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: This matrix has no inverse.
     >>> inverse_of_matrix([[12, -16], [-9, 0]])
     [[0.0, -0.1111111111111111], [-0.0625, -0.08333333333333333]]
@@ -32,34 +34,34 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
     [[2.0, 1.0, -5.0], [5.0, 1.0, -12.0], [-4.0, -1.0, 10.0]]
     >>> inverse_of_matrix([[1, 2, 2], [1, 2, 2], [3, 2, -1]])
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: This matrix has no inverse.
 
     More examples:
 
     >>> inverse_of_matrix([])
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Please provide a matrix of size 2x2 or 3x3.
 
     >>> inverse_of_matrix([[],[]])
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Please provide a matrix of size 2x2 or 3x3.
 
     >>> inverse_of_matrix([[1, 2], [3, 4], [5, 6]])
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Please provide a matrix of size 2x2 or 3x3.
 
     >>> inverse_of_matrix([[1, 2, 1], [0,3, 4]])
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Please provide a matrix of size 2x2 or 3x3.
 
     >>> inverse_of_matrix([[1, 2, 3], [7, 8, 9], [7, 8, 9]])
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: This matrix has no inverse.
 
     >>> inverse_of_matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
@@ -72,8 +74,8 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
     # since this implementation only works for 2x2 matrices
     if len(matrix) == 2 and len(matrix[0]) == 2 and len(matrix[1]) == 2:
         # Calculate the determinant of the matrix
-        determinant = d(matrix[0][0]) * d(matrix[1][1]) - d(matrix[1][0]) * d(
-            matrix[0][1]
+        determinant = float(
+            d(matrix[0][0]) * d(matrix[1][1]) - d(matrix[1][0]) * d(matrix[0][1])
         )
         if determinant == 0:
             raise ValueError("This matrix has no inverse.")
@@ -85,7 +87,7 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
 
         # Calculate the inverse of the matrix
         return [
-            [float(d(n) / determinant) or 0.0 for n in row] for row in swapped_matrix
+            [(float(d(n)) / determinant) or 0.0 for n in row] for row in swapped_matrix
         ]
     elif (
         len(matrix) == 3
@@ -94,14 +96,17 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
         and len(matrix[2]) == 3
     ):
         # Calculate the determinant of the matrix using Sarrus rule
-        determinant = (
-            (d(matrix[0][0]) * d(matrix[1][1]) * d(matrix[2][2]))
-            + (d(matrix[0][1]) * d(matrix[1][2]) * d(matrix[2][0]))
-            + (d(matrix[0][2]) * d(matrix[1][0]) * d(matrix[2][1]))
-        ) - (
-            (d(matrix[0][2]) * d(matrix[1][1]) * d(matrix[2][0]))
-            + (d(matrix[0][1]) * d(matrix[1][0]) * d(matrix[2][2]))
-            + (d(matrix[0][0]) * d(matrix[1][2]) * d(matrix[2][1]))
+        determinant = float(
+            (
+                (d(matrix[0][0]) * d(matrix[1][1]) * d(matrix[2][2]))
+                + (d(matrix[0][1]) * d(matrix[1][2]) * d(matrix[2][0]))
+                + (d(matrix[0][2]) * d(matrix[1][0]) * d(matrix[2][1]))
+            )
+            - (
+                (d(matrix[0][2]) * d(matrix[1][1]) * d(matrix[2][0]))
+                + (d(matrix[0][1]) * d(matrix[1][0]) * d(matrix[2][2]))
+                + (d(matrix[0][0]) * d(matrix[1][2]) * d(matrix[2][1]))
+            )
         )
         if determinant == 0:
             raise ValueError("This matrix has no inverse.")
@@ -141,20 +146,16 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
         )
 
         # Transpose the cofactor matrix (Adjoint matrix)
-        adjoint_matrix = [
-            [d(0.0), d(0.0), d(0.0)],
-            [d(0.0), d(0.0), d(0.0)],
-            [d(0.0), d(0.0), d(0.0)],
-        ]
+        adjoint_matrix = array(cofactor_matrix)
         for i in range(3):
             for j in range(3):
                 adjoint_matrix[i][j] = cofactor_matrix[j][i]
 
         # Inverse of the matrix using the formula (1/determinant) * adjoint matrix
-        inverse_matrix = [[0.0, 0.0, 0.0], [0.0, 0.0, 0.0], [0.0, 0.0, 0.0]]
+        inverse_matrix = array(cofactor_matrix)
         for i in range(3):
             for j in range(3):
-                inverse_matrix[i][j] = float(adjoint_matrix[i][j]) / float(determinant)
+                inverse_matrix[i][j] /= determinant
 
         # Calculate the inverse of the matrix
         return [[float(d(n)) or 0.0 for n in row] for row in inverse_matrix]
