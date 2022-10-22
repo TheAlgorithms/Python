@@ -31,7 +31,7 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
 
     Demo for 3x3
     >>> inverse_of_matrix([[2, 5, 7], [2, 0, 1], [1, 2, 3]])
-    [[2.0, 1.0, -5.0], [5.0, 1.0, -12.0], [-4.0, -1.0, 10.0]]
+    [[2.0, 5.0, -4.0], [1.0, 1.0, -1.0], [-5.0, -12.0, 10.0]]
     >>> inverse_of_matrix([[1, 2, 2], [1, 2, 2], [3, 2, -1]])
     Traceback (most recent call last):
         ...
