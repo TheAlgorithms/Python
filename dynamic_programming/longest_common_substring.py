@@ -18,7 +18,6 @@ def longest_common_substring(t1: str, t2: str) -> int:
     0
     >>> longest_common_substring("", "a")
     0
-
     >>> longest_common_substring("a", "a")
     1
 
