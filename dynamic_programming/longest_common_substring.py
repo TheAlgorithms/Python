@@ -9,33 +9,33 @@ Therefore, the length is 2.
 
 def longest_common_substring(text1: str, text2: str) -> int:
     """
-    Finds the length of longest common substring between two strings.
+        Finds the length of longest common substring between two strings.
 
 
-    >>> longest_common_substring("", "")
-    0
-    >>> longest_common_substring("a","")
-    0
-    >>> longest_common_substring("", "a")
-    0
-    >>> longest_common_substring("a", "a")
-    1
-    >>> longest_common_substring("abcdef", "bcd")
-    3
-    >>> longest_common_substring("abcdef", "xabded")
-    2
-    >>> longest_common_substring("GeeksforGeeks", "GeeksQuiz")
-    5
-    >>> longest_common_substring("abcdxyz", "xyzabcd")
-    4
-    >>> longest_common_substring("zxabcdezy", "yzabcdezx")
-    6
-    >>> longest_common_substring("OldSite:GeeksforGeeks.org", "NewSite:GeeksQuiz.com")
-    10
->>>longest_common_substring(1, 1)
-Traceback (most recent call last):
-    ...
-    ValueError: longest_common_substring() takes two strings for inputs
+        >>> longest_common_substring("", "")
+        0
+        >>> longest_common_substring("a","")
+        0
+        >>> longest_common_substring("", "a")
+        0
+        >>> longest_common_substring("a", "a")
+        1
+        >>> longest_common_substring("abcdef", "bcd")
+        3
+        >>> longest_common_substring("abcdef", "xabded")
+        2
+        >>> longest_common_substring("GeeksforGeeks", "GeeksQuiz")
+        5
+        >>> longest_common_substring("abcdxyz", "xyzabcd")
+        4
+        >>> longest_common_substring("zxabcdezy", "yzabcdezx")
+        6
+        >>> longest_common_substring("OldSite:GeeksforGeeks.org", "NewSite:GeeksQuiz.com")
+        10
+    >>>longest_common_substring(1, 1)
+    Traceback (most recent call last):
+        ...
+        ValueError: longest_common_substring() takes two strings for inputs
     """
 
     if not (isinstance(text1, str) and isinstance(text2, str)):
