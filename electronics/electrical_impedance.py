@@ -1,4 +1,9 @@
 # https://en.wikipedia.org/wiki/Electrical_impedance
+
+"""Electrical impedance is the measure of the opposition that a 
+circuit presents to a current when a voltage is applied. 
+Impedance extends the concept of resistance to alternating current (AC) circuits."""
+
 from __future__ import annotations
 
 from math import pow, sqrt
