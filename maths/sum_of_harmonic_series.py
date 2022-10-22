@@ -25,7 +25,7 @@ def sum_of_harmonic_progression(
         """
 
         i += 1
-        l2 = [1 / x for x in l1]
+        harmonic_series = [1 / step for step in arithmetic_progression]
     return sum(l2)
 
 
