@@ -53,14 +53,6 @@ def wave_formula(calc_to_do: int) -> float:
         v_str = str(v)
         wavelength_str = str(wavelength)
         frequency_str = str(frequency)
-
-        print(
-            f"""
-Wave Speed = Wavelength * Frequency
-v = {wavelength_str} * {frequency_str}
-v = {v_str}m/s
-"""
-        )
         return v
 
     if calc_to_do == 2:
@@ -70,14 +62,6 @@ v = {v_str}m/s
         v_str = str(v)
         wavelength_str = str(wavelength)
         frequency_str = str(frequency)
-
-        print(
-            f"""
-Wavelength = Wave Speed / Frequency
-Wavelength = {v_str} / {frequency_str}
-Wavelength = {wavelength_str}m
-"""
-        )
         return wavelength
 
     if calc_to_do == 3:
@@ -88,14 +72,6 @@ Wavelength = {wavelength_str}m
         v_str = str(v)
         wavelength_str = str(wavelength)
         frequency_str = str(frequency)
-
-        print(
-            f"""
-Frequency = Wave Speed / Wavelength
-Frequency = {v_str} / {wavelength_str}
-Frequency = {frequency_str}Hz
-"""
-        )
         return frequency
 
 
