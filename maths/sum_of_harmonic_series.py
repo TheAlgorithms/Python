@@ -1,4 +1,4 @@
-def sum_of_hp(first_term, common_difference, no_of_terms):
+def sum_of_harmonic_progression(first_term: float, common_difference: float, no_of_terms: int) -> float:
 
     """
 
