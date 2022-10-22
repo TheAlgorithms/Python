@@ -105,8 +105,7 @@ def maclaurin_cos(theta: float, accuracy: int = 30) -> float:
     div = theta // (2 * pi)
     theta -= 2 * div * pi
     return sum(
-        (((-1) ** r) * ((theta ** (2 * r)) / factorial(2 * r)))
-        for r in range(accuracy)
+        (((-1) ** r) * ((theta ** (2 * r)) / factorial(2 * r))) for r in range(accuracy)
     )
 
 
