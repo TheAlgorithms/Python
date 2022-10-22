@@ -35,8 +35,8 @@ def binary_xor(a: int, b: int) -> str:
     if a < 0 or b < 0:
         raise ValueError("the value of both inputs must be positive")
 
-    a_binary = str(bin(a))[2:]  # remove the leading "0b"
-    b_binary = str(bin(b))[2:]  # remove the leading "0b"
+    a_binary = str(bin(a))  # remove the leading "0b"
+    b_binary = str(bin(b))  # remove the leading "0b"
 
     max_len = max(len(a_binary), len(b_binary))
 
