@@ -15,7 +15,7 @@ def sum_of_harmonic_progression(
     i = 0
     first_term = 1 / first_term
     while i < no_of_terms - 1:
-        first_term = first_term + common_difference
+        first_term += common_difference
         l1.append(first_term)
 
         """
