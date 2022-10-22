@@ -2,7 +2,8 @@
 Longest Common Substring Problem Statement: Given two sequences, find the length
 of longest common substring present in both of them. A substring is
 necessarily continuous.
-Example:"abcdef", "xabded" have the length of longest common substring 2 ("ab" or "de").
+Example: "abcdef" and "xabded" have two longest common substrings, "ab" or "de".
+Therefore, the length is 2.
 """
 
 
