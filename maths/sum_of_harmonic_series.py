@@ -16,7 +16,7 @@ def sum_of_harmonic_progression(
     first_term = 1 / first_term
     while i < no_of_terms - 1:
         first_term += common_difference
-        l1.append(first_term)
+        arithmetic_progression.append(first_term)
 
         """
         l1 is the Arithmetic Progression linked to the given Harmonic Series
@@ -26,7 +26,7 @@ def sum_of_harmonic_progression(
 
         i += 1
         harmonic_series = [1 / step for step in arithmetic_progression]
-    return sum(l2)
+    return sum(harmonic_series)
 
 
 if __name__ == "__main__":
@@ -34,4 +34,4 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    print(sum_of_hp(1 / 2, 2, 2))
+    print(sum_of_harmonic_progression(1 / 2, 2, 2))
