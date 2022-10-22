@@ -2,7 +2,9 @@
 
 """Electrical impedance is the measure of the opposition that a
 circuit presents to a current when a voltage is applied.
-Impedance extends the concept of resistance to alternating current (AC) circuits."""
+Impedance extends the concept of resistance to alternating current (AC) circuits.
+Source: https://en.wikipedia.org/wiki/Electrical_impedance
+"""
 
 from __future__ import annotations
 
