@@ -360,7 +360,9 @@ def _validate_nested_dict(_object: Any, var_name: str) -> None:
         _validate_dict(x, var_name, float, True)
 
 
-def _validate_dict(_object: Any, var_name: str, value_type: type, nested: bool = False):
+def _validate_dict(
+    _object: Any, var_name: str, value_type: type, nested: bool = False
+) -> None:
     """
     >>> _validate_dict({"b": 0.5}, "mock_name", float)
 
