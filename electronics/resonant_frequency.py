@@ -1,4 +1,11 @@
 # https://en.wikipedia.org/wiki/LC_circuit
+
+"""An LC circuit, also called a resonant circuit, tank circuit, or tuned circuit, 
+is an electric circuit consisting of an inductor, represented by the letter L, 
+and a capacitor, represented by the letter C, connected together. 
+The circuit can act as an electrical resonator, an electrical analogue of a 
+tuning fork, storing energy oscillating at the circuit's resonant frequency."""
+
 from __future__ import annotations
 
 from math import pi, sqrt
