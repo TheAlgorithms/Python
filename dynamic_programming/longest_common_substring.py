@@ -32,6 +32,10 @@ def longest_common_substring(text1: str, text2: str) -> int:
     6
     >>> longest_common_substring("OldSite:GeeksforGeeks.org", "NewSite:GeeksQuiz.com")
     10
+>>>longest_common_substring(1, 1)
+Traceback (most recent call last):
+    ...
+    ValueError: longest_common_substring() takes two strings for inputs
     """
 
     if not (isinstance(text1, str) and isinstance(text2, str)):
