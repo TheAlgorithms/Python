@@ -6,17 +6,17 @@ def dfs(grid : list(list(int)), row: int, col: int, visit: set()) -> int:
     1 represents a block (inaccessible)
     0 represents a valid space (accessible)
 
-    >>> startRow = 0
-    >>> startCol = 0
+    >>> start_row = 0
+    >>> start_col = 0
     >>> visited = set()
     >>> grid = [[0, 0, 0, 0], [1, 1, 0, 0], [0, 0, 0, 1], [0, 1, 0, 0]]
-    >>> dfs(grid, startRow, startCol, visited)
+    >>> dfs(grid, start_row, start_col, visited)
     2
     """
-    ROWS, COLS = len(grid), len(grid[0])
-    if min(row, col) < 0 or row == ROWS or col == COLS or (row, col) in visit or grid[row][col] == 1:
+    row_length, col_length = len(grid), len(grid[0])
+    if min(row, col) < 0 or row == row_length or col == col_length or (row, col) in visit or grid[row][col] == 1:
         return 0
-    if row == ROWS - 1 and col == COLS - 1:
+    if row == row_length - 1 and col == col_length - 1:
         return 1
 
     visit.add((row, col))
