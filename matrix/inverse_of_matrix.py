@@ -155,7 +155,7 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
         inverse_matrix = array(cofactor_matrix)
         for i in range(3):
             for j in range(3):
-                inverse_matrix[i][j] /= determinant
+                inverse_matrix[i][j] /= d(determinant)
 
         # Calculate the inverse of the matrix
         return [[float(d(n)) or 0.0 for n in row] for row in inverse_matrix]
