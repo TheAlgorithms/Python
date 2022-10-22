@@ -27,8 +27,6 @@ def sum_of_harmonic_progression(first_term: float, common_difference: float, no_
     return sum(l2)
 
 
-def main():
-    print(sum_of_hp(1 / 2, 2, 2))
 
 
 if __name__ == "__main__":
