@@ -536,7 +536,7 @@
   * [Line Length](maths/line_length.py)
   * [Lucas Lehmer Primality Test](maths/lucas_lehmer_primality_test.py)
   * [Lucas Series](maths/lucas_series.py)
-  * [Maclaurin Sin](maths/maclaurin_sin.py)
+  * [Maclaurin Series](maths/maclaurin_series.py)
   * [Matrix Exponentiation](maths/matrix_exponentiation.py)
   * [Max Sum Sliding Window](maths/max_sum_sliding_window.py)
   * [Median Of Two Arrays](maths/median_of_two_arrays.py)
