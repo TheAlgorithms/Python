@@ -148,7 +148,9 @@ if __name__ == "__main__":
 
     # voting system with forecasting
     res_vote = [
-        linear_regression_prediction(trn_date, trn_user, trn_match, tst_date, tst_match),
+        linear_regression_prediction(
+            trn_date, trn_user, trn_match, tst_date, tst_match
+        ),
         sarimax_predictor(trn_user, trn_match, tst_match),
         support_vector_regressor(x_train, x_test, trn_user),
     ]
