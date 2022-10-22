@@ -28,7 +28,6 @@ def longest_common_substring(t1: str, t2: str) -> int:
     2
     >>> longest_common_substring("GeeksforGeeks", "GeeksQuiz")
     5
-
     >>> longest_common_substring("abcdxyz", "xyzabcd")
     4
 
