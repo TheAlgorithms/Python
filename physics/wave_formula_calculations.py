@@ -35,7 +35,6 @@ calc_to_do = random.randint(1, 3)
 
 def wave_formula(calc_to_do: int) -> float:
     # function only leaves a side effect, no real returns
-  
 
     """
     Random Wave Equation Selected
