@@ -4,6 +4,7 @@ Signum function
 Refer - https://en.wikipedia.org/wiki/Sign_function
 """
 
+
 def signum(num):
     """
     Applies signum function on the number
@@ -27,13 +28,12 @@ def test_signum():
     """
     Tests the signum function
     """
-    assert(signum(5) == 1)
-    assert(signum(-5) == -1)
-    assert(signum(0) == 0)
+    assert signum(5) == 1
+    assert signum(-5) == -1
+    assert signum(0) == 0
 
 
 if __name__ == "__main__":
     print(signum(12))
     print(signum(-12))
     print(signum(0))
-    
