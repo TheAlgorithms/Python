@@ -11,7 +11,7 @@ def sum_of_harmonic_progression(
 
     """
 
-    l1 = [1 / first_term]
+    arithmetic_progression = [1 / first_term]
     i = 0
     first_term = 1 / first_term
     while i < no_of_terms - 1:
