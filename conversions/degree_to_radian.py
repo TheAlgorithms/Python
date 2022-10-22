@@ -13,9 +13,8 @@ def degree_to_radian(degree: int, ndigits: int = 2) -> float:
     ...
     ValueError: could not convert string to int: 'degree'
     """
-    pi=22/7
-    return round(degree*(pi/180), ndigits)
-
+    pi = 22 / 7
+    return round(degree * (pi / 180), ndigits)
 
 
 if __name__ == "__main__":
