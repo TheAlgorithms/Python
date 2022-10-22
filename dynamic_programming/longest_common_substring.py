@@ -34,8 +34,8 @@ def longest_common_substring(text1: str, text2: str) -> int:
     10
     """
 
-    assert text1 is not None
-    assert text2 is not None
+    if not (isinstance(text1, str) and isinstance(text2, str)):
+        raise ValueError("longest_common_substring() takes two strings for inputs")
 
     text1_length = len(text1)
     text2_length = len(text2)
