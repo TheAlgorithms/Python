@@ -1,4 +1,4 @@
-def dfs(grid, r, c, visit):
+def dfs(grid : list(list(int)), r: int, c: int, visit: set()) -> int:
     """
     Recursive Backtracking Depth First Search Algorithm
 
