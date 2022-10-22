@@ -1,4 +1,6 @@
-def sum_of_harmonic_progression(first_term: float, common_difference: float, no_of_terms: int) -> float:
+def sum_of_harmonic_progression(
+    first_term: float, common_difference: float, no_of_terms: int
+) -> float:
 
     """
 
