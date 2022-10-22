@@ -7,16 +7,16 @@ start here  ->   0  0  0  0
                  0  0  0  1
                  0  1  0  0  <- finish here
 how many 'distinct' paths can you take to get to the finish?
-Using a recursive depth-first search algorithm below, you are able to 
-find the number of distinct unique paths (count). 
+Using a recursive depth-first search algorithm below, you are able to
+find the number of distinct unique paths (count).
 
 '*' will demostrate a path
 In the example above, there are two distinct paths:
 1.                2.
     *  *  *  0      *  *  *  *
-    1  1  *  0      1  1  *  *          
+    1  1  *  0      1  1  *  *
     0  0  *  1      0  0  *  1
-    0  1  *  *      0  1  *  * 
+    0  1  *  *      0  1  *  *
 """
 
 
