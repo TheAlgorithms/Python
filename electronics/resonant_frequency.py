@@ -4,7 +4,9 @@
 is an electric circuit consisting of an inductor, represented by the letter L,
 and a capacitor, represented by the letter C, connected together.
 The circuit can act as an electrical resonator, an electrical analogue of a
-tuning fork, storing energy oscillating at the circuit's resonant frequency."""
+tuning fork, storing energy oscillating at the circuit's resonant frequency.
+Source: https://en.wikipedia.org/wiki/LC_circuit
+"""
 
 from __future__ import annotations
 
