@@ -27,16 +27,15 @@ Not sure if this can work for really big numbers.
 
 # ----- Demo -----#
 
-v = 0  # in m/s
-wavelength = 0  # in meters
-frequency = 0  # in Hz
+# v is in m/s
+# wavelength is in meters
+# frequency is in Hz
 calc_to_do = random.randint(1, 3)
 
 
 def wave_formula(calc_to_do: int) -> float:
-    # function only leaves a side effect, no return
-    # just returning a string to not cause errors
-    global wavelength, v, frequency
+    # function only leaves a side effect, no real returns
+  
 
     """
     Random Wave Equation Selected
