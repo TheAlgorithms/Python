@@ -1,4 +1,4 @@
-def dfs(grid : list(list(int)), r: int, c: int, visit: set()) -> int:
+def dfs(grid : list(list(int)), row: int, col: int, visit: set()) -> int:
     """
     Recursive Backtracking Depth First Search Algorithm
 
@@ -14,20 +14,20 @@ def dfs(grid : list(list(int)), r: int, c: int, visit: set()) -> int:
     2
     """
     ROWS, COLS = len(grid), len(grid[0])
-    if min(r, c) < 0 or r == ROWS or c == COLS or (r, c) in visit or grid[r][c] == 1:
+    if min(row, col) < 0 or row == ROWS or col == COLS or (row, col) in visit or grid[row][col] == 1:
         return 0
-    if r == ROWS - 1 and c == COLS - 1:
+    if row == ROWS - 1 and col == COLS - 1:
         return 1
 
-    visit.add((r, c))
+    visit.add((row, col))
 
     count = 0
-    count += dfs(grid, r + 1, c, visit)
-    count += dfs(grid, r - 1, c, visit)
-    count += dfs(grid, r, c + 1, visit)
-    count += dfs(grid, r, c - 1, visit)
+    count += dfs(grid, row + 1, col, visit)
+    count += dfs(grid, row - 1, col, visit)
+    count += dfs(grid, row, col + 1, visit)
+    count += dfs(grid, row, col - 1, visit)
 
-    visit.remove((r, c))
+    visit.remove((row, col))
     return count
 
 if __name__ == "__main__":
