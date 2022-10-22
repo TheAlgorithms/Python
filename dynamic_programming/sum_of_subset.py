@@ -8,7 +8,7 @@ def is_sum_subset(arr: list[int], required_sum: int) -> bool:
     # a subset value says 1 if that subset sum can be formed else 0
     # initially no subsets can be formed hence False/0
     arr_len = len(arr)
-    subset = [[False for _ in range(required_sum + 1)] for _ in range(arr_len + 1)]
+    subset = [[False] * (required_sum + 1) for _ in range(arr_len + 1)]
 
     # for each arr value, a sum of zero(0) can be formed by not taking any element
     # hence True/1

@@ -147,15 +147,12 @@ if __name__ == "__main__":
     tst_match = total_match[len(total_match) - 1 :]
 
     # voting system with forecasting
-    res_vote = []
-    res_vote.append(
-        linear_regression_prediction(trn_date, trn_user, trn_match, tst_date, tst_match)
-    )
-    res_vote.append(sarimax_predictor(trn_user, trn_match, tst_match))
-    res_vote.append(support_vector_regressor(x_train, x_test, trn_user))
+    res_vote = [
+        linear_regression_prediction(trn_date, trn_user, trn_match, tst_date, tst_match),
+        sarimax_predictor(trn_user, trn_match, tst_match),
+        support_vector_regressor(x_train, x_test, trn_user),
+    ]
 
     # check the safety of today's data
-    if data_safety_checker(res_vote, tst_user):
-        print("Today's data is safe.")
-    else:
-        print("Today's data is not safe.")
+    not_str = "" if data_safety_checker(res_vote, tst_user) else "not "
+    print("Today's data is {not_str}safe.")

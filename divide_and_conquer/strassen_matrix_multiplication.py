@@ -67,6 +67,10 @@ def matrix_dimensions(matrix: list) -> tuple[int, int]:
     return len(matrix), len(matrix[0])
 
 
+def print_matrix(matrix: list) -> None:
+    print("\n".join(str(line) for line in matrix))
+
+
 def actual_strassen(matrix_a: list, matrix_b: list) -> list:
     """
     Recursive function to calculate the product of two matrices, using the Strassen
