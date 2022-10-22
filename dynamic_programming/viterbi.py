@@ -3,12 +3,12 @@ from typing import Any, Dict, List, Tuple
 
 
 def viterbi(
-    observations_space: List[str],
-    states_space: List[str],
-    initial_probabilities: Dict[str, float],
-    transition_probabilities: Dict[str, Dict[str, float]],
-    emission_probabilities: Dict[str, Dict[str, float]],
-) -> List[str]:
+    observations_space: list[str],
+    states_space: list[str],
+    initial_probabilities: dict[str, float],
+    transition_probabilities: dict[str, dict[str, float]],
+    emission_probabilities: dict[str, dict[str, float]],
+) -> list[str]:
     """
     Viterbi Algorithm, to find the most likely path of
     states from the start and the expected output.
@@ -246,11 +246,11 @@ def _validate_dict(_object: Any, var_name: str, value_type: type, nested: bool =
 
 
 def _initialise_probabilities_and_pointers(
-    observations_space: List[str],
-    states_space: List[str],
-    initial_probabilities: Dict[str, float],
-    emission_probabilities: Dict[str, Dict[str, float]],
-) -> Tuple[dict, dict]:
+    observations_space: list[str],
+    states_space: list[str],
+    initial_probabilities: dict[str, float],
+    emission_probabilities: dict[str, dict[str, float]],
+) -> tuple[dict, dict]:
     probabilities = {}
     pointers = {}
     for state in states_space:
@@ -263,8 +263,8 @@ def _initialise_probabilities_and_pointers(
 
 
 def _process_forward(
-    observations_space: List[str],
-    states_space: List[str],
+    observations_space: list[str],
+    states_space: list[str],
     _prior_state: Callable,
     probabilities: dict,
     pointers: dict,
@@ -294,10 +294,10 @@ def _extract_final_state(observations_space, states_space, probabilities):
 
 
 def _extract_best_path(
-    observations_space: List[str],
+    observations_space: list[str],
     last_observation: str,
     pointers: dict,
-) -> List[str]:
+) -> list[str]:
     previous = last_observation
     result = []
     for o in range(len(observations_space) - 1, -1, -1):
@@ -307,7 +307,7 @@ def _extract_best_path(
     return result
 
 
-def _arg_max(prior_state: Callable, states_space: List[str]) -> str:
+def _arg_max(prior_state: Callable, states_space: list[str]) -> str:
     arg_max = ""
     max_probability = -1
     for k_state in states_space:
