@@ -1,14 +1,13 @@
-from collections.abc import Callable
-from typing import Any, Dict, List, Tuple
+from typing import Any
 
 
 def viterbi(
-    observations_space: List[str],
-    states_space: List[str],
-    initial_probabilities: Dict[str, float],
-    transition_probabilities: Dict[str, Dict[str, float]],
-    emission_probabilities: Dict[str, Dict[str, float]],
-) -> List[str]:
+    observations_space: list,
+    states_space: list,
+    initial_probabilities: dict,
+    transition_probabilities: dict,
+    emission_probabilities: dict,
+) -> list:
     """
         Viterbi Algorithm, to find the most likely path of
         states from the start and the expected output.
@@ -133,35 +132,65 @@ def viterbi(
         emission_probabilities,
     )
     # Creates data structures and fill initial step
-    pointers, probabilities = _initialise_probabilities_and_pointers(
-        observations_space,
-        states_space,
-        initial_probabilities,
-        emission_probabilities,
-    )
-
-    # Function for the process forward calculations
-    def _prior_state(observation: str, prior_observation: str, state: str) -> Callable:
-        def _func(k_state: str) -> float:
-            return (
-                probabilities[(k_state, prior_observation)]
-                * transition_probabilities[k_state][state]
-                * emission_probabilities[state][observation]
-            )
-
-        return _func
+    probabilities: dict = {}
+    pointers: dict = {}
+    for state in states_space:
+        observation = observations_space[0]
+        probabilities[(state, observation)] = (
+            initial_probabilities[state] * emission_probabilities[state][observation]
+        )
+        pointers[(state, observation)] = None
 
     # Fills the data structure with the probabilities of
     # different transitions and pointers to previous states
-    _process_forward(
-        observations_space, states_space, _prior_state, probabilities, pointers
-    )
+    for o in range(1, len(observations_space)):
+        observation = observations_space[o]
+        prior_observation = observations_space[o - 1]
+        for state in states_space:
+            # Calculates the argmax for probability function
+            arg_max = ""
+            max_probability = -1
+            for k_state in states_space:
+                probability = (
+                    probabilities[(k_state, prior_observation)]
+                    * transition_probabilities[k_state][state]
+                    * emission_probabilities[state][observation]
+                )
+                if probability > max_probability:
+                    max_probability = probability
+                    arg_max = k_state
+
+            # Update probabilities and pointers dicts
+            probabilities[(state, observation)] = (
+                probabilities[(arg_max, prior_observation)]
+                * transition_probabilities[arg_max][state]
+                * emission_probabilities[state][observation]
+            )
+
+            pointers[(state, observation)] = arg_max
 
     # The final observation
-    last_state = _extract_final_state(observations_space, states_space, probabilities)
+    final_observation = observations_space[len(observations_space) - 1]
+
+    # argmax for given final observation
+    arg_max = ""
+    max_probability = -1
+    for k_state in states_space:
+        probability = probabilities[(k_state, final_observation)]
+        if probability > max_probability:
+            max_probability = probability
+            arg_max = k_state
+    last_state = arg_max
 
     # Process pointers backwards
-    return _extract_best_path(observations_space, last_state, pointers)
+    previous = last_state
+    result = []
+    for o in range(len(observations_space) - 1, -1, -1):
+        result.append(previous)
+        previous = pointers[previous, observations_space[o]]
+    result.reverse()
+
+    return result
 
 
 def _validation(
@@ -211,7 +240,8 @@ def _validate_not_empty(
     emission_probabilities: Any,
 ) -> None:
     """
-    >>> _validate_not_empty(["a"], ["b"], {"c":0.5}, {"d": {"e": 0.6}}, {"f": {"g": 0.7}})
+    >>> _validate_not_empty(["a"], ["b"], {"c":0.5},
+    ... {"d": {"e": 0.6}}, {"f": {"g": 0.7}})
 
     >>> _validate_not_empty(["a"], ["b"], {"c":0.5}, {}, {"f": {"g": 0.7}})
     Traceback (most recent call last):
@@ -332,25 +362,25 @@ def _validate_nested_dict(_object: Any, var_name: str) -> None:
 
 def _validate_dict(_object: Any, var_name: str, value_type: type, nested: bool = False):
     """
-        >>> _validate_dict({"b": 0.5}, "mock_name", float)
+    >>> _validate_dict({"b": 0.5}, "mock_name", float)
 
-        >>> _validate_dict("invalid", "mock_name", float)
-        Traceback (most recent call last):
-                ...
-        ValueError: mock_name must be a dict
-        >>> _validate_dict({"a": 8}, "mock_name", dict)
-        Traceback (most recent call last):
-                ...
-        ValueError: mock_name all values must be dict
-        >>> _validate_dict({2: 0.5}, "mock_name",float, True)
-        Traceback (most recent call last):
-                ...
-        ValueError: mock_name all keys must be strings
-        >>> _validate_dict({"b": 4}, "mock_name", float,True)
-        Traceback (most recent call last):
-                ...
-        ValueError: mock_name nested dictionary all values must be float
-        """
+    >>> _validate_dict("invalid", "mock_name", float)
+    Traceback (most recent call last):
+            ...
+    ValueError: mock_name must be a dict
+    >>> _validate_dict({"a": 8}, "mock_name", dict)
+    Traceback (most recent call last):
+            ...
+    ValueError: mock_name all values must be dict
+    >>> _validate_dict({2: 0.5}, "mock_name",float, True)
+    Traceback (most recent call last):
+            ...
+    ValueError: mock_name all keys must be strings
+    >>> _validate_dict({"b": 4}, "mock_name", float,True)
+    Traceback (most recent call last):
+            ...
+    ValueError: mock_name nested dictionary all values must be float
+    """
     if not isinstance(_object, dict):
         raise ValueError(f"{var_name} must be a dict")
     if not all(isinstance(x, str) for x in _object):
@@ -360,79 +390,6 @@ def _validate_dict(_object: Any, var_name: str, value_type: type, nested: bool =
         raise ValueError(
             f"{var_name} {nested_text}all values must be {value_type.__name__}"
         )
-
-
-def _initialise_probabilities_and_pointers(
-    observations_space: List[str],
-    states_space: List[str],
-    initial_probabilities: Dict[str, float],
-    emission_probabilities: Dict[str, Dict[str, float]],
-) -> tuple[dict, dict]:
-    probabilities = {}
-    pointers = {}
-    for state in states_space:
-        observation = observations_space[0]
-        probabilities[(state, observation)] = (
-            initial_probabilities[state] * emission_probabilities[state][observation]
-        )
-        pointers[(state, observation)] = None
-    return pointers, probabilities
-
-
-def _process_forward(
-    observations_space: List[str],
-    states_space: List[str],
-    _prior_state: Callable,
-    probabilities: dict,
-    pointers: dict,
-) -> None:
-    for o in range(1, len(observations_space)):
-        observation = observations_space[o]
-        prior_observation = observations_space[o - 1]
-        for state in states_space:
-            arg_max = _arg_max(
-                _prior_state(observation, prior_observation, state), states_space
-            )
-
-            probabilities[(state, observation)] = _prior_state(
-                observation, prior_observation, state
-            )(arg_max)
-            pointers[(state, observation)] = arg_max
-
-
-def _extract_final_state(observations_space, states_space, probabilities):
-    final_observation = observations_space[len(observations_space) - 1]
-
-    def _best_final_state(k_state: str) -> float:
-        return probabilities[(k_state, final_observation)]
-
-    last_state = _arg_max(_best_final_state, states_space)
-    return last_state
-
-
-def _extract_best_path(
-    observations_space: List[str],
-    last_observation: str,
-    pointers: dict,
-) -> List[str]:
-    previous = last_observation
-    result = []
-    for o in range(len(observations_space) - 1, -1, -1):
-        result.append(previous)
-        previous = pointers[previous, observations_space[o]]
-    result.reverse()
-    return result
-
-
-def _arg_max(prior_state: Callable, states_space: List[str]) -> str:
-    arg_max = ""
-    max_probability = -1
-    for k_state in states_space:
-        probability = prior_state(k_state)
-        if probability > max_probability:
-            max_probability = probability
-            arg_max = k_state
-    return arg_max
 
 
 if __name__ == "__main__":
