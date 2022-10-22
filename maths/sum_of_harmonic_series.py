@@ -31,5 +31,6 @@ def sum_of_harmonic_progression(first_term: float, common_difference: float, no_
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
+    
+    print(sum_of_hp(1 / 2, 2, 2))
