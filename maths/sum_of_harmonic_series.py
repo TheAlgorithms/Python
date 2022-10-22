@@ -29,10 +29,9 @@ def sum_of_harmonic_progression(
     return sum(l2)
 
 
-
-
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
-    
+
     print(sum_of_hp(1 / 2, 2, 2))
