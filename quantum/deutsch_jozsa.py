@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Deutsch-Josza Algorithm is one of the first examples of a quantum
+Deutsch-Jozsa Algorithm is one of the first examples of a quantum
 algorithm that is exponentially faster than any possible deterministic
 classical algorithm
 
@@ -22,10 +22,10 @@ References:
 """
 
 import numpy as np
-import qiskit as q
+import qiskit
 
 
-def dj_oracle(case: str, num_qubits: int) -> q.QuantumCircuit:
+def dj_oracle(case: str, num_qubits: int) -> qiskit.QuantumCircuit:
     """
     Returns a Quantum Circuit for the Oracle function.
     The circuit returned can represent balanced or constant function,
@@ -33,7 +33,7 @@ def dj_oracle(case: str, num_qubits: int) -> q.QuantumCircuit:
     """
     # This circuit has num_qubits+1 qubits: the size of the input,
     # plus one output qubit
-    oracle_qc = q.QuantumCircuit(num_qubits + 1)
+    oracle_qc = qiskit.QuantumCircuit(num_qubits + 1)
 
     # First, let's deal with the case in which oracle is balanced
     if case == "balanced":
@@ -43,7 +43,7 @@ def dj_oracle(case: str, num_qubits: int) -> q.QuantumCircuit:
         # Next, format 'b' as a binary string of length 'n', padded with zeros:
         b_str = format(b, f"0{num_qubits}b")
         # Next, we place the first X-gates. Each digit in our binary string
-        # correspopnds to a qubit, if the digit is 0, we do nothing, if it's 1
+        # corresponds to a qubit, if the digit is 0, we do nothing, if it's 1
         # we apply an X-gate to that qubit:
         for index, bit in enumerate(b_str):
             if bit == "1":
@@ -70,13 +70,15 @@ def dj_oracle(case: str, num_qubits: int) -> q.QuantumCircuit:
     return oracle_gate
 
 
-def dj_algorithm(oracle: q.QuantumCircuit, num_qubits: int) -> q.QuantumCircuit:
+def dj_algorithm(
+    oracle: qiskit.QuantumCircuit, num_qubits: int
+) -> qiskit.QuantumCircuit:
     """
-    Returns the complete Deustch-Jozsa Quantum Circuit,
+    Returns the complete Deutsch-Jozsa Quantum Circuit,
     adding Input & Output registers and Hadamard & Measurement Gates,
     to the Oracle Circuit passed in arguments
     """
-    dj_circuit = q.QuantumCircuit(num_qubits + 1, num_qubits)
+    dj_circuit = qiskit.QuantumCircuit(num_qubits + 1, num_qubits)
     # Set up the output qubit:
     dj_circuit.x(num_qubits)
     dj_circuit.h(num_qubits)
@@ -95,7 +97,7 @@ def dj_algorithm(oracle: q.QuantumCircuit, num_qubits: int) -> q.QuantumCircuit:
     return dj_circuit
 
 
-def deutsch_jozsa(case: str, num_qubits: int) -> q.result.counts.Counts:
+def deutsch_jozsa(case: str, num_qubits: int) -> qiskit.result.counts.Counts:
     """
     Main function that builds the circuit using other helper functions,
     runs the experiment 1000 times & returns the resultant qubit counts
@@ -104,14 +106,14 @@ def deutsch_jozsa(case: str, num_qubits: int) -> q.result.counts.Counts:
     >>> deutsch_jozsa("balanced", 3)
     {'111': 1000}
     """
-    # Use Aer's qasm_simulator
-    simulator = q.Aer.get_backend("qasm_simulator")
+    # Use Aer's simulator
+    simulator = qiskit.Aer.get_backend("aer_simulator")
 
     oracle_gate = dj_oracle(case, num_qubits)
     dj_circuit = dj_algorithm(oracle_gate, num_qubits)
 
-    # Execute the circuit on the qasm simulator
-    job = q.execute(dj_circuit, simulator, shots=1000)
+    # Execute the circuit on the simulator
+    job = qiskit.execute(dj_circuit, simulator, shots=1000)
 
     # Return the histogram data of the results of the experiment.
     return job.result().get_counts(dj_circuit)

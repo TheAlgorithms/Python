@@ -26,7 +26,7 @@ repos:
           - --profile=black
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.0.0
+    rev: v3.1.0
     hooks:
       - id: pyupgrade
         args:
@@ -55,14 +55,14 @@ repos:
         additional_dependencies: [types-requests]
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.1
+    rev: v2.2.2
     hooks:
       - id: codespell
         args:
           - --ignore-words-list=ans,crate,damon,fo,followings,hist,iff,mater,secant,som,sur,tim,zar
-          - --skip="./.*,./strings/dictionary.txt,./strings/words.txt,./project_euler/problem_022/p022_names.txt"
         exclude: |
           (?x)^(
+              ciphers/prehistoric_men.txt |
               strings/dictionary.txt |
               strings/words.txt |
               project_euler/problem_022/p022_names.txt
