@@ -25,9 +25,6 @@ def is_sum_subset(arr, arr_len, required_sum):
             if arr[i - 1] <= j:
                 subset[i][j] = subset[i - 1][j] or subset[i - 1][j - arr[i - 1]]
 
-    # uncomment to print the subset
-    # for i in range(arrLen+1):
-    #     print(subset[i])
     print(subset[arr_len][required_sum])
 
 
