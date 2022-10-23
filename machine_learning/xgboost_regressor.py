@@ -7,8 +7,7 @@ from xgboost import XGBRegressor
 
 
 def data_handling(data: dict) -> tuple:
-    # Split dataset into features and target
-    # data is features
+    # Split dataset into features and target.  Data is features.
     """
     >>> data_handling((
     ...  {'data':'[ 8.3252 41. 6.9841269 1.02380952  322. 2.55555556   37.88 -122.23 ]'
@@ -37,27 +36,22 @@ def xgboost(
 
 
 def main() -> None:
-
     """
     >>> main()
     Mean Absolute Error : 0.30957163379906033
     Mean Square Error  : 0.22611560196662744
 
-
-    The Url for the algorithm
+    The URL for this algorithm
     https://xgboost.readthedocs.io/en/stable/
     California house price dataset is used to demonstrate the algorithm.
     """
     # Load California house price dataset
     california = fetch_california_housing()
-
     data, target = data_handling(california)
     x_train, x_test, y_train, y_test = train_test_split(
         data, target, test_size=0.25, random_state=1
     )
-
     predictions = xgboost(x_train, y_train, x_test)
-
     # Error printing
     print(f"Mean Absolute Error : {mean_absolute_error(y_test, predictions)}")
     print(f"Mean Square Error  : {mean_squared_error(y_test, predictions)}")
