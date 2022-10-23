@@ -38,6 +38,9 @@ def wave_formula(calc_to_do: int) -> float:
     global wavelength, v, frequency
 
     """
+    Plan to add this later
+    
+    
     Random Wave Equation Selected
 
     Wavelength = Wave Speed / Frequency    |
@@ -50,18 +53,18 @@ def wave_formula(calc_to_do: int) -> float:
         wavelength = random.randint(1, 100)
         frequency = random.randint(1, 100)
         v = wavelength * frequency
-        v_str = str(v)
-        wavelength_str = str(wavelength)
-        frequency_str = str(frequency)
+        # v_str = str(v)
+        # wavelength_str = str(wavelength)
+        # frequency_str = str(frequency)
         ans = v
 
     if calc_to_do == 2:
         v = random.randint(1, 100)
         frequency = random.randint(1, 100)
         wavelength = v / frequency
-        v_str = str(v)
-        wavelength_str = str(wavelength)
-        frequency_str = str(frequency)
+        # v_str = str(v)
+        # wavelength_str = str(wavelength)
+        # frequency_str = str(frequency)
         ans = wavelength
 
     if calc_to_do == 3:
@@ -69,9 +72,9 @@ def wave_formula(calc_to_do: int) -> float:
         v = random.randint(1, 100)
         wavelength = random.randint(1, 100)
         frequency = v / wavelength
-        v_str = str(v)
-        wavelength_str = str(wavelength)
-        frequency_str = str(frequency)
+        # v_str = str(v)
+        # wavelength_str = str(wavelength)
+        # frequency_str = str(frequency)
         ans = frequency
 
     return ans
