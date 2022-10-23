@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools ~= 65.5"]
+requires = ["setuptools ~= 65.5", "wheel"]
 
 [project]
 name = "python-algorithms"
