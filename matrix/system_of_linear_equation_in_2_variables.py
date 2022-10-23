@@ -25,11 +25,11 @@ def calculate_x_and_y(eq1: list[int], eq2: list[int]) -> None:
     >>> calculate_x_and_y([1, 2, 3], [2, 4, 6])
     Traceback (most recent call last):
         ...
-    RuntimeError: Infinite solutions. (Consistent system)
+    ValueError: Infinite solutions. (Consistent system)
     >>> calculate_x_and_y([1, 2, 3], [2, 4, 7])
     Traceback (most recent call last):
         ...
-    RuntimeError: No solution. (Inconsistent system)
+    ValueError: No solution. (Inconsistent system)
     >>> calculate_x_and_y([1, 2, 3], [11, 22])
     Traceback (most recent call last):
         ...
@@ -37,11 +37,11 @@ def calculate_x_and_y(eq1: list[int], eq2: list[int]) -> None:
     >>> calculate_x_and_y([11, 2, 30], [1, 0, 4])
     Traceback (most recent call last):
         ...
-    RuntimeError: Non-Trivial Solution (Consistent system) x = 4.0, y = -7.0
+    ValueError: Non-Trivial Solution (Consistent system) x = 4.0, y = -7.0
     >>> calculate_x_and_y([0, 1, 6], [0, 0, 3])
     Traceback (most recent call last):
         ...
-    RuntimeError: No solution. (Inconsistent system)
+    ValueError: No solution. (Inconsistent system)
     >>> calculate_x_and_y([0, 0, 6], [0, 0, 3])
     Traceback (most recent call last):
         ...
@@ -49,23 +49,23 @@ def calculate_x_and_y(eq1: list[int], eq2: list[int]) -> None:
     >>> calculate_x_and_y([4, 7, 1], [1, 2, 0])
     Traceback (most recent call last):
         ...
-    RuntimeError: Non-Trivial Solution (Consistent system) x = 2.0, y = -1.0
+    ValueError: Non-Trivial Solution (Consistent system) x = 2.0, y = -1.0
     >>> calculate_x_and_y([1, 2, 3], [1, 2, 3])
     Traceback (most recent call last):
         ...
-    RuntimeError: Infinite solutions. (Consistent system)
+    ValueError: Infinite solutions. (Consistent system)
     >>> calculate_x_and_y([2, 3, 0], [5, 1, 0])
     Traceback (most recent call last):
         ...
-    RuntimeError: Trivial solution. (Consistent system) x = 0 and y = 0
+    ValueError: Trivial solution. (Consistent system) x = 0 and y = 0
     >>> calculate_x_and_y([0, 4, 50], [2, 0, 26])
     Traceback (most recent call last):
         ...
-    RuntimeError: Non-Trivial Solution (Consistent system) x = 13.0, y = 12.5
+    ValueError: Non-Trivial Solution (Consistent system) x = 13.0, y = 12.5
     >>> calculate_x_and_y([0, 4, 50], [0, 3, 99])
     Traceback (most recent call last):
         ...
-    RuntimeError: No solution. (Inconsistent system)
+    ValueError: No solution. (Inconsistent system)
     """
 
     # Checking if the input is valid
@@ -86,17 +86,17 @@ def calculate_x_and_y(eq1: list[int], eq2: list[int]) -> None:
     # Checking if the system of linear equation has a solution (Using Cramer's rule)
     if d == 0:
         if dx == dy == 0:
-            raise RuntimeError("Infinite solutions. (Consistent system)")
+            raise ValueError("Infinite solutions. (Consistent system)")
         else:
-            raise RuntimeError("No solution. (Inconsistent system)")
+            raise ValueError("No solution. (Inconsistent system)")
     else:
         if dx == dy == 0:
-            raise RuntimeError(
+            raise ValueError(
                 f"Trivial solution. (Consistent system) x = {0} and y = {0}"
             )
         else:
             x = dx / d
             y = dy / d
-            raise RuntimeError(
+            raise ValueError(
                 f"Non-Trivial Solution (Consistent system) x = {x}, y = {y}"
             )
