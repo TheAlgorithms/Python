@@ -54,7 +54,7 @@ def longest_common_substring(text1: str, text2: str) -> str:
                     ans_index = i
                     ans_length = dp[i][j]
 
-    return text1[ans_index - ans_length: ans_index]
+    return text1[ans_index - ans_length : ans_index]
 
 
 if __name__ == "__main__":
