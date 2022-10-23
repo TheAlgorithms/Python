@@ -17,6 +17,9 @@ from cv2 import destroyAllWindows, imread, imshow, waitKey
 
 
 def logarithmic_transformation(image: np.array) -> np.array:
+    # To avoid getting warning if np.log(0) happens in calculation
+    np.seterr(divide="ignore")
+
     # Transforming pixel values
     image_log = (np.log(image + 1) / np.log(1 + np.max(image))) * 255
 
