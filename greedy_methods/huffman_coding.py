@@ -16,7 +16,7 @@ class NodeTree:
         return (self.left, self.right)
 
     def __str__(self):
-        return "{}_{}".format(self.left, self.right)
+        return f"{self.left}_{self.right}"
 
 
 # Main function implementing huffman coding
