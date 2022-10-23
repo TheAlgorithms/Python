@@ -42,8 +42,8 @@
   * [Binary Xor Operator](bit_manipulation/binary_xor_operator.py)
   * [Count 1S Brian Kernighan Method](bit_manipulation/count_1s_brian_kernighan_method.py)
   * [Count Number Of One Bits](bit_manipulation/count_number_of_one_bits.py)
+  * [Even Or Not](bit_manipulation/even_or_not.py)
   * [Gray Code Sequence](bit_manipulation/gray_code_sequence.py)
-  * [Identify Even Integer](bit_manipulation/even_or_not.py)
   * [Reverse Bits](bit_manipulation/reverse_bits.py)
   * [Single Bit Manipulation Operations](bit_manipulation/single_bit_manipulation_operations.py)
 
@@ -53,6 +53,7 @@
   * [Modular Division](blockchain/modular_division.py)
 
 ## Boolean Algebra
+  * [Norgate](boolean_algebra/norgate.py)
   * [Quine Mc Cluskey](boolean_algebra/quine_mc_cluskey.py)
 
 ## Cellular Automata
@@ -449,6 +450,7 @@
   * [Random Forest Classifier](machine_learning/random_forest_classifier.py)
   * [Random Forest Regressor](machine_learning/random_forest_regressor.py)
   * [Scoring Functions](machine_learning/scoring_functions.py)
+  * [Self Organizing Map](machine_learning/self_organizing_map.py)
   * [Sequential Minimum Optimization](machine_learning/sequential_minimum_optimization.py)
   * [Similarity Search](machine_learning/similarity_search.py)
   * [Support Vector Machines](machine_learning/support_vector_machines.py)
@@ -587,9 +589,11 @@
   * [Two Sum](maths/two_sum.py)
   * [Ugly Numbers](maths/ugly_numbers.py)
   * [Volume](maths/volume.py)
+  * [Weird Number](maths/weird_number.py)
   * [Zellers Congruence](maths/zellers_congruence.py)
 
 ## Matrix
+  * [Binary Search Matrix](matrix/binary_search_matrix.py)
   * [Count Islands In Matrix](matrix/count_islands_in_matrix.py)
   * [Inverse Of Matrix](matrix/inverse_of_matrix.py)
   * [Matrix Class](matrix/matrix_class.py)
@@ -855,8 +859,6 @@
     * [Sol1](project_euler/problem_101/sol1.py)
   * Problem 102
     * [Sol1](project_euler/problem_102/sol1.py)
-  * Problem 104
-    * [Sol](project_euler/problem_104/sol.py)
   * Problem 107
     * [Sol1](project_euler/problem_107/sol1.py)
   * Problem 109
@@ -1011,6 +1013,7 @@
   * [Alternative String Arrange](strings/alternative_string_arrange.py)
   * [Anagrams](strings/anagrams.py)
   * [Autocomplete Using Trie](strings/autocomplete_using_trie.py)
+  * [Barcode Validator](strings/barcode_validator.py)
   * [Boyer Moore Search](strings/boyer_moore_search.py)
   * [Can String Be Rearranged As Palindrome](strings/can_string_be_rearranged_as_palindrome.py)
   * [Capitalize](strings/capitalize.py)
@@ -1040,6 +1043,7 @@
   * [Reverse Letters](strings/reverse_letters.py)
   * [Reverse Long Words](strings/reverse_long_words.py)
   * [Reverse Words](strings/reverse_words.py)
+  * [Snake Case To Camel Pascal Case](strings/snake_case_to_camel_pascal_case.py)
   * [Split](strings/split.py)
   * [Upper](strings/upper.py)
   * [Wave](strings/wave.py)
@@ -1074,6 +1078,7 @@
   * [Instagram Pic](web_programming/instagram_pic.py)
   * [Instagram Video](web_programming/instagram_video.py)
   * [Nasa Data](web_programming/nasa_data.py)
+  * [Open Google Results](web_programming/open_google_results.py)
   * [Random Anime Character](web_programming/random_anime_character.py)
   * [Recaptcha Verification](web_programming/recaptcha_verification.py)
   * [Reddit](web_programming/reddit.py)
