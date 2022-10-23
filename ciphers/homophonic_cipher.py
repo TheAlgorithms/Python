@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+"""
+# pmhsc - poor man's homophonic substitution cipher
+
+"""
 import argparse
 import os
 import pickle
