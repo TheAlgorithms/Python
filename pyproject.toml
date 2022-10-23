@@ -1,5 +1,6 @@
 [build-system]
 requires = ["setuptools ~= 65.5", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "python-algorithms"
