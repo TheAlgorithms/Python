@@ -46,9 +46,9 @@ def main() -> None:
 
     The Url for the algorithm
     https://xgboost.readthedocs.io/en/stable/
-    Boston house price dataset is used to demonstrate the algorithm.
+    California house price dataset is used to demonstrate the algorithm.
     """
-    # Load Boston house price dataset
+    # Load California house price dataset
     california = fetch_california_housing()
 
     data, target = data_handling(california)
