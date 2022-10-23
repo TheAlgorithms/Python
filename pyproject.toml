@@ -41,6 +41,3 @@ dependencies = [
 dev = [
     "pre-commit"
 ]
-
-[build-system]
-requires = ["pytest",]
