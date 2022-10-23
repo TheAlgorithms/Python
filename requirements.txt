@@ -14,6 +14,7 @@ scikit-fuzzy
 sklearn
 statsmodels
 sympy
+tabulate
 tensorflow
 texttable
 tweepy
