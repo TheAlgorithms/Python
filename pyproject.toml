@@ -13,6 +13,37 @@ authors = [
     { name = "John Law", email = "dhruvmanila@gmail.com" }
 ]
 
+dependencies = [
+    "beautifulsoup4",
+    "fake_useragent",
+    "keras",
+    "lxml",
+    "matplotlib",
+    "numpy",
+    "opencv-python",
+    "pandas",
+    "pillow",
+    "projectq",
+    "qiskit",
+    "requests",
+    "rich",
+    "scikit-fuzzy",
+    "sklearn",
+    "statsmodels",
+    "sympy",
+    "tensorflow",
+    "texttable",
+    "tweepy",
+    "xgboost",
+    "yulewalker"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit"
+]
+
+[tool.setuptools]
 packages = [
     "arithmetic_analysis",
     "audio_filters",
@@ -56,33 +87,4 @@ packages = [
     "sorts", 
     "strings",
     "web_programming",
-]
-dependencies = [
-    "beautifulsoup4",
-    "fake_useragent",
-    "keras",
-    "lxml",
-    "matplotlib",
-    "numpy",
-    "opencv-python",
-    "pandas",
-    "pillow",
-    "projectq",
-    "qiskit",
-    "requests",
-    "rich",
-    "scikit-fuzzy",
-    "sklearn",
-    "statsmodels",
-    "sympy",
-    "tensorflow",
-    "texttable",
-    "tweepy",
-    "xgboost",
-    "yulewalker"
-]
-
-[project.optional-dependencies]
-dev = [
-    "pre-commit"
 ]
