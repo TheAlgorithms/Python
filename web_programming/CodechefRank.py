@@ -8,6 +8,7 @@ To use:
 
 import json
 import sys
+
 import requests
 
 id = "<codechef_id>"  # Replace with your codechef id
