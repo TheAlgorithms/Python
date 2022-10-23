@@ -39,14 +39,24 @@ def wave_formula(calc_to_do: int) -> float:
     global wavelength, v, frequency, ans
 
     """
-    Plan to add this later
-
-
-    Random Wave Equation Selected
-
-    Wavelength = Wave Speed / Frequency    |
-    Wavelength = 97 / 30                   |
-    Wavelength = 3.2333333333333334m       |
+    Inputs/Vars to be used
+    ----------------------
+    v : Velocity in m/s
+    
+    wavelength : distance between 
+        2 crests, or troughs of a wave, 1 complete cycle 
+        of a wave in meters
+        
+    frequency : cycles/second in Hz
+    
+    
+    Returns
+    -------
+    v, or wavelength, or frequency depending on the situation in 
+    var ans
+    
+    >>> wavelength=5 * frequency=5
+    v = 25
     """
 
     if calc_to_do == 1:
@@ -78,7 +88,9 @@ def wave_formula(calc_to_do: int) -> float:
         # frequency_str = str(frequency)
         ans = frequency
 
-    return ans
+    return {"Ans": ans}
 
+if __name__ == "__main__":
+    import doctest
 
-wave_formula(calc_to_do)
+    doctest.testmod()
