@@ -20,8 +20,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools six wheel
-          python -m pip install pytest-cov
-          python -m pip install ".[dev]"  # --editable 
+          python -m pip install pytest pytest-cov
+          python -m pip install ".[dev]"  # --editable
       - name: Run tests
         run: pytest --doctest-modules --ignore=project_euler/ --ignore=scripts/validate_solutions.py --cov-report=term-missing:skip-covered --cov=. .
       - if: ${{ success() }}
