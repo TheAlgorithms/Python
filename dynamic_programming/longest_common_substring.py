@@ -10,7 +10,6 @@ Therefore, the length is 2.
 def longest_common_substring(text1: str, text2: str) -> int:
     """
     Finds the length of longest common substring between two strings.
-
     >>> longest_common_substring("", "")
     0
     >>> longest_common_substring("a","")
