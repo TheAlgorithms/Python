@@ -54,13 +54,7 @@ def longest_common_substring(text1: str, text2: str) -> str:
                     ans_index = i
                     ans_length = dp[i][j]
 
-    ans = ""
-    while ans_length > 0:
-        ans += text1[ans_index - 1]
-        ans_index = ans_index - 1
-        ans_length = ans_length - 1
-
-    return ans[::-1]
+    return text1[ans_index - ans_length: ans_index]
 
 
 if __name__ == "__main__":
