@@ -22,7 +22,7 @@ def is_pangram(
     True
     """
     # Declare frequency as a set to have unique occurrences of letters
-    frequency = (set())
+    frequency = set()
 
     # Replace all the whitespace in our sentence
     input_str = input_str.replace(" ", "")
@@ -80,9 +80,7 @@ def benchmark() -> None:
     """
     from timeit import timeit
 
-    setup = (
-        "from __main__ import is_pangram, is_pangram_faster, is_pangram_fastest"
-    )
+    setup = "from __main__ import is_pangram, is_pangram_faster, is_pangram_fastest"
     print(timeit("is_pangram()", setup=setup))
     print(timeit("is_pangram_faster()", setup=setup))
     print(timeit("is_pangram_fastest()", setup=setup))
