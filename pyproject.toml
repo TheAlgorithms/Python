@@ -1,5 +1,5 @@
 [project]
-name = "Python algorithms"
+name = "python-algorithms"
 description = "All algorithms implemented in Python"
 version = "1.0.0"
 
