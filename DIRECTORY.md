@@ -360,6 +360,7 @@
   * [Dijkstra](graphs/dijkstra.py)
   * [Dijkstra 2](graphs/dijkstra_2.py)
   * [Dijkstra Algorithm](graphs/dijkstra_algorithm.py)
+  * [Dijkstra Alternate](graphs/dijkstra_alternate.py)
   * [Dinic](graphs/dinic.py)
   * [Directed And Undirected (Weighted) Graph](graphs/directed_and_undirected_(weighted)_graph.py)
   * [Edmonds Karp Multiple Source And Sink](graphs/edmonds_karp_multiple_source_and_sink.py)
@@ -460,6 +461,8 @@
   * [Similarity Search](machine_learning/similarity_search.py)
   * [Support Vector Machines](machine_learning/support_vector_machines.py)
   * [Word Frequency Functions](machine_learning/word_frequency_functions.py)
+  * [Xgboost Classifier](machine_learning/xgboost_classifier.py)
+  * [Xgboost Regressor](machine_learning/xgboost_regressor.py)
 
 ## Maths
   * [3N Plus 1](maths/3n_plus_1.py)
@@ -534,6 +537,7 @@
   * [Line Length](maths/line_length.py)
   * [Lucas Lehmer Primality Test](maths/lucas_lehmer_primality_test.py)
   * [Lucas Series](maths/lucas_series.py)
+  * [Maclaurin Series](maths/maclaurin_series.py)
   * [Matrix Exponentiation](maths/matrix_exponentiation.py)
   * [Max Sum Sliding Window](maths/max_sum_sliding_window.py)
   * [Median Of Two Arrays](maths/median_of_two_arrays.py)
@@ -579,6 +583,7 @@
     * [P Series](maths/series/p_series.py)
   * [Sieve Of Eratosthenes](maths/sieve_of_eratosthenes.py)
   * [Sigmoid](maths/sigmoid.py)
+  * [Signum](maths/signum.py)
   * [Simpson Rule](maths/simpson_rule.py)
   * [Sin](maths/sin.py)
   * [Sock Merchant](maths/sock_merchant.py)
@@ -587,6 +592,7 @@
   * [Sum Of Arithmetic Series](maths/sum_of_arithmetic_series.py)
   * [Sum Of Digits](maths/sum_of_digits.py)
   * [Sum Of Geometric Progression](maths/sum_of_geometric_progression.py)
+  * [Sum Of Harmonic Series](maths/sum_of_harmonic_series.py)
   * [Sylvester Sequence](maths/sylvester_sequence.py)
   * [Test Prime Check](maths/test_prime_check.py)
   * [Trapezoidal Rule](maths/trapezoidal_rule.py)
@@ -936,6 +942,7 @@
   * [Not Gate](quantum/not_gate.py)
   * [Q Full Adder](quantum/q_full_adder.py)
   * [Quantum Entanglement](quantum/quantum_entanglement.py)
+  * [Quantum Random](quantum/quantum_random.py)
   * [Ripple Adder Classic](quantum/ripple_adder_classic.py)
   * [Single Qubit Measure](quantum/single_qubit_measure.py)
 

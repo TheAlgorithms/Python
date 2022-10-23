@@ -9,15 +9,15 @@ from __future__ import annotations
 
 import random
 
-# Maximum size of the population.  bigger could be faster but is more memory expensive
+# Maximum size of the population.  Bigger could be faster but is more memory expensive.
 N_POPULATION = 200
-# Number of elements selected in every generation for evolution the selection takes
-# place from the best to the worst of that generation must be smaller than N_POPULATION
+# Number of elements selected in every generation of evolution. The selection takes
+# place from best to worst of that generation and must be smaller than N_POPULATION.
 N_SELECTED = 50
-# Probability that an element of a generation can mutate changing one of its genes this
-# guarantees that all genes will be used during evolution
+# Probability that an element of a generation can mutate, changing one of its genes.
+# This will guarantee that all genes will be used during evolution.
 MUTATION_PROBABILITY = 0.4
-# just a seed to improve randomness required by the algorithm
+# Just a seed to improve randomness required by the algorithm.
 random.seed(random.randint(0, 1000))
 
 
@@ -56,20 +56,20 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
             f"{not_in_genes_list} is not in genes list, evolution cannot converge"
         )
 
-    # Generate random starting population
+    # Generate random starting population.
     population = []
     for _ in range(N_POPULATION):
         population.append("".join([random.choice(genes) for i in range(len(target))]))
 
-    # Just some logs to know what the algorithms is doing
+    # Just some logs to know what the algorithms is doing.
     generation, total_population = 0, 0
 
-    # This loop will end when we will find a perfect match for our target
+    # This loop will end when we find a perfect match for our target.
     while True:
         generation += 1
         total_population += len(population)
 
-        # Random population created now it's time to evaluate
+        # Random population created. Now it's time to evaluate.
         def evaluate(item: str, main_target: str = target) -> tuple[str, float]:
             """
             Evaluate how similar the item is with the target by just
@@ -92,17 +92,17 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
         #     concurrent.futures.wait(futures)
         #     population_score = [item.result() for item in futures]
         #
-        # but with a simple algorithm like this will probably be slower
-        # we just need to call evaluate for every item inside population
+        # but with a simple algorithm like this, it will probably be slower.
+        # We just need to call evaluate for every item inside the population.
         population_score = [evaluate(item) for item in population]
 
-        # Check if there is a matching evolution
+        # Check if there is a matching evolution.
         population_score = sorted(population_score, key=lambda x: x[1], reverse=True)
         if population_score[0][0] == target:
             return (generation, total_population, population_score[0][0])
 
-        # Print the Best result every 10 generation
-        # just to know that the algorithm is working
+        # Print the best result every 10 generation.
+        # Just to know that the algorithm is working.
         if debug and generation % 10 == 0:
             print(
                 f"\nGeneration: {generation}"
@@ -111,21 +111,21 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
                 f"\nBest string: {population_score[0][0]}"
             )
 
-        # Flush the old population keeping some of the best evolutions
-        # Keeping this avoid regression of evolution
+        # Flush the old population, keeping some of the best evolutions.
+        # Keeping this avoid regression of evolution.
         population_best = population[: int(N_POPULATION / 3)]
         population.clear()
         population.extend(population_best)
-        # Normalize population score from 0 to 1
+        # Normalize population score to be between 0 and 1.
         population_score = [
             (item, score / len(target)) for item, score in population_score
         ]
 
-        # Select, Crossover and Mutate a new population
+        # Select, crossover and mutate a new population.
         def select(parent_1: tuple[str, float]) -> list[str]:
             """Select the second parent and generate new population"""
             pop = []
-            # Generate more child proportionally to the fitness score
+            # Generate more children proportionally to the fitness score.
             child_n = int(parent_1[1] * 100) + 1
             child_n = 10 if child_n >= 10 else child_n
             for _ in range(child_n):
@@ -134,32 +134,32 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
                 ][0]
 
                 child_1, child_2 = crossover(parent_1[0], parent_2)
-                # Append new string to the population list
+                # Append new string to the population list.
                 pop.append(mutate(child_1))
                 pop.append(mutate(child_2))
             return pop
 
         def crossover(parent_1: str, parent_2: str) -> tuple[str, str]:
-            """Slice and combine two string in a random point"""
+            """Slice and combine two string at a random point."""
             random_slice = random.randint(0, len(parent_1) - 1)
             child_1 = parent_1[:random_slice] + parent_2[random_slice:]
             child_2 = parent_2[:random_slice] + parent_1[random_slice:]
             return (child_1, child_2)
 
         def mutate(child: str) -> str:
-            """Mutate a random gene of a child with another one from the list"""
+            """Mutate a random gene of a child with another one from the list."""
             child_list = list(child)
             if random.uniform(0, 1) < MUTATION_PROBABILITY:
                 child_list[random.randint(0, len(child)) - 1] = random.choice(genes)
             return "".join(child_list)
 
-        # This is Selection
+        # This is selection
         for i in range(N_SELECTED):
             population.extend(select(population_score[int(i)]))
             # Check if the population has already reached the maximum value and if so,
-            # break the cycle.  if this check is disabled the algorithm will take
-            # forever to compute large strings but will also calculate small string in
-            # a lot fewer generations
+            # break the cycle.  If this check is disabled, the algorithm will take
+            # forever to compute large strings, but will also calculate small strings in
+            # a far fewer generations.
             if len(population) > N_POPULATION:
                 break
 
