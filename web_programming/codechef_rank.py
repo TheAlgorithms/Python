@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 # To find the python interpreter, when we execute it without python3
 
 """
@@ -15,7 +15,7 @@ id = "<codechef_id>"  # Replace with your codechef id
 
 
 main_url = "https://www.codechef.com/api/rankings/"
-contest_name = sys.argv[1]
+contest_name = sys.argv[1]  # Try: python3 codechef_rank.py SEP221C
 # contest_name= input("Enter Contest Name: ")
 # contest_name="SEP221C"
 # print(contest_name)
