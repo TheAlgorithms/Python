@@ -53,7 +53,7 @@ def wave_formula(calc_to_do: int) -> float:
         v_str = str(v)
         wavelength_str = str(wavelength)
         frequency_str = str(frequency)
-        return v
+        ans = v
 
     if calc_to_do == 2:
         v = random.randint(1, 100)
@@ -62,7 +62,7 @@ def wave_formula(calc_to_do: int) -> float:
         v_str = str(v)
         wavelength_str = str(wavelength)
         frequency_str = str(frequency)
-        return wavelength
+        ans = wavelength
 
     if calc_to_do == 3:
 
@@ -72,7 +72,9 @@ def wave_formula(calc_to_do: int) -> float:
         v_str = str(v)
         wavelength_str = str(wavelength)
         frequency_str = str(frequency)
-        return frequency
-
+        ans = frequency
+        
+    return ans
+     
 
 wave_formula(calc_to_do)
