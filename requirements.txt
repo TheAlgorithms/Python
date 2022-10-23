@@ -10,11 +10,11 @@ pillow
 projectq
 qiskit
 requests
+rich
 scikit-fuzzy
 sklearn
 statsmodels
 sympy
-tabulate
 tensorflow
 texttable
 tweepy
