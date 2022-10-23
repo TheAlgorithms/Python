@@ -10,7 +10,7 @@ API_URL = (
 )
 
 
-def real_time_billionaires():
+def real_time_billionaires() -> str:
     """Get top 10 realtime billionaires using forbes API
     Returns:
     Top 10 realtime billionaires date in tabulated string.
