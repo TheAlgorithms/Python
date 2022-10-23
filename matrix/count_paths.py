@@ -24,7 +24,8 @@ def dfs(grid: "list[list[int]]", row: int, col: int, visit: set) -> int:
     """
     Recursive Backtracking Depth First Search Algorithm
 
-    Starting from top left of a matrix, count the number of paths that can reach the bottom right of a matrix.
+    Starting from top left of a matrix, count the number of 
+    paths that can reach the bottom right of a matrix.
     1 represents a block (inaccessible)
     0 represents a valid space (accessible)
 
