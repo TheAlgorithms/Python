@@ -92,7 +92,7 @@ def superdense_coding(bit_1: int = 1, bit_2: int = 1) -> qiskit.result.counts.Co
     # measure the circuit
     quantum_circuit.measure(qr, cr)
 
-    backend = Aer.get_backend("qasm_simulator")
+    backend = Aer.get_backend("aer_simulator")
     job = execute(quantum_circuit, backend, shots=1000)
 
     return job.result().get_counts(quantum_circuit)
