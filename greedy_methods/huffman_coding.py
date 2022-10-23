@@ -1,11 +1,10 @@
 # Huffman Coding in python
 
-string = 'DADBOBHEHHOOEEDDDD'
+string = "DADBOBHEHHOOEEDDDD"
 
 
 # Creating tree nodes
-class NodeTree(object):
-
+class NodeTree:
     def __init__(self, left=None, right=None):
         self.left = left
         self.right = right
@@ -17,17 +16,17 @@ class NodeTree(object):
         return (self.left, self.right)
 
     def __str__(self):
-        return '%s_%s' % (self.left, self.right)
+        return "{}_{}".format(self.left, self.right)
 
 
 # Main function implementing huffman coding
-def huffman_code_tree(node, left=True, binStr=''):
+def huffman_code_tree(node, left=True, binStr=""):
     if type(node) is str:
         return {node: binStr}
     (l, r) = node.children()
     d = dict()
-    d.update(huffman_code_tree(l, True, binStr + '0'))
-    d.update(huffman_code_tree(r, False, binStr + '1'))
+    d.update(huffman_code_tree(l, True, binStr + "0"))
+    d.update(huffman_code_tree(r, False, binStr + "1"))
     return d
 
 
@@ -54,7 +53,7 @@ while len(nodes) > 1:
 
 huffmanCode = huffman_code_tree(nodes[0][0])
 
-print(' Char | Huffman code ')
-print('----------------------')
+print(" Char | Huffman code ")
+print("----------------------")
 for (char, frequency) in freq:
-    print(' %-4r |%12s' % (char, huffmanCode[char]))
+    print(" %-4r |%12s" % (char, huffmanCode[char]))
