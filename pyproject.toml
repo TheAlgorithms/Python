@@ -1,0 +1,43 @@
+[project]
+name = "Python algorithms"
+description = "All algorithms implemented in Python"
+version = "1.0.0"
+
+authors = [
+    { name = "Christian Clauss", email = "cclauss@me.com" },
+    { name = "Dhruv Manilawala", email = "dhruvmanila@gmail.com" },
+    { name = "John law", email = "dhruvmanila@gmail.com" }
+]
+
+dependencies = [
+    "beautifulsoup4",
+    "fake_useragent",
+    "keras",
+    "lxml",
+    "matplotlib",
+    "numpy",
+    "opencv-python",
+    "pandas",
+    "pillow",
+    "projectq",
+    "qiskit",
+    "requests",
+    "rich",
+    "scikit-fuzzy",
+    "sklearn",
+    "statsmodels",
+    "sympy",
+    "tensorflow",
+    "texttable",
+    "tweepy",
+    "xgboost",
+    "yulewalker"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit"
+]
+
+[build-system]
+requires = ["pytest",]
