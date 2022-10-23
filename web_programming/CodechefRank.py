@@ -7,8 +7,7 @@ To use:
 """
 
 import json
-import sys  # To get the passed arguments in terminal
-
+import sys
 import requests
 
 id = "<codechef_id>"  # Replace with your codechef id
@@ -56,12 +55,12 @@ users = r["list"]
 c = 1
 for i in users:
     v = []
-    rankVar = i["rank"]
-    scoreVar = i["score"]
-    userIdVar = i["user_handle"]
-    v.append(rankVar)
-    v.append(scoreVar)
-    v.append(userIdVar)
+    rank_var = i["rank"]
+    score_var = i["score"]
+    user_id_var = i["user_handle"]
+    v.append(rank_var)
+    v.append(score_var)
+    v.append(user_id_var)
     dict[c] = v
     c += 1
 
