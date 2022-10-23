@@ -9,7 +9,7 @@ LIMIT = 10
 TODAY = datetime.now()
 
 API_URL = (
-    "https://www.forbes.com/forbesapi/person/rtb/0/-estWorthPrev/true.json"
+    "https://www.forbes.com/forbesapi/person/rtb/0/position/true.json"
     "?fields=personName,gender,source,countryOfCitizenship,birthDate,finalWorth"
     f"&limit={LIMIT}"
 )
