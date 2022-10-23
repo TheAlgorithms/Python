@@ -67,6 +67,11 @@ repos:
               project_euler/problem_022/p022_names.txt
           )$
 
+  - repo: https://github.com/abravalheri/validate-pyproject
+    rev: v0.10.1
+    hooks:
+      - id: validate-pyproject
+
   - repo: local
     hooks:
       - id: validate-filenames
