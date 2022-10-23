@@ -1,0 +1,19 @@
+<MainScreen>:
+    BoxLayout:
+        orientation:'vertical'
+        size_hint:.65,1
+        pos_hint:{"center_x":.5,'center_y':.5}
+        BoxLayout:
+            MDTextField:
+                id : phone_no
+                hint_text: "enter phone number"
+                pos_hint:{'center_x':.5,'center_y':.5}
+                size_hint_y:None
+                width:self.parent.width*.8
+        BoxLayout:
+            MDRaisedButton:
+                text: "Call over WIFI"
+                md_bg_color: 1, 0, 1, 1
+                on_press: root.callback(phone_no)
+                pos_hint:{'center_x':.5,'center_y':.5}
+                width:self.parent.width
