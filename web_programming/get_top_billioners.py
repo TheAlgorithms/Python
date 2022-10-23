@@ -1,7 +1,9 @@
 from datetime import datetime
 
 import requests
-from rich import (box, console as rich_console, table as rich_table)
+from rich import box
+from rich import console as rich_console
+from rich import table as rich_table
 
 LIMIT = 10
 TODAY = datetime.now()
