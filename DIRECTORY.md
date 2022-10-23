@@ -42,8 +42,8 @@
   * [Binary Xor Operator](bit_manipulation/binary_xor_operator.py)
   * [Count 1S Brian Kernighan Method](bit_manipulation/count_1s_brian_kernighan_method.py)
   * [Count Number Of One Bits](bit_manipulation/count_number_of_one_bits.py)
-  * [Even Or Not](bit_manipulation/even_or_not.py)
   * [Gray Code Sequence](bit_manipulation/gray_code_sequence.py)
+  * [Is Even](bit_manipulation/is_even.py)
   * [Reverse Bits](bit_manipulation/reverse_bits.py)
   * [Single Bit Manipulation Operations](bit_manipulation/single_bit_manipulation_operations.py)
 
