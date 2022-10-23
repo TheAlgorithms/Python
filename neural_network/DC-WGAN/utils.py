@@ -31,5 +31,5 @@ def save_checkpoint(state, filename="celeba_wgan_gp.pth.tar"):
 
 def load_checkpoint(checkpoint, gen, disc):
     print("=> Loading checkpoint")
-    gen.load_state_dict(checkpoint['gen'])
-    disc.load_state_dict(checkpoint['disc'])
+    gen.load_state_dict(checkpoint["gen"])
+    disc.load_state_dict(checkpoint["disc"])

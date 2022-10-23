@@ -1,11 +1,10 @@
-
 import torch
 import torch.nn as nn
 
 
 class Discriminator(nn.Module):
     def __init__(self, channels_img, features_d):
-        super(Discriminator, self).__init__()
+        super().__init__()
         self.disc = nn.Sequential(
             # input: N x channels_img x 64 x 64
             nn.Conv2d(channels_img, features_d, kernel_size=4, stride=2, padding=1),
@@ -21,7 +20,12 @@ class Discriminator(nn.Module):
     def _block(self, in_channels, out_channels, kernel_size, stride, padding):
         return nn.Sequential(
             nn.Conv2d(
-                in_channels, out_channels, kernel_size, stride, padding, bias=False,
+                in_channels,
+                out_channels,
+                kernel_size,
+                stride,
+                padding,
+                bias=False,
             ),
             nn.InstanceNorm2d(out_channels, affine=True),
             nn.LeakyReLU(0.2),
@@ -33,7 +37,7 @@ class Discriminator(nn.Module):
 
 class Generator(nn.Module):
     def __init__(self, channels_noise, channels_img, features_g):
-        super(Generator, self).__init__()
+        super().__init__()
         self.net = nn.Sequential(
             # Input: N x channels_noise x 1 x 1
             self._block(channels_noise, features_g * 16, 4, 1, 0),  # img: 4x4
@@ -50,7 +54,12 @@ class Generator(nn.Module):
     def _block(self, in_channels, out_channels, kernel_size, stride, padding):
         return nn.Sequential(
             nn.ConvTranspose2d(
-                in_channels, out_channels, kernel_size, stride, padding, bias=False,
+                in_channels,
+                out_channels,
+                kernel_size,
+                stride,
+                padding,
+                bias=False,
             ),
             nn.BatchNorm2d(out_channels),
             nn.ReLU(),
