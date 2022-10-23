@@ -947,6 +947,7 @@
   * [Quantum Random](quantum/quantum_random.py)
   * [Ripple Adder Classic](quantum/ripple_adder_classic.py)
   * [Single Qubit Measure](quantum/single_qubit_measure.py)
+  * [Superdense Coding](quantum/superdense_coding.py)
 
 ## Scheduling
   * [First Come First Served](scheduling/first_come_first_served.py)
