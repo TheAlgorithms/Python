@@ -40,8 +40,8 @@ def wave_formula(calc_to_do: int) -> float:
 
     """
     Plan to add this later
-    
-    
+
+
     Random Wave Equation Selected
 
     Wavelength = Wave Speed / Frequency    |
