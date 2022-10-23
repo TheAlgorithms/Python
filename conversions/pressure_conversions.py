@@ -56,11 +56,7 @@ def pressure_conversion(value: float, from_type: str, to_type: str) -> float:
     0.019336718261000002
     >>> pressure_conversion(4, "wrongUnit", "atm")
     Traceback (most recent call last):
-      File "/usr/lib/python3.8/doctest.py", line 1336, in __run
-        exec(compile(example.source, filename, "single",
-      File "<doctest __main__.pressure_conversion[8]>", line 1, in <module>
-        pressure_conversion(4, "wrongUnit", "atm")
-      File "<string>", line 67, in pressure_conversion
+        ...
     ValueError: Invalid 'from_type' value: 'wrongUnit'  Supported values are:
     atm, pascal, bar, kilopascal, megapascal, psi, inHg, torr
     """
