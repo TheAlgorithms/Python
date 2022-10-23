@@ -42,19 +42,19 @@ def wave_formula(calc_to_do: int) -> float:
     Inputs/Vars to be used
     ----------------------
     v : Velocity in m/s
-    
-    wavelength : distance between 
-        2 crests, or troughs of a wave, 1 complete cycle 
+
+    wavelength : distance between
+        2 crests, or troughs of a wave, 1 complete cycle
         of a wave in meters
-        
+
     frequency : cycles/second in Hz
-    
-    
+
+
     Returns
     -------
-    v, or wavelength, or frequency depending on the situation in 
+    v, or wavelength, or frequency depending on the situation in
     var ans
-    
+
     >>> wavelength=5 * frequency=5
     v = 25
     """
@@ -89,6 +89,7 @@ def wave_formula(calc_to_do: int) -> float:
         ans = frequency
 
     return {"Ans": ans}
+
 
 if __name__ == "__main__":
     import doctest
