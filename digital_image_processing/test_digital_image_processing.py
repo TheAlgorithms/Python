@@ -8,6 +8,7 @@ from PIL import Image
 
 from digital_image_processing import change_contrast as cc
 from digital_image_processing import convert_to_negative as cn
+from digital_image_processing import logarithmic_transformation as lt
 from digital_image_processing import sepia as sp
 from digital_image_processing.dithering import burkes as bs
 from digital_image_processing.edge_detection import canny as canny
@@ -36,6 +37,12 @@ def test_change_contrast():
         assert str(cc.change_contrast(img, 110)).startswith(
             "<PIL.Image.Image image mode=RGB size=100x100 at"
         )
+
+
+# Test: logarithmic_transformation()
+def test_logarithmic_transformation():
+    image_log = lt.logarithmic_transformation(img)
+    assert image_log.any()
 
 
 # canny.gen_gaussian_kernel()
