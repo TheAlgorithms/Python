@@ -73,8 +73,8 @@ def wave_formula(calc_to_do: int) -> float:
         wavelength_str = str(wavelength)
         frequency_str = str(frequency)
         ans = frequency
-        
+
     return ans
-     
+
 
 wave_formula(calc_to_do)
