@@ -44,7 +44,8 @@ dev = [
 ]
 
 [tool.setuptools]
-packages = [
+# packages = [ ] does not work!
+py_modules = [
     "arithmetic_analysis",
     "audio_filters",
     "backtracking",
