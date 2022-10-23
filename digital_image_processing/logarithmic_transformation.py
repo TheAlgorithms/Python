@@ -16,7 +16,7 @@ import numpy as np
 from cv2 import destroyAllWindows, imread, imshow, waitKey
 
 
-def logarithmic_transformation(image) -> np.array:
+def logarithmic_transformation(image: np.array) -> np.array:
     # Transforming pixel values
     image_log = (np.log(image + 1) / np.log(1 + np.max(image))) * 255
 
