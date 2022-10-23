@@ -62,7 +62,7 @@ def display_billionaires(forbes_billionaires: list[dict[str, str]]) -> None:
     """
 
     table = rich_table.Table(
-        title=f"Forbes Real Time Billionaires at {TODAY:%Y-%m-%d %H:%M}",
+        title=f"Forbes Top {LIMIT} Real Time Billionaires at {TODAY:%Y-%m-%d %H:%M}",
         style="green",
         highlight=True,
         box=box.SQUARE,
