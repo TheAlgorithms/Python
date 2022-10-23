@@ -1,5 +1,6 @@
 """
-CAUTION: You may get a json.decoding error.  This works for some of us but fails for others.
+CAUTION: You may get a json.decoding error.
+This works for some of us but fails for others.
 """
 
 from datetime import datetime
