@@ -7,6 +7,7 @@ numpy
 opencv-python
 pandas
 pillow
+projectq
 qiskit
 requests
 scikit-fuzzy

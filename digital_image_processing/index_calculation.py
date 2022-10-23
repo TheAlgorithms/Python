@@ -105,7 +105,6 @@ class IndexCalculation:
     """
 
     def __init__(self, red=None, green=None, blue=None, red_edge=None, nir=None):
-        # print("Numpy version: " + np.__version__)
         self.set_matricies(red=red, green=green, blue=blue, red_edge=red_edge, nir=nir)
 
     def set_matricies(self, red=None, green=None, blue=None, red_edge=None, nir=None):

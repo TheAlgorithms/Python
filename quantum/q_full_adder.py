@@ -11,7 +11,6 @@ https://www.quantum-inspire.com/kbase/full-adder/
 import math
 
 import qiskit
-from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
 
 
 def quantum_full_adder(
@@ -38,25 +37,25 @@ def quantum_full_adder(
         carry_in: carry in for the circuit.
     Returns:
         qiskit.result.counts.Counts: sum result counts.
-    >>> quantum_full_adder(1,1,1)
+    >>> quantum_full_adder(1, 1, 1)
     {'11': 1000}
-    >>> quantum_full_adder(0,0,1)
+    >>> quantum_full_adder(0, 0, 1)
     {'01': 1000}
-    >>> quantum_full_adder(1,0,1)
+    >>> quantum_full_adder(1, 0, 1)
     {'10': 1000}
-    >>> quantum_full_adder(1,-4,1)
+    >>> quantum_full_adder(1, -4, 1)
     Traceback (most recent call last):
         ...
     ValueError: inputs must be positive.
-    >>> quantum_full_adder('q',0,1)
+    >>> quantum_full_adder('q', 0, 1)
     Traceback (most recent call last):
         ...
     TypeError: inputs must be integers.
-    >>> quantum_full_adder(0.5,0,1)
+    >>> quantum_full_adder(0.5, 0, 1)
     Traceback (most recent call last):
         ...
     ValueError: inputs must be exact integers.
-    >>> quantum_full_adder(0,1,3)
+    >>> quantum_full_adder(0, 1, 3)
     Traceback (most recent call last):
         ...
     ValueError: inputs must be less or equal to 2.
@@ -78,12 +77,12 @@ def quantum_full_adder(
         raise ValueError("inputs must be less or equal to 2.")
 
     # build registers
-    qr = QuantumRegister(4, "qr")
-    cr = ClassicalRegister(2, "cr")
+    qr = qiskit.QuantumRegister(4, "qr")
+    cr = qiskit.ClassicalRegister(2, "cr")
     # list the entries
     entry = [input_1, input_2, carry_in]
 
-    quantum_circuit = QuantumCircuit(qr, cr)
+    quantum_circuit = qiskit.QuantumCircuit(qr, cr)
 
     for i in range(0, 3):
         if entry[i] == 2:
@@ -102,11 +101,11 @@ def quantum_full_adder(
 
     quantum_circuit.measure([2, 3], cr)  # measure the last two qbits
 
-    backend = Aer.get_backend("qasm_simulator")
-    job = execute(quantum_circuit, backend, shots=1000)
+    backend = qiskit.Aer.get_backend("aer_simulator")
+    job = qiskit.execute(quantum_circuit, backend, shots=1000)
 
     return job.result().get_counts(quantum_circuit)
 
 
 if __name__ == "__main__":
-    print(f"Total sum count for state is: {quantum_full_adder(1,1,1)}")
+    print(f"Total sum count for state is: {quantum_full_adder(1, 1, 1)}")

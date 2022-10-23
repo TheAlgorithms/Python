@@ -2,11 +2,11 @@
 # https://en.wikipedia.org/wiki/Adder_(electronics)#Full_adder
 # https://en.wikipedia.org/wiki/Controlled_NOT_gate
 
-from qiskit import Aer, QuantumCircuit, execute
+import qiskit
 from qiskit.providers import Backend
 
 
-def store_two_classics(val1: int, val2: int) -> tuple[QuantumCircuit, str, str]:
+def store_two_classics(val1: int, val2: int) -> tuple[qiskit.QuantumCircuit, str, str]:
     """
     Generates a Quantum Circuit which stores two classical integers
     Returns the circuit and binary representation of the integers
@@ -21,10 +21,10 @@ def store_two_classics(val1: int, val2: int) -> tuple[QuantumCircuit, str, str]:
 
     # We need (3 * number of bits in the larger number)+1 qBits
     # The second parameter is the number of classical registers, to measure the result
-    circuit = QuantumCircuit((len(x) * 3) + 1, len(x) + 1)
+    circuit = qiskit.QuantumCircuit((len(x) * 3) + 1, len(x) + 1)
 
     # We are essentially "not-ing" the bits that are 1
-    # Reversed because its easier to perform ops on more significant bits
+    # Reversed because it's easier to perform ops on more significant bits
     for i in range(len(x)):
         if x[::-1][i] == "1":
             circuit.x(i)
@@ -36,7 +36,7 @@ def store_two_classics(val1: int, val2: int) -> tuple[QuantumCircuit, str, str]:
 
 
 def full_adder(
-    circuit: QuantumCircuit,
+    circuit: qiskit.QuantumCircuit,
     input1_loc: int,
     input2_loc: int,
     carry_in: int,
@@ -55,14 +55,14 @@ def full_adder(
 
 # The default value for **backend** is the result of a function call which is not
 # normally recommended and causes flake8-bugbear to raise a B008 error. However,
-# in this case, this is accptable because `Aer.get_backend()` is called when the
+# in this case, this is acceptable because `Aer.get_backend()` is called when the
 # function is defined and that same backend is then reused for all function calls.
 
 
 def ripple_adder(
     val1: int,
     val2: int,
-    backend: Backend = Aer.get_backend("qasm_simulator"),  # noqa: B008
+    backend: Backend = qiskit.Aer.get_backend("aer_simulator"),  # noqa: B008
 ) -> int:
     """
     Quantum Equivalent of a Ripple Adder Circuit
@@ -104,7 +104,7 @@ def ripple_adder(
     for i in range(len(x) + 1):
         circuit.measure([(len(x) * 2) + i], [i])
 
-    res = execute(circuit, backend, shots=1).result()
+    res = qiskit.execute(circuit, backend, shots=1).result()
 
     # The result is in binary. Convert it back to int
     return int(list(res.get_counts())[0], 2)
