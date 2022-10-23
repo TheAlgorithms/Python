@@ -1,18 +1,12 @@
-"""
-Theory:-
-    https://www.mathsisfun.com/algebra/systems-linear-equations-matrices.html
-    Cramer's rule for 2x2 matrix:-
-    https://www.chilimath.com/lessons/advanced-algebra/cramers-rule-with-two-variables
-    a1x + b1y = = d1
-    a2x + b2y = = d2
-"""
+# https://www.chilimath.com/lessons/advanced-algebra/cramers-rule-with-two-variables
+# https://en.wikipedia.org/wiki/Cramer%27s_rule
 
 
-def calculate_x_and_y(eq1: list[int], eq2: list[int]) -> None:
+def calculate_x_and_y(equation1: list[int], equation2: list[int]) -> None:
     """
     Solves the system of linear equation in 2 variables.
-    :param: eq1: list of 3 numbers
-    :param: eq2: list of 3 numbers
+    :param: equation1: list of 3 numbers
+    :param: equation2: list of 3 numbers
     :return: String of result
     input format : [a1, b1, d1], [a2, b2, d2]
     d_matrix = [[a1, b1], [a2, b2]]
@@ -69,14 +63,14 @@ def calculate_x_and_y(eq1: list[int], eq2: list[int]) -> None:
     """
 
     # Checking if the input is valid
-    if not len(eq1) == len(eq2) == 3:
+    if not len(equation1) == len(equation2) == 3:
         raise ValueError("Please enter a valid equation.")
-    elif eq1[0] == eq1[1] == eq2[0] == eq2[1] == 0:
+    elif equation1[0] == equation1[1] == equation2[0] == equation2[1] == 0:
         raise ValueError("Both a & b of two equations can't be zero.")
 
     # Extracting the coefficients
-    a1, b1, c1 = eq1
-    a2, b2, c2 = eq2
+    a1, b1, c1 = equation1
+    a2, b2, c2 = equation2
 
     # Calculating the determinant of matrix d_matrix, dx_matrix and dy_matrix
     d = a1 * b2 - a2 * b1
