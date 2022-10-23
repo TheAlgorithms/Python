@@ -58,7 +58,7 @@ def display_billionaires(forbes_billionaires: list[dict[str, str]]) -> None:
     """Display Forbes real time billionaires in a rich table.
 
     Args:
-        forbes_billionaires (dict): Forbes top 10 real time billionaires
+        forbes_billionaires (list): Forbes top 10 real time billionaires
     """
 
     table = rich_table.Table(
