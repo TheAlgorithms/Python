@@ -44,7 +44,7 @@ from sklearn.preprocessing import StandardScaler
 CANCER_DATASET_URL = (
     #"https://archive.ics.uci.edu/ml/machine-learning-databases/""breast-cancer-wisconsin/wdbc.data"
     https://archive.ics.uci.edu/ml/machine-learning-databases/breast-cancer-wisconsin/
-    
+
 )
 
 
