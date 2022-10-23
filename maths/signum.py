@@ -1,4 +1,6 @@
-"""Signum function"""
+"""
+Signum function -- https://en.wikipedia.org/wiki/Sign_function
+"""
 
 
 def signum(num: float) -> int:
@@ -14,10 +16,7 @@ def signum(num: float) -> int:
     """
     if num < 0:
         return -1
-    elif num > 0:
-        return 1
-    else:
-        return 0
+    return 1 if num else 0
 
 
 def test_signum() -> None:
