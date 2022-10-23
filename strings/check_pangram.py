@@ -21,7 +21,7 @@ def check_pangram(
     >>> check_pangram()
     True
     """
-    frequency = set()
+    frequency = set() # Declaring frequency as Set to have unique occurances of alphabets
     input_str = input_str.replace(
         " ", ""
     )  # Replacing all the Whitespaces in our sentence
