@@ -35,7 +35,7 @@ ans = 0.0
 calc_to_do = random.randint(1, 3)
 
 
-def wave_formula(calc_to_do: int) -> dict{str, float}:
+def wave_formula(calc_to_do: int) -> dict[str, float]:
     global wavelength, v, frequency, ans
 
     """
