@@ -11,11 +11,11 @@ import random
 
 # Maximum size of the population.  Bigger could be faster but is more memory expensive.
 N_POPULATION = 200
-# Number of elements selected in every generation for evolution. The selection takes
-# place from best to worst of that generation. Must be smaller than N_POPULATION.
+# Number of elements selected in every generation of evolution. The selection takes
+# place from best to worst of that generation and must be smaller than N_POPULATION.
 N_SELECTED = 50
 # Probability that an element of a generation can mutate, changing one of its genes.
-# This guarantees that all genes will be used during evolution.
+# This will guarantee that all genes will be used during evolution.
 MUTATION_PROBABILITY = 0.4
 # Just a seed to improve randomness required by the algorithm.
 random.seed(random.randint(0, 1000))
