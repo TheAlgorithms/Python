@@ -1,3 +1,6 @@
+[build-system]
+requires = ["setuptools ~= 65.5"]
+
 [project]
 name = "python-algorithms"
 description = "All algorithms implemented in Python"
