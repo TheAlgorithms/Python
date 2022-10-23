@@ -28,10 +28,7 @@ def is_even(number: int) -> bool:
     >>> is_even(101)
     False
     """
-    if number & 1 == 0:
-        return True
-    else:
-        return False
+    return number & 1 == 0
 
 
 if __name__ == "__main__":
