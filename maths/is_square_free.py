@@ -15,7 +15,7 @@ def is_square_free(factors: list[int]) -> bool:
     False
 
     These are wrong but should return some value
-    it simply checks for repition in the numbers.
+    it simply checks for repetition in the numbers.
     >>> is_square_free([1, 3, 4, 'sd', 0.0])
     True
 

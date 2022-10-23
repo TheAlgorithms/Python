@@ -56,7 +56,7 @@ def decimal_to_binary(no_of_variable: int, minterms: Sequence[float]) -> list[st
     temp = []
     for minterm in minterms:
         string = ""
-        for i in range(no_of_variable):
+        for _ in range(no_of_variable):
             string = str(minterm % 2) + string
             minterm //= 2
         temp.append(string)

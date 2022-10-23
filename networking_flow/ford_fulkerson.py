@@ -6,7 +6,7 @@ Description:
 """
 
 
-def BFS(graph, s, t, parent):
+def bfs(graph, s, t, parent):
     # Return True if there is node that has not iterated.
     visited = [False] * len(graph)
     queue = []
@@ -24,11 +24,11 @@ def BFS(graph, s, t, parent):
     return True if visited[t] else False
 
 
-def FordFulkerson(graph, source, sink):
+def ford_fulkerson(graph, source, sink):
     # This array is filled by BFS and to store path
     parent = [-1] * (len(graph))
     max_flow = 0
-    while BFS(graph, source, sink, parent):
+    while bfs(graph, source, sink, parent):
         path_flow = float("Inf")
         s = sink
 
@@ -58,4 +58,4 @@ graph = [
 ]
 
 source, sink = 0, 5
-print(FordFulkerson(graph, source, sink))
+print(ford_fulkerson(graph, source, sink))

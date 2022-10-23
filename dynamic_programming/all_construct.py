@@ -21,7 +21,7 @@ def all_construct(target: str, word_bank: list[str] | None = None) -> list[list[
     table_size: int = len(target) + 1
 
     table: list[list[list[str]]] = []
-    for i in range(table_size):
+    for _ in range(table_size):
         table.append([])
     # seed value
     table[0] = [[]]  # because empty string has empty combination

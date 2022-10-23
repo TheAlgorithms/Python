@@ -10,7 +10,7 @@ test_graph = [
 ]
 
 
-def BFS(graph, s, t, parent):
+def bfs(graph, s, t, parent):
     # Return True if there is node that has not iterated.
     visited = [False] * len(graph)
     queue = [s]
@@ -36,7 +36,7 @@ def mincut(graph, source, sink):
     max_flow = 0
     res = []
     temp = [i[:] for i in graph]  # Record original cut, copy.
-    while BFS(graph, source, sink, parent):
+    while bfs(graph, source, sink, parent):
         path_flow = float("Inf")
         s = sink
 

@@ -6,7 +6,7 @@ from __future__ import annotations
 from enum import Enum
 
 
-class SI_Unit(Enum):
+class SIUnit(Enum):
     yotta = 24
     zetta = 21
     exa = 18
@@ -29,7 +29,7 @@ class SI_Unit(Enum):
     yocto = -24
 
 
-class Binary_Unit(Enum):
+class BinaryUnit(Enum):
     yotta = 8
     zetta = 7
     exa = 6
@@ -42,17 +42,17 @@ class Binary_Unit(Enum):
 
 def convert_si_prefix(
     known_amount: float,
-    known_prefix: str | SI_Unit,
-    unknown_prefix: str | SI_Unit,
+    known_prefix: str | SIUnit,
+    unknown_prefix: str | SIUnit,
 ) -> float:
     """
     Wikipedia reference: https://en.wikipedia.org/wiki/Binary_prefix
     Wikipedia reference: https://en.wikipedia.org/wiki/International_System_of_Units
-    >>> convert_si_prefix(1, SI_Unit.giga, SI_Unit.mega)
+    >>> convert_si_prefix(1, SIUnit.giga, SIUnit.mega)
     1000
-    >>> convert_si_prefix(1, SI_Unit.mega, SI_Unit.giga)
+    >>> convert_si_prefix(1, SIUnit.mega, SIUnit.giga)
     0.001
-    >>> convert_si_prefix(1, SI_Unit.kilo, SI_Unit.kilo)
+    >>> convert_si_prefix(1, SIUnit.kilo, SIUnit.kilo)
     1
     >>> convert_si_prefix(1, 'giga', 'mega')
     1000
@@ -60,9 +60,9 @@ def convert_si_prefix(
     1000
     """
     if isinstance(known_prefix, str):
-        known_prefix = SI_Unit[known_prefix.lower()]
+        known_prefix = SIUnit[known_prefix.lower()]
     if isinstance(unknown_prefix, str):
-        unknown_prefix = SI_Unit[unknown_prefix.lower()]
+        unknown_prefix = SIUnit[unknown_prefix.lower()]
     unknown_amount: float = known_amount * (
         10 ** (known_prefix.value - unknown_prefix.value)
     )
@@ -71,16 +71,16 @@ def convert_si_prefix(
 
 def convert_binary_prefix(
     known_amount: float,
-    known_prefix: str | Binary_Unit,
-    unknown_prefix: str | Binary_Unit,
+    known_prefix: str | BinaryUnit,
+    unknown_prefix: str | BinaryUnit,
 ) -> float:
     """
     Wikipedia reference: https://en.wikipedia.org/wiki/Metric_prefix
-    >>> convert_binary_prefix(1, Binary_Unit.giga, Binary_Unit.mega)
+    >>> convert_binary_prefix(1, BinaryUnit.giga, BinaryUnit.mega)
     1024
-    >>> convert_binary_prefix(1, Binary_Unit.mega, Binary_Unit.giga)
+    >>> convert_binary_prefix(1, BinaryUnit.mega, BinaryUnit.giga)
     0.0009765625
-    >>> convert_binary_prefix(1, Binary_Unit.kilo, Binary_Unit.kilo)
+    >>> convert_binary_prefix(1, BinaryUnit.kilo, BinaryUnit.kilo)
     1
     >>> convert_binary_prefix(1, 'giga', 'mega')
     1024
@@ -88,9 +88,9 @@ def convert_binary_prefix(
     1024
     """
     if isinstance(known_prefix, str):
-        known_prefix = Binary_Unit[known_prefix.lower()]
+        known_prefix = BinaryUnit[known_prefix.lower()]
     if isinstance(unknown_prefix, str):
-        unknown_prefix = Binary_Unit[unknown_prefix.lower()]
+        unknown_prefix = BinaryUnit[unknown_prefix.lower()]
     unknown_amount: float = known_amount * (
         2 ** ((known_prefix.value - unknown_prefix.value) * 10)
     )

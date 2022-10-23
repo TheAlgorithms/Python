@@ -14,13 +14,13 @@ def negative_exist(arr: list) -> int:
     [-2, 0, 0, 0, 0]
     """
     arr = arr or [0]
-    max = arr[0]
+    max_number = arr[0]
     for i in arr:
         if i >= 0:
             return 0
-        elif max <= i:
-            max = i
-    return max
+        elif max_number <= i:
+            max_number = i
+    return max_number
 
 
 def kadanes(arr: list) -> int:

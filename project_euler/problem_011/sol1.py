@@ -28,23 +28,23 @@ import os
 
 
 def largest_product(grid):
-    nColumns = len(grid[0])
-    nRows = len(grid)
+    n_columns = len(grid[0])
+    n_rows = len(grid)
 
     largest = 0
-    lrDiagProduct = 0
-    rlDiagProduct = 0
+    lr_diag_product = 0
+    rl_diag_product = 0
 
     # Check vertically, horizontally, diagonally at the same time (only works
     # for nxn grid)
-    for i in range(nColumns):
-        for j in range(nRows - 3):
-            vertProduct = grid[j][i] * grid[j + 1][i] * grid[j + 2][i] * grid[j + 3][i]
-            horzProduct = grid[i][j] * grid[i][j + 1] * grid[i][j + 2] * grid[i][j + 3]
+    for i in range(n_columns):
+        for j in range(n_rows - 3):
+            vert_product = grid[j][i] * grid[j + 1][i] * grid[j + 2][i] * grid[j + 3][i]
+            horz_product = grid[i][j] * grid[i][j + 1] * grid[i][j + 2] * grid[i][j + 3]
 
             # Left-to-right diagonal (\) product
-            if i < nColumns - 3:
-                lrDiagProduct = (
+            if i < n_columns - 3:
+                lr_diag_product = (
                     grid[i][j]
                     * grid[i + 1][j + 1]
                     * grid[i + 2][j + 2]
@@ -53,16 +53,18 @@ def largest_product(grid):
 
             # Right-to-left diagonal(/) product
             if i > 2:
-                rlDiagProduct = (
+                rl_diag_product = (
                     grid[i][j]
                     * grid[i - 1][j + 1]
                     * grid[i - 2][j + 2]
                     * grid[i - 3][j + 3]
                 )
 
-            maxProduct = max(vertProduct, horzProduct, lrDiagProduct, rlDiagProduct)
-            if maxProduct > largest:
-                largest = maxProduct
+            max_product = max(
+                vert_product, horz_product, lr_diag_product, rl_diag_product
+            )
+            if max_product > largest:
+                largest = max_product
 
     return largest
 

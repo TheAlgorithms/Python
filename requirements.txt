@@ -7,9 +7,10 @@ numpy
 opencv-python
 pandas
 pillow
+projectq
 qiskit
 requests
-# scikit-fuzzy  # Causing broken builds
+scikit-fuzzy
 sklearn
 statsmodels
 sympy
@@ -17,3 +18,4 @@ tensorflow
 texttable
 tweepy
 xgboost
+yulewalker

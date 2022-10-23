@@ -63,8 +63,8 @@ def power_iteration(
         vector = w / np.linalg.norm(w)
         # Find rayleigh quotient
         # (faster than usual b/c we know vector is normalized already)
-        vectorH = vector.conj().T if is_complex else vector.T
-        lambda_ = np.dot(vectorH, np.dot(input_matrix, vector))
+        vector_h = vector.conj().T if is_complex else vector.T
+        lambda_ = np.dot(vector_h, np.dot(input_matrix, vector))
 
         # Check convergence.
         error = np.abs(lambda_ - lambda_previous) / lambda_
