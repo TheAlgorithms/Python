@@ -10,7 +10,7 @@ how many 'distinct' paths can you take to get to the finish?
 Using a recursive depth-first search algorithm below, you are able to
 find the number of distinct unique paths (count).
 
-'*' will demostrate a path
+'*' will demonstrate a path
 In the example above, there are two distinct paths:
 1.                2.
     *  *  *  0      *  *  *  *
