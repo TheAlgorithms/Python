@@ -18,7 +18,7 @@ def sum_of_harmonic_progression(
     for _ in range(number_of_terms - 1):
         first_term += common_difference
         arithmetic_progression.append(first_term)
-        harmonic_series = [1 / step for step in arithmetic_progression]
+    harmonic_series = [1 / step for step in arithmetic_progression]
     return sum(harmonic_series)
 
 
