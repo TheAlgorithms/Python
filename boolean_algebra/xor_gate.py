@@ -1,6 +1,7 @@
 """
-A XOR Gate is a logic gate in boolean algebra which results to 1 (True) if only one of the two inputs is 1, and
-0 (False) if an even number of inputs are 1.
+A XOR Gate is a logic gate in boolean algebra which results to
+1 (True) if only one of the two inputs is 1, and 0 (False) if
+an even number of inputs are 1.
 Following is the truth table of a XOR Gate:
     ------------------------------
     | Input 1 | Input 2 | Output |
