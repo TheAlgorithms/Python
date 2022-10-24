@@ -16,7 +16,8 @@ Calculate the maximum profit that the shopkeeper can make given maxmum weight th
 be carried.
 """
 
-def knapsack(weights: list, values: list, n: int, max_weight: int,index: int) -> int :
+
+def knapsack(weights: list, values: list, n: int, max_weight: int, index: int) -> int:
     """
     Function description is as follows-
     :param weights: Take a list of weights
@@ -33,18 +34,21 @@ def knapsack(weights: list, values: list, n: int, max_weight: int,index: int) ->
         return 0
     ans1 = 0
     ans2 = 0
-    ans1 = knapsack(weights,values,n,max_weight,index+1)
+    ans1 = knapsack(weights, values, n, max_weight, index + 1)
     if weights[index] <= max_weight:
-        ans2 = values[index] + knapsack(weights,values,n,max_weight-weights[index],index+1)
-    return max(ans1,ans2)
+        ans2 = values[index] + knapsack(
+            weights, values, n, max_weight - weights[index], index + 1
+        )
+    return max(ans1, ans2)
 
-def take_input() :
+
+def take_input():
     """
     This function is to take input from the user
     """
     n = int(input("Input number of items: "))
 
-    if n == 0 :
+    if n == 0:
         return list(), list(), n, 0
 
     weights = list(map(int, input("Input weights separated by spaces: ").split(" ")))
@@ -52,8 +56,6 @@ def take_input() :
     max_weight = int(input("Max weight allowed: "))
 
     return weights, values, n, max_weight
-
-
 
 
 if __name__ == "__main__":
@@ -64,4 +66,4 @@ if __name__ == "__main__":
     weights, values, n, max_weight = take_input()
 
     # Function Call
-    print(knapsack(weights, values, n, max_weight,0))
+    print(knapsack(weights, values, n, max_weight, 0))
