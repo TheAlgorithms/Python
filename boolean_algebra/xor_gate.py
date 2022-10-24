@@ -1,6 +1,6 @@
 """
 A XOR Gate is a logic gate in boolean algebra which results to True(1)
-if only one of the two inputs is 1, and False(1) if even number
+if only one of the two inputs is 1, and False(0) if even number
 of inputs are 1.
 Following is the truth table of a XOR Gate:
     ------------------------------
@@ -13,12 +13,13 @@ Following is the truth table of a XOR Gate:
     ------------------------------
 
 Refer - https://www.geeksforgeeks.org/logic-gates-in-python/
-
 """
 
 
 def xor_gate(input_1: int, input_2: int) -> int:
     """
+    calculate xor of the input values
+
     >>> xor_gate(0, 0)
     0
     >>> xor_gate(0, 1)
@@ -39,17 +40,16 @@ def xor_gate(input_1: int, input_2: int) -> int:
     return int(num_ones % 2 != 0)
 
 
-def main() -> None:
-    print("Truth Table of XOR Gate:")
-    print("|   Input 1   |  Input 2  | Output |")
-    print(f"|      0      |    0      |  {xor_gate(0, 0)}     |")
-    print(f"|      0      |    1      |  {xor_gate(0, 1)}     |")
-    print(f"|      1      |    0      |  {xor_gate(1, 0)}     |")
-    print(f"|      1      |    1      |  {xor_gate(1, 1)}     |")
+def test_xor_gate() -> None:
+    """
+    Tests the xor_gate function
+    """
+    assert xor_gate(0, 0) == 0
+    assert xor_gate(0, 1) == 1
+    assert xor_gate(1, 0) == 1
+    assert xor_gate(1, 1) == 0
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-    main()
+    print(xor_gate(0, 0))
+    print(xor_gate(0, 1))
