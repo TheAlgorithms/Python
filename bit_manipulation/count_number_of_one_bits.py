@@ -1,4 +1,6 @@
 from timeit import timeit
+
+
 def get_set_bits_count_using_brian_kernighans_algorithm(number: int) -> int:
     """
     Count the number of set bits in a 32 bit integer
@@ -23,9 +25,10 @@ def get_set_bits_count_using_brian_kernighans_algorithm(number: int) -> int:
         raise ValueError("the value of input must be positive")
     result = 0
     while number:
-        number &= (number-1)
-        result+= 1
+        number &= number - 1
+        result += 1
     return result
+
 
 def get_set_bits_count_using_modulo_operator(number: int) -> int:
     """
@@ -56,6 +59,7 @@ def get_set_bits_count_using_modulo_operator(number: int) -> int:
         number = number >> 1
     return result
 
+
 def benchmark() -> None:
     """
     Benchmark code for comparing 2 functions,
@@ -67,7 +71,10 @@ def benchmark() -> None:
         "\t\tans =",
         get_set_bits_count_using_modulo_operator(25),
         "\ttime =",
-        timeit("z.get_set_bits_count_using_modulo_operator(25)", setup="import __main__ as z"),
+        timeit(
+            "z.get_set_bits_count_using_modulo_operator(25)",
+            setup="import __main__ as z",
+        ),
         "seconds",
     )
     print(
@@ -75,7 +82,10 @@ def benchmark() -> None:
         "\tans =",
         get_set_bits_count_using_brian_kernighans_algorithm(25),
         "\ttime =",
-        timeit("z.get_set_bits_count_using_brian_kernighans_algorithm(25)", setup="import __main__ as z"),
+        timeit(
+            "z.get_set_bits_count_using_brian_kernighans_algorithm(25)",
+            setup="import __main__ as z",
+        ),
         "seconds",
     )
 
@@ -85,7 +95,10 @@ def benchmark() -> None:
         "\t\tans =",
         get_set_bits_count_using_modulo_operator(37),
         "\ttime =",
-        timeit("z.get_set_bits_count_using_modulo_operator(37)", setup="import __main__ as z"),
+        timeit(
+            "z.get_set_bits_count_using_modulo_operator(37)",
+            setup="import __main__ as z",
+        ),
         "seconds",
     )
     print(
@@ -93,7 +106,10 @@ def benchmark() -> None:
         "\tans =",
         get_set_bits_count_using_brian_kernighans_algorithm(37),
         "\ttime =",
-        timeit("z.get_set_bits_count_using_brian_kernighans_algorithm(37)", setup="import __main__ as z"),
+        timeit(
+            "z.get_set_bits_count_using_brian_kernighans_algorithm(37)",
+            setup="import __main__ as z",
+        ),
         "seconds",
     )
 
@@ -103,7 +119,10 @@ def benchmark() -> None:
         "\t\tans =",
         get_set_bits_count_using_modulo_operator(58),
         "\ttime =",
-        timeit("z.get_set_bits_count_using_modulo_operator(58)", setup="import __main__ as z"),
+        timeit(
+            "z.get_set_bits_count_using_modulo_operator(58)",
+            setup="import __main__ as z",
+        ),
         "seconds",
     )
     print(
@@ -111,7 +130,10 @@ def benchmark() -> None:
         "\tans =",
         get_set_bits_count_using_brian_kernighans_algorithm(58),
         "\ttime =",
-        timeit("z.get_set_bits_count_using_brian_kernighans_algorithm(58)", setup="import __main__ as z"),
+        timeit(
+            "z.get_set_bits_count_using_brian_kernighans_algorithm(58)",
+            setup="import __main__ as z",
+        ),
         "seconds",
     )
 
