@@ -17,14 +17,12 @@ be carried.
 """
 
 
-def knapsack(
-    weights: list, values: list, number_of_items: int, max_weight: int, index: int
-) -> int:
+def knapsack(weights: list, values: list, number_of_items: int, max_weight: int, index: int) -> int:
     """
     Function description is as follows-
     :param weights: Take a list of weights
     :param values: Take a list of profits corresponding to the weights
-    :param number_of_items: number of items available to pick from
+    :param number_of_items: number of items available to pick from 
     :param max_weight: Maximum weight that could be carried
     :param index: the element we are looking at
     :return: Maximum expected gain
@@ -45,32 +43,8 @@ def knapsack(
     return max(ans1, ans2)
 
 
-def take_input() -> tuple[list, list, int, int]:
-    """
-    This function is to take input from the user
-    """
-    number_of_items = int(input("Input number of items: "))
-
-    if number_of_items == 0:
-        return list(), list(), n, 0
-
-    weights = list(map(int, input("Input weights separated by spaces: ").split(" ")))
-    values = list(map(int, input("Input profits separated by spaces: ").split(" ")))
-    max_weight = int(input("Max weight allowed: "))
-
-    return weights, values, number_of_items, max_weight
-
-
 if __name__ == "__main__":
-    print(
-        "Input profits, weights, and then max_weight (all positive ints) separated by "
-        "spaces."
-    )
-    weights, values, number_of_items, max_weight = take_input()
-
-    # Function Call
-    print(knapsack(weights, values, number_of_items, max_weight, 0))
-
+    
     import doctest
 
     doctest.testmod()
