@@ -1,6 +1,7 @@
 """
 A XNOR Gate is a logic gate in boolean algebra which results to 0 (False) if both the
-inputs are different, and 1 (True), if the inputs are same. It's basically adding NOT gate to an XOR gate
+inputs are different, and 1 (True), if the inputs are same.
+It's similar to adding a NOT gate to an XOR gate
 Following is the truth table of a XNOR Gate:
     ------------------------------
     | Input 1 | Input 2 | Output |
