@@ -40,7 +40,7 @@ def test_or_gate() -> None:
 
 
 if __name__ == "__main__":
-    print(or_gate(0,1))
-    print(or_gate(1,0))
-    print(or_gate(0,0))
-    print(or_gate(1,1))
+    print(or_gate(0, 1))
+    print(or_gate(1, 0))
+    print(or_gate(0, 0))
+    print(or_gate(1, 1))
