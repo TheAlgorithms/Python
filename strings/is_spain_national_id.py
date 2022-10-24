@@ -19,7 +19,7 @@ def is_spain_national_id(spanish_id: str) -> bool:
     False
     >>> is_spain_national_id("12345678I")
     False
-    >>> is_spain_national_id("12345678-Z")  # Some systems add a dash between number and letter
+    >>> is_spain_national_id("12345678-Z")  # Some systems add a dash between number & letter
     True
     >>> is_spain_national_id("12345678")
     Traceback (most recent call last):
