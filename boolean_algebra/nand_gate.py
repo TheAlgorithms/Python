@@ -17,7 +17,7 @@ Refer - https://www.geeksforgeeks.org/logic-gates-in-python/
 
 def nand_gate(input_1: int, input_2: int) -> int:
     """
-    Calculate AND of the input values
+    Calculate NAND of the input values
     >>> nand_gate(0, 0)
     1
     >>> nand_gate(0, 1)
