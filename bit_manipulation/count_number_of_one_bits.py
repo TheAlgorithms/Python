@@ -19,7 +19,7 @@ def get_set_bits_count_using_brian_kernighans_algorithm(number: int) -> int:
     >>> get_set_bits_count_using_brian_kernighans_algorithm(-1)
     Traceback (most recent call last):
         ...
-    ValueError: the value of input must be positive
+    ValueError: the value of input must not be negative
     """
     if number < 0:
         raise ValueError("the value of input must be positive")
