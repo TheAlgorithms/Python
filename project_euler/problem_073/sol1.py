@@ -24,11 +24,11 @@ def solution(max_d: int = 12_000) -> int:
     Returns number of fractions lie between 1/3 and 1/2 in the sorted set
     of reduced proper fractions for d ≤ max_d
 
-    >>> solution(0)
+    >>> solution(4)
     0
 
-    >>> solution(1)
-    0
+    >>> solution(5)
+    1
 
     >>> solution(8)
     3
