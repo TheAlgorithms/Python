@@ -65,6 +65,7 @@ def benchmark() -> None:
     Benchmark code for comparing 2 functions, with different length int values.
     Brian Kernighan's algorithm is consistantly faster than using modulo_operator.
     """
+
     def do_benchmark(number: int) -> None:
         setup = "import __main__ as z"
         print(f"Benchmark when {number = }:")
