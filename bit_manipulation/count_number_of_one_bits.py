@@ -59,10 +59,12 @@ def get_set_bits_count_using_modulo_operator(number: int) -> int:
         number = number >> 1
     return result
 
+
 def benchmark() -> None:
     """
     Benchmark code for comparing 2 functions, with different length int values.
     """
+
     def do_benchmark(number: int) -> None:
         setup = "import __main__ as z"
         print(f"Benchmark when {number = }:")
@@ -80,11 +82,6 @@ def benchmark() -> None:
         do_benchmark(number)
         print()
 
-
-
-
-
-    
 
 if __name__ == "__main__":
     import doctest
