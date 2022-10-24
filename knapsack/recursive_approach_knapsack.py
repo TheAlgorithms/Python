@@ -17,45 +17,46 @@ be carried.
 """
 
 
-def knapsack(weights: list, values: list, n: int, max_weight: int, index: int) -> int:
+def knapsack(weights: list, values: list, number_of_items: int, max_weight: int, index: int) -> int:
     """
     Function description is as follows-
     :param weights: Take a list of weights
     :param values: Take a list of profits corresponding to the weights
+    :param number_of_items: number of items available to pick from 
     :param max_weight: Maximum weight that could be carried
     :param index: the element we are looking at
     :return: Maximum expected gain
-    >>> knapsack([1, 2, 4, 5], [5, 4, 8, 6], 4, 15)
+    >>> knapsack([1, 2, 4, 5], [5, 4, 8, 6], 4, 5, 0)
     13
-    >>> knapsack([3 ,4 , 5], [10, 9 , 8], 3, 25)
+    >>> knapsack([3 ,4 , 5], [10, 9 , 8], 3, 25, 0)
     27
     """
-    if index == len(weights):
+    if index == number_of_items:
         return 0
     ans1 = 0
     ans2 = 0
-    ans1 = knapsack(weights, values, n, max_weight, index + 1)
+    ans1 = knapsack(weights, values, number_of_items, max_weight, index + 1)
     if weights[index] <= max_weight:
         ans2 = values[index] + knapsack(
-            weights, values, n, max_weight - weights[index], index + 1
+            weights, values, number_of_items, max_weight - weights[index], index + 1
         )
     return max(ans1, ans2)
 
 
-def take_input():
+def take_input() -> tuple[list, list, int, int]:
     """
     This function is to take input from the user
     """
-    n = int(input("Input number of items: "))
+    number_of_items = int(input("Input number of items: "))
 
-    if n == 0:
+    if number_of_items == 0:
         return list(), list(), n, 0
 
     weights = list(map(int, input("Input weights separated by spaces: ").split(" ")))
     values = list(map(int, input("Input profits separated by spaces: ").split(" ")))
     max_weight = int(input("Max weight allowed: "))
 
-    return weights, values, n, max_weight
+    return weights, values, number_of_items, max_weight
 
 
 if __name__ == "__main__":
@@ -63,7 +64,11 @@ if __name__ == "__main__":
         "Input profits, weights, and then max_weight (all positive ints) separated by "
         "spaces."
     )
-    weights, values, n, max_weight = take_input()
+    weights, values, number_of_items, max_weight = take_input()
 
     # Function Call
-    print(knapsack(weights, values, n, max_weight, 0))
+    print(knapsack(weights, values, number_of_items, max_weight, 0))
+    
+    import doctest
+
+    doctest.testmod()
