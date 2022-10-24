@@ -2,7 +2,7 @@ NUMBERS_PLUS_LETTER = "Input must be a string of 8 numbers plus letter"
 LOOKUP_LETTERS = "TRWAGMYFPDXBNJZSQVHLCKE"
 
 
-def validate(spanish_id: str) -> bool:
+def is_spain_national_id(spanish_id: str) -> bool:
     """
     Spain National Id is a string composed by 8 numbers plus a letter
     The letter in fact is not part of the ID, it acts as a validator,
@@ -11,44 +11,44 @@ def validate(spanish_id: str) -> bool:
 
     https://en.wikipedia.org/wiki/Documento_Nacional_de_Identidad_(Spain)#Number
 
-    >>> validate("12345678Z")
+    >>> is_spain_national_id("12345678Z")
     True
-    >>> validate("12345678z") # It is case-insensitive
+    >>> is_spain_national_id("12345678z")  # It is case-insensitive
     True
-    >>> validate("12345678x")
+    >>> is_spain_national_id("12345678x")
     False
-    >>> validate("12345678I")
+    >>> is_spain_national_id("12345678I")
     False
-    >>> validate("12345678-Z") # Some systems add a dash between number and letter
+    >>> is_spain_national_id("12345678-Z")  # Some systems add a dash between number and letter
     True
-    >>> validate("12345678")
+    >>> is_spain_national_id("12345678")
     Traceback (most recent call last):
         ...
     ValueError: Input must be a string of 8 numbers plus letter
-    >>> validate("123456709")
+    >>> is_spain_national_id("123456709")
     Traceback (most recent call last):
         ...
     ValueError: Input must be a string of 8 numbers plus letter
-    >>> validate("1234567--Z")
+    >>> is_spain_national_id("1234567--Z")
     Traceback (most recent call last):
         ...
     ValueError: Input must be a string of 8 numbers plus letter
-    >>> validate("1234Z")
+    >>> is_spain_national_id("1234Z")
     Traceback (most recent call last):
         ...
     ValueError: Input must be a string of 8 numbers plus letter
-    >>> validate("1234ZzZZ")
+    >>> is_spain_national_id("1234ZzZZ")
     Traceback (most recent call last):
         ...
     ValueError: Input must be a string of 8 numbers plus letter
-    >>> validate(12345678)
+    >>> is_spain_national_id(12345678)
     Traceback (most recent call last):
         ...
-    ValueError: Expected string as input, found int
+    TypeError: Expected string as input, found int
     """
 
     if not isinstance(spanish_id, str):
-        raise ValueError(f"Expected string as input, found {type(spanish_id).__name__}")
+        raise TypeError(f"Expected string as input, found {type(spanish_id).__name__}")
 
     spanish_id_clean = spanish_id.replace("-", "").upper()
     if len(spanish_id_clean) != 9:
@@ -60,13 +60,10 @@ def validate(spanish_id: str) -> bool:
     except ValueError as ex:
         raise ValueError(NUMBERS_PLUS_LETTER) from ex
 
-    if letter in "0123456789":
+    if letter.isdigit():
         raise ValueError(NUMBERS_PLUS_LETTER)
 
-    modulus = number % 23
-    expected_letter = LOOKUP_LETTERS[modulus]
-
-    return letter == expected_letter
+    return letter == LOOKUP_LETTERS[number % 23]
 
 
 if __name__ == "__main__":
