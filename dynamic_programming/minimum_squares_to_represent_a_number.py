@@ -26,8 +26,8 @@ def minimum_squares_to_represent_a_number(number: int) -> int:
         ans = sys.maxsize
         root = int(math.sqrt(i))
         for j in range(1, root + 1):
-            currAns = 1 + dp[i - (j**2)]
-            ans = min(ans, currAns)
+            curr_ans = 1 + dp[i - (j**2)]
+            ans = min(ans, curr_ans)
         dp[i] = ans
     return dp[number]
 
