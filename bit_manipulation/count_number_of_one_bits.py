@@ -59,84 +59,32 @@ def get_set_bits_count_using_modulo_operator(number: int) -> int:
         number = number >> 1
     return result
 
-
 def benchmark() -> None:
     """
-    Benchmark code for comparing 2 functions,
-    with 3 different length int values.
+    Benchmark code for comparing 2 functions, with different length int values.
     """
-    print("\nFor 25 = :")
-    print(
-        "> get_set_bits_count_using_modulo_operator()",
-        "\t\tans =",
-        get_set_bits_count_using_modulo_operator(25),
-        "\ttime =",
-        timeit(
-            "z.get_set_bits_count_using_modulo_operator(25)",
-            setup="import __main__ as z",
-        ),
-        "seconds",
-    )
-    print(
-        "> get_set_bits_count_using_brian_kernighans_algorithm()",
-        "\tans =",
-        get_set_bits_count_using_brian_kernighans_algorithm(25),
-        "\ttime =",
-        timeit(
+    def do_benchmark(number: int) -> None:
+        setup = "import __main__ as z"
+        print(f"Benchmark when {number = }:")
+        print(f"{get_set_bits_count_using_modulo_operator(number) = }")
+        timing = timeit("z.get_set_bits_count_using_modulo_operator(25)", setup=setup)
+        print(f"timeit() runs in {timing} seconds")
+        print(f"{get_set_bits_count_using_brian_kernighans_algorithm(number) = }")
+        timing = timeit(
             "z.get_set_bits_count_using_brian_kernighans_algorithm(25)",
-            setup="import __main__ as z",
-        ),
-        "seconds",
-    )
+            setup=setup,
+        )
+        print(f"timeit() runs in {timing} seconds")
 
-    print("\nFor 37 = :")
-    print(
-        "> get_set_bits_count_using_modulo_operator()",
-        "\t\tans =",
-        get_set_bits_count_using_modulo_operator(37),
-        "\ttime =",
-        timeit(
-            "z.get_set_bits_count_using_modulo_operator(37)",
-            setup="import __main__ as z",
-        ),
-        "seconds",
-    )
-    print(
-        "> get_set_bits_count_using_brian_kernighans_algorithm()",
-        "\tans =",
-        get_set_bits_count_using_brian_kernighans_algorithm(37),
-        "\ttime =",
-        timeit(
-            "z.get_set_bits_count_using_brian_kernighans_algorithm(37)",
-            setup="import __main__ as z",
-        ),
-        "seconds",
-    )
+    for number in (25, 37, 58, 0):
+        do_benchmark(number)
+        print()
 
-    print("\nFor 58 = :")
-    print(
-        "> get_set_bits_count_using_modulo_operator()",
-        "\t\tans =",
-        get_set_bits_count_using_modulo_operator(58),
-        "\ttime =",
-        timeit(
-            "z.get_set_bits_count_using_modulo_operator(58)",
-            setup="import __main__ as z",
-        ),
-        "seconds",
-    )
-    print(
-        "> get_set_bits_count_using_brian_kernighans_algorithm()",
-        "\tans =",
-        get_set_bits_count_using_brian_kernighans_algorithm(58),
-        "\ttime =",
-        timeit(
-            "z.get_set_bits_count_using_brian_kernighans_algorithm(58)",
-            setup="import __main__ as z",
-        ),
-        "seconds",
-    )
 
+
+
+
+    
 
 if __name__ == "__main__":
     import doctest
