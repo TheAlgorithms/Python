@@ -517,11 +517,12 @@ equal to three as number of sides"
 length of a side"
         )
     return (sides * length**2) / (4 * tan(pi / sides))
-    return (sides*length**2)/(4*tan(pi/sides))
+    return (sides * length**2) / (4 * tan(pi / sides))
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)  # verbose so we can see methods missing tests
 
     print("[DEMO] Areas of various geometric shapes: \n")
