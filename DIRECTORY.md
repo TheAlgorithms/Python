@@ -45,6 +45,7 @@
   * [Count 1S Brian Kernighan Method](bit_manipulation/count_1s_brian_kernighan_method.py)
   * [Count Number Of One Bits](bit_manipulation/count_number_of_one_bits.py)
   * [Gray Code Sequence](bit_manipulation/gray_code_sequence.py)
+  * [Is Even](bit_manipulation/is_even.py)
   * [Reverse Bits](bit_manipulation/reverse_bits.py)
   * [Single Bit Manipulation Operations](bit_manipulation/single_bit_manipulation_operations.py)
 
@@ -461,7 +462,8 @@
   * [Similarity Search](machine_learning/similarity_search.py)
   * [Support Vector Machines](machine_learning/support_vector_machines.py)
   * [Word Frequency Functions](machine_learning/word_frequency_functions.py)
-  * [Xgboostclassifier](machine_learning/xgboostclassifier.py)
+  * [Xgboost Classifier](machine_learning/xgboost_classifier.py)
+  * [Xgboost Regressor](machine_learning/xgboost_regressor.py)
 
 ## Maths
   * [3N Plus 1](maths/3n_plus_1.py)
@@ -582,6 +584,7 @@
     * [P Series](maths/series/p_series.py)
   * [Sieve Of Eratosthenes](maths/sieve_of_eratosthenes.py)
   * [Sigmoid](maths/sigmoid.py)
+  * [Signum](maths/signum.py)
   * [Simpson Rule](maths/simpson_rule.py)
   * [Sin](maths/sin.py)
   * [Sock Merchant](maths/sock_merchant.py)
@@ -590,6 +593,7 @@
   * [Sum Of Arithmetic Series](maths/sum_of_arithmetic_series.py)
   * [Sum Of Digits](maths/sum_of_digits.py)
   * [Sum Of Geometric Progression](maths/sum_of_geometric_progression.py)
+  * [Sum Of Harmonic Series](maths/sum_of_harmonic_series.py)
   * [Sylvester Sequence](maths/sylvester_sequence.py)
   * [Test Prime Check](maths/test_prime_check.py)
   * [Trapezoidal Rule](maths/trapezoidal_rule.py)
@@ -835,6 +839,8 @@
   * Problem 072
     * [Sol1](project_euler/problem_072/sol1.py)
     * [Sol2](project_euler/problem_072/sol2.py)
+  * Problem 073
+    * [Sol1](project_euler/problem_073/sol1.py)
   * Problem 074
     * [Sol1](project_euler/problem_074/sol1.py)
     * [Sol2](project_euler/problem_074/sol2.py)
