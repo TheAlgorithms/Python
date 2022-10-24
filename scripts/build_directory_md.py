@@ -1,17 +1,27 @@
 #!/usr/bin/env python3
 
+from __future__ import annotations
+
 import os
-from collections.abc import Iterator
+import subprocess
+from collections.abc import Iterable, Iterator
+
+
+def get_git_files(top_dir: str = ".") -> Iterable[str]:
+    cmd = ["git", "ls-files", top_dir]
+    ls_files = subprocess.run(cmd, capture_output=True)
+    paths = iter(ls_files.stdout.decode().strip().split("\n"))
+    return paths
 
 
 def good_file_paths(top_dir: str = ".") -> Iterator[str]:
-    for dir_path, dir_names, filenames in os.walk(top_dir):
-        dir_names[:] = [d for d in dir_names if d != "scripts" and d[0] not in "._"]
-        for filename in filenames:
-            if filename == "__init__.py":
-                continue
-            if os.path.splitext(filename)[1] in (".py", ".ipynb"):
-                yield os.path.join(dir_path, filename).lstrip("./")
+    for filepath in get_git_files():
+        path = os.path.basename(filepath)
+        if path == "__init__.py":
+            continue
+
+        if path.split(".")[-1] in ("py", "ipynb"):
+            yield filepath
 
 
 def md_prefix(i):
