@@ -1,6 +1,7 @@
 """
 A NAND Gate is a logic gate in boolean algebra which results to 0 (False) if both the
-inputs are 1, and 1 (True) otherwise. It's similar to adding a NOT gate along with an AND gate.
+inputs are 1, and 1 (True) otherwise. It's similar to adding
+a NOT gate along with an AND gate.
 Following is the truth table of a NAND Gate:
     ------------------------------
     | Input 1 | Input 2 | Output |
