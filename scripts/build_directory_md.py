@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import pathlib
 import subprocess
 from collections.abc import Iterable, Iterator
 
@@ -16,11 +17,11 @@ def get_git_files(top_dir: str = ".") -> Iterable[str]:
 
 def good_file_paths(top_dir: str = ".") -> Iterator[str]:
     for filepath in get_git_files():
-        path = os.path.basename(filepath)
-        if path == "__init__.py":
+        path = pathlib.Path(filepath)
+        if path.name == "__init__.py":
             continue
 
-        if path.split(".")[-1] in ("py", "ipynb"):
+        if path.suffix in (".py", ".ipynb"):
             yield filepath
 
 
