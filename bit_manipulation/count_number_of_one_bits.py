@@ -63,7 +63,7 @@ def get_set_bits_count_using_modulo_operator(number: int) -> int:
 def benchmark() -> None:
     """
     Benchmark code for comparing 2 functions, with different length int values.
-    Brian Kernighan's algorithm is consistantly faster than using modulo_operator.
+    Brian Kernighan's algorithm is consistently faster than using modulo_operator.
     """
 
     def do_benchmark(number: int) -> None:
