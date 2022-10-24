@@ -17,12 +17,14 @@ be carried.
 """
 
 
-def knapsack(weights: list, values: list, number_of_items: int, max_weight: int, index: int) -> int:
+def knapsack(
+    weights: list, values: list, number_of_items: int, max_weight: int, index: int
+) -> int:
     """
     Function description is as follows-
     :param weights: Take a list of weights
     :param values: Take a list of profits corresponding to the weights
-    :param number_of_items: number of items available to pick from 
+    :param number_of_items: number of items available to pick from
     :param max_weight: Maximum weight that could be carried
     :param index: the element we are looking at
     :return: Maximum expected gain
@@ -44,7 +46,7 @@ def knapsack(weights: list, values: list, number_of_items: int, max_weight: int,
 
 
 if __name__ == "__main__":
-    
+
     import doctest
 
     doctest.testmod()
