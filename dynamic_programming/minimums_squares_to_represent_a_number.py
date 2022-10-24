@@ -1,4 +1,6 @@
-import math,sys
+import math
+import sys
+
 
 def minimum_squares_to_represent_a_number(number: int) -> int:
     """
@@ -18,16 +20,17 @@ def minimum_squares_to_represent_a_number(number: int) -> int:
     """
     if number < 0:
         raise ValueError("the value of input must be positive")
-    dp = [-1 for x in range(number+1)]
+    dp = [-1 for x in range(number + 1)]
     dp[0] = 0
-    for i in range(1,number+1):
+    for i in range(1, number + 1):
         ans = sys.maxsize
         root = int(math.sqrt(i))
-        for j in range(1,root+1):
-            currAns = 1 + dp[i-(j**2)]
-            ans = min(ans,currAns)
+        for j in range(1, root + 1):
+            currAns = 1 + dp[i - (j**2)]
+            ans = min(ans, currAns)
         dp[i] = ans
     return dp[number]
+
 
 if __name__ == "__main__":
     import doctest
