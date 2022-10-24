@@ -32,10 +32,10 @@ def xor_gate(input_1: int, input_2: int) -> int:
 
     if input_1 != 0:
         num_ones += 1
-    
+
     if input_2 != 0:
         num_ones += 1
-    
+
     return int(num_ones % 2 != 0)
 
 
