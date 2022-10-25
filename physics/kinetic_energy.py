@@ -1,11 +1,5 @@
-import doctest
-
 """
-
-
-
-Finding the kinetic energy of an object,by taking its mass and velocity as input
-
+Find the kinetic energy of an object, give its mass and velocity
 
 Description : In physics, the kinetic energy of an object is the energy that it possesses due to its motion.
 It is defined as the work needed to accelerate a body of a given mass from rest to its stated velocity.
@@ -17,14 +11,11 @@ In classical mechanics, the kinetic energy of a non-rotating object of mass m tr
 In relativistic mechanics, this is a good approximation only when v is much less than the speed of light.
 The standard unit of kinetic energy is the joule, while the English unit of kinetic energy is the foot-pound.
 
-Reference : "https://en.m.wikipedia.org/wiki/Kinetic_energy"
-
+Reference : https://en.m.wikipedia.org/wiki/Kinetic_energy
 """
 
 
-def kinetic_energy(
-    mass: float, velocity: float
-) -> float:  # function will accept mass and velocity as parameters and return kinetic energy
+def kinetic_energy(mass: float, velocity: float) -> float:
     """
     >>> kinetic_energy(10,10)
     500.0
@@ -43,10 +34,10 @@ def kinetic_energy(
     """
     if mass < 0:
         raise ValueError("The mass of a body cannot be negative")
-    elif mass >= 0:
-        ke = 0.5 * mass * abs(velocity) * abs(velocity)
-    return ke
+    return 0.5 * mass * abs(velocity) * abs(velocity)
 
 
 if __name__ == "__main__":
-    doctest.testmod(name="kinetic_energy", verbose=True)
+    import doctest
+
+    doctest.testmod(verbose=True)
