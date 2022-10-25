@@ -1,11 +1,11 @@
 # All permutations:
 def permute(nums: list[int]) -> list[list[int]]:
-    result=[]
-    if len(nums)==1:
+    result = []
+    if len(nums) == 1:
         return [nums.copy()]
     for _ in range(len(nums)):
-        n=nums.pop(0)
-        permutations=permute(nums)
+        n = nums.pop(0)
+        permutations = permute(nums)
         for perm in permutations:
             perm.append(n)
         result.extend(permutations)
@@ -14,9 +14,9 @@ def permute(nums: list[int]) -> list[list[int]]:
 
 
 def main() -> None:
-	nums=[1,2,3]
-	print("permutations are:",permute(nums))
+    nums = [1, 2, 3]
+    print("permutations are:", permute(nums))
 
-if __name__=="__main__": # Main function for testing.
-	main()
-	
+
+if __name__ == "__main__":  # Main function for testing.
+    main()
