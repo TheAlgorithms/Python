@@ -10,7 +10,7 @@ version = "1.0.0"
 authors = [
     { name = "Christian Clauss", email = "cclauss@me.com" },
     { name = "Dhruv Manilawala", email = "dhruvmanila@gmail.com" },
-    { name = "John Law", email = "dhruvmanila@gmail.com" }
+    { name = "John Law", email = "johnlaw.po@gmail.com" }
 ]
 
 dependencies = [
