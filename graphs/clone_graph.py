@@ -1,6 +1,6 @@
 # Definition for a Node.
 class Node:
-    def __init__(self, val: int = 0, neighbors: list = []) -> None:
+    def __init__(self, val: int = 0, neighbors: list = list()) -> None:
         self.val = val
         self.neighbors = neighbors
 
@@ -12,8 +12,8 @@ class Node:
 def clone_graph(node: Node) -> Node:
     if node is None:
         return node
-    visited = [node]
-    graph = dict()
+    visited = list(node)
+    graph = {}
     graph[node.val] = Node(node.val, [])
 
     while len(visited) > 0:
