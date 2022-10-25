@@ -55,6 +55,7 @@
   * [Modular Division](blockchain/modular_division.py)
 
 ## Boolean Algebra
+  * [And Gate](boolean_algebra/and_gate.py)
   * [Norgate](boolean_algebra/norgate.py)
   * [Quine Mc Cluskey](boolean_algebra/quine_mc_cluskey.py)
 
@@ -876,6 +877,8 @@
     * [Sol1](project_euler/problem_101/sol1.py)
   * Problem 102
     * [Sol1](project_euler/problem_102/sol1.py)
+  * Problem 104
+    * [Sol1](project_euler/problem_104/sol1.py)
   * Problem 107
     * [Sol1](project_euler/problem_107/sol1.py)
   * Problem 109
@@ -948,6 +951,7 @@
   * [Quantum Random](quantum/quantum_random.py)
   * [Ripple Adder Classic](quantum/ripple_adder_classic.py)
   * [Single Qubit Measure](quantum/single_qubit_measure.py)
+  * [Superdense Coding](quantum/superdense_coding.py)
 
 ## Scheduling
   * [First Come First Served](scheduling/first_come_first_served.py)
@@ -1037,7 +1041,6 @@
   * [Can String Be Rearranged As Palindrome](strings/can_string_be_rearranged_as_palindrome.py)
   * [Capitalize](strings/capitalize.py)
   * [Check Anagrams](strings/check_anagrams.py)
-  * [Check Pangram](strings/check_pangram.py)
   * [Credit Card Validator](strings/credit_card_validator.py)
   * [Detecting English Programmatically](strings/detecting_english_programmatically.py)
   * [Dna](strings/dna.py)
@@ -1046,6 +1049,8 @@
   * [Indian Phone Validator](strings/indian_phone_validator.py)
   * [Is Contains Unique Chars](strings/is_contains_unique_chars.py)
   * [Is Palindrome](strings/is_palindrome.py)
+  * [Is Pangram](strings/is_pangram.py)
+  * [Is Spain National Id](strings/is_spain_national_id.py)
   * [Jaro Winkler](strings/jaro_winkler.py)
   * [Join](strings/join.py)
   * [Knuth Morris Pratt](strings/knuth_morris_pratt.py)
@@ -1090,6 +1095,7 @@
   * [Fetch Well Rx Price](web_programming/fetch_well_rx_price.py)
   * [Get Imdb Top 250 Movies Csv](web_programming/get_imdb_top_250_movies_csv.py)
   * [Get Imdbtop](web_programming/get_imdbtop.py)
+  * [Get Top Billioners](web_programming/get_top_billioners.py)
   * [Get Top Hn Posts](web_programming/get_top_hn_posts.py)
   * [Get User Tweets](web_programming/get_user_tweets.py)
   * [Giphy](web_programming/giphy.py)
