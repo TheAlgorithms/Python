@@ -27,9 +27,7 @@ def kinetic_energy(
 ) -> float:  # function will accept mass and velocity as parameters and return kinetic energy
     if mass < 0:
         raise ValueError("The mass of a body cannot be negative")
-    elif mass >= 0:
-        ke = 0.5 * mass * abs(velocity) * abs(velocity)
-    return ke
+    return 0.5 * mass * velocity **2
 
 
 if __name__ == "__main__":
