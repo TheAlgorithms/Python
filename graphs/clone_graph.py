@@ -9,7 +9,7 @@ class node:
 # Output: [[2,4],[1,3],[2,4],[1,3]]
 
 
-class solution:
+class Solution:
     def clone_graph(self, node: "Node") -> "Node":
         if node == None:
             return node
