@@ -1,4 +1,4 @@
-def is_palindrome(s: str) -> bool:
+def is_palindrome(s: str) -> bool: # Function to check if string is palindrome or not
     """
     Determine if the string s is a palindrome.
 
@@ -19,7 +19,7 @@ def is_palindrome(s: str) -> bool:
     return s == s[::-1]
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": # Condition for checking if a string is palindrome or not
     s = input("Please enter a string to see if it is a palindrome: ")
     if is_palindrome(s):
         print(f"'{s}' is a palindrome.")
