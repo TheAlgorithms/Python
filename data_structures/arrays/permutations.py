@@ -13,6 +13,6 @@ def permute(nums: list[int]) -> list[list[int]]:
     return result
 
 
-if __name__=="__main__":
-	nums=[1,2,3]
-	print(permute(nums))
+if __name__ == "__main__":
+    nums = [1, 2, 3]
+    print(permute(nums))
