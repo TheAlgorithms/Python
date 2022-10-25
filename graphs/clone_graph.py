@@ -10,7 +10,7 @@ class Node:
 
 
 def clone_graph(node: Node) -> Node:
-    if node == None:
+    if node is None:
         return node
     visited = [node]
     graph = dict()
