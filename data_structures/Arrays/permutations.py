@@ -3,7 +3,7 @@ def permute(nums: list[int]) -> list[list[int]]:
     result = []
     if len(nums) == 1:
         return [nums.copy()]
-    for i in range(len(nums)):
+    for _ in range(len(nums)):
         n = nums.pop(0)
         permutations = permute(nums)
         for perm in permutations:
