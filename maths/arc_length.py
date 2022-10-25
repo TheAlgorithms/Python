@@ -1,6 +1,6 @@
- 
-
 import math
+
+
 def arc(angle: int, r: int) -> int:
     """
     >>> arc(45, 5)
@@ -16,4 +16,6 @@ def arc(angle: int, r: int) -> int:
 if __name__ == "__main__":
     angle = 90
     r = 10
-    print(f"The length of the arc with radius {r} and a central angle of {angle} degrees is {arc(angle, r)}")
+    print(
+        f"The length of the arc with radius {r} and a central angle of {angle} degrees is {arc(angle, r)}"
+    )
