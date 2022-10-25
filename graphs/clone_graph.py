@@ -1,8 +1,9 @@
 # Definition for a Node.
 class Node:
-    def __init__(self, val:int = 0, neighbors: list = None) -> None:
+    def __init__(self, val: int = 0, neighbors: list = None) -> None:
         self.val = val
         self.neighbors = neighbors if neighbors is not None else []
+
 
 # Input: adjList = [[2,4],[1,3],[2,4],[1,3]]
 # Output: [[2,4],[1,3],[2,4],[1,3]]
@@ -25,4 +26,3 @@ def clone_graph(node: Node) -> Node:
                 visited.append(ngbr)
             cur_cloned.neighbors.append(graph[ngbr.val])
     return graph[node.val]
-    
