@@ -1,0 +1,10 @@
+import tkinter as t
+root=t.Tk()
+root.title("Hacktoberfest 2022")
+mlb=t.Label(root,text="WELCOME",font=("Arial Bold",70),fg="blue",bg="yellow")
+mlb.grid(column=0,row=0)
+mlb=t.Label(root,text="TO",font=("Arial Bold",70),fg="blue",bg="yellow")
+mlb.grid(column=0,row=1)
+mlb=t.Label(root,text="HACKTOBERFEST",font=("Arial Bold",70),fg="blue",bg="yellow")
+mlb.grid(column=0,row=2)
+root.mainloop()
