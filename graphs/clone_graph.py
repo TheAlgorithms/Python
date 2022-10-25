@@ -1,6 +1,6 @@
 # Definition for a Node.
 class Node:
-    def __init__(self, val: int = 0, neighbors: list = None) -> None:
+    def __init__(self, val: int = 0, neighbors: list) -> None:
         self.val = val
         self.neighbors = neighbors if neighbors else []
 
