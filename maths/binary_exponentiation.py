@@ -5,6 +5,10 @@
 
 
 def binary_exponentiation(a, n):
+    """
+    >>> binary_exponentiation(2, 7)
+    128
+    """
 
     if n == 0:
         return 1
