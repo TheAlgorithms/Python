@@ -84,7 +84,7 @@ def perimeter_circle(radius: float) -> float:
 def perimeter_rhombus(diagonal_1: float, diagonal_2: float) -> float:
     if diagonal_1 < 0 or diagonal_2 < 0:
         raise ValueError("perimeter_rhombus() only accepts non-negative values")
-    return 2 * sqrt(pow(diagonal_1,2) + pow(diagonal_2,2))
+    return 2 * sqrt(pow(diagonal_1, 2) + pow(diagonal_2, 2))
 
 
 if __name__ == "__main__":
