@@ -1,10 +1,12 @@
 """
-An isogram is a word in which no letter is repeated. 
-Examples of isograms are uncopyrightable and ambidextrously.
+wiki: https://en.wikipedia.org/wiki/Heterogram_(literature)#Isograms
 """
+
 
 def check_isogram(string: str) -> bool:
     """
+    An isogram is a word in which no letter is repeated. 
+    Examples of isograms are uncopyrightable and ambidextrously.
     >>> check_isogram('uncopyrightable')
     True
     >>> check_isogram('allowance')
