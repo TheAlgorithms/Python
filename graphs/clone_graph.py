@@ -2,7 +2,7 @@
 class Node:
     def __init__(self, val: int = 0, neighbors: list = None) -> None:
         self.val = val
-        self.neighbors = neighbors if neighbors is not None else []
+        self.neighbors = neighbors if neighbors else []
 
 
 # Input: adjList = [[2,4],[1,3],[2,4],[1,3]]
