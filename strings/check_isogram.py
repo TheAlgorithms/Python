@@ -5,7 +5,7 @@ wiki: https://en.wikipedia.org/wiki/Heterogram_(literature)#Isograms
 
 def check_isogram(string: str) -> bool:
     """
-    An isogram is a word in which no letter is repeated. 
+    An isogram is a word in which no letter is repeated.
     Examples of isograms are uncopyrightable and ambidextrously.
     >>> check_isogram('uncopyrightable')
     True
@@ -19,6 +19,7 @@ def check_isogram(string: str) -> bool:
             return False
 
     return True
+
 
 if __name__ == "__main__":
     input_str = input("Enter a string ").strip().lower()
