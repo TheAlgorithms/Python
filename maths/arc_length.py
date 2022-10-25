@@ -1,7 +1,7 @@
 from math import pi
 
 
-def arc(angle: int, radius: int) -> float:
+def arc_length(angle: int, radius: int) -> float:
     """
     >>> arc(45, 5)
     3.9269908169872414
@@ -12,4 +12,4 @@ def arc(angle: int, radius: int) -> float:
 
 
 if __name__ == "__main__":
-    print(arc(90, 10))
+    print(arc_length(90, 10))
