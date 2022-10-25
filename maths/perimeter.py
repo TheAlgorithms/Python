@@ -14,13 +14,13 @@ def perimeter_cube(side_length: float) -> float:
 def perimeter_cuboid(length: float, breadth: float, height: float) -> float:
     if length < 0 or breadth < 0 or height < 0:
         raise ValueError("perimeter_cuboid() only accepts non-negative values")
-    return 4 * (length+breadth+height)
+    return 4 * (length + breadth + height)
 
 
 def circumference_sphere(radius: float) -> float:
     if radius < 0:
         raise ValueError("circumference_sphere() only accepts non-negative values")
-    return  pi * 2 * radius
+    return pi * 2 * radius
 
 
 def perimeter_hemisphere(radius: float) -> float:
@@ -32,13 +32,13 @@ def perimeter_hemisphere(radius: float) -> float:
 def perimeter_cone(radius: float, height: float) -> float:
     if radius < 0 or height < 0:
         raise ValueError("perimeter_cone() only accepts non-negative values")
-    return 2 * pi * radius 
+    return 2 * pi * radius
 
 
 def perimeter_cylinder(radius: float, height: float) -> float:
     if radius < 0 or height < 0:
         raise ValueError("perimeter_cylinder() only accepts non-negative values")
-    return pi* 2 * radius
+    return pi * 2 * radius
 
 
 def perimeter_rectangle(length: float, width: float) -> float:
@@ -55,7 +55,9 @@ def perimeter_square(side_length: float) -> float:
 
 def perimeter_triangle(side1: float, side2: float, side3: float) -> float:
     if side1 < 0 or side2 < 0 or side3 < 0:
-        raise ValueError("perimeter_triangle_three_sides() only accepts non-negative values")
+        raise ValueError(
+            "perimeter_triangle_three_sides() only accepts non-negative values"
+        )
     elif side1 + side2 < side3 or side1 + side3 < side2 or side2 + side3 < side1:
         raise ValueError("Given three sides do not form a triangle")
     return side1 + side2 + side3
@@ -82,7 +84,7 @@ def perimeter_circle(radius: float) -> float:
 def perimeter_rhombus(diagonal_1: float, diagonal_2: float) -> float:
     if diagonal_1 < 0 or diagonal_2 < 0:
         raise ValueError("perimeter_rhombus() only accepts non-negative values")
-    return 2 * sqrt(diagonal_1^2 + diagonal_2^2)
+    return 2 * sqrt(pow(diagonal_1,2) + pow(diagonal_2,2))
 
 
 if __name__ == "__main__":
