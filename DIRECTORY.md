@@ -227,6 +227,7 @@
     * [Stack With Doubly Linked List](data_structures/stacks/stack_with_doubly_linked_list.py)
     * [Stack With Singly Linked List](data_structures/stacks/stack_with_singly_linked_list.py)
     * [Stock Span Problem](data_structures/stacks/stock_span_problem.py)
+    * [Tower Of Hanoi](data_structures/stacks/tower_of_hanoi.py)
   * Trie
     * [Trie](data_structures/trie/trie.py)
 
