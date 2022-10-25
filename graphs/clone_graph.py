@@ -19,11 +19,11 @@ class solution:
 
         while len(visited) > 0:
             cur = visited.pop(0)
-            curCloned = graph[cur.val]
+            cur_cloned = graph[cur.val]
 
             for ngbr in cur.neighbors:
                 if ngbr.val not in graph:
                     graph[ngbr.val] = Node(ngbr.val, [])
                     visited.append(ngbr)
-                curCloned.neighbors.append(graph[ngbr.val])
+                cur_cloned.neighbors.append(graph[ngbr.val])
         return graph[node.val]
