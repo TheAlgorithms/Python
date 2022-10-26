@@ -83,6 +83,6 @@ if __name__ == "__main__":
     barcode = get_barcode(input("Barcode: ").strip())
 
     if is_valid(barcode):
-        print(f"'{barcode}' is a valid Barcode")
+        print(f"'{barcode}' is a valid barcode.")
     else:
-        print(f"'{barcode}' is NOT is valid Barcode.")
+        print(f"'{barcode}' is NOT a valid barcode.")
