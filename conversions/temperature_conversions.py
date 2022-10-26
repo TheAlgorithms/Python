@@ -1,8 +1,6 @@
 """ Convert between different units of temperature """
 
 
-
-
 def celsius_to_fahrenheit(celsius: float, ndigits: int = 2) -> float:
     """
     Convert a given value from Celsius to Fahrenheit and round it to 2 decimal places.
