@@ -2,8 +2,8 @@
 def permute(nums: list[int]) -> list[list[int]]:
     """
     >>> from itertools import permutations
-    >>> numbers in ([], [1], [1, 2], [2, 1], [-1, -3, -2], [5.5, 3.3, 4.4, 1.1, 2.2])
-    >>> all(permute(nums) == permutations(nums) for nums in numbers)
+    >>> numbers= [1,2,3]
+    >>> all(list(nums) in permute(numbers) for nums in permutations(numbers))
     True
     """
     result = []
@@ -18,10 +18,11 @@ def permute(nums: list[int]) -> list[list[int]]:
         nums.append(n)
     return result
 
-
+from itertools import permutations
 def main() -> None:  # Main function for testing.
-    nums = [1, 2, 3]
+    numbers = [1, 2, 3]
     print("permutations are:", permute(nums))
+    print("isValid:",all(list(nums) in permute(numbers) for nums in permutations(numbers)))
 
 
 if __name__ == "__main__":
