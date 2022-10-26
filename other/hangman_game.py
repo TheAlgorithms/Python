@@ -1,7 +1,7 @@
 import random
 
 
-def main():
+def main() -> None : 
     global count
     global display
     global word
@@ -32,7 +32,7 @@ def main():
 # A loop to re-execute the game when the first round ends:
 
 
-def play_loop():
+def play_loop() -> None :
     global play_game
     play_game = input("Do You want to play again? y = yes, n = no \n")
     while play_game not in ["y", "n", "Y", "N"]:
@@ -45,7 +45,7 @@ def play_loop():
 
 
 # Initializing all the conditions required for the game:
-def hangman():
+def hangman() -> None :
     global count
     global display
     global word
