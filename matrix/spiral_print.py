@@ -78,10 +78,11 @@ def spiral_print_clockwise(a: list[list[int]]) -> None:
         print("Not a valid matrix")
         return
 
+
 # Other Easy to undersatnd Approach
 
 
-def spiral_traversal(matrix: List[List[int]]) -> List[int]:
+def spiral_traversal(matrix: list[list[int]]) -> list[int]:
     """
     >>> spiral_traversal([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
     [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
