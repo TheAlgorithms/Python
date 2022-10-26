@@ -6,8 +6,7 @@ Requirements:
 Python:
   - 3.10
 """
-import numpy as np
-# import skfuzzy as fuzz
+
 import math as mt
 import matplotlib.pyplot as plt
 
@@ -79,7 +78,7 @@ def trapezoidal_membership(a:int,b:int,c:int,d:int)->None:
   plt.show()
 
 
-def Guassian_membership(c:int,s:int,m:int)->None:
+def guassian_membership(c:int,s:int,m:int)->None:
   """
   c : centre (analogous to  mean in statistics)
   s : width (analogous to )
@@ -120,7 +119,7 @@ if __name__ == "__main__":
   c = 10 #int(input("centre"))
   s = 5  #int(input("width"))
   m = 2  #int(input("fuzzification factor"))
-  Guassian_membership(c,s,m)
+  guassian_membership(c,s,m)
 
 
 
