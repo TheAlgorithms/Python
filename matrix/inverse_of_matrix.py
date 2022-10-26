@@ -15,7 +15,7 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
     https://stackoverflow.com/questions/6563058/how-do-i-use-accurate-float-arithmetic-in-python
     https://docs.python.org/3/library/decimal.html
 
-    Demo for 2x2
+    Doctests for 2x2
     >>> inverse_of_matrix([[2, 5], [2, 0]])
     [[0.0, 0.5], [0.2, -0.2]]
     >>> inverse_of_matrix([[2.5, 5], [1, 2]])
@@ -29,20 +29,13 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
     >>> inverse_of_matrix([[10, 5], [3, 2.5]])
     [[0.25, -0.5], [-0.3, 1.0]]
 
-    Demo for 3x3
+    Doctests for 3x3
     >>> inverse_of_matrix([[2, 5, 7], [2, 0, 1], [1, 2, 3]])
     [[2.0, 5.0, -4.0], [1.0, 1.0, -1.0], [-5.0, -12.0, 10.0]]
     >>> inverse_of_matrix([[1, 2, 2], [1, 2, 2], [3, 2, -1]])
     Traceback (most recent call last):
         ...
     ValueError: This matrix has no inverse.
-
-    More examples:
-
-    >>> inverse_of_matrix([])
-    Traceback (most recent call last):
-        ...
-    ValueError: Please provide a matrix of size 2x2 or 3x3.
 
     >>> inverse_of_matrix([[],[]])
     Traceback (most recent call last):
@@ -159,5 +152,4 @@ def inverse_of_matrix(matrix: list[list[float]]) -> list[list[float]]:
 
         # Calculate the inverse of the matrix
         return [[float(d(n)) or 0.0 for n in row] for row in inverse_matrix]
-    else:
-        raise ValueError("Please provide a matrix of size 2x2 or 3x3.")
+    raise ValueError("Please provide a matrix of size 2x2 or 3x3.")
