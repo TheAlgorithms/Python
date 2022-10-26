@@ -1,9 +1,10 @@
-'''
+"""
 This is a pure implementation of recursive depth first search (DFS) algorithm of a 2D matrix using python
-'''
+"""
 
 VISITED = -1
-searched_item_cordinates = {'i': None, 'j': None}
+searched_item_cordinates = {"i": None, "j": None}
+
 
 def dfs(matrix: list, item: int, i: int, j: int) -> bool:
     """
@@ -19,22 +20,34 @@ def dfs(matrix: list, item: int, i: int, j: int) -> bool:
     True
     """
 
-    if i < 0 or j < 0 or i >= len(matrix) or j >= len(matrix[i]) or matrix[i][j] == VISITED:
+    if (
+        i < 0
+        or j < 0
+        or i >= len(matrix)
+        or j >= len(matrix[i])
+        or matrix[i][j] == VISITED
+    ):
         return False
     if matrix[i][j] == item:
-        searched_item_cordinates['i'], searched_item_cordinates['j'] = i, j
+        searched_item_cordinates["i"], searched_item_cordinates["j"] = i, j
 
         return True
 
     current = matrix[i][j]
     matrix[i][j] = VISITED
 
-    result = dfs(matrix, item, i + 1, j) or dfs(matrix, item, i - 1, j) or dfs(matrix, item, i, j + 1) or dfs(matrix, item, i, j - 1)
+    result = (
+        dfs(matrix, item, i + 1, j)
+        or dfs(matrix, item, i - 1, j)
+        or dfs(matrix, item, i, j + 1)
+        or dfs(matrix, item, i, j - 1)
+    )
     matrix[i][j] = current
 
     return result
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     matrix = []
     num_rows = int(input("Enter number of rows of the matrix: "))
     num_cols = int(input("Enter number of columns of the matrix: "))
@@ -44,7 +57,7 @@ if __name__ == '__main__':
         for j in range(num_cols):
             element = int(input("Enter the element of index ("+ str(i) + ', ' + str(j) + '): '))
             matrix[i].append(element)
-    
+
     search_item = int(input("Enter the element to be searched: "))
     result = dfs(matrix, search_item, 0, 0)
 
@@ -52,4 +65,3 @@ if __name__ == '__main__':
         print("Item found in the cordinate: ", searched_item_cordinates)
     else:
         print("Item not found!")
-            
