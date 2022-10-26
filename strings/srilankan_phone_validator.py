@@ -1,12 +1,13 @@
 import re
 
 def is_sri_lankan_phone_number(phone: str) -> bool:
+
     """
     Determine whether the string is a valid sri lankan phone number or not
     :param phone:
     :return: Boolean
     >>> srilanka_phone_validator("+94475682163")
-    True   
+    True
     >>> srilanka_phone_validator("+94773283048")
     True
     >>> srilanka_phone_validator("0718382399")
