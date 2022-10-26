@@ -7,7 +7,6 @@ This problem has been solved through recursive way.
 """
 
 
-from typing import List
 
 
 def check_matrix(matrix: list[list[int]]) -> bool:
