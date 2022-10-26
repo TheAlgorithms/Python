@@ -7,8 +7,6 @@ This problem has been solved through recursive way.
 """
 
 
-
-
 def check_matrix(matrix: list[list[int]]) -> bool:
     # must be
     matrix = [list(row) for row in matrix]
@@ -133,6 +131,6 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    
+
     a = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
     spiral_print_clockwise(a)
