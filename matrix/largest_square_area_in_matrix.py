@@ -14,7 +14,7 @@ mat = [[1, 1],
 Output:
 2
 
-Explaination: The maximum size of the square
+Explanation: The maximum size of the square
 sub-matrix is 2. The matrix itself is the
 maximum sized sub-matrix in this case.
 ---
@@ -26,10 +26,10 @@ mat = [[0, 0],
        [0, 0]]
 Output: 0
 
-Explaination: There is no 1 in the matrix.
+Explanation: There is no 1 in the matrix.
 
 
-Approch:
+Approach:
 We initialize another matrix (dp) with the same dimensions
 as the original one initialized with all 0’s.
 
@@ -50,7 +50,7 @@ def largest_square_area_in_matrix_top_down_approch(
     Function updates the largest_square_area[0], if recursive call found
     square with maximum area.
 
-    We arent using dp_array here, so the time complexity would be exponential.
+    We aren't using dp_array here, so the time complexity would be exponential.
 
     >>> largest_square_area_in_matrix_top_down_approch(2, 2, [[1,1], [1,1]])
     2
@@ -126,7 +126,7 @@ def largest_square_area_in_matrix_bottom_up(
     rows: int, cols: int, mat: list[list[int]]
 ) -> int:
     """
-    Function updates the largest_square_area, using bottom up approch.
+    Function updates the largest_square_area, using bottom up approach.
 
     >>> largest_square_area_in_matrix_bottom_up(2, 2, [[1,1], [1,1]])
     2
@@ -156,7 +156,8 @@ def largest_square_area_in_matrix_bottom_up_space_optimization(
     rows: int, cols: int, mat: list[list[int]]
 ) -> int:
     """
-    Function updates the largest_square_area, using bottom up approch. with space optimization.
+    Function updates the largest_square_area, using bottom up
+    approach. with space optimization.
 
     >>> largest_square_area_in_matrix_bottom_up_space_optimization(2, 2, [[1,1], [1,1]])
     2
