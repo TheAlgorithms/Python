@@ -2,14 +2,14 @@ from doctest import testmod
 
 """
 Finding the gravitational potential energy of an
-object with reference to the earth,by taking its 
+object with reference to the earth,by taking its
 mass and height above the ground as input
 
 
-Description : Gravitational energy or gravitational potential energy 
-is the potential energy a massive object has in relation to another 
+Description : Gravitational energy or gravitational potential energy
+is the potential energy a massive object has in relation to another
 massive object due to gravity. It is the potential energy associated
-with the gravitational field, which is released (converted into kinetic energy) 
+with the gravitational field, which is released (converted into kinetic energy)
 when the objects fall towards each other.
 Gravitational potential energy increases when two objects are brought further apart.
 
