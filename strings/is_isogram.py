@@ -21,6 +21,7 @@ def is_isogram(string: str) -> bool:
     letters = sorted(string.lower())
     return len(letters) == len(set(letters))
 
+
 if __name__ == "__main__":
     input_str = input("Enter a string ").strip()
 
