@@ -1,8 +1,6 @@
 from doctest import testmod
 
 """
-
-
 Finding the gravitational potential energy of an object with reference to the earth,by taking its mass and height above the ground as input
 
 
@@ -18,10 +16,7 @@ Close to the Earth's surface, the gravitational field is approximately constant,
 U=mgh
 where m is the object's mass, g=GM/R² is the gravity of Earth, and h is the height of the object's center of mass above a chosen reference level.
 
-
 Reference : "https://en.m.wikipedia.org/wiki/Gravitational_energy"
-
-
 """
 
 
