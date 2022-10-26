@@ -76,7 +76,7 @@ def spiral_print_clockwise(a: list[list[int]]) -> None:
         return
 
 
-# Other Easy to undersatnd Approach
+# Other Easy to understand Approach
 
 
 def spiral_traversal(matrix: list[list]) -> list[int]:
