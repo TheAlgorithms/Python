@@ -1,11 +1,14 @@
 """ Convert between different units of temperature """
 
 
+
+
 def celsius_to_fahrenheit(celsius: float, ndigits: int = 2) -> float:
     """
     Convert a given value from Celsius to Fahrenheit and round it to 2 decimal places.
     Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
     Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
+    Online-calculator for the case: https://www.metric-conversions.org/temperature/celsius-to-fahrenheit.htm
 
     >>> celsius_to_fahrenheit(273.354, 3)
     524.037
@@ -34,6 +37,7 @@ def celsius_to_kelvin(celsius: float, ndigits: int = 2) -> float:
     Convert a given value from Celsius to Kelvin and round it to 2 decimal places.
     Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
     Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
+    Online Calculator: https://www.metric-conversions.org/temperature/celsius-to-kelvin.htm
 
     >>> celsius_to_kelvin(273.354, 3)
     546.504
@@ -112,6 +116,7 @@ def fahrenheit_to_kelvin(fahrenheit: float, ndigits: int = 2) -> float:
     Convert a given value from Fahrenheit to Kelvin and round it to 2 decimal places.
     Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
     Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
+    Online Calcualtor: https://www.metric-conversions.org/temperature/fahrenheit-to-kelvin.htm
 
     >>> fahrenheit_to_kelvin(273.354, 3)
     407.236
@@ -172,6 +177,7 @@ def kelvin_to_celsius(kelvin: float, ndigits: int = 2) -> float:
     Convert a given value from Kelvin to Celsius and round it to 2 decimal places.
     Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
     Wikipedia reference: https://en.wikipedia.org/wiki/Celsius
+    Online Calculator : https://www.metric-conversions.org/temperature/kelvin-to-celsius.htm
 
     >>> kelvin_to_celsius(273.354, 3)
     0.204
@@ -194,8 +200,9 @@ def kelvin_to_celsius(kelvin: float, ndigits: int = 2) -> float:
 def kelvin_to_fahrenheit(kelvin: float, ndigits: int = 2) -> float:
     """
     Convert a given value from Kelvin to Fahrenheit and round it to 2 decimal places.
-    Wikipedia reference: https://en.wikipedia.org/wiki/Kelvin
-    Wikipedia reference: https://en.wikipedia.org/wiki/Fahrenheit
+    Wikipedia reference : https://en.wikipedia.org/wiki/Kelvin
+    Wikipedia reference : https://en.wikipedia.org/wiki/Fahrenheit
+    Online Calculator: https://www.metric-conversions.org/temperature/kelvin-to-fahrenheit.htm
 
     >>> kelvin_to_fahrenheit(273.354, 3)
     32.367
