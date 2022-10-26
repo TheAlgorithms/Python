@@ -22,7 +22,7 @@ of chosen elements is “tar”. For every element, we have two choices
 """
 
 
-def combination_sum_iv(N: int, array: list[int], target: int) -> int:
+def combination_sum_iv(n: int, array: list[int], target: int) -> int:
     """
     Function checks the all possible combinations, and returns the count
     of possible combination in exponential Time Complexity.
@@ -44,7 +44,7 @@ def combination_sum_iv(N: int, array: list[int], target: int) -> int:
     return count_of_possible_combinations(target)
 
 
-def combination_sum_iv_dp_array(N: int, array: list[int], target: int) -> int:
+def combination_sum_iv_dp_array(n: int, array: list[int], target: int) -> int:
     """
     Function checks the all possible combinations, and returns the count
     of possible combination in O(N^2) Time Complexity as we are using Dynamic
@@ -75,7 +75,7 @@ def combination_sum_iv_dp_array(N: int, array: list[int], target: int) -> int:
     return count_of_possible_combinations_with_dp_array(target, dp_array)
 
 
-def combination_sum_iv_bottom_up(N: int, array: list[int], target: int) -> int:
+def combination_sum_iv_bottom_up(n: int, array: list[int], target: int) -> int:
     """
     Function checks the all possible combinations with using bottom up approach,
     and returns the count of possible combination in O(N^2) Time Complexity
@@ -100,7 +100,7 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    N = 3
+    n = 3
     target = 5
     array = [1, 2, 5]
-    print(combination_sum_iv(N, array, target))
+    print(combination_sum_iv(n, array, target))
