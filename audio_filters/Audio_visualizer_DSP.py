@@ -2,12 +2,13 @@
 of input sound source"""
 import struct
 import sys
+
 import numpy as np
-from pyqtgraph.Qt import QtGui, QtCore
-import pyqtgraph as pg
 import pyaudio
+import pyqtgraph as pg
+from pynput.keyboard import Key, Listener
+from pyqtgraph.Qt import QtCore, QtGui
 from scipy.fftpack import fft
-from pynput.keyboard import Listener, Key
 
 
 class AudioStream:
@@ -124,11 +125,19 @@ class AudioStream:
                 self.a["colorIndex_z"],
                 bright=100,
             )
-            self.graph = pg.PlotCurveItem(x=data_x, y=data_y, pen=pen1,)
+            self.graph = pg.PlotCurveItem(
+                x=data_x,
+                y=data_y,
+                pen=pen1,
+            )
         else:
             self.traces.add(name)
             # initial setup of curve plot
-            self.graph = pg.PlotCurveItem(x=data_x, y=data_y, pen="r",)
+            self.graph = pg.PlotCurveItem(
+                x=data_x,
+                y=data_y,
+                pen="r",
+            )
         self.audio_plot.addItem(self.graph)
 
     # Line Graph
@@ -150,7 +159,12 @@ class AudioStream:
             pen1 = pg.mkPen(color=(250, 0, 0), width=15, style=QtCore.Qt.DashLine)
             self.traces.add(name)
             # initial setup of curve plot
-            self.graph = pg.PlotCurveItem(x=data_x, y=data_y, pen=pen1, shadowPen="r",)
+            self.graph = pg.PlotCurveItem(
+                x=data_x,
+                y=data_y,
+                pen=pen1,
+                shadowPen="r",
+            )
         self.audio_plot.addItem(self.graph)
 
     def update(self):
