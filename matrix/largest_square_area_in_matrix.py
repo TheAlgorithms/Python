@@ -43,7 +43,6 @@ dp_array(i,j)=dp_array(dp(i−1,j),dp_array(i−1,j−1),dp_array(i,j−1)) + 1.
 """
 
 
-from typing import List
 
 
 def largest_square_area_in_matrix_top_down_approch(
