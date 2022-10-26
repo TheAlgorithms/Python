@@ -44,15 +44,12 @@ than the last meeting selected
 """
 
 
-from typing import List
-
-
-def maximumMeetings(n: int, start: list[int], end: list[int]) -> int:
+def maximum_meetings(n: int, start: list[int], end: list[int]) -> int:
     """
-    >>> maximumMeetings(6, [1,3,0,5,8,5], [2,4,6,7,9,9])
+    >>> maximum_meetings(6, [1,3,0,5,8,5], [2,4,6,7,9,9])
     4
 
-    >>> maximumMeetings(3, [10, 12, 20], [20, 25, 30])
+    >>> maximum_meetings(3, [10, 12, 20], [20, 25, 30])
     1
     """
     all_meetings = [(start_time, end_time) for start_time, end_time in zip(start, end)]
