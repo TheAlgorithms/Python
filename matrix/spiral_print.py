@@ -7,9 +7,6 @@ This problem has been solved through recursive way.
 """
 
 
-from typing import Any
-
-
 def check_matrix(matrix: list[list[int]]) -> bool:
     # must be
     matrix = [list(row) for row in matrix]
