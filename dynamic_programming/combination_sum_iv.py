@@ -89,7 +89,7 @@ def combination_sum_iv_bottom_up(n: int, array: list[int], target: int) -> int:
     dp_array[0] = 1
 
     for i in range(1, target + 1):
-        for j in range(N):
+        for j in range(n):
             if i - array[j] >= 0:
                 dp_array[i] += dp_array[i - array[j]]
 
