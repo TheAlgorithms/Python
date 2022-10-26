@@ -7,7 +7,6 @@ Python:
   - 3.10
 """
 import math as mt
-
 import matplotlib.pyplot as plt
 
 
@@ -31,10 +30,10 @@ def triangular_membership(a: int, b: int, c: int) -> None:
             list_.append(0)
 
         elif i >= a and i <= b:
-            list_.append((i - a) / (b - a))
+            list_.append(int((i - a) / (b - a)))
 
         elif i >= b and i <= c:
-            list_.append((c - i) / (c - b))
+            list_.append(int((c - i) / (c - b)))
 
         elif i >= c:
             list_.append(0)
@@ -64,13 +63,13 @@ def trapezoidal_membership(a: int, b: int, c: int, d: int) -> None:
             list_.append(0)
 
         elif i >= a and i <= b:
-            list_.append((i - a) / (b - a))
+            list_.append(int((i - a) / (b - a)))
 
         elif i >= b and i <= c:
             list_.append(1)
 
         elif i >= c and i <= d:
-            list_.append((d - i) / (d - c))
+            list_.append(int((d - i) / (d - c)))
 
         elif i >= d:
             list_.append(0)
@@ -91,7 +90,7 @@ def guassian_membership(c: int, s: int, m: int) -> None:
 
     for i in range(0, 10 * (c)):
         x_list.append(i)
-        list_.append(mt.exp(-0.5 * (((i - c) / (s)) ** m)))
+        list_.append(int(mt.exp(-0.5 * (((i - c) / (s)) ** m))))
 
     plt.plot(x_list, list_)
     plt.show()
