@@ -124,8 +124,8 @@ def spiral_traversal(matrix: list[list[int]]) -> list[int]:
     [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7] + spiral_traversal([])
     """
     return list(matrix.pop(0)) + spiral_traversal(
-            list(map(list,list(zip(*matrix))))[::-1]
-        )
+        list(map(list, list(zip(*matrix))))[::-1]
+    )
 
 
 # driver code
