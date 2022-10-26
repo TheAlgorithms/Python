@@ -43,8 +43,6 @@ dp_array(i,j)=dp_array(dp(i−1,j),dp_array(i−1,j−1),dp_array(i,j−1)) + 1.
 """
 
 
-
-
 def largest_square_area_in_matrix_top_down_approch(
     rows: int, cols: int, mat: list[list[int]]
 ) -> int:
@@ -189,4 +187,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    print(largest_square_area_in_matrix_bottom_up(2, 2, [[1,1], [1,1]]))
+    print(largest_square_area_in_matrix_bottom_up(2, 2, [[1, 1], [1, 1]]))
