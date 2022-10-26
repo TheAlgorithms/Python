@@ -47,7 +47,7 @@ than the last meeting selected
 from typing import List
 
 
-def maximumMeetings(n: int, start: List[int], end: List[int]) -> int:
+def maximumMeetings(n: int, start: list[int], end: list[int]) -> int:
     """
     >>> maximumMeetings(6, [1,3,0,5,8,5], [2,4,6,7,9,9])
     4
@@ -55,8 +55,8 @@ def maximumMeetings(n: int, start: List[int], end: List[int]) -> int:
     >>> maximumMeetings(3, [10, 12, 20], [20, 25, 30])
     1
     """
-    all_meetings = [(start_time,end_time) for start_time,end_time in zip(start, end)]
-    all_meetings.sort(key=lambda x:(x[1],x[0]))
+    all_meetings = [(start_time, end_time) for start_time, end_time in zip(start, end)]
+    all_meetings.sort(key=lambda x: (x[1], x[0]))
 
     possible_meet = 1
     prev = all_meetings[0]
