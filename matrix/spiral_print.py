@@ -130,8 +130,6 @@ def spiral_traversal(matrix: list[list[int]]) -> list[int]:
 
     Stage 6.
     [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7] + spiral_traversal([])
-
-
     """
     return matrix and list(matrix.pop(0)) + spiral_traversal(list(zip(*matrix))[::-1])
 
