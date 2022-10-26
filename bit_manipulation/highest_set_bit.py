@@ -10,6 +10,8 @@ def get_highest_set_bit_position(number: int) -> int:
     1
     >>> get_highest_set_bit_position(4)
     3
+    >>> get_highest_set_bit_position(0)
+    0
     >>> get_highest_set_bit_position(0.8)
     Traceback (most recent call last):
         ...
@@ -22,8 +24,6 @@ def get_highest_set_bit_position(number: int) -> int:
     while number:
         position += 1
         number >>= 1
-        if number == 0:
-            break
 
     return position
 
