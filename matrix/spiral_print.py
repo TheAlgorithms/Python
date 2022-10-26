@@ -86,7 +86,6 @@ def spiral_traversal(matrix: list[list]) -> list[int]:
 
     Example:
     matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
-
     Algorithm:
         Step 1. first pop the 0 index list. (which is [1,2,3,4] and concatenate the
                 output of [step 2])
@@ -94,37 +93,32 @@ def spiral_traversal(matrix: list[list]) -> list[int]:
                 and vice versa) and reverse the resultant matrix.
         Step 3. Pass the output of [2nd step], to same recursive function till
                 base case hits.
-
     Dry Run:
-
     Stage 1.
     [1, 2, 3, 4] +   spiral_traversal([
         [8, 12], [7, 11], [6, 10], [5, 9]]
      ])
-
     Stage 2.
     [1, 2, 3, 4, 8, 12] + spiral_traversal([
         [11, 10, 9], [7, 6, 5]
     ])
-
     Stage 3.
     [1, 2, 3, 4, 8, 12, 11, 10, 9] + spiral_traversal([
         [5], [6], [7]
     ])
-
     Stage 4.
     [1, 2, 3, 4, 8, 12, 11, 10, 9, 5] + spiral_traversal([
         [5], [6], [7]
     ])
-
     Stage 5.
     [1, 2, 3, 4, 8, 12, 11, 10, 9, 5] + spiral_traversal([[6, 7]])
-
     Stage 6.
     [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7] + spiral_traversal([])
     """
-    matrix = matrix or [[]]
-    return list(matrix.pop(0)) + spiral_traversal(list(zip(*matrix))[::-1])
+    if matrix:
+        return list(matrix.pop(0)) + spiral_traversal(list(zip(*matrix))[::-1])
+    else:
+        return []
 
 
 # driver code
