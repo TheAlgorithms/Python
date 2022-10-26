@@ -1,0 +1,15 @@
+# The Program helps to calculate the net amount of a item when a certain percent of GST is applied.
+
+Original_price=float(input("Enter the original Price = "))
+GST_per=float(input("Enter the GST Percentage = "))
+
+GST_amount=float(((GST_per*Original_price)/100))
+Price_wGST=Original_price+GST_amount
+print("Net Price after ",GST_per,"% GST is = ",Price_wGST)
+
+'''
+Enter the original Price = 100
+Enter the GST Percentage = 25
+Price after  25.0 % GST is =  125.0
+
+'''
