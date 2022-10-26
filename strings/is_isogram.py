@@ -16,9 +16,7 @@ def is_isogram(string: str) -> bool:
      ...
     ValueError: String must only contain alphabetic characters.
     """
-    import re
-
-    if bool(re.search(r"\d", string)):
+    if not all(x.isalpha() for x in string):
         raise ValueError("String must only contain alphabetic characters.")
 
     letters = sorted(string.lower())
