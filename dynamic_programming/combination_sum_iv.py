@@ -22,7 +22,6 @@ of chosen elements is “tar”. For every element, we have two choices
 """
 
 
-from typing import List
 
 
 def combination_sum_iv(N: int, array: list[int], target: int) -> int:
