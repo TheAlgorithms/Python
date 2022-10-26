@@ -21,8 +21,6 @@ Source :
 https://www.sciencedirect.com/topics/mathematics/hubble-parameter
 """
 
-from __future__ import annotations
-import numpy as np
 
 
 def hubble_parameter(
@@ -63,7 +61,7 @@ def hubble_parameter(
     else:
         Omg_k = 1 - (Omg_m + Omg_r + Omg_l)
         E2 = Omg_r*(z+1)**4 + Omg_m*(z+1)**3 + Omg_k*(z+1)**2 + Omg_l
-        H = H_0*np.sqrt(E2)
+        H = H_0*E2**(1/2)
         return ("Hubble parameter: " + str(H) + " km/s/Mpc")
 
 
