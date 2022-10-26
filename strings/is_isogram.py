@@ -1,7 +1,6 @@
 """
 wiki: https://en.wikipedia.org/wiki/Heterogram_(literature)#Isograms
 """
-import re
 
 
 def is_isogram(string: str) -> bool:
@@ -13,8 +12,12 @@ def is_isogram(string: str) -> bool:
     >>> is_isogram('allowance')
     False
     >>> is_isogram('copy1')
+    Traceback (most recent call last):
+     ...
     ValueError: String must only contain alphabetic characters.
     """
+    import re
+
     if bool(re.search(r'\d', string)):
         raise ValueError("String must only contain alphabetic characters.")
 
