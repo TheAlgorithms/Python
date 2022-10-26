@@ -1,5 +1,11 @@
 # All permutations:
 def permute(nums: list[int]) -> list[list[int]]:
+    """
+    >>> from itertools import permutations
+    >>> numbers in ([], [1], [1, 2], [2, 1], [-1, -3, -2], [5.5, 3.3, 4.4, 1.1, 2.2])
+    >>> all(permute(nums) == permutations(nums) for nums in numbers)
+    True
+    """
     result = []
     if len(nums) == 1:
         return [nums.copy()]
