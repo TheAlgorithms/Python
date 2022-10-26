@@ -7,6 +7,7 @@ Python:
   - 3.10
 """
 import math as mt
+
 import matplotlib.pyplot as plt
 
 
