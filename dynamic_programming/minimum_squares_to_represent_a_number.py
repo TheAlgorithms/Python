@@ -1,3 +1,5 @@
+import math 
+import sys
 def minimum_squares_to_represent_a_number(number: int) -> int:
     """
     Count the number of minimum squares to represent a number
@@ -21,7 +23,7 @@ def minimum_squares_to_represent_a_number(number: int) -> int:
     ValueError: the value of input must be a natural number
     """
     if number != int(number):
-        raise ValueError("the value of input must be a natural number")
+        raise ValueError ("the value of input must be a natural number")
     if number < 0:
         raise ValueError("the value of input must be positive")
     if number == 0:
@@ -40,3 +42,5 @@ def minimum_squares_to_represent_a_number(number: int) -> int:
 
 if __name__ == "__main__":
     import doctest
+    
+    doctest.testmod()
