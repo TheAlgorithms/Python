@@ -22,8 +22,6 @@ of chosen elements is “tar”. For every element, we have two choices
 """
 
 
-
-
 def combination_sum_iv(N: int, array: list[int], target: int) -> int:
     """
     Function checks the all possible combinations, and returns the count
@@ -73,7 +71,7 @@ def combination_sum_iv_dp_array(N: int, array: list[int], target: int) -> int:
         dp_array[target] = answer
         return answer
 
-    dp_array = [-1]  * (target + 1)
+    dp_array = [-1] * (target + 1)
     return count_of_possible_combinations_with_dp_array(target, dp_array)
 
 
