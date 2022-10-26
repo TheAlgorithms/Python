@@ -1,7 +1,6 @@
 import math
 import sys
 
-
 def minimum_squares_to_represent_a_number(number: int) -> int:
     """
     Count the number of minimum squares to represent a number
@@ -27,20 +26,19 @@ def minimum_squares_to_represent_a_number(number: int) -> int:
     if number != int(number):
         raise ValueError("the value of input must be a natural number")
     if number < 0:
-        raise ValueError("the value of input must be positive")
+        raise ValueError("the value of input must not be a negative number")
     if number == 0:
         return 1
-    dp = [-1] * (number + 1)
-    dp[0] = 0
-    for i in range(1, number + 1):
-        ans = sys.maxsize
+    answers = [-1] * (number+1)
+    answers[0] = 0
+    for i in range(1,number+1):
+        answer = sys.maxsize
         root = int(math.sqrt(i))
-        for j in range(1, root + 1):
-            curr_ans = 1 + dp[i - (j**2)]
-            ans = min(ans, curr_ans)
-        dp[i] = ans
-    return dp[number]
-
+        for j in range(1,root+1):
+            current_answer = 1 + answers[i-(j**2)]
+            answer = min(answer,current_answer)
+        answers[i] = answer
+    return answers[number]
 
 if __name__ == "__main__":
     import doctest
