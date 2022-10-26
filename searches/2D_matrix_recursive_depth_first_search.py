@@ -5,7 +5,7 @@ This is a pure implementation of recursive depth first search (DFS) algorithm of
 VISITED = -1
 searched_item_cordinates = {'i': None, 'j': None}
 
-def dfs(matrix, item, i, j):
+def dfs(matrix: list, item: int, i: int, j: int) -> bool:
     """
     Pure Python implementation of the recursive DFS algorithm of a 2D matrix.
     Examples:
@@ -42,14 +42,14 @@ if __name__ == '__main__':
     for i in range(num_rows):
         matrix.append([])
         for j in range(num_cols):
-            element = int(input("Enter the element of index (i=%d, j=%d): " % (i, j)))
+            element = int(input("Enter the element of index ("+ str(i) + ', ' + str(j) + '): '))
             matrix[i].append(element)
     
     search_item = int(input("Enter the element to be searched: "))
     result = dfs(matrix, search_item, 0, 0)
 
     if result:  
-        print("Item found in the cordinate: (i=%d, j=%d)" % (searched_item_cordinates['i'], searched_item_cordinates['j']))
+        print("Item found in the cordinate: ", searched_item_cordinates)
     else:
         print("Item not found!")
             
