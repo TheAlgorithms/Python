@@ -40,7 +40,7 @@ def mixed_keyword(key: str = "college", pt: str = "UNIVERSITY") -> str:
     k = 0
     for _ in range(r):
         s = []
-        for j in range(len_temp):
+        for _ in range(len_temp):
             s.append(temp[k])
             if not (k < 25):
                 break

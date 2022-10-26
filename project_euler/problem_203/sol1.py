@@ -49,7 +49,7 @@ def get_pascal_triangle_unique_coefficients(depth: int) -> set[int]:
     """
     coefficients = {1}
     previous_coefficients = [1]
-    for step in range(2, depth + 1):
+    for _ in range(2, depth + 1):
         coefficients_begins_one = previous_coefficients + [0]
         coefficients_ends_one = [0] + previous_coefficients
         previous_coefficients = []

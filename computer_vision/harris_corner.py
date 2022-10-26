@@ -7,7 +7,7 @@ https://en.wikipedia.org/wiki/Harris_Corner_Detector
 """
 
 
-class Harris_Corner:
+class HarrisCorner:
     def __init__(self, k: float, window_size: int):
 
         """
@@ -70,6 +70,6 @@ class Harris_Corner:
 
 if __name__ == "__main__":
 
-    edge_detect = Harris_Corner(0.04, 3)
+    edge_detect = HarrisCorner(0.04, 3)
     color_img, _ = edge_detect.detect("path_to_image")
     cv2.imwrite("detect.png", color_img)

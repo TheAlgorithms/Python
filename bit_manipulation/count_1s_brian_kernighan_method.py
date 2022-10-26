@@ -1,7 +1,7 @@
 def get_1s_count(number: int) -> int:
     """
     Count the number of set bits in a 32 bit integer using Brian Kernighan's way.
-    Ref - http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetKernighan
+    Ref - https://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetKernighan
     >>> get_1s_count(25)
     3
     >>> get_1s_count(37)

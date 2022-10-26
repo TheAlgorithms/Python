@@ -69,8 +69,10 @@ def max_subarray_sum(array, left, right):
     return max(left_half_sum, right_half_sum, cross_sum)
 
 
-array = [-2, -5, 6, -2, -3, 1, 5, -6]
-array_length = len(array)
-print(
-    "Maximum sum of contiguous subarray:", max_subarray_sum(array, 0, array_length - 1)
-)
+if __name__ == "__main__":
+    array = [-2, -5, 6, -2, -3, 1, 5, -6]
+    array_length = len(array)
+    print(
+        "Maximum sum of contiguous subarray:",
+        max_subarray_sum(array, 0, array_length - 1),
+    )

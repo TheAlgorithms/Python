@@ -96,7 +96,7 @@ class DoublyLinkedList:
             self.tail = new_node
         else:
             temp = self.head
-            for i in range(0, index):
+            for _ in range(0, index):
                 temp = temp.next
             temp.previous.next = new_node
             new_node.previous = temp.previous
@@ -145,7 +145,7 @@ class DoublyLinkedList:
             self.tail.next = None
         else:
             temp = self.head
-            for i in range(0, index):
+            for _ in range(0, index):
                 temp = temp.next
             delete_node = temp
             temp.next.previous = temp.previous
@@ -194,13 +194,13 @@ def test_doubly_linked_list() -> None:
 
     try:
         linked_list.delete_head()
-        assert False  # This should not happen.
+        raise AssertionError()  # This should not happen.
     except IndexError:
         assert True  # This should happen.
 
     try:
         linked_list.delete_tail()
-        assert False  # This should not happen.
+        raise AssertionError()  # This should not happen.
     except IndexError:
         assert True  # This should happen.
 

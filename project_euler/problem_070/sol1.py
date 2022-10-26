@@ -72,7 +72,7 @@ def has_same_digits(num1: int, num2: int) -> bool:
     return sorted(str(num1)) == sorted(str(num2))
 
 
-def solution(max: int = 10000000) -> int:
+def solution(max_n: int = 10000000) -> int:
     """
     Finds the value of n from 1 to max such that n/φ(n) produces a minimum.
 
@@ -85,9 +85,9 @@ def solution(max: int = 10000000) -> int:
 
     min_numerator = 1  # i
     min_denominator = 0  # φ(i)
-    totients = get_totients(max + 1)
+    totients = get_totients(max_n + 1)
 
-    for i in range(2, max + 1):
+    for i in range(2, max_n + 1):
         t = totients[i]
 
         if i * min_denominator < min_numerator * t and has_same_digits(i, t):

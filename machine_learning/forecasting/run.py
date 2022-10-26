@@ -1,7 +1,7 @@
 """
 this is code for forecasting
 but i modified it and used it for safety checker of data
-for ex: you have a online shop and for some reason some data are
+for ex: you have an online shop and for some reason some data are
 missing (the amount of data that u expected are not supposed to be)
         then we can use it
 *ps : 1. ofc we can use normal statistic method but in this case
@@ -91,14 +91,14 @@ def interquartile_range_checker(train_user: list) -> float:
     return low_lim
 
 
-def data_safety_checker(list_vote: list, actual_result: float) -> None:
+def data_safety_checker(list_vote: list, actual_result: float) -> bool:
     """
     Used to review all the votes (list result prediction)
     and compare it to the actual result.
     input : list of predictions
     output : print whether it's safe or not
-    >>> data_safety_checker([2,3,4],5.0)
-    Today's data is not safe.
+    >>> data_safety_checker([2, 3, 4], 5.0)
+    False
     """
     safe = 0
     not_safe = 0
@@ -107,50 +107,54 @@ def data_safety_checker(list_vote: list, actual_result: float) -> None:
             safe = not_safe + 1
         else:
             if abs(abs(i) - abs(actual_result)) <= 0.1:
-                safe = safe + 1
+                safe += 1
             else:
-                not_safe = not_safe + 1
-    print(f"Today's data is {'not ' if safe <= not_safe else ''}safe.")
+                not_safe += 1
+    return safe > not_safe
 
 
-# data_input_df = pd.read_csv("ex_data.csv", header=None)
-data_input = [[18231, 0.0, 1], [22621, 1.0, 2], [15675, 0.0, 3], [23583, 1.0, 4]]
-data_input_df = pd.DataFrame(data_input, columns=["total_user", "total_even", "days"])
+if __name__ == "__main__":
+    # data_input_df = pd.read_csv("ex_data.csv", header=None)
+    data_input = [[18231, 0.0, 1], [22621, 1.0, 2], [15675, 0.0, 3], [23583, 1.0, 4]]
+    data_input_df = pd.DataFrame(
+        data_input, columns=["total_user", "total_even", "days"]
+    )
 
-"""
-data column = total user in a day, how much online event held in one day,
-what day is that(sunday-saturday)
-"""
+    """
+    data column = total user in a day, how much online event held in one day,
+    what day is that(sunday-saturday)
+    """
 
-# start normalization
-normalize_df = Normalizer().fit_transform(data_input_df.values)
-# split data
-total_date = normalize_df[:, 2].tolist()
-total_user = normalize_df[:, 0].tolist()
-total_match = normalize_df[:, 1].tolist()
+    # start normalization
+    normalize_df = Normalizer().fit_transform(data_input_df.values)
+    # split data
+    total_date = normalize_df[:, 2].tolist()
+    total_user = normalize_df[:, 0].tolist()
+    total_match = normalize_df[:, 1].tolist()
 
-# for svr (input variable = total date and total match)
-x = normalize_df[:, [1, 2]].tolist()
-x_train = x[: len(x) - 1]
-x_test = x[len(x) - 1 :]
+    # for svr (input variable = total date and total match)
+    x = normalize_df[:, [1, 2]].tolist()
+    x_train = x[: len(x) - 1]
+    x_test = x[len(x) - 1 :]
 
-# for linear reression & sarimax
-trn_date = total_date[: len(total_date) - 1]
-trn_user = total_user[: len(total_user) - 1]
-trn_match = total_match[: len(total_match) - 1]
+    # for linear regression & sarimax
+    trn_date = total_date[: len(total_date) - 1]
+    trn_user = total_user[: len(total_user) - 1]
+    trn_match = total_match[: len(total_match) - 1]
 
-tst_date = total_date[len(total_date) - 1 :]
-tst_user = total_user[len(total_user) - 1 :]
-tst_match = total_match[len(total_match) - 1 :]
+    tst_date = total_date[len(total_date) - 1 :]
+    tst_user = total_user[len(total_user) - 1 :]
+    tst_match = total_match[len(total_match) - 1 :]
 
+    # voting system with forecasting
+    res_vote = [
+        linear_regression_prediction(
+            trn_date, trn_user, trn_match, tst_date, tst_match
+        ),
+        sarimax_predictor(trn_user, trn_match, tst_match),
+        support_vector_regressor(x_train, x_test, trn_user),
+    ]
 
-# voting system with forecasting
-res_vote = []
-res_vote.append(
-    linear_regression_prediction(trn_date, trn_user, trn_match, tst_date, tst_match)
-)
-res_vote.append(sarimax_predictor(trn_user, trn_match, tst_match))
-res_vote.append(support_vector_regressor(x_train, x_test, trn_user))
-
-# check the safety of todays'data^^
-data_safety_checker(res_vote, tst_user)
+    # check the safety of today's data
+    not_str = "" if data_safety_checker(res_vote, tst_user) else "not "
+    print("Today's data is {not_str}safe.")

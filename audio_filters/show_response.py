@@ -34,7 +34,7 @@ def get_bounds(
     return lowest, highest
 
 
-def show_frequency_response(filter: FilterType, samplerate: int) -> None:
+def show_frequency_response(filter_type: FilterType, samplerate: int) -> None:
     """
     Show frequency response of a filter
 
@@ -45,7 +45,7 @@ def show_frequency_response(filter: FilterType, samplerate: int) -> None:
 
     size = 512
     inputs = [1] + [0] * (size - 1)
-    outputs = [filter.process(item) for item in inputs]
+    outputs = [filter_type.process(item) for item in inputs]
 
     filler = [0] * (samplerate - size)  # zero-padding
     outputs += filler
@@ -66,7 +66,7 @@ def show_frequency_response(filter: FilterType, samplerate: int) -> None:
     plt.show()
 
 
-def show_phase_response(filter: FilterType, samplerate: int) -> None:
+def show_phase_response(filter_type: FilterType, samplerate: int) -> None:
     """
     Show phase response of a filter
 
@@ -77,7 +77,7 @@ def show_phase_response(filter: FilterType, samplerate: int) -> None:
 
     size = 512
     inputs = [1] + [0] * (size - 1)
-    outputs = [filter.process(item) for item in inputs]
+    outputs = [filter_type.process(item) for item in inputs]
 
     filler = [0] * (samplerate - size)  # zero-padding
     outputs += filler

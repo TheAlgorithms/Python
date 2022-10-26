@@ -3,7 +3,7 @@ https://en.wikipedia.org/wiki/Floor_and_ceiling_functions
 """
 
 
-def floor(x) -> int:
+def floor(x: float) -> int:
     """
     Return the floor of x as an Integral.
     :param x: the number

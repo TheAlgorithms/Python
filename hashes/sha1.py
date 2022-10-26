@@ -133,7 +133,7 @@ class SHA1HashTest(unittest.TestCase):
     Test class for the SHA1Hash class. Inherits the TestCase class from unittest
     """
 
-    def testMatchHashes(self):
+    def testMatchHashes(self):  # noqa: N802
         msg = bytes("Test String", "utf-8")
         self.assertEqual(SHA1Hash(msg).final_hash(), hashlib.sha1(msg).hexdigest())
 

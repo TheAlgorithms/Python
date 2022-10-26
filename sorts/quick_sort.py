@@ -9,6 +9,8 @@ python3 quick_sort.py
 """
 from __future__ import annotations
 
+from random import randrange
+
 
 def quick_sort(collection: list) -> list:
     """A pure Python implementation of quick sort algorithm
@@ -26,11 +28,17 @@ def quick_sort(collection: list) -> list:
     """
     if len(collection) < 2:
         return collection
-    pivot = collection.pop()  # Use the last element as the first pivot
+    pivot_index = randrange(len(collection))  # Use random element as pivot
+    pivot = collection[pivot_index]
     greater: list[int] = []  # All elements greater than pivot
     lesser: list[int] = []  # All elements less than or equal to pivot
-    for element in collection:
+
+    for element in collection[:pivot_index]:
         (greater if element > pivot else lesser).append(element)
+
+    for element in collection[pivot_index + 1 :]:
+        (greater if element > pivot else lesser).append(element)
+
     return quick_sort(lesser) + [pivot] + quick_sort(greater)
 
 

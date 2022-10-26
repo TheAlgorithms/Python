@@ -1,7 +1,7 @@
 """Absolute Value."""
 
 
-def abs_val(num):
+def abs_val(num: float) -> float:
     """
     Find the absolute value of a number.
 

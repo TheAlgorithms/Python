@@ -39,14 +39,14 @@ def create_state_space_tree(
     if sum(path) == max_sum:
         result.append(path)
         return
-    for num_index in range(num_index, len(nums)):
+    for index in range(num_index, len(nums)):
         create_state_space_tree(
             nums,
             max_sum,
-            num_index + 1,
-            path + [nums[num_index]],
+            index + 1,
+            path + [nums[index]],
             result,
-            remaining_nums_sum - nums[num_index],
+            remaining_nums_sum - nums[index],
         )
 
 

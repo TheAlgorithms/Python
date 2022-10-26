@@ -82,7 +82,7 @@ def run_linear_regression(data_x, data_y):
     for i in range(0, iterations):
         theta = run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta)
         error = sum_of_square_error(data_x, data_y, len_data, theta)
-        print("At Iteration %d - Error is %.5f " % (i + 1, error))
+        print(f"At Iteration {i + 1} - Error is {error:.5f}")
 
     return theta
 
