@@ -55,13 +55,15 @@ if __name__ == "__main__":
     for i in range(num_rows):
         matrix.append([])
         for j in range(num_cols):
-            element = int(input("Enter the element of index ("+ str(i) + ', ' + str(j) + '): '))
+            element = int(
+                input("Enter the element of index (" + str(i) + ", " + str(j) + "): ")
+            )
             matrix[i].append(element)
 
     search_item = int(input("Enter the element to be searched: "))
     result = dfs(matrix, search_item, 0, 0)
 
-    if result:  
+    if result:
         print("Item found in the cordinate: ", searched_item_cordinates)
     else:
         print("Item not found!")
