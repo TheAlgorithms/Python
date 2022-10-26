@@ -26,11 +26,11 @@ def singleton_membership(c):
 def triangular_membership(a:int,b:int,c:int)->None:
   """
   inputs : a,b,c
-  triangular membership function with the end of plot is just c+5 
+  triangular membership function with the end of plot is just c+5
   """
   list_,x_list = [],[]
 
-  x = c+5 
+  x = c+5
   for i in range(x):
     x_list.append(i)
 
@@ -55,32 +55,32 @@ def trapezoidal_membership(a:int,b:int,c:int,d:int)->None:
   inputs : a, b, c, d
   trapezoidal_membership function with plot between 0 to d+5
 
-  The shape of the membership function depends on the relative values of b and c. 
-  - When c is greater than b, the resulting membership function is trapezoidal. 
-  - When b is equal to c, the resulting membership function is equivalent to a 
+  The shape of the membership function depends on the relative values of b and c.
+  - When c is greater than b, the resulting membership function is trapezoidal.
+  - When b is equal to c, the resulting membership function is equivalent to a
   triangular membership function with parameters [a b d].
   """
   x = d+5
   x_list = []
   list_ = []
-  
+
   for i in range(x):
     x_list.append(i)
-    
+
     if i<=a:
       list_.append(0)
-    
+
     elif i>=a and i<=b:
       list_.append((i-a)/(b-a))
-    
+
     elif i>=b and i<=c:
       list_.append(1)
-    
+
     elif i>=c and i<=d:
       list_.append((d-i)/(d-c))
 
     elif i>=d:
-      list_.append(0) 
+      list_.append(0)
 
   plt.plot(x_list,list_)
   plt.show()
@@ -94,8 +94,8 @@ def guassian_membership(c:int,s:int,m:int)->None:
   The range we took was from 0 to 10*c
   """
   list_ = []
-  x_list = []   
-  
+  x_list = []
+
   for i in range(0,10*(c)):
     x_list.append(i)
     list_.append(mt.exp(-0.5*(((i-c)/(s))**m)))
