@@ -1,0 +1,62 @@
+Que) Given an array arr[] of size N and an integer K, the task is to print all possible ways to split the given array into K subsets.
+
+SOL)
+
+#code
+
+def PartitionSub(arr, i, n, k, nos, sol):
+    if i>= n:
+        if nos == k:
+            subset = []
+            for x in range(len(sol)):
+                curr_set = []
+                for y in range(len(sol[x])):
+                    curr_set.append(sol[x][y])
+                    
+                subset.append(curr_set)
+            res.append(subset)
+        return
+        
+    for j in range(k):
+        #if already existing team is present then
+        ##append the element in existing subset
+        if len(sol[j]) > 0:
+            sol[j].append(arr[i])
+            
+            #recursively do same for remaining elements
+            PartitionSub(arr, i+1, n, k, nos, sol)
+            
+            #Backtrack
+            sol[j].remove(sol[j][len(sol[j])-1])
+            
+        else:
+            sol[j].append(arr[i])
+            
+            #recursively do same for remaining elements
+            PartitionSub(arr, i+1, n, k, nos+1, sol)
+            #Backtrack
+            sol[j].remove(sol[j][len(sol[j])-1])
+            
+            ##Break the loop here to 
+            ## avoid going element is next empty subset
+            ## because it is same subset
+            break
+    
+    
+def main(arr, n, k):
+    sol = [[] for i in range(k)]
+    global res
+    res = []
+    if k == 0 or k > n:
+        return 0
+    
+    else:
+        PartitionSub(arr, 0, n, k, 0, sol)
+        #print(res)
+        for subset in res:
+            print(subset)
+    
+
+n, k = map(int, input().split())
+arr = list(map(int, input().split()))
+main(arr, n, k)
