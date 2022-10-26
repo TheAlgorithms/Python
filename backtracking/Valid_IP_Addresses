@@ -1,0 +1,45 @@
+Que) Program to generate all possible valid IP addresses from given strin
+
+Solution using Backtracking approach
+
+Explanation -> Please refer step by step explaination of Approach -> https://www.crazytechie.com/2022/02/Backtracking-in-python-part-I-competitive-coding.html
+
+#code
+
+def isValidIP(part):
+    if part == "" or len(part) > 3:
+        return False
+        
+    if part[0] == "0" and len(part) != 1:
+        return False
+            
+    if int(part) < 0 or int(part) > 255:
+        return False
+        
+    return True
+
+def validIPAddress(ip, answer, curridx, segment, segnum):
+    if curridx == len(ip) and segnum == 4:
+        temp = ".".join(segment)
+        answer.append(temp)
+        return
+        
+    if curridx >= len(s) or segnum >= 4:
+        return
+        
+    curr_part = ""
+    for i in range(1, 4):
+        curr_part = s[curridx: curridx+i]
+        if isValidIP(curr_part):
+            segment[segnum] = curr_part
+            validIPAddress(ip, answer, curridx+i, segment, segnum+1)
+            
+    return
+    
+s = "23579"
+global answer
+answer = []
+segment = [""] * 4
+
+validIPAddress(s, answer, 0, segment, 0)
+print(answer)
