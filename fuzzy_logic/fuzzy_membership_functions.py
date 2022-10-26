@@ -7,9 +7,11 @@ Python:
   - 3.10
 """
 import math as mt
+
 import matplotlib.pyplot as plt
 
-def singleton_membership(c:int) -> None:
+
+def singleton_membership(c: int) -> None:
     plt.stem(c, 1)
     plt.show()
 
