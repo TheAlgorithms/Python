@@ -10,7 +10,7 @@ def karatsuba(a, b):
     """
     if len(str(a)) == 1 or len(str(b)) == 1:
         return a * b
-    
+
     m1 = max(len(str(a)), len(str(b)))
     m2 = m1 // 2
 
