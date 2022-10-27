@@ -65,9 +65,9 @@ class BinaryTreePathSum:
             self.paths += 1
 
         if node.left:
-            self.dfs(node.left, path_sum + node.left.value)
+            self.depth_first_search(node.left, path_sum + node.left.value)
         if node.right:
-            self.dfs(node.right, path_sum + node.right.value)
+            self.depth_first_search(node.right, path_sum + node.right.value)
 
     def path_sum(self, node: Node | None, target: int | None = None) -> int:
         if node is None:
@@ -75,7 +75,7 @@ class BinaryTreePathSum:
         if target is not None:
             self.target = target
 
-        self.dfs(node, node.value)
+        self.depth_first_search(node, node.value)
         self.path_sum(node.left)
         self.path_sum(node.right)
 
