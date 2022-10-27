@@ -151,7 +151,9 @@ def tile(grid: np.array, curr_grid_size: int, cell_x: int, cell_y: int) -> None:
             cell_y + int(curr_grid_size / 2) - 1,
         )
 
-    elif r >= cell_x + int(curr_grid_size / 2) and c >= cell_y + int(curr_grid_size / 2):
+    elif r >= cell_x + int(curr_grid_size / 2) and c >= cell_y + int(
+        curr_grid_size / 2
+    ):
         place(
             grid,
             cell_x + int(curr_grid_size / 2) - 1,
@@ -166,7 +168,12 @@ def tile(grid: np.array, curr_grid_size: int, cell_x: int, cell_y: int) -> None:
     tile(grid, int(curr_grid_size / 2), cell_x, cell_y + int(curr_grid_size / 2))
     tile(grid, int(curr_grid_size / 2), cell_x, cell_y)
     tile(grid, int(curr_grid_size / 2), cell_x + int(curr_grid_size / 2), cell_y)
-    tile(grid, int(curr_grid_size / 2), cell_x + int(curr_grid_size / 2), cell_y + int(curr_grid_size / 2))
+    tile(
+        grid,
+        int(curr_grid_size / 2),
+        cell_x + int(curr_grid_size / 2),
+        cell_y + int(curr_grid_size / 2),
+    )
 
 
 def tiling(size_of_grid: int, missing_cell_x: int, missing_cell_y: int) -> np.array:
