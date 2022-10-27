@@ -10,14 +10,14 @@ For manual testing run:
 python3 matrix_shortest_path_using_depth_first_search.py
 """
 
-import math
+import sys
 
 OBSTACLE_POS = -1
 VALID_POS = 1
 START_POS = "s"
 END_POS = "e"
 VISITED_POS = None
-current_shortest_path_distance = math.inf
+current_shortest_path_distance = sys.maxsize
 
 
 def find_shortest_path_using_dfs(
@@ -35,6 +35,10 @@ def find_shortest_path_using_dfs(
     :param col: currently traversing column index of the matrix in a given point of time
     :param distance: calculated distance through out a particular path of the matrix
     :return: None
+
+    Example:
+    >>> find_shortest_path_using_dfs([['s', 1, 1], [1, -1, 1], [-1, 1, 'e']], 0, 0, 0)
+    >>> find_shortest_path_using_dfs([[1, 1], [1, -1, 's', -1], [1, -1, 1]], 1, 2, 0)
     """
     global current_shortest_path_distance
 
@@ -76,14 +80,14 @@ def helper(matrix: list) -> int:
     >>> helper([[-1, -1, 1, 1, 's'], [-1, 1, 1, -1], [1, 1, -1], [1, -1], ['e']])
     8
     >>> helper([['s', 1, 1], [1, 1, -1], [1, -1, 'e']])
-    inf
+    -1
     >>> helper([[1, 1, -1, 1], [1, -1, 's', -1], [1, 1, -1, 1]])
-    inf
+    -1
     """
     global current_shortest_path_distance
 
     found = False
-    current_shortest_path_distance = math.inf
+    current_shortest_path_distance = sys.maxsize
 
     for i in range(len(matrix)):
         if not found:
@@ -95,17 +99,18 @@ def helper(matrix: list) -> int:
         else:
             break
 
+    if current_shortest_path_distance == sys.maxsize:
+        return -1
     return current_shortest_path_distance
 
 
-matrix = [
-    [START_POS, VALID_POS, OBSTACLE_POS],
-    [VALID_POS, VALID_POS, VALID_POS],
-    [END_POS, OBSTACLE_POS, VALID_POS],
-    [OBSTACLE_POS, OBSTACLE_POS, OBSTACLE_POS],
-]
-
 if __name__ == "__main__":
-    shortest_path_distance = helper(matrix)
+    matrix = [
+        [START_POS, VALID_POS, OBSTACLE_POS],
+        [VALID_POS, VALID_POS, VALID_POS],
+        [END_POS, OBSTACLE_POS, VALID_POS],
+        [OBSTACLE_POS, OBSTACLE_POS, OBSTACLE_POS],
+    ]
 
+    shortest_path_distance = helper(matrix)
     print(shortest_path_distance)
