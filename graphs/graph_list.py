@@ -149,6 +149,7 @@ class GraphAdjacencyList(Generic[T]):
     def __repr__(self) -> str:
         return pformat(self.adj_list)
 
+
 import doctest
 
 doctest.testmod()
