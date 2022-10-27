@@ -64,11 +64,11 @@ class DoublyLinkedList:
         >>> linked_list = DoublyLinkedList()
         >>> linked_list.insert_at_nth(-1, 666)
         Traceback (most recent call last):
-        ....
+            ....
         IndexError: list index out of range
         >>> linked_list.insert_at_nth(1, 666)
         Traceback (most recent call last):
-        ....
+            ....
         IndexError: list index out of range
         >>> linked_list.insert_at_nth(0, 2)
         >>> linked_list.insert_at_nth(0, 1)
@@ -78,7 +78,7 @@ class DoublyLinkedList:
         '1->2->3->4'
         >>> linked_list.insert_at_nth(5, 5)
         Traceback (most recent call last):
-        ....
+            ....
         IndexError: list index out of range
         """
         if not 0 <= index <= len(self):
@@ -114,7 +114,7 @@ class DoublyLinkedList:
         >>> linked_list = DoublyLinkedList()
         >>> linked_list.delete_at_nth(0)
         Traceback (most recent call last):
-        ....
+            ....
         IndexError: list index out of range
         >>> for i in range(0, 5):
         ...     linked_list.insert_at_nth(i, i + 1)
@@ -128,7 +128,7 @@ class DoublyLinkedList:
         '2->4'
         >>> linked_list.delete_at_nth(2)
         Traceback (most recent call last):
-        ....
+            ....
         IndexError: list index out of range
         """
         if not 0 <= index <= len(self) - 1:

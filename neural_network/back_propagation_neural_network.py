@@ -117,7 +117,7 @@ class BPNN:
 
     def summary(self):
         for i, layer in enumerate(self.layers[:]):
-            print("------- layer %d -------" % i)
+            print(f"------- layer {i} -------")
             print("weight.shape ", np.shape(layer.weight))
             print("bias.shape ", np.shape(layer.bias))
 

@@ -26,7 +26,7 @@ def solution(n: int = 998001) -> int:
     39893
     >>> solution(10000)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: That number is larger than our acceptable range.
     """
 

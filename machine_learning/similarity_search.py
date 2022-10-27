@@ -70,7 +70,7 @@ def similarity_search(
     >>> value_array = np.array([1])
     >>> similarity_search(dataset, value_array)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Wrong input data's dimensions... dataset : 2, value_array : 1
 
     2. If data's shapes are different.
@@ -80,7 +80,7 @@ def similarity_search(
     >>> value_array = np.array([[0, 0, 0], [0, 0, 1]])
     >>> similarity_search(dataset, value_array)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Wrong input data's shape... dataset : 2, value_array : 3
 
     3. If data types are different.
@@ -90,7 +90,7 @@ def similarity_search(
     >>> value_array = np.array([[0, 0], [0, 1]], dtype=np.int32)
     >>> similarity_search(dataset, value_array)  # doctest: +NORMALIZE_WHITESPACE
     Traceback (most recent call last):
-    ...
+        ...
     TypeError: Input data have different datatype...
     dataset : float32, value_array : int32
     """

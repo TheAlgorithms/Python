@@ -29,7 +29,7 @@ This training phase is possible when data points are linear, but there again com
 So, here comes the role of non-parametric algorithm which doesn't compute predictions based on fixed set of params. Rather parameters $\theta$ are computed individually for each query point/data point x.
 <br />
 <br />
-While Computing $\theta$ , a higher "preferance" is given to points in the vicinity of x than points farther from x.
+While Computing $\theta$ , a higher preference is given to points in the vicinity of x than points farther from x.
 
 Cost Function J($\theta$) = $\sum_{i=1}^m$ $w^i$ (($\theta$)$^T$ $x^i$ - $y^i$)$^2$
 
