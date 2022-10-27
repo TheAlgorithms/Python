@@ -39,29 +39,29 @@ Reference : "https://en.wikipedia.org/wiki/Polarizer#Malus's_law_and_other_prope
 
 def malus_law(initial_intensity: float, angle: float) -> float:
     """
-    >>> malus_law(10,45)
+    >>> round(malus_law(10,45),2)
     5.0
-    >>> malus_law(100,60)
+    >>> round(malus_law(100,60),2)
     25.0
-    >>> malus_law(50,150)
+    >>> round(malus_law(50,150),2)
     37.5
-    >>> malus_law(75,270)
+    >>> round(malus_law(75,270),2)
     0.0
-    >>> malus_law(10,-900)
+    >>> round(malus_law(10,-900),2)
     Traceback (most recent call last):
         ...
-    ValueError: In Malus Law,the angle between the polarizer and the axis always lies between 0 degree and 360 degrees
-    >>> malus_law(10,900)
+    ValueError: In Malus Law, the angle is in the range 0-360 degrees
+    >>> round(malus_law(10,900),2)
     Traceback (most recent call last):
         ...
-    ValueError: In Malus Law,the angle between the polarizer and the axis always lies between 0 degree and 360 degrees
-    >>> malus_law(-100,900)
+    ValueError: In Malus Law, the angle is in the range 0-360 degrees
+    >>> round(malus_law(-100,900),2)
     Traceback (most recent call last):
         ...
     ValueError: The value of intensity cannot be negative
-    >>> malus_law(100,180)
+    >>> round(malus_law(100,180),2)
     100.0
-    >>> malus_law(100,360)
+    >>> round(malus_law(100,360),2)
     100.0
     """
 
@@ -69,9 +69,7 @@ def malus_law(initial_intensity: float, angle: float) -> float:
         raise ValueError("The value of intensity cannot be negative")
         # handling of negative values of initial intensity
     if angle < 0 or angle > 360:
-        raise ValueError(
-            "In Malus Law, the angle between the polarizer and the axis always lies between 0 degree and 360 degrees"
-        )
+        raise ValueError("In Malus Law, the angle is in the range 0-360 degrees")
         # handling of values out of allowed range
     return initial_intensity * (math.cos(math.radians(angle)) ** 2)
 
