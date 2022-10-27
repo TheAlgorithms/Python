@@ -59,16 +59,16 @@ class SkipList(Generic[KT, VT]):
         :return: Visual representation of SkipList
 
         >>> skip_list = SkipList()
-        >>> skip_list
+        >>> print(skip_list)
         SkipList(level=0)
         >>> skip_list.insert("Key1", "Value")
-        >>> skip_list # doctest: +ELLIPSIS
+        >>> print(skip_list) # doctest: +ELLIPSIS
         SkipList(level=...
         [root]--...
         [Key1]--Key1...
         None    *...
         >>> skip_list.insert("Key2", "OtherValue")
-        >>> skip_list # doctest: +ELLIPSIS
+        >>> print(skip_list) # doctest: +ELLIPSIS
         SkipList(level=...
         [root]--...
         [Key1]--Key1...
@@ -443,4 +443,7 @@ def main():
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     main()
