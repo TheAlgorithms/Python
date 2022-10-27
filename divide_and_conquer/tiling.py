@@ -1,6 +1,6 @@
 """
-Given a n by n board where n is of form 2k where k >= 1 (Basically n is a power of 2 with minimum value as 2). 
-The board has one missing cell (of size 1 x 1). Fill the board using L shaped tiles. 
+Given a n by n board where n is of form 2k where k >= 1 (Basically n is a power of 2 with minimum value as 2).
+The board has one missing cell (of size 1 x 1). Fill the board using L shaped tiles.
 A L shaped tile is a 2 x 2 square with one cell of size 1×1 missing.
 
 This problem can be solved using Divide and Conquer. Below is the recursive algorithm.
@@ -8,11 +8,11 @@ This problem can be solved using Divide and Conquer. Below is the recursive algo
 // n is size of given square, p is location of missing cell
 Tile(int n, Point p)
 
-1) Base case: n = 2, A 2 x 2 square with one cell missing is nothing 
+1) Base case: n = 2, A 2 x 2 square with one cell missing is nothing
    but a tile and can be filled with a single tile.
 
 2) Place a L shaped tile at the center such that it does not cover
-   the n/2 * n/2 subsquare that has a missing square. Now all four 
+   the n/2 * n/2 subsquare that has a missing square. Now all four
    subsquares of size n/2 x n/2 have a missing cell (a cell that doesn't
    need to be filled).  See figure 2 below.
 
@@ -28,6 +28,7 @@ import numpy as np
 
 tile_count = 0
 
+
 def place(grid, x1, y1, x2, y2, x3, y3):
     """
     place the L shaped tile in given three squares (x1, y1), (x2, y2), (x3, y3)
@@ -36,18 +37,19 @@ def place(grid, x1, y1, x2, y2, x3, y3):
     tile_count += 1
     grid[x1][y1] = tile_count
     grid[x2][y2] = tile_count
-    grid[x3][y3] = tile_count 
+    grid[x3][y3] = tile_count
+
 
 def tile(grid, n, x, y):
     """
     n is size of given square, (x, y) is location of missing cell
     Tile(int n, int x, int y)
 
-    1) Base case: n = 2, A 2 x 2 square with one cell missing is nothing 
+    1) Base case: n = 2, A 2 x 2 square with one cell missing is nothing
     but a tile and can be filled with a single tile.
 
     2) Place a L shaped tile at the center such that it does not cover
-    the n/2 * n/2 subsquare that has a missing square. Now all four 
+    the n/2 * n/2 subsquare that has a missing square. Now all four
     subsquares of size n/2 x n/2 have a missing cell (a cell that doesn't
     need to be filled).
 
@@ -63,39 +65,70 @@ def tile(grid, n, x, y):
     c = 0
 
     # base case
-    if (n == 2):
+    if n == 2:
         tile_count += 1
         for i in range(n):
             for j in range(n):
-                if(grid[x + i][y + j] == 0):
+                if grid[x + i][y + j] == 0:
                     grid[x + i][y + j] = tile_count
-        return 0  
+        return 0
 
-    # step 2 
+    # step 2
     for i in range(x, x + n):
         for j in range(y, y + n):
-            if (grid[i][j] != 0):
+            if grid[i][j] != 0:
                 r = i
-                c = j 
+                c = j
 
-    if (r < x + n / 2 and c < y + n / 2):
-        place(grid, x + int(n / 2), y + int(n / 2) - 1, x + int(n / 2), y + int(n / 2), x + int(n / 2) - 1, y + int(n / 2))
-     
-    elif(r >= x + int(n / 2) and c < y + int(n / 2)):
-        place(grid, x + int(n / 2) - 1, y + int(n / 2), x + int(n / 2), y + int(n / 2), x + int(n / 2) - 1, y + int(n / 2) - 1)
-     
-    elif(r < x + int(n / 2) and c >= y + int(n / 2)):
-        place(grid, x + int(n / 2), y + int(n / 2) - 1, x + int(n / 2), y + int(n / 2), x + int(n / 2) - 1, y + int(n / 2) - 1)
-     
-    elif(r >= x + int(n / 2) and c >= y + int(n / 2)):
-        place(grid, x + int(n / 2) - 1, y + int(n / 2), x + int(n / 2), y + int(n / 2) - 1, x + int(n / 2) - 1, y + int(n / 2) - 1)
-    
+    if r < x + n / 2 and c < y + n / 2:
+        place(
+            grid,
+            x + int(n / 2),
+            y + int(n / 2) - 1,
+            x + int(n / 2),
+            y + int(n / 2),
+            x + int(n / 2) - 1,
+            y + int(n / 2),
+        )
+
+    elif r >= x + int(n / 2) and c < y + int(n / 2):
+        place(
+            grid,
+            x + int(n / 2) - 1,
+            y + int(n / 2),
+            x + int(n / 2),
+            y + int(n / 2),
+            x + int(n / 2) - 1,
+            y + int(n / 2) - 1,
+        )
+
+    elif r < x + int(n / 2) and c >= y + int(n / 2):
+        place(
+            grid,
+            x + int(n / 2),
+            y + int(n / 2) - 1,
+            x + int(n / 2),
+            y + int(n / 2),
+            x + int(n / 2) - 1,
+            y + int(n / 2) - 1,
+        )
+
+    elif r >= x + int(n / 2) and c >= y + int(n / 2):
+        place(
+            grid,
+            x + int(n / 2) - 1,
+            y + int(n / 2),
+            x + int(n / 2),
+            y + int(n / 2) - 1,
+            x + int(n / 2) - 1,
+            y + int(n / 2) - 1,
+        )
+
     # step 3
     tile(grid, int(n / 2), x, y + int(n / 2))
     tile(grid, int(n / 2), x, y)
     tile(grid, int(n / 2), x + int(n / 2), y)
     tile(grid, int(n / 2), x + int(n / 2), y + int(n / 2))
-
 
 
 def tiling(size_of_grid, missing_cell_x, missing_cell_y):
@@ -130,12 +163,13 @@ def tiling(size_of_grid, missing_cell_x, missing_cell_y):
 
     """
     grid = np.zeros((size_of_grid, size_of_grid))
-    
+
     grid[missing_cell_x][missing_cell_y] = -1
-    
+
     tile(grid, size_of_grid, 0, 0)
-    
+
     return grid
+
 
 if __name__ == "__main__":
     print(tiling(8, 0, 0))
