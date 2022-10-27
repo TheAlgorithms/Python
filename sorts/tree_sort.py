@@ -29,7 +29,7 @@ class Node:
 
 
 def inorder(root, res):
-    # Recursive traversal
+    # Recursive traversal method
     if root:
         inorder(root.left, res)
         res.append(root.val)
@@ -37,7 +37,7 @@ def inorder(root, res):
 
 
 def tree_sort(arr):
-    # Build BST
+    # Build BST method
     if len(arr) == 0:
         return arr
     root = Node(arr[0])
