@@ -20,7 +20,7 @@ def get_english_count(message: str) -> float:
     message = message.upper()
     message = remove_non_letters(message)
     possible_words = message.split()
-    matches = len(word for word in possible_words if word in ENGLISH_WORDS)
+    matches = len([word for word in possible_words if word in ENGLISH_WORDS])
     return float(matches) / len(possible_words)
 
 
