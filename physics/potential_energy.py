@@ -24,7 +24,6 @@ U=mgh
 where m is the object's mass, g=GM/R² is the gravity of Earth, and h is
 the height of the object's center of mass above a chosen reference level.
 
-
 Reference : "https://en.m.wikipedia.org/wiki/Gravitational_energy"
 """
 
