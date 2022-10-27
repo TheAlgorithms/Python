@@ -55,7 +55,7 @@ def potential_energy(mass: float, height: float) -> float:
     if height < 0:
         raise ValueError("The height above the ground cannot be negative")
         # handling of negative values of height
-    return mass * cons.g * height
+    return mass * g * height
 
 
 if __name__ == "__main__":
