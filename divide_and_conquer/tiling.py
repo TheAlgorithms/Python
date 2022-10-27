@@ -28,7 +28,7 @@ import numpy as np
 
 tile_count = 0
 
-def place(grid, x1, y1, x2, y2, x3, y3):
+def place(grid: np.array, x1: int, y1: int, x2: int, y2: int, x3: int, y3: int) -> None:
     """
     place the L shaped tile in given three squares (x1, y1), (x2, y2), (x3, y3)
     """
@@ -38,7 +38,7 @@ def place(grid, x1, y1, x2, y2, x3, y3):
     grid[x2][y2] = tile_count
     grid[x3][y3] = tile_count 
 
-def tile(grid, n, x, y):
+def tile(grid: np.array, n: int, x: int, y: int) -> None:
     """
     n is size of given square, (x, y) is location of missing cell
     Tile(int n, int x, int y)
@@ -98,7 +98,7 @@ def tile(grid, n, x, y):
 
 
 
-def tiling(size_of_grid, missing_cell_x, missing_cell_y):
+def tiling(size_of_grid: int, missing_cell_x: int, missing_cell_y: int) -> np.array:
     """
     Runtime: O(len(input_string)*len(pattern))
 
