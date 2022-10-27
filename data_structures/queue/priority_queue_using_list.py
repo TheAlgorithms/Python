@@ -30,7 +30,7 @@ class FixedPriorityQueue:
     >>> fpq.enqueue(2, 4)
     >>> fpq.enqueue(1, 64)
     >>> fpq.enqueue(0, 128)
-    >>> fpq
+    >>> print(fpq)
     Priority 0: [10, 100, 128]
     Priority 1: [70, 7, 64]
     Priority 2: [1, 5, 4]
@@ -44,7 +44,7 @@ class FixedPriorityQueue:
     70
     >>> fpq.dequeue()
     7
-    >>> fpq
+    >>> print(fpq)
     Priority 0: []
     Priority 1: [64]
     Priority 2: [1, 5, 4]
@@ -60,7 +60,7 @@ class FixedPriorityQueue:
     Traceback (most recent call last):
     ...
     data_structures.queue.priority_queue_using_list.UnderFlowError: All queues are empty
-    >>> fpq
+    >>> print(fpq)
     Priority 0: []
     Priority 1: []
     Priority 2: []
@@ -116,7 +116,7 @@ class ElementPriorityQueue:
     >>> epq.enqueue(4)
     >>> epq.enqueue(64)
     >>> epq.enqueue(128)
-    >>> epq
+    >>> print(epq)
     [10, 70, 4, 1, 5, 7, 4, 64, 128]
     >>> epq.dequeue()
     1
@@ -130,7 +130,7 @@ class ElementPriorityQueue:
     7
     >>> epq.dequeue()
     10
-    >>> epq
+    >>> print(epq)
     [70, 64, 128]
     >>> epq.dequeue()
     64
@@ -142,7 +142,7 @@ class ElementPriorityQueue:
     Traceback (most recent call last):
         ...
     data_structures.queue.priority_queue_using_list.UnderFlowError: The queue is empty
-    >>> epq
+    >>> print(epq)
     []
     """
 

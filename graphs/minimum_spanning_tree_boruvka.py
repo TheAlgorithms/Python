@@ -154,7 +154,7 @@ class Graph:
         >>> g = Graph.build([0, 1, 2, 3], [[0, 1, 1], [0, 2, 1],[2, 3, 1]])
         >>> g.distinct_weight()
         >>> bg = Graph.boruvka_mst(g)
-        >>> bg
+        >>> print(bg)
         1 -> 0 == 1
         2 -> 0 == 2
         0 -> 1 == 1

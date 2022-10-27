@@ -101,7 +101,7 @@ class BinomialHeap:
     [(17, 0), ('#', 1), (31, 1), (20, 2), ('#', 3), ('#', 3), (34, 2), ('#', 3), ('#', 3)]
 
     printing Heap - __str__() test
-    >>> second_heap
+    >>> print(second_heap)
     17
     -#
     -31

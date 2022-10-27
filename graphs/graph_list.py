@@ -18,7 +18,7 @@ class GraphAdjacencyList(Generic[T]):
 
     Directed graph example:
     >>> d_graph = GraphAdjacencyList()
-    >>> d_graph
+    >>> print(d_graph)
     {}
     >>> d_graph.add_edge(0, 1)
     {0: [1], 1: []}
@@ -28,7 +28,7 @@ class GraphAdjacencyList(Generic[T]):
     {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
     >>> d_graph
     {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
-    >>> repr(d_graph)
+    >>> print(repr(d_graph))
     {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
 
     Undirected graph example:
@@ -47,7 +47,7 @@ class GraphAdjacencyList(Generic[T]):
      5: [1, 4],
      6: [2],
      7: [2]}
-    >>> u_graph
+    >>> print(u_graph)
     {0: [1, 2],
      1: [0, 2, 4, 5],
      2: [1, 0, 6, 7],
@@ -55,7 +55,7 @@ class GraphAdjacencyList(Generic[T]):
      5: [1, 4],
      6: [2],
      7: [2]}
-    >>> repr(u_graph)
+    >>> print(repr(u_graph))
     {0: [1, 2],
      1: [0, 2, 4, 5],
      2: [1, 0, 6, 7],
@@ -148,3 +148,7 @@ class GraphAdjacencyList(Generic[T]):
 
     def __repr__(self) -> str:
         return pformat(self.adj_list)
+
+import doctest
+
+doctest.testmod()

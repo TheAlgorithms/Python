@@ -3,25 +3,25 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
     coordinates is a two dimensional matrix: [[x, y], [x, y], ...]
     number of points you want to use
 
-    >>> points_to_polynomial([])
+    >>> print(points_to_polynomial([]))
     The program cannot work out a fitting polynomial.
-    >>> points_to_polynomial([[]])
+    >>> print(points_to_polynomial([[]]))
     The program cannot work out a fitting polynomial.
-    >>> points_to_polynomial([[1, 0], [2, 0], [3, 0]])
+    >>> print(points_to_polynomial([[1, 0], [2, 0], [3, 0]]))
     f(x)=x^2*0.0+x^1*-0.0+x^0*0.0
-    >>> points_to_polynomial([[1, 1], [2, 1], [3, 1]])
+    >>> print(points_to_polynomial([[1, 1], [2, 1], [3, 1]]))
     f(x)=x^2*0.0+x^1*-0.0+x^0*1.0
-    >>> points_to_polynomial([[1, 3], [2, 3], [3, 3]])
+    >>> print(points_to_polynomial([[1, 3], [2, 3], [3, 3]]))
     f(x)=x^2*0.0+x^1*-0.0+x^0*3.0
-    >>> points_to_polynomial([[1, 1], [2, 2], [3, 3]])
+    >>> print(points_to_polynomial([[1, 1], [2, 2], [3, 3]]))
     f(x)=x^2*0.0+x^1*1.0+x^0*0.0
-    >>> points_to_polynomial([[1, 1], [2, 4], [3, 9]])
+    >>> print(points_to_polynomial([[1, 1], [2, 4], [3, 9]]))
     f(x)=x^2*1.0+x^1*-0.0+x^0*0.0
-    >>> points_to_polynomial([[1, 3], [2, 6], [3, 11]])
+    >>> print(points_to_polynomial([[1, 3], [2, 6], [3, 11]]))
     f(x)=x^2*1.0+x^1*-0.0+x^0*2.0
-    >>> points_to_polynomial([[1, -3], [2, -6], [3, -11]])
+    >>> print(points_to_polynomial([[1, -3], [2, -6], [3, -11]]))
     f(x)=x^2*-1.0+x^1*-0.0+x^0*-2.0
-    >>> points_to_polynomial([[1, 5], [2, 2], [3, 9]])
+    >>> print(points_to_polynomial([[1, 5], [2, 2], [3, 9]]))
     f(x)=x^2*5.0+x^1*-18.0+x^0*18.0
     """
     try:
@@ -127,3 +127,4 @@ if __name__ == "__main__":
     print(points_to_polynomial([[1, 3], [2, 6], [3, 11]]))
     print(points_to_polynomial([[1, -3], [2, -6], [3, -11]]))
     print(points_to_polynomial([[1, 5], [2, 2], [3, 9]]))
+    

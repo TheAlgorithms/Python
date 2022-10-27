@@ -46,7 +46,7 @@ class LinkedList:
         >>> linked_list.add(23)
         >>> linked_list.add(14)
         >>> linked_list.add(9)
-        >>> linked_list
+        >>> print(linked_list)
         9 --> 14 --> 23
         """
         if not self.is_empty:
