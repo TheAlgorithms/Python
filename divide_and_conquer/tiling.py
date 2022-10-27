@@ -23,6 +23,22 @@ Tile(int n, Point p)
    c) Tile(n/2, p3)
    d) Tile(n/2, p3)
 
+Examples
+---------
+>>> tiling(4, 0, 0)
+array([[-1.,  3.,  2.,  2.],
+    [ 3.,  3.,  1.,  2.],
+    [ 4.,  1.,  1.,  5.],
+    [ 4.,  4.,  5.,  5.]])
+>>> tiling(4, 3, 3)
+array([[ 3.  3.  2.  2.]
+    [ 3.  1.  1.  2.]
+    [ 4.  1.  5.  5.]
+    [ 4.  4.  5. -1.]])
+>>> tiling(2, 1, 1)
+array([[ 1.  1.]
+    [ 1. -1.]])
+
 """
 import numpy as np
 
@@ -32,6 +48,17 @@ tile_count = 0
 def place(grid: np.array, x1: int, y1: int, x2: int, y2: int, x3: int, y3: int) -> None:
     """
     place the L shaped tile in given three squares (x1, y1), (x2, y2), (x3, y3)
+
+    Arguments
+    --------
+    grid: np.array, grid
+    x1: int, x coordinate of point 1
+    Y1: int, Y coordinate of point 1
+    x2: int, x coordinate of point 2
+    Y2: int, Y coordinate of point 2
+    x3: int, x coordinate of point 3
+    Y3: int, Y coordinate of point 3
+
     """
     global tile_count
     tile_count += 1
@@ -40,7 +67,7 @@ def place(grid: np.array, x1: int, y1: int, x2: int, y2: int, x3: int, y3: int) 
     grid[x3][y3] = tile_count
 
 
-def tile(grid: np.array, n: int, x: int, y: int) -> None:
+def tile(grid: np.array, curr_grid_size: int, cell_x: int, cell_y: int) -> None:
     """
     n is size of given square, (x, y) is location of missing cell
     Tile(int n, int x, int y)
@@ -59,76 +86,87 @@ def tile(grid: np.array, n: int, x: int, y: int) -> None:
     b) Tile(n/2, p2)
     c) Tile(n/2, p3)
     d) Tile(n/2, p3)
+
+    Arguments
+    --------
+    grid: np.array, grid
+    curr_grid_size: int, current size of the grid
+    cell_x: int, x coordinate of the missing piece
+    cell_y: int, y coordinate of the missing piece
+
+    Returns
+    -------
+    grid: the final grid
     """
     global tile_count
     r = 0
     c = 0
 
     # base case
-    if n == 2:
+    if curr_grid_size == 2:
         tile_count += 1
-        for i in range(n):
-            for j in range(n):
-                if grid[x + i][y + j] == 0:
-                    grid[x + i][y + j] = tile_count
+        for i in range(curr_grid_size):
+            for j in range(curr_grid_size):
+                if grid[cell_x + i][cell_y + j] == 0:
+                    grid[cell_x + i][cell_y + j] = tile_count
         return 0
 
     # step 2
-    for i in range(x, x + n):
-        for j in range(y, y + n):
+    for i in range(cell_x, cell_x + curr_grid_size):
+        for j in range(cell_y, cell_y + curr_grid_size):
             if grid[i][j] != 0:
                 r = i
                 c = j
 
-    if r < x + n / 2 and c < y + n / 2:
+    if r < cell_x + curr_grid_size / 2 and c < cell_y + curr_grid_size / 2:
         place(
             grid,
-            x + int(n / 2),
-            y + int(n / 2) - 1,
-            x + int(n / 2),
-            y + int(n / 2),
-            x + int(n / 2) - 1,
-            y + int(n / 2),
+            cell_x + int(curr_grid_size / 2),
+            cell_y + int(curr_grid_size / 2) - 1,
+            cell_x + int(curr_grid_size / 2),
+            cell_y + int(curr_grid_size / 2),
+            cell_x + int(curr_grid_size / 2) - 1,
+            cell_y + int(curr_grid_size / 2),
         )
 
-    elif r >= x + int(n / 2) and c < y + int(n / 2):
+    elif r >= cell_x + int(curr_grid_size / 2) and c < cell_y + int(curr_grid_size / 2):
         place(
             grid,
-            x + int(n / 2) - 1,
-            y + int(n / 2),
-            x + int(n / 2),
-            y + int(n / 2),
-            x + int(n / 2) - 1,
-            y + int(n / 2) - 1,
+            cell_x + int(curr_grid_size / 2) - 1,
+            cell_y + int(curr_grid_size / 2),
+            cell_x + int(curr_grid_size / 2),
+            cell_y + int(curr_grid_size / 2),
+            cell_x + int(curr_grid_size / 2) - 1,
+            cell_y + int(curr_grid_size / 2) - 1,
         )
 
-    elif r < x + int(n / 2) and c >= y + int(n / 2):
+    elif r < cell_x + int(curr_grid_size / 2) and c >= cell_y + int(curr_grid_size / 2):
         place(
             grid,
-            x + int(n / 2),
-            y + int(n / 2) - 1,
-            x + int(n / 2),
-            y + int(n / 2),
-            x + int(n / 2) - 1,
-            y + int(n / 2) - 1,
+            cell_x + int(curr_grid_size / 2),
+            cell_y + int(curr_grid_size / 2) - 1,
+            cell_x + int(curr_grid_size / 2),
+            cell_y + int(curr_grid_size / 2),
+            cell_x + int(curr_grid_size / 2) - 1,
+            cell_y + int(curr_grid_size / 2) - 1,
         )
 
-    elif r >= x + int(n / 2) and c >= y + int(n / 2):
+    elif r >= cell_x + int(curr_grid_size / 2) and c >= cell_y + int(curr_grid_size / 2):
         place(
             grid,
-            x + int(n / 2) - 1,
-            y + int(n / 2),
-            x + int(n / 2),
-            y + int(n / 2) - 1,
-            x + int(n / 2) - 1,
-            y + int(n / 2) - 1,
+            cell_x + int(curr_grid_size / 2) - 1,
+            cell_y + int(curr_grid_size / 2),
+            cell_x + int(curr_grid_size / 2),
+            cell_y + int(curr_grid_size / 2) - 1,
+            cell_x + int(curr_grid_size / 2) - 1,
+            cell_y + int(curr_grid_size / 2) - 1,
         )
 
     # step 3
-    tile(grid, int(n / 2), x, y + int(n / 2))
-    tile(grid, int(n / 2), x, y)
-    tile(grid, int(n / 2), x + int(n / 2), y)
-    tile(grid, int(n / 2), x + int(n / 2), y + int(n / 2))
+    tile(grid, int(curr_grid_size / 2), cell_x, cell_y + int(curr_grid_size / 2))
+    tile(grid, int(curr_grid_size / 2), cell_x, cell_y)
+    tile(grid, int(curr_grid_size / 2), cell_x + int(curr_grid_size / 2), cell_y)
+    tile(grid, int(curr_grid_size / 2), cell_x + int(curr_grid_size / 2), cell_y + int(curr_grid_size / 2))
 
 
 def tiling(size_of_grid: int, missing_cell_x: int, missing_cell_y: int) -> np.array:
@@ -144,22 +182,6 @@ def tiling(size_of_grid: int, missing_cell_x: int, missing_cell_y: int) -> np.ar
     Returns
     -------
     grid: the final grid
-
-    Examples
-    ---------
-     >>> tiling(4, 0, 0)
-     array([[-1.,  3.,  2.,  2.],
-          [ 3.,  3.,  1.,  2.],
-          [ 4.,  1.,  1.,  5.],
-          [ 4.,  4.,  5.,  5.]])
-     >>> tiling(4, 3, 3)
-     array([[ 3.  3.  2.  2.]
-        [ 3.  1.  1.  2.]
-        [ 4.  1.  5.  5.]
-        [ 4.  4.  5. -1.]])
-     >>> tiling(2, 1, 1)
-     array([[ 1.  1.]
-        [ 1. -1.]])
 
     """
     grid = np.zeros((size_of_grid, size_of_grid))
