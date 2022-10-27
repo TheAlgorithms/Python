@@ -13,6 +13,11 @@ repos:
           )$
       - id: requirements-txt-fixer
 
+  - repo: https://github.com/MarcoGorelli/auto-walrus
+    rev: v0.2.1
+    hooks:
+    -   id: auto-walrus
+
   - repo: https://github.com/psf/black
     rev: 22.10.0
     hooks:
