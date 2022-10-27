@@ -7,8 +7,10 @@ numpy
 opencv-python
 pandas
 pillow
+projectq
 qiskit
 requests
+rich
 scikit-fuzzy
 sklearn
 statsmodels

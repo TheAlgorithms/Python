@@ -1,12 +1,14 @@
 """
 Find the area of various geometric shapes
+Wikipedia reference: https://en.wikipedia.org/wiki/Area
 """
-from math import pi, sqrt
+from math import pi, sqrt, tan
 
 
 def surface_area_cube(side_length: float) -> float:
     """
     Calculate the Surface Area of a Cube.
+
     >>> surface_area_cube(1)
     6
     >>> surface_area_cube(1.6)
@@ -28,6 +30,7 @@ def surface_area_cube(side_length: float) -> float:
 def surface_area_cuboid(length: float, breadth: float, height: float) -> float:
     """
     Calculate the Surface Area of a Cuboid.
+
     >>> surface_area_cuboid(1, 2, 3)
     22
     >>> surface_area_cuboid(0, 0, 0)
@@ -57,6 +60,7 @@ def surface_area_sphere(radius: float) -> float:
     Calculate the Surface Area of a Sphere.
     Wikipedia reference: https://en.wikipedia.org/wiki/Sphere
     Formula: 4 * pi * r^2
+
     >>> surface_area_sphere(5)
     314.1592653589793
     >>> surface_area_sphere(1)
@@ -79,6 +83,7 @@ def surface_area_hemisphere(radius: float) -> float:
     """
     Calculate the Surface Area of a Hemisphere.
     Formula: 3 * pi * r^2
+
     >>> surface_area_hemisphere(5)
     235.61944901923448
     >>> surface_area_hemisphere(1)
@@ -102,6 +107,7 @@ def surface_area_cone(radius: float, height: float) -> float:
     Calculate the Surface Area of a Cone.
     Wikipedia reference: https://en.wikipedia.org/wiki/Cone
     Formula: pi * r * (r + (h ** 2 + r ** 2) ** 0.5)
+
     >>> surface_area_cone(10, 24)
     1130.9733552923256
     >>> surface_area_cone(6, 8)
@@ -133,6 +139,7 @@ def surface_area_conical_frustum(
 ) -> float:
     """
     Calculate the Surface Area of a Conical Frustum.
+
     >>> surface_area_conical_frustum(1, 2, 3)
     45.511728065337266
     >>> surface_area_conical_frustum(4, 5, 6)
@@ -167,6 +174,7 @@ def surface_area_cylinder(radius: float, height: float) -> float:
     Calculate the Surface Area of a Cylinder.
     Wikipedia reference: https://en.wikipedia.org/wiki/Cylinder
     Formula: 2 * pi * r * (h + r)
+
     >>> surface_area_cylinder(7, 10)
     747.6990515543707
     >>> surface_area_cylinder(1.6, 2.6)
@@ -196,6 +204,7 @@ def surface_area_cylinder(radius: float, height: float) -> float:
 def area_rectangle(length: float, width: float) -> float:
     """
     Calculate the area of a rectangle.
+
     >>> area_rectangle(10, 20)
     200
     >>> area_rectangle(1.6, 2.6)
@@ -223,6 +232,7 @@ def area_rectangle(length: float, width: float) -> float:
 def area_square(side_length: float) -> float:
     """
     Calculate the area of a square.
+
     >>> area_square(10)
     100
     >>> area_square(0)
@@ -242,6 +252,7 @@ def area_square(side_length: float) -> float:
 def area_triangle(base: float, height: float) -> float:
     """
     Calculate the area of a triangle given the base and height.
+
     >>> area_triangle(10, 10)
     50.0
     >>> area_triangle(1.6, 2.6)
@@ -270,6 +281,7 @@ def area_triangle_three_sides(side1: float, side2: float, side3: float) -> float
     """
     Calculate area of triangle when the length of 3 sides are known.
     This function uses Heron's formula: https://en.wikipedia.org/wiki/Heron%27s_formula
+
     >>> area_triangle_three_sides(5, 12, 13)
     30.0
     >>> area_triangle_three_sides(10, 11, 12)
@@ -316,6 +328,7 @@ def area_triangle_three_sides(side1: float, side2: float, side3: float) -> float
 def area_parallelogram(base: float, height: float) -> float:
     """
     Calculate the area of a parallelogram.
+
     >>> area_parallelogram(10, 20)
     200
     >>> area_parallelogram(1.6, 2.6)
@@ -343,6 +356,7 @@ def area_parallelogram(base: float, height: float) -> float:
 def area_trapezium(base1: float, base2: float, height: float) -> float:
     """
     Calculate the area of a trapezium.
+
     >>> area_trapezium(10, 20, 30)
     450.0
     >>> area_trapezium(1.6, 2.6, 3.6)
@@ -386,6 +400,7 @@ def area_trapezium(base1: float, base2: float, height: float) -> float:
 def area_circle(radius: float) -> float:
     """
     Calculate the area of a circle.
+
     >>> area_circle(20)
     1256.6370614359173
     >>> area_circle(1.6)
@@ -405,6 +420,7 @@ def area_circle(radius: float) -> float:
 def area_ellipse(radius_x: float, radius_y: float) -> float:
     """
     Calculate the area of a ellipse.
+
     >>> area_ellipse(10, 10)
     314.1592653589793
     >>> area_ellipse(10, 20)
@@ -434,6 +450,7 @@ def area_ellipse(radius_x: float, radius_y: float) -> float:
 def area_rhombus(diagonal_1: float, diagonal_2: float) -> float:
     """
     Calculate the area of a rhombus.
+
     >>> area_rhombus(10, 20)
     100.0
     >>> area_rhombus(1.6, 2.6)
@@ -456,6 +473,51 @@ def area_rhombus(diagonal_1: float, diagonal_2: float) -> float:
     if diagonal_1 < 0 or diagonal_2 < 0:
         raise ValueError("area_rhombus() only accepts non-negative values")
     return 1 / 2 * diagonal_1 * diagonal_2
+
+
+def area_reg_polygon(sides: int, length: float) -> float:
+    """
+    Calculate the area of a regular polygon.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Polygon#Regular_polygons
+    Formula: (n*s^2*cot(pi/n))/4
+
+    >>> area_reg_polygon(3, 10)
+    43.301270189221945
+    >>> area_reg_polygon(4, 10)
+    100.00000000000001
+    >>> area_reg_polygon(0, 0)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_reg_polygon() only accepts integers greater than or equal to \
+three as number of sides
+    >>> area_reg_polygon(-1, -2)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_reg_polygon() only accepts integers greater than or equal to \
+three as number of sides
+    >>> area_reg_polygon(5, -2)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_reg_polygon() only accepts non-negative values as \
+length of a side
+    >>> area_reg_polygon(-1, 2)
+    Traceback (most recent call last):
+        ...
+    ValueError: area_reg_polygon() only accepts integers greater than or equal to \
+three as number of sides
+    """
+    if not isinstance(sides, int) or sides < 3:
+        raise ValueError(
+            "area_reg_polygon() only accepts integers greater than or \
+equal to three as number of sides"
+        )
+    elif length < 0:
+        raise ValueError(
+            "area_reg_polygon() only accepts non-negative values as \
+length of a side"
+        )
+    return (sides * length**2) / (4 * tan(pi / sides))
+    return (sides * length**2) / (4 * tan(pi / sides))
 
 
 if __name__ == "__main__":
@@ -481,3 +543,6 @@ if __name__ == "__main__":
     print(f"Cone: {surface_area_cone(10, 20) = }")
     print(f"Conical Frustum: {surface_area_conical_frustum(10, 20, 30) = }")
     print(f"Cylinder: {surface_area_cylinder(10, 20) = }")
+    print(f"Equilateral Triangle: {area_reg_polygon(3, 10) = }")
+    print(f"Square: {area_reg_polygon(4, 10) = }")
+    print(f"Reqular Pentagon: {area_reg_polygon(5, 10) = }")

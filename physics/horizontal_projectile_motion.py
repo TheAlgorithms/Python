@@ -3,13 +3,13 @@ Horizontal Projectile Motion problem in physics.
 This algorithm solves a specific problem in which
 the motion starts from the ground as can be seen below:
       (v = 0)
-        **
-       *  *
-      *    *
-     *      *
-    *        *
-   *          *
-GROUND      GROUND
+               *  *
+           *          *
+        *                *
+      *                    *
+    *                        *
+   *                          *
+GROUND                      GROUND
 For more info: https://en.wikipedia.org/wiki/Projectile_motion
 """
 
