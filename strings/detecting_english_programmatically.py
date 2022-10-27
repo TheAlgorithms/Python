@@ -33,10 +33,7 @@ def get_english_count(message: str) -> float:
 
 
 def remove_non_letters(message: str) -> str:
-    letters_only = []
-    for symbol in message:
-        if symbol in LETTERS_AND_SPACE:
-            letters_only.append(symbol)
+    letters_only = [symbol for symbol in message if symbol in LETTERS_AND_SPACE]
     return "".join(letters_only)
 
 
