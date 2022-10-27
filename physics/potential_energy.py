@@ -1,5 +1,3 @@
-from doctest import testmod
-
 from scipy.constants import g
 
 """
