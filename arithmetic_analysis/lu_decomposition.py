@@ -31,7 +31,7 @@ def lower_upper_decomposition(
     >>> matrix = np.array([[2, -2, 1], [0, 1, 2]])
     >>> lower_upper_decomposition(matrix)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: 'table' has to be of square shaped array but got a 2x3 array:
     [[ 2 -2  1]
      [ 0  1  2]]

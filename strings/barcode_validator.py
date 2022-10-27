@@ -47,7 +47,7 @@ def is_valid(barcode: int) -> bool:
     False
     >>> is_valid(dwefgiweuf)
     Traceback (most recent call last):
-    ...
+        ...
     NameError: name 'dwefgiweuf' is not defined
     """
     return len(str(barcode)) == 13 and get_check_digit(barcode) == barcode % 10
@@ -61,7 +61,7 @@ def get_barcode(barcode: str) -> int:
     8718452538119
     >>> get_barcode("dwefgiweuf")
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Barcode 'dwefgiweuf' has alphabetic characters.
     """
     if str(barcode).isalpha():

@@ -32,17 +32,17 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
     >>> genes.remove("e")
     >>> basic("test", genes)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: ['e'] is not in genes list, evolution cannot converge
     >>> genes.remove("s")
     >>> basic("test", genes)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: ['e', 's'] is not in genes list, evolution cannot converge
     >>> genes.remove("t")
     >>> basic("test", genes)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: ['e', 's', 't'] is not in genes list, evolution cannot converge
     """
 

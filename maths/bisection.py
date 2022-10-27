@@ -32,7 +32,7 @@ def bisection(a: float, b: float) -> float:
     3.158203125
     >>> bisection(2, 3)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Wrong space!
     """
     # Bolzano theory in order to find if there is a root between a and b
