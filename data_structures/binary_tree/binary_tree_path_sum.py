@@ -57,7 +57,7 @@ class BinaryTreePathSum:
     def __init__(self) -> None:
         self.paths = 0
 
-    def dfs(self, node: Node | None, path_sum: int) -> None:
+    def depth_first_search(self, node: Node | None, path_sum: int) -> None:
         if node is None:
             return
 
