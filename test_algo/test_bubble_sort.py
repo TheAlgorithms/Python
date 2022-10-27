@@ -1,5 +1,6 @@
-import unittest
 import random
+import unittest
+
 from sorts.bubble_sort import bubble_sort
 
 
@@ -12,7 +13,9 @@ class TestBubbleSort(unittest.TestCase):
         self.assertEqual(bubble_sort([]), sorted([]))
         self.assertEqual(bubble_sort([-2, -45, -5]), sorted([-2, -45, -5]))
         self.assertEqual(bubble_sort([-23, 0, 6, -4, 34]), sorted([-23, 0, 6, -4, 34]))
-        self.assertEqual(bubble_sort(['d', 'a', 'b', 'e', 'c']), sorted(['d', 'a', 'b', 'e', 'c']))
+        self.assertEqual(
+            bubble_sort(["d", "a", "b", "e", "c"]), sorted(["d", "a", "b", "e", "c"])
+        )
 
     def test_bubble_sort_random(self):
 
@@ -21,8 +24,10 @@ class TestBubbleSort(unittest.TestCase):
 
     def test_bubble_sort_string(self):
         import string
+
         collection = random.choices(string.ascii_letters + string.digits, k=100)
         self.assertEqual(bubble_sort(collection), sorted(collection))
-     
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     unittest.main()
