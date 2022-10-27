@@ -1,6 +1,6 @@
 from doctest import testmod
 
-import scipy.constants as cons
+from scipy.constants import g
 
 """
 Finding the gravitational potential energy of an object with reference
