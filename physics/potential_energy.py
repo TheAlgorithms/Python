@@ -56,4 +56,6 @@ def potential_energy(mass: float, height: float) -> float:
 
 
 if __name__ == "__main__":
+    from doctest import testmod
+    
     testmod(name="potential_energy")
