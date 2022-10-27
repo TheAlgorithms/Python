@@ -1,4 +1,3 @@
-import doctest
 import math
 
 """
