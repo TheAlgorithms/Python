@@ -71,7 +71,7 @@ def malus_law(initial_intensity: float, angle: float) -> float:
         # handling of negative values of initial intensity
     if angle < 0 or angle > 360:
         raise ValueError(
-            "In Malus Law,the angle between the polarizer and the axis always lies between 0 degree and 360 degrees"
+            "In Malus Law, the angle between the polarizer and the axis always lies between 0 degree and 360 degrees"
         )
         # handling of values out of allowed range
     final_intensity = initial_intensity * (math.cos(math.radians(angle)) ** 2)
