@@ -63,15 +63,14 @@ def random_characters(chars_incl, i):
 
 
 def main():
-    length = int(
-        input("Please indicate the max length of your password: ").strip())
+    length = int(input("Please indicate the max length of your password: ").strip())
     chars_incl = input(
         "Please indicate the characters that must be in your password: "
     ).strip()
     print("Password generated:", password_generator(length))
     print(
-        "Alternative Password generated:", alternative_password_generator(
-            chars_incl, length)
+        "Alternative Password generated:",
+        alternative_password_generator(chars_incl, length),
     )
     print("[If you are thinking of using this passsword, You better save it.]")
 
