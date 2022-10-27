@@ -136,8 +136,8 @@ def vol_spheres_union(
     Traceback (most recent call last):
     """
 
-    if radius_1 < 0 or radius_2 < 0 or centers_distance < 0:
-        raise ValueError("vol_spheres_union() only accepts non-negative values")
+    if radius_1 <= 0 or radius_2 <= 0 or centers_distance < 0:
+        raise ValueError("vol_spheres_union() only accepts non-negative values, non-zero radius")
 
     if centers_distance == 0:
         return vol_sphere(max(radius_1, radius_2))
