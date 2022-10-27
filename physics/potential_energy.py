@@ -47,8 +47,8 @@ def potential_energy(mass: float, height: float) -> float:
     19613.3
     """
     if mass < 0:
-        raise ValueError("The mass of a body cannot be negative")
         # handling of negative values of mass
+        raise ValueError("The mass of a body cannot be negative")
     if height < 0:
         raise ValueError("The height above the ground cannot be negative")
         # handling of negative values of height
