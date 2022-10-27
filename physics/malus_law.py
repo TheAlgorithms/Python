@@ -1,8 +1,8 @@
 import math
 
 """
-Finding the intensity of light transmitted through a polariser using Malus Law and by taking
-initial intensity and angle between polariser and axis as input
+Finding the intensity of light transmitted through a polariser using Malus Law 
+and by taking initial intensity and angle between polariser and axis as input
 
 Description : Malus's law, which is named after Étienne-Louis Malus,
 says that when a perfect polarizer is placed in a polarized
