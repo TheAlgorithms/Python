@@ -127,4 +127,3 @@ if __name__ == "__main__":
     print(points_to_polynomial([[1, 3], [2, 6], [3, 11]]))
     print(points_to_polynomial([[1, -3], [2, -6], [3, -11]]))
     print(points_to_polynomial([[1, 5], [2, 2], [3, 9]]))
-    
