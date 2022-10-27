@@ -13,7 +13,7 @@ def max_subarray_sum(nums: Sequence[int]) -> int:
     6
     """
     if not nums:
-        raise ValueError('Input sequence should not be empty')
+        raise ValueError("Input sequence should not be empty")
 
     curr_max = ans = nums[0]
 
