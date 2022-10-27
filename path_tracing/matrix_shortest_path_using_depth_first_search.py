@@ -20,31 +20,43 @@ VISITED_POS = None
 current_shortest_path_distance = math.inf
 
 
-def find_shortest_path_using_dfs(matrix: list, i: int, j: int, distance: int) -> None:
+def find_shortest_path_using_dfs(
+    matrix: list, row: int, col: int, distance: int
+) -> None:
+    """
+    Examples:
+    >>> find_shortest_path_using_dfs([['s', 1, 1], [1, -1, 1], [-1, 1, 'e']], 0, 0, 0)
+    None
+    >>> find_shortest_path_using_dfs([[-1, 1], ['s', 1], [-1, 1], [1, 'e']], 1, 0, 0)
+    None
+    >>> find_shortest_path_using_dfs([[1, 1, 1], [1, 1,'s'], [1, -1, 'e']], 1, 2, 0)
+    None
+    >>> find_shortest_path_using)dfs([[1], [-1, 's', 1], [-1, -1, 'e', -1]], 2, 1, 0)
+    """
     global current_shortest_path_distance
 
     if (
-        i < 0
-        or i >= len(matrix)
-        or j < 0
-        or j >= len(matrix[i])
-        or matrix[i][j] == OBSTACLE_POS
-        or matrix[i][j] == VISITED_POS
+        row < 0
+        or row >= len(matrix)
+        or col < 0
+        or col >= len(matrix[row])
+        or matrix[row][col] == OBSTACLE_POS
+        or matrix[row][col] == VISITED_POS
     ):
         return
-    if matrix[i][j] == END_POS:
+    if matrix[row][col] == END_POS:
         current_shortest_path_distance = min(current_shortest_path_distance, distance)
         return
 
-    visited = matrix[i][j]
-    matrix[i][j] = VISITED_POS
+    visited = matrix[row][col]
+    matrix[row][col] = VISITED_POS
 
-    find_shortest_path_using_dfs(matrix, i + 1, j, distance + 1)
-    find_shortest_path_using_dfs(matrix, i - 1, j, distance + 1)
-    find_shortest_path_using_dfs(matrix, i, j + 1, distance + 1)
-    find_shortest_path_using_dfs(matrix, i, j - 1, distance + 1)
+    find_shortest_path_using_dfs(matrix, row + 1, col, distance + 1)
+    find_shortest_path_using_dfs(matrix, row - 1, col, distance + 1)
+    find_shortest_path_using_dfs(matrix, row, col + 1, distance + 1)
+    find_shortest_path_using_dfs(matrix, row, col - 1, distance + 1)
 
-    matrix[i][j] = visited
+    matrix[row][col] = visited
 
 
 def helper(matrix: list) -> int:
