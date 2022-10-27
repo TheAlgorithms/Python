@@ -28,6 +28,7 @@ import numpy as np
 
 tile_count = 0
 
+
 def place(grid: np.array, x1: int, y1: int, x2: int, y2: int, x3: int, y3: int) -> None:
     """
     place the L shaped tile in given three squares (x1, y1), (x2, y2), (x3, y3)
@@ -128,7 +129,6 @@ def tile(grid: np.array, n: int, x: int, y: int) -> None:
     tile(grid, int(n / 2), x, y)
     tile(grid, int(n / 2), x + int(n / 2), y)
     tile(grid, int(n / 2), x + int(n / 2), y + int(n / 2))
-
 
 
 def tiling(size_of_grid: int, missing_cell_x: int, missing_cell_y: int) -> np.array:
