@@ -122,6 +122,21 @@ def vol_spheres_union(
 
     >>> vol_spheres_union(2, 2, 1)
     45.814892864851146
+
+    >>> vol_spheres_union(1.56, 2.2, 1.4)
+    48.77802773671288
+
+    >>> vol_spheres_union(-1, 2, 1)
+    Traceback (most recent call last):
+
+    >>> vol_spheres_union(0, 2, 1)
+    Traceback (most recent call last):
+
+    >>> vol_spheres_union('1.56', '2.2', '1.4')
+    Traceback (most recent call last):
+
+    >>> vol_spheres_union(1, None, 1)
+    Traceback (most recent call last):
     """
 
     if centers_distance == 0:
