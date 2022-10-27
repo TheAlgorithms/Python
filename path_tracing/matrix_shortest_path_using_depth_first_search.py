@@ -24,14 +24,17 @@ def find_shortest_path_using_dfs(
     matrix: list, row: int, col: int, distance: int
 ) -> None:
     """
-    Examples:
-    >>> find_shortest_path_using_dfs([['s', 1, 1], [1, -1, 1], [-1, 1, 'e']], 0, 0, 0)
-    None
-    >>> find_shortest_path_using_dfs([[-1, 1], ['s', 1], [-1, 1], [1, 'e']], 1, 0, 0)
-    None
-    >>> find_shortest_path_using_dfs([[1, 1, 1], [1, 1,'s'], [1, -1, 'e']], 1, 2, 0)
-    None
-    >>> find_shortest_path_using)dfs([[1], [-1, 's', 1], [-1, -1, 'e', -1]], 2, 1, 0)
+    Pure implementation of recursive depth first search algorithm to find out
+    the shortest path distance of a given symmetrical/non-symmetrical
+    matrix
+    First recursion should be started with assigning 0 for the distance
+    parameter
+    :param matrix: symmetrical or non-symmetrical matrix which contains
+    start, end, valid and obstacle positions
+    :param row: currently traversing row index of the matrix in a given point of time
+    :param col: currently traversing column index of the matrix in a given point of time
+    :param distance: calculated distance through out a particular path of the matrix
+    :return: None
     """
     global current_shortest_path_distance
 
