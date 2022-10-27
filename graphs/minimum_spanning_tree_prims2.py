@@ -69,16 +69,16 @@ class MinPriorityQueue(Generic[T]):
     >>> queue.push(3, 4000)
     >>> queue.push(4, 3000)
 
-    >>> print(queue.extract_min())
+    >>> queue.extract_min()
     2
 
     >>> queue.update_key(4, 50)
 
-    >>> print(queue.extract_min())
+    >>> queue.extract_min()
     4
-    >>> print(queue.extract_min())
+    >>> queue.extract_min()
     1
-    >>> print(queue.extract_min())
+    >>> queue.extract_min()
     3
     """
 

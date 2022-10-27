@@ -71,7 +71,7 @@ class BinomialHeap:
     ...     first_heap.insert(number)
 
     Size test
-    >>> print(first_heap.size)
+    >>> first_heap.size
     30
 
     Deleting - delete() test
@@ -97,7 +97,7 @@ class BinomialHeap:
                   #    # #   #
 
     preOrder() test
-    >>> print(second_heap.preOrder())
+    >>> second_heap.preOrder()
     [(17, 0), ('#', 1), (31, 1), (20, 2), ('#', 3), ('#', 3), (34, 2), ('#', 3), ('#', 3)]
 
     printing Heap - __str__() test
