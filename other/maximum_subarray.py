@@ -1,4 +1,4 @@
-from typing import Iterable
+from collections.abc import Iterable
 
 
 def max_subarray_sum(nums: Iterable[int]) -> int:
@@ -13,7 +13,7 @@ def max_subarray_sum(nums: Iterable[int]) -> int:
     6
     """
     if not nums:
-        raise ValueError('Input iterable should not be empty')
+        raise ValueError("Input iterable should not be empty")
 
     curr_max = ans = nums[0]
 
@@ -28,4 +28,3 @@ if __name__ == "__main__":
     n = int(input("Enter number of elements : ").strip())
     array = list(map(int, input("\nEnter the numbers : ").strip().split()))[:n]
     print(max_subarray_sum(array))
-    
