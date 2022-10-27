@@ -127,7 +127,7 @@ def vol_spheres_union(
     >>> vol_spheres_union(0, 2, 1)
     Traceback (most recent call last):
         ...
-    ValueError('vol_spheres_union() only accepts non-negative values, non-zero radius')
+    ValueError: vol_spheres_union() only accepts non-negative values, non-zero radius
     >>> vol_spheres_union('1.56', '2.2', '1.4')
     Traceback (most recent call last):
         ...
