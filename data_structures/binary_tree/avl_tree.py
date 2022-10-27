@@ -248,12 +248,12 @@ class AVLtree:
     >>> t = AVLtree()
     >>> t.insert(4)
     insert:4
-    >>> print(str(t).replace(" \\n","\\n"))
+    >>> str(t).replace(" \\n","\\n")
      4
     *************************************
     >>> t.insert(2)
     insert:2
-    >>> print(str(t).replace(" \\n","\\n").replace(" \\n","\\n"))
+    >>> str(t).replace(" \\n","\\n").replace(" \\n","\\n")
       4
      2  *
     *************************************
@@ -261,7 +261,7 @@ class AVLtree:
     insert:3
     right rotation node: 2
     left rotation node: 4
-    >>> print(str(t).replace(" \\n","\\n").replace(" \\n","\\n"))
+    >>> str(t).replace(" \\n","\\n").replace(" \\n","\\n")
       3
      2  4
     *************************************
@@ -269,7 +269,7 @@ class AVLtree:
     2
     >>> t.del_node(3)
     delete:3
-    >>> print(str(t).replace(" \\n","\\n").replace(" \\n","\\n"))
+    >>> str(t).replace(" \\n","\\n").replace(" \\n","\\n")
       4
      2  *
     *************************************

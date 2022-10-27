@@ -15,15 +15,15 @@ class Matrix:
     ...     [7, 8, 9]
     ... ]
     >>> matrix = Matrix(rows)
-    >>> print(matrix)
+    >>> matrix
     [[1. 2. 3.]
      [4. 5. 6.]
      [7. 8. 9.]]
 
     Matrix rows and columns are available as 2D arrays
-    >>> print(matrix.rows)
+    >>> matrix.rows
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    >>> print(matrix.columns())
+    >>> matrix.columns()
     [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
 
     Order is returned as a tuple
@@ -38,24 +38,24 @@ class Matrix:
 
     Identity, Minors, Cofactors and Adjugate are returned as Matrices.  Inverse can be
     a Matrix or Nonetype
-    >>> print(matrix.identity())
+    >>> matrix.identity()
     [[1. 0. 0.]
      [0. 1. 0.]
      [0. 0. 1.]]
-    >>> print(matrix.minors())
+    >>> matrix.minors()
     [[-3. -6. -3.]
      [-6. -12. -6.]
      [-3. -6. -3.]]
-    >>> print(matrix.cofactors())
+    >>> matrix.cofactors()
     [[-3. 6. -3.]
      [6. -12. 6.]
      [-3. 6. -3.]]
     >>>  # won't be apparent due to the nature of the cofactor matrix
-    >>> print(matrix.adjugate())
+    >>> matrix.adjugate()
     [[-3. 6. -3.]
      [6. -12. 6.]
      [-3. 6. -3.]]
-    >>> print(matrix.inverse())
+    >>> matrix.inverse()
     Traceback (most recent call last):
         ...
     TypeError: Only matrices with a non-zero determinant have an inverse
@@ -66,41 +66,41 @@ class Matrix:
 
     Negation, scalar multiplication, addition, subtraction, multiplication and
     exponentiation are available and all return a Matrix
-    >>> print(-matrix)
+    >>> -matrix
     [[-1. -2. -3.]
      [-4. -5. -6.]
      [-7. -8. -9.]]
     >>> matrix2 = matrix * 3
-    >>> print(matrix2)
+    >>> matrix2
     [[3. 6. 9.]
      [12. 15. 18.]
      [21. 24. 27.]]
-    >>> print(matrix + matrix2)
+    >>> matrix + matrix2
     [[4. 8. 12.]
      [16. 20. 24.]
      [28. 32. 36.]]
-    >>> print(matrix - matrix2)
+    >>> matrix - matrix2
     [[-2. -4. -6.]
      [-8. -10. -12.]
      [-14. -16. -18.]]
-    >>> print(matrix ** 3)
+    >>> matrix ** 3
     [[468. 576. 684.]
      [1062. 1305. 1548.]
      [1656. 2034. 2412.]]
 
     Matrices can also be modified
     >>> matrix.add_row([10, 11, 12])
-    >>> print(matrix)
+    >>> matrix
     [[1. 2. 3.]
      [4. 5. 6.]
      [7. 8. 9.]
      [10. 11. 12.]]
     >>> matrix2.add_column([8, 16, 32])
-    >>> print(matrix2)
+    >>> matrix2
     [[3. 6. 9. 8.]
      [12. 15. 18. 16.]
      [21. 24. 27. 32.]]
-    >>> print(matrix *  matrix2)
+    >>> matrix *  matrix2
     [[90. 108. 126. 136.]
      [198. 243. 288. 304.]
      [306. 378. 450. 472.]

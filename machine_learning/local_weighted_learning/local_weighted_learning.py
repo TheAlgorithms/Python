@@ -71,7 +71,6 @@ def local_weight_regression(
 def load_data(dataset_name: str, cola_name: str, colb_name: str) -> np.mat:
     """
     Function used for loading data from the seaborn splitting into x and y points
-    >>> pass # this function has no doctest
     """
     import seaborn as sns
 
@@ -112,7 +111,6 @@ def plot_preds(
 ) -> plt.plot:
     """
     This function used to plot predictions and display the graph
-    >>> pass #this function has no doctest
     """
     xsort = training_data_x.copy()
     xsort.sort(axis=0)

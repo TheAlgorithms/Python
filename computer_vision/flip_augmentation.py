@@ -22,7 +22,6 @@ def main() -> None:
     Get images list and annotations list from input dir.
     Update new images and annotations.
     Save images and annotations in output dir.
-    >>> pass  # A doctest is not possible for this function.
     """
     img_paths, annos = get_dataset(LABEL_DIR, IMAGE_DIR)
     print("Processing...")
@@ -48,7 +47,6 @@ def get_dataset(label_dir: str, img_dir: str) -> tuple[list, list]:
     - label_dir <type: str>: Path to label include annotation of images
     - img_dir <type: str>: Path to folder contain images
     Return <type: list>: List of images path and labels
-    >>> pass  # A doctest is not possible for this function.
     """
     img_paths = []
     labels = []
@@ -88,7 +86,6 @@ def update_image_and_anno(
         - new_imgs_list <type: narray>: image after resize
         - new_annos_lists <type: list>: list of new annotation after scale
         - path_list <type: list>: list the name of image file
-    >>> pass  # A doctest is not possible for this function.
     """
     new_annos_lists = []
     path_list = []

@@ -39,11 +39,11 @@ class FFT:
     >>> x = FFT(A, B)
 
     Print product
-    >>> print(x.product)  # 2x + 3x^2 + 8x^3 + 4x^4 + 6x^5
+    >>> x.product  # 2x + 3x^2 + 8x^3 + 4x^4 + 6x^5
     [(-0+0j), (2+0j), (3+0j), (8+0j), (6+0j), (8+0j)]
 
     __str__ test
-    >>> print(x)
+    >>> x
     A = 0*x^0 + 1*x^1 + 2*x^0 + 3*x^2
     B = 0*x^2 + 1*x^3 + 2*x^4
     A*B = 0*x^(-0+0j) + 1*x^(2+0j) + 2*x^(3+0j) + 3*x^(8+0j) + 4*x^(6+0j) + 5*x^(8+0j)
