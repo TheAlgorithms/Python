@@ -1,9 +1,9 @@
 """
 Given weights and values of n items, put these items in a knapsack of
- capacity W to get the maximum total value in the knapsack.
+capacity W to get the maximum total value in the knapsack.
 
 Note that only the integer weights 0-1 knapsack problem is solvable
- using dynamic programming.
+using dynamic programming.
 """
 
 
@@ -27,7 +27,7 @@ def mf_knapsack(i, wt, val, j):
 
 
 def knapsack(w, wt, val, n):
-    dp = [[0 for i in range(w + 1)] for j in range(n + 1)]
+    dp = [[0] * (w + 1) for _ in range(n + 1)]
 
     for i in range(1, n + 1):
         for w_ in range(1, w + 1):
@@ -108,7 +108,7 @@ def _construct_solution(dp: list, wt: list, i: int, j: int, optimal_set: set):
     dp: list of list, the table of a solved integer weight dynamic programming problem
 
     wt: list or tuple, the vector of weights of the items
-    i: int, the index of the  item under consideration
+    i: int, the index of the item under consideration
     j: int, the current possible maximum weight
     optimal_set: set, the optimal subset so far. This gets modified by the function.
 
@@ -136,7 +136,7 @@ if __name__ == "__main__":
     wt = [4, 3, 2, 3]
     n = 4
     w = 6
-    f = [[0] * (w + 1)] + [[0] + [-1 for i in range(w + 1)] for j in range(n + 1)]
+    f = [[0] * (w + 1)] + [[0] + [-1] * (w + 1) for _ in range(n + 1)]
     optimal_solution, _ = knapsack(w, wt, val, n)
     print(optimal_solution)
     print(mf_knapsack(n, wt, val, w))  # switched the n and w

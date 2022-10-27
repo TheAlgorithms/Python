@@ -45,6 +45,7 @@
   * [Count 1S Brian Kernighan Method](bit_manipulation/count_1s_brian_kernighan_method.py)
   * [Count Number Of One Bits](bit_manipulation/count_number_of_one_bits.py)
   * [Gray Code Sequence](bit_manipulation/gray_code_sequence.py)
+  * [Is Even](bit_manipulation/is_even.py)
   * [Reverse Bits](bit_manipulation/reverse_bits.py)
   * [Single Bit Manipulation Operations](bit_manipulation/single_bit_manipulation_operations.py)
 
@@ -54,8 +55,14 @@
   * [Modular Division](blockchain/modular_division.py)
 
 ## Boolean Algebra
+  * [And Gate](boolean_algebra/and_gate.py)
+  * [Nand Gate](boolean_algebra/nand_gate.py)
   * [Norgate](boolean_algebra/norgate.py)
+  * [Not Gate](boolean_algebra/not_gate.py)
+  * [Or Gate](boolean_algebra/or_gate.py)
   * [Quine Mc Cluskey](boolean_algebra/quine_mc_cluskey.py)
+  * [Xnor Gate](boolean_algebra/xnor_gate.py)
+  * [Xor Gate](boolean_algebra/xor_gate.py)
 
 ## Cellular Automata
   * [Conways Game Of Life](cellular_automata/conways_game_of_life.py)
@@ -286,6 +293,7 @@
   * [Iterating Through Submasks](dynamic_programming/iterating_through_submasks.py)
   * [Knapsack](dynamic_programming/knapsack.py)
   * [Longest Common Subsequence](dynamic_programming/longest_common_subsequence.py)
+  * [Longest Common Substring](dynamic_programming/longest_common_substring.py)
   * [Longest Increasing Subsequence](dynamic_programming/longest_increasing_subsequence.py)
   * [Longest Increasing Subsequence O(Nlogn)](dynamic_programming/longest_increasing_subsequence_o(nlogn).py)
   * [Longest Sub Array](dynamic_programming/longest_sub_array.py)
@@ -296,6 +304,7 @@
   * [Minimum Coin Change](dynamic_programming/minimum_coin_change.py)
   * [Minimum Cost Path](dynamic_programming/minimum_cost_path.py)
   * [Minimum Partition](dynamic_programming/minimum_partition.py)
+  * [Minimum Squares To Represent A Number](dynamic_programming/minimum_squares_to_represent_a_number.py)
   * [Minimum Steps To One](dynamic_programming/minimum_steps_to_one.py)
   * [Optimal Binary Search Tree](dynamic_programming/optimal_binary_search_tree.py)
   * [Rod Cutting](dynamic_programming/rod_cutting.py)
@@ -472,6 +481,7 @@
   * [Add](maths/add.py)
   * [Aliquot Sum](maths/aliquot_sum.py)
   * [Allocation Number](maths/allocation_number.py)
+  * [Arc Length](maths/arc_length.py)
   * [Area](maths/area.py)
   * [Area Under Curve](maths/area_under_curve.py)
   * [Armstrong Numbers](maths/armstrong_numbers.py)
@@ -607,7 +617,9 @@
 ## Matrix
   * [Binary Search Matrix](matrix/binary_search_matrix.py)
   * [Count Islands In Matrix](matrix/count_islands_in_matrix.py)
+  * [Cramers Rule 2X2](matrix/cramers_rule_2x2.py)
   * [Inverse Of Matrix](matrix/inverse_of_matrix.py)
+  * [Largest Square Area In Matrix](matrix/largest_square_area_in_matrix.py)
   * [Matrix Class](matrix/matrix_class.py)
   * [Matrix Operation](matrix/matrix_operation.py)
   * [Max Area Of Island](matrix/max_area_of_island.py)
@@ -655,6 +667,7 @@
 ## Physics
   * [Casimir Effect](physics/casimir_effect.py)
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
+  * [Kinetic Energy](physics/kinetic_energy.py)
   * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
   * [N Body Simulation](physics/n_body_simulation.py)
   * [Newtons Law Of Gravitation](physics/newtons_law_of_gravitation.py)
@@ -838,6 +851,8 @@
   * Problem 072
     * [Sol1](project_euler/problem_072/sol1.py)
     * [Sol2](project_euler/problem_072/sol2.py)
+  * Problem 073
+    * [Sol1](project_euler/problem_073/sol1.py)
   * Problem 074
     * [Sol1](project_euler/problem_074/sol1.py)
     * [Sol2](project_euler/problem_074/sol2.py)
@@ -873,6 +888,8 @@
     * [Sol1](project_euler/problem_101/sol1.py)
   * Problem 102
     * [Sol1](project_euler/problem_102/sol1.py)
+  * Problem 104
+    * [Sol1](project_euler/problem_104/sol1.py)
   * Problem 107
     * [Sol1](project_euler/problem_107/sol1.py)
   * Problem 109
@@ -942,9 +959,9 @@
   * [Not Gate](quantum/not_gate.py)
   * [Q Full Adder](quantum/q_full_adder.py)
   * [Quantum Entanglement](quantum/quantum_entanglement.py)
-  * [Quantum Random](quantum/quantum_random.py)
   * [Ripple Adder Classic](quantum/ripple_adder_classic.py)
   * [Single Qubit Measure](quantum/single_qubit_measure.py)
+  * [Superdense Coding](quantum/superdense_coding.py)
 
 ## Scheduling
   * [First Come First Served](scheduling/first_come_first_served.py)
@@ -1034,7 +1051,6 @@
   * [Can String Be Rearranged As Palindrome](strings/can_string_be_rearranged_as_palindrome.py)
   * [Capitalize](strings/capitalize.py)
   * [Check Anagrams](strings/check_anagrams.py)
-  * [Check Pangram](strings/check_pangram.py)
   * [Credit Card Validator](strings/credit_card_validator.py)
   * [Detecting English Programmatically](strings/detecting_english_programmatically.py)
   * [Dna](strings/dna.py)
@@ -1042,7 +1058,10 @@
   * [Hamming Distance](strings/hamming_distance.py)
   * [Indian Phone Validator](strings/indian_phone_validator.py)
   * [Is Contains Unique Chars](strings/is_contains_unique_chars.py)
+  * [Is Isogram](strings/is_isogram.py)
   * [Is Palindrome](strings/is_palindrome.py)
+  * [Is Pangram](strings/is_pangram.py)
+  * [Is Spain National Id](strings/is_spain_national_id.py)
   * [Jaro Winkler](strings/jaro_winkler.py)
   * [Join](strings/join.py)
   * [Knuth Morris Pratt](strings/knuth_morris_pratt.py)
@@ -1087,6 +1106,7 @@
   * [Fetch Well Rx Price](web_programming/fetch_well_rx_price.py)
   * [Get Imdb Top 250 Movies Csv](web_programming/get_imdb_top_250_movies_csv.py)
   * [Get Imdbtop](web_programming/get_imdbtop.py)
+  * [Get Top Billioners](web_programming/get_top_billioners.py)
   * [Get Top Hn Posts](web_programming/get_top_hn_posts.py)
   * [Get User Tweets](web_programming/get_user_tweets.py)
   * [Giphy](web_programming/giphy.py)
