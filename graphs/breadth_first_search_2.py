@@ -14,7 +14,7 @@ while Q is non-empty:
 """
 from __future__ import annotations
 
-from queue import Queue
+from collections import deque
 
 G = {
     "A": ["B", "C"],
@@ -26,21 +26,23 @@ G = {
 }
 
 
-def breadth_first_search(graph: dict, start: str) -> set[str]:
+def breadth_first_search(graph: dict, start: str) -> list[str]:
     """
-    >>> ''.join(sorted(breadth_first_search(G, 'A')))
+    >>> ''.join(breadth_first_search(G, 'A'))
     'ABCDEF'
     """
-    explored = {start}
-    queue: Queue = Queue()
-    queue.put(start)
-    while not queue.empty():
-        v = queue.get()
-        for w in graph[v]:
-            if w not in explored:
-                explored.add(w)
-                queue.put(w)
-    return explored
+    visited = {start}
+    result = [start]
+    queue: deque = deque()
+    queue.append(start)
+    while queue:
+        v = queue.popleft()
+        for child in graph[v]:
+            if child not in visited:
+                visited.add(child)
+                result.append(child)
+                queue.append(child)
+    return result
 
 
 if __name__ == "__main__":
