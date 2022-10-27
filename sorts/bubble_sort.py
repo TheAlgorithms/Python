@@ -34,6 +34,7 @@ def bubble_sort(collection):
             if collection[j] > collection[j + 1]:
                 swapped = True
                 collection[j], collection[j + 1] = collection[j + 1], collection[j]
+            print(f"Watch the sort step {i} with j {j} => {arr}")
         if not swapped:
             break  # Stop iteration if the collection is sorted.
     return collection
