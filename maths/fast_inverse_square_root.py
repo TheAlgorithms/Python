@@ -20,5 +20,5 @@ def Q_rsqrt(x):
 
 
 if __name__ == "__main__":
-    num = 2
-    print(Q_rsqrt(num))
+    import doctest
+    doctest.testmod()
