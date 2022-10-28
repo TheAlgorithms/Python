@@ -60,12 +60,7 @@ def combination_sum_iv_dp_array(n: int, array: list[int], target: int) -> int:
             return 1
         if dp_array[target] != -1:
             return dp_array[target]
-        answer = sum(
-            [
-                count_of_possible_combinations_with_dp_array(target - each)
-                for each in array
-            ]
-        )
+        answer = sum([count_of_possible_combinations_with_dp_array(target - each, dp_array) for each in array])
         dp_array[target] = answer
         return answer
 
