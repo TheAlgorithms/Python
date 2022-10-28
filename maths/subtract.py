@@ -1,11 +1,11 @@
-def subtract(a: float, b: float) -> float:
+def subtract(first_value: float, second_value: float) -> float:
     """
     >>> subtract(2, 2)
     0
     >>> subtract(2, -2)
     4
     """
-    return a - b
+    return first_value - second_value
 
 
 if __name__ == "__main__":
