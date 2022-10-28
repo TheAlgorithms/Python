@@ -15,9 +15,11 @@ def max_subarray_sum(nums: Sequence[int]) -> int:
     if not nums:
         raise ValueError("Input sequence should not be empty")
 
-    curr_max = ans = float("-inf")
-
-    for num in nums:
+    curr_max = ans = nums[0]
+    nums_len = len(nums)
+    
+    for i in range(1, nums_len):
+        num = nums[i]
         curr_max = max(curr_max + num, num)
         ans = max(curr_max, ans)
 
