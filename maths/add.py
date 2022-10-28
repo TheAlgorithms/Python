@@ -14,6 +14,6 @@ def add(a: float, b: float) -> float:
 
 
 if __name__ == "__main__":
-    a=int(input())
-    b=int(input())
+    a = int(input())
+    b = int(input())
     print(f"The sum of {a} + {b} is {add(a, b)}")
