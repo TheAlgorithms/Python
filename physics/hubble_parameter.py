@@ -95,10 +95,10 @@ if __name__ == "__main__":
 
     print(
         hubble_parameter(
-            hubble_constant = 68.3,
-            radiation_density = 1e-4,
-            matter_density = matter_density,
-            dark_energy = 1 - matter_density,
-            redshift = 0
-            )
+            hubble_constant=68.3,
+            radiation_density=1e-4,
+            matter_density=matter_density,
+            dark_energy=1 - matter_density,
+            redshift=0,
+        )
     )
