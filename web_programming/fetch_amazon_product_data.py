@@ -10,7 +10,7 @@ import itertools as it
 
 import pandas as pd
 import requests
-from bs4 import BeautifulSoup 
+from bs4 import BeautifulSoup
 
 
 def get_product_info(
@@ -80,7 +80,7 @@ def get_product_info(
                     * 100
                 )
             except ValueError:
-                discount = float("nan") 
+                discount = float("nan")
         except AttributeError:
             pass
         data.loc[len(data.index)] = [
