@@ -40,21 +40,48 @@ set8 = set()
 
 
 # Functions to check for every family of numbers in the question
-def if_octagonal_number(number):
+def if_octagonal_number(number: int) -> bool:
+    """
+    Returns a bool to tell whether the number is an octagonal number.
+
+    >>> if_octagonal_number(8)
+    True
+    >>> if_octagonal_number(20)
+    False
+    """
+
     if ((1 + (1 + 3 * number) ** (1 / 2)) / 3) % 1 == 0:
         return True
     else:
         return False
 
 
-def if_heptagonal_number(number):
+def if_heptagonal_number(number: int) -> bool:
+    """
+    Returns a bool to tell whether the number is an heptagonal number.
+
+    >>> if_heptagonal_number(7)
+    True
+    >>> if_heptagonal_number(91)
+    False
+    """
+
     if ((3 + (9 + 40 * number) ** (1 / 2)) / 10) % 1 == 0:
         return True
     else:
         return False
 
 
-def if_hexagonal_number(number):
+def if_hexagonal_number(number: int) -> bool:
+    """
+    Returns a bool to tell whether the number is an hexagonal number.
+
+    >>> if_hexagonal_number(15)
+    True
+    >>> if_hexagonal_number(20)
+    False
+    """
+
     temp = (1 + (8 * number + 1) ** (1 / 2)) / 4
     if temp % 1 == 0:
         return True
@@ -62,7 +89,16 @@ def if_hexagonal_number(number):
         return False
 
 
-def if_pentagonal_number(number):
+def if_pentagonal_number(number: int) -> bool:
+    """
+    Returns a bool to tell whether the number is an pentagonal number.
+
+    >>> if_pentagonal_number(12)
+    True
+    >>> if_pentagonal_number(30)
+    False
+    """
+
     temp = (1 + (24 * number + 1) ** (1 / 2)) / 6
     if temp % 1 == 0:
         return True
@@ -70,7 +106,16 @@ def if_pentagonal_number(number):
         return False
 
 
-def if_triangle_number(number):
+def if_triangle_number(number: int) -> bool:
+    """
+    Returns a bool to tell whether the number is an triangle number.
+
+    >>> if_triangle_number(10)
+    True
+    >>> if_triangle_number(39)
+    False
+    """
+
     temp = (-1 + (1 + 8 * number) ** (1 / 2)) / 2
     if temp % 1 == 0:
         return True
@@ -78,8 +123,17 @@ def if_triangle_number(number):
         return False
 
 
-def check_cycle_condition(answers):
-    """Checks whether the cycle has one of every type of number"""
+def check_cycle_condition(answers: list) -> bool:
+    """
+    Checks whether the cycle has one of every type of number
+
+    >>> check_cycle_condition([1,2,3,4,5,6])
+    True
+
+    >>> check_cycle_condition([2,4,5,3,2,3])
+    False
+    """
+
     check_list = []
     for ele in answers:
         if ele in set3:
@@ -100,7 +154,7 @@ def check_cycle_condition(answers):
         return False
 
 
-def solution():
+def solution() -> int:
     """
     Checks for all the 4 digit numbers.
     Returns the sum of the set of numbers that has one of each kind of number.
@@ -166,6 +220,7 @@ def solution():
                                                 loc = [n1, n2, n3, n4, n5, n6]
                                                 if check_cycle_condition(loc):
                                                     return sum(loc)
+    return 0
 
 
 if __name__ == "__main__":
