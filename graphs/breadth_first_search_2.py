@@ -74,6 +74,7 @@ def benchmark_function(name: str) -> None:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
-    benchmark_function('breadth_first_search')
-    benchmark_function('breadth_first_search_with_deque')
+    benchmark_function("breadth_first_search")
+    benchmark_function("breadth_first_search_with_deque")
