@@ -6,12 +6,12 @@ Source: https://ajcr.net/fast-inverse-square-root-python/
 from ctypes import POINTER, byref, c_float, c_int32, cast
 
 
-def fast_inverse_square_root(x) -> float:
+def fast_inverse_square_root(number: float) -> float:
     """
        Find inverse square root of a number.
        Arguments:
-           x: Number to find the inverse square root of.
-       Return Value: Inverse square root of x
+           number: Number to find the inverse square root of.
+       Return Value: Inverse square root of number
     >>> fast_inverse_square_root(1)
     0.9999957038118442
     >>> fast_inverse_square_root(2)
@@ -22,8 +22,8 @@ def fast_inverse_square_root(x) -> float:
     0.4999978519059221
     """
     threehalfs = 1.5
-    x2 = x * 0.5
-    y = c_float(x)
+    x2 = number * 0.5
+    y = c_float(number)
 
     i = cast(byref(y), POINTER(c_int32)).contents.value
     i = c_int32(0x5F3759DF - (i >> 1))
