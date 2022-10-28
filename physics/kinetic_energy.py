@@ -1,5 +1,5 @@
 """
-Find the kinetic energy of an object, give its mass and velocity.
+Find the kinetic energy of an object, given its mass and velocity.
 
 Description : In physics, the kinetic energy of an object is the energy that it
 possesses due to its motion.  It is defined as the work needed to accelerate a body of a

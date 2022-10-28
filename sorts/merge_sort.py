@@ -12,8 +12,6 @@ python merge_sort.py
 
 def merge_sort(collection: list) -> list:
     """
-    Pure implementation of the merge sort algorithm in Python.
-
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered by ascending
