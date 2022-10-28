@@ -2,7 +2,7 @@
 a product name as input from the user,and fetch the necessary
 information about that kind of products from Amazon like the product
 title,link to that product,price of the product,the ratings of
-the product and the discount available on the product 
+the product and the discount available on the product
 and return it in the form of Pandas Dataframe"""
 
 
@@ -13,7 +13,9 @@ import requests
 from bs4 import BeautifulSoup as bs
 
 
-def get_product_info(product: str = "laptop",generate_csv: bool = False) -> pd.DataFrame:
+def get_product_info(
+    product: str = "laptop", generate_csv: bool = False
+) -> pd.DataFrame:
     # function that will take the product as input and return the
     # product details as output
     # in the form of a csv file,if no input is given,it
@@ -41,7 +43,7 @@ def get_product_info(product: str = "laptop",generate_csv: bool = False) -> pd.D
             "Discount",
         ]
     )  # initializing a pandas dataframe to store the requisite information
-    for i,j in it.zip_longest(
+    for i, j in it.zip_longest(
         soup.find_all(
             "div",
             attrs={"class": "s-result-item", "data-component-type": "s-search-result"},
@@ -98,6 +100,6 @@ def get_product_info(product: str = "laptop",generate_csv: bool = False) -> pd.D
     ] = " "
     data.index += 1
     if generate_csv == True:
-        data.to_csv(f"Amazon Product Data({product}).csv")  
+        data.to_csv(f"Amazon Product Data({product}).csv")
         # writing the data to the csv file
     return data
