@@ -23,7 +23,7 @@ def max_subarray_sum(nums: Sequence[int]) -> int:
         curr_max = max(curr_max + num, num)
         ans = max(curr_max, ans)
 
-    return int(ans)
+    return ans
 
 
 if __name__ == "__main__":
