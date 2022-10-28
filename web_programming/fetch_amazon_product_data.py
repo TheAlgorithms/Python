@@ -10,7 +10,7 @@ import itertools as it
 
 import pandas as pd
 import requests
-from bs4 import BeautifulSoup as bs
+from bs4 import BeautifulSoup 
 
 
 def get_product_info(
@@ -25,14 +25,14 @@ def get_product_info(
         # generation of search query url
     )
     header = {
-        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36\
-        (KHTML, like Gecko)Chrome/44.0.2403.157 Safari/537.36",
+        "User-Agent": """Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36
+        (KHTML, like Gecko)Chrome/44.0.2403.157 Safari/537.36""",
         "Accept-Language": "en-US, en;q=0.5",
     }  # header that will indicate to the destination server that the
     # request is coming from a genuine human being and not a bot
     page = requests.get(url, headers=header)
     page_content = page.text
-    soup = bs(page_content)
+    soup = BeautifulSoup(page_content)
     data = pd.DataFrame(
         columns=[
             "Product Title",
@@ -80,7 +80,7 @@ def get_product_info(
                     * 100
                 )
             except ValueError:
-                discount = ""
+                discount = float("nan") 
         except AttributeError:
             pass
         data.loc[len(data.index)] = [
@@ -99,7 +99,7 @@ def get_product_info(
         data["Current Price of the product"] > data["MRP of the product"], "Discount"
     ] = " "
     data.index += 1
-    if generate_csv == True:
+    if generate_csv:
         data.to_csv(f"Amazon Product Data({product}).csv")
         # writing the data to the csv file
     return data
