@@ -30,6 +30,8 @@ G = {
 
 def breadth_first_search(graph: dict, start: str) -> list[str]:
     """
+    Implementation of BFS using queue.Queue.
+
     >>> ''.join(breadth_first_search(G, 'A'))
     'ABCDEF'
     """
@@ -49,6 +51,8 @@ def breadth_first_search(graph: dict, start: str) -> list[str]:
 
 def breadth_first_search_with_deque(graph: dict, start: str) -> list[str]:
     """
+    Implementation of BFS using collection.queue.
+
     >>> ''.join(breadth_first_search_with_deque(G, 'A'))
     'ABCDEF'
     """
@@ -76,5 +80,8 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
     benchmark_function("breadth_first_search")
     benchmark_function("breadth_first_search_with_deque")
+    # breadth_first_search                finished 10000 runs in 0.20999 seconds
+    # breadth_first_search_with_deque     finished 10000 runs in 0.01421 seconds
