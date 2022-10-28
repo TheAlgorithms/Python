@@ -1,118 +1,99 @@
 """
-pseudo-code
+Python program for Dijkstra's single
+source shortest path algorithm. The program is
+for adjacency matrix representation of the graph
 
-DIJKSTRA(graph G, start vertex s, destination vertex d):
-
-//all nodes initially unexplored
-
-1 -  let H = min heap data structure, initialized with 0 and s [here 0 indicates
-     the distance from start vertex s]
-2 -  while H is non-empty:
-3 -    remove the first node and cost of H, call it U and cost
-4 -    if U has been previously explored:
-5 -      go to the while loop, line 2 //Once a node is explored there is no need
-         to make it again
-6 -    mark U as explored
-7 -    if U is d:
-8 -      return cost // total cost from start to destination vertex
-9 -    for each edge(U, V): c=cost of edge(U,V) // for V in graph[U]
-10 -     if V explored:
-11 -       go to next V in line 9
-12 -     total_cost = cost + c
-13 -     add (total_cost,V) to H
-
-You can think at cost as a distance where Dijkstra finds the shortest distance
-between vertices s and v in a graph G. The use of a min heap as H guarantees
-that if a vertex has already been explored there will be no other path with
-shortest distance, that happens because heapq.heappop will always return the
-next vertex with the shortest distance, considering that the heap stores not
-only the distance between previous vertex and current vertex but the entire
-distance between each vertex that makes up the path from start vertex to target
-vertex.
+author : aakash_2001
 """
-import heapq
+class Graph():
 
+	def __init__(self, vertices:int) -> None:
+	    """
+	    Constructor function
+	    param vertices : int
+	    """
+	    self.V = vertices
+	    self.graph = [[0 for column in range(vertices)]
+	    for row in range(vertices)]
 
-def dijkstra(graph, start, end):
-    """Return the cost of the shortest path between vertices start and end.
+	def print_solution(self, dist:int) -> None:
+	    """
+	    Function to print the Distance from Source
+	    param dist : int
+	    """
+	    print("Vertex \t Distance from Source")
+	    for node in range(self.V):
+		    print(node, "\t\t", dist[node])
 
-    >>> dijkstra(G, "E", "C")
-    6
-    >>> dijkstra(G2, "E", "F")
-    3
-    >>> dijkstra(G3, "E", "F")
-    3
-    """
+	# A utility function to find the vertex with
+	# minimum distance value, from the set of vertices
+	# not yet included in shortest path tree
+	def min_distance(self, dist:int, sptSet:bool) -> int:
+	    """
+	    Function to calculate min distance
+	    param dist:int
+	    param sptSet:bool
+	    """
 
-    heap = [(0, start)]  # cost from start node,end node
-    visited = set()
-    while heap:
-        (cost, u) = heapq.heappop(heap)
-        if u in visited:
-            continue
-        visited.add(u)
-        if u == end:
-            return cost
-        for v, c in graph[u]:
-            if v in visited:
-                continue
-            next_item = cost + c
-            heapq.heappush(heap, (next_item, v))
-    return -1
+		# Initialize minimum distance for next node
+	    min = 1e7
 
+		# Search not nearest vertex not in the
+		# shortest path tree
+	    for v in range(self.V):
+	        if dist[v] < min and sptSet[v] == False:
+	            min = dist[v]
+	            min_index = v
 
-G = {
-    "A": [["B", 2], ["C", 5]],
-    "B": [["A", 2], ["D", 3], ["E", 1], ["F", 1]],
-    "C": [["A", 5], ["F", 3]],
-    "D": [["B", 3]],
-    "E": [["B", 4], ["F", 3]],
-    "F": [["C", 3], ["E", 3]],
-}
+	    return min_index
 
-r"""
-Layout of G2:
+	# Function that implements Dijkstra's single source
+	# shortest path algorithm for a graph represented
+	# using adjacency matrix representation
+	def dijkstra(self, src:int ) -> None:
+	    """
+	    Actual working of dijkstra algo
+	    param src : int
+	    """
 
-E -- 1 --> B -- 1 --> C -- 1 --> D -- 1 --> F
- \                                         /\
-  \                                        ||
-    ----------------- 3 --------------------
-"""
-G2 = {
-    "B": [["C", 1]],
-    "C": [["D", 1]],
-    "D": [["F", 1]],
-    "E": [["B", 1], ["F", 3]],
-    "F": [],
-}
+	    dist = [1e7] * self.V
+	    dist[src] = 0
+	    sptSet = [False] * self.V
+	    
+	    for cout in range(self.V):
 
-r"""
-Layout of G3:
+			# Pick the minimum distance vertex from
+			# the set of vertices not yet processed.
+			# u is always equal to src in first iteration
+		    u = self.min_distance(dist, sptSet)
 
-E -- 1 --> B -- 1 --> C -- 1 --> D -- 1 --> F
- \                                         /\
-  \                                        ||
-    -------- 2 ---------> G ------- 1 ------
-"""
-G3 = {
-    "B": [["C", 1]],
-    "C": [["D", 1]],
-    "D": [["F", 1]],
-    "E": [["B", 1], ["G", 2]],
-    "F": [],
-    "G": [["F", 1]],
-}
+			# Put the minimum distance vertex in the
+			# shortest path tree
+            sptSet[u] = True
 
-short_distance = dijkstra(G, "E", "C")
-print(short_distance)  # E -- 3 --> F -- 3 --> C == 6
+			# Update dist value of the adjacent vertices
+			# of the picked vertex only if the current
+			# distance is greater than new distance and
+			# the vertex in not in the shortest path tree
+		    for v in range(self.V):
+		        if (self.graph[u][v] > 0 and
+		        sptSet[v] == False and
+		        dist[v] > dist[u] + self.graph[u][v]):
+		            dist[v] = dist[u] + self.graph[u][v]
 
-short_distance = dijkstra(G2, "E", "F")
-print(short_distance)  # E -- 3 --> F == 3
+	    self.print_solution(dist)
 
-short_distance = dijkstra(G3, "E", "F")
-print(short_distance)  # E -- 2 --> G -- 1 --> F == 3
+# Driver program
+g = Graph(9)
+g.graph = [[0, 4, 0, 0, 0, 0, 0, 8, 0],
+		[4, 0, 8, 0, 0, 0, 0, 11, 0],
+		[0, 8, 0, 7, 0, 4, 0, 0, 2],
+		[0, 0, 7, 0, 9, 14, 0, 0, 0],
+		[0, 0, 0, 9, 0, 10, 0, 0, 0],
+		[0, 0, 4, 14, 10, 0, 2, 0, 0],
+		[0, 0, 0, 0, 0, 2, 0, 1, 6],
+		[8, 11, 0, 0, 0, 0, 1, 0, 7],
+		[0, 0, 2, 0, 0, 0, 6, 7, 0]
+		]
 
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+g.dijkstra(0)
