@@ -603,7 +603,7 @@
   * [Sock Merchant](maths/sock_merchant.py)
   * [Softmax](maths/softmax.py)
   * [Square Root](maths/square_root.py)
-  * [Subtraction](maths/subtraction.py)
+  * [Subtract](maths/subtract.py)
   * [Sum Of Arithmetic Series](maths/sum_of_arithmetic_series.py)
   * [Sum Of Digits](maths/sum_of_digits.py)
   * [Sum Of Geometric Progression](maths/sum_of_geometric_progression.py)
