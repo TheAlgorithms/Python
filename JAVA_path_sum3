@@ -1,0 +1,34 @@
+class Solution {
+    int count = 0;
+    ArrayList<Integer> list = new ArrayList<Integer>();
+    
+    public int pathSum(TreeNode root, int sum) {
+        getSum(root, sum);
+        return count;
+        
+    }
+    public void getSum(TreeNode root, int Sum){
+        if( root== null)
+            return;
+        
+        list.add(root.val);
+        
+        getSum(root.left,Sum);
+        getSum(root.right,Sum);
+
+        System.out.println(list);
+        int temp = 0 ;
+        for( int i = list.size()-1; i>=0; i--){
+            temp+= list.get(i);
+            temp=temp%1000000007;
+            if(temp== Sum)
+            {
+                 count++;
+            }
+             
+            
+        }
+        
+        list.remove(list.size()-1);
+        
+    }}
