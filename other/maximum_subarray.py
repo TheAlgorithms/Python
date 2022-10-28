@@ -2,7 +2,7 @@ from collections.abc import Sequence
 
 
 def max_subarray_sum(nums: Sequence[int]) -> int:
-    """Returns the maximum possible sum amongst all non - empty subarrays
+    """Return the maximum possible sum amongst all non - empty subarrays.
 
     Raises:
       ValueError: when nums is empty.
@@ -15,9 +15,9 @@ def max_subarray_sum(nums: Sequence[int]) -> int:
     if not nums:
         raise ValueError("Input sequence should not be empty")
 
-    curr_max = ans = nums[0]
+    curr_max = ans = float("-inf")
 
-    for num in nums[1:]:
+    for num in nums:
         curr_max = max(curr_max + num, num)
         ans = max(curr_max, ans)
 
