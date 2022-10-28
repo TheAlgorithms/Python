@@ -1,7 +1,7 @@
 """
 This file provides a function which will take a product name as input from the user,
 and fetch from Amazon information about products of this name or category.  The product
-information will inclued title, URL, price, ratings, and the discount available.
+information will include title, URL, price, ratings, and the discount available.
 """
 
 
@@ -45,7 +45,7 @@ def get_amazon_product_data(product: str = "laptop") -> DataFrame:
     ):
         try:
             product_title = item.h2.text
-            product_link = "https://www.amazon.in/" + i.h2.a["href"]
+            product_link = "https://www.amazon.in/" + item.h2.a["href"]
             product_price = item.find("span", attrs={"class": "a-offscreen"}).text
             try:
                 product_rating = item.find("span", attrs={"class": "a-icon-alt"}).text
@@ -54,7 +54,7 @@ def get_amazon_product_data(product: str = "laptop") -> DataFrame:
             try:
                 product_mrp = (
                     "₹"
-                    + i.find(
+                    + item.find(
                         "span", attrs={"class": "a-price a-text-price"}
                     ).text.split("₹")[1]
                 )
