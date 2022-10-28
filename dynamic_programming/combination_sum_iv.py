@@ -36,10 +36,7 @@ def combination_sum_iv(n: int, array: list[int], target: int) -> int:
             return 0
         if target == 0:
             return 1
-        count = 0
-        for i in range(len(array)):
-            count += count_of_possible_combinations(target - array[i])
-        return count
+        return sum([count_of_possible_combinations(target - each) for each in array])
 
     return count_of_possible_combinations(target)
 
@@ -63,11 +60,7 @@ def combination_sum_iv_dp_array(n: int, array: list[int], target: int) -> int:
             return 1
         if dp_array[target] != -1:
             return dp_array[target]
-        answer = 0
-        for i in range(len(array)):
-            answer += count_of_possible_combinations_with_dp_array(
-                target - array[i], dp_array
-            )
+        answer = sum([count_of_possible_combinations_with_dp_array(target - each) for each in array])
         dp_array[target] = answer
         return answer
 
