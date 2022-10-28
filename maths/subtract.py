@@ -1,4 +1,4 @@
-def subtraction(a: float, b: float) -> float:
+def subtraction(minuend: float, subtrahend: float) -> float:
     """
     Calculate the difference of two numbers.
     Subtraction is an arithmetic operation that represents
@@ -8,8 +8,8 @@ def subtraction(a: float, b: float) -> float:
         https://en.wikipedia.org/wiki/Subtraction
 
     Parameters:
-        a (float): Minuend
-        b (float): Subtrahend
+        minuend (float): The number it is subtracted from
+        subtrahend (float): The number being subtracted
 
 
     Returns:
@@ -36,10 +36,13 @@ def subtraction(a: float, b: float) -> float:
     >>> subtraction(0, 0)
     0
     """
-    return a - b
+    return minuend - subtrahend
 
 
 if __name__ == "__main__":
-    a = 5
-    b = 6
-    print(f"The difference of {a} - {b} is {subtraction(a, b)}")
+    minuend = 5
+    subtrahend = 6
+    print(
+        f"The difference of {minuend} - {subtrahend}"
+        f"is {subtraction(minuend, subtrahend)}"
+    )
