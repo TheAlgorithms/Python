@@ -29,15 +29,6 @@ Find the sum of the only ordered set of six cyclic
     octagonal, is represented by a different number in the set.
 """
 
-# Global variables (permanent sets)
-megaset = set()
-set3 = set()
-set4 = set()
-set5 = set()
-set6 = set()
-set7 = set()
-set8 = set()
-
 
 # Functions to check for every family of numbers in the question
 def if_octagonal_number(number: int) -> bool:
@@ -123,14 +114,16 @@ def if_triangle_number(number: int) -> bool:
         return False
 
 
-def check_cycle_condition(answers: list) -> bool:
+def check_cycle_condition(
+    set3: set, set4: set, set5: set, set6: set, set7: set, set8: set, answers: list
+) -> bool:
     """
     Checks whether the cycle has one of every type of number
 
-    >>> check_cycle_condition([1,2,3,4,5,6])
+    >>> check_cycle_condition({1}, {2}, {3}, {4}, {5}, {6}, [1,2,3,4,5,6])
     True
 
-    >>> check_cycle_condition([2,4,5,3,2,3])
+    >>> check_cycle_condition({1}, {2}, {3,2}, {1,9,7}, {0,4,6}, {4,2,5}, [2,4,5,3,2,3])
     False
     """
 
@@ -162,6 +155,16 @@ def solution() -> int:
     >>> solution()
     28684
     """
+
+    # Global variables (permanent sets)
+    megaset = set()
+    set3 = set()
+    set4 = set()
+    set5 = set()
+    set6 = set()
+    set7 = set()
+    set8 = set()
+
     # Makes megaset and separate sets from all 4 digit numbers
     for number in range(1000, 10000):
         if if_triangle_number(number) and str(number)[2:3] != "0":
@@ -218,7 +221,24 @@ def solution() -> int:
                                                 and str(n1)[:2] == str(n6)[-2:]
                                             ):
                                                 loc = [n1, n2, n3, n4, n5, n6]
-                                                if check_cycle_condition(loc):
+                                                if check_cycle_condition(
+                                                    set3,
+                                                    set4,
+                                                    set5,
+                                                    set6,
+                                                    set7,
+                                                    set8,
+                                                    loc,
+                                                ):
+                                                    print(
+                                                        set3,
+                                                        set4,
+                                                        set5,
+                                                        set6,
+                                                        set7,
+                                                        set8,
+                                                        loc,
+                                                    )
                                                     return sum(loc)
     return 0
 
