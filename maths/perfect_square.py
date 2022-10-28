@@ -1,3 +1,4 @@
+import doctest
 import math
 
 
@@ -68,6 +69,7 @@ def perfect_square_binary_search(n: int) -> bool:
 
 
 if __name__ == "__main__":
-    import doctest
-
     doctest.testmod()
+    print(perfect_square(25))
+
+    print(perfect_square_binary_search(25))
