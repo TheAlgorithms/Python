@@ -31,7 +31,7 @@ def fast_inverse_square_root(number: float) -> float:
 
     y = y * (threehalfs - (x2 * y * y))
     y = y * (threehalfs - (x2 * y * y))  # 2nd iteration, this can be removed
-    return y
+    return y.value
 
 
 if __name__ == "__main__":
