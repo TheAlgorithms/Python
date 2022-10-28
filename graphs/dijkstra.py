@@ -59,7 +59,7 @@ class Graph():
 	    dist = [1e7] * self.V
 	    dist[src] = 0
 	    sptSet = [False] * self.V
-	    
+
 	    for cout in range(self.V):
 
 			# Pick the minimum distance vertex from
