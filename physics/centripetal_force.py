@@ -21,7 +21,7 @@ Reference: https://byjus.com/physics/centripetal-and-centrifugal-force/
 """
 
 
-def centripetal(m: float, v: float, r: float) -> float:
+def centripetal(mass: float, velocity: float, radius: float) -> float:
     """
     The Centripetal Force formula is given as: (m*v*v)/r
 
@@ -36,11 +36,11 @@ def centripetal(m: float, v: float, r: float) -> float:
     >>> round(centripetal(50,100,50),2)
     10000.0
     """
-    if m < 0:
+    if mass < 0:
         raise ValueError("The mass of the body cannot be negative")
-    if r == 0:
-        raise ValueError("The Centripetal Force becomes infinite")
-    return round(((m * (v) ** 2) / r), 2)
+    if radius <= 0:
+        raise ValueError("The radius is always a positive non zero integer")
+    return round(((mass * (velocity) ** 2) / radius), 2)
 
 
 if __name__ == "__main__":
