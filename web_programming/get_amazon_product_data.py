@@ -7,9 +7,9 @@ information will inclued title, URL, price, ratings, and the discount available.
 
 from itertools import zip_longest
 
-from pandas import DataFrame
 import requests
 from bs4 import BeautifulSoup
+from pandas import DataFrame
 
 
 def get_amazon_product_data(product: str = "laptop") -> DataFrame:
@@ -88,7 +88,8 @@ def get_amazon_product_data(product: str = "laptop") -> DataFrame:
         "MRP of the product",
     ] = " "
     data_frame.loc[
-        data_frame["Current Price of the product"] > data_frame["MRP of the product"], "Discount"
+        data_frame["Current Price of the product"] > data_frame["MRP of the product"],
+        "Discount",
     ] = " "
     data_frame.index += 1
     return data_frame
