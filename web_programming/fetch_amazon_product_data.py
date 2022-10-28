@@ -15,21 +15,20 @@ import requests
 from bs4 import BeautifulSoup as bs
 
 
-def get_product_info(product:str = "laptop") -> None:
-    # function that will take the product as input and return the 
-    #product details as output
-    # in the form of a csv file,if no input is given,it 
-    #will fetch the details of laptop by default
+def get_product_info(product: str = "laptop") -> None:
+    # function that will take the product as input and return the
+    # product details as output
+    # in the form of a csv file,if no input is given,it
+    # will fetch the details of laptop by default
     url = (
-        f"https://www.amazon.in/laptop/s?k={product}"  
+        f"https://www.amazon.in/laptop/s?k={product}"
         # generation of search query url
     )
     header = {
-        "User-Agent": 
-"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)Chrome/44.0.2403.157 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)Chrome/44.0.2403.157 Safari/537.36",
         "Accept-Language": "en-US, en;q=0.5",
     }  # header that will indicate to the destination server that the
-       # request is coming from a genuine human being and not a bot
+    # request is coming from a genuine human being and not a bot
     page = requests.get(url, headers=header)
     page_content = page.text
     soup = bs(page_content)
@@ -46,12 +45,11 @@ def get_product_info(product:str = "laptop") -> None:
     for i, j in it.zip_longest(
         soup.find_all(
             "div",
-            attrs={"class": "s-result-item", 
-                   "data-component-type": "s-search-result"},
+            attrs={"class": "s-result-item", "data-component-type": "s-search-result"},
         ),
         soup.find_all("div", attrs={"class": "a-row a-size-base a-color-base"}),
-    ):  # for loop to parse through each entry and store them in the dataframe 
-        #along with try....except block for handling exceptions that may arise
+    ):  # for loop to parse through each entry and store them in the dataframe
+        # along with try....except block for handling exceptions that may arise
         try:
             product_title = i.h2.text
             product_link = "https://www.amazon.in/" + i.h2.a["href"]
