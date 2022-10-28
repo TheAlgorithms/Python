@@ -7,7 +7,7 @@ More information at: https://github.com/gustavo-depaula/stalin-sort
 """
 
 
-def stalin_sort(collection: list) -> list:
+def stalin_sort(collection: list[int]) -> list[int]:
     """Pure python implementation of the stalin sort algorithm in Python
     :param collection: a list of comparable items
     :return: all of the items that were in order
