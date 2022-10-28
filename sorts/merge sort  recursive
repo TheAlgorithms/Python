@@ -1,0 +1,31 @@
+class Solution:
+    def sortArray(self, nums: List[int]) -> List[int]:      
+        # Length 1 is always sorted
+        if len(nums) == 1:
+            return nums
+        
+        # Split array into two subarrays
+        half = len(nums) // 2
+        left = nums[:half]
+        right = nums[half:]
+        
+        # Recursively break the arrays - O(log n)
+        left = self.sortArray(left)
+        right = self.sortArray(right)
+        
+        # O(n) sort
+        return sort(left, right)
+    
+# Merge sort helper method
+def sort(a, b):
+    out = []
+    while a and b:
+        if a[0] <= b[0]:
+            out.append(a.pop(0))
+        else:
+            out.append(b.pop(0))
+    if a:
+        out += a
+    else:
+        out += b
+    return out
