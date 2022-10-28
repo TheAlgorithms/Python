@@ -2,10 +2,8 @@
 a product name as input from the user,and fetch the necessary
 information about that kind of products from Amazon like the product
 title,link to that product,price of the product,the ratings of
-the product and the discount available on the product
-in the form of a csv file,this will help the users by improving searchability
-and navigability and find the right product easily and in a short period of time,
-it will also be beneficial for performing better analysis on products"""
+the product and the discount available on the product 
+and return it in the form of Pandas Dataframe"""
 
 
 import itertools as it
@@ -15,7 +13,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 
 
-def get_product_info(product: str = "laptop") -> None:
+def get_product_info(product: str = "laptop",generate_csv: bool = False) -> pd.DataFrame:
     # function that will take the product as input and return the
     # product details as output
     # in the form of a csv file,if no input is given,it
@@ -25,7 +23,8 @@ def get_product_info(product: str = "laptop") -> None:
         # generation of search query url
     )
     header = {
-        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)Chrome/44.0.2403.157 Safari/537.36",
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36\
+        (KHTML, like Gecko)Chrome/44.0.2403.157 Safari/537.36",
         "Accept-Language": "en-US, en;q=0.5",
     }  # header that will indicate to the destination server that the
     # request is coming from a genuine human being and not a bot
@@ -42,7 +41,7 @@ def get_product_info(product: str = "laptop") -> None:
             "Discount",
         ]
     )  # initializing a pandas dataframe to store the requisite information
-    for i, j in it.zip_longest(
+    for i,j in it.zip_longest(
         soup.find_all(
             "div",
             attrs={"class": "s-result-item", "data-component-type": "s-search-result"},
@@ -98,6 +97,7 @@ def get_product_info(product: str = "laptop") -> None:
         data["Current Price of the product"] > data["MRP of the product"], "Discount"
     ] = " "
     data.index += 1
-    data.to_csv(
-        f"Amazon Product Data({product}).csv"
-    )  # writing the data to the csv file
+    if generate_csv == True:
+        data.to_csv(f"Amazon Product Data({product}).csv")  
+        # writing the data to the csv file
+    return data
