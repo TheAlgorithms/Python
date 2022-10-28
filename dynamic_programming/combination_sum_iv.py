@@ -36,7 +36,7 @@ def combination_sum_iv(n: int, array: list[int], target: int) -> int:
             return 0
         if target == 0:
             return 1
-        return sum([count_of_possible_combinations(target - each) for each in array])
+        return sum(count_of_possible_combinations(target - item) for item in array)
 
     return count_of_possible_combinations(target)
 
