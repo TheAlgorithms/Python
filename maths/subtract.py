@@ -1,15 +1,15 @@
 
-def subtract(a: float, b: float) -> float:
+def subtract(num1: float, num2: float) -> float:
     """
     >>> subtract(2, 1)
     1
     >>> subtract(2,4)
     -2
     """
-    return a-b 
+    return num1-num2
 
 
 if __name__ == "__main__":
-    a = 2
-    b = 1
-    print("The difference between {} and {} is {}".format(a, b, subtract(a, b)))
+    num1 = 2
+    num2 = 1
+    print(f"The difference between {num1} and {num2} is {subtract(num1, num2)}")
