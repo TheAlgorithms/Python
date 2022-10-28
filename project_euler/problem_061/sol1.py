@@ -230,15 +230,6 @@ def solution() -> int:
                                                     set8,
                                                     loc,
                                                 ):
-                                                    print(
-                                                        set3,
-                                                        set4,
-                                                        set5,
-                                                        set6,
-                                                        set7,
-                                                        set8,
-                                                        loc,
-                                                    )
                                                     return sum(loc)
     return 0
 
