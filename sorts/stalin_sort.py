@@ -3,7 +3,6 @@ This is a pure Python implementation of the stalin sort algorithm.
 Stalin sort iterates over the list, comparing each element with the
 previous one, and removes any that are out of order.
 More information at: https://github.com/gustavo-depaula/stalin-sort
-
 """
 
 
