@@ -17,7 +17,7 @@ def max_subarray_sum(nums: Sequence[int]) -> int:
 
     curr_max = ans = nums[0]
     nums_len = len(nums)
-    
+
     for i in range(1, nums_len):
         num = nums[i]
         curr_max = max(curr_max + num, num)
