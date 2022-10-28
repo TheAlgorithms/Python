@@ -1,4 +1,3 @@
-
 def subtract(num1: float, num2: float) -> float:
     """
     >>> subtract(2, 1)
@@ -6,7 +5,7 @@ def subtract(num1: float, num2: float) -> float:
     >>> subtract(2,4)
     -2
     """
-    return num1-num2
+    return num1 - num2
 
 
 if __name__ == "__main__":
