@@ -1,4 +1,4 @@
-from collections.abc import Sequence
+from typing import Sequence
 
 
 def max_subarray_sum(nums: Sequence[int]) -> int:
