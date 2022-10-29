@@ -1,0 +1,5 @@
+[tool.pytest.ini_options]
+markers = [
+    "mat_ops: mark a test as utilizing matrix operations.",
+]
+addopts = "--durations=10 --doctest-modules --showlocals"
