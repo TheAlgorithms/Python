@@ -41,13 +41,19 @@ repos:
     rev: 5.0.4
     hooks:
       - id: flake8 # See .flake8 for args
-        additional_dependencies:
+        additional_dependencies: &flake8-plugins
           - flake8-bugbear
           - flake8-builtins
           - flake8-broken-line
           - flake8-comprehensions
           - pep8-naming
-          - yesqa
+
+  - repo: https://github.com/asottile/yesqa
+    rev: v1.4.0
+    hooks:
+      - id: yesqa
+        additional_dependencies:
+          *flake8-plugins
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v0.982
