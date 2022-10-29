@@ -1,9 +1,7 @@
-from itertools import permutations
-
-
-# All permutations:
 def permute(nums: list[int]) -> list[list[int]]:
     """
+    Return all permutations.
+
     >>> from itertools import permutations
     >>> numbers= [1,2,3]
     >>> all(list(nums) in permute(numbers) for nums in permutations(numbers))
@@ -23,9 +21,6 @@ def permute(nums: list[int]) -> list[list[int]]:
 
 
 if __name__ == "__main__":
-    numbers = [1, 2, 3]
-    print("permutations are:", permute(numbers))
-    print(
-        "isValid:",
-        all(list(nums) in permute(numbers) for nums in permutations(numbers)),
-    )
+    import doctest
+
+    doctest.testmod()
