@@ -1,0 +1,25 @@
+# The user enters a string and a substring. 
+# Print the number of times that the substring occurs in the given string.
+
+def count_substring(string, sub_string):
+    """
+    Examples to find a string:
+    >>> count_substring("ABCDCCDC","CDC")
+    2
+    >>> count_substring("SAUAUAUABH","AUA")
+    3
+    NOTE: String letters are case-sensitive.
+    """
+    count=0
+    sub_len=len(sub_string)
+    for i in range(0,len(string)):
+        if sub_string==string[i:(i+sub_len)]:
+            count+=1
+    return count
+    
+
+if __name__ == '__main__':
+    string = input("Enter the String: ").strip()
+    sub_string = input("Enter the Substring: ").strip()
+    count = count_substring(string, sub_string)
+    print(count)
