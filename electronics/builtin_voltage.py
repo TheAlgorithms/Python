@@ -17,7 +17,7 @@ def builtin_voltage(
     This is calculated from the given three values.
     Examples -
     >>> builtin_voltage(donor_conc=1e17, acceptor_conc=1e17, intrinsic_conc=1e10)
-    0.8334098736308577
+    0.833370010652644
     >>> builtin_voltage(donor_conc=0, acceptor_conc=1600, intrinsic_conc=200)
     Traceback (most recent call last):
       ...
@@ -55,7 +55,7 @@ def builtin_voltage(
             "Acceptor concentration should be greater than intrinsic concentration"
         )
     else:
-        return K * T * log((donor_conc * acceptor_conc) / intrinsic_conc**2) / Q
+        return K * T * log((donor_conc * acceptor_conc) / intrinsic_conc**2) / Q[0]
 
 
 if __name__ == "__main__":
