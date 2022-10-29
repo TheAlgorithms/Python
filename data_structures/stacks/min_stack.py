@@ -1,6 +1,6 @@
 # Name: Ritika Rastogi
 # Date: 27-10-2022
-class MinStack(object):
+class MinStack:
     def __init__(self):
         self.object = []
 
