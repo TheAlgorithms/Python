@@ -7,7 +7,7 @@ More information at: https://github.com/gustavo-depaula/stalin-sort
 
 
 def stalin_sort(collection: list[int]) -> list[int]:
-    """Pure python implementation of the stalin sort algorithm in Python
+    """Pure Python implementation of the stalin sort algorithm
     :param collection: a list of comparable items
     :return: all of the items that were in order
 
@@ -19,7 +19,7 @@ def stalin_sort(collection: list[int]) -> list[int]:
     >>> stalin_sort([-2, -5, -45])
     [-2]
     """
-    if collection == []:
+    if not collection:
         return []
     largest = collection[0]
     removed = 0
