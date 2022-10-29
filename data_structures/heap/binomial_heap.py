@@ -1,5 +1,3 @@
-# flake8: noqa
-
 """
 Binomial Heap
 Reference: Advanced Data Structures, Peter Brass
@@ -22,7 +20,7 @@ class Node:
         self.right = None
         self.parent = None
 
-    def mergeTrees(self, other):
+    def merge_trees(self, other):
         """
         In-place merge of two binomial trees of equal size.
         Returns the root of the resulting tree
@@ -75,9 +73,8 @@ class BinomialHeap:
     30
 
     Deleting - delete() test
-    >>> for i in range(25):
-    ...     print(first_heap.deleteMin(), end=" ")
-    0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 
+    >>> [first_heap.delete_min() for _ in range(20)]
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
     Create a new Heap
     >>> second_heap = BinomialHeap()
@@ -97,8 +94,8 @@ class BinomialHeap:
                   #    # #   #
 
     preOrder() test
-    >>> second_heap.preOrder()
-    [(17, 0), ('#', 1), (31, 1), (20, 2), ('#', 3), ('#', 3), (34, 2), ('#', 3), ('#', 3)]
+    >>> " ".join(str(x) for x in second_heap.pre_order())
+    "(17, 0) ('#', 1) (31, 1) (20, 2) ('#', 3) ('#', 3) (34, 2) ('#', 3) ('#', 3)"
 
     printing Heap - __str__() test
     >>> print(second_heap)
@@ -113,14 +110,17 @@ class BinomialHeap:
     ---#
 
     mergeHeaps() test
-    >>> merged = second_heap.mergeHeaps(first_heap)
+    >>>
+    >>> merged = second_heap.merge_heaps(first_heap)
     >>> merged.peek()
     17
 
     values in merged heap; (merge is inplace)
-    >>> while not first_heap.isEmpty():
-    ...     print(first_heap.deleteMin(), end=" ")
-    17 20 25 26 27 28 29 31 34 
+    >>> results = []
+    >>> while not first_heap.is_empty():
+    ...     results.append(first_heap.delete_min())
+    >>> results
+    [17, 20, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31, 34]
     """
 
     def __init__(self, bottom_root=None, min_node=None, heap_size=0):
@@ -128,7 +128,7 @@ class BinomialHeap:
         self.bottom_root = bottom_root
         self.min_node = min_node
 
-    def mergeHeaps(self, other):
+    def merge_heaps(self, other):
         """
         In-place merge of two binomial heaps.
         Both of them become the resulting merged heap
@@ -180,7 +180,7 @@ class BinomialHeap:
                 next_node = i.parent.parent
 
                 # Merging trees
-                i = i.mergeTrees(i.parent)
+                i = i.merge_trees(i.parent)
 
                 # Updating links
                 i.left = previous_node
@@ -238,7 +238,7 @@ class BinomialHeap:
                 next_node = self.bottom_root.parent.parent
 
                 # Merge
-                self.bottom_root = self.bottom_root.mergeTrees(self.bottom_root.parent)
+                self.bottom_root = self.bottom_root.merge_trees(self.bottom_root.parent)
 
                 # Update Links
                 self.bottom_root.parent = next_node
@@ -252,10 +252,10 @@ class BinomialHeap:
         """
         return self.min_node.val
 
-    def isEmpty(self):
+    def is_empty(self):
         return self.size == 0
 
-    def deleteMin(self):
+    def delete_min(self):
         """
         delete min element and return it
         """
@@ -317,7 +317,7 @@ class BinomialHeap:
             return min_value
         # Remaining cases
         # Construct heap of right subtree
-        newHeap = BinomialHeap(
+        new_heap = BinomialHeap(
             bottom_root=bottom_of_new, min_node=min_of_new, heap_size=size_of_new
         )
 
@@ -354,11 +354,11 @@ class BinomialHeap:
                     self.min_node = i
                 i = i.parent
         # Merge heaps
-        self.mergeHeaps(newHeap)
+        self.merge_heaps(new_heap)
 
         return min_value
 
-    def preOrder(self):
+    def pre_order(self):
         """
         Returns the Pre-order representation of the heap including
         values of nodes plus their level distance from the root;
@@ -369,9 +369,9 @@ class BinomialHeap:
         while top_root.parent:
             top_root = top_root.parent
         # preorder
-        heap_preOrder = []
-        self.__traversal(top_root, heap_preOrder)
-        return heap_preOrder
+        heap_pre_order = []
+        self.__traversal(top_root, heap_pre_order)
+        return heap_pre_order
 
     def __traversal(self, curr_node, preorder, level=0):
         """
@@ -389,9 +389,9 @@ class BinomialHeap:
         Overwriting str for a pre-order print of nodes in heap;
         Performance is poor, so use only for small examples
         """
-        if self.isEmpty():
+        if self.is_empty():
             return ""
-        preorder_heap = self.preOrder()
+        preorder_heap = self.pre_order()
 
         return "\n".join(("-" * level + str(value)) for value, level in preorder_heap)
 

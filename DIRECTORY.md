@@ -671,6 +671,7 @@
 
 ## Physics
   * [Casimir Effect](physics/casimir_effect.py)
+  * [Centripetal Force](physics/centripetal_force.py)
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
   * [Kinetic Energy](physics/kinetic_energy.py)
   * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
@@ -1069,6 +1070,7 @@
   * [Is Palindrome](strings/is_palindrome.py)
   * [Is Pangram](strings/is_pangram.py)
   * [Is Spain National Id](strings/is_spain_national_id.py)
+  * [Is Srilankan Phone Number](strings/is_srilankan_phone_number.py)
   * [Jaro Winkler](strings/jaro_winkler.py)
   * [Join](strings/join.py)
   * [Knuth Morris Pratt](strings/knuth_morris_pratt.py)
