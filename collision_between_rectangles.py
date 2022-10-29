@@ -15,7 +15,7 @@ rect2 = {
 def checkCollision(rect1, rect2) -> bool:
       """
     Check if two rectangle are colliding/overlaping
-    
+
     >>> checkCollision(rect1, rect2)
     True
     """
