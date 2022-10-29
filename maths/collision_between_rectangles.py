@@ -5,7 +5,7 @@ rect2 = {"x": 20, "y": 30, "height": 40, "width": 30}
 
 def check_collision(rect1: dict, rect2: dict) -> bool:
     """
-    Check if two rectangle are colliding/overlaping
+    Check if two rectangle are colliding/overlapping
 
     >>> check_collision(rect1, rect2)
     True
