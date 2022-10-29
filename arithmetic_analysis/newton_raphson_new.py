@@ -32,7 +32,7 @@ def newton_raphson(
     1.2186556186174883e-10
     >>> newton_raphson('cos(x)', 0)
     Traceback (most recent call last):
-    ...
+        ...
     ZeroDivisionError: Could not find root
     """
 

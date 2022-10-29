@@ -28,7 +28,7 @@ def newton(
     1.5707963267948966
     >>> newton(math.cos, lambda x: -math.sin(x), 0)
     Traceback (most recent call last):
-    ...
+        ...
     ZeroDivisionError: Could not find root
     """
     prev_guess = float(starting_int)

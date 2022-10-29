@@ -32,17 +32,17 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
     >>> genes.remove("e")
     >>> basic("test", genes)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: ['e'] is not in genes list, evolution cannot converge
     >>> genes.remove("s")
     >>> basic("test", genes)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: ['e', 's'] is not in genes list, evolution cannot converge
     >>> genes.remove("t")
     >>> basic("test", genes)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: ['e', 's', 't'] is not in genes list, evolution cannot converge
     """
 
@@ -80,7 +80,7 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
             score = len(
                 [g for position, g in enumerate(item) if g == main_target[position]]
             )
-            return (item, float(score))  # noqa: B023
+            return (item, float(score))
 
         # Adding a bit of concurrency can make everything faster,
         #

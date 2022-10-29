@@ -23,7 +23,7 @@ def msd_radix_sort(list_of_ints: list[int]) -> list[int]:
     [1, 45, 1209, 540402, 834598]
     >>> msd_radix_sort([-1, 34, 45])
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: All numbers must be positive
     """
     if not list_of_ints:
@@ -93,7 +93,7 @@ def msd_radix_sort_inplace(list_of_ints: list[int]):
     >>> lst = [-1, 34, 23, 4, -42]
     >>> msd_radix_sort_inplace(lst)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: All numbers must be positive
     """
 

@@ -168,7 +168,7 @@ class Vector:
         9.539392014169456
         >>> Vector([]).euclidean_length()
         Traceback (most recent call last):
-        ...
+            ...
         Exception: Vector is empty
         """
         if len(self.__components) == 0:
@@ -186,7 +186,7 @@ class Vector:
         85.40775111366095
         >>> Vector([3, 4, -1]).angle(Vector([2, -1]))
         Traceback (most recent call last):
-        ...
+            ...
         Exception: invalid operand!
         """
         num = self * other

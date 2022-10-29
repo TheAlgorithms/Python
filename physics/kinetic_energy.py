@@ -1,5 +1,6 @@
 """
-Find the kinetic energy of an object, give its mass and velocity
+Find the kinetic energy of an object, given its mass and velocity.
+
 Description : In physics, the kinetic energy of an object is the energy that it
 possesses due to its motion.  It is defined as the work needed to accelerate a body of a
 given mass from rest to its stated velocity.  Having gained this energy during its
@@ -19,6 +20,8 @@ Reference : https://en.m.wikipedia.org/wiki/Kinetic_energy
 
 def kinetic_energy(mass: float, velocity: float) -> float:
     """
+    Calculate kinetick energy.
+
     The kinetic energy of a non-rotating object of mass m traveling at a speed v is ½mv²
 
     >>> kinetic_energy(10,10)
