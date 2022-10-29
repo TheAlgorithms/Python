@@ -1,5 +1,6 @@
 resistors_in_parallel = [200, 470, 220]
 
+
 def calculate_resistence_in_parallel(resistors_in_parallel: list) -> float:
     """
     Calculate total resistance of resistors used in parallel
@@ -9,7 +10,8 @@ def calculate_resistence_in_parallel(resistors_in_parallel: list) -> float:
     total = 0
     for val in resistors_in_parallel:
         total = total + (1 / val)
-    return round(1/ total, 2)
+    return round(1 / total, 2)
+
 
 if __name__ == "__main__":
     import doctest
