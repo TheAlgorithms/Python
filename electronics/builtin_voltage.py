@@ -1,8 +1,8 @@
-
 from math import log
-from scipy.constants import physical_constants, Boltzmann
 
-Q = physical_constants['electron volt']  # ELECTRON CHARGE (units = C)
+from scipy.constants import Boltzmann, physical_constants
+
+Q = physical_constants["electron volt"]  # ELECTRON CHARGE (units = C)
 K = Boltzmann  # BOLTZMAN'S CONSTANT (unit = kg m^2 s^-2 K^-1)
 T = 300  # TEMPERATURE (unit = K)
 
