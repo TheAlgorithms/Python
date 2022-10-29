@@ -22,7 +22,13 @@ https://www.sciencedirect.com/topics/mathematics/hubble-parameter
 """
 
 
-def hubble_parameter(H_0: float, Omg_r: float, Omg_m: float, Omg_l: float, z: float):
+def hubble_parameter(
+    hubble_constant: float,
+    radiation_density: float,
+    mass_density: float,
+    dark_energy_density: float,
+    redshift: float,
+) -> float:
     """
     Input Parameters
     ----------------
