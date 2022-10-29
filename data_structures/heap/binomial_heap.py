@@ -73,9 +73,8 @@ class BinomialHeap:
     30
 
     Deleting - delete() test
-    >>> for i in range(25):
-    ...     print(first_heap.delete_min(), end=" ")
-    0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
+    >>> [first_heap.delete_min() for _ in range(20)]
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
     Create a new Heap
     >>> second_heap = BinomialHeap()
@@ -95,8 +94,8 @@ class BinomialHeap:
                   #    # #   #
 
     preOrder() test
-    >>> second_heap.pre_order()
-    [(17, 0), ('#', 1), (31, 1), (20, 2), ('#', 3), ('#', 3), (34, 2), ('#', 3), ('#', 3)]  # noqa: E501
+    >>> " ".join(str(x) for x in second_heap.pre_order())
+    "(17, 0) ('#', 1) (31, 1) (20, 2) ('#', 3) ('#', 3) (34, 2) ('#', 3) ('#', 3)"
 
     printing Heap - __str__() test
     >>> print(second_heap)
@@ -111,14 +110,17 @@ class BinomialHeap:
     ---#
 
     mergeHeaps() test
+    >>>
     >>> merged = second_heap.merge_heaps(first_heap)
     >>> merged.peek()
     17
 
     values in merged heap; (merge is inplace)
+    >>> results = []
     >>> while not first_heap.is_empty():
-    ...     print(first_heap.delete_min(), end=" ")
-    17 20 25 26 27 28 29 31 34
+    ...     results.append(first_heap.delete_min())
+    >>> results
+    [17, 20, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31, 34]
     """
 
     def __init__(self, bottom_root=None, min_node=None, heap_size=0):
