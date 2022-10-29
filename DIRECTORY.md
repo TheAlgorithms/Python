@@ -356,14 +356,14 @@
   * [Articulation Points](graphs/articulation_points.py)
   * [Basic Graphs](graphs/basic_graphs.py)
   * [Bellman Ford](graphs/bellman_ford.py)
-  * [Bfs Shortest Path](graphs/bfs_shortest_path.py)
-  * [Bfs Zero One Shortest Path](graphs/bfs_zero_one_shortest_path.py)
   * [Bidirectional A Star](graphs/bidirectional_a_star.py)
   * [Bidirectional Breadth First Search](graphs/bidirectional_breadth_first_search.py)
   * [Boruvka](graphs/boruvka.py)
   * [Breadth First Search](graphs/breadth_first_search.py)
   * [Breadth First Search 2](graphs/breadth_first_search_2.py)
   * [Breadth First Search Shortest Path](graphs/breadth_first_search_shortest_path.py)
+  * [Breadth First Search Shortest Path 2](graphs/breadth_first_search_shortest_path_2.py)
+  * [Breadth First Search Zero One Shortest Path](graphs/breadth_first_search_zero_one_shortest_path.py)
   * [Check Bipartite Graph Bfs](graphs/check_bipartite_graph_bfs.py)
   * [Check Bipartite Graph Dfs](graphs/check_bipartite_graph_dfs.py)
   * [Check Cycle](graphs/check_cycle.py)
@@ -671,6 +671,7 @@
 
 ## Physics
   * [Casimir Effect](physics/casimir_effect.py)
+  * [Centripetal Force](physics/centripetal_force.py)
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
   * [Kinetic Energy](physics/kinetic_energy.py)
   * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
@@ -678,6 +679,7 @@
   * [N Body Simulation](physics/n_body_simulation.py)
   * [Newtons Law Of Gravitation](physics/newtons_law_of_gravitation.py)
   * [Newtons Second Law Of Motion](physics/newtons_second_law_of_motion.py)
+  * [Potential Energy](physics/potential_energy.py)
 
 ## Project Euler
   * Problem 001
@@ -1068,6 +1070,7 @@
   * [Is Palindrome](strings/is_palindrome.py)
   * [Is Pangram](strings/is_pangram.py)
   * [Is Spain National Id](strings/is_spain_national_id.py)
+  * [Is Srilankan Phone Number](strings/is_srilankan_phone_number.py)
   * [Jaro Winkler](strings/jaro_winkler.py)
   * [Join](strings/join.py)
   * [Knuth Morris Pratt](strings/knuth_morris_pratt.py)
