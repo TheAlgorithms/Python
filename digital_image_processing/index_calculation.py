@@ -413,7 +413,7 @@ class IndexCalculation:
         """
         return (self.nir / ((self.nir + self.red) / 2)) * (self.ndvi() + 1)
 
-    def i(self):  # noqa: E741,E743
+    def i(self):
         """
         Intensity
         https://www.indexdatabase.de/db/i-single.php?id=36
