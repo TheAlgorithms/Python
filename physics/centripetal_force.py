@@ -40,7 +40,7 @@ def centripetal(mass: float, velocity: float, radius: float) -> float:
         raise ValueError("The mass of the body cannot be negative")
     if radius <= 0:
         raise ValueError("The radius is always a positive non zero integer")
-    return round(((mass * (velocity) ** 2) / radius), 2)
+    return (mass * (velocity) ** 2) / radius
 
 
 if __name__ == "__main__":
