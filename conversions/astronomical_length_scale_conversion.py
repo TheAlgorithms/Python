@@ -90,7 +90,11 @@ def length_conversion(value: float, from_type: str, to_type: str) -> float:
     to_exponent = METRIC_CONVERSION[to_sanitized]
     exponent = 1
 
-    exponent = from_exponent - to_exponent if from_exponent > to_exponent else -(to_exponent - from_exponent)
+    exponent = (
+        from_exponent - to_exponent
+        if from_exponent > to_exponent
+        else -(to_exponent - from_exponent)
+    )
 
     return value * pow(10, exponent)
 
