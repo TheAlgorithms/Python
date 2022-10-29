@@ -46,3 +46,24 @@ dev = [
 [tool.setuptools]
 packages = [ ]
 # py_modules = [ ]  does not work!
+
+[tool.pytest.ini_options]
+markers = [
+    "mat_ops: mark a test as utilizing matrix operations.",
+]
+addopts = [
+    "--durations=10",
+    "--doctest-modules",
+    "--showlocals",
+]
+
+
+[tool.coverage.report]
+omit = [".env/*"]
+sort = "Cover"
+
+#[report]
+#sort = Cover
+#omit =
+#    .env/*
+#    backtracking/*

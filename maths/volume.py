@@ -108,6 +108,51 @@ def vol_spheres_intersect(
     return vol_spherical_cap(h1, radius_2) + vol_spherical_cap(h2, radius_1)
 
 
+def vol_spheres_union(
+    radius_1: float, radius_2: float, centers_distance: float
+) -> float:
+    """
+    Calculate the volume of the union of two spheres that possibly intersect.
+    It is the sum of sphere A and sphere B minus their intersection.
+    First, it calculates the volumes (v1, v2) of the spheres,
+    then the volume of the intersection (i) and it returns the sum v1+v2-i.
+    If centers_distance is 0 then it returns the volume of the larger sphere
+    :return vol_sphere(radius_1) + vol_sphere(radius_2)
+                - vol_spheres_intersect(radius_1, radius_2, centers_distance)
+
+    >>> vol_spheres_union(2, 2, 1)
+    45.814892864851146
+    >>> vol_spheres_union(1.56, 2.2, 1.4)
+    48.77802773671288
+    >>> vol_spheres_union(0, 2, 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: vol_spheres_union() only accepts non-negative values, non-zero radius
+    >>> vol_spheres_union('1.56', '2.2', '1.4')
+    Traceback (most recent call last):
+        ...
+    TypeError: '<=' not supported between instances of 'str' and 'int'
+    >>> vol_spheres_union(1, None, 1)
+    Traceback (most recent call last):
+        ...
+    TypeError: '<=' not supported between instances of 'NoneType' and 'int'
+    """
+
+    if radius_1 <= 0 or radius_2 <= 0 or centers_distance < 0:
+        raise ValueError(
+            "vol_spheres_union() only accepts non-negative values, non-zero radius"
+        )
+
+    if centers_distance == 0:
+        return vol_sphere(max(radius_1, radius_2))
+
+    return (
+        vol_sphere(radius_1)
+        + vol_sphere(radius_2)
+        - vol_spheres_intersect(radius_1, radius_2, centers_distance)
+    )
+
+
 def vol_cuboid(width: float, height: float, length: float) -> float:
     """
     Calculate the Volume of a Cuboid.
@@ -408,12 +453,13 @@ def main():
     print(f"Sphere: {vol_sphere(2) = }")  # ~= 33.5
     print(f"Hemisphere: {vol_hemisphere(2) = }")  # ~= 16.75
     print(f"Circular Cylinder: {vol_circular_cylinder(2, 2) = }")  # ~= 25.1
-    print(
-        f"Hollow Circular Cylinder: {vol_hollow_circular_cylinder(1, 2, 3) = }"
-    )  # ~= 28.3
     print(f"Conical Frustum: {vol_conical_frustum(2, 2, 4) = }")  # ~= 58.6
     print(f"Spherical cap: {vol_spherical_cap(1, 2) = }")  # ~= 5.24
     print(f"Spheres intersetion: {vol_spheres_intersect(2, 2, 1) = }")  # ~= 21.21
+    print(f"Spheres union: {vol_spheres_union(2, 2, 1) = }")  # ~= 45.81
+    print(
+        f"Hollow Circular Cylinder: {vol_hollow_circular_cylinder(1, 2, 3) = }"
+    )  # ~= 28.3
 
 
 if __name__ == "__main__":

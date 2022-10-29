@@ -14,11 +14,11 @@ def zeller(date_input: str) -> str:
     Validate out of range month
     >>> zeller('13-31-2010')
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Month must be between 1 - 12
     >>> zeller('.2-31-2010')
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: invalid literal for int() with base 10: '.2'
 
     Validate out of range date:
