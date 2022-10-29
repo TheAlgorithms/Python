@@ -53,7 +53,12 @@ def builtin_voltage(
             "Acceptor concentration should be greater than intrinsic concentration"
         )
     else:
-        return Boltzmann * T * log((donor_conc * acceptor_conc) / intrinsic_conc**2) / physical_constants["electron volt"][0]
+        return (
+            Boltzmann
+            * T
+            * log((donor_conc * acceptor_conc) / intrinsic_conc**2)
+            / physical_constants["electron volt"][0]
+        )
 
 
 if __name__ == "__main__":
