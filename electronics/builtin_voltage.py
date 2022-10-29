@@ -2,8 +2,6 @@ from math import log
 
 from scipy.constants import Boltzmann, physical_constants
 
-Q = physical_constants["electron volt"]  # ELECTRON CHARGE (units = C)
-K = Boltzmann  # BOLTZMAN'S CONSTANT (unit = kg m^2 s^-2 K^-1)
 T = 300  # TEMPERATURE (unit = K)
 
 
@@ -55,7 +53,7 @@ def builtin_voltage(
             "Acceptor concentration should be greater than intrinsic concentration"
         )
     else:
-        return K * T * log((donor_conc * acceptor_conc) / intrinsic_conc**2) / Q[0]
+        return Boltzmann * T * log((donor_conc * acceptor_conc) / intrinsic_conc**2) / physical_constants["electron volt"][0]
 
 
 if __name__ == "__main__":
