@@ -72,7 +72,7 @@ def _validate_point(point: Any) -> None:
     if point:
         if isinstance(point, list):
             for item in point:
-                if not (isinstance(item, int) or isinstance(item, float)):
+                if not isinstance(item, (int, float)):
                     raise TypeError(
                         f"Expected a list of numbers as input, "
                         f"found {type(item).__name__}"
