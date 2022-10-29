@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 from math import log
+from scipy.constants import physical_constants, Boltzmann
 
-Q = 1.6021e-19  # ELECTRON CHARGE (units = C)
-K = 1.380649e-23  # BOLTZMAN'S CONSTANT (unit = kg m^2 s^-2 K^-1)
+Q = physical_constants['electron volt']  # ELECTRON CHARGE (units = C)
+K = Boltzmann  # BOLTZMAN'S CONSTANT (unit = kg m^2 s^-2 K^-1)
 T = 300  # TEMPERATURE (unit = K)
 
 
