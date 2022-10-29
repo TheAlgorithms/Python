@@ -1,6 +1,7 @@
 """Implementation of Basic Math in Python."""
 import math
 
+
 def is_prime(number: int) -> bool:
     """Checks to see if a number is a prime in O(sqrt(n)).
     A number is prime if it has exactly two factors: 1 and itself.
@@ -37,7 +38,7 @@ def is_prime(number: int) -> bool:
         return False
 
     # All primes number are in format of 6k +/- 1
-    for i in range(5, int((number ** (1/2)) + 1), 6):
+    for i in range(5, int((number ** (1 / 2)) + 1), 6):
         if number % i == 0 or number % (i + 2) == 0:
             return False
     return True
