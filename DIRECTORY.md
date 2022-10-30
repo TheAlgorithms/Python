@@ -158,6 +158,8 @@
   * [Weight Conversion](conversions/weight_conversion.py)
 
 ## Data Structures
+  * Arrays
+    * [Permutations](data_structures/arrays/permutations.py)
   * Binary Tree
     * [Avl Tree](data_structures/binary_tree/avl_tree.py)
     * [Basic Binary Tree](data_structures/binary_tree/basic_binary_tree.py)
@@ -291,6 +293,7 @@
   * [Factorial](dynamic_programming/factorial.py)
   * [Fast Fibonacci](dynamic_programming/fast_fibonacci.py)
   * [Fibonacci](dynamic_programming/fibonacci.py)
+  * [Fizz Buzz](dynamic_programming/fizz_buzz.py)
   * [Floyd Warshall](dynamic_programming/floyd_warshall.py)
   * [Integer Partition](dynamic_programming/integer_partition.py)
   * [Iterating Through Submasks](dynamic_programming/iterating_through_submasks.py)
@@ -313,12 +316,16 @@
   * [Rod Cutting](dynamic_programming/rod_cutting.py)
   * [Subset Generation](dynamic_programming/subset_generation.py)
   * [Sum Of Subset](dynamic_programming/sum_of_subset.py)
+  * [Viterbi](dynamic_programming/viterbi.py)
 
 ## Electronics
   * [Carrier Concentration](electronics/carrier_concentration.py)
   * [Coulombs Law](electronics/coulombs_law.py)
+  * [Electric Conductivity](electronics/electric_conductivity.py)
   * [Electric Power](electronics/electric_power.py)
+  * [Electrical Impedance](electronics/electrical_impedance.py)
   * [Ohms Law](electronics/ohms_law.py)
+  * [Resonant Frequency](electronics/resonant_frequency.py)
 
 ## File Transfer
   * [Receive File](file_transfer/receive_file.py)
@@ -430,6 +437,7 @@
 ## Knapsack
   * [Greedy Knapsack](knapsack/greedy_knapsack.py)
   * [Knapsack](knapsack/knapsack.py)
+  * [Recursive Approach Knapsack](knapsack/recursive_approach_knapsack.py)
   * Tests
     * [Test Greedy Knapsack](knapsack/tests/test_greedy_knapsack.py)
     * [Test Knapsack](knapsack/tests/test_knapsack.py)
@@ -622,6 +630,7 @@
 ## Matrix
   * [Binary Search Matrix](matrix/binary_search_matrix.py)
   * [Count Islands In Matrix](matrix/count_islands_in_matrix.py)
+  * [Count Paths](matrix/count_paths.py)
   * [Cramers Rule 2X2](matrix/cramers_rule_2x2.py)
   * [Inverse Of Matrix](matrix/inverse_of_matrix.py)
   * [Largest Square Area In Matrix](matrix/largest_square_area_in_matrix.py)
@@ -645,6 +654,7 @@
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
   * [Perceptron](neural_network/perceptron.py)
+  * [Simple Neural Network](neural_network/simple_neural_network.py)
 
 ## Other
   * [Activity Selection](other/activity_selection.py)
@@ -680,6 +690,7 @@
   * [Newtons Law Of Gravitation](physics/newtons_law_of_gravitation.py)
   * [Newtons Second Law Of Motion](physics/newtons_second_law_of_motion.py)
   * [Potential Energy](physics/potential_energy.py)
+  * [Sheer Stress](physics/sheer_stress.py)
 
 ## Project Euler
   * Problem 001
@@ -1089,6 +1100,7 @@
   * [Reverse Words](strings/reverse_words.py)
   * [Snake Case To Camel Pascal Case](strings/snake_case_to_camel_pascal_case.py)
   * [Split](strings/split.py)
+  * [Text Justification](strings/text_justification.py)
   * [Upper](strings/upper.py)
   * [Wave](strings/wave.py)
   * [Wildcard Pattern Matching](strings/wildcard_pattern_matching.py)
