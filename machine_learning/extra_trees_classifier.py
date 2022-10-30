@@ -41,15 +41,17 @@ def main() :
         X_test,
         y_test,
         display_labels=names,
-        cmap="viridis",
-        normalize="true",
+        cmap="viridis"
     )
 
     
-    plt.title("Normalized Confusion Matrix - Extra Trees Classifier - IRIS Dataset")
+    plt.title("Confusion Matrix - Extra Trees Classifier - IRIS Dataset")
     plt.show()
 
 
     
 if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
     main()
+    
