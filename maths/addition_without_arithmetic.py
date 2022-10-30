@@ -34,6 +34,6 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    first = int(input("Enter the number for first: "))
-    second = int(input("Enter the number for sec: "))
+    first = int(input("Enter the first number: ").strip())
+    second = int(input("Enter the second number: ").strip())
     print(f"{add(first, second) = }")
