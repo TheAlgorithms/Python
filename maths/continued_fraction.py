@@ -35,7 +35,7 @@ def continued_fraction(num: Fraction) -> list[int]:
     while True:
         integer_part = int(numerator / denominator)
         continued_fraction_list.append(integer_part)
-        numerator = numerator - integer_part * denominator
+        numerator -= integer_part * denominator
         if numerator == 0:
             break
         numerator, denominator = denominator, numerator
