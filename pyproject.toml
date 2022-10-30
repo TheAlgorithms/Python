@@ -45,7 +45,6 @@ dev = [
 
 [tool.setuptools]
 packages = [ ]
-# py_modules = [ ]  does not work!
 
 [tool.pytest.ini_options]
 markers = [
