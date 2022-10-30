@@ -14,7 +14,7 @@ class Node:
 p = [node() for _ in range(20)]
 
 
-def shannon_fano(l, h, p):
+def shannon_fano(l: int, h: int, p: int) -> None:
     pk1 = 0
     pk2 = 0
     dif1 = 0
