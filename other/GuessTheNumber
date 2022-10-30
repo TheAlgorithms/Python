@@ -1,0 +1,29 @@
+#Guessing game program 
+import random
+
+while True:
+    try:
+        inp = int(input("Level:"))
+        if inp > 0:
+            break
+        else:
+            continue
+    except:
+        continue
+rnd = random.randint(1, inp)
+while True:
+    try:
+        guess = int(input("Guess:"))
+        if guess < 1:
+            continue
+        if guess < rnd:
+            print("Too small!")
+            continue
+        elif guess > rnd:
+            print("Too large!")
+            continue
+        else:
+            print("Just right!")
+            break
+    except:
+        continue
