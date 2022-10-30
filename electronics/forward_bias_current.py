@@ -37,7 +37,11 @@ def forward_bias_current(
         raise ValueError("Reverse saturation current cannot be greater than 1e-5")
     else:
         return reverse_saturation_current * (
-            e ** ((forward_voltage * physical_constants["electron volt"][0]) / (Boltzmann * T))
+            e
+            ** (
+                (forward_voltage * physical_constants["electron volt"][0])
+                / (Boltzmann * T)
+            )
             - 1
         )
 
