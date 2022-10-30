@@ -6,7 +6,7 @@ from __future__ import annotations
 def resistor_parallel(resistors: list[float]) -> float:
     """
     Req = 1/ (1/R1 + 1/R2 + ... + 1/Rn)
-    
+
     >>> resistor_parallel([3.21389, 2, 3])
     0.8737571620498019
     >>> resistor_parallel([3.21389, 2, -3])
@@ -34,7 +34,7 @@ def resistor_series(resistors: list[float]) -> float:
     Req = R1 + R2 + ... + Rn
 
     Calculate the equivalent resistance for any number of resistors in parallel.
-    
+
     >>> resistor_series([3.21389, 2, 3])
     8.21389
     >>> resistor_series([3.21389, 2, -3])
