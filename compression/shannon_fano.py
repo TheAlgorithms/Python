@@ -3,7 +3,7 @@ Wiki Explanation: https://en.wikipedia.org/wiki/Shannon%E2%80%93Fano_coding
 """
 
 
-class node:
+class Node:
     def __init__(self) -> None:
         self.sym = ""
         self.pro = 0.0
