@@ -65,7 +65,7 @@ def hubble_parameter(
     Traceback (most recent call last):
     ...
     ValueError: Relative densities cannot be greater than one
-    
+
     >>> hubble_parameter(hubble_constant=68.3, radiation_density=1e-4, \
                          matter_density= 0.3, dark_energy=0.7, redshift=0)
     68.3
