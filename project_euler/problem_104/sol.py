@@ -13,10 +13,6 @@ Given that Fk is the first Fibonacci number for which the first nine digits AND
 the last nine digits are 1-9 pandigital, find k.
 """
 
-import sys
-
-sys.set_int_max_str_digits(0)  # type: ignore
-
 
 def check(number: int) -> bool:
     """
