@@ -17,9 +17,8 @@ def collect_dataset():
     :return : dataset obtained from the link, as matrix
     """
     response = requests.get(
-        "https://raw.githubusercontent.com/yashLadha/"
-        + "The_Math_of_Intelligence/master/Week1/ADRvs"
-        + "Rating.csv"
+        "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
+        "master/Week1/ADRvsRating.csv"
     )
     lines = response.text.splitlines()
     data = []
