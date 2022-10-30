@@ -54,17 +54,20 @@ def hubble_parameter(
     result : Hubble parameter in and the unit km/s/Mpc (the unit can be
     changed if you want, just need to change the unit of the Hubble constant)
 
-    >>> hubble_parameter(hubble_constant=68.3, radiation_density=1e-4, matter_density=-0.3, dark_energy=0.7, redshift=1)
+    >>> hubble_parameter(hubble_constant=68.3, radiation_density=1e-4, \
+                         matter_density=-0.3, dark_energy=0.7, redshift=1)
     Traceback (most recent call last):
     ...
     ValueError: All input parameters must be positive
 
-    >>> hubble_parameter(hubble_constant=68.3, radiation_density=1e-4, matter_density= 1.2, dark_energy=0.7, redshift=1)
+    >>> hubble_parameter(hubble_constant=68.3, radiation_density=1e-4, \
+                         matter_density= 1.2, dark_energy=0.7, redshift=1)
     Traceback (most recent call last):
     ...
     ValueError: Relative densities cannot be greater than one
-
-    >>> hubble_parameter(hubble_constant=68.3, radiation_density=1e-4, matter_density= 0.3, dark_energy=0.7, redshift=0)
+    
+    >>> hubble_parameter(hubble_constant=68.3, radiation_density=1e-4, \
+                         matter_density= 0.3, dark_energy=0.7, redshift=0)
     68.3
     """
 
