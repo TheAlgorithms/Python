@@ -6,8 +6,8 @@ T = 300  # TEMPERATURE (unit = K)
 
 
 def forward_bias_current(
-    voltage: float,  # Forward voltage
-    rev_sat_current: float,  # Reverse Saturation Current
+    forward_voltage: float,
+    reverse_saturation_current: float,
 ) -> float:
     """
     This function can calculate the Forward Bias Current of a pn junction diode.
