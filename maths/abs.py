@@ -13,7 +13,7 @@ def abs_val(num: float) -> float:
     0
     """
     return -num if num < 0 else num
-    
+
 
 def abs_min(x: list[int]) -> int:
     """
@@ -33,6 +33,7 @@ def abs_min(x: list[int]) -> int:
         if abs_val(i) < abs_val(j):
             j = i
     return j
+
 
 def abs_max(x: list[int]) -> int:
     """
