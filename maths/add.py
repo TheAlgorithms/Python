@@ -18,10 +18,7 @@ if __name__ == "__main__":
     b = 6
     print(f"The sum of {a} + {b} is {add(a, b)}")
 
-    
-    
-    
-    
+
 def add3(a: float, b: float, c: float) -> float:
     """
     >>> add(2, 2)
@@ -29,7 +26,7 @@ def add3(a: float, b: float, c: float) -> float:
     >>> add(2, -2)
     0
     """
-    return a + b + c 
+    return a + b + c
 
 
 if __name__ == "__main__":
