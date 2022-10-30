@@ -9,7 +9,7 @@ does not yield any clusters. It is one of effective method for resolving collisi
 Double hashing can be done using: (hash1(key) + i * hash2(key)) % TABLE_SIZE
 Where hash1() and hash2() are hash functions and TABLE_SIZE is size of hash table.
 
-Reference: https://en.wikipedia.org/wiki/Double_hashing#:~:text=Double%20hashing%20is%20a%20computer,data%20structure%20on%20a%20table%20.
+Reference: https://en.wikipedia.org/wiki/Double_hashing
 """
 from .hash_table import HashTable
 from .number_theory.prime_numbers import is_prime, next_prime
