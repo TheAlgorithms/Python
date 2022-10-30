@@ -20,10 +20,10 @@ def random_joke() -> list:
     else:
         return [response["setup"], response["delivery"]]
 
-def joke_from_id(id: int) -> list:
+def joke_from_id(joke_id: int) -> list:
     """
     Args:
-        id (int): id number of joke
+        joke_id (int): id number of joke
 
     Returns:
         list: If single joke, returns [joke]. 
@@ -35,7 +35,7 @@ def joke_from_id(id: int) -> list:
     ["What do you call a developer who doesn't comment code?", 'A developer.']
     
     """
-    response = requests.get(API_ENDPOINT_URL + f"joke/Any?idRange={id}").json()
+    response = requests.get(API_ENDPOINT_URL + f"joke/Any?idRange={joke_id}").json()
     if response["type"] == "single":
         return [response["joke"]]
     else:
