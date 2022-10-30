@@ -29,11 +29,11 @@ def forward_bias_current(
     ValueError: Reverse saturation current cannot be greater than 1e-5
     """
 
-    if voltage < 0:
+    if forward_voltage < 0:
         raise ValueError("Forward voltage cannot be negative")
-    elif rev_sat_current <= 0:
+    elif reverse_saturation_current <= 0:
         raise ValueError("Reverse saturation current should be positive")
-    elif rev_sat_current > 1e-5:
+    elif reverse_saturation_current > 1e-5:
         raise ValueError("Reverse saturation current cannot be greater than 1e-5")
     else:
         return reverse_saturation_current * (
