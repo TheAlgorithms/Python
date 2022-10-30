@@ -48,6 +48,5 @@ if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:").strip()
     unsorted = [int(item) for item in user_input.split(",")]
     start = time.process_time()
-    p = (int)(1e9 + 7)
     print(*bubble_sort(unsorted), sep=",")
-    print(f"Processing time: {(time.process_time() - start)%p}")
+    print(f"Processing time: {(time.process_time() - start)%1e9 + 7}")
