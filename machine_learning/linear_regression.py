@@ -93,11 +93,8 @@ def mean_absolute_error(predicted_y, original_y):
     :param original_y    : contains values of expected outcome
     :return          : mean absolute error computed from given feature's
     """
-    total = 0
-    for i in range(len(original_y)):
-        total += abs(original_y[i] - predicted_y[i])
-    error = total / len(original_y)
-    return error
+    total = sum(abs(original_y[i] - predicted_y[i]) for i in range(len(original_y)))
+    return total / len(original_y)
 
 
 def main():
