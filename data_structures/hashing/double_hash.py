@@ -6,8 +6,8 @@ occurs. The advantage of Double hashing is that it is one of the best form of  p
 producing a uniform distribution of records throughout a hash table. This technique
 does not yield any clusters. It is one of effective method for resolving collisions.
 
-Double hashing can be done using: (hash1(key) + i * hash2(key)) % TABLE_SIZE 
-Where hash1() and hash2() are hash functions and TABLE_SIZE is size of hash table. 
+Double hashing can be done using: (hash1(key) + i * hash2(key)) % TABLE_SIZE
+Where hash1() and hash2() are hash functions and TABLE_SIZE is size of hash table.
 
 Reference: https://en.wikipedia.org/wiki/Double_hashing#:~:text=Double%20hashing%20is%20a%20computer,data%20structure%20on%20a%20table%20.
 """
