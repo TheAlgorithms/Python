@@ -5,8 +5,8 @@ Wiki Explanation: https://en.wikipedia.org/wiki/Shannon%E2%80%93Fano_coding
 
 class Node:
     def __init__(self) -> None:
-        self.sym = ""
-        self.pro = 0.0
+        self.symbol = ""
+        self.probability = 0.0
         self.arr = [0] * 20
         self.top = 0
 
