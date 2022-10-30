@@ -1,5 +1,3 @@
-# flake8: noqa
-
 """
 This is pure Python implementation of tree traversal algorithms
 """
@@ -157,16 +155,16 @@ def level_order_actual(node: TreeNode) -> None:
     q: queue.Queue = queue.Queue()
     q.put(node)
     while not q.empty():
-        list = []
+        list_ = []
         while not q.empty():
             node_dequeued = q.get()
             print(node_dequeued.data, end=",")
             if node_dequeued.left:
-                list.append(node_dequeued.left)
+                list_.append(node_dequeued.left)
             if node_dequeued.right:
-                list.append(node_dequeued.right)
+                list_.append(node_dequeued.right)
         print()
-        for node in list:
+        for node in list_:
             q.put(node)
 
 

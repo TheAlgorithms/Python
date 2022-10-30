@@ -14,11 +14,11 @@ def sum_of_digits(n: int) -> int:
     >>> sum_of_digits(0)
     0
     """
-    n = -n if n < 0 else n
+    n = abs(n)
     res = 0
     while n > 0:
         res += n % 10
-        n = n // 10
+        n //= 10
     return res
 
 
@@ -35,7 +35,7 @@ def sum_of_digits_recursion(n: int) -> int:
     >>> sum_of_digits_recursion(0)
     0
     """
-    n = -n if n < 0 else n
+    n = abs(n)
     return n if n < 10 else n % 10 + sum_of_digits(n // 10)
 
 
