@@ -21,7 +21,7 @@ def remove_digit(num: int) -> int:
     TypeError: only integers accepted as input
     """
 
-    if type(num) == int:
+    if isinstance(num, int):
         num_str = str(abs(num))
         num_transpositions = [
             [char for char in num_str] for char in range(len(num_str))
@@ -29,11 +29,11 @@ def remove_digit(num: int) -> int:
         for index in range(len(num_str)):
             num_transpositions[index].pop(index)
         return sorted(
-            [
-                int("".join([char for char in transposition]))
-                for transposition in num_transpositions
+                 int("".join([char for char in transposition]))
+                for transposition in num_transpositions,
+                reverse=True
             ]
-        )[-1]
+        )[0]
     else:
         raise TypeError("only integers accepted as input")
 
