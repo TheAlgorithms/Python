@@ -50,7 +50,7 @@ import numpy as np
 import qiskit
 
 
-def bb84(key_len: int = 8, seed: int | None = None) -> str:
+def BB84(key_len: int = 8, seed: int | None = None) -> str:
     """
     Performs the BB84 protocol using a key made of `key_len` bits.
     The two parties in the key distribution are called Alice and Bob.
