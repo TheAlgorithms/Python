@@ -7,27 +7,27 @@ from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.metrics import recall_score, f1_score, precision_score, accuracy_score
 
 
-def data_split(data):
+def data_split(data) -> tuple:
     return data["data"], data["target"]
 
-def ExtraTrees(features, target):
+def extra_trees(features, target) -> ExtraTreesClassifier:
     classifier = ExtraTreesClassifier()
     classifier.fit(features, target)
     return classifier
 
 
-def main() :
+def main() -> None:
     # Load Iris dataset
     iris = load_iris()
     features, targets = data_split(iris)
-    X_train, X_test, y_train, y_test = train_test_split(features, targets, test_size=0.2)
+    x_train, x_test, y_train, y_test = train_test_split(features, targets, test_size=0.2)
 
     names = iris["target_names"]
 
     # Creating Extra Trees Classifier and fitting train sets
-    ExtraTrees_Classifier = ExtraTrees(X_train, y_train)
+    ExtraTrees_Classifier = extra_trees(x_train, y_train)
 
-    predict = ExtraTrees_Classifier.predict(X_test)
+    predict = ExtraTrees_Classifier.predict(x_test)
 
     #Showing Metrics
     print('Accuracy: ', accuracy_score(predict, y_test))
@@ -38,7 +38,7 @@ def main() :
     #Display Confusion Matrix
     ConfusionMatrixDisplay.from_estimator(
         ExtraTrees_Classifier,
-        X_test,
+        x_test,
         y_test,
         display_labels=names,
         cmap="viridis"
