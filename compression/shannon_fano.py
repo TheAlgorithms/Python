@@ -7,7 +7,7 @@ class Node:
     def __init__(self) -> None:
         self.symbol = ""
         self.probability = 0.0
-        self.arr = [0] * 20
+        self.arrangements = [0] * 20
         self.top = 0
 
 
