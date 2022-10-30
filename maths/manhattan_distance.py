@@ -1,6 +1,3 @@
-from typing import Any
-
-
 def manhattan_distance(point_a: list, point_b: list) -> float:
     """
     Expectts two list of numbers representing two points in the same
