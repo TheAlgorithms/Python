@@ -20,7 +20,7 @@ In the example above, there are two distinct paths:
 """
 
 
-def dfs(grid: "list[list[int]]", row: int, col: int, visit: set) -> int:
+def depth_first_search(grid: list[list[int]], row: int, col: int, visit: set) -> int:
     """
     Recursive Backtracking Depth First Search Algorithm
 
@@ -33,22 +33,16 @@ def dfs(grid: "list[list[int]]", row: int, col: int, visit: set) -> int:
     1  1  0  0
     0  0  0  1
     0  1  0  0
-    >>> start_row = 0
-    >>> start_col = 0
-    >>> visited = set()
     >>> grid = [[0, 0, 0, 0], [1, 1, 0, 0], [0, 0, 0, 1], [0, 1, 0, 0]]
-    >>> dfs(grid, start_row, start_col, visited)
+    >>> depth_first_search(grid, 0, 0, set())
     2
 
     0  0  0  0  0
     0  1  1  1  0
     0  1  1  1  0
     0  0  0  0  0
-    >>> start_row = 0
-    >>> start_col = 0
-    >>> visited = set()
     >>> grid = [[0, 0, 0, 0, 0], [0, 1, 1, 1, 0], [0, 1, 1, 1, 0], [0, 0, 0, 0, 0]]
-    >>> dfs(grid, start_row, start_col, visited)
+    >>> depth_first_search(grid, 0, 0, set())
     2
     """
     row_length, col_length = len(grid), len(grid[0])
@@ -66,10 +60,10 @@ def dfs(grid: "list[list[int]]", row: int, col: int, visit: set) -> int:
     visit.add((row, col))
 
     count = 0
-    count += dfs(grid, row + 1, col, visit)
-    count += dfs(grid, row - 1, col, visit)
-    count += dfs(grid, row, col + 1, visit)
-    count += dfs(grid, row, col - 1, visit)
+    count += depth_first_search(grid, row + 1, col, visit)
+    count += depth_first_search(grid, row - 1, col, visit)
+    count += depth_first_search(grid, row, col + 1, visit)
+    count += depth_first_search(grid, row, col - 1, visit)
 
     visit.remove((row, col))
     return count
