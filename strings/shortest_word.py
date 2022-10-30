@@ -18,9 +18,7 @@ def shortest_word(sentence: str) -> str:
     # Split the sentence into a list of words
     # Sort by length and take the first element
     word_list = sentence.split()
-    for word in word_list:
-        if len(word) == min(len(word) for word in word_list):
-            return word
+    return min(word_list, key=len)
 
 
 if __name__ == "__main__":
