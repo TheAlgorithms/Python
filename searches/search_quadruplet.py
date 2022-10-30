@@ -1,11 +1,11 @@
 def search_quadruplets(sequence: list[int], target: int) -> list[int]:
     """
-    >> > search_quadruplets([4, 1, 2, -1, 1, -3], 1)
+    >>> search_quadruplets([4, 1, 2, -1, 1, -3], 1)
 
     [-3, -1, 1, 4], [-3, 1, 1, 2]
     Explanation: Both the quadruplets add up to the target.
 
-    >> > search_quadruplets([2, 0, -1, 1, -2, 2], 2)
+    >>> search_quadruplets([2, 0, -1, 1, -2, 2], 2)
     [-2, 0, 2, 2], [-1, 0, 1, 2]
     Explanation: Both the quadruplets add up to the target.
 
