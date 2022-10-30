@@ -6,7 +6,7 @@ https://en.wikipedia.org/wiki/Tower_of_Hanoi
 """
 
 
-def move_tower(height, from_pole, to_pole, with_pole):
+def move_tower(height: int, from_pole: str, to_pole: str, with_pole: str) -> None:
     """
     Recursive algorithm to move a tower with `height` number of
     disks from `from_pole` to `to_pole`, using `with_pole` for
@@ -35,7 +35,7 @@ def move_tower(height, from_pole, to_pole, with_pole):
         move_tower(height - 1, with_pole, to_pole, from_pole)
 
 
-def move_disk(fp, tp):
+def move_disk(fp: str, tp: str) -> None:
     """
     Prints that a disk has been moved from fp to tp
 
@@ -46,7 +46,7 @@ def move_disk(fp, tp):
     print("moving disk from", fp, "to", tp)
 
 
-def main():
+def main() -> None:
     height = int(input("Height of hanoi: ").strip())
     move_tower(height, "A", "B", "C")
 
