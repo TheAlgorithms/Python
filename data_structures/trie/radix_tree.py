@@ -8,7 +8,7 @@ with its parent [https://en.wikipedia.org/wiki/Radix_tree]
 class RadixNode:
     def __init__(self, prefix: str = "", is_leaf: bool = False) -> None:
         # Mapping from the first character of the prefix of the node
-        self.nodes: dict[str, RadixNode] = dict()
+        self.nodes: dict[str, RadixNode] = {}
 
         # A node will be a leaf if the tree contains its word
         self.is_leaf = is_leaf
@@ -27,7 +27,7 @@ class RadixNode:
         >>> RadixNode("myprefix").match("mystring")
         ('my', 'prefix', 'string')
         """
-        for x, (q, w) in enumerate(zip(self.prefix, word)):
+        for x, (q, w) in enumerate(zip(self.prefix, word)):  # noqa: B007
             if q != w:
                 break
         return self.prefix[:x], self.prefix[x:], word[x:]
@@ -177,7 +177,7 @@ class RadixNode:
         if self.prefix != "":
             print("-" * height, self.prefix, "  (leaf)" if self.is_leaf else "")
 
-        for key, value in self.nodes.items():
+        for value in self.nodes.values():
             value.print_tree(height + 1)
 
 
