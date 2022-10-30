@@ -33,4 +33,4 @@ if __name__ == "__main__":
     a = 5
     b = 6
     c = 7
-    print(f"The sum of {a} + {b} is {add3(a, b)}")
+    print(f"The sum of {a} + {b} + {c} is {add3(a, b, c)}")
