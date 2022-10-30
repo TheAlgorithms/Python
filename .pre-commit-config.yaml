@@ -7,10 +7,6 @@ repos:
       - id: end-of-file-fixer
         types: [python]
       - id: trailing-whitespace
-        exclude: |
-          (?x)^(
-            data_structures/heap/binomial_heap.py
-          )$
       - id: requirements-txt-fixer
 
   - repo: https://github.com/MarcoGorelli/auto-walrus
