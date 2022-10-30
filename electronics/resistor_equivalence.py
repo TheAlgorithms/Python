@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 
-def resistor_parallel(
-    resistors: list[float],
-) -> float:  # Req = 1/ (1/R1 + 1/R2 + ... + 1/Rn)
+def resistor_parallel(resistors: list[float]) -> float:
     """
+    Req = 1/ (1/R1 + 1/R2 + ... + 1/Rn)
+    
     >>> resistor_parallel([3.21389, 2, 3])
     0.8737571620498019
     >>> resistor_parallel([3.21389, 2, -3])
@@ -29,10 +29,12 @@ def resistor_parallel(
     return 1 / first_sum
 
 
-def resistor_series(resistors: list[float]) -> float:  # Req = R1 + R2 + ... + Rn
+def resistor_series(resistors: list[float]) -> float:
     """
-    This function can calculate the equivalent resistance for any number of
-    resistors in parallel.
+    Req = R1 + R2 + ... + Rn
+
+    Calculate the equivalent resistance for any number of resistors in parallel.
+    
     >>> resistor_series([3.21389, 2, 3])
     8.21389
     >>> resistor_series([3.21389, 2, -3])
@@ -43,7 +45,6 @@ def resistor_series(resistors: list[float]) -> float:  # Req = R1 + R2 + ... + R
     sum_r = 0.00
     index = 0
     for resistor in resistors:
-
         sum_r += resistor
         if resistor < 0:
             raise ValueError(f"Resistor at index {index} has a negative value!")
