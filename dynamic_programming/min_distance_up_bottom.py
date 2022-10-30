@@ -45,6 +45,7 @@ def min_distance_up_bottom(word1: str, word2: str) -> int:
             1 + min_distance(index1, index2 + 1),
             diff + min_distance(index1 + 1, index2 + 1),
         )
+
     return min_distance(0, 0)
 
 
