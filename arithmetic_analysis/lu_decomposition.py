@@ -6,13 +6,13 @@ Reference:
 from __future__ import annotations
 
 import numpy as np
-import numpy.typing as NDArray
 from numpy import float64
+from numpy.typing import ArrayLike
 
 
 def lower_upper_decomposition(
-    table: NDArray[float64],
-) -> tuple[NDArray[float64], NDArray[float64]]:
+    table: ArrayLike[float64],
+) -> tuple[ArrayLike[float64], ArrayLike[float64]]:
     """Lower-Upper (LU) Decomposition
 
     Example:
@@ -31,7 +31,7 @@ def lower_upper_decomposition(
     >>> matrix = np.array([[2, -2, 1], [0, 1, 2]])
     >>> lower_upper_decomposition(matrix)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: 'table' has to be of square shaped array but got a 2x3 array:
     [[ 2 -2  1]
      [ 0  1  2]]

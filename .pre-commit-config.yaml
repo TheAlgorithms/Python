@@ -7,14 +7,15 @@ repos:
       - id: end-of-file-fixer
         types: [python]
       - id: trailing-whitespace
-        exclude: |
-          (?x)^(
-            data_structures/heap/binomial_heap.py
-          )$
       - id: requirements-txt-fixer
 
+  - repo: https://github.com/MarcoGorelli/auto-walrus
+    rev: v0.2.1
+    hooks:
+    -   id: auto-walrus
+
   - repo: https://github.com/psf/black
-    rev: 22.8.0
+    rev: 22.10.0
     hooks:
       - id: black
 
@@ -26,7 +27,7 @@ repos:
           - --profile=black
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.38.2
+    rev: v3.1.0
     hooks:
       - id: pyupgrade
         args:
@@ -35,31 +36,40 @@ repos:
   - repo: https://github.com/PyCQA/flake8
     rev: 5.0.4
     hooks:
-      - id: flake8
-        args:
-          - --ignore=E203,W503
-          - --max-complexity=25
-          - --max-line-length=88
+      - id: flake8 # See .flake8 for args
+        additional_dependencies: &flake8-plugins
+          - flake8-bugbear
+          - flake8-builtins
+          - flake8-broken-line
+          - flake8-comprehensions
+          - pep8-naming
+
+  - repo: https://github.com/asottile/yesqa
+    rev: v1.4.0
+    hooks:
+      - id: yesqa
+        additional_dependencies:
+          *flake8-plugins
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.981
+    rev: v0.982
     hooks:
       - id: mypy
         args:
           - --ignore-missing-imports
-          - --install-types  # See mirrors-mypy README.md
+          - --install-types # See mirrors-mypy README.md
           - --non-interactive
         additional_dependencies: [types-requests]
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.1
+    rev: v2.2.2
     hooks:
       - id: codespell
         args:
           - --ignore-words-list=ans,crate,damon,fo,followings,hist,iff,mater,secant,som,sur,tim,zar
-          - --skip="./.*,./strings/dictionary.txt,./strings/words.txt,./project_euler/problem_022/p022_names.txt"
         exclude: |
           (?x)^(
+              ciphers/prehistoric_men.txt |
               strings/dictionary.txt |
               strings/words.txt |
               project_euler/problem_022/p022_names.txt

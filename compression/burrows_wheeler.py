@@ -154,7 +154,7 @@ def reverse_bwt(bwt_string: str, idx_original_string: int) -> str:
         )
 
     ordered_rotations = [""] * len(bwt_string)
-    for x in range(len(bwt_string)):
+    for _ in range(len(bwt_string)):
         for i in range(len(bwt_string)):
             ordered_rotations[i] = bwt_string[i] + ordered_rotations[i]
         ordered_rotations.sort()

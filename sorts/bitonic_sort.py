@@ -16,19 +16,19 @@ def comp_and_swap(array: list[int], index1: int, index2: int, direction: int) ->
 
     >>> arr = [12, 42, -21, 1]
     >>> comp_and_swap(arr, 1, 2, 1)
-    >>> print(arr)
+    >>> arr
     [12, -21, 42, 1]
 
     >>> comp_and_swap(arr, 1, 2, 0)
-    >>> print(arr)
+    >>> arr
     [12, 42, -21, 1]
 
     >>> comp_and_swap(arr, 0, 3, 1)
-    >>> print(arr)
+    >>> arr
     [1, 42, -21, 12]
 
     >>> comp_and_swap(arr, 0, 3, 0)
-    >>> print(arr)
+    >>> arr
     [12, 42, -21, 1]
     """
     if (direction == 1 and array[index1] > array[index2]) or (
@@ -46,11 +46,11 @@ def bitonic_merge(array: list[int], low: int, length: int, direction: int) -> No
 
     >>> arr = [12, 42, -21, 1]
     >>> bitonic_merge(arr, 0, 4, 1)
-    >>> print(arr)
+    >>> arr
     [-21, 1, 12, 42]
 
     >>> bitonic_merge(arr, 0, 4, 0)
-    >>> print(arr)
+    >>> arr
     [42, 12, 1, -21]
     """
     if length > 1:

@@ -4,14 +4,14 @@ author : Mayank Kumar Jha (mk9440)
 from __future__ import annotations
 
 
-def find_max_sub_array(A, low, high):
+def find_max_sub_array(a, low, high):
     if low == high:
-        return low, high, A[low]
+        return low, high, a[low]
     else:
         mid = (low + high) // 2
-        left_low, left_high, left_sum = find_max_sub_array(A, low, mid)
-        right_low, right_high, right_sum = find_max_sub_array(A, mid + 1, high)
-        cross_left, cross_right, cross_sum = find_max_cross_sum(A, low, mid, high)
+        left_low, left_high, left_sum = find_max_sub_array(a, low, mid)
+        right_low, right_high, right_sum = find_max_sub_array(a, mid + 1, high)
+        cross_left, cross_right, cross_sum = find_max_cross_sum(a, low, mid, high)
         if left_sum >= right_sum and left_sum >= cross_sum:
             return left_low, left_high, left_sum
         elif right_sum >= left_sum and right_sum >= cross_sum:
@@ -20,18 +20,18 @@ def find_max_sub_array(A, low, high):
             return cross_left, cross_right, cross_sum
 
 
-def find_max_cross_sum(A, low, mid, high):
+def find_max_cross_sum(a, low, mid, high):
     left_sum, max_left = -999999999, -1
     right_sum, max_right = -999999999, -1
     summ = 0
     for i in range(mid, low - 1, -1):
-        summ += A[i]
+        summ += a[i]
         if summ > left_sum:
             left_sum = summ
             max_left = i
     summ = 0
     for i in range(mid + 1, high + 1):
-        summ += A[i]
+        summ += a[i]
         if summ > right_sum:
             right_sum = summ
             max_right = i

@@ -17,10 +17,10 @@ def main():
     print(boston.keys())
 
     # Split dataset into train and test data
-    X = boston["data"]  # features
-    Y = boston["target"]
+    x = boston["data"]  # features
+    y = boston["target"]
     x_train, x_test, y_train, y_test = train_test_split(
-        X, Y, test_size=0.3, random_state=1
+        x, y, test_size=0.3, random_state=1
     )
 
     # Random Forest Regressor

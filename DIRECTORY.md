@@ -14,6 +14,7 @@
 
 ## Audio Filters
   * [Butterworth Filter](audio_filters/butterworth_filter.py)
+  * [Equal Loudness Filter](audio_filters/equal_loudness_filter.py)
   * [Iir Filter](audio_filters/iir_filter.py)
   * [Show Response](audio_filters/show_response.py)
 
@@ -22,9 +23,11 @@
   * [All Permutations](backtracking/all_permutations.py)
   * [All Subsequences](backtracking/all_subsequences.py)
   * [Coloring](backtracking/coloring.py)
+  * [Combination Sum](backtracking/combination_sum.py)
   * [Hamiltonian Cycle](backtracking/hamiltonian_cycle.py)
   * [Knight Tour](backtracking/knight_tour.py)
   * [Minimax](backtracking/minimax.py)
+  * [Minmax](backtracking/minmax.py)
   * [N Queens](backtracking/n_queens.py)
   * [N Queens Math](backtracking/n_queens_math.py)
   * [Rat In Maze](backtracking/rat_in_maze.py)
@@ -42,6 +45,8 @@
   * [Count 1S Brian Kernighan Method](bit_manipulation/count_1s_brian_kernighan_method.py)
   * [Count Number Of One Bits](bit_manipulation/count_number_of_one_bits.py)
   * [Gray Code Sequence](bit_manipulation/gray_code_sequence.py)
+  * [Highest Set Bit](bit_manipulation/highest_set_bit.py)
+  * [Is Even](bit_manipulation/is_even.py)
   * [Reverse Bits](bit_manipulation/reverse_bits.py)
   * [Single Bit Manipulation Operations](bit_manipulation/single_bit_manipulation_operations.py)
 
@@ -51,7 +56,14 @@
   * [Modular Division](blockchain/modular_division.py)
 
 ## Boolean Algebra
+  * [And Gate](boolean_algebra/and_gate.py)
+  * [Nand Gate](boolean_algebra/nand_gate.py)
+  * [Norgate](boolean_algebra/norgate.py)
+  * [Not Gate](boolean_algebra/not_gate.py)
+  * [Or Gate](boolean_algebra/or_gate.py)
   * [Quine Mc Cluskey](boolean_algebra/quine_mc_cluskey.py)
+  * [Xnor Gate](boolean_algebra/xnor_gate.py)
+  * [Xor Gate](boolean_algebra/xor_gate.py)
 
 ## Cellular Automata
   * [Conways Game Of Life](cellular_automata/conways_game_of_life.py)
@@ -120,6 +132,7 @@
   * [Pooling Functions](computer_vision/pooling_functions.py)
 
 ## Conversions
+  * [Astronomical Length Scale Conversion](conversions/astronomical_length_scale_conversion.py)
   * [Binary To Decimal](conversions/binary_to_decimal.py)
   * [Binary To Hexadecimal](conversions/binary_to_hexadecimal.py)
   * [Binary To Octal](conversions/binary_to_octal.py)
@@ -139,19 +152,26 @@
   * [Pressure Conversions](conversions/pressure_conversions.py)
   * [Rgb Hsv Conversion](conversions/rgb_hsv_conversion.py)
   * [Roman Numerals](conversions/roman_numerals.py)
+  * [Speed Conversions](conversions/speed_conversions.py)
   * [Temperature Conversions](conversions/temperature_conversions.py)
   * [Volume Conversions](conversions/volume_conversions.py)
   * [Weight Conversion](conversions/weight_conversion.py)
 
 ## Data Structures
+  * Arrays
+    * [Permutations](data_structures/arrays/permutations.py)
   * Binary Tree
     * [Avl Tree](data_structures/binary_tree/avl_tree.py)
     * [Basic Binary Tree](data_structures/binary_tree/basic_binary_tree.py)
     * [Binary Search Tree](data_structures/binary_tree/binary_search_tree.py)
     * [Binary Search Tree Recursive](data_structures/binary_tree/binary_search_tree_recursive.py)
     * [Binary Tree Mirror](data_structures/binary_tree/binary_tree_mirror.py)
+    * [Binary Tree Node Sum](data_structures/binary_tree/binary_tree_node_sum.py)
+    * [Binary Tree Path Sum](data_structures/binary_tree/binary_tree_path_sum.py)
     * [Binary Tree Traversals](data_structures/binary_tree/binary_tree_traversals.py)
+    * [Diff Views Of Binary Tree](data_structures/binary_tree/diff_views_of_binary_tree.py)
     * [Fenwick Tree](data_structures/binary_tree/fenwick_tree.py)
+    * [Inorder Tree Traversal 2022](data_structures/binary_tree/inorder_tree_traversal_2022.py)
     * [Lazy Segment Tree](data_structures/binary_tree/lazy_segment_tree.py)
     * [Lowest Common Ancestor](data_structures/binary_tree/lowest_common_ancestor.py)
     * [Maximum Fenwick Tree](data_structures/binary_tree/maximum_fenwick_tree.py)
@@ -268,17 +288,18 @@
   * [Bitmask](dynamic_programming/bitmask.py)
   * [Catalan Numbers](dynamic_programming/catalan_numbers.py)
   * [Climbing Stairs](dynamic_programming/climbing_stairs.py)
+  * [Combination Sum Iv](dynamic_programming/combination_sum_iv.py)
   * [Edit Distance](dynamic_programming/edit_distance.py)
   * [Factorial](dynamic_programming/factorial.py)
   * [Fast Fibonacci](dynamic_programming/fast_fibonacci.py)
   * [Fibonacci](dynamic_programming/fibonacci.py)
+  * [Fizz Buzz](dynamic_programming/fizz_buzz.py)
   * [Floyd Warshall](dynamic_programming/floyd_warshall.py)
-  * [Fractional Knapsack](dynamic_programming/fractional_knapsack.py)
-  * [Fractional Knapsack 2](dynamic_programming/fractional_knapsack_2.py)
   * [Integer Partition](dynamic_programming/integer_partition.py)
   * [Iterating Through Submasks](dynamic_programming/iterating_through_submasks.py)
   * [Knapsack](dynamic_programming/knapsack.py)
   * [Longest Common Subsequence](dynamic_programming/longest_common_subsequence.py)
+  * [Longest Common Substring](dynamic_programming/longest_common_substring.py)
   * [Longest Increasing Subsequence](dynamic_programming/longest_increasing_subsequence.py)
   * [Longest Increasing Subsequence O(Nlogn)](dynamic_programming/longest_increasing_subsequence_o(nlogn).py)
   * [Longest Sub Array](dynamic_programming/longest_sub_array.py)
@@ -289,17 +310,22 @@
   * [Minimum Coin Change](dynamic_programming/minimum_coin_change.py)
   * [Minimum Cost Path](dynamic_programming/minimum_cost_path.py)
   * [Minimum Partition](dynamic_programming/minimum_partition.py)
+  * [Minimum Squares To Represent A Number](dynamic_programming/minimum_squares_to_represent_a_number.py)
   * [Minimum Steps To One](dynamic_programming/minimum_steps_to_one.py)
   * [Optimal Binary Search Tree](dynamic_programming/optimal_binary_search_tree.py)
   * [Rod Cutting](dynamic_programming/rod_cutting.py)
   * [Subset Generation](dynamic_programming/subset_generation.py)
   * [Sum Of Subset](dynamic_programming/sum_of_subset.py)
+  * [Viterbi](dynamic_programming/viterbi.py)
 
 ## Electronics
   * [Carrier Concentration](electronics/carrier_concentration.py)
   * [Coulombs Law](electronics/coulombs_law.py)
+  * [Electric Conductivity](electronics/electric_conductivity.py)
   * [Electric Power](electronics/electric_power.py)
+  * [Electrical Impedance](electronics/electrical_impedance.py)
   * [Ohms Law](electronics/ohms_law.py)
+  * [Resonant Frequency](electronics/resonant_frequency.py)
 
 ## File Transfer
   * [Receive File](file_transfer/receive_file.py)
@@ -310,6 +336,7 @@
 ## Financial
   * [Equated Monthly Installments](financial/equated_monthly_installments.py)
   * [Interest](financial/interest.py)
+  * [Price Plus Tax](financial/price_plus_tax.py)
 
 ## Fractals
   * [Julia Sets](fractals/julia_sets.py)
@@ -336,14 +363,14 @@
   * [Articulation Points](graphs/articulation_points.py)
   * [Basic Graphs](graphs/basic_graphs.py)
   * [Bellman Ford](graphs/bellman_ford.py)
-  * [Bfs Shortest Path](graphs/bfs_shortest_path.py)
-  * [Bfs Zero One Shortest Path](graphs/bfs_zero_one_shortest_path.py)
   * [Bidirectional A Star](graphs/bidirectional_a_star.py)
   * [Bidirectional Breadth First Search](graphs/bidirectional_breadth_first_search.py)
   * [Boruvka](graphs/boruvka.py)
   * [Breadth First Search](graphs/breadth_first_search.py)
   * [Breadth First Search 2](graphs/breadth_first_search_2.py)
   * [Breadth First Search Shortest Path](graphs/breadth_first_search_shortest_path.py)
+  * [Breadth First Search Shortest Path 2](graphs/breadth_first_search_shortest_path_2.py)
+  * [Breadth First Search Zero One Shortest Path](graphs/breadth_first_search_zero_one_shortest_path.py)
   * [Check Bipartite Graph Bfs](graphs/check_bipartite_graph_bfs.py)
   * [Check Bipartite Graph Dfs](graphs/check_bipartite_graph_dfs.py)
   * [Check Cycle](graphs/check_cycle.py)
@@ -353,6 +380,7 @@
   * [Dijkstra](graphs/dijkstra.py)
   * [Dijkstra 2](graphs/dijkstra_2.py)
   * [Dijkstra Algorithm](graphs/dijkstra_algorithm.py)
+  * [Dijkstra Alternate](graphs/dijkstra_alternate.py)
   * [Dinic](graphs/dinic.py)
   * [Directed And Undirected (Weighted) Graph](graphs/directed_and_undirected_(weighted)_graph.py)
   * [Edmonds Karp Multiple Source And Sink](graphs/edmonds_karp_multiple_source_and_sink.py)
@@ -390,6 +418,8 @@
     * [Test Min Spanning Tree Prim](graphs/tests/test_min_spanning_tree_prim.py)
 
 ## Greedy Methods
+  * [Fractional Knapsack](greedy_methods/fractional_knapsack.py)
+  * [Fractional Knapsack 2](greedy_methods/fractional_knapsack_2.py)
   * [Optimal Merge Pattern](greedy_methods/optimal_merge_pattern.py)
 
 ## Hashes
@@ -407,6 +437,7 @@
 ## Knapsack
   * [Greedy Knapsack](knapsack/greedy_knapsack.py)
   * [Knapsack](knapsack/knapsack.py)
+  * [Recursive Approach Knapsack](knapsack/recursive_approach_knapsack.py)
   * Tests
     * [Test Greedy Knapsack](knapsack/tests/test_greedy_knapsack.py)
     * [Test Knapsack](knapsack/tests/test_knapsack.py)
@@ -446,10 +477,13 @@
   * [Random Forest Classifier](machine_learning/random_forest_classifier.py)
   * [Random Forest Regressor](machine_learning/random_forest_regressor.py)
   * [Scoring Functions](machine_learning/scoring_functions.py)
+  * [Self Organizing Map](machine_learning/self_organizing_map.py)
   * [Sequential Minimum Optimization](machine_learning/sequential_minimum_optimization.py)
   * [Similarity Search](machine_learning/similarity_search.py)
   * [Support Vector Machines](machine_learning/support_vector_machines.py)
   * [Word Frequency Functions](machine_learning/word_frequency_functions.py)
+  * [Xgboost Classifier](machine_learning/xgboost_classifier.py)
+  * [Xgboost Regressor](machine_learning/xgboost_regressor.py)
 
 ## Maths
   * [3N Plus 1](maths/3n_plus_1.py)
@@ -459,6 +493,7 @@
   * [Add](maths/add.py)
   * [Aliquot Sum](maths/aliquot_sum.py)
   * [Allocation Number](maths/allocation_number.py)
+  * [Arc Length](maths/arc_length.py)
   * [Area](maths/area.py)
   * [Area Under Curve](maths/area_under_curve.py)
   * [Armstrong Numbers](maths/armstrong_numbers.py)
@@ -475,6 +510,8 @@
   * [Binomial Coefficient](maths/binomial_coefficient.py)
   * [Binomial Distribution](maths/binomial_distribution.py)
   * [Bisection](maths/bisection.py)
+  * [Carmichael Number](maths/carmichael_number.py)
+  * [Catalan Number](maths/catalan_number.py)
   * [Ceil](maths/ceil.py)
   * [Check Polygon](maths/check_polygon.py)
   * [Chudnovsky Algorithm](maths/chudnovsky_algorithm.py)
@@ -503,6 +540,7 @@
   * [Gamma](maths/gamma.py)
   * [Gamma Recursive](maths/gamma_recursive.py)
   * [Gaussian](maths/gaussian.py)
+  * [Gaussian Error Linear Unit](maths/gaussian_error_linear_unit.py)
   * [Greatest Common Divisor](maths/greatest_common_divisor.py)
   * [Greedy Coin Change](maths/greedy_coin_change.py)
   * [Hamming Numbers](maths/hamming_numbers.py)
@@ -521,6 +559,7 @@
   * [Line Length](maths/line_length.py)
   * [Lucas Lehmer Primality Test](maths/lucas_lehmer_primality_test.py)
   * [Lucas Series](maths/lucas_series.py)
+  * [Maclaurin Series](maths/maclaurin_series.py)
   * [Matrix Exponentiation](maths/matrix_exponentiation.py)
   * [Max Sum Sliding Window](maths/max_sum_sliding_window.py)
   * [Median Of Two Arrays](maths/median_of_two_arrays.py)
@@ -566,6 +605,8 @@
     * [P Series](maths/series/p_series.py)
   * [Sieve Of Eratosthenes](maths/sieve_of_eratosthenes.py)
   * [Sigmoid](maths/sigmoid.py)
+  * [Sigmoid Linear Unit](maths/sigmoid_linear_unit.py)
+  * [Signum](maths/signum.py)
   * [Simpson Rule](maths/simpson_rule.py)
   * [Sin](maths/sin.py)
   * [Sock Merchant](maths/sock_merchant.py)
@@ -575,6 +616,7 @@
   * [Sum Of Digits](maths/sum_of_digits.py)
   * [Sum Of Geometric Progression](maths/sum_of_geometric_progression.py)
   * [Sumset](maths/sumset.py)
+  * [Sum Of Harmonic Series](maths/sum_of_harmonic_series.py)
   * [Sylvester Sequence](maths/sylvester_sequence.py)
   * [Test Prime Check](maths/test_prime_check.py)
   * [Trapezoidal Rule](maths/trapezoidal_rule.py)
@@ -583,13 +625,19 @@
   * [Two Sum](maths/two_sum.py)
   * [Ugly Numbers](maths/ugly_numbers.py)
   * [Volume](maths/volume.py)
+  * [Weird Number](maths/weird_number.py)
   * [Zellers Congruence](maths/zellers_congruence.py)
 
 ## Matrix
+  * [Binary Search Matrix](matrix/binary_search_matrix.py)
   * [Count Islands In Matrix](matrix/count_islands_in_matrix.py)
+  * [Count Paths](matrix/count_paths.py)
+  * [Cramers Rule 2X2](matrix/cramers_rule_2x2.py)
   * [Inverse Of Matrix](matrix/inverse_of_matrix.py)
+  * [Largest Square Area In Matrix](matrix/largest_square_area_in_matrix.py)
   * [Matrix Class](matrix/matrix_class.py)
   * [Matrix Operation](matrix/matrix_operation.py)
+  * [Max Area Of Island](matrix/max_area_of_island.py)
   * [Nth Fibonacci Using Matrix Exponentiation](matrix/nth_fibonacci_using_matrix_exponentiation.py)
   * [Rotate Matrix](matrix/rotate_matrix.py)
   * [Searching In Sorted Matrix](matrix/searching_in_sorted_matrix.py)
@@ -607,6 +655,7 @@
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
   * [Perceptron](neural_network/perceptron.py)
+  * [Simple Neural Network](neural_network/simple_neural_network.py)
 
 ## Other
   * [Activity Selection](other/activity_selection.py)
@@ -632,10 +681,17 @@
   * [Tower Of Hanoi](other/tower_of_hanoi.py)
 
 ## Physics
+  * [Casimir Effect](physics/casimir_effect.py)
+  * [Centripetal Force](physics/centripetal_force.py)
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
+  * [Kinetic Energy](physics/kinetic_energy.py)
   * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
+  * [Malus Law](physics/malus_law.py)
   * [N Body Simulation](physics/n_body_simulation.py)
+  * [Newtons Law Of Gravitation](physics/newtons_law_of_gravitation.py)
   * [Newtons Second Law Of Motion](physics/newtons_second_law_of_motion.py)
+  * [Potential Energy](physics/potential_energy.py)
+  * [Sheer Stress](physics/sheer_stress.py)
 
 ## Project Euler
   * Problem 001
@@ -815,6 +871,8 @@
   * Problem 072
     * [Sol1](project_euler/problem_072/sol1.py)
     * [Sol2](project_euler/problem_072/sol2.py)
+  * Problem 073
+    * [Sol1](project_euler/problem_073/sol1.py)
   * Problem 074
     * [Sol1](project_euler/problem_074/sol1.py)
     * [Sol2](project_euler/problem_074/sol2.py)
@@ -851,7 +909,7 @@
   * Problem 102
     * [Sol1](project_euler/problem_102/sol1.py)
   * Problem 104
-    * [Sol](project_euler/problem_104/sol.py)
+    * [Sol1](project_euler/problem_104/sol1.py)
   * Problem 107
     * [Sol1](project_euler/problem_107/sol1.py)
   * Problem 109
@@ -919,13 +977,16 @@
   * [Deutsch Jozsa](quantum/deutsch_jozsa.py)
   * [Half Adder](quantum/half_adder.py)
   * [Not Gate](quantum/not_gate.py)
+  * [Q Full Adder](quantum/q_full_adder.py)
   * [Quantum Entanglement](quantum/quantum_entanglement.py)
   * [Ripple Adder Classic](quantum/ripple_adder_classic.py)
   * [Single Qubit Measure](quantum/single_qubit_measure.py)
+  * [Superdense Coding](quantum/superdense_coding.py)
 
 ## Scheduling
   * [First Come First Served](scheduling/first_come_first_served.py)
   * [Highest Response Ratio Next](scheduling/highest_response_ratio_next.py)
+  * [Job Sequencing With Deadline](scheduling/job_sequencing_with_deadline.py)
   * [Multi Level Feedback Queue](scheduling/multi_level_feedback_queue.py)
   * [Non Preemptive Shortest Job First](scheduling/non_preemptive_shortest_job_first.py)
   * [Round Robin](scheduling/round_robin.py)
@@ -1005,11 +1066,11 @@
   * [Alternative String Arrange](strings/alternative_string_arrange.py)
   * [Anagrams](strings/anagrams.py)
   * [Autocomplete Using Trie](strings/autocomplete_using_trie.py)
+  * [Barcode Validator](strings/barcode_validator.py)
   * [Boyer Moore Search](strings/boyer_moore_search.py)
   * [Can String Be Rearranged As Palindrome](strings/can_string_be_rearranged_as_palindrome.py)
   * [Capitalize](strings/capitalize.py)
   * [Check Anagrams](strings/check_anagrams.py)
-  * [Check Pangram](strings/check_pangram.py)
   * [Credit Card Validator](strings/credit_card_validator.py)
   * [Detecting English Programmatically](strings/detecting_english_programmatically.py)
   * [Dna](strings/dna.py)
@@ -1017,7 +1078,11 @@
   * [Hamming Distance](strings/hamming_distance.py)
   * [Indian Phone Validator](strings/indian_phone_validator.py)
   * [Is Contains Unique Chars](strings/is_contains_unique_chars.py)
+  * [Is Isogram](strings/is_isogram.py)
   * [Is Palindrome](strings/is_palindrome.py)
+  * [Is Pangram](strings/is_pangram.py)
+  * [Is Spain National Id](strings/is_spain_national_id.py)
+  * [Is Srilankan Phone Number](strings/is_srilankan_phone_number.py)
   * [Jaro Winkler](strings/jaro_winkler.py)
   * [Join](strings/join.py)
   * [Knuth Morris Pratt](strings/knuth_morris_pratt.py)
@@ -1034,7 +1099,9 @@
   * [Reverse Letters](strings/reverse_letters.py)
   * [Reverse Long Words](strings/reverse_long_words.py)
   * [Reverse Words](strings/reverse_words.py)
+  * [Snake Case To Camel Pascal Case](strings/snake_case_to_camel_pascal_case.py)
   * [Split](strings/split.py)
+  * [Text Justification](strings/text_justification.py)
   * [Upper](strings/upper.py)
   * [Wave](strings/wave.py)
   * [Wildcard Pattern Matching](strings/wildcard_pattern_matching.py)
@@ -1059,8 +1126,10 @@
   * [Fetch Jobs](web_programming/fetch_jobs.py)
   * [Fetch Quotes](web_programming/fetch_quotes.py)
   * [Fetch Well Rx Price](web_programming/fetch_well_rx_price.py)
+  * [Get Amazon Product Data](web_programming/get_amazon_product_data.py)
   * [Get Imdb Top 250 Movies Csv](web_programming/get_imdb_top_250_movies_csv.py)
   * [Get Imdbtop](web_programming/get_imdbtop.py)
+  * [Get Top Billioners](web_programming/get_top_billioners.py)
   * [Get Top Hn Posts](web_programming/get_top_hn_posts.py)
   * [Get User Tweets](web_programming/get_user_tweets.py)
   * [Giphy](web_programming/giphy.py)
@@ -1068,6 +1137,7 @@
   * [Instagram Pic](web_programming/instagram_pic.py)
   * [Instagram Video](web_programming/instagram_video.py)
   * [Nasa Data](web_programming/nasa_data.py)
+  * [Open Google Results](web_programming/open_google_results.py)
   * [Random Anime Character](web_programming/random_anime_character.py)
   * [Recaptcha Verification](web_programming/recaptcha_verification.py)
   * [Reddit](web_programming/reddit.py)
