@@ -1,5 +1,4 @@
 from math import e
-
 from scipy.constants import Boltzmann, physical_constants
 
 T = 300  # TEMPERATURE (unit = K)
