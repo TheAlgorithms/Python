@@ -26,11 +26,11 @@ def find_minimum_partitions(string: str) -> int:
     for i, c in enumerate(length):
         mincut = i
         for j in range(i + 1):
-            if c == string[j] and (i - j < 2 or ispalindrome[j + 1][i - 1]):
+            if c == string[j] and (i - j < 2 or is_palindrome[j + 1][i - 1]):
                 is_palindromic[j][i] = True
                 mincut = min(mincut, 0 if j == 0 else (cut[j - 1] + 1))
         cut[i] = mincut
-    return cut[n - 1]
+    return cut[length - 1]
 
 
 if __name__ == "__main__":
