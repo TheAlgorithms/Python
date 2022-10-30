@@ -54,21 +54,24 @@ def hubble_parameter(
     result : Hubble parameter in and the unit km/s/Mpc (the unit can be
     changed if you want, just need to change the unit of the Hubble constant)
 
-    >>> hubble_parameter(hubble_constant=63.3,
-    radiation_density=1e-4, matter_density=-0.3, dark_energy=0.7, redshift=1)
+    >>> hubble_parameter(hubble_constant=68.3, radiation_density=1e-4, matter_density=-0.3, dark_energy=0.7, redshift=1)
+    Traceback (most recent call last):
     ...
-    ValueError: Any input parameter can be negative
+    ValueError: All input parameters must be positive
 
-    >>> hubble_parameter(hubble_constant=63.3,
-    radiation_density=1e-4, matter_density= 1.2, dark_energy=0.7, redshift=1)
+    >>> hubble_parameter(hubble_constant=68.3, radiation_density=1e-4, matter_density= 1.2, dark_energy=0.7, redshift=1)
+    Traceback (most recent call last):
     ...
-     ValueError: Relative densities cannot be greater than one
+    ValueError: Relative densities cannot be greater than one
+    
+    >>> hubble_parameter(hubble_constant=68.3, radiation_density=1e-4, matter_density= 0.3, dark_energy=0.7, redshift=0)
+    68.3
     """
 
     if any(0 > p for p in (redshift, radiation_density, matter_density, dark_energy)):
         raise ValueError("All input parameters must be positive")
 
-    if matter_density > 1 or radiation_density > 1 or dark_energy > 1:
+    if any(1 < p for p in (radiation_density, matter_density, dark_energy)):
         raise ValueError("Relative densities cannot be greater than one")
     else:
         curvature = 1 - (matter_density + radiation_density + dark_energy)
