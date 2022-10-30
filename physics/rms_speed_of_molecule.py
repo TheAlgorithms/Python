@@ -36,8 +36,7 @@ def rms_speed_of_molecule(temperature: float, molar_mass: float) -> float:
     if molar_mass <= 0:
         raise Exception("Molar mass cannot be less than or equal to 0 kg/mol")
     else:
-        vrms: float = (3 * UNIVERSAL_GAS_CONSTANT * temperature / molar_mass) ** 0.5
-        return vrms
+        return (3 * UNIVERSAL_GAS_CONSTANT * temperature / molar_mass) ** 0.5
 
 
 if __name__ == "__main__":
