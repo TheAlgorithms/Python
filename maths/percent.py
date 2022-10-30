@@ -16,6 +16,7 @@ def percent(first_num: float | int, second_num: float | int) -> float:
     8000.0
     >>> percent(80, -1)
     -8000.0
+    """
     return (first_num / second_num) * 100
 
 
