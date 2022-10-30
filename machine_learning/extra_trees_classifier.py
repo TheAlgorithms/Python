@@ -20,14 +20,14 @@ def main() :
     # Load Iris dataset
     iris = load_iris()
     features, targets = data_split(iris)
-    x_train, x_test, y_train, y_test = train_test_split(features, targets, test_size=0.2)
+    X_train, X_test, y_train, y_test = train_test_split(features, targets, test_size=0.2)
 
     names = iris["target_names"]
 
     # Creating Extra Trees Classifier and fitting train sets
-    ExtraTrees_Classifier = ExtraTrees(x_train, y_train)
+    ExtraTrees_Classifier = ExtraTrees(X_train, y_train)
 
-    predict = ExtraTrees_Classifier.predict(x_test)
+    predict = ExtraTrees_Classifier.predict(X_test)
 
     #Showing Metrics
     print('Accuracy: ', accuracy_score(predict, y_test))
@@ -38,13 +38,15 @@ def main() :
     #Display Confusion Matrix
     ConfusionMatrixDisplay.from_estimator(
         ExtraTrees_Classifier,
-        x_test,
+        X_test,
         y_test,
         display_labels=names,
-        cmap="Blues",
+        cmap="viridis",
         normalize="true",
     )
-    plt.title("Normalized Confusion Matrix - IRIS Dataset")
+
+    
+    plt.title("Normalized Confusion Matrix - Extra Trees Classifier - IRIS Dataset")
     plt.show()
 
 
