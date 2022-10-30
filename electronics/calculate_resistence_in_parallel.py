@@ -4,9 +4,7 @@ def calculate_resistence_in_parallel(resistors_in_parallel: list) -> float:
     >>> calculate_resistence_in_parallel([200, 470, 220])
     85.67
     """
-    total = 0
-    for val in resistors_in_parallel:
-        total = total + (1 / val)
+    total = sum(1 / val for val in resistors_in_parallel)
     return round(1 / total, 2)
 
 
