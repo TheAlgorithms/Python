@@ -22,12 +22,12 @@ def find_minimum_partitions(string: str) -> int:
     """
     n = len(string)
     cut = [0] * n
-    ispalindrome = [[False for i in range(n)] for j in range(n)]
+    is_palindromic = [[False for i in range(n)] for j in range(n)]
     for i in range(n):
         mincut = i
         for j in range(i + 1):
             if string[i] == string[j] and (i - j < 2 or ispalindrome[j + 1][i - 1]):
-                ispalindrome[j][i] = True
+                is_palindromic[j][i] = True
                 mincut = min(mincut, 0 if j == 0 else (cut[j - 1] + 1))
         cut[i] = mincut
     return cut[n - 1]
