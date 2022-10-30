@@ -35,7 +35,7 @@ word_list = sorted({word.strip().lower() for word in data.splitlines()})
 word_by_signature = collections.defaultdict(list)
 for word in word_list:
     word_by_signature[signature(word)].append(word)
-        
+
 if __name__ == "__main__":
     all_anagrams = {word: anagram(word) for word in word_list if len(anagram(word)) > 1}
 
