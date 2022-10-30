@@ -28,6 +28,7 @@ def anagram(my_word: str) -> list[str]:
     """
     return word_by_signature[signature(my_word)]
 
+
 if __name__ == "__main__":
     data: str = Path(__file__).parent.joinpath("words.txt").read_text(encoding="utf-8")
     word_list = sorted({word.strip().lower() for word in data.splitlines()})
