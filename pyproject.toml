@@ -40,7 +40,9 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "pre-commit"
+    "pre-commit",
+    "pytest",
+    "pytest-cov"
 ]
 
 [tool.setuptools]
