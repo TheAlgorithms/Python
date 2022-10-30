@@ -105,7 +105,7 @@ if __name__ == "__main__":
         x[i] = float(input(f"\nEnter probability of {p[i].sym} : "))
 
         p[i].pro = x[i]
-        total = total + p[i].pro
+        total += p[i].pro
 
         # checking max probability
         if total > 1:
