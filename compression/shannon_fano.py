@@ -91,7 +91,7 @@ def display(n, p):
 if __name__ == "__main__":
     total = 0
 
-    n = int(input("Enter number of symbols\t: "))
+    n = int(input("Enter number of symbols\t: ").strip())
     i = 0
     # Input symbols
     for i in range(n):
