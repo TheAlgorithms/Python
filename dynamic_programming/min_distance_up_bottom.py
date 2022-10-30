@@ -41,12 +41,7 @@ def min_distance_up_bottom(word1: str, word2: str) -> int:
         # if second word index is overflow - delete all from the first word
         if index2 >= len_word2:
             return len_word1 - index1
-
-        # if letters on the current positions are identical - no diff.
-        diff = 0
-        if word1[index1] != word2[index2]:
-            diff = 1
-
+        diff = int(word1[index1] != word2[index2])  # diff is current letters are not identical
         return min(
             1 + min_distance(index1 + 1, index2),
             1 + min_distance(index1, index2 + 1),
