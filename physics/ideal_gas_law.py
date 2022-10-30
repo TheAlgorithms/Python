@@ -27,9 +27,13 @@ def pressure_of_gas_system(moles: float, kelvin: float, volume: float) -> float:
     332.57848
     >>> pressure_of_gas_system(0.5, 273, 0.004)
     283731.01575
+    >>> pressure_of_gas_system(3, -0.46, 23.5)
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid inputs. Enter positive value.
     """
     if moles < 0 or kelvin < 0 or volume < 0:
-        raise Exception("Invalid inputs. Enter positive value.")
+        raise ValueError("Invalid inputs. Enter positive value.")
     return moles * kelvin * UNIVERSAL_GAS_CONSTANT / volume
 
 
@@ -39,9 +43,13 @@ def volume_of_gas_system(moles: float, kelvin: float, pressure: float) -> float:
     332.57848
     >>> volume_of_gas_system(0.5, 273, 0.004)
     283731.01575
+    >>> volume_of_gas_system(3, -0.46, 23.5)
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid inputs. Enter positive value.
     """
     if moles < 0 or kelvin < 0 or pressure < 0:
-        raise Exception("Invalid inputs. Enter positive value.")
+        raise ValueError("Invalid inputs. Enter positive value.")
     return moles * kelvin * UNIVERSAL_GAS_CONSTANT / pressure
 
 
