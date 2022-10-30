@@ -110,7 +110,7 @@ if __name__ == "__main__":
         # checking max probability
         if total > 1:
             print("Invalid. Enter new values")
-            total = total - p[i].pro
+            total -= p[i].pro
             i -= 1
 
     i += 1
