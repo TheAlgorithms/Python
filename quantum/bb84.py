@@ -46,12 +46,11 @@ References:
 https://en.wikipedia.org/wiki/BB84
 https://qiskit.org/textbook/ch-algorithms/quantum-key-distribution.html
 """
-from typing import Optional
-import qiskit
 import numpy as np
+import qiskit
 
 
-def BB84(key_len: int = 8, seed: Optional[int] = None) -> str:
+def bb84(key_len: int = 8, seed: int | None = None) -> str:
     """
     Performs the BB84 protocol using a key made of `key_len` bits.
     The two parties in the key distribution are called Alice and Bob.
@@ -64,10 +63,10 @@ def BB84(key_len: int = 8, seed: Optional[int] = None) -> str:
     Returns:
         key (str): The key generated using BB84 protocol.
 
-    >>> BB84(16, seed=0)
+    >>> bb84(16, seed=0)
     '1101101100010000'
 
-    >>> BB84(8, seed=0)
+    >>> bb84(8, seed=0)
     '01011011'
     """
     # Set up the random number generator.
@@ -107,7 +106,7 @@ def BB84(key_len: int = 8, seed: Optional[int] = None) -> str:
     # We only need to run one shot because the key is unique.
     # Multiple shots will produce the same key.
     job = qiskit.execute(bb84_circ, sim, shots=1, seed_simulator=seed)
-    # Retruns the result of measurement.
+    # Returns the result of measurement.
     result = job.result().get_counts(bb84_circ).most_frequent()
 
     # Extracting the generated key from the simulation results.
@@ -128,7 +127,7 @@ def BB84(key_len: int = 8, seed: Optional[int] = None) -> str:
 
 
 if __name__ == "__main__":
-    print(f"The generated key is : {BB84(8, seed=0)}")
+    print(f"The generated key is : {bb84(8, seed=0)}")
     from doctest import testmod
 
     testmod()
