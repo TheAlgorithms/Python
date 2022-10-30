@@ -1,4 +1,3 @@
-
 def fizz_buzz(input):
     if (input % 15) == 0:
         return "fizz_buzz"
