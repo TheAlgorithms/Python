@@ -6,34 +6,34 @@ https://en.wikipedia.org/wiki/Bitwise_operation
 """
 
 
-def add(first: int, sec: int) -> int:  # Create a function
+def add(first: int, second: int) -> int:
     """
-    implementation of addition of integer
-    :param first: int
-    :param sec: int
-    :return: int
+    Implementation of addition of integer
+
     Examples:
-    >>> add(3,5)
+    >>> add(3, 5)
     8
-    >>> add(13,5)
+    >>> add(13, 5)
     18
+    >>> add(-7, 2)
+    -5
+    >>> add(0, -7)
+    -7
+    >>> add(-321, 0)
+    -321
     """
-    while sec != 0:
-
-        c = first & sec
-
-        first = first ^ sec
-
-        sec = c << 1
+    while second != 0:
+        c = first & second
+        first ^= second
+        second = c << 1
     return first
 
 
 if __name__ == "__main__":
-    first = int(input("Enter the number for first: "))
-    sec = int(input("Enter the number for sec: "))
     import doctest
 
     doctest.testmod()
 
-    # print("Sum of two numbers", add(first, sec))
-    # Display sum of two numbers
+    first = int(input("Enter the number for first: "))
+    second = int(input("Enter the number for sec: "))
+    print(f"{add(first, second) = }")
