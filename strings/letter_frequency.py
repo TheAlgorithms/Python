@@ -8,11 +8,12 @@ def letter_frequency(sentence: str) -> dict:
     {'b': 2, 'e': 3, 'i': 1, 'l': 1, 'r': 2, 'u': 1, 'y': 1}
     """
 
-    letters = { letter: sentence.lower().count(letter) \
-        for letter in list(map(chr, range(97, 123))) if letter in sentence}
+    letters = {
+        letter: sentence.lower().count(letter)
+        for letter in list(map(chr, range(97, 123)))
+        if letter in sentence
+    }
     return letters
-    
-    
 
 
 if __name__ == "__main__":
