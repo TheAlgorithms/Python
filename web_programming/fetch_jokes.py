@@ -21,6 +21,7 @@ def random_joke() -> list:
     else:
         return [response["setup"], response["delivery"]]
 
+
 def joke_from_id(joke_id: int) -> list:
     """
     Args:
