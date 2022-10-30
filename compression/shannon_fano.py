@@ -31,22 +31,22 @@ def shannon_fano(l: int, h: int, p: int) -> None:
 
     else:
         for i in range(l, h):
-            pk1 = pk1 + p[i].pro
-        pk2 = pk2 + p[h].pro
+            pk1 += p[i].pro
+        pk2 += p[h].pro
         dif1 = pk1 - pk2
         if dif1 < 0:
-            dif1 = dif1 * -1
+            dif1 *= -1
         j = 2
         while j != h - l + 1:
             k = h - j
             pk1 = pk2 = 0
             for i in range(l, k + 1):
-                pk1 = pk1 + p[i].pro
+                pk1 += p[i].pro
             for i in range(h, k, -1):
-                pk2 = pk2 + p[i].pro
+                pk2 += p[i].pro
             dif2 = pk1 - pk2
             if dif2 < 0:
-                dif2 = dif2 * -1
+                dif2 *= -1
             if dif2 >= dif1:
                 break
             dif1 = dif2
