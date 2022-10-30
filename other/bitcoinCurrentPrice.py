@@ -1,4 +1,4 @@
-#Program to find the current price of Bitcoin in USD
+#Program to find the current price of Bitcoin in USD 
 import requests
 import sys
 
