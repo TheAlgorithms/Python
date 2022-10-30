@@ -1,7 +1,7 @@
 # https://en.wikipedia.org/wiki/Electrical_reactance#Inductive_reactance
 from __future__ import annotations
 
-PI = 3.14159
+from math import pi
 
 
 def ind_reactance(
@@ -54,11 +54,11 @@ def ind_reactance(
     if reactance < 0:
         raise ValueError("Inductive reactance cannot be negative")
     if inductance == 0:
-        return {"inductance": reactance / (2 * PI * frequency)}
+        return {"inductance": reactance / (2 * pi * frequency)}
     elif frequency == 0:
-        return {"frequency": reactance / (2 * PI * inductance)}
+        return {"frequency": reactance / (2 * pi * inductance)}
     elif reactance == 0:
-        return {"reactance": 2 * PI * frequency * inductance}
+        return {"reactance": 2 * pi * frequency * inductance}
     else:
         raise ValueError("Exactly one argument must be 0")
 
