@@ -43,7 +43,7 @@ def manhattan_distance(point_a: list, point_b: list) -> float:
     if len(point_a) != len(point_b):
         raise ValueError("Both points must be in the same n-dimensional space")
 
-    return sum(a - b for a, b in zip(point_a, point_b)) 
+    return sum(a - b for a, b in zip(point_a, point_b))
 
 
 def _validate_point(point: list[float]) -> None:
