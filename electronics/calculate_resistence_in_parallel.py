@@ -3,7 +3,7 @@
 def calculate_resistence_in_parallel(resistors_in_parallel: list) -> float:
     """
     Calculate total resistance of resistors used in parallel
-    >>> calculate_resistence_in_parallel(resistors_in_parallel)
+    >>> calculate_resistence_in_parallel([200, 470, 220])
     85.67
     """
     total = 0
