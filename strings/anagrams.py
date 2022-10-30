@@ -29,14 +29,14 @@ def anagram(my_word: str) -> list[str]:
     return word_by_signature[signature(my_word)]
 
 
+data: str = Path(__file__).parent.joinpath("words.txt").read_text(encoding="utf-8")
+word_list = sorted({word.strip().lower() for word in data.splitlines()})
+
+word_by_signature = collections.defaultdict(list)
+for word in word_list:
+    word_by_signature[signature(word)].append(word)
+        
 if __name__ == "__main__":
-    data: str = Path(__file__).parent.joinpath("words.txt").read_text(encoding="utf-8")
-    word_list = sorted({word.strip().lower() for word in data.splitlines()})
-
-    word_by_signature = collections.defaultdict(list)
-    for word in word_list:
-        word_by_signature[signature(word)].append(word)
-
     all_anagrams = {word: anagram(word) for word in word_list if len(anagram(word)) > 1}
 
     with open("anagrams.txt", "w") as file:
