@@ -467,8 +467,7 @@ def vol_torus(torus_radius: float, tube_radius: float) -> float:
         raise ValueError(
             "vol_torus() only accepts non-negative values"
         )
-    else:
-        return 2 * pow(pi, 2) * torus_radius * pow(tube_radius, 2)
+    return 2 * pow(pi, 2) * torus_radius * pow(tube_radius, 2)
 
 
 def main():
