@@ -1,0 +1,7 @@
+# Following Code allows you to find the cube root of a given no.
+
+def cube_root(x):
+        return x**(1/3)
+        
+# For Example
+print(cube_root(27))
