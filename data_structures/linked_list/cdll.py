@@ -4,10 +4,12 @@ class Node:
         self.prev=None 
         self.next=None 
 
+        
 class CDLL: 
     def __init__(self): 
         self.head=None 
         self.tail=None 
+        
     def find(self,val): 
         if(self.head==None): 
             return False 
@@ -19,6 +21,7 @@ class CDLL:
         if(temp.data==val): 
             return True 
         return False   
+    
     def append(self,val): 
         node=Node(val)
         if(self.head==None):       
@@ -31,6 +34,7 @@ class CDLL:
         node.prev=self.tail 
         self.tail.next=node 
         self.tail=node 
+        
     def push(self,val): 
         node=Node(val) 
         if(self.head==None): 
@@ -43,6 +47,7 @@ class CDLL:
         node.next=self.head 
         self.head.prev=node 
         self.head=node 
+        
     def pop(self): 
         if(self.head==None): 
             return 
@@ -55,6 +60,7 @@ class CDLL:
         temp.next=self.head
         self.head.prev=temp 
         self.tail=temp 
+        
     def popFront(self): 
         if(self.head==None): 
             return 
@@ -63,6 +69,7 @@ class CDLL:
             return 
         self.tail.next=self.head.next    
         self.head=self.head.next 
+        
     def traverse(self): 
         if(self.head==None): 
             print("None")
@@ -74,6 +81,8 @@ class CDLL:
         print(temp.data,end=" <-> ")
         print()
 
+        
+ # Modify the below lines of code, as per requirement.
 li=CDLL()
 li.append(5)
 li.append(4)
