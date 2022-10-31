@@ -1,0 +1,7 @@
+# Following Function lets you calculate the cube root of a number in python
+
+def cube_root(x):
+        return x**(1/3)
+
+# For Example
+print(cube_root(27))
