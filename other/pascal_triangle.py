@@ -1,13 +1,10 @@
 """
-This implementation demonstrates how to generate the
-elements of a Pascal's triangle. The element having
-a row index of r and column index of c can be derived
-as follows:
+This implementation demonstrates how to generate the elements of a Pascal's triangle.
+The element havingva row index of r and column index of c can be derivedvas follows:
 triangle[r][c] = triangle[r-1][c-1]+triangle[r-1][c]
-What is Pascal's triangle?
-- It is a triangular array containing binomial coefficients.
-Refer to (https://en.wikipedia.org/wiki/Pascal%27s_triangle)
-for more info about this triangle.
+
+A Pascal's triangle is a triangular array containing binomial coefficients.
+https://en.wikipedia.org/wiki/Pascal%27s_triangle
 """
 
 
@@ -153,16 +150,11 @@ def generate_pascal_triangle_optimized(num_rows: int) -> list[list[int]]:
     for row_index in range(1, num_rows):
         temp_row = [0] + result[-1] + [0]
         row_length = row_index + 1
-
-        # It calculates the number of distinct elements in a row
-        distinct_elements = (
-            row_length // 2 if row_length % 2 == 0 else row_length // 2 + 1
-        )
-
+        # Calculate the number of distinct elements in a row
+        distinct_elements = sum(divmod(row_length, 2))
         row_first_half = [
-            temp_row[x - 1] + temp_row[x] for x in range(1, distinct_elements + 1)
+            temp_row[i - 1] + temp_row[i] for i in range(1, distinct_elements + 1)
         ]
-
         row_second_half = row_first_half[: (row_index + 1) // 2]
         row_second_half.reverse()
         row = row_first_half + row_second_half
@@ -171,7 +163,27 @@ def generate_pascal_triangle_optimized(num_rows: int) -> list[list[int]]:
     return result
 
 
+def benchmark() -> None:
+    """
+    Benchmark multiple functions, with three different length int values.
+    """
+    from collections.abc import Callable
+    from timeit import timeit
+
+    def benchmark_a_function(func: Callable, value: int) -> None:
+        call = f"{func.__name__}({value})"
+        timing = timeit(f"__main__.{call}", setup="import __main__")
+        # print(f"{call:38} = {func(value)} -- {timing:.4f} seconds")
+        print(f"{call:38} -- {timing:.4f} seconds")
+
+    for value in range(15):  # (1, 7, 14):
+        for func in (generate_pascal_triangle, generate_pascal_triangle_optimized):
+            benchmark_a_function(func, value)
+        print()
+
+
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    benchmark()
