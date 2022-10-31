@@ -56,13 +56,13 @@ class EditDistance:
 
         return self.__min_dist_top_down_dp(len(word1) - 1, len(word2) - 1)
 
-    def min_distance_bottom_up(self, word1: str, word2: str) -> int:
+    def min_dist_bottom_up(self, word1: str, word2: str) -> int:
         """
-        >>> EditDistance().min_distance_bottom_up("intention", "execution")
+        >>> EditDistance().min_dist_bottom_up("intention", "execution")
         5
-        >>> EditDistance().min_distance_bottom_up("intention", "")
+        >>> EditDistance().min_dist_bottom_up("intention", "")
         9
-        >>> EditDistance().min_distance_bottom_up("", "")
+        >>> EditDistance().min_dist_bottom_up("", "")
         0
         """
         self.word1 = word1
@@ -98,6 +98,6 @@ if __name__ == "__main__":
 
     print()
     print(f"The minimum edit distance is: {solver.min_dist_top_down(S1, S2)}")
-    print(f"The minimum edit distance is: {solver.min_distance_bottom_up(S1, S2)}")
+    print(f"The minimum edit distance is: {solver.min_dist_bottom_up(S1, S2)}")
     print()
     print("*************** End of Testing Edit Distance DP Algorithm ***************")
