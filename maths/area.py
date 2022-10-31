@@ -579,7 +579,7 @@ if __name__ == "__main__":
     print(f"Cone: {surface_area_cone(10, 20) = }")
     print(f"Conical Frustum: {surface_area_conical_frustum(10, 20, 30) = }")
     print(f"Cylinder: {surface_area_cylinder(10, 20) = }")
-    print(f"\tTorus: {surface_area_torus(1, -1) = }")
+    print(f"Torus: {surface_area_torus(20, 10) = }")
     print(f"Equilateral Triangle: {area_reg_polygon(3, 10) = }")
     print(f"Square: {area_reg_polygon(4, 10) = }")
     print(f"Reqular Pentagon: {area_reg_polygon(5, 10) = }")
