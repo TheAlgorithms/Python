@@ -38,7 +38,7 @@ def ind_reactance(
     {'inductance': 0.0007957747154594767}
 
     >>> ind_reactance(35e-3, 0, 50)
-    {'frequency': 227.36439646348322}
+    {'frequency': 227.36420441699332}
 
     >>> ind_reactance(35e-6, 1e3, 0)
     {'reactance': 0.21991129999999995}
