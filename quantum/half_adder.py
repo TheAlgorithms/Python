@@ -10,7 +10,7 @@ https://en.wikipedia.org/wiki/Adder_(electronics)
 https://qiskit.org/textbook/ch-states/atoms-computation.html#4.2-Remembering-how-to-add-
 """
 
-import qiskit           #use pip install qiskit
+import qiskit  # use pip install qiskit
 
 
 def half_adder(bit0: int, bit1: int) -> qiskit.result.counts.Counts:
