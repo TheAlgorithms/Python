@@ -111,7 +111,7 @@ def calculate_current_element(
     current_row[current_col_idx] = above_to_left_elt + above_to_right_elt
 
 
-def generate_pascal_triangle_optimized(num_rows: int) -> list:
+def generate_pascal_triangle_optimized(num_rows: int) -> list[list[int]]:
     """
     This function returns a matrix representing the corresponding pascal's triangle
     according to the given input of number of rows of Pascal's triangle to be generated.
