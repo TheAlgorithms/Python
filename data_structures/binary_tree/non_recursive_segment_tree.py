@@ -103,7 +103,7 @@ class SegmentTree(Generic[T]):
         >>> st.query(2, 3)
         7
         """
-        l, r = l + self.N, r + self.N  # noqa: E741
+        l, r = l + self.N, r + self.N
 
         res: T | None = None
         while l <= r:  # noqa: E741

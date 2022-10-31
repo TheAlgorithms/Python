@@ -32,7 +32,7 @@ def longest_common_substring(text1: str, text2: str) -> str:
     'Site:Geeks'
     >>> longest_common_substring(1, 1)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: longest_common_substring() takes two strings for inputs
     """
 
