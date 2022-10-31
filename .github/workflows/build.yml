@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.11-dev
+          python-version: 3.11
       - uses: actions/cache@v3
         with:
           path: ~/.cache/pip
