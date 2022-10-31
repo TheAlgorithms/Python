@@ -21,9 +21,9 @@ class Matrix:
      [7. 8. 9.]]
 
     Matrix rows and columns are available as 2D arrays
-    >>> print(matrix.rows)
+    >>> matrix.rows
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    >>> print(matrix.columns())
+    >>> matrix.columns()
     [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
 
     Order is returned as a tuple
@@ -55,7 +55,7 @@ class Matrix:
     [[-3. 6. -3.]
      [6. -12. 6.]
      [-3. 6. -3.]]
-    >>> print(matrix.inverse())
+    >>> matrix.inverse()
     Traceback (most recent call last):
         ...
     TypeError: Only matrices with a non-zero determinant have an inverse

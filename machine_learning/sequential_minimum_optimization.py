@@ -321,10 +321,9 @@ class SmoSVM:
         k11 = k(i1, i1)
         k22 = k(i2, i2)
         k12 = k(i1, i2)
-        eta = k11 + k22 - 2.0 * k12
 
         # select the new alpha2 which could get the minimal objectives
-        if eta > 0.0:
+        if (eta := k11 + k22 - 2.0 * k12) > 0.0:
             a2_new_unc = a2 + (y2 * (e1 - e2)) / eta
             # a2_new has a boundary
             if a2_new_unc >= h:

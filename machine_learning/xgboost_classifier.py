@@ -2,7 +2,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 from sklearn.datasets import load_iris
-from sklearn.metrics import plot_confusion_matrix
+from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 
@@ -63,7 +63,7 @@ def main() -> None:
     xgboost_classifier = xgboost(x_train, y_train)
 
     # Display the confusion matrix of the classifier with both training and test sets
-    plot_confusion_matrix(
+    ConfusionMatrixDisplay.from_estimator(
         xgboost_classifier,
         x_test,
         y_test,

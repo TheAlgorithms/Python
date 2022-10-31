@@ -26,19 +26,19 @@ def maclaurin_sin(theta: float, accuracy: int = 30) -> float:
     0.5440211108893703
     >>> maclaurin_sin("10")
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: maclaurin_sin() requires either an int or float for theta
     >>> maclaurin_sin(10, -30)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: maclaurin_sin() requires a positive int for accuracy
     >>> maclaurin_sin(10, 30.5)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: maclaurin_sin() requires a positive int for accuracy
     >>> maclaurin_sin(10, "30")
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: maclaurin_sin() requires a positive int for accuracy
     """
 
@@ -52,8 +52,7 @@ def maclaurin_sin(theta: float, accuracy: int = 30) -> float:
     div = theta // (2 * pi)
     theta -= 2 * div * pi
     return sum(
-        (((-1) ** r) * ((theta ** (2 * r + 1)) / factorial(2 * r + 1)))
-        for r in range(accuracy)
+        (-1) ** r * theta ** (2 * r + 1) / factorial(2 * r + 1) for r in range(accuracy)
     )
 
 
@@ -79,19 +78,19 @@ def maclaurin_cos(theta: float, accuracy: int = 30) -> float:
     -0.8390715290764521
     >>> maclaurin_cos("10")
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: maclaurin_cos() requires either an int or float for theta
     >>> maclaurin_cos(10, -30)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: maclaurin_cos() requires a positive int for accuracy
     >>> maclaurin_cos(10, 30.5)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: maclaurin_cos() requires a positive int for accuracy
     >>> maclaurin_cos(10, "30")
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: maclaurin_cos() requires a positive int for accuracy
     """
 
@@ -104,12 +103,14 @@ def maclaurin_cos(theta: float, accuracy: int = 30) -> float:
     theta = float(theta)
     div = theta // (2 * pi)
     theta -= 2 * div * pi
-    return sum(
-        (((-1) ** r) * ((theta ** (2 * r)) / factorial(2 * r))) for r in range(accuracy)
-    )
+    return sum((-1) ** r * theta ** (2 * r) / factorial(2 * r) for r in range(accuracy))
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     print(maclaurin_sin(10))
     print(maclaurin_sin(-10))
     print(maclaurin_sin(10, 15))

@@ -42,7 +42,7 @@ def jacobi_iteration_method(
     >>> iterations = 3
     >>> jacobi_iteration_method(coefficient, constant, init_val, iterations)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Coefficient matrix dimensions must be nxn but received 2x3
 
     >>> coefficient = np.array([[4, 1, 1], [1, 5, 2], [1, 2, 4]])
@@ -51,7 +51,7 @@ def jacobi_iteration_method(
     >>> iterations = 3
     >>> jacobi_iteration_method(coefficient, constant, init_val, iterations)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Coefficient and constant matrices dimensions must be nxn and nx1 but
                 received 3x3 and 2x1
 
@@ -61,7 +61,7 @@ def jacobi_iteration_method(
     >>> iterations = 3
     >>> jacobi_iteration_method(coefficient, constant, init_val, iterations)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Number of initial values must be equal to number of rows in coefficient
                 matrix but received 2 and 3
 
@@ -71,7 +71,7 @@ def jacobi_iteration_method(
     >>> iterations = 0
     >>> jacobi_iteration_method(coefficient, constant, init_val, iterations)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Iterations must be at least 1
     """
 
@@ -138,7 +138,7 @@ def strictly_diagonally_dominant(table: NDArray[float64]) -> bool:
     >>> table = np.array([[4, 1, 1, 2], [1, 5, 2, -6], [1, 2, 3, -4]])
     >>> strictly_diagonally_dominant(table)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Coefficient matrix is not strictly diagonally dominant
     """
 
