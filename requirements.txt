@@ -8,14 +8,14 @@ opencv-python
 pandas
 pillow
 projectq
-qiskit
+qiskit; python_version < "3.11"
 requests
 rich
 scikit-fuzzy
 sklearn
-statsmodels
+statsmodels; python_version < "3.11"
 sympy
-tensorflow
+tensorflow; python_version < "3.11"
 texttable
 tweepy
 xgboost

@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.x
+          python-version: 3.11
       - uses: actions/cache@v3
         with:
           path: ~/.cache/pip
@@ -22,6 +22,15 @@ jobs:
           python -m pip install --upgrade pip setuptools six wheel
           python -m pip install pytest-cov -r requirements.txt
       - name: Run tests
-        run: pytest --ignore=project_euler/ --ignore=scripts/validate_solutions.py --cov-report=term-missing:skip-covered --cov=. .
+        # See: #6591 for re-enabling tests on Python v3.11
+        run: pytest
+            --ignore=computer_vision/cnn_classification.py
+            --ignore=machine_learning/forecasting/run.py
+            --ignore=machine_learning/lstm/lstm_prediction.py
+            --ignore=quantum/
+            --ignore=project_euler/
+            --ignore=scripts/validate_solutions.py
+            --cov-report=term-missing:skip-covered
+            --cov=. .
       - if: ${{ success() }}
         run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
