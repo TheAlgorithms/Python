@@ -227,9 +227,7 @@ def surface_area_torus(torus_radius: float, tube_radius: float) -> float:
     ValueError: surface_area_torus() only accepts non-negative values
     """
     if torus_radius < 0 or tube_radius < 0:
-        raise ValueError(
-            "surface_area_torus() only accepts non-negative values"
-        )
+        raise ValueError("surface_area_torus() only accepts non-negative values")
     if torus_radius < tube_radius:
         raise ValueError(
             "surface_area_torus() does not support spindle or self intersecting tori"
