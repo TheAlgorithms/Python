@@ -35,7 +35,7 @@ def ind_reactance(
     ValueError: Inductive reactance cannot be negative
 
     >>> ind_reactance(0, 10e3, 50)
-    {'inductance': 0.0007957753876221914}
+    {'inductance': 0.0007957747154594767}
 
     >>> ind_reactance(35e-3, 0, 50)
     {'frequency': 227.36439646348322}
