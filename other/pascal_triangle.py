@@ -173,4 +173,5 @@ def generate_pascal_triangle_optimized(num_rows: int) -> list[list[int]]:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
