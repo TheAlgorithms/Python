@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-Hashing is a technique that  uses a hash function that converts a given  number 
-or any other key to a smaller number and uses the small number as the index in a table called a hash table. 
+Hashing is a technique that  uses a hash function that converts a given  number
+or any other key to a smaller number and uses the small number as the index in a table called a hash table.
 
-Hash Function: 
-A function that converts a given big number to a small practical integer value. 
-The mapped integer value is used as an index in the hash table. 
+Hash Function:
+A function that converts a given big number to a small practical integer value.
+The mapped integer value is used as an index in the hash table.
 
-Quadratic Probing: 
-Quadratic probing is an open-addressing scheme where we look for the i^2th slot in the i’th iteration 
-if the given hash value x collides in the hash table. 
+Quadratic Probing:
+Quadratic probing is an open-addressing scheme where we look for the i^2th slot in the i’th iteration
+if the given hash value x collides in the hash table.
 
 The logic is
 
