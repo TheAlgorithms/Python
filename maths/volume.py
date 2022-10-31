@@ -440,6 +440,7 @@ def vol_conical_frustum(height: float, radius_1: float, radius_2: float) -> floa
         * (pow(radius_1, 2) + pow(radius_2, 2) + radius_1 * radius_2)
     )
 
+
 def vol_torus(torus_radius: float, tube_radius: float) -> float:
     """Calculate the Volume of a Torus.
     Wikipedia reference: https://en.wikipedia.org/wiki/Torus
@@ -464,9 +465,7 @@ def vol_torus(torus_radius: float, tube_radius: float) -> float:
     ValueError: vol_torus() only accepts non-negative values
     """
     if torus_radius < 0 or tube_radius < 0:
-        raise ValueError(
-            "vol_torus() only accepts non-negative values"
-        )
+        raise ValueError("vol_torus() only accepts non-negative values")
     return 2 * pow(pi, 2) * torus_radius * pow(tube_radius, 2)
 
 
