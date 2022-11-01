@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 
 
-def max_subsequence_sum(nums: Sequence[int] | None) -> int:
+def max_subsequence_sum(nums: Sequence[int] | None = None) -> int:
     """Return the maximum possible sum amongst all non - empty subsequences.
 
     Raises:
