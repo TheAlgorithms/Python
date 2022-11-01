@@ -1,5 +1,4 @@
 """
-
 tree_sort_2
 
 - makes use of the data structure Binary Tree to sort the list in O(nlogn) time.
