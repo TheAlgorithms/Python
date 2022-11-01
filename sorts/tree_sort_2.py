@@ -36,7 +36,6 @@ class TreeSort:
         else:
             self.left = None
             self.right = None
-        return
 
     def isempty(self) -> bool:
         """
