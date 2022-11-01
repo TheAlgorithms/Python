@@ -121,7 +121,7 @@ def tree_sort(list_data: list) -> list:
     >>> tree_sort([50,52,54,74,93,100,114,124,130,143])
     [50, 52, 54, 74, 93, 100, 114, 124, 130, 143]
     """
-    if len(list_data) == 0 or len(list_data) == 1:
+    if len(list_data) <= 1:
         return list_data
     tree = TreeSort()
     for i in list_data:
