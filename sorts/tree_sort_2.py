@@ -26,8 +26,8 @@ class TreeSort:
     # Constructor
     def __init__(self, initval: Any = None) -> None:
         self.value: Any
-        self.left: Any
-        self.right: Any
+        self.left: TreeSort | None = None
+        self.right: TreeSort | None = None
 
         self.value = initval
         if self.value:
