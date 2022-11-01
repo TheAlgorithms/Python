@@ -25,7 +25,6 @@ jobs:
         # See: #6591 for re-enabling tests on Python v3.11
         run: pytest
             --ignore=computer_vision/cnn_classification.py
-            --ignore=machine_learning/forecasting/run.py
             --ignore=machine_learning/lstm/lstm_prediction.py
             --ignore=quantum/
             --ignore=project_euler/
