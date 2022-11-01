@@ -1,8 +1,7 @@
 from collections.abc import Sequence
-from typing import Optional
 
 
-def max_subsequence_sum(nums: Sequence[int] | None = None) -> int:
+def max_subsequence_sum(nums: Sequence[int] | None) -> int:
     """Return the maximum possible sum amongst all non - empty subsequences.
 
     Raises:
@@ -34,7 +33,7 @@ def max_subsequence_sum(nums: Sequence[int] | None = None) -> int:
 
 if __name__ == "__main__":
     import doctest
-
+    
     doctest.testmod()
 
     # Try on a sample input from the user
