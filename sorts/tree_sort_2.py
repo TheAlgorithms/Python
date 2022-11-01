@@ -24,7 +24,7 @@ class TreeSort:
     """
 
     # Constructor
-    def __init__(self, initval: Any = None) -> None:
+    def __init__(self, value: Any = None) -> None:
         self.value: Any
         self.left: TreeSort | None = None
         self.right: TreeSort | None = None
