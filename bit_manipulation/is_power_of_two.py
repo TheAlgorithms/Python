@@ -36,7 +36,7 @@ def is_power_of_two(number: int) -> bool:
     >>> is_power_of_two(-1)
     Traceback (most recent call last):
         ...
-    ValueError: number must not be negitive
+    ValueError: number must not be negative
     >>> is_power_of_two(1.2)
     Traceback (most recent call last):
         ...
@@ -47,7 +47,7 @@ def is_power_of_two(number: int) -> bool:
     True
     """
     if number < 0:
-        raise ValueError("number must not be negitive")
+        raise ValueError("number must not be negative")
     return number & (number - 1) == 0
 
 
