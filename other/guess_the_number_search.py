@@ -103,6 +103,7 @@ def guess_the_number(lower: int, higher: int, to_guess: int) -> None:
         ...
     TypeError: '>' not supported between instances of 'int' and 'str'
     """
+
     def answer(number: int) -> str:
         """
         Returns value by comparing with entered `to_guess` number
