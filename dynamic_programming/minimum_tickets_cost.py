@@ -5,7 +5,7 @@ Date    : November 1, 2022
 Task:
 Given a list of days when you need to travel. Each day is int from 1 to 365.
 You are able to use tickets for 1 day, 7 days and 30 days.
-Each ticket has a cost. 
+Each ticket has a cost.
 
 Find the minimum cost you need to travel every day in the given list of days.
 
@@ -22,7 +22,9 @@ from typing import List
 Minimum Cost For Tickets
 Dynamic Programming: up -> down.
 """
-def mincost_tickets(days: List[int], costs: List[int]) -> int:
+
+
+def mincost_tickets(days: list[int], costs: list[int]) -> int:
     """
     >>> mincost_tickets([1,4,6,7,8,20], [2,7,15])
     11
@@ -44,12 +46,16 @@ def mincost_tickets(days: List[int], costs: List[int]) -> int:
         if index not in days_set:
             return dp(index + 1)
 
-        return min(costs[0] + dp(index + 1),
-                   costs[1] + dp(index + 7),
-                   costs[2] + dp(index + 30))
-    
+        return min(
+            costs[0] + dp(index + 1),
+            costs[1] + dp(index + 7),
+            costs[2] + dp(index + 30),
+        )
+
     return dp(1)
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
