@@ -16,9 +16,7 @@ def max_subsequence_sum(nums: Sequence[int]) -> int:
         raise ValueError("Input sequence should not be empty")
 
     ans = nums[0]
-    nums_len = len(nums)
-
-    for i in range(1, nums_len):
+    for i in range(1, len(nums)):
         num = nums[i]
         ans = max(ans, ans + num, num)
 
