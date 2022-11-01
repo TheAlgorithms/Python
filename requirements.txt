@@ -1,4 +1,5 @@
 beautifulsoup4
+cython>=0.29.28
 fake_useragent
 keras
 lxml
