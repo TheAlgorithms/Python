@@ -33,7 +33,7 @@ def max_subsequence_sum(nums: Sequence[int] | None) -> int:
 
 if __name__ == "__main__":
     import doctest
-    
+
     doctest.testmod()
 
     # Try on a sample input from the user
