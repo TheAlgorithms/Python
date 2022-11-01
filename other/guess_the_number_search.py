@@ -73,19 +73,19 @@ def temp_input_value(min_val: int = 10, max_val: int = 1000, option: int = True)
     return max_val
 
 
-def get_avg(a: int, b: int) -> int:
+def get_avg(number_1: int, number_2: int) -> int:
     """
     Return the mid-number(whole) of two integers a and b
     >>> get_avg(10,15)
     12
     >>> get_avg(20,300)
     160
-    >>> get_avg("a",300)
+    >>> get_avg("abcd",300)
     Traceback (most recent call last):
         ...
     TypeError: can only concatenate str (not "int") to str
     """
-    return int((a + b) / 2)
+    return int((number_1 + number_2) / 2)
 
 
 def guess_the_number(lower: int, higher: int, to_guess: int) -> None:
@@ -103,7 +103,6 @@ def guess_the_number(lower: int, higher: int, to_guess: int) -> None:
         ...
     TypeError: '>' not supported between instances of 'int' and 'str'
     """
-
     def answer(number: int) -> str:
         """
         Returns value by comparing with entered `to_guess` number
