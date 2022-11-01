@@ -1,6 +1,6 @@
 import secrets
 from random import shuffle
-from string import ascii_letters, digits, punctuation, ascii_lowercase, ascii_uppercase
+from string import ascii_letters, ascii_lowercase, ascii_uppercase, digits, punctuation
 
 
 def password_generator(length: int = 8) -> str:
