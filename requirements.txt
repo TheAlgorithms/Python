@@ -1,4 +1,5 @@
 beautifulsoup4
+cython>=0.29.28  # For statsmodels on Python 3.11
 fake_useragent
 keras
 lxml
@@ -13,7 +14,7 @@ requests
 rich
 scikit-fuzzy
 sklearn
-statsmodels; python_version < "3.11"
+statsmodels
 sympy
 tensorflow; python_version < "3.11"
 texttable
