@@ -3,9 +3,9 @@ get the random number guessed by the computer by passing the lower,higher
 and the number to guess
 
 this solution works on divide and getting the half of number of previous and current
-    this depends on the number is low or high 
+    this depends on the number is low or high
 
-if the number is more than last lower and less than to the number to guess then the number 
+if the number is more than last lower and less than to the number to guess then the number
 is assigned to it, and same but opposite for higher number
 
 suppose lower is 0, higher is 1000 and the number to guess is 355
@@ -18,7 +18,7 @@ then:
     answer(500) : high
         Now this value is passed to the answer function and that returns the passed number is lower than
         the guess number or higher than the guess number and also for equality
-    
+
         [2]
     d(0,500) : 250
     answer(250) : low
@@ -53,8 +53,10 @@ The number is found : 355
 import sys
 import time
 
-def d(a,b):
-    return int((a+b)/2)
+
+def d(a, b):
+    return int((a + b) / 2)
+
 
 lower = int(input("Enter lower number : "))
 higher = int(input("Enter higher number : "))
@@ -67,6 +69,7 @@ if to_guess > higher or to_guess < lower:
 
 start_time = time.time()
 
+
 def answer(number):
     if number > to_guess:
         return "high"
@@ -74,6 +77,7 @@ def answer(number):
         return "low"
     else:
         return "same"
+
 
 print("started...")
 
@@ -87,17 +91,17 @@ while True:
     last_numbers.append(number)
 
     if answer(number) == "low":
-        print("low",end="\r")
+        print("low", end="\r")
         last_lowest = number
     elif answer(number) == "high":
-        print("high",end="\r")
+        print("high", end="\r")
         last_highest = number
     else:
-        print("Got that"," "*10)
+        print("Got that", " " * 10)
         break
-    
+
 end_time = time.time()
 
 print(last_numbers)
-print("successfully gueesed the number :",last_numbers[-1])
+print("successfully gueesed the number :", last_numbers[-1])
 print(f"time elapsed : {end_time-start_time}")
