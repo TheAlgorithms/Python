@@ -10,7 +10,6 @@ tree_sort_2
 - Logic:
   - Build a Binary Search Tree
   - Traverse the tree in increasing order.
-
 """
 from typing import Any
 
