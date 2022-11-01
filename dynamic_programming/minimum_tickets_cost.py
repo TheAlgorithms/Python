@@ -37,7 +37,7 @@ def mincost_tickets(days: List[int], costs: List[int]) -> int:
     days_set = set(days)
 
     @lru_cache(maxsize=None)
-    def dp(index):
+    def dp(index: int) -> int:
         if index > 365:
             return 0
 
