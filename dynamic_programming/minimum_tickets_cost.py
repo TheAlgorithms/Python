@@ -112,12 +112,12 @@ def mincost_tickets(days: list[int], costs: list[int]) -> int:
             return 0
 
         if index not in days_set:
-            return dp(index + 1)
+            return dynamic_programming(index + 1)
 
         return min(
-            costs[0] + dp(index + 1),
-            costs[1] + dp(index + 7),
-            costs[2] + dp(index + 30),
+            costs[0] + dynamic_programming(index + 1),
+            costs[1] + dynamic_programming(index + 7),
+            costs[2] + dynamic_programming(index + 30),
         )
 
     return dynamic_programming(1)
