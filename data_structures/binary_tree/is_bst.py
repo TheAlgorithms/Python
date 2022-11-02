@@ -43,7 +43,6 @@ def is_bst(root: TreeNode | None) -> bool:
     True
     >>> is_bst(TreeNode(0, TreeNode(-11), TreeNode(3)))
     True
-
     >>> is_bst(TreeNode(5, TreeNode(1), TreeNode(4, TreeNode(3))))
     False
 
