@@ -51,10 +51,10 @@ def mincost_tickets(days: list[int], costs: list[int]) -> int:
     from functools import lru_cache
 
     if len(costs) != 3:
-        raise ValueError('The lengths of costs should be equal 3')
+        raise ValueError("The lengths of costs should be equal 3")
 
     if min(days) <= 0:
-        raise ValueError('All days elements should be greater than 0')
+        raise ValueError("All days elements should be greater than 0")
 
     days_set = set(days)
     max_days = max(days)
