@@ -24,8 +24,14 @@ Space: O(1)
 
 from typing import Optional
 
+
 class TreeNode:
-    def __init__(self, data: float=0, left:Optional['TreeNode']=None, right:Optional['TreeNode']=None) -> None:
+    def __init__(
+        self,
+        data: float = 0,
+        left: Optional["TreeNode"] = None,
+        right: Optional["TreeNode"] = None,
+    ) -> None:
         self.data = data
         self.left = left
         self.right = right
@@ -53,7 +59,7 @@ def is_bst(root:Optional[TreeNode]) -> bool:
     """
 
     # Validation
-    def is_valid_tree(node:Optional['TreeNode']) -> bool:
+    def is_valid_tree(node:Optional[TreeNode]) -> bool:
         """
         >>> is_valid_tree(None)
         True
@@ -81,9 +87,13 @@ def is_bst(root:Optional[TreeNode]) -> bool:
         return is_valid_tree(node.left) and is_valid_tree(node.right)
 
     if not is_valid_tree(root):
-        raise ValueError('Each node should be type of TreeNode and data should be float.')
+        raise ValueError(
+            "Each node should be type of TreeNode and data should be float."
+        )
 
-    def is_bst_internal(node:Optional['TreeNode'], left_bound:float, right_bound:float) -> bool:
+    def is_bst_internal(
+        node: Optional["TreeNode"], left_bound: float, right_bound: float
+    ) -> bool:
         """
         >>> is_bst_internal(None)
         True
@@ -92,11 +102,15 @@ def is_bst(root:Optional[TreeNode]) -> bool:
         if node is None:
             return True
 
-        return (node.data > left_bound) and (node.data < right_bound) \
-            and is_bst_internal(node.left, left_bound, node.data) \
+        return (
+            (node.data > left_bound)
+            and (node.data < right_bound)
+            and is_bst_internal(node.left, left_bound, node.data)
             and is_bst_internal(node.right, node.data, right_bound)
-    
-    return is_bst_internal(root, -float('inf'), float('inf'))
+        )
+
+    return is_bst_internal(root, -float("inf"), float("inf"))
+
 
 if __name__ == "__main__":
     import doctest
