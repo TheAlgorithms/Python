@@ -13,9 +13,6 @@ class Dice:
     def roll(self):
         return random.choice(self.sides)
 
-    def _str_(self):
-        return "Fair Dice"
-
 
 def throw_dice(num_throws: int, num_dice: int = 2) -> list[float]:
     """

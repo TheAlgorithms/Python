@@ -1,15 +1,16 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
+from typing import Literal
 
 
-def compare_string(string1: str, string2: str) -> str:
+def compare_string(string1: str, string2: str) -> str | Literal[False]:
     """
     >>> compare_string('0010','0110')
     '0_10'
 
     >>> compare_string('0110','1101')
-    'X'
+    False
     """
     list1 = list(string1)
     list2 = list(string2)
@@ -19,7 +20,7 @@ def compare_string(string1: str, string2: str) -> str:
             count += 1
             list1[i] = "_"
     if count > 1:
-        return "X"
+        return False
     else:
         return "".join(list1)
 

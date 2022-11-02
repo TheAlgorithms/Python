@@ -113,7 +113,7 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
     elif check == 2:
         return solved
     else:
-        return "The program cannot work out a fitting polynomial."
+        raise ValueError("The program cannot work out a fitting polynomial.")
 
 
 if __name__ == "__main__":

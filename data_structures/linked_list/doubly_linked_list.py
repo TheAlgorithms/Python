@@ -159,7 +159,7 @@ class DoublyLinkedList:
             if current.next:
                 current = current.next
             else:  # We have reached the end an no value matches
-                return "No data matching given value"
+                raise ValueError("No data matching given value")
 
         if current == self.head:
             self.delete_head()
