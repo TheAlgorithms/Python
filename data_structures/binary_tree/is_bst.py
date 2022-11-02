@@ -8,9 +8,9 @@ tree (BST).
 
 A valid BST is defined as follows:
 
- - The left subtree of a node contains only nodes with keys less than the node's key.
- - The right subtree of a node contains only nodes with keys greater than the node's key.
- - Both the left and right subtrees must also be binary search trees.
+- The left subtree of a node contains only nodes with keys less than the node's key.
+- The right subtree of a node contains only nodes with keys greater than the node's key.
+- Both the left and right subtrees must also be binary search trees.
 
 Implementation notes:
 Depth-first search approach.
@@ -81,7 +81,9 @@ def is_bst(root: TreeNode | None) -> bool:
 
         try:
             float(node.data)
-        except:
+        except ValueError:
+            return False
+        except TypeError:
             return False
 
         return is_valid_tree(node.left) and is_valid_tree(node.right)
