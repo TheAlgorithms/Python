@@ -25,12 +25,12 @@ Space: O(1)
 from typing import Optional
 
 class TreeNode:
-    def __init__(self, data: float=0, left:Optional['TreeNode']=None, right:Optional['TreeNode']=None):
+    def __init__(self, data: float=0, left:Optional['TreeNode']=None, right:Optional['TreeNode']=None) -> None:
         self.data = data
         self.left = left
         self.right = right
 
-def is_bst(root):
+def is_bst(root:Optional[TreeNode]) -> bool:
     """
     >>> is_bst(TreeNode(2, TreeNode(1), TreeNode(3)))
     True
@@ -53,7 +53,7 @@ def is_bst(root):
     """
 
     # Validation
-    def is_valid_tree(node:Optional['TreeNode']):
+    def is_valid_tree(node:Optional['TreeNode']) -> bool:
         """
         >>> is_valid_tree(None)
         True
@@ -83,7 +83,7 @@ def is_bst(root):
     if not is_valid_tree(root):
         raise ValueError('Each node should be type of TreeNode and data should be float.')
 
-    def is_bst_internal(node:Optional['TreeNode'], left_bound:float, right_bound:float):
+    def is_bst_internal(node:Optional['TreeNode'], left_bound:float, right_bound:float) -> bool:
         """
         >>> is_bst_internal(None)
         True
