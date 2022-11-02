@@ -21,6 +21,9 @@ class Direction(Enum):
     straight = 2
     right = 3
 
+    def __repr__(self):
+        return f"{self.__class__.__name__}.{self.name}"
+
 
 def angle_comparer(point: tuple[int, int], minx: int, miny: int) -> float:
     """Return the angle toward to point from (minx, miny)
