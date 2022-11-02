@@ -130,7 +130,10 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
             child_n = 10 if child_n >= 10 else child_n
             for _ in range(child_n):
                 random_x = random.randint(0, N_SELECTED)
-                parent_2 = population_score[random_x][0]
+                # TODO: The BugBear B023 below should be fixed...
+                # https://github.com/PyCQA/flake8-bugbear#list-of-warnings
+                # https://github.com/PyCQA/flake8-bugbear/issues/269
+                parent_2 = population_score[random_x][0]  # noqa: B023
 
                 child_1, child_2 = crossover(parent_1[0], parent_2)
                 # Append new string to the population list.
