@@ -14,7 +14,7 @@ def cramers_rule_2x2(equation1: list[int], equation2: list[int]) -> tuple[float,
     determinant_y = [[a1, d1], [a2, d2]]
 
     >>> cramers_rule_2x2([2, 3, 0], [5, 1, 0])
-    (0, 0)
+    (0.0, 0.0)
     >>> cramers_rule_2x2([0, 4, 50], [2, 0, 26])
     (13.0, 12.5)
     >>> cramers_rule_2x2([11, 2, 30], [1, 0, 4])

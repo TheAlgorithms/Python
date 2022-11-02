@@ -4,9 +4,13 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
     number of points you want to use
 
     >>> print(points_to_polynomial([]))
-    The program cannot work out a fitting polynomial.
+    Traceback (most recent call last): 
+        ...
+    ValueError: The program cannot work out a fitting polynomial.
     >>> print(points_to_polynomial([[]]))
-    The program cannot work out a fitting polynomial.
+    Traceback (most recent call last): 
+        ...
+    ValueError: The program cannot work out a fitting polynomial.
     >>> print(points_to_polynomial([[1, 0], [2, 0], [3, 0]]))
     f(x)=x^2*0.0+x^1*-0.0+x^0*0.0
     >>> print(points_to_polynomial([[1, 1], [2, 1], [3, 1]]))

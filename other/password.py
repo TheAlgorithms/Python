@@ -70,13 +70,13 @@ def is_strong_password(password: str, min_length: int = 8) -> bool:
     """
     >>> is_strong_password('Hwea7$2!')
     True
-    >>> strong_password_detector('Sh0r1')
+    >>> is_strong_password('Sh0r1')
     False
-    >>> strong_password_detector('Hello123')
+    >>> is_strong_password('Hello123')
     False
-    >>> strong_password_detector('Hello1238udfhiaf038fajdvjjf!jaiuFhkqi1')
+    >>> is_strong_password('Hello1238udfhiaf038fajdvjjf!jaiuFhkqi1')
     True
-    >>> strong_password_detector('0')
+    >>> is_strong_password('0')
     False
     """
 
