@@ -127,9 +127,9 @@ def mincost_tickets(days: List[int], costs: List[int]) -> int:
             return dp(index + 1)
 
         return min(
-            costs[0] + dp(index + 1), 
-            costs[1] + dp(index + 7), 
-            costs[2] + dp(index + 30), 
+            costs[0] + dp(index + 1),
+            costs[1] + dp(index + 7),
+            costs[2] + dp(index + 30),
         )
 
     return dp(1)
