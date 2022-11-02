@@ -89,13 +89,11 @@ def temp_input_value(
     >>> temp_input_value(min_val=-5100, max_val=-100)
     -5100
     """
-    assert type(min_val) == int and type(max_val) == int and \
-        type(option) == bool, \
-        "Invalid type of value(s) specified to function!"
+    assert (
+        type(min_val) == int and type(max_val) == int and type(option) == bool
+    ), "Invalid type of value(s) specified to function!"
     if min_val > max_val:
-        raise ValueError(
-            "Invalid value for min_val or max_val (min_value < max_value)"
-        )
+        raise ValueError("Invalid value for min_val or max_val (min_value < max_value)")
     return min_val if option else max_val
 
 
