@@ -16,12 +16,14 @@ Runtime complexity: O(n)
 
 The implementation was tested on the
 leetcode: https://leetcode.com/problems/minimum-cost-for-tickets/
+
+
 Minimum Cost For Tickets
 Dynamic Programming: up -> down.
 """
 
 
-def mincost_tickets(days: List[int], costs: List[int]) -> int:
+def mincost_tickets(days: list[int], costs: list[int]) -> int:
     """
     >>> mincost_tickets([1, 4, 6, 7, 8, 20], [2, 7, 15])
     11
@@ -127,9 +129,9 @@ def mincost_tickets(days: List[int], costs: List[int]) -> int:
             return dp(index + 1)
 
         return min(
-            costs[0] + dp(index + 1), 
-            costs[1] + dp(index + 7), 
-            costs[2] + dp(index + 30), 
+            costs[0] + dp(index + 1),
+            costs[1] + dp(index + 7),
+            costs[2] + dp(index + 30),
         )
 
     return dp(1)
