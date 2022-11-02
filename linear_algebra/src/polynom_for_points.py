@@ -32,7 +32,7 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
 
     set_x = {x for x, _ in coordinates}
     if len(set_x) == 1:
-        return "x=" + str(coordinates[0][0])
+        return f"x={coordinates[0][0]}"
 
     if len(set_x) != len(coordinates):
         return "The program cannot work out a fitting polynomial."
