@@ -88,12 +88,12 @@ class Heap:
             for i in range(self.heap_size // 2 - 1, -1, -1):
                 self.max_heapify(i)
 
-    def max(self) -> float:
-        """return the max in the heap"""
-        if self.heap_size >= 1:
-            return self.h[0]
-        else:
-            raise Exception("Empty heap")
+    # def max(self) -> float:
+    #    """return the max in the heap"""
+    #    if self.heap_size >= 1:
+    #        return self.h[0]
+    #    else:
+    #        raise Exception("Empty heap")
 
     def extract_max(self) -> float:
         """get and remove max from heap"""
