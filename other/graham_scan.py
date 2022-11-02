@@ -72,11 +72,9 @@ def check_direction(
     x1, y1 = via
     x2, y2 = target
     via_angle = degrees(atan2(y1 - y0, x1 - x0))
-    if via_angle < 0:
-        via_angle += 360
+    via_angle %= 360
     target_angle = degrees(atan2(y2 - y0, x2 - x0))
-    if target_angle < 0:
-        target_angle += 360
+    target_angle %= 360
     # t-
     #  \ \
     #   \ v
