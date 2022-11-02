@@ -45,8 +45,7 @@ def angle_comparer(point: tuple[int, int], minx: int, miny: int) -> float:
     """
     # sort the points accorgind to the angle from the lowest and the most left point
     x, y = point
-    angle = degrees(atan2(y - miny, x - minx))
-    return angle
+    return degrees(atan2(y - miny, x - minx))
 
 
 def check_direction(
