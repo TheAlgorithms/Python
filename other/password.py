@@ -84,7 +84,7 @@ def strong_password_detector(password: str, min_length: int = 8) -> str:
     'Your Password must be at least 8 characters long'
     """
 
-    if len(str(password)) < 8:
+    if len(password) < min_length:
         return "Your Password must be at least 8 characters long"
 
     upper = any(char in ascii_uppercase for char in password)
