@@ -16,11 +16,6 @@ Runtime complexity: O(n)
 
 The implementation was tested on the
 leetcode: https://leetcode.com/problems/minimum-cost-for-tickets/
-"""
-
-from typing import List
-
-"""
 Minimum Cost For Tickets
 Dynamic Programming: up -> down.
 """
