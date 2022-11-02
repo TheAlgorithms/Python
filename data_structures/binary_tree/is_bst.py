@@ -92,7 +92,7 @@ def is_bst(root: TreeNode | None) -> bool:
         )
 
     def is_bst_internal(
-        node: Optional["TreeNode"], left_bound: float, right_bound: float
+        node: TreeNode | None, left_bound: float, right_bound: float
     ) -> bool:
         """
         >>> is_bst_internal(None)
