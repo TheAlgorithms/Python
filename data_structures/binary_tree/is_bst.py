@@ -82,9 +82,7 @@ def is_bst(root: TreeNode | None) -> bool:
 
         try:
             float(node.data)
-        except ValueError:
-            return False
-        except TypeError:
+        except (ValueError, TypeError):
             return False
 
         return is_valid_tree(node.left) and is_valid_tree(node.right)
