@@ -37,21 +37,21 @@ class TreeNode:
         self.right = right
 
 
-def is_bst(root: TreeNode | None) -> bool:
+def is_binary_search_tree(root: TreeNode | None) -> bool:
     """
-    >>> is_bst(TreeNode(2, TreeNode(1), TreeNode(3)))
+    >>> is_binary_search_tree(TreeNode(2, TreeNode(1), TreeNode(3)))
     True
-    >>> is_bst(TreeNode(0, TreeNode(-11), TreeNode(3)))
+    >>> is_binary_search_tree(TreeNode(0, TreeNode(-11), TreeNode(3)))
     True
-    >>> is_bst(TreeNode(5, TreeNode(1), TreeNode(4, TreeNode(3))))
+    >>> is_binary_search_tree(TreeNode(5, TreeNode(1), TreeNode(4, TreeNode(3))))
     False
 
-    >>> is_bst(TreeNode('a', TreeNode(1), TreeNode(4, TreeNode(3))))
+    >>> is_binary_search_tree(TreeNode('a', TreeNode(1), TreeNode(4, TreeNode(3))))
     Traceback (most recent call last):
      ...
     ValueError: Each node should be type of TreeNode and data should be float.
 
-    >>> is_bst(TreeNode(2, TreeNode([]), TreeNode(4, TreeNode(3))))
+    >>> is_binary_search_tree(TreeNode(2, TreeNode([]), TreeNode(4, TreeNode(3))))
     Traceback (most recent call last):
      ...
     ValueError: Each node should be type of TreeNode and data should be float.
@@ -90,11 +90,11 @@ def is_bst(root: TreeNode | None) -> bool:
             "Each node should be type of TreeNode and data should be float."
         )
 
-    def is_bst_internal(
+    def is_binary_search_tree_internal(
         node: TreeNode | None, left_bound: float, right_bound: float
     ) -> bool:
         """
-        >>> is_bst_internal(None)
+        >>> is_binary_search_tree_internal(None)
         True
         """
 
@@ -104,11 +104,11 @@ def is_bst(root: TreeNode | None) -> bool:
         return (
             (node.data > left_bound)
             and (node.data < right_bound)
-            and is_bst_internal(node.left, left_bound, node.data)
-            and is_bst_internal(node.right, node.data, right_bound)
+            and is_binary_search_tree_internal(node.left, left_bound, node.data)
+            and is_binary_search_tree_internal(node.right, node.data, right_bound)
         )
 
-    return is_bst_internal(root, -float("inf"), float("inf"))
+    return is_binary_search_tree_internal(root, -float("inf"), float("inf"))
 
 
 if __name__ == "__main__":
