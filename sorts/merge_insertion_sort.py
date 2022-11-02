@@ -15,6 +15,10 @@ from __future__ import annotations
 
 
 def binary_search_insertion(sorted_list, item):
+    """
+    >>> binary_search_insertion([1, 2, 7, 9, 10], 4)
+    [1, 2, 4, 7, 9, 10]
+    """
     left = 0
     right = len(sorted_list) - 1
     while left <= right:
@@ -32,6 +36,10 @@ def binary_search_insertion(sorted_list, item):
 
 
 def merge(left, right):
+    """
+    >>> merge([[1, 6], [9, 10]], [[2, 3], [4, 5], [7, 8]])
+    [[1, 6], [2, 3], [4, 5], [7, 8], [9, 10]]
+    """
     result = []
     while left and right:
         if left[0][0] < right[0][0]:
@@ -42,6 +50,10 @@ def merge(left, right):
 
 
 def sortlist_2d(list_2d):
+    """
+    >>> sortlist_2d([[9, 10], [1, 6], [7, 8], [2, 3], [4, 5]])
+    [[1, 6], [2, 3], [4, 5], [7, 8], [9, 10]]
+    """
     length = len(list_2d)
     if length <= 1:
         return list_2d
