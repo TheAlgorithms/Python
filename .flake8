@@ -6,4 +6,3 @@ extend-ignore =
     # Formatting style for `black`
     E203  # Whitespace before ':'
     W503  # Line break occurred before a binary operator
-    B023  # Function definition does not bind loop variable
