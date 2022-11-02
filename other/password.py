@@ -80,7 +80,7 @@ def strong_password_detector(password: str, min_length: int = 8) -> str:
     >>> strong_password_detector('Hello1238udfhiaf038fajdvjjf!jaiuFhkqi1')
     'This is a strong Password'
 
-    >>> strong_password_detector(0)
+    >>> strong_password_detector('0')
     'Your Password must be at least 8 characters long'
     """
 
