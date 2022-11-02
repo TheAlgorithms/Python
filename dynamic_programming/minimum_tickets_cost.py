@@ -22,6 +22,8 @@ Minimum Cost For Tickets
 Dynamic Programming: up -> down.
 """
 
+from functools import lru_cache
+
 
 def mincost_tickets(days: list[int], costs: list[int]) -> int:
     """
@@ -43,22 +45,22 @@ def mincost_tickets(days: list[int], costs: list[int]) -> int:
     >>> mincost_tickets('hello', [2, 90, 150])
     Traceback (most recent call last):
      ...
-    ValueError: The parameter days should be a list
+    ValueError: The parameter days should be a list of integers
 
     >>> mincost_tickets([], 'world')
     Traceback (most recent call last):
      ...
-    ValueError: The parameter costs should be a list
+    ValueError: The parameter costs should be a list of three integers
 
     >>> mincost_tickets([0.25, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31], [2, 90, 150])
     Traceback (most recent call last):
      ...
-    ValueError: All days elements should be integer values
+    ValueError: The parameter days should be a list of integers
 
     >>> mincost_tickets([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31], [2, 0.9, 150])
     Traceback (most recent call last):
      ...
-    ValueError: All costs elements should be integer values
+    ValueError: The parameter costs should be a list of three integers
 
     >>> mincost_tickets([-1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31], [2, 90, 150])
     Traceback (most recent call last):
@@ -73,17 +75,17 @@ def mincost_tickets(days: list[int], costs: list[int]) -> int:
     >>> mincost_tickets([2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31], [])
     Traceback (most recent call last):
      ...
-    ValueError: The lengths of costs should be equal 3
+    ValueError: The parameter costs should be a list of three integers
 
     >>> mincost_tickets([], [])
     Traceback (most recent call last):
      ...
-    ValueError: The lengths of costs should be equal 3
+    ValueError: The parameter costs should be a list of three integers
 
     >>> mincost_tickets([2, 3, 4, 5, 6, 7, 8, 9, 10, 30, 31], [1, 2, 3, 4])
     Traceback (most recent call last):
      ...
-    ValueError: The lengths of costs should be equal 3
+    ValueError: The parameter costs should be a list of three integers
     """
 
     # Validation
@@ -110,8 +112,6 @@ def mincost_tickets(days: list[int], costs: list[int]) -> int:
 
     if max(days) >= 366:
         raise ValueError("All days elements should be less than 366")
-
-    from functools import lru_cache
 
     days_set = set(days)
 
