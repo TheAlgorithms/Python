@@ -1,7 +1,7 @@
 [flake8]
 max-line-length = 88
 # max-complexity should be 10
-max-complexity = 23
+max-complexity = 21
 extend-ignore =
     # Formatting style for `black`
     E203  # Whitespace before ':'
