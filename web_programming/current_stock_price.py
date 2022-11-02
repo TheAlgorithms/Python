@@ -13,13 +13,10 @@ def stock_price(symbol: str) -> str:
 
     url = f"https://finance.yahoo.com/quote/{symbol}"
 
-    page_content = requests.get(
-        url, headers={"user-agent": USER_AGENT}).content
+    page_content = requests.get(url, headers={"user-agent": USER_AGENT}).content
 
     soup = BeautifulSoup(page_content, "html.parser")
-    ele = soup.find(
-        attrs={"data-symbol": symbol, "data-field": "regularMarketPrice"}
-    )
+    ele = soup.find(attrs={"data-symbol": symbol, "data-field": "regularMarketPrice"})
     return ele.text.strip() if ele is not None else ""
 
 
