@@ -42,8 +42,8 @@ class Deque:
         """
 
         val: Any = None
-        next: Deque._Node | None = None
-        prev: Deque._Node | None = None
+        next_node: Deque._Node | None = None
+        prev_node: Deque._Node | None = None
 
     class _Iterator:
         """
@@ -81,7 +81,7 @@ class Deque:
                 # finished iterating
                 raise StopIteration
             val = self._cur.val
-            self._cur = self._cur.next
+            self._cur = self._cur.next_node
 
             return val
 
@@ -128,8 +128,8 @@ class Deque:
             self._len = 1
         else:
             # connect nodes
-            self._back.next = node
-            node.prev = self._back
+            self._back.next_node = node
+            node.prev_node = self._back
             self._back = node  # assign new back to the new node
 
             self._len += 1
@@ -170,8 +170,8 @@ class Deque:
             self._len = 1
         else:
             # connect nodes
-            node.next = self._front
-            self._front.prev = node
+            node.next_node = self._front
+            self._front.prev_node = node
             self._front = node  # assign new front to the new node
 
             self._len += 1
@@ -264,10 +264,9 @@ class Deque:
         assert not self.is_empty(), "Deque is empty."
 
         topop = self._back
-        self._back = self._back.prev  # set new back
-        self._back.next = (
-            None  # drop the last node - python will deallocate memory automatically
-        )
+        self._back = self._back.prev_node  # set new back
+        # drop the last node - python will deallocate memory automatically
+        self._back.next_node = None
 
         self._len -= 1
 
@@ -300,8 +299,8 @@ class Deque:
         assert not self.is_empty(), "Deque is empty."
 
         topop = self._front
-        self._front = self._front.next  # set new front and drop the first node
-        self._front.prev = None
+        self._front = self._front.next_node  # set new front and drop the first node
+        self._front.prev_node = None
 
         self._len -= 1
 
@@ -385,8 +384,8 @@ class Deque:
             # compare every value
             if me.val != oth.val:
                 return False
-            me = me.next
-            oth = oth.next
+            me = me.next_node
+            oth = oth.next_node
 
         return True
 
@@ -424,7 +423,7 @@ class Deque:
         while aux is not None:
             # append the values in a list to display
             values_list.append(aux.val)
-            aux = aux.next
+            aux = aux.next_node
 
         return "[" + ", ".join(repr(val) for val in values_list) + "]"
 
