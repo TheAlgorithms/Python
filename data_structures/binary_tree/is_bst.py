@@ -15,6 +15,8 @@ A valid BST is defined as follows:
 Implementation notes:
 Depth-first search approach.
 
+leetcode: https://leetcode.com/problems/validate-binary-search-tree/
+
 Let n is the number of nodes in tree
 Runtime: O(n)
 Space: O(1)
