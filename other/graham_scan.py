@@ -13,6 +13,7 @@ from enum import Enum
 from math import atan2, degrees
 from sys import maxsize
 
+
 # traversal from the lowest and the most left point in anti-clockwise direction
 # if direction gets right, the previous point is not the convex hull.
 class Direction(Enum):
