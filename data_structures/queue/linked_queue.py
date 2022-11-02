@@ -96,7 +96,7 @@ class LinkedQueue:
         >>> queue = LinkedQueue()
         >>> queue.get()
         Traceback (most recent call last):
-        ...
+            ...
         IndexError: dequeue from empty queue
         >>> for i in range(1, 6):
         ...     queue.put(i)
@@ -116,7 +116,7 @@ class LinkedQueue:
         >>> queue = LinkedQueue()
         >>> queue.get()
         Traceback (most recent call last):
-        ...
+            ...
         IndexError: dequeue from empty queue
         >>> queue = LinkedQueue()
         >>> for i in range(1, 6):

@@ -27,7 +27,7 @@ class MinHeap:
     >>> myMinHeap.decrease_key(b, -17)
     >>> print(b)
     Node(B, -17)
-    >>> print(myMinHeap["B"])
+    >>> myMinHeap["B"]
     -17
     """
 

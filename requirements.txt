@@ -1,4 +1,5 @@
 beautifulsoup4
+cython>=0.29.28  # For statsmodels on Python 3.11
 fake_useragent
 keras
 lxml
@@ -8,14 +9,14 @@ opencv-python
 pandas
 pillow
 projectq
-qiskit
+qiskit; python_version < "3.11"
 requests
 rich
 scikit-fuzzy
 sklearn
 statsmodels
 sympy
-tensorflow
+tensorflow; python_version < "3.11"
 texttable
 tweepy
 xgboost

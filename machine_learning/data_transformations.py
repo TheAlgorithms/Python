@@ -1,5 +1,7 @@
 """
-Normalization Wikipedia: https://en.wikipedia.org/wiki/Normalization
+Normalization.
+
+Wikipedia: https://en.wikipedia.org/wiki/Normalization
 Normalization is the process of converting numerical data to a standard range of values.
 This range is typically between [0, 1] or [-1, 1]. The equation for normalization is
 x_norm = (x - x_min)/(x_max - x_min) where x_norm is the normalized value, x is the
@@ -28,7 +30,8 @@ from statistics import mean, stdev
 
 def normalization(data: list, ndigits: int = 3) -> list:
     """
-    Returns a normalized list of values
+    Return a normalized list of values.
+
     @params: data, a list of values to normalize
     @returns: a list of normalized values (rounded to ndigits decimal places)
     @examples:
@@ -46,7 +49,8 @@ def normalization(data: list, ndigits: int = 3) -> list:
 
 def standardization(data: list, ndigits: int = 3) -> list:
     """
-    Returns a standardized list of values
+    Return a standardized list of values.
+
     @params: data, a list of values to standardize
     @returns: a list of standardized values (rounded to ndigits decimal places)
     @examples:

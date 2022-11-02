@@ -21,7 +21,7 @@ def create_cipher_map(key: str) -> dict[str, str]:
     :param key: keyword to use
     :return: dictionary cipher map
     """
-    # Create alphabet list
+    # Create a list of the letters in the alphabet
     alphabet = [chr(i + 65) for i in range(26)]
     # Remove duplicate characters from key
     key = remove_duplicates(key.upper())
