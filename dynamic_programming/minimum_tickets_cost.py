@@ -87,8 +87,8 @@ def mincost_tickets(days: list[int], costs: list[int]) -> int:
     """
 
     # Validation
-    if not isinstance(days, list):
-        raise ValueError("The parameter days should be a list")
+    if not isinstance(days, list) or not all(isinstance(day, int) for day in days):
+        raise ValueError("The parameter days should be a list of integers")
 
     if not isinstance(costs, list):
         raise ValueError("The parameter costs should be a list")
