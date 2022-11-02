@@ -1,51 +1,51 @@
 """
-get the random number guessed by the computer by passing the lower,higher
-and the number to guess
+Get the random number guessed by the computer by passing the lower, higher, and the
+number to guess.
 
-this solution works on divide and getting the half of number of previous and
-current, this depends on the number is low or high
+This solution works on divide and getting the half of number of previous and current,
+this depends on the number is low or high
 
-if the number is more than last lower and less than to the number to guess then
-the number is assigned to it, and same but opposite for higher number
+If the number is more than last lower and less than to the number to guess then the
+number is assigned to it, and same but opposite for higher number.
 
-suppose lower is 0, higher is 1000 and the number to guess is 355
+Suppose lower is 0, higher is 1000 and the number to guess is 355
 then:
-    num = int((lower+higher)/2)
-    for above statement the function already declared as the get_avg(a,b)
+    num = int((lower + higher) // 2)
+    for above statement the function already declared as the get_avg(a, b)
 
         [1]
-    get_avg(0,1000)  : 500
+    get_avg(0, 1000)  : 500
     answer(500) : high
         Now this value is passed to the answer function and that returns the
         passed number is lower than the guess number or higher than the guess
         number and also for equality
 
         [2]
-    get_avg(0,500) : 250
+    get_avg(0, 500) : 250
     answer(250) : low
 
         [3]
-    get_avg(250,500) : 375
+    get_avg(250, 500) : 375
     answer(375) : high
 
         [4]
-    get_avg(375,250) : 312
+    get_avg(375, 250) : 312
     answer(312) : low
 
         [5]
-    get_avg(312,375) : 343
+    get_avg(312, 375) : 343
     answer(343) : low
 
         [6]
-    get_avg(343,375) : 359
+    get_avg(343, 375) : 359
     answer(359) : high
 
         [7]
-    get_avg(343,359) : 351
+    get_avg(343, 359) : 351
     answer(351) : low
 
         [8]
-    get_avg(351,359) : 355
+    get_avg(351, 359) : 355
     answer(355) : same
 
 The number is found : 355
@@ -54,7 +54,6 @@ The number is found : 355
 started...
 guess the number : 17
 details : [505, 257, 133, 71, 40, 25, 17]
-
 """
 
 
