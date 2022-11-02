@@ -22,13 +22,15 @@ Runtime: O(n)
 Space: O(1)
 """
 
+from __future__ import annotations
+
 
 class TreeNode:
     def __init__(
         self,
         data: float = 0,
-        left: "TreeNode" | None = None,
-        right: "TreeNode" | None = None,
+        left: TreeNode | None = None,
+        right: TreeNode | None = None,
     ) -> None:
         self.data = data
         self.left = left
