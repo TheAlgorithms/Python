@@ -1,5 +1,4 @@
 beautifulsoup4
-cython>=0.29.28  # For statsmodels on Python 3.11
 fake_useragent
 keras
 lxml
