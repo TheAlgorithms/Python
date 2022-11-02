@@ -22,7 +22,6 @@ Runtime: O(n)
 Space: O(1)
 """
 
-from typing import Optional
 
 
 class TreeNode:
