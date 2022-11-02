@@ -132,7 +132,7 @@ if __name__ == "__main__":  # pragma: no cover
     # < --------- Prims Algorithm --------- >
     edges_number = int(input("Enter number of edges: ").strip())
     adjacency_list = defaultdict(list)
-    for x in range(edges_number):
+    for _ in range(edges_number):
         edge = [int(x) for x in input().strip().split()]
         adjacency_list[edge[0]].append([edge[1], edge[2]])
         adjacency_list[edge[1]].append([edge[0], edge[2]])
