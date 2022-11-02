@@ -89,13 +89,13 @@ def temp_input_value(
     >>> temp_input_value(min_val=-5100, max_val=-100)
     -5100
     """
-    assert isinstance(min_val, int) and isinstance(max_val, int) and \
-        isinstance(option, bool), \
-        "Invalid type of value(s) specified to function!"
+    assert (
+        isinstance(min_val, int)
+        and isinstance(max_val, int)
+        and isinstance(option, bool)
+    ), "Invalid type of value(s) specified to function!"
     if min_val > max_val:
-        raise ValueError(
-            "Invalid value for min_val or max_val (min_value < max_value)"
-        )
+        raise ValueError("Invalid value for min_val or max_val (min_value < max_value)")
     return min_val if option else max_val
 
 
@@ -150,13 +150,12 @@ def guess_the_number(lower: int, higher: int, to_guess: int) -> None:
         ...
     ValueError: argument value for lower and higher must be(lower > higher)
     """
-    assert isinstance(lower, int) and isinstance(higher, int) \
-        and isinstance(to_guess, int), "argument values must be type of \"int\""
+    assert (
+        isinstance(lower, int) and isinstance(higher, int) and isinstance(to_guess, int)
+    ), 'argument values must be type of "int"'
 
     if lower > higher:
-        raise ValueError(
-            "argument value for lower and higher must be(lower > higher)"
-        )
+        raise ValueError("argument value for lower and higher must be(lower > higher)")
 
     if not lower < to_guess < higher:
         raise ValueError(
