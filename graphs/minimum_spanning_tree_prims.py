@@ -2,27 +2,17 @@ import sys
 from collections import defaultdict
 
 
-def prisms_algorithm(l):  # noqa: E741
-    """
-    >>> l = {0: [[1, 1], [3, 3]], \
-             1: [[0, 1], [2, 6], [3, 5], [4, 1]], \
-             2: [[1, 6], [4, 5], [5, 2]], \
-             3: [[0, 3], [1, 5], [4, 1]], \
-             4: [[1, 1], [2, 5], [3, 1], [5, 4]], \
-             5: [[2, 2], [4, 4]]}
-    >>> prisms_algorithm(l)
-    [(0, 1), (1, 4), (4, 3), (4, 5), (5, 2)]
-    """
+class Heap:
+    def __init__(self):
+        self.node_position = []
 
-    node_position = []
+    def get_position(self, vertex):
+        return self.node_position[vertex]
 
-    def get_position(vertex):
-        return node_position[vertex]
+    def set_position(self, vertex, pos):
+        self.node_position[vertex] = pos
 
-    def set_position(vertex, pos):
-        node_position[vertex] = pos
-
-    def top_to_bottom(heap, start, size, positions):
+    def top_to_bottom(self, heap, start, size, positions):
         if start > size // 2 - 1:
             return
         else:
@@ -38,14 +28,14 @@ def prisms_algorithm(l):  # noqa: E741
                 heap[m], positions[m] = heap[start], positions[start]
                 heap[start], positions[start] = temp, temp1
 
-                temp = get_position(positions[m])
-                set_position(positions[m], get_position(positions[start]))
-                set_position(positions[start], temp)
+                temp = self.get_position(positions[m])
+                self.set_position(positions[m], self.get_position(positions[start]))
+                self.set_position(positions[start], temp)
 
-                top_to_bottom(heap, m, size, positions)
+                self.top_to_bottom(heap, m, size, positions)
 
     # Update function if value of any node in min-heap decreases
-    def bottom_to_top(val, index, heap, position):
+    def bottom_to_top(self, val, index, heap, position):
         temp = position[index]
 
         while index != 0:
@@ -57,28 +47,43 @@ def prisms_algorithm(l):  # noqa: E741
             if val < heap[parent]:
                 heap[index] = heap[parent]
                 position[index] = position[parent]
-                set_position(position[parent], index)
+                self.set_position(position[parent], index)
             else:
                 heap[index] = val
                 position[index] = temp
-                set_position(temp, index)
+                self.set_position(temp, index)
                 break
             index = parent
         else:
             heap[0] = val
             position[0] = temp
-            set_position(temp, 0)
+            self.set_position(temp, 0)
 
-    def heapify(heap, positions):
+    def heapify(self, heap, positions):
         start = len(heap) // 2 - 1
         for i in range(start, -1, -1):
-            top_to_bottom(heap, i, len(heap), positions)
+            self.top_to_bottom(heap, i, len(heap), positions)
 
-    def delete_minimum(heap, positions):
+    def delete_minimum(self, heap, positions):
         temp = positions[0]
         heap[0] = sys.maxsize
-        top_to_bottom(heap, 0, len(heap), positions)
+        self.top_to_bottom(heap, 0, len(heap), positions)
         return temp
+
+
+def prisms_algorithm(l):  # noqa: E741
+    """
+    >>> l = {0: [[1, 1], [3, 3]], \
+             1: [[0, 1], [2, 6], [3, 5], [4, 1]], \
+             2: [[1, 6], [4, 5], [5, 2]], \
+             3: [[0, 3], [1, 5], [4, 1]], \
+             4: [[1, 1], [2, 5], [3, 1], [5, 4]], \
+             5: [[2, 2], [4, 4]]}
+    >>> prisms_algorithm(l)
+    [(0, 1), (1, 4), (4, 3), (4, 5), (5, 2)]
+    """
+
+    heap = Heap()
 
     visited = [0 for i in range(len(l))]
     nbr_tv = [-1 for i in range(len(l))]  # Neighboring Tree Vertex of selected vertex
@@ -91,7 +96,7 @@ def prisms_algorithm(l):  # noqa: E741
         p = sys.maxsize
         distance_tv.append(p)
         positions.append(x)
-        node_position.append(x)
+        heap.node_position.append(x)
 
     tree_edges = []
     visited[0] = 1
@@ -99,17 +104,19 @@ def prisms_algorithm(l):  # noqa: E741
     for x in l[0]:
         nbr_tv[x[0]] = 0
         distance_tv[x[0]] = x[1]
-    heapify(distance_tv, positions)
+    heap.heapify(distance_tv, positions)
 
     for _ in range(1, len(l)):
-        vertex = delete_minimum(distance_tv, positions)
+        vertex = heap.delete_minimum(distance_tv, positions)
         if visited[vertex] == 0:
             tree_edges.append((nbr_tv[vertex], vertex))
             visited[vertex] = 1
             for v in l[vertex]:
-                if visited[v[0]] == 0 and v[1] < distance_tv[get_position(v[0])]:
-                    distance_tv[get_position(v[0])] = v[1]
-                    bottom_to_top(v[1], get_position(v[0]), distance_tv, positions)
+                if visited[v[0]] == 0 and v[1] < distance_tv[heap.get_position(v[0])]:
+                    distance_tv[heap.get_position(v[0])] = v[1]
+                    heap.bottom_to_top(
+                        v[1], heap.get_position(v[0]), distance_tv, positions
+                    )
                     nbr_tv[v[0]] = vertex
     return tree_edges
 
