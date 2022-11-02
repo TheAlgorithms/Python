@@ -73,7 +73,9 @@ class Graph:
 
         target_vertex_parent = self.parent.get(target_vertex)
         if target_vertex_parent is None:
-            raise ValueError(f"No path from vertex: {self.source_vertex} to vertex: {target_vertex}")
+            raise ValueError(
+                f"No path from vertex: {self.source_vertex} to vertex: {target_vertex}"
+            )
 
         return self.shortest_path(target_vertex_parent) + f"->{target_vertex}"
 
