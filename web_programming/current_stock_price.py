@@ -1,20 +1,26 @@
 import requests
 from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
 
-USER_AGENT = (
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0) Gecko/20100101 Firefox/42.0"
-)
+ua = UserAgent()
 
 
 def stock_price(symbol: str) -> str:
+    """
+    fetches the stock price and return it in string
+    """
+    assert isinstance(symbol, str), "symbol value must be type of 'str'"
+
     url = f"https://finance.yahoo.com/quote/{symbol}"
 
-    page_content = requests.get(url, headers={"user-agent": USER_AGENT}).content
+    page_content = requests.get(
+        url, headers={"user-agent": ua.ie}).content
 
     soup = BeautifulSoup(page_content, "html.parser")
-    return soup.find(
+    ele = soup.find(
         attrs={"data-symbol": symbol, "data-field": "regularMarketPrice"}
-    ).text
+    )
+    return ele.text.strip() if ele is not None else ""
 
 
 if __name__ == "__main__":
