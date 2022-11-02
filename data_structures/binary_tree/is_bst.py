@@ -29,8 +29,8 @@ class TreeNode:
     def __init__(
         self,
         data: float = 0,
-        left: Optional["TreeNode"] = None,
-        right: Optional["TreeNode"] = None,
+        left: TreeNode | None = None,
+        right: TreeNode | None = None,
     ) -> None:
         self.data = data
         self.left = left
