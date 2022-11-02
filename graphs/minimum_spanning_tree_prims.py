@@ -17,22 +17,27 @@ class Heap:
             return
         else:
             if 2 * start + 2 >= size:
-                m = 2 * start + 1
+                smallest_child = 2 * start + 1
             else:
                 if heap[2 * start + 1] < heap[2 * start + 2]:
-                    m = 2 * start + 1
+                    smallest_child = 2 * start + 1
                 else:
-                    m = 2 * start + 2
-            if heap[m] < heap[start]:
-                temp, temp1 = heap[m], positions[m]
-                heap[m], positions[m] = heap[start], positions[start]
+                    smallest_child = 2 * start + 2
+            if heap[smallest_child] < heap[start]:
+                temp, temp1 = heap[smallest_child], positions[smallest_child]
+                heap[smallest_child], positions[smallest_child] = (
+                    heap[start],
+                    positions[start],
+                )
                 heap[start], positions[start] = temp, temp1
 
-                temp = self.get_position(positions[m])
-                self.set_position(positions[m], self.get_position(positions[start]))
+                temp = self.get_position(positions[smallest_child])
+                self.set_position(
+                    positions[smallest_child], self.get_position(positions[start])
+                )
                 self.set_position(positions[start], temp)
 
-                self.top_to_bottom(heap, m, size, positions)
+                self.top_to_bottom(heap, smallest_child, size, positions)
 
     # Update function if value of any node in min-heap decreases
     def bottom_to_top(self, val, index, heap, position):
@@ -85,27 +90,24 @@ def prisms_algorithm(adjacency_list):
 
     heap = Heap()
 
-    visited = [0 for i in range(len(adjacency_list))]
-    nbr_tv = [
-        -1 for i in range(len(adjacency_list))
-    ]  # Neighboring Tree Vertex of selected vertex
+    visited = [0] * len(adjacency_list)
+    nbr_tv = [-1] * len(adjacency_list)  # Neighboring Tree Vertex of selected vertex
     # Minimum Distance of explored vertex with neighboring vertex of partial tree
     # formed in graph
     distance_tv = []  # Heap of Distance of vertices from their neighboring vertex
     positions = []
 
-    for x in range(len(adjacency_list)):
-        p = sys.maxsize
-        distance_tv.append(p)
-        positions.append(x)
-        heap.node_position.append(x)
+    for vertex in range(len(adjacency_list)):
+        distance_tv.append(sys.maxsize)
+        positions.append(vertex)
+        heap.node_position.append(vertex)
 
     tree_edges = []
     visited[0] = 1
     distance_tv[0] = sys.maxsize
-    for x in adjacency_list[0]:
-        nbr_tv[x[0]] = 0
-        distance_tv[x[0]] = x[1]
+    for neighbor, distance in adjacency_list[0]:
+        nbr_tv[neighbor] = 0
+        distance_tv[neighbor] = distance
     heap.heapify(distance_tv, positions)
 
     for _ in range(1, len(adjacency_list)):
@@ -113,22 +115,24 @@ def prisms_algorithm(adjacency_list):
         if visited[vertex] == 0:
             tree_edges.append((nbr_tv[vertex], vertex))
             visited[vertex] = 1
-            for v in adjacency_list[vertex]:
-                if visited[v[0]] == 0 and v[1] < distance_tv[heap.get_position(v[0])]:
-                    distance_tv[heap.get_position(v[0])] = v[1]
+            for neighbor, distance in adjacency_list[vertex]:
+                if (
+                    visited[neighbor] == 0
+                    and distance < distance_tv[heap.get_position(neighbor)]
+                ):
+                    distance_tv[heap.get_position(neighbor)] = distance
                     heap.bottom_to_top(
-                        v[1], heap.get_position(v[0]), distance_tv, positions
+                        distance, heap.get_position(neighbor), distance_tv, positions
                     )
-                    nbr_tv[v[0]] = vertex
+                    nbr_tv[neighbor] = vertex
     return tree_edges
 
 
 if __name__ == "__main__":  # pragma: no cover
     # < --------- Prims Algorithm --------- >
-    n = int(input("Enter number of vertices: ").strip())
-    e = int(input("Enter number of edges: ").strip())
+    edges_number = int(input("Enter number of edges: ").strip())
     adjacency_list = defaultdict(list)
-    for x in range(e):
+    for x in range(edges_number):
         edge = [int(x) for x in input().strip().split()]
         adjacency_list[edge[0]].append([edge[1], edge[2]])
         adjacency_list[edge[1]].append([edge[0], edge[2]])
