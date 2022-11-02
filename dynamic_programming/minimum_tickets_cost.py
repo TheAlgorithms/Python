@@ -107,12 +107,7 @@ def mincost_tickets(days: list[int], costs: list[int]) -> int:
     days_set = set(days)
 
     @lru_cache(maxsize=None)
-    def dp(index: int) -> int:
-        """
-        >>> dp(366)
-        0
-        """
-
+    def dynamic_programming(index: int) -> int:
         if index > 365:
             return 0
 
@@ -125,7 +120,7 @@ def mincost_tickets(days: list[int], costs: list[int]) -> int:
             costs[2] + dp(index + 30),
         )
 
-    return dp(1)
+    return dynamic_programming(1)
 
 
 if __name__ == "__main__":
