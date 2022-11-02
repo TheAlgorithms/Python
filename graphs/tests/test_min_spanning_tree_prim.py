@@ -4,7 +4,7 @@ from graphs.minimum_spanning_tree_prims import prisms_algorithm as mst
 
 
 def test_prim_successful_result():
-    num_nodes, num_edges = 9, 14  # noqa: F841
+    num_nodes, num_edges = 9, 14
     edges = [
         [0, 1, 4],
         [0, 7, 8],

@@ -38,7 +38,7 @@ def longest_common_subsequence(x: str, y: str):
     n = len(y)
 
     # declaring the array for storing the dp values
-    l = [[0] * (n + 1) for _ in range(m + 1)]  # noqa: E741
+    l = [[0] * (n + 1) for _ in range(m + 1)]
 
     for i in range(1, m + 1):
         for j in range(1, n + 1):

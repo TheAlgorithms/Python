@@ -66,7 +66,7 @@ class MinHeap:
     # this is min-heapify method
     def sift_down(self, idx, array):
         while True:
-            l = self.get_left_child_idx(idx)  # noqa: E741
+            l = self.get_left_child_idx(idx)
             r = self.get_right_child_idx(idx)
 
             smallest = idx

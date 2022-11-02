@@ -2,7 +2,7 @@ import sys
 from collections import defaultdict
 
 
-def prisms_algorithm(l):  # noqa: E741
+def prisms_algorithm(l):
 
     node_position = []
 
@@ -110,7 +110,7 @@ if __name__ == "__main__":  # pragma: no cover
     e = int(input("Enter number of edges: ").strip())
     adjlist = defaultdict(list)
     for x in range(e):
-        l = [int(x) for x in input().strip().split()]  # noqa: E741
+        l = [int(x) for x in input().strip().split()]
         adjlist[l[0]].append([l[1], l[2]])
         adjlist[l[1]].append([l[0], l[2]])
     print(prisms_algorithm(adjlist))

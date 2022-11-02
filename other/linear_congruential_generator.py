@@ -14,7 +14,7 @@ class LinearCongruentialGenerator:
     # will only be called once per instance and it ensures that each instance will
     # generate a unique sequence of numbers.
 
-    def __init__(self, multiplier, increment, modulo, seed=int(time())):  # noqa: B008
+    def __init__(self, multiplier, increment, modulo, seed=int(time())):
         """
         These parameters are saved and used when nextNumber() is called.
 

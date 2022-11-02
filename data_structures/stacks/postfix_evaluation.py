@@ -22,7 +22,7 @@ import operator as op
 
 def solve(post_fix):
     stack = []
-    div = lambda x, y: int(x / y)  # noqa: E731 integer division operation
+    div = lambda x, y: int(x / y)  # integer division operation
     opr = {
         "^": op.pow,
         "*": op.mul,

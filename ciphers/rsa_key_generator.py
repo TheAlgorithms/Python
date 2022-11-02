@@ -2,8 +2,8 @@ import os
 import random
 import sys
 
-from . import cryptomath_module as cryptoMath  # noqa: N812
-from . import rabin_miller as rabinMiller  # noqa: N812
+from . import cryptomath_module as cryptoMath
+from . import rabin_miller as rabinMiller
 
 
 def main() -> None:

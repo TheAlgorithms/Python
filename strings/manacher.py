@@ -50,7 +50,7 @@ def palindromic_string(input_string: str) -> str:
         # does this string is ending after the previously explored end (that is r) ?
         # if yes the update the new r to the last index of this
         if j + k - 1 > r:
-            l = j - k + 1  # noqa: E741
+            l = j - k + 1
             r = j + k - 1
 
         # update max_length and start position

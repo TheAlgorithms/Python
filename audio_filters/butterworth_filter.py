@@ -11,7 +11,7 @@ Alternatively you can use scipy.signal.butter, which should yield the same resul
 
 
 def make_lowpass(
-    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)  # noqa: B008
+    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
 ) -> IIRFilter:
     """
     Creates a low-pass filter
@@ -39,7 +39,7 @@ def make_lowpass(
 
 
 def make_highpass(
-    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)  # noqa: B008
+    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
 ) -> IIRFilter:
     """
     Creates a high-pass filter
@@ -67,7 +67,7 @@ def make_highpass(
 
 
 def make_bandpass(
-    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)  # noqa: B008
+    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
 ) -> IIRFilter:
     """
     Creates a band-pass filter
@@ -96,7 +96,7 @@ def make_bandpass(
 
 
 def make_allpass(
-    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)  # noqa: B008
+    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)
 ) -> IIRFilter:
     """
     Creates an all-pass filter
@@ -124,7 +124,7 @@ def make_peak(
     frequency: int,
     samplerate: int,
     gain_db: float,
-    q_factor: float = 1 / sqrt(2),  # noqa: B008
+    q_factor: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
     Creates a peak filter
@@ -156,7 +156,7 @@ def make_lowshelf(
     frequency: int,
     samplerate: int,
     gain_db: float,
-    q_factor: float = 1 / sqrt(2),  # noqa: B008
+    q_factor: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
     Creates a low-shelf filter
@@ -193,7 +193,7 @@ def make_highshelf(
     frequency: int,
     samplerate: int,
     gain_db: float,
-    q_factor: float = 1 / sqrt(2),  # noqa: B008
+    q_factor: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
     Creates a high-shelf filter

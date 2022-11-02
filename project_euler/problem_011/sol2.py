@@ -35,7 +35,7 @@ def solution():
     70600674
     """
     with open(os.path.dirname(__file__) + "/grid.txt") as f:
-        l = []  # noqa: E741
+        l = []
         for _ in range(20):
             l.append([int(x) for x in f.readline().split()])
 

@@ -314,7 +314,7 @@ class SmoSVM:
             l, h = max(0.0, a2 - a1), min(self._c, self._c + a2 - a1)
         else:
             l, h = max(0.0, a2 + a1 - self._c), min(self._c, a2 + a1)
-        if l == h:  # noqa: E741
+        if l == h:
             return None, None
 
         # calculate eta
