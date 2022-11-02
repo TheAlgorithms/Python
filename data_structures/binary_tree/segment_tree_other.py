@@ -17,7 +17,7 @@ class SegmentTreeNode:
         self.right = right
 
     def __repr__(self):
-        return f"<val={self.val} start={self.start} end={self.end}>"
+        return f"SegmentTreeNode(start={self.start}, end={self.end}, val={self.val})"
 
 
 class SegmentTree:
