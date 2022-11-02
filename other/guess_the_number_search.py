@@ -58,7 +58,9 @@ details : [505, 257, 133, 71, 40, 25, 17]
 """
 
 
-def temp_input_value(min_val: int = 10, max_val: int = 1000, option: bool = True) -> int:
+def temp_input_value(
+    min_val: int = 10, max_val: int = 1000, option: bool = True
+) -> int:
     """
     Temporary input values for tests
 
