@@ -34,11 +34,19 @@ def mincost_tickets(days: list[int], costs: list[int]) -> int:
     17
     >>> mincost_tickets([1,2,3,4,5,6,7,8,9,10,30,31], [2,90,150])
     24
+    >>> mincost_tickets([2], [2,90,150])
+    2
+    >>> mincost_tickets([], [2,90,150])
+    0
     >>> mincost_tickets([-1,2,3,4,5,6,7,8,9,10,30,31], [2,90,150])
     Traceback (most recent call last):
      ...
     ValueError: All days elements should be greater than 0
     >>> mincost_tickets([2,3,4,5,6,7,8,9,10,30,31], [])
+    Traceback (most recent call last):
+     ...
+    ValueError: The lengths of costs should be equal 3
+    >>> mincost_tickets([], [])
     Traceback (most recent call last):
      ...
     ValueError: The lengths of costs should be equal 3
@@ -52,6 +60,9 @@ def mincost_tickets(days: list[int], costs: list[int]) -> int:
 
     if len(costs) != 3:
         raise ValueError('The lengths of costs should be equal 3')
+
+    if len(days) == 0:
+        return 0
 
     if min(days) <= 0:
         raise ValueError('All days elements should be greater than 0')
