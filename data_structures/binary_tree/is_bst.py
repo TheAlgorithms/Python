@@ -51,7 +51,20 @@ def is_bst(root):
     """
 
     # Validation
-    def is_valid_tree(node):
+    def is_valid_tree(node:Optional['TreeNode']):
+        """
+        >>> is_valid_tree(None)
+        True
+
+        >>> is_valid_tree('abc')
+        False
+
+        >>> is_valid_tree(TreeNode('not a float'))
+        False
+
+        >>> is_valid_tree(TreeNode(1, TreeNode('123')))
+        False
+        """
         if node is None:
             return True
 
@@ -68,7 +81,7 @@ def is_bst(root):
     if not is_valid_tree(root):
         raise ValueError('Each node should be type of TreeNode and data should be float.')
 
-    def is_bst_internal(node, left_bound, right_bound):
+    def is_bst_internal(node:Optional['TreeNode'], left_bound:float, right_bound:float):
         """
         >>> is_bst_internal(None)
         True
