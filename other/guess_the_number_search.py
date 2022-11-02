@@ -68,9 +68,7 @@ def temp_input_value(min_val: int = 10, max_val: int = 1000, option: int = True)
     >>> temp_input_value(option=False)
     1000
     """
-    if option is True:
-        return min_val
-    return max_val
+    return min_val if option else max_val
 
 
 def get_avg(number_1: int, number_2: int) -> int:
