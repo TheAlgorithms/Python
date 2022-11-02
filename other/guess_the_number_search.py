@@ -74,11 +74,11 @@ def temp_input_value(min_val: int = 10, max_val: int = 1000, option: int = True)
 def get_avg(number_1: int, number_2: int) -> int:
     """
     Return the mid-number(whole) of two integers a and b
-    >>> get_avg(10,15)
+    >>> get_avg(10, 15)
     12
-    >>> get_avg(20,300)
+    >>> get_avg(20, 300)
     160
-    >>> get_avg("abcd",300)
+    >>> get_avg("abcd", 300)
     Traceback (most recent call last):
         ...
     TypeError: can only concatenate str (not "int") to str
