@@ -92,7 +92,7 @@ def mincost_tickets(days: list[int], costs: list[int]) -> int:
     if not isinstance(days, list) or not all(isinstance(day, int) for day in days):
         raise ValueError("The parameter days should be a list of integers")
 
-    if len(costs) !=3 or not all(isinstance(cost, int) for cost in costs):
+    if len(costs) != 3 or not all(isinstance(cost, int) for cost in costs):
         raise ValueError("The parameter costs should be a list of three integers")
 
     if any([not isinstance(day, int) for day in days]):
