@@ -89,11 +89,13 @@ def temp_input_value(
     >>> temp_input_value(min_val=-5100, max_val=-100)
     -5100
     """
-    assert (
-        type(min_val) == int and type(max_val) == int and type(option) == bool
-    ), "Invalid type of value(s) specified to function!"
+    assert type(min_val) == int and type(max_val) == int and \
+        type(option) == bool, \
+        "Invalid type of value(s) specified to function!"
     if min_val > max_val:
-        raise ValueError("Invalid value for min_val or max_val (min_value < max_value)")
+        raise ValueError(
+            "Invalid value for min_val or max_val (min_value < max_value)"
+        )
     return min_val if option else max_val
 
 
@@ -128,11 +130,38 @@ def guess_the_number(lower: int, higher: int, to_guess: int) -> None:
     guess the number : 17
     details : [505, 257, 133, 71, 40, 25, 17]
 
+    >>> guess_the_number(-10000, 10000, 7)
+    started...
+    guess the number : 7
+    details : [0, 5000, 2500, 1250, 625, 312, 156, 78, 39, 19, 9, 4, 6, 7]
+
     >>> guess_the_number(10, 1000, "a")
     Traceback (most recent call last):
         ...
-    TypeError: '>' not supported between instances of 'int' and 'str'
+    AssertionError: argument values must be type of "int"
+
+    >>> guess_the_number(10, 1000, 5)
+    Traceback (most recent call last):
+        ...
+    ValueError: guess value must be within the range of lower and higher value
+
+    >>> guess_the_number(10000, 100, 5)
+    Traceback (most recent call last):
+        ...
+    ValueError: argument value for lower and higher must be(lower > higher)
     """
+    assert type(lower) == int and type(higher) == int \
+        and type(to_guess) == int, "argument values must be type of \"int\""
+
+    if lower > higher:
+        raise ValueError(
+            "argument value for lower and higher must be(lower > higher)"
+        )
+
+    if to_guess < lower or to_guess > higher:
+        raise ValueError(
+            "guess value must be within the range of lower and higher value"
+        )
 
     def answer(number: int) -> str:
         """
