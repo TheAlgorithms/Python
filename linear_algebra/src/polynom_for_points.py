@@ -4,11 +4,11 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
     number of points you want to use
 
     >>> print(points_to_polynomial([]))
-    Traceback (most recent call last): 
+    Traceback (most recent call last):
         ...
     ValueError: The program cannot work out a fitting polynomial.
     >>> print(points_to_polynomial([[]]))
-    Traceback (most recent call last): 
+    Traceback (most recent call last):
         ...
     ValueError: The program cannot work out a fitting polynomial.
     >>> print(points_to_polynomial([[1, 0], [2, 0], [3, 0]]))
