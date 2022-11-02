@@ -69,21 +69,53 @@ def temp_input_value(
 
     >>> temp_input_value(option=False)
     1000
+
+    >>> temp_input_value(min_val=100, option=True)
+    100
+
+    >>> temp_input_value(min_val=100, max_val=50)
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid value for min_val or max_val (min_value < max_value)
+
+    >>> temp_input_value("ten","fifty",1)
+    Traceback (most recent call last):
+        ...
+    AssertionError: Invalid type of value(s) specified to function!
+
+    >>> temp_input_value(min_val=-100, max_val=500)
+    -100
+
+    >>> temp_input_value(min_val=-5100, max_val=-100)
+    -5100
     """
+    assert type(min_val) == int and type(max_val) == int and \
+        type(option) == bool, \
+        "Invalid type of value(s) specified to function!"
+    if min_val > max_val:
+        raise ValueError(
+            "Invalid value for min_val or max_val (min_value < max_value)"
+        )
     return min_val if option else max_val
 
 
 def get_avg(number_1: int, number_2: int) -> int:
     """
     Return the mid-number(whole) of two integers a and b
+
     >>> get_avg(10, 15)
     12
+
     >>> get_avg(20, 300)
     160
+
     >>> get_avg("abcd", 300)
     Traceback (most recent call last):
         ...
     TypeError: can only concatenate str (not "int") to str
+
+    >>> get_avg(10.5,50.25)
+    30
     """
     return int((number_1 + number_2) / 2)
 
