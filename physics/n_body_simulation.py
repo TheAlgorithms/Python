@@ -246,9 +246,7 @@ def plot(
         update_step(body_system, DELTA_TIME, patches)
         return patches
 
-    anim = animation.FuncAnimation(
-        fig, update, interval=INTERVAL, blit=True
-    )
+    anim = animation.FuncAnimation(fig, update, interval=INTERVAL, blit=True)
 
     plt.show()
 
