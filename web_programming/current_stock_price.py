@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
-from fake_useragent import UserAgent
 
-ua = UserAgent()
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) \
+    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
 
 
 def stock_price(symbol: str) -> str:
@@ -13,10 +13,13 @@ def stock_price(symbol: str) -> str:
 
     url = f"https://finance.yahoo.com/quote/{symbol}"
 
-    page_content = requests.get(url, headers={"user-agent": ua.ie}).content
+    page_content = requests.get(
+        url, headers={"user-agent": USER_AGENT}).content
 
     soup = BeautifulSoup(page_content, "html.parser")
-    ele = soup.find(attrs={"data-symbol": symbol, "data-field": "regularMarketPrice"})
+    ele = soup.find(
+        attrs={"data-symbol": symbol, "data-field": "regularMarketPrice"}
+    )
     return ele.text.strip() if ele is not None else ""
 
 
