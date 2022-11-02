@@ -2,7 +2,7 @@
 # https://en.wikipedia.org/wiki/Cramer%27s_rule
 
 
-def cramers_rule_2x2(equation1: list[int], equation2: list[int]) -> tuple[float]:
+def cramers_rule_2x2(equation1: list[int], equation2: list[int]) -> tuple[float, float]:
     """
     Solves the system of linear equation in 2 variables.
     :param: equation1: list of 3 numbers
@@ -76,7 +76,7 @@ def cramers_rule_2x2(equation1: list[int], equation2: list[int]) -> tuple[float]
     else:
         if determinant_x == determinant_y == 0:
             # Trivial solution (Inconsistent system)
-            return (0, 0)
+            return (0.0, 0.0)
         else:
             x = determinant_x / determinant
             y = determinant_y / determinant

@@ -27,29 +27,29 @@ class SegmentTree:
     >>> for node in num_arr.traverse():
     ...     print(node)
     ...
-    <val=15 start=0 end=4>
-    <val=8 start=0 end=2>
-    <val=7 start=3 end=4>
-    <val=3 start=0 end=1>
-    <val=5 start=2 end=2>
-    <val=3 start=3 end=3>
-    <val=4 start=4 end=4>
-    <val=2 start=0 end=0>
-    <val=1 start=1 end=1>
+    SegmentTreeNode(start=0, end=4, val=15)
+    SegmentTreeNode(start=0, end=2, val=8)
+    SegmentTreeNode(start=3, end=4, val=7)
+    SegmentTreeNode(start=0, end=1, val=3)
+    SegmentTreeNode(start=2, end=2, val=5)
+    SegmentTreeNode(start=3, end=3, val=3)
+    SegmentTreeNode(start=4, end=4, val=4)
+    SegmentTreeNode(start=0, end=0, val=2)
+    SegmentTreeNode(start=1, end=1, val=1)
     >>>
     >>> num_arr.update(1, 5)
     >>> for node in num_arr.traverse():
     ...     print(node)
     ...
-    <val=19 start=0 end=4>
-    <val=12 start=0 end=2>
-    <val=7 start=3 end=4>
-    <val=7 start=0 end=1>
-    <val=5 start=2 end=2>
-    <val=3 start=3 end=3>
-    <val=4 start=4 end=4>
-    <val=2 start=0 end=0>
-    <val=5 start=1 end=1>
+    SegmentTreeNode(start=0, end=4, val=19)
+    SegmentTreeNode(start=0, end=2, val=12)
+    SegmentTreeNode(start=3, end=4, val=7)
+    SegmentTreeNode(start=0, end=1, val=7)
+    SegmentTreeNode(start=2, end=2, val=5)
+    SegmentTreeNode(start=3, end=3, val=3)
+    SegmentTreeNode(start=4, end=4, val=4)
+    SegmentTreeNode(start=0, end=0, val=2)
+    SegmentTreeNode(start=1, end=1, val=5)
     >>>
     >>> num_arr.query_range(3, 4)
     7
@@ -62,29 +62,29 @@ class SegmentTree:
     >>> for node in max_arr.traverse():
     ...     print(node)
     ...
-    <val=5 start=0 end=4>
-    <val=5 start=0 end=2>
-    <val=4 start=3 end=4>
-    <val=2 start=0 end=1>
-    <val=5 start=2 end=2>
-    <val=3 start=3 end=3>
-    <val=4 start=4 end=4>
-    <val=2 start=0 end=0>
-    <val=1 start=1 end=1>
+    SegmentTreeNode(start=0, end=4, val=5)
+    SegmentTreeNode(start=0, end=2, val=5)
+    SegmentTreeNode(start=3, end=4, val=4)
+    SegmentTreeNode(start=0, end=1, val=2)
+    SegmentTreeNode(start=2, end=2, val=5)
+    SegmentTreeNode(start=3, end=3, val=3)
+    SegmentTreeNode(start=4, end=4, val=4)
+    SegmentTreeNode(start=0, end=0, val=2)
+    SegmentTreeNode(start=1, end=1, val=1)
     >>>
     >>> max_arr.update(1, 5)
     >>> for node in max_arr.traverse():
     ...     print(node)
     ...
-    <val=5 start=0 end=4>
-    <val=5 start=0 end=2>
-    <val=4 start=3 end=4>
-    <val=5 start=0 end=1>
-    <val=5 start=2 end=2>
-    <val=3 start=3 end=3>
-    <val=4 start=4 end=4>
-    <val=2 start=0 end=0>
-    <val=5 start=1 end=1>
+    SegmentTreeNode(start=0, end=4, val=5)
+    SegmentTreeNode(start=0, end=2, val=5)
+    SegmentTreeNode(start=3, end=4, val=4)
+    SegmentTreeNode(start=0, end=1, val=5)
+    SegmentTreeNode(start=2, end=2, val=5)
+    SegmentTreeNode(start=3, end=3, val=3)
+    SegmentTreeNode(start=4, end=4, val=4)
+    SegmentTreeNode(start=0, end=0, val=2)
+    SegmentTreeNode(start=1, end=1, val=5)
     >>>
     >>> max_arr.query_range(3, 4)
     4
@@ -97,29 +97,29 @@ class SegmentTree:
     >>> for node in min_arr.traverse():
     ...     print(node)
     ...
-    <val=1 start=0 end=4>
-    <val=1 start=0 end=2>
-    <val=3 start=3 end=4>
-    <val=1 start=0 end=1>
-    <val=5 start=2 end=2>
-    <val=3 start=3 end=3>
-    <val=4 start=4 end=4>
-    <val=2 start=0 end=0>
-    <val=1 start=1 end=1>
+    SegmentTreeNode(start=0, end=4, val=1)
+    SegmentTreeNode(start=0, end=2, val=1)
+    SegmentTreeNode(start=3, end=4, val=3)
+    SegmentTreeNode(start=0, end=1, val=1)
+    SegmentTreeNode(start=2, end=2, val=5)
+    SegmentTreeNode(start=3, end=3, val=3)
+    SegmentTreeNode(start=4, end=4, val=4)
+    SegmentTreeNode(start=0, end=0, val=2)
+    SegmentTreeNode(start=1, end=1, val=1)
     >>>
     >>> min_arr.update(1, 5)
     >>> for node in min_arr.traverse():
     ...     print(node)
     ...
-    <val=2 start=0 end=4>
-    <val=2 start=0 end=2>
-    <val=3 start=3 end=4>
-    <val=2 start=0 end=1>
-    <val=5 start=2 end=2>
-    <val=3 start=3 end=3>
-    <val=4 start=4 end=4>
-    <val=2 start=0 end=0>
-    <val=5 start=1 end=1>
+    SegmentTreeNode(start=0, end=4, val=2)
+    SegmentTreeNode(start=0, end=2, val=2)
+    SegmentTreeNode(start=3, end=4, val=3)
+    SegmentTreeNode(start=0, end=1, val=2)
+    SegmentTreeNode(start=2, end=2, val=5)
+    SegmentTreeNode(start=3, end=3, val=3)
+    SegmentTreeNode(start=4, end=4, val=4)
+    SegmentTreeNode(start=0, end=0, val=2)
+    SegmentTreeNode(start=1, end=1, val=5)
     >>>
     >>> min_arr.query_range(3, 4)
     3
