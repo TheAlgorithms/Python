@@ -71,7 +71,7 @@ def mincost_tickets(days: list[int], costs: list[int]) -> int:
     max_days = max(days)
 
     @lru_cache(maxsize=None)
-    def dp(index):
+    def dp(index: int) -> int:
         if index > max_days:
             return 0
 
