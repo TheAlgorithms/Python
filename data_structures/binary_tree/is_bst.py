@@ -36,7 +36,8 @@ class TreeNode:
         self.left = left
         self.right = right
 
-def is_bst(root:Optional[TreeNode]) -> bool:
+
+def is_bst(root: TreeNode | None) -> bool:
     """
     >>> is_bst(TreeNode(2, TreeNode(1), TreeNode(3)))
     True
@@ -59,7 +60,7 @@ def is_bst(root:Optional[TreeNode]) -> bool:
     """
 
     # Validation
-    def is_valid_tree(node:Optional[TreeNode]) -> bool:
+    def is_valid_tree(node: TreeNode | None) -> bool:
         """
         >>> is_valid_tree(None)
         True
