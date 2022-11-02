@@ -675,7 +675,6 @@
 ## Other
   * [Activity Selection](other/activity_selection.py)
   * [Alternative List Arrange](other/alternative_list_arrange.py)
-  * [Check Strong Password](other/check_strong_password.py)
   * [Davisb Putnamb Logemannb Loveland](other/davisb_putnamb_logemannb_loveland.py)
   * [Dijkstra Bankers Algorithm](other/dijkstra_bankers_algorithm.py)
   * [Doomsday](other/doomsday.py)
@@ -690,7 +689,7 @@
   * [Magicdiamondpattern](other/magicdiamondpattern.py)
   * [Maximum Subarray](other/maximum_subarray.py)
   * [Nested Brackets](other/nested_brackets.py)
-  * [Password Generator](other/password_generator.py)
+  * [Password](other/password.py)
   * [Quine](other/quine.py)
   * [Scoring Algorithm](other/scoring_algorithm.py)
   * [Sdes](other/sdes.py)
