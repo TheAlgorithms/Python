@@ -24,9 +24,11 @@ class SegmentTree:
     """
     >>> import operator
     >>> num_arr = SegmentTree([2, 1, 5, 3, 4], operator.add)
-    >>> for node in num_arr.traverse():
-    ...     print(node)
-    ...
+    >>> tuple(num_arr.traverse())  # doctest: +NORMALIZE_WHITESPACE
+    (
+        SegmentTreeNode(start=0, end=4, val=15),
+        [ ... ]
+    )
     SegmentTreeNode(start=0, end=4, val=15)
     SegmentTreeNode(start=0, end=2, val=8)
     SegmentTreeNode(start=3, end=4, val=7)
