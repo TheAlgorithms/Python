@@ -45,7 +45,6 @@ def maximum_subarray_sum(array: list[int]) -> int:
 
 
 if __name__ == "__main__":
-
     array = [-3, -5, 18, -2, 3]
 
     print(f"Array : {array}")
