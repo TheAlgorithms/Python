@@ -49,16 +49,18 @@ def suppress_non_maximum(image_row, image_col, gradient_direction, sobel_grad):
                 if sobel_grad[row, col] >= sw and sobel_grad[row, col] >= ne:
                     dst[row, col] = sobel_grad[row, col]
 
-            elif (3 * PI / 8 <= direction < 5 * PI / 8) or (
-                11 * PI / 8 <= direction < 13 * PI / 8
+            elif (
+                3 * PI / 8 <= direction < 5 * PI / 8
+                or 11 * PI / 8 <= direction < 13 * PI / 8
             ):
                 n = sobel_grad[row - 1, col]
                 s = sobel_grad[row + 1, col]
                 if sobel_grad[row, col] >= n and sobel_grad[row, col] >= s:
                     dst[row, col] = sobel_grad[row, col]
 
-            elif (5 * PI / 8 <= direction < 7 * PI / 8) or (
-                13 * PI / 8 <= direction < 15 * PI / 8
+            elif (
+                5 * PI / 8 <= direction < 7 * PI / 8
+                or 13 * PI / 8 <= direction < 15 * PI / 8
             ):
                 nw = sobel_grad[row - 1, col - 1]
                 se = sobel_grad[row + 1, col + 1]
