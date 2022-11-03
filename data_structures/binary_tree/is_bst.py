@@ -23,35 +23,30 @@ Space: O(1)
 """
 
 from __future__ import annotations
+from dataclasses import dataclass
 
-
+@dataclass
 class TreeNode:
-    def __init__(
-        self,
-        data: float = 0,
-        left: TreeNode | None = None,
-        right: TreeNode | None = None,
-    ) -> None:
-        self.data = data
-        self.left = left
-        self.right = right
+    data: float
+    left: TreeNode | None = None
+    right: TreeNode | None = None
 
 
 def is_binary_search_tree(root: TreeNode | None) -> bool:
     """
-    >>> is_binary_search_tree(TreeNode(2, TreeNode(1), TreeNode(3)))
+    >>> is_binary_search_tree(TreeNode(data=2, left=TreeNode(data=1), right=TreeNode(data=3)))
     True
-    >>> is_binary_search_tree(TreeNode(0, TreeNode(-11), TreeNode(3)))
+    >>> is_binary_search_tree(TreeNode(data=0, left=TreeNode(data=-11), right=TreeNode(data=3)))
     True
-    >>> is_binary_search_tree(TreeNode(5, TreeNode(1), TreeNode(4, TreeNode(3))))
+    >>> is_binary_search_tree(TreeNode(data=5, left=TreeNode(data=1), right=TreeNode(data=4, left=TreeNode(data=3))))
     False
 
-    >>> is_binary_search_tree(TreeNode('a', TreeNode(1), TreeNode(4, TreeNode(3))))
+    >>> is_binary_search_tree(TreeNode(data='a', left=TreeNode(data=1), right=TreeNode(data=4, left=TreeNode(data=3))))
     Traceback (most recent call last):
      ...
     ValueError: Each node should be type of TreeNode and data should be float.
 
-    >>> is_binary_search_tree(TreeNode(2, TreeNode([]), TreeNode(4, TreeNode(3))))
+    >>> is_binary_search_tree(TreeNode(data=2, left=TreeNode([]), right=TreeNode(data=4, left=TreeNode(data=3))))
     Traceback (most recent call last):
      ...
     ValueError: Each node should be type of TreeNode and data should be float.
@@ -66,10 +61,10 @@ def is_binary_search_tree(root: TreeNode | None) -> bool:
         >>> is_valid_tree('abc')
         False
 
-        >>> is_valid_tree(TreeNode('not a float'))
+        >>> is_valid_tree(TreeNode(data='not a float'))
         False
 
-        >>> is_valid_tree(TreeNode(1, TreeNode('123')))
+        >>> is_valid_tree(TreeNode(data=1, left=TreeNode('123')))
         False
         """
         if node is None:
@@ -90,12 +85,14 @@ def is_binary_search_tree(root: TreeNode | None) -> bool:
             "Each node should be type of TreeNode and data should be float."
         )
 
-    def is_binary_search_tree_internal(
+    def is_binary_search_tree_recursive_check(
         node: TreeNode | None, left_bound: float, right_bound: float
     ) -> bool:
         """
         >>> is_binary_search_tree_internal(None)
         True
+        >>> is_binary_search_tree_internal(TreeNode(data=1), 10, 20)
+        False
         """
 
         if node is None:
@@ -104,11 +101,11 @@ def is_binary_search_tree(root: TreeNode | None) -> bool:
         return (
             (node.data > left_bound)
             and (node.data < right_bound)
-            and is_binary_search_tree_internal(node.left, left_bound, node.data)
-            and is_binary_search_tree_internal(node.right, node.data, right_bound)
+            and is_binary_search_tree_recursive_check(node.left, left_bound, node.data)
+            and is_binary_search_tree_recursive_check(node.right, node.data, right_bound)
         )
 
-    return is_binary_search_tree_internal(root, -float("inf"), float("inf"))
+    return is_binary_search_tree_recursive_check(root, -float("inf"), float("inf"))
 
 
 if __name__ == "__main__":
