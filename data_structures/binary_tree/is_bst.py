@@ -36,10 +36,18 @@ class TreeNode:
 
 def is_binary_search_tree(root: TreeNode | None) -> bool:
     """
-    >>> is_binary_search_tree(TreeNode(data=2, left=TreeNode(data=1), right=TreeNode(data=3)))
+    >>> is_binary_search_tree(TreeNode(data=2,
+    ...                                left=TreeNode(data=1),
+    ...                                right=TreeNode(data=3))
+    ...                                )
     True
-    >>> is_binary_search_tree(TreeNode(data=0, left=TreeNode(data=-11), right=TreeNode(data=3)))
+
+    >>> is_binary_search_tree(TreeNode(data=0,
+    ...                                left=TreeNode(data=-11),
+    ...                                right=TreeNode(data=3))
+    ...                                )
     True
+
     >>> is_binary_search_tree(TreeNode(data=5,
     ...                                left=TreeNode(data=1),
     ...                                right=TreeNode(data=4, left=TreeNode(data=3)))
@@ -68,13 +76,10 @@ def is_binary_search_tree(root: TreeNode | None) -> bool:
         """
         >>> is_valid_tree(None)
         True
-
         >>> is_valid_tree('abc')
         False
-
         >>> is_valid_tree(TreeNode(data='not a float'))
         False
-
         >>> is_valid_tree(TreeNode(data=1, left=TreeNode('123')))
         False
         """
