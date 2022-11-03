@@ -13,7 +13,6 @@ The sum of the subarray [2, 3, 4] is 9.
 The sum of the subarray [] is 0.
 """
 
-from __future__ import annotations
 
 
 def maximum_subarray_sum(array: list[int]) -> int:
