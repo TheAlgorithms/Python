@@ -23,7 +23,9 @@ Space: O(1)
 """
 
 from __future__ import annotations
+
 from dataclasses import dataclass
+
 
 @dataclass
 class TreeNode:
@@ -102,7 +104,9 @@ def is_binary_search_tree(root: TreeNode | None) -> bool:
             (node.data > left_bound)
             and (node.data < right_bound)
             and is_binary_search_tree_recursive_check(node.left, left_bound, node.data)
-            and is_binary_search_tree_recursive_check(node.right, node.data, right_bound)
+            and is_binary_search_tree_recursive_check(
+                node.right, node.data, right_bound
+            )
         )
 
     return is_binary_search_tree_recursive_check(root, -float("inf"), float("inf"))
