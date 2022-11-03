@@ -6,6 +6,7 @@ Implement the class of prefix sum with useful functions based on it.
 
 """
 
+
 class PrefixSum:
     def __init__(self, array: list[int]) -> None:
         len_array = len(array)
@@ -16,7 +17,7 @@ class PrefixSum:
 
         for i in range(1, len_array):
             self.prefix_sum[i] = self.prefix_sum[i - 1] + array[i]
-        
+
     def get_sum(self, start: int, end: int) -> int:
         """
         The function returns the sum of array from the start to the end indexes.
@@ -61,7 +62,7 @@ class PrefixSum:
         True
         """
 
-        sums = set([0])
+        sums = {0}
         for sum_item in self.prefix_sum:
             if sum_item - target_sum in sums:
                 return True
