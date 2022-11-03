@@ -115,8 +115,7 @@ def is_binary_search_tree(root: TreeNode | None) -> bool:
             return True
 
         return (
-            (node.data > left_bound)
-            and (node.data < right_bound)
+            left_bound < node.data < right_bound
             and is_binary_search_tree_recursive_check(node.left, left_bound, node.data)
             and is_binary_search_tree_recursive_check(
                 node.right, node.data, right_bound
