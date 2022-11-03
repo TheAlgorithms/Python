@@ -14,7 +14,6 @@ The sum of the subarray [] is 0.
 """
 
 
-
 def maximum_subarray_sum(array: list[int]) -> int:
     """
     Finds the maximum subarray sum of an array and return it.
