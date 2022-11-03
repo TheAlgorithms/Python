@@ -18,28 +18,20 @@ def gen_gaussian_kernel(k_size, sigma):
     return g
 
 
-def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
-    image_row, image_col = image.shape[0], image.shape[1]
-    # gaussian_filter
-    gaussian_out = img_convolve(image, gen_gaussian_kernel(9, sigma=1.4))
-    # get the gradient and degree by sobel_filter
-    sobel_grad, sobel_theta = sobel_filter(gaussian_out)
-    gradient_direction = np.rad2deg(sobel_theta)
-    gradient_direction += PI
-
-    dst = np.zeros((image_row, image_col))
-
+def suppress_non_maximum(image_row, image_col, gradient_direction, sobel_grad):
     """
     Non-maximum suppression. If the edge strength of the current pixel is the largest
     compared to the other pixels in the mask with the same direction, the value will be
     preserved. Otherwise, the value will be suppressed.
     """
+    dst = np.zeros((image_row, image_col))
+
     for row in range(1, image_row - 1):
         for col in range(1, image_col - 1):
             direction = gradient_direction[row, col]
 
             if (
-                0 <= direction < 22.5
+                0 <= direction < PI / 8
                 or 15 * PI / 8 <= direction <= 2 * PI
                 or 7 * PI / 8 <= direction <= 9 * PI / 8
             ):
@@ -48,8 +40,9 @@ def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
                 if sobel_grad[row, col] >= w and sobel_grad[row, col] >= e:
                     dst[row, col] = sobel_grad[row, col]
 
-            elif (PI / 8 <= direction < 3 * PI / 8) or (
-                9 * PI / 8 <= direction < 11 * PI / 8
+            elif (
+                PI / 8 <= direction < 3 * PI / 8
+                or 9 * PI / 8 <= direction < 11 * PI / 8
             ):
                 sw = sobel_grad[row + 1, col - 1]
                 ne = sobel_grad[row - 1, col + 1]
@@ -72,14 +65,22 @@ def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
                 if sobel_grad[row, col] >= nw and sobel_grad[row, col] >= se:
                     dst[row, col] = sobel_grad[row, col]
 
-            """
-            High-Low threshold detection. If an edge pixel’s gradient value is higher
-            than the high threshold value, it is marked as a strong edge pixel. If an
-            edge pixel’s gradient value is smaller than the high threshold value and
-            larger than the low threshold value, it is marked as a weak edge pixel. If
-            an edge pixel's value is smaller than the low threshold value, it will be
-            suppressed.
-            """
+    return dst
+
+
+def detect_high_low_threshold(
+    image_row, image_col, dst, threshold_low, threshold_high, weak, strong
+):
+    """
+    High-Low threshold detection. If an edge pixel’s gradient value is higher
+    than the high threshold value, it is marked as a strong edge pixel. If an
+    edge pixel’s gradient value is smaller than the high threshold value and
+    larger than the low threshold value, it is marked as a weak edge pixel. If
+    an edge pixel's value is smaller than the low threshold value, it will be
+    suppressed.
+    """
+    for row in range(1, image_row - 1):
+        for col in range(1, image_col - 1):
             if dst[row, col] >= threshold_high:
                 dst[row, col] = strong
             elif dst[row, col] <= threshold_low:
@@ -87,6 +88,8 @@ def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
             else:
                 dst[row, col] = weak
 
+
+def track_edge(image_row, image_col, dst, weak, strong):
     """
     Edge tracking. Usually a weak edge pixel caused from true edges will be connected
     to a strong edge pixel while noise responses are unconnected. As long as there is
@@ -109,6 +112,24 @@ def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
                     dst[row, col] = strong
                 else:
                     dst[row, col] = 0
+
+
+def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
+    image_row, image_col = image.shape[0], image.shape[1]
+    # gaussian_filter
+    gaussian_out = img_convolve(image, gen_gaussian_kernel(9, sigma=1.4))
+    # get the gradient and degree by sobel_filter
+    sobel_grad, sobel_theta = sobel_filter(gaussian_out)
+    gradient_direction = np.rad2deg(sobel_theta)
+    gradient_direction += PI
+
+    dst = suppress_non_maximum(image_row, image_col, gradient_direction, sobel_grad)
+
+    detect_high_low_threshold(
+        image_row, image_col, dst, threshold_low, threshold_high, weak, strong
+    )
+
+    track_edge(image_row, image_col, dst, weak, strong)
 
     return dst
 
