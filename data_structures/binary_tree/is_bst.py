@@ -105,9 +105,9 @@ def is_binary_search_tree(root: TreeNode | None) -> bool:
         node: TreeNode | None, left_bound: float, right_bound: float
     ) -> bool:
         """
-        >>> is_binary_search_tree_internal(None)
+        >>> is_binary_search_tree_recursive_check(None)
         True
-        >>> is_binary_search_tree_internal(TreeNode(data=1), 10, 20)
+        >>> is_binary_search_tree_recursive_check(TreeNode(data=1), 10, 20)
         False
         """
 
