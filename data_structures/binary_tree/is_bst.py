@@ -40,15 +40,24 @@ def is_binary_search_tree(root: TreeNode | None) -> bool:
     True
     >>> is_binary_search_tree(TreeNode(data=0, left=TreeNode(data=-11), right=TreeNode(data=3)))
     True
-    >>> is_binary_search_tree(TreeNode(data=5, left=TreeNode(data=1), right=TreeNode(data=4, left=TreeNode(data=3))))
+    >>> is_binary_search_tree(TreeNode(data=5,
+    ...                                left=TreeNode(data=1),
+    ...                                right=TreeNode(data=4, left=TreeNode(data=3)))
+    ...                      )
     False
 
-    >>> is_binary_search_tree(TreeNode(data='a', left=TreeNode(data=1), right=TreeNode(data=4, left=TreeNode(data=3))))
+    >>> is_binary_search_tree(TreeNode(data='a',
+    ...                                left=TreeNode(data=1),
+    ...                                right=TreeNode(data=4, left=TreeNode(data=3)))
+    ...                      )
     Traceback (most recent call last):
      ...
     ValueError: Each node should be type of TreeNode and data should be float.
 
-    >>> is_binary_search_tree(TreeNode(data=2, left=TreeNode([]), right=TreeNode(data=4, left=TreeNode(data=3))))
+    >>> is_binary_search_tree(TreeNode(data=2,
+    ...                                left=TreeNode([]),
+    ...                                right=TreeNode(data=4, left=TreeNode(data=3)))
+    ...                                )
     Traceback (most recent call last):
      ...
     ValueError: Each node should be type of TreeNode and data should be float.
