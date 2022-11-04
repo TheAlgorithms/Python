@@ -5,7 +5,6 @@ from _collections import deque
 
 
 class Stack:
-
     def __init__(self) -> None:
         self.q1 = deque()
         self.q2 = deque()
@@ -29,14 +28,14 @@ class Stack:
         return len(self.q1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     s = Stack()
     i = 0
     while i == 0:
         print(f"1.Push\n2.Pop\n3.Peek\n4.Size\n0.Exit")
         n = int(input())
         if n == 1:
-            x = (input("Enter data: "))
+            x = input("Enter data: ")
             s.push(x)
             print(f"Pushed {x}")
         elif n == 2:
