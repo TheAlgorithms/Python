@@ -34,7 +34,15 @@ class PrefixSum:
         Traceback (most recent call last):
         ...
         IndexError: list index out of range
+        >>> PrefixSum([1,2,3]).get_sum(2, 1)
+        Traceback (most recent call last):
+        ...
+        ValueError: start should be less or equal than end
         """
+
+        if start > end:
+            raise ValueError('start should be less or equal than end')
+
         if start == 0:
             return self.prefix_sum[end]
 
