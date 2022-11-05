@@ -6,11 +6,11 @@ extend-ignore =
     # Formatting style for `black`
     E203  # Whitespace before ':'
     W503  # Line break occurred before a binary operator
-    D104 # missing docstring in __ini__.py
-    D107 # Missing docstring in __init__
-    D301 # Use r""" if any backslashes in a docstring, some docstring couldn't be written without it
-    D2 # Shape of the docstring, like first line is summary and the next line is blank line
-    D4 # Style for the first line.  Sometimes we are lack of documentation and the first line is docstring.
+    D104  # Missing docstring in __init__.py
+    D107  # Missing docstring in __init__
+    D301  # Use r""" if docstring contains backslashes
+    D2  # Shape of the docstring, like first line is summary and the next line is blank line
+    D4  # Style for the first line.  Sometimes we are lack of documentation and the first line is docstring.
 
 per-file-ignores =
     */test_*: D # no docs required for tests
