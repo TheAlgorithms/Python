@@ -44,9 +44,7 @@ class TrieNode:
             if source_node not in self.nodes:
                 self.nodes[source_node] = TrieNode()
 
-            self.nodes[source_node].merge(
-                trie_node.nodes[source_node]
-            )
+            self.nodes[source_node].merge(trie_node.nodes[source_node])
 
         if trie_node.is_leaf:
             self.is_leaf = True
@@ -127,7 +125,7 @@ def test_trie() -> bool:
     assert not root.find("new_merged_word")
     assert not root.find("new_merged_word2")
     nodeToMerge = TrieNode()
-    nodeToMerge.insert_many(['new_merged_word', 'new_merged_word2'])
+    nodeToMerge.insert_many(["new_merged_word", "new_merged_word2"])
     root.merge(nodeToMerge)
     assert root.find("new_merged_word")
     assert root.find("new_merged_word2")
