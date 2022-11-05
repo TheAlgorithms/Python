@@ -56,7 +56,14 @@ Use [pre-commit](https://pre-commit.com/#installation) to automatically format y
 python3 -m pip install pre-commit  # only required the first time
 pre-commit install
 ```
-That's it! The plugin will run every time you commit any changes. If there are any errors found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
+That's it! The plugin will run every time you commit any changes. If there are any errors found during the run, fix them and commit those changes.
+Pre-commit includes
+[black](https://github.com/psf/black),
+[isort](https://github.com/PyCQA/isort),
+[mypy](http://mypy-lang.org) and
+[flake8](https://flake8.pycqa.org/en/latest/).
+
+You can even run the plugin manually on all files:
 
 ```bash
 pre-commit run --all-files --show-diff-on-failure
@@ -73,13 +80,6 @@ We want your work to be readable by others; therefore, we encourage you to note 
   - Please follow the [Python Naming Conventions](https://pep8.org/#prescriptive-naming-conventions) so variable_names and function_names should be lower_case, CONSTANTS in UPPERCASE, ClassNames should be CamelCase, etc.
 
 - We encourage the use of Python [f-strings](https://realpython.com/python-f-strings/#f-strings-a-new-and-improved-way-to-format-strings-in-python) where they make the code easier to read.
-
-- Do not forget that running `pre-commit` checks locally will help you to follow code quality standards.
-  It will run a set of tools including
-  [black](https://github.com/psf/black),
-  [isort](https://github.com/PyCQA/isort),
-  [mypy](http://mypy-lang.org) and
-  [flake8](https://flake8.pycqa.org/en/latest/). 
 
 - Original code submission require docstrings or comments to describe your work.
 
@@ -141,7 +141,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   starting_value = int(input("Please enter a starting value: ").strip())
   ```
 
-  The use of [Python type hints](https://docs.python.org/3/library/typing.html) is encouraged for function parameters and return values. 
+  The use of [Python type hints](https://docs.python.org/3/library/typing.html) is encouraged for function parameters and return values.
   Our automated testing will run [mypy](http://mypy-lang.org) so run that locally with pre-commit before making your submission.
 
   ```python
