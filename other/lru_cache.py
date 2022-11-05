@@ -150,8 +150,8 @@ class LRUCache(Generic[T, U]):
 
     >>> cache = LRUCache(2)
 
-    >>> cache.set(1, 1)
-    >>> cache.set(2, 2)
+    >>> cache.put(1, 1)
+    >>> cache.put(2, 2)
     >>> cache.get(1)
     1
 
@@ -166,7 +166,7 @@ class LRUCache(Generic[T, U]):
     {1: Node: key: 1, val: 1, has next: True, has prev: True, \
      2: Node: key: 2, val: 2, has next: True, has prev: True}
 
-    >>> cache.set(3, 3)
+    >>> cache.put(3, 3)
 
     >>> cache.list
     DoubleLinkedList,
@@ -182,7 +182,7 @@ class LRUCache(Generic[T, U]):
     >>> cache.get(2) is None
     True
 
-    >>> cache.set(4, 4)
+    >>> cache.put(4, 4)
 
     >>> cache.get(1) is None
     True
@@ -238,7 +238,7 @@ class LRUCache(Generic[T, U]):
         >>> 1 in cache
         False
 
-        >>> cache.set(1, 1)
+        >>> cache.put(1, 1)
 
         >>> 1 in cache
         True
@@ -266,7 +266,7 @@ class LRUCache(Generic[T, U]):
         self.miss += 1
         return None
 
-    def set(self, key: T, value: U) -> None:
+    def put(self, key: T, value: U) -> None:
         """
         Sets the value for the input key and updates the Double Linked List
         """
@@ -315,7 +315,7 @@ class LRUCache(Generic[T, U]):
                 result = cls.decorator_function_to_instance_map[func].get(args[0])
                 if result is None:
                     result = func(*args)
-                    cls.decorator_function_to_instance_map[func].set(args[0], result)
+                    cls.decorator_function_to_instance_map[func].put(args[0], result)
                 return result
 
             def cache_info() -> LRUCache[T, U]:
