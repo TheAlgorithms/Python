@@ -511,7 +511,7 @@ per-file-ignores =
     web_programming/recaptcha_verification.py: D103
     web_programming/reddit.py: D100
     web_programming/slack_message.py: D100, D103
-        bit_manipulation/index_of_rightmost_set_bit.py: D100
+    bit_manipulation/index_of_rightmost_set_bit.py: D100
     data_structures/arrays/prefix_sum.py: D101
     data_structures/binary_tree/is_bst.py: D101
     data_structures/trie/radix_tree.py: D101, D103
@@ -527,3 +527,4 @@ per-file-ignores =
     other/password.py: D100, D103
     physics/shear_stress.py: D100
     web_programming/convert_number_to_words.py: D100
+
