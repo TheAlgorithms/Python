@@ -4,6 +4,7 @@ of words/patterns in a set of words. A basic Trie however has O(n^2) space compl
 making it impractical in practice. It however provides O(max(search_string, length of
 longest word)) lookup time making it an optimal approach when space is not an issue.
 """
+from __future__ import annotations
 
 
 class TrieNode:
@@ -32,6 +33,23 @@ class TrieNode:
                 curr.nodes[char] = TrieNode()
             curr = curr.nodes[char]
         curr.is_leaf = True
+
+    def merge(self, trie_node: TrieNode) -> None:
+        """
+        Merge the current instance of TrieNode with the passed instance.
+        :param trie_node: the source to be merged.
+        """
+
+        for source_node in trie_node.nodes:
+            if source_node not in self.nodes:
+                self.nodes[source_node] = TrieNode()
+
+            self.nodes[source_node].merge(
+                trie_node.nodes[source_node]
+            )
+
+        if trie_node.is_leaf:
+            self.is_leaf = True
 
     def find(self, word: str) -> bool:
         """
@@ -105,6 +123,16 @@ def test_trie() -> bool:
     root.delete("banana")
     assert not root.find("banana")
     assert root.find("bananas")
+
+    assert not root.find("new_merged_word")
+    assert not root.find("new_merged_word2")
+    nodeToMerge = TrieNode()
+    nodeToMerge.insert_many(['new_merged_word', 'new_merged_word2'])
+    root.merge(nodeToMerge)
+    assert root.find("new_merged_word")
+    assert root.find("new_merged_word2")
+    assert root.find("bananas")
+
     return True
 
 
