@@ -262,7 +262,7 @@ per-file-ignores =
     graphs/minimum_spanning_tree_boruvka.py: D100, D102, D105
     graphs/minimum_spanning_tree_kruskal.py: D100
     graphs/minimum_spanning_tree_kruskal2.py: D100, D101, D102
-    graphs/minimum_spanning_tree_prims.py: D100, D103
+    graphs/minimum_spanning_tree_prims.py: D100, D101, D102, D103
     graphs/minimum_spanning_tree_prims2.py: D102, D105
     graphs/multi_heuristic_astar.py: D100, D101, D102, D103
     graphs/page_rank.py: D101, D102, D103, D105
@@ -518,7 +518,6 @@ per-file-ignores =
     electronics/builtin_voltage.py: D100
     electronics/ind_reactance.py: D100
     electronics/resistor_equivalence.py: D100
-    graphs/minimum_spanning_tree_prims.py: D101, D102
     hashes/elf.py: D100
     maths/manhattan_distance.py: D100
     maths/polynomials/single_indeterminate_operations.py: D101
