@@ -511,3 +511,19 @@ per-file-ignores =
     web_programming/recaptcha_verification.py: D103
     web_programming/reddit.py: D100
     web_programming/slack_message.py: D100, D103
+        bit_manipulation/index_of_rightmost_set_bit.py: D100
+    data_structures/arrays/prefix_sum.py: D101
+    data_structures/binary_tree/is_bst.py: D101
+    data_structures/trie/radix_tree.py: D101, D103
+    electronics/builtin_voltage.py: D100
+    electronics/ind_reactance.py: D100
+    electronics/resistor_equivalence.py: D100
+    graphs/minimum_spanning_tree_prims.py: D101, D102
+    hashes/elf.py: D100
+    maths/manhattan_distance.py: D100
+    maths/polynomials/single_indeterminate_operations.py: D101
+    maths/print_multiplication_table.py: D100
+    other/graham_scan.py: D101, D105
+    other/password.py: D100, D103
+    physics/shear_stress.py: D100
+    web_programming/convert_number_to_words.py: D100
