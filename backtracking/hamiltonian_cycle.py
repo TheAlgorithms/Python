@@ -71,7 +71,7 @@ def util_hamilton_cycle(graph: list[list[int]], path: list[int], curr_ind: int) 
     >>> curr_ind = 1
     >>> util_hamilton_cycle(graph, path, curr_ind)
     True
-    >>> print(path)
+    >>> path
     [0, 1, 2, 4, 3, 0]
 
     Case 2: Use exact graph as in previous case, but in the properties taken from
@@ -85,7 +85,7 @@ def util_hamilton_cycle(graph: list[list[int]], path: list[int], curr_ind: int) 
     >>> curr_ind = 3
     >>> util_hamilton_cycle(graph, path, curr_ind)
     True
-    >>> print(path)
+    >>> path
     [0, 1, 2, 4, 3, 0]
     """
 

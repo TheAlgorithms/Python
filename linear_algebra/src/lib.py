@@ -40,7 +40,6 @@ class Vector:
         __sub__(other: Vector): vector subtraction
         __mul__(other: float): scalar multiplication
         __mul__(other: Vector): dot product
-        set(components: Collection[float]): changes the vector components
         copy(): copies this vector and returns it
         component(i): gets the i-th component (0-indexed)
         change_component(pos: int, value: float): changes specified component
@@ -118,17 +117,6 @@ class Vector:
             return sum(prods)
         else:  # error case
             raise Exception("invalid operand!")
-
-    def set(self, components: Collection[float]) -> None:
-        """
-        input: new components
-        changes the components of the vector.
-        replaces the components with newer one.
-        """
-        if len(components) > 0:
-            self.__components = list(components)
-        else:
-            raise Exception("please give any vector")
 
     def copy(self) -> Vector:
         """

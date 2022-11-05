@@ -11,11 +11,11 @@ What is most amazing is that EVERY starting number will eventually arrive at 1 o
 How many starting numbers below ten million will arrive at 89?
 """
 
-
-DIGITS_SQUARED = [digit**2 for digit in range(10)]
+DIGITS_SQUARED = [sum(int(c, 10) ** 2 for c in i.__str__()) for i in range(100000)]
 
 
 def next_number(number: int) -> int:
+
     """
     Returns the next number of the chain by adding the square of each digit
     to form a new number.
@@ -28,15 +28,29 @@ def next_number(number: int) -> int:
     >>> next_number(32)
     13
     """
+
     sum_of_digits_squared = 0
     while number:
-        sum_of_digits_squared += DIGITS_SQUARED[number % 10]
-        number //= 10
+
+        # Increased Speed Slightly by checking every 5 digits together.
+        sum_of_digits_squared += DIGITS_SQUARED[number % 100000]
+        number //= 100000
 
     return sum_of_digits_squared
 
 
-CHAINS = {1: True, 58: False}
+# There are 2 Chains made,
+# One ends with 89 with the chain member 58 being the one which when declared first,
+# there will be the least number of iterations for all the members to be checked.
+
+# The other one ends with 1 and has only one element 1.
+
+# So 58 and 1 are chosen to be declared at the starting.
+
+# Changed dictionary to an array to quicken the solution
+CHAINS: list[bool | None] = [None] * 10000000
+CHAINS[0] = True
+CHAINS[57] = False
 
 
 def chain(number: int) -> bool:
@@ -54,11 +68,16 @@ def chain(number: int) -> bool:
     >>> chain(1)
     True
     """
-    if number in CHAINS:
-        return CHAINS[number]
+
+    if CHAINS[number - 1] is not None:
+        return CHAINS[number - 1]  # type: ignore
 
     number_chain = chain(next_number(number))
-    CHAINS[number] = number_chain
+    CHAINS[number - 1] = number_chain
+
+    while number < 10000000:
+        CHAINS[number - 1] = number_chain
+        number *= 10
 
     return number_chain
 
@@ -74,12 +93,15 @@ def solution(number: int = 10000000) -> int:
     >>> solution(10000000)
     8581146
     """
-    return sum(1 for i in range(1, number) if not chain(i))
+    for i in range(1, number):
+        if CHAINS[i] is None:
+            chain(i + 1)
+
+    return CHAINS[:number].count(False)
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
     print(f"{solution() = }")
