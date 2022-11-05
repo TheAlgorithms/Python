@@ -47,6 +47,7 @@ repos:
           - flake8-broken-line
           - flake8-comprehensions
           - pep8-naming
+          - flake8-docstrings
 
   - repo: https://github.com/asottile/yesqa
     rev: v1.4.0

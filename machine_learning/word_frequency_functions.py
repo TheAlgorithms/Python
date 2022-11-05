@@ -1,6 +1,3 @@
-import string
-from math import log10
-
 """
     tf-idf Wikipedia: https://en.wikipedia.org/wiki/Tf%E2%80%93idf
     tf-idf and other word frequency algorithms are often used
@@ -38,6 +35,8 @@ from math import log10
     a term appears in a document with the number of documents
     the term appears in. If df is 0, a ZeroDivisionError will be thrown.
 """
+import string
+from math import log10
 
 
 def term_frequency(term: str, document: str) -> int:
@@ -63,8 +62,8 @@ def term_frequency(term: str, document: str) -> int:
 
 def document_frequency(term: str, corpus: str) -> tuple[int, int]:
     """
-    Calculate the number of documents in a corpus that contain a
-    given term
+    Calculate the number of documents in a corpus that contain a given term.
+
     @params : term, the term to search each document for, and corpus, a collection of
              documents. Each document should be separated by a newline.
     @returns : the number of documents in the corpus that contain the term you are

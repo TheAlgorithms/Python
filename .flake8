@@ -6,3 +6,508 @@ extend-ignore =
     # Formatting style for `black`
     E203  # Whitespace before ':'
     W503  # Line break occurred before a binary operator
+    D104 # missing docstring in __ini__.py
+    D107 # Missing docstring in __init__
+    D301 # Use r""" if any backslashes in a docstring, some docstring couldn't be written without it
+    D2 # Shape of the docstring, like first line is summary and the next line is blank line
+    D4 # Style for the first line.  Sometimes we are lack of documentation and the first line is docstring.
+
+per-file-ignores =
+    */test_*: D # no docs required for tests
+    # Files below this line were added before the check was introduced
+    arithmetic_analysis/bisection.py: D100, D103
+    arithmetic_analysis/intersection.py: D100, D103
+    arithmetic_analysis/newton_forward_interpolation.py: D100, D103
+    arithmetic_analysis/newton_method.py: D103
+    arithmetic_analysis/newton_raphson.py: D100
+    arithmetic_analysis/newton_raphson_new.py: D100
+    audio_filters/butterworth_filter.py: D100
+    audio_filters/equal_loudness_filter.py: D100
+    audio_filters/iir_filter.py: D100
+    audio_filters/show_response.py: D100, D101
+    backtracking/all_combinations.py: D103
+    backtracking/all_permutations.py: D103
+    backtracking/all_subsequences.py: D103
+    backtracking/combination_sum.py: D103
+    backtracking/knight_tour.py: D100
+    backtracking/minimax.py: D103
+    backtracking/minmax.py: D103
+    backtracking/n_queens_math.py: D103
+    backtracking/rat_in_maze.py: D100
+    backtracking/sum_of_subsets.py: D103
+    bit_manipulation/binary_and_operator.py: D100
+    bit_manipulation/binary_count_setbits.py: D100
+    bit_manipulation/binary_count_trailing_zeros.py: D100
+    bit_manipulation/binary_or_operator.py: D100
+    bit_manipulation/binary_shifts.py: D100
+    bit_manipulation/binary_twos_complement.py: D100
+    bit_manipulation/binary_xor_operator.py: D100
+    bit_manipulation/count_1s_brian_kernighan_method.py: D100
+    bit_manipulation/count_number_of_one_bits.py: D100
+    bit_manipulation/gray_code_sequence.py: D100
+    bit_manipulation/highest_set_bit.py: D100
+    bit_manipulation/is_even.py: D100
+    bit_manipulation/reverse_bits.py: D100
+    blockchain/diophantine_equation.py: D100
+    blockchain/modular_division.py: D100
+    boolean_algebra/norgate.py: D103
+    boolean_algebra/quine_mc_cluskey.py: D100, D103
+    cellular_automata/game_of_life.py: D103
+    cellular_automata/one_dimensional.py: D103
+    ciphers/a1z26.py: D103
+    ciphers/affine_cipher.py: D100, D103
+    ciphers/base16.py: D100
+    ciphers/base32.py: D100
+    ciphers/base64.py: D100
+    ciphers/base85.py: D100
+    ciphers/beaufort_cipher.py: D103
+    ciphers/bifid.py: D101
+    ciphers/brute_force_caesar_cipher.py: D100, D103
+    ciphers/caesar_cipher.py: D100
+    ciphers/cryptomath_module.py: D100, D103
+    ciphers/decrypt_caesar_with_chi_squared.py: D100
+    ciphers/diffie.py: D100, D103
+    ciphers/diffie_hellman.py: D100, D102
+    ciphers/elgamal_key_generator.py: D100, D103
+    ciphers/hill_cipher.py: D101, D103
+    ciphers/mixed_keyword_cypher.py: D100
+    ciphers/mono_alphabetic_ciphers.py: D100, D103
+    ciphers/onepad_cipher.py: D100, D101
+    ciphers/playfair_cipher.py: D100, D103
+    ciphers/polybius.py: D101
+    ciphers/porta_cipher.py: D100
+    ciphers/rabin_miller.py: D100, D103
+    ciphers/rot13.py: D100, D103
+    ciphers/rsa_cipher.py: D100, D103
+    ciphers/rsa_key_generator.py: D100, D103
+    ciphers/shuffled_shift_cipher.py: D100
+    ciphers/simple_keyword_cypher.py: D100
+    ciphers/simple_substitution_cipher.py: D100, D103
+    ciphers/trafid_cipher.py: D100, D103
+    ciphers/transposition_cipher.py: D100, D103
+    ciphers/transposition_cipher_encrypt_decrypt_file.py: D100, D103
+    ciphers/vigenere_cipher.py: D100, D103
+    ciphers/xor_cipher.py: D101
+    compression/burrows_wheeler.py: D101
+    compression/huffman.py: D100, D101, D105
+    compression/peak_signal_to_noise_ratio.py: D103
+    compression/run_length_encoding.py: D100
+    computer_vision/flip_augmentation.py: D100
+    computer_vision/harris_corner.py: D100, D101, D105
+    computer_vision/mean_threshold.py: D100
+    computer_vision/pooling_functions.py: D100
+    conversions/binary_to_decimal.py: D100
+    conversions/binary_to_hexadecimal.py: D100
+    conversions/binary_to_octal.py: D103
+    conversions/decimal_to_binary_recursion.py: D100
+    conversions/excel_title_to_column.py: D100
+    conversions/hex_to_bin.py: D100
+    conversions/hexadecimal_to_decimal.py: D100
+    conversions/octal_to_decimal.py: D100
+    conversions/prefix_conversions.py: D101
+    conversions/prefix_conversions_string.py: D101
+    conversions/roman_numerals.py: D100
+    data_structures/arrays/permutations.py: D100
+    data_structures/binary_tree/avl_tree.py: D101, D102, D103, D105
+    data_structures/binary_tree/basic_binary_tree.py: D100, D103
+    data_structures/binary_tree/binary_search_tree.py: D101, D102, D105
+    data_structures/binary_tree/binary_search_tree_recursive.py: D101, D102
+    data_structures/binary_tree/binary_tree_mirror.py: D103
+    data_structures/binary_tree/binary_tree_node_sum.py: D102, D105
+    data_structures/binary_tree/binary_tree_path_sum.py: D102
+    data_structures/binary_tree/binary_tree_traversals.py: D100, D101
+    data_structures/binary_tree/diff_views_of_binary_tree.py: D101
+    data_structures/binary_tree/fenwick_tree.py: D100, D102
+    data_structures/binary_tree/inorder_tree_traversal_2022.py: D103
+    data_structures/binary_tree/lazy_segment_tree.py: D100, D101, D102, D105
+    data_structures/binary_tree/lowest_common_ancestor.py: D100, D103
+    data_structures/binary_tree/maximum_fenwick_tree.py: D100
+    data_structures/binary_tree/non_recursive_segment_tree.py: D101, D102
+    data_structures/binary_tree/red_black_tree.py: D102, D103, D105
+    data_structures/binary_tree/segment_tree.py: D100, D101, D102
+    data_structures/binary_tree/segment_tree_other.py: D101, D102, D105
+    data_structures/binary_tree/treap.py: D100, D105
+    data_structures/binary_tree/wavelet_tree.py: D101
+    data_structures/disjoint_set/alternate_disjoint_set.py: D101
+    data_structures/disjoint_set/disjoint_set.py: D101
+    data_structures/hashing/double_hash.py: D100
+    data_structures/hashing/hash_table.py: D100, D102
+    data_structures/hashing/hash_table_with_linked_list.py: D100, D101, D102
+    data_structures/hashing/number_theory/prime_numbers.py: D103
+    data_structures/hashing/quadratic_probing.py: D100
+    data_structures/heap/binomial_heap.py: D102
+    data_structures/heap/heap.py: D100, D102, D105
+    data_structures/heap/heap_generic.py: D100
+    data_structures/heap/max_heap.py: D100, D102
+    data_structures/heap/min_heap.py: D100, D101, D102, D105
+    data_structures/heap/randomized_heap.py: D100
+    data_structures/heap/skew_heap.py: D100
+    data_structures/linked_list/__init__.py: D101, D102
+    data_structures/linked_list/circular_linked_list.py: D100, D101, D102, D105
+    data_structures/linked_list/deque_doubly.py: D101
+    data_structures/linked_list/doubly_linked_list.py: D101, D102, D105
+    data_structures/linked_list/doubly_linked_list_two.py: D101, D102, D105
+    data_structures/linked_list/from_sequence.py: D100, D101
+    data_structures/linked_list/has_loop.py: D100, D101, D105
+    data_structures/linked_list/is_palindrome.py: D100, D103
+    data_structures/linked_list/merge_two_lists.py: D101
+    data_structures/linked_list/middle_element_of_linked_list.py: D100, D101, D102
+    data_structures/linked_list/print_reverse.py: D100, D101, D103
+    data_structures/linked_list/singly_linked_list.py: D100, D101, D103
+    data_structures/linked_list/skip_list.py: D101, D103, D105
+    data_structures/linked_list/swap_nodes.py: D100, D101, D102
+    data_structures/queue/circular_queue.py: D100
+    data_structures/queue/circular_queue_linked_list.py: D100, D101, D102
+    data_structures/queue/linked_queue.py: D101, D105
+    data_structures/queue/priority_queue_using_list.py: D101, D103, D105
+    data_structures/queue/queue_on_list.py: D101, D102, D105
+    data_structures/queue/queue_on_pseudo_stack.py: D101, D102, D105
+    data_structures/stacks/balanced_parentheses.py: D100
+    data_structures/stacks/infix_to_prefix_conversion.py: D103
+    data_structures/stacks/next_greater_element.py: D100
+    data_structures/stacks/postfix_evaluation.py: D103
+    data_structures/stacks/stack.py: D100, D101, D102, D105
+    data_structures/stacks/stack_with_doubly_linked_list.py: D100, D101, D102, D105
+    data_structures/stacks/stack_with_singly_linked_list.py: D101, D105
+    data_structures/stacks/stock_span_problem.py: D103
+    data_structures/trie/trie.py: D101, D103
+    digital_image_processing/change_brightness.py: D100
+    digital_image_processing/convert_to_negative.py: D103
+    digital_image_processing/dithering/burkes.py: D102
+    digital_image_processing/edge_detection/canny.py: D100, D103
+    digital_image_processing/filters/bilateral_filter.py: D103
+    digital_image_processing/filters/convolve.py: D100, D103
+    digital_image_processing/filters/gabor_filter.py: D100
+    digital_image_processing/filters/gaussian_filter.py: D103
+    digital_image_processing/filters/local_binary_pattern.py: D100
+    digital_image_processing/filters/sobel_filter.py: D100, D103
+    digital_image_processing/histogram_equalization/histogram_stretch.py: D101, D102
+    digital_image_processing/index_calculation.py: D100, D102
+    digital_image_processing/morphological_operations/dilation_operation.py: D100
+    digital_image_processing/morphological_operations/erosion_operation.py: D100
+    digital_image_processing/resize/resize.py: D102
+    digital_image_processing/rotation/rotation.py: D100
+    divide_and_conquer/convex_hull.py: D103, D105
+    divide_and_conquer/inversions.py: D103
+    divide_and_conquer/max_difference_pair.py: D100
+    divide_and_conquer/mergesort.py: D100
+    divide_and_conquer/power.py: D100
+    divide_and_conquer/strassen_matrix_multiplication.py: D100, D103
+    dynamic_programming/bitmask.py: D101, D102
+    dynamic_programming/climbing_stairs.py: D100
+    dynamic_programming/edit_distance.py: D102, D105
+    dynamic_programming/factorial.py: D100
+    dynamic_programming/fibonacci.py: D101, D103
+    dynamic_programming/fizz_buzz.py: D100
+    dynamic_programming/floyd_warshall.py: D100, D101, D102
+    dynamic_programming/integer_partition.py: D103
+    dynamic_programming/knapsack.py: D103
+    dynamic_programming/longest_increasing_subsequence_o(nlogn).py: D100, D103
+    dynamic_programming/longest_sub_array.py: D101, D102
+    dynamic_programming/matrix_chain_order.py: D100, D103
+    dynamic_programming/max_non_adjacent_sum.py: D100
+    dynamic_programming/max_sub_array.py: D103
+    dynamic_programming/max_sum_contiguous_subsequence.py: D100
+    dynamic_programming/minimum_cost_path.py: D100
+    dynamic_programming/minimum_partition.py: D103
+    dynamic_programming/minimum_squares_to_represent_a_number.py: D100
+    dynamic_programming/optimal_binary_search_tree.py: D100, D103
+    dynamic_programming/rod_cutting.py: D103
+    dynamic_programming/subset_generation.py: D100, D103
+    dynamic_programming/sum_of_subset.py: D100
+    dynamic_programming/viterbi.py: D100
+    electronics/carrier_concentration.py: D100
+    electronics/coulombs_law.py: D100
+    electronics/electric_conductivity.py: D100
+    electronics/electric_power.py: D100
+    electronics/ohms_law.py: D100
+    file_transfer/receive_file.py: D100
+    file_transfer/send_file.py: D100, D103
+    financial/interest.py: D100
+    fractals/sierpinski_triangle.py: D103
+    geodesy/haversine_distance.py: D100
+    geodesy/lamberts_ellipsoidal_distance.py: D100
+    graphics/bezier_curve.py: D100
+    graphs/a_star.py: D100, D103
+    graphs/articulation_points.py: D100, D103
+    graphs/basic_graphs.py: D100, D103
+    graphs/bellman_ford.py: D100, D103
+    graphs/bidirectional_a_star.py: D102, D105
+    graphs/bidirectional_breadth_first_search.py: D101, D102
+    graphs/boruvka.py: D101
+    graphs/breadth_first_search.py: D101
+    graphs/breadth_first_search_2.py: D103
+    graphs/breadth_first_search_shortest_path.py: D101
+    graphs/breadth_first_search_zero_one_shortest_path.py: D102
+    graphs/check_bipartite_graph_bfs.py: D100, D103
+    graphs/check_bipartite_graph_dfs.py: D100, D103
+    graphs/depth_first_search_2.py: D101, D102
+    graphs/dijkstra_2.py: D100, D103
+    graphs/dijkstra_algorithm.py: D100, D101, D102
+    graphs/dijkstra_alternate.py: D100, D101
+    graphs/dinic.py: D100, D101, D102
+    graphs/directed_and_undirected_(weighted)_graph.py: D100, D101, D102
+    graphs/edmonds_karp_multiple_source_and_sink.py: D100, D101, D102
+    graphs/eulerian_path_and_circuit_for_undirected_graph.py: D100, D103
+    graphs/frequent_pattern_graph_miner.py: D103
+    graphs/g_topological_sort.py: D100, D103
+    graphs/gale_shapley_bigraph.py: D100
+    graphs/graph_list.py: D100, D105
+    graphs/graph_matrix.py: D100, D101, D102
+    graphs/greedy_best_first.py: D105
+    graphs/kahns_algorithm_long.py: D100, D103
+    graphs/kahns_algorithm_topo.py: D100
+    graphs/markov_chain.py: D100, D102
+    graphs/minimum_path_sum.py: D100
+    graphs/minimum_spanning_tree_boruvka.py: D100, D102, D105
+    graphs/minimum_spanning_tree_kruskal.py: D100
+    graphs/minimum_spanning_tree_kruskal2.py: D100, D101, D102
+    graphs/minimum_spanning_tree_prims.py: D100, D103
+    graphs/minimum_spanning_tree_prims2.py: D102, D105
+    graphs/multi_heuristic_astar.py: D100, D101, D102, D103
+    graphs/page_rank.py: D101, D102, D103, D105
+    graphs/prim.py: D103
+    graphs/scc_kosaraju.py: D100, D103
+    graphs/tarjans_scc.py: D100, D103
+    greedy_methods/fractional_knapsack.py: D100
+    greedy_methods/fractional_knapsack_2.py: D100
+    hashes/chaos_machine.py: D103
+    hashes/enigma_machine.py: D100, D103
+    hashes/md5.py: D100, D103
+    hashes/sha1.py: D102
+    hashes/sha256.py: D102
+    linear_algebra/src/lib.py: D105
+    linear_algebra/src/polynom_for_points.py: D100
+    linear_algebra/src/power_iteration.py: D100
+    linear_algebra/src/rayleigh_quotient.py: D103
+    linear_algebra/src/schur_complement.py: D100, D101, D102
+    machine_learning/astar.py: D102, D105
+    machine_learning/decision_tree.py: D101
+    machine_learning/gaussian_naive_bayes.py: D100
+    machine_learning/gradient_boosting_regressor.py: D103
+    machine_learning/gradient_descent.py: D103
+    machine_learning/k_means_clust.py: D103
+    machine_learning/k_nearest_neighbours.py: D100
+    machine_learning/knn_sklearn.py: D100
+    machine_learning/local_weighted_learning/local_weighted_learning.py: D100
+    machine_learning/logistic_regression.py: D103
+    machine_learning/multilayer_perceptron_classifier.py: D100
+    machine_learning/polymonial_regression.py: D100, D103
+    machine_learning/random_forest_classifier.py: D100
+    machine_learning/random_forest_regressor.py: D100
+    machine_learning/scoring_functions.py: D100, D103
+    machine_learning/self_organizing_map.py: D101, D103
+    machine_learning/sequential_minimum_optimization.py: D101, D102, D103, D105
+    machine_learning/support_vector_machines.py: D100
+    machine_learning/xgboost_classifier.py: D100
+    machine_learning/xgboost_regressor.py: D100
+    maths/3n_plus_1.py: D100
+    maths/abs_max.py: D100, D103
+    maths/abs_min.py: D100, D103
+    maths/aliquot_sum.py: D100
+    maths/arc_length.py: D100
+    maths/area_under_curve.py: D103
+    maths/average_absolute_deviation.py: D100
+    maths/average_mean.py: D100
+    maths/average_median.py: D100, D103
+    maths/average_mode.py: D100
+    maths/bailey_borwein_plouffe.py: D100
+    maths/binary_exp_mod.py: D100
+    maths/binary_exponentiation.py: D103
+    maths/binary_exponentiation_2.py: D103
+    maths/binary_exponentiation_3.py: D103
+    maths/binomial_coefficient.py: D100
+    maths/carmichael_number.py: D103
+    maths/check_polygon.py: D100
+    maths/chudnovsky_algorithm.py: D100
+    maths/collatz_sequence.py: D100, D103
+    maths/double_factorial_iterative.py: D100
+    maths/double_factorial_recursive.py: D100
+    maths/entropy.py: D103
+    maths/euclidean_distance.py: D100
+    maths/euclidean_gcd.py: D103
+    maths/euler_method.py: D100
+    maths/euler_modified.py: D100
+    maths/eulers_totient.py: D100, D103
+    maths/factorial_recursive.py: D100
+    maths/factors.py: D100
+    maths/fermat_little_theorem.py: D100, D103
+    maths/find_max.py: D100
+    maths/find_max_recursion.py: D100
+    maths/find_min.py: D100
+    maths/find_min_recursion.py: D100
+    maths/gamma.py: D100, D103
+    maths/hardy_ramanujanalgo.py: D100
+    maths/integration_by_simpson_approx.py: D103
+    maths/karatsuba.py: D103
+    maths/kth_lexicographic_permutation.py: D100
+    maths/largest_of_very_large_numbers.py: D100, D103
+    maths/largest_subarray_sum.py: D100
+    maths/least_common_multiple.py: D100, D101, D102, D103
+    maths/line_length.py: D100, D103
+    maths/matrix_exponentiation.py: D101, D103, D105
+    maths/median_of_two_arrays.py: D100
+    maths/miller_rabin.py: D100
+    maths/monte_carlo_dice.py: D100, D101, D102
+    maths/newton_raphson.py: D103
+    maths/number_of_digits.py: D100
+    maths/numerical_integration.py: D103
+    maths/perfect_cube.py: D100
+    maths/perfect_square.py: D100
+    maths/persistence.py: D100
+    maths/pi_monte_carlo_estimation.py: D100, D101
+    maths/pollard_rho.py: D100
+    maths/polynomial_evaluation.py: D100
+    maths/prime_check.py: D101, D102
+    maths/prime_numbers.py: D100
+    maths/pythagoras.py: D101, D103, D105
+    maths/qr_decomposition.py: D100
+    maths/quadratic_equations_complex_numbers.py: D100, D103
+    maths/radians.py: D100
+    maths/radix2_fft.py: D105
+    maths/runge_kutta.py: D100
+    maths/simpson_rule.py: D103
+    maths/sock_merchant.py: D100
+    maths/square_root.py: D100, D103
+    maths/sum_of_arithmetic_series.py: D100, D103
+    maths/sum_of_digits.py: D100
+    maths/sum_of_geometric_progression.py: D100
+    maths/sum_of_harmonic_series.py: D100
+    maths/trapezoidal_rule.py: D103
+    maths/triplet_sum.py: D103
+    matrix/binary_search_matrix.py: D100
+    matrix/count_islands_in_matrix.py: D100, D101, D102
+    matrix/cramers_rule_2x2.py: D100
+    matrix/inverse_of_matrix.py: D100
+    matrix/matrix_class.py: D100, D102, D105
+    matrix/matrix_operation.py: D103
+    matrix/nth_fibonacci_using_matrix_exponentiation.py: D103
+    matrix/rotate_matrix.py: D103
+    matrix/searching_in_sorted_matrix.py: D100, D103
+    matrix/sherman_morrison.py: D100, D103, D105
+    matrix/spiral_print.py: D103
+    networking_flow/ford_fulkerson.py: D103
+    networking_flow/minimum_cut.py: D100, D103
+    neural_network/2_hidden_layers_neural_network.py: D101
+    neural_network/back_propagation_neural_network.py: D102, D103
+    neural_network/convolution_neural_network.py: D101, D102
+    neural_network/perceptron.py: D101
+    other/alternative_list_arrange.py: D100
+    other/check_strong_password.py: D100
+    other/dijkstra_bankers_algorithm.py: D101
+    other/doomsday.py: D100
+    other/fischer_yates_shuffle.py: D103
+    other/greedy.py: D100, D101, D102, D103, D105
+    other/least_recently_used.py: D100, D105
+    other/lfu_cache.py: D100, D105
+    other/linear_congruential_generator.py: D100
+    other/lru_cache.py: D100, D105
+    other/magicdiamondpattern.py: D100
+    other/maximum_subarray.py: D100
+    other/nested_brackets.py: D103
+    other/password_generator.py: D103
+    other/sdes.py: D100, D103
+    other/tower_of_hanoi.py: D100, D103
+    physics/malus_law.py: D100
+    physics/n_body_simulation.py: D101, D102, D105
+    physics/potential_energy.py: D100
+    physics/sheer_stress.py: D100
+    project_euler/problem_011/sol1.py: D103
+    project_euler/problem_012/sol1.py: D103
+    project_euler/problem_012/sol2.py: D103
+    project_euler/problem_021/sol1.py: D103
+    project_euler/problem_030/sol1.py: D103
+    project_euler/problem_031/sol1.py: D103
+    project_euler/problem_033/sol1.py: D103
+    project_euler/problem_053/sol1.py: D103
+    project_euler/problem_054/sol1.py: D103, D105
+    quantum/ripple_adder_classic.py: D100
+    scheduling/first_come_first_served.py: D100
+    scheduling/job_sequencing_with_deadline.py: D100
+    scheduling/multi_level_feedback_queue.py: D100, D101
+    scripts/build_directory_md.py: D100, D103
+    scripts/validate_filenames.py: D100
+    scripts/validate_solutions.py: D100, D103
+    searches/binary_tree_traversal.py: D101, D103
+    searches/double_linear_search.py: D100
+    searches/double_linear_search_recursion.py: D100
+    searches/hill_climbing.py: D100, D103
+    searches/simulated_annealing.py: D100, D103
+    searches/tabu_search.py: D103
+    sorts/bubble_sort.py: D100
+    sorts/double_sort.py: D100
+    sorts/exchange_sort.py: D100
+    sorts/external_sort.py: D100, D101, D102, D103
+    sorts/heap_sort.py: D103
+    sorts/natural_sort.py: D100
+    sorts/odd_even_transposition_parallel.py: D103
+    sorts/patience_sort.py: D100, D101, D105
+    sorts/pigeonhole_sort.py: D100, D103
+    sorts/quick_sort_3_partition.py: D100, D103
+    sorts/random_normal_distribution_quicksort.py: D100
+    sorts/random_pivot_quick_sort.py: D103
+    sorts/recursive_bubble_sort.py: D100
+    sorts/recursive_quick_sort.py: D100
+    sorts/stooge_sort.py: D100, D103
+    sorts/strand_sort.py: D100
+    sorts/tim_sort.py: D100, D103
+    sorts/tree_sort.py: D101, D102, D103
+    strings/aho_corasick.py: D100, D101, D102
+    strings/alternative_string_arrange.py: D100
+    strings/anagrams.py: D100
+    strings/autocomplete_using_trie.py: D100, D101, D102, D103
+    strings/boyer_moore_search.py: D101, D102
+    strings/can_string_be_rearranged_as_palindrome.py: D100
+    strings/capitalize.py: D100
+    strings/detecting_english_programmatically.py: D100, D103
+    strings/dna.py: D100
+    strings/frequency_finder.py: D100, D103
+    strings/hamming_distance.py: D100
+    strings/indian_phone_validator.py: D100
+    strings/is_contains_unique_chars.py: D100
+    strings/is_palindrome.py: D100
+    strings/is_spain_national_id.py: D100
+    strings/is_srilankan_phone_number.py: D100
+    strings/knuth_morris_pratt.py: D100
+    strings/lower.py: D100
+    strings/manacher.py: D100
+    strings/min_cost_string_conversion.py: D103
+    strings/palindrome.py: D100
+    strings/rabin_karp.py: D100
+    strings/remove_duplicate.py: D100
+    strings/reverse_letters.py: D100
+    strings/reverse_long_words.py: D100
+    strings/reverse_words.py: D100
+    strings/snake_case_to_camel_pascal_case.py: D100
+    strings/split.py: D100
+    strings/text_justification.py: D100
+    strings/upper.py: D100
+    strings/wave.py: D100
+    strings/word_occurrence.py: D100
+    strings/word_patterns.py: D100
+    web_programming/co2_emission.py: D103
+    web_programming/covid_stats_via_xpath.py: D103
+    web_programming/crawl_google_results.py: D100
+    web_programming/current_stock_price.py: D100, D103
+    web_programming/current_weather.py: D100
+    web_programming/daily_horoscope.py: D100, D103
+    web_programming/download_images_from_google_query.py: D100
+    web_programming/emails_from_url.py: D101
+    web_programming/fetch_anime_and_play.py: D100
+    web_programming/fetch_bbc_news.py: D100, D103
+    web_programming/fetch_jobs.py: D103
+    web_programming/fetch_quotes.py: D103
+    web_programming/get_imdb_top_250_movies_csv.py: D100, D103
+    web_programming/get_imdbtop.py: D100, D103
+    web_programming/get_top_hn_posts.py: D100, D103
+    web_programming/get_user_tweets.py: D100, D103
+    web_programming/giphy.py: D100
+    web_programming/instagram_crawler.py: D100, D102, D105
+    web_programming/instagram_pic.py: D100
+    web_programming/instagram_video.py: D100, D103
+    web_programming/nasa_data.py: D100, D103
+    web_programming/open_google_results.py: D100
+    web_programming/random_anime_character.py: D100
+    web_programming/recaptcha_verification.py: D103
+    web_programming/reddit.py: D100
+    web_programming/slack_message.py: D100, D103

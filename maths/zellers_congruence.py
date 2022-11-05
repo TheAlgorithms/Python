@@ -1,3 +1,8 @@
+"""
+Zellers Congruence Algorithm.
+
+https://en.wikipedia.org/wiki/Zeller%27s_congruence
+"""
 import argparse
 import datetime
 
@@ -5,7 +10,6 @@ import datetime
 def zeller(date_input: str) -> str:
 
     """
-    Zellers Congruence Algorithm
     Find the day of the week for nearly any Gregorian or Julian calendar date
 
     >>> zeller('01-31-2010')
