@@ -37,7 +37,7 @@ class PrefixSum:
         >>> PrefixSum([1,2,3]).get_sum(2, 1)
         Traceback (most recent call last):
         ...
-        ValueError: start should be less or equal than end
+        ValueError: Start cannot be greater than end
         """
 
         if start > end:
