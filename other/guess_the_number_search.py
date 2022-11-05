@@ -14,7 +14,9 @@ details : [505, 257, 133, 71, 40, 25, 17]
 
 
 def temp_input_value(
-    min_val: int = 10, max_val: int = 1000, option: bool = True
+    min_val: int = 10,
+    max_val: int = 1000,
+    option: bool = True
 ) -> int:
     """
     Temporary input values for tests
@@ -107,7 +109,9 @@ def guess_the_number(lower: int, higher: int, to_guess: int) -> None:
     ValueError: argument value for lower and higher must be(lower > higher)
     """
     assert (
-        isinstance(lower, int) and isinstance(higher, int) and isinstance(to_guess, int)
+        isinstance(lower, int)
+        and isinstance(higher, int)
+        and isinstance(to_guess, int)
     ), 'argument values must be type of "int"'
 
     if lower > higher:
