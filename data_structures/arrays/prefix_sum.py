@@ -41,7 +41,7 @@ class PrefixSum:
         """
 
         if start > end:
-            raise ValueError("start should be less or equal than end")
+            raise ValueError("Start cannot be greater than end")
 
         if start == 0:
             return self.prefix_sum[end]
