@@ -25,33 +25,27 @@ class SegmentTree:
     >>> import operator
     >>> num_arr = SegmentTree([2, 1, 5, 3, 4], operator.add)
     >>> tuple(num_arr.traverse())  # doctest: +NORMALIZE_WHITESPACE
-    (
-        SegmentTreeNode(start=0, end=4, val=15),
-        [ ... ]
-    )
-    SegmentTreeNode(start=0, end=4, val=15)
-    SegmentTreeNode(start=0, end=2, val=8)
-    SegmentTreeNode(start=3, end=4, val=7)
-    SegmentTreeNode(start=0, end=1, val=3)
-    SegmentTreeNode(start=2, end=2, val=5)
-    SegmentTreeNode(start=3, end=3, val=3)
-    SegmentTreeNode(start=4, end=4, val=4)
-    SegmentTreeNode(start=0, end=0, val=2)
-    SegmentTreeNode(start=1, end=1, val=1)
+    (SegmentTreeNode(start=0, end=4, val=15),
+        SegmentTreeNode(start=0, end=2, val=8),
+        SegmentTreeNode(start=3, end=4, val=7),
+        SegmentTreeNode(start=0, end=1, val=3),
+        SegmentTreeNode(start=2, end=2, val=5),
+        SegmentTreeNode(start=3, end=3, val=3),
+        SegmentTreeNode(start=4, end=4, val=4),
+        SegmentTreeNode(start=0, end=0, val=2),
+        SegmentTreeNode(start=1, end=1, val=1))
     >>>
     >>> num_arr.update(1, 5)
-    >>> for node in num_arr.traverse():
-    ...     print(node)
-    ...
-    SegmentTreeNode(start=0, end=4, val=19)
-    SegmentTreeNode(start=0, end=2, val=12)
-    SegmentTreeNode(start=3, end=4, val=7)
-    SegmentTreeNode(start=0, end=1, val=7)
-    SegmentTreeNode(start=2, end=2, val=5)
-    SegmentTreeNode(start=3, end=3, val=3)
-    SegmentTreeNode(start=4, end=4, val=4)
-    SegmentTreeNode(start=0, end=0, val=2)
-    SegmentTreeNode(start=1, end=1, val=5)
+    >>> tuple(num_arr.traverse())  # doctest: +NORMALIZE_WHITESPACE
+    (SegmentTreeNode(start=0, end=4, val=19),
+        SegmentTreeNode(start=0, end=2, val=12),
+        SegmentTreeNode(start=3, end=4, val=7),
+        SegmentTreeNode(start=0, end=1, val=7),
+        SegmentTreeNode(start=2, end=2, val=5),
+        SegmentTreeNode(start=3, end=3, val=3),
+        SegmentTreeNode(start=4, end=4, val=4),
+        SegmentTreeNode(start=0, end=0, val=2),
+        SegmentTreeNode(start=1, end=1, val=5))
     >>>
     >>> num_arr.query_range(3, 4)
     7
@@ -130,7 +124,6 @@ class SegmentTree:
     >>> min_arr.query_range(1, 3)
     3
     >>>
-
     """
 
     def __init__(self, collection: Sequence, function):
