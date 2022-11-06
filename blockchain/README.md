@@ -15,14 +15,17 @@ Let's breakdown the terminologies in the above definition. We find below termino
  *Then why is Blockchain addressed as digital ledger when it can record more than account transactions?* *And what are other transactions and details it can hold?*
 
 Digital Ledger Technology is just a ledger which is shared among multiple nodes. This way there exist no need for central authority to hold the info. Okay, how is it differentiated from central database and what are their benefits? Let's see an example of centralize database down here
-
-![image.png](blockchain\Image_data\Img1.png align="center")
+<p align = "center">
+  <img height = "75%" width = "48%"  src = "https://github.com/GK3077/Python/blob/additional-intro-blockchain-doc/blockchain/Image_data/img1.jpg">
+</p>
 
 There is an organization which has 4 branches whose data are stored in a centralized database. So even if one branch needs any data from ledger they need an approval from database in charge. And if one hacks the central database he gets to tamper and control all the data.
 
 Now lets assume every branch has a copy of the ledger and then once anything is added to the ledger by anyone branch it is gonna automatically reflect in all other ledgers available in other branch. This is done using Peer-to-peer network. An illustration of this scenario is shown below
 
-![image.png](blockchain\Image_data\img2.png align="center")
+<p align = "center">
+  <img height = "75%" width = "48%"  src = "https://github.com/GK3077/Python/blob/additional-intro-blockchain-doc/blockchain/Image_data/img2.jpg">
+</p>
 
 So this means even if tampered in one branch we can find out. If one branch is hacked we can be alerted and get to safeguard other branch. Now, assume these branches as computer or nodes and the ledger is a transaction record or digital receipt. so this is the concept of Digital Ledger Technology.
 
