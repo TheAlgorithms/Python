@@ -10,7 +10,7 @@ Let's breakdown the terminologies in the above definition. We find below termino
 
 ## Digital Ledger Technology
 
- It is otherwise called as distributed ledger technology. It is simply the opposite of centralized database. Firstly, what is a **ledger**? A ledger is a book or collection of accounts that records account transactions. 
+ It is otherwise called as distributed ledger technology. It is simply the opposite of centralized database. Firstly, what is a **ledger**? A ledger is a book or collection of accounts that records account transactions.
 
  *Then why is Blockchain addressed as digital ledger when it can record more than account transactions?* *And what are other transactions and details it can hold?*
 
@@ -44,7 +44,7 @@ It is the practice and study of secure communication techniques in the midst of 
 *Which cryptography technology is most widely used in blockchain and why?*
 
 So, in general, blockchain technology is a distributed record holder which records the information about ownership of an asset. To define precisely,
-> Blockchain is a distributed, immutable ledger that makes it easier to record transactions and track assets in a corporate network. 
+> Blockchain is a distributed, immutable ledger that makes it easier to record transactions and track assets in a corporate network.
 
 An asset could be tangible (such as a house, car, cash, or land) or intangible (such as a business) (intellectual property, patents, copyrights, branding). A blockchain network can track and sell almost anything of value, lowering risk and costs for everyone involved.
 
