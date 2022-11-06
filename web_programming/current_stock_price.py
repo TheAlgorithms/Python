@@ -1,12 +1,13 @@
-import requests
 from typing import Union
+
+import requests
 from bs4 import BeautifulSoup
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
 USER_AGENT += "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36"
 
 
-def stock_price(symbol: str) -> Union[float, None]:
+def stock_price(symbol: str) -> float | None:
     """
     fetches the stock price and return it in float if found else None
     """
