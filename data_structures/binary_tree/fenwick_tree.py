@@ -46,7 +46,7 @@ class FenwickTree:
         self.size = len(arr)
         self.tree = deepcopy(arr)
         for i in range(1, self.size):
-            j = self.next(i)
+            j = self.next_(i)
             if j < self.size:
                 self.tree[j] += self.tree[i]
 
@@ -64,13 +64,13 @@ class FenwickTree:
         """
         arr = self.tree[:]
         for i in range(self.size - 1, 0, -1):
-            j = self.next(i)
+            j = self.next_(i)
             if j < self.size:
                 arr[j] -= arr[i]
         return arr
 
     @staticmethod
-    def next(index: int) -> int:
+    def next_(index: int) -> int:
         return index + (index & (-index))
 
     @staticmethod
@@ -102,7 +102,7 @@ class FenwickTree:
             return
         while index < self.size:
             self.tree[index] += value
-            index = self.next(index)
+            index = self.next_(index)
 
     def update(self, index: int, value: int) -> None:
         """
