@@ -425,7 +425,7 @@ class Deque:
             values_list.append(aux.val)
             aux = aux.next_node
 
-        return "[" + ", ".join(repr(val) for val in values_list) + "]"
+        return f"[{', '.join(repr(val) for val in values_list)}]"
 
 
 if __name__ == "__main__":

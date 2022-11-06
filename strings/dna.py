@@ -14,13 +14,18 @@ def dna(dna: str) -> str:
     >>> dna("CTGA")
     'GACT'
     >>> dna("GFGG")
-    'Invalid Strand'
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid Strand
     """
 
-    r = len(re.findall("[ATCG]", dna)) != len(dna)
-    val = dna.translate(dna.maketrans("ATCG", "TAGC"))
-    return "Invalid Strand" if r else val
+    if len(re.findall("[ATCG]", dna)) != len(dna):
+        raise ValueError("Invalid Strand")
+
+    return dna.translate(dna.maketrans("ATCG", "TAGC"))
 
 
 if __name__ == "__main__":
-    __import__("doctest").testmod()
+    import doctest
+
+    doctest.testmod()
