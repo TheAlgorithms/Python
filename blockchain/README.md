@@ -4,7 +4,7 @@ A Blockchain is a type of distributed ledger technology **(DLT)** that consists 
 
 Let's breakdown the terminologies in the above definition. We find below terminologies,
 
-- Digital Ledger Technology(DLT)
+- Digital Ledger Technology (DLT)
 - Blocks
 - Cryptography
 
@@ -12,7 +12,7 @@ Let's breakdown the terminologies in the above definition. We find below termino
 
  It is otherwise called as distributed ledger technology. It is simply the opposite of centralized database. Firstly, what is a **ledger**? A ledger is a book or collection of accounts that records account transactions.
 
- *Then why is Blockchain addressed as digital ledger when it can record more than account transactions?* *And what are other transactions and details it can hold?*
+ *Why is Blockchain addressed as digital ledger if it can record more than account transactions? What other transaction details and information can it hold?*
 
 Digital Ledger Technology is just a ledger which is shared among multiple nodes. This way there exist no need for central authority to hold the info. Okay, how is it differentiated from central database and what are their benefits?
 
@@ -20,13 +20,13 @@ There is an organization which has 4 branches whose data are stored in a central
 
 Now lets assume every branch has a copy of the ledger and then once anything is added to the ledger by anyone branch it is gonna automatically reflect in all other ledgers available in other branch. This is done using Peer-to-peer network.
 
-So this means even if tampered in one branch we can find out. If one branch is hacked we can be alerted and get to safeguard other branch. Now, assume these branches as computer or nodes and the ledger is a transaction record or digital receipt. so this is the concept of Digital Ledger Technology.
+So this means even if information is tampered in one branch we can find out. If one branch is hacked we can be alerted ,so we can safeguard other branches. Now, assume these branches as computers or nodes and the ledger is a transaction record or digital receipt. If one ledger is hacked in a node we can detect since there will be a mismatch in comparison with other node information. So this is the concept of Digital Ledger Technology.
 
 *Do all node needs all the info in others nodes? Does this increase storage space in all nodes?*
 
 ## Blocks
 
-In short a block is nothing but collections of records with a labelled header. These are connected cryptographically. Once a new block is added to a chain previous block is connected or precisely said as locked and will remain unaltered. we will see how this works once we dig deep into working mechanisms.
+In short a block is nothing but collections of records with a labelled header. These are connected cryptographically. Once a new block is added to a chain, the previous block is connected, more precisely said as locked and hence, will remain unaltered. We can understand this concept once we get a clear understanding of working mechanism of blockchain.
 
 ## Cryptography
 
