@@ -4,7 +4,7 @@ Date    : November 7, 2022
 
 Task:
 You are given a tree root of a binary tree with n nodes, where each node has
-node.data coins. There are exactly n coins in whole tree. 
+node.data coins. There are exactly n coins in whole tree.
 
 In one move, we may choose two adjacent nodes and move one coin from one node
 to another. A move may be from parent to child, or from child to parent.
@@ -39,8 +39,8 @@ Space: O(1)
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 from collections import namedtuple
+from dataclasses import dataclass
 
 
 @dataclass
@@ -49,7 +49,9 @@ class TreeNode:
     left: TreeNode | None = None
     right: TreeNode | None = None
 
-CoinsDistribResult = namedtuple("CoinsDistribResult", 'moves excess')
+
+CoinsDistribResult = namedtuple("CoinsDistribResult", "moves excess")
+
 
 def distributeCoins(root: TreeNode | None) -> int:
     """
@@ -107,19 +109,23 @@ def distributeCoins(root: TreeNode | None) -> int:
 
         if node is None:
             return CoinsDistribResult(0, 1)
-        
+
         left_distrib_moves, left_distrib_excess = get_distrib(node.left)
         right_distrib_moves, right_distrib_excess = get_distrib(node.right)
 
         coins_to_left = 1 - left_distrib_excess
         coins_to_right = 1 - right_distrib_excess
 
-        result_moves = left_distrib_moves + right_distrib_moves + \
-                       abs(coins_to_left) + abs(coins_to_right)
+        result_moves = (
+            left_distrib_moves
+            + right_distrib_moves
+            + abs(coins_to_left)
+            + abs(coins_to_right)
+        )
         result_excess = node.data - coins_to_left - coins_to_right
 
         return CoinsDistribResult(result_moves, result_excess)
-    
+
     return get_distrib(root)[0]
 
 
