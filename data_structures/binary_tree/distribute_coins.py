@@ -53,21 +53,21 @@ class TreeNode:
 CoinsDistribResult = namedtuple("CoinsDistribResult", "moves excess")
 
 
-def distributeCoins(root: TreeNode | None) -> int:
+def distribute_coins(root: TreeNode | None) -> int:
     """
-    >>> distributeCoins(TreeNode(3, TreeNode(0), TreeNode(0)))
+    >>> distribute_coins(TreeNode(3, TreeNode(0), TreeNode(0)))
     2
-    >>> distributeCoins(TreeNode(0, TreeNode(3), TreeNode(0)))
+    >>> distribute_coins(TreeNode(0, TreeNode(3), TreeNode(0)))
     3
-    >>> distributeCoins(TreeNode(0, TreeNode(0), TreeNode(3)))
+    >>> distribute_coins(TreeNode(0, TreeNode(0), TreeNode(3)))
     3
-    >>> distributeCoins(None)
+    >>> distribute_coins(None)
     0
-    >>> distributeCoins(TreeNode(0, TreeNode(0), TreeNode(0)))
+    >>> distribute_coins(TreeNode(0, TreeNode(0), TreeNode(0)))
     Traceback (most recent call last):
      ...
     ValueError: The nodes number should be same as the number of coins
-    >>> distributeCoins(TreeNode(0, TreeNode(1), TreeNode(1)))
+    >>> distribute_coins(TreeNode(0, TreeNode(1), TreeNode(1)))
     Traceback (most recent call last):
      ...
     ValueError: The nodes number should be same as the number of coins
@@ -77,7 +77,7 @@ def distributeCoins(root: TreeNode | None) -> int:
         return 0
 
     # Validation
-    def count_nodes(node):
+    def count_nodes(node: TreeNode | None) -> int:
         """
         >>> count_nodes(None):
         0
@@ -87,7 +87,7 @@ def distributeCoins(root: TreeNode | None) -> int:
 
         return count_nodes(node.left) + count_nodes(node.right) + 1
 
-    def count_coins(node):
+    def count_coins(node: TreeNode | None) -> int:
         """
         >>> count_coins(None):
         0
@@ -101,7 +101,7 @@ def distributeCoins(root: TreeNode | None) -> int:
         raise ValueError("The nodes number should be same as the number of coins")
 
     # Main calculation
-    def get_distrib(node):
+    def get_distrib(node: TreeNode | None) -> int:
         """
         >>> get_distrib(None)
         namedtuple("CoinsDistribResult", "0 2")
