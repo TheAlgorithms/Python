@@ -55,13 +55,13 @@ def BB84(key_len: int = 8, seed: int | None = None) -> str:
     Performs the BB84 protocol using a key made of `key_len` bits.
     The two parties in the key distribution are called Alice and Bob.
     Args:
-        key_len (int): THe length of the generated key in bits. Default is 8.
+        key_len: The length of the generated key in bits. The default is 8.
 
-        seed (int, Optional): Seed for the random number generator.
+        seed: Seed for the random number generator.
         Mostly used for testing. Default is None.
 
     Returns:
-        key (str): The key generated using BB84 protocol.
+        key: The key generated using BB84 protocol.
 
     >>> bb84(16, seed=0)
     '1101101100010000'
