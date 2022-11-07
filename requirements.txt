@@ -8,7 +8,7 @@ opencv-python
 pandas
 pillow
 projectq
-qiskit; python_version < "3.11"
+qiskit
 requests
 rich
 scikit-fuzzy
