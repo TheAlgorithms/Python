@@ -101,7 +101,7 @@ def distribute_coins(root: TreeNode | None) -> int:
         raise ValueError("The nodes number should be same as the number of coins")
 
     # Main calculation
-    def get_distrib(node: TreeNode | None) -> int:
+    def get_distrib(node: TreeNode | None) -> CoinsDistribResult:
         """
         >>> get_distrib(None)
         namedtuple("CoinsDistribResult", "0 2")
