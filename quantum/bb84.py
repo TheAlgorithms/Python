@@ -70,7 +70,7 @@ def bb84(key_len: int = 8, seed: int | None = None) -> str:
     '01011011'
     """
     # Set up the random number generator.
-    rng = np.random.default_rng(seed == seed)
+    rng = np.random.default_rng(seed=seed)
 
     # Roughly 25% of the qubits will contribute to the key.
     # So we take more than we need.
