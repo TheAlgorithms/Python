@@ -11,15 +11,15 @@ def n31(a: int) -> tuple[list[int], int]:
     if not isinstance(a, int):
         raise TypeError(f"Must be int, not {type(a).__name__}")
     if a < 1:
-        raise ValueError(f"Given integer must be greater than 1, not {a}")
+        raise ValueError(f"Given integer must be positive, not {a}")
 
     path = [a]
     while a != 1:
         if a % 2 == 0:
-            a = a // 2
+            a //= 2
         else:
             a = 3 * a + 1
-        path += [a]
+        path.append(a)
     return path, len(path)
 
 
