@@ -15,8 +15,8 @@ def is_automorphic_number(n: int) -> bool:
     if n < 0:
         return False
     n_square = n * n
-    while (n > 0):
-        if (n % 10 != n_square % 10):
+    while n > 0:
+        if n % 10 != n_square % 10:
             return False
         n //= 10
         n_square //= 10
