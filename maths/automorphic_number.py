@@ -18,6 +18,8 @@ def is_automorphic_number(number: int) -> bool:
     returns True if the number is automorphic.
     >>> is_automorphic_number(-1)
     False
+    >>> is_automorphic_number(0)
+    True
     >>> is_automorphic_number(5)
     True
     >>> is_automorphic_number(6)
