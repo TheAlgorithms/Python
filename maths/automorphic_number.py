@@ -11,17 +11,17 @@ https://en.wikipedia.org/wiki/Automorphic_number
 # Time Complexity : O(log10n)
 
 
-def is_automorphic_number(n: int) -> bool:
+def is_automorphic_number(number: int) -> bool:
     if not isinstance(number, int):
         raise TypeError(f"Input value of [number={number}] must be an integer")
-    if n < 0:
+    if number < 0:
         return False
-    n_square = n * n
-    while (n > 0):
-        if (n % 10 != n_square % 10):
+    number_square = number * number
+    while (number > 0):
+        if (number % 10 != number_square % 10):
             return False
-        n //= 10
-        n_square //= 10
+        number //= 10
+        number_square //= 10
     return True
 
 
