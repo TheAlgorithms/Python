@@ -12,6 +12,8 @@ https://en.wikipedia.org/wiki/Automorphic_number
 
 
 def is_automorphic_number(n: int) -> bool:
+    if not isinstance(number, int):
+        raise TypeError(f"Input value of [number={number}] must be an integer")
     if n < 0:
         return False
     n_square = n * n
