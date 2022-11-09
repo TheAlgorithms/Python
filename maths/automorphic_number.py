@@ -12,6 +12,31 @@ https://en.wikipedia.org/wiki/Automorphic_number
 
 
 def is_automorphic_number(number: int) -> bool:
+    """
+    # doctest: +NORMALIZE_WHITESPACE
+    This functions takes an integer number as input.
+    returns True if the number is automorphic.
+    >>> is_automorphic_number(-1)
+    False
+    >>> is_automorphic_number(5)
+    True
+    >>> is_automorphic_number(6)
+    True
+    >>> is_automorphic_number(7)
+    False
+    >>> is_automorphic_number(25)
+    True
+    >>> is_automorphic_number(259918212890625)
+    True
+    >>> is_automorphic_number(259918212890636)
+    False
+    >>> is_automorphic_number(740081787109376)
+    True
+    >>> is_automorphic_number(5.0)
+    Traceback (most recent call last):
+        ...
+    TypeError: Input value of [number=5.0] must be an integer
+    """
     if not isinstance(number, int):
         raise TypeError(f"Input value of [number={number}] must be an integer")
     if number < 0:
@@ -26,8 +51,6 @@ def is_automorphic_number(number: int) -> bool:
 
 
 if __name__ == "__main__":
-    number = int(input("Enter number: ").strip())
-    if is_automorphic_number(number):
-        print(f"{number} is a automorphic Number.")
-    else:
-        print(f"{number} is not a automorphic Number.")
+    import doctest
+
+    doctest.testmod()
