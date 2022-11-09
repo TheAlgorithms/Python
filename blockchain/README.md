@@ -22,7 +22,7 @@ Now lets assume every branch has a copy of the ledger and then once anything is 
 
 So this means even if information is tampered in one branch we can find out. If one branch is hacked we can be alerted ,so we can safeguard other branches. Now, assume these branches as computers or nodes and the ledger is a transaction record or digital receipt. If one ledger is hacked in a node we can detect since there will be a mismatch in comparison with other node information. So this is the concept of Digital Ledger Technology.
 
-*Do all node needs all the info in others nodes? Does this increase storage space in all nodes?*
+*Is it required for all nodes to have access to all information in other nodes? Wouldn't this require enormous storage space in each node?*
 
 ## Blocks
 
