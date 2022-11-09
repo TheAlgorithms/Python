@@ -14,7 +14,7 @@ def average_welford(values: list) -> float:
     """
 
     avg = 0.0
-    for index in range(0, len(values)):
+    for index in range(len(values)):
         avg += (values[index] - avg) / (index + 1)
     return avg
 
