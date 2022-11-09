@@ -45,7 +45,8 @@ def is_pronic(number: int) -> bool:
     if number < 0 or number % 2 == 1:
         return False
     number_sqrt = int(number**0.5)
-    return number == number_sqrt*(number_sqrt+1)
+    return number == number_sqrt * (number_sqrt + 1)
+
 
 if __name__ == "__main__":
     import doctest
