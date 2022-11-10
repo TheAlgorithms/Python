@@ -8,7 +8,7 @@ https://en.wikipedia.org/wiki/Twin_prime
 """
 
 # Author : Akshay Dubey (https://github.com/itsAkshayDubey)
-from prime_check import is_prime
+from maths.prime_check import is_prime
 
 
 def twin_prime(number: int) -> int:
