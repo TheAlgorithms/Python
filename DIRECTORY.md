@@ -995,6 +995,7 @@
     * [Sol1](project_euler/problem_686/sol1.py)
 
 ## Quantum
+  * [Bb84](quantum/bb84.py)
   * [Deutsch Jozsa](quantum/deutsch_jozsa.py)
   * [Half Adder](quantum/half_adder.py)
   * [Not Gate](quantum/not_gate.py)
