@@ -90,32 +90,20 @@ def fast_primes(max_n: int) -> Generator[int, None, None]:
             yield i
 
 
+def benchmark():
+    """
+    Let's benchmark our functions side-by-side...
+    """
+    from timeit import timeit
+
+    setup = "from __main__ import slow_primes, primes, fast_primes"
+    print(timeit("slow_primes(1_000_000_000_000)", setup=setup, number=1_000_000))
+    print(timeit("primes(1_000_000_000_000)", setup=setup, number=1_000_000))
+    print(timeit("fast_primes(1_000_000_000_000)", setup=setup, number=1_000_000))
+
+
 if __name__ == "__main__":
     number = int(input("Calculate primes up to:\n>> ").strip())
     for ret in primes(number):
         print(ret)
-
-    # Let's benchmark them side-by-side...
-    from timeit import timeit
-
-    print(
-        timeit(
-            "slow_primes(1_000_000_000_000)",
-            setup="from __main__ import slow_primes",
-            number=1_000_000,
-        )
-    )
-    print(
-        timeit(
-            "primes(1_000_000_000_000)",
-            setup="from __main__ import primes",
-            number=1_000_000,
-        )
-    )
-    print(
-        timeit(
-            "fast_primes(1_000_000_000_000)",
-            setup="from __main__ import fast_primes",
-            number=1_000_000,
-        )
-    )
+    benchmark()
