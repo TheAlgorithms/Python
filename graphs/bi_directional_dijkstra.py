@@ -1,4 +1,5 @@
 from queue import PriorityQueue
+from typing import Any
 
 import numpy as np
 
@@ -11,16 +12,9 @@ Link for reference: https://www.homepages.ucl.ac.uk/~ucahmto/math/2020/05/30/bid
 
 # Author: Swayam Singh (https://github.com/practice404)
 
-
-def bidirectional_dij(
-    source: str or int,
-    destination: str or int,
-    graph_forward: dict,
-    graph_backward: dict,
-) -> int:
+def bidirectional_dij(source: str or int , destination: str or int, graph_forward: dict, graph_backward: dict) -> int:
     """
     Bi-directional Dijkstra's algorithm.
-    Link for reference: https://www.homepages.ucl.ac.uk/~ucahmto/math/2020/05/30/bidirectional-dijkstra.html
     Args:
         source : Source stop id
         destination: destination stop id
@@ -44,8 +38,8 @@ def bidirectional_dij(
     cost_backward = {destination: 0}
     parent_forward = {source: None}
     parent_backward = {destination: None}
-    queue_forward = PriorityQueue()
-    queue_backward = PriorityQueue()
+    queue_forward: PriorityQueue[Any] = PriorityQueue()
+    queue_backward: PriorityQueue[Any] = PriorityQueue()
 
     shortest_distance = np.inf
 
@@ -84,18 +78,9 @@ def bidirectional_dij(
                 queue_forward.put((new_cost_f, next_forward))
                 cost_forward[next_forward] = new_cost_f
                 parent_forward[next_forward] = vertex_forward
-            if (
-                next_forward in visited_backward
-                and cost_forward[vertex_forward]
-                + d_forward
-                + cost_backward[next_forward]
-                < shortest_distance
-            ):
-                shortest_distance = (
-                    cost_forward[vertex_forward]
-                    + d_forward
-                    + cost_backward[next_forward]
-                )
+            if next_forward in visited_backward and cost_forward[vertex_forward] + d_forward + \
+                    cost_backward[next_forward] < shortest_distance:
+                shortest_distance = cost_forward[vertex_forward] + d_forward + cost_backward[next_forward]
 
         # backward pass and relaxation
         for next_backward, d_backward in graph_backward[vertex_backward]:
@@ -108,30 +93,17 @@ def bidirectional_dij(
                 cost_backward[next_backward] = new_cost_b
                 parent_backward[next_backward] = vertex_backward
 
-            if (
-                next_backward in visited_forward
-                and cost_backward[vertex_backward]
-                + d_backward
-                + cost_forward[next_backward]
-                < shortest_distance
-            ):
-                shortest_distance = (
-                    cost_backward[vertex_backward]
-                    + d_backward
-                    + cost_forward[next_backward]
-                )
+            if next_backward in visited_forward and cost_backward[vertex_backward] + d_backward + \
+                    cost_forward[next_backward] < shortest_distance:
+                shortest_distance = cost_backward[vertex_backward] + d_backward + cost_forward[next_backward]
 
-        if (
-            cost_forward[vertex_forward] + cost_backward[vertex_backward]
-            >= shortest_distance
-        ):
+        if cost_forward[vertex_forward] + cost_backward[vertex_backward] >= shortest_distance:
             break
 
     if shortest_distance == np.inf:
         return shortest_path_distance
     shortest_path_distance = shortest_distance
     return shortest_path_distance
-
 
 r"""
 Layout of input Graph:
@@ -154,13 +126,11 @@ graph_bwd = {
     "C": [["B", 1]],
     "D": [["C", 1]],
     "F": [["D", 1], ["G", 1]],
-    "G": [["E", 2]],
+    "G": [["E", 2]]
 }
-print(
-    bidirectional_dij("E", "F", graph_fwd, graph_bwd)
-)  # # E -- 2 --> G -- 1 --> F == 3
+print(bidirectional_dij("E", "F", graph_fwd, graph_bwd)) # # E -- 2 --> G -- 1 --> F == 3
 
 if __name__ == "__main__":
-    import doctest
+   import doctest
+   doctest.testmod()
 
-    doctest.testmod()
