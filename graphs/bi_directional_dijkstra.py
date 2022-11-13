@@ -12,7 +12,10 @@ Link for reference: https://www.homepages.ucl.ac.uk/~ucahmto/math/2020/05/30/bid
 
 # Author: Swayam Singh (https://github.com/practice404)
 
-def bidirectional_dij(source: str, destination: str, graph_forward: dict, graph_backward: dict) -> int:
+
+def bidirectional_dij(
+    source: str, destination: str, graph_forward: dict, graph_backward: dict
+) -> int:
     """
     Bi-directional Dijkstra's algorithm.
     Args:
@@ -105,6 +108,7 @@ def bidirectional_dij(source: str, destination: str, graph_forward: dict, graph_
     shortest_path_distance = shortest_distance
     return shortest_path_distance
 
+
 r"""
 Layout of input Graph:
 E -- 1 --> B -- 1 --> C -- 1 --> D -- 1 --> F
@@ -126,10 +130,13 @@ graph_bwd = {
     "C": [["B", 1]],
     "D": [["C", 1]],
     "F": [["D", 1], ["G", 1]],
-    "G": [["E", 2]]
+    "G": [["E", 2]],
 }
-print(bidirectional_dij("E", "F", graph_fwd, graph_bwd)) # # E -- 2 --> G -- 1 --> F == 3
+print(
+    bidirectional_dij("E", "F", graph_fwd, graph_bwd)
+)  # # E -- 2 --> G -- 1 --> F == 3
 
 if __name__ == "__main__":
-   import doctest
-   doctest.testmod()
+    import doctest
+
+    doctest.testmod()
