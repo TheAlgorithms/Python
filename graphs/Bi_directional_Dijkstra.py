@@ -1,12 +1,19 @@
 from queue import PriorityQueue
-
 import numpy as np
 
+"""
+Bi-directional Dijkstra's algorithm.
+
+A bi-directional approach is an efficient and less time consuming optimization for Dijkstra's searching algorithm
+Link for reference: https://www.homepages.ucl.ac.uk/~ucahmto/math/2020/05/30/bidirectional-dijkstra.html
+"""
+
+# Author: Swayam Singh (https://github.com/practice404)
 
 def bidirectional_dij(source, destination, graph_forward, graph_backward) -> int:
     """
     Bi-directional Dijkstra's algorithm.
-
+    Link for reference: https://www.homepages.ucl.ac.uk/~ucahmto/math/2020/05/30/bidirectional-dijkstra.html
     Args:
         source : Source stop id
         destination: destination stop id
