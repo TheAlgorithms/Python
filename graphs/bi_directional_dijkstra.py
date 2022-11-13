@@ -14,8 +14,8 @@ Link for reference: https://www.homepages.ucl.ac.uk/~ucahmto/math/2020/05/30/bid
 
 
 def bidirectional_dij(
-    source: str or int,
-    destination: str or int,
+    source: str,
+    destination: str,
     graph_forward: dict,
     graph_backward: dict,
 ) -> int:
