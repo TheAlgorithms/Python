@@ -18,7 +18,7 @@ import numpy as np
 
 
 def bidirectional_dij(
-        source: str, destination: str, graph_forward: dict, graph_backward: dict
+    source: str, destination: str, graph_forward: dict, graph_backward: dict
 ) -> int:
     """
     Bi-directional Dijkstra's algorithm.
@@ -104,8 +104,6 @@ def bidirectional_dij(
     if shortest_distance != np.inf:
         shortest_path_distance = shortest_distance
     return shortest_path_distance
-
-
 
 
 if __name__ == "__main__":
