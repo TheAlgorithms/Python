@@ -18,7 +18,7 @@ import numpy as np
 
 
 def bidirectional_dij(
-        source: str, destination: str, graph_forward: dict, graph_backward: dict
+    source: str, destination: str, graph_forward: dict, graph_backward: dict
 ) -> int:
     """
     Bi-directional Dijkstra's algorithm.
