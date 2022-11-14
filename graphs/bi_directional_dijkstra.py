@@ -18,7 +18,7 @@ import numpy as np
 
 
 def bidirectional_dij(
-    source: str, destination: str, graph_forward: dict, graph_backward: dict
+        source: str, destination: str, graph_forward: dict, graph_backward: dict
 ) -> int:
     """
     Bi-directional Dijkstra's algorithm.
@@ -113,11 +113,7 @@ E -- 1 --> B -- 1 --> C -- 1 --> D -- 1 --> F
   \                                        ||
     -------- 2 ---------> G ------- 1 ------
 """
-
-if __name__ == "__main__":
-    import doctest
-
-    graph_fwd = {
+graph_fwd = {
         "B": [["C", 1]],
         "C": [["D", 1]],
         "D": [["F", 1]],
@@ -125,14 +121,18 @@ if __name__ == "__main__":
         "F": [],
         "G": [["F", 1]],
     }
-    graph_bwd = {
-        "B": [["E", 1]],
-        "C": [["B", 1]],
-        "D": [["C", 1]],
-        "F": [["D", 1], ["G", 1]],
-        "E": [[None, np.inf]],
-        "G": [["E", 2]],
-    }
+graph_bwd = {
+    "B": [["E", 1]],
+    "C": [["B", 1]],
+    "D": [["C", 1]],
+    "F": [["D", 1], ["G", 1]],
+    "E": [[None, np.inf]],
+    "G": [["E", 2]],
+}
+
+if __name__ == "__main__":
+    import doctest
+
     print(
         bidirectional_dij("E", "F", graph_fwd, graph_bwd)
     )  # E -- 2 --> G -- 1 --> F == 3
