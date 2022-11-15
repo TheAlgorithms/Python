@@ -23,11 +23,11 @@ def liouville_lambda(number: int) -> int:
     >>> liouville_lambda(0)
     Traceback (most recent call last):
         ...
-    ValueError: Input must be non-zero
+    ValueError: Input must be a positive integer
     >>> liouville_lambda(-1)
     Traceback (most recent call last):
         ...
-    ValueError: Input must be positive
+    ValueError: Input must be a positive integer
     >>> liouville_lambda(11.0)
     Traceback (most recent call last):
         ...
@@ -35,10 +35,8 @@ def liouville_lambda(number: int) -> int:
     """
     if not isinstance(number, int):
         raise TypeError(f"Input value of [number={number}] must be an integer")
-    if number < 0:
-        raise ValueError("Input must be positive")
-    if number == 0:
-        raise ValueError("Input must be non-zero")
+    if number < 1:
+        raise ValueError("Input must be a positive integer")
     return -1 if len(prime_factors(number)) % 2 else 1
 
 
