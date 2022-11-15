@@ -13,7 +13,6 @@ from maths.prime_factors import prime_factors
 
 def liouville_lambda(number: int) -> int:
     """
-    # doctest: +NORMALIZE_WHITESPACE
     This functions takes an integer number as input.
     returns 1 if n has even number of prime factors and -1 otherwise.
     >>> liouville_lambda(10)
