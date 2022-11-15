@@ -27,7 +27,7 @@ def bidirectional_dij(
 
     Warnings:
         If the destination is not reachable, function returns -1
-
+    >>> from bi_directional_dijkstra import bidirectional_dij
     >>> bidirectional_dij("E", "F", graph_fwd, graph_bwd)
     3
     """
@@ -106,24 +106,23 @@ def bidirectional_dij(
     return shortest_path_distance
 
 
-graph_fwd = {
-    "B": [["C", 1]],
-    "C": [["D", 1]],
-    "D": [["F", 1]],
-    "E": [["B", 1], ["G", 2]],
-    "F": [],
-    "G": [["F", 1]],
-}
-graph_bwd = {
-    "B": [["E", 1]],
-    "C": [["B", 1]],
-    "D": [["C", 1]],
-    "F": [["D", 1], ["G", 1]],
-    "E": [[None, np.inf]],
-    "G": [["E", 2]],
-}
-
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()
+    graph_fwd = {
+        "B": [["C", 1]],
+        "C": [["D", 1]],
+        "D": [["F", 1]],
+        "E": [["B", 1], ["G", 2]],
+        "F": [],
+        "G": [["F", 1]],
+    }
+    graph_bwd = {
+        "B": [["E", 1]],
+        "C": [["B", 1]],
+        "D": [["C", 1]],
+        "F": [["D", 1], ["G", 1]],
+        "E": [[None, np.inf]],
+        "G": [["E", 2]],
+    }
+    doctest.testmod(globs={'graph_fwd': graph_fwd, 'graph_bwd': graph_bwd})
