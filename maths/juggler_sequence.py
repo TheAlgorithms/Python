@@ -18,7 +18,7 @@ def juggler_sequence(number: int) -> list[int]:
     >>> juggler_sequence(0)
     Traceback (most recent call last):
         ...
-    TypeError: Input value of [number=0] must be greater than 0
+    ValueError: Input value of [number=0] must be a positive integer
     >>> juggler_sequence(1)
     [1]
     >>> juggler_sequence(2)
@@ -34,14 +34,12 @@ def juggler_sequence(number: int) -> list[int]:
     >>> juggler_sequence(-1)
     Traceback (most recent call last):
         ...
-    TypeError: Input value of [number=-1] must be positive
+    ValueError: Input value of [number=-1] must be a positive integer
     """
     if not isinstance(number, int):
         raise TypeError(f"Input value of [number={number}] must be an integer")
-    if number < 0:
-        raise TypeError(f"Input value of [number={number}] must be positive")
-    if number == 0:
-        raise TypeError(f"Input value of [number={number}] must be greater than 0")
+    if number < 1:
+        raise ValueError(f"Input value of [number={number}] must be a positive integer")
     sequence = [number]
     while number != 1:
         if number % 2 == 0:
