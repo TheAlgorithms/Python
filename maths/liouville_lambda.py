@@ -1,8 +1,8 @@
 """
 == Liouville Lambda Function ==
 The Liouville Lambda function, denoted by λ(n)
-and λ(n) is 1 if n is the product of an even number of prime numbers, 
-and -1 if it is the product of an odd number of primes. 
+and λ(n) is 1 if n is the product of an even number of prime numbers,
+and -1 if it is the product of an odd number of primes.
 
 https://en.wikipedia.org/wiki/Liouville_function
 """
