@@ -1,6 +1,6 @@
 # Blockchain
 
-A Blockchain is a type of distributed ledger technology **(DLT)** that consists of growing list of records, called **blocks**, that are securely linked together using **cryptography**.
+A Blockchain is a type of **distributed ledger** technology (DLT) that consists of growing list of records, called **blocks**, that are securely linked together using **cryptography**.
 
 Let's breakdown the terminologies in the above definition. We find below terminologies,
 
