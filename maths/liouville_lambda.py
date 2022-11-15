@@ -39,10 +39,7 @@ def liouville_lambda(number: int) -> int:
         raise ValueError("Input must be positive")
     if number == 0:
         raise ValueError("Input must be non-zero")
-    if len(prime_factors(number)) % 2 == 0:
-        return 1
-    else:
-        return -1
+    return -1 if len(prime_factors(number)) % 2 else 1
 
 
 if __name__ == "__main__":
