@@ -43,11 +43,13 @@ def juggler_sequence(number: int) -> list[int]:
     if number == 0:
         raise TypeError(f"Input value of [number={number}] must be greater than 0")
     sequence = [number]
-    while number!=1:
+    while number != 1:
         if number % 2 == 0:
             temp = int(math.floor(math.sqrt(number)))
         else:
-            temp = int(math.floor(math.sqrt(number) * math.sqrt(number) * math.sqrt(number)))
+            temp = int(
+                math.floor(math.sqrt(number) * math.sqrt(number) * math.sqrt(number))
+            )
         number = temp
         sequence.append(number)
     return sequence
