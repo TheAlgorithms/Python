@@ -89,7 +89,7 @@ def iterate_function(
     function_params: Any,
     nb_iterations: int,
     z_0: numpy.ndarray,
-    infinity: float = None,
+    infinity: float | None = None,
 ) -> numpy.ndarray:
     """
     Iterate the function "eval_function" exactly nb_iterations times.
