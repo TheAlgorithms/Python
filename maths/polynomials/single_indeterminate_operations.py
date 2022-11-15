@@ -187,7 +187,7 @@ class Polynomial:
         """
         return not self.__eq__(polynomial_2)
 
-    def degree1_root(self) -> float: 
+    def degree1_root(self) -> float:
         """
         Returns the root of degree 1 polynomial.
         >>> p = Polynomial(1, [1, 2])
