@@ -22,12 +22,13 @@ def bidirectional_dij(
 ) -> int:
     """
     Bi-directional Dijkstra's algorithm.
+    
     Returns:
         shortest_path_distance (int): length of the shortest path.
 
     Warnings:
         If the destination is not reachable, function returns -1
-    >>> from bi_directional_dijkstra import bidirectional_dij
+
     >>> bidirectional_dij("E", "F", graph_fwd, graph_bwd)
     3
     """
@@ -125,4 +126,4 @@ if __name__ == "__main__":
         "E": [[None, np.inf]],
         "G": [["E", 2]],
     }
-    doctest.testmod(globs={"graph_fwd": graph_fwd, "graph_bwd": graph_bwd})
+    doctest.testmod(globs={'graph_fwd': graph_fwd, 'graph_bwd': graph_bwd})
