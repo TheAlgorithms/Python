@@ -4,9 +4,13 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
     number of points you want to use
 
     >>> print(points_to_polynomial([]))
-    The program cannot work out a fitting polynomial.
+    Traceback (most recent call last):
+        ...
+    ValueError: The program cannot work out a fitting polynomial.
     >>> print(points_to_polynomial([[]]))
-    The program cannot work out a fitting polynomial.
+    Traceback (most recent call last):
+        ...
+    ValueError: The program cannot work out a fitting polynomial.
     >>> print(points_to_polynomial([[1, 0], [2, 0], [3, 0]]))
     f(x)=x^2*0.0+x^1*-0.0+x^0*0.0
     >>> print(points_to_polynomial([[1, 1], [2, 1], [3, 1]]))
@@ -25,17 +29,17 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
     f(x)=x^2*5.0+x^1*-18.0+x^0*18.0
     """
     if len(coordinates) == 0 or not all(len(pair) == 2 for pair in coordinates):
-        return "The program cannot work out a fitting polynomial."
+        raise ValueError("The program cannot work out a fitting polynomial.")
 
     if len({tuple(pair) for pair in coordinates}) != len(coordinates):
-        return "The program cannot work out a fitting polynomial."
+        raise ValueError("The program cannot work out a fitting polynomial.")
 
     set_x = {x for x, _ in coordinates}
     if len(set_x) == 1:
         return f"x={coordinates[0][0]}"
 
     if len(set_x) != len(coordinates):
-        return "The program cannot work out a fitting polynomial."
+        raise ValueError("The program cannot work out a fitting polynomial.")
 
     x = len(coordinates)
 

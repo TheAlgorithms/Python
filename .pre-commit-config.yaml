@@ -27,11 +27,11 @@ repos:
           - --profile=black
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.2.0
+    rev: v3.2.2
     hooks:
       - id: pyupgrade
         args:
-          - --py310-plus
+          - --py311-plus
 
   - repo: https://github.com/PyCQA/flake8
     rev: 5.0.4
@@ -52,7 +52,7 @@ repos:
           *flake8-plugins
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.982
+    rev: v0.991
     hooks:
       - id: mypy
         args:

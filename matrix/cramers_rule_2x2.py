@@ -2,7 +2,7 @@
 # https://en.wikipedia.org/wiki/Cramer%27s_rule
 
 
-def cramers_rule_2x2(equation1: list[int], equation2: list[int]) -> str:
+def cramers_rule_2x2(equation1: list[int], equation2: list[int]) -> tuple[float, float]:
     """
     Solves the system of linear equation in 2 variables.
     :param: equation1: list of 3 numbers
@@ -14,13 +14,13 @@ def cramers_rule_2x2(equation1: list[int], equation2: list[int]) -> str:
     determinant_y = [[a1, d1], [a2, d2]]
 
     >>> cramers_rule_2x2([2, 3, 0], [5, 1, 0])
-    'Trivial solution. (Consistent system) x = 0 and y = 0'
+    (0.0, 0.0)
     >>> cramers_rule_2x2([0, 4, 50], [2, 0, 26])
-    'Non-Trivial Solution (Consistent system) x = 13.0, y = 12.5'
+    (13.0, 12.5)
     >>> cramers_rule_2x2([11, 2, 30], [1, 0, 4])
-    'Non-Trivial Solution (Consistent system) x = 4.0, y = -7.0'
+    (4.0, -7.0)
     >>> cramers_rule_2x2([4, 7, 1], [1, 2, 0])
-    'Non-Trivial Solution (Consistent system) x = 2.0, y = -1.0'
+    (2.0, -1.0)
 
     >>> cramers_rule_2x2([1, 2, 3], [2, 4, 6])
     Traceback (most recent call last):
@@ -75,8 +75,10 @@ def cramers_rule_2x2(equation1: list[int], equation2: list[int]) -> str:
             raise ValueError("No solution. (Inconsistent system)")
     else:
         if determinant_x == determinant_y == 0:
-            return "Trivial solution. (Consistent system) x = 0 and y = 0"
+            # Trivial solution (Inconsistent system)
+            return (0.0, 0.0)
         else:
             x = determinant_x / determinant
             y = determinant_y / determinant
-            return f"Non-Trivial Solution (Consistent system) x = {x}, y = {y}"
+            # Non-Trivial Solution (Consistent system)
+            return (x, y)
