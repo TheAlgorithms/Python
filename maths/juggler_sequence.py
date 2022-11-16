@@ -14,7 +14,6 @@ import math
 
 def juggler_sequence(number: int) -> list[int]:
     """
-    # doctest: +NORMALIZE_WHITESPACE
     >>> juggler_sequence(0)
     Traceback (most recent call last):
         ...
