@@ -23,16 +23,11 @@ def remove_digit(num: int) -> int:
 
     if isinstance(num, int):
         num_str = str(abs(num))
-        num_transpositions = [
-            list(num_str) for char in range(len(num_str))
-        ]
+        num_transpositions = [list(num_str) for char in range(len(num_str))]
         for index in range(len(num_str)):
             num_transpositions[index].pop(index)
         return sorted(
-            (
-                int("".join(list(transposition)))
-                for transposition in num_transpositions
-            ),
+            (int("".join(list(transposition))) for transposition in num_transpositions),
             reverse=True,
         )[0]
     else:
