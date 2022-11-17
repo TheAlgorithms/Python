@@ -1,4 +1,5 @@
 import heapq
+import sys
 
 import numpy as np
 
@@ -116,7 +117,7 @@ def do_something(back_pointer, goal, start):
         print(x, end=" ")
         x = back_pointer[x]
     print(x)
-    quit()
+    sys.exit()
 
 
 def valid(p: TPos):

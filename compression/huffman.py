@@ -56,7 +56,7 @@ def traverse_tree(root: Letter | TreeNode, bitstring: str) -> list[Letter]:
     Recursively traverse the Huffman Tree to set each
     Letter's bitstring dictionary, and return the list of Letters
     """
-    if type(root) is Letter:
+    if isinstance(root, Letter):
         root.bitstring[root.letter] = bitstring
         return [root]
     treenode: TreeNode = root  # type: ignore
