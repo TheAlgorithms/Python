@@ -48,7 +48,9 @@ def juggler_sequence(number: int) -> list[int]:
         if number % 2 == 0:
             number = math.floor(math.sqrt(number))
         else:
-            number = math.floor(math.sqrt(number) * math.sqrt(number) * math.sqrt(number))
+            number = math.floor(
+                math.sqrt(number) * math.sqrt(number) * math.sqrt(number)
+            )
         sequence.append(number)
     return sequence
 
