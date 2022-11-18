@@ -106,6 +106,7 @@ def bidirectional_dij(
         shortest_path_distance = shortest_distance
     return shortest_path_distance
 
+
 graph_fwd = {
     "B": [["C", 1]],
     "C": [["D", 1]],
@@ -125,6 +126,5 @@ graph_bwd = {
 
 if __name__ == "__main__":
     import doctest
-
 
     doctest.testmod()
