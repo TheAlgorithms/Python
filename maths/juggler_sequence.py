@@ -26,6 +26,10 @@ def juggler_sequence(number: int) -> list[int]:
     [3, 5, 11, 36, 6, 2, 1]
     >>> juggler_sequence(5)
     [5, 11, 36, 6, 2, 1]
+    >>> juggler_sequence(10)
+    [10, 3, 5, 11, 36, 6, 2, 1]
+    >>> juggler_sequence(25)
+    [25, 125, 1397, 52214, 228, 15, 58, 7, 18, 4, 2, 1]
     >>> juggler_sequence(6.0)
     Traceback (most recent call last):
         ...
