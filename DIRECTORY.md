@@ -571,6 +571,7 @@
   * [Largest Subarray Sum](maths/largest_subarray_sum.py)
   * [Least Common Multiple](maths/least_common_multiple.py)
   * [Line Length](maths/line_length.py)
+  * [Liouville Lambda](maths/liouville_lambda.py)
   * [Lucas Lehmer Primality Test](maths/lucas_lehmer_primality_test.py)
   * [Lucas Series](maths/lucas_series.py)
   * [Maclaurin Series](maths/maclaurin_series.py)
