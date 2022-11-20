@@ -89,13 +89,9 @@ def is_strong_password(password: str, min_length: int = 8) -> bool:
     num = any(char in digits for char in password)
     spec_char = any(char in punctuation for char in password)
 
-    if upper and lower and num and spec_char:
-        return True
-
-    else:
-        # Passwords should contain UPPERCASE, lowerase
-        # numbers, and special characters
-        return False
+    return upper and lower and num and spec_char
+    # Passwords should contain UPPERCASE, lowerase
+    # numbers, and special characters
 
 
 def main():

@@ -133,7 +133,7 @@ def _msd_radix_sort_inplace(
     j = end_index - 1
     while i <= j:
         changed = False
-        if not ((list_of_ints[i] >> bit_position) & 1):
+        if not (list_of_ints[i] >> bit_position) & 1:
             # found zero at the beginning
             i += 1
             changed = True

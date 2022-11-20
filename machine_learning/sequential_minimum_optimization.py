@@ -388,16 +388,10 @@ class SmoSVM:
             return (data - self._min) / (self._max - self._min)
 
     def _is_unbound(self, index):
-        if 0.0 < self.alphas[index] < self._c:
-            return True
-        else:
-            return False
+        return bool(0.0 < self.alphas[index] < self._c)
 
     def _is_support(self, index):
-        if self.alphas[index] > 0:
-            return True
-        else:
-            return False
+        return bool(self.alphas[index] > 0)
 
     @property
     def unbound(self):
