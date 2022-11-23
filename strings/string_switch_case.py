@@ -16,10 +16,18 @@ snake case: https://en.wikipedia.org/wiki/Snake_case
 
 # assistant functions
 def split_input(str_: str) -> str:
+    """
+    >>> split_input("one two 31235three4four")
+    [['one', 'two', '31235three4four']]
+    """
     return [char.split() for char in re.split(r"[^ a-z A-Z 0-9 \s]", str_)]
 
 
 def to_simple_case(str_: str) -> str:
+    """
+    >>> to_simple_case("one two 31235three4four")
+    'OneTwo31235three4four'
+    """
     string_split = split_input(str_)
     return "".join(
         ["".join([char.capitalize() for char in sub_str]) for sub_str in string_split]
@@ -27,6 +35,12 @@ def to_simple_case(str_: str) -> str:
 
 
 def to_complex_case(text: str, upper: bool, separator: str) -> str:
+    """
+    >>> to_complex_case("one two 31235three4four", True, "_")
+    'ONE_TWO_31235THREE4FOUR'
+    >>> to_complex_case("one two 31235three4four", False, "-")
+    'one-two-31235three4four'
+    """
     try:
         string_split = split_input(text)
         if upper:
