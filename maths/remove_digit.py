@@ -29,7 +29,7 @@ def remove_digit(num: int) -> int:
         for index in range(len(num_str)):
             num_transpositions[index].pop(index)
         return max(
-            (int("".join(list(transposition))) for transposition in num_transpositions)
+            int("".join(list(transposition))) for transposition in num_transpositions
         )
 
 
