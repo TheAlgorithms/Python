@@ -15,7 +15,7 @@ snake case: https://en.wikipedia.org/wiki/Snake_case
 """
 
 # assistant functions
-def split_input(str_: str) -> str:
+def split_input(str_: str) -> list[[list[str]]]:
     """
     >>> split_input("one two 31235three4four")
     [['one', 'two', '31235three4four']]
