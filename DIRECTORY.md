@@ -33,6 +33,7 @@
   * [Rat In Maze](backtracking/rat_in_maze.py)
   * [Sudoku](backtracking/sudoku.py)
   * [Sum Of Subsets](backtracking/sum_of_subsets.py)
+  * [Word Search](backtracking/word_search.py)
 
 ## Bit Manipulation
   * [Binary And Operator](bit_manipulation/binary_and_operator.py)
@@ -375,6 +376,7 @@
   * [Articulation Points](graphs/articulation_points.py)
   * [Basic Graphs](graphs/basic_graphs.py)
   * [Bellman Ford](graphs/bellman_ford.py)
+  * [Bi Directional Dijkstra](graphs/bi_directional_dijkstra.py)
   * [Bidirectional A Star](graphs/bidirectional_a_star.py)
   * [Bidirectional Breadth First Search](graphs/bidirectional_breadth_first_search.py)
   * [Boruvka](graphs/boruvka.py)
@@ -563,6 +565,7 @@
   * [Is Ip V4 Address Valid](maths/is_ip_v4_address_valid.py)
   * [Is Square Free](maths/is_square_free.py)
   * [Jaccard Similarity](maths/jaccard_similarity.py)
+  * [Juggler Sequence](maths/juggler_sequence.py)
   * [Kadanes](maths/kadanes.py)
   * [Karatsuba](maths/karatsuba.py)
   * [Krishnamurthy Number](maths/krishnamurthy_number.py)
