@@ -1,14 +1,15 @@
 """
 == Hexagonal Number ==
-The nth hexagonal number hn is the number of distinct dots 
-in a pattern of dots consisting of the outlines of regular 
-hexagons with sides up to n dots, when the hexagons are 
+The nth hexagonal number hn is the number of distinct dots
+in a pattern of dots consisting of the outlines of regular
+hexagons with sides up to n dots, when the hexagons are
 overlaid so that they share one vertex.
 
 https://en.wikipedia.org/wiki/Hexagonal_number
 """
 
 # Author : Akshay Dubey (https://github.com/itsAkshayDubey)
+
 
 def hexagonal(number: int) -> int:
     """
@@ -38,7 +39,7 @@ def hexagonal(number: int) -> int:
         raise TypeError(f"Input value of [number={number}] must be an integer")
     if number < 1:
         raise ValueError("Input must be a positive integer")
-    return number*(2*number - 1)
+    return number * (2 * number - 1)
 
 
 if __name__ == "__main__":
