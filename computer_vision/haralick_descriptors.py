@@ -2,7 +2,7 @@
 https://en.wikipedia.org/wiki/Image_texture
 https://en.wikipedia.org/wiki/Co-occurrence_matrix#Application_to_image_analysis
 """
-from typing import Any, Union
+from typing import Any
 
 import imageio.v2 as imageio
 import numpy as np
@@ -23,7 +23,9 @@ def root_mean_square_error(original: np.ndarray, reference: np.ndarray) -> float
     return np.sqrt(((original - reference) ** 2).mean())
 
 
-def normalize_image(image: np.ndarray, cap: float = 255.0, data_type=np.uint8) -> np.ndarray:
+def normalize_image(
+    image: np.ndarray, cap: float = 255.0, data_type=np.uint8
+) -> np.ndarray:
     """
     Normalizes image in Numpy 2D array format, between ranges 0-cap,
     as to fit uint8 type.
@@ -36,7 +38,8 @@ def normalize_image(image: np.ndarray, cap: float = 255.0, data_type=np.uint8) -
         return 2D numpy array of type uint8, corresponding to limited range matrix
 
     Examples:
-        >>> normalize_image(np.array([[1, 2, 3], [4, 5, 10]]), cap=1.0, data_type=np.float64)
+        >>> normalize_image(np.array([[1, 2, 3], [4, 5, 10]]),
+        ...                 cap=1.0, data_type=np.float64)
         array([[0.        , 0.11111111, 0.22222222],
                [0.33333333, 0.44444444, 1.        ]])
         >>> normalize_image(np.array([[4, 4, 3], [1, 7, 2]]))
@@ -74,7 +77,8 @@ def grayscale(image: np.ndarray) -> np.ndarray:
     taking the dot product between the channel and the weights.
 
     Example:
-        >>> grayscale(np.array([[[108, 201, 72], [255, 11,  127]], [[56,  56,  56], [128, 255, 107]]]))
+        >>> grayscale(np.array([[[108, 201, 72], [255, 11,  127]],
+        ...                     [[56,  56,  56], [128, 255, 107]]]))
         array([[158,  97],
                [ 56, 200]], dtype=uint8)
     """
@@ -110,7 +114,8 @@ def transform(image: np.ndarray, kind: str, kernel=None) -> np.ndarray:
               to be used when applying convolution to original image
 
     Returns:
-        returns a numpy array with same shape as input image, corresponding to applied binary transformation.
+        returns a numpy array with same shape as input image,
+        corresponding to applied binary transformation.
 
     Examples:
         >>> img = np.array([[1, 0.5], [0.2, 0.7]])
@@ -142,8 +147,8 @@ def transform(image: np.ndarray, kind: str, kernel=None) -> np.ndarray:
     for x in range(center_x, padded.shape[0] - center_x):
         for y in range(center_y, padded.shape[1] - center_y):
             center = padded[
-                     x - center_x: x + center_x + 1, y - center_y: y + center_y + 1
-                     ]
+                x - center_x : x + center_x + 1, y - center_y : y + center_y + 1
+            ]
             # Apply transformation method to the centered section of the image
             transformed[x - center_x, y - center_y] = apply(center[kernel == 1])
 
@@ -187,7 +192,7 @@ def closing_filter(image: np.ndarray, kernel: np.ndarray = None) -> np.ndarray:
 
 
 def binary_mask(
-        image_gray: np.ndarray, image_map: np.ndarray
+    image_gray: np.ndarray, image_map: np.ndarray
 ) -> tuple[np.ndarray, np.ndarray]:
     """
     Apply binary mask, or thresholding based
@@ -196,7 +201,8 @@ def binary_mask(
     Returns the mapped true value mask and its complementary false value mask.
 
     Example:
-        >>> img = np.array([[[108, 201, 72], [255, 11,  127]], [[56,  56,  56], [128, 255, 107]]])
+        >>> img = np.array([[[108, 201, 72], [255, 11,  127]],
+        ...                 [[56,  56,  56], [128, 255, 107]]])
         >>> gray = grayscale(img)
         >>> binary = binarize(gray)
         >>> morphological = opening_filter(binary)
@@ -214,9 +220,7 @@ def binary_mask(
     return true_mask, false_mask
 
 
-def matrix_concurrency(
-        image: np.ndarray, coordinate
-) -> np.ndarray:
+def matrix_concurrency(image: np.ndarray, coordinate) -> np.ndarray:
     """
     Calculate sample co-occurrence matrix based on input image
     as well as selected coordinates on image.
@@ -253,7 +257,7 @@ def haralick_descriptors(matrix: np.ndarray) -> list:
     """
     # Function np.indices could be used for bigger input types,
     # but np.ogrid works just fine
-    i, j = np.ogrid[0: matrix.shape[0], 0: matrix.shape[1]]  # np.indices()
+    i, j = np.ogrid[0 : matrix.shape[0], 0 : matrix.shape[1]]  # np.indices()
 
     # Pre-calculate frequent multiplication and subtraction
     prod = np.multiply(i, j)
