@@ -22,8 +22,7 @@ class HarrisCorner:
             raise ValueError("invalid k value")
 
     def __str__(self) -> str:
-
-        return f"Harris Corner  detection with k : {self.k}"
+        return str(self.k)
 
     def detect(self, img_path: str) -> tuple[cv2.Mat, list[list[int]]]:
 

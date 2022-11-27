@@ -18,7 +18,7 @@ class GraphAdjacencyList(Generic[T]):
 
     Directed graph example:
     >>> d_graph = GraphAdjacencyList()
-    >>> d_graph
+    >>> print(d_graph)
     {}
     >>> d_graph.add_edge(0, 1)
     {0: [1], 1: []}
@@ -26,7 +26,7 @@ class GraphAdjacencyList(Generic[T]):
     {0: [1], 1: [2, 4, 5], 2: [], 4: [], 5: []}
     >>> d_graph.add_edge(2, 0).add_edge(2, 6).add_edge(2, 7)
     {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
-    >>> print(d_graph)
+    >>> d_graph
     {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
     >>> print(repr(d_graph))
     {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
@@ -68,7 +68,7 @@ class GraphAdjacencyList(Generic[T]):
      {'a': ['b'], 'b': ['a']}
      >>> char_graph.add_edge('b', 'c').add_edge('b', 'e').add_edge('b', 'f')
      {'a': ['b'], 'b': ['a', 'c', 'e', 'f'], 'c': ['b'], 'e': ['b'], 'f': ['b']}
-     >>> print(char_graph)
+     >>> char_graph
      {'a': ['b'], 'b': ['a', 'c', 'e', 'f'], 'c': ['b'], 'e': ['b'], 'f': ['b']}
     """
 

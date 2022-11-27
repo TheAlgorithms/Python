@@ -42,7 +42,7 @@ def mixed_keyword(key: str = "college", pt: str = "UNIVERSITY") -> str:
         s = []
         for _ in range(len_temp):
             s.append(temp[k])
-            if not (k < 25):
+            if k >= 25:
                 break
             k += 1
         modalpha.append(s)
@@ -52,7 +52,7 @@ def mixed_keyword(key: str = "college", pt: str = "UNIVERSITY") -> str:
     k = 0
     for j in range(len_temp):
         for m in modalpha:
-            if not (len(m) - 1 >= j):
+            if not len(m) - 1 >= j:
                 break
             d[alpha[k]] = m[j]
             if not k < 25:

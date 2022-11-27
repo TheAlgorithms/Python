@@ -68,8 +68,7 @@ def matrix_dimensions(matrix: list) -> tuple[int, int]:
 
 
 def print_matrix(matrix: list) -> None:
-    for i in range(len(matrix)):
-        print(matrix[i])
+    print("\n".join(str(line) for line in matrix))
 
 
 def actual_strassen(matrix_a: list, matrix_b: list) -> list:

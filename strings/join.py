@@ -15,7 +15,7 @@ def join(separator: str, separated: list[str]) -> str:
     'You are amazing!'
     >>> join("#", ["a", "b", "c", 1])
     Traceback (most recent call last):
-    ...
+        ...
     Exception: join() accepts only strings to be joined
     """
     joined = ""

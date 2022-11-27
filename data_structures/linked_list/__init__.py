@@ -49,7 +49,7 @@ class LinkedList:
         >>> print(linked_list)
         9 --> 14 --> 23
         """
-        if not self.is_empty:
+        if self.is_empty():
             return ""
         else:
             iterate = self.head

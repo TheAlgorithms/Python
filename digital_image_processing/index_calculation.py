@@ -105,7 +105,6 @@ class IndexCalculation:
     """
 
     def __init__(self, red=None, green=None, blue=None, red_edge=None, nir=None):
-        # print("Numpy version: " + np.__version__)
         self.set_matricies(red=red, green=green, blue=blue, red_edge=red_edge, nir=nir)
 
     def set_matricies(self, red=None, green=None, blue=None, red_edge=None, nir=None):
@@ -414,7 +413,7 @@ class IndexCalculation:
         """
         return (self.nir / ((self.nir + self.red) / 2)) * (self.ndvi() + 1)
 
-    def i(self):  # noqa: E741,E743
+    def i(self):
         """
         Intensity
         https://www.indexdatabase.de/db/i-single.php?id=36
