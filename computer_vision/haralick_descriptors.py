@@ -373,9 +373,12 @@ def get_distances(descriptors: np.ndarray, base: int) -> list[Any]:
         >>> gray = grayscale(img)
         >>> binary = binarize(gray)
         >>> morphological = opening_filter(binary)
-        >>> get_distances(get_descriptors(binary_mask(gray, morphological), [0, 1]), index)
-        [(0, 0.0), (1, 0.0), (2, 0.0), (3, 0.0), (4, 0.0), (5, 0.0), (6, 0.0), (7, 0.0), (8, 0.0), \
-(9, 0.0), (10, 0.0), (11, 0.0), (12, 0.0), (13, 0.0), (14, 0.0), (15, 0.0)]
+        >>> get_distances(get_descriptors(
+        ...                 binary_mask(gray, morphological), [0, 1]),
+        ...               index)
+        [(0, 0.0), (1, 0.0), (2, 0.0), (3, 0.0), (4, 0.0), (5, 0.0), \
+(6, 0.0), (7, 0.0), (8, 0.0), (9, 0.0), (10, 0.0), (11, 0.0), (12, 0.0), \
+(13, 0.0), (14, 0.0), (15, 0.0)]
     """
     distances = np.zeros(descriptors.shape[0])
 
@@ -386,7 +389,7 @@ def get_distances(descriptors: np.ndarray, base: int) -> list[Any]:
     return sorted(enumerate(distances), key=lambda tup: tup[1])
 
 
-def main():
+if __name__ == "__main__":
     # Index to compare haralick descriptors to
     index = int(input())
     q_value = [int(value) for value in input().split()]
@@ -429,7 +432,3 @@ def main():
     print("Ranking:")
     for idx, file_idx in enumerate(indexed_distances):
         print(f"({idx}) {files[file_idx]}", end="\n")
-
-
-if __name__ == "__main__":
-    main()
