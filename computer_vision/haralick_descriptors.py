@@ -1,21 +1,29 @@
+"""
+https://en.wikipedia.org/wiki/Image_texture
+https://en.wikipedia.org/wiki/Co-occurrence_matrix#Application_to_image_analysis
+"""
+from typing import Any, Union
+
 import imageio.v2 as imageio
 import numpy as np
 
 
-def rmse(original: np.ndarray, reference: np.ndarray) -> float:
+def root_mean_square_error(original: np.ndarray, reference: np.ndarray) -> float:
     """Simple implementation of Root Mean Squared Error
     for two N dimensional numpy arrays.
-    >>> rmse(np.array([1, 2, 3]), np.array([1, 2, 3]))
-    0.0
-    >>> rmse(np.array([1, 2, 3]), np.array([2, 2, 2]))
-    1.0
-    >>> rmse(np.array([1, 2, 3]), np.array([6, 4, 2]))
-    30.0
+
+    Examples:
+        >>> root_mean_square_error(np.array([1, 2, 3]), np.array([1, 2, 3]))
+        0.0
+        >>> root_mean_square_error(np.array([1, 2, 3]), np.array([2, 2, 2]))
+        0.816496580927726
+        >>> root_mean_square_error(np.array([1, 2, 3]), np.array([6, 4, 2]))
+        3.1622776601683795
     """
     return np.sqrt(((original - reference) ** 2).mean())
 
 
-def normalize_image(image: np.ndarray, cap: float = 255) -> np.ndarray:
+def normalize_image(image: np.ndarray, cap: float = 255.0, data_type=np.uint8) -> np.ndarray:
     """
     Normalizes image in Numpy 2D array format, between ranges 0-cap,
     as to fit uint8 type.
@@ -23,17 +31,20 @@ def normalize_image(image: np.ndarray, cap: float = 255) -> np.ndarray:
     Args:
         image: 2D numpy array representing image as matrix, with values in any range
         cap: Maximum cap amount for normalization
+        data_type: numpy data type to set output variable to
     Returns:
         return 2D numpy array of type uint8, corresponding to limited range matrix
 
-    >>> normalize_image(np.array([[1, 2, 3], [4, 5, 10]]), cap=1)
-    array([[ 0,         0.111111,  0.222222],
-           [ 0.333333,  0.444444,  1.      ]], dtype=float32)
-    >>> normalize_image(np.array([[4, 4, 3], [1, 7, 2]]))
-
+    Examples:
+        >>> normalize_image(np.array([[1, 2, 3], [4, 5, 10]]), cap=1.0, data_type=np.float64)
+        array([[0.        , 0.11111111, 0.22222222],
+               [0.33333333, 0.44444444, 1.        ]])
+        >>> normalize_image(np.array([[4, 4, 3], [1, 7, 2]]))
+        array([[127, 127,  85],
+               [  0, 255,  42]], dtype=uint8)
     """
     normalized = (image - np.min(image)) / (np.max(image) - np.min(image)) * cap
-    return normalized.astype(np.uint8)
+    return normalized.astype(data_type)
 
 
 def normalize_array(array: np.ndarray, cap: float = 1) -> np.ndarray:
@@ -43,44 +54,75 @@ def normalize_array(array: np.ndarray, cap: float = 1) -> np.ndarray:
         array: List containing values to be normalized between cap range.
         cap: Maximum cap amount for normalization.
     Returns:
-        return 1D numpy array , corresponding to limited range array
+        return 1D numpy array, corresponding to limited range array
+
+    Examples:
+        >>> normalize_array(np.array([2, 3, 5, 7]))
+        array([0. , 0.2, 0.6, 1. ])
+        >>> normalize_array(np.array([[5], [7], [11], [13]]))
+        array([[0.  ],
+               [0.25],
+               [0.75],
+               [1.  ]])
     """
-    normalized = (array - np.min(array)) / (np.max(array) - np.min(array)) * cap
-    return normalized
+    return (array - np.min(array)) / (np.max(array) - np.min(array)) * cap
 
 
 def grayscale(image: np.ndarray) -> np.ndarray:
-    """Uses luminance weights to transform RGB channel to greyscale, by
-    taking the dot product between the channel and the weights."""
+    """
+    Uses luminance weights to transform RGB channel to greyscale, by
+    taking the dot product between the channel and the weights.
+
+    Example:
+        >>> grayscale(np.array([[[108, 201, 72], [255, 11,  127]], [[56,  56,  56], [128, 255, 107]]]))
+        array([[158,  97],
+               [ 56, 200]], dtype=uint8)
+    """
     return np.dot(image[:, :, 0:3], [0.299, 0.587, 0.114]).astype(np.uint8)
 
 
-def binarize(image: np.ndarray, threshold_value) -> np.ndarray:
+def binarize(image: np.ndarray, threshold: float = 127.0) -> np.ndarray:
     """
     Binarizes a grayscale image based on a given threshold value,
     setting values to 1 or 0 accordingly.
+
+    Examples:
+        >>> binarize(np.array([[128, 255], [101, 156]]))
+        array([[1, 1],
+               [0, 1]])
+        >>> binarize(np.array([[0.07, 1], [0.51, 0.3]]), threshold=0.5)
+        array([[0, 1],
+               [1, 0]])
     """
-    binarized = np.where(image > threshold_value, 1, 0)
-
-    return binarized
+    return np.where(image > threshold, 1, 0)
 
 
-def transform(image: np.ndarray, kind, kernel=None) -> np.ndarray:
+def transform(image: np.ndarray, kind: str, kernel=None) -> np.ndarray:
     """
     Simple image transformation using one of two available filter functions:
     Erosion and Dilation.
 
     Args:
-        image:
+        image: binarized input image, onto which to apply transformation
         kind: Can be either 'erosion', in which case the :func:np.max
               function is called, or 'dilation', when :func:np.min is used instead.
         kernel: n x n kernel with shape < :attr:image.shape,
               to be used when applying convolution to original image
 
     Returns:
+        returns a numpy array with same shape as input image, corresponding to applied binary transformation.
 
+    Examples:
+        >>> img = np.array([[1, 0.5], [0.2, 0.7]])
+        >>> img = binarize(img, threshold=0.5)
+        >>> transform(img, 'erosion')
+        array([[1, 1],
+               [1, 1]], dtype=uint8)
+        >>> transform(img, 'dilation')
+        array([[0, 0],
+               [0, 0]], dtype=uint8)
     """
-    if kernel is None:
+    if not kernel:
         kernel = np.ones((3, 3))
 
     if kind == "erosion":
@@ -100,8 +142,8 @@ def transform(image: np.ndarray, kind, kernel=None) -> np.ndarray:
     for x in range(center_x, padded.shape[0] - center_x):
         for y in range(center_y, padded.shape[1] - center_y):
             center = padded[
-                x - center_x : x + center_x + 1, y - center_y : y + center_y + 1
-            ]
+                     x - center_x: x + center_x + 1, y - center_y: y + center_y + 1
+                     ]
             # Apply transformation method to the centered section of the image
             transformed[x - center_x, y - center_y] = apply(center[kernel == 1])
 
@@ -112,8 +154,15 @@ def opening_filter(image: np.ndarray, kernel: np.ndarray = None) -> np.ndarray:
     """
     Opening filter, defined as the sequence of
     erosion and then a dilation filter on the same image.
+
+    Examples:
+        >>> img = np.array([[1, 0.5], [0.2, 0.7]])
+        >>> img = binarize(img, threshold=0.5)
+        >>> opening_filter(img)
+        array([[1, 1],
+               [1, 1]], dtype=uint8)
     """
-    if kernel is None:
+    if not kernel:
         np.ones((3, 3))
 
     return transform(transform(image, "dilation", kernel), "erosion", kernel)
@@ -123,6 +172,13 @@ def closing_filter(image: np.ndarray, kernel: np.ndarray = None) -> np.ndarray:
     """
     Opening filter, defined as the sequence of
     dilation and then erosion filter on the same image.
+
+    Examples:
+        >>> img = np.array([[1, 0.5], [0.2, 0.7]])
+        >>> img = binarize(img, threshold=0.5)
+        >>> closing_filter(img)
+        array([[0, 0],
+               [0, 0]], dtype=uint8)
     """
     if kernel is None:
         np.ones((3, 3))
@@ -130,10 +186,24 @@ def closing_filter(image: np.ndarray, kernel: np.ndarray = None) -> np.ndarray:
     return transform(transform(image, "erosion", kernel), "dilation", kernel)
 
 
-def binary_mask(image_gray: np.ndarray, image_map: np.ndarray) -> np.ndarray:
+def binary_mask(
+        image_gray: np.ndarray, image_map: np.ndarray
+) -> tuple[np.ndarray, np.ndarray]:
     """
     Apply binary mask, or thresholding based
-    on bit mask value (mapping mask is 1 or 0).
+    on bit mask value (mapping mask is binary).
+
+    Returns the mapped true value mask and its complementary false value mask.
+
+    Example:
+        >>> img = np.array([[[108, 201, 72], [255, 11,  127]], [[56,  56,  56], [128, 255, 107]]])
+        >>> gray = grayscale(img)
+        >>> binary = binarize(gray)
+        >>> morphological = opening_filter(binary)
+        >>> binary_mask(gray, morphological)
+        (array([[1, 1],
+               [1, 1]], dtype=uint8), array([[158,  97],
+               [ 56, 200]], dtype=uint8))
     """
     true_mask, false_mask = np.array(image_gray, copy=True), np.array(
         image_gray, copy=True
@@ -144,13 +214,16 @@ def binary_mask(image_gray: np.ndarray, image_map: np.ndarray) -> np.ndarray:
     return true_mask, false_mask
 
 
-def matrix_concurrency(image: np.ndarray, coordinate) -> np.ndarray:
+def matrix_concurrency(
+        image: np.ndarray, coordinate
+) -> np.ndarray:
     """
     Calculate sample co-occurrence matrix based on input image
     as well as selected coordinates on image.
+
     Implementation is made using basic iteration,
     as function to be performed (np.max) is non-linear and therefore
-    not usable on the Fourier Transform domain.
+    not callable on the frequency domain.
     """
     matrix = np.zeros([np.max(image) + 1, np.max(image) + 1])
 
@@ -180,7 +253,7 @@ def haralick_descriptors(matrix: np.ndarray) -> list:
     """
     # Function np.indices could be used for bigger input types,
     # but np.ogrid works just fine
-    i, j = np.ogrid[0 : matrix.shape[0], 0 : matrix.shape[1]]  # np.indices()
+    i, j = np.ogrid[0: matrix.shape[0], 0: matrix.shape[1]]  # np.indices()
 
     # Pre-calculate frequent multiplication and subtraction
     prod = np.multiply(i, j)
@@ -200,7 +273,7 @@ def haralick_descriptors(matrix: np.ndarray) -> list:
 
     # Sum values for descriptors ranging from the first one to the last,
     # as all are their respective origin matrix and not the resulting value yet.
-    descriptors = [
+    return [
         maximum_prob,
         correlation.sum(),
         energy.sum(),
@@ -210,10 +283,9 @@ def haralick_descriptors(matrix: np.ndarray) -> list:
         homogeneity.sum(),
         entropy.sum(),
     ]
-    return descriptors
 
 
-def get_descriptors(masks, coordinate) -> np.ndarray:
+def get_descriptors(masks: tuple[np.ndarray, np.ndarray], coordinate) -> np.ndarray:
     """
     Calculate all Haralick descriptors for a sequence of
     different co-occurrence matrices, given input masks and coordinates.
@@ -231,11 +303,17 @@ def euclidean(point_1: np.ndarray, point_2: np.ndarray) -> np.float32:
     """
     Simple method for calculating the euclidean distance between two points,
     with type np.ndarray.
+
+    Example:
+        >>> a = np.array([1, 0, -2])
+        >>> b = np.array([2, -1, 1])
+        >>> euclidean(a, b)
+        3.3166247903554
     """
     return np.sqrt(np.sum(np.square(point_1 - point_2)))
 
 
-def get_distances(descriptors, base) -> np.ndarray:
+def get_distances(descriptors, base) -> list[Any]:
     """
     Calculate all Euclidean distances between a selected base descriptor
     and all other Haralick descriptors
@@ -271,7 +349,7 @@ def main():
     # Number of images to perform methods on
     b_number = int(input())
 
-    files, descriptors = (np.array([]), np.array([]))
+    files, descriptors = ([], [])
 
     for _ in range(b_number):
         file = input().rstrip()
@@ -293,7 +371,7 @@ def main():
 
     # Transform ordered distances array into a sequence of indexes
     # corresponding to original file position
-    distances = get_distances(descriptors, index)
+    distances = get_distances(np.array(descriptors), index)
     indexed_distances = np.array(distances).astype(np.uint8)[:, 0]
 
     # Finally, print distances considering the Haralick descriptions from the base
