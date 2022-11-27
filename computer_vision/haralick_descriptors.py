@@ -24,7 +24,7 @@ def root_mean_square_error(original: np.ndarray, reference: np.ndarray) -> float
 
 
 def normalize_image(
-    image: np.ndarray, cap: float = 255.0, data_type=np.uint8
+    image: np.ndarray, cap: float = 255.0, data_type: np.dtype = np.uint8
 ) -> np.ndarray:
     """
     Normalizes image in Numpy 2D array format, between ranges 0-cap,
@@ -68,7 +68,8 @@ def normalize_array(array: np.ndarray, cap: float = 1) -> np.ndarray:
                [0.75],
                [1.  ]])
     """
-    return (array - np.min(array)) / (np.max(array) - np.min(array)) * cap
+    diff = np.max(array) - np.min(array)
+    return (array - np.min(array)) / (1 if diff == 0 else diff) * cap
 
 
 def grayscale(image: np.ndarray) -> np.ndarray:
@@ -101,7 +102,7 @@ def binarize(image: np.ndarray, threshold: float = 127.0) -> np.ndarray:
     return np.where(image > threshold, 1, 0)
 
 
-def transform(image: np.ndarray, kind: str, kernel=None) -> np.ndarray:
+def transform(image: np.ndarray, kind: str, kernel: np.ndarray = None) -> np.ndarray:
     """
     Simple image transformation using one of two available filter functions:
     Erosion and Dilation.
@@ -220,7 +221,7 @@ def binary_mask(
     return true_mask, false_mask
 
 
-def matrix_concurrency(image: np.ndarray, coordinate) -> np.ndarray:
+def matrix_concurrency(image: np.ndarray, coordinate: list) -> np.ndarray:
     """
     Calculate sample co-occurrence matrix based on input image
     as well as selected coordinates on image.
@@ -228,6 +229,17 @@ def matrix_concurrency(image: np.ndarray, coordinate) -> np.ndarray:
     Implementation is made using basic iteration,
     as function to be performed (np.max) is non-linear and therefore
     not callable on the frequency domain.
+
+    Example:
+        >>> img = np.array([[[108, 201, 72], [255, 11,  127]],
+        ...                 [[56,  56,  56], [128, 255, 107]]])
+        >>> gray = grayscale(img)
+        >>> binary = binarize(gray)
+        >>> morphological = opening_filter(binary)
+        >>> mask_1 = binary_mask(gray, morphological)[0]
+        >>> matrix_concurrency(mask_1, [0, 1])
+        array([[0., 0.],
+               [0., 0.]])
     """
     matrix = np.zeros([np.max(image) + 1, np.max(image) + 1])
 
@@ -239,8 +251,8 @@ def matrix_concurrency(image: np.ndarray, coordinate) -> np.ndarray:
             offset_pixel = image[x + offset_x, y + offset_y]
 
             matrix[base_pixel, offset_pixel] += 1
-
-    return matrix / np.sum(matrix)
+    matrix_sum = np.sum(matrix)
+    return matrix / (1 if matrix_sum == 0 else matrix_sum)
 
 
 def haralick_descriptors(matrix: np.ndarray) -> list:
@@ -254,6 +266,17 @@ def haralick_descriptors(matrix: np.ndarray) -> list:
 
     Returns:
         Reverse ordered list of resulting descriptors
+
+    Example:
+        >>> img = np.array([[[108, 201, 72], [255, 11,  127]],
+        ...                 [[56,  56,  56], [128, 255, 107]]])
+        >>> gray = grayscale(img)
+        >>> binary = binarize(gray)
+        >>> morphological = opening_filter(binary)
+        >>> mask_1 = binary_mask(gray, morphological)[0]
+        >>> concurrency = matrix_concurrency(mask_1, [0, 1])
+        >>> haralick_descriptors(concurrency)
+        [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     """
     # Function np.indices could be used for bigger input types,
     # but np.ogrid works just fine
@@ -289,10 +312,21 @@ def haralick_descriptors(matrix: np.ndarray) -> list:
     ]
 
 
-def get_descriptors(masks: tuple[np.ndarray, np.ndarray], coordinate) -> np.ndarray:
+def get_descriptors(
+    masks: tuple[np.ndarray, np.ndarray], coordinate: list
+) -> np.ndarray:
     """
     Calculate all Haralick descriptors for a sequence of
     different co-occurrence matrices, given input masks and coordinates.
+
+    Example:
+        >>> img = np.array([[[108, 201, 72], [255, 11,  127]],
+        ...                 [[56,  56,  56], [128, 255, 107]]])
+        >>> gray = grayscale(img)
+        >>> binary = binarize(gray)
+        >>> morphological = opening_filter(binary)
+        >>> get_descriptors(binary_mask(gray, morphological), [0, 1])
+        array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
     """
     descriptors = np.zeros((len(masks), 8))
     for idx, mask in enumerate(masks):
@@ -317,7 +351,7 @@ def euclidean(point_1: np.ndarray, point_2: np.ndarray) -> np.float32:
     return np.sqrt(np.sum(np.square(point_1 - point_2)))
 
 
-def get_distances(descriptors, base) -> list[Any]:
+def get_distances(descriptors: np.ndarray, base: int) -> list[Any]:
     """
     Calculate all Euclidean distances between a selected base descriptor
     and all other Haralick descriptors
@@ -331,6 +365,17 @@ def get_distances(descriptors, base) -> list[Any]:
 
     Returns:
         Ordered distances between descriptors
+
+    Example:
+        >>> index = 1
+        >>> img = np.array([[[108, 201, 72], [255, 11,  127]],
+        ...                 [[56,  56,  56], [128, 255, 107]]])
+        >>> gray = grayscale(img)
+        >>> binary = binarize(gray)
+        >>> morphological = opening_filter(binary)
+        >>> get_distances(get_descriptors(binary_mask(gray, morphological), [0, 1]), index)
+        [(0, 0.0), (1, 0.0), (2, 0.0), (3, 0.0), (4, 0.0), (5, 0.0), (6, 0.0), (7, 0.0), (8, 0.0), \
+(9, 0.0), (10, 0.0), (11, 0.0), (12, 0.0), (13, 0.0), (14, 0.0), (15, 0.0)]
     """
     distances = np.zeros(descriptors.shape[0])
 
