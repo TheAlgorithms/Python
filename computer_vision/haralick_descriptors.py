@@ -23,7 +23,9 @@ def root_mean_square_error(original: np.ndarray, reference: np.ndarray) -> float
     return np.sqrt(((original - reference) ** 2).mean())
 
 
-def normalize_image(image: np.ndarray, cap: float = 255.0, data_type=np.uint8) -> np.ndarray:
+def normalize_image(
+    image: np.ndarray, cap: float = 255.0, data_type=np.uint8
+) -> np.ndarray:
     """
     Normalizes image in Numpy 2D array format, between ranges 0-cap,
     as to fit uint8 type.
@@ -142,8 +144,8 @@ def transform(image: np.ndarray, kind: str, kernel=None) -> np.ndarray:
     for x in range(center_x, padded.shape[0] - center_x):
         for y in range(center_y, padded.shape[1] - center_y):
             center = padded[
-                     x - center_x: x + center_x + 1, y - center_y: y + center_y + 1
-                     ]
+                x - center_x : x + center_x + 1, y - center_y : y + center_y + 1
+            ]
             # Apply transformation method to the centered section of the image
             transformed[x - center_x, y - center_y] = apply(center[kernel == 1])
 
@@ -187,7 +189,7 @@ def closing_filter(image: np.ndarray, kernel: np.ndarray = None) -> np.ndarray:
 
 
 def binary_mask(
-        image_gray: np.ndarray, image_map: np.ndarray
+    image_gray: np.ndarray, image_map: np.ndarray
 ) -> tuple[np.ndarray, np.ndarray]:
     """
     Apply binary mask, or thresholding based
@@ -214,9 +216,7 @@ def binary_mask(
     return true_mask, false_mask
 
 
-def matrix_concurrency(
-        image: np.ndarray, coordinate
-) -> np.ndarray:
+def matrix_concurrency(image: np.ndarray, coordinate) -> np.ndarray:
     """
     Calculate sample co-occurrence matrix based on input image
     as well as selected coordinates on image.
@@ -253,7 +253,7 @@ def haralick_descriptors(matrix: np.ndarray) -> list:
     """
     # Function np.indices could be used for bigger input types,
     # but np.ogrid works just fine
-    i, j = np.ogrid[0: matrix.shape[0], 0: matrix.shape[1]]  # np.indices()
+    i, j = np.ogrid[0 : matrix.shape[0], 0 : matrix.shape[1]]  # np.indices()
 
     # Pre-calculate frequent multiplication and subtraction
     prod = np.multiply(i, j)
