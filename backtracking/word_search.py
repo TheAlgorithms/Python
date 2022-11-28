@@ -74,7 +74,7 @@ def word_exists(board: list[list[str]], word: str) -> bool:
     ValueError: The board should be a non empty matrix of single chars strings.
     """
 
-    def validate_board(board: list[list[str]]):
+    def validate_board(board: list[list[str]]) -> None:
         """
         >>> validate_board([[]])
         Traceback (most recent call last):
@@ -120,18 +120,18 @@ def word_exists(board: list[list[str]], word: str) -> bool:
     # Return True if it's possible to search the word suffix
     # starting from the word_index.
     def exits_word(
-        i: int, j: int, word_index: int, visited_points_set: set[int]
+        row: int, column: int, word_index: int, visited_points_set: set[int]
     ) -> bool:
 
-        if board[i][j] != word[word_index]:
+        if board[row][column] != word[word_index]:
             return False
 
         if word_index == len_word - 1:
             return True
 
         for direction in traverts_directions:
-            next_i = i + direction[0]
-            next_j = j + direction[1]
+            next_i = row + direction[0]
+            next_j = column + direction[1]
             if (
                 next_i < 0
                 or next_i >= len_board
