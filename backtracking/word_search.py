@@ -87,7 +87,9 @@ def word_exists(board: list[list[str]], word: str) -> bool:
         """
 
         # Validate board
-        error_message = "The board should be a non empty matrix of single chars strings."
+        error_message = (
+            "The board should be a non empty matrix of single chars strings."
+        )
         if not isinstance(board, list) or len(board) == 0:
             raise ValueError(error_message)
 
@@ -102,7 +104,9 @@ def word_exists(board: list[list[str]], word: str) -> bool:
     # Validation
     validate_board(board)
     if not isinstance(word, str) or len(word) == 0:
-        raise ValueError("The word parameter should be a string of length greater than 0.")
+        raise ValueError(
+            "The word parameter should be a string of length greater than 0."
+        )
 
     traverts_directions = [(0, 1), (0, -1), (-1, 0), (1, 0)]
     len_word = len(word)
@@ -115,39 +119,37 @@ def word_exists(board: list[list[str]], word: str) -> bool:
 
     # Return True if it's possible to search the word suffix
     # starting from the word_index.
-    def exits_word(i: int,
-                   j: int,
-                   word_index:int,
-                   visited_points_set: set[int]) -> bool:
+    def exits_word(
+        i: int, j: int, word_index: int, visited_points_set: set[int]
+    ) -> bool:
 
         if board[i][j] != word[word_index]:
             return False
 
         if word_index == len_word - 1:
             return True
-        
+
         for direction in traverts_directions:
             next_i = i + direction[0]
             next_j = j + direction[1]
-            if next_i < 0 or \
-                next_i >= len_board or \
-                next_j < 0 or \
-                next_j >= len_board_column:
+            if (
+                next_i < 0
+                or next_i >= len_board
+                or next_j < 0
+                or next_j >= len_board_column
+            ):
                 continue
 
             key = get_point_key(next_i, next_j)
             if key in visited_points_set:
                 continue
-            
+
             visited_points_set.add(key)
-            if exits_word(next_i,
-                          next_j,
-                          word_index + 1,
-                          visited_points_set):
+            if exits_word(next_i, next_j, word_index + 1, visited_points_set):
                 return True
-            
+
             visited_points_set.remove(key)
-            
+
         return False
 
     for i in range(len_board):
