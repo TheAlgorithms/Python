@@ -114,8 +114,8 @@ def word_exists(board: list[list[str]], word: str) -> bool:
     len_board_column = len(board[0])
 
     # Returns the hash key of matrix indexes.
-    def get_point_key(i: int, j: int) -> int:
-        return len_board * len_board_column * i + j
+    def get_point_key(row: int, column: int) -> int:
+        return len_board * len_board_column * row + column
 
     # Return True if it's possible to search the word suffix
     # starting from the word_index.
