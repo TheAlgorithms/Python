@@ -115,6 +115,13 @@ def word_exists(board: list[list[str]], word: str) -> bool:
 
     # Returns the hash key of matrix indexes.
     def get_point_key(row: int, column: int) -> int:
+        """
+        >>> len_board=10
+        >>> len_board_column=20
+        >>> get_point_key(0, 0)
+        200
+        """
+
         return len_board * len_board_column * row + column
 
     # Return True if it's possible to search the word suffix
@@ -122,6 +129,12 @@ def word_exists(board: list[list[str]], word: str) -> bool:
     def exits_word(
         row: int, column: int, word_index: int, visited_points_set: set[int]
     ) -> bool:
+        """
+        >>> board=[["A"]]
+        >>> word="B"
+        >>> exits_word(0, 0, 0, set())
+        False
+        """
 
         if board[row][column] != word[word_index]:
             return False
