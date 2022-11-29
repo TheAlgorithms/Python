@@ -16,7 +16,7 @@ class SegmentTree:
         return idx * 2 + 1
 
     def build(self, idx, l, r):  # noqa: E741
-        if l == r:  # noqa: E741
+        if l == r:
             self.st[idx] = A[l]
         else:
             mid = (l + r) // 2
@@ -33,7 +33,7 @@ class SegmentTree:
         """
         if r < a or l > b:
             return True
-        if l == r:  # noqa: E741
+        if l == r:
             self.st[idx] = val
             return True
         mid = (l + r) // 2
@@ -51,7 +51,7 @@ class SegmentTree:
         """
         if r < a or l > b:
             return -math.inf
-        if l >= a and r <= b:  # noqa: E741
+        if l >= a and r <= b:
             return self.st[idx]
         mid = (l + r) // 2
         q1 = self.query_recursive(self.left(idx), l, mid, a, b)
