@@ -26,8 +26,7 @@ Result:
 True
 
 Implementation notes: Use backtracking approach.
-For each point need to check neigh neighbours
-and try to find left suffix of the word.
+At each point, check all neighbors to try to find the next letter of the word.
 
 leetcode: https://leetcode.com/problems/word-search/
 
