@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.3.0
+    rev: v4.4.0
     hooks:
       - id: check-executables-have-shebangs
       - id: check-yaml
@@ -34,13 +34,13 @@ repos:
           - --py311-plus
 
   - repo: https://github.com/PyCQA/flake8
-    rev: 5.0.4
+    rev: 6.0.0
     hooks:
       - id: flake8 # See .flake8 for args
         additional_dependencies: &flake8-plugins
           - flake8-bugbear
           - flake8-builtins
-          - flake8-broken-line
+          # - flake8-broken-line
           - flake8-comprehensions
           - pep8-naming
 

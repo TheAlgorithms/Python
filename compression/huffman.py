@@ -32,7 +32,7 @@ def parse_file(file_path: str) -> list[Letter]:
             if not c:
                 break
             chars[c] = chars[c] + 1 if c in chars else 1
-    return sorted((Letter(c, f) for c, f in chars.items()), key=lambda l: l.freq)
+    return sorted((Letter(c, f) for c, f in chars.items()), key=lambda x: x.freq)
 
 
 def build_tree(letters: list[Letter]) -> Letter | TreeNode:
@@ -47,7 +47,7 @@ def build_tree(letters: list[Letter]) -> Letter | TreeNode:
         total_freq = left.freq + right.freq
         node = TreeNode(total_freq, left, right)
         response.append(node)
-        response.sort(key=lambda l: l.freq)
+        response.sort(key=lambda x: x.freq)
     return response[0]
 
 
