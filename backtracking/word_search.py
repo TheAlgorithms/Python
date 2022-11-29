@@ -75,9 +75,7 @@ def word_exists(board: list[list[str]], word: str) -> bool:
     """
 
     # Validate board
-    error_message = (
-        "The board should be a non empty matrix of single chars strings."
-    )
+    error_message = "The board should be a non empty matrix of single chars strings."
     if not isinstance(board, list) or len(board) == 0:
         raise ValueError(error_message)
 
