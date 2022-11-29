@@ -74,35 +74,22 @@ def word_exists(board: list[list[str]], word: str) -> bool:
     ValueError: The board should be a non empty matrix of single chars strings.
     """
 
-    def validate_board(board: list[list[str]]) -> None:
-        """
-        >>> validate_board([[]])
-        Traceback (most recent call last):
-            ...
-        ValueError: The board should be a non empty matrix of single chars strings.
-        >>> validate_board([])
-        Traceback (most recent call last):
-            ...
-        ValueError: The board should be a non empty matrix of single chars strings.
-        """
+    # Validate board
+    error_message = (
+        "The board should be a non empty matrix of single chars strings."
+    )
+    if not isinstance(board, list) or len(board) == 0:
+        raise ValueError(error_message)
 
-        # Validate board
-        error_message = (
-            "The board should be a non empty matrix of single chars strings."
-        )
-        if not isinstance(board, list) or len(board) == 0:
+    for row in board:
+        if not isinstance(row, list) or len(row) == 0:
             raise ValueError(error_message)
 
-        for row in board:
-            if not isinstance(row, list) or len(row) == 0:
+        for item in row:
+            if not isinstance(item, str) or len(item) != 1:
                 raise ValueError(error_message)
 
-            for item in row:
-                if not isinstance(item, str) or len(item) != 1:
-                    raise ValueError(error_message)
-
-    # Validation
-    validate_board(board)
+    # Validate word
     if not isinstance(word, str) or len(word) == 0:
         raise ValueError(
             "The word parameter should be a string of length greater than 0."
