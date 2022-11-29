@@ -33,6 +33,7 @@
   * [Rat In Maze](backtracking/rat_in_maze.py)
   * [Sudoku](backtracking/sudoku.py)
   * [Sum Of Subsets](backtracking/sum_of_subsets.py)
+  * [Word Search](backtracking/word_search.py)
 
 ## Bit Manipulation
   * [Binary And Operator](bit_manipulation/binary_and_operator.py)
