@@ -131,7 +131,7 @@ def word_exists(board: list[list[str]], word: str) -> bool:
         for direction in traverts_directions:
             next_i = row + direction[0]
             next_j = column + direction[1]
-            if not (0 <= next_i < len_board and 0 <= next_j < len_board_column)
+            if not (0 <= next_i < len_board and 0 <= next_j < len_board_column):
                 continue
 
             key = get_point_key(next_i, next_j)
