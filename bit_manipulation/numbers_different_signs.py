@@ -10,6 +10,7 @@ Implementation notes: Use bit manipulation.
 Use XOR for two numbers.
 """
 
+
 def different_signs(a: int, b: int) -> bool:
     """
     Return True if numbers have opposite signs False otherwise.
@@ -30,6 +31,7 @@ def different_signs(a: int, b: int) -> bool:
     False
     """
     return a ^ b < 0
+
 
 if __name__ == "__main__":
     import doctest
