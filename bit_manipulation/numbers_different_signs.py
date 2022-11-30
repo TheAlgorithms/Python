@@ -15,6 +15,9 @@ def different_signs(a: int, b: int) -> bool:
     """
     Return True if numbers have opposite signs False otherwise.
 
+    :param a: The first number
+    :param b: The second number
+
     >>> different_signs(1, -1)
     True
     >>> different_signs(1, 1)
