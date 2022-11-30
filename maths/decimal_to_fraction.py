@@ -39,10 +39,10 @@ def decimal_to_fraction(decimal: int | float | str) -> tuple[int, int]:
 
 
 if __name__ == "__main__":
-    print(decimal_to_fraction(2))
-    print(decimal_to_fraction(89.0))
-    print(decimal_to_fraction("67"))
-    print(decimal_to_fraction("45.0"))
-    print(decimal_to_fraction(1.5))
-    print(decimal_to_fraction("6.25"))
-    print(decimal_to_fraction("78td"))
+    print(f"{decimal_to_fraction(2) = }")
+    print(f"{decimal_to_fraction(89.0) = }")
+    print(f"{decimal_to_fraction('67') = }")
+    print(f"{decimal_to_fraction('45.0') = }")
+    print(f"{decimal_to_fraction(1.5) = }")
+    print(f"{decimal_to_fraction('6.25') = }")
+    print(f"{decimal_to_fraction('78td') = }")
