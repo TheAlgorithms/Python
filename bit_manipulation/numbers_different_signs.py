@@ -11,7 +11,7 @@ Use XOR for two numbers.
 """
 
 
-def different_signs(number1: int, number2: int) -> bool:
+def different_signs(num1: int, num2: int) -> bool:
     """
     Return True if numbers have opposite signs False otherwise.
 
@@ -30,7 +30,7 @@ def different_signs(number1: int, number2: int) -> bool:
     >>> different_signs(2, 0)
     False
     """
-    return number1 ^ number2 < 0
+    return num1 ^ num2 < 0
 
 
 if __name__ == "__main__":
