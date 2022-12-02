@@ -47,7 +47,7 @@ Algorithms should:
 * contain doctests that test both valid and erroneous input values
 * return all calculation results instead of printing or plotting them
 
-Algorithms in this repo should not be how-to examples for existing Python packages.  Instead, they should perform internal calculations or manipulations to convert input values into different output values.  Those calculations or manipulations can use data types, classes, or functions of existing Python packages but each algorithm in this repo should add unique value.
+Algorithms in this repo should not be how-to examples for existing Python packages.  Instead, they should perform internal calculations or manipulations to convert input values into different output values.  Those calculations or manipulations can use data types, classes, or functions of existing Python packages, but each algorithm in this repo should add a unique value.
 
 #### Pre-commit plugin
 Use [pre-commit](https://pre-commit.com/#installation) to automatically format your code to match our coding style:
