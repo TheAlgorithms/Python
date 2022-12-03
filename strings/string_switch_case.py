@@ -14,8 +14,9 @@ https://en.wikipedia.org/wiki/Naming_convention_(programming)#Python_and_Ruby
 snake case: https://en.wikipedia.org/wiki/Snake_case
 """
 
+
 # assistant functions
-def split_input(str_: str) -> list[[list[str]]]:
+def split_input(str_: str) -> list:
     """
     >>> split_input("one two 31235three4four")
     [['one', 'two', '31235three4four']]
