@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 
-def backward_warping(M, img):
+def backward_warping(M:np.array(), img:cv2.imread()):
     src_h, src_w = img.shape
     y_scale = M[1, 1]
     x_scale = M[0, 0]
@@ -13,12 +13,12 @@ def backward_warping(M, img):
     dst = np.zeros((dst_h, dst_w), img.dtype)
 
     # inverse matrix
-    inv_M = np.linalg.inv(M)
+    inv_m = np.linalg.inv(M)
 
     for y in range(dst_h):
         for x in range(dst_w):
             # applying inverse matrix to x, y points
-            temp = inv_M @ np.array([x, y, 1])
+            temp = inv_m @ np.array([x, y, 1])
             # each point is a point applying inverse matrix
             x_ = (temp[0])
             y_ = (temp[1])
