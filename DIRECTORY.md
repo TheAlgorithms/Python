@@ -561,6 +561,7 @@
   * [Greedy Coin Change](maths/greedy_coin_change.py)
   * [Hamming Numbers](maths/hamming_numbers.py)
   * [Hardy Ramanujanalgo](maths/hardy_ramanujanalgo.py)
+  * [Hexagonal Number](maths/hexagonal_number.py)
   * [Integration By Simpson Approx](maths/integration_by_simpson_approx.py)
   * [Is Ip V4 Address Valid](maths/is_ip_v4_address_valid.py)
   * [Is Square Free](maths/is_square_free.py)
