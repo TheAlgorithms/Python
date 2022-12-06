@@ -16,3 +16,6 @@ def romanToInt(s: str) -> int:
 if __name__ == "__main__":
     print(romanToInt('XIV'))  # Should be 14
     print(romanToInt('MCMXCIV'))  # Should be 1994
+    from doctest import testmod
+
+    testmod()
