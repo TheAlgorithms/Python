@@ -2,7 +2,9 @@ import json
 import socket
 
 
-def request(sock: socket.socket, req_type: str, endpoint: str, headers: list[str], body: str):
+def request(
+    sock: socket.socket, req_type: str, endpoint: str, headers: list[str], body: str
+):
     """
     Request HTTP connection
 
@@ -54,7 +56,7 @@ def response(sock: socket.socket):
 
 
 def main():
-    host = 'example.com'
+    host = "example.com"
     port = 80
 
     sock = socket.socket()
