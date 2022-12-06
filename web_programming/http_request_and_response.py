@@ -4,7 +4,7 @@ import socket
 
 def request(
     sock: socket.socket, req_type: str, endpoint: str, headers: list[str], body: str
-):
+) -> None:
     """
     Request HTTP connection
 
@@ -30,7 +30,7 @@ def request(
     sock.send(bytes(data, "iso-8859-1"))
 
 
-def request_json_data(sock: socket.socket, body: str):
+def request_json_data(sock: socket.socket, body: str) -> None:
     """
     Request json style data
 
@@ -44,7 +44,7 @@ def request_json_data(sock: socket.socket, body: str):
     request(sock, req_type="POST", endpoint="/", headers=headers, body=body)
 
 
-def response(sock: socket.socket):
+def response(sock: socket.socket) -> None:
     """
     Print received data
 
@@ -55,7 +55,7 @@ def response(sock: socket.socket):
     print(f"\n>>>> RECV >>>>\n{res.decode()}")
 
 
-def main():
+def main() -> None:
     host = "example.com"
     port = 80
 
