@@ -15,5 +15,5 @@ def roman_to_int(s: str) -> int:
 
 
 if __name__ == "__main__":
-    print(roman_to_int('XIV'))  # Should be 14
-    print(roman_to_int('MCMXCIV'))  # Should be 1994
+    print(roman_to_int("XIV"))  # Should be 14
+    print(roman_to_int("MCMXCIV"))  # Should be 1994
