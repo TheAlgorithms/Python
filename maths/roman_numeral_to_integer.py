@@ -1,4 +1,4 @@
-def romanToInt(s: str) -> int:
+def roman_to_int(s: str) -> int:
     # Store roman numbers in a dictionary
     roman_numerals = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
     conversion = 0
@@ -15,8 +15,5 @@ def romanToInt(s: str) -> int:
 
 
 if __name__ == "__main__":
-    print(romanToInt('XIV'))  # Should be 14
-    print(romanToInt('MCMXCIV'))  # Should be 1994
-    from doctest import testmod
-
-    testmod()
+    print(roman_to_int('XIV'))  # Should be 14
+    print(roman_to_int('MCMXCIV'))  # Should be 1994
