@@ -26,7 +26,8 @@ def is_palindrome(s: str) -> bool:
     # We need to traverse till half of the length of string
     # as we can get access of the i'th last element from
     # i'th index.
-    # eg: [0,1,2,3,4,5] => 4th index can be accessed with the help of 1st index (i==n-i-1)
+    # eg: [0,1,2,3,4,5] => 4th index can be accessed
+    # with the help of 1st index (i==n-i-1)
     # where n is length of string
 
     for i in range(end):
