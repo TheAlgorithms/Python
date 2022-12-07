@@ -16,7 +16,7 @@ def is_palindrome(s: str) -> bool:
     # Since punctuation, capitalization, and spaces are often ignored while checking
     # palindromes, we first remove them from our string.
     s = "".join(character for character in s.lower() if character.isalnum())
-    # return s == s[::-1] the slicing method 
+    # return s == s[::-1] the slicing method
     # uses extra spaces we can
     # better with iteration method.
 
