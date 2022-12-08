@@ -36,8 +36,6 @@ def binary_insertion_sort(collection):
     True
     """
 
-    
-
     n = len(collection)
     for i in range(1, n):
         val = collection[i]
@@ -54,7 +52,6 @@ def binary_insertion_sort(collection):
             collection[j] = collection[j - 1]
         collection[low] = val
     return collection
-
 
 
 if __name__ == "__main__":
