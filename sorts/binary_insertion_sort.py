@@ -16,7 +16,27 @@ def binary_insertion_sort(collection):
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered by ascending
+
+    Examples:
+    >>> binary_insertion_sort([0, 4, 1234, 4, 1])
+    [0, 1, 4, 4, 1234]
+    >>> binary_insertion_sort([]) == sorted([])
+    True
+    >>> binary_insertion_sort([-1, -2, -3]) == sorted([-1, -2, -3])
+    True
+    >>> binary_insertion_sort(['d', 'a', 'b', 'e', 'c']) == sorted(['d', 'a', 'b', 'e', 'c'])
+    True
+    >>> import random
+    >>> collection = random.sample(range(-50, 50), 100)
+    >>> binary_insertion_sort(collection) == sorted(collection)
+    True
+    >>> import string
+    >>> collection = random.choices(string.ascii_letters + string.digits, k=100)
+    >>> binary_insertion_sort(collection) == sorted(collection)
+    True
     """
+
+    
 
     n = len(collection)
     for i in range(1, n):
