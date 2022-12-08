@@ -21,7 +21,8 @@ def binary_insertion_sort(collection):
     n = len(collection)
     for i in range(1, n):
         val = collection[i]
-        low = 0, high = i - 1
+        low = 0
+        high = i - 1
 
         while low <= high:
             mid = (low + high) // 2
