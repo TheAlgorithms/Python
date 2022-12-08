@@ -11,7 +11,7 @@ python binary_insertion_sort.py
 """
 
 
-def binary_insertion_sort(collection):
+def binary_insertion_sort(collection: list) -> list:
     """Pure implementation of the binary insertion sort algorithm in Python
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
@@ -24,7 +24,8 @@ def binary_insertion_sort(collection):
     True
     >>> binary_insertion_sort([-1, -2, -3]) == sorted([-1, -2, -3])
     True
-    >>> binary_insertion_sort(['d', 'a', 'b', 'e', 'c']) == sorted(['d', 'a', 'b', 'e', 'c'])
+    >>> lst = ['d', 'a', 'b', 'e', 'c']
+    >>> binary_insertion_sort(lst) == sorted(lst)
     True
     >>> import random
     >>> collection = random.sample(range(-50, 50), 100)
