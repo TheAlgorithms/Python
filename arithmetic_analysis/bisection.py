@@ -1,5 +1,5 @@
 from collections.abc import Callable
-##addedfeature
+##addedfeature#newfeature
 
 def bisection(function: Callable[[float], float], a: float, b: float) -> float:
     """
