@@ -82,7 +82,7 @@ def backward_warping(matrix:np.ndarray, img:np.ndarray)->np.ndarray:
 
 if __name__ == '__main__':
 
-    img = cv2.imread('Lenna.png', cv2.IMREAD_GRAYSCALE)
+    img = cv2.imread("digital_image_processing/image_data/lena.jpg", cv2.IMREAD_GRAYSCALE)
     angle = np.deg2rad(15)
     M1 = np.array([[1, 0, 50],
                    [0, 1, 100],
