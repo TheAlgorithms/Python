@@ -533,6 +533,7 @@
   * [Collatz Sequence](maths/collatz_sequence.py)
   * [Combinations](maths/combinations.py)
   * [Decimal Isolate](maths/decimal_isolate.py)
+  * [Decimal To Fraction](maths/decimal_to_fraction.py)
   * [Dodecahedron](maths/dodecahedron.py)
   * [Double Factorial Iterative](maths/double_factorial_iterative.py)
   * [Double Factorial Recursive](maths/double_factorial_recursive.py)
