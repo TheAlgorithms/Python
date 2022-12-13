@@ -186,9 +186,7 @@ def closing_filter(image: np.ndarray, kernel: np.ndarray = None) -> np.ndarray:
         array([[0, 0],
                [0, 0]], dtype=uint8)
     """
-    if kernel is None:
-        np.ones((3, 3))
-
+    kernel = kernel or np.ones((3, 3))
     return transform(transform(image, "erosion", kernel), "dilation", kernel)
 
 
