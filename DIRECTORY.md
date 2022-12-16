@@ -435,6 +435,7 @@
 ## Greedy Methods
   * [Fractional Knapsack](greedy_methods/fractional_knapsack.py)
   * [Fractional Knapsack 2](greedy_methods/fractional_knapsack_2.py)
+  * [Longest Chunked Palindrome Decomposition](greedy_methods/longest_chunked_palindrome_decomposition.py)
   * [Optimal Merge Pattern](greedy_methods/optimal_merge_pattern.py)
 
 ## Hashes
