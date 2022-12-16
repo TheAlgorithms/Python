@@ -52,12 +52,6 @@ def longest_decomposition(text: str) -> int:
     def substrings_are_equal(
         first_substring_index: int, second_substring_index: int, length: int
     ) -> bool:
-        """
-        >>> text = 'aabaa'
-        >>> substrings_are_equal(0, 3, 2)
-        True
-        """
-
         for i in range(length):
             if text[first_substring_index + i] != text[second_substring_index + i]:
                 return False
@@ -65,12 +59,6 @@ def longest_decomposition(text: str) -> int:
         return True
 
     def longest_decomposition(index: int) -> int:
-        """
-        >>> text = 'aabaa'
-        >>> longest_decomposition(0)
-        3
-        """
-
         if 2 * index >= len_text:
             return 0
 
