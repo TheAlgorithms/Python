@@ -30,17 +30,17 @@ Space: O(1)
 """
 
 
-def longestDecomposition(text: str) -> int:
+def longest_decomposition(text: str) -> int:
     """
-    >>> longestDecomposition('ghiabcdefhelloadamhelloabcdefghi')
+    >>> longest_decomposition('ghiabcdefhelloadamhelloabcdefghi')
     7
-    >>> longestDecomposition('merchant')
+    >>> longest_decomposition('merchant')
     1
-    >>> longestDecomposition('m')
+    >>> longest_decomposition('m')
     1
-    >>> longestDecomposition('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+    >>> longest_decomposition('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
     46
-    >>> longestDecomposition('abcabcabcabcabcabcabcabcabcabcabcabcabcabcabc')
+    >>> longest_decomposition('abcabcabcabcabcabcabcabcabcabcabcabcabcabcabc')
     15
     """
 
@@ -64,7 +64,7 @@ def longestDecomposition(text: str) -> int:
 
         return True
 
-    def longest_decomposition(index):
+    def longest_decomposition(index: int) -> int:
         """
         >>> text = 'aabaa'
         >>> longest_decomposition(0)
