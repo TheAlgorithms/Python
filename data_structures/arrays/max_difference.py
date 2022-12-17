@@ -1,4 +1,4 @@
-def max_Difference(nums: list[int]) -> int:
+def max_difference(nums: list[int]) -> int:
     """
     The function returns the max difference in the
     array where result = arr[i] - arr[j] and i > j
