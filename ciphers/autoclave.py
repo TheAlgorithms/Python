@@ -1,10 +1,11 @@
 """
 https://en.wikipedia.org/wiki/Autokey_cipher
 > An autokey cipher (also known as the autoclave cipher) is a cipher that incorporates the message
-(the plaintext into the key. 
+(the plaintext into the key.
 The key is generated from the message in some automated fashion, sometimes by selecting certain letters from the text or, more commonly,
 by adding a short primer key to the front of the message.
 """
+
 
 def encrypt(plaintext: str, key: str) -> str:
     """
@@ -88,7 +89,7 @@ def decrypt(ciphertext: str, key: str) -> str:
         raise ValueError("ciphertext is empty")
     if not key:
         raise ValueError("key is empty")
-        
+
     key = key.lower()
     ciphertext_iterator = 0
     key_iterator = 0
@@ -112,8 +113,10 @@ def decrypt(ciphertext: str, key: str) -> str:
         ciphertext_iterator += 1
     return plaintext
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     operation = int(input("Type 1 to encrypt or 2 to decrypt:"))
     if operation == 1:
