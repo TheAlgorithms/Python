@@ -1,6 +1,6 @@
 """
 https://en.wikipedia.org/wiki/Autokey_cipher
-> An autokey cipher (also known as the autoclave cipher) is a cipher that
+An autokey cipher (also known as the autoclave cipher) is a cipher that
 incorporates the message (the plaintext) into the key.
 The key is generated from the message in some automated fashion,
 sometimes by selecting certain letters from the text or, more commonly,
@@ -10,8 +10,8 @@ by adding a short primer key to the front of the message.
 
 def encrypt(plaintext: str, key: str) -> str:
     """
-    Function that encrypt a given plaintext (string)
-    and key (string), returning the encrypted ciphertext
+    Encrypt a given plaintext (string) and key (string), returning the
+    encrypted ciphertext.
     >>> encrypt("hello world", "coffee")
     'jsqqs avvwo'
     >>> encrypt("coffee is good as python", "TheAlgorithms")
@@ -66,8 +66,8 @@ def encrypt(plaintext: str, key: str) -> str:
 
 def decrypt(ciphertext: str, key: str) -> str:
     """
-    Function that decrypt a given ciphertext (string)
-    and key (string), returning the decrypted ciphertext
+    Decrypt a given ciphertext (string) and key (string), returning the decrypted
+    ciphertext.
     >>> decrypt("jsqqs avvwo", "coffee")
     'hello world'
     >>> decrypt("vvjfpk wj ohvp su ddylsv", "TheAlgorithms")
@@ -116,13 +116,16 @@ def decrypt(ciphertext: str, key: str) -> str:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     operation = int(input("Type 1 to encrypt or 2 to decrypt:"))
     if operation == 1:
-        plaintext = str(input("Typeplaintext to be encrypted:\n"))
-        key = str(input("Type the key:\n"))
+        plaintext = input("Typeplaintext to be encrypted:\n")
+        key = input("Type the key:\n")
         print(encrypt(plaintext, key))
     elif operation == 2:
-        ciphertext = str(input("Type the ciphertext to be decrypted:\n"))
-        key = str(input("Type the key:\n"))
+        ciphertext = input("Type the ciphertext to be decrypted:\n")
+        key = input("Type the key:\n")
         print(decrypt(ciphertext, key))
     decrypt("jsqqs avvwo", "coffee")
