@@ -1,29 +1,39 @@
-def encrypt(plaintext, key) -> str:
+"""
+https://en.wikipedia.org/wiki/Autokey_cipher
+> An autokey cipher (also known as the autoclave cipher) is a cipher that incorporates the message
+(the plaintext into the key. 
+The key is generated from the message in some automated fashion, sometimes by selecting certain letters from the text or, more commonly,
+by adding a short primer key to the front of the message.
+"""
+
+def encrypt(plaintext: str, key: str) -> str:
     """
     Function that encrypt a given plaintext (string)
-    and key (string), returning the encrypted ciphertext
-
-    @params
-    plaintext - a normal text to be encrypted (string)
-    key - a small text or word to start the replacing (sFtring)
-
-    @return
-    A string with the ciphertext
-
+    and key (string), returning the encrypted cyphertext
     >>> encrypt("hello world", "coffee")
     'jsqqs avvwo'
+    >>> encrypt("coffee is good as python", "TheAlgorithms")
+    'vvjfpk wj ohvp su ddylsv'
+    >>> encrypt("coffee is good as python", 2)
+    Traceback (most recent call last):
+        ...
+    TypeError: key must be a string
+    >>> encrypt("", "TheAlgorithms")
+    Traceback (most recent call last):
+        ...
+    ValueError: plaintext is empty
     """
-    if type(plaintext) != str:
+    if not isinstance(plaintext, str):
         raise TypeError("plaintext must be a string")
-    if type(key) != str:
+    if not isinstance(key, str):
         raise TypeError("key must be a string")
 
-    if plaintext == "":
+    if not plaintext:
         raise ValueError("plaintext is empty")
-    if key == "":
+    if not key:
         raise ValueError("key is empty")
 
-    key = key + plaintext
+    key += plaintext
     plaintext = plaintext.lower()
     key = key.lower()
     plaintext_iterator = 0
@@ -54,28 +64,32 @@ def encrypt(plaintext, key) -> str:
 
 def decrypt(ciphertext: str, key: str) -> str:
     """
-    Function that decrypt a given ciphertext (string)
-    and key (string), returning the decrypted ciphertext
-
-    @params
-    ciphertext - a normal text to be decrypted (string)
-    key - a small text or word used to encrypt (string)
-
-    @return
-    A string with the ciphertext
-
+    Function that decrypt a given cyphertext (string)
+    and key (string), returning the decrypted cyphertext
     >>> decrypt("jsqqs avvwo", "coffee")
     'hello world'
+    >>> decrypt("vvjfpk wj ohvp su ddylsv", "TheAlgorithms")
+    'coffee is good as python'
+    >>> decrypt("vvjfpk wj ohvp su ddylsv", "")
+    Traceback (most recent call last):
+        ...
+    ValueError: key is empty
+    >>> decrypt(527.26, "TheAlgorithms")
+    Traceback (most recent call last):
+        ...
+    TypeError: ciphertext must be a string
     """
-    if type(ciphertext) != str:
+    if not isinstance(ciphertext, str):
         raise TypeError("ciphertext must be a string")
-    if type(key) != str:
+    if not isinstance(key, str):
         raise TypeError("key must be a string")
 
-    if ciphertext == "":
+    if not ciphertext:
         raise ValueError("ciphertext is empty")
-    if key == "":
+    if not key:
         raise ValueError("key is empty")
+        
+    key = key.lower()
     ciphertext_iterator = 0
     key_iterator = 0
     plaintext = ""
@@ -98,14 +112,16 @@ def decrypt(ciphertext: str, key: str) -> str:
         ciphertext_iterator += 1
     return plaintext
 
-
-operation = int(input("Type 1 to encrypt or 2 to decrypt:"))
-if operation == 1:
-    plaintext = str(input("Typeplaintext to be encrypted:\n"))
-    key = str(input("Type the key:\n"))
-    print(encrypt(plaintext, key))
-elif operation == 2:
-    ciphertext = str(input("Type the ciphertext to be decrypted:\n"))
-    key = str(input("Type the key:\n"))
-    print(decrypt(ciphertext, key))
-decrypt("jsqqs avvwo", "coffee")
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+    operation = int(input("Type 1 to encrypt or 2 to decrypt:"))
+    if operation == 1:
+        plaintext = str(input("Typeplaintext to be encrypted:\n"))
+        key = str(input("Type the key:\n"))
+        print(encrypt(plaintext, key))
+    elif operation == 2:
+        ciphertext = str(input("Type the ciphertext to be decrypted:\n"))
+        key = str(input("Type the key:\n"))
+        print(decrypt(ciphertext, key))
+    decrypt("jsqqs avvwo", "coffee")
