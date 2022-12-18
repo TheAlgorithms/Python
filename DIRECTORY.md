@@ -475,7 +475,6 @@
   * [Decision Tree](machine_learning/decision_tree.py)
   * Forecasting
     * [Run](machine_learning/forecasting/run.py)
-  * [Gradient Boosting Regressor](machine_learning/gradient_boosting_regressor.py)
   * [Gradient Descent](machine_learning/gradient_descent.py)
   * [K Means Clust](machine_learning/k_means_clust.py)
   * [K Nearest Neighbours](machine_learning/k_nearest_neighbours.py)
