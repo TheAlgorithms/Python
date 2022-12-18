@@ -116,9 +116,6 @@ def decrypt(ciphertext: str, key: str) -> str:
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
     operation = int(input("Type 1 to encrypt or 2 to decrypt:"))
     if operation == 1:
         plaintext = str(input("Typeplaintext to be encrypted:\n"))
