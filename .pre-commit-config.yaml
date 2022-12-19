@@ -10,7 +10,7 @@ repos:
       - id: requirements-txt-fixer
 
   - repo: https://github.com/MarcoGorelli/auto-walrus
-    rev: v0.2.1
+    rev: v0.2.2
     hooks:
     -   id: auto-walrus
 
@@ -20,7 +20,7 @@ repos:
       - id: black
 
   - repo: https://github.com/PyCQA/isort
-    rev: 5.10.1
+    rev: v5.11.3
     hooks:
       - id: isort
         args:
