@@ -14,7 +14,6 @@
 
 ## Audio Filters
   * [Butterworth Filter](audio_filters/butterworth_filter.py)
-  * [Equal Loudness Filter](audio_filters/equal_loudness_filter.py)
   * [Iir Filter](audio_filters/iir_filter.py)
   * [Show Response](audio_filters/show_response.py)
 
@@ -79,6 +78,7 @@
   * [A1Z26](ciphers/a1z26.py)
   * [Affine Cipher](ciphers/affine_cipher.py)
   * [Atbash](ciphers/atbash.py)
+  * [Autokey](ciphers/autokey.py)
   * [Baconian Cipher](ciphers/baconian_cipher.py)
   * [Base16](ciphers/base16.py)
   * [Base32](ciphers/base32.py)
@@ -475,8 +475,6 @@
   * [Decision Tree](machine_learning/decision_tree.py)
   * Forecasting
     * [Run](machine_learning/forecasting/run.py)
-  * [Gaussian Naive Bayes](machine_learning/gaussian_naive_bayes.py)
-  * [Gradient Boosting Regressor](machine_learning/gradient_boosting_regressor.py)
   * [Gradient Descent](machine_learning/gradient_descent.py)
   * [K Means Clust](machine_learning/k_means_clust.py)
   * [K Nearest Neighbours](machine_learning/k_nearest_neighbours.py)
@@ -490,8 +488,6 @@
     * [Lstm Prediction](machine_learning/lstm/lstm_prediction.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
   * [Polymonial Regression](machine_learning/polymonial_regression.py)
-  * [Random Forest Classifier](machine_learning/random_forest_classifier.py)
-  * [Random Forest Regressor](machine_learning/random_forest_regressor.py)
   * [Scoring Functions](machine_learning/scoring_functions.py)
   * [Self Organizing Map](machine_learning/self_organizing_map.py)
   * [Sequential Minimum Optimization](machine_learning/sequential_minimum_optimization.py)
