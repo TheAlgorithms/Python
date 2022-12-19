@@ -4,5 +4,7 @@ max-line-length = 88
 max-complexity = 19
 extend-ignore =
     # Formatting style for `black`
-    E203  # Whitespace before ':'
-    W503  # Line break occurred before a binary operator
+    # E203 is whitespace before ':'
+    E203,
+    # W503 is line break occurred before a binary operator
+    W503
