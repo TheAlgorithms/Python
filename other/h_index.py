@@ -13,7 +13,7 @@ h-index.
 
 H-Index link: https://en.wikipedia.org/wiki/H-index
 
-Implementation notes: 
+Implementation notes:
 Use sorting of array
 
 Leetcode link: https://leetcode.com/problems/h-index/description/
@@ -23,6 +23,7 @@ Runtime Complexity: O(n * log(n))
 Space  Complexity: O(1)
 
 """
+
 
 def h_index(citations: list[int]) -> int:
     """
@@ -49,19 +50,18 @@ def h_index(citations: list[int]) -> int:
     """
 
     # validate:
-    if not isinstance(citations, list) or \
-       not all([isinstance(item, int) and item >= 0 for item in citations]):
-        raise ValueError(
-            'The citations should be a list of non negative integers.'
-            )
+    if not isinstance(citations, list) or not all(
+        [isinstance(item, int) and item >= 0 for item in citations]
+    ):
+        raise ValueError("The citations should be a list of non negative integers.")
 
     citations.sort()
     len_citations = len(citations)
-    
+
     for i in range(len_citations):
         if citations[len_citations - 1 - i] <= i:
             return i
-        
+
     return len_citations
 
 
