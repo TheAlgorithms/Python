@@ -115,11 +115,14 @@ def gaussian_filter(k: int = 5, sigma: float = 1.0) -> np.ndarray:
 
 
 def convolve(matrix: np.ndarray, kernel: np.ndarray) -> np.ndarray:
-    """Convolves a given kernel around a matrix through the frequency domain, using Fourier transformations.
+    """
+    Convolves a given kernel around a matrix through the frequency domain,
+    using Fourier transformations.
 
     Args:
         matrix: Numpy array containing values to be convolved
-        kernel: Kernel (with all dimensions smaller than those of the matrix) with weights to apply to each pixel.
+        kernel: Kernel (with all dimensions smaller than those of the matrix)
+                with weights to apply to each pixel.
 
     Returns:
         np.ndarray: Final equally shaped matrix with convoluted pixels.
@@ -143,13 +146,16 @@ def convolve(matrix: np.ndarray, kernel: np.ndarray) -> np.ndarray:
 
 
 def get_motion_psf(shape: tuple, angle: float, num_pixel_dist: int = 20) -> np.ndarray:
-    """Generate an array with given shape corresponding to Point Spread Function for the desired angle.
+    """
+    Generate an array with given shape corresponding to
+    Point Spread Function for the desired angle.
 
     Args:
         shape: The shape of the image.
         angle: The angle of the motion blur. Should be in degrees. [0, 360)
         num_pixel_dist: The distance of the motion blur. [0, infinity)
-            Remember that the distance is measured in pixels. Greater will be more blurry
+                        Remember that the distance is measured in pixels.
+                        Greater values will be more blurry
 
     Returns:
         np.ndarray: The point-spread array associated with the motion blur.
@@ -178,7 +184,9 @@ def get_motion_psf(shape: tuple, angle: float, num_pixel_dist: int = 20) -> np.n
 def richardson_lucy(
     degraded: np.ndarray, function_kernel: np.ndarray, steps: int
 ) -> np.ndarray:
-    """Richardson-Lucy method to restore an image affected by known motion blur function, as well as arbitrary steps
+    """
+    Richardson-Lucy method to restore an image
+    affected by known motion blur function, as well as arbitrary steps
     to perform during iterative image restoration.
 
     Args:
@@ -217,7 +225,7 @@ def richardson_lucy(
 
 def main():
     input_file = str(input()).rstrip()
-    degraded= imageio.imread(input_file)
+    degraded = imageio.imread(input_file)
 
     angle = int(input())
     steps = int(input())
