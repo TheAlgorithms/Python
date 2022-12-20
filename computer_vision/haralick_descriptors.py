@@ -128,7 +128,7 @@ def transform(image: np.ndarray, kind: str, kernel: np.ndarray = None) -> np.nda
         array([[0, 0],
                [0, 0]], dtype=uint8)
     """
-    if not kernel:
+    if kernel is None:
         kernel = np.ones((3, 3))
 
     if kind == "erosion":
@@ -168,7 +168,7 @@ def opening_filter(image: np.ndarray, kernel: np.ndarray = None) -> np.ndarray:
         array([[1, 1],
                [1, 1]], dtype=uint8)
     """
-    if not kernel:
+    if kernel is None:
         np.ones((3, 3))
 
     return transform(transform(image, "dilation", kernel), "erosion", kernel)
