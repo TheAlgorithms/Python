@@ -60,7 +60,7 @@ def word_break(string: str, word_dict: list[str]) -> bool:
         raise ValueError("the string should be not empty string")
 
     if not isinstance(word_dict, list) or not all(
-        [isinstance(item, str) and len(item) > 0 for item in word_dict]
+        isinstance(item, str) and len(item) > 0 for item in word_dict
     ):
         raise ValueError("the word_dict should a list of non empty string")
 
