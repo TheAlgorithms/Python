@@ -79,4 +79,4 @@ if __name__ == "__main__":
     random_image_2 = torch.randn(1, 32, 32)
 
     print(f"random_image_1 Model Passed: {test_model(random_image_1)}")
-    print(f"random_image_2 Model Passed: {test_model(random_image_2)}")
+    print(f"\nrandom_image_2 Model Passed: {test_model(random_image_2)}")
