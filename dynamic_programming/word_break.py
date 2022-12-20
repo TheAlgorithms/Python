@@ -23,33 +23,33 @@ Space: O(n)
 
 from functools import lru_cache
 
-def wordBreak(s: str, word_dict: list[str]) -> bool:
+def word_break(s: str, word_dict: list[str]) -> bool:
     """
     Return True if numbers have opposite signs False otherwise.
 
-    >>> wordBreak("applepenapple", ["apple","pen"])
+    >>> word_break("applepenapple", ["apple","pen"])
     True
-    >>> wordBreak("catsandog", ["cats","dog","sand","and","cat"])
+    >>> word_break("catsandog", ["cats","dog","sand","and","cat"])
     False
-    >>> wordBreak("cars", ["car","ca","rs"])
+    >>> word_break("cars", ["car","ca","rs"])
     True
-    >>> wordBreak("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", ["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"])
+    >>> word_break("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", ["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"])
     False
-    >>> wordBreak('abc', [])
+    >>> word_break('abc', [])
     False
-    >>> wordBreak(123, ['a'])
+    >>> word_break(123, ['a'])
     Traceback (most recent call last):
         ...
     ValueError: the s should be not empty string
-    >>> wordBreak('', ['a'])
+    >>> word_break('', ['a'])
     Traceback (most recent call last):
         ...
     ValueError: the s should be not empty string
-    >>> wordBreak('abc', [123])
+    >>> word_break('abc', [123])
     Traceback (most recent call last):
         ...
     ValueError: the word_dict should a list of non empty string
-    >>> wordBreak('abc', [''])
+    >>> word_break('abc', [''])
     Traceback (most recent call last):
         ...
     ValueError: the word_dict should a list of non empty string
