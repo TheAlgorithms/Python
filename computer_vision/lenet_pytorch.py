@@ -65,13 +65,14 @@ def test_model(image_tensor: torch.tensor) -> bool:
     True
 
     """
-    try: 
+    try:
         model = LeNet()
         output = model(image_tensor)
     except:
         return False
 
     return output.shape == torch.zeros([64, 10]).shape
+
 
 if __name__ == "__main__":
     random_image_1 = torch.randn(64, 1, 32, 32)
