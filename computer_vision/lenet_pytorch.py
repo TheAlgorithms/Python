@@ -68,7 +68,7 @@ def test_model(image_tensor: torch.tensor) -> bool:
     try:
         model = LeNet()
         output = model(image_tensor)
-    except:
+    except RuntimeError:
         return False
 
     return output.shape == torch.zeros([64, 10]).shape
