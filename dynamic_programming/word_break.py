@@ -23,8 +23,7 @@ Space: O(n)
 
 from functools import lru_cache
 
-
-def word_break(s: str, word_dict: list[str]) -> bool:
+def word_break(string: str, word_dict: list[str]) -> bool:
     """
     Return True if numbers have opposite signs False otherwise.
 
@@ -41,11 +40,11 @@ def word_break(s: str, word_dict: list[str]) -> bool:
     >>> word_break(123, ['a'])
     Traceback (most recent call last):
         ...
-    ValueError: the s should be not empty string
+    ValueError: the string should be not empty string
     >>> word_break('', ['a'])
     Traceback (most recent call last):
         ...
-    ValueError: the s should be not empty string
+    ValueError: the string should be not empty string
     >>> word_break('abc', [123])
     Traceback (most recent call last):
         ...
@@ -57,17 +56,16 @@ def word_break(s: str, word_dict: list[str]) -> bool:
     """
 
     # Validation
-    if not isinstance(s, str) or len(s) == 0:
-        raise ValueError("the s should be not empty string")
+    if not isinstance(string, str) or len(string) == 0:
+        raise ValueError('the string should be not empty string')
 
     if not isinstance(word_dict, list) or not all(
-        [isinstance(item, str) and len(item) > 0 for item in word_dict]
-    ):
-        raise ValueError("the word_dict should a list of non empty string")
+        [isinstance(item, str) and len(item) > 0 for item in word_dict]):
+        raise ValueError('the word_dict should a list of non empty string')
 
     # Build trie
     trie = {}
-    WORD_KEEPER = "WORD_KEEPER"
+    WORD_KEEPER = 'WORD_KEEPER'
     for word in word_dict:
         trie_node = trie
         for c in word:
@@ -75,24 +73,24 @@ def word_break(s: str, word_dict: list[str]) -> bool:
                 trie_node[c] = {}
 
             trie_node = trie_node[c]
-
+        
         trie_node[WORD_KEEPER] = True
 
-    len_s = len(s)
+    len_string = len(string)
 
     # Dynamic programming method
     @lru_cache(maxsize=None)
     def is_breakable(index: int) -> bool:
-        if index == len_s:
+        if index == len_string:
             return True
 
         trie_node = trie
-        for i in range(index, len_s):
-            trie_node = trie_node.get(s[i], None)
+        for i in range(index, len_string):
+            trie_node = trie_node.get(string[i], None)
 
             if trie_node is None:
                 return False
-
+            
             if trie_node.get(WORD_KEEPER, False) and is_breakable(i + 1):
                 return True
 
