@@ -54,20 +54,28 @@ class LeNet(nn.Module):
         return image_array
 
 
-def test_model() -> bool:
+def test_model(image_tensor: torch.tensor) -> bool:
     """
-    Test the model on a random input of size [64, 1, 32, 32]
+    Test the model on an input batch of 64 images
 
-    >>> test_model()
+    Args:
+        image_tensor (torch.tensor): Batch of Images for the model
+
+    >>> test_model(torch.randn(64, 1, 32, 32))
     True
 
     """
-    random_image = torch.randn(64, 1, 32, 32)
-    model = LeNet()
-    output = model(random_image)
+    try: 
+        model = LeNet()
+        output = model(image_tensor)
+    except:
+        return False
 
     return output.shape == torch.zeros([64, 10]).shape
 
-
 if __name__ == "__main__":
-    print(f"Model Passed: {test_model()}")
+    random_image_1 = torch.randn(64, 1, 32, 32)
+    random_image_2 = torch.randn(1, 32, 32)
+
+    print(f"random_image_1 Model Passed: {test_model(random_image_1)}")
+    print(f"random_image_2 Model Passed: {test_model(random_image_2)}")
