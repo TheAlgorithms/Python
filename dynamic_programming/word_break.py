@@ -22,6 +22,7 @@ Space: O(n)
 """
 
 from functools import lru_cache
+from typing import Any
 
 
 def word_break(string: str, word_dict: list[str]) -> bool:
@@ -64,8 +65,9 @@ def word_break(string: str, word_dict: list[str]) -> bool:
         raise ValueError("the word_dict should a list of non empty string")
 
     # Build trie
-    trie: Dict[str, Any] = {}
+    trie: dict[str, Any] = {}
     word_keeper_key = "WORD_KEEPER"
+
     for word in word_dict:
         trie_node = trie
         for c in word:
