@@ -34,8 +34,6 @@ def word_break(string: str, word_dict: list[str]) -> bool:
     False
     >>> word_break("cars", ["car","ca","rs"])
     True
-    >>> word_break("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab", ["a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"])
-    False
     >>> word_break('abc', [])
     False
     >>> word_break(123, ['a'])
@@ -67,7 +65,7 @@ def word_break(string: str, word_dict: list[str]) -> bool:
 
     # Build trie
     trie = {}
-    WORD_KEEPER = "WORD_KEEPER"
+    word_keeper_key = "WORD_KEEPER"
     for word in word_dict:
         trie_node = trie
         for c in word:
@@ -76,7 +74,7 @@ def word_break(string: str, word_dict: list[str]) -> bool:
 
             trie_node = trie_node[c]
 
-        trie_node[WORD_KEEPER] = True
+        trie_node[word_keeper_key] = True
 
     len_string = len(string)
 
@@ -93,7 +91,7 @@ def word_break(string: str, word_dict: list[str]) -> bool:
             if trie_node is None:
                 return False
 
-            if trie_node.get(WORD_KEEPER, False) and is_breakable(i + 1):
+            if trie_node.get(word_keeper_key, False) and is_breakable(i + 1):
                 return True
 
         return False
