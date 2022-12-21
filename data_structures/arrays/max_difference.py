@@ -6,11 +6,11 @@ def max_difference(nums: list[int]) -> int:
     Runtime: O(n)
     Space: O(1)
 
-    >>> max_Difference(([2, 3, 10 , 6, 4, 8, 1])
+    >>> max_difference(([2, 3, 10 , 6, 4, 8, 1])
     8
-    >>> max_Difference(([7, 9, 5, 6, 3, 2])
+    >>> max_difference(([7, 9, 5, 6, 3, 2])
     2
-    >>> max_Difference(([10, 20, 30])
+    >>> max_difference(([10, 20, 30])
     20
 
     """
