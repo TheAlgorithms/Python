@@ -21,6 +21,43 @@ MUTATION_PROBABILITY = 0.4
 random.seed(random.randint(0, 1000))
 
 
+# Select, crossover and mutate a new population.
+def select(
+    parent_1: tuple[str, float],
+    population_score: list[tuple[str, float]],
+    genes: list[str],
+) -> list[str]:
+    """Select the second parent and generate new population"""
+    pop = []
+    # Generate more children proportionally to the fitness score.
+    child_n = int(parent_1[1] * 100) + 1
+    child_n = 10 if child_n >= 10 else child_n
+    for _ in range(child_n):
+        parent_2 = population_score[random.randint(0, N_SELECTED)][0]
+
+        child_1, child_2 = crossover(parent_1[0], parent_2)
+        # Append new string to the population list.
+        pop.append(mutate(child_1, genes))
+        pop.append(mutate(child_2, genes))
+    return pop
+
+
+def crossover(parent_1: str, parent_2: str) -> tuple[str, str]:
+    """Slice and combine two string at a random point."""
+    random_slice = random.randint(0, len(parent_1) - 1)
+    child_1 = parent_1[:random_slice] + parent_2[random_slice:]
+    child_2 = parent_2[:random_slice] + parent_1[random_slice:]
+    return (child_1, child_2)
+
+
+def mutate(child: str, genes: list[str]) -> str:
+    """Mutate a random gene of a child with another one from the list."""
+    child_list = list(child)
+    if random.uniform(0, 1) < MUTATION_PROBABILITY:
+        child_list[random.randint(0, len(child)) - 1] = random.choice(genes)
+    return "".join(child_list)
+
+
 def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, str]:
     """
     Verify that the target contains no genes besides the ones inside genes variable.
@@ -121,41 +158,9 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
             (item, score / len(target)) for item, score in population_score
         ]
 
-        # Select, crossover and mutate a new population.
-        def select(parent_1: tuple[str, float]) -> list[str]:
-            """Select the second parent and generate new population"""
-            pop = []
-            # Generate more children proportionally to the fitness score.
-            child_n = int(parent_1[1] * 100) + 1
-            child_n = 10 if child_n >= 10 else child_n
-            for _ in range(child_n):
-                parent_2 = population_score[  # noqa: B023
-                    random.randint(0, N_SELECTED)
-                ][0]
-
-                child_1, child_2 = crossover(parent_1[0], parent_2)
-                # Append new string to the population list.
-                pop.append(mutate(child_1))
-                pop.append(mutate(child_2))
-            return pop
-
-        def crossover(parent_1: str, parent_2: str) -> tuple[str, str]:
-            """Slice and combine two string at a random point."""
-            random_slice = random.randint(0, len(parent_1) - 1)
-            child_1 = parent_1[:random_slice] + parent_2[random_slice:]
-            child_2 = parent_2[:random_slice] + parent_1[random_slice:]
-            return (child_1, child_2)
-
-        def mutate(child: str) -> str:
-            """Mutate a random gene of a child with another one from the list."""
-            child_list = list(child)
-            if random.uniform(0, 1) < MUTATION_PROBABILITY:
-                child_list[random.randint(0, len(child)) - 1] = random.choice(genes)
-            return "".join(child_list)
-
         # This is selection
         for i in range(N_SELECTED):
-            population.extend(select(population_score[int(i)]))
+            population.extend(select(population_score[int(i)], population_score, genes))
             # Check if the population has already reached the maximum value and if so,
             # break the cycle.  If this check is disabled, the algorithm will take
             # forever to compute large strings, but will also calculate small strings in
