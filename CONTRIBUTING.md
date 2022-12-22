@@ -13,7 +13,7 @@ We are very happy that you are considering implementing algorithms and data stru
 - You did your work - no plagiarism allowed
   - Any plagiarized work will not be merged.
 - Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged
-- Your submitted work fulfils or mostly fulfils our styles and standards
+- Your submitted work fulfills or mostly fulfills our styles and standards
 
 __New implementation__ is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity but __identical implementation__ of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
 
@@ -47,7 +47,7 @@ Algorithms should:
 * contain doctests that test both valid and erroneous input values
 * return all calculation results instead of printing or plotting them
 
-Algorithms in this repo should not be how-to examples for existing Python packages.  Instead, they should perform internal calculations or manipulations to convert input values into different output values.  Those calculations or manipulations can use data types, classes, or functions of existing Python packages but each algorithm in this repo should add unique value.
+Algorithms in this repo should not be how-to examples for existing Python packages.  Instead, they should perform internal calculations or manipulations to convert input values into different output values.  Those calculations or manipulations can use data types, classes, or functions of existing Python packages, but each algorithm in this repo should add unique value.
 
 #### Pre-commit plugin
 Use [pre-commit](https://pre-commit.com/#installation) to automatically format your code to match our coding style:
