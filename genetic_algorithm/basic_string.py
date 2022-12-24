@@ -26,7 +26,7 @@ def evaluate(item: str, main_target: str) -> tuple[str, float]:
     Evaluate how similar the item is with the target by just
     counting each char in the right position
     >>> evaluate("Helxo Worlx", "Hello World")
-    ["Helxo Worlx", 9]
+    ('Helxo Worlx', 9.0)
     """
     score = len([g for position, g in enumerate(item) if g == main_target[position]])
     return (item, float(score))
