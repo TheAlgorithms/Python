@@ -32,7 +32,7 @@ def is_palindrome(n: int | str) -> bool:
     False
     """
     n = str(n)
-    return True if n == n[::-1] else False
+    return n == n[::-1]
 
 
 def solution(n: int = 1000000):

@@ -76,8 +76,9 @@ def decimal_to_any(num: int, base: int) -> str:
         div, mod = divmod(num, base)
         if base >= 11 and 9 < mod < 36:
             actual_value = ALPHABET_VALUES[str(mod)]
-            mod = actual_value
-        new_value += str(mod)
+        else:
+            actual_value = str(mod)
+        new_value += actual_value
         div = num // base
         num = div
         if div == 0:

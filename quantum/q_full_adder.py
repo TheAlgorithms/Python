@@ -60,7 +60,11 @@ def quantum_full_adder(
         ...
     ValueError: inputs must be less or equal to 2.
     """
-    if (type(input_1) == str) or (type(input_2) == str) or (type(carry_in) == str):
+    if (
+        isinstance(input_1, str)
+        or isinstance(input_2, str)
+        or isinstance(carry_in, str)
+    ):
         raise TypeError("inputs must be integers.")
 
     if (input_1 < 0) or (input_2 < 0) or (carry_in < 0):
