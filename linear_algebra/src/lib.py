@@ -129,7 +129,7 @@ class Vector:
         input: index (0-indexed)
         output: the i-th component of the vector.
         """
-        if type(i) is int and -len(self.__components) <= i < len(self.__components):
+        if isinstance(i, int) and -len(self.__components) <= i < len(self.__components):
             return self.__components[i]
         else:
             raise Exception("index out of range")

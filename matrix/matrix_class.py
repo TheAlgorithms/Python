@@ -345,7 +345,7 @@ class Matrix:
         if other == 0:
             return self.identity()
         if other < 0:
-            if self.is_invertable:
+            if self.is_invertable():
                 return self.inverse() ** (-other)
             raise ValueError(
                 "Only invertable matrices can be raised to a negative power"

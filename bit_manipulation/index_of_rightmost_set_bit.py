@@ -19,9 +19,17 @@ def get_index_of_rightmost_set_bit(number: int) -> int:
     Traceback (most recent call last):
         ...
     ValueError: Input must be a non-negative integer
+    >>> get_index_of_rightmost_set_bit('test')
+    Traceback (most recent call last):
+        ...
+    ValueError: Input must be a non-negative integer
+    >>> get_index_of_rightmost_set_bit(1.25)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input must be a non-negative integer
     """
 
-    if number < 0 or not isinstance(number, int):
+    if not isinstance(number, int) or number < 0:
         raise ValueError("Input must be a non-negative integer")
 
     intermediate = number & ~(number - 1)

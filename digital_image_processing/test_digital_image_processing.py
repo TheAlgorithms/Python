@@ -10,7 +10,7 @@ from digital_image_processing import change_contrast as cc
 from digital_image_processing import convert_to_negative as cn
 from digital_image_processing import sepia as sp
 from digital_image_processing.dithering import burkes as bs
-from digital_image_processing.edge_detection import canny as canny
+from digital_image_processing.edge_detection import canny
 from digital_image_processing.filters import convolve as conv
 from digital_image_processing.filters import gaussian_filter as gg
 from digital_image_processing.filters import local_binary_pattern as lbp

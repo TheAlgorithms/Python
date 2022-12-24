@@ -7,7 +7,7 @@ def schur_complement(
     mat_a: np.ndarray,
     mat_b: np.ndarray,
     mat_c: np.ndarray,
-    pseudo_inv: np.ndarray = None,
+    pseudo_inv: np.ndarray | None = None,
 ) -> np.ndarray:
     """
     Schur complement of a symmetric matrix X given as a 2x2 block matrix

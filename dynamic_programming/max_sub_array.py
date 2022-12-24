@@ -62,8 +62,7 @@ def max_sub_array(nums: list[int]) -> int:
     current = 0
     for i in nums:
         current += i
-        if current < 0:
-            current = 0
+        current = max(current, 0)
         best = max(best, current)
     return best
 
