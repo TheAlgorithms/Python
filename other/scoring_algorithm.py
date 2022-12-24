@@ -26,7 +26,7 @@ Thus the weights for each column are as follows:
 def get_data(source_data: list[list[float]]) -> list[list[float]]:
     """
     >>> get_data([[20, 60, 2012],[23, 90, 2015],[22, 50, 2011]])
-    [[20, 23, 22], [60, 90, 50], [2012, 2015, 2011]]
+    [[20.0, 23.0, 22.0], [60.0, 90.0, 50.0], [2012.0, 2015.0, 2011.0]]
     """
     data_lists: list[list[float]] = []
     for data in source_data:
