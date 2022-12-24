@@ -41,7 +41,8 @@ def calculate_each_score(
     data_lists: list[list[float]], weights: list[int]
 ) -> list[list[float]]:
     """
-    >>> calculate_each_score([[20, 23, 22], [60, 90, 50], [2012, 2015, 2011]], [0, 0, 1])
+    >>> calculate_each_score([[20, 23, 22], [60, 90, 50], [2012, 2015, 2011]],
+    ...                      [0, 0, 1])
     [[1.0, 0.0, 0.33333333333333337], [0.75, 0.0, 1.0], [0.25, 1.0, 0.0]]
     """
     score_lists: list[list[float]] = []
@@ -76,7 +77,9 @@ def calculate_each_score(
 
 def generate_final_scores(score_lists: list[list[float]]) -> list[float]:
     """
-    >>> generate_final_scores([[1.0, 0.0, 0.33333333333333337], [0.75, 0.0, 1.0], [0.25, 1.0, 0.0]])
+    >>> generate_final_scores([[1.0, 0.0, 0.33333333333333337],
+    ...                        [0.75, 0.0, 1.0],
+    ...                        [0.25, 1.0, 0.0]])
     [2.0, 1.0, 1.3333333333333335]
     """
     # initialize final scores
