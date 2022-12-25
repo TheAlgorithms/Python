@@ -1,11 +1,12 @@
-"""Password Generator allows you to generate a random password of length N."""
 import secrets
 from random import shuffle
-from string import ascii_letters, digits, punctuation
+from string import ascii_letters, ascii_lowercase, ascii_uppercase, digits, punctuation
 
 
 def password_generator(length: int = 8) -> str:
     """
+    Password Generator allows you to generate a random password of length N.
+
     >>> len(password_generator())
     8
     >>> len(password_generator(length=16))
@@ -60,6 +61,37 @@ def random_letters(chars_incl, i):
 
 def random_characters(chars_incl, i):
     pass  # Put your code here...
+
+
+# This Will Check Whether A Given Password Is Strong Or Not
+# It Follows The Rule that Length Of Password Should Be At Least 8 Characters
+# And At Least 1 Lower, 1 Upper, 1 Number And 1 Special Character
+def is_strong_password(password: str, min_length: int = 8) -> bool:
+    """
+    >>> is_strong_password('Hwea7$2!')
+    True
+    >>> is_strong_password('Sh0r1')
+    False
+    >>> is_strong_password('Hello123')
+    False
+    >>> is_strong_password('Hello1238udfhiaf038fajdvjjf!jaiuFhkqi1')
+    True
+    >>> is_strong_password('0')
+    False
+    """
+
+    if len(password) < min_length:
+        # Your Password must be at least 8 characters long
+        return False
+
+    upper = any(char in ascii_uppercase for char in password)
+    lower = any(char in ascii_lowercase for char in password)
+    num = any(char in digits for char in password)
+    spec_char = any(char in punctuation for char in password)
+
+    return upper and lower and num and spec_char
+    # Passwords should contain UPPERCASE, lowerase
+    # numbers, and special characters
 
 
 def main():

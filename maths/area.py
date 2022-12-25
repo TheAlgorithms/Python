@@ -201,6 +201,40 @@ def surface_area_cylinder(radius: float, height: float) -> float:
     return 2 * pi * radius * (height + radius)
 
 
+def surface_area_torus(torus_radius: float, tube_radius: float) -> float:
+    """Calculate the Area of a Torus.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Torus
+    :return 4pi^2 * torus_radius * tube_radius
+    >>> surface_area_torus(1, 1)
+    39.47841760435743
+    >>> surface_area_torus(4, 3)
+    473.7410112522892
+    >>> surface_area_torus(3, 4)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_torus() does not support spindle or self intersecting tori
+    >>> surface_area_torus(1.6, 1.6)
+    101.06474906715503
+    >>> surface_area_torus(0, 0)
+    0.0
+    >>> surface_area_torus(-1, 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_torus() only accepts non-negative values
+    >>> surface_area_torus(1, -1)
+    Traceback (most recent call last):
+        ...
+    ValueError: surface_area_torus() only accepts non-negative values
+    """
+    if torus_radius < 0 or tube_radius < 0:
+        raise ValueError("surface_area_torus() only accepts non-negative values")
+    if torus_radius < tube_radius:
+        raise ValueError(
+            "surface_area_torus() does not support spindle or self intersecting tori"
+        )
+    return 4 * pow(pi, 2) * torus_radius * tube_radius
+
+
 def area_rectangle(length: float, width: float) -> float:
     """
     Calculate the area of a rectangle.
@@ -543,6 +577,7 @@ if __name__ == "__main__":
     print(f"Cone: {surface_area_cone(10, 20) = }")
     print(f"Conical Frustum: {surface_area_conical_frustum(10, 20, 30) = }")
     print(f"Cylinder: {surface_area_cylinder(10, 20) = }")
+    print(f"Torus: {surface_area_torus(20, 10) = }")
     print(f"Equilateral Triangle: {area_reg_polygon(3, 10) = }")
     print(f"Square: {area_reg_polygon(4, 10) = }")
     print(f"Reqular Pentagon: {area_reg_polygon(5, 10) = }")

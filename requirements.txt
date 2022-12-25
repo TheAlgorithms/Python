@@ -12,10 +12,10 @@ qiskit
 requests
 rich
 scikit-fuzzy
-sklearn
+scikit-learn
 statsmodels
 sympy
-tensorflow
+tensorflow; python_version < "3.11"
 texttable
 tweepy
 xgboost

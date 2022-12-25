@@ -13,7 +13,7 @@ test_data_even = (4, 6, 2, 0, 8, 10, 3, -2)
 @dataclass
 class Node:
     data: int
-    next: Node | None
+    next_node: Node | None
 
 
 class SortedLinkedList:
@@ -32,7 +32,7 @@ class SortedLinkedList:
         node = self.head
         while node:
             yield node.data
-            node = node.next
+            node = node.next_node
 
     def __len__(self) -> int:
         """

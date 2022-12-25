@@ -106,7 +106,7 @@ class SegmentTree(Generic[T]):
         l, r = l + self.N, r + self.N
 
         res: T | None = None
-        while l <= r:  # noqa: E741
+        while l <= r:
             if l % 2 == 1:
                 res = self.st[l] if res is None else self.fn(res, self.st[l])
             if r % 2 == 0:

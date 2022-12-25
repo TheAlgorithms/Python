@@ -314,7 +314,7 @@ class SmoSVM:
             l, h = max(0.0, a2 - a1), min(self._c, self._c + a2 - a1)
         else:
             l, h = max(0.0, a2 + a1 - self._c), min(self._c, a2 + a1)
-        if l == h:  # noqa: E741
+        if l == h:
             return None, None
 
         # calculate eta
@@ -388,16 +388,10 @@ class SmoSVM:
             return (data - self._min) / (self._max - self._min)
 
     def _is_unbound(self, index):
-        if 0.0 < self.alphas[index] < self._c:
-            return True
-        else:
-            return False
+        return bool(0.0 < self.alphas[index] < self._c)
 
     def _is_support(self, index):
-        if self.alphas[index] > 0:
-            return True
-        else:
-            return False
+        return bool(self.alphas[index] > 0)
 
     @property
     def unbound(self):

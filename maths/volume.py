@@ -441,6 +441,34 @@ def vol_conical_frustum(height: float, radius_1: float, radius_2: float) -> floa
     )
 
 
+def vol_torus(torus_radius: float, tube_radius: float) -> float:
+    """Calculate the Volume of a Torus.
+    Wikipedia reference: https://en.wikipedia.org/wiki/Torus
+    :return 2pi^2 * torus_radius * tube_radius^2
+    >>> vol_torus(1, 1)
+    19.739208802178716
+    >>> vol_torus(4, 3)
+    710.6115168784338
+    >>> vol_torus(3, 4)
+    947.4820225045784
+    >>> vol_torus(1.6, 1.6)
+    80.85179925372404
+    >>> vol_torus(0, 0)
+    0.0
+    >>> vol_torus(-1, 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: vol_torus() only accepts non-negative values
+    >>> vol_torus(1, -1)
+    Traceback (most recent call last):
+        ...
+    ValueError: vol_torus() only accepts non-negative values
+    """
+    if torus_radius < 0 or tube_radius < 0:
+        raise ValueError("vol_torus() only accepts non-negative values")
+    return 2 * pow(pi, 2) * torus_radius * pow(tube_radius, 2)
+
+
 def main():
     """Print the Results of Various Volume Calculations."""
     print("Volumes:")
@@ -453,6 +481,7 @@ def main():
     print(f"Sphere: {vol_sphere(2) = }")  # ~= 33.5
     print(f"Hemisphere: {vol_hemisphere(2) = }")  # ~= 16.75
     print(f"Circular Cylinder: {vol_circular_cylinder(2, 2) = }")  # ~= 25.1
+    print(f"Torus: {vol_torus(2, 2) = }")  # ~= 157.9
     print(f"Conical Frustum: {vol_conical_frustum(2, 2, 4) = }")  # ~= 58.6
     print(f"Spherical cap: {vol_spherical_cap(1, 2) = }")  # ~= 5.24
     print(f"Spheres intersetion: {vol_spheres_intersect(2, 2, 1) = }")  # ~= 21.21
