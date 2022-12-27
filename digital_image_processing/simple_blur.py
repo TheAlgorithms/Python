@@ -40,7 +40,9 @@ if __name__ == "__main__":
     # turn image in gray scale value
     gray = cvtColor(img, COLOR_BGR2GRAY)
     # Laplace operator
-    Laplace_kernel = array([[1/9, 1/9, 1/9], [1/9, 1/9, 1/9], [1/9, 1/9, 1/9]])
+    Laplace_kernel = array(
+        [[1 / 9, 1 / 9, 1 / 9], [1 / 9, 1 / 9, 1 / 9], [1 / 9, 1 / 9, 1 / 9]]
+    )
     out = img_convolve(gray, Laplace_kernel).astype(uint8)
     imshow("Laplacian", out)
     waitKey(0)
