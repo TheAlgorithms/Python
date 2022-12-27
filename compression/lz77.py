@@ -38,7 +38,7 @@ class LZ77Compressor:
     Class containing compress and decompress methods using LZ77 compression algorithm.
     """
 
-    def __init__(self, window_size=13, lookahead_buffer_size=6) -> None:
+    def __init__(self, window_size: int = 13, lookahead_buffer_size: int = 6) -> None:
         self.window_size = window_size
         self.lookahead_buffer_size = lookahead_buffer_size
         self.search_buffer_size = self.window_size - self.lookahead_buffer_size
