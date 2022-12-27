@@ -36,6 +36,8 @@ def get_factors(
     """
 
     match number:
+        case int(number) if number == 1:
+            return Counter({1: 1})
         case int(num) if number > 0:
             number = num
         case _:
