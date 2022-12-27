@@ -30,8 +30,8 @@ en.wikipedia.org/wiki/LZ77_and_LZ78
 
 from typing import List, Tuple
 
-__version__ = '0.1'
-__author__ = 'Lucia Harcekova'
+__version__ = "0.1"
+__author__ = "Lucia Harcekova"
 
 
 class LZ77Compressor:
@@ -44,7 +44,7 @@ class LZ77Compressor:
         self.lookahead_buffer_size = lookahead_buffer_size
         self.search_buffer_size = self.window_size - self.lookahead_buffer_size
 
-    def compress(self, text: str) -> List[Tuple[int, int, str]]:
+    def compress(self, text: str) -> list[tuple[int, int, str]]:
         """This method compresses given string text using LZ77 compression algorithm.
 
         Args:
@@ -69,26 +69,25 @@ class LZ77Compressor:
 
             # find the next encoding phrase
             # - triplet with offset, length, indicator (the next encoding character)
-            (offset, length, indicator) = self._find_encoding_token(
-                text, search_buffer)
+            (offset, length, indicator) = self._find_encoding_token(text, search_buffer)
 
             # update the search buffer:
             # - add new characters from text into it
             # - check if size exceed the max search buffer size, if so, drop the
             #   oldest elements
-            search_buffer += text[:length+1]
+            search_buffer += text[: length + 1]
             if len(search_buffer) > self.search_buffer_size:
-                search_buffer = search_buffer[-self.search_buffer_size:]
+                search_buffer = search_buffer[-self.search_buffer_size :]
 
             # update the text
-            text = text[length+1:]
+            text = text[length + 1 :]
 
             # append the token to output
             output.append((offset, length, indicator))
 
         return output
 
-    def decompress(self, tokens: List[Tuple[int, int, str]]) -> str:
+    def decompress(self, tokens: list[tuple[int, int, str]]) -> str:
         """This method turns the list of tokens consisting of triplets of the form
         (offset, length, char), into an output string.
 
@@ -120,8 +119,9 @@ class LZ77Compressor:
 
         return output
 
-    def _find_encoding_token(self, text: str, search_buffer: str) \
-        -> Tuple[int, int, str]:
+    def _find_encoding_token(
+        self, text: str, search_buffer: str
+    ) -> tuple[int, int, str]:
         """Finds the encoding token for the first character in the text.
 
         Args:
@@ -148,8 +148,7 @@ class LZ77Compressor:
         for i, character in enumerate(search_buffer):
             found_offset = len(search_buffer) - i
             if character == text[0]:
-                found_length = self._match_length_from_index(
-                    text, search_buffer, 0, i)
+                found_length = self._match_length_from_index(text, search_buffer, 0, i)
                 # if the found length is bigger than the current or if it's equal,
                 # which means it's offset is smaller: update offset and length
                 if found_length >= length:
@@ -157,8 +156,9 @@ class LZ77Compressor:
 
         return offset, length, text[length]
 
-    def _match_length_from_index(self, text: str,
-        window: str, text_index: int, window_index: int) -> int:
+    def _match_length_from_index(
+        self, text: str, window: str, text_index: int, window_index: int
+    ) -> int:
         """Calculate the longest possible match of text and window characters from
         text_index in text and window_index in window.
 
@@ -181,11 +181,12 @@ class LZ77Compressor:
         """
         if text == "" or text[text_index] != window[window_index]:
             return 0
-        return 1 + self._match_length_from_index(text,
-            window + text[text_index], text_index + 1, window_index + 1)
+        return 1 + self._match_length_from_index(
+            text, window + text[text_index], text_index + 1, window_index + 1
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 
     # Initialize compressor class
     lz77_compressor = LZ77Compressor(window_size=13, lookahead_buffer_size=6)
