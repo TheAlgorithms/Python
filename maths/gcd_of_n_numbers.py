@@ -82,13 +82,13 @@ def get_greatest_common_divisor(*numbers: int) -> int:
         ...
     Exception: numbers must be integer and greater than zero
     """
-    
+
     # we just need factors, not numbers itself
     try:
         data = [get_factors(number) for number in numbers]
     except TypeError as e:
         raise Exception("numbers must be integer and greater than zero") from e
-    
+
     same_factors: Counter = data[0]
     for d in data[1:]:
         same_factors = same_factors & d
