@@ -9,10 +9,11 @@ Range Maximum Query Problem:
     More details:
         https://www.geeksforgeeks.org/range-maximum-query-using-sparse-table/
 """
+from __future__ import annotations
 
 
 class RangeMaximumQuery:
-    def __init__(self, array: list) -> None:
+    def __init__(self, array: list | tuple | str) -> None:
         """
         Initialize RangeMaximumQuery with given array.
 
@@ -23,8 +24,10 @@ class RangeMaximumQuery:
         >>> rmq = RangeMaximumQuery([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
         """
         self.array = array
-        self.size = len(array)
         self._preprocess()
+
+    def __len__(self):
+        return len(self.array)
 
     def _preprocess(self) -> None:
         """
@@ -49,16 +52,16 @@ class RangeMaximumQuery:
         10
         """
         # Fill logarithm array for O(1) usage
-        self.log = [0] * (self.size + 1)
-        for i in range(2, self.size + 1):
+        self.log = [0] * (len(self) + 1)
+        for i in range(2, len(self) + 1):
             self.log[i] = self.log[i >> 1] + 1
-        self.size_log = self.log[self.size] + 1
+        log_size = self.log[len(self)] + 1
 
         # Create empty DP 2D array with size log(n) x n
-        self.dp = [[0] * self.size for _ in range(self.size_log)]
+        self.dp = [[0] * len(self) for _ in range(log_size)]
         for i in range(self.size):
             self.dp[0][i] = self.array[i]
-        for p in range(1, self.size_log):
+        for p in range(1, log_size):
             for i in range(self.size):
                 if i + (1 << p) <= self.size:
                     self.dp[p][i] = max(
