@@ -20,20 +20,26 @@ class RangeMaximumQuery:
         Parameters:
             array: list[int]
 
-        >>> len(RangeMaximumQuery([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
-        10
-        >>> len(RangeMaximumQuery([]))
-        0
-        >>> len(RangeMaximumQuery((1, 3, 5.9))
-        3
-        >>> len(RangeMaximumQuery("ABCDEFG"))
-        7
-        >>> rmq = RangeMaximumQuery([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        Example:
+        >>> rmq = RangeMaximumQuery([1, 3, 5, 7, 9, 11])
         """
         self.array = array
         self._preprocess()
 
     def __len__(self):
+        """
+        Returns:
+            int, the length of the array
+        ------------------------------------
+        >>> len(RangeMaximumQuery([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+        10
+        >>> len(RangeMaximumQuery([]))
+        0
+        >>> len(RangeMaximumQuery((1, 3, 5.9)))
+        3
+        >>> len(RangeMaximumQuery("ABCDEFG"))
+        7
+        """
         return len(self.array)
 
     def _preprocess(self) -> None:
@@ -100,7 +106,26 @@ class RangeMaximumQuery:
         9
         5
         11
+        >>> rmq.query(0, 0)
+        Traceback (most recent call last):
+        ValueError: Invalid range
+        >>> rmq.query(5, 2)
+        Traceback (most recent call last):
+        ValueError: Invalid range
+        >>> rmq.query(-1, 2)
+        Traceback (most recent call last):
+        ValueError: Range out of bounds
+        >>> rmq.query(2, 7)
+        Traceback (most recent call last):
+        ValueError: Range out of bounds
+        >>> rmq.query(-1, 100)
+        Traceback (most recent call last):
+        ValueError: Range out of bounds
         """
+        if left >= right:
+            raise ValueError("Invalid range")
+        if left < 0 or right > len(self):
+            raise ValueError("Range out of bounds")
         p = self.log[right - left]  # Find the logarithm of the size of range
         return max(self.dp[p][left], self.dp[p][right - (1 << p)])
 
