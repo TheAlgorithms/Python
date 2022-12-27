@@ -63,8 +63,7 @@ def update_images(
     """
     path_list = []
     new_imgs_list = []
-    for idx in range(len(img_list)):
-        path = img_list[idx]
+    for idx, path in enumerate(img_list):
         path_list.append(path)
         img = cv2.imread(path)
         width = random.random() * img.shape[1] * maximum_rectangle_width_percent / 100
