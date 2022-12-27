@@ -42,7 +42,7 @@ class ShuffledShiftCipher:
         """
         :return: passcode of the cipher object
         """
-        return "Passcode is: " + "".join(self.__passcode)
+        return "".join(self.__passcode)
 
     def __neg_pos(self, iterlist: list[int]) -> list[int]:
         """

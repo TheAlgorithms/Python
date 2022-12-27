@@ -12,6 +12,7 @@ from __future__ import annotations
 import math
 
 import numpy as np
+from numpy.linalg import norm
 
 
 def euclidean(input_a: np.ndarray, input_b: np.ndarray) -> float:
@@ -70,7 +71,7 @@ def similarity_search(
     >>> value_array = np.array([1])
     >>> similarity_search(dataset, value_array)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Wrong input data's dimensions... dataset : 2, value_array : 1
 
     2. If data's shapes are different.
@@ -80,7 +81,7 @@ def similarity_search(
     >>> value_array = np.array([[0, 0, 0], [0, 0, 1]])
     >>> similarity_search(dataset, value_array)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Wrong input data's shape... dataset : 2, value_array : 3
 
     3. If data types are different.
@@ -90,7 +91,7 @@ def similarity_search(
     >>> value_array = np.array([[0, 0], [0, 1]], dtype=np.int32)
     >>> similarity_search(dataset, value_array)  # doctest: +NORMALIZE_WHITESPACE
     Traceback (most recent call last):
-    ...
+        ...
     TypeError: Input data have different datatype...
     dataset : float32, value_array : int32
     """
@@ -133,6 +134,22 @@ def similarity_search(
         answer.append([vector, dist])
 
     return answer
+
+
+def cosine_similarity(input_a: np.ndarray, input_b: np.ndarray) -> float:
+    """
+    Calculates cosine similarity between two data.
+    :param input_a: ndarray of first vector.
+    :param input_b: ndarray of second vector.
+    :return: Cosine similarity of input_a and input_b. By using math.sqrt(),
+             result will be float.
+
+    >>> cosine_similarity(np.array([1]), np.array([1]))
+    1.0
+    >>> cosine_similarity(np.array([1, 2]), np.array([6, 32]))
+    0.9615239476408232
+    """
+    return np.dot(input_a, input_b) / (norm(input_a) * norm(input_b))
 
 
 if __name__ == "__main__":

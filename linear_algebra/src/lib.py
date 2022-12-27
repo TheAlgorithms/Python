@@ -40,7 +40,6 @@ class Vector:
         __sub__(other: Vector): vector subtraction
         __mul__(other: float): scalar multiplication
         __mul__(other: Vector): dot product
-        set(components: Collection[float]): changes the vector components
         copy(): copies this vector and returns it
         component(i): gets the i-th component (0-indexed)
         change_component(pos: int, value: float): changes specified component
@@ -119,17 +118,6 @@ class Vector:
         else:  # error case
             raise Exception("invalid operand!")
 
-    def set(self, components: Collection[float]) -> None:
-        """
-        input: new components
-        changes the components of the vector.
-        replaces the components with newer one.
-        """
-        if len(components) > 0:
-            self.__components = list(components)
-        else:
-            raise Exception("please give any vector")
-
     def copy(self) -> Vector:
         """
         copies this vector and returns it.
@@ -141,7 +129,7 @@ class Vector:
         input: index (0-indexed)
         output: the i-th component of the vector.
         """
-        if type(i) is int and -len(self.__components) <= i < len(self.__components):
+        if isinstance(i, int) and -len(self.__components) <= i < len(self.__components):
             return self.__components[i]
         else:
             raise Exception("index out of range")
@@ -168,7 +156,7 @@ class Vector:
         9.539392014169456
         >>> Vector([]).euclidean_length()
         Traceback (most recent call last):
-        ...
+            ...
         Exception: Vector is empty
         """
         if len(self.__components) == 0:
@@ -186,7 +174,7 @@ class Vector:
         85.40775111366095
         >>> Vector([3, 4, -1]).angle(Vector([2, -1]))
         Traceback (most recent call last):
-        ...
+            ...
         Exception: invalid operand!
         """
         num = self * other

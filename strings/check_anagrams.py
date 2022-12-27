@@ -48,8 +48,8 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    input_A = input("Enter the first string ").strip()
-    input_B = input("Enter the second string ").strip()
+    input_a = input("Enter the first string ").strip()
+    input_b = input("Enter the second string ").strip()
 
-    status = check_anagrams(input_A, input_B)
-    print(f"{input_A} and {input_B} are {'' if status else 'not '}anagrams.")
+    status = check_anagrams(input_a, input_b)
+    print(f"{input_a} and {input_b} are {'' if status else 'not '}anagrams.")

@@ -3,13 +3,13 @@ Horizontal Projectile Motion problem in physics.
 This algorithm solves a specific problem in which
 the motion starts from the ground as can be seen below:
       (v = 0)
-        **
-       *  *
-      *    *
-     *      *
-    *        *
-   *          *
-GROUND      GROUND
+               *  *
+           *          *
+        *                *
+      *                    *
+    *                        *
+   *                          *
+GROUND                      GROUND
 For more info: https://en.wikipedia.org/wiki/Projectile_motion
 """
 
@@ -17,7 +17,7 @@ For more info: https://en.wikipedia.org/wiki/Projectile_motion
 from math import radians as angle_to_radians
 from math import sin
 
-# Acceleration Constant on hearth (unit m/s^2)
+# Acceleration Constant on Earth (unit m/s^2)
 g = 9.80665
 
 

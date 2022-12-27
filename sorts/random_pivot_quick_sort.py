@@ -4,30 +4,30 @@ Picks the random index as the pivot
 import random
 
 
-def partition(A, left_index, right_index):
-    pivot = A[left_index]
+def partition(a, left_index, right_index):
+    pivot = a[left_index]
     i = left_index + 1
     for j in range(left_index + 1, right_index):
-        if A[j] < pivot:
-            A[j], A[i] = A[i], A[j]
+        if a[j] < pivot:
+            a[j], a[i] = a[i], a[j]
             i += 1
-    A[left_index], A[i - 1] = A[i - 1], A[left_index]
+    a[left_index], a[i - 1] = a[i - 1], a[left_index]
     return i - 1
 
 
-def quick_sort_random(A, left, right):
+def quick_sort_random(a, left, right):
     if left < right:
         pivot = random.randint(left, right - 1)
-        A[pivot], A[left] = (
-            A[left],
-            A[pivot],
+        a[pivot], a[left] = (
+            a[left],
+            a[pivot],
         )  # switches the pivot with the left most bound
-        pivot_index = partition(A, left, right)
+        pivot_index = partition(a, left, right)
         quick_sort_random(
-            A, left, pivot_index
+            a, left, pivot_index
         )  # recursive quicksort to the left of the pivot point
         quick_sort_random(
-            A, pivot_index + 1, right
+            a, pivot_index + 1, right
         )  # recursive quicksort to the right of the pivot point
 
 

@@ -1,5 +1,3 @@
-# flake8: noqa
-
 """The following implementation assumes that the activities
 are already sorted according to their finish time"""
 
@@ -10,11 +8,11 @@ single person, one at a time"""
 # finish[] --> An array that contains finish time of all activities
 
 
-def printMaxActivities(start: list[int], finish: list[int]) -> None:
+def print_max_activities(start: list[int], finish: list[int]) -> None:
     """
     >>> start = [1, 3, 0, 5, 8, 5]
     >>> finish = [2, 4, 6, 7, 9, 9]
-    >>> printMaxActivities(start, finish)
+    >>> print_max_activities(start, finish)
     The following activities are selected:
     0,1,3,4,
     """
@@ -43,4 +41,4 @@ if __name__ == "__main__":
 
     start = [1, 3, 0, 5, 8, 5]
     finish = [2, 4, 6, 7, 9, 9]
-    printMaxActivities(start, finish)
+    print_max_activities(start, finish)

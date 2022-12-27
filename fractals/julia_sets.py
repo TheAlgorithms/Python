@@ -12,7 +12,7 @@ The examples presented here are:
 https://en.wikipedia.org/wiki/File:Julia_z2%2B0,25.png
 - Other examples from https://en.wikipedia.org/wiki/Julia_set
 - An exponential map Julia set, ambiantly homeomorphic to the examples in
-http://www.math.univ-toulouse.fr/~cheritat/GalII/galery.html
+https://www.math.univ-toulouse.fr/~cheritat/GalII/galery.html
  and
 https://ddd.uab.cat/pub/pubmat/02141493v43n1/02141493v43n1p27.pdf
 
@@ -89,7 +89,7 @@ def iterate_function(
     function_params: Any,
     nb_iterations: int,
     z_0: numpy.ndarray,
-    infinity: float = None,
+    infinity: float | None = None,
 ) -> numpy.ndarray:
     """
     Iterate the function "eval_function" exactly nb_iterations times.
@@ -118,7 +118,7 @@ def iterate_function(
     """
 
     z_n = z_0.astype("complex64")
-    for i in range(nb_iterations):
+    for _ in range(nb_iterations):
         z_n = eval_function(function_params, z_n)
         if infinity is not None:
             numpy.nan_to_num(z_n, copy=False, nan=infinity)

@@ -18,12 +18,12 @@ def sylvester(number: int) -> int:
 
     >>> sylvester(-1)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: The input value of [n=-1] has to be > 0
 
     >>> sylvester(8.0)
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: The input value of [n=8.0] is not an integer
     """
     assert isinstance(number, int), f"The input value of [n={number}] is not an integer"

@@ -47,7 +47,7 @@ def fib_iterative(n: int) -> list[int]:
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
     >>> fib_iterative(-1)
     Traceback (most recent call last):
-    ...
+        ...
     Exception: n is negative
     """
     if n < 0:
@@ -73,7 +73,7 @@ def fib_recursive(n: int) -> list[int]:
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
     >>> fib_iterative(-1)
     Traceback (most recent call last):
-    ...
+        ...
     Exception: n is negative
     """
 
@@ -105,7 +105,7 @@ def fib_memoization(n: int) -> list[int]:
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
     >>> fib_iterative(-1)
     Traceback (most recent call last):
-    ...
+        ...
     Exception: n is negative
     """
     if n < 0:
@@ -146,11 +146,11 @@ def fib_binet(n: int) -> list[int]:
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
     >>> fib_binet(-1)
     Traceback (most recent call last):
-    ...
+        ...
     Exception: n is negative
     >>> fib_binet(1475)
     Traceback (most recent call last):
-    ...
+        ...
     Exception: n is too large
     """
     if n < 0:

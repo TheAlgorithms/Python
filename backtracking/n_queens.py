@@ -12,7 +12,7 @@ from __future__ import annotations
 solution = []
 
 
-def isSafe(board: list[list[int]], row: int, column: int) -> bool:
+def is_safe(board: list[list[int]], row: int, column: int) -> bool:
     """
     This function returns a boolean value True if it is safe to place a queen there
     considering the current state of the board.
@@ -63,7 +63,7 @@ def solve(board: list[list[int]], row: int) -> bool:
         If all the combinations for that particular branch are successful the board is
         reinitialized for the next possible combination.
         """
-        if isSafe(board, row, i):
+        if is_safe(board, row, i):
             board[row][i] = 1
             solve(board, row + 1)
             board[row][i] = 0

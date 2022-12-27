@@ -157,14 +157,14 @@ class SHA256:
                     ) % 0x100000000
 
                 # Compression
-                S1 = self.ror(e, 6) ^ self.ror(e, 11) ^ self.ror(e, 25)
+                s1 = self.ror(e, 6) ^ self.ror(e, 11) ^ self.ror(e, 25)
                 ch = (e & f) ^ ((~e & (0xFFFFFFFF)) & g)
                 temp1 = (
-                    h + S1 + ch + self.round_constants[index] + words[index]
+                    h + s1 + ch + self.round_constants[index] + words[index]
                 ) % 0x100000000
-                S0 = self.ror(a, 2) ^ self.ror(a, 13) ^ self.ror(a, 22)
+                s0 = self.ror(a, 2) ^ self.ror(a, 13) ^ self.ror(a, 22)
                 maj = (a & b) ^ (a & c) ^ (b & c)
-                temp2 = (S0 + maj) % 0x100000000
+                temp2 = (s0 + maj) % 0x100000000
 
                 h, g, f, e, d, c, b, a = (
                     g,

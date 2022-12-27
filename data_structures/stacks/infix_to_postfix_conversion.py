@@ -21,7 +21,7 @@ def infix_to_postfix(expression_str: str) -> str:
     """
     >>> infix_to_postfix("(1*(2+3)+4))")
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Mismatched parentheses
     >>> infix_to_postfix("")
     ''
