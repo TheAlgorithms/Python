@@ -1,7 +1,9 @@
 """
 Range Maximum Query Problem:
 
-    Given an array of integers and q queries, for each query, find the maximum value in the range [l, r).
+    Given an array of integers and q queries,
+    For each query find the maximum value in the range [l, r).
+
     The array is 0-indexed and the queries are 0-indexed.
 
     More details:
