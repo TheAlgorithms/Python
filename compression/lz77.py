@@ -57,7 +57,7 @@ class LZ77Compressor:
         self.lookahead_buffer_size = lookahead_buffer_size
         self.search_buffer_size = self.window_size - self.lookahead_buffer_size
 
-    def compress(self, text: str) -> List[Token]:
+    def compress(self, text: str) -> list[Token]:
         """This method compresses given string text using LZ77 compression algorithm.
 
         Args:
@@ -93,7 +93,7 @@ class LZ77Compressor:
 
         return output
 
-    def decompress(self, tokens: List[Token]) -> str:
+    def decompress(self, tokens: list[Token]) -> str:
         """This method turns the List of tokens consisting of triplets of the form
         (offset, length, char), into an output string.
 
