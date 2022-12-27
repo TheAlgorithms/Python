@@ -35,7 +35,7 @@ __author__ = "Lucia Harcekova"
 
 class LZ77Compressor:
     """
-    Class containg compress and decompress methods using LZ77 compression algorithm.
+    Class containing compress and decompress methods using LZ77 compression algorithm.
     """
 
     def __init__(self, window_size=13, lookahead_buffer_size=6) -> None:
