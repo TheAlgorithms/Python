@@ -13,7 +13,7 @@ from __future__ import annotations
 
 
 class RangeMaximumQuery:
-    def __init__(self, array: list | tuple | str) -> None:
+    def __init__(self, array: list | tuple) -> None:
         """
         Initialize RangeMaximumQuery with given array.
 
@@ -37,8 +37,6 @@ class RangeMaximumQuery:
         0
         >>> len(RangeMaximumQuery((1, 3, 5.9)))
         3
-        >>> len(RangeMaximumQuery("ABCDEFG"))
-        7
         """
         return len(self.array)
 
