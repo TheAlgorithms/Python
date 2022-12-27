@@ -20,7 +20,14 @@ class RangeMaximumQuery:
         Parameters:
             array: list[int]
 
-        Example:
+        >>> len(RangeMaximumQuery([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+        10
+        >>> len(RangeMaximumQuery([]))
+        0
+        >>> len(RangeMaximumQuery((1, 3, 5.9))
+        3
+        >>> len(RangeMaximumQuery("ABCDEFG"))
+        7
         >>> rmq = RangeMaximumQuery([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
         """
         self.array = array
