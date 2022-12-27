@@ -101,7 +101,7 @@ def __assert_sorted(collection):
     True
     >>> __assert_sorted([10, -1, 5])
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Collection must be ascending sorted
     """
     if collection != sorted(collection):

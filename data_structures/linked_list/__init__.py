@@ -11,7 +11,7 @@ from typing import Any
 
 
 class Node:
-    def __init__(self, item: Any, next: Any) -> None:
+    def __init__(self, item: Any, next: Any) -> None:  # noqa: A002
         self.item = item
         self.next = next
 
@@ -49,7 +49,7 @@ class LinkedList:
         >>> print(linked_list)
         9 --> 14 --> 23
         """
-        if not self.is_empty:
+        if self.is_empty():
             return ""
         else:
             iterate = self.head

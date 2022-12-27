@@ -86,8 +86,7 @@ def _validator(
     """
     # Checks if there are 3 unique rotors
 
-    unique_rotsel = len(set(rotsel))
-    if unique_rotsel < 3:
+    if (unique_rotsel := len(set(rotsel))) < 3:
         raise Exception(f"Please use 3 unique rotors (not {unique_rotsel})")
 
     # Checks if rotor positions are valid

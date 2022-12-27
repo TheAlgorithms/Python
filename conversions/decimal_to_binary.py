@@ -19,12 +19,12 @@ def decimal_to_binary(num: int) -> str:
     >>> # other floats will error
     >>> decimal_to_binary(16.16) # doctest: +ELLIPSIS
     Traceback (most recent call last):
-    ...
+        ...
     TypeError: 'float' object cannot be interpreted as an integer
     >>> # strings will error as well
     >>> decimal_to_binary('0xfffff') # doctest: +ELLIPSIS
     Traceback (most recent call last):
-    ...
+        ...
     TypeError: 'str' object cannot be interpreted as an integer
     """
 

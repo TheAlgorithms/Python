@@ -7,13 +7,18 @@ class HashTable:
     Basic Hash Table example with open addressing and linear probing
     """
 
-    def __init__(self, size_table, charge_factor=None, lim_charge=None):
+    def __init__(
+        self,
+        size_table: int,
+        charge_factor: int | None = None,
+        lim_charge: float | None = None,
+    ) -> None:
         self.size_table = size_table
         self.values = [None] * self.size_table
         self.lim_charge = 0.75 if lim_charge is None else lim_charge
         self.charge_factor = 1 if charge_factor is None else charge_factor
-        self.__aux_list = []
-        self._keys = {}
+        self.__aux_list: list = []
+        self._keys: dict = {}
 
     def keys(self):
         return self._keys
@@ -29,7 +34,7 @@ class HashTable:
     def _step_by_step(self, step_ord):
 
         print(f"step {step_ord}")
-        print([i for i in range(len(self.values))])
+        print(list(range(len(self.values))))
         print(self.values)
 
     def bulk_insert(self, values):

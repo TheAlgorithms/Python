@@ -49,7 +49,7 @@ def square_root_iterative(
 
     value = get_initial_point(a)
 
-    for i in range(max_iter):
+    for _ in range(max_iter):
         prev_value = value
         value = value - fx(value, a) / fx_derivative(value)
         if abs(prev_value - value) < tolerance:

@@ -3,7 +3,7 @@ Partition a set into two subsets such that the difference of subset sums is mini
 """
 
 
-def findMin(arr):
+def find_min(arr):
     n = len(arr)
     s = sum(arr)
 

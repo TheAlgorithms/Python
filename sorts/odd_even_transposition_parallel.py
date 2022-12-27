@@ -13,7 +13,7 @@ synchronization could be used.
 from multiprocessing import Lock, Pipe, Process
 
 # lock used to ensure that two processes do not access a pipe at the same time
-processLock = Lock()
+process_lock = Lock()
 
 """
 The function run by the processes that sorts the list
@@ -27,42 +27,42 @@ resultPipe = the pipe used to send results back to main
 """
 
 
-def oeProcess(position, value, LSend, RSend, LRcv, RRcv, resultPipe):
-    global processLock
+def oe_process(position, value, l_send, r_send, lr_cv, rr_cv, result_pipe):
+    global process_lock
 
     # we perform n swaps since after n swaps we know we are sorted
     # we *could* stop early if we are sorted already, but it takes as long to
     # find out we are sorted as it does to sort the list with this algorithm
     for i in range(0, 10):
 
-        if (i + position) % 2 == 0 and RSend is not None:
+        if (i + position) % 2 == 0 and r_send is not None:
             # send your value to your right neighbor
-            processLock.acquire()
-            RSend[1].send(value)
-            processLock.release()
+            process_lock.acquire()
+            r_send[1].send(value)
+            process_lock.release()
 
             # receive your right neighbor's value
-            processLock.acquire()
-            temp = RRcv[0].recv()
-            processLock.release()
+            process_lock.acquire()
+            temp = rr_cv[0].recv()
+            process_lock.release()
 
             # take the lower value since you are on the left
             value = min(value, temp)
-        elif (i + position) % 2 != 0 and LSend is not None:
+        elif (i + position) % 2 != 0 and l_send is not None:
             # send your value to your left neighbor
-            processLock.acquire()
-            LSend[1].send(value)
-            processLock.release()
+            process_lock.acquire()
+            l_send[1].send(value)
+            process_lock.release()
 
             # receive your left neighbor's value
-            processLock.acquire()
-            temp = LRcv[0].recv()
-            processLock.release()
+            process_lock.acquire()
+            temp = lr_cv[0].recv()
+            process_lock.release()
 
             # take the higher value since you are on the right
             value = max(value, temp)
     # after all swaps are performed, send the values back to main
-    resultPipe[1].send(value)
+    result_pipe[1].send(value)
 
 
 """
@@ -72,61 +72,61 @@ arr = the list to be sorted
 """
 
 
-def OddEvenTransposition(arr):
-    processArray = []
-    resultPipe = []
+def odd_even_transposition(arr):
+    process_array_ = []
+    result_pipe = []
     # initialize the list of pipes where the values will be retrieved
     for _ in arr:
-        resultPipe.append(Pipe())
+        result_pipe.append(Pipe())
     # creates the processes
     # the first and last process only have one neighbor so they are made outside
     # of the loop
-    tempRs = Pipe()
-    tempRr = Pipe()
-    processArray.append(
+    temp_rs = Pipe()
+    temp_rr = Pipe()
+    process_array_.append(
         Process(
-            target=oeProcess,
-            args=(0, arr[0], None, tempRs, None, tempRr, resultPipe[0]),
+            target=oe_process,
+            args=(0, arr[0], None, temp_rs, None, temp_rr, result_pipe[0]),
         )
     )
-    tempLr = tempRs
-    tempLs = tempRr
+    temp_lr = temp_rs
+    temp_ls = temp_rr
 
     for i in range(1, len(arr) - 1):
-        tempRs = Pipe()
-        tempRr = Pipe()
-        processArray.append(
+        temp_rs = Pipe()
+        temp_rr = Pipe()
+        process_array_.append(
             Process(
-                target=oeProcess,
-                args=(i, arr[i], tempLs, tempRs, tempLr, tempRr, resultPipe[i]),
+                target=oe_process,
+                args=(i, arr[i], temp_ls, temp_rs, temp_lr, temp_rr, result_pipe[i]),
             )
         )
-        tempLr = tempRs
-        tempLs = tempRr
+        temp_lr = temp_rs
+        temp_ls = temp_rr
 
-    processArray.append(
+    process_array_.append(
         Process(
-            target=oeProcess,
+            target=oe_process,
             args=(
                 len(arr) - 1,
                 arr[len(arr) - 1],
-                tempLs,
+                temp_ls,
                 None,
-                tempLr,
+                temp_lr,
                 None,
-                resultPipe[len(arr) - 1],
+                result_pipe[len(arr) - 1],
             ),
         )
     )
 
     # start the processes
-    for p in processArray:
+    for p in process_array_:
         p.start()
 
     # wait for the processes to end and write their values to the list
-    for p in range(0, len(resultPipe)):
-        arr[p] = resultPipe[p][0].recv()
-        processArray[p].join()
+    for p in range(0, len(result_pipe)):
+        arr[p] = result_pipe[p][0].recv()
+        process_array_[p].join()
     return arr
 
 
@@ -135,7 +135,7 @@ def main():
     arr = list(range(10, 0, -1))
     print("Initial List")
     print(*arr)
-    arr = OddEvenTransposition(arr)
+    arr = odd_even_transposition(arr)
     print("Sorted List\n")
     print(*arr)
 

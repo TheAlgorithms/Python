@@ -14,21 +14,21 @@ brackets and returns true if S is nested and false otherwise.
 """
 
 
-def is_balanced(S):
+def is_balanced(s):
 
     stack = []
     open_brackets = set({"(", "[", "{"})
     closed_brackets = set({")", "]", "}"})
     open_to_closed = dict({"{": "}", "[": "]", "(": ")"})
 
-    for i in range(len(S)):
+    for i in range(len(s)):
 
-        if S[i] in open_brackets:
-            stack.append(S[i])
+        if s[i] in open_brackets:
+            stack.append(s[i])
 
-        elif S[i] in closed_brackets:
+        elif s[i] in closed_brackets:
             if len(stack) == 0 or (
-                len(stack) > 0 and open_to_closed[stack.pop()] != S[i]
+                len(stack) > 0 and open_to_closed[stack.pop()] != s[i]
             ):
                 return False
 
