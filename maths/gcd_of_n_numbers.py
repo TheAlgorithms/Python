@@ -17,18 +17,31 @@ def get_factors(
     Counter({2: 3, 3: 2, 5: 1, 7: 1})
     >>> get_factors(23)
     Counter({23: 1})
+    >>> get_factors(0)
+    Traceback (most recent call last):
+        ...
+    TypeError: number must be integer and greater than zero
+    >>> get_factors(-1)
+    Traceback (most recent call last):
+        ...
+    TypeError: number must be integer and greater than zero
+    >>> get_factors(1.5)
+    Traceback (most recent call last):
+        ...
+    TypeError: number must be integer and greater than zero
 
     factor can be all numbers from 2 to number that we check if number % factor == 0
     if it is equal to zero, we check again with number // factor
     else we increase factor by one
     """
 
-    if not isinstance(number, int):
-        raise TypeError("number must be integer")
+    match number:
+        case int(num) if number > 0:
+            number = num
+        case _:
+            raise TypeError("number must be integer and greater than zero")
 
-    if factors is None:
-        # first call of get factors and so there are no founded factors
-        factors = Counter()
+    factors = factors or Counter()
 
     if number == factor:  # break condition
         # all numbers are factors of itself
@@ -36,7 +49,7 @@ def get_factors(
         return factors
 
     if number % factor > 0:
-        # if it is grater than zero
+        # if it is greater than zero
         # so it is not a factor of number and we check next number
         return get_factors(number, factors, factor + 1)
 
@@ -55,8 +68,13 @@ def get_greatest_common_divisor(*numbers: int) -> int:
     >>> get_greatest_common_divisor(2520, 8350)
     10
     """
+    
     # we just need factors, not numbers itself
-    data = [get_factors(number) for number in numbers]
+    try:
+        data = [get_factors(number) for number in numbers]
+    except TypeError as e:
+        raise Exception("numbers must be integer and greater than zero") from e
+    
     same_factors: Counter = data[0]
     for d in data[1:]:
         same_factors = same_factors & d
