@@ -43,10 +43,7 @@ def get_dataset(img_dir: str) -> list:
     - img_dir <type: str>: Path to folder contain images
     Return <type: list>: List of images path
     """
-    img_paths = []
-    for img_file_path in glob.glob(os.path.join(img_dir, "*")):
-        img_paths.append(img_file_path)
-    return img_paths
+    return glob.glob(os.path.join(img_dir, "*"))
 
 
 def update_images(
