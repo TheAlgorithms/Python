@@ -59,18 +59,19 @@ class RangeMaximumQuery:
         10
         """
         # Fill logarithm array for O(1) usage
-        self.log = [0] * (len(self) + 1)
-        for i in range(2, len(self) + 1):
+        size = len(self)
+        self.log = [0] * (size + 1)
+        for i in range(2, size + 1):
             self.log[i] = self.log[i >> 1] + 1
-        log_size = self.log[len(self)] + 1
+        log_size = self.log[size] + 1
 
         # Create empty DP 2D array with size log(n) x n
-        self.dp = [[0] * len(self) for _ in range(log_size)]
-        for i in range(self.size):
+        self.dp = [[0] * size for _ in range(log_size)]
+        for i in range(size):
             self.dp[0][i] = self.array[i]
         for p in range(1, log_size):
-            for i in range(self.size):
-                if i + (1 << p) <= self.size:
+            for i in range(size):
+                if i + (1 << p) <= size:
                     self.dp[p][i] = max(
                         self.dp[p - 1][i], self.dp[p - 1][i + (1 << (p - 1))]
                     )
