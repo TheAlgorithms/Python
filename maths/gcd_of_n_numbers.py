@@ -15,7 +15,7 @@ def get_factors(number: int, factors: dict | None = None, factor: int = 2) -> Co
     Counter({2: 3, 3: 2, 5: 1, 7: 1})
     >>> get_factors(23)
     Counter({23: 1})
-    
+
     factor can be all numbers from 2 to number that we check if number % factor == 0
     if it is equal to zero, we check again with number // factor else we increase factor by one
     """
@@ -23,11 +23,11 @@ def get_factors(number: int, factors: dict | None = None, factor: int = 2) -> Co
     if not isinstance(number, int):
         raise TypeError("number must be integer")
 
-    if factors is None: 
-        # first call of get factors and so there are no founded factors 
+    if factors is None:
+        # first call of get factors and so there are no founded factors
         factors = Counter()
 
-    if number == factor: # break condition
+    if number == factor:  # break condition
         # all numbers are factors of itself
         factors[factor] += 1
         return factors
@@ -55,9 +55,9 @@ def get_greatest_common_divisor(*numbers: int) -> int:
     data = [get_factors(number) for number in numbers]
     same_factors: dict = data[0]
     for d in data[1:]:
-        same_factors = same_factors & d 
+        same_factors = same_factors & d
         # get common factor between all,`&` return common elements with smaller value (for Counter type)
-    
+
     # now, same_factors is something like {2: 2, 3: 4} that means 2 * 2 * 3 * 3 * 3 * 3
     mult = 1
     # power each factor and multiply
