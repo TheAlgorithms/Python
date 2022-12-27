@@ -28,7 +28,6 @@ Sources:
 en.wikipedia.org/wiki/LZ77_and_LZ78
 """
 
-from typing import List, Tuple
 
 __version__ = "0.1"
 __author__ = "Lucia Harcekova"
@@ -39,19 +38,19 @@ class LZ77Compressor:
     Class containg compress and decompress methods using LZ77 compression algorithm.
     """
 
-    def __init__(self, window_size=13, lookahead_buffer_size=6):
+    def __init__(self, window_size=13, lookahead_buffer_size=6) -> None:
         self.window_size = window_size
         self.lookahead_buffer_size = lookahead_buffer_size
         self.search_buffer_size = self.window_size - self.lookahead_buffer_size
 
-    def compress(self, text: str) -> list[tuple[int, int, str]]:
+    def compress(self, text: str) -> list:
         """This method compresses given string text using LZ77 compression algorithm.
 
         Args:
             text (str): string that's going to be compressed
 
         Returns:
-            output (List[Tuple[int, int, str]]): the compressed text
+            output (list): the compressed text
 
         Tests:
             >>> lz77_compressor = LZ77Compressor(13, 6)
@@ -87,12 +86,12 @@ class LZ77Compressor:
 
         return output
 
-    def decompress(self, tokens: list[tuple[int, int, str]]) -> str:
+    def decompress(self, tokens: list) -> str:
         """This method turns the list of tokens consisting of triplets of the form
         (offset, length, char), into an output string.
 
         Args:
-            tokens (List[Tuple[int, int, str]]): Tokens (offset, length, char)
+            tokens (list): Tokens (offset, length, char)
 
         Returns:
             output (str): The decompressed text
@@ -119,9 +118,7 @@ class LZ77Compressor:
 
         return output
 
-    def _find_encoding_token(
-        self, text: str, search_buffer: str
-    ) -> tuple[int, int, str]:
+    def _find_encoding_token(self, text: str, search_buffer: str) -> tuple:
         """Finds the encoding token for the first character in the text.
 
         Args:
@@ -129,7 +126,7 @@ class LZ77Compressor:
             search_buffer (str)
 
         Returns:
-            Tuple[int, int, str]: Token
+            tuple: Token
 
         Tests:
             >>> lz77_compressor = LZ77Compressor(13, 6)
