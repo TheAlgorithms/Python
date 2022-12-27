@@ -8,7 +8,7 @@ from collections import Counter
 
 def get_factors(number: int, factors: Counter | None = None, factor: int = 2) -> Counter:
     """
-    this is a reccursive function for get all factors of number
+    this is a recursive function for get all factors of number
     >>> get_factors(45)
     Counter({3: 2, 5: 1})
     >>> get_factors(2520)
