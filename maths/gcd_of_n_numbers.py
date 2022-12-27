@@ -6,7 +6,7 @@ Reference: https://en.wikipedia.org/wiki/Greatest_common_divisor
 from collections import Counter
 
 
-def get_factors(number: int, factors: dict | None = None, factor: int = 2) -> Counter:
+def get_factors(number: int, factors: Counter | None = None, factor: int = 2) -> Counter:
     """
     this is a reccursive function for get all factors of number
     >>> get_factors(45)
@@ -17,7 +17,8 @@ def get_factors(number: int, factors: dict | None = None, factor: int = 2) -> Co
     Counter({23: 1})
     
     factor can be all numbers from 2 to number that we check if number % factor == 0
-    if it is equal to zero, we check again with number // factor else we increase factor by one
+    if it is equal to zero, we check again with number // factor
+    else we increase factor by one
     """
 
     if not isinstance(number, int):
@@ -33,7 +34,8 @@ def get_factors(number: int, factors: dict | None = None, factor: int = 2) -> Co
         return factors
 
     if number % factor > 0:
-        # if it is grater than zero, so it is not a factor of number and we check next number
+        # if it is grater than zero
+        # so it is not a factor of number and we check next number
         return get_factors(number, factors, factor + 1)
 
     factors[factor] += 1
@@ -53,10 +55,11 @@ def get_greatest_common_divisor(*numbers: int) -> int:
     """
     # we just need factors, not numbers itself
     data = [get_factors(number) for number in numbers]
-    same_factors: dict = data[0]
+    same_factors: Counter = data[0]
     for d in data[1:]:
         same_factors = same_factors & d 
-        # get common factor between all,`&` return common elements with smaller value (for Counter type)
+        # get common factor between all
+        # `&` return common elements with smaller value (for Counter type)
     
     # now, same_factors is something like {2: 2, 3: 4} that means 2 * 2 * 3 * 3 * 3 * 3
     mult = 1
