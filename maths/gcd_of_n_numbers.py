@@ -6,7 +6,9 @@ Reference: https://en.wikipedia.org/wiki/Greatest_common_divisor
 from collections import Counter
 
 
-def get_factors(number: int, factors: Counter | None = None, factor: int = 2) -> Counter:
+def get_factors(
+    number: int, factors: Counter | None = None, factor: int = 2
+) -> Counter:
     """
     this is a reccursive function for get all factors of number
     >>> get_factors(45)
@@ -57,10 +59,10 @@ def get_greatest_common_divisor(*numbers: int) -> int:
     data = [get_factors(number) for number in numbers]
     same_factors: Counter = data[0]
     for d in data[1:]:
-        same_factors = same_factors & d 
+        same_factors = same_factors & d
         # get common factor between all
         # `&` return common elements with smaller value (for Counter type)
-    
+
     # now, same_factors is something like {2: 2, 3: 4} that means 2 * 2 * 3 * 3 * 3 * 3
     mult = 1
     # power each factor and multiply
