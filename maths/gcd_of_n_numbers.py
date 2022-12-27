@@ -31,7 +31,7 @@ def get_factors(number: int, factors: dict | None = None, min_factor: int = 2) -
 def get_gcd(*numbers: int) -> int:
     """
     get gcd of n numbers:
-    >>> get_gcd(18, 48)
+    >>> get_gcd(18, 45)
     9
     >>> get_gcd(23, 37)
     1
