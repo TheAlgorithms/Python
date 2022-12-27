@@ -59,7 +59,9 @@ class RangeMaximumQuery:
         for p in range(1, self.size_log):
             for i in range(self.size):
                 if i + (1 << p) <= self.size:
-                    self.dp[p][i] = max(self.dp[p - 1][i], self.dp[p - 1][i + (1 << (p - 1))])
+                    self.dp[p][i] = max(
+                        self.dp[p - 1][i], self.dp[p - 1][i + (1 << (p - 1))]
+                    )
                 else:
                     self.dp[p][i] = self.dp[p - 1][i]
 
