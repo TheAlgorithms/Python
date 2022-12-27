@@ -40,8 +40,8 @@ def main() -> None:
 
 def get_dataset(img_dir: str) -> list:
     """
-    - img_dir <type: str>: Path to folder contain images
-    Return <type: list>: List of images path
+    - img_dir: Path to a folder that contains images
+    Return: List of images path
     """
     return glob.glob(os.path.join(img_dir, "*"))
 
