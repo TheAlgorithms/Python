@@ -67,6 +67,20 @@ def get_greatest_common_divisor(*numbers: int) -> int:
     1
     >>> get_greatest_common_divisor(2520, 8350)
     10
+    >>> get_greatest_common_divisor(-10, 20)
+    Traceback (most recent call last):
+        ...
+    Exception: numbers must be integer and greater than zero
+    >>> get_greatest_common_divisor(1.5, 2)
+    Traceback (most recent call last):
+        ...
+    Exception: numbers must be integer and greater than zero
+    >>> get_greatest_common_divisor(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    1
+    >>> get_greatest_common_divisor("1", 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    Traceback (most recent call last):
+        ...
+    Exception: numbers must be integer and greater than zero
     """
     
     # we just need factors, not numbers itself
