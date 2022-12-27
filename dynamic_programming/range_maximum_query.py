@@ -26,7 +26,7 @@ class RangeMaximumQuery:
         self.array = array
         self._preprocess()
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Returns:
             int, the length of the array
