@@ -28,8 +28,6 @@ Sources:
 en.wikipedia.org/wiki/LZ77_and_LZ78
 """
 
-from __future__ import annotations
-
 __version__ = "0.1"
 __author__ = "Lucia Harcekova"
 
