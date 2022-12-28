@@ -28,11 +28,10 @@ Sources:
 en.wikipedia.org/wiki/LZ77_and_LZ78
 """
 
+from __future__ import annotations
 
 __version__ = "0.1"
 __author__ = "Lucia Harcekova"
-
-from typing import List
 
 
 class Token:
@@ -64,7 +63,17 @@ class LZ77Compressor:
             text (str): string that's going to be compressed
 
         Returns:
-            output (List[Token]): the compressed text
+            output (list[Token]): the compressed text
+
+        Returns:
+            (offset, length, indicator) (Token)
+
+        Tests:
+            >>> lz77_compressor = LZ77Compressor(13, 6)
+            >>> len(lz77_compressor.compress("ababcbababaa"))
+            5
+            >>> len(lz77_compressor.compress("aacaacabcabaaac"))
+            5
         """
 
         output = []
@@ -83,10 +92,10 @@ class LZ77Compressor:
             #   oldest elements
             search_buffer += text[: token.length + 1]
             if len(search_buffer) > self.search_buffer_size:
-                search_buffer = search_buffer[-self.search_buffer_size :]
+                search_buffer = search_buffer[-self.search_buffer_size:]
 
             # update the text
-            text = text[token.length + 1 :]
+            text = text[token.length + 1:]
 
             # append the token to output
             output.append(token)
@@ -94,11 +103,11 @@ class LZ77Compressor:
         return output
 
     def decompress(self, tokens: list[Token]) -> str:
-        """This method turns the List of tokens consisting of triplets of the form
+        """This method turns the list of tokens consisting of triplets of the form
         (offset, length, char), into an output string.
 
         Args:
-            tokens (List[Token]): Tokens (offset, length, char)
+            tokens (list[Token]): Tokens (offset, length, char)
 
         Returns:
             output (str): The decompressed text
