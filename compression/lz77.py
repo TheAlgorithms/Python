@@ -28,6 +28,7 @@ Sources:
 en.wikipedia.org/wiki/LZ77_and_LZ78
 """
 
+
 __version__ = "0.1"
 __author__ = "Lucia Harcekova"
 
@@ -42,6 +43,12 @@ class Token:
         self.offset = offset
         self.length = length
         self.indicator = indicator
+
+    def __repr__(self):
+        return f"({self.offset}, {self.length}, {self.indicator})"
+
+    def __str__(self):
+        return f"({self.offset}, {self.length}, {self.indicator})"
 
 
 class LZ77Compressor:
@@ -64,14 +71,14 @@ class LZ77Compressor:
             output: the compressed text
 
         Returns:
-            token (offset, length, indicator)
+            (offset, length, indicator)
 
         Tests:
             >>> lz77_compressor = LZ77Compressor(13, 6)
-            >>> len(lz77_compressor.compress("ababcbababaa"))
-            5
-            >>> len(lz77_compressor.compress("aacaacabcabaaac"))
-            5
+            >>> str(lz77_compressor.compress("ababcbababaa"))
+            '[(0, 0, a), (0, 0, b), (2, 2, c), (4, 3, a), (2, 2, a)]'
+            >>> str(lz77_compressor.compress("aacaacabcabaaac"))
+            '[(0, 0, a), (1, 1, c), (3, 4, b), (3, 3, a), (1, 2, c)]'
         """
 
         output = []
@@ -206,5 +213,6 @@ if __name__ == "__main__":
     # Example
     TEXT = "cabracadabrarrarrad"
     compressed_text = lz77_compressor.compress(TEXT)
+    print(lz77_compressor.compress("ababcbababaa"))
     decompressed_text = lz77_compressor.decompress(compressed_text)
     assert decompressed_text == TEXT, "The LZ77 algorithm returned the invalid result."
