@@ -58,13 +58,13 @@ class LZ77Compressor:
         """This method compresses given string text using LZ77 compression algorithm.
 
         Args:
-            text (str): string that's going to be compressed
+            text: string that's going to be compressed
 
         Returns:
-            output (list[Token]): the compressed text
+            output: the compressed text
 
         Returns:
-            (offset, length, indicator) (Token)
+            token (offset, length, indicator)
 
         Tests:
             >>> lz77_compressor = LZ77Compressor(13, 6)
@@ -105,10 +105,10 @@ class LZ77Compressor:
         (offset, length, char), into an output string.
 
         Args:
-            tokens (list[Token]): Tokens (offset, length, char)
+            tokens: list containing triplets (offset, length, char)
 
         Returns:
-            output (str): The decompressed text
+            output: decompressed text
 
         Tests:
             >>> lz77_compressor = LZ77Compressor(13, 6)
@@ -137,11 +137,11 @@ class LZ77Compressor:
         """Finds the encoding token for the first character in the text.
 
         Args:
-            text (str)
-            search_buffer (str)
+            text
+            search_buffer
 
         Returns:
-            (offset, length, indicator) (Token)
+            (offset, length, indicator)
 
         Tests:
             >>> lz77_compressor = LZ77Compressor(13, 6)
@@ -175,13 +175,13 @@ class LZ77Compressor:
         text_index in text and window_index in window.
 
         Args:
-            text (str): _description_
-            window (str): sliding window
-            text_index (int): index of character in text
-            window_index (int): index of character in sliding window
+            text: _description_
+            window: sliding window
+            text_index: index of character in text
+            window_index: index of character in sliding window
 
         Returns:
-            int: The maximum match between text and window, from given indexes.
+            The maximum match between text and window, from given indexes.
 
         Tests:
             >>> lz77_compressor = LZ77Compressor(13, 6)
