@@ -28,6 +28,7 @@ Sources:
 en.wikipedia.org/wiki/LZ77_and_LZ78
 """
 
+from __future__ import annotations
 
 __version__ = "0.1"
 __author__ = "Lucia Harcekova"
@@ -45,9 +46,21 @@ class Token:
         self.indicator = indicator
 
     def __repr__(self) -> str:
+        """
+        Tests:
+            >>> token = Token(5, 6, "a")
+            >>> token.__repr__()
+            '(5, 6, a)'
+        """
         return f"({self.offset}, {self.length}, {self.indicator})"
 
     def __str__(self) -> str:
+        """
+        Tests:
+            >>> token = Token(5, 6, "a")
+            >>> token.__str__()
+            '(5, 6, a)'
+        """
         return f"({self.offset}, {self.length}, {self.indicator})"
 
 
