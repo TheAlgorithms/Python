@@ -11,9 +11,11 @@ Range Maximum Query Problem:
 """
 from __future__ import annotations
 
+import typing
+
 
 class RangeMaximumQuery:
-    def __init__(self, array: list | tuple) -> None:
+    def __init__(self, array: typing.Sequence[int | float]) -> None:
         """
         Initialize RangeMaximumQuery with given array.
 
