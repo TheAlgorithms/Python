@@ -92,10 +92,10 @@ class LZ77Compressor:
             #   oldest elements
             search_buffer += text[: token.length + 1]
             if len(search_buffer) > self.search_buffer_size:
-                search_buffer = search_buffer[-self.search_buffer_size:]
+                search_buffer = search_buffer[-self.search_buffer_size :]
 
             # update the text
-            text = text[token.length + 1:]
+            text = text[token.length + 1 :]
 
             # append the token to output
             output.append(token)
