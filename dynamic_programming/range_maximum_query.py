@@ -17,9 +17,6 @@ class RangeMaximumQuery:
         """
         Initialize RangeMaximumQuery with given array.
 
-        Parameters:
-            array: list[int]
-
         Example:
         >>> rmq = RangeMaximumQuery([1, 3, 5, 7, 9, 11])
         """
