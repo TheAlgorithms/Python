@@ -71,7 +71,7 @@ class LZ77Compressor:
             output: the compressed text
 
         Returns:
-            (offset, length, indicator)
+            Compressed text made of triplets (offset, length, indicator).
 
         Tests:
             >>> lz77_compressor = LZ77Compressor(13, 6)
@@ -142,13 +142,6 @@ class LZ77Compressor:
 
     def _find_encoding_token(self, text: str, search_buffer: str) -> Token:
         """Finds the encoding token for the first character in the text.
-
-        Args:
-            text
-            search_buffer
-
-        Returns:
-            (offset, length, indicator)
 
         Tests:
             >>> lz77_compressor = LZ77Compressor(13, 6)
