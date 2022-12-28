@@ -44,10 +44,10 @@ class Token:
         self.length = length
         self.indicator = indicator
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"({self.offset}, {self.length}, {self.indicator})"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"({self.offset}, {self.length}, {self.indicator})"
 
 
