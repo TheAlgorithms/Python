@@ -29,7 +29,7 @@ class RangeMaximumQuery:
     def __len__(self) -> int:
         """
         Returns:
-            int, the length of the array
+            the length of the array
         ------------------------------------
         >>> len(RangeMaximumQuery([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
         10
