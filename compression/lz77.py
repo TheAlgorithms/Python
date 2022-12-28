@@ -41,6 +41,7 @@ class Token:
     Dataclass representing triplet called token consisting of length, offset
     and indicator. This triplet is used during LZ77 compression.
     """
+
     offset: int
     length: int
     indicator: str
@@ -163,7 +164,7 @@ class LZ77Compressor:
 
         if not text:
             raise ValueError("We need some text to work with.")
-        
+
         # Initialise result parameters to default values
         length, offset = 0, 0
 
