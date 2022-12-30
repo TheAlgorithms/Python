@@ -328,6 +328,7 @@
   * [Subset Generation](dynamic_programming/subset_generation.py)
   * [Sum Of Subset](dynamic_programming/sum_of_subset.py)
   * [Viterbi](dynamic_programming/viterbi.py)
+  * [Word Break](dynamic_programming/word_break.py)
 
 ## Electronics
   * [Builtin Voltage](electronics/builtin_voltage.py)
