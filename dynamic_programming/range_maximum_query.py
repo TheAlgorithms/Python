@@ -91,7 +91,7 @@ class RangeMaximumQuery:
                 if i + (1 << p) <= size:
                     self.maximum_array[p][i] = max(
                         self.maximum_array[p - 1][i],
-                        self.maximum_array[p - 1][i + (1 << (p - 1))]
+                        self.maximum_array[p - 1][i + (1 << (p - 1))],
                     )
                 else:
                     self.maximum_array[p][i] = self.maximum_array[p - 1][i]
