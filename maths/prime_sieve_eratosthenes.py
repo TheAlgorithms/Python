@@ -20,11 +20,22 @@ def prime_sieve_eratosthenes(num: int) -> list[int]:
     [2, 3, 5, 7]
     >>> prime_sieve_eratosthenes(20)
     [2, 3, 5, 7, 11, 13, 17, 19]
+    >>> prime_sieve_eratosthenes(2)
+    [2]
+    >>> prime_sieve_eratosthenes(1)
+    []
+    >>> prime_sieve_eratosthenes(-1)
+    Traceback (most recent call last):
+    ...
+    ValueError: Input must be a positive integer
     """
 
-    primes = [True for i in range(num + 1)]
-    p = 2
+    if num <= 0:
+        raise ValueError("Input must be a positive integer")
 
+    primes = [True] * (num + 1)
+
+    p = 2
     while p * p <= num:
         if primes[p]:
             for i in range(p * p, num + 1, p):
@@ -38,6 +49,6 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    num = int(input())
 
-    print(prime_sieve_eratosthenes(num))
+    user_num = int(input("Enter a positive integer: ").strip())
+    print(prime_sieve_eratosthenes(user_num))
