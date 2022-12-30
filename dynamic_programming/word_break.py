@@ -67,7 +67,7 @@ def word_break(string: str, words: list[str]) -> bool:
     trie: dict[str, Any] = {}
     word_keeper_key = "WORD_KEEPER"
 
-    for word in word_dict:
+    for word in words:
         trie_node = trie
         for c in word:
             if c not in trie_node:
