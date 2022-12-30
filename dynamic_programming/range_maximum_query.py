@@ -23,7 +23,12 @@ class RangeMaximumQuery:
         >>> rmq = RangeMaximumQuery([1, 3, 5, 7, 9, 11])
         """
         self.array = array
-        self._preprocess()
+
+        self.logarithm_array: list[int] = []
+        self._preprocess_logarithm()
+
+        self.maximum_array: list[list[int | float]] = []
+        self._preprocess_maximum()
 
     def __len__(self) -> int:
         """
@@ -39,49 +44,59 @@ class RangeMaximumQuery:
         """
         return len(self.array)
 
-    def _preprocess(self) -> None:
+    def _preprocess_logarithm(self) -> None:
         """
-        Preprocess the DP array for RMQ in O(n log n).
+        Preprocess the logarithm array from 1 to n for later O(1) usage.
         ------------------------------
         >>> rmq = RangeMaximumQuery([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-        >>> rmq.log[7]
+        >>> rmq.logarithm_array[7]
         2
-        >>> rmq.log[8]
+        >>> rmq.logarithm_array[8]
         3
-        >>> rmq.log[9]
+        >>> rmq.logarithm_array[9]
         3
-        >>> rmq.dp[0][0]
+        """
+        size = len(self) + 1
+        self.logarithm_array = [0] * size
+        for i in range(2, size):
+            self.logarithm_array[i] = self.logarithm_array[i >> 1] + 1
+
+    def _preprocess_maximum(self) -> None:
+        """
+        Preprocess the Maximum array for RMQ in O(n log n) using Dynamic Programming.
+
+        maximum_array[i][j] stores the maximum value in the range [j, j + 2^i)
+        ------------------------------
+        >>> rmq = RangeMaximumQuery([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        >>> rmq.maximum_array[0][0]
         1
-        >>> rmq.dp[0][9]
+        >>> rmq.maximum_array[0][9]
         10
-        >>> rmq.dp[1][0]
+        >>> rmq.maximum_array[1][0]
         2
-        >>> rmq.dp[1][9]
+        >>> rmq.maximum_array[1][9]
         10
-        >>> rmq.dp[1][8]
+        >>> rmq.maximum_array[1][8]
         10
         """
-        # Fill logarithm array for O(1) usage
         size = len(self)
-        self.log = [0] * (size + 1)
-        for i in range(2, size + 1):
-            self.log[i] = self.log[i >> 1] + 1
-        log_size = self.log[size] + 1
+        logarithm_of_size = self.logarithm_array[size] + 1
 
-        # Create empty DP 2D array with size log(n) x n
-        self.dp = [[0] * size for _ in range(log_size)]
+        # Create empty Maximum 2D array with size log(n) x n
+        self.maximum_array = [[0] * size for _ in range(logarithm_of_size)]
         for i in range(size):
-            self.dp[0][i] = self.array[i]
-        for p in range(1, log_size):
+            self.maximum_array[0][i] = self.array[i]
+        for p in range(1, logarithm_of_size):
             for i in range(size):
                 if i + (1 << p) <= size:
-                    self.dp[p][i] = max(
-                        self.dp[p - 1][i], self.dp[p - 1][i + (1 << (p - 1))]
+                    self.maximum_array[p][i] = max(
+                        self.maximum_array[p - 1][i],
+                        self.maximum_array[p - 1][i + (1 << (p - 1))]
                     )
                 else:
-                    self.dp[p][i] = self.dp[p - 1][i]
+                    self.maximum_array[p][i] = self.maximum_array[p - 1][i]
 
-    def query(self, left: int, right: int) -> int:
+    def query(self, left: int, right: int) -> int | float:
         """
         Finds the maximum value in the range [left, right) in O(1).
 
@@ -123,8 +138,11 @@ class RangeMaximumQuery:
             raise ValueError("Invalid range")
         if left < 0 or right > len(self):
             raise ValueError("Range out of bounds")
-        p = self.log[right - left]  # Find the logarithm of the size of range
-        return max(self.dp[p][left], self.dp[p][right - (1 << p)])
+
+        # Find the logarithm of the size of range
+        p = self.logarithm_array[right - left]
+
+        return max(self.maximum_array[p][left], self.maximum_array[p][right - (1 << p)])
 
 
 if __name__ == "__main__":
