@@ -51,7 +51,7 @@ def word_break(string: str, words: list[str]) -> bool:
     >>> word_break('abc', [''])
     Traceback (most recent call last):
         ...
-    ValueError: the word_dict should a list of non empty string
+    ValueError: the words should be a list of non-empty strings
     """
 
     # Validation
