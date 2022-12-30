@@ -24,7 +24,7 @@ from functools import lru_cache
 from typing import Any
 
 
-def word_break(string: str, word_dict: list[str]) -> bool:
+def word_break(string: str, words: list[str]) -> bool:
     """
     Return True if numbers have opposite signs False otherwise.
 
