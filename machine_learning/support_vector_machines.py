@@ -96,6 +96,17 @@ class SVC:
             float: exp(-(gamma * norm_squared(vector1 - vector2)))
         """
         return np.exp(-(self.gamma * norm_squared(vector1 - vector2)))
+    
+    
+#     It would be a good idea to add some checks at the beginning of the 'fit' method to ensure that the inputs are valid, such as:
+
+    if not isinstance(observations, list) or not all(isinstance(x, ndarray) for x in observations) or not all(len(x.shape) == 1 for x in observations):
+        raise ValueError("Input observations must be a list of 1D numpy arrays")
+
+    if not isinstance(classes, (ndarray, list)) or len(classes) != len(observations):
+        raise ValueError("Input classes must be a 1D numpy array or list of numbers with the same length as observations")
+
+#    This will ensure that the 'fit' method raises a 'ValueError' if the input 'observations' is not a list of 1D numpy arrays or if the input 'classes' is not a 1D numpy array or list of numbers with the same length as 'observations'.
 
     def fit(self, observations: list[ndarray], classes: ndarray) -> None:
         """
