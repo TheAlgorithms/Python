@@ -3,9 +3,8 @@ Author  : Alexander Pantyukhin
 Date    : December 12, 2022
 
 Task:
-Given a string s and a dictionary of strings wordDict,
-return true if s can be segmented into a space-separated
-sequence of one or more dictionary words.
+Given a string and a list of words, return true if the string can be
+segmented into a space-separated sequence of one or more words.
 
 Note that the same word in the dictionary may be reused
 multiple times in the segmentation.
