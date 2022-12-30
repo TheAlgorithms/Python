@@ -6,11 +6,11 @@ Task:
 Given a string and a list of words, return true if the string can be
 segmented into a space-separated sequence of one or more words.
 
-Note that the same word in the dictionary may be reused
+Note that the same word may be reused
 multiple times in the segmentation.
 
 Implementation notes: Trie + Dynamic programming up -> down.
-The Trie keeps all wordDict words. It will be useful for scanning
+The Trie will be used to store the words. It will be useful for scanning
 available words for the current position in the string.
 
 Leetcode:
@@ -47,7 +47,7 @@ def word_break(string: str, words: list[str]) -> bool:
     >>> word_break('abc', [123])
     Traceback (most recent call last):
         ...
-    ValueError: the word_dict should a list of non empty string
+    ValueError: the words should be a list of non-empty strings
     >>> word_break('abc', [''])
     Traceback (most recent call last):
         ...
@@ -58,10 +58,10 @@ def word_break(string: str, words: list[str]) -> bool:
     if not isinstance(string, str) or len(string) == 0:
         raise ValueError("the string should be not empty string")
 
-    if not isinstance(word_dict, list) or not all(
-        isinstance(item, str) and len(item) > 0 for item in word_dict
+    if not isinstance(words, list) or not all(
+        isinstance(item, str) and len(item) > 0 for item in words
     ):
-        raise ValueError("the word_dict should a list of non empty string")
+        raise ValueError("the words should be a list of non-empty strings")
 
     # Build trie
     trie: dict[str, Any] = {}
@@ -82,6 +82,11 @@ def word_break(string: str, words: list[str]) -> bool:
     # Dynamic programming method
     @lru_cache(maxsize=None)
     def is_breakable(index: int) -> bool:
+        """
+        >>> string = 'a'
+        >>> is_breakable(1)
+        True
+        """
         if index == len_string:
             return True
 
