@@ -1,7 +1,8 @@
 import math
+from collections.abc import Generator
 
 
-def rearrange(bit_string_32):
+def rearrange(bit_string_32: str) -> str:
     """[summary]
     Regroups the given binary string.
 
@@ -25,7 +26,7 @@ def rearrange(bit_string_32):
     return new_string
 
 
-def reformat_hex(i):
+def reformat_hex(i: int) -> str:
     """[summary]
     Converts the given integer into 8-digit hex number.
 
@@ -42,12 +43,12 @@ def reformat_hex(i):
     return thing
 
 
-def pad(bit_string):
+def pad(bit_string: str) -> str:
     """[summary]
     Fills up the binary string to a 512 bit binary string
 
     Arguments:
-            bitString {[string]} -- [binary string]
+            bit_string {[string]} -- [binary string]
 
     Returns:
             [string] -- [binary string]
@@ -61,10 +62,10 @@ def pad(bit_string):
     return bit_string
 
 
-def get_block(bit_string):
+def get_block(bit_string: str) -> Generator[list[int], None, None]:
     """[summary]
     Iterator:
-            Returns by each call a list of length 16 with the 32 bit
+            Returns by each call a list of length 16 with the 32-bit
             integer blocks.
 
     Arguments:
@@ -81,7 +82,7 @@ def get_block(bit_string):
         curr_pos += 512
 
 
-def not32(i):
+def not32(i: int) -> int:
     """
     >>> not32(34)
     4294967261
@@ -93,25 +94,25 @@ def not32(i):
     return int(new_str, 2)
 
 
-def sum32(a, b):
+def sum32(a: int, b: int) -> int:
     return (a + b) % 2**32
 
 
-def leftrot32(i, s):
+def leftrot32(i: int, s: int) -> int:
     return (i << s) ^ (i >> (32 - s))
 
 
-def md5me(test_string):
+def md5me(test_string: str) -> str:
     """[summary]
-    Returns a 32-bit hash code of the string 'testString'
+    Returns a 32-bit hash code of the string 'test_string'
 
     Arguments:
-            testString {[string]} -- [message]
+            test_string {[string]} -- [message]
     """
 
     bs = ""
-    for i in test_string:
-        bs += format(ord(i), "08b")
+    for char in test_string:
+        bs += format(ord(char), "08b")
     bs = pad(bs)
 
     tvals = [int(2**32 * abs(math.sin(i + 1))) for i in range(64)]
@@ -222,7 +223,7 @@ def md5me(test_string):
     return digest
 
 
-def test():
+def test() -> None:
     assert md5me("") == "d41d8cd98f00b204e9800998ecf8427e"
     assert (
         md5me("The quick brown fox jumps over the lazy dog")
