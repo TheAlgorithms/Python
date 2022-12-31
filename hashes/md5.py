@@ -1,5 +1,5 @@
-import math
 from collections.abc import Generator
+from math import sin
 
 
 def rearrange(bit_string_32: str) -> str:
@@ -115,7 +115,7 @@ def md5_me(test_string: str) -> str:
         bs += format(ord(char), "08b")
     bs = pad(bs)
 
-    t_vals = [int(2**32 * abs(math.sin(i + 1))) for i in range(64)]
+    t_vals = [int(2**32 * abs(sin(i + 1))) for i in range(64)]
 
     a0 = 0x67452301
     b0 = 0xEFCDAB89
