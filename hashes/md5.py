@@ -36,10 +36,10 @@ def reformat_hex(i: int) -> str:
     '9a020000'
     """
 
-    hexrep = format(i, "08x")
+    hex_rep = format(i, "08x")
     thing = ""
     for i in [3, 2, 1, 0]:
-        thing += hexrep[2 * i : 2 * i + 2]
+        thing += hex_rep[2 * i : 2 * i + 2]
     return thing
 
 
@@ -82,9 +82,9 @@ def get_block(bit_string: str) -> Generator[list[int], None, None]:
         curr_pos += 512
 
 
-def not32(i: int) -> int:
+def not_32(i: int) -> int:
     """
-    >>> not32(34)
+    >>> not_32(34)
     4294967261
     """
     i_str = format(i, "032b")
@@ -94,15 +94,15 @@ def not32(i: int) -> int:
     return int(new_str, 2)
 
 
-def sum32(a: int, b: int) -> int:
+def sum_32(a: int, b: int) -> int:
     return (a + b) % 2**32
 
 
-def leftrot32(i: int, s: int) -> int:
+def left_rotate_32(i: int, s: int) -> int:
     return (i << s) ^ (i >> (32 - s))
 
 
-def md5me(test_string: str) -> str:
+def md5_me(test_string: str) -> str:
     """[summary]
     Returns a 32-bit hash code of the string 'test_string'
 
@@ -115,7 +115,7 @@ def md5me(test_string: str) -> str:
         bs += format(ord(char), "08b")
     bs = pad(bs)
 
-    tvals = [int(2**32 * abs(math.sin(i + 1))) for i in range(64)]
+    t_vals = [int(2**32 * abs(math.sin(i + 1))) for i in range(64)]
 
     a0 = 0x67452301
     b0 = 0xEFCDAB89
@@ -196,37 +196,37 @@ def md5me(test_string: str) -> str:
         d = d0
         for i in range(64):
             if i <= 15:
-                # f = (B & C) | (not32(B) & D)
+                # f = (B & C) | (not_32(B) & D)
                 f = d ^ (b & (c ^ d))
                 g = i
             elif i <= 31:
-                # f = (D & B) | (not32(D) & C)
+                # f = (D & B) | (not_32(D) & C)
                 f = c ^ (d & (b ^ c))
                 g = (5 * i + 1) % 16
             elif i <= 47:
                 f = b ^ c ^ d
                 g = (3 * i + 5) % 16
             else:
-                f = c ^ (b | not32(d))
+                f = c ^ (b | not_32(d))
                 g = (7 * i) % 16
-            dtemp = d
+            d_temp = d
             d = c
             c = b
-            b = sum32(b, leftrot32((a + f + tvals[i] + m[g]) % 2**32, s[i]))
-            a = dtemp
-        a0 = sum32(a0, a)
-        b0 = sum32(b0, b)
-        c0 = sum32(c0, c)
-        d0 = sum32(d0, d)
+            b = sum_32(b, left_rotate_32((a + f + t_vals[i] + m[g]) % 2**32, s[i]))
+            a = d_temp
+        a0 = sum_32(a0, a)
+        b0 = sum_32(b0, b)
+        c0 = sum_32(c0, c)
+        d0 = sum_32(d0, d)
 
     digest = reformat_hex(a0) + reformat_hex(b0) + reformat_hex(c0) + reformat_hex(d0)
     return digest
 
 
 def test() -> None:
-    assert md5me("") == "d41d8cd98f00b204e9800998ecf8427e"
+    assert md5_me("") == "d41d8cd98f00b204e9800998ecf8427e"
     assert (
-        md5me("The quick brown fox jumps over the lazy dog")
+        md5_me("The quick brown fox jumps over the lazy dog")
         == "9e107d9d372bb6826bd81d3542a419d6"
     )
     print("Success.")
