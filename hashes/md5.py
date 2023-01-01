@@ -108,6 +108,13 @@ def md5_me(message: str) -> str:
 
     Arguments:
             message {[string]} -- [message]
+
+    >>> md5_me("")
+    'd41d8cd98f00b204e9800998ecf8427e'
+    >>> md5_me("The quick brown fox jumps over the lazy dog")
+    '9e107d9d372bb6826bd81d3542a419d6'
+    >>> md5_me("The quick brown fox jumps over the lazy dog.")
+    'e4d909c290d0fb1ca068ffaddf22cbd0'
     """
 
     bit_string = ""
@@ -223,17 +230,7 @@ def md5_me(message: str) -> str:
     return digest
 
 
-def test() -> None:
-    assert md5_me("") == "d41d8cd98f00b204e9800998ecf8427e"
-    assert (
-        md5_me("The quick brown fox jumps over the lazy dog")
-        == "9e107d9d372bb6826bd81d3542a419d6"
-    )
-    print("Success.")
-
-
 if __name__ == "__main__":
-    test()
     import doctest
 
     doctest.testmod()
