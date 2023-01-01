@@ -2,19 +2,19 @@ from collections.abc import Generator
 from math import sin
 
 
-def rearrange(bit_string_32: str) -> str:
+def to_little_endian(bit_string_32: str) -> str:
     """[summary]
-    Regroups the given binary string.
+    Converts the given binary string to little-endian in groups of 8 bits.
 
     Arguments:
-        bitString32 {[string]} -- [32 bit binary]
+        bit_string_32 {[string]} -- [32 bit binary]
 
     Raises:
-    ValueError -- [if the given string not are 32 bit binary string]
+        ValueError -- [if the given string not are 32 bit binary string]
 
     Returns:
         [string] -- [32 bit binary string]
-    >>> rearrange('1234567890abcdfghijklmnopqrstuvw')
+    >>> to_little_endian('1234567890abcdfghijklmnopqrstuvw')
     'pqrstuvwhijklmno90abcdfg12345678'
     """
 
@@ -28,7 +28,7 @@ def rearrange(bit_string_32: str) -> str:
 
 def reformat_hex(i: int) -> str:
     """[summary]
-    Converts the given integer into 8-digit hex number.
+    Converts the given integer into 8-char hex number.
 
     Arguments:
             i {[int]} -- [integer]
@@ -43,7 +43,7 @@ def reformat_hex(i: int) -> str:
     return thing
 
 
-def pad(bit_string: str) -> str:
+def preprocess(bit_string: str) -> str:
     """[summary]
     Fills up the binary string to a 512 bit binary string
 
@@ -58,11 +58,11 @@ def pad(bit_string: str) -> str:
     while len(bit_string) % 512 != 448:
         bit_string += "0"
     last_part = format(start_length, "064b")
-    bit_string += rearrange(last_part[32:]) + rearrange(last_part[:32])
+    bit_string += to_little_endian(last_part[32:]) + to_little_endian(last_part[:32])
     return bit_string
 
 
-def get_block(bit_string: str) -> Generator[list[int], None, None]:
+def get_block_words(bit_string: str) -> Generator[list[int], None, None]:
     """[summary]
     Iterator:
             Returns by each call a list of length 16 with the 32-bit
@@ -72,14 +72,14 @@ def get_block(bit_string: str) -> Generator[list[int], None, None]:
             bit_string {[string]} -- [binary string >= 512]
     """
 
-    curr_pos = 0
-    while curr_pos < len(bit_string):
-        curr_part = bit_string[curr_pos : curr_pos + 512]
-        my_splits = []
+    pos = 0
+    while pos < len(bit_string):
+        block = bit_string[pos : pos + 512]
+        block_words = []
         for i in range(16):
-            my_splits.append(int(rearrange(curr_part[32 * i : 32 * i + 32]), 2))
-        yield my_splits
-        curr_pos += 512
+            block_words.append(int(to_little_endian(block[32 * i : 32 * i + 32]), 2))
+        yield block_words
+        pos += 512
 
 
 def not_32(i: int) -> int:
@@ -98,31 +98,31 @@ def sum_32(a: int, b: int) -> int:
     return (a + b) % 2**32
 
 
-def left_rotate_32(i: int, s: int) -> int:
-    return (i << s) ^ (i >> (32 - s))
+def left_rotate_32(i: int, shift: int) -> int:
+    return (i << shift) ^ (i >> (32 - shift))
 
 
-def md5_me(test_string: str) -> str:
+def md5_me(message: str) -> str:
     """[summary]
-    Returns a 32-bit hash code of the string 'test_string'
+    Returns a 32-bit hash of the string 'message'
 
     Arguments:
-            test_string {[string]} -- [message]
+            message {[string]} -- [message]
     """
 
-    bs = ""
-    for char in test_string:
-        bs += format(ord(char), "08b")
-    bs = pad(bs)
+    bit_string = ""
+    for char in message:
+        bit_string += format(ord(char), "08b")
+    bit_string = preprocess(bit_string)
 
-    t_vals = [int(2**32 * abs(sin(i + 1))) for i in range(64)]
+    added_consts = [int(2**32 * abs(sin(i + 1))) for i in range(64)]
 
     a0 = 0x67452301
     b0 = 0xEFCDAB89
     c0 = 0x98BADCFE
     d0 = 0x10325476
 
-    s = [
+    shift_amounts = [
         7,
         12,
         17,
@@ -189,18 +189,18 @@ def md5_me(test_string: str) -> str:
         21,
     ]
 
-    for m in get_block(bs):
+    for block_words in get_block_words(bit_string):
         a = a0
         b = b0
         c = c0
         d = d0
         for i in range(64):
             if i <= 15:
-                # f = (B & C) | (not_32(B) & D)
+                # f = (b & c) | (not_32(b) & d)
                 f = d ^ (b & (c ^ d))
                 g = i
             elif i <= 31:
-                # f = (D & B) | (not_32(D) & C)
+                # f = (d & b) | (not_32(d) & c)
                 f = c ^ (d & (b ^ c))
                 g = (5 * i + 1) % 16
             elif i <= 47:
@@ -209,11 +209,11 @@ def md5_me(test_string: str) -> str:
             else:
                 f = c ^ (b | not_32(d))
                 g = (7 * i) % 16
-            d_temp = d
+            f = (f + a + added_consts[i] + block_words[g]) % 2**32
+            a = d
             d = c
             c = b
-            b = sum_32(b, left_rotate_32((a + f + t_vals[i] + m[g]) % 2**32, s[i]))
-            a = d_temp
+            b = sum_32(b, left_rotate_32(f, shift_amounts[i]))
         a0 = sum_32(a0, a)
         b0 = sum_32(b0, b)
         c0 = sum_32(c0, c)
