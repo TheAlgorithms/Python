@@ -4,7 +4,7 @@ from math import sin
 
 def to_little_endian(bit_string_32: str) -> str:
     """[summary]
-    Converts the given binary string to little-endian in groups of 8 bits.
+    Converts the given binary string to little-endian in groups of 8 chars.
 
     Arguments:
         bit_string_32 {[string]} -- [32 bit binary]
@@ -20,27 +20,27 @@ def to_little_endian(bit_string_32: str) -> str:
 
     if len(bit_string_32) != 32:
         raise ValueError("Need length 32")
-    new_string = ""
+    little_endian = ""
     for i in [3, 2, 1, 0]:
-        new_string += bit_string_32[8 * i : 8 * i + 8]
-    return new_string
+        little_endian += bit_string_32[8 * i : 8 * i + 8]
+    return little_endian
 
 
 def reformat_hex(i: int) -> str:
     """[summary]
-    Converts the given integer into 8-char hex number.
+    Converts the given integer into 8-char little-endian hex number.
 
     Arguments:
-            i {[int]} -- [integer]
+        i {[int]} -- [integer]
     >>> reformat_hex(666)
     '9a020000'
     """
 
     hex_rep = format(i, "08x")
-    thing = ""
+    little_endian_hex = ""
     for i in [3, 2, 1, 0]:
-        thing += hex_rep[2 * i : 2 * i + 2]
-    return thing
+        little_endian_hex += hex_rep[2 * i : 2 * i + 2]
+    return little_endian_hex
 
 
 def preprocess(bit_string: str) -> str:
@@ -65,11 +65,11 @@ def preprocess(bit_string: str) -> str:
 def get_block_words(bit_string: str) -> Generator[list[int], None, None]:
     """[summary]
     Iterator:
-            Returns by each call a list of length 16 with the 32-bit
-            integer blocks.
+        Returns by each call a list of length 16 with the 32-bit
+        integer blocks.
 
     Arguments:
-            bit_string {[string]} -- [binary string >= 512]
+        bit_string {[string]} -- [binary string >= 512]
     """
 
     pos = 0
@@ -107,7 +107,7 @@ def md5_me(message: str) -> str:
     Returns a 32-bit hash of the string 'message'
 
     Arguments:
-            message {[string]} -- [message]
+        message {[string]} -- [message]
 
     >>> md5_me("")
     'd41d8cd98f00b204e9800998ecf8427e'
