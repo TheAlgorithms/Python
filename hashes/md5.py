@@ -79,14 +79,12 @@ def get_block_words(bit_string: str) -> Generator[list[int], None, None]:
         bit_string {[string]} -- [binary string >= 512]
     """
 
-    pos = 0
-    while pos < len(bit_string):
+    for pos in range(0, len(bit_string), 512):
         block = bit_string[pos : pos + 512]
         block_words = []
-        for i in range(16):
-            block_words.append(int(to_little_endian(block[32 * i : 32 * i + 32]), 2))
+        for i in range(0, 512, 32):
+            block_words.append(int(to_little_endian(block[i : i + 32]), 2))
         yield block_words
-        pos += 512
 
 
 def not_32(i: int) -> int:
