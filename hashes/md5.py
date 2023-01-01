@@ -43,22 +43,29 @@ def reformat_hex(i: int) -> str:
     return little_endian_hex
 
 
-def preprocess(bit_string: str) -> str:
+def preprocess(message: str) -> str:
     """[summary]
-    Fills up the binary string to a 512 bit binary string
+    Preprocesses the message string:
+    - Convert message to bit string
+    - Pad bit string to a multiple of 512 bits:
+        - Append a 1
+        - Append 0's until length = 448 (mod 512), 64 bits short of a multiple of 512
+        - Append length of original message (64 bits)
 
     Arguments:
-            bit_string {[string]} -- [binary string]
+            message {[string]} -- [message string]
 
     Returns:
-            [string] -- [binary string]
+            [string] -- [padded bit string]
     """
-    start_length = len(bit_string)
+    bit_string = ""
+    for char in message:
+        bit_string += format(ord(char), "08b")
+    start_len = format(len(bit_string), "064b")
     bit_string += "1"
     while len(bit_string) % 512 != 448:
         bit_string += "0"
-    last_part = format(start_length, "064b")
-    bit_string += to_little_endian(last_part[32:]) + to_little_endian(last_part[:32])
+    bit_string += to_little_endian(start_len[32:]) + to_little_endian(start_len[:32])
     return bit_string
 
 
@@ -117,10 +124,7 @@ def md5_me(message: str) -> str:
     'e4d909c290d0fb1ca068ffaddf22cbd0'
     """
 
-    bit_string = ""
-    for char in message:
-        bit_string += format(ord(char), "08b")
-    bit_string = preprocess(bit_string)
+    bit_string = preprocess(message)
 
     added_consts = [int(2**32 * abs(sin(i + 1))) for i in range(64)]
 
