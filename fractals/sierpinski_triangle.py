@@ -13,7 +13,6 @@ generated pattern that is reproducible at any magnification or reduction. It is
 named after the Polish mathematician Wacław Sierpiński, but appeared as a
 decorative pattern many centuries before the work of Sierpiński.
 
-Requirements (pip): turtle
 
 Usage: python sierpinski_triangle.py <int:depth_for_fractal>
 
