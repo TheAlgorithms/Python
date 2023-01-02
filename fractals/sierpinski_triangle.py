@@ -28,7 +28,21 @@ import turtle
 
 
 def get_mid(p1: tuple[float, float], p2: tuple[float, float]) -> tuple[float, float]:
-    return (p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2  # find midpoint
+    """
+    Find the midpoint of two points
+
+    >>> get_mid((0, 0), (2, 2))
+    (1, 1)
+    >>> get_mid((-3, -3), (3, 3))
+    (0, 0)
+    >>> get_mid((1, 0), (3, 2))
+    (2, 1)
+    >>> get_mid((0, 0), (1, 1))
+    (0.5, 0.5)
+    >>> get_mid((0, 0), (0, 0))
+    (0, 0)
+    """
+    return (p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2
 
 
 def triangle(
@@ -37,6 +51,10 @@ def triangle(
     vertex3: tuple[float, float],
     depth: int,
 ) -> None:
+    """
+    Recursively draw the Sierpinski triangle given the vertices of the triangle
+    and the recursion depth
+    """
     my_pen.up()
     my_pen.goto(vertex1[0], vertex1[1])
     my_pen.down()
