@@ -31,7 +31,6 @@ def get_mid(p1, p2):
     return (p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2  # find midpoint
 
 
-# def triangle(points, depth):
 def triangle(vertex1, vertex2, vertex3, depth):
     my_pen.up()
     my_pen.goto(vertex1[0], vertex1[1])
@@ -63,5 +62,5 @@ if __name__ == "__main__":
     my_pen.speed(5)
     my_pen.pencolor("red")
 
-    vertices = [[-175, -125], [0, 175], [175, -125]]  # vertices of triangle
+    vertices = [(-175, -125), (0, 175), (175, -125)]  # vertices of triangle
     triangle(vertices[0], vertices[1], vertices[2], int(sys.argv[1]))
