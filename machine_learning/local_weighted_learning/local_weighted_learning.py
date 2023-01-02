@@ -2,17 +2,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-# weighted matrix
 def weighted_matrix(
     point: np.array, training_data_x: np.array, bandwidth: float
 ) -> np.array:
     """
-    Calculate the weight for every point in the
-    data set. It takes training_point, query_point, and tau.
-    Here tau is not a fixed value it can be varied depends on output.
-    tau --> bandwidth
-    xmat --> training data
-    point --> the x where we want to make predictions
+    Calculate the weight for every point in the data set.
+    point --> the x value at which we want to make predictions
     >>> weighted_matrix(
     ...     np.array([1., 1.]),
     ...     np.array([[16.99, 10.34], [21.01,23.68], [24.59,25.69]]),
@@ -22,10 +17,9 @@ def weighted_matrix(
            [0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
            [0.00000000e+000, 0.00000000e+000, 0.00000000e+000]])
     """
-    # m is the number of training samples
-    m, _ = np.shape(training_data_x)
-    # Initializing weights as identity matrix
-    weights = np.eye(m)
+    m, _ = np.shape(training_data_x)  # m is the number of training samples
+    weights = np.eye(m)  # Initializing weights as identity matrix
+
     # calculating weights for all training examples [x(i)'s]
     for j in range(m):
         diff = point - training_data_x[j]
@@ -63,7 +57,7 @@ def local_weight_regression(
     training_data_x: np.array, training_data_y: np.array, bandwidth: float
 ) -> np.array:
     """
-    Calculate predictions for each data point on axis.
+    Calculate predictions for each data point on axis
     >>> local_weight_regression(
     ...     np.array([[16.99, 10.34], [21.01, 23.68], [24.59, 25.69]]),
     ...     np.array([[1.01, 1.66, 3.5]]),
@@ -86,7 +80,7 @@ def load_data(
     dataset_name: str, cola_name: str, colb_name: str
 ) -> tuple[np.array, np.array, np.array, np.array]:
     """
-    Function used for loading data from the seaborn splitting into x and y points
+    Load data from seaborn and split it into x and y points
     """
     import seaborn as sns
 
@@ -128,7 +122,7 @@ def plot_preds(
     colb_name: str,
 ) -> plt.plot:
     """
-    This function used to plot predictions and display the graph
+    Plot predictions and display the graph
     """
     xsort = training_data_x.copy()
     xsort.sort(axis=0)
