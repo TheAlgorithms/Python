@@ -26,8 +26,6 @@ Credits:
 import sys
 import turtle
 
-PROGNAME = "Sierpinski Triangle"
-
 points = [[-175, -125], [0, 175], [175, -125]]  # size of triangle
 
 
