@@ -123,6 +123,7 @@
   * [Huffman](compression/huffman.py)
   * [Lempel Ziv](compression/lempel_ziv.py)
   * [Lempel Ziv Decompress](compression/lempel_ziv_decompress.py)
+  * [Lz77](compression/lz77.py)
   * [Peak Signal To Noise Ratio](compression/peak_signal_to_noise_ratio.py)
   * [Run Length Encoding](compression/run_length_encoding.py)
 
@@ -1162,7 +1163,7 @@
   * [Get Amazon Product Data](web_programming/get_amazon_product_data.py)
   * [Get Imdb Top 250 Movies Csv](web_programming/get_imdb_top_250_movies_csv.py)
   * [Get Imdbtop](web_programming/get_imdbtop.py)
-  * [Get Top Billioners](web_programming/get_top_billioners.py)
+  * [Get Top Billionaires](web_programming/get_top_billionaires.py)
   * [Get Top Hn Posts](web_programming/get_top_hn_posts.py)
   * [Get User Tweets](web_programming/get_user_tweets.py)
   * [Giphy](web_programming/giphy.py)
