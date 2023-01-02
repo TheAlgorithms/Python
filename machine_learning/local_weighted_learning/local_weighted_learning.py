@@ -1,4 +1,3 @@
-# Required imports to run this file
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -12,8 +11,11 @@ def weighted_matrix(point: np.mat, training_data_x: np.mat, bandwidth: float) ->
     tau --> bandwidth
     xmat -->Training data
     point --> the x where we want to make predictions
-    >>> weighted_matrix(np.array([1., 1.]),np.mat([[16.99, 10.34], [21.01,23.68],
-    ...                    [24.59,25.69]]), 0.6)
+    >>> weighted_matrix(
+    ...     np.array([1., 1.]),
+    ...     np.mat([[16.99, 10.34], [21.01,23.68], [24.59,25.69]]),
+    ...     0.6
+    ... )
     matrix([[1.43807972e-207, 0.00000000e+000, 0.00000000e+000],
             [0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
             [0.00000000e+000, 0.00000000e+000, 0.00000000e+000]])
@@ -35,8 +37,12 @@ def local_weight(
     """
     Calculate the local weights using the weight_matrix function on training data.
     Return the weighted matrix.
-    >>> local_weight(np.array([1., 1.]),np.mat([[16.99, 10.34], [21.01,23.68],
-    ...                 [24.59,25.69]]),np.mat([[1.01, 1.66, 3.5]]), 0.6)
+    >>> local_weight(
+    ...     np.array([1., 1.]),
+    ...     np.mat([[16.99, 10.34], [21.01,23.68], [24.59,25.69]]),
+    ...     np.mat([[1.01, 1.66, 3.5]]),
+    ...     0.6
+    ... )
     matrix([[0.00873174],
             [0.08272556]])
     """
@@ -53,8 +59,11 @@ def local_weight_regression(
 ) -> np.mat:
     """
     Calculate predictions for each data point on axis.
-    >>> local_weight_regression(np.mat([[16.99, 10.34], [21.01,23.68],
-    ...                            [24.59,25.69]]),np.mat([[1.01, 1.66, 3.5]]), 0.6)
+    >>> local_weight_regression(
+    ...     np.mat([[16.99, 10.34], [21.01, 23.68], [24.59, 25.69]]),
+    ...     np.mat([[1.01, 1.66, 3.5]]),
+    ...     0.6
+    ... )
     array([1.07173261, 1.65970737, 3.50160179])
     """
     m, n = np.shape(training_data_x)
@@ -93,8 +102,11 @@ def load_data(dataset_name: str, cola_name: str, colb_name: str) -> np.mat:
 def get_preds(training_data_x: np.mat, mcol_b: np.mat, tau: float) -> np.ndarray:
     """
     Get predictions with minimum error for each training data
-    >>> get_preds(np.mat([[16.99, 10.34], [21.01,23.68],
-    ...                     [24.59,25.69]]),np.mat([[1.01, 1.66, 3.5]]), 0.6)
+    >>> get_preds(
+    ...     np.mat([[16.99, 10.34], [21.01, 23.68], [24.59, 25.69]]),
+    ...     np.mat([[1.01, 1.66, 3.5]]),
+    ...     0.6
+    ... )
     array([1.07173261, 1.65970737, 3.50160179])
     """
     ypred = local_weight_regression(training_data_x, mcol_b, tau)
@@ -128,6 +140,10 @@ def plot_preds(
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     training_data_x, mcol_b, col_a, col_b = load_data("tips", "total_bill", "tip")
     predictions = get_preds(training_data_x, mcol_b, 0.5)
     plot_preds(training_data_x, predictions, col_a, col_b, "total_bill", "tip")
