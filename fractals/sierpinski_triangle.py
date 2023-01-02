@@ -39,16 +39,12 @@ def triangle(vertex1, vertex2, vertex3, depth):
     my_pen.goto(vertex3[0], vertex3[1])
     my_pen.goto(vertex1[0], vertex1[1])
 
-    if depth > 0:
-        triangle(
-            vertex1, get_mid(vertex1, vertex2), get_mid(vertex1, vertex3), depth - 1
-        )
-        triangle(
-            vertex2, get_mid(vertex1, vertex2), get_mid(vertex2, vertex3), depth - 1
-        )
-        triangle(
-            vertex3, get_mid(vertex3, vertex2), get_mid(vertex1, vertex3), depth - 1
-        )
+    if depth == 0:
+        return
+
+    triangle(vertex1, get_mid(vertex1, vertex2), get_mid(vertex1, vertex3), depth - 1)
+    triangle(vertex2, get_mid(vertex1, vertex2), get_mid(vertex2, vertex3), depth - 1)
+    triangle(vertex3, get_mid(vertex3, vertex2), get_mid(vertex1, vertex3), depth - 1)
 
 
 if __name__ == "__main__":
