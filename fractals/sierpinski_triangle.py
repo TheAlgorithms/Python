@@ -32,15 +32,15 @@ def get_mid(p1: tuple[float, float], p2: tuple[float, float]) -> tuple[float, fl
     Find the midpoint of two points
 
     >>> get_mid((0, 0), (2, 2))
-    (1, 1)
+    (1.0, 1.0)
     >>> get_mid((-3, -3), (3, 3))
-    (0, 0)
+    (0.0, 0.0)
     >>> get_mid((1, 0), (3, 2))
-    (2, 1)
+    (2.0, 1.0)
     >>> get_mid((0, 0), (1, 1))
     (0.5, 0.5)
     >>> get_mid((0, 0), (0, 0))
-    (0, 0)
+    (0.0, 0.0)
     """
     return (p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2
 
