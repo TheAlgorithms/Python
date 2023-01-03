@@ -89,20 +89,6 @@ def load_data(
     return x_train, x_data, y_data
 
 
-def get_preds(x_train: np.ndarray, y_train: np.ndarray, tau: float) -> np.ndarray:
-    """
-    Get predictions with minimum error for each training data
-    >>> get_preds(
-    ...     np.array([[16.99, 10.34], [21.01, 23.68], [24.59, 25.69]]),
-    ...     np.array([[1.01, 1.66, 3.5]]),
-    ...     0.6
-    ... )
-    array([1.07173261, 1.65970737, 3.50160179])
-    """
-    y_pred = local_weight_regression(x_train, y_train, tau)
-    return y_pred
-
-
 def plot_preds(
     x_train: np.ndarray,
     preds: np.ndarray,
@@ -134,5 +120,5 @@ if __name__ == "__main__":
     doctest.testmod()
 
     training_data_x, total_bill, tip = load_data("tips", "total_bill", "tip")
-    predictions = get_preds(training_data_x, tip, 0.5)
+    predictions = local_weight_regression(training_data_x, tip, 0.5)
     plot_preds(training_data_x, predictions, total_bill, tip, "total_bill", "tip")
