@@ -71,7 +71,7 @@ def local_weight_regression(
 
 def load_data(
     dataset_name: str, x_name: str, y_name: str
-) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
     Load data from seaborn and split it into x and y points
     """
@@ -81,15 +81,12 @@ def load_data(
     x_data = np.array(data[x_name])  # total_bill
     y_data = np.array(data[y_name])  # tip
 
-    mcol_a = x_data.copy()
-    mcol_b = y_data.copy()
+    one = np.ones(np.shape(y_data)[0], dtype=int)
 
-    one = np.ones(np.shape(mcol_b)[0], dtype=int)
+    # pairing elements of one and x_data
+    x_train = np.column_stack((one, x_data))
 
-    # pairing elements of one and mcol_a
-    x_train = np.column_stack((one, mcol_a))
-
-    return x_train, mcol_b, x_data, y_data
+    return x_train, x_data, y_data
 
 
 def get_preds(x_train: np.ndarray, y_train: np.ndarray, tau: float) -> np.ndarray:
@@ -108,7 +105,7 @@ def get_preds(x_train: np.ndarray, y_train: np.ndarray, tau: float) -> np.ndarra
 
 def plot_preds(
     x_train: np.ndarray,
-    predictions: np.ndarray,
+    preds: np.ndarray,
     x_data: np.ndarray,
     y_data: np.ndarray,
     x_name: str,
@@ -121,7 +118,7 @@ def plot_preds(
     plt.scatter(x_data, y_data, color="blue")
     plt.plot(
         x_train_sorted[:, 1],
-        predictions[x_train[:, 1].argsort(0)],
+        preds[x_train[:, 1].argsort(0)],
         color="yellow",
         linewidth=5,
     )
@@ -136,6 +133,6 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    training_data_x, mcol_b, total_bill, tip = load_data("tips", "total_bill", "tip")
-    predictions = get_preds(training_data_x, mcol_b, 0.5)
+    training_data_x, total_bill, tip = load_data("tips", "total_bill", "tip")
+    predictions = get_preds(training_data_x, tip, 0.5)
     plot_preds(training_data_x, predictions, total_bill, tip, "total_bill", "tip")
