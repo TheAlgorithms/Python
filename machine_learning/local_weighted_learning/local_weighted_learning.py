@@ -155,7 +155,7 @@ def plot_preds(
     y_data: np.ndarray,
     x_name: str,
     y_name: str,
-) -> plt.plot:
+) -> None:
     """
     Plot predictions and display the graph
     >>> pass    # No doctests, function is for demo purposes only
