@@ -3,8 +3,8 @@ import numpy as np
 
 
 def weighted_matrix(
-    point: np.array, training_data_x: np.array, bandwidth: float
-) -> np.array:
+    point: np.ndarray, training_data_x: np.ndarray, bandwidth: float
+) -> np.ndarray:
     """
     Calculate the weight for every point in the data set.
     point --> the x value at which we want to make predictions
@@ -28,11 +28,11 @@ def weighted_matrix(
 
 
 def local_weight(
-    point: np.array,
-    training_data_x: np.array,
-    training_data_y: np.array,
+    point: np.ndarray,
+    training_data_x: np.ndarray,
+    training_data_y: np.ndarray,
     bandwidth: float,
-) -> np.array:
+) -> np.ndarray:
     """
     Calculate the local weights using the weight_matrix function on training data.
     Return the weighted matrix.
@@ -54,8 +54,8 @@ def local_weight(
 
 
 def local_weight_regression(
-    training_data_x: np.array, training_data_y: np.array, bandwidth: float
-) -> np.array:
+    training_data_x: np.ndarray, training_data_y: np.ndarray, bandwidth: float
+) -> np.ndarray:
     """
     Calculate predictions for each data point on axis
     >>> local_weight_regression(
@@ -78,7 +78,7 @@ def local_weight_regression(
 
 def load_data(
     dataset_name: str, cola_name: str, colb_name: str
-) -> tuple[np.array, np.array, np.array, np.array]:
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """
     Load data from seaborn and split it into x and y points
     """
@@ -99,7 +99,9 @@ def load_data(
     return training_data_x, mcol_b, col_a, col_b
 
 
-def get_preds(training_data_x: np.array, mcol_b: np.array, tau: float) -> np.array:
+def get_preds(
+    training_data_x: np.ndarray, mcol_b: np.ndarray, tau: float
+) -> np.ndarray:
     """
     Get predictions with minimum error for each training data
     >>> get_preds(
@@ -114,10 +116,10 @@ def get_preds(training_data_x: np.array, mcol_b: np.array, tau: float) -> np.arr
 
 
 def plot_preds(
-    training_data_x: np.array,
-    predictions: np.array,
-    col_x: np.array,
-    col_y: np.array,
+    training_data_x: np.ndarray,
+    predictions: np.ndarray,
+    col_x: np.ndarray,
+    col_y: np.ndarray,
     cola_name: str,
     colb_name: str,
 ) -> plt.plot:
