@@ -15,7 +15,7 @@ from __future__ import annotations
 
 
 # Extended Euclid
-def extended_euclid(a: int, b: int) -> tuple[int, int]:
+def extended_euclid(a: int, b: int) -> tuple([int, int]):
     """
     >>> extended_euclid(10, 6)
     (-1, 2)
