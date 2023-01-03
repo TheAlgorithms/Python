@@ -47,7 +47,7 @@ def weight_matrix(point: np.ndarray, x_train: np.ndarray, tau: float) -> np.ndar
             decreases as the distance from the prediction point increases
 
     Returns:
-        n x n weight matrix around the prediction point, where n is the size of
+        m x m weight matrix around the prediction point, where m is the size of
         the training set
     >>> weight_matrix(
     ...     np.array([1., 1.]),
@@ -58,9 +58,9 @@ def weight_matrix(point: np.ndarray, x_train: np.ndarray, tau: float) -> np.ndar
            [0.00000000e+000, 0.00000000e+000, 0.00000000e+000],
            [0.00000000e+000, 0.00000000e+000, 0.00000000e+000]])
     """
-    n = len(x_train)  # Number of training samples
-    weights = np.eye(n)  # Initialize weights as identity matrix
-    for j in range(n):
+    m = len(x_train)  # Number of training samples
+    weights = np.eye(m)  # Initialize weights as identity matrix
+    for j in range(m):
         diff = point - x_train[j]
         weights[j, j] = np.exp(diff @ diff.T / (-2.0 * tau**2))
 
