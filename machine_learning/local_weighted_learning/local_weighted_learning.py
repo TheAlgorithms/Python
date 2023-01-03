@@ -120,5 +120,5 @@ if __name__ == "__main__":
     doctest.testmod()
 
     training_data_x, total_bill, tip = load_data("tips", "total_bill", "tip")
-    predictions = local_weight_regression(training_data_x, tip, 0.5)
+    predictions = local_weight_regression(training_data_x, tip, 5)
     plot_preds(training_data_x, predictions, total_bill, tip, "total_bill", "tip")
