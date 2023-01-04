@@ -14,12 +14,12 @@ def lower_upper_decomposition(table: np.ndarray) -> tuple[np.ndarray, np.ndarray
     Example:
 
     >>> matrix = np.array([[2, -2, 1], [0, 1, 2], [5, 3, 1]])
-    >>> outcome = lower_upper_decomposition(matrix)
-    >>> outcome[0]
+    >>> lower_mat, upper_mat = lower_upper_decomposition(matrix)
+    >>> lower_mat
     array([[1. , 0. , 0. ],
            [0. , 1. , 0. ],
            [2.5, 8. , 1. ]])
-    >>> outcome[1]
+    >>> upper_mat
     array([[  2. ,  -2. ,   1. ],
            [  0. ,   1. ,   2. ],
            [  0. ,   0. , -17.5]])
@@ -32,8 +32,7 @@ def lower_upper_decomposition(table: np.ndarray) -> tuple[np.ndarray, np.ndarray
     [[ 2 -2  1]
      [ 0  1  2]]
     """
-    # Table that contains our data
-    # Table has to be a square array so we need to check first
+    # Ensure that table is a square array
     rows, columns = np.shape(table)
     if rows != columns:
         raise ValueError(
@@ -44,15 +43,11 @@ def lower_upper_decomposition(table: np.ndarray) -> tuple[np.ndarray, np.ndarray
     upper = np.zeros((rows, columns))
     for i in range(columns):
         for j in range(i):
-            total = 0
-            for k in range(j):
-                total += lower[i][k] * upper[k][j]
+            total = sum(lower[i][k] * upper[k][j] for k in range(j))
             lower[i][j] = (table[i][j] - total) / upper[j][j]
         lower[i][i] = 1
         for j in range(i, columns):
-            total = 0
-            for k in range(i):
-                total += lower[i][k] * upper[k][j]
+            total = sum(lower[i][k] * upper[k][j] for k in range(j))
             upper[i][j] = table[i][j] - total
     return lower, upper
 
