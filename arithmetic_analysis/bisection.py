@@ -21,13 +21,12 @@ def bisection(function: Callable[[float], float], a: float, b: float) -> float:
     """
     start: float = a
     end: float = b
-    if function(a) == 0:  # one of the a or b is a root for the function
-        return a
+    if function(start) == 0:  # one of the a or b is a root for the function
+        return start
     elif function(b) == 0:
         return b
-    elif (
-        function(a) * function(b) > 0
-    ):  # if none of these are root and they are both positive or negative,
+    # if none of these are root and they are both positive or negative,
+    elif function(start) * function(b) > 0:
         # then this algorithm can't find the root
         raise ValueError("could not find root in given interval.")
     else:
