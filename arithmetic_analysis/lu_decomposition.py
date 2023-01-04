@@ -6,13 +6,9 @@ Reference:
 from __future__ import annotations
 
 import numpy as np
-from numpy import float64
-from numpy.typing import ArrayLike
 
 
-def lower_upper_decomposition(
-    table: ArrayLike[float64],
-) -> tuple[ArrayLike[float64], ArrayLike[float64]]:
+def lower_upper_decomposition(table: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """Lower-Upper (LU) Decomposition
 
     Example:
