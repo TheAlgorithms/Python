@@ -40,7 +40,6 @@ c = 299792458
 
 # Symbols
 ct, x, y, z = symbols("ct x y z")
-ct_p, x_p, y_p, z_p = symbols("ct' x' y' z'")
 
 
 # Vehicle's speed divided by speed of light (no units)
