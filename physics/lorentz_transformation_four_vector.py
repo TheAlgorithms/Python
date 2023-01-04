@@ -28,12 +28,11 @@ Where:
 
 Reference: https://en.wikipedia.org/wiki/Lorentz_transformation
 """
-from __future__ import annotations
 
 from math import sqrt
 
-import numpy as np  # type: ignore
-from sympy import symbols  # type: ignore
+import numpy as np
+from sympy import symbols
 
 # Coefficient
 # Speed of light (m/s)
@@ -92,7 +91,7 @@ def gamma(velocity: float) -> float:
       ...
     ValueError: Speed must be greater than 1!
 
-    >>> gamma(2*c)
+    >>> gamma(2 * c)
     Traceback (most recent call last):
       ...
     ValueError: Speed must not exceed Light Speed 299,792,458 [m/s]!
@@ -100,7 +99,7 @@ def gamma(velocity: float) -> float:
     return 1 / (sqrt(1 - beta(velocity) ** 2))
 
 
-def transformation_matrix(velocity: float) -> np.array:
+def transformation_matrix(velocity: float) -> np.ndarray:
     """
     >>> transformation_matrix(29979245)
     array([[ 1.00503781, -0.10050378,  0.        ,  0.        ],
@@ -144,11 +143,9 @@ def transformation_matrix(velocity: float) -> np.array:
     )
 
 
-def transform(
-    velocity: float, event: np.array = np.zeros(4), symbolic: bool = True  # noqa: B008
-) -> np.array:
+def transform(velocity: float, event: np.ndarray | None = None) -> np.ndarray:
     """
-    >>> transform(29979245,np.array([1,2,3,4]), False)
+    >>> transform(29979245, np.array([1, 2, 3, 4]))
     array([ 3.01302757e+08, -3.01302729e+07,  3.00000000e+00,  4.00000000e+00])
 
     >>> transform(29979245)
@@ -161,25 +158,21 @@ def transform(
            -0.066456172618675*ct + 1.0022057787097*x, 1.0*y, 1.0*z],
           dtype=object)
 
-    >>> transform(299792459, np.array([1,1,1,1]))
+    >>> transform(299792459, np.array([1, 1, 1, 1]))
     Traceback (most recent call last):
       ...
     ValueError: Speed must not exceed Light Speed 299,792,458 [m/s]!
 
-    >>> transform(-1, np.array([1,1,1,1]))
+    >>> transform(-1, np.array([1, 1, 1, 1]))
     Traceback (most recent call last):
       ...
     ValueError: Speed must be greater than 1!
     """
-    # Ensure event is not a vector of zeros
-    if not symbolic:
-
-        # x0 is ct (speed of ligt * time)
-        event[0] = event[0] * c
+    # Ensure event is not empty
+    if event is None:
+        event = np.array([ct, x, y, z])  # Symbolic four vector
     else:
-
-        # Symbolic four vector
-        event = np.array([ct, x, y, z])
+        event[0] *= c  # x0 is ct (speed of light * time)
 
     return transformation_matrix(velocity).dot(event)
 
@@ -200,6 +193,6 @@ if __name__ == "__main__":
     # Substitute symbols with numerical values:
     values = np.array([1, 1, 1, 1])
     sub_dict = {ct: c * values[0], x: values[1], y: values[2], z: values[3]}
-    numerical_vector = [four_vector[i].subs(sub_dict) for i in range(0, 4)]
+    numerical_vector = [four_vector[i].subs(sub_dict) for i in range(4)]
 
     print(f"\n{numerical_vector}")
