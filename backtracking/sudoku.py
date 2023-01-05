@@ -9,6 +9,7 @@ function on the next column to see if it returns True. if yes, we
 have solved the puzzle. else, we backtrack and place another number
 in that cell and repeat this process.
 """
+
 from __future__ import annotations
 
 Matrix = list[list[int]]
@@ -51,12 +52,11 @@ def is_safe(grid: Matrix, row: int, column: int, n: int) -> bool:
         if grid[row][i] == n or grid[i][column] == n:
             return False
 
-    for i in range(3):
-        for j in range(3):
-            if grid[(row - row % 3) + i][(column - column % 3) + j] == n:
-                return False
-
-    return True
+    return all(
+        grid[(row - row % 3) + i][(column - column % 3) + j] != n
+        for i in range(3)
+        for j in range(3)
+    )
 
 
 def find_empty_location(grid: Matrix) -> tuple[int, int] | None:
@@ -64,11 +64,10 @@ def find_empty_location(grid: Matrix) -> tuple[int, int] | None:
     This function finds an empty location so that we can assign a number
     for that particular row and column.
     """
-    for i in range(9):
-        for j in range(9):
-            if grid[i][j] == 0:
-                return i, j
-    return None
+    return next(
+        ((i, j) for i in range(9) for j in range(9) if grid[i][j] == 0),
+        None,
+    )
 
 
 def sudoku(grid: Matrix) -> Matrix | None:

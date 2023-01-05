@@ -76,11 +76,9 @@ def gaussian_elimination(
             factor = augmented_mat[col, row] / pivot
             augmented_mat[col, :] -= factor * augmented_mat[row, :]
 
-    x = retroactive_resolution(
+    return retroactive_resolution(
         augmented_mat[:, 0:columns], augmented_mat[:, columns : columns + 1]
     )
-
-    return x
 
 
 if __name__ == "__main__":
