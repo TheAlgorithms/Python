@@ -56,7 +56,7 @@ def is_safe(grid: Matrix, row: int, column: int, n: int) -> bool:
 
     return all(
         grid[(row - row % 3) + i][(column - column % 3) + j] != n
-        for i, j in itertools.product(range(3), range(3))
+        for i in range(3) for j in range(3))
     )
 
 
