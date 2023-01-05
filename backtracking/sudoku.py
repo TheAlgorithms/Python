@@ -66,7 +66,7 @@ def find_empty_location(grid: Matrix) -> tuple[int, int] | None:
     for that particular row and column.
     """
     return next(
-        ((i, j) for i, j in itertools.product(range(9), range(9)) if grid[i][j] == 0),
+        ((i, j) for i in range(9) for j in range(9) if grid[i][j] == 0),
         None,
     )
 
