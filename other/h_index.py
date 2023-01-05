@@ -51,7 +51,7 @@ def h_index(citations: list[int]) -> int:
 
     # validate:
     if not isinstance(citations, list) or not all(
-        [isinstance(item, int) and item >= 0 for item in citations]
+        isinstance(item, int) and item >= 0 for item in citations
     ):
         raise ValueError("The citations should be a list of non negative integers.")
 
