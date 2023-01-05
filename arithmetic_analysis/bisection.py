@@ -21,7 +21,7 @@ def bisection(function: Callable[[float], float], a: float, b: float) -> float:
     """
     start: float = a
     end: float = b
-    if function(start) == 0:  # one of the a or b is a root for the function
+    if function(start) == 0:  # start or end is a root for the function
         return start
     elif function(b) == 0:
         return b
