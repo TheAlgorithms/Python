@@ -89,7 +89,7 @@ def run_maze(maze: list[list[int]], i: int, j: int, solutions: list[list[int]]) 
         return True
 
     lower_flag = i >= 0 and j >= 0
-    upper_flag = (i < size) and (j < size)  # Check upper bounds
+    upper_flag = i < size and j < size  # Check upper bounds
 
     if lower_flag and upper_flag:
         # check for already visited and block points.
