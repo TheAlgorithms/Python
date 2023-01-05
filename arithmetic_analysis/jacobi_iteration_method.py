@@ -147,7 +147,7 @@ def strictly_diagonally_dominant(table: NDArray[float64]) -> bool:
     for i in range(rows):
         total = sum(table[i][j] for j in range(cols - 1) if i != j)
         if table[i][i] <= total:
-            return False
+            raise ValueError("Coefficient matrix is not strictly diagonally dominant")
 
     return True
 
