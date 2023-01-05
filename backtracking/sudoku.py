@@ -12,7 +12,6 @@ in that cell and repeat this process.
 
 from __future__ import annotations
 
-
 Matrix = list[list[int]]
 
 # assigning initial values to the grid
