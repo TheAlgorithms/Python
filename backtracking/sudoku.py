@@ -12,7 +12,6 @@ in that cell and repeat this process.
 
 from __future__ import annotations
 
-import itertools
 
 Matrix = list[list[int]]
 
