@@ -19,7 +19,6 @@ def main() -> None:
     Save images in output dir.
     """
     img_paths = get_dataset(IMAGE_DIR)
-    print("Processing...")
     new_images, paths = update_images(img_paths, BRIGHTNESS_PERCENT)
 
     for index, image in enumerate(new_images):
