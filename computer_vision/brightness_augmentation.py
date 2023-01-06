@@ -85,4 +85,3 @@ def random_chars(number_char: int = 32) -> str:
 
 if __name__ == "__main__":
     main()
-    print("DONE ✅")
