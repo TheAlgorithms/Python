@@ -1,3 +1,6 @@
+from functools import lru_cache
+
+
 def sum_of_digits(n: int) -> int:
     """
     Find the sum of digits of a number.
@@ -19,6 +22,23 @@ def sum_of_digits(n: int) -> int:
 
 
 def sum_of_digits_recursion(n: int) -> int:
+    """
+    Find the sum of digits of a number using recursion
+    >>> sum_of_digits_recursion(12345)
+    15
+    >>> sum_of_digits_recursion(123)
+    6
+    >>> sum_of_digits_recursion(-123)
+    6
+    >>> sum_of_digits_recursion(0)
+    0
+    """
+    n = abs(n)
+    return n if n < 10 else n % 10 + sum_of_digits(n // 10)
+
+
+@lru_cache(maxsize=None)
+def sum_of_digits_recursion_cached(n: int) -> int:
     """
     Find the sum of digits of a number using recursion
     >>> sum_of_digits_recursion(12345)
@@ -62,7 +82,12 @@ def benchmark() -> None:
         print(f"{call:56} = {func(value)} -- {timing:.4f} seconds")
 
     for value in (262144, 1125899906842624, 1267650600228229401496703205376):
-        for func in (sum_of_digits, sum_of_digits_recursion, sum_of_digits_compact):
+        for func in (
+            sum_of_digits,
+            sum_of_digits_recursion,
+            sum_of_digits_recursion_cached,
+            sum_of_digits_compact,
+        ):
             benchmark_a_function(func, value)
         print()
 
