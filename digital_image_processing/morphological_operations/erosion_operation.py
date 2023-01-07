@@ -2,7 +2,7 @@ import numpy as np
 from PIL import Image
 
 
-def rgb2gray(rgb: np.array) -> np.array:
+def rgb2gray(rgb: np.ndarray) -> np.ndarray:
     """
     Return gray image from rgb image
     >>> rgb2gray(np.array([[[127, 255, 0]]]))
@@ -18,7 +18,7 @@ def rgb2gray(rgb: np.array) -> np.array:
     return 0.2989 * r + 0.5870 * g + 0.1140 * b
 
 
-def gray2binary(gray: np.array) -> np.array:
+def gray2binary(gray: np.ndarray) -> np.ndarray:
     """
     Return binary image from gray image
     >>> gray2binary(np.array([[127, 255, 0]]))
@@ -35,7 +35,7 @@ def gray2binary(gray: np.array) -> np.array:
     return (127 < gray) & (gray <= 255)
 
 
-def erosion(image: np.array, kernel: np.array) -> np.array:
+def erosion(image: np.ndarray, kernel: np.ndarray) -> np.ndarray:
     """
     Return eroded image
     >>> erosion(np.array([[True, True, False]]), np.array([[0, 1, 0]]))
@@ -61,14 +61,13 @@ def erosion(image: np.array, kernel: np.array) -> np.array:
     return output
 
 
-# kernel to be applied
-structuring_element = np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]])
-
 if __name__ == "__main__":
     # read original image
-    image = np.array(Image.open(r"..\image_data\lena.jpg"))
+    lena = np.array(Image.open(r"..\image_data\lena.jpg"))
+    # kernel to be applied
+    structuring_element = np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]])
     # Apply erosion operation to a binary image
-    output = erosion(gray2binary(rgb2gray(image)), structuring_element)
+    output = erosion(gray2binary(rgb2gray(lena)), structuring_element)
     # Save the output image
     pil_img = Image.fromarray(output).convert("RGB")
     pil_img.save("result_erosion.png")
