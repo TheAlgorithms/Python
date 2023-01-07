@@ -16,9 +16,9 @@ fib_memoization runtime: 0.0107 ms
 fib_binet runtime: 0.0174 ms
 """
 
+from functools import lru_cache
 from math import sqrt
 from time import time
-from functools import lru_cache
 
 
 def time_func(func, *args, **kwargs):
