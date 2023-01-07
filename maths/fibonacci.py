@@ -197,9 +197,9 @@ def fib_binet(n: int) -> list[int]:
 
 
 if __name__ == "__main__":
-    num = 20
+    num = 30
     time_func(fib_iterative, num)
-    time_func(fib_recursive, num)
-    time_func(fib_recursive_cached, num)
+    time_func(fib_recursive, num)  # Around 3s runtime
+    time_func(fib_recursive_cached, num)  # Around 0ms runtime
     time_func(fib_memoization, num)
     time_func(fib_binet, num)
