@@ -17,7 +17,7 @@ This script is inspired by a corresponding research paper.
 import numpy as np
 
 
-def sigmoid(vector: np.array) -> np.array:
+def sigmoid(vector: np.ndarray) -> np.ndarray:
     """
     Mathematical function sigmoid takes a vector x of K real numbers as input and
     returns 1/ (1 + e^-x).
@@ -29,17 +29,15 @@ def sigmoid(vector: np.array) -> np.array:
     return 1 / (1 + np.exp(-vector))
 
 
-def sigmoid_linear_unit(vector: np.array) -> np.array:
+def sigmoid_linear_unit(vector: np.ndarray) -> np.ndarray:
     """
     Implements the Sigmoid Linear Unit (SiLU) or swish function
 
     Parameters:
-        vector (np.array): A  numpy array consisting of real
-        values.
+        vector (np.ndarray): A  numpy array consisting of real values
 
     Returns:
-        swish_vec (np.array): The input numpy array, after applying
-        swish.
+        swish_vec (np.ndarray): The input numpy array, after applying swish
 
     Examples:
     >>> sigmoid_linear_unit(np.array([-1.0, 1.0, 2.0]))
