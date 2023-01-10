@@ -4,6 +4,7 @@ Reference: https://en.wikipedia.org/wiki/Greatest_common_divisor
 """
 
 from collections import Counter
+from functools import reduce
 
 
 def get_factors(
@@ -87,23 +88,19 @@ def get_greatest_common_divisor(*numbers: int) -> int:
 
     # we just need factors, not numbers itself
     try:
-        data = [get_factors(number) for number in numbers]
+        same_factors, *factors = map(get_factors, numbers)
     except TypeError as e:
         raise Exception("numbers must be integer and greater than zero") from e
 
-    same_factors: Counter = data[0]
-    for d in data[1:]:
-        same_factors = same_factors & d
+    for factor in factors:
+        same_factors &= factor
         # get common factor between all
         # `&` return common elements with smaller value (for Counter type)
 
     # now, same_factors is something like {2: 2, 3: 4} that means 2 * 2 * 3 * 3 * 3 * 3
-    mult = 1
     # power each factor and multiply
     # for {2: 2, 3: 4}, it is [4, 81] and then 324
-    for m in [factor ** same_factors[factor] for factor in same_factors]:
-        mult *= m
-    return mult
+    return reduce(lambda x, y: x * y, (factor ** power for factor, power in same_factors.items()))
 
 
 if __name__ == "__main__":
