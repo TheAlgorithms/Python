@@ -4,7 +4,6 @@ Reference: https://en.wikipedia.org/wiki/Greatest_common_divisor
 """
 
 from collections import Counter
-from functools import reduce
 
 
 def get_factors(
@@ -98,9 +97,12 @@ def get_greatest_common_divisor(*numbers: int) -> int:
         # `&` return common elements with smaller value (for Counter type)
 
     # now, same_factors is something like {2: 2, 3: 4} that means 2 * 2 * 3 * 3 * 3 * 3
+    mult = 1
     # power each factor and multiply
     # for {2: 2, 3: 4}, it is [4, 81] and then 324
-    return reduce(lambda x, y: x * y, (factor ** power for factor, power in same_factors.items()), 1)
+    for m in [factor ** power for factor, power in same_factors.items()]:
+        mult *= m
+    return mult
 
 
 if __name__ == "__main__":
