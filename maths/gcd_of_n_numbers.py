@@ -100,17 +100,9 @@ def get_greatest_common_divisor(*numbers: int) -> int:
     mult = 1
     # power each factor and multiply
     # for {2: 2, 3: 4}, it is [4, 81] and then 324
-<<<<<<< HEAD
     for m in [factor ** power for factor, power in same_factors.items()]:
         mult *= m
     return mult
-=======
-    return reduce(
-        lambda x, y: x * y,
-        (factor**power for factor, power in same_factors.items()),
-        1,
-    )
->>>>>>> d5681d8dfcbb2e1f87f8270046bd9a34475de4cf
 
 
 if __name__ == "__main__":
