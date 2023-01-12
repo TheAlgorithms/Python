@@ -52,7 +52,7 @@ def longest_decomposition(text: str) -> int:
     def substrings_are_equal(
         first_substring_index: int, second_substring_index: int, length: int
     ) -> bool:
-         # length = min(len(first_substring_index), len(second_substring_index))
+        # length = min(len(first_substring_index), len(second_substring_index))
         return first_substring_index[:length] == second_substring_index[:length]
 
     def longest_decomposition(index: int) -> int:
