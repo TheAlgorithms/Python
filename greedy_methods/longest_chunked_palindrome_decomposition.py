@@ -42,9 +42,21 @@ def longest_decomposition(text: str) -> int:
     46
     >>> longest_decomposition('abcabcabcabcabcabcabcabcabcabcabcabcabcabcabc')
     15
+    >>> longest_decomposition('')
+    Traceback (most recent call last):
+        ...
+    ValueError: The text must be a non-empty string.
+    >>> longest_decomposition(None)
+    Traceback (most recent call last):
+        ...
+    ValueError: The text must be a non-empty string.
+    >>> longest_decomposition(1)
+    Traceback (most recent call last):
+        ...
+    ValueError: The text must be a non-empty string.
     """
 
-    if not text:
+    if not text or not isinstance(text, str):
         raise ValueError("The text must be a non-empty string.")
 
     len_text = len(text)
