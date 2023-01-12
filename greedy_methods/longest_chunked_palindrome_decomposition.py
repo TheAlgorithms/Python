@@ -44,7 +44,7 @@ def longest_decomposition(text: str) -> int:
     15
     """
 
-    if text is None or len(text) == 0:
+    if not text:
         raise ValueError("The text should be not empty string.")
 
     len_text = len(text)
