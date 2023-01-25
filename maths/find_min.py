@@ -29,7 +29,7 @@ def find_min(nums: list[int | float]) -> int | float:
 
 
 # Divide and Conquer algorithm
-def find_min(nums: list[int | float], left: int, right: int) -> int | float:
+def find_min_recursive(nums: list[int | float], left: int, right: int) -> int | float:
     """
     find min value in list
     :param nums: contains elements
@@ -62,7 +62,7 @@ def find_min(nums: list[int | float], left: int, right: int) -> int | float:
     IndexError: list index out of range
     """
     if len(nums) == 0:
-        raise ValueError("find_min() arg is an empty sequence")
+        raise ValueError("find_min_recursive() arg is an empty sequence")
     if (
         left >= len(nums)
         or left < -len(nums)
@@ -73,8 +73,10 @@ def find_min(nums: list[int | float], left: int, right: int) -> int | float:
     if left == right:
         return nums[left]
     mid = (left + right) >> 1  # the middle
-    left_min = find_min(nums, left, mid)  # find min in range[left, mid]
-    right_min = find_min(nums, mid + 1, right)  # find min in range[mid + 1, right]
+    left_min = find_min_recursive(nums, left, mid)  # find min in range[left, mid]
+    right_min = find_min_recursive(
+        nums, mid + 1, right
+    )  # find min in range[mid + 1, right]
 
     return left_min if left_min <= right_min else right_min
 

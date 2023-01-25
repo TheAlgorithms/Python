@@ -59,7 +59,7 @@ def find_max_recursive(nums: list[int | float], left: int, right: int) -> int | 
     IndexError: list index out of range
     """
     if len(nums) == 0:
-        raise ValueError("find_max() arg is an empty sequence")
+        raise ValueError("find_max_recursive() arg is an empty sequence")
     if (
         left >= len(nums)
         or left < -len(nums)
@@ -70,8 +70,10 @@ def find_max_recursive(nums: list[int | float], left: int, right: int) -> int | 
     if left == right:
         return nums[left]
     mid = (left + right) >> 1  # the middle
-    left_max = find_max(nums, left, mid)  # find max in range[left, mid]
-    right_max = find_max(nums, mid + 1, right)  # find max in range[mid + 1, right]
+    left_max = find_max_recursive(nums, left, mid)  # find max in range[left, mid]
+    right_max = find_max_recursive(
+        nums, mid + 1, right
+    )  # find max in range[mid + 1, right]
 
     return left_max if left_max >= right_max else right_max
 

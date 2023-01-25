@@ -5,7 +5,7 @@ for more info: https://en.wikipedia.org/wiki/Gamma_function
 Python's Standard Library gamma() function overflows around gamma(171.624).
 """
 
-from math import pi, sqrt, exp
+from math import exp, pi, sqrt
 
 from numpy import inf
 from scipy.integrate import quad
@@ -106,7 +106,7 @@ def test_gamma() -> None:
     assert gamma(0.5) == sqrt(pi)
     assert gamma(1) == 1.0
     assert gamma(2) == 1.0
-    
+
 
 if __name__ == "__main__":
     from doctest import testmod
