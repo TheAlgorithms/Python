@@ -34,7 +34,7 @@ def factorial(number: int) -> int:
     return value
 
 
-def factorial(n: int) -> int:
+def factorial_recursive(n: int) -> int:
     """
     Calculate the factorial of a positive integer
     https://en.wikipedia.org/wiki/Factorial
