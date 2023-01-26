@@ -1,38 +1,9 @@
-"""
-* Binary Exponentiation with Multiplication
-* This is a method to find a*b in a time complexity of O(log b)
-* This is one of the most commonly used methods of finding result of multiplication.
-* Also useful in cases where solution to (a*b)%c is required,
-* where a,b,c can be numbers over the computers calculation limits.
-* Done using iteration, can also be done using recursion
-
-* @author chinmoy159
-* @version 1.0 dated 10/08/2017
-"""
 
 
-def b_expo(a, b):
-    res = 0
-    while b > 0:
-        if b & 1:
-            res += a
-
-        a += a
-        b >>= 1
-
-    return res
 
 
-def b_expo_mod(a, b, c):
-    res = 0
-    while b > 0:
-        if b & 1:
-            res = ((res % c) + (a % c)) % c
 
-        a += a
-        b >>= 1
 
-    return res
 
 
 """

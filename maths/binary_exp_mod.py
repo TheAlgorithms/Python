@@ -17,6 +17,30 @@ def bin_exp_mod(a, n, b):
     return (r * r) % b
 
 
+def binary_exponentiation_mod_addition(a, b, c):
+    res = 0
+    while b > 0:
+        if b & 1:
+            res = ((res % c) + (a % c)) % c
+
+        a += a
+        b >>= 1
+
+    return res
+
+
+def binary_exponentiation__mod_powers(a, b, c):
+    res = 1
+    while b > 0:
+        if b & 1:
+            res = ((res % c) * (a % c)) % c
+
+        a *= a
+        b >>= 1
+
+    return res
+
+
 if __name__ == "__main__":
     try:
         BASE = int(input("Enter Base : ").strip())
