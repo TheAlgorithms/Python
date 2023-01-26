@@ -22,7 +22,7 @@ def permute(nums: list[int]) -> list[list[int]]:
     return result
 
 
-def permute2(nums: List[int]) -> List[List[int]]:
+def permute2(nums: list[int]) -> list[list[int]]:
     def backtrack(first=0):
         if first == n:
             output.append(nums[:])
