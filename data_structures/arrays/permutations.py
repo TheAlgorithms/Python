@@ -1,5 +1,7 @@
 from typing import List
-def permute(nums: List[int]) -> List[List[int]]:
+
+
+def permute(nums: list[int]) -> list[list[int]]:
     """
     Return all permutations.
 
@@ -8,6 +10,7 @@ def permute(nums: List[int]) -> List[List[int]]:
     >>> all(list(nums) in permute(numbers) for nums in permutations(numbers))
     True
     """
+
     def backtrack(first=0):
         if first == n:
             output.append(nums[:])
@@ -21,10 +24,12 @@ def permute(nums: List[int]) -> List[List[int]]:
     backtrack()
     return output
 
-
     # return result
+
+
 if __name__ == "__main__":
     import doctest
-    res = permute([1,2,3])
+
+    res = permute([1, 2, 3])
     print(res)
     doctest.testmod()
