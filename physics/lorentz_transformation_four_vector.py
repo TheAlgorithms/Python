@@ -50,13 +50,13 @@ def beta(velocity: float) -> float:
     >>> beta(0.2)
     Traceback (most recent call last):
       ...
-    ValueError: Speed must be greater than 1!
+    ValueError: Speed must be greater than or equal to 1!
     """
     if velocity > c:
         raise ValueError("Speed must not exceed light speed 299,792,458 [m/s]!")
     elif velocity < 1:
         # Usually the speed should be much higher than 1 (c order of magnitude)
-        raise ValueError("Speed must be greater than 1!")
+        raise ValueError("Speed must be greater than or equal to 1!")
 
     return velocity / c
 
@@ -77,7 +77,7 @@ def gamma(velocity: float) -> float:
     >>> gamma(0.3)
     Traceback (most recent call last):
       ...
-    ValueError: Speed must be greater than 1!
+    ValueError: Speed must be greater than or equal to 1!
     >>> gamma(2 * c)
     Traceback (most recent call last):
       ...
@@ -118,7 +118,7 @@ def transformation_matrix(velocity: float) -> np.ndarray:
     >>> transformation_matrix(0)
     Traceback (most recent call last):
       ...
-    ValueError: Speed must be greater than 1!
+    ValueError: Speed must be greater than or equal to 1!
     >>> transformation_matrix(c * 1.5)
     Traceback (most recent call last):
       ...
@@ -158,7 +158,7 @@ def transform(velocity: float, event: np.ndarray | None = None) -> np.ndarray:
     >>> transform(-1, np.array([1, 1, 1, 1]))
     Traceback (most recent call last):
       ...
-    ValueError: Speed must be greater than 1!
+    ValueError: Speed must be greater than or equal to 1!
     """
     # Ensure event is not empty
     if event is None:
