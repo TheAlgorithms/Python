@@ -1,6 +1,3 @@
-
-
-
 def binary_exponentiation_multiplication(a, b):
     """
     * Binary Exponentiation with Multiplication
@@ -9,6 +6,12 @@ def binary_exponentiation_multiplication(a, b):
     * Also useful in cases where solution to (a*b)%c is required,
     * where a,b,c can be numbers over the computers calculation limits.
     * Done using iteration, can also be done using recursion
+
+    * Let's say you need to calculate a ^ b
+    * RULE 1 : a * b = (a+a) * (b/2) -- example : 4 * 4 = (4+4) * (4/2) = 8 * 2
+    * RULE 2 : IF b is ODD, then -- a * b = a + (a * (b - 1)) :: where (b - 1) is even.
+    * Once b is even, repeat the process to get a * b
+    * Repeat the process till b = 1 OR b = 0, because a*1 = a AND a*0 = 0
 
     * @author chinmoy159
     * @version 1.0 dated 10/08/2017
@@ -34,6 +37,12 @@ def binary_exponentiation_powers(a, b):
     * where a,b,c can be numbers over the computers calculation limits.
     * Done using iteration, can also be done using recursion
 
+    * Let's say you need to calculate a ^ b
+    * RULE 1 : a ^ b = (a*a) ^ (b/2) -- example : 4 ^ 4 = (4*4) ^ (4/2) = 16 ^ 2
+    * RULE 2 : IF b is ODD, then -- a ^ b = a * (a ^ (b - 1)) :: where (b - 1) is even.
+    * Once b is even, repeat the process to get a ^ b
+    * Repeat the process till b = 1 OR b = 0, because a^1 = a AND a^0 = 1
+
     * @author chinmoy159
     * @version 1.0 dated 10/08/2017
     """
@@ -51,7 +60,7 @@ def binary_exponentiation_powers(a, b):
 
 def binary_exponentiation_recursion(a, b):
     """Binary Exponentiation with recursion.
-    
+
     * Time Complexity : O(logn)
     * @author : Junth Basnet
     """
@@ -59,7 +68,7 @@ def binary_exponentiation_recursion(a, b):
     if b == 0:
         return 1
 
-    elif n % 2 == 1:
+    elif b % 2 == 1:
         return binary_exponentiation_recursion(a, b - 1) * a
 
     else:
