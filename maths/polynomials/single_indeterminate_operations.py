@@ -186,3 +186,28 @@ class Polynomial:
         False
         """
         return not self.__eq__(polynomial_2)
+
+    def degree1_root(self) -> float:
+        """
+        Returns the root of degree 1 polynomial.
+        >>> p = Polynomial(1, [1, 2])
+        >>> p.degree1_root()
+        -2.0
+        >>> p = Polynomial(2, [1, 2, 3])
+        >>> p.degree1_root()
+        Traceback (most recent call last):
+        ...
+        ValueError: The degree of the polynomial should be 1.
+        >>> p = Polynomial(1, [0, 2])
+        >>> p.degree1_root()
+        Traceback (most recent call last):
+        ...
+        ValueError: The polynomial has no root (slope equal to 0).
+        """
+        if self.degree != 1:
+            raise ValueError("The degree of the polynomial should be 1.")
+
+        if self.coefficients[0] == 0:
+            raise ValueError("The polynomial has no root (slope equal to 0).")
+
+        return -self.coefficients[1] / self.coefficients[0]
