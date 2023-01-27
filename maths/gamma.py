@@ -64,7 +64,8 @@ def gamma_recursive(num: float) -> float:
     3.3233509704478426
     >>> gamma_recursive(171.5)
     9.483367566824795e+307
-    >>> all(isclose(gamma_recursive(num), math_gamma(num)) for num in (0.5, 2, 3.5, 171.5))
+    >>> all(\
+        isclose(gamma_recursive(num), math_gamma(num)) for num in (0.5, 2, 3.5, 171.5))
     True
     >>> gamma_recursive(0)
     Traceback (most recent call last):
@@ -103,9 +104,9 @@ def test_gamma() -> None:
     """
     >>> test_gamma()
     """
-    assert gamma(0.5) == sqrt(pi)
-    assert gamma(1) == 1.0
-    assert gamma(2) == 1.0
+    assert gamma_recursive(0.5) == sqrt(pi)
+    assert gamma_recursive(1) == 1.0
+    assert gamma_recursive(2) == 1.0
 
 
 if __name__ == "__main__":
