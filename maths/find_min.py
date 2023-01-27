@@ -38,25 +38,25 @@ def find_min_recursive(nums: list[int | float], left: int, right: int) -> int | 
     :return: min in nums
 
     >>> for nums in ([3, 2, 1], [-3, -2, -1], [3, -3, 0], [3.0, 3.1, 2.9]):
-    ...     find_min(nums, 0, len(nums) - 1) == min(nums)
+    ...     find_min_recursive(nums, 0, len(nums) - 1) == min(nums)
     True
     True
     True
     True
     >>> nums = [1, 3, 5, 7, 9, 2, 4, 6, 8, 10]
-    >>> find_min(nums, 0, len(nums) - 1) == min(nums)
+    >>> find_min_recursive(nums, 0, len(nums) - 1) == min(nums)
     True
-    >>> find_min([], 0, 0)
+    >>> find_min_recursive([], 0, 0)
     Traceback (most recent call last):
         ...
-    ValueError: find_min() arg is an empty sequence
-    >>> find_min(nums, 0, len(nums)) == min(nums)
+    ValueError: find_min_recursive() arg is an empty sequence
+    >>> find_min_recursive(nums, 0, len(nums)) == min(nums)
     Traceback (most recent call last):
         ...
     IndexError: list index out of range
-    >>> find_min(nums, -len(nums), -1) == min(nums)
+    >>> find_min_recursive(nums, -len(nums), -1) == min(nums)
     True
-    >>> find_min(nums, -len(nums) - 1, -1) == min(nums)
+    >>> find_min_recursive(nums, -len(nums) - 1, -1) == min(nums)
     Traceback (most recent call last):
         ...
     IndexError: list index out of range

@@ -56,33 +56,33 @@ def gamma_recursive(num: float) -> float:
     Implemented using recursion
     Examples:
     >>> from math import isclose, gamma as math_gamma
-    >>> gamma(0.5)
+    >>> gamma_recursive(0.5)
     1.7724538509055159
-    >>> gamma(2)
+    >>> gamma_recursive(2)
     1.0
-    >>> gamma(3.5)
+    >>> gamma_recursive(3.5)
     3.3233509704478426
-    >>> gamma(171.5)
+    >>> gamma_recursive(171.5)
     9.483367566824795e+307
-    >>> all(isclose(gamma(num), math_gamma(num)) for num in (0.5, 2, 3.5, 171.5))
+    >>> all(isclose(gamma_recursive(num), math_gamma(num)) for num in (0.5, 2, 3.5, 171.5))
     True
-    >>> gamma(0)
+    >>> gamma_recursive(0)
     Traceback (most recent call last):
         ...
     ValueError: math domain error
-    >>> gamma(-1.1)
+    >>> gamma_recursive(-1.1)
     Traceback (most recent call last):
         ...
     ValueError: math domain error
-    >>> gamma(-4)
+    >>> gamma_recursive(-4)
     Traceback (most recent call last):
         ...
     ValueError: math domain error
-    >>> gamma(172)
+    >>> gamma_recursive(172)
     Traceback (most recent call last):
         ...
     OverflowError: math range error
-    >>> gamma(1.1)
+    >>> gamma_recursive(1.1)
     Traceback (most recent call last):
         ...
     NotImplementedError: num must be an integer or a half-integer
@@ -96,7 +96,7 @@ def gamma_recursive(num: float) -> float:
     elif num == 0.5:
         return sqrt(pi)
     else:
-        return 1.0 if num == 1 else (num - 1) * gamma(num - 1)
+        return 1.0 if num == 1 else (num - 1) * gamma_recursive(num - 1)
 
 
 def test_gamma() -> None:

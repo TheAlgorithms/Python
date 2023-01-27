@@ -35,25 +35,25 @@ def find_max_recursive(nums: list[int | float], left: int, right: int) -> int | 
     :return: max in nums
 
     >>> for nums in ([3, 2, 1], [-3, -2, -1], [3, -3, 0], [3.0, 3.1, 2.9]):
-    ...     find_max(nums, 0, len(nums) - 1) == max(nums)
+    ...     find_max_recursive(nums, 0, len(nums) - 1) == max(nums)
     True
     True
     True
     True
     >>> nums = [1, 3, 5, 7, 9, 2, 4, 6, 8, 10]
-    >>> find_max(nums, 0, len(nums) - 1) == max(nums)
+    >>> find_max_recursive(nums, 0, len(nums) - 1) == max(nums)
     True
-    >>> find_max([], 0, 0)
+    >>> find_max_recursive([], 0, 0)
     Traceback (most recent call last):
         ...
-    ValueError: find_max() arg is an empty sequence
-    >>> find_max(nums, 0, len(nums)) == max(nums)
+    ValueError: find_max_recursive() arg is an empty sequence
+    >>> find_max_recursive(nums, 0, len(nums)) == max(nums)
     Traceback (most recent call last):
         ...
     IndexError: list index out of range
-    >>> find_max(nums, -len(nums), -1) == max(nums)
+    >>> find_max_recursive(nums, -len(nums), -1) == max(nums)
     True
-    >>> find_max(nums, -len(nums) - 1, -1) == max(nums)
+    >>> find_max_recursive(nums, -len(nums) - 1, -1) == max(nums)
     Traceback (most recent call last):
         ...
     IndexError: list index out of range
