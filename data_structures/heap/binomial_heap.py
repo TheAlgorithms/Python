@@ -174,7 +174,6 @@ class BinomialHeap:
                 i.left_tree_size == i.parent.left_tree_size
                 and i.left_tree_size != i.parent.parent.left_tree_size
             ):
-
                 # Neighbouring Nodes
                 previous_node = i.left
                 next_node = i.parent.parent
@@ -233,7 +232,6 @@ class BinomialHeap:
                 and self.bottom_root.left_tree_size
                 == self.bottom_root.parent.left_tree_size
             ):
-
                 # Next node
                 next_node = self.bottom_root.parent.parent
 

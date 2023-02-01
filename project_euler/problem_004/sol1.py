@@ -32,12 +32,10 @@ def solution(n: int = 998001) -> int:
 
     # fetches the next number
     for number in range(n - 1, 9999, -1):
-
         str_number = str(number)
 
         # checks whether 'str_number' is a palindrome.
         if str_number == str_number[::-1]:
-
             divisor = 999
 
             # if 'number' is a product of two 3-digit numbers

@@ -2,7 +2,6 @@
 
 
 def decimal_to_binary(num: int) -> str:
-
     """
     Convert an Integer Decimal Number to a Binary Number as str.
     >>> decimal_to_binary(0)

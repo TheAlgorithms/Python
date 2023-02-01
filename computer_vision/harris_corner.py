@@ -9,7 +9,6 @@ https://en.wikipedia.org/wiki/Harris_Corner_Detector
 
 class HarrisCorner:
     def __init__(self, k: float, window_size: int):
-
         """
         k : is an empirically determined constant in [0.04,0.06]
         window_size : neighbourhoods considered
@@ -25,7 +24,6 @@ class HarrisCorner:
         return str(self.k)
 
     def detect(self, img_path: str) -> tuple[cv2.Mat, list[list[int]]]:
-
         """
         Returns the image with corners identified
         img_path  : path of the image
@@ -68,7 +66,6 @@ class HarrisCorner:
 
 
 if __name__ == "__main__":
-
     edge_detect = HarrisCorner(0.04, 3)
     color_img, _ = edge_detect.detect("path_to_image")
     cv2.imwrite("detect.png", color_img)
