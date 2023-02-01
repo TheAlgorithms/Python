@@ -67,7 +67,6 @@ def benchmark():
 
 
 class TestLeastCommonMultiple(unittest.TestCase):
-
     test_inputs = [
         (10, 20),
         (13, 15),

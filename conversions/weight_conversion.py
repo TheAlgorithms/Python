@@ -307,7 +307,6 @@ def weight_conversion(from_type: str, to_type: str, value: float) -> float:
 
 
 if __name__ == "__main__":
-
     import doctest
 
     doctest.testmod()

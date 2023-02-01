@@ -114,7 +114,6 @@ def get_image(
     # loop through the image-coordinates
     for image_x in range(image_width):
         for image_y in range(image_height):
-
             # determine the figure-coordinates based on the image-coordinates
             figure_height = figure_width / image_width * image_height
             figure_x = figure_center_x + (image_x / image_width - 0.5) * figure_width
