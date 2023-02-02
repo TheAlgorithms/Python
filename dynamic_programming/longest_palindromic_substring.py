@@ -8,7 +8,7 @@
 from __future__ import annotations
 
 
-def longest_palindromic_substring(s: str) -> str:
+def longest_palindromic_substring(input_str: str) -> str:
     """
     >>> longest_palindromic_substring("a")
     'a'
@@ -19,7 +19,7 @@ def longest_palindromic_substring(s: str) -> str:
     >>> longest_palindromic_substring("aaaccaa")
     'aaccaa'
     """
-    length = len(s)
+    length = len(input_str)
 
     # table dp represents longest palindrom starting from i to j
     dp = [[False for _ in range(length)] for _ in range(length)]
@@ -34,13 +34,13 @@ def longest_palindromic_substring(s: str) -> str:
     start = 0
     for i in range(length - 1, -1, -1):
         for j in range(i + 1, length):
-            if s[i] == s[j]:
+            if input_str[i] == input_str[j]:
                 if j - i == 1 or dp[i + 1][j - 1]:
                     dp[i][j] = True
                     if j - i + 1 > max_length:
                         start = i
                         max_length = j - i + 1
-    return s[start : start + max_length]
+    return input_str[start : start + max_length]
 
 
 if __name__ == "__main__":
