@@ -1,5 +1,5 @@
 """
-Given a linked list with head pointer, 
+Given a linked list with head pointer,
 sort the linked list using quicksort technique without using any extra space
 Time complexity: O(NlogN), Space complexity: O(1)
 """
@@ -10,8 +10,8 @@ class Node:
     def __init__(self, data: int):
         self.data = data
         self.next = None
-        
-        
+
+
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -34,9 +34,9 @@ class LinkedList:
         """
         temp = self.head
         if temp == None:
-            return 'Linked List is empty'
+            return "Linked List is empty"
         while temp.next:
-            print(temp.data, '->', end='')
+            print(temp.data, "->", end="")
             temp = temp.next
         print(temp.data)
         return
@@ -78,12 +78,14 @@ def quicksort_ll(start: Node, end: None):
 
 if __name__ == "__main__":
     ll = LinkedList()
-    print("Enter the space seperated values of numbers to be inserted in linkedlist prompted below:")
+    print(
+        "Enter the space seperated values of numbers to be inserted in linkedlist prompted below:"
+    )
     arr = list(map(int, input().split()))
     for num in arr:
         ll.insert(num)
     print("Linkedlist before sorting:")
     ll.printll()
     quicksort_ll(ll.head, None)
-    print('Linkedlist after sorting: ')
+    print("Linkedlist after sorting: ")
     ll.printll()
