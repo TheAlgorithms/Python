@@ -9,6 +9,10 @@ def present_value_compound(
     """
     >>> present_value_compound(10000.0, 0.06, 10)
     5583.947769151178
+    >>> present_value_compound(10, 0.05, 500)
+    2.54302403598631e-10
+    >>> present_value_compound(25, 1.5, 10)
+    0.00262144
     """
 
     if future_value <= 0:
