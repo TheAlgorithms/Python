@@ -59,7 +59,6 @@ def newton_raphson(
 
 # Let's Execute
 if __name__ == "__main__":
-
     # Find root of trigonometric function
     # Find value of pi
     print(f"The root of sin(x) = 0 is {newton_raphson('sin(x)', 2)}")

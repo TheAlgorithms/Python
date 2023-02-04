@@ -62,7 +62,6 @@ def find_minimum_change(denominations: list[int], value: str) -> list[int]:
 
     # Traverse through all denomination
     for denomination in reversed(denominations):
-
         # Find denominations
         while int(total_value) >= int(denomination):
             total_value -= int(denomination)
@@ -73,7 +72,6 @@ def find_minimum_change(denominations: list[int], value: str) -> list[int]:
 
 # Driver Code
 if __name__ == "__main__":
-
     denominations = []
     value = "0"
 

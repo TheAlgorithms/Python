@@ -41,7 +41,6 @@ def xgboost(features: np.ndarray, target: np.ndarray) -> XGBClassifier:
 
 
 def main() -> None:
-
     """
     >>> main()
 

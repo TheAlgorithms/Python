@@ -37,7 +37,6 @@ def calculate_turn_around_time(
     arrival_time.sort()
 
     while no_of_process > finished_process_count:
-
         """
         If the current time is less than the arrival time of
         the process that arrives first among the processes that have not been performed,
@@ -94,7 +93,6 @@ def calculate_waiting_time(
 
 
 if __name__ == "__main__":
-
     no_of_process = 5
     process_name = ["A", "B", "C", "D", "E"]
     arrival_time = [1, 2, 3, 4, 5]

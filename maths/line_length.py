@@ -10,7 +10,6 @@ def line_length(
     x_end: int | float,
     steps: int = 100,
 ) -> float:
-
     """
     Approximates the arc length of a line segment by treating the curve as a
     sequence of linear lines and summing their lengths
@@ -41,7 +40,6 @@ def line_length(
     length = 0.0
 
     for _ in range(steps):
-
         # Approximates curve as a sequence of linear lines and sums their length
         x2 = (x_end - x_start) / steps + x1
         fx2 = fnc(x2)

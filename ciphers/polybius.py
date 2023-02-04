@@ -19,7 +19,6 @@ SQUARE = [
 
 class PolybiusCipher:
     def __init__(self) -> None:
-
         self.SQUARE = np.array(SQUARE)
 
     def letter_to_numbers(self, letter: str) -> np.ndarray:

@@ -50,7 +50,6 @@ def bilateral_filter(
     size_x, size_y = img.shape
     for i in range(kernel_size // 2, size_x - kernel_size // 2):
         for j in range(kernel_size // 2, size_y - kernel_size // 2):
-
             img_s = get_slice(img, i, j, kernel_size)
             img_i = img_s - img_s[kernel_size // 2, kernel_size // 2]
             img_ig = vec_gaussian(img_i, intensity_variance)
