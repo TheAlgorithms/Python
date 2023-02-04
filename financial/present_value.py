@@ -5,7 +5,6 @@
 def present_value_compound(
     future_value: float, rate: float, interest_period: float
 ) -> float:
-
     """
     >>> present_value_compound(10000.0, 0.06, 10)
     5583.947769151178
