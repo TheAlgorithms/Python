@@ -34,7 +34,6 @@ def oe_process(position, value, l_send, r_send, lr_cv, rr_cv, result_pipe):
     # we *could* stop early if we are sorted already, but it takes as long to
     # find out we are sorted as it does to sort the list with this algorithm
     for i in range(0, 10):
-
         if (i + position) % 2 == 0 and r_send is not None:
             # send your value to your right neighbor
             process_lock.acquire()

@@ -62,7 +62,7 @@ def pluperfect_number(n: int) -> bool:
         digit_histogram[rem] += 1
         digit_total += 1
 
-    for (cnt, i) in zip(digit_histogram, range(len(digit_histogram))):
+    for cnt, i in zip(digit_histogram, range(len(digit_histogram))):
         total += cnt * i**digit_total
 
     return n == total

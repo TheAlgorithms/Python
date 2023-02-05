@@ -105,7 +105,6 @@ def get_nodes_from_left_to_right(
         if not root:
             return
         if level == 1:
-
             output.append(root.data)
         elif level > 1:
             populate_output(root.left, level - 1)

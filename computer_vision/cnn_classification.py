@@ -28,7 +28,6 @@ import tensorflow as tf
 from tensorflow.keras import layers, models
 
 if __name__ == "__main__":
-
     # Initialising the CNN
     # (Sequential- Building the model layer by layer)
     classifier = models.Sequential()
