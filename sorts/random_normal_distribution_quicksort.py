@@ -19,7 +19,6 @@ def _in_place_quick_sort(a, start, end):
 
 
 def _in_place_partition(a, start, end):
-
     count = 0
     pivot = randint(start, end)
     temp = a[end]
@@ -27,7 +26,6 @@ def _in_place_partition(a, start, end):
     a[pivot] = temp
     new_pivot_index = start - 1
     for index in range(start, end):
-
         count += 1
         if a[index] < a[end]:  # check if current val is less than pivot value
             new_pivot_index = new_pivot_index + 1

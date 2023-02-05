@@ -230,7 +230,6 @@ def enigma(
     # encryption/decryption process --------------------------
     for symbol in text:
         if symbol in abc:
-
             # 1st plugboard --------------------------
             if symbol in plugboard:
                 symbol = plugboard[symbol]

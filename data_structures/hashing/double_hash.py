@@ -24,7 +24,6 @@ class DoubleHash(HashTable):
         super().__init__(*args, **kwargs)
 
     def __hash_function_2(self, value, data):
-
         next_prime_gt = (
             next_prime(value % self.size_table)
             if not is_prime(value % self.size_table)

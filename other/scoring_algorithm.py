@@ -26,7 +26,6 @@ Thus the weights for each column are as follows:
 def procentual_proximity(
     source_data: list[list[float]], weights: list[int]
 ) -> list[list[float]]:
-
     """
     weights - int list
     possible values - 0 / 1

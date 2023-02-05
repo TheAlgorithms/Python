@@ -15,7 +15,6 @@ DIGITS_SQUARED = [sum(int(c, 10) ** 2 for c in i.__str__()) for i in range(10000
 
 
 def next_number(number: int) -> int:
-
     """
     Returns the next number of the chain by adding the square of each digit
     to form a new number.
@@ -31,7 +30,6 @@ def next_number(number: int) -> int:
 
     sum_of_digits_squared = 0
     while number:
-
         # Increased Speed Slightly by checking every 5 digits together.
         sum_of_digits_squared += DIGITS_SQUARED[number % 100000]
         number //= 100000

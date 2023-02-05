@@ -73,7 +73,6 @@ def tim_sort(lst):
 
 
 def main():
-
     lst = [5, 9, 10, 3, -4, 5, 178, 92, 46, -18, 0, 7]
     sorted_lst = tim_sort(lst)
     print(sorted_lst)
