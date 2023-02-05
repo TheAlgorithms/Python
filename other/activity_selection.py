@@ -25,7 +25,6 @@ def print_max_activities(start: list[int], finish: list[int]) -> None:
 
     # Consider rest of the activities
     for j in range(n):
-
         # If this activity has start time greater than
         # or equal to the finish time of previously
         # selected activity, then select it

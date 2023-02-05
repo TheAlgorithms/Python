@@ -20,7 +20,6 @@ def check_bipartite(graph):
             visited[u] = True
 
             for neighbour in graph[u]:
-
                 if neighbour == u:
                     return False
 

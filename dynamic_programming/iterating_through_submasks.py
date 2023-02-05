@@ -9,7 +9,6 @@ from __future__ import annotations
 
 
 def list_of_submasks(mask: int) -> list[int]:
-
     """
     Args:
         mask : number which shows mask ( always integer > 0, zero does not have any

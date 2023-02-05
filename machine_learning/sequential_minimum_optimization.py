@@ -82,7 +82,6 @@ class SmoSVM:
         k = self._k
         state = None
         while True:
-
             # 1: Find alpha1, alpha2
             try:
                 i1, i2 = self.choose_alpha.send(state)
@@ -146,7 +145,6 @@ class SmoSVM:
 
     # Predict test samples
     def predict(self, test_samples, classify=True):
-
         if test_samples.shape[1] > self.samples.shape[1]:
             raise ValueError(
                 "Test samples' feature length does not equal to that of train samples"
