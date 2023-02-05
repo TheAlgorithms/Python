@@ -18,7 +18,6 @@ from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, exec
 def quantum_teleportation(
     theta: float = np.pi / 2, phi: float = np.pi / 2, lam: float = np.pi / 2
 ) -> qiskit.result.counts.Counts:
-
     """
     # >>> quantum_teleportation()
     #{'00': 500, '11': 500} # ideally

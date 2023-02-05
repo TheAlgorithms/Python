@@ -19,7 +19,6 @@ def calc_derivative(f, a, h=0.001):
 
 
 def newton_raphson(f, x0=0, maxiter=100, step=0.0001, maxerror=1e-6, logsteps=False):
-
     a = x0  # set the initial guess
     steps = [a]
     error = abs(f(a))

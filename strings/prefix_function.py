@@ -29,7 +29,6 @@ def prefix_function(input_string: str) -> list:
     prefix_result = [0] * len(input_string)
 
     for i in range(1, len(input_string)):
-
         # use last results for better performance - dynamic programming
         j = prefix_result[i - 1]
         while j > 0 and input_string[i] != input_string[j]:

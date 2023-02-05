@@ -47,7 +47,6 @@ def partition_graph(graph: dict[str, list[str]]) -> set[tuple[str, str]]:
     graph_copy = {node: graph[node][:] for node in graph}
 
     while len(graph_copy) > 2:
-
         # Choose a random edge.
         u = random.choice(list(graph_copy.keys()))
         v = random.choice(graph_copy[u])

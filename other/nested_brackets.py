@@ -15,14 +15,12 @@ brackets and returns true if S is nested and false otherwise.
 
 
 def is_balanced(s):
-
     stack = []
     open_brackets = set({"(", "[", "{"})
     closed_brackets = set({")", "]", "}"})
     open_to_closed = dict({"{": "}", "[": "]", "(": ")"})
 
     for i in range(len(s)):
-
         if s[i] in open_brackets:
             stack.append(s[i])
 
