@@ -34,7 +34,6 @@ def hubble_parameter(
     dark_energy: float,
     redshift: float,
 ) -> float:
-
     """
     Input Parameters
     ----------------
