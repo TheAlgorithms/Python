@@ -13,7 +13,6 @@ from collections import defaultdict
 
 class AssignmentUsingBitmask:
     def __init__(self, task_performed, total):
-
         self.total_tasks = total  # total no of tasks (N)
 
         # DP table will have a dimension of (2^M)*N
@@ -29,7 +28,6 @@ class AssignmentUsingBitmask:
         self.final_mask = (1 << len(task_performed)) - 1
 
     def count_ways_until(self, mask, task_no):
-
         # if mask == self.finalmask all persons are distributed tasks, return 1
         if mask == self.final_mask:
             return 1
@@ -49,7 +47,6 @@ class AssignmentUsingBitmask:
         # assign for the remaining tasks.
         if task_no in self.task:
             for p in self.task[task_no]:
-
                 # if p is already given a task
                 if mask & (1 << p):
                     continue
@@ -64,7 +61,6 @@ class AssignmentUsingBitmask:
         return self.dp[mask][task_no]
 
     def count_no_of_ways(self, task_performed):
-
         # Store the list of persons for each task
         for i in range(len(task_performed)):
             for j in task_performed[i]:
@@ -75,7 +71,6 @@ class AssignmentUsingBitmask:
 
 
 if __name__ == "__main__":
-
     total_tasks = 5  # total no of tasks (the value of N)
 
     # the list of tasks that can be done by M persons.

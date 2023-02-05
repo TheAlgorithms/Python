@@ -220,7 +220,6 @@ def tabu_search(
         while not found:
             i = 0
             while i < len(best_solution):
-
                 if best_solution[i] != solution[i]:
                     first_exchange_node = best_solution[i]
                     second_exchange_node = solution[i]
