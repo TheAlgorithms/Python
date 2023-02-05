@@ -49,7 +49,6 @@ def main() -> None:
 
     for _ in range(epochs):
         for j in range(len(training_samples)):
-
             # training sample
             sample = training_samples[j]
 

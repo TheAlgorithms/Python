@@ -8,7 +8,6 @@ class Graph:
         self.graph[v - 1][u - 1] = 1
 
     def show(self):
-
         for i in self.graph:
             for j in i:
                 print(j, end=" ")

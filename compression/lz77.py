@@ -89,7 +89,6 @@ class LZ77Compressor:
 
         # while there are still characters in text to compress
         while text:
-
             # find the next encoding phrase
             # - triplet with offset, length, indicator (the next encoding character)
             token = self._find_encoding_token(text, search_buffer)
