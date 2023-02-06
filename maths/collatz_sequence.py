@@ -70,10 +70,12 @@ def edmund_harriss_plot(n, angle=10, twist=2) -> int:
     orbit = collatz_sequence(n)[::-1]
 
     # The origin and initial heading.
-    xs, ys, heading = [0], [0], 0
+    xs: float = [0]
+    ys: float = [0]
+    heading: int = 0
 
     # Build up the lists of x and y coordinates.
-    for i, o in enumerate(orbit):
+    for _i, o in enumerate(orbit):
 
         # Update the current heading.
         heading += turn_angle(o, angle=angle, twist=twist)
