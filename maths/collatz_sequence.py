@@ -96,8 +96,8 @@ def edmund_harriss_plot(n, angle=10, twist=2) -> int:
     return len(orbit)
 
 
-def delta_seconds(startTime: datetime, endTime: datetime):
-    return (endTime - startTime).total_seconds()
+def delta_seconds(start_time: datetime, end_time: datetime):
+    return (end_time - start_time).total_seconds()
 
 
 def main():
