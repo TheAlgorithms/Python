@@ -77,7 +77,6 @@ def edmund_harriss_plot(n, angle=10, twist=2) -> int:
 
     # Build up the lists of x and y coordinates.
     for _i, o in enumerate(orbit):
-
         # Update the current heading.
         heading += turn_angle(o, angle=angle, twist=twist)
 
