@@ -1,7 +1,8 @@
 from __future__ import annotations
-from datetime import datetime
 
 import math
+from datetime import datetime
+
 import matplotlib.pyplot as plt
 
 
@@ -97,7 +98,6 @@ def edmund_harriss_plot(n, angle=10, twist=2) -> int:
 
 
 def delta_seconds(startTime: datetime, endTime: datetime):
-
     return (endTime - startTime).total_seconds()
 
 
@@ -138,13 +138,11 @@ def main():
     total_start: datetime = reporting_start
 
     for i in range(1, max_limit + 1):
-
         current_steps = edmund_harriss_plot(i)
         reporting_steps += current_steps
         total_steps += current_steps
 
         if i % reporting_magnitude == 0:
-
             reporting_end = datetime.now()
             reporting_seconds = delta_seconds(reporting_start, reporting_end)
             print(
@@ -159,7 +157,6 @@ def main():
     total_end = reporting_end
 
     if reporting_steps != 0:
-
         sequence_seconds = delta_seconds(reporting_start, reporting_end)
         print(
             f"""Collatz sequence from {max_reporting_magnitude + 1}-{max_limit}
