@@ -7,7 +7,7 @@ def binary_exponentiation_multiplication(a, b):
     * where a,b,c can be numbers over the computers calculation limits.
     * Done using iteration, can also be done using recursion
 
-    * Let's say you need to calculate a ^ b
+    * Let's say you need to calculate a * b
     * RULE 1 : a * b = (a+a) * (b/2) -- example : 4 * 4 = (4+4) * (4/2) = 8 * 2
     * RULE 2 : IF b is ODD, then -- a * b = a + (a * (b - 1)) :: where (b - 1) is even.
     * Once b is even, repeat the process to get a * b
