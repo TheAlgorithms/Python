@@ -72,7 +72,7 @@ def find_min_recursive(nums: list[int | float], left: int, right: int) -> int | 
         raise IndexError("list index out of range")
     if left == right:
         return nums[left]
-    mid = (left + right) >> 1  # the middle
+    mid = (left + right) // 2  # the middle
     left_min = find_min_recursive(nums, left, mid)  # find min in range[left, mid]
     right_min = find_min_recursive(
         nums, mid + 1, right
