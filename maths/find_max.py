@@ -69,7 +69,7 @@ def find_max_recursive(nums: list[int | float], left: int, right: int) -> int | 
         raise IndexError("list index out of range")
     if left == right:
         return nums[left]
-    mid = (left + right) >> 1  # the middle
+    mid = (left + right) // 2  # the middle
     left_max = find_max_recursive(nums, left, mid)  # find max in range[left, mid]
     right_max = find_max_recursive(
         nums, mid + 1, right
