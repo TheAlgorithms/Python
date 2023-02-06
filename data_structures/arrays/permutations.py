@@ -7,7 +7,7 @@ def permute(nums: list[int]) -> list[list[int]]:
     >>> all(list(nums) in permute(numbers) for nums in permutations(numbers))
     True
     """
-    result = []  
+    result = []
     if len(nums) == 1:
         return [nums.copy()] #returns a copy of list nums
     for _ in range(len(nums)):
