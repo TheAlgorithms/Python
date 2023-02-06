@@ -7,9 +7,9 @@ def permute(nums: list[int]) -> list[list[int]]:
     >>> all(list(nums) in permute(numbers) for nums in permutations(numbers))
     True
     """
-    result = []
+    result = []  
     if len(nums) == 1:
-        return [nums.copy()]
+        return [nums.copy()] #returns a copy of list nums
     for _ in range(len(nums)):
         n = nums.pop(0)
         permutations = permute(nums)
@@ -21,6 +21,7 @@ def permute(nums: list[int]) -> list[list[int]]:
 
 
 if __name__ == "__main__":
+     '''this is used to examine the docstrings in the module, it does not return anything but
+if any error is there it will print the error and its cause in stdout'''
     import doctest
-
     doctest.testmod()
