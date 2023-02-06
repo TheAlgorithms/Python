@@ -37,7 +37,7 @@ def collatz_sequence(n: int) -> list[int]:
     return sequence
 
 
-def turn_angle(n, angle, twist):
+def turn_angle(n, angle, twist) -> int:
     """Compute the turn angle based on whether n is even or odd.
 
     Arguments:
