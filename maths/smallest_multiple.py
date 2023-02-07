@@ -8,16 +8,15 @@ of the numbers from 1 to n?
 """
 
 
-def find_prime_numbers(n):
+def find_prime_numbers(num: int) -> list:
     """
     Find all prime numbers for one particular number.
-    n = 10
     >>> find_prime_numbers(10)
     [2, 3, 5, 7]
     """
     ln = []
     x = 2
-    while x < n:
+    while x < num:
         y = 2
         while y < x + 1:
             v = x // y
@@ -32,7 +31,7 @@ def find_prime_numbers(n):
     return ln
 
 
-def find_max_power(n, ln):
+def find_max_power(num: int, ln: list) -> int:
     """
     Find the max power for all prime numbers.
     >>> find_max_power(10, [2, 3, 5, 7])
@@ -43,7 +42,7 @@ def find_max_power(n, ln):
     for e in ln:
         max_power = 0
         value = 2
-        while value < n + 1:
+        while value < num + 1:
             power = 0
             v_actual = value
             while True:
@@ -66,12 +65,12 @@ def find_max_power(n, ln):
 
 
 if __name__ == "__main__":
-    n = 10
+    num = 10
     result = 0
     l_prime = []
-    l_prime = find_prime_numbers(n)
+    l_prime = find_prime_numbers(num)
     print("Prime numbers:")
     print(l_prime)
-    result = find_max_power(n, l_prime)
+    result = find_max_power(num, l_prime)
     print("Smallest multiple:")
     print(result)
