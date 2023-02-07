@@ -31,12 +31,13 @@ def find_prime_numbers(num: int) -> list:
     return ln
 
 
-def find_max_power(num: int, ln: list) -> int:
+def solution(num: int = 20) -> int:
     """
     Find the max power for all prime numbers.
-    >>> find_max_power(10, [2, 3, 5, 7])
+    >>> solution(10)
     2520
     """
+    ln = find_prime_numbers(num)
     lp = []
     result = 1
     for e in ln:
@@ -65,12 +66,4 @@ def find_max_power(num: int, ln: list) -> int:
 
 
 if __name__ == "__main__":
-    num = 10
-    result = 0
-    l_prime = []
-    l_prime = find_prime_numbers(num)
-    print("Prime numbers:")
-    print(l_prime)
-    result = find_max_power(num, l_prime)
-    print("Smallest multiple:")
-    print(result)
+    print(f"{solution() = }")
