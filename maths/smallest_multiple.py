@@ -6,6 +6,9 @@ What is the smallest positive number that is evenly divisible by all of the numb
 """
 
 def find_prime_numbers (n, l):
+  """
+  Find all prime numbers for one particular number.
+  """
   x = 2
   while x < n:
     y = 2
@@ -21,6 +24,9 @@ def find_prime_numbers (n, l):
     x +=1
 
 def find_max_power (n, l, lp):
+  """
+  Find the max power for all prime numbers.
+  """  
   result = 1
   for e in l:
     max_power = 0
@@ -47,6 +53,19 @@ def find_max_power (n, l, lp):
   return(result)
                  
 if __name__ == '__main__':
+  """
+  n = 10
+  l = []
+  lp = []
+  >>> find_prime_numbers(n, l)
+  Prime numbers:
+  [2, 3, 5, 7]
+  >>> result = find_max_power(n, l, lp)
+  Max power for prime numbers:
+  [[2, 3], [3, 2], [5, 1], [7, 1]]
+  Smallest multiple:
+  2520
+  """
   n = 10
   l = []
   lp = []
