@@ -9,6 +9,10 @@ Implement the class of prefix sum with useful functions based on it.
 
 class PrefixSum:
     def __init__(self, array: list[int]) -> None:
+        """1)this function first initializes the list prefix_sum with zeroes and prefix_sum
+           has same length as list array.
+           2)Then adds elements to the list prefix_sum which are the sum of all the previous elements
+           i.e, element at index 3 of prefix_sum has value=(array[0]+array[1]+array[2])"""
         len_array = len(array)
         self.prefix_sum = [0] * len_array
 
