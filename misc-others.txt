@@ -1,5 +1,5 @@
 name: MISC Template
-description: File a Miscellaneous report 
+description: File a Miscellaneous report
 
 title: "[MISC]: "
 labels: ["triage"]
