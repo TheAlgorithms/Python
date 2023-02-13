@@ -27,7 +27,7 @@ repos:
           - --profile=black
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: "0.6.0"
+    rev: "0.8.0"
     hooks:
       - id: pyproject-fmt
 
@@ -62,7 +62,7 @@ repos:
           *flake8-plugins
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v0.991
+    rev: v1.0.0
     hooks:
       - id: mypy
         args:
