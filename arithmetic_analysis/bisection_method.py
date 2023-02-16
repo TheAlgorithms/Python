@@ -2,7 +2,7 @@ from sympy import diff
 from sympy.abc import x
 
 
-def bisection_method(function: str, a: float, b: float) -> float:
+def bisection_method(function: str, first: float, last: float) -> float:
     """
     finds the root of a function in [a,b] using Bolzano Theorem
     >>> bisection_method("x ** 2 + 2*x + 1",-2,2)
@@ -20,8 +20,8 @@ def bisection_method(function: str, a: float, b: float) -> float:
     """
     rep = 0
     fault = 1
-    end: float = a
-    start: float = b
+    end: float = first
+    start: float = last
     # convert string f,which is our function, to algebraic expression
     f = eval(function)
     # convert string df,which is the derivative of f function, to algebraic expression
@@ -60,7 +60,7 @@ def bisection_method(function: str, a: float, b: float) -> float:
         raise ValueError("could not find root in given interval.")
         return result
     # the function return the root and the repetitions
-    result = [f"{med:.5f}", rep]
+    result = [f'{med:.5f}', rep]
     return result
 
 
