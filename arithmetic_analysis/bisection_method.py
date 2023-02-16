@@ -19,7 +19,7 @@ def bisection_method(function: str, first: float, last: float) -> float:
     ValueError: could not find root in given interval.
     """
     rep = 0
-    fault = 1
+    fault = 1.0
     end: float = first
     start: float = last
     # convert string f,which is our function, to algebraic expression
