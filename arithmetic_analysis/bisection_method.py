@@ -60,7 +60,7 @@ def bisection_method(function: str, first: float, last: float) -> float:
         raise ValueError("could not find root in given interval.")
         return result
     # the function return the root and the repetitions
-    result = [f'{med:.5f}', rep]
+    result = [f"{med:.5f}", rep]
     return result
 
 
