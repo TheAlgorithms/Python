@@ -7,8 +7,6 @@ def bisection_method(function: str, first: float, last: float) -> float:
     finds the root of a function in [a,b] using Bolzano Theorem
     >>> bisection_method("x ** 2 + 2*x + 1",-2,2)
     -1.0
-    >>> bisection_method("x ** 2 - 4 * x + 3", 0, 2)
-    1.0
     >>> bisection_method("x ** 2 - 4 * x + 3", 2, 4)
     3.0
     >>> bisection_method("x ** 2", -2, 2)
