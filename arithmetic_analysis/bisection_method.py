@@ -7,6 +7,8 @@ def bisection_method(function: str, first: float, last: float) -> float:
     finds the root of a function in [a,b] using Bolzano Theorem
     >>> bisection_method("x ** 2 + 2*x + 1",-2,2)
     -1.0
+    >>> bisection_method("x ** 2 - 4 * x + 3", 0, 2)
+    1.0
     >>> bisection_method("x ** 2 - 4 * x + 3", 2, 4)
     3.0
     >>> bisection_method("x ** 2", -2, 2)
@@ -20,9 +22,9 @@ def bisection_method(function: str, first: float, last: float) -> float:
     fault = 1.0
     end: float = first
     start: float = last
-    # convert string f,which is our function, to algebraic expression
+    #convert string f,which is our function, to algebraic expression
     f = eval(function)
-    # convert string df,which is the derivative of f function, to algebraic expression
+    #convert string df,which is the derivative of f function, to algebraic expression
     df = diff(function, x)
     med = (end + start) * 0.5
     while fault > 5 * pow(10, -6):
@@ -35,27 +37,27 @@ def bisection_method(function: str, first: float, last: float) -> float:
         fstart: float = f.evalf(subs={x: start})
         fend: float = f.evalf(subs={x: end})
         fmed: float = f.evalf(subs={x: med})
-        # count the value of df for the variables start,end and med
+        #count the value of df for the variables start,end and med
         dfstart: float = df.evalf(subs={x: start})
         dfend: float = df.evalf(subs={x: end})
         dfmed: float = df.evalf(subs={x: med})
-        # if the root is between the start and the med
+        #if the root is between the start and the med
         if fmed * fend < 0:
             start = med
             continue
-        # if the root is between the end and the med
+        #if the root is between the end and the med
         elif fmed * fstart < 0:
             end = med
             continue
-        # if the multipications are positive , we will look for global minimum of function
+        #if the multipications are positive,we will look for global minimum of function
         elif dfmed * dfend < 0:
             start = med
         elif dfmed * dfstart < 0:
             end = med
-    # if the result is not close to 0, the root is not in given internal
+    #if the result is not close to 0, the root is not in given internal
     if f.evalf(subs={x: med}) > 5 * pow(10, -6):
         raise ValueError("could not find root in given interval.")
-    # the function return the root and the repetitions
+    #the function return the root and the repetitions
     result = float(f"{med:.5f}")
     return result
 
