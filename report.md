@@ -46,7 +46,7 @@ Document your experience in using a "new"/different coverage tool.
 How well was the tool documented? Was it possible/easy/difficult to
 integrate it with your build environment?
 
-I used the (coverage)[https://coverage.readthedocs.io/en/7.1.0/] tool to measure branch coverage. It was really easy to use and well documented. Our project used both `pytest`, `doctest` and `unittest` python test frameworks, but the coverage tool integrated fine with them all.
+We used the (coverage)[https://coverage.readthedocs.io/en/7.1.0/] tool to measure branch coverage. It was really easy to use and well documented. Our project used both `pytest`, `doctest` and `unittest` python test frameworks, but the coverage tool integrated fine with them all.
 
 The installation was a simple `pip` call, and measuring coverage was as simple as replacing `python3 -m uniitest file.py` with `coverage run -m uniitest file.py`
 
