@@ -25,7 +25,7 @@ def get_imdb_link(movie_title: str) -> str:
         url_imdb = "https://www.imdb.com" + imdb_link.attrs["href"]
 
     except Exception:
-        return ""
+        return url
 
     return url_imdb
 
