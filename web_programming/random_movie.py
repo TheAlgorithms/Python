@@ -1,5 +1,5 @@
-import requests
 import bs4
+import requests
 from fake_useragent import UserAgent
 
 MOVIES_URL = "https://www.coolgenerator.com/random-movie-generator"
@@ -81,7 +81,6 @@ def get_movies(num_movies: int) -> None:
 
 
 if __name__ == "__main__":
-
     num_movies = int(input("Enter a number of movies: ").strip())
     print("\n🎥 Picking movies ...\n")
     get_movies(num_movies)
