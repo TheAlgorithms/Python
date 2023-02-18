@@ -30,7 +30,7 @@ def n_pow2_plus_n_pow2(num: int) -> int:
     return result
 
 
-def sum_n_pow2(num: int) -> int:
+def sum_n_pow2(num: int) -> float:
     result = ((num / 2) + 0.5) * num
     return pow(result, 2)
 
