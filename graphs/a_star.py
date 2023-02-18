@@ -1,10 +1,10 @@
 from __future__ import annotations
 
 DIRECTIONS = [
-    [-1, 0],  # left
-    [0, -1],  # down
-    [1, 0],  # right
-    [0, 1],  # up
+    [-1, 0],  # up
+    [0, -1],  # left
+    [1, 0],  # down
+    [0, 1],  # right
 ]
 
 
@@ -17,11 +17,11 @@ def search(
     heuristic: list[list[int]],
 ) -> tuple[list[list[int]], list[list[int]]]:
     closed = [
-        [0 for col in range(len(grid[0]))] for row in range(len(grid))
+        [0 for _ in range(len(grid[0]))] for _ in range(len(grid))
     ]  # the reference grid
     closed[init[0]][init[1]] = 1
     action = [
-        [0 for col in range(len(grid[0]))] for row in range(len(grid))
+        [0 for _ in range(len(grid[0]))] for _ in range(len(grid))
     ]  # the action grid
 
     x = init[0]
@@ -31,32 +31,66 @@ def search(
     cell = [[f, g, x, y]]
 
     found = False  # flag that is set when search is complete
-    resign = False  # flag set if we can't find expand
 
-    while not found and not resign:
+    while not found:
         if len(cell) == 0:
             raise ValueError("Algorithm is unable to find solution")
         else:  # to choose the least costliest action so as to move closer to the goal
-            cell.sort()
-            cell.reverse()
-            next_cell = cell.pop()
-            x = next_cell[2]
-            y = next_cell[3]
-            g = next_cell[1]
+            found = expand(cell, goal, grid, closed, action, heuristic, cost)
+                            
+    path = backtrack(goal, action)
+    
+    return path, action
 
-            if x == goal[0] and y == goal[1]:
-                found = True
-            else:
-                for i in range(len(DIRECTIONS)):  # to try out different valid actions
-                    x2 = x + DIRECTIONS[i][0]
-                    y2 = y + DIRECTIONS[i][1]
-                    if x2 >= 0 and x2 < len(grid) and y2 >= 0 and y2 < len(grid[0]):
-                        if closed[x2][y2] == 0 and grid[x2][y2] == 0:
-                            g2 = g + cost
-                            f2 = g2 + heuristic[x2][y2]
-                            cell.append([f2, g2, x2, y2])
-                            closed[x2][y2] = 1
-                            action[x2][y2] = i
+def expand(cell, goal, grid, closed, action, heuristic, cost) -> bool:
+    """
+    Expand the searching tree, return true if the goal can be found in this expansion.
+
+    Args:
+        cell (list[list[int]]): priority queue of the possible movements, sorted by (previous cost + heuristic)
+        goal (list[int]): coordinates of the destination
+        grid (list[list[int]]): map
+        closed (list[list[int]]): map. 1 represents this place has been visited
+        action (list[list[int]]): map. each grid records the action brings the subject here
+        heuristic (list[list[int]]): map. each grid stores the heuristic to the goal
+        cost (int): the cost of each movement
+
+    Returns:
+        bool: If the goal can be found in this expansion.
+    """
+    cell.sort()
+    cell.reverse()
+    next_cell = cell.pop()
+    x = next_cell[2]
+    y = next_cell[3]
+    g = next_cell[1]
+    if x == goal[0] and y == goal[1]:
+        return True
+    else:
+        for i in range(len(DIRECTIONS)):  # to try out different valid actions
+            x2 = x + DIRECTIONS[i][0]
+            y2 = y + DIRECTIONS[i][1]
+            if 0 <= x2 < len(grid) and 0 <= y2 < len(grid[0]):
+                if closed[x2][y2] == 0 and grid[x2][y2] == 0:
+                    g2 = g + cost
+                    f2 = g2 + heuristic[x2][y2]
+                    cell.append([f2, g2, x2, y2])
+                    closed[x2][y2] = 1
+                    action[x2][y2] = i
+        return False
+
+
+def backtrack(goal, action) -> list[list[int]]:
+    """
+    Get the optimal path according to the action history.
+
+    Args:
+        goal (list[int]): coordinates of the destination
+        action (list[list[int]]): action history
+
+    Returns:
+        list[list[int]]: optimal path
+    """
     invpath = []
     x = goal[0]
     y = goal[1]
@@ -71,8 +105,7 @@ def search(
     path = []
     for i in range(len(invpath)):
         path.append(invpath[len(invpath) - 1 - i])
-    return path, action
-
+    return path
 
 if __name__ == "__main__":
     grid = [
