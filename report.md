@@ -29,22 +29,81 @@ for each project, along with reason(s) why you changed to a different one.
 
 ## Refactoring
 
-Plan for refactoring complex code:
+We made plans for refactoring those 5 complex functions:
 
-Estimated impact of refactoring (lower CC, but other drawbacks?).
+1. `_remove_repair@212-283@.\data_structures\binary_tree\red_black_tree.py`:
 
-Carried out refactoring (optional, P+):
+   We know that maintaining the structure of a red black tree after deleting a node is very complicated because there are many cases to be considered. In the original _remove_repair functions, authors write those conditions in a single function using 8 if statements. Therefore, it’s possible to divide them into 8 small functions.
 
-git diff ...
+   We managed to refactor this function by splitting it into many small and easy-to-understand functions. The maximum cyclomatic complexity of all relevant functions reduces to 6 using Lizard. The previous CC of _remove_repair function was 31, so there’s about a 81% reduction in CC after refactor.
+
+2. `canny@21-113@.\digital_image_processing\edge_detection\canny.py`:
+
+	Theoretically, canny algorithm can be divided into 5 major steps:	
+      1. Apply Gaussian kernel to remove the noise in the image.
+      2. Find the gradient of the image.
+      3. Use non-maximum suppression on gradient magnitude in gradient direction.
+      4. Use double thresholding to pick out potential edges.
+      5. Track edges by suppressing weak edges that are not connected to strong edges.
+
+	Currently, the canny function consists of those steps altogether. There are no independent functions implementing steps 1-5. Therefore, we can just write a function for each of those steps.
+   
+   Besides, it’s worth noticing that in step 3, we need to consider the gradient magnitude in four directions: horizontally, sub-diagonally, vertically, diagonally. Therefore, we can write four functions for each of those 4 cases, which further reduces cyclomatic complexity.
+
+   We managed to refactor this function by splitting it into many small and easy-to-understand functions. The maximum cyclomatic complexity of all relevant functions reduces to 6 using Lizard. The previous CC of canny function was 26, so there’s about a 77% reduction in CC after refactor.
+
+3. `points_to_polynomial@1-103@.\linear_algebra\src\polynom_for_points.py`:
+
+	This function consists of following major steps:
+      1. Error handling: check if the input is illegal, e.g., empty input or wrong dimension.
+      2. Feature matrix generation: generate feature matrix based on data points.
+      3. Dependent values extraction: generate dependent value vector: y coordinates of data points.
+      4. Solution finding: find coefficients of the polynomial using Gaussian Elimination technique.
+      5. Solution string generation: stringfy the output polynomial so it can be printed.
+	The function can be divided into those 5 smaller functions.
+	
+   We managed to refactor this function by splitting it into many small and easy-to-understand functions. The maximum cyclomatic complexity of all relevant functions reduces to 7 using Lizard. The previous CC of points_to_polynomial function was 21, so there’s about a 67% reduction in CC after refactor.
+
+4. `search@12-74@.\graphs\a_star.py`: 
+	
+   At each step, A* algorithm selects the node with the lowest evaluation function value from the priority queue and adds it to the visited list. The algorithm then examines the neighbors of the selected node, and for each neighbor that has not been visited, it calculates a new evaluation function value based on the cost to reach that neighbor and the estimated distance to the goal node. If the neighbor is not in the priority queue, it is added to the queue with its new evaluation function value. If the neighbor is already in the priority queue, the algorithm updates its evaluation function value if the new value is lower than the current value.
+
+   The step above, which I called "expand" because it is expanding the searching tree, accounts for a significant portion of the total complexity. Therefore, we decided to write a single function for it.
+
+   Beside, at the very end of the A* algorithm, the path should be printed based on the previous action history. We moved it out of the original search function and wrote a function for it.
+	
+   We managed to refactor this function by splitting it into many small and easy-to-understand functions. The maximum cyclomatic complexity of all relevant functions reduces to 8 using Lizard. The previous CC of search function was 20, so there’s about a 60% reduction in CC after refactor.
+
+5. `bidirectional_dij@20-107@.\graphs\bi_directional_dijkstra.py`:
+	
+   For bi-directional Dijkstra’s algorithm, we need to prepare for 2 priority queues for forward pass and backward pass. And for both of them, we need to update the shortest distance and relaxation. Therefore, it’s a straightforward idea to write those methods in separate functions.
+
+   First, we moved part of the code that pops the node from the priority queue and marks it as visited to the add_visited function. Then, we moved part of the code that does relaxation to the forward_pass and backward_pass function.
+	
+   We managed to refactor this function by splitting it into many small and easy-to-understand functions. The maximum cyclomatic complexity of all relevant functions reduces to 8 using Lizard. The previous CC of bi_directional_dij function was 20, so there’s about a 60% reduction in CC after refactor.
 
 ## Coverage
 
 ### Tools
 
-Document your experience in using a "new"/different coverage tool.
+For Python, there’s a good code coverage tool called `coverage.py`, which is user-friendly. It can be installed by `pip install coverage`.
 
-How well was the tool documented? Was it possible/easy/difficult to
-integrate it with your build environment?
+To investigate the coverage in a particular Python file, using `coverage run --branch {py. filepath}` Then you can check the result by either `coverage report` to generate a standard output on your terminal, or `coverage html` to generate a detailed html file, which gives a visualized result.
+
+Besides, `coverage` supports `pytest` well. To investigate how much code is covered by unit tests written in `pytest` rather than `main` function, using `coverage run --branch -m pytest {py. Filepath}`, which will only run the unit tests and check the test coverage.
+
+The documentation is well organized and easy to understand. It can be found on https://coverage.readthedocs.io/en/7.1.0/.
+
+### Automated coverage tool
+`coverage` helps us find the branch coverage of the five functions with high cyclomatic complexity. However, before we get the result, we should manually identify how many branches the function has in total. Then we check the result generated by `coverage` and confirm how many of them are missing.
+
+1. `_remove_repair@212-283@.\data_structures\binary_tree\red_black_tree.py` CCN: 31, coverage: 15/22 for main, 15/22 for test.
+2. `canny@21-113@.\digital_image_processing\edge_detection\canny.py` CCN: 26, coverage: 18/22 for main.
+3. `points_to_polynomial@1-103@.\linear_algebra\src\polynom_for_points.py` CCN: 21, coverage: 26/30 for main.
+4. `search@12-74@.\graphs\a_star.py` CCN: 20, coverage: 11/12 for main.
+5. `bidirectional_dij@20-107@.\graphs\bi_directional_dijkstra.py` CCN: 20 coverage: 27/32 for main.
+
+
 
 ### Your own coverage tool
 
