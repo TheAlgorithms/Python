@@ -79,16 +79,6 @@ its output?
 Show the comments that describe the requirements for the coverage.
 
 Report of old coverage:
-- `_remove_repair@red_black_tree.py` : 0% (no tests) # py -m doctest d/d/rbt.py 
-- `canny@canny.py` : 84% # `coverage run --branch -m pytest digital_image_processing/test_digital_image_processing.py`
-- `points_to_polynomial@polynom_for_points` : 82% # doctest, single function
-- `search@a_star.py` : 0% (no tests)
-- `bidirectional_dij@bi_directional_djikstra` : 89% # coverage run -m doctest graphs/bi_directional_dijkstra.py 
-- `inverse_of_matrix@inverse_of_matrix.py` : 100% (skipping)
-- `solution@problem_049/sol1.py` : 98%
-- `problem_551/sol1.py` : 98%
-- `conway_game_of_life` : 72%
-- `
 
 function@file                                                   Stmts   Miss Branch BrPart  Cover
 -------------------------------------------------------------------------------------------------
