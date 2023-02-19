@@ -164,8 +164,8 @@ def approximately_equal_hsv(hsv_1: list[float], hsv_2: list[float]) -> bool:
 
     return check_hue and check_saturation and check_value
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     hsv_to_rgb(0, 0, 0)
     hsv_to_rgb(0, 0, 1)
     hsv_to_rgb(0, 1, 1)
