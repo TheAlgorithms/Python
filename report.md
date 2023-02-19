@@ -105,6 +105,13 @@ The documentation is well organized and easy to understand. It can be found on h
 
 
 
+We used the (coverage)[https://coverage.readthedocs.io/en/7.1.0/] tool to measure branch coverage. It was really easy to use and well documented. Our project used both `pytest`, `doctest` and `unittest` python test frameworks, but the coverage tool integrated fine with them all.
+
+The installation was a simple `pip` call, and measuring coverage was as simple as replacing `python3 -m uniitest file.py` with `coverage run -m uniitest file.py`
+
+However, as the project used tests a bit differently between files, some with doctests on a function basis and some with separate `test_` files, a bit of tinkering was required to test the branch coverage for the selected functions. A separate test runner script was created to extract only our wanted results, see `specific_tests.py`.
+
+
 ### Your own coverage tool
 
 Show a patch (or link to a branch) that shows the instrumented code to
@@ -130,7 +137,26 @@ its output?
 
 Show the comments that describe the requirements for the coverage.
 
-Report of old coverage: [link]
+Report of old coverage:
+
+function@file                                                   Stmts   Miss Branch BrPart  Cover
+-------------------------------------------------------------------------------------------------
+`bidirectional_dij@graphs/bi_directional_dijkstra.py`           65     58     38      1     8%
+`new_generation@cellular_automata/conways_game_of_life.py`      47     20     30      0    64%
+`points_to_polynomial@linear_algebra/src/polynom_for_points.py` 68     16     38      4    79%
+`canny@digital_image_processing/edge_detection/canny.py`        60      9     34      2    84%
+`solution@project_euler/problem_049/sol1.py`                    57      8     50      1    90%
+`inverse_of_matrix@matrix/inverse_of_matrix.py`                 37      4     20      0    93%
+
+(missing tests:)
+`_remove_repair@data_structures/binary_tree/red_black_tree.py`
+`remove@data_structures/binary_tree/red_black_tree.py`
+`search@graphs/a_star.py
+`next_term@project_euler/problem_551/sol1.py`
+-------------------------------------------------------------------------------------------------
+TOTAL                                                           334    115    210      8    68%
+
+
 
 Report of new coverage: [link]
 
