@@ -28,8 +28,9 @@ def points_to_polynomial(coordinates) -> str:
     >>> print(points_to_polynomial([[1, 5], [2, 2], [3, 9]]))
     f(x)=x^2*5.0+x^1*-18.0+x^0*18.0
     """
+    error_handle1(coordinates)
     set_x = {x for x, _ in coordinates}
-    error_handle(coordinates, set_x)
+    error_handle2(coordinates, set_x)
     
     if len(set_x) == 1:
         return f"x={coordinates[0][0]}"
@@ -46,7 +47,25 @@ def points_to_polynomial(coordinates) -> str:
 
     return solved
 
-def error_handle(coordinates, set_x) -> None:
+def error_handle1(coordinates) -> None:
+    """
+    Handling illegal inputs.
+
+    Args:
+        coordinates (list[list[float]]): input data points
+
+    Raises:
+        ValueError: Empty input or dimension of each point is not the same
+        ValueError: Empty point detected.
+        ValueError: Empty point detected.
+    """
+    if len(coordinates) == 0 or not all(len(pair) == 2 for pair in coordinates):
+        raise ValueError("The program cannot work out a fitting polynomial.")
+
+    if len({tuple(pair) for pair in coordinates}) != len(coordinates):
+        raise ValueError("The program cannot work out a fitting polynomial.")
+    
+def error_handle2(coordinates, set_x) -> None:
     """
     Handling illegal inputs.
 
@@ -59,12 +78,6 @@ def error_handle(coordinates, set_x) -> None:
         ValueError: Empty point detected.
         ValueError: Empty point detected.
     """
-    if len(coordinates) == 0 or not all(len(pair) == 2 for pair in coordinates):
-        raise ValueError("The program cannot work out a fitting polynomial.")
-
-    if len({tuple(pair) for pair in coordinates}) != len(coordinates):
-        raise ValueError("The program cannot work out a fitting polynomial.")
-
     if len(set_x) != len(coordinates):
         raise ValueError("The program cannot work out a fitting polynomial.")
 
