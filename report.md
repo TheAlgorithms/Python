@@ -141,7 +141,7 @@ Report of old coverage:
 
 function@file                                                   Stmts   Miss Branch BrPart  Cover
 -------------------------------------------------------------------------------------------------
-`bidirectional_dij@graphs/bi_directional_dijkstra.py`           65     58     38      1     8%
+`bidirectional_dij@graphs/bi_directional_dijkstra.py`           65     58     38      1    72%
 `new_generation@cellular_automata/conways_game_of_life.py`      47     20     30      0    64%
 `points_to_polynomial@linear_algebra/src/polynom_for_points.py` 68     16     38      4    79%
 `canny@digital_image_processing/edge_detection/canny.py`        60      9     34      2    84%
