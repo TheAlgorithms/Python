@@ -31,6 +31,16 @@ def bidirectional_dij(
 
     >>> bidirectional_dij("E", "F", graph_fwd, graph_bwd)
     3
+    >>> bidirectional_dij("F", "E", graph_fwd, graph_bwd)
+    -1
+    >>> bidirectional_dij("B", "B", graph_fwd, graph_bwd)
+    0
+    >>> bidirectional_dij("B", "K", graph_fwd, graph_bwd)
+    Traceback (most recent call last):
+     ...
+    KeyError: 'K'
+    >>> bidirectional_dij("A", "C", graph_fwd_2, graph_bwd_2)
+    16
     """
     shortest_path_distance = -1
 
@@ -178,6 +188,22 @@ graph_bwd = {
     "E": [[None, np.inf]],
     "G": [["E", 2]],
 }
+
+graph_fwd_2 = {
+    "A": [["B", 1]],
+    "B": [["D", 14]],
+    "C": [["D", 1], ["A", 1]],
+    "D": [["A", 1], ["B", 1], ["C", 1]],
+}
+
+graph_bwd_2 = {
+    "A": [["D", 1], ["C", 1]],
+    "B": [["A", 1], ["D", 1]],
+    "C": [["D", 1]],
+    "D": [["B", 14], ["C", 1]],
+}
+
+
 
 if __name__ == "__main__":
     import doctest
