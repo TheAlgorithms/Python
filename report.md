@@ -77,7 +77,36 @@ its output?
 
 Show the comments that describe the requirements for the coverage.
 
-Report of old coverage: [link]
+Report of old coverage:
+- `_remove_repair@red_black_tree.py` : 0% (no tests) # py -m doctest d/d/rbt.py 
+- `canny@canny.py` : 84% # `coverage run --branch -m pytest digital_image_processing/test_digital_image_processing.py`
+- `points_to_polynomial@polynom_for_points` : 82% # doctest, single function
+- `search@a_star.py` : 0% (no tests)
+- `bidirectional_dij@bi_directional_djikstra` : 89% # coverage run -m doctest graphs/bi_directional_dijkstra.py 
+- `inverse_of_matrix@inverse_of_matrix.py` : 100% (skipping)
+- `solution@problem_049/sol1.py` : 98%
+- `problem_551/sol1.py` : 98%
+- `conway_game_of_life` : 72%
+- `
+
+function@file                                                   Stmts   Miss Branch BrPart  Cover
+-------------------------------------------------------------------------------------------------
+`bidirectional_dij@graphs/bi_directional_dijkstra.py`           65     58     38      1     8%
+`new_generation@cellular_automata/conways_game_of_life.py`      47     20     30      0    64%
+`points_to_polynomial@linear_algebra/src/polynom_for_points.py` 68     16     38      4    79%
+`canny@digital_image_processing/edge_detection/canny.py`        60      9     34      2    84%
+`solution@project_euler/problem_049/sol1.py`                    57      8     50      1    90%
+`inverse_of_matrix@matrix/inverse_of_matrix.py`                 37      4     20      0    93%
+
+(missing tests:)
+`_remove_repair@data_structures/binary_tree/red_black_tree.py`
+`remove@data_structures/binary_tree/red_black_tree.py`
+`search@graphs/a_star.py
+`next_term@project_euler/problem_551/sol1.py`
+-------------------------------------------------------------------------------------------------
+TOTAL                                                           334    115    210      8    68%
+
+
 
 Report of new coverage: [link]
 
