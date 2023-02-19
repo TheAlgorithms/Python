@@ -16,8 +16,20 @@ Find the difference between the sum of the squares of the first one
 hundred natural numbers and the square of the sum.
 """
 
+def solution(num: int = 100) -> int:
+    """
+    Returns the difference between the sum of the squares of the first n
+    natural numbers and the square of the sum.
 
-def n_pow2_plus_n_pow2(num: int) -> int:
+    >>> solution(10)
+    2640
+    >>> solution(15)
+    13160
+    >>> solution(20)
+    41230
+    >>> solution(50)
+    1582700
+    """
     x = 1
     y = 1
     result = 1
@@ -27,31 +39,11 @@ def n_pow2_plus_n_pow2(num: int) -> int:
         gap += 2
         y += 1
         result += x
-    return result
 
+    r_n_pow2_plus_n_pow2 = result
+    r_sum_n_pow2 = pow(((num / 2) + 0.5) * num, 2)
 
-def sum_n_pow2(num: int) -> float:
-    result = ((num / 2) + 0.5) * num
-    return pow(result, 2)
-
-
-def solution(num: int = 100) -> int:
-    """
-    Returns the difference between the sum of the squares of the first n
-    natural numbers and the square of the sum.
-
-    >>> solution(10)
-    2640.0
-    >>> solution(15)
-    13160.0
-    >>> solution(20)
-    41230.0
-    >>> solution(50)
-    1582700.0
-    """
-    r_n_pow2_plus_n_pow2 = n_pow2_plus_n_pow2(num)
-    r_sum_n_pow2 = sum_n_pow2(num)
-    return r_sum_n_pow2 - r_n_pow2_plus_n_pow2
+    return int(r_sum_n_pow2 - r_n_pow2_plus_n_pow2)
 
 
 if __name__ == "__main__":
