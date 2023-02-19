@@ -38,6 +38,12 @@ def hsv_to_rgb(hue: float, saturation: float, value: float) -> list[int]:
     [193, 196, 224]
     >>> hsv_to_rgb(330, 0.75, 0.5)
     [128, 32, 80]
+    >>> hsv_to_rgb(-7, 0.9, 0.11)
+    Exception : hue should be between 0 and 360
+    >>> hsv_to_rgb(9, 2, 0.11)
+    Exception : saturation should be between 0 and 1
+    >>> hsv_to_rgb(9, 0.11, 2)
+    Exception : value should be between 0 and 1
     """
     if hue < 0 or hue > 360:
         raise Exception("hue should be between 0 and 360")
@@ -157,3 +163,19 @@ def approximately_equal_hsv(hsv_1: list[float], hsv_2: list[float]) -> bool:
     check_value = abs(hsv_1[2] - hsv_2[2]) < 0.002
 
     return check_hue and check_saturation and check_value
+
+if __name__ == "__main__":
+
+    hsv_to_rgb(0, 0, 0)
+    hsv_to_rgb(0, 0, 1)
+    hsv_to_rgb(0, 1, 1)
+    hsv_to_rgb(60, 1, 1)
+    hsv_to_rgb(120, 1, 1)
+    hsv_to_rgb(240, 1, 1)
+    hsv_to_rgb(300, 1, 1)
+    hsv_to_rgb(180, 0.5, 0.5)
+    hsv_to_rgb(234, 0.14, 0.88)
+    hsv_to_rgb(330, 0.75, 0.5)
+    hsv_to_rgb(-7, 0.9, 0.11)
+    hsv_to_rgb(9, 2, 0.11)
+    hsv_to_rgb(9, 0.11, 2)
