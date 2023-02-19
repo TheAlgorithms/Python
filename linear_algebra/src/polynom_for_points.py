@@ -25,8 +25,17 @@ def points_to_polynomial(coordinates) -> str:
     f(x)=x^2*1.0+x^1*-0.0+x^0*2.0
     >>> print(points_to_polynomial([[1, -3], [2, -6], [3, -11]]))
     f(x)=x^2*-1.0+x^1*-0.0+x^0*-2.0
-    >>> print(points_to_polynomial([[1, 5], [2, 2], [3, 9]]))
-    f(x)=x^2*5.0+x^1*-18.0+x^0*18.0
+    >>> print(points_to_polynomial([[1, 1]]))
+    x=1
+    >>> print(points_to_polynomial([[1, 1], [1, 1]]))
+    Traceback (most recent call last):
+        ...
+    ValueError: The program cannot work out a fitting polynomial.
+    >>> print(points_to_polynomial([[1, 1], [1, 2], [2, 3]]))
+    Traceback (most recent call last):
+        ...
+    ValueError: The program cannot work out a fitting polynomial.
+
     """
     error_handle1(coordinates)
     set_x = {x for x, _ in coordinates}
