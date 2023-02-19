@@ -50,7 +50,8 @@ We used the (coverage)[https://coverage.readthedocs.io/en/7.1.0/] tool to measur
 
 The installation was a simple `pip` call, and measuring coverage was as simple as replacing `python3 -m uniitest file.py` with `coverage run -m uniitest file.py`
 
-Overall, a pleasant experience!
+However, as the project used tests a bit differently between files, some with doctests on a function basis and some with separate `test_` files, a bit of tinkering was required to test the branch coverage for the selected functions. A separate test runner script was created to extract only our wanted results, see `specific_tests.py`.
+
 
 ### Your own coverage tool
 
