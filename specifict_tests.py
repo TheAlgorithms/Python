@@ -13,6 +13,7 @@ from cellular_automata.conways_game_of_life import *  # needs globals in file to
 from graphs.bi_directional_dijkstra import *  # needs globals in file to run tests
 from data_structures.linked_list.is_palindrome import is_palindrome
 from data_structures.hashing.hash_table import HashTable
+from strings.detecting_english_programmatically import *
 
 cov = coverage.Coverage(branch=True, )
 
@@ -32,6 +33,8 @@ doctest.run_docstring_examples(new_generation, globals(), name="new_generation")
 doctest.run_docstring_examples(RedBlackTree.remove, globals(), name="remove")
 doctest.run_docstring_examples(is_palindrome, globals(), name="is_palindrome")
 doctest.run_docstring_examples(HashTable.keys, globals(), name="HashTable.keys")
+doctest.run_docstring_examples(get_english_count, globals(), name="get_english_count")
+doctest.run_docstring_examples(remove_non_letters, globals(), name="remove_non_letters")
 
 cov.stop()
 cov.save()
