@@ -16,6 +16,33 @@ def search(
     cost: int,
     heuristic: list[list[int]],
 ) -> tuple[list[list[int]], list[list[int]]]:
+    """
+    A* search algorithm
+    
+    Args:
+        grid (list[list[int]]): coordinates of the destination
+        init (list[int]): initial coordinate of the subject
+        goal (list[int]): coordinate of the destination
+        cost (int): the cost of each movement
+        heuristic (list[list[int]]): map. each grid stores the heuristic to the goal
+
+    Raises:
+        ValueError: Illegal input
+
+    Returns:
+        tuple[list[list[int]], list[list[int]]]: optimal path and corresponding actions.
+    
+    >>> search(grid1, init1, goal1, cost1, heuristic1)
+    ([[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [4, 1], [4, 2], [4, 3], [3, 3], [2, 3], [2, 4], [2, 5], [3, 5], [4, 5]], [[0, 0, 0, 0, 0, 0], [2, 0, 0, 0, 0, 0], [2, 0, 0, 0, 3, 3], [2, 0, 0, 0, 0, 2], [2, 3, 3, 3, 0, 2]])
+    >>> search(grid2, init2, goal2, cost2, heuristic2)
+    Traceback (most recent call last):
+     ...
+    ValueError: Algorithm is unable to find solution
+    >>> search(grid3, init3, goal3, cost3, heuristic3)
+    ([[0, 4], [1, 4], [1, 5], [2, 5], [3, 5], [4, 5], [4, 4], [4, 3], [4, 2], [3, 2], [2, 2], [1, 2], [1, 1]], [[0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 2, 3], [0, 0, 0, 3, 0, 2], [0, 0, 0, 0, 0, 2], [1, 1, 1, 1, 1, 2]])
+    >>> search(grid4, init4, goal4, cost4, heuristic4)
+    ([[2, 0], [3, 0], [4, 0], [5, 0], [6, 0], [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6], [5, 6], [4, 6], [3, 6], [2, 6], [2, 5], [2, 4], [2, 3], [2, 2], [1, 2], [1, 1]], [[0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 1, 1, 0], [0, 0, 1, 1, 1, 1, 0], [2, 0, 2, 0, 0, 1, 0], [2, 3, 0, 1, 0, 0, 0], [2, 0, 0, 0, 0, 0, 0], [2, 3, 3, 3, 3, 3, 3]])
+    """
     closed = [
         [0 for _ in range(len(grid[0]))] for _ in range(len(grid))
     ]  # the reference grid
@@ -38,7 +65,7 @@ def search(
         else:  # to choose the least costliest action so as to move closer to the goal
             found = expand(cell, goal, grid, closed, action, heuristic, cost)
                             
-    path = backtrack(goal, action)
+    path = backtrack(goal, action, init)
     
     return path, action
 
@@ -80,13 +107,14 @@ def expand(cell, goal, grid, closed, action, heuristic, cost) -> bool:
         return False
 
 
-def backtrack(goal, action) -> list[list[int]]:
+def backtrack(goal, action, init) -> list[list[int]]:
     """
     Get the optimal path according to the action history.
 
     Args:
         goal (list[int]): coordinates of the destination
         action (list[list[int]]): action history
+        init (list[int]): initial coordinate of the subject
 
     Returns:
         list[list[int]]: optimal path
@@ -107,34 +135,86 @@ def backtrack(goal, action) -> list[list[int]]:
         path.append(invpath[len(invpath) - 1 - i])
     return path
 
+# test1 input
+grid1 = [
+    [0, 1, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0],
+    [0, 1, 0, 0, 1, 0],
+    [0, 0, 0, 0, 1, 0],
+]
+init1 = [0, 0]
+goal1 = [len(grid1) - 1, len(grid1[0]) - 1]
+cost1 = 1
+heuristic1 = [[0 for row in range(len(grid1[0]))] for col in range(len(grid1))]
+for i in range(len(grid1)):
+    for j in range(len(grid1[0])):
+        heuristic1[i][j] = abs(i - goal1[0]) + abs(j - goal1[1])
+        if grid1[i][j] == 1:
+            # added extra penalty in the heuristic map
+            heuristic1[i][j] = 99
+            
+# test2 input
+grid2 = [
+    [0, 1, 0, 0, 0, 0],
+    [1, 1, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0],
+    [0, 1, 0, 0, 1, 0],
+    [0, 0, 0, 0, 1, 0],
+]
+init2 = [0, 0]
+goal2 = [len(grid1) - 1, len(grid1[0]) - 1]
+cost2 = 1
+heuristic2 = [[0 for row in range(len(grid2[0]))] for col in range(len(grid2))]
+for i in range(len(grid2)):
+    for j in range(len(grid2[0])):
+        heuristic2[i][j] = abs(i - goal2[0]) + abs(j - goal2[1])
+        if grid2[i][j] == 1:
+            # added extra penalty in the heuristic map
+            heuristic2[i][j] = 99
+            
+# test3 input
+grid3 = [
+    [0, 1, 1, 1, 0, 1],
+    [0, 0, 0, 1, 0, 0],
+    [0, 1, 0, 0, 1, 0],
+    [0, 1, 0, 1, 1, 0],
+    [0, 0, 0, 0, 0, 0],
+]
+init3 = [0, 4]
+goal3 = [1, 1]
+cost3 = 1
+heuristic3 = [[0 for row in range(len(grid3[0]))] for col in range(len(grid3))]
+for i in range(len(grid3)):
+    for j in range(len(grid3[0])):
+        heuristic3[i][j] = abs(i - goal3[0]) + abs(j - goal3[1])
+        if grid3[i][j] == 1:
+            # added extra penalty in the heuristic map
+            heuristic3[i][j] = 99
+
+# test4 input
+grid4 = [
+    [0, 1, 1, 1, 0, 1, 0],
+    [1, 0, 0, 1, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 0],
+    [0, 1, 0, 1, 1, 0, 0],
+    [0, 0, 1, 0, 0, 1, 0],
+    [0, 1, 0, 1, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0]
+]
+init4 = [2, 0]
+goal4 = [1, 1]
+cost4 = 1
+heuristic4 = [[0 for row in range(len(grid4[0]))] for col in range(len(grid4))]
+for i in range(len(grid4)):
+    for j in range(len(grid4[0])):
+        heuristic4[i][j] = abs(i - goal4[0]) + abs(j - goal4[1])
+        if grid4[i][j] == 1:
+            # added extra penalty in the heuristic map
+            heuristic4[i][j] = 99
+
+
 if __name__ == "__main__":
-    grid = [
-        [0, 1, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],  # 0 are free path whereas 1's are obstacles
-        [0, 1, 0, 0, 0, 0],
-        [0, 1, 0, 0, 1, 0],
-        [0, 0, 0, 0, 1, 0],
-    ]
+    import doctest
 
-    init = [0, 0]
-    # all coordinates are given in format [y,x]
-    goal = [len(grid) - 1, len(grid[0]) - 1]
-    cost = 1
-
-    # the cost map which pushes the path closer to the goal
-    heuristic = [[0 for row in range(len(grid[0]))] for col in range(len(grid))]
-    for i in range(len(grid)):
-        for j in range(len(grid[0])):
-            heuristic[i][j] = abs(i - goal[0]) + abs(j - goal[1])
-            if grid[i][j] == 1:
-                # added extra penalty in the heuristic map
-                heuristic[i][j] = 99
-
-    path, action = search(grid, init, goal, cost, heuristic)
-
-    print("ACTION MAP")
-    for i in range(len(action)):
-        print(action[i])
-
-    for i in range(len(path)):
-        print(path[i])
+    doctest.testmod()

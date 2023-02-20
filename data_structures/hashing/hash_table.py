@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from .number_theory.prime_numbers import next_prime
+from data_structures.hashing.number_theory.prime_numbers import next_prime
 
 
 class HashTable:
@@ -21,6 +21,12 @@ class HashTable:
         self._keys: dict = {}
 
     def keys(self):
+        """
+        >>> h = HashTable(10)
+        >>> h.insert_data(42)
+        >>> len(h.keys())
+        1
+        """
         return self._keys
 
     def balanced_factor(self):

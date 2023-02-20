@@ -1,4 +1,20 @@
 def is_palindrome(head):
+    """
+    >>> class Node:
+    ...     def __init__(self, data):
+    ...         self.val = data
+    ...         self.next = None
+    >>>
+    >>> first = Node("a")
+    >>> second = Node("b")
+    >>> third = Node("a")
+    >>>
+    >>> first.next = second
+    >>> second.next = third
+    >>>
+    >>> is_palindrome(first)
+    True
+    """
     if not head:
         return True
     # split the list to two parts
