@@ -5,7 +5,7 @@ import numpy as np
 # methods to test: _remove_repair, remove
 from data_structures.binary_tree.red_black_tree import RedBlackTree
 from linear_algebra.src.polynom_for_points import points_to_polynomial
-from graphs.a_star import search
+from graphs.a_star import *
 from matrix.inverse_of_matrix import inverse_of_matrix
 from project_euler.problem_049.sol1 import solution
 from project_euler.problem_551.sol1 import next_term
