@@ -11,6 +11,7 @@ from project_euler.problem_049.sol1 import solution
 from project_euler.problem_551.sol1 import next_term
 from cellular_automata.conways_game_of_life import *  # needs globals in file to run tests
 from graphs.bi_directional_dijkstra import *  # needs globals in file to run tests
+from strings.detecting_english_programmatically import *
 
 cov = coverage.Coverage(branch=True, )
 
@@ -28,6 +29,8 @@ doctest.run_docstring_examples(solution, globals(), name="solution")
 doctest.run_docstring_examples(next_term, globals(), name="next_term")
 doctest.run_docstring_examples(new_generation, globals(), name="new_generation")
 doctest.run_docstring_examples(RedBlackTree.remove, globals(), name="remove")
+doctest.run_docstring_examples(get_english_count, globals(), name="get_english_count")
+doctest.run_docstring_examples(remove_non_letters, globals(), name="remove_non_letters")
 
 cov.stop()
 cov.save()

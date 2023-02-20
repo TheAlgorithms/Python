@@ -17,6 +17,16 @@ ENGLISH_WORDS = load_dictionary()
 
 
 def get_english_count(message: str) -> float:
+    '''
+    >>> get_english_count(55)
+    Traceback (most recent call last):
+    ...
+    AttributeError: 'int' object has no attribute 'upper'
+
+    >>> get_english_count("hi my name is programmer")
+    0.4
+
+    '''
     message = message.upper()
     message = remove_non_letters(message)
     possible_words = message.split()
@@ -25,6 +35,11 @@ def get_english_count(message: str) -> float:
 
 
 def remove_non_letters(message: str) -> str:
+    '''
+    >>> remove_non_letters("hi my name is 84214182814")
+    'hi my name is '
+    '''
+
     return "".join(symbol for symbol in message if symbol in LETTERS_AND_SPACE)
 
 

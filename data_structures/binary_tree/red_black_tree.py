@@ -153,7 +153,8 @@ class RedBlackTree:
                     self.grandparent._insert_repair()
 
     def remove(self, label: int) -> RedBlackTree:
-        """Remove label from this tree."""
+        """Remove label from this tree.
+        """
         if self.label == label:
             if self.left and self.right:
                 # It's easier to balance a node with at most one child,
@@ -219,7 +220,7 @@ class RedBlackTree:
         self._remove_repair_case6()
         self._remove_repair_case7()
         self._remove_repair_case8()
-            
+
     def _remove_repair_case1(self) -> None:
         """
         Case when nothing is needed to fix: terminating condition of recursion.
@@ -231,7 +232,7 @@ class RedBlackTree:
             or self.grandparent is None
         ):
             return
-        
+
     def _remove_repair_case2(self) -> None:
         """
         Case when color of the sibling node is red.
@@ -243,7 +244,7 @@ class RedBlackTree:
                 self.parent.rotate_left()
             else:
                 self.parent.rotate_right()
-                
+
     def _remove_repair_case3(self) -> None:
         """
         Case when colors of the parent node, the sibling node, children of the sibling node are all black.
@@ -257,7 +258,7 @@ class RedBlackTree:
             self.sibling.color = 1
             self.parent._remove_repair()
             return
-        
+
     def _remove_repair_case4(self) -> None:
         """
         Case when color of the parent node is red, but colors of the sibling node, children of the sibling node are all black.
@@ -271,7 +272,7 @@ class RedBlackTree:
             self.sibling.color = 1
             self.parent.color = 0
             return
-        
+
     def _remove_repair_case5(self) -> None:
         """
         Case when the current node is the left children of its parent, colors of the sibling node and the right children of the
@@ -303,7 +304,7 @@ class RedBlackTree:
             self.sibling.color = 0
             if self.sibling.left:
                 self.sibling.left.color = 1
-    
+
     def _remove_repair_case7(self) -> None:
         """
         Case when the current node is the left children of its parent, color of the sibling node is black, but color of the right
@@ -318,7 +319,7 @@ class RedBlackTree:
             self.grandparent.color = self.parent.color
             self.parent.color = 0
             self.parent.sibling.color = 0
-            
+
     def _remove_repair_case8(self) -> None:
         """
         Case when the current node is the right children of its parent, color of the sibling node is black, but color of the left
@@ -334,7 +335,6 @@ class RedBlackTree:
             self.parent.color = 0
             self.parent.sibling.color = 0
 
-        
     def check_color_properties(self) -> bool:
         """Check the coloring of the tree, and return True iff the tree
         is colored in a way which matches these five properties:

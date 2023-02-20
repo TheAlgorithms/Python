@@ -39,7 +39,10 @@ def next_term(a_i, k, i, n):
     Return: a tuple of difference between ending term and starting term, and
     the number of terms calculated. ex. if starting term is a_0=1, and
     ending term is a_10=62, then (61, 9) is returned.
+
+
     """
+
     # ds_b - digitsum(b)
     ds_b = sum(a_i[j] for j in range(k, len(a_i)))
     c = sum(a_i[j] * base[j] for j in range(min(len(a_i), k)))
