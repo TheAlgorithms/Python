@@ -128,7 +128,7 @@ class LinkedList:
         while node:
             if current_position == position:
                 self.insert_before_node(node, new_node)
-                return None
+                return
             current_position += 1
             node = node.next
         self.insert_after_node(self.tail, new_node)

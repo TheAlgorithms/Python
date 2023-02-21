@@ -67,9 +67,8 @@ def solution(n: int = 10000) -> int:
     count_odd_periods = 0
     for i in range(2, n + 1):
         sr = sqrt(i)
-        if sr - floor(sr) != 0:
-            if continuous_fraction_period(i) % 2 == 1:
-                count_odd_periods += 1
+        if sr - floor(sr) != 0 and continuous_fraction_period(i) % 2 == 1:
+            count_odd_periods += 1
     return count_odd_periods
 
 
