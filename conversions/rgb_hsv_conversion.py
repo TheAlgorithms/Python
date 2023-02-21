@@ -53,6 +53,10 @@ def hsv_to_rgb(hue: float, saturation: float, value: float) -> list[int]:
     second_largest_component = chroma * (1 - abs(hue_section % 2 - 1))
     match_value = value - chroma
 
+    return helper(chroma, hue_section, second_largest_component, match_value)
+
+
+def helper(chroma: float, hue_section: float, second_largest_component: float, match_value: float) -> list[int]:
     if hue_section >= 0 and hue_section <= 1:
         red = round(255 * (chroma + match_value))
         green = round(255 * (second_largest_component + match_value))
