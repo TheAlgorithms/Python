@@ -23,32 +23,35 @@ it combines Ohm’s law with Joules Law. Therefore, we have:
 
 P = I²R = V²/R
 
+Where, R refers to resistance
+
 reference: https://en.wikipedia.org/wiki/Electric_power
 
 """
 
 
-def power(
-    potential_difference: float = None, resistance: float = None, current: float = None
-) -> float:
+def power(**values: float) -> float:
     # function accepts two arguments from a list of three
     """
-    >>> power(potential_difference=5, current=6)
-    30
-    >>> power(current=2, resistance=5)
-    20
-    >>> power(potential_difference=4, resistance=2)
-    8
+    >>> power(potential_difference=5.0, current=6.0)
+    30.0
+    >>> power(current=2.0, resistance=5.0)
+    20.0
+    >>> power(potential_difference=4.0, resistance=2.0)
+    8.0
     """
-    if resistance is None:
-        return potential_difference**current
-    if potential_difference is None:
-        return (current**2) * resistance
-    if current is None:
-        if resistance == 0:
+    if {"potential_difference", "current"} <= values.keys():
+        electric_power = values["potential_difference"] * values["current"]
+    if {"current", "resistance"} <= values.keys():
+        electric_power = (values["current"] ** 2) * values["resistance"]
+    if {"potential_difference", "resistance"} <= values.keys():
+        if values["resistance"] == 0:
             raise ValueError("For zero resistance, power would be infinite")
         else:
-            return (potential_difference**2) / resistance
+            electric_power = (values["potential_difference"] ** 2) / values[
+                "resistance"
+            ]
+    return electric_power
 
 
 if __name__ == "__main__":
