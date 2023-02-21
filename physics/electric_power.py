@@ -23,6 +23,8 @@ it combines Ohm’s law with Joules Law. Therefore, we have:
 
 P = I²R = V²/R
 
+reference: https://en.wikipedia.org/wiki/Electric_power
+
 """
 
 
