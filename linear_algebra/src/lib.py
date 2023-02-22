@@ -343,6 +343,7 @@ class Matrix:
                 for i in range(self.__height)
             ]
             return Matrix(matrix, self.__width, self.__height)
+        return None
 
     def height(self) -> int:
         """

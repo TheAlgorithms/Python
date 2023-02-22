@@ -169,8 +169,7 @@ class MinPriorityQueue(Generic[T]):
             if child_right_weight < weight:
                 self._swap_nodes(child_right_position, curr_pos)
                 return self._bubble_down(elem)
-        else:
-            return None
+        return None
 
     def _swap_nodes(self, node1_pos: int, node2_pos: int) -> None:
         # Swap the nodes at the given positions
