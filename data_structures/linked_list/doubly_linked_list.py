@@ -64,11 +64,11 @@ class DoublyLinkedList:
         >>> linked_list = DoublyLinkedList()
         >>> linked_list.insert_at_nth(-1, 666)
         Traceback (most recent call last):
-        ....
+            ....
         IndexError: list index out of range
         >>> linked_list.insert_at_nth(1, 666)
         Traceback (most recent call last):
-        ....
+            ....
         IndexError: list index out of range
         >>> linked_list.insert_at_nth(0, 2)
         >>> linked_list.insert_at_nth(0, 1)
@@ -78,7 +78,7 @@ class DoublyLinkedList:
         '1->2->3->4'
         >>> linked_list.insert_at_nth(5, 5)
         Traceback (most recent call last):
-        ....
+            ....
         IndexError: list index out of range
         """
         if not 0 <= index <= len(self):
@@ -96,7 +96,7 @@ class DoublyLinkedList:
             self.tail = new_node
         else:
             temp = self.head
-            for i in range(0, index):
+            for _ in range(0, index):
                 temp = temp.next
             temp.previous.next = new_node
             new_node.previous = temp.previous
@@ -114,7 +114,7 @@ class DoublyLinkedList:
         >>> linked_list = DoublyLinkedList()
         >>> linked_list.delete_at_nth(0)
         Traceback (most recent call last):
-        ....
+            ....
         IndexError: list index out of range
         >>> for i in range(0, 5):
         ...     linked_list.insert_at_nth(i, i + 1)
@@ -128,7 +128,7 @@ class DoublyLinkedList:
         '2->4'
         >>> linked_list.delete_at_nth(2)
         Traceback (most recent call last):
-        ....
+            ....
         IndexError: list index out of range
         """
         if not 0 <= index <= len(self) - 1:
@@ -145,7 +145,7 @@ class DoublyLinkedList:
             self.tail.next = None
         else:
             temp = self.head
-            for i in range(0, index):
+            for _ in range(0, index):
                 temp = temp.next
             delete_node = temp
             temp.next.previous = temp.previous
@@ -159,7 +159,7 @@ class DoublyLinkedList:
             if current.next:
                 current = current.next
             else:  # We have reached the end an no value matches
-                return "No data matching given value"
+                raise ValueError("No data matching given value")
 
         if current == self.head:
             self.delete_head()
@@ -194,13 +194,13 @@ def test_doubly_linked_list() -> None:
 
     try:
         linked_list.delete_head()
-        assert False  # This should not happen.
+        raise AssertionError()  # This should not happen.
     except IndexError:
         assert True  # This should happen.
 
     try:
         linked_list.delete_tail()
-        assert False  # This should not happen.
+        raise AssertionError()  # This should not happen.
     except IndexError:
         assert True  # This should happen.
 

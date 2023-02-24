@@ -29,4 +29,4 @@ if __name__ == "__main__":
         "year": 2018,
         "hl": "en",
     }
-    print(get_citation("http://scholar.google.com/scholar_lookup", params=params))
+    print(get_citation("https://scholar.google.com/scholar_lookup", params=params))

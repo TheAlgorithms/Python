@@ -83,7 +83,7 @@ the third document in the corpus.")
     return (len([doc for doc in docs if term in doc]), len(docs))
 
 
-def inverse_document_frequency(df: int, N: int, smoothing=False) -> float:
+def inverse_document_frequency(df: int, n: int, smoothing=False) -> float:
     """
     Return an integer denoting the importance
     of a word. This measure of importance is
@@ -109,15 +109,15 @@ def inverse_document_frequency(df: int, N: int, smoothing=False) -> float:
     1.477
     """
     if smoothing:
-        if N == 0:
+        if n == 0:
             raise ValueError("log10(0) is undefined.")
-        return round(1 + log10(N / (1 + df)), 3)
+        return round(1 + log10(n / (1 + df)), 3)
 
     if df == 0:
         raise ZeroDivisionError("df must be > 0")
-    elif N == 0:
+    elif n == 0:
         raise ValueError("log10(0) is undefined.")
-    return round(log10(N / df), 3)
+    return round(log10(n / df), 3)
 
 
 def tf_idf(tf: int, idf: int) -> float:

@@ -38,26 +38,13 @@ def atbash(sequence: str) -> str:
 
 
 def benchmark() -> None:
-    """Let's benchmark them side-by-side..."""
+    """Let's benchmark our functions side-by-side..."""
     from timeit import timeit
 
     print("Running performance benchmarks...")
-    print(
-        "> atbash_slow()",
-        timeit(
-            "atbash_slow(printable)",
-            setup="from string import printable ; from __main__ import atbash_slow",
-        ),
-        "seconds",
-    )
-    print(
-        ">      atbash()",
-        timeit(
-            "atbash(printable)",
-            setup="from string import printable ; from __main__ import atbash",
-        ),
-        "seconds",
-    )
+    setup = "from string import printable ; from __main__ import atbash, atbash_slow"
+    print(f"> atbash_slow(): {timeit('atbash_slow(printable)', setup=setup)} seconds")
+    print(f">      atbash(): {timeit('atbash(printable)', setup=setup)} seconds")
 
 
 if __name__ == "__main__":

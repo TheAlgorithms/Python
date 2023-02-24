@@ -14,7 +14,8 @@ headers = {
 
 
 def download_images_from_google_query(query: str = "dhaka", max_images: int = 5) -> int:
-    """Searches google using the provided query term and downloads the images in a folder.
+    """
+    Searches google using the provided query term and downloads the images in a folder.
 
     Args:
          query : The image search term to be provided by the user. Defaults to

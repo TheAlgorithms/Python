@@ -15,12 +15,12 @@ test = [[0.0, 0.0], [0.0, 1.0], [1.0, 1.0]]
 Y = clf.predict(test)
 
 
-def wrapper(Y):
+def wrapper(y):
     """
     >>> wrapper(Y)
     [0, 0, 1]
     """
-    return list(Y)
+    return list(y)
 
 
 if __name__ == "__main__":

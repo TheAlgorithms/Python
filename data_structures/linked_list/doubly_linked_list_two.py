@@ -80,7 +80,6 @@ class LinkedList:
         return None
 
     def set_head(self, node: Node) -> None:
-
         if self.head is None:
             self.head = node
             self.tail = node
@@ -143,9 +142,7 @@ class LinkedList:
         raise Exception("Node not found")
 
     def delete_value(self, value):
-        node = self.get_node(value)
-
-        if node is not None:
+        if (node := self.get_node(value)) is not None:
             if node == self.head:
                 self.head = self.head.get_next()
 

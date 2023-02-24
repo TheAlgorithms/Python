@@ -52,7 +52,7 @@ def geometric_series(
     power = 1
     multiple = common_ratio_r
     for _ in range(int(nth_term)):
-        if series == []:
+        if not series:
             series.append(start_term_a)
         else:
             power += 1

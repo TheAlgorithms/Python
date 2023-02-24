@@ -72,22 +72,22 @@ def compute_bridges(graph: dict[int, list[int]]) -> list[tuple[int, int]]:
     []
     """
 
-    id = 0
+    id_ = 0
     n = len(graph)  # No of vertices in graph
     low = [0] * n
     visited = [False] * n
 
-    def dfs(at, parent, bridges, id):
+    def dfs(at, parent, bridges, id_):
         visited[at] = True
-        low[at] = id
-        id += 1
+        low[at] = id_
+        id_ += 1
         for to in graph[at]:
             if to == parent:
                 pass
             elif not visited[to]:
-                dfs(to, at, bridges, id)
+                dfs(to, at, bridges, id_)
                 low[at] = min(low[at], low[to])
-                if id <= low[to]:
+                if id_ <= low[to]:
                     bridges.append((at, to) if at < to else (to, at))
             else:
                 # This edge is a back edge and cannot be a bridge
@@ -96,7 +96,7 @@ def compute_bridges(graph: dict[int, list[int]]) -> list[tuple[int, int]]:
     bridges: list[tuple[int, int]] = []
     for i in range(n):
         if not visited[i]:
-            dfs(i, -1, bridges, id)
+            dfs(i, -1, bridges, id_)
     return bridges
 
 
