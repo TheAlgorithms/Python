@@ -59,7 +59,6 @@ def largest_square_area_in_matrix_top_down_approch(
     """
 
     def update_area_of_max_square(row: int, col: int) -> int:
-
         # BASE CASE
         if row >= rows or col >= cols:
             return 0
@@ -138,7 +137,6 @@ def largest_square_area_in_matrix_bottom_up(
     largest_square_area = 0
     for row in range(rows - 1, -1, -1):
         for col in range(cols - 1, -1, -1):
-
             right = dp_array[row][col + 1]
             diagonal = dp_array[row + 1][col + 1]
             bottom = dp_array[row + 1][col]
@@ -169,7 +167,6 @@ def largest_square_area_in_matrix_bottom_up_space_optimization(
     largest_square_area = 0
     for row in range(rows - 1, -1, -1):
         for col in range(cols - 1, -1, -1):
-
             right = current_row[col + 1]
             diagonal = next_row[col + 1]
             bottom = next_row[col]

@@ -8,7 +8,6 @@ addopts = [
     "--showlocals",
 ]
 
-
 [tool.coverage.report]
 omit = [".env/*"]
 sort = "Cover"

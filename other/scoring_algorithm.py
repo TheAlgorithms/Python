@@ -95,7 +95,6 @@ def generate_final_scores(score_lists: list[list[float]]) -> list[float]:
 def procentual_proximity(
     source_data: list[list[float]], weights: list[int]
 ) -> list[list[float]]:
-
     """
     weights - int list
     possible values - 0 / 1

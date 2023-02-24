@@ -4,7 +4,6 @@ class Graph:
     """
 
     def __init__(self):
-
         self.num_vertices = 0
         self.num_edges = 0
         self.adjacency = {}
