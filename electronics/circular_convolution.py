@@ -64,9 +64,9 @@ class CircularConvolution:
 
         # fills the smaller signal with zeros to make both signals of same length
         if length_first_signal < length_second_signal:
-            self.second_signal = self.second_signal + np.zeros(max_length)
+            self.second_signal += np.zeros(max_length)
         elif length_first_signal > length_second_signal:
-            self.first_signal = self.first_signal + np.zeros(max_length)
+            self.first_signal += np.zeros(max_length)
 
         """
         Fills the matrix in the following way assuming 'x' is the signal
@@ -86,8 +86,11 @@ class CircularConvolution:
         matrix = list(np.transpose(matrix))
 
         # multiply the matrix with the first signal
-        self.first_signal = np.transpose(self.first_signal)
+        np.transpose(self.first_signal)
         final_signal = list(np.matmul(matrix, self.first_signal))
+
+        # rounding-off to two decimal places
+        final_signal = [round(i, 2) for i in final_signal]
 
         return final_signal
 
