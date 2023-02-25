@@ -23,7 +23,7 @@ class CircularConvolution:
     This class stores the first and second signal and performs the circular convolution
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         First signal and second signal are stored as 1-D array
         """
