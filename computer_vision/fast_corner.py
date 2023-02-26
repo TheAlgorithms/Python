@@ -5,11 +5,12 @@ https://en.wikipedia.org/wiki/Features_from_accelerated_segment_test
 
 import cv2 as cv
 
+
 def fast_detector(img):
     fast = cv.FastFeatureDetector_create()
     kp = fast.detect(img, None)
-    img2 = cv.drawKeypoints(img, kp, None, color=(255, 0, 0))#drawing keypoints
-    cv.imwrite('fast_true.png', img2)
+    img2 = cv.drawKeypoints(img, kp, None, color=(255, 0, 0))  # drawing keypoints
+    cv.imwrite("fast_true.png", img2)
     fast.setNonmaxSuppression(0)
     kp = fast.detect(img, None)
     detected_img = cv.drawKeypoints(img, kp, None, color=(255, 0, 0))
