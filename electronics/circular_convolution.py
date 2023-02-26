@@ -42,15 +42,20 @@ class CircularConvolution:
         >>> convolution.circular_convolution()
         [10, 10, 6, 14]
 
-        >>> convolution.first_signal = [1, 0.5]
-        >>> convolution.second_signal = [0.5, 1]
-        >>> convolution.circular_convolution()
-        [1.0, 1.25]
-
         >>> convolution.first_signal = [0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6]
         >>> convolution.second_signal = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5]
         >>> convolution.circular_convolution()
         [5.2, 6.0, 6.48, 6.64, 6.48, 6.0, 5.2, 4.08]
+
+        >>> convolution.first_signal = [-1, 1, 2, -2]
+        >>> convolution.second_signal = [0.5, 1, -1, 2, 0.75]
+        >>> convolution.circular_convolution()
+        [6.25, -3.0, 1.5, -2.0, -2.75]
+
+        >>> convolution.first_signal = [1, -1, 2, 3, -1]
+        >>> convolution.second_signal = [1, 2, 3]
+        >>> convolution.circular_convolution()
+        [8, -2, 3, 4, 11]
 
         """
 
@@ -64,12 +69,12 @@ class CircularConvolution:
 
         # fills the smaller signal with zeros to make both signals of same length
         if length_first_signal < length_second_signal:
-            self.second_signal += np.zeros(max_length)
+            self.first_signal += [0 for i in range(max_length - length_first_signal)]
         elif length_first_signal > length_second_signal:
-            self.first_signal += np.zeros(max_length)
+            self.second_signal += [0 for i in range(max_length - length_second_signal)]
 
         """
-        Fills the matrix in the following way assuming 'x' is the signal
+        Fills the matrix in the following way assuming 'x' is the signal of length 4
         [
             [x[0], x[3], x[2], x[1]],
             [x[1], x[0], x[3], x[2]],
@@ -83,11 +88,8 @@ class CircularConvolution:
             for j in range(max_length):
                 matrix[i][j] += rotated_signal[j]
 
-        matrix = list(np.transpose(matrix))
-
         # multiply the matrix with the first signal
-        np.transpose(self.first_signal)
-        final_signal = list(np.matmul(matrix, self.first_signal))
+        final_signal = np.matmul(np.transpose(matrix), np.transpose(self.first_signal))
 
         # rounding-off to two decimal places
         final_signal = [round(i, 2) for i in final_signal]
