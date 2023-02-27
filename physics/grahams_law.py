@@ -17,7 +17,27 @@ m2 = Molar mass of the second gas.
 from math import pow, sqrt
 
 
-def validate(*values) -> bool:
+def validate(*values: float) -> bool:
+    """
+    Input Parameters:
+    -----------------
+    effusion_rate_1: Effustion rate of first gas (m^2/s, mm^2/s, etc.)
+    effusion_rate_2: Effustion rate of second gas (m^2/s, mm^2/s, etc.)
+    molar_mass_1: Molar mass of the first gas (g/mol, kg/kmol, etc.)
+    molar_mass_2: Molar mass of the second gas (g/mol, kg/kmol, etc.)
+
+    Returns:
+    --------
+    >>> validate(2.016, 4.002)
+    True
+    >>> validate(-2.016, 4.002)
+    Traceback (most recent call last):
+      ...
+    ValueError: Invalid inputs. Effusion rates and molar masses must be a positive
+                    value.
+    >>> validate()
+    False
+    """
     for value in values:
         if value >= 0.0:
             return True
