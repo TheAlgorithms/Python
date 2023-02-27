@@ -27,7 +27,7 @@ repos:
           - --profile=black
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: "0.9.1"
+    rev: "0.9.2"
     hooks:
       - id: pyproject-fmt
 
@@ -42,6 +42,13 @@ repos:
       - id: pyupgrade
         args:
           - --py311-plus
+
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.0.253
+    hooks:
+      - id: ruff
+        args:
+          - --ignore=E741
 
   - repo: https://github.com/PyCQA/flake8
     rev: 6.0.0
