@@ -97,13 +97,13 @@ def first_effusion_rate(
     >>> first_effusion_rate(1)
     Traceback (most recent call last):
       ...
-    TypeError: first_effusion_rate() missing 2 required positional arguments:
-    'molar_mass_1' and 'molar_mass_2'
+    TypeError: first_effusion_rate() missing 2 required positional arguments: \
+'molar_mass_1' and 'molar_mass_2'
     >>> first_effusion_rate(1, 2.016)
     Traceback (most recent call last):
       ...
-    TypeError: first_effusion_rate() missing 1 required positional argument:
-    'molar_mass_2'
+    TypeError: first_effusion_rate() missing 1 required positional argument: \
+'molar_mass_2'
     """
     validate(effusion_rate, molar_mass_1, molar_mass_2)
     return round(effusion_rate * sqrt(molar_mass_2 / molar_mass_1), 6)
@@ -131,13 +131,13 @@ def second_effusion_rate(
     >>> second_effusion_rate(1)
     Traceback (most recent call last):
       ...
-    TypeError: second_effusion_rate() missing 2 required positional arguments:
-    'molar_mass_1' and 'molar_mass_2'
+    TypeError: second_effusion_rate() missing 2 required positional arguments: \
+'molar_mass_1' and 'molar_mass_2'
     >>> second_effusion_rate(1, 2.016)
     Traceback (most recent call last):
       ...
-    TypeError: second_effusion_rate() missing 1 required positional argument:
-    'molar_mass_2'
+    TypeError: second_effusion_rate() missing 1 required positional argument: \
+'molar_mass_2'
     """
     validate(effusion_rate, molar_mass_1, molar_mass_2)
     return round(effusion_rate / sqrt(molar_mass_2 / molar_mass_1), 6)
@@ -165,13 +165,13 @@ def first_molar_mass(
     >>> first_molar_mass(1)
     Traceback (most recent call last):
       ...
-    TypeError: first_molar_mass() missing 2 required positional arguments:
-    'effusion_rate_1' and 'effusion_rate_2'
+    TypeError: first_molar_mass() missing 2 required positional arguments: \
+'effusion_rate_1' and 'effusion_rate_2'
     >>> first_molar_mass(1, 2.016)
     Traceback (most recent call last):
       ...
-    TypeError: first_molar_mass() missing 1 required positional argument:
-    'effusion_rate_2'
+    TypeError: first_molar_mass() missing 1 required positional argument: \
+'effusion_rate_2'
     """
     validate(molar_mass, effusion_rate_1, effusion_rate_2)
     return round(molar_mass / pow(effusion_rate_1 / effusion_rate_2, 2), 6)
@@ -199,13 +199,13 @@ def second_molar_mass(
     >>> second_molar_mass(1)
     Traceback (most recent call last):
       ...
-    TypeError: second_molar_mass() missing 2 required positional arguments:
-    'effusion_rate_1' and 'effusion_rate_2'
+    TypeError: second_molar_mass() missing 2 required positional arguments: \
+'effusion_rate_1' and 'effusion_rate_2'
     >>> second_molar_mass(1, 2.016)
     Traceback (most recent call last):
       ...
-    TypeError: second_molar_mass() missing 1 required positional argument:
-    'effusion_rate_2'
+    TypeError: second_molar_mass() missing 1 required positional argument: \
+'effusion_rate_2'
     """
     validate(molar_mass, effusion_rate_1, effusion_rate_2)
     return round(pow(effusion_rate_1 / effusion_rate_2, 2) / molar_mass, 6)
