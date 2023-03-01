@@ -31,26 +31,15 @@ def validate(*values: float) -> bool:
     >>> validate(2.016, 4.002)
     True
     >>> validate(-2.016, 4.002)
-    Traceback (most recent call last):
-      ...
-    ValueError: Invalid inputs. Effusion rates and molar masses must be a positive
-                    value.
+    False
     >>> validate()
     False
     """
-    for value in values:
-        if value >= 0.0:
-            return True
-        else:
-            raise ValueError(
-                """Invalid inputs. Effusion rates and molar masses must be a positive
-                value."""
-            )
-
-    return False
+    result = len(values) > 0 and all(value > 0.0 for value in values)
+    return result
 
 
-def effusion_ratio(molar_mass_1: float, molar_mass_2: float) -> float:
+def effusion_ratio(molar_mass_1: float, molar_mass_2: float) -> float | ValueError:
     """
     Input Parameters:
     -----------------
@@ -62,22 +51,22 @@ def effusion_ratio(molar_mass_1: float, molar_mass_2: float) -> float:
     >>> effusion_ratio(2.016, 4.002)
     1.408943
     >>> effusion_ratio(-2.016, 4.002)
-    Traceback (most recent call last):
-      ...
-    ValueError: Invalid inputs. Effusion rates and molar masses must be a positive
-                    value.
+    ValueError('Input Error: Molar mass values must greater than 0.')
     >>> effusion_ratio(2.016)
     Traceback (most recent call last):
       ...
     TypeError: effusion_ratio() missing 1 required positional argument: 'molar_mass_2'
     """
-    validate(molar_mass_1, molar_mass_2)
-    return round(sqrt(molar_mass_2 / molar_mass_1), 6)
+    return (
+        round(sqrt(molar_mass_2 / molar_mass_1), 6)
+        if validate(molar_mass_1, molar_mass_2)
+        else ValueError("Input Error: Molar mass values must greater than 0.")
+    )
 
 
 def first_effusion_rate(
     effusion_rate: float, molar_mass_1: float, molar_mass_2: float
-) -> float:
+) -> float | ValueError:
     """
     Input Parameters:
     -----------------
@@ -90,10 +79,7 @@ def first_effusion_rate(
     >>> first_effusion_rate(1, 2.016, 4.002)
     1.408943
     >>> first_effusion_rate(-1, 2.016, 4.002)
-    Traceback (most recent call last):
-        ...
-    ValueError: Invalid inputs. Effusion rates and molar masses must be a positive
-                    value.
+    ValueError('Input Error: Molar mass and effusion rate values must greater than 0.')
     >>> first_effusion_rate(1)
     Traceback (most recent call last):
       ...
@@ -105,13 +91,18 @@ def first_effusion_rate(
     TypeError: first_effusion_rate() missing 1 required positional argument: \
 'molar_mass_2'
     """
-    validate(effusion_rate, molar_mass_1, molar_mass_2)
-    return round(effusion_rate * sqrt(molar_mass_2 / molar_mass_1), 6)
+    return (
+        round(effusion_rate * sqrt(molar_mass_2 / molar_mass_1), 6)
+        if validate(effusion_rate, molar_mass_1, molar_mass_2)
+        else ValueError(
+            "Input Error: Molar mass and effusion rate values must greater than 0."
+        )
+    )
 
 
 def second_effusion_rate(
     effusion_rate: float, molar_mass_1: float, molar_mass_2: float
-) -> float:
+) -> float | ValueError:
     """
     Input Parameters:
     -----------------
@@ -124,10 +115,7 @@ def second_effusion_rate(
     >>> second_effusion_rate(1, 2.016, 4.002)
     0.709752
     >>> second_effusion_rate(-1, 2.016, 4.002)
-    Traceback (most recent call last):
-        ...
-    ValueError: Invalid inputs. Effusion rates and molar masses must be a positive
-                    value.
+    ValueError('Input Error: Molar mass and effusion rate values must greater than 0.')
     >>> second_effusion_rate(1)
     Traceback (most recent call last):
       ...
@@ -139,13 +127,18 @@ def second_effusion_rate(
     TypeError: second_effusion_rate() missing 1 required positional argument: \
 'molar_mass_2'
     """
-    validate(effusion_rate, molar_mass_1, molar_mass_2)
-    return round(effusion_rate / sqrt(molar_mass_2 / molar_mass_1), 6)
+    return (
+        round(effusion_rate / sqrt(molar_mass_2 / molar_mass_1), 6)
+        if validate(effusion_rate, molar_mass_1, molar_mass_2)
+        else ValueError(
+            "Input Error: Molar mass and effusion rate values must greater than 0."
+        )
+    )
 
 
 def first_molar_mass(
     molar_mass: float, effusion_rate_1: float, effusion_rate_2: float
-) -> float:
+) -> float | ValueError:
     """
     Input Parameters:
     -----------------
@@ -158,10 +151,7 @@ def first_molar_mass(
     >>> first_molar_mass(2, 1.408943, 0.709752)
     0.507524
     >>> first_molar_mass(-1, 2.016, 4.002)
-    Traceback (most recent call last):
-        ...
-    ValueError: Invalid inputs. Effusion rates and molar masses must be a positive
-                    value.
+    ValueError('Input Error: Molar mass and effusion rate values must greater than 0.')
     >>> first_molar_mass(1)
     Traceback (most recent call last):
       ...
@@ -173,13 +163,18 @@ def first_molar_mass(
     TypeError: first_molar_mass() missing 1 required positional argument: \
 'effusion_rate_2'
     """
-    validate(molar_mass, effusion_rate_1, effusion_rate_2)
-    return round(molar_mass / pow(effusion_rate_1 / effusion_rate_2, 2), 6)
+    return (
+        round(molar_mass / pow(effusion_rate_1 / effusion_rate_2, 2), 6)
+        if validate(molar_mass, effusion_rate_1, effusion_rate_2)
+        else ValueError(
+            "Input Error: Molar mass and effusion rate values must greater than 0."
+        )
+    )
 
 
 def second_molar_mass(
     molar_mass: float, effusion_rate_1: float, effusion_rate_2: float
-) -> float:
+) -> float | ValueError:
     """
     Input Parameters:
     -----------------
@@ -192,10 +187,7 @@ def second_molar_mass(
     >>> second_molar_mass(2, 1.408943, 0.709752)
     1.970351
     >>> second_molar_mass(-2, 1.408943, 0.709752)
-    Traceback (most recent call last):
-        ...
-    ValueError: Invalid inputs. Effusion rates and molar masses must be a positive
-                    value.
+    ValueError('Input Error: Molar mass and effusion rate values must greater than 0.')
     >>> second_molar_mass(1)
     Traceback (most recent call last):
       ...
@@ -207,5 +199,10 @@ def second_molar_mass(
     TypeError: second_molar_mass() missing 1 required positional argument: \
 'effusion_rate_2'
     """
-    validate(molar_mass, effusion_rate_1, effusion_rate_2)
-    return round(pow(effusion_rate_1 / effusion_rate_2, 2) / molar_mass, 6)
+    return (
+        round(pow(effusion_rate_1 / effusion_rate_2, 2) / molar_mass, 6)
+        if validate(molar_mass, effusion_rate_1, effusion_rate_2)
+        else ValueError(
+            "Input Error: Molar mass and effusion rate values must greater than 0."
+        )
+    )
