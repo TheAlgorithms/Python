@@ -105,11 +105,9 @@ def procentual_proximity(
     [[20, 60, 2012, 2.0], [23, 90, 2015, 1.0], [22, 50, 2011, 1.3333333333333335]]
     """
 
-    data_lists: list[list[float]] = get_data(source_data)
-
-    score_lists: list[list[float]] = calculate_each_score(data_lists, weights)
-
-    final_scores: list[float] = generate_final_scores(score_lists)
+    data_lists = get_data(source_data)
+    score_lists = calculate_each_score(data_lists, weights)
+    final_scores = generate_final_scores(score_lists)
 
     # append scores to source data
     for i, ele in enumerate(final_scores):
