@@ -229,7 +229,7 @@ def report_generator(
     """
     # Fill missing values with given rules
     if fill_missing_report:
-        df.fillna(value=fill_missing_report, inplace=True)
+        df = df.fillna(value=fill_missing_report)
     df["dummy"] = 1
     numeric_cols = df.select_dtypes(np.number).columns
     report = (
@@ -338,7 +338,7 @@ def report_generator(
     )
     report.columns.name = ""
     report = report.reset_index()
-    report.drop(columns=["index"], inplace=True)
+    report = report.drop(columns=["index"])
     return report
 
 
