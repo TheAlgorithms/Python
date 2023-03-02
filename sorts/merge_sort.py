@@ -1,5 +1,6 @@
 """
-This is a pure Python implementation of the merge sort algorithm
+This is a pure Python implementation of the merge sort algorithm.
+
 For doctests run following command:
 python -m doctest -v merge_sort.py
 or
@@ -10,7 +11,7 @@ python merge_sort.py
 
 
 def merge_sort(collection: list) -> list:
-    """Pure implementation of the merge sort algorithm in Python
+    """
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered by ascending
@@ -24,7 +25,9 @@ def merge_sort(collection: list) -> list:
     """
 
     def merge(left: list, right: list) -> list:
-        """merge left and right
+        """
+        Merge left and right.
+
         :param left: left collection
         :param right: right collection
         :return: merge result

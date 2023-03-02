@@ -1,7 +1,7 @@
 import os
+from string import ascii_letters
 
-UPPERLETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-LETTERS_AND_SPACE = UPPERLETTERS + UPPERLETTERS.lower() + " \t\n"
+LETTERS_AND_SPACE = ascii_letters + " \t\n"
 
 
 def load_dictionary() -> dict[str, None]:
@@ -20,24 +20,12 @@ def get_english_count(message: str) -> float:
     message = message.upper()
     message = remove_non_letters(message)
     possible_words = message.split()
-
-    if possible_words == []:
-        return 0.0
-
-    matches = 0
-    for word in possible_words:
-        if word in ENGLISH_WORDS:
-            matches += 1
-
+    matches = len([word for word in possible_words if word in ENGLISH_WORDS])
     return float(matches) / len(possible_words)
 
 
 def remove_non_letters(message: str) -> str:
-    letters_only = []
-    for symbol in message:
-        if symbol in LETTERS_AND_SPACE:
-            letters_only.append(symbol)
-    return "".join(letters_only)
+    return "".join(symbol for symbol in message if symbol in LETTERS_AND_SPACE)
 
 
 def is_english(

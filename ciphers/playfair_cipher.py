@@ -39,7 +39,6 @@ def prepare_input(dirty: str) -> str:
 
 
 def generate_table(key: str) -> list[str]:
-
     # I and J are used interchangeably to allow
     # us to use a 5x5 table (25 letters)
     alphabet = "ABCDEFGHIKLMNOPQRSTUVWXYZ"

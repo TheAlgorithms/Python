@@ -60,7 +60,7 @@ class BinarySearchTree:
         else:  # Tree is not empty
             parent_node = self.root  # from root
             if parent_node is None:
-                return None
+                return
             while True:  # While we don't get to a leaf
                 if value < parent_node.value:  # We go left
                     if parent_node.left is None:
@@ -196,7 +196,7 @@ def binary_search_tree() -> None:
     1 4 7 6 3 13 14 10 8
     >>> BinarySearchTree().search(6)
     Traceback (most recent call last):
-    ...
+        ...
     IndexError: Warning: Tree is empty! please use another.
     """
     testlist = (8, 3, 6, 1, 10, 14, 13, 4, 7)

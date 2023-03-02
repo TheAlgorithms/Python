@@ -15,11 +15,10 @@ def check_cycle(graph: dict) -> bool:
     visited: set[int] = set()
     # To detect a back edge, keep track of vertices currently in the recursion stack
     rec_stk: set[int] = set()
-    for node in graph:
-        if node not in visited:
-            if depth_first_search(graph, node, visited, rec_stk):
-                return True
-    return False
+    return any(
+        node not in visited and depth_first_search(graph, node, visited, rec_stk)
+        for node in graph
+    )
 
 
 def depth_first_search(graph: dict, vertex: int, visited: set, rec_stk: set) -> bool:

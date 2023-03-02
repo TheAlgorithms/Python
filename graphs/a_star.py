@@ -16,7 +16,6 @@ def search(
     cost: int,
     heuristic: list[list[int]],
 ) -> tuple[list[list[int]], list[list[int]]]:
-
     closed = [
         [0 for col in range(len(grid[0]))] for row in range(len(grid))
     ]  # the reference grid

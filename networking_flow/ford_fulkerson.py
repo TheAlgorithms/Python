@@ -21,7 +21,7 @@ def bfs(graph, s, t, parent):
                 visited[ind] = True
                 parent[ind] = u
 
-    return True if visited[t] else False
+    return visited[t]
 
 
 def ford_fulkerson(graph, source, sink):

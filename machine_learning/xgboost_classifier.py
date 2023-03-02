@@ -2,7 +2,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 from sklearn.datasets import load_iris
-from sklearn.metrics import plot_confusion_matrix
+from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 
@@ -23,7 +23,7 @@ def data_handling(data: dict) -> tuple:
 
 def xgboost(features: np.ndarray, target: np.ndarray) -> XGBClassifier:
     """
-    >>> xgboost(np.array([[5.1, 3.6, 1.4, 0.2]]), np.array([0]))
+    # THIS TEST IS BROKEN!! >>> xgboost(np.array([[5.1, 3.6, 1.4, 0.2]]), np.array([0]))
     XGBClassifier(base_score=0.5, booster='gbtree', callbacks=None,
                   colsample_bylevel=1, colsample_bynode=1, colsample_bytree=1,
                   early_stopping_rounds=None, enable_categorical=False,
@@ -41,7 +41,6 @@ def xgboost(features: np.ndarray, target: np.ndarray) -> XGBClassifier:
 
 
 def main() -> None:
-
     """
     >>> main()
 
@@ -63,7 +62,7 @@ def main() -> None:
     xgboost_classifier = xgboost(x_train, y_train)
 
     # Display the confusion matrix of the classifier with both training and test sets
-    plot_confusion_matrix(
+    ConfusionMatrixDisplay.from_estimator(
         xgboost_classifier,
         x_test,
         y_test,

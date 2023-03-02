@@ -74,7 +74,6 @@ def centroid_pairwise_dist(x, centroids):
 
 
 def assign_clusters(data, centroids):
-
     # Compute distances between each data point and the set of centroids:
     # Fill in the blank (RHS only)
     distances_from_centroids = centroid_pairwise_dist(data, centroids)
@@ -100,10 +99,8 @@ def revise_centroids(data, k, cluster_assignment):
 
 
 def compute_heterogeneity(data, k, centroids, cluster_assignment):
-
     heterogeneity = 0.0
     for i in range(k):
-
         # Select all data points that belong to cluster i. Fill in the blank (RHS only)
         member_data_points = data[cluster_assignment == i, :]
 
@@ -232,7 +229,7 @@ def report_generator(
     """
     # Fill missing values with given rules
     if fill_missing_report:
-        df.fillna(value=fill_missing_report, inplace=True)
+        df = df.fillna(value=fill_missing_report)
     df["dummy"] = 1
     numeric_cols = df.select_dtypes(np.number).columns
     report = (
@@ -341,7 +338,7 @@ def report_generator(
     )
     report.columns.name = ""
     report = report.reset_index()
-    report.drop(columns=["index"], inplace=True)
+    report = report.drop(columns=["index"])
     return report
 
 

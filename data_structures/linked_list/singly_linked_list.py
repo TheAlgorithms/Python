@@ -95,11 +95,11 @@ class LinkedList:
         True
         >>> linked_list[-10]
         Traceback (most recent call last):
-        ...
+            ...
         ValueError: list index out of range.
         >>> linked_list[len(linked_list)]
         Traceback (most recent call last):
-        ...
+            ...
         ValueError: list index out of range.
         """
         if not 0 <= index < len(self):
@@ -107,6 +107,7 @@ class LinkedList:
         for i, node in enumerate(self):
             if i == index:
                 return node
+        return None
 
     # Used to change the data of a particular node
     def __setitem__(self, index: int, data: Any) -> None:
@@ -122,11 +123,11 @@ class LinkedList:
         -666
         >>> linked_list[-10] = 666
         Traceback (most recent call last):
-        ...
+            ...
         ValueError: list index out of range.
         >>> linked_list[len(linked_list)] = 666
         Traceback (most recent call last):
-        ...
+            ...
         ValueError: list index out of range.
         """
         if not 0 <= index < len(self):
@@ -233,7 +234,7 @@ class LinkedList:
         'third'
         >>> linked_list.delete_head()
         Traceback (most recent call last):
-        ...
+            ...
         IndexError: List index out of range.
         """
         return self.delete_nth(0)
@@ -260,7 +261,7 @@ class LinkedList:
         'first'
         >>> linked_list.delete_tail()
         Traceback (most recent call last):
-        ...
+            ...
         IndexError: List index out of range.
         """
         return self.delete_nth(len(self) - 1)
@@ -281,11 +282,11 @@ class LinkedList:
         first->third
         >>> linked_list.delete_nth(5) # this raises error
         Traceback (most recent call last):
-        ...
+            ...
         IndexError: List index out of range.
         >>> linked_list.delete_nth(-1) # this also raises error
         Traceback (most recent call last):
-        ...
+            ...
         IndexError: List index out of range.
         """
         if not 0 <= index <= len(self) - 1:  # test if index is valid

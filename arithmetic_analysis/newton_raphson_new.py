@@ -32,7 +32,7 @@ def newton_raphson(
     1.2186556186174883e-10
     >>> newton_raphson('cos(x)', 0)
     Traceback (most recent call last):
-    ...
+        ...
     ZeroDivisionError: Could not find root
     """
 
@@ -59,7 +59,6 @@ def newton_raphson(
 
 # Let's Execute
 if __name__ == "__main__":
-
     # Find root of trigonometric function
     # Find value of pi
     print(f"The root of sin(x) = 0 is {newton_raphson('sin(x)', 2)}")
