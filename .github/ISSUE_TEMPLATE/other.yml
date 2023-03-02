@@ -20,10 +20,3 @@ body:
       description: Is there anything else we should know about this issue?
     validations:
       required: false
-  - type: checkboxes
-    id: consent
-    attributes:
-      label: Would you like to work on this issue?
-      options:
-        - label: Yes, I want to work on this issue!
-          required: false
