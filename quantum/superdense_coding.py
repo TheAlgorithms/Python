@@ -53,7 +53,7 @@ def superdense_coding(bit_1: int = 1, bit_2: int = 1) -> qiskit.result.counts.Co
         ...
     ValueError: inputs must be less or equal to 1.
     """
-    if (type(bit_1) == str) or (type(bit_2) == str):
+    if isinstance(bit_1, str) or isinstance(bit_2, str):
         raise TypeError("inputs must be integers.")
     if (bit_1 < 0) or (bit_2 < 0):
         raise ValueError("inputs must be positive.")

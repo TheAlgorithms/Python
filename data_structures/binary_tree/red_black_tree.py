@@ -319,9 +319,8 @@ class RedBlackTree:
         """A helper function to recursively check Property 4 of a
         Red-Black Tree. See check_color_properties for more info.
         """
-        if self.color == 1:
-            if color(self.left) == 1 or color(self.right) == 1:
-                return False
+        if self.color == 1 and 1 in (color(self.left), color(self.right)):
+            return False
         if self.left and not self.left.check_coloring():
             return False
         if self.right and not self.right.check_coloring():

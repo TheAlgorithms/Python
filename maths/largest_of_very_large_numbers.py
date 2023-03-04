@@ -12,6 +12,7 @@ def res(x, y):
             return 0
         elif y == 0:
             return 1  # any number raised to 0 is 1
+    raise AssertionError("This should never happen")
 
 
 if __name__ == "__main__":  # Main function

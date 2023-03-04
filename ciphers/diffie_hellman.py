@@ -228,10 +228,10 @@ class DiffieHellman:
 
     def is_valid_public_key(self, key: int) -> bool:
         # check if the other public key is valid based on NIST SP800-56
-        if 2 <= key and key <= self.prime - 2:
-            if pow(key, (self.prime - 1) // 2, self.prime) == 1:
-                return True
-        return False
+        return (
+            2 <= key <= self.prime - 2
+            and pow(key, (self.prime - 1) // 2, self.prime) == 1
+        )
 
     def generate_shared_key(self, other_key_str: str) -> str:
         other_key = int(other_key_str, base=16)
@@ -243,10 +243,10 @@ class DiffieHellman:
     @staticmethod
     def is_valid_public_key_static(remote_public_key_str: int, prime: int) -> bool:
         # check if the other public key is valid based on NIST SP800-56
-        if 2 <= remote_public_key_str and remote_public_key_str <= prime - 2:
-            if pow(remote_public_key_str, (prime - 1) // 2, prime) == 1:
-                return True
-        return False
+        return (
+            2 <= remote_public_key_str <= prime - 2
+            and pow(remote_public_key_str, (prime - 1) // 2, prime) == 1
+        )
 
     @staticmethod
     def generate_shared_key_static(

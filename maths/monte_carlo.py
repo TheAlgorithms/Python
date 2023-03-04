@@ -18,6 +18,7 @@ def pi_estimator(iterations: int):
     5. Multiply this value by 4 to get your estimate of pi.
     6. Print the estimated and numpy value of pi
     """
+
     # A local function to see if a dot lands in the circle.
     def is_in_circle(x: float, y: float) -> bool:
         distance_from_centre = sqrt((x**2) + (y**2))

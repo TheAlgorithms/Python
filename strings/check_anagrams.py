@@ -38,10 +38,7 @@ def check_anagrams(first_str: str, second_str: str) -> bool:
         count[first_str[i]] += 1
         count[second_str[i]] -= 1
 
-    for _count in count.values():
-        if _count != 0:
-            return False
-    return True
+    return all(_count == 0 for _count in count.values())
 
 
 if __name__ == "__main__":

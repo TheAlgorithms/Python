@@ -33,10 +33,9 @@ def fizz_buzz(number: int, iterations: int) -> str:
         ...
     ValueError: iterations must be defined as integers
     """
-
-    if not type(iterations) == int:
+    if not isinstance(iterations, int):
         raise ValueError("iterations must be defined as integers")
-    if not type(number) == int or not number >= 1:
+    if not isinstance(number, int) or not number >= 1:
         raise ValueError(
             """starting number must be
                          and integer and be more than 0"""
@@ -50,7 +49,7 @@ def fizz_buzz(number: int, iterations: int) -> str:
             out += "Fizz"
         if number % 5 == 0:
             out += "Buzz"
-        if not number % 3 == 0 and not number % 5 == 0:
+        if 0 not in (number % 3, number % 5):
             out += str(number)
 
         # print(out)

@@ -167,7 +167,7 @@ class DirectedGraph:
                         and not on_the_way_back
                     ):
                         len_stack = len(stack) - 1
-                        while True and len_stack >= 0:
+                        while len_stack >= 0:
                             if stack[len_stack] == node[1]:
                                 anticipating_nodes.add(node[1])
                                 break
@@ -220,7 +220,7 @@ class DirectedGraph:
                         and not on_the_way_back
                     ):
                         len_stack_minus_one = len(stack) - 1
-                        while True and len_stack_minus_one >= 0:
+                        while len_stack_minus_one >= 0:
                             if stack[len_stack_minus_one] == node[1]:
                                 anticipating_nodes.add(node[1])
                                 break
@@ -392,7 +392,7 @@ class Graph:
                         and not on_the_way_back
                     ):
                         len_stack = len(stack) - 1
-                        while True and len_stack >= 0:
+                        while len_stack >= 0:
                             if stack[len_stack] == node[1]:
                                 anticipating_nodes.add(node[1])
                                 break
@@ -445,7 +445,7 @@ class Graph:
                         and not on_the_way_back
                     ):
                         len_stack_minus_one = len(stack) - 1
-                        while True and len_stack_minus_one >= 0:
+                        while len_stack_minus_one >= 0:
                             if stack[len_stack_minus_one] == node[1]:
                                 anticipating_nodes.add(node[1])
                                 break
