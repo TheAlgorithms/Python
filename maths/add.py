@@ -14,6 +14,6 @@ def add(a: float, b: float) -> float:
 
 
 if __name__ == "__main__":
-    a = 5
-    b = 6
+    a = float(input("Enter the first value to be added: ))
+    b = float(input("Enter the second value to be added: ))
     print(f"The sum of {a} + {b} is {add(a, b)}")
