@@ -1063,7 +1063,7 @@
   * [External Sort](sorts/external_sort.py)
   * [Gnome Sort](sorts/gnome_sort.py)
   * [Heap Sort](sorts/heap_sort.py)
-  * [Hibert Sort](sorts/hilbert_sort.py)
+  * [Hilbert Sort](sorts/hilbert_sort.py)
   * [Insertion Sort](sorts/insertion_sort.py)
   * [Intro Sort](sorts/intro_sort.py)
   * [Iterative Merge Sort](sorts/iterative_merge_sort.py)
