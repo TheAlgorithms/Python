@@ -13,7 +13,7 @@ in total, determine the number of blue discs that the box would contain.
 """
 
 
-def solution(min_total: int = 10 ** 12) -> int:
+def solution(min_total: int = 10**12) -> int:
     """
     Returns the number of blue discs for the first arrangement to contain
     over min_total discs in total
