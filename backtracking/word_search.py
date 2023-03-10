@@ -33,9 +33,10 @@ leetcode: https://leetcode.com/problems/word-search/
 """
 
 
-# Returns the hash key of matrix indexes.
 def get_point_key(len_board: int, len_board_column: int, row: int, column: int) -> int:
     """
+    Returns the hash key of matrix indexes.
+
     >>> get_point_key(10, 20, 1, 0)
     200
     """
@@ -43,8 +44,6 @@ def get_point_key(len_board: int, len_board_column: int, row: int, column: int) 
     return len_board * len_board_column * row + column
 
 
-# Return True if it's possible to search the word suffix
-# starting from the word_index.
 def exits_word(
     board: list[list[str]],
     word: str,
@@ -54,6 +53,9 @@ def exits_word(
     visited_points_set: set[int],
 ) -> bool:
     """
+    Return True if it's possible to search the word suffix
+    starting from the word_index.
+
     >>> exits_word([["A"]], "B", 0, 0, 0, set())
     False
     """
