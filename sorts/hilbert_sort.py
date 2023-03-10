@@ -3,7 +3,7 @@
 import numpy as np
 
 
-def hilbert_sort(data: list):
+def hilbert_sort(data: list) -> list:
     """
     Imagine you have a bunch of balls, each with a different number on it. To sort the balls, you first throw them up in the air. As each ball falls back down, it follows a unique path based on its number.
     As the balls fall back down and land, they come to rest at a location in 2D space.
