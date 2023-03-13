@@ -44,7 +44,7 @@ repos:
           - --py311-plus
 
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.254
+    rev: v0.0.255
     hooks:
       - id: ruff
         args:
@@ -69,7 +69,7 @@ repos:
           *flake8-plugins
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.0.1
+    rev: v1.1.1
     hooks:
       - id: mypy
         args:
@@ -79,11 +79,11 @@ repos:
         additional_dependencies: [types-requests]
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.2
+    rev: v2.2.4
     hooks:
       - id: codespell
         args:
-          - --ignore-words-list=ans,crate,damon,fo,followings,hist,iff,mater,secant,som,sur,tim,zar
+          - --ignore-words-list=3rt,ans,crate,damon,fo,followings,hist,iff,kwanza,mater,secant,som,sur,tim,zar
         exclude: |
           (?x)^(
               ciphers/prehistoric_men.txt |
