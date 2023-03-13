@@ -83,7 +83,7 @@ repos:
     hooks:
       - id: codespell
         args:
-          - --ignore-words-list=ans,crate,damon,fo,followings,hist,iff,mater,secant,som,sur,tim,zar
+          - --ignore-words-list=3rt,ans,crate,damon,fo,followings,hist,iff,kwanza,mater,secant,som,sur,tim,zar
         exclude: |
           (?x)^(
               ciphers/prehistoric_men.txt |

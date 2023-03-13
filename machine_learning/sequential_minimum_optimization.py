@@ -569,7 +569,7 @@ def plot_partition_boundary(
     """
     We can not get the optimum w of our kernel svm model which is different from linear
     svm.  For this reason, we generate randomly distributed points with high desity and
-    prediced values of these points are calculated by using our tained model. Then we
+    prediced values of these points are calculated by using our trained model. Then we
     could use this prediced values to draw contour map.
     And this contour map can represent svm's partition boundary.
     """
