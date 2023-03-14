@@ -54,7 +54,7 @@ select = [      # https://beta.ruff.rs/docs/rules
     "TID",      # TID: tidy imports
     "UP",       # UP: pyupgrade
     "W",        # W: pycodestyle warnings
-    "YTT",      # YTT: Year Two Thousand
+    "YTT",      # YTT: year 2020
 ]
 target-version = "py311"
 
@@ -62,7 +62,7 @@ target-version = "py311"
 max-complexity = 20  # default: 10
 
 [tool.ruff.pylint]   # DO NOT INCREASE THESE VALUES
-max-args = 10  # default: 5
-max-branches = 20  # default: 12
-max-returns = 8  # default: 6
+max-args = 10        # default: 5
+max-branches = 20    # default: 12
+max-returns = 8      # default: 6
 max-statements = 88  # default: 50
