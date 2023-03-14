@@ -32,7 +32,7 @@ def is_prime(number: int) -> bool:
     return True
 
 
-def solution(max_prime: int = 10 ** 6) -> int:
+def solution(max_prime: int = 10**6) -> int:
     """
     Returns number of primes below max_prime with the property
 
