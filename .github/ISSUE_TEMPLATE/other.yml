@@ -1,11 +1,7 @@
 name: Other
 description: Use this for any other issues. PLEASE do not create blank issues
-title: "[OTHER]"
 labels: ["awaiting triage"]
 body:
-  - type: markdown
-    attributes:
-      value: "# Other issue"
   - type: textarea
     id: issuedescription
     attributes:
@@ -13,6 +9,7 @@ body:
       description: Provide a clear and concise explanation of your issue.
     validations:
       required: true
+
   - type: textarea
     id: extrainfo
     attributes:
