@@ -16,7 +16,7 @@ fib_memoization runtime: 0.0107 ms
 fib_binet runtime: 0.0174 ms
 """
 
-from functools import lru_cache
+import functools
 from math import sqrt
 from time import time
 
@@ -110,7 +110,7 @@ def fib_recursive_cached(n: int) -> list[int]:
     Exception: n is negative
     """
 
-    @lru_cache(maxsize=None)
+    @functools.cache
     def fib_recursive_term(i: int) -> int:
         """
         Calculates the i-th (0-indexed) Fibonacci number using recursion

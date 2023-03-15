@@ -3,6 +3,7 @@ repos:
     rev: v4.4.0
     hooks:
       - id: check-executables-have-shebangs
+      - id: check-toml
       - id: check-yaml
       - id: end-of-file-fixer
         types: [python]
@@ -14,59 +15,40 @@ repos:
     hooks:
     -   id: auto-walrus
 
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: v0.0.255
+    hooks:
+      - id: ruff
+
   - repo: https://github.com/psf/black
     rev: 23.1.0
     hooks:
       - id: black
 
-  - repo: https://github.com/PyCQA/isort
-    rev: 5.12.0
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.4
     hooks:
-      - id: isort
-        args:
-          - --profile=black
+      - id: codespell
+        additional_dependencies:
+          - tomli
 
   - repo: https://github.com/tox-dev/pyproject-fmt
     rev: "0.9.2"
     hooks:
       - id: pyproject-fmt
 
+  - repo: local
+    hooks:
+      - id: validate-filenames
+        name: Validate filenames
+        entry: ./scripts/validate_filenames.py
+        language: script
+        pass_filenames: false
+
   - repo: https://github.com/abravalheri/validate-pyproject
     rev: v0.12.1
     hooks:
       - id: validate-pyproject
-
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v3.3.1
-    hooks:
-      - id: pyupgrade
-        args:
-          - --py311-plus
-
-  - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.255
-    hooks:
-      - id: ruff
-        args:
-          - --ignore=E741
-
-  - repo: https://github.com/PyCQA/flake8
-    rev: 6.0.0
-    hooks:
-      - id: flake8 # See .flake8 for args
-        additional_dependencies: &flake8-plugins
-          - flake8-bugbear
-          - flake8-builtins
-          # - flake8-broken-line
-          - flake8-comprehensions
-          - pep8-naming
-
-  - repo: https://github.com/asottile/yesqa
-    rev: v1.4.0
-    hooks:
-      - id: yesqa
-        additional_dependencies:
-          *flake8-plugins
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.1.1
@@ -77,25 +59,3 @@ repos:
           - --install-types # See mirrors-mypy README.md
           - --non-interactive
         additional_dependencies: [types-requests]
-
-  - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.4
-    hooks:
-      - id: codespell
-        args:
-          - --ignore-words-list=3rt,ans,crate,damon,fo,followings,hist,iff,kwanza,mater,secant,som,sur,tim,zar
-        exclude: |
-          (?x)^(
-              ciphers/prehistoric_men.txt |
-              strings/dictionary.txt |
-              strings/words.txt |
-              project_euler/problem_022/p022_names.txt
-          )$
-
-  - repo: local
-    hooks:
-      - id: validate-filenames
-        name: Validate filenames
-        entry: ./scripts/validate_filenames.py
-        language: script
-        pass_filenames: false

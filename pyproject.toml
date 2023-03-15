@@ -12,8 +12,57 @@ addopts = [
 omit = [".env/*"]
 sort = "Cover"
 
-#[report]
-#sort = Cover
-#omit =
-#    .env/*
-#    backtracking/*
+[tool.codespell]
+ignore-words-list = "3rt,ans,crate,damon,fo,followings,hist,iff,kwanza,mater,secant,som,sur,tim,zar"
+skip = "./.*,*.json,ciphers/prehistoric_men.txt,project_euler/problem_022/p022_names.txt,pyproject.toml,strings/dictionary.txt,strings/words.txt"
+
+[tool.ruff]
+ignore = [      # `ruff rule S101` for a description of that rule
+    "B904",     # B904: Within an `except` clause, raise exceptions with `raise ... from err`
+    "B905",     # B905: `zip()` without an explicit `strict=` parameter
+    "E741",     # E741: Ambiguous variable name 'l'
+    "G004",     # G004 Logging statement uses f-string
+    "N999",     # N999: Invalid module name
+    "PLC1901",  # PLC1901: `{}` can be simplified to `{}` as an empty string is falsey
+    "PLR2004",  # PLR2004: Magic value used in comparison
+    "PLR5501",  # PLR5501: Consider using `elif` instead of `else`
+    "PLW0120",  # PLW0120: `else` clause on loop without a `break` statement
+    "PLW060",   # PLW060: Using global for `{name}` but no assignment is done -- DO NOT FIX
+    "PLW2901",  # PLW2901: Redefined loop variable
+    "RUF00",    # RUF00: Ambiguous unicode character -- DO NOT FIX
+    "RUF100",   # RUF100: Unused `noqa` directive
+    "S101",     # S101: Use of `assert` detected -- DO NOT FIX
+    "S105",     # S105: Possible hardcoded password: 'password'
+    "S113",     # S113: Probable use of requests call without timeout
+    "UP038",    # UP038: Use `X | Y` in `{}` call instead of `(X, Y)` -- DO NOT FIX
+]
+select = [      # https://beta.ruff.rs/docs/rules
+    "A",        # A: builtins
+    "B",        # B: bugbear
+    "C40",      # C40: comprehensions
+    "C90",      # C90: mccabe code complexity
+    "E",        # E: pycodestyle errors
+    "F",        # F: pyflakes
+    "G",        # G: logging format
+    "I",        # I: isort
+    "N",        # N: pep8 naming
+    "PL",       # PL: pylint
+    "PIE",      # PIE: pie
+    "PYI",      # PYI: type hinting stub files
+    "RUF",      # RUF: ruff
+    "S",        # S: bandit
+    "TID",      # TID: tidy imports
+    "UP",       # UP: pyupgrade
+    "W",        # W: pycodestyle warnings
+    "YTT",      # YTT: year 2020
+]
+target-version = "py311"
+
+[tool.ruff.mccabe]   # DO NOT INCREASE THIS VALUE
+max-complexity = 20  # default: 10
+
+[tool.ruff.pylint]   # DO NOT INCREASE THESE VALUES
+max-args = 10        # default: 5
+max-branches = 20    # default: 12
+max-returns = 8      # default: 6
+max-statements = 88  # default: 50
