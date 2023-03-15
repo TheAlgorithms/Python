@@ -14,7 +14,7 @@ def init():
 
 
 # Function for digital differential analyzer algorithm
-def draw_line_dda(x1, y1, x2, y2):
+def draw_line_dda(x1: float, y1: float, x2: float, y2: float) -> None:
     dx = x2 - x1
     dy = y2 - y1
     steps = abs(dx) if abs(dx) > abs(dy) else abs(dy)
