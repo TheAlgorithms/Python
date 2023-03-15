@@ -39,7 +39,7 @@ def draw():
     draw_line_dda(-55, 55, 50, -50)
 
 
-def main():
+def main() -> None:
     glutInit(sys.argv)
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB)
     glutInitWindowPosition(50, 50)
