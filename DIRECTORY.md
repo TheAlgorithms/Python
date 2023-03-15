@@ -196,11 +196,14 @@
     * [Disjoint Set](data_structures/disjoint_set/disjoint_set.py)
   * Hashing
     * [Double Hash](data_structures/hashing/double_hash.py)
+    * [Hash Map](data_structures/hashing/hash_map.py)
     * [Hash Table](data_structures/hashing/hash_table.py)
     * [Hash Table With Linked List](data_structures/hashing/hash_table_with_linked_list.py)
     * Number Theory
       * [Prime Numbers](data_structures/hashing/number_theory/prime_numbers.py)
     * [Quadratic Probing](data_structures/hashing/quadratic_probing.py)
+    * Tests
+      * [Test Hash Map](data_structures/hashing/tests/test_hash_map.py)
   * Heap
     * [Binomial Heap](data_structures/heap/binomial_heap.py)
     * [Heap](data_structures/heap/heap.py)
@@ -973,6 +976,8 @@
     * [Sol1](project_euler/problem_125/sol1.py)
   * Problem 129
     * [Sol1](project_euler/problem_129/sol1.py)
+  * Problem 131
+    * [Sol1](project_euler/problem_131/sol1.py)
   * Problem 135
     * [Sol1](project_euler/problem_135/sol1.py)
   * Problem 144
