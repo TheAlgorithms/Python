@@ -51,7 +51,7 @@ class DoublyLinkedList:
         >>> len(linked_list) == 5
         True
         """
-        return len(tuple(iter(self)))
+        return sum(1 for _ in self)
 
     def insert_at_head(self, data):
         self.insert_at_nth(0, data)
