@@ -56,6 +56,7 @@ select = [      # https://beta.ruff.rs/docs/rules
     "W",        # W: pycodestyle warnings
     "YTT",      # YTT: year 2020
 ]
+show-source = true
 target-version = "py311"
 
 [tool.ruff.mccabe]   # DO NOT INCREASE THIS VALUE

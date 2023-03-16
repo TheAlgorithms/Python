@@ -9,10 +9,10 @@ class LinearCongruentialGenerator:
     """
 
     # The default value for **seed** is the result of a function call which is not
-    # normally recommended and causes flake8-bugbear to raise a B008 error. However,
-    # in this case, it is accptable because `LinearCongruentialGenerator.__init__()`
-    # will only be called once per instance and it ensures that each instance will
-    # generate a unique sequence of numbers.
+    # normally recommended and causes ruff to raise a B008 error. However, in this case,
+    # it is accptable because `LinearCongruentialGenerator.__init__()` will only be
+    # called once per instance and it ensures that each instance will generate a unique
+    # sequence of numbers.
 
     def __init__(self, multiplier, increment, modulo, seed=int(time())):  # noqa: B008
         """
