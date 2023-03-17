@@ -59,9 +59,8 @@ pre-commit install
 That's it! The plugin will run every time you commit any changes. If there are any errors found during the run, fix them and commit those changes.
 Pre-commit includes
 [black](https://github.com/psf/black),
-[isort](https://github.com/PyCQA/isort),
-[mypy](http://mypy-lang.org) and
-[flake8](https://flake8.pycqa.org/en/latest/).
+[ruff](https://beta.ruff.rs/docs/)
+[mypy](http://mypy-lang.org).
 
 You can even run the plugin manually on all files:
 
