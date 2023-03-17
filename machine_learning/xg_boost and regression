@@ -1,0 +1,20 @@
+from numpy import asarray
+from pandas import read_csv
+from xgboost import XGBRegressor
+
+url = 'https://raw.githubusercontent.com/jbrownlee/Datasets/master/housing.csv'
+dataframe = read_csv(url, header=None)
+data = dataframe.values
+
+X, y = data[:, :-1], data[:, -1]
+
+model = XGBRegressor()
+
+model.fit(X, y)
+
+row = [0.00632,18.00,2.310,0,0.5380,6.5750,65.20,4.0900,1,296.0,15.30,396.90,4.98]
+new_data = asarray([row])
+
+yhat = model.predict(new_data)
+
+print('Predicted: %.3f' % yhat)
