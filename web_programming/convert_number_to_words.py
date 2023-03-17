@@ -63,7 +63,7 @@ def convert(number: int) -> str:
             current = temp_num % 10
             if counter % 2 == 0:
                 addition = ""
-                if counter in placevalue.keys() and current != 0:
+                if counter in placevalue and current != 0:
                     addition = placevalue[counter]
                 if counter == 2:
                     words = singles[current] + addition + words
@@ -84,12 +84,12 @@ def convert(number: int) -> str:
                         words = teens[number % 10] + words
                     else:
                         addition = ""
-                        if counter in placevalue.keys():
+                        if counter in placevalue:
                             addition = placevalue[counter]
                         words = doubles[current] + addition + words
                 else:
                     addition = ""
-                    if counter in placevalue.keys():
+                    if counter in placevalue:
                         if current == 0 and ((temp_num % 100) // 10) == 0:
                             addition = ""
                         else:

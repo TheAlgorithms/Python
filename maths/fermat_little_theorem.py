@@ -6,7 +6,6 @@
 
 
 def binary_exponentiation(a, n, mod):
-
     if n == 0:
         return 1
 

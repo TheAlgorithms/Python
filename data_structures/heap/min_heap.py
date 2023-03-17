@@ -121,7 +121,7 @@ class MinHeap:
         self.sift_up(len(self.heap) - 1)
 
     def is_empty(self):
-        return True if len(self.heap) == 0 else False
+        return len(self.heap) == 0
 
     def decrease_key(self, node, new_value):
         assert (

@@ -99,7 +99,6 @@ def solution(filename: str = "p107_network.txt") -> int:
     """
     script_dir: str = os.path.abspath(os.path.dirname(__file__))
     network_file: str = os.path.join(script_dir, filename)
-    adjacency_matrix: list[list[str]]
     edges: dict[EdgeT, int] = {}
     data: list[str]
     edge1: int

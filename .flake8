@@ -1,8 +1,0 @@
-[flake8]
-max-line-length = 88
-# max-complexity should be 10
-max-complexity = 19
-extend-ignore =
-    # Formatting style for `black`
-    E203  # Whitespace before ':'
-    W503  # Line break occurred before a binary operator

@@ -136,12 +136,12 @@ class BinomialHeap:
 
         # Empty heaps corner cases
         if other.size == 0:
-            return
+            return None
         if self.size == 0:
             self.size = other.size
             self.bottom_root = other.bottom_root
             self.min_node = other.min_node
-            return
+            return None
         # Update size
         self.size = self.size + other.size
 
@@ -174,7 +174,6 @@ class BinomialHeap:
                 i.left_tree_size == i.parent.left_tree_size
                 and i.left_tree_size != i.parent.parent.left_tree_size
             ):
-
                 # Neighbouring Nodes
                 previous_node = i.left
                 next_node = i.parent.parent
@@ -233,7 +232,6 @@ class BinomialHeap:
                 and self.bottom_root.left_tree_size
                 == self.bottom_root.parent.left_tree_size
             ):
-
                 # Next node
                 next_node = self.bottom_root.parent.parent
 

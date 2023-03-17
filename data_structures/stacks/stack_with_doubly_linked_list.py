@@ -92,7 +92,6 @@ class Stack(Generic[T]):
 
 # Code execution starts here
 if __name__ == "__main__":
-
     # Start with the empty stack
     stack: Stack[int] = Stack()
 

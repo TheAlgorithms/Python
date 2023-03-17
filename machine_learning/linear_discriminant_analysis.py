@@ -256,7 +256,7 @@ def valid_input(
     input_msg: str,
     err_msg: str,
     condition: Callable[[num], bool] = lambda x: True,
-    default: str = None,
+    default: str | None = None,
 ) -> num:
     """
     Ask for user value and validate that it fulfill a condition.

@@ -8,7 +8,7 @@ class FenwickTree:
     More info: https://en.wikipedia.org/wiki/Fenwick_tree
     """
 
-    def __init__(self, arr: list[int] = None, size: int = None) -> None:
+    def __init__(self, arr: list[int] | None = None, size: int | None = None) -> None:
         """
         Constructor for the Fenwick tree
 

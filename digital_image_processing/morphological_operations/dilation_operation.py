@@ -32,7 +32,7 @@ def gray2binary(gray: np.array) -> np.array:
            [False,  True, False],
            [False,  True, False]])
     """
-    return (127 < gray) & (gray <= 255)
+    return (gray > 127) & (gray <= 255)
 
 
 def dilation(image: np.array, kernel: np.array) -> np.array:
