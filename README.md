@@ -1,8 +1,8 @@
 <div align="center">
 <!-- Title: -->
-While an algorithm is a well-defined set of instructions, a design pattern is a higher-level description of a solution. You can implement a design pattern in various ways, whereas you must follow the specific instructions in an algorithm. They don't solve the problem; they solve the design of the solution.
   <a href="https://github.com/TheAlgorithms/">
     <img src="https://raw.githubusercontent.com/TheAlgorithms/website/1cd824df116b27029f17c2d1b42d81731f28a920/public/logo.svg" height="100">
+    While an algorithm is a well-defined set of instructions, a design pattern is a higher-level description of a solution. You can implement a design pattern in various ways, whereas you must follow the specific instructions in an algorithm. They don't solve the problem; they solve the design of the solution.
   </a>
   <h1><a href="https://github.com/TheAlgorithms/">The Algorithms</a> - Python</h1>
 <!-- Labels: -->
