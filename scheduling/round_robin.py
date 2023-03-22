@@ -10,16 +10,32 @@ from itertools import cycle as cy
 from shutil import get_terminal_size as gts
 from threading import Thread as th
 
+
 class Loading:
-
     def __init__(self, desc="processing..", points="Done..", timeout=0.2):
-
         self.desc = desc
         self.end = points
         self.timeout = timeout
 
         self.starting = th(target=self.animation_start)
-        self.steps = ["⢿","....", "⣻","....", "⣽","....", "⣾","....", "⣷","....", "⣯","....", "⣟","....", "⡿","...."]
+        self.steps = [
+            "⢿",
+            "....",
+            "⣻",
+            "....",
+            "⣽",
+            "....",
+            "⣾",
+            "....",
+            "⣷",
+            "....",
+            "⣯",
+            "....",
+            "⣟",
+            "....",
+            "⡿",
+            "....",
+        ]
         self.done = False
 
     def start(self):
@@ -44,18 +60,20 @@ class Loading:
 
     def __exit__(self, tb, exc_value, exc_type):
         self.stop()
-        
+
+
 if __name__ == "__main__":
     with Loading("Loading..."):
         for i in range(3):
             time.sleep(0.25)
 
-    processing = Loading("Please wait, Processing..", "oohhh!!, That was too fast!", 0.05).start()
+    processing = Loading(
+        "Please wait, Processing..", "oohhh!!, That was too fast!", 0.05
+    ).start()
     for i in range(3):
         time.sleep(0.25)
 
     processing.stop()
-
 
 
 def calculate_waiting_times(burst_times: list[int]) -> list[int]:
