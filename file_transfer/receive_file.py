@@ -1,5 +1,6 @@
 import socket
 
+
 def main():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     host = socket.gethostname()
@@ -20,6 +21,7 @@ def main():
     print("Successfully received the file")
     sock.close()
     print("Connection closed")
+
 
 if __name__ == "__main__":
     main()
