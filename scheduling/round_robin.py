@@ -7,28 +7,28 @@ from __future__ import annotations
 
 from statistics import mean
 import time
-from itertools import cycle
-from shutil import get_terminal_size
-from threading import Thread
+from itertools import cycle as cy
+from shutil import get_terminal_size as gts
+from threading import Thread as th
 
 class Loading:
 
-    def __init__(self, descrip="Loading...", end_point="Done!", timeout=0.2):
+    def __init__(self, desc="processing..", points="Done..", timeout=0.2):
 
-        self.desc = descrip
-        self.end = end_point
+        self.desc = desc
+        self.end = points
         self.timeout = timeout
 
-        self._thread = Thread(target=self._animate, daemon=True)
-        self.steps = ["⢿", "⣻", "⣽", "⣾", "⣷", "⣯", "⣟", "⡿"]
+        self.starting = th(target=self.animation_start)
+        self.steps = ["⢿","....", "⣻","....", "⣽","....", "⣾","....", "⣷","....", "⣯","....", "⣟","....", "⡿","...."]
         self.done = False
 
     def start(self):
-        self._thread.start()
+        self.starting.start()
         return self
 
-    def _animate(self):
-        for i in cycle(self.steps):
+    def animation_start(self):
+        for i in cy(self.steps):
             if self.done:
                 break
             print(f"\r{self.desc} {i}", flush=True, end="")
@@ -39,22 +39,23 @@ class Loading:
 
     def stop(self):
         self.done = True
-        cols = get_terminal_size((80, 20)).columns
-        print("\r" + " " * cols, end="", flush=True)
+        cols = gts((70, 30)).columns
+        print("\r " + "  " * cols, end="", flush=True)
         print(f"\r{self.end}", flush=True)
 
-    def __exit__(self, exc_type, exc_value, tb):
+    def __exit__(self, tb, exc_value, exc_type):
         self.stop()
+        
 if __name__ == "__main__":
     with Loading("Loading..."):
-        for i in range(3):
+        for k in range(3):
             time.sleep(0.25)
 
-    loader = Loading("Please wait, Processing..", "oohhh!!, That was too fast!", 0.05).start()
-    for i in range(3):
+    processing = Loading("Please wait, Processing..", "oohhh!!, That was too fast!", 0.05).start()
+    for load_time in range(3):
         time.sleep(0.25)
 
-    loader.stop()
+    processing.stop()
 
 
 
