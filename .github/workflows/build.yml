@@ -1,9 +1,10 @@
 name: "build"
-
-on:
-  pull_request:
-  schedule:
-    - cron: "0 0 * * *" # Run everyday
+on: 
+  workflow_dispatch:
+# on:
+#   pull_request:
+#   schedule:
+#     - cron: "0 0 * * *" # Run everyday
 
 jobs:
   build:
