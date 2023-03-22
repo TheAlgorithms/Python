@@ -4,8 +4,58 @@ In Round Robin each process is assigned a fixed time slot in a cyclic way.
 https://en.wikipedia.org/wiki/Round-robin_scheduling
 """
 from __future__ import annotations
-
 from statistics import mean
+import time
+from itertools import cycle as cy
+from shutil import get_terminal_size as gts
+from threading import Thread as th
+
+class Loading:
+
+    def __init__(self, desc="processing..", points="Done..", timeout=0.2):
+
+        self.desc = desc
+        self.end = points
+        self.timeout = timeout
+
+        self.starting = th(target=self.animation_start)
+        self.steps = ["⢿","....", "⣻","....", "⣽","....", "⣾","....", "⣷","....", "⣯","....", "⣟","....", "⡿","...."]
+        self.done = False
+
+    def start(self):
+        self.starting.start()
+        return self
+
+    def animation_start(self):
+        for i in cy(self.steps):
+            if self.done:
+                break
+            print(f"\r{self.desc} {i}", flush=True, end="")
+            time.sleep(self.timeout)
+
+    def __enter__(self):
+        self.start()
+
+    def stop(self):
+        self.done = True
+        cols = gts((70, 30)).columns
+        print("\r " + "  " * cols, end="", flush=True)
+        print(f"\r{self.end}", flush=True)
+
+    def __exit__(self, tb, exc_value, exc_type):
+        self.stop()
+        
+if __name__ == "__main__":
+    with Loading("Loading..."):
+        for i in range(3):
+            time.sleep(0.25)
+
+    processing = Loading("Please wait, Processing..", "oohhh!!, That was too fast!", 0.05).start()
+    for i in range(3):
+        time.sleep(0.25)
+
+    processing.stop()
+
 
 
 def calculate_waiting_times(burst_times: list[int]) -> list[int]:
