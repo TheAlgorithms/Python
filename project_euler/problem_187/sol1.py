@@ -40,7 +40,7 @@ def solution(max_number: int = 10**8) -> int:
     10
     """
 
-    prime_numbers = calculate_prime_numbers(max_number)
+    prime_numbers = calculate_prime_numbers(max_number // 2)
 
     semiprimes_count = 0
     left = 0
