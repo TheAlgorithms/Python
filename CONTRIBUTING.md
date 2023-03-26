@@ -2,7 +2,7 @@
 
 ## Before contributing
 
-Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://app.gitter.im/#/room/#TheAlgorithms_community:gitter.im).
+Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms/community).
 
 ## Contributing
 
@@ -176,7 +176,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
 - Most importantly,
   - __Be consistent in the use of these guidelines when submitting.__
-  - __Join__ us on [Discord](https://discord.com/invite/c7MnfGFGa6) and [Gitter](https://app.gitter.im/#/room/#TheAlgorithms_community:gitter.im) __now!__
+  - __Join__ us on [Discord](https://discord.com/invite/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms/community) __now!__
   - Happy coding!
 
 Writer [@poyea](https://github.com/poyea), Jun 2019.
