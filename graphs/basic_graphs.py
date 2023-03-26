@@ -139,10 +139,9 @@ def dijk(g, s):
                 u = i
         known.add(u)
         for v in g[u]:
-            if v[0] not in known:
-                if dist[u] + v[1] < dist.get(v[0], 100000):
-                    dist[v[0]] = dist[u] + v[1]
-                    path[v[0]] = u
+            if v[0] not in known and dist[u] + v[1] < dist.get(v[0], 100000):
+                dist[v[0]] = dist[u] + v[1]
+                path[v[0]] = u
     for i in dist:
         if i != s:
             print(dist[i])
@@ -243,10 +242,9 @@ def prim(g, s):
                 u = i
         known.add(u)
         for v in g[u]:
-            if v[0] not in known:
-                if v[1] < dist.get(v[0], 100000):
-                    dist[v[0]] = v[1]
-                    path[v[0]] = u
+            if v[0] not in known and v[1] < dist.get(v[0], 100000):
+                dist[v[0]] = v[1]
+                path[v[0]] = u
     return dist
 
 

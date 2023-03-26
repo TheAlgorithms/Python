@@ -20,7 +20,7 @@ Runtime: O(n * n)
 Space: O(n)
 """
 
-from functools import lru_cache
+import functools
 from typing import Any
 
 
@@ -80,7 +80,7 @@ def word_break(string: str, words: list[str]) -> bool:
     len_string = len(string)
 
     # Dynamic programming method
-    @lru_cache(maxsize=None)
+    @functools.cache
     def is_breakable(index: int) -> bool:
         """
         >>> string = 'a'

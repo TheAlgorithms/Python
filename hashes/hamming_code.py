@@ -126,9 +126,8 @@ def emitter_converter(size_par, data):
                     aux = (bin_pos[cont_loop])[-1 * (bp)]
                 except IndexError:
                     aux = "0"
-                if aux == "1":
-                    if x == "1":
-                        cont_bo += 1
+                if aux == "1" and x == "1":
+                    cont_bo += 1
             cont_loop += 1
         parity.append(cont_bo % 2)
 

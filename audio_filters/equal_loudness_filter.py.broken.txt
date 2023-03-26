@@ -20,7 +20,7 @@ class EqualLoudnessFilter:
      samplerate, use with caution.
 
     Code based on matlab implementation at https://bit.ly/3eqh2HU
-    (url shortened for flake8)
+    (url shortened for ruff)
 
     Target curve: https://i.imgur.com/3g2VfaM.png
     Yulewalk response: https://i.imgur.com/J9LnJ4C.png
