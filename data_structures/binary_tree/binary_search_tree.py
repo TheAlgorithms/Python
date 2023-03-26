@@ -60,7 +60,7 @@ class BinarySearchTree:
         else:  # Tree is not empty
             parent_node = self.root  # from root
             if parent_node is None:
-                return None
+                return
             while True:  # While we don't get to a leaf
                 if value < parent_node.value:  # We go left
                     if parent_node.left is None:

@@ -107,6 +107,7 @@ class LinkedList:
         for i, node in enumerate(self):
             if i == index:
                 return node
+        return None
 
     # Used to change the data of a particular node
     def __setitem__(self, index: int, data: Any) -> None:

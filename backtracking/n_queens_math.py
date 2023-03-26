@@ -129,9 +129,9 @@ def depth_first_search(
 
         # If it is False we call dfs function again and we update the inputs
         depth_first_search(
-            possible_board + [col],
-            diagonal_right_collisions + [row - col],
-            diagonal_left_collisions + [row + col],
+            [*possible_board, col],
+            [*diagonal_right_collisions, row - col],
+            [*diagonal_left_collisions, row + col],
             boards,
             n,
         )

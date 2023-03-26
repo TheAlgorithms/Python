@@ -66,7 +66,7 @@ def counting_sort_string(string):
 
 if __name__ == "__main__":
     # Test string sort
-    assert "eghhiiinrsssttt" == counting_sort_string("thisisthestring")
+    assert counting_sort_string("thisisthestring") == "eghhiiinrsssttt"
 
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
