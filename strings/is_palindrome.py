@@ -30,10 +30,7 @@ def is_palindrome(s: str) -> bool:
     # with the help of 1st index (i==n-i-1)
     # where n is length of string
 
-    for i in range(end):
-        if s[i] != s[n - i - 1]:
-            return False
-    return True
+    return all(s[i] == s[n - i - 1] for i in range(end))
 
 
 if __name__ == "__main__":

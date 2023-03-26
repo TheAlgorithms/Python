@@ -44,10 +44,7 @@ class Heap:
         temp = position[index]
 
         while index != 0:
-            if index % 2 == 0:
-                parent = int((index - 2) / 2)
-            else:
-                parent = int((index - 1) / 2)
+            parent = int((index - 2) / 2) if index % 2 == 0 else int((index - 1) / 2)
 
             if val < heap[parent]:
                 heap[index] = heap[parent]

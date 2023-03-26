@@ -81,11 +81,11 @@ We want your work to be readable by others; therefore, we encourage you to note 
   black .
   ```
 
-- All submissions will need to pass the test `flake8 . --ignore=E203,W503 --max-line-length=88` before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
+- All submissions will need to pass the test `ruff .` before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
 
   ```bash
-  python3 -m pip install flake8  # only required the first time
-  flake8 . --ignore=E203,W503  --max-line-length=88 --show-source
+  python3 -m pip install ruff  # only required the first time
+  ruff .
   ```
 
 - Original code submission require docstrings or comments to describe your work.
