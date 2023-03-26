@@ -71,6 +71,7 @@ def jaccard_similarity(set_a, set_b, alternative_union=False):
             return len(intersection) / len(union)
 
         return len(intersection) / len(union)
+    return None
 
 
 if __name__ == "__main__":

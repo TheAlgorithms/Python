@@ -56,7 +56,7 @@ class SVC:
         *,
         regularization: float = np.inf,
         kernel: str = "linear",
-        gamma: float = 0,
+        gamma: float = 0.0,
     ) -> None:
         self.regularization = regularization
         self.gamma = gamma
@@ -65,7 +65,7 @@ class SVC:
         elif kernel == "rbf":
             if self.gamma == 0:
                 raise ValueError("rbf kernel requires gamma")
-            if not (isinstance(self.gamma, float) or isinstance(self.gamma, int)):
+            if not isinstance(self.gamma, (float, int)):
                 raise ValueError("gamma must be float or int")
             if not self.gamma > 0:
                 raise ValueError("gamma must be > 0")

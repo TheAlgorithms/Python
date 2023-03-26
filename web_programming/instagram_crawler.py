@@ -105,7 +105,7 @@ def test_instagram_user(username: str = "github") -> None:
     import os
 
     if os.environ.get("CI"):
-        return None  # test failing on GitHub Actions
+        return  # test failing on GitHub Actions
     instagram_user = InstagramUser(username)
     assert instagram_user.user_data
     assert isinstance(instagram_user.user_data, dict)
