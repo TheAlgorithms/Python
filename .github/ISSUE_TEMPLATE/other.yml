@@ -1,0 +1,19 @@
+name: Other
+description: Use this for any other issues. PLEASE do not create blank issues
+labels: ["awaiting triage"]
+body:
+  - type: textarea
+    id: issuedescription
+    attributes:
+      label: What would you like to share?
+      description: Provide a clear and concise explanation of your issue.
+    validations:
+      required: true
+
+  - type: textarea
+    id: extrainfo
+    attributes:
+      label: Additional information
+      description: Is there anything else we should know about this issue?
+    validations:
+      required: false

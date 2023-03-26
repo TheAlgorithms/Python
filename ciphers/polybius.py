@@ -31,7 +31,7 @@ class PolybiusCipher:
         >>> np.array_equal(PolybiusCipher().letter_to_numbers('u'), [4,5])
         True
         """
-        index1, index2 = np.where(self.SQUARE == letter)
+        index1, index2 = np.where(letter == self.SQUARE)
         indexes = np.concatenate([index1 + 1, index2 + 1])
         return indexes
 

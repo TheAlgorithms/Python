@@ -32,9 +32,9 @@ def merge(left, right):
         return left
 
     if left[0] < right[0]:
-        return [left[0]] + merge(left[1:], right)
+        return [left[0], *merge(left[1:], right)]
 
-    return [right[0]] + merge(left, right[1:])
+    return [right[0], *merge(left, right[1:])]
 
 
 def tim_sort(lst):
