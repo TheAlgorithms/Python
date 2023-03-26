@@ -124,7 +124,7 @@ class SHA1Hash:
                 self.h[3] + d & 0xFFFFFFFF,
                 self.h[4] + e & 0xFFFFFFFF,
             )
-        return "%08x%08x%08x%08x%08x" % tuple(self.h)
+        return ("{:08x}" * 5).format(*self.h)
 
 
 def test_sha1_hash():
