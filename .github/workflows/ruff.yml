@@ -12,5 +12,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - run: pip install --user ruff
+    - run: pip install --user ruff==0.0.258
     - run: ruff --format=github .
