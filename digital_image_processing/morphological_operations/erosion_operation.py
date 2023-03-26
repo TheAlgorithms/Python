@@ -32,7 +32,7 @@ def gray_to_binary(gray: np.ndarray) -> np.ndarray:
            [False,  True, False],
            [False,  True, False]])
     """
-    return (127 < gray) & (gray <= 255)
+    return (gray > 127) & (gray <= 255)
 
 
 def erosion(image: np.ndarray, kernel: np.ndarray) -> np.ndarray:

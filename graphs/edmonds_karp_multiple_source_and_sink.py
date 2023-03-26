@@ -163,9 +163,8 @@ class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
                 self.graph[vertex_index][to_index]
                 - self.preflow[vertex_index][to_index]
                 > 0
-            ):
-                if min_height is None or self.heights[to_index] < min_height:
-                    min_height = self.heights[to_index]
+            ) and (min_height is None or self.heights[to_index] < min_height):
+                min_height = self.heights[to_index]
 
         if min_height is not None:
             self.heights[vertex_index] = min_height + 1

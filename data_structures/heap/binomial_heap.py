@@ -136,12 +136,12 @@ class BinomialHeap:
 
         # Empty heaps corner cases
         if other.size == 0:
-            return
+            return None
         if self.size == 0:
             self.size = other.size
             self.bottom_root = other.bottom_root
             self.min_node = other.min_node
-            return
+            return None
         # Update size
         self.size = self.size + other.size
 
