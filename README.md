@@ -16,7 +16,7 @@
   <a href="https://discord.gg/c7MnfGFGa6">
     <img src="https://img.shields.io/discord/808045925556682782.svg?logo=discord&colorB=7289DA&style=flat-square" height="20" alt="Discord chat">
   </a>
-  <a href="https://gitter.im/TheAlgorithms">
+  <a href="https://app.gitter.im/#/room/#TheAlgorithms_community:gitter.im">
     <img src="https://img.shields.io/badge/Chat-Gitter-ff69b4.svg?label=Chat&logo=gitter&style=flat-square" height="20" alt="Gitter chat">
   </a>
   <!-- Second row: -->
@@ -42,7 +42,7 @@ Read through our [Contribution Guidelines](CONTRIBUTING.md) before you contribut
 
 ## Community Channels
 
-We are on [Discord](https://discord.gg/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms)! Community channels are a great way for you to ask questions and get help. Please join us!
+We are on [Discord](https://discord.gg/c7MnfGFGa6) and [Gitter](https://app.gitter.im/#/room/#TheAlgorithms_community:gitter.im)! Community channels are a great way for you to ask questions and get help. Please join us!
 
 ## List of Algorithms
 
