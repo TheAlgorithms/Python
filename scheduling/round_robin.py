@@ -17,7 +17,7 @@ class Loading:
         self.end = points
         self.timeout = timeout
 
-        self.starting = th(target=self.animation_start)
+        self.starting = Thread(target=self.animation_start)
         self.steps = [
             "⢿",
             "....",
@@ -43,7 +43,7 @@ class Loading:
         return self
 
     def animation_start(self):
-        for i in cy(self.steps):
+        for i in cycle(self.steps):
             if self.done:
                 break
             print(f"\r{self.desc} {i}", flush=True, end="")
@@ -54,7 +54,7 @@ class Loading:
 
     def stop(self):
         self.done = True
-        cols = gts((70, 30)).columns
+        cols = get_terminal_size((70, 30)).columns
         print("\r " + "  " * cols, end="", flush=True)
         print(f"\r{self.end}", flush=True)
 
