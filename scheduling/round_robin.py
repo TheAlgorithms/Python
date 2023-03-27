@@ -13,7 +13,6 @@ from threading import Thread
 
 print("This is Round Robin Algorithm")
 
-
 class Loading:
     def __init__(self, desc="processing..", points="Done..", timeout=0.2):
         self.desc = desc
