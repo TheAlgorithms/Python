@@ -6,9 +6,10 @@ https://en.wikipedia.org/wiki/Round-robin_scheduling
 from __future__ import annotations
 from statistics import mean
 import time
-from itertools import cycle as cy
-from shutil import get_terminal_size as gts
-from threading import Thread as th
+from itertools import cycle
+from shutil import get_terminal_size
+from threading import Thread
+
 
 
 class Loading:
