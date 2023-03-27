@@ -11,7 +11,6 @@ from shutil import get_terminal_size
 from threading import Thread
 
 
-
 class Loading:
     def __init__(self, desc="processing..", points="Done..", timeout=0.2):
         self.desc = desc
