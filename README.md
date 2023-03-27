@@ -47,3 +47,5 @@ We are on [Discord](https://discord.gg/c7MnfGFGa6) and [Gitter](https://gitter.i
 ## List of Algorithms
 
 See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
+
+este projeto naoo tem sentido seu lixo
