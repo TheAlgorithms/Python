@@ -34,6 +34,7 @@ ignore = [      # `ruff rule S101` for a description of that rule
     "S101",     # S101: Use of `assert` detected -- DO NOT FIX
     "S105",     # S105: Possible hardcoded password: 'password'
     "S113",     # S113: Probable use of requests call without timeout
+    "S311",     # S311: Standard pseudo-random generators are not suitable for cryptographic purposes
     "UP038",    # UP038: Use `X | Y` in `{}` call instead of `(X, Y)` -- DO NOT FIX
 ]
 select = [      # https://beta.ruff.rs/docs/rules
