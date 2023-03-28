@@ -24,7 +24,7 @@ def calculate_prime_numbers(max_number: int) -> list[int]:
     is_prime = [True] * max_number
     for i in range(2, isqrt(max_number - 1) + 1):
         if is_prime[i]:
-            for j in range(i ** 2, max_number, i):
+            for j in range(i**2, max_number, i):
                 is_prime[j] = False
 
     return [i for i in range(2, max_number) if is_prime[i]]
