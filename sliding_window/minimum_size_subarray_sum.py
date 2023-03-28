@@ -14,14 +14,10 @@ def minsubarraysum(target: int, nums: List[int]) -> int:
     Examples:
         >>> minsubarraysum(7, [2, 3, 1, 2, 4, 3])
         2
-        >>> minsubarraysum(4, [1, 4, 4])
-        1
-        >>> minsubarraysum(11, [1, 1, 1, 1, 1, 1, 1, 1])
-        0
     """
 
     n = len(nums)
-    if(n == 0):
+    if n == 0:
         return 0
 
     left = 0
@@ -40,6 +36,4 @@ def minsubarraysum(target: int, nums: List[int]) -> int:
     return min_len if min_len != float("inf") else 0
 
 
-nums = [2, 3, 1, 2, 4, 3]
-target = 7
-print(minsubarraysum(target, nums))
+
