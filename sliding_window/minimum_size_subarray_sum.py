@@ -1,7 +1,9 @@
-def minsubarraysum(target: int, nums: List[int]) -> int:
-   """
+
+
+def minsubarraysum(target: int, nums: list[int]) -> int:
+    """
     Returns the length of the shortest contiguous subarray
-    in nums whose sum is at least target.
+     in nums whose sum is at least target.
 
     Args:
         target (int): The minimum sum that the subarray should have.
