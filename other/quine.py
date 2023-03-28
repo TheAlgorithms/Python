@@ -1,4 +1,5 @@
 #!/bin/python3
+# ruff: noqa
 """
 Quine:
 
