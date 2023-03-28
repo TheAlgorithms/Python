@@ -196,11 +196,14 @@
     * [Disjoint Set](data_structures/disjoint_set/disjoint_set.py)
   * Hashing
     * [Double Hash](data_structures/hashing/double_hash.py)
+    * [Hash Map](data_structures/hashing/hash_map.py)
     * [Hash Table](data_structures/hashing/hash_table.py)
     * [Hash Table With Linked List](data_structures/hashing/hash_table_with_linked_list.py)
     * Number Theory
       * [Prime Numbers](data_structures/hashing/number_theory/prime_numbers.py)
     * [Quadratic Probing](data_structures/hashing/quadratic_probing.py)
+    * Tests
+      * [Test Hash Map](data_structures/hashing/tests/test_hash_map.py)
   * Heap
     * [Binomial Heap](data_structures/heap/binomial_heap.py)
     * [Heap](data_structures/heap/heap.py)
@@ -334,6 +337,7 @@
 ## Electronics
   * [Builtin Voltage](electronics/builtin_voltage.py)
   * [Carrier Concentration](electronics/carrier_concentration.py)
+  * [Circular Convolution](electronics/circular_convolution.py)
   * [Coulombs Law](electronics/coulombs_law.py)
   * [Electric Conductivity](electronics/electric_conductivity.py)
   * [Electric Power](electronics/electric_power.py)
@@ -936,6 +940,8 @@
     * [Sol1](project_euler/problem_097/sol1.py)
   * Problem 099
     * [Sol1](project_euler/problem_099/sol1.py)
+  * Problem 100
+    * [Sol1](project_euler/problem_100/sol1.py)
   * Problem 101
     * [Sol1](project_euler/problem_101/sol1.py)
   * Problem 102
@@ -970,6 +976,8 @@
     * [Sol1](project_euler/problem_125/sol1.py)
   * Problem 129
     * [Sol1](project_euler/problem_129/sol1.py)
+  * Problem 131
+    * [Sol1](project_euler/problem_131/sol1.py)
   * Problem 135
     * [Sol1](project_euler/problem_135/sol1.py)
   * Problem 144
@@ -1169,7 +1177,6 @@
   * [Get Amazon Product Data](web_programming/get_amazon_product_data.py)
   * [Get Imdb Top 250 Movies Csv](web_programming/get_imdb_top_250_movies_csv.py)
   * [Get Imdbtop](web_programming/get_imdbtop.py)
-  * [Get Top Billionaires](web_programming/get_top_billionaires.py)
   * [Get Top Hn Posts](web_programming/get_top_hn_posts.py)
   * [Get User Tweets](web_programming/get_user_tweets.py)
   * [Giphy](web_programming/giphy.py)

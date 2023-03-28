@@ -2,7 +2,7 @@
 Lorentz transformations describe the transition between two inertial reference
 frames F and F', each of which is moving in some direction with respect to the
 other. This code only calculates Lorentz transformations for movement in the x
-direction with no spacial rotation (i.e., a Lorentz boost in the x direction).
+direction with no spatial rotation (i.e., a Lorentz boost in the x direction).
 The Lorentz transformations are calculated here as linear transformations of
 four-vectors [ct, x, y, z] described by Minkowski space. Note that t (time) is
 multiplied by c (the speed of light) in the first entry of each four-vector.
