@@ -15,7 +15,6 @@ def minsubarraysum(target: int, nums: List[int]) -> int:
         >>> minsubarraysum(7, [2, 3, 1, 2, 4, 3])
         2
     """
-
     n = len(nums)
     if n == 0:
         return 0
