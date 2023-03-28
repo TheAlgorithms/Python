@@ -2,7 +2,7 @@
 
 ## Before contributing
 
-Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms).
+Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms/community).
 
 ## Contributing
 
@@ -81,11 +81,11 @@ We want your work to be readable by others; therefore, we encourage you to note 
   black .
   ```
 
-- All submissions will need to pass the test `flake8 . --ignore=E203,W503 --max-line-length=88` before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
+- All submissions will need to pass the test `ruff .` before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
 
   ```bash
-  python3 -m pip install flake8  # only required the first time
-  flake8 . --ignore=E203,W503  --max-line-length=88 --show-source
+  python3 -m pip install ruff  # only required the first time
+  ruff .
   ```
 
 - Original code submission require docstrings or comments to describe your work.
@@ -176,7 +176,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
 - Most importantly,
   - __Be consistent in the use of these guidelines when submitting.__
-  - __Join__ us on [Discord](https://discord.com/invite/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms) __now!__
+  - __Join__ us on [Discord](https://discord.com/invite/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms/community) __now!__
   - Happy coding!
 
 Writer [@poyea](https://github.com/poyea), Jun 2019.

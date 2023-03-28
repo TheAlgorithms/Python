@@ -8,7 +8,7 @@ import os
 import requests
 
 URL_BASE = "https://www.amdoren.com/api/currency.php"
-TESTING = os.getenv("CI", False)
+TESTING = os.getenv("CI", "")
 API_KEY = os.getenv("AMDOREN_API_KEY", "")
 
 if not API_KEY and not TESTING:
