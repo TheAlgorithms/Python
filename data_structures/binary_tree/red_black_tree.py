@@ -1,6 +1,6 @@
 """
-python/black : true
-flake8 : passed
+psf/black : true
+ruff : passed
 """
 from __future__ import annotations
 
