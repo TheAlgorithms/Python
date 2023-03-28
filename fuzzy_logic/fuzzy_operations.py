@@ -8,9 +8,11 @@ Python:
   - 3.5
 """
 
-"""1.Fuzzy logic operations involve membership functions.
+"""
+1.Fuzzy logic operations involve membership functions.
 2.Python libraries like scikit-fuzzy and skfuzzy provide tools for fuzzy logic operations.
-3.Fuzzy logic operations can be used in decision making and control systems."""
+3.Fuzzy logic operations can be used in decision making and control systems.
+"""
 
 import numpy as np
 import skfuzzy as fuzz
