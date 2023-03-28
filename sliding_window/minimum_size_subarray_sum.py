@@ -1,5 +1,3 @@
-
-
 def minsubarraysum(target: int, nums: list[int]) -> int:
     """
     Returns the length of the shortest contiguous subarray
