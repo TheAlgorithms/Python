@@ -1,14 +1,23 @@
-def minsubarraysum(target, nums):
-    """Returns the length of the shortest contiguous subarray
+def minsubarraysum(target: int, nums: List[int]) -> int:
+   """
+    Returns the length of the shortest contiguous subarray 
     in nums whose sum is at least target.
 
-     Args:
-         target (int): The minimum sum that the subarray should have.
-         nums (list of int): The array to search for subarrays in.
+    Args:
+        target (int): The minimum sum that the subarray should have.
+        nums (List[int]): The array to search for subarrays in.
 
-     Returns:
-         int: The length of the shortest contiguous subarray in nums whose
-         sum is at least target. If no such subarray exists, returns 0.
+    Returns:
+        int: The length of the shortest contiguous subarray 
+        in nums whose sum is at least target. If no such subarray exists, returns 0.
+
+    Examples:
+        >>> minsubarraysum(7, [2, 3, 1, 2, 4, 3])
+        2
+        >>> minsubarraysum(4, [1, 4, 4])
+        1
+        >>> minsubarraysum(11, [1, 1, 1, 1, 1, 1, 1, 1])
+        0
     """
     n = len(nums)
     if n == 0:
