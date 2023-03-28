@@ -19,8 +19,9 @@ def minsubarraysum(target: int, nums: List[int]) -> int:
         >>> minsubarraysum(11, [1, 1, 1, 1, 1, 1, 1, 1])
         0
     """
+    
     n = len(nums)
-    if n == 0:
+    if(n == 0):
         return 0
 
     left = 0
