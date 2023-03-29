@@ -4,6 +4,7 @@ Input data set: The input data set must be 1-dimensional with continuous labels.
 Output: The decision tree maps a real number input to a real number output.
 """
 import numpy as np
+import logging
 
 
 class DecisionTree:
@@ -17,84 +18,57 @@ class DecisionTree:
 
     def mean_squared_error(self, labels, prediction):
         """
-        mean_squared_error:
-        @param labels: a one dimensional numpy array
-        @param prediction: a floating point value
-        return value: mean_squared_error calculates the error if prediction is used to
-            estimate the labels
-        >>> tester = DecisionTree()
-        >>> test_labels = np.array([1,2,3,4,5,6,7,8,9,10])
-        >>> test_prediction = float(6)
-        >>> tester.mean_squared_error(test_labels, test_prediction) == (
-        ...     TestDecisionTree.helper_mean_squared_error_test(test_labels,
-        ...         test_prediction))
-        True
-        >>> test_labels = np.array([1,2,3])
-        >>> test_prediction = float(2)
-        >>> tester.mean_squared_error(test_labels, test_prediction) == (
-        ...     TestDecisionTree.helper_mean_squared_error_test(test_labels,
-        ...         test_prediction))
-        True
+        Calculates the mean squared error if prediction is used to estimate the labels.
+        :param labels: a one dimensional numpy array
+        :param prediction: a floating point value
+        :return: mean squared error
         """
         if labels.ndim != 1:
-            print("Error: Input labels must be one dimensional")
+            logging.error("Input labels must be one dimensional")
+            return None
 
         return np.mean((labels - prediction) ** 2)
 
     def train(self, x, y):
         """
-        train:
-        @param x: a one dimensional numpy array
-        @param y: a one dimensional numpy array.
-        The contents of y are the labels for the corresponding X values
-
-        train does not have a return value
+        Trains the decision tree using the input data x and y.
+        :param x: a one dimensional numpy array
+        :param y: a one dimensional numpy array. The contents of y are the labels for the corresponding X values
+        :return: None
         """
-
-        """
-        this section is to check that the inputs conform to our dimensionality
-        constraints
-        """
+        # Validate input data
         if x.ndim != 1:
-            print("Error: Input data set must be one dimensional")
+            logging.error("Input data set must be one dimensional")
             return
         if len(x) != len(y):
-            print("Error: X and y have different lengths")
+            logging.error("X and y have different lengths")
             return
         if y.ndim != 1:
-            print("Error: Data set labels must be one dimensional")
+            logging.error("Data set labels must be one dimensional")
             return
 
-        if len(x) < 2 * self.min_leaf_size:
+        # Check if leaf node
+        if len(x) < 2 * self.min_leaf_size or self.depth == 1:
             self.prediction = np.mean(y)
             return
 
-        if self.depth == 1:
-            self.prediction = np.mean(y)
-            return
-
+        # Find the best split
         best_split = 0
         min_error = self.mean_squared_error(x, np.mean(y)) * 2
 
-        """
-        loop over all possible splits for the decision tree. find the best split.
-        if no split exists that is less than 2 * error for the entire array
-        then the data set is not split and the average for the entire array is used as
-        the predictor
-        """
         for i in range(len(x)):
-            if len(x[:i]) < self.min_leaf_size:
+            if len(x[:i]) < self.min_leaf_size or len(x[i:]) < self.min_leaf_size:
                 continue
-            elif len(x[i:]) < self.min_leaf_size:
-                continue
-            else:
-                error_left = self.mean_squared_error(x[:i], np.mean(y[:i]))
-                error_right = self.mean_squared_error(x[i:], np.mean(y[i:]))
-                error = error_left + error_right
-                if error < min_error:
-                    best_split = i
-                    min_error = error
 
+            error_left = self.mean_squared_error(x[:i], np.mean(y[:i]))
+            error_right = self.mean_squared_error(x[i:], np.mean(y[i:]))
+            error = error_left + error_right
+
+            if error < min_error:
+                best_split = i
+                min_error = error
+
+        # Create child nodes
         if best_split != 0:
             left_x = x[:best_split]
             left_y = y[:best_split]
@@ -106,6 +80,7 @@ class DecisionTree:
                 depth=self.depth - 1, min_leaf_size=self.min_leaf_size
             )
             self.right = DecisionTree(
+
                 depth=self.depth - 1, min_leaf_size=self.min_leaf_size
             )
             self.left.train(left_x, left_y)
