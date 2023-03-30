@@ -1,4 +1,4 @@
-def max_product_subarray(nums: list[int]) -> int:
+def max_product_subarray(numbers: list[int]) -> int:
     """
     Returns the maximum product that can be obtained by multiplying a
     contiguous subarray of the given integer list `nums`.
