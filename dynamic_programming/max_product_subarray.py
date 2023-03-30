@@ -10,22 +10,40 @@ def max_product_subarray(numbers: list[int]) -> int:
     0
     >>> max_product_subarray([2, 3, -2, 4, -1])
     48
+    >>> max_product_subarray([2, 3, -2, 4.5, -1])
+    54
+    >>> max_product_subarray([-1])
+    -1
+    >>> max_product_subarray([])
+    0
+    >>> max_product_subarray("ABC")
+    None
+    >>> max_product_subarray("")
+    0
+    >>> max_product_subarray(None)
+    None
     """
-    n = len(nums)
+    if numbers is None or not isinstance(numbers, list):
+        return None
+
+    n = len(numbers)
 
     if n == 0:
         return 0
 
-    max_till_now = nums[0]
-    min_till_now = nums[0]
-    max_prod = nums[0]
+    if not all(isinstance(x, int) for x in numbers):
+        return None
+
+    max_till_now = numbers[0]
+    min_till_now = numbers[0]
+    max_prod = numbers[0]
 
     for i in range(1, n):
         # update the maximum and minimum subarray products
-        if nums[i] < 0:
+        if numbers[i] < 0:
             max_till_now, min_till_now = min_till_now, max_till_now
-        max_till_now = max(nums[i], max_till_now * nums[i])
-        min_till_now = min(nums[i], min_till_now * nums[i])
+        max_till_now = max(numbers[i], max_till_now * numbers[i])
+        min_till_now = min(numbers[i], min_till_now * numbers[i])
 
         # update the maximum product found till now
         max_prod = max(max_prod, max_till_now)
