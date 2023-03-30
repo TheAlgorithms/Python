@@ -32,7 +32,7 @@ def max_product_subarray(numbers: list[int]) -> int:
         return 0
 
     if not all(isinstance(x, (int, float)) for x in numbers):
-    return 0
+        return 0
 
     max_till_now = min_till_now = max_prod = numbers[0]
 
@@ -48,3 +48,6 @@ def max_product_subarray(numbers: list[int]) -> int:
         max_prod = max(max_prod, max_till_now)
 
     return max_prod
+
+
+
