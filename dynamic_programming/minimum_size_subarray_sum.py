@@ -27,5 +27,5 @@ def minsubarraysum(target: int, nums: list[int]) -> int:
             curr_sum -= nums[left]
             left += 1
         right += 1
-
+        
     return int(min_len) if min_len != float("inf") else 0
