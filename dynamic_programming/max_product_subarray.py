@@ -38,7 +38,7 @@ def max_product_subarray(numbers: list[int]) -> int:
     min_till_now = numbers[0]
     max_prod = numbers[0]
 
-    for i in range(1, n):
+    for i in range(1, len(numbers)):
         # update the maximum and minimum subarray products
         if numbers[i] < 0:
             max_till_now, min_till_now = min_till_now, max_till_now
