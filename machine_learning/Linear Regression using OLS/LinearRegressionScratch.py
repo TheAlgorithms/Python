@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 
 # Read data from csv file
 df = pd.read_csv('placement.csv')
@@ -38,5 +37,3 @@ class LinearRegression:
 lr = LinearRegression()
 lr.fit(x_train,y_train)
 print(lr.predict(x_test))
-
-#
