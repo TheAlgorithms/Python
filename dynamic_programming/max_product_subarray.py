@@ -41,7 +41,7 @@ def max_product_subarray(numbers: list[int]) -> int:
         number = numbers[i]
         if number < 0:
             max_till_now, min_till_now = min_till_now, max_till_now
-        max_till_now = max(number, max_till_now * number])
+        max_till_now = max(number, max_till_now * number)
         min_till_now = min(number, min_till_now * number)
 
         # update the maximum product found till now
