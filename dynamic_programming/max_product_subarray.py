@@ -34,16 +34,15 @@ def max_product_subarray(numbers: list[int]) -> int:
     if not all(isinstance(x, int) for x in numbers):
         return 0
 
-    max_till_now = numbers[0]
-    min_till_now = numbers[0]
-    max_prod = numbers[0]
+     max_till_now = min_till_now = max_prod = numbers[0]
 
     for i in range(1, len(numbers)):
         # update the maximum and minimum subarray products
-        if numbers[i] < 0:
+        number = numbers[i]
+        if number < 0:
             max_till_now, min_till_now = min_till_now, max_till_now
-        max_till_now = max(numbers[i], max_till_now * numbers[i])
-        min_till_now = min(numbers[i], min_till_now * numbers[i])
+        max_till_now = max(number, max_till_now * number])
+        min_till_now = min(number, min_till_now * number)
 
         # update the maximum product found till now
         max_prod = max(max_prod, max_till_now)
