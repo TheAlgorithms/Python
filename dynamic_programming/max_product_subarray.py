@@ -26,14 +26,11 @@ def max_product_subarray(numbers: list[int]) -> int:
     if numbers is None or not isinstance(numbers, list):
         return 0
 
-    n = len(numbers)
-
-    if n == 0:
+    if len(numbers) == 0:
         return 0
 
     if not isinstance(numbers, (list, set, tuple)) or not all(
-        isinstance(number, int) for number in numbers
-    ):
+        isinstance(number, int) for number in numbers):
         raise TypeError("numbers must be an iterable of integers")
 
     max_till_now = min_till_now = max_prod = numbers[0]
