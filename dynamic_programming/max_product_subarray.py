@@ -17,14 +17,14 @@ def max_product_subarray(numbers: list[int]) -> int:
     >>> max_product_subarray([])
     0
     >>> max_product_subarray("ABC")
-    None
+    0
     >>> max_product_subarray("")
     0
     >>> max_product_subarray(None)
-    None
+    0
     """
     if numbers is None or not isinstance(numbers, list):
-        return None
+        return 0
 
     n = len(numbers)
 
@@ -32,7 +32,7 @@ def max_product_subarray(numbers: list[int]) -> int:
         return 0
 
     if not all(isinstance(x, int) for x in numbers):
-        return None
+        return 0
 
     max_till_now = numbers[0]
     min_till_now = numbers[0]
