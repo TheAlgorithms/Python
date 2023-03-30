@@ -1,4 +1,4 @@
-def minsubarraysum(target: int, nums: list[int]) -> int:
+def minsubarraysum(target: int, numbers: list[int]) -> int:
     """
     Returns the length of the shortest contiguous subarray
      in nums whose sum is at least target.
@@ -11,7 +11,7 @@ def minsubarraysum(target: int, nums: list[int]) -> int:
         >>> minsubarraysum(11, [1, 1, 1, 1, 1, 1, 1, 1])
         0
     """
-    n = len(nums)
+    n = len(numbers)
     if n == 0:
         return 0
 
@@ -21,10 +21,10 @@ def minsubarraysum(target: int, nums: list[int]) -> int:
     min_len = float("inf")
 
     while right < n:
-        curr_sum += nums[right]
+        curr_sum += numbers[right]
         while curr_sum >= target:
             min_len = min(min_len, right - left + 1)
-            curr_sum -= nums[left]
+            curr_sum -= numbers[left]
             left += 1
         right += 1
 
