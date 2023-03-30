@@ -3,7 +3,7 @@ def minsubarraysum(target: int, nums: list[int]) -> int:
     Returns the length of the shortest contiguous subarray
      in nums whose sum is at least target.
 
-    Examples:
+    Examples :
         >>> minsubarraysum(7, [2, 3, 1, 2, 4, 3])
         2
         >>> minsubarraysum(7, [2, 3, -1, 2, 4, -3])
