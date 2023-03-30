@@ -48,6 +48,3 @@ def max_product_subarray(numbers: list[int]) -> int:
         max_prod = max(max_prod, max_till_now)
 
     return max_prod
-
-
-
