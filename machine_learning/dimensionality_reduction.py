@@ -1,6 +1,7 @@
 #  Copyright (c) 2023 Diego Gasco (diego.gasco99@gmail.com), Diegomangasco on GitHub
 
 import logging
+
 import numpy as np
 import scipy
 
@@ -61,9 +62,9 @@ def covariance_between_classes(
     return covariance_sum / features.shape[1]
 
 
-def PCA(features: np.ndarray, dimensions: int) -> np.ndarray:
+def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.ndarray:
     """Principal Component Analysis. \n
-    For more details, see here: https://en.wikipedia.org/wiki/Principal_component_analysis \n
+    For more details, see: https://en.wikipedia.org/wiki/Principal_component_analysis
     Parameters: \n
     * features: the features extracted from the dataset
     * labels: the class labels of the features
@@ -76,7 +77,8 @@ def PCA(features: np.ndarray, dimensions: int) -> np.ndarray:
         centered_data = features - np.reshape(data_mean, (data_mean.size, 1))
         covariance_matrix = np.dot(centered_data, centered_data.T) / features.shape[1]
         _, eigenvectors = np.linalg.eigh(covariance_matrix)
-        # Take all the columns in the reverse order (-1), and then takes only the first columns
+        # Take all the columns in the reverse order (-1), and then takes only the first
+        # columns
         filtered_eigenvectors = eigenvectors[:, ::-1][:, 0:dimensions]
         # Project the database on the new space
         projected_data = np.dot(filtered_eigenvectors.T, features)
@@ -89,11 +91,11 @@ def PCA(features: np.ndarray, dimensions: int) -> np.ndarray:
         raise AssertionError
 
 
-def LDA(
+def linear_discriminant_analysis(
     features: np.ndarray, labels: np.ndarray, classes: int, dimensions: int
 ) -> np.ndarray:
     """Linear Discriminant Analysis. \n
-    For more details, see here: https://en.wikipedia.org/wiki/Linear_discriminant_analysis \n
+    For more details, see: https://en.wikipedia.org/wiki/Linear_discriminant_analysis
     Parameters: \n
     * features: the features extracted from the dataset
     * labels: the class labels of the features
