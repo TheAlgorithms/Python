@@ -25,7 +25,7 @@ def max_product_subarray(numbers: list[float]) -> float:
     >>> max_product_subarray(None)
     0
     """
-    if numbers is None or not isinstance(numbers, list):
+    if not isinstance(numbers, list):
         return 0
 
     if len(numbers) == 0:
