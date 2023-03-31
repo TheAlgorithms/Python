@@ -4,7 +4,7 @@ import logging  # noqa: I001
 import numpy as np
 import scipy
 
-logging.basicConfig(level=logging.INFO, format='%(message)s')
+logging.basicConfig(level=logging.INFO, format="%(message)s")
 
 
 def _column_reshape(input_array: np.ndarray) -> np.ndarray:
@@ -13,7 +13,9 @@ def _column_reshape(input_array: np.ndarray) -> np.ndarray:
     return input_array.reshape((input_array.size, 1))
 
 
-def _covariance_within_classes(features: np.ndarray, labels: np.ndarray, classes: int) -> np.ndarray:
+def _covariance_within_classes(
+    features: np.ndarray, labels: np.ndarray, classes: int
+) -> np.ndarray:
     """Function to compute the covariance matrix inside each class"""
 
     covariance_sum = np.nan
@@ -32,7 +34,9 @@ def _covariance_within_classes(features: np.ndarray, labels: np.ndarray, classes
     return covariance_sum / features.shape[1]
 
 
-def _covariance_between_classes(features: np.ndarray, labels: np.ndarray, classes: int) -> np.ndarray:
+def _covariance_between_classes(
+    features: np.ndarray, labels: np.ndarray, classes: int
+) -> np.ndarray:
     """Function to compute the covariance matrix between multiple classes"""
 
     general_data_mean = features.mean(1)
@@ -43,12 +47,16 @@ def _covariance_between_classes(features: np.ndarray, labels: np.ndarray, classe
         data_mean = data.mean(1)
         if i > 0:
             # If covariance_sum is not None
-            covariance_sum += device_data * np.dot(_column_reshape(data_mean) - _column_reshape(general_data_mean),
-                                                   (_column_reshape(data_mean) - _column_reshape(general_data_mean)).T)
+            covariance_sum += device_data * np.dot(
+                _column_reshape(data_mean) - _column_reshape(general_data_mean),
+                (_column_reshape(data_mean) - _column_reshape(general_data_mean)).T,
+            )
         else:
             # If covariance_sum is np.nan (i.e. first loop)
-            covariance_sum = device_data * np.dot(_column_reshape(data_mean) - _column_reshape(general_data_mean),
-                                                  (_column_reshape(data_mean) - _column_reshape(general_data_mean)).T)
+            covariance_sum = device_data * np.dot(
+                _column_reshape(data_mean) - _column_reshape(general_data_mean),
+                (_column_reshape(data_mean) - _column_reshape(general_data_mean)).T,
+            )
 
     return covariance_sum / features.shape[1]
 
@@ -78,12 +86,14 @@ def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.nd
 
         return projected_data
     else:
-        logging.basicConfig(level=logging.ERROR, format='%(message)s', force=True)
+        logging.basicConfig(level=logging.ERROR, format="%(message)s", force=True)
         logging.error("Dataset empty")
         raise AssertionError
 
 
-def linear_discriminant_analysis(features: np.ndarray, labels: np.ndarray, classes: int, dimensions: int) -> np.ndarray:
+def linear_discriminant_analysis(
+    features: np.ndarray, labels: np.ndarray, classes: int, dimensions: int
+) -> np.ndarray:
     """
     Linear Discriminant Analysis.
 
@@ -102,7 +112,8 @@ def linear_discriminant_analysis(features: np.ndarray, labels: np.ndarray, class
     if features.any:
         _, eigenvectors = scipy.linalg.eigh(
             _covariance_between_classes(features, labels, classes),
-            _covariance_within_classes(features, labels, classes))
+            _covariance_within_classes(features, labels, classes),
+        )
         filtered_eigenvectors = eigenvectors[:, ::-1][:, :dimensions]
         svd_matrix, _, _ = np.linalg.svd(filtered_eigenvectors)
         filtered_svd_matrix = svd_matrix[:, 0:dimensions]
@@ -111,6 +122,6 @@ def linear_discriminant_analysis(features: np.ndarray, labels: np.ndarray, class
 
         return projected_data
     else:
-        logging.basicConfig(level=logging.ERROR, format='%(message)s', force=True)
+        logging.basicConfig(level=logging.ERROR, format="%(message)s", force=True)
         logging.error("Dataset empty")
         raise AssertionError
