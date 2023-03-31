@@ -18,7 +18,7 @@ def minsubarraysum(target: int, numbers: list[int]) -> int:
     left = right = curr_sum = 0
     min_len = float("inf")
 
-    while right < n:
+    while right < len(numbers):
         curr_sum += numbers[right]
         while curr_sum >= target:
             min_len = min(min_len, right - left + 1)
