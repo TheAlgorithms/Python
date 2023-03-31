@@ -73,7 +73,6 @@ def quicksort_ll(start: Node, end: None):
         pos = partition_algo(start, end)
         quicksort_ll(start, pos)
         quicksort_ll(pos.next, end)
-        return
 
 
 if __name__ == "__main__":
