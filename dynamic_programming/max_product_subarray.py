@@ -11,7 +11,7 @@ def max_product_subarray(numbers: list[float]) -> float:
     >>> max_product_subarray([2, 3, -2, 4, -1])
     48
     >>> max_product_subarray([2, 3, -2, 4.5, -1])
-    Traceback (most recent call last): 
+    Traceback (most recent call last):
         ...
     ValueError: numbers must be an iterable of integers
     >>> max_product_subarray([-1])
