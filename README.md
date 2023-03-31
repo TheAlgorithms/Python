@@ -50,4 +50,4 @@ See our [directory](DIRECTORY.md) for easier navigation and a better overview of
 
 Good afternoon!
 I'm studying to be a Python developer, I came to you to practice.
-Sorry for distracting you.
+Sorry for distracting you..
