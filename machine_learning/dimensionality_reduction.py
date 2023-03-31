@@ -13,7 +13,7 @@ import logging
 import numpy as np
 from scipy.linalg import eigh
 
-logging.basicConfig(level=logging.INFO, format='%(message)s')
+logging.basicConfig(level=logging.INFO, format="%(message)s")
 
 
 def column_reshape(input_array: np.ndarray) -> np.ndarray:
@@ -121,7 +121,7 @@ def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.nd
 
         return projected_data
     else:
-        logging.basicConfig(level=logging.ERROR, format='%(message)s', force=True)
+        logging.basicConfig(level=logging.ERROR, format="%(message)s", force=True)
         logging.error("Dataset empty")
         raise AssertionError
 
@@ -164,12 +164,12 @@ def linear_discriminant_analysis(
 
         return projected_data
     else:
-        logging.basicConfig(level=logging.ERROR, format='%(message)s', force=True)
+        logging.basicConfig(level=logging.ERROR, format="%(message)s", force=True)
         logging.error("Dataset empty")
         raise AssertionError
 
-def test_linear_discriminant_analysis():
 
+def test_linear_discriminant_analysis():
     # Create dummy dataset with 2 classes and 3 features
     features = np.array([[1, 2, 3, 4, 5], [2, 3, 4, 5, 6], [3, 4, 5, 6, 7]])
     labels = np.array([0, 0, 0, 1, 1])
@@ -194,6 +194,7 @@ def test_linear_discriminant_analysis():
         pass
     else:
         raise AssertionError("Did not raise AssertionError for dimensions > classes")
+
 
 if __name__ == "__main__":
     import doctest
