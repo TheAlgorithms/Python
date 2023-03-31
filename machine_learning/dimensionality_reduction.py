@@ -169,7 +169,7 @@ def linear_discriminant_analysis(
         raise AssertionError
 
 
-def test_linear_discriminant_analysis():
+def test_linear_discriminant_analysis() -> None:
     # Create dummy dataset with 2 classes and 3 features
     features = np.array([[1, 2, 3, 4, 5], [2, 3, 4, 5, 6], [3, 4, 5, 6, 7]])
     labels = np.array([0, 0, 0, 1, 1])
@@ -194,7 +194,6 @@ def test_linear_discriminant_analysis():
         pass
     else:
         raise AssertionError("Did not raise AssertionError for dimensions > classes")
-
 
 if __name__ == "__main__":
     import doctest
