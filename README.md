@@ -47,3 +47,7 @@ We are on [Discord](https://discord.gg/c7MnfGFGa6) and [Gitter](https://gitter.i
 ## List of Algorithms
 
 See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
+
+Good afternoon!
+I'm studying to be a Python developer, I came to you to practice.
+Sorry for distracting you.
