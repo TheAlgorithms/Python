@@ -1,29 +1,51 @@
 #  Copyright (c) 2023 Diego Gasco (diego.gasco99@gmail.com), Diegomangasco on GitHub
 
-import logging  # noqa: I001
+"""
+Requirements:
+  - numpy version 1.21
+  - scipy version 1.3.3
+Notes:
+  - Each column of the features matrix corresponds to a class item
+"""
+
+import logging
+
 import numpy as np
-import scipy
+from scipy.linalg import eigh
 
-logging.basicConfig(level=logging.INFO, format="%(message)s")
+logging.basicConfig(level=logging.INFO, format='%(message)s')
 
 
-def _column_reshape(input_array: np.ndarray) -> np.ndarray:
-    """Function to reshape a row Numpy array into a column Numpy array"""
+def column_reshape(input_array: np.ndarray) -> np.ndarray:
+    """Function to reshape a row Numpy array into a column Numpy array
+    >>> input_array = np.array([1, 2, 3])
+    >>> column_reshape(input_array)
+    array([[1],
+           [2],
+           [3]])
+    """
 
     return input_array.reshape((input_array.size, 1))
 
 
-def _covariance_within_classes(
+def covariance_within_classes(
     features: np.ndarray, labels: np.ndarray, classes: int
 ) -> np.ndarray:
-    """Function to compute the covariance matrix inside each class"""
+    """Function to compute the covariance matrix inside each class.
+    >>> features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    >>> labels = np.array([0, 1, 0])
+    >>> covariance_within_classes(features, labels, 2)
+    array([[0.66666667, 0.66666667, 0.66666667],
+           [0.66666667, 0.66666667, 0.66666667],
+           [0.66666667, 0.66666667, 0.66666667]])
+    """
 
     covariance_sum = np.nan
     for i in range(classes):
         data = features[:, labels == i]
         data_mean = data.mean(1)
         # Centralize the data of class i
-        centered_data = data - _column_reshape(data_mean)
+        centered_data = data - column_reshape(data_mean)
         if i > 0:
             # If covariance_sum is not None
             covariance_sum += np.dot(centered_data, centered_data.T)
@@ -34,10 +56,17 @@ def _covariance_within_classes(
     return covariance_sum / features.shape[1]
 
 
-def _covariance_between_classes(
+def covariance_between_classes(
     features: np.ndarray, labels: np.ndarray, classes: int
 ) -> np.ndarray:
-    """Function to compute the covariance matrix between multiple classes"""
+    """Function to compute the covariance matrix between multiple classes
+    >>> features = np.array([[9, 2, 3], [4, 3, 6], [1, 8, 9]])
+    >>> labels = np.array([0, 1, 0])
+    >>> covariance_between_classes(features, labels, 2)
+    array([[ 3.55555556,  1.77777778, -2.66666667],
+           [ 1.77777778,  0.88888889, -1.33333333],
+           [-2.66666667, -1.33333333,  2.        ]])
+    """
 
     general_data_mean = features.mean(1)
     covariance_sum = np.nan
@@ -48,14 +77,14 @@ def _covariance_between_classes(
         if i > 0:
             # If covariance_sum is not None
             covariance_sum += device_data * np.dot(
-                _column_reshape(data_mean) - _column_reshape(general_data_mean),
-                (_column_reshape(data_mean) - _column_reshape(general_data_mean)).T,
+                column_reshape(data_mean) - column_reshape(general_data_mean),
+                (column_reshape(data_mean) - column_reshape(general_data_mean)).T,
             )
         else:
             # If covariance_sum is np.nan (i.e. first loop)
             covariance_sum = device_data * np.dot(
-                _column_reshape(data_mean) - _column_reshape(general_data_mean),
-                (_column_reshape(data_mean) - _column_reshape(general_data_mean)).T,
+                column_reshape(data_mean) - column_reshape(general_data_mean),
+                (column_reshape(data_mean) - column_reshape(general_data_mean)).T,
             )
 
     return covariance_sum / features.shape[1]
@@ -69,6 +98,11 @@ def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.nd
     Parameters:
         * features: the features extracted from the dataset
         * dimensions: to filter the projected data for the desired dimension
+    >>> features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    >>> dimensions = 2
+    >>> principal_component_analysis(features, dimensions)
+    array([[ 6.92820323,  8.66025404, 10.39230485],
+           [ 3.        ,  3.        ,  3.        ]])
     """
 
     # Check if the features have been loaded
@@ -78,7 +112,8 @@ def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.nd
         centered_data = features - np.reshape(data_mean, (data_mean.size, 1))
         covariance_matrix = np.dot(centered_data, centered_data.T) / features.shape[1]
         _, eigenvectors = np.linalg.eigh(covariance_matrix)
-        # Take all the columns in the reverse order (-1), and then takes only the first columns
+        # Take all the columns in the reverse order (-1), and then takes only the first
+        # columns
         filtered_eigenvectors = eigenvectors[:, ::-1][:, 0:dimensions]
         # Project the database on the new space
         projected_data = np.dot(filtered_eigenvectors.T, features)
@@ -86,7 +121,7 @@ def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.nd
 
         return projected_data
     else:
-        logging.basicConfig(level=logging.ERROR, format="%(message)s", force=True)
+        logging.basicConfig(level=logging.ERROR, format='%(message)s', force=True)
         logging.error("Dataset empty")
         raise AssertionError
 
@@ -103,6 +138,13 @@ def linear_discriminant_analysis(
         * labels: the class labels of the features
         * classes: the number of classes present in the dataset
         * dimensions: to filter the projected data for the desired dimension
+    >>> features = np.array([[1, 2, 3, 4, 5], [2, 3, 4, 5, 6], [3, 4, 5, 6, 7]])
+    >>> labels = np.array([0, 2, 0, 1, 1])
+    >>> classes = 3
+    >>> dimensions = 2
+    >>> linear_discriminant_analysis(features, labels, classes, dimensions)
+    array([[0.70710678, 0.70710678, 0.70710678, 0.70710678, 0.70710678],
+           [3.60806823, 5.10257902, 6.59708982, 8.09160061, 9.58611141]])
     """
 
     # Check if the dimension desired is less than the number of classes
@@ -110,9 +152,9 @@ def linear_discriminant_analysis(
 
     # Check if features have been already loaded
     if features.any:
-        _, eigenvectors = scipy.linalg.eigh(
-            _covariance_between_classes(features, labels, classes),
-            _covariance_within_classes(features, labels, classes),
+        _, eigenvectors = eigh(
+            covariance_between_classes(features, labels, classes),
+            covariance_within_classes(features, labels, classes),
         )
         filtered_eigenvectors = eigenvectors[:, ::-1][:, :dimensions]
         svd_matrix, _, _ = np.linalg.svd(filtered_eigenvectors)
@@ -122,6 +164,38 @@ def linear_discriminant_analysis(
 
         return projected_data
     else:
-        logging.basicConfig(level=logging.ERROR, format="%(message)s", force=True)
+        logging.basicConfig(level=logging.ERROR, format='%(message)s', force=True)
         logging.error("Dataset empty")
         raise AssertionError
+
+def test_linear_discriminant_analysis():
+
+    # Create dummy dataset with 2 classes and 3 features
+    features = np.array([[1, 2, 3, 4, 5], [2, 3, 4, 5, 6], [3, 4, 5, 6, 7]])
+    labels = np.array([0, 0, 0, 1, 1])
+    classes = 2
+    dimensions = 2
+
+    projected_data = linear_discriminant_analysis(features, labels, classes, dimensions)
+
+    # Assert that the shape of the projected data is correct
+    assert projected_data.shape == (dimensions, features.shape[1])
+
+    # Assert that the projected data is a numpy array
+    assert isinstance(projected_data, np.ndarray)
+
+    # Assert that the projected data is not empty
+    assert projected_data.any()
+
+    # Assert that the function raises an AssertionError if dimensions > classes
+    try:
+        projected_data = linear_discriminant_analysis(features, labels, classes, 3)
+    except AssertionError:
+        pass
+    else:
+        raise AssertionError("Did not raise AssertionError for dimensions > classes")
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
