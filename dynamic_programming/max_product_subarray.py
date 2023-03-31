@@ -1,4 +1,4 @@
-def max_product_subarray(numbers: list[int]) -> int:
+def max_product_subarray(numbers: list[float]) -> float:
     """
     Returns the maximum product that can be obtained by multiplying a
     contiguous subarray of the given integer list `nums`.
@@ -11,7 +11,7 @@ def max_product_subarray(numbers: list[int]) -> int:
     >>> max_product_subarray([2, 3, -2, 4, -1])
     48
     >>> max_product_subarray([2, 3, -2, 4.5, -1])
-    54
+    ValueError: numbers must be an iterable of integers
     >>> max_product_subarray([-1])
     -1
     >>> max_product_subarray([])
