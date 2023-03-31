@@ -11,13 +11,11 @@ def minsubarraysum(target: int, numbers: list[int]) -> int:
         >>> minsubarraysum(11, [1, 1, 1, 1, 1, 1, 1, 1])
         0
     """
-    n = len(numbers)
-    if n == 0:
+
+    if len(numbers) == 0:
         return 0
 
-    left = 0
-    right = 0
-    curr_sum = 0
+    left = right = curr_sum = 0
     min_len = float("inf")
 
     while right < n:
