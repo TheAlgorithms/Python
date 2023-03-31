@@ -1,19 +1,19 @@
 #  Copyright (c) 2023 Diego Gasco (diego.gasco99@gmail.com), Diegomangasco on GitHub
 
-import logging
+import logging  # noqa: I001
 import numpy as np
 import scipy
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 
 
-def column_reshape(input_array: np.ndarray) -> np.ndarray:
+def _column_reshape(input_array: np.ndarray) -> np.ndarray:
     """Function to reshape a row Numpy array into a column Numpy array"""
 
     return input_array.reshape((input_array.size, 1))
 
 
-def covariance_within_classes(features: np.ndarray, labels: np.ndarray, classes: int) -> np.ndarray:
+def _covariance_within_classes(features: np.ndarray, labels: np.ndarray, classes: int) -> np.ndarray:
     """Function to compute the covariance matrix inside each class"""
 
     covariance_sum = np.nan
@@ -21,7 +21,7 @@ def covariance_within_classes(features: np.ndarray, labels: np.ndarray, classes:
         data = features[:, labels == i]
         data_mean = data.mean(1)
         # Centralize the data of class i
-        centered_data = data - column_reshape(data_mean)
+        centered_data = data - _column_reshape(data_mean)
         if i > 0:
             # If covariance_sum is not None
             covariance_sum += np.dot(centered_data, centered_data.T)
@@ -32,7 +32,7 @@ def covariance_within_classes(features: np.ndarray, labels: np.ndarray, classes:
     return covariance_sum / features.shape[1]
 
 
-def covariance_between_classes(features: np.ndarray, labels: np.ndarray, classes: int) -> np.ndarray:
+def _covariance_between_classes(features: np.ndarray, labels: np.ndarray, classes: int) -> np.ndarray:
     """Function to compute the covariance matrix between multiple classes"""
 
     general_data_mean = features.mean(1)
@@ -43,23 +43,25 @@ def covariance_between_classes(features: np.ndarray, labels: np.ndarray, classes
         data_mean = data.mean(1)
         if i > 0:
             # If covariance_sum is not None
-            covariance_sum += device_data * np.dot(column_reshape(data_mean) - column_reshape(general_data_mean),
-                                                   (column_reshape(data_mean) - column_reshape(general_data_mean)).T)
+            covariance_sum += device_data * np.dot(_column_reshape(data_mean) - _column_reshape(general_data_mean),
+                                                   (_column_reshape(data_mean) - _column_reshape(general_data_mean)).T)
         else:
             # If covariance_sum is np.nan (i.e. first loop)
-            covariance_sum = device_data * np.dot(column_reshape(data_mean) - column_reshape(general_data_mean),
-                                                  (column_reshape(data_mean) - column_reshape(general_data_mean)).T)
+            covariance_sum = device_data * np.dot(_column_reshape(data_mean) - _column_reshape(general_data_mean),
+                                                  (_column_reshape(data_mean) - _column_reshape(general_data_mean)).T)
 
     return covariance_sum / features.shape[1]
 
 
-def PCA(features: np.ndarray, dimensions: int) -> np.ndarray:
-    """Principal Component Analysis. \n
-    For more details, see here: https://en.wikipedia.org/wiki/Principal_component_analysis \n
-    Parameters: \n
-    * features: the features extracted from the dataset
-    * labels: the class labels of the features
-    * dimensions: to filter the projected data for the desired dimension"""
+def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.ndarray:
+    """
+    Principal Component Analysis.
+
+    For more details, see here: https://en.wikipedia.org/wiki/Principal_component_analysis.
+    Parameters:
+        * features: the features extracted from the dataset
+        * dimensions: to filter the projected data for the desired dimension
+    """
 
     # Check if the features have been loaded
     if features.any():
@@ -81,14 +83,17 @@ def PCA(features: np.ndarray, dimensions: int) -> np.ndarray:
         raise AssertionError
 
 
-def LDA(features: np.ndarray, labels: np.ndarray, classes: int, dimensions: int) -> np.ndarray:
-    """Linear Discriminant Analysis. \n
-    For more details, see here: https://en.wikipedia.org/wiki/Linear_discriminant_analysis \n
-    Parameters: \n
-    * features: the features extracted from the dataset
-    * labels: the class labels of the features
-    * classes: the number of classes present in the dataset
-    * dimensions: to filter the projected data for the desired dimension"""
+def linear_discriminant_analysis(features: np.ndarray, labels: np.ndarray, classes: int, dimensions: int) -> np.ndarray:
+    """
+    Linear Discriminant Analysis.
+
+    For more details, see here: https://en.wikipedia.org/wiki/Linear_discriminant_analysis.
+    Parameters:
+        * features: the features extracted from the dataset
+        * labels: the class labels of the features
+        * classes: the number of classes present in the dataset
+        * dimensions: to filter the projected data for the desired dimension
+    """
 
     # Check if the dimension desired is less than the number of classes
     assert classes > dimensions
@@ -96,8 +101,8 @@ def LDA(features: np.ndarray, labels: np.ndarray, classes: int, dimensions: int)
     # Check if features have been already loaded
     if features.any:
         _, eigenvectors = scipy.linalg.eigh(
-            covariance_between_classes(features, labels, classes),
-            covariance_within_classes(features, labels, classes))
+            _covariance_between_classes(features, labels, classes),
+            _covariance_within_classes(features, labels, classes))
         filtered_eigenvectors = eigenvectors[:, ::-1][:, :dimensions]
         svd_matrix, _, _ = np.linalg.svd(filtered_eigenvectors)
         filtered_svd_matrix = svd_matrix[:, 0:dimensions]
