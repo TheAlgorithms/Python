@@ -1,3 +1,5 @@
+#  Copyright (c) 2023 Diego Gasco (diego.gasco99@gmail.com), Diegomangasco on GitHub
+
 import logging
 import numpy as np
 import scipy
