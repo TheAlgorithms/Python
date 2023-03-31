@@ -195,6 +195,7 @@ def test_linear_discriminant_analysis() -> None:
     else:
         raise AssertionError("Did not raise AssertionError for dimensions > classes")
 
+
 if __name__ == "__main__":
     import doctest
 
