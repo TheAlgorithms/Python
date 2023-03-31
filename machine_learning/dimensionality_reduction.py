@@ -54,7 +54,8 @@ def covariance_between_classes(features: np.ndarray, labels: np.ndarray, classes
 
 
 def PCA(features: np.ndarray, dimensions: int) -> np.ndarray:
-    """Principal Component Analysis \n
+    """Principal Component Analysis. \n
+    For more details, see here: https://en.wikipedia.org/wiki/Principal_component_analysis \n
     Parameters: \n
     * features: the features extracted from the dataset
     * labels: the class labels of the features
@@ -81,8 +82,9 @@ def PCA(features: np.ndarray, dimensions: int) -> np.ndarray:
 
 
 def LDA(features: np.ndarray, labels: np.ndarray, classes: int, dimensions: int) -> np.ndarray:
-    """Linear Discriminant Analysis \n
-     Parameters: \n
+    """Linear Discriminant Analysis. \n
+    For more details, see here: https://en.wikipedia.org/wiki/Linear_discriminant_analysis \n
+    Parameters: \n
     * features: the features extracted from the dataset
     * labels: the class labels of the features
     * classes: the number of classes present in the dataset
