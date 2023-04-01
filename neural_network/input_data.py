@@ -20,9 +20,8 @@ This module and all its submodules are deprecated.
 
 import collections
 import gzip
-import numpy
-import os
 
+import numpy
 from six.moves import urllib
 from six.moves import xrange  # pylint: disable=redefined-builtin
 
@@ -30,6 +29,8 @@ from tensorflow.python.framework import dtypes
 from tensorflow.python.framework import random_seed
 from tensorflow.python.platform import gfile
 from tensorflow.python.util.deprecation import deprecated
+
+import os
 
 _Datasets = collections.namedtuple("_Datasets", ["train", "validation", "test"])
 
@@ -262,7 +263,7 @@ def _maybe_download(filename, work_directory, source_url):
         gfile.MakeDirs(work_directory)
     filepath = os.path.join(work_directory, filename)
     if not gfile.Exists(filepath):
-        urllib.request.urlretrieve(source_url, filepath)  # nosec
+        urllib.request.urlretrieve(source_url, filepath)  # noqa: S310
         with gfile.GFile(filepath) as f:
             size = f.size()
         print("Successfully downloaded", filename, size, "bytes.")
