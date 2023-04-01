@@ -20,7 +20,7 @@ def get_max_sum(arr, n, k):
     max_sum = sum
 
     for i in range(k, n):
-        sum = sum - arr[i-k]
+        sum = sum - arr[i - k]
         sum = sum + arr[i]
         max_sum = max(max_sum, sum)
 

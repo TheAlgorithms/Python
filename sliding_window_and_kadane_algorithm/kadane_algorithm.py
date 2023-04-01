@@ -13,7 +13,7 @@ def get_max_sum(arr, n):
         sum = sum + arr[i]
         max_sum = max(max_sum, sum)
 
-        if (sum < 0):
+        if sum < 0:
             sum = 0
 
     return max_sum
