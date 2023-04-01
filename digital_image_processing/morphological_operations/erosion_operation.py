@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import numpy as np
 from PIL import Image
 
@@ -63,11 +65,15 @@ def erosion(image: np.ndarray, kernel: np.ndarray) -> np.ndarray:
 
 if __name__ == "__main__":
     # read original image
-    lena = np.array(Image.open(r"..\image_data\lena.jpg"))
+    lena_path = Path(__file__).resolve().parent / "image_data" / "lena.jpg"
+    lena = np.array(Image.open(lena_path))
+
     # kernel to be applied
     structuring_element = np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]])
+
     # Apply erosion operation to a binary image
     output = erosion(gray_to_binary(rgb_to_gray(lena)), structuring_element)
+
     # Save the output image
     pil_img = Image.fromarray(output).convert("RGB")
     pil_img.save("result_erosion.png")
