@@ -9,7 +9,6 @@ on the current day is less than or equal to its price on the given day.
 
 
 def calculation_span(price, s):
-
     n = len(price)
     # Create a stack and push index of fist element to it
     st = []
@@ -20,7 +19,6 @@ def calculation_span(price, s):
 
     # Calculate span values for rest of the elements
     for i in range(1, n):
-
         # Pop elements from stack while stack is not
         # empty and top of stack is smaller than price[i]
         while len(st) > 0 and price[st[0]] <= price[i]:

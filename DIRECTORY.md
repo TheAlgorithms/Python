@@ -123,6 +123,7 @@
   * [Huffman](compression/huffman.py)
   * [Lempel Ziv](compression/lempel_ziv.py)
   * [Lempel Ziv Decompress](compression/lempel_ziv_decompress.py)
+  * [Lz77](compression/lz77.py)
   * [Peak Signal To Noise Ratio](compression/peak_signal_to_noise_ratio.py)
   * [Run Length Encoding](compression/run_length_encoding.py)
 
@@ -195,11 +196,14 @@
     * [Disjoint Set](data_structures/disjoint_set/disjoint_set.py)
   * Hashing
     * [Double Hash](data_structures/hashing/double_hash.py)
+    * [Hash Map](data_structures/hashing/hash_map.py)
     * [Hash Table](data_structures/hashing/hash_table.py)
     * [Hash Table With Linked List](data_structures/hashing/hash_table_with_linked_list.py)
     * Number Theory
       * [Prime Numbers](data_structures/hashing/number_theory/prime_numbers.py)
     * [Quadratic Probing](data_structures/hashing/quadratic_probing.py)
+    * Tests
+      * [Test Hash Map](data_structures/hashing/tests/test_hash_map.py)
   * Heap
     * [Binomial Heap](data_structures/heap/binomial_heap.py)
     * [Heap](data_structures/heap/heap.py)
@@ -305,6 +309,7 @@
   * [Floyd Warshall](dynamic_programming/floyd_warshall.py)
   * [Integer Partition](dynamic_programming/integer_partition.py)
   * [Iterating Through Submasks](dynamic_programming/iterating_through_submasks.py)
+  * [K Means Clustering Tensorflow](dynamic_programming/k_means_clustering_tensorflow.py)
   * [Knapsack](dynamic_programming/knapsack.py)
   * [Longest Common Subsequence](dynamic_programming/longest_common_subsequence.py)
   * [Longest Common Substring](dynamic_programming/longest_common_substring.py)
@@ -313,6 +318,7 @@
   * [Longest Sub Array](dynamic_programming/longest_sub_array.py)
   * [Matrix Chain Order](dynamic_programming/matrix_chain_order.py)
   * [Max Non Adjacent Sum](dynamic_programming/max_non_adjacent_sum.py)
+  * [Max Product Subarray](dynamic_programming/max_product_subarray.py)
   * [Max Sub Array](dynamic_programming/max_sub_array.py)
   * [Max Sum Contiguous Subsequence](dynamic_programming/max_sum_contiguous_subsequence.py)
   * [Min Distance Up Bottom](dynamic_programming/min_distance_up_bottom.py)
@@ -328,10 +334,12 @@
   * [Subset Generation](dynamic_programming/subset_generation.py)
   * [Sum Of Subset](dynamic_programming/sum_of_subset.py)
   * [Viterbi](dynamic_programming/viterbi.py)
+  * [Word Break](dynamic_programming/word_break.py)
 
 ## Electronics
   * [Builtin Voltage](electronics/builtin_voltage.py)
   * [Carrier Concentration](electronics/carrier_concentration.py)
+  * [Circular Convolution](electronics/circular_convolution.py)
   * [Coulombs Law](electronics/coulombs_law.py)
   * [Electric Conductivity](electronics/electric_conductivity.py)
   * [Electric Power](electronics/electric_power.py)
@@ -541,8 +549,7 @@
   * [Euler Modified](maths/euler_modified.py)
   * [Eulers Totient](maths/eulers_totient.py)
   * [Extended Euclidean Algorithm](maths/extended_euclidean_algorithm.py)
-  * [Factorial Iterative](maths/factorial_iterative.py)
-  * [Factorial Recursive](maths/factorial_recursive.py)
+  * [Factorial](maths/factorial.py)
   * [Factors](maths/factors.py)
   * [Fermat Little Theorem](maths/fermat_little_theorem.py)
   * [Fibonacci](maths/fibonacci.py)
@@ -555,6 +562,7 @@
   * [Gamma Recursive](maths/gamma_recursive.py)
   * [Gaussian](maths/gaussian.py)
   * [Gaussian Error Linear Unit](maths/gaussian_error_linear_unit.py)
+  * [Gcd Of N Numbers](maths/gcd_of_n_numbers.py)
   * [Greatest Common Divisor](maths/greatest_common_divisor.py)
   * [Greedy Coin Change](maths/greedy_coin_change.py)
   * [Hamming Numbers](maths/hamming_numbers.py)
@@ -678,6 +686,7 @@
   * [2 Hidden Layers Neural Network](neural_network/2_hidden_layers_neural_network.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
+  * [Input Data](neural_network/input_data.py)
   * [Perceptron](neural_network/perceptron.py)
   * [Simple Neural Network](neural_network/simple_neural_network.py)
 
@@ -916,6 +925,8 @@
     * [Sol1](project_euler/problem_080/sol1.py)
   * Problem 081
     * [Sol1](project_euler/problem_081/sol1.py)
+  * Problem 082
+    * [Sol1](project_euler/problem_082/sol1.py)
   * Problem 085
     * [Sol1](project_euler/problem_085/sol1.py)
   * Problem 086
@@ -928,10 +939,14 @@
     * [Sol1](project_euler/problem_091/sol1.py)
   * Problem 092
     * [Sol1](project_euler/problem_092/sol1.py)
+  * Problem 094
+    * [Sol1](project_euler/problem_094/sol1.py)
   * Problem 097
     * [Sol1](project_euler/problem_097/sol1.py)
   * Problem 099
     * [Sol1](project_euler/problem_099/sol1.py)
+  * Problem 100
+    * [Sol1](project_euler/problem_100/sol1.py)
   * Problem 101
     * [Sol1](project_euler/problem_101/sol1.py)
   * Problem 102
@@ -952,6 +967,8 @@
     * [Sol1](project_euler/problem_115/sol1.py)
   * Problem 116
     * [Sol1](project_euler/problem_116/sol1.py)
+  * Problem 117
+    * [Sol1](project_euler/problem_117/sol1.py)
   * Problem 119
     * [Sol1](project_euler/problem_119/sol1.py)
   * Problem 120
@@ -964,6 +981,8 @@
     * [Sol1](project_euler/problem_125/sol1.py)
   * Problem 129
     * [Sol1](project_euler/problem_129/sol1.py)
+  * Problem 131
+    * [Sol1](project_euler/problem_131/sol1.py)
   * Problem 135
     * [Sol1](project_euler/problem_135/sol1.py)
   * Problem 144
@@ -976,6 +995,8 @@
     * [Sol1](project_euler/problem_174/sol1.py)
   * Problem 180
     * [Sol1](project_euler/problem_180/sol1.py)
+  * Problem 187
+    * [Sol1](project_euler/problem_187/sol1.py)
   * Problem 188
     * [Sol1](project_euler/problem_188/sol1.py)
   * Problem 191
@@ -1000,6 +1021,8 @@
     * [Sol1](project_euler/problem_587/sol1.py)
   * Problem 686
     * [Sol1](project_euler/problem_686/sol1.py)
+  * Problem 800
+    * [Sol1](project_euler/problem_800/sol1.py)
 
 ## Quantum
   * [Bb84](quantum/bb84.py)
@@ -1161,7 +1184,6 @@
   * [Get Amazon Product Data](web_programming/get_amazon_product_data.py)
   * [Get Imdb Top 250 Movies Csv](web_programming/get_imdb_top_250_movies_csv.py)
   * [Get Imdbtop](web_programming/get_imdbtop.py)
-  * [Get Top Billioners](web_programming/get_top_billioners.py)
   * [Get Top Hn Posts](web_programming/get_top_hn_posts.py)
   * [Get User Tweets](web_programming/get_user_tweets.py)
   * [Giphy](web_programming/giphy.py)

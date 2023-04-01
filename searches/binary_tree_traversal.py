@@ -37,6 +37,7 @@ def build_tree():
         right_node = TreeNode(int(check))
         node_found.right = right_node
         q.put(right_node)
+    return None
 
 
 def pre_order(node: TreeNode) -> None:

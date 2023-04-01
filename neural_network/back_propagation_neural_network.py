@@ -153,6 +153,7 @@ class BPNN:
             if mse < self.accuracy:
                 print("----达到精度----")
                 return mse
+        return None
 
     def cal_loss(self, ydata, ydata_):
         self.loss = np.sum(np.power((ydata - ydata_), 2))
