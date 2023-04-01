@@ -94,7 +94,7 @@ def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
     for i in range(len(chart[0])):
         count = sum(chart[j][i] == 1 for j in range(len(chart)))
         if count == 1:
-            rem = max(j for j in range(len(chart)) if chart[j][i] == 1, default=-1)
+            rem = max(j for j in range(len(chart)) if chart[j][i] == 1)
             select[rem] = 1
     for i in range(len(select)):
         if select[i] != 1:
