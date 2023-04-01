@@ -990,6 +990,8 @@
     * [Sol1](project_euler/problem_174/sol1.py)
   * Problem 180
     * [Sol1](project_euler/problem_180/sol1.py)
+  * Problem 187
+    * [Sol1](project_euler/problem_187/sol1.py)
   * Problem 188
     * [Sol1](project_euler/problem_188/sol1.py)
   * Problem 191
