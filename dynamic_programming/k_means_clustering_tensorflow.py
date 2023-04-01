@@ -30,7 +30,6 @@ def TFKMeansCluster(vectors, noofclusters):
     graph = tf.Graph()
 
     with graph.as_default():
-
         # SESSION OF COMPUTATION
 
         sess = tf.Session()
@@ -96,7 +95,6 @@ def TFKMeansCluster(vectors, noofclusters):
         # iterations, instead of using a Stopping Criterion.
         noofiterations = 100
         for iteration_n in range(noofiterations):
-
             ##EXPECTATION STEP
             ##Based on the centroid locations till last iteration, compute
             ##the _expected_ centroid assignments.
