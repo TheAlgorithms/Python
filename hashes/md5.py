@@ -111,8 +111,8 @@ def preprocess(message: bytes) -> bytes:
     Returns:
         processed bit string padded to a multiple of 512 chars
 
-    >>> preprocess(b"a") == b"01100001" + b"1" + (b"0" * 439) + b"00001000" + \
-                            (b"0" * 56)
+    >>> preprocess(b"a") == (b"01100001" + b"1" +
+    ...                     (b"0" * 439) + b"00001000" + (b"0" * 56))
     True
     >>> preprocess(b"") == b"1" + (b"0" * 447) + (b"0" * 64)
     True
@@ -161,8 +161,8 @@ def get_block_words(bit_string: bytes) -> Generator[list[int], None, None]:
     Yields:
         a list of 16 32-bit words
 
-    >>> test_string = "".join(format(n << 24, "032b") for n in range(16)) \
-                        .encode("utf-8")
+    >>> test_string = ("".join(format(n << 24, "032b") for n in range(16))
+    ...                  .encode("utf-8"))
     >>> list(get_block_words(test_string))
     [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]]
     >>> list(get_block_words(test_string * 4)) == [list(range(16))] * 4
