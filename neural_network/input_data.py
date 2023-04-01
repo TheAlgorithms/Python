@@ -46,16 +46,16 @@ def _read32(bytestream):
 def _extract_images(f):
     """Extract the images into a 4D uint8 numpy array [index, y, x, depth].
 
-  Args:
-    f: A file object that can be passed into a gzip reader.
+    Args:
+      f: A file object that can be passed into a gzip reader.
 
-  Returns:
-    data: A 4D uint8 numpy array [index, y, x, depth].
+    Returns:
+      data: A 4D uint8 numpy array [index, y, x, depth].
 
-  Raises:
-    ValueError: If the bytestream does not start with 2051.
+    Raises:
+      ValueError: If the bytestream does not start with 2051.
 
-  """
+    """
     print("Extracting", f.name)
     with gzip.GzipFile(fileobj=f) as bytestream:
         magic = _read32(bytestream)
@@ -86,17 +86,17 @@ def _dense_to_one_hot(labels_dense, num_classes):
 def _extract_labels(f, one_hot=False, num_classes=10):
     """Extract the labels into a 1D uint8 numpy array [index].
 
-  Args:
-    f: A file object that can be passed into a gzip reader.
-    one_hot: Does one hot encoding for the result.
-    num_classes: Number of classes for the one hot encoding.
+    Args:
+      f: A file object that can be passed into a gzip reader.
+      one_hot: Does one hot encoding for the result.
+      num_classes: Number of classes for the one hot encoding.
 
-  Returns:
-    labels: a 1D uint8 numpy array.
+    Returns:
+      labels: a 1D uint8 numpy array.
 
-  Raises:
-    ValueError: If the bystream doesn't start with 2049.
-  """
+    Raises:
+      ValueError: If the bystream doesn't start with 2049.
+    """
     print("Extracting", f.name)
     with gzip.GzipFile(fileobj=f) as bytestream:
         magic = _read32(bytestream)
@@ -115,8 +115,8 @@ def _extract_labels(f, one_hot=False, num_classes=10):
 class _DataSet:
     """Container class for a _DataSet (deprecated).
 
-  THIS CLASS IS DEPRECATED.
-  """
+    THIS CLASS IS DEPRECATED.
+    """
 
     @deprecated(
         None,
@@ -135,21 +135,21 @@ class _DataSet:
     ):
         """Construct a _DataSet.
 
-    one_hot arg is used only if fake_data is true.  `dtype` can be either
-    `uint8` to leave the input as `[0, 255]`, or `float32` to rescale into
-    `[0, 1]`.  Seed arg provides for convenient deterministic testing.
+        one_hot arg is used only if fake_data is true.  `dtype` can be either
+        `uint8` to leave the input as `[0, 255]`, or `float32` to rescale into
+        `[0, 1]`.  Seed arg provides for convenient deterministic testing.
 
-    Args:
-      images: The images
-      labels: The labels
-      fake_data: Ignore inages and labels, use fake data.
-      one_hot: Bool, return the labels as one hot vectors (if True) or ints (if
-        False).
-      dtype: Output image dtype. One of [uint8, float32]. `uint8` output has
-        range [0,255]. float32 output has range [0,1].
-      reshape: Bool. If True returned images are returned flattened to vectors.
-      seed: The random seed to use.
-    """
+        Args:
+          images: The images
+          labels: The labels
+          fake_data: Ignore inages and labels, use fake data.
+          one_hot: Bool, return the labels as one hot vectors (if True) or ints (if
+            False).
+          dtype: Output image dtype. One of [uint8, float32]. `uint8` output has
+            range [0,255]. float32 output has range [0,1].
+          reshape: Bool. If True returned images are returned flattened to vectors.
+          seed: The random seed to use.
+        """
         seed1, seed2 = random_seed.get_seed(seed)
         # If op level seed is not set, use whatever graph level seed is returned
         numpy.random.seed(seed1 if seed is None else seed2)
@@ -250,14 +250,14 @@ class _DataSet:
 def _maybe_download(filename, work_directory, source_url):
     """Download the data from source url, unless it's already here.
 
-  Args:
-      filename: string, name of the file in the directory.
-      work_directory: string, path to working directory.
-      source_url: url to download from if file doesn't exist.
+    Args:
+        filename: string, name of the file in the directory.
+        work_directory: string, path to working directory.
+        source_url: url to download from if file doesn't exist.
 
-  Returns:
-      Path to resulting file.
-  """
+    Returns:
+        Path to resulting file.
+    """
     if not gfile.Exists(work_directory):
         gfile.MakeDirs(work_directory)
     filepath = os.path.join(work_directory, filename)
