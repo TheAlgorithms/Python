@@ -262,7 +262,7 @@ def _maybe_download(filename, work_directory, source_url):
         gfile.MakeDirs(work_directory)
     filepath = os.path.join(work_directory, filename)
     if not gfile.Exists(filepath):
-        urllib.request.urlretrieve(source_url, filepath)  #nosec
+        urllib.request.urlretrieve(source_url, filepath)  # nosec
         with gfile.GFile(filepath) as f:
             size = f.size()
         print("Successfully downloaded", filename, size, "bytes.")
@@ -337,7 +337,7 @@ def read_data_sets(
     train_images = train_images[validation_size:]
     train_labels = train_labels[validation_size:]
 
-    options = {'dtype': dtype, 'reshape': reshape, 'seed': seed}
+    options = {"dtype": dtype, "reshape": reshape, "seed": seed}
 
     train = _DataSet(train_images, train_labels, **options)
     validation = _DataSet(validation_images, validation_labels, **options)
