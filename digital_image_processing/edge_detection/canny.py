@@ -18,16 +18,16 @@ def gen_gaussian_kernel(k_size, sigma):
     return g
 
 
-def suppress_non_maximum(image_row, image_col, gradient_direction, sobel_grad):
+def suppress_non_maximum(image_shape, gradient_direction, sobel_grad):
     """
     Non-maximum suppression. If the edge strength of the current pixel is the largest
     compared to the other pixels in the mask with the same direction, the value will be
     preserved. Otherwise, the value will be suppressed.
     """
-    dst = np.zeros((image_row, image_col))
+    dst = np.zeros(image_shape)
 
-    for row in range(1, image_row - 1):
-        for col in range(1, image_col - 1):
+    for row in range(1, image_shape[0] - 1):
+        for col in range(1, image_shape[1] - 1):
             direction = gradient_direction[row, col]
 
             if (
@@ -71,7 +71,7 @@ def suppress_non_maximum(image_row, image_col, gradient_direction, sobel_grad):
 
 
 def detect_high_low_threshold(
-    image_row, image_col, dst, threshold_low, threshold_high, weak, strong
+    image_shape, dst, threshold_low, threshold_high, weak, strong
 ):
     """
     High-Low threshold detection. If an edge pixel’s gradient value is higher
@@ -81,8 +81,8 @@ def detect_high_low_threshold(
     an edge pixel's value is smaller than the low threshold value, it will be
     suppressed.
     """
-    for row in range(1, image_row - 1):
-        for col in range(1, image_col - 1):
+    for row in range(1, image_shape[0] - 1):
+        for col in range(1, image_shape[1] - 1):
             if dst[row, col] >= threshold_high:
                 dst[row, col] = strong
             elif dst[row, col] <= threshold_low:
@@ -91,15 +91,15 @@ def detect_high_low_threshold(
                 dst[row, col] = weak
 
 
-def track_edge(image_row, image_col, dst, weak, strong):
+def track_edge(image_shape, dst, weak, strong):
     """
     Edge tracking. Usually a weak edge pixel caused from true edges will be connected
     to a strong edge pixel while noise responses are unconnected. As long as there is
     one strong edge pixel that is involved in its 8-connected neighborhood, that weak
     edge point can be identified as one that should be preserved.
     """
-    for row in range(1, image_row):
-        for col in range(1, image_col):
+    for row in range(1, image_shape[0]):
+        for col in range(1, image_shape[1]):
             if dst[row, col] == weak:
                 if 255 in (
                     dst[row, col + 1],
@@ -117,21 +117,19 @@ def track_edge(image_row, image_col, dst, weak, strong):
 
 
 def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
-    image_row, image_col = image.shape[0], image.shape[1]
     # gaussian_filter
     gaussian_out = img_convolve(image, gen_gaussian_kernel(9, sigma=1.4))
     # get the gradient and degree by sobel_filter
     sobel_grad, sobel_theta = sobel_filter(gaussian_out)
-    gradient_direction = np.rad2deg(sobel_theta)
-    gradient_direction += PI
+    gradient_direction = PI + np.rad2deg(sobel_theta)
 
-    dst = suppress_non_maximum(image_row, image_col, gradient_direction, sobel_grad)
+    dst = suppress_non_maximum(image.shape, gradient_direction, sobel_grad)
 
     detect_high_low_threshold(
-        image_row, image_col, dst, threshold_low, threshold_high, weak, strong
+        image.shape, dst, threshold_low, threshold_high, weak, strong
     )
 
-    track_edge(image_row, image_col, dst, weak, strong)
+    track_edge(image.shape, dst, weak, strong)
 
     return dst
 
