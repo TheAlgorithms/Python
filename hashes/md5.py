@@ -15,7 +15,7 @@ from collections.abc import Generator
 from math import sin
 
 
-def to_little_endian(string_32: str) -> str:
+def to_little_endian(string_32: bytes) -> bytes:
     """
     Converts the given string to little-endian in groups of 8 chars.
 
@@ -27,9 +27,9 @@ def to_little_endian(string_32: str) -> str:
 
     Returns:
         32-char little-endian string
-    >>> to_little_endian('1234567890abcdfghijklmnopqrstuvw')
-    'pqrstuvwhijklmno90abcdfg12345678'
-    >>> to_little_endian('1234567890')
+    >>> to_little_endian(b'1234567890abcdfghijklmnopqrstuvw')
+    b'pqrstuvwhijklmno90abcdfg12345678'
+    >>> to_little_endian(b'1234567890')
     Traceback (most recent call last):
     ...
     ValueError: Input must be of length 32
@@ -37,13 +37,13 @@ def to_little_endian(string_32: str) -> str:
     if len(string_32) != 32:
         raise ValueError("Input must be of length 32")
 
-    little_endian = ""
+    little_endian = b""
     for i in [3, 2, 1, 0]:
         little_endian += string_32[8 * i : 8 * i + 8]
     return little_endian
 
 
-def reformat_hex(i: int) -> str:
+def reformat_hex(i: int) -> bytes:
     """
     Converts the given non-negative integer to hex string.
 
@@ -63,15 +63,15 @@ def reformat_hex(i: int) -> str:
         8-char little-endian hex string
 
     >>> reformat_hex(1234)
-    'd2040000'
+    b'd2040000'
     >>> reformat_hex(666)
-    '9a020000'
+    b'9a020000'
     >>> reformat_hex(0)
-    '00000000'
+    b'00000000'
     >>> reformat_hex(1234567890)
-    'd2029649'
+    b'd2029649'
     >>> reformat_hex(1234567890987654321)
-    'b11c6cb1'
+    b'b11c6cb1'
     >>> reformat_hex(-1)
     Traceback (most recent call last):
     ...
@@ -81,13 +81,13 @@ def reformat_hex(i: int) -> str:
         raise ValueError("Input must be non-negative")
 
     hex_rep = format(i, "08x")[-8:]
-    little_endian_hex = ""
+    little_endian_hex = b""
     for i in [3, 2, 1, 0]:
-        little_endian_hex += hex_rep[2 * i : 2 * i + 2]
+        little_endian_hex += hex_rep[2 * i : 2 * i + 2].encode("utf-8")
     return little_endian_hex
 
 
-def preprocess(message: str) -> str:
+def preprocess(message: bytes) -> bytes:
     """
     Preprocesses the message string:
     - Convert message to bit string
@@ -111,26 +111,27 @@ def preprocess(message: str) -> str:
     Returns:
         processed bit string padded to a multiple of 512 chars
 
-    >>> preprocess("a") == "01100001" + "1" + ("0" * 439) + "00001000" + ("0" * 56)
+    >>> preprocess(b"a") == b"01100001" + b"1" + (b"0" * 439) + b"00001000" + \
+    (b"0" * 56)
     True
-    >>> preprocess("") == "1" + ("0" * 447) + ("0" * 64)
+    >>> preprocess(b"") == b"1" + (b"0" * 447) + (b"0" * 64)
     True
     """
-    bit_string = ""
+    bit_string = b""
     for char in message:
-        bit_string += format(ord(char), "08b")
-    start_len = format(len(bit_string), "064b")
+        bit_string += format(char, "08b").encode("utf-8")
+    start_len = format(len(bit_string), "064b").encode("utf-8")
 
     # Pad bit_string to a multiple of 512 chars
-    bit_string += "1"
+    bit_string += b"1"
     while len(bit_string) % 512 != 448:
-        bit_string += "0"
+        bit_string += b"0"
     bit_string += to_little_endian(start_len[32:]) + to_little_endian(start_len[:32])
 
     return bit_string
 
 
-def get_block_words(bit_string: str) -> Generator[list[int], None, None]:
+def get_block_words(bit_string: bytes) -> Generator[list[int], None, None]:
     """
     Splits bit string into blocks of 512 chars and yields each block as a list
     of 32-bit words
@@ -160,16 +161,17 @@ def get_block_words(bit_string: str) -> Generator[list[int], None, None]:
     Yields:
         a list of 16 32-bit words
 
-    >>> test_string = "".join(format(n << 24, "032b") for n in range(16))
+    >>> test_string = "".join( \
+    format(n << 24, "032b") for n in range(16)).encode("utf-8")
     >>> list(get_block_words(test_string))
     [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]]
     >>> list(get_block_words(test_string * 4)) == [list(range(16))] * 4
     True
-    >>> list(get_block_words("1" * 512)) == [[4294967295] * 16]
+    >>> list(get_block_words(b"1" * 512)) == [[4294967295] * 16]
     True
-    >>> list(get_block_words(""))
+    >>> list(get_block_words(b""))
     []
-    >>> list(get_block_words("1111"))
+    >>> list(get_block_words(b"1111"))
     Traceback (most recent call last):
     ...
     ValueError: Input must have length that's a multiple of 512
@@ -292,7 +294,7 @@ def left_rotate_32(i: int, shift: int) -> int:
     return ((i << shift) ^ (i >> (32 - shift))) % 2**32
 
 
-def md5_me(message: str) -> str:
+def md5_me(message: bytes) -> bytes:
     """
     Returns the 32-char MD5 hash of a given message.
 
@@ -304,12 +306,12 @@ def md5_me(message: str) -> str:
     Returns:
         32-char MD5 hash string
 
-    >>> md5_me("")
-    'd41d8cd98f00b204e9800998ecf8427e'
-    >>> md5_me("The quick brown fox jumps over the lazy dog")
-    '9e107d9d372bb6826bd81d3542a419d6'
-    >>> md5_me("The quick brown fox jumps over the lazy dog.")
-    'e4d909c290d0fb1ca068ffaddf22cbd0'
+    >>> md5_me(b"")
+    b'd41d8cd98f00b204e9800998ecf8427e'
+    >>> md5_me(b"The quick brown fox jumps over the lazy dog")
+    b'9e107d9d372bb6826bd81d3542a419d6'
+    >>> md5_me(b"The quick brown fox jumps over the lazy dog.")
+    b'e4d909c290d0fb1ca068ffaddf22cbd0'
     """
 
     # Convert to bit string, add padding and append message length
