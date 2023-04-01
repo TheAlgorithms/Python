@@ -94,7 +94,7 @@ def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.nd
     """
     Principal Component Analysis.
 
-    For more details, see here: https://en.wikipedia.org/wiki/Principal_component_analysis.
+    For more details, see: https://en.wikipedia.org/wiki/Principal_component_analysis.
     Parameters:
         * features: the features extracted from the dataset
         * dimensions: to filter the projected data for the desired dimension
@@ -132,7 +132,7 @@ def linear_discriminant_analysis(
     """
     Linear Discriminant Analysis.
 
-    For more details, see here: https://en.wikipedia.org/wiki/Linear_discriminant_analysis.
+    For more details, see: https://en.wikipedia.org/wiki/Linear_discriminant_analysis.
     Parameters:
         * features: the features extracted from the dataset
         * labels: the class labels of the features
