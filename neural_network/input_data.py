@@ -24,7 +24,6 @@ import os
 
 import numpy
 from six.moves import urllib, xrange
-
 from tensorflow.python.framework import dtypes, random_seed
 from tensorflow.python.platform import gfile
 from tensorflow.python.util.deprecation import deprecated
