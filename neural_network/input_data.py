@@ -259,7 +259,7 @@ def _maybe_download(filename, work_directory, source_url):
         gfile.MakeDirs(work_directory)
     filepath = os.path.join(work_directory, filename)
     if not gfile.Exists(filepath):
-        urllib.request.urlretrieve(source_url, filepath)  # noqa: S310
+        urllib.request.urlretrieve(source_url, filepath)
         with gfile.GFile(filepath) as f:
             size = f.size()
         print("Successfully downloaded", filename, size, "bytes.")
