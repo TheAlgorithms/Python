@@ -10,6 +10,16 @@ def minsubarraysum(target: int, numbers: list[int]) -> int:
         4
         >>> minsubarraysum(11, [1, 1, 1, 1, 1, 1, 1, 1])
         0
+        >>> minsubarraysum(10, [1, 2, 3, 4, 5, 6, 7])
+        4
+        >>> minsubarraysum(5, [1, 1, 1, 1, 1, 5])
+        1
+        >>> minsubarraysum(0, [])
+        0
+        >>> minsubarraysum(10, [10, 20, 30])
+        1
+        >>> minsubarraysum(7, [1, 1, 1, 1, 1, 1, 10])
+        1
     """
 
     if len(numbers) == 0:
