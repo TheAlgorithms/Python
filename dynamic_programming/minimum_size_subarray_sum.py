@@ -50,7 +50,7 @@ def minimum_subarray_sum(target: int, numbers: list[int]) -> int:
 
     left = right = curr_sum = 0
     min_len = sys.maxsize
-    
+
     while right < len(numbers):
         curr_sum += numbers[right]
         while curr_sum >= target and left <= right:
