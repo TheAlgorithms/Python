@@ -1,5 +1,6 @@
 import sys
 
+
 def minimum_subarray_sum(target: int, numbers: list[int]) -> int:
     """
     Returns the length of the shortest contiguous subarray
@@ -37,7 +38,7 @@ def minimum_subarray_sum(target: int, numbers: list[int]) -> int:
     if not numbers:
         return 0
     if not isinstance(numbers, (list, tuple)) or not all(
-            isinstance(number, int) for number in numbers
+        isinstance(number, int) for number in numbers
     ):
         raise ValueError("numbers must be an iterable of integers")
     left = right = curr_sum = 0
