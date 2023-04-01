@@ -1,33 +1,35 @@
+from pathlib import Path
+
 import numpy as np
 from PIL import Image
 
 
-def rgb2gray(rgb: np.array) -> np.array:
+def rgb_to_gray(rgb: np.ndarray) -> np.ndarray:
     """
     Return gray image from rgb image
-    >>> rgb2gray(np.array([[[127, 255, 0]]]))
+    >>> rgb_to_gray(np.array([[[127, 255, 0]]]))
     array([[187.6453]])
-    >>> rgb2gray(np.array([[[0, 0, 0]]]))
+    >>> rgb_to_gray(np.array([[[0, 0, 0]]]))
     array([[0.]])
-    >>> rgb2gray(np.array([[[2, 4, 1]]]))
+    >>> rgb_to_gray(np.array([[[2, 4, 1]]]))
     array([[3.0598]])
-    >>> rgb2gray(np.array([[[26, 255, 14], [5, 147, 20], [1, 200, 0]]]))
+    >>> rgb_to_gray(np.array([[[26, 255, 14], [5, 147, 20], [1, 200, 0]]]))
     array([[159.0524,  90.0635, 117.6989]])
     """
     r, g, b = rgb[:, :, 0], rgb[:, :, 1], rgb[:, :, 2]
     return 0.2989 * r + 0.5870 * g + 0.1140 * b
 
 
-def gray2binary(gray: np.array) -> np.array:
+def gray_to_binary(gray: np.ndarray) -> np.ndarray:
     """
     Return binary image from gray image
-    >>> gray2binary(np.array([[127, 255, 0]]))
+    >>> gray_to_binary(np.array([[127, 255, 0]]))
     array([[False,  True, False]])
-    >>> gray2binary(np.array([[0]]))
+    >>> gray_to_binary(np.array([[0]]))
     array([[False]])
-    >>> gray2binary(np.array([[26.2409, 4.9315, 1.4729]]))
+    >>> gray_to_binary(np.array([[26.2409, 4.9315, 1.4729]]))
     array([[False, False, False]])
-    >>> gray2binary(np.array([[26, 255, 14], [5, 147, 20], [1, 200, 0]]))
+    >>> gray_to_binary(np.array([[26, 255, 14], [5, 147, 20], [1, 200, 0]]))
     array([[False,  True, False],
            [False,  True, False],
            [False,  True, False]])
@@ -35,7 +37,7 @@ def gray2binary(gray: np.array) -> np.array:
     return (gray > 127) & (gray <= 255)
 
 
-def dilation(image: np.array, kernel: np.array) -> np.array:
+def dilation(image: np.ndarray, kernel: np.ndarray) -> np.ndarray:
     """
     Return dilated image
     >>> dilation(np.array([[True, False, True]]), np.array([[0, 1, 0]]))
@@ -61,14 +63,13 @@ def dilation(image: np.array, kernel: np.array) -> np.array:
     return output
 
 
-# kernel to be applied
-structuring_element = np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]])
-
-
 if __name__ == "__main__":
     # read original image
-    image = np.array(Image.open(r"..\image_data\lena.jpg"))
-    output = dilation(gray2binary(rgb2gray(image)), structuring_element)
+    lena_path = Path(__file__).resolve().parent / "image_data" / "lena.jpg"
+    lena = np.array(Image.open(lena_path))
+    # kernel to be applied
+    structuring_element = np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]])
+    output = dilation(gray_to_binary(rgb_to_gray(lena)), structuring_element)
     # Save the output image
     pil_img = Image.fromarray(output).convert("RGB")
     pil_img.save("result_dilation.png")
