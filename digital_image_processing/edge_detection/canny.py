@@ -24,7 +24,7 @@ def suppress_non_maximum(image_shape, gradient_direction, sobel_grad):
     compared to the other pixels in the mask with the same direction, the value will be
     preserved. Otherwise, the value will be suppressed.
     """
-    dst = np.zeros(image_shape)
+    destination = np.zeros(image_shape)
 
     for row in range(1, image_shape[0] - 1):
         for col in range(1, image_shape[1] - 1):
@@ -38,7 +38,7 @@ def suppress_non_maximum(image_shape, gradient_direction, sobel_grad):
                 w = sobel_grad[row, col - 1]
                 e = sobel_grad[row, col + 1]
                 if sobel_grad[row, col] >= w and sobel_grad[row, col] >= e:
-                    dst[row, col] = sobel_grad[row, col]
+                    destination[row, col] = sobel_grad[row, col]
 
             elif (
                 PI / 8 <= direction < 3 * PI / 8
@@ -47,7 +47,7 @@ def suppress_non_maximum(image_shape, gradient_direction, sobel_grad):
                 sw = sobel_grad[row + 1, col - 1]
                 ne = sobel_grad[row - 1, col + 1]
                 if sobel_grad[row, col] >= sw and sobel_grad[row, col] >= ne:
-                    dst[row, col] = sobel_grad[row, col]
+                    destination[row, col] = sobel_grad[row, col]
 
             elif (
                 3 * PI / 8 <= direction < 5 * PI / 8
@@ -56,7 +56,7 @@ def suppress_non_maximum(image_shape, gradient_direction, sobel_grad):
                 n = sobel_grad[row - 1, col]
                 s = sobel_grad[row + 1, col]
                 if sobel_grad[row, col] >= n and sobel_grad[row, col] >= s:
-                    dst[row, col] = sobel_grad[row, col]
+                    destination[row, col] = sobel_grad[row, col]
 
             elif (
                 5 * PI / 8 <= direction < 7 * PI / 8
@@ -65,13 +65,13 @@ def suppress_non_maximum(image_shape, gradient_direction, sobel_grad):
                 nw = sobel_grad[row - 1, col - 1]
                 se = sobel_grad[row + 1, col + 1]
                 if sobel_grad[row, col] >= nw and sobel_grad[row, col] >= se:
-                    dst[row, col] = sobel_grad[row, col]
+                    destination[row, col] = sobel_grad[row, col]
 
-    return dst
+    return destination
 
 
 def detect_high_low_threshold(
-    image_shape, dst, threshold_low, threshold_high, weak, strong
+    image_shape, destination, threshold_low, threshold_high, weak, strong
 ):
     """
     High-Low threshold detection. If an edge pixel’s gradient value is higher
@@ -83,15 +83,15 @@ def detect_high_low_threshold(
     """
     for row in range(1, image_shape[0] - 1):
         for col in range(1, image_shape[1] - 1):
-            if dst[row, col] >= threshold_high:
-                dst[row, col] = strong
-            elif dst[row, col] <= threshold_low:
-                dst[row, col] = 0
+            if destination[row, col] >= threshold_high:
+                destination[row, col] = strong
+            elif destination[row, col] <= threshold_low:
+                destination[row, col] = 0
             else:
-                dst[row, col] = weak
+                destination[row, col] = weak
 
 
-def track_edge(image_shape, dst, weak, strong):
+def track_edge(image_shape, destination, weak, strong):
     """
     Edge tracking. Usually a weak edge pixel caused from true edges will be connected
     to a strong edge pixel while noise responses are unconnected. As long as there is
@@ -100,20 +100,20 @@ def track_edge(image_shape, dst, weak, strong):
     """
     for row in range(1, image_shape[0]):
         for col in range(1, image_shape[1]):
-            if dst[row, col] == weak:
+            if destination[row, col] == weak:
                 if 255 in (
-                    dst[row, col + 1],
-                    dst[row, col - 1],
-                    dst[row - 1, col],
-                    dst[row + 1, col],
-                    dst[row - 1, col - 1],
-                    dst[row + 1, col - 1],
-                    dst[row - 1, col + 1],
-                    dst[row + 1, col + 1],
+                    destination[row, col + 1],
+                    destination[row, col - 1],
+                    destination[row - 1, col],
+                    destination[row + 1, col],
+                    destination[row - 1, col - 1],
+                    destination[row + 1, col - 1],
+                    destination[row - 1, col + 1],
+                    destination[row + 1, col + 1],
                 ):
-                    dst[row, col] = strong
+                    destination[row, col] = strong
                 else:
-                    dst[row, col] = 0
+                    destination[row, col] = 0
 
 
 def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
@@ -123,21 +123,21 @@ def canny(image, threshold_low=15, threshold_high=30, weak=128, strong=255):
     sobel_grad, sobel_theta = sobel_filter(gaussian_out)
     gradient_direction = PI + np.rad2deg(sobel_theta)
 
-    dst = suppress_non_maximum(image.shape, gradient_direction, sobel_grad)
+    destination = suppress_non_maximum(image.shape, gradient_direction, sobel_grad)
 
     detect_high_low_threshold(
-        image.shape, dst, threshold_low, threshold_high, weak, strong
+        image.shape, destination, threshold_low, threshold_high, weak, strong
     )
 
-    track_edge(image.shape, dst, weak, strong)
+    track_edge(image.shape, destination, weak, strong)
 
-    return dst
+    return destination
 
 
 if __name__ == "__main__":
     # read original image in gray mode
     lena = cv2.imread(r"../image_data/lena.jpg", 0)
     # canny edge detection
-    canny_dst = canny(lena)
-    cv2.imshow("canny", canny_dst)
+    canny_destination = canny(lena)
+    cv2.imshow("canny", canny_destination)
     cv2.waitKey(0)
