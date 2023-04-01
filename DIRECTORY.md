@@ -1017,6 +1017,8 @@
     * [Sol1](project_euler/problem_587/sol1.py)
   * Problem 686
     * [Sol1](project_euler/problem_686/sol1.py)
+  * Problem 800
+    * [Sol1](project_euler/problem_800/sol1.py)
 
 ## Quantum
   * [Bb84](quantum/bb84.py)
