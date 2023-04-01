@@ -458,7 +458,7 @@ def test_cancel_data():
             CANCER_DATASET_URL,
             headers={"User-Agent": "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)"},
         )
-        response = urllib.request.urlopen(request)
+        response = urllib.request.urlopen(request)  # noqa: S310
         content = response.read().decode("utf-8")
         with open(r"cancel_data.csv", "w") as f:
             f.write(content)
@@ -569,7 +569,7 @@ def plot_partition_boundary(
     """
     We can not get the optimum w of our kernel svm model which is different from linear
     svm.  For this reason, we generate randomly distributed points with high desity and
-    prediced values of these points are calculated by using our tained model. Then we
+    prediced values of these points are calculated by using our trained model. Then we
     could use this prediced values to draw contour map.
     And this contour map can represent svm's partition boundary.
     """

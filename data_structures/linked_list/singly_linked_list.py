@@ -72,7 +72,7 @@ class LinkedList:
         >>> len(linked_list)
         0
         """
-        return len(tuple(iter(self)))
+        return sum(1 for _ in self)
 
     def __repr__(self) -> str:
         """

@@ -8,7 +8,7 @@
 # Newton's Method - https://en.wikipedia.org/wiki/Newton's_method
 
 from sympy import diff, lambdify, symbols
-from sympy.functions import *  # noqa: F401, F403
+from sympy.functions import *  # noqa: F403
 
 
 def newton_raphson(

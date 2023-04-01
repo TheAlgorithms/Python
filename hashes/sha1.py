@@ -26,7 +26,6 @@ Reference: https://deadhacker.com/2006/02/21/sha-1-illustrated/
 import argparse
 import hashlib  # hashlib is only used inside the Test class
 import struct
-import unittest
 
 
 class SHA1Hash:
@@ -125,17 +124,12 @@ class SHA1Hash:
                 self.h[3] + d & 0xFFFFFFFF,
                 self.h[4] + e & 0xFFFFFFFF,
             )
-        return "%08x%08x%08x%08x%08x" % tuple(self.h)
+        return ("{:08x}" * 5).format(*self.h)
 
 
-class SHA1HashTest(unittest.TestCase):
-    """
-    Test class for the SHA1Hash class. Inherits the TestCase class from unittest
-    """
-
-    def testMatchHashes(self):  # noqa: N802
-        msg = bytes("Test String", "utf-8")
-        self.assertEqual(SHA1Hash(msg).final_hash(), hashlib.sha1(msg).hexdigest())
+def test_sha1_hash():
+    msg = b"Test String"
+    assert SHA1Hash(msg).final_hash() == hashlib.sha1(msg).hexdigest()  # noqa: S324
 
 
 def main():
