@@ -57,6 +57,3 @@ def minimum_subarray_sum(target: int, numbers: list[int]) -> int:
             left += 1
 
     return 0 if min_len == sys.maxsize else min_len
-
-
-
