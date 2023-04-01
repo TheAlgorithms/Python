@@ -11,7 +11,7 @@ def minsubarraysum(target: int, numbers: list[int]) -> int:
         >>> minsubarraysum(11, [1, 1, 1, 1, 1, 1, 1, 1])
         0
         >>> minsubarraysum(10, [1, 2, 3, 4, 5, 6, 7])
-        4
+        2
         >>> minsubarraysum(5, [1, 1, 1, 1, 1, 5])
         1
         >>> minsubarraysum(0, [])
