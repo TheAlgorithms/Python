@@ -59,7 +59,4 @@ def minimum_subarray_sum(target: int, numbers: list[int]) -> int:
     return 0 if min_len == sys.maxsize else min_len
 
 
-if __name__ == "__main__":
-    from doctest import testmod
 
-    testmod()()
