@@ -24,7 +24,7 @@ class CircularLinkedList:
                 break
 
     def __len__(self) -> int:
-        return len(tuple(iter(self)))
+        return sum(1 for _ in self)
 
     def __repr__(self):
         return "->".join(str(item) for item in iter(self))
