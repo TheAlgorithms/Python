@@ -1,28 +1,45 @@
+import sys
+
 def minimum_subarray_sum(target: int, numbers: list[int]) -> int:
     """
     Returns the length of the shortest contiguous subarray
      in a list of numbers whose sum is at least target.
-
-        >>> minsubarraysum(7, [2, 3, 1, 2, 4, 3])
+        >>> minimum_subarray_sum(7, [2, 3, 1, 2, 4, 3])
         2
-        >>> minsubarraysum(7, [2, 3, -1, 2, 4, -3])
+        >>> minimum_subarray_sum(7, [2, 3, -1, 2, 4, -3])
         4
-        >>> minsubarraysum(11, [1, 1, 1, 1, 1, 1, 1, 1])
+        >>> minimum_subarray_sum(11, [1, 1, 1, 1, 1, 1, 1, 1])
         0
-        >>> minsubarraysum(10, [1, 2, 3, 4, 5, 6, 7])
+        >>> minimum_subarray_sum(10, [1, 2, 3, 4, 5, 6, 7])
         2
-        >>> minsubarraysum(5, [1, 1, 1, 1, 1, 5])
+        >>> minimum_subarray_sum(5, [1, 1, 1, 1, 1, 5])
         1
-        >>> minsubarraysum(0, [])
+        >>> minimum_subarray_sum(0, [])
         0
-        >>> minsubarraysum(10, [10, 20, 30])
+        >>> minimum_subarray_sum(10, [10, 20, 30])
         1
-        >>> minsubarraysum(7, [1, 1, 1, 1, 1, 1, 10])
+        >>> minimum_subarray_sum(7, [1, 1, 1, 1, 1, 1, 10])
         1
+        >>> minimum_subarray_sum(6, [])
+        0
+        >>> minimum_subarray_sum(2, [1, 2, 3])
+        1
+        >>> minimum_subarray_sum(-6, [])
+        0
+        >>> minimum_subarray_sum(8, None)
+        0
+        >>> minimum_subarray_sum(2, "ABC")
+        Traceback (most recent call last):
+        ...
+        ValueError: numbers must be an iterable of integers
     """
 
     if not numbers:
         return 0
+    if not isinstance(numbers, (list, tuple)) or not all(
+            isinstance(number, int) for number in numbers
+    ):
+        raise ValueError("numbers must be an iterable of integers")
     left = right = curr_sum = 0
     min_len = sys.maxsize
 
