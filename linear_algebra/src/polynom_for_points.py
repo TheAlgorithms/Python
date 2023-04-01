@@ -44,7 +44,13 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
     x = len(coordinates)
 
     # put the x and x to the power values in a matrix
-    matrix: list[list[float]] = [[coordinates[count_of_line][0] ** (x - (count_in_line + 1)) for count_in_line in range(x)] for count_of_line in range(x)]
+    matrix: list[list[float]] = [
+        [
+            coordinates[count_of_line][0] ** (x - (count_in_line + 1))
+            for count_in_line in range(x)
+        ]
+        for count_of_line in range(x)
+    ]
 
     # put the y values into a vector
     vector: list[float] = [coordinates[count_of_line][1] for count_of_line in range(x)]
@@ -65,7 +71,9 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
             zahlen += 1
 
     # make solutions
-    solution: list[str] = [str(vector[count] / matrix[count][count]) for count in range(x)]
+    solution: list[str] = [
+        str(vector[count] / matrix[count][count]) for count in range(x)
+    ]
 
     solved = "f(x)="
 
