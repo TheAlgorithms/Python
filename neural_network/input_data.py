@@ -20,17 +20,14 @@ This module and all its submodules are deprecated.
 
 import collections
 import gzip
+import os
 
 import numpy
-from six.moves import urllib
-from six.moves import xrange  # pylint: disable=redefined-builtin
+from six.moves import urllib, xrange
 
-from tensorflow.python.framework import dtypes
-from tensorflow.python.framework import random_seed
+from tensorflow.python.framework import dtypes, random_seed
 from tensorflow.python.platform import gfile
 from tensorflow.python.util.deprecation import deprecated
-
-import os
 
 _Datasets = collections.namedtuple("_Datasets", ["train", "validation", "test"])
 
