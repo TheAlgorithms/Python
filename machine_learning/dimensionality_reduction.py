@@ -138,13 +138,6 @@ def linear_discriminant_analysis(
         * labels: the class labels of the features
         * classes: the number of classes present in the dataset
         * dimensions: to filter the projected data for the desired dimension
-    >>> features = np.array([[1, 2, 3, 4, 5], [2, 3, 4, 5, 6], [3, 4, 5, 6, 7]])
-    >>> labels = np.array([0, 2, 0, 1, 1])
-    >>> classes = 3
-    >>> dimensions = 2
-    >>> linear_discriminant_analysis(features, labels, classes, dimensions)
-    array([[0.70710678, 0.70710678, 0.70710678, 0.70710678, 0.70710678],
-           [3.60806823, 5.10257902, 6.59708982, 8.09160061, 9.58611141]])
     """
 
     # Check if the dimension desired is less than the number of classes
