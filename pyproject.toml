@@ -61,7 +61,7 @@ show-source = true
 target-version = "py311"
 
 [tool.ruff.mccabe]   # DO NOT INCREASE THIS VALUE
-max-complexity = 20  # default: 10
+max-complexity = 17  # default: 10
 
 [tool.ruff.pylint]   # DO NOT INCREASE THESE VALUES
 max-args = 10        # default: 5
