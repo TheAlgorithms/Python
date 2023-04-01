@@ -1,9 +1,10 @@
-import tensorflow as tf
 from random import shuffle
+
+import tensorflow as tf
 from numpy import array
 
 
-def TFKMeansCluster(vectors, noofclusters):
+def tf_k_means_cluster(vectors, noofclusters):
     """
     K-Means Clustering using TensorFlow.
     'vectors' should be a n*k 2-D NumPy array, where n is the number
@@ -94,7 +95,7 @@ def TFKMeansCluster(vectors, noofclusters):
         # iterations. To keep things simple, we will only do a set number of
         # iterations, instead of using a Stopping Criterion.
         noofiterations = 100
-        for iteration_n in range(noofiterations):
+        for _ in range(noofiterations):
             ##EXPECTATION STEP
             ##Based on the centroid locations till last iteration, compute
             ##the _expected_ centroid assignments.
