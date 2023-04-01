@@ -317,6 +317,7 @@
   * [Longest Sub Array](dynamic_programming/longest_sub_array.py)
   * [Matrix Chain Order](dynamic_programming/matrix_chain_order.py)
   * [Max Non Adjacent Sum](dynamic_programming/max_non_adjacent_sum.py)
+  * [Max Product Subarray](dynamic_programming/max_product_subarray.py)
   * [Max Sub Array](dynamic_programming/max_sub_array.py)
   * [Max Sum Contiguous Subsequence](dynamic_programming/max_sum_contiguous_subsequence.py)
   * [Min Distance Up Bottom](dynamic_programming/min_distance_up_bottom.py)
@@ -936,6 +937,8 @@
     * [Sol1](project_euler/problem_091/sol1.py)
   * Problem 092
     * [Sol1](project_euler/problem_092/sol1.py)
+  * Problem 094
+    * [Sol1](project_euler/problem_094/sol1.py)
   * Problem 097
     * [Sol1](project_euler/problem_097/sol1.py)
   * Problem 099
@@ -990,6 +993,8 @@
     * [Sol1](project_euler/problem_174/sol1.py)
   * Problem 180
     * [Sol1](project_euler/problem_180/sol1.py)
+  * Problem 187
+    * [Sol1](project_euler/problem_187/sol1.py)
   * Problem 188
     * [Sol1](project_euler/problem_188/sol1.py)
   * Problem 191
@@ -1014,6 +1019,8 @@
     * [Sol1](project_euler/problem_587/sol1.py)
   * Problem 686
     * [Sol1](project_euler/problem_686/sol1.py)
+  * Problem 800
+    * [Sol1](project_euler/problem_800/sol1.py)
 
 ## Quantum
   * [Bb84](quantum/bb84.py)
