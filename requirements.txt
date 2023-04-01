@@ -18,5 +18,6 @@ sympy
 tensorflow
 texttable
 tweepy
+types-six
 xgboost
 yulewalker
