@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import numpy as np
 from PIL import Image
 
@@ -63,7 +65,7 @@ def dilation(image: np.ndarray, kernel: np.ndarray) -> np.ndarray:
 
 if __name__ == "__main__":
     # read original image
-    lena = np.array(Image.open(r"..\image_data\lena.jpg"))
+    lena = np.array(Image.open(Path("../image_data/lena.jpg")))
     # kernel to be applied
     structuring_element = np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]])
     output = dilation(gray_to_binary(rgb_to_gray(lena)), structuring_element)
