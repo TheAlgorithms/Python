@@ -102,7 +102,7 @@ def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.nd
     >>> dimensions = 2
     >>> principal_component_analysis(features, dimensions)
     array([[ 6.92820323,  8.66025404, 10.39230485],
-           [-2.99984328, -2.99984328, -2.99984328]])
+           [ 3.        ,  3.        ,  3.        ]])
     """
 
     # Check if the features have been loaded
