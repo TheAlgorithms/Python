@@ -717,6 +717,7 @@
   * [Archimedes Principle](physics/archimedes_principle.py)
   * [Casimir Effect](physics/casimir_effect.py)
   * [Centripetal Force](physics/centripetal_force.py)
+  * [Grahams Law](physics/grahams_law.py)
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
   * [Hubble Parameter](physics/hubble_parameter.py)
   * [Ideal Gas Law](physics/ideal_gas_law.py)
