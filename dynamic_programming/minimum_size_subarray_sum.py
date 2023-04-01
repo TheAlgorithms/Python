@@ -24,7 +24,7 @@ def minsubarraysum(target: int, numbers: list[int]) -> int:
     if not numbers:
         return 0
     left = right = curr_sum = 0
-    min_len = float("inf")
+    min_len = sys.maxsize
 
     while right < len(numbers):
         curr_sum += numbers[right]
