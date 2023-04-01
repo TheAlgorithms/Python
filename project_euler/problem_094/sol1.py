@@ -12,6 +12,7 @@ Find the sum of the perimeters of all almost equilateral triangles with integral
 lengths and area and whose perimeters do not exceed one billion (1,000,000,000).
 """
 
+
 def solution(max_perimeter: int = 10**9) -> int:
     """
     Returns the sum of the perimeters of all almost equilateral triangles with integral
