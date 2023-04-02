@@ -69,8 +69,4 @@ def solution() -> int:
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-
-    print(solution())
+    print(f"{solution() = }")
