@@ -29,7 +29,7 @@ def column_reshape(input_array: np.ndarray) -> np.ndarray:
 
 
 def covariance_within_classes(
-    features: np.ndarray, labels: np.ndarray, classes: int
+        features: np.ndarray, labels: np.ndarray, classes: int
 ) -> np.ndarray:
     """Function to compute the covariance matrix inside each class.
     >>> features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
@@ -57,7 +57,7 @@ def covariance_within_classes(
 
 
 def covariance_between_classes(
-    features: np.ndarray, labels: np.ndarray, classes: int
+        features: np.ndarray, labels: np.ndarray, classes: int
 ) -> np.ndarray:
     """Function to compute the covariance matrix between multiple classes
     >>> features = np.array([[9, 2, 3], [4, 3, 6], [1, 8, 9]])
@@ -98,11 +98,6 @@ def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.nd
     Parameters:
         * features: the features extracted from the dataset
         * dimensions: to filter the projected data for the desired dimension
-    >>> features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-    >>> dimensions = 2
-    >>> principal_component_analysis(features, dimensions)
-    array([[ 6.92820323,  8.66025404, 10.39230485],
-           [ 3.        ,  3.        ,  3.        ]])
     """
 
     # Check if the features have been loaded
@@ -113,7 +108,6 @@ def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.nd
         covariance_matrix = np.dot(centered_data, centered_data.T) / features.shape[1]
         _, eigenvectors = np.linalg.eigh(covariance_matrix)
         # Take all the columns in the reverse order (-1), and then takes only the first
-        # columns
         filtered_eigenvectors = eigenvectors[:, ::-1][:, 0:dimensions]
         # Project the database on the new space
         projected_data = np.dot(filtered_eigenvectors.T, features)
@@ -127,7 +121,7 @@ def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.nd
 
 
 def linear_discriminant_analysis(
-    features: np.ndarray, labels: np.ndarray, classes: int, dimensions: int
+        features: np.ndarray, labels: np.ndarray, classes: int, dimensions: int
 ) -> np.ndarray:
     """
     Linear Discriminant Analysis.
@@ -187,6 +181,14 @@ def test_linear_discriminant_analysis() -> None:
         pass
     else:
         raise AssertionError("Did not raise AssertionError for dimensions > classes")
+
+
+def test_principal_component_analysis() -> None:
+    features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    dimensions = 2
+    expected_output = np.array([[6.92820323, 8.66025404, 10.39230485], [3., 3., 3.]])
+    output = principal_component_analysis(features, dimensions)
+    assert np.allclose(expected_output, output), f"Expected {expected_output}, but got {output}"
 
 
 if __name__ == "__main__":
