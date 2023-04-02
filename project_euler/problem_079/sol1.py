@@ -14,16 +14,12 @@ Given that the three characters are always asked for in order, analyse the file
 so as to determine the shortest possible secret passcode of unknown length.
 """
 import itertools
-import os
+from pathlib import Path
 
 
 def find_secret_passcode(logins: list[str]) -> int:
     """
     Returns the shortest possible secret passcode of unknown length.
-
-    >>> find_secret_passcode(["319", "680", "180", "690", "129", "620", "698",
-    ...     "318", "328", "310", "320", "610", "629", "198", "190", "631"])
-    6312980
 
     >>> find_secret_passcode(["135", "259", "235", "189", "690", "168", "120",
     ...     "136", "289", "589", "160", "165", "580", "369", "250", "280"])
@@ -52,18 +48,19 @@ def find_secret_passcode(logins: list[str]) -> int:
 
         if satisfied:
             return int("".join(permutation))
-            break
 
     raise Exception("Unable to find the secret passcode")
 
 
-def solution() -> int:
+def solution(input_file: str = "keylog.txt") -> int:
     """
     Returns the shortest possible secret passcode of unknown length
-    for successful login attempts given by keylog.txt.
+    for successful login attempts given by `input_file` text file.
+
+    >>> solution("keylog_test.txt")
+    6312980
     """
-    with open(os.path.dirname(__file__) + "/keylog.txt") as file:
-        logins = file.read().splitlines()
+    logins = Path(__file__).parent.joinpath(input_file).read_text().splitlines()
 
     return find_secret_passcode(logins)
 
