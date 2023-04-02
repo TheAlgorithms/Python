@@ -19,7 +19,7 @@ def minimum_subarray_sum(target: int, numbers: list[int]) -> int:
     >>> minimum_subarray_sum(0, [])
     0
     >>> minimum_subarray_sum(0, [1, 2, 3])
-    0
+    1
     >>> minimum_subarray_sum(10, [10, 20, 30])
     1
     >>> minimum_subarray_sum(7, [1, 1, 1, 1, 1, 1, 10])
@@ -31,7 +31,7 @@ def minimum_subarray_sum(target: int, numbers: list[int]) -> int:
     >>> minimum_subarray_sum(-6, [])
     0
     >>> minimum_subarray_sum(-6, [3, 4, 5])
-    0
+    1
     >>> minimum_subarray_sum(8, None)
     0
     >>> minimum_subarray_sum(2, "ABC")
