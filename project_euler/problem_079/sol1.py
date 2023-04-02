@@ -21,13 +21,16 @@ def find_secret_passcode(logins: list[str]) -> int:
     """
     Returns the shortest possible secret passcode of unknown length.
 
-    >>> find_secret_passcode(["319", "680", "180", "690", "129", "620"])
+    >>> find_secret_passcode(["319", "680", "180", "690", "129", "620", "698",
+    ...     "318", "328", "310", "320", "610", "629", "198", "190", "631"])
     6312980
 
-    >>> find_secret_passcode(["135", "259", "235", "189", "690", "168", "120"])
-    132568940
+    >>> find_secret_passcode(["135", "259", "235", "189", "690", "168", "120",
+    ...     "136", "289", "589", "160", "165", "580", "369", "250", "280"])
+    12365890
 
-    >>> find_secret_passcode(["426", "281", "061", "819" "268", "406", "420"])
+    >>> find_secret_passcode(["426", "281", "061", "819" "268", "406", "420",
+    ...     "428", "209", "689", "019", "421", "469", "261", "681", "201"])
     4206819
     """
 
@@ -66,4 +69,8 @@ def solution() -> int:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     print(solution())
