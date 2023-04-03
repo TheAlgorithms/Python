@@ -922,6 +922,8 @@
     * [Sol1](project_euler/problem_077/sol1.py)
   * Problem 078
     * [Sol1](project_euler/problem_078/sol1.py)
+  * Problem 079
+    * [Sol1](project_euler/problem_079/sol1.py)
   * Problem 080
     * [Sol1](project_euler/problem_080/sol1.py)
   * Problem 081
