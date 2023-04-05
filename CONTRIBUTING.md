@@ -180,3 +180,33 @@ We want your work to be readable by others; therefore, we encourage you to note 
   - Happy coding!
 
 Writer [@poyea](https://github.com/poyea), Jun 2019.
+
+
+
+Import pandas as pd
+
+
+df1 = pd.DataFrame({
+    'Part Reference': ['XYZ1123', 'ABC1147'],
+    'Vehicle Applications': ['Lodgy 12+, Captur 13+', 'Golf 11+, Polo 14+']
+})
+
+# create dataframe 2
+df2 = pd.DataFrame({
+    'Car Model': ['Lodgy', 'Captur', 'Golf', 'Polo'],
+    'Total Sales': [1000, 400, 11000, 9000]
+})
+
+# merge the two dataframes based on the 'Car Model' column
+merged_df = pd.merge(df1, df2, left_on='Vehicle Applications', right_on='Car Model')
+
+# group by 'Vehicle Applications' and sum the 'Total Sales' column
+grouped_df = merged_df.groupby('Vehicle Applications')['Total Sales'].sum().reset_index()
+
+# add the new columns to File 1
+df1['Car Model Names'] = merged_df['Car Model']
+df1['Sum of Car Model'] = grouped_df['Total Sales']
+
+# write the updated dataframe to a new file
+df1.to_csv('output.csv', index=False)
+
