@@ -14,7 +14,7 @@ class Bloom:
         self.bitstring = 0b0
         self.size = size
 
-    def add(self, value):
+    def add(self, value: str):
         h = self.hash_(value)
         self.bitstring |= h
         print(
@@ -25,7 +25,7 @@ class Bloom:
 """
         )
 
-    def exists(self, value):
+    def exists(self, value: str)-> bool:
         h = self.hash_(value)
         res = (h & self.bitstring) == h
 
@@ -39,11 +39,11 @@ class Bloom:
         )
         return res
 
-    def format_bin(self, value):
+    def format_bin(self, value: int) -> str:
         res = bin(value)[2:]
         return res.zfill(self.size)
 
-    def hash_(self, value):
+    def hash_(self, value: str) -> int:
         res = 0b0
         for func in self.HASH_FUNCTIONS:
             b = func(value.encode()).digest()
