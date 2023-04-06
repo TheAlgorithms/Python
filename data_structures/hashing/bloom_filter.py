@@ -1,9 +1,9 @@
 """
 See https://en.wikipedia.org/wiki/Bloom_filter
 """
-from hashlib import sha256, md5
-from random import randint, choices
 import string
+from hashlib import md5, sha256
+from random import choices
 
 
 class Bloom:
