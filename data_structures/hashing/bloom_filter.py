@@ -1,9 +1,9 @@
 """
 See https://en.wikipedia.org/wiki/Bloom_filter
 """
-import string
 from hashlib import md5, sha256
 from random import choices
+from string import ascii_lowercase
 
 
 class Bloom:
@@ -15,7 +15,7 @@ class Bloom:
         self.size = size
 
     def add(self, value):
-        h = self.hash(value)
+        h = self.hash_(value)
         self.bitstring |= h
         print(
             f"""\
@@ -26,7 +26,7 @@ class Bloom:
         )
 
     def exists(self, value):
-        h = self.hash(value)
+        h = self.hash_(value)
         res = (h & self.bitstring) == h
 
         print(
@@ -43,7 +43,7 @@ class Bloom:
         res = bin(value)[2:]
         return res.zfill(self.size)
 
-    def hash(self, value):
+    def hash_(self, value):
         res = 0b0
         for func in self.HASH_FUNCTIONS:
             b = func(value.encode()).digest()
@@ -67,7 +67,7 @@ def test_movies():
 
 
 def random_string(size):
-    return "".join(choices(string.ascii_lowercase + " ", k=size))
+    return "".join(choices(ascii_lowercase + " ", k=size))
 
 
 def test_probability(m=64, n=20):
