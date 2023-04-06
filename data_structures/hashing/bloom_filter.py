@@ -54,16 +54,16 @@ class Bloom:
 
 def test_movies():
     b = Bloom()
-    b.add("titanic")
-    b.add("avatar")
+    b.add("Titanic")
+    b.add("Avatar")
 
-    assert b.exists("titanic")
-    assert b.exists("avatar")
+    assert b.exists("Titanic")
+    assert b.exists("Avatar")
 
-    assert b.exists("the goodfather") in (True, False)
-    assert b.exists("interstellar") in (True, False)
+    assert b.exists("The Goodfather") in (True, False)
+    assert b.exists("Interstellar") in (True, False)
     assert b.exists("Parasite") in (True, False)
-    assert b.exists("Pulp fiction") in (True, False)
+    assert b.exists("Pulp Fiction") in (True, False)
 
 
 def random_string(size):
