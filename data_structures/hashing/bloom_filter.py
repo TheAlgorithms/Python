@@ -73,30 +73,29 @@ def random_string(size):
 def test_probability(m=64, n=20):
     b = Bloom(size=m)
 
+    k = len(b.HASH_FUNCTIONS)
+    estimated_error_rate_beforehand = (1 - (1 - 1 / m) ** (k * n)) ** k
+
     added = {random_string(10) for i in range(n)}
     for a in added:
         b.add(a)
 
-    k = len(b.HASH_FUNCTIONS)
-
     n_ones = bin(b.bitstring).count("1")
-    expected_probability = (n_ones / m) ** k
-
-    expected_probability_wikipedia = (1 - (1 - 1 / m) ** (k * n)) ** k
+    estimated_error_rate = (n_ones / m) ** k
 
     not_added = {random_string(10) for i in range(1000)}
-    fails = 0
+    errors = 0
     for string in not_added:
         if b.exists(string):
-            fails += 1
-    fail_rate = fails / len(not_added)
+            errors += 1
+    error_rate = errors / len(not_added)
 
-    print(f"total = {len(not_added)}, fails = {fails}, fail_rate = {fail_rate}")
-    print(f"{expected_probability=}")
-    print(f"{expected_probability_wikipedia=}")
+    print(f"total = {len(not_added)}, errors = {errors}, error_rate = {error_rate}")
+    print(f"{estimated_error_rate=}")
+    print(f"{estimated_error_rate_beforehand=}")
 
     assert (
-        abs(expected_probability - fail_rate) <= 0.05
+        abs(estimated_error_rate - error_rate) <= 0.05
     )  # 5% absolute margin calculated experiementally
 
 
