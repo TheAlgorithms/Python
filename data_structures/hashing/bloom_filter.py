@@ -10,7 +10,7 @@ class Bloom:
     # number of hash functions is fixed
     HASH_FUNCTIONS = (sha256, md5)
 
-    def __init__(self, size=8):
+    def __init__(self, size: int = 8) -> None:
         self.bitstring = 0b0
         self.size = size
 
@@ -52,7 +52,7 @@ class Bloom:
         return res
 
 
-def test_movies():
+def test_movies() -> None:
     b = Bloom()
     b.add("Titanic")
     b.add("Avatar")
@@ -66,11 +66,11 @@ def test_movies():
     assert b.exists("Pulp Fiction") in (True, False)
 
 
-def random_string(size):
+def random_string(size: int) -> str:
     return "".join(choices(ascii_lowercase + " ", k=size))
 
 
-def test_probability(m=64, n=20):
+def test_probability(m: int = 64, n: int = 20) -> None:
     b = Bloom(size=m)
 
     k = len(b.HASH_FUNCTIONS)
