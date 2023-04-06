@@ -7,6 +7,9 @@ import string
 
 
 class Bloom:
+    # number of hash functions is fixed
+    HASH_FUNCTIONS = (sha256, md5)
+
     def __init__(self, size=8):
         self.bitstring = 0b0
         self.size = size
@@ -42,7 +45,7 @@ class Bloom:
 
     def hash(self, value):
         res = 0b0
-        for func in (sha256, md5):
+        for func in HASH_FUNCTIONS:
             b = func(value.encode()).digest()
             position = int.from_bytes(b, "little") % self.size
             res |= 2**position
@@ -74,8 +77,7 @@ def test_probability(m=64, n=20):
     for a in added:
         b.add(a)
 
-    # number of hash functions is fixed
-    k = 2
+    k = len(b.HASH_FUNCIONS)
 
     n_ones = bin(b.bitstring).count("1")
     expected_probability = (n_ones / m) ** k
@@ -95,7 +97,7 @@ def test_probability(m=64, n=20):
 
     assert (
         abs(expected_probability - fail_rate) <= 0.05
-    )  # 5% margin calculated experiementally
+    )  # 5% absolute margin calculated experiementally
 
 
 if __name__ == "__main__":
