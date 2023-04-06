@@ -45,7 +45,7 @@ class Bloom:
 
     def hash(self, value):
         res = 0b0
-        for func in HASH_FUNCTIONS:
+        for func in self.HASH_FUNCTIONS:
             b = func(value.encode()).digest()
             position = int.from_bytes(b, "little") % self.size
             res |= 2**position
@@ -77,7 +77,7 @@ def test_probability(m=64, n=20):
     for a in added:
         b.add(a)
 
-    k = len(b.HASH_FUNCIONS)
+    k = len(b.HASH_FUNCTIONS)
 
     n_ones = bin(b.bitstring).count("1")
     expected_probability = (n_ones / m) ** k
