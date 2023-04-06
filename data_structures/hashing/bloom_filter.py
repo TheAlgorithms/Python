@@ -14,7 +14,7 @@ class Bloom:
         self.bitstring = 0b0
         self.size = size
 
-    def add(self, value: str):
+    def add(self, value: str) -> None:
         h = self.hash_(value)
         self.bitstring |= h
         print(
@@ -70,18 +70,18 @@ def random_string(size: int) -> str:
     return "".join(choices(ascii_lowercase + " ", k=size))
 
 
-def test_probability(m: int = 64, n: int = 20) -> None:
-    b = Bloom(size=m)
+def test_probability(bits: int = 64, n: int = 20) -> None:
+    b = Bloom(size=bits)
 
     k = len(b.HASH_FUNCTIONS)
-    estimated_error_rate_beforehand = (1 - (1 - 1 / m) ** (k * n)) ** k
+    estimated_error_rate_beforehand = (1 - (1 - 1 / bits) ** (k * n)) ** k
 
     added = {random_string(10) for i in range(n)}
     for a in added:
         b.add(a)
 
     n_ones = bin(b.bitstring).count("1")
-    estimated_error_rate = (n_ones / m) ** k
+    estimated_error_rate = (n_ones / bits) ** k
 
     not_added = {random_string(10) for i in range(1000)}
     errors = 0
