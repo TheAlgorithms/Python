@@ -70,27 +70,28 @@ def random_string(size: int) -> str:
     return "".join(choices(ascii_lowercase + " ", k=size))
 
 
-def test_probability(bits: int = 64, n: int = 20) -> None:
-    b = Bloom(size=bits)
+def test_probability(filter_bits: int = 64, added_elements: int = 20) -> None:
+    b = Bloom(size=filter_bits)
 
     k = len(b.HASH_FUNCTIONS)
-    estimated_error_rate_beforehand = (1 - (1 - 1 / bits) ** (k * n)) ** k
-
-    added = {random_string(10) for i in range(n)}
-    for a in added:
-        b.add(a)
-
-    n_ones = bin(b.bitstring).count("1")
-    estimated_error_rate = (n_ones / bits) ** k
+    estimated_error_rate_beforehand = (
+        1 - (1 - 1 / filter_bits) ** (k * added_elements)
+    ) ** k
 
     not_added = {random_string(10) for i in range(1000)}
+    for _ in range(added_elements):
+        b.add(not_added.pop())
+
+    n_ones = bin(b.bitstring).count("1")
+    estimated_error_rate = (n_ones / filter_bits) ** k
+
     errors = 0
     for string in not_added:
         if b.exists(string):
             errors += 1
     error_rate = errors / len(not_added)
 
-    print(f"total = {len(not_added)}, errors = {errors}, error_rate = {error_rate}")
+    print(f"error_rate = {errors}/{len(not_added)} = {error_rate}")
     print(f"{estimated_error_rate=}")
     print(f"{estimated_error_rate_beforehand=}")
 
