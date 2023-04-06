@@ -25,7 +25,7 @@ class Bloom:
 """
         )
 
-    def exists(self, value: str)-> bool:
+    def exists(self, value: str) -> bool:
         h = self.hash_(value)
         res = (h & self.bitstring) == h
 
