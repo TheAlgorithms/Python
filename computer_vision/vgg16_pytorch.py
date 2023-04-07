@@ -9,7 +9,7 @@ from torch import nn
 
 
 class VGG16(nn.Module):
-    def __init__(self, num_classes=10):
+    def __init__(self, num_classes: int = 10) -> None:
         super().__init__()
 
         # -------------------------- Feature Extraction Layers --------------------- #
@@ -93,7 +93,7 @@ class VGG16(nn.Module):
             nn.Linear(4096, num_classes),
         )
 
-    def forward(self, image):
+    def forward(self, image: torch.tensor) -> torch.tensor:
         image = self.features(image)
         image = self.avgpool(image)
         image = torch.flatten(image, 1)
