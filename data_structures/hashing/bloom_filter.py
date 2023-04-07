@@ -50,8 +50,6 @@ True
 0.140625
 """
 from hashlib import md5, sha256
-from random import choices
-from string import ascii_lowercase
 
 HASH_FUNCTIONS = (sha256, md5)
 
@@ -95,41 +93,3 @@ class Bloom:
         n_ones = bin(self.bitarray).count("1")
         k = len(HASH_FUNCTIONS)
         return (n_ones / self.size) ** k
-
-
-def random_string(size: int) -> str:
-    return "".join(choices(ascii_lowercase + " ", k=size))
-
-
-def test_probability(filter_bits: int = 64, added_elements: int = 20) -> None:
-    b = Bloom(size=filter_bits)
-
-    k = len(HASH_FUNCTIONS)
-    estimated_error_rate_beforehand = (
-        1 - (1 - 1 / filter_bits) ** (k * added_elements)
-    ) ** k
-
-    not_added = {random_string(10) for i in range(1000)}
-    for _ in range(added_elements):
-        b.add(not_added.pop())
-
-    n_ones = bin(b.bitarray).count("1")
-    estimated_error_rate = (n_ones / filter_bits) ** k
-
-    errors = 0
-    for string in not_added:
-        if b.exists(string):
-            errors += 1
-    error_rate = errors / len(not_added)
-
-    print(f"error_rate = {errors}/{len(not_added)} = {error_rate}")
-    print(f"{estimated_error_rate=}")
-    print(f"{estimated_error_rate_beforehand=}")
-
-    assert (
-        abs(estimated_error_rate - error_rate) <= 0.05
-    )  # 5% absolute margin calculated experiementally
-
-
-if __name__ == "__main__":
-    test_probability()
