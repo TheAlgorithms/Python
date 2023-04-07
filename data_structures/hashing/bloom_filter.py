@@ -1,72 +1,100 @@
 """
 See https://en.wikipedia.org/wiki/Bloom_filter
 
->>> b = Bloom()
+The use of this data structure is to test membership in a set.
+Compared to python built-in set() it is more space-efficent.
+In the following example, only 8 bits of memory will be used:
+>>> b = Bloom(size=8)
+>>> "Titanic" in b
+False
+
+Initially the filter contains all zeros:
+>>> b.bitstring
+'00000000'
+
+When an element is added, two bits are set to 1
+since there are 2 hash functions:
 >>> b.add("Titanic")
+>>> b.bitstring
+'01100000'
+>>> "Titanic" in b
+True
+
+However, sometimes only one bit is added
+because both hash functions return the same value
 >>> b.add("Avatar")
->>> b.exists("Titanic")
+>>> b.format_hash("Avatar")
+'00000100'
+>>> b.bitstring
+'01100100'
+
+Not added elements should return False ...
+>>> "The Goodfather" in b
+False
+>>> b.format_hash("The Goodfather")
+'00011000'
+>>> "Interstellar" in b
+False
+>>> "Parasite" in b
+False
+>>> "Pulp Fiction" in b
+False
+
+but sometimes there are false positives:
+>>> "Ratatouille" in b
 True
->>> b.exists("Avatar")
-True
->>> b.exists("The Goodfather")
-False
->>> b.exists("Interstellar")
-False
->>> b.exists("Parasite")
-False
->>> b.exists("Pulp Fiction")
-False
+>>> b.format_hash("Ratatouille")
+'01100000'
+
+>>> b.estimated_error_rate()
+0.140625
 """
 from hashlib import md5, sha256
 from random import choices
 from string import ascii_lowercase
 
+HASH_FUNCTIONS = (sha256, md5)
+
 
 class Bloom:
-    # number of hash functions is fixed
-    HASH_FUNCTIONS = (sha256, md5)
-
     def __init__(self, size: int = 8) -> None:
-        self.bitstring = 0b0
+        self.bitarray = 0b0
         self.size = size
 
     def add(self, value: str) -> None:
         h = self.hash_(value)
-        self.bitstring |= h
-
-    #        print(
-    #            f"""\
-    # [add] value =      {value}
-    #      hash =       {self.format_bin(h)}
-    #      filter =     {self.format_bin(self.bitstring)}
-    # """
-    #        )
+        self.bitarray |= h
 
     def exists(self, value: str) -> bool:
         h = self.hash_(value)
-        res = (h & self.bitstring) == h
+        return (h & self.bitarray) == h
 
-        #        print(
-        #            f"""\
-        # [exists] value =   {value}
-        #         hash =    {self.format_bin(h)}
-        #         filter =  {self.format_bin(self.bitstring)}
-        #         res =     {res}
-        # """
-        #        )
-        return res
+    def __contains__(self, other):
+        return self.exists(other)
 
-    def format_bin(self, value: int) -> str:
-        res = bin(value)[2:]
+    def format_bin(self, bitarray: int) -> str:
+        res = bin(bitarray)[2:]
         return res.zfill(self.size)
+
+    @property
+    def bitstring(self):
+        return self.format_bin(self.bitarray)
 
     def hash_(self, value: str) -> int:
         res = 0b0
-        for func in self.HASH_FUNCTIONS:
+        for func in HASH_FUNCTIONS:
             b = func(value.encode()).digest()
             position = int.from_bytes(b, "little") % self.size
             res |= 2**position
         return res
+
+    def format_hash(self, value: str) -> str:
+        return self.format_bin(self.hash_(value))
+
+    def estimated_error_rate(self):
+        n_ones = bin(self.bitarray).count("1")
+        k = len(HASH_FUNCTIONS)
+        return (n_ones / self.size) ** k
 
 
 def random_string(size: int) -> str:
@@ -76,7 +104,7 @@ def random_string(size: int) -> str:
 def test_probability(filter_bits: int = 64, added_elements: int = 20) -> None:
     b = Bloom(size=filter_bits)
 
-    k = len(b.HASH_FUNCTIONS)
+    k = len(HASH_FUNCTIONS)
     estimated_error_rate_beforehand = (
         1 - (1 - 1 / filter_bits) ** (k * added_elements)
     ) ** k
@@ -85,7 +113,7 @@ def test_probability(filter_bits: int = 64, added_elements: int = 20) -> None:
     for _ in range(added_elements):
         b.add(not_added.pop())
 
-    n_ones = bin(b.bitstring).count("1")
+    n_ones = bin(b.bitarray).count("1")
     estimated_error_rate = (n_ones / filter_bits) ** k
 
     errors = 0
