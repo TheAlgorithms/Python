@@ -72,11 +72,11 @@ class Bloom:
         self.size = size
 
     def add(self, value: str) -> None:
-        h = self.hash(value)
+        h = self.hash_(value)
         self.bitarray |= h
 
     def exists(self, value: str) -> bool:
-        h = self.hash(value)
+        h = self.hash_(value)
         return (h & self.bitarray) == h
 
     def __contains__(self, other: str) -> bool:
@@ -87,10 +87,10 @@ class Bloom:
         return res.zfill(self.size)
 
     @property
-    def bitstring(self) -> None:
+    def bitstring(self) -> str:
         return self.format_bin(self.bitarray)
 
-    def hash(self, value: str) -> int:
+    def hash_(self, value: str) -> int:
         res = 0b0
         for func in HASH_FUNCTIONS:
             b = func(value.encode()).digest()
@@ -99,7 +99,7 @@ class Bloom:
         return res
 
     def format_hash(self, value: str) -> str:
-        return self.format_bin(self.hash(value))
+        return self.format_bin(self.hash_(value))
 
     def estimated_error_rate(self) -> float:
         n_ones = bin(self.bitarray).count("1")
