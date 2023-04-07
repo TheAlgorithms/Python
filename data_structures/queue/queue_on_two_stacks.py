@@ -46,7 +46,7 @@ class Queue:
         IndexError: Queue is empty
         """
 
-        # To reduce number of attribtue look-ups in `while` loop.
+        # To reduce number of attribute look-ups in `while` loop.
         stack1_pop = self._stack1.pop
         stack2_append = self._stack2.append
 
