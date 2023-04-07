@@ -8,7 +8,6 @@ BASE_URL = "https://ww1.gogoanime2.org"
 
 
 def search_scraper(anime_name: str) -> list:
-
     """[summary]
 
     Take an url and
@@ -66,7 +65,6 @@ def search_scraper(anime_name: str) -> list:
 
 
 def search_anime_episode_list(episode_endpoint: str) -> list:
-
     """[summary]
 
     Take an url and
@@ -116,7 +114,6 @@ def search_anime_episode_list(episode_endpoint: str) -> list:
 
 
 def get_anime_episode(episode_endpoint: str) -> list:
-
     """[summary]
 
     Get click url and download url from episode url
@@ -153,7 +150,6 @@ def get_anime_episode(episode_endpoint: str) -> list:
 
 
 if __name__ == "__main__":
-
     anime_name = input("Enter anime name: ").strip()
     anime_list = search_scraper(anime_name)
     print("\n")
@@ -161,9 +157,8 @@ if __name__ == "__main__":
     if len(anime_list) == 0:
         print("No anime found with this name")
     else:
-
         print(f"Found {len(anime_list)} results: ")
-        for (i, anime) in enumerate(anime_list):
+        for i, anime in enumerate(anime_list):
             anime_title = anime["title"]
             print(f"{i+1}. {anime_title}")
 
@@ -176,7 +171,7 @@ if __name__ == "__main__":
             print("No episode found for this anime")
         else:
             print(f"Found {len(episode_list)} results: ")
-            for (i, episode) in enumerate(episode_list):
+            for i, episode in enumerate(episode_list):
                 print(f"{i+1}. {episode['title']}")
 
             episode_choice = int(input("\nChoose an episode by serial no: ").strip())

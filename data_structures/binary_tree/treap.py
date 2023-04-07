@@ -121,28 +121,28 @@ def inorder(root: Node | None) -> None:
         inorder(root.right)
 
 
-def interactTreap(root: Node | None, args: str) -> Node | None:
+def interact_treap(root: Node | None, args: str) -> Node | None:
     """
     Commands:
     + value to add value into treap
     - value to erase all nodes with value
 
-        >>> root = interactTreap(None, "+1")
+        >>> root = interact_treap(None, "+1")
         >>> inorder(root)
         1,
-        >>> root = interactTreap(root, "+3 +5 +17 +19 +2 +16 +4 +0")
+        >>> root = interact_treap(root, "+3 +5 +17 +19 +2 +16 +4 +0")
         >>> inorder(root)
         0,1,2,3,4,5,16,17,19,
-        >>> root = interactTreap(root, "+4 +4 +4")
+        >>> root = interact_treap(root, "+4 +4 +4")
         >>> inorder(root)
         0,1,2,3,4,4,4,4,5,16,17,19,
-        >>> root = interactTreap(root, "-0")
+        >>> root = interact_treap(root, "-0")
         >>> inorder(root)
         1,2,3,4,4,4,4,5,16,17,19,
-        >>> root = interactTreap(root, "-4")
+        >>> root = interact_treap(root, "-4")
         >>> inorder(root)
         1,2,3,5,16,17,19,
-        >>> root = interactTreap(root, "=0")
+        >>> root = interact_treap(root, "=0")
         Unknown command
     """
     for arg in args.split():
@@ -168,7 +168,7 @@ def main() -> None:
 
     args = input()
     while args != "q":
-        root = interactTreap(root, args)
+        root = interact_treap(root, args)
         print(root)
         args = input()
 

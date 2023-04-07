@@ -16,6 +16,7 @@ fib_memoization runtime: 0.0107 ms
 fib_binet runtime: 0.0174 ms
 """
 
+import functools
 from math import sqrt
 from time import time
 
@@ -47,7 +48,7 @@ def fib_iterative(n: int) -> list[int]:
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
     >>> fib_iterative(-1)
     Traceback (most recent call last):
-    ...
+        ...
     Exception: n is negative
     """
     if n < 0:
@@ -73,10 +74,43 @@ def fib_recursive(n: int) -> list[int]:
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
     >>> fib_iterative(-1)
     Traceback (most recent call last):
-    ...
+        ...
     Exception: n is negative
     """
 
+    def fib_recursive_term(i: int) -> int:
+        """
+        Calculates the i-th (0-indexed) Fibonacci number using recursion
+        """
+        if i < 0:
+            raise Exception("n is negative")
+        if i < 2:
+            return i
+        return fib_recursive_term(i - 1) + fib_recursive_term(i - 2)
+
+    if n < 0:
+        raise Exception("n is negative")
+    return [fib_recursive_term(i) for i in range(n + 1)]
+
+
+def fib_recursive_cached(n: int) -> list[int]:
+    """
+    Calculates the first n (0-indexed) Fibonacci numbers using recursion
+    >>> fib_iterative(0)
+    [0]
+    >>> fib_iterative(1)
+    [0, 1]
+    >>> fib_iterative(5)
+    [0, 1, 1, 2, 3, 5]
+    >>> fib_iterative(10)
+    [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+    >>> fib_iterative(-1)
+    Traceback (most recent call last):
+        ...
+    Exception: n is negative
+    """
+
+    @functools.cache
     def fib_recursive_term(i: int) -> int:
         """
         Calculates the i-th (0-indexed) Fibonacci number using recursion
@@ -105,7 +139,7 @@ def fib_memoization(n: int) -> list[int]:
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
     >>> fib_iterative(-1)
     Traceback (most recent call last):
-    ...
+        ...
     Exception: n is negative
     """
     if n < 0:
@@ -146,11 +180,11 @@ def fib_binet(n: int) -> list[int]:
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
     >>> fib_binet(-1)
     Traceback (most recent call last):
-    ...
+        ...
     Exception: n is negative
     >>> fib_binet(1475)
     Traceback (most recent call last):
-    ...
+        ...
     Exception: n is too large
     """
     if n < 0:
@@ -163,8 +197,9 @@ def fib_binet(n: int) -> list[int]:
 
 
 if __name__ == "__main__":
-    num = 20
+    num = 30
     time_func(fib_iterative, num)
-    time_func(fib_recursive, num)
+    time_func(fib_recursive, num)  # Around 3s runtime
+    time_func(fib_recursive_cached, num)  # Around 0ms runtime
     time_func(fib_memoization, num)
     time_func(fib_binet, num)

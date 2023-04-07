@@ -4,7 +4,6 @@ class Graph:
     """
 
     def __init__(self):
-
         self.num_vertices = 0
         self.num_edges = 0
         self.adjacency = {}
@@ -63,7 +62,7 @@ class Graph:
         for tail in self.adjacency:
             for head in self.adjacency[tail]:
                 weight = self.adjacency[head][tail]
-                string += "%d -> %d == %d\n" % (head, tail, weight)
+                string += f"{head} -> {tail} == {weight}\n"
         return string.rstrip("\n")
 
     def get_edges(self):
@@ -145,6 +144,7 @@ class Graph:
                 self.rank[root1] += 1
                 self.parent[root2] = root1
                 return root1
+            return None
 
     @staticmethod
     def boruvka_mst(graph):

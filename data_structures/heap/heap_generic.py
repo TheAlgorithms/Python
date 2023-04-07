@@ -9,7 +9,7 @@ class Heap:
 
     def __init__(self, key: Callable | None = None) -> None:
         # Stores actual heap items.
-        self.arr: list = list()
+        self.arr: list = []
         # Stores indexes of each item for supporting updates and deletion.
         self.pos_map: dict = {}
         # Stores current size of heap.
@@ -166,7 +166,6 @@ def test_heap() -> None:
     >>> h.get_top()
     [9, -40]
     """
-    pass
 
 
 if __name__ == "__main__":

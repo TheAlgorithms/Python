@@ -16,15 +16,15 @@ def proth(number: int) -> int:
     25
     >>> proth(0)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Input value of [number=0] must be > 0
     >>> proth(-1)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Input value of [number=-1] must be > 0
     >>> proth(6.0)
     Traceback (most recent call last):
-    ...
+        ...
     TypeError: Input value of [number=6.0] must be an integer
     """
 
@@ -49,7 +49,7 @@ def proth(number: int) -> int:
         proth_index = 2
         increment = 3
         for block in range(1, block_index):
-            for move in range(increment):
+            for _ in range(increment):
                 proth_list.append(2 ** (block + 1) + proth_list[proth_index - 1])
                 proth_index += 1
             increment *= 2

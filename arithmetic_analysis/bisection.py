@@ -8,7 +8,7 @@ def bisection(function: Callable[[float], float], a: float, b: float) -> float:
     1.0000000149011612
     >>> bisection(lambda x: x ** 3 - 1, 2, 1000)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: could not find root in given interval.
     >>> bisection(lambda x: x ** 2 - 4 * x + 3, 0, 2)
     1.0
@@ -16,7 +16,7 @@ def bisection(function: Callable[[float], float], a: float, b: float) -> float:
     3.0
     >>> bisection(lambda x: x ** 2 - 4 * x + 3, 4, 1000)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: could not find root in given interval.
     """
     start: float = a

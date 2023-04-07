@@ -9,20 +9,20 @@ class Heap:
     >>> unsorted = [103, 9, 1, 7, 11, 15, 25, 201, 209, 107, 5]
     >>> h = Heap()
     >>> h.build_max_heap(unsorted)
-    >>> print(h)
+    >>> h
     [209, 201, 25, 103, 107, 15, 1, 9, 7, 11, 5]
     >>>
     >>> h.extract_max()
     209
-    >>> print(h)
+    >>> h
     [201, 107, 25, 103, 11, 15, 1, 9, 7, 5]
     >>>
     >>> h.insert(100)
-    >>> print(h)
+    >>> h
     [201, 107, 25, 103, 100, 15, 1, 9, 7, 5, 11]
     >>>
     >>> h.heap_sort()
-    >>> print(h)
+    >>> h
     [1, 5, 7, 9, 11, 15, 25, 100, 103, 107, 201]
     """
 
@@ -87,13 +87,6 @@ class Heap:
             # max_heapify from right to left but exclude leaves (last level)
             for i in range(self.heap_size // 2 - 1, -1, -1):
                 self.max_heapify(i)
-
-    def max(self) -> float:
-        """return the max in the heap"""
-        if self.heap_size >= 1:
-            return self.h[0]
-        else:
-            raise Exception("Empty heap")
 
     def extract_max(self) -> float:
         """get and remove max from heap"""

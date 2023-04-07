@@ -1,9 +1,8 @@
 def is_palindrome(s: str) -> bool:
     """
-    Determine whether the string is palindrome
-    :param s:
-    :return: Boolean
-    >>> is_palindrome("a man a plan a canal panama".replace(" ", ""))
+    Determine if the string s is a palindrome.
+
+    >>> is_palindrome("A man, A plan, A canal -- Panama!")
     True
     >>> is_palindrome("Hello")
     False
@@ -14,15 +13,29 @@ def is_palindrome(s: str) -> bool:
     >>> is_palindrome("Mr. Owl ate my metal worm?")
     True
     """
-    # Since Punctuation, capitalization, and spaces are usually ignored while checking
-    # Palindrome,  we first remove them from our string.
-    s = "".join([character for character in s.lower() if character.isalnum()])
-    return s == s[::-1]
+    # Since punctuation, capitalization, and spaces are often ignored while checking
+    # palindromes, we first remove them from our string.
+    s = "".join(character for character in s.lower() if character.isalnum())
+    # return s == s[::-1] the slicing method
+    # uses extra spaces we can
+    # better with iteration method.
+
+    end = len(s) // 2
+    n = len(s)
+
+    # We need to traverse till half of the length of string
+    # as we can get access of the i'th last element from
+    # i'th index.
+    # eg: [0,1,2,3,4,5] => 4th index can be accessed
+    # with the help of 1st index (i==n-i-1)
+    # where n is length of string
+
+    return all(s[i] == s[n - i - 1] for i in range(end))
 
 
 if __name__ == "__main__":
-    s = input("Enter string to determine whether its palindrome or not: ").strip()
+    s = input("Please enter a string to see if it is a palindrome: ")
     if is_palindrome(s):
-        print("Given string is palindrome")
+        print(f"'{s}' is a palindrome.")
     else:
-        print("Given string is not palindrome")
+        print(f"'{s}' is not a palindrome.")

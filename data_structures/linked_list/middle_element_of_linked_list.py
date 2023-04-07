@@ -62,7 +62,7 @@ class LinkedList:
 
 if __name__ == "__main__":
     link = LinkedList()
-    for i in range(int(input().strip())):
+    for _ in range(int(input().strip())):
         data = int(input().strip())
         link.push(data)
     print(link.middle_element())

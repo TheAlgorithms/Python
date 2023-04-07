@@ -42,7 +42,7 @@ def jacobi_iteration_method(
     >>> iterations = 3
     >>> jacobi_iteration_method(coefficient, constant, init_val, iterations)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Coefficient matrix dimensions must be nxn but received 2x3
 
     >>> coefficient = np.array([[4, 1, 1], [1, 5, 2], [1, 2, 4]])
@@ -51,7 +51,7 @@ def jacobi_iteration_method(
     >>> iterations = 3
     >>> jacobi_iteration_method(coefficient, constant, init_val, iterations)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Coefficient and constant matrices dimensions must be nxn and nx1 but
                 received 3x3 and 2x1
 
@@ -61,7 +61,7 @@ def jacobi_iteration_method(
     >>> iterations = 3
     >>> jacobi_iteration_method(coefficient, constant, init_val, iterations)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Number of initial values must be equal to number of rows in coefficient
                 matrix but received 2 and 3
 
@@ -71,7 +71,7 @@ def jacobi_iteration_method(
     >>> iterations = 0
     >>> jacobi_iteration_method(coefficient, constant, init_val, iterations)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Iterations must be at least 1
     """
 
@@ -110,7 +110,7 @@ def jacobi_iteration_method(
     strictly_diagonally_dominant(table)
 
     # Iterates the whole matrix for given number of times
-    for i in range(iterations):
+    for _ in range(iterations):
         new_val = []
         for row in range(rows):
             temp = 0
@@ -138,7 +138,7 @@ def strictly_diagonally_dominant(table: NDArray[float64]) -> bool:
     >>> table = np.array([[4, 1, 1, 2], [1, 5, 2, -6], [1, 2, 3, -4]])
     >>> strictly_diagonally_dominant(table)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Coefficient matrix is not strictly diagonally dominant
     """
 
@@ -147,14 +147,14 @@ def strictly_diagonally_dominant(table: NDArray[float64]) -> bool:
     is_diagonally_dominant = True
 
     for i in range(0, rows):
-        sum = 0
+        total = 0
         for j in range(0, cols - 1):
             if i == j:
                 continue
             else:
-                sum += table[i][j]
+                total += table[i][j]
 
-        if table[i][i] <= sum:
+        if table[i][i] <= total:
             raise ValueError("Coefficient matrix is not strictly diagonally dominant")
 
     return is_diagonally_dominant

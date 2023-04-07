@@ -37,7 +37,7 @@ class Queue:
         number of times to rotate queue"""
 
     def rotate(self, rotation: int) -> None:
-        for i in range(rotation):
+        for _ in range(rotation):
             temp = self.stack[0]
             self.stack = self.stack[1:]
             self.put(temp)

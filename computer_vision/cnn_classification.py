@@ -28,11 +28,13 @@ import tensorflow as tf
 from tensorflow.keras import layers, models
 
 if __name__ == "__main__":
-
     # Initialising the CNN
+    # (Sequential- Building the model layer by layer)
     classifier = models.Sequential()
 
     # Step 1 - Convolution
+    # Here 64,64 is the length & breadth of dataset images and 3 is for the RGB channel
+    # (3,3) is the kernel size (filter matrix)
     classifier.add(
         layers.Conv2D(32, (3, 3), input_shape=(64, 64, 3), activation="relu")
     )
@@ -91,7 +93,7 @@ if __name__ == "__main__":
     test_image = tf.keras.preprocessing.image.img_to_array(test_image)
     test_image = np.expand_dims(test_image, axis=0)
     result = classifier.predict(test_image)
-    training_set.class_indices
+    # training_set.class_indices
     if result[0][0] == 0:
         prediction = "Normal"
     if result[0][0] == 1:

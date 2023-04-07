@@ -67,7 +67,7 @@ def factorial(n: int) -> int:
     True
     >>> factorial(-5)  # doctest: +ELLIPSIS
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: factorial() not defined for negative values
     """
     if n < 0:

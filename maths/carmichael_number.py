@@ -30,7 +30,7 @@ def power(x: int, y: int, mod: int) -> int:
     return temp
 
 
-def isCarmichaelNumber(n: int) -> bool:
+def is_carmichael_number(n: int) -> bool:
     b = 2
     while b < n:
         if gcd(b, n) == 1 and power(b, n - 1, n) != 1:
@@ -41,7 +41,7 @@ def isCarmichaelNumber(n: int) -> bool:
 
 if __name__ == "__main__":
     number = int(input("Enter number: ").strip())
-    if isCarmichaelNumber(number):
+    if is_carmichael_number(number):
         print(f"{number} is a Carmichael Number.")
     else:
         print(f"{number} is not a Carmichael Number.")

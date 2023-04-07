@@ -109,7 +109,7 @@ class LinkedStack(Generic[T]):
         >>> stack = LinkedStack()
         >>> stack.pop()
         Traceback (most recent call last):
-        ...
+            ...
         IndexError: pop from empty stack
         >>> stack.push("c")
         >>> stack.push("b")
