@@ -13,7 +13,7 @@ Initially the filter contains all zeros:
 '00000000'
 
 When an element is added, two bits are set to 1
-since there are 2 hash functions:
+since there are 2 hash functions in this implementation:
 >>> b.add("Titanic")
 >>> b.bitstring
 '01100000'
@@ -35,10 +35,16 @@ False
 '00011000'
 >>> "Interstellar" in b
 False
+>>> b.format_hash("Interstellar")
+'00000011'
 >>> "Parasite" in b
 False
+>>> b.format_hash("Parasite")
+'00010010'
 >>> "Pulp Fiction" in b
 False
+>>> b.format_hash("Pulp Fiction")
+'10000100'
 
 but sometimes there are false positives:
 >>> "Ratatouille" in b
@@ -46,8 +52,14 @@ True
 >>> b.format_hash("Ratatouille")
 '01100000'
 
+The probability increases with the number of added elements
 >>> b.estimated_error_rate()
 0.140625
+>>> b.add("The Goodfather")
+>>> b.estimated_error_rate()
+0.390625
+>>> b.bitstring
+'01111100'
 """
 from hashlib import md5, sha256
 
