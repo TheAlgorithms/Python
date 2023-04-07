@@ -79,6 +79,7 @@ if __name__ == "__main__":
     )
     # method 2
 
+
 def find_max_sub_array(a, low, high):
     if low == high:
         return low, high, a[low]
@@ -165,9 +166,10 @@ if __name__ == "__main__":
     plt.plot(inputs, tim)
     plt.xlabel("Number of Inputs")
     plt.ylabel("Time taken in seconds ")
-    plt.show() 
+    plt.show()
 
-    #3 method
+    # 3 method
+
 
 def max_sub_array_sum(a: list, size: int = 0):
     """
