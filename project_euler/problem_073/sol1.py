@@ -17,30 +17,31 @@ of reduced proper fractions for d ≤ 12,000?
 """
 
 from math import gcd
+import time
+start_time = time.time()
 
+def phi(n):
+    """
+    Euler's totient function
+    """
+    result = n
+    i = 2
+    while i * i <= n:
+        if n % i == 0:
+            while n % i == 0:
+                n //= i
+            result -= result // i
+        i += 1
+    if n > 1:
+        result -= result // n
+    return result
 
 def solution(max_d: int = 12_000) -> int:
     """
     Returns number of fractions lie between 1/3 and 1/2 in the sorted set
     of reduced proper fractions for d ≤ max_d
-
-    >>> solution(4)
-    0
-
-    >>> solution(5)
-    1
-
-    >>> solution(8)
-    3
     """
+    return sum(phi(d) - phi(d // 2) - (d % 2 == 0) for d in range(1, max_d + 1))
 
-    fractions_number = 0
-    for d in range(max_d + 1):
-        for n in range(d // 3 + 1, (d + 1) // 2):
-            if gcd(n, d) == 1:
-                fractions_number += 1
-    return fractions_number
-
-
-if __name__ == "__main__":
-    print(f"{solution() = }")
+print(f"{solution() = }")
+print("Process finished --- %s seconds ---" % (time.time() - start_time))

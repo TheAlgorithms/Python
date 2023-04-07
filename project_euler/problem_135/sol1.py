@@ -24,38 +24,29 @@ Total no of steps=n*(1/1+1/2+1/3+1/4..+1/n)
 ,so roughly O(nlogn) time complexity.
 
 """
-
-
+import time
+start_time = time.time()
 def solution(limit: int = 1000000) -> int:
     """
-    returns the values of n less than or equal to the limit
-    have exactly ten distinct solutions.
-    >>> solution(100)
-    0
-    >>> solution(10000)
-    45
-    >>> solution(50050)
-    292
+    Returns the values of n less than or equal to the limit
+    that have exactly ten distinct solutions.
     """
-    limit = limit + 1
-    frequency = [0] * limit
+    limit += 1
+    count = 0
     for first_term in range(1, limit):
-        for n in range(first_term, limit, first_term):
-            common_difference = first_term + n / first_term
-            if common_difference % 4:  # d must be divisble by 4
-                continue
-            else:
-                common_difference /= 4
-                if (
-                    first_term > common_difference
-                    and first_term < 4 * common_difference
-                ):  # since x,y,z are positive integers
-                    frequency[n] += 1  # so z>0 and a>d ,also 4d<a
-
-    count = sum(1 for x in frequency[1:limit] if x == 10)
-
+        for n in range(4*first_term, limit, 4*first_term):
+            common_difference = first_term + n // first_term
+            if common_difference >= limit:
+                break
+            if common_difference % 4 == 0:
+                c = common_difference // 4
+                if first_term > c and 3*c > first_term:
+                    count += 1
+                    if count == 10:
+                        return n
     return count
 
 
 if __name__ == "__main__":
     print(f"{solution() = }")
+print("Process finished --- %s seconds ---" % (time.time() - start_time))

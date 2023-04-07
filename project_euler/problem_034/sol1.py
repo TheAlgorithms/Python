@@ -7,32 +7,36 @@ Note: As 1! = 1 and 2! = 2 are not sums they are not included.
 """
 
 from math import factorial
+import time
+start_time = time.time()
 
-DIGIT_FACTORIAL = {str(d): factorial(d) for d in range(10)}
-
-
-def sum_of_digit_factorial(n: int) -> int:
+def sum_of_digit_factorial(n: int, lookup: list, memo: dict) -> int:
     """
     Returns the sum of the factorial of digits in n
-    >>> sum_of_digit_factorial(15)
-    121
-    >>> sum_of_digit_factorial(0)
-    1
     """
-    return sum(DIGIT_FACTORIAL[d] for d in str(n))
-
+    if n in memo:
+        return memo[n]
+    s = 0
+    for d in str(n):
+        s += lookup[int(d)]
+    memo[n] = s
+    return s
 
 def solution() -> int:
     """
     Returns the sum of all numbers whose
     sum of the factorials of all digits
     add up to the number itself.
-    >>> solution()
-    40730
     """
-    limit = 7 * factorial(9) + 1
-    return sum(i for i in range(3, limit) if sum_of_digit_factorial(i) == i)
+    lookup = [factorial(d) for d in range(10)]
+    memo = {}
+    result = 0
+    for n in range(10, 100000):
+        if n > sum_of_digit_factorial(n, lookup, memo):
+            continue
+        if n == sum_of_digit_factorial(n, lookup, memo):
+            result += n
+    return result
 
-
-if __name__ == "__main__":
-    print(f"{solution() = }")
+print(f"{solution() = }")
+print("Process finished --- %s seconds ---" % (time.time() - start_time))

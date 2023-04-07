@@ -12,41 +12,8 @@ References:
 """
 
 import math
-
-
-def is_prime(number: int) -> bool:
-    """Checks to see if a number is a prime in O(sqrt(n)).
-    A number is prime if it has exactly two factors: 1 and itself.
-    Returns boolean representing primality of given number num (i.e., if the
-    result is true, then the number is indeed prime else it is not).
-
-    >>> is_prime(2)
-    True
-    >>> is_prime(3)
-    True
-    >>> is_prime(27)
-    False
-    >>> is_prime(2999)
-    True
-    >>> is_prime(0)
-    False
-    >>> is_prime(1)
-    False
-    """
-
-    if 1 < number < 4:
-        # 2 and 3 are primes
-        return True
-    elif number < 2 or number % 2 == 0 or number % 3 == 0:
-        # Negatives, 0, 1, all even numbers, all multiples of 3 are not primes
-        return False
-
-    # All primes number are in format of 6k +/- 1
-    for i in range(5, int(math.sqrt(number) + 1), 6):
-        if number % i == 0 or number % (i + 2) == 0:
-            return False
-    return True
-
+import time
+start_time = time.time()
 
 def solution(n: int = 2000000) -> int:
     """
@@ -62,8 +29,21 @@ def solution(n: int = 2000000) -> int:
     10
     """
 
-    return sum(num for num in range(3, n, 2) if is_prime(num)) + 2 if n > 2 else 0
+    if n < 2:
+        return 0
+
+    primes = [True] * n
+    primes[0] = primes[1] = False
+
+    for i in range(2, int(n ** 0.5) + 1):
+        if primes[i]:
+            for j in range(i * i, n, i):
+                primes[j] = False
+
+    return sum(i for i in range(2, n) if primes[i])
+
 
 
 if __name__ == "__main__":
     print(f"{solution() = }")
+print("Process finished --- %s seconds ---" % (time.time() - start_time))
