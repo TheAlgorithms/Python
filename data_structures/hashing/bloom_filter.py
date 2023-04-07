@@ -1,5 +1,21 @@
 """
 See https://en.wikipedia.org/wiki/Bloom_filter
+
+>>> b = Bloom()
+>>> b.add("Titanic")
+>>> b.add("Avatar")
+>>> b.exists("Titanic")
+True
+>>> b.exists("Avatar")
+True
+>>> b.exists("The Goodfather")
+False
+>>> b.exists("Interstellar")
+False
+>>> b.exists("Parasite")
+False
+>>> b.exists("Pulp Fiction")
+False
 """
 from hashlib import md5, sha256
 from random import choices
@@ -17,26 +33,27 @@ class Bloom:
     def add(self, value: str) -> None:
         h = self.hash_(value)
         self.bitstring |= h
-        print(
-            f"""\
-[add] value =      {value}
-      hash =       {self.format_bin(h)}
-      filter =     {self.format_bin(self.bitstring)}
-"""
-        )
+
+    #        print(
+    #            f"""\
+    # [add] value =      {value}
+    #      hash =       {self.format_bin(h)}
+    #      filter =     {self.format_bin(self.bitstring)}
+    # """
+    #        )
 
     def exists(self, value: str) -> bool:
         h = self.hash_(value)
         res = (h & self.bitstring) == h
 
-        print(
-            f"""\
-[exists] value =   {value}
-         hash =    {self.format_bin(h)}
-         filter =  {self.format_bin(self.bitstring)}
-         res =     {res}
-"""
-        )
+        #        print(
+        #            f"""\
+        # [exists] value =   {value}
+        #         hash =    {self.format_bin(h)}
+        #         filter =  {self.format_bin(self.bitstring)}
+        #         res =     {res}
+        # """
+        #        )
         return res
 
     def format_bin(self, value: int) -> str:
@@ -50,20 +67,6 @@ class Bloom:
             position = int.from_bytes(b, "little") % self.size
             res |= 2**position
         return res
-
-
-def test_movies() -> None:
-    b = Bloom()
-    b.add("Titanic")
-    b.add("Avatar")
-
-    assert b.exists("Titanic")
-    assert b.exists("Avatar")
-
-    assert b.exists("The Goodfather") in (True, False)
-    assert b.exists("Interstellar") in (True, False)
-    assert b.exists("Parasite") in (True, False)
-    assert b.exists("Pulp Fiction") in (True, False)
 
 
 def random_string(size: int) -> str:
@@ -101,5 +104,4 @@ def test_probability(filter_bits: int = 64, added_elements: int = 20) -> None:
 
 
 if __name__ == "__main__":
-    test_movies()
     test_probability()
