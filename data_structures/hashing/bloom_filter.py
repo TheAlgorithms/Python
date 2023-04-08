@@ -5,15 +5,15 @@ The use of this data structure is to test membership in a set.
 Compared to Python's built-in set() it is more space-efficient.
 In the following example, only 8 bits of memory will be used:
 >>> bloom = Bloom(size=8)
->>> "Titanic" in bloom
-False
 
-Initially the filter contains all zeros:
+Initially, the filter contains all zeros:
 >>> bloom.bitstring
 '00000000'
 
 When an element is added, two bits are set to 1
 since there are 2 hash functions in this implementation:
+>>> "Titanic" in bloom
+False
 >>> bloom.add("Titanic")
 >>> bloom.bitstring
 '01100000'
