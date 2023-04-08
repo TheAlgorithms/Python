@@ -1,7 +1,9 @@
-def mixed_keyword(key: str = "college", pt: str = "UNIVERSITY") -> str:
-    """
+from string import ascii_uppercase
 
-    For key:hello
+
+def mixed_keyword(keyword: str = "college", plaintext: str = "UNIVERSITY") -> str:
+    """
+    For keyword: hello
 
     H E L O
     A B C D
@@ -19,50 +21,49 @@ def mixed_keyword(key: str = "college", pt: str = "UNIVERSITY") -> str:
      'Y': 'T', 'Z': 'Y'}
     'XKJGUFMJST'
     """
-    key = key.upper()
-    pt = pt.upper()
-    temp = []
-    for i in key:
-        if i not in temp:
-            temp.append(i)
-    len_temp = len(temp)
-    # print(temp)
-    alpha = []
-    modalpha = []
-    for j in range(65, 91):
-        t = chr(j)
-        alpha.append(t)
-        if t not in temp:
-            temp.append(t)
-    # print(temp)
-    r = int(26 / 4)
-    # print(r)
+    keyword = keyword.upper()
+    plaintext = plaintext.upper()
+
+    unique_chars = []
+    for char in keyword:
+        if char not in unique_chars:
+            unique_chars.append(char)
+
+    num_unique_chars_in_keyword = len(unique_chars)
+
+    alphabet = list(ascii_uppercase)
+    # add the rest of the alphabet to the unique_chars list
+    for char in alphabet:
+        if char not in unique_chars:
+            unique_chars.append(char)
+
+    rows = int(26 / 4)
+    # k is an index variable
     k = 0
-    for _ in range(r):
-        s = []
-        for _ in range(len_temp):
-            s.append(temp[k])
+    modified_alphabet = []
+    for _ in range(rows):
+        row = []
+        for _ in range(num_unique_chars_in_keyword):
+            row.append(unique_chars[k])
             if k >= 25:
                 break
             k += 1
-        modalpha.append(s)
-    # print(modalpha)
-    d = {}
-    j = 0
+        modified_alphabet.append(row)
+
+    mapping = {}
     k = 0
-    for j in range(len_temp):
-        for m in modalpha:
-            if not len(m) - 1 >= j:
+    for j in range(num_unique_chars_in_keyword):
+        for row in modified_alphabet:
+            if not len(row) - 1 >= j:
                 break
-            d[alpha[k]] = m[j]
+            mapping[alphabet[k]] = row[j]
             if not k < 25:
                 break
             k += 1
-    print(d)
-    cypher = ""
-    for i in pt:
-        cypher += d[i]
-    return cypher
+
+    # create the encrypted text by mapping the plaintext to the modified alphabet
+    return "".join(mapping[char] for char in plaintext)
 
 
-print(mixed_keyword("college", "UNIVERSITY"))
+if __name__ == "__main__":
+    print(mixed_keyword("college", "UNIVERSITY"))
