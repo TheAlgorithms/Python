@@ -1,14 +1,29 @@
 """Queue implementation using two stacks"""
 
-from typing import Any
+from collections.abc import Iterable
+from typing import Generic, Optional, TypeVar
+
+_T = TypeVar("_T")
 
 
-class Queue:
-    def __init__(self, iterable=None) -> None:
-        self._stack1: list[Any] = [] if iterable is None else list(iterable)
-        self._stack2: list[Any] = []
+class Queue(Generic[_T]):
+    def __init__(self, iterable: Optional[Iterable[_T]] = None) -> None:
+        """
+        >>> queue1 = Queue()
+        >>> str(queue1)
+        '<[]>'
+        >>> queue2 = Queue([10, 20, 30])
+        >>> str(queue2)
+        '<[10, 20, 30]>'
+        >>> queue3 = Queue((i**2 for i in range(1, 4)))
+        >>> str(queue3)
+        '<[1, 4, 9]>'
+        """
 
-    def put(self, item: Any) -> None:
+        self._stack1: list[_T] = [] if iterable is None else list(iterable)
+        self._stack2: list[_T] = []
+
+    def put(self, item: _T) -> None:
         """
         Put `item` into the Queue
 
@@ -23,7 +38,7 @@ class Queue:
 
         self._stack1.append(item)
 
-    def get(self) -> Any:
+    def get(self) -> _T:
         """
         Get `item` from the Queue
 
