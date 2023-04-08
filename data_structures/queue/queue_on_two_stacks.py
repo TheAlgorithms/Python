@@ -4,8 +4,8 @@ from typing import Any
 
 
 class Queue:
-    def __init__(self) -> None:
-        self._stack1: list[Any] = []
+    def __init__(self, iterable=None) -> None:
+        self._stack1: list[Any] = [] if iterable is None else list(iterable)
         self._stack2: list[Any] = []
 
     def put(self, item: Any) -> None:
