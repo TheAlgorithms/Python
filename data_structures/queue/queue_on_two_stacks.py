@@ -6,34 +6,71 @@ from typing import Generic, TypeVar
 _T = TypeVar("_T")
 
 
-class Queue(Generic[_T]):
+class QueueByTwoStacks(Generic[_T]):
     def __init__(self, iterable: Iterable[_T] | None = None) -> None:
         """
-        >>> queue1 = Queue()
+        >>> queue1 = QueueByTwoStacks()
         >>> str(queue1)
-        '<[]>'
-        >>> queue2 = Queue([10, 20, 30])
+        'Queue([])'
+        >>> queue2 = QueueByTwoStacks([10, 20, 30])
         >>> str(queue2)
-        '<[10, 20, 30]>'
-        >>> queue3 = Queue((i**2 for i in range(1, 4)))
+        'Queue([10, 20, 30])'
+        >>> queue3 = QueueByTwoStacks((i**2 for i in range(1, 4)))
         >>> str(queue3)
-        '<[1, 4, 9]>'
+        'Queue([1, 4, 9])'
         """
 
         self._stack1: list[_T] = [] if iterable is None else list(iterable)
         self._stack2: list[_T] = []
 
+    def __len__(self) -> int:
+        """
+        >>> queue = QueueByTwoStacks()
+        >>> for i in range(1, 11):
+        ...     queue.put(i)
+        ...
+        >>> len(queue) == 10
+        True
+        >>> for i in range(2):
+        ...   queue.get()
+        1
+        2
+        >>> len(queue) == 8
+        True
+        """
+
+        return len(self._stack1) + len(self._stack2)
+
+    def __repr__(self) -> str:
+        """
+        >>> queue = QueueByTwoStacks()
+        >>> queue
+        Queue([])
+        >>> str(queue)
+        'Queue([])'
+        >>> queue.put(10)
+        >>> queue
+        Queue([10])
+        >>> queue.put(20)
+        >>> queue.put(30)
+        >>> queue
+        Queue([10, 20, 30])
+        """
+
+        items = self._stack2[::-1] + self._stack1
+        return f"Queue({items})"
+
     def put(self, item: _T) -> None:
         """
         Put `item` into the Queue
 
-        >>> queue = Queue()
+        >>> queue = QueueByTwoStacks()
         >>> queue.put(10)
         >>> queue.put(20)
         >>> len(queue) == 2
         True
         >>> str(queue)
-        '<[10, 20]>'
+        'Queue([10, 20])'
         """
 
         self._stack1.append(item)
@@ -42,19 +79,20 @@ class Queue(Generic[_T]):
         """
         Get `item` from the Queue
 
-        >>> queue = Queue()
+        >>> queue = QueueByTwoStacks()
         >>> for i in (10, 20, 30):
         ...     queue.put(i)
-        >>> len(queue)
-        3
         >>> queue.get()
         10
+        >>> queue.put(40)
         >>> queue.get()
         20
+        >>> queue.get()
+        30
         >>> len(queue) == 1
         True
         >>> queue.get()
-        30
+        40
         >>> queue.get()
         Traceback (most recent call last):
             ...
@@ -77,7 +115,7 @@ class Queue(Generic[_T]):
         """
         Returns the length of the Queue
 
-        >>> queue = Queue()
+        >>> queue = QueueByTwoStacks()
         >>> queue.size()
         0
         >>> queue.put(10)
@@ -91,45 +129,6 @@ class Queue(Generic[_T]):
         """
 
         return len(self)
-
-    def __str__(self) -> str:
-        """
-        >>> queue = Queue()
-        >>> str(queue)
-        '<[]>'
-        >>> queue.put(10)
-        >>> str(queue)
-        '<[10]>'
-        >>> queue.put(20)
-        >>> str(queue)
-        '<[10, 20]>'
-        >>> queue.get()
-        10
-        >>> queue.put(30)
-        >>> str(queue) == '<[20, 30]>'
-        True
-        """
-
-        return f"<{self._stack2[::-1] + self._stack1}>"
-
-    def __len__(self) -> int:
-        """
-        >>> queue = Queue()
-        >>> for i in range(1, 11):
-        ...     queue.put(i)
-        ...
-        >>> len(queue) == 10
-        True
-        >>> for i in range(2):
-        ...   queue.get()
-        ...
-        1
-        2
-        >>> len(queue) == 8
-        True
-        """
-
-        return len(self._stack1) + len(self._stack2)
 
 
 if __name__ == "__main__":
