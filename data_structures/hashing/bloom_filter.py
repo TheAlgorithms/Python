@@ -44,11 +44,11 @@ True
 The probability increases with the number of added elements
 >>> bloom.estimated_error_rate()
 0.140625
->>> bloom.add("The Goodfather")
+>>> bloom.add("The Godfather")
 >>> bloom.estimated_error_rate()
-0.390625
+0.25
 >>> bloom.bitstring
-'01111100'
+'01100101'
 """
 from hashlib import md5, sha256
 
