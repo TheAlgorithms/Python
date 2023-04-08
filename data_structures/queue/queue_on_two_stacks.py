@@ -1,13 +1,13 @@
 """Queue implementation using two stacks"""
 
 from collections.abc import Iterable
-from typing import Generic, Optional, TypeVar
+from typing import Generic, TypeVar
 
 _T = TypeVar("_T")
 
 
 class Queue(Generic[_T]):
-    def __init__(self, iterable: Optional[Iterable[_T]] = None) -> None:
+    def __init__(self, iterable: Iterable[_T] | None = None) -> None:
         """
         >>> queue1 = Queue()
         >>> str(queue1)
