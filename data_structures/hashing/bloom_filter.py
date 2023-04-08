@@ -23,6 +23,8 @@ True
 However, sometimes only one bit is added
 because both hash functions return the same value
 >>> bloom.add("Avatar")
+>>> "Avatar" in bloom
+True
 >>> bloom.format_hash("Avatar")
 '00000100'
 >>> bloom.bitstring
@@ -31,13 +33,13 @@ because both hash functions return the same value
 Not added elements should return False ...
 >>> not_present_films = ("The Godfather", "Interstellar", "Parasite", "Pulp Fiction")
 >>> {
-...   film: bloom.format_hash(film)
-...   for film in not_present_films
+...   film: bloom.format_hash(film) for film in not_present_films
 ... } # doctest: +NORMALIZE_WHITESPACE
-{'The Godfather': '00000101',
- 'Interstellar': '00000011',
- 'Parasite': '00010010',
- 'Pulp Fiction': '10000100'}
+{
+    'The Godfather': '00000101',
+    'Interstellar': '00000011',
+    'Parasite': '00010010',
+    'Pulp Fiction': '10000100'}
 >>> any(film in bloom for film in not_present_films)
 False
 
@@ -47,11 +49,12 @@ True
 >>> bloom.format_hash("Ratatouille")
 '01100000'
 
-The probability increases with the number of added elements
->>> bloom.estimated_error_rate()
+The probability increases with the number of elements added.
+The probability decreases with the number of bits in the bitarray.
+>>> bloom.estimated_error_rate
 0.140625
 >>> bloom.add("The Godfather")
->>> bloom.estimated_error_rate()
+>>> bloom.estimated_error_rate
 0.25
 >>> bloom.bitstring
 '01100101'
@@ -88,15 +91,14 @@ class Bloom:
     def hash_(self, value: str) -> int:
         res = 0b0
         for func in HASH_FUNCTIONS:
-            b = func(value.encode()).digest()
-            position = int.from_bytes(b, "little") % self.size
+            position = int.from_bytes(func(value.encode()).digest(), "little") % self.size
             res |= 2**position
         return res
 
     def format_hash(self, value: str) -> str:
         return self.format_bin(self.hash_(value))
 
+    @property
     def estimated_error_rate(self) -> float:
         n_ones = bin(self.bitarray).count("1")
-        k = len(HASH_FUNCTIONS)
-        return (n_ones / self.size) ** k
+        return (n_ones / self.size) ** len(HASH_FUNCTIONS)
