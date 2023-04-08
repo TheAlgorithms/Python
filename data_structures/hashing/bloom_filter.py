@@ -35,11 +35,10 @@ Not added elements should return False ...
 >>> {
 ...   film: bloom.format_hash(film) for film in not_present_films
 ... } # doctest: +NORMALIZE_WHITESPACE
-{
-    'The Godfather': '00000101',
-    'Interstellar': '00000011',
-    'Parasite': '00010010',
-    'Pulp Fiction': '10000100'}
+{'The Godfather': '00000101',
+ 'Interstellar': '00000011',
+ 'Parasite': '00010010',
+ 'Pulp Fiction': '10000100'}
 >>> any(film in bloom for film in not_present_films)
 False
 
