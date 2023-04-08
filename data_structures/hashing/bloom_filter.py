@@ -2,7 +2,7 @@
 See https://en.wikipedia.org/wiki/Bloom_filter
 
 The use of this data structure is to test membership in a set.
-Compared to python built-in set() it is more space-efficent.
+Compared to Python's built-in set() it is more space-efficient.
 In the following example, only 8 bits of memory will be used:
 >>> b = Bloom(size=8)
 >>> "Titanic" in b
