@@ -29,22 +29,11 @@ because both hash functions return the same value
 '01100100'
 
 Not added elements should return False ...
->>> "The Goodfather" in bloom
+>>> not_present_films = ("The Goodfather", "Interstellar", "Parasite", "Pulp Fiction")
+>>> {film: bloom.format_hash(film) for film in not_present_films)} 
+{'The Goodfather': '00011000', 'Interstellar': '00000011', 'Parasite': '00010010': 'Pulp Fiction': '10000100'}
+>>> any(film in bloom for film in not_present_films)
 False
->>> bloom.format_hash("The Goodfather")
-'00011000'
->>> "Interstellar" in bloom
-False
->>> bloom.format_hash("Interstellar")
-'00000011'
->>> "Parasite" in bloom
-False
->>> bloom.format_hash("Parasite")
-'00010010'
->>> "Pulp Fiction" in bloom
-False
->>> bloom.format_hash("Pulp Fiction")
-'10000100'
 
 but sometimes there are false positives:
 >>> "Ratatouille" in bloom
