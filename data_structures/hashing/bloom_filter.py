@@ -91,7 +91,9 @@ class Bloom:
     def hash_(self, value: str) -> int:
         res = 0b0
         for func in HASH_FUNCTIONS:
-            position = int.from_bytes(func(value.encode()).digest(), "little") % self.size
+            position = (
+                int.from_bytes(func(value.encode()).digest(), "little") % self.size
+            )
             res |= 2**position
         return res
 
