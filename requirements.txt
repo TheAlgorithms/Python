@@ -17,7 +17,6 @@ statsmodels
 sympy
 tensorflow
 texttable
-torch
 tweepy
 xgboost
 yulewalker
