@@ -4,61 +4,61 @@ See https://en.wikipedia.org/wiki/Bloom_filter
 The use of this data structure is to test membership in a set.
 Compared to Python's built-in set() it is more space-efficient.
 In the following example, only 8 bits of memory will be used:
->>> b = Bloom(size=8)
->>> "Titanic" in b
+>>> bloom = Bloom(size=8)
+>>> "Titanic" in bloom
 False
 
 Initially the filter contains all zeros:
->>> b.bitstring
+>>> bloom.bitstring
 '00000000'
 
 When an element is added, two bits are set to 1
 since there are 2 hash functions in this implementation:
->>> b.add("Titanic")
->>> b.bitstring
+>>> bloom.add("Titanic")
+>>> bloom.bitstring
 '01100000'
->>> "Titanic" in b
+>>> "Titanic" in bloom
 True
 
 However, sometimes only one bit is added
 because both hash functions return the same value
->>> b.add("Avatar")
->>> b.format_hash("Avatar")
+>>> bloom.add("Avatar")
+>>> bloom.format_hash("Avatar")
 '00000100'
->>> b.bitstring
+>>> bloom.bitstring
 '01100100'
 
 Not added elements should return False ...
->>> "The Goodfather" in b
+>>> "The Goodfather" in bloom
 False
->>> b.format_hash("The Goodfather")
+>>> bloom.format_hash("The Goodfather")
 '00011000'
->>> "Interstellar" in b
+>>> "Interstellar" in bloom
 False
->>> b.format_hash("Interstellar")
+>>> bloom.format_hash("Interstellar")
 '00000011'
->>> "Parasite" in b
+>>> "Parasite" in bloom
 False
->>> b.format_hash("Parasite")
+>>> bloom.format_hash("Parasite")
 '00010010'
->>> "Pulp Fiction" in b
+>>> "Pulp Fiction" in bloom
 False
->>> b.format_hash("Pulp Fiction")
+>>> bloom.format_hash("Pulp Fiction")
 '10000100'
 
 but sometimes there are false positives:
->>> "Ratatouille" in b
+>>> "Ratatouille" in bloom
 True
->>> b.format_hash("Ratatouille")
+>>> bloom.format_hash("Ratatouille")
 '01100000'
 
 The probability increases with the number of added elements
->>> b.estimated_error_rate()
+>>> bloom.estimated_error_rate()
 0.140625
->>> b.add("The Goodfather")
->>> b.estimated_error_rate()
+>>> bloom.add("The Goodfather")
+>>> bloom.estimated_error_rate()
 0.390625
->>> b.bitstring
+>>> bloom.bitstring
 '01111100'
 """
 from hashlib import md5, sha256
