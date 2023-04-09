@@ -1,5 +1,5 @@
 class DisjointSet:
-    def __init__(self, set_sizes):
+    def __init__(self, set_sizes: list[int]) -> None:
         """
         Initialize a disjoint set data structure with set sizes.
 
@@ -18,7 +18,7 @@ class DisjointSet:
         self.parents = {i: i for i in range(len(set_sizes))}
         self.ranks = [0] * len(set_sizes)
 
-    def find(self, x):
+    def find(self, x: int) -> int:
         """
         Find the representative of the set containing x, with path compression.
 
@@ -47,7 +47,7 @@ class DisjointSet:
             self.parents[x] = self.find(self.parents[x])
         return self.parents[x]
 
-    def union(self, x, y):
+    def union(self, x: int, y: int) -> bool:
         """
         Merge the sets containing x and y using union by rank.
 
