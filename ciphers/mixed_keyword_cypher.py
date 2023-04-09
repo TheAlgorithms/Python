@@ -61,6 +61,7 @@ def mixed_keyword(keyword: str = "college", plaintext: str = "UNIVERSITY") -> st
                 break
             k += 1
 
+    print(mapping)
     # create the encrypted text by mapping the plaintext to the modified alphabet
     return "".join(mapping[char] for char in plaintext)
 
