@@ -16,7 +16,7 @@ repos:
     -   id: auto-walrus
 
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.260
+    rev: v0.0.261
     hooks:
       - id: ruff
 
@@ -51,7 +51,7 @@ repos:
       - id: validate-pyproject
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.1.1
+    rev: v1.2.0
     hooks:
       - id: mypy
         args:
