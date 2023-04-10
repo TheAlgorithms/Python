@@ -1,9 +1,12 @@
 import string
-"""This function takes two parameters: a string variable named 
+
+"""This function takes two parameters: a string variable named
     'key' (with a default value of 'college') and a string variable
-     named 'pt' (with a default value of 'UNIVERSITY'). 
+     named 'pt' (with a default value of 'UNIVERSITY').
      The function returns a string that is a transformation of the 'pt' argument
       based on a key-shift cipher"""
+
+
 def mixed_keyword(key: str = "college", pt: str = "UNIVERSITY") -> str:
     """
 
@@ -47,9 +50,9 @@ def mixed_keyword(key: str = "college", pt: str = "UNIVERSITY") -> str:
     #     modalpha.append(s)
 
     k = 0
-    """These lines of code creates a dictionary by iterating over the list of 
+    """These lines of code creates a dictionary by iterating over the list of
     lists. Each letter in the alphabets list is mapped to a letter in a row of
-     the "modalpha" list. The mappings are stored in the dictionary with the 
+     the "modalpha" list. The mappings are stored in the dictionary with the
      indices of the alphabets list as keys and the values fromthe corresponding modalpha lists as values"""
     for _ in range(r):
         s = []
@@ -72,7 +75,7 @@ def mixed_keyword(key: str = "college", pt: str = "UNIVERSITY") -> str:
                 break
             k += 1
     print(d)
-    cypher = ''.join(d[c] for c in pt)
+    cypher = "".join(d[c] for c in pt)
     # cypher = ""
     # for i in pt:
     #     cypher += d[i]
