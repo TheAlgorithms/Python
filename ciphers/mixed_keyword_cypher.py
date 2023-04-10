@@ -24,11 +24,12 @@ def mixed_keyword(keyword: str = "college", plaintext: str = "UNIVERSITY") -> st
     keyword = keyword.upper()
     plaintext = plaintext.upper()
     alphabet = list(ascii_uppercase)
+    alphabet_set = set(alphabet)
 
     # create a list of unique characters in the keyword
     unique_chars = []
     for char in keyword:
-        if char not in unique_chars:
+        if char in alphabet_set and char not in unique_chars:
             unique_chars.append(char)
     # the number of those unique characters will determine the number of rows
     num_unique_chars_in_keyword = len(unique_chars)
@@ -57,12 +58,10 @@ def mixed_keyword(keyword: str = "college", plaintext: str = "UNIVERSITY") -> st
             # map current letter to letter in modified alphabet
             mapping[alphabet[letter_index]] = row[column]
             letter_index += 1
-            if letter_index >= 26:
-                break
 
     print(mapping)
     # create the encrypted text by mapping the plaintext to the modified alphabet
-    return "".join(mapping[char] for char in plaintext)
+    return "".join(mapping[char] if char in mapping else char for char in plaintext)
 
 
 if __name__ == "__main__":
