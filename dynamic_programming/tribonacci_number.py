@@ -1,6 +1,7 @@
 '''
 Getting the N-th Tribonacci Number is the most asked 
-dynamic proogramming question
+dynamic proogramming question.
+Find more on: https://brilliant.org/wiki/tribonacci-sequence/
 '''
 class Tribonacci:
     def tribonacci(self, n: int) -> int:
