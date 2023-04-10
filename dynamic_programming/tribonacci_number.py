@@ -1,6 +1,5 @@
 '''
-Getting the N-th Tribonacci Number is the most asked 
-dynamic proogramming question.
+Getting the N-th Tribonacci Number is the most asked dynamic programming question.
 Find more on: https://brilliant.org/wiki/tribonacci-sequence/
 '''
 class Tribonacci:
