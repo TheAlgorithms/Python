@@ -30,43 +30,34 @@ def mixed_keyword(keyword: str = "college", plaintext: str = "UNIVERSITY") -> st
     for char in keyword:
         if char not in unique_chars:
             unique_chars.append(char)
-
+    # the number of those unique characters will determine the number of rows
     num_unique_chars_in_keyword = len(unique_chars)
 
-    # add any uppercase letters from the alphabet
-    # that are not in the keyword to the unique_chars list.
-    for char in alphabet:
-        if char not in unique_chars:
-            unique_chars.append(char)
+    # create a shifted version of the alphabet
+    shifted_alphabet = unique_chars + [
+        char for char in alphabet if char not in unique_chars
+    ]
 
-    rows = (26 // num_unique_chars_in_keyword) + 1
-    # k is an index variable
-    k = 0
-    # create a modified version of the alphabet by dividing it into rows number of rows
-    # and mapping the letters in the unique_chars list to the rows
-    modified_alphabet = []
-    for _ in range(rows):
-        row = []
-        for _ in range(num_unique_chars_in_keyword):
-            row.append(unique_chars[k])
-            k += 1
-            # break out of the loop if we have reached the end of the alphabet
-            if k >= 26:
-                break
-        modified_alphabet.append(row)
+    # create a modified alphabet by splitting the shifted alphabet into rows
+    modified_alphabet = [
+        shifted_alphabet[k : k + num_unique_chars_in_keyword]
+        for k in range(0, 26, num_unique_chars_in_keyword)
+    ]
 
+    # map the alphabet characters to the modified alphabet characters
+    # going 'vertically' through the modified alphabet - consider columns first
     mapping = {}
-    k = 0
-    for j in range(num_unique_chars_in_keyword):
+    letter_index = 0
+    for column in range(num_unique_chars_in_keyword):
         for row in modified_alphabet:
-            # if current row is too short, break out of loop
-            if len(row) <= j:
+            # if current row (the last one) is too short, break out of loop
+            if len(row) <= column:
                 break
 
             # map current letter to letter in modified alphabet
-            mapping[alphabet[k]] = row[j]
-            k += 1
-            if k >= 26:
+            mapping[alphabet[letter_index]] = row[column]
+            letter_index += 1
+            if letter_index >= 26:
                 break
 
     print(mapping)
