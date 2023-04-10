@@ -195,6 +195,7 @@
     * [Alternate Disjoint Set](data_structures/disjoint_set/alternate_disjoint_set.py)
     * [Disjoint Set](data_structures/disjoint_set/disjoint_set.py)
   * Hashing
+    * [Bloom Filter](data_structures/hashing/bloom_filter.py)
     * [Double Hash](data_structures/hashing/double_hash.py)
     * [Hash Map](data_structures/hashing/hash_map.py)
     * [Hash Table](data_structures/hashing/hash_table.py)
