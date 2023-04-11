@@ -4,6 +4,7 @@ author(after editing) : Snehanjali G V S
 """
 from __future__ import annotations
 
+
 def max_sub_array(a: list[int]) -> int:
     """
     return the largest sum of a contiguous subarray.
@@ -24,15 +25,16 @@ def max_sub_array(a: list[int]) -> int:
     >>> max_sub_array([31, -41, 59, 26, -53, 58, 97, -93, -23, 84])
     187
     """
-    sol = [0]* (len(a) + 1)
+    sol = [0] * (len(a) + 1)
     for i in range(1, len(sol)):
-        sol[i] = max(sol[i - 1] + a[i -1], a[i - 1])
-        
-    answer  = sol[0]
+        sol[i] = max(sol[i - 1] + a[i - 1], a[i - 1])
+
+    answer = sol[0]
     for i in range(1, len(sol)):
         if answer < sol[i]:
             answer = sol[i]
     return answer
+
 
 if __name__ == "__main__":
     """
