@@ -3,7 +3,7 @@ author : Snehanjali G  V S
 """
 from __future__ import annotations
 
-def max_sub_array(a: list[int]) -> list[int]:
+def max_sub_array(a: list[int]) -> int:
     """
     Finds the contiguous subarray which has the largest sum and return its sum.
 
@@ -22,6 +22,8 @@ def max_sub_array(a: list[int]) -> list[int]:
     5
     >>> max_sub_array([31, -41, 59, 26, -53, 58, 97, -93, -23, 84])
     187
+    >>> max_sub_array([10, 100, 1000, 10000, 50000, 100000, 200000, 300000, 400000, 500000])
+    1561110
     """
     sol = [0]* (len(a) + 1)
     for i in range(1, len(sol)):
