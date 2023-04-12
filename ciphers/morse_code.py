@@ -6,7 +6,6 @@ Python program to translate to and from Morse code.
 https://en.wikipedia.org/wiki/Morse_code
 """
 
-# fmt: off
 MORSE_CODE_DICT = {
     "A": ".-", "B": "-...", "C": "-.-.", "D": "-..", "E": ".", "F": "..-.", "G": "--.",
     "H": "....", "I": "..", "J": ".---", "K": "-.-", "L": ".-..", "M": "--", "N": "-.",
@@ -17,8 +16,8 @@ MORSE_CODE_DICT = {
     ":": "---...", ",": "--..--", ".": ".-.-.-", "'": ".----.", '"': ".-..-.",
     "?": "..--..", "/": "-..-.", "=": "-...-", "+": ".-.-.", "-": "-....-",
     "(": "-.--.", ")": "-.--.-", "!": "-.-.--", " ": "/"
-}  # Exclamation mark is not in ITU-R recommendation
-# fmt: on
+}
+
 REVERSE_DICT = {value: key for key, value in MORSE_CODE_DICT.items()}
 
 
@@ -29,7 +28,7 @@ def encrypt(message: str) -> str:
     >>> encrypt("SOS!") == encrypt("sos!")
     True
     """
-    return " ".join(MORSE_CODE_DICT[char] for char in message.upper())
+    return " ".join(MORSE_CODE_DICT.get(char.upper(), "") for char in message)
 
 
 def decrypt(message: str) -> str:
@@ -37,7 +36,7 @@ def decrypt(message: str) -> str:
     >>> decrypt('... --- ... -.-.--')
     'SOS!'
     """
-    return "".join(REVERSE_DICT[char] for char in message.split())
+    return "".join(REVERSE_DICT.get(char, "") for char in message.split())
 
 
 def main() -> None:
