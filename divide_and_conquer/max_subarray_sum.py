@@ -26,6 +26,7 @@ def max_sum_from_start(array):
         array_sum += num
         if array_sum > max_sum:
             max_sum = array_sum
+    
     return max_sum
 
 

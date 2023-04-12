@@ -1,6 +1,10 @@
 from __future__ import annotations
 
-
+"""
+The function creates an empty list called "sorted_array" with the length equal to the sum of the lengths of the two lists. It then initializes three pointers - pointer1, pointer2, and index - to 0.
+The function then enters a while loop that continues as long as pointer1 and pointer2 are less than the length of their respective lists. Within the loop, the function compares the values of the elements 
+at the current pointer positions in the left and right lists, and adds the smaller element to the sorted_array. The pointer for the list that contained the smaller element is then incremented, as well as the index pointer for the sorted_array.
+"""
 def merge(left_half: list, right_half: list) -> list:
     """Helper function for mergesort.
 
@@ -34,7 +38,10 @@ def merge(left_half: list, right_half: list) -> list:
     pointer1 = 0  # pointer to current index for left Half
     pointer2 = 0  # pointer to current index for the right Half
     index = 0  # pointer to current index for the sorted array Half
-
+    """After the while loop finishes, the function runs two more while 
+    loops to add any remaining elements from the left and right lists to 
+    the sorted_array, in case one of the lists was longer than the other.
+    Finally, the function returns the sorted_array."""
     while pointer1 < len(left_half) and pointer2 < len(right_half):
         if left_half[pointer1] < right_half[pointer2]:
             sorted_array[index] = left_half[pointer1]
