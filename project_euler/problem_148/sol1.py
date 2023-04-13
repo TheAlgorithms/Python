@@ -1,6 +1,8 @@
 """
-Project Euler Prbolem 148 : https://projecteuler.net/problem=148
+Project Euler Problem 148 : https://projecteuler.net/problem=148
+
 Author:	Sai Teja Manchi
+
 Problem Statement:
 We can easily verify that none of the entries in the first seven rows of Pascal's triangle are divisible by 7:
 
@@ -15,6 +17,11 @@ However, if we check the first one hundred rows, we will find that only 2361 of 
 
 Find the number of entries which are not divisible by 7 in the first one billion (109) rows of Pascal's triangle.
 
+Solution:
+We Generate each row in the pascal triangle one-by-one.
+Since Pascal's triangle is vertically-symmetric we only need to generate half of the values.
+We then count the values which are not divisible by 7.
+We only store the remainders(when divided by 7) in the list to reduce memory usage..
 """
 
 def solution(n: int = 10**9) -> int:
@@ -51,11 +58,12 @@ def solution(n: int = 10**9) -> int:
             l += 1
             if pascal_row[-1] % 7 != 0:
                 cnt += 1
+        #Deleting the last element for odd rows since 1 is added at beginning
         else:
             del pascal_row[-1]
         pascal_row.insert(0, 1)
         
-        #Adding 2 for the Additonal 1's in the new pascal row
+        #Adding 2 to the count for the Additonal 1's in the new pascal row
         cnt += 2
     
     return cnt
