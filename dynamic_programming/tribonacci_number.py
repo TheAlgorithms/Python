@@ -1,6 +1,7 @@
 '''
-Getting the N-th Tribonacci Number is the most asked dynamic programming question.
-Find more on: https://brilliant.org/wiki/tribonacci-sequence/
+This program calculate N-th Tribonacci Number 
+for better understanding of tribonacci number 
+go through https://brilliant.org/wiki/tribonacci-sequence/
 '''
 class Tribonacci:
     def tribonacci(self, n: int) -> int:
