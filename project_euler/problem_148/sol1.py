@@ -24,6 +24,7 @@ We then count the values which are not divisible by 7.
 We only store the remainders(when divided by 7) in the list to reduce memory usage..
 """
 
+
 def solution(n: int = 10**9) -> int:
     """
     To evaluate the solution, use solution()
@@ -34,39 +35,40 @@ def solution(n: int = 10**9) -> int:
     >>> solution(100)
     2361
     """
-    
-    #Initializing pascal row and count
+
+    # Initializing pascal row and count
     pascal_row = [1, 2]
     cnt = 6
-    
-    #To keep track of length of the pascal row
+
+    # To keep track of length of the pascal row
     l = 2
-    
+
     for i in range(3, n):
         j = 1
-        
-        #Generating the next pascal row
+
+        # Generating the next pascal row
         while j < l:
-            pascal_row[j-1] = (pascal_row[j - 1] + pascal_row[j]) % 7
+            pascal_row[j - 1] = (pascal_row[j - 1] + pascal_row[j]) % 7
             if pascal_row[j - 1] != 0:
                 cnt += 2
             j += 1
-            
-        #Adding the middle element for even rows        
+
+        # Adding the middle element for even rows
         if i % 2 == 0:
             pascal_row[-1] = pascal_row[-1] * 2
             l += 1
             if pascal_row[-1] % 7 != 0:
                 cnt += 1
-        #Deleting the last element for odd rows since 1 is added at beginning
+        # Deleting the last element for odd rows since 1 is added at beginning
         else:
             del pascal_row[-1]
         pascal_row.insert(0, 1)
-        
-        #Adding 2 to the count for the Additonal 1's in the new pascal row
+
+        # Adding 2 to the count for the Additonal 1's in the new pascal row
         cnt += 2
-    
+
     return cnt
+
 
 if __name__ == "__main__":
     print(f"{solution()}")
