@@ -17,18 +17,18 @@ Find the number of entries which are not divisible by 7
 in the first one billion (109) rows of Pascal's triangle.
 
 Solution:
-We iteratively Generate each row in the pascal triangle one-by-one.
+We iteratively generate each row in the pascal triangle one-by-one.
 Since Pascal's triangle is vertically-symmetric,
-We only need to generate half of the values
+We only need to generate half of the values.
 We then count the values which are not divisible by 7.
 We only store the remainders(when divided by 7) in the list to reduce memory usage.
 
-Note: In the original problem, we need to calucalte for 10^9
-      but we took 10^6 here by default.
+Note: In the original problem, we need to calucalte for 10^9 rows
+      but we took 10^5 rows here by default.
 """
 
 
-def solution(pascal_row_count: int = 10**6) -> int:
+def solution(pascal_row_count: int = 10**5) -> int:
     """
     To evaluate the solution, use solution()
     >>> solution(3)
@@ -41,7 +41,7 @@ def solution(pascal_row_count: int = 10**6) -> int:
 
     # Initializing pascal row and count
     pascal_row = [1, 2]
-    cnt = 6
+    count = 6
 
     # To keep track of length of the pascal row
     l = 2
@@ -53,7 +53,7 @@ def solution(pascal_row_count: int = 10**6) -> int:
         while j < l:
             pascal_row[j - 1] = (pascal_row[j - 1] + pascal_row[j]) % 7
             if pascal_row[j - 1] != 0:
-                cnt += 2
+                count += 2
             j += 1
 
         # Adding the middle element for even rows
@@ -61,16 +61,16 @@ def solution(pascal_row_count: int = 10**6) -> int:
             pascal_row[-1] = pascal_row[-1] * 2
             l += 1
             if pascal_row[-1] % 7 != 0:
-                cnt += 1
+                count += 1
         # Deleting the last element for odd rows since 1 is added at beginning
         else:
             del pascal_row[-1]
         pascal_row.insert(0, 1)
 
         # Adding 2 to the count for the Additonal 1's in the new pascal row
-        cnt += 2
+        count += 2
 
-    return cnt
+    return count
 
 
 if __name__ == "__main__":
