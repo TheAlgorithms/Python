@@ -42,7 +42,6 @@ class BezierCurve:
             output_values.append(
                 comb(self.degree, i) * ((1 - t) ** (self.degree - i)) * (t**i)
             )
-        # the basis must sum up to 1 for it to produce a valid Bezier curve.
         assert round(sum(output_values), 5) == 1
         return output_values
 
