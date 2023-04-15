@@ -30,3 +30,6 @@ def tribonacci(n: int) -> int:
         prev1 = required_tribo_num
         
     return required_tribo_num
+
+if __name__ = '__main__':
+    print(tribonacci(7))
