@@ -75,3 +75,4 @@ def solution(pascal_row_count: int = 10**5) -> int:
 
 if __name__ == "__main__":
     print(f"{solution()}")
+    
