@@ -15,6 +15,8 @@ def tribonacci(n: int) -> int:
     prev1, prev2, prev3 = 1, 1, 0         
     
     #evaluating edge cases
+    if n < 0: 
+        raise ValueError("n must be >=0")
     if n == 0: return prev3
     if n == 1: return prev2
     if n == 2: return prev1
