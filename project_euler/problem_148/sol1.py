@@ -23,12 +23,12 @@ We only need to generate half of the values.
 We then count the values which are not divisible by 7.
 We only store the remainders(when divided by 7) in the list to reduce memory usage.
 
-Note: In the original problem, we need to calucalte for 10^9 rows
+Note: In the original problem, we need to calcualte for 10^9 rows
       but we took 10^5 rows here by default.
 """
 
 
-def solution(pascal_row_count: int = 10**5) -> int:
+def solution(pascal_row_count: int = 10**6) -> int:
     """
     To evaluate the solution, use solution()
     >>> solution(3)
@@ -67,7 +67,7 @@ def solution(pascal_row_count: int = 10**5) -> int:
             del pascal_row[-1]
         pascal_row.insert(0, 1)
 
-        # Adding 2 to the count for the Additonal 1's in the new pascal row
+        # Adding 2 to the count for the Additional 1's in the new pascal row
         count += 2
 
     return count
