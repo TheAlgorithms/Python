@@ -170,7 +170,9 @@ def test_linear_discriminant_analysis() -> None:
 
     # Assert that the function raises an AssertionError if dimensions > classes
     with pytest.raises(AssertionError) as error_info:
-        projected_data = linear_discriminant_analysis(features, labels, classes, dimensions)
+        projected_data = linear_discriminant_analysis(
+            features, labels, classes, dimensions
+        )
         if isinstance(projected_data, np.ndarray):
             raise AssertionError(
                 "Did not raise AssertionError for dimensions > classes"
