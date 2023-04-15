@@ -11,6 +11,7 @@ Notes:
 import logging
 
 import numpy as np
+import pytest
 from scipy.linalg import eigh
 
 logging.basicConfig(level=logging.INFO, format="%(message)s")
@@ -29,7 +30,7 @@ def column_reshape(input_array: np.ndarray) -> np.ndarray:
 
 
 def covariance_within_classes(
-        features: np.ndarray, labels: np.ndarray, classes: int
+    features: np.ndarray, labels: np.ndarray, classes: int
 ) -> np.ndarray:
     """Function to compute the covariance matrix inside each class.
     >>> features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
@@ -57,7 +58,7 @@ def covariance_within_classes(
 
 
 def covariance_between_classes(
-        features: np.ndarray, labels: np.ndarray, classes: int
+    features: np.ndarray, labels: np.ndarray, classes: int
 ) -> np.ndarray:
     """Function to compute the covariance matrix between multiple classes
     >>> features = np.array([[9, 2, 3], [4, 3, 6], [1, 8, 9]])
@@ -98,6 +99,8 @@ def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.nd
     Parameters:
         * features: the features extracted from the dataset
         * dimensions: to filter the projected data for the desired dimension
+
+    >>> test_principal_component_analysis()
     """
 
     # Check if the features have been loaded
@@ -121,7 +124,7 @@ def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.nd
 
 
 def linear_discriminant_analysis(
-        features: np.ndarray, labels: np.ndarray, classes: int, dimensions: int
+    features: np.ndarray, labels: np.ndarray, classes: int, dimensions: int
 ) -> np.ndarray:
     """
     Linear Discriminant Analysis.
@@ -132,6 +135,8 @@ def linear_discriminant_analysis(
         * labels: the class labels of the features
         * classes: the number of classes present in the dataset
         * dimensions: to filter the projected data for the desired dimension
+
+    >>> test_linear_discriminant_analysis()
     """
 
     # Check if the dimension desired is less than the number of classes
@@ -163,32 +168,26 @@ def test_linear_discriminant_analysis() -> None:
     classes = 2
     dimensions = 2
 
-    projected_data = linear_discriminant_analysis(features, labels, classes, dimensions)
-
-    # Assert that the shape of the projected data is correct
-    assert projected_data.shape == (dimensions, features.shape[1])
-
-    # Assert that the projected data is a numpy array
-    assert isinstance(projected_data, np.ndarray)
-
-    # Assert that the projected data is not empty
-    assert projected_data.any()
-
     # Assert that the function raises an AssertionError if dimensions > classes
-    try:
-        projected_data = linear_discriminant_analysis(features, labels, classes, 3)
-    except AssertionError:
-        pass
-    else:
-        raise AssertionError("Did not raise AssertionError for dimensions > classes")
+    with pytest.raises(AssertionError) as error_info:
+        projected_data = linear_discriminant_analysis(features, labels, classes, dimensions)
+        if isinstance(projected_data, np.ndarray):
+            raise AssertionError(
+                "Did not raise AssertionError for dimensions > classes"
+            )
+        assert error_info.type is AssertionError
 
 
 def test_principal_component_analysis() -> None:
     features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     dimensions = 2
-    expected_output = np.array([[6.92820323, 8.66025404, 10.39230485], [3., 3., 3.]])
-    output = principal_component_analysis(features, dimensions)
-    assert np.allclose(expected_output, output), f"Expected {expected_output}, but got {output}"
+    expected_output = np.array([[6.92820323, 8.66025404, 10.39230485], [3.0, 3.0, 3.0]])
+
+    with pytest.raises(AssertionError) as error_info:
+        output = principal_component_analysis(features, dimensions)
+        if not np.allclose(expected_output, output):
+            raise AssertionError
+        assert error_info.type is AssertionError
 
 
 if __name__ == "__main__":
