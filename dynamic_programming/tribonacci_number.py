@@ -17,9 +17,12 @@ def tribonacci(n: int) -> int:
     #evaluating edge cases
     if n < 0:
         raise ValueError("n must be >=0")
-    if n == 0: return prev3
-    if n == 1: return prev2
-    if n == 2: return prev1
+    if n == 0: 
+        return prev3
+    if n == 1: 
+        return prev2
+    if n == 2: 
+        return prev1
 
     #initialzing required_tribo_num as 0
     required_tribo_num = 0
@@ -33,5 +36,5 @@ def tribonacci(n: int) -> int:
 
     return required_tribo_num
 
-if __name__ = '__main__':
+if __name__ == '__main__':
     print(tribonacci(7))
