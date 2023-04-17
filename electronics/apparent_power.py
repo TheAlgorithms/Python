@@ -1,7 +1,7 @@
 import math
 
 
-def calculate_apparent_power(real_power: float, reactive_power: float) -> float:
+def apparent_power(real_power: float, reactive_power: float) -> float:
     """
     Calculate apparent power from real power and reactive power.
 
