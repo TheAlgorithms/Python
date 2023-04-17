@@ -6,7 +6,7 @@ def apparent_power(real_power: float, reactive_power: float) -> float:
     Calculate apparent power from real power and reactive power.
 
     Examples:-
-    >>> calculate_apparent_power(100, 50)
+    >>> apparent_power(100, 50)
     111.80339887498948
     >>> calculate_apparent_power(100, -50)
     111.80339887498948
