@@ -8,9 +8,13 @@ def apparent_power(real_power: float, reactive_power: float) -> float:
     Examples:-
     >>> apparent_power(100, 50)
     111.80339887498948
-    >>> calculate_apparent_power(100, -50)
+    >>> apparent_power(100, -50)
     111.80339887498948
-    >>> calculate_apparent_power(0, 0)
+    >>> apparent_power(-100, 50)
+    111.80339887498948
+    >>> apparent_power(-100, -50)
+    111.80339887498948
+    >>> apparent_power(0, 0)
     0.0
     """
     return math.sqrt(real_power**2 + reactive_power**2)
