@@ -39,7 +39,7 @@ def calculate_pi(limit) -> str:
 
     """
     We will avoid using yield since we otherwise get a Generator-Object,
-    which we cant just compare against anything. We would have to make a list out of it 
+    which we cant just compare against anything. We would have to make a list out of it
     after the generation, so we will just stick to plain return logic:
     """
     while counter != decimal + 1:
