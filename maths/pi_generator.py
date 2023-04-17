@@ -1,4 +1,4 @@
-def calculate_pi(limit) -> str:
+def calculate_pi(limit: int) -> str:
     """
     https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80
     Leibniz Formula for Pi
@@ -39,7 +39,7 @@ def calculate_pi(limit) -> str:
 
     """
     We will avoid using yield since we otherwise get a Generator-Object,
-    which we cant just compare against anything. We would have to make a list out of it
+    which we can't just compare against anything. We would have to make a list out of it
     after the generation, so we will just stick to plain return logic:
     """
     while counter != decimal + 1:
@@ -71,7 +71,6 @@ def calculate_pi(limit) -> str:
 def main() -> None:
     pi_digits = calculate_pi(50)
     print(pi_digits)
-
     import doctest
     doctest.testmod()
 
