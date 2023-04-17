@@ -1,3 +1,4 @@
+import doctest
 def calculate_pi(limit) -> str:
     """
     https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80
@@ -70,11 +71,9 @@ def calculate_pi(limit) -> str:
 
 def main() -> None:
     pi_digits = calculate_pi(50)
-
     print(pi_digits)
+    doctest.testmod()
 
 
 if __name__ == "__main__":
     main()
-    # import doctest
-    # doctest.testmod()
