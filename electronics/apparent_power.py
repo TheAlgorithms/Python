@@ -1,5 +1,6 @@
 import math
 
+
 def calculate_apparent_power(real_power: float, reactive_power: float) -> float:
     """
     Calculate apparent power from real power and reactive power.
@@ -21,10 +22,11 @@ def calculate_apparent_power(real_power: float, reactive_power: float) -> float:
     ...
     ValueError: real_power and reactive_power must be valid float values.
     """
-    apparent_power = math.sqrt(real_power ** 2 + reactive_power ** 2)
+    apparent_power = math.sqrt(real_power**2 + reactive_power**2)
     return apparent_power
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
