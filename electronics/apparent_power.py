@@ -5,13 +5,6 @@ def apparent_power(real_power: float, reactive_power: float) -> float:
     """
     Calculate apparent power from real power and reactive power.
 
-    Args:
-        real_power (float): Real power in watts.
-        reactive_power (float): Reactive power in vars.
-
-    Returns:
-        float: Apparent power in volt-amperes (VA).
-
     Examples:-
     >>> calculate_apparent_power(100, 50)
     111.80339887498948
