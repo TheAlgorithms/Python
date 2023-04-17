@@ -1,5 +1,6 @@
 import math
 
+
 def calculate_real_power(apparent_power: float, power_factor: float) -> float:
     """
     Calculate real power from apparent power and power factor.
@@ -23,7 +24,11 @@ def calculate_real_power(apparent_power: float, power_factor: float) -> float:
     ...
     ValueError: power_factor must be a valid float value between -1 and 1.
     """
-    if not isinstance(power_factor, (int, float)) or power_factor < -1 or power_factor > 1:
+    if (
+        not isinstance(power_factor, (int, float))
+        or power_factor < -1
+        or power_factor > 1
+    ):
         raise ValueError("power_factor must be a valid float value between -1 and 1.")
     real_power = apparent_power * power_factor
     return real_power
@@ -52,9 +57,13 @@ def calculate_reactive_power(apparent_power: float, power_factor: float) -> floa
     ...
     ValueError: power_factor must be a valid float value between -1 and 1.
     """
-    if not isinstance(power_factor, (int, float)) or power_factor < -1 or power_factor > 1:
+    if (
+        not isinstance(power_factor, (int, float))
+        or power_factor < -1
+        or power_factor > 1
+    ):
         raise ValueError("power_factor must be a valid float value between -1 and 1.")
-    reactive_power = apparent_power * math.sqrt(1 - power_factor ** 2)
+    reactive_power = apparent_power * math.sqrt(1 - power_factor**2)
     return reactive_power
 
 
