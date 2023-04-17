@@ -47,11 +47,11 @@ def calculate_reactive_power(apparent_power: float, power_factor: float) -> floa
 
     Examples:
     >>> calculate_reactive_power(100, 0.9)
-    43.58898943540674
+    43.58898943540673
     >>> calculate_reactive_power(0, 0.8)
     0.0
     >>> calculate_reactive_power(100, -0.9)
-    -43.58898943540674
+    -43.58898943540673
     >>> calculate_reactive_power(100, 1.2)
     Traceback (most recent call last):
     ...
