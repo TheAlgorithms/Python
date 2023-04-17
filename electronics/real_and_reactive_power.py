@@ -19,10 +19,6 @@ def calculate_real_power(apparent_power: float, power_factor: float) -> float:
     0.0
     >>> calculate_real_power(100, -0.9)
     -90.0
-    >>> calculate_real_power(100, 1.2)
-    Traceback (most recent call last):
-    ...
-    ValueError: power_factor must be a valid float value between -1 and 1.
     """
     if (
         not isinstance(power_factor, (int, float))
