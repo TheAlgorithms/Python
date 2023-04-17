@@ -19,10 +19,6 @@ def calculate_apparent_power(real_power: float, reactive_power: float) -> float:
     111.80339887498948
     >>> calculate_apparent_power(0, 0)
     0.0
-    >>> calculate_apparent_power(abc, 50)
-    Traceback (most recent call last):
-    ...
-    ValueError: real_power and reactive_power must be valid float values.
     """
     apparent_power = math.sqrt(real_power**2 + reactive_power**2)
     return apparent_power
