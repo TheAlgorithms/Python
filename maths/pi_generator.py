@@ -73,6 +73,7 @@ def main() -> None:
     print(pi_digits)
 
     import doctest
+
     doctest.testmod()
 
 
