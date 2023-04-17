@@ -20,8 +20,7 @@ def apparent_power(real_power: float, reactive_power: float) -> float:
     >>> calculate_apparent_power(0, 0)
     0.0
     """
-    apparent_power = math.sqrt(real_power**2 + reactive_power**2)
-    return apparent_power
+    return math.sqrt(real_power**2 + reactive_power**2)
 
 
 if __name__ == "__main__":
