@@ -1,4 +1,4 @@
-def calculate_Pi(limit):
+def calculate_Pi(limit) -> str:
     """
     https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80
     Leibniz Formula for Pi
@@ -87,7 +87,7 @@ def calculate_Pi(limit):
     return result
 
 
-def main():
+def main() -> None:
     pi_digits = calculate_Pi(50)
     print(pi_digits)
 
