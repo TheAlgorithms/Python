@@ -28,7 +28,7 @@ def apparent_power(voltage: float, current: float, voltage_angle: float, current
 
     return apparent_power
 
-# Doctests
+
 if __name__ == "__main__":
     import doctest
 
