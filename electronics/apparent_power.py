@@ -2,10 +2,12 @@ import cmath
 import math
 
 
-def apparent_power(voltage: float, current: float, voltage_angle: float, current_angle: float) -> complex:
+def apparent_power(
+    voltage: float, current: float, voltage_angle: float, current_angle: float
+) -> complex:
     """
     Calculate the apparent power in a single-phase AC circuit.
-        
+
     >>> apparent_power(100, 5, 0, 0)
     (500+0j)
     >>> apparent_power(100, 5, 90, 0)
