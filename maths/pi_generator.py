@@ -21,7 +21,8 @@ def calculate_pi(limit: int) -> str:
     >>> float(calculate_pi(15)) == math.pi
     True
 
-    To further proof, since we cannot predict errors or interrupt any infinite alternating series generation since they approach infinity,
+    Since we cannot predict errors or interrupt any infinite alternating
+    series generation since they approach infinity,
     or interrupt any alternating series, we are going to need math.isclose()
 
     >>> math.isclose(float(calculate_pi(50)), math.pi)
@@ -30,15 +31,16 @@ def calculate_pi(limit: int) -> str:
     >>> math.isclose(float(calculate_pi(100)), math.pi)
     True
 
-    Since the math.pi-constant is only 16 digits long, here some test with preknown values:
+    Since math.pi-constant contains only 16 digits, here some test with preknown values:
 
     >>> calculate_pi(50)
     '3.14159265358979323846264338327950288419716939937510'
     >>> calculate_pi(80)
     '3.14159265358979323846264338327950288419716939937510582097494459230781640628620899'
 
-    In the Leibniz formula for calculating pi, the variables q, r, t, k, n, and l are used for the iteration process.
-    """  # noqa: E501
+    To apply the Leibniz formula for calculating pi,
+    the variables q, r, t, k, n, and l are used for the iteration process.
+    """
     q = 1
     r = 0
     t = 1
