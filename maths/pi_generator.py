@@ -12,20 +12,33 @@ def calculate_pi(limit: int) -> str:
     https://en.wikipedia.org/wiki/Leibniz_formula_for_%CF%80#Unusual_behaviour
     The errors can in fact be predicted;
     but those calculations also approach infinity for accuracy.
-    For simplicity' sake, let's just compare against known values.
 
-    >>> calculate_pi(15)
-    '3.141592653589793'
+    Our output will always be a string since we can defintely store all digits in there.
+    For simplicity' sake, let's just compare against known values and since our outpit
+    is a string, we need to convert to float.
 
-    To further proof, since we cannot predict errors or interrupt an infinite generation
-    or interrupt any alternating series, here some more tests.
+    >>> import math
+    >>> float(calculate_pi(15)) == math.pi
+    True
+
+    To further proof, since we cannot predict errors or interrupt any infinite alternating series generation since they approach infinity,
+    or interrupt any alternating series, we are going to need math.isclose()
+
+    >>> math.isclose(float(calculate_pi(50)), math.pi)
+    True
+
+    >>> math.isclose(float(calculate_pi(100)), math.pi)
+    True
+
+    Since the math.pi-constant is only 16 digits long, here some test with preknown values:
 
     >>> calculate_pi(50)
     '3.14159265358979323846264338327950288419716939937510'
-
     >>> calculate_pi(80)
     '3.14159265358979323846264338327950288419716939937510582097494459230781640628620899'
-    """
+
+    In the Leibniz formula for calculating pi, the variables q, r, t, k, n, and l are used for the iteration process.
+    """  # noqa: E501
     q = 1
     r = 0
     t = 1
@@ -72,7 +85,6 @@ def main() -> None:
     pi_digits = calculate_pi(50)
     print(pi_digits)
     import doctest
-
     doctest.testmod()
 
 
