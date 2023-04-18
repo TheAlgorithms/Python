@@ -26,9 +26,7 @@ def apparent_power(
     current_rect = cmath.rect(current, current_angle_rad)
 
     # Calculate apparent power
-    apparent_power = voltage_rect * current_rect
-
-    return apparent_power
+    return voltage_rect * current_rect
 
 
 if __name__ == "__main__":
