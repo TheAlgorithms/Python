@@ -87,6 +87,7 @@ def main() -> None:
     pi_digits = calculate_pi(50)
     print(pi_digits)
     import doctest
+
     doctest.testmod()
 
 
