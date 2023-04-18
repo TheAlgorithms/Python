@@ -84,8 +84,7 @@ def calculate_pi(limit: int) -> str:
 
 
 def main() -> None:
-    pi_digits = calculate_pi(50)
-    print(pi_digits)
+    print(f"{calculate_pi(50) = }")
     import doctest
 
     doctest.testmod()
