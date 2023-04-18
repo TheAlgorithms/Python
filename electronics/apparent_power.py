@@ -8,6 +8,8 @@ def apparent_power(
     """
     Calculate the apparent power in a single-phase AC circuit.
 
+    Reference: https://en.wikipedia.org/wiki/AC_power#Apparent_power
+
     >>> apparent_power(100, 5, 0, 0)
     (500+0j)
     >>> apparent_power(100, 5, 90, 0)
