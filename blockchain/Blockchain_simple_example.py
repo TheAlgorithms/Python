@@ -1,4 +1,4 @@
-import hashlib
+import hashlib 
 
 class PeyxwBlock:
     
@@ -9,7 +9,7 @@ class PeyxwBlock:
 
         self.block_data = f"{' - '.join(transaction_list)} - {previous_block_hash}"
         self.block_hash = hashlib.sha256(self.block_data.encode()).hexdigest()
-
+#data
 t1 = "Mayk sends 7 PY to Mark"
 t2 = "Mark sends 6.5 PY to James"
 t3 = "James sends 3.2 PY to Alisson"
