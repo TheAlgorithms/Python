@@ -83,12 +83,12 @@ def infix_to_postfix(expression_str: str) -> str:
                     break
 
                 char_precedence = precedence(char)
-                TOS_precedence = precedence(stack.peek())
+                tos_precedence = precedence(stack.peek())
 
-                if char_precedence > TOS_precedence:
+                if char_precedence > tos_precedence:
                     stack.push(char)
                     break
-                elif char_precedence == TOS_precedence:
+                elif char_precedence == tos_precedence:
                     if associativity(char) == "RL":
                         stack.push(char)
                         break
