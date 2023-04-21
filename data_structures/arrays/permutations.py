@@ -19,7 +19,6 @@ def permute(nums: list[int]) -> list[list[int]]:
         nums.append(n)
     return result
 
-
 if __name__ == "__main__":
     import doctest
 
