@@ -1,7 +1,7 @@
 def dencrypt(s: str, n: int = 13) -> str:
     """
     https://en.wikipedia.org/wiki/ROT13
-
+    Basically adds '13' characters of the alphabets to encrypt / decrypt the cipher-text
     >>> msg = "My secret bank account number is 173-52946 so don't tell anyone!!"
     >>> s = dencrypt(msg)
     >>> s
