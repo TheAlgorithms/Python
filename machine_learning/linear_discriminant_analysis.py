@@ -399,7 +399,7 @@ def main():
         if input("Press any key to restart or 'q' for quit: ").strip().lower() == "q":
             print("\n" + "GoodBye!".center(100, "-") + "\n")
             break
-        system('clear' if os.name == 'posix' else 'cls')
+        system("clear" if os.name == "posix" else "cls")
 
 
 if __name__ == "__main__":
