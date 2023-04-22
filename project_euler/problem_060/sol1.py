@@ -28,7 +28,7 @@ PRIMES_SIZE = 1.2e3
 COUNTER = False
 
 
-def get_order(n: int) -> int:
+def get_order(target: int) -> int:
     """
     Get the order of a number n, in order to facilitate concatenation.
     get_order(n) = x -> 10^x <= n < 10^(x+1)
@@ -41,7 +41,7 @@ def get_order(n: int) -> int:
     4
     """
 
-    return int(math.log(n, 10))
+    return int(math.log(target, 10))
 
 
 def test_concatenate(num1: int, num2: int) -> bool:
@@ -66,7 +66,7 @@ def test_concatenate(num1: int, num2: int) -> bool:
     return True
 
 
-def is_prime(n) -> bool:
+def is_prime(target: int) -> bool:
     """
     Simple prime test
 
@@ -77,8 +77,8 @@ def is_prime(n) -> bool:
     >>> is_prime(10000007)
     False
     """
-    for divider in range(2, int(n**0.5) + 1):
-        if int(n) % divider == 0:
+    for divider in range(2, int(target**0.5) + 1):
+        if int(target) % divider == 0:
             return False
     return True
 
