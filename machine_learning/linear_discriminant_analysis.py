@@ -47,6 +47,7 @@ from math import log
 from os import name, system
 from random import gauss, seed
 from typing import TypeVar
+import subprocess
 
 
 # Make a training dataset drawn from a gaussian distribution
@@ -399,7 +400,11 @@ def main():
         if input("Press any key to restart or 'q' for quit: ").strip().lower() == "q":
             print("\n" + "GoodBye!".center(100, "-") + "\n")
             break
-        system("clear" if name == "posix" else "cls")
+        if name == "nt":
+            subprocess.call("cls")
+        else:
+            subprocess.call("clear")
+
 
 
 if __name__ == "__main__":
