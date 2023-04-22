@@ -25,7 +25,7 @@ import math
 from time import time
 
 PRIMES_SIZE = 1.2e3
-COUNTER = True
+COUNTER = False
 
 
 def get_order(n: int) -> int:
@@ -189,4 +189,4 @@ def solution(n_primes: int = 5) -> int:
 
 
 if __name__ == "__main__":
-    print(f"{solution(4) = }")
+    print(f"{solution() = }")
