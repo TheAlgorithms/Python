@@ -25,7 +25,7 @@ import math
 from time import time
 
 PRIMES_SIZE = 1.2e3
-COUNTER = False
+COUNTER = True
 
 
 def get_order(n: int) -> int:
@@ -162,10 +162,11 @@ def solution(n_primes: int = 5) -> int:
     # Main loop
     limit = output ** (1 / n_primes) * n_primes
     for i in range(len(primes)):
-        # Break main loop if the current minimal number is larger than the 3rd root
-        # of the current output The reason for this is to not waste time trying to
-        # find solutions once the smallest prime in the search is already too large
-        # to be part of the solution
+        # Break main loop if the current minimal number is larger than the nth root
+        # of the current output times n, with n being the amount of primes searched.
+        # The reason for this is to reduce the search space with a reasonable upper
+        # bound. Analysis with lower values for n_primes shows that this is a valid
+        # optimization.
         if primes[i] > limit:
             break
 
@@ -188,4 +189,4 @@ def solution(n_primes: int = 5) -> int:
 
 
 if __name__ == "__main__":
-    print(f"{solution() = }")
+    print(f"{solution(4) = }")
