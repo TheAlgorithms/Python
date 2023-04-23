@@ -9,14 +9,15 @@ https://en.wikipedia.org/wiki/Activation_function
 """
 import numpy
 import numpy as np
+import doctest
 
 
-def tanh_func(vector):
+def tanh_func(vector: np.array) -> np.array:
     """
         Implements the tanh function
 
         Parameters:
-            vector: np.array, list, tuple consisting real values
+            vector: np.array
 
         Returns:
             tanh (np.array): The input numpy array  after applying
@@ -26,7 +27,9 @@ def tanh_func(vector):
 
     Examples:
         >>> tanh_func(np.array([1, 5, 6, 113, 13, 16, -5.23]))
-        [ 0.76159416  0.9999092   0.99998771  1.          1.          1.    -0.99994268]
+        array([ 0.76159416,  0.9999092 ,  0.99998771,  1.        ,  1.        ,
+            1.        , -0.99994268])
+
     """
 
     exp_vector = np.exp(-2 * vector)
@@ -34,4 +37,5 @@ def tanh_func(vector):
 
 
 if __name__ == '__main__':
-    print(tanh_func(np.array([0.23])))
+    doctest.testmod()
+
