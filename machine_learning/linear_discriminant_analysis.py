@@ -44,7 +44,6 @@
 """
 from collections.abc import Callable
 from math import log
-from os import name, system
 from random import gauss, seed
 from typing import TypeVar
 
