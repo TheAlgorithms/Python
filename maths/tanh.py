@@ -38,4 +38,3 @@ def tanh_func(vector: np.array) -> np.array:
 
 if __name__ == '__main__':
     doctest.testmod()
-
