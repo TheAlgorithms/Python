@@ -36,5 +36,5 @@ def tanh_func(vector: np.array) -> np.array:
     return (2 / (1 + exp_vector)) - 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     doctest.testmod()
