@@ -1,5 +1,16 @@
 """
 Finds the top K most frequent words from the provided word list.
+
+This implementation aims to show how to solve the problem using the Heap class
+already present in this repository.
+Computing order statistics is, in fact, a typical usage of heaps.
+
+This is mostly shown for educational purposes, since the problem can be solved
+in a few lines using collections.Counter from the Python standard library:
+
+from collections import Counter
+def top_k_frequent_words(words, k_value):
+    return [x[0] for x in Counter(words).most_common(k_value)]
 """
 
 
