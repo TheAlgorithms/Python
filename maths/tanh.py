@@ -11,8 +11,8 @@ import numpy
 import numpy as np
 
 
-def tanh(vector):
-    '''
+def tanh_func(vector):
+    """
         Implements the tanh function
 
         Parameters:
@@ -23,10 +23,15 @@ def tanh(vector):
         tanh.
 
         mathematically (e^x - e^(-x))/(e^x + e^(-x)) can be written as (2/(1+e^(-2x))-1
-    '''
+
+    Examples:
+        >>> tanh_func(np.array([1, 5, 6, 113, 13, 16, -5.23]))
+        [ 0.76159416  0.9999092   0.99998771  1.          1.          1.    -0.99994268]
+    """
+
     exp_vector = np.exp(-2 * vector)
     return (2 / (1 + exp_vector)) - 1
 
 
 if __name__ == '__main__':
-    print(tanh(np.array([1, 5, 6, 113, 13, 16, -5.23])))
+    print(tanh_func(np.array([0.23])))
