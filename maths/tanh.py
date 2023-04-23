@@ -26,9 +26,8 @@ def tangent_hyperbolic(vector: np.array) -> np.array:
         mathematically (e^x - e^(-x))/(e^x + e^(-x)) can be written as (2/(1+e^(-2x))-1
 
     Examples:
-        >>> tangent_hyperbolic(np.array([1,5,6,113,13,16,-5.23]))
-        array([ 0.76159416,  0.9999092 ,  0.99998771,  1.        ,  1.        ,
-            1.        , -0.99994268])
+        >>> tangent_hyperbolic(np.array([1,5,6,-0.67]))
+        array([ 0.76159416,  0.9999092 ,  0.99998771, -0.58497988])
 
     """
 
@@ -39,4 +38,4 @@ def tangent_hyperbolic(vector: np.array) -> np.array:
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod(optionflags=doctest.NORMALIZE_WHITESPACE)
+    doctest.testmod()
