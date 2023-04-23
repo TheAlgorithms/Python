@@ -44,7 +44,6 @@
 """
 from collections.abc import Callable
 from math import log
-from os import name, system
 from random import gauss, seed
 from typing import TypeVar
 
@@ -399,7 +398,7 @@ def main():
         if input("Press any key to restart or 'q' for quit: ").strip().lower() == "q":
             print("\n" + "GoodBye!".center(100, "-") + "\n")
             break
-        system("clear" if name == "posix" else "cls")
+        # system("clear" if name == "posix" else "cls")
 
 
 if __name__ == "__main__":
