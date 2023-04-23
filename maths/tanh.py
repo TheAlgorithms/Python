@@ -33,5 +33,5 @@ def tanh_func(vector):
     return (2 / (1 + exp_vector)) - 1
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(tanh_func(np.array([0.23])))
