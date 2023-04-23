@@ -1,18 +1,18 @@
 """
-This script demonstrates the implementation of the tangent hyperbolic or tanh function.
+This script demonstrates the implementation of the tangent hyperbolic
+or tanh function.
 
-The function takes a vector of K real numbers as input and then (e^x - e^(-x))/(e^x + e^(-x)).
-After through tanh, the element of the vector mostly -1 between 1.
+The function takes a vector of K real numbers as input and
+then (e^x - e^(-x))/(e^x + e^(-x)). After through tanh, the
+element of the vector mostly -1 between 1.
 
 Script inspired from its corresponding Wikipedia article
 https://en.wikipedia.org/wiki/Activation_function
 """
-import numpy
 import numpy as np
-import doctest
 
 
-def tanh_func(vector: np.array) -> np.array:
+def tangent_hyperbolic(vector: np.array) -> np.array:
     """
         Implements the tanh function
 
@@ -26,7 +26,7 @@ def tanh_func(vector: np.array) -> np.array:
         mathematically (e^x - e^(-x))/(e^x + e^(-x)) can be written as (2/(1+e^(-2x))-1
 
     Examples:
-        >>> tanh_func(np.array([1, 5, 6, 113, 13, 16, -5.23]))
+        >>> tangent_hyperbolic(np.array([1,5,6,113,13,16,-5.23]))
         array([ 0.76159416,  0.9999092 ,  0.99998771,  1.        ,  1.        ,
             1.        , -0.99994268])
 
@@ -36,5 +36,7 @@ def tanh_func(vector: np.array) -> np.array:
     return (2 / (1 + exp_vector)) - 1
 
 
-if __name__ == '__main__':
-    doctest.testmod()
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod(optionflags=doctest.NORMALIZE_WHITESPACE)
