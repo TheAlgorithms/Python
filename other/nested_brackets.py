@@ -24,11 +24,10 @@ def is_balanced(s):
         if s[i] in open_brackets:
             stack.append(s[i])
 
-        elif s[i] in closed_brackets:
-            if len(stack) == 0 or (
-                len(stack) > 0 and open_to_closed[stack.pop()] != s[i]
-            ):
-                return False
+        elif s[i] in closed_brackets and (
+            len(stack) == 0 or (len(stack) > 0 and open_to_closed[stack.pop()] != s[i])
+        ):
+            return False
 
     return len(stack) == 0
 

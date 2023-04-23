@@ -108,7 +108,7 @@ class Vector:
         mul implements the scalar multiplication
         and the dot-product
         """
-        if isinstance(other, float) or isinstance(other, int):
+        if isinstance(other, (float, int)):
             ans = [c * other for c in self.__components]
             return Vector(ans)
         elif isinstance(other, Vector) and len(self) == len(other):
@@ -216,7 +216,7 @@ def axpy(scalar: float, x: Vector, y: Vector) -> Vector:
     assert (
         isinstance(x, Vector)
         and isinstance(y, Vector)
-        and (isinstance(scalar, int) or isinstance(scalar, float))
+        and (isinstance(scalar, (int, float)))
     )
     return x * scalar + y
 
@@ -337,12 +337,13 @@ class Matrix:
                     "vector must have the same size as the "
                     "number of columns of the matrix!"
                 )
-        elif isinstance(other, int) or isinstance(other, float):  # matrix-scalar
+        elif isinstance(other, (int, float)):  # matrix-scalar
             matrix = [
                 [self.__matrix[i][j] * other for j in range(self.__width)]
                 for i in range(self.__height)
             ]
             return Matrix(matrix, self.__width, self.__height)
+        return None
 
     def height(self) -> int:
         """

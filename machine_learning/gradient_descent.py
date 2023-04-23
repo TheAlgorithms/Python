@@ -55,6 +55,7 @@ def output(example_no, data_set):
         return train_data[example_no][1]
     elif data_set == "test":
         return test_data[example_no][1]
+    return None
 
 
 def calculate_hypothesis_value(example_no, data_set):
@@ -68,6 +69,7 @@ def calculate_hypothesis_value(example_no, data_set):
         return _hypothesis_value(train_data[example_no][0])
     elif data_set == "test":
         return _hypothesis_value(test_data[example_no][0])
+    return None
 
 
 def summation_of_cost_derivative(index, end=m):

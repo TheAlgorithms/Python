@@ -47,7 +47,7 @@ class IIRFilter:
             >>> filt.set_coefficients(a_coeffs, b_coeffs)
         """
         if len(a_coeffs) < self.order:
-            a_coeffs = [1.0] + a_coeffs
+            a_coeffs = [1.0, *a_coeffs]
 
         if len(a_coeffs) != self.order + 1:
             raise ValueError(

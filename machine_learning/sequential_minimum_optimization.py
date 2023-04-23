@@ -129,7 +129,7 @@ class SmoSVM:
             #     error
             self._unbound = [i for i in self._all_samples if self._is_unbound(i)]
             for s in self.unbound:
-                if s == i1 or s == i2:
+                if s in (i1, i2):
                     continue
                 self._error[s] += (
                     y1 * (a1_new - a1) * k(i1, s)
@@ -225,7 +225,7 @@ class SmoSVM:
     def _choose_alphas(self):
         locis = yield from self._choose_a1()
         if not locis:
-            return
+            return None
         return locis
 
     def _choose_a1(self):
@@ -423,9 +423,8 @@ class Kernel:
         return np.exp(-1 * (self.gamma * np.linalg.norm(v1 - v2) ** 2))
 
     def _check(self):
-        if self._kernel == self._rbf:
-            if self.gamma < 0:
-                raise ValueError("gamma value must greater than 0")
+        if self._kernel == self._rbf and self.gamma < 0:
+            raise ValueError("gamma value must greater than 0")
 
     def _get_kernel(self, kernel_name):
         maps = {"linear": self._linear, "poly": self._polynomial, "rbf": self._rbf}
@@ -459,7 +458,7 @@ def test_cancel_data():
             CANCER_DATASET_URL,
             headers={"User-Agent": "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)"},
         )
-        response = urllib.request.urlopen(request)
+        response = urllib.request.urlopen(request)  # noqa: S310
         content = response.read().decode("utf-8")
         with open(r"cancel_data.csv", "w") as f:
             f.write(content)
@@ -570,7 +569,7 @@ def plot_partition_boundary(
     """
     We can not get the optimum w of our kernel svm model which is different from linear
     svm.  For this reason, we generate randomly distributed points with high desity and
-    prediced values of these points are calculated by using our tained model. Then we
+    prediced values of these points are calculated by using our trained model. Then we
     could use this prediced values to draw contour map.
     And this contour map can represent svm's partition boundary.
     """
