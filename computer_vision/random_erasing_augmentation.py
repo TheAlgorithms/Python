@@ -91,7 +91,7 @@ def random_chars(number_char: int = 32) -> str:
     """
     assert number_char > 1, "The number of character should greater than 1"
     letters_and_digits = ascii_lowercase + digits
-    return "".join(random.choice(letter_code) for _ in range(number_char))
+    return "".join(random.choice(letters_and_digits) for _ in range(number_char))
 
 
 if __name__ == "__main__":
