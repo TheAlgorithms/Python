@@ -29,6 +29,9 @@ def tangent_hyperbolic(vector: np.array) -> np.array:
         >>> tangent_hyperbolic(np.array([1,5,6,-0.67]))
         array([ 0.76159416,  0.9999092 ,  0.99998771, -0.58497988])
 
+        >>> tangent_hyperbolic(np.array([8,10,2,-0.98,13]))
+        array([ 0.99999977,  1.        ,  0.96402758, -0.7530659 ,  1.        ])
+
     """
 
     exp_vector = np.exp(-2 * vector)
