@@ -1,5 +1,3 @@
-from typing import List
-
 
 def permute(nums: list[int]) -> list[list[int]]:
     """
