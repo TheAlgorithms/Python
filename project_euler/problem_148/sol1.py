@@ -54,7 +54,7 @@ def solution(pascal_row_count: int = 10**9) -> int:
             pascal_row[j - 1] = (pascal_row[j - 1] + pascal_row[j]) % 7
             if pascal_row[j - 1] != 0:
                 count += 2
-            j += 1  
+            j += 1
 
         # Adding the middle element for even rows
         if i % 2 == 0:
