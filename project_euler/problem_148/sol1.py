@@ -28,7 +28,7 @@ Note: In the original problem, we need to calculate for 10^9 rows
 """
 
 
-def solution(pascal_row_count: int = 10**4) -> int:
+def solution(pascal_row_count: int = 10**9) -> int:
     """
     To evaluate the solution, use solution()
     >>> solution(3)
@@ -54,7 +54,7 @@ def solution(pascal_row_count: int = 10**4) -> int:
             pascal_row[j - 1] = (pascal_row[j - 1] + pascal_row[j]) % 7
             if pascal_row[j - 1] != 0:
                 count += 2
-            j += 1
+            j += 1  
 
         # Adding the middle element for even rows
         if i % 2 == 0:
