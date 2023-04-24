@@ -1,9 +1,10 @@
 """
     Implemented an algorithm using opencv to convert a colored image into its grayscale
 """
+import doctest
+
 import numpy as np
 from cv2 import destroyAllWindows, imread, imshow, waitKey
-import doctest
 
 
 def convert_to_grayscale(img: np.ndarray) -> np.ndarray:
