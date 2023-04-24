@@ -1,8 +1,8 @@
 """
     Implemented an algorithm using opencv to convert a colored image into its grayscale
 """
-from cv2 import destroyAllWindows, imread, imshow, waitKey
 import numpy as np
+from cv2 import destroyAllWindows, imread, imshow, waitKey
 import doctest
 
 
