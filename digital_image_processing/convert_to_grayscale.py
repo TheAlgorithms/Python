@@ -2,10 +2,11 @@
     Implemented an algorithm using opencv to convert a colored image into its grayscale
 """
 from cv2 import destroyAllWindows, imread, imshow, waitKey
+import numpy as np
 import doctest
 
 
-def convert_to_grayscale(img):
+def convert_to_grayscale(img: np.ndarray) -> np.ndarray:
     # getting number of pixels in the image
     pixel_h, pixel_v = img.shape[0], img.shape[1]
 
