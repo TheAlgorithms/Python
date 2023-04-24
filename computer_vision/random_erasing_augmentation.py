@@ -2,9 +2,8 @@ import glob
 import os
 import random
 from string import ascii_lowercase, digits
-
 import cv2
-import numpy as np
+
 
 # Params
 IMAGE_DIR = "1"
