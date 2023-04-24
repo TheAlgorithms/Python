@@ -31,4 +31,4 @@ if __name__ == "__main__":
     imshow("grayscale of original image", img)
     waitKey(0)
     destroyAllWindows()
-	doctest.testmod()
+    doctest.testmod()
