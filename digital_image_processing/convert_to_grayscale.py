@@ -1,5 +1,5 @@
 """
-	Implemented an algorithm using opencv to convert a colored image into its grayscale
+    Implemented an algorithm using opencv to convert a colored image into its grayscale
 """
 from cv2 import destroyAllWindows, imread, imshow, waitKey
 
