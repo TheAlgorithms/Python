@@ -2,6 +2,7 @@
     Implemented an algorithm using opencv to convert a colored image into its grayscale
 """
 from cv2 import destroyAllWindows, imread, imshow, waitKey
+import doctest
 
 
 def convert_to_grayscale(img):
@@ -30,3 +31,4 @@ if __name__ == "__main__":
     imshow("grayscale of original image", img)
     waitKey(0)
     destroyAllWindows()
+	doctest.testmod()
