@@ -1,4 +1,3 @@
-
 def permute(nums: list[int]) -> list[list[int]]:
     """
     Return all permutations.
