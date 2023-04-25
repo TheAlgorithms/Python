@@ -2,7 +2,7 @@
 """ BY - RUDRANSH BHARDWAJ"""
 
 
-def swapRows(a, row1, row2):
+def swap_rows(a, row1, row2):
     a[row2], a[row1] = a[row1], a[row2]
     return a
 
