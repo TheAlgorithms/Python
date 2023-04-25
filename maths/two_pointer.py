@@ -9,6 +9,16 @@ This is an alternative solution of the two-sum problem, which uses a
 map to solve the problem. Hence can not solve the issue if there is a
 constraint not use the same index twice. [1]
 
+Referencing the Big O Notation, this algorithm has a liner time
+complexity, O(N). In the worst case scenario, the sum of all pointers'
+movements would be equals to the list's size.
+E.g:
+list = [5,12,13,21,40]
+Meanwhile the left pointer will have to move three times, the right
+pointer will move twice, totaling 5 moves.
+Pointers Moviments == List's size == Algorithm's number of operations.
+[https://en.wikipedia.org/wiki/Big_O_notation#Use_in_computer_science]
+
 Example:
 Given nums = [2, 7, 11, 15], target = 9,
 
