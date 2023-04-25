@@ -1,53 +1,64 @@
 """This is a python program that calculates the rank of a matrix"""
 """ BY - RUDRANSH BHARDWAJ"""
 
+def rank_of_matrix(matrix:list[list])->int:
+    """
+    Finds the rank of a matrix.
 
-def swap_rows(a, row1, row2):
-    a[row2], a[row1] = a[row1], a[row2]
-    return a
+    Args:
+        matrix (list of lists): The matrix as a list of lists.
 
+    Returns:
+        int: The rank of the matrix.
 
-def row_transformation(a, x, row1, row2):
-    for i in range(len(a[row2])):
-        a[row2][i] += a[row1][i] * x
-    return a
+    Example:
+    >>> matrix1 = [[1, 2, 3],
+    ...            [4, 5, 6],
+    ...            [7, 8, 9]]
+    >>> rank_of_matrix(matrix1)
+    2
+    >>> matrix2 = [[1, 0, 0],
+    ...            [0, 1, 0],
+    ...            [0, 0, 0]]
+    >>> rank_of_matrix(matrix2)
+    2
+    >>> matrix3 = [[1, 2, 3, 4],
+    ...            [5, 6, 7, 8],
+    ...            [9, 10, 11, 12]]
+    >>> rank_of_matrix(matrix3)
+    2
+    """
 
+    rows = len(matrix)
+    columns = len(matrix[0])
+    rank = min(rows, columns)
 
-def matrix_rank(a):
-    ncol = len(a[0])
-    nrow = len(a)
-    rank = min(ncol, nrow)
-
-    if nrow > ncol:
-        b = []
-        for m in range(ncol):
-            l = []
-            for n in range(nrow):
-                l.append(a[n][m])
-            b.append(l)
-        a = b
-        ncol, nrow = nrow, ncol
-
-    for r in range(rank):
-        if a[r][r] != 0:
-            for j in range(r + 1, nrow):
-                a = Row_Transformation(a, -(a[j][r] // a[r][r]), r, j)
+    for row in range(rank):
+        # Check if diagonal element is not zero
+        if matrix[row][row] != 0:
+            # Eliminate all the elements below the diagonal
+            for col in range(row + 1, rows):
+                multiplier = matrix[col][row] / matrix[row][row]
+                for i in range(row, columns):
+                    matrix[col][i] -= multiplier * matrix[row][i]
         else:
-            count1 = True
-            for k in range(r + 1, nrow):
-                if a[k][r] != 0:
-                    a = swapRows(a, r, k)
-                    count1 = False
+            # Find a non-zero diagonal element to swap rows
+            reduce = True
+            for i in range(row + 1, rows):
+                if matrix[i][row] != 0:
+                    matrix[row], matrix[i] = matrix[i], matrix[row]
+                    reduce = False
                     break
+            if reduce:
+                rank -= 1
+                for i in range(rows):
+                    matrix[i][row] = matrix[i][rank]
 
-            if count1:
-                for i in range(nrow):
-                    a[i][r], a[i][rank - 1] = a[i][rank - 1], a[i][r]
-            nrow -= 1
+            # Reduce the row pointer by one to stay on the same row
+            row -= 1
 
-        count2 = 0
-        for i in a:
-            if i == [0] * ncol:
-                count2 += 1
+    return rank
 
-        return rank - count2
+if __name__=='__main__':
+    import doctest
+    doctest.testmod()
