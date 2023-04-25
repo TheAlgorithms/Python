@@ -1,7 +1,8 @@
 """This is a python program that calculates the rank of a matrix"""
 """ BY - RUDRANSH BHARDWAJ"""
 
-def rank_of_matrix(matrix:list[list])->int:
+
+def rank_of_matrix(matrix: list[list]) -> int:
     """
     Finds the rank of a matrix.
 
@@ -59,6 +60,8 @@ def rank_of_matrix(matrix:list[list])->int:
 
     return rank
 
-if __name__=='__main__':
+
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
