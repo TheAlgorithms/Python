@@ -20,8 +20,7 @@ def tangent_hyperbolic(vector: np.array) -> np.array:
             vector: np.array
 
         Returns:
-            tanh (np.array): The input numpy array  after applying
-        tanh.
+            tanh (np.array): The input numpy array after applying tanh.
 
         mathematically (e^x - e^(-x))/(e^x + e^(-x)) can be written as (2/(1+e^(-2x))-1
 
@@ -34,8 +33,7 @@ def tangent_hyperbolic(vector: np.array) -> np.array:
 
     """
 
-    exp_vector = np.exp(-2 * vector)
-    return (2 / (1 + exp_vector)) - 1
+    return (2 / (1 + np.exp(-2 * vector))) - 1
 
 
 if __name__ == "__main__":
