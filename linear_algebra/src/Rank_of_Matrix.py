@@ -7,13 +7,13 @@ def swap_rows(a, row1, row2):
     return a
 
 
-def Row_Transformation(a, x, row1, row2):
+def row_transformation(a, x, row1, row2):
     for i in range(len(a[row2])):
         a[row2][i] += a[row1][i] * x
     return a
 
 
-def MatrixRank(a):
+def matrix_rank(a):
     ncol = len(a[0])
     nrow = len(a)
     rank = min(ncol, nrow)
