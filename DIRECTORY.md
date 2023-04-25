@@ -327,6 +327,7 @@
   * [Minimum Coin Change](dynamic_programming/minimum_coin_change.py)
   * [Minimum Cost Path](dynamic_programming/minimum_cost_path.py)
   * [Minimum Partition](dynamic_programming/minimum_partition.py)
+  * [Minimum Size Subarray Sum](dynamic_programming/minimum_size_subarray_sum.py)
   * [Minimum Squares To Represent A Number](dynamic_programming/minimum_squares_to_represent_a_number.py)
   * [Minimum Steps To One](dynamic_programming/minimum_steps_to_one.py)
   * [Minimum Tickets Cost](dynamic_programming/minimum_tickets_cost.py)
@@ -339,6 +340,7 @@
   * [Word Break](dynamic_programming/word_break.py)
 
 ## Electronics
+  * [Apparent Power](electronics/apparent_power.py)
   * [Builtin Voltage](electronics/builtin_voltage.py)
   * [Carrier Concentration](electronics/carrier_concentration.py)
   * [Circular Convolution](electronics/circular_convolution.py)
@@ -348,6 +350,7 @@
   * [Electrical Impedance](electronics/electrical_impedance.py)
   * [Ind Reactance](electronics/ind_reactance.py)
   * [Ohms Law](electronics/ohms_law.py)
+  * [Real And Reactive Power](electronics/real_and_reactive_power.py)
   * [Resistor Equivalence](electronics/resistor_equivalence.py)
   * [Resonant Frequency](electronics/resonant_frequency.py)
 
@@ -483,6 +486,7 @@
   * [Astar](machine_learning/astar.py)
   * [Data Transformations](machine_learning/data_transformations.py)
   * [Decision Tree](machine_learning/decision_tree.py)
+  * [Dimensionality Reduction](machine_learning/dimensionality_reduction.py)
   * Forecasting
     * [Run](machine_learning/forecasting/run.py)
   * [Gradient Descent](machine_learning/gradient_descent.py)
@@ -604,6 +608,7 @@
   * [Perfect Number](maths/perfect_number.py)
   * [Perfect Square](maths/perfect_square.py)
   * [Persistence](maths/persistence.py)
+  * [Pi Generator](maths/pi_generator.py)
   * [Pi Monte Carlo Estimation](maths/pi_monte_carlo_estimation.py)
   * [Points Are Collinear 3D](maths/points_are_collinear_3d.py)
   * [Pollard Rho](maths/pollard_rho.py)
