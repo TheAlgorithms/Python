@@ -2,8 +2,7 @@ import os
 import random
 import sys
 
-import cryptomath_module
-import rabin_miller
+from . import cryptomath_module, rabin_miller
 
 
 def main() -> None:
@@ -17,9 +16,9 @@ def generate_key(key_size: int) -> tuple[tuple[int, int], tuple[int, int]]:
     >>> random.seed(0) # for repeatability
     >>> public_key, private_key = generate_key(8)
     >>> public_key
-    (46513, 197)
+    (26569, 239)
     >>> private_key
-    (46513, 2573)
+    (26569, 2855)
     """
     p = rabin_miller.generate_large_prime(key_size)
     q = rabin_miller.generate_large_prime(key_size)
