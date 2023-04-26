@@ -38,6 +38,11 @@ True
 >>> t.search(-1) is not None
 False
 
+>>> t.search(6).is_right
+True
+>>> t.search(1).is_right
+False
+
 >>> t.get_max().value
 14
 >>> t.get_min().value
@@ -177,12 +182,12 @@ class BinarySearchTree:
             elif node.right is None:  # Has only left children
                 self.__reassign_nodes(node, node.left)
             else:
-                tmp_node = self.get_max(
+                predecessor = self.get_max(
                     node.left
                 )  # Gets the max value of the left branch
-                self.remove(tmp_node.value)  # type: ignore
+                self.remove(predecessor.value)  # type: ignore
                 node.value = (
-                    tmp_node.value  # type: ignore
+                    predecessor.value  # type: ignore
                 )  # Assigns the value to the node to delete and keep tree structure
 
     def preorder_traverse(self, node: Node | None) -> Iterable:
