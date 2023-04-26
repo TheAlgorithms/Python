@@ -20,6 +20,34 @@ Example
 Traceback (most recent call last):
     ...
 IndexError: Warning: Tree is empty! please use another.
+
+Other example:
+
+>>> testlist = (8, 3, 6, 1, 10, 14, 13, 4, 7)
+>>> t = BinarySearchTree()
+>>> for i in testlist:
+...     t.insert(i)
+
+Prints all the elements of the list in order traversal
+>>> print(t)
+{'8': ({'3': (1, {'6': (4, 7)})}, {'10': (None, {'14': (13, None)})})}
+
+Test existence
+>>> t.search(6) is not None
+True
+>>> t.search(-1) is not None
+False
+
+>>> t.get_max().value
+14
+>>> t.get_min().value
+1
+>>> t.empty()
+False
+>>> for i in testlist:
+...     t.remove(i)
+>>> t.empty()
+True
 """
 
 from collections.abc import Iterable
@@ -197,36 +225,7 @@ def postorder(curr_node: Node | None) -> list[Node]:
     return node_list
 
 
-def binary_search_tree_example() -> None:
-    testlist = (8, 3, 6, 1, 10, 14, 13, 4, 7)
-    t = BinarySearchTree()
-    for i in testlist:
-        t.insert(i)
-
-    # Prints all the elements of the list in order traversal
-    print(t)
-
-    if t.search(6) is not None:
-        print("The value 6 exists")
-    else:
-        print("The value 6 doesn't exist")
-
-    if t.search(-1) is not None:
-        print("The value -1 exists")
-    else:
-        print("The value -1 doesn't exist")
-
-    if not t.empty():
-        print("Max Value: ", t.get_max().value)  # type: ignore
-        print("Min Value: ", t.get_min().value)  # type: ignore
-
-    for i in testlist:
-        t.remove(i)
-        print(t)
-
-
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod(verbose=True)
-    binary_search_tree_example()
