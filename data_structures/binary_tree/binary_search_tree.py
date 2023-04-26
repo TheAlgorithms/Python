@@ -68,6 +68,12 @@ class Node:
             return str(self.value)
         return pformat({f"{self.value}": (self.left, self.right)}, indent=1)
 
+    @property
+    def is_right(self) -> bool:
+        if self.parent and self.parent.right:
+            return self == self.parent.right
+        return False
+
 
 class BinarySearchTree:
     def __init__(self, root: Node | None = None):
@@ -83,17 +89,12 @@ class BinarySearchTree:
         if new_children is not None:  # reset its kids
             new_children.parent = node.parent
         if node.parent is not None:  # reset its parent
-            if self.is_right(node):  # If it is the right children
+            if node.is_right:  # If it is the right children
                 node.parent.right = new_children
             else:
                 node.parent.left = new_children
         else:
             self.root = None
-
-    def is_right(self, node: Node) -> bool:
-        if node.parent and node.parent.right:
-            return node == node.parent.right
-        return False
 
     def empty(self) -> bool:
         return self.root is None
