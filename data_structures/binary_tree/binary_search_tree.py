@@ -1,5 +1,25 @@
-"""
+r"""
 A binary search Tree
+
+Example
+              8
+             / \
+            3   10
+           / \    \
+          1   6    14
+             / \   /
+            4   7 13
+
+>>> t = BinarySearchTree()
+>>> t.insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
+>>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
+8 3 1 6 4 7 10 14 13
+>>> print(" ".join(repr(i.value) for i in t.traversal_tree(postorder)))
+1 4 7 6 3 13 14 10 8
+>>> BinarySearchTree().search(6)
+Traceback (most recent call last):
+    ...
+IndexError: Warning: Tree is empty! please use another.
 """
 
 from collections.abc import Iterable
@@ -177,28 +197,7 @@ def postorder(curr_node: Node | None) -> list[Node]:
     return node_list
 
 
-def binary_search_tree() -> None:
-    r"""
-    Example
-                  8
-                 / \
-                3   10
-               / \    \
-              1   6    14
-                 / \   /
-                4   7 13
-
-    >>> t = BinarySearchTree()
-    >>> t.insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
-    >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
-    8 3 1 6 4 7 10 14 13
-    >>> print(" ".join(repr(i.value) for i in t.traversal_tree(postorder)))
-    1 4 7 6 3 13 14 10 8
-    >>> BinarySearchTree().search(6)
-    Traceback (most recent call last):
-        ...
-    IndexError: Warning: Tree is empty! please use another.
-    """
+def binary_search_tree_example() -> None:
     testlist = (8, 3, 6, 1, 10, 14, 13, 4, 7)
     t = BinarySearchTree()
     for i in testlist:
@@ -230,3 +229,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod(verbose=True)
+    binary_search_tree_example()
