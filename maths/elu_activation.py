@@ -33,7 +33,7 @@ def elu_activation(vector: np.array, alpha: float) -> np.array:
     return np.where(vector > 0, vector, (alpha * (np.exp(vector) - 1)))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
