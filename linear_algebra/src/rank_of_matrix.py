@@ -40,6 +40,10 @@ def rank_of_matrix(matrix: list[list]) -> int:
     >>> rank_of_matrix([[3,2,1],
     ...                [-6,-4,-2]])
     1
+    >>> rank_of_matrix([[],[]])
+    0
+    >>> rank_of_matrix([[1]])
+    1
     """
 
     rows = len(matrix)
