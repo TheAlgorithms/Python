@@ -1,5 +1,6 @@
 """This is a python program that calculates the rank of a matrix"""
 
+
 def rank_of_matrix(matrix: list[list]) -> int:
     """
     Finds the rank of a matrix.
