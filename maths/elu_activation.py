@@ -11,7 +11,7 @@ https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
 import numpy as np
 
 
-def elu_activation(vector: np.ndarray, alpha: float) -> np.ndarray:
+def exponential_linear_unit(vector: np.ndarray, alpha: float) -> np.ndarray:
     """
          Implements the ELU activation function.
          Parameters:
