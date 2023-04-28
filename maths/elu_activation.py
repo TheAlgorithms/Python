@@ -9,7 +9,6 @@ https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
 """
 
 import numpy as np
-from typing import TYPE_CHECKING
 
 
 def elu_activation(vector: np.ndarray, alpha: float) -> np.ndarray:
