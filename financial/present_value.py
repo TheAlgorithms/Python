@@ -7,7 +7,7 @@
 # Note: This algorithm assumes that cash flows are paid at the end of the specified year
 
 
-def present_value(discount_rate: float, cash_flows: list[float]) -> tuple[float, str]:
+def present_value(discount_rate: float, cash_flows: list[float]) -> float:
     """
     >>> round(present_value(0.13, [10, 20.70, -293, 297]), 2)
     4.69
@@ -21,11 +21,7 @@ def present_value(discount_rate: float, cash_flows: list[float]) -> tuple[float,
         present_value += cash_flow / ((1 + discount_rate) ** idx)
 
     return (
-        present_value,
-        "The present value of the given yearly cash flows at a "
-        + str(round(discount_rate * 100, 2))
-        + "% discount rate is $"
-        + str(round(present_value, 2)),
+        present_value
     )
 
 
