@@ -14,11 +14,18 @@ ensures that the function produces the correct output.
 """
 
 
-def minimum_waiting_time(queries):
+def minimum_waiting_time(queries: list) -> int:
     """
     This function takes a list of query times and returns the minimum waiting time
     for all queries to be completed.
 
+    Args:
+        queries [list]: A list of queries
+
+    Returns:
+        total_waiting_time [int]: Minimum waiting time
+
+    Examples:
     >>> minimum_waiting_time([3, 2, 1, 2, 6])
     17
     >>> minimum_waiting_time([3, 2, 1])
