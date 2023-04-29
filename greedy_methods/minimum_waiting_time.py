@@ -42,6 +42,7 @@ def minimum_waiting_time(queries):
     return total_waiting_time
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
