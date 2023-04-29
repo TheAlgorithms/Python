@@ -1,14 +1,16 @@
 """
-This is a pure Python implementation for minimum waiting time problem using greedy algorithm
+This is a pure Python implementation for minimum waiting time problem using greedy
+algorithm.
 reference: https://www.youtube.com/watch?v=Sf3eiO12eJs
 
 For doctests run following command:
-python -m doctest -v .\greedy_methods\minimum_waiting_time.py
+python -m doctest -v minimum_waiting_time.py
 
-The minimum_waiting_time function uses a greedy algorithm to calculate the minimum time for queries to complete.
-It sorts the list in non-decreasing order, calculates the waiting time for each query by multiplying its position
-in the list with the sum of all remaining query times, and returns the total waiting time. A doctest ensures that
-the function produces the correct output.
+The minimum_waiting_time function uses a greedy algorithm to calculate the minimum
+time for queries to complete. It sorts the list in non-decreasing order, calculates
+the waiting time for each query by multiplying its position in the list with the
+sum of all remaining query times, and returns the total waiting time. A doctest
+ensures that the function produces the correct output.
 """
 
 
