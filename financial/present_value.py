@@ -6,10 +6,10 @@
 
 # Note: This algorithm assumes that cash flows are paid at the end of the specified year
 
-from typing import List, Tuple
+from typing import list, tuple
 
 
-def present_value(discount_rate: float, cash_flows: List[float]) -> Tuple[float, str]:
+def present_value(discount_rate: float, cash_flows: list[float]) -> tuple[float, str]:
     present_value = 0.0
 
     if discount_rate == -1:
