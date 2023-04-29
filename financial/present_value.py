@@ -28,9 +28,7 @@ def present_value(discount_rate: float, cash_flows: list[float]) -> float:
     for idx, cash_flow in enumerate(cash_flows):
         present_value += cash_flow / ((1 + discount_rate) ** idx)
 
-    return (
-        present_value
-    )
+    return present_value
 
 
 if __name__ == "__main__":
