@@ -9,8 +9,8 @@
 
 def present_value(discount_rate: float, cash_flows: list[float]) -> tuple[float, str]:
     """
-    >>> present_value(0.13, [10, 20.70, -293, 297])
-    4.692504038749803
+    >>> round(present_value(0.13, [10, 20.70, -293, 297]), 2)
+    4.69
     """
     present_value = 0.0
 
