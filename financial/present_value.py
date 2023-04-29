@@ -1,3 +1,5 @@
+# Reference: https://www.investopedia.com/terms/p/presentvalue.asp
+
 # Algorithm that calculates the present value of a stream of yearly cash flows given...
 # 1. The discount rate (as a decimal, not a percent)
 # 2. An array of cash flows, with the index of the cash flow being the associated year
@@ -18,3 +20,7 @@ def present_value(discount_rate: float, cash_flows: List[float]) -> Tuple[float,
     return (present_value, 'The present value of the given yearly cash flows at a ' 
             + str(round(discount_rate * 100, 2)) + '% discount rate is $' 
             + str(round(present_value, 2)))
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
