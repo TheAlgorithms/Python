@@ -450,7 +450,7 @@
   * [Fractional Knapsack 2](greedy_methods/fractional_knapsack_2.py)
   * [Optimal Merge Pattern](greedy_methods/optimal_merge_pattern.py)
   * [Minimum Waiting Time ](greedy_methods/minimum_waiting_time.py)
-  
+
 ## Hashes
   * [Adler32](hashes/adler32.py)
   * [Chaos Machine](hashes/chaos_machine.py)
