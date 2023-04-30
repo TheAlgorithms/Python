@@ -16,18 +16,22 @@ only 2361 of the 5050 entries are not divisible by 7.
 Find the number of entries which are not divisible by 7
 in the first one billion (109) rows of Pascal's triangle.
 """
+
+
 def get_num_binomials(row_num: int) -> int:
     """
-    To compute the number of entries in the nth row of pascal triangle that are not divisble by 7.
-    Based on Lucas Theroem it is the product of (each digit in the base 7 n + 1) 
+    To compute the number of entries in the nth row of
+    pascal triangle that are not divisble by 7.
+    Based on Lucas Theroem it is the product of (each digit in the base 7 n + 1)
     Reference: https://brilliant.org/wiki/lucas-theorem/
     """
     cnt = 1
     while row_num > 0:
-        cnt *= ((row_num % 7) + 1)
+        cnt *= (row_num % 7) + 1
         row_num //= 7
     return cnt
-       
+
+
 def solution(pascal_row_count: int = 10**9) -> int:
     """
     To evaluate the solution, use solution()
@@ -38,9 +42,9 @@ def solution(pascal_row_count: int = 10**9) -> int:
     >>> solution(100)
     2361
     """
-    
+
     result = 0
-    for i in tqdm(range(pascal_row_count)):
+    for i in range(pascal_row_count):
         result += get_num_binomials(i) % 7
-         
+
     return result
