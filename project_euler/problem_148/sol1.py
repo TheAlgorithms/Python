@@ -22,6 +22,8 @@ def get_num_binomials(row_num: int) -> int:
     """
     To compute the number of entries in the nth row of
     pascal triangle that are not divisble by 7.
+    To compute the number of entries in the nth row of
+    pascal triangle that are not divisble by 7.
     Based on Lucas Theroem it is the product of (each digit in the base 7 n + 1)
     Reference: https://brilliant.org/wiki/lucas-theorem/
     """
