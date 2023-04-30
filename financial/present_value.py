@@ -1,10 +1,11 @@
-# Reference: https://www.investopedia.com/terms/p/presentvalue.asp
+"""
+Reference: https://www.investopedia.com/terms/p/presentvalue.asp
 
-# Algorithm that calculates the present value of a stream of yearly cash flows given...
-# 1. The discount rate (as a decimal, not a percent)
-# 2. An array of cash flows, with the index of the cash flow being the associated year
+An algorithm that calculates the present value of a stream of yearly cash flows given...
+1. The discount rate (as a decimal, not a percent)
+2. An array of cash flows, with the index of the cash flow being the associated year
 
-# Note: This algorithm assumes that cash flows are paid at the end of the specified year
+Note: This algorithm assumes that cash flows are paid at the end of the specified year
 
 
 def present_value(discount_rate: float, cash_flows: list[float]) -> float:
@@ -24,17 +25,13 @@ def present_value(discount_rate: float, cash_flows: list[float]) -> float:
         ...
     ValueError: Cash flows list cannot be empty
     """
-
     if discount_rate < 0:
         raise ValueError("Discount rate cannot be negative")
-
     if not cash_flows:
         raise ValueError("Cash flows list cannot be empty")
-
     present_value = sum(
         cash_flow / ((1 + discount_rate) ** i) for i, cash_flow in enumerate(cash_flows)
     )
-
     return round(present_value, ndigits=2)
 
 
