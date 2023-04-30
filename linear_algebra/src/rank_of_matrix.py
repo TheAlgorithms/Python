@@ -1,4 +1,8 @@
-"""This is a python program that calculates the rank of a matrix"""
+"""
+Calculate the rank of a matrix.
+
+See: https://en.wikipedia.org/wiki/Rank_(linear_algebra)
+"""
 
 
 def rank_of_matrix(matrix: list[list]) -> int:
