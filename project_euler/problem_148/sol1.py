@@ -26,6 +26,12 @@ def get_num_binomials(row_num: int) -> int:
     pascal triangle that are not divisble by 7.
     Based on Lucas Theroem it is the product of (each digit in the base 7 n + 1)
     Reference: https://brilliant.org/wiki/lucas-theorem/
+    >>> get_num_binomials(3)
+    4
+    >>> get_num_binomials(6)
+    7
+    >>> get_num_binomials(10)
+    8
     """
     cnt = 1
     while row_num > 0:
