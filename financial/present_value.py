@@ -24,7 +24,6 @@ def present_value(discount_rate: float, cash_flows: list[float]) -> float:
         ...
     ValueError: Cash flows list cannot be empty
     """
-    present_value = 0.0
 
     if discount_rate < 0:
         raise ValueError("Discount rate cannot be negative")
