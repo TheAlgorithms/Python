@@ -17,7 +17,6 @@ Find the number of entries which are not divisible by 7
 in the first one billion (109) rows of Pascal's triangle.
 """
 
-
 def get_num_binomials(row_num: int) -> int:
     """
     To compute the number of entries in the nth row of
@@ -38,7 +37,6 @@ def get_num_binomials(row_num: int) -> int:
         cnt *= (row_num % 7) + 1
         row_num //= 7
     return cnt
-
 
 def solution(pascal_row_count: int = 10**9) -> int:
     """
