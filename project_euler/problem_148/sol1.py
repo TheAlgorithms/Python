@@ -15,19 +15,19 @@ However, if we check the first one hundred rows, we will find that
 only 2361 of the 5050 entries are not divisible by 7.
 Find the number of entries which are not divisible by 7
 in the first one billion (109) rows of Pascal's triangle.
-
-Solution:
-We iteratively generate each row in the pascal triangle one-by-one.
-Since Pascal's triangle is vertically-symmetric,
-We only need to generate half of the values.
-We then count the values which are not divisible by 7.
-We only store the remainders(when divided by 7) in the list to reduce memory usage.
-
-Note: In the original problem, we need to calculate for 10^9 rows
-      but we took 10^4 rows here by default.
 """
-
-
+def get_num_binomials(row_num: int) -> int:
+    """
+    To compute the number of entries in the nth row of pascal triangle that are not divisble by 7.
+    Based on Lucas Theroem it is the product of (each digit in the base 7 n + 1) 
+    Reference: https://brilliant.org/wiki/lucas-theorem/
+    """
+    cnt = 1
+    while row_num > 0:
+        cnt *= ((row_num % 7) + 1)
+        row_num //= 7
+    return cnt
+       
 def solution(pascal_row_count: int = 10**9) -> int:
     """
     To evaluate the solution, use solution()
@@ -38,40 +38,9 @@ def solution(pascal_row_count: int = 10**9) -> int:
     >>> solution(100)
     2361
     """
-
-    # Initializing pascal row and count
-    pascal_row = [1, 2]
-    count = 6
-
-    # To keep track of length of the pascal row
-    l = 2
-
-    for i in range(3, pascal_row_count):
-        j = 1
-
-        # Generating the next pascal row
-        while j < l:
-            pascal_row[j - 1] = (pascal_row[j - 1] + pascal_row[j]) % 7
-            if pascal_row[j - 1] != 0:
-                count += 2
-            j += 1
-
-        # Adding the middle element for even rows
-        if i % 2 == 0:
-            pascal_row[-1] = pascal_row[-1] * 2
-            l += 1
-            if pascal_row[-1] % 7 != 0:
-                count += 1
-        # Deleting the last element for odd rows since 1 is added at beginning
-        else:
-            del pascal_row[-1]
-        pascal_row.insert(0, 1)
-
-        # Adding 2 to the count for the Additional 1's in the new pascal row
-        count += 2
-
-    return count
-
-
-if __name__ == "__main__":
-    print(f"{solution()}")
+    
+    result = 0
+    for i in tqdm(range(pascal_row_count)):
+        result += get_num_binomials(i) % 7
+         
+    return result
