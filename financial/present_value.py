@@ -31,8 +31,7 @@ def present_value(discount_rate: float, cash_flows: list[float]) -> float:
     if not cash_flows:
         raise ValueError("Cash flows list cannot be empty")
 
-    for idx, cash_flow in enumerate(cash_flows):
-        present_value += cash_flow / ((1 + discount_rate) ** idx)
+    present_value = sum(cash_flow / ((1 + discount_rate) ** i) for i, cash_flow in enumerate(cash_flows))
 
     decimal_places = 2
     return round(present_value, decimal_places)
