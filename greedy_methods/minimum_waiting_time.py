@@ -32,6 +32,10 @@ def minimum_waiting_time(queries: list) -> int:
     4
     >>> minimum_waiting_time([1, 2, 3, 4])
     10
+    >>> minimum_waiting_time([5, 5, 5, 5])
+    30
+    >>> minimum_waiting_time([])
+    0
     """
     # Base case
     n = len(queries)
