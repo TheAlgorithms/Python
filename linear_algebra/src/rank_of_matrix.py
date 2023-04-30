@@ -48,6 +48,8 @@ def rank_of_matrix(matrix: list[list[int]]) -> int:
     0
     >>> rank_of_matrix([[1]])
     1
+    >>> rank_of_matrix([[]])
+    0
     """
 
     rows = len(matrix)
