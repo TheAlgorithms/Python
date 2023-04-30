@@ -47,6 +47,6 @@ def solution(pascal_row_count: int = 10**9) -> int:
 
     result = 0
     for i in range(pascal_row_count):
-        result += get_num_binomials(i) % 7
+        result += get_num_binomials(i)
 
     return result
