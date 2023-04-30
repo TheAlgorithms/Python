@@ -9,9 +9,9 @@ def rank_of_matrix(matrix: list[list]) -> int:
     """
     Finds the rank of a matrix.
     Args:
-        matrix (list of lists): The matrix as a list of lists.
+        matrix: The matrix as a list of lists.
     Returns:
-        int: The rank of the matrix.
+        The rank of the matrix.
     Example:
     >>> matrix1 = [[1, 2, 3],
     ...            [4, 5, 6],
