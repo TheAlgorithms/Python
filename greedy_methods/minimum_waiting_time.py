@@ -37,15 +37,13 @@ def minimum_waiting_time(queries: list) -> int:
     >>> minimum_waiting_time([])
     0
     """
-    # Base case
+
     n = len(queries)
     if n == 0 or n == 1:
         return 0
 
-    # Sort the list in non-decreasing order
     queries.sort()
 
-    # Calculate the total waiting time
     total_waiting_time = 0
     for i in range(n - 1):
         total_waiting_time += queries[i] * (n - i - 1)
