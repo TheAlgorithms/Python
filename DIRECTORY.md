@@ -363,6 +363,7 @@
 ## Financial
   * [Equated Monthly Installments](financial/equated_monthly_installments.py)
   * [Interest](financial/interest.py)
+  * [Present Value](financial/present_value.py)
   * [Price Plus Tax](financial/price_plus_tax.py)
 
 ## Fractals
@@ -655,6 +656,7 @@
   * [Sum Of Harmonic Series](maths/sum_of_harmonic_series.py)
   * [Sumset](maths/sumset.py)
   * [Sylvester Sequence](maths/sylvester_sequence.py)
+  * [Tanh](maths/tanh.py)
   * [Test Prime Check](maths/test_prime_check.py)
   * [Trapezoidal Rule](maths/trapezoidal_rule.py)
   * [Triplet Sum](maths/triplet_sum.py)
