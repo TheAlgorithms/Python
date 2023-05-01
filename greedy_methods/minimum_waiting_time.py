@@ -1,6 +1,5 @@
 """
-This is a pure Python implementation for minimum waiting time problem using greedy
-algorithm.
+Calculate the minimum waiting time using a greedy algorithm.
 reference: https://www.youtube.com/watch?v=Sf3eiO12eJs
 
 For doctests run following command:
@@ -20,10 +19,10 @@ def minimum_waiting_time(queries: list[int]) -> int:
     for all queries to be completed.
 
     Args:
-        queries [list[int]]: A list of queries
+        queries: A list of queries measured in picoseconds
 
     Returns:
-        total_waiting_time [int]: Minimum waiting time
+        total_waiting_time: Minimum waiting time measured in picoseconds
 
     Examples:
     >>> minimum_waiting_time([3, 2, 1, 2, 6])
@@ -37,18 +36,10 @@ def minimum_waiting_time(queries: list[int]) -> int:
     >>> minimum_waiting_time([])
     0
     """
-
     n = len(queries)
-    if n == 0 or n == 1:
+    if n in (0, 1):
         return 0
-
-    queries.sort()
-
-    total_waiting_time = 0
-    for i in range(n - 1):
-        total_waiting_time += queries[i] * (n - i - 1)
-
-    return total_waiting_time
+    return sum(query * (n - i - 1) for i, query in enumerate(sorted(queries)))
 
 
 if __name__ == "__main__":
