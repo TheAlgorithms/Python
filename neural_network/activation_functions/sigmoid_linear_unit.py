@@ -7,7 +7,6 @@ applies the SiLU function to each element of the vector.
 
 Script inspired from its corresponding Wikipedia article
 https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
-https://en.wikipedia.org/wiki/Swish_function
 """
 
 import numpy as np
