@@ -51,7 +51,6 @@ class LinkedList:
         """
         A method that swaps the nodes with data values
         node_data_1 and node_data_2 in the linked list.
-
         If either node is not found, the method simply returns.
         """
         # if the two data values are the same, no swapping is needed
