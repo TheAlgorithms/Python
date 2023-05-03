@@ -4,7 +4,8 @@ from typing import Any
 class Node:
     """
     A class that represents a node in a singly linked list.
-    Each node contains a data attribute and a next attribute that points to the next node in the list.
+    Each node contains a data attribute and a next attribute
+    that points to the next node in the list.
     """
 
     def __init__(self, data: Any):
@@ -48,7 +49,9 @@ class LinkedList:
 
     def swap_nodes(self, node_data_1, node_data_2):
         """
-        A method that swaps the nodes with data values node_data_1 and node_data_2 in the linked list.
+        A method that swaps the nodes with data values
+        node_data_1 and node_data_2 in the linked list.
+        
         If either node is not found, the method simply returns.
         """
         # if the two data values are the same, no swapping is needed
