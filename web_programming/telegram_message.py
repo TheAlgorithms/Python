@@ -5,6 +5,7 @@ import requests
 
 BOT_TOKEN = os.getenv("YOUR_BOT_TOKEN", "")
 
+
 def send_message_to_telegram(token: str, chat_id: str, message_text: str):
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     data = {"chat_id": chat_id, "text": message_text}
