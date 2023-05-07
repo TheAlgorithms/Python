@@ -1,11 +1,17 @@
 """
-Description : The law states that the magnitude of the electrostatic force of attraction or repulsion between two point charges is directly proportional to the product of the magnitudes of charges and inversely proportional to the square of the distance between them.Coulomb studied the repulsive force between bodies having electrical charges of the same sign.
+Description : The law states that the magnitude of the electrostatic force of attraction or repulsion between two point charges is directly proportional 
+to the product of the magnitudes of charges and inversely proportional to the square of the distance between them.
+Coulomb studied the repulsive force between bodies having electrical charges of the same sign.
 
 The unit of Electrostatic force is Newton.
 
-Coulomb’s Law gives an idea about the force between two point charges. By the word point charge, we mean that in physics, the size of linear charged bodies is very small as against the distance between them. Therefore, we consider them as point charges as it becomes easy for us to calculate the force of attraction/ repulsion between them.
+Coulomb’s Law gives an idea about the force between two point charges. 
+By the word point charge, we mean that in physics, the size of linear charged bodies is very small as against the distance between them. 
+Therefore, we consider them as point charges as it becomes easy for us to calculate the force of attraction/ repulsion between them.
 
-Charles-Augustin de Coulomb, a French physicist in 1784, measured the force between two point charges and he came up with the theory that the force is inversely proportional to the square of the distance between the charges. He also found that this force is directly proportional to the product of charges (magnitudes only).
+Charles-Augustin de Coulomb, a French physicist in 1784, measured the force between two point charges and he came up with 
+the theory that the force is inversely proportional to the square of the distance between the charges. 
+He also found that this force is directly proportional to the product of charges (magnitudes only).
 
 We can show it with the following explanation. Let’s say that there are two charges q1 and q2. 
 The distance between the charges is ‘r’, and the force of attraction/repulsion between them is ‘F’. Then
