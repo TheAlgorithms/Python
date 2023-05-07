@@ -7,7 +7,8 @@ Coulomb’s Law gives an idea about the force between two point charges. By the 
 
 Charles-Augustin de Coulomb, a French physicist in 1784, measured the force between two point charges and he came up with the theory that the force is inversely proportional to the square of the distance between the charges. He also found that this force is directly proportional to the product of charges (magnitudes only).
 
-We can show it with the following explanation. Let’s say that there are two charges q1 and q2. The distance between the charges is ‘r’, and the force of attraction/repulsion between them is ‘F’. Then
+We can show it with the following explanation. Let’s say that there are two charges q1 and q2. 
+The distance between the charges is ‘r’, and the force of attraction/repulsion between them is ‘F’. Then
 
 F  ∝ q1q2
 
@@ -17,12 +18,14 @@ F  = k*q1*q2/ r^2
 
 where k is proportionality constant and equals to 1/4πε0. 
 
-Here, ε0 is the epsilon naught and it signifies permittivity of a vacuum. The value of k comes 9 × 10^9 Nm^2/ C^2 when we take the S.I unit of value of ε0 is 8.854 × 10^-12 C^2 N^-1 m^-2.
+Here, ε0 is the epsilon naught and it signifies permittivity of a vacuum. The value of k comes 9 × 10^9 Nm^2/ C^2 
+when we take the S.I unit of value of ε0 is 8.854 × 10^-12 C^2 N^-1 m^-2.
 
 The unit of Electrostatic force is newton.Mathematically it is written as:
 F = (k*q1*q2)/(r**2)
 
-Where, F is the Electrostatic force,q1 q2 are the intensity of two charges respecticvely ,r is the radius and k is coulombs constant and its value is 9×10^9 N⋅m^2⋅C^−2 .
+Where, F is the Electrostatic force,q1 q2 are the intensity of two charges respecticvely ,
+r is the radius and k is coulombs constant and its value is 9×10^9 N⋅m^2⋅C^−2 .
 
 https://www.toppr.com/guides/physics/electric-charges-and-fields/coulombs-law/
 """
