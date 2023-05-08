@@ -21,9 +21,8 @@ def is_palindrome(s: str) -> bool:
     >>> all(is_palindrome(key) is value for key, value in test_data.items())
     True
     """
-
     for i in range(len(s)):
-        if s[i] != s[-1 - i]:
+        if s[i]!=s[-1-i]:
             return False
     return True
 
