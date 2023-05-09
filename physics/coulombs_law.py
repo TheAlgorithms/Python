@@ -5,7 +5,7 @@ Coulomb studied the repulsive force between bodies having electrical charges of 
 
 F  = k*q1*q2/ r^2
 
-where 
+where
 
 k is proportionality constant and equals to 1/4πε0.
 q1 is charge of first body (C)
@@ -29,7 +29,7 @@ def coulombs_law(q1: float, q2: float, radius: float) -> float:
     """
     if radius <= 0:
         raise ValueError("The radius is always a positive non zero integer")
-    return ((8.9875517923*10**9) * q1 * q2) / (radius**2)
+    return ((8.9875517923 * 10**9) * q1 * q2) / (radius**2)
 
 
 if __name__ == "__main__":
