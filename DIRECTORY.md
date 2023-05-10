@@ -716,6 +716,7 @@
   * [Lru Cache](other/lru_cache.py)
   * [Magicdiamondpattern](other/magicdiamondpattern.py)
   * [Maximum Subarray](other/maximum_subarray.py)
+  * [Maximum Subsequence](other/maximum_subsequence.py)
   * [Nested Brackets](other/nested_brackets.py)
   * [Password](other/password.py)
   * [Quine](other/quine.py)
