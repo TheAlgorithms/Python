@@ -1,4 +1,4 @@
-from ford_fulkerson import ford_fulkerson
+from networking_flow.ford_fulkerson import ford_fulkerson
 
 # Max-Flow reduction for vertex-limited networks (rather than edge-limited)
 """
