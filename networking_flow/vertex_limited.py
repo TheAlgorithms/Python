@@ -1,6 +1,7 @@
 # Max-Flow reduction for vertex-limited networks (rather than edge-limited)
 """
 Reduces a network that has vertex capacities into a network with edge capacities so that Ford-Fulkerson will work.
+Explanation: https://en.wikipedia.org/wiki/Maximum_flow_problem#Maximum_flow_with_vertex_capacities
 """
 
 def vertex_limited(graph, limits):
