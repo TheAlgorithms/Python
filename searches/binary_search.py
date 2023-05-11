@@ -299,14 +299,13 @@ def binary_search_by_recursion(
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by either comma or space \n").strip()
-    if("," in user_input):
-        collection = sorted(map(int,user_input.split(",")))
+    if "," in user_input:
+        collection = sorted(map(int, user_input.split(",")))
     else:
-        collection=sorted(map(int,user_input.split(" ")))
+        collection = sorted(map(int, user_input.split(" ")))
     target = int(input("Enter a single number to be found in the list:\n"))
     result = binary_search(collection, target)
     if result is None:
         print(f"{target} was not found in {collection}.")
     else:
         print(f"{target} was found at position {result} in {collection}.")
-   
