@@ -1,8 +1,11 @@
 """
-Coulombs law states that the magnitude of the electrostatic force of attraction or repulsion between two point charges
-is directly proportional to the product of the magnitudes of charges and inversely proportional to the square of the distance between them.
+Coulombs law states that the magnitude of the electrostatic force of attraction 
+or repulsion between two point charges is directly proportional to the product 
+of the magnitudes of charges and inversely proportional to the square of the 
+distance between them.
 
-Coulomb studied the repulsive force between bodies having electrical charges of the same sign.
+Coulomb studied the repulsive force between bodies having electrical charges 
+of the same sign.
 
 F = k*q1*q2/r^2
 
