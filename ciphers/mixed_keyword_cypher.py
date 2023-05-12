@@ -1,7 +1,7 @@
 from string import ascii_uppercase
 
 
-def mixed_keyword(keyword: str = "college", plaintext: str = "UNIVERSITY") -> str:
+def mixed_keyword(keyword: str = "college", plaintext: str = "UNIVERSITY", alphabet: str = ascii_uppercase) -> str:
     """
     For keyword: hello
 
@@ -23,7 +23,6 @@ def mixed_keyword(keyword: str = "college", plaintext: str = "UNIVERSITY") -> st
     """
     keyword = keyword.upper()
     plaintext = plaintext.upper()
-    alphabet = list(ascii_uppercase)
     alphabet_set = set(alphabet)
 
     # create a list of unique characters in the keyword
@@ -65,4 +64,4 @@ def mixed_keyword(keyword: str = "college", plaintext: str = "UNIVERSITY") -> st
 
 
 if __name__ == "__main__":
-    print(mixed_keyword("college", "UNIVERSITY"))
+    print(mixed_keyword("college", "UNIVERSITY", ascii_uppercase))
