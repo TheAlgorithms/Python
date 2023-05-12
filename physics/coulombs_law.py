@@ -23,7 +23,7 @@ def coulombs_law(q1: float, q2: float, radius: float) -> float:
     """
     Calculate the electrostatic force of attraction or repulsion
     between two point charges
-    
+
     >>> coulombs_law(15.5,20,15)
     12382849136.06
     >>> coulombs_law(1,15,5)
@@ -37,7 +37,7 @@ def coulombs_law(q1: float, q2: float, radius: float) -> float:
     """
     if radius <= 0:
         raise ValueError("The radius is always a positive non zero integer")
-    return round(((8.9875517923 * 10**9) * q1 * q2) / (radius**2),2)
+    return round(((8.9875517923 * 10**9) * q1 * q2) / (radius**2), 2)
 
 
 if __name__ == "__main__":
