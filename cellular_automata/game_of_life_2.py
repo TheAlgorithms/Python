@@ -26,8 +26,6 @@ def update(_: int, img: mlb.image.AxesImage, grid: np.ndarray) -> mlb.image.Axes
     The core "algorithm" of the code
 
     :param _: The frame number (unused)
-    :param img:
-    :param grid:
     """
     # Avoid interim changes that affect the outcome
     new_grid = grid.copy()
