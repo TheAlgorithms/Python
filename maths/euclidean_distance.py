@@ -1,12 +1,11 @@
 from __future__ import annotations
 
 from collections.abc import Iterable
-from typing import Union
 
 import numpy as np
 
-Vector = Union[Iterable[float], Iterable[int], np.ndarray]
-VectorOut = Union[np.float64, int, float]
+Vector = Iterable[float] | Iterable[int] | np.ndarray
+VectorOut = np.float64 | int | float
 
 
 def euclidean_distance(vector_1: Vector, vector_2: Vector) -> VectorOut:
