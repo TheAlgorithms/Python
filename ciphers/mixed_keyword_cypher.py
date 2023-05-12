@@ -1,11 +1,7 @@
 from string import ascii_uppercase
 
 
-def mixed_keyword(
-    keyword: str = "college",
-    plaintext: str = "UNIVERSITY",
-    alphabet: str = ascii_uppercase,
-) -> str:
+def mixed_keyword(keyword: str, plaintext: str, alphabet: str = ascii_uppercase) -> str:
     """
     For keyword: hello
 
@@ -68,4 +64,5 @@ def mixed_keyword(
 
 
 if __name__ == "__main__":
+    # example use
     print(mixed_keyword("college", "UNIVERSITY", ascii_uppercase))
