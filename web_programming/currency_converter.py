@@ -7,7 +7,6 @@ import os
 
 import requests
 
-
 URL_BASE = "https://www.amdoren.com/api/currency.php"
 
 
@@ -188,13 +187,13 @@ if __name__ == "__main__":
     if not API_KEY and not TESTING:
         raise KeyError(
             "API key must be provided in the 'AMDOREN_API_KEY' environment variable."
-    )
+        )
 
     print(
         convert_currency(
             input("Enter from currency: ").strip(),
             input("Enter to currency: ").strip(),
             float(input("Enter the amount: ").strip()),
-            API_KEY
+            API_KEY,
         )
     )
