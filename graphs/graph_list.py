@@ -1,9 +1,20 @@
-#!/usr/bin/env python3
+"""
+Original Authors: OMKAR PATHAK, Nwachukwu Chidiebere
+Redesigned and reimplemented by Vikram Nithyanandam
 
-# Original Authors: OMKAR PATHAK, Nwachukwu Chidiebere
-# Redesigned and reimplemented by Vikram Nithyanandam
+Description:
+The following implementation is a robust unweighted Graph data structure
+implemented using an adjacency list. This vertices and edges of this graph can be
+effectively initialized and modified while storing your chosen generic
+value in each vertex.
 
-# Use an adjacency list via Python dictionary to construct the graph.
+Adjacency List: https://en.wikipedia.org/wiki/Adjacency_list
+
+Potential Future Ideas:
+- Add a flag to set edge weights on and set edge weights
+- Make edge weights and vertex values customizable to store whatever the client wants
+- Support multigraph functionality if the client wants it
+"""
 from __future__ import annotations
 
 import random
@@ -25,7 +36,12 @@ class GraphAdjacencyList(Generic[T]):
     ) -> None:
         """
         Parameters:
-        directed: (bool) Indicates if graph is directed or undirected. Default is True.
+         - vertices: (list[T]) The list of vertex names the client wants to
+        pass in. Default is empty.
+        - edges: (list[list[T]]) The list of edges the client wants to
+        pass in. Each edge is a 2-element list. Default is empty.
+        - directed: (bool) Indicates if graph is directed or undirected.
+        Default is True.
         """
         self.adj_list: dict[T, list[T]] = {}  # dictionary of lists of T
         self.directed = directed
@@ -144,6 +160,9 @@ class GraphAdjacencyList(Generic[T]):
             )
 
     def clear_graph(self) -> None:
+        """
+        Clears all vertices and edges.
+        """
         self.adj_list = {}
 
     def __repr__(self) -> str:

@@ -1,4 +1,19 @@
-# Author: Vikram Nithyanandam
+"""
+Author: Vikram Nithyanandam
+
+Description:
+The following implementation is a robust unweighted Graph data structure
+implemented using an adjacency matrix. This vertices and edges of this graph can be
+effectively initialized and modified while storing your chosen generic
+value in each vertex.
+
+Adjacency Matrix: https://mathworld.wolfram.com/AdjacencyMatrix.html
+
+Potential Future Ideas:
+- Add a flag to set edge weights on and set edge weights
+- Make edge weights and vertex values customizable to store whatever the client wants
+- Support multigraph functionality if the client wants it
+"""
 from __future__ import annotations
 
 import random
