@@ -179,6 +179,7 @@ def main() -> None:  # Main function for testing.
 
     # All Traversals of the binary are as follows:
     print(f"In-order Traversal: {inorder(root)}")
+    print(f"Reverse In-order Traversal: {reverse_inorder(root)}")
     print(f"Pre-order Traversal: {preorder(root)}")
     print(f"Post-order Traversal: {postorder(root)}", "\n")
 
