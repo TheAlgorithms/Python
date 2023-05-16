@@ -21,13 +21,10 @@ This module and all its submodules are deprecated.
 import collections
 import gzip
 import os
+import urllib
 
 import numpy
-from six.moves import urllib
-from six.moves import xrange  # pylint: disable=redefined-builtin
-
-from tensorflow.python.framework import dtypes
-from tensorflow.python.framework import random_seed
+from tensorflow.python.framework import dtypes, random_seed
 from tensorflow.python.platform import gfile
 from tensorflow.python.util.deprecation import deprecated
 
@@ -46,16 +43,16 @@ def _read32(bytestream):
 def _extract_images(f):
     """Extract the images into a 4D uint8 numpy array [index, y, x, depth].
 
-  Args:
-    f: A file object that can be passed into a gzip reader.
+    Args:
+      f: A file object that can be passed into a gzip reader.
 
-  Returns:
-    data: A 4D uint8 numpy array [index, y, x, depth].
+    Returns:
+      data: A 4D uint8 numpy array [index, y, x, depth].
 
-  Raises:
-    ValueError: If the bytestream does not start with 2051.
+    Raises:
+      ValueError: If the bytestream does not start with 2051.
 
-  """
+    """
     print("Extracting", f.name)
     with gzip.GzipFile(fileobj=f) as bytestream:
         magic = _read32(bytestream)
@@ -86,17 +83,17 @@ def _dense_to_one_hot(labels_dense, num_classes):
 def _extract_labels(f, one_hot=False, num_classes=10):
     """Extract the labels into a 1D uint8 numpy array [index].
 
-  Args:
-    f: A file object that can be passed into a gzip reader.
-    one_hot: Does one hot encoding for the result.
-    num_classes: Number of classes for the one hot encoding.
+    Args:
+      f: A file object that can be passed into a gzip reader.
+      one_hot: Does one hot encoding for the result.
+      num_classes: Number of classes for the one hot encoding.
 
-  Returns:
-    labels: a 1D uint8 numpy array.
+    Returns:
+      labels: a 1D uint8 numpy array.
 
-  Raises:
-    ValueError: If the bystream doesn't start with 2049.
-  """
+    Raises:
+      ValueError: If the bystream doesn't start with 2049.
+    """
     print("Extracting", f.name)
     with gzip.GzipFile(fileobj=f) as bytestream:
         magic = _read32(bytestream)
@@ -115,8 +112,8 @@ def _extract_labels(f, one_hot=False, num_classes=10):
 class _DataSet:
     """Container class for a _DataSet (deprecated).
 
-  THIS CLASS IS DEPRECATED.
-  """
+    THIS CLASS IS DEPRECATED.
+    """
 
     @deprecated(
         None,
@@ -135,21 +132,21 @@ class _DataSet:
     ):
         """Construct a _DataSet.
 
-    one_hot arg is used only if fake_data is true.  `dtype` can be either
-    `uint8` to leave the input as `[0, 255]`, or `float32` to rescale into
-    `[0, 1]`.  Seed arg provides for convenient deterministic testing.
+        one_hot arg is used only if fake_data is true.  `dtype` can be either
+        `uint8` to leave the input as `[0, 255]`, or `float32` to rescale into
+        `[0, 1]`.  Seed arg provides for convenient deterministic testing.
 
-    Args:
-      images: The images
-      labels: The labels
-      fake_data: Ignore inages and labels, use fake data.
-      one_hot: Bool, return the labels as one hot vectors (if True) or ints (if
-        False).
-      dtype: Output image dtype. One of [uint8, float32]. `uint8` output has
-        range [0,255]. float32 output has range [0,1].
-      reshape: Bool. If True returned images are returned flattened to vectors.
-      seed: The random seed to use.
-    """
+        Args:
+          images: The images
+          labels: The labels
+          fake_data: Ignore inages and labels, use fake data.
+          one_hot: Bool, return the labels as one hot vectors (if True) or ints (if
+            False).
+          dtype: Output image dtype. One of [uint8, float32]. `uint8` output has
+            range [0,255]. float32 output has range [0,1].
+          reshape: Bool. If True returned images are returned flattened to vectors.
+          seed: The random seed to use.
+        """
         seed1, seed2 = random_seed.get_seed(seed)
         # If op level seed is not set, use whatever graph level seed is returned
         numpy.random.seed(seed1 if seed is None else seed2)
@@ -206,8 +203,8 @@ class _DataSet:
             else:
                 fake_label = 0
             return (
-                [fake_image for _ in xrange(batch_size)],
-                [fake_label for _ in xrange(batch_size)],
+                [fake_image for _ in range(batch_size)],
+                [fake_label for _ in range(batch_size)],
             )
         start = self._index_in_epoch
         # Shuffle for the first epoch
@@ -250,19 +247,19 @@ class _DataSet:
 def _maybe_download(filename, work_directory, source_url):
     """Download the data from source url, unless it's already here.
 
-  Args:
-      filename: string, name of the file in the directory.
-      work_directory: string, path to working directory.
-      source_url: url to download from if file doesn't exist.
+    Args:
+        filename: string, name of the file in the directory.
+        work_directory: string, path to working directory.
+        source_url: url to download from if file doesn't exist.
 
-  Returns:
-      Path to resulting file.
-  """
+    Returns:
+        Path to resulting file.
+    """
     if not gfile.Exists(work_directory):
         gfile.MakeDirs(work_directory)
     filepath = os.path.join(work_directory, filename)
     if not gfile.Exists(filepath):
-        urllib.request.urlretrieve(source_url, filepath)
+        urllib.request.urlretrieve(source_url, filepath)  # noqa: S310
         with gfile.GFile(filepath) as f:
             size = f.size()
         print("Successfully downloaded", filename, size, "bytes.")
@@ -328,7 +325,8 @@ def read_data_sets(
 
     if not 0 <= validation_size <= len(train_images):
         raise ValueError(
-            f"Validation size should be between 0 and {len(train_images)}. Received: {validation_size}."
+            f"Validation size should be between 0 and {len(train_images)}. "
+            f"Received: {validation_size}."
         )
 
     validation_images = train_images[:validation_size]
@@ -336,7 +334,7 @@ def read_data_sets(
     train_images = train_images[validation_size:]
     train_labels = train_labels[validation_size:]
 
-    options = dict(dtype=dtype, reshape=reshape, seed=seed)
+    options = {"dtype": dtype, "reshape": reshape, "seed": seed}
 
     train = _DataSet(train_images, train_labels, **options)
     validation = _DataSet(validation_images, validation_labels, **options)
