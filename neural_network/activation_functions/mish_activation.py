@@ -2,7 +2,7 @@
 Implements the Mish activation functions.
 
 The function takes a vector of K real numbers input and then
-applies the Mish function, x*tanh(softplus(x) to each element of the vector.
+applies the mish function, x*tanh(softplus(x) to each element of the vector.
 
 Script inspired from its corresponding Wikipedia article
 https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
