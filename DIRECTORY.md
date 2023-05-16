@@ -294,6 +294,7 @@
   * [Mergesort](divide_and_conquer/mergesort.py)
   * [Peak](divide_and_conquer/peak.py)
   * [Power](divide_and_conquer/power.py)
+  * [Strassen Matrix Multiplication](divide_and_conquer/strassen_matrix_multiplication.py)
 
 ## Dynamic Programming
   * [Abbreviation](dynamic_programming/abbreviation.py)
