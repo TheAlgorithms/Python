@@ -47,7 +47,9 @@ class CircularLinkedList:
         return self.delete_nth(0)
 
     def delete_tail(self) -> Any:
-        return self.delete_nth(self.length - 1, update_length=True)  # Update length instead of calling len(self)
+        return self.delete_nth(
+            self.length - 1, update_length=True
+        )  # Update length instead of calling len(self)
 
     def delete_nth(self, index: int = 0, update_length: bool = False) -> Any:
         if not 0 <= index < self.length:  # Update length check
