@@ -148,7 +148,7 @@ def guess_the_number(lower: int, higher: int, to_guess: int) -> None:
             break
 
     print(f"guess the number : {last_numbers[-1]}")
-    print(f"details : {str(last_numbers)}")
+    print(f"details : {last_numbers!s}")
 
 
 def main() -> None:
