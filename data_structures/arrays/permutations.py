@@ -19,26 +19,29 @@ def permute(nums: list[int]) -> list[list[int]]:
     return result
 
 
-def permute2(nums: list[int]) -> list[list[int]]:
-    def backtrack(first=0):
-        if first == n:
+def permute2(nums):
+    """
+    Return all permutations of the given list.
+
+    >>> permute2([1, 2, 3])
+     [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 2, 1], [3, 1, 2]]
+    """
+    def backtrack(start):
+        if start == len(nums) - 1:
             output.append(nums[:])
-        for i in range(first, n):
-            nums[first], nums[i] = nums[i], nums[first]
-            backtrack(first + 1)
-            nums[first], nums[i] = nums[i], nums[first]
+        else:
+            for i in range(start, len(nums)):
+                nums[start], nums[i] = nums[i], nums[start]
+                backtrack(start + 1)
+                nums[start], nums[i] = nums[i], nums[start]  # backtrack
 
-    n = len(nums)
     output = []
-    backtrack()
+    backtrack(0)
     return output
-
-    # return result
 
 
 if __name__ == "__main__":
     import doctest
-
     # use res to print the data in permute2 function
     res = permute2([1, 2, 3])
     print(res)
