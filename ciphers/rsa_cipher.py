@@ -77,7 +77,6 @@ def encrypt_and_write_to_file(
     if key_size < block_size * 8:
         sys.exit(
             "ERROR: Block size is {} bits and key size is {} bits. The RSA cipher "
-            "ERROR: Block size is {} bits and key size is {} bits. The RSA cipher "
             "requires the block size to be equal to or greater than the key size. "
             "Either decrease the block size or use different keys.".format(
                 block_size * 8, key_size
