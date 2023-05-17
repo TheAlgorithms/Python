@@ -605,6 +605,7 @@
   * [Newton Raphson](maths/newton_raphson.py)
   * [Number Of Digits](maths/number_of_digits.py)
   * [Numerical Integration](maths/numerical_integration.py)
+  * [Odd Sieve](maths/odd_sieve.py)
   * [Perfect Cube](maths/perfect_cube.py)
   * [Perfect Number](maths/perfect_number.py)
   * [Perfect Square](maths/perfect_square.py)
