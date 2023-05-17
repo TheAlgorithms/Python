@@ -294,7 +294,6 @@
   * [Mergesort](divide_and_conquer/mergesort.py)
   * [Peak](divide_and_conquer/peak.py)
   * [Power](divide_and_conquer/power.py)
-  * [Strassen Matrix Multiplication](divide_and_conquer/strassen_matrix_multiplication.py)
 
 ## Dynamic Programming
   * [Abbreviation](dynamic_programming/abbreviation.py)
@@ -713,6 +712,7 @@
   * [Gauss Easter](other/gauss_easter.py)
   * [Graham Scan](other/graham_scan.py)
   * [Greedy](other/greedy.py)
+  * [H Index](other/h_index.py)
   * [Least Recently Used](other/least_recently_used.py)
   * [Lfu Cache](other/lfu_cache.py)
   * [Linear Congruential Generator](other/linear_congruential_generator.py)
