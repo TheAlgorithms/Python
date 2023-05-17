@@ -26,6 +26,7 @@ def permute2(nums):
     >>> permute2([1, 2, 3])
      [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 2, 1], [3, 1, 2]]
     """
+
     def backtrack(start):
         if start == len(nums) - 1:
             output.append(nums[:])
@@ -42,6 +43,7 @@ def permute2(nums):
 
 if __name__ == "__main__":
     import doctest
+
     # use res to print the data in permute2 function
     res = permute2([1, 2, 3])
     print(res)
