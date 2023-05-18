@@ -64,5 +64,5 @@ def mixed_keyword(key: str = "college", pt: str = "UNIVERSITY") -> str:
         cypher += d[i]
     return cypher
 
-
-print(mixed_keyword("college", "UNIVERSITY"))
+if __name__ == "__main__":
+    print(mixed_keyword("college", "UNIVERSITY"))
