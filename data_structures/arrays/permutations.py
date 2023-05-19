@@ -24,7 +24,7 @@ def permute2(nums):
     Return all permutations of the given list.
 
     >>> permute2([1, 2, 3])
-     [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 2, 1], [3, 1, 2]]
+    [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 2, 1], [3, 1, 2]]
     """
 
     def backtrack(start):
