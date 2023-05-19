@@ -2,7 +2,6 @@
 
 from timeit import timeit
 
-
 test_data = {
     "MALAYALAM": True,
     "String": False,
@@ -83,7 +82,11 @@ def is_palindrome_slice(s: str) -> bool:
 def benchmark_function(name: str) -> None:
     setup = f"from __main__ import test_data, {name}"
     number = 100000
-    res = timeit(f"all({name}(key) is value for key, value in test_data.items())", setup=setup, number=number)
+    res = timeit(
+        f"all({name}(key) is value for key, value in test_data.items())",
+        setup=setup,
+        number=number,
+    )
     print(f"{name:<35} finished {number} runs in {res:.5f} seconds")
 
 
@@ -95,7 +98,10 @@ if __name__ == "__main__":
     print("a man a plan a canal panama")
 
     benchmark_function("is_palindrome")  # finished 100000 runs in 0.33785 seconds
-    benchmark_function("is_palindrome_traversal")  # finished 100000 runs in 0.70002 seconds
-    benchmark_function("is_palindrome_recursive")  # finished 100000 runs in 0.48514 seconds  
+    benchmark_function(
+        "is_palindrome_traversal"
+    )  # finished 100000 runs in 0.70002 seconds
+    benchmark_function(
+        "is_palindrome_recursive"
+    )  # finished 100000 runs in 0.48514 seconds
     benchmark_function("is_palindrome_slice")  # finished 100000 runs in 0.18703 seconds
-
