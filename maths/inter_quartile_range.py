@@ -46,11 +46,11 @@ def inter_quartile_range(x: List[float]) -> float:
         raise ValueError
     x.sort()
     if length % 2:
-        q1 = find_median(x[0: length // 2])
-        q3 = find_median(x[(length // 2) + 1: length])
+        q1 = find_median(x[0 : length // 2])
+        q3 = find_median(x[(length // 2) + 1 : length])
     else:
-        q1 = find_median(x[0: length // 2])
-        q3 = find_median(x[length // 2: length])
+        q1 = find_median(x[0 : length // 2])
+        q3 = find_median(x[length // 2 : length])
     return q3 - q1
 
 
