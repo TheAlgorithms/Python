@@ -7,7 +7,7 @@ applies the mish function, x*tanh(softplus(x) to each element of the vector.
 Script inspired from its corresponding Wikipedia article
 https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
 
-The proposed paper link is provided below.
+The proposed paper link is provided below-
 https://arxiv.org/abs/1908.08681
 """
 
