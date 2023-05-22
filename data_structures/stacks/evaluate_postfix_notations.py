@@ -17,6 +17,10 @@ def evaluate_postfix(postfix_notation: list) -> int:
     9
     >>> evaluate_postfix(["4", "13", "5", "/", "+"])
     6
+    >>> evaluate_postfix(["2", "+"])
+    2
+    >>> evaluate_postfix(["5", "-"])
+    -5
     >>> evaluate_postfix([])
     0
     """
@@ -24,6 +28,8 @@ def evaluate_postfix(postfix_notation: list) -> int:
         return 0
 
     operations = {"+", "-", "*", "/"}
+    unary_operations = {"+"}  # Unary operator(s)
+
     stack: list[Any] = []
 
     for token in postfix_notation:
@@ -40,6 +46,10 @@ def evaluate_postfix(postfix_notation: list) -> int:
                     stack.append(a // b + 1)
                 else:
                     stack.append(a // b)
+        elif token in unary_operations:  # Handle unary operators
+            operand = stack.pop()
+            if token == "+":
+                stack.append(operand)            
         else:
             stack.append(int(token))
 
