@@ -36,12 +36,16 @@ def evaluate_postfix(postfix_notation: list) -> int:
         if token in operations:
             if token == "-":
                 if len(stack) < 1:
-                    raise ValueError("Invalid expression: insufficient operands for unary operator")
+                    raise ValueError(
+                        "Invalid expression: insufficient operands for unary operator"
+                    )
                 operand = stack.pop()
                 stack.append(-operand)
             else:
                 if len(stack) < 2:
-                    raise ValueError("Invalid expression: insufficient operands for binary operator")
+                    raise ValueError(
+                        "Invalid expression: insufficient operands for binary operator"
+                    )
                 b, a = stack.pop(), stack.pop()
                 if token == "+":
                     stack.append(a + b)
@@ -58,7 +62,6 @@ def evaluate_postfix(postfix_notation: list) -> int:
 
     if len(stack) != 1:
         raise ValueError("Invalid expression: insufficient operators")
-
 
     return stack.pop()
 
