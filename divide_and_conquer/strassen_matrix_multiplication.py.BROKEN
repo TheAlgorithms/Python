@@ -122,7 +122,7 @@ def strassen(matrix1: list, matrix2: list) -> list:
     if dimension1[0] == dimension1[1] and dimension2[0] == dimension2[1]:
         return [matrix1, matrix2]
 
-    maximum = max(max(dimension1), max(dimension2))
+    maximum = max(dimension1, dimension2)
     maxim = int(math.pow(2, math.ceil(math.log2(maximum))))
     new_matrix1 = matrix1
     new_matrix2 = matrix2
