@@ -577,6 +577,7 @@
   * [Hexagonal Number](maths/hexagonal_number.py)
   * [Integration By Simpson Approx](maths/integration_by_simpson_approx.py)
   * [Is Ip V4 Address Valid](maths/is_ip_v4_address_valid.py)
+  * [Is Palindrome](maths/is_palindrome.py)
   * [Is Square Free](maths/is_square_free.py)
   * [Jaccard Similarity](maths/jaccard_similarity.py)
   * [Juggler Sequence](maths/juggler_sequence.py)
