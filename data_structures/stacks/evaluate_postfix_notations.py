@@ -49,7 +49,7 @@ def evaluate_postfix(postfix_notation: list) -> int:
         elif token in unary_operations:  # Handle unary operators
             operand = stack.pop()
             if token == "+":
-                stack.append(operand)            
+                stack.append(operand)
         else:
             stack.append(int(token))
 
