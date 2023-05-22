@@ -47,6 +47,8 @@ def evaluate_postfix(postfix_notation: list) -> int:
                 else:
                     stack.append(a // b)
         elif token in unary_operations:  # Handle unary operators
+            if len(stack) < 1:  # Check if there's at least one operand
+                raise ValueError("Insufficient operands for unary operator")
             operand = stack.pop()
             if token == "+":
                 stack.append(operand)
