@@ -34,26 +34,31 @@ def evaluate_postfix(postfix_notation: list) -> int:
 
     for token in postfix_notation:
         if token in operations:
-            b, a = stack.pop(), stack.pop()
-            if token == "+":
-                stack.append(a + b)
-            elif token == "-":
-                stack.append(a - b)
-            elif token == "*":
-                stack.append(a * b)
+            if token == "-":
+                if len(stack) < 1:
+                    raise ValueError("Invalid expression: insufficient operands for unary operator")
+                operand = stack.pop()
+                stack.append(-operand)
             else:
-                if a * b < 0 and a % b != 0:
-                    stack.append(a // b + 1)
-                else:
-                    stack.append(a // b)
-        elif token in unary_operations:  # Handle unary operators
-            if len(stack) < 1:  # Check if there's at least one operand
-                raise ValueError("Insufficient operands for unary operator")
-            operand = stack.pop()
-            if token == "+":
-                stack.append(operand)
+                if len(stack) < 2:
+                    raise ValueError("Invalid expression: insufficient operands for binary operator")
+                b, a = stack.pop(), stack.pop()
+                if token == "+":
+                    stack.append(a + b)
+                elif token == "-":
+                    stack.append(a - b)
+                elif token == "*":
+                    stack.append(a * b)
+                elif token == "/":
+                    if b == 0:
+                        raise ValueError("Invalid expression: division by zero")
+                    stack.append(a / b)
         else:
             stack.append(int(token))
+
+    if len(stack) != 1:
+        raise ValueError("Invalid expression: insufficient operators")
+
 
     return stack.pop()
 
