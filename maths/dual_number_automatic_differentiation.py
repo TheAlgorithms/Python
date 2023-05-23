@@ -89,7 +89,7 @@ class Dual:
         if n == 1:
             return self
         x = self
-        for i in range(n - 1):
+        for _ in range(n - 1):
             x *= self
         return x
 
