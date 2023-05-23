@@ -17,8 +17,10 @@ class Dual:
             self.duals = rank
 
     def __repr__(self):
-        return f"{self.real}+" \
-               f"{'+'.join(str(dual)+'E'+str(n+1)for n,dual in enumerate(self.duals))}"
+        return (
+            f"{self.real}+"
+            f"{'+'.join(str(dual)+'E'+str(n+1)for n,dual in enumerate(self.duals))}"
+        )
 
     def reduce(self):
         cur = self.duals.copy()
@@ -130,8 +132,10 @@ def differentiate(func, position, order):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     def f(y):
-        return y ** 2 * y ** 4
+        return y**2 * y**4
+
     print(differentiate(f, 9, 2))
