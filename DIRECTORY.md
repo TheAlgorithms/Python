@@ -549,6 +549,7 @@
   * [Dodecahedron](maths/dodecahedron.py)
   * [Double Factorial Iterative](maths/double_factorial_iterative.py)
   * [Double Factorial Recursive](maths/double_factorial_recursive.py)
+  * [Dual Number Automatic Differentiation](maths/dual_number_automatic_differentiation.py)
   * [Entropy](maths/entropy.py)
   * [Euclidean Distance](maths/euclidean_distance.py)
   * [Euclidean Gcd](maths/euclidean_gcd.py)
