@@ -166,6 +166,7 @@
   * Arrays
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
+    * [Product Sum Array](data_structures/arrays/product_sum.py)
   * Binary Tree
     * [Avl Tree](data_structures/binary_tree/avl_tree.py)
     * [Basic Binary Tree](data_structures/binary_tree/basic_binary_tree.py)
@@ -450,7 +451,6 @@
   * [Fractional Knapsack 2](greedy_methods/fractional_knapsack_2.py)
   * [Minimum Waiting Time](greedy_methods/minimum_waiting_time.py)
   * [Optimal Merge Pattern](greedy_methods/optimal_merge_pattern.py)
-  * [Minimum Waiting Time ](greedy_methods/minimum_waiting_time.py)
 
 ## Hashes
   * [Adler32](hashes/adler32.py)
