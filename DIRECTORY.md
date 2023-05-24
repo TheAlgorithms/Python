@@ -294,7 +294,6 @@
   * [Mergesort](divide_and_conquer/mergesort.py)
   * [Peak](divide_and_conquer/peak.py)
   * [Power](divide_and_conquer/power.py)
-  * [Strassen Matrix Multiplication](divide_and_conquer/strassen_matrix_multiplication.py)
 
 ## Dynamic Programming
   * [Abbreviation](dynamic_programming/abbreviation.py)
@@ -363,6 +362,7 @@
 ## Financial
   * [Equated Monthly Installments](financial/equated_monthly_installments.py)
   * [Interest](financial/interest.py)
+  * [Present Value](financial/present_value.py)
   * [Price Plus Tax](financial/price_plus_tax.py)
 
 ## Fractals
@@ -448,6 +448,7 @@
 ## Greedy Methods
   * [Fractional Knapsack](greedy_methods/fractional_knapsack.py)
   * [Fractional Knapsack 2](greedy_methods/fractional_knapsack_2.py)
+  * [Minimum Waiting Time](greedy_methods/minimum_waiting_time.py)
   * [Optimal Merge Pattern](greedy_methods/optimal_merge_pattern.py)
   * [Minimum Waiting Time ](greedy_methods/minimum_waiting_time.py)
 
@@ -577,6 +578,7 @@
   * [Hexagonal Number](maths/hexagonal_number.py)
   * [Integration By Simpson Approx](maths/integration_by_simpson_approx.py)
   * [Is Ip V4 Address Valid](maths/is_ip_v4_address_valid.py)
+  * [Is Palindrome](maths/is_palindrome.py)
   * [Is Square Free](maths/is_square_free.py)
   * [Jaccard Similarity](maths/jaccard_similarity.py)
   * [Juggler Sequence](maths/juggler_sequence.py)
@@ -605,6 +607,7 @@
   * [Newton Raphson](maths/newton_raphson.py)
   * [Number Of Digits](maths/number_of_digits.py)
   * [Numerical Integration](maths/numerical_integration.py)
+  * [Odd Sieve](maths/odd_sieve.py)
   * [Perfect Cube](maths/perfect_cube.py)
   * [Perfect Number](maths/perfect_number.py)
   * [Perfect Square](maths/perfect_square.py)
@@ -631,6 +634,7 @@
   * [Radians](maths/radians.py)
   * [Radix2 Fft](maths/radix2_fft.py)
   * [Relu](maths/relu.py)
+  * [Remove Digit](maths/remove_digit.py)
   * [Runge Kutta](maths/runge_kutta.py)
   * [Segmented Sieve](maths/segmented_sieve.py)
   * Series
@@ -656,6 +660,7 @@
   * [Sum Of Harmonic Series](maths/sum_of_harmonic_series.py)
   * [Sumset](maths/sumset.py)
   * [Sylvester Sequence](maths/sylvester_sequence.py)
+  * [Tanh](maths/tanh.py)
   * [Test Prime Check](maths/test_prime_check.py)
   * [Trapezoidal Rule](maths/trapezoidal_rule.py)
   * [Triplet Sum](maths/triplet_sum.py)
@@ -692,6 +697,8 @@
 
 ## Neural Network
   * [2 Hidden Layers Neural Network](neural_network/2_hidden_layers_neural_network.py)
+  * Activation Functions
+    * [Exponential Linear Unit](neural_network/activation_functions/exponential_linear_unit.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
   * [Input Data](neural_network/input_data.py)
@@ -708,12 +715,15 @@
   * [Gauss Easter](other/gauss_easter.py)
   * [Graham Scan](other/graham_scan.py)
   * [Greedy](other/greedy.py)
+  * [Guess The Number Search](other/guess_the_number_search.py)
+  * [H Index](other/h_index.py)
   * [Least Recently Used](other/least_recently_used.py)
   * [Lfu Cache](other/lfu_cache.py)
   * [Linear Congruential Generator](other/linear_congruential_generator.py)
   * [Lru Cache](other/lru_cache.py)
   * [Magicdiamondpattern](other/magicdiamondpattern.py)
   * [Maximum Subarray](other/maximum_subarray.py)
+  * [Maximum Subsequence](other/maximum_subsequence.py)
   * [Nested Brackets](other/nested_brackets.py)
   * [Password](other/password.py)
   * [Quine](other/quine.py)
@@ -1077,6 +1087,7 @@
 
 ## Sorts
   * [Bead Sort](sorts/bead_sort.py)
+  * [Binary Insertion Sort](sorts/binary_insertion_sort.py)
   * [Bitonic Sort](sorts/bitonic_sort.py)
   * [Bogo Sort](sorts/bogo_sort.py)
   * [Bubble Sort](sorts/bubble_sort.py)
@@ -1167,6 +1178,7 @@
   * [Reverse Words](strings/reverse_words.py)
   * [Snake Case To Camel Pascal Case](strings/snake_case_to_camel_pascal_case.py)
   * [Split](strings/split.py)
+  * [String Switch Case](strings/string_switch_case.py)
   * [Text Justification](strings/text_justification.py)
   * [Top K Frequent Words](strings/top_k_frequent_words.py)
   * [Upper](strings/upper.py)
