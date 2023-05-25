@@ -21,7 +21,8 @@ class Burkes:
         self.max_threshold = int(self.get_greyscale(255, 255, 255))
 
         if not self.min_threshold < threshold < self.max_threshold:
-            raise ValueError(f"Factor value should be from 0 to {self.max_threshold}")
+            msg = f"Factor value should be from 0 to {self.max_threshold}"
+            raise ValueError(msg)
 
         self.input_img = input_img
         self.threshold = threshold

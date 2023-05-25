@@ -80,10 +80,11 @@ def lower_upper_decomposition(table: np.ndarray) -> tuple[np.ndarray, np.ndarray
     # Ensure that table is a square array
     rows, columns = np.shape(table)
     if rows != columns:
-        raise ValueError(
-            f"'table' has to be of square shaped array but got a "
+        msg = (
+            "'table' has to be of square shaped array but got a "
             f"{rows}x{columns} array:\n{table}"
         )
+        raise ValueError(msg)
 
     lower = np.zeros((rows, columns))
     upper = np.zeros((rows, columns))

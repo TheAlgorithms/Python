@@ -87,22 +87,20 @@ def _validator(
     # Checks if there are 3 unique rotors
 
     if (unique_rotsel := len(set(rotsel))) < 3:
-        raise Exception(f"Please use 3 unique rotors (not {unique_rotsel})")
+        msg = f"Please use 3 unique rotors (not {unique_rotsel})"
+        raise Exception(msg)
 
     # Checks if rotor positions are valid
     rotorpos1, rotorpos2, rotorpos3 = rotpos
     if not 0 < rotorpos1 <= len(abc):
-        raise ValueError(
-            "First rotor position is not within range of 1..26 (" f"{rotorpos1}"
-        )
+        msg = f"First rotor position is not within range of 1..26 ({rotorpos1}"
+        raise ValueError(msg)
     if not 0 < rotorpos2 <= len(abc):
-        raise ValueError(
-            "Second rotor position is not within range of 1..26 (" f"{rotorpos2})"
-        )
+        msg = f"Second rotor position is not within range of 1..26 ({rotorpos2})"
+        raise ValueError(msg)
     if not 0 < rotorpos3 <= len(abc):
-        raise ValueError(
-            "Third rotor position is not within range of 1..26 (" f"{rotorpos3})"
-        )
+        msg = f"Third rotor position is not within range of 1..26 ({rotorpos3})"
+        raise ValueError(msg)
 
     # Validates string and returns dict
     pbdict = _plugboard(pb)
@@ -130,9 +128,11 @@ def _plugboard(pbstring: str) -> dict[str, str]:
     # a) is type string
     # b) has even length (so pairs can be made)
     if not isinstance(pbstring, str):
-        raise TypeError(f"Plugboard setting isn't type string ({type(pbstring)})")
+        msg = f"Plugboard setting isn't type string ({type(pbstring)})"
+        raise TypeError(msg)
     elif len(pbstring) % 2 != 0:
-        raise Exception(f"Odd number of symbols ({len(pbstring)})")
+        msg = f"Odd number of symbols ({len(pbstring)})"
+        raise Exception(msg)
     elif pbstring == "":
         return {}
 
@@ -142,9 +142,11 @@ def _plugboard(pbstring: str) -> dict[str, str]:
     tmppbl = set()
     for i in pbstring:
         if i not in abc:
-            raise Exception(f"'{i}' not in list of symbols")
+            msg = f"'{i}' not in list of symbols"
+            raise Exception(msg)
         elif i in tmppbl:
-            raise Exception(f"Duplicate symbol ({i})")
+            msg = f"Duplicate symbol ({i})"
+            raise Exception(msg)
         else:
             tmppbl.add(i)
     del tmppbl

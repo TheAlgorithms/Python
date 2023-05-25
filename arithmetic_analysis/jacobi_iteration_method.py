@@ -79,24 +79,26 @@ def jacobi_iteration_method(
     rows2, cols2 = constant_matrix.shape
 
     if rows1 != cols1:
-        raise ValueError(
-            f"Coefficient matrix dimensions must be nxn but received {rows1}x{cols1}"
-        )
+        msg = f"Coefficient matrix dimensions must be nxn but received {rows1}x{cols1}"
+        raise ValueError(msg)
 
     if cols2 != 1:
-        raise ValueError(f"Constant matrix must be nx1 but received {rows2}x{cols2}")
+        msg = f"Constant matrix must be nx1 but received {rows2}x{cols2}"
+        raise ValueError(msg)
 
     if rows1 != rows2:
-        raise ValueError(
-            f"""Coefficient and constant matrices dimensions must be nxn and nx1 but
-            received {rows1}x{cols1} and {rows2}x{cols2}"""
+        msg = (
+            "Coefficient and constant matrices dimensions must be nxn and nx1 but\n"
+            f"            received {rows1}x{cols1} and {rows2}x{cols2}"
         )
+        raise ValueError(msg)
 
     if len(init_val) != rows1:
-        raise ValueError(
-            f"""Number of initial values must be equal to number of rows in coefficient
-            matrix but received {len(init_val)} and {rows1}"""
+        msg = (
+            "Number of initial values must be equal to number of rows in coefficient\n"
+            f"            matrix but received {len(init_val)} and {rows1}"
         )
+        raise ValueError(msg)
 
     if iterations <= 0:
         raise ValueError("Iterations must be at least 1")
