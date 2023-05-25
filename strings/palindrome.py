@@ -80,13 +80,9 @@ def is_palindrome_slice(s: str) -> bool:
 
 
 def benchmark_function(name: str) -> None:
+    stmt = f"all({name}(key) is value for key, value in test_data.items())"
     setup = f"from __main__ import test_data, {name}"
-    number = 100000
-    res = timeit(
-        f"all({name}(key) is value for key, value in test_data.items())",
-        setup=setup,
-        number=number,
-    )
+    res = timeit(stmt=stmt, setup=setup, number=100000)
     print(f"{name:<35} finished {number} runs in {res:.5f} seconds")
 
 
