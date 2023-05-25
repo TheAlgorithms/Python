@@ -1199,7 +1199,6 @@
   * [Daily Horoscope](web_programming/daily_horoscope.py)
   * [Download Images From Google Query](web_programming/download_images_from_google_query.py)
   * [Emails From Url](web_programming/emails_from_url.py)
-  * [Fetch Anime And Play](web_programming/fetch_anime_and_play.py)
   * [Fetch Bbc News](web_programming/fetch_bbc_news.py)
   * [Fetch Github Info](web_programming/fetch_github_info.py)
   * [Fetch Jobs](web_programming/fetch_jobs.py)
