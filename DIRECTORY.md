@@ -1156,7 +1156,6 @@
   * [Indian Phone Validator](strings/indian_phone_validator.py)
   * [Is Contains Unique Chars](strings/is_contains_unique_chars.py)
   * [Is Isogram](strings/is_isogram.py)
-  * [Is Palindrome](strings/is_palindrome.py)
   * [Is Pangram](strings/is_pangram.py)
   * [Is Spain National Id](strings/is_spain_national_id.py)
   * [Is Srilankan Phone Number](strings/is_srilankan_phone_number.py)
