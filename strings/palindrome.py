@@ -100,5 +100,5 @@ if __name__ == "__main__":
     benchmark_function("is_palindrome")
     # finished 500,000 runs in 1.32028 seconds
     benchmark_function("is_palindrome_recursive")
-    #finished 500,000 runs in 2.08679 seconds
+    # finished 500,000 runs in 2.08679 seconds
     benchmark_function("is_palindrome_traversal")
