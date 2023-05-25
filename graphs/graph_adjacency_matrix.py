@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Author: Vikram Nithyanandam
 
@@ -39,12 +40,9 @@ class GraphAdjacencyMatrix(Generic[T]):
         self.vertex_to_index: dict[T, int] = {}
         self.adj_matrix: list[list[int]] = []
 
-        # None checks
-        if vertices is None:
-            vertices = []
-
-        if edges is None:
-            edges = []
+        # Falsey checks
+        edges = edges or []
+        vertices = vertices or []
 
         for vertex in vertices:
             self.add_vertex(vertex)
@@ -60,64 +58,62 @@ class GraphAdjacencyMatrix(Generic[T]):
         given vertex doesn't exist or the edge already exists, a ValueError
         will be thrown.
         """
-        if (
+        if not (
             self.contains_vertex(source_vertex)
             and self.contains_vertex(destination_vertex)
             and not self.contains_edge(source_vertex, destination_vertex)
         ):
-            # Get the indices of the corresponding vertices and set their
-            # edge value to 1.
-            u: int = self.vertex_to_index[source_vertex]
-            v: int = self.vertex_to_index[destination_vertex]
-            self.adj_matrix[u][v] = 1
-            if not self.directed:
-                self.adj_matrix[v][u] = 1
-        else:
             raise ValueError(
                 f"Incorrect input: Either {source_vertex} or ",
                 f"{destination_vertex} do not exist OR there already exists",
                 "an edge between them.",
             )
 
+        # Get the indices of the corresponding vertices and set their edge value to 1.
+        u: int = self.vertex_to_index[source_vertex]
+        v: int = self.vertex_to_index[destination_vertex]
+        self.adj_matrix[u][v] = 1
+        if not self.directed:
+            self.adj_matrix[v][u] = 1
+
     def remove_edge(self, source_vertex: T, destination_vertex: T) -> None:
         """
         Removes the edge between the two vertices. If any given vertex
         doesn't exist or the edge does not exist, a ValueError will be thrown.
         """
-        if (
+        if not (
             self.contains_vertex(source_vertex)
             and self.contains_vertex(destination_vertex)
             and self.contains_edge(source_vertex, destination_vertex)
         ):
-            # Get the indices of the corresponding vertices and setting
-            # their edge value to 0.
-            u: int = self.vertex_to_index[source_vertex]
-            v: int = self.vertex_to_index[destination_vertex]
-            self.adj_matrix[u][v] = 0
-            if not self.directed:
-                self.adj_matrix[v][u] = 0
-        else:
             raise ValueError(
                 f"Incorrect input: Either {source_vertex} or ",
                 f"{destination_vertex} does not exist OR the requested ",
                 "edge does not exists between them.",
             )
 
+        # Get the indices of the corresponding vertices and set their edge value to 0.
+        u: int = self.vertex_to_index[source_vertex]
+        v: int = self.vertex_to_index[destination_vertex]
+        self.adj_matrix[u][v] = 0
+        if not self.directed:
+            self.adj_matrix[v][u] = 0
+
     def add_vertex(self, vertex: T) -> None:
         """
         Adds a vertex to the graph. If the given vertex already exists,
         a ValueError will be thrown.
         """
-        if not self.contains_vertex(vertex):
-            # build column for vertex
-            for row in self.adj_matrix:
-                row.append(0)
-
-            # build row for vertex and update other data structures
-            self.adj_matrix.append([0] * (len(self.adj_matrix) + 1))
-            self.vertex_to_index[vertex] = len(self.adj_matrix) - 1
-        else:
+        if self.contains_vertex(vertex):
             raise ValueError(f"Incorrect input: {vertex} already exists in this graph.")
+
+        # build column for vertex
+        for row in self.adj_matrix:
+            row.append(0)
+
+        # build row for vertex and update other data structures
+        self.adj_matrix.append([0] * (len(self.adj_matrix) + 1))
+        self.vertex_to_index[vertex] = len(self.adj_matrix) - 1
 
     def remove_vertex(self, vertex: T) -> None:
         """
@@ -125,27 +121,26 @@ class GraphAdjacencyMatrix(Generic[T]):
         outgoing edges from the given vertex as well. If the given vertex
         does not exist, a ValueError will be thrown.
         """
-        if self.contains_vertex(vertex):
-            # first slide up the rows by deleting the row corresponding to
-            # the vertex being deleted.
-            start_index = self.vertex_to_index[vertex]
-            self.adj_matrix.pop(start_index)
-
-            # next, slide the columns to the left by deleting the values in
-            # the column corresponding to the vertex being deleted
-            for lst in self.adj_matrix:
-                lst.pop(start_index)
-
-            # final clean up
-            self.vertex_to_index.pop(vertex)
-
-            # decrement indices for vertices shifted by the deleted vertex
-            # in the adj matrix
-            for vertex in self.vertex_to_index:
-                if self.vertex_to_index[vertex] >= start_index:
-                    self.vertex_to_index[vertex] = self.vertex_to_index[vertex] - 1
-        else:
+        if not self.contains_vertex(vertex):
             raise ValueError(f"Incorrect input: {vertex} does not exist in this graph.")
+
+        # first slide up the rows by deleting the row corresponding to
+        # the vertex being deleted.
+        start_index = self.vertex_to_index[vertex]
+        self.adj_matrix.pop(start_index)
+
+        # next, slide the columns to the left by deleting the values in
+        # the column corresponding to the vertex being deleted
+        for lst in self.adj_matrix:
+            lst.pop(start_index)
+
+        # final clean up
+        self.vertex_to_index.pop(vertex)
+
+        # decrement indices for vertices shifted by the deleted vertex in the adj matrix
+        for vertex in self.vertex_to_index:
+            if self.vertex_to_index[vertex] >= start_index:
+                self.vertex_to_index[vertex] = self.vertex_to_index[vertex] - 1
 
     def contains_vertex(self, vertex: T) -> bool:
         """
@@ -159,17 +154,18 @@ class GraphAdjacencyMatrix(Generic[T]):
         destination_vertex, False otherwise. If any given vertex doesn't exist, a
         ValueError will be thrown.
         """
-        if self.contains_vertex(source_vertex) and self.contains_vertex(
-            destination_vertex
+        if not (
+            self.contains_vertex(source_vertex)
+            and self.contains_vertex(destination_vertex)
         ):
-            u = self.vertex_to_index[source_vertex]
-            v = self.vertex_to_index[destination_vertex]
-            return True if self.adj_matrix[u][v] == 1 else False
-        else:
             raise ValueError(
                 f"Incorrect input: Either {source_vertex} ",
                 f"or {destination_vertex} does not exist.",
             )
+
+        u = self.vertex_to_index[source_vertex]
+        v = self.vertex_to_index[destination_vertex]
+        return True if self.adj_matrix[u][v] == 1 else False
 
     def clear_graph(self) -> None:
         """

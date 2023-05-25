@@ -41,12 +41,9 @@ class GraphAdjacencyList(Generic[T]):
         self.adj_list: dict[T, list[T]] = {}  # dictionary of lists of T
         self.directed = directed
 
-        # None checks
-        if vertices is None:
-            vertices = []
-
-        if edges is None:
-            edges = []
+        # Falsey checks
+        edges = edges or []
+        vertices = vertices or []
 
         for vertex in vertices:
             self.add_vertex(vertex)
@@ -61,10 +58,9 @@ class GraphAdjacencyList(Generic[T]):
         Adds a vertex to the graph. If the given vertex already exists,
         a ValueError will be thrown.
         """
-        if not self.contains_vertex(vertex):
-            self.adj_list[vertex] = []
-        else:
+        if self.contains_vertex(vertex):
             raise ValueError(f"Incorrect input: {vertex} is already in the graph.")
+        self.adj_list[vertex] = []
 
     def add_edge(self, source_vertex: T, destination_vertex: T) -> None:
         """
@@ -72,20 +68,22 @@ class GraphAdjacencyList(Generic[T]):
         given vertex doesn't exist or the edge already exists, a ValueError
         will be thrown.
         """
-        if (
+        if not (
             self.contains_vertex(source_vertex)
             and self.contains_vertex(destination_vertex)
             and not self.contains_edge(source_vertex, destination_vertex)
         ):
-            self.adj_list[source_vertex].append(destination_vertex)
-            if not self.directed:
-                self.adj_list[destination_vertex].append(source_vertex)
-        else:
             raise ValueError(
                 f"Incorrect input: Either {source_vertex} or ",
                 f"{destination_vertex} does not exist OR the requested edge ",
                 "already exists between them.",
             )
+
+        # add the destination vertex to the list associated with the source vertex
+        # and vice versa if not directed
+        self.adj_list[source_vertex].append(destination_vertex)
+        if not self.directed:
+            self.adj_list[destination_vertex].append(source_vertex)
 
     def remove_vertex(self, vertex: T) -> None:
         """
@@ -93,44 +91,45 @@ class GraphAdjacencyList(Generic[T]):
         outgoing edges from the given vertex as well. If the given vertex
         does not exist, a ValueError will be thrown.
         """
-        if self.contains_vertex(vertex):
-            if not self.directed:
-                # If not directed, find all neighboring vertices and delete
-                # all references of
-                # edges connecting to the given vertex
-                for neighbor in self.adj_list[vertex]:
-                    self.adj_list[neighbor].remove(vertex)
-            else:
-                # If directed, search all neighbors of all vertices and delete
-                # all references of edges connecting to the given vertex
-                for edge_list in self.adj_list.values():
-                    if vertex in edge_list:
-                        edge_list.remove(vertex)
-
-            # Finally, delete the given vertex and all of its outgoing edge references
-            self.adj_list.pop(vertex)
-        else:
+        if not self.contains_vertex(vertex):
             raise ValueError(f"Incorrect input: {vertex} does not exist in this graph.")
+
+        if not self.directed:
+            # If not directed, find all neighboring vertices and delete all references
+            # of edges connecting to the given vertex
+            for neighbor in self.adj_list[vertex]:
+                self.adj_list[neighbor].remove(vertex)
+        else:
+            # If directed, search all neighbors of all vertices and delete all
+            # references of edges connecting to the given vertex
+            for edge_list in self.adj_list.values():
+                if vertex in edge_list:
+                    edge_list.remove(vertex)
+
+        # Finally, delete the given vertex and all of its outgoing edge references
+        self.adj_list.pop(vertex)
 
     def remove_edge(self, source_vertex: T, destination_vertex: T) -> None:
         """
         Removes the edge between the two vertices. If any given vertex
         doesn't exist or the edge does not exist, a ValueError will be thrown.
         """
-        if (
+        if not (
             self.contains_vertex(source_vertex)
             and self.contains_vertex(destination_vertex)
             and self.contains_edge(source_vertex, destination_vertex)
         ):
-            self.adj_list[source_vertex].remove(destination_vertex)
-            if not self.directed:
-                self.adj_list[destination_vertex].remove(source_vertex)
-        else:
             raise ValueError(
                 f"Incorrect input: Either {source_vertex} or ",
                 f"{destination_vertex} do not exist OR the requested edge ",
                 "does not exists between them.",
             )
+
+        # remove the destination vertex from the list associated with the source
+        # vertex and vice versa if not directed
+        self.adj_list[source_vertex].remove(destination_vertex)
+        if not self.directed:
+            self.adj_list[destination_vertex].remove(source_vertex)
 
     def contains_vertex(self, vertex: T) -> bool:
         """
@@ -144,15 +143,16 @@ class GraphAdjacencyList(Generic[T]):
         destination_vertex, False otherwise. If any given vertex doesn't exist, a
         ValueError will be thrown.
         """
-        if self.contains_vertex(source_vertex) and self.contains_vertex(
-            destination_vertex
+        if not (
+            self.contains_vertex(source_vertex)
+            and self.contains_vertex(destination_vertex)
         ):
-            return True if destination_vertex in self.adj_list[source_vertex] else False
-        else:
             raise ValueError(
                 f"Incorrect input: Either {source_vertex} or ",
                 f"{destination_vertex} does not exist.",
             )
+
+        return destination_vertex in self.adj_list[source_vertex]
 
     def clear_graph(self) -> None:
         """
