@@ -38,24 +38,58 @@ ignore = [      # `ruff rule S101` for a description of that rule
     "UP038",    # UP038: Use `X | Y` in `{}` call instead of `(X, Y)` -- DO NOT FIX
 ]
 select = [      # https://beta.ruff.rs/docs/rules
-    "A",        # A: builtins
-    "B",        # B: bugbear
-    "C40",      # C40: comprehensions
-    "C90",      # C90: mccabe code complexity
-    "E",        # E: pycodestyle errors
-    "F",        # F: pyflakes
-    "G",        # G: logging format
-    "I",        # I: isort
-    "N",        # N: pep8 naming
-    "PL",       # PL: pylint
-    "PIE",      # PIE: pie
-    "PYI",      # PYI: type hinting stub files
-    "RUF",      # RUF: ruff
-    "S",        # S: bandit
-    "TID",      # TID: tidy imports
-    "UP",       # UP: pyupgrade
-    "W",        # W: pycodestyle warnings
-    "YTT",      # YTT: year 2020
+  # "COM",  # flake8-commas
+  # "DJ",  # flake8-django
+  # "ERA",  # eradicate
+  # "NPY",  # NumPy-specific rules
+  # "PD",  # pandas-vet
+  # "PLR091",  # Pylint Refactor just for max-args, max-branches, etc.
+  # "Q",  # flake8-quotes
+  # "T20",  # flake8-print
+  "A",    # flake8-builtins
+  "ANN",  # flake8-annotations
+  "ARG",  # flake8-unused-arguments
+  "ASYNC",  # flake8-async
+  "B",    # flake8-bugbear
+  "BLE",  # flake8-blind-except
+  "C4",   # flake8-comprehensions
+  "C90",  # McCabe cyclomatic complexity
+  "D",    # pydocstyle
+  "DTZ",  # flake8-datetimez
+  "E",    # pycodestyle
+  "EM",   # flake8-errmsg
+  "EXE",  # flake8-executable
+  "F",    # Pyflakes
+  "FA",   # flake8-future-annotations
+  "FBT",  # flake8-boolean-trap
+  "FLY",  # flynt
+  "G",    # flake8-logging-format
+  "I",    # isort
+  "ICN",  # flake8-import-conventions
+  "INP",  # flake8-no-pep420
+  "INT",  # flake8-gettext
+  "ISC",  # flake8-implicit-str-concat
+  "N",    # pep8-naming
+  "PGH",  # pygrep-hooks
+  "PIE",  # flake8-pie
+  "PL",   # Pylint
+  "PT",   # flake8-pytest-style
+  "PTH",  # flake8-use-pathlib
+  "PYI",  # flake8-pyi
+  "RET",  # flake8-return
+  "RSE",  # flake8-raise
+  "RUF",  # Ruff-specific rules
+  "S",    # flake8-bandit
+  "SIM",  # flake8-simplify
+  "SLF",  # flake8-self
+  "T10",  # flake8-debugger
+  "TCH",  # flake8-type-checking
+  "TD",   # flake8-todos
+  "TID",  # flake8-tidy-imports
+  "TRY",  # tryceratops
+  "UP",   # pyupgrade
+  "W",    # pycodestyle
+  "YTT",  # flake8-2020
 ]
 show-source = true
 target-version = "py311"
