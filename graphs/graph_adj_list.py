@@ -1,13 +1,14 @@
+#!/usr/bin/env python3
 """
 Author: Vikram Nithyanandam
 
 Description:
 The following implementation is a robust unweighted Graph data structure
-implemented using an adjacency matrix. This vertices and edges of this graph can be
+implemented using an adjacency list. This vertices and edges of this graph can be
 effectively initialized and modified while storing your chosen generic
 value in each vertex.
 
-Adjacency Matrix: https://mathworld.wolfram.com/AdjacencyMatrix.html
+Adjacency List: https://en.wikipedia.org/wiki/Adjacency_list
 
 Potential Future Ideas:
 - Add a flag to set edge weights on and set edge weights
@@ -24,20 +25,21 @@ from typing import Generic, TypeVar
 T = TypeVar("T")
 
 
-class GraphAdjacencyMatrix(Generic[T]):
-    def __init__(self, vertices: list[T], edges: list[list[T]], directed: bool = True):
+class GraphAdjacencyList(Generic[T]):
+    def __init__(
+        self, vertices: list[T], edges: list[list[T]], directed: bool = True
+    ) -> None:
         """
         Parameters:
-        - vertices: (list[T]) The list of vertex names the client wants to
+         - vertices: (list[T]) The list of vertex names the client wants to
         pass in. Default is empty.
         - edges: (list[list[T]]) The list of edges the client wants to
         pass in. Each edge is a 2-element list. Default is empty.
         - directed: (bool) Indicates if graph is directed or undirected.
         Default is True.
         """
+        self.adj_list: dict[T, list[T]] = {}  # dictionary of lists of T
         self.directed = directed
-        self.vertex_to_index: dict[T, int] = {}
-        self.adj_matrix: list[list[int]] = []
 
         # None checks
         if vertices is None:
@@ -51,8 +53,18 @@ class GraphAdjacencyMatrix(Generic[T]):
 
         for edge in edges:
             if len(edge) != 2:
-                raise ValueError(f"Invalid input: {edge} must have length 2.")
+                raise ValueError(f"Invalid input: {edge} is the wrong length.")
             self.add_edge(edge[0], edge[1])
+
+    def add_vertex(self, vertex: T) -> None:
+        """
+        Adds a vertex to the graph. If the given vertex already exists,
+        a ValueError will be thrown.
+        """
+        if not self.contains_vertex(vertex):
+            self.adj_list[vertex] = []
+        else:
+            raise ValueError(f"Incorrect input: {vertex} is already in the graph.")
 
     def add_edge(self, source_vertex: T, destination_vertex: T) -> None:
         """
@@ -65,19 +77,40 @@ class GraphAdjacencyMatrix(Generic[T]):
             and self.contains_vertex(destination_vertex)
             and not self.contains_edge(source_vertex, destination_vertex)
         ):
-            # Get the indices of the corresponding vertices and set their
-            # edge value to 1.
-            u: int = self.vertex_to_index[source_vertex]
-            v: int = self.vertex_to_index[destination_vertex]
-            self.adj_matrix[u][v] = 1
+            self.adj_list[source_vertex].append(destination_vertex)
             if not self.directed:
-                self.adj_matrix[v][u] = 1
+                self.adj_list[destination_vertex].append(source_vertex)
         else:
             raise ValueError(
                 f"Incorrect input: Either {source_vertex} or ",
-                f"{destination_vertex} do not exist OR there already exists",
-                "an edge between them.",
+                f"{destination_vertex} does not exist OR the requested edge ",
+                "already exists between them.",
             )
+
+    def remove_vertex(self, vertex: T) -> None:
+        """
+        Removes the given vertex from the graph and deletes all incoming and
+        outgoing edges from the given vertex as well. If the given vertex
+        does not exist, a ValueError will be thrown.
+        """
+        if self.contains_vertex(vertex):
+            if not self.directed:
+                # If not directed, find all neighboring vertices and delete
+                # all references of
+                # edges connecting to the given vertex
+                for neighbor in self.adj_list[vertex]:
+                    self.adj_list[neighbor].remove(vertex)
+            else:
+                # If directed, search all neighbors of all vertices and delete
+                # all references of edges connecting to the given vertex
+                for edge_list in self.adj_list.values():
+                    if vertex in edge_list:
+                        edge_list.remove(vertex)
+
+            # Finally, delete the given vertex and all of its outgoing edge references
+            self.adj_list.pop(vertex)
+        else:
+            raise ValueError(f"Incorrect input: {vertex} does not exist in this graph.")
 
     def remove_edge(self, source_vertex: T, destination_vertex: T) -> None:
         """
@@ -89,69 +122,21 @@ class GraphAdjacencyMatrix(Generic[T]):
             and self.contains_vertex(destination_vertex)
             and self.contains_edge(source_vertex, destination_vertex)
         ):
-            # Get the indices of the corresponding vertices and setting
-            # their edge value to 0.
-            u: int = self.vertex_to_index[source_vertex]
-            v: int = self.vertex_to_index[destination_vertex]
-            self.adj_matrix[u][v] = 0
+            self.adj_list[source_vertex].remove(destination_vertex)
             if not self.directed:
-                self.adj_matrix[v][u] = 0
+                self.adj_list[destination_vertex].remove(source_vertex)
         else:
             raise ValueError(
                 f"Incorrect input: Either {source_vertex} or ",
-                f"{destination_vertex} does not exist OR the requested ",
-                "edge does not exists between them.",
+                f"{destination_vertex} do not exist OR the requested edge ",
+                "does not exists between them.",
             )
-
-    def add_vertex(self, vertex: T) -> None:
-        """
-        Adds a vertex to the graph. If the given vertex already exists,
-        a ValueError will be thrown.
-        """
-        if not self.contains_vertex(vertex):
-            # build column for vertex
-            for row in self.adj_matrix:
-                row.append(0)
-
-            # build row for vertex and update other data structures
-            self.adj_matrix.append([0] * (len(self.adj_matrix) + 1))
-            self.vertex_to_index[vertex] = len(self.adj_matrix) - 1
-        else:
-            raise ValueError(f"Incorrect input: {vertex} already exists in this graph.")
-
-    def remove_vertex(self, vertex: T) -> None:
-        """
-        Removes the given vertex from the graph and deletes all incoming and
-        outgoing edges from the given vertex as well. If the given vertex
-        does not exist, a ValueError will be thrown.
-        """
-        if self.contains_vertex(vertex):
-            # first slide up the rows by deleting the row corresponding to
-            # the vertex being deleted.
-            start_index = self.vertex_to_index[vertex]
-            self.adj_matrix.pop(start_index)
-
-            # next, slide the columns to the left by deleting the values in
-            # the column corresponding to the vertex being deleted
-            for lst in self.adj_matrix:
-                lst.pop(start_index)
-
-            # final clean up
-            self.vertex_to_index.pop(vertex)
-
-            # decrement indices for vertices shifted by the deleted vertex
-            # in the adj matrix
-            for vertex in self.vertex_to_index:
-                if self.vertex_to_index[vertex] >= start_index:
-                    self.vertex_to_index[vertex] = self.vertex_to_index[vertex] - 1
-        else:
-            raise ValueError(f"Incorrect input: {vertex} does not exist in this graph.")
 
     def contains_vertex(self, vertex: T) -> bool:
         """
         Returns True if the graph contains the vertex, False otherwise.
         """
-        return vertex in self.vertex_to_index
+        return vertex in self.adj_list
 
     def contains_edge(self, source_vertex: T, destination_vertex: T) -> bool:
         """
@@ -162,33 +147,28 @@ class GraphAdjacencyMatrix(Generic[T]):
         if self.contains_vertex(source_vertex) and self.contains_vertex(
             destination_vertex
         ):
-            u = self.vertex_to_index[source_vertex]
-            v = self.vertex_to_index[destination_vertex]
-            return True if self.adj_matrix[u][v] == 1 else False
+            return True if destination_vertex in self.adj_list[source_vertex] else False
         else:
             raise ValueError(
-                f"Incorrect input: Either {source_vertex} ",
-                f"or {destination_vertex} does not exist.",
+                f"Incorrect input: Either {source_vertex} or ",
+                f"{destination_vertex} does not exist.",
             )
 
     def clear_graph(self) -> None:
         """
         Clears all vertices and edges.
         """
-        self.vertex_to_index = {}
-        self.adj_matrix = []
+        self.adj_list = {}
 
     def __repr__(self) -> str:
-        first = "Adj Matrix:\n" + pformat(self.adj_matrix)
-        second = "\nVertex to index mapping:\n" + pformat(self.vertex_to_index)
-        return first + second
+        return pformat(self.adj_list)
 
 
-class TestGraphMatrix(unittest.TestCase):
+class TestGraphAdjacencyList(unittest.TestCase):
     def __assert_graph_edge_exists_check(
         self,
-        undirected_graph: GraphAdjacencyMatrix,
-        directed_graph: GraphAdjacencyMatrix,
+        undirected_graph: GraphAdjacencyList,
+        directed_graph: GraphAdjacencyList,
         edge: list[int],
     ):
         self.assertTrue(undirected_graph.contains_edge(edge[0], edge[1]))
@@ -197,8 +177,8 @@ class TestGraphMatrix(unittest.TestCase):
 
     def __assert_graph_edge_does_not_exist_check(
         self,
-        undirected_graph: GraphAdjacencyMatrix,
-        directed_graph: GraphAdjacencyMatrix,
+        undirected_graph: GraphAdjacencyList,
+        directed_graph: GraphAdjacencyList,
         edge: list[int],
     ):
         self.assertFalse(undirected_graph.contains_edge(edge[0], edge[1]))
@@ -207,8 +187,8 @@ class TestGraphMatrix(unittest.TestCase):
 
     def __assert_graph_vertex_exists_check(
         self,
-        undirected_graph: GraphAdjacencyMatrix,
-        directed_graph: GraphAdjacencyMatrix,
+        undirected_graph: GraphAdjacencyList,
+        directed_graph: GraphAdjacencyList,
         vertex: int,
     ):
         self.assertTrue(undirected_graph.contains_vertex(vertex))
@@ -216,8 +196,8 @@ class TestGraphMatrix(unittest.TestCase):
 
     def __assert_graph_vertex_does_not_exist_check(
         self,
-        undirected_graph: GraphAdjacencyMatrix,
-        directed_graph: GraphAdjacencyMatrix,
+        undirected_graph: GraphAdjacencyList,
+        directed_graph: GraphAdjacencyList,
         vertex: int,
     ):
         self.assertFalse(undirected_graph.contains_vertex(vertex))
@@ -244,11 +224,11 @@ class TestGraphMatrix(unittest.TestCase):
 
     def __generate_graphs(
         self, vertex_count: int, min_val: int, max_val: int, edge_pick_count: int
-    ) -> tuple[GraphAdjacencyMatrix, GraphAdjacencyMatrix, list[int], list[list[int]]]:
+    ) -> tuple[GraphAdjacencyList, GraphAdjacencyList, list[int], list[list[int]]]:
         if max_val - min_val + 1 < vertex_count:
             raise ValueError(
-                "Will result in duplicate vertices. Either increase ",
-                "range between min_val and max_val or decrease vertex count",
+                "Will result in duplicate vertices. Either increase range ",
+                "between min_val and max_val or decrease vertex count.",
             )
 
         # generate graph input
@@ -260,10 +240,10 @@ class TestGraphMatrix(unittest.TestCase):
         )
 
         # build graphs
-        undirected_graph = GraphAdjacencyMatrix(
+        undirected_graph = GraphAdjacencyList(
             vertices=random_vertices, edges=random_edges, directed=False
         )
-        directed_graph = GraphAdjacencyMatrix(
+        directed_graph = GraphAdjacencyList(
             vertices=random_vertices, edges=random_edges, directed=True
         )
 
@@ -287,7 +267,6 @@ class TestGraphMatrix(unittest.TestCase):
             self.__assert_graph_edge_exists_check(
                 undirected_graph, directed_graph, edge
             )
-
         self.assertFalse(undirected_graph.directed)
         self.assertTrue(directed_graph.directed)
 
@@ -295,10 +274,10 @@ class TestGraphMatrix(unittest.TestCase):
         random_vertices: list[int] = random.sample(range(101), 20)
 
         # Build graphs WITHOUT edges
-        undirected_graph = GraphAdjacencyMatrix(
+        undirected_graph = GraphAdjacencyList(
             vertices=random_vertices, edges=[], directed=False
         )
-        directed_graph = GraphAdjacencyMatrix(
+        directed_graph = GraphAdjacencyList(
             vertices=random_vertices, edges=[], directed=True
         )
 
@@ -315,8 +294,8 @@ class TestGraphMatrix(unittest.TestCase):
         random_vertices: list[int] = random.sample(range(101), 20)
 
         # build empty graphs
-        undirected_graph = GraphAdjacencyMatrix(vertices=[], edges=[], directed=False)
-        directed_graph = GraphAdjacencyMatrix(vertices=[], edges=[], directed=True)
+        undirected_graph = GraphAdjacencyList(vertices=[], edges=[], directed=False)
+        directed_graph = GraphAdjacencyList(vertices=[], edges=[], directed=True)
 
         # run add_vertex
         for num in random_vertices:
@@ -335,10 +314,10 @@ class TestGraphMatrix(unittest.TestCase):
         random_vertices: list[int] = random.sample(range(101), 20)
 
         # build graphs WITHOUT edges
-        undirected_graph = GraphAdjacencyMatrix(
+        undirected_graph = GraphAdjacencyList(
             vertices=random_vertices, edges=[], directed=False
         )
-        directed_graph = GraphAdjacencyMatrix(
+        directed_graph = GraphAdjacencyList(
             vertices=random_vertices, edges=[], directed=True
         )
 
@@ -360,15 +339,15 @@ class TestGraphMatrix(unittest.TestCase):
         random_vertices2: list[int] = random.sample(range(51, 101), 20)
 
         # build graphs WITHOUT edges
-        undirected_graph = GraphAdjacencyMatrix(
+        undirected_graph = GraphAdjacencyList(
             vertices=random_vertices1, edges=[], directed=False
         )
-        directed_graph = GraphAdjacencyMatrix(
+        directed_graph = GraphAdjacencyList(
             vertices=random_vertices1, edges=[], directed=True
         )
 
         # test adding and removing vertices
-        for i in range(len(random_vertices1)):
+        for i, _ in enumerate(random_vertices1):
             undirected_graph.add_vertex(random_vertices2[i])
             directed_graph.add_vertex(random_vertices2[i])
 
@@ -384,7 +363,7 @@ class TestGraphMatrix(unittest.TestCase):
             )
 
         # remove all vertices
-        for i in range(len(random_vertices1)):
+        for i, _ in enumerate(random_vertices1):
             undirected_graph.remove_vertex(random_vertices2[i])
             directed_graph.remove_vertex(random_vertices2[i])
 
@@ -394,17 +373,18 @@ class TestGraphMatrix(unittest.TestCase):
 
     def test_contains_edge(self):
         # generate graphs and graph input
+        vertex_count = 20
         (
             undirected_graph,
             directed_graph,
             random_vertices,
             random_edges,
-        ) = self.__generate_graphs(20, 0, 100, 4)
+        ) = self.__generate_graphs(vertex_count, 0, 100, 4)
 
         # generate all possible edges for testing
         all_possible_edges: list[list[int]] = []
-        for i in range(len(random_vertices) - 1):
-            for j in range(i + 1, len(random_vertices)):
+        for i in range(vertex_count - 1):
+            for j in range(i + 1, vertex_count):
                 all_possible_edges.append([random_vertices[i], random_vertices[j]])
                 all_possible_edges.append([random_vertices[j], random_vertices[i]])
 
@@ -415,8 +395,8 @@ class TestGraphMatrix(unittest.TestCase):
                     undirected_graph, directed_graph, edge
                 )
             elif [edge[1], edge[0]] in random_edges:
-                # since this edge exists for undirected but the reverse may
-                # not exist for directed
+                # since this edge exists for undirected but the reverse
+                # may not exist for directed
                 self.__assert_graph_edge_exists_check(
                     undirected_graph, directed_graph, [edge[1], edge[0]]
                 )
@@ -431,10 +411,10 @@ class TestGraphMatrix(unittest.TestCase):
         random_edges: list[list[int]] = self.__generate_random_edges(random_vertices, 4)
 
         # build graphs WITHOUT edges
-        undirected_graph = GraphAdjacencyMatrix(
+        undirected_graph = GraphAdjacencyList(
             vertices=random_vertices, edges=[], directed=False
         )
-        directed_graph = GraphAdjacencyMatrix(
+        directed_graph = GraphAdjacencyList(
             vertices=random_vertices, edges=[], directed=True
         )
 
@@ -485,7 +465,7 @@ class TestGraphMatrix(unittest.TestCase):
                 elif edge not in more_random_edges and edge not in random_edges:
                     more_random_edges.append(edge)
 
-        for i in range(len(random_edges)):
+        for i, _ in enumerate(random_edges):
             undirected_graph.add_edge(more_random_edges[i][0], more_random_edges[i][1])
             directed_graph.add_edge(more_random_edges[i][0], more_random_edges[i][1])
 

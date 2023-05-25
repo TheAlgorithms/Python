@@ -1,24 +1,10 @@
-"""
-Original Authors: OMKAR PATHAK, Nwachukwu Chidiebere
-Redesigned and reimplemented by Vikram Nithyanandam
+#!/usr/bin/env python3
 
-Description:
-The following implementation is a robust unweighted Graph data structure
-implemented using an adjacency list. This vertices and edges of this graph can be
-effectively initialized and modified while storing your chosen generic
-value in each vertex.
+# Author: OMKAR PATHAK, Nwachukwu Chidiebere
 
-Adjacency List: https://en.wikipedia.org/wiki/Adjacency_list
-
-Potential Future Ideas:
-- Add a flag to set edge weights on and set edge weights
-- Make edge weights and vertex values customizable to store whatever the client wants
-- Support multigraph functionality if the client wants it
-"""
+# Use a Python dictionary to construct the graph.
 from __future__ import annotations
 
-import random
-import unittest
 from pprint import pformat
 from typing import Generic, TypeVar
 
@@ -28,548 +14,137 @@ T = TypeVar("T")
 class GraphAdjacencyList(Generic[T]):
     """
     Adjacency List type Graph Data Structure that accounts for directed and undirected
-    Graphs. Initialize graph object indicating whether it's directed or undirected.
+    Graphs.  Initialize graph object indicating whether it's directed or undirected.
+
+    Directed graph example:
+    >>> d_graph = GraphAdjacencyList()
+    >>> print(d_graph)
+    {}
+    >>> d_graph.add_edge(0, 1)
+    {0: [1], 1: []}
+    >>> d_graph.add_edge(1, 2).add_edge(1, 4).add_edge(1, 5)
+    {0: [1], 1: [2, 4, 5], 2: [], 4: [], 5: []}
+    >>> d_graph.add_edge(2, 0).add_edge(2, 6).add_edge(2, 7)
+    {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
+    >>> d_graph
+    {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
+    >>> print(repr(d_graph))
+    {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
+
+    Undirected graph example:
+    >>> u_graph = GraphAdjacencyList(directed=False)
+    >>> u_graph.add_edge(0, 1)
+    {0: [1], 1: [0]}
+    >>> u_graph.add_edge(1, 2).add_edge(1, 4).add_edge(1, 5)
+    {0: [1], 1: [0, 2, 4, 5], 2: [1], 4: [1], 5: [1]}
+    >>> u_graph.add_edge(2, 0).add_edge(2, 6).add_edge(2, 7)
+    {0: [1, 2], 1: [0, 2, 4, 5], 2: [1, 0, 6, 7], 4: [1], 5: [1], 6: [2], 7: [2]}
+    >>> u_graph.add_edge(4, 5)
+    {0: [1, 2],
+     1: [0, 2, 4, 5],
+     2: [1, 0, 6, 7],
+     4: [1, 5],
+     5: [1, 4],
+     6: [2],
+     7: [2]}
+    >>> print(u_graph)
+    {0: [1, 2],
+     1: [0, 2, 4, 5],
+     2: [1, 0, 6, 7],
+     4: [1, 5],
+     5: [1, 4],
+     6: [2],
+     7: [2]}
+    >>> print(repr(u_graph))
+    {0: [1, 2],
+     1: [0, 2, 4, 5],
+     2: [1, 0, 6, 7],
+     4: [1, 5],
+     5: [1, 4],
+     6: [2],
+     7: [2]}
+     >>> char_graph = GraphAdjacencyList(directed=False)
+     >>> char_graph.add_edge('a', 'b')
+     {'a': ['b'], 'b': ['a']}
+     >>> char_graph.add_edge('b', 'c').add_edge('b', 'e').add_edge('b', 'f')
+     {'a': ['b'], 'b': ['a', 'c', 'e', 'f'], 'c': ['b'], 'e': ['b'], 'f': ['b']}
+     >>> char_graph
+     {'a': ['b'], 'b': ['a', 'c', 'e', 'f'], 'c': ['b'], 'e': ['b'], 'f': ['b']}
     """
 
-    def __init__(
-        self, vertices: list[T], edges: list[list[T]], directed: bool = True
-    ) -> None:
+    def __init__(self, directed: bool = True) -> None:
         """
         Parameters:
-         - vertices: (list[T]) The list of vertex names the client wants to
-        pass in. Default is empty.
-        - edges: (list[list[T]]) The list of edges the client wants to
-        pass in. Each edge is a 2-element list. Default is empty.
-        - directed: (bool) Indicates if graph is directed or undirected.
-        Default is True.
+        directed: (bool) Indicates if graph is directed or undirected. Default is True.
         """
-        self.adj_list: dict[T, list[T]] = {}  # dictionary of lists of T
+
+        self.adj_list: dict[T, list[T]] = {}  # dictionary of lists
         self.directed = directed
 
-        # None checks
-        if vertices is None:
-            vertices = []
-
-        if edges is None:
-            edges = []
-
-        for vertex in vertices:
-            self.add_vertex(vertex)
-
-        for edge in edges:
-            if len(edge) != 2:
-                raise ValueError(f"Invalid input: {edge} is the wrong length.")
-            self.add_edge(edge[0], edge[1])
-
-    def add_vertex(self, vertex: T) -> None:
+    def add_edge(
+        self, source_vertex: T, destination_vertex: T
+    ) -> GraphAdjacencyList[T]:
         """
-        Adds a vertex to the graph. If the given vertex already exists,
-        a ValueError will be thrown.
+        Connects vertices together. Creates and Edge from source vertex to destination
+        vertex.
+        Vertices will be created if not found in graph
         """
-        if not self.contains_vertex(vertex):
-            self.adj_list[vertex] = []
-        else:
-            raise ValueError(f"Incorrect input: {vertex} is already in the graph.")
 
-    def add_edge(self, source_vertex: T, destination_vertex: T) -> None:
-        """
-        Creates an edge from source vertex to destination vertex. If any
-        given vertex doesn't exist or the edge already exists, a ValueError
-        will be thrown.
-        """
-        if (
-            self.contains_vertex(source_vertex)
-            and self.contains_vertex(destination_vertex)
-            and not self.contains_edge(source_vertex, destination_vertex)
-        ):
-            self.adj_list[source_vertex].append(destination_vertex)
-            if not self.directed:
+        if not self.directed:  # For undirected graphs
+            # if both source vertex and destination vertex are both present in the
+            # adjacency list, add destination vertex to source vertex list of adjacent
+            # vertices and add source vertex to destination vertex list of adjacent
+            # vertices.
+            if source_vertex in self.adj_list and destination_vertex in self.adj_list:
+                self.adj_list[source_vertex].append(destination_vertex)
                 self.adj_list[destination_vertex].append(source_vertex)
-        else:
-            raise ValueError(
-                f"Incorrect input: Either {source_vertex} or ",
-                f"{destination_vertex} does not exist OR the requested edge ",
-                "already exists between them.",
-            )
-
-    def remove_vertex(self, vertex: T) -> None:
-        """
-        Removes the given vertex from the graph and deletes all incoming and
-        outgoing edges from the given vertex as well. If the given vertex
-        does not exist, a ValueError will be thrown.
-        """
-        if self.contains_vertex(vertex):
-            if not self.directed:
-                # If not directed, find all neighboring vertices and delete
-                # all references of
-                # edges connecting to the given vertex
-                for neighbor in self.adj_list[vertex]:
-                    self.adj_list[neighbor].remove(vertex)
+            # if only source vertex is present in adjacency list, add destination vertex
+            # to source vertex list of adjacent vertices, then create a new vertex with
+            # destination vertex as key and assign a list containing the source vertex
+            # as it's first adjacent vertex.
+            elif source_vertex in self.adj_list:
+                self.adj_list[source_vertex].append(destination_vertex)
+                self.adj_list[destination_vertex] = [source_vertex]
+            # if only destination vertex is present in adjacency list, add source vertex
+            # to destination vertex list of adjacent vertices, then create a new vertex
+            # with source vertex as key and assign a list containing the source vertex
+            # as it's first adjacent vertex.
+            elif destination_vertex in self.adj_list:
+                self.adj_list[destination_vertex].append(source_vertex)
+                self.adj_list[source_vertex] = [destination_vertex]
+            # if both source vertex and destination vertex are not present in adjacency
+            # list, create a new vertex with source vertex as key and assign a list
+            # containing the destination vertex as it's first adjacent vertex also
+            # create a new vertex with destination vertex as key and assign a list
+            # containing the source vertex as it's first adjacent vertex.
             else:
-                # If directed, search all neighbors of all vertices and delete
-                # all references of edges connecting to the given vertex
-                for edge_list in self.adj_list.values():
-                    if vertex in edge_list:
-                        edge_list.remove(vertex)
+                self.adj_list[source_vertex] = [destination_vertex]
+                self.adj_list[destination_vertex] = [source_vertex]
+        else:  # For directed graphs
+            # if both source vertex and destination vertex are present in adjacency
+            # list, add destination vertex to source vertex list of adjacent vertices.
+            if source_vertex in self.adj_list and destination_vertex in self.adj_list:
+                self.adj_list[source_vertex].append(destination_vertex)
+            # if only source vertex is present in adjacency list, add destination
+            # vertex to source vertex list of adjacent vertices and create a new vertex
+            # with destination vertex as key, which has no adjacent vertex
+            elif source_vertex in self.adj_list:
+                self.adj_list[source_vertex].append(destination_vertex)
+                self.adj_list[destination_vertex] = []
+            # if only destination vertex is present in adjacency list, create a new
+            # vertex with source vertex as key and assign a list containing destination
+            # vertex as first adjacent vertex
+            elif destination_vertex in self.adj_list:
+                self.adj_list[source_vertex] = [destination_vertex]
+            # if both source vertex and destination vertex are not present in adjacency
+            # list, create a new vertex with source vertex as key and a list containing
+            # destination vertex as it's first adjacent vertex. Then create a new vertex
+            # with destination vertex as key, which has no adjacent vertex
+            else:
+                self.adj_list[source_vertex] = [destination_vertex]
+                self.adj_list[destination_vertex] = []
 
-            # Finally, delete the given vertex and all of its outgoing edge references
-            self.adj_list.pop(vertex)
-        else:
-            raise ValueError(f"Incorrect input: {vertex} does not exist in this graph.")
-
-    def remove_edge(self, source_vertex: T, destination_vertex: T) -> None:
-        """
-        Removes the edge between the two vertices. If any given vertex
-        doesn't exist or the edge does not exist, a ValueError will be thrown.
-        """
-        if (
-            self.contains_vertex(source_vertex)
-            and self.contains_vertex(destination_vertex)
-            and self.contains_edge(source_vertex, destination_vertex)
-        ):
-            self.adj_list[source_vertex].remove(destination_vertex)
-            if not self.directed:
-                self.adj_list[destination_vertex].remove(source_vertex)
-        else:
-            raise ValueError(
-                f"Incorrect input: Either {source_vertex} or ",
-                f"{destination_vertex} do not exist OR the requested edge ",
-                "does not exists between them.",
-            )
-
-    def contains_vertex(self, vertex: T) -> bool:
-        """
-        Returns True if the graph contains the vertex, False otherwise.
-        """
-        return vertex in self.adj_list
-
-    def contains_edge(self, source_vertex: T, destination_vertex: T) -> bool:
-        """
-        Returns True if the graph contains the edge from the source_vertex to the
-        destination_vertex, False otherwise. If any given vertex doesn't exist, a
-        ValueError will be thrown.
-        """
-        if self.contains_vertex(source_vertex) and self.contains_vertex(
-            destination_vertex
-        ):
-            return True if destination_vertex in self.adj_list[source_vertex] else False
-        else:
-            raise ValueError(
-                f"Incorrect input: Either {source_vertex} or ",
-                f"{destination_vertex} does not exist.",
-            )
-
-    def clear_graph(self) -> None:
-        """
-        Clears all vertices and edges.
-        """
-        self.adj_list = {}
+        return self
 
     def __repr__(self) -> str:
         return pformat(self.adj_list)
-
-
-class TestGraphAdjacencyList(unittest.TestCase):
-    def __assert_graph_edge_exists_check(
-        self,
-        undirected_graph: GraphAdjacencyList,
-        directed_graph: GraphAdjacencyList,
-        edge: list[int],
-    ):
-        self.assertTrue(undirected_graph.contains_edge(edge[0], edge[1]))
-        self.assertTrue(undirected_graph.contains_edge(edge[1], edge[0]))
-        self.assertTrue(directed_graph.contains_edge(edge[0], edge[1]))
-
-    def __assert_graph_edge_does_not_exist_check(
-        self,
-        undirected_graph: GraphAdjacencyList,
-        directed_graph: GraphAdjacencyList,
-        edge: list[int],
-    ):
-        self.assertFalse(undirected_graph.contains_edge(edge[0], edge[1]))
-        self.assertFalse(undirected_graph.contains_edge(edge[1], edge[0]))
-        self.assertFalse(directed_graph.contains_edge(edge[0], edge[1]))
-
-    def __assert_graph_vertex_exists_check(
-        self,
-        undirected_graph: GraphAdjacencyList,
-        directed_graph: GraphAdjacencyList,
-        vertex: int,
-    ):
-        self.assertTrue(undirected_graph.contains_vertex(vertex))
-        self.assertTrue(directed_graph.contains_vertex(vertex))
-
-    def __assert_graph_vertex_does_not_exist_check(
-        self,
-        undirected_graph: GraphAdjacencyList,
-        directed_graph: GraphAdjacencyList,
-        vertex: int,
-    ):
-        self.assertFalse(undirected_graph.contains_vertex(vertex))
-        self.assertFalse(directed_graph.contains_vertex(vertex))
-
-    def __generate_random_edges(
-        self, vertices: list[int], edge_pick_count: int
-    ) -> list[list[int]]:
-        self.assertTrue(edge_pick_count <= len(vertices))
-
-        random_source_vertices: list[int] = random.sample(
-            vertices[0 : int(len(vertices) / 2)], edge_pick_count
-        )
-        random_destination_vertices: list[int] = random.sample(
-            vertices[int(len(vertices) / 2) :], edge_pick_count
-        )
-        random_edges: list[list[int]] = []
-
-        for source in random_source_vertices:
-            for dest in random_destination_vertices:
-                random_edges.append([source, dest])
-
-        return random_edges
-
-    def __generate_graphs(
-        self, vertex_count: int, min_val: int, max_val: int, edge_pick_count: int
-    ) -> tuple[GraphAdjacencyList, GraphAdjacencyList, list[int], list[list[int]]]:
-        if max_val - min_val + 1 < vertex_count:
-            raise ValueError(
-                "Will result in duplicate vertices. Either increase range ",
-                "between min_val and max_val or decrease vertex count.",
-            )
-
-        # generate graph input
-        random_vertices: list[int] = random.sample(
-            range(min_val, max_val + 1), vertex_count
-        )
-        random_edges: list[list[int]] = self.__generate_random_edges(
-            random_vertices, edge_pick_count
-        )
-
-        # build graphs
-        undirected_graph = GraphAdjacencyList(
-            vertices=random_vertices, edges=random_edges, directed=False
-        )
-        directed_graph = GraphAdjacencyList(
-            vertices=random_vertices, edges=random_edges, directed=True
-        )
-
-        return undirected_graph, directed_graph, random_vertices, random_edges
-
-    def test_init_check(self):
-        (
-            undirected_graph,
-            directed_graph,
-            random_vertices,
-            random_edges,
-        ) = self.__generate_graphs(20, 0, 100, 4)
-
-        # test graph initialization with vertices and edges
-        for num in random_vertices:
-            self.__assert_graph_vertex_exists_check(
-                undirected_graph, directed_graph, num
-            )
-
-        for edge in random_edges:
-            self.__assert_graph_edge_exists_check(
-                undirected_graph, directed_graph, edge
-            )
-        self.assertFalse(undirected_graph.directed)
-        self.assertTrue(directed_graph.directed)
-
-    def test_contains_vertex(self):
-        random_vertices: list[int] = random.sample(range(101), 20)
-
-        # Build graphs WITHOUT edges
-        undirected_graph = GraphAdjacencyList(
-            vertices=random_vertices, edges=[], directed=False
-        )
-        directed_graph = GraphAdjacencyList(
-            vertices=random_vertices, edges=[], directed=True
-        )
-
-        # Test contains_vertex
-        for num in range(101):
-            self.assertEqual(
-                num in random_vertices, undirected_graph.contains_vertex(num)
-            )
-            self.assertEqual(
-                num in random_vertices, directed_graph.contains_vertex(num)
-            )
-
-    def test_add_vertices(self):
-        random_vertices: list[int] = random.sample(range(101), 20)
-
-        # build empty graphs
-        undirected_graph = GraphAdjacencyList(vertices=[], edges=[], directed=False)
-        directed_graph = GraphAdjacencyList(vertices=[], edges=[], directed=True)
-
-        # run add_vertex
-        for num in random_vertices:
-            undirected_graph.add_vertex(num)
-
-        for num in random_vertices:
-            directed_graph.add_vertex(num)
-
-        # test add_vertex worked
-        for num in random_vertices:
-            self.__assert_graph_vertex_exists_check(
-                undirected_graph, directed_graph, num
-            )
-
-    def test_remove_vertices(self):
-        random_vertices: list[int] = random.sample(range(101), 20)
-
-        # build graphs WITHOUT edges
-        undirected_graph = GraphAdjacencyList(
-            vertices=random_vertices, edges=[], directed=False
-        )
-        directed_graph = GraphAdjacencyList(
-            vertices=random_vertices, edges=[], directed=True
-        )
-
-        # test remove_vertex worked
-        for num in random_vertices:
-            self.__assert_graph_vertex_exists_check(
-                undirected_graph, directed_graph, num
-            )
-
-            undirected_graph.remove_vertex(num)
-            directed_graph.remove_vertex(num)
-
-            self.__assert_graph_vertex_does_not_exist_check(
-                undirected_graph, directed_graph, num
-            )
-
-    def test_add_and_remove_vertices_repeatedly(self):
-        random_vertices1: list[int] = random.sample(range(51), 20)
-        random_vertices2: list[int] = random.sample(range(51, 101), 20)
-
-        # build graphs WITHOUT edges
-        undirected_graph = GraphAdjacencyList(
-            vertices=random_vertices1, edges=[], directed=False
-        )
-        directed_graph = GraphAdjacencyList(
-            vertices=random_vertices1, edges=[], directed=True
-        )
-
-        # test adding and removing vertices
-        for i in range(len(random_vertices1)):
-            undirected_graph.add_vertex(random_vertices2[i])
-            directed_graph.add_vertex(random_vertices2[i])
-
-            self.__assert_graph_vertex_exists_check(
-                undirected_graph, directed_graph, random_vertices2[i]
-            )
-
-            undirected_graph.remove_vertex(random_vertices1[i])
-            directed_graph.remove_vertex(random_vertices1[i])
-
-            self.__assert_graph_vertex_does_not_exist_check(
-                undirected_graph, directed_graph, random_vertices1[i]
-            )
-
-        # remove all vertices
-        for i in range(len(random_vertices1)):
-            undirected_graph.remove_vertex(random_vertices2[i])
-            directed_graph.remove_vertex(random_vertices2[i])
-
-            self.__assert_graph_vertex_does_not_exist_check(
-                undirected_graph, directed_graph, random_vertices2[i]
-            )
-
-    def test_contains_edge(self):
-        # generate graphs and graph input
-        (
-            undirected_graph,
-            directed_graph,
-            random_vertices,
-            random_edges,
-        ) = self.__generate_graphs(20, 0, 100, 4)
-
-        # generate all possible edges for testing
-        all_possible_edges: list[list[int]] = []
-        for i in range(len(random_vertices) - 1):
-            for j in range(i + 1, len(random_vertices)):
-                all_possible_edges.append([random_vertices[i], random_vertices[j]])
-                all_possible_edges.append([random_vertices[j], random_vertices[i]])
-
-        # test contains_edge function
-        for edge in all_possible_edges:
-            if edge in random_edges:
-                self.__assert_graph_edge_exists_check(
-                    undirected_graph, directed_graph, edge
-                )
-            elif [edge[1], edge[0]] in random_edges:
-                # since this edge exists for undirected but the reverse
-                # may not exist for directed
-                self.__assert_graph_edge_exists_check(
-                    undirected_graph, directed_graph, [edge[1], edge[0]]
-                )
-            else:
-                self.__assert_graph_edge_does_not_exist_check(
-                    undirected_graph, directed_graph, edge
-                )
-
-    def test_add_edge(self):
-        # generate graph input
-        random_vertices: list[int] = random.sample(range(101), 15)
-        random_edges: list[list[int]] = self.__generate_random_edges(random_vertices, 4)
-
-        # build graphs WITHOUT edges
-        undirected_graph = GraphAdjacencyList(
-            vertices=random_vertices, edges=[], directed=False
-        )
-        directed_graph = GraphAdjacencyList(
-            vertices=random_vertices, edges=[], directed=True
-        )
-
-        # run and test add_edge
-        for edge in random_edges:
-            undirected_graph.add_edge(edge[0], edge[1])
-            directed_graph.add_edge(edge[0], edge[1])
-            self.__assert_graph_edge_exists_check(
-                undirected_graph, directed_graph, edge
-            )
-
-    def test_remove_edge(self):
-        # generate graph input and graphs
-        (
-            undirected_graph,
-            directed_graph,
-            random_vertices,
-            random_edges,
-        ) = self.__generate_graphs(20, 0, 100, 4)
-
-        # run and test remove_edge
-        for edge in random_edges:
-            self.__assert_graph_edge_exists_check(
-                undirected_graph, directed_graph, edge
-            )
-            undirected_graph.remove_edge(edge[0], edge[1])
-            directed_graph.remove_edge(edge[0], edge[1])
-            self.__assert_graph_edge_does_not_exist_check(
-                undirected_graph, directed_graph, edge
-            )
-
-    def test_add_and_remove_edges_repeatedly(self):
-        (
-            undirected_graph,
-            directed_graph,
-            random_vertices,
-            random_edges,
-        ) = self.__generate_graphs(20, 0, 100, 4)
-
-        # make some more edge options!
-        more_random_edges: list[list[int]] = []
-
-        while len(more_random_edges) != len(random_edges):
-            edges: list[list[int]] = self.__generate_random_edges(random_vertices, 4)
-            for edge in edges:
-                if len(more_random_edges) == len(random_edges):
-                    break
-                elif edge not in more_random_edges and edge not in random_edges:
-                    more_random_edges.append(edge)
-
-        for i in range(len(random_edges)):
-            undirected_graph.add_edge(more_random_edges[i][0], more_random_edges[i][1])
-            directed_graph.add_edge(more_random_edges[i][0], more_random_edges[i][1])
-
-            self.__assert_graph_edge_exists_check(
-                undirected_graph, directed_graph, more_random_edges[i]
-            )
-
-            undirected_graph.remove_edge(random_edges[i][0], random_edges[i][1])
-            directed_graph.remove_edge(random_edges[i][0], random_edges[i][1])
-
-            self.__assert_graph_edge_does_not_exist_check(
-                undirected_graph, directed_graph, random_edges[i]
-            )
-
-    def test_add_vertex_exception_check(self):
-        (
-            undirected_graph,
-            directed_graph,
-            random_vertices,
-            random_edges,
-        ) = self.__generate_graphs(20, 0, 100, 4)
-
-        for vertex in random_vertices:
-            with self.assertRaises(ValueError):
-                undirected_graph.add_vertex(vertex)
-            with self.assertRaises(ValueError):
-                directed_graph.add_vertex(vertex)
-
-    def test_remove_vertex_exception_check(self):
-        (
-            undirected_graph,
-            directed_graph,
-            random_vertices,
-            random_edges,
-        ) = self.__generate_graphs(20, 0, 100, 4)
-
-        for i in range(101):
-            if i not in random_vertices:
-                with self.assertRaises(ValueError):
-                    undirected_graph.remove_vertex(i)
-                with self.assertRaises(ValueError):
-                    directed_graph.remove_vertex(i)
-
-    def test_add_edge_exception_check(self):
-        (
-            undirected_graph,
-            directed_graph,
-            random_vertices,
-            random_edges,
-        ) = self.__generate_graphs(20, 0, 100, 4)
-
-        for edge in random_edges:
-            with self.assertRaises(ValueError):
-                undirected_graph.add_edge(edge[0], edge[1])
-            with self.assertRaises(ValueError):
-                directed_graph.add_edge(edge[0], edge[1])
-
-    def test_remove_edge_exception_check(self):
-        (
-            undirected_graph,
-            directed_graph,
-            random_vertices,
-            random_edges,
-        ) = self.__generate_graphs(20, 0, 100, 4)
-
-        more_random_edges: list[list[int]] = []
-
-        while len(more_random_edges) != len(random_edges):
-            edges: list[list[int]] = self.__generate_random_edges(random_vertices, 4)
-            for edge in edges:
-                if len(more_random_edges) == len(random_edges):
-                    break
-                elif edge not in more_random_edges and edge not in random_edges:
-                    more_random_edges.append(edge)
-
-        for edge in more_random_edges:
-            with self.assertRaises(ValueError):
-                undirected_graph.remove_edge(edge[0], edge[1])
-            with self.assertRaises(ValueError):
-                directed_graph.remove_edge(edge[0], edge[1])
-
-    def test_contains_edge_exception_check(self):
-        (
-            undirected_graph,
-            directed_graph,
-            random_vertices,
-            random_edges,
-        ) = self.__generate_graphs(20, 0, 100, 4)
-
-        for vertex in random_vertices:
-            with self.assertRaises(ValueError):
-                undirected_graph.contains_edge(vertex, 102)
-            with self.assertRaises(ValueError):
-                directed_graph.contains_edge(vertex, 102)
-
-        with self.assertRaises(ValueError):
-            undirected_graph.contains_edge(103, 102)
-        with self.assertRaises(ValueError):
-            directed_graph.contains_edge(103, 102)
-
-
-if __name__ == "__main__":
-    unittest.main()
