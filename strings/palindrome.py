@@ -61,7 +61,7 @@ def is_palindrome_recursive(s: str) -> bool:
     >>> all(is_palindrome_recursive(key) is value for key, value in test_data.items())
     True
     """
-    if len(s) <= 1:
+    if len(s) <= 2:
         return True
     if s[0] == s[len(s) - 1]:
         return is_palindrome_recursive(s[1:-1])
@@ -82,8 +82,9 @@ def is_palindrome_slice(s: str) -> bool:
 def benchmark_function(name: str) -> None:
     stmt = f"all({name}(key) is value for key, value in test_data.items())"
     setup = f"from __main__ import test_data, {name}"
-    res = timeit(stmt=stmt, setup=setup, number=100000)
-    print(f"{name:<35} finished {number} runs in {res:.5f} seconds")
+    number = 500000
+    result = timeit(stmt=stmt, setup=setup, number=number)
+    print(f"{name:<35} finished {number:,} runs in {result:.5f} seconds")
 
 
 if __name__ == "__main__":
@@ -93,11 +94,11 @@ if __name__ == "__main__":
         print(f"{key:21} {value}")
     print("a man a plan a canal panama")
 
-    benchmark_function("is_palindrome")  # finished 100000 runs in 0.33785 seconds
-    benchmark_function(
-        "is_palindrome_traversal"
-    )  # finished 100000 runs in 0.70002 seconds
-    benchmark_function(
-        "is_palindrome_recursive"
-    )  # finished 100000 runs in 0.48514 seconds
-    benchmark_function("is_palindrome_slice")  # finished 100000 runs in 0.18703 seconds
+    # finished 500,000 runs in 0.46793 seconds
+    benchmark_function("is_palindrome_slice")
+    # finished 500,000 runs in 0.85234 seconds
+    benchmark_function("is_palindrome")
+    # finished 500,000 runs in 1.32028 seconds
+    benchmark_function("is_palindrome_recursive")
+    #finished 500,000 runs in 2.08679 seconds
+    benchmark_function("is_palindrome_traversal")
