@@ -10,7 +10,7 @@ Note in order to work there must exist 1 equation where all instances of γ != 0
 
 
 class EquationSolver:
-    def __init__(self, data: list):
+    def __init__(self, data: list[list[int | float]]) -> None:
         if len(data) == 0:
             raise IndexError("EquationSolver() requires n lists of length n+1")
         self.size = len(data)
@@ -22,7 +22,7 @@ class EquationSolver:
                 raise ValueError("EquationSolver() requires lists of integers")
         self.data = data
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         string_builder = "["
         for i in range(self.size):
             string_builder += "["
@@ -35,7 +35,7 @@ class EquationSolver:
         string_builder = string_builder[:-2] + "]"
         return string_builder
 
-    def solve(self):
+    def solve(self) -> list[int | float]:
         useable_form = self.make_useable_form()
         # Generate a simplified upper triangular matrix
         simplified = self.simplify(useable_form)
@@ -66,7 +66,7 @@ class EquationSolver:
             final.append(round(item, 5))
         return final[::-1]
 
-    def make_useable_form(self):
+    def make_useable_form(self) -> list[list[int]]:
         data_set = self.data.copy()
         if any(0 in row for row in data_set):
             temp_data = data_set.copy()
@@ -80,21 +80,21 @@ class EquationSolver:
             data_set.insert(0, full_row)
         return data_set
 
-    def simplify(self, current_data_set):
+    def simplify(self, current_set: list[list[int | float]]) -> list[list[int | float]]:
         # Divide each row by magnitude of first term --> creates 'unit' matrix
-        duplicate_set = current_data_set.copy()
+        duplicate_set = current_set.copy()
         for row_index, row in enumerate(duplicate_set):
             magnitude = row[0]
             for column_index, column in enumerate(row):
                 if magnitude == 0:
-                    current_data_set[row_index][column_index] = column
+                    current_set[row_index][column_index] = column
                     continue
-                current_data_set[row_index][column_index] = column / magnitude
+                current_set[row_index][column_index] = column / magnitude
         # Subtract to cancel term
-        first_row = current_data_set[0]
+        first_row = current_set[0]
         final_set = [first_row]
-        current_data_set = current_data_set[1::]
-        for row in current_data_set:
+        current_set = current_set[1::]
+        for row in current_set:
             temp_row = []
             # If first term is 0, it is already in form we want, so we preserve it
             if row[0] == 0:
@@ -119,7 +119,7 @@ class EquationSolver:
         return final_set
 
 
-def solve_simultaneous(equations):
+def solve_simultaneous(equations: list[list[int | float]]) -> list[int | float]:
     """
     >>> solve_simultaneous([[1, 2, 3],[4, 5, 6]])
     [-1.0, 2.0]
