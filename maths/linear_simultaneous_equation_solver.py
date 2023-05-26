@@ -1,3 +1,14 @@
+"""
+https://en.wikipedia.org/wiki/Augmented_matrix
+
+This algorithm solves simultaneous linear equations of the form
+γa + γb + γc + γd + ... = γ as [γ, γ, γ, γ, ..., γ]
+Where γ are individual coefficients, the no. of equations = no. of coefficients - 1
+
+Note in order to work there must exist 1 equation where all instances of γ != 0
+"""
+
+
 class EquationSolver:
     def __init__(self, data: list):
         if len(data) == 0:
