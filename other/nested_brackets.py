@@ -18,7 +18,7 @@ def is_balanced(s):
     stack = []
     open_brackets = set({"(", "[", "{"})
     closed_brackets = set({")", "]", "}"})
-    open_to_closed = dict({"{": "}", "[": "]", "(": ")"})
+    open_to_closed = {"{": "}", "[": "]", "(": ")"}
 
     for i in range(len(s)):
         if s[i] in open_brackets:

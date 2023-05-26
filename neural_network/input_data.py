@@ -198,10 +198,7 @@ class _DataSet:
         """Return the next `batch_size` examples from this data set."""
         if fake_data:
             fake_image = [1] * 784
-            if self.one_hot:
-                fake_label = [1] + [0] * 9
-            else:
-                fake_label = 0
+            fake_label = [1] + [0] * 9 if self.one_hot else 0
             return (
                 [fake_image for _ in range(batch_size)],
                 [fake_label for _ in range(batch_size)],
@@ -324,10 +321,11 @@ def read_data_sets(
         test_labels = _extract_labels(f, one_hot=one_hot)
 
     if not 0 <= validation_size <= len(train_images):
-        raise ValueError(
-            f"Validation size should be between 0 and {len(train_images)}. "
-            f"Received: {validation_size}."
+        msg = (
+            "Validation size should be between 0 and "
+            f"{len(train_images)}. Received: {validation_size}."
         )
+        raise ValueError(msg)
 
     validation_images = train_images[:validation_size]
     validation_labels = train_labels[:validation_size]
