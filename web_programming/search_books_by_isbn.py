@@ -22,7 +22,8 @@ def get_openlibrary_data(olid: str = "isbn/0140328726") -> dict:
     """
     new_olid = olid.strip().strip("/")  # Remove leading/trailing whitespace & slashes
     if new_olid.count("/") != 1:
-        raise ValueError(f"{olid} is not a valid Open Library olid")
+        msg = f"{olid} is not a valid Open Library olid"
+        raise ValueError(msg)
     return requests.get(f"https://openlibrary.org/{new_olid}.json").json()
 
 

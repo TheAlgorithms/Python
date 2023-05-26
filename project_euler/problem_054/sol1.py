@@ -119,10 +119,12 @@ class PokerHand:
         For example: "6S 4C KC AS TH"
         """
         if not isinstance(hand, str):
-            raise TypeError(f"Hand should be of type 'str': {hand!r}")
+            msg = f"Hand should be of type 'str': {hand!r}"
+            raise TypeError(msg)
         # split removes duplicate whitespaces so no need of strip
         if len(hand.split(" ")) != 5:
-            raise ValueError(f"Hand should contain only 5 cards: {hand!r}")
+            msg = f"Hand should contain only 5 cards: {hand!r}"
+            raise ValueError(msg)
         self._hand = hand
         self._first_pair = 0
         self._second_pair = 0

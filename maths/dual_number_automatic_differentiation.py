@@ -71,7 +71,7 @@ class Dual:
             for i in self.duals:
                 new_duals.append(i / other)
             return Dual(self.real / other, new_duals)
-        raise ValueError()
+        raise ValueError
 
     def __floordiv__(self, other):
         if not isinstance(other, Dual):
@@ -79,7 +79,7 @@ class Dual:
             for i in self.duals:
                 new_duals.append(i // other)
             return Dual(self.real // other, new_duals)
-        raise ValueError()
+        raise ValueError
 
     def __pow__(self, n):
         if n < 0 or isinstance(n, float):
