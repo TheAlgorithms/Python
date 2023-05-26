@@ -103,7 +103,7 @@ class EquationSolver:
             for column_index in range(len(row)):
                 temp_row.append(first_row[column_index] - row[column_index])
             final_set.append(temp_row)
-        # Create next recursion interation set
+        # Create next recursion iteration set
         if len(final_set[0]) != 3:
             current_first_row = final_set[0]
             current_first_column = []
