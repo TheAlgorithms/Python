@@ -146,8 +146,8 @@ class GreedyBestFirst:
                 Node(
                     pos_x,
                     pos_y,
-                    self.target.pos_y,
                     self.target.pos_x,
+                    self.target.pos_y,
                     parent.g_cost + 1,
                     parent,
                 )
