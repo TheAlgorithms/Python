@@ -136,10 +136,11 @@ class GreedyBestFirst:
             pos_x = parent.pos_x + action[1]
             pos_y = parent.pos_y + action[0]
 
-            if 0 <= pos_x <= len(grid[0]) - 1 \
-                and 0 <= pos_y <= len(grid) - 1 \
-                and grid[pos_y][pos_x] == 0:
-                
+            if (
+                0 <= pos_x <= len(grid[0]) - 1
+                and 0 <= pos_y <= len(grid) - 1
+                and grid[pos_y][pos_x] == 0
+            ):
                 successors.append(
                     Node(
                         pos_x,
