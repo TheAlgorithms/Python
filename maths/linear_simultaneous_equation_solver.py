@@ -28,7 +28,7 @@ class EquationSolver:
             string_builder += "["
             for j in range(self.size):
                 if j == self.size - 1:
-                    string_builder += f"{str(self.data[i][j]): >4}"
+                    string_builder += f"{self.data[i][j]: >4}"
                     continue
                 string_builder += f"{str(self.data[i][j]) + ',': >5}"
             string_builder += f"{'|': ^5}{self.data[i][-1]:<2}]\n "
@@ -42,7 +42,7 @@ class EquationSolver:
         # Reverse the matrix
         simplified = simplified[::-1]
         solutions = []
-        for row_index, row in enumerate(simplified):
+        for row in simplified:
             current_solution = row[-1]
             if not solutions:
                 if row[-2] == 0:
@@ -94,13 +94,13 @@ class EquationSolver:
         first_row = current_data_set[0]
         final_set = [first_row]
         current_data_set = current_data_set[1::]
-        for row_index, row in enumerate(current_data_set):
+        for row in current_data_set:
             temp_row = []
             # If first term is 0, it is already in form we want, so we preserve it
             if row[0] == 0:
                 final_set.append(row)
                 continue
-            for column_index, column in enumerate(row):
+            for column_index in range(len(row)):
                 temp_row.append(first_row[column_index] - row[column_index])
             final_set.append(temp_row)
         # Create next recursion interation set
