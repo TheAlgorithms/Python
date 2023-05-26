@@ -88,15 +88,15 @@ def jacobi_iteration_method(
 
     if rows1 != rows2:
         msg = (
-            "Coefficient and constant matrices dimensions must be nxn and nx1 but\n"
-            f"            received {rows1}x{cols1} and {rows2}x{cols2}"
+            "Coefficient and constant matrices dimensions must be nxn and nx1 but "
+            f"received {rows1}x{cols1} and {rows2}x{cols2}"
         )
         raise ValueError(msg)
 
     if len(init_val) != rows1:
         msg = (
-            "Number of initial values must be equal to number of rows in coefficient\n"
-            f"            matrix but received {len(init_val)} and {rows1}"
+            "Number of initial values must be equal to number of rows in coefficient "
+            f"matrix but received {len(init_val)} and {rows1}"
         )
         raise ValueError(msg)
 

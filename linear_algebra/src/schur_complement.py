@@ -32,14 +32,14 @@ def schur_complement(
 
     if shape_a[0] != shape_b[0]:
         msg = (
-            "Expected the same number of rows for A and B.             "
+            "Expected the same number of rows for A and B. "
             f"Instead found A of size {shape_a} and B of size {shape_b}"
         )
         raise ValueError(msg)
 
     if shape_b[1] != shape_c[1]:
         msg = (
-            "Expected the same number of columns for B and C.             "
+            "Expected the same number of columns for B and C. "
             f"Instead found B of size {shape_b} and C of size {shape_c}"
         )
         raise ValueError(msg)
