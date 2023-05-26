@@ -50,7 +50,7 @@ class EquationSolver:
                     continue
                 solutions.append(current_solution / row[-2])
                 continue
-            temp_row = row.copy()[:len(row) - 1:]
+            temp_row = row.copy()[: len(row) - 1 :]
             while temp_row[0] == 0:
                 temp_row.pop(0)
             if len(temp_row) == 0:
@@ -158,13 +158,15 @@ def solve_simultaneous(equations):
     return aug.solve()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    eq = [[2, 1, 1, 1, 1, 4],
-          [1, 2, 1, 1, 1, 5],
-          [1, 1, 2, 1, 1, 6],
-          [1, 1, 1, 2, 1, 7],
-          [1, 1, 1, 1, 2, 8]]
+    eq = [
+        [2, 1, 1, 1, 1, 4],
+        [1, 2, 1, 1, 1, 5],
+        [1, 1, 2, 1, 1, 6],
+        [1, 1, 1, 2, 1, 7],
+        [1, 1, 1, 1, 2, 8],
+    ]
     print(solve_simultaneous(eq))
