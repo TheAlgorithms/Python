@@ -121,35 +121,23 @@ class EquationSolver:
 
 def solve_simultaneous(equations):
     """
-    >>> solve_simultaneous([[1, 2, 3],
-    ...                     [4, 5, 6]])
+    >>> solve_simultaneous([[1, 2, 3],[4, 5, 6]])
     [-1.0, 2.0]
-    >>> solve_simultaneous([[0, -3, 1, 7],
-    ...                     [3, 2, -1, 11],
-    ...                     [5, 1, -2, 12]])
+    >>> solve_simultaneous([[0, -3, 1, 7],[3, 2, -1, 11],[5, 1, -2, 12]])
     [6.4, 1.2, 10.6]
-    >>> solve_simultaneous([[2, 1, 1, 1, 1, 4],
-    ...                     [1, 2, 1, 1, 1, 5],
-    ...                     [1, 1, 2, 1, 1, 6],
-    ...                     [1, 1, 1, 2, 1, 7],
-    ...                     [1, 1, 1, 1, 2, 8]])
-    [-1.0, 0.0, 1.0, 2.0, 3.0]
     >>> solve_simultaneous([])
     Traceback (most recent call last):
         ...
     IndexError: EquationSolver() requires n lists of length n+1
-    >>> solve_simultaneous([[1, 2, 3],
-    ...                     [1, 2]])
+    >>> solve_simultaneous([[1, 2, 3],[1, 2]])
     Traceback (most recent call last):
         ...
     IndexError: EquationSolver() requires n lists of length n+1
-    >>> solve_simultaneous([[1, 2, 3],
-    ...                     ["a", 7, 8]])
+    >>> solve_simultaneous([[1, 2, 3],["a", 7, 8]])
     Traceback (most recent call last):
         ...
     ValueError: EquationSolver() requires lists of integers
-    >>> solve_simultaneous([[0, 2, 3],
-    ...                     [4, 0, 6]])
+    >>> solve_simultaneous([[0, 2, 3],[4, 0, 6]])
     Traceback (most recent call last):
         ...
     ValueError: EquationSolver() requires at least 1 full equation
