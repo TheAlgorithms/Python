@@ -1,5 +1,4 @@
 def last_digit_of_pow(number1: int, number2: int) -> int:
-
     """
     >>> last_digit_of_pow(63, 6)
     9
