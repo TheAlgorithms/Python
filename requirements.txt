@@ -5,7 +5,7 @@ lxml
 matplotlib ; python_version < '3.12'
 numpy ; python_version < '3.12'
 opencv-python
-pandas
+pandas ; python_version < '3.12'
 pillow
 projectq
 qiskit
