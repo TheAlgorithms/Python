@@ -6,15 +6,33 @@ from __future__ import annotations
 
 Path = list[tuple[int, int]]
 
-grid = [
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0, 0],  # 0 are free path whereas 1's are obstacles
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0, 0, 0],
-    [1, 0, 1, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0],
-]
+# 0 are free path whereas 1's are obstacles
+TEST_GRIDS = [
+    [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0],  
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0],
+        [1, 0, 1, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 0, 0],
+    ],
+    [
+        [0, 0, 0, 1, 1, 0, 0],
+        [0, 0, 0, 0, 1, 0, 1],
+        [0, 0, 0, 1, 1, 0, 0],
+        [0, 1, 0, 0, 1, 0, 0],
+        [1, 0, 0, 1, 1, 0, 1],
+        [0, 0, 0, 0, 0, 0, 0]
+    ],
+    [
+        [0, 0, 1, 0, 0],
+        [0, 1, 0, 0, 0],
+        [0, 0, 1, 0, 1],
+        [1, 0, 0, 1, 1],
+        [0, 0, 0, 0, 0]
+    ]
+] 
 
 delta = ([-1, 0], [0, -1], [1, 0], [0, 1])  # up, left, down, right
 
@@ -82,7 +100,8 @@ class GreedyBestFirst:
      (6, 2), (6, 3), (5, 3), (5, 4), (5, 5), (6, 5), (6, 6)]
     """
 
-    def __init__(self, start: tuple[int, int], goal: tuple[int, int]):
+    def __init__(self, grid: list[list[int]], start: tuple[int, int], goal: tuple[int, int]):
+        self.grid = grid
         self.start = Node(start[1], start[0], goal[1], goal[0], 0, None)
         self.target = Node(goal[1], goal[0], goal[1], goal[0], 99999, None)
 
@@ -136,9 +155,9 @@ class GreedyBestFirst:
             pos_x = parent.pos_x + action[1]
             pos_y = parent.pos_y + action[0]
 
-            if (0 <= pos_x <= len(grid[0]) - 1
-                and 0 <= pos_y <= len(grid) - 1
-                and grid[pos_y][pos_x] == 0):
+            if (0 <= pos_x <= len(self.grid[0]) - 1
+                and 0 <= pos_y <= len(self.grid) - 1
+                and self.grid[pos_y][pos_x] == 0):
                 
                 successors.append(
                     Node(
@@ -166,18 +185,21 @@ class GreedyBestFirst:
 
 
 if __name__ == "__main__":
-    init = (0, 0)
-    goal = (len(grid) - 1, len(grid[0]) - 1)
-    for elem in grid:
-        print(elem)
+    for idx, grid in enumerate(TEST_GRIDS):
+        print(f"==grid-{idx + 1}==")
 
-    print("------")
-
-    greedy_bf = GreedyBestFirst(init, goal)
-    path = greedy_bf.search()
-    if path:
-        for pos_x, pos_y in path:
-            grid[pos_x][pos_y] = 2
-
+        init = (0, 0)
+        goal = (len(grid) - 1, len(grid[0]) - 1)
         for elem in grid:
             print(elem)
+
+        print("------")
+
+        greedy_bf = GreedyBestFirst(grid, init, goal)
+        path = greedy_bf.search()
+        if path:
+            for pos_x, pos_y in path:
+                grid[pos_x][pos_y] = 2
+
+            for elem in grid:
+                print(elem)
