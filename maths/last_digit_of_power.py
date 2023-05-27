@@ -1,5 +1,4 @@
 def last_digit_of_pow(number1: int, number2: int) -> int:
-
     """
     adding a last_digit_of_power algorithm 
     which returns the last digit of: 
