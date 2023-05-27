@@ -11,7 +11,7 @@ projectq ; python_version < '3.12'
 qiskit ; python_version < '3.12'
 requests
 rich
-scikit-fuzzy
+scikit-fuzzy ; python_version < '3.12'
 scikit-learn ; python_version < '3.12'
 statsmodels ; python_version < '3.12'
 sympy ; python_version < '3.12'
