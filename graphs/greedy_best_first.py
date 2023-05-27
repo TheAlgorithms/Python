@@ -10,7 +10,7 @@ Path = list[tuple[int, int]]
 TEST_GRIDS = [
     [
         [0, 0, 0, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0, 0],  
+        [0, 1, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0],
         [0, 0, 1, 0, 0, 0, 0],
         [1, 0, 1, 0, 0, 0, 0],
@@ -23,18 +23,18 @@ TEST_GRIDS = [
         [0, 0, 0, 1, 1, 0, 0],
         [0, 1, 0, 0, 1, 0, 0],
         [1, 0, 0, 1, 1, 0, 1],
-        [0, 0, 0, 0, 0, 0, 0]
+        [0, 0, 0, 0, 0, 0, 0],
     ],
     [
         [0, 0, 1, 0, 0],
         [0, 1, 0, 0, 0],
         [0, 0, 1, 0, 1],
         [1, 0, 0, 1, 1],
-        [0, 0, 0, 0, 0]
-    ]
-] 
+        [0, 0, 0, 0, 0],
+    ],
+]
 
-    
+
 delta = ([-1, 0], [0, -1], [1, 0], [0, 1])  # up, left, down, right
 
 
@@ -104,7 +104,9 @@ class GreedyBestFirst:
      (6, 2), (6, 3), (5, 3), (5, 4), (5, 5), (6, 5), (6, 6)]
     """
 
-    def __init__(self, grid: list[list[int]], start: tuple[int, int], goal: tuple[int, int]):
+    def __init__(
+        self, grid: list[list[int]], start: tuple[int, int], goal: tuple[int, int]
+    ):
         self.grid = grid
         self.start = Node(start[1], start[0], goal[1], goal[0], 0, None)
         self.target = Node(goal[1], goal[0], goal[1], goal[0], 99999, None)
@@ -151,10 +153,11 @@ class GreedyBestFirst:
             pos_x = parent.pos_x + action[1]
             pos_y = parent.pos_y + action[0]
 
-            if (0 <= pos_x <= len(self.grid[0]) - 1
+            if (
+                0 <= pos_x <= len(self.grid[0]) - 1
                 and 0 <= pos_y <= len(self.grid) - 1
-                and self.grid[pos_y][pos_x] == 0):
-                
+                and self.grid[pos_y][pos_x] == 0
+            ):
                 successors.append(
                     Node(
                         pos_x,
