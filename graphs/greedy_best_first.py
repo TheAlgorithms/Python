@@ -84,6 +84,9 @@ class Node:
     def __lt__(self, other) -> bool:
         return self.f_cost < other.f_cost
 
+    def __eq__(self, other):
+        return self.pos == other.pos
+
 
 class GreedyBestFirst:
     """
