@@ -21,7 +21,7 @@ jobs:
       - run: |
           sudo apt-get update
           # https://lxml.de/installation.html#requirements
-          sudo apt-get install -y libxml2 libxslt-dev
+          sudo apt-get install -y Cython libxml2 libxslt-dev
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools six wheel
