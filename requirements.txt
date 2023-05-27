@@ -7,7 +7,7 @@ numpy ; python_version < '3.12'
 opencv-python ; python_version < '3.12'
 pandas ; python_version < '3.12'
 pillow
-projectq
+projectq ; python_version < '3.12'
 qiskit
 requests
 rich
