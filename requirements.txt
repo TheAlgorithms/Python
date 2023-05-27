@@ -13,7 +13,7 @@ requests
 rich
 scikit-fuzzy
 scikit-learn ; python_version < '3.12'
-statsmodels
+statsmodels ; python_version < '3.12'
 sympy
 tensorflow
 texttable
