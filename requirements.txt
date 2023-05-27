@@ -3,7 +3,7 @@ fake_useragent
 keras
 lxml
 matplotlib
-numpy
+numpy ; python_version < '3.12'
 opencv-python
 pandas
 pillow
