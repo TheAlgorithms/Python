@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.x
+          python-version: 3.12-dev
       - name: Install pytest and pytest-cov
         run: |
           python -m pip install --upgrade pip
@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.x
+          python-version: 3.12-dev
       - name: Install pytest and requests
         run: |
           python -m pip install --upgrade pip
