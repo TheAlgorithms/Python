@@ -17,6 +17,11 @@ jobs:
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+      - if: "contains(matrix.python-version, '-dev')"
+        run: |
+          sudo apt-get update
+          # https://lxml.de/installation.html#requirements
+          sudo apt-get install -y libxml2 libxslt-dev
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools six wheel
