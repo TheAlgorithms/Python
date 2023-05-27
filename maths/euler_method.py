@@ -4,9 +4,9 @@ import numpy as np
 
 
 def explicit_euler(
-    ode_func: Callable, y0: float, x0: float, step_size: float, x_end: float
+    ode_func: Callable, y0: float | np.ndarray, x0: float, step_size: float, x_end: float
 ) -> np.ndarray:
-    """Calculate numeric solution at each step to an ODE using Euler's Method
+    """Calculate numeric solution at each step to an ODE or a System of ODEs using Euler's Method
 
     For reference to Euler's method refer to https://en.wikipedia.org/wiki/Euler_method.
 
@@ -28,15 +28,36 @@ def explicit_euler(
     >>> y = explicit_euler(f, y0, 0.0, 0.01, 5)
     >>> y[-1]
     144.77277243257308
+    >>> # the exact solution is [math.sin(x),math.cos(x)
+    >>> def f(x,y):
+    ...     return np.array([y[1],-y[0]])
+    >>> y0 = np.array([0,1])
+    >>> y = explicit_euler(f, y0, 0.0, 0.01, 7)
+    >>> y[0,-1]
+    0.6802048957744236
+    >>> y[1,-1]
+    0.7809133930833114
     """
     n = int(np.ceil((x_end - x0) / step_size))
-    y = np.zeros((n + 1,))
-    y[0] = y0
-    x = x0
 
-    for k in range(n):
-        y[k + 1] = y[k] + step_size * ode_func(x, y[k])
-        x += step_size
+    if type(y0) == np.ndarray or type(y0) == list:
+
+        dim = len(y0)
+        y = np.zeros((dim,n + 1))
+        y[:,0] = y0
+        x = x0
+
+        for k in range(n):
+            y[:,k + 1] = y[:,k] + step_size * ode_func(x, y[:,k])
+            x += step_size
+    else:
+        y = np.zeros((n + 1,))
+        y[0] = y0
+        x = x0
+
+        for k in range(n):
+            y[k + 1] = y[k] + step_size * ode_func(x, y[k])
+            x += step_size
 
     return y
 
