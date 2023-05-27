@@ -89,7 +89,8 @@ class Node:
 
 class GreedyBestFirst:
     """
-    >>> gbf = GreedyBestFirst((0, 0), (len(grid) - 1, len(grid[0]) - 1))
+    >>> grid = [[0, 0, 1, 0, 0], [0, 1, 0, 0, 0], [0, 0, 1, 0, 1], [1, 0, 0, 1, 1], [0, 0, 0, 0, 0]]
+    >>> gbf = GreedyBestFirst(grid, (0, 0), (len(grid) - 1, len(grid[0]) - 1))
     >>> [x.pos for x in gbf.get_successors(gbf.start)]
     [(1, 0), (0, 1)]
     >>> (gbf.start.pos_y + delta[3][0], gbf.start.pos_x + delta[3][1])
@@ -99,8 +100,8 @@ class GreedyBestFirst:
     >>> gbf.retrace_path(gbf.start)
     [(0, 0)]
     >>> gbf.search()  # doctest: +NORMALIZE_WHITESPACE
-    [(0, 0), (1, 0), (2, 0), (3, 0), (3, 1), (4, 1), (5, 1), (6, 1),
-     (6, 2), (6, 3), (5, 3), (5, 4), (5, 5), (6, 5), (6, 6)]
+    [(0, 0), (1, 0), (2, 0), (2, 1), (3, 1), (4, 1), (4, 2), (4, 3),
+     (4, 4)]
     """
 
     def __init__(self, grid: list[list[int]], start: tuple[int, int], goal: tuple[int, int]):
