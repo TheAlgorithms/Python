@@ -89,7 +89,7 @@ class Node:
 
 class GreedyBestFirst:
     """
-    >>> grid = [[0, 0, 1, 0, 0], [0, 1, 0, 0, 0], [0, 0, 1, 0, 1], [1, 0, 0, 1, 1], [0, 0, 0, 0, 0]]
+    >>> grid = TEST_GRIDS[2]
     >>> gbf = GreedyBestFirst(grid, (0, 0), (len(grid) - 1, len(grid[0]) - 1))
     >>> [x.pos for x in gbf.get_successors(gbf.start)]
     [(1, 0), (0, 1)]
