@@ -14,8 +14,9 @@ the product sum is x + 2 * (y + z). In the array [x, [y, [z]]],
 the product sum is x + 2 * (y + 3z).
 
 Example Input:
-
 [5, 2, [-7, 1], 3, [6, [-13, 8], 4]]
+Output: 12
+
 """
 
 
