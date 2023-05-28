@@ -1,10 +1,10 @@
 beautifulsoup4
 fake_useragent
+# numpy ; python_version < '3.12'
+git+https://github.com/cclauss/numpy.git@patch-1
 keras
 lxml
 matplotlib ; python_version < '3.12'
-# numpy ; python_version < '3.12'
-git+https://github.com/cclauss/numpy.git@patch-1
 opencv-python ; python_version < '3.12'
 pandas ; python_version < '3.12'
 pillow
