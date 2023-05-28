@@ -108,7 +108,7 @@ def solve_simultaneous(equations) -> list:
                 continue
             solutions.append(current_solution / row[-2])
             continue
-        temp_row = row.copy()[: len(row) - 1:]
+        temp_row = row.copy()[: len(row) - 1 :]
         while temp_row[0] == 0:
             temp_row.pop(0)
         if len(temp_row) == 0:
