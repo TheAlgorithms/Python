@@ -33,6 +33,12 @@ def product_sum(arr: list[int | list], depth: int) -> int:
 
     Returns:
         int: The product sum of the array.
+
+    Examples:
+        >>> product_sum([1, 2, 3], 1)
+        6
+        >>> product_sum([-1, 2, [-3, 4]], 2)
+        8
     """
     total_sum = 0
     for ele in arr:
