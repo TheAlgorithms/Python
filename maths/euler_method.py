@@ -45,7 +45,7 @@ def explicit_euler(
     """
     n = int(np.ceil((x_end - x0) / step_size))
 
-    if type(y0) == np.ndarray or type(y0) == list:
+    if isinstance(y0, np.ndarray | list):
         dim = len(y0)
         y = np.zeros((dim, n + 1))
         y[:, 0] = y0
