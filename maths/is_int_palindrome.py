@@ -1,19 +1,19 @@
-def is_palindrome(num: int) -> bool:
+def is_int_palindrome(num: int) -> bool:
     """
     Returns whether `num` is a palindrome or not
     (see for reference https://en.wikipedia.org/wiki/Palindromic_number).
 
-    >>> is_palindrome(-121)
+    >>> is_int_palindrome(-121)
     False
-    >>> is_palindrome(0)
+    >>> is_int_palindrome(0)
     True
-    >>> is_palindrome(10)
+    >>> is_int_palindrome(10)
     False
-    >>> is_palindrome(11)
+    >>> is_int_palindrome(11)
     True
-    >>> is_palindrome(101)
+    >>> is_int_palindrome(101)
     True
-    >>> is_palindrome(120)
+    >>> is_int_palindrome(120)
     False
     """
     if num < 0:

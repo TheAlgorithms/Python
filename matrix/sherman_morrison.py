@@ -173,7 +173,8 @@ class Matrix:
                         result[r, c] += self[r, i] * another[i, c]
             return result
         else:
-            raise TypeError(f"Unsupported type given for another ({type(another)})")
+            msg = f"Unsupported type given for another ({type(another)})"
+            raise TypeError(msg)
 
     def transpose(self) -> Matrix:
         """

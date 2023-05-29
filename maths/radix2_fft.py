@@ -167,7 +167,7 @@ class FFT:
             f"{coef}*x^{i}" for coef, i in enumerate(self.product)
         )
 
-        return "\n".join((a, b, c))
+        return f"{a}\n{b}\n{c}"
 
 
 # Unit tests
