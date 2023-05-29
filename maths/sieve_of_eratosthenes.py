@@ -34,7 +34,8 @@ def prime_sieve(num: int) -> list[int]:
     """
 
     if num <= 0:
-        raise ValueError(f"{num}: Invalid input, please enter a positive integer.")
+        msg = f"{num}: Invalid input, please enter a positive integer."
+        raise ValueError(msg)
 
     sieve = [True] * (num + 1)
     prime = []

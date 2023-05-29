@@ -26,10 +26,7 @@ def is_prime(number: int) -> bool:
     False
     """
 
-    for divisor in range(2, isqrt(number) + 1):
-        if number % divisor == 0:
-            return False
-    return True
+    return all(number % divisor != 0 for divisor in range(2, isqrt(number) + 1))
 
 
 def solution(max_prime: int = 10**6) -> int:

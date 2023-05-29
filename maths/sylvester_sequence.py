@@ -31,7 +31,8 @@ def sylvester(number: int) -> int:
     if number == 1:
         return 2
     elif number < 1:
-        raise ValueError(f"The input value of [n={number}] has to be > 0")
+        msg = f"The input value of [n={number}] has to be > 0"
+        raise ValueError(msg)
     else:
         num = sylvester(number - 1)
         lower = num - 1
