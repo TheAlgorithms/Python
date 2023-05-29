@@ -74,7 +74,8 @@ class SVC:
             # sklear: def_gamma = 1/(n_features * X.var()) (wiki)
             # previously it was 1/(n_features)
         else:
-            raise ValueError(f"Unknown kernel: {kernel}")
+            msg = f"Unknown kernel: {kernel}"
+            raise ValueError(msg)
 
     # kernels
     def __linear(self, vector1: ndarray, vector2: ndarray) -> float:
