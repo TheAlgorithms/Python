@@ -40,13 +40,28 @@ def product_sum(arr: list[int | list], depth: int) -> int:
         6
         >>> product_sum([-1, 2, [-3, 4]], 2)
         8
+        >>> product_sum([1, 2, 3], -1)
+        -6
+        >>> product_sum([1, 2, 3], 0)
+        0
+        >>> product_sum([1, 2, 3], 7)
+        42
+        >>> product_sum((1, 2, 3), 7)
+        42
+        >>> product_sum({1, 2, 3}, 7)
+        42
+        >>> product_sum([1, -1], 1)
+        0
+        >>> product_sum([1, -2], 1)
+        -1
+        >>> product_sum([-3.5, [1, [0.5]]], 1)
+        1.5
+
     """
     total_sum = 0
     for ele in arr:
-        if isinstance(ele, list):
-            total_sum += product_sum(ele, depth + 1)
-        else:
-            total_sum += ele
+        total_sum += product_sum(ele, depth +
+                                 1) if isinstance(ele, list) else ele
     return total_sum * depth
 
 
