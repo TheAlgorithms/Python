@@ -71,12 +71,15 @@ class GraphAdjacencyList(Generic[T]):
         if not (
             self.contains_vertex(source_vertex)
             and self.contains_vertex(destination_vertex)
-            and not self.contains_edge(source_vertex, destination_vertex)
         ):
             raise ValueError(
                 f"Incorrect input: Either {source_vertex} or ",
-                f"{destination_vertex} does not exist OR the requested edge ",
-                "already exists between them.",
+                f"{destination_vertex} does not exist",
+            )
+        if self.contains_edge(source_vertex, destination_vertex):
+            raise ValueError(
+                "Incorrect input: The edge already exists between ",
+                f"{source_vertex} or {destination_vertex}",
             )
 
         # add the destination vertex to the list associated with the source vertex
@@ -117,12 +120,15 @@ class GraphAdjacencyList(Generic[T]):
         if not (
             self.contains_vertex(source_vertex)
             and self.contains_vertex(destination_vertex)
-            and self.contains_edge(source_vertex, destination_vertex)
         ):
             raise ValueError(
                 f"Incorrect input: Either {source_vertex} or ",
-                f"{destination_vertex} do not exist OR the requested edge ",
-                "does not exists between them.",
+                f"{destination_vertex} does not exist",
+            )
+        if not self.contains_edge(source_vertex, destination_vertex):
+            raise ValueError(
+                "Incorrect input: The edge does NOT exist between ",
+                f"{source_vertex} or {destination_vertex}",
             )
 
         # remove the destination vertex from the list associated with the source

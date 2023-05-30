@@ -61,12 +61,15 @@ class GraphAdjacencyMatrix(Generic[T]):
         if not (
             self.contains_vertex(source_vertex)
             and self.contains_vertex(destination_vertex)
-            and not self.contains_edge(source_vertex, destination_vertex)
         ):
             raise ValueError(
                 f"Incorrect input: Either {source_vertex} or ",
-                f"{destination_vertex} do not exist OR there already exists",
-                "an edge between them.",
+                f"{destination_vertex} does not exist",
+            )
+        elif self.contains_edge(source_vertex, destination_vertex):
+            raise ValueError(
+                "Incorrect input: The edge already exists between ",
+                f"{source_vertex} or {destination_vertex}",
             )
 
         # Get the indices of the corresponding vertices and set their edge value to 1.
@@ -84,12 +87,15 @@ class GraphAdjacencyMatrix(Generic[T]):
         if not (
             self.contains_vertex(source_vertex)
             and self.contains_vertex(destination_vertex)
-            and self.contains_edge(source_vertex, destination_vertex)
         ):
             raise ValueError(
                 f"Incorrect input: Either {source_vertex} or ",
-                f"{destination_vertex} does not exist OR the requested ",
-                "edge does not exists between them.",
+                f"{destination_vertex} does not exist",
+            )
+        elif not self.contains_edge(source_vertex, destination_vertex):
+            raise ValueError(
+                "Incorrect input: The edge does NOT exist between ",
+                f"{source_vertex} or {destination_vertex}",
             )
 
         # Get the indices of the corresponding vertices and set their edge value to 0.
