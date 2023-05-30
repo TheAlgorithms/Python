@@ -59,7 +59,8 @@ class GraphAdjacencyList(Generic[T]):
         a ValueError will be thrown.
         """
         if self.contains_vertex(vertex):
-            raise ValueError(f"Incorrect input: {vertex} is already in the graph.")
+            msg = f"Incorrect input: {vertex} is already in the graph."
+            raise ValueError(msg)
         self.adj_list[vertex] = []
 
     def add_edge(self, source_vertex: T, destination_vertex: T) -> None:
@@ -72,15 +73,17 @@ class GraphAdjacencyList(Generic[T]):
             self.contains_vertex(source_vertex)
             and self.contains_vertex(destination_vertex)
         ):
-            raise ValueError(
-                f"Incorrect input: Either {source_vertex} or ",
-                f"{destination_vertex} does not exist",
+            msg = (
+                f"Incorrect input: Either {source_vertex} or "
+                f"{destination_vertex} does not exist"
             )
+            raise ValueError(msg)
         if self.contains_edge(source_vertex, destination_vertex):
-            raise ValueError(
-                "Incorrect input: The edge already exists between ",
-                f"{source_vertex} or {destination_vertex}",
+            msg = (
+                "Incorrect input: The edge already exists between "
+                f"{source_vertex} or {destination_vertex}"
             )
+            raise ValueError(msg)
 
         # add the destination vertex to the list associated with the source vertex
         # and vice versa if not directed
@@ -95,7 +98,8 @@ class GraphAdjacencyList(Generic[T]):
         does not exist, a ValueError will be thrown.
         """
         if not self.contains_vertex(vertex):
-            raise ValueError(f"Incorrect input: {vertex} does not exist in this graph.")
+            msg = f"Incorrect input: {vertex} does not exist in this graph."
+            raise ValueError(msg)
 
         if not self.directed:
             # If not directed, find all neighboring vertices and delete all references
@@ -121,15 +125,17 @@ class GraphAdjacencyList(Generic[T]):
             self.contains_vertex(source_vertex)
             and self.contains_vertex(destination_vertex)
         ):
-            raise ValueError(
-                f"Incorrect input: Either {source_vertex} or ",
-                f"{destination_vertex} does not exist",
+            msg = (
+                f"Incorrect input: Either {source_vertex} or "
+                f"{destination_vertex} does not exist"
             )
+            raise ValueError(msg)
         if not self.contains_edge(source_vertex, destination_vertex):
-            raise ValueError(
-                "Incorrect input: The edge does NOT exist between ",
-                f"{source_vertex} or {destination_vertex}",
+            msg = (
+                "Incorrect input: The edge does NOT exist between "
+                f"{source_vertex} or {destination_vertex}"
             )
+            raise ValueError(msg)
 
         # remove the destination vertex from the list associated with the source
         # vertex and vice versa if not directed
@@ -153,10 +159,11 @@ class GraphAdjacencyList(Generic[T]):
             self.contains_vertex(source_vertex)
             and self.contains_vertex(destination_vertex)
         ):
-            raise ValueError(
-                f"Incorrect input: Either {source_vertex} or ",
-                f"{destination_vertex} does not exist.",
+            msg = (
+                f"Incorrect input: Either {source_vertex} "
+                f"or {destination_vertex} does not exist."
             )
+            raise ValueError(msg)
 
         return destination_vertex in self.adj_list[source_vertex]
 
@@ -233,8 +240,8 @@ class TestGraphAdjacencyList(unittest.TestCase):
     ) -> tuple[GraphAdjacencyList, GraphAdjacencyList, list[int], list[list[int]]]:
         if max_val - min_val + 1 < vertex_count:
             raise ValueError(
-                "Will result in duplicate vertices. Either increase range ",
-                "between min_val and max_val or decrease vertex count.",
+                "Will result in duplicate vertices. Either increase range "
+                "between min_val and max_val or decrease vertex count."
             )
 
         # generate graph input

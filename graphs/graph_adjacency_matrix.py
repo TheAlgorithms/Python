@@ -49,7 +49,8 @@ class GraphAdjacencyMatrix(Generic[T]):
 
         for edge in edges:
             if len(edge) != 2:
-                raise ValueError(f"Invalid input: {edge} must have length 2.")
+                msg = f"Invalid input: {edge} must have length 2."
+                raise ValueError(msg)
             self.add_edge(edge[0], edge[1])
 
     def add_edge(self, source_vertex: T, destination_vertex: T) -> None:
@@ -62,15 +63,17 @@ class GraphAdjacencyMatrix(Generic[T]):
             self.contains_vertex(source_vertex)
             and self.contains_vertex(destination_vertex)
         ):
-            raise ValueError(
-                f"Incorrect input: Either {source_vertex} or ",
-                f"{destination_vertex} does not exist",
+            msg = (
+                f"Incorrect input: Either {source_vertex} or "
+                f"{destination_vertex} does not exist"
             )
-        elif self.contains_edge(source_vertex, destination_vertex):
-            raise ValueError(
-                "Incorrect input: The edge already exists between ",
-                f"{source_vertex} or {destination_vertex}",
+            raise ValueError(msg)
+        if self.contains_edge(source_vertex, destination_vertex):
+            msg = (
+                "Incorrect input: The edge already exists between "
+                f"{source_vertex} or {destination_vertex}"
             )
+            raise ValueError(msg)
 
         # Get the indices of the corresponding vertices and set their edge value to 1.
         u: int = self.vertex_to_index[source_vertex]
@@ -88,15 +91,17 @@ class GraphAdjacencyMatrix(Generic[T]):
             self.contains_vertex(source_vertex)
             and self.contains_vertex(destination_vertex)
         ):
-            raise ValueError(
-                f"Incorrect input: Either {source_vertex} or ",
-                f"{destination_vertex} does not exist",
+            msg = (
+                f"Incorrect input: Either {source_vertex} or "
+                f"{destination_vertex} does not exist"
             )
-        elif not self.contains_edge(source_vertex, destination_vertex):
-            raise ValueError(
-                "Incorrect input: The edge does NOT exist between ",
-                f"{source_vertex} or {destination_vertex}",
+            raise ValueError(msg)
+        if not self.contains_edge(source_vertex, destination_vertex):
+            msg = (
+                "Incorrect input: The edge does NOT exist between "
+                f"{source_vertex} or {destination_vertex}"
             )
+            raise ValueError(msg)
 
         # Get the indices of the corresponding vertices and set their edge value to 0.
         u: int = self.vertex_to_index[source_vertex]
@@ -111,7 +116,8 @@ class GraphAdjacencyMatrix(Generic[T]):
         a ValueError will be thrown.
         """
         if self.contains_vertex(vertex):
-            raise ValueError(f"Incorrect input: {vertex} already exists in this graph.")
+            msg = f"Incorrect input: {vertex} already exists in this graph."
+            raise ValueError(msg)
 
         # build column for vertex
         for row in self.adj_matrix:
@@ -128,7 +134,8 @@ class GraphAdjacencyMatrix(Generic[T]):
         does not exist, a ValueError will be thrown.
         """
         if not self.contains_vertex(vertex):
-            raise ValueError(f"Incorrect input: {vertex} does not exist in this graph.")
+            msg = f"Incorrect input: {vertex} does not exist in this graph."
+            raise ValueError(msg)
 
         # first slide up the rows by deleting the row corresponding to
         # the vertex being deleted.
@@ -164,14 +171,15 @@ class GraphAdjacencyMatrix(Generic[T]):
             self.contains_vertex(source_vertex)
             and self.contains_vertex(destination_vertex)
         ):
-            raise ValueError(
-                f"Incorrect input: Either {source_vertex} ",
-                f"or {destination_vertex} does not exist.",
+            msg = (
+                f"Incorrect input: Either {source_vertex} "
+                f"or {destination_vertex} does not exist."
             )
+            raise ValueError(msg)
 
         u = self.vertex_to_index[source_vertex]
         v = self.vertex_to_index[destination_vertex]
-        return True if self.adj_matrix[u][v] == 1 else False
+        return self.adj_matrix[u][v] == 1
 
     def clear_graph(self) -> None:
         """
@@ -249,8 +257,8 @@ class TestGraphMatrix(unittest.TestCase):
     ) -> tuple[GraphAdjacencyMatrix, GraphAdjacencyMatrix, list[int], list[list[int]]]:
         if max_val - min_val + 1 < vertex_count:
             raise ValueError(
-                "Will result in duplicate vertices. Either increase ",
-                "range between min_val and max_val or decrease vertex count",
+                "Will result in duplicate vertices. Either increase "
+                "range between min_val and max_val or decrease vertex count"
             )
 
         # generate graph input
