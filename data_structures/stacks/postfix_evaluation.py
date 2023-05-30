@@ -68,7 +68,7 @@ def is_operator(data: str) -> bool:
     bool
         True if data is an operator else False.
     """
-    if data in ['-', '+', '*', '^', '/']:
+    if data in ["-", "+", "*", "^", "/"]:
         return True
     else:
         return False
@@ -102,7 +102,7 @@ def evaluate(post_fix: list, verbose: bool = False) -> int:
     """
     stack = []
     opr = {
-        "^": lambda p, q: p ** q,
+        "^": lambda p, q: p**q,
         "*": lambda p, q: p * q,
         "/": lambda p, q: p / q,
         "+": lambda p, q: p + q,
@@ -120,39 +120,64 @@ def evaluate(post_fix: list, verbose: bool = False) -> int:
             stack.append(x)  # append x to stack
             if verbose:
                 # output in tabular format
-                print(str(x).rjust(8), ("push(" + str(x) + ")").ljust(12), stack, sep=" | ")
+                print(
+                    str(x).rjust(8),
+                    ("push(" + str(x) + ")").ljust(12),
+                    stack,
+                    sep=" | ",
+                )
         elif is_operator(x):
             # If only 1 value is inside stack and + or - is encountered, then this is unary + or - case
-            if x in ['-', '+'] and len(stack) < 2:
+            if x in ["-", "+"] and len(stack) < 2:
                 b = stack.pop()  # pop stack
-                if x == '-':
+                if x == "-":
                     stack.append(-b)  # negate b and push again into stack
                 else:  # when x is unary +
                     stack.append(b)
                 if verbose:
                     # output in tabular format
-                    print("".rjust(8), ("pop(" + str(b) + ")").ljust(12), stack, sep=" | ")
-                    print(str(x).rjust(8), ("push(" + str(x) + str(b) + ")").ljust(12), stack, sep=" | ")
+                    print(
+                        "".rjust(8), ("pop(" + str(b) + ")").ljust(12), stack, sep=" | "
+                    )
+                    print(
+                        str(x).rjust(8),
+                        ("push(" + str(x) + str(b) + ")").ljust(12),
+                        stack,
+                        sep=" | ",
+                    )
 
             else:
                 b = stack.pop()  # pop stack
                 if verbose:
                     # output in tabular format
-                    print("".rjust(8), ("pop(" + str(b) + ")").ljust(12), stack, sep=" | ")
+                    print(
+                        "".rjust(8), ("pop(" + str(b) + ")").ljust(12), stack, sep=" | "
+                    )
 
                 a = stack.pop()  # pop stack
                 if verbose:
                     # output in tabular format
-                    print("".rjust(8), ("pop(" + str(a) + ")").ljust(12), stack, sep=" | ")
+                    print(
+                        "".rjust(8), ("pop(" + str(a) + ")").ljust(12), stack, sep=" | "
+                    )
 
-                stack.append(opr[x](a, b))  # evaluate the 2 values popped from stack & push result to stack
+                stack.append(
+                    opr[x](a, b)
+                )  # evaluate the 2 values popped from stack & push result to stack
                 if verbose:
                     # output in tabular format
-                    print(str(x).rjust(8), ("push(" + str(a) + str(x) + str(b) + ")").ljust(12), stack, sep=" | ")
+                    print(
+                        str(x).rjust(8),
+                        ("push(" + str(a) + str(x) + str(b) + ")").ljust(12),
+                        stack,
+                        sep=" | ",
+                    )
         else:
             print(f"{x} is neither a number, nor a valid operator")
             break
-    if len(stack) == 1:  # If everything executed correctly, the stack will contain only one element which is the result
+    if (
+        len(stack) == 1
+    ):  # If everything executed correctly, the stack will contain only one element which is the result
         _, result = get_number(stack[0])
     else:
         result = None
@@ -174,7 +199,7 @@ def is_yes(val: str) -> bool:
     bool
         True if Yes, otherwise False
     """
-    if val in ['Y', 'y']:
+    if val in ["Y", "y"]:
         return True
     else:
         return False
@@ -182,8 +207,12 @@ def is_yes(val: str) -> bool:
 
 if __name__ == "__main__":
     loop = True
-    while loop:  # Creating a loop so that user can evaluate postfix expression multiple times
-        expression = input("Enter a Postfix Equation (space separated) For Example: 5 6 9 * +\n: ").split(" ")
+    while (
+        loop
+    ):  # Creating a loop so that user can evaluate postfix expression multiple times
+        expression = input(
+            "Enter a Postfix Equation (space separated) For Example: 5 6 9 * +\n: "
+        ).split(" ")
         choice = input("Do you want to see stack contents while evaluating? [y/N]: ")
         display = is_yes(choice)
         output = evaluate(expression, display)
