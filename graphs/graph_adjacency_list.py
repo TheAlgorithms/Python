@@ -184,7 +184,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
         undirected_graph: GraphAdjacencyList,
         directed_graph: GraphAdjacencyList,
         edge: list[int],
-    ):
+    ) -> None:
         self.assertTrue(undirected_graph.contains_edge(edge[0], edge[1]))
         self.assertTrue(undirected_graph.contains_edge(edge[1], edge[0]))
         self.assertTrue(directed_graph.contains_edge(edge[0], edge[1]))
@@ -194,7 +194,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
         undirected_graph: GraphAdjacencyList,
         directed_graph: GraphAdjacencyList,
         edge: list[int],
-    ):
+    ) -> None:
         self.assertFalse(undirected_graph.contains_edge(edge[0], edge[1]))
         self.assertFalse(undirected_graph.contains_edge(edge[1], edge[0]))
         self.assertFalse(directed_graph.contains_edge(edge[0], edge[1]))
@@ -204,7 +204,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
         undirected_graph: GraphAdjacencyList,
         directed_graph: GraphAdjacencyList,
         vertex: int,
-    ):
+    ) -> None:
         self.assertTrue(undirected_graph.contains_vertex(vertex))
         self.assertTrue(directed_graph.contains_vertex(vertex))
 
@@ -213,7 +213,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
         undirected_graph: GraphAdjacencyList,
         directed_graph: GraphAdjacencyList,
         vertex: int,
-    ):
+    ) -> None:
         self.assertFalse(undirected_graph.contains_vertex(vertex))
         self.assertFalse(directed_graph.contains_vertex(vertex))
 
