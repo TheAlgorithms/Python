@@ -50,7 +50,8 @@ class GraphAdjacencyList(Generic[T]):
 
         for edge in edges:
             if len(edge) != 2:
-                raise ValueError(f"Invalid input: {edge} is the wrong length.")
+                msg = f"Invalid input: {edge} is the wrong length."
+                raise ValueError(msg)
             self.add_edge(edge[0], edge[1])
 
     def add_vertex(self, vertex: T) -> None:
