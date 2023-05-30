@@ -74,7 +74,7 @@ def is_operator(data: str) -> bool:
     return data in ["-", "+", "*", "^", "/"]
 
 
-def evaluate(post_fix: list, verbose: bool = False) -> int:
+def evaluate(post_fix: list, verbose: bool = False) -> int | float | str | None:
     """
     Function that evaluates postfix expression using a stack.
     >>> evaluate(["2", "1", "+", "3", "*"])
