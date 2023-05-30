@@ -1,3 +1,17 @@
+"""
+k-Nearest Neighbours (kNN) is a simple non-parametric supervised learning
+algorithm used for classification. Given some labelled training data, a given
+point is classified using its k nearest neighbours according to some distance
+metric. The most commonly occurring label among the neighbours becomes the label
+of the given point. In effect, the label of the given point is decided by a
+majority vote.
+
+This implementation uses the commonly used Euclidean distance metric, but other
+distance metrics can also be used.
+
+Reference: https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm
+"""
+
 from collections import Counter
 
 import numpy as np
@@ -12,6 +26,9 @@ class KNN:
         train_target: np.ndarray[int],
         class_labels: list[str],
     ) -> None:
+        """
+        Create a kNN classifier using the given training data and class labels
+        """
         self.data = zip(train_data, train_target)
         self.labels = class_labels
 
@@ -28,14 +45,7 @@ class KNN:
 
     def classify(self, pred_point: np.ndarray[float], k: int = 5) -> str:
         """
-        Classifies a given point using the KNN algorithm
-        k closest points are found (ranked in ascending order of Euclidean distance)
-        Params:
-        :train_data: Set of points that are classified into two or more classes
-        :train_target: List of classes in the order of train_data points
-        :classes: Labels of the classes
-        :point: The data point that needs to be classified
-
+        Classify a given point using the kNN algorithm
         >>> train_X = np.array(
         ...     [[0, 0], [1, 0], [0, 1], [0.5, 0.5], [3, 3], [2, 3], [3, 2]]
         ... )
@@ -46,13 +56,13 @@ class KNN:
         >>> knn.classify(point)
         'A'
         """
-        # List of distances of all points from the point to be classified
+        # Distances of all points from the point to be classified
         distances = (
             (self._euclidean_distance(data_point[0], pred_point), data_point[1])
             for data_point in self.data
         )
 
-        # Choosing 'k' points with the least distances.
+        # Choosing k points with the shortest distances
         votes = (i[1] for i in sorted(distances)[:k])
 
         # Most commonly occurring class is the one into which the point is classified
