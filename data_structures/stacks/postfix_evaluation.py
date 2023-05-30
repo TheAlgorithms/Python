@@ -80,7 +80,7 @@ def evaluate(post_fix: list, verbose: bool = False) -> int | float | str | None:
     >>> evaluate(["2", "1", "+", "3", "*"])
     9
     >>> evaluate(["4", "13", "5", "/", "+"])
-    6
+    6.6
     >>> evaluate(["2", "-", "3", "+"])
     1
     >>> evaluate([])
@@ -181,11 +181,9 @@ def evaluate(post_fix: list, verbose: bool = False) -> int | float | str | None:
             else:
                 print(f"{x} is neither a number, nor a valid operator")
                 break
-        if len(stack) == 1:  # If everything executed correctly,the stack will contain
-            # only one element which is the result
-            _, result = get_number(stack[0])
-        else:
-            result = None
+        # If everything executed correctly,the stack will contain
+        # only one element which is the result
+        result = stack[0] if len(stack) == 1 else None
         return result
     return 0
 
