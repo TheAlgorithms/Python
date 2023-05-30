@@ -58,8 +58,8 @@ class Node:
         The heuristic here is the Manhattan Distance
         Could elaborate to offer more than one choice
         """
-        dy = abs(self.pos_x - self.goal_x)
-        dx = abs(self.pos_y - self.goal_y)
+        dx = abs(self.pos_x - self.goal_x)
+        dy = abs(self.pos_y - self.goal_y)
         return dx + dy
 
     def __lt__(self, other) -> bool:

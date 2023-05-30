@@ -31,10 +31,12 @@ def catalan(number: int) -> int:
     """
 
     if not isinstance(number, int):
-        raise TypeError(f"Input value of [number={number}] must be an integer")
+        msg = f"Input value of [number={number}] must be an integer"
+        raise TypeError(msg)
 
     if number < 1:
-        raise ValueError(f"Input value of [number={number}] must be > 0")
+        msg = f"Input value of [number={number}] must be > 0"
+        raise ValueError(msg)
 
     current_number = 1
 
