@@ -96,7 +96,7 @@ def test_nearest_neighbour(
 
 
 def test_local_binary_pattern():
-    file_path: str = "digital_image_processing/image_data/lena.jpg"
+    file_path = "digital_image_processing/image_data/lena.jpg"
 
     # Reading the image and converting it to grayscale.
     image = imread(file_path, 0)

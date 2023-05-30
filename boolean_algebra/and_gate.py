@@ -43,6 +43,8 @@ def test_and_gate() -> None:
 
 
 if __name__ == "__main__":
+    test_and_gate()
+    print(and_gate(1, 0))
     print(and_gate(0, 0))
     print(and_gate(0, 1))
     print(and_gate(1, 1))
