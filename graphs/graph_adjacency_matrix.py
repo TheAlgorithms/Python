@@ -26,7 +26,9 @@ T = TypeVar("T")
 
 
 class GraphAdjacencyMatrix(Generic[T]):
-    def __init__(self, vertices: list[T], edges: list[list[T]], directed: bool = True):
+    def __init__(
+        self, vertices: list[T], edges: list[list[T]], directed: bool = True
+    ) -> None:
         """
         Parameters:
         - vertices: (list[T]) The list of vertex names the client wants to
@@ -200,7 +202,7 @@ class TestGraphMatrix(unittest.TestCase):
         undirected_graph: GraphAdjacencyMatrix,
         directed_graph: GraphAdjacencyMatrix,
         edge: list[int],
-    ):
+    ) -> None:
         self.assertTrue(undirected_graph.contains_edge(edge[0], edge[1]))
         self.assertTrue(undirected_graph.contains_edge(edge[1], edge[0]))
         self.assertTrue(directed_graph.contains_edge(edge[0], edge[1]))
@@ -210,7 +212,7 @@ class TestGraphMatrix(unittest.TestCase):
         undirected_graph: GraphAdjacencyMatrix,
         directed_graph: GraphAdjacencyMatrix,
         edge: list[int],
-    ):
+    ) -> None:
         self.assertFalse(undirected_graph.contains_edge(edge[0], edge[1]))
         self.assertFalse(undirected_graph.contains_edge(edge[1], edge[0]))
         self.assertFalse(directed_graph.contains_edge(edge[0], edge[1]))
@@ -220,7 +222,7 @@ class TestGraphMatrix(unittest.TestCase):
         undirected_graph: GraphAdjacencyMatrix,
         directed_graph: GraphAdjacencyMatrix,
         vertex: int,
-    ):
+    ) -> None:
         self.assertTrue(undirected_graph.contains_vertex(vertex))
         self.assertTrue(directed_graph.contains_vertex(vertex))
 
@@ -229,7 +231,7 @@ class TestGraphMatrix(unittest.TestCase):
         undirected_graph: GraphAdjacencyMatrix,
         directed_graph: GraphAdjacencyMatrix,
         vertex: int,
-    ):
+    ) -> None:
         self.assertFalse(undirected_graph.contains_vertex(vertex))
         self.assertFalse(directed_graph.contains_vertex(vertex))
 
