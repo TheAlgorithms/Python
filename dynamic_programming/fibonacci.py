@@ -24,7 +24,7 @@ class Fibonacci:
         return self.sequence[:index]
 
 
-def main():
+def main() -> None:
     print(
         "Fibonacci Series Using Dynamic Programming\n",
         "Enter the index of the Fibonacci number you want to calculate ",
