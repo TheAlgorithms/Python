@@ -25,7 +25,7 @@ Enter a Postfix Equation (space separated) = 5 6 9 * +
 """
 
 
-def get_number(data: str) -> [bool, int, float, str]:
+def get_number(data: str) -> tuple[bool, int] | tuple[bool, float] | tuple[bool, str]:
     """
     Converts the given data to appropriate number if it is indeed a number, else returns
     the data as it is with a False flag. This function also serves as a check of whether
@@ -43,13 +43,15 @@ def get_number(data: str) -> [bool, int, float, str]:
         or numeric) and 'b' is either an integer of a floating point number.
         If 'a' is False, then b is 'data'
     """
+    int_val = 0
+    float_val = 0.0
     try:
-        val = int(data)
-        return True, val
+        int_val = int(data)
+        return True, int_val
     except ValueError:
         try:
-            val = float(data)
-            return True, val
+            float_val = float(data)
+            return True, float_val
         except ValueError:
             return False, data
 
@@ -111,7 +113,6 @@ def evaluate(post_fix: list, verbose: bool = False) -> int:
             # print table header
             print("Symbol".center(8), "Action".center(12), "Stack", sep=" | ")
             print("-" * (30 + len(post_fix)))
-
         for x in post_fix:
             is_number, x = get_number(x)
             if is_number:  # if x is a number (integer, float)
@@ -147,7 +148,6 @@ def evaluate(post_fix: list, verbose: bool = False) -> int:
                             stack,
                             sep=" | ",
                         )
-
                 else:
                     b = stack.pop()  # pop stack
                     if verbose:
