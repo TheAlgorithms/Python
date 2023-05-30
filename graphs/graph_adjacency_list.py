@@ -263,7 +263,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
 
         return undirected_graph, directed_graph, random_vertices, random_edges
 
-    def test_init_check(self):
+    def test_init_check(self) -> None:
         (
             undirected_graph,
             directed_graph,
@@ -284,7 +284,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
         self.assertFalse(undirected_graph.directed)
         self.assertTrue(directed_graph.directed)
 
-    def test_contains_vertex(self):
+    def test_contains_vertex(self) -> None:
         random_vertices: list[int] = random.sample(range(101), 20)
 
         # Build graphs WITHOUT edges
@@ -304,12 +304,16 @@ class TestGraphAdjacencyList(unittest.TestCase):
                 num in random_vertices, directed_graph.contains_vertex(num)
             )
 
-    def test_add_vertices(self):
+    def test_add_vertices(self) -> None:
         random_vertices: list[int] = random.sample(range(101), 20)
 
         # build empty graphs
-        undirected_graph = GraphAdjacencyList(vertices=[], edges=[], directed=False)
-        directed_graph = GraphAdjacencyList(vertices=[], edges=[], directed=True)
+        undirected_graph: GraphAdjacencyList = GraphAdjacencyList(
+            vertices=[], edges=[], directed=False
+        )
+        directed_graph: GraphAdjacencyList = GraphAdjacencyList(
+            vertices=[], edges=[], directed=True
+        )
 
         # run add_vertex
         for num in random_vertices:
@@ -324,7 +328,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
                 undirected_graph, directed_graph, num
             )
 
-    def test_remove_vertices(self):
+    def test_remove_vertices(self) -> None:
         random_vertices: list[int] = random.sample(range(101), 20)
 
         # build graphs WITHOUT edges
@@ -348,7 +352,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
                 undirected_graph, directed_graph, num
             )
 
-    def test_add_and_remove_vertices_repeatedly(self):
+    def test_add_and_remove_vertices_repeatedly(self) -> None:
         random_vertices1: list[int] = random.sample(range(51), 20)
         random_vertices2: list[int] = random.sample(range(51, 101), 20)
 
@@ -385,7 +389,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
                 undirected_graph, directed_graph, random_vertices2[i]
             )
 
-    def test_contains_edge(self):
+    def test_contains_edge(self) -> None:
         # generate graphs and graph input
         vertex_count = 20
         (
@@ -419,7 +423,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
                     undirected_graph, directed_graph, edge
                 )
 
-    def test_add_edge(self):
+    def test_add_edge(self) -> None:
         # generate graph input
         random_vertices: list[int] = random.sample(range(101), 15)
         random_edges: list[list[int]] = self.__generate_random_edges(random_vertices, 4)
@@ -440,7 +444,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
                 undirected_graph, directed_graph, edge
             )
 
-    def test_remove_edge(self):
+    def test_remove_edge(self) -> None:
         # generate graph input and graphs
         (
             undirected_graph,
@@ -460,7 +464,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
                 undirected_graph, directed_graph, edge
             )
 
-    def test_add_and_remove_edges_repeatedly(self):
+    def test_add_and_remove_edges_repeatedly(self) -> None:
         (
             undirected_graph,
             directed_graph,
@@ -494,7 +498,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
                 undirected_graph, directed_graph, random_edges[i]
             )
 
-    def test_add_vertex_exception_check(self):
+    def test_add_vertex_exception_check(self) -> None:
         (
             undirected_graph,
             directed_graph,
@@ -508,7 +512,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
             with self.assertRaises(ValueError):
                 directed_graph.add_vertex(vertex)
 
-    def test_remove_vertex_exception_check(self):
+    def test_remove_vertex_exception_check(self) -> None:
         (
             undirected_graph,
             directed_graph,
@@ -523,7 +527,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     directed_graph.remove_vertex(i)
 
-    def test_add_edge_exception_check(self):
+    def test_add_edge_exception_check(self) -> None:
         (
             undirected_graph,
             directed_graph,
@@ -537,7 +541,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
             with self.assertRaises(ValueError):
                 directed_graph.add_edge(edge[0], edge[1])
 
-    def test_remove_edge_exception_check(self):
+    def test_remove_edge_exception_check(self) -> None:
         (
             undirected_graph,
             directed_graph,
@@ -561,7 +565,7 @@ class TestGraphAdjacencyList(unittest.TestCase):
             with self.assertRaises(ValueError):
                 directed_graph.remove_edge(edge[0], edge[1])
 
-    def test_contains_edge_exception_check(self):
+    def test_contains_edge_exception_check(self) -> None:
         (
             undirected_graph,
             directed_graph,
