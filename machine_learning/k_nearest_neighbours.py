@@ -13,6 +13,7 @@ Reference: https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm
 """
 
 from collections import Counter
+from heapq import nsmallest
 
 import numpy as np
 from sklearn import datasets
@@ -63,7 +64,7 @@ class KNN:
         )
 
         # Choosing k points with the shortest distances
-        votes = (i[1] for i in sorted(distances)[:k])
+        votes = (i[1] for i in nsmallest(k, distances))
 
         # Most commonly occurring class is the one into which the point is classified
         result = Counter(votes).most_common(1)[0][0]
