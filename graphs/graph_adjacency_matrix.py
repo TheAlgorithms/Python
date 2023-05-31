@@ -73,7 +73,7 @@ class GraphAdjacencyMatrix(Generic[T]):
         if self.contains_edge(source_vertex, destination_vertex):
             msg = (
                 "Incorrect input: The edge already exists between "
-                f"{source_vertex} or {destination_vertex}"
+                f"{source_vertex} and {destination_vertex}"
             )
             raise ValueError(msg)
 
@@ -101,7 +101,7 @@ class GraphAdjacencyMatrix(Generic[T]):
         if not self.contains_edge(source_vertex, destination_vertex):
             msg = (
                 "Incorrect input: The edge does NOT exist between "
-                f"{source_vertex} or {destination_vertex}"
+                f"{source_vertex} and {destination_vertex}"
             )
             raise ValueError(msg)
 
