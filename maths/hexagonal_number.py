@@ -36,7 +36,8 @@ def hexagonal(number: int) -> int:
     TypeError: Input value of [number=11.0] must be an integer
     """
     if not isinstance(number, int):
-        raise TypeError(f"Input value of [number={number}] must be an integer")
+        msg = f"Input value of [number={number}] must be an integer"
+        raise TypeError(msg)
     if number < 1:
         raise ValueError("Input must be a positive integer")
     return number * (2 * number - 1)

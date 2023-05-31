@@ -198,13 +198,13 @@ def test_doubly_linked_list() -> None:
 
     try:
         linked_list.delete_head()
-        raise AssertionError()  # This should not happen.
+        raise AssertionError  # This should not happen.
     except IndexError:
         assert True  # This should happen.
 
     try:
         linked_list.delete_tail()
-        raise AssertionError()  # This should not happen.
+        raise AssertionError  # This should not happen.
     except IndexError:
         assert True  # This should happen.
 
