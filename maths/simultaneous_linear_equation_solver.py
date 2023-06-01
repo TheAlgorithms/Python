@@ -2,14 +2,14 @@
 https://en.wikipedia.org/wiki/Augmented_matrix
 
 This algorithm solves simultaneous linear equations of the form
-λa + λb + λc + λd + ... = λ as [λ, λ, λ, λ, ..., λ]
-Where λ are individual coefficients, the no. of equations = no. of coefficients - 1
+λa + λb + λc + λd + ... = γ as [λ, λ, λ, λ, ..., γ]
+Where λ & γ are individual coefficients, the no. of equations = no. of coefficients - 1
 
-Note in order to work there must exist 1 equation where all instances of λ != 0
+Note in order to work there must exist 1 equation where all instances of λ and γ != 0
 """
 
 
-def simplify(current_set) -> list[list]:
+def simplify(current_set: list[list]) -> list[list]:
     """
     >>> simplify([[1, 2, 3], [4, 5, 6]])
     [[1.0, 2.0, 3.0], [0.0, 0.75, 1.5]]
@@ -54,7 +54,7 @@ def simplify(current_set) -> list[list]:
     return final_set
 
 
-def solve_simultaneous(equations) -> list:
+def solve_simultaneous(equations: list[list]) -> list:
     """
     >>> solve_simultaneous([[1, 2, 3],[4, 5, 6]])
     [-1.0, 2.0]
@@ -85,6 +85,8 @@ def solve_simultaneous(equations) -> list:
     for row in equations:
         if any(not isinstance(column, (int, float)) for column in row):
             raise ValueError("solve_simultaneous() requires lists of integers")
+    if len(equations) == 1:
+        return [equations[0][-1] / equations[0][0]]
     data_set = equations.copy()
     if any(0 in row for row in data_set):
         temp_data = data_set.copy()
@@ -137,3 +139,4 @@ if __name__ == "__main__":
         [1, 1, 1, 1, 2, 8],
     ]
     print(solve_simultaneous(eq))
+    print(solve_simultaneous([[4, 2]]))
