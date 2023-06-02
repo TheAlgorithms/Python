@@ -47,6 +47,8 @@ def find_python_set(node: int) -> set:
 def test_disjoint_set() -> None:
     """
     >>> test_disjoint_set()
+    parent: [8, 8, 5, 5, 5, 5, 8, 8, 8]
+    rank: [1, 1, 1, 1, 1, 0, 1, 1, 0]
     """
     # set(0, 1)
     #
@@ -81,8 +83,8 @@ def test_disjoint_set() -> None:
                 assert find_set(node0) == find_set(node1)
 
     # compressed path
-    print(parent)
-    print(rank)
+    print("parent:", parent)
+    print("rank:", rank)
 
 
 if __name__ == "__main__":
