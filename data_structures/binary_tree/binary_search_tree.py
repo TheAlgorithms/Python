@@ -180,7 +180,8 @@ class BinarySearchTree:
         # Look for the node with that label
         node = self.search(value)
         if node is None:
-            raise ValueError(f"Value {value} not found")
+            msg = f"Value {value} not found"
+            raise ValueError(msg)
 
         if node.left is None and node.right is None:  # If it has no children
             self.__reassign_nodes(node, None)
