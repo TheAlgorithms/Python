@@ -2,6 +2,7 @@
 author : Mayank Kumar Jha (mk9440)
 """
 
+
 def find_max_sub_array(a, low, high):
     if low == high:
         return low, high, a[low]
