@@ -14,5 +14,6 @@ def last_digit_of_pow(number1: int, number2: int) -> int:
 
     return pow(number1, number2, 10)
 
+
 if __name__ == "__main__":
     __import__("doctest").testmod()
