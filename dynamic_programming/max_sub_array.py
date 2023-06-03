@@ -1,8 +1,6 @@
 """
 author : Mayank Kumar Jha (mk9440)
 """
-from __future__ import annotations
-
 
 def find_max_sub_array(a, low, high):
     if low == high:
