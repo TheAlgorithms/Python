@@ -16,6 +16,10 @@ Example
 8 3 1 6 4 7 10 14 13
 >>> print(" ".join(repr(i.value) for i in t.traversal_tree(postorder)))
 1 4 7 6 3 13 14 10 8
+>>> t.remove(20)
+Traceback (most recent call last):
+    ...
+ValueError: Value 20 not found
 >>> BinarySearchTree().search(6)
 Traceback (most recent call last):
     ...
@@ -173,22 +177,25 @@ class BinarySearchTree:
         return node
 
     def remove(self, value: int) -> None:
-        node = self.search(value)  # Look for the node with that label
-        if node is not None:
-            if node.left is None and node.right is None:  # If it has no children
-                self.__reassign_nodes(node, None)
-            elif node.left is None:  # Has only right children
-                self.__reassign_nodes(node, node.right)
-            elif node.right is None:  # Has only left children
-                self.__reassign_nodes(node, node.left)
-            else:
-                predecessor = self.get_max(
-                    node.left
-                )  # Gets the max value of the left branch
-                self.remove(predecessor.value)  # type: ignore
-                node.value = (
-                    predecessor.value  # type: ignore
-                )  # Assigns the value to the node to delete and keep tree structure
+        # Look for the node with that label
+        node = self.search(value)
+        if node is None:
+            raise ValueError(f"Value {value} not found")
+
+        if node.left is None and node.right is None:  # If it has no children
+            self.__reassign_nodes(node, None)
+        elif node.left is None:  # Has only right children
+            self.__reassign_nodes(node, node.right)
+        elif node.right is None:  # Has only left children
+            self.__reassign_nodes(node, node.left)
+        else:
+            predecessor = self.get_max(
+                node.left
+            )  # Gets the max value of the left branch
+            self.remove(predecessor.value)  # type: ignore
+            node.value = (
+                predecessor.value  # type: ignore
+            )  # Assigns the value to the node to delete and keep tree structure
 
     def preorder_traverse(self, node: Node | None) -> Iterable:
         if node is not None:
