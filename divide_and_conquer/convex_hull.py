@@ -174,12 +174,12 @@ def _validate_input(points: list[Point] | list[list[float]]) -> list[Point]:
     """
 
     if not hasattr(points, "__iter__"):
-        raise ValueError(
-            f"Expecting an iterable object but got an non-iterable type {points}"
-        )
+        msg = f"Expecting an iterable object but got an non-iterable type {points}"
+        raise ValueError(msg)
 
     if not points:
-        raise ValueError(f"Expecting a list of points but got {points}")
+        msg = f"Expecting a list of points but got {points}"
+        raise ValueError(msg)
 
     return _construct_points(points)
 

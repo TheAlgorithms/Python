@@ -96,13 +96,13 @@ def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, 
 
     # Verify if N_POPULATION is bigger than N_SELECTED
     if N_POPULATION < N_SELECTED:
-        raise ValueError(f"{N_POPULATION} must be bigger than {N_SELECTED}")
+        msg = f"{N_POPULATION} must be bigger than {N_SELECTED}"
+        raise ValueError(msg)
     # Verify that the target contains no genes besides the ones inside genes variable.
     not_in_genes_list = sorted({c for c in target if c not in genes})
     if not_in_genes_list:
-        raise ValueError(
-            f"{not_in_genes_list} is not in genes list, evolution cannot converge"
-        )
+        msg = f"{not_in_genes_list} is not in genes list, evolution cannot converge"
+        raise ValueError(msg)
 
     # Generate random starting population.
     population = []

@@ -70,10 +70,11 @@ def multiply(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[
         rows, cols = _verify_matrix_sizes(matrix_a, matrix_b)
 
     if cols[0] != rows[1]:
-        raise ValueError(
-            f"Cannot multiply matrix of dimensions ({rows[0]},{cols[0]}) "
-            f"and ({rows[1]},{cols[1]})"
+        msg = (
+            "Cannot multiply matrix of dimensions "
+            f"({rows[0]},{cols[0]}) and ({rows[1]},{cols[1]})"
         )
+        raise ValueError(msg)
     return [
         [sum(m * n for m, n in zip(i, j)) for j in zip(*matrix_b)] for i in matrix_a
     ]
@@ -174,10 +175,11 @@ def _verify_matrix_sizes(
 ) -> tuple[tuple[int, int], tuple[int, int]]:
     shape = _shape(matrix_a) + _shape(matrix_b)
     if shape[0] != shape[3] or shape[1] != shape[2]:
-        raise ValueError(
-            f"operands could not be broadcast together with shape "
+        msg = (
+            "operands could not be broadcast together with shape "
             f"({shape[0], shape[1]}), ({shape[2], shape[3]})"
         )
+        raise ValueError(msg)
     return (shape[0], shape[2]), (shape[1], shape[3])
 
 

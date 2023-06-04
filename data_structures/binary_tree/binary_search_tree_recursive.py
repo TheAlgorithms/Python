@@ -77,7 +77,8 @@ class BinarySearchTree:
             elif label > node.label:
                 node.right = self._put(node.right, label, node)
             else:
-                raise Exception(f"Node with label {label} already exists")
+                msg = f"Node with label {label} already exists"
+                raise Exception(msg)
 
         return node
 
@@ -100,7 +101,8 @@ class BinarySearchTree:
 
     def _search(self, node: Node | None, label: int) -> Node:
         if node is None:
-            raise Exception(f"Node with label {label} does not exist")
+            msg = f"Node with label {label} does not exist"
+            raise Exception(msg)
         else:
             if label < node.label:
                 node = self._search(node.left, label)
