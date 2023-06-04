@@ -1,4 +1,5 @@
 # all imports - including #s
+#add newline by minjia 0604
 import socket
 #import os
 #import sys
@@ -20,7 +21,6 @@ class Clientrequire:
 # SERVER DETAILS:
     #5 client availability for pivoting #although that is not yet available in a regular form of
     #exploitation  - we have to go with what we have.
-
 # #learnmore - USER_CONFIG
 # server ip will be displayed every connection at version 2.0
 # terminal attacker socket object creation
