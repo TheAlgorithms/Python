@@ -11,10 +11,7 @@ def send_mattermost_message(
     username: str,
     webhook_url: str,
 ) -> None:
-    payload = {
-        "text": message,
-        "username": username
-    }
+    payload = {"text": message, "username": username}
     response = requests.post(webhook_url, json=payload)
     if response.status_code != 200:
         raise Exception("Failed to send a message in Mattermost")
