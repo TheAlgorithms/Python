@@ -1,6 +1,9 @@
 from typing import List, Generator
 
-def sliding_window(elements: List[int], window_size: int) -> Generator[List[int], None, None]:
+
+def sliding_window(
+    elements: List[int], window_size: int
+) -> Generator[List[int], None, None]:
     """
     Generate sliding windows of size window_size from the given elements.
 
@@ -18,15 +21,17 @@ def sliding_window(elements: List[int], window_size: int) -> Generator[List[int]
         [1, 2, 3]
         >>> print(next(sw_gen))
         [2, 3, 4]
-        
+
     References:
-    https://stackoverflow.com/questions/8269916/what-is-sliding-window-algorithm-examples     
+    https://stackoverflow.com/questions/8269916/what-is-sliding-window-algorithm-examples
     """
     if len(elements) <= window_size:
         return elements
     for i in range(len(elements) - window_size + 1):
-        yield elements[i:i + window_size]
+        yield elements[i : i + window_size]
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

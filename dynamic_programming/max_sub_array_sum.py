@@ -1,5 +1,6 @@
 from typing import List
 
+
 def max_sub_array_sum(arr: List[int], size: int) -> int:
     """
     Finds the maximum sum of a subarray within the given array using Kadane's algorithm.
