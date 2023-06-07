@@ -45,9 +45,7 @@ class SpeedOfSound:
         if bulk_modulus <= 0:
             raise ValueError("Impossible bulk modulus")
 
-        speed_of_sound = (bulk_modulus / fluid_density) ** 0.5
-
-        return speed_of_sound
+        return (bulk_modulus / fluid_density) ** 0.5
 
 
 if __name__ == "__main__":
