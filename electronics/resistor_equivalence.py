@@ -23,7 +23,8 @@ def resistor_parallel(resistors: list[float]) -> float:
     index = 0
     for resistor in resistors:
         if resistor <= 0:
-            raise ValueError(f"Resistor at index {index} has a negative or zero value!")
+            msg = f"Resistor at index {index} has a negative or zero value!"
+            raise ValueError(msg)
         first_sum += 1 / float(resistor)
         index += 1
     return 1 / first_sum
@@ -47,7 +48,8 @@ def resistor_series(resistors: list[float]) -> float:
     for resistor in resistors:
         sum_r += resistor
         if resistor < 0:
-            raise ValueError(f"Resistor at index {index} has a negative value!")
+            msg = f"Resistor at index {index} has a negative value!"
+            raise ValueError(msg)
         index += 1
     return sum_r
 

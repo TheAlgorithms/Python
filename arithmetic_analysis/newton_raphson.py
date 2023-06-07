@@ -5,6 +5,8 @@
 from __future__ import annotations
 
 from decimal import Decimal
+
+# Importing to allow mathematical functions in func
 from math import *  # noqa: F403
 
 from sympy import diff
