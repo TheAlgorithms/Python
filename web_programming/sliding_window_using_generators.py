@@ -16,6 +16,9 @@ def sliding_window(elements, window_size):
         [1, 2, 3]
         >>> print(next(sw_gen))
         [2, 3, 4]
+        
+    References:
+    https://stackoverflow.com/questions/8269916/what-is-sliding-window-algorithm-examples    
     """
     if len(elements) <= window_size:
         return elements
