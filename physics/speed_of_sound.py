@@ -38,7 +38,7 @@ def speed_of_sound_in_a_fluid(density: float, bulk_modulus: float) -> float:
     1447.614670861731
     """
 
-    if fluid_density <= 0:
+    if density <= 0:
         raise ValueError("Impossible fluid density")
     if bulk_modulus <= 0:
         raise ValueError("Impossible bulk modulus")
