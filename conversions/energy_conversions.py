@@ -105,7 +105,7 @@ def energy_conversion(from_type: str, to_type: str, value: float) -> float:
             f"Valid values are: {', '.join(ENERGY_CONVERSION)}"
         )
         raise ValueError(msg)
-    return value * ENERGY_CONVERSION[from_type] * 1 / ENERGY_CONVERSION[to_type]
+    return value * ENERGY_CONVERSION[from_type] / ENERGY_CONVERSION[to_type]
 
 
 if __name__ == "__main__":
