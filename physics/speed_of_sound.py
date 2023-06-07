@@ -24,9 +24,7 @@ Source : https://en.wikipedia.org/wiki/Speed_of_sound
 """
 
 
-class SpeedOfSound:
-    @staticmethod
-    def fluid(fluid_density: float, bulk_modulus: float) -> float:
+def speed_of_sound_in_a_fluid(density: float, bulk_modulus: float) -> float:
         """
         This method calculates the speed of sound in fluid -
         This is calculated from the other two provided values
