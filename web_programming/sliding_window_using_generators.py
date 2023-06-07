@@ -1,4 +1,6 @@
-def sliding_window(elements, window_size):
+from typing import List
+
+def sliding_window(elements: List[int], window_size: int) -> List[List[int]]:
     """
     Generate sliding windows of size window_size from the given elements.
 
