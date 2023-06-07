@@ -29,12 +29,12 @@ def speed_of_sound_in_a_fluid(density: float, bulk_modulus: float) -> float:
     This method calculates the speed of sound in fluid -
     This is calculated from the other two provided values
     Examples:
-    Example 1 --> Water 20°C: bulk_moduls= 2.15MPa, fluid_density=998kg/m³
-    Example 2 --> Murcery 20°: bulk_moduls= 28.5MPa, fluid_density=13600kg/m³
+    Example 1 --> Water 20°C: bulk_moduls= 2.15MPa, density=998kg/m³
+    Example 2 --> Murcery 20°: bulk_moduls= 28.5MPa, density=13600kg/m³
 
-    >>> SpeedOfSound.fluid(bulk_modulus=2.15*10**9, fluid_density=998)
+    >>> speed_of_sound_in_a_fluid(bulk_modulus=2.15*10**9, density=998)
     1467.7563207952705
-    >>> SpeedOfSound.fluid(bulk_modulus=28.5*10**9, fluid_density=13600)
+    >>> speed_of_sound_in_a_fluid(bulk_modulus=28.5*10**9, density=13600)
     1447.614670861731
     """
 
@@ -43,7 +43,7 @@ def speed_of_sound_in_a_fluid(density: float, bulk_modulus: float) -> float:
     if bulk_modulus <= 0:
         raise ValueError("Impossible bulk modulus")
 
-    return (bulk_modulus / fluid_density) ** 0.5
+    return (bulk_modulus / density) ** 0.5
 
 
 if __name__ == "__main__":
