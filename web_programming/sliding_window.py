@@ -14,9 +14,9 @@ def sliding_window(elements, window_size):
         >>> result = sliding_window(lst, 3)
         >>> print(result)
         [[1, 2, 3], [2, 3, 4], [3, 4, 5], [4, 5, 6], [5, 6, 7], [6, 7, 8]]
-        
+
     References:
-    https://stackoverflow.com/questions/8269916/what-is-sliding-window-algorithm-examples    
+    https://stackoverflow.com/questions/8269916/what-is-sliding-window-algorithm-examples
     """
 
     if len(elements) <= window_size:
@@ -24,10 +24,11 @@ def sliding_window(elements, window_size):
 
     windows = []
     for i in range(len(elements) - window_size + 1):
-        window = elements[i:i+window_size]
+        window = elements[i : i + window_size]
         windows.append(window)
 
     return windows
+
 
 if __name__ == "__main__":
     import doctest
