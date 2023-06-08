@@ -11,8 +11,8 @@ Further explained in this leetcode problem
 
 class NumberContainer:
     def __init__(self) -> None:
-        # Holds number as the key and returns list of indexes where the number is
-        # The list of indexes is a sorted array in ascending order
+        # numbermap keys are the number and its values are lists of indexes sorted
+        # in ascending order
         self.numbermap: dict[int, list[int]] = {}
         # Simply holds each index and it's number
         self.indexmap: dict[int, int] = {}
