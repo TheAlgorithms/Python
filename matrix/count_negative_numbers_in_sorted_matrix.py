@@ -6,7 +6,7 @@ Leetcode reference: https://leetcode.com/problems/count-negative-numbers-in-a-so
 """
 
 
-def find_negative_index(array: list[int]):
+def find_negative_index(array: list[int]) -> int:
     """
     Find the smallest negative index
 
@@ -139,7 +139,10 @@ def generate_large_matrix() -> list[list[int]]:
 
 
 def benchmark() -> None:
-    """Benchmark our functions next to each other"""
+    """Benchmark our functions next to each other
+    
+    >>> benchmark()
+    """
     from timeit import timeit
 
     print("Running benchmarks")
