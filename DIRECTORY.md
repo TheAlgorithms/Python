@@ -679,6 +679,7 @@
 ## Matrix
   * [Binary Search Matrix](matrix/binary_search_matrix.py)
   * [Count Islands In Matrix](matrix/count_islands_in_matrix.py)
+  * [Count Negative Numbers In Sorted Matrix](matrix/count_negative_numbers_in_sorted_matrix.py)
   * [Count Paths](matrix/count_paths.py)
   * [Cramers Rule 2X2](matrix/cramers_rule_2x2.py)
   * [Inverse Of Matrix](matrix/inverse_of_matrix.py)
@@ -753,6 +754,7 @@
   * [Potential Energy](physics/potential_energy.py)
   * [Rms Speed Of Molecule](physics/rms_speed_of_molecule.py)
   * [Shear Stress](physics/shear_stress.py)
+  * [Speed Of Sound](physics/speed_of_sound.py)
 
 ## Project Euler
   * Problem 001
