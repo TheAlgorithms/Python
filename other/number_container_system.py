@@ -91,6 +91,10 @@ class NumberContainer:
         [0, 1, 2, 3, 4, 4, 5, 6, 7, 8, 9]
         >>> NumberContainer().binary_search_insert("abd", "c")
         ['a', 'b', 'c', 'd']
+        >>> NumberContainer().binary_search_insert(131, 23)
+        Traceback (most recent call last):
+            ...
+        TypeError: binary_search_insert() only accepts either a list, range or str
         """
         if isinstance(array, (range, str)):
             array = list(array)
