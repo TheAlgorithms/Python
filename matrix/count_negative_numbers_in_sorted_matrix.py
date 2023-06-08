@@ -147,34 +147,13 @@ def benchmark() -> None:
         "from __main__ import count_negatives_binary_search,count_negatives_brute_force"
         ",count_negatives_brute_force_with_break,generate_large_matrix"
     )
-
-    print(
-        "count_negatives_binary_search()",
-        timeit(
-            "count_negatives_binary_search(generate_large_matrix())",
-            setup=setup,
-            number=5000,
-        ),
-        "seconds",
-    )
-    print(
-        "count_negatives_brute_force_with_break()",
-        timeit(
-            "count_negatives_brute_force_with_break(generate_large_matrix())",
-            setup=setup,
-            number=5000,
-        ),
-        "seconds",
-    )
-    print(
-        "count_negatives_brute_force()",
-        timeit(
-            "count_negatives_brute_force(generate_large_matrix())",
-            setup=setup,
-            number=5000,
-        ),
-        "seconds",
-    )
+    for func in (
+        "count_negatives_binary_search",
+        "count_negatives_brute_force_with_break",
+        "count_negatives_brute_force",
+    ):
+        time = timeit(f"{func}(generate_large_matrix())", setup=setup, number=5000)
+        print(f"{func}() took {time} seconds")
 
 
 if __name__ == "__main__":
