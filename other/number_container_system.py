@@ -19,16 +19,45 @@ class NumberContainer:
 
     def binary_search_delete(self, array: list[int], item: int) -> list[int]:
         """
-        Removes the item from the array and returns
+        Removes the item from the sorted array and returns
         the new array.
 
         >>> NumberContainer().binary_search_delete([1,2,3], 2)
         [1, 3]
-        >>> NumberContainer().binary_search_delete([], 0)
+        >>> NumberContainer().binary_search_delete([0, 0, 0], 0)
+        [0, 0]
+        >>> NumberContainer().binary_search_delete([-1, -1, -1], -1)
+        [-1, -1]
+        >>> NumberContainer().binary_search_delete([-1, 0], 0)
+        [-1]
+        >>> NumberContainer().binary_search_delete([-1, 0], -1)
+        [0]
+        >>> NumberContainer().binary_search_delete(range(7), 3)
+        [0, 1, 2, 4, 5, 6]
+        >>> NumberContainer().binary_search_delete([1.1, 2.2, 3.3], 2.2)
+        [1.1, 3.3]
+        >>> NumberContainer().binary_search_delete("abcde", "c")
+        ['a', 'b', 'd', 'e']
+        >>> NumberContainer().binary_search_delete([0, -1, 2, 4], 0)
         Traceback (most recent call last):
             ...
-        ValueError: The item is not in the array, and therefore cannot be deleted
+        ValueError: Either the item is not in the array or the array was unsorted
+        >>> NumberContainer().binary_search_delete([2, 0, 4, -1, 11], -1)
+        Traceback (most recent call last):
+            ...
+        ValueError: Either the item is not in the array or the array was unsorted
+        >>> NumberContainer().binary_search_delete(125, 1)
+        Traceback (most recent call last):
+            ...
+        TypeError: binary_search_delete() only accepts either a list, range or str
         """
+        if isinstance(array, (range, str)):
+            array = list(array)
+        elif not isinstance(array, list):
+            raise TypeError(
+                "binary_search_delete() only accepts either a list, range or str"
+            )
+
         low = 0
         high = len(array) - 1
 
@@ -42,19 +71,34 @@ class NumberContainer:
             else:
                 high = mid - 1
         raise ValueError(
-            "The item is not in the array, and therefore cannot be deleted"
+            "Either the item is not in the array or the array was unsorted"
         )
 
     def binary_search_insert(self, array: list[int], index: int) -> list[int]:
         """
         Inserts the index into the sorted array
-        at the correct position
+        at the correct position.
 
         >>> NumberContainer().binary_search_insert([1,2,3], 2)
         [1, 2, 2, 3]
         >>> NumberContainer().binary_search_insert([0,1,3], 2)
         [0, 1, 2, 3]
+        >>> NumberContainer().binary_search_insert([-5, -3, 0, 0, 11, 103], 51)
+        [-5, -3, 0, 0, 11, 51, 103]
+        >>> NumberContainer().binary_search_insert([-5, -3, 0, 0, 11, 100, 103], 101)
+        [-5, -3, 0, 0, 11, 100, 101, 103]
+        >>> NumberContainer().binary_search_insert(range(10), 4)
+        [0, 1, 2, 3, 4, 4, 5, 6, 7, 8, 9]
+        >>> NumberContainer().binary_search_insert("abd", "c")
+        ['a', 'b', 'c', 'd']
         """
+        if isinstance(array, (range, str)):
+            array = list(array)
+        elif not isinstance(array, list):
+            raise TypeError(
+                "binary_search_insert() only accepts either a list, range or str"
+            )
+
         low = 0
         high = len(array) - 1
 
@@ -81,7 +125,8 @@ class NumberContainer:
         >>> cont = NumberContainer()
         >>> cont.change(0, 10)
         >>> cont.change(0, 20)
-        >>> cont.change(-1, 20)
+        >>> cont.change(-13, 20)
+        >>> cont.change(-100030, 20032903290)
         """
         # Remove previous index
         if index in self.indexmap:
