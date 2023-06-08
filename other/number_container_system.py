@@ -14,7 +14,7 @@ class NumberContainer:
         # numbermap keys are the number and its values are lists of indexes sorted
         # in ascending order
         self.numbermap: dict[int, list[int]] = {}
-        # Simply holds each index and it's number
+        # indexmap keys are an index and it's values are the number at that index
         self.indexmap: dict[int, int] = {}
 
     def binary_search_delete(self, array: list[int], item: int) -> list[int]:
