@@ -17,7 +17,7 @@ class NumberContainer:
         # indexmap keys are an index and it's values are the number at that index
         self.indexmap: dict[int, int] = {}
 
-    def binary_search_delete(self, array: list[int], item: int) -> list[int]:
+    def binary_search_delete(self, array: list | str | range, item: int) -> list[int]:
         """
         Removes the item from the sorted array and returns
         the new array.
@@ -74,7 +74,7 @@ class NumberContainer:
             "Either the item is not in the array or the array was unsorted"
         )
 
-    def binary_search_insert(self, array: list[int], index: int) -> list[int]:
+    def binary_search_insert(self, array: list | str | range, index: int) -> list[int]:
         """
         Inserts the index into the sorted array
         at the correct position.
