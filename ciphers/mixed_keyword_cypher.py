@@ -30,8 +30,8 @@ def mixed_keyword(
     plaintext = plaintext.upper()
     alphabet_set = set(alphabet)
 
-    # create a list of unique characters in the keyword
-    # their order matters, it determines how we will map plaintext characters to the ciphertext
+    # create a list of unique characters in the keyword - their order matters
+    # it determines how we will map plaintext characters to the ciphertext
     unique_chars = []
     for char in keyword:
         if char in alphabet_set and char not in unique_chars:
