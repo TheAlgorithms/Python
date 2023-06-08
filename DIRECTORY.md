@@ -729,6 +729,7 @@
   * [Maximum Subarray](other/maximum_subarray.py)
   * [Maximum Subsequence](other/maximum_subsequence.py)
   * [Nested Brackets](other/nested_brackets.py)
+  * [Number Container System](other/number_container_system.py)
   * [Password](other/password.py)
   * [Quine](other/quine.py)
   * [Scoring Algorithm](other/scoring_algorithm.py)
