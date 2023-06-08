@@ -60,7 +60,7 @@ def find_negative_index(array: list[int]):
 def count_negatives_binary_search(grid: list[list[int]]) -> int:
     """
     An O(m logn) solution that uses binary search
-    in order to find the boundary betweem positive and
+    in order to find the boundary between positive and
     negative numbers
 
     >>> count_negatives_binary_search(
@@ -107,7 +107,7 @@ def count_negatives_brute_force(grid: list[list[int]]) -> int:
 
 def count_negatives_brute_force_with_break(grid: list[list[int]]) -> int:
     """
-    Similiar to the solution above, however uses break
+    Similar to the solution above, however uses break
     in order to reduce the number of iterations
 
     >>> count_negatives_brute_force_with_break(
@@ -133,7 +133,7 @@ def count_negatives_brute_force_with_break(grid: list[list[int]]) -> int:
 def generate_large_matrix() -> list[list[int]]:
     """
     >>> generate_large_matrix() # doctest: +ELLIPSIS
-    [[500, ..., -499], [499, ..., -501], ..., [2, ..., -998]]
+    [[1000, ..., -999], [999, ..., -1001], ..., [2, ..., -1998]]
     """
     return [list(range(1000 - i, -1000 - i, -1)) for i in range(1000)]
 
@@ -144,17 +144,19 @@ def benchmark() -> None:
 
     print("Running benchmarks")
     setup = (
-        "from __main__ import count_negatives_binary_search, count_negatives_brute_force, "
-        "count_negatives_brute_force_with_break, generate_large_matrix"
+        "from __main__ import count_negatives_binary_search,count_negatives_brute_force"
+        ",count_negatives_brute_force_with_break,generate_large_matrix"
     )
 
-    cnbs = timeit(
+    print(
+        "count_negatives_binary_search()",
+        timeit(
             "count_negatives_binary_search(generate_large_matrix())",
             setup=setup,
             number=5000,
         ),
-    
-    print("count_negatives_binary_search()", cnbs[0], "seconds")
+        "seconds",
+    )
     print(
         "count_negatives_brute_force_with_break()",
         timeit(
@@ -163,7 +165,7 @@ def benchmark() -> None:
             number=5000,
         ),
         "seconds",
-    )  #
+    )
     print(
         "count_negatives_brute_force()",
         timeit(
