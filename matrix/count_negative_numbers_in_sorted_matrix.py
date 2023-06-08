@@ -148,9 +148,9 @@ def benchmark() -> None:
         ",count_negatives_brute_force_with_break,generate_large_matrix"
     )
     for func in (
-        "count_negatives_binary_search",
-        "count_negatives_brute_force_with_break",
-        "count_negatives_brute_force",
+        "count_negatives_binary_search",  # 175.51 seconds
+        "count_negatives_brute_force_with_break",  # 271.04 seconds
+        "count_negatives_brute_force",  # 646.65 seconds
     ):
         time = timeit(f"{func}(generate_large_matrix())", setup=setup, number=5000)
         print(f"{func}() took {time} seconds")
