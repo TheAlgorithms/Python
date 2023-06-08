@@ -1,7 +1,9 @@
 from string import ascii_uppercase
 
 
-def mixed_keyword(keyword: str, plaintext: str, alphabet: str = ascii_uppercase) -> str:
+def mixed_keyword(
+    keyword: str, plaintext: str, verbose: bool = True, alphabet: str = ascii_uppercase
+) -> str:
     """
     For keyword: hello
 
@@ -14,11 +16,14 @@ def mixed_keyword(keyword: str, plaintext: str, alphabet: str = ascii_uppercase)
     Y Z
     and map vertically
 
-    >>> mixed_keyword("college", "UNIVERSITY")  # doctest: +NORMALIZE_WHITESPACE
+    >>> mixed_keyword("college", "UNIVERSITY", True)  # doctest: +NORMALIZE_WHITESPACE
     {'A': 'C', 'B': 'A', 'C': 'I', 'D': 'P', 'E': 'U', 'F': 'Z', 'G': 'O', 'H': 'B',
      'I': 'J', 'J': 'Q', 'K': 'V', 'L': 'L', 'M': 'D', 'N': 'K', 'O': 'R', 'P': 'W',
      'Q': 'E', 'R': 'F', 'S': 'M', 'T': 'S', 'U': 'X', 'V': 'G', 'W': 'H', 'X': 'N',
      'Y': 'T', 'Z': 'Y'}
+    'XKJGUFMJST'
+
+    >>> mixed_keyword("college", "UNIVERSITY", False)  # doctest: +NORMALIZE_WHITESPACE
     'XKJGUFMJST'
     """
     keyword = keyword.upper()
@@ -26,6 +31,7 @@ def mixed_keyword(keyword: str, plaintext: str, alphabet: str = ascii_uppercase)
     alphabet_set = set(alphabet)
 
     # create a list of unique characters in the keyword
+    # their order matters, it determines how we will map plaintext characters to the ciphertext
     unique_chars = []
     for char in keyword:
         if char in alphabet_set and char not in unique_chars:
@@ -58,11 +64,12 @@ def mixed_keyword(keyword: str, plaintext: str, alphabet: str = ascii_uppercase)
             mapping[alphabet[letter_index]] = row[column]
             letter_index += 1
 
-    print(mapping)
+    if verbose:
+        print(mapping)
     # create the encrypted text by mapping the plaintext to the modified alphabet
     return "".join(mapping[char] if char in mapping else char for char in plaintext)
 
 
 if __name__ == "__main__":
     # example use
-    print(mixed_keyword("college", "UNIVERSITY", ascii_uppercase))
+    print(mixed_keyword("college", "UNIVERSITY"))
