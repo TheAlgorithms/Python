@@ -139,10 +139,7 @@ def generate_large_matrix() -> list[list[int]]:
 
 
 def benchmark() -> None:
-    """Benchmark our functions next to each other
-
-    >>> benchmark()
-    """
+    """Benchmark our functions next to each other"""
     from timeit import timeit
 
     print("Running benchmarks")
