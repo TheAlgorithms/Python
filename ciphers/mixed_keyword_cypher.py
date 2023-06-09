@@ -2,7 +2,7 @@ from string import ascii_uppercase
 
 
 def mixed_keyword(
-    keyword: str, plaintext: str, verbose: bool = True, alphabet: str = ascii_uppercase
+    keyword: str, plaintext: str, verbose: bool = False, alphabet: str = ascii_uppercase
 ) -> str:
     """
     For keyword: hello
