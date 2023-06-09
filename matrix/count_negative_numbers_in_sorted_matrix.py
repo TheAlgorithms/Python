@@ -1,6 +1,6 @@
 """
-Given an `m x n` matrix grid which is sorted in decreasing order
-both row-wise and column-wise, return the number of negative numbers in grid.
+Given an matrix of numbers in which all rows and all columns are sorted in decreasing
+order, return the number of negative numbers in grid.
 
 Leetcode reference: https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix
 """
