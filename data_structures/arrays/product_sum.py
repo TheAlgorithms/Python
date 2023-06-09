@@ -82,6 +82,13 @@ def product_sum_array(array: list[int | list]) -> int:
         11
         >>> product_sum_array([1, [2, [3, 4]]])
         47
+        >>> product_sum_array([0])
+        0
+        >>> product_sum_array([-3.5, [1, [0.5]]])
+        1.5
+        >>> product_sum_array([1, -2])
+        -1
+
     """
     return product_sum(array, 1)
 
