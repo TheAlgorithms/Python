@@ -137,6 +137,7 @@ def generate_large_matrix() -> list[list[int]]:
     return [list(range(1000 - i, -1000 - i, -1)) for i in range(1000)]
 
 
+grid = generate_large_matrix()
 def benchmark() -> None:
     """Benchmark our functions next to each other"""
     from timeit import timeit
