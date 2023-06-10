@@ -145,7 +145,7 @@ def benchmark() -> None:
     print("Running benchmarks")
     setup = (
         "from __main__ import count_negatives_binary_search,count_negatives_brute_force"
-        ",count_negatives_brute_force_with_break,generate_large_matrix"
+        ",count_negatives_brute_force_with_break,grid"
     )
     for func in (
         "count_negatives_binary_search",  # 175.51 seconds
