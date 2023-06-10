@@ -151,7 +151,7 @@ def benchmark() -> None:
         "count_negatives_brute_force_with_break",  # 271.04 seconds
         "count_negatives_brute_force",  # 646.65 seconds
     ):
-        time = timeit(f"{func}(generate_large_matrix())", setup=setup, number=5000)
+        time = timeit(f"{func}(grid=grid)", setup=setup, number=500)
         print(f"{func}() took {time} seconds")
 
 
