@@ -97,12 +97,7 @@ def count_negatives_brute_force(grid: list[list[int]]) -> int:
     >>> count_negatives_brute_force([[7,7,6],[-1,-2,-3]])
     3
     """
-    total = 0
-    for m in range(len(grid)):
-        for n in range(len(grid[m])):
-            if grid[m][n] < 0:
-                total += 1
-    return total
+    return sum(number for row in grid for number in row if number < 0)
 
 
 def count_negatives_brute_force_with_break(grid: list[list[int]]) -> int:
@@ -138,6 +133,8 @@ def generate_large_matrix() -> list[list[int]]:
 
 
 grid = generate_large_matrix()
+
+
 def benchmark() -> None:
     """Benchmark our functions next to each other"""
     from timeit import timeit
