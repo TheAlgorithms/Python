@@ -121,11 +121,10 @@ def count_negatives_brute_force_with_break(grid: list[list[int]]) -> int:
     3
     """
     total = 0
-    length_of_n = len(grid[0])
-    for m in range(len(grid)):
-        for index, n in enumerate(range(length_of_n)):
-            if grid[m][n] < 0:
-                total += length_of_n - index
+    for row in grid:
+        for i, number in enumerate(row):
+            if number < 0:
+                total += len(row) - i
                 break
     return total
 
