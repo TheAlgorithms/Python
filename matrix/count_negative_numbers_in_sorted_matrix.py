@@ -97,7 +97,7 @@ def count_negatives_brute_force(grid: list[list[int]]) -> int:
     >>> count_negatives_brute_force([[7,7,6],[-1,-2,-3]])
     3
     """
-    return sum(number for row in grid for number in row if number < 0)
+    return len([number for row in grid for number in row if number < 0])
 
 
 def count_negatives_brute_force_with_break(grid: list[list[int]]) -> int:
