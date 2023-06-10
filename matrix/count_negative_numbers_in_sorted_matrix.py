@@ -16,11 +16,11 @@ def generate_large_matrix() -> list[list[int]]:
 
 grid = generate_large_matrix()
 test_grids = (
-    [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]],
-    [[3,2],[1,0]],
-    [[7,7,6]],
-    [[7,7,6],[-1,-2,-3]],
-    grid
+    [[4, 3, 2, -1], [3, 2, 1, -1], [1, 1, -1, -2], [-1, -1, -2, -3]],
+    [[3, 2], [1, 0]],
+    [[7, 7, 6]],
+    [[7, 7, 6], [-1, -2, -3]],
+    grid,
 )
 
 
@@ -107,7 +107,6 @@ def count_negatives_brute_force(grid: list[list[int]]) -> int:
     [8, 0, 0, 3, 1498500]
     """
     return len([number for row in grid for number in row if number < 0])
-
 
 
 def count_negatives_brute_force_with_break(grid: list[list[int]]) -> int:
