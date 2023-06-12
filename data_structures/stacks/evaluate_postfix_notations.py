@@ -49,6 +49,8 @@ def evaluate_postfix(postfix_notation: list) -> int:
                     if b == 0:
                         raise ValueError("Invalid expression: division by zero")
                     stack.append(a // b)
+                else:
+                    raise ValueError(f"Unrecognized {token = }")
         else:
             stack.append(int(token))
 
