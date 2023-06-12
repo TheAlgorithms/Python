@@ -23,7 +23,22 @@ def evaluate_postfix(postfix_notation: list) -> int:
     -5
     >>> evaluate_postfix([])
     0
-    """
+    >>> evaluate_postfix(["5"])
+    5
+    >>> evaluate_postfix(["-"])
+    0
+    >>> evaluate_postfix(["5", "A"])
+    Traceback (most recent call last):
+     ...
+    ValueError: invalid literal for int() with base 10: 'A'
+    >>> evaluate_postfix(["5", "4", "A"])
+    Traceback (most recent call last):
+     ...
+    ValueError: invalid literal for int() with base 10: 'A'
+    >>> evaluate_postfix(["A"])
+    Traceback (most recent call last):
+     ...
+    ValueError: invalid literal for int() with base 10: 'A'"""
     if not postfix_notation:
         return 0
 
@@ -35,10 +50,9 @@ def evaluate_postfix(postfix_notation: list) -> int:
             if len(stack) < 2:
                 operand = stack.pop()
                 if token == "-":
-                    operand = -operand
+                    stack.append(-operand)
                 else:
-                    raise ValueError(f"Unrecognized {token = }")
-                stack.append(operand)
+                    stack.append(operand)
             else:
                 b, a = stack.pop(), stack.pop()
                 if token == "+":
