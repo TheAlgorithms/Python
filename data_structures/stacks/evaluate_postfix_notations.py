@@ -36,6 +36,8 @@ def evaluate_postfix(postfix_notation: list) -> int:
                 operand = stack.pop()
                 if token == "-":
                     operand = -operand
+                else:
+                    raise ValueError(f"Unrecognized {token = }")
                 stack.append(operand)
             else:
                 b, a = stack.pop(), stack.pop()
