@@ -45,12 +45,12 @@ def evaluate_postfix(postfix_notation: list) -> int:
 
     for token in postfix_notation:
         if token in operations:
-            if len(stack) < 2:
+            if len(stack) == 0:
+                msg = f"{token} operator with no operand(s)"
+                raise ValueError(msg)
+            if token == "-" and len(stack) < 2:
                 operand = stack.pop()
-                if token == "-":
-                    stack.append(-operand)
-                else:
-                    stack.append(operand)
+                stack.append(-operand)
             else:
                 b, a = stack.pop(), stack.pop()
                 if token == "+":
