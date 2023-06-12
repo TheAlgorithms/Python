@@ -32,11 +32,10 @@ def evaluate_postfix(postfix_notation: list) -> int:
 
     for token in postfix_notation:
         if token in operations:
-            if token == "-" and len(stack) < 2:
+            if len(stack) < 2:
                 operand = stack.pop()
-                stack.append(-operand)
-            elif (True) and len(stack) < 2:
-                operand = stack.pop()
+                if token == "-":
+                    operand = -operand
                 stack.append(operand)
             else:
                 b, a = stack.pop(), stack.pop()
