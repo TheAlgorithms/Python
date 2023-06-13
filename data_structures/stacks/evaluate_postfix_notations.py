@@ -37,6 +37,9 @@ def evaluate_postfix(postfix_notation: list) -> int:
     Traceback (most recent call last):
      ...
     ValueError: invalid literal for int() with base 10: 'A'"""
+    if len(postfix_notation) == 1 and postfix_notation[0] in {"+", "-", "*", "/"}:
+        raise ValueError("Invalid expression: insufficient operands")
+
     if not postfix_notation:
         return 0
 
@@ -45,12 +48,12 @@ def evaluate_postfix(postfix_notation: list) -> int:
 
     for token in postfix_notation:
         if token in operations:
-            if len(stack) == 0:
-                msg = f"{token} operator with no operand(s)"
-                raise ValueError(msg)
-            if token == "-" and len(stack) < 2:
+            if len(stack) < 2:
                 operand = stack.pop()
-                stack.append(-operand)
+                if token == "-":
+                    stack.append(-operand)
+                else:
+                    stack.append(operand)
             else:
                 b, a = stack.pop(), stack.pop()
                 if token == "+":
