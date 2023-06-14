@@ -34,12 +34,14 @@ class BinarySearchTree:
     def __reassign_nodes(self, node: Node, new_children: Node | None) -> None:
         if new_children is not None:  # reset its kids
             new_children.parent = node.parent
-        if(node == self.root):#This check if the node is the head and assign the root to the remaining
+        if (
+            node == self.root
+        ):  # This check if the node is the head and assign the root to the remaining
             if self.is_right(node):  # If it is the right children
                 self.root = new_children
             else:
                 self.root = new_children
-        elif( node.parent is not None):  # reset its parent
+        elif node.parent is not None:  # reset its parent
             if self.is_right(node):  # If it is the right children
                 node.parent.right = new_children
             else:
