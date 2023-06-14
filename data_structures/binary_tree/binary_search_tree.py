@@ -34,7 +34,12 @@ class BinarySearchTree:
     def __reassign_nodes(self, node: Node, new_children: Node | None) -> None:
         if new_children is not None:  # reset its kids
             new_children.parent = node.parent
-        if node.parent is not None:  # reset its parent
+        if(node == self.root):#This check if the node is the head and assign the root to the remaining
+            if self.is_right(node):  # If it is the right children
+                self.root = new_children
+            else:
+                self.root = new_children
+        elif( node.parent is not None):  # reset its parent
             if self.is_right(node):  # If it is the right children
                 node.parent.right = new_children
             else:
@@ -194,6 +199,15 @@ def binary_search_tree() -> None:
     8 3 1 6 4 7 10 14 13
     >>> print(" ".join(repr(i.value) for i in t.traversal_tree(postorder)))
     1 4 7 6 3 13 14 10 8
+    >>> t.remove(10)
+    >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
+    8 3 1 6 4 7 14 13
+    >>> t.remove(8)
+    >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
+    7 3 1 6 4 14 13
+    >>> t.remove(14)
+    >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
+    7 3 1 6 4 13
     >>> BinarySearchTree().search(6)
     Traceback (most recent call last):
         ...
@@ -203,10 +217,8 @@ def binary_search_tree() -> None:
     t = BinarySearchTree()
     for i in testlist:
         t.insert(i)
-
     # Prints all the elements of the list in order traversal
     print(t)
-
     if t.search(6) is not None:
         print("The value 6 exists")
     else:
