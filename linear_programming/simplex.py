@@ -35,8 +35,6 @@ class Tableau:
         if np.any(rhs, where=rhs < 0):
             raise ValueError("RHS must be > 0")
 
-        if tableau is None:
-            return
 
         self.tableau = tableau
         self.n_rows = len(tableau[:, 0])
