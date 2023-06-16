@@ -21,16 +21,16 @@ import numpy as np
 
 
 class Tableau:
-    """Operate on simplex tableaus"""
+    """Operate on simplex tableaus
+    
+    >>> tableau = np.array([[-1,-1,0,0,-1],[1,3,1,0,4],[3,1,0,1,4.]])
+    >>> t = Tableau(tableau, 2)
+    Traceback (most recent call last):
+        ...
+    ValueError: RHS must be > 0
+    """
 
     def __init__(self, tableau: np.ndarray, n_vars: int) -> None:
-        """
-        >>> tableau = np.array([[-1,-1,0,0,-1],[1,3,1,0,4],[3,1,0,1,4.]])
-        >>> t = Tableau(tableau, 2)
-        Traceback (most recent call last):
-        ...
-        ValueError: RHS must be > 0
-        """
         rhs = tableau[:, -1]
         if np.any(rhs, where=rhs < 0):
             raise ValueError("RHS must be > 0")
