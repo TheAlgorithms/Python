@@ -9,7 +9,6 @@ to convert linear programs to simplex tableaus, and the steps taken in the
 simplex algorithm.
 
 Resources:
-https://en.wikipedia.org/wiki/Linear_programming
 https://en.wikipedia.org/wiki/Simplex_algorithm
 
 https://towardsdatascience.com/ \
