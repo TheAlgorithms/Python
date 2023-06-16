@@ -10,7 +10,9 @@ x = iris.data
 y = iris.target
 
 # Step 2: Split the data into training and testing sets
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y, test_size=0.2, random_state=42
+)
 
 # Step 3: Preprocess the data (if required)
 # No preprocessing needed for the Iris dataset in this case
