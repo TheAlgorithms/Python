@@ -22,7 +22,7 @@ import numpy as np
 
 class Tableau:
     """Operate on simplex tableaus
-    
+
     >>> tableau = np.array([[-1,-1,0,0,-1],[1,3,1,0,4],[3,1,0,1,4.]])
     >>> t = Tableau(tableau, 2)
     Traceback (most recent call last):
