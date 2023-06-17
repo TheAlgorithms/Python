@@ -1,36 +1,111 @@
-# Importing required libraries
-from sklearn.datasets import load_iris
+import pandas as pd
+import numpy as np
+from sklearn.datasets import load_digits
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.metrics import accuracy_score, classification_report
+from sklearn.preprocessing import LabelEncoder
+from sklearn.feature_selection import SelectKBest, chi2
+import matplotlib.pyplot as plt
 
-# Step 1: Load the dataset
-iris = load_iris()
-x = iris.data
-y = iris.target
+def load_data():
+    digits = load_digits()
+    X = digits.data
+    y = digits.target
+    return X, y
 
-# Step 2: Split the data into training and testing sets
-x_train, x_test, y_train, y_test = train_test_split(
-    x, y, test_size=0.2, random_state=42
-)
+def clean_data(X, y):
+    # Convert to DataFrame
+    df = pd.DataFrame(X, columns=[f"pixel_{i}" for i in range(X.shape[1])])
+    df['target'] = y
+    return df
 
-# Step 3: Preprocess the data (if required)
-# No preprocessing needed for the Iris dataset in this case
+def feature_engineering(df):
+    # Perform feature engineering (if needed)
+    # For this example, we will skip this step
+    return df
 
-# Step 4: Train the gradient boosting model
-gb_model = GradientBoostingClassifier()
-gb_model.fit(x_train, y_train)
+def feature_selection(df):
+    X = df.drop('target', axis=1)
+    y = df['target']
+    
+    # Perform feature selection using chi-square test
+    selector = SelectKBest(chi2, k=10)
+    X_new = selector.fit_transform(X, y)
+    
+    # Update DataFrame with selected features
+    selected_features = X.columns[selector.get_support()]
+    df = df[selected_features]
+    df['target'] = y
+    
+    return df
 
-# Step 5: Evaluate the model
-y_pred = gb_model.predict(x_test)
-accuracy = accuracy_score(y_test, y_pred)
-classification_report = classification_report(y_test, y_pred)
+def encode_target(df):
+    le = LabelEncoder()
+    df['target'] = le.fit_transform(df['target'])
+    return df
 
-# Step 6: Make predictions on new data (if required)
-# Here, we'll use the same test set for demonstration
-new_data_predictions = gb_model.predict(x_test)
+def split_data(df):
+    X = df.drop('target', axis=1)
+    y = df['target']
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    return X_train, X_test, y_train, y_test
 
-# Step 7: Print the results
-print(f"Accuracy: {accuracy}")
-print(f"Classification Report: \n{classification_report}\n")
-print(f"Predictions on new data: \n{new_data_predictions}")
+def train_model(X_train, y_train):
+    model = GradientBoostingClassifier()
+    model.fit(X_train, y_train)
+    return model
+
+def evaluate_model(model, X_test, y_test):
+    y_pred = model.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    report = classification_report(y_test, y_pred)
+    return accuracy, report
+
+def plot_feature_importance(model, features):
+    feature_importance = model.feature_importances_
+    sorted_indices = np.argsort(feature_importance)
+
+    plt.figure(figsize=(10, 6))
+    plt.barh(range(len(sorted_indices)), feature_importance[sorted_indices], align='center')
+    plt.yticks(range(len(sorted_indices)), features[sorted_indices])
+    plt.xlabel('Feature Importance')
+    plt.ylabel('Features')
+    plt.title('Gradient Boosting Classifier - Feature Importance')
+    plt.show()
+
+def main():
+    # Load data
+    X, y = load_data()
+
+    # Clean data
+    df = clean_data(X, y)
+
+    # Feature engineering
+    df = feature_engineering(df)
+
+    # Feature selection
+    df = feature_selection(df)
+
+    # Encoding target
+    df = encode_target(df)
+
+    # Split data
+    X_train, X_test, y_train, y_test = split_data(df)
+
+    # Train model
+    model = train_model(X_train, y_train)
+
+    # Evaluate model
+    accuracy, report = evaluate_model(model, X_test, y_test)
+
+    # Plot feature importance
+    plot_feature_importance(model, df.columns[:-1])
+
+    # Print accuracy and classification report
+    print(f"Accuracy: {accuracy}")
+    print(f"\nClassification Report:\n{report}")
+
+
+if __name__ == '__main__':
+    main()
