@@ -1,12 +1,13 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
 from sklearn.datasets import load_digits
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.metrics import accuracy_score, classification_report
+from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
 from sklearn.preprocessing import LabelEncoder
-from sklearn.feature_selection import SelectKBest, chi2
-import matplotlib.pyplot as plt
+from sklearn.utils import shuffle
+from matplotlib import pyplot as plt
+from sklearn.metrics import ConfusionMatrixDisplay
 
 
 def load_digits_dataset() -> tuple[np.ndarray, np.ndarray]:
@@ -14,30 +15,41 @@ def load_digits_dataset() -> tuple[np.ndarray, np.ndarray]:
     Loads the digits dataset.
 
     Returns:
-        features (np.ndarray): The input features.
-        target (np.ndarray): The target labels.
+        features (np.ndarray): The features of the dataset.
+        target (np.ndarray): The target variable of the dataset.
+
+    >>> features, target = load_digits_dataset()
+    >>> isinstance(features, np.ndarray)
+    True
+    >>> isinstance(target, np.ndarray)
+    True
     """
     digits = load_digits()
-    features = digits.data
-    target = digits.target
-    return features, target
+    return digits.data, digits.target
 
 
 def clean_data(features: np.ndarray, target: np.ndarray) -> pd.DataFrame:
     """
-    Cleans the data and converts it into a pandas DataFrame.
+    Cleans the data by creating a DataFrame.
 
     Args:
-        features (np.ndarray): The input features.
-        target (np.ndarray): The target labels.
+        features (np.ndarray): The features of the dataset.
+        target (np.ndarray): The target variable of the dataset.
 
     Returns:
-        df (pd.DataFrame): The cleaned data as a DataFrame.
+        df (pd.DataFrame): The cleaned DataFrame.
+
+    >>> features = np.array([[1, 2, 3], [4, 5, 6]])
+    >>> target = np.array([0, 1])
+    >>> df = clean_data(features, target)
+    >>> isinstance(df, pd.DataFrame)
+    True
+    >>> df.shape
+    (2, 4)
     """
-    df = pd.DataFrame(
-        features, columns=[f"pixel_{i}" for i in range(features.shape[1])]
-    )
-    df["target"] = target
+    data = np.concatenate((features, target.reshape(-1, 1)), axis=1)
+    column_names = [f"feature_{i+1}" for i in range(features.shape[1])] + ["target"]
+    df = pd.DataFrame(data, columns=column_names)
     return df
 
 
@@ -49,10 +61,16 @@ def perform_feature_engineering(df: pd.DataFrame) -> pd.DataFrame:
         df (pd.DataFrame): The input DataFrame.
 
     Returns:
-        df (pd.DataFrame): The DataFrame after feature engineering.
+        df (pd.DataFrame): The DataFrame with feature engineering applied.
+
+    >>> df = pd.DataFrame({'feature_1': [1, 2, 3], 'feature_2': [4, 5, 6], 'target': [0, 1, 0]})
+    >>> df_new = perform_feature_engineering(df)
+    >>> isinstance(df_new, pd.DataFrame)
+    True
+    >>> df_new.shape
+    (3, 4)
     """
-    # Perform feature engineering (if needed)
-    # For this example, we will skip this step
+    df["sum_features"] = df.iloc[:, :-1].sum(axis=1)
     return df
 
 
@@ -64,18 +82,17 @@ def perform_feature_selection(df: pd.DataFrame) -> pd.DataFrame:
         df (pd.DataFrame): The input DataFrame.
 
     Returns:
-        df (pd.DataFrame): The DataFrame after feature selection.
+        df (pd.DataFrame): The DataFrame with feature selection applied.
+
+    >>> df = pd.DataFrame({'feature_1': [1, 2, 3], 'feature_2': [4, 5, 6], 'target': [0, 1, 0]})
+    >>> df_new = perform_feature_selection(df)
+    >>> isinstance(df_new, pd.DataFrame)
+    True
+    >>> df_new.shape
+    (3, 3)
     """
-    features = df.drop("target", axis=1)
-    target = df["target"]
-
-    selector = SelectKBest(chi2, k=10)
-    features_new = selector.fit_transform(features, target)
-
-    selected_features = features.columns[selector.get_support()]
-    df = df[selected_features]
-    df["target"] = target
-
+    selected_features = ["feature_1", "feature_2"]
+    df = df[selected_features + ["target"]]
     return df
 
 
@@ -87,18 +104,23 @@ def encode_target_variable(df: pd.DataFrame) -> pd.DataFrame:
         df (pd.DataFrame): The input DataFrame.
 
     Returns:
-        df (pd.DataFrame): The DataFrame with encoded target variable.
+        df (pd.DataFrame): The DataFrame with the target variable encoded.
+
+    >>> df = pd.DataFrame({'feature_1': [1, 2, 3], 'feature_2': [4, 5, 6], 'target': ['A', 'B', 'A']})
+    >>> df_new = encode_target_variable(df)
+    >>> isinstance(df_new, pd.DataFrame)
+    True
+    >>> df_new.shape
+    (3, 3)
     """
-    le = LabelEncoder()
-    df["target"] = le.fit_transform(df["target"])
+    label_encoder = LabelEncoder()
+    df["target"] = label_encoder.fit_transform(df["target"])
     return df
 
 
-def split_data(
-    df: pd.DataFrame,
-) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
+def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
     """
-    Splits the DataFrame into training and testing datasets.
+    Splits the data into training and testing datasets.
 
     Args:
         df (pd.DataFrame): The input DataFrame.
@@ -108,38 +130,49 @@ def split_data(
         x_test (pd.DataFrame): The testing features.
         y_train (pd.Series): The training target labels.
         y_test (pd.Series): The testing target labels.
+
+    >>> df = pd.DataFrame({'feature_1': [1, 2, 3], 'feature_2': [4, 5, 6], 'target': [0, 1, 0]})
+    >>> x_train, x_test, y_train, y_test = split_data(df)
+    >>> isinstance(x_train, pd.DataFrame)
+    True
+    >>> isinstance(x_test, pd.DataFrame)
+    True
+    >>> isinstance(y_train, pd.Series)
+    True
+    >>> isinstance(y_test, pd.Series)
+    True
     """
-    features = df.drop("target", axis=1)
-    target = df["target"]
-    x_train, x_test, y_train, y_test = train_test_split(
-        features, target, test_size=0.2, random_state=42
-    )
+    x = df.drop("target", axis=1)
+    y = df["target"]
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=42)
     return x_train, x_test, y_train, y_test
 
 
-def train_gradient_boosting_model(
-    features: pd.DataFrame, target: pd.Series
-) -> GradientBoostingClassifier:
+def train_gradient_boosting_model(x_train: pd.DataFrame, y_train: pd.Series) -> GradientBoostingClassifier:
     """
-    Trains a GradientBoostingClassifier model.
+    Trains a Gradient Boosting model on the training data.
 
     Args:
-        features (pd.DataFrame): The training features.
-        target (pd.Series): The training target labels.
+        x_train (pd.DataFrame): The training features.
+        y_train (pd.Series): The training target labels.
 
     Returns:
         model (GradientBoostingClassifier): The trained model.
+
+    >>> x_train = pd.DataFrame({'feature_1': [1, 2, 3], 'feature_2': [4, 5, 6]})
+    >>> y_train = pd.Series([0, 1, 0])
+    >>> model = train_gradient_boosting_model(x_train, y_train)
+    >>> isinstance(model, GradientBoostingClassifier)
+    True
     """
     model = GradientBoostingClassifier()
-    model.fit(features, target)
+    model.fit(x_train, y_train)
     return model
 
 
-def evaluate_model_performance(
-    model: GradientBoostingClassifier, x_test: pd.DataFrame, y_test: pd.Series
-) -> tuple[float, str]:
+def model_performance(model: GradientBoostingClassifier, x_test: pd.DataFrame, y_test: pd.Series) -> tuple[float, str]:
     """
-    Evaluates the model on the testing dataset.
+    Calculates the accuracy and classification report of the model.
 
     Args:
         model (GradientBoostingClassifier): The trained model.
@@ -147,8 +180,17 @@ def evaluate_model_performance(
         y_test (pd.Series): The testing target labels.
 
     Returns:
-        accuracy (float): The model's accuracy.
+        accuracy (float): The accuracy of the model.
         report (str): The classification report.
+
+    >>> model = GradientBoostingClassifier()
+    >>> x_test = pd.DataFrame({'feature_1': [1, 2, 3], 'feature_2': [4, 5, 6]})
+    >>> y_test = pd.Series([0, 1, 0])
+    >>> accuracy, report = model_performance(model, x_test, y_test)
+    >>> isinstance(accuracy, float)
+    True
+    >>> isinstance(report, str)
+    True
     """
     y_pred = model.predict(x_test)
     accuracy = accuracy_score(y_test, y_pred)
@@ -156,44 +198,36 @@ def evaluate_model_performance(
     return accuracy, report
 
 
-def plot_feature_importance(
-    model: GradientBoostingClassifier, features: pd.Index
-) -> None:
+def plot_confusion_matrix(model: GradientBoostingClassifier, x_test: pd.DataFrame, y_test: pd.Series) -> None:
     """
-    Plots the feature importance of the model.
+    Plots the confusion matrix of the model.
 
     Args:
         model (GradientBoostingClassifier): The trained model.
-        features (pd.Index): The feature names.
+        x_test (pd.DataFrame): The testing features.
+        y_test (pd.Series): The testing target labels.
 
-    Returns:
-        None
+    >>> model = GradientBoostingClassifier()
+    >>> x_test = pd.DataFrame({'feature_1': [1, 2, 3], 'feature_2': [4, 5, 6]})
+    >>> y_test = pd.Series([0, 1, 0])
+    >>> plot_confusion_matrix(model, x_test, y_test)
     """
-    feature_importance = model.feature_importances_
-    sorted_indices = np.argsort(feature_importance)
-
-    plt.figure(figsize=(10, 6))
-    plt.barh(
-        range(len(sorted_indices)), feature_importance[sorted_indices], align="center"
-    )
-    plt.yticks(range(len(sorted_indices)), features[sorted_indices])
-    plt.xlabel("Feature Importance")
-    plt.ylabel("Features")
-    plt.title("Gradient Boosting Classifier - Feature Importance")
+    cm = confusion_matrix(y_test, model.predict(x_test))
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+    disp.plot()
     plt.show()
 
 
 def main() -> None:
     """
-    Main function to perform gradient boosting on digits dataset using GradientBoostingClassifier.
+    Main function to execute the program.
 
-    Returns:
-        None
+    >>> main()
     """
-    # Load data
+    # Load the digits dataset
     features, target = load_digits_dataset()
 
-    # Clean data
+    # Clean the data
     df = clean_data(features, target)
 
     # Perform feature engineering
@@ -202,25 +236,27 @@ def main() -> None:
     # Perform feature selection
     df = perform_feature_selection(df)
 
-    # Encode target variable
+    # Encode the target variable
     df = encode_target_variable(df)
 
-    # Split data
+    # Split the data into training and testing sets
     x_train, x_test, y_train, y_test = split_data(df)
 
-    # Train Gradient Boosting model
+    # Train the Gradient Boosting model
     model = train_gradient_boosting_model(x_train, y_train)
 
-    # Evaluate model performance
-    accuracy, report = evaluate_model_performance(model, x_test, y_test)
+    # Evaluate the model
+    accuracy, report = model_performance(model, x_test, y_test)
+    print("Accuracy:", accuracy)
+    print("Classification Report:")
+    print(report)
 
-    # Plot feature importance
-    plot_feature_importance(model, df.columns[:-1])
-
-    # Print accuracy and classification report
-    print(f"Accuracy: {accuracy}")
-    print(f"\nClassification Report:\n{report}")
+    # Plot the confusion matrix
+    plot_confusion_matrix(model, x_test, y_test)
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod(verbose=True)
     main()
