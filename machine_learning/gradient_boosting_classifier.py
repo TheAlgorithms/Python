@@ -8,6 +8,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.utils import Bunch
 from sklearn.utils import shuffle
 
+
 def load_digits_dataset() -> Bunch:
     """
     Load the digits dataset from sklearn.
@@ -20,6 +21,7 @@ def load_digits_dataset() -> Bunch:
     True
     """
     return load_digits()
+
 
 def clean_data(features: pd.DataFrame, target: pd.Series) -> pd.DataFrame:
     """
@@ -42,6 +44,7 @@ def clean_data(features: pd.DataFrame, target: pd.Series) -> pd.DataFrame:
     df = shuffle(df, random_state=42)
     return df
 
+
 def perform_feature_engineering(df: pd.DataFrame) -> pd.DataFrame:
     """
     Perform feature engineering on the digits dataset.
@@ -57,8 +60,9 @@ def perform_feature_engineering(df: pd.DataFrame) -> pd.DataFrame:
     >>> isinstance(df_new, pd.DataFrame)
     True
     """
-    df['feature_sum'] = df['feature_1'] + df['feature_2']
+    df["feature_sum"] = df["feature_1"] + df["feature_2"]
     return df
+
 
 def perform_feature_selection(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -75,8 +79,9 @@ def perform_feature_selection(df: pd.DataFrame) -> pd.DataFrame:
     >>> isinstance(df_new, pd.DataFrame)
     True
     """
-    df_new = df.drop('feature_2', axis=1)
+    df_new = df.drop("feature_2", axis=1)
     return df_new
+
 
 def encode_target_variable(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -94,10 +99,13 @@ def encode_target_variable(df: pd.DataFrame) -> pd.DataFrame:
     True
     """
     label_encoder = LabelEncoder()
-    df['target'] = label_encoder.fit_transform(df['target'])
+    df["target"] = label_encoder.fit_transform(df["target"])
     return df
 
-def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
+
+def split_data(
+    df: pd.DataFrame,
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
     """
     Splits the data into training and testing datasets.
 
@@ -115,12 +123,17 @@ def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series,
     >>> isinstance(x_train, pd.DataFrame) and isinstance(x_test, pd.DataFrame) and isinstance(y_train, pd.Series) and isinstance(y_test, pd.Series)
     True
     """
-    x = df.drop('target', axis=1)
-    y = df['target']
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+    x = df.drop("target", axis=1)
+    y = df["target"]
+    x_train, x_test, y_train, y_test = train_test_split(
+        x, y, test_size=0.2, random_state=42
+    )
     return x_train, x_test, y_train, y_test
 
-def train_gradient_boosting_model(x_train: pd.DataFrame, y_train: pd.Series) -> GradientBoostingClassifier:
+
+def train_gradient_boosting_model(
+    x_train: pd.DataFrame, y_train: pd.Series
+) -> GradientBoostingClassifier:
     """
     Trains a Gradient Boosting model on the training data.
 
@@ -141,7 +154,10 @@ def train_gradient_boosting_model(x_train: pd.DataFrame, y_train: pd.Series) -> 
     model.fit(x_train, y_train)
     return model
 
-def model_performance(model: GradientBoostingClassifier, x_test: pd.DataFrame, y_test: pd.Series) -> tuple[float, str]:
+
+def model_performance(
+    model: GradientBoostingClassifier, x_test: pd.DataFrame, y_test: pd.Series
+) -> tuple[float, str]:
     """
     Calculates the accuracy and classification report of the model.
 
@@ -166,7 +182,10 @@ def model_performance(model: GradientBoostingClassifier, x_test: pd.DataFrame, y
     report = classification_report(y_test, y_pred)
     return accuracy, report
 
-def plot_confusion_matrix(model: GradientBoostingClassifier, x_test: pd.DataFrame, y_test: pd.Series) -> None:
+
+def plot_confusion_matrix(
+    model: GradientBoostingClassifier, x_test: pd.DataFrame, y_test: pd.Series
+) -> None:
     """
     Plots the confusion matrix of the model.
 
@@ -185,6 +204,7 @@ def plot_confusion_matrix(model: GradientBoostingClassifier, x_test: pd.DataFram
     disp = ConfusionMatrixDisplay(confusion_matrix=cm)
     disp.plot()
     plt.show()
+
 
 def main() -> None:
     """
@@ -221,7 +241,9 @@ def main() -> None:
     # Plot the confusion matrix
     plot_confusion_matrix(model, x_test, y_test)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)
     main()
