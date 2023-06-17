@@ -8,38 +8,37 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_selection import SelectKBest, chi2
 import matplotlib.pyplot as plt
 
-
-def load_data() -> tuple[np.ndarray, np.ndarray]:
+def load_digits_dataset() -> tuple[np.ndarray, np.ndarray]:
     """
     Loads the digits dataset.
 
     Returns:
-        x (np.ndarray): The input features.
-        y (np.ndarray): The target labels.
+        features (np.ndarray): The input features.
+        target (np.ndarray): The target labels.
     """
     digits = load_digits()
-    x = digits.data
-    y = digits.target
-    return x, y
+    features = digits.data
+    target = digits.target
+    return features, target
 
 
-def clean_data(x: np.ndarray, y: np.ndarray) -> pd.DataFrame:
+def clean_data(features: np.ndarray, target: np.ndarray) -> pd.DataFrame:
     """
     Cleans the data and converts it into a pandas DataFrame.
 
     Args:
-        x (np.ndarray): The input features.
-        y (np.ndarray): The target labels.
+        features (np.ndarray): The input features.
+        target (np.ndarray): The target labels.
 
     Returns:
         df (pd.DataFrame): The cleaned data as a DataFrame.
     """
-    df = pd.DataFrame(x, columns=[f"pixel_{i}" for i in range(x.shape[1])])
-    df["target"] = y
+    df = pd.DataFrame(features, columns=[f"pixel_{i}" for i in range(features.shape[1])])
+    df['target'] = target
     return df
 
 
-def feature_engineering(df: pd.DataFrame) -> pd.DataFrame:
+def perform_feature_engineering(df: pd.DataFrame) -> pd.DataFrame:
     """
     Performs feature engineering on the DataFrame.
 
@@ -54,7 +53,7 @@ def feature_engineering(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def feature_selection(df: pd.DataFrame) -> pd.DataFrame:
+def perform_feature_selection(df: pd.DataFrame) -> pd.DataFrame:
     """
     Performs feature selection on the DataFrame.
 
@@ -64,20 +63,20 @@ def feature_selection(df: pd.DataFrame) -> pd.DataFrame:
     Returns:
         df (pd.DataFrame): The DataFrame after feature selection.
     """
-    x = df.drop("target", axis=1)
-    y = df["target"]
+    features = df.drop('target', axis=1)
+    target = df['target']
 
     selector = SelectKBest(chi2, k=10)
-    x_new = selector.fit_transform(x, y)
+    features_new = selector.fit_transform(features, target)
 
-    selected_features = x.columns[selector.get_support()]
+    selected_features = features.columns[selector.get_support()]
     df = df[selected_features]
-    df["target"] = y
+    df['target'] = target
 
     return df
 
 
-def encode_target(df: pd.DataFrame) -> pd.DataFrame:
+def encode_target_variable(df: pd.DataFrame) -> pd.DataFrame:
     """
     Encodes the target variable in the DataFrame.
 
@@ -88,13 +87,11 @@ def encode_target(df: pd.DataFrame) -> pd.DataFrame:
         df (pd.DataFrame): The DataFrame with encoded target variable.
     """
     le = LabelEncoder()
-    df["target"] = le.fit_transform(df["target"])
+    df['target'] = le.fit_transform(df['target'])
     return df
 
 
-def split_data(
-    df: pd.DataFrame,
-) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
+def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
     """
     Splits the DataFrame into training and testing datasets.
 
@@ -107,35 +104,29 @@ def split_data(
         y_train (pd.Series): The training target labels.
         y_test (pd.Series): The testing target labels.
     """
-    x = df.drop("target", axis=1)
-    y = df["target"]
-    x_train, x_test, y_train, y_test = train_test_split(
-        x, y, test_size=0.2, random_state=42
-    )
+    features = df.drop('target', axis=1)
+    target = df['target']
+    x_train, x_test, y_train, y_test = train_test_split(features, target, test_size=0.2, random_state=42)
     return x_train, x_test, y_train, y_test
 
 
-def train_model(
-    x_train: pd.DataFrame, y_train: pd.Series
-) -> GradientBoostingClassifier:
+def train_gradient_boosting_model(features: pd.DataFrame, target: pd.Series) -> GradientBoostingClassifier:
     """
     Trains a GradientBoostingClassifier model.
 
     Args:
-        x_train (pd.DataFrame): The training features.
-        y_train (pd.Series): The training target labels.
+        features (pd.DataFrame): The training features.
+        target (pd.Series): The training target labels.
 
     Returns:
         model (GradientBoostingClassifier): The trained model.
     """
     model = GradientBoostingClassifier()
-    model.fit(x_train, y_train)
+    model.fit(features, target)
     return model
 
 
-def evaluate_model(
-    model: GradientBoostingClassifier, x_test: pd.DataFrame, y_test: pd.Series
-) -> tuple[float, str]:
+def evaluate_model_performance(model: GradientBoostingClassifier, x_test: pd.DataFrame, y_test: pd.Series) -> tuple[float, str]:
     """
     Evaluates the model on the testing dataset.
 
@@ -154,9 +145,7 @@ def evaluate_model(
     return accuracy, report
 
 
-def plot_feature_importance(
-    model: GradientBoostingClassifier, features: pd.Index
-) -> None:
+def plot_feature_importance(model: GradientBoostingClassifier, features: pd.Index) -> None:
     """
     Plots the feature importance of the model.
 
@@ -171,40 +160,44 @@ def plot_feature_importance(
     sorted_indices = np.argsort(feature_importance)
 
     plt.figure(figsize=(10, 6))
-    plt.barh(
-        range(len(sorted_indices)), feature_importance[sorted_indices], align="center"
-    )
+    plt.barh(range(len(sorted_indices)), feature_importance[sorted_indices], align='center')
     plt.yticks(range(len(sorted_indices)), features[sorted_indices])
-    plt.xlabel("Feature Importance")
-    plt.ylabel("Features")
-    plt.title("Gradient Boosting Classifier - Feature Importance")
+    plt.xlabel('Feature Importance')
+    plt.ylabel('Features')
+    plt.title('Gradient Boosting Classifier - Feature Importance')
     plt.show()
 
 
 def main() -> None:
+    """
+    Main function to perform gradient boosting on digits dataset using GradientBoostingClassifier.
+
+    Returns:
+        None
+    """
     # Load data
-    x, y = load_data()
+    features, target = load_digits_dataset()
 
     # Clean data
-    df = clean_data(x, y)
+    df = clean_data(features, target)
 
-    # Feature engineering
-    df = feature_engineering(df)
+    # Perform feature engineering
+    df = perform_feature_engineering(df)
 
-    # Feature selection
-    df = feature_selection(df)
+    # Perform feature selection
+    df = perform_feature_selection(df)
 
-    # Encoding target
-    df = encode_target(df)
+    # Encode target variable
+    df = encode_target_variable(df)
 
     # Split data
     x_train, x_test, y_train, y_test = split_data(df)
 
-    # Train model
-    model = train_model(x_train, y_train)
+    # Train Gradient Boosting model
+    model = train_gradient_boosting_model(x_train, y_train)
 
-    # Evaluate model
-    accuracy, report = evaluate_model(model, x_test, y_test)
+    # Evaluate model performance
+    accuracy, report = evaluate_model_performance(model, x_test, y_test)
 
     # Plot feature importance
     plot_feature_importance(model, df.columns[:-1])
