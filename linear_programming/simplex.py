@@ -33,8 +33,7 @@ class Tableau:
             raise ValueError("RHS must be > 0")
 
         self.tableau = tableau
-        self.n_rows = len(tableau[:, 0])
-        self.n_cols = len(tableau[0])
+        self.n_rows, _ = tableau.shape
 
         # Number of decision variables x1, x2, x3...
         self.n_vars = n_vars
