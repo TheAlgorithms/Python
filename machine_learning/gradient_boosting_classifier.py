@@ -8,6 +8,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_selection import SelectKBest, chi2
 import matplotlib.pyplot as plt
 
+
 def load_digits_dataset() -> tuple[np.ndarray, np.ndarray]:
     """
     Loads the digits dataset.
@@ -33,8 +34,10 @@ def clean_data(features: np.ndarray, target: np.ndarray) -> pd.DataFrame:
     Returns:
         df (pd.DataFrame): The cleaned data as a DataFrame.
     """
-    df = pd.DataFrame(features, columns=[f"pixel_{i}" for i in range(features.shape[1])])
-    df['target'] = target
+    df = pd.DataFrame(
+        features, columns=[f"pixel_{i}" for i in range(features.shape[1])]
+    )
+    df["target"] = target
     return df
 
 
@@ -63,15 +66,15 @@ def perform_feature_selection(df: pd.DataFrame) -> pd.DataFrame:
     Returns:
         df (pd.DataFrame): The DataFrame after feature selection.
     """
-    features = df.drop('target', axis=1)
-    target = df['target']
+    features = df.drop("target", axis=1)
+    target = df["target"]
 
     selector = SelectKBest(chi2, k=10)
     features_new = selector.fit_transform(features, target)
 
     selected_features = features.columns[selector.get_support()]
     df = df[selected_features]
-    df['target'] = target
+    df["target"] = target
 
     return df
 
@@ -87,11 +90,13 @@ def encode_target_variable(df: pd.DataFrame) -> pd.DataFrame:
         df (pd.DataFrame): The DataFrame with encoded target variable.
     """
     le = LabelEncoder()
-    df['target'] = le.fit_transform(df['target'])
+    df["target"] = le.fit_transform(df["target"])
     return df
 
 
-def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
+def split_data(
+    df: pd.DataFrame,
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
     """
     Splits the DataFrame into training and testing datasets.
 
@@ -104,13 +109,17 @@ def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series,
         y_train (pd.Series): The training target labels.
         y_test (pd.Series): The testing target labels.
     """
-    features = df.drop('target', axis=1)
-    target = df['target']
-    x_train, x_test, y_train, y_test = train_test_split(features, target, test_size=0.2, random_state=42)
+    features = df.drop("target", axis=1)
+    target = df["target"]
+    x_train, x_test, y_train, y_test = train_test_split(
+        features, target, test_size=0.2, random_state=42
+    )
     return x_train, x_test, y_train, y_test
 
 
-def train_gradient_boosting_model(features: pd.DataFrame, target: pd.Series) -> GradientBoostingClassifier:
+def train_gradient_boosting_model(
+    features: pd.DataFrame, target: pd.Series
+) -> GradientBoostingClassifier:
     """
     Trains a GradientBoostingClassifier model.
 
@@ -126,7 +135,9 @@ def train_gradient_boosting_model(features: pd.DataFrame, target: pd.Series) -> 
     return model
 
 
-def evaluate_model_performance(model: GradientBoostingClassifier, x_test: pd.DataFrame, y_test: pd.Series) -> tuple[float, str]:
+def evaluate_model_performance(
+    model: GradientBoostingClassifier, x_test: pd.DataFrame, y_test: pd.Series
+) -> tuple[float, str]:
     """
     Evaluates the model on the testing dataset.
 
@@ -145,7 +156,9 @@ def evaluate_model_performance(model: GradientBoostingClassifier, x_test: pd.Dat
     return accuracy, report
 
 
-def plot_feature_importance(model: GradientBoostingClassifier, features: pd.Index) -> None:
+def plot_feature_importance(
+    model: GradientBoostingClassifier, features: pd.Index
+) -> None:
     """
     Plots the feature importance of the model.
 
@@ -160,11 +173,13 @@ def plot_feature_importance(model: GradientBoostingClassifier, features: pd.Inde
     sorted_indices = np.argsort(feature_importance)
 
     plt.figure(figsize=(10, 6))
-    plt.barh(range(len(sorted_indices)), feature_importance[sorted_indices], align='center')
+    plt.barh(
+        range(len(sorted_indices)), feature_importance[sorted_indices], align="center"
+    )
     plt.yticks(range(len(sorted_indices)), features[sorted_indices])
-    plt.xlabel('Feature Importance')
-    plt.ylabel('Features')
-    plt.title('Gradient Boosting Classifier - Feature Importance')
+    plt.xlabel("Feature Importance")
+    plt.ylabel("Features")
+    plt.title("Gradient Boosting Classifier - Feature Importance")
     plt.show()
 
 
