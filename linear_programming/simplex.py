@@ -246,9 +246,7 @@ class Tableau:
         {'P': 7.0, 'x1': 5.0, 'x2': 2.0}
         """
         # Stop simplex algorithm from cycling.
-        iter_num = 0
-
-        while iter_num < 100:
+        for _ in range(100):
             # Completion of each stage removes an objective. If both stages
             # are complete, then no objectives are left
             if not self.objectives:
@@ -265,12 +263,8 @@ class Tableau:
             if self.stop_iter:
                 # Delete artificial variable columns and rows. Update attributes
                 self.tableau = self.change_stage(self.tableau)
-
-                # Pivot again
-                continue
-
-            self.tableau = self.pivot(self.tableau, row_idx, col_idx)
-            iter_num += 1
+            else:
+                self.tableau = self.pivot(self.tableau, row_idx, col_idx)
         return {}
 
     def interpret_tableau(
