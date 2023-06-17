@@ -118,7 +118,9 @@ def encode_target_variable(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
+def split_data(
+    df: pd.DataFrame,
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
     """
     Splits the data into training and testing datasets.
 
@@ -144,11 +146,15 @@ def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series,
     """
     x = df.drop("target", axis=1)
     y = df["target"]
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=42)
+    x_train, x_test, y_train, y_test = train_test_split(
+        x, y, test_size=0.25, random_state=42
+    )
     return x_train, x_test, y_train, y_test
 
 
-def train_gradient_boosting_model(x_train: pd.DataFrame, y_train: pd.Series) -> GradientBoostingClassifier:
+def train_gradient_boosting_model(
+    x_train: pd.DataFrame, y_train: pd.Series
+) -> GradientBoostingClassifier:
     """
     Trains a Gradient Boosting model on the training data.
 
@@ -170,7 +176,9 @@ def train_gradient_boosting_model(x_train: pd.DataFrame, y_train: pd.Series) -> 
     return model
 
 
-def model_performance(model: GradientBoostingClassifier, x_test: pd.DataFrame, y_test: pd.Series) -> tuple[float, str]:
+def model_performance(
+    model: GradientBoostingClassifier, x_test: pd.DataFrame, y_test: pd.Series
+) -> tuple[float, str]:
     """
     Calculates the accuracy and classification report of the model.
 
@@ -198,7 +206,9 @@ def model_performance(model: GradientBoostingClassifier, x_test: pd.DataFrame, y
     return accuracy, report
 
 
-def plot_confusion_matrix(model: GradientBoostingClassifier, x_test: pd.DataFrame, y_test: pd.Series) -> None:
+def plot_confusion_matrix(
+    model: GradientBoostingClassifier, x_test: pd.DataFrame, y_test: pd.Series
+) -> None:
     """
     Plots the confusion matrix of the model.
 
