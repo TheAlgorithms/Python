@@ -4,17 +4,13 @@ tabular form with
 - `>=`, `<=`, and `=` constraints and
 - each variable `x1, x2, ...>= 0`.
 
-See https://gist.github.com/imengus/f9619a568f7da5bc74eaf20169a24d98 for how
-to convert linear programs to simplex tableaus, and the steps taken in the
-simplex algorithm.
+See https://gist.github.com/imengus/f9619a568f7da5bc74eaf20169a24d98 for how to
+convert linear programs to simplex tableaus, and the steps taken in the simplex
+algorithm.
 
 Resources:
-https://en.wikipedia.org/wiki/Linear_programming
 https://en.wikipedia.org/wiki/Simplex_algorithm
-
-https://towardsdatascience.com/ \
-    a-beginners-guide-to-linear-programming-and-the-simplex-algorithm \
-    -87db017e92b4
+https://tinyurl.com/simplex4beginners
 """
 from typing import Any
 
@@ -22,22 +18,19 @@ import numpy as np
 
 
 class Tableau:
-    """Operate on simplex tableaus"""
+    """Operate on simplex tableaus
+
+    >>> tableau = np.array([[-1,-1,0,0,-1],[1,3,1,0,4],[3,1,0,1,4.]])
+    >>> t = Tableau(tableau, 2)
+    Traceback (most recent call last):
+    ...
+    ValueError: RHS must be > 0
+    """
 
     def __init__(self, tableau: np.ndarray, n_vars: int) -> None:
-        """
-        >>> tableau = np.array([[-1,-1,0,0,-1],[1,3,1,0,4],[3,1,0,1,4.]])
-        >>> t = Tableau(tableau, 2)
-        Traceback (most recent call last):
-        ...
-        ValueError: RHS must be > 0
-        """
         rhs = tableau[:, -1]
         if np.any(rhs, where=rhs < 0):
             raise ValueError("RHS must be > 0")
-
-        if tableau is None:
-            return
 
         self.tableau = tableau
         self.n_rows = len(tableau[:, 0])
@@ -77,7 +70,22 @@ class Tableau:
 
         >>> Tableau.generate_col_titles(2, 3, 1)
         ['x1', 'x2', 's1', 's2', 's3', 'a1', 'RHS']
+
+        >>> Tableau.generate_col_titles()
+        Traceback (most recent call last):
+        ...
+        ValueError: Must provide n_vars, n_slack, and n_art_vars
+        >>> Tableau.generate_col_titles(-2, 3, 1)
+        Traceback (most recent call last):
+        ...
+        ValueError: All arguments must be non-negative integers
         """
+        if len(args) != 3:
+            raise ValueError("Must provide n_vars, n_slack, and n_art_vars")
+
+        if not all(x >= 0 and isinstance(x, int) for x in args):
+            raise ValueError("All arguments must be non-negative integers")
+
         # decision | slack | artificial
         string_starts = ["x", "s", "a"]
         titles = []
@@ -89,12 +97,7 @@ class Tableau:
 
     def find_pivot(self, tableau: np.ndarray) -> tuple[Any, Any]:
         """Finds the pivot row and column.
-        >>> tableau = np.array([
-        ... [-2,-1,0,0,0],
-        ... [3,1,1,0,6],
-        ... [1,2,0,1,7.]
-        ... ])
-        >>> t = Tableau(tableau, 2)
+        >>> t = Tableau(np.array([[-2,1,0,0,0], [3,1,1,0,6], [1,2,0,1,7.]]), 2)
         >>> t.find_pivot(t.tableau)
         (1, 0)
         """
@@ -136,8 +139,7 @@ class Tableau:
     def pivot(self, tableau: np.ndarray, row_idx: int, col_idx: int) -> np.ndarray:
         """Pivots on value on the intersection of pivot row and column.
 
-        >>> tableau = np.array([[-2,-3,0,0,0],[1,3,1,0,4],[3,1,0,1,4.]])
-        >>> t = Tableau(tableau, 2)
+        >>> t = Tableau(np.array([[-2,-3,0,0,0],[1,3,1,0,4],[3,1,0,1,4.]]), 2)
         >>> t.pivot(t.tableau, 1, 0).tolist()
         ... # doctest: +NORMALIZE_WHITESPACE
         [[0.0, 3.0, 2.0, 0.0, 8.0],
@@ -158,28 +160,27 @@ class Tableau:
         tableau[row_idx] = piv_row
         return tableau
 
-    def change_stage(self, tableau: np.ndarray, objectives: list[Any]) -> np.ndarray:
+    def change_stage(self, tableau: np.ndarray) -> np.ndarray:
         """Exits first phase of the two-stage method by deleting artificial
         rows and columns, or completes the algorithm if exiting the standard
         case.
 
-        >>> tableau = np.array([
-        ... [3,3,-1,-1,0,0,4],
-        ... [2,1,0,0,0,0,0.],
-        ... [1,2,-1,0,1,0,2],
-        ... [2,1,0,-1,0,1,2]
-        ... ])
-        >>> t = Tableau(tableau, 2)
-        >>> t.change_stage(t.tableau, t.objectives).tolist()
+        >>> t = Tableau(np.array([
+        ... [3, 3, -1, -1, 0, 0, 4],
+        ... [2, 1, 0, 0, 0, 0, 0.],
+        ... [1, 2, -1, 0, 1, 0, 2],
+        ... [2, 1, 0, -1, 0, 1, 2]
+        ... ]), 2)
+        >>> t.change_stage(t.tableau).tolist()
         ... # doctest: +NORMALIZE_WHITESPACE
         [[2.0, 1.0, 0.0, 0.0, 0.0, 0.0],
         [1.0, 2.0, -1.0, 0.0, 1.0, 2.0],
         [2.0, 1.0, 0.0, -1.0, 0.0, 2.0]]
         """
         # Objective of original objective row remains
-        objectives.pop()
+        self.objectives.pop()
 
-        if not objectives:
+        if not self.objectives:
             return tableau
 
         # Slice containing ids for artificial columns
@@ -195,7 +196,6 @@ class Tableau:
         self.n_rows -= 1
         self.n_art_vars = 0
         self.stop_iter = False
-        self.objectives = objectives
         return tableau
 
     def run_simplex(self) -> dict[Any, Any]:
@@ -206,19 +206,16 @@ class Tableau:
         Max:  x1 +  x2
         ST:   x1 + 3x2 <= 4
              3x1 +  x2 <= 4
-        >>> tableau = np.array([[-1,-1,0,0,0],[1,3,1,0,4],[3,1,0,1,4.]])
-        >>> t = Tableau(tableau, 2)
-        >>> t.run_simplex()
+        >>> Tableau(np.array([[-1,-1,0,0,0],[1,3,1,0,4],[3,1,0,1,4.]]),
+        ... 2).run_simplex()
         {'P': 2.0, 'x1': 1.0, 'x2': 1.0}
 
         # Optimal tableau input:
-        >>> tableau = np.array([
-        ... [0,0,0.25,0.25,2],
-        ... [0,1,0.375,-0.125,1],
-        ... [1,0,-0.125,0.375,1]
-        ... ])
-        >>> t = Tableau(tableau, 2)
-        >>> t.run_simplex()
+        >>> Tableau(np.array([
+        ... [0, 0, 0.25, 0.25, 2],
+        ... [0, 1, 0.375, -0.125, 1],
+        ... [1, 0, -0.125, 0.375, 1]
+        ... ]), 2).run_simplex()
         {'P': 2.0, 'x1': 1.0, 'x2': 1.0}
 
         # Non-standard: >= constraints
@@ -226,31 +223,27 @@ class Tableau:
         ST:   x1 +  x2 +  x3 <= 40
              2x1 +  x2 -  x3 >= 10
                  -  x2 +  x3 >= 10
-        >>> tableau = np.array([
-        ... [2,0,0,0,-1,-1,0,0,20],
-        ... [-2,-3,-1,0,0,0,0,0,0],
-        ... [1,1,1,1,0,0,0,0,40],
-        ... [2,1,-1,0,-1,0,1,0,10],
-        ... [0,-1,1,0,0,-1,0,1,10.]
-        ... ])
-        >>> t = Tableau(tableau, 3)
-        >>> t.run_simplex()
+        >>> Tableau(np.array([
+        ... [2, 0, 0, 0, -1, -1, 0, 0, 20],
+        ... [-2, -3, -1, 0, 0, 0, 0, 0, 0],
+        ... [1, 1, 1, 1, 0, 0, 0, 0, 40],
+        ... [2, 1, -1, 0, -1, 0, 1, 0, 10],
+        ... [0, -1, 1, 0, 0, -1, 0, 1, 10.]
+        ... ]), 3).run_simplex()
         {'P': 70.0, 'x1': 10.0, 'x2': 10.0, 'x3': 20.0}
 
         # Non standard: minimisation and equalities
         Min: x1 +  x2
         ST: 2x1 +  x2 = 12
             6x1 + 5x2 = 40
-        >>> tableau = np.array([
-        ... [8,6,0,-1,0,-1,0,0,52],
-        ... [1,1,0,0,0,0,0,0,0],
-        ... [2,1,1,0,0,0,0,0,12],
-        ... [2,1,0,-1,0,0,1,0,12],
-        ... [6,5,0,0,1,0,0,0,40],
-        ... [6,5,0,0,0,-1,0,1,40.]
-        ... ])
-        >>> t = Tableau(tableau, 2)
-        >>> t.run_simplex()
+        >>> Tableau(np.array([
+        ... [8, 6, 0, -1, 0, -1, 0, 0, 52],
+        ... [1, 1, 0, 0, 0, 0, 0, 0, 0],
+        ... [2, 1, 1, 0, 0, 0, 0, 0, 12],
+        ... [2, 1, 0, -1, 0, 0, 1, 0, 12],
+        ... [6, 5, 0, 0, 1, 0, 0, 0, 40],
+        ... [6, 5, 0, 0, 0, -1, 0, 1, 40.]
+        ... ]), 2).run_simplex()
         {'P': 7.0, 'x1': 5.0, 'x2': 2.0}
         """
         # Stop simplex algorithm from cycling.
@@ -272,7 +265,7 @@ class Tableau:
             # If there are no more negative values in objective row
             if self.stop_iter:
                 # Delete artificial variable columns and rows. Update attributes
-                self.tableau = self.change_stage(self.tableau, self.objectives)
+                self.tableau = self.change_stage(self.tableau)
 
                 # Pivot again
                 continue
@@ -295,10 +288,8 @@ class Tableau:
         >>> t.interpret_tableau(tableau, ["x1", "x2", "s1", "s2", "RHS"])
         {'P': 5.0, 'x1': 1.0, 'x2': 1.0}
         """
-        output_dict = {}
-
         # P = RHS of final tableau
-        output_dict["P"] = abs(tableau[0, -1])
+        output_dict = {"P": abs(tableau[0, -1])}
 
         for i in range(self.n_vars):
             # Gives ids of nonzero entries in the ith column
@@ -316,7 +307,7 @@ class Tableau:
         # Check for basic variables
         for title in col_titles:
             # Don't add RHS or slack variables to output dict
-            if title[0] not in "R-s":
+            if title[0] not in "R-s-a":
                 output_dict.setdefault(title, 0)
         return output_dict
 
