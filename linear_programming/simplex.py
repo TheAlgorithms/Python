@@ -27,8 +27,8 @@ class Tableau:
     """
 
     def __init__(self, tableau: np.ndarray, n_vars: int) -> None:
-        rhs = tableau[:, -1]
-        if np.any(rhs, where=rhs < 0):
+        # Check if RHS is negative
+        if np.any(tableau[:, -1], where=tableau[:, -1] < 0):
             raise ValueError("RHS must be > 0")
 
         self.tableau = tableau
@@ -296,6 +296,7 @@ class Tableau:
             if n_nonzero == nonzero_val == 1:
                 rhs_val = tableau[nonzero_rowidx, -1]
                 output_dict[col_titles[i]] = rhs_val
+
         # Check for basic variables
         for title in col_titles:
             # Don't add RHS or slack variables to output dict
