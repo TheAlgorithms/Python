@@ -32,8 +32,7 @@ class Tableau:
             raise ValueError("RHS must be > 0")
 
         self.tableau = tableau
-        self.n_rows = len(tableau[:, 0])
-        self.n_cols = len(tableau[0])
+        self.n_rows, _ = tableau.shape
 
         # Number of decision variables x1, x2, x3...
         self.n_vars = n_vars
@@ -246,9 +245,7 @@ class Tableau:
         {'P': 7.0, 'x1': 5.0, 'x2': 2.0}
         """
         # Stop simplex algorithm from cycling.
-        iter_num = 0
-
-        while iter_num < 100:
+        for _ in range(100):
             # Completion of each stage removes an objective. If both stages
             # are complete, then no objectives are left
             if not self.objectives:
@@ -265,12 +262,8 @@ class Tableau:
             if self.stop_iter:
                 # Delete artificial variable columns and rows. Update attributes
                 self.tableau = self.change_stage(self.tableau)
-
-                # Pivot again
-                continue
-
-            self.tableau = self.pivot(self.tableau, row_idx, col_idx)
-            iter_num += 1
+            else:
+                self.tableau = self.pivot(self.tableau, row_idx, col_idx)
         return {}
 
     def interpret_tableau(
