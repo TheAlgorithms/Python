@@ -8,53 +8,63 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_selection import SelectKBest, chi2
 import matplotlib.pyplot as plt
 
+
 def load_data():
     digits = load_digits()
     X = digits.data
     y = digits.target
     return X, y
 
+
 def clean_data(X, y):
     # Convert to DataFrame
     df = pd.DataFrame(X, columns=[f"pixel_{i}" for i in range(X.shape[1])])
-    df['target'] = y
+    df["target"] = y
     return df
+
 
 def feature_engineering(df):
     # Perform feature engineering (if needed)
     # For this example, we will skip this step
     return df
 
+
 def feature_selection(df):
-    X = df.drop('target', axis=1)
-    y = df['target']
-    
+    X = df.drop("target", axis=1)
+    y = df["target"]
+
     # Perform feature selection using chi-square test
     selector = SelectKBest(chi2, k=10)
     X_new = selector.fit_transform(X, y)
-    
+
     # Update DataFrame with selected features
     selected_features = X.columns[selector.get_support()]
     df = df[selected_features]
-    df['target'] = y
-    
+    df["target"] = y
+
     return df
+
 
 def encode_target(df):
     le = LabelEncoder()
-    df['target'] = le.fit_transform(df['target'])
+    df["target"] = le.fit_transform(df["target"])
     return df
 
+
 def split_data(df):
-    X = df.drop('target', axis=1)
-    y = df['target']
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    X = df.drop("target", axis=1)
+    y = df["target"]
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
     return X_train, X_test, y_train, y_test
+
 
 def train_model(X_train, y_train):
     model = GradientBoostingClassifier()
     model.fit(X_train, y_train)
     return model
+
 
 def evaluate_model(model, X_test, y_test):
     y_pred = model.predict(X_test)
@@ -62,17 +72,21 @@ def evaluate_model(model, X_test, y_test):
     report = classification_report(y_test, y_pred)
     return accuracy, report
 
+
 def plot_feature_importance(model, features):
     feature_importance = model.feature_importances_
     sorted_indices = np.argsort(feature_importance)
 
     plt.figure(figsize=(10, 6))
-    plt.barh(range(len(sorted_indices)), feature_importance[sorted_indices], align='center')
+    plt.barh(
+        range(len(sorted_indices)), feature_importance[sorted_indices], align="center"
+    )
     plt.yticks(range(len(sorted_indices)), features[sorted_indices])
-    plt.xlabel('Feature Importance')
-    plt.ylabel('Features')
-    plt.title('Gradient Boosting Classifier - Feature Importance')
+    plt.xlabel("Feature Importance")
+    plt.ylabel("Features")
+    plt.title("Gradient Boosting Classifier - Feature Importance")
     plt.show()
+
 
 def main():
     # Load data
@@ -107,5 +121,5 @@ def main():
     print(f"\nClassification Report:\n{report}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
