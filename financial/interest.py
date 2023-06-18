@@ -110,7 +110,7 @@ def apr_interest(
         raise ValueError("principal must be > 0")
 
     return compound_interest(
-        principal, nominal_annual_percentage_rate / 365, number_of_years * 365
+        principal, nominal_annual_percentage_rate / 365, number_of_years * 365.0
     )
 
 
