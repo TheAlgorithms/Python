@@ -4,7 +4,7 @@ from __future__ import annotations
 
 
 def simple_interest(
-    principal: float, daily_interest_rate: float, days_between_payments: int
+    principal: float, daily_interest_rate: float, days_between_payments: float
 ) -> float:
     """
     >>> simple_interest(18000.0, 0.06, 3)
@@ -42,7 +42,7 @@ def simple_interest(
 def compound_interest(
     principal: float,
     nominal_annual_interest_rate_percentage: float,
-    number_of_compounding_periods: int,
+    number_of_compounding_periods: float,
 ) -> float:
     """
     >>> compound_interest(10000.0, 0.05, 3)
@@ -110,7 +110,7 @@ def apr_interest(
         raise ValueError("principal must be > 0")
 
     return compound_interest(
-        principal, nominal_annual_percentage_rate / 365, number_of_years * 365.0
+        principal, nominal_annual_percentage_rate / 365, number_of_years * 365
     )
 
 
