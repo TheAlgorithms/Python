@@ -486,6 +486,9 @@
     * [Test Linear Algebra](linear_algebra/src/test_linear_algebra.py)
     * [Transformations 2D](linear_algebra/src/transformations_2d.py)
 
+## Linear Programming
+  * [Simplex](linear_programming/simplex.py)
+
 ## Machine Learning
   * [Astar](machine_learning/astar.py)
   * [Data Transformations](machine_learning/data_transformations.py)
