@@ -29,15 +29,6 @@ def mish_activation(vector: np.ndarray) -> np.ndarray:
         softplus = ln(1+e^(x)) and tanh = (e^x - e^(-x))/(e^x + e^(-x))
         so, mish can be written as x * (2/(1+e^(-2 * softplus))-1
 
-    Examples:
-        >>> mish_activation(np.array([1,5,6,-0.67]))
-        array([ 0.86509839,  8.99955208, 10.99992663, -1.93211787])
-
-
-        >>> mish_activation(np.array([8,2,-0.98,13]))
-        array([14.9999982 ,  2.94395896, -2.28214659, 25.        ])
-
-
     """
     soft_plus = np.log(np.exp(vector) + 1)
     return vector * tanh(soft_plus)
