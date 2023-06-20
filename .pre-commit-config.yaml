@@ -16,7 +16,7 @@ repos:
     -   id: auto-walrus
 
   - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: v0.0.267
+    rev: v0.0.272
     hooks:
       - id: ruff
 
@@ -26,14 +26,14 @@ repos:
       - id: black
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.4
+    rev: v2.2.5
     hooks:
       - id: codespell
         additional_dependencies:
           - tomli
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: "0.11.2"
+    rev: "0.12.0"
     hooks:
       - id: pyproject-fmt
 
@@ -46,7 +46,7 @@ repos:
         pass_filenames: false
 
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.12.2
+    rev: v0.13
     hooks:
       - id: validate-pyproject
 

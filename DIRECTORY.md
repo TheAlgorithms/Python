@@ -294,6 +294,7 @@
   * [Mergesort](divide_and_conquer/mergesort.py)
   * [Peak](divide_and_conquer/peak.py)
   * [Power](divide_and_conquer/power.py)
+  * [Strassen Matrix Multiplication](divide_and_conquer/strassen_matrix_multiplication.py)
 
 ## Dynamic Programming
   * [Abbreviation](dynamic_programming/abbreviation.py)
@@ -418,8 +419,9 @@
   * [Frequent Pattern Graph Miner](graphs/frequent_pattern_graph_miner.py)
   * [G Topological Sort](graphs/g_topological_sort.py)
   * [Gale Shapley Bigraph](graphs/gale_shapley_bigraph.py)
+  * [Graph Adjacency List](graphs/graph_adjacency_list.py)
+  * [Graph Adjacency Matrix](graphs/graph_adjacency_matrix.py)
   * [Graph List](graphs/graph_list.py)
-  * [Graph Matrix](graphs/graph_matrix.py)
   * [Graphs Floyd Warshall](graphs/graphs_floyd_warshall.py)
   * [Greedy Best First](graphs/greedy_best_first.py)
   * [Greedy Min Vertex Cover](graphs/greedy_min_vertex_cover.py)
@@ -478,10 +480,14 @@
     * [Lib](linear_algebra/src/lib.py)
     * [Polynom For Points](linear_algebra/src/polynom_for_points.py)
     * [Power Iteration](linear_algebra/src/power_iteration.py)
+    * [Rank Of Matrix](linear_algebra/src/rank_of_matrix.py)
     * [Rayleigh Quotient](linear_algebra/src/rayleigh_quotient.py)
     * [Schur Complement](linear_algebra/src/schur_complement.py)
     * [Test Linear Algebra](linear_algebra/src/test_linear_algebra.py)
     * [Transformations 2D](linear_algebra/src/transformations_2d.py)
+
+## Linear Programming
+  * [Simplex](linear_programming/simplex.py)
 
 ## Machine Learning
   * [Astar](machine_learning/astar.py)
@@ -549,6 +555,7 @@
   * [Dodecahedron](maths/dodecahedron.py)
   * [Double Factorial Iterative](maths/double_factorial_iterative.py)
   * [Double Factorial Recursive](maths/double_factorial_recursive.py)
+  * [Dual Number Automatic Differentiation](maths/dual_number_automatic_differentiation.py)
   * [Entropy](maths/entropy.py)
   * [Euclidean Distance](maths/euclidean_distance.py)
   * [Euclidean Gcd](maths/euclidean_gcd.py)
@@ -576,6 +583,7 @@
   * [Hardy Ramanujanalgo](maths/hardy_ramanujanalgo.py)
   * [Hexagonal Number](maths/hexagonal_number.py)
   * [Integration By Simpson Approx](maths/integration_by_simpson_approx.py)
+  * [Is Int Palindrome](maths/is_int_palindrome.py)
   * [Is Ip V4 Address Valid](maths/is_ip_v4_address_valid.py)
   * [Is Square Free](maths/is_square_free.py)
   * [Jaccard Similarity](maths/jaccard_similarity.py)
@@ -648,6 +656,7 @@
   * [Sigmoid Linear Unit](maths/sigmoid_linear_unit.py)
   * [Signum](maths/signum.py)
   * [Simpson Rule](maths/simpson_rule.py)
+  * [Simultaneous Linear Equation Solver](maths/simultaneous_linear_equation_solver.py)
   * [Sin](maths/sin.py)
   * [Sock Merchant](maths/sock_merchant.py)
   * [Softmax](maths/softmax.py)
@@ -673,6 +682,7 @@
 ## Matrix
   * [Binary Search Matrix](matrix/binary_search_matrix.py)
   * [Count Islands In Matrix](matrix/count_islands_in_matrix.py)
+  * [Count Negative Numbers In Sorted Matrix](matrix/count_negative_numbers_in_sorted_matrix.py)
   * [Count Paths](matrix/count_paths.py)
   * [Cramers Rule 2X2](matrix/cramers_rule_2x2.py)
   * [Inverse Of Matrix](matrix/inverse_of_matrix.py)
@@ -723,6 +733,7 @@
   * [Maximum Subarray](other/maximum_subarray.py)
   * [Maximum Subsequence](other/maximum_subsequence.py)
   * [Nested Brackets](other/nested_brackets.py)
+  * [Number Container System](other/number_container_system.py)
   * [Password](other/password.py)
   * [Quine](other/quine.py)
   * [Scoring Algorithm](other/scoring_algorithm.py)
@@ -746,6 +757,7 @@
   * [Potential Energy](physics/potential_energy.py)
   * [Rms Speed Of Molecule](physics/rms_speed_of_molecule.py)
   * [Shear Stress](physics/shear_stress.py)
+  * [Speed Of Sound](physics/speed_of_sound.py)
 
 ## Project Euler
   * Problem 001
@@ -1154,7 +1166,6 @@
   * [Indian Phone Validator](strings/indian_phone_validator.py)
   * [Is Contains Unique Chars](strings/is_contains_unique_chars.py)
   * [Is Isogram](strings/is_isogram.py)
-  * [Is Palindrome](strings/is_palindrome.py)
   * [Is Pangram](strings/is_pangram.py)
   * [Is Spain National Id](strings/is_spain_national_id.py)
   * [Is Srilankan Phone Number](strings/is_srilankan_phone_number.py)
@@ -1198,7 +1209,6 @@
   * [Daily Horoscope](web_programming/daily_horoscope.py)
   * [Download Images From Google Query](web_programming/download_images_from_google_query.py)
   * [Emails From Url](web_programming/emails_from_url.py)
-  * [Fetch Anime And Play](web_programming/fetch_anime_and_play.py)
   * [Fetch Bbc News](web_programming/fetch_bbc_news.py)
   * [Fetch Github Info](web_programming/fetch_github_info.py)
   * [Fetch Jobs](web_programming/fetch_jobs.py)
