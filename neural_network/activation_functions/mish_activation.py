@@ -12,6 +12,7 @@ https://arxiv.org/abs/1908.08681
 """
 
 import numpy as np
+from maths.tanh import tangent_hyperbolic as tanh
 
 
 def mish_activation(vector: np.ndarray) -> np.ndarray:
@@ -39,7 +40,7 @@ def mish_activation(vector: np.ndarray) -> np.ndarray:
 
     """
     soft_plus = np.log(np.exp(vector) + 1)
-    return vector * (2 / (1 + np.exp(-2 * soft_plus))) - 1
+    return vector * tanh(soft_plus)
 
 
 if __name__ == "__main__":
