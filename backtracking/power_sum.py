@@ -70,8 +70,9 @@ def solve(x: int, n: int) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
-    
+
     # x = 100
     # n = 3
     # output = f"The number of ways that {x} can be expressed as the sum of"
