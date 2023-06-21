@@ -70,7 +70,7 @@ class PokerHand:
         list.sort(), sorted()
     """
 
-    _HAND_NAME = [
+    _HAND_NAME = (
         "High card",
         "One pair",
         "Two pairs",
@@ -81,9 +81,9 @@ class PokerHand:
         "Four of a kind",
         "Straight flush",
         "Royal flush",
-    ]
+    )
 
-    _CARD_NAME = [
+    _CARD_NAME = (
         "",  # placeholder as lists are zero indexed
         "One",
         "Two",
@@ -99,7 +99,7 @@ class PokerHand:
         "Queen",
         "King",
         "Ace",
-    ]
+    )
 
     def __init__(self, hand: str) -> None:
         """
