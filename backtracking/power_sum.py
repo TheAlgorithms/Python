@@ -21,6 +21,12 @@ def backtrack(x: int, n: int, i: int) -> None:
         the nth powers of unique, natural numbers.
         n: The power of the natural numbers.
         i: The current natural number.
+
+    Returns:
+        None
+
+    >>> backtrack(13, 2, 1)
+
     """
     global sum_, count_
     i_to_n = int(pow(i, n))
@@ -52,17 +58,24 @@ def solve(x: int, n: int) -> int:
     Returns:
         The number of ways that x can be expressed as the sum of
         the nth powers of unique, natural numbers.
+
+    >>> solve(13, 2)
+    1
     """
     global sum_, count_
+    sum_, count_ = 0, 0
     backtrack(x, n, 1)
     return count_
 
 
 if __name__ == "__main__":
-    x = 100
-    n = 3
-    output = f"The number of ways that {x} can be expressed as the sum of"
-    output += f" the {n}th powers of unique, natural numbers is {solve(x, n)}"
-    print(output)
+    import doctest
+    doctest.testmod()
+    
+    # x = 100
+    # n = 3
+    # output = f"The number of ways that {x} can be expressed as the sum of"
+    # output += f" the {n}th powers of unique, natural numbers is {solve(x, n)}"
+    # print(output)
     # Output: The number of ways that 100 can be expressed as the
     # sum of the 3th powers of unique, natural numbers is 1
