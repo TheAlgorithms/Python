@@ -19,7 +19,7 @@ def max_sectors_of_circle(num_cuts: float) -> float:
 
     if not isinstance(num_cuts, (int, float)):
         raise TypeError("num_cuts must be a numeric value.")
-    return ((num_cuts + 2 + num_cuts**2) * .5) if num_cuts >= 0 else -1
+    return ((num_cuts + 2 + num_cuts**2) * 0.5) if num_cuts >= 0 else -1
 
 
 if __name__ == "__main__":
