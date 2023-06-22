@@ -419,8 +419,9 @@
   * [Frequent Pattern Graph Miner](graphs/frequent_pattern_graph_miner.py)
   * [G Topological Sort](graphs/g_topological_sort.py)
   * [Gale Shapley Bigraph](graphs/gale_shapley_bigraph.py)
+  * [Graph Adjacency List](graphs/graph_adjacency_list.py)
+  * [Graph Adjacency Matrix](graphs/graph_adjacency_matrix.py)
   * [Graph List](graphs/graph_list.py)
-  * [Graph Matrix](graphs/graph_matrix.py)
   * [Graphs Floyd Warshall](graphs/graphs_floyd_warshall.py)
   * [Greedy Best First](graphs/greedy_best_first.py)
   * [Greedy Min Vertex Cover](graphs/greedy_min_vertex_cover.py)
@@ -479,10 +480,14 @@
     * [Lib](linear_algebra/src/lib.py)
     * [Polynom For Points](linear_algebra/src/polynom_for_points.py)
     * [Power Iteration](linear_algebra/src/power_iteration.py)
+    * [Rank Of Matrix](linear_algebra/src/rank_of_matrix.py)
     * [Rayleigh Quotient](linear_algebra/src/rayleigh_quotient.py)
     * [Schur Complement](linear_algebra/src/schur_complement.py)
     * [Test Linear Algebra](linear_algebra/src/test_linear_algebra.py)
     * [Transformations 2D](linear_algebra/src/transformations_2d.py)
+
+## Linear Programming
+  * [Simplex](linear_programming/simplex.py)
 
 ## Machine Learning
   * [Astar](machine_learning/astar.py)
@@ -651,6 +656,7 @@
   * [Sigmoid Linear Unit](maths/sigmoid_linear_unit.py)
   * [Signum](maths/signum.py)
   * [Simpson Rule](maths/simpson_rule.py)
+  * [Simultaneous Linear Equation Solver](maths/simultaneous_linear_equation_solver.py)
   * [Sin](maths/sin.py)
   * [Sock Merchant](maths/sock_merchant.py)
   * [Softmax](maths/softmax.py)
@@ -676,6 +682,7 @@
 ## Matrix
   * [Binary Search Matrix](matrix/binary_search_matrix.py)
   * [Count Islands In Matrix](matrix/count_islands_in_matrix.py)
+  * [Count Negative Numbers In Sorted Matrix](matrix/count_negative_numbers_in_sorted_matrix.py)
   * [Count Paths](matrix/count_paths.py)
   * [Cramers Rule 2X2](matrix/cramers_rule_2x2.py)
   * [Inverse Of Matrix](matrix/inverse_of_matrix.py)
@@ -726,6 +733,7 @@
   * [Maximum Subarray](other/maximum_subarray.py)
   * [Maximum Subsequence](other/maximum_subsequence.py)
   * [Nested Brackets](other/nested_brackets.py)
+  * [Number Container System](other/number_container_system.py)
   * [Password](other/password.py)
   * [Quine](other/quine.py)
   * [Scoring Algorithm](other/scoring_algorithm.py)
@@ -749,6 +757,7 @@
   * [Potential Energy](physics/potential_energy.py)
   * [Rms Speed Of Molecule](physics/rms_speed_of_molecule.py)
   * [Shear Stress](physics/shear_stress.py)
+  * [Speed Of Sound](physics/speed_of_sound.py)
 
 ## Project Euler
   * Problem 001
