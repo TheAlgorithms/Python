@@ -30,7 +30,7 @@ For example, if your pull request fixes issue #10, then please add the following
 ```
 Fixes #10
 ```
-GitHub will use this tag to [auto-close the issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) when the PR is merged.
+GitHub will use this tag to [auto-close the issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) if and when the PR is merged.
 
 #### What is an Algorithm?
 
