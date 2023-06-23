@@ -1,13 +1,13 @@
 """
-Calculate Product Sum from an Array.
+Calculate the Product Sum from a Special Array.
 reference: https://dev.to/sfrasica/algorithms-product-sum-from-an-array-dc6
 
-For doctests run following command:
+Python doctests can be run with the following command:
 python -m doctest -v product_sum.py
 
-We need to create a function that calculates the product sum of a "special" array.
-This array can contain integers or nested arrays. The product sum is obtained by
-adding all the elements together and multiplying by their respective depth.
+Calculate the product sum of a "special" array which can contain integers or nested
+arrays. The product sum is obtained by adding all elements and multiplying by their
+respective depths.
 
 For example, in the array [x, y], the product sum is (x + y). In the array [x, [y, z]],
 the product sum is x + 2 * (y + z). In the array [x, [y, [z]]],
@@ -25,7 +25,7 @@ def product_sum(arr: list[int | list], depth: int) -> int:
     Recursively calculates the product sum of an array.
 
     The product sum of an array is defined as the sum of its elements multiplied by
-    their respective depths.If an element is a list, its product sum is calculated
+    their respective depths.  If an element is a list, its product sum is calculated
     recursively by multiplying the sum of its elements with its depth plus one.
 
     Args:
