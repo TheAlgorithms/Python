@@ -1,9 +1,9 @@
 beautifulsoup4
 fake_useragent
-numpy
 keras
 lxml
 matplotlib  # ; python_version < '3.12'
+numpy
 opencv-python  # ; python_version < '3.12'
 pandas  # ; python_version < '3.12'
 pillow
