@@ -8,13 +8,13 @@ The only solution is 2^2+3^2. Constraints: 1<=X<=1000, 2<=N<=10.
 
 from math import pow
 
-sum_=count_=0
+sum_ = count_ = 0
 
 
 def backtrack(x: int, n: int, i: int) -> None:
     """
     DO NOT CALL THIS METHOD DIRECTLY, USE solve() INSTEAD.
-    
+
     >>> backtrack(13, 2, 1) is None
     True
     """
@@ -59,7 +59,9 @@ def solve(x: int, n: int) -> int:
     ValueError: Invalid input, x must be between 1 and 1000, n between 2 and 10.
     """
     if not (1 <= x <= 1000 and 2 <= n <= 10):
-        raise ValueError("Invalid input, x must be between 1 and 1000, n between 2 and 10.")
+        raise ValueError(
+            "Invalid input, x must be between 1 and 1000, n between 2 and 10."
+        )
 
     global sum_, count_
     sum_, count_ = 0, 0
