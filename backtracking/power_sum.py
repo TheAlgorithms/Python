@@ -17,6 +17,8 @@ def backtrack(x: int, n: int, i: int) -> None:
 
     >>> backtrack(13, 2, 1) is None
     True
+    >>> backtrack(1000, 10, 2) is None
+    True
     """
     global sum_, count_
     i_to_n = int(pow(i, n))
