@@ -22,11 +22,10 @@ jobs:
           python -m pip install --upgrade pip setuptools six wheel
           python -m pip install pytest-cov -r requirements.txt
       - name: Run tests
-        # See: #6591 for re-enabling tests on Python v3.11
+        # TODO: #8818 Re-enable quantum tests
         run: pytest
-            --ignore=computer_vision/cnn_classification.py
-            --ignore=machine_learning/lstm/lstm_prediction.py
-            --ignore=quantum/
+            --ignore=quantum/bb84.py
+            --ignore=quantum/q_fourier_transform.py
             --ignore=project_euler/
             --ignore=scripts/validate_solutions.py
             --cov-report=term-missing:skip-covered
