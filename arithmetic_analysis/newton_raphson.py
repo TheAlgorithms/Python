@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from decimal import Decimal
-from math import *  # noqa: F401, F403
+from math import *  # noqa: F403
 
 from sympy import diff
 

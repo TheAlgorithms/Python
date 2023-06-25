@@ -27,7 +27,7 @@ def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
     =========================
     The caesar cipher is named after Julius Caesar who used it when sending
     secret military messages to his troops. This is a simple substitution cipher
-    where very character in the plain-text is shifted by a certain number known
+    where every character in the plain-text is shifted by a certain number known
     as the "key" or "shift".
 
     Example:

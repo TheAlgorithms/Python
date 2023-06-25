@@ -34,7 +34,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.colors import ListedColormap
 
-usage_doc = "Usage of script: script_nama <size_of_canvas:int>"
+usage_doc = "Usage of script: script_name <size_of_canvas:int>"
 
 choice = [0] * 100 + [1] * 10
 random.shuffle(choice)
@@ -66,7 +66,6 @@ def run(canvas: list[list[bool]]) -> list[list[bool]]:
     next_gen_canvas = np.array(create_canvas(current_canvas.shape[0]))
     for r, row in enumerate(current_canvas):
         for c, pt in enumerate(row):
-            # print(r-1,r+2,c-1,c+2)
             next_gen_canvas[r][c] = __judge_point(
                 pt, current_canvas[r - 1 : r + 2, c - 1 : c + 2]
             )

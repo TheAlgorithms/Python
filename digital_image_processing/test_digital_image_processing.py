@@ -10,7 +10,7 @@ from digital_image_processing import change_contrast as cc
 from digital_image_processing import convert_to_negative as cn
 from digital_image_processing import sepia as sp
 from digital_image_processing.dithering import burkes as bs
-from digital_image_processing.edge_detection import canny as canny
+from digital_image_processing.edge_detection import canny
 from digital_image_processing.filters import convolve as conv
 from digital_image_processing.filters import gaussian_filter as gg
 from digital_image_processing.filters import local_binary_pattern as lbp
@@ -62,8 +62,8 @@ def test_gen_gaussian_kernel_filter():
 
 def test_convolve_filter():
     # laplace diagonals
-    Laplace = array([[0.25, 0.5, 0.25], [0.5, -3, 0.5], [0.25, 0.5, 0.25]])
-    res = conv.img_convolve(gray, Laplace).astype(uint8)
+    laplace = array([[0.25, 0.5, 0.25], [0.5, -3, 0.5], [0.25, 0.5, 0.25]])
+    res = conv.img_convolve(gray, laplace).astype(uint8)
     assert res.any()
 
 
@@ -96,7 +96,7 @@ def test_nearest_neighbour(
 
 
 def test_local_binary_pattern():
-    file_path: str = "digital_image_processing/image_data/lena.jpg"
+    file_path = "digital_image_processing/image_data/lena.jpg"
 
     # Reading the image and converting it to grayscale.
     image = imread(file_path, 0)

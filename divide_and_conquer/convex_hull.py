@@ -174,12 +174,12 @@ def _validate_input(points: list[Point] | list[list[float]]) -> list[Point]:
     """
 
     if not hasattr(points, "__iter__"):
-        raise ValueError(
-            f"Expecting an iterable object but got an non-iterable type {points}"
-        )
+        msg = f"Expecting an iterable object but got an non-iterable type {points}"
+        raise ValueError(msg)
 
     if not points:
-        raise ValueError(f"Expecting a list of points but got {points}")
+        msg = f"Expecting a list of points but got {points}"
+        raise ValueError(msg)
 
     return _construct_points(points)
 
@@ -458,16 +458,16 @@ def convex_hull_melkman(points: list[Point]) -> list[Point]:
             convex_hull[1] = points[i]
     i += 1
 
-    for i in range(i, n):
+    for j in range(i, n):
         if (
-            _det(convex_hull[0], convex_hull[-1], points[i]) > 0
+            _det(convex_hull[0], convex_hull[-1], points[j]) > 0
             and _det(convex_hull[-1], convex_hull[0], points[1]) < 0
         ):
             # The point lies within the convex hull
             continue
 
-        convex_hull.insert(0, points[i])
-        convex_hull.append(points[i])
+        convex_hull.insert(0, points[j])
+        convex_hull.append(points[j])
         while _det(convex_hull[0], convex_hull[1], convex_hull[2]) >= 0:
             del convex_hull[1]
         while _det(convex_hull[-1], convex_hull[-2], convex_hull[-3]) <= 0:

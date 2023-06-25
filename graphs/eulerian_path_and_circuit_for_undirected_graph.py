@@ -50,21 +50,21 @@ def check_euler(graph, max_node):
 
 
 def main():
-    G1 = {1: [2, 3, 4], 2: [1, 3], 3: [1, 2], 4: [1, 5], 5: [4]}
-    G2 = {1: [2, 3, 4, 5], 2: [1, 3], 3: [1, 2], 4: [1, 5], 5: [1, 4]}
-    G3 = {1: [2, 3, 4], 2: [1, 3, 4], 3: [1, 2], 4: [1, 2, 5], 5: [4]}
-    G4 = {1: [2, 3], 2: [1, 3], 3: [1, 2]}
-    G5 = {
+    g1 = {1: [2, 3, 4], 2: [1, 3], 3: [1, 2], 4: [1, 5], 5: [4]}
+    g2 = {1: [2, 3, 4, 5], 2: [1, 3], 3: [1, 2], 4: [1, 5], 5: [1, 4]}
+    g3 = {1: [2, 3, 4], 2: [1, 3, 4], 3: [1, 2], 4: [1, 2, 5], 5: [4]}
+    g4 = {1: [2, 3], 2: [1, 3], 3: [1, 2]}
+    g5 = {
         1: [],
         2: []
         # all degree is zero
     }
     max_node = 10
-    check_euler(G1, max_node)
-    check_euler(G2, max_node)
-    check_euler(G3, max_node)
-    check_euler(G4, max_node)
-    check_euler(G5, max_node)
+    check_euler(g1, max_node)
+    check_euler(g2, max_node)
+    check_euler(g3, max_node)
+    check_euler(g4, max_node)
+    check_euler(g5, max_node)
 
 
 if __name__ == "__main__":

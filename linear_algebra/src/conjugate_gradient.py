@@ -115,7 +115,6 @@ def conjugate_gradient(
     iterations = 0
 
     while error > tol:
-
         # Save this value so we only calculate the matrix-vector product once.
         w = np.dot(spd_matrix, p0)
 

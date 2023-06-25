@@ -3,7 +3,7 @@
 import math
 
 
-def sieve(n):
+def sieve(n: int) -> list[int]:
     """Segmented Sieve."""
     in_prime = []
     start = 2
@@ -25,7 +25,6 @@ def sieve(n):
     while low <= n:
         temp = [True] * (high - low + 1)
         for each in in_prime:
-
             t = math.floor(low / each) * each
             if t < low:
                 t += each

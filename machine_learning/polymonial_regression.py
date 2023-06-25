@@ -34,7 +34,6 @@ def viz_polymonial():
     plt.xlabel("Position level")
     plt.ylabel("Salary")
     plt.show()
-    return
 
 
 if __name__ == "__main__":

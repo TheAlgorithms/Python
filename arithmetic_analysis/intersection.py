@@ -10,7 +10,7 @@ def intersection(function: Callable[[float], float], x0: float, x1: float) -> fl
     0.9999999999954654
     >>> intersection(lambda x: x ** 3 - 1, 5, 5)
     Traceback (most recent call last):
-    ...
+        ...
     ZeroDivisionError: float division by zero, could not find root
     >>> intersection(lambda x: x ** 3 - 1, 100, 200)
     1.0000000000003888
@@ -24,7 +24,7 @@ def intersection(function: Callable[[float], float], x0: float, x1: float) -> fl
     0.0
     >>> intersection(math.cos, -math.pi, math.pi)
     Traceback (most recent call last):
-    ...
+        ...
     ZeroDivisionError: float division by zero, could not find root
     """
     x_n: float = x0
