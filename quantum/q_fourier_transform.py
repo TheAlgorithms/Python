@@ -45,7 +45,7 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
     >>> quantum_fourier_transform('a')
     Traceback (most recent call last):
         ...
-    TypeError: number of qubits must be a integer.
+    TypeError: number of qubits must be an integer.
     >>> quantum_fourier_transform(100)
     Traceback (most recent call last):
         ...
@@ -53,14 +53,14 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
     >>> quantum_fourier_transform(0.5)
     Traceback (most recent call last):
         ...
-    ValueError: number of qubits must be exact integer.
+    ValueError: number of qubits must be an integer.
     """
     if isinstance(number_of_qubits, str):
-        raise TypeError("number of qubits must be a integer.")
+        raise TypeError("number of qubits must be an integer.")
     if number_of_qubits <= 0:
         raise ValueError("number of qubits must be > 0.")
     if math.floor(number_of_qubits) != number_of_qubits:
-        raise ValueError("number of qubits must be exact integer.")
+        raise ValueError("number of qubits must be an integer.")
     if number_of_qubits > 10:
         raise ValueError("number of qubits too large to simulate(>10).")
 
@@ -83,7 +83,7 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
     # measure all the qubits
     quantum_circuit.measure(qr, cr)
     # simulate with 10000 shots
-    backend = Aer.get_backend("qasm_simulator")
+    backend = Aer.get_backend("aer_simulator")
     job = execute(quantum_circuit, backend, shots=10000)
 
     return job.result().get_counts(quantum_circuit)
@@ -91,6 +91,6 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
 
 if __name__ == "__main__":
     print(
-        f"Total count for quantum fourier transform state is: \
-    {quantum_fourier_transform(3)}"
+        "Total count for the quantum fourier transform state is: "
+        f"{quantum_fourier_transform(3)}"
     )
