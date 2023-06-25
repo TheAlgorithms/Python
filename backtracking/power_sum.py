@@ -23,16 +23,19 @@ def backtrack(needed_sum: int, power: int, current_number: int) -> None:
     global sum_, count_
     i_to_n = int(pow(current_number, power))
     if sum_ == needed_sum:
-        # If the sum of the powers is equal to needed_sum, then we have found a solution.
+        # If the sum of the powers is equal to needed_sum,
+        # then we have found a solution.
         count_ += 1
         return
     elif sum_ + i_to_n <= needed_sum:
-        # If the sum of the powers is less than needed_sum, then we can continue adding powers.
+        # If the sum of the powers is less than needed_sum,
+        # then we can continue adding powers.
         sum_ += i_to_n
         backtrack(needed_sum, power, current_number + 1)
         sum_ -= i_to_n
     if i_to_n < needed_sum:
-        # If the power of i is less than needed_sum, then we can try with the next power.
+        # If the power of i is less than needed_sum,
+        # then we can try with the next power.
         backtrack(needed_sum, power, current_number + 1)
     return
 
@@ -54,15 +57,18 @@ def solve(needed_sum: int, power: int) -> int:
     >>> solve(50, 1)
     Traceback (most recent call last):
         ...
-    ValueError: Invalid input, needed_sum must be between 1 and 1000, power between 2 and 10.
+    ValueError: Invalid input
+    needed_sum must be between 1 and 1000, power between 2 and 10.
     >>> solve(-10, 5)
     Traceback (most recent call last):
         ...
-    ValueError: Invalid input, needed_sum must be between 1 and 1000, power between 2 and 10.
+    ValueError: Invalid input
+    needed_sum must be between 1 and 1000, power between 2 and 10.
     """
     if not (1 <= needed_sum <= 1000 and 2 <= power <= 10):
         raise ValueError(
-            "Invalid input, needed_sum must be between 1 and 1000, power between 2 and 10."
+            "Invalid input\n"
+            "needed_sum must be between 1 and 1000, power between 2 and 10."
         )
 
     global sum_, count_
