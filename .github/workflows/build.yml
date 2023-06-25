@@ -24,7 +24,8 @@ jobs:
       - name: Run tests
         # TODO: Re-enable quantum tests
         run: pytest
-            --ignore=quantum/
+            --ignore=quantum/bb84.py
+            --ignore=quantum/q_fourier_transform.py
             --ignore=project_euler/
             --ignore=scripts/validate_solutions.py
             --cov-report=term-missing:skip-covered
