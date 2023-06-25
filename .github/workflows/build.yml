@@ -24,7 +24,6 @@ jobs:
       - name: Run tests
         # TODO: #8818 Re-enable quantum tests
         run: pytest
-            --ignore=quantum/bb84.py
             --ignore=quantum/q_fourier_transform.py
             --ignore=project_euler/
             --ignore=scripts/validate_solutions.py
