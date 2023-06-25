@@ -605,6 +605,7 @@
   * [Maclaurin Series](maths/maclaurin_series.py)
   * [Manhattan Distance](maths/manhattan_distance.py)
   * [Matrix Exponentiation](maths/matrix_exponentiation.py)
+  * [Max Sectors Of Circle](maths/max_sectors_of_circle.py)
   * [Max Sum Sliding Window](maths/max_sum_sliding_window.py)
   * [Median Of Two Arrays](maths/median_of_two_arrays.py)
   * [Miller Rabin](maths/miller_rabin.py)
