@@ -69,7 +69,10 @@ def bb84(key_len: int = 8, seed: int | None = None) -> str:
     >>> bb84(8, seed=0)
     '10110001'
 
+    # Example from
+    # https://learn.qiskit.org/course/ch-algorithms/quantum-key-distribution
     >>> bb84(100, seed=0)
+    '011110100001000111010110100000010011000111100100'
     """
     # Set up the random number generator.
     rng = np.random.default_rng(seed=seed)
