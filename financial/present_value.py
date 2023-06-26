@@ -16,7 +16,9 @@ Note: This algorithm assumes that cash flows are paid at the end of the specifie
 """
 
 
-def present_value(discount_rates: list[tuple], cash_flows: list[float]) -> float:
+def present_value(
+    discount_rates: float | list[tuple], cash_flows: list[float]
+) -> float:
     """
     >>> present_value(0.13, [10, 20.70, -293, 297])
     4.15
@@ -37,6 +39,10 @@ def present_value(discount_rates: list[tuple], cash_flows: list[float]) -> float
     Traceback (most recent call last):
         ...
     ValueError: Cash flows list cannot be empty
+    >>> present_value([(0.03, 4)], [1, 2, 3])
+    Traceback (most recent call last):
+        ...
+    ValueError: Sum of discount rates must equal # of cash flows.
     """
 
     if isinstance(discount_rates, float):
@@ -53,6 +59,10 @@ def present_value(discount_rates: list[tuple], cash_flows: list[float]) -> float
 
     if len(cash_flows) == 0:
         raise ValueError("Cash flows list cannot be empty")
+
+    criteria = sum([duration for _, duration in discount_rates])
+    if criteria != len(cash_flows):
+        raise ValueError("Sum of discount rates must equal # of cash flows.")
 
     present_value = 0.0
     cash_flow_index = 0
