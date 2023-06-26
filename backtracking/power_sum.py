@@ -33,20 +33,20 @@ def backtrack(
     (0, 3658)
     """
     if current_sum == needed_sum:
-        # If the sum of the powers is equal to needed_sum, then we have found a solution.
+        # If the sum of the powers is equal to needed_sum, then we have a solution.
         solutions_count += 1
         return current_sum, solutions_count
 
     i_to_n = int(pow(current_number, power))
     if current_sum + i_to_n <= needed_sum:
-        # If the sum of the powers is less than needed_sum, then we can continue adding powers.
+        # If the sum of the powers is less than needed_sum, then continue adding powers.
         current_sum += i_to_n
         current_sum, solutions_count = backtrack(
             needed_sum, power, current_number + 1, current_sum, solutions_count
         )
         current_sum -= i_to_n
     if i_to_n < needed_sum:
-        # If the power of i is less than needed_sum, then we can try with the next power.
+        # If the power of i is less than needed_sum, then try with the next power.
         current_sum, solutions_count = backtrack(
             needed_sum, power, current_number + 1, current_sum, solutions_count
         )
