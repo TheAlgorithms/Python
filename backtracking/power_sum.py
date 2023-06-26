@@ -8,36 +8,51 @@ The only solution is 2^2+3^2. Constraints: 1<=X<=1000, 2<=N<=10.
 
 from math import pow
 
-sum_ = count_ = 0
 
-
-def backtrack(needed_sum: int, power: int, current_number: int) -> None:
+def backtrack(
+    needed_sum: int,
+    power: int,
+    current_number: int,
+    current_sum: int,
+    solutions_count: int,
+) -> tuple[int, int]:
     """
-    DO NOT CALL THIS METHOD DIRECTLY, USE solve() INSTEAD.
-
-    >>> backtrack(13, 2, 1) is None
-    True
-    >>> backtrack(1000, 10, 2) is None
-    True
+    >>> backtrack(13, 2, 1, 0, 0)
+    (0, 1)
+    >>> backtrack(100, 2, 1, 0, 0)
+    (0, 3)
+    >>> backtrack(100, 3, 1, 0, 0)
+    (0, 1)
+    >>> backtrack(800, 2, 1, 0, 0)
+    (0, 561)
+    >>> backtrack(1000, 10, 1, 0, 0)
+    (0, 0)
+    >>> backtrack(400, 2, 1, 0, 0)
+    (0, 55)
+    >>> backtrack(50, 1, 1, 0, 0)
+    (0, 3658)
     """
-    global sum_, count_
     i_to_n = int(pow(current_number, power))
-    if sum_ == needed_sum:
+    if current_sum == needed_sum:
         # If the sum of the powers is equal to needed_sum,
         # then we have found a solution.
-        count_ += 1
-        return
-    elif sum_ + i_to_n <= needed_sum:
+        solutions_count += 1
+        return current_sum, solutions_count
+    elif current_sum + i_to_n <= needed_sum:
         # If the sum of the powers is less than needed_sum,
         # then we can continue adding powers.
-        sum_ += i_to_n
-        backtrack(needed_sum, power, current_number + 1)
-        sum_ -= i_to_n
+        current_sum += i_to_n
+        current_sum, solutions_count = backtrack(
+            needed_sum, power, current_number + 1, current_sum, solutions_count
+        )
+        current_sum -= i_to_n
     if i_to_n < needed_sum:
         # If the power of i is less than needed_sum,
         # then we can try with the next power.
-        backtrack(needed_sum, power, current_number + 1)
-    return
+        current_sum, solutions_count = backtrack(
+            needed_sum, power, current_number + 1, current_sum, solutions_count
+        )
+    return current_sum, solutions_count
 
 
 def solve(needed_sum: int, power: int) -> int:
@@ -71,9 +86,7 @@ def solve(needed_sum: int, power: int) -> int:
             "needed_sum must be between 1 and 1000, power between 2 and 10."
         )
 
-    global sum_, count_
-    sum_, count_ = 0, 0
-    backtrack(needed_sum, power, 1)
+    _, count_ = backtrack(needed_sum, power, 1, 0, 0)
     return count_
 
 
