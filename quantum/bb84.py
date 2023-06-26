@@ -64,10 +64,11 @@ def bb84(key_len: int = 8, seed: int | None = None) -> str:
         key: The key generated using BB84 protocol.
 
     >>> bb84(16, seed=0)
-    '1101101100010000'
+    '0111110111010010'
 
     >>> bb84(8, seed=0)
-    '01011011'
+    '10110001'
+
     >>> bb84(100, seed=0)
     """
     # Set up the random number generator.

@@ -522,7 +522,6 @@
   * [Xgboost Regressor](machine_learning/xgboost_regressor.py)
 
 ## Maths
-  * [3N Plus 1](maths/3n_plus_1.py)
   * [Abs](maths/abs.py)
   * [Add](maths/add.py)
   * [Addition Without Arithmetic](maths/addition_without_arithmetic.py)
