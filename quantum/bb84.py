@@ -68,6 +68,7 @@ def bb84(key_len: int = 8, seed: int | None = None) -> str:
 
     >>> bb84(8, seed=0)
     '01011011'
+    >>> bb84(100, seed=0)
     """
     # Set up the random number generator.
     rng = np.random.default_rng(seed=seed)
@@ -127,7 +128,4 @@ def bb84(key_len: int = 8, seed: int | None = None) -> str:
 
 
 if __name__ == "__main__":
-    print(f"The generated key is : {bb84(8, seed=0)}")
-    from doctest import testmod
-
-    testmod()
+    print(bb84(100, seed=0))
