@@ -27,8 +27,7 @@ class Tableau:
     """
 
     def __init__(
-        self, tableau: np.ndarray, n_vars: int, n_art_vars: int | None = None
-    ) -> None:
+        self, tableau: np.ndarray, n_vars: int, n_art_vars: int) -> None:
         # Check if RHS is negative
         if np.any(tableau[:, -1], where=tableau[:, -1] < 0):
             raise ValueError("RHS must be > 0")
@@ -38,10 +37,6 @@ class Tableau:
 
         # Number of decision variables x1, x2, x3...
         self.n_vars, self.n_art_vars = n_vars, n_art_vars
-
-        # Number of artificial variables to be minimised
-        if self.n_art_vars is None:
-            self.n_art_vars = len(np.where(tableau[self.n_vars : -1] == -1)[0])
 
         # 2 if there are >= or == constraints (nonstandard), 1 otherwise (std)
         self.n_stages = (self.n_art_vars > 0) + 1
@@ -72,7 +67,7 @@ class Tableau:
         ... 2).generate_col_titles()
         ['x1', 'x2', 's1', 's2', 'RHS']
         """
-        args = (self.n_vars, self.n_slack, self.n_art_vars)
+        args = (self.n_vars, self.n_slack)
 
         # decision | slack
         string_starts = ["x", "s"]
