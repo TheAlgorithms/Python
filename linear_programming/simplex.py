@@ -154,8 +154,8 @@ class Tableau:
         ... [2, 1, 0, -1, 0, 1, 2]
         ... ]), 2, 2).change_stage().tolist()
         ... # doctest: +NORMALIZE_WHITESPACE
-        [[2.0, 1.0, 0.0, 0.0, 0.0], 
-        [1.0, 2.0, -1.0, 0.0, 2.0], 
+        [[2.0, 1.0, 0.0, 0.0, 0.0],
+        [1.0, 2.0, -1.0, 0.0, 2.0],
         [2.0, 1.0, 0.0, -1.0, 2.0]]
         """
         # Objective of original objective row remains
