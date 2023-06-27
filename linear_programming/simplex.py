@@ -34,7 +34,7 @@ class Tableau:
             raise ValueError("RHS must be > 0")
 
         self.tableau = tableau
-        self.n_rows, _ = tableau.shape
+        self.n_rows, n_cols = tableau.shape
 
         # Number of decision variables x1, x2, x3...
         self.n_vars, self.n_art_vars = n_vars, n_art_vars
@@ -47,7 +47,7 @@ class Tableau:
         self.n_stages = (self.n_art_vars > 0) + 1
 
         # Number of slack variables added to make inequalities into equalities
-        self.n_slack = self.n_rows - self.n_stages
+        self.n_slack = n_cols - self.n_vars - self.n_art_vars - 1
 
         # Objectives for each stage
         self.objectives = ["max"]
@@ -115,7 +115,7 @@ class Tableau:
         # Array filled with nans
         nans = np.full(self.n_rows - self.n_stages, np.nan)
 
-        # If element in pivot column is greater than zeron_stages, return
+        # If element in pivot column is greater than zero, return
         # quotient or nan otherwise
         quotients = np.divide(dividend, divisor, out=nans, where=divisor > 0)
 
