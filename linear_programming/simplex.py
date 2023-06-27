@@ -26,8 +26,7 @@ class Tableau:
     ValueError: RHS must be > 0
     """
 
-    def __init__(
-        self, tableau: np.ndarray, n_vars: int, n_art_vars: int) -> None:
+    def __init__(self, tableau: np.ndarray, n_vars: int, n_art_vars: int) -> None:
         # Check if RHS is negative
         if np.any(tableau[:, -1], where=tableau[:, -1] < 0):
             raise ValueError("RHS must be > 0")
