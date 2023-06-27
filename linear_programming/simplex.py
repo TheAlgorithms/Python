@@ -20,7 +20,7 @@ import numpy as np
 class Tableau:
     """Operate on simplex tableaus
 
-    >>> Tableau(np.array([[-1,-1,0,0,-1],[1,3,1,0,4],[3,1,0,1,4.]]), 2)
+    >>> Tableau(np.array([[-1,-1,0,0,-1],[1,3,1,0,4],[3,1,0,1,4.]]), 2, 2)
     Traceback (most recent call last):
     ...
     ValueError: RHS must be > 0
@@ -64,7 +64,7 @@ class Tableau:
         """Generate column titles for tableau of specific dimensions
 
         >>> Tableau(np.array([[-1,-1,0,0,1],[1,3,1,0,4],[3,1,0,1,4.]]),
-        ... 2).generate_col_titles()
+        ... 2, 0).generate_col_titles()
         ['x1', 'x2', 's1', 's2', 'RHS']
         """
         args = (self.n_vars, self.n_slack)
@@ -81,7 +81,7 @@ class Tableau:
     def find_pivot(self) -> tuple[Any, Any]:
         """Finds the pivot row and column.
         >>> Tableau(np.array([[-2,1,0,0,0], [3,1,1,0,6], [1,2,0,1,7.]]),
-        ... 2).find_pivot()
+        ... 2, 0).find_pivot()
         (1, 0)
         """
         objective = self.objectives[-1]
@@ -123,7 +123,7 @@ class Tableau:
         """Pivots on value on the intersection of pivot row and column.
 
         >>> Tableau(np.array([[-2,-3,0,0,0],[1,3,1,0,4],[3,1,0,1,4.]]),
-        ... 2).pivot(1, 0).tolist()
+        ... 2, 2).pivot(1, 0).tolist()
         ... # doctest: +NORMALIZE_WHITESPACE
         [[0.0, 3.0, 2.0, 0.0, 8.0],
         [1.0, 3.0, 1.0, 0.0, 4.0],
@@ -153,11 +153,11 @@ class Tableau:
         ... [2, 1, 0, 0, 0, 0, 0.],
         ... [1, 2, -1, 0, 1, 0, 2],
         ... [2, 1, 0, -1, 0, 1, 2]
-        ... ]), 2).change_stage().tolist()
+        ... ]), 2, 2).change_stage().tolist()
         ... # doctest: +NORMALIZE_WHITESPACE
-        [[2.0, 1.0, 0.0, 0.0, 0.0, 0.0],
-        [1.0, 2.0, -1.0, 0.0, 1.0, 2.0],
-        [2.0, 1.0, 0.0, -1.0, 0.0, 2.0]]
+        [[2.0, 1.0, 0.0, 0.0, 0.0], 
+        [1.0, 2.0, -1.0, 0.0, 2.0], 
+        [2.0, 1.0, 0.0, -1.0, 2.0]]
         """
         # Objective of original objective row remains
         self.objectives.pop()
@@ -189,7 +189,7 @@ class Tableau:
         ST:   x1 + 3x2 <= 4
              3x1 +  x2 <= 4
         >>> Tableau(np.array([[-1,-1,0,0,0],[1,3,1,0,4],[3,1,0,1,4.]]),
-        ... 2).run_simplex()
+        ... 2, 0).run_simplex()
         {'P': 2.0, 'x1': 1.0, 'x2': 1.0}
 
         # Optimal tableau input:
@@ -197,7 +197,7 @@ class Tableau:
         ... [0, 0, 0.25, 0.25, 2],
         ... [0, 1, 0.375, -0.125, 1],
         ... [1, 0, -0.125, 0.375, 1]
-        ... ]), 2).run_simplex()
+        ... ]), 2, 0).run_simplex()
         {'P': 2.0, 'x1': 1.0, 'x2': 1.0}
 
         # Non-standard: >= constraints
@@ -270,7 +270,7 @@ class Tableau:
         ... [0,0,0.875,0.375,5],
         ... [0,1,0.375,-0.125,1],
         ... [1,0,-0.125,0.375,1]
-        ... ]),2).interpret_tableau()
+        ... ]),2, 0).interpret_tableau()
         {'P': 5.0, 'x1': 1.0, 'x2': 1.0}
         """
         # P = RHS of final tableau
