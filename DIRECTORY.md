@@ -29,6 +29,7 @@
   * [Minmax](backtracking/minmax.py)
   * [N Queens](backtracking/n_queens.py)
   * [N Queens Math](backtracking/n_queens_math.py)
+  * [Power Sum](backtracking/power_sum.py)
   * [Rat In Maze](backtracking/rat_in_maze.py)
   * [Sudoku](backtracking/sudoku.py)
   * [Sum Of Subsets](backtracking/sum_of_subsets.py)
