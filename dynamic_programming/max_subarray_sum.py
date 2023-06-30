@@ -4,7 +4,7 @@ obtained from a contiguous subarray within a given array of numbers. For example
 the array [-2, 1, -3, 4, -1, 2, 1, -5, 4], the contiguous subarray with the maximum sum
 is [4, -1, 2, 1], so the maximum subarray sum is 6.
 
-Kadane's algorithm is simple dynamic programming algorithm that solves the maximum
+Kadane's algorithm is a simple dynamic programming algorithm that solves the maximum
 subarray sum problem in O(n) time and O(1) space.
 
 Reference: https://en.wikipedia.org/wiki/Maximum_subarray_problem
