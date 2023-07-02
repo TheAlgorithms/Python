@@ -29,6 +29,7 @@
   * [Minmax](backtracking/minmax.py)
   * [N Queens](backtracking/n_queens.py)
   * [N Queens Math](backtracking/n_queens_math.py)
+  * [Power Sum](backtracking/power_sum.py)
   * [Rat In Maze](backtracking/rat_in_maze.py)
   * [Sudoku](backtracking/sudoku.py)
   * [Sum Of Subsets](backtracking/sum_of_subsets.py)
@@ -146,6 +147,7 @@
   * [Decimal To Binary Recursion](conversions/decimal_to_binary_recursion.py)
   * [Decimal To Hexadecimal](conversions/decimal_to_hexadecimal.py)
   * [Decimal To Octal](conversions/decimal_to_octal.py)
+  * [Energy Conversions](conversions/energy_conversions.py)
   * [Excel Title To Column](conversions/excel_title_to_column.py)
   * [Hex To Bin](conversions/hex_to_bin.py)
   * [Hexadecimal To Decimal](conversions/hexadecimal_to_decimal.py)
@@ -166,6 +168,7 @@
   * Arrays
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
+    * [Product Sum](data_structures/arrays/product_sum.py)
   * Binary Tree
     * [Avl Tree](data_structures/binary_tree/avl_tree.py)
     * [Basic Binary Tree](data_structures/binary_tree/basic_binary_tree.py)
@@ -410,6 +413,7 @@
   * [Dijkstra 2](graphs/dijkstra_2.py)
   * [Dijkstra Algorithm](graphs/dijkstra_algorithm.py)
   * [Dijkstra Alternate](graphs/dijkstra_alternate.py)
+  * [Dijkstra Binary Grid](graphs/dijkstra_binary_grid.py)
   * [Dinic](graphs/dinic.py)
   * [Directed And Undirected (Weighted) Graph](graphs/directed_and_undirected_(weighted)_graph.py)
   * [Edmonds Karp Multiple Source And Sink](graphs/edmonds_karp_multiple_source_and_sink.py)
@@ -519,7 +523,6 @@
   * [Xgboost Regressor](machine_learning/xgboost_regressor.py)
 
 ## Maths
-  * [3N Plus 1](maths/3n_plus_1.py)
   * [Abs](maths/abs.py)
   * [Add](maths/add.py)
   * [Addition Without Arithmetic](maths/addition_without_arithmetic.py)
