@@ -23,11 +23,9 @@ def capture_radii(
     # Source google: gravitational constant
     g = 6.6743e-11  # SI units (N*m**2)/kg**2
 
-<<<<<<< HEAD
     #Gravitational constant to four significant figures as of 7/8/2023|
     #Source google: gravitational constant
     g=6.6743e-11    #SI units (N*m**2)/kg**2
-=======
     escape_velocity_squared = (2 * g * target_body_mass) / target_body_radius
 
     capture_radius = target_body_radius * math.sqrt(
