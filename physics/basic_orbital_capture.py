@@ -23,10 +23,9 @@ def capture_radii(
     # Source google: gravitational constant
     g = 6.6743e-11  # SI units (N*m**2)/kg**2
 
-    #Gravitational constant to four significant figures as of 7/8/2023|
-    #Source google: gravitational constant
-    g=6.6743e-11    #SI units (N*m**2)/kg**2
-
+    # Gravitational constant to four significant figures as of 7/8/2023|
+    # Source google: gravitational constant
+    g = 6.6743e-11  # SI units (N*m**2)/kg**2
 
     escape_velocity_squared = (2 * g * target_body_mass) / target_body_radius
 
@@ -39,6 +38,7 @@ def capture_radii(
 def capture_area(capture_radius: float) -> float:
     sigma = math.pi * math.pow(capture_radius, 2)
     return sigma
+
 
 if __name__ == "__main__":
     import doctest
