@@ -19,7 +19,7 @@ This algorithm does not account for an N-body problem.
 def capture_radii(
     target_body_radius: float, target_body_mass: float, projectile_velocity: float
 ) -> float:
-    # Gravitational constant to four signifigant figures as of 7/8/2023|
+    # Gravitational constant to four significant figures as of 7/8/2023|
     # Source google: gravitational constant
     g = 6.6743e-11  # SI units (N*m**2)/kg**2
 
