@@ -9,7 +9,7 @@ of this file.
 
 The derivation shows that a projectile does not need to aim directly at the target
 body in order to hit it, as  R_capture>R_target. Astronomers refer to the effective
-cross section for caputre as σ=π*R_capture**2.
+cross section for capture as σ=π*R_capture**2.
 
 This algorithm does not account for an N-body problem.
 
@@ -22,7 +22,7 @@ def capture_radii(
         projectile_velocity: float
         )->float:
 
-    #Gravitational constant to four signifigant figures as of 7/8/2023|
+    #Gravitational constant to four significant figures as of 7/8/2023|
     #Source google: gravitational constant
     g=6.6743e-11    #SI units (N*m**2)/kg**2
 
@@ -117,5 +117,5 @@ Let: Mt=target mass, Rt=target radius, v=projectile_velocity,
 Source: Problem Set 3 #8 c.Fall_2017|Honors Astronomy|Professor Rachel Bezanson
 
 Source #2: http://www.nssc.ac.cn/wxzygx/weixin/201607/P020160718380095698873.pdf
-           8.8 Planetary Rendevous: Pg.368
+           8.8 Planetary Rendezvous: Pg.368
 """
