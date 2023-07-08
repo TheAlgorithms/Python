@@ -16,26 +16,23 @@ This algorithm does not account for an N-body problem.
 """
 
 
-
 def capture_radii(
-        target_body_radius: float, target_body_mass: float,
-        projectile_velocity: float
-        )->float:
+    target_body_radius: float, target_body_mass: float, projectile_velocity: float
+) -> float:
+    # Gravitational constant to four signifigant figures as of 7/8/2023|
+    # Source google: gravitational constant
+    g = 6.6743e-11  # SI units (N*m**2)/kg**2
 
-    #Gravitational constant to four signifigant figures as of 7/8/2023|
-    #Source google: gravitational constant
-    g=6.6743e-11    #SI units (N*m**2)/kg**2
+    escape_velocity_squared = (2 * g * target_body_mass) / target_body_radius
 
-    escape_velocity_squared=(2*g*target_body_mass)/target_body_radius
-
-    capture_radius=target_body_radius*math.sqrt(
-        1+escape_velocity_squared/math.pow(projectile_velocity,2)
-        )
+    capture_radius = target_body_radius * math.sqrt(
+        1 + escape_velocity_squared / math.pow(projectile_velocity, 2)
+    )
     return capture_radius
 
 
-def capture_area(capture_radius: float)->float:
-    sigma=math.pi*math.pow(capture_radius,2)
+def capture_area(capture_radius: float) -> float:
+    sigma = math.pi * math.pow(capture_radius, 2)
     return sigma
 
 
