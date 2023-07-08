@@ -33,10 +33,16 @@ def is_prime(number: int) -> bool:
     assert isinstance(number, int) and (
         number >= 0
     ), "'number' must been an int and positive"
-
+    
     if 1 < number < 4:
         # 2 and 3 are primes
         return True
+
+    # Check if number is divisible by 2 or 5
+    last_digit = number % 10
+    elif last_digit not in [1, 3, 7, 9]:
+         return False
+
     elif number < 2 or number % 2 == 0 or number % 3 == 0:
         # Negatives, 0, 1, all even numbers, all multiples of 3 are not primes
         return False
