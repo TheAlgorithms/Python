@@ -40,6 +40,10 @@ def capture_area(capture_radius: float) -> float:
     sigma = math.pi * math.pow(capture_radius, 2)
     return sigma
 
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
 
 """
 Derivation:
