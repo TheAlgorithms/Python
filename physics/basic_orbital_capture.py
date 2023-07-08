@@ -1,10 +1,10 @@
 import math
 
 """
-These two functions will return the radii of capture for a target object
+These two functions will return the radii of impact for a target object
 of mass M and radius R as well as it's effective cross sectional area σ(sigma).
-That is to say any projectile with velocity v passing within σ, will be caputered
-by the target object with mass M. The derivation of which is given at the bottom
+That is to say any projectile with velocity v passing within σ, will impact the
+target object with mass M. The derivation of which is given at the bottom
 of this file.
 
 The derivation shows that a projectile does not need to aim directly at the target
@@ -95,7 +95,7 @@ Let: Mt=target mass, Rt=target radius, v=projectile_velocity,
 
     r_p=(-G*Mt)/v^2 + sqrt(G^2*Mt^2/v^4 + R_c^2)
 
-   (e)We are trying to solve for R_c. We are looking for capture, so we want r_p=Rt
+   (e)We are trying to solve for R_c. We are looking for impact, so we want r_p=Rt
 
     Rt + G*Mt/v^2 = sqrt(G^2*Mt^2/v^4 + R_c^2)->
 
@@ -115,4 +115,7 @@ Let: Mt=target mass, Rt=target radius, v=projectile_velocity,
     R_capture = Rt * sqrt(1 + v_esc**2/v**2)
 
 Source: Problem Set 3 #8 c.Fall_2017|Honors Astronomy|Professor Rachel Bezanson
+
+Source #2: http://www.nssc.ac.cn/wxzygx/weixin/201607/P020160718380095698873.pdf
+           8.8 Planetary Rendevous: Pg.368
 """
