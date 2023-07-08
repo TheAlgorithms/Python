@@ -34,6 +34,11 @@ def is_prime(number: int) -> bool:
         number >= 0
     ), "'number' must been an int and positive"
 
+    # Check if the last digit of number is 0, 2, 4, 5, 6, or 8, indicating divisibility by 2 or 5
+    last_digit = number % 10
+    if last_digit not in [1, 3, 7, 9]:
+         return False
+
     if 1 < number < 4:
         # 2 and 3 are primes
         return True
