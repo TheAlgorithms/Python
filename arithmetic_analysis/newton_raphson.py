@@ -4,6 +4,7 @@
 # quickly find a good approximation for the root of a real-valued function
 from __future__ import annotations
 
+from ast import literal_eval as eval  # noqa: A001
 from decimal import Decimal
 from math import *  # noqa: F403
 
