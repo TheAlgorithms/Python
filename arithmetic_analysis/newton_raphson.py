@@ -26,8 +26,8 @@ def newton_raphson(
     x = a
     while True:
         x = Decimal(x) - (
-            Decimal(eval(func)) / Decimal(eval(str(diff(func))))
-        )  # noqa: S307
+            Decimal(eval(func)) / Decimal(eval(str(diff(func))))  # noqa: S307
+        )
         # This number dictates the accuracy of the answer
         if abs(eval(func)) < precision:  # noqa: S307
             return float(x)
