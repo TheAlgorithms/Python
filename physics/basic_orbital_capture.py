@@ -1,6 +1,5 @@
 from math import sqrt,pow
-from scipy.constants import G as g
-from scipy.constants import pi as pi 
+from scipy.constants import G, pi, c
 
 """
 These two functions will return the radii of impact for a target object
@@ -21,27 +20,56 @@ This algorithm does not account for an N-body problem.
 def capture_radii(
     target_body_radius: float, target_body_mass: float, projectile_velocity: float
 ) -> float:
-    # Gravitational constant to four significant figures as of 7/8/2023|
-    # Source google: gravitational constant
-    g = 6.6743e-11  # SI units (N*m**2)/kg**2
+    """
+    Input Params:
+    -------------
+    target_body_radius: Radius of the central body SI units: meters | m
+    target_body_mass: Mass of the central body SI units: kilograms | kg
+    projectile_velocity: Velocity of object moving toward central body 
+        SI units: meters/second | m/s
+    Returns:
+    --------
+    >>> capture_radii(6.957e8, 1.99e30, 25000.0)
+    17209590691
+    >>> capture_radii(-6.957e8, 1.99e30, 25000.0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Radius cannot be less than 0
+    >>> capture_radii(6.957e8, -1.99e30, 25000.0)
+    Traceback (most recent call last):
+        ... 
+    ValueError: Mass cannot be less than 0
+    >>> capture_radii(6.957e8, 1.99e30, c+1)
+    Traceback (most recent call last):
+        ... 
+    ValueError: Cannot go beyond speed of light
+    """
+    
+    if(target_body_mass <0):
+        raise ValueError("Mass cannot be less than 0")
+    elif(target_body_radius<0):
+        raise ValueError("Radius cannot be less than 0")
+    elif(projectile_velocity>c):
+        raise ValueError("Cannot go beyond speed of light")
+    
+    else:
+        escape_velocity_squared = (2 * G * target_body_mass) / target_body_radius
 
-    escape_velocity_squared = (2 * g * target_body_mass) / target_body_radius
-
-    capture_radius = target_body_radius * sqrt(
-        1 + escape_velocity_squared / pow(projectile_velocity, 2)
-    )
-    return capture_radius
+        capture_radius = target_body_radius * sqrt(
+            1 + escape_velocity_squared / pow(projectile_velocity, 2)
+        )
+        return round(capture_radius)
 
 
 def capture_area(capture_radius: float) -> float:
+    
     sigma = pi * pow(capture_radius, 2)
     return sigma
 
 
 if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+    from doctest import testmod
+    testmod()
 
 """
 Derivation:
