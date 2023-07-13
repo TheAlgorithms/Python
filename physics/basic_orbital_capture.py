@@ -1,6 +1,6 @@
-from math import sqrt,pow
+from math import sqrt, pow
 from scipy.constants import G as g
-from scipy.constants import pi as pi 
+from scipy.constants import pi as pi
 
 """
 These two functions will return the radii of impact for a target object
