@@ -1,4 +1,6 @@
-import math
+from math import sqrt,pow
+from scipy.constants import G as g
+from scipy.constants import pi as pi 
 
 """
 These two functions will return the radii of impact for a target object
@@ -25,14 +27,14 @@ def capture_radii(
 
     escape_velocity_squared = (2 * g * target_body_mass) / target_body_radius
 
-    capture_radius = target_body_radius * math.sqrt(
-        1 + escape_velocity_squared / math.pow(projectile_velocity, 2)
+    capture_radius = target_body_radius * sqrt(
+        1 + escape_velocity_squared / pow(projectile_velocity, 2)
     )
     return capture_radius
 
 
 def capture_area(capture_radius: float) -> float:
-    sigma = math.pi * math.pow(capture_radius, 2)
+    sigma = pi * pow(capture_radius, 2)
     return sigma
 
 
