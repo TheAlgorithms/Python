@@ -1,5 +1,6 @@
-from math import sqrt,pow
-from scipy.constants import G, pi, c
+from math import pow, sqrt
+
+from scipy.constants import G, c, pi
 
 """
 These two functions will return the radii of impact for a target object
@@ -25,50 +26,77 @@ def capture_radii(
     -------------
     target_body_radius: Radius of the central body SI units: meters | m
     target_body_mass: Mass of the central body SI units: kilograms | kg
-    projectile_velocity: Velocity of object moving toward central body 
+    projectile_velocity: Velocity of object moving toward central body
         SI units: meters/second | m/s
     Returns:
     --------
     >>> capture_radii(6.957e8, 1.99e30, 25000.0)
-    17209590691
+    17209590691.0
     >>> capture_radii(-6.957e8, 1.99e30, 25000.0)
     Traceback (most recent call last):
         ...
     ValueError: Radius cannot be less than 0
     >>> capture_radii(6.957e8, -1.99e30, 25000.0)
     Traceback (most recent call last):
-        ... 
+        ...
     ValueError: Mass cannot be less than 0
     >>> capture_radii(6.957e8, 1.99e30, c+1)
     Traceback (most recent call last):
-        ... 
+        ...
     ValueError: Cannot go beyond speed of light
+
+    Returned SI units:
+    ------------------
+    meters | m
     """
-    
-    if(target_body_mass <0):
+
+    if target_body_mass < 0:
         raise ValueError("Mass cannot be less than 0")
-    elif(target_body_radius<0):
+    elif target_body_radius < 0:
         raise ValueError("Radius cannot be less than 0")
-    elif(projectile_velocity>c):
+    elif projectile_velocity > c:
         raise ValueError("Cannot go beyond speed of light")
-    
+
     else:
         escape_velocity_squared = (2 * G * target_body_mass) / target_body_radius
 
         capture_radius = target_body_radius * sqrt(
             1 + escape_velocity_squared / pow(projectile_velocity, 2)
         )
-        return round(capture_radius)
+        return round(capture_radius, 0)
 
 
 def capture_area(capture_radius: float) -> float:
-    
-    sigma = pi * pow(capture_radius, 2)
-    return sigma
+    """
+    Input Param:
+    ------------
+    capture_radius: The radius of orbital capture and impact for a central body of
+    mass M and a projectile moving towards it with velocity v
+        SI units: meters | m
+    Returns:
+    --------
+    >>> capture_area(17209590691)
+    9.304455331329126e+20
+    >>> capture_area(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: Cannot have a capture radius less than 0
+
+    Returned SI units:
+    ------------------
+    meters*meters | m**2
+    """
+
+    if capture_radius < 0:
+        raise ValueError("Cannot have a capture radius less than 0")
+    else:
+        sigma = pi * pow(capture_radius, 2)
+        return round(sigma, 0)
 
 
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
 
 """
