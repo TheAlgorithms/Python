@@ -4,33 +4,32 @@
 # quickly find a good approximation for the root of a real-valued function
 from __future__ import annotations
 
-from decimal import Decimal
-from math import *  # noqa: F403
-
-from sympy import diff
+from sympy import symbols, sympify, diff, lambdify
+from scipy.optimize import newton
 
 
 def newton_raphson(
-    func: str, a: float | Decimal, precision: float = 10**-10
+    func: str, a: float, precision: float = 10**-10
 ) -> float:
     """Finds root from the point 'a' onwards by Newton-Raphson method
     >>> newton_raphson("sin(x)", 2)
-    3.1415926536808043
+    3.141592653589793
     >>> newton_raphson("x**2 - 5*x +2", 0.4)
-    0.4384471871911695
+    0.43844718719116976
     >>> newton_raphson("x**2 - 5", 0.1)
     2.23606797749979
     >>> newton_raphson("log(x)- 1", 2)
-    2.718281828458938
+    2.7182818284590455
     """
-    x = a
-    while True:
-        x = Decimal(x) - (
-            Decimal(eval(func)) / Decimal(eval(str(diff(func))))  # noqa: S307
-        )
-        # This number dictates the accuracy of the answer
-        if abs(eval(func)) < precision:  # noqa: S307
-            return float(x)
+    symbol = symbols('x')
+    exp = sympify(func)
+    exp_diff = diff(exp, symbol)
+
+    exp_func = lambdify(symbol, exp)
+    f_diff_func = lambdify(symbol, exp_diff)
+
+    res = newton(exp_func, a, fprime=f_diff_func, tol=precision)
+    return res
 
 
 # Let's Execute
