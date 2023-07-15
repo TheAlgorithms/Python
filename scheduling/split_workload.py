@@ -2,7 +2,6 @@ from math import fabs
 
 
 def split_list(timings: list) -> tuple:
-
     """
 
     this is a case of the partition problem.
