@@ -632,7 +632,7 @@
 
 ## Physics
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
-  * [Lorenz Transformation Four Vector](physics/lorenz_transformation_four_vector.py)
+  * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
   * [N Body Simulation](physics/n_body_simulation.py)
   * [Newtons Second Law Of Motion](physics/newtons_second_law_of_motion.py)
 
@@ -929,6 +929,7 @@
   * [Non Preemptive Shortest Job First](scheduling/non_preemptive_shortest_job_first.py)
   * [Round Robin](scheduling/round_robin.py)
   * [Shortest Job First](scheduling/shortest_job_first.py)
+  * [Split Workload](scheduling/split_workload.py)
 
 ## Searches
   * [Binary Search](searches/binary_search.py)
