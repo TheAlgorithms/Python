@@ -19,19 +19,17 @@ def get_openlibrary_data(olid: str = "isbn/0140328726") -> dict:
     {'publishers': ['Puffin'], 'number_of_pages': 96, 'isbn_10': ['0140328726'], ...
     # >>> get_openlibrary_data(olid='/authors/OL7353617A')  # doctest: +ELLIPSIS
     {'name': 'Adrian Brisku', 'created': {'type': '/type/datetime', ...
-    >>> pass  # Placate https://github.com/apps/algorithms-keeper
     """
     new_olid = olid.strip().strip("/")  # Remove leading/trailing whitespace & slashes
     if new_olid.count("/") != 1:
-        raise ValueError(f"{olid} is not a valid Open Library olid")
+        msg = f"{olid} is not a valid Open Library olid"
+        raise ValueError(msg)
     return requests.get(f"https://openlibrary.org/{new_olid}.json").json()
 
 
 def summarize_book(ol_book_data: dict) -> dict:
     """
-     Given Open Library book data, return a summary as a Python dict.
-
-    >>> pass  # Placate https://github.com/apps/algorithms-keeper
+    Given Open Library book data, return a summary as a Python dict.
     """
     desired_keys = {
         "title": "Title",

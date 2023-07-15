@@ -7,7 +7,7 @@ def maximum_non_adjacent_sum(nums: list[int]) -> int:
     """
     Find the maximum non-adjacent sum of the integers in the nums input list
 
-    >>> print(maximum_non_adjacent_sum([1, 2, 3]))
+    >>> maximum_non_adjacent_sum([1, 2, 3])
     4
     >>> maximum_non_adjacent_sum([1, 5, 3, 7, 2, 2, 6])
     18

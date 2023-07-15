@@ -15,7 +15,20 @@ class Node:
 
 
 def make_tree() -> Node | None:
-    return Node(1, Node(2, Node(4), Node(5)), Node(3))
+    r"""
+    The below tree
+        1
+       / \
+      2   3
+     / \
+    4   5
+    """
+    tree = Node(1)
+    tree.left = Node(2)
+    tree.right = Node(3)
+    tree.left.left = Node(4)
+    tree.left.right = Node(5)
+    return tree
 
 
 def preorder(root: Node | None) -> list[int]:
@@ -24,7 +37,7 @@ def preorder(root: Node | None) -> list[int]:
     >>> preorder(make_tree())
     [1, 2, 4, 5, 3]
     """
-    return [root.data] + preorder(root.left) + preorder(root.right) if root else []
+    return [root.data, *preorder(root.left), *preorder(root.right)] if root else []
 
 
 def postorder(root: Node | None) -> list[int]:
@@ -42,7 +55,7 @@ def inorder(root: Node | None) -> list[int]:
     >>> inorder(make_tree())
     [4, 2, 5, 1, 3]
     """
-    return inorder(root.left) + [root.data] + inorder(root.right) if root else []
+    return [*inorder(root.left), root.data, *inorder(root.right)] if root else []
 
 
 def height(root: Node | None) -> int:
@@ -92,7 +105,6 @@ def get_nodes_from_left_to_right(
         if not root:
             return
         if level == 1:
-
             output.append(root.data)
         elif level > 1:
             populate_output(root.left, level - 1)

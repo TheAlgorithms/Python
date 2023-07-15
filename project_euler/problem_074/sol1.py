@@ -71,7 +71,7 @@ def sum_digit_factorials(n: int) -> int:
     return ret
 
 
-def chain_length(n: int, previous: set = None) -> int:
+def chain_length(n: int, previous: set | None = None) -> int:
     """
     Calculate the length of the chain of non-repeating terms starting with n.
     Previous is a set containing the previous member of the chain.

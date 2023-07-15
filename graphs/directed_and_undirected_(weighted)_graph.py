@@ -167,7 +167,7 @@ class DirectedGraph:
                         and not on_the_way_back
                     ):
                         len_stack = len(stack) - 1
-                        while True and len_stack >= 0:
+                        while len_stack >= 0:
                             if stack[len_stack] == node[1]:
                                 anticipating_nodes.add(node[1])
                                 break
@@ -220,15 +220,12 @@ class DirectedGraph:
                         and not on_the_way_back
                     ):
                         len_stack_minus_one = len(stack) - 1
-                        while True and len_stack_minus_one >= 0:
+                        while len_stack_minus_one >= 0:
                             if stack[len_stack_minus_one] == node[1]:
                                 anticipating_nodes.add(node[1])
                                 break
                             else:
                                 return True
-                                # TODO:The following code is unreachable.
-                                anticipating_nodes.add(stack[len_stack_minus_one])
-                                len_stack_minus_one -= 1
                     if visited.count(node[1]) < 1:
                         stack.append(node[1])
                         visited.append(node[1])
@@ -395,7 +392,7 @@ class Graph:
                         and not on_the_way_back
                     ):
                         len_stack = len(stack) - 1
-                        while True and len_stack >= 0:
+                        while len_stack >= 0:
                             if stack[len_stack] == node[1]:
                                 anticipating_nodes.add(node[1])
                                 break
@@ -448,16 +445,12 @@ class Graph:
                         and not on_the_way_back
                     ):
                         len_stack_minus_one = len(stack) - 1
-                        while True and len_stack_minus_one >= 0:
+                        while len_stack_minus_one >= 0:
                             if stack[len_stack_minus_one] == node[1]:
                                 anticipating_nodes.add(node[1])
                                 break
                             else:
                                 return True
-                                # TODO: the following code is unreachable
-                                # is this meant to be called in the else ?
-                                anticipating_nodes.add(stack[len_stack_minus_one])
-                                len_stack_minus_one -= 1
                     if visited.count(node[1]) < 1:
                         stack.append(node[1])
                         visited.append(node[1])

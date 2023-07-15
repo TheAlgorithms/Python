@@ -47,19 +47,21 @@ class IIRFilter:
             >>> filt.set_coefficients(a_coeffs, b_coeffs)
         """
         if len(a_coeffs) < self.order:
-            a_coeffs = [1.0] + a_coeffs
+            a_coeffs = [1.0, *a_coeffs]
 
         if len(a_coeffs) != self.order + 1:
-            raise ValueError(
-                f"Expected a_coeffs to have {self.order + 1} elements for {self.order}"
-                f"-order filter, got {len(a_coeffs)}"
+            msg = (
+                f"Expected a_coeffs to have {self.order + 1} elements "
+                f"for {self.order}-order filter, got {len(a_coeffs)}"
             )
+            raise ValueError(msg)
 
         if len(b_coeffs) != self.order + 1:
-            raise ValueError(
-                f"Expected b_coeffs to have {self.order + 1} elements for {self.order}"
-                f"-order filter, got {len(a_coeffs)}"
+            msg = (
+                f"Expected b_coeffs to have {self.order + 1} elements "
+                f"for {self.order}-order filter, got {len(a_coeffs)}"
             )
+            raise ValueError(msg)
 
         self.a_coeffs = a_coeffs
         self.b_coeffs = b_coeffs

@@ -33,12 +33,12 @@ def krishnamurthy(number: int) -> bool:
     True
     """
 
-    factSum = 0
+    fact_sum = 0
     duplicate = number
     while duplicate > 0:
         duplicate, digit = divmod(duplicate, 10)
-        factSum += factorial(digit)
-    return factSum == number
+        fact_sum += factorial(digit)
+    return fact_sum == number
 
 
 if __name__ == "__main__":

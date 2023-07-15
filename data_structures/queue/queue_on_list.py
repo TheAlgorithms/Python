@@ -37,7 +37,7 @@ class Queue:
         number of times to rotate queue"""
 
     def rotate(self, rotation):
-        for i in range(rotation):
+        for _ in range(rotation):
             self.put(self.get())
 
     """Enqueues {@code item}

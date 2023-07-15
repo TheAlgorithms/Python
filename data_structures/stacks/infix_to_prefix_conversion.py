@@ -15,9 +15,9 @@ Enter an Infix Equation = a + b ^c
 """
 
 
-def infix_2_postfix(Infix):
-    Stack = []
-    Postfix = []
+def infix_2_postfix(infix):
+    stack = []
+    post_fix = []
     priority = {
         "^": 3,
         "*": 2,
@@ -26,7 +26,7 @@ def infix_2_postfix(Infix):
         "+": 1,
         "-": 1,
     }  # Priority of each operator
-    print_width = len(Infix) if (len(Infix) > 7) else 7
+    print_width = len(infix) if (len(infix) > 7) else 7
 
     # Print table header for output
     print(
@@ -37,52 +37,52 @@ def infix_2_postfix(Infix):
     )
     print("-" * (print_width * 3 + 7))
 
-    for x in Infix:
+    for x in infix:
         if x.isalpha() or x.isdigit():
-            Postfix.append(x)  # if x is Alphabet / Digit, add it to Postfix
+            post_fix.append(x)  # if x is Alphabet / Digit, add it to Postfix
         elif x == "(":
-            Stack.append(x)  # if x is "(" push to Stack
+            stack.append(x)  # if x is "(" push to Stack
         elif x == ")":  # if x is ")" pop stack until "(" is encountered
-            while Stack[-1] != "(":
-                Postfix.append(Stack.pop())  # Pop stack & add the content to Postfix
-            Stack.pop()
+            while stack[-1] != "(":
+                post_fix.append(stack.pop())  # Pop stack & add the content to Postfix
+            stack.pop()
         else:
-            if len(Stack) == 0:
-                Stack.append(x)  # If stack is empty, push x to stack
+            if len(stack) == 0:
+                stack.append(x)  # If stack is empty, push x to stack
             else:  # while priority of x is not > priority of element in the stack
-                while len(Stack) > 0 and priority[x] <= priority[Stack[-1]]:
-                    Postfix.append(Stack.pop())  # pop stack & add to Postfix
-                Stack.append(x)  # push x to stack
+                while len(stack) > 0 and priority[x] <= priority[stack[-1]]:
+                    post_fix.append(stack.pop())  # pop stack & add to Postfix
+                stack.append(x)  # push x to stack
 
         print(
             x.center(8),
-            ("".join(Stack)).ljust(print_width),
-            ("".join(Postfix)).ljust(print_width),
+            ("".join(stack)).ljust(print_width),
+            ("".join(post_fix)).ljust(print_width),
             sep=" | ",
         )  # Output in tabular format
 
-    while len(Stack) > 0:  # while stack is not empty
-        Postfix.append(Stack.pop())  # pop stack & add to Postfix
+    while len(stack) > 0:  # while stack is not empty
+        post_fix.append(stack.pop())  # pop stack & add to Postfix
         print(
             " ".center(8),
-            ("".join(Stack)).ljust(print_width),
-            ("".join(Postfix)).ljust(print_width),
+            ("".join(stack)).ljust(print_width),
+            ("".join(post_fix)).ljust(print_width),
             sep=" | ",
         )  # Output in tabular format
 
-    return "".join(Postfix)  # return Postfix as str
+    return "".join(post_fix)  # return Postfix as str
 
 
-def infix_2_prefix(Infix):
-    Infix = list(Infix[::-1])  # reverse the infix equation
+def infix_2_prefix(infix):
+    infix = list(infix[::-1])  # reverse the infix equation
 
-    for i in range(len(Infix)):
-        if Infix[i] == "(":
-            Infix[i] = ")"  # change "(" to ")"
-        elif Infix[i] == ")":
-            Infix[i] = "("  # change ")" to "("
+    for i in range(len(infix)):
+        if infix[i] == "(":
+            infix[i] = ")"  # change "(" to ")"
+        elif infix[i] == ")":
+            infix[i] = "("  # change ")" to "("
 
-    return (infix_2_postfix("".join(Infix)))[
+    return (infix_2_postfix("".join(infix)))[
         ::-1
     ]  # call infix_2_postfix on Infix, return reverse of Postfix
 

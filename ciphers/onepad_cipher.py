@@ -22,7 +22,7 @@ class Onepad:
         for i in range(len(key)):
             p = int((cipher[i] - (key[i]) ** 2) / key[i])
             plain.append(chr(p))
-        return "".join([i for i in plain])
+        return "".join(plain)
 
 
 if __name__ == "__main__":
