@@ -24,9 +24,9 @@ def newton_raphson(func: str, a: float, precision: float = 10**-10) -> float:
     exp_diff = diff(exp, symbol)
 
     exp_func = lambdify(symbol, exp)
-    f_diff_func = lambdify(symbol, exp_diff)
+    exp_diff_func = lambdify(symbol, exp_diff)
 
-    res = newton(exp_func, a, fprime=f_diff_func, tol=precision)
+    res = newton(exp_func, a, fprime=exp_diff_func, tol=precision)
     return res
 
 
