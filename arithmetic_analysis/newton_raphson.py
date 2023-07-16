@@ -7,7 +7,9 @@ from __future__ import annotations
 from sympy import diff, symbols, sympify
 
 
-def newton_raphson(func: str, start_point: float, precision: float = 10**-10) -> float:
+def newton_raphson(
+    func: str, start_point: float, precision: float = 10**-10
+) -> float:
     """Finds root from the point 'a' onwards by Newton-Raphson method
     >>> newton_raphson("sin(x)", 2)
     3.1415926536808043
@@ -19,7 +21,7 @@ def newton_raphson(func: str, start_point: float, precision: float = 10**-10) ->
     2.718281828458938
     """
     x = start_point
-    symbol = symbols('x')
+    symbol = symbols("x")
 
     # expressions to be represented symbolically and manipulated algebraically
     expression = sympify(func)
