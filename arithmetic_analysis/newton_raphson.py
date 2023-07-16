@@ -35,7 +35,7 @@ def newton_raphson(
     """
     if precision <= 0:
         raise ValueError("precision must be greater than zero")
-        
+
     x = start_point
     symbol = symbols("x")
 
