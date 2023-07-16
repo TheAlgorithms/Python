@@ -57,7 +57,7 @@ class RadixNode:
         """
         # Case 1: If the word is the prefix of the node
         # Solution: We set the current node as leaf
-        if self.prefix == word:
+        if self.prefix == word and not self.is_leaf:
             self.is_leaf = True
 
         # Case 2: The node has no edges that have a prefix to the word
