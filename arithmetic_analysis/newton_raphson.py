@@ -33,7 +33,7 @@ def newton_raphson(func: str, a: float, precision: float = 10**-10) -> float:
         if abs(val) < precision:
             return float(x)
 
-        x = x - (val / diff_val)
+        x -= val / diff_val
 
     return float(x)
 
