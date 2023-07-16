@@ -22,7 +22,7 @@ def newton_raphson(
     2.718281828458938
     >>> from scipy.optimize import newton
     >>> all(newton_raphson("log(x)- 1", 2) == newton("log(x)- 1", 2)
-    ...     for precision in 10, 100, 1000, 10000))
+    ...     for precision in (10, 100, 1000, 10000))
     True
     >>> newton_raphson("log(x)- 1", 2, 0)
     Traceback (most recent call last):
