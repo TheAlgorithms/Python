@@ -51,7 +51,7 @@ def newton_raphson(
         if abs(function_value) < precision:
             return float(x)
 
-        x = x - (function_value / derivative_value)
+        x -= function_value / derivative_value
 
     return float(x)
 
