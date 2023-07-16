@@ -1,7 +1,8 @@
 # Implementing Newton Raphson method in Python
 # Author: Syed Haseeb Shah (github.com/QuantumNovice)
 # The Newton-Raphson method (also known as Newton's method) is a way to
-# quickly find a good approximation for the root of a real-valued function
+# quickly find a good approximation for the root of a real-valued function.
+# https://en.wikipedia.org/wiki/Newton%27s_method
 from __future__ import annotations
 
 from sympy import diff, symbols, sympify
