@@ -20,12 +20,10 @@ def newton_raphson(func: str, a: float, precision: float = 10**-10) -> float:
     """
     x = a
     symbol = symbols("x")
-    exp = sympify(
-        func
-    )  # expressions to be represented symbolically and manipulated algebraically
-    exp_diff = diff(
-        exp, symbol
-    )  # calculates the derivative value at the current x value
+    # expressions to be represented symbolically and manipulated algebraically
+    exp = sympify(func)
+    # calculate the derivative value at the current x value
+    exp_diff = diff(exp, symbol)
     maximum_iterations = 100
 
     for _ in range(maximum_iterations):
