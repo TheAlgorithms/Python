@@ -19,6 +19,17 @@ def newton_raphson(
     2.23606797749979
     >>> newton_raphson("log(x)- 1", 2)
     2.718281828458938
+    >>> from scipy.optimize import newton
+    >>> all(newton_raphson("log(x)- 1", 2) == newton("log(x)- 1", 2) for precision in 10, 100, 1000, 10000))
+    True
+    >>> newton_raphson("log(x)- 1", 2, 0)
+    Traceback (most recent call last):
+        ...
+    ValueError: precision must be greater than zero
+    >>> newton_raphson("log(x)- 1", 2, -1)
+    Traceback (most recent call last):
+        ...
+    ValueError: precision must be greater than zero
     """
     x = start_point
     symbol = symbols("x")
