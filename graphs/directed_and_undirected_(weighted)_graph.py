@@ -305,7 +305,7 @@ class Graph:
         stack = []
         visited = []
         if s == -2:
-            s = next(iter(self.graph)
+            s = next(iter(self.graph))
         stack.append(s)
         visited.append(s)
         ss = s
