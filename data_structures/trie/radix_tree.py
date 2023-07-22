@@ -156,7 +156,7 @@ class RadixNode:
                         del self.nodes[word[0]]
                         # We merge the current node with its only child
                         if len(self.nodes) == 1 and not self.is_leaf:
-                            merging_node = list(self.nodes.values())[0]
+                            merging_node = next(iter(self.nodes.values()))
                             self.is_leaf = merging_node.is_leaf
                             self.prefix += merging_node.prefix
                             self.nodes = merging_node.nodes
@@ -165,7 +165,7 @@ class RadixNode:
                         incoming_node.is_leaf = False
                     # If there is 1 edge, we merge it with its child
                     else:
-                        merging_node = list(incoming_node.nodes.values())[0]
+                        merging_node = next(iter(incoming_node.nodes.values()))
                         incoming_node.is_leaf = merging_node.is_leaf
                         incoming_node.prefix += merging_node.prefix
                         incoming_node.nodes = merging_node.nodes

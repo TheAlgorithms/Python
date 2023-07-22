@@ -1,7 +1,7 @@
 import math
 
 
-def convert(number: int) -> str:
+def convert(number: int) -> str:  # noqa: PLR0912
     """
     Given a number return the number in words.
 
