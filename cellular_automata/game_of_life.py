@@ -98,7 +98,7 @@ def __judge_point(pt: bool, neighbours: list[list[bool]]) -> bool:
     if pt:
         if alive < 2:
             state = False
-        elif alive == 2 or alive == 3:
+        elif alive in {2, 3}:
             state = True
         elif alive > 3:
             state = False
