@@ -9,6 +9,7 @@ Rating). We try to best fit a line through dataset and estimate the parameters.
 """
 import numpy as np
 import requests
+import matplotlib.pyplot as plt
 
 
 def collect_dataset():
@@ -41,7 +42,6 @@ def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
                        curr_features - alpha_ * gradient(w.r.t. feature)
     """
     n = len_data
-
     prod = np.dot(theta, data_x.transpose())
     prod -= data_y.transpose()
     sum_grad = np.dot(prod, data_x)
@@ -70,8 +70,8 @@ def run_linear_regression(data_x, data_y):
     :param data_y  : contains the output (result vector)
     :return        : feature for line of best fit (Feature vector)
     """
-    iterations = 100000
-    alpha = 0.0001550
+    iterations = 250000
+    alpha = 0.000326
 
     no_features = data_x.shape[1]
     len_data = data_x.shape[0] - 1
@@ -99,7 +99,7 @@ def mean_absolute_error(predicted_y, original_y):
 def main():
     """Driver function"""
     data = collect_dataset()
-
+    
     len_data = data.shape[0]
     data_x = np.c_[np.ones(len_data), data[:, :-1]].astype(float)
     data_y = data[:, -1].astype(float)
@@ -109,7 +109,6 @@ def main():
     print("Resultant Feature vector : ")
     for i in range(0, len_result):
         print(f"{theta[0, i]:.5f}")
-
 
 if __name__ == "__main__":
     main()
