@@ -9,7 +9,6 @@ Rating). We try to best fit a line through dataset and estimate the parameters.
 """
 import numpy as np
 import requests
-import matplotlib.pyplot as plt
 
 
 def collect_dataset():
@@ -99,7 +98,7 @@ def mean_absolute_error(predicted_y, original_y):
 def main():
     """Driver function"""
     data = collect_dataset()
-    
+
     len_data = data.shape[0]
     data_x = np.c_[np.ones(len_data), data[:, :-1]].astype(float)
     data_y = data[:, -1].astype(float)
@@ -109,6 +108,7 @@ def main():
     print("Resultant Feature vector : ")
     for i in range(0, len_result):
         print(f"{theta[0, i]:.5f}")
+
 
 if __name__ == "__main__":
     main()
