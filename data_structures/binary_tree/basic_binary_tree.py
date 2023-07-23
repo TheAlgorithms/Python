@@ -12,22 +12,21 @@ class Node:
         self.right: Node | None = None
 
 
-def display(tree: Node | None) -> None:  # In Order traversal of the tree
+
+def display_tree(root: Node | None, level : int = 0) -> None:
     """
     >>> root = Node(1)
-    >>> root.left = Node(0)
-    >>> root.right = Node(2)
-    >>> display(root)
-    0
+    >>> root.left = Node(2)
+    >>> root.right = Node(3)
+    >>> display_tree(root)
+        3
     1
-    2
-    >>> display(root.right)
-    2
+        2
     """
-    if tree:
-        display(tree.left)
-        print(tree.data)
-        display(tree.right)
+    if root:
+        display_tree(root.right, level + 1)
+        print("    " * level + str(root.data))
+        display_tree(root.left, level + 1)
 
 
 def depth_of_tree(tree: Node | None) -> int:
@@ -94,7 +93,7 @@ def main() -> None:  # Main function for testing.
     print(is_full_binary_tree(tree))
     print(depth_of_tree(tree))
     print("Tree is: ")
-    display(tree)
+    display_tree(tree)
 
 
 if __name__ == "__main__":
