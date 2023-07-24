@@ -44,8 +44,6 @@ class PolynomialRegression:
     def __init__(self, degree: int) -> None:
         """
         @raises ValueError: if the polynomial degree is negative
-
-        >>> pass
         """
         if degree < 0:
             raise ValueError("Polynomial degree must be non-negative")
@@ -118,7 +116,6 @@ class PolynomialRegression:
 
         @param x_train: the predictor values x for model fitting
         @param y_train: the response values y for model fitting
-        @returns:       None
         @raises ArithmeticError:    if X isn't full rank, then XᵀX is singular and β
                                     doesn't exist
 
@@ -187,8 +184,6 @@ def main() -> None:
     """
     Fit a polynomial regression model to predict fuel efficiency using seaborn's mpg
     dataset
-
-    >>> pass    # No doctests, function is for demo purposes only
     """
     import seaborn as sns
 
