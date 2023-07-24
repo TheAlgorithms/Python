@@ -56,9 +56,11 @@ class RadixNode:
         >>> RadixNode("myprefix").insert("mystring")
 
         >>> root = RadixNode()
-        >>> root.insert_many(['A', 'AA'])
-        >>> root.nodes['A'].nodes['A'].prefix
-        'A'
+        >>> root.insert_many(['myprefix', 'myprefixA', 'myprefixAA'])
+        >>> root.print_tree()
+        - myprefix   (leaf)
+        -- A   (leaf)
+        --- A   (leaf)
         """
         # Case 1: If the word is the prefix of the node
         # Solution: We set the current node as leaf
