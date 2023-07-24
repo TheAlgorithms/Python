@@ -2,7 +2,7 @@
 Polynomial regression is a type of regression analysis that models the relationship
 between a predictor x and the response y as an mth-degree polynomial:
 
-y = β₀ + β₁x + β₂x² + ... + βₘxᵐ + εᵢ
+y = β₀ + β₁x + β₂x² + ... + βₘxᵐ + ε
 
 By treating x, x², ..., xᵐ as distinct variables, we see that polynomial regression is a
 special case of multiple linear regression. Therefore, we can use ordinary least squares
