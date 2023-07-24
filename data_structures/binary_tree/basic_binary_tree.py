@@ -11,6 +11,7 @@ class Node:
         self.left: Node | None = None
         self.right: Node | None = None
 
+
 def display(tree: Node | None) -> None:  # In Order traversal of the tree
     """
     >>> root = Node(1)
