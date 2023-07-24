@@ -24,7 +24,7 @@ def display_tree(root: Node | None, level: int = 0) -> None:
     """
     if root:
         display_tree(root.right, level + 1)
-        print("    " * level + str(root.data))
+        print(f"{'    ' * level}{root.data}")
         display_tree(root.left, level + 1)
 
 
