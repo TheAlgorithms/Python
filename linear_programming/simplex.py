@@ -4,7 +4,7 @@ tabular form with
 - `>=`, `<=`, and `=` constraints and
 - each variable `x1, x2, ...>= 0`.
 
-See https://gist.github.com/imengus/f9619a568f8da5bc74eaf20169a24d98 for how to
+See https://gist.github.com/imengus/f9619a568f7da5bc74eaf20169a24d98 for how to
 convert linear programs to simplex tableaus, and the steps taken in the simplex
 algorithm.
 
@@ -24,30 +24,47 @@ class Tableau:
     Traceback (most recent call last):
     ...
     ValueError: RHS must be > 0
+
+    >>> Tableau(np.array([[-1,-1,0,0,1],[1,3,1,0,4],[3,1,0,1,4.]]), -2, 2)
+    Traceback (most recent call last):
+    ...
+    ValueError: Number of decision and artificial variables must be greater or equal to
+    2 or 0, respectively
     """
 
-    def __init__(self, tableau: np.ndarray, n_vars: int, n_art_vars: int) -> None:
+    # Maximum number of iterations to prevent cycling
+    maxiter = 100
+
+    def __init__(
+        self, tableau: np.ndarray, n_vars: int, n_artificial_vars: int
+    ) -> None:
         # Check if RHS is negative
-        if np.any(tableau[:, -1], where=tableau[:, -1] < 0):
+        if not (tableau[:, -1] >= 0).all():
             raise ValueError("RHS must be > 0")
+
+        if n_vars < 2 or n_artificial_vars < 0:
+            raise ValueError(
+                "Number of decision and artificial variables must be greater or equal \
+                        to 2 or 0, respectively"
+            )
 
         self.tableau = tableau
         self.n_rows, n_cols = tableau.shape
 
         # Number of decision variables x1, x2, x3...
-        self.n_vars, self.n_art_vars = n_vars, n_art_vars
+        self.n_vars, self.n_artificial_vars = n_vars, n_artificial_vars
 
         # 2 if there are >= or == constraints (nonstandard), 1 otherwise (std)
-        self.n_stages = (self.n_art_vars > 0) + 1
+        self.n_stages = (self.n_artificial_vars > 0) + 1
 
         # Number of slack variables added to make inequalities into equalities
-        self.n_slack = n_cols - self.n_vars - self.n_art_vars - 1
+        self.n_slack = n_cols - self.n_vars - self.n_artificial_vars - 1
 
         # Objectives for each stage
         self.objectives = ["max"]
 
         # In two stage simplex, first minimise then maximise
-        if self.n_art_vars:
+        if self.n_artificial_vars:
             self.objectives.append("min")
 
         self.col_titles = self.generate_col_titles()
@@ -165,7 +182,7 @@ class Tableau:
             return self.tableau
 
         # Slice containing ids for artificial columns
-        s = slice(-self.n_art_vars - 1, -1)
+        s = slice(-self.n_artificial_vars - 1, -1)
 
         # Delete the artificial variable columns
         self.tableau = np.delete(self.tableau, s, axis=1)
@@ -175,7 +192,7 @@ class Tableau:
 
         self.n_stages = 1
         self.n_rows -= 1
-        self.n_art_vars = 0
+        self.n_artificial_vars = 0
         self.stop_iter = False
         return self.tableau
 
@@ -245,7 +262,7 @@ class Tableau:
         {'P': 132.0, 'x1': 12.000... 'x2': 5.999...}
         """
         # Stop simplex algorithm from cycling.
-        for _ in range(100):
+        for _ in range(Tableau.maxiter):
             # Completion of each stage removes an objective. If both stages
             # are complete, then no objectives are left
             if not self.objectives:
@@ -276,16 +293,16 @@ class Tableau:
         output_dict = {"P": abs(self.tableau[0, -1])}
 
         for i in range(self.n_vars):
-            # Gives ids of nonzero entries in the ith column
+            # Gives indices of nonzero entries in the ith column
             nonzero = np.nonzero(self.tableau[:, i])
             n_nonzero = len(nonzero[0])
 
-            # First entry in the nonzero ids
+            # First entry in the nonzero indices
             nonzero_rowidx = nonzero[0][0]
             nonzero_val = self.tableau[nonzero_rowidx, i]
 
             # If there is only one nonzero value in column, which is one
-            if n_nonzero == nonzero_val == 1:
+            if n_nonzero == 1 and nonzero_val == 1:
                 rhs_val = self.tableau[nonzero_rowidx, -1]
                 output_dict[self.col_titles[i]] = rhs_val
         return output_dict
