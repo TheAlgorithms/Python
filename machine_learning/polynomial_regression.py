@@ -14,10 +14,10 @@ for polynomial regression:
 where X is the design matrix, y is the response vector, and X⁺ denotes the Moore–Penrose
 pseudoinverse of X. In the case of polynomial regression, the design matrix is
 
-    |1  x₁  x₁²  ⋯ x₁ᵐ|
-X = |1  x₂  x₂²  ⋯ x₂ᵐ|
-    |⋮ ⋮  ⋮   ⋱ ⋮ |
-    |1  xₙ  xₙ²  ⋯ xₙᵐ|
+    |1  x₁  x₁² ⋯ x₁ᵐ|
+X = |1  x₂  x₂² ⋯ x₂ᵐ|
+    |⋮  ⋮   ⋮   ⋱ ⋮  |
+    |1  xₙ  xₙ² ⋯  xₙᵐ|
 
 In OLS estimation, inverting XᵀX to compute X⁺ can be very numerically unstable. This
 implementation sidesteps this need to invert XᵀX by computing X⁺ using singular value
@@ -60,10 +60,10 @@ class PolynomialRegression:
         input data x = (x₁, x₂, ..., xₙ) and polynomial degree m, the design matrix is
         the Vandermonde matrix
 
-            |1  x₁  x₁²  ⋯ x₁ᵐ|
-        X = |1  x₂  x₂²  ⋯ x₂ᵐ|
-            |⋮ ⋮  ⋮   ⋱ ⋮ |
-            |1  xₙ  xₙ²  ⋯ xₙᵐ|
+            |1  x₁  x₁² ⋯ x₁ᵐ|
+        X = |1  x₂  x₂² ⋯ x₂ᵐ|
+            |⋮  ⋮   ⋮   ⋱ ⋮  |
+            |1  xₙ  xₙ² ⋯  xₙᵐ|
 
         Reference: https://en.wikipedia.org/wiki/Vandermonde_matrix
 
