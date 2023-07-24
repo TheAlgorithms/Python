@@ -33,12 +33,12 @@ def display(tree: Node | None) -> None:  # In Order traversal of the tree
 def display_using_in_order_traversal(root: Node | None, level: int = 0) -> None:
     """
     >>> root = Node(1)
-    >>> root.left = Node(2)
-    >>> root.right = Node(3)
+    >>> root.left = Node(0)
+    >>> root.right = Node(2)
     >>> display_tree(root)
-        3
-    1
         2
+    1
+        0
     """
     if root:
         display_using_in_order_traversal(root.right, level + 1)
