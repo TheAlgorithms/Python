@@ -53,7 +53,12 @@ class RadixNode:
         Args:
             word (str): word to insert
 
-        >>> RadixNode("myprefix").insert("mystring")
+        >>> RadixNode("myprefix").insert("mystring") is None
+        True
+        >>> root = RadixNode()
+        >>> root.insert_many(['A', 'AA'])
+        >>> root.nodes['A'].nodes['A'].prefix
+        'A'
         """
         # Case 1: If the word is the prefix of the node
         # Solution: We set the current node as leaf
