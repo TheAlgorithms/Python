@@ -29,6 +29,7 @@ def display(tree: Node | None) -> None:  # In Order traversal of the tree
         print(tree.data)
         display(tree.right)
 
+
 def display_using_in_order_traversal(root: Node | None, level: int = 0) -> None:
     """
     >>> root = Node(1)
