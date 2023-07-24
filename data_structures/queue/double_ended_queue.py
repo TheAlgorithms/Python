@@ -54,7 +54,7 @@ class Deque:
             the current node of the iteration.
         """
 
-        __slots__ = "_cur"
+        __slots__ = ("_cur",)
 
         def __init__(self, cur: Deque._Node | None) -> None:
             self._cur = cur
