@@ -184,6 +184,8 @@ def main() -> None:
     """
     Fit a polynomial regression model to predict fuel efficiency using seaborn's mpg
     dataset
+
+    >>> pass    # Placeholder, function is only for demo purposes
     """
     import seaborn as sns
 
