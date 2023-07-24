@@ -28,8 +28,7 @@ class Tableau:
     >>> Tableau(np.array([[-1,-1,0,0,1],[1,3,1,0,4],[3,1,0,1,4.]]), -2, 2)
     Traceback (most recent call last):
     ...
-    ValueError: Number of decision and artificial variables must be greater or equal to
-    2 or 0, respectively
+    ValueError: number of (artificial) variables must be a natural number
     """
 
     # Maximum number of iterations to prevent cycling
@@ -44,8 +43,7 @@ class Tableau:
 
         if n_vars < 2 or n_artificial_vars < 0:
             raise ValueError(
-                "Number of decision and artificial variables must be greater or equal \
-                        to 2 or 0, respectively"
+                "number of (artificial) variables must be a natural number"
             )
 
         self.tableau = tableau
