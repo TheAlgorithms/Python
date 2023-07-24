@@ -12,7 +12,7 @@ class Node:
         self.right: Node | None = None
 
 
-def display_tree(root: Node | None, level: int = 0) -> None:
+def display_using_in_order_traversal(root: Node | None, level: int = 0) -> None:
     """
     >>> root = Node(1)
     >>> root.left = Node(2)
