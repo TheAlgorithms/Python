@@ -23,9 +23,9 @@ def display_using_in_order_traversal(root: Node | None, level: int = 0) -> None:
         2
     """
     if root:
-        display_tree(root.right, level + 1)
+        display_using_in_order_traversal(root.right, level + 1)
         print(f"{'    ' * level}{root.data}")
-        display_tree(root.left, level + 1)
+        display_using_in_order_traversal(root.left, level + 1)
 
 
 def depth_of_tree(tree: Node | None) -> int:
