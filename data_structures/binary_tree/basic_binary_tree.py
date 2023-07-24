@@ -12,22 +12,7 @@ class Node:
         self.right: Node | None = None
 
 
-def display(tree: Node | None) -> None:  # In Order traversal of the tree
-    """
-    >>> root = Node(1)
-    >>> root.left = Node(0)
-    >>> root.right = Node(2)
-    >>> display(root)
-    0
-    1
-    2
-    >>> display(root.right)
-    2
-    """
-    if tree:
-        display(tree.left)
-        print(tree.data)
-        display(tree.right)
+
 
 
 def display_using_in_order_traversal(root: Node | None, level: int = 0) -> None:
