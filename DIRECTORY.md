@@ -511,7 +511,7 @@
   * Lstm
     * [Lstm Prediction](machine_learning/lstm/lstm_prediction.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
-  * [Polymonial Regression](machine_learning/polymonial_regression.py)
+  * [Polynomial Regression](machine_learning/polynomial_regression.py)
   * [Scoring Functions](machine_learning/scoring_functions.py)
   * [Self Organizing Map](machine_learning/self_organizing_map.py)
   * [Sequential Minimum Optimization](machine_learning/sequential_minimum_optimization.py)
