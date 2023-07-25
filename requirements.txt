@@ -11,6 +11,7 @@ projectq
 qiskit
 requests
 rich
+ruff
 scikit-fuzzy
 scikit-learn
 statsmodels
