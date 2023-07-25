@@ -54,10 +54,17 @@ class RadixNode:
             word (str): word to insert
 
         >>> RadixNode("myprefix").insert("mystring")
+
+        >>> root = RadixNode()
+        >>> root.insert_many(['myprefix', 'myprefixA', 'myprefixAA'])
+        >>> root.print_tree()
+        - myprefix   (leaf)
+        -- A   (leaf)
+        --- A   (leaf)
         """
         # Case 1: If the word is the prefix of the node
         # Solution: We set the current node as leaf
-        if self.prefix == word:
+        if self.prefix == word and not self.is_leaf:
             self.is_leaf = True
 
         # Case 2: The node has no edges that have a prefix to the word
