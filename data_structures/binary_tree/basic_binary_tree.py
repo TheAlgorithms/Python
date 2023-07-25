@@ -35,7 +35,7 @@ def display_using_in_order_traversal(root: Node | None, level: int = 0) -> None:
     >>> root = Node(1)
     >>> root.left = Node(0)
     >>> root.right = Node(2)
-    >>> display_tree(root)
+    >>> display_using_in_order_traversal(root)
         2
     1
         0
