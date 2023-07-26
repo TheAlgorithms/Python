@@ -28,9 +28,9 @@ def split_list(timings: list) -> tuple:
 
     def split_workload(arr: list) -> tuple:
         if len(arr) == 0:
-            result = ([], [], 0)
-        elif len(arr) == 1:
-            result = ([arr[0]], [], 1)
+            return ([], [], 0)
+        if len(arr) == 1:
+            return ([arr[0]], [], 1)
         else:
             n = len(arr)
             smallest_diff = float("inf")
