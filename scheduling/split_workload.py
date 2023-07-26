@@ -34,9 +34,8 @@ def split_list(timings: list) -> tuple:
         else:
             n = len(arr)
             smallest_diff = float("inf")
-            all_nums_positive = [c >= 0 for c in arr]
-            if False in all_nums_positive:
-                raise ValueError("numbers can only be positive")
+            if any(c < 0 for c in arr):
+                raise ValueError("Numbers can only be non-negative")
             for i in range(1, 2**n - 1):
                 indices = [j for j in range(n) if (i & (1 << j)) != 0]
                 distributed_timings_1 = [arr[j] for j in indices]
