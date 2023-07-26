@@ -41,13 +41,12 @@ def split_list(timings: list) -> tuple:
                 distributed_timings_1 = [arr[j] for j in indices]
                 distributed_timings_2 = [arr[j] for j in range(n) if j not in indices]
                 diff = abs(sum(distributed_timings_1) - sum(distributed_timings_2))
-                if diff < smallest_diff:
-                    smallest_diff = diff
-                    result = (
-                        distributed_timings_1,
-                        distributed_timings_2,
-                        smallest_diff,
-                    )
+                smallest_diff = min(smallest_diff, diff)
+                result = (
+                    distributed_timings_1,
+                    distributed_timings_2,
+                    smallest_diff,
+                )
             return result
 
     try:
