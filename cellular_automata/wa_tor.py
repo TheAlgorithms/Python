@@ -48,7 +48,7 @@ class Entity:
     True
     """
 
-    def __init__(self, prey: bool, coords: tuple[int, int]):
+    def __init__(self, prey: bool, coords: tuple[int, int]) -> None:
         self.prey = prey
         # The (row, col) pos of the entity
         self.coords = coords
@@ -205,8 +205,8 @@ class WaTor:
         shuffle(entities)
 
         if len(entities) >= MAX_ENTITIES - MAX_ENTITIES / 10:
-            prey = list(filter(lambda m: m.prey is True, entities))
-            predators = list(filter(lambda m: m.prey is True, entities))
+            prey = list(filter(lambda entity: entity.prey is True, entities))
+            predators = list(filter(lambda entity: entity.prey is True, entities))
 
             prey_count, predator_count = len(prey), len(predators)
 
@@ -471,7 +471,7 @@ class WaTor:
 
         >>> wt = WaTor(WIDTH, HEIGHT)
         >>> wt.run(iteration_count=PREDATOR_INITIAL_ENERGY_VALUE - 1)
-        >>> len(list(filter(lambda m: m.prey is False,
+        >>> len(list(filter(lambda entity: entity.prey is False,
         ... wt.get_entities()))) >= PREDATOR_INITIAL_COUNT
         True
         """
@@ -567,7 +567,7 @@ def display_visually(wt: WaTor, iter_number: int, *, colour: bool = True) -> Non
         output += "\n"
 
     entities = wt.get_entities()
-    prey_count = len(list(filter(lambda m: m.prey is True, entities)))
+    prey_count = len(list(filter(lambda entity: entity.prey is True, entities)))
 
     print(
         f"{output}\n Iteration: {iter_number} | Prey count: {prey_count} | "
