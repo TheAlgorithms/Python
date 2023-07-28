@@ -77,18 +77,18 @@ class Entity:
     def __repr__(self) -> str:
         """
         >>> Entity(prey=True, coords=(1, 1))
-        <entity_type=prey coords=(1, 1) remaining_reproduction_time=5>
-        >>> Entity(prey=False, coords=(2, 1))
-        <entity_type=predator coords=(2, 1) remaining_reproduction_time=20 energy=15>
+        Entity(prey=True, coords=(1, 1), remaining_reproduction_time=5)
+        >>> Entity(prey=False, coords=(2, 1))  # doctest: +NORMALIZE_WHITESPACE
+        Entity(prey=False, coords=(2, 1),
+        remaining_reproduction_time=20, energy_value=15)
         """
         repr_ = (
-            f"entity_type={'prey' if self.prey is True else 'predator'}"
-            f" coords={self.coords}"
-            f" remaining_reproduction_time={self.remaining_reproduction_time}"
+            f"Entity(prey={self.prey}, coords={self.coords}, "
+            f"remaining_reproduction_time={self.remaining_reproduction_time}"
         )
-        if self.prey is False:
-            repr_ += f" energy={self.energy_value}"
-        return f"<{repr_}>"
+        if self.energy_value is not None:
+            repr_ += f", energy_value={self.energy_value}"
+        return f"{repr_})"
 
 
 class WaTor:
@@ -230,8 +230,8 @@ class WaTor:
         ... [None, Entity(True, (2, 1)), None]])
         >>> wt.get_surrounding_prey(
         ... Entity(False, (1, 1)))  # doctest: +NORMALIZE_WHITESPACE
-        [<entity_type=prey coords=(2, 1) remaining_reproduction_time=5>,
-        <entity_type=prey coords=(0, 1) remaining_reproduction_time=5>]
+        [Entity(prey=True, coords=(2, 1), remaining_reproduction_time=5),
+        Entity(prey=True, coords=(0, 1), remaining_reproduction_time=5)]
         >>> wt.set_planet([[Entity(False, (0, 0))]])
         >>> wt.get_surrounding_prey(Entity(False, (0, 0)))
         []
@@ -240,7 +240,7 @@ class WaTor:
         ... [None, Entity(False, (1, 1)), Entity(True, (2, 1))],
         ... [None, None, None]])
         >>> wt.get_surrounding_prey(Entity(False, (1, 0)))
-        [<entity_type=prey coords=(0, 0) remaining_reproduction_time=5>]
+        [Entity(prey=True, coords=(0, 0), remaining_reproduction_time=5)]
         """
         coords = entity.coords
         row, col = coords
@@ -302,7 +302,7 @@ class WaTor:
         >>> wt.set_planet(planet)
         >>> wt.move_and_reproduce(Entity(True, coords=(1, 1)), direction_orders=["N"])
         >>> wt.planet  # doctest: +NORMALIZE_WHITESPACE
-        [[None, <entity_type=prey coords=(0, 1) remaining_reproduction_time=4>, None],
+        [[None, Entity(prey=True, coords=(0, 1), remaining_reproduction_time=4), None],
         [None, None, None],
         [None, None, None]]
         >>> wt.planet[0][0] = Entity(True, coords=(0, 0))
@@ -310,8 +310,8 @@ class WaTor:
         >>> wt.move_and_reproduce(Entity(True, coords=(0, 1)),
         ... direction_orders=["N", "W", "E", "S"])
         >>> wt.planet  # doctest: +NORMALIZE_WHITESPACE
-        [[<entity_type=prey coords=(0, 0) remaining_reproduction_time=5>, None,
-        <entity_type=prey coords=(0, 2) remaining_reproduction_time=4>],
+        [[Entity(prey=True, coords=(0, 0), remaining_reproduction_time=5), None,
+        Entity(prey=True, coords=(0, 2), remaining_reproduction_time=4)],
         [None, None, None],
         [None, None, None]]
         >>> wt.planet[0][1] = wt.planet[0][2]
@@ -319,8 +319,8 @@ class WaTor:
         >>> wt.move_and_reproduce(Entity(True, coords=(0, 1)),
         ... direction_orders=["N", "W", "S", "E"])
         >>> wt.planet  # doctest: +NORMALIZE_WHITESPACE
-        [[<entity_type=prey coords=(0, 0) remaining_reproduction_time=5>, None, None],
-        [None, <entity_type=prey coords=(1, 1) remaining_reproduction_time=4>, None],
+        [[Entity(prey=True, coords=(0, 0), remaining_reproduction_time=5), None, None],
+        [None, Entity(prey=True, coords=(1, 1), remaining_reproduction_time=4), None],
         [None, None, None]]
 
         >>> wt = WaTor(WIDTH, HEIGHT)
@@ -330,8 +330,10 @@ class WaTor:
         >>> wt.move_and_reproduce(reproducable_entity,
         ... direction_orders=["N", "W", "S", "E"])
         >>> wt.planet  # doctest: +NORMALIZE_WHITESPACE
-        [[<entity_type=predator coords=(0, 0) remaining_reproduction_time=20 energy=15>,
-        <entity_type=predator coords=(0, 1) remaining_reproduction_time=20 energy=15>]]
+        [[Entity(prey=False, coords=(0, 0),
+        remaining_reproduction_time=20, energy_value=15),
+        Entity(prey=False, coords=(0, 1), remaining_reproduction_time=20,
+        energy_value=15)]]
         """
         coords = entity.coords
         row, col = coords
@@ -400,8 +402,8 @@ class WaTor:
         >>> wt.perform_prey_actions(reproducable_entity,
         ... direction_orders=["N", "W", "S", "E"])
         >>> wt.planet  # doctest: +NORMALIZE_WHITESPACE
-        [[<entity_type=prey coords=(0, 0) remaining_reproduction_time=5>,
-        <entity_type=prey coords=(0, 1) remaining_reproduction_time=5>]]
+        [[Entity(prey=True, coords=(0, 0), remaining_reproduction_time=5),
+        Entity(prey=True, coords=(0, 1), remaining_reproduction_time=5)]]
         """
         self.move_and_reproduce(entity, direction_orders)
 
@@ -431,8 +433,8 @@ class WaTor:
         >>> wt.set_planet([[Entity(True, coords=(0, 0)), Entity(False, coords=(0, 1))]])
         >>> wt.perform_predator_actions(Entity(False, coords=(0, 1)), (0, 0), [])
         >>> wt.planet  # doctest: +NORMALIZE_WHITESPACE
-        [[<entity_type=predator coords=(0, 0)
-        remaining_reproduction_time=20 energy=19>, None]]
+        [[Entity(prey=False, coords=(0, 0),
+        remaining_reproduction_time=20, energy_value=19), None]]
         """
         assert entity.energy_value is not None  # [type checking]
 
@@ -576,9 +578,9 @@ def display_visually(wt: WaTor, iter_number: int, *, colour: bool = True) -> Non
 
 
 if __name__ == "__main__":
-    # import doctest
+    import doctest
 
-    # doctest.testmod()
+    doctest.testmod()
 
     wt = WaTor(WIDTH, HEIGHT)
     wt.time_passed = display_visually
