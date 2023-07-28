@@ -74,6 +74,7 @@
   * [Game Of Life](cellular_automata/game_of_life.py)
   * [Nagel Schrekenberg](cellular_automata/nagel_schrekenberg.py)
   * [One Dimensional](cellular_automata/one_dimensional.py)
+  * [Wa Tor](cellular_automata/wa_tor.py)
 
 ## Ciphers
   * [A1Z26](ciphers/a1z26.py)
