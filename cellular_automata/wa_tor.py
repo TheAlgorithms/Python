@@ -120,9 +120,7 @@ class WaTor:
         self.height = height
         self.time_passed = None
 
-        self.planet: list[list[Entity | None]] = [
-            [None] * width for _ in range(height)
-        ]
+        self.planet: list[list[Entity | None]] = [[None] * width for _ in range(height)]
 
         # Populate planet with predators and prey randomly
         for _ in range(PREY_INITIAL_COUNT):
