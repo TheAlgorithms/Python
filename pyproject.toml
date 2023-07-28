@@ -49,6 +49,7 @@ select = [  # https://beta.ruff.rs/docs/rules
   "ICN",    # flake8-import-conventions
   "INP",    # flake8-no-pep420
   "INT",    # flake8-gettext
+  "ISC",  # flake8-implicit-str-concat
   "N",      # pep8-naming
   "NPY",    # NumPy-specific rules
   "PGH",    # pygrep-hooks
@@ -72,7 +73,6 @@ select = [  # https://beta.ruff.rs/docs/rules
   # "DJ",   # flake8-django
   # "ERA",  # eradicate -- DO NOT FIX
   # "FBT",  # flake8-boolean-trap  # FIX ME
-  # "ISC",  # flake8-implicit-str-concat  # FIX ME
   # "PD",   # pandas-vet
   # "PT",   # flake8-pytest-style
   # "PTH",  # flake8-use-pathlib  # FIX ME
