@@ -741,6 +741,7 @@
 
 ## Physics
   * [Archimedes Principle](physics/archimedes_principle.py)
+  * [Basic Orbital Capture](physics/basic_orbital_capture.py)
   * [Casimir Effect](physics/casimir_effect.py)
   * [Centripetal Force](physics/centripetal_force.py)
   * [Grahams Law](physics/grahams_law.py)
