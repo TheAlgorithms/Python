@@ -52,18 +52,16 @@ def capture_radii(
 
     if target_body_mass < 0:
         raise ValueError("Mass cannot be less than 0")
-    elif target_body_radius < 0:
+    if target_body_radius < 0:
         raise ValueError("Radius cannot be less than 0")
-    elif projectile_velocity > c:
+    if projectile_velocity > c:
         raise ValueError("Cannot go beyond speed of light")
 
-    else:
-        escape_velocity_squared = (2 * G * target_body_mass) / target_body_radius
-
-        capture_radius = target_body_radius * sqrt(
-            1 + escape_velocity_squared / pow(projectile_velocity, 2)
-        )
-        return round(capture_radius, 0)
+    escape_velocity_squared = (2 * G * target_body_mass) / target_body_radius
+    capture_radius = target_body_radius * sqrt(
+        1 + escape_velocity_squared / pow(projectile_velocity, 2)
+    )
+    return round(capture_radius, 0)
 
 
 def capture_area(capture_radius: float) -> float:
@@ -89,9 +87,8 @@ def capture_area(capture_radius: float) -> float:
 
     if capture_radius < 0:
         raise ValueError("Cannot have a capture radius less than 0")
-    else:
-        sigma = pi * pow(capture_radius, 2)
-        return round(sigma, 0)
+    sigma = pi * pow(capture_radius, 2)
+    return round(sigma, 0)
 
 
 if __name__ == "__main__":
