@@ -9,6 +9,7 @@ pandas
 pillow
 projectq
 qiskit
+qiskit-aer
 requests
 rich
 scikit-fuzzy
