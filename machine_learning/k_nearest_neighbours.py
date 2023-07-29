@@ -82,7 +82,7 @@ if __name__ == "__main__":
     y = np.array(iris["target"])
     iris_classes = iris["target_names"]
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
     iris_point = np.array([4.4, 3.1, 1.3, 1.4])
-    classifier = KNN(X_train, y_train, iris_classes)
+    classifier = KNN(X_train, y_train, iris_classes, k=3)
     print(classifier.classify(iris_point))
