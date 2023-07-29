@@ -2,7 +2,7 @@
 Creates a random wordsearch with eight different directions
 that are best described as compass locations.
 
-@
+@ https://en.wikipedia.org/wiki/Word_search
 """
 
 
