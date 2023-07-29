@@ -45,6 +45,11 @@ class Burkes:
         >>> Burkes.get_greyscale(255, 255, 255)
         255.0
         """
+        """
+        Formula from https://en.wikipedia.org/wiki/HSL_and_HSV
+        cf Lightness section, and Fig 13c.
+        We use the first of four possible.
+        """
         return 0.114 * blue + 0.587 * green + 0.299 * red
 
     def process(self) -> None:
