@@ -40,6 +40,10 @@ class Burkes:
         """
         >>> Burkes.get_greyscale(3, 4, 5)
         4.185
+        >>> Burkes.get_greyscale(0, 0, 0)
+        0.0
+        >>> Burkes.get_greyscale(255, 255, 255)
+        255.0
         """
         return 0.114 * blue + 0.587 * green + 0.299 * red
 
