@@ -738,6 +738,7 @@
   * [Scoring Algorithm](other/scoring_algorithm.py)
   * [Sdes](other/sdes.py)
   * [Tower Of Hanoi](other/tower_of_hanoi.py)
+  * [Word Search](other/word_search.py)
 
 ## Physics
   * [Archimedes Principle](physics/archimedes_principle.py)
