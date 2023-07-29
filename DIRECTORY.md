@@ -742,6 +742,7 @@
 
 ## Physics
   * [Archimedes Principle](physics/archimedes_principle.py)
+  * [Basic Orbital Capture](physics/basic_orbital_capture.py)
   * [Casimir Effect](physics/casimir_effect.py)
   * [Centripetal Force](physics/centripetal_force.py)
   * [Grahams Law](physics/grahams_law.py)
@@ -1063,7 +1064,6 @@
   * [Q Fourier Transform](quantum/q_fourier_transform.py)
   * [Q Full Adder](quantum/q_full_adder.py)
   * [Quantum Entanglement](quantum/quantum_entanglement.py)
-  * [Quantum Random](quantum/quantum_random.py)
   * [Quantum Teleportation](quantum/quantum_teleportation.py)
   * [Ripple Adder Classic](quantum/ripple_adder_classic.py)
   * [Single Qubit Measure](quantum/single_qubit_measure.py)
