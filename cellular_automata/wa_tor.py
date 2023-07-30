@@ -567,7 +567,7 @@ def display_visually(wt: WaTor, iter_number: int, *, colour: bool = True) -> Non
         output += "\n"
 
     entities = wt.get_entities()
-    prey_count = len(list(filter(lambda entity: entity.prey is True, entities)))
+    prey_count = sum(entity.prey for entity in entities)
 
     print(
         f"{output}\n Iteration: {iter_number} | Prey count: {prey_count} | "
