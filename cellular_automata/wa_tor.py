@@ -334,8 +334,7 @@ class WaTor:
         Entity(prey=False, coords=(0, 1), remaining_reproduction_time=20,
         energy_value=15)]]
         """
-        coords = entity.coords
-        row, col = coords
+        row, col = coords = entity.coords
 
         for direction in direction_orders:
             # If the direction is North and the northern square
