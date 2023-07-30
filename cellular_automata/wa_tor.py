@@ -167,8 +167,8 @@ class WaTor:
         while True:
             row, col = randint(0, self.height - 1), randint(0, self.width - 1)
             if self.planet[row][col] is None:
-                break
-        self.planet[row][col] = Entity(prey=prey, coords=(row, col))
+                self.planet[row][col] = Entity(prey=prey, coords=(row, col))
+                return
 
     def get_entities(self) -> list[Entity]:
         """
