@@ -3,7 +3,6 @@ This implementation of LRU Cache uses the in-built Python dictionary (dict) whic
 Python 3.6 onward maintains the insertion order of keys and ensures O(1) operations on
 insert, delete, and access. https://docs.python.org/3/library/stdtypes.html#typesmapping
 """
-from collections.abc import Hashable
 from typing import Any
 
 
@@ -18,7 +17,7 @@ class LRUCache(dict):
         """
         self.remaining: int = capacity
 
-    def get(self, key: Hashable: Any) -> Any | None:
+    def get(self, key: Any) -> Any | None:
         """
         This method returns the value associated with the key.
         key: A hashable object that is mapped to a value in the LRU cache.
