@@ -3,6 +3,7 @@ This implementation of LRU Cache uses the in-built Python dictionary (dict) whic
 Python 3.6 onward maintains the insertion order of keys and ensures O(1) operations on
 insert, delete, and access. https://docs.python.org/3/library/stdtypes.html#typesmapping
 """
+from collections.abc import Hashable
 from typing import Any
 
 
