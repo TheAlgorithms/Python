@@ -10,13 +10,13 @@ Description :
 
 def get_altitude_at_pressure(pressure: float) -> float:
     """
-    This method calculates the altitude from Pressure wrt to 
+    This method calculates the altitude from Pressure wrt to
     Sea level pressure as reference .Pressure is in Pascals
     https://en.wikipedia.org/wiki/Pressure_altitude
     https://community.bosch-sensortec.com/t5/Question-and-answers/How-to-calculate-the-altitude-from-the-pressure-sensor-data/qaq-p/5702
-    
+
     H = 44330 * [1 - (P/p0)^(1/5.255) ]
-    
+
     Where :
     H = altitude (m)
     P = measured pressure
