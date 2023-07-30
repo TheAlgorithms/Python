@@ -23,14 +23,26 @@ def get_altitude_at_pressure(pressure: float) -> float:
     p0 = reference pressure at sea level 101325 Pa
 
     Examples:
-
-    >>> get_altitude_at_pressure(pressure=100000)
+    >>> get_altitude_at_pressure(pressure=100_000)
     105.47836610778828
+    >>> get_altitude_at_pressure(pressure=101_325)
+    0.0
+    >>> get_altitude_at_pressure(pressure=80_000)
+    1855.873388064995
+    >>> get_altitude_at_pressure(pressure=201_325)
+    Traceback (most recent call last):
+      ...
+    ValueError: Value Higher than Pressure at Sea Level !
+    >>> get_altitude_at_pressure(pressure=-80_000)
+    Traceback (most recent call last):
+      ...
+    ValueError: Atmospheric Pressure can not be negative !
     """
 
     if pressure > 101325:
         raise ValueError("Value Higher than Pressure at Sea Level !")
-
+    if pressure < 0 :
+        raise ValueError("Atmospheric Pressure can not be negative !")
     return 44_330 * (1 - (pressure / 101_325) ** (1 / 5.5255))
 
 
@@ -38,3 +50,5 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
+    
