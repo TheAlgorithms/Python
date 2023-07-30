@@ -124,9 +124,9 @@ class WaTor:
 
         # Populate planet with predators and prey randomly
         for _ in range(PREY_INITIAL_COUNT):
-            self.add_entity(True)
+            self.add_entity(prey=True)
         for _ in range(PREDATOR_INITIAL_COUNT):
-            self.add_entity(False)
+            self.add_entity(prey=False)
         self.set_planet(self.planet)
 
     def set_planet(self, planet: list[list[Entity | None]]) -> None:
