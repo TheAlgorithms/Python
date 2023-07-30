@@ -551,9 +551,9 @@ def display_visually(wt: WaTor, iter_number: int, *, colour: bool = True) -> Non
     output = ""
 
     # Iterate over every entity in the planet
-    for i in range(len(planet)):
-        for j in range(len(planet[0])):
-            if (entity := planet[i][j]) is None:
+    for row in planet:
+        for entity in row:
+            if entity is None:
                 output += " . "
             else:
                 if colour is True:
