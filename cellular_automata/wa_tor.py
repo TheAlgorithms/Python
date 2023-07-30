@@ -513,7 +513,7 @@ class WaTor:
                 self.time_passed(self, iter_num)
 
 
-def display_visually(wt: WaTor, iter_number: int, *, colour: bool = True) -> None:
+def visualise(wt: WaTor, iter_number: int, *, colour: bool = True) -> None:
     """
     Visually displays the Wa-Tor planet using
     an ascii code in terminal to clear and re-print
@@ -531,7 +531,7 @@ def display_visually(wt: WaTor, iter_number: int, *, colour: bool = True) -> Non
     ... [Entity(False, coords=(1, 0)), None, Entity(False, coords=(1, 2))],
     ... [None, Entity(True, coords=(2, 1)), None]
     ... ])
-    >>> display_visually(wt, 0, colour=False)  # doctest: +NORMALIZE_WHITESPACE
+    >>> visualise(wt, 0, colour=False)  # doctest: +NORMALIZE_WHITESPACE
     #  x  .
     x  .  x
     .  #  .
@@ -543,7 +543,7 @@ def display_visually(wt: WaTor, iter_number: int, *, colour: bool = True) -> Non
         print("\x1b[0;0H\x1b[2J\x1b[?25l")
 
     reprint = "\x1b[0;0H" if colour else ""
-    ansii_colour_end = "\x1b[0m " if colour else " "
+    ansi_colour_end = "\x1b[0m " if colour else " "
 
     planet = wt.planet
     output = ""
@@ -560,7 +560,7 @@ def display_visually(wt: WaTor, iter_number: int, *, colour: bool = True) -> Non
                         if entity.prey
                         else "\x1b[38;2;255;255;15m"
                     )
-                output += f" {'#' if entity.prey else 'x'}{ansii_colour_end}"
+                output += f" {'#' if entity.prey else 'x'}{ansi_colour_end}"
 
         output += "\n"
 
@@ -581,5 +581,5 @@ if __name__ == "__main__":
     doctest.testmod()
 
     wt = WaTor(WIDTH, HEIGHT)
-    wt.time_passed = display_visually
+    wt.time_passed = visualise
     wt.run(iteration_count=100_000)
