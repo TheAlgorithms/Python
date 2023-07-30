@@ -266,7 +266,7 @@ def convex_hull_bf(points: list[Point]) -> list[Point]:
             points_left_of_ij = points_right_of_ij = False
             ij_part_of_convex_hull = True
             for k in range(n):
-                if k != i and k != j:
+                if k not in {i, j}:
                     det_k = _det(points[i], points[j], points[k])
 
                     if det_k > 0:
