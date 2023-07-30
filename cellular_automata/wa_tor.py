@@ -178,11 +178,7 @@ class WaTor:
         >>> len(wt.get_entities()) == PREDATOR_INITIAL_COUNT + PREY_INITIAL_COUNT
         True
         """
-        return [entity
-                for column in self.planet
-                for entity in column 
-                if entity
-        ]
+        return [entity for column in self.planet for entity in column if entity]
 
     def balance_predators_and_prey(self) -> None:
         """
