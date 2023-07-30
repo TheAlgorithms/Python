@@ -540,7 +540,7 @@ def display_visually(wt: WaTor, iter_number: int, *, colour: bool = True) -> Non
     <BLANKLINE>
     Iteration: 0 | Prey count: 2 | Predator count: 3 |
     """
-    if colour is True:
+    if colour:
         __import__("os").system("")
         print("\x1b[0;0H\x1b[2J\x1b[?25l")
 
