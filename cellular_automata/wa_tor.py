@@ -203,7 +203,7 @@ class WaTor:
         shuffle(entities)
 
         if len(entities) >= MAX_ENTITIES - MAX_ENTITIES / 10:
-            prey = list(filter(lambda entity: entity.prey is True, entities))
+            prey = [entity for entity in entities if entity.prey]
             predators = list(filter(lambda entity: entity.prey is True, entities))
 
             prey_count, predator_count = len(prey), len(predators)
