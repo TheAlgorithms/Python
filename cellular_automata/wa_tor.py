@@ -54,7 +54,7 @@ class Entity:
         self.coords = coords
 
         self.remaining_reproduction_time = (
-            PREY_REPRODUCTION_TIME if prey is True else PREDATOR_REPRODUCTION_TIME
+            PREY_REPRODUCTION_TIME if prey else PREDATOR_REPRODUCTION_TIME
         )
         self.energy_value = None if prey is True else PREDATOR_INITIAL_ENERGY_VALUE
         self.alive = True
