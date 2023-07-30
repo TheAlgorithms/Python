@@ -1,16 +1,17 @@
 """
 This implementation of LRU Cache uses the in-built Python dictionary (dict) which from
-Python 3.6 onward maintain the insertion order of keys and ensures O(1) operations on
-insert, delete and access. https://docs.python.org/3/library/stdtypes.html#typesmapping
+Python 3.6 onward maintains the insertion order of keys and ensures O(1) operations on
+insert, delete, and access. https://docs.python.org/3/library/stdtypes.html#typesmapping
 """
-from typing import Any, Hashable
+from collections.abc import Hashable
+from typing import Any
 
 
 class LRUCache(dict):
     def __init__(self, capacity: int) -> None:
         """
-        Initialize an LRU Cache with given capacity.
-        capacity : int -> the capacity of the LRU Cache
+        Initialize an LRU Cache with a given capacity.
+        capacity: the capacity of the LRU Cache
         >>> cache = LRUCache(2)
         >>> cache
         {}
@@ -20,7 +21,7 @@ class LRUCache(dict):
     def get(self, key: Hashable) -> Any:
         """
         This method returns the value associated with the key.
-        key : A hashable object that is mapped to a value in the LRU cache.
+        key: A hashable object that is mapped to a value in the LRU cache.
         return -> Any object that has been stored as a value in the LRU cache.
 
         >>> cache = LRUCache(2)
@@ -33,7 +34,8 @@ class LRUCache(dict):
         KeyError: '2 not found.'
         """
         if key not in self:
-            raise KeyError(f"{key} not found.")
+            msg = f"{key} not found."
+            raise KeyError(msg)
         val = self.pop(key)  # Pop the key-value and re-insert to maintain the order
         self[key] = val
         return val
@@ -41,7 +43,7 @@ class LRUCache(dict):
     def put(self, key: Hashable, value: Any) -> None:
         """
         This method puts the value associated with the key provided in the LRU cache.
-        key : A hashable object that is mapped to a value in the LRU cache.
+        key: A hashable object that is mapped to a value in the LRU cache.
         value: Any object that is to be associated with the key in the LRU cache.
         >>> cache = LRUCache(2)
         >>> cache.put(3,3)
