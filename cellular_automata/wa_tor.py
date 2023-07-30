@@ -15,7 +15,7 @@ to result in one of the three possible results.
 from collections.abc import Callable
 from random import randint, shuffle
 from time import sleep
-from typing import Any, Literal
+from typing import Literal
 
 WIDTH = 50  # Width of the Wa-Tor planet
 HEIGHT = 50  # Height of the Wa-Tor planet
@@ -178,11 +178,11 @@ class WaTor:
         >>> len(wt.get_entities()) == PREDATOR_INITIAL_COUNT + PREY_INITIAL_COUNT
         True
         """
-        start: Any = []
-        return sum(
-            [[entity for entity in column if entity] for column in self.planet],
-            start=start,
-        )
+        return [entity
+                for column in self.planet
+                for entity in column 
+                if entity
+        ]
 
     def balance_predators_and_prey(self) -> None:
         """
