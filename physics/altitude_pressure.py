@@ -14,9 +14,9 @@ def get_altitude_at_pressure(pressure: float) -> float:
     Pressure is in Pascals
     https://en.wikipedia.org/wiki/Pressure_altitude
     https://community.bosch-sensortec.com/t5/Question-and-answers/How-to-calculate-the-altitude-from-the-pressure-sensor-data/qaq-p/5702
-    
+
     H = 44330 * [1 - (P/p0)^(1/5.255) ]
-    
+
     Where :
     H = altitude (m)
     P = measured pressure
@@ -31,7 +31,7 @@ def get_altitude_at_pressure(pressure: float) -> float:
     if pressure > 101325:
         raise ValueError("Value Higer than Pressure at Sea Level !")
 
-    return 44330 * (1-(pressure/101325)**(1/5.5255))
+    return 44330 * (1 - (pressure / 101325) ** (1 / 5.5255))
 
 
 if __name__ == "__main__":
