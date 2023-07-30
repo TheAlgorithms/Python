@@ -544,8 +544,8 @@ def display_visually(wt: WaTor, iter_number: int, *, colour: bool = True) -> Non
         __import__("os").system("")
         print("\x1b[0;0H\x1b[2J\x1b[?25l")
 
-    reprint = "\x1b[0;0H" if colour is True else ""
-    ansii_colour_end = "\x1b[0m " if colour is True else " "
+    reprint = "\x1b[0;0H" if colour else ""
+    ansii_colour_end = "\x1b[0m " if colour else " "
 
     planet = wt.planet
     output = ""
