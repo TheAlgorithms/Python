@@ -208,14 +208,13 @@ class WaTor:
 
             prey_count, predator_count = len(prey), len(predators)
 
-            if prey_count > predator_count:
-                for entity in prey[:DELETE_UNBALANCED_ENTITIES]:
-                    # Purge the first n entities of the prey
-                    self.planet[entity.coords[0]][entity.coords[1]] = None
-            else:
-                for entity in predators[:DELETE_UNBALANCED_ENTITIES]:
-                    # Purge the first n entities of the predators
-                    self.planet[entity.coords[0]][entity.coords[1]] = None
+            entities_to_purge = (
+                prey[:DELETE_UNBALANCED_ENTITIES]
+                if prey_count > predator_count
+                else predators[:DELETE_UNBALANCED_ENTITIES]
+            )
+            for entity in entities_to_purge:
+                self.planet[entity.coords[0]][entity.coords[1]] = None
 
     def get_surrounding_prey(self, entity: Entity) -> list[Entity]:
         """
