@@ -204,7 +204,7 @@ class WaTor:
 
         if len(entities) >= MAX_ENTITIES - MAX_ENTITIES / 10:
             prey = [entity for entity in entities if entity.prey]
-            predators = list(filter(lambda entity: entity.prey is True, entities))
+            predators = [entity for entity in entities if not entity.prey]
 
             prey_count, predator_count = len(prey), len(predators)
 
