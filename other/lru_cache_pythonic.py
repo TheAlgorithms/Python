@@ -18,7 +18,7 @@ class LRUCache(dict):
         """
         self.remaining: int = capacity
 
-    def get(self, key: Hashable) -> Any:
+    def get(self, key: Hashable: Any) -> Any | None:
         """
         This method returns the value associated with the key.
         key: A hashable object that is mapped to a value in the LRU cache.
