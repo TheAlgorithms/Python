@@ -90,7 +90,7 @@ def infix_to_postfix(expression_str: str) -> str:
                     break
                 if char_precedence < tos_precedence:
                     postfix.append(stack.pop())
-                    break
+                    continue
                 # Precedences are equal
                 if associativity(char) == "RL":
                     stack.push(char)
