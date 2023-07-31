@@ -60,7 +60,7 @@ def run(canvas):
 
     @returns:
     --
-    List
+    canvas of population after one step
     """
     canvas = np.array(canvas)
     next_gen_canvas = np.array(create_canvas(canvas.shape[0]))
