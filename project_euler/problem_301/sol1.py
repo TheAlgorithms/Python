@@ -48,8 +48,8 @@ def solution(exponent: int = 30) -> int:
     # To find how many total games were lost for a given exponent x,
     # we need to find the Fibonacci number F(x+2).
     fibonacci_index = exponent + 2
-    phi = (1 + 5 ** 0.5) / 2
-    fibonacci = (phi ** fibonacci_index - (phi - 1) ** fibonacci_index) / 5 ** 0.5
+    phi = (1 + 5**0.5) / 2
+    fibonacci = (phi**fibonacci_index - (phi - 1) ** fibonacci_index) / 5**0.5
 
     return int(fibonacci)
 

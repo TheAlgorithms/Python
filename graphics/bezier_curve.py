@@ -40,7 +40,7 @@ class BezierCurve:
         for i in range(len(self.list_of_points)):
             # basis function for each i
             output_values.append(
-                comb(self.degree, i) * ((1 - t) ** (self.degree - i)) * (t ** i)
+                comb(self.degree, i) * ((1 - t) ** (self.degree - i)) * (t**i)
             )
         # the basis must sum up to 1 for it to produce a valid Bezier curve.
         assert round(sum(output_values), 5) == 1

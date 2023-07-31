@@ -1,10 +1,13 @@
+from __future__ import annotations
+
+from collections.abc import Iterator
 from typing import Any
 
 
 class Node:
     def __init__(self, data: Any):
-        self.data = data
-        self.next = None
+        self.data: Any = data
+        self.next: Node | None = None
 
 
 class CircularLinkedList:
@@ -12,7 +15,7 @@ class CircularLinkedList:
         self.head = None
         self.tail = None
 
-    def __iter__(self):
+    def __iter__(self) -> Iterator[Any]:
         node = self.head
         while self.head:
             yield node.data
@@ -21,7 +24,7 @@ class CircularLinkedList:
                 break
 
     def __len__(self) -> int:
-        return len(tuple(iter(self)))
+        return sum(1 for _ in self)
 
     def __repr__(self):
         return "->".join(str(item) for item in iter(self))
@@ -54,10 +57,10 @@ class CircularLinkedList:
     def delete_front(self):
         return self.delete_nth(0)
 
-    def delete_tail(self) -> None:
+    def delete_tail(self) -> Any:
         return self.delete_nth(len(self) - 1)
 
-    def delete_nth(self, index: int = 0):
+    def delete_nth(self, index: int = 0) -> Any:
         if not 0 <= index < len(self):
             raise IndexError("list index out of range.")
         delete_node = self.head
@@ -76,7 +79,7 @@ class CircularLinkedList:
                 self.tail = temp
         return delete_node.data
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         return len(self) == 0
 
 
@@ -91,25 +94,25 @@ def test_circular_linked_list() -> None:
 
     try:
         circular_linked_list.delete_front()
-        assert False  # This should not happen
+        raise AssertionError  # This should not happen
     except IndexError:
         assert True  # This should happen
 
     try:
         circular_linked_list.delete_tail()
-        assert False  # This should not happen
+        raise AssertionError  # This should not happen
     except IndexError:
         assert True  # This should happen
 
     try:
         circular_linked_list.delete_nth(-1)
-        assert False
+        raise AssertionError
     except IndexError:
         assert True
 
     try:
         circular_linked_list.delete_nth(0)
-        assert False
+        raise AssertionError
     except IndexError:
         assert True
 

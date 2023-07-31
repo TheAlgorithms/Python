@@ -5,13 +5,13 @@
 from __future__ import annotations
 
 from decimal import Decimal
-from math import *  # noqa: F401, F403
+from math import *  # noqa: F403
 
 from sympy import diff
 
 
 def newton_raphson(
-    func: str, a: float | Decimal, precision: float = 10 ** -10
+    func: str, a: float | Decimal, precision: float = 10**-10
 ) -> float:
     """Finds root from the point 'a' onwards by Newton-Raphson method
     >>> newton_raphson("sin(x)", 2)
@@ -25,9 +25,11 @@ def newton_raphson(
     """
     x = a
     while True:
-        x = Decimal(x) - (Decimal(eval(func)) / Decimal(eval(str(diff(func)))))
+        x = Decimal(x) - (
+            Decimal(eval(func)) / Decimal(eval(str(diff(func))))  # noqa: S307
+        )
         # This number dictates the accuracy of the answer
-        if abs(eval(func)) < precision:
+        if abs(eval(func)) < precision:  # noqa: S307
             return float(x)
 
 

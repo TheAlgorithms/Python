@@ -42,6 +42,8 @@ def solution(limit: int = 5000) -> int:
             if is_pentagonal(a) and is_pentagonal(b):
                 return b
 
+    return -1
+
 
 if __name__ == "__main__":
     print(f"{solution() = }")

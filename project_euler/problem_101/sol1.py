@@ -43,9 +43,9 @@ Find the sum of FITs for the BOPs.
 """
 from __future__ import annotations
 
-from typing import Callable, Union
+from collections.abc import Callable
 
-Matrix = list[list[Union[float, int]]]
+Matrix = list[list[float | int]]
 
 
 def solve(matrix: Matrix, vector: Matrix) -> Matrix:
@@ -175,15 +175,15 @@ def question_function(variable: int) -> int:
     return (
         1
         - variable
-        + variable ** 2
-        - variable ** 3
-        + variable ** 4
-        - variable ** 5
-        + variable ** 6
-        - variable ** 7
-        + variable ** 8
-        - variable ** 9
-        + variable ** 10
+        + variable**2
+        - variable**3
+        + variable**4
+        - variable**5
+        + variable**6
+        - variable**7
+        + variable**8
+        - variable**9
+        + variable**10
     )
 
 
@@ -202,7 +202,7 @@ def solution(func: Callable[[int], int] = question_function, order: int = 10) ->
     ]
 
     ret: int = 0
-    poly: int
+    poly: Callable[[int], int]
     x_val: int
 
     for poly in polynomials:

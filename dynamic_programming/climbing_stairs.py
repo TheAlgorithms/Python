@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 
 
-def climb_stairs(n: int) -> int:
+def climb_stairs(number_of_steps: int) -> int:
     """
     LeetCdoe No.70: Climbing Stairs
-    Distinct ways to climb a n step staircase where
-    each time you can either climb 1 or 2 steps.
+    Distinct ways to climb a number_of_steps staircase where each time you can either
+    climb 1 or 2 steps.
 
     Args:
-        n: number of steps of staircase
+        number_of_steps: number of steps on the staircase
 
     Returns:
-        Distinct ways to climb a n step staircase
+        Distinct ways to climb a number_of_steps staircase
 
     Raises:
-        AssertionError: n not positive integer
+        AssertionError: number_of_steps not positive integer
 
     >>> climb_stairs(3)
     3
@@ -23,18 +23,17 @@ def climb_stairs(n: int) -> int:
     >>> climb_stairs(-7)  # doctest: +ELLIPSIS
     Traceback (most recent call last):
         ...
-    AssertionError: n needs to be positive integer, your input -7
+    AssertionError: number_of_steps needs to be positive integer, your input -7
     """
     assert (
-        isinstance(n, int) and n > 0
-    ), f"n needs to be positive integer, your input {n}"
-    if n == 1:
+        isinstance(number_of_steps, int) and number_of_steps > 0
+    ), f"number_of_steps needs to be positive integer, your input {number_of_steps}"
+    if number_of_steps == 1:
         return 1
-    dp = [0] * (n + 1)
-    dp[0], dp[1] = (1, 1)
-    for i in range(2, n + 1):
-        dp[i] = dp[i - 1] + dp[i - 2]
-    return dp[n]
+    previous, current = 1, 1
+    for _ in range(number_of_steps - 1):
+        current, previous = current + previous, current
+    return current
 
 
 if __name__ == "__main__":

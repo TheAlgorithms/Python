@@ -19,6 +19,12 @@ import random
 from matplotlib import animation
 from matplotlib import pyplot as plt
 
+# Frame rate of the animation
+INTERVAL = 20
+
+# Time between time steps in seconds
+DELTA_TIME = INTERVAL / 1000
+
 
 class Body:
     def __init__(
@@ -159,16 +165,16 @@ class BodySystem:
 
                     # Calculation of the distance using Pythagoras's theorem
                     # Extra factor due to the softening technique
-                    distance = (dif_x ** 2 + dif_y ** 2 + self.softening_factor) ** (
+                    distance = (dif_x**2 + dif_y**2 + self.softening_factor) ** (
                         1 / 2
                     )
 
                     # Newton's law of universal gravitation.
                     force_x += (
-                        self.gravitation_constant * body2.mass * dif_x / distance ** 3
+                        self.gravitation_constant * body2.mass * dif_x / distance**3
                     )
                     force_y += (
-                        self.gravitation_constant * body2.mass * dif_y / distance ** 3
+                        self.gravitation_constant * body2.mass * dif_y / distance**3
                     )
 
             # Update the body's velocity once all the force components have been added
@@ -219,10 +225,6 @@ def plot(
     Utility function to plot how the given body-system evolves over time.
     No doctest provided since this function does not have a return value.
     """
-
-    INTERVAL = 20  # Frame rate of the animation
-    DELTA_TIME = INTERVAL / 1000  # Time between time steps in seconds
-
     fig = plt.figure()
     fig.canvas.set_window_title(title)
     ax = plt.axes(
@@ -308,7 +310,7 @@ def example_3() -> BodySystem:
     """
 
     bodies = []
-    for i in range(10):
+    for _ in range(10):
         velocity_x = random.uniform(-0.5, 0.5)
         velocity_y = random.uniform(-0.5, 0.5)
 

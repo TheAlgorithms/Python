@@ -61,7 +61,7 @@ def is_sq(number: int) -> bool:
     >>> is_sq(1000000)
     True
     """
-    sq: int = int(number ** 0.5)
+    sq: int = int(number**0.5)
     return number == sq * sq
 
 

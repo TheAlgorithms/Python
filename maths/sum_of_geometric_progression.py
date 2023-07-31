@@ -25,4 +25,4 @@ def sum_of_geometric_progression(
         return num_of_terms * first_term
 
     # Formula for finding sum of n terms of a GeometricProgression
-    return (first_term / (1 - common_ratio)) * (1 - common_ratio ** num_of_terms)
+    return (first_term / (1 - common_ratio)) * (1 - common_ratio**num_of_terms)

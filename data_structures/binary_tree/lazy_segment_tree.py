@@ -37,14 +37,14 @@ class SegmentTree:
         return idx * 2 + 1
 
     def build(
-        self, idx: int, left_element: int, right_element: int, A: list[int]
+        self, idx: int, left_element: int, right_element: int, a: list[int]
     ) -> None:
         if left_element == right_element:
-            self.segment_tree[idx] = A[left_element - 1]
+            self.segment_tree[idx] = a[left_element - 1]
         else:
             mid = (left_element + right_element) // 2
-            self.build(self.left(idx), left_element, mid, A)
-            self.build(self.right(idx), mid + 1, right_element, A)
+            self.build(self.left(idx), left_element, mid, a)
+            self.build(self.right(idx), mid + 1, right_element, a)
             self.segment_tree[idx] = max(
                 self.segment_tree[self.left(idx)], self.segment_tree[self.right(idx)]
             )

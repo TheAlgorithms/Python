@@ -51,7 +51,7 @@ def bisect_left(
         hi = len(sorted_collection)
 
     while lo < hi:
-        mid = (lo + hi) // 2
+        mid = lo + (hi - lo) // 2
         if sorted_collection[mid] < item:
             lo = mid + 1
         else:
@@ -96,7 +96,7 @@ def bisect_right(
         hi = len(sorted_collection)
 
     while lo < hi:
-        mid = (lo + hi) // 2
+        mid = lo + (hi - lo) // 2
         if sorted_collection[mid] <= item:
             lo = mid + 1
         else:
@@ -261,7 +261,6 @@ def binary_search_std_lib(sorted_collection: list[int], item: int) -> int | None
 def binary_search_by_recursion(
     sorted_collection: list[int], item: int, left: int, right: int
 ) -> int | None:
-
     """Pure implementation of binary search algorithm in Python by recursion
 
     Be careful collection must be ascending sorted, otherwise result will be

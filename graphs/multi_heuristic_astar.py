@@ -1,4 +1,5 @@
 import heapq
+import sys
 
 import numpy as np
 
@@ -32,7 +33,7 @@ class PriorityQueue:
                 temp.append((pri, x))
                 (pri, x) = heapq.heappop(self.elements)
             temp.append((priority, item))
-            for (pro, xxx) in temp:
+            for pro, xxx in temp:
                 heapq.heappush(self.elements, (pro, xxx))
 
     def remove_element(self, item):
@@ -43,7 +44,7 @@ class PriorityQueue:
             while x != item:
                 temp.append((pro, x))
                 (pro, x) = heapq.heappop(self.elements)
-            for (prito, yyy) in temp:
+            for prito, yyy in temp:
                 heapq.heappush(self.elements, (prito, yyy))
 
     def top_show(self):
@@ -55,21 +56,21 @@ class PriorityQueue:
         return (priority, item)
 
 
-def consistent_heuristic(P: TPos, goal: TPos):
+def consistent_heuristic(p: TPos, goal: TPos):
     # euclidean distance
-    a = np.array(P)
+    a = np.array(p)
     b = np.array(goal)
     return np.linalg.norm(a - b)
 
 
-def heuristic_2(P: TPos, goal: TPos):
+def heuristic_2(p: TPos, goal: TPos):
     # integer division by time variable
-    return consistent_heuristic(P, goal) // t
+    return consistent_heuristic(p, goal) // t
 
 
-def heuristic_1(P: TPos, goal: TPos):
+def heuristic_1(p: TPos, goal: TPos):
     # manhattan distance
-    return abs(P[0] - goal[0]) + abs(P[1] - goal[1])
+    return abs(p[0] - goal[0]) + abs(p[1] - goal[1])
 
 
 def key(start: TPos, i: int, goal: TPos, g_function: dict[TPos, float]):
@@ -116,7 +117,7 @@ def do_something(back_pointer, goal, start):
         print(x, end=" ")
         x = back_pointer[x]
     print(x)
-    quit()
+    sys.exit()
 
 
 def valid(p: TPos):

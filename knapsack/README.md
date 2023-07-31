@@ -17,7 +17,7 @@ The knapsack problem has been studied for more than a century, with early works 
 ## Documentation
 
 This module uses docstrings to enable the use of Python's in-built `help(...)` function.
-For instance, try `help(Vector)`, `help(unitBasisVector)`, and `help(CLASSNAME.METHODNAME)`.
+For instance, try `help(Vector)`, `help(unit_basis_vector)`, and `help(CLASSNAME.METHODNAME)`.
 
 ---
 

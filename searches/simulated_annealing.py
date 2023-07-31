@@ -1,6 +1,7 @@
 # https://en.wikipedia.org/wiki/Simulated_annealing
 import math
 import random
+from typing import Any
 
 from .hill_climbing import SearchProblem
 
@@ -16,7 +17,7 @@ def simulated_annealing(
     start_temperate: float = 100,
     rate_of_decrease: float = 0.01,
     threshold_temp: float = 1,
-) -> SearchProblem:
+) -> Any:
     """
     Implementation of the simulated annealing algorithm. We start with a given state,
     find all its neighbors. Pick a random neighbor, if that neighbor improves the
@@ -96,7 +97,7 @@ def simulated_annealing(
 if __name__ == "__main__":
 
     def test_f1(x, y):
-        return (x ** 2) + (y ** 2)
+        return (x**2) + (y**2)
 
     # starting the problem with initial coordinates (12, 47)
     prob = SearchProblem(x=12, y=47, step_size=1, function_to_optimize=test_f1)
@@ -119,7 +120,7 @@ if __name__ == "__main__":
     )
 
     def test_f2(x, y):
-        return (3 * x ** 2) - (6 * y)
+        return (3 * x**2) - (6 * y)
 
     prob = SearchProblem(x=3, y=4, step_size=1, function_to_optimize=test_f1)
     local_min = simulated_annealing(prob, find_max=False, visualization=True)

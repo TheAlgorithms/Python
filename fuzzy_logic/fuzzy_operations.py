@@ -1,4 +1,5 @@
-"""README, Author - Jigyasa Gandhi(mailto:jigsgandhi97@gmail.com)
+"""
+README, Author - Jigyasa Gandhi(mailto:jigsgandhi97@gmail.com)
 Requirements:
   - scikit-fuzzy
   - numpy

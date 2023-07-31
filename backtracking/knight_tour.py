@@ -78,7 +78,7 @@ def open_knight_tour(n: int) -> list[list[int]]:
 
     >>> open_knight_tour(2)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Open Kight Tour cannot be performed on a board of size 2
     """
 
@@ -91,7 +91,8 @@ def open_knight_tour(n: int) -> list[list[int]]:
                 return board
             board[i][j] = 0
 
-    raise ValueError(f"Open Kight Tour cannot be performed on a board of size {n}")
+    msg = f"Open Kight Tour cannot be performed on a board of size {n}"
+    raise ValueError(msg)
 
 
 if __name__ == "__main__":
