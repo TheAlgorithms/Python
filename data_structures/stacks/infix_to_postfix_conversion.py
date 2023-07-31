@@ -88,14 +88,14 @@ def infix_to_postfix(expression_str: str) -> str:
                 if char_precedence > tos_precedence:
                     stack.push(char)
                     break
-                elif char_precedence == tos_precedence:
-                    if associativity(char) == "RL":
-                        stack.push(char)
-                        break
-                    else:
-                        postfix.append(stack.pop())
-                else:
+                if char_precedence < tos_precedence:
                     postfix.append(stack.pop())
+                    break
+                # Precedences are equal
+                if associativity(char) == "RL":
+                    stack.push(char)
+                    break
+                postfix.append(stack.pop())
 
     while not stack.is_empty():
         postfix.append(stack.pop())
