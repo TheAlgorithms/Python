@@ -236,8 +236,8 @@
     * [Double Ended Queue](data_structures/queue/double_ended_queue.py)
     * [Linked Queue](data_structures/queue/linked_queue.py)
     * [Priority Queue Using List](data_structures/queue/priority_queue_using_list.py)
+    * [Queue By List](data_structures/queue/queue_by_list.py)
     * [Queue By Two Stacks](data_structures/queue/queue_by_two_stacks.py)
-    * [Queue On List](data_structures/queue/queue_on_list.py)
     * [Queue On Pseudo Stack](data_structures/queue/queue_on_pseudo_stack.py)
   * Stacks
     * [Balanced Parentheses](data_structures/stacks/balanced_parentheses.py)
