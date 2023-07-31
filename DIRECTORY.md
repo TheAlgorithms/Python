@@ -740,6 +740,7 @@
   * [Tower Of Hanoi](other/tower_of_hanoi.py)
 
 ## Physics
+  * [Altitude Pressure](physics/altitude_pressure.py)
   * [Archimedes Principle](physics/archimedes_principle.py)
   * [Basic Orbital Capture](physics/basic_orbital_capture.py)
   * [Casimir Effect](physics/casimir_effect.py)
