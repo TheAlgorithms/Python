@@ -51,7 +51,6 @@ def seed(canvas: list[list[bool]]) -> None:
             canvas[i][j] = bool(random.getrandbits(1))
 
 
-
 def run(canvas: list[list[bool]]) -> list[list[bool]]:
     """
     This function runs the rules of game through all points, and changes their
