@@ -30,24 +30,25 @@ def find_median(x: np.array) -> float:
     return float((x[length // 2] + x[(length // 2) - 1]) / 2)
 
 
-def inter_quartile_range(x: np.array) -> float:
+def interquartile_range(x: np.array) -> float:
     """
     This is the implementation of inter_quartile
     range for a list of numeric.
     :param x: The list of data point
     :return: Inter_quartile range
 
-    >>> inter_quartile_range(x=np.array([4,1,2,3,2]))
+    >>> interquartile_range(x=np.array([4,1,2,3,2]))
     2.0
 
-    >>> inter_quartile_range(x=np.array([25,32,49,21,37,43,27,45,31]))
+
+    >>> interquartile_range(x=np.array([25,32,49,21,37,43,27,45,31]))
     18.0
     """
     length = len(x)
     if length == 0:
-        raise ValueError
+        raise ValueError("The list is empty. Provide a non-empty list.")
     x.sort()
-    q1 = find_median(x[0 : length // 2])
+    q1 = find_median(x[0: length // 2])
     half_length = (length // 2) + 1 if length % 2 else length // 2
     q3 = find_median(x[half_length:length])
     return q3 - q1
