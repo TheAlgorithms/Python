@@ -1,6 +1,6 @@
 """
 A number container system that uses binary search to delete and insert values into
-arrays with O(n logn) write times and O(1) read times.
+arrays with O(log n) write times and O(1) read times.
 
 This container system holds integers at indexes.
 
