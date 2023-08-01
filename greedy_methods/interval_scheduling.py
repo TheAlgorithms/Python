@@ -15,6 +15,7 @@ def interval_scheduling(intervals):
 
     return result
 
+
 # Example usage:
 # List of intervals represented as tuples (start_time, end_time)
 intervals = [(1, 4), (3, 6), (2, 8), (5, 9), (7, 10)]
