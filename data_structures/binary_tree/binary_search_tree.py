@@ -40,7 +40,7 @@ class BinarySearchTree:
             else:
                 node.parent.left = new_children
         else:
-            self.root = None
+            self.root = new_children
 
     def is_right(self, node: Node) -> bool:
         if node.parent and node.parent.right:

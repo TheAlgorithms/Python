@@ -78,17 +78,18 @@ def knapsack_with_example_solution(w: int, wt: list, val: list):
 
     num_items = len(wt)
     if num_items != len(val):
-        raise ValueError(
-            "The number of weights must be the "
-            "same as the number of values.\nBut "
-            f"got {num_items} weights and {len(val)} values"
+        msg = (
+            "The number of weights must be the same as the number of values.\n"
+            f"But got {num_items} weights and {len(val)} values"
         )
+        raise ValueError(msg)
     for i in range(num_items):
         if not isinstance(wt[i], int):
-            raise TypeError(
-                "All weights must be integers but "
-                f"got weight of type {type(wt[i])} at index {i}"
+            msg = (
+                "All weights must be integers but got weight of "
+                f"type {type(wt[i])} at index {i}"
             )
+            raise TypeError(msg)
 
     optimal_val, dp_table = knapsack(w, wt, val, num_items)
     example_optional_set: set = set()

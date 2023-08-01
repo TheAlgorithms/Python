@@ -68,7 +68,8 @@ def calculate_each_score(
 
         # weight not 0 or 1
         else:
-            raise ValueError(f"Invalid weight of {weight:f} provided")
+            msg = f"Invalid weight of {weight:f} provided"
+            raise ValueError(msg)
 
         score_lists.append(score)
 

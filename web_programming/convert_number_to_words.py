@@ -90,9 +90,7 @@ def convert(number: int) -> str:
                 else:
                     addition = ""
                     if counter in placevalue:
-                        if current == 0 and ((temp_num % 100) // 10) == 0:
-                            addition = ""
-                        else:
+                        if current != 0 and ((temp_num % 100) // 10) != 0:
                             addition = placevalue[counter]
                     if ((temp_num % 100) // 10) == 1:
                         words = teens[current] + addition + words

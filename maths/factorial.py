@@ -55,7 +55,7 @@ def factorial_recursive(n: int) -> int:
         raise ValueError("factorial() only accepts integral values")
     if n < 0:
         raise ValueError("factorial() not defined for negative values")
-    return 1 if n == 0 or n == 1 else n * factorial(n - 1)
+    return 1 if n in {0, 1} else n * factorial(n - 1)
 
 
 if __name__ == "__main__":

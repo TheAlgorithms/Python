@@ -154,7 +154,7 @@ def prime_factorization(number):
 
     quotient = number
 
-    if number == 0 or number == 1:
+    if number in {0, 1}:
         ans.append(number)
 
     # if 'number' not prime then builds the prime factorization of 'number'
