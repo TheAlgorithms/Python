@@ -1,7 +1,6 @@
 from typing import List, Tuple, Union
 
-
-def split_list(timings: List[Union[int, float, str]]) -> Tuple[List[Union[int, float]]]:
+def split_list(timings: List[Union[int, float, str]]) -> Tuple[List[Union[int, float]], List[Union[int, float]], Union[int, float]]:
     """
 
     This algorithm is a brute-force search over (nearly) all 2^n
@@ -9,7 +8,7 @@ def split_list(timings: List[Union[int, float, str]]) -> Tuple[List[Union[int, f
     the asymptotic runtime of this code is: O(n * 2^n)
 
     this is a case of the partition problem.
-    it accepts a multiset ( list ) of positive integers,
+    it accepts a multiset ( list ) of integers,
     distributes them, and returns a tuple, containing two lists,
     with minimal difference between their sums
 
@@ -25,7 +24,7 @@ def split_list(timings: List[Union[int, float, str]]) -> Tuple[List[Union[int, f
     ([10, 11], [12.5, 9], 0.5)
     >>> split_list(["twelve", "ten", "eleven", "nine"])
     Traceback (most recent call last):
-    ValueError: only numbers please
+    ValueError: Timings must be a list of numbers
 
     """
 
@@ -42,30 +41,30 @@ def split_list(timings: List[Union[int, float, str]]) -> Tuple[List[Union[int, f
         elif isinstance(current_element, (int, float)):
             timings[i] = abs(current_element)
         else:
-            raise ValueError("only numbers please")
+            raise ValueError("Timings must be a list of numbers")
 
     if len(timings) == 0:
         return ([], [], 0)
     elif len(timings) == 1:
-        return ([timings[0]], [], 1)
-    else:
-        result = None
-        n = len(timings)
-        smallest_diff = float("inf")
-        all_nums_positive = [c >= 0 for c in timings]
-        for i in range(1, 2**n - 1):
-            indices = [j for j in range(n) if (i & (1 << j)) != 0]
-            distributed_timings_1 = [timings[j] for j in indices]
-            distributed_timings_2 = [timings[j] for j in range(n) if j not in indices]
-            diff = abs(sum(distributed_timings_1) - sum(distributed_timings_2))
-            if diff < smallest_diff:
-                smallest_diff = diff
-                result = (
-                    distributed_timings_1,
-                    distributed_timings_2,
-                    smallest_diff,
-                )
-        return result
+        return ([timings[0]], [], timings[0])
+
+    result = None
+    n = len(timings)
+    smallest_diff = float("inf")
+    all_nums_positive = [c >= 0 for c in timings]
+    for i in range(1, 2**n - 1):
+        indices = [j for j in range(n) if (i & (1 << j)) != 0]
+        distributed_timings_1 = [timings[j] for j in indices]
+        distributed_timings_2 = [timings[j] for j in range(n) if j not in indices]
+        diff = abs(sum(distributed_timings_1) - sum(distributed_timings_2))
+        if diff < smallest_diff:
+            smallest_diff = diff
+            result = (
+                distributed_timings_1,
+                distributed_timings_2,
+                smallest_diff,
+            )
+    return result
 
 
 if __name__ == "__main__":
