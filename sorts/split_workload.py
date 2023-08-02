@@ -54,7 +54,7 @@ def split_list(timings: List[Union[int, float, str]]) -> Tuple[List[Union[int, f
     all_nums_positive = [c >= 0 for c in timings]
     for i in range(1, 2**n - 1):
         indices = [j for j in range(n) if (i & (1 << j)) != 0]
-        distributed_timings_1 = [timings[j] for j in indices]
+            indices = [j for j in range(n) if i & (1 << j) != 0]
         distributed_timings_2 = [timings[j] for j in range(n) if j not in indices]
         diff = abs(sum(distributed_timings_1) - sum(distributed_timings_2))
         if diff < smallest_diff:
