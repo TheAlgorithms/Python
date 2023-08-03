@@ -72,11 +72,11 @@ def temperature_of_gas_system(moles: float, volume: float, pressure: float) -> f
 
 def moles_of_gas_system(kelvin: float, volume: float, pressure: float) -> float:
     """
-    >>> temperature_of_gas_system(100, 5, 10)
+    >>> moles_of_gas_system(100, 5, 10)
     0.06013618199229246
-    >>> temperature_of_gas_system(110,5009,1000)
+    >>> moles_of_gas_system(110,5009,1000)
     5476.766101807144
-    >>> temperature_of_gas_system(3, -0.46, 23.5)
+    >>> moles_of_gas_system(3, -0.46, 23.5)
     Traceback (most recent call last):
         ...
     ValueError: Invalid inputs. Enter positive value.
