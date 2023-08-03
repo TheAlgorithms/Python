@@ -67,7 +67,7 @@ def temperature_of_gas_system(moles: float, volume: float, pressure: float) -> f
     if moles < 0 or volume < 0 or pressure < 0:
         raise ValueError("Invalid inputs. Enter positive value.")
 
-    return (pressure * volume) / (moles * UNIVERSAL_GAS_CONSTANT)
+    return pressure * volume / (moles * UNIVERSAL_GAS_CONSTANT)
 
 
 def moles_of_gas_system(kelvin: float, volume: float, pressure: float) -> float:
