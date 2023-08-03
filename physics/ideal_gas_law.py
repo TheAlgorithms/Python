@@ -70,7 +70,7 @@ def temperature_of_gas_system(moles: float, volume: float, pressure: float) -> f
     return (pressure * volume) / (moles * UNIVERSAL_GAS_CONSTANT)
 
 
-def num_moles_of_gas_in_system(kelvin: float, volume: float, pressure: float) -> float:
+def moles_of_gas_system(kelvin: float, volume: float, pressure: float) -> float:
     """
     >>> temperature_of_gas_system(100, 5, 10)
     0.06013618199229246
