@@ -57,7 +57,7 @@ def temperature_of_gas_system(moles: float, volume: float, pressure: float) -> f
     """
     >>> temperature_of_gas_system(2, 100, 5)
     30.068090996146232
-    >>> temperature_of_gas_system(11,5009,1000)
+    >>> temperature_of_gas_system(11, 5009, 1000)
     54767.66101807144
     >>> temperature_of_gas_system(3, -0.46, 23.5)
     Traceback (most recent call last):
