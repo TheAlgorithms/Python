@@ -2,7 +2,7 @@ from math import ceil, sqrt
 from __future__ import annotations
 
 
-def primeproduct(n: int, x: list = []):
+def primeproduct(n: int, x: list = []) -> list[int]:
     """
     >>> primeproduct(868)
     [2, 2, 7, 31]
