@@ -84,7 +84,7 @@ def moles_of_gas_system(kelvin: float, volume: float, pressure: float) -> float:
     if kelvin < 0 or volume < 0 or pressure < 0:
         raise ValueError("Invalid inputs. Enter positive value.")
 
-    return (pressure * volume) / (kelvin * UNIVERSAL_GAS_CONSTANT)
+    return pressure * volume / (kelvin * UNIVERSAL_GAS_CONSTANT)
 
 
 if __name__ == "__main__":
