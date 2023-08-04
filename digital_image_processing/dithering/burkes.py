@@ -39,9 +39,18 @@ class Burkes:
     def get_greyscale(cls, blue: int, green: int, red: int) -> float:
         """
         >>> Burkes.get_greyscale(3, 4, 5)
-        3.753
+        4.185
+        >>> Burkes.get_greyscale(0, 0, 0)
+        0.0
+        >>> Burkes.get_greyscale(255, 255, 255)
+        255.0
         """
-        return 0.114 * blue + 0.587 * green + 0.2126 * red
+        """
+        Formula from https://en.wikipedia.org/wiki/HSL_and_HSV
+        cf Lightness section, and Fig 13c.
+        We use the first of four possible.
+        """
+        return 0.114 * blue + 0.587 * green + 0.299 * red
 
     def process(self) -> None:
         for y in range(self.height):
@@ -49,10 +58,10 @@ class Burkes:
                 greyscale = int(self.get_greyscale(*self.input_img[y][x]))
                 if self.threshold > greyscale + self.error_table[y][x]:
                     self.output_img[y][x] = (0, 0, 0)
-                    current_error = greyscale + self.error_table[x][y]
+                    current_error = greyscale + self.error_table[y][x]
                 else:
                     self.output_img[y][x] = (255, 255, 255)
-                    current_error = greyscale + self.error_table[x][y] - 255
+                    current_error = greyscale + self.error_table[y][x] - 255
                 """
                 Burkes error propagation (`*` is current pixel):
 

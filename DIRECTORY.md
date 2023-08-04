@@ -29,6 +29,7 @@
   * [Minmax](backtracking/minmax.py)
   * [N Queens](backtracking/n_queens.py)
   * [N Queens Math](backtracking/n_queens_math.py)
+  * [Power Sum](backtracking/power_sum.py)
   * [Rat In Maze](backtracking/rat_in_maze.py)
   * [Sudoku](backtracking/sudoku.py)
   * [Sum Of Subsets](backtracking/sum_of_subsets.py)
@@ -146,6 +147,7 @@
   * [Decimal To Binary Recursion](conversions/decimal_to_binary_recursion.py)
   * [Decimal To Hexadecimal](conversions/decimal_to_hexadecimal.py)
   * [Decimal To Octal](conversions/decimal_to_octal.py)
+  * [Energy Conversions](conversions/energy_conversions.py)
   * [Excel Title To Column](conversions/excel_title_to_column.py)
   * [Hex To Bin](conversions/hex_to_bin.py)
   * [Hexadecimal To Decimal](conversions/hexadecimal_to_decimal.py)
@@ -166,6 +168,7 @@
   * Arrays
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
+    * [Product Sum](data_structures/arrays/product_sum.py)
   * Binary Tree
     * [Avl Tree](data_structures/binary_tree/avl_tree.py)
     * [Basic Binary Tree](data_structures/binary_tree/basic_binary_tree.py)
@@ -233,8 +236,8 @@
     * [Double Ended Queue](data_structures/queue/double_ended_queue.py)
     * [Linked Queue](data_structures/queue/linked_queue.py)
     * [Priority Queue Using List](data_structures/queue/priority_queue_using_list.py)
+    * [Queue By List](data_structures/queue/queue_by_list.py)
     * [Queue By Two Stacks](data_structures/queue/queue_by_two_stacks.py)
-    * [Queue On List](data_structures/queue/queue_on_list.py)
     * [Queue On Pseudo Stack](data_structures/queue/queue_on_pseudo_stack.py)
   * Stacks
     * [Balanced Parentheses](data_structures/stacks/balanced_parentheses.py)
@@ -290,7 +293,7 @@
   * [Inversions](divide_and_conquer/inversions.py)
   * [Kth Order Statistic](divide_and_conquer/kth_order_statistic.py)
   * [Max Difference Pair](divide_and_conquer/max_difference_pair.py)
-  * [Max Subarray Sum](divide_and_conquer/max_subarray_sum.py)
+  * [Max Subarray](divide_and_conquer/max_subarray.py)
   * [Mergesort](divide_and_conquer/mergesort.py)
   * [Peak](divide_and_conquer/peak.py)
   * [Power](divide_and_conquer/power.py)
@@ -321,8 +324,7 @@
   * [Matrix Chain Order](dynamic_programming/matrix_chain_order.py)
   * [Max Non Adjacent Sum](dynamic_programming/max_non_adjacent_sum.py)
   * [Max Product Subarray](dynamic_programming/max_product_subarray.py)
-  * [Max Sub Array](dynamic_programming/max_sub_array.py)
-  * [Max Sum Contiguous Subsequence](dynamic_programming/max_sum_contiguous_subsequence.py)
+  * [Max Subarray Sum](dynamic_programming/max_subarray_sum.py)
   * [Min Distance Up Bottom](dynamic_programming/min_distance_up_bottom.py)
   * [Minimum Coin Change](dynamic_programming/minimum_coin_change.py)
   * [Minimum Cost Path](dynamic_programming/minimum_cost_path.py)
@@ -410,6 +412,7 @@
   * [Dijkstra 2](graphs/dijkstra_2.py)
   * [Dijkstra Algorithm](graphs/dijkstra_algorithm.py)
   * [Dijkstra Alternate](graphs/dijkstra_alternate.py)
+  * [Dijkstra Binary Grid](graphs/dijkstra_binary_grid.py)
   * [Dinic](graphs/dinic.py)
   * [Directed And Undirected (Weighted) Graph](graphs/directed_and_undirected_(weighted)_graph.py)
   * [Edmonds Karp Multiple Source And Sink](graphs/edmonds_karp_multiple_source_and_sink.py)
@@ -419,8 +422,9 @@
   * [Frequent Pattern Graph Miner](graphs/frequent_pattern_graph_miner.py)
   * [G Topological Sort](graphs/g_topological_sort.py)
   * [Gale Shapley Bigraph](graphs/gale_shapley_bigraph.py)
+  * [Graph Adjacency List](graphs/graph_adjacency_list.py)
+  * [Graph Adjacency Matrix](graphs/graph_adjacency_matrix.py)
   * [Graph List](graphs/graph_list.py)
-  * [Graph Matrix](graphs/graph_matrix.py)
   * [Graphs Floyd Warshall](graphs/graphs_floyd_warshall.py)
   * [Greedy Best First](graphs/greedy_best_first.py)
   * [Greedy Min Vertex Cover](graphs/greedy_min_vertex_cover.py)
@@ -479,10 +483,14 @@
     * [Lib](linear_algebra/src/lib.py)
     * [Polynom For Points](linear_algebra/src/polynom_for_points.py)
     * [Power Iteration](linear_algebra/src/power_iteration.py)
+    * [Rank Of Matrix](linear_algebra/src/rank_of_matrix.py)
     * [Rayleigh Quotient](linear_algebra/src/rayleigh_quotient.py)
     * [Schur Complement](linear_algebra/src/schur_complement.py)
     * [Test Linear Algebra](linear_algebra/src/test_linear_algebra.py)
     * [Transformations 2D](linear_algebra/src/transformations_2d.py)
+
+## Linear Programming
+  * [Simplex](linear_programming/simplex.py)
 
 ## Machine Learning
   * [Astar](machine_learning/astar.py)
@@ -503,7 +511,7 @@
   * Lstm
     * [Lstm Prediction](machine_learning/lstm/lstm_prediction.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
-  * [Polymonial Regression](machine_learning/polymonial_regression.py)
+  * [Polynomial Regression](machine_learning/polynomial_regression.py)
   * [Scoring Functions](machine_learning/scoring_functions.py)
   * [Self Organizing Map](machine_learning/self_organizing_map.py)
   * [Sequential Minimum Optimization](machine_learning/sequential_minimum_optimization.py)
@@ -514,7 +522,6 @@
   * [Xgboost Regressor](machine_learning/xgboost_regressor.py)
 
 ## Maths
-  * [3N Plus 1](maths/3n_plus_1.py)
   * [Abs](maths/abs.py)
   * [Add](maths/add.py)
   * [Addition Without Arithmetic](maths/addition_without_arithmetic.py)
@@ -583,12 +590,10 @@
   * [Is Square Free](maths/is_square_free.py)
   * [Jaccard Similarity](maths/jaccard_similarity.py)
   * [Juggler Sequence](maths/juggler_sequence.py)
-  * [Kadanes](maths/kadanes.py)
   * [Karatsuba](maths/karatsuba.py)
   * [Krishnamurthy Number](maths/krishnamurthy_number.py)
   * [Kth Lexicographic Permutation](maths/kth_lexicographic_permutation.py)
   * [Largest Of Very Large Numbers](maths/largest_of_very_large_numbers.py)
-  * [Largest Subarray Sum](maths/largest_subarray_sum.py)
   * [Least Common Multiple](maths/least_common_multiple.py)
   * [Line Length](maths/line_length.py)
   * [Liouville Lambda](maths/liouville_lambda.py)
@@ -651,6 +656,7 @@
   * [Sigmoid Linear Unit](maths/sigmoid_linear_unit.py)
   * [Signum](maths/signum.py)
   * [Simpson Rule](maths/simpson_rule.py)
+  * [Simultaneous Linear Equation Solver](maths/simultaneous_linear_equation_solver.py)
   * [Sin](maths/sin.py)
   * [Sock Merchant](maths/sock_merchant.py)
   * [Softmax](maths/softmax.py)
@@ -676,6 +682,7 @@
 ## Matrix
   * [Binary Search Matrix](matrix/binary_search_matrix.py)
   * [Count Islands In Matrix](matrix/count_islands_in_matrix.py)
+  * [Count Negative Numbers In Sorted Matrix](matrix/count_negative_numbers_in_sorted_matrix.py)
   * [Count Paths](matrix/count_paths.py)
   * [Cramers Rule 2X2](matrix/cramers_rule_2x2.py)
   * [Inverse Of Matrix](matrix/inverse_of_matrix.py)
@@ -723,9 +730,9 @@
   * [Linear Congruential Generator](other/linear_congruential_generator.py)
   * [Lru Cache](other/lru_cache.py)
   * [Magicdiamondpattern](other/magicdiamondpattern.py)
-  * [Maximum Subarray](other/maximum_subarray.py)
   * [Maximum Subsequence](other/maximum_subsequence.py)
   * [Nested Brackets](other/nested_brackets.py)
+  * [Number Container System](other/number_container_system.py)
   * [Password](other/password.py)
   * [Quine](other/quine.py)
   * [Scoring Algorithm](other/scoring_algorithm.py)
@@ -733,7 +740,9 @@
   * [Tower Of Hanoi](other/tower_of_hanoi.py)
 
 ## Physics
+  * [Altitude Pressure](physics/altitude_pressure.py)
   * [Archimedes Principle](physics/archimedes_principle.py)
+  * [Basic Orbital Capture](physics/basic_orbital_capture.py)
   * [Casimir Effect](physics/casimir_effect.py)
   * [Centripetal Force](physics/centripetal_force.py)
   * [Grahams Law](physics/grahams_law.py)
@@ -749,6 +758,7 @@
   * [Potential Energy](physics/potential_energy.py)
   * [Rms Speed Of Molecule](physics/rms_speed_of_molecule.py)
   * [Shear Stress](physics/shear_stress.py)
+  * [Speed Of Sound](physics/speed_of_sound.py)
 
 ## Project Euler
   * Problem 001
@@ -1054,7 +1064,6 @@
   * [Q Fourier Transform](quantum/q_fourier_transform.py)
   * [Q Full Adder](quantum/q_full_adder.py)
   * [Quantum Entanglement](quantum/quantum_entanglement.py)
-  * [Quantum Random](quantum/quantum_random.py)
   * [Quantum Teleportation](quantum/quantum_teleportation.py)
   * [Ripple Adder Classic](quantum/ripple_adder_classic.py)
   * [Single Qubit Measure](quantum/single_qubit_measure.py)
