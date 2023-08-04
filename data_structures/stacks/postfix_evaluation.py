@@ -24,8 +24,14 @@ Enter a Postfix Equation (space separated) = 5 6 9 * +
         Result =  59
 """
 
+# Defining valid unary operator symbols
+UNARY_OP_SYMBOLS = ("-", "+")
 
-def get_number(data: str) -> tuple[bool, int] | tuple[bool, float] | tuple[bool, str]:
+# Defining valid binary operator symbols
+BINARY_OP_SYMBOLS = ("-", "+", "*", "^", "/")
+
+
+def get_number(data: str) -> int | float | str:
     """
     Converts the given data to appropriate number if it is indeed a number, else returns
     the data as it is with a False flag. This function also serves as a check of whether
@@ -43,20 +49,19 @@ def get_number(data: str) -> tuple[bool, int] | tuple[bool, float] | tuple[bool,
         or numeric) and 'b' is either an integer of a floating point number.
         If 'a' is False, then b is 'data'
     """
-    int_val = 0
-    float_val = 0.0
     try:
-        int_val = int(data)
-        return True, int_val
+        return int(data)
     except ValueError:
         try:
-            float_val = float(data)
-            return True, float_val
+            return float(data)
         except ValueError:
-            return False, data
+            if is_operator(data):
+                return data
+            msg = f"{data} is neither a number nor a valid operator"
+            raise ValueError(msg)
 
 
-def is_operator(data: str) -> bool:
+def is_operator(data: str | int | float) -> bool:
     """
     Checks whether a given input is one of the valid operators or not.
     Valid operators being '-', '+', '*', '^' and '/'.
@@ -71,10 +76,10 @@ def is_operator(data: str) -> bool:
     bool
         True if data is an operator else False.
     """
-    return data in ["-", "+", "*", "^", "/"]
+    return data in BINARY_OP_SYMBOLS
 
 
-def evaluate(post_fix: list, verbose: bool = False) -> int | float | str | None:
+def evaluate(post_fix: list[str], verbose: bool = False) -> int | float | str | None:
     """
     Function that evaluates postfix expression using a stack.
     >>> evaluate(["2", "1", "+", "3", "*"])
@@ -100,7 +105,9 @@ def evaluate(post_fix: list, verbose: bool = False) -> int | float | str | None:
     int
         The evaluated value
     """
+    x: str | int | float
     stack = []
+    valid_expression = []
     opr = {
         "^": lambda p, q: p**q,
         "*": lambda p, q: p * q,
@@ -108,84 +115,87 @@ def evaluate(post_fix: list, verbose: bool = False) -> int | float | str | None:
         "+": lambda p, q: p + q,
         "-": lambda p, q: p - q,
     }  # operators & their respective operation
-    if len(post_fix) > 0:
+    if len(post_fix) == 0:
+        return 0
+    # Checking the list to find out whether the postfix expression is valid
+    for x in post_fix:
+        valid_expression.append(get_number(x))
+    if verbose:
+        # print table header
+        print("Symbol".center(8), "Action".center(12), "Stack", sep=" | ")
+        print("-" * (30 + len(post_fix)))
+    for x in valid_expression:
+        if not is_operator(x):
+            stack.append(x)  # append x to stack
+            if verbose:
+                # output in tabular format
+                print(
+                    str(x).rjust(8),
+                    ("push(" + str(x) + ")").ljust(12),
+                    stack,
+                    sep=" | ",
+                )
+            continue
+        # If x is operator
+        # If only 1 value is inside stack and + or - is encountered
+        # then this is unary + or - case
+        if x in UNARY_OP_SYMBOLS and len(stack) < 2:
+            b = stack.pop()  # pop stack
+            if x == "-":
+                b *= -1  # negate b
+            stack.append(b)
+            if verbose:
+                # output in tabular format
+                print(
+                    "".rjust(8),
+                    ("pop(" + str(b) + ")").ljust(12),
+                    stack,
+                    sep=" | ",
+                )
+                print(
+                    str(x).rjust(8),
+                    ("push(" + str(x) + str(b) + ")").ljust(12),
+                    stack,
+                    sep=" | ",
+                )
+            continue
+        b = stack.pop()  # pop stack
         if verbose:
-            # print table header
-            print("Symbol".center(8), "Action".center(12), "Stack", sep=" | ")
-            print("-" * (30 + len(post_fix)))
-        for x in post_fix:
-            is_number, x = get_number(x)
-            if is_number:  # if x is a number (integer, float)
-                stack.append(x)  # append x to stack
-                if verbose:
-                    # output in tabular format
-                    print(
-                        str(x).rjust(8),
-                        ("push(" + str(x) + ")").ljust(12),
-                        stack,
-                        sep=" | ",
-                    )
-            elif is_operator(x):
-                # If only 1 value is inside stack and + or - is encountered
-                # then this is unary + or - case
-                if x in ["-", "+"] and len(stack) < 2:
-                    b = stack.pop()  # pop stack
-                    if x == "-":
-                        stack.append(-b)  # negate b and push again into stack
-                    else:  # when x is unary +
-                        stack.append(b)
-                    if verbose:
-                        # output in tabular format
-                        print(
-                            "".rjust(8),
-                            ("pop(" + str(b) + ")").ljust(12),
-                            stack,
-                            sep=" | ",
-                        )
-                        print(
-                            str(x).rjust(8),
-                            ("push(" + str(x) + str(b) + ")").ljust(12),
-                            stack,
-                            sep=" | ",
-                        )
-                else:
-                    b = stack.pop()  # pop stack
-                    if verbose:
-                        # output in tabular format
-                        print(
-                            "".rjust(8),
-                            ("pop(" + str(b) + ")").ljust(12),
-                            stack,
-                            sep=" | ",
-                        )
+            # output in tabular format
+            print(
+                "".rjust(8),
+                ("pop(" + str(b) + ")").ljust(12),
+                stack,
+                sep=" | ",
+            )
 
-                    a = stack.pop()  # pop stack
-                    if verbose:
-                        # output in tabular format
-                        print(
-                            "".rjust(8),
-                            ("pop(" + str(a) + ")").ljust(12),
-                            stack,
-                            sep=" | ",
-                        )
-                    # evaluate the 2 values popped from stack & push result to stack
-                    stack.append(opr[x](a, b))
-                    if verbose:
-                        # output in tabular format
-                        print(
-                            str(x).rjust(8),
-                            ("push(" + str(a) + str(x) + str(b) + ")").ljust(12),
-                            stack,
-                            sep=" | ",
-                        )
-            else:
-                print(f"{x} is neither a number, nor a valid operator")
-                break
-        # If everything executed correctly,the stack will contain
-        # only one element which is the result
-        result = stack[0] if len(stack) == 1 else None
-        return result
-    return 0
+        a = stack.pop()  # pop stack
+        if verbose:
+            # output in tabular format
+            print(
+                "".rjust(8),
+                ("pop(" + str(a) + ")").ljust(12),
+                stack,
+                sep=" | ",
+            )
+        # evaluate the 2 values popped from stack & push result to stack
+        stack.append(opr[str(x)](a, b))
+        if verbose:
+            # output in tabular format
+            print(
+                str(x).rjust(8),
+                ("push(" + str(a) + str(x) + str(b) + ")").ljust(12),
+                stack,
+                sep=" | ",
+            )
+        # else:
+        #     msg = f"{x} is neither a number nor a valid operator"
+        #     raise ValueError(msg)
+    # If everything executed correctly, the stack will contain
+    # only one element which is the result
+    if len(stack) != 1:
+        raise ArithmeticError("Input is not a valid postfix expression")
+    return stack[0]
 
 
 def is_yes(val: str) -> bool:
@@ -203,18 +213,20 @@ def is_yes(val: str) -> bool:
     bool
         True if Yes, otherwise False
     """
-    return val in ["Y", "y"]
+    return val in ("Y", "y")
 
 
 if __name__ == "__main__":
     loop = True
     # Creating a loop so that user can evaluate postfix expression multiple times
-    while loop:
+    while True:
         expression = input("Enter a Postfix Expression (space separated): ").split(" ")
-        choice = input("Do you want to see stack contents while evaluating? [y/N]: ")
+        choice = input(
+            "Do you want to see stack contents while evaluating? [y/N]: "
+        ).strip()
         display = is_yes(choice)
         output = evaluate(expression, display)
-        if output is not None:
-            print("Result = ", output)
+        print("Result = ", output)
         choice = input("Do you want to enter another expression? [y/N]: ")
-        loop = is_yes(choice)
+        if not is_yes(choice):
+            break
