@@ -88,6 +88,8 @@ def evaluate(post_fix: list[str], verbose: bool = False) -> int | float | str | 
     6.6
     >>> evaluate(["2", "-", "3", "+"])
     1
+    >>> evaluate(["-4", "5", "*", "6", "-"])
+    -26
     >>> evaluate([])
     0
 
