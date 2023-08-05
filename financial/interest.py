@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+
+#converts effective interest rate to effective discount rate
 def interest_to_discount(
     interest: float
-)
+):
     if interest <= 0:
         raise ValueError("interest must be a positive float")
     
@@ -19,8 +21,24 @@ def interest_to_discount(
 
     return (interest / (1 + interest))
 
+#converts effect discount rate to effective interest rate
+def discount_to_interest(
+        discount: float
+):
+    if discount <= 0:
+        raise ValueError("discount must be a positive float")
+    
+    """
+    
+        discount to interest formula :
 
+        i = d/(1-d)
 
+        source: https://www.wallstreetprep.com/knowledge/discount-rate/
+    
+    """
+
+    return (discount / (1 - discount))
 
 
 
