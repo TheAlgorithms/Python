@@ -75,8 +75,8 @@ def is_for_table(string1: str, string2: str, count: int) -> bool:
     list1 = list(string1)
     list2 = list(string2)
     count_n = 0
-    for element1, element2 in zip(list1, list2):
-        if element1 != element2:
+    for item1, item2 in zip(list1, list2):
+        if item1 != item2:
             count_n += 1
     return count_n == count
 
