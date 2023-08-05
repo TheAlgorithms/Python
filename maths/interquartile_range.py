@@ -48,8 +48,9 @@ def interquartile_range(x: np.array) -> float:
     if length == 0:
         raise ValueError("The list is empty. Provide a non-empty list.")
     x.sort()
-    q1 = find_median(x[0 : length // 2])
-    half_length = (length // 2) + 1 if length % 2 else length // 2
+    div, mod = divmod(length, 2)
+    q1 = find_median(x[:div])
+    half_length = sum((div, mod))
     q3 = find_median(x[half_length:length])
     return q3 - q1
 
