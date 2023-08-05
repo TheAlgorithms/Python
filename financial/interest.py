@@ -2,6 +2,29 @@
 
 from __future__ import annotations
 
+def interest_to_discount(
+    interest: float
+)
+    if interest <= 0:
+        raise ValueError("interest must be a positive float")
+    
+    """
+        interest to discount formula :
+
+        d = i / (1 + i)
+
+        source: https://www.wallstreetprep.com/knowledge/discount-rate/
+        
+    """
+
+    return (interest / (1 + interest))
+
+
+
+
+
+
+
 
 def simple_interest(
     principal: float, daily_interest_rate: float, days_between_payments: float
