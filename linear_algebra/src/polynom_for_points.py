@@ -56,19 +56,15 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
     vector: list[float] = [coordinates[count_of_line][1] for count_of_line in range(x)]
 
     for count in range(x):
-        zahlen = 0
-        while zahlen < x:
-            if count == zahlen:
-                zahlen += 1
-            if zahlen == x:
-                break
-            bruch = matrix[zahlen][count] / matrix[count][count]
+        for number in range(x):
+            if count == number:
+                continue
+            fraction = matrix[number][count] / matrix[count][count]
             for counting_columns, item in enumerate(matrix[count]):
                 # manipulating all the values in the matrix
-                matrix[zahlen][counting_columns] -= item * bruch
+                matrix[number][counting_columns] -= item * fraction
             # manipulating the values in the vector
-            vector[zahlen] -= vector[count] * bruch
-            zahlen += 1
+            vector[number] -= vector[count] * fraction
 
     # make solutions
     solution: list[str] = [
