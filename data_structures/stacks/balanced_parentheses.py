@@ -14,7 +14,7 @@ def balanced_parentheses(parentheses: str) -> bool:
     >>> balanced_parentheses("")
     True
     """
-    stack = Stack()
+    stack: Stack[str] = Stack()
     bracket_pairs = {"(": ")", "[": "]", "{": "}"}
     for bracket in parentheses:
         if bracket in bracket_pairs:

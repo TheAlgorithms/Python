@@ -7,7 +7,7 @@ def binary_recursive(decimal: int) -> str:
     '1001000'
     >>> binary_recursive("number")
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: invalid literal for int() with base 10: 'number'
     """
     decimal = int(decimal)
@@ -30,11 +30,11 @@ def main(number: str) -> str:
     '-0b101000'
     >>> main(40.8)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Input value is not an integer
     >>> main("forty")
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Input value is not an integer
     """
     number = str(number).strip()

@@ -3,8 +3,6 @@ from a given source node to a target node in an unweighted graph.
 """
 from __future__ import annotations
 
-from typing import Optional
-
 graph = {
     "A": ["B", "C", "E"],
     "B": ["A", "D", "E"],
@@ -24,7 +22,7 @@ class Graph:
         """
         self.graph = graph
         # mapping node to its parent in resulting breadth first tree
-        self.parent: dict[str, Optional[str]] = {}
+        self.parent: dict[str, str | None] = {}
         self.source_vertex = source_vertex
 
     def breath_first_search(self) -> None:
@@ -60,7 +58,9 @@ class Graph:
 
         Case 1 - No path is found.
         >>> g.shortest_path("Foo")
-        'No path from vertex:G to vertex:Foo'
+        Traceback (most recent call last):
+            ...
+        ValueError: No path from vertex: G to vertex: Foo
 
         Case 2 - The path is found.
         >>> g.shortest_path("D")
@@ -73,7 +73,10 @@ class Graph:
 
         target_vertex_parent = self.parent.get(target_vertex)
         if target_vertex_parent is None:
-            return f"No path from vertex:{self.source_vertex} to vertex:{target_vertex}"
+            msg = (
+                f"No path from vertex: {self.source_vertex} to vertex: {target_vertex}"
+            )
+            raise ValueError(msg)
 
         return self.shortest_path(target_vertex_parent) + f"->{target_vertex}"
 

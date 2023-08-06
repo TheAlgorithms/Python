@@ -26,7 +26,7 @@ References:
 """
 
 
-cache = {}
+cache: dict[tuple[int, int, int], int] = {}
 
 
 def _calculate(days: int, absent: int, late: int) -> int:

@@ -1,4 +1,4 @@
-from typing import Callable
+from collections.abc import Callable
 
 
 def bisection(function: Callable[[float], float], a: float, b: float) -> float:
@@ -8,7 +8,7 @@ def bisection(function: Callable[[float], float], a: float, b: float) -> float:
     1.0000000149011612
     >>> bisection(lambda x: x ** 3 - 1, 2, 1000)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: could not find root in given interval.
     >>> bisection(lambda x: x ** 2 - 4 * x + 3, 0, 2)
     1.0
@@ -16,7 +16,7 @@ def bisection(function: Callable[[float], float], a: float, b: float) -> float:
     3.0
     >>> bisection(lambda x: x ** 2 - 4 * x + 3, 4, 1000)
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: could not find root in given interval.
     """
     start: float = a
@@ -32,7 +32,7 @@ def bisection(function: Callable[[float], float], a: float, b: float) -> float:
         raise ValueError("could not find root in given interval.")
     else:
         mid: float = start + (end - start) / 2.0
-        while abs(start - mid) > 10 ** -7:  # until precisely equals to 10^-7
+        while abs(start - mid) > 10**-7:  # until precisely equals to 10^-7
             if function(mid) == 0:
                 return mid
             elif function(mid) * function(start) < 0:
@@ -44,7 +44,7 @@ def bisection(function: Callable[[float], float], a: float, b: float) -> float:
 
 
 def f(x: float) -> float:
-    return x ** 3 - 2 * x - 5
+    return x**3 - 2 * x - 5
 
 
 if __name__ == "__main__":

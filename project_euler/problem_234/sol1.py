@@ -35,7 +35,7 @@ def prime_sieve(n: int) -> list:
     is_prime[1] = False
     is_prime[2] = True
 
-    for i in range(3, int(n ** 0.5 + 1), 2):
+    for i in range(3, int(n**0.5 + 1), 2):
         index = i * 2
         while index < n:
             is_prime[index] = False
@@ -69,11 +69,11 @@ def solution(limit: int = 999_966_663_333) -> int:
     prime_index = 0
     last_prime = primes[prime_index]
 
-    while (last_prime ** 2) <= limit:
+    while (last_prime**2) <= limit:
         next_prime = primes[prime_index + 1]
 
-        lower_bound = last_prime ** 2
-        upper_bound = next_prime ** 2
+        lower_bound = last_prime**2
+        upper_bound = next_prime**2
 
         # Get numbers divisible by lps(current)
         current = lower_bound + last_prime

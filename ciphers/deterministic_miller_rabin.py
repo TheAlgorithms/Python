@@ -73,7 +73,7 @@ def miller_rabin(n: int, allow_probable: bool = False) -> bool:
     for prime in plist:
         pr = False
         for r in range(s):
-            m = pow(prime, d * 2 ** r, n)
+            m = pow(prime, d * 2**r, n)
             # see article for analysis explanation for m
             if (r == 0 and m == 1) or ((m + 1) % n == 0):
                 pr = True

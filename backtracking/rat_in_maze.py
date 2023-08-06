@@ -1,7 +1,7 @@
-from typing import List
+from __future__ import annotations
 
 
-def solve_maze(maze: List[List[int]]) -> bool:
+def solve_maze(maze: list[list[int]]) -> bool:
     """
     This method solves the "rat in maze" problem.
     In this problem we have some n by n matrix, a start point and an end point.
@@ -70,7 +70,7 @@ def solve_maze(maze: List[List[int]]) -> bool:
     return solved
 
 
-def run_maze(maze: List[List[int]], i: int, j: int, solutions: List[List[int]]) -> bool:
+def run_maze(maze: list[list[int]], i: int, j: int, solutions: list[list[int]]) -> bool:
     """
     This method is recursive starting from (i, j) and going in one of four directions:
     up, down, left, right.
@@ -88,12 +88,12 @@ def run_maze(maze: List[List[int]], i: int, j: int, solutions: List[List[int]]) 
         solutions[i][j] = 1
         return True
 
-    lower_flag = (not (i < 0)) and (not (j < 0))  # Check lower bounds
+    lower_flag = (not i < 0) and (not j < 0)  # Check lower bounds
     upper_flag = (i < size) and (j < size)  # Check upper bounds
 
     if lower_flag and upper_flag:
         # check for already visited and block points.
-        block_flag = (not (solutions[i][j])) and (not (maze[i][j]))
+        block_flag = (not solutions[i][j]) and (not maze[i][j])
         if block_flag:
             # check visited
             solutions[i][j] = 1

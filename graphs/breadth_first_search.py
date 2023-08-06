@@ -1,13 +1,14 @@
 #!/usr/bin/python
 
 """ Author: OMKAR PATHAK """
+from __future__ import annotations
 
-from typing import Dict, List, Set
+from queue import Queue
 
 
 class Graph:
     def __init__(self) -> None:
-        self.vertices: Dict[int, List[int]] = {}
+        self.vertices: dict[int, list[int]] = {}
 
     def print_graph(self) -> None:
         """
@@ -35,7 +36,7 @@ class Graph:
         else:
             self.vertices[from_vertex] = [to_vertex]
 
-    def bfs(self, start_vertex: int) -> Set[int]:
+    def bfs(self, start_vertex: int) -> set[int]:
         """
         >>> g = Graph()
         >>> g.add_edge(0, 1)
@@ -52,19 +53,19 @@ class Graph:
         visited = set()
 
         # create a first in first out queue to store all the vertices for BFS
-        queue = []
+        queue: Queue = Queue()
 
         # mark the source node as visited and enqueue it
         visited.add(start_vertex)
-        queue.append(start_vertex)
+        queue.put(start_vertex)
 
-        while queue:
-            vertex = queue.pop(0)
+        while not queue.empty():
+            vertex = queue.get()
 
             # loop through all adjacent vertex and enqueue it if not yet visited
             for adjacent_vertex in self.vertices[vertex]:
                 if adjacent_vertex not in visited:
-                    queue.append(adjacent_vertex)
+                    queue.put(adjacent_vertex)
                     visited.add(adjacent_vertex)
         return visited
 

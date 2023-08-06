@@ -2,10 +2,10 @@
 # In this Algorithm we just care about the order that the processes arrived
 # without carring about their duration time
 # https://en.wikipedia.org/wiki/Scheduling_(computing)#First_come,_first_served
-from typing import List
+from __future__ import annotations
 
 
-def calculate_waiting_times(duration_times: List[int]) -> List[int]:
+def calculate_waiting_times(duration_times: list[int]) -> list[int]:
     """
     This function calculates the waiting time of some processes that have a
     specified duration time.
@@ -24,8 +24,8 @@ def calculate_waiting_times(duration_times: List[int]) -> List[int]:
 
 
 def calculate_turnaround_times(
-    duration_times: List[int], waiting_times: List[int]
-) -> List[int]:
+    duration_times: list[int], waiting_times: list[int]
+) -> list[int]:
     """
     This function calculates the turnaround time of some processes.
         Return: The time difference between the completion time and the
@@ -44,7 +44,7 @@ def calculate_turnaround_times(
     ]
 
 
-def calculate_average_turnaround_time(turnaround_times: List[int]) -> float:
+def calculate_average_turnaround_time(turnaround_times: list[int]) -> float:
     """
     This function calculates the average of the turnaround times
         Return: The average of the turnaround times.
@@ -58,7 +58,7 @@ def calculate_average_turnaround_time(turnaround_times: List[int]) -> float:
     return sum(turnaround_times) / len(turnaround_times)
 
 
-def calculate_average_waiting_time(waiting_times: List[int]) -> float:
+def calculate_average_waiting_time(waiting_times: list[int]) -> float:
     """
     This function calculates the average of the waiting times
         Return: The average of the waiting times.
@@ -79,7 +79,7 @@ if __name__ == "__main__":
     # ensure that we actually have processes
     if len(processes) == 0:
         print("Zero amount of processes")
-        exit()
+        raise SystemExit(0)
 
     # duration time of all processes
     duration_times = [19, 8, 9]
@@ -87,7 +87,7 @@ if __name__ == "__main__":
     # ensure we can match each id to a duration time
     if len(duration_times) != len(processes):
         print("Unable to match all id's with their duration time")
-        exit()
+        raise SystemExit(0)
 
     # get the waiting times and the turnaround times
     waiting_times = calculate_waiting_times(duration_times)

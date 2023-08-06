@@ -30,15 +30,15 @@ def solution(n: int = 2000000) -> int:
     10
     >>> solution(7.1)  # doctest: +ELLIPSIS
     Traceback (most recent call last):
-    ...
+        ...
     TypeError: 'float' object cannot be interpreted as an integer
     >>> solution(-7)  # doctest: +ELLIPSIS
     Traceback (most recent call last):
-    ...
+        ...
     IndexError: list assignment index out of range
     >>> solution("seven")  # doctest: +ELLIPSIS
     Traceback (most recent call last):
-    ...
+        ...
     TypeError: can only concatenate str (not "int") to str
     """
 
@@ -46,7 +46,7 @@ def solution(n: int = 2000000) -> int:
     primality_list[0] = 1
     primality_list[1] = 1
 
-    for i in range(2, int(n ** 0.5) + 1):
+    for i in range(2, int(n**0.5) + 1):
         if primality_list[i] == 0:
             for j in range(i * i, n + 1, i):
                 primality_list[j] = 1

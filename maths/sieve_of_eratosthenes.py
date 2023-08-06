@@ -10,13 +10,12 @@ Reference: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 doctest provider: Bruno Simas Hadlich (https://github.com/brunohadlich)
 Also thanks to Dmitry (https://github.com/LizardWizzard) for finding the problem
 """
-
+from __future__ import annotations
 
 import math
-from typing import List
 
 
-def prime_sieve(num: int) -> List[int]:
+def prime_sieve(num: int) -> list[int]:
     """
     Returns a list with all prime numbers up to n.
 
@@ -35,7 +34,8 @@ def prime_sieve(num: int) -> List[int]:
     """
 
     if num <= 0:
-        raise ValueError(f"{num}: Invalid input, please enter a positive integer.")
+        msg = f"{num}: Invalid input, please enter a positive integer."
+        raise ValueError(msg)
 
     sieve = [True] * (num + 1)
     prime = []

@@ -1,7 +1,7 @@
 r"""
 Problem:
 
-The n queens problem is of placing N queens on a N * N chess board such that no queen
+The n queens problem is: placing N queens on a N * N chess board such that no queen
 can attack any other queens placed on that chess board.  This means that one queen
 cannot have any other queen on its horizontal, vertical and diagonal lines.
 
@@ -31,7 +31,7 @@ So if we use an array and we verify that each value in the array is different to
 other we know that at least the queens can't attack each other in horizontal and
 vertical.
 
-At this point we have that halfway completed and we will treat the chessboard as a
+At this point we have it halfway completed and we will treat the chessboard as a
 Cartesian plane.  Hereinafter we are going to remember basic math, so in the school we
 learned this formula:
 
@@ -47,7 +47,7 @@ This formula allow us to get the slope. For the angles 45º (right diagonal) and
 See::
 https://www.enotes.com/homework-help/write-equation-line-that-hits-origin-45-degree-1474860
 
-Then we have this another formula:
+Then we have this other formula:
 
 Slope intercept:
 
@@ -59,7 +59,7 @@ we would have:
 
 y - mx = b
 
-And like we already have the m values for the angles 45º and 135º, this formula would
+And since we already have the m values for the angles 45º and 135º, this formula would
 look like this:
 
 45º: y - (1)x = b
@@ -71,18 +71,18 @@ look like this:
 y = row
 x = column
 
-Applying this two formulas we can check if a queen in some position is being attacked
+Applying these two formulas we can check if a queen in some position is being attacked
 for another one or vice versa.
 
 """
-from typing import List
+from __future__ import annotations
 
 
 def depth_first_search(
-    possible_board: List[int],
-    diagonal_right_collisions: List[int],
-    diagonal_left_collisions: List[int],
-    boards: List[List[str]],
+    possible_board: list[int],
+    diagonal_right_collisions: list[int],
+    diagonal_left_collisions: list[int],
+    boards: list[list[str]],
     n: int,
 ) -> None:
     """
@@ -107,7 +107,6 @@ def depth_first_search(
 
     # We iterate each column in the row to find all possible results in each row
     for col in range(n):
-
         # We apply that we learned previously. First we check that in the current board
         # (possible_board) there are not other same value because if there is it means
         # that there are a collision in vertical. Then we apply the two formulas we
@@ -130,16 +129,16 @@ def depth_first_search(
 
         # If it is False we call dfs function again and we update the inputs
         depth_first_search(
-            possible_board + [col],
-            diagonal_right_collisions + [row - col],
-            diagonal_left_collisions + [row + col],
+            [*possible_board, col],
+            [*diagonal_right_collisions, row - col],
+            [*diagonal_left_collisions, row + col],
             boards,
             n,
         )
 
 
 def n_queens_solution(n: int) -> None:
-    boards: List[List[str]] = []
+    boards: list[list[str]] = []
     depth_first_search([], [], [], boards, n)
 
     # Print all the boards

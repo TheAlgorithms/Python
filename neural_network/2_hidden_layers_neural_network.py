@@ -182,7 +182,7 @@ class TwoHiddenLayerNeuralNetwork:
                 loss = numpy.mean(numpy.square(output - self.feedforward()))
                 print(f"Iteration {iteration} Loss: {loss}")
 
-    def predict(self, input: numpy.ndarray) -> int:
+    def predict(self, input_arr: numpy.ndarray) -> int:
         """
         Predict's the output for the given input values using
         the trained neural network.
@@ -201,7 +201,7 @@ class TwoHiddenLayerNeuralNetwork:
         """
 
         # Input values for which the predictions are to be made.
-        self.array = input
+        self.array = input_arr
 
         self.layer_between_input_and_first_hidden_layer = sigmoid(
             numpy.dot(self.array, self.input_layer_and_first_hidden_layer_weights)
@@ -264,7 +264,7 @@ def example() -> int:
     True
     """
     # Input values.
-    input = numpy.array(
+    test_input = numpy.array(
         (
             [0, 0, 0],
             [0, 0, 1],
@@ -282,7 +282,9 @@ def example() -> int:
     output = numpy.array(([0], [1], [1], [0], [1], [0], [0], [1]), dtype=numpy.float64)
 
     # Calling neural network class.
-    neural_network = TwoHiddenLayerNeuralNetwork(input_array=input, output_array=output)
+    neural_network = TwoHiddenLayerNeuralNetwork(
+        input_array=test_input, output_array=output
+    )
 
     # Calling training function.
     # Set give_loss to True if you want to see loss in every iteration.

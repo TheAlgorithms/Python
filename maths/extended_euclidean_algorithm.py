@@ -12,12 +12,12 @@ https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm
 # @Email:  silentcat@protonmail.com
 # @Last modified by:   pikulet
 # @Last modified time: 2020-10-02
+from __future__ import annotations
 
 import sys
-from typing import Tuple
 
 
-def extended_euclidean_algorithm(a: int, b: int) -> Tuple[int, int]:
+def extended_euclidean_algorithm(a: int, b: int) -> tuple[int, int]:
     """
     Extended Euclidean Algorithm.
 
@@ -75,11 +75,12 @@ def main():
     """Call Extended Euclidean Algorithm."""
     if len(sys.argv) < 3:
         print("2 integer arguments required")
-        exit(1)
+        return 1
     a = int(sys.argv[1])
     b = int(sys.argv[2])
     print(extended_euclidean_algorithm(a, b))
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

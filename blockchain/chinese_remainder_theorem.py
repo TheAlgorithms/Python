@@ -11,11 +11,11 @@ Algorithm :
 1. Use extended euclid algorithm to find x,y such that a*x + b*y = 1
 2. Take n = ra*by + rb*ax
 """
-from typing import Tuple
+from __future__ import annotations
 
 
 # Extended Euclid
-def extended_euclid(a: int, b: int) -> Tuple[int, int]:
+def extended_euclid(a: int, b: int) -> tuple[int, int]:
     """
     >>> extended_euclid(10, 6)
     (-1, 2)
@@ -52,6 +52,7 @@ def chinese_remainder_theorem(n1: int, r1: int, n2: int, r2: int) -> int:
 
 
 # ----------SAME SOLUTION USING InvertModulo instead ExtendedEuclid----------------
+
 
 # This function find the inverses of a i.e., a^(-1)
 def invert_modulo(a: int, n: int) -> int:

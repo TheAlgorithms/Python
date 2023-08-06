@@ -6,8 +6,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1  # v1, NOT v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v1  # v1, NOT v2 or v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
       - name: Write DIRECTORY.md
         run: |
           scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md

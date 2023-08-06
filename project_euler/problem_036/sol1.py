@@ -14,11 +14,10 @@ base 10 and base 2.
 (Please note that the palindromic number, in either base, may not include
 leading zeros.)
 """
+from __future__ import annotations
 
-from typing import Union
 
-
-def is_palindrome(n: Union[int, str]) -> bool:
+def is_palindrome(n: int | str) -> bool:
     """
     Return true if the input n is a palindrome.
     Otherwise return false. n can be an integer or a string.
@@ -33,7 +32,7 @@ def is_palindrome(n: Union[int, str]) -> bool:
     False
     """
     n = str(n)
-    return True if n == n[::-1] else False
+    return n == n[::-1]
 
 
 def solution(n: int = 1000000):

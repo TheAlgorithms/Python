@@ -1,34 +1,29 @@
-def mode(input_list: list) -> list:  # Defining function "mode."
+from typing import Any
+
+
+def mode(input_list: list) -> list[Any]:
     """This function returns the mode(Mode as in the measures of
     central tendency) of the input data.
 
     The input list may contain any Datastructure or any Datatype.
 
-    >>> input_list = [2, 3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 2, 2, 2]
-    >>> mode(input_list)
+    >>> mode([2, 3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 2, 2, 2])
     [2]
-    >>> input_list = [3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 4, 2, 2, 2]
-    >>> mode(input_list)
+    >>> mode([3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 4, 2, 2, 2])
     [2]
-    >>> input_list = [3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 4, 4, 2, 2, 4, 2]
-    >>> mode(input_list)
+    >>> mode([3, 4, 5, 3, 4, 2, 5, 2, 2, 4, 4, 4, 2, 2, 4, 2])
     [2, 4]
-    >>> input_list = ["x", "y", "y", "z"]
-    >>> mode(input_list)
+    >>> mode(["x", "y", "y", "z"])
     ['y']
-    >>> input_list = ["x", "x" , "y", "y", "z"]
-    >>> mode(input_list)
+    >>> mode(["x", "x" , "y", "y", "z"])
     ['x', 'y']
     """
-    result = list()  # Empty list to store the counts of elements in input_list
-    for x in input_list:
-        result.append(input_list.count(x))
-    if not result:
+    if not input_list:
         return []
-    y = max(result)  # Gets the maximum value in the result list.
+    result = [input_list.count(value) for value in input_list]
+    y = max(result)  # Gets the maximum count in the input list.
     # Gets values of modes
-    result = {input_list[i] for i, value in enumerate(result) if value == y}
-    return sorted(result)
+    return sorted({input_list[i] for i, value in enumerate(result) if value == y})
 
 
 if __name__ == "__main__":

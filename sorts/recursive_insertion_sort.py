@@ -1,10 +1,7 @@
 """
 A recursive implementation of the insertion sort algorithm
 """
-
 from __future__ import annotations
-
-from typing import List
 
 
 def rec_insertion_sort(collection: list, n: int):
@@ -17,17 +14,17 @@ def rec_insertion_sort(collection: list, n: int):
 
     >>> col = [1, 2, 1]
     >>> rec_insertion_sort(col, len(col))
-    >>> print(col)
+    >>> col
     [1, 1, 2]
 
     >>> col = [2, 1, 0, -1, -2]
     >>> rec_insertion_sort(col, len(col))
-    >>> print(col)
+    >>> col
     [-2, -1, 0, 1, 2]
 
     >>> col = [1]
     >>> rec_insertion_sort(col, len(col))
-    >>> print(col)
+    >>> col
     [1]
     """
     # Checks if the entire collection has been sorted
@@ -44,17 +41,17 @@ def insert_next(collection: list, index: int):
 
     >>> col = [3, 2, 4, 2]
     >>> insert_next(col, 1)
-    >>> print(col)
+    >>> col
     [2, 3, 4, 2]
 
     >>> col = [3, 2, 3]
     >>> insert_next(col, 2)
-    >>> print(col)
+    >>> col
     [3, 2, 3]
 
     >>> col = []
     >>> insert_next(col, 1)
-    >>> print(col)
+    >>> col
     []
     """
     # Checks order between adjacent elements
@@ -72,6 +69,6 @@ def insert_next(collection: list, index: int):
 
 if __name__ == "__main__":
     numbers = input("Enter integers separated by spaces: ")
-    number_list: List[int] = [int(num) for num in numbers.split()]
+    number_list: list[int] = [int(num) for num in numbers.split()]
     rec_insertion_sort(number_list, len(number_list))
     print(number_list)

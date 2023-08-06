@@ -1,4 +1,4 @@
-from typing import List
+from __future__ import annotations
 
 
 def kmp(pattern: str, text: str) -> bool:
@@ -36,7 +36,7 @@ def kmp(pattern: str, text: str) -> bool:
     return False
 
 
-def get_failure_array(pattern: str) -> List[int]:
+def get_failure_array(pattern: str) -> list[int]:
     """
     Calculates the new index we should go to if we fail a comparison
     :param pattern:

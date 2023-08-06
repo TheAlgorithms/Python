@@ -1,43 +1,64 @@
-from typing import Iterable, List, Optional
+from __future__ import annotations
+
+from abc import abstractmethod
+from collections.abc import Iterable
+from typing import Generic, Protocol, TypeVar
 
 
-class Heap:
+class Comparable(Protocol):
+    @abstractmethod
+    def __lt__(self: T, other: T) -> bool:
+        pass
+
+    @abstractmethod
+    def __gt__(self: T, other: T) -> bool:
+        pass
+
+    @abstractmethod
+    def __eq__(self: T, other: object) -> bool:
+        pass
+
+
+T = TypeVar("T", bound=Comparable)
+
+
+class Heap(Generic[T]):
     """A Max Heap Implementation
 
     >>> unsorted = [103, 9, 1, 7, 11, 15, 25, 201, 209, 107, 5]
     >>> h = Heap()
     >>> h.build_max_heap(unsorted)
-    >>> print(h)
+    >>> h
     [209, 201, 25, 103, 107, 15, 1, 9, 7, 11, 5]
     >>>
     >>> h.extract_max()
     209
-    >>> print(h)
+    >>> h
     [201, 107, 25, 103, 11, 15, 1, 9, 7, 5]
     >>>
     >>> h.insert(100)
-    >>> print(h)
+    >>> h
     [201, 107, 25, 103, 100, 15, 1, 9, 7, 5, 11]
     >>>
     >>> h.heap_sort()
-    >>> print(h)
+    >>> h
     [1, 5, 7, 9, 11, 15, 25, 100, 103, 107, 201]
     """
 
     def __init__(self) -> None:
-        self.h: List[float] = []
+        self.h: list[T] = []
         self.heap_size: int = 0
 
     def __repr__(self) -> str:
         return str(self.h)
 
-    def parent_index(self, child_idx: int) -> Optional[int]:
+    def parent_index(self, child_idx: int) -> int | None:
         """return the parent index of given child"""
         if child_idx > 0:
             return (child_idx - 1) // 2
         return None
 
-    def left_child_idx(self, parent_idx: int) -> Optional[int]:
+    def left_child_idx(self, parent_idx: int) -> int | None:
         """
         return the left child index if the left child exists.
         if not, return None.
@@ -47,7 +68,7 @@ class Heap:
             return left_child_index
         return None
 
-    def right_child_idx(self, parent_idx: int) -> Optional[int]:
+    def right_child_idx(self, parent_idx: int) -> int | None:
         """
         return the right child index if the right child exists.
         if not, return None.
@@ -77,7 +98,7 @@ class Heap:
                 # fix the subsequent violation recursively if any
                 self.max_heapify(violation)
 
-    def build_max_heap(self, collection: Iterable[float]) -> None:
+    def build_max_heap(self, collection: Iterable[T]) -> None:
         """build max heap from an unsorted array"""
         self.h = list(collection)
         self.heap_size = len(self.h)
@@ -86,14 +107,7 @@ class Heap:
             for i in range(self.heap_size // 2 - 1, -1, -1):
                 self.max_heapify(i)
 
-    def max(self) -> float:
-        """return the max in the heap"""
-        if self.heap_size >= 1:
-            return self.h[0]
-        else:
-            raise Exception("Empty heap")
-
-    def extract_max(self) -> float:
+    def extract_max(self) -> T:
         """get and remove max from heap"""
         if self.heap_size >= 2:
             me = self.h[0]
@@ -107,7 +121,7 @@ class Heap:
         else:
             raise Exception("Empty heap")
 
-    def insert(self, value: float) -> None:
+    def insert(self, value: T) -> None:
         """insert a new value into the max heap"""
         self.h.append(value)
         idx = (self.heap_size - 1) // 2
@@ -149,7 +163,7 @@ if __name__ == "__main__":
     ]:
         print(f"unsorted array: {unsorted}")
 
-        heap = Heap()
+        heap: Heap[int] = Heap()
         heap.build_max_heap(unsorted)
         print(f"after build heap: {heap}")
 

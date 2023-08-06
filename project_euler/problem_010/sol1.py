@@ -11,12 +11,14 @@ References:
     - https://en.wikipedia.org/wiki/Prime_number
 """
 
-from math import sqrt
+import math
 
 
-def is_prime(n: int) -> bool:
-    """
-    Returns boolean representing primality of given number num.
+def is_prime(number: int) -> bool:
+    """Checks to see if a number is a prime in O(sqrt(n)).
+    A number is prime if it has exactly two factors: 1 and itself.
+    Returns boolean representing primality of given number num (i.e., if the
+    result is true, then the number is indeed prime else it is not).
 
     >>> is_prime(2)
     True
@@ -26,12 +28,23 @@ def is_prime(n: int) -> bool:
     False
     >>> is_prime(2999)
     True
+    >>> is_prime(0)
+    False
+    >>> is_prime(1)
+    False
     """
 
-    for i in range(2, int(sqrt(n)) + 1):
-        if n % i == 0:
-            return False
+    if 1 < number < 4:
+        # 2 and 3 are primes
+        return True
+    elif number < 2 or number % 2 == 0 or number % 3 == 0:
+        # Negatives, 0, 1, all even numbers, all multiples of 3 are not primes
+        return False
 
+    # All primes number are in format of 6k +/- 1
+    for i in range(5, int(math.sqrt(number) + 1), 6):
+        if number % i == 0 or number % (i + 2) == 0:
+            return False
     return True
 
 
@@ -49,16 +62,7 @@ def solution(n: int = 2000000) -> int:
     10
     """
 
-    if n > 2:
-        sum_of_primes = 2
-    else:
-        return 0
-
-    for i in range(3, n, 2):
-        if is_prime(i):
-            sum_of_primes += i
-
-    return sum_of_primes
+    return sum(num for num in range(3, n, 2) if is_prime(num)) + 2 if n > 2 else 0
 
 
 if __name__ == "__main__":

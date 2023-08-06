@@ -2,18 +2,18 @@
 
 ## Before contributing
 
-Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms).
+Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms/community).
 
 ## Contributing
 
 ### Contributor
 
-We are very happy that you consider implementing algorithms and data structure for others! This repository is referenced and used by learners from all over the globe. Being one of our contributors, you agree and confirm that:
+We are very happy that you are considering implementing algorithms and data structures for others! This repository is referenced and used by learners from all over the globe. Being one of our contributors, you agree and confirm that:
 
 - You did your work - no plagiarism allowed
   - Any plagiarized work will not be merged.
 - Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged
-- You submitted work fulfils or mostly fulfils our styles and standards
+- Your submitted work fulfils or mostly fulfils our styles and standards
 
 __New implementation__ is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity but __identical implementation__ of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
 
@@ -23,9 +23,16 @@ __Improving comments__ and __writing proper tests__ are also highly welcome.
 
 We appreciate any contribution, from fixing a grammar mistake in a comment to implementing complex algorithms. Please read this section if you are contributing your work.
 
-Your contribution will be tested by our [automated testing on Travis CI](https://travis-ci.org/TheAlgorithms/Python/pull_requests) to save time and mental energy.  After you have submitted your pull request, you should see the Travis tests start to run at the bottom of your submission page.  If those tests fail, then click on the ___details___ button try to read through the Travis output to understand the failure.  If you do not understand, please leave a comment on your submission page and a community member will try to help.
+Your contribution will be tested by our [automated testing on GitHub Actions](https://github.com/TheAlgorithms/Python/actions) to save time and mental energy.  After you have submitted your pull request, you should see the GitHub Actions tests start to run at the bottom of your submission page.  If those tests fail, then click on the ___details___ button try to read through the GitHub Actions output to understand the failure.  If you do not understand, please leave a comment on your submission page and a community member will try to help.
 
-Please help us keep our issue list small by adding fixes: #{$ISSUE_NO} to the commit message of pull requests that resolve open issues. GitHub will use this tag to auto close the issue when the PR is merged.
+If you are interested in resolving an [open issue](https://github.com/TheAlgorithms/Python/issues), simply make a pull request with your proposed fix. __We do not assign issues in this repo__ so please do not ask for permission to work on an issue.
+
+Please help us keep our issue list small by adding `Fixes #{$ISSUE_NUMBER}` to the description of pull requests that resolve open issues.
+For example, if your pull request fixes issue #10, then please add the following to its description:
+```
+Fixes #10
+```
+GitHub will use this tag to [auto-close the issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) if and when the PR is merged.
 
 #### What is an Algorithm?
 
@@ -53,7 +60,7 @@ Algorithms in this repo should not be how-to examples for existing Python packag
 Use [pre-commit](https://pre-commit.com/#installation) to automatically format your code to match our coding style:
 
 ```bash
-python3 -m pip install pre-commit  # required only once
+python3 -m pip install pre-commit  # only required the first time
 pre-commit install
 ```
 That's it! The plugin will run every time you commit any changes. If there are any errors found during the run, fix them and commit those changes. You can even run the plugin manually on all files:
@@ -66,8 +73,8 @@ pre-commit run --all-files --show-diff-on-failure
 
 We want your work to be readable by others; therefore, we encourage you to note the following:
 
-- Please write in Python 3.9+. For instance:  `print()` is a function in Python 3 so `print "Hello"` will *not* work but `print("Hello")` will.
-- Please focus hard on naming of functions, classes, and variables.  Help your reader by using __descriptive names__ that can help you to remove redundant comments.
+- Please write in Python 3.11+. For instance:  `print()` is a function in Python 3 so `print "Hello"` will *not* work but `print("Hello")` will.
+- Please focus hard on the naming of functions, classes, and variables.  Help your reader by using __descriptive names__ that can help you to remove redundant comments.
   - Single letter variable names are *old school* so please avoid them unless their life only spans a few lines.
   - Expand acronyms because `gcd()` is hard to understand but `greatest_common_divisor()` is not.
   - Please follow the [Python Naming Conventions](https://pep8.org/#prescriptive-naming-conventions) so variable_names and function_names should be lower_case, CONSTANTS in UPPERCASE, ClassNames should be CamelCase, etc.
@@ -81,11 +88,11 @@ We want your work to be readable by others; therefore, we encourage you to note 
   black .
   ```
 
-- All submissions will need to pass the test `flake8 . --ignore=E203,W503 --max-line-length=88` before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
+- All submissions will need to pass the test `ruff .` before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
 
   ```bash
-  python3 -m pip install flake8  # only required the first time
-  flake8 . --ignore=E203,W503  --max-line-length=88 --show-source
+  python3 -m pip install ruff  # only required the first time
+  ruff .
   ```
 
 - Original code submission require docstrings or comments to describe your work.
@@ -102,7 +109,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
   This is too trivial. Comments are expected to be explanatory. For comments, you can write them above, on or below a line of code, as long as you are consistent within the same piece of code.
 
-  We encourage you to put docstrings inside your functions but please pay attention to indentation of docstrings. The following is a good example:
+  We encourage you to put docstrings inside your functions but please pay attention to the indentation of docstrings. The following is a good example:
 
   ```python
   def sum_ab(a, b):
@@ -160,7 +167,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 - [__List comprehensions and generators__](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) are preferred over the use of `lambda`, `map`, `filter`, `reduce` but the important thing is to demonstrate the power of Python in code that is easy to read and maintain.
 
 - Avoid importing external libraries for basic algorithms. Only use those libraries for complicated algorithms.
-- If you need a third party module that is not in the file __requirements.txt__, please add it to that file as part of your submission.
+- If you need a third-party module that is not in the file __requirements.txt__, please add it to that file as part of your submission.
 
 #### Other Requirements for Submissions
 - If you are submitting code in the `project_euler/` directory, please also read [the dedicated Guideline](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md) before contributing to our Project Euler library.
@@ -170,13 +177,13 @@ We want your work to be readable by others; therefore, we encourage you to note 
 - If possible, follow the standard *within* the folder you are submitting to.
 - If you have modified/added code work, make sure the code compiles before submitting.
 - If you have modified/added documentation work, ensure your language is concise and contains no grammar errors.
-- Do not update the README.md or DIRECTORY.md file which will be periodically autogenerated by our Travis CI processes.
+- Do not update the README.md or DIRECTORY.md file which will be periodically autogenerated by our GitHub Actions processes.
 - Add a corresponding explanation to [Algorithms-Explanation](https://github.com/TheAlgorithms/Algorithms-Explanation) (Optional but recommended).
-- All submissions will be tested with [__mypy__](http://www.mypy-lang.org) so we encourage to add [__Python type hints__](https://docs.python.org/3/library/typing.html) where it makes sense to do so.
+- All submissions will be tested with [__mypy__](http://www.mypy-lang.org) so we encourage you to add [__Python type hints__](https://docs.python.org/3/library/typing.html) where it makes sense to do so.
 
 - Most importantly,
   - __Be consistent in the use of these guidelines when submitting.__
-  - __Join__ [Gitter](https://gitter.im/TheAlgorithms) __now!__
+  - __Join__ us on [Discord](https://discord.com/invite/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms/community) __now!__
   - Happy coding!
 
 Writer [@poyea](https://github.com/poyea), Jun 2019.

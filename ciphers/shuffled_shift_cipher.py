@@ -1,6 +1,7 @@
+from __future__ import annotations
+
 import random
 import string
-from typing import Optional
 
 
 class ShuffledShiftCipher:
@@ -8,7 +9,7 @@ class ShuffledShiftCipher:
     This algorithm uses the Caesar Cipher algorithm but removes the option to
     use brute force to decrypt the message.
 
-    The passcode is a a random password from the selection buffer of
+    The passcode is a random password from the selection buffer of
     1. uppercase letters of the English alphabet
     2. lowercase letters of the English alphabet
     3. digits from 0 to 9
@@ -27,7 +28,7 @@ class ShuffledShiftCipher:
     cip2 = ShuffledShiftCipher()
     """
 
-    def __init__(self, passcode: Optional[str] = None) -> None:
+    def __init__(self, passcode: str | None = None) -> None:
         """
         Initializes a cipher object with a passcode as it's entity
         Note: No new passcode is generated if user provides a passcode
@@ -41,7 +42,7 @@ class ShuffledShiftCipher:
         """
         :return: passcode of the cipher object
         """
-        return "Passcode is: " + "".join(self.__passcode)
+        return "".join(self.__passcode)
 
     def __neg_pos(self, iterlist: list[int]) -> list[int]:
         """

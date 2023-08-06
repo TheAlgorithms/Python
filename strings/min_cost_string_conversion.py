@@ -1,5 +1,3 @@
-from typing import List, Tuple
-
 """
 Algorithm for calculating the most cost-efficient sequence for converting one string
 into another.
@@ -18,7 +16,7 @@ def compute_transform_tables(
     replace_cost: int,
     delete_cost: int,
     insert_cost: int,
-) -> Tuple[List[int], List[str]]:
+) -> tuple[list[list[int]], list[list[str]]]:
     source_seq = list(source_string)
     destination_seq = list(destination_string)
     len_source_seq = len(source_seq)
@@ -28,42 +26,42 @@ def compute_transform_tables(
         [0 for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
     ]
     ops = [
-        [0 for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
+        ["0" for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
     ]
 
     for i in range(1, len_source_seq + 1):
         costs[i][0] = i * delete_cost
-        ops[i][0] = "D%c" % source_seq[i - 1]
+        ops[i][0] = f"D{source_seq[i - 1]:c}"
 
     for i in range(1, len_destination_seq + 1):
         costs[0][i] = i * insert_cost
-        ops[0][i] = "I%c" % destination_seq[i - 1]
+        ops[0][i] = f"I{destination_seq[i - 1]:c}"
 
     for i in range(1, len_source_seq + 1):
         for j in range(1, len_destination_seq + 1):
             if source_seq[i - 1] == destination_seq[j - 1]:
                 costs[i][j] = costs[i - 1][j - 1] + copy_cost
-                ops[i][j] = "C%c" % source_seq[i - 1]
+                ops[i][j] = f"C{source_seq[i - 1]:c}"
             else:
                 costs[i][j] = costs[i - 1][j - 1] + replace_cost
-                ops[i][j] = "R%c" % source_seq[i - 1] + str(destination_seq[j - 1])
+                ops[i][j] = f"R{source_seq[i - 1]:c}" + str(destination_seq[j - 1])
 
             if costs[i - 1][j] + delete_cost < costs[i][j]:
                 costs[i][j] = costs[i - 1][j] + delete_cost
-                ops[i][j] = "D%c" % source_seq[i - 1]
+                ops[i][j] = f"D{source_seq[i - 1]:c}"
 
             if costs[i][j - 1] + insert_cost < costs[i][j]:
                 costs[i][j] = costs[i][j - 1] + insert_cost
-                ops[i][j] = "I%c" % destination_seq[j - 1]
+                ops[i][j] = f"I{destination_seq[j - 1]:c}"
 
     return costs, ops
 
 
-def assemble_transformation(ops: List[str], i: int, j: int) -> List[str]:
+def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
     if i == 0 and j == 0:
         return []
     else:
-        if ops[i][j][0] == "C" or ops[i][j][0] == "R":
+        if ops[i][j][0] in {"C", "R"}:
             seq = assemble_transformation(ops, i - 1, j - 1)
             seq.append(ops[i][j])
             return seq
