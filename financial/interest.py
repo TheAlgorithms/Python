@@ -4,42 +4,57 @@ from __future__ import annotations
 
 
 #converts effective interest rate to effective discount rate
+#interest to discount formula :
+#d = i / (1 + i)
+#source: https://www.wallstreetprep.com/knowledge/discount-rate/
 def interest_to_discount(
     interest: float
 ):
+    """
+
+    >>> interest_to_discount(0.22)
+    0.18032786885245902
+    >>> interest_to_discount(0.03)
+    0.029126213592233007
+    >>> interest_to_discount(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: interest must be a positive float
+    
+    """
+
     if interest <= 0:
         raise ValueError("interest must be a positive float")
     
-    """
-        interest to discount formula :
-
-        d = i / (1 + i)
-
-        source: https://www.wallstreetprep.com/knowledge/discount-rate/
-        
-    """
 
     return (interest / (1 + interest))
 
+
 #converts effect discount rate to effective interest rate
+#discount to interest formula :
+#i = d/(1-d)
+#source: https://www.wallstreetprep.com/knowledge/discount-rate/
 def discount_to_interest(
         discount: float
 ):
+    """
+    >>> discount_to_interest(0.22)
+    0.28205128205128205
+    >>> discount_to_interest(0.03)
+    0.030927835051546393
+    >>> discount_to_interest(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: discount must be a positive float
+        
+    """
+    
+
     if discount <= 0:
         raise ValueError("discount must be a positive float")
     
-    """
     
-        discount to interest formula :
-
-        i = d/(1-d)
-
-        source: https://www.wallstreetprep.com/knowledge/discount-rate/
-    
-    """
-
     return (discount / (1 - discount))
-
 
 
 
