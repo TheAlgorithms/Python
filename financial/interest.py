@@ -1,5 +1,5 @@
 # https://www.investopedia.com
-#source: https://www.wallstreetprep.com/knowledge/discount-rate/
+# source: https://www.wallstreetprep.com/knowledge/discount-rate/
 
 from __future__ import annotations
 
@@ -115,9 +115,7 @@ def apr_interest(
     )
 
 
-def interest_to_discount(
-    interest: float
-) -> float:
+def interest_to_discount(interest: float) -> float:
     """
     >>> interest_to_discount(0.22)
     0.18032786885245902
@@ -127,17 +125,15 @@ def interest_to_discount(
     Traceback (most recent call last):
         ...
     ValueError: interest must be a positive float
-    
+
     """
     if interest <= 0:
         raise ValueError("interest must be a positive float")
 
-    return (interest / (1 + interest))
+    return interest / (1 + interest)
 
 
-def discount_to_interest(
-        discount: float
-) -> float:
+def discount_to_interest(discount: float) -> float:
     """
     >>> discount_to_interest(0.22)
     0.28205128205128205
@@ -147,12 +143,12 @@ def discount_to_interest(
     Traceback (most recent call last):
         ...
     ValueError: discount must be a positive float
-        
+
     """
     if discount <= 0:
         raise ValueError("discount must be a positive float")
-       
-    return (discount / (1 - discount))
+
+    return discount / (1 - discount)
 
 
 if __name__ == "__main__":
