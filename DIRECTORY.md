@@ -449,6 +449,7 @@
   * Tests
     * [Test Min Spanning Tree Kruskal](graphs/tests/test_min_spanning_tree_kruskal.py)
     * [Test Min Spanning Tree Prim](graphs/tests/test_min_spanning_tree_prim.py)
+  * [Uniform Search Cost](graphs/uniform_search_cost.py)
 
 ## Greedy Methods
   * [Fractional Knapsack](greedy_methods/fractional_knapsack.py)
