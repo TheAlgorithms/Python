@@ -1,57 +1,60 @@
-from math import ceil, sqrt
 from __future__ import annotations
+from math import ceil , sqrt
 
+def primeproduct( num : int) -> list[int]:
 
-def primeproduct(n: int, x: list = []) -> list[int]:
-    """
+    '''
     >>> primeproduct(868)
     [2, 2, 7, 31]
     >>> primeproduct(9039423423423743)
     [2, 2, 7, 31, 719, 12572216166097]
     >>> primeproduct(0.02)
+    Traceback (most recent call last):
+    ValueError: invalid literal for int() with base 10: '0.02'
+    >>> primeproduct(-2342)
     []
-    """
-    if n < 1:
+    '''
+
+    if num <= 1:
         return []
+    
+    prime_factors = []
 
-    if n > 1:
-        if len(x) >= 1 and x[-1] % n == 0:  # check in already factorised
-            x.append(x[-1])
-            n = n // x[-1]
-
+    while num > 1:
+        if len(prime_factors) >= 1 and prime_factors[-1] % num ==0:
+            prime_factors.append(prime_factors[-1])
+        
         else:
-            sq = ceil(sqrt(n))
+            sq = ceil(sqrt(num))
             flag = 0
 
-            if x != []:
-                for i in range(x[-1], sq + 1, 2):
-                    if n % i == 0:
-                        n = n // i
-                        x.append(i)
+            if prime_factors!=[]:
+                for i in range(prime_factors[-1], sq+1 , 2):
+                    if num % i == 0:
+                        num = num // i
+                        prime_factors.append(i)
                         flag = 1
                         break
-
+            
             else:
-                # Handle factor 2 separately
-                while n % 2 == 0:  # only 2 is even prime
-                    n = n // 2
-                    x.append(2)
-
-                # Start loop from 3 and increment by 2
-                for i in range(3, sq + 1, 2):  # skip even numbers
-                    if n % i == 0:
-                        n = n // i
-                        x.append(i)
+                while  num % 2 == 0:
+                    num = num // 2
+                    prime_factors.append(2)
+                
+                for i in range(3 , sq+1 , 2):
+                    if num % i == 0:
+                        num = num // i
+                        prime_factors.append(i)
                         flag = 1
                         break
 
-            if not flag:
-                x.append(n)
-                n = 1
-
-        return primeproduct(n, x)
-
-    return x
+            
+            if not flag and num > 1:
+                prime_factors.append(num)
+                num = 1
+                break
+        
+    return prime_factors
 
 
 # faster than https://github.com/sourabhkv/Python/blob/master/maths/prime_factors.py approx 2x
