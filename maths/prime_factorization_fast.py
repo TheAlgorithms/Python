@@ -18,8 +18,7 @@ def primeproduct(num: int) -> list[int]:
     if num <= 1:
         return []
 
-    prime_factors = []
-
+    prime_factors: list[int] = []
     while num > 1:
         if len(prime_factors) >= 1 and prime_factors[-1] % num == 0:
             prime_factors.append(prime_factors[-1])
@@ -56,7 +55,6 @@ def primeproduct(num: int) -> list[int]:
     return prime_factors
 
 
-# faster than https://github.com/sourabhkv/Python/blob/master/maths/prime_factors.py approx 2x
 if __name__ == "__main__":
     import doctest
 
