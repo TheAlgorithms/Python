@@ -2,6 +2,7 @@ from __future__ import annotations
 from math import ceil, sqrt
 import time
 
+
 def timer(func):
     def wrapper(*args, **kwargs):
         start = time.time()
@@ -10,7 +11,9 @@ def timer(func):
         end = time.time()
         print(f"{func.__name__} took {end - start:.6f} seconds to execute.")
         return result
+
     return wrapper
+
 
 @timer
 def prime_factors(n: int) -> list[int]:
@@ -59,6 +62,7 @@ def prime_factors(n: int) -> list[int]:
     if n > 1:
         factors.append(n)
     return factors
+
 
 @timer
 def primeproduct(num: int) -> list[int]:
@@ -110,7 +114,8 @@ def primeproduct(num: int) -> list[int]:
                 break
     return prime_factors
 
+
 if __name__ == "__main__":
-    n = int(input('enter number: ').strip())
+    n = int(input("enter number: ").strip())
     primeproduct(n)
     prime_factors(n)
