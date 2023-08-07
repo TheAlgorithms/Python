@@ -1,10 +1,9 @@
 from typing import List
 import heapq
-from copy import deepcopy
 
 
 class UniformCostSearch:
-    def __init__(self, current, final, grid):
+    def __init__(self, current: list, final: list, grid: list[list]) -> None:
         self.m = len(grid[0])
         self.n = len(grid)
 
@@ -76,7 +75,9 @@ class UniformCostSearch:
         (-1, 1),
     ]
 
-    def get_shortest_path(self, start, end, dist, dxy):
+    def get_shortest_path(
+        self, start: list, end: list, dist: list[list], dxy: list[tuple]
+    ) -> list:
         shortest_path = []
         curr_node = end
         while curr_node != start:
@@ -97,7 +98,15 @@ class UniformCostSearch:
         shortest_path.append(start)
         return shortest_path
 
-    def ucs(self, current, final, grid, prev, dxy, goal_answer):
+    def ucs(
+        self,
+        current: list,
+        final: list[list],
+        grid: list[list],
+        prev: list[list],
+        dxy: list[tuple],
+        goal_answer: list,
+    ) -> list:
         dist = [[float("inf") for _ in range(self.m)] for _ in range(self.n)]
         visited = [[0 for _ in range(self.m)] for _ in range(self.n)]
 
@@ -145,8 +154,8 @@ class UniformCostSearch:
                         heapq.heappush(heap, (new_dist, x + dx, y + dy))
 
     def your_algorithm(
-        self, start_point: List[int], end_point: List[int], grid: List[List[int]]
-    ) -> List[int]:
+        self, start_point: list, end_point: list, grid: list[list]
+    ) -> list[int]:
         prev = [[None for _ in range(self.m)] for _ in range(self.n)]
         dxy = []
         if start_point[1] - end_point[1] == 0 and start_point[0] - end_point[0] < 0:
@@ -168,7 +177,7 @@ class UniformCostSearch:
         return path
 
 
-def run():
+def run() -> None:
     executed_object = UniformCostSearch(
         [0, 7],
         [19, 17],
