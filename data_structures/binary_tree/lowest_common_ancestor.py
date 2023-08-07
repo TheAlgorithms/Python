@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-import queue
+from queue import Queue
 
 
 def swap(a: int, b: int) -> tuple[int, int]:
@@ -37,7 +37,7 @@ def create_sparse(max_node: int, parent: list[list[int]]) -> list[list[int]]:
 # returns lca of node u,v
 def lowest_common_ancestor(
     u: int, v: int, level: list[int], parent: list[list[int]]
-) -> list[list[int]]:
+) -> int:
     # u must be deeper in the tree than v
     if level[u] < level[v]:
         u, v = swap(u, v)
@@ -50,7 +50,7 @@ def lowest_common_ancestor(
         return u
     # moving both nodes upwards till lca in found
     for i in range(18, -1, -1):
-        if parent[i][u] != 0 and parent[i][u] != parent[i][v]:
+        if parent[i][u] not in [0, parent[i][v]]:
             u, v = parent[i][u], parent[i][v]
     # returning longest common ancestor of u,v
     return parent[0][u]
@@ -61,8 +61,8 @@ def breadth_first_search(
     level: list[int],
     parent: list[list[int]],
     max_node: int,
-    graph: dict[int, int],
-    root=1,
+    graph: dict[int, list[int]],
+    root: int = 1,
 ) -> tuple[list[int], list[list[int]]]:
     """
     sets every nodes direct parent
@@ -70,7 +70,7 @@ def breadth_first_search(
     calculates depth of each node from root node
     """
     level[root] = 0
-    q = queue.Queue(maxsize=max_node)
+    q: Queue[int] = Queue(maxsize=max_node)
     q.put(root)
     while q.qsize() != 0:
         u = q.get()
@@ -88,7 +88,7 @@ def main() -> None:
     parent = [[0 for _ in range(max_node + 10)] for _ in range(20)]
     # initializing with -1 which means every node is unvisited
     level = [-1 for _ in range(max_node + 10)]
-    graph = {
+    graph: dict[int, list[int]] = {
         1: [2, 3, 4],
         2: [5],
         3: [6, 7],

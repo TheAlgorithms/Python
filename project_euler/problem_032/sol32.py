@@ -15,15 +15,15 @@ include it once in your sum.
 import itertools
 
 
-def isCombinationValid(combination):
+def is_combination_valid(combination):
     """
     Checks if a combination (a tuple of 9 digits)
     is a valid product equation.
 
-    >>> isCombinationValid(('3', '9', '1', '8', '6', '7', '2', '5', '4'))
+    >>> is_combination_valid(('3', '9', '1', '8', '6', '7', '2', '5', '4'))
     True
 
-    >>> isCombinationValid(('1', '2', '3', '4', '5', '6', '7', '8', '9'))
+    >>> is_combination_valid(('1', '2', '3', '4', '5', '6', '7', '8', '9'))
     False
 
     """
@@ -49,7 +49,7 @@ def solution():
         {
             int("".join(pandigital[5:9]))
             for pandigital in itertools.permutations("123456789")
-            if isCombinationValid(pandigital)
+            if is_combination_valid(pandigital)
         }
     )
 

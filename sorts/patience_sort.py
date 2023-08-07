@@ -1,7 +1,8 @@
+from __future__ import annotations
+
 from bisect import bisect_left
 from functools import total_ordering
 from heapq import merge
-from typing import List
 
 """
 A pure Python implementation of the patience sort algorithm
@@ -28,7 +29,7 @@ class Stack(list):
 
 
 def patience_sort(collection: list) -> list:
-    """A pure implementation of quick sort algorithm in Python
+    """A pure implementation of patience sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
@@ -44,7 +45,7 @@ def patience_sort(collection: list) -> list:
     >>> patience_sort([-3, -17, -48])
     [-48, -17, -3]
     """
-    stacks: List[Stack] = []
+    stacks: list[Stack] = []
     # sort into stacks
     for element in collection:
         new_stacks = Stack([element])
@@ -55,7 +56,7 @@ def patience_sort(collection: list) -> list:
             stacks.append(new_stacks)
 
     # use a heap-based merge to merge stack efficiently
-    collection[:] = merge(*[reversed(stack) for stack in stacks])
+    collection[:] = merge(*(reversed(stack) for stack in stacks))
     return collection
 
 

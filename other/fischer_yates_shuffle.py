@@ -6,14 +6,15 @@ For more details visit
 wikipedia/Fischer-Yates-Shuffle.
 """
 import random
+from typing import Any
 
 
-def FYshuffle(list):
-    for i in range(len(list)):
-        a = random.randint(0, len(list) - 1)
-        b = random.randint(0, len(list) - 1)
-        list[a], list[b] = list[b], list[a]
-    return list
+def fisher_yates_shuffle(data: list) -> list[Any]:
+    for _ in range(len(data)):
+        a = random.randint(0, len(data) - 1)
+        b = random.randint(0, len(data) - 1)
+        data[a], data[b] = data[b], data[a]
+    return data
 
 
 if __name__ == "__main__":
@@ -21,4 +22,4 @@ if __name__ == "__main__":
     strings = ["python", "says", "hello", "!"]
     print("Fisher-Yates Shuffle:")
     print("List", integers, strings)
-    print("FY Shuffle", FYshuffle(integers), FYshuffle(strings))
+    print("FY Shuffle", fisher_yates_shuffle(integers), fisher_yates_shuffle(strings))

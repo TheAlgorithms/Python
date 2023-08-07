@@ -71,13 +71,13 @@ class CNN:
         with open(save_path, "wb") as f:
             pickle.dump(model_dic, f)
 
-        print("Model saved： %s" % save_path)
+        print(f"Model saved： {save_path}")
 
     @classmethod
-    def ReadModel(cls, model_path):
+    def read_model(cls, model_path):
         # read saved model
         with open(model_path, "rb") as f:
-            model_dic = pickle.load(f)
+            model_dic = pickle.load(f)  # noqa: S301
 
         conv_get = model_dic.get("conv1")
         conv_get.append(model_dic.get("step_conv1"))
@@ -119,7 +119,7 @@ class CNN:
                 data_focus.append(focus)
         # calculate the feature map of every single kernel, and saved as list of matrix
         data_featuremap = []
-        Size_FeatureMap = int((size_data - size_conv) / conv_step + 1)
+        size_feature_map = int((size_data - size_conv) / conv_step + 1)
         for i_map in range(num_conv):
             featuremap = []
             for i_focus in range(len(data_focus)):
@@ -129,7 +129,7 @@ class CNN:
                 )
                 featuremap.append(self.sig(net_focus))
             featuremap = np.asmatrix(featuremap).reshape(
-                Size_FeatureMap, Size_FeatureMap
+                size_feature_map, size_feature_map
             )
             data_featuremap.append(featuremap)
 
@@ -140,24 +140,24 @@ class CNN:
         focus_list = np.asarray(focus1_list)
         return focus_list, data_featuremap
 
-    def pooling(self, featuremaps, size_pooling, type="average_pool"):
+    def pooling(self, featuremaps, size_pooling, pooling_type="average_pool"):
         # pooling process
         size_map = len(featuremaps[0])
         size_pooled = int(size_map / size_pooling)
         featuremap_pooled = []
         for i_map in range(len(featuremaps)):
-            map = featuremaps[i_map]
+            feature_map = featuremaps[i_map]
             map_pooled = []
             for i_focus in range(0, size_map, size_pooling):
                 for j_focus in range(0, size_map, size_pooling):
-                    focus = map[
+                    focus = feature_map[
                         i_focus : i_focus + size_pooling,
                         j_focus : j_focus + size_pooling,
                     ]
-                    if type == "average_pool":
+                    if pooling_type == "average_pool":
                         # average pooling
                         map_pooled.append(np.average(focus))
-                    elif type == "max_pooling":
+                    elif pooling_type == "max_pooling":
                         # max pooling
                         map_pooled.append(np.max(focus))
             map_pooled = np.asmatrix(map_pooled).reshape(size_pooled, size_pooled)
@@ -219,7 +219,7 @@ class CNN:
         mse = 10000
         while rp < n_repeat and mse >= error_accuracy:
             error_count = 0
-            print("-------------Learning Time %d--------------" % rp)
+            print(f"-------------Learning Time {rp}--------------")
             for p in range(len(datas_train)):
                 # print('------------Learning Image: %d--------------'%p)
                 data_train = np.asmatrix(datas_train[p])
@@ -303,7 +303,7 @@ class CNN:
             plt.show()
 
         print("------------------Training Complished---------------------")
-        print((" - - Training epoch: ", rp, "     - - Mse: %.6f" % mse))
+        print((" - - Training epoch: ", rp, f"     - - Mse: {mse:.6f}"))
         if draw_e:
             draw_error()
         return mse

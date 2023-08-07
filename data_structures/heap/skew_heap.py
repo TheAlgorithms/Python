@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Generic, Iterable, Iterator, Optional, TypeVar
+from collections.abc import Iterable, Iterator
+from typing import Any, Generic, TypeVar
 
-T = TypeVar("T")
+T = TypeVar("T", bound=bool)
 
 
 class SkewNode(Generic[T]):
@@ -15,8 +16,8 @@ class SkewNode(Generic[T]):
 
     def __init__(self, value: T) -> None:
         self._value: T = value
-        self.left: Optional[SkewNode[T]] = None
-        self.right: Optional[SkewNode[T]] = None
+        self.left: SkewNode[T] | None = None
+        self.right: SkewNode[T] | None = None
 
     @property
     def value(self) -> T:
@@ -25,8 +26,8 @@ class SkewNode(Generic[T]):
 
     @staticmethod
     def merge(
-        root1: Optional[SkewNode[T]], root2: Optional[SkewNode[T]]
-    ) -> Optional[SkewNode[T]]:
+        root1: SkewNode[T] | None, root2: SkewNode[T] | None
+    ) -> SkewNode[T] | None:
         """Merge 2 nodes together."""
         if not root1:
             return root2
@@ -51,7 +52,7 @@ class SkewHeap(Generic[T]):
     values. Both operations take O(logN) time where N is the size of the
     structure.
     Wiki: https://en.wikipedia.org/wiki/Skew_heap
-    Visualisation: https://www.cs.usfca.edu/~galles/visualization/SkewHeap.html
+    Visualization: https://www.cs.usfca.edu/~galles/visualization/SkewHeap.html
 
     >>> list(SkewHeap([2, 3, 1, 5, 1, 7]))
     [1, 1, 2, 3, 5, 7]
@@ -69,15 +70,16 @@ class SkewHeap(Generic[T]):
     [-1, 0, 1]
     """
 
-    def __init__(self, data: Optional[Iterable[T]] = ()) -> None:
+    def __init__(self, data: Iterable[T] | None = ()) -> None:
         """
         >>> sh = SkewHeap([3, 1, 3, 7])
         >>> list(sh)
         [1, 3, 3, 7]
         """
-        self._root: Optional[SkewNode[T]] = None
-        for item in data:
-            self.insert(item)
+        self._root: SkewNode[T] | None = None
+        if data:
+            for item in data:
+                self.insert(item)
 
     def __bool__(self) -> bool:
         """
@@ -103,7 +105,7 @@ class SkewHeap(Generic[T]):
         >>> list(sh)
         [1, 3, 3, 7]
         """
-        result = []
+        result: list[Any] = []
         while self:
             result.append(self.pop())
 
@@ -127,7 +129,7 @@ class SkewHeap(Generic[T]):
         """
         self._root = SkewNode.merge(self._root, SkewNode(value))
 
-    def pop(self) -> T:
+    def pop(self) -> T | None:
         """
         Pop the smallest value from the heap and return it.
 
@@ -146,7 +148,9 @@ class SkewHeap(Generic[T]):
         IndexError: Can't get top element for the empty heap.
         """
         result = self.top()
-        self._root = SkewNode.merge(self._root.left, self._root.right)
+        self._root = (
+            SkewNode.merge(self._root.left, self._root.right) if self._root else None
+        )
 
         return result
 
@@ -172,7 +176,7 @@ class SkewHeap(Generic[T]):
             raise IndexError("Can't get top element for the empty heap.")
         return self._root.value
 
-    def clear(self):
+    def clear(self) -> None:
         """
         Clear the heap.
 

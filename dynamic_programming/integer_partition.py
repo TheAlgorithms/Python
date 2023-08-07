@@ -6,8 +6,8 @@ into k parts. These two facts together are used for this algorithm.
 """
 
 
-def partition(m):
-    memo = [[0 for _ in range(m)] for _ in range(m + 1)]
+def partition(m: int) -> int:
+    memo: list[list[int]] = [[0 for _ in range(m)] for _ in range(m + 1)]
     for i in range(m + 1):
         memo[i][0] = 1
 

@@ -1,7 +1,7 @@
-from typing import List
+from __future__ import annotations
 
 
-def median_of_two_arrays(nums1: List[float], nums2: List[float]) -> float:
+def median_of_two_arrays(nums1: list[float], nums2: list[float]) -> float:
     """
     >>> median_of_two_arrays([1, 2], [3])
     2

@@ -69,12 +69,11 @@ def get_initial_centroids(data, k, seed=None):
     return centroids
 
 
-def centroid_pairwise_dist(X, centroids):
-    return pairwise_distances(X, centroids, metric="euclidean")
+def centroid_pairwise_dist(x, centroids):
+    return pairwise_distances(x, centroids, metric="euclidean")
 
 
 def assign_clusters(data, centroids):
-
     # Compute distances between each data point and the set of centroids:
     # Fill in the blank (RHS only)
     distances_from_centroids = centroid_pairwise_dist(data, centroids)
@@ -100,10 +99,8 @@ def revise_centroids(data, k, cluster_assignment):
 
 
 def compute_heterogeneity(data, k, centroids, cluster_assignment):
-
     heterogeneity = 0.0
     for i in range(k):
-
         # Select all data points that belong to cluster i. Fill in the blank (RHS only)
         member_data_points = data[cluster_assignment == i, :]
 
@@ -112,7 +109,7 @@ def compute_heterogeneity(data, k, centroids, cluster_assignment):
             distances = pairwise_distances(
                 member_data_points, [centroids[i]], metric="euclidean"
             )
-            squared_distances = distances ** 2
+            squared_distances = distances**2
             heterogeneity += np.sum(squared_distances)
 
     return heterogeneity
@@ -164,9 +161,7 @@ def kmeans(
             num_changed = np.sum(prev_cluster_assignment != cluster_assignment)
             if verbose:
                 print(
-                    "    {:5d} elements changed their cluster assignment.".format(
-                        num_changed
-                    )
+                    f"    {num_changed:5d} elements changed their cluster assignment."
                 )
 
         # Record heterogeneity convergence metric
@@ -199,8 +194,8 @@ if False:  # change to true to run this test case.
     plot_heterogeneity(heterogeneity, k)
 
 
-def ReportGenerator(
-    df: pd.DataFrame, ClusteringVariables: np.ndarray, FillMissingReport=None
+def report_generator(
+    df: pd.DataFrame, clustering_variables: np.ndarray, fill_missing_report=None
 ) -> pd.DataFrame:
     """
     Function generates easy-erading clustering report. It takes 2 arguments as an input:
@@ -216,7 +211,7 @@ def ReportGenerator(
     >>> data['col2'] = [100, 200, 300]
     >>> data['col3'] = [10, 20, 30]
     >>> data['Cluster'] = [1, 1, 2]
-    >>> ReportGenerator(data, ['col1', 'col2'], 0)
+    >>> report_generator(data, ['col1', 'col2'], 0)
                Features               Type   Mark           1           2
     0    # of Customers        ClusterSize  False    2.000000    1.000000
     1    % of Customers  ClusterProportion  False    0.666667    0.333333
@@ -233,8 +228,8 @@ def ReportGenerator(
     [104 rows x 5 columns]
     """
     # Fill missing values with given rules
-    if FillMissingReport:
-        df.fillna(value=FillMissingReport, inplace=True)
+    if fill_missing_report:
+        df = df.fillna(value=fill_missing_report)
     df["dummy"] = 1
     numeric_cols = df.select_dtypes(np.number).columns
     report = (
@@ -315,7 +310,7 @@ def ReportGenerator(
     report = pd.concat(
         [report, a, clustersize, clusterproportion], axis=0
     )  # concat report with clustert size and nan values
-    report["Mark"] = report["Features"].isin(ClusteringVariables)
+    report["Mark"] = report["Features"].isin(clustering_variables)
     cols = report.columns.tolist()
     cols = cols[0:2] + cols[-1:] + cols[2:-1]
     report = report[cols]
@@ -343,7 +338,7 @@ def ReportGenerator(
     )
     report.columns.name = ""
     report = report.reset_index()
-    report.drop(columns=["index"], inplace=True)
+    report = report.drop(columns=["index"])
     return report
 
 

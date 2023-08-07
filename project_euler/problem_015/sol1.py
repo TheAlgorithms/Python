@@ -26,7 +26,7 @@ def solution(n: int = 20) -> int:
     """
     n = 2 * n  # middle entry of odd rows starting at row 3 is the solution for n = 1,
     # 2, 3,...
-    k = n / 2
+    k = n // 2
 
     return int(factorial(n) / (factorial(k) * factorial(n - k)))
 

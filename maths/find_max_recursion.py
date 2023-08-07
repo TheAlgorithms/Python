@@ -1,5 +1,8 @@
+from __future__ import annotations
+
+
 # Divide and Conquer algorithm
-def find_max(nums, left, right):
+def find_max(nums: list[int | float], left: int, right: int) -> int | float:
     """
     find max value in list
     :param nums: contains elements
@@ -7,10 +10,39 @@ def find_max(nums, left, right):
     :param right: index of last element
     :return: max in nums
 
+    >>> for nums in ([3, 2, 1], [-3, -2, -1], [3, -3, 0], [3.0, 3.1, 2.9]):
+    ...     find_max(nums, 0, len(nums) - 1) == max(nums)
+    True
+    True
+    True
+    True
     >>> nums = [1, 3, 5, 7, 9, 2, 4, 6, 8, 10]
     >>> find_max(nums, 0, len(nums) - 1) == max(nums)
     True
+    >>> find_max([], 0, 0)
+    Traceback (most recent call last):
+        ...
+    ValueError: find_max() arg is an empty sequence
+    >>> find_max(nums, 0, len(nums)) == max(nums)
+    Traceback (most recent call last):
+        ...
+    IndexError: list index out of range
+    >>> find_max(nums, -len(nums), -1) == max(nums)
+    True
+    >>> find_max(nums, -len(nums) - 1, -1) == max(nums)
+    Traceback (most recent call last):
+        ...
+    IndexError: list index out of range
     """
+    if len(nums) == 0:
+        raise ValueError("find_max() arg is an empty sequence")
+    if (
+        left >= len(nums)
+        or left < -len(nums)
+        or right >= len(nums)
+        or right < -len(nums)
+    ):
+        raise IndexError("list index out of range")
     if left == right:
         return nums[left]
     mid = (left + right) >> 1  # the middle
@@ -21,5 +53,6 @@ def find_max(nums, left, right):
 
 
 if __name__ == "__main__":
-    nums = [1, 3, 5, 7, 9, 2, 4, 6, 8, 10]
-    assert find_max(nums, 0, len(nums) - 1) == 10
+    import doctest
+
+    doctest.testmod(verbose=True)

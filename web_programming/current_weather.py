@@ -1,7 +1,7 @@
 import requests
 
 APPID = ""  # <-- Put your OpenWeatherMap appid here!
-URL_BASE = "http://api.openweathermap.org/data/2.5/"
+URL_BASE = "https://api.openweathermap.org/data/2.5/"
 
 
 def current_weather(q: str = "Chicago", appid: str = APPID) -> dict:

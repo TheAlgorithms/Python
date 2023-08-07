@@ -1,5 +1,3 @@
-# flake8: noqa
-
 """
 This is pure Python implementation of tree traversal algorithms
 """
@@ -15,30 +13,29 @@ class TreeNode:
         self.left = None
 
 
-def build_tree():
+def build_tree() -> TreeNode:
     print("\n********Press N to stop entering at any point of time********\n")
-    check = input("Enter the value of the root node: ").strip().lower() or "n"
-    if check == "n":
-        return None
+    check = input("Enter the value of the root node: ").strip().lower()
     q: queue.Queue = queue.Queue()
     tree_node = TreeNode(int(check))
     q.put(tree_node)
     while not q.empty():
         node_found = q.get()
-        msg = "Enter the left node of %s: " % node_found.data
+        msg = f"Enter the left node of {node_found.data}: "
         check = input(msg).strip().lower() or "n"
         if check == "n":
             return tree_node
         left_node = TreeNode(int(check))
         node_found.left = left_node
         q.put(left_node)
-        msg = "Enter the right node of %s: " % node_found.data
+        msg = f"Enter the right node of {node_found.data}: "
         check = input(msg).strip().lower() or "n"
         if check == "n":
             return tree_node
         right_node = TreeNode(int(check))
         node_found.right = right_node
         q.put(right_node)
+    raise
 
 
 def pre_order(node: TreeNode) -> None:
@@ -157,16 +154,16 @@ def level_order_actual(node: TreeNode) -> None:
     q: queue.Queue = queue.Queue()
     q.put(node)
     while not q.empty():
-        list = []
+        list_ = []
         while not q.empty():
             node_dequeued = q.get()
             print(node_dequeued.data, end=",")
             if node_dequeued.left:
-                list.append(node_dequeued.left)
+                list_.append(node_dequeued.left)
             if node_dequeued.right:
-                list.append(node_dequeued.right)
+                list_.append(node_dequeued.right)
         print()
-        for node in list:
+        for node in list_:
             q.put(node)
 
 
@@ -273,7 +270,7 @@ if __name__ == "__main__":
     doctest.testmod()
     print(prompt("Binary Tree Traversals"))
 
-    node = build_tree()
+    node: TreeNode = build_tree()
     print(prompt("Pre Order Traversal"))
     pre_order(node)
     print(prompt() + "\n")

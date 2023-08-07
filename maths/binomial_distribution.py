@@ -24,7 +24,7 @@ def binomial_distribution(successes: int, trials: int, prob: float) -> float:
         raise ValueError("the function is defined for non-negative integers")
     if not 0 < prob < 1:
         raise ValueError("prob has to be in range of 1 - 0")
-    probability = (prob ** successes) * ((1 - prob) ** (trials - successes))
+    probability = (prob**successes) * ((1 - prob) ** (trials - successes))
     # Calculate the binomial coefficient: n! / k!(n-k)!
     coefficient = float(factorial(trials))
     coefficient /= factorial(successes) * factorial(trials - successes)

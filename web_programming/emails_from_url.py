@@ -1,4 +1,6 @@
 """Get the site emails from URL."""
+from __future__ import annotations
+
 __author__ = "Muhammad Umer Farooq"
 __license__ = "MIT"
 __version__ = "1.0.0"
@@ -8,7 +10,6 @@ __status__ = "Alpha"
 
 import re
 from html.parser import HTMLParser
-from typing import Optional
 from urllib import parse
 
 import requests
@@ -20,7 +21,7 @@ class Parser(HTMLParser):
         self.urls: list[str] = []
         self.domain = domain
 
-    def handle_starttag(self, tag: str, attrs: list[tuple[str, Optional[str]]]) -> None:
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         """
         This function parse html to take takes url from tags
         """
@@ -92,7 +93,7 @@ def emails_from_url(url: str = "https://github.com") -> list[str]:
             except ValueError:
                 pass
     except ValueError:
-        exit(-1)
+        raise SystemExit(1)
 
     # Finally return a sorted list of email addresses with no duplicates.
     return sorted(valid_emails)

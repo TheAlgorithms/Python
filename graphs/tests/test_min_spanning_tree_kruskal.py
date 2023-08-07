@@ -2,7 +2,7 @@ from graphs.minimum_spanning_tree_kruskal import kruskal
 
 
 def test_kruskal_successful_result():
-    num_nodes, num_edges = 9, 14
+    num_nodes = 9
     edges = [
         [0, 1, 4],
         [0, 7, 8],
@@ -20,7 +20,7 @@ def test_kruskal_successful_result():
         [1, 7, 11],
     ]
 
-    result = kruskal(num_nodes, num_edges, edges)
+    result = kruskal(num_nodes, edges)
 
     expected = [
         [7, 6, 1],

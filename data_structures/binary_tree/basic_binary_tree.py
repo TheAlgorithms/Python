@@ -1,4 +1,4 @@
-from typing import Optional
+from __future__ import annotations
 
 
 class Node:
@@ -8,11 +8,11 @@ class Node:
 
     def __init__(self, data: int) -> None:
         self.data = data
-        self.left: Optional[Node] = None
-        self.right: Optional[Node] = None
+        self.left: Node | None = None
+        self.right: Node | None = None
 
 
-def display(tree: Optional[Node]) -> None:  # In Order traversal of the tree
+def display(tree: Node | None) -> None:  # In Order traversal of the tree
     """
     >>> root = Node(1)
     >>> root.left = Node(0)
@@ -30,7 +30,7 @@ def display(tree: Optional[Node]) -> None:  # In Order traversal of the tree
         display(tree.right)
 
 
-def depth_of_tree(tree: Optional[Node]) -> int:
+def depth_of_tree(tree: Node | None) -> int:
     """
     Recursive function that returns the depth of a binary tree.
 

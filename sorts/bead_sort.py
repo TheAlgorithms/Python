@@ -1,5 +1,5 @@
 """
-Bead sort only works for sequences of nonegative integers.
+Bead sort only works for sequences of non-negative integers.
 https://en.wikipedia.org/wiki/Bead_sort
 """
 
@@ -20,16 +20,16 @@ def bead_sort(sequence: list) -> list:
 
     >>> bead_sort([1, .9, 0.0, 0, -1, -.9])
     Traceback (most recent call last):
-    ...
-    TypeError: Sequence must be list of nonnegative integers
+        ...
+    TypeError: Sequence must be list of non-negative integers
 
     >>> bead_sort("Hello world")
     Traceback (most recent call last):
-    ...
-    TypeError: Sequence must be list of nonnegative integers
+        ...
+    TypeError: Sequence must be list of non-negative integers
     """
     if any(not isinstance(x, int) or x < 0 for x in sequence):
-        raise TypeError("Sequence must be list of nonnegative integers")
+        raise TypeError("Sequence must be list of non-negative integers")
     for _ in range(len(sequence)):
         for i, (rod_upper, rod_lower) in enumerate(zip(sequence, sequence[1:])):
             if rod_upper > rod_lower:

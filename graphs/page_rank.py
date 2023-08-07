@@ -27,7 +27,7 @@ class Node:
         self.outbound.append(node)
 
     def __repr__(self):
-        return f"Node {self.name}: Inbound: {self.inbound} ; Outbound: {self.outbound}"
+        return f"<node={self.name} inbound={self.inbound} outbound={self.outbound}>"
 
 
 def page_rank(nodes, limit=3, d=0.85):
@@ -41,9 +41,9 @@ def page_rank(nodes, limit=3, d=0.85):
 
     for i in range(limit):
         print(f"======= Iteration {i + 1} =======")
-        for j, node in enumerate(nodes):
+        for _, node in enumerate(nodes):
             ranks[node.name] = (1 - d) + d * sum(
-                [ranks[ib] / outbounds[ib] for ib in node.inbound]
+                ranks[ib] / outbounds[ib] for ib in node.inbound
             )
         print(ranks)
 

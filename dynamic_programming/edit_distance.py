@@ -19,74 +19,72 @@ class EditDistance:
     """
 
     def __init__(self):
-        self.__prepare__()
+        self.word1 = ""
+        self.word2 = ""
+        self.dp = []
 
-    def __prepare__(self, N=0, M=0):
-        self.dp = [[-1 for y in range(0, M)] for x in range(0, N)]
-
-    def __solveDP(self, x, y):
-        if x == -1:
-            return y + 1
-        elif y == -1:
-            return x + 1
-        elif self.dp[x][y] > -1:
-            return self.dp[x][y]
+    def __min_dist_top_down_dp(self, m: int, n: int) -> int:
+        if m == -1:
+            return n + 1
+        elif n == -1:
+            return m + 1
+        elif self.dp[m][n] > -1:
+            return self.dp[m][n]
         else:
-            if self.A[x] == self.B[y]:
-                self.dp[x][y] = self.__solveDP(x - 1, y - 1)
+            if self.word1[m] == self.word2[n]:
+                self.dp[m][n] = self.__min_dist_top_down_dp(m - 1, n - 1)
             else:
-                self.dp[x][y] = 1 + min(
-                    self.__solveDP(x, y - 1),
-                    self.__solveDP(x - 1, y),
-                    self.__solveDP(x - 1, y - 1),
-                )
+                insert = self.__min_dist_top_down_dp(m, n - 1)
+                delete = self.__min_dist_top_down_dp(m - 1, n)
+                replace = self.__min_dist_top_down_dp(m - 1, n - 1)
+                self.dp[m][n] = 1 + min(insert, delete, replace)
 
-            return self.dp[x][y]
+            return self.dp[m][n]
 
-    def solve(self, A, B):
-        if isinstance(A, bytes):
-            A = A.decode("ascii")
+    def min_dist_top_down(self, word1: str, word2: str) -> int:
+        """
+        >>> EditDistance().min_dist_top_down("intention", "execution")
+        5
+        >>> EditDistance().min_dist_top_down("intention", "")
+        9
+        >>> EditDistance().min_dist_top_down("", "")
+        0
+        """
+        self.word1 = word1
+        self.word2 = word2
+        self.dp = [[-1 for _ in range(len(word2))] for _ in range(len(word1))]
 
-        if isinstance(B, bytes):
-            B = B.decode("ascii")
+        return self.__min_dist_top_down_dp(len(word1) - 1, len(word2) - 1)
 
-        self.A = str(A)
-        self.B = str(B)
+    def min_dist_bottom_up(self, word1: str, word2: str) -> int:
+        """
+        >>> EditDistance().min_dist_bottom_up("intention", "execution")
+        5
+        >>> EditDistance().min_dist_bottom_up("intention", "")
+        9
+        >>> EditDistance().min_dist_bottom_up("", "")
+        0
+        """
+        self.word1 = word1
+        self.word2 = word2
+        m = len(word1)
+        n = len(word2)
+        self.dp = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
 
-        self.__prepare__(len(A), len(B))
-
-        return self.__solveDP(len(A) - 1, len(B) - 1)
-
-
-def min_distance_bottom_up(word1: str, word2: str) -> int:
-    """
-    >>> min_distance_bottom_up("intention", "execution")
-    5
-    >>> min_distance_bottom_up("intention", "")
-    9
-    >>> min_distance_bottom_up("", "")
-    0
-    """
-    m = len(word1)
-    n = len(word2)
-    dp = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
-    for i in range(m + 1):
-        for j in range(n + 1):
-
-            if i == 0:  # first string is empty
-                dp[i][j] = j
-            elif j == 0:  # second string is empty
-                dp[i][j] = i
-            elif (
-                word1[i - 1] == word2[j - 1]
-            ):  # last character of both substing is equal
-                dp[i][j] = dp[i - 1][j - 1]
-            else:
-                insert = dp[i][j - 1]
-                delete = dp[i - 1][j]
-                replace = dp[i - 1][j - 1]
-                dp[i][j] = 1 + min(insert, delete, replace)
-    return dp[m][n]
+        for i in range(m + 1):
+            for j in range(n + 1):
+                if i == 0:  # first string is empty
+                    self.dp[i][j] = j
+                elif j == 0:  # second string is empty
+                    self.dp[i][j] = i
+                elif word1[i - 1] == word2[j - 1]:  # last characters are equal
+                    self.dp[i][j] = self.dp[i - 1][j - 1]
+                else:
+                    insert = self.dp[i][j - 1]
+                    delete = self.dp[i - 1][j]
+                    replace = self.dp[i - 1][j - 1]
+                    self.dp[i][j] = 1 + min(insert, delete, replace)
+        return self.dp[m][n]
 
 
 if __name__ == "__main__":
@@ -99,7 +97,7 @@ if __name__ == "__main__":
     S2 = input("Enter the second string: ").strip()
 
     print()
-    print("The minimum Edit Distance is: %d" % (solver.solve(S1, S2)))
-    print("The minimum Edit Distance is: %d" % (min_distance_bottom_up(S1, S2)))
+    print(f"The minimum edit distance is: {solver.min_dist_top_down(S1, S2)}")
+    print(f"The minimum edit distance is: {solver.min_dist_bottom_up(S1, S2)}")
     print()
     print("*************** End of Testing Edit Distance DP Algorithm ***************")

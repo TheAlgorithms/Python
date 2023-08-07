@@ -32,6 +32,22 @@ def iter_merge_sort(input_list: list) -> list:
 
     >>> iter_merge_sort([5, 9, 8, 7, 1, 2, 7])
     [1, 2, 5, 7, 7, 8, 9]
+    >>> iter_merge_sort([1])
+    [1]
+    >>> iter_merge_sort([2, 1])
+    [1, 2]
+    >>> iter_merge_sort([2, 1, 3])
+    [1, 2, 3]
+    >>> iter_merge_sort([4, 3, 2, 1])
+    [1, 2, 3, 4]
+    >>> iter_merge_sort([5, 4, 3, 2, 1])
+    [1, 2, 3, 4, 5]
+    >>> iter_merge_sort(['c', 'b', 'a'])
+    ['a', 'b', 'c']
+    >>> iter_merge_sort([0.3, 0.2, 0.1])
+    [0.1, 0.2, 0.3]
+    >>> iter_merge_sort(['dep', 'dang', 'trai'])
+    ['dang', 'dep', 'trai']
     >>> iter_merge_sort([6])
     [6]
     >>> iter_merge_sort([])
@@ -51,7 +67,7 @@ def iter_merge_sort(input_list: list) -> list:
 
     # iteration for two-way merging
     p = 2
-    while p < len(input_list):
+    while p <= len(input_list):
         # getting low, high and middle value for merge-sort of single list
         for i in range(0, len(input_list), p):
             low = i
@@ -62,6 +78,7 @@ def iter_merge_sort(input_list: list) -> list:
         if p * 2 >= len(input_list):
             mid = i
             input_list = merge(input_list, 0, mid, len(input_list) - 1)
+            break
         p *= 2
 
     return input_list
@@ -69,5 +86,8 @@ def iter_merge_sort(input_list: list) -> list:
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item.strip()) for item in user_input.split(",")]
+    if user_input == "":
+        unsorted = []
+    else:
+        unsorted = [int(item.strip()) for item in user_input.split(",")]
     print(iter_merge_sort(unsorted))

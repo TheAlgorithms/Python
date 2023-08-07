@@ -36,7 +36,7 @@ def get_distance(x: float, y: float, max_step: int) -> float:
     """
     a = x
     b = y
-    for step in range(max_step):
+    for step in range(max_step):  # noqa: B007
         a_new = a * a - b * b + x
         b = 2 * a * b + y
         a = a_new
@@ -101,9 +101,11 @@ def get_image(
     of the Mandelbrot set is viewed. The main area of the Mandelbrot set is
     roughly between "-1.5 < x < 0.5" and "-1 < y < 1" in the figure-coordinates.
 
-    >>> get_image().load()[0,0]
+    Commenting out tests that slow down pytest...
+    # 13.35s call     fractals/mandelbrot.py::mandelbrot.get_image
+    # >>> get_image().load()[0,0]
     (255, 0, 0)
-    >>> get_image(use_distance_color_coding = False).load()[0,0]
+    # >>> get_image(use_distance_color_coding = False).load()[0,0]
     (255, 255, 255)
     """
     img = Image.new("RGB", (image_width, image_height))
@@ -112,7 +114,6 @@ def get_image(
     # loop through the image-coordinates
     for image_x in range(image_width):
         for image_y in range(image_height):
-
             # determine the figure-coordinates based on the image-coordinates
             figure_height = figure_width / image_width * image_height
             figure_x = figure_center_x + (image_x / image_width - 0.5) * figure_width

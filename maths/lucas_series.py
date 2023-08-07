@@ -50,7 +50,7 @@ def dynamic_lucas_number(n_th_number: int) -> int:
     if not isinstance(n_th_number, int):
         raise TypeError("dynamic_lucas_number accepts only integer arguments.")
     a, b = 2, 1
-    for i in range(n_th_number):
+    for _ in range(n_th_number):
         a, b = b, a + b
     return a
 

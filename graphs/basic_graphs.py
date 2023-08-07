@@ -1,42 +1,69 @@
 from collections import deque
 
+
+def _input(message):
+    return input(message).strip().split(" ")
+
+
+def initialize_unweighted_directed_graph(
+    node_count: int, edge_count: int
+) -> dict[int, list[int]]:
+    graph: dict[int, list[int]] = {}
+    for i in range(node_count):
+        graph[i + 1] = []
+
+    for e in range(edge_count):
+        x, y = (int(i) for i in _input(f"Edge {e + 1}: <node1> <node2> "))
+        graph[x].append(y)
+    return graph
+
+
+def initialize_unweighted_undirected_graph(
+    node_count: int, edge_count: int
+) -> dict[int, list[int]]:
+    graph: dict[int, list[int]] = {}
+    for i in range(node_count):
+        graph[i + 1] = []
+
+    for e in range(edge_count):
+        x, y = (int(i) for i in _input(f"Edge {e + 1}: <node1> <node2> "))
+        graph[x].append(y)
+        graph[y].append(x)
+    return graph
+
+
+def initialize_weighted_undirected_graph(
+    node_count: int, edge_count: int
+) -> dict[int, list[tuple[int, int]]]:
+    graph: dict[int, list[tuple[int, int]]] = {}
+    for i in range(node_count):
+        graph[i + 1] = []
+
+    for e in range(edge_count):
+        x, y, w = (int(i) for i in _input(f"Edge {e + 1}: <node1> <node2> <weight> "))
+        graph[x].append((y, w))
+        graph[y].append((x, w))
+    return graph
+
+
 if __name__ == "__main__":
-    # Accept No. of Nodes and edges
-    n, m = map(int, input().split(" "))
+    n, m = (int(i) for i in _input("Number of nodes and edges: "))
 
-    # Initialising Dictionary of edges
-    g = {}
-    for i in range(n):
-        g[i + 1] = []
+    graph_choice = int(
+        _input(
+            "Press 1 or 2 or 3 \n"
+            "1. Unweighted directed \n"
+            "2. Unweighted undirected \n"
+            "3. Weighted undirected \n"
+        )[0]
+    )
 
-    """
-    ----------------------------------------------------------------------------
-        Accepting edges of Unweighted Directed Graphs
-    ----------------------------------------------------------------------------
-    """
-    for _ in range(m):
-        x, y = map(int, input().strip().split(" "))
-        g[x].append(y)
+    g = {
+        1: initialize_unweighted_directed_graph,
+        2: initialize_unweighted_undirected_graph,
+        3: initialize_weighted_undirected_graph,
+    }[graph_choice](n, m)
 
-    """
-    ----------------------------------------------------------------------------
-        Accepting edges of Unweighted Undirected Graphs
-    ----------------------------------------------------------------------------
-    """
-    for _ in range(m):
-        x, y = map(int, input().strip().split(" "))
-        g[x].append(y)
-        g[y].append(x)
-
-    """
-    ----------------------------------------------------------------------------
-        Accepting edges of Weighted Undirected Graphs
-    ----------------------------------------------------------------------------
-    """
-    for _ in range(m):
-        x, y, r = map(int, input().strip().split(" "))
-        g[x].append([y, r])
-        g[y].append([x, r])
 
 """
 --------------------------------------------------------------------------------
@@ -49,20 +76,20 @@ if __name__ == "__main__":
 """
 
 
-def dfs(G, s):
-    vis, S = {s}, [s]
+def dfs(g, s):
+    vis, _s = {s}, [s]
     print(s)
-    while S:
+    while _s:
         flag = 0
-        for i in G[S[-1]]:
+        for i in g[_s[-1]]:
             if i not in vis:
-                S.append(i)
+                _s.append(i)
                 vis.add(i)
                 flag = 1
                 print(i)
                 break
         if not flag:
-            S.pop()
+            _s.pop()
 
 
 """
@@ -76,15 +103,15 @@ def dfs(G, s):
 """
 
 
-def bfs(G, s):
-    vis, Q = {s}, deque([s])
+def bfs(g, s):
+    vis, q = {s}, deque([s])
     print(s)
-    while Q:
-        u = Q.popleft()
-        for v in G[u]:
+    while q:
+        u = q.popleft()
+        for v in g[u]:
             if v not in vis:
                 vis.add(v)
-                Q.append(v)
+                q.append(v)
                 print(v)
 
 
@@ -100,10 +127,10 @@ def bfs(G, s):
 """
 
 
-def dijk(G, s):
+def dijk(g, s):
     dist, known, path = {s: 0}, set(), {s: 0}
     while True:
-        if len(known) == len(G) - 1:
+        if len(known) == len(g) - 1:
             break
         mini = 100000
         for i in dist:
@@ -111,11 +138,10 @@ def dijk(G, s):
                 mini = dist[i]
                 u = i
         known.add(u)
-        for v in G[u]:
-            if v[0] not in known:
-                if dist[u] + v[1] < dist.get(v[0], 100000):
-                    dist[v[0]] = dist[u] + v[1]
-                    path[v[0]] = u
+        for v in g[u]:
+            if v[0] not in known and dist[u] + v[1] < dist.get(v[0], 100000):
+                dist[v[0]] = dist[u] + v[1]
+                path[v[0]] = u
     for i in dist:
         if i != s:
             print(dist[i])
@@ -128,27 +154,27 @@ def dijk(G, s):
 """
 
 
-def topo(G, ind=None, Q=None):
-    if Q is None:
-        Q = [1]
+def topo(g, ind=None, q=None):
+    if q is None:
+        q = [1]
     if ind is None:
-        ind = [0] * (len(G) + 1)  # SInce oth Index is ignored
-        for u in G:
-            for v in G[u]:
+        ind = [0] * (len(g) + 1)  # SInce oth Index is ignored
+        for u in g:
+            for v in g[u]:
                 ind[v] += 1
-        Q = deque()
-        for i in G:
+        q = deque()
+        for i in g:
             if ind[i] == 0:
-                Q.append(i)
-    if len(Q) == 0:
+                q.append(i)
+    if len(q) == 0:
         return
-    v = Q.popleft()
+    v = q.popleft()
     print(v)
-    for w in G[v]:
+    for w in g[v]:
         ind[w] -= 1
         if ind[w] == 0:
-            Q.append(w)
-    topo(G, ind, Q)
+            q.append(w)
+    topo(g, ind, q)
 
 
 """
@@ -161,7 +187,7 @@ def topo(G, ind=None, Q=None):
 def adjm():
     n = input().strip()
     a = []
-    for i in range(n):
+    for _ in range(n):
         a.append(map(int, input().strip().split()))
     return a, n
 
@@ -179,9 +205,9 @@ def adjm():
 """
 
 
-def floy(A_and_n):
-    (A, n) = A_and_n
-    dist = list(A)
+def floy(a_and_n):
+    (a, n) = a_and_n
+    dist = list(a)
     path = [[0] * n for i in range(n)]
     for k in range(n):
         for i in range(n):
@@ -204,10 +230,10 @@ def floy(A_and_n):
 """
 
 
-def prim(G, s):
+def prim(g, s):
     dist, known, path = {s: 0}, set(), {s: 0}
     while True:
-        if len(known) == len(G) - 1:
+        if len(known) == len(g) - 1:
             break
         mini = 100000
         for i in dist:
@@ -215,11 +241,10 @@ def prim(G, s):
                 mini = dist[i]
                 u = i
         known.add(u)
-        for v in G[u]:
-            if v[0] not in known:
-                if v[1] < dist.get(v[0], 100000):
-                    dist[v[0]] = v[1]
-                    path[v[0]] = u
+        for v in g[u]:
+            if v[0] not in known and v[1] < dist.get(v[0], 100000):
+                dist[v[0]] = v[1]
+                path[v[0]] = u
     return dist
 
 
@@ -237,7 +262,7 @@ def prim(G, s):
 def edglist():
     n, m = map(int, input().split(" "))
     edges = []
-    for i in range(m):
+    for _ in range(m):
         edges.append(map(int, input().split(" ")))
     return edges, n
 
@@ -252,16 +277,16 @@ def edglist():
 """
 
 
-def krusk(E_and_n):
+def krusk(e_and_n):
     # Sort edges on the basis of distance
-    (E, n) = E_and_n
-    E.sort(reverse=True, key=lambda x: x[2])
+    (e, n) = e_and_n
+    e.sort(reverse=True, key=lambda x: x[2])
     s = [{i} for i in range(1, n + 1)]
     while True:
         if len(s) == 1:
             break
         print(s)
-        x = E.pop()
+        x = e.pop()
         for i in range(len(s)):
             if x[0] in s[i]:
                 break

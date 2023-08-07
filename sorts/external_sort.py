@@ -41,7 +41,7 @@ class FileSplitter:
                 i += 1
 
     def cleanup(self):
-        map(lambda f: os.remove(f), self.block_filenames)
+        map(os.remove, self.block_filenames)
 
 
 class NWayMerge:
@@ -104,7 +104,7 @@ class FileMerger:
         files = {}
 
         for i in range(len(filenames)):
-            files[i] = open(filenames[i], "r", buffer_size)
+            files[i] = open(filenames[i], "r", buffer_size)  # noqa: UP015
 
         return files
 

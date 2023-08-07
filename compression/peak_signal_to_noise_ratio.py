@@ -11,17 +11,18 @@ import os
 import cv2
 import numpy as np
 
+PIXEL_MAX = 255.0
 
-def psnr(original, contrast):
+
+def peak_signal_to_noise_ratio(original: float, contrast: float) -> float:
     mse = np.mean((original - contrast) ** 2)
     if mse == 0:
         return 100
-    PIXEL_MAX = 255.0
-    PSNR = 20 * math.log10(PIXEL_MAX / math.sqrt(mse))
-    return PSNR
+
+    return 20 * math.log10(PIXEL_MAX / math.sqrt(mse))
 
 
-def main():
+def main() -> None:
     dir_path = os.path.dirname(os.path.realpath(__file__))
     # Loading images (original image and compressed image)
     original = cv2.imread(os.path.join(dir_path, "image_data/original_image.png"))
@@ -34,11 +35,11 @@ def main():
 
     # Value expected: 29.73dB
     print("-- First Test --")
-    print(f"PSNR value is {psnr(original, contrast)} dB")
+    print(f"PSNR value is {peak_signal_to_noise_ratio(original, contrast)} dB")
 
     # # Value expected: 31.53dB (Wikipedia Example)
     print("\n-- Second Test --")
-    print(f"PSNR value is {psnr(original2, contrast2)} dB")
+    print(f"PSNR value is {peak_signal_to_noise_ratio(original2, contrast2)} dB")
 
 
 if __name__ == "__main__":

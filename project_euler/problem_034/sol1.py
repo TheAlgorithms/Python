@@ -8,16 +8,18 @@ Note: As 1! = 1 and 2! = 2 are not sums they are not included.
 
 from math import factorial
 
+DIGIT_FACTORIAL = {str(d): factorial(d) for d in range(10)}
+
 
 def sum_of_digit_factorial(n: int) -> int:
     """
-    Returns the sum of the digits in n
+    Returns the sum of the factorial of digits in n
     >>> sum_of_digit_factorial(15)
     121
     >>> sum_of_digit_factorial(0)
     1
     """
-    return sum(factorial(int(char)) for char in str(n))
+    return sum(DIGIT_FACTORIAL[d] for d in str(n))
 
 
 def solution() -> int:
@@ -33,4 +35,4 @@ def solution() -> int:
 
 
 if __name__ == "__main__":
-    print(f"{solution()} = ")
+    print(f"{solution() = }")
