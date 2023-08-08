@@ -1,11 +1,8 @@
 import heapq
-import doctest
 
 
 class UniformCostSearch:
-    def __init__(
-        self, current: list[int], final: list[int], grid: list[list[int]]
-    ) -> None:
+    def __init__(self, grid: list[list[int]]) -> None:
         self.m = len(grid[0])
         self.n = len(grid)
 
@@ -86,7 +83,13 @@ class UniformCostSearch:
     ) -> list[list[int]]:
         """
         Return 2D list where optimal path is stored.
-        >>> get_shortest_path([0, 2],[2, 2], [['inf','inf',1],['inf,2,2],['inf',0,3]], [(1, 1),(1, 0),(1, -1),(0, -1),(-1, -1),(-1, 0),(-1, 1),(0, 1)])
+        >>> get_shortest_path(
+            [0, 2],[2, 2],
+            [['inf','inf',1],
+            ['inf,2,2],['inf',0,3]],
+            [(1, 1),(1, 0),(1, -1),(0, -1),(-1, -1),(-1, 0),(-1, 1),(0, 1)]
+        )
+
         [[0,2],[1,2],[2,2]]
         """
         shortest_path = []
@@ -120,7 +123,15 @@ class UniformCostSearch:
     ) -> list[list[int]]:
         """
         Return 2D list where optimal path is stored.
-        >>> ucs([0, 2],[[1,2],[2, 2]], [[0,0,0],[0,0,0],[0,0,0]], [[None, None, None], [None, None, None],[None, None, None]], [(1, 1),(1, 0),(1, -1),(0, -1),(-1, -1),(-1, 0),(-1, 1),(0, 1)], [1000000, 100000])
+        >>> ucs(
+            [0, 2],
+            [[1,2],[2, 2]],
+            [[0,0,0],[0,0,0],[0,0,0]],
+            [[None, None, None], [None, None, None],[None, None, None]],
+            [(1, 1),(1, 0),(1, -1),(0, -1),(-1, -1),(-1, 0),(-1, 1),(0, 1)],
+            [1000000, 100000]
+        )
+
         [[0,2],[1,2],[2,2]]
         """
 
@@ -193,7 +204,7 @@ class UniformCostSearch:
         elif start_point[0] - end_point[0] < 0:
             dxy = self.dxy1
         goal_answer = []
-        for cell in end_point:
+        for _ in range(0, len(end_point)):
             goal_answer.append(10**8)
         path = self.ucs(start_point, [end_point], grid, prev, dxy, goal_answer)
         return path
@@ -206,8 +217,6 @@ def run() -> None:
     None
     """
     executed_object = UniformCostSearch(
-        [0, 7],
-        [19, 17],
         [
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
