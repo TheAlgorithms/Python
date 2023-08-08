@@ -35,6 +35,8 @@ def jump_search(arr: Sequence[T], item: T) -> int:
     -1
     >>> jump_search([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610], 55)
     10
+    >>> jump_search(["aa", "bb", "cc", "dd", "ee", "ff"], "ee")
+    4
     """
 
     arr_size = len(arr)
