@@ -1,78 +1,78 @@
 import heapq
 
+# diagonal clockwise
+dxy1 = [
+    (1, 1),
+    (1, 0),
+    (1, -1),
+    (0, -1),
+    (-1, -1),
+    (-1, 0),
+    (-1, 1),
+    (0, 1),
+]
+# diagonal anti-clockwise
+dxy2 = [
+    (-1, -1),
+    (-1, 0),
+    (0, -1),
+    (0, 1),
+    (1, 1),
+    (1, 0),
+    (1, -1),
+    (-1, 1),
+]
+
+# start point and end point on same row and column right side
+dxy3 = [
+    (0, -1),
+    (-1, -1),
+    (-1, 0),
+    (0, 1),
+    (1, 1),
+    (1, 0),
+    (1, -1),
+    (-1, 1),
+]
+# start point and end point on same row and column left side
+dxy4 = [
+    (0, 1),
+    (1, 1),
+    (1, 0),
+    (1, -1),
+    (0, -1),
+    (-1, -1),
+    (-1, 0),
+    (-1, 1),
+]
+# start point and end point on same column and row down side
+dxy5 = [
+    (1, 0),
+    (0, 1),
+    (1, 1),
+    (1, -1),
+    (0, -1),
+    (-1, -1),
+    (-1, 0),
+    (-1, 1),
+]
+# start point and end point on same column and row up side
+dxy6 = [
+    (0, -1),
+    (0, 1),
+    (1, 1),
+    (1, 0),
+    (1, -1),
+    (-1, -1),
+    (-1, 0),
+    (-1, 1),
+]
+
 
 class UniformCostSearch:
     def __init__(self, grid: list[list[int]]) -> None:
         self.m = len(grid[0])
         self.n = len(grid)
-
-    # diagonal clockwise
-    dxy1 = [
-        (1, 1),
-        (1, 0),
-        (1, -1),
-        (0, -1),
-        (-1, -1),
-        (-1, 0),
-        (-1, 1),
-        (0, 1),
-    ]
-    # diagonal anti-clockwise
-    dxy2 = [
-        (-1, -1),
-        (-1, 0),
-        (0, -1),
-        (0, 1),
-        (1, 1),
-        (1, 0),
-        (1, -1),
-        (-1, 1),
-    ]
-
-    # start point and end point on same row and column right side
-    dxy3 = [
-        (0, -1),
-        (-1, -1),
-        (-1, 0),
-        (0, 1),
-        (1, 1),
-        (1, 0),
-        (1, -1),
-        (-1, 1),
-    ]
-    # start point and end point on same row and column left side
-    dxy4 = [
-        (0, 1),
-        (1, 1),
-        (1, 0),
-        (1, -1),
-        (0, -1),
-        (-1, -1),
-        (-1, 0),
-        (-1, 1),
-    ]
-    # start point and end point on same column and row down side
-    dxy5 = [
-        (1, 0),
-        (0, 1),
-        (1, 1),
-        (1, -1),
-        (0, -1),
-        (-1, -1),
-        (-1, 0),
-        (-1, 1),
-    ]
-    # start point and end point on same column and row up side
-    dxy6 = [
-        (0, -1),
-        (0, 1),
-        (1, 1),
-        (1, 0),
-        (1, -1),
-        (-1, -1),
-        (-1, 0),
-        (-1, 1),
-    ]
 
     def get_shortest_path(
         self,
@@ -192,17 +192,17 @@ class UniformCostSearch:
         prev = [[None for _ in range(self.m)] for _ in range(self.n)]
         dxy = []
         if start_point[1] - end_point[1] == 0 and start_point[0] - end_point[0] < 0:
-            dxy = self.dxy5
+            dxy = dxy5
         elif start_point[1] - end_point[1] == 0 and start_point[0] - end_point[0] > 0:
-            dxy = self.dxy6
+            dxy = dxy6
         elif start_point[0] - end_point[0] == 0 and start_point[1] - end_point[1] < 0:
-            dxy = self.dxy4
+            dxy = dxy4
         elif start_point[0] - end_point[0] == 0 and start_point[1] - end_point[1] > 0:
-            dxy = self.dxy3
+            dxy = dxy3
         elif start_point[0] - end_point[0] > 0:
-            dxy = self.dxy2
+            dxy = dxy2
         elif start_point[0] - end_point[0] < 0:
-            dxy = self.dxy1
+            dxy = dxy1
         goal_answer = []
         for _ in range(0, len(end_point)):
             goal_answer.append(10**8)
