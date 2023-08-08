@@ -83,9 +83,12 @@ class UniformCostSearch:
     ) -> list[list[int]]:
         """
         Return 2D list where optimal path is stored.
-        >>> get_shortest_path([0, 2],[1, 2],[['inf','inf',1],['inf,2,2]],[(1, 1),(1, 0),(1, -1),(0, -1),(-1, -1),(-1, 0),(-1, 1),(0, 1)])
-
-        [[0,2],[1,2],[2,2]]
+        >>> start = [0,0]
+        >>> end = [1, 2]
+        >>> dist = [[1,0],[0,2]]
+        >>> dxy = [(1, 1),(1, 0),(1, -1),(0, -1),(-1, -1),(-1, 0),(-1, 1),(0, 1)]
+        >>> get_shortest_path(start,end,dist,dxy)
+        [[0,0],[1,1]]
         """
         shortest_path = []
         curr_node = end
@@ -118,8 +121,14 @@ class UniformCostSearch:
     ) -> list[list[int]]:
         """
         Return 2D list where optimal path is stored.
-        >>> ucs([0, 2],[[1, 2]],[[0,0,0],[0,0,0]],[[None, None, None],[None, None, None]],[(1, 1),(1, 0),(1, -1),(0, -1),(-1, -1),(-1, 0),(-1, 1),(0, 1)],[1000000, 100000])
-        [[0,2],[1,2],[2,2]]
+        >>> current = [0, 0]
+        >>> final = [[1, 1]]
+        >>> grid = [[0,0],[0,0]]
+        >>> prev = [[None, None],[None, None]]
+        >>> dxy = [(1, 1),(1, 0),(1, -1),(0, -1),(-1, -1),(-1, 0),(-1, 1),(0, 1)]
+        >>> goal_answer = [1000000, 100000]
+        >>> ucs(current,final,grid,dxy,prev,goal_answer)
+        [[0,2],[1,1]]
         """
 
         dist = [[float("inf") for _ in range(self.m)] for _ in range(self.n)]
@@ -173,8 +182,11 @@ class UniformCostSearch:
     ) -> list[list[int]]:
         """
         Return 2D list where optimal path is stored.
-        >>> your_algorithm([0, 2],[1, 2], [[0,0,0],[0,0,0]])
-        [[0,2],[1,2],[2,2]]
+        >>> start_point = [0, 0]
+        >>> end_point = [1, 1]
+        >>> grid = [[0,0],[0,0]]
+        >>> your_algorithm(start_point, end_point, grid)
+        [[0,0],[1,1]]
         """
         prev = [[None for _ in range(self.m)] for _ in range(self.n)]
         dxy = []
@@ -200,7 +212,7 @@ class UniformCostSearch:
 def run() -> None:
     """
     Return None. Its just running the UCS algorithm class.
-    >>> run(2, 2)
+    >>> run()
     None
     """
     executed_object = UniformCostSearch(
