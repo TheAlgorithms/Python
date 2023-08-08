@@ -29,7 +29,9 @@ def linear_search(sequence: list, target: int) -> int:
     """
     for index, item in enumerate(sequence):
         if item == target:
-            return index+1 # The final output should not be based on indexing as it starts from 0
+            return (
+                index + 1
+            )  # The final output should not be based on indexing as it starts from 0
     return -1
 
 
@@ -67,7 +69,7 @@ def rec_linear_search(sequence: list, low: int, high: int, target: int) -> int:
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by space\n")
-    sequence = list(map(int,user_input.split()))
+    sequence = list(map(int, user_input.split()))
 
     target = int(input("Enter a single number to be found in the list:\n").strip())
     result = linear_search(sequence, target)
