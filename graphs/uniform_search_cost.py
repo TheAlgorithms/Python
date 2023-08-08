@@ -83,12 +83,7 @@ class UniformCostSearch:
     ) -> list[list[int]]:
         """
         Return 2D list where optimal path is stored.
-        >>> get_shortest_path(
-            [0, 2],[2, 2],
-            [['inf','inf',1],
-            ['inf,2,2],['inf',0,3]],
-            [(1, 1),(1, 0),(1, -1),(0, -1),(-1, -1),(-1, 0),(-1, 1),(0, 1)]
-        )
+        >>> get_shortest_path([0, 2],[1, 2],[['inf','inf',1],['inf,2,2]],[(1, 1),(1, 0),(1, -1),(0, -1),(-1, -1),(-1, 0),(-1, 1),(0, 1)])
 
         [[0,2],[1,2],[2,2]]
         """
@@ -123,15 +118,7 @@ class UniformCostSearch:
     ) -> list[list[int]]:
         """
         Return 2D list where optimal path is stored.
-        >>> ucs(
-            [0, 2],
-            [[1,2],[2, 2]],
-            [[0,0,0],[0,0,0],[0,0,0]],
-            [[None, None, None], [None, None, None],[None, None, None]],
-            [(1, 1),(1, 0),(1, -1),(0, -1),(-1, -1),(-1, 0),(-1, 1),(0, 1)],
-            [1000000, 100000]
-        )
-
+        >>> ucs([0, 2],[[1, 2]],[[0,0,0],[0,0,0]],[[None, None, None],[None, None, None]],[(1, 1),(1, 0),(1, -1),(0, -1),(-1, -1),(-1, 0),(-1, 1),(0, 1)],[1000000, 100000])
         [[0,2],[1,2],[2,2]]
         """
 
@@ -186,7 +173,7 @@ class UniformCostSearch:
     ) -> list[list[int]]:
         """
         Return 2D list where optimal path is stored.
-        >>> your_algorithm([0, 2],[2, 2], [[0,0,0],[0,0,0],[0,0,0]])
+        >>> your_algorithm([0, 2],[1, 2], [[0,0,0],[0,0,0]])
         [[0,2],[1,2],[2,2]]
         """
         prev = [[None for _ in range(self.m)] for _ in range(self.n)]
