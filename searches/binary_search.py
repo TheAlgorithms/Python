@@ -298,8 +298,8 @@ def binary_search_by_recursion(
 
 
 if __name__ == "__main__":
-    user_input = input("Enter numbers separated by comma:\n").strip()
-    collection = sorted(int(item) for item in user_input.split(","))
+    user_input = input("Enter numbers separated by space\n")
+    collection = list(map(int,user_input.split()))
     target = int(input("Enter a single number to be found in the list:\n"))
     result = binary_search(collection, target)
     if result is None:
