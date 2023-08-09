@@ -14,7 +14,7 @@ def jacobi_iteration_method(
     constant_matrix: NDArray[float64],
     init_val: list[int],
     iterations: int,
-) -> list[float]:
+) -> NDArray[float64]:
     """
     Jacobi Iteration Method:
     An iterative algorithm to determine the solutions of strictly diagonally dominant
