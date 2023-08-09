@@ -10,10 +10,10 @@ from numpy.typing import NDArray
 
 # Method to find solution of system of linear equations
 def jacobi_iteration_method(
-        coefficient_matrix: NDArray[float64],
-        constant_matrix: NDArray[float64],
-        init_val: list[int],
-        iterations: int,
+    coefficient_matrix: NDArray[float64],
+    constant_matrix: NDArray[float64],
+    init_val: list[int],
+    iterations: int,
 ) -> list[float]:
     """
     Jacobi Iteration Method:
@@ -118,12 +118,12 @@ def jacobi_iteration_method(
     """
     denom - a list of values along the diagonal
     val - values of the last column of the table array
-    masks - boolean mask of all strings without diagonal elements array coefficient_matrix 
+    masks - boolean mask of all strings without diagonal elements array coefficient_matrix
     ttt - coefficient_matrix array values without diagonal elements
     ind - column indexes for each row without diagonal elements
     arr - list obtained by column indexes from the list init_val
 
-    the code below uses vectorized operations based on 
+    the code below uses vectorized operations based on
     the previous algorithm on loopss:
 
     # Iterates the whole matrix for given number of times
