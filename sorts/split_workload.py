@@ -1,7 +1,9 @@
 from typing import List, Tuple, Union
 
 
-def split_list(timings: list[int | float | str]) -> tuple[list[int | float], list[int | float], int | float]:
+def split_list(
+    timings: list[int | float | str],
+) -> tuple[list[int | float], list[int | float], int | float]:
     """
 
     This algorithm is a brute-force search over (nearly) all 2^n
