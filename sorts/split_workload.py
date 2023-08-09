@@ -1,6 +1,6 @@
 def split_list(
     timings: list[int | float | str],
-) -> tuple[list[int | float], list[int | float], int | float]:
+) -> tuple[list[int | float], list[int | float], int | float] | None:
     """
 
     This algorithm is a brute-force search over (nearly) all 2^n
@@ -27,7 +27,7 @@ def split_list(
     ValueError: Timings must be a list of numbers
 
     """
-
+    valid_timings = []
     for i, current_element in enumerate(timings):
         if (
             isinstance(current_element, str)
@@ -35,27 +35,27 @@ def split_list(
         ):
             is_current_elem_int = float(current_element).is_integer()
             if not is_current_elem_int:
-                timings[i] = abs(float(current_element))
+                valid_timings.append(abs(float(current_element)))
             else:
-                timings[i] = abs(int(float(current_element)))
+                valid_timings.append(abs(int(float(current_element))))
         elif isinstance(current_element, (int, float)):
-            timings[i] = abs(current_element)
+            valid_timings.append(abs(current_element))
         else:
             raise ValueError("Timings must be a list of numbers")
 
-    if len(timings) == 0:
+    if len(valid_timings) == 0:
         return ([], [], 0)
-    elif len(timings) == 1:
-        return ([timings[0]], [], timings[0])
+    elif len(valid_timings) == 1:
+        return ([valid_timings[0]], [], valid_timings[0])
 
     result = None
-    n = len(timings)
+    n = len(valid_timings)
     smallest_diff = float("inf")
     for i in range(1, 2**n - 1):
         indices = [j for j in range(n) if i & (1 << j) != 0]
-        distributed_timings_1 = [timings[j] for j in indices]
-        distributed_timings_2 = [timings[j] for j in range(n) if j not in indices]
-        diff = abs(sum(distributed_timings_1) - sum(distributed_timings_2))
+        distributed_timings_1 = [valid_timings[j] for j in indices]
+        distributed_timings_2 = [valid_timings[j] for j in range(n) if j not in indices]
+        diff = abs(sum([distributed_timings_1]) - sum(distributed_timings_2))
         if diff < smallest_diff:
             smallest_diff = diff
             result = (
