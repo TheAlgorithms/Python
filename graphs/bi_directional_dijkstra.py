@@ -26,8 +26,8 @@ def pass_and_relaxation(
     cst_bwd: dict,
     queue: PriorityQueue,
     parent: dict,
-    shortest_distance: float | int,
-) -> float | int:
+    shortest_distance: float,
+) -> float:
     for nxt, d in graph[v]:
         if nxt in visited_forward:
             continue
