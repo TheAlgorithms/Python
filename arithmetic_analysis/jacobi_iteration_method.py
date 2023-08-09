@@ -10,10 +10,10 @@ from numpy.typing import NDArray
 
 # Method to find solution of system of linear equations
 def jacobi_iteration_method(
-    coefficient_matrix: NDArray[float64],
-    constant_matrix: NDArray[float64],
-    init_val: list[int],
-    iterations: int,
+        coefficient_matrix: NDArray[float64],
+        constant_matrix: NDArray[float64],
+        init_val: list[int],
+        iterations: int,
 ) -> list[float]:
     """
     Jacobi Iteration Method:
@@ -115,6 +115,17 @@ def jacobi_iteration_method(
 
     strictly_diagonally_dominant(table)
 
+    """
+    denom - a list of values along the diagonal
+    val - values of the last column of the table array
+    masks - boolean mask of all strings without diagonal elements array coefficient_matrix 
+    ttt - coefficient_matrix array values without diagonal elements
+    ind - column indexes for each row without diagonal elements
+    arr - list obtained by column indexes from the list init_val
+
+    the code below uses vectorized operations based on 
+    the previous algorithm on loopss:
+
     # Iterates the whole matrix for given number of times
     for _ in range(iterations):
         new_val = []
@@ -130,8 +141,23 @@ def jacobi_iteration_method(
             temp = (temp + val) / denom
             new_val.append(temp)
         init_val = new_val
+    """
 
-    return [float(i) for i in new_val]
+    denom = np.diag(coefficient_matrix)
+    val = table[:, -1]
+    masks = ~np.eye(coefficient_matrix.shape[0], dtype=bool)
+    ttt = coefficient_matrix[masks].reshape(-1, rows - 1)
+    i_row, i_col = np.where(masks)
+    ind = i_col.reshape(-1, rows - 1)
+
+    # Iterates the whole matrix for given number of times
+    for _ in range(iterations):
+        arr = np.take(init_val, ind)
+        temp = np.sum((-1) * ttt * arr, axis=1)
+        new_val = (temp + val) / denom
+        init_val = new_val
+
+    return init_val.tolist()
 
 
 # Checks if the given matrix is strictly diagonally dominant
