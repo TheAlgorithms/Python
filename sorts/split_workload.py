@@ -28,7 +28,7 @@ def split_list(
 
     """
     valid_timings = []
-    for i, current_element in enumerate(timings):
+    for current_element in enumerate(timings):
         if (
             isinstance(current_element, str)
             and current_element.replace(".", "", 1).isdigit()
