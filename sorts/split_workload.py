@@ -27,7 +27,7 @@ def split_list(
     ValueError: Timings must be a list of numbers
 
     """
-    valid_timings = list[float | int]
+    valid_timings = list[int | float]
     for current_element in enumerate(timings):
         if (
             isinstance(current_element, str)
