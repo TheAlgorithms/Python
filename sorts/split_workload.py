@@ -1,6 +1,3 @@
-from typing import List, Tuple, Union
-
-
 def split_list(
     timings: list[int | float | str],
 ) -> tuple[list[int | float], list[int | float], int | float]:
@@ -54,9 +51,9 @@ def split_list(
     result = None
     n = len(timings)
     smallest_diff = float("inf")
-    all_nums_positive = [c >= 0 for c in timings]
     for i in range(1, 2**n - 1):
         indices = [j for j in range(n) if i & (1 << j) != 0]
+        distributed_timings_1 = [timings[j] for j in indices]
         distributed_timings_2 = [timings[j] for j in range(n) if j not in indices]
         diff = abs(sum(distributed_timings_1) - sum(distributed_timings_2))
         if diff < smallest_diff:
