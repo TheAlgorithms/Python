@@ -12,7 +12,7 @@ from numpy.typing import NDArray
 def jacobi_iteration_method(
     coefficient_matrix: NDArray[float64],
     constant_matrix: NDArray[float64],
-    init_val: list[int],
+    init_val: list[float],
     iterations: int,
 ) -> list[float]:
     """
