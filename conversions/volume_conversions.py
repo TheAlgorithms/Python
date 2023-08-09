@@ -18,35 +18,39 @@ REFERENCES :
 -> Wikipedia reference: https://en.wikipedia.org/wiki/Cup_(unit)
 """
 
-from collections import namedtuple
+from typing import NamedTuple
 
-from_to = namedtuple("from_to", "from_ to")
+
+class FromTo(NamedTuple):
+    from_factor: float
+    to_factor: float
+
 
 METRIC_CONVERSION = {
-    "cubicmeter": from_to(1, 1),
-    "litre": from_to(0.001, 1000),
-    "kilolitre": from_to(1, 1),
-    "gallon": from_to(0.00454, 264.172),
-    "cubicyard": from_to(0.76455, 1.30795),
-    "cubicfoot": from_to(0.028, 35.3147),
-    "cup": from_to(0.000236588, 4226.75),
+    "cubic meter": FromTo(1, 1),
+    "litre": FromTo(0.001, 1000),
+    "kilolitre": FromTo(1, 1),
+    "gallon": FromTo(0.00454, 264.172),
+    "cubic yard": FromTo(0.76455, 1.30795),
+    "cubic foot": FromTo(0.028, 35.3147),
+    "cup": FromTo(0.000236588, 4226.75),
 }
 
 
 def volume_conversion(value: float, from_type: str, to_type: str) -> float:
     """
     Conversion between volume units.
-    >>> volume_conversion(4, "cubicmeter", "litre")
+    >>> volume_conversion(4, "cubic meter", "litre")
     4000
     >>> volume_conversion(1, "litre", "gallon")
     0.264172
-    >>> volume_conversion(1, "kilolitre", "cubicmeter")
+    >>> volume_conversion(1, "kilolitre", "cubic meter")
     1
-    >>> volume_conversion(3, "gallon", "cubicyard")
+    >>> volume_conversion(3, "gallon", "cubic yard")
     0.017814279
-    >>> volume_conversion(2, "cubicyard", "litre")
+    >>> volume_conversion(2, "cubic yard", "litre")
     1529.1
-    >>> volume_conversion(4, "cubicfoot", "cup")
+    >>> volume_conversion(4, "cubic foot", "cup")
     473.396
     >>> volume_conversion(1, "cup", "kilolitre")
     0.000236588
@@ -54,7 +58,7 @@ def volume_conversion(value: float, from_type: str, to_type: str) -> float:
     Traceback (most recent call last):
         ...
     ValueError: Invalid 'from_type' value: 'wrongUnit'  Supported values are:
-    cubicmeter, litre, kilolitre, gallon, cubicyard, cubicfoot, cup
+    cubic meter, litre, kilolitre, gallon, cubic yard, cubic foot, cup
     """
     if from_type not in METRIC_CONVERSION:
         raise ValueError(
@@ -66,7 +70,11 @@ def volume_conversion(value: float, from_type: str, to_type: str) -> float:
             f"Invalid 'to_type' value: {to_type!r}.  Supported values are:\n"
             + ", ".join(METRIC_CONVERSION)
         )
-    return value * METRIC_CONVERSION[from_type].from_ * METRIC_CONVERSION[to_type].to
+    return (
+        value
+        * METRIC_CONVERSION[from_type].from_factor
+        * METRIC_CONVERSION[to_type].to_factor
+    )
 
 
 if __name__ == "__main__":
