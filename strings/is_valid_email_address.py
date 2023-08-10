@@ -88,7 +88,7 @@ def is_valid_email_address(email: str) -> bool:
     ):
         return False
 
-    # (4.) Validate the placement of "." characters
+    # (4.) Validate the placement of "." characters in the local-part
     if (
         local_part.startswith(".")
         or local_part.endswith(".")
