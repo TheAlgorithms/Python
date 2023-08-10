@@ -83,7 +83,7 @@ if __name__ == "__main__":
     tree2.right = Node(6)
     tree2.left.right = Node(9)
     tree2.right.right = Node(5)
-# Additional test case 1: Merging two empty trees
+    # Additional test case 1: Merging two empty trees
     empty_merged_tree = merge_two_binary_trees(None, None)
     # Expected output: None
 
