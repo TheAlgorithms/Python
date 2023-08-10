@@ -31,7 +31,7 @@ email_tests: tuple[tuple[str, bool], ...] = (
         False,
     ),
     ("i.like.underscores@but_its_not_allowed_in_this_part", False),
-    ("", False)
+    ("", False),
 )
 
 # The maximum octets (one character as a standard unicode character is one byte)
@@ -88,12 +88,8 @@ def is_valid_email_address(email: str) -> bool:
     ):
         return False
 
-    # (4.) Validate the placement of "." characters
-    if (
-        local_part.startswith(".")
-        or local_part.endswith(".")
-        or ".." in local_part
-    ):
+    # (4.) Validate the placement of "." characters in the local-part
+    if local_part.startswith(".") or local_part.endswith(".") or ".." in local_part:
         return False
 
     # (5.) Validate the characters in the domain
