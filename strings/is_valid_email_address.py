@@ -4,7 +4,6 @@ Implements an is valid email address algorithm
 @ https://en.wikipedia.org/wiki/Email_address
 """
 
-import re
 import string
 
 email_tests: tuple[tuple[str, bool], ...] = (
@@ -32,6 +31,7 @@ email_tests: tuple[tuple[str, bool], ...] = (
         False,
     ),
     ("i.like.underscores@but_its_not_allowed_in_this_part", False),
+    ("", False)
 )
 
 # The maximum octets (one character as a standard unicode character is one byte)
@@ -69,7 +69,7 @@ def is_valid_email_address(email: str) -> bool:
         last character, and may not have more than one "." consecutively.
 
     >>> for email, valid in email_tests:
-    ...     assert is_valid_email_address(email) is valid
+    ...     assert is_valid_email_address(email) == valid
     """
 
     # (1.) Make sure that there is only one @ symbol in the email address
@@ -92,7 +92,7 @@ def is_valid_email_address(email: str) -> bool:
     if (
         local_part.startswith(".")
         or local_part.endswith(".")
-        or re.search(r"\.\.+", local_part)
+        or ".." in local_part
     ):
         return False
 
@@ -105,7 +105,7 @@ def is_valid_email_address(email: str) -> bool:
         return False
 
     # (7.) Validate the placement of "." characters
-    if domain.startswith(".") or domain.endswith(".") or re.search(r"\.\.+", domain):
+    if domain.startswith(".") or domain.endswith(".") or ".." in domain:
         return False
     return True
 
@@ -118,4 +118,4 @@ if __name__ == "__main__":
     for email, valid in email_tests:
         is_valid = is_valid_email_address(email)
         assert is_valid == valid, f"{email} is {is_valid}"
-        print(f"Email address {email} is {'not ' if is_valid is False else ''}valid")
+        print(f"Email address {email} is {'not ' if is_valid == False else ''}valid")
