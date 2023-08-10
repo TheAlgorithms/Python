@@ -118,4 +118,4 @@ if __name__ == "__main__":
     for email, valid in email_tests:
         is_valid = is_valid_email_address(email)
         assert is_valid == valid, f"{email} is {is_valid}"
-        print(f"Email address {email} is {'not ' if is_valid == False else ''}valid")
+        print(f"Email address {email} is {'not ' if is_valid else ''}valid")
