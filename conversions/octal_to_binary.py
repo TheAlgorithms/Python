@@ -23,6 +23,8 @@ def octal_to_binary(octal_number):
     binary_number = bin(decimal_number)
     return binary_number
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
