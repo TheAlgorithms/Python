@@ -1,4 +1,4 @@
-def octal_to_binary(octal_number):
+def octal_to_binary(octal_number: str) -> str:
     """
     /**
     * Converts any Octal Number to a Binary Number
