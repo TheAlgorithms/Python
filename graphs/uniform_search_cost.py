@@ -1,3 +1,12 @@
+##################### -- Learning Source -- #####################
+
+# 1. https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#:~:text=Moreover%2C%20not%20inserting%20all%20nodes%20in%20a%20graph%20makes%20it%20possible%20to%20extend%20the%20algorithm%20to%20find%20the%20shortest%20path%20from
+# 2. https://www.educative.io/answers/what-is-uniform-cost-search
+
+# Uniform search cost is slighlty simillar to dijkstra. The main different between them is that UCS is having multiple goals.
+
+##################### --------------------- #####################
+
 # diagonal clockwise
 dxy1 = [
     [1, 1],
@@ -81,12 +90,14 @@ class UniformCostSearch:
     ) -> list[list[float]] | list[list[int]]:
         """
         Return 2D list where optimal path is stored.
-        # >>> start = [0,0]
-        # >>> end = [1, 2]
-        # >>> dist = [[1,0],[0,2]]
-        # >>> dxy = [(1, 1),(1, 0),(1, -1),(0, -1),(-1, -1),(-1, 0),(-1, 1),(0, 1)]
-        # >>> get_shortest_path(start,end,dist,dxy)
-        # [[0,0],[1,1]]
+        >>> start = [0,0]
+        >>> end = [1, 1]
+        >>> dist = [[1,0],[0,2]]
+        >>> grid = [[0,0],[0,0]]
+        >>> dxy = [[1, 1],[1, 0],[1, -1],[0, -1],[-1, -1],[-1, 0],[-1, 1],[0, 1]]
+        >>> obj = UniformCostSearch(grid)
+        >>> obj.get_shortest_path(start,end,dist,dxy)
+        [[1, 1], [0, 1], [1, 0], [0, 0]]
         """
         shortest_path = []
         curr_node = None
@@ -121,13 +132,46 @@ class UniformCostSearch:
     ) -> list[list[float]] | list[list[int]] | None:
         """
         Return 2D list where optimal path is stored.
-        # >>> current = [0, 0]
-        # >>> final = [[1, 1]]
-        # >>> grid = [[0,0],[0,0]]
-        # >>> dxy = [(1, 1),(1, 0),(1, -1),(0, -1),(-1, -1),(-1, 0),(-1, 1),(0, 1)]
-        # >>> goal_answer = [1000000, 100000]
-        # >>> ucs(current,final,grid,dxy,goal_answer)
-        # [[0,2],[1,1]]
+
+        Examples:
+
+        >>> current = [0, 0]
+        >>> final = [[1, 1]]
+        >>> grid = [[0,0],[0,0]]
+        >>> goal_answer = [100000000]
+        >>> dxy = [[1, 1],[1, 0],[1, -1],[0, -1],[-1, -1],[-1, 0],[-1, 1],[0, 1]]
+        >>> obj = UniformCostSearch(grid)
+        >>> obj.ucs(current, final, grid, dxy, goal_answer)
+        Increment
+        Extended distance
+        [[1, 1], [0, 0]]
+
+
+        >>> current = [0, 0]
+        >>> final = [[2, 2]]
+        >>> grid = [[0,1,0],[1,0,1],[1,0,0]]
+        >>> goal_answer = [100000000]
+        >>> dxy = [[1, 1],[1, 0],[1, -1],[0, -1],[-1, -1],[-1, 0],[-1, 1],[0, 1]]
+        >>> obj = UniformCostSearch(grid)
+        >>> obj.ucs(current, final, grid, dxy, goal_answer)
+        Increment
+        Extended distance
+        [[2, 2], [1, 1], [0, 0]]
+
+
+        >>> current = [0, 0]
+        >>> final = [[2, 2],[2,1]] # multiple goals
+        >>> grid = [[0,1,0],[1,0,1],[1,0,0]]
+        >>> goal_answer = [100000000, 100000000]
+        >>> dxy = [[1, 1],[1, 0],[1, -1],[0, -1],[-1, -1],[-1, 0],[-1, 1],[0, 1]]
+        >>> obj = UniformCostSearch(grid)
+        >>> obj.ucs(current, final, grid, dxy, goal_answer)
+        Increment
+        Extended distance
+        Increment
+        Extended distance
+        [[2, 2], [1, 1], [0, 0]]
+
         """
 
         dist = [[float("inf") for _ in range(self.m)] for _ in range(self.n)]
@@ -163,26 +207,39 @@ class UniformCostSearch:
                 ry = dy + y
                 if 0 <= rx < self.m and 0 <= ry < self.n and grid[rx][ry] != 1:
                     weight = 1
-                    # diagonal_weight = 1.414
-                    # if (
-                    #     (dx == -1 and dy == -1)
-                    #     or (dx == 1 and dy == 1)
-                    #     or (dx == 1 and dy == -1)
-                    #     or (dx == -1 and dy == 1)
-                    # ):
-                    #     new_dist = d + diagonal_weight
-                    # else:
                     new_dist = d + weight
                     if new_dist < dist[rx][ry]:
                         dist[rx][ry] = new_dist
                         heap.append([new_dist, rx, ry])
         return None
 
-    def your_algorithm(
+    def execute_algorithm(
         self, start_point: list[int], end_point: list[int], grid: list[list[int]]
     ) -> list[list[float]] | list[list[int]] | None:
         """
         Return 2D list where optimal path is stored.
+        >>> start_point = [0, 0]
+        >>> end_point = [1, 1]
+        >>> grid = [[0,0],[0,0]]
+        >>> dxy = [[1, 1],[1, 0],[1, -1],[0, -1],[-1, -1],[-1, 0],[-1, 1],[0, 1]]
+        >>> goal_answer = [100000000]
+        >>> obj = UniformCostSearch(grid)
+        >>> obj.execute_algorithm(start_point, end_point, grid)
+        Increment
+        Extended distance
+        [[1, 1], [0, 0]]
+
+
+        >>> start_point = [0, 0]
+        >>> end_point = [2, 2]
+        >>> grid = [[0,1,0],[1,0,1],[1,0,0]]
+        >>> dxy = [[1, 1],[1, 0],[1, -1],[0, -1],[-1, -1],[-1, 0],[-1, 1],[0, 1]]
+        >>> goal_answer = [100000000]
+        >>> obj = UniformCostSearch(grid)
+        >>> obj.execute_algorithm(start_point, end_point, grid)
+        Increment
+        Extended distance
+        [[2, 2], [1, 1], [0, 0]]
         """
         dxy = []
         if start_point[1] - end_point[1] == 0 and start_point[0] - end_point[0] < 0:
@@ -206,8 +263,15 @@ class UniformCostSearch:
         return path
 
 
-if __name__ == "__main__":
-    executed_object = UniformCostSearch(
+def run() -> None:
+    """
+    Return nothing. Its a run whole algorithm and print the answer.
+    >>> run()
+    Increment
+    Extended distance
+    [[19, 17], [18, 18], [17, 19], [16, 19], [15, 19], [14, 19], [13, 18], [12, 17], [11, 16], [10, 15], [9, 14], [8, 13], [7, 13], [6, 12], [5, 11], [4, 10], [3, 9], [2, 8], [1, 8], [0, 7]]
+    """
+    object = UniformCostSearch(
         [
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -231,7 +295,7 @@ if __name__ == "__main__":
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         ],
     )
-    path_result = executed_object.your_algorithm(
+    path_result = object.execute_algorithm(
         [0, 7],
         [19, 17],
         [
@@ -258,3 +322,9 @@ if __name__ == "__main__":
         ],
     )
     print(path_result)
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
