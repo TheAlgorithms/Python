@@ -83,6 +83,9 @@ def octal_to_binary(octal: str) -> str:
     if negative:
         return "-0b" + "".join(str(e) for e in binary)
     return "0b" + "".join(str(e) for e in binary)
+
+
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
