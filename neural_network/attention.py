@@ -64,14 +64,8 @@ class SingleQueryAttention:
         >>> (expected == output).all()
         True
         """
+        # calculate query, keys, values
         query = self.weights_query @ token_embedding + self.bias_query
-
-        # alternative:
-        #     keys = np.squeeze(
-        #                np.matmul(self.weights_key,
-        #                    np.expand_dims(context_token_embeddings, -1)
-        #                )
-        #            ) + self.bias_key
         keys = [
             self.weights_key @ context_token_embedding + self.bias_key
             for context_token_embedding in context_token_embeddings
@@ -81,14 +75,20 @@ class SingleQueryAttention:
             for context_token_embedding in context_token_embeddings
         ]
 
-        exponents = np.exp(
+        # calculate the softmax
+        exponential_s = np.exp(
             [np.transpose(query) @ key / self.normalization for key in keys]
         )
-        denominator = np.sum(exponents)
+        softmax = [exponential / np.sum(exponential_s) for exponential in exponential_s]
 
-        softmax_vector = np.array([exponent / denominator for exponent in exponents])
-
-        return np.transpose(softmax_vector) @ values
+        # generate the output
+        output = np.add.reduce(
+            [
+                token_importance * value
+                for token_importance, value in zip(softmax, values)
+            ]
+        )
+        return output
 
 
 if __name__ == "__main__":
