@@ -27,8 +27,8 @@ def split_list(
     ValueError: Timings must be a list of numbers
 
     """
-    valid_timings = list[int | float]
-    for current_element in enumerate(timings):
+    valid_timings: list[int, float] = []
+    for current_element in timings:
         if (
             isinstance(current_element, str)
             and current_element.replace(".", "", 1).isdigit()
@@ -41,6 +41,7 @@ def split_list(
         elif isinstance(current_element, (int, float)):
             valid_timings.append(abs(current_element))
         else:
+            print(type(current_element))
             raise ValueError("Timings must be a list of numbers")
 
     if len(valid_timings) == 0:
@@ -55,7 +56,8 @@ def split_list(
         indices = [j for j in range(n) if i & (1 << j) != 0]
         distributed_timings_1 = [valid_timings[j] for j in indices]
         distributed_timings_2 = [valid_timings[j] for j in range(n) if j not in indices]
-        diff = abs(sum([distributed_timings_1]) - sum(distributed_timings_2))
+        diff = abs(sum(distributed_timings_1) - sum(distributed_timings_2))
+
         if diff < smallest_diff:
             smallest_diff = diff
             result = (
