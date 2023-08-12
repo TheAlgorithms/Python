@@ -1,21 +1,96 @@
-def octal_to_binary(octal) -> int:
-    # Converting Octal to Decimal
-    decimal = 0
-    power = 0
-    while octal != 0:
-        decimal += (octal % 10) * pow(8, power)
-        octal //= 10
-        power += 1
+def octal_to_binary(octal:str) -> str:
+    """
+   Convert an octal value to its binary equivalent
+
+   >>> octal_to_binary("")
+   Traceback (most recent call last):
+       ...
+   ValueError: Empty string was passed to the function
+   >>> octal_to_binary("-")
+   Traceback (most recent call last):
+       ...
+   ValueError: Non-octal value was passed to the function
+   >>> octal_to_binary("e")
+   Traceback (most recent call last):
+       ...
+   ValueError: Non-octal value was passed to the function
+   >>> octal_to_binary(8)
+   Traceback (most recent call last):
+       ...
+   ValueError: Non-octal value was passed to the function
+   >>> octal_to_binary("-e")
+   Traceback (most recent call last):
+       ...
+   ValueError: Non-octal value was passed to the function
+   >>> octal_to_binary("-8")
+   Traceback (most recent call last):
+       ...
+   ValueError: Non-octal value was passed to the function
+   >>> octal_to_binary("1")
+   '0b1'
+   >>> octal_to_binary("-1")
+   '-0b1'
+   >>> octal_to_binary("12")
+   '0b1010'
+   >>> octal_to_binary(" 12   ")
+   '0b1010'
+   >>> octal_to_binary("-45")
+   '-0b100101'
+   >>> octal_to_binary("-")
+   Traceback (most recent call last):
+       ...
+   ValueError: Non-octal value was passed to the function
+   >>> octal_to_binary("0")
+   '0b0'
+   >>> octal_to_binary("-4055")
+   '-0b100000101101'
+   >>> octal_to_binary("2-0Fm")
+   Traceback (most recent call last):
+       ...
+   ValueError: Non-octal value was passed to the function
+   >>> octal_to_binary("")
+   Traceback (most recent call last):
+       ...
+   ValueError: Empty string was passed to the function
+   >>> octal_to_binary("19")
+   Traceback (most recent call last):
+       ...
+   ValueError: Non-octal value was passed to the function
+   """
+      
+    oct_string = str(octal).strip()
+    if not oct_string:
+        raise ValueError("Empty string was passed to the function")
+    is_negative = oct_string[0] == "-"
+    if is_negative:
+        oct_string = oct_string[1:]
+    if not oct_string.isdigit() or not all(0 <= int(char) <= 7 for char in oct_string):
+        raise ValueError("Non-octal value was passed to the function")
+    decimal_number = 0
+    for char in oct_string:
+        decimal_number = 8 * decimal_number + int(char)
+    if is_negative:
+        decimal_number = -decimal_number
+
     # Converting Decimal to Binary
-    binary = 0
-    digit_place = 1
-    while decimal != 0:
-        binary += (decimal % 2) * digit_place
-        decimal //= 2
-        digit_place *= 10
-    return binary
+    if decimal_number == 0:
+        return "0b0"
+    
+    negative = False
+    if decimal_number < 0:
+        negative = True
+        decimal_number = -decimal_number
 
+    binary: list[int] = []
+    while decimal_number > 0:
+        binary.insert(0, decimal_number % 2)
+        decimal_number >>= 1
 
-octal_number = int(input("Enter octal number: "))
-binary_number = octal_to_binary(octal_number)
-print(f"The binary equivalent of {octal_number} is {binary_number}")
+    if negative:
+        return "-0b" + "".join(str(e) for e in binary)
+
+    return "0b" + "".join(str(e) for e in binary)
+
+if __name__ == "__main__":
+    from doctest import testmod
+    testmod()
