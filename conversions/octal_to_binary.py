@@ -1,4 +1,4 @@
-def octal_to_binary(octal)->int:
+def octal_to_binary(octal) -> int:
     # Converting Octal to Decimal
     decimal = 0
     power = 0
@@ -14,6 +14,8 @@ def octal_to_binary(octal)->int:
         decimal //= 2
         digit_place *= 10
     return binary
+
+
 octal_number = int(input("Enter octal number: "))
 binary_number = octal_to_binary(octal_number)
 print(f"The binary equivalent of {octal_number} is {binary_number}")
