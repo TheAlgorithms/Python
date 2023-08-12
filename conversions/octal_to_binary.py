@@ -1,7 +1,6 @@
 def octal_to_binary(octal: str) -> str:
     """
     Convert an octal value to its binary equivalent
-
     >>> octal_to_binary("")
     Traceback (most recent call last):
         ...
@@ -57,7 +56,6 @@ def octal_to_binary(octal: str) -> str:
         ...
     ValueError: Non-octal value was passed to the function
     """
-
     oct_string = str(octal).strip()
     if not oct_string:
         raise ValueError("Empty string was passed to the function")
@@ -71,28 +69,20 @@ def octal_to_binary(octal: str) -> str:
         decimal_number = 8 * decimal_number + int(char)
     if is_negative:
         decimal_number = -decimal_number
-
     # Converting Decimal to Binary
     if decimal_number == 0:
         return "0b0"
-
     negative = False
     if decimal_number < 0:
         negative = True
         decimal_number = -decimal_number
-
     binary: list[int] = []
     while decimal_number > 0:
         binary.insert(0, decimal_number % 2)
         decimal_number >>= 1
-
     if negative:
         return "-0b" + "".join(str(e) for e in binary)
-
     return "0b" + "".join(str(e) for e in binary)
-
-
 if __name__ == "__main__":
     from doctest import testmod
-
     testmod()
