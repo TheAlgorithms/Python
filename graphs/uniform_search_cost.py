@@ -1,10 +1,17 @@
 ##################### -- Learning Source -- #####################
 
-# 1. https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#:~:text=Moreover%2C%20not%20inserting%20all%20nodes%20in%20a%20graph%20makes%20it%20possible%20to%20extend%20the%20algorithm%20to%20find%20the%20shortest%20path%20from
+# 1. https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 # 2. https://www.educative.io/answers/what-is-uniform-cost-search
 
-# Uniform search cost is slighlty simillar to dijkstra. The main different between them is that UCS is having multiple goals.
+# In above 1 no. link, you will get about dijkstra algorithm.
+# You may have to scroll down a little bit.
+# And you will get a section titled as "Practical optimizations and infinite graphs"
+# This section explains about Uniform Cost Search algorithm.
 
+# Uniform search cost is slightly similar to dijkstra.
+# The main different between them is that UCS is having multiple goals.
+
+# Below code is fully based on 2D Grid environment
 ##################### --------------------- #####################
 
 # diagonal clockwise
@@ -269,9 +276,11 @@ def run() -> None:
     >>> run()
     Increment
     Extended distance
-    [[19, 17], [18, 18], [17, 19], [16, 19], [15, 19], [14, 19], [13, 18], [12, 17], [11, 16], [10, 15], [9, 14], [8, 13], [7, 13], [6, 12], [5, 11], [4, 10], [3, 9], [2, 8], [1, 8], [0, 7]]
+    [[19, 17], [18, 18], [17, 19], [16, 19], [15, 19], [14, 19], [13, 18], [12, 17],
+    [11, 16], [10, 15],[9, 14], [8, 13], [7, 13], [6, 12], [5, 11], [4, 10], [3, 9],
+    [2, 8], [1, 8], [0, 7]]
     """
-    object = UniformCostSearch(
+    ucs_object = UniformCostSearch(
         [
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -295,7 +304,7 @@ def run() -> None:
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         ],
     )
-    path_result = object.execute_algorithm(
+    path_result = ucs_object.execute_algorithm(
         [0, 7],
         [19, 17],
         [
