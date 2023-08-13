@@ -225,8 +225,8 @@ class WaTor:
         ... [None, Entity(True, (2, 1)), None]])
         >>> wt.get_surrounding_prey(
         ... Entity(False, (1, 1)))  # doctest: +NORMALIZE_WHITESPACE
-        [Entity(prey=True, coords=(2, 1), remaining_reproduction_time=5),
-        Entity(prey=True, coords=(0, 1), remaining_reproduction_time=5)]
+        [Entity(prey=True, coords=(0, 1), remaining_reproduction_time=5),
+        Entity(prey=True, coords=(2, 1), remaining_reproduction_time=5)]
         >>> wt.set_planet([[Entity(False, (0, 0))]])
         >>> wt.get_surrounding_prey(Entity(False, (0, 0)))
         []
@@ -237,42 +237,22 @@ class WaTor:
         >>> wt.get_surrounding_prey(Entity(False, (1, 0)))
         [Entity(prey=True, coords=(0, 0), remaining_reproduction_time=5)]
         """
-        coords = entity.coords
-        row, col = coords
-        surrounding_prey: list[Entity] = []
+        row, col = entity.coords
+        adjacent: list[tuple[int, int]] = [
+            (row - 1, col),  # North
+            (row + 1, col),  # South
+            (row, col - 1),  # West
+            (row, col + 1),  # East
+        ]
 
-        # Go through N, S, E, W with two booleans
-        # making four different combinations
-        for i in range(2):
-            for j in range(2):
-                vertical = bool(i)
-                positive = bool(j)
-
-                # North (make sure in bounds)
-                if vertical is True and positive is True and row - 1 >= 0:
-                    if (
-                        ent := self.planet[row - 1][col]
-                    ) is not None and ent.prey is True:
-                        surrounding_prey.append(ent)
-                # South (make sure in bounds)
-                elif vertical is True and positive is False and self.height > row + 1:
-                    if (
-                        ent := self.planet[row + 1][col]
-                    ) is not None and ent.prey is True:
-                        surrounding_prey.append(ent)
-                # East (make sure in bounds)
-                elif vertical is False and positive is True and self.width > col + 1:
-                    if (
-                        ent := self.planet[row][col + 1]
-                    ) is not None and ent.prey is True:
-                        surrounding_prey.append(ent)
-                # South (make sure in bounds)
-                elif vertical is False and positive is False and col - 1 >= 0:
-                    if (
-                        ent := self.planet[row][col - 1]
-                    ) is not None and ent.prey is True:
-                        surrounding_prey.append(ent)
-        return surrounding_prey
+        return [
+            ent
+            for r, c in adjacent
+            if 0 <= r < self.height
+            and 0 <= c < self.width
+            and (ent := self.planet[r][c]) is not None
+            and ent.prey
+        ]
 
     def move_and_reproduce(
         self, entity: Entity, direction_orders: list[Literal["N", "E", "S", "W"]]
@@ -301,7 +281,6 @@ class WaTor:
         [None, None, None],
         [None, None, None]]
         >>> wt.planet[0][0] = Entity(True, coords=(0, 0))
-        >>> wt.planet[0][2] = None
         >>> wt.move_and_reproduce(Entity(True, coords=(0, 1)),
         ... direction_orders=["N", "W", "E", "S"])
         >>> wt.planet  # doctest: +NORMALIZE_WHITESPACE
@@ -332,37 +311,27 @@ class WaTor:
         """
         row, col = coords = entity.coords
 
-        for direction in direction_orders:
-            # If the direction is North and the northern square
-            # is within the top bound of the planet
-            if direction == "N" and row - 1 >= 0:
-                if self.planet[row - 1][col] is None:
-                    self.planet[row - 1][col] = entity
-                    entity.coords = (row - 1, col)
-            # If the direction is South and the southern square
-            # is within the bottom bound of the planet
-            elif direction == "S" and self.height > row + 1:
-                if self.planet[row + 1][col] is None:
-                    self.planet[row + 1][col] = entity
-                    entity.coords = (row + 1, col)
-            # If the direction is East and the eastern square
-            # is within the right bound of the planet
-            elif direction == "E" and self.width > col + 1:
-                if self.planet[row][col + 1] is None:
-                    self.planet[row][col + 1] = entity
-                    entity.coords = (row, col + 1)
-            # If the direction is West and the western square
-            # is within the left bound of the planet
-            elif direction == "W" and col - 1 >= 0:
-                if self.planet[row][col - 1] is None:
-                    self.planet[row][col - 1] = entity
-                    entity.coords = (row, col - 1)
+        adjacent_squares: dict[Literal["N", "E", "S", "W"], tuple[int, int]] = {
+            "N": (row - 1, col),  # North
+            "S": (row + 1, col),  # South
+            "W": (row, col - 1),  # West
+            "E": (row, col + 1),  # East
+        }
+        # Weight adjacent locations
+        adjacent: list[tuple[int, int]] = []
+        for order in direction_orders:
+            adjacent.append(adjacent_squares[order])
 
-            # See if move was successful (instead of adding a break)
-            # to each successful move
-            if coords != entity.coords:
-                # Remove the previous location of the entity
+        for r, c in adjacent:
+            if (
+                0 <= r < self.height
+                and 0 <= c < self.width
+                and self.planet[r][c] is None
+            ):
+                # Move entity to empty adjacent square
+                self.planet[r][c] = entity
                 self.planet[row][col] = None
+                entity.coords = (r, c)
                 break
 
         # (2.) See if it possible to reproduce in previous square
