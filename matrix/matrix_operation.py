@@ -47,7 +47,7 @@ def subtract(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[
     raise TypeError("Expected a matrix, got int/list instead")
 
 
-def scalar_multiply(matrix: list[list[int]], n: int | float) -> list[list[float]]:
+def scalar_multiply(matrix: list[list[int]], n: float) -> list[list[float]]:
     """
     >>> scalar_multiply([[1,2],[3,4]],5)
     [[5, 10], [15, 20]]
@@ -189,9 +189,7 @@ def main() -> None:
     matrix_c = [[11, 12, 13, 14], [21, 22, 23, 24], [31, 32, 33, 34], [41, 42, 43, 44]]
     matrix_d = [[3, 0, 2], [2, 0, -2], [0, 1, 1]]
     print(f"Add Operation, {add(matrix_a, matrix_b) = } \n")
-    print(
-        f"Multiply Operation, {multiply(matrix_a, matrix_b) = } \n",
-    )
+    print(f"Multiply Operation, {multiply(matrix_a, matrix_b) = } \n")
     print(f"Identity: {identity(5)}\n")
     print(f"Minor of {matrix_c} = {minor(matrix_c, 1, 2)} \n")
     print(f"Determinant of {matrix_b} = {determinant(matrix_b)} \n")
