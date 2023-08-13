@@ -114,6 +114,24 @@ def jacobi_iteration_method(
     rows, cols = table.shape
 
     strictly_diagonally_dominant(table)
+    
+    """
+    # Iterates the whole matrix for given number of times
+    for _ in range(iterations):
+        new_val = []
+        for row in range(rows):
+            temp = 0
+            for col in range(cols):
+                if col == row:
+                    denom = table[row][col]
+                elif col == cols - 1:
+                    val = table[row][col]
+                else:
+                    temp += (-1) * table[row][col] * init_val[col]
+            temp = (temp + val) / denom
+            new_val.append(temp)
+        init_val = new_val
+    """
 
     """
     denom - a list of values along the diagonal
