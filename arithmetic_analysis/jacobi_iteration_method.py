@@ -117,47 +117,38 @@ def jacobi_iteration_method(
 
     """
     denom - a list of values along the diagonal
-    val - values of the last column of the table array
-
-    masks - boolean mask of all strings without diagonal
-    elements array coefficient_matrix
-
-    ttt - coefficient_matrix array values without diagonal elements
-    ind - column indexes for each row without diagonal elements
-    arr - list obtained by column indexes from the list init_val
-
-    the code below uses vectorized operations based on
-    the previous algorithm on loopss:
-
-    # Iterates the whole matrix for given number of times
-    for _ in range(iterations):
-        new_val = []
-        for row in range(rows):
-            temp = 0
-            for col in range(cols):
-                if col == row:
-                    denom = table[row][col]
-                elif col == cols - 1:
-                    val = table[row][col]
-                else:
-                    temp += (-1) * table[row][col] * init_val[col]
-            temp = (temp + val) / denom
-            new_val.append(temp)
-        init_val = new_val
     """
-
     denom = np.diag(coefficient_matrix)
-    val = table[:, -1]
+    """
+    val_last - values of the last column of the table array
+    """
+    val_last = table[:, -1]
+    """
+    masks - boolean mask of all strings without diagonal 
+    elements array coefficient_matrix 
+    """
     masks = ~np.eye(coefficient_matrix.shape[0], dtype=bool)
-    ttt = coefficient_matrix[masks].reshape(-1, rows - 1)
+    """
+    no_diag - coefficient_matrix array values without diagonal elements
+    """
+    no_diag = coefficient_matrix[masks].reshape(-1, rows - 1)
+    """
+    Here we get 'i_col' - these are the column numbers, for each row 
+    without diagonal elements, except for the last column.
+    """
     i_row, i_col = np.where(masks)
     ind = i_col.reshape(-1, rows - 1)
+    """
+    'i_col' is converted to a two-dimensional list 'ind', 
+    which will be used to make selections from 'init_val'
+    ('arr' array see below).
+    """
 
     # Iterates the whole matrix for given number of times
     for _ in range(iterations):
         arr = np.take(init_val, ind)
-        temp = np.sum((-1) * ttt * arr, axis=1)
-        new_val = (temp + val) / denom
+        temp = np.sum((-1) * no_diag * arr, axis=1)
+        new_val = (temp + val_last) / denom
         init_val = new_val
 
     return new_val.tolist()
