@@ -1,10 +1,5 @@
-def octal_to_binary(octal_number: str) -> str:
+def octal_to_binary(octal_number):
     """
-    /**
-    * Converts any Octal Number to a Binary Number
-    *
-    * @author Bama Charan Chhandogi
-    */
     Convert an octal number to binary.
 
     Args:
@@ -12,19 +7,23 @@ def octal_to_binary(octal_number: str) -> str:
 
     Returns:
         str: The binary representation of the octal number.
-
-    Examples:
-        >>> octal_to_binary("34")
-        '0b11100'
-        >>> octal_to_binary("777")
-        '0b111111111'
     """
-    decimal_number = int(octal_number, 8)
-    binary_number = bin(decimal_number)
-    return binary_number
+    binary_number = ""
+    octal_digits = "01234567"
 
+    for digit in octal_number:
+        if digit not in octal_digits:
+            raise ValueError("Invalid octal digit")
+        
+        binary_digit = ""
+        value = int(digit)
+        for _ in range(3):
+            binary_digit = str(value % 2) + binary_digit
+            value //= 2
+        binary_number += binary_digit
+
+    return binary_number
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
