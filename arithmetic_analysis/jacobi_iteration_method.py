@@ -124,8 +124,8 @@ def jacobi_iteration_method(
     """
     val_last = table[:, -1]
     """
-    masks - boolean mask of all strings without diagonal 
-    elements array coefficient_matrix 
+    masks - boolean mask of all strings without diagonal
+    elements array coefficient_matrix
     """
     masks = ~np.eye(coefficient_matrix.shape[0], dtype=bool)
     """
@@ -133,13 +133,13 @@ def jacobi_iteration_method(
     """
     no_diag = coefficient_matrix[masks].reshape(-1, rows - 1)
     """
-    Here we get 'i_col' - these are the column numbers, for each row 
+    Here we get 'i_col' - these are the column numbers, for each row
     without diagonal elements, except for the last column.
     """
     i_row, i_col = np.where(masks)
     ind = i_col.reshape(-1, rows - 1)
     """
-    'i_col' is converted to a two-dimensional list 'ind', 
+    'i_col' is converted to a two-dimensional list 'ind',
     which will be used to make selections from 'init_val'
     ('arr' array see below).
     """
