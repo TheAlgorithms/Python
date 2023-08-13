@@ -114,7 +114,7 @@ def jacobi_iteration_method(
     rows, cols = table.shape
 
     strictly_diagonally_dominant(table)
-    
+
     """
     # Iterates the whole matrix for given number of times
     for _ in range(iterations):
