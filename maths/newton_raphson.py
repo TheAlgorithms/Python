@@ -36,7 +36,7 @@ def newton_raphson(f, x0=0, maxiter=100, step=0.0001, maxerror=1e-6, logsteps=Fa
     if logsteps:
         # If logstep is true, then log intermediate steps
         return a, error, steps
-    return a, error
+    return a, error, []
 
 
 if __name__ == "__main__":
