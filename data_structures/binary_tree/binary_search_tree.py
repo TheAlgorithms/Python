@@ -78,7 +78,7 @@ class Node:
         return pformat({f"{self.value}": (self.left, self.right)}, indent=1)
 
     @property
-    def is_right(self) -> bool:
+    def is_right(self):
         return self.parent and self is self.parent.right
 
 
