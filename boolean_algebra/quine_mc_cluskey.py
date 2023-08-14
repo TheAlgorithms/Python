@@ -74,10 +74,7 @@ def is_for_table(string1: str, string2: str, count: int) -> bool:
     """
     list1 = list(string1)
     list2 = list(string2)
-    count_n = 0
-    for item1, item2 in zip(list1, list2):
-        if item1 != item2:
-            count_n += 1
+    count_n = sum(item1 != item2 for item1, item2 in zip(list1, list2))
     return count_n == count
 
 
@@ -115,11 +112,11 @@ def selection(chart: list[list[int]], prime_implicants: list[str]) -> list[str]:
 
         temp.append(prime_implicants[rem])
 
-        for i in range(len(chart[0])):
-            if chart[rem][i] != 1:
+        for j in range(len(chart[0])):
+            if chart[rem][j] != 1:
                 continue
-            for j in range(len(chart)):
-                chart[j][i] = 0
+            for i in range(len(chart)):
+                chart[i][j] = 0
 
 
 def prime_implicant_chart(
