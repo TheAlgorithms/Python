@@ -53,6 +53,40 @@ def volume_of_gas_system(moles: float, kelvin: float, pressure: float) -> float:
     return moles * kelvin * UNIVERSAL_GAS_CONSTANT / pressure
 
 
+def temperature_of_gas_system(moles: float, volume: float, pressure: float) -> float:
+    """
+    >>> temperature_of_gas_system(2, 100, 5)
+    30.068090996146232
+    >>> temperature_of_gas_system(11, 5009, 1000)
+    54767.66101807144
+    >>> temperature_of_gas_system(3, -0.46, 23.5)
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid inputs. Enter positive value.
+    """
+    if moles < 0 or volume < 0 or pressure < 0:
+        raise ValueError("Invalid inputs. Enter positive value.")
+
+    return pressure * volume / (moles * UNIVERSAL_GAS_CONSTANT)
+
+
+def moles_of_gas_system(kelvin: float, volume: float, pressure: float) -> float:
+    """
+    >>> moles_of_gas_system(100, 5, 10)
+    0.06013618199229246
+    >>> moles_of_gas_system(110, 5009, 1000)
+    5476.766101807144
+    >>> moles_of_gas_system(3, -0.46, 23.5)
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid inputs. Enter positive value.
+    """
+    if kelvin < 0 or volume < 0 or pressure < 0:
+        raise ValueError("Invalid inputs. Enter positive value.")
+
+    return pressure * volume / (kelvin * UNIVERSAL_GAS_CONSTANT)
+
+
 if __name__ == "__main__":
     from doctest import testmod
 

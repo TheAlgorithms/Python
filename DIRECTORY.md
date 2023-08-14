@@ -74,6 +74,7 @@
   * [Game Of Life](cellular_automata/game_of_life.py)
   * [Nagel Schrekenberg](cellular_automata/nagel_schrekenberg.py)
   * [One Dimensional](cellular_automata/one_dimensional.py)
+  * [Wa Tor](cellular_automata/wa_tor.py)
 
 ## Ciphers
   * [A1Z26](ciphers/a1z26.py)
@@ -335,9 +336,11 @@
   * [Minimum Tickets Cost](dynamic_programming/minimum_tickets_cost.py)
   * [Optimal Binary Search Tree](dynamic_programming/optimal_binary_search_tree.py)
   * [Palindrome Partitioning](dynamic_programming/palindrome_partitioning.py)
+  * [Regex Match](dynamic_programming/regex_match.py)
   * [Rod Cutting](dynamic_programming/rod_cutting.py)
   * [Subset Generation](dynamic_programming/subset_generation.py)
   * [Sum Of Subset](dynamic_programming/sum_of_subset.py)
+  * [Tribonacci](dynamic_programming/tribonacci.py)
   * [Viterbi](dynamic_programming/viterbi.py)
   * [Word Break](dynamic_programming/word_break.py)
 
@@ -710,7 +713,6 @@
     * [Exponential Linear Unit](neural_network/activation_functions/exponential_linear_unit.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
-  * [Input Data](neural_network/input_data.py)
   * [Perceptron](neural_network/perceptron.py)
   * [Simple Neural Network](neural_network/simple_neural_network.py)
 
@@ -1170,6 +1172,7 @@
   * [Is Pangram](strings/is_pangram.py)
   * [Is Spain National Id](strings/is_spain_national_id.py)
   * [Is Srilankan Phone Number](strings/is_srilankan_phone_number.py)
+  * [Is Valid Email Address](strings/is_valid_email_address.py)
   * [Jaro Winkler](strings/jaro_winkler.py)
   * [Join](strings/join.py)
   * [Knuth Morris Pratt](strings/knuth_morris_pratt.py)
