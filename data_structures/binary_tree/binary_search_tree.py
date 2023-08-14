@@ -79,9 +79,7 @@ class Node:
 
     @property
     def is_right(self) -> bool:
-        if self.parent and self.parent.right:
-            return self == self.parent.right
-        return False
+        return self.parent and self is self.parent.right
 
 
 class BinarySearchTree:
