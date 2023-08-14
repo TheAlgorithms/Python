@@ -1,23 +1,23 @@
 from __future__ import annotations
 
 
-def find_max(nums: list[int | float]) -> int | float:
+def find_max_iterative(nums: list[int | float]) -> int | float:
     """
     >>> for nums in ([3, 2, 1], [-3, -2, -1], [3, -3, 0], [3.0, 3.1, 2.9]):
-    ...     find_max(nums) == max(nums)
+    ...     find_max_iterative(nums) == max(nums)
     True
     True
     True
     True
-    >>> find_max([2, 4, 9, 7, 19, 94, 5])
+    >>> find_max_iterative([2, 4, 9, 7, 19, 94, 5])
     94
-    >>> find_max([])
+    >>> find_max_iterative([])
     Traceback (most recent call last):
         ...
-    ValueError: find_max() arg is an empty sequence
+    ValueError: find_max_iterative() arg is an empty sequence
     """
     if len(nums) == 0:
-        raise ValueError("find_max() arg is an empty sequence")
+        raise ValueError("find_max_iterative() arg is an empty sequence")
     max_num = nums[0]
     for x in nums:
         if x > max_num:
