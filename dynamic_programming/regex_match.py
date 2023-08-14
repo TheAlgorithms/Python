@@ -36,11 +36,8 @@ def recursive_match(text: str, pattern: str) -> bool:
     if text and not pattern:
         return False
 
-    if not text and pattern and pattern[-1] != "*":
-        return False
-
-    if not text and pattern and pattern[-1] == "*":
-        return recursive_match(text, pattern[:-2])
+    if not text:
+        return pattern[-1] == "*" and recursive_match(text, pattern[:-2])
 
     if text[-1] == pattern[-1] or pattern[-1] == ".":
         return recursive_match(text[:-1], pattern[:-1])
