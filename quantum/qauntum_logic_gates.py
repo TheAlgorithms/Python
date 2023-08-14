@@ -25,45 +25,45 @@ nx_value : value of vector in Z axis as represented by Hilbert space.
 the respective axes on the bloch sphere.
 
 Usage :
->>>paulix_gate(2,3)
+>>> paulix_gate(2,3)
 [3 2]
 
->>>pauliy_gate(5,8)
+>>> pauliy_gate(5,8)
 [0.+8.j 0.-5.j]
 
->>>pauliz_gate(4,1)
+>>> pauliz_gate(4,1)
 [ 4 -1]
 
->>>identity_gate(7,2)
+>>> identity_gate(7,2)
 9
 
->>>phasefactor_of_input(4,7,45)
+>>> phasefactor_of_input(4,7,45)
 [1.39737084e+20+0.j 2.44539897e+20+0.j]
 
->>>phaseshift_of_input(3,9,30)
+>>> phaseshift_of_input(3,9,30)
 [3.00000000e+00+0.j 9.61782712e+13+0.j]
 
->>>hadamard_gate(5,9)
+>>> hadamard_gate(5,9)
 [ 9.89949494 -2.82842712]
 [1.+0.j 0.+0.j 0.+0.j 7.+0.j]
 
->>>controlled_not_gate_in_0ket(1,7,4,8)
+>>> controlled_not_gate_in_0ket(1,7,4,8)
 [7 1 4 8]
 
->>>controlled_not_gate(6,3,7,5)
+>>> controlled_not_gate(6,3,7,5)
 [6 3 5 7]
 
->>>inverted_controlled_not_gate(8,4,9,6)
+>>> inverted_controlled_not_gate(8,4,9,6)
 [8 6 9 4]
 
->>>controlled_phase_multiplication(3,2,5,1,10)
+>>> controlled_phase_multiplication(3,2,5,1,10)
 [3.00000000e+00+0.j 2.00000000e+00+0.j 1.10132329e+05+0.j
  2.20264658e+04+0.j]
 
->>>swap_gate(5,1,3,7)
+>>> swap_gate(5,1,3,7)
 [5 3 1 7]
 
->>>spin_of_input(6,3,45,1,8,3)
+>>> spin_of_input(6,3,45,1,8,3)
 [-16.93201614+10.23066476j -50.61991392 -1.46152354j]
 
 """
