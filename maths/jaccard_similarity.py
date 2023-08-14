@@ -80,7 +80,7 @@ def jaccard_similarity(
         intersection = [element for element in set_a if element in set_b]
 
         if alternative_union:
-            return len(intersection) / len(set_a) + len(set_b)
+            return len(intersection) / (len(set_a) + len(set_b))
         else:
             # Cast set_a to list because tuples cannot be mutated
             union = list(set_a) + [element for element in set_b if element not in set_a]
