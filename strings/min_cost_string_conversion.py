@@ -61,7 +61,7 @@ def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
     if i == 0 and j == 0:
         return []
     else:
-        if ops[i][j][0] == "C" or ops[i][j][0] == "R":
+        if ops[i][j][0] in {"C", "R"}:
             seq = assemble_transformation(ops, i - 1, j - 1)
             seq.append(ops[i][j])
             return seq

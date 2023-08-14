@@ -101,7 +101,7 @@ class BinarySearchTree:
             else:
                 node.parent.left = new_children
         else:
-            self.root = None
+            self.root = new_children
 
     def empty(self) -> bool:
         return self.root is None

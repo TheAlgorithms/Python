@@ -297,11 +297,13 @@ def _validate_list(_object: Any, var_name: str) -> None:
 
     """
     if not isinstance(_object, list):
-        raise ValueError(f"{var_name} must be a list")
+        msg = f"{var_name} must be a list"
+        raise ValueError(msg)
     else:
         for x in _object:
             if not isinstance(x, str):
-                raise ValueError(f"{var_name} must be a list of strings")
+                msg = f"{var_name} must be a list of strings"
+                raise ValueError(msg)
 
 
 def _validate_dicts(
@@ -384,14 +386,15 @@ def _validate_dict(
     ValueError: mock_name nested dictionary all values must be float
     """
     if not isinstance(_object, dict):
-        raise ValueError(f"{var_name} must be a dict")
+        msg = f"{var_name} must be a dict"
+        raise ValueError(msg)
     if not all(isinstance(x, str) for x in _object):
-        raise ValueError(f"{var_name} all keys must be strings")
+        msg = f"{var_name} all keys must be strings"
+        raise ValueError(msg)
     if not all(isinstance(x, value_type) for x in _object.values()):
         nested_text = "nested dictionary " if nested else ""
-        raise ValueError(
-            f"{var_name} {nested_text}all values must be {value_type.__name__}"
-        )
+        msg = f"{var_name} {nested_text}all values must be {value_type.__name__}"
+        raise ValueError(msg)
 
 
 if __name__ == "__main__":
