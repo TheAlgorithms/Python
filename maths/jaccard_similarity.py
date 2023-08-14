@@ -41,23 +41,22 @@ def jaccard_similarity(
     >>> set_b = {'c', 'd', 'e', 'f', 'h', 'i'}
     >>> jaccard_similarity(set_a, set_b)
     0.375
-
     >>> jaccard_similarity(set_a, set_a)
     1.0
-
     >>> jaccard_similarity(set_a, set_a, True)
     0.5
-
     >>> set_a = ['a', 'b', 'c', 'd', 'e']
     >>> set_b = ('c', 'd', 'e', 'f', 'h', 'i')
     >>> jaccard_similarity(set_a, set_b)
     0.375
-
     >>> set_a = ('c', 'd', 'e', 'f', 'h', 'i')
     >>> set_b = ['a', 'b', 'c', 'd', 'e']
     >>> jaccard_similarity(set_a, set_b)
     0.375
-
+    >>> set_a = ('c', 'd', 'e', 'f', 'h', 'i')
+    >>> set_b = ['a', 'b', 'c', 'd']
+    >>> jaccard_similarity(set_a, set_b, True)
+    0.2
     >>> set_a = {'a', 'b'}
     >>> set_b = ['c', 'd']
     >>> jaccard_similarity(set_a, set_b)
