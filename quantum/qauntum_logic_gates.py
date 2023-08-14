@@ -74,122 +74,176 @@ import math
 import numpy as np
 
 
-def paulix_gate(input_realvalue,input_imaginaryvalue):
-        paulix_matrix = np.array([[0,1],[1,0]])
-        complex_input = np.array([input_realvalue,input_imaginaryvalue])
-        result = np.dot(paulix_matrix, complex_input)
-        return(result)
+def paulix_gate(input_realvalue, input_imaginaryvalue):
+    paulix_matrix = np.array([[0, 1], [1, 0]])
+    complex_input = np.array([input_realvalue, input_imaginaryvalue])
+    result = np.dot(paulix_matrix, complex_input)
+    return result
 
-def pauliy_gate(input_realvalue,input_imaginaryvalue):
-        i = complex(0,1)
-        pauliy_matrix = [[0,i],[-1*i,0]]
-        complex_input = np.array([input_realvalue,input_imaginaryvalue])
-        result = np.dot(pauliy_matrix, complex_input)
-        return(result)
 
-def pauliz_gate(input_realvalue,input_imaginaryvalue):
-        pauliz_matrix = np.array([[1,0],[0,-1]])
-        complex_input = np.array([input_realvalue,input_imaginaryvalue])
-        result = np.dot(pauliz_matrix, complex_input)
-        return(result)
+def pauliy_gate(input_realvalue, input_imaginaryvalue):
+    i = complex(0, 1)
+    pauliy_matrix = [[0, i], [-1 * i, 0]]
+    complex_input = np.array([input_realvalue, input_imaginaryvalue])
+    result = np.dot(pauliy_matrix, complex_input)
+    return result
 
-def identity_gate(input_realvalue,input_imaginaryvalue) :
-        identiy_matrix = np.diag([[1,0],[0,1]])
-        complex_input = np.array([input_realvalue,input_imaginaryvalue])
-        result = np.dot(identiy_matrix, complex_input)
-        return(result)
 
-def phasefactor_of_input(input_realvalue,input_imaginaryvalue,alpha):
-        iota = cmath.exp(alpha)
-        phasefactor = [[iota,0],[0,iota]]
-        complex_input = np.array([input_realvalue,input_imaginaryvalue])
-        result = np.dot(phasefactor,complex_input)
-        return result
+def pauliz_gate(input_realvalue, input_imaginaryvalue):
+    pauliz_matrix = np.array([[1, 0], [0, -1]])
+    complex_input = np.array([input_realvalue, input_imaginaryvalue])
+    result = np.dot(pauliz_matrix, complex_input)
+    return result
 
-def phaseshift_of_input(input_realvalue,input_imaginaryvalue,alpha):
-        iota = cmath.exp(alpha)
-        phase = [[1,0],[0,iota]]
-        complex_input = np.array([input_realvalue,input_imaginaryvalue])
-        result = np.dot(phase,complex_input)
-        return result
 
-def hadamard_gate(input_realvalue,input_imaginaryvalue):
-        root_of_2 = 1.0 / math.sqrt(2)
-        hadamard_gate_matrix = np.array([[root_of_2, root_of_2],
-                         [root_of_2, -1 * root_of_2]])
-        complex_input = np.array([input_realvalue,input_imaginaryvalue])
-        result = np.dot(hadamard_gate_matrix,complex_input)
-        return result
+def identity_gate(input_realvalue, input_imaginaryvalue):
+    identiy_matrix = np.diag([[1, 0], [0, 1]])
+    complex_input = np.array([input_realvalue, input_imaginaryvalue])
+    result = np.dot(identiy_matrix, complex_input)
+    return result
 
-def controlled_not_gate_in_0ket(input_realvalue_1,input_imaginaryvalue_1,
-                                input_realvalue_2,input_imaginaryvalue_2):
-        controlled_not_gate_0ket_matrix = np.array([[0,1,0,0],
-                     [1,0,0,0],
-                     [0,0,1,0],
-                     [0,0,0,1]])
-        complex_input = np.array([input_realvalue_1,input_imaginaryvalue_1,
-                                  input_realvalue_2,input_imaginaryvalue_2])
-        print(complex_input)
-        result = np.dot(controlled_not_gate_0ket_matrix,complex_input)
-        return result
 
-def controlled_not_gate(input_realvalue_1,input_imaginaryvalue_1,
-                        input_realvalue_2,input_imaginaryvalue_2):
-        controlled_not_gate_matrix = np.array([[1,0,0,0],
-                     [0,1,0,0],
-                     [0,0,0,1],
-                     [0,0,1,0]])
-        complex_input = np.array([input_realvalue_1,input_imaginaryvalue_1,
-                                  input_realvalue_2,input_imaginaryvalue_2])
-        result = np.dot(controlled_not_gate_matrix,complex_input)
-        return result
+def phasefactor_of_input(input_realvalue, input_imaginaryvalue, alpha):
+    iota = cmath.exp(alpha)
+    phasefactor = [[iota, 0], [0, iota]]
+    complex_input = np.array([input_realvalue, input_imaginaryvalue])
+    result = np.dot(phasefactor, complex_input)
+    return result
 
-def inverted_controlled_not_gate(input_realvalue_1,input_imaginaryvalue_1,
-                                 input_realvalue_2,input_imaginaryvalue_2):
-        inverted_controlled_not_gate_matrix = np.array([[1,0,0,0],
-                                [0,0,0,1],
-                                [0,0,1,0],
-                                [0,1,0,0]])
-        complex_input = np.array([input_realvalue_1,input_imaginaryvalue_1,
-                                  input_realvalue_2,input_imaginaryvalue_2])
-        result = np.dot(inverted_controlled_not_gate_matrix,complex_input)
-        return result
 
-def controlled_phase_multiplication(input_realvalue_1,input_imaginaryvalue_1,
-                                    input_realvalue_2,input_imaginaryvalue_2,alpha):
-        iota = cmath.exp(alpha)
-        controlled_phase_multiplication_matrix = np.array([[1,0,0,0],
-                    [0,1,0,0],
-                    [0,0,iota,0],
-                    [0,0,0,iota]])
-        complex_input = np.array([input_realvalue_1,input_imaginaryvalue_1,
-                                  input_realvalue_2,input_imaginaryvalue_2])
-        result = np.dot(controlled_phase_multiplication_matrix,complex_input)
-        return result
+def phaseshift_of_input(input_realvalue, input_imaginaryvalue, alpha):
+    iota = cmath.exp(alpha)
+    phase = [[1, 0], [0, iota]]
+    complex_input = np.array([input_realvalue, input_imaginaryvalue])
+    result = np.dot(phase, complex_input)
+    return result
 
-def swap_gate(input_realvalue_1,input_imaginaryvalue_1,
-              input_realvalue_2,input_imaginaryvalue_2):
-        swap_gate_matrix = np.array([[1,0,0,0],
-                     [0,0,1,0],
-                     [0,1,0,0],
-                     [0,0,0,1]])
-        complex_input = np.array([input_realvalue_1,input_imaginaryvalue_1,
-                                  input_realvalue_2,input_imaginaryvalue_2])
-        result = np.dot(swap_gate_matrix,complex_input)
-        return result
 
-def spin_of_input(input_realvalue,input_imaginaryvalue,
-                  alpha_value,nx_value,ny_value,nz_value):
-        i = complex(0,1)
-        spin_matrix = [[(math.cos(alpha_value/2.0)) -
-                        (i * math.sin(alpha_value/2.0)*nz_value),
-                      (-1 * i * math.sin(alpha_value/2.0)*(nx_value + i * ny_value))],
-                     [-1 * i * (math.sin(alpha_value/2.0) * nx_value - i * ny_value),
-                      math.cos(alpha_value/2.0) +
-                      (i * math.sin(alpha_value/2.0) * nz_value)]]
-        complex_input = np.array([input_realvalue,input_imaginaryvalue])
-        result = np.dot(spin_matrix,complex_input)
-        return result
+def hadamard_gate(input_realvalue, input_imaginaryvalue):
+    root_of_2 = 1.0 / math.sqrt(2)
+    hadamard_gate_matrix = np.array(
+        [[root_of_2, root_of_2], [root_of_2, -1 * root_of_2]]
+    )
+    complex_input = np.array([input_realvalue, input_imaginaryvalue])
+    result = np.dot(hadamard_gate_matrix, complex_input)
+    return result
+
+
+def controlled_not_gate_in_0ket(
+    input_realvalue_1, input_imaginaryvalue_1, input_realvalue_2, input_imaginaryvalue_2
+):
+    controlled_not_gate_0ket_matrix = np.array(
+        [[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+    )
+    complex_input = np.array(
+        [
+            input_realvalue_1,
+            input_imaginaryvalue_1,
+            input_realvalue_2,
+            input_imaginaryvalue_2,
+        ]
+    )
+    print(complex_input)
+    result = np.dot(controlled_not_gate_0ket_matrix, complex_input)
+    return result
+
+
+def controlled_not_gate(
+    input_realvalue_1, input_imaginaryvalue_1, input_realvalue_2, input_imaginaryvalue_2
+):
+    controlled_not_gate_matrix = np.array(
+        [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0]]
+    )
+    complex_input = np.array(
+        [
+            input_realvalue_1,
+            input_imaginaryvalue_1,
+            input_realvalue_2,
+            input_imaginaryvalue_2,
+        ]
+    )
+    result = np.dot(controlled_not_gate_matrix, complex_input)
+    return result
+
+
+def inverted_controlled_not_gate(
+    input_realvalue_1, input_imaginaryvalue_1, input_realvalue_2, input_imaginaryvalue_2
+):
+    inverted_controlled_not_gate_matrix = np.array(
+        [[1, 0, 0, 0], [0, 0, 0, 1], [0, 0, 1, 0], [0, 1, 0, 0]]
+    )
+    complex_input = np.array(
+        [
+            input_realvalue_1,
+            input_imaginaryvalue_1,
+            input_realvalue_2,
+            input_imaginaryvalue_2,
+        ]
+    )
+    result = np.dot(inverted_controlled_not_gate_matrix, complex_input)
+    return result
+
+
+def controlled_phase_multiplication(
+    input_realvalue_1,
+    input_imaginaryvalue_1,
+    input_realvalue_2,
+    input_imaginaryvalue_2,
+    alpha,
+):
+    iota = cmath.exp(alpha)
+    controlled_phase_multiplication_matrix = np.array(
+        [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, iota, 0], [0, 0, 0, iota]]
+    )
+    complex_input = np.array(
+        [
+            input_realvalue_1,
+            input_imaginaryvalue_1,
+            input_realvalue_2,
+            input_imaginaryvalue_2,
+        ]
+    )
+    result = np.dot(controlled_phase_multiplication_matrix, complex_input)
+    return result
+
+
+def swap_gate(
+    input_realvalue_1, input_imaginaryvalue_1, input_realvalue_2, input_imaginaryvalue_2
+):
+    swap_gate_matrix = np.array(
+        [[1, 0, 0, 0], [0, 0, 1, 0], [0, 1, 0, 0], [0, 0, 0, 1]]
+    )
+    complex_input = np.array(
+        [
+            input_realvalue_1,
+            input_imaginaryvalue_1,
+            input_realvalue_2,
+            input_imaginaryvalue_2,
+        ]
+    )
+    result = np.dot(swap_gate_matrix, complex_input)
+    return result
+
+
+def spin_of_input(
+    input_realvalue, input_imaginaryvalue, alpha_value, nx_value, ny_value, nz_value
+):
+    i = complex(0, 1)
+    spin_matrix = [
+        [
+            (math.cos(alpha_value / 2.0))
+            - (i * math.sin(alpha_value / 2.0) * nz_value),
+            (-1 * i * math.sin(alpha_value / 2.0) * (nx_value + i * ny_value)),
+        ],
+        [
+            -1 * i * (math.sin(alpha_value / 2.0) * nx_value - i * ny_value),
+            math.cos(alpha_value / 2.0) + (i * math.sin(alpha_value / 2.0) * nz_value),
+        ],
+    ]
+    complex_input = np.array([input_realvalue, input_imaginaryvalue])
+    result = np.dot(spin_matrix, complex_input)
+    return result
+
 
 if __name__ == "__main__":
     import doctest
