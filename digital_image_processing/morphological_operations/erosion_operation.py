@@ -2,7 +2,7 @@ import numpy as np
 from PIL import Image
 
 
-def rgb2gray(rgb: np.ndarray) -> np.ndarray:
+def rgb2gray(rgb: np.array) -> np.array:
     """
     Return gray image from rgb image
     >>> rgb2gray(np.array([[[127, 255, 0]]]))
@@ -18,9 +18,10 @@ def rgb2gray(rgb: np.ndarray) -> np.ndarray:
     return 0.2989 * r + 0.5870 * g + 0.1140 * b
 
 
-def gray2binary(gray: np.ndarray) -> np.ndarray:
+def gray2binary(gray: np.array) -> np.array:
     """
     Return binary image from gray image
+
     >>> gray2binary(np.array([[127, 255, 0]]))
     array([[False,  True, False]])
     >>> gray2binary(np.array([[0]]))
@@ -35,7 +36,7 @@ def gray2binary(gray: np.ndarray) -> np.ndarray:
     return (gray > 127) & (gray <= 255)
 
 
-def erosion(image: np.ndarray, kernel: np.ndarray) -> np.ndarray:
+def erosion(image: np.array, kernel: np.array) -> np.array:
     """
     Return eroded image
     >>> erosion(np.array([[True, True, False]]), np.array([[0, 1, 0]]))
