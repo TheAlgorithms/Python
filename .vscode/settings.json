@@ -1,5 +1,7 @@
 {
     "githubPullRequests.ignoredPullRequestBranches": [
         "master"
-    ]
+    ],
+    "python.analysis.diagnosticMode": "openFilesOnly",
+    "python.analysis.typeCheckingMode": "basic"
 }
