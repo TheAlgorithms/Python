@@ -96,7 +96,7 @@ class BinarySearchTree:
         if new_children is not None:  # reset its kids
             new_children.parent = node.parent
         if node.parent is not None:  # reset its parent
-            if node.is_right:  # If it is the right children
+            if node.is_right:  # If it is the right child
                 node.parent.right = new_children
             else:
                 node.parent.left = new_children
