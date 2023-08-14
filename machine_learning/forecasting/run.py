@@ -118,16 +118,11 @@ def data_safety_checker(list_vote: list, actual_result: float) -> bool:
 
 
 if __name__ == "__main__":
-    data_input_df = pd.read_csv("ex_data.csv")
-    # data_input = [[18231, 0.0, 1], [22621, 1.0, 2], [15675, 0.0, 3], [23583, 1.0, 4]]
-    # data_input_df = pd.DataFrame(
-    #     data_input, columns=["total_user", "total_even", "days"]
-    # )
-
     """
     data column = total user in a day, how much online event held in one day,
     what day is that(sunday-saturday)
     """
+    data_input_df = pd.read_csv("ex_data.csv")
 
     # start normalization
     normalize_df = Normalizer().fit_transform(data_input_df.values)
