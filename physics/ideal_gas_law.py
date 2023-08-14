@@ -74,7 +74,7 @@ def moles_of_gas_system(kelvin: float, volume: float, pressure: float) -> float:
     """
     >>> moles_of_gas_system(100, 5, 10)
     0.06013618199229246
-    >>> moles_of_gas_system(110,5009,1000)
+    >>> moles_of_gas_system(110, 5009, 1000)
     5476.766101807144
     >>> moles_of_gas_system(3, -0.46, 23.5)
     Traceback (most recent call last):
