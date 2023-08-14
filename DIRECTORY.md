@@ -336,6 +336,7 @@
   * [Minimum Tickets Cost](dynamic_programming/minimum_tickets_cost.py)
   * [Optimal Binary Search Tree](dynamic_programming/optimal_binary_search_tree.py)
   * [Palindrome Partitioning](dynamic_programming/palindrome_partitioning.py)
+  * [Regex Match](dynamic_programming/regex_match.py)
   * [Rod Cutting](dynamic_programming/rod_cutting.py)
   * [Subset Generation](dynamic_programming/subset_generation.py)
   * [Sum Of Subset](dynamic_programming/sum_of_subset.py)
