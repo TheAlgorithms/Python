@@ -1171,6 +1171,7 @@
   * [Is Pangram](strings/is_pangram.py)
   * [Is Spain National Id](strings/is_spain_national_id.py)
   * [Is Srilankan Phone Number](strings/is_srilankan_phone_number.py)
+  * [Is Valid Email Address](strings/is_valid_email_address.py)
   * [Jaro Winkler](strings/jaro_winkler.py)
   * [Join](strings/join.py)
   * [Knuth Morris Pratt](strings/knuth_morris_pratt.py)
