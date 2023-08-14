@@ -18,14 +18,16 @@ import numpy as np
 
 def leaky_rectified_linear_unit(vector: np.ndarray, alpha: float) -> np.ndarray:
     """
-         Implements the LeakyReLU activation function.
-         Parameters:
-             vector: the array containing input of leakyReLu activation
-             alpha: hyperparameter
-         return:
-         leaky_relu (np.array): The input numpy array after applying leakyReLu.
+        Implements the LeakyReLU activation function.
 
-         Formula : f(x) = x if x > 0 else f(x) = alpha * x
+        Parameters:
+            vector (np.ndarray): The input array for LeakyReLU activation.
+            alpha (float): The slope for negative values.
+
+        Returns:
+            np.ndarray: The input array after applying the LeakyReLU activation.
+
+        Formula: f(x) = x if x > 0 else f(x) = alpha * x
 
     Examples:
     >>> leaky_rectified_linear_unit(vector=np.array([2.3,0.6,-2,-3.8]), alpha=0.3)
