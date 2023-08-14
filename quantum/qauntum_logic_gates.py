@@ -179,6 +179,7 @@ def controlled_not_gate_in_0ket(
 
     Usage :
     >>> controlled_not_gate_in_0ket(1,7,4,8)
+    [1 7 4 8]
     array([7, 1, 4, 8])
     """
     controlled_not_gate_0ket_matrix = np.array(
@@ -282,9 +283,8 @@ def controlled_phase_multiplication(
 
     Usage :
     >>> controlled_phase_multiplication(3,2,5,1,10)
-    array([3.00000000e+00+0.j, 2.00000000e+00+0.j,
-    1.10132329e+05+0.j,
-    2.20264658e+04+0.j])
+    array([3.00000000e+00+0.j, 2.00000000e+00+0.j, 1.10132329e+05+0.j,
+           2.20264658e+04+0.j])
     """
     iota = cmath.exp(alpha)
     controlled_phase_multiplication_matrix = np.array(
