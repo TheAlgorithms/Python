@@ -11,6 +11,8 @@ missing (the amount of data that u expected are not supposed to be)
          u can just adjust it for ur own purpose
 """
 
+from warnings import simplefilter
+
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import Normalizer
@@ -45,8 +47,10 @@ def sarimax_predictor(train_user: list, train_match: list, test_match: list) -> 
     >>> sarimax_predictor([4,2,6,8], [3,1,2,4], [2])
     6.6666671111109626
     """
+    # Suppress the User Warning raised by SARIMAX due to insufficient observations
+    simplefilter("ignore", UserWarning)
     order = (1, 2, 1)
-    seasonal_order = (1, 1, 0, 7)
+    seasonal_order = (1, 1, 1, 7)
     model = SARIMAX(
         train_user, exog=train_match, order=order, seasonal_order=seasonal_order
     )

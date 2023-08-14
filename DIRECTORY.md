@@ -340,6 +340,7 @@
   * [Rod Cutting](dynamic_programming/rod_cutting.py)
   * [Subset Generation](dynamic_programming/subset_generation.py)
   * [Sum Of Subset](dynamic_programming/sum_of_subset.py)
+  * [Tribonacci](dynamic_programming/tribonacci.py)
   * [Viterbi](dynamic_programming/viterbi.py)
   * [Word Break](dynamic_programming/word_break.py)
 
