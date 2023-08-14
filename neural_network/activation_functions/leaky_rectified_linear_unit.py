@@ -20,10 +20,10 @@ def leaky_rectified_linear_unit(vector: np.ndarray, alpha: float) -> np.ndarray:
     """
          Implements the LeakyReLU activation function.
          Parameters:
-             vector: the array containing input of elu activation
+             vector: the array containing input of leakyReLu activation
              alpha: hyperparameter
          return:
-         leaky_relu (np.array): The input numpy array after applying leaky-relu.
+         leaky_relu (np.array): The input numpy array after applying leakyReLu.
 
          Formula : f(x) = x if x > 0 else f(x) = alpha * x
 
