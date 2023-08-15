@@ -37,7 +37,9 @@ class Tableau:
     """
     # Max iteration number to prevent cycling
     maxiter = 100
-    def __init__(self, tableau: np.ndarray, n_vars: int, n_artificial_vars: int) -> None:
+    def __init__(
+        self, tableau: np.ndarray, n_vars: int, n_artificial_vars: int
+        ) -> None:
         if tableau.dtype != 'float64':
             raise TypeError('Tableau must have type float64')
 
@@ -233,7 +235,7 @@ class Tableau:
         ... [0, 0, 0.25, 0.25, 2],
         ... [0, 1, 0.375, -0.125, 1],
         ... [1, 0, -0.125, 0.375, 1]
-        ... ]), 2, 0).run_simplex() 
+        ... ]), 2, 0).run_simplex()
         {'P': 2.0, 'x1': 1.0, 'x2': 1.0}
 
         # Non-standard: >= constraints
