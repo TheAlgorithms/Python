@@ -78,8 +78,8 @@ class Node:
         return pformat({f"{self.value}": (self.left, self.right)}, indent=1)
 
     @property
-    def is_right(self):
-        return self.parent and self is self.parent.right
+    def is_right(self) -> bool:
+        return self.parent is not None and self is self.parent.right
 
 
 class BinarySearchTree:
