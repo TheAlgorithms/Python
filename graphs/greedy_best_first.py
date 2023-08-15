@@ -6,7 +6,7 @@ from __future__ import annotations
 
 Path = list[tuple[int, int]]
 
-# 0 are free path whereas 1's are obstacles
+# 0's are free path whereas 1's are obstacles
 TEST_GRIDS = [
     [
         [0, 0, 0, 0, 0, 0, 0],
@@ -83,7 +83,7 @@ class Node:
     def __lt__(self, other) -> bool:
         return self.f_cost < other.f_cost
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return self.pos == other.pos
 
 
