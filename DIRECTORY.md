@@ -74,6 +74,7 @@
   * [Game Of Life](cellular_automata/game_of_life.py)
   * [Nagel Schrekenberg](cellular_automata/nagel_schrekenberg.py)
   * [One Dimensional](cellular_automata/one_dimensional.py)
+  * [Wa Tor](cellular_automata/wa_tor.py)
 
 ## Ciphers
   * [A1Z26](ciphers/a1z26.py)
@@ -236,8 +237,8 @@
     * [Double Ended Queue](data_structures/queue/double_ended_queue.py)
     * [Linked Queue](data_structures/queue/linked_queue.py)
     * [Priority Queue Using List](data_structures/queue/priority_queue_using_list.py)
+    * [Queue By List](data_structures/queue/queue_by_list.py)
     * [Queue By Two Stacks](data_structures/queue/queue_by_two_stacks.py)
-    * [Queue On List](data_structures/queue/queue_on_list.py)
     * [Queue On Pseudo Stack](data_structures/queue/queue_on_pseudo_stack.py)
   * Stacks
     * [Balanced Parentheses](data_structures/stacks/balanced_parentheses.py)
@@ -335,9 +336,11 @@
   * [Minimum Tickets Cost](dynamic_programming/minimum_tickets_cost.py)
   * [Optimal Binary Search Tree](dynamic_programming/optimal_binary_search_tree.py)
   * [Palindrome Partitioning](dynamic_programming/palindrome_partitioning.py)
+  * [Regex Match](dynamic_programming/regex_match.py)
   * [Rod Cutting](dynamic_programming/rod_cutting.py)
   * [Subset Generation](dynamic_programming/subset_generation.py)
   * [Sum Of Subset](dynamic_programming/sum_of_subset.py)
+  * [Tribonacci](dynamic_programming/tribonacci.py)
   * [Viterbi](dynamic_programming/viterbi.py)
   * [Word Break](dynamic_programming/word_break.py)
 
@@ -511,7 +514,7 @@
   * Lstm
     * [Lstm Prediction](machine_learning/lstm/lstm_prediction.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
-  * [Polymonial Regression](machine_learning/polymonial_regression.py)
+  * [Polynomial Regression](machine_learning/polynomial_regression.py)
   * [Scoring Functions](machine_learning/scoring_functions.py)
   * [Self Organizing Map](machine_learning/self_organizing_map.py)
   * [Sequential Minimum Optimization](machine_learning/sequential_minimum_optimization.py)
@@ -570,9 +573,7 @@
   * [Fermat Little Theorem](maths/fermat_little_theorem.py)
   * [Fibonacci](maths/fibonacci.py)
   * [Find Max](maths/find_max.py)
-  * [Find Max Recursion](maths/find_max_recursion.py)
   * [Find Min](maths/find_min.py)
-  * [Find Min Recursion](maths/find_min_recursion.py)
   * [Floor](maths/floor.py)
   * [Gamma](maths/gamma.py)
   * [Gamma Recursive](maths/gamma_recursive.py)
@@ -585,6 +586,7 @@
   * [Hardy Ramanujanalgo](maths/hardy_ramanujanalgo.py)
   * [Hexagonal Number](maths/hexagonal_number.py)
   * [Integration By Simpson Approx](maths/integration_by_simpson_approx.py)
+  * [Interquartile Range](maths/interquartile_range.py)
   * [Is Int Palindrome](maths/is_int_palindrome.py)
   * [Is Ip V4 Address Valid](maths/is_ip_v4_address_valid.py)
   * [Is Square Free](maths/is_square_free.py)
@@ -709,7 +711,6 @@
     * [Exponential Linear Unit](neural_network/activation_functions/exponential_linear_unit.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
-  * [Input Data](neural_network/input_data.py)
   * [Perceptron](neural_network/perceptron.py)
   * [Simple Neural Network](neural_network/simple_neural_network.py)
 
@@ -740,7 +741,9 @@
   * [Tower Of Hanoi](other/tower_of_hanoi.py)
 
 ## Physics
+  * [Altitude Pressure](physics/altitude_pressure.py)
   * [Archimedes Principle](physics/archimedes_principle.py)
+  * [Basic Orbital Capture](physics/basic_orbital_capture.py)
   * [Casimir Effect](physics/casimir_effect.py)
   * [Centripetal Force](physics/centripetal_force.py)
   * [Grahams Law](physics/grahams_law.py)
@@ -1062,7 +1065,6 @@
   * [Q Fourier Transform](quantum/q_fourier_transform.py)
   * [Q Full Adder](quantum/q_full_adder.py)
   * [Quantum Entanglement](quantum/quantum_entanglement.py)
-  * [Quantum Random](quantum/quantum_random.py)
   * [Quantum Teleportation](quantum/quantum_teleportation.py)
   * [Ripple Adder Classic](quantum/ripple_adder_classic.py)
   * [Single Qubit Measure](quantum/single_qubit_measure.py)
@@ -1168,6 +1170,7 @@
   * [Is Pangram](strings/is_pangram.py)
   * [Is Spain National Id](strings/is_spain_national_id.py)
   * [Is Srilankan Phone Number](strings/is_srilankan_phone_number.py)
+  * [Is Valid Email Address](strings/is_valid_email_address.py)
   * [Jaro Winkler](strings/jaro_winkler.py)
   * [Join](strings/join.py)
   * [Knuth Morris Pratt](strings/knuth_morris_pratt.py)
