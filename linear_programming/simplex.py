@@ -35,6 +35,7 @@ class Tableau:
     ...
     ValueError: number of (artificial) variables must be a natural number
     """
+
     # Max iteration number to prevent cycling
     maxiter = 100
     def __init__(
