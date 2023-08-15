@@ -20,6 +20,11 @@ import numpy as np
 class Tableau:
     """Operate on simplex tableaus
 
+    >>> Tableau(np.array([[-1,-1,0,0,1],[1,3,1,0,4],[3,1,0,1,4]]), 2, 2)
+    Traceback (most recent call last):
+    ...
+    TypeError: Tableau must have type float64
+
     >>> Tableau(np.array([[-1,-1,0,0,-1],[1,3,1,0,4],[3,1,0,1,4.]]), 2, 2)
     Traceback (most recent call last):
     ...
@@ -27,6 +32,9 @@ class Tableau:
     """
 
     def __init__(self, tableau: np.ndarray, n_vars: int, n_art_vars: int) -> None:
+        if tableau.dtype != 'float64':
+            raise TypeError('Tableau must have type float64')
+
         # Check if RHS is negative
         if np.any(tableau[:, -1], where=tableau[:, -1] < 0):
             raise ValueError("RHS must be > 0")
@@ -65,6 +73,10 @@ class Tableau:
         >>> Tableau(np.array([[-1,-1,0,0,1],[1,3,1,0,4],[3,1,0,1,4.]]),
         ... 2, 0).generate_col_titles()
         ['x1', 'x2', 's1', 's2', 'RHS']
+
+        >>> Tableau(np.array([[-1,-1,0,0,1],[1,3,1,0,4],[3,1,0,1,4.]]),
+        ... 2, 2).generate_col_titles()
+        ['x1', 'x2', 'RHS']
         """
         args = (self.n_vars, self.n_slack)
 
@@ -191,12 +203,26 @@ class Tableau:
         ... 2, 0).run_simplex()
         {'P': 2.0, 'x1': 1.0, 'x2': 1.0}
 
+        # Standard linear program with 3 variables:
+        Max: 3x1 +  x2 + 3x3
+        ST:  2x1 +  x2 +  x3 ≤ 2
+              x1 + 2x2 + 3x3 ≤ 5
+             2x1 + 2x2 +  x3 ≤ 6
+        >>> Tableau(np.array([
+        ... [-3,-1,-3,0,0,0,0],
+        ... [2,1,1,1,0,0,2],
+        ... [1,2,3,0,1,0,5],
+        ... [2,2,1,0,0,1,6.]
+        ... ]),3,0).run_simplex() # doctest: +ELLIPSIS
+        {'P': 5.4, 'x1': 0.199..., 'x3': 1.6}
+
+
         # Optimal tableau input:
         >>> Tableau(np.array([
         ... [0, 0, 0.25, 0.25, 2],
         ... [0, 1, 0.375, -0.125, 1],
         ... [1, 0, -0.125, 0.375, 1]
-        ... ]), 2, 0).run_simplex()
+        ... ]), 2, 0).run_simplex() 
         {'P': 2.0, 'x1': 1.0, 'x2': 1.0}
 
         # Non-standard: >= constraints
