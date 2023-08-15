@@ -38,11 +38,12 @@ class Tableau:
 
     # Max iteration number to prevent cycling
     maxiter = 100
+
     def __init__(
         self, tableau: np.ndarray, n_vars: int, n_artificial_vars: int
-        ) -> None:
-        if tableau.dtype != 'float64':
-            raise TypeError('Tableau must have type float64')
+    ) -> None:
+        if tableau.dtype != "float64":
+            raise TypeError("Tableau must have type float64")
 
         # Check if RHS is negative
         if not (tableau[:, -1] >= 0).all():
