@@ -148,27 +148,22 @@ class GreedyBestFirst:
         """
         Returns a list of successors (both in the grid and free spaces)
         """
-        successors = []
-        for action in delta:
-            pos_x = parent.pos_x + action[1]
-            pos_y = parent.pos_y + action[0]
-
+        return [
+            Node(
+                pos_x,
+                pos_y,
+                self.target.pos_x,
+                self.target.pos_y,
+                parent.g_cost + 1,
+                parent,
+            )
+            for action in delta
             if (
-                0 <= pos_x <= len(self.grid[0]) - 1
-                and 0 <= pos_y <= len(self.grid) - 1
+                0 <= (pos_x := parent.pos_x + action[1]) < len(self.grid[0])
+                and 0 <= (pos_y := parent.pos_y + action[0]) < len(self.grid)
                 and self.grid[pos_y][pos_x] == 0
-            ):
-                successors.append(
-                    Node(
-                        pos_x,
-                        pos_y,
-                        self.target.pos_x,
-                        self.target.pos_y,
-                        parent.g_cost + 1,
-                        parent,
-                    )
-                )
-        return successors
+            )
+        ]
 
     def retrace_path(self, node: Node | None) -> Path:
         """
