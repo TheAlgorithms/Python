@@ -1,4 +1,11 @@
-from math import cos, sin, sqrt, tau
+""""
+A Butterworth filter is a type of electronic signal filter commonly used in various 
+applications, such as audio processing, image processing, and telecommunications. It falls 
+under the category of infinite impulse response (IIR) filters. The primary characteristic of a 
+Butterworth filter is its ability to provide a smooth and gradual transition between the 
+passband (the range of frequencies that are allowed to pass through the filter with minimal 
+attenuation) and the stopband (the range of frequencies that are significantly attenuated or blocked).
+"""from math import cos, sin, sqrt, tau
 
 from audio_filters.iir_filter import IIRFilter
 
