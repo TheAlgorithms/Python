@@ -150,7 +150,7 @@
   * [Decimal To Octal](conversions/decimal_to_octal.py)
   * [Energy Conversions](conversions/energy_conversions.py)
   * [Excel Title To Column](conversions/excel_title_to_column.py)
-  * [Hex To Bin](conversions/hex_to_bin.py)
+  * [Hexadecimal To Bin](conversions/hexadecimal_to_bin.py)
   * [Hexadecimal To Decimal](conversions/hexadecimal_to_decimal.py)
   * [Length Conversion](conversions/length_conversion.py)
   * [Molecular Chemistry](conversions/molecular_chemistry.py)
