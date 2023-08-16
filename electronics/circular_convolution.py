@@ -65,7 +65,7 @@ class CircularConvolution:
         max_length = max(length_first_signal, length_second_signal)
 
         # create a zero matrix of max_length x max_length
-        matrix = [ [0] * max_length for i in range(max_length) ]
+        matrix = [[0] * max_length for i in range(max_length)]
 
         # fills the smaller signal with zeros to make both signals of same length
         if length_first_signal > length_second_signal:
