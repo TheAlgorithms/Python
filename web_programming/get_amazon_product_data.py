@@ -99,8 +99,4 @@ def get_amazon_product_data(product: str = "laptop") -> DataFrame:
 
 if __name__ == "__main__":
     product = "headphones"
-    print(
-        get_amazon_product_data(product).to_csv(
-            f"Amazon Product Data for {product}.csv"
-        )
-    )
+    get_amazon_product_data(product).to_csv(f"Amazon Product Data for {product}.csv")
