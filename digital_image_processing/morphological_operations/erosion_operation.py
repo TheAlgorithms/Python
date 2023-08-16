@@ -25,7 +25,7 @@ def gray_to_binary(gray: np.ndarray) -> np.ndarray:
     """
     Return binary image from gray image
 
-    >>> gray2binary(np.array([[127, 255, 0]]))
+    >>> gray_to_binary(np.array([[127, 255, 0]]))
     array([[False,  True, False]])
     >>> gray_to_binary(np.array([[0]]))
     array([[False]])
