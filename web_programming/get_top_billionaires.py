@@ -27,9 +27,9 @@ def calculate_age(unix_date: float) -> str:
         Age as string
 
     >>> calculate_age(-657244800000)
-    '73'
+    '74'
     >>> calculate_age(46915200000)
-    '51'
+    '52'
     """
     # Convert date from milliseconds to seconds
     unix_date /= 1000
@@ -38,7 +38,9 @@ def calculate_age(unix_date: float) -> str:
         # Handle timestamp before epoch
         epoch = datetime.fromtimestamp(0, tz=UTC)
         seconds_since_epoch = (datetime.now(tz=UTC) - epoch).seconds
-        birthdate = (epoch - timedelta(seconds=unix_date - seconds_since_epoch)).date()
+        birthdate = (
+            epoch - timedelta(seconds=abs(unix_date) - seconds_since_epoch)
+        ).date()
     else:
         birthdate = datetime.fromtimestamp(unix_date, tz=UTC).date()
     return str(
