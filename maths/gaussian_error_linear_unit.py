@@ -30,12 +30,10 @@ def gaussian_error_linear_unit(vector: np.ndarray) -> np.ndarray:
     Implements the Gaussian Error Linear Unit (GELU) function
 
     Parameters:
-        vector (np.array): A  numpy array of shape (1,n)
-        consisting of real values
+        vector (np.ndarray): A  numpy array of shape (1, n) consisting of real values
 
     Returns:
-        gelu_vec (np.array): The input numpy array, after applying
-        gelu.
+        gelu_vec (np.ndarray): The input numpy array, after applying gelu
 
     Examples:
     >>> gaussian_error_linear_unit(np.array([-1.0, 1.0, 2.0]))
