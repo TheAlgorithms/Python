@@ -12,4 +12,4 @@ def arc_length(angle: int, radius: int) -> float:
 
 
 if __name__ == "__main__":
-    print(arc_length(90, 10)) # --> 15.7079632679
+    print(arc_length(90, 10))  # --> 15.7079632679
