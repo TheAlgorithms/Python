@@ -85,7 +85,6 @@
   * [Base16](ciphers/base16.py)
   * [Base32](ciphers/base32.py)
   * [Base64](ciphers/base64.py)
-  * [Base85](ciphers/base85.py)
   * [Beaufort Cipher](ciphers/beaufort_cipher.py)
   * [Bifid](ciphers/bifid.py)
   * [Brute Force Caesar Cipher](ciphers/brute_force_caesar_cipher.py)
