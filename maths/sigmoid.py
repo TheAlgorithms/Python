@@ -11,7 +11,7 @@ https://en.wikipedia.org/wiki/Sigmoid_function
 import numpy as np
 
 
-def sigmoid(vector: np.array) -> np.array:
+def sigmoid(vector: np.ndarray) -> np.ndarray:
     """
     Implements the sigmoid function
 
