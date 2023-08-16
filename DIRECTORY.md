@@ -145,7 +145,6 @@
   * [Binary To Octal](conversions/binary_to_octal.py)
   * [Decimal To Any](conversions/decimal_to_any.py)
   * [Decimal To Binary](conversions/decimal_to_binary.py)
-  * [Decimal To Binary Recursion](conversions/decimal_to_binary_recursion.py)
   * [Decimal To Hexadecimal](conversions/decimal_to_hexadecimal.py)
   * [Decimal To Octal](conversions/decimal_to_octal.py)
   * [Energy Conversions](conversions/energy_conversions.py)
