@@ -28,7 +28,6 @@ Usage:
 Reference:
     https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/smo-book.pdf
     https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-98-14.pdf
-    http://web.cs.iastate.edu/~honavar/smo-svm.pdf
 """
 
 
@@ -43,7 +42,7 @@ from sklearn.datasets import make_blobs, make_circles
 from sklearn.preprocessing import StandardScaler
 
 CANCER_DATASET_URL = (
-    "http://archive.ics.uci.edu/ml/machine-learning-databases/"
+    "https://archive.ics.uci.edu/ml/machine-learning-databases/"
     "breast-cancer-wisconsin/wdbc.data"
 )
 
@@ -80,10 +79,9 @@ class SmoSVM:
 
     # Calculate alphas using SMO algorithm
     def fit(self):
-        K = self._k
+        k = self._k
         state = None
         while True:
-
             # 1: Find alpha1, alpha2
             try:
                 i1, i2 = self.choose_alpha.send(state)
@@ -106,14 +104,14 @@ class SmoSVM:
             # 3: update threshold(b)
             b1_new = np.float64(
                 -e1
-                - y1 * K(i1, i1) * (a1_new - a1)
-                - y2 * K(i2, i1) * (a2_new - a2)
+                - y1 * k(i1, i1) * (a1_new - a1)
+                - y2 * k(i2, i1) * (a2_new - a2)
                 + self._b
             )
             b2_new = np.float64(
                 -e2
-                - y2 * K(i2, i2) * (a2_new - a2)
-                - y1 * K(i1, i2) * (a1_new - a1)
+                - y2 * k(i2, i2) * (a2_new - a2)
+                - y1 * k(i1, i2) * (a1_new - a1)
                 + self._b
             )
             if 0.0 < a1_new < self._c:
@@ -131,11 +129,11 @@ class SmoSVM:
             #     error
             self._unbound = [i for i in self._all_samples if self._is_unbound(i)]
             for s in self.unbound:
-                if s == i1 or s == i2:
+                if s in (i1, i2):
                     continue
                 self._error[s] += (
-                    y1 * (a1_new - a1) * K(i1, s)
-                    + y2 * (a2_new - a2) * K(i2, s)
+                    y1 * (a1_new - a1) * k(i1, s)
+                    + y2 * (a2_new - a2) * k(i2, s)
                     + (self._b - b_old)
                 )
 
@@ -145,9 +143,8 @@ class SmoSVM:
             if self._is_unbound(i2):
                 self._error[i2] = 0
 
-    # Predict test samles
+    # Predict test samples
     def predict(self, test_samples, classify=True):
-
         if test_samples.shape[1] > self.samples.shape[1]:
             raise ValueError(
                 "Test samples' feature length does not equal to that of train samples"
@@ -228,7 +225,7 @@ class SmoSVM:
     def _choose_alphas(self):
         locis = yield from self._choose_a1()
         if not locis:
-            return
+            return None
         return locis
 
     def _choose_a1(self):
@@ -305,56 +302,55 @@ class SmoSVM:
 
     # Get the new alpha2 and new alpha1
     def _get_new_alpha(self, i1, i2, a1, a2, e1, e2, y1, y2):
-        K = self._k
+        k = self._k
         if i1 == i2:
             return None, None
 
         # calculate L and H  which bound the new alpha2
         s = y1 * y2
         if s == -1:
-            L, H = max(0.0, a2 - a1), min(self._c, self._c + a2 - a1)
+            l, h = max(0.0, a2 - a1), min(self._c, self._c + a2 - a1)
         else:
-            L, H = max(0.0, a2 + a1 - self._c), min(self._c, a2 + a1)
-        if L == H:
+            l, h = max(0.0, a2 + a1 - self._c), min(self._c, a2 + a1)
+        if l == h:
             return None, None
 
         # calculate eta
-        k11 = K(i1, i1)
-        k22 = K(i2, i2)
-        k12 = K(i1, i2)
-        eta = k11 + k22 - 2.0 * k12
+        k11 = k(i1, i1)
+        k22 = k(i2, i2)
+        k12 = k(i1, i2)
 
         # select the new alpha2 which could get the minimal objectives
-        if eta > 0.0:
+        if (eta := k11 + k22 - 2.0 * k12) > 0.0:
             a2_new_unc = a2 + (y2 * (e1 - e2)) / eta
             # a2_new has a boundary
-            if a2_new_unc >= H:
-                a2_new = H
-            elif a2_new_unc <= L:
-                a2_new = L
+            if a2_new_unc >= h:
+                a2_new = h
+            elif a2_new_unc <= l:
+                a2_new = l
             else:
                 a2_new = a2_new_unc
         else:
             b = self._b
-            l1 = a1 + s * (a2 - L)
-            h1 = a1 + s * (a2 - H)
+            l1 = a1 + s * (a2 - l)
+            h1 = a1 + s * (a2 - h)
 
             # way 1
-            f1 = y1 * (e1 + b) - a1 * K(i1, i1) - s * a2 * K(i1, i2)
-            f2 = y2 * (e2 + b) - a2 * K(i2, i2) - s * a1 * K(i1, i2)
+            f1 = y1 * (e1 + b) - a1 * k(i1, i1) - s * a2 * k(i1, i2)
+            f2 = y2 * (e2 + b) - a2 * k(i2, i2) - s * a1 * k(i1, i2)
             ol = (
                 l1 * f1
-                + L * f2
-                + 1 / 2 * l1**2 * K(i1, i1)
-                + 1 / 2 * L**2 * K(i2, i2)
-                + s * L * l1 * K(i1, i2)
+                + l * f2
+                + 1 / 2 * l1**2 * k(i1, i1)
+                + 1 / 2 * l**2 * k(i2, i2)
+                + s * l * l1 * k(i1, i2)
             )
             oh = (
                 h1 * f1
-                + H * f2
-                + 1 / 2 * h1**2 * K(i1, i1)
-                + 1 / 2 * H**2 * K(i2, i2)
-                + s * H * h1 * K(i1, i2)
+                + h * f2
+                + 1 / 2 * h1**2 * k(i1, i1)
+                + 1 / 2 * h**2 * k(i2, i2)
+                + s * h * h1 * k(i1, i2)
             )
             """
             # way 2
@@ -362,9 +358,9 @@ class SmoSVM:
             objectives
             """
             if ol < (oh - self._eps):
-                a2_new = L
+                a2_new = l
             elif ol > oh + self._eps:
-                a2_new = H
+                a2_new = h
             else:
                 a2_new = a2
 
@@ -390,16 +386,10 @@ class SmoSVM:
             return (data - self._min) / (self._max - self._min)
 
     def _is_unbound(self, index):
-        if 0.0 < self.alphas[index] < self._c:
-            return True
-        else:
-            return False
+        return bool(0.0 < self.alphas[index] < self._c)
 
     def _is_support(self, index):
-        if self.alphas[index] > 0:
-            return True
-        else:
-            return False
+        return bool(self.alphas[index] > 0)
 
     @property
     def unbound(self):
@@ -433,9 +423,8 @@ class Kernel:
         return np.exp(-1 * (self.gamma * np.linalg.norm(v1 - v2) ** 2))
 
     def _check(self):
-        if self._kernel == self._rbf:
-            if self.gamma < 0:
-                raise ValueError("gamma value must greater than 0")
+        if self._kernel == self._rbf and self.gamma < 0:
+            raise ValueError("gamma value must greater than 0")
 
     def _get_kernel(self, kernel_name):
         maps = {"linear": self._linear, "poly": self._polynomial, "rbf": self._rbf}
@@ -469,7 +458,7 @@ def test_cancel_data():
             CANCER_DATASET_URL,
             headers={"User-Agent": "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)"},
         )
-        response = urllib.request.urlopen(request)
+        response = urllib.request.urlopen(request)  # noqa: S310
         content = response.read().decode("utf-8")
         with open(r"cancel_data.csv", "w") as f:
             f.write(content)
@@ -580,7 +569,7 @@ def plot_partition_boundary(
     """
     We can not get the optimum w of our kernel svm model which is different from linear
     svm.  For this reason, we generate randomly distributed points with high desity and
-    prediced values of these points are calculated by using our tained model. Then we
+    prediced values of these points are calculated by using our trained model. Then we
     could use this prediced values to draw contour map.
     And this contour map can represent svm's partition boundary.
     """

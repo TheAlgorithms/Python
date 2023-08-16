@@ -14,7 +14,6 @@ class SubArray:
     def __init__(self, arr):
         # we need a list not a string, so do something to change the type
         self.array = arr.split(",")
-        print(("the input array is:", self.array))
 
     def solve_sub_array(self):
         rear = [int(self.array[0])] * len(self.array)

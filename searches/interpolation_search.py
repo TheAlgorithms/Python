@@ -49,7 +49,6 @@ def interpolation_search(sorted_collection, item):
 
 
 def interpolation_search_by_recursion(sorted_collection, item, left, right):
-
     """Pure implementation of interpolation search algorithm in Python by recursion
     Be careful collection must be ascending sorted, otherwise result will be
     unpredictable
@@ -101,7 +100,7 @@ def __assert_sorted(collection):
     True
     >>> __assert_sorted([10, -1, 5])
     Traceback (most recent call last):
-    ...
+        ...
     ValueError: Collection must be ascending sorted
     """
     if collection != sorted(collection):

@@ -72,7 +72,7 @@ class LinkedList:
         >>> len(linked_list)
         0
         """
-        return len(tuple(iter(self)))
+        return sum(1 for _ in self)
 
     def __repr__(self) -> str:
         """
@@ -95,11 +95,11 @@ class LinkedList:
         True
         >>> linked_list[-10]
         Traceback (most recent call last):
-        ...
+            ...
         ValueError: list index out of range.
         >>> linked_list[len(linked_list)]
         Traceback (most recent call last):
-        ...
+            ...
         ValueError: list index out of range.
         """
         if not 0 <= index < len(self):
@@ -107,6 +107,7 @@ class LinkedList:
         for i, node in enumerate(self):
             if i == index:
                 return node
+        return None
 
     # Used to change the data of a particular node
     def __setitem__(self, index: int, data: Any) -> None:
@@ -122,17 +123,17 @@ class LinkedList:
         -666
         >>> linked_list[-10] = 666
         Traceback (most recent call last):
-        ...
+            ...
         ValueError: list index out of range.
         >>> linked_list[len(linked_list)] = 666
         Traceback (most recent call last):
-        ...
+            ...
         ValueError: list index out of range.
         """
         if not 0 <= index < len(self):
             raise ValueError("list index out of range.")
         current = self.head
-        for i in range(index):
+        for _ in range(index):
             current = current.next
         current.data = data
 
@@ -233,7 +234,7 @@ class LinkedList:
         'third'
         >>> linked_list.delete_head()
         Traceback (most recent call last):
-        ...
+            ...
         IndexError: List index out of range.
         """
         return self.delete_nth(0)
@@ -260,7 +261,7 @@ class LinkedList:
         'first'
         >>> linked_list.delete_tail()
         Traceback (most recent call last):
-        ...
+            ...
         IndexError: List index out of range.
         """
         return self.delete_nth(len(self) - 1)
@@ -281,11 +282,11 @@ class LinkedList:
         first->third
         >>> linked_list.delete_nth(5) # this raises error
         Traceback (most recent call last):
-        ...
+            ...
         IndexError: List index out of range.
         >>> linked_list.delete_nth(-1) # this also raises error
         Traceback (most recent call last):
-        ...
+            ...
         IndexError: List index out of range.
         """
         if not 0 <= index <= len(self) - 1:  # test if index is valid
@@ -352,13 +353,13 @@ def test_singly_linked_list() -> None:
 
     try:
         linked_list.delete_head()
-        assert False  # This should not happen.
+        raise AssertionError  # This should not happen.
     except IndexError:
         assert True  # This should happen.
 
     try:
         linked_list.delete_tail()
-        assert False  # This should not happen.
+        raise AssertionError  # This should not happen.
     except IndexError:
         assert True  # This should happen.
 
@@ -392,7 +393,7 @@ def test_singly_linked_list_2() -> None:
     This section of the test used varying data types for input.
     >>> test_singly_linked_list_2()
     """
-    input = [
+    test_input = [
         -9,
         100,
         Node(77345112),
@@ -410,7 +411,7 @@ def test_singly_linked_list_2() -> None:
     ]
     linked_list = LinkedList()
 
-    for i in input:
+    for i in test_input:
         linked_list.insert_tail(i)
 
     # Check if it's empty or not

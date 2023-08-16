@@ -18,14 +18,13 @@ class Fibonacci:
         >>> Fibonacci().get(5)
         [0, 1, 1, 2, 3]
         """
-        difference = index - (len(self.sequence) - 2)
-        if difference >= 1:
+        if (difference := index - (len(self.sequence) - 2)) >= 1:
             for _ in range(difference):
                 self.sequence.append(self.sequence[-1] + self.sequence[-2])
         return self.sequence[:index]
 
 
-def main():
+def main() -> None:
     print(
         "Fibonacci Series Using Dynamic Programming\n",
         "Enter the index of the Fibonacci number you want to calculate ",

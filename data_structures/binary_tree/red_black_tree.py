@@ -1,6 +1,6 @@
 """
-python/black : true
-flake8 : passed
+psf/black : true
+ruff : passed
 """
 from __future__ import annotations
 
@@ -152,7 +152,7 @@ class RedBlackTree:
                     self.grandparent.color = 1
                     self.grandparent._insert_repair()
 
-    def remove(self, label: int) -> RedBlackTree:
+    def remove(self, label: int) -> RedBlackTree:  # noqa: PLR0912
         """Remove label from this tree."""
         if self.label == label:
             if self.left and self.right:
@@ -319,9 +319,8 @@ class RedBlackTree:
         """A helper function to recursively check Property 4 of a
         Red-Black Tree. See check_color_properties for more info.
         """
-        if self.color == 1:
-            if color(self.left) == 1 or color(self.right) == 1:
-                return False
+        if self.color == 1 and 1 in (color(self.left), color(self.right)):
+            return False
         if self.left and not self.left.check_coloring():
             return False
         if self.right and not self.right.check_coloring():

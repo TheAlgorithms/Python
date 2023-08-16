@@ -256,7 +256,7 @@ def valid_input(
     input_msg: str,
     err_msg: str,
     condition: Callable[[num], bool] = lambda x: True,
-    default: str = None,
+    default: str | None = None,
 ) -> num:
     """
     Ask for user value and validate that it fulfill a condition.
@@ -399,7 +399,7 @@ def main():
         if input("Press any key to restart or 'q' for quit: ").strip().lower() == "q":
             print("\n" + "GoodBye!".center(100, "-") + "\n")
             break
-        system("cls" if name == "nt" else "clear")
+        system("cls" if name == "nt" else "clear")  # noqa: S605
 
 
 if __name__ == "__main__":

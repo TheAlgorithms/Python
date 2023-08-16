@@ -9,7 +9,7 @@
 from queue import Queue
 
 
-def checkBipartite(graph):
+def check_bipartite(graph):
     queue = Queue()
     visited = [False] * len(graph)
     color = [-1] * len(graph)
@@ -20,7 +20,6 @@ def checkBipartite(graph):
             visited[u] = True
 
             for neighbour in graph[u]:
-
                 if neighbour == u:
                     return False
 
@@ -45,4 +44,4 @@ def checkBipartite(graph):
 
 if __name__ == "__main__":
     # Adjacency List of graph
-    print(checkBipartite({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}))
+    print(check_bipartite({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}))

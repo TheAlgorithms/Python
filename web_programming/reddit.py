@@ -23,12 +23,11 @@ def get_subreddit_data(
     limit : Number of posts to fetch
     age : ["new", "top", "hot"]
     wanted_data : Get only the required data in the list
-
-    >>> pass
     """
     wanted_data = wanted_data or []
     if invalid_search_terms := ", ".join(sorted(set(wanted_data) - valid_terms)):
-        raise ValueError(f"Invalid search term: {invalid_search_terms}")
+        msg = f"Invalid search term: {invalid_search_terms}"
+        raise ValueError(msg)
     response = requests.get(
         f"https://reddit.com/r/{subreddit}/{age}.json?limit={limit}",
         headers={"User-agent": "A random string"},

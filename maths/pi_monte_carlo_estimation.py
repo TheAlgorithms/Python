@@ -47,7 +47,7 @@ def estimate_pi(number_of_simulations: int) -> float:
         raise ValueError("At least one simulation is necessary to estimate PI.")
 
     number_in_unit_circle = 0
-    for simulation_index in range(number_of_simulations):
+    for _ in range(number_of_simulations):
         random_point = Point.random_unit_square()
 
         if random_point.is_in_unit_circle():

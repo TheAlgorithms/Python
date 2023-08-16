@@ -9,26 +9,26 @@ SYMBOLS = (
 )
 
 
-def check_keys(keyA: int, keyB: int, mode: str) -> None:
+def check_keys(key_a: int, key_b: int, mode: str) -> None:
     if mode == "encrypt":
-        if keyA == 1:
+        if key_a == 1:
             sys.exit(
                 "The affine cipher becomes weak when key "
                 "A is set to 1. Choose different key"
             )
-        if keyB == 0:
+        if key_b == 0:
             sys.exit(
                 "The affine cipher becomes weak when key "
                 "B is set to 0. Choose different key"
             )
-    if keyA < 0 or keyB < 0 or keyB > len(SYMBOLS) - 1:
+    if key_a < 0 or key_b < 0 or key_b > len(SYMBOLS) - 1:
         sys.exit(
             "Key A must be greater than 0 and key B must "
             f"be between 0 and {len(SYMBOLS) - 1}."
         )
-    if cryptomath.gcd(keyA, len(SYMBOLS)) != 1:
+    if cryptomath.gcd(key_a, len(SYMBOLS)) != 1:
         sys.exit(
-            f"Key A {keyA} and the symbol set size {len(SYMBOLS)} "
+            f"Key A {key_a} and the symbol set size {len(SYMBOLS)} "
             "are not relatively prime. Choose a different key."
         )
 
@@ -39,16 +39,16 @@ def encrypt_message(key: int, message: str) -> str:
     ...                       'substitution cipher.')
     'VL}p MM{I}p~{HL}Gp{vp pFsH}pxMpyxIx JHL O}F{~pvuOvF{FuF{xIp~{HL}Gi'
     """
-    keyA, keyB = divmod(key, len(SYMBOLS))
-    check_keys(keyA, keyB, "encrypt")
-    cipherText = ""
+    key_a, key_b = divmod(key, len(SYMBOLS))
+    check_keys(key_a, key_b, "encrypt")
+    cipher_text = ""
     for symbol in message:
         if symbol in SYMBOLS:
-            symIndex = SYMBOLS.find(symbol)
-            cipherText += SYMBOLS[(symIndex * keyA + keyB) % len(SYMBOLS)]
+            sym_index = SYMBOLS.find(symbol)
+            cipher_text += SYMBOLS[(sym_index * key_a + key_b) % len(SYMBOLS)]
         else:
-            cipherText += symbol
-    return cipherText
+            cipher_text += symbol
+    return cipher_text
 
 
 def decrypt_message(key: int, message: str) -> str:
@@ -57,25 +57,27 @@ def decrypt_message(key: int, message: str) -> str:
     ...                       '{xIp~{HL}Gi')
     'The affine cipher is a type of monoalphabetic substitution cipher.'
     """
-    keyA, keyB = divmod(key, len(SYMBOLS))
-    check_keys(keyA, keyB, "decrypt")
-    plainText = ""
-    modInverseOfkeyA = cryptomath.find_mod_inverse(keyA, len(SYMBOLS))
+    key_a, key_b = divmod(key, len(SYMBOLS))
+    check_keys(key_a, key_b, "decrypt")
+    plain_text = ""
+    mod_inverse_of_key_a = cryptomath.find_mod_inverse(key_a, len(SYMBOLS))
     for symbol in message:
         if symbol in SYMBOLS:
-            symIndex = SYMBOLS.find(symbol)
-            plainText += SYMBOLS[(symIndex - keyB) * modInverseOfkeyA % len(SYMBOLS)]
+            sym_index = SYMBOLS.find(symbol)
+            plain_text += SYMBOLS[
+                (sym_index - key_b) * mod_inverse_of_key_a % len(SYMBOLS)
+            ]
         else:
-            plainText += symbol
-    return plainText
+            plain_text += symbol
+    return plain_text
 
 
 def get_random_key() -> int:
     while True:
-        keyA = random.randint(2, len(SYMBOLS))
-        keyB = random.randint(2, len(SYMBOLS))
-        if cryptomath.gcd(keyA, len(SYMBOLS)) == 1 and keyB % len(SYMBOLS) != 0:
-            return keyA * len(SYMBOLS) + keyB
+        key_b = random.randint(2, len(SYMBOLS))
+        key_b = random.randint(2, len(SYMBOLS))
+        if cryptomath.gcd(key_b, len(SYMBOLS)) == 1 and key_b % len(SYMBOLS) != 0:
+            return key_b * len(SYMBOLS) + key_b
 
 
 def main() -> None:

@@ -199,7 +199,7 @@ def find_pure_symbols(
     {'A1': True, 'A2': False, 'A3': True, 'A5': False}
     """
     pure_symbols = []
-    assignment: dict[str, bool | None] = dict()
+    assignment: dict[str, bool | None] = {}
     literals = []
 
     for clause in clauses:
@@ -253,18 +253,18 @@ def find_unit_clauses(
     unit_symbols = []
     for clause in clauses:
         if len(clause) == 1:
-            unit_symbols.append(list(clause.literals.keys())[0])
+            unit_symbols.append(next(iter(clause.literals.keys())))
         else:
-            Fcount, Ncount = 0, 0
+            f_count, n_count = 0, 0
             for literal, value in clause.literals.items():
                 if value is False:
-                    Fcount += 1
+                    f_count += 1
                 elif value is None:
                     sym = literal
-                    Ncount += 1
-            if Fcount == len(clause) - 1 and Ncount == 1:
+                    n_count += 1
+            if f_count == len(clause) - 1 and n_count == 1:
                 unit_symbols.append(sym)
-    assignment: dict[str, bool | None] = dict()
+    assignment: dict[str, bool | None] = {}
     for i in unit_symbols:
         symbol = i[:2]
         assignment[symbol] = len(i) == 2
@@ -310,33 +310,33 @@ def dpll_algorithm(
     except RecursionError:
         print("raises a RecursionError and is")
         return None, {}
-    P = None
+    p = None
     if len(pure_symbols) > 0:
-        P, value = pure_symbols[0], assignment[pure_symbols[0]]
+        p, value = pure_symbols[0], assignment[pure_symbols[0]]
 
-    if P:
+    if p:
         tmp_model = model
-        tmp_model[P] = value
-        tmp_symbols = [i for i in symbols]
-        if P in tmp_symbols:
-            tmp_symbols.remove(P)
+        tmp_model[p] = value
+        tmp_symbols = list(symbols)
+        if p in tmp_symbols:
+            tmp_symbols.remove(p)
         return dpll_algorithm(clauses, tmp_symbols, tmp_model)
 
     unit_symbols, assignment = find_unit_clauses(clauses, model)
-    P = None
+    p = None
     if len(unit_symbols) > 0:
-        P, value = unit_symbols[0], assignment[unit_symbols[0]]
-    if P:
+        p, value = unit_symbols[0], assignment[unit_symbols[0]]
+    if p:
         tmp_model = model
-        tmp_model[P] = value
-        tmp_symbols = [i for i in symbols]
-        if P in tmp_symbols:
-            tmp_symbols.remove(P)
+        tmp_model[p] = value
+        tmp_symbols = list(symbols)
+        if p in tmp_symbols:
+            tmp_symbols.remove(p)
         return dpll_algorithm(clauses, tmp_symbols, tmp_model)
-    P = symbols[0]
+    p = symbols[0]
     rest = symbols[1:]
     tmp1, tmp2 = model, model
-    tmp1[P], tmp2[P] = True, False
+    tmp1[p], tmp2[p] = True, False
 
     return dpll_algorithm(clauses, rest, tmp1) or dpll_algorithm(clauses, rest, tmp2)
 

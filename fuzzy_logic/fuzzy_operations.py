@@ -8,11 +8,7 @@ Python:
   - 3.5
 """
 import numpy as np
-
-try:
-    import skfuzzy as fuzz
-except ImportError:
-    fuzz = None
+import skfuzzy as fuzz
 
 if __name__ == "__main__":
     # Create universe of discourse in Python using linspace ()
