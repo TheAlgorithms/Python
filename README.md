@@ -13,7 +13,7 @@
     <img src="https://img.shields.io/static/v1.svg?label=Contributions&message=Welcome&color=0059b3&style=flat-square" height="20" alt="Contributions Welcome">
   </a>
   <img src="https://img.shields.io/github/repo-size/TheAlgorithms/Python.svg?label=Repo%20size&style=flat-square" height="20">
-  <a href="https://discord.gg/c7MnfGFGa6">
+  <a href="https://the-algorithms.com/discord">
     <img src="https://img.shields.io/discord/808045925556682782.svg?logo=discord&colorB=7289DA&style=flat-square" height="20" alt="Discord chat">
   </a>
   <a href="https://gitter.im/TheAlgorithms/community">
@@ -42,7 +42,7 @@ Read through our [Contribution Guidelines](CONTRIBUTING.md) before you contribut
 
 ## Community Channels
 
-We are on [Discord](https://discord.gg/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms/community)! Community channels are a great way for you to ask questions and get help. Please join us!
+We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://gitter.im/TheAlgorithms/community)! Community channels are a great way for you to ask questions and get help. Please join us!
 
 ## List of Algorithms
 

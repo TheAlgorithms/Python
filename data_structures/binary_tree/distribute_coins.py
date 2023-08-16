@@ -39,8 +39,8 @@ Space: O(1)
 
 from __future__ import annotations
 
-from collections import namedtuple
 from dataclasses import dataclass
+from typing import NamedTuple
 
 
 @dataclass
@@ -50,7 +50,9 @@ class TreeNode:
     right: TreeNode | None = None
 
 
-CoinsDistribResult = namedtuple("CoinsDistribResult", "moves excess")
+class CoinsDistribResult(NamedTuple):
+    moves: int
+    excess: int
 
 
 def distribute_coins(root: TreeNode | None) -> int:
@@ -79,7 +81,7 @@ def distribute_coins(root: TreeNode | None) -> int:
     # Validation
     def count_nodes(node: TreeNode | None) -> int:
         """
-        >>> count_nodes(None):
+        >>> count_nodes(None)
         0
         """
         if node is None:
@@ -89,7 +91,7 @@ def distribute_coins(root: TreeNode | None) -> int:
 
     def count_coins(node: TreeNode | None) -> int:
         """
-        >>> count_coins(None):
+        >>> count_coins(None)
         0
         """
         if node is None:

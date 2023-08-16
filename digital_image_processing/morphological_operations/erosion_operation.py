@@ -7,6 +7,7 @@ from PIL import Image
 def rgb_to_gray(rgb: np.ndarray) -> np.ndarray:
     """
     Return gray image from rgb image
+
     >>> rgb_to_gray(np.array([[[127, 255, 0]]]))
     array([[187.6453]])
     >>> rgb_to_gray(np.array([[[0, 0, 0]]]))
@@ -23,7 +24,8 @@ def rgb_to_gray(rgb: np.ndarray) -> np.ndarray:
 def gray_to_binary(gray: np.ndarray) -> np.ndarray:
     """
     Return binary image from gray image
-    >>> gray_to_binary(np.array([[127, 255, 0]]))
+
+    >>> gray2binary(np.array([[127, 255, 0]]))
     array([[False,  True, False]])
     >>> gray_to_binary(np.array([[0]]))
     array([[False]])
@@ -40,6 +42,7 @@ def gray_to_binary(gray: np.ndarray) -> np.ndarray:
 def erosion(image: np.ndarray, kernel: np.ndarray) -> np.ndarray:
     """
     Return eroded image
+
     >>> erosion(np.array([[True, True, False]]), np.array([[0, 1, 0]]))
     array([[False, False, False]])
     >>> erosion(np.array([[True, False, False]]), np.array([[1, 1, 0]]))

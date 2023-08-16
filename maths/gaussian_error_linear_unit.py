@@ -13,7 +13,7 @@ This script is inspired by a corresponding research paper.
 import numpy as np
 
 
-def sigmoid(vector: np.array) -> np.array:
+def sigmoid(vector: np.ndarray) -> np.ndarray:
     """
     Mathematical function sigmoid takes a vector x of K real numbers as input and
     returns 1/ (1 + e^-x).
@@ -25,7 +25,7 @@ def sigmoid(vector: np.array) -> np.array:
     return 1 / (1 + np.exp(-vector))
 
 
-def gaussian_error_linear_unit(vector: np.array) -> np.array:
+def gaussian_error_linear_unit(vector: np.ndarray) -> np.ndarray:
     """
     Implements the Gaussian Error Linear Unit (GELU) function
 
