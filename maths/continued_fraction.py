@@ -44,7 +44,6 @@ def continued_fraction(num: Fraction) -> list[int]:
 
 
 if __name__ == "__main__":
-
     import doctest
 
     doctest.testmod()
