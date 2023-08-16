@@ -83,7 +83,6 @@
   * [Autokey](ciphers/autokey.py)
   * [Baconian Cipher](ciphers/baconian_cipher.py)
   * [Base16](ciphers/base16.py)
-  * [Base32](ciphers/base32.py)
   * [Base64](ciphers/base64.py)
   * [Base85](ciphers/base85.py)
   * [Beaufort Cipher](ciphers/beaufort_cipher.py)
