@@ -19,11 +19,13 @@ def get_amazon_product_data(product: str = "laptop") -> DataFrame:
     """
     url = f"https://www.amazon.in/laptop/s?k={product}"
     header = {
-        "User-Agent": """Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36
-        (KHTML, like Gecko)Chrome/44.0.2403.157 Safari/537.36""",
+        "User-Agent": (
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
+            "(KHTML, like Gecko)Chrome/44.0.2403.157 Safari/537.36"
+        ),
         "Accept-Language": "en-US, en;q=0.5",
     }
-    soup = BeautifulSoup(requests.get(url, headers=header).text)
+    soup = BeautifulSoup(requests.get(url, headers=header).text, features="lxml")
     # Initialize a Pandas dataframe with the column titles
     data_frame = DataFrame(
         columns=[
@@ -74,8 +76,8 @@ def get_amazon_product_data(product: str = "laptop") -> DataFrame:
             except ValueError:
                 discount = float("nan")
         except AttributeError:
-            pass
-        data_frame.loc[len(data_frame.index)] = [
+            continue
+        data_frame.loc[str(len(data_frame.index))] = [
             product_title,
             product_link,
             product_price,
@@ -97,4 +99,8 @@ def get_amazon_product_data(product: str = "laptop") -> DataFrame:
 
 if __name__ == "__main__":
     product = "headphones"
-    get_amazon_product_data(product).to_csv(f"Amazon Product Data for {product}.csv")
+    print(
+        get_amazon_product_data(product).to_csv(
+            f"Amazon Product Data for {product}.csv"
+        )
+    )
