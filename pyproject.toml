@@ -103,6 +103,7 @@ max-complexity = 17  # default: 10
 "machine_learning/linear_discriminant_analysis.py" = ["ARG005"]
 "machine_learning/sequential_minimum_optimization.py" = ["SIM115"]
 "matrix/sherman_morrison.py" = ["SIM103", "SIM114"]
+"other/l*u_cache.py" = ["RUF012"]
 "physics/newtons_second_law_of_motion.py" = ["BLE001"]
 "project_euler/problem_099/sol1.py" = ["SIM115"]
 "sorts/external_sort.py" = ["SIM115"]
