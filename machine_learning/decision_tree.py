@@ -175,7 +175,6 @@ def main():
     test_cases = (np.random.rand(10) * 2) - 1
     predictions = np.array([tree.predict(x) for x in test_cases])
 
-
     mse_error = np.mean((predictions - test_cases) ** 2)
 
     """RMSE error"""
