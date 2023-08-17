@@ -14,7 +14,11 @@ Jaccard similarity is widely used with MinHashing.
 """
 
 
-def jaccard_similarity(set_a, set_b, alternative_union=False):
+def jaccard_similarity(
+    set_a: set[str] | list[str] | tuple[str],
+    set_b: set[str] | list[str] | tuple[str],
+    alternative_union=False,
+):
     """
     Finds the jaccard similarity between two sets.
     Essentially, its intersection over union.
@@ -37,41 +41,52 @@ def jaccard_similarity(set_a, set_b, alternative_union=False):
     >>> set_b = {'c', 'd', 'e', 'f', 'h', 'i'}
     >>> jaccard_similarity(set_a, set_b)
     0.375
-
     >>> jaccard_similarity(set_a, set_a)
     1.0
-
     >>> jaccard_similarity(set_a, set_a, True)
     0.5
-
     >>> set_a = ['a', 'b', 'c', 'd', 'e']
     >>> set_b = ('c', 'd', 'e', 'f', 'h', 'i')
     >>> jaccard_similarity(set_a, set_b)
     0.375
+    >>> set_a = ('c', 'd', 'e', 'f', 'h', 'i')
+    >>> set_b = ['a', 'b', 'c', 'd', 'e']
+    >>> jaccard_similarity(set_a, set_b)
+    0.375
+    >>> set_a = ('c', 'd', 'e', 'f', 'h', 'i')
+    >>> set_b = ['a', 'b', 'c', 'd']
+    >>> jaccard_similarity(set_a, set_b, True)
+    0.2
+    >>> set_a = {'a', 'b'}
+    >>> set_b = ['c', 'd']
+    >>> jaccard_similarity(set_a, set_b)
+    Traceback (most recent call last):
+        ...
+    ValueError: Set a and b must either both be sets or be either a list or a tuple.
     """
 
     if isinstance(set_a, set) and isinstance(set_b, set):
-        intersection = len(set_a.intersection(set_b))
+        intersection_length = len(set_a.intersection(set_b))
 
         if alternative_union:
-            union = len(set_a) + len(set_b)
+            union_length = len(set_a) + len(set_b)
         else:
-            union = len(set_a.union(set_b))
+            union_length = len(set_a.union(set_b))
 
-        return intersection / union
+        return intersection_length / union_length
 
-    if isinstance(set_a, (list, tuple)) and isinstance(set_b, (list, tuple)):
+    elif isinstance(set_a, (list, tuple)) and isinstance(set_b, (list, tuple)):
         intersection = [element for element in set_a if element in set_b]
 
         if alternative_union:
-            union = len(set_a) + len(set_b)
-            return len(intersection) / union
+            return len(intersection) / (len(set_a) + len(set_b))
         else:
-            union = set_a + [element for element in set_b if element not in set_a]
+            # Cast set_a to list because tuples cannot be mutated
+            union = list(set_a) + [element for element in set_b if element not in set_a]
             return len(intersection) / len(union)
-
-        return len(intersection) / len(union)
-    return None
+    raise ValueError(
+        "Set a and b must either both be sets or be either a list or a tuple."
+    )
 
 
 if __name__ == "__main__":
