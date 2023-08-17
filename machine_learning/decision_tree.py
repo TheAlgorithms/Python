@@ -162,7 +162,7 @@ def main():
     of 0.005 i.e we are getting an array y which contains sin of each value
     of x. We then train a decision tree on the data set and use the decision tree
     to predict the label of 10 different test values. Here we should prefer
-    calculating Root Mean Squared Error over Mean Sqaured error because RMSE
+    calculating Root Mean Squared Error over Mean Squared error because RMSE
     should be used when you need to communicate your results in an understandable
     way.
     """
