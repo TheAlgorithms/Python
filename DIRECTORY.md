@@ -62,7 +62,7 @@
 ## Boolean Algebra
   * [And Gate](boolean_algebra/and_gate.py)
   * [Nand Gate](boolean_algebra/nand_gate.py)
-  * [Norgate](boolean_algebra/norgate.py)
+  * [Nor Gate](boolean_algebra/nor_gate.py)
   * [Not Gate](boolean_algebra/not_gate.py)
   * [Or Gate](boolean_algebra/or_gate.py)
   * [Quine Mc Cluskey](boolean_algebra/quine_mc_cluskey.py)
