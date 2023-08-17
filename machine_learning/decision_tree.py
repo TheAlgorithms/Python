@@ -177,7 +177,6 @@ def main():
 
     avg_error = np.mean((predictions - test_cases) ** 2)
 
-
     print("Test values: " + str(test_cases))
     print("Predictions: " + str(predictions))
     print("Average error: " + str(avg_error))
