@@ -6,7 +6,6 @@ Output: The decision tree maps a real number input to a real number output.
 import numpy as np
 
 
-
 class DecisionTree:
     def __init__(self, depth=5, min_leaf_size=5):
         self.depth = depth
@@ -156,7 +155,7 @@ class TestDecisionTree:
 def main():
     """
     In this demonstration first we are generating x which is a numpy array
-    containing values starting from -1 to 1 with an interval of 0.005 i.e 
+    containing values starting from -1 to 1 with an interval of 0.005 i.e
     [-1,-0.995,....,0.995,1] this is what we are getting by applying arange
     function of numpy.Then the we are generating y by applying sin function
     on x which is an array containing values from -1 to 1 with difference
