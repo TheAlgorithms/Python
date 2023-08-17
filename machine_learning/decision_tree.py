@@ -155,18 +155,18 @@ class TestDecisionTree:
 
 def main():
     """
-    In this demonstration first we are generating x which is a numpy array 
-    containing values starting from -1 to 1 with an interval of 0.005 
-    i.e [-1,-0.995,....,0.995,1] this is what we are getting by applying arange 
+    In this demonstration first we are generating x which is a numpy array
+    containing values starting from -1 to 1 with an interval of 0.005
+    i.e [-1,-0.995,....,0.995,1] this is what we are getting by applying arange
     function of numpy.Then the we are generating y by applying sin function
-    on x which is an array containing values from -1 to 1 with difference 
-    of 0.005 i.e we are getting an array y which contains sin of each value 
+    on x which is an array containing values from -1 to 1 with difference
+    of 0.005 i.e we are getting an array y which contains sin of each value
     of x. We then train a decision tree on the data set and use the decision tree
     to predict the label of 10 different test values. Here we should prefer
-    calculating Root Mean Squared Error over Mean Sqaured error because RMSE 
-    should be used when you need to communicate your results in an understandable  
-    way to end users or when penalising outliers is less of a priority.Interpretation 
-    will be easy in this case. You can check out https://stephenallwright.com/rmse-vs-mse/ to 
+    calculating Root Mean Squared Error over Mean Sqaured error because RMSE
+    should be used when you need to communicate your results in an understandable
+    way to end users or when penalising outliers is less of a priority.Interpretation
+    will be easy in this case. You can check out https://stephenallwright.com/rmse-vs-mse/ to
     know more.
     """
     x = np.arange(-1.0, 1.0, 0.005)
