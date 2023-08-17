@@ -1,13 +1,4 @@
 def octal_to_binary(octal_number: str) -> str:
-    """
-    Convert an octal number to binary.
-
-    Args:
-        octal_number (str): The octal number as a string.
-
-    Returns:
-        str: The binary representation of the octal number.
-    """
     binary_number = ""
     octal_digits = "01234567"
 
