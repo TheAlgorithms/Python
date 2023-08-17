@@ -19,7 +19,7 @@ ability to meet short-term obligations.
 """
 
 
-def current_ratio(current_assets: int, current_liabilities) -> float:
+def current_ratio(current_assets: int, current_liabilities: int) -> float:
     """
     >>> current_ratio(1000, 1000)
     1.0
@@ -31,7 +31,7 @@ def current_ratio(current_assets: int, current_liabilities) -> float:
     return round(current_assets / current_liabilities, ndigits=2)
 
 
-def quick_ratio(liquid_assets: int, quick_liabilities) -> float:
+def quick_ratio(liquid_assets: int, quick_liabilities: int) -> float:
     """
     >>> quick_ratio(10000, 10000)
     1.0
