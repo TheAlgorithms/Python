@@ -22,7 +22,7 @@ def rule_of_72(interest_rate: float) -> float:
     if interest_rate < 0:
         raise ValueError("Interest rate cannot be negative")
 
-    return round(72/interest_rate, ndigits=2)
+    return round(72 / interest_rate, ndigits=2)
 
 
 if __name__ == "__main__":
