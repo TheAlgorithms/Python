@@ -162,6 +162,7 @@ def main():
     calculating Root Mean Squared Error over Mean Sqaured error beacause RMSE should be used 
     when you need to communicate your results in an understandable  way to end users or when 
     penalising outliers is less of a priority.Interpretation will be easy in this case.
+    You can check out these https://stephenallwright.com/rmse-vs-mse/ to know the reason for this.
     """
     x = np.arange(-1.0, 1.0, 0.005)
     y = np.sin(x)
