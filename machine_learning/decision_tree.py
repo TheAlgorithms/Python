@@ -4,7 +4,7 @@ Input data set: The input data set must be 1-dimensional with continuous labels.
 Output: The decision tree maps a real number input to a real number output.
 """
 import numpy as np
-import doctest
+
 
 
 class DecisionTree:
@@ -188,5 +188,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+    import doctest
 
     doctest.testmod(name="mean_squarred_error", verbose=True)
