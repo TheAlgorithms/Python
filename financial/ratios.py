@@ -43,23 +43,6 @@ def quick_ratio(liquid_assets: int, quick_liabilities) -> float:
     return round(liquid_assets / quick_liabilities, ndigits=2)
 
 
-def quick_ratio(
-    cash: int, marketable_securities: int, accounts_receivable: int, current_liabilities
-) -> float:
-    """
-    >>> quick_ratio(1000000, 150000, 500000, 2000000)
-    0.82
-    >>> quick_ratio(200000, 125000, 50000, 5000000)
-    0.07
-    >>> quick_ratio(1000000, 1500000, 250000, 1000000)
-    2.75
-    """
-    return round(
-        (cash + marketable_securities + accounts_receivable) / current_liabilities,
-        ndigits=2,
-    )
-
-
 if __name__ == "__main__":
     import doctest
 
