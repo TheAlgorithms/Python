@@ -2,16 +2,13 @@
 * Author: Bama Charan Chhandogi (https://github.com/BamaCharanChhandogi)
 * Description: Convert a Octal number to Binary.
 
-reference for better understand
+References for better understanding:
+https://en.wikipedia.org/wiki/Binary_number
+https://en.wikipedia.org/wiki/Octal
 
-URL: https://en.wikipedia.org/wiki/Binary_number
-URL: https://en.wikipedia.org/wiki/Octal
 """
 
-
 def octal_to_binary(octal_number: str) -> str:
-    binary_number = ""
-    octal_digits = "01234567"
 
     """
     ValueError: String to the function
@@ -35,6 +32,8 @@ def octal_to_binary(octal_number: str) -> str:
     >>> oct_to_decimal("7")
     111
     """
+    binary_number = ""
+    octal_digits = "01234567"
     for digit in octal_number:
         if digit not in octal_digits:
             raise ValueError("Invalid octal digit")
