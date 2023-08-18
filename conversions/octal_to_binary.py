@@ -8,8 +8,8 @@ https://en.wikipedia.org/wiki/Octal
 
 """
 
-def octal_to_binary(octal_number: str) -> str:
 
+def octal_to_binary(octal_number: str) -> str:
     """
     ValueError: String to the function
     >>> oct_to_decimal("Av")
