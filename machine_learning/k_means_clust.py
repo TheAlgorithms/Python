@@ -46,7 +46,6 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 from sklearn.metrics import pairwise_distances
-import doctest
 
 warnings.filterwarnings("ignore")
 
@@ -344,4 +343,6 @@ def report_generator(
 
 
 if __name__ == "__main__":
+  
+    import doctest
     doctest.testmod()
