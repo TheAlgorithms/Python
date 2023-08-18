@@ -6,6 +6,7 @@ https://en.wikipedia.org/wiki/Continued_fraction
 
 
 from fractions import Fraction
+from math import floor
 
 
 def continued_fraction(num: Fraction) -> list[int]:
@@ -39,7 +40,7 @@ def continued_fraction(num: Fraction) -> list[int]:
     numerator, denominator = num.as_integer_ratio()
     continued_fraction_list: list[int] = []
     while True:
-        integer_part = int(numerator / denominator)
+        integer_part = floor(numerator / denominator)
         continued_fraction_list.append(integer_part)
         numerator -= integer_part * denominator
         if numerator == 0:
