@@ -1,5 +1,62 @@
-"""
+r"""
 A binary search Tree
+
+Example
+              8
+             / \
+            3   10
+           / \    \
+          1   6    14
+             / \   /
+            4   7 13
+
+>>> t = BinarySearchTree()
+>>> t.insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
+>>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
+8 3 1 6 4 7 10 14 13
+>>> print(" ".join(repr(i.value) for i in t.traversal_tree(postorder)))
+1 4 7 6 3 13 14 10 8
+>>> t.remove(20)
+Traceback (most recent call last):
+    ...
+ValueError: Value 20 not found
+>>> BinarySearchTree().search(6)
+Traceback (most recent call last):
+    ...
+IndexError: Warning: Tree is empty! please use another.
+
+Other example:
+
+>>> testlist = (8, 3, 6, 1, 10, 14, 13, 4, 7)
+>>> t = BinarySearchTree()
+>>> for i in testlist:
+...     t.insert(i)
+
+Prints all the elements of the list in order traversal
+>>> print(t)
+{'8': ({'3': (1, {'6': (4, 7)})}, {'10': (None, {'14': (13, None)})})}
+
+Test existence
+>>> t.search(6) is not None
+True
+>>> t.search(-1) is not None
+False
+
+>>> t.search(6).is_right
+True
+>>> t.search(1).is_right
+False
+
+>>> t.get_max().value
+14
+>>> t.get_min().value
+1
+>>> t.empty()
+False
+>>> for i in testlist:
+...     t.remove(i)
+>>> t.empty()
+True
 """
 
 from collections.abc import Iterable
@@ -20,6 +77,10 @@ class Node:
             return str(self.value)
         return pformat({f"{self.value}": (self.left, self.right)}, indent=1)
 
+    @property
+    def is_right(self) -> bool:
+        return self.parent is not None and self is self.parent.right
+
 
 class BinarySearchTree:
     def __init__(self, root: Node | None = None):
@@ -35,17 +96,12 @@ class BinarySearchTree:
         if new_children is not None:  # reset its kids
             new_children.parent = node.parent
         if node.parent is not None:  # reset its parent
-            if self.is_right(node):  # If it is the right children
+            if node.is_right:  # If it is the right child
                 node.parent.right = new_children
             else:
                 node.parent.left = new_children
         else:
             self.root = new_children
-
-    def is_right(self, node: Node) -> bool:
-        if node.parent and node.parent.right:
-            return node == node.parent.right
-        return False
 
     def empty(self) -> bool:
         return self.root is None
@@ -119,22 +175,26 @@ class BinarySearchTree:
         return node
 
     def remove(self, value: int) -> None:
-        node = self.search(value)  # Look for the node with that label
-        if node is not None:
-            if node.left is None and node.right is None:  # If it has no children
-                self.__reassign_nodes(node, None)
-            elif node.left is None:  # Has only right children
-                self.__reassign_nodes(node, node.right)
-            elif node.right is None:  # Has only left children
-                self.__reassign_nodes(node, node.left)
-            else:
-                tmp_node = self.get_max(
-                    node.left
-                )  # Gets the max value of the left branch
-                self.remove(tmp_node.value)  # type: ignore
-                node.value = (
-                    tmp_node.value  # type: ignore
-                )  # Assigns the value to the node to delete and keep tree structure
+        # Look for the node with that label
+        node = self.search(value)
+        if node is None:
+            msg = f"Value {value} not found"
+            raise ValueError(msg)
+
+        if node.left is None and node.right is None:  # If it has no children
+            self.__reassign_nodes(node, None)
+        elif node.left is None:  # Has only right children
+            self.__reassign_nodes(node, node.right)
+        elif node.right is None:  # Has only left children
+            self.__reassign_nodes(node, node.left)
+        else:
+            predecessor = self.get_max(
+                node.left
+            )  # Gets the max value of the left branch
+            self.remove(predecessor.value)  # type: ignore
+            node.value = (
+                predecessor.value  # type: ignore
+            )  # Assigns the value to the node to delete and keep tree structure
 
     def preorder_traverse(self, node: Node | None) -> Iterable:
         if node is not None:
@@ -175,55 +235,6 @@ def postorder(curr_node: Node | None) -> list[Node]:
     if curr_node is not None:
         node_list = postorder(curr_node.left) + postorder(curr_node.right) + [curr_node]
     return node_list
-
-
-def binary_search_tree() -> None:
-    r"""
-    Example
-                  8
-                 / \
-                3   10
-               / \    \
-              1   6    14
-                 / \   /
-                4   7 13
-
-    >>> t = BinarySearchTree()
-    >>> t.insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
-    >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
-    8 3 1 6 4 7 10 14 13
-    >>> print(" ".join(repr(i.value) for i in t.traversal_tree(postorder)))
-    1 4 7 6 3 13 14 10 8
-    >>> BinarySearchTree().search(6)
-    Traceback (most recent call last):
-        ...
-    IndexError: Warning: Tree is empty! please use another.
-    """
-    testlist = (8, 3, 6, 1, 10, 14, 13, 4, 7)
-    t = BinarySearchTree()
-    for i in testlist:
-        t.insert(i)
-
-    # Prints all the elements of the list in order traversal
-    print(t)
-
-    if t.search(6) is not None:
-        print("The value 6 exists")
-    else:
-        print("The value 6 doesn't exist")
-
-    if t.search(-1) is not None:
-        print("The value -1 exists")
-    else:
-        print("The value -1 doesn't exist")
-
-    if not t.empty():
-        print("Max Value: ", t.get_max().value)  # type: ignore
-        print("Min Value: ", t.get_min().value)  # type: ignore
-
-    for i in testlist:
-        t.remove(i)
-        print(t)
 
 
 if __name__ == "__main__":

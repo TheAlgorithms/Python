@@ -226,7 +226,7 @@ def plot(
     No doctest provided since this function does not have a return value.
     """
     fig = plt.figure()
-    fig.canvas.set_window_title(title)
+    fig.canvas.manager.set_window_title(title)
     ax = plt.axes(
         xlim=(x_start, x_end), ylim=(y_start, y_end)
     )  # Set section to be plotted
