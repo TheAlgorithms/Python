@@ -22,6 +22,13 @@ def octal_to_binary(octal_number: str) -> str:
     >>> oct_to_decimal("90")
     Traceback (most recent call last):
         ...
+    ValueError: Special Character was passed to the function
+    >>> oct_to_decimal("#$")
+    Traceback (most recent call last):
+        ...
+    ValueError: Empty String was passed to the function
+    >>> oct_to_decimal("")
+        ...
     ValueError: octal value was passed to the function
     >>> oct_to_decimal("17")
     001111
