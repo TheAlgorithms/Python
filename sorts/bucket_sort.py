@@ -30,7 +30,7 @@ Source: https://en.wikipedia.org/wiki/Bucket_sort
 from __future__ import annotations
 
 
-def bucket_sort(my_list: list) -> list:
+def bucket_sort(my_list: list, bucket_count: int = 10) -> list:
     """
     >>> data = [-1, 2, -5, 0]
     >>> bucket_sort(data) == sorted(data)
@@ -43,21 +43,27 @@ def bucket_sort(my_list: list) -> list:
     True
     >>> bucket_sort([]) == sorted([])
     True
+    >>> data = [-1e10, 1e10]
+    >>> bucket_sort(data) == sorted(data)
+    True
     >>> import random
     >>> collection = random.sample(range(-50, 50), 50)
     >>> bucket_sort(collection) == sorted(collection)
     True
     """
-    if len(my_list) == 0:
+
+    if len(my_list) == 0 or bucket_count <= 0:
         return []
+
     min_value, max_value = min(my_list), max(my_list)
-    bucket_count = int(max_value - min_value) + 1
+    bucket_size = (max_value - min_value) / bucket_count
     buckets: list[list] = [[] for _ in range(bucket_count)]
 
-    for i in my_list:
-        buckets[int(i - min_value)].append(i)
+    for val in my_list:
+        index = min(int((val - min_value) / bucket_size), bucket_count - 1)
+        buckets[index].append(val)
 
-    return [v for bucket in buckets for v in sorted(bucket)]
+    return [val for bucket in buckets for val in sorted(bucket)]
 
 
 if __name__ == "__main__":

@@ -710,6 +710,7 @@
   * [2 Hidden Layers Neural Network](neural_network/2_hidden_layers_neural_network.py)
   * Activation Functions
     * [Exponential Linear Unit](neural_network/activation_functions/exponential_linear_unit.py)
+    * [Leaky Rectified Linear Unit](neural_network/activation_functions/leaky_rectified_linear_unit.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
   * [Perceptron](neural_network/perceptron.py)
@@ -1212,6 +1213,7 @@
   * [Daily Horoscope](web_programming/daily_horoscope.py)
   * [Download Images From Google Query](web_programming/download_images_from_google_query.py)
   * [Emails From Url](web_programming/emails_from_url.py)
+  * [Fetch Anime And Play](web_programming/fetch_anime_and_play.py)
   * [Fetch Bbc News](web_programming/fetch_bbc_news.py)
   * [Fetch Github Info](web_programming/fetch_github_info.py)
   * [Fetch Jobs](web_programming/fetch_jobs.py)
@@ -1220,6 +1222,7 @@
   * [Get Amazon Product Data](web_programming/get_amazon_product_data.py)
   * [Get Imdb Top 250 Movies Csv](web_programming/get_imdb_top_250_movies_csv.py)
   * [Get Imdbtop](web_programming/get_imdbtop.py)
+  * [Get Top Billionaires](web_programming/get_top_billionaires.py)
   * [Get Top Hn Posts](web_programming/get_top_hn_posts.py)
   * [Get User Tweets](web_programming/get_user_tweets.py)
   * [Giphy](web_programming/giphy.py)
