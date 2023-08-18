@@ -7,6 +7,8 @@ reference for better understand
 URL: https://en.wikipedia.org/wiki/Binary_number
 URL: https://en.wikipedia.org/wiki/Octal
 """
+
+
 def octal_to_binary(octal_number: str) -> str:
     binary_number = ""
     octal_digits = "01234567"
