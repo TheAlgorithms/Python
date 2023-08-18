@@ -26,10 +26,12 @@ def calculate_age(unix_date: float) -> str:
     Returns:
         Age as string
 
-    >>> calculate_age(-657244800000)
-    '74'
-    >>> calculate_age(46915200000)
-    '52'
+    >>> from datetime import datetime, UTC
+    >>> years_since_create = datetime.now(tz=UTC).year - 2022
+    >>> int(calculate_age(-657244800000)) - years_since_create
+    73
+    >>> int(calculate_age(46915200000)) - years_since_create
+    51
     """
     # Convert date from milliseconds to seconds
     unix_date /= 1000
