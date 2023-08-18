@@ -4,9 +4,9 @@
 import math
 
 
-def exactPrimeFactorCount(n):
+def exact_prime_factor_count(n):
     """
-    >>> exactPrimeFactorCount(51242183)
+    >>> exact_prime_factor_count(51242183)
     3
     """
     count = 0
@@ -36,7 +36,7 @@ def exactPrimeFactorCount(n):
 
 if __name__ == "__main__":
     n = 51242183
-    print(f"The number of distinct prime factors is/are {exactPrimeFactorCount(n)}")
+    print(f"The number of distinct prime factors is/are {exact_prime_factor_count(n)}")
     print(f"The value of log(log(n)) is {math.log(math.log(n)):.4f}")
 
     """

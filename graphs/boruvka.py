@@ -26,6 +26,8 @@
 """
 from __future__ import annotations
 
+from typing import Any
+
 
 class Graph:
     def __init__(self, num_of_nodes: int) -> None:
@@ -62,7 +64,7 @@ class Graph:
             for k in self.m_component:
                 self.m_component[k] = self.find_component(k)
 
-    def union(self, component_size: list, u_node: int, v_node: int) -> None:
+    def union(self, component_size: list[int], u_node: int, v_node: int) -> None:
         """Union finds the roots of components for two nodes, compares the components
         in terms of size, and attaches the smaller one to the larger one to form
         single component"""
@@ -84,7 +86,7 @@ class Graph:
         component_size = []
         mst_weight = 0
 
-        minimum_weight_edge: list[int] = [-1] * self.m_num_of_nodes
+        minimum_weight_edge: list[Any] = [-1] * self.m_num_of_nodes
 
         # A list of components (initialized to all of the nodes)
         for node in range(self.m_num_of_nodes):
@@ -119,7 +121,7 @@ class Graph:
                             minimum_weight_edge[component] = [u, v, w]
 
             for edge in minimum_weight_edge:
-                if edge != -1:
+                if isinstance(edge, list):
                     u, v, w = edge
 
                     u_component = self.m_component[u]

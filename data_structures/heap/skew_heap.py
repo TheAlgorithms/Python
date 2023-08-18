@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Any, Generic, Iterable, Iterator, TypeVar
+from collections.abc import Iterable, Iterator
+from typing import Any, Generic, TypeVar
 
 T = TypeVar("T", bound=bool)
 
@@ -70,7 +71,6 @@ class SkewHeap(Generic[T]):
     """
 
     def __init__(self, data: Iterable[T] | None = ()) -> None:
-
         """
         >>> sh = SkewHeap([3, 1, 3, 7])
         >>> list(sh)

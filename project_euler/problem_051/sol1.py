@@ -37,7 +37,7 @@ def prime_sieve(n: int) -> list[int]:
     is_prime[1] = False
     is_prime[2] = True
 
-    for i in range(3, int(n ** 0.5 + 1), 2):
+    for i in range(3, int(n**0.5 + 1), 2):
         index = i * 2
         while index < n:
             is_prime[index] = False

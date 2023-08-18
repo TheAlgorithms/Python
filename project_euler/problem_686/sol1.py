@@ -27,7 +27,7 @@ def log_difference(number: int) -> float:
     Computing 2^90 is time consuming.
     Hence we find log(2^90) = 90*log(2) = 27.092699609758302
     But we require only the decimal part to determine whether the power starts with 123.
-    SO we just return the decimal part of the log product.
+    So we just return the decimal part of the log product.
     Therefore we return 0.092699609758302
 
     >>> log_difference(90)
@@ -57,14 +57,14 @@ def solution(number: int = 678910) -> int:
 
     So if number = 10, then solution returns 2515 as we observe from above series.
 
-    Wwe will define a lowerbound and upperbound.
+    We will define a lowerbound and upperbound.
     lowerbound = log(1.23), upperbound = log(1.24)
     because we need to find the powers that yield 123 as starting digits.
 
     log(1.23) = 0.08990511143939792, log(1,24) = 0.09342168516223506.
     We use 1.23 and not 12.3 or 123, because log(1.23) yields only decimal value
     which is less than 1.
-    log(12.3) will be same decimal vale but 1 added to it
+    log(12.3) will be same decimal value but 1 added to it
     which is log(12.3) = 1.093421685162235.
     We observe that decimal value remains same no matter 1.23 or 12.3
     Since we use the function log_difference(),
@@ -87,7 +87,7 @@ def solution(number: int = 678910) -> int:
     Hence to optimize the algorithm we will increment by 196 or 93 depending upon the
     log_difference() value.
 
-    Lets take for example 90.
+    Let's take for example 90.
     Since 90 is the first power leading to staring digits as 123,
     we will increment iterator by 196.
     Because the difference between any two powers leading to 123
@@ -99,7 +99,7 @@ def solution(number: int = 678910) -> int:
     The iterator will now become 379,
     which is the next power leading to 123 as starting digits.
 
-    Lets take 1060. We increment by 196, we get 1256.
+    Let's take 1060. We increment by 196, we get 1256.
     log_difference(1256) = 0.09367455396034,
     Which is greater than upperbound hence we increment by 93. Now iterator is 1349.
     log_difference(1349) = 0.08946415071057 which is less than lowerbound.
@@ -107,7 +107,7 @@ def solution(number: int = 678910) -> int:
 
     Conditions are as follows:
 
-    1) If we find a power, whose log_difference() is in the range of
+    1) If we find a power whose log_difference() is in the range of
     lower and upperbound, we will increment by 196.
     which implies that the power is a number which will lead to 123 as starting digits.
     2) If we find a power, whose log_difference() is greater than or equal upperbound,

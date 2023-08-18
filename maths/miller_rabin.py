@@ -6,11 +6,11 @@ from .binary_exp_mod import bin_exp_mod
 # This is a probabilistic check to test primality, useful for big numbers!
 # if it's a prime, it will return true
 # if it's not a prime, the chance of it returning true is at most 1/4**prec
-def is_prime(n, prec=1000):
+def is_prime_big(n, prec=1000):
     """
-    >>> from .prime_check import prime_check
-    >>> # all(is_prime(i) == prime_check(i) for i in range(1000))  # 3.45s
-    >>> all(is_prime(i) == prime_check(i) for i in range(256))
+    >>> from maths.prime_check import is_prime
+    >>> # all(is_prime_big(i) == is_prime(i) for i in range(1000))  # 3.45s
+    >>> all(is_prime_big(i) == is_prime(i) for i in range(256))
     True
     """
     if n < 2:
@@ -33,7 +33,7 @@ def is_prime(n, prec=1000):
         b = bin_exp_mod(a, d, n)
         if b != 1:
             flag = True
-            for i in range(exp):
+            for _ in range(exp):
                 if b == n - 1:
                     flag = False
                     break
@@ -48,4 +48,4 @@ def is_prime(n, prec=1000):
 if __name__ == "__main__":
     n = abs(int(input("Enter bound : ").strip()))
     print("Here's the list of primes:")
-    print(", ".join(str(i) for i in range(n + 1) if is_prime(i)))
+    print(", ".join(str(i) for i in range(n + 1) if is_prime_big(i)))

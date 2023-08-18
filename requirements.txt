@@ -1,20 +1,23 @@
 beautifulsoup4
 fake_useragent
-keras<2.7.0
+keras
 lxml
 matplotlib
 numpy
 opencv-python
 pandas
 pillow
+projectq
 qiskit
+qiskit-aer
 requests
-# scikit-fuzzy  # Causing broken builds
-sklearn
+rich
+scikit-fuzzy
+scikit-learn
 statsmodels
 sympy
 tensorflow
 texttable
 tweepy
-types-requests
 xgboost
+yulewalker

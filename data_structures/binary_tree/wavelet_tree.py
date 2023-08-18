@@ -24,11 +24,11 @@ class Node:
         """
         >>> node = Node(length=27)
         >>> repr(node)
-        'min_value: -1, max_value: -1'
+        'Node(min_value=-1 max_value=-1)'
         >>> repr(node) == str(node)
         True
         """
-        return f"min_value: {self.minn}, max_value: {self.maxx}"
+        return f"Node(min_value={self.minn} max_value={self.maxx})"
 
 
 def build_tree(arr: list[int]) -> Node | None:
@@ -37,7 +37,7 @@ def build_tree(arr: list[int]) -> Node | None:
     of the constructed tree
 
     >>> build_tree(test_array)
-    min_value: 0, max_value: 9
+    Node(min_value=0 max_value=9)
     """
     root = Node(len(arr))
     root.minn, root.maxx = min(arr), max(arr)

@@ -20,11 +20,9 @@ from fractions import Fraction
 
 
 def is_digit_cancelling(num: int, den: int) -> bool:
-    if num != den:
-        if num % 10 == den // 10:
-            if (num // 10) / (den % 10) == num / den:
-                return True
-    return False
+    return (
+        num != den and num % 10 == den // 10 and (num // 10) / (den % 10) == num / den
+    )
 
 
 def fraction_list(digit_len: int) -> list[str]:

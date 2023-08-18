@@ -58,8 +58,8 @@ def solution(base: int = 1777, height: int = 1855, digits: int = 8) -> int:
     # calculate base↑↑height by right-assiciative repeated modular
     # exponentiation
     result = base
-    for i in range(1, height):
-        result = _modexpt(base, result, 10 ** digits)
+    for _ in range(1, height):
+        result = _modexpt(base, result, 10**digits)
 
     return result
 

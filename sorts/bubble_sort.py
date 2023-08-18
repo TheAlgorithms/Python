@@ -1,4 +1,7 @@
-def bubble_sort(collection):
+from typing import Any
+
+
+def bubble_sort(collection: list[Any]) -> list[Any]:
     """Pure implementation of bubble sort algorithm in Python
 
     :param collection: some mutable ordered collection with heterogeneous
@@ -28,9 +31,9 @@ def bubble_sort(collection):
     True
     """
     length = len(collection)
-    for i in range(length - 1):
+    for i in reversed(range(length)):
         swapped = False
-        for j in range(length - 1 - i):
+        for j in range(i):
             if collection[j] > collection[j + 1]:
                 swapped = True
                 collection[j], collection[j + 1] = collection[j + 1], collection[j]
@@ -49,4 +52,4 @@ if __name__ == "__main__":
     unsorted = [int(item) for item in user_input.split(",")]
     start = time.process_time()
     print(*bubble_sort(unsorted), sep=",")
-    print(f"Processing time: {time.process_time() - start}")
+    print(f"Processing time: {(time.process_time() - start)%1e9 + 7}")

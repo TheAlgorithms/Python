@@ -22,7 +22,8 @@ from __future__ import annotations
 
 import math
 import random
-from typing import Collection, overload
+from collections.abc import Collection
+from typing import overload
 
 
 class Vector:
@@ -39,7 +40,6 @@ class Vector:
         __sub__(other: Vector): vector subtraction
         __mul__(other: float): scalar multiplication
         __mul__(other: Vector): dot product
-        set(components: Collection[float]): changes the vector components
         copy(): copies this vector and returns it
         component(i): gets the i-th component (0-indexed)
         change_component(pos: int, value: float): changes specified component
@@ -108,7 +108,7 @@ class Vector:
         mul implements the scalar multiplication
         and the dot-product
         """
-        if isinstance(other, float) or isinstance(other, int):
+        if isinstance(other, (float, int)):
             ans = [c * other for c in self.__components]
             return Vector(ans)
         elif isinstance(other, Vector) and len(self) == len(other):
@@ -117,17 +117,6 @@ class Vector:
             return sum(prods)
         else:  # error case
             raise Exception("invalid operand!")
-
-    def set(self, components: Collection[float]) -> None:
-        """
-        input: new components
-        changes the components of the vector.
-        replaces the components with newer one.
-        """
-        if len(components) > 0:
-            self.__components = list(components)
-        else:
-            raise Exception("please give any vector")
 
     def copy(self) -> Vector:
         """
@@ -140,7 +129,7 @@ class Vector:
         input: index (0-indexed)
         output: the i-th component of the vector.
         """
-        if type(i) is int and -len(self.__components) <= i < len(self.__components):
+        if isinstance(i, int) and -len(self.__components) <= i < len(self.__components):
             return self.__components[i]
         else:
             raise Exception("index out of range")
@@ -167,12 +156,12 @@ class Vector:
         9.539392014169456
         >>> Vector([]).euclidean_length()
         Traceback (most recent call last):
-        ...
+            ...
         Exception: Vector is empty
         """
         if len(self.__components) == 0:
             raise Exception("Vector is empty")
-        squares = [c ** 2 for c in self.__components]
+        squares = [c**2 for c in self.__components]
         return math.sqrt(sum(squares))
 
     def angle(self, other: Vector, deg: bool = False) -> float:
@@ -185,7 +174,7 @@ class Vector:
         85.40775111366095
         >>> Vector([3, 4, -1]).angle(Vector([2, -1]))
         Traceback (most recent call last):
-        ...
+            ...
         Exception: invalid operand!
         """
         num = self * other
@@ -227,7 +216,7 @@ def axpy(scalar: float, x: Vector, y: Vector) -> Vector:
     assert (
         isinstance(x, Vector)
         and isinstance(y, Vector)
-        and (isinstance(scalar, int) or isinstance(scalar, float))
+        and (isinstance(scalar, (int, float)))
     )
     return x * scalar + y
 
@@ -348,12 +337,13 @@ class Matrix:
                     "vector must have the same size as the "
                     "number of columns of the matrix!"
                 )
-        elif isinstance(other, int) or isinstance(other, float):  # matrix-scalar
+        elif isinstance(other, (int, float)):  # matrix-scalar
             matrix = [
                 [self.__matrix[i][j] * other for j in range(self.__width)]
                 for i in range(self.__height)
             ]
             return Matrix(matrix, self.__width, self.__height)
+        return None
 
     def height(self) -> int:
         """

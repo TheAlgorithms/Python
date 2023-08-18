@@ -36,7 +36,7 @@ def solution():
     """
     with open(os.path.dirname(__file__) + "/grid.txt") as f:
         l = []  # noqa: E741
-        for i in range(20):
+        for _ in range(20):
             l.append([int(x) for x in f.readline().split()])
 
         maximum = 0

@@ -57,6 +57,8 @@ def number_of_divisors(n: int) -> int:
             temp += 1
             n = int(n / i)
         div *= temp
+    if n > 1:
+        div *= 2
     return div
 
 
@@ -81,14 +83,14 @@ def sum_of_divisors(n: int) -> int:
         temp += 1
         n = int(n / 2)
     if temp > 1:
-        s *= (2 ** temp - 1) / (2 - 1)
+        s *= (2**temp - 1) / (2 - 1)
     for i in range(3, int(math.sqrt(n)) + 1, 2):
         temp = 1
         while n % i == 0:
             temp += 1
             n = int(n / i)
         if temp > 1:
-            s *= (i ** temp - 1) / (i - 1)
+            s *= (i**temp - 1) / (i - 1)
     return int(s)
 
 

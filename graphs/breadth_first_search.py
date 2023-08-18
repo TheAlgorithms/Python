@@ -53,7 +53,7 @@ class Graph:
         visited = set()
 
         # create a first in first out queue to store all the vertices for BFS
-        queue = Queue()
+        queue: Queue = Queue()
 
         # mark the source node as visited and enqueue it
         visited.add(start_vertex)

@@ -81,7 +81,7 @@ def solution(max_proportion: float = 1 / 12345) -> int:
 
     integer = 3
     while True:
-        partition_candidate = (integer ** 2 - 1) / 4
+        partition_candidate = (integer**2 - 1) / 4
         # if candidate is an integer, then there is a partition for k
         if partition_candidate == int(partition_candidate):
             partition_candidate = int(partition_candidate)

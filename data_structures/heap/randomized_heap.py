@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import random
-from typing import Any, Generic, Iterable, TypeVar
+from collections.abc import Iterable
+from typing import Any, Generic, TypeVar
 
 T = TypeVar("T", bound=bool)
 

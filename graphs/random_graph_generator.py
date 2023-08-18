@@ -26,7 +26,7 @@ def random_graph(
     >>> random_graph(4, 0.5, True)
     {0: [1], 1: [2, 3], 2: [3], 3: []}
     """
-    graph = {i: [] for i in range(vertices_number)}
+    graph: dict = {i: [] for i in range(vertices_number)}
 
     # if probability is greater or equal than 1, then generate a complete graph
     if probability >= 1:
@@ -53,7 +53,7 @@ def complete_graph(vertices_number: int) -> dict:
     @input: vertices_number (number of vertices),
             directed (False if the graph is undirected, True otherwise)
     @example:
-    >>> print(complete_graph(3))
+    >>> complete_graph(3)
     {0: [1, 2], 1: [0, 2], 2: [0, 1]}
     """
     return {

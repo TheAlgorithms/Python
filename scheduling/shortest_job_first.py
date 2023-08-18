@@ -36,12 +36,11 @@ def calculate_waitingtime(
     # Process until all processes are completed
     while complete != no_of_processes:
         for j in range(no_of_processes):
-            if arrival_time[j] <= increment_time:
-                if remaining_time[j] > 0:
-                    if remaining_time[j] < minm:
-                        minm = remaining_time[j]
-                        short = j
-                        check = True
+            if arrival_time[j] <= increment_time and remaining_time[j] > 0:
+                if remaining_time[j] < minm:
+                    minm = remaining_time[j]
+                    short = j
+                    check = True
 
         if not check:
             increment_time += 1
@@ -111,7 +110,7 @@ def calculate_average_times(
     for i in range(no_of_processes):
         total_waiting_time = total_waiting_time + waiting_time[i]
         total_turn_around_time = total_turn_around_time + turn_around_time[i]
-    print("Average waiting time = %.5f" % (total_waiting_time / no_of_processes))
+    print(f"Average waiting time = {total_waiting_time / no_of_processes:.5f}")
     print("Average turn around time =", total_turn_around_time / no_of_processes)
 
 

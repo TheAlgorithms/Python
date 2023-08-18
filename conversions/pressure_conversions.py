@@ -19,19 +19,23 @@ REFERENCES :
 -> https://www.unitconverters.net/pressure-converter.html
 """
 
-from collections import namedtuple
+from typing import NamedTuple
 
-from_to = namedtuple("from_to", "from_ to")
+
+class FromTo(NamedTuple):
+    from_factor: float
+    to_factor: float
+
 
 PRESSURE_CONVERSION = {
-    "atm": from_to(1, 1),
-    "pascal": from_to(0.0000098, 101325),
-    "bar": from_to(0.986923, 1.01325),
-    "kilopascal": from_to(0.00986923, 101.325),
-    "megapascal": from_to(9.86923, 0.101325),
-    "psi": from_to(0.068046, 14.6959),
-    "inHg": from_to(0.0334211, 29.9213),
-    "torr": from_to(0.00131579, 760),
+    "atm": FromTo(1, 1),
+    "pascal": FromTo(0.0000098, 101325),
+    "bar": FromTo(0.986923, 1.01325),
+    "kilopascal": FromTo(0.00986923, 101.325),
+    "megapascal": FromTo(9.86923, 0.101325),
+    "psi": FromTo(0.068046, 14.6959),
+    "inHg": FromTo(0.0334211, 29.9213),
+    "torr": FromTo(0.00131579, 760),
 }
 
 
@@ -56,11 +60,7 @@ def pressure_conversion(value: float, from_type: str, to_type: str) -> float:
     0.019336718261000002
     >>> pressure_conversion(4, "wrongUnit", "atm")
     Traceback (most recent call last):
-      File "/usr/lib/python3.8/doctest.py", line 1336, in __run
-        exec(compile(example.source, filename, "single",
-      File "<doctest __main__.pressure_conversion[8]>", line 1, in <module>
-        pressure_conversion(4, "wrongUnit", "atm")
-      File "<string>", line 67, in pressure_conversion
+        ...
     ValueError: Invalid 'from_type' value: 'wrongUnit'  Supported values are:
     atm, pascal, bar, kilopascal, megapascal, psi, inHg, torr
     """
@@ -75,7 +75,9 @@ def pressure_conversion(value: float, from_type: str, to_type: str) -> float:
             + ", ".join(PRESSURE_CONVERSION)
         )
     return (
-        value * PRESSURE_CONVERSION[from_type].from_ * PRESSURE_CONVERSION[to_type].to
+        value
+        * PRESSURE_CONVERSION[from_type].from_factor
+        * PRESSURE_CONVERSION[to_type].to_factor
     )
 
 

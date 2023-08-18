@@ -5,19 +5,20 @@ Nodes contain data and also may link to other nodes:
                  head node gives us access of the complete list
     - Last node: points to null
 """
+from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Any
 
 
 class Node:
-    def __init__(self, item: Any, next: Any) -> None:
+    def __init__(self, item: Any, next: Any) -> None:  # noqa: A002
         self.item = item
         self.next = next
 
 
 class LinkedList:
     def __init__(self) -> None:
-        self.head: Optional[Node] = None
+        self.head: Node | None = None
         self.size = 0
 
     def add(self, item: Any) -> None:
@@ -48,7 +49,7 @@ class LinkedList:
         >>> print(linked_list)
         9 --> 14 --> 23
         """
-        if not self.is_empty:
+        if self.is_empty():
             return ""
         else:
             iterate = self.head

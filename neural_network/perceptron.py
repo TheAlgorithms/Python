@@ -29,15 +29,15 @@ class Perceptron:
 
         >>> p = Perceptron([], (0, 1, 2))
         Traceback (most recent call last):
-        ...
+            ...
         ValueError: Sample data can not be empty
         >>> p = Perceptron(([0], 1, 2), [])
         Traceback (most recent call last):
-        ...
+            ...
         ValueError: Target data can not be empty
         >>> p = Perceptron(([0], 1, 2), (0, 1))
         Traceback (most recent call last):
-        ...
+            ...
         ValueError: Sample data and Target data do not have matching lengths
         """
         self.sample = sample
@@ -69,7 +69,7 @@ class Perceptron:
         for sample in self.sample:
             sample.insert(0, self.bias)
 
-        for i in range(self.col_sample):
+        for _ in range(self.col_sample):
             self.weight.append(random.random())
 
         self.weight.insert(0, self.bias)
@@ -182,7 +182,7 @@ samples = [
     [0.2012, 0.2611, 5.4631],
 ]
 
-exit = [
+target = [
     -1,
     -1,
     -1,
@@ -222,7 +222,7 @@ if __name__ == "__main__":
     doctest.testmod()
 
     network = Perceptron(
-        sample=samples, target=exit, learning_rate=0.01, epoch_number=1000, bias=-1
+        sample=samples, target=target, learning_rate=0.01, epoch_number=1000, bias=-1
     )
     network.training()
     print("Finished training perceptron")
