@@ -29,6 +29,12 @@ def continued_fraction(num: Fraction) -> list[int]:
     [0, 2, 4]
     >>> continued_fraction(Fraction("415/93"))
     [4, 2, 6, 7]
+    >>> continued_fraction(Fraction(0))
+    [0]
+    >>> continued_fraction(Fraction(0.75))
+    [0, 1, 3]
+    >>> continued_fraction(Fraction("-2.25"))
+    [-3, 1, 3]  # -2.25 = -3 + 0.75
     """
     numerator, denominator = num.as_integer_ratio()
     continued_fraction_list: list[int] = []
