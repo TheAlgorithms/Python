@@ -309,7 +309,7 @@ def report_generator(
         report[report.Type == "count"].index
     )  # drop count values except for cluster size
     report = pd.concat(
-        [report, a, cluster size, clusterproportion], axis=0
+        [report, a, clustersize, clusterproportion], axis=0
     )  # concat report with cluster size and nan values
     report["Mark"] = report["Features"].isin(clustering_variables)
     cols = report.columns.tolist()
@@ -344,6 +344,4 @@ def report_generator(
 
 
 if __name__ == "__main__":
-
-
     doctest.testmod()
