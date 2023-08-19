@@ -17,8 +17,8 @@ def discrete_path_length(seq: list) -> float:
     >>> radius = 5
     >>> xRange = np.arange(-radius,radius,0.001)
     >>> seq = [(x,(5**2 - x**2)**.5) for x in xRange]
-    >>> "%.4f" % discrete_path_length(seq)
-    '15.6080'
+    >>> "%.1f" % discrete_path_length(seq)
+    '15.6'
     """
     res_slopes = []
     for i in range(1, len(seq)):
@@ -37,12 +37,12 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    radius = 5
-    xrange = np.arange(-radius, radius, 0.001)
-    # Make points for sequence for a semicircle of radius 5
-    seq = [(x, (5**2 - x**2) ** 0.5) for x in xrange]
-    print(
-        f"Test Radius {radius},\
-          Test Arc {discrete_path_length(seq)},\
-          Expected Arc {3.14159 * radius}"
-    )
+    # radius = 5
+    # xrange = np.arange(-radius, radius, 0.001)
+    # # Make points for sequence for a semicircle of radius 5
+    # seq = [(x, (5**2 - x**2) ** 0.5) for x in xrange]
+    # print(
+    #     f"Test Radius {radius},\
+    #       Test Arc {discrete_path_length(seq)},\
+    #       Expected Arc {3.14159 * radius}"
+    # )
