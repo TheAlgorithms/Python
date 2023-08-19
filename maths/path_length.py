@@ -10,7 +10,7 @@ Description :
 """
 
 
-def discrete_path_length(seq : list) -> float: 
+def discrete_path_length(seq: list) -> float:
     """
     Generates a sequence of cordinates for a semicircle of radius and calculates
     path length in this case. i.e length of the semicircle
@@ -21,9 +21,12 @@ def discrete_path_length(seq : list) -> float:
     15.60795911036593
     """
     res_slopes = []
-    for i in range(1,len(seq)):
-        res_slopes.append(((seq[i][0]-seq[i-1][0])**2+(seq[i][1]-seq[i-1][1])**2)**.5)
+    for i in range(1, len(seq)):
+        res_slopes.append(
+            ((seq[i][0] - seq[i - 1][0]) ** 2 + (seq[i][1] - seq[i - 1][1]) ** 2) ** 0.5
+        )
     return sum(res_slopes)
+
 
 if __name__ == "__main__":
     try:
@@ -32,11 +35,14 @@ if __name__ == "__main__":
         print("Please Install Numpy first !")
         raise err
     import doctest
+
     doctest.testmod()
     radius = 5
-    xrange = np.arange(-radius,radius,0.001)
+    xrange = np.arange(-radius, radius, 0.001)
     # Make points for sequence for a semicircle of radius 5
-    seq = [(x,(5**2 - x**2)**.5) for x in xrange]
-    print(f"Test Radius {radius},\
+    seq = [(x, (5**2 - x**2) ** 0.5) for x in xrange]
+    print(
+        f"Test Radius {radius},\
           Test Arc {discrete_path_length(seq)},\
-          Expected Arc {3.14159 * radius}")
+          Expected Arc {3.14159 * radius}"
+    )
