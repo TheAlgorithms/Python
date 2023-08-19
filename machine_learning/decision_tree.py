@@ -154,10 +154,17 @@ class TestDecisionTree:
 
 def main():
     """
-    In this demonstration we're generating a sample data set from the sin function in
-    numpy.  We then train a decision tree on the data set and use the decision tree to
-    predict the label of 10 different test values. Then the mean squared error over
-    this test is displayed.
+    In this demonstration first we are generating x which is a numpy array
+    containing values starting from -1 to 1 with an interval of 0.005 i.e
+    [-1,-0.995,....,0.995,1] this is what we are getting by applying arange
+    function of numpy.Then the we are generating y by applying sin function
+    on x which is an array containing values from -1 to 1 with difference
+    of 0.005 i.e we are getting an array y which contains sin of each value
+    of x. We then train a decision tree on the data set and use the decision tree
+    to predict the label of 10 different test values. Here we should prefer
+    calculating Root Mean Squared Error over Mean Squared error because RMSE
+    should be used when you need to communicate your results in an understandable
+    way.
     """
     x = np.arange(-1.0, 1.0, 0.005)
     y = np.sin(x)
@@ -167,6 +174,7 @@ def main():
 
     test_cases = (np.random.rand(10) * 2) - 1
     predictions = np.array([tree.predict(x) for x in test_cases])
+
     avg_error = np.mean((predictions - test_cases) ** 2)
 
     print("Test values: " + str(test_cases))

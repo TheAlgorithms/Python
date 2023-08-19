@@ -10,7 +10,8 @@ X = np.array(data["data"])
 y = np.array(data["target"])
 classes = data["target_names"]
 
-X_train, X_test, y_train, y_test = train_test_split(X, y)
+X_train, X_test, y_train, y_test = train_test_split(X, ym,random_state=42)
+'''Random state = 42 is set so that the training and test set remains same after 1st run for all
 
 
 def euclidean_distance(a, b):
