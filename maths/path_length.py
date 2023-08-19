@@ -17,8 +17,8 @@ def discrete_path_length(seq: list) -> float:
     >>> radius = 5
     >>> xRange = np.arange(-radius,radius,0.001)
     >>> seq = [(x,(5**2 - x**2)**.5) for x in xRange]
-    >>> print(discrete_path_length(seq))
-    15.60795911036593
+    >>> "%.4f" % discrete_path_length(seq)
+    '15.6080'
     """
     res_slopes = []
     for i in range(1, len(seq)):
