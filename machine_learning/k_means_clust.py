@@ -200,7 +200,7 @@ def report_generator(
 ) -> pd.DataFrame:
     """
     Function generates an easy-reading clustering report. It takes 3 arguments as input:
-        DataFrame,predicted cluster column,
+        DataFrame,predicted cluster column of dataframe,
         FillMissingReport - dictionary of rules on how we are going to fill in missing
         values of for final report generate (not included in modelling);
     in order to run the function following libraries must be imported:
