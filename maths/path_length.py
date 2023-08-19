@@ -10,7 +10,7 @@ Description :
 """
 
 
-def discrete_path_length(seq: list[tuple[any, any]]) -> float:
+def discrete_path_length(seq: list[tuple[float, float]]) -> float:
     """
     seq : a list of (x,y) pairs , with sorted in non decreasing manner of x
 
