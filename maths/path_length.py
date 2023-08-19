@@ -10,7 +10,7 @@ Description :
 """
 
 
-def discrete_path_length(seq):
+def discrete_path_length(seq : list) -> float: 
     """
     Generates a sequence of cordinates for a semicircle of radius and calculates
     path length in this case. i.e length of the semicircle
