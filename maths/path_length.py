@@ -12,15 +12,25 @@ Description :
 
 def discrete_path_length(seq: list) -> float:
     """
+    seq : a list of (x,y) pairs , with sorted in non decreasing manner of x
+
+    Example:
     Generates a sequence of coordinates for a semicircle of radius and calculates
     path length in this case. i.e length of the semicircle
+
     >>> import numpy as np
     >>> radius = 5
     >>> xRange = np.arange(-radius,radius,0.001)
     >>> seq = [(x,(5**2 - x**2)**.5) for x in xRange]
     >>> "%.4f" % discrete_path_length(seq)
     '15.6080'
+
     """
+    if seq is None:
+        return None
+
+    if len(seq) < 2:
+        return 0
     res_slopes = []
     for i in range(1, len(seq)):
         res_slopes.append(
