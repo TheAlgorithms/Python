@@ -12,7 +12,7 @@ Description :
 
 def discrete_path_length(seq: list) -> float:
     """
-    Generates a sequence of cordinates for a semicircle of radius and calculates
+    Generates a sequence of coordinates for a semicircle of radius and calculates
     path length in this case. i.e length of the semicircle
     >>> radius = 5
     >>> xRange = np.arange(-radius,radius,0.001)
