@@ -7,6 +7,7 @@ https://en.wikipedia.org/wiki/Binary_number
 https://en.wikipedia.org/wiki/Octal
 """
 
+
 def octal_to_binary(octal_number: str) -> str:
     """
     Convert an Octal number to Binary.
@@ -43,8 +44,8 @@ def octal_to_binary(octal_number: str) -> str:
     for digit in octal_number:
         if not digit.isdigit():
             raise ValueError("Special Character was passed to the function")
-            
-        if digit < '0' or digit > '7':
+
+        if digit < "0" or digit > "7":
             raise ValueError("Non-octal value was passed to the function")
 
     binary_number = ""
@@ -65,4 +66,5 @@ def octal_to_binary(octal_number: str) -> str:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
