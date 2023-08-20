@@ -190,7 +190,7 @@ class UniformCostSearch:
         final_cnt = 0
         heap = [[0, x, y]]
         while len(heap) > 0:
-            heap.sort(key=lambda x: x[0])
+            heap.sort(key=lambda element: element[0])
             d, x, y = heap[0]
             heap.pop(0)
             if visited[x][y]:
