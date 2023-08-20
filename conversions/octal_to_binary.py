@@ -11,6 +11,7 @@ https://en.wikipedia.org/wiki/Octal
 def octal_to_binary(octal_number: str) -> str:
     """
     Convert an Octal number to Binary.
+
     >>> octal_to_binary("17")
     '001111'
     >>> octal_to_binary("7")
@@ -19,7 +20,6 @@ def octal_to_binary(octal_number: str) -> str:
     Traceback (most recent call last):
         ...
     ValueError: Non-octal value was passed to the function
-
     >>> octal_to_binary("@#")
     Traceback (most recent call last):
         ...
