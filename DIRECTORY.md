@@ -143,6 +143,7 @@
   * [Binary To Decimal](conversions/binary_to_decimal.py)
   * [Binary To Hexadecimal](conversions/binary_to_hexadecimal.py)
   * [Binary To Octal](conversions/binary_to_octal.py)
+  * [Convert Number To Words](conversions/convert_number_to_words.py)
   * [Decimal To Any](conversions/decimal_to_any.py)
   * [Decimal To Binary](conversions/decimal_to_binary.py)
   * [Decimal To Binary Recursion](conversions/decimal_to_binary_recursion.py)
@@ -1203,7 +1204,6 @@
 
 ## Web Programming
   * [Co2 Emission](web_programming/co2_emission.py)
-  * [Convert Number To Words](web_programming/convert_number_to_words.py)
   * [Covid Stats Via Xpath](web_programming/covid_stats_via_xpath.py)
   * [Crawl Google Results](web_programming/crawl_google_results.py)
   * [Crawl Google Scholar Citation](web_programming/crawl_google_scholar_citation.py)
