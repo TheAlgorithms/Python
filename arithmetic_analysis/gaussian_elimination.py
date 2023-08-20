@@ -33,10 +33,7 @@ def retroactive_resolution(
 
     x: NDArray[float64] = np.zeros((rows, 1), dtype=float)
     for row in reversed(range(rows)):
-        total = 0
-        for col in range(row + 1, columns):
-            total += coefficients[row, col] * x[col]
-
+        total = np.dot(coefficients[row, row + 1 :], x[row + 1 :])
         x[row, 0] = (vector[row] - total) / coefficients[row, row]
 
     return x
