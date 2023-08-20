@@ -19,7 +19,7 @@ def octal_to_binary(octal_number: str) -> str:
     Traceback (most recent call last):
         ...
     ValueError: Non-octal value was passed to the function
-
+    
     >>> octal_to_binary("@#")
     Traceback (most recent call last):
         ...
@@ -30,7 +30,7 @@ def octal_to_binary(octal_number: str) -> str:
     ValueError: Empty string was passed to the function
     """
     if not octal_number:
-        raise ValueError("Empty String was passed to the function")
+        raise ValueError("Empty string was passed to the function")
 
     binary_number = ""
     octal_digits = "01234567"
@@ -50,5 +50,4 @@ def octal_to_binary(octal_number: str) -> str:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
