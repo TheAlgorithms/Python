@@ -8,7 +8,7 @@ def arc_length(angle: int, radius: int) -> float:
     >>> arc_length(120, 15)
     31.415926535897928
     >>> arc_length(90, 10)
-    15.7079632679
+    15.707963267948966
     """
     return 2 * pi * radius * (angle / 360)
 
