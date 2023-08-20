@@ -1,4 +1,3 @@
-
 # https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm
 # Score constants
 """
@@ -87,7 +86,7 @@ def traceback(score: list[list[int]], query: str, subject: str) -> str:
             align2 = subject[j - 1] + align2
             j -= 1
 
-    return f'{align1}\n{align2}'
+    return f"{align1}\n{align2}"
 
 
 if __name__ == "__main__":
