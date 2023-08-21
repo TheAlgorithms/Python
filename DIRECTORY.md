@@ -72,6 +72,7 @@
 ## Cellular Automata
   * [Conways Game Of Life](cellular_automata/conways_game_of_life.py)
   * [Game Of Life](cellular_automata/game_of_life.py)
+  * [Langtons Ant](cellular_automata/langtons_ant.py)
   * [Nagel Schrekenberg](cellular_automata/nagel_schrekenberg.py)
   * [One Dimensional](cellular_automata/one_dimensional.py)
   * [Wa Tor](cellular_automata/wa_tor.py)
