@@ -13,8 +13,19 @@ For manual testing run:
 python3 insertion_sort.py
 """
 
+from collections.abc import MutableSequence
+from typing import Any, Protocol, TypeVar
 
-def insertion_sort(collection: list) -> list:
+
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool:
+        ...
+
+
+T = TypeVar("T", bound=Comparable)
+
+
+def insertion_sort(collection: MutableSequence[T]) -> MutableSequence[T]:
     """A pure Python implementation of the insertion sort algorithm
 
     :param collection: some mutable ordered collection with heterogeneous
