@@ -97,7 +97,7 @@ class LangtonsAnt:
         fig, ax = plt.subplots()
         # Assign animation to a variable to prevent it from getting garbage collected
         self.animation = FuncAnimation(
-            fig, partial(self.move_ant, ax, True), frames=frames, interval=0
+            fig, partial(self.move_ant, ax, True), frames=frames, interval=1
         )
         plt.show()
 
