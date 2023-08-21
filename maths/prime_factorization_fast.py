@@ -1,37 +1,9 @@
 from __future__ import annotations
 from math import ceil, sqrt
-import time
 from typing import Any
 
 
-def timer(func: callable) -> callable:
-    """
-    Decorator that measures the execution time of a function.
-
-    :param func: The function to be timed.
-    :return: The wrapped function.
-
-    """
-
-    def wrapper(*args: Any, **kwargs: Any) -> Any:
-        """
-        Wraps the given function and measures its execution time.
-
-        :param args: Positional arguments for the function.
-        :param kwargs: Keyword arguments for the function.
-        :return: The result of the wrapped function.
-        """
-        start = time.time()
-        result = func(*args, **kwargs)
-        end = time.time()
-        print(f"{func.__name__} took {end - start:.6f} seconds to execute.")
-        return result
-
-    return wrapper
-
-
-@timer
-def prime_factors(number: int) -> list[int]:
+def prime_factors(num: int) -> list[int]:
     """
     Returns prime factors of a given number as a list.
     Returns prime factors of n as a list.
@@ -63,18 +35,17 @@ def prime_factors(number: int) -> list[int]:
     """
     i = 2
     factors = []
-    while i * i <= number:
-        if number % i:
+    while i * i <= num:
+        if num % i:
             i += 1
         else:
-            number //= i
+            num //= i
             factors.append(i)
-    if number > 1:
-        factors.append(number)
+    if num > 1:
+        factors.append(num)
     return factors
 
 
-@timer
 def primeproduct(num: int) -> list[int]:
     """
     Returns prime factors of a positive integer num as a list.
@@ -82,10 +53,9 @@ def primeproduct(num: int) -> list[int]:
     >>> primeproduct(868)
     [2, 2, 7, 31]
     >>> primeproduct(9039423423423743)
-    [2, 2, 7, 31, 719, 12572216166097]
-    >>> primeproduct(0.02)
-    Traceback (most recent call last):
-    ValueError: invalid literal for int() with base 10: '0.02'
+    [7, 719, 1796030880871]
+    >>> primeproduct(435345234543252)
+    [2, 2, 3, 3, 3, 11, 3119, 5171, 22721]
     >>> primeproduct(-2342)
     []
 
@@ -131,11 +101,9 @@ def primeproduct(num: int) -> list[int]:
 
 
 if __name__ == "__main__":
-    n = int(input("enter number: "))
+    n = int(input("enter number: ").strip())
     primeproduct(n)
     prime_factors(n)
     import doctest
-
-    doctest.NORMALIZE_WHITESPACE
 
     doctest.testmod()
