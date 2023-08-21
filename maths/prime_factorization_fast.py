@@ -16,7 +16,7 @@ def timer(func: callable) -> callable:
     def wrapper(*args: Any, **kwargs: Any) -> Any:
         """
         Wraps the given function and measures its execution time.
-        
+
         :param args: Positional arguments for the function.
         :param kwargs: Keyword arguments for the function.
         :return: The result of the wrapped function.
@@ -135,6 +135,7 @@ if __name__ == "__main__":
     primeproduct(n)
     prime_factors(n)
     import doctest
+
     doctest.NORMALIZE_WHITESPACE
 
     doctest.testmod()
