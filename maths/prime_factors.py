@@ -1,13 +1,38 @@
 from __future__ import annotations
 from math import ceil, sqrt
 import time
+from typing import Any, List, Tuple
 
 
-def timer(func):
-    def wrapper(*args, **kwargs):
+def timer(func: callable) -> callable:
+    """
+    Decorator that measures the execution time of a function.
+
+    :param func: The function to be timed.
+    :return: The wrapped function.
+
+    >>> @timer
+    ... def test_function():
+    ...     time.sleep(1)
+    ...     return "Test completed."
+    ...
+    >>> result = test_function()
+    Test completed.
+    test_function took 1.000272 seconds to execute.
+    >>> result
+    'Test completed.'
+    """
+
+    def wrapper(*args: Any, **kwargs: Any) -> Any:
+        """
+        Wraps the given function and measures its execution time.
+        
+        :param args: Positional arguments for the function.
+        :param kwargs: Keyword arguments for the function.
+        :return: The result of the wrapped function.
+        """
         start = time.time()
         result = func(*args, **kwargs)
-        print(result)
         end = time.time()
         print(f"{func.__name__} took {end - start:.6f} seconds to execute.")
         return result
@@ -16,8 +41,9 @@ def timer(func):
 
 
 @timer
-def prime_factors(n: int) -> list[int]:
+def prime_factors(number: int) -> List[int]:
     """
+    Returns prime factors of a given number as a list.
     Returns prime factors of n as a list.
 
     >>> prime_factors(0)
@@ -59,8 +85,10 @@ def prime_factors(n: int) -> list[int]:
 
 
 @timer
-def primeproduct(num: int) -> list[int]:
+def primeproduct(num: int) -> List[int]:
     """
+    Returns prime factors of a positive integer num as a list.
+
     >>> primeproduct(868)
     [2, 2, 7, 31]
     >>> primeproduct(9039423423423743)
@@ -70,8 +98,8 @@ def primeproduct(num: int) -> list[int]:
     ValueError: invalid literal for int() with base 10: '0.02'
     >>> primeproduct(-2342)
     []
-    """
 
+    """
     if num <= 1:
         return []
 
