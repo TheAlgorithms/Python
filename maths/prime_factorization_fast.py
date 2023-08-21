@@ -49,6 +49,9 @@ def prime_factors(num: int) -> list[int]:
 def primeproduct(num: int) -> list[int]:
     """
     Returns prime factors of a positive integer num as a list.
+    2 is only even prime so special while loop to handle it.
+    Skipping other even numbers.
+    Taking root n approach for getting prime number.
 
     >>> primeproduct(868)
     [2, 2, 7, 31]
