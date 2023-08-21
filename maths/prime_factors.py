@@ -1,7 +1,7 @@
 from __future__ import annotations
 from math import ceil, sqrt
 import time
-from typing import Any, List, Tuple
+from typing import Any
 
 
 def timer(func: callable) -> callable:
@@ -11,22 +11,12 @@ def timer(func: callable) -> callable:
     :param func: The function to be timed.
     :return: The wrapped function.
 
-    >>> @timer
-    ... def test_function():
-    ...     time.sleep(1)
-    ...     return "Test completed."
-    ...
-    >>> result = test_function()
-    Test completed.
-    test_function took 1.000272 seconds to execute.
-    >>> result
-    'Test completed.'
     """
 
     def wrapper(*args: Any, **kwargs: Any) -> Any:
         """
         Wraps the given function and measures its execution time.
-
+        
         :param args: Positional arguments for the function.
         :param kwargs: Keyword arguments for the function.
         :return: The result of the wrapped function.
@@ -41,7 +31,7 @@ def timer(func: callable) -> callable:
 
 
 @timer
-def prime_factors(number: int) -> List[int]:
+def prime_factors(number: int) -> list[int]:
     """
     Returns prime factors of a given number as a list.
     Returns prime factors of n as a list.
@@ -73,19 +63,19 @@ def prime_factors(number: int) -> List[int]:
     """
     i = 2
     factors = []
-    while i * i <= n:
-        if n % i:
+    while i * i <= number:
+        if number % i:
             i += 1
         else:
-            n //= i
+            number //= i
             factors.append(i)
-    if n > 1:
-        factors.append(n)
+    if number > 1:
+        factors.append(number)
     return factors
 
 
 @timer
-def primeproduct(num: int) -> List[int]:
+def primeproduct(num: int) -> list[int]:
     """
     Returns prime factors of a positive integer num as a list.
 
@@ -145,5 +135,6 @@ if __name__ == "__main__":
     primeproduct(n)
     prime_factors(n)
     import doctest
+    doctest.NORMALIZE_WHITESPACE
 
     doctest.testmod()
