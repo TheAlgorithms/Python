@@ -55,24 +55,20 @@ class LangtonsAnt:
         [[True, False], [True, False]]
         """
         directions = {
-            0: [-1, 0],  # 0°
-            1: [0, 1],  # 90°
-            2: [1, 0],  # 180°
-            3: [0, -1],  # 270°
+            0: (-1, 0),  # 0°
+            1: (0, 1),  # 90°
+            2: (1, 0),  # 180°
+            3: (0, -1),  # 270°
         }
         x, y = self.ant_position
 
         # Turn clockwise or anti-clockwise according to colour of square
         if self.board[x][y] is True:
             # The square is white so turn 90° clockwise
-            self.ant_direction = (
-                0 if self.ant_direction == 3 else self.ant_direction + 1
-            )
+            self.ant_direction = (self.ant_direction + 1) % 4
         else:
             # The square is black so turn 90° anti-clockwise
-            self.ant_direction = (
-                3 if self.ant_direction == 0 else self.ant_direction - 1
-            )
+            self.ant_direction = (self.ant_direction - 1) % 4
 
         # Move ant
         move_x, move_y = directions[self.ant_direction]
