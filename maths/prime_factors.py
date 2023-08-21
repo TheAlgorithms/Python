@@ -26,7 +26,7 @@ def timer(func: callable) -> callable:
     def wrapper(*args: Any, **kwargs: Any) -> Any:
         """
         Wraps the given function and measures its execution time.
-        
+
         :param args: Positional arguments for the function.
         :param kwargs: Keyword arguments for the function.
         :return: The result of the wrapped function.
