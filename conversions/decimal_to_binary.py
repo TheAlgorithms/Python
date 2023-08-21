@@ -52,14 +52,14 @@ def decimal_to_binary_iterative(num: int) -> str:
     return "0b" + "".join(str(e) for e in binary)
 
 
-def decimal_to_binary_recursive(decimal: int) -> str:
+def decimal_to_binary_recursive_helper(decimal: int) -> str:
     """
     Take a positive integer value and return its binary equivalent.
-    >>> decimal_to_binary_recursive(1000)
+    >>> decimal_to_binary_recursive_helper(1000)
     '1111101000'
-    >>> decimal_to_binary_recursive("72")
+    >>> decimal_to_binary_recursive_helper("72")
     '1001000'
-    >>> decimal_to_binary_recursive("number")
+    >>> decimal_to_binary_recursive_helper("number")
     Traceback (most recent call last):
         ...
     ValueError: invalid literal for int() with base 10: 'number'
@@ -68,25 +68,25 @@ def decimal_to_binary_recursive(decimal: int) -> str:
     if decimal in (0, 1):  # Exit cases for the recursion
         return str(decimal)
     div, mod = divmod(decimal, 2)
-    return decimal_to_binary_recursive(div) + str(mod)
+    return decimal_to_binary_recursive_helper(div) + str(mod)
 
 
-def decimal_to_binary_recursive_main(number: str) -> str:
+def decimal_to_binary_recursive(number: str) -> str:
     """
     Take an integer value and raise ValueError for wrong inputs,
     call the function above and return the output with prefix "0b" & "-0b"
     for positive and negative integers respectively.
-    >>> decimal_to_binary_recursive_main(0)
+    >>> decimal_to_binary_recursive(0)
     '0b0'
-    >>> decimal_to_binary_recursive_main(40)
+    >>> decimal_to_binary_recursive(40)
     '0b101000'
-    >>> decimal_to_binary_recursive_main(-40)
+    >>> decimal_to_binary_recursive(-40)
     '-0b101000'
-    >>> decimal_to_binary_recursive_main(40.8)
+    >>> decimal_to_binary_recursive(40.8)
     Traceback (most recent call last):
         ...
     ValueError: Input value is not an integer
-    >>> decimal_to_binary_recursive_main("forty")
+    >>> decimal_to_binary_recursive("forty")
     Traceback (most recent call last):
         ...
     ValueError: Input value is not an integer
@@ -98,7 +98,7 @@ def decimal_to_binary_recursive_main(number: str) -> str:
     number = number.lstrip("-")
     if not number.isnumeric():
         raise ValueError("Input value is not an integer")
-    return f"{negative}0b{decimal_to_binary_recursive(int(number))}"
+    return f"{negative}0b{decimal_to_binary_recursive_helper(int(number))}"
 
 
 if __name__ == "__main__":
@@ -106,4 +106,4 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    print(decimal_to_binary_recursive_main(input("Input a decimal number: ")))
+    print(decimal_to_binary_recursive(input("Input a decimal number: ")))
