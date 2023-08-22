@@ -1,4 +1,4 @@
-def permute_iterative(nums: list[int]) -> list[list[int]]:
+def permute_recursive(nums: list[int]) -> list[list[int]]:
     """
     Return all permutations.
 
@@ -6,8 +6,8 @@ def permute_iterative(nums: list[int]) -> list[list[int]]:
     [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 2, 1], [3, 1, 2]]
     """
     result: list[list[int]] = []
-    if len(nums) == 1:
-        return [nums.copy()]
+    if len(nums) == 0:
+        return [[]]
     for _ in range(len(nums)):
         n = nums.pop(0)
         permutations = permute_iterative(nums)
@@ -43,7 +43,6 @@ def permute_backtrack(nums: list[int]) -> list[list[int]]:
 if __name__ == "__main__":
     import doctest
 
-    # use res to print the data in permute2 function
     res = permute_backtrack([1, 2, 3])
     print(res)
     doctest.testmod()
