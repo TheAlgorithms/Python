@@ -155,6 +155,7 @@
   * [Hexadecimal To Decimal](conversions/hexadecimal_to_decimal.py)
   * [Length Conversion](conversions/length_conversion.py)
   * [Molecular Chemistry](conversions/molecular_chemistry.py)
+  * [Octal To Binary](conversions/octal_to_binary.py)
   * [Octal To Decimal](conversions/octal_to_decimal.py)
   * [Prefix Conversions](conversions/prefix_conversions.py)
   * [Prefix Conversions String](conversions/prefix_conversions_string.py)
