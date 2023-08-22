@@ -2,7 +2,7 @@ def permute_recursive(nums: list[int]) -> list[list[int]]:
     """
     Return all permutations.
 
-    >>> permute_backtrack([1, 2, 3])
+    >>> permute_recursive([1, 2, 3])
     [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 2, 1], [3, 1, 2]]
     """
     result: list[list[int]] = []
@@ -10,7 +10,7 @@ def permute_recursive(nums: list[int]) -> list[list[int]]:
         return [[]]
     for _ in range(len(nums)):
         n = nums.pop(0)
-        permutations = permute_iterative(nums)
+        permutations = permute_recursive(nums)
         for perm in permutations:
             perm.append(n)
         result.extend(permutations)
