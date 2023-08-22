@@ -12,16 +12,22 @@ GAP = -2
 def score_function(source_char: str, target_char: str) -> int:
     """
     Calculate the score for a character pair based on whether they match or mismatch.
-    Returns 1 if the characters match, -1 if they mismatch.
+    Returns 1 if the characters match, -1 if they mismatch, and -2 if either of the
+    characters is a gap.
     >>> score_function('A', 'A')
     1
     >>> score_function('A', 'C')
     -1
+    >>> score_function('-', 'A')
+    -2
+    >>> score_function('A', '-')
+    -2
+    >>> score_function('-', '-')
+    -2
     """
-    if source_char == target_char:
-        return MATCH
-    else:
-        return MISMATCH
+    if "-" in (source_char, target_char):
+        return GAP
+    return MATCH if source_char == target_char else MISMATCH
 
 
 def smith_waterman(query: str, subject: str) -> list[list[int]]:
@@ -31,7 +37,20 @@ def smith_waterman(query: str, subject: str) -> list[list[int]]:
     corresponds to the score of the best local alignment ending at that point.
     >>> smith_waterman('ACAC', 'CA')
     [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 2], [0, 1, 0]]
+    >>> smith_waterman('acac', 'ca')
+    [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 2], [0, 1, 0]]
+    >>> smith_waterman('ACAC', 'ca')
+    [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 2], [0, 1, 0]]
+    >>> smith_waterman('acac', 'CA')
+    [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 2], [0, 1, 0]]
+    >>> smith_waterman('ACAC', '')
+    [[0], [0], [0], [0], [0]]
+    >>> smith_waterman('', 'CA')
+    [[0, 0, 0]]
     """
+    # make both query and subject uppercase
+    query = query.upper()
+    subject = subject.upper()
 
     # Initialize score matrix
     m = len(query)
@@ -58,14 +77,26 @@ def traceback(score: list[list[int]], query: str, subject: str) -> str:
     until a 0 score is found. Returns the alignment strings.
     >>> traceback([[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 2], [0, 1, 0]], 'ACAC', 'CA')
     'CAC\nCA-'
+    >>> traceback([[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 2], [0, 1, 0]], 'acac', 'ca')
+    'CAC\nCA-'
+    >>> traceback([[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 2], [0, 1, 0]], 'ACAC', 'ca')
+    'CAC\nCA-'
+    >>> traceback([[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 2], [0, 1, 0]], 'acac', 'CA')
+    'CAC\nCA-'
+    >>> traceback([[0, 0, 0]], 'ACAC', '')
+    ''
     """
-
+    # make both query and subject uppercase
+    query = query.upper()
+    subject = subject.upper()
     # Traceback logic to find optimal alignment
     i = len(query)
     j = len(subject)
     align1 = ""
     align2 = ""
-
+    # guard against empty query or subject
+    if i == 0 or j == 0:
+        return ""
     while i > 0 and j > 0:
         if score[i][j] == score[i - 1][j - 1] + score_function(
             query[i - 1], subject[j - 1]
