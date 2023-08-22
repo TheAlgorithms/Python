@@ -1,4 +1,3 @@
-
 # https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm
 # Score constants
 """
@@ -10,7 +9,7 @@ MISMATCH = -1
 GAP = -2
 
 
-def score_function(a: str, b: str) -> int:
+def score_function(source_char: str, target_char: str) -> int:
     """
     Calculate the score for a character pair based on whether they match or mismatch.
     Returns 1 if the characters match, -1 if they mismatch.
@@ -19,7 +18,7 @@ def score_function(a: str, b: str) -> int:
     >>> score_function('A', 'C')
     -1
     """
-    if a == b:
+    if source_char == target_char:
         return MATCH
     else:
         return MISMATCH
@@ -87,7 +86,7 @@ def traceback(score: list[list[int]], query: str, subject: str) -> str:
             align2 = subject[j - 1] + align2
             j -= 1
 
-    return f'{align1}\n{align2}'
+    return f"{align1}\n{align2}"
 
 
 if __name__ == "__main__":
