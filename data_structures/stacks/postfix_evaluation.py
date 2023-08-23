@@ -171,7 +171,7 @@ def evaluate(post_fix: list[str], verbose: bool = False) -> float:
                 sep=" | ",
             )
         # evaluate the 2 values popped from stack & push result to stack
-        stack.append(OPERATORS[x](a, b))
+        stack.append(OPERATORS[x](a, b))  # type: ignore[index]
         if verbose:
             # output in tabular format
             print(
