@@ -34,7 +34,8 @@ OPERATORS = {
     "/": lambda p, q: p / q,
     "+": lambda p, q: p + q,
     "-": lambda p, q: p - q,
-}  
+}
+
 
 def parse_token(token: str | float) -> float | str:
     """
@@ -190,12 +191,16 @@ if __name__ == "__main__":
     # Create a loop so that the user can evaluate postfix expressions multiple times
     while True:
         expression = input("Enter a Postfix Expression (space separated): ").split(" ")
-        display = input(
-            "Do you want to see stack contents while evaluating? [y/N]: "
-        ).strip().lower() == "y"
+        display = (
+            input("Do you want to see stack contents while evaluating? [y/N]: ")
+            .strip()
+            .lower()
+            == "y"
+        )
         output = evaluate(expression, display)
         print("Result = ", output)
-        if input(
-            "Do you want to enter another expression? [y/N]: "
-        ).strip().lower() != "y":
+        if (
+            input("Do you want to enter another expression? [y/N]: ").strip().lower()
+            != "y"
+        ):
             break
