@@ -191,16 +191,10 @@ if __name__ == "__main__":
     # Create a loop so that the user can evaluate postfix expressions multiple times
     while True:
         expression = input("Enter a Postfix Expression (space separated): ").split(" ")
-        display = (
-            input("Do you want to see stack contents while evaluating? [y/N]: ")
-            .strip()
-            .lower()
-            == "y"
-        )
-        output = evaluate(expression, display)
+        prompt = "Do you want to see stack contents while evaluating? [y/N]: "
+        verbose = input(prompt).strip().lower() == "y"
+        output = evaluate(expression, verbose)
         print("Result = ", output)
-        if (
-            input("Do you want to enter another expression? [y/N]: ").strip().lower()
-            != "y"
-        ):
+        prompt = "Do you want to enter another expression? [y/N]: "
+        if input(prompt).strip().lower() != "y":
             break
