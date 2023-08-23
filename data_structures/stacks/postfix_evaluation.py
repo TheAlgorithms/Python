@@ -31,7 +31,7 @@ UNARY_OP_SYMBOLS = ("-", "+")
 BINARY_OP_SYMBOLS = ("-", "+", "*", "^", "/")
 
 
-def parse_token(data: str) -> float | str:
+def parse_token(token: str | float) -> float | str:
     """
     Converts the given data to appropriate number if it is indeed a number, else returns
     the data as it is with a False flag. This function also serves as a check of whether
@@ -39,26 +39,21 @@ def parse_token(data: str) -> float | str:
 
     Parameters
     ----------
-    data : str
+    token : str or float
         The data which needs to be converted to the appropriate number
 
     Returns
     -------
-    bool,  int or float
-        Returns a tuple of (a, b) where 'a' is True if data is indeed a number (integer
-        or numeric) and 'b' is either an integer of a floating point number.
-        If 'a' is False, then b is 'data'
+    float or str
+        Returns a float if `token` is a number and returns `token` if it's an operator
     """
+    if is_operator(token):
+        return token
     try:
-        return int(data)
+        return float(token)
     except ValueError:
-        try:
-            return float(data)
-        except ValueError:
-            if is_operator(data):
-                return data
-            msg = f"{data} is neither a number nor a valid operator"
-            raise ValueError(msg)
+        msg = f"{token} is neither a number nor a valid operator"
+        raise ValueError(msg)
 
 
 def is_operator(token: str | float) -> bool:
