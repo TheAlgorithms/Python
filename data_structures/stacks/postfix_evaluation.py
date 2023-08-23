@@ -1,5 +1,5 @@
 """
-The Reverse Polish Nation also known as Polish postfix notation or simply postfix
+Reverse Polish Nation is also known as Polish postfix notation or simply postfix
 notation.
 https://en.wikipedia.org/wiki/Reverse_Polish_notation
 Classic examples of simple stack implementations.
@@ -39,13 +39,13 @@ OPERATORS = {
 
 def parse_token(token: str | float) -> float | str:
     """
-    Converts the given data to appropriate number if it is indeed a number, else returns
-    the data as it is with a False flag. This function also serves as a check of whether
-    the input is a number or not.
+    Converts the given data to the appropriate number if it is indeed a number, else
+    returns the data as it is with a False flag. This function also serves as a check
+    of whether the input is a number or not.
 
     Parameters
     ----------
-    token: The data which needs to be converted to the appropriate operator or number.
+    token: The data that needs to be converted to the appropriate operator or number.
 
     Returns
     -------
@@ -63,7 +63,7 @@ def parse_token(token: str | float) -> float | str:
 
 def evaluate(post_fix: list[str], verbose: bool = False) -> float:
     """
-    Function that evaluates postfix expression using a stack.
+    Evaluate postfix expression using a stack.
     >>> evaluate(["0"])
     0.0
     >>> evaluate(["-0"])
@@ -95,11 +95,11 @@ def evaluate(post_fix: list[str], verbose: bool = False) -> float:
 
     Parameters
     ----------
-    post_fix : list
-        The postfix expression tokenized into operators and operands and stored as a
-        python list
+    post_fix:
+        The postfix expression is tokenized into operators and operands and stored
+        as a Python list
 
-    verbose : bool
+    verbose:
         Display stack contents while evaluating the expression if verbose is True
 
     Returns
@@ -129,7 +129,7 @@ def evaluate(post_fix: list[str], verbose: bool = False) -> float:
                 )
             continue
         # If x is operator
-        # If only 1 value is inside stack and + or - is encountered
+        # If only 1 value is inside the stack and + or - is encountered
         # then this is unary + or - case
         if x in UNARY_OP_SYMBOLS and len(stack) < 2:
             b = stack.pop()  # pop stack
@@ -175,12 +175,12 @@ def evaluate(post_fix: list[str], verbose: bool = False) -> float:
         if verbose:
             # output in tabular format
             print(
-                str(x).rjust(8),
+                f"{x}".rjust(8),
                 f"push({a}{x}{b})".ljust(12),
                 stack,
                 sep=" | ",
             )
-    # If everything executed correctly, the stack will contain
+    # If everything is executed correctly, the stack will contain
     # only one element which is the result
     if len(stack) != 1:
         raise ArithmeticError("Input is not a valid postfix expression")
