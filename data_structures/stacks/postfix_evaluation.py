@@ -31,7 +31,7 @@ UNARY_OP_SYMBOLS = ("-", "+")
 BINARY_OP_SYMBOLS = ("-", "+", "*", "^", "/")
 
 
-def get_number(data: str) -> int | float | str:
+def parse_token(data: str) -> float | str:
     """
     Converts the given data to appropriate number if it is indeed a number, else returns
     the data as it is with a False flag. This function also serves as a check of whether
@@ -61,14 +61,14 @@ def get_number(data: str) -> int | float | str:
             raise ValueError(msg)
 
 
-def is_operator(data: str | int | float) -> bool:
+def is_operator(token: str | float) -> bool:
     """
     Checks whether a given input is one of the valid operators or not.
     Valid operators being '-', '+', '*', '^' and '/'.
 
     Parameters
     ----------
-    data : str
+    token : str
         The value that needs to be checked for operator
 
     Returns
@@ -76,22 +76,26 @@ def is_operator(data: str | int | float) -> bool:
     bool
         True if data is an operator else False.
     """
-    return data in BINARY_OP_SYMBOLS
+    return token in BINARY_OP_SYMBOLS
 
 
-def evaluate(post_fix: list[str], verbose: bool = False) -> int | float | str | None:
+def evaluate(post_fix: list[str], verbose: bool = False) -> float:
     """
     Function that evaluates postfix expression using a stack.
     >>> evaluate(["2", "1", "+", "3", "*"])
-    9
+    9.0
     >>> evaluate(["4", "13", "5", "/", "+"])
     6.6
     >>> evaluate(["2", "-", "3", "+"])
-    1
+    1.0
     >>> evaluate(["-4", "5", "*", "6", "-"])
-    -26
+    -26.0
     >>> evaluate([])
     0
+    >>> evaluate(["4", "-", "6", "7", "/", "9", "8"])
+    Traceback (most recent call last):
+    ...
+    ArithmeticError: Input is not a valid postfix expression
 
     Parameters
     ----------
@@ -104,10 +108,9 @@ def evaluate(post_fix: list[str], verbose: bool = False) -> int | float | str | 
 
     Returns
     -------
-    int
+    float
         The evaluated value
     """
-    x: str | int | float
     stack = []
     valid_expression = []
     opr = {
@@ -120,8 +123,7 @@ def evaluate(post_fix: list[str], verbose: bool = False) -> int | float | str | 
     if len(post_fix) == 0:
         return 0
     # Checking the list to find out whether the postfix expression is valid
-    for x in post_fix:
-        valid_expression.append(get_number(x))
+    valid_expression = [parse_token(token) for token in post_fix]
     if verbose:
         # print table header
         print("Symbol".center(8), "Action".center(12), "Stack", sep=" | ")
@@ -190,14 +192,11 @@ def evaluate(post_fix: list[str], verbose: bool = False) -> int | float | str | 
                 stack,
                 sep=" | ",
             )
-        # else:
-        #     msg = f"{x} is neither a number nor a valid operator"
-        #     raise ValueError(msg)
     # If everything executed correctly, the stack will contain
     # only one element which is the result
     if len(stack) != 1:
         raise ArithmeticError("Input is not a valid postfix expression")
-    return stack[0]
+    return float(stack[0])
 
 
 def is_yes(val: str) -> bool:
