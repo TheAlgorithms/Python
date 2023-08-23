@@ -1,8 +1,8 @@
 """
-The Reverse Polish Nation also known as Polish postfix notation
-or simply postfix notation.
+The Reverse Polish Nation also known as Polish postfix notation or simply postfix
+notation.
 https://en.wikipedia.org/wiki/Reverse_Polish_notation
-Classic examples of simple stack implementations
+Classic examples of simple stack implementations.
 Valid operators are +, -, *, /.
 Each operand may be an integer or another expression.
 
@@ -27,11 +27,16 @@ Enter a Postfix Equation (space separated) = 5 6 9 * +
 # Defining valid unary operator symbols
 UNARY_OP_SYMBOLS = ("-", "+")
 
-# Defining valid binary operator symbols
-BINARY_OP_SYMBOLS = ("-", "+", "*", "^", "/")
+# operators & their respective operation
+OPERATORS = {
+    "^": lambda p, q: p**q,
+    "*": lambda p, q: p * q,
+    "/": lambda p, q: p / q,
+    "+": lambda p, q: p + q,
+    "-": lambda p, q: p - q,
+}  
 
-
-def parse_token(token: str) -> float | str:
+def parse_token(token: str | float) -> float | str:
     """
     Converts the given data to appropriate number if it is indeed a number, else returns
     the data as it is with a False flag. This function also serves as a check of whether
@@ -39,15 +44,14 @@ def parse_token(token: str) -> float | str:
 
     Parameters
     ----------
-    token : str
-        The data which needs to be converted to the appropriate number
+    token: The data which needs to be converted to the appropriate operator or number.
 
     Returns
     -------
     float or str
-        Returns a float if `token` is a number and returns `token` if it's an operator
+        Returns a float if `token` is a number or a str if `token` is an operator
     """
-    if is_operator(token):
+    if token in OPERATORS:
         return token
     try:
         return float(token)
@@ -56,29 +60,25 @@ def parse_token(token: str) -> float | str:
         raise ValueError(msg)
 
 
-def is_operator(token: str | float) -> bool:
-    """
-    Checks whether a given input is one of the valid operators or not.
-    Valid operators being '-', '+', '*', '^' and '/'.
-
-    Parameters
-    ----------
-    token : str or float
-        The value that needs to be checked for operator
-
-    Returns
-    -------
-    bool
-        True if data is an operator else False.
-    """
-    return token in BINARY_OP_SYMBOLS
-
-
 def evaluate(post_fix: list[str], verbose: bool = False) -> float:
     """
     Function that evaluates postfix expression using a stack.
+    >>> evaluate(["0"])
+    0.0
+    >>> evaluate(["-0"])
+    -0.0
+    >>> evaluate(["1"])
+    1.0
+    >>> evaluate(["-1"])
+    -1.0
+    >>> evaluate(["-1.1"])
+    -1.1
     >>> evaluate(["2", "1", "+", "3", "*"])
     9.0
+    >>> evaluate(["2", "1.9", "+", "3", "*"])
+    11.7
+    >>> evaluate(["2", "-1.9", "+", "3", "*"])
+    0.30000000000000027
     >>> evaluate(["4", "13", "5", "/", "+"])
     6.6
     >>> evaluate(["2", "-", "3", "+"])
@@ -106,16 +106,7 @@ def evaluate(post_fix: list[str], verbose: bool = False) -> float:
     float
         The evaluated value
     """
-    stack = []
-    valid_expression = []
-    opr = {
-        "^": lambda p, q: p**q,
-        "*": lambda p, q: p * q,
-        "/": lambda p, q: p / q,
-        "+": lambda p, q: p + q,
-        "-": lambda p, q: p - q,
-    }  # operators & their respective operation
-    if len(post_fix) == 0:
+    if not post_fix:
         return 0
     # Checking the list to find out whether the postfix expression is valid
     valid_expression = [parse_token(token) for token in post_fix]
@@ -123,14 +114,15 @@ def evaluate(post_fix: list[str], verbose: bool = False) -> float:
         # print table header
         print("Symbol".center(8), "Action".center(12), "Stack", sep=" | ")
         print("-" * (30 + len(post_fix)))
+    stack = []
     for x in valid_expression:
-        if not is_operator(x):
+        if x not in OPERATORS:
             stack.append(x)  # append x to stack
             if verbose:
                 # output in tabular format
                 print(
-                    str(x).rjust(8),
-                    ("push(" + str(x) + ")").ljust(12),
+                    f"{x}".rjust(8),
+                    f"push({x})".ljust(12),
                     stack,
                     sep=" | ",
                 )
@@ -147,13 +139,13 @@ def evaluate(post_fix: list[str], verbose: bool = False) -> float:
                 # output in tabular format
                 print(
                     "".rjust(8),
-                    ("pop(" + str(b) + ")").ljust(12),
+                    f"pop({b})".ljust(12),
                     stack,
                     sep=" | ",
                 )
                 print(
                     str(x).rjust(8),
-                    ("push(" + str(x) + str(b) + ")").ljust(12),
+                    f"push({x}{b})".ljust(12),
                     stack,
                     sep=" | ",
                 )
@@ -163,7 +155,7 @@ def evaluate(post_fix: list[str], verbose: bool = False) -> float:
             # output in tabular format
             print(
                 "".rjust(8),
-                ("pop(" + str(b) + ")").ljust(12),
+                f"pop({b})".ljust(12),
                 stack,
                 sep=" | ",
             )
@@ -173,17 +165,17 @@ def evaluate(post_fix: list[str], verbose: bool = False) -> float:
             # output in tabular format
             print(
                 "".rjust(8),
-                ("pop(" + str(a) + ")").ljust(12),
+                f"pop({a})".ljust(12),
                 stack,
                 sep=" | ",
             )
         # evaluate the 2 values popped from stack & push result to stack
-        stack.append(opr[str(x)](a, b))
+        stack.append(OPERATORS[x](a, b))
         if verbose:
             # output in tabular format
             print(
                 str(x).rjust(8),
-                ("push(" + str(a) + str(x) + str(b) + ")").ljust(12),
+                f"push({a}{x}{b})".ljust(12),
                 stack,
                 sep=" | ",
             )
@@ -194,35 +186,16 @@ def evaluate(post_fix: list[str], verbose: bool = False) -> float:
     return float(stack[0])
 
 
-def is_yes(val: str) -> bool:
-    """
-    Function that checks whether a user has entered any representation of a Yes (y, Y).
-    Any other input is considered as a No.
-
-    Parameters
-    -----------
-    val : str
-        The value entered by user
-
-    Returns
-    -------
-    bool
-        True if Yes, otherwise False
-    """
-    return val in ("Y", "y")
-
-
 if __name__ == "__main__":
-    loop = True
-    # Creating a loop so that user can evaluate postfix expression multiple times
+    # Create a loop so that the user can evaluate postfix expressions multiple times
     while True:
         expression = input("Enter a Postfix Expression (space separated): ").split(" ")
-        choice = input(
+        display = input(
             "Do you want to see stack contents while evaluating? [y/N]: "
-        ).strip()
-        display = is_yes(choice)
+        ).strip().lower() == "y"
         output = evaluate(expression, display)
         print("Result = ", output)
-        choice = input("Do you want to enter another expression? [y/N]: ")
-        if not is_yes(choice):
+        if input(
+            "Do you want to enter another expression? [y/N]: "
+        ).strip().lower() != "y":
             break
