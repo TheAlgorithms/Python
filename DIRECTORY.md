@@ -245,7 +245,6 @@
   * Stacks
     * [Balanced Parentheses](data_structures/stacks/balanced_parentheses.py)
     * [Dijkstras Two Stack Algorithm](data_structures/stacks/dijkstras_two_stack_algorithm.py)
-    * [Evaluate Postfix Notations](data_structures/stacks/evaluate_postfix_notations.py)
     * [Infix To Postfix Conversion](data_structures/stacks/infix_to_postfix_conversion.py)
     * [Infix To Prefix Conversion](data_structures/stacks/infix_to_prefix_conversion.py)
     * [Next Greater Element](data_structures/stacks/next_greater_element.py)
