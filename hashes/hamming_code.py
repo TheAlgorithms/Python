@@ -135,7 +135,7 @@ def emitter_converter(size_par, data):
 
     # Mount the message
     cont_bp = 0  # parity bit counter
-    for x in range(0, size_par + len(data)):
+    for x in range(size_par + len(data)):
         if data_ord[x] is None:
             data_out.append(str(parity[cont_bp]))
             cont_bp += 1
@@ -228,7 +228,7 @@ def receptor_converter(size_par, data):
 
     # Mount the message
     cont_bp = 0  # Parity bit counter
-    for x in range(0, size_par + len(data_output)):
+    for x in range(size_par + len(data_output)):
         if data_ord[x] is None:
             data_out.append(str(parity[cont_bp]))
             cont_bp += 1

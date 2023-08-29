@@ -95,7 +95,7 @@ def util_hamilton_cycle(graph: list[list[int]], path: list[int], curr_ind: int) 
         return graph[path[curr_ind - 1]][path[0]] == 1
 
     # Recursive Step
-    for next_ver in range(0, len(graph)):
+    for next_ver in range(len(graph)):
         if valid_connection(graph, next_ver, curr_ind, path):
             # Insert current vertex  into path as next transition
             path[curr_ind] = next_ver

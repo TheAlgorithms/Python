@@ -118,8 +118,8 @@ def test_local_binary_pattern():
 
     # Iterating through the image and calculating the local binary pattern value
     # for each pixel.
-    for i in range(0, image.shape[0]):
-        for j in range(0, image.shape[1]):
+    for i in range(image.shape[0]):
+        for j in range(image.shape[1]):
             lbp_image[i][j] = lbp.local_binary_value(image, i, j)
 
     assert lbp_image.any()

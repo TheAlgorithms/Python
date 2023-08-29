@@ -36,7 +36,7 @@ def calculation_span(price, s):
 
 # A utility function to print elements of array
 def print_array(arr, n):
-    for i in range(0, n):
+    for i in range(n):
         print(arr[i], end=" ")
 
 

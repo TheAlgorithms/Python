@@ -68,7 +68,7 @@ def is_palindrome_dict(head):
             middle += 1
         else:
             step = 0
-            for i in range(0, len(v)):
+            for i in range(len(v)):
                 if v[i] + v[len(v) - 1 - step] != checksum:
                     return False
                 step += 1
