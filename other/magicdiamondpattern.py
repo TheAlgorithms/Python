@@ -7,10 +7,10 @@ def floyd(n):
         Parameters:
     n : size of pattern
     """
-    for i in range(0, n):
-        for _ in range(0, n - i - 1):  # printing spaces
+    for i in range(n):
+        for _ in range(n - i - 1):  # printing spaces
             print(" ", end="")
-        for _ in range(0, i + 1):  # printing stars
+        for _ in range(i + 1):  # printing stars
             print("* ", end="")
         print()
 

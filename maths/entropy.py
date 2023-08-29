@@ -101,7 +101,7 @@ def analyze_text(text: str) -> tuple[dict, dict]:
 
     # first case when we have space at start.
     two_char_strings[" " + text[0]] += 1
-    for i in range(0, len(text) - 1):
+    for i in range(len(text) - 1):
         single_char_strings[text[i]] += 1
         two_char_strings[text[i : i + 2]] += 1
     return single_char_strings, two_char_strings

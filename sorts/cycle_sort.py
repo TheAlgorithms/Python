@@ -19,7 +19,7 @@ def cycle_sort(array: list) -> list:
     []
     """
     array_len = len(array)
-    for cycle_start in range(0, array_len - 1):
+    for cycle_start in range(array_len - 1):
         item = array[cycle_start]
 
         pos = cycle_start
