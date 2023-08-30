@@ -25,6 +25,23 @@ class LinkedList:
         self.head = Node(item, self.head)
         self.size += 1
 
+    def add_at_position(self, item: Any, position: int) -> bool:
+        if position < 0:
+            return False
+
+        current = self.head
+        counter = 0
+        while current and counter < position:
+            current = current.next
+            counter += 1
+
+        if current:  # Check if current is not None
+            new_node = Node(item, current.next)
+            current.next = new_node
+            return True
+        else:
+            return False
+
     def remove(self) -> Any:
         # Switched 'self.is_empty()' to 'self.head is None'
         # because mypy was considering the possibility that 'self.head'
