@@ -26,6 +26,24 @@ class LinkedList:
         self.size += 1
 
     def add_at_position(self, item: Any, position: int) -> bool:
+        """
+        Adds a new node with the given item at the specified position in the linked list
+
+        Args:
+            item (Any): The item to be added to the linked list.
+            position (int): The position at which the item should be inserted.
+
+        Returns:
+            bool: True if the insertion was successful, False otherwise.
+
+        >>> linked_list = LinkedList()
+        >>> linked_list.add(1)
+        >>> linked_list.add(2)
+        >>> linked_list.add(3)
+        >>> linked_list.add_at_position(10, 1)
+        True
+
+        """
         if position < 0:
             return False
 
