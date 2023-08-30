@@ -1,4 +1,5 @@
 """
+algorithms
 README, Author - Jigyasa Gandhi(mailto:jigsgandhi97@gmail.com)
 Requirements:
   - scikit-fuzzy
