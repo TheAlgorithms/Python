@@ -35,13 +35,13 @@ def int_to_base(number, base_of_interest):
     - "base_of_interest" most be between 2 and 36 inclusive
     """
 
-    if (isinstance(number, int)):
+    if isinstance(number, int):
         raise TypeError("number must be an integer from base 2 to 36")
-    if (isinstance(base_of_interest, int)):
+    if isinstance(base_of_interest, int):
         raise TypeError("base_of_interest must be an integer from 2 to 36")
-    if ((base_of_interest > 36) or (base_of_interest < 2)):
+    if (base_of_interest > 36) or (base_of_interest < 2):
         raise ValueError("base_of_number must be between 2 and 36 inclusive")
-        
+
     digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     result = ""
 
