@@ -11,10 +11,10 @@ def int_to_base(number, base_of_interest):
     while number > 0:
         number, remainder = divmod(number, base_of_interest)
         result = digits[remainder] + result
-    
+
     if result == "":
         result = "0"
-    
+
     return result
 
 
@@ -42,7 +42,7 @@ def sum_of_digits(num: int, base_of_interest: int):
     ValueError: 'base_of_interest' must be between 36 and 2 inclusive
     """
 
-    if ((base_of_interest > 36) or (base_of_interest < 2)):
+    if (base_of_interest > 36) or (base_of_interest < 2):
         raise ValueError("'base_of_interest' must be between 36 and 2 inclusive")
 
     num = int_to_base(num, base_of_interest)
@@ -76,15 +76,15 @@ def all_harshad_numbers(num: int, base_of_interest: int):
     ValueError: 'base_of_interest' must be between 36 and 2 inclusive
     """
 
-    if ((base_of_interest > 36) or (base_of_interest < 2)):
+    if (base_of_interest > 36) or (base_of_interest < 2):
         raise ValueError("'base_of_interest' must be between 36 and 2 inclusive")
 
     result = 0
     numbers = []
-    if (num >= 0):
+    if num >= 0:
         for i in range(1, num):
             y = sum_of_digits(i, base_of_interest)
-            if (i % int(y, base_of_interest) == 0):
+            if i % int(y, base_of_interest) == 0:
                 result += 1
                 numbers.append(int_to_base(i, base_of_interest))
 
@@ -114,13 +114,13 @@ def is_harshad_number(num: int, base_of_interest: int):
     ValueError: 'base_of_interest' must be between 36 and 2 inclusive
     """
 
-    if ((base_of_interest > 36) or (base_of_interest < 2)):
+    if (base_of_interest > 36) or (base_of_interest < 2):
         raise ValueError("'base_of_interest' must be between 36 and 2 inclusive")
 
-    if (num >= 0):
+    if num >= 0:
         n = int_to_base(num, base_of_interest)
         d = sum_of_digits(num, base_of_interest)
-        if (int(n, base_of_interest) % int(d, base_of_interest) == 0):
+        if int(n, base_of_interest) % int(d, base_of_interest) == 0:
             return True
 
     return False
