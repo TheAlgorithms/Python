@@ -1,13 +1,13 @@
 """
-Knuth-Yao dynamic programming speedup, also known as the Knuth-Yao optimization, 
-is a technique used to accelerate the computation of certain types of dynamic programming algorithms. 
-It was introduced by Donald Knuth and Andrew Yao in their paper "Efficient Binary-Search Trees" in 1976. 
+Knuth-Yao dynamic programming speedup, also known as the Knuth-Yao optimization,
+is a technique used to accelerate the computation of certain types of dynamic programming algorithms.
+It was introduced by Donald Knuth and Andrew Yao in their paper "Efficient Binary-Search Trees" in 1976.
 
 This implementation the following recurrence relation
 
 dp[i][j] = min(i < k < j){dp[i][k] + dp[k][j] + cost[i][j]},
 
-where opt[i][j-1] <= opt[i][j] <= opt[i+1][j] with opt[i][j] representing 
+where opt[i][j-1] <= opt[i][j] <= opt[i+1][j] with opt[i][j] representing
 the value of 'k' that minimizes the given expression.
 
 Equivalently, the cost function satisfies either of the following conditions.
