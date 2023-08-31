@@ -45,9 +45,9 @@ def sum_of_digits(num: int, base_of_interest: int) -> str:
     if (base_of_interest > 36) or (base_of_interest < 2):
         raise ValueError("'base_of_interest' must be between 36 and 2 inclusive")
 
-    num = int_to_base(num, base_of_interest)
+    num_str = int_to_base(num, base_of_interest)
     res = 0
-    for char in num:
+    for char in num_str:
         res += int(char, base_of_interest)
     res = int_to_base(res, base_of_interest)
     return res
