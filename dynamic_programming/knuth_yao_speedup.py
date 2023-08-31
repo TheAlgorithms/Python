@@ -25,7 +25,10 @@ Reference: https://cp-algorithms.com/dynamic_programming/knuth-optimization.html
 >>> knuth_yao_speedup([[1,2,3,4],[3,4,5,1],[1,1,1,3],[2,2,2,2]])
 15
 """
+
 from __future__ import annotations
+
+import sys
 
 
 def knuth_yao_speedup(cost: list[list[int]]) -> int:
@@ -42,7 +45,7 @@ def knuth_yao_speedup(cost: list[list[int]]) -> int:
     for d in range(2, n):
         for i in range(n - d):
             j = i + d
-            dp[i][j] = float("inf")
+            dp[i][j] = sys.maxsize  # infinity
             for k in range(opt_k[i][j - 1], opt_k[i + 1][j] + 1):
                 val = dp[i][k] + dp[k][j] + cost[i][j]
                 if val < dp[i][j]:
