@@ -1,5 +1,5 @@
 """
-A harshad number in a base n is an integer divisible by the sum of its digits in that base.
+A Harshad number is divisible by the sum of its digits in any base n.
 Reference: https://en.wikipedia.org/wiki/Harshad_number
 """
 
@@ -46,11 +46,11 @@ def sum_of_digits(num: int, base_of_interest: int):
         raise ValueError("'base_of_interest' must be between 36 and 2 inclusive")
 
     num = int_to_base(num, base_of_interest)
-    sum = 0
+    res = 0
     for char in num:
-        sum += int(char, base_of_interest)
-    sum = int_to_base(sum, base_of_interest)
-    return sum
+        res += int(char, base_of_interest)
+    res = int_to_base(res, base_of_interest)
+    return res
 
 
 def all_harshad_numbers(num: int, base_of_interest: int):
@@ -61,8 +61,8 @@ def all_harshad_numbers(num: int, base_of_interest: int):
     Examples:
     >>> all_harshad_numbers(15, 2)
     (7, ['1', '10', '100', '110', '1000', '1010', '1100'])
-    >>> all_harshad_numbers(25, 34)
-    (24, ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O'])
+    >>> all_harshad_numbers(12, 34)
+    (11, ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B'])
     >>> all_harshad_numbers(12, 4)
     (7, ['1', '2', '3', '10', '12', '20', '21'])
     >>> # bases beyond 36 and below 2 will error
