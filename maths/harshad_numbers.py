@@ -3,8 +3,6 @@ A Harshad number is divisible by the sum of its digits in any base n.
 Reference: https://en.wikipedia.org/wiki/Harshad_number
 """
 
-from typing import Tuple, List
-
 
 def int_to_base(number: int, base_of_interest: int) -> str:
     digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -55,7 +53,7 @@ def sum_of_digits(num: int, base_of_interest: int) -> str:
     return res
 
 
-def all_harshad_numbers(num: int, base_of_interest: int) -> Tuple[int, List[str]]:
+def all_harshad_numbers(num: int, base_of_interest: int) -> tuple[int, list[str]]:
     """
     Finds all Harshad numbers smaller than num in base 'base_of_interest'.
     Where 'base_of_interest' ranges from 2 to 36.
