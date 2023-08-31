@@ -49,8 +49,8 @@ def sum_of_digits(num: int, base_of_interest: int) -> str:
     res = 0
     for char in num_str:
         res += int(char, base_of_interest)
-    res = int_to_base(res, base_of_interest)
-    return res
+    res_str = int_to_base(res, base_of_interest)
+    return res_str
 
 
 def all_harshad_numbers(num: int, base_of_interest: int) -> tuple[int, list[str]]:
