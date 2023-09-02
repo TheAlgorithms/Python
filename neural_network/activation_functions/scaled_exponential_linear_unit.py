@@ -27,10 +27,10 @@ def scaled_exponential_linear_unit(
     Formula : f(x) = _lambda * x if x > 0
                      _lambda * alpha * (e**x - 1) if x <= 0
     Examples :
-    >>> scaled_exponential_linear_unit(vector = np.array([1.3, 3.7, 2.4]))
+    >>> scaled_exponential_linear_unit(np.array([1.3, 3.7, 2.4]))
     Output : np.array([1.36591, 3.88759, 2.52168])
 
-    >>> scaled_exponential_linear_unit(vector = np.array([2.342, -3.455, -7.2116, 0.0, -4.532]))
+    >>> scaled_exponential_linear_unit(np.array([2.342, -3.455, -7.2116, 0.0, -4.532]))
     Output : np.array([2.4607394, -1.70249977, -1.75673386,  0., -1.73911634])
     """
     return _lambda * np.where(vector > 0, vector, alpha * (np.exp(vector) - 1))
@@ -38,5 +38,4 @@ def scaled_exponential_linear_unit(
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
