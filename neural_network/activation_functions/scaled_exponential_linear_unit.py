@@ -38,4 +38,5 @@ def scaled_exponential_linear_unit(
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
