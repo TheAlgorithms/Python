@@ -1,11 +1,13 @@
 """
 Implements the Scaled Exponential Linear Unit or SELU function.
-
-The function takes a vector of K real numbers and two real numbers alpha(default = 1.6732) and lambda (default = 1.0507)
-as input and then applies the SELU function to each element of the vector. SELU is a self-normalizing activation function.
-It is a variant of the ELU. The main advantage of SELU is that we can be sure that the output will always be standardized
-due to its self-normalizing behavior. That means there is no need to include Batch-Normalization layers.
-
+The function takes a vector of K real numbers and two real numbers
+alpha(default = 1.6732) & lambda (default = 1.0507) as input and
+then applies the SELU function to each element of the vector.
+SELU is a self-normalizing activation function. It is a variant
+of the ELU. The main advantage of SELU is that we can be sure
+that the output will always be standardized due to its
+self-normalizing behavior. That means there is no need to
+include Batch-Normalization layers.
 References :
 https://iq.opengenus.org/scaled-exponential-linear-unit/
 """
