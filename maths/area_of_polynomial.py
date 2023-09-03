@@ -2,12 +2,7 @@
 Approximates the area of a polynomial given from the user using the trapezoidal rule
 """
 
-<<<<<<< HEAD:maths/area_of_polynomial.py
 def input_polynomial() -> list[float]:
-=======
-
-def input_polynomial() -> List[float]:
->>>>>>> 8463c3e27a22e8cee94c58d806a31f3bfe40a2a1:maths/area_of_polynomial_functions.py
     # This function takes the order of the polynomial and its coefficients as inputs from the user
     # and returns a list of coefficients.
     m = int(input("Enter order of polynomial: "))
@@ -17,12 +12,7 @@ def input_polynomial() -> List[float]:
         arr.append(a_j)
     return arr
 
-<<<<<<< HEAD:maths/area_of_polynomial.py
 def evaluate(arr: list[float], x: float) -> float:
-=======
-
-def evaluate(arr: List[float], x: float) -> float:
->>>>>>> 8463c3e27a22e8cee94c58d806a31f3bfe40a2a1:maths/area_of_polynomial_functions.py
     # This function takes a list of coefficients and a value of x as inputs
     # and returns the value of the polynomial at that point.
     y = 0
@@ -54,13 +44,8 @@ if __name__ == "__main__":
     # In the main block, the code takes inputs for the polynomial, start and end points on the x-axis,
     # and calculates the area under the curve for different numbers of steps.
     f = input_polynomial()
-<<<<<<< HEAD:maths/area_of_polynomial.py
     print("The given function is :")
     for j in range(len(f)-1):
-=======
-    print(f"The given function is :")
-    for j in range(len(f) - 1):
->>>>>>> 8463c3e27a22e8cee94c58d806a31f3bfe40a2a1:maths/area_of_polynomial_functions.py
         print(f"{f[j]}*x^{len(f)-j-1}", end=" + ")
     print(f"{f[-1]}*x^{0}")
 
