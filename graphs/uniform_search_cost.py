@@ -122,10 +122,11 @@ def run():
     # get the final result
     result = uniform_cost_search(graph, distance, goal, 0)
 
-    print("start: 0, goal: 6; Distance(Minimum/Lowest): ", result[0])
+    print("start: 0, goal: 6; Distance(Minimum/Lowest):", result[0])
 
 
 if __name__ == "__main__":
-    import doctest
+    run()
+    # import doctest
 
-    doctest.testmod()
+    # doctest.testmod()
