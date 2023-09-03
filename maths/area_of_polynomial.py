@@ -32,7 +32,7 @@ def evaluate(arr: list[float], x: float) -> float:
     the value of the polynomial at that point.
     :param arr: a list containing coefficients
     :param x: value of x
-    
+
     >>> arr = [5]
     >>> f"{evaluate(arr,2)}
     '5'
