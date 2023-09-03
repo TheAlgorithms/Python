@@ -9,6 +9,13 @@ def input_polynomial() -> list[float]:
     This function takes the order of the polynomial and 
     its coefficients as inputs from the user
     and returns a list of coefficients.
+    >>> input_polynomial()
+    Enter order of polynomial: 3
+    Enter coefficient of a[3]: 2
+    Enter coefficient of a[2]: 3
+    Enter coefficient of a[1]: 1
+    Enter coefficient of a[0]: 5
+    [2.0, 3.0, 1.0, 5.0]
     """
     m = int(input("Enter order of polynomial: "))
     arr = []
@@ -23,6 +30,8 @@ def evaluate(arr: list[float], x: float) -> float:
     This function takes a list of coefficients 
     and a value of x as inputs and returns 
     the value of the polynomial at that point.
+    :param arr: a list containing coefficients
+    :param x: value of x
     
     >>> arr = [5]
     >>> f"{evaluate(arr,2)}
@@ -31,7 +40,7 @@ def evaluate(arr: list[float], x: float) -> float:
     >>> f"{evaluate(arr,2)}
     '11'
     """
-    y = 0
+    y = 0.0
     for i in range(len(arr)):
         y += arr[i] * (x ** (len(arr) - i - 1))
     return y
