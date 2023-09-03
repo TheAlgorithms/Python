@@ -80,4 +80,4 @@ if __name__ == "__main__":
     # while i <= 100000:
     #     print(f"with {i} steps: area = {trapezoidal_area(f, x1, x2, i):.4f}")
     #     i *= 10
-    print(evaluate(f,x1))
+    print(evaluate(f, x1))
