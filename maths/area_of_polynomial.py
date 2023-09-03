@@ -1,5 +1,6 @@
 """
-Approximates the area of a polynomial given from the user using the trapezoidal rule
+Approximates the area of a polynomial given from the user 
+using the trapezoidal rule
 """
 
 
@@ -79,8 +80,9 @@ def trapezoidal_area(
 
 
 if __name__ == "__main__":
-    # In the main block, the code takes inputs for the polynomial, start and end points on the x-axis,
-    # and calculates the area under the curve for different numbers of steps.
+    # In the main block, the code takes inputs for the polynomial, 
+    # start and end points on the x-axis,and calculates the area 
+    # under the curve for different numbers of steps.
     f = input_polynomial()
     print("The given function is :")
     for j in range(len(f) - 1):
