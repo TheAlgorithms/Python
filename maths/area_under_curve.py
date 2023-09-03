@@ -3,6 +3,7 @@ Approximates the area under the curve using the trapezoidal rule
 """
 from __future__ import annotations
 
+
 def evaluate(arr: list[float], x: float) -> float:
     """
     This function takes a list of coefficients
@@ -22,6 +23,7 @@ def evaluate(arr: list[float], x: float) -> float:
     for i in range(len(arr)):
         y += arr[i] * (x ** (len(arr) - i - 1))
     return y
+
 
 def trapezoidal_area(
     fnc: list[float],
@@ -61,13 +63,12 @@ def trapezoidal_area(
 
 
 if __name__ == "__main__":
-
     m = int(input("Enter order of polynomial: ").strip())
     f = []
     for j in range(m, -1, -1):
         a_j = float(input(f"Enter coefficient of a[{j}]: ").strip())
         f.append(a_j)
-    
+
     print("The given function is :")
     for j in range(len(f) - 1):
         print(f"{f[j]}*x^{len(f)-j-1}", end=" + ")
