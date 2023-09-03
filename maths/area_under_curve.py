@@ -14,10 +14,10 @@ def evaluate(arr: list[float], x: float) -> float:
 
     >>> arr = [5]
     >>> f"{evaluate(arr,2)}"
-    '5'
+    '5.0'
     >>> arr = [5,1]
     >>> f"{evaluate(arr,2)}"
-    '11'
+    '11.0'
     """
     y = 0.0
     for i in range(len(arr)):
@@ -75,8 +75,9 @@ if __name__ == "__main__":
     x1 = float(input("Enter the value of x_start : "))
     x2 = float(input("Enter the value of x_end : "))
 
-    print(f"The area between the curve, x = {x1}, x = {x2} and the x axis is:")
-    i = 10
-    while i <= 100000:
-        print(f"with {i} steps: area = {trapezoidal_area(f, x1, x2, i):.4f}")
-        i *= 10
+    # print(f"The area between the curve, x = {x1}, x = {x2} and the x axis is:")
+    # i = 10
+    # while i <= 100000:
+    #     print(f"with {i} steps: area = {trapezoidal_area(f, x1, x2, i):.4f}")
+    #     i *= 10
+    print(evaluate(f,x1))
