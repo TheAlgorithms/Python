@@ -88,7 +88,7 @@ def run():
     start: 0, goal: 6; Distance(Minimum/Lowest): 8
     """
     # create the graph
-    graph, distance = [[] for i in range(8)], {}
+    graph, distance = [[] for _ in range(8)], {}
 
     # Node to node edges
     graph[0].append(1)

@@ -262,7 +262,7 @@ class UniformCostSearch:
         elif start_point[0] - end_point[0] < 0:
             dxy = dxy1
         goal_answer = []
-        for _ in range(0, len(end_point)):
+        for _ in range(len(end_point)):
             goal_answer.append(10**8)
         path = self.ucs(start_point, [end_point], grid, dxy, goal_answer)
         if path is None:
