@@ -2,6 +2,7 @@
 Approximates the area of a polynomial given from the user using the trapezoidal rule
 """
 
+
 def input_polynomial() -> list[float]:
     # This function takes the order of the polynomial and its coefficients as inputs from the user
     # and returns a list of coefficients.
@@ -11,6 +12,7 @@ def input_polynomial() -> list[float]:
         a_j = float(input(f"Enter coefficient of a[{j}]: "))
         arr.append(a_j)
     return arr
+
 
 def evaluate(arr: list[float], x: float) -> float:
     # This function takes a list of coefficients and a value of x as inputs
@@ -45,7 +47,7 @@ if __name__ == "__main__":
     # and calculates the area under the curve for different numbers of steps.
     f = input_polynomial()
     print("The given function is :")
-    for j in range(len(f)-1):
+    for j in range(len(f) - 1):
         print(f"{f[j]}*x^{len(f)-j-1}", end=" + ")
     print(f"{f[-1]}*x^{0}")
 
