@@ -12,10 +12,10 @@ def evaluate(arr: list[float], x: float) -> float:
     :param x: value of x
 
     >>> arr = [5]
-    >>> f"{evaluate(arr,2)}
+    >>> f"{evaluate(arr,2)}"
     '5'
     >>> arr = [5,1]
-    >>> f"{evaluate(arr,2)}
+    >>> f"{evaluate(arr,2)}"
     '11'
     """
     y = 0.0
@@ -38,12 +38,10 @@ def trapezoidal_area(
     :param steps: an accuracy gauge; more steps increases the accuracy
     :return: a float representing the length of the curve
 
-    >>> def f(x):
-    ...    return 5
+    >>> f = [5.0]
     >>> f"{trapezoidal_area(f, 12.0, 14.0, 1000):.3f}"
     '10.000'
-    >>> def f(x):
-    ...    return 9*x**2
+    >>> f = [9.0,0.0,0.0]
     >>> f"{trapezoidal_area(f, -4.0, 0, 10000):.4f}"
     '192.0000'
     >>> f"{trapezoidal_area(f, -4.0, 4.0, 10000):.4f}"
