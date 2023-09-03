@@ -72,6 +72,7 @@
 ## Cellular Automata
   * [Conways Game Of Life](cellular_automata/conways_game_of_life.py)
   * [Game Of Life](cellular_automata/game_of_life.py)
+  * [Langtons Ant](cellular_automata/langtons_ant.py)
   * [Nagel Schrekenberg](cellular_automata/nagel_schrekenberg.py)
   * [One Dimensional](cellular_automata/one_dimensional.py)
   * [Wa Tor](cellular_automata/wa_tor.py)
@@ -143,9 +144,9 @@
   * [Binary To Decimal](conversions/binary_to_decimal.py)
   * [Binary To Hexadecimal](conversions/binary_to_hexadecimal.py)
   * [Binary To Octal](conversions/binary_to_octal.py)
+  * [Convert Number To Words](conversions/convert_number_to_words.py)
   * [Decimal To Any](conversions/decimal_to_any.py)
   * [Decimal To Binary](conversions/decimal_to_binary.py)
-  * [Decimal To Binary Recursion](conversions/decimal_to_binary_recursion.py)
   * [Decimal To Hexadecimal](conversions/decimal_to_hexadecimal.py)
   * [Decimal To Octal](conversions/decimal_to_octal.py)
   * [Energy Conversions](conversions/energy_conversions.py)
@@ -154,6 +155,7 @@
   * [Hexadecimal To Decimal](conversions/hexadecimal_to_decimal.py)
   * [Length Conversion](conversions/length_conversion.py)
   * [Molecular Chemistry](conversions/molecular_chemistry.py)
+  * [Octal To Binary](conversions/octal_to_binary.py)
   * [Octal To Decimal](conversions/octal_to_decimal.py)
   * [Prefix Conversions](conversions/prefix_conversions.py)
   * [Prefix Conversions String](conversions/prefix_conversions_string.py)
@@ -243,7 +245,6 @@
   * Stacks
     * [Balanced Parentheses](data_structures/stacks/balanced_parentheses.py)
     * [Dijkstras Two Stack Algorithm](data_structures/stacks/dijkstras_two_stack_algorithm.py)
-    * [Evaluate Postfix Notations](data_structures/stacks/evaluate_postfix_notations.py)
     * [Infix To Postfix Conversion](data_structures/stacks/infix_to_postfix_conversion.py)
     * [Infix To Prefix Conversion](data_structures/stacks/infix_to_prefix_conversion.py)
     * [Next Greater Element](data_structures/stacks/next_greater_element.py)
@@ -1204,7 +1205,6 @@
 
 ## Web Programming
   * [Co2 Emission](web_programming/co2_emission.py)
-  * [Convert Number To Words](web_programming/convert_number_to_words.py)
   * [Covid Stats Via Xpath](web_programming/covid_stats_via_xpath.py)
   * [Crawl Google Results](web_programming/crawl_google_results.py)
   * [Crawl Google Scholar Citation](web_programming/crawl_google_scholar_citation.py)

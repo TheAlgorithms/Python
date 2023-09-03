@@ -44,7 +44,7 @@ def get_totients(max_one: int) -> list[int]:
     """
     totients = [0] * max_one
 
-    for i in range(0, max_one):
+    for i in range(max_one):
         totients[i] = i
 
     for i in range(2, max_one):
