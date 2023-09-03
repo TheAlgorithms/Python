@@ -3,8 +3,11 @@ Approximates the area of a polynomial given from the user using the trapezoidal 
 """
 
 def input_polynomial() -> list[float]:
-    # This function takes the order of the polynomial and its coefficients as inputs from the user
-    # and returns a list of coefficients.
+    """
+    This function takes the order of the polynomial and 
+    its coefficients as inputs from the user
+    and returns a list of coefficients.
+    """
     m = int(input("Enter order of polynomial: "))
     arr = []
     for j in range(m, -1, -1):
@@ -13,8 +16,18 @@ def input_polynomial() -> list[float]:
     return arr
 
 def evaluate(arr: list[float], x: float) -> float:
-    # This function takes a list of coefficients and a value of x as inputs
-    # and returns the value of the polynomial at that point.
+    """
+    This function takes a list of coefficients 
+    and a value of x as inputs and returns 
+    the value of the polynomial at that point.
+    
+    >>> arr = [5]
+    >>> f"{evaluate(arr,2)}
+    '5'
+    >>> arr = [5,1]
+    >>> f"{evaluate(arr,2)}
+    '11'
+    """
     y = 0
     for i in range(len(arr)):
         y += arr[i] * (x ** (len(arr) - i - 1))
@@ -27,8 +40,31 @@ def trapezoidal_area(
     x_end: float,
     steps: int = 100,
 ) -> float:
-    # This function takes a list of coefficients, start and end points on the x-axis, and the number of steps as inputs
-    # and returns the area under the curve between those points using the trapezoidal rule.
+    """
+    Treats curve as a collection of linear lines and sums the area of the
+    trapezium shape they form
+    :param fnc: a list which defines a curve
+    :param x_start: left end point to indicate the start of line segment
+    :param x_end: right end point to indicate end of line segment
+    :param steps: an accuracy gauge; more steps increases the accuracy
+    :return: a float representing the length of the curve
+
+    >>> def f(x):
+    ...    return 5
+    >>> f"{trapezoidal_area(f, 12.0, 14.0, 1000):.3f}"
+    '10.000'
+    >>> def f(x):
+    ...    return 9*x**2
+    >>> f"{trapezoidal_area(f, -4.0, 0, 10000):.4f}"
+    '192.0000'
+    >>> f"{trapezoidal_area(f, -4.0, 4.0, 10000):.4f}"
+    '384.0000'
+    """
+    # This function takes a list of coefficients, 
+    # start and end points on the x-axis, 
+    # and the number of steps as inputs
+    # and returns the area under the curve 
+    # between those points using the trapezoidal rule.
     dx = (x_end - x_start) / steps
     area = 0.0
     for i in range(steps):
