@@ -16,6 +16,16 @@
 
 
 def uniform_cost_search(graph, distance, goal, start):
+    """
+    Return nothing. Its a run whole algorithm and print the result.
+    >>> uniform_cost_search
+    >>> graph = [[1, 2], [2, 3], [4], [4, 5], [6], [6], [], []]
+    >>> distance = {(0, 1): 2, (0, 2): 1, (1, 2): 5, (1, 3): 10, (2, 4): 3, (3, 4): 2,
+    (3, 5): 1, (4, 6): 4, (5, 6): 3}
+    >>> goal = [6]
+    >>> start = 0
+    8
+    """
     # priority queue
     heap = []
     goal_answer = []
