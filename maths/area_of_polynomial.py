@@ -1,12 +1,12 @@
 """
-Approximates the area of a polynomial given from the user 
+Approximates the area of a polynomial given from the user
 using the trapezoidal rule
 """
 
 
 def input_polynomial() -> list[float]:
     """
-    This function takes the order of the polynomial and 
+    This function takes the order of the polynomial and
     its coefficients as inputs from the user
     and returns a list of coefficients.
     """
@@ -20,10 +20,10 @@ def input_polynomial() -> list[float]:
 
 def evaluate(arr: list[float], x: float) -> float:
     """
-    This function takes a list of coefficients 
-    and a value of x as inputs and returns 
+    This function takes a list of coefficients
+    and a value of x as inputs and returns
     the value of the polynomial at that point.
-    
+
     >>> arr = [5]
     >>> f"{evaluate(arr,2)}
     '5'
@@ -63,10 +63,10 @@ def trapezoidal_area(
     >>> f"{trapezoidal_area(f, -4.0, 4.0, 10000):.4f}"
     '384.0000'
     """
-    # This function takes a list of coefficients, 
-    # start and end points on the x-axis, 
+    # This function takes a list of coefficients,
+    # start and end points on the x-axis,
     # and the number of steps as inputs
-    # and returns the area under the curve 
+    # and returns the area under the curve
     # between those points using the trapezoidal rule.
     dx = (x_end - x_start) / steps
     area = 0.0
@@ -80,8 +80,8 @@ def trapezoidal_area(
 
 
 if __name__ == "__main__":
-    # In the main block, the code takes inputs for the polynomial, 
-    # start and end points on the x-axis,and calculates the area 
+    # In the main block, the code takes inputs for the polynomial,
+    # start and end points on the x-axis,and calculates the area
     # under the curve for different numbers of steps.
     f = input_polynomial()
     print("The given function is :")
