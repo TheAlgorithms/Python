@@ -15,11 +15,22 @@
 ##################### --------------------- #####################
 
 
-def uniform_cost_search(graph, distance, goal, start):
+def uniform_cost_search(
+    graph_data: list[list[int]],
+    distance: dict[
+        tuple[
+            int,
+            int,
+        ],
+        int,
+    ],
+    goal: list[int],
+    start: int,
+) -> list[int]:
     """
     Return nothing. Its a run whole algorithm and print the result.
     >>> uniform_cost_search
-    >>> graph = [[1, 2], [2, 3], [4], [4, 5], [6], [6], [], []]
+    >>> graph_data = [[1, 2], [2, 3], [4], [4, 5], [6], [6], [], []]
     >>> distance = {(0, 1): 2, (0, 2): 1, (1, 2): 5, (1, 3): 10, (2, 4): 3, (3, 4): 2,
     (3, 5): 1, (4, 6): 4, (5, 6): 3}
     >>> goal = [6]
@@ -63,17 +74,19 @@ def uniform_cost_search(graph, distance, goal, start):
                 return goal_answer
         # explore new unvisited node
         if current_node[1] not in visited:
-            for i in range(len(graph[current_node[1]])):
+            for i in range(len(graph_data[current_node[1]])):
                 # The value is negated to ensure that
                 # the node with the lowest priority is placed at the top.
                 heap.append(
                     [
                         (
                             current_node[0]
-                            + distance[(current_node[1], graph[current_node[1]][i])]
+                            + distance[
+                                (current_node[1], graph_data[current_node[1]][i])
+                            ]
                         )
                         * -1,
-                        graph[current_node[1]][i],
+                        graph_data[current_node[1]][i],
                     ]
                 )
         visited[current_node[1]] = 1
@@ -81,25 +94,26 @@ def uniform_cost_search(graph, distance, goal, start):
     return goal_answer
 
 
-def run():
+def run() -> None:
+    # start: 0, goal: 6; Distance(Minimum/Lowest): 8:
     """
     Return nothing. Its a run whole algorithm and print the result.
     >>> run()
     start: 0, goal: 6; Distance(Minimum/Lowest): 8
     """
-    # create the graph
-    graph, distance = [[] for _ in range(8)], {}
+    # create the graph_data
+    graph_data = [[] for _ in range(8)]  # type: list[list[int]]
 
     # Node to node edges
-    graph[0].append(1)
-    graph[0].append(2)
-    graph[1].append(2)
-    graph[1].append(3)
-    graph[2].append(4)
-    graph[3].append(4)
-    graph[3].append(5)
-    graph[4].append(6)
-    graph[5].append(6)
+    graph_data[0].append(1)
+    graph_data[0].append(2)
+    graph_data[1].append(2)
+    graph_data[1].append(3)
+    graph_data[2].append(4)
+    graph_data[3].append(4)
+    graph_data[3].append(5)
+    graph_data[4].append(6)
+    graph_data[5].append(6)
 
     # Distance for the edges one node to another node
     distance = {
@@ -120,13 +134,12 @@ def run():
     goal.append(6)
 
     # get the final result
-    result = uniform_cost_search(graph, distance, goal, 0)
+    result = uniform_cost_search(graph_data, distance, goal, 0)
 
     print("start: 0, goal: 6; Distance(Minimum/Lowest):", result[0])
 
 
 if __name__ == "__main__":
-    run()
-    # import doctest
+    import doctest
 
-    # doctest.testmod()
+    doctest.testmod()
