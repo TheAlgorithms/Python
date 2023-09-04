@@ -34,7 +34,7 @@ def uniform_search_cost(
     >>> goal = [2]
     >>> start = 0
     >>> uniform_search_cost(graph_data, distance, goal, start)
-    1
+    [1]
     """
     # priority queue
     heap = []
