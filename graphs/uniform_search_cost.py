@@ -33,7 +33,7 @@ def uniform_search_cost(
     >>> distance = {(0, 1): 2, (0, 2): 1, (1, 2): 5, (1, 3): 10}
     >>> goal = [2]
     >>> start = 0
-    >>> ucs(graph_data, distance, goal, start)
+    >>> uniform_search_cost(graph_data, distance, goal, start)
     1
     """
     # priority queue
@@ -94,7 +94,6 @@ def uniform_search_cost(
 
 
 def run() -> None:
-    # start: 0, goal: 6; Distance(Minimum/Lowest): 8:
     """
     Return nothing and prints only the output
     >>> run()
