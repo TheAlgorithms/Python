@@ -27,7 +27,6 @@ def uniform_search_cost(
     goal: list[int],
     start: int,
 ) -> list[int]:
-    print(graph_data)
     """
     Returns a list of integer values which are result of optimal distance
     >>> graph_data = [[1, 2], [2, 3], [], []]
