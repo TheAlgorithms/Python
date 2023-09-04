@@ -15,7 +15,7 @@
 ##################### --------------------- #####################
 
 
-def ucs(
+def uniform_search_cost(
     graph_data: list[list[int]],
     distance: dict[
         tuple[
@@ -27,15 +27,15 @@ def ucs(
     goal: list[int],
     start: int,
 ) -> list[int]:
+    print(graph_data)
     """
     Returns a list of integer values which are result of optimal distance
-    >>> graph_data = [[1, 2], [2, 3], [4], [4, 5], [6], [6], [], []]
-    >>> distance = {(0, 1): 2, (0, 2): 1, (1, 2): 5, (1, 3): 10, (2, 4): 3, (3, 4): 2,
-    (3, 5): 1, (4, 6): 4, (5, 6): 3}
-    >>> goal = [6]
+    >>> graph_data = [[1, 2], [2, 3], [], []]
+    >>> distance = {(0, 1): 2, (0, 2): 1, (1, 2): 5, (1, 3): 10}
+    >>> goal = [2]
     >>> start = 0
     >>> ucs(graph_data, distance, goal, start)
-    8
+    1
     """
     # priority queue
     heap = []
@@ -99,42 +99,27 @@ def run() -> None:
     """
     Return nothing and prints only the output
     >>> run()
-    start: 0, goal: 6; Distance(Minimum/Lowest): 8
+    start: 0, goal: 6; Distance(Minimum/Lowest): 1
     """
     # create the graph_data
-    graph_data = [[] for _ in range(8)]  # type: list[list[int]]
+    graph_data = [[] for _ in range(4)]  # type: list[list[int]]
 
     # Node to node edges
     graph_data[0].append(1)
     graph_data[0].append(2)
     graph_data[1].append(2)
     graph_data[1].append(3)
-    graph_data[2].append(4)
-    graph_data[3].append(4)
-    graph_data[3].append(5)
-    graph_data[4].append(6)
-    graph_data[5].append(6)
 
     # Distance for the edges one node to another node
-    distance = {
-        (0, 1): 2,
-        (0, 2): 1,
-        (1, 2): 5,
-        (1, 3): 10,
-        (2, 4): 3,
-        (3, 4): 2,
-        (3, 5): 1,
-        (4, 6): 4,
-        (5, 6): 3,
-    }
+    distance = {(0, 1): 2, (0, 2): 1, (1, 2): 5, (1, 3): 10}
 
     goal = []
 
     # Multiple goal states as uniform search distance feature
-    goal.append(6)
+    goal.append(2)
 
     # get the final result
-    result = ucs(graph_data, distance, goal, 0)
+    result = uniform_search_cost(graph_data, distance, goal, 0)
 
     print("start: 0, goal: 6; Distance(Minimum/Lowest):", result[0])
 
