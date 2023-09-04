@@ -15,7 +15,7 @@
 ##################### --------------------- #####################
 
 
-def uniform_cost_search(
+def ucs(
     graph_data: list[list[int]],
     distance: dict[
         tuple[
@@ -34,7 +34,7 @@ def uniform_cost_search(
     (3, 5): 1, (4, 6): 4, (5, 6): 3}
     >>> goal = [6]
     >>> start = 0
-    >>> uniform_cost_search(graph_data, distance, goal, start)
+    >>> ucs(graph_data, distance, goal, start)
     8
     """
     # priority queue
@@ -134,7 +134,7 @@ def run() -> None:
     goal.append(6)
 
     # get the final result
-    result = uniform_cost_search(graph_data, distance, goal, 0)
+    result = ucs(graph_data, distance, goal, 0)
 
     print("start: 0, goal: 6; Distance(Minimum/Lowest):", result[0])
 
