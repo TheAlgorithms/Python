@@ -85,8 +85,8 @@ def harshad_numbers_in_base(limit: int, base: int) -> list[str]:
 
     result = 0
     numbers = []
-    if num >= 0:
-        for i in range(1, num):
+    if limit >= 0:
+        for i in range(1, limit):
             y = sum_of_digits(i, base)
             if i % int(y, base) == 0:
                 result += 1
