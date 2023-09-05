@@ -1,5 +1,5 @@
 """
-A harshad number (or more specifically an n-harshad number) is a number that's 
+A harshad number (or more specifically an n-harshad number) is a number that's
 divisible by the sum of its digits in some given base n.
 Reference: https://en.wikipedia.org/wiki/Harshad_number
 """
