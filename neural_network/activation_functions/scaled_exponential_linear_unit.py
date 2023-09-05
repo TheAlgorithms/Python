@@ -20,11 +20,11 @@ def scaled_exponential_linear_unit(
 ) -> np.ndarray:
     """
     Applies the Scaled Exponential Linear Unit function to each element of the vector.
-    Parameters : 
+    Parameters :
         vector : np.ndarray
         alpha : float (default = 1.6732)
         _lambda : float (default = 1.0507)
-        
+
     Returns : np.ndarray
     Formula : f(x) = _lambda * x if x > 0
                      _lambda * alpha * (e**x - 1) if x <= 0
@@ -37,6 +37,8 @@ def scaled_exponential_linear_unit(
     """
     return _lambda * np.where(vector > 0, vector, alpha * (np.exp(vector) - 1))
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
