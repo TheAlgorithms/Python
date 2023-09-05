@@ -380,15 +380,15 @@ def get_distances(descriptors: np.ndarray, base: int) -> list[float]:
     )
     # Normalize distances between range [0, 1]
     distances = normalize_array(distances, 1)
-    distances = list(enumerate(distances))
-    return sorted(distances, key=lambda tup: tup[1])
+    enum_distances = list(enumerate(distances))
+    return sorted(enum_distances, key=lambda tup: tup[1])
 
 
 if __name__ == "__main__":
     # Index to compare haralick descriptors to
     index = int(input())
-    q_value = [int(value) for value in input().split()]
-    q_value = (q_value[0], q_value[1])
+    q_value_list = [int(value) for value in input().split()]
+    q_value = (q_value_list[0], q_value_list[1])
 
     # Format is the respective filter to apply,
     # can be either 1 for the opening filter or else for the closing
