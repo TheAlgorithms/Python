@@ -66,7 +66,7 @@ class WordSearch:
                         self.board[row - i][col] = word[i]
                     return
 
-    def insert_north_east(self, word: str, rows: list[int], cols: list[int]) -> None:
+    def insert_northeast(self, word: str, rows: list[int], cols: list[int]) -> None:
         """
         >>> ws = WordSearch(WORDS, 3, 3)
         >>> ws.insert_north_east("cat", [2], [0])
@@ -99,7 +99,7 @@ class WordSearch:
                     self.board[row - i][col + i] for i in range(word_length)
                 ]
                 if all(letter is None for letter in letters_diagonal_left):
-                    # Successful, insert the word north
+                    # Successful, insert the word northeast
                     for i in range(word_length):
                         self.board[row - i][col + i] = word[i]
                     return
@@ -131,12 +131,12 @@ class WordSearch:
                 # to the right of the column that will be overwritten
                 letters_left = [self.board[row][col + i] for i in range(word_length)]
                 if all(letter is None for letter in letters_left):
-                    # Successful, insert the word north
+                    # Successful, insert the word east
                     for i in range(word_length):
                         self.board[row][col + i] = word[i]
                     return
 
-    def insert_south_east(self, word: str, rows: list[int], cols: list[int]) -> None:
+    def insert_southeast(self, word: str, rows: list[int], cols: list[int]) -> None:
         """
         >>> ws = WordSearch(WORDS, 3, 3)
         >>> ws.insert_south_east("cat", [0], [0])
@@ -153,13 +153,13 @@ class WordSearch:
         word_length = len(word)
         # Attempt to insert the word into each row and when successful, exit
         for row in rows:
-            # Check if there is space for the word above the row
+            # Check if there is space for the word below the row
             if word_length + row > self.height:
                 continue
 
             # Attempt to insert the word into each column
             for col in cols:
-                # Check if there is space to the right of the word as well as above
+                # Check if there is space to the right of the word as well as below
                 if word_length + col > self.width:
                     continue
 
@@ -169,7 +169,7 @@ class WordSearch:
                     self.board[row + i][col + i] for i in range(word_length)
                 ]
                 if all(letter is None for letter in letters_diagonal_left):
-                    # Successful, insert the word north
+                    # Successful, insert the word southeast
                     for i in range(word_length):
                         self.board[row + i][col + i] = word[i]
                     return
@@ -206,7 +206,7 @@ class WordSearch:
                         self.board[row + i][col] = word[i]
                     return
 
-    def insert_south_west(self, word: str, rows: list[int], cols: list[int]) -> None:
+    def insert_southwest(self, word: str, rows: list[int], cols: list[int]) -> None:
         """
         >>> ws = WordSearch(WORDS, 3, 3)
         >>> ws.insert_south_west("cat", [0], [2])
@@ -223,13 +223,13 @@ class WordSearch:
         word_length = len(word)
         # Attempt to insert the word into each row and when successful, exit
         for row in rows:
-            # Check if there is space for the word above the row
+            # Check if there is space for the word below the row
             if word_length + row > self.height:
                 continue
 
             # Attempt to insert the word into each column
             for col in cols:
-                # Check if there is space to the right of the word as well as above
+                # Check if there is space to the left of the word as well as below
                 if word_length > col + 1:
                     continue
 
@@ -239,7 +239,7 @@ class WordSearch:
                     self.board[row + i][col - i] for i in range(word_length)
                 ]
                 if all(letter is None for letter in letters_diagonal_left):
-                    # Successful, insert the word north
+                    # Successful, insert the word southwest
                     for i in range(word_length):
                         self.board[row + i][col - i] = word[i]
                     return
@@ -271,12 +271,12 @@ class WordSearch:
                 # to the left of the column that will be overwritten
                 letters_left = [self.board[row][col - i] for i in range(word_length)]
                 if all(letter is None for letter in letters_left):
-                    # Successful, insert the word north
+                    # Successful, insert the word west
                     for i in range(word_length):
                         self.board[row][col - i] = word[i]
                     return
 
-    def insert_north_west(self, word: str, rows: list[int], cols: list[int]) -> None:
+    def insert_northwest(self, word: str, rows: list[int], cols: list[int]) -> None:
         """
         >>> ws = WordSearch(WORDS, 3, 3)
         >>> ws.insert_north_west("cat", [2], [2])
@@ -299,7 +299,7 @@ class WordSearch:
 
             # Attempt to insert the word into each column
             for col in cols:
-                # Check if there is space to the right of the word as well as above
+                # Check if there is space to the left of the word as well as above
                 if word_length > col + 1:
                     continue
 
@@ -309,7 +309,7 @@ class WordSearch:
                     self.board[row - i][col - i] for i in range(word_length)
                 ]
                 if all(letter is None for letter in letters_diagonal_left):
-                    # Successful, insert the word north
+                    # Successful, insert the word northwest
                     for i in range(word_length):
                         self.board[row - i][col - i] = word[i]
                     return
