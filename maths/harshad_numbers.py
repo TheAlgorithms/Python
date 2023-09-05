@@ -8,6 +8,9 @@ def int_to_base(number: int, base: int) -> str:
     digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     result = ""
 
+    if number < 0:
+        raise ValueError("number must be a positive integer")
+
     while number > 0:
         number, remainder = divmod(number, base_of_interest)
         result = digits[remainder] + result
@@ -21,8 +24,8 @@ def int_to_base(number: int, base: int) -> str:
 def sum_of_digits(num: int, base: int) -> str:
     """
     Calculate the sum of digit values in a positive integer
-    converted to the given 'base_of_interest'.
-    Where 'base_of_interest' ranges from 2 to 36.
+    converted to the given 'base'.
+    Where 'base' ranges from 2 to 36.
 
     Examples:
     >>> sum_of_digits(103, 12)
@@ -39,17 +42,17 @@ def sum_of_digits(num: int, base: int) -> str:
     >>> sum_of_digits(543, 37)
     Traceback (most recent call last):
         ...
-    ValueError: 'base_of_interest' must be between 36 and 2 inclusive
+    ValueError: 'base' must be between 36 and 2 inclusive
     """
 
-    if (base_of_interest > 36) or (base_of_interest < 2):
-        raise ValueError("'base_of_interest' must be between 36 and 2 inclusive")
+    if (base > 36) or (base < 2):
+        raise ValueError("'base' must be between 36 and 2 inclusive")
 
-    num_str = int_to_base(num, base_of_interest)
+    num_str = int_to_base(num, base)
     res = 0
     for char in num_str:
-        res += int(char, base_of_interest)
-    res_str = int_to_base(res, base_of_interest)
+        res += int(char, base)
+    res_str = int_to_base(res, base)
     return res_str
 
 
