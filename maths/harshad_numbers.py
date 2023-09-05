@@ -18,7 +18,7 @@ def int_to_base(number: int, base: int) -> str:
     return result
 
 
-def sum_of_digits(num: int, base_of_interest: int) -> str:
+def sum_of_digits(num: int, base: int) -> str:
     """
     Calculate the sum of digit values in a positive integer
     converted to the given 'base_of_interest'.
