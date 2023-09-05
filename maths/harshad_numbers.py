@@ -4,7 +4,7 @@ Reference: https://en.wikipedia.org/wiki/Harshad_number
 """
 
 
-def int_to_base(number: int, base_of_interest: int) -> str:
+def int_to_base(number: int, base: int) -> str:
     digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     result = ""
 
