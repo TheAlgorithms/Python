@@ -33,7 +33,7 @@ def scaled_exponential_linear_unit(
     array([1.36591, 3.88759, 2.52168])
 
     >>> scaled_exponential_linear_unit(vector=np.array([1.3, 4.7, 8.2]))
-    array([1.36591 4.93829 8.61574])
+    array([1.36591, 4.93829, 8.61574])
     """
     return _lambda * np.where(vector > 0, vector, alpha * (np.exp(vector) - 1))
 
