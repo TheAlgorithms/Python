@@ -94,7 +94,7 @@ def harshad_numbers_in_base(limit: int, base: int) -> list[str]:
     return result, numbers
 
 
-def is_harshad_number(num: int, base_of_interest: int) -> bool:
+def is_harshad_number_in_base(num: int, base: int) -> bool:
     """
     Determines whether n in base 'base_of_interest' is a harshad number.
     Where 'base_of_interest' ranges from 2 to 36.
