@@ -346,7 +346,7 @@ def euclidean(point_1: np.ndarray, point_2: np.ndarray) -> np.float32:
     return np.sqrt(np.sum(np.square(point_1 - point_2)))
 
 
-def get_distances(descriptors: np.ndarray, base: int) -> list[float]:
+def get_distances(descriptors: np.ndarray, base: int) -> list[tuple[int, float]]:
     """
     Calculate all Euclidean distances between a selected base descriptor
     and all other Haralick descriptors
