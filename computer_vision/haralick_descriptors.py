@@ -386,7 +386,7 @@ def get_distances(descriptors: np.ndarray, base: int) -> list[float]:
 if __name__ == "__main__":
     # Index to compare haralick descriptors to
     index = int(input())
-    q_value = tuple(int(value) for value in input().split())
+    q_value: tuple[int, int] = tuple(int(value) for value in input().split())
 
     # Format is the respective filter to apply,
     # can be either 1 for the opening filter or else for the closing
