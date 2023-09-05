@@ -380,7 +380,8 @@ def get_distances(descriptors: np.ndarray, base: int) -> list[float]:
     )
     # Normalize distances between range [0, 1]
     distances = normalize_array(distances, 1)
-    return sorted(list(enumerate(distances)), key=lambda tup: tup[1])
+    distances = list(enumerate(distances))
+    return sorted(distances, key=lambda tup: tup[1])
 
 
 if __name__ == "__main__":
