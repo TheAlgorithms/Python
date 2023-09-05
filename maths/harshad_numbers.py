@@ -120,13 +120,12 @@ def is_harshad_number_in_base(num: int, base: int) -> bool:
     if (base_of_interest > 36) or (base_of_interest < 2):
         raise ValueError("'base_of_interest' must be between 36 and 2 inclusive")
 
-    if num >= 0:
-        n = int_to_base(num, base_of_interest)
-        d = sum_of_digits(num, base_of_interest)
-        if int(n, base_of_interest) % int(d, base_of_interest) == 0:
-            return True
+    if num < 0:
+        return False
 
-    return False
+    n = int_to_base(num, base_of_interest)
+    d = sum_of_digits(num, base_of_interest)
+    return int(n, base_of_interest) % int(d, base_of_interest) == 0
 
 
 if __name__ == "__main__":
