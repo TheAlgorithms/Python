@@ -379,9 +379,10 @@ def get_distances(descriptors: np.ndarray, base: int) -> list[float]:
         [euclidean(descriptor, descriptors[base]) for descriptor in descriptors]
     )
     # Normalize distances between range [0, 1]
-    distances: list[float] = normalize_array(distances, 1).tolist()
-    enum_distances = list(enumerate(distances))
-    return sorted(enum_distances, key=lambda tup: tup[1])
+    normalized_distances: list[float] = normalize_array(distances, 1).tolist()
+    enum_distances = list(enumerate(normalized_distances))
+    enum_distances.sort(key=lambda tup: tup[1], reverse=True)
+    return enum_distances
 
 
 if __name__ == "__main__":
