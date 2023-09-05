@@ -2,8 +2,6 @@
 https://en.wikipedia.org/wiki/Image_texture
 https://en.wikipedia.org/wiki/Co-occurrence_matrix#Application_to_image_analysis
 """
-from typing import Any
-
 import imageio.v2 as imageio
 import numpy as np
 
@@ -211,16 +209,14 @@ def binary_mask(
                [1, 1]], dtype=uint8), array([[158,  97],
                [ 56, 200]], dtype=uint8))
     """
-    true_mask, false_mask = np.array(image_gray, copy=True), np.array(
-        image_gray, copy=True
-    )
+    true_mask, false_mask = image_gray.copy(), image_gray.copy()
     true_mask[image_map == 1] = 1
     false_mask[image_map == 0] = 0
 
     return true_mask, false_mask
 
 
-def matrix_concurrency(image: np.ndarray, coordinate: list) -> np.ndarray:
+def matrix_concurrency(image: np.ndarray, coordinate: tuple[int, int]) -> np.ndarray:
     """
     Calculate sample co-occurrence matrix based on input image
     as well as selected coordinates on image.
@@ -236,13 +232,13 @@ def matrix_concurrency(image: np.ndarray, coordinate: list) -> np.ndarray:
         >>> binary = binarize(gray)
         >>> morphological = opening_filter(binary)
         >>> mask_1 = binary_mask(gray, morphological)[0]
-        >>> matrix_concurrency(mask_1, [0, 1])
+        >>> matrix_concurrency(mask_1, (0, 1))
         array([[0., 0.],
                [0., 0.]])
     """
     matrix = np.zeros([np.max(image) + 1, np.max(image) + 1])
 
-    offset_x, offset_y = coordinate[0], coordinate[1]
+    offset_x, offset_y = coordinate
 
     for x in range(1, image.shape[0] - 1):
         for y in range(1, image.shape[1] - 1):
@@ -254,7 +250,7 @@ def matrix_concurrency(image: np.ndarray, coordinate: list) -> np.ndarray:
     return matrix / (1 if matrix_sum == 0 else matrix_sum)
 
 
-def haralick_descriptors(matrix: np.ndarray) -> list:
+def haralick_descriptors(matrix: np.ndarray) -> list[float]:
     """Calculates all 8 Haralick descriptors based on co-occurence input matrix.
     All descriptors are as follows:
     Maximum probability, Inverse Difference, Homogeneity, Entropy,
@@ -273,7 +269,7 @@ def haralick_descriptors(matrix: np.ndarray) -> list:
         >>> binary = binarize(gray)
         >>> morphological = opening_filter(binary)
         >>> mask_1 = binary_mask(gray, morphological)[0]
-        >>> concurrency = matrix_concurrency(mask_1, [0, 1])
+        >>> concurrency = matrix_concurrency(mask_1, (0, 1))
         >>> haralick_descriptors(concurrency)
         [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     """
@@ -312,7 +308,7 @@ def haralick_descriptors(matrix: np.ndarray) -> list:
 
 
 def get_descriptors(
-    masks: tuple[np.ndarray, np.ndarray], coordinate: list
+    masks: tuple[np.ndarray, np.ndarray], coordinate: tuple[int, int]
 ) -> np.ndarray:
     """
     Calculate all Haralick descriptors for a sequence of
@@ -324,12 +320,13 @@ def get_descriptors(
         >>> gray = grayscale(img)
         >>> binary = binarize(gray)
         >>> morphological = opening_filter(binary)
-        >>> get_descriptors(binary_mask(gray, morphological), [0, 1])
+        >>> get_descriptors(binary_mask(gray, morphological), (0, 1))
         array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
     """
-    descriptors = np.zeros((len(masks), 8))
-    for idx, mask in enumerate(masks):
-        descriptors[idx] = haralick_descriptors(matrix_concurrency(mask, coordinate))
+    descriptors = np.array([
+        haralick_descriptors(matrix_concurrency(mask, coordinate))
+        for mask in masks
+    ])
 
     # Concatenate each individual descriptor into
     # one single list containing sequence of descriptors
@@ -350,7 +347,7 @@ def euclidean(point_1: np.ndarray, point_2: np.ndarray) -> np.float32:
     return np.sqrt(np.sum(np.square(point_1 - point_2)))
 
 
-def get_distances(descriptors: np.ndarray, base: int) -> list[Any]:
+def get_distances(descriptors: np.ndarray, base: int) -> list[float]:
     """
     Calculate all Euclidean distances between a selected base descriptor
     and all other Haralick descriptors
@@ -373,16 +370,16 @@ def get_distances(descriptors: np.ndarray, base: int) -> list[Any]:
         >>> binary = binarize(gray)
         >>> morphological = opening_filter(binary)
         >>> get_distances(get_descriptors(
-        ...                 binary_mask(gray, morphological), [0, 1]),
+        ...                 binary_mask(gray, morphological), (0, 1)),
         ...               index)
         [(0, 0.0), (1, 0.0), (2, 0.0), (3, 0.0), (4, 0.0), (5, 0.0), \
 (6, 0.0), (7, 0.0), (8, 0.0), (9, 0.0), (10, 0.0), (11, 0.0), (12, 0.0), \
 (13, 0.0), (14, 0.0), (15, 0.0)]
     """
-    distances = np.zeros(descriptors.shape[0])
-
-    for idx, description in enumerate(descriptors):
-        distances[idx] = euclidean(description, descriptors[base])
+    distances = np.array([
+        euclidean(descriptor, descriptors[base])
+        for descriptor in descriptors
+    ])
     # Normalize distances between range [0, 1]
     distances = normalize_array(distances, 1)
     return sorted(enumerate(distances), key=lambda tup: tup[1])
@@ -400,7 +397,7 @@ if __name__ == "__main__":
     # Number of images to perform methods on
     b_number = int(input())
 
-    files, descriptors = ([], [])
+    files, descriptors = [], []
 
     for _ in range(b_number):
         file = input().rstrip()
