@@ -1,5 +1,6 @@
 beautifulsoup4
 fake_useragent
+imageio
 keras
 lxml
 matplotlib
