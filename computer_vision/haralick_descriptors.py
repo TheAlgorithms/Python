@@ -323,10 +323,9 @@ def get_descriptors(
         >>> get_descriptors(binary_mask(gray, morphological), (0, 1))
         array([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
     """
-    descriptors = np.array([
-        haralick_descriptors(matrix_concurrency(mask, coordinate))
-        for mask in masks
-    ])
+    descriptors = np.array(
+        [haralick_descriptors(matrix_concurrency(mask, coordinate)) for mask in masks]
+    )
 
     # Concatenate each individual descriptor into
     # one single list containing sequence of descriptors
@@ -376,10 +375,9 @@ def get_distances(descriptors: np.ndarray, base: int) -> list[float]:
 (6, 0.0), (7, 0.0), (8, 0.0), (9, 0.0), (10, 0.0), (11, 0.0), (12, 0.0), \
 (13, 0.0), (14, 0.0), (15, 0.0)]
     """
-    distances = np.array([
-        euclidean(descriptor, descriptors[base])
-        for descriptor in descriptors
-    ])
+    distances = np.array(
+        [euclidean(descriptor, descriptors[base]) for descriptor in descriptors]
+    )
     # Normalize distances between range [0, 1]
     distances = normalize_array(distances, 1)
     return sorted(enumerate(distances), key=lambda tup: tup[1])
