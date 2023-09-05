@@ -56,7 +56,7 @@ def sum_of_digits(num: int, base: int) -> str:
     return res_str
 
 
-def all_harshad_numbers(num: int, base_of_interest: int) -> tuple[int, list[str]]:
+def harshad_numbers_in_base(limit: int, base: int) -> list[str]:
     """
     Finds all Harshad numbers smaller than num in base 'base_of_interest'.
     Where 'base_of_interest' ranges from 2 to 36.
