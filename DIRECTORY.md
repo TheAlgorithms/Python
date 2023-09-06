@@ -133,6 +133,7 @@
 ## Computer Vision
   * [Cnn Classification](computer_vision/cnn_classification.py)
   * [Flip Augmentation](computer_vision/flip_augmentation.py)
+  * [Haralick Descriptors](computer_vision/haralick_descriptors.py)
   * [Harris Corner](computer_vision/harris_corner.py)
   * [Horn Schunck](computer_vision/horn_schunck.py)
   * [Mean Threshold](computer_vision/mean_threshold.py)
@@ -586,6 +587,7 @@
   * [Greedy Coin Change](maths/greedy_coin_change.py)
   * [Hamming Numbers](maths/hamming_numbers.py)
   * [Hardy Ramanujanalgo](maths/hardy_ramanujanalgo.py)
+  * [Harshad Numbers](maths/harshad_numbers.py)
   * [Hexagonal Number](maths/hexagonal_number.py)
   * [Integration By Simpson Approx](maths/integration_by_simpson_approx.py)
   * [Interquartile Range](maths/interquartile_range.py)
