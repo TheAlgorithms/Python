@@ -64,11 +64,11 @@ def harshad_numbers_in_base(limit: int, base: int) -> list[str]:
 
     Examples:
     >>> harshad_numbers_in_base(15, 2)
-    (7, ['1', '10', '100', '110', '1000', '1010', '1100'])
+    ['1', '10', '100', '110', '1000', '1010', '1100']
     >>> harshad_numbers_in_base(12, 34)
-    (11, ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B'])
+    ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B']
     >>> harshad_numbers_in_base(12, 4)
-    (7, ['1', '2', '3', '10', '12', '20', '21'])
+    ['1', '2', '3', '10', '12', '20', '21']
     >>> # bases beyond 36 and below 2 will error
     >>> harshad_numbers_in_base(234, 37)
     Traceback (most recent call last):
@@ -83,16 +83,14 @@ def harshad_numbers_in_base(limit: int, base: int) -> list[str]:
     if (base > 36) or (base < 2):
         raise ValueError("'base' must be between 36 and 2 inclusive")
 
-    result = 0
     numbers = []
     if limit >= 0:
         for i in range(1, limit):
             y = sum_of_digits(i, base)
             if i % int(y, base) == 0:
-                result += 1
                 numbers.append(int_to_base(i, base))
 
-    return result, numbers
+    return numbers
 
 
 def is_harshad_number_in_base(num: int, base: int) -> bool:
