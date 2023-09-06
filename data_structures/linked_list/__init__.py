@@ -21,7 +21,7 @@ class LinkedList:
         self.head: Node | None = None
         self.size = 0
 
-    def add(self, item: Any, position: int = 0) -> bool:
+    def add(self, item: Any, position: int = 0) -> None:
         """
         Add an item to the LinkedList at the specified position.
         Default position is 0 (the head).
@@ -58,12 +58,8 @@ class LinkedList:
             if current:  # Check if current is not None
                 new_node = Node(item, current.next)
                 current.next = new_node
-                return True
-            else:
-                return False
 
         self.size += 1
-        return True
 
     def remove(self) -> Any:
         # Switched 'self.is_empty()' to 'self.head is None'
