@@ -108,7 +108,7 @@ def harshad_numbers_in_base(limit: int, base: int) -> list[str]:
 
     if limit < 0:
         return []
-    
+
     numbers = [
         int_to_base(i, base)
         for i in range(1, limit)
