@@ -6,6 +6,31 @@ Reference: https://en.wikipedia.org/wiki/Harshad_number
 
 
 def int_to_base(number: int, base: int) -> str:
+    """
+    Convert a given positive decimal integer to base 'base'.
+    Where 'base' ranges from 2 to 36.
+
+    Examples:
+    >>> int_to_base(23, 2)
+    '10111'
+    >>> int_to_base(58, 5)
+    '213'
+    >>> int_to_base(167, 16)
+    'A7'
+    >>> # bases below 2 and beyond 36 will error
+    >>> int_to_base(98, 1)
+    Traceback (most recent call last):
+        ...
+    ValueError: 'base' must be between 2 and 36 inclusive
+    >>> int_to_base(98, 37)
+    Traceback (most recent call last):
+        ...
+    ValueError: 'base' must be between 2 and 36 inclusive
+    """
+
+    if base < 2 or base > 36:
+        raise ValueError("'base' must be between 2 and 36 inclusive")
+
     digits = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     result = ""
 
@@ -35,24 +60,22 @@ def sum_of_digits(num: int, base: int) -> str:
     '30'
     >>> sum_of_digits(6645, 2)
     '1001'
-    >>> # bases beyond 36 and below 2 will error
+    >>> # bases below 2 and beyond 36 will error
     >>> sum_of_digits(543, 1)
     Traceback (most recent call last):
         ...
-    ValueError: 'base' must be between 36 and 2 inclusive
+    ValueError: 'base' must be between 2 and 36 inclusive
     >>> sum_of_digits(543, 37)
     Traceback (most recent call last):
         ...
-    ValueError: 'base' must be between 36 and 2 inclusive
+    ValueError: 'base' must be between 2 and 36 inclusive
     """
 
-    if (base > 36) or (base < 2):
-        raise ValueError("'base' must be between 36 and 2 inclusive")
+    if base < 2 or base > 36:
+        raise ValueError("'base' must be between 2 and 36 inclusive")
 
     num_str = int_to_base(num, base)
-    res = 0
-    for char in num_str:
-        res += int(char, base)
+    res = sum(int(char, base) for char in num_str)
     res_str = int_to_base(res, base)
     return res_str
 
@@ -69,26 +92,28 @@ def harshad_numbers_in_base(limit: int, base: int) -> list[str]:
     ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B']
     >>> harshad_numbers_in_base(12, 4)
     ['1', '2', '3', '10', '12', '20', '21']
-    >>> # bases beyond 36 and below 2 will error
+    >>> # bases below 2 and beyond 36 will error
     >>> harshad_numbers_in_base(234, 37)
     Traceback (most recent call last):
         ...
-    ValueError: 'base' must be between 36 and 2 inclusive
+    ValueError: 'base' must be between 2 and 36 inclusive
     >>> harshad_numbers_in_base(234, 1)
     Traceback (most recent call last):
         ...
-    ValueError: 'base' must be between 36 and 2 inclusive
+    ValueError: 'base' must be between 2 and 36 inclusive
     """
 
-    if (base > 36) or (base < 2):
-        raise ValueError("'base' must be between 36 and 2 inclusive")
+    if base < 2 or base > 36:
+        raise ValueError("'base' must be between 2 and 36 inclusive")
 
-    numbers = []
-    if limit >= 0:
-        for i in range(1, limit):
-            y = sum_of_digits(i, base)
-            if i % int(y, base) == 0:
-                numbers.append(int_to_base(i, base))
+    if limit < 0:
+        return []
+    
+    numbers = [
+        int_to_base(i, base)
+        for i in range(1, limit)
+        if i % int(sum_of_digits(i, base), base) == 0
+    ]
 
     return numbers
 
@@ -105,19 +130,19 @@ def is_harshad_number_in_base(num: int, base: int) -> bool:
     True
     >>> is_harshad_number_in_base(-21, 5)
     False
-    >>> # bases beyond 36 and below 2 will error
+    >>> # bases below 2 and beyond 36 will error
     >>> is_harshad_number_in_base(45, 37)
     Traceback (most recent call last):
         ...
-    ValueError: 'base' must be between 36 and 2 inclusive
+    ValueError: 'base' must be between 2 and 36 inclusive
     >>> is_harshad_number_in_base(45, 1)
     Traceback (most recent call last):
         ...
-    ValueError: 'base' must be between 36 and 2 inclusive
+    ValueError: 'base' must be between 2 and 36 inclusive
     """
 
-    if (base > 36) or (base < 2):
-        raise ValueError("'base' must be between 36 and 2 inclusive")
+    if base < 2 or base > 36:
+        raise ValueError("'base' must be between 2 and 36 inclusive")
 
     if num < 0:
         return False
