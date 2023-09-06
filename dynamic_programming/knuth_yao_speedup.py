@@ -22,8 +22,14 @@ Reference: https://cp-algorithms.com/dynamic_programming/knuth-optimization.html
 - time complexity: O(n^2)
 - space complexity: O(n^2)
 
->>> knuth_yao_speedup([[1,2,3,4],[3,4,5,1],[1,1,1,3],[2,2,2,2]])
+>>> knuth_yao_speedup([[1, 2, 3, 4], [3, 4, 5, 1], [1, 1, 1, 3], [2, 2, 2, 2]])
 15
+>>> knuth_yao_speedup([[1]])
+0
+>>> knuth_yao_speedup([[1, 2], [3, 4]])
+2
+>>> knuth_yao_speedup([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+11
 """
 
 from __future__ import annotations
