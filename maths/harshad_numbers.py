@@ -39,7 +39,7 @@ def sum_of_digits(num: int, base: int) -> str:
     >>> sum_of_digits(543, 1)
     Traceback (most recent call last):
         ...
-    ValueError: 'base_of_interest' must be between 36 and 2 inclusive
+    ValueError: 'base' must be between 36 and 2 inclusive
     >>> sum_of_digits(543, 37)
     Traceback (most recent call last):
         ...
