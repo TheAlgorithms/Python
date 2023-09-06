@@ -58,8 +58,7 @@ class LinkedList:
             if current:  # Check if current is not None
                 new_node = Node(item, current.next)
                 current.next = new_node
-
-        self.size += 1
+                self.size += 1
 
     def remove(self) -> Any:
         # Switched 'self.is_empty()' to 'self.head is None'
