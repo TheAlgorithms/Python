@@ -51,7 +51,7 @@ class LinkedList:
         else:
             current = self.head
             counter = 0
-            while current and counter < position:
+            while current and counter < position - 1:
                 current = current.next
                 counter += 1
 
