@@ -99,17 +99,52 @@ def run() -> None:
     >>> run()
     start: 0, goal: 6; Distance(Minimum/Lowest): 1
     """
-    # create the graph_data
-    graph_data = [[] for _ in range(4)]  # type: list[list[int]]
+    # create the graph
+    #
+    #
+    #           0
+    #          /  \
+    #         3 - 1
+    #        / \  /\\
+    #        4 - 6 / \
+    #       /  \ |/  /
+    #        \   5  /
+    #          \ | /
+    #            2
+    #
+    #
+    graph_data = [[] for i in range(8)]  # type: list[list[int]]
 
-    # Node to node edges
-    graph_data[0].append(1)
-    graph_data[0].append(2)
-    graph_data[1].append(2)
-    graph_data[1].append(3)
+    graph_data[0].append(1)  # node 0 is connected with node 1
+    graph_data[0].append(3)  # node 0 is connected with node 3
+    graph_data[3].append(1)  # node 3 is connected with node 1
+    graph_data[3].append(6)  # node 3 is connected with node 6
+    graph_data[3].append(4)  # node 3 is connected with node 4
+    graph_data[1].append(6)  # node 1 is connected with node 6
+    graph_data[4].append(2)  # node 4 is connected with node 2
+    graph_data[4].append(5)  # node 4 is connected with node 5
+    graph_data[2].append(1)  # node 2 is connected with node 1
+    graph_data[5].append(2)  # node 5 is connected with node 2
+    graph_data[5].append(6)  # node 5 is connected with node 6
+    graph_data[6].append(4)  # node 6 is connected with node 4
 
-    # Distance for the edges one node to another node
-    distance = {(0, 1): 2, (0, 2): 1, (1, 2): 5, (1, 3): 10}
+    # Distance for the edges one node to another node.
+    # Storing adjacency data and edge distances separately is common in graph algorithms
+    # and it provides flexibility to me handling.
+    distance = {
+        (0, 1): 2,  # Cost between node 0 and 1 is 2
+        (0, 3): 5,  # Cost between node 0 and 3 is 5
+        (1, 6): 1,  # Cost between node 1 and 6 is 1
+        (3, 1): 5,  # Cost between node 3 and 1 is 5
+        (3, 6): 6,  # Cost between node 3 and 6 is 6
+        (3, 4): 2,  # Cost between node 3 and 4 is 2
+        (2, 1): 4,  # Cost between node 2 and 1 is 4
+        (4, 2): 4,  # Cost between node 4 and 2 is 4
+        (4, 5): 3,  # Cost between node 4 and 5 is 3
+        (5, 2): 6,  # Cost between node 5 and 2 is 6
+        (5, 6): 3,  # Cost between node 5 and 6 is 3
+        (6, 4): 7,  # Cost between node 6 and 4 is 7
+    }
 
     goal = []
 
