@@ -4,7 +4,7 @@ imageio
 keras
 lxml
 matplotlib ; python_version < '3.12'
-numpy
+numpy==v1.26.0rc1
 opencv-python
 pandas
 pillow
