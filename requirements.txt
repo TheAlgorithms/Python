@@ -10,7 +10,7 @@ pandas ; python_version < '3.12'
 pillow
 projectq
 qiskit
-qiskit-aer
+qiskit-aer ; python_version < '3.12'
 requests
 rich
 scikit-fuzzy
