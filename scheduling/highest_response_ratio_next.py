@@ -53,7 +53,7 @@ def calculate_turn_around_time(
         loc = 0
         # Saves the current response ratio.
         temp = 0
-        for i in range(0, no_of_process):
+        for i in range(no_of_process):
             if finished_process[i] == 0 and arrival_time[i] <= current_time:
                 temp = (burst_time[i] + (current_time - arrival_time[i])) / burst_time[
                     i
@@ -87,7 +87,7 @@ def calculate_waiting_time(
     """
 
     waiting_time = [0] * no_of_process
-    for i in range(0, no_of_process):
+    for i in range(no_of_process):
         waiting_time[i] = turn_around_time[i] - burst_time[i]
     return waiting_time
 
@@ -106,7 +106,7 @@ if __name__ == "__main__":
     )
 
     print("Process name \tArrival time \tBurst time \tTurn around time \tWaiting time")
-    for i in range(0, no_of_process):
+    for i in range(no_of_process):
         print(
             f"{process_name[i]}\t\t{arrival_time[i]}\t\t{burst_time[i]}\t\t"
             f"{turn_around_time[i]}\t\t\t{waiting_time[i]}"
