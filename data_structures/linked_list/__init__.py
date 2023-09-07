@@ -33,6 +33,7 @@ class LinkedList:
 
         Raises:
             ValueError: If the position is negative.
+            ValueError: If the position is Out of Bounds.
 
         >>> linked_list = LinkedList()
         >>> linked_list.add(1)
@@ -50,16 +51,12 @@ class LinkedList:
             self.head = new_node
         else:
             current = self.head
-            counter = 0
-            while current and counter < position - 1:
+            for _ in range(position - 1):
                 current = current.next
-                counter += 1
-
-            if current:  # Check if current is not None
-                new_node = Node(item, current.next)
-                current.next = new_node
-            else:
-                raise ValueError("Out of bounds")
+                if current is None:
+                    raise ValueError("Out of bounds")
+            new_node = Node(item, current.next)
+            current.next = new_node
         self.size += 1
 
     def remove(self) -> Any:
