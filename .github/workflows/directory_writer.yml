@@ -9,7 +9,8 @@ jobs:
       - uses: actions/checkout@v1  # v1, NOT v2 or v3
       - uses: actions/setup-python@v4
         with:
-          python-version: 3.12-dev
+          python-version: 3.12
+          allow-prereleases: true
       - name: Write DIRECTORY.md
         run: |
           scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
