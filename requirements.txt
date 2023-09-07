@@ -9,7 +9,7 @@ opencv-python
 pandas ; python_version < '3.12'
 pillow
 projectq ; python_version < '3.12'
-qiskit
+qiskit ; python_version < '3.12'
 qiskit-aer ; python_version < '3.12'
 requests
 rich
