@@ -48,7 +48,7 @@ def is_safe(grid: Matrix, row: int, column: int, n: int) -> bool:
     is found) else returns True if it is 'safe'
     """
     for i in range(9):
-        if grid[row][i] == n or grid[i][column] == n:
+        if n in {grid[row][i], grid[i][column]}:
             return False
 
     for i in range(3):

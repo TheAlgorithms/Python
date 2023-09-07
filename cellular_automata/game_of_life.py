@@ -10,7 +10,7 @@ Python:
   - 3.5
 
 Usage:
-  - $python3 game_o_life <canvas_size:int>
+  - $python3 game_of_life <canvas_size:int>
 
 Game-Of-Life Rules:
 
@@ -52,7 +52,8 @@ def seed(canvas: list[list[bool]]) -> None:
 
 
 def run(canvas: list[list[bool]]) -> list[list[bool]]:
-    """This  function runs the rules of game through all points, and changes their
+    """
+    This function runs the rules of game through all points, and changes their
     status accordingly.(in the same canvas)
     @Args:
     --
@@ -60,7 +61,7 @@ def run(canvas: list[list[bool]]) -> list[list[bool]]:
 
     @returns:
     --
-    None
+    canvas of population after one step
     """
     current_canvas = np.array(canvas)
     next_gen_canvas = np.array(create_canvas(current_canvas.shape[0]))
@@ -70,10 +71,7 @@ def run(canvas: list[list[bool]]) -> list[list[bool]]:
                 pt, current_canvas[r - 1 : r + 2, c - 1 : c + 2]
             )
 
-    current_canvas = next_gen_canvas
-    del next_gen_canvas  # cleaning memory as we move on.
-    return_canvas: list[list[bool]] = current_canvas.tolist()
-    return return_canvas
+    return next_gen_canvas.tolist()
 
 
 def __judge_point(pt: bool, neighbours: list[list[bool]]) -> bool:

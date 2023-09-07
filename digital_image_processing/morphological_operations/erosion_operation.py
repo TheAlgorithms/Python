@@ -21,6 +21,7 @@ def rgb2gray(rgb: np.array) -> np.array:
 def gray2binary(gray: np.array) -> np.array:
     """
     Return binary image from gray image
+
     >>> gray2binary(np.array([[127, 255, 0]]))
     array([[False,  True, False]])
     >>> gray2binary(np.array([[0]]))

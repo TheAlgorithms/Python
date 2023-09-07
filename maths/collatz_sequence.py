@@ -57,7 +57,7 @@ def collatz_sequence(n: int) -> Generator[int, None, None]:
 
 
 def main():
-    n = 43
+    n = int(input("Your number: "))
     sequence = tuple(collatz_sequence(n))
     print(sequence)
     print(f"Collatz sequence from {n} took {len(sequence)} steps.")

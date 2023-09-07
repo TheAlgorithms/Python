@@ -49,7 +49,7 @@ def counting_sort(collection):
 
     # place the elements in the output, respecting the original order (stable
     # sort) from end to begin, updating counting_arr
-    for i in reversed(range(0, coll_len)):
+    for i in reversed(range(coll_len)):
         ordered[counting_arr[collection[i] - coll_min] - 1] = collection[i]
         counting_arr[collection[i] - coll_min] -= 1
 

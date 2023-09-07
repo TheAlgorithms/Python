@@ -22,9 +22,13 @@ REFERENCES :
 -> Wikipedia reference: https://en.wikipedia.org/wiki/Millimeter
 """
 
-from collections import namedtuple
+from typing import NamedTuple
 
-from_to = namedtuple("from_to", "from_ to")
+
+class FromTo(NamedTuple):
+    from_factor: float
+    to_factor: float
+
 
 TYPE_CONVERSION = {
     "millimeter": "mm",
@@ -40,14 +44,14 @@ TYPE_CONVERSION = {
 }
 
 METRIC_CONVERSION = {
-    "mm": from_to(0.001, 1000),
-    "cm": from_to(0.01, 100),
-    "m": from_to(1, 1),
-    "km": from_to(1000, 0.001),
-    "in": from_to(0.0254, 39.3701),
-    "ft": from_to(0.3048, 3.28084),
-    "yd": from_to(0.9144, 1.09361),
-    "mi": from_to(1609.34, 0.000621371),
+    "mm": FromTo(0.001, 1000),
+    "cm": FromTo(0.01, 100),
+    "m": FromTo(1, 1),
+    "km": FromTo(1000, 0.001),
+    "in": FromTo(0.0254, 39.3701),
+    "ft": FromTo(0.3048, 3.28084),
+    "yd": FromTo(0.9144, 1.09361),
+    "mi": FromTo(1609.34, 0.000621371),
 }
 
 
@@ -115,7 +119,11 @@ def length_conversion(value: float, from_type: str, to_type: str) -> float:
             f"Conversion abbreviations are: {', '.join(METRIC_CONVERSION)}"
         )
         raise ValueError(msg)
-    return value * METRIC_CONVERSION[new_from].from_ * METRIC_CONVERSION[new_to].to
+    return (
+        value
+        * METRIC_CONVERSION[new_from].from_factor
+        * METRIC_CONVERSION[new_to].to_factor
+    )
 
 
 if __name__ == "__main__":

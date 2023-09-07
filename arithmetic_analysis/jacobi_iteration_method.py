@@ -152,9 +152,9 @@ def strictly_diagonally_dominant(table: NDArray[float64]) -> bool:
 
     is_diagonally_dominant = True
 
-    for i in range(0, rows):
+    for i in range(rows):
         total = 0
-        for j in range(0, cols - 1):
+        for j in range(cols - 1):
             if i == j:
                 continue
             else:

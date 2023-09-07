@@ -3,7 +3,7 @@ CAUTION: You may get a json.decoding error.
 This works for some of us but fails for others.
 """
 
-from datetime import datetime
+from datetime import UTC, datetime, timedelta
 
 import requests
 from rich import box
@@ -20,18 +20,31 @@ API_URL = (
 )
 
 
-def calculate_age(unix_date: int) -> str:
+def calculate_age(unix_date: float) -> str:
     """Calculates age from given unix time format.
 
     Returns:
         Age as string
 
-    >>> calculate_age(-657244800000)
-    '73'
-    >>> calculate_age(46915200000)
-    '51'
+    >>> from datetime import datetime, UTC
+    >>> years_since_create = datetime.now(tz=UTC).year - 2022
+    >>> int(calculate_age(-657244800000)) - years_since_create
+    73
+    >>> int(calculate_age(46915200000)) - years_since_create
+    51
     """
-    birthdate = datetime.fromtimestamp(unix_date / 1000).date()
+    # Convert date from milliseconds to seconds
+    unix_date /= 1000
+
+    if unix_date < 0:
+        # Handle timestamp before epoch
+        epoch = datetime.fromtimestamp(0, tz=UTC)
+        seconds_since_epoch = (datetime.now(tz=UTC) - epoch).seconds
+        birthdate = (
+            epoch - timedelta(seconds=abs(unix_date) - seconds_since_epoch)
+        ).date()
+    else:
+        birthdate = datetime.fromtimestamp(unix_date, tz=UTC).date()
     return str(
         TODAY.year
         - birthdate.year

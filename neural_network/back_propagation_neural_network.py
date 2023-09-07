@@ -21,8 +21,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-def sigmoid(x):
-    return 1 / (1 + np.exp(-1 * x))
+def sigmoid(x: np.ndarray) -> np.ndarray:
+    return 1 / (1 + np.exp(-x))
 
 
 class DenseLayer:
