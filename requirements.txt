@@ -14,7 +14,7 @@ qiskit-aer ; python_version < '3.12'
 requests
 rich
 scikit-fuzzy
-scikit-learn
+scikit-learn ; python_version < '3.12'
 statsmodels
 sympy
 tensorflow
