@@ -4,6 +4,19 @@ import numpy as np
 def _base_activation(vector: np.ndarray, alpha: float, beta: float) -> np.ndarray:
     """
     Base activation for sigmoid, swish, and SiLU.
+    Examples:
+    >>> result = _base_activation(np.array([0, np.log(2), np.log(5)]), 0, 1)
+    >>> np.linalg.norm(np.array([0.5, 0.66666667, 0.83333333]) - result) < 10**(-5)
+    True
+    >>> result = _base_activation(np.array([1, 2, 3]), 1, 0)
+    >>> np.linalg.norm(np.array([0.5, 1., 1.5]) - result) < 10**(-5)
+    True
+    >>> result = _base_activation(np.array([0, 1, 2]), 1, np.log(2))
+    >>> np.linalg.norm(np.array([0, 0.66666667, 1.6]) - result) < 10**(-5)
+    True
+    >>> result = _base_activation(np.array([0, 1, np.log(2)]), 1, 1)
+    >>> np.linalg.norm(np.array([0, 0.7310585, 0.462098]) - result) < 10**(-5)
+    True
     """
     return np.power(vector, alpha) / (1 + np.exp(-beta * vector))
 
