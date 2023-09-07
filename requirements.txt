@@ -3,7 +3,7 @@ fake_useragent
 imageio
 keras
 lxml
-matplotlib
+matplotlib ; python_version < '3.12'
 numpy
 opencv-python
 pandas
