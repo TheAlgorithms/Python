@@ -9,6 +9,7 @@ For manual testing run:
 python stalin_sort.py
 """
 
+
 def stalin_sort(collection):
     """A pure Python implementation of stalin sort algorithm
 
@@ -28,6 +29,7 @@ def stalin_sort(collection):
         if i > sorted_collection[-1]:
             sorted_collection.append(i)
     return sorted_collection
+
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
