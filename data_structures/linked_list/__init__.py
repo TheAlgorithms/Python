@@ -29,11 +29,10 @@ class LinkedList:
         Args:
             item (Any): The item to add to the LinkedList.
             position (int, optional): The position at which to add the item.
-            Defaults to 0.
+                Defaults to 0.
 
         Raises:
-            ValueError: If the position is negative.
-            ValueError: If the position is Out of Bounds.
+            ValueError: If the position is negative or out of bounds.
 
         >>> linked_list = LinkedList()
         >>> linked_list.add(1)
@@ -42,6 +41,17 @@ class LinkedList:
         >>> linked_list.add(4, 2)
         >>> print(linked_list)
         3 --> 2 --> 4 --> 1
+
+        # Test adding to a negative position
+        >>> linked_list.add(5, -3)
+        Traceback (most recent call last):
+            ...
+        ValueError: Position must be non-negative
+
+        # Test adding to an out-of-bounds position
+        >>> linked_list.add(5, 4)
+        >>> print(linked_list)
+        3 --> 2 --> 4 --> 1 --> 5
         """
         if position < 0:
             raise ValueError("Position must be non-negative")
