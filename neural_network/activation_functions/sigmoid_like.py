@@ -20,7 +20,7 @@ def sigmoid(vector: np.ndarray) -> np.ndarray:
     >>> np.linalg.norm(np.array([0.5, 0.66666667, 0.83333333]) - result) < 10**(-5)
     True
     """
-    return _base_activation(vector, 0, 1)
+    return _base_activation(vector, alpha=0, beta=1)
 
 
 def swish(vector: np.ndarray, beta: float) -> np.ndarray:
@@ -39,7 +39,7 @@ def swish(vector: np.ndarray, beta: float) -> np.ndarray:
     >>> np.linalg.norm(np.array([0, 0.66666667, 1.6]) - result) < 10**(-5)
     True
     """
-    return _base_activation(vector, 1, beta)
+    return _base_activation(vector, alpha=1, beta=beta)
 
 
 def sigmoid_linear_unit(vector: np.ndarray) -> np.ndarray:
@@ -55,7 +55,7 @@ def sigmoid_linear_unit(vector: np.ndarray) -> np.ndarray:
     >>> np.linalg.norm(np.array([0, 0.7310585, 0.462098]) - result) < 10**(-5)
     True
     """
-    return swish(vector, 1)
+    return swish(vector, beta=1)
 
 
 if __name__ == "__main__":
