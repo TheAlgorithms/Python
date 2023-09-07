@@ -133,6 +133,7 @@
 ## Computer Vision
   * [Cnn Classification](computer_vision/cnn_classification.py)
   * [Flip Augmentation](computer_vision/flip_augmentation.py)
+  * [Haralick Descriptors](computer_vision/haralick_descriptors.py)
   * [Harris Corner](computer_vision/harris_corner.py)
   * [Horn Schunck](computer_vision/horn_schunck.py)
   * [Mean Threshold](computer_vision/mean_threshold.py)
@@ -586,6 +587,7 @@
   * [Greedy Coin Change](maths/greedy_coin_change.py)
   * [Hamming Numbers](maths/hamming_numbers.py)
   * [Hardy Ramanujanalgo](maths/hardy_ramanujanalgo.py)
+  * [Harshad Numbers](maths/harshad_numbers.py)
   * [Hexagonal Number](maths/hexagonal_number.py)
   * [Integration By Simpson Approx](maths/integration_by_simpson_approx.py)
   * [Interquartile Range](maths/interquartile_range.py)
@@ -626,6 +628,7 @@
   * [Pi Monte Carlo Estimation](maths/pi_monte_carlo_estimation.py)
   * [Points Are Collinear 3D](maths/points_are_collinear_3d.py)
   * [Pollard Rho](maths/pollard_rho.py)
+  * [Polygonal Numbers](maths/polygonal_numbers.py)
   * [Polynomial Evaluation](maths/polynomial_evaluation.py)
   * Polynomials
     * [Single Indeterminate Operations](maths/polynomials/single_indeterminate_operations.py)
@@ -712,6 +715,7 @@
   * Activation Functions
     * [Exponential Linear Unit](neural_network/activation_functions/exponential_linear_unit.py)
     * [Leaky Rectified Linear Unit](neural_network/activation_functions/leaky_rectified_linear_unit.py)
+    * [Scaled Exponential Linear Unit](neural_network/activation_functions/scaled_exponential_linear_unit.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
   * [Perceptron](neural_network/perceptron.py)
