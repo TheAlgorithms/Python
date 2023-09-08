@@ -49,6 +49,10 @@ class LinkedList:
         ValueError: Position must be non-negative
 
         # Test adding to an out-of-bounds position
+        >>> linked_list.add(5,7)
+        Traceback (most recent call last):
+            ...
+        ValueError: Out of bounds
         >>> linked_list.add(5, 4)
         >>> print(linked_list)
         3 --> 2 --> 4 --> 1 --> 5
