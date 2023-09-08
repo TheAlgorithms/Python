@@ -1,4 +1,4 @@
-<!-- # Contributing guidelines -->
+# Contributing guidelines
 
 ## Before contributing
 
