@@ -129,6 +129,12 @@ CENTRAL__SMALLER_THAN_10 = len(
 def fixed_length_reversible_numbers_count(length: int) -> int:
     """
     Returns the number of reversible numbers of a given length.
+    >>> fixed_length_reversible_numbers_count(5)
+    0
+    >>> fixed_length_reversible_numbers_count(6)
+    18000
+    >>> fixed_length_reversible_numbers_count(7)
+    50000
     """
     if length <= 0 or length % 4 == 1:
         return 0
