@@ -74,6 +74,6 @@ def krishnamurthy_2(x: int) -> bool:
 
     return x==sum(factorial_sums)
 
-if __name__=='__main__':
+if __name__== "__main__":
     #To see the details about the test, add print() to the next line
     doctest.testmod()
