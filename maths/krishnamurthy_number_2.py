@@ -6,7 +6,6 @@ for instance, 145 = 1! + 4! + 5! ; 40585 = 4! + 0! + 5! + 8! + 5!, but 78 != 7! 
 """
 
 def factorial(n: int) -> int: 
-    
     # Function to calculate the factorial of a number n
     # n! = n*(n-1)*(n-2)*...*2*1, that is the definition of the factorial of n (n!)
 
@@ -28,7 +27,6 @@ def factorial(n: int) -> int:
     >>> factorial(4)
     24
     """
-
     if not isinstance(n,int): #If n is not an integer
         raise TypeError("Only integers are allowed")
 
@@ -68,10 +66,10 @@ def krishnamurthy_2(x: int) -> bool:
         raise TypeError("Only integers are allowed")
 
     #Negative numbers are prohibited
-    if x<0:
+    if x < 0:
         raise ValueError("Only positive integers are allowed")
 
-    #Calculating the factorial of each digit and storing the result in a list
+    # Calculating the factorial of each digit and storing the result in a list
     factorial_sums = (factorial(int(i)) for i in str(x))
 
     return x==sum(factorial_sums)
