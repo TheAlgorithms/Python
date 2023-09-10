@@ -31,7 +31,6 @@ https://en.wikipedia.org/wiki/Euler's_totient_function#Euler's_product_formula
 from __future__ import annotations
 import numpy as np
 
-
 def get_totients(max_one: int) -> list[int]:
     """
     Calculates a list of totients from 0 to max_one exclusive, using the
