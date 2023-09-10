@@ -6,7 +6,8 @@ A Krishnamurthy number: A number that's equal to the sum of the factorials of it
 For instance, 145 = 1! + 4! + 5! ; 40585 = 4! + 0! + 5! + 8! + 5!, but 78 != 7! + 8!
 """
 
-def factorial(n: int) -> int: 
+
+def factorial(n: int) -> int:
     # Function to calculate the factorial of a number n
     # n! = n*(n-1)*(n-2)*...*2*1, that is the definition of the factorial of n (n!)
 
@@ -28,19 +29,19 @@ def factorial(n: int) -> int:
     >>> factorial(4)
     24
     """
-    if not isinstance(n,int): #If n is not an integer
+    if not isinstance(n, int):  # If n is not an integer
         raise TypeError("Only integers are allowed")
 
-    if n<0: #If n is a negative number
+    if n < 0:  # If n is a negative number
         raise ValueError("Only positive integers are allowed")
 
-    if n<2:
-        return 1 #Since 1! = 1 and 0! = 1, this is the base case
+    if n < 2:
+        return 1  # Since 1! = 1 and 0! = 1, this is the base case
     else:
-        return n*factorial(n-1)
+        return n * factorial(n - 1)
+
 
 def krishnamurthy_2(x: int) -> bool:
-
     """
     >>> krishnamurthy_2(5)
     False
@@ -61,18 +62,18 @@ def krishnamurthy_2(x: int) -> bool:
       File "<stdin>", line 1, in <module>
     ValueError: Only positive integers are allowed
     """
-    #only int variables are allowed
-    if not isinstance(x,int):
+    # only int variables are allowed
+    if not isinstance(x, int):
         raise TypeError("Only integers are allowed")
 
-    #Negative numbers are prohibited
+    # Negative numbers are prohibited
     if x < 0:
         raise ValueError("Only positive integers are allowed")
 
     # Calculating the factorial of each digit and storing the result in a list
     factorial_sums = (factorial(int(i)) for i in str(x))
 
-    return x==sum(factorial_sums)
+    return x == sum(factorial_sums)
 
 if __name__== "__main__":
     #To see the details about the test, add print() to the next line
