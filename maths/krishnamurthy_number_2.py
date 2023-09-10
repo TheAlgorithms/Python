@@ -1,8 +1,9 @@
 import doctest
 
 """
-A Krishnamurthy number is a number that is equal to the sum of the factorials of its digits.
-for instance, 145 = 1! + 4! + 5! ; 40585 = 4! + 0! + 5! + 8! + 5!, but 78 != 7! + 8!
+A Krishnamurthy number: A number that's equal to the sum of the factorials of its digits
+
+For instance, 145 = 1! + 4! + 5! ; 40585 = 4! + 0! + 5! + 8! + 5!, but 78 != 7! + 8!
 """
 
 def factorial(n: int) -> int: 
