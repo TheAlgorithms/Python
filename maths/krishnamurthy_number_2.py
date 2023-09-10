@@ -60,7 +60,6 @@ def krishnamurthy_2(x: int) -> bool:
       File "<stdin>", line 1, in <module>
     ValueError: Only positive integers are allowed
     """
-
     #only int variables are allowed
     if not isinstance(x,int):
         raise TypeError("Only integers are allowed")
