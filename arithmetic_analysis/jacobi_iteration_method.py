@@ -136,24 +136,23 @@ def jacobi_iteration_method(
     # denominator - a list of values along the diagonal
     denominator = np.diag(coefficient_matrix)
 
-    #val_last - values of the last column of the table array
+    # val_last - values of the last column of the table array
     val_last = table[:, -1]
 
-    #masks - boolean mask of all strings without diagonal
-    #elements array coefficient_matrix
+    # masks - boolean mask of all strings without diagonal
+    # elements array coefficient_matrix
     masks = ~np.eye(coefficient_matrix.shape[0], dtype=bool)
 
-    #no_diagonals - coefficient_matrix array values without diagonal elements
+    # no_diagonals - coefficient_matrix array values without diagonal elements
     no_diagonals = coefficient_matrix[masks].reshape(-1, rows - 1)
 
-    #Here we get 'i_col' - these are the column numbers, for each row
-    #without diagonal elements, except for the last column.
+    # Here we get 'i_col' - these are the column numbers, for each row
+    # without diagonal elements, except for the last column.
     i_row, i_col = np.where(masks)
     ind = i_col.reshape(-1, rows - 1)
 
     #'i_col' is converted to a two-dimensional list 'ind', which will be
-    #used to make selections from 'init_val' ('arr' array see below).
-
+    # used to make selections from 'init_val' ('arr' array see below).
 
     # Iterates the whole matrix for given number of times
     for _ in range(iterations):
