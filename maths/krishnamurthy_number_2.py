@@ -41,7 +41,7 @@ def factorial(n: int) -> int:
         return n * factorial(n - 1)
 
 
-def krishnamurthy_2(x: int) -> bool:
+def krishnamurthy(x: int) -> bool:
     """
     >>> krishnamurthy_2(5)
     False
