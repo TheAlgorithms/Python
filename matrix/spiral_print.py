@@ -54,7 +54,7 @@ def spiral_print_clockwise(a: list[list[int]]) -> None:
             return
 
         # horizotal printing increasing
-        for i in range(0, mat_col):
+        for i in range(mat_col):
             print(a[0][i])
         # vertical printing down
         for i in range(1, mat_row):

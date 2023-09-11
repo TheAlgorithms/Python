@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def qr_householder(a):
+def qr_householder(a: np.ndarray):
     """Return a QR-decomposition of the matrix A using Householder reflection.
 
     The QR-decomposition decomposes the matrix A of shape (m, n) into an

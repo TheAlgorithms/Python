@@ -97,7 +97,7 @@ class SHA1Hash:
         for block in self.blocks:
             expanded_block = self.expand_block(block)
             a, b, c, d, e = self.h
-            for i in range(0, 80):
+            for i in range(80):
                 if 0 <= i < 20:
                     f = (b & c) | ((~b) & d)
                     k = 0x5A827999

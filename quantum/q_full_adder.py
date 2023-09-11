@@ -88,7 +88,7 @@ def quantum_full_adder(
 
     quantum_circuit = qiskit.QuantumCircuit(qr, cr)
 
-    for i in range(0, 3):
+    for i in range(3):
         if entry[i] == 2:
             quantum_circuit.h(i)  # for hadamard entries
         elif entry[i] == 1:
