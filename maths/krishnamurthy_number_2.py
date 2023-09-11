@@ -4,11 +4,14 @@ import doctest
 A Krishnamurthy number: A number that's equal to the sum of the factorials of its digits
 
 For instance, 145 = 1! + 4! + 5! ; 40585 = 4! + 0! + 5! + 8! + 5!, but 78 != 7! + 8!
+
+For more algorithmic details:
+
+https://mycareerwise.com/programming/category/number-checking/krishnamurthy-number-checking
 """
 
 
 def factorial(number: int) -> int:
-    # Function to calculate the factorial of a number
     # n! = n*(n-1)*(n-2)*...*2*1, that is the definition of the factorial of n (n!)
 
     """
@@ -29,10 +32,10 @@ def factorial(number: int) -> int:
     >>> factorial(4)
     24
     """
-    if not isinstance(number, int):  # If n is not an integer
+    if not isinstance(number, int):
         raise TypeError("Only integers are allowed")
 
-    if number < 0:  # If n is a negative number
+    if number < 0:
         raise ValueError("Only positive integers are allowed")
 
     if number < 2:
@@ -62,11 +65,9 @@ def krishnamurthy(number: int) -> bool:
       File "<stdin>", line 1, in <module>
     ValueError: Only positive integers are allowed
     """
-    # only int variables are allowed
     if not isinstance(number, int):
         raise TypeError("Only integers are allowed")
 
-    # Negative numbers are prohibited
     if number < 0:
         raise ValueError("Only positive integers are allowed")
 
@@ -77,5 +78,4 @@ def krishnamurthy(number: int) -> bool:
 
 
 if __name__ == "__main__":
-    # To see the details about the test, add print() to the next line
     doctest.testmod()
