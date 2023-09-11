@@ -38,10 +38,8 @@ def uniform_search_cost(
     """
     # priority queue
     heap = []
-    goal_answer = []
     # Goal result to be max value initially
-    for _ in range(len(goal)):
-        goal_answer.append(10**8)
+    goal_answer = [10**8] * len(goal)
 
     # Store the starting node
     heap.append([0, start])
