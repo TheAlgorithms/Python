@@ -7,8 +7,8 @@ For instance, 145 = 1! + 4! + 5! ; 40585 = 4! + 0! + 5! + 8! + 5!, but 78 != 7! 
 """
 
 
-def factorial(n: int) -> int:
-    # Function to calculate the factorial of a number n
+def factorial(number: int) -> int:
+    # Function to calculate the factorial of a number
     # n! = n*(n-1)*(n-2)*...*2*1, that is the definition of the factorial of n (n!)
 
     """
@@ -29,51 +29,51 @@ def factorial(n: int) -> int:
     >>> factorial(4)
     24
     """
-    if not isinstance(n, int):  # If n is not an integer
+    if not isinstance(number, int):  # If n is not an integer
         raise TypeError("Only integers are allowed")
 
-    if n < 0:  # If n is a negative number
+    if number < 0:  # If n is a negative number
         raise ValueError("Only positive integers are allowed")
 
-    if n < 2:
+    if number < 2:
         return 1  # Since 1! = 1 and 0! = 1, this is the base case
     else:
-        return n * factorial(n - 1)
+        return number * factorial(number - 1)
 
 
-def krishnamurthy(x: int) -> bool:
+def krishnamurthy(number: int) -> bool:
     """
-    >>> krishnamurthy_2(5)
+    >>> krishnamurthy(5)
     False
-    >>> krishnamurthy_2(2)
+    >>> krishnamurthy(2)
     True
-    >>> krishnamurthy_2("characters") #like '4' or 'c'
+    >>> krishnamurthy("characters") #like '4' or 'c'
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     TypeError: Only integers are allowed
-    >>> krishnamurthy_2(145)
+    >>> krishnamurthy(145)
     True
-    >>> krishnamurthy_2(13)
+    >>> krishnamurthy(13)
     False
-    >>> krishnamurthy_2(40585)
+    >>> krishnamurthy(40585)
     True
-    >>> krishnamurthy_2(-4)
+    >>> krishnamurthy(-4)
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     ValueError: Only positive integers are allowed
     """
     # only int variables are allowed
-    if not isinstance(x, int):
+    if not isinstance(number, int):
         raise TypeError("Only integers are allowed")
 
     # Negative numbers are prohibited
-    if x < 0:
+    if number < 0:
         raise ValueError("Only positive integers are allowed")
 
     # Calculating the factorial of each digit and storing the result in a list
-    factorial_sums = (factorial(int(i)) for i in str(x))
+    factorial_sums = (factorial(int(i)) for i in str(number))
 
-    return x == sum(factorial_sums)
+    return number == sum(factorial_sums)
 
 
 if __name__ == "__main__":
