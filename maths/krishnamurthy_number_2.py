@@ -39,7 +39,7 @@ def factorial(number: int) -> int:
         raise ValueError("Only positive integers are allowed")
 
     if number < 2:
-        return 1  # Since 1! = 1 and 0! = 1, this is the base case
+        return 1  # Since 1! = 1 and 0! = 1.
     else:
         return number * factorial(number - 1)
 
