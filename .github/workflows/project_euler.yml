@@ -14,7 +14,7 @@ jobs:
   project-euler:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: 3.x
@@ -26,14 +26,14 @@ jobs:
   validate-solutions:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: 3.x
       - name: Install pytest and requests
         run: |
           python -m pip install --upgrade pip
-          python -m pip install --upgrade pytest requests
+          python -m pip install --upgrade numpy pytest requests
       - run: pytest scripts/validate_solutions.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
