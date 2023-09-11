@@ -14,26 +14,26 @@ jobs:
   project-euler:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: 3.x
       - name: Install pytest and pytest-cov
         run: |
           python -m pip install --upgrade pip
-          python -m pip install --upgrade pytest pytest-cov
+          python -m pip install --upgrade numpy pytest pytest-cov
       - run: pytest --doctest-modules --cov-report=term-missing:skip-covered --cov=project_euler/ project_euler/
   validate-solutions:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
           python-version: 3.x
       - name: Install pytest and requests
         run: |
           python -m pip install --upgrade pip
-          python -m pip install --upgrade pytest requests
+          python -m pip install --upgrade numpy pytest requests
       - run: pytest scripts/validate_solutions.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
