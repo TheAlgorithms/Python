@@ -50,8 +50,7 @@ def uniform_search_cost(
     while len(heap) > 0:
         heap = sorted(heap)
         # get the top element of the node list which has less distance value
-        current_node = heap[-1]
-        del heap[-1]
+        current_node = heap.pop()
         current_node[0] *= -1
 
         # check current node is part of the goal list
