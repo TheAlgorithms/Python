@@ -62,7 +62,6 @@ import logging
 
 import numpy as np
 import scipy.fftpack as fft
-from scipy.io import wavfile
 from scipy.signal import get_window
 
 logging.basicConfig(level=logging.WARNING)
@@ -386,10 +385,10 @@ def dct(dct_filter_num: int, filter_num: int) -> np.ndarray:
 
 
 if __name__ == "__main__":
-    TRAIN_PATH = "./signal_processing/"
-    sample_rate, audio = wavfile.read(TRAIN_PATH + "sample-speech.wav")
-
-    print(mfcc(audio, sample_rate))
+    # from scipy.io import wavfile
+    # wav_file_path = "./path-to-file/sample.wav"
+    # sample_rate, audio = wavfile.read(wav_file_path)
+    # mfccs = mfcc(audio, sample_rate)
 
     import doctest
 
