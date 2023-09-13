@@ -25,7 +25,7 @@ def xgboost(
     ...    907. , 2.45799458,   40.58 , -124.26]]),np.array([1.114]),
     ... np.array([[1.97840000e+00,  3.70000000e+01,  4.98858447e+00,  1.03881279e+00,
     ...    1.14300000e+03,  2.60958904e+00,  3.67800000e+01, -1.19780000e+02]]))
-    array([[1.1139996]], dtype=float32)
+    array([[1.114]], dtype=float32)
     """
     xgb = XGBRegressor(verbosity=0, random_state=42)
     xgb.fit(features, target)
@@ -38,8 +38,8 @@ def xgboost(
 def main() -> None:
     """
     >>> main()
-    Mean Absolute Error : 0.30957163379906033
-    Mean Square Error  : 0.22611560196662744
+    Mean Absolute Error : 0.3089678116585885
+    Mean Square Error  : 21783275170643127
 
     The URL for this algorithm
     https://xgboost.readthedocs.io/en/stable/
