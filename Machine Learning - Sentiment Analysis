@@ -10,7 +10,7 @@ sid = SentimentIntensityAnalyzer()
 def analyze_sentiment(text):
     # Calculate sentiment scores
     sentiment_scores = sid.polarity_scores(text)
-    
+
     # Determine sentiment label based on the compound score
     compound_score = sentiment_scores['compound']
     if compound_score >= 0.05:
