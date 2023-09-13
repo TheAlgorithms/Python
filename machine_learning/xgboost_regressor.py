@@ -39,7 +39,7 @@ def main() -> None:
     """
     >>> main()
     Mean Absolute Error : 0.3089678116585885
-    Mean Square Error  : 21783275170643127
+    Mean Square Error  : 0.21783275170643127
 
     The URL for this algorithm
     https://xgboost.readthedocs.io/en/stable/
