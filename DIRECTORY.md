@@ -5,6 +5,7 @@
   * [In Static Equilibrium](arithmetic_analysis/in_static_equilibrium.py)
   * [Intersection](arithmetic_analysis/intersection.py)
   * [Jacobi Iteration Method](arithmetic_analysis/jacobi_iteration_method.py)
+  * [Junk](arithmetic_analysis/junk.py)
   * [Lu Decomposition](arithmetic_analysis/lu_decomposition.py)
   * [Newton Forward Interpolation](arithmetic_analysis/newton_forward_interpolation.py)
   * [Newton Method](arithmetic_analysis/newton_method.py)
@@ -628,6 +629,7 @@
   * [Pi Monte Carlo Estimation](maths/pi_monte_carlo_estimation.py)
   * [Points Are Collinear 3D](maths/points_are_collinear_3d.py)
   * [Pollard Rho](maths/pollard_rho.py)
+  * [Polygonal Numbers](maths/polygonal_numbers.py)
   * [Polynomial Evaluation](maths/polynomial_evaluation.py)
   * Polynomials
     * [Single Indeterminate Operations](maths/polynomials/single_indeterminate_operations.py)
@@ -714,6 +716,7 @@
   * Activation Functions
     * [Exponential Linear Unit](neural_network/activation_functions/exponential_linear_unit.py)
     * [Leaky Rectified Linear Unit](neural_network/activation_functions/leaky_rectified_linear_unit.py)
+    * [Scaled Exponential Linear Unit](neural_network/activation_functions/scaled_exponential_linear_unit.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
   * [Perceptron](neural_network/perceptron.py)

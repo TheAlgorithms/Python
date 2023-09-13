@@ -30,6 +30,8 @@ https://en.wikipedia.org/wiki/Euler's_totient_function#Euler's_product_formula
 """
 from __future__ import annotations
 
+import numpy as np
+
 
 def get_totients(max_one: int) -> list[int]:
     """
@@ -42,17 +44,14 @@ def get_totients(max_one: int) -> list[int]:
     >>> get_totients(10)
     [0, 1, 1, 2, 2, 4, 2, 6, 4, 6]
     """
-    totients = [0] * max_one
-
-    for i in range(max_one):
-        totients[i] = i
+    totients = np.arange(max_one)
 
     for i in range(2, max_one):
         if totients[i] == i:
-            for j in range(i, max_one, i):
-                totients[j] -= totients[j] // i
+            x = np.arange(i, max_one, i)  # array of indexes to select
+            totients[x] -= totients[x] // i
 
-    return totients
+    return totients.tolist()
 
 
 def has_same_digits(num1: int, num2: int) -> bool:
