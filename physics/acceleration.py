@@ -9,6 +9,8 @@ def calculate_acceleration(force=None, mass=None, vi=None, vf=None, t=None):
     :param t: Time in seconds (default is None).
     :return: Acceleration in meters per second squared (m/s^2).
 
+    wikipedia: https://en.wikipedia.org/wiki/Acceleration
+
     Examples:
     >>> calculate_acceleration(50, 10)
     5.0
