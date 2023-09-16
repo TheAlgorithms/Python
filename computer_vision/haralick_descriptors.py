@@ -100,7 +100,9 @@ def binarize(image: np.ndarray, threshold: float = 127.0) -> np.ndarray:
     return np.where(image > threshold, 1, 0)
 
 
-def transform(image: np.ndarray, kind: str, kernel: np.ndarray = None) -> np.ndarray:
+def transform(
+    image: np.ndarray, kind: str, kernel: np.ndarray | None = None
+) -> np.ndarray:
     """
     Simple image transformation using one of two available filter functions:
     Erosion and Dilation.
@@ -154,7 +156,7 @@ def transform(image: np.ndarray, kind: str, kernel: np.ndarray = None) -> np.nda
     return transformed
 
 
-def opening_filter(image: np.ndarray, kernel: np.ndarray = None) -> np.ndarray:
+def opening_filter(image: np.ndarray, kernel: np.ndarray | None = None) -> np.ndarray:
     """
     Opening filter, defined as the sequence of
     erosion and then a dilation filter on the same image.
@@ -172,7 +174,7 @@ def opening_filter(image: np.ndarray, kernel: np.ndarray = None) -> np.ndarray:
     return transform(transform(image, "dilation", kernel), "erosion", kernel)
 
 
-def closing_filter(image: np.ndarray, kernel: np.ndarray = None) -> np.ndarray:
+def closing_filter(image: np.ndarray, kernel: np.ndarray | None = None) -> np.ndarray:
     """
     Opening filter, defined as the sequence of
     dilation and then erosion filter on the same image.
