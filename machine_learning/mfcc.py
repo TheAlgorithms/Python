@@ -87,7 +87,7 @@ def mfcc(
     logging.info(f"Normalized audio max: {np.max(audio_normalized)}")
 
     # frame audio into
-    audio_framed = frame(
+    audio_framed = audio_frames(
         audio_normalized, sample_rate, ftt_size=ftt_size, hop_length=hop_length
     )
 
@@ -169,10 +169,10 @@ def audio_frames(
     frame_count = int((len(audio) - ftt_size) / hop_size) + 1
 
     # Initialize an array to store the frames
-    frames = np.zeros((frame_num, ftt_size))
+    frames = np.zeros((frame_count, ftt_size))
 
     # Split the audio signal into frames
-    for n in range(frame_num):
+    for n in range(frame_count):
         frames[n] = audio[n * hop_size : n * hop_size + ftt_size]
 
     return frames
