@@ -166,7 +166,7 @@ def audio_frames(
 
     Returns:
         np.ndarray: An array of overlapping frames.
-    
+
     Examples:
         >>> import numpy as np
         >>> audio = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]*1000)
@@ -370,21 +370,21 @@ def get_filter_points(
     ftt_size: int = 1024,
 ):
     """
-    Calculate the filter points and frequencies for mel frequency filters.
+        Calculate the filter points and frequencies for mel frequency filters.
 
-    Args:
-        sample_rate (int): The sample rate of the audio.
-        freq_min (int): The minimum frequency in Hertz.
-        freq_high (int): The maximum frequency in Hertz.
-        mel_filter_num (Optional[int]): The number of mel filters (default is 10).
-        ftt_size (Optional[int]): The size of the FFT (default is 1024).
+        Args:
+            sample_rate (int): The sample rate of the audio.
+            freq_min (int): The minimum frequency in Hertz.
+            freq_high (int): The maximum frequency in Hertz.
+            mel_filter_num (Optional[int]): The number of mel filters (default is 10).
+            ftt_size (Optional[int]): The size of the FFT (default is 1024).
 
-    Returns:
-        Tuple[np.ndarray, np.ndarray]: Filter points and corresponding frequencies.
+        Returns:
+            Tuple[np.ndarray, np.ndarray]: Filter points and corresponding frequencies.
 
-Examples:
-        >>> get_filter_points(8000, 0, 4000, mel_filter_num=4, ftt_size=512)[0]
-        array([  0,  20,  51,  95, 161, 256])
+    Examples:
+            >>> get_filter_points(8000, 0, 4000, mel_filter_num=4, ftt_size=512)[0]
+            array([  0,  20,  51,  95, 161, 256])
     """
     # Convert minimum and maximum frequencies to mel scale
     fmin_mel = freq_to_mel(freq_min)
@@ -449,11 +449,13 @@ def example(wav_file_path="./path-to-file/sample.wav"):
         mfccs = mfcc(audio, sample_rate)
 
         return mfccs
-    
+
     except Exception as e:
         logging.error(f"Error processing audio: {str(e)}")
         return None
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
