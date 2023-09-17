@@ -133,6 +133,14 @@ def normalize(audio: np.ndarray) -> np.ndarray:
 
     Returns:
         np.ndarray: The normalized audio signal.
+
+    Examples:
+        >>> audio = np.array([1, 2, 3, 4, 5])
+        >>> normalized_audio = normalize(audio)
+        >>> np.max(normalized_audio)
+        1.0
+        >>> np.min(normalized_audio)
+        0.2
     """
     # Find the maximum absolute value in the audio signal
     max_abs_value = np.max(np.abs(audio))
@@ -158,6 +166,14 @@ def audio_frames(
 
     Returns:
         np.ndarray: An array of overlapping frames.
+    
+    Examples:
+        >>> import numpy as np
+        >>> audio = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]*1000)
+        >>> sample_rate = 8000
+        >>> frames = audio_frames(audio, sample_rate, hop_length=10, ftt_size=512)
+        >>> frames.shape
+        (126, 512)
     """
 
     hop_size = np.round(sample_rate * hop_length / 1000).astype(int)
@@ -188,6 +204,13 @@ def calculate_fft(audio_windowed: np.ndarray, ftt_size: int = 1024) -> np.ndarra
 
     Returns:
         np.ndarray: The FFT of the audio data.
+
+    Examples:
+        >>> import numpy as np
+        >>> audio_windowed = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])
+        >>> audio_fft = calculate_fft(audio_windowed, ftt_size=4)
+        >>> np.allclose(audio_fft, np.array([[6.0+0.j, -1.5+0.8660254j, -1.5-0.8660254j], [15.0+0.j, -1.5+0.8660254j, -1.5-0.8660254j]]))
+        True
     """
     # Transpose the audio data to have time in rows and channels in columns
     audio_transposed = np.transpose(audio_windowed)
@@ -216,6 +239,13 @@ def calculate_signal_power(audio_fft: np.ndarray) -> np.ndarray:
 
     Returns:
         np.ndarray: The power of the audio signal.
+
+    Examples:
+        >>> import numpy as np
+        >>> audio_fft = np.array([1+2j, 2+3j, 3+4j, 4+5j])
+        >>> power = calculate_signal_power(audio_fft)
+        >>> np.allclose(power, np.array([5, 13, 25, 41]))
+        True
     """
     # Calculate the power by squaring the absolute values of the FFT coefficients
     audio_power = np.square(np.abs(audio_fft))
@@ -232,6 +262,10 @@ def freq_to_mel(freq):
 
     Returns:
         float: The frequency in mel scale.
+
+    Examples:
+        >>> round(freq_to_mel(1000), 2)
+        999.99
     """
     # Use the formula to convert frequency to the mel scale
     return 2595.0 * np.log10(1.0 + freq / 700.0)
@@ -246,6 +280,10 @@ def mel_to_freq(mels):
 
     Returns:
         float: The frequency in Hertz.
+
+    Examples:
+        >>> round(mel_to_freq(999.99), 2)
+        1000.01
     """
     # Use the formula to convert mel scale to frequency
     return 700.0 * (10.0 ** (mels / 2595.0) - 1.0)
@@ -264,6 +302,10 @@ def mel_spaced_filterbank(
 
     Returns:
         np.ndarray: Mel-spaced filter bank.
+
+    Examples:
+        >>> round(mel_spaced_filterbank(8000, 10, 1024)[0][1], 10)
+        0.0004603981
     """
     freq_min = 0
     freq_high = sample_rate // 2
@@ -298,6 +340,10 @@ def get_filters(filter_points: np.ndarray, ftt_size: int) -> np.ndarray:
 
     Returns:
         np.ndarray: A matrix of filters.
+
+    Examples:
+        >>> get_filters(np.array([0, 20, 51, 95, 161, 256], dtype=int), 512).shape
+        (4, 257)
     """
     num_filters = len(filter_points) - 2
     filters = np.zeros((num_filters, int(ftt_size / 2) + 1))
@@ -335,8 +381,11 @@ def get_filter_points(
 
     Returns:
         Tuple[np.ndarray, np.ndarray]: Filter points and corresponding frequencies.
-    """
 
+Examples:
+        >>> get_filter_points(8000, 0, 4000, mel_filter_num=4, ftt_size=512)[0]
+        array([  0,  20,  51,  95, 161, 256])
+    """
     # Convert minimum and maximum frequencies to mel scale
     fmin_mel = freq_to_mel(freq_min)
     fmax_mel = freq_to_mel(freq_high)
@@ -366,6 +415,9 @@ def dct(dct_filter_num: int, filter_num: int) -> np.ndarray:
 
     Returns:
         np.ndarray: The DCT basis matrix.
+    Examples:
+        >>> round(dct(3, 5)[0][0], 5)
+        0.44721
     """
     basis = np.empty((dct_filter_num, filter_num))
     basis[0, :] = 1.0 / np.sqrt(filter_num)
@@ -378,12 +430,30 @@ def dct(dct_filter_num: int, filter_num: int) -> np.ndarray:
     return basis
 
 
+def example(wav_file_path="./path-to-file/sample.wav"):
+    """
+    Example function to calculate MFCCs (Mel Frequency Cepstral Coefficients) from an audio file.
+
+    Args:
+        wav_file_path (str): The path to the WAV audio file (default is "./path-to-file/sample.wav").
+
+    Returns:
+        np.ndarray: The computed MFCCs for the audio.
+    """
+    from scipy.io import wavfile
+
+    try:
+        # Load the audio from the WAV file
+        sample_rate, audio = wavfile.read(wav_file_path)
+        # Calculate MFCCs
+        mfccs = mfcc(audio, sample_rate)
+
+        return mfccs
+    
+    except Exception as e:
+        logging.error(f"Error processing audio: {str(e)}")
+        return None
+
 if __name__ == "__main__":
-    # from scipy.io import wavfile
-    # wav_file_path = "./path-to-file/sample.wav"
-    # sample_rate, audio = wavfile.read(wav_file_path)
-    # mfccs = mfcc(audio, sample_rate)
-
     import doctest
-
     doctest.testmod()
