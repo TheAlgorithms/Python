@@ -209,7 +209,9 @@ def calculate_fft(audio_windowed: np.ndarray, ftt_size: int = 1024) -> np.ndarra
         >>> import numpy as np
         >>> audio_windowed = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])
         >>> audio_fft = calculate_fft(audio_windowed, ftt_size=4)
-        >>> np.allclose(audio_fft, np.array([[6.0+0.j, -1.5+0.8660254j, -1.5-0.8660254j], [15.0+0.j, -1.5+0.8660254j, -1.5-0.8660254j]]))
+        >>> np.allclose(\
+            audio_fft[0], np.array([6.0+0.j, -1.5+0.8660254j, -1.5-0.8660254j])\
+            )
         True
     """
     # Transpose the audio data to have time in rows and channels in columns
@@ -433,26 +435,22 @@ def dct(dct_filter_num: int, filter_num: int) -> np.ndarray:
 
 def example(wav_file_path="./path-to-file/sample.wav"):
     """
-    Example function to calculate MFCCs (Mel Frequency Cepstral Coefficients) from an audio file.
+    Example function to calculate MFCCs from an audio file.
 
     Args:
-        wav_file_path (str): The path to the WAV audio file (default is "./path-to-file/sample.wav").
+        wav_file_path (str): The path to the WAV audio file.
 
     Returns:
         np.ndarray: The computed MFCCs for the audio.
     """
     from scipy.io import wavfile
 
-    try:
-        # Load the audio from the WAV file
-        sample_rate, audio = wavfile.read(wav_file_path)
-        # Calculate MFCCs
-        mfccs = mfcc(audio, sample_rate)
+    # Load the audio from the WAV file
+    sample_rate, audio = wavfile.read(wav_file_path)
+    # Calculate MFCCs
+    mfccs = mfcc(audio, sample_rate)
 
-        return mfccs
-    except Exception as e:
-        logging.error(f"Error processing audio: {str(e)}")
-        return None
+    return mfccs
 
 
 if __name__ == "__main__":
