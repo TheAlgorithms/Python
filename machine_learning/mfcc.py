@@ -1,5 +1,5 @@
 """
-MFCC (Mel Frequency Cepstral Coefficients) Calculation
+Mel Frequency Cepstral Coefficients (MFCC) Calculation
 
 MFCC is a feature widely used in audio and speech processing to represent the
 short-term power spectrum of a sound signal in a more compact and
@@ -138,12 +138,10 @@ def normalize(audio: np.ndarray) -> np.ndarray:
     max_abs_value = np.max(np.abs(audio))
 
     # Divide the entire audio signal by the maximum absolute value
-    normalized_audio = audio / max_abs_value
-
-    return normalized_audio
+    return audio / max_abs_value
 
 
-def frame(
+def audio_frames(
     audio: np.ndarray,
     sample_rate: int,
     hop_length: int = 20,
@@ -168,7 +166,7 @@ def frame(
     audio = np.pad(audio, int(ftt_size / 2), mode="reflect")
 
     # Calculate the number of frames
-    frame_num = int((len(audio) - ftt_size) / hop_size) + 1
+    frame_count = int((len(audio) - ftt_size) / hop_size) + 1
 
     # Initialize an array to store the frames
     frames = np.zeros((frame_num, ftt_size))
@@ -206,9 +204,7 @@ def calculate_fft(audio_windowed: np.ndarray, ftt_size: int = 1024) -> np.ndarra
         audio_fft[:, n] = fft.fft(audio_transposed[:, n], axis=0)[: audio_fft.shape[0]]
 
     # Transpose the FFT results back to the original shape
-    audio_fft = np.transpose(audio_fft)
-
-    return audio_fft
+    return np.transpose(audio_fft)
 
 
 def calculate_signal_power(audio_fft: np.ndarray) -> np.ndarray:
@@ -289,9 +285,7 @@ def mel_spaced_filterbank(
     # normalize filters
     # taken from the librosa library
     enorm = 2.0 / (mel_freqs[2 : mel_filter_num + 2] - mel_freqs[:mel_filter_num])
-    filters *= enorm[:, np.newaxis]
-
-    return filters
+    return filters * enorm[:, np.newaxis]
 
 
 def get_filters(filter_points: np.ndarray, ftt_size: int) -> np.ndarray:
