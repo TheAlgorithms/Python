@@ -10,9 +10,9 @@ Description :
 """
 
 
-def discrete_path_length(seq: list[tuple[float, float]]) -> float:
+def discrete_path_length(cordinateSequence: list[tuple[float, float]]) -> float:
     """
-    seq : a list of (x,y) pairs , with sorted in non decreasing manner of x
+    cordinateSequence : a list of (x,y) pairs , with sorted in non decreasing manner of x
 
     Example:
     Generates a sequence of coordinates for a semicircle of radius and calculates
@@ -20,21 +20,21 @@ def discrete_path_length(seq: list[tuple[float, float]]) -> float:
 
     >>> import numpy as np
     >>> radius = 5
-    >>> xRange = np.arange(-radius,radius,0.001)
-    >>> seq = [(x,(5**2 - x**2)**.5) for x in xRange]
-    >>> "%.4f" % discrete_path_length(seq)
+    >>> X_Cordinates = np.arange(-radius,radius,0.001)
+    >>> cordinateSequence = [(x,(5**2 - x**2)**.5) for x in X_Cordinates]
+    >>> "%.4f" % discrete_path_length(cordinateSequence)
     '15.6080'
 
     """
-    if seq is None:
+    if cordinateSequence is None:
         return None
 
-    if len(seq) < 2:
+    if len(cordinateSequence) < 2:
         return 0
     res_slopes = []
-    for i in range(1, len(seq)):
+    for i in range(1, len(cordinateSequence)):
         res_slopes.append(
-            ((seq[i][0] - seq[i - 1][0]) ** 2 + (seq[i][1] - seq[i - 1][1]) ** 2) ** 0.5
+            ((cordinateSequence[i][0] - cordinateSequence[i - 1][0]) ** 2 + (cordinateSequence[i][1] - cordinateSequence[i - 1][1]) ** 2) ** 0.5
         )
     return sum(res_slopes)
 
@@ -49,11 +49,11 @@ if __name__ == "__main__":
 
     doctest.testmod()
     radius = 5
-    xrange = np.arange(-radius, radius, 0.001)
+    X_Cordinates_array = np.arange(-radius, radius, 0.001)
     # Make points for sequence for a semicircle of radius 5
-    seq = [(x, (5**2 - x**2) ** 0.5) for x in xrange]
+    cordinateSequence = [(x, (5**2 - x**2) ** 0.5) for x in X_Cordinates_array]
     print(
         f"Test Radius {radius},\
-          Test Arc {discrete_path_length(seq)},\
+          Test Arc {discrete_path_length(cordinateSequence)},\
           Expected Arc {3.14159 * radius}"
     )
