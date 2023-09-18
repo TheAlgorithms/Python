@@ -72,6 +72,7 @@
 ## Cellular Automata
   * [Conways Game Of Life](cellular_automata/conways_game_of_life.py)
   * [Game Of Life](cellular_automata/game_of_life.py)
+  * [Langtons Ant](cellular_automata/langtons_ant.py)
   * [Nagel Schrekenberg](cellular_automata/nagel_schrekenberg.py)
   * [One Dimensional](cellular_automata/one_dimensional.py)
   * [Wa Tor](cellular_automata/wa_tor.py)
@@ -132,6 +133,7 @@
 ## Computer Vision
   * [Cnn Classification](computer_vision/cnn_classification.py)
   * [Flip Augmentation](computer_vision/flip_augmentation.py)
+  * [Haralick Descriptors](computer_vision/haralick_descriptors.py)
   * [Harris Corner](computer_vision/harris_corner.py)
   * [Horn Schunck](computer_vision/horn_schunck.py)
   * [Mean Threshold](computer_vision/mean_threshold.py)
@@ -143,9 +145,9 @@
   * [Binary To Decimal](conversions/binary_to_decimal.py)
   * [Binary To Hexadecimal](conversions/binary_to_hexadecimal.py)
   * [Binary To Octal](conversions/binary_to_octal.py)
+  * [Convert Number To Words](conversions/convert_number_to_words.py)
   * [Decimal To Any](conversions/decimal_to_any.py)
   * [Decimal To Binary](conversions/decimal_to_binary.py)
-  * [Decimal To Binary Recursion](conversions/decimal_to_binary_recursion.py)
   * [Decimal To Hexadecimal](conversions/decimal_to_hexadecimal.py)
   * [Decimal To Octal](conversions/decimal_to_octal.py)
   * [Energy Conversions](conversions/energy_conversions.py)
@@ -154,6 +156,7 @@
   * [Hexadecimal To Decimal](conversions/hexadecimal_to_decimal.py)
   * [Length Conversion](conversions/length_conversion.py)
   * [Molecular Chemistry](conversions/molecular_chemistry.py)
+  * [Octal To Binary](conversions/octal_to_binary.py)
   * [Octal To Decimal](conversions/octal_to_decimal.py)
   * [Prefix Conversions](conversions/prefix_conversions.py)
   * [Prefix Conversions String](conversions/prefix_conversions_string.py)
@@ -243,7 +246,6 @@
   * Stacks
     * [Balanced Parentheses](data_structures/stacks/balanced_parentheses.py)
     * [Dijkstras Two Stack Algorithm](data_structures/stacks/dijkstras_two_stack_algorithm.py)
-    * [Evaluate Postfix Notations](data_structures/stacks/evaluate_postfix_notations.py)
     * [Infix To Postfix Conversion](data_structures/stacks/infix_to_postfix_conversion.py)
     * [Infix To Prefix Conversion](data_structures/stacks/infix_to_prefix_conversion.py)
     * [Next Greater Element](data_structures/stacks/next_greater_element.py)
@@ -585,6 +587,7 @@
   * [Greedy Coin Change](maths/greedy_coin_change.py)
   * [Hamming Numbers](maths/hamming_numbers.py)
   * [Hardy Ramanujanalgo](maths/hardy_ramanujanalgo.py)
+  * [Harshad Numbers](maths/harshad_numbers.py)
   * [Hexagonal Number](maths/hexagonal_number.py)
   * [Integration By Simpson Approx](maths/integration_by_simpson_approx.py)
   * [Interquartile Range](maths/interquartile_range.py)
@@ -625,6 +628,7 @@
   * [Pi Monte Carlo Estimation](maths/pi_monte_carlo_estimation.py)
   * [Points Are Collinear 3D](maths/points_are_collinear_3d.py)
   * [Pollard Rho](maths/pollard_rho.py)
+  * [Polygonal Numbers](maths/polygonal_numbers.py)
   * [Polynomial Evaluation](maths/polynomial_evaluation.py)
   * Polynomials
     * [Single Indeterminate Operations](maths/polynomials/single_indeterminate_operations.py)
@@ -711,6 +715,7 @@
   * Activation Functions
     * [Exponential Linear Unit](neural_network/activation_functions/exponential_linear_unit.py)
     * [Leaky Rectified Linear Unit](neural_network/activation_functions/leaky_rectified_linear_unit.py)
+    * [Scaled Exponential Linear Unit](neural_network/activation_functions/scaled_exponential_linear_unit.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
   * [Perceptron](neural_network/perceptron.py)
@@ -1203,7 +1208,6 @@
 
 ## Web Programming
   * [Co2 Emission](web_programming/co2_emission.py)
-  * [Convert Number To Words](web_programming/convert_number_to_words.py)
   * [Covid Stats Via Xpath](web_programming/covid_stats_via_xpath.py)
   * [Crawl Google Results](web_programming/crawl_google_results.py)
   * [Crawl Google Scholar Citation](web_programming/crawl_google_scholar_citation.py)

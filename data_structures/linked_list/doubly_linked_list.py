@@ -98,7 +98,7 @@ class DoublyLinkedList:
             self.tail = new_node
         else:
             temp = self.head
-            for _ in range(0, index):
+            for _ in range(index):
                 temp = temp.next
             temp.previous.next = new_node
             new_node.previous = temp.previous
@@ -149,7 +149,7 @@ class DoublyLinkedList:
             self.tail.next = None
         else:
             temp = self.head
-            for _ in range(0, index):
+            for _ in range(index):
                 temp = temp.next
             delete_node = temp
             temp.next.previous = temp.previous
@@ -215,7 +215,7 @@ def test_doubly_linked_list() -> None:
 
     linked_list.insert_at_head(0)
     linked_list.insert_at_tail(11)
-    assert str(linked_list) == "->".join(str(i) for i in range(0, 12))
+    assert str(linked_list) == "->".join(str(i) for i in range(12))
 
     assert linked_list.delete_head() == 0
     assert linked_list.delete_at_nth(9) == 10

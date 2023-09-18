@@ -16,9 +16,9 @@ def double_sort(lst):
     """
     no_of_elements = len(lst)
     for _ in range(
-        0, int(((no_of_elements - 1) / 2) + 1)
+        int(((no_of_elements - 1) / 2) + 1)
     ):  # we don't need to traverse to end of list as
-        for j in range(0, no_of_elements - 1):
+        for j in range(no_of_elements - 1):
             if (
                 lst[j + 1] < lst[j]
             ):  # applying bubble sort algorithm from left to right (or forwards)
