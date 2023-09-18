@@ -21,8 +21,8 @@ def discrete_path_length(cordinate_sequence: list[tuple[float, float]]) -> float
 
     >>> import numpy as np
     >>> radius = 5
-    >>> X_Cordinates = np.arange(-radius,radius,0.001)
-    >>> cordinate_sequence = [(x,(5**2 - x**2)**.5) for x in X_Cordinates]
+    >>> x_cordinates = np.arange(-radius,radius,0.001)
+    >>> cordinate_sequence = [(x,(5**2 - x**2)**.5) for x in x_cordinates]
     >>> "%.4f" % discrete_path_length(cordinate_sequence)
     '15.6080'
 
