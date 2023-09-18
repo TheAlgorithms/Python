@@ -34,7 +34,11 @@ def discrete_path_length(cordinateSequence: list[tuple[float, float]]) -> float:
     res_slopes = []
     for i in range(1, len(cordinateSequence)):
         res_slopes.append(
-            ((cordinateSequence[i][0] - cordinateSequence[i - 1][0]) ** 2 + (cordinateSequence[i][1] - cordinateSequence[i - 1][1]) ** 2) ** 0.5
+            (
+                (cordinateSequence[i][0] - cordinateSequence[i - 1][0]) ** 2
+                + (cordinateSequence[i][1] - cordinateSequence[i - 1][1]) ** 2
+            )
+            ** 0.5
         )
     return sum(res_slopes)
 
