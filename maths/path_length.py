@@ -54,9 +54,9 @@ if __name__ == "__main__":
 
     doctest.testmod()
     radius = 5
-    X_Cordinates_array = np.arange(-radius, radius, 0.001)
+    x_cordinates_array = np.arange(-radius, radius, 0.001)
     # Make points for sequence for a semicircle of radius 5
-    cordinate_sequence = [(x, (5**2 - x**2) ** 0.5) for x in X_Cordinates_array]
+    cordinate_sequence = [(x, (5**2 - x**2) ** 0.5) for x in x_cordinates_array]
     print(
         f"Test Radius {radius},\
           Test Arc {discrete_path_length(cordinate_sequence)},\
