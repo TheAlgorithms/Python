@@ -23,11 +23,11 @@ def dividend_discount_model(
     >>> dividend_discount_model(0, 0.12, 0.03)
     Traceback (most recent call last):
         ...
-    Exception: Principal borrowed must be > 0
+    Exception: The rate of constant cost must be >= 0
     >>> dividend_discount_model(25000, -0.12, 0.03)
     Traceback (most recent call last):
         ...
-    Exception: Rate of interest must be >= 0
+    Exception: The constant growth must be >= 0
     >>> dividend_discount_model(25000, 0.12, 0)
     Traceback (most recent call last):
         ...
