@@ -1,5 +1,5 @@
 """
-Calculate price plus tax of a good or service given 
+Calculate price plus tax of a good or service given
 - Price
 - Tax rate
 """
@@ -18,7 +18,7 @@ def price_plus_tax(price: float, tax_rate: float) -> float:
     # If the tax rate is negative or zero, it will raise a warning
     if tax_rate <= 0:
         raise Exception("The tax rate must be > 0")
-        
+
     return price * (1 + tax_rate)
 
 
