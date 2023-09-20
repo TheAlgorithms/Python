@@ -1,3 +1,4 @@
+import timeit
 BITS_TO_HEX = {
     "0000": "0",
     "0001": "1",
@@ -38,13 +39,16 @@ def bin_to_hexadecimal(binary_str: str) -> str:
     ValueError: Empty string was passed to the function
     """
     # Sanitising parameter
+    sign = "-" if binary_str.startswith("-") else ""
+    binary_str = binary_str.lstrip('-0') 
+    binary_str_len = len(binary_str)
     binary_str = str(binary_str).strip()
 
     # Exceptions
     if not binary_str:
         raise ValueError("Empty string was passed to the function")
-    is_negative = binary_str[0] == "-"
-    binary_str = binary_str[1:] if is_negative else binary_str
+    
+    
     if not all(char in "01" for char in binary_str):
         raise ValueError("Non-binary value was passed to the function")
 
@@ -53,14 +57,14 @@ def bin_to_hexadecimal(binary_str: str) -> str:
     )
 
     hexadecimal = []
-    for x in range(0, len(binary_str), 4):
+    for x in range(0, binary_str_len, 4):
         hexadecimal.append(BITS_TO_HEX[binary_str[x : x + 4]])
     hexadecimal_str = "0x" + "".join(hexadecimal)
 
-    return "-" + hexadecimal_str if is_negative else hexadecimal_str
+    return sign + hexadecimal_str
 
 
 if __name__ == "__main__":
     from doctest import testmod
-
+    
     testmod()
