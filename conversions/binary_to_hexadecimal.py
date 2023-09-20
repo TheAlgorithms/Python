@@ -39,15 +39,14 @@ def bin_to_hexadecimal(binary_str: str) -> str:
     """
     # Sanitising parameter
     sign = "-" if binary_str.startswith("-") else ""
-    binary_str = binary_str.lstrip('-0') 
+    binary_str = binary_str.lstrip("-0")
     binary_str_len = len(binary_str)
     binary_str = str(binary_str).strip()
 
     # Exceptions
     if not binary_str:
         raise ValueError("Empty string was passed to the function")
-    
-    
+
     if not all(char in "01" for char in binary_str):
         raise ValueError("Non-binary value was passed to the function")
 
