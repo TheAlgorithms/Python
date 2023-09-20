@@ -14,7 +14,7 @@ def dividend_discount_model(
     """
     Formula for Dividend Discount Model:
     P = D1/(r-g)
-    where P is the expected price of a company's stock, 
+    where P is the expected price of a company's stock,
     r is the rate of interest per month
     and n is the number of payments
 
