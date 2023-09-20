@@ -7,6 +7,7 @@ Program using Dividend Discount Model to pricing a company's stock, given
 Wikipedia Reference: https://en.wikipedia.org/wiki/Dividend_discount_model
 """
 
+
 def dividend_discount_model(
     next_dividend: float, constant_cost: float, constant_growth: float
 ) -> float:
@@ -39,13 +40,10 @@ def dividend_discount_model(
     if constant_growth <= 0:
         raise Exception("The constant growth must be >= 0")
 
-
-    return (next_dividend/(constant_cost-constant_growth))
+    return next_dividend / (constant_cost - constant_growth)
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
-
