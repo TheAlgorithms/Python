@@ -1,4 +1,3 @@
-import timeit
 BITS_TO_HEX = {
     "0000": "0",
     "0001": "1",
@@ -66,5 +65,5 @@ def bin_to_hexadecimal(binary_str: str) -> str:
 
 if __name__ == "__main__":
     from doctest import testmod
-    
+
     testmod()
