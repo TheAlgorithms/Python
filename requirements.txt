@@ -20,5 +20,5 @@ sympy
 tensorflow
 texttable
 tweepy
-xgboost
+xgboost==1.7.6
 yulewalker
