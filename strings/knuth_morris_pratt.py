@@ -61,22 +61,22 @@ if __name__ == "__main__":
     pattern = "abc1abc12"
     text1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"
     text2 = "alskfjaldsk23adsfabcabc"
-    print(kmp(pattern, text1), kmp(pattern, text2))
+    print(knuth_morris_pratt(pattern, text1), knuth_morris_pratt(pattern, text2))
 
     # Test 2)
     pattern = "ABABX"
     text = "ABABZABABYABABX"
-    print(kmp(pattern, text))
+    print(knuth_morris_pratt(pattern, text))
 
     # Test 3)
     pattern = "AAAB"
     text = "ABAAAAAB"
-    print(kmp(pattern, text))
+    print(knuth_morris_pratt(pattern, text))
 
     # Test 4)
     pattern = "abcdabcy"
     text = "abcxabcdabxabcdabcdabcy"
-    print(kmp(pattern, text))
+    print(knuth_morris_pratt(pattern, text))
 
     # Test 5)
     pattern = "aabaabaaa"
