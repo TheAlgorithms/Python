@@ -30,7 +30,7 @@ class LangtonsAnt:
         self.board = [[True] * width for _ in range(height)]
         self.ant_position: tuple[int, int] = (width // 2, height // 2)
 
-        # Initially pointing left (similar to the the wikipedia image)
+        # Initially pointing left (similar to the wikipedia image)
         # (0 = 0° | 1 = 90° | 2 = 180 ° | 3 = 270°)
         self.ant_direction: int = 3
 

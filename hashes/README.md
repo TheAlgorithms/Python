@@ -7,7 +7,7 @@ Unlike encryption, which is intended to protect data in transit, hashing is inte
 This is one of the first algorithms that has gained widespread acceptance. MD5 is hashing algorithm made by Ray Rivest that is known to suffer vulnerabilities. It was created in 1992 as the successor to MD4. Currently MD6 is in the works, but as of 2009 Rivest had removed it from NIST consideration for SHA-3.
 
 ### SHA
-SHA stands for Security Hashing Algorithm and it’s probably best known as the hashing algorithm used in most SSL/TLS cipher suites. A cipher suite is a collection of ciphers and algorithms that are used for SSL/TLS connections. SHA handles the hashing aspects. SHA-1, as we mentioned earlier, is now deprecated. SHA-2 is now mandatory. SHA-2 is sometimes known has SHA-256, though variants with longer bit lengths are also available.
+SHA stands for Security Hashing Algorithm and it’s probably best known as the hashing algorithm used in most SSL/TLS cipher suites. A cipher suite is a collection of ciphers and algorithms that are used for SSL/TLS connections. SHA handles the hashing aspects. SHA-1, as we mentioned earlier, is now deprecated. SHA-2 is now mandatory. SHA-2 is sometimes known as SHA-256, though variants with longer bit lengths are also available.
 
 ### SHA256
 SHA 256 is a member of the SHA 2 algorithm family, under which SHA stands for Secure Hash Algorithm. It was a collaborative effort between both the NSA and NIST to implement a successor to the SHA 1 family, which was beginning to lose potency against brute force attacks. It was published in 2001.

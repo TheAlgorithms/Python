@@ -4,7 +4,7 @@ is specified by the sorting algorithm. The most typical orders are lexical or nu
 of sorting lies in the fact that, if data is stored in a sorted manner, data searching can be highly optimised.
 Another use for sorting is to represent data in a more readable manner.
 
-This section contains a lot of important algorithms that helps us to use sorting algorithms in various scenarios.
+This section contains a lot of important algorithms that help us to use sorting algorithms in various scenarios.
 ## References
 * <https://www.tutorialspoint.com/python_data_structure/python_sorting_algorithms.htm>
 * <https://www.geeksforgeeks.org/sorting-algorithms-in-python>
