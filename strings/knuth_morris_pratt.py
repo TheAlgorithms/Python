@@ -15,9 +15,22 @@ def knuth_morris_pratt(pattern: str, text: str) -> int:
         the pattern updating our location within the pattern if necessary
 
     >>> kmp = "knuth_morris_pratt"
+    >>> knuth_morris_pratt(kmp, "kn") == kmp.find("kn")
+    True
+    >>> knuth_morris_pratt(kmp, "h_m") == kmp.find("h_m")
+    True
+    >>> knuth_morris_pratt(kmp, "rr") == kmp.find("rr")
+    True
+    >>> knuth_morris_pratt(kmp, "tt") == kmp.find("tt")
+    True
+    >>> knuth_morris_pratt(kmp, "not there") == kmp.find("not there")
+    True
+    
+    # A condensed version...
     >>> all(knuth_morris_pratt(kmp, s) == kmp.find(s) for s in (
     ...     "kn", "h_m", "rr", "tt", "not there"
     ... ))
+    True
     """
 
     # 1) Construct the failure array
