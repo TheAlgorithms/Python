@@ -25,7 +25,7 @@ def knuth_morris_pratt(pattern: str, text: str) -> int:
     True
     >>> knuth_morris_pratt(kmp, "not there") == kmp.find("not there")
     True
-    
+
     # A condensed version...
     >>> all(knuth_morris_pratt(kmp, s) == kmp.find(s) for s in (
     ...     "kn", "h_m", "rr", "tt", "not there"
