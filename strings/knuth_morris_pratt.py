@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 
-def kmp(pattern: str, text: str) -> int:
+def knuth_morris_pratt(pattern: str, text: str) -> int:
     """
     The Knuth-Morris-Pratt Algorithm for finding a pattern within a piece of text
     with complexity O(n + m)
