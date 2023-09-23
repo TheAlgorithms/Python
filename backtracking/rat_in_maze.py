@@ -1,18 +1,19 @@
 from __future__ import annotations
 
+
 def solve_maze(maze: list[list[int]]) -> bool:
     """
     This method solves the "rat in maze" problem.
     In this problem, we have an n by n matrix, a start point, and an end point.
     We want to go from the start to the end. In this matrix, ones represent walls,
     and zeros represent paths we can use.
-    
+
     Parameters:
         maze (2D matrix): The maze where 1 represents walls, and 0 represents paths.
-    
+
     Returns:
         bool: True if a solution exists, False otherwise.
-    
+
     >>> maze = [[0, 1, 0, 1, 1],
     ...         [0, 0, 0, 0, 0],
     ...         [1, 0, 1, 0, 1],
@@ -40,7 +41,7 @@ def solve_maze(maze: list[list[int]]) -> bool:
     # We need to create a solution object to save the path.
     solutions = [[0 for _ in range(size)] for _ in range(size)]
     solved = run_maze(maze, 0, 0, solutions)
-    
+
     if solved:
         print("Path:")
         for row in solutions:
@@ -49,17 +50,18 @@ def solve_maze(maze: list[list[int]]) -> bool:
         print("No solution exists!")
     return solved
 
+
 def run_maze(maze: list[list[int]], i: int, j: int, solutions: list[list[int]]) -> bool:
     """
     This method is recursive, starting from (i, j) and going in one of four directions:
     up, down, left, right.
     If a path is found to the destination, it returns True; otherwise, it returns False.
-    
+
     Parameters:
         maze (2D matrix): The maze where 1 represents walls, and 0 represents paths.
         i, j (int): Coordinates in the matrix.
         solutions (2D matrix): Solution matrix to save the path.
-    
+
     Returns:
         bool: True if a path is found, False otherwise.
     """
@@ -78,7 +80,7 @@ def run_maze(maze: list[list[int]], i: int, j: int, solutions: list[list[int]]) 
             # Mark as visited.
             solutions[i][j] = 1
 
-            # Try different 
+            # Try different
             # directions
             if (
                 run_maze(maze, i + 1, j, solutions)
@@ -92,6 +94,8 @@ def run_maze(maze: list[list[int]], i: int, j: int, solutions: list[list[int]]) 
             return False
     return False
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
