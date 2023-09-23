@@ -24,7 +24,7 @@ def kmp(pattern: str, text: str) -> bool:
     while i < len(text):
         if pattern[j] == text[i]:
             if j == (len(pattern) - 1):
-                return i-j
+                return i - j
             j += 1
 
         # if this is a prefix in our pattern
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     pattern = "abc1abc12"
     text1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"
     text2 = "alskfjaldsk23adsfabcabc"
-    print(kmp(pattern, text1),kmp(pattern, text2)) 
+    print(kmp(pattern, text1), kmp(pattern, text2))
 
     # Test 2)
     pattern = "ABABX"
