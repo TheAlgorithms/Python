@@ -1,6 +1,5 @@
 import numpy as np
 import requests
-
 """
 Linear regression is the most basic type of regression commonly used for
 predictive analysis. The idea is pretty simple: we have a dataset and we have
@@ -45,8 +44,6 @@ techniques, where your residuals are no longer normally distributed.
 A few examples of these techniques are "Poisson Regression", "Logistic Regression",
 "Multinomial Regression", "Gamma Regression" and so on.
 """
-
-
 def collect_dataset():
     """Collect dataset of CSGO
     The dataset contains ADR vs Rating of a Player
@@ -66,8 +63,7 @@ def collect_dataset():
     dataset = np.matrix(data)
     return dataset
 
-
-def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> float:
+def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> None:
     """
     Calculate relevant statistics for the linear model
     :ssr -> Sum of Squares Regression
@@ -110,10 +106,16 @@ def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> 
     mse = sse/dfe
     f = msr/mse
     #f-Statistic
-    return ssr, sse, sst, r2, mae, msr, mse, f
+    print("SST is:", sst)
+    print("SSR is:", ssr)
+    print("SSE is:", sse)
+    print("R^2 is:", r2)
+    print("MAE is:", mae)
+    print("MSR is:", msr)
+    print("MSE is:", mse)
+    print("F Statistic is:", f)
 
-
-def simple_solve(data_x, data_y):
+def simple_solve(data_x: list, data_y: list) -> None:
     """
     Simple method of solving the univariate linear regression (like this problem)
     Gradient is the sum of rectangular area over the sum of square area from the
@@ -134,24 +136,14 @@ def simple_solve(data_x, data_y):
     print("Gradient coefficient is:", beta_1)
     print("Y-Intercept is:", beta_0)
     y_hat = beta_1 * data_x + beta_0
-    ssr, sse, sst, r2, mae, msr, mse, f = regression_statistics(y_hat, data_y, y_bar)
-    print("SST is:", sst)
-    print("SSR is:", ssr)
-    print("SSE is:", sse)
-    print("R^2 is:", r2)
-    print("MAE is:", mae)
-    print("MSR is:", msr)
-    print("MSE is:", mse)
-    print("F Statistic is:", f)
-
-
+    regression_statistics(y_hat, data_y, y_bar)
+    
 def main():
     """Driver function"""
     data = collect_dataset()
     data_y = data[:, -1].astype(float)
     data_x = data[:, :-1].astype(float)
     simple_solve(data_x, data_y)
-
 
 if __name__ == "__main__":
     main()
