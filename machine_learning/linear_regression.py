@@ -8,7 +8,7 @@ fit our dataset. In this particular code, I had used a CSGO dataset (ADR vs
 Rating). We try to best fit a line through dataset and estimate the parameters.
 """
 
-'''
+"""
 https://en.wikipedia.org/wiki/Simple_linear_regression
 This link explains the methodology.
 
@@ -16,8 +16,8 @@ https://en.wikipedia.org/wiki/f-test
 This one gives a bit more information on the f-Test
 
 NB_1: R Squared is not a "Goodness of fit", R squared is
-the value that tells you how much of the variance 
-of your target feature (y) is explained by your 
+the value that tells you how much of the variance
+of your target feature (y) is explained by your
 chosen feature (x).
 https://uk.mathworks.com/help/stats/f-statistic-and-t-statistic.html
 
@@ -41,9 +41,10 @@ techniques, where your residuals are no longer normally distributed.
 
 A few examples of these techniques are "Poisson Regression", "Logistic Regression",
 "Multinomial Regression", "Gamma Regression" and so on.
-'''
+"""
 import numpy as np
 import requests
+
 
 def collect_dataset():
     """Collect dataset of CSGO
@@ -64,8 +65,9 @@ def collect_dataset():
     dataset = np.matrix(data)
     return dataset
 
-def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> float: 
-    '''
+
+def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> float:
+    """
     Calculate relevant statistics for the linear model
     :ssr -> Sum of Squares Regression
     :sse -> Sum of Squares Error
@@ -109,8 +111,9 @@ def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> 
     #f-Statistic
     return ssr, sse, sst, r2, mae, msr, mse, f
 
+
 def simple_solve(data_x, data_y):
-    '''
+    """
     Simple method of solving the univariate linear regression (like this problem)
     Gradient is the sum of rectangular area over the sum of square area from the centroid
     Intercept can be worked out by using the centroid and solving c = y-mx
@@ -131,14 +134,14 @@ def simple_solve(data_x, data_y):
     print("Y-Intercept is:",beta_0)
     y_hat = beta_1*data_x + beta_0
     ssr, sse, sst, r2, mae, msr, mse, f = regression_statistics(y_hat, data_y, y_bar)
-    print("sst is:",sst)
-    print("ssr is:",ssr)
-    print("sse is:",sse)
+    print("SST is:",sst)
+    print("SSR is:",ssr)
+    print("SSE is:",sse)
     print("R^2 is:",r2)
-    print("mae is:",mae)
-    print("msr is:",msr)
-    print("mse is:",mse)
-    print("f Statistic is:",f)
+    print("MAE is:",mae)
+    print("MSR is:",msr)
+    print("MSE is:",mse)
+    print("F Statistic is:",f)
 
 def main():
     """Driver function"""
@@ -146,6 +149,7 @@ def main():
     data_y = data[:, -1].astype(float)
     data_x = data[:, :-1].astype(float)
     simple_solve(data_x, data_y)
+
 
 if __name__ == "__main__":
     main()
