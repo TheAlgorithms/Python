@@ -386,7 +386,7 @@ def get_filter_points(
     freq_high: int,
     mel_filter_num: int = 10,
     ftt_size: int = 1024,
-):
+) -> tuple[np.ndarray, np.ndarray]:
     """
     Calculate the filter points and frequencies for mel frequency filters.
 
