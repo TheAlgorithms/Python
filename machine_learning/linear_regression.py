@@ -77,7 +77,7 @@ def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> 
     :mae -> Mean Absolute Error, an objective (loss) function to
     baseline how well your model predicts
     :msr -> Mean Square Residual, used in f statistic
-    :mse -> Mean Square Error, an objective function, but 
+    :mse -> Mean Square Error, an objective function, but
     an f statistic variable in this case
     :f -> The f statistic, used to determine whether
     the regression coefficient is statistically significant
@@ -102,7 +102,7 @@ def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> 
     mae = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
     mae = mae / len(original_y)
     dft = len(original_y) - 1
-    #For univariate case -> n=1, p=1 -> dft = 
+    #For univariate case -> n=1, p=1 -> dft =
     dfe = len(original_y) - 1 - 1
     #For univariate case -> n=1
     msr = ssr/1
@@ -126,7 +126,7 @@ def simple_solve(data_x, data_y):
     for idx, val in enumerate(data_x):
         rect_area += ((val-x_bar)*(data_y[idx]-y_bar))
         square_area += (val-x_bar)**2
-    
+
 
     beta_1 = float(rect_area/square_area)
     beta_0 = y_bar - beta_1*x_bar
