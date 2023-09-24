@@ -27,7 +27,9 @@ def xgboost(
     ...    1.14300000e+03,  2.60958904e+00,  3.67800000e+01, -1.19780000e+02]]))
     array([[1.1139996]], dtype=float32)
     """
-    xgb = XGBRegressor(verbosity=0, random_state=42)
+    xgb = XGBRegressor(
+        verbosity=0, random_state=42, tree_method="exact", base_score=0.5
+    )
     xgb.fit(features, target)
     # Predict target for test data
     predictions = xgb.predict(test_features)
