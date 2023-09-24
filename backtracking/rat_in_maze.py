@@ -10,10 +10,11 @@ def solve_maze(maze: list[list[int]]) -> bool:
         Return: True if the maze has a solution or False if it does not.
     Description:
         This method navigates through a maze represented as an n by n matrix,
-        starting from a specified source cell (default: top-left corner) and 
+        starting from a specified source cell (default: top-left corner) and
         aiming to reach a destination cell (default: bottom-right corner).
         The maze consists of walls (0s) and open paths (1s).
-        By providing custom row and column values, the source and destination cells can be adjusted.
+        By providing custom row and column values, the source and destination
+        cells can be adjusted.
     >>> maze = [[0, 1, 0, 1, 1],
     ...         [0, 0, 0, 0, 0],
     ...         [1, 0, 1, 0, 1],
@@ -68,13 +69,14 @@ def solve_maze(maze: list[list[int]]) -> bool:
     """
     # We need to create solution object to save path.
     size = len(maze)
-    source_row=0
-    source_column=0
-    destination_row=size-1
-    destination_column=size-1
+    source_row = 0
+    source_column = 0
+    destination_row = size - 1
+    destination_column = size - 1
     solutions = [[0 for _ in range(size)] for _ in range(size)]
-    solved = run_maze(maze, source_row, source_column,destination_row,
-                      destination_column, solutions)
+    solved = run_maze(
+        maze, source_row, source_column, destination_row, destination_column, solutions
+    )
     if solved:
         print("\n".join(str(row) for row in solutions))
     else:
@@ -82,8 +84,14 @@ def solve_maze(maze: list[list[int]]) -> bool:
     return solved
 
 
-def run_maze(maze: list[list[int]], i: int, j: int,destination_row:int,
-             destination_column:int, solutions: list[list[int]]) -> bool:
+def run_maze(
+    maze: list[list[int]],
+    i: int,
+    j: int,
+    destination_row: int,
+    destination_column: int,
+    solutions: list[list[int]],
+) -> bool:
     """
     This method is recursive starting from (i, j) and going in one of four directions:
     up, down, left, right.
@@ -97,7 +105,7 @@ def run_maze(maze: list[list[int]], i: int, j: int,destination_row:int,
     """
     size = len(maze)
     # Final check point.
-    if i == destination_row and  j == destination_column:
+    if i == destination_row and j == destination_column:
         solutions[i][j] = 1
         return True
 
@@ -113,21 +121,22 @@ def run_maze(maze: list[list[int]], i: int, j: int,destination_row:int,
 
             # check for directions
             if (
-                run_maze(maze, i + 1, j,destination_row,
-                            destination_column, solutions)
-                or run_maze(maze, i, j + 1,destination_row,
-                            destination_column, solutions)
-                or run_maze(maze, i - 1, j,destination_row,
-                            destination_column, solutions)
-                or run_maze(maze, i, j - 1,destination_row,
-                            destination_column, solutions)
+                run_maze(maze, i + 1, j, destination_row, destination_column, solutions)
+                or run_maze(
+                    maze, i, j + 1, destination_row, destination_column, solutions
+                )
+                or run_maze(
+                    maze, i - 1, j, destination_row, destination_column, solutions
+                )
+                or run_maze(
+                    maze, i, j - 1, destination_row, destination_column, solutions
+                )
             ):
                 return True
 
             solutions[i][j] = 0
             return False
     return False
-
 
 
 if __name__ == "__main__":
