@@ -1,12 +1,12 @@
 """
 Mel Frequency Cepstral Coefficients (MFCC) Calculation
 
-MFCC is a feature widely used in audio and speech processing to represent the
+MFCC is an algorythm widely used in audio and speech processing to represent the
 short-term power spectrum of a sound signal in a more compact and
 discriminative way. It is particularly popular in speech and audio processing
 tasks such as speech recognition and speaker identification.
 
-How MFCC is Calculated:
+How Mel Frequency Cepstral Coefficients are Calculated:
 1. Preprocessing:
    - Load an audio signal and normalize it to ensure that the values fall
      within a specific range (e.g., between -1 and 1).
@@ -64,7 +64,7 @@ import numpy as np
 import scipy.fftpack as fft
 from scipy.signal import get_window
 
-logging.basicConfig(level=logging.WARNING)
+logging.basicConfig(filename=f"{__file__}.log", level=logging.INFO)
 
 
 def mfcc(
@@ -168,11 +168,8 @@ def normalize(audio: np.ndarray) -> np.ndarray:
     >>> np.min(normalized_audio)
     0.2
     """
-    # Find the maximum absolute value in the audio signal
-    max_abs_value = np.max(np.abs(audio))
-
     # Divide the entire audio signal by the maximum absolute value
-    return audio / max_abs_value
+    return audio / np.max(np.abs(audio))
 
 
 def audio_frames(
@@ -271,9 +268,7 @@ def calculate_signal_power(audio_fft: np.ndarray) -> np.ndarray:
     True
     """
     # Calculate the power by squaring the absolute values of the FFT coefficients
-    audio_power = np.square(np.abs(audio_fft))
-
-    return audio_power
+    return np.square(np.abs(audio_fft))
 
 
 def freq_to_mel(freq: float) -> float:
@@ -406,8 +401,12 @@ def get_filter_points(
         Filter points and corresponding frequencies.
 
     Examples:
-    >>> get_filter_points(8000, 0, 4000, mel_filter_num=4, ftt_size=512)[0]
+    >>> filter_points = get_filter_points(8000, 0, 4000, mel_filter_num=4, ftt_size=512)
+    >>> filter_points[0]
     array([  0,  20,  51,  95, 161, 256])
+    >>> filter_points[1]
+    array([   0.        ,  324.46707094,  799.33254207, 1494.30973963,
+           2511.42581671, 4000.        ])
     """
     # Convert minimum and maximum frequencies to mel scale
     fmin_mel = freq_to_mel(freq_min)
