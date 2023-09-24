@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 
-def kmp(pattern: str, text: str) -> bool:
+def knuth_morris_pratt(text: str, pattern: str) -> int:
     """
     The Knuth-Morris-Pratt Algorithm for finding a pattern within a piece of text
     with complexity O(n + m)
@@ -24,7 +24,7 @@ def kmp(pattern: str, text: str) -> bool:
     while i < len(text):
         if pattern[j] == text[i]:
             if j == (len(pattern) - 1):
-                return j
+                return i-j
             j += 1
 
         # if this is a prefix in our pattern
@@ -61,22 +61,22 @@ if __name__ == "__main__":
     pattern = "abc1abc12"
     text1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"
     text2 = "alskfjaldsk23adsfabcabc"
-    assert kmp(pattern, text1) and not kmp(pattern, text2)
+    assert knuth_morris_pratt(text1, pattern) and not knuth_morris_pratt(text2, pattern)
 
     # Test 2)
     pattern = "ABABX"
     text = "ABABZABABYABABX"
-    assert kmp(pattern, text)
+    assert knuth_morris_pratt(text, pattern)
 
     # Test 3)
     pattern = "AAAB"
     text = "ABAAAAAB"
-    assert kmp(pattern, text)
+    assert knuth_morris_pratt(text, pattern)
 
     # Test 4)
     pattern = "abcdabcy"
     text = "abcxabcdabxabcdabcdabcy"
-    assert kmp(pattern, text)
+    assert knuth_morris_pratt(text, pattern)
 
     # Test 5)
     pattern = "aabaabaaa"
