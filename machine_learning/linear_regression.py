@@ -105,11 +105,11 @@ def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> 
     dft = len(original_y) - 1
     # For univariate case
     dfe = len(original_y) - 1 - 1
-    #For univariate case
-    msr = ssr/(dft-len(original_y)+2)
-    mse = sse/dfe
-    f = msr/mse
-    #f-Statistic
+    # For univariate case
+    msr = ssr / (dft - len(original_y) + 2)
+    mse = sse / dfe
+    f = msr / mse
+    # f-Statistic
     return ssr, sse, sst, r2, mae, msr, mse, f
 
 
