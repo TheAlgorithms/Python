@@ -67,12 +67,12 @@ def solve_maze(maze: list[list[int]]) -> bool:
     No solution exists!
     False
     """
-    # We need to create solution object to save path.
     size = len(maze)
     source_row = 0
     source_column = 0
     destination_row = size - 1
     destination_column = size - 1
+    # We need to create solution object to save path.
     solutions = [[0 for _ in range(size)] for _ in range(size)]
     solved = run_maze(
         maze, source_row, source_column, destination_row, destination_column, solutions
