@@ -7,6 +7,39 @@ We try to set the weight of these features, over many iterations, so that they b
 fit our dataset. In this particular code, I had used a CSGO dataset (ADR vs
 Rating). We try to best fit a line through dataset and estimate the parameters.
 """
+
+'''
+https://en.wikipedia.org/wiki/Simple_linear_regression
+This link explains the methodology.
+
+https://en.wikipedia.org/wiki/F-test
+This one gives a bit more information on the F-Test
+
+NB_1: R Squared is not a "Goodness of fit", R squared is
+the value that tells you how much of the variance 
+of your target feature (y) is explained by your 
+chosen feature (x).
+
+NB_2: No checks have been done to see if the data
+fits all assumptions regarding linear regression,
+assumptions can be found here, and are very important
+to check in the real world before creating and deploying a model.
+https://www.statisticssolutions.com/free-resources/directory-of-statistical-analyses/assumptions-of-linear-regression/
+
+NB_3: This code originally used the closed form solution
+A^t A x = A^t y and used gradient descent to solve this linear eqn.
+This eqn has a closed form solution, but inverting matrices is quite
+tough, and quite numerically unstable. Decomposition methods
+(See LU , QR and Cholesky decomposition) are used by NumPy and
+other libraries for solving the generalised linear regression equation
+
+The generalised equation leads into "General Linear Models", which is a
+subset of "Generalised Linear Models", which is another field of linear regression
+techniques, where your residuals are no longer normally distributed.
+
+A few examples of these techniques are "Poisson Regression", "Logistic Regression",
+"Multinomial Regression", "Gamma Regression" and so on.
+'''
 import numpy as np
 import requests
 
@@ -28,16 +61,28 @@ def collect_dataset():
     dataset = np.matrix(data)
     return dataset
 
-def mean_absolute_error(predicted_y, original_y):
-    """Return sum of square error for error calculation
-    :param predicted_y   : contains the output of prediction (result vector)
-    :param original_y    : contains values of expected outcome
-    :return          : mean absolute error computed from given feature's
-    """
-    total = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
-    return total / len(original_y)
+def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> float: 
+    '''
+    Calculate relevant statistics for the linear model
+    :SSR -> Sum of Squares Regression
+    :SSE -> Sum of Squares Error
+    :SST -> Sum of Squares Total
+    (3 Variability Metrics)
+    :R2 -> R Squared value, a measure of explained variability
+    :MAE -> Mean Absolute Error, an objective (loss) function to
+    baseline how well your model predicts
+    :MSR -> Mean Square Residual, used in F statistic
+    :MSE -> Mean Square Error, an objective function, but 
+    an F statistic variable in this case
+    :F -> The F statistic, used to determine whether
+    the regression coefficient is statistically significant
+    in explaining the variability
 
-def regression_params(predicted_y, original_y, y_bar):
+    The P-Value for the F statistic for the CSGO data is
+    significant (p < 0.01), meaning we can say with over
+    99% confidence that ADR is a good predictor of someones
+    CSGO rating.
+    '''
     SSR = 0
     SSE = 0
     SST = 0
@@ -48,8 +93,8 @@ def regression_params(predicted_y, original_y, y_bar):
     R2 = SSR/SST
     MAE = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
     MAE = MAE / len(original_y)
-    dFt = len(original_y) - 1 #For univariate case
-    dFe = len(original_y) - 1 - 1 #For univariate case
+    dFt = len(original_y) - 1 #For univariate case -> n=1, p=1
+    dFe = len(original_y) - 1 - 1 #For univariate case -> n=1
     MSR = SSR/1
     MSE = SSE/dFe
     F = MSR/MSE #F-Statistic
@@ -76,7 +121,7 @@ def simple_solve(data_x, data_y):
     print("Gradient coefficient is:",Beta_1)
     print("Y-Intercept is:",Beta_0)
     y_hat = Beta_1*data_x + Beta_0
-    SSR, SSE, SST, R2, MAE, MSR, MSE, F = regression_params(y_hat, data_y, y_bar)
+    SSR, SSE, SST, R2, MAE, MSR, MSE, F = regression_statistics(y_hat, data_y, y_bar)
     print("SST is:",SST)
     print("SSR is:",SSR)
     print("SSE is:",SSE)
