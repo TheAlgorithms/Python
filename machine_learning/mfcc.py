@@ -1,7 +1,7 @@
 """
 Mel Frequency Cepstral Coefficients (MFCC) Calculation
 
-MFCC is an algorythm widely used in audio and speech processing to represent the
+MFCC is an algorithm widely used in audio and speech processing to represent the
 short-term power spectrum of a sound signal in a more compact and
 discriminative way. It is particularly popular in speech and audio processing
 tasks such as speech recognition and speaker identification.
