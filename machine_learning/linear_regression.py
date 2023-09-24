@@ -19,6 +19,8 @@ NB_1: R Squared is not a "Goodness of fit", R squared is
 the value that tells you how much of the variance 
 of your target feature (y) is explained by your 
 chosen feature (x).
+https://uk.mathworks.com/help/stats/f-statistic-and-t-statistic.html
+
 
 NB_2: No checks have been done to see if the data
 fits all assumptions regarding linear regression,
@@ -82,6 +84,9 @@ def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> 
     significant (p < 0.01), meaning we can say with over
     99% confidence that ADR is a good predictor of someones
     CSGO rating.
+
+    :dFt -> Degrees of Freedom
+    :dFe -> Error Degrees of Freedom
     '''
     SSR = 0
     SSE = 0
@@ -93,7 +98,7 @@ def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> 
     R2 = SSR/SST
     MAE = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
     MAE = MAE / len(original_y)
-    dFt = len(original_y) - 1 #For univariate case -> n=1, p=1
+    dFt = len(original_y) - 1 #For univariate case -> n=1, p=1 -> dFt = 
     dFe = len(original_y) - 1 - 1 #For univariate case -> n=1
     MSR = SSR/1
     MSE = SSE/dFe
