@@ -121,24 +121,24 @@ def simple_solve(data_x, data_y):
     y_bar = np.mean(data_y)
 
     for idx, val in enumerate(data_x):
-        rect_area += ((val-x_bar)*(data_y[idx]-y_bar))
-        square_area += (val-x_bar)**2
+        rect_area += (val - x_bar) * (data_y[idx] - y_bar)
+        square_area += (val - x_bar) ** 2
 
-
-    beta_1 = float(rect_area/square_area)
-    beta_0 = y_bar - beta_1*x_bar
-    print("Gradient coefficient is:",beta_1)
-    print("Y-Intercept is:",beta_0)
-    y_hat = beta_1*data_x + beta_0
+    beta_1 = float(rect_area / square_area)
+    beta_0 = y_bar - beta_1 * x_bar
+    print("Gradient coefficient is:", beta_1)
+    print("Y-Intercept is:", beta_0)
+    y_hat = beta_1 * data_x + beta_0
     ssr, sse, sst, r2, mae, msr, mse, f = regression_statistics(y_hat, data_y, y_bar)
-    print("SST is:",sst)
-    print("SSR is:",ssr)
-    print("SSE is:",sse)
-    print("R^2 is:",r2)
-    print("MAE is:",mae)
-    print("MSR is:",msr)
-    print("MSE is:",mse)
-    print("F Statistic is:",f)
+    print("SST is:", sst)
+    print("SSR is:", ssr)
+    print("SSE is:", sse)
+    print("R^2 is:", r2)
+    print("MAE is:", mae)
+    print("MSR is:", msr)
+    print("MSE is:", mse)
+    print("F Statistic is:", f)
+
 
 def main():
     """Driver function"""
