@@ -1,5 +1,6 @@
 import numpy as np
 import requests
+
 """
 Linear regression is the most basic type of regression commonly used for
 predictive analysis. The idea is pretty simple: we have a dataset and we have
@@ -44,6 +45,8 @@ techniques, where your residuals are no longer normally distributed.
 A few examples of these techniques are "Poisson Regression", "Logistic Regression",
 "Multinomial Regression", "Gamma Regression" and so on.
 """
+
+
 def collect_dataset():
     """Collect dataset of CSGO
     The dataset contains ADR vs Rating of a Player
@@ -62,6 +65,7 @@ def collect_dataset():
     # This is for removing the labels from the list
     dataset = np.matrix(data)
     return dataset
+
 
 def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> None:
     """
@@ -101,11 +105,11 @@ def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> 
     dft = len(original_y) - 1
     # For univariate case
     dfe = len(original_y) - 1 - 1
-    #For univariate case
-    msr = ssr/(dft-len(original_y)+2)
-    mse = sse/dfe
-    f = msr/mse
-    #f-Statistic
+    # For univariate case
+    msr = ssr / (dft - len(original_y) + 2)
+    mse = sse / dfe
+    f = msr / mse
+    # f-Statistic
     print("SST is:", sst)
     print("SSR is:", ssr)
     print("SSE is:", sse)
@@ -114,6 +118,7 @@ def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> 
     print("MSR is:", msr)
     print("MSE is:", mse)
     print("F Statistic is:", f)
+
 
 def simple_solve(data_x: list, data_y: list) -> None:
     """
@@ -137,13 +142,15 @@ def simple_solve(data_x: list, data_y: list) -> None:
     print("Y-Intercept is:", beta_0)
     y_hat = beta_1 * data_x + beta_0
     regression_statistics(y_hat, data_y, y_bar)
-    
+
+
 def main():
     """Driver function"""
     data = collect_dataset()
     data_y = data[:, -1].astype(float)
     data_x = data[:, :-1].astype(float)
     simple_solve(data_x, data_y)
+
 
 if __name__ == "__main__":
     main()
