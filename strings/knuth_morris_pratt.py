@@ -24,7 +24,7 @@ def kmp(pattern: str, text: str) -> bool:
     while i < len(text):
         if pattern[j] == text[i]:
             if j == (len(pattern) - 1):
-                return True
+                return j
             j += 1
 
         # if this is a prefix in our pattern
@@ -33,7 +33,7 @@ def kmp(pattern: str, text: str) -> bool:
             j = failure[j - 1]
             continue
         i += 1
-    return False
+    return -1
 
 
 def get_failure_array(pattern: str) -> list[int]:
