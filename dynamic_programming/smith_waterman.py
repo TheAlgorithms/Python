@@ -1,9 +1,15 @@
-# https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm
-# Score constants
 """
-Score constants used in the Smith-Waterman algorithm. Matches are given a positive
-score while mismatches are given a negative score. Gaps are also penalized.
+https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm
+The Smith-Waterman algorithm is a dynamic programming algorithm used for sequence
+alignment.It is particularly useful for finding similarities between two sequences,
+such as DNA or protein sequences. In this implementation, gaps are penalized
+linearly,meaning that the scoreis reduced by a fixed amount for each gap introduced
+in the alignment. It's important to notethat the Smith-Waterman algorithm supports
+other gap penalty methods as well, but in thisspecific implementation, linear gap
+penalties are used.
 """
+# Score constants: matches are given a positive score while mismatches are given a
+# negative score. Gaps are also penalized linearly.
 MATCH = 1
 MISMATCH = -1
 GAP = -2
@@ -76,22 +82,30 @@ def traceback(score: list[list[int]], query: str, subject: str) -> str:
     Starts from the highest scoring cell in the matrix and traces back recursively
     until a 0 score is found. Returns the alignment strings.
     >>> traceback([[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 2], [0, 1, 0]], 'ACAC', 'CA')
-    'CAC\nCA-'
+    'CA\nCA'
     >>> traceback([[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 2], [0, 1, 0]], 'acac', 'ca')
-    'CAC\nCA-'
+    'CA\nCA'
     >>> traceback([[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 2], [0, 1, 0]], 'ACAC', 'ca')
-    'CAC\nCA-'
+    'CA\nCA'
     >>> traceback([[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 2], [0, 1, 0]], 'acac', 'CA')
-    'CAC\nCA-'
+    'CA\nCA'
     >>> traceback([[0, 0, 0]], 'ACAC', '')
     ''
     """
     # make both query and subject uppercase
     query = query.upper()
     subject = subject.upper()
+    # find the indices of the maximum value in the score matrix
+    max_value = float("-inf")
+    i_max = j_max = 0
+    for i, row in enumerate(score):
+        for j, value in enumerate(row):
+            if value > max_value:
+                max_value = value
+                i_max, j_max = i, j
     # Traceback logic to find optimal alignment
-    i = len(query)
-    j = len(subject)
+    i = i_max
+    j = j_max
     align1 = ""
     align2 = ""
     # guard against empty query or subject
@@ -109,11 +123,11 @@ def traceback(score: list[list[int]], query: str, subject: str) -> str:
         elif score[i][j] == score[i - 1][j] + GAP:
             # optimal path is a vertical
             align1 = query[i - 1] + align1
-            align2 = "-" + align2
+            align2 = f"-{align2}"
             i -= 1
         else:
             # optimal path is a horizontal
-            align1 = "-" + align1
+            align1 = f"-{align1}"
             align2 = subject[j - 1] + align2
             j -= 1
 
