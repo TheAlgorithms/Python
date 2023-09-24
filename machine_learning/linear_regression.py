@@ -12,8 +12,8 @@ Rating). We try to best fit a line through dataset and estimate the parameters.
 https://en.wikipedia.org/wiki/Simple_linear_regression
 This link explains the methodology.
 
-https://en.wikipedia.org/wiki/F-test
-This one gives a bit more information on the F-Test
+https://en.wikipedia.org/wiki/f-test
+This one gives a bit more information on the f-Test
 
 NB_1: R Squared is not a "Goodness of fit", R squared is
 the value that tells you how much of the variance 
@@ -59,51 +59,55 @@ def collect_dataset():
     for item in lines:
         item = item.split(",")
         data.append(item)
-    data.pop(0)  # This is for removing the labels from the list
+    data.pop(0)
+    # This is for removing the labels from the list
     dataset = np.matrix(data)
     return dataset
 
 def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> float: 
     '''
     Calculate relevant statistics for the linear model
-    :SSR -> Sum of Squares Regression
-    :SSE -> Sum of Squares Error
-    :SST -> Sum of Squares Total
+    :ssr -> Sum of Squares Regression
+    :sse -> Sum of Squares Error
+    :sst -> Sum of Squares Total
     (3 Variability Metrics)
-    :R2 -> R Squared value, a measure of explained variability
-    :MAE -> Mean Absolute Error, an objective (loss) function to
+    :r2 -> R Squared value, a measure of explained variability
+    :mae -> Mean Absolute Error, an objective (loss) function to
     baseline how well your model predicts
-    :MSR -> Mean Square Residual, used in F statistic
-    :MSE -> Mean Square Error, an objective function, but 
-    an F statistic variable in this case
-    :F -> The F statistic, used to determine whether
+    :msr -> Mean Square Residual, used in f statistic
+    :mse -> Mean Square Error, an objective function, but 
+    an f statistic variable in this case
+    :f -> The f statistic, used to determine whether
     the regression coefficient is statistically significant
     in explaining the variability
 
-    The P-Value for the F statistic for the CSGO data is
+    The P-Value for the f statistic for the CSGO data is
     significant (p < 0.01), meaning we can say with over
     99% confidence that ADR is a good predictor of someones
     CSGO rating.
 
-    :dFt -> Degrees of Freedom
-    :dFe -> Error Degrees of Freedom
+    :dft -> Degrees of Freedom
+    :dfe -> Error Degrees of Freedom
     '''
-    SSR = 0
-    SSE = 0
-    SST = 0
+    ssr = 0
+    sse = 0
+    sst = 0
     for idx, val in enumerate(predicted_y):
-        SSR += (predicted_y[idx] - y_bar)**2
-        SSE += (original_y[idx] - predicted_y[idx])**2
-        SST += (original_y[idx] - y_bar)**2
-    R2 = SSR/SST
-    MAE = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
-    MAE = MAE / len(original_y)
-    dFt = len(original_y) - 1 #For univariate case -> n=1, p=1 -> dFt = 
-    dFe = len(original_y) - 1 - 1 #For univariate case -> n=1
-    MSR = SSR/1
-    MSE = SSE/dFe
-    F = MSR/MSE #F-Statistic
-    return SSR, SSE, SST, R2, MAE, MSR, MSE, F
+        ssr += (predicted_y[idx] - y_bar)**2
+        sse += (original_y[idx] - predicted_y[idx])**2
+        sst += (original_y[idx] - y_bar)**2
+    r2 = ssr/sst
+    mae = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
+    mae = mae / len(original_y)
+    dft = len(original_y) - 1
+    #For univariate case -> n=1, p=1 -> dft = 
+    dfe = len(original_y) - 1 - 1
+    #For univariate case -> n=1
+    msr = ssr/1
+    mse = sse/dfe
+    f = msr/mse
+    #f-Statistic
+    return ssr, sse, sst, r2, mae, msr, mse, f
 
 def simple_solve(data_x, data_y):
     '''
@@ -111,30 +115,30 @@ def simple_solve(data_x, data_y):
     Gradient is the sum of rectangular area over the sum of square area from the centroid
     Intercept can be worked out by using the centroid and solving c = y-mx
     '''
-    Rect_Area = 0
-    Square_Area = 0
+    rect_area = 0
+    square_area = 0
     x_bar = np.mean(data_x)
     y_bar = np.mean(data_y)
 
     for idx, val in enumerate(data_x):
-        Rect_Area += ((val-x_bar)*(data_y[idx]-y_bar))
-        Square_Area += (val-x_bar)**2
+        rect_area += ((val-x_bar)*(data_y[idx]-y_bar))
+        square_area += (val-x_bar)**2
     
 
-    Beta_1 = float(Rect_Area/Square_Area)
-    Beta_0 = y_bar - Beta_1*x_bar
-    print("Gradient coefficient is:",Beta_1)
-    print("Y-Intercept is:",Beta_0)
-    y_hat = Beta_1*data_x + Beta_0
-    SSR, SSE, SST, R2, MAE, MSR, MSE, F = regression_statistics(y_hat, data_y, y_bar)
-    print("SST is:",SST)
-    print("SSR is:",SSR)
-    print("SSE is:",SSE)
-    print("R^2 is:",R2)
-    print("MAE is:",MAE)
-    print("MSR is:",MSR)
-    print("MSE is:",MSE)
-    print("F Statistic is:",F)
+    beta_1 = float(rect_area/square_area)
+    beta_0 = y_bar - beta_1*x_bar
+    print("Gradient coefficient is:",beta_1)
+    print("Y-Intercept is:",beta_0)
+    y_hat = beta_1*data_x + beta_0
+    ssr, sse, sst, r2, mae, msr, mse, f = regression_statistics(y_hat, data_y, y_bar)
+    print("sst is:",sst)
+    print("ssr is:",ssr)
+    print("sse is:",sse)
+    print("R^2 is:",r2)
+    print("mae is:",mae)
+    print("msr is:",msr)
+    print("mse is:",mse)
+    print("f Statistic is:",f)
 
 def main():
     """Driver function"""
