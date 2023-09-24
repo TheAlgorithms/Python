@@ -93,7 +93,6 @@ def mfcc(
         ValueError: If the input audio is empty.
 
     Example:
-    >>> import numpy as np
     >>> sample_rate = 44100  # Sample rate of 44.1 kHz
     >>> duration = 2.0  # Duration of 1 second
     >>> t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False)
@@ -195,7 +194,6 @@ def audio_frames(
         An array of overlapping frames.
 
     Examples:
-    >>> import numpy as np
     >>> audio = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]*1000)
     >>> sample_rate = 8000
     >>> frames = audio_frames(audio, sample_rate, hop_length=10, ftt_size=512)
@@ -233,7 +231,6 @@ def calculate_fft(audio_windowed: np.ndarray, ftt_size: int = 1024) -> np.ndarra
         The FFT of the audio data.
 
     Examples:
-    >>> import numpy as np
     >>> audio_windowed = np.array([[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]])
     >>> audio_fft = calculate_fft(audio_windowed, ftt_size=4)
     >>> np.allclose(audio_fft[0], np.array([6.0+0.j, -1.5+0.8660254j, -1.5-0.8660254j]))
@@ -268,7 +265,6 @@ def calculate_signal_power(audio_fft: np.ndarray) -> np.ndarray:
         The power of the audio signal.
 
     Examples:
-    >>> import numpy as np
     >>> audio_fft = np.array([1+2j, 2+3j, 3+4j, 4+5j])
     >>> power = calculate_signal_power(audio_fft)
     >>> np.allclose(power, np.array([5, 13, 25, 41]))
