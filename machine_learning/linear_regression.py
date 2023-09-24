@@ -1,3 +1,5 @@
+import numpy as np
+import requests
 """
 Linear regression is the most basic type of regression commonly used for
 predictive analysis. The idea is pretty simple: we have a dataset and we have
@@ -42,10 +44,6 @@ techniques, where your residuals are no longer normally distributed.
 A few examples of these techniques are "Poisson Regression", "Logistic Regression",
 "Multinomial Regression", "Gamma Regression" and so on.
 """
-import numpy as np
-import requests
-
-
 def collect_dataset():
     """Collect dataset of CSGO
     The dataset contains ADR vs Rating of a Player
@@ -64,7 +62,6 @@ def collect_dataset():
     # This is for removing the labels from the list
     dataset = np.matrix(data)
     return dataset
-
 
 def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> float:
     """
@@ -91,11 +88,10 @@ def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> 
     :dft -> Degrees of Freedom
     :dfe -> Error Degrees of Freedom
     """
-    
     ssr = 0
     sse = 0
     sst = 0
-    for idx, val in enumerate(predicted_y):
+    for idx in range(len(predicted_y)):
         ssr += (predicted_y[idx] - y_bar)**2
         sse += (original_y[idx] - predicted_y[idx])**2
         sst += (original_y[idx] - y_bar)**2
@@ -103,23 +99,22 @@ def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> 
     mae = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
     mae = mae / len(original_y)
     dft = len(original_y) - 1
-    #For univariate case -> n=1, p=1 -> dft =
+    #For univariate case
     dfe = len(original_y) - 1 - 1
-    #For univariate case -> n=1
-    msr = ssr/1
+    #For univariate case
+    msr = ssr/(dft-len(original_y)+1)
     mse = sse/dfe
     f = msr/mse
     #f-Statistic
     return ssr, sse, sst, r2, mae, msr, mse, f
 
-
 def simple_solve(data_x, data_y):
     """
     Simple method of solving the univariate linear regression (like this problem)
-    Gradient is the sum of rectangular area over the sum of square area from the centroid
+    Gradient is the sum of rectangular area over the sum of square area from the
+    centroid.
     Intercept can be worked out by using the centroid and solving c = y-mx
     """
-    
     rect_area = 0
     square_area = 0
     x_bar = np.mean(data_x)
@@ -151,7 +146,6 @@ def main():
     data_y = data[:, -1].astype(float)
     data_x = data[:, :-1].astype(float)
     simple_solve(data_x, data_y)
-
 
 if __name__ == "__main__":
     main()
