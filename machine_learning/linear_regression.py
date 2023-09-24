@@ -90,7 +90,8 @@ def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> 
 
     :dft -> Degrees of Freedom
     :dfe -> Error Degrees of Freedom
-    '''
+    """
+    
     ssr = 0
     sse = 0
     sst = 0
@@ -117,7 +118,8 @@ def simple_solve(data_x, data_y):
     Simple method of solving the univariate linear regression (like this problem)
     Gradient is the sum of rectangular area over the sum of square area from the centroid
     Intercept can be worked out by using the centroid and solving c = y-mx
-    '''
+    """
+    
     rect_area = 0
     square_area = 0
     x_bar = np.mean(data_x)
