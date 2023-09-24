@@ -10,7 +10,6 @@ Rating). We try to best fit a line through dataset and estimate the parameters.
 import numpy as np
 import requests
 
-
 def collect_dataset():
     """Collect dataset of CSGO
     The dataset contains ADR vs Rating of a Player
@@ -29,63 +28,6 @@ def collect_dataset():
     dataset = np.matrix(data)
     return dataset
 
-
-def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
-    """Run steep gradient descent and updates the Feature vector accordingly_
-    :param data_x   : contains the dataset
-    :param data_y   : contains the output associated with each data-entry
-    :param len_data : length of the data_
-    :param alpha    : Learning rate of the model
-    :param theta    : Feature vector (weight's for our model)
-    ;param return    : Updated Feature's, using
-                       curr_features - alpha_ * gradient(w.r.t. feature)
-    """
-    n = len_data
-
-    prod = np.dot(theta, data_x.transpose())
-    prod -= data_y.transpose()
-    sum_grad = np.dot(prod, data_x)
-    theta = theta - (alpha / n) * sum_grad
-    return theta
-
-
-def sum_of_square_error(data_x, data_y, len_data, theta):
-    """Return sum of square error for error calculation
-    :param data_x    : contains our dataset
-    :param data_y    : contains the output (result vector)
-    :param len_data  : len of the dataset
-    :param theta     : contains the feature vector
-    :return          : sum of square error computed from given feature's
-    """
-    prod = np.dot(theta, data_x.transpose())
-    prod -= data_y.transpose()
-    sum_elem = np.sum(np.square(prod))
-    error = sum_elem / (2 * len_data)
-    return error
-
-
-def run_linear_regression(data_x, data_y):
-    """Implement Linear regression over the dataset
-    :param data_x  : contains our dataset
-    :param data_y  : contains the output (result vector)
-    :return        : feature for line of best fit (Feature vector)
-    """
-    iterations = 100000
-    alpha = 0.0001550
-
-    no_features = data_x.shape[1]
-    len_data = data_x.shape[0] - 1
-
-    theta = np.zeros((1, no_features))
-
-    for i in range(iterations):
-        theta = run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta)
-        error = sum_of_square_error(data_x, data_y, len_data, theta)
-        print(f"At Iteration {i + 1} - Error is {error:.5f}")
-
-    return theta
-
-
 def mean_absolute_error(predicted_y, original_y):
     """Return sum of square error for error calculation
     :param predicted_y   : contains the output of prediction (result vector)
@@ -95,21 +37,61 @@ def mean_absolute_error(predicted_y, original_y):
     total = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
     return total / len(original_y)
 
+def regression_params(predicted_y, original_y, y_bar):
+    SSR = 0
+    SSE = 0
+    SST = 0
+    for idx, val in enumerate(predicted_y):
+        SSR += (predicted_y[idx] - y_bar)**2
+        SSE += (original_y[idx] - predicted_y[idx])**2
+        SST += (original_y[idx] - y_bar)**2
+    R2 = SSR/SST
+    MAE = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
+    MAE = MAE / len(original_y)
+    dFt = len(original_y) - 1 #For univariate case
+    dFe = len(original_y) - 1 - 1 #For univariate case
+    MSR = SSR/1
+    MSE = SSE/dFe
+    F = MSR/MSE #F-Statistic
+    return SSR, SSE, SST, R2, MAE, MSR, MSE, F
+
+def simple_solve(data_x, data_y):
+    '''
+    Simple method of solving the univariate linear regression (like this problem)
+    Gradient is the sum of rectangular area over the sum of square area from the centroid
+    Intercept can be worked out by using the centroid and solving c = y-mx
+    '''
+    Rect_Area = 0
+    Square_Area = 0
+    x_bar = np.mean(data_x)
+    y_bar = np.mean(data_y)
+
+    for idx, val in enumerate(data_x):
+        Rect_Area += ((val-x_bar)*(data_y[idx]-y_bar))
+        Square_Area += (val-x_bar)**2
+    
+
+    Beta_1 = float(Rect_Area/Square_Area)
+    Beta_0 = y_bar - Beta_1*x_bar
+    print("Gradient coefficient is:",Beta_1)
+    print("Y-Intercept is:",Beta_0)
+    y_hat = Beta_1*data_x + Beta_0
+    SSR, SSE, SST, R2, MAE, MSR, MSE, F = regression_params(y_hat, data_y, y_bar)
+    print("SST is:",SST)
+    print("SSR is:",SSR)
+    print("SSE is:",SSE)
+    print("R^2 is:",R2)
+    print("MAE is:",MAE)
+    print("MSR is:",MSR)
+    print("MSE is:",MSE)
+    print("F Statistic is:",F)
 
 def main():
     """Driver function"""
     data = collect_dataset()
-
-    len_data = data.shape[0]
-    data_x = np.c_[np.ones(len_data), data[:, :-1]].astype(float)
     data_y = data[:, -1].astype(float)
-
-    theta = run_linear_regression(data_x, data_y)
-    len_result = theta.shape[1]
-    print("Resultant Feature vector : ")
-    for i in range(len_result):
-        print(f"{theta[0, i]:.5f}")
-
+    data_x = data[:, :-1].astype(float)
+    simple_solve(data_x, data_y)
 
 if __name__ == "__main__":
     main()
