@@ -1,5 +1,3 @@
-import numpy as np
-import requests
 """
 Linear regression is the most basic type of regression commonly used for
 predictive analysis. The idea is pretty simple: we have a dataset and we have
@@ -44,6 +42,9 @@ techniques, where your residuals are no longer normally distributed.
 A few examples of these techniques are "Poisson Regression", "Logistic Regression",
 "Multinomial Regression", "Gamma Regression" and so on.
 """
+import numpy as np
+import requests
+
 def collect_dataset():
     """Collect dataset of CSGO
     The dataset contains ADR vs Rating of a Player
@@ -102,7 +103,7 @@ def regression_statistics(predicted_y: list, original_y: list, y_bar: float) -> 
     #For univariate case
     dfe = len(original_y) - 1 - 1
     #For univariate case
-    msr = ssr/(dft-len(original_y)+1)
+    msr = ssr/(dft-len(original_y)+2)
     mse = sse/dfe
     f = msr/mse
     #f-Statistic
