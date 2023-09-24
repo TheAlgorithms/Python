@@ -24,7 +24,7 @@ def knuth_morris_pratt(text: str, pattern: str) -> int:
     while i < len(text):
         if pattern[j] == text[i]:
             if j == (len(pattern) - 1):
-                return i-j
+                return i - j
             j += 1
 
         # if this is a prefix in our pattern
