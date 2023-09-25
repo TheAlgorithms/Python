@@ -78,10 +78,14 @@ if __name__ == "__main__":
     text = "abcxabcdabxabcdabcdabcy"
     assert knuth_morris_pratt(text, pattern)
 
-    # Test 5) -> Doctest
-    pattern = "kn"
-    text = "knuthmorrispratt"
-    print(text.find("kn") == knuth_morris_pratt(text, pattern))
+    # Test 5) -> Doctests
+    kmp = "knuth_morris_pratt"
+    assert (knuth_morris_pratt(kmp, "kn") == kmp.find("kn"))
+    assert (knuth_morris_pratt(kmp, "h_m") == kmp.find("h_m"))
+    assert (knuth_morris_pratt(kmp, "rr") == kmp.find("rr"))
+    assert (knuth_morris_pratt(kmp, "tt") == kmp.find("tt"))
+    assert (knuth_morris_pratt(kmp, "not there") == kmp.find("not there"))
+    assert (all( knuth_morris_pratt(kmp, s) == kmp.find(s) for s in ( "kn", "h_m", "rr", "tt", "not there" ) ))
 
     # Test 6)
     pattern = "aabaabaaa"
