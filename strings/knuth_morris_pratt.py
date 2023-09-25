@@ -81,7 +81,7 @@ if __name__ == "__main__":
     # Test 5) -> Doctest
     pattern = "kn"
     text = "knuthmorrispratt"
-    print( text.find("kn") == knuth_morris_pratt(text, pattern) )
+    print(text.find("kn") == knuth_morris_pratt(text, pattern))
 
     # Test 6)
     pattern = "aabaabaaa"
