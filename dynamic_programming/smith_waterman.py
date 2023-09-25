@@ -1,21 +1,21 @@
 """
 https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm
 The Smith-Waterman algorithm is a dynamic programming algorithm used for sequence
-alignment.It is particularly useful for finding similarities between two sequences,
+alignment. It is particularly useful for finding similarities between two sequences,
 such as DNA or protein sequences. In this implementation, gaps are penalized
-linearly,meaning that the scoreis reduced by a fixed amount for each gap introduced
-in the alignment. It's important to notethat the Smith-Waterman algorithm supports
-other gap penalty methods as well, but in thisspecific implementation, linear gap
-penalties are used.
+linearly, meaning that the score is reduced by a fixed amount for each gap introduced
+in the alignment. However, it's important to note that the Smith-Waterman algorithm
+supports other gap penalty methods as well.
 """
-# Score constants: matches are given a positive score while mismatches are given a
-# negative score. Gaps are also penalized linearly.
-MATCH = 1
-MISMATCH = -1
-GAP = -2
 
 
-def score_function(source_char: str, target_char: str) -> int:
+def score_function(
+    source_char: str,
+    target_char: str,
+    match: int = 1,
+    mismatch: int = -1,
+    gap: int = -2,
+) -> int:
     """
     Calculate the score for a character pair based on whether they match or mismatch.
     Returns 1 if the characters match, -1 if they mismatch, and -2 if either of the
@@ -32,8 +32,8 @@ def score_function(source_char: str, target_char: str) -> int:
     -2
     """
     if "-" in (source_char, target_char):
-        return GAP
-    return MATCH if source_char == target_char else MISMATCH
+        return gap
+    return match if source_char == target_char else mismatch
 
 
 def smith_waterman(query: str, subject: str) -> list[list[int]]:
@@ -53,6 +53,59 @@ def smith_waterman(query: str, subject: str) -> list[list[int]]:
     [[0], [0], [0], [0], [0]]
     >>> smith_waterman('', 'CA')
     [[0, 0, 0]]
+    >>> smith_waterman('ACAC', 'CA')
+    [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 2], [0, 1, 0]]
+
+    >>> smith_waterman('acac', 'ca')
+    [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 2], [0, 1, 0]]
+
+    >>> smith_waterman('ACAC', 'ca')
+    [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 2], [0, 1, 0]]
+
+    >>> smith_waterman('acac', 'CA')
+    [[0, 0, 0], [0, 0, 1], [0, 1, 0], [0, 0, 2], [0, 1, 0]]
+
+    >>> smith_waterman('ACAC', '')
+    [[0], [0], [0], [0], [0]]
+
+    >>> smith_waterman('', 'CA')
+    [[0, 0, 0]]
+
+    >>> smith_waterman('GTTAC', 'GTTGC')
+    [[0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 1, 0], [0, 0, 2, 1, 0, 0], [0, 0, 1, 3, 1, 0],
+    [0, 0, 0, 1, 2, 0], [0, 0, 0, 0, 0, 3]]
+
+    >>> smith_waterman('ACAC', 'ACAC')
+    [[0, 0, 0, 0, 0], [0, 1, 0, 1, 0], [0, 0, 2, 0, 2], [0, 1, 0, 3, 1],
+    [0, 0, 2, 1, 4]]
+
+    >>> smith_waterman('ACGT', 'TGCA')
+    [[0, 0, 0, 0, 0], [0, 0, 0, 0, 1], [0, 0, 0, 1, 0], [0, 0, 1, 0, 0],
+    [0, 1, 0, 0, 0]]
+
+    >>> smith_waterman('AGT', 'AGT')
+    [[0, 0, 0, 0], [0, 1, 0, 0], [0, 0, 2, 0], [0, 0, 0, 3]]
+
+    >>> smith_waterman('AGT', 'GTA')
+    [[0, 0, 0, 0], [0, 0, 0, 1], [0, 1, 0, 0], [0, 0, 2, 0]]
+
+    >>> smith_waterman('AGT', 'GTC')
+    [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 0, 0], [0, 0, 2, 0]]
+
+    >>> smith_waterman('AGT', 'G')
+    [[0, 0], [0, 0], [0, 1], [0, 0]]
+
+    >>> smith_waterman('G', 'AGT')
+    [[0, 0, 0, 0], [0, 0, 1, 0]]
+
+    >>> smith_waterman('AGT', 'AGTCT')
+    [[0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0], [0, 0, 2, 0, 0, 0], [0, 0, 0, 3, 1, 1]]
+
+    >>> smith_waterman('AGTCT', 'AGT')
+    [[0, 0, 0, 0], [0, 1, 0, 0], [0, 0, 2, 0], [0, 0, 0, 3], [0, 0, 0, 1], [0, 0, 0, 1]]
+
+    >>> smith_waterman('AGTCT', 'GTC')
+    [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 0, 0], [0, 0, 2, 0], [0, 0, 0, 3], [0, 0, 1, 1]]
     """
     # make both query and subject uppercase
     query = query.upper()
@@ -62,13 +115,14 @@ def smith_waterman(query: str, subject: str) -> list[list[int]]:
     m = len(query)
     n = len(subject)
     score = [[0] * (n + 1) for _ in range(m + 1)]
+    gap = score_function("-", "-")
 
     for i in range(1, m + 1):
         for j in range(1, n + 1):
             # Calculate scores for each cell
             match = score[i - 1][j - 1] + score_function(query[i - 1], subject[j - 1])
-            delete = score[i - 1][j] + GAP
-            insert = score[i][j - 1] + GAP
+            delete = score[i - 1][j] + gap
+            insert = score[i][j - 1] + gap
 
             # Take maximum score
             score[i][j] = max(0, match, delete, insert)
@@ -108,6 +162,7 @@ def traceback(score: list[list[int]], query: str, subject: str) -> str:
     j = j_max
     align1 = ""
     align2 = ""
+    gap = score_function("-", "-")
     # guard against empty query or subject
     if i == 0 or j == 0:
         return ""
@@ -120,7 +175,7 @@ def traceback(score: list[list[int]], query: str, subject: str) -> str:
             align2 = subject[j - 1] + align2
             i -= 1
             j -= 1
-        elif score[i][j] == score[i - 1][j] + GAP:
+        elif score[i][j] == score[i - 1][j] + gap:
             # optimal path is a vertical
             align1 = query[i - 1] + align1
             align2 = f"-{align2}"
