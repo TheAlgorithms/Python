@@ -1,12 +1,11 @@
 """
 https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm
 The Smith-Waterman algorithm is a dynamic programming algorithm used for sequence
-alignment.It is particularly useful for finding similarities between two sequences,
+alignment. It is particularly useful for finding similarities between two sequences,
 such as DNA or protein sequences. In this implementation, gaps are penalized
-linearly,meaning that the scoreis reduced by a fixed amount for each gap introduced
-in the alignment. It's important to notethat the Smith-Waterman algorithm supports
-other gap penalty methods as well, but in thisspecific implementation, linear gap
-penalties are used.
+linearly, meaning that the score is reduced by a fixed amount for each gap introduced
+in the alignment. However, it's important to note that the Smith-Waterman algorithm
+supports other gap penalty methods as well.
 """
 # Score constants: matches are given a positive score while mismatches are given a
 # negative score. Gaps are also penalized linearly.
