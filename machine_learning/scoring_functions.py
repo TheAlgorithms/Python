@@ -43,6 +43,7 @@ def mae(predict: list, actual: list) -> float:
 
     return score
 
+
 def mape(predict: list, actual: list) -> float:
     """
     Function: mape
@@ -61,7 +62,7 @@ def mape(predict: list, actual: list) -> float:
     >>> predict = [1,1,1]; actual = [1,1,1]
     >>> mape(predict, actual)
     0.0
-    
+
     """
     predict = np.array(predict)
     actual = np.array(actual)
@@ -193,6 +194,7 @@ def mbd(predict, actual):
 
 def manual_accuracy(predict, actual):
     return np.mean(np.array(actual) == np.array(predict))
+
 
 if __name__ == "__main__":
     import doctest
