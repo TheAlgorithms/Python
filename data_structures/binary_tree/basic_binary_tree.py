@@ -56,7 +56,11 @@ class BinaryTree:
         >>> tree.depth_of_tree(tree.root.left)
         2
         """
-        return 1 + max(self.depth_of_tree(tree.left), self.depth_of_tree(tree.right)) if tree else 0
+        return (
+            1 + max(self.depth_of_tree(tree.left), self.depth_of_tree(tree.right))
+            if tree
+            else 0
+        )
 
     def is_full_binary_tree(self, tree: Node) -> bool:
         """
@@ -80,7 +84,9 @@ class BinaryTree:
         if not tree:
             return True
         if tree.left and tree.right:
-            return self.is_full_binary_tree(tree.left) and self.is_full_binary_tree(tree.right)
+            return self.is_full_binary_tree(tree.left) and self.is_full_binary_tree(
+                tree.right
+            )
         else:
             return not tree.left and not tree.right
 
