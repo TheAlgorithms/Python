@@ -13,7 +13,7 @@ Wikipedia link: https://en.wikipedia.org/wiki/Rolling_hash
 
 
 class Hash:
-    def __init__(self, s=str) ->None:
+    def __init__(self, s=str) -> None:
         self.hash_value = 0
         (self.p, self.m) = (31, 10**9 + 7)
         self.length = len(s)
