@@ -198,4 +198,5 @@ def manual_accuracy(predict, actual):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
