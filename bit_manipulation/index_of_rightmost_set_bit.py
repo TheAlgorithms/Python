@@ -4,9 +4,8 @@
 def get_index_of_rightmost_set_bit(number: int) -> int:
     """
     Take in a positive integer 'number'.
-    Return the zero-based index of the first set bit in this 'number'
-    starting from right.
-    Return -1, if the set bit is not found.
+    Return the zero-based index of the first set bit in 'number' starting from right.
+    Return -1 if the set bit is not found.
 
     >>> get_index_of_rightmost_set_bit(0)
     -1
