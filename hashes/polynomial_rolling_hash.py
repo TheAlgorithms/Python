@@ -1,6 +1,7 @@
 """
 Polynomial Rolling Hash Algo -->
-Polynomial rolling hash function is a hash function that uses only multiplications and additions.
+Polynomial rolling hash function is hash
+function that uses only multiplications and additions
 
 Time Complexity: O(N)
 
