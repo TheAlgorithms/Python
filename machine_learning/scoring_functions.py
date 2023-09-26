@@ -20,9 +20,9 @@ def mae(predict: list, actual: list) -> float:
     """
     Function: mae
         The MAE score is measured as the average of the absolute error values.
-        This function calculates the absolute difference between actual value 
+        This function calculates the absolute difference between actual value
         and predict value. Lower MAE means that a model's predictions are
-        closer the actual value, which usually tells that the model has high 
+        closer the actual value, which usually tells that the model has high
         forecast accuracy.
     Parameters:
         predict - list - the predict value
@@ -47,10 +47,10 @@ def mae(predict: list, actual: list) -> float:
 def mape(predict: list, actual: list) -> float:
     """
     Function: mape
-        The MAPE score is measured as the average of the percentage absolute 
-        error values. This function calculates the absolute percentage 
-        difference between actual value and predict value. Lower MAPE means 
-        that a model's predictions are closer the actual value, which usually 
+        The MAPE score is measured as the average of the percentage absolute
+        error values. This function calculates the absolute percentage
+        difference between actual value and predict value. Lower MAPE means
+        that a model's predictions are closer the actual value, which usually
         tells that the model has high forecast accuracy.
     Parameters:
         predict - list - the predict value
@@ -66,7 +66,7 @@ def mape(predict: list, actual: list) -> float:
     """
     predict = np.array(predict)
     actual = np.array(actual)
-    pct_difference = abs((predict - actual)/actual)
+    pct_difference = abs((predict - actual) / actual)
     score = pct_difference.mean()
 
     return score
@@ -77,9 +77,9 @@ def mse(predict: list, actual: list) -> float:
     """
     Function: mse
         The MSE score is measured as the average squared error values.
-        This function calculates the square of absolute difference 
-        between actual value and predict value. Lower MSE means that 
-        a model's predictions are closer the actual value, which usually 
+        This function calculates the square of absolute difference
+        between actual value and predict value. Lower MSE means that
+        a model's predictions are closer the actual value, which usually
         tells that the model has high forecast accuracy.
     Parameters:
         predict - list - the predict value
@@ -107,11 +107,11 @@ def rmse(predict, actual):
     """
     Function: mse
         The RMSE (root-mean-square error) represents the square root
-        of MSE. The RMSE score is measured as the average difference 
+        of MSE. The RMSE score is measured as the average difference
         between model's predicted value and the actual value.
-        This function calculates the average difference between actual 
-        value and predict value. Lower RMSE means that a model's 
-        predictions are closer the actual value, which usually tells 
+        This function calculates the average difference between actual
+        value and predict value. Lower RMSE means that a model's
+        predictions are closer the actual value, which usually tells
         that the model has high forecast accuracy.
     Parameters:
         predict - list - the predict value
@@ -198,4 +198,8 @@ def manual_accuracy(predict, actual):
 
 if __name__ == "__main__":
     import doctest
+<<<<<<< HEAD
+=======
+
+>>>>>>> dc285eb2a1adcd0883b4d3fbcb0d4134b536e2c4
     doctest.testmod()
