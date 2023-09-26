@@ -25,6 +25,7 @@ def findMedianSortedArrays(nums1, nums2):
 
     return median
 
+
 # Example usage:
 nums1 = [1, 3]
 nums2 = [2]
