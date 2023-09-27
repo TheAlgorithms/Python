@@ -7,13 +7,31 @@ def max_circular_subarray_sum(arr: list[int], size: int) -> int:
     Output: 23
     Explanation: Subarray 12, 8, -7, 9, -9, 10 gives the maximum sum, which is 23.
 
-    >>> max_circular_sum([8, -7, 9, -9, 10, -11, 12], 7)
+    >>> max_circular_subarray_sum([8, -7, 9, -9, 10, -11, 12], 7)
     23
-    >>> max_circular_sum([8, -7, 10, -9, 10, -11, 12], 7)
+    >>> max_circular_subarray_sum([8, -7, 10, -9, 10, -11, 12], 7)
     24
-    >>> max_circular_sum([-5], 1)
+    >>> max_circular_subarray_sum([8, -7, 10, -9, 10, -11, 12], 1)
     -5
+    >>> max_circular_subarray_sum([8, -7, 10, -9, 10, -11, 12], 0)
+    0
+    >>> max_circular_subarray_sum([], 0)
+    0
+    >>> max_circular_subarray_sum([-5], -1)
+    Traceback (most recent call last):
+    ...
+    ValueError: Subarray size can't be negative
+    >>> max_circular_subarray_sum([-5], 2)
+    Traceback (most recent call last):
+    ...
+    ValueError: Subarray size can't exceed array size
     """
+    if size < 0:
+        raise ValueError("Subarray size can't be negative")
+    if size > len(arr):
+        raise ValueError("Subarray size can't exceed array size")
+    if len(arr) == 0 or size == 0:
+        return 0
     if size == 1:
         return arr[0]
 
