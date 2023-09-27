@@ -78,8 +78,10 @@ def gaussian_elimination(
 
     for row in range(rows - 1):
         diagonal_element = augmented_mat[row, row]
-        factor = (augmented_mat[row + 1: columns, row] / diagonal_element)[:, np.newaxis]
-        augmented_mat[row + 1: columns, :] -= factor * augmented_mat[row, :]
+        factor = (augmented_mat[row + 1 : columns, row] / diagonal_element)[
+            :, np.newaxis
+        ]
+        augmented_mat[row + 1 : columns, :] -= factor * augmented_mat[row, :]
 
     x = retroactive_resolution(
         augmented_mat[:, 0:columns], augmented_mat[:, columns : columns + 1]
