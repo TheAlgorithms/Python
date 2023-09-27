@@ -1,3 +1,7 @@
+"""
+All about Fibonacci heap: https://en.wikipedia.org/wiki/Fibonacci_heap
+"""
+
 class Node:
     """
     The Node class represents a node in a Fibonacci heap.
