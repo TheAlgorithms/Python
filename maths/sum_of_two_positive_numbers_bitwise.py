@@ -34,17 +34,17 @@ def sum_of_two_positive_numbers_bitwise(number: int, other_number: int) -> int:
     ValueError: Both parameters MUST be in positive value!
     """
 
-    if isinstance(number, int) is False or isinstance(other_number, int) is False:
-        raise TypeError("Both parameters MUST be in integer type!")
+    if not isinstance(number, int) or not isinstance(other_number, int):
+        raise TypeError("Both arguments MUST be integers!")
 
     if number < 0 or other_number < 0:
-        raise ValueError("Both parameters MUST be in positive value!")
+        raise ValueError("Both arguments MUST be non-negative!")
 
     # Base case
     sum = number ^ other_number
     carry = number & other_number
 
-    if (carry) == 0:
+    if carry == 0:
         return sum
 
     # Recursive case
