@@ -71,4 +71,4 @@ def calculate_tf_idf(term, document, corpus):
     tf = term_frequency(term, document)
     df, n = document_frequency(term, corpus)
     idf = inverse_document_frequency(df, n)
-    return tf_idf(tf, idf)
+    return tf_idf(tf, idf) 
