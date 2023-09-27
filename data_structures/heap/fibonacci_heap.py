@@ -1,7 +1,7 @@
 """
 All about Fibonacci heap: https://en.wikipedia.org/wiki/Fibonacci_heap
 """
-from typing import Union, Any
+from typing import Any
 
 
 class Node:
@@ -25,7 +25,7 @@ class FibonacciHeap:
     """
 
     def __init__(self) -> None:
-        self.min: Union[Node, Any] = None
+        self.min: Node | Any = None
         self.num_nodes: int = 0
 
     def insert(self, key: int) -> None:
@@ -100,7 +100,7 @@ class FibonacciHeap:
         return new_heap
 
     def _consolidate(self) -> None:
-        aux: list[Union[Node, Any]] = [None] * self.num_nodes
+        aux: list[Node | Any] = [None] * self.num_nodes
         nodes = self._get_nodes()
         for node in nodes:
             degree = node.degree
