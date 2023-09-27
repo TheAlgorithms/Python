@@ -139,6 +139,7 @@
   * [Mean Threshold](computer_vision/mean_threshold.py)
   * [Mosaic Augmentation](computer_vision/mosaic_augmentation.py)
   * [Pooling Functions](computer_vision/pooling_functions.py)
+  * [Richardson Lucy](computer_vision/richardson_lucy.py)
 
 ## Conversions
   * [Astronomical Length Scale Conversion](conversions/astronomical_length_scale_conversion.py)
@@ -515,6 +516,7 @@
   * [Logistic Regression](machine_learning/logistic_regression.py)
   * Lstm
     * [Lstm Prediction](machine_learning/lstm/lstm_prediction.py)
+  * [Mfcc](machine_learning/mfcc.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
   * [Polynomial Regression](machine_learning/polynomial_regression.py)
   * [Scoring Functions](machine_learning/scoring_functions.py)
@@ -672,6 +674,7 @@
   * [Sum Of Digits](maths/sum_of_digits.py)
   * [Sum Of Geometric Progression](maths/sum_of_geometric_progression.py)
   * [Sum Of Harmonic Series](maths/sum_of_harmonic_series.py)
+  * [Sum Of Two Positive Numbers Bitwise](maths/sum_of_two_positive_numbers_bitwise.py)
   * [Sumset](maths/sumset.py)
   * [Sylvester Sequence](maths/sylvester_sequence.py)
   * [Tanh](maths/tanh.py)
@@ -753,6 +756,7 @@
   * [Basic Orbital Capture](physics/basic_orbital_capture.py)
   * [Casimir Effect](physics/casimir_effect.py)
   * [Centripetal Force](physics/centripetal_force.py)
+  * [Coulombs Law](physics/coulombs_law.py)
   * [Grahams Law](physics/grahams_law.py)
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
   * [Hubble Parameter](physics/hubble_parameter.py)
