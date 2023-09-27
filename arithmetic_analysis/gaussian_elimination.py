@@ -70,10 +70,10 @@ def gaussian_elimination(
 
     # factor - taken elements from 'augmented_mat' by row slice: row + 1: columns,
     # with 'row' column number, divided by the selected 'diagonal_element'.
-    # [:, np.newaxis] - array is converted to two dimensions 
+    # [:, np.newaxis] - array is converted to two dimensions
     # to use vector multiplication.
 
-    # product of factor and the row selected from augmented_mat[row, :] 
+    # product of factor and the row selected from augmented_mat[row, :]
     # is subtracted from the value of the selected 'rows: row + 1: columns'
     # and all columns: augmented_mat[row + 1: columns, :]
 
