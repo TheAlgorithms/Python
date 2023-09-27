@@ -46,7 +46,7 @@ def bitwise_addition_recursive(number: int, other_number: int) -> int:
     if carry == 0:
         return bitwise_sum
 
-    return sum_of_two_positive_numbers_bitwise(sum, carry << 1)
+    return bitwise_addition_recursive(sum, carry << 1)
 
 
 if __name__ == "__main__":
