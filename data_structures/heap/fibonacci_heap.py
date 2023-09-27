@@ -1,7 +1,7 @@
 """
 All about Fibonacci heap: https://en.wikipedia.org/wiki/Fibonacci_heap
 """
-from typing import List, Union, Any
+from typing import Union, Any
 
 
 class Node:
@@ -100,7 +100,7 @@ class FibonacciHeap:
         return new_heap
 
     def _consolidate(self) -> None:
-        aux: List[Union[Node, Any]] = [None] * self.num_nodes
+        aux: list[Union[Node, Any]] = [None] * self.num_nodes
         nodes = self._get_nodes()
         for node in nodes:
             degree = node.degree
@@ -169,8 +169,8 @@ class FibonacciHeap:
                 self._cut(y, z)
                 self._cascading_cut(z)
 
-    def _get_nodes(self) -> List[Node]:
-        nodes: List[Node] = []
+    def _get_nodes(self) -> list[Node]:
+        nodes: list[Node] = []
         if self.min is not None:
             node = self.min
             while True:
