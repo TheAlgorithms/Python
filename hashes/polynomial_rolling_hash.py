@@ -33,4 +33,4 @@ class Hash:
 if __name__ == "__main__":
     s = "thealgorithms_python"
     h = Hash(s)
-    print("Hash value of {} is {}".format(s, h.hash_value))
+    print(f"Hash value of {s} is {h.hash_value}")
