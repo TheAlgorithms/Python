@@ -12,7 +12,7 @@ def max_circular_subarray_sum(arr: list[int], size: int) -> int:
     >>> max_circular_subarray_sum([8, -7, 10, -9, 10, -11, 12], 7)
     24
     >>> max_circular_subarray_sum([8, -7, 10, -9, 10, -11, 12], 1)
-    -5
+    12
     >>> max_circular_subarray_sum([8, -7, 10, -9, 10, -11, 12], 0)
     0
     >>> max_circular_subarray_sum([], 0)
@@ -32,8 +32,6 @@ def max_circular_subarray_sum(arr: list[int], size: int) -> int:
         raise ValueError("Subarray size can't exceed array size")
     if len(arr) == 0 or size == 0:
         return 0
-    if size == 1:
-        return arr[0]
 
     arr_sum = sum(arr)
     current_max = max_so_far = current_min = min_so_far = arr[0]
@@ -59,4 +57,4 @@ if __name__ == "__main__":
 
     size = int(input("Enter size of array:\t"))
     arr = [int(x) for x in input("Enter the elements of the array: ").strip().split()]
-    print(f"Maximum circular sum is {max_circular_sum(arr, size)}")
+    print(f"Maximum circular sum is {max_circular_subarray_sum(arr, size)}")
