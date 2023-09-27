@@ -2,6 +2,7 @@
 All about Fibonacci heap: https://en.wikipedia.org/wiki/Fibonacci_heap
 """
 
+
 class Node:
     """
     The Node class represents a node in a Fibonacci heap.
@@ -160,8 +161,7 @@ class FibonacciHeap:
         self._insert_node(x)
 
     def _cascading_cut(self, y: Node) -> None:
-        z = y.parent
-        if z is not None:
+        if (z := y.parent) is not None:
             if not y.mark:
                 y.mark = True
             else:
