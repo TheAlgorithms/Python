@@ -122,20 +122,20 @@ class FibonacciHeap:
                     if node.key < self.min.key:
                         self.min = node
 
-    def _link(self, y: Node, x: Node) -> None:
-        y.left.right = y.right
-        y.right.left = y.left
-        y.parent = x
-        if x.child is None:
-            x.child = y
-            y.right = y
-            y.left = y
+    def _link(self, other: Node, node: Node) -> None:
+        other.left.right = other.right
+        other.right.left = other.left
+        other.parent = node
+        if node.child is None:
+            node.child = other
+            other.right = other
+            other.left = other
         else:
-            y.left = x.child
-            y.right = x.child.right
-            x.child.right = y
-            y.right.left = y
-        x.degree += 1
+            other.left = node.child
+            other.right = node.child.right
+            node.child.right = other
+            other.right.left = other
+        node.degree += 1
 
     def decrease_key(self, node: Node, new_key: int) -> None:
         """Modify the key of some node in the heap."""
@@ -149,25 +149,25 @@ class FibonacciHeap:
         if node.key < self.min.key:
             self.min = node
 
-    def _cut(self, x: Node, y: Node) -> None:
-        x.left.right = x.right
-        x.right.left = x.left
-        y.degree -= 1
-        if x == x.right:
-            y.child = None
-        elif y.child == x:
-            y.child = x.right
-        x.parent = None
-        x.mark = False
-        self._insert_node(x)
+    def _cut(self, current_node: Node, parent_node: Node) -> None:
+        current_node.left.right = current_node.right
+        current_node.right.left = current_node.left
+        parent_node.degree -= 1
+        if current_node == current_node.right:
+            parent_node.child = None
+        elif parent_node.child == current_node:
+            parent_node.child = current_node.right
+        current_node.parent = None
+        current_node.mark = False
+        self._insert_node(current_node)
 
-    def _cascading_cut(self, y: Node) -> None:
-        if (z := y.parent) is not None:
-            if not y.mark:
-                y.mark = True
+    def _cascading_cut(self, node: Node) -> None:
+        if (parent := node.parent) is not None:
+            if not node.mark:
+                node.mark = True
             else:
-                self._cut(y, z)
-                self._cascading_cut(z)
+                self._cut(node, parent)
+                self._cascading_cut(parent)
 
     def _get_nodes(self) -> list[Node]:
         nodes: list[Node] = []
