@@ -1,37 +1,37 @@
 """
-Calculates the sum of two positive numbers using bitwise operator
+Calculates the sum of two non-negative integers using bitwise operators
 Wikipedia explanation: https://en.wikipedia.org/wiki/Binary_number
 """
 
 
-def sum_of_two_positive_numbers_bitwise(number: int, other_number: int) -> int:
-    """ "
-    >>> sum_of_two_positive_numbers_bitwise(4, 5)
+def bitwise_addition_recursive(number: int, other_number: int) -> int:
+    """
+    >>> bitwise_addition_recursive(4, 5)
     9
-    >>> sum_of_two_positive_numbers_bitwise(8, 9)
+    >>> bitwise_addition_recursive(8, 9)
     17
-    >>> sum_of_two_positive_numbers_bitwise(0, 4)
+    >>> bitwise_addition_recursive(0, 4)
     4
-    >>> sum_of_two_positive_numbers_bitwise(4.5, 9)
+    >>> bitwise_addition_recursive(4.5, 9)
     Traceback (most recent call last):
         ...
-    TypeError: Both parameters MUST be in integer type!
-    >>> sum_of_two_positive_numbers_bitwise('4', 9)
+    TypeError: Both arguments MUST be integers!
+    >>> bitwise_addition_recursive('4', 9)
     Traceback (most recent call last):
         ...
-    TypeError: Both parameters MUST be in integer type!
-    >>> sum_of_two_positive_numbers_bitwise('4.5', 9)
+    TypeError: Both arguments MUST be integers!
+    >>> bitwise_addition_recursive('4.5', 9)
     Traceback (most recent call last):
         ...
-    TypeError: Both parameters MUST be in integer type!
-    >>> sum_of_two_positive_numbers_bitwise(-1, 9)
+    TypeError: Both arguments MUST be integers!
+    >>> bitwise_addition_recursive(-1, 9)
     Traceback (most recent call last):
         ...
-    ValueError: Both parameters MUST be in positive value!
-    >>> sum_of_two_positive_numbers_bitwise(1, -9)
+    ValueError: Both arguments MUST be non-negative!
+    >>> bitwise_addition_recursive(1, -9)
     Traceback (most recent call last):
         ...
-    ValueError: Both parameters MUST be in positive value!
+    ValueError: Both arguments MUST be non-negative!
     """
 
     if not isinstance(number, int) or not isinstance(other_number, int):
@@ -40,14 +40,12 @@ def sum_of_two_positive_numbers_bitwise(number: int, other_number: int) -> int:
     if number < 0 or other_number < 0:
         raise ValueError("Both arguments MUST be non-negative!")
 
-    # Base case
-    sum = number ^ other_number
+    bitwise_sum = number ^ other_number
     carry = number & other_number
 
     if carry == 0:
-        return sum
+        return bitwise_sum
 
-    # Recursive case
     return sum_of_two_positive_numbers_bitwise(sum, carry << 1)
 
 
