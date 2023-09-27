@@ -1,6 +1,7 @@
 """
 All about Fibonacci heap: https://en.wikipedia.org/wiki/Fibonacci_heap
 """
+from typing import List, Union, Any
 
 
 class Node:
@@ -11,8 +12,8 @@ class Node:
     def __init__(self, key: int) -> None:
         self.key = key
         self.degree = 0
-        self.parent = None
-        self.child = None
+        self.parent: Any = None
+        self.child: Any = None
         self.left = self
         self.right = self
         self.mark = False
@@ -24,8 +25,8 @@ class FibonacciHeap:
     """
 
     def __init__(self) -> None:
-        self.min = None
-        self.num_nodes = 0
+        self.min: Union[Node, Any] = None
+        self.num_nodes: int = 0
 
     def insert(self, key: int) -> None:
         """
@@ -50,7 +51,7 @@ class FibonacciHeap:
         """Return min node's key."""
         return self.min.key
 
-    def extract_min(self) -> int:
+    def extract_min(self) -> int | None:
         """Extract (delete) the min node from the heap."""
         if self.min is None:
             return None
@@ -99,7 +100,7 @@ class FibonacciHeap:
         return new_heap
 
     def _consolidate(self) -> None:
-        aux = [None] * self.num_nodes
+        aux: List[Union[Node, Any]] = [None] * self.num_nodes
         nodes = self._get_nodes()
         for node in nodes:
             degree = node.degree
@@ -168,8 +169,8 @@ class FibonacciHeap:
                 self._cut(y, z)
                 self._cascading_cut(z)
 
-    def _get_nodes(self) -> list:
-        nodes = []
+    def _get_nodes(self) -> List[Node]:
+        nodes: List[Node] = []
         if self.min is not None:
             node = self.min
             while True:
