@@ -67,11 +67,19 @@ def gaussian_elimination(
     augmented_mat = augmented_mat.astype("float64")
 
     # scale the matrix leaving it triangular
+
+    # factor - taken elements from 'augmented_mat' by row slice: row + 1: columns,
+    # with 'row' column number, divided by the selected 'diagonal_element'.
+    # [:, np.newaxis] - array is converted to two dimensions to use vector multiplication.
+
+    # product of factor and the row selected from augmented_mat[row, :] is subtracted from
+    # the value of the selected 'rows: row + 1: columns' and all columns:
+    # augmented_mat[row + 1: columns, :]
+
     for row in range(rows - 1):
-        pivot = augmented_mat[row, row]
-        for col in range(row + 1, columns):
-            factor = augmented_mat[col, row] / pivot
-            augmented_mat[col, :] -= factor * augmented_mat[row, :]
+        diagonal_element = augmented_mat[row, row]
+        factor = (augmented_mat[row + 1: columns, row] / diagonal_element)[:, np.newaxis]
+        augmented_mat[row + 1: columns, :] -= factor * augmented_mat[row, :]
 
     x = retroactive_resolution(
         augmented_mat[:, 0:columns], augmented_mat[:, columns : columns + 1]
