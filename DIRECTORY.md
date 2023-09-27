@@ -507,7 +507,6 @@
   * [Gradient Descent](machine_learning/gradient_descent.py)
   * [K Means Clust](machine_learning/k_means_clust.py)
   * [K Nearest Neighbours](machine_learning/k_nearest_neighbours.py)
-  * [Knn Sklearn](machine_learning/knn_sklearn.py)
   * [Linear Discriminant Analysis](machine_learning/linear_discriminant_analysis.py)
   * [Linear Regression](machine_learning/linear_regression.py)
   * Local Weighted Learning
