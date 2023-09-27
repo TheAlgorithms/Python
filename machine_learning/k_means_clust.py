@@ -31,7 +31,7 @@ Usage:
             record_heterogeneity=heterogeneity,
             verbose=True # whether to print logs in console or not.(default=False)
             )
-  4. Plot the loss function, and heterogeneity values for every iteration saved in
+  4. Plot the loss function and heterogeneity values for every iteration saved in
      heterogeneity list.
         plot_heterogeneity(
             heterogeneity,
@@ -198,13 +198,10 @@ def report_generator(
     df: pd.DataFrame, clustering_variables: np.ndarray, fill_missing_report=None
 ) -> pd.DataFrame:
     """
-    Function generates an easy-erading clustering report. It takes 2 arguments as an input:
-        DataFrame - dataframe with predicted cluster column;
-        FillMissingReport - dictionary of rules how we are going to fill missing
-        values of for final report generated (not included in modelling);
-    in order to run the function following libraries must be imported:
-        import pandas as pd
-        import numpy as np
+    Generates a clustering report. This function takes 2 arguments as input:
+        df - dataframe with predicted cluster column
+        fill_missing_report - dictionary of rules on how we are going to fill in missing
+        values for final generated report (not included in modelling);
     >>> data = pd.DataFrame()
     >>> data['numbers'] = [1, 2, 3]
     >>> data['col1'] = [0.5, 2.5, 4.5]
@@ -306,7 +303,7 @@ def report_generator(
     a.columns = report.columns  # rename columns to match report
     report = report.drop(
         report[report.Type == "count"].index
-    )  # drop count values except cluster size
+    )  # drop count values except for cluster size
     report = pd.concat(
         [report, a, clustersize, clusterproportion], axis=0
     )  # concat report with cluster size and nan values
