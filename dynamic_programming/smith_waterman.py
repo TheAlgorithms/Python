@@ -37,12 +37,12 @@ def score_function(
 
 
 def smith_waterman(
-    query: str, 
+    query: str,
     subject: str,
     match: int = 1,
     mismatch: int = -1,
-    gap: int = -2,   
-    ) -> list[list[int]]:
+    gap: int = -2,
+) -> list[list[int]]:
     """
     Perform the Smith-Waterman local sequence alignment algorithm.
     Returns a 2D list representing the score matrix. Each value in the matrix
@@ -114,7 +114,9 @@ def smith_waterman(
     for i in range(1, m + 1):
         for j in range(1, n + 1):
             # Calculate scores for each cell
-            match = score[i - 1][j - 1] + score_function(query[i - 1], subject[j - 1],**kwargs)
+            match = score[i - 1][j - 1] + score_function(
+                query[i - 1], subject[j - 1], **kwargs
+            )
             delete = score[i - 1][j] + gap
             insert = score[i][j - 1] + gap
 
