@@ -36,7 +36,13 @@ def score_function(
     return match if source_char == target_char else mismatch
 
 
-def smith_waterman(query: str, subject: str) -> list[list[int]]:
+def smith_waterman(
+    query: str, 
+    subject: str,
+    match: int = 1,
+    mismatch: int = -1,
+    gap: int = -2,   
+    ) -> list[list[int]]:
     """
     Perform the Smith-Waterman local sequence alignment algorithm.
     Returns a 2D list representing the score matrix. Each value in the matrix
@@ -103,12 +109,12 @@ def smith_waterman(query: str, subject: str) -> list[list[int]]:
     m = len(query)
     n = len(subject)
     score = [[0] * (n + 1) for _ in range(m + 1)]
-    gap = score_function("-", "-")
+    kwargs = {"match": match, "mismatch": mismatch, "gap": gap}
 
     for i in range(1, m + 1):
         for j in range(1, n + 1):
             # Calculate scores for each cell
-            match = score[i - 1][j - 1] + score_function(query[i - 1], subject[j - 1])
+            match = score[i - 1][j - 1] + score_function(query[i - 1], subject[j - 1],**kwargs)
             delete = score[i - 1][j] + gap
             insert = score[i][j - 1] + gap
 
@@ -181,5 +187,5 @@ if __name__ == "__main__":
     query = "HEAGAWGHEE"
     subject = "PAWHEAE"
 
-    score = smith_waterman(query, subject)
+    score = smith_waterman(query, subject, match=1, mismatch=-1, gap=-2)
     print(traceback(score, query, subject))
