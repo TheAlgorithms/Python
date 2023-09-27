@@ -86,7 +86,7 @@ def download_images_from_google_query(query: str = "dhaka", max_images: int = 5)
         path_name = f"query_{query.replace(' ', '_')}"
         if not os.path.exists(path_name):
             os.makedirs(path_name)
-        urllib.request.urlretrieve(
+        urllib.request.urlretrieve(  # noqa: S310
             original_size_img, f"{path_name}/original_size_img_{index}.jpg"
         )
     return index

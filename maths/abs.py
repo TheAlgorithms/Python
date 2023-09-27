@@ -75,9 +75,9 @@ def test_abs_val():
     """
     >>> test_abs_val()
     """
-    assert 0 == abs_val(0)
-    assert 34 == abs_val(34)
-    assert 100000000000 == abs_val(-100000000000)
+    assert abs_val(0) == 0
+    assert abs_val(34) == 34
+    assert abs_val(-100000000000) == 100000000000
 
     a = [-3, -1, 2, -11]
     assert abs_max(a) == -11

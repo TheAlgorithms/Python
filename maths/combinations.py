@@ -39,7 +39,6 @@ def combinations(n: int, k: int) -> int:
 
 
 if __name__ == "__main__":
-
     print(
         "The number of five-card hands possible from a standard",
         f"fifty-two card deck is: {combinations(52, 5)}\n",

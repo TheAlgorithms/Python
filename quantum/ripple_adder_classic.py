@@ -54,9 +54,9 @@ def full_adder(
 
 
 # The default value for **backend** is the result of a function call which is not
-# normally recommended and causes flake8-bugbear to raise a B008 error. However,
-# in this case, this is acceptable because `Aer.get_backend()` is called when the
-# function is defined and that same backend is then reused for all function calls.
+# normally recommended and causes ruff to raise a B008 error. However, in this case,
+# this is acceptable because `Aer.get_backend()` is called when the function is defined
+# and that same backend is then reused for all function calls.
 
 
 def ripple_adder(
@@ -107,7 +107,7 @@ def ripple_adder(
     res = qiskit.execute(circuit, backend, shots=1).result()
 
     # The result is in binary. Convert it back to int
-    return int(list(res.get_counts())[0], 2)
+    return int(next(iter(res.get_counts())), 2)
 
 
 if __name__ == "__main__":

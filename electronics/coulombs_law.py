@@ -8,7 +8,6 @@ COULOMBS_CONSTANT = 8.988e9  # units = N * m^s * C^-2
 def couloumbs_law(
     force: float, charge1: float, charge2: float, distance: float
 ) -> dict[str, float]:
-
     """
     Apply Coulomb's Law on any three given values. These can be force, charge1,
     charge2, or distance, and then in a Python dict return name/value pair of

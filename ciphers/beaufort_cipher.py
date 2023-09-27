@@ -5,7 +5,7 @@ Author: Mohit Radadiya
 from string import ascii_uppercase
 
 dict1 = {char: i for i, char in enumerate(ascii_uppercase)}
-dict2 = {i: char for i, char in enumerate(ascii_uppercase)}
+dict2 = dict(enumerate(ascii_uppercase))
 
 
 # This function generates the key in

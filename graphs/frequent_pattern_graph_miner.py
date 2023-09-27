@@ -130,11 +130,11 @@ def create_edge(nodes, graph, cluster, c1):
     """
     create edge between the nodes
     """
-    for i in cluster[c1].keys():
+    for i in cluster[c1]:
         count = 0
         c2 = c1 + 1
         while c2 < max(cluster.keys()):
-            for j in cluster[c2].keys():
+            for j in cluster[c2]:
                 """
                 creates edge only if the condition satisfies
                 """
@@ -185,7 +185,7 @@ def find_freq_subgraph_given_support(s, cluster, graph):
     find edges of multiple frequent subgraphs
     """
     k = int(s / 100 * (len(cluster) - 1))
-    for i in cluster[k].keys():
+    for i in cluster[k]:
         my_dfs(graph, tuple(cluster[k][i]), (["Header"],))
 
 

@@ -5,7 +5,6 @@
 
 
 def binary_exponentiation(a, n):
-
     if n == 0:
         return 1
 

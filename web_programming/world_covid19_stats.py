@@ -22,6 +22,5 @@ def world_covid19_stats(url: str = "https://www.worldometers.info/coronavirus") 
 
 
 if __name__ == "__main__":
-    print("\033[1m" + "COVID-19 Status of the World" + "\033[0m\n")
-    for key, value in world_covid19_stats().items():
-        print(f"{key}\n{value}\n")
+    print("\033[1m COVID-19 Status of the World \033[0m\n")
+    print("\n".join(f"{key}\n{value}" for key, value in world_covid19_stats().items()))

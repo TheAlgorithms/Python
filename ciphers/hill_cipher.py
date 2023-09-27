@@ -104,10 +104,11 @@ class HillCipher:
 
         req_l = len(self.key_string)
         if greatest_common_divisor(det, len(self.key_string)) != 1:
-            raise ValueError(
-                f"determinant modular {req_l} of encryption key({det}) is not co prime "
-                f"w.r.t {req_l}.\nTry another key."
+            msg = (
+                f"determinant modular {req_l} of encryption key({det}) "
+                f"is not co prime w.r.t {req_l}.\nTry another key."
             )
+            raise ValueError(msg)
 
     def process_text(self, text: str) -> str:
         """

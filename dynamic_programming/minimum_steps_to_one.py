@@ -42,7 +42,8 @@ def min_steps_to_one(number: int) -> int:
     """
 
     if number <= 0:
-        raise ValueError(f"n must be greater than 0. Got n = {number}")
+        msg = f"n must be greater than 0. Got n = {number}"
+        raise ValueError(msg)
 
     table = [number + 1] * (number + 1)
 

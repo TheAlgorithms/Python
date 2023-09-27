@@ -54,7 +54,6 @@ def function(expansion, s0, s1, key, message):
 
 
 if __name__ == "__main__":
-
     key = input("Enter 10 bit key: ")
     message = input("Enter 8 bit message: ")
 

@@ -49,7 +49,6 @@ def interpolation_search(sorted_collection, item):
 
 
 def interpolation_search_by_recursion(sorted_collection, item, left, right):
-
     """Pure implementation of interpolation search algorithm in Python by recursion
     Be careful collection must be ascending sorted, otherwise result will be
     unpredictable

@@ -47,7 +47,7 @@ def subtract(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[
     raise TypeError("Expected a matrix, got int/list instead")
 
 
-def scalar_multiply(matrix: list[list[int]], n: int | float) -> list[list[float]]:
+def scalar_multiply(matrix: list[list[int]], n: float) -> list[list[float]]:
     """
     >>> scalar_multiply([[1,2],[3,4]],5)
     [[5, 10], [15, 20]]
@@ -70,10 +70,11 @@ def multiply(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[
         rows, cols = _verify_matrix_sizes(matrix_a, matrix_b)
 
     if cols[0] != rows[1]:
-        raise ValueError(
-            f"Cannot multiply matrix of dimensions ({rows[0]},{cols[0]}) "
-            f"and ({rows[1]},{cols[1]})"
+        msg = (
+            "Cannot multiply matrix of dimensions "
+            f"({rows[0]},{cols[0]}) and ({rows[1]},{cols[1]})"
         )
+        raise ValueError(msg)
     return [
         [sum(m * n for m, n in zip(i, j)) for j in zip(*matrix_b)] for i in matrix_a
     ]
@@ -174,10 +175,11 @@ def _verify_matrix_sizes(
 ) -> tuple[tuple[int, int], tuple[int, int]]:
     shape = _shape(matrix_a) + _shape(matrix_b)
     if shape[0] != shape[3] or shape[1] != shape[2]:
-        raise ValueError(
-            f"operands could not be broadcast together with shape "
+        msg = (
+            "operands could not be broadcast together with shape "
             f"({shape[0], shape[1]}), ({shape[2], shape[3]})"
         )
+        raise ValueError(msg)
     return (shape[0], shape[2]), (shape[1], shape[3])
 
 
@@ -187,9 +189,7 @@ def main() -> None:
     matrix_c = [[11, 12, 13, 14], [21, 22, 23, 24], [31, 32, 33, 34], [41, 42, 43, 44]]
     matrix_d = [[3, 0, 2], [2, 0, -2], [0, 1, 1]]
     print(f"Add Operation, {add(matrix_a, matrix_b) = } \n")
-    print(
-        f"Multiply Operation, {multiply(matrix_a, matrix_b) = } \n",
-    )
+    print(f"Multiply Operation, {multiply(matrix_a, matrix_b) = } \n")
     print(f"Identity: {identity(5)}\n")
     print(f"Minor of {matrix_c} = {minor(matrix_c, 1, 2)} \n")
     print(f"Determinant of {matrix_b} = {determinant(matrix_b)} \n")

@@ -44,11 +44,9 @@ def levenshtein_distance(first_word: str, second_word: str) -> int:
     previous_row = list(range(len(second_word) + 1))
 
     for i, c1 in enumerate(first_word):
-
         current_row = [i + 1]
 
         for j, c2 in enumerate(second_word):
-
             # Calculate insertions, deletions and substitutions
             insertions = previous_row[j + 1] + 1
             deletions = current_row[j] + 1

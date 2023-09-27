@@ -28,7 +28,6 @@ GRAVITATIONAL_CONSTANT = 6.6743e-11  # unit of G : m^3 * kg^-1 * s^-2
 def gravitational_law(
     force: float, mass_1: float, mass_2: float, distance: float
 ) -> dict[str, float]:
-
     """
     Input Parameters
     ----------------

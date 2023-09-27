@@ -103,7 +103,6 @@ def ite_ternary_search(array: list[int], target: int) -> int:
             left = two_third + 1
 
         else:
-
             left = one_third + 1
             right = two_third - 1
     else:

@@ -380,7 +380,6 @@ def reaumur_to_rankine(reaumur: float, ndigits: int = 2) -> float:
 
 
 if __name__ == "__main__":
-
     import doctest
 
     doctest.testmod()

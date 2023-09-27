@@ -8,7 +8,7 @@ from __future__ import annotations
 from math import pi, pow
 
 
-def vol_cube(side_length: int | float) -> float:
+def vol_cube(side_length: float) -> float:
     """
     Calculate the Volume of a Cube.
     >>> vol_cube(1)

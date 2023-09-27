@@ -112,7 +112,7 @@ class Graph:
         self.dist[src] = 0
         q = PriorityQueue()
         q.insert((0, src))  # (dist from src, node)
-        for u in self.adjList.keys():
+        for u in self.adjList:
             if u != src:
                 self.dist[u] = sys.maxsize  # Infinity
                 self.par[u] = -1

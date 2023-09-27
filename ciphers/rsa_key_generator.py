@@ -2,8 +2,7 @@ import os
 import random
 import sys
 
-from . import cryptomath_module as cryptoMath  # noqa: N812
-from . import rabin_miller as rabinMiller  # noqa: N812
+from . import cryptomath_module, rabin_miller
 
 
 def main() -> None:
@@ -13,20 +12,26 @@ def main() -> None:
 
 
 def generate_key(key_size: int) -> tuple[tuple[int, int], tuple[int, int]]:
-    print("Generating prime p...")
-    p = rabinMiller.generate_large_prime(key_size)
-    print("Generating prime q...")
-    q = rabinMiller.generate_large_prime(key_size)
+    """
+    >>> random.seed(0) # for repeatability
+    >>> public_key, private_key = generate_key(8)
+    >>> public_key
+    (26569, 239)
+    >>> private_key
+    (26569, 2855)
+    """
+    p = rabin_miller.generate_large_prime(key_size)
+    q = rabin_miller.generate_large_prime(key_size)
     n = p * q
 
-    print("Generating e that is relatively prime to (p - 1) * (q - 1)...")
+    # Generate e that is relatively prime to (p - 1) * (q - 1)
     while True:
         e = random.randrange(2 ** (key_size - 1), 2 ** (key_size))
-        if cryptoMath.gcd(e, (p - 1) * (q - 1)) == 1:
+        if cryptomath_module.gcd(e, (p - 1) * (q - 1)) == 1:
             break
 
-    print("Calculating d that is mod inverse of e...")
-    d = cryptoMath.find_mod_inverse(e, (p - 1) * (q - 1))
+    # Calculate d that is mod inverse of e
+    d = cryptomath_module.find_mod_inverse(e, (p - 1) * (q - 1))
 
     public_key = (n, e)
     private_key = (n, d)

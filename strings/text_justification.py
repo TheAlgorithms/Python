@@ -33,7 +33,6 @@ def text_justification(word: str, max_width: int) -> list:
     words = word.split()
 
     def justify(line: list, width: int, max_width: int) -> str:
-
         overall_spaces_count = max_width - width
         words_count = len(line)
         if len(line) == 1:

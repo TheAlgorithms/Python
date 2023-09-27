@@ -76,10 +76,11 @@ def encrypt_and_write_to_file(
     key_size, n, e = read_key_file(key_filename)
     if key_size < block_size * 8:
         sys.exit(
-            "ERROR: Block size is %s bits and key size is %s bits. The RSA cipher "
+            "ERROR: Block size is {} bits and key size is {} bits. The RSA cipher "
             "requires the block size to be equal to or greater than the key size. "
-            "Either decrease the block size or use different keys."
-            % (block_size * 8, key_size)
+            "Either decrease the block size or use different keys.".format(
+                block_size * 8, key_size
+            )
         )
 
     encrypted_blocks = [str(i) for i in encrypt_message(message, (n, e), block_size)]
@@ -101,10 +102,11 @@ def read_from_file_and_decrypt(message_filename: str, key_filename: str) -> str:
 
     if key_size < block_size * 8:
         sys.exit(
-            "ERROR: Block size is %s bits and key size is %s bits. The RSA cipher "
+            "ERROR: Block size is {} bits and key size is {} bits. The RSA cipher "
             "requires the block size to be equal to or greater than the key size. "
-            "Did you specify the correct key file and encrypted file?"
-            % (block_size * 8, key_size)
+            "Did you specify the correct key file and encrypted file?".format(
+                block_size * 8, key_size
+            )
         )
 
     encrypted_blocks = []

@@ -60,19 +60,15 @@ class MyNode:
 
     def set_data(self, data: Any) -> None:
         self.data = data
-        return
 
     def set_left(self, node: MyNode | None) -> None:
         self.left = node
-        return
 
     def set_right(self, node: MyNode | None) -> None:
         self.right = node
-        return
 
     def set_height(self, height: int) -> None:
         self.height = height
-        return
 
 
 def get_height(node: MyNode | None) -> int:

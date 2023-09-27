@@ -32,7 +32,8 @@ def twin_prime(number: int) -> int:
     TypeError: Input value of [number=6.0] must be an integer
     """
     if not isinstance(number, int):
-        raise TypeError(f"Input value of [number={number}] must be an integer")
+        msg = f"Input value of [number={number}] must be an integer"
+        raise TypeError(msg)
     if is_prime(number) and is_prime(number + 2):
         return number + 2
     else:

@@ -147,7 +147,7 @@ def _msd_radix_sort_inplace(
 
         list_of_ints[i], list_of_ints[j] = list_of_ints[j], list_of_ints[i]
         j -= 1
-        if not j == i:
+        if j != i:
             i += 1
 
     _msd_radix_sort_inplace(list_of_ints, bit_position, begin_index, i)

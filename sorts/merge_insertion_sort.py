@@ -14,6 +14,53 @@ python3 merge_insertion_sort.py
 from __future__ import annotations
 
 
+def binary_search_insertion(sorted_list, item):
+    """
+    >>> binary_search_insertion([1, 2, 7, 9, 10], 4)
+    [1, 2, 4, 7, 9, 10]
+    """
+    left = 0
+    right = len(sorted_list) - 1
+    while left <= right:
+        middle = (left + right) // 2
+        if left == right:
+            if sorted_list[middle] < item:
+                left = middle + 1
+            break
+        elif sorted_list[middle] < item:
+            left = middle + 1
+        else:
+            right = middle - 1
+    sorted_list.insert(left, item)
+    return sorted_list
+
+
+def merge(left, right):
+    """
+    >>> merge([[1, 6], [9, 10]], [[2, 3], [4, 5], [7, 8]])
+    [[1, 6], [2, 3], [4, 5], [7, 8], [9, 10]]
+    """
+    result = []
+    while left and right:
+        if left[0][0] < right[0][0]:
+            result.append(left.pop(0))
+        else:
+            result.append(right.pop(0))
+    return result + left + right
+
+
+def sortlist_2d(list_2d):
+    """
+    >>> sortlist_2d([[9, 10], [1, 6], [7, 8], [2, 3], [4, 5]])
+    [[1, 6], [2, 3], [4, 5], [7, 8], [9, 10]]
+    """
+    length = len(list_2d)
+    if length <= 1:
+        return list_2d
+    middle = length // 2
+    return merge(sortlist_2d(list_2d[:middle]), sortlist_2d(list_2d[middle:]))
+
+
 def merge_insertion_sort(collection: list[int]) -> list[int]:
     """Pure implementation of merge-insertion sort algorithm in Python
 
@@ -37,38 +84,6 @@ def merge_insertion_sort(collection: list[int]) -> list[int]:
     >>> all(merge_insertion_sort(p) == [0, 1, 2, 3, 4] for p in permutations)
     True
     """
-
-    def binary_search_insertion(sorted_list, item):
-        left = 0
-        right = len(sorted_list) - 1
-        while left <= right:
-            middle = (left + right) // 2
-            if left == right:
-                if sorted_list[middle] < item:
-                    left = middle + 1
-                break
-            elif sorted_list[middle] < item:
-                left = middle + 1
-            else:
-                right = middle - 1
-        sorted_list.insert(left, item)
-        return sorted_list
-
-    def sortlist_2d(list_2d):
-        def merge(left, right):
-            result = []
-            while left and right:
-                if left[0][0] < right[0][0]:
-                    result.append(left.pop(0))
-                else:
-                    result.append(right.pop(0))
-            return result + left + right
-
-        length = len(list_2d)
-        if length <= 1:
-            return list_2d
-        middle = length // 2
-        return merge(sortlist_2d(list_2d[:middle]), sortlist_2d(list_2d[middle:]))
 
     if len(collection) <= 1:
         return collection

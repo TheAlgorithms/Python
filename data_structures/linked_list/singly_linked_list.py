@@ -72,7 +72,7 @@ class LinkedList:
         >>> len(linked_list)
         0
         """
-        return len(tuple(iter(self)))
+        return sum(1 for _ in self)
 
     def __repr__(self) -> str:
         """
@@ -107,6 +107,7 @@ class LinkedList:
         for i, node in enumerate(self):
             if i == index:
                 return node
+        return None
 
     # Used to change the data of a particular node
     def __setitem__(self, index: int, data: Any) -> None:
@@ -352,13 +353,13 @@ def test_singly_linked_list() -> None:
 
     try:
         linked_list.delete_head()
-        raise AssertionError()  # This should not happen.
+        raise AssertionError  # This should not happen.
     except IndexError:
         assert True  # This should happen.
 
     try:
         linked_list.delete_tail()
-        raise AssertionError()  # This should not happen.
+        raise AssertionError  # This should not happen.
     except IndexError:
         assert True  # This should happen.
 
@@ -369,7 +370,7 @@ def test_singly_linked_list() -> None:
 
     linked_list.insert_head(0)
     linked_list.insert_tail(11)
-    assert str(linked_list) == "->".join(str(i) for i in range(0, 12))
+    assert str(linked_list) == "->".join(str(i) for i in range(12))
 
     assert linked_list.delete_head() == 0
     assert linked_list.delete_nth(9) == 10
@@ -377,11 +378,11 @@ def test_singly_linked_list() -> None:
     assert len(linked_list) == 9
     assert str(linked_list) == "->".join(str(i) for i in range(1, 10))
 
-    assert all(linked_list[i] == i + 1 for i in range(0, 9)) is True
+    assert all(linked_list[i] == i + 1 for i in range(9)) is True
 
-    for i in range(0, 9):
+    for i in range(9):
         linked_list[i] = -i
-    assert all(linked_list[i] == -i for i in range(0, 9)) is True
+    assert all(linked_list[i] == -i for i in range(9)) is True
 
     linked_list.reverse()
     assert str(linked_list) == "->".join(str(i) for i in range(-8, 1))

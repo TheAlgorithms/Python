@@ -8,7 +8,7 @@
 # Newton's Method - https://en.wikipedia.org/wiki/Newton's_method
 
 from sympy import diff, lambdify, symbols
-from sympy.functions import *  # noqa: F401, F403
+from sympy.functions import *  # noqa: F403
 
 
 def newton_raphson(
@@ -59,7 +59,6 @@ def newton_raphson(
 
 # Let's Execute
 if __name__ == "__main__":
-
     # Find root of trigonometric function
     # Find value of pi
     print(f"The root of sin(x) = 0 is {newton_raphson('sin(x)', 2)}")

@@ -42,20 +42,14 @@ def longest_common_subsequence(x: str, y: str):
 
     for i in range(1, m + 1):
         for j in range(1, n + 1):
-            if x[i - 1] == y[j - 1]:
-                match = 1
-            else:
-                match = 0
+            match = 1 if x[i - 1] == y[j - 1] else 0
 
             l[i][j] = max(l[i - 1][j], l[i][j - 1], l[i - 1][j - 1] + match)
 
     seq = ""
     i, j = m, n
     while i > 0 and j > 0:
-        if x[i - 1] == y[j - 1]:
-            match = 1
-        else:
-            match = 0
+        match = 1 if x[i - 1] == y[j - 1] else 0
 
         if l[i][j] == l[i - 1][j - 1] + match:
             if match == 1:

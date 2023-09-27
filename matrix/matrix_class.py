@@ -141,7 +141,7 @@ class Matrix:
 
     @property
     def order(self) -> tuple[int, int]:
-        return (self.num_rows, self.num_columns)
+        return self.num_rows, self.num_columns
 
     @property
     def is_square(self) -> bool:
@@ -315,7 +315,7 @@ class Matrix:
             ]
         )
 
-    def __mul__(self, other: Matrix | int | float) -> Matrix:
+    def __mul__(self, other: Matrix | float) -> Matrix:
         if isinstance(other, (int, float)):
             return Matrix(
                 [[int(element * other) for element in row] for row in self.rows]

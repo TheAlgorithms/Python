@@ -49,7 +49,7 @@ def fizz_buzz(number: int, iterations: int) -> str:
             out += "Fizz"
         if number % 5 == 0:
             out += "Buzz"
-        if not number % 3 == 0 and not number % 5 == 0:
+        if 0 not in (number % 3, number % 5):
             out += str(number)
 
         # print(out)

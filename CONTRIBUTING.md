@@ -2,7 +2,7 @@
 
 ## Before contributing
 
-Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms).
+Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms/community).
 
 ## Contributing
 
@@ -25,7 +25,14 @@ We appreciate any contribution, from fixing a grammar mistake in a comment to im
 
 Your contribution will be tested by our [automated testing on GitHub Actions](https://github.com/TheAlgorithms/Python/actions) to save time and mental energy.  After you have submitted your pull request, you should see the GitHub Actions tests start to run at the bottom of your submission page.  If those tests fail, then click on the ___details___ button try to read through the GitHub Actions output to understand the failure.  If you do not understand, please leave a comment on your submission page and a community member will try to help.
 
-Please help us keep our issue list small by adding fixes: #{$ISSUE_NO} to the commit message of pull requests that resolve open issues. GitHub will use this tag to auto-close the issue when the PR is merged.
+If you are interested in resolving an [open issue](https://github.com/TheAlgorithms/Python/issues), simply make a pull request with your proposed fix. __We do not assign issues in this repo__ so please do not ask for permission to work on an issue.
+
+Please help us keep our issue list small by adding `Fixes #{$ISSUE_NUMBER}` to the description of pull requests that resolve open issues.
+For example, if your pull request fixes issue #10, then please add the following to its description:
+```
+Fixes #10
+```
+GitHub will use this tag to [auto-close the issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) if and when the PR is merged.
 
 #### What is an Algorithm?
 
@@ -81,11 +88,11 @@ We want your work to be readable by others; therefore, we encourage you to note 
   black .
   ```
 
-- All submissions will need to pass the test `flake8 . --ignore=E203,W503 --max-line-length=88` before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
+- All submissions will need to pass the test `ruff .` before they will be accepted so if possible, try this test locally on your Python file(s) before submitting your pull request.
 
   ```bash
-  python3 -m pip install flake8  # only required the first time
-  flake8 . --ignore=E203,W503  --max-line-length=88 --show-source
+  python3 -m pip install ruff  # only required the first time
+  ruff .
   ```
 
 - Original code submission require docstrings or comments to describe your work.
@@ -176,7 +183,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
 - Most importantly,
   - __Be consistent in the use of these guidelines when submitting.__
-  - __Join__ us on [Discord](https://discord.com/invite/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms) __now!__
+  - __Join__ us on [Discord](https://discord.com/invite/c7MnfGFGa6) and [Gitter](https://gitter.im/TheAlgorithms/community) __now!__
   - Happy coding!
 
 Writer [@poyea](https://github.com/poyea), Jun 2019.

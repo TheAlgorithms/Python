@@ -253,7 +253,7 @@ def find_unit_clauses(
     unit_symbols = []
     for clause in clauses:
         if len(clause) == 1:
-            unit_symbols.append(list(clause.literals.keys())[0])
+            unit_symbols.append(next(iter(clause.literals.keys())))
         else:
             f_count, n_count = 0, 0
             for literal, value in clause.literals.items():

@@ -127,7 +127,7 @@ class CircularQueueLinkedList:
         """
         self.check_can_perform_operation()
         if self.rear is None or self.front is None:
-            return
+            return None
         if self.front == self.rear:
             data = self.front.data
             self.front.data = None

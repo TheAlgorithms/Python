@@ -37,7 +37,7 @@ def preorder(root: Node | None) -> list[int]:
     >>> preorder(make_tree())
     [1, 2, 4, 5, 3]
     """
-    return [root.data] + preorder(root.left) + preorder(root.right) if root else []
+    return [root.data, *preorder(root.left), *preorder(root.right)] if root else []
 
 
 def postorder(root: Node | None) -> list[int]:
@@ -55,7 +55,20 @@ def inorder(root: Node | None) -> list[int]:
     >>> inorder(make_tree())
     [4, 2, 5, 1, 3]
     """
-    return inorder(root.left) + [root.data] + inorder(root.right) if root else []
+    return [*inorder(root.left), root.data, *inorder(root.right)] if root else []
+
+
+def reverse_inorder(root: Node | None) -> list[int]:
+    """
+    Reverse in-order traversal visits right subtree, root node, left subtree.
+    >>> reverse_inorder(make_tree())
+    [3, 1, 5, 2, 4]
+    """
+    return (
+        [*reverse_inorder(root.right), root.data, *reverse_inorder(root.left)]
+        if root
+        else []
+    )
 
 
 def height(root: Node | None) -> int:
@@ -105,7 +118,6 @@ def get_nodes_from_left_to_right(
         if not root:
             return
         if level == 1:
-
             output.append(root.data)
         elif level > 1:
             populate_output(root.left, level - 1)
@@ -162,15 +174,12 @@ def zigzag(root: Node | None) -> Sequence[Node | None] | list[Any]:
 
 
 def main() -> None:  # Main function for testing.
-    """
-    Create binary tree.
-    """
+    # Create binary tree.
     root = make_tree()
-    """
-    All Traversals of the binary are as follows:
-    """
 
+    # All Traversals of the binary are as follows:
     print(f"In-order Traversal: {inorder(root)}")
+    print(f"Reverse In-order Traversal: {reverse_inorder(root)}")
     print(f"Pre-order Traversal: {preorder(root)}")
     print(f"Post-order Traversal: {postorder(root)}", "\n")
 

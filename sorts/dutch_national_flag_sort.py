@@ -84,9 +84,8 @@ def dutch_national_flag_sort(sequence: list) -> list:
             sequence[mid], sequence[high] = sequence[high], sequence[mid]
             high -= 1
         else:
-            raise ValueError(
-                f"The elements inside the sequence must contains only {colors} values"
-            )
+            msg = f"The elements inside the sequence must contains only {colors} values"
+            raise ValueError(msg)
     return sequence
 
 

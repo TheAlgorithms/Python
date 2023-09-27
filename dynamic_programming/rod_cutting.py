@@ -177,13 +177,15 @@ def _enforce_args(n: int, prices: list):
     the rod
     """
     if n < 0:
-        raise ValueError(f"n must be greater than or equal to 0. Got n = {n}")
+        msg = f"n must be greater than or equal to 0. Got n = {n}"
+        raise ValueError(msg)
 
     if n > len(prices):
-        raise ValueError(
-            "Each integral piece of rod must have a corresponding "
-            f"price. Got n = {n} but length of prices = {len(prices)}"
+        msg = (
+            "Each integral piece of rod must have a corresponding price. "
+            f"Got n = {n} but length of prices = {len(prices)}"
         )
+        raise ValueError(msg)
 
 
 def main():

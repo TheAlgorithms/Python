@@ -33,6 +33,61 @@ leetcode: https://leetcode.com/problems/word-search/
 """
 
 
+def get_point_key(len_board: int, len_board_column: int, row: int, column: int) -> int:
+    """
+    Returns the hash key of matrix indexes.
+
+    >>> get_point_key(10, 20, 1, 0)
+    200
+    """
+
+    return len_board * len_board_column * row + column
+
+
+def exits_word(
+    board: list[list[str]],
+    word: str,
+    row: int,
+    column: int,
+    word_index: int,
+    visited_points_set: set[int],
+) -> bool:
+    """
+    Return True if it's possible to search the word suffix
+    starting from the word_index.
+
+    >>> exits_word([["A"]], "B", 0, 0, 0, set())
+    False
+    """
+
+    if board[row][column] != word[word_index]:
+        return False
+
+    if word_index == len(word) - 1:
+        return True
+
+    traverts_directions = [(0, 1), (0, -1), (-1, 0), (1, 0)]
+    len_board = len(board)
+    len_board_column = len(board[0])
+    for direction in traverts_directions:
+        next_i = row + direction[0]
+        next_j = column + direction[1]
+        if not (0 <= next_i < len_board and 0 <= next_j < len_board_column):
+            continue
+
+        key = get_point_key(len_board, len_board_column, next_i, next_j)
+        if key in visited_points_set:
+            continue
+
+        visited_points_set.add(key)
+        if exits_word(board, word, next_i, next_j, word_index + 1, visited_points_set):
+            return True
+
+        visited_points_set.remove(key)
+
+    return False
+
+
 def word_exists(board: list[list[str]], word: str) -> bool:
     """
     >>> word_exists([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED")
@@ -77,6 +132,8 @@ def word_exists(board: list[list[str]], word: str) -> bool:
     board_error_message = (
         "The board should be a non empty matrix of single chars strings."
     )
+
+    len_board = len(board)
     if not isinstance(board, list) or len(board) == 0:
         raise ValueError(board_error_message)
 
@@ -94,61 +151,12 @@ def word_exists(board: list[list[str]], word: str) -> bool:
             "The word parameter should be a string of length greater than 0."
         )
 
-    traverts_directions = [(0, 1), (0, -1), (-1, 0), (1, 0)]
-    len_word = len(word)
-    len_board = len(board)
     len_board_column = len(board[0])
-
-    # Returns the hash key of matrix indexes.
-    def get_point_key(row: int, column: int) -> int:
-        """
-        >>> len_board=10
-        >>> len_board_column=20
-        >>> get_point_key(0, 0)
-        200
-        """
-
-        return len_board * len_board_column * row + column
-
-    # Return True if it's possible to search the word suffix
-    # starting from the word_index.
-    def exits_word(
-        row: int, column: int, word_index: int, visited_points_set: set[int]
-    ) -> bool:
-        """
-        >>> board=[["A"]]
-        >>> word="B"
-        >>> exits_word(0, 0, 0, set())
-        False
-        """
-
-        if board[row][column] != word[word_index]:
-            return False
-
-        if word_index == len_word - 1:
-            return True
-
-        for direction in traverts_directions:
-            next_i = row + direction[0]
-            next_j = column + direction[1]
-            if not (0 <= next_i < len_board and 0 <= next_j < len_board_column):
-                continue
-
-            key = get_point_key(next_i, next_j)
-            if key in visited_points_set:
-                continue
-
-            visited_points_set.add(key)
-            if exits_word(next_i, next_j, word_index + 1, visited_points_set):
-                return True
-
-            visited_points_set.remove(key)
-
-        return False
-
     for i in range(len_board):
         for j in range(len_board_column):
-            if exits_word(i, j, 0, {get_point_key(i, j)}):
+            if exits_word(
+                board, word, i, j, 0, {get_point_key(len_board, len_board_column, i, j)}
+            ):
                 return True
 
     return False

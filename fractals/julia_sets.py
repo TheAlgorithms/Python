@@ -170,7 +170,6 @@ def ignore_overflow_warnings() -> None:
 
 
 if __name__ == "__main__":
-
     z_0 = prepare_grid(window_size, nb_pixels)
 
     ignore_overflow_warnings()  # See file header for explanations

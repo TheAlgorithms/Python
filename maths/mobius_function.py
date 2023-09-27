@@ -1,8 +1,8 @@
 """
 References: https://en.wikipedia.org/wiki/M%C3%B6bius_function
 References: wikipedia:square free number
-python/black : True
-flake8 : True
+psf/black : True
+ruff : True
 """
 
 from maths.is_square_free import is_square_free

@@ -61,7 +61,6 @@ def local_binary_value(image: np.ndarray, x_coordinate: int, y_coordinate: int) 
 
 
 if __name__ == "__main__":
-
     # Reading the image and converting it to grayscale.
     image = cv2.imread(
         "digital_image_processing/image_data/lena.jpg", cv2.IMREAD_GRAYSCALE
@@ -72,8 +71,8 @@ if __name__ == "__main__":
 
     # Iterating through the image and calculating the
     # local binary pattern value for each pixel.
-    for i in range(0, image.shape[0]):
-        for j in range(0, image.shape[1]):
+    for i in range(image.shape[0]):
+        for j in range(image.shape[1]):
             lbp_image[i][j] = local_binary_value(image, i, j)
 
     cv2.imshow("local binary pattern", lbp_image)

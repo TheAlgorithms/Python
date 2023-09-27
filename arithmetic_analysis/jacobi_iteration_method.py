@@ -12,7 +12,7 @@ from numpy.typing import NDArray
 def jacobi_iteration_method(
     coefficient_matrix: NDArray[float64],
     constant_matrix: NDArray[float64],
-    init_val: list[int],
+    init_val: list[float],
     iterations: int,
 ) -> list[float]:
     """
@@ -49,7 +49,9 @@ def jacobi_iteration_method(
     >>> constant = np.array([[2], [-6]])
     >>> init_val = [0.5, -0.5, -0.5]
     >>> iterations = 3
-    >>> jacobi_iteration_method(coefficient, constant, init_val, iterations)
+    >>> jacobi_iteration_method(
+    ...     coefficient, constant, init_val, iterations
+    ... )  # doctest: +NORMALIZE_WHITESPACE
     Traceback (most recent call last):
         ...
     ValueError: Coefficient and constant matrices dimensions must be nxn and nx1 but
@@ -59,7 +61,9 @@ def jacobi_iteration_method(
     >>> constant = np.array([[2], [-6], [-4]])
     >>> init_val = [0.5, -0.5]
     >>> iterations = 3
-    >>> jacobi_iteration_method(coefficient, constant, init_val, iterations)
+    >>> jacobi_iteration_method(
+    ...     coefficient, constant, init_val, iterations
+    ... )  # doctest: +NORMALIZE_WHITESPACE
     Traceback (most recent call last):
         ...
     ValueError: Number of initial values must be equal to number of rows in coefficient
@@ -79,24 +83,26 @@ def jacobi_iteration_method(
     rows2, cols2 = constant_matrix.shape
 
     if rows1 != cols1:
-        raise ValueError(
-            f"Coefficient matrix dimensions must be nxn but received {rows1}x{cols1}"
-        )
+        msg = f"Coefficient matrix dimensions must be nxn but received {rows1}x{cols1}"
+        raise ValueError(msg)
 
     if cols2 != 1:
-        raise ValueError(f"Constant matrix must be nx1 but received {rows2}x{cols2}")
+        msg = f"Constant matrix must be nx1 but received {rows2}x{cols2}"
+        raise ValueError(msg)
 
     if rows1 != rows2:
-        raise ValueError(
-            f"""Coefficient and constant matrices dimensions must be nxn and nx1 but
-            received {rows1}x{cols1} and {rows2}x{cols2}"""
+        msg = (
+            "Coefficient and constant matrices dimensions must be nxn and nx1 but "
+            f"received {rows1}x{cols1} and {rows2}x{cols2}"
         )
+        raise ValueError(msg)
 
     if len(init_val) != rows1:
-        raise ValueError(
-            f"""Number of initial values must be equal to number of rows in coefficient
-            matrix but received {len(init_val)} and {rows1}"""
+        msg = (
+            "Number of initial values must be equal to number of rows in coefficient "
+            f"matrix but received {len(init_val)} and {rows1}"
         )
+        raise ValueError(msg)
 
     if iterations <= 0:
         raise ValueError("Iterations must be at least 1")
@@ -109,6 +115,7 @@ def jacobi_iteration_method(
 
     strictly_diagonally_dominant(table)
 
+    """
     # Iterates the whole matrix for given number of times
     for _ in range(iterations):
         new_val = []
@@ -124,8 +131,37 @@ def jacobi_iteration_method(
             temp = (temp + val) / denom
             new_val.append(temp)
         init_val = new_val
+    """
 
-    return [float(i) for i in new_val]
+    # denominator - a list of values along the diagonal
+    denominator = np.diag(coefficient_matrix)
+
+    # val_last - values of the last column of the table array
+    val_last = table[:, -1]
+
+    # masks - boolean mask of all strings without diagonal
+    # elements array coefficient_matrix
+    masks = ~np.eye(coefficient_matrix.shape[0], dtype=bool)
+
+    # no_diagonals - coefficient_matrix array values without diagonal elements
+    no_diagonals = coefficient_matrix[masks].reshape(-1, rows - 1)
+
+    # Here we get 'i_col' - these are the column numbers, for each row
+    # without diagonal elements, except for the last column.
+    i_row, i_col = np.where(masks)
+    ind = i_col.reshape(-1, rows - 1)
+
+    #'i_col' is converted to a two-dimensional list 'ind', which will be
+    # used to make selections from 'init_val' ('arr' array see below).
+
+    # Iterates the whole matrix for given number of times
+    for _ in range(iterations):
+        arr = np.take(init_val, ind)
+        sum_product_rows = np.sum((-1) * no_diagonals * arr, axis=1)
+        new_val = (sum_product_rows + val_last) / denominator
+        init_val = new_val
+
+    return new_val.tolist()
 
 
 # Checks if the given matrix is strictly diagonally dominant
@@ -146,9 +182,9 @@ def strictly_diagonally_dominant(table: NDArray[float64]) -> bool:
 
     is_diagonally_dominant = True
 
-    for i in range(0, rows):
+    for i in range(rows):
         total = 0
-        for j in range(0, cols - 1):
+        for j in range(cols - 1):
             if i == j:
                 continue
             else:

@@ -34,7 +34,6 @@ def hubble_parameter(
     dark_energy: float,
     redshift: float,
 ) -> float:
-
     """
     Input Parameters
     ----------------
@@ -71,10 +70,10 @@ def hubble_parameter(
     68.3
     """
     parameters = [redshift, radiation_density, matter_density, dark_energy]
-    if any(0 > p for p in parameters):
+    if any(p < 0 for p in parameters):
         raise ValueError("All input parameters must be positive")
 
-    if any(1 < p for p in parameters[1:4]):
+    if any(p > 1 for p in parameters[1:4]):
         raise ValueError("Relative densities cannot be greater than one")
     else:
         curvature = 1 - (matter_density + radiation_density + dark_energy)

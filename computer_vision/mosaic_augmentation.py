@@ -159,7 +159,7 @@ def update_image_and_anno(
                 new_anno.append([bbox[0], xmin, ymin, xmax, ymax])
 
     # Remove bounding box small than scale of filter
-    if 0 < filter_scale:
+    if filter_scale > 0:
         new_anno = [
             anno
             for anno in new_anno

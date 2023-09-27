@@ -97,26 +97,29 @@ def similarity_search(
     """
 
     if dataset.ndim != value_array.ndim:
-        raise ValueError(
-            f"Wrong input data's dimensions... dataset : {dataset.ndim}, "
-            f"value_array : {value_array.ndim}"
+        msg = (
+            "Wrong input data's dimensions... "
+            f"dataset : {dataset.ndim}, value_array : {value_array.ndim}"
         )
+        raise ValueError(msg)
 
     try:
         if dataset.shape[1] != value_array.shape[1]:
-            raise ValueError(
-                f"Wrong input data's shape... dataset : {dataset.shape[1]}, "
-                f"value_array : {value_array.shape[1]}"
+            msg = (
+                "Wrong input data's shape... "
+                f"dataset : {dataset.shape[1]}, value_array : {value_array.shape[1]}"
             )
+            raise ValueError(msg)
     except IndexError:
         if dataset.ndim != value_array.ndim:
             raise TypeError("Wrong shape")
 
     if dataset.dtype != value_array.dtype:
-        raise TypeError(
-            f"Input data have different datatype... dataset : {dataset.dtype}, "
-            f"value_array : {value_array.dtype}"
+        msg = (
+            "Input data have different datatype... "
+            f"dataset : {dataset.dtype}, value_array : {value_array.dtype}"
         )
+        raise TypeError(msg)
 
     answer = []
 

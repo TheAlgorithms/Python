@@ -44,7 +44,7 @@ def create_state_space_tree(
             nums,
             max_sum,
             index + 1,
-            path + [nums[index]],
+            [*path, nums[index]],
             result,
             remaining_nums_sum - nums[index],
         )

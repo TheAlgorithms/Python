@@ -44,7 +44,6 @@ def shell_sort(collection: list) -> list:
 
     # Continue sorting until the gap is 1
     while gap > 1:
-
         # Decrease the gap value
         gap = int(gap / shrink)
 

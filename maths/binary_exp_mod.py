@@ -6,7 +6,7 @@ def bin_exp_mod(a, n, b):
     7
     """
     # mod b
-    assert not (b == 0), "This cannot accept modulo that is == 0"
+    assert b != 0, "This cannot accept modulo that is == 0"
     if n == 0:
         return 1
 

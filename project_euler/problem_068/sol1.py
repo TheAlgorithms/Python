@@ -73,7 +73,8 @@ def solution(gon_side: int = 5) -> int:
         if is_magic_gon(numbers):
             return int("".join(str(n) for n in numbers))
 
-    raise ValueError(f"Magic {gon_side}-gon ring is impossible")
+    msg = f"Magic {gon_side}-gon ring is impossible"
+    raise ValueError(msg)
 
 
 def generate_gon_ring(gon_side: int, perm: list[int]) -> list[int]:

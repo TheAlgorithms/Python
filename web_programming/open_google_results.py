@@ -7,10 +7,7 @@ from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
 if __name__ == "__main__":
-    if len(argv) > 1:
-        query = "%20".join(argv[1:])
-    else:
-        query = quote(str(input("Search: ")))
+    query = "%20".join(argv[1:]) if len(argv) > 1 else quote(str(input("Search: ")))
 
     print("Googling.....")
 

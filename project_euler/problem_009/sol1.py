@@ -32,9 +32,8 @@ def solution() -> int:
     for a in range(300):
         for b in range(a + 1, 400):
             for c in range(b + 1, 500):
-                if (a + b + c) == 1000:
-                    if (a**2) + (b**2) == (c**2):
-                        return a * b * c
+                if (a + b + c) == 1000 and (a**2) + (b**2) == (c**2):
+                    return a * b * c
 
     return -1
 

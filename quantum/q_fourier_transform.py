@@ -72,7 +72,6 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
     counter = number_of_qubits
 
     for i in range(counter):
-
         quantum_circuit.h(number_of_qubits - i - 1)
         counter -= 1
         for j in range(counter):

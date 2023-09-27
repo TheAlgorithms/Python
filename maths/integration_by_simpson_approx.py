@@ -35,7 +35,6 @@ xn = b
 
 
 def simpson_integration(function, a: float, b: float, precision: int = 4) -> float:
-
     """
     Args:
         function : the function which's integration is desired

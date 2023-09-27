@@ -1,7 +1,6 @@
 # Created by sarathkaul on 17/11/19
 # Modified by Arkadip Bhattacharya(@darkmatter18) on 20/04/2020
 from collections import defaultdict
-from typing import DefaultDict
 
 
 def word_occurrence(sentence: str) -> dict:
@@ -15,7 +14,7 @@ def word_occurrence(sentence: str) -> dict:
     >>> dict(word_occurrence("Two  spaces"))
     {'Two': 1, 'spaces': 1}
     """
-    occurrence: DefaultDict[str, int] = defaultdict(int)
+    occurrence: defaultdict[str, int] = defaultdict(int)
     # Creating a dictionary containing count of each word
     for word in sentence.split():
         occurrence[word] += 1

@@ -22,7 +22,7 @@ Minimum Cost For Tickets
 Dynamic Programming: up -> down.
 """
 
-from functools import lru_cache
+import functools
 
 
 def mincost_tickets(days: list[int], costs: list[int]) -> int:
@@ -106,7 +106,7 @@ def mincost_tickets(days: list[int], costs: list[int]) -> int:
 
     days_set = set(days)
 
-    @lru_cache(maxsize=None)
+    @functools.cache
     def dynamic_programming(index: int) -> int:
         if index > 365:
             return 0

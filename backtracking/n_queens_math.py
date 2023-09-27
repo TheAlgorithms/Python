@@ -107,7 +107,6 @@ def depth_first_search(
 
     # We iterate each column in the row to find all possible results in each row
     for col in range(n):
-
         # We apply that we learned previously. First we check that in the current board
         # (possible_board) there are not other same value because if there is it means
         # that there are a collision in vertical. Then we apply the two formulas we
@@ -130,9 +129,9 @@ def depth_first_search(
 
         # If it is False we call dfs function again and we update the inputs
         depth_first_search(
-            possible_board + [col],
-            diagonal_right_collisions + [row - col],
-            diagonal_left_collisions + [row + col],
+            [*possible_board, col],
+            [*diagonal_right_collisions, row - col],
+            [*diagonal_left_collisions, row + col],
             boards,
             n,
         )

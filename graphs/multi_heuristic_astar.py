@@ -33,7 +33,7 @@ class PriorityQueue:
                 temp.append((pri, x))
                 (pri, x) = heapq.heappop(self.elements)
             temp.append((priority, item))
-            for (pro, xxx) in temp:
+            for pro, xxx in temp:
                 heapq.heappush(self.elements, (pro, xxx))
 
     def remove_element(self, item):
@@ -44,7 +44,7 @@ class PriorityQueue:
             while x != item:
                 temp.append((pro, x))
                 (pro, x) = heapq.heappop(self.elements)
-            for (prito, yyy) in temp:
+            for prito, yyy in temp:
                 heapq.heappush(self.elements, (prito, yyy))
 
     def top_show(self):

@@ -40,7 +40,8 @@ def is_automorphic_number(number: int) -> bool:
     TypeError: Input value of [number=5.0] must be an integer
     """
     if not isinstance(number, int):
-        raise TypeError(f"Input value of [number={number}] must be an integer")
+        msg = f"Input value of [number={number}] must be an integer"
+        raise TypeError(msg)
     if number < 0:
         return False
     number_square = number * number

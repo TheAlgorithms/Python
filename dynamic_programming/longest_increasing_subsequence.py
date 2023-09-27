@@ -48,7 +48,7 @@ def longest_subsequence(array: list[int]) -> list[int]:  # This function is recu
             i += 1
 
     temp_array = [element for element in array[1:] if element >= pivot]
-    temp_array = [pivot] + longest_subsequence(temp_array)
+    temp_array = [pivot, *longest_subsequence(temp_array)]
     if len(temp_array) > len(longest_subseq):
         return temp_array
     else:

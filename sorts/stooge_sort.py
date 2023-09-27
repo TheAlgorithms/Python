@@ -12,7 +12,6 @@ def stooge_sort(arr):
 
 
 def stooge(arr, i, h):
-
     if i >= h:
         return
 

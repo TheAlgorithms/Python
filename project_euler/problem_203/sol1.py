@@ -50,8 +50,8 @@ def get_pascal_triangle_unique_coefficients(depth: int) -> set[int]:
     coefficients = {1}
     previous_coefficients = [1]
     for _ in range(2, depth + 1):
-        coefficients_begins_one = previous_coefficients + [0]
-        coefficients_ends_one = [0] + previous_coefficients
+        coefficients_begins_one = [*previous_coefficients, 0]
+        coefficients_ends_one = [0, *previous_coefficients]
         previous_coefficients = []
         for x, y in zip(coefficients_begins_one, coefficients_ends_one):
             coefficients.add(x + y)

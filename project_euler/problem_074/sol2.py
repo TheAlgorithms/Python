@@ -111,7 +111,6 @@ def solution(chain_length: int = 60, number_limit: int = 1000000) -> int:
     chain_sets_lengths: dict[int, int] = {}
 
     for start_chain_element in range(1, number_limit):
-
         # The temporary set will contain the elements of the chain
         chain_set = set()
         chain_set_length = 0

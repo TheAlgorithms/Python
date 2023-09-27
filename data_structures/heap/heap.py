@@ -1,9 +1,28 @@
 from __future__ import annotations
 
+from abc import abstractmethod
 from collections.abc import Iterable
+from typing import Generic, Protocol, TypeVar
 
 
-class Heap:
+class Comparable(Protocol):
+    @abstractmethod
+    def __lt__(self: T, other: T) -> bool:
+        pass
+
+    @abstractmethod
+    def __gt__(self: T, other: T) -> bool:
+        pass
+
+    @abstractmethod
+    def __eq__(self: T, other: object) -> bool:
+        pass
+
+
+T = TypeVar("T", bound=Comparable)
+
+
+class Heap(Generic[T]):
     """A Max Heap Implementation
 
     >>> unsorted = [103, 9, 1, 7, 11, 15, 25, 201, 209, 107, 5]
@@ -27,7 +46,7 @@ class Heap:
     """
 
     def __init__(self) -> None:
-        self.h: list[float] = []
+        self.h: list[T] = []
         self.heap_size: int = 0
 
     def __repr__(self) -> str:
@@ -79,7 +98,7 @@ class Heap:
                 # fix the subsequent violation recursively if any
                 self.max_heapify(violation)
 
-    def build_max_heap(self, collection: Iterable[float]) -> None:
+    def build_max_heap(self, collection: Iterable[T]) -> None:
         """build max heap from an unsorted array"""
         self.h = list(collection)
         self.heap_size = len(self.h)
@@ -88,7 +107,7 @@ class Heap:
             for i in range(self.heap_size // 2 - 1, -1, -1):
                 self.max_heapify(i)
 
-    def extract_max(self) -> float:
+    def extract_max(self) -> T:
         """get and remove max from heap"""
         if self.heap_size >= 2:
             me = self.h[0]
@@ -102,7 +121,7 @@ class Heap:
         else:
             raise Exception("Empty heap")
 
-    def insert(self, value: float) -> None:
+    def insert(self, value: T) -> None:
         """insert a new value into the max heap"""
         self.h.append(value)
         idx = (self.heap_size - 1) // 2
@@ -144,7 +163,7 @@ if __name__ == "__main__":
     ]:
         print(f"unsorted array: {unsorted}")
 
-        heap = Heap()
+        heap: Heap[int] = Heap()
         heap.build_max_heap(unsorted)
         print(f"after build heap: {heap}")
 

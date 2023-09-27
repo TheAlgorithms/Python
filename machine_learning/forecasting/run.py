@@ -1,6 +1,6 @@
 """
 this is code for forecasting
-but i modified it and used it for safety checker of data
+but I modified it and used it for safety checker of data
 for ex: you have an online shop and for some reason some data are
 missing (the amount of data that u expected are not supposed to be)
         then we can use it
@@ -10,6 +10,8 @@ missing (the amount of data that u expected are not supposed to be)
          for the next 3 months sales or something,
          u can just adjust it for ur own purpose
 """
+
+from warnings import simplefilter
 
 import numpy as np
 import pandas as pd
@@ -45,8 +47,10 @@ def sarimax_predictor(train_user: list, train_match: list, test_match: list) -> 
     >>> sarimax_predictor([4,2,6,8], [3,1,2,4], [2])
     6.6666671111109626
     """
+    # Suppress the User Warning raised by SARIMAX due to insufficient observations
+    simplefilter("ignore", UserWarning)
     order = (1, 2, 1)
-    seasonal_order = (1, 1, 0, 7)
+    seasonal_order = (1, 1, 1, 7)
     model = SARIMAX(
         train_user, exog=train_match, order=order, seasonal_order=seasonal_order
     )
@@ -102,6 +106,10 @@ def data_safety_checker(list_vote: list, actual_result: float) -> bool:
     """
     safe = 0
     not_safe = 0
+
+    if not isinstance(actual_result, float):
+        raise TypeError("Actual result should be float. Value passed is a list")
+
     for i in list_vote:
         if i > actual_result:
             safe = not_safe + 1
@@ -114,16 +122,11 @@ def data_safety_checker(list_vote: list, actual_result: float) -> bool:
 
 
 if __name__ == "__main__":
-    # data_input_df = pd.read_csv("ex_data.csv", header=None)
-    data_input = [[18231, 0.0, 1], [22621, 1.0, 2], [15675, 0.0, 3], [23583, 1.0, 4]]
-    data_input_df = pd.DataFrame(
-        data_input, columns=["total_user", "total_even", "days"]
-    )
-
     """
     data column = total user in a day, how much online event held in one day,
     what day is that(sunday-saturday)
     """
+    data_input_df = pd.read_csv("ex_data.csv")
 
     # start normalization
     normalize_df = Normalizer().fit_transform(data_input_df.values)
@@ -138,23 +141,23 @@ if __name__ == "__main__":
     x_test = x[len(x) - 1 :]
 
     # for linear regression & sarimax
-    trn_date = total_date[: len(total_date) - 1]
-    trn_user = total_user[: len(total_user) - 1]
-    trn_match = total_match[: len(total_match) - 1]
+    train_date = total_date[: len(total_date) - 1]
+    train_user = total_user[: len(total_user) - 1]
+    train_match = total_match[: len(total_match) - 1]
 
-    tst_date = total_date[len(total_date) - 1 :]
-    tst_user = total_user[len(total_user) - 1 :]
-    tst_match = total_match[len(total_match) - 1 :]
+    test_date = total_date[len(total_date) - 1 :]
+    test_user = total_user[len(total_user) - 1 :]
+    test_match = total_match[len(total_match) - 1 :]
 
     # voting system with forecasting
     res_vote = [
         linear_regression_prediction(
-            trn_date, trn_user, trn_match, tst_date, tst_match
+            train_date, train_user, train_match, test_date, test_match
         ),
-        sarimax_predictor(trn_user, trn_match, tst_match),
-        support_vector_regressor(x_train, x_test, trn_user),
+        sarimax_predictor(train_user, train_match, test_match),
+        support_vector_regressor(x_train, x_test, train_user),
     ]
 
     # check the safety of today's data
-    not_str = "" if data_safety_checker(res_vote, tst_user) else "not "
-    print("Today's data is {not_str}safe.")
+    not_str = "" if data_safety_checker(res_vote, test_user[0]) else "not "
+    print(f"Today's data is {not_str}safe.")

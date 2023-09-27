@@ -388,10 +388,7 @@ def test_delete_doesnt_leave_dead_nodes():
 
 def test_iter_always_yields_sorted_values():
     def is_sorted(lst):
-        for item, next_item in zip(lst, lst[1:]):
-            if next_item < item:
-                return False
-        return True
+        return all(next_item >= item for item, next_item in zip(lst, lst[1:]))
 
     skip_list = SkipList()
     for i in range(10):

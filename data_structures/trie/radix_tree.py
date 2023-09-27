@@ -54,10 +54,17 @@ class RadixNode:
             word (str): word to insert
 
         >>> RadixNode("myprefix").insert("mystring")
+
+        >>> root = RadixNode()
+        >>> root.insert_many(['myprefix', 'myprefixA', 'myprefixAA'])
+        >>> root.print_tree()
+        - myprefix   (leaf)
+        -- A   (leaf)
+        --- A   (leaf)
         """
         # Case 1: If the word is the prefix of the node
         # Solution: We set the current node as leaf
-        if self.prefix == word:
+        if self.prefix == word and not self.is_leaf:
             self.is_leaf = True
 
         # Case 2: The node has no edges that have a prefix to the word
@@ -156,7 +163,7 @@ class RadixNode:
                         del self.nodes[word[0]]
                         # We merge the current node with its only child
                         if len(self.nodes) == 1 and not self.is_leaf:
-                            merging_node = list(self.nodes.values())[0]
+                            merging_node = next(iter(self.nodes.values()))
                             self.is_leaf = merging_node.is_leaf
                             self.prefix += merging_node.prefix
                             self.nodes = merging_node.nodes
@@ -165,7 +172,7 @@ class RadixNode:
                         incoming_node.is_leaf = False
                     # If there is 1 edge, we merge it with its child
                     else:
-                        merging_node = list(incoming_node.nodes.values())[0]
+                        merging_node = next(iter(incoming_node.nodes.values()))
                         incoming_node.is_leaf = merging_node.is_leaf
                         incoming_node.prefix += merging_node.prefix
                         incoming_node.nodes = merging_node.nodes

@@ -24,7 +24,7 @@ class CircularLinkedList:
                 break
 
     def __len__(self) -> int:
-        return len(tuple(iter(self)))
+        return sum(1 for _ in self)
 
     def __repr__(self):
         return "->".join(str(item) for item in iter(self))
@@ -94,25 +94,25 @@ def test_circular_linked_list() -> None:
 
     try:
         circular_linked_list.delete_front()
-        raise AssertionError()  # This should not happen
+        raise AssertionError  # This should not happen
     except IndexError:
         assert True  # This should happen
 
     try:
         circular_linked_list.delete_tail()
-        raise AssertionError()  # This should not happen
+        raise AssertionError  # This should not happen
     except IndexError:
         assert True  # This should happen
 
     try:
         circular_linked_list.delete_nth(-1)
-        raise AssertionError()
+        raise AssertionError
     except IndexError:
         assert True
 
     try:
         circular_linked_list.delete_nth(0)
-        raise AssertionError()
+        raise AssertionError
     except IndexError:
         assert True
 
@@ -125,7 +125,7 @@ def test_circular_linked_list() -> None:
     circular_linked_list.insert_tail(6)
     assert str(circular_linked_list) == "->".join(str(i) for i in range(1, 7))
     circular_linked_list.insert_head(0)
-    assert str(circular_linked_list) == "->".join(str(i) for i in range(0, 7))
+    assert str(circular_linked_list) == "->".join(str(i) for i in range(7))
 
     assert circular_linked_list.delete_front() == 0
     assert circular_linked_list.delete_tail() == 6

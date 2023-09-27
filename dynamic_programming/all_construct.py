@@ -34,7 +34,7 @@ def all_construct(target: str, word_bank: list[str] | None = None) -> list[list[
                 # slice condition
                 if target[i : i + len(word)] == word:
                     new_combinations: list[list[str]] = [
-                        [word] + way for way in table[i]
+                        [word, *way] for way in table[i]
                     ]
                     # adds the word to every combination the current position holds
                     # now,push that combination to the table[i+len(word)]

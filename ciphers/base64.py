@@ -34,9 +34,8 @@ def base64_encode(data: bytes) -> bytes:
     """
     # Make sure the supplied data is a bytes-like object
     if not isinstance(data, bytes):
-        raise TypeError(
-            f"a bytes-like object is required, not '{data.__class__.__name__}'"
-        )
+        msg = f"a bytes-like object is required, not '{data.__class__.__name__}'"
+        raise TypeError(msg)
 
     binary_stream = "".join(bin(byte)[2:].zfill(8) for byte in data)
 
@@ -88,10 +87,11 @@ def base64_decode(encoded_data: str) -> bytes:
     """
     # Make sure encoded_data is either a string or a bytes-like object
     if not isinstance(encoded_data, bytes) and not isinstance(encoded_data, str):
-        raise TypeError(
-            "argument should be a bytes-like object or ASCII string, not "
-            f"'{encoded_data.__class__.__name__}'"
+        msg = (
+            "argument should be a bytes-like object or ASCII string, "
+            f"not '{encoded_data.__class__.__name__}'"
         )
+        raise TypeError(msg)
 
     # In case encoded_data is a bytes-like object, make sure it contains only
     # ASCII characters so we convert it to a string object

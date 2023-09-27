@@ -21,6 +21,7 @@ def rgb2gray(rgb: np.array) -> np.array:
 def gray2binary(gray: np.array) -> np.array:
     """
     Return binary image from gray image
+
     >>> gray2binary(np.array([[127, 255, 0]]))
     array([[False,  True, False]])
     >>> gray2binary(np.array([[0]]))
@@ -32,7 +33,7 @@ def gray2binary(gray: np.array) -> np.array:
            [False,  True, False],
            [False,  True, False]])
     """
-    return (127 < gray) & (gray <= 255)
+    return (gray > 127) & (gray <= 255)
 
 
 def erosion(image: np.array, kernel: np.array) -> np.array:
