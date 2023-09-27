@@ -107,7 +107,7 @@ def ripple_adder(
     res = qiskit.execute(circuit, backend, shots=1).result()
 
     # The result is in binary. Convert it back to int
-    return int(list(res.get_counts())[0], 2)
+    return int(next(iter(res.get_counts())), 2)
 
 
 if __name__ == "__main__":

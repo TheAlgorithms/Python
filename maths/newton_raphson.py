@@ -1,16 +1,20 @@
 """
-    Author: P Shreyas Shetty
-    Implementation of Newton-Raphson method for solving equations of kind
-    f(x) = 0. It is an iterative method where solution is found by the expression
-        x[n+1] = x[n] + f(x[n])/f'(x[n])
-    If no solution exists, then either the solution will not be found when iteration
-    limit is reached or the gradient f'(x[n]) approaches zero. In both cases, exception
-    is raised. If iteration limit is reached, try increasing maxiter.
-    """
+Author: P Shreyas Shetty
+Implementation of Newton-Raphson method for solving equations of kind
+f(x) = 0. It is an iterative method where solution is found by the expression
+    x[n+1] = x[n] + f(x[n])/f'(x[n])
+If no solution exists, then either the solution will not be found when iteration
+limit is reached or the gradient f'(x[n]) approaches zero. In both cases, exception
+is raised. If iteration limit is reached, try increasing maxiter.
+"""
+
 import math as m
+from collections.abc import Callable
+
+DerivativeFunc = Callable[[float], float]
 
 
-def calc_derivative(f, a, h=0.001):
+def calc_derivative(f: DerivativeFunc, a: float, h: float = 0.001) -> float:
     """
     Calculates derivative at point a for function f using finite difference
     method
@@ -18,7 +22,14 @@ def calc_derivative(f, a, h=0.001):
     return (f(a + h) - f(a - h)) / (2 * h)
 
 
-def newton_raphson(f, x0=0, maxiter=100, step=0.0001, maxerror=1e-6, logsteps=False):
+def newton_raphson(
+    f: DerivativeFunc,
+    x0: float = 0,
+    maxiter: int = 100,
+    step: float = 0.0001,
+    maxerror: float = 1e-6,
+    logsteps: bool = False,
+) -> tuple[float, float, list[float]]:
     a = x0  # set the initial guess
     steps = [a]
     error = abs(f(a))
@@ -36,7 +47,7 @@ def newton_raphson(f, x0=0, maxiter=100, step=0.0001, maxerror=1e-6, logsteps=Fa
     if logsteps:
         # If logstep is true, then log intermediate steps
         return a, error, steps
-    return a, error
+    return a, error, []
 
 
 if __name__ == "__main__":

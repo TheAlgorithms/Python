@@ -67,7 +67,7 @@ def benchmark():
 
 
 class TestLeastCommonMultiple(unittest.TestCase):
-    test_inputs = [
+    test_inputs = (
         (10, 20),
         (13, 15),
         (4, 31),
@@ -77,8 +77,8 @@ class TestLeastCommonMultiple(unittest.TestCase):
         (12, 25),
         (10, 25),
         (6, 9),
-    ]
-    expected_results = [20, 195, 124, 210, 1462, 60, 300, 50, 18]
+    )
+    expected_results = (20, 195, 124, 210, 1462, 60, 300, 50, 18)
 
     def test_lcm_function(self):
         for i, (first_num, second_num) in enumerate(self.test_inputs):

@@ -5,9 +5,9 @@ from collections.abc import Callable
 
 
 def line_length(
-    fnc: Callable[[int | float], int | float],
-    x_start: int | float,
-    x_end: int | float,
+    fnc: Callable[[float], float],
+    x_start: float,
+    x_end: float,
     steps: int = 100,
 ) -> float:
     """

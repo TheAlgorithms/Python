@@ -14,10 +14,10 @@ from __future__ import annotations
 
 
 def geometric_series(
-    nth_term: float | int,
-    start_term_a: float | int,
-    common_ratio_r: float | int,
-) -> list[float | int]:
+    nth_term: float,
+    start_term_a: float,
+    common_ratio_r: float,
+) -> list[float]:
     """
     Pure Python implementation of Geometric Series algorithm
 
@@ -48,7 +48,7 @@ def geometric_series(
     """
     if not all((nth_term, start_term_a, common_ratio_r)):
         return []
-    series: list[float | int] = []
+    series: list[float] = []
     power = 1
     multiple = common_ratio_r
     for _ in range(int(nth_term)):

@@ -15,7 +15,7 @@ def linear_search(sequence: list, target: int) -> int:
     :param sequence: a collection with comparable items (as sorted items not required
         in Linear Search)
     :param target: item value to search
-    :return: index of found item or None if item is not found
+    :return: index of found item or -1 if item is not found
 
     Examples:
     >>> linear_search([0, 5, 7, 10, 15], 0)

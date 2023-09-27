@@ -22,7 +22,7 @@ class Matrix:
         """
 
         self.row, self.column = row, column
-        self.array = [[default_value for c in range(column)] for r in range(row)]
+        self.array = [[default_value for _ in range(column)] for _ in range(row)]
 
     def __str__(self) -> str:
         """
@@ -54,15 +54,15 @@ class Matrix:
     def __repr__(self) -> str:
         return str(self)
 
-    def validate_indicies(self, loc: tuple[int, int]) -> bool:
+    def validate_indices(self, loc: tuple[int, int]) -> bool:
         """
         <method Matrix.validate_indicies>
         Check if given indices are valid to pick element from matrix.
         Example:
         >>> a = Matrix(2, 6, 0)
-        >>> a.validate_indicies((2, 7))
+        >>> a.validate_indices((2, 7))
         False
-        >>> a.validate_indicies((0, 0))
+        >>> a.validate_indices((0, 0))
         True
         """
         if not (isinstance(loc, (list, tuple)) and len(loc) == 2):
@@ -81,7 +81,7 @@ class Matrix:
         >>> a[1, 0]
         7
         """
-        assert self.validate_indicies(loc)
+        assert self.validate_indices(loc)
         return self.array[loc[0]][loc[1]]
 
     def __setitem__(self, loc: tuple[int, int], value: float) -> None:
@@ -96,7 +96,7 @@ class Matrix:
         [ 1,  1,  1]
         [ 1,  1, 51]
         """
-        assert self.validate_indicies(loc)
+        assert self.validate_indices(loc)
         self.array[loc[0]][loc[1]] = value
 
     def __add__(self, another: Matrix) -> Matrix:
@@ -145,7 +145,7 @@ class Matrix:
     def __sub__(self, another: Matrix) -> Matrix:
         return self + (-another)
 
-    def __mul__(self, another: int | float | Matrix) -> Matrix:
+    def __mul__(self, another: float | Matrix) -> Matrix:
         """
         <method Matrix.__mul__>
         Return self * another.
@@ -233,7 +233,7 @@ class Matrix:
         v_t = v.transpose()
         numerator_factor = (v_t * self * u)[0, 0] + 1
         if numerator_factor == 0:
-            return None  # It's not invertable
+            return None  # It's not invertible
         return self - ((self * u) * (v_t * self) * (1.0 / numerator_factor))
 
 

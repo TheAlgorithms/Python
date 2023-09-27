@@ -1,4 +1,4 @@
-def decimal_to_fraction(decimal: int | float | str) -> tuple[int, int]:
+def decimal_to_fraction(decimal: float | str) -> tuple[int, int]:
     """
     Return a decimal number in its simplest fraction form
     >>> decimal_to_fraction(2)

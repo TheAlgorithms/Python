@@ -6,14 +6,32 @@ from __future__ import annotations
 
 Path = list[tuple[int, int]]
 
-grid = [
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0, 0],  # 0 are free path whereas 1's are obstacles
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0, 0, 0],
-    [1, 0, 1, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0],
+# 0's are free path whereas 1's are obstacles
+TEST_GRIDS = [
+    [
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 0, 0, 0],
+        [1, 0, 1, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 0, 0],
+    ],
+    [
+        [0, 0, 0, 1, 1, 0, 0],
+        [0, 0, 0, 0, 1, 0, 1],
+        [0, 0, 0, 1, 1, 0, 0],
+        [0, 1, 0, 0, 1, 0, 0],
+        [1, 0, 0, 1, 1, 0, 1],
+        [0, 0, 0, 0, 0, 0, 0],
+    ],
+    [
+        [0, 0, 1, 0, 0],
+        [0, 1, 0, 0, 0],
+        [0, 0, 1, 0, 1],
+        [1, 0, 0, 1, 1],
+        [0, 0, 0, 0, 0],
+    ],
 ]
 
 delta = ([-1, 0], [0, -1], [1, 0], [0, 1])  # up, left, down, right
@@ -65,10 +83,14 @@ class Node:
     def __lt__(self, other) -> bool:
         return self.f_cost < other.f_cost
 
+    def __eq__(self, other) -> bool:
+        return self.pos == other.pos
+
 
 class GreedyBestFirst:
     """
-    >>> gbf = GreedyBestFirst((0, 0), (len(grid) - 1, len(grid[0]) - 1))
+    >>> grid = TEST_GRIDS[2]
+    >>> gbf = GreedyBestFirst(grid, (0, 0), (len(grid) - 1, len(grid[0]) - 1))
     >>> [x.pos for x in gbf.get_successors(gbf.start)]
     [(1, 0), (0, 1)]
     >>> (gbf.start.pos_y + delta[3][0], gbf.start.pos_x + delta[3][1])
@@ -78,11 +100,14 @@ class GreedyBestFirst:
     >>> gbf.retrace_path(gbf.start)
     [(0, 0)]
     >>> gbf.search()  # doctest: +NORMALIZE_WHITESPACE
-    [(0, 0), (1, 0), (2, 0), (3, 0), (3, 1), (4, 1), (5, 1), (6, 1),
-     (6, 2), (6, 3), (5, 3), (5, 4), (5, 5), (6, 5), (6, 6)]
+    [(0, 0), (1, 0), (2, 0), (2, 1), (3, 1), (4, 1), (4, 2), (4, 3),
+     (4, 4)]
     """
 
-    def __init__(self, start: tuple[int, int], goal: tuple[int, int]):
+    def __init__(
+        self, grid: list[list[int]], start: tuple[int, int], goal: tuple[int, int]
+    ):
+        self.grid = grid
         self.start = Node(start[1], start[0], goal[1], goal[0], 0, None)
         self.target = Node(goal[1], goal[0], goal[1], goal[0], 99999, None)
 
@@ -114,14 +139,6 @@ class GreedyBestFirst:
 
                 if child_node not in self.open_nodes:
                     self.open_nodes.append(child_node)
-                else:
-                    # retrieve the best current path
-                    better_node = self.open_nodes.pop(self.open_nodes.index(child_node))
-
-                    if child_node.g_cost < better_node.g_cost:
-                        self.open_nodes.append(child_node)
-                    else:
-                        self.open_nodes.append(better_node)
 
         if not self.reached:
             return [self.start.pos]
@@ -131,28 +148,22 @@ class GreedyBestFirst:
         """
         Returns a list of successors (both in the grid and free spaces)
         """
-        successors = []
-        for action in delta:
-            pos_x = parent.pos_x + action[1]
-            pos_y = parent.pos_y + action[0]
-
-            if not (0 <= pos_x <= len(grid[0]) - 1 and 0 <= pos_y <= len(grid) - 1):
-                continue
-
-            if grid[pos_y][pos_x] != 0:
-                continue
-
-            successors.append(
-                Node(
-                    pos_x,
-                    pos_y,
-                    self.target.pos_y,
-                    self.target.pos_x,
-                    parent.g_cost + 1,
-                    parent,
-                )
+        return [
+            Node(
+                pos_x,
+                pos_y,
+                self.target.pos_x,
+                self.target.pos_y,
+                parent.g_cost + 1,
+                parent,
             )
-        return successors
+            for action in delta
+            if (
+                0 <= (pos_x := parent.pos_x + action[1]) < len(self.grid[0])
+                and 0 <= (pos_y := parent.pos_y + action[0]) < len(self.grid)
+                and self.grid[pos_y][pos_x] == 0
+            )
+        ]
 
     def retrace_path(self, node: Node | None) -> Path:
         """
@@ -168,18 +179,21 @@ class GreedyBestFirst:
 
 
 if __name__ == "__main__":
-    init = (0, 0)
-    goal = (len(grid) - 1, len(grid[0]) - 1)
-    for elem in grid:
-        print(elem)
+    for idx, grid in enumerate(TEST_GRIDS):
+        print(f"==grid-{idx + 1}==")
 
-    print("------")
-
-    greedy_bf = GreedyBestFirst(init, goal)
-    path = greedy_bf.search()
-    if path:
-        for pos_x, pos_y in path:
-            grid[pos_x][pos_y] = 2
-
+        init = (0, 0)
+        goal = (len(grid) - 1, len(grid[0]) - 1)
         for elem in grid:
             print(elem)
+
+        print("------")
+
+        greedy_bf = GreedyBestFirst(grid, init, goal)
+        path = greedy_bf.search()
+        if path:
+            for pos_x, pos_y in path:
+                grid[pos_x][pos_y] = 2
+
+            for elem in grid:
+                print(elem)

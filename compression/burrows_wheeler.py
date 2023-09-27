@@ -150,7 +150,7 @@ def reverse_bwt(bwt_string: str, idx_original_string: int) -> str:
         raise ValueError("The parameter idx_original_string must not be lower than 0.")
     if idx_original_string >= len(bwt_string):
         raise ValueError(
-            "The parameter idx_original_string must be lower than" " len(bwt_string)."
+            "The parameter idx_original_string must be lower than len(bwt_string)."
         )
 
     ordered_rotations = [""] * len(bwt_string)

@@ -1,21 +1,3 @@
-[tool.pytest.ini_options]
-markers = [
-    "mat_ops: mark a test as utilizing matrix operations.",
-]
-addopts = [
-    "--durations=10",
-    "--doctest-modules",
-    "--showlocals",
-]
-
-[tool.coverage.report]
-omit = [".env/*"]
-sort = "Cover"
-
-[tool.codespell]
-ignore-words-list = "3rt,ans,crate,damon,fo,followings,hist,iff,kwanza,mater,secant,som,sur,tim,zar"
-skip = "./.*,*.json,ciphers/prehistoric_men.txt,project_euler/problem_022/p022_names.txt,pyproject.toml,strings/dictionary.txt,strings/words.txt"
-
 [tool.ruff]
 ignore = [    # `ruff rule S101` for a description of that rule
   "ARG001",   # Unused function argument `amount` -- FIX ME?
@@ -67,6 +49,7 @@ select = [  # https://beta.ruff.rs/docs/rules
   "ICN",    # flake8-import-conventions
   "INP",    # flake8-no-pep420
   "INT",    # flake8-gettext
+  "ISC",  # flake8-implicit-str-concat
   "N",      # pep8-naming
   "NPY",    # NumPy-specific rules
   "PGH",    # pygrep-hooks
@@ -90,7 +73,6 @@ select = [  # https://beta.ruff.rs/docs/rules
   # "DJ",   # flake8-django
   # "ERA",  # eradicate -- DO NOT FIX
   # "FBT",  # flake8-boolean-trap  # FIX ME
-  # "ISC",  # flake8-implicit-str-concat  # FIX ME
   # "PD",   # pandas-vet
   # "PT",   # flake8-pytest-style
   # "PTH",  # flake8-use-pathlib  # FIX ME
@@ -121,6 +103,7 @@ max-complexity = 17  # default: 10
 "machine_learning/linear_discriminant_analysis.py" = ["ARG005"]
 "machine_learning/sequential_minimum_optimization.py" = ["SIM115"]
 "matrix/sherman_morrison.py" = ["SIM103", "SIM114"]
+"other/l*u_cache.py" = ["RUF012"]
 "physics/newtons_second_law_of_motion.py" = ["BLE001"]
 "project_euler/problem_099/sol1.py" = ["SIM115"]
 "sorts/external_sort.py" = ["SIM115"]
@@ -131,3 +114,21 @@ max-args = 10        # default: 5
 max-branches = 20    # default: 12
 max-returns = 8      # default: 6
 max-statements = 88  # default: 50
+
+[tool.pytest.ini_options]
+markers = [
+    "mat_ops: mark a test as utilizing matrix operations.",
+]
+addopts = [
+    "--durations=10",
+    "--doctest-modules",
+    "--showlocals",
+]
+
+[tool.coverage.report]
+omit = [".env/*"]
+sort = "Cover"
+
+[tool.codespell]
+ignore-words-list = "3rt,ans,crate,damon,fo,followings,hist,iff,kwanza,mater,secant,som,sur,tim,zar"
+skip = "./.*,*.json,ciphers/prehistoric_men.txt,project_euler/problem_022/p022_names.txt,pyproject.toml,strings/dictionary.txt,strings/words.txt"

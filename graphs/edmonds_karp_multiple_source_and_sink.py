@@ -113,7 +113,7 @@ class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
         vertices_list = [
             i
             for i in range(self.verticies_count)
-            if i != self.source_index and i != self.sink_index
+            if i not in {self.source_index, self.sink_index}
         ]
 
         # move through list

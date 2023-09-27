@@ -87,7 +87,7 @@ class Polynomial:
 
         return Polynomial(self.degree + polynomial_2.degree, coefficients)
 
-    def evaluate(self, substitution: int | float) -> int | float:
+    def evaluate(self, substitution: float) -> float:
         """
         Evaluates the polynomial at x.
         >>> p = Polynomial(2, [1, 2, 3])
@@ -144,7 +144,7 @@ class Polynomial:
             coefficients[i] = self.coefficients[i + 1] * (i + 1)
         return Polynomial(self.degree - 1, coefficients)
 
-    def integral(self, constant: int | float = 0) -> Polynomial:
+    def integral(self, constant: float = 0) -> Polynomial:
         """
         Returns the integral of the polynomial.
         >>> p = Polynomial(2, [1, 2, 3])

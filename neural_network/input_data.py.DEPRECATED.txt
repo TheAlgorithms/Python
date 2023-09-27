@@ -263,9 +263,7 @@ def _maybe_download(filename, work_directory, source_url):
     return filepath
 
 
-@deprecated(
-    None, "Please use alternatives such as:" " tensorflow_datasets.load('mnist')"
-)
+@deprecated(None, "Please use alternatives such as: tensorflow_datasets.load('mnist')")
 def read_data_sets(
     train_dir,
     fake_data=False,

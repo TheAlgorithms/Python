@@ -39,7 +39,7 @@ class DirectedGraph:
         stack = []
         visited = []
         if s == -2:
-            s = list(self.graph)[0]
+            s = next(iter(self.graph))
         stack.append(s)
         visited.append(s)
         ss = s
@@ -87,7 +87,7 @@ class DirectedGraph:
         d = deque()
         visited = []
         if s == -2:
-            s = list(self.graph)[0]
+            s = next(iter(self.graph))
         d.append(s)
         visited.append(s)
         while d:
@@ -114,7 +114,7 @@ class DirectedGraph:
         stack = []
         visited = []
         if s == -2:
-            s = list(self.graph)[0]
+            s = next(iter(self.graph))
         stack.append(s)
         visited.append(s)
         ss = s
@@ -146,7 +146,7 @@ class DirectedGraph:
     def cycle_nodes(self):
         stack = []
         visited = []
-        s = list(self.graph)[0]
+        s = next(iter(self.graph))
         stack.append(s)
         visited.append(s)
         parent = -2
@@ -199,7 +199,7 @@ class DirectedGraph:
     def has_cycle(self):
         stack = []
         visited = []
-        s = list(self.graph)[0]
+        s = next(iter(self.graph))
         stack.append(s)
         visited.append(s)
         parent = -2
@@ -305,7 +305,7 @@ class Graph:
         stack = []
         visited = []
         if s == -2:
-            s = list(self.graph)[0]
+            s = next(iter(self.graph))
         stack.append(s)
         visited.append(s)
         ss = s
@@ -353,7 +353,7 @@ class Graph:
         d = deque()
         visited = []
         if s == -2:
-            s = list(self.graph)[0]
+            s = next(iter(self.graph))
         d.append(s)
         visited.append(s)
         while d:
@@ -371,7 +371,7 @@ class Graph:
     def cycle_nodes(self):
         stack = []
         visited = []
-        s = list(self.graph)[0]
+        s = next(iter(self.graph))
         stack.append(s)
         visited.append(s)
         parent = -2
@@ -424,7 +424,7 @@ class Graph:
     def has_cycle(self):
         stack = []
         visited = []
-        s = list(self.graph)[0]
+        s = next(iter(self.graph))
         stack.append(s)
         visited.append(s)
         parent = -2
