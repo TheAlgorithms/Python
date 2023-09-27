@@ -122,8 +122,8 @@ def fibonacci_search(arr: list, val: int) -> int:
         elif val > item_k_1:
             offset += fibonacci(fibb_k - 1)
             fibb_k -= 2
-    else:
-        return -1
+        else:
+            return -1
 
 
 if __name__ == "__main__":
