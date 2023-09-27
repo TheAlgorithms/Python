@@ -43,6 +43,7 @@
   * [Binary Shifts](bit_manipulation/binary_shifts.py)
   * [Binary Twos Complement](bit_manipulation/binary_twos_complement.py)
   * [Binary Xor Operator](bit_manipulation/binary_xor_operator.py)
+  * [Bitwise Addition Recursive](bit_manipulation/bitwise_addition_recursive.py)
   * [Count 1S Brian Kernighan Method](bit_manipulation/count_1s_brian_kernighan_method.py)
   * [Count Number Of One Bits](bit_manipulation/count_number_of_one_bits.py)
   * [Gray Code Sequence](bit_manipulation/gray_code_sequence.py)
@@ -514,6 +515,7 @@
   * [Logistic Regression](machine_learning/logistic_regression.py)
   * Lstm
     * [Lstm Prediction](machine_learning/lstm/lstm_prediction.py)
+  * [Mfcc](machine_learning/mfcc.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
   * [Polynomial Regression](machine_learning/polynomial_regression.py)
   * [Scoring Functions](machine_learning/scoring_functions.py)
@@ -752,6 +754,7 @@
   * [Basic Orbital Capture](physics/basic_orbital_capture.py)
   * [Casimir Effect](physics/casimir_effect.py)
   * [Centripetal Force](physics/centripetal_force.py)
+  * [Coulombs Law](physics/coulombs_law.py)
   * [Grahams Law](physics/grahams_law.py)
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
   * [Hubble Parameter](physics/hubble_parameter.py)
