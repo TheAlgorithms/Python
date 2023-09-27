@@ -173,8 +173,8 @@ def get_motion_psf(shape: tuple, angle: float, num_pixel_dist: int = 20) -> np.n
     radians = angle / 180 * np.pi
     phase = np.array([np.cos(radians), np.sin(radians)])
     for i in range(num_pixel_dist):
-        offset_x = int(center[0] - np.round_(i * phase[0]))
-        offset_y = int(center[1] - np.round_(i * phase[1]))
+        offset_x = int(center[0] - np.round(i * phase[0]))
+        offset_y = int(center[1] - np.round(i * phase[1]))
         psf[offset_x, offset_y] = 1
     psf /= psf.sum()
 
@@ -210,7 +210,7 @@ def richardson_lucy(
     """
     estimated_img = np.full(shape=degraded.shape, fill_value=1, dtype="float64")
 
-    for i in range(steps):
+    for _ in range(steps):
         dividend = convolve(estimated_img, function_kernel)
         quotient = np.divide(degraded, dividend, where=dividend != 0)
 
