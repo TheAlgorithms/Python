@@ -20,7 +20,7 @@ import hashlib
 import requests
 
 # function definition which passes the first-half of the hashed pass-codes to website named -> "https://haveibeenpwned.com/"
-def request_api_data(query):
+def request_api_data(query)->str:
     url = 'https://api.pwnedpasswords.com/range/' + query
     response = requests.get(url)
     if response.status_code != 200:
@@ -28,7 +28,7 @@ def request_api_data(query):
     return response
 
 # function definition to find the count of the pass-codes matched...
-def check_hash_match(hashes, hash_to_match):
+def check_hash_match(hashes, hash_to_match)->str:
     hashes = (line.split(':') for line in hashes.text.splitlines())
     for h, count in hashes:
         if h == hash_to_match:
@@ -42,14 +42,14 @@ And check the hash-code matches for only the first 5 characters in the first fil
 On the second filter, it matches the tail.
 '''
 
-def hash_converter(password):
+def hash_converter(password)->str:
     hashed = hashlib.sha1(password.encode('utf-8')).hexdigest().upper()
     first_half, tail = hashed[:5], hashed[5:]
     response_query = request_api_data(first_half)
     return check_hash_match(response_query, tail)
 
 # function definition of the main drive...
-def password_breach_finder(args):
+def password_breach_checker(args)->str:
     for password in args:
         count = hash_converter(password)
 
@@ -58,7 +58,7 @@ def password_breach_finder(args):
         else:
             print(f"{password} is not found to be used, Carry on with it...!!\n")
 
-
 # passing the list of pass-codes :
-password_breach_finder(['123', '009123', 'password123', 'qwertyuiyhbtgv4567'])
-password_breach_finder(['wifi008','passnotinlevel123','obssessive9'])
+if __name__ == '__main__':
+    sys.exit(password_breach_checker(sys.argv[1:]))
+    
