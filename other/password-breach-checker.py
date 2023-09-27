@@ -61,3 +61,4 @@ def password_breach_finder(args):
 
 # passing the list of pass-codes :
 password_breach_finder(['123', '009123', 'password123', 'qwertyuiyhbtgv4567'])
+password_breach_finder(['wifi008','passnotinlevel123','obssessive9'])
