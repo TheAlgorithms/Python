@@ -22,7 +22,7 @@ def generate_valid_block_size(message_length) -> int:
 
     Example:
         generate_valid_block_size(12)
-
+        3
     """
     while True:
         block_size = random.randint(2, message_length)
@@ -42,7 +42,7 @@ def generate_permutation_key(block_size) -> list:
 
     Example:
         generate_permutation_key(4)
-
+        [3, 4, 1, 2]
     """
     digits = list(range(1, block_size + 1))
     random.shuffle(digits)
@@ -50,16 +50,17 @@ def generate_permutation_key(block_size) -> list:
     return key
 
 
-def encrypt(message, key, block_size) -> str:
+def encrypt(message, key=None, block_size=None) -> tuple:
     """
     Encrypt a message using a permutation cipher with block rearrangement using a key.
 
     Args:
         message (str): The plaintext message to be encrypted.
+        key (list[int]): The permutation key for decryption.
+        block_size (int): The size of each permutation block.
 
     Returns:
-        str: The encrypted message.
-        list[int]: The encryption key.
+        tuple: A tuple containing the encrypted message and the encryption key.
 
     Example:
         >>> encrypted_message, key = encrypt("HELLO WORLD")
@@ -69,6 +70,11 @@ def encrypt(message, key, block_size) -> str:
     """
     message = message.upper()
     message_length = len(message)
+
+    if key is None or block_size is None:
+        block_size = generate_valid_block_size(message_length)
+        key = generate_permutation_key(block_size)
+
     encrypted_message = ""
 
     for i in range(0, message_length, block_size):
@@ -76,7 +82,7 @@ def encrypt(message, key, block_size) -> str:
         rearranged_block = [block[digit - 1] for digit in key]
         encrypted_message += "".join(rearranged_block)
 
-    return encrypted_message
+    return encrypted_message, key
 
 
 def decrypt(encrypted_message, key) -> str:
@@ -111,15 +117,14 @@ def decrypt(encrypted_message, key) -> str:
 
 def main() -> None:
     message = "HELLO WORLD"
-
-    block_size = generate_valid_block_size(len(message))
-    key = generate_permutation_key(block_size)
-    encrypted_message = encrypt(message, key, block_size)
-    print(f"Encrypted message: {encrypted_message}")
+    encrypted_message, key = encrypt(message)
 
     decrypted_message = decrypt(encrypted_message, key)
     print(f"Decrypted message: {decrypted_message}")
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     main()
