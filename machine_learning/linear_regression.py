@@ -3,14 +3,16 @@ Linear regression is the most basic type of regression commonly used for
 predictive analysis. The idea is pretty simple: we have a dataset and we have
 features associated with it. Features should be chosen very cautiously
 as they determine how much our model will be able to make future predictions.
-We try to set the weight of these features, over many iterations, so that they best
-fit our dataset. In this particular code, I had used a CSGO dataset (ADR vs
-Rating). We try to best fit a line through dataset and estimate the parameters.
+We try to set the weight of these features, using "sum of rectangular area
+over sum of square area" method which is a direct method.
+In this particular code, I had used a CSGO dataset (ADR vs Rating).
+We try to best fit a line through dataset and estimate the parameters.
 """
 import numpy as np
 import requests
 
 
+# Function to collect the CSGO dataset
 def collect_dataset():
     """Collect dataset of CSGO
     The dataset contains ADR vs Rating of a Player
@@ -22,93 +24,76 @@ def collect_dataset():
     )
     lines = response.text.splitlines()
     data = []
+
     for item in lines:
         item = item.split(",")
         data.append(item)
-    data.pop(0)  # This is for removing the labels from the list
+
+    # Remove the labels (headers) from the list
+    data.pop(0)
+
+    # Convert data to a NumPy matrix
     dataset = np.matrix(data)
     return dataset
 
 
-def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
-    """Run steep gradient descent and updates the Feature vector accordingly_
-    :param data_x   : contains the dataset
-    :param data_y   : contains the output associated with each data-entry
-    :param len_data : length of the data_
-    :param alpha    : Learning rate of the model
-    :param theta    : Feature vector (weight's for our model)
-    ;param return    : Updated Feature's, using
-                       curr_features - alpha_ * gradient(w.r.t. feature)
+# Function to calculate Mean Absolute Error (MAE)
+def calculate_mae(predicted_y, original_y):
+    """Calculate Mean Absolute Error (MAE)
+    :param predicted_y: Contains the output of prediction (result vector)
+    :param original_y: Contains values of expected outcome
+    :return: MAE computed from given features
     """
-    n = len_data
-
-    prod = np.dot(theta, data_x.transpose())
-    prod -= data_y.transpose()
-    sum_grad = np.dot(prod, data_x)
-    theta = theta - (alpha / n) * sum_grad
-    return theta
+    return sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y)) / len(
+        original_y
+    )
 
 
-def sum_of_square_error(data_x, data_y, len_data, theta):
-    """Return sum of square error for error calculation
-    :param data_x    : contains our dataset
-    :param data_y    : contains the output (result vector)
-    :param len_data  : len of the dataset
-    :param theta     : contains the feature vector
-    :return          : sum of square error computed from given feature's
+# Function to perform simple linear regression
+def simple_solve(data_x, data_y):
     """
-    prod = np.dot(theta, data_x.transpose())
-    prod -= data_y.transpose()
-    sum_elem = np.sum(np.square(prod))
-    error = sum_elem / (2 * len_data)
-    return error
-
-
-def run_linear_regression(data_x, data_y):
-    """Implement Linear regression over the dataset
-    :param data_x  : contains our dataset
-    :param data_y  : contains the output (result vector)
-    :return        : feature for line of best fit (Feature vector)
+    Simple method of solving the univariate linear regression (like this problem)
+    Gradient is sum of rectangular area over the sum of square area from the centroid
+    Intercept can be worked out by using the centroid and solving c = y - mx
     """
-    iterations = 100000
-    alpha = 0.0001550
+    rect_area = 0
+    square_area = 0
+    x_bar = np.mean(data_x)
+    y_bar = np.mean(data_y)
 
-    no_features = data_x.shape[1]
-    len_data = data_x.shape[0] - 1
+    for idx, val in enumerate(data_x):
+        rect_area += (val - x_bar) * (data_y[idx] - y_bar)
+        square_area += (val - x_bar) ** 2
 
-    theta = np.zeros((1, no_features))
+    beta_1 = float(rect_area / square_area)
+    beta_0 = y_bar - beta_1 * x_bar
 
-    for i in range(iterations):
-        theta = run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta)
-        error = sum_of_square_error(data_x, data_y, len_data, theta)
-        print(f"At Iteration {i + 1} - Error is {error:.5f}")
+    # Calculate sse (Sum of squares Error)
+    sse = sum(
+        (data_y[idx] - (beta_1 * val + beta_0)) ** 2 for idx, val in enumerate(data_x)
+    )
 
-    return theta
+    # Calculate mse (Mean square Error)
+    mse = sse / (
+        len(data_x) - 2
+    )  # Degrees of freedom is len(data_x) - 2 for simple linear regression
+
+    # Calculate half of mse
+    half_mse = mse / 2
+
+    print(f"sse is: {sse}")
+    print(f"Half mse is: {half_mse}")
+    print(f"Coefficient is: {beta_1}")
+    print(f"Intercept is: {beta_0}")
 
 
-def mean_absolute_error(predicted_y, original_y):
-    """Return sum of square error for error calculation
-    :param predicted_y   : contains the output of prediction (result vector)
-    :param original_y    : contains values of expected outcome
-    :return          : mean absolute error computed from given feature's
-    """
-    total = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
-    return total / len(original_y)
-
-
+# Main driver function
 def main():
     """Driver function"""
     data = collect_dataset()
-
-    len_data = data.shape[0]
-    data_x = np.c_[np.ones(len_data), data[:, :-1]].astype(float)
     data_y = data[:, -1].astype(float)
-
-    theta = run_linear_regression(data_x, data_y)
-    len_result = theta.shape[1]
-    print("Resultant Feature vector : ")
-    for i in range(len_result):
-        print(f"{theta[0, i]:.5f}")
+    data_x = data[:, :-1].astype(float)
+    simple_solve(data_x, data_y)
 
 
 if __name__ == "__main__":
