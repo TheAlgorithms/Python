@@ -18,7 +18,7 @@ angle = 30
 
 
 # function to plot a Y
-def tree(sz: int, level: int)->None:
+def tree(sz: int, level: int) -> None:
     """
     Draw a fractal tree.
 
