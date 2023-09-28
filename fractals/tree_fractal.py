@@ -4,50 +4,57 @@ Github : @rudransh61
 
 """
 
-from turtle import * # importing the module required
+import turtle # importing the module required
 
 
-speed('fastest') 
+turtle.speed('fastest') 
 
 # turning the turtle to upwards
-lt(90)
+turtle.lt(90)
 
 # the acute angle between
 # the base and branch of the Y
 angle = 30
 
 # function to plot a Y
-def y(sz:int, level:int):
-
+def tree(sz:int, level:int):
+	"""
+	
+	"""
 	if level > 0:
-		colormode(255)
+		turtle.colormode(255)
 		
 		# into equal intervals for each level
 		# setting the colour according to the current level
-		pencolor(0, 255//level, 0)
+		turtle.pencolor(0, 255//level, 0)
 		
 		# drawing the base
-		fd(sz)
+		turtle.fd(sz)
 
-		rt(angle)
+		turtle.rt(angle)
 
 		# recursive call for
 		# the right subtree
-		y(0.8 * sz, level-1)
+		tree(0.8 * sz, level-1)
 		
-		pencolor(0, 255//level, 0)
+		turtle.pencolor(0, 255//level, 0)
 		
-		lt( 2 * angle )
+		turtle.lt( 2 * angle )
 
 		# recursive call for
 		# the left subtree
-		y(0.8 * sz, level-1)
+		tree(0.8 * sz, level-1)
 		
-		pencolor(0, 255//level, 0)
+		turtle.pencolor(0, 255//level, 0)
 		
-		rt(angle)
-		fd(-sz)
+		turtle.rt(angle)
+		turtle.fd(-sz)
 		
-		
-# sample tree of size 80 and level 7
-y(80, 7)
+
+
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
