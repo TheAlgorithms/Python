@@ -14,6 +14,12 @@ def knuth_morris_pratt(text: str, pattern: str) -> int:
     2) Step through the text one character at a time and compare it to a character in
         the pattern updating our location within the pattern if necessary
 
+    >>> knuth_morris_pratt = "knuth_morris_pratt"
+    >>> all(
+    ...    knuth_morris_pratt(kmp, s) == kmp.find(s)
+    ...    for s in ("kn", "h_m", "rr", "tt", "not there")
+    ... )
+    True
     """
 
     # 1) Construct the failure array
@@ -57,6 +63,10 @@ def get_failure_array(pattern: str) -> list[int]:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     # Test 1)
     pattern = "abc1abc12"
     text1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"
