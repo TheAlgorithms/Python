@@ -1,5 +1,14 @@
+"""
+The Permutation Cipher, implemented above, is a simple encryption
+technique that rearranges the characters in a message based on a secret key.
+It divides the message into blocks and applies a permutation to the characters
+within each block according to the key. The key is a sequence of unique integers
+that determine the order of character rearrangement. For more info read:-
+https://www.nku.edu/~christensen/1402%20permutation%20ciphers.pdf
+
+"""
 import random
-import typing
+
 
 def generate_valid_block_size(message_length) -> int:
     """
@@ -13,7 +22,7 @@ def generate_valid_block_size(message_length) -> int:
 
     Example:
         generate_valid_block_size(12)
-        
+
     """
     while True:
         block_size = random.randint(2, message_length)
@@ -33,7 +42,7 @@ def generate_permutation_key(block_size) -> list:
 
     Example:
         generate_permutation_key(4)
-        
+
     """
     digits = list(range(1, block_size + 1))
     random.shuffle(digits)
@@ -41,7 +50,7 @@ def generate_permutation_key(block_size) -> list:
     return key
 
 
-def encrypt(message) -> typing.Union[str, list]:
+def encrypt(message, key, block_size) -> str:
     """
     Encrypt a message using a permutation cipher with block rearrangement using a key.
 
@@ -60,8 +69,6 @@ def encrypt(message) -> typing.Union[str, list]:
     """
     message = message.upper()
     message_length = len(message)
-    block_size = generate_valid_block_size(message_length)
-    key = generate_permutation_key(block_size)
     encrypted_message = ""
 
     for i in range(0, message_length, block_size):
@@ -69,7 +76,7 @@ def encrypt(message) -> typing.Union[str, list]:
         rearranged_block = [block[digit - 1] for digit in key]
         encrypted_message += "".join(rearranged_block)
 
-    return encrypted_message, key
+    return encrypted_message
 
 
 def decrypt(encrypted_message, key) -> str:
@@ -101,14 +108,18 @@ def decrypt(encrypted_message, key) -> str:
 
     return decrypted_message
 
-def main()->None:
+
+def main() -> None:
     message = "HELLO WORLD"
 
-    encrypted_message, key = encrypt(message)
+    block_size = generate_valid_block_size(len(message))
+    key = generate_permutation_key(block_size)
+    encrypted_message = encrypt(message, key, block_size)
     print(f"Encrypted message: {encrypted_message}")
 
     decrypted_message = decrypt(encrypted_message, key)
     print(f"Decrypted message: {decrypted_message}")
+
 
 if __name__ == "__main__":
     main()
