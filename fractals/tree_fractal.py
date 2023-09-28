@@ -1,7 +1,7 @@
 """
 Author : Rudransh Bhardwaj
 Github : @rudransh61
-
+Wikipedia to learn about fractal tree (or canopy) : https://en.wikipedia.org/wiki/Fractal_canopy
 """
 
 import turtle # importing the module required
