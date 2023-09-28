@@ -19,7 +19,7 @@ angle = 30
 
 # function to plot a Y
 def tree(sz: int, level: int):
-    """ 
+    """
     Draw a fractal tree.
 
     Parameters:
