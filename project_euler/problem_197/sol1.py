@@ -16,7 +16,7 @@ f(n) starts to alternate between 2 values and converges quickly.
 from math import floor
 
 
-def f(x: float) -> int:
+def f(x: float) -> float:
     """
     Computes f(x) = ⌊2^30.403243784 - x^2⌋ * 10^(-9)
 
