@@ -10,7 +10,7 @@ def permute_recursive(nums: list[int]) -> list[list[int]]:
         return [[]]
     for _ in range(len(nums)):
         n = nums.pop(0)
-        permutations = permute_recursive(nums.copy())
+        permutations = permute_recursive(nums)
         for perm in permutations:
             perm.append(n)
         result.extend(permutations)
