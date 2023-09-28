@@ -19,7 +19,19 @@ angle = 30
 
 # function to plot a Y
 def tree(sz: int, level: int):
-    """ """
+    """ 
+    Draw a fractal tree.
+
+    Parameters:
+    - sz (int): Size of the current branch.
+    - level (int): Recursion level, controls the depth of the tree.
+
+    Returns:
+    None
+
+    Example:
+    >>> tree(100, 3)  # Draw a fractal tree with size 100 and recursion depth 3
+    """
     if level > 0:
         turtle.colormode(255)
 
