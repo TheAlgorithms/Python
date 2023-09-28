@@ -14,7 +14,7 @@ def knuth_morris_pratt(text: str, pattern: str) -> int:
     2) Step through the text one character at a time and compare it to a character in
         the pattern updating our location within the pattern if necessary
 
-    >>> knuth_morris_pratt = "knuth_morris_pratt"
+    >>> kmp = "knuth_morris_pratt"
     >>> all(
     ...    knuth_morris_pratt(kmp, s) == kmp.find(s)
     ...    for s in ("kn", "h_m", "rr", "tt", "not there")
