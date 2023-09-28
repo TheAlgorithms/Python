@@ -163,7 +163,7 @@ class BPNN:
 
     def plot_loss(self):
         if self.ax_loss.lines:
-            self.ax_loss.lines.remove(self.ax_loss.lines[0])
+            self.ax_loss.lines[0].remove()
         self.ax_loss.plot(self.train_mse, "r-")
         plt.ion()
         plt.xlabel("step")
