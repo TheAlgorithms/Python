@@ -31,11 +31,11 @@ def solve_maze(
     ...         [0, 0, 1, 0, 0],
     ...         [1, 0, 0, 1, 0]]
     >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
-    [[1, 0, 0, 0, 0], [1, 1, 1, 1, 0], [0, 0, 0, 1, 0],\
- [0, 0, 0, 1, 1], [0, 0, 0, 0, 1]]
+    [[0, 1, 1, 1, 1], [0, 0, 0, 0, 1], [1, 1, 1, 0, 1],\
+ [1, 1, 1, 0, 0], [1, 1, 1, 1, 0]]
 
     Note:
-        In the output maze, the ones (1s) represent one of the possible
+        In the output maze, the zeros (0s) represent one of the possible
         paths from the source to the destination.
 
     >>> maze = [[0, 1, 0, 1, 1],
@@ -44,20 +44,20 @@ def solve_maze(
     ...         [0, 0, 0, 0, 0],
     ...         [0, 0, 0, 0, 0]]
     >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
-    [[1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0],\
- [1, 0, 0, 0, 0], [1, 1, 1, 1, 1]]
+    [[0, 1, 1, 1, 1], [0, 1, 1, 1, 1], [0, 1, 1, 1, 1],\
+ [0, 1, 1, 1, 1], [0, 0, 0, 0, 0]]
 
     >>> maze = [[0, 0, 0],
     ...         [0, 1, 0],
     ...         [1, 0, 0]]
     >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
-    [[1, 1, 1], [0, 0, 1], [0, 0, 1]]
+    [[0, 0, 0], [1, 1, 0], [1, 1, 0]]
 
     >>> maze = [[1, 0, 0],
     ...         [0, 1, 0],
     ...         [1, 0, 0]]
     >>> solve_maze(maze,0,1,len(maze)-1,len(maze)-1)
-    [[0, 1, 1], [0, 0, 1], [0, 0, 1]]
+    [[1, 0, 0], [1, 1, 0], [1, 1, 0]]
 
     >>> maze = [[1, 1, 0, 0, 1, 0, 0, 1],
     ...         [1, 0, 1, 0, 0, 1, 1, 1],
@@ -68,9 +68,9 @@ def solve_maze(
     ...         [0, 1, 0, 1, 0, 1, 1, 1],
     ...         [1, 1, 0, 0, 0, 0, 0, 1]]
     >>> solve_maze(maze,0,2,len(maze)-1,2)
-    [[0, 0, 1, 1, 0, 0, 0, 0], [0, 0, 0, 1, 1, 0, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0],\
- [0, 0, 0, 1, 1, 0, 0, 0], [0, 0, 1, 1, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0],\
- [0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0]]
+    [[1, 1, 0, 0, 1, 1, 1, 1], [1, 1, 1, 0, 0, 1, 1, 1], [1, 1, 1, 1, 0, 1, 1, 1],\
+ [1, 1, 1, 0, 0, 1, 1, 1], [1, 1, 0, 0, 1, 1, 1, 1], [1, 1, 0, 1, 1, 1, 1, 1],\
+ [1, 1, 0, 1, 1, 1, 1, 1], [1, 1, 0, 1, 1, 1, 1, 1]]
     >>> maze = [[1, 0, 0],
     ...         [0, 1, 1],
     ...         [1, 0, 1]]
@@ -97,7 +97,7 @@ def solve_maze(
     ):
         return None
     # We need to create solution object to save path.
-    solutions = [[0 for _ in range(size)] for _ in range(size)]
+    solutions = [[1 for _ in range(size)] for _ in range(size)]
     solved = run_maze(
         maze, source_row, source_column, destination_row, destination_column, solutions
     )
@@ -129,7 +129,7 @@ def run_maze(
     size = len(maze)
     # Final check point.
     if i == destination_row and j == destination_column and maze[i][j] == 0:
-        solutions[i][j] = 1
+        solutions[i][j] = 0
         return solutions
 
     lower_flag = (not i < 0) and (not j < 0)  # Check lower bounds
@@ -137,10 +137,10 @@ def run_maze(
 
     if lower_flag and upper_flag:
         # check for already visited and block points.
-        block_flag = (not solutions[i][j]) and (not maze[i][j])
+        block_flag = (solutions[i][j]) and (not maze[i][j])
         if block_flag:
             # check visited
-            solutions[i][j] = 1
+            solutions[i][j] = 0
 
             # check for directions
             if (
@@ -157,7 +157,7 @@ def run_maze(
             ):
                 return solutions
 
-            solutions[i][j] = 0
+            solutions[i][j] = 1
             return None
     return None
 
