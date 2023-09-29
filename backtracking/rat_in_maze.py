@@ -75,32 +75,26 @@ def solve_maze(
     ...         [0, 1, 1],
     ...         [1, 0, 1]]
     >>> solve_maze(maze,0,1,len(maze)-1,len(maze)-1)
-    No solution exists!
 
     >>> maze = [[0, 0],
     ...         [1, 1]]
     >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
-    No solution exists!
 
     >>> maze = [[0, 1],
     ...         [1, 0]]
     >>> solve_maze(maze,2,0,len(maze)-1,len(maze)-1)
-    Invalid source coordinates
 
     >>> maze = [[1, 0, 0],
     ...         [0, 1, 1],
     ...         [1, 0, 0]]
     >>> solve_maze(maze,0,1,len(maze),len(maze)-1)
-    Invalid destination coordinates
 
     """
     size = len(maze)
     # Check if source and destination coordinates are Invalid.
-    if not (0 <= source_row <= size - 1 and 0 <= source_column <= size - 1):
-        print("Invalid source coordinates")
-        return None
-    elif not (0 <= destination_row <= size - 1 and 0 <= destination_column <= size - 1):
-        print("Invalid destination coordinates")
+    if not (0 <= source_row <= size - 1 and 0 <= source_column <= size - 1) or (
+        not (0 <= destination_row <= size - 1 and 0 <= destination_column <= size - 1)
+    ):
         return None
     # We need to create solution object to save path.
     solutions = [[0 for _ in range(size)] for _ in range(size)]
@@ -110,7 +104,6 @@ def solve_maze(
     if solved:
         return solutions
     else:
-        print("No solution exists!")
         return None
 
 
@@ -126,7 +119,7 @@ def run_maze(
     This method is recursive starting from (i, j) and going in one of four directions:
     up, down, left, right.
     If a path is found to destination it returns True otherwise it returns False.
-    Parameters:
+    Parameters
         maze(2D matrix) : maze
         i, j : coordinates of matrix
         solutions(2D matrix) : solutions
