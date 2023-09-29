@@ -26,7 +26,7 @@ def solve_maze(
     =======
             starting from a specified source cell (default: top-left corner) and
             aiming to reach a destination cell (default: bottom-right corner).
-    >>>>>>> origin/new_branch
+    Origin/new_branch :
             The maze consists of walls (1s) and open paths (0s).
             By providing custom row and column values, the source and destination
             cells can be adjusted.
