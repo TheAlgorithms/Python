@@ -7,7 +7,7 @@ def solve_maze(
     source_column: int,
     destination_row: int,
     destination_column: int,
-) -> bool:
+) -> list[list[int]] or None:
     """
     This method solves the "rat in maze" problem.
     Parameters :
@@ -71,11 +71,9 @@ def solve_maze(
     [[0, 0, 1, 1, 0, 0, 0, 0], [0, 0, 0, 1, 1, 0, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0],\
  [0, 0, 0, 1, 1, 0, 0, 0], [0, 0, 1, 1, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0],\
  [0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0]]
-
-
     >>> maze = [[1, 0, 0],
     ...         [0, 1, 1],
-    ...         [1, 0, 0]]
+    ...         [1, 0, 1]]
     >>> solve_maze(maze,0,1,len(maze)-1,len(maze)-1)
     No solution exists!
 
