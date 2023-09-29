@@ -5,38 +5,13 @@ reference: https://practice.geeksforgeeks.org/problems/minimum-platforms-1587115
 For doctests run following command:
 python3 -m doctest -v minimum_platforms_required.py
 
-<<<<<<< HEAD
-We will sort both arrays. When there is sorted events,easy to maintain
-the count of trains that have arrived but not departed.
-The total platforms needed at one time can be found by taking
-the difference between arrivals and departures minimum will be the final answer.
+We will sort both arrays. When there is sorted events, it will be easy to maintain
+the count of trains that have arrived but not departed. The total platforms needed
+at one time can be found by taking the difference between arrivals and departures
+minimum will be the final answer.
 """
 
 def minimum_platforms_required(arrival_times, departure_times):
-=======
-Objective
-First we will sort both arrays. When there is sorted events, it will be easy to maintain
-the count of trains that have arrived but not departed. The total platforms needed at one
-time can be found by taking the difference between arrivals and departures at that time and
-the maximum value of all times will be the final answer.
-
-
-Approach
-Sort both the arrays. So, that it is easy to maintain the count of trains by comparing,
-If(arr[i]<=dep[j]) means if arrival time is less than or equal to the departure time then-
-we need one more platform. So increment count as well as increment i. If(arr[i]>dep[j])
-means the arrival time is more than the departure time then- we have one extra platform
-which we can reduce. So decrement count but increment j. Update the ans with max(ans, count)
-after each iteration of the while loop.
-
-Time Complexity: Sorting takes O(nlogn) and traversal of arrays takes O(n)
-		 so O(nlogn) + O(n) is approx. O(nlogn).
-Space complexity: O(1)  (No extra space used).
-"""
-
-
-def countPlatforms(arrival_times: list, departure_times: list) -> int:
->>>>>>> 81c29763fd0429fc5f951019afb556114dd0db59
     """Function to count the minimum number of platforms required.
 
     Args:
@@ -66,23 +41,11 @@ def countPlatforms(arrival_times: list, departure_times: list) -> int:
         else:  # one platform can be reduced
             count -= 1
             j += 1
-<<<<<<< HEAD
         platforms_needed = max(platforms_needed, count)
-=======
-        platforms_needed = max(
-            platforms_needed, count
-        )  # updating the value with the current maximum
->>>>>>> 81c29763fd0429fc5f951019afb556114dd0db59
 
     return platforms_needed
 
-
 if __name__ == "__main__":
-    arr = [900, 945, 955, 1100, 1500, 1800]
-    dep = [920, 1200, 1130, 1150, 1900, 2000]
-<<<<<<< HEAD
-    print("Minimum number of Platforms required ", minimum_platforms_required(arr, dep))
+    import doctest
 
-=======
-    print("Minimum number of Platforms required ", countPlatforms(arr, dep))
->>>>>>> 81c29763fd0429fc5f951019afb556114dd0db59
+    doctest.testmod()
