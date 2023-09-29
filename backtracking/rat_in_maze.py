@@ -7,7 +7,7 @@ def solve_maze(
     source_column: int,
     destination_row: int,
     destination_column: int,
-) -> list[list[int]] or None:
+) -> list[list[int]] | None:
     """
     This method solves the "rat in maze" problem.
     Parameters :
@@ -121,7 +121,7 @@ def run_maze(
     destination_row: int,
     destination_column: int,
     solutions: list[list[int]],
-) -> list[list[int]] or None:
+) -> list[list[int]] | None:
     """
     This method is recursive starting from (i, j) and going in one of four directions:
     up, down, left, right.
