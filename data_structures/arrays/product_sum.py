@@ -7,6 +7,7 @@ def product_sum(arr, depth):
             total_sum += ele
     return total_sum * depth
 
+def product_sum_array(array):
     return product_sum(array, 1)
 
 if __name__ == "__main__":
