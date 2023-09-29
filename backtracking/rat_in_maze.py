@@ -9,6 +9,7 @@ def solve_maze(
     destination_column: int,
 ) -> bool:
     """
+<<<<<<< HEAD
     This method solves the "rat in maze" problem.
     Parameters :
         - maze(2D matrix) : maze
@@ -95,6 +96,205 @@ def solve_maze(
     >>> solve_maze(maze,0,1,len(maze),len(maze)-1)
     Invalid destination coordinates
 
+=======
+    <<<<<<< HEAD
+        This method solves the "rat in maze" problem.
+        Parameters :
+            - maze(2D matrix) : maze
+            - source_row (int): The row index of the starting point.
+            - source_column (int): The column index of the starting point.
+            - destination_row (int): The row index of the destination point.
+            - destination_column (int): The column index of the destination point.
+        Returns:
+            Return: solution(2D matrix) if path exists ,otherwise None.
+        Description:
+            This method navigates through a maze represented as an n by n matrix,
+            starting from a specified source cell  and
+            aiming to reach a destination cell.
+            The maze consists of walls (1s) and open paths (0s).
+            By providing custom row and column values, the source and destination
+            cells can be adjusted.
+        >>> maze = [[0, 1, 0, 1, 1],
+        ...         [0, 0, 0, 0, 0],
+        ...         [1, 0, 1, 0, 1],
+        ...         [0, 0, 1, 0, 0],
+        ...         [1, 0, 0, 1, 0]]
+        >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
+        [[1, 0, 0, 0, 0], [1, 1, 1, 1, 0], [0, 0, 0, 1, 0], [0, 0, 0, 1, 1], [0, 0, 0, 0, 1]]
+    =======
+            This method solves the "rat in maze" problem.
+            Parameters :
+                - maze(2D matrix) : maze
+                - source_row (int): The row index of the starting point.
+                - source_column (int): The column index of the starting point.
+                - destination_row (int): The row index of the destination point.
+                - destination_column (int): The column index of the destination point.
+            Returns:
+                Return: True if the maze has a solution or False if it does not.
+            Description:
+                This method navigates through a maze represented as an n by n matrix,
+        <<<<<<< HEAD
+                starting from a specified source cell  and
+                aiming to reach a destination cell.
+        =======
+                starting from a specified source cell (default: top-left corner) and
+                aiming to reach a destination cell (default: bottom-right corner).
+        Origin/new_branch :
+                The maze consists of walls (1s) and open paths (0s).
+                By providing custom row and column values, the source and destination
+                cells can be adjusted.
+            >>> maze = [[0, 1, 0, 1, 1],
+            ...         [0, 0, 0, 0, 0],
+            ...         [1, 0, 1, 0, 1],
+            ...         [0, 0, 1, 0, 0],
+            ...         [1, 0, 0, 1, 0]]
+            >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
+            [1, 0, 0, 0, 0]
+            [1, 1, 1, 1, 0]
+            [0, 0, 0, 1, 0]
+            [0, 0, 0, 1, 1]
+            [0, 0, 0, 0, 1]
+            True
+    >>>>>>> 553d1f0c581776224b88fed96619caf549c3d641
+
+            Note:
+                In the output maze, the ones (1s) represent one of the possible
+                paths from the source to the destination.
+
+    <<<<<<< HEAD
+        >>> maze = [[0, 1, 0, 1, 1],
+        ...         [0, 0, 0, 0, 0],
+        ...         [0, 0, 0, 0, 1],
+        ...         [0, 0, 0, 0, 0],
+        ...         [0, 0, 0, 0, 0]]
+        >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
+        [[1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 1, 1, 1, 1]]
+
+        >>> maze = [[0, 0, 0],
+        ...         [0, 1, 0],
+        ...         [1, 0, 0]]
+        >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
+        [[1, 1, 1], [0, 0, 1], [0, 0, 1]]
+
+        >>> maze = [[1, 0, 0],
+        ...         [0, 1, 0],
+        ...         [1, 0, 0]]
+        >>> solve_maze(maze,0,1,len(maze)-1,len(maze)-1)
+        [[0, 1, 1], [0, 0, 1], [0, 0, 1]]
+
+        >>> maze = [[1, 1, 0, 0, 1, 0, 0, 1],
+        ...         [1, 0, 1, 0, 0, 1, 1, 1],
+        ...         [0, 1, 0, 1, 0, 0, 1, 0],
+        ...         [1, 1, 1, 0, 0, 1, 0, 1],
+        ...         [0, 1, 0, 0, 1, 0, 1, 1],
+        ...         [0, 0, 0, 1, 1, 1, 0, 1],
+        ...         [0, 1, 0, 1, 0, 1, 1, 1],
+        ...         [1, 1, 0, 0, 0, 0, 0, 1]]
+        >>> solve_maze(maze,0,2,len(maze)-1,2)
+        [[0, 0, 1, 1, 0, 0, 0, 0], [0, 0, 0, 1, 1, 0, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 1, 1, 0, 0, 0], [0, 0, 1, 1, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0]]
+
+
+        >>> maze = [[1, 0, 0],
+        ...         [0, 1, 1],
+        ...         [1, 0, 0]]
+        >>> solve_maze(maze,0,1,len(maze)-1,len(maze)-1)
+        No solution exists!
+
+        >>> maze = [[0, 0],
+        ...         [1, 1]]
+        >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
+        No solution exists!
+
+        >>> maze = [[0, 1],
+        ...         [1, 0]]
+        >>> solve_maze(maze,2,0,len(maze)-1,len(maze)-1)
+        Invalid source coordinates
+
+        >>> maze = [[1, 0, 0],
+        ...         [0, 1, 1],
+        ...         [1, 0, 0]]
+        >>> solve_maze(maze,0,1,len(maze),len(maze)-1)
+        Invalid destination coordinates
+
+    =======
+            >>> maze = [[0, 1, 0, 1, 1],
+            ...         [0, 0, 0, 0, 0],
+            ...         [0, 0, 0, 0, 1],
+            ...         [0, 0, 0, 0, 0],
+            ...         [0, 0, 0, 0, 0]]
+            >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
+            [1, 0, 0, 0, 0]
+            [1, 0, 0, 0, 0]
+            [1, 0, 0, 0, 0]
+            [1, 0, 0, 0, 0]
+            [1, 1, 1, 1, 1]
+            True
+
+            >>> maze = [[0, 0, 0],
+            ...         [0, 1, 0],
+            ...         [1, 0, 0]]
+            >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
+            [1, 1, 1]
+            [0, 0, 1]
+            [0, 0, 1]
+            True
+
+            >>> maze = [[1, 0, 0],
+            ...         [0, 1, 0],
+            ...         [1, 0, 0]]
+            >>> solve_maze(maze,0,1,len(maze)-1,len(maze)-1)
+            [0, 1, 1]
+            [0, 0, 1]
+            [0, 0, 1]
+            True
+
+            >>> maze = [[1, 1, 0, 0, 1, 0, 0, 1],
+            ...         [1, 0, 1, 0, 0, 1, 1, 1],
+            ...         [0, 1, 0, 1, 0, 0, 1, 0],
+            ...         [1, 1, 1, 0, 0, 1, 0, 1],
+            ...         [0, 1, 0, 0, 1, 0, 1, 1],
+            ...         [0, 0, 0, 1, 1, 1, 0, 1],
+            ...         [0, 1, 0, 1, 0, 1, 1, 1],
+            ...         [1, 1, 0, 0, 0, 0, 0, 1]]
+            >>> solve_maze(maze,0,2,len(maze)-1,2)
+            [0, 0, 1, 1, 0, 0, 0, 0]
+            [0, 0, 0, 1, 1, 0, 0, 0]
+            [0, 0, 0, 0, 1, 0, 0, 0]
+            [0, 0, 0, 1, 1, 0, 0, 0]
+            [0, 0, 1, 1, 0, 0, 0, 0]
+            [0, 0, 1, 0, 0, 0, 0, 0]
+            [0, 0, 1, 0, 0, 0, 0, 0]
+            [0, 0, 1, 0, 0, 0, 0, 0]
+            True
+
+
+            >>> maze = [[1, 0, 0],
+            ...         [0, 1, 1],
+            ...         [1, 0, 0]]
+            >>> solve_maze(maze,0,1,len(maze)-1,len(maze)-1)
+            No solution exists!
+            False
+
+            >>> maze = [[0, 1],
+            ...         [1, 0]]
+            >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
+            No solution exists!
+            False
+
+            >>> maze = [[0, 1],
+            ...         [1, 0]]
+            >>> solve_maze(maze,2,0,len(maze)-1,len(maze)-1)
+            Invalid source coordinates
+            False
+
+            >>> maze = [[1, 0, 0],
+            ...         [0, 1, 1],
+            ...         [1, 0, 0]]
+            >>> solve_maze(maze,0,1,len(maze),len(maze)-1)
+            Invalid destination coordinates
+            False
+    >>>>>>> 553d1f0c581776224b88fed96619caf549c3d641
+>>>>>>> 3897d0a15a3816aed634260f81e3237ec660bddc
     """
     size = len(maze)
     # Check if source and destination coordinates are Invalid.
