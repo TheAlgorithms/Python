@@ -88,19 +88,15 @@ def lower_upper_decomposition(table: np.ndarray) -> tuple[np.ndarray, np.ndarray
 
     lower = np.zeros((rows, columns))
     upper = np.zeros((rows, columns))
-
-    # in 'total', the necessary data is extracted through slices
-    # and the sum of the products is obtained.
-
     for i in range(columns):
         for j in range(i):
-            total = np.sum(lower[i, :i] * upper[:i, j])
+            total = sum(lower[i][k] * upper[k][j] for k in range(j))
             if upper[j][j] == 0:
                 raise ArithmeticError("No LU decomposition exists")
             lower[i][j] = (table[i][j] - total) / upper[j][j]
         lower[i][i] = 1
         for j in range(i, columns):
-            total = np.sum(lower[i, :i] * upper[:i, j])
+            total = sum(lower[i][k] * upper[k][j] for k in range(j))
             upper[i][j] = table[i][j] - total
     return lower, upper
 
