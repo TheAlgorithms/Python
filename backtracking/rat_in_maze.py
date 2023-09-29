@@ -17,16 +17,11 @@ def solve_maze(
         - destination_row (int): The row index of the destination point.
         - destination_column (int): The column index of the destination point.
     Returns:
-        Return: True if the maze has a solution or False if it does not.
+        Return: solution(2D matrix) if path exists ,otherwise None.
     Description:
         This method navigates through a maze represented as an n by n matrix,
-<<<<<<< HEAD
         starting from a specified source cell  and
         aiming to reach a destination cell.
-=======
-        starting from a specified source cell (default: top-left corner) and
-        aiming to reach a destination cell (default: bottom-right corner).
->>>>>>> origin/new_branch
         The maze consists of walls (1s) and open paths (0s).
         By providing custom row and column values, the source and destination
         cells can be adjusted.
@@ -36,12 +31,7 @@ def solve_maze(
     ...         [0, 0, 1, 0, 0],
     ...         [1, 0, 0, 1, 0]]
     >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
-    [1, 0, 0, 0, 0]
-    [1, 1, 1, 1, 0]
-    [0, 0, 0, 1, 0]
-    [0, 0, 0, 1, 1]
-    [0, 0, 0, 0, 1]
-    True
+    [[1, 0, 0, 0, 0], [1, 1, 1, 1, 0], [0, 0, 0, 1, 0], [0, 0, 0, 1, 1], [0, 0, 0, 0, 1]]
 
     Note:
         In the output maze, the ones (1s) represent one of the possible
@@ -53,30 +43,19 @@ def solve_maze(
     ...         [0, 0, 0, 0, 0],
     ...         [0, 0, 0, 0, 0]]
     >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
-    [1, 0, 0, 0, 0]
-    [1, 0, 0, 0, 0]
-    [1, 0, 0, 0, 0]
-    [1, 0, 0, 0, 0]
-    [1, 1, 1, 1, 1]
-    True
+    [[1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 0, 0, 0, 0], [1, 1, 1, 1, 1]]
 
     >>> maze = [[0, 0, 0],
     ...         [0, 1, 0],
     ...         [1, 0, 0]]
     >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
-    [1, 1, 1]
-    [0, 0, 1]
-    [0, 0, 1]
-    True
+    [[1, 1, 1], [0, 0, 1], [0, 0, 1]]
 
     >>> maze = [[1, 0, 0],
     ...         [0, 1, 0],
     ...         [1, 0, 0]]
     >>> solve_maze(maze,0,1,len(maze)-1,len(maze)-1)
-    [0, 1, 1]
-    [0, 0, 1]
-    [0, 0, 1]
-    True
+    [[0, 1, 1], [0, 0, 1], [0, 0, 1]]
 
     >>> maze = [[1, 1, 0, 0, 1, 0, 0, 1],
     ...         [1, 0, 1, 0, 0, 1, 1, 1],
@@ -87,15 +66,7 @@ def solve_maze(
     ...         [0, 1, 0, 1, 0, 1, 1, 1],
     ...         [1, 1, 0, 0, 0, 0, 0, 1]]
     >>> solve_maze(maze,0,2,len(maze)-1,2)
-    [0, 0, 1, 1, 0, 0, 0, 0]
-    [0, 0, 0, 1, 1, 0, 0, 0]
-    [0, 0, 0, 0, 1, 0, 0, 0]
-    [0, 0, 0, 1, 1, 0, 0, 0]
-    [0, 0, 1, 1, 0, 0, 0, 0]
-    [0, 0, 1, 0, 0, 0, 0, 0]
-    [0, 0, 1, 0, 0, 0, 0, 0]
-    [0, 0, 1, 0, 0, 0, 0, 0]
-    True
+    [[0, 0, 1, 1, 0, 0, 0, 0], [0, 0, 0, 1, 1, 0, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 1, 1, 0, 0, 0], [0, 0, 1, 1, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0]]
 
 
     >>> maze = [[1, 0, 0],
@@ -103,45 +74,42 @@ def solve_maze(
     ...         [1, 0, 0]]
     >>> solve_maze(maze,0,1,len(maze)-1,len(maze)-1)
     No solution exists!
-    False
 
-    >>> maze = [[0, 1],
-    ...         [1, 0]]
+    >>> maze = [[0, 0],
+    ...         [1, 1]]
     >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
     No solution exists!
-    False
 
     >>> maze = [[0, 1],
     ...         [1, 0]]
     >>> solve_maze(maze,2,0,len(maze)-1,len(maze)-1)
     Invalid source coordinates
-    False
 
     >>> maze = [[1, 0, 0],
     ...         [0, 1, 1],
     ...         [1, 0, 0]]
     >>> solve_maze(maze,0,1,len(maze),len(maze)-1)
     Invalid destination coordinates
-    False
+
     """
     size = len(maze)
     # Check if source and destination coordinates are Invalid.
     if not (0 <= source_row <= size - 1 and 0 <= source_column <= size - 1):
         print("Invalid source coordinates")
-        return False
+        return None
     elif not (0 <= destination_row <= size - 1 and 0 <= destination_column <= size - 1):
         print("Invalid destination coordinates")
-        return False
+        return None
     # We need to create solution object to save path.
     solutions = [[0 for _ in range(size)] for _ in range(size)]
     solved = run_maze(
         maze, source_row, source_column, destination_row, destination_column, solutions
     )
     if solved:
-        print("\n".join(str(row) for row in solutions))
+        return solutions
     else:
         print("No solution exists!")
-    return solved
+        return None
 
 
 def run_maze(
@@ -167,7 +135,7 @@ def run_maze(
     # Final check point.
     if i == destination_row and j == destination_column and maze[i][j] == 0:
         solutions[i][j] = 1
-        return True
+        return solutions
 
     lower_flag = (not i < 0) and (not j < 0)  # Check lower bounds
     upper_flag = (i < size) and (j < size)  # Check upper bounds
@@ -192,11 +160,11 @@ def run_maze(
                     maze, i, j - 1, destination_row, destination_column, solutions
                 )
             ):
-                return True
+                return solutions
 
             solutions[i][j] = 0
-            return False
-    return False
+            return None
+    return None
 
 
 if __name__ == "__main__":
