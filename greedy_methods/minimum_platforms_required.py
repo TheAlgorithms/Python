@@ -11,6 +11,7 @@ at one time can be found by taking the difference between arrivals and departure
 minimum will be the final answer.
 """
 
+
 def minimum_platforms_required(arrival_times, departure_times):
     """Function to count the minimum number of platforms required.
 
@@ -44,6 +45,7 @@ def minimum_platforms_required(arrival_times, departure_times):
         platforms_needed = max(platforms_needed, count)
 
     return platforms_needed
+
 
 if __name__ == "__main__":
     import doctest
