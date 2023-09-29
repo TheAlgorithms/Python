@@ -121,7 +121,7 @@ def run_maze(
     destination_row: int,
     destination_column: int,
     solutions: list[list[int]],
-) -> bool:
+) -> list[list[int]] or None:
     """
     This method is recursive starting from (i, j) and going in one of four directions:
     up, down, left, right.
