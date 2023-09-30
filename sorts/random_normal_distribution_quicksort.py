@@ -5,6 +5,24 @@ import numpy as np
 
 
 def _in_place_quick_sort(a, start, end):
+    """
+    Sorts a list 'a' in-place using the quicksort algorithm.
+
+    Args:
+        a (list): The list to be sorted.
+        start (int): The starting index of the subarray to be sorted.
+        end (int): The ending index of the subarray to be sorted.
+
+    Returns:
+        int: The number of comparisons made during sorting.
+
+    Examples:
+        >>> arr = [3, 6, 1, 8, 2, 5]
+        >>> _in_place_quick_sort(arr, 0, len(arr) - 1)
+        9
+        >>> arr
+        [1, 2, 3, 5, 6, 8]
+    """
     count = 0
     if start < end:
         pivot = randint(start, end)
@@ -19,6 +37,24 @@ def _in_place_quick_sort(a, start, end):
 
 
 def _in_place_partition(a, start, end):
+    """
+    Partitions a subarray in-place for quicksort.
+
+    Args:
+        a (list): The list containing the subarray.
+        start (int): The starting index of the subarray to be partitioned.
+        end (int): The ending index of the subarray to be partitioned.
+
+    Returns:
+        tuple: A tuple containing the new pivot index and the number of comparisons made.
+
+    Examples:
+        >>> arr = [3, 6, 1, 8, 2, 5]
+        >>> _in_place_partition(arr, 0, len(arr) - 1)
+        (3, 5)
+        >>> arr
+        [2, 1, 3, 6, 8, 5]
+    """
     count = 0
     pivot = randint(start, end)
     temp = a[end]
