@@ -2,12 +2,13 @@
 Author  : Bama Charan Chhandogi
 Date    : October 1, 2023
 
-Kadane's algorithm is a popular algorithm for finding the 
+Kadane's algorithm is a popular algorithm for finding the
 maximum subarray sum in a given array of numbers.
 
 """
 
 from typing import List
+
 
 def kadanes_algorithm(arr: List[int]) -> int:
     """
