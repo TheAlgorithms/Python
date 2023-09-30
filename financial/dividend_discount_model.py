@@ -25,21 +25,22 @@ def dividend_discount_model(
     >>> dividend_discount_model(0, 0.12, 0.03)
     Traceback (most recent call last):
         ...
-    Exception: The rate of constant cost must be >= 0
+    ValueError: The next year's dividend must be > 0
     >>> dividend_discount_model(25000, -0.12, 0.03)
     Traceback (most recent call last):
         ...
-    Exception: The constant growth must be >= 0
+    ValueError: The rate of constant cost must be >= 0
     >>> dividend_discount_model(25000, 0.12, 0)
     Traceback (most recent call last):
         ...
+    ValueError: The constant growth must be >= 0
     """
     if next_dividend <= 0:
-        raise Exception("The next year's dividend must be > 0")
+        raise ValueError("The next year's dividend must be > 0")
     if constant_cost < 0:
-        raise Exception("The rate of constant cost must be >= 0")
+        raise ValueError("The rate of constant cost must be >= 0")
     if constant_growth <= 0:
-        raise Exception("The constant growth must be >= 0")
+        raise ValueError("The constant growth must be >= 0")
 
     return next_dividend / (constant_cost - constant_growth)
 
