@@ -1,5 +1,10 @@
 """Source: https://github.com/jason9075/opencv-mosaic-data-aug"""
 
+"""
+The Mosaic data augmentation algorithm in YOLOv4 randomly selects 4 pictures from the train set and puts the contents of the 4 pictures into a synthetic picture that is directly used for training.
+This data augmentation method can improve the model's recognition ability in complex backgrounds.
+"""
+
 import glob
 import os
 import random
@@ -184,3 +189,5 @@ def random_chars(number_char: int) -> str:
 if __name__ == "__main__":
     main()
     print("DONE ✅")
+
+
