@@ -3,9 +3,10 @@ class Node:
         self.data = data
         self.next = None
 
+
 # function to insert node at the end of the linked list
 def insertNode(head, data):
-    '''Returns new head of linked list after inserting new node'''
+    """Returns new head of linked list after inserting new node"""
     newNode = Node(data)
     if head == None:
         head = newNode
@@ -16,9 +17,10 @@ def insertNode(head, data):
     tempNode.next = newNode
     return head
 
+
 # function to rotate list by k times
 def rightRotateByK(head, k):
-    '''This function receives head and k as input parameters and returns head of linked list after rotation to the right by k places'''
+    """This function receives head and k as input parameters and returns head of linked list after rotation to the right by k places"""
     if head == None or head.next == None:
         return head
     for _ in range(k):
@@ -31,17 +33,18 @@ def rightRotateByK(head, k):
         head = end
     return head
 
+
 # utility function to print list
 def printList(head):
-    '''Prints the entire linked list iteratively'''
+    """Prints the entire linked list iteratively"""
     while head.next != None:
-        print(head.data, end='->')
+        print(head.data, end="->")
         head = head.next
     print(head.data)
     return
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     head = None
     # inserting Nodes 1,2,3,4,5 to form a linked list for example
     head = insertNode(head, 1)
@@ -50,14 +53,12 @@ if __name__ == '__main__':
     head = insertNode(head, 4)
     head = insertNode(head, 5)
 
-
-    print("Original list: ", end='')
+    print("Original list: ", end="")
     printList(head)
 
     k = 2
     # calling function for rotating right of the nodes by k times
     newHead = rightRotateByK(head, k)
 
-
-    print("After", k, "iterations: ", end='')
+    print("After", k, "iterations: ", end="")
     printList(newHead)  # list after rotating nodes
