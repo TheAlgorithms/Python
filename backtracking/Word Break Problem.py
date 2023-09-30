@@ -1,4 +1,4 @@
-def dictionaryContains(word):
+def dictionarycontains(word):
     dictionary = {
         "mobile",
         "samsung",
@@ -17,24 +17,24 @@ def dictionaryContains(word):
     return word in dictionary
 
 
-def wordBreak(string):
-    wordBreakUtil(string, len(string), "")
+def wordbreak(string):
+    wordbreakutil(string, len(string), "")
 
 
-def wordBreakUtil(string, n, result):
+def wordbreakutil(string, n, result):
     for i in range(1, n + 1):
         prefix = string[:i]
-        if dictionaryContains(prefix):
+        if dictionarycontains(prefix):
             if i == n:
                 result += prefix
                 print(result)
                 return
-            wordBreakUtil(string[i:], n - i, result + prefix + " ")
+            wordbreakutil(string[i:], n - i, result + prefix + " ")
 
 
 if __name__ == "__main__":
     print("First Test:")
-    wordBreak("iloveicecreamandmango")
+    wordbreak("iloveicecreamandmango")
 
     print("\nSecond Test:")
-    wordBreak("ilovesamsungmobile")
+    wordbreak("ilovesamsungmobile")
