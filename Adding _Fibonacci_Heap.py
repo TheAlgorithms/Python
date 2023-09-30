@@ -8,6 +8,7 @@ class FibonacciHeapNode:
         self.next = self
         self.prev = self
 
+
 class FibonacciHeap:
     def __init__(self):
         self.min_node = None
@@ -54,7 +55,7 @@ class FibonacciHeap:
         min_node.next = new_node
 
     def _consolidate(self):
-        max_degree = int(self.num_nodes ** 0.5) + 1
+        max_degree = int(self.num_nodes**0.5) + 1
         degree_table = [None] * max_degree
 
         current = self.min_node
@@ -111,8 +112,7 @@ class FibonacciHeap:
         child.marked = False
 
     def _cascading_cut(self, node):
-        parent = node.parent
-        if parent:
+        if parent := node.parent:
             if not node.marked:
                 node.marked = True
             else:
@@ -120,8 +120,9 @@ class FibonacciHeap:
                 self._cascading_cut(parent)
 
     def delete(self, node):
-        self.decrease_key(node, float('-inf'))
+        self.decrease_key(node, float("-inf"))
         self.extract_min()
+
 
 if __name__ == "__main__":
     fib_heap = FibonacciHeap()
@@ -129,5 +130,5 @@ if __name__ == "__main__":
     fib_heap.insert(2)
     fib_heap.insert(9)
     fib_heap.insert(1)
-    
+
     print(fib_heap.extract_min().key)  # Output: 1
