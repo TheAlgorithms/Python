@@ -69,12 +69,12 @@ class WordSearch:
     def insert_northeast(self, word: str, rows: list[int], cols: list[int]) -> None:
         """
         >>> ws = WordSearch(WORDS, 3, 3)
-        >>> ws.insert_north_east("cat", [2], [0])
+        >>> ws.insert_northeast("cat", [2], [0])
         >>> ws.board  # doctest: +NORMALIZE_WHITESPACE
         [[None, None, 't'],
         [None, 'a', None],
         ['c', None, None]]
-        >>> ws.insert_north_east("at", [0, 1], [2, 1, 0])
+        >>> ws.insert_northeast("at", [0, 1], [2, 1, 0])
         >>> ws.board  # doctest: +NORMALIZE_WHITESPACE
         [[None, 't', 't'],
         ['a', 'a', None],
@@ -139,12 +139,12 @@ class WordSearch:
     def insert_southeast(self, word: str, rows: list[int], cols: list[int]) -> None:
         """
         >>> ws = WordSearch(WORDS, 3, 3)
-        >>> ws.insert_south_east("cat", [0], [0])
+        >>> ws.insert_southeast("cat", [0], [0])
         >>> ws.board  # doctest: +NORMALIZE_WHITESPACE
         [['c', None, None],
         [None, 'a', None],
         [None, None, 't']]
-        >>> ws.insert_south_east("at", [1, 0], [2, 1, 0])
+        >>> ws.insert_southeast("at", [1, 0], [2, 1, 0])
         >>> ws.board  # doctest: +NORMALIZE_WHITESPACE
         [['c', None, None],
         ['a', 'a', None],
@@ -209,12 +209,12 @@ class WordSearch:
     def insert_southwest(self, word: str, rows: list[int], cols: list[int]) -> None:
         """
         >>> ws = WordSearch(WORDS, 3, 3)
-        >>> ws.insert_south_west("cat", [0], [2])
+        >>> ws.insert_southwest("cat", [0], [2])
         >>> ws.board  # doctest: +NORMALIZE_WHITESPACE
         [[None, None, 'c'],
         [None, 'a', None],
         ['t', None, None]]
-        >>> ws.insert_south_west("at", [1, 2], [2, 1, 0])
+        >>> ws.insert_southwest("at", [1, 2], [2, 1, 0])
         >>> ws.board  # doctest: +NORMALIZE_WHITESPACE
         [[None, None, 'c'],
         [None, 'a', 'a'],
@@ -279,12 +279,12 @@ class WordSearch:
     def insert_northwest(self, word: str, rows: list[int], cols: list[int]) -> None:
         """
         >>> ws = WordSearch(WORDS, 3, 3)
-        >>> ws.insert_north_west("cat", [2], [2])
+        >>> ws.insert_northwest("cat", [2], [2])
         >>> ws.board  # doctest: +NORMALIZE_WHITESPACE
         [['t', None, None],
         [None, 'a', None],
         [None, None, 'c']]
-        >>> ws.insert_north_west("at", [1, 2], [0, 1])
+        >>> ws.insert_northwest("at", [1, 2], [0, 1])
         >>> ws.board  # doctest: +NORMALIZE_WHITESPACE
         [['t', None, None],
         ['t', 'a', None],
@@ -326,12 +326,13 @@ class WordSearch:
         """
         directions = (
             self.insert_north,
-            self.insert_north_east,
+            self.insert_northeast,
             self.insert_east,
-            self.insert_south_east,
+            self.insert_southeast,
             self.insert_south,
-            self.insert_south_west,
+            self.insert_southwest,
             self.insert_west,
+            self.insert_northwest,
         )
         for word in self.words:
             # Shuffle the row order and column order that is used when brute forcing
@@ -359,7 +360,7 @@ def visualise_word_search(
     # # # # t
     # # # # a
     # # # # c
-    >>> ws.insert_north_east("snake", [4], [4, 3, 2, 1, 0])
+    >>> ws.insert_northeast("snake", [4], [4, 3, 2, 1, 0])
     >>> visualise_word_search(
     ...     ws.board, add_fake_chars=False)  # doctest: +NORMALIZE_WHITESPACE
     # # # # e
