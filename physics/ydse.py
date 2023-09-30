@@ -1,4 +1,4 @@
-def calculateFW(lambda1 : float, d : float, D : float):
+def calculateFW(lambda1: float, d: float, D: float):
     """
     This method calculates the value of the fringe width obtained during Young's Double Slit Experiment
     This is calculated by providing three values to the function: The value of wavelength lambda, the value of distance of slit from the screen D, the value of width of slits d
@@ -17,9 +17,10 @@ def calculateFW(lambda1 : float, d : float, D : float):
         raise ValueError("Wavelength cannot be negative")
     if d < 0 or D < 0:
         raise ValueError("Distances cannot be negative")
-    
+
     fringe = (lambda1 * d) / D
     return fringe
+
 
 if __name__ == "__main__":
     import doctest
