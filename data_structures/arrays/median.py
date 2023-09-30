@@ -26,8 +26,10 @@ def find_median(nums):
 
     return median
 
+
 if __name__ == "__main__":
     import doctest
-    res = find_median([1, 3, 2, 4, 5,6,7,8,9])
+
+    res = find_median([1, 3, 2, 4, 5, 6, 7, 8, 9])
     print(res)
     doctest.testmod()
