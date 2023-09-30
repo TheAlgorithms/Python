@@ -28,6 +28,7 @@ def kadanes_algorithm(arr: List[int]) -> int:
 
     return max_so_far
 
+
 # Run doctest to test the function with the examples in the docstring
 if __name__ == "__main__":
     import doctest
