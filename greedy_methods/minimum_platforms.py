@@ -1,14 +1,18 @@
 from typing import List
 
+
 # Function to find the minimum number of platforms required.
 def find_platform_optimized(arr: List[int], dep: List[int], n: int) -> int:
-    """
-    tested on given inputs:
-    if arr = [100, 300, 600]
-    and dep = [900, 400, 500]
 
-    output :2
     """
+    tests :
+    input: n = 3
+    arr[] = [100, 300, 600]
+    dep[] = [900, 400, 500]
+
+    output : 2
+    """
+
     count = 0
     max_platforms = 0
 
@@ -30,9 +34,17 @@ def find_platform_optimized(arr: List[int], dep: List[int], n: int) -> int:
 
     return max_platforms
 
+
 # Driver Code
 if __name__ == '__main__':
-    arr = [100, 300, 600]
-    dep = [900, 400, 500]
-    n = len(arr)
+    arr = []
+    dep = []
+    number_of_elements = int(input())
+
+    for i in range(0, n):
+        ele = int(input().strip())
+        arr.append(ele)
+    for j in range(0, n):
+        ele1 = int(input().strip())
+        dep.append(ele1)
     print(find_platform_optimized(arr, dep, n))
