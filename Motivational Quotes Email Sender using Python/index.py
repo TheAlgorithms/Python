@@ -10,7 +10,7 @@ connection.starttls()
 connection.login(EMAIL_HOST_USER, EMAIL_HOST_PASSWORD)
 
 
-def get_random_quote()-> None:
+def get_random_quote() -> None:
     url = "https://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json&category=inspire"
     response = requests.get(url)
     data = response.json()
