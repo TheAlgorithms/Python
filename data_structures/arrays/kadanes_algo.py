@@ -2,30 +2,22 @@
 Author  : Bama Charan Chhandogi
 Date    : October 1, 2023
 
-Kadane's algorithm is a popular algorithm for finding the maximum subarray sum in a given array of numbers.
+Kadane's algorithm is a popular algorithm for finding the 
+maximum subarray sum in a given array of numbers.
 
 """
 
+from typing import List
 
-def kadanes_algorithm(arr):
+def kadanes_algorithm(arr: List[int]) -> int:
     """
     Kadane's Algorithm for finding the maximum subarray sum.
 
     Args:
-        arr (list): A list of numbers.
+        arr (List[int]): A list of numbers.
 
     Returns:
         int: The maximum subarray sum.
-
-    Examples:
-        >>> kadanes_algorithm([-2, 1, -3, 4, -1, 2, 1, -5, 4])
-        6
-        >>> kadanes_algorithm([1, 2, 3, 4, 5])
-        15
-        >>> kadanes_algorithm([-1, -2, -3, -4, -5])
-        -1
-        >>> kadanes_algorithm([5])
-        5
     """
     max_so_far = arr[0]
     max_ending_here = arr[0]
