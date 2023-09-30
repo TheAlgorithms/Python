@@ -6,21 +6,22 @@ class FibonacciHeapNode:
         Args:
             key: The key associated with the node.
         """
-        self.key = key              # The value associated with the node
-        self.degree = 0             # Number of children
-        self.parent = None          # Parent node in the heap
-        self.child = None           # One of the children (a pointer to any child)
-        self.marked = False         # Flag indicating whether the node has lost a child
-        self.next = self            # Next node in the circular doubly linked list
-        self.prev = self            # Previous node in the circular doubly linked list
+        self.key = key  # The value associated with the node
+        self.degree = 0  # Number of children
+        self.parent = None  # Parent node in the heap
+        self.child = None  # One of the children (a pointer to any child)
+        self.marked = False  # Flag indicating whether the node has lost a child
+        self.next = self  # Next node in the circular doubly linked list
+        self.prev = self  # Previous node in the circular doubly linked list
+
 
 class FibonacciHeap:
     def __init__(self):
         """
         Initialize an empty Fibonacci Heap.
         """
-        self.min_node = None        # Pointer to the minimum node in the heap
-        self.num_nodes = 0          # Number of nodes in the heap
+        self.min_node = None  # Pointer to the minimum node in the heap
+        self.num_nodes = 0  # Number of nodes in the heap
 
     def insert(self, key):
         """
@@ -72,12 +73,11 @@ class FibonacciHeap:
             self.num_nodes -= 1
         return min_node.key
 
-
     def _consolidate(self):
         """
         Consolidate the Fibonacci Heap by combining trees with the same degree.
         """
-        max_degree = int(self.num_nodes ** 0.5)
+        max_degree = int(self.num_nodes**0.5)
         degrees = [None] * (max_degree + 1)  # Dynamically resize the degrees list
 
         current = self.min_node
@@ -167,8 +167,7 @@ class FibonacciHeap:
         Args:
             node: The node on which cascading cuts are performed.
         """
-        parent = node.parent
-        if parent is not None:
+        if (parent := node.parent) is not None:
             if not node.marked:
                 node.marked = True
             else:
@@ -182,8 +181,9 @@ class FibonacciHeap:
         Args:
             node: The node to be deleted.
         """
-        self.decrease_key(node, float('-inf'))
+        self.decrease_key(node, float("-inf"))
         self.extract_min()
+
 
 if __name__ == "__main__":
     # Example usage
