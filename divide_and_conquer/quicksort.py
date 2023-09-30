@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 def quick_sort(array: list) -> list:
     """Returns a list of sorted array elements using quick sort.
 
@@ -36,16 +37,18 @@ def quick_sort(array: list) -> list:
     """
     if len(array) <= 1:
         return array
-    
+
     pivot = array[len(array) // 2]
     left = [x for x in array if x < pivot]
     middle = [x for x in array if x == pivot]
     right = [x for x in array if x > pivot]
-    
+
     return quick_sort(left) + middle + quick_sort(right)
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
 
