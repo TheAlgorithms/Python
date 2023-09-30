@@ -1,8 +1,8 @@
 from typing import List
 
+
 # Function to find the minimum number of platforms required.
 def find_platform_optimized(arr: List[int], dep: List[int], n: int) -> int:
-
     count = 0
     max_platforms = 0
 
@@ -24,8 +24,9 @@ def find_platform_optimized(arr: List[int], dep: List[int], n: int) -> int:
 
     return max_platforms
 
+
 # Driver Code
-if __name__ == '__main__':
+if __name__ == "__main__":
     arr = []
     dep = []
     n = int(input())
