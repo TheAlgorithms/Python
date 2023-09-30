@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 
-def kmp(pattern: str, text: str) -> bool:
+def knuth_morris_pratt(text: str, pattern: str) -> int:
     """
     The Knuth-Morris-Pratt Algorithm for finding a pattern within a piece of text
     with complexity O(n + m)
@@ -14,6 +14,12 @@ def kmp(pattern: str, text: str) -> bool:
     2) Step through the text one character at a time and compare it to a character in
         the pattern updating our location within the pattern if necessary
 
+    >>> kmp = "knuth_morris_pratt"
+    >>> all(
+    ...    knuth_morris_pratt(kmp, s) == kmp.find(s)
+    ...    for s in ("kn", "h_m", "rr", "tt", "not there")
+    ... )
+    True
     """
 
     # 1) Construct the failure array
@@ -24,7 +30,7 @@ def kmp(pattern: str, text: str) -> bool:
     while i < len(text):
         if pattern[j] == text[i]:
             if j == (len(pattern) - 1):
-                return True
+                return i - j
             j += 1
 
         # if this is a prefix in our pattern
@@ -33,7 +39,7 @@ def kmp(pattern: str, text: str) -> bool:
             j = failure[j - 1]
             continue
         i += 1
-    return False
+    return -1
 
 
 def get_failure_array(pattern: str) -> list[int]:
@@ -57,27 +63,38 @@ def get_failure_array(pattern: str) -> list[int]:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     # Test 1)
     pattern = "abc1abc12"
     text1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"
     text2 = "alskfjaldsk23adsfabcabc"
-    assert kmp(pattern, text1) and not kmp(pattern, text2)
+    assert knuth_morris_pratt(text1, pattern) and knuth_morris_pratt(text2, pattern)
 
     # Test 2)
     pattern = "ABABX"
     text = "ABABZABABYABABX"
-    assert kmp(pattern, text)
+    assert knuth_morris_pratt(text, pattern)
 
     # Test 3)
     pattern = "AAAB"
     text = "ABAAAAAB"
-    assert kmp(pattern, text)
+    assert knuth_morris_pratt(text, pattern)
 
     # Test 4)
     pattern = "abcdabcy"
     text = "abcxabcdabxabcdabcdabcy"
-    assert kmp(pattern, text)
+    assert knuth_morris_pratt(text, pattern)
 
-    # Test 5)
+    # Test 5) -> Doctests
+    kmp = "knuth_morris_pratt"
+    assert all(
+        knuth_morris_pratt(kmp, s) == kmp.find(s)
+        for s in ("kn", "h_m", "rr", "tt", "not there")
+    )
+
+    # Test 6)
     pattern = "aabaabaaa"
     assert get_failure_array(pattern) == [0, 1, 0, 1, 2, 3, 4, 5, 2]
