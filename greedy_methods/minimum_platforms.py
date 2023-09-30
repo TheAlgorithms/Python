@@ -3,7 +3,6 @@ from typing import List
 
 # Function to find the minimum number of platforms required.
 def find_platform_optimized(arr: List[int], dep: List[int], n: int) -> int:
-
     """
     tests :
     input: n = 3
@@ -36,7 +35,7 @@ def find_platform_optimized(arr: List[int], dep: List[int], n: int) -> int:
 
 
 # Driver Code
-if __name__ == '__main__':
+if __name__ == "__main__":
     arr = []
     dep = []
     number_of_elements = int(input())
