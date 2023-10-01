@@ -1,25 +1,16 @@
-"""
-Title : Calculate Einstein's Energy-Mass Equivalence
+def energy_equivalence(mass_kg):
+   
+    # Check if the mass is non-negative
+    if mass_kg < 0:
+        raise ValueError("mass should be positive")
 
-Description :
-    The below mentioned code gives Einstein's mass-energy equivalence, expressed by the famous equation E=mc^2
-    states that energy (E) and mass (m) are interchangeable. 
-    It means that a certain amount of mass can be converted into an equivalent amount of energy, and vice versa, under the right conditions.
-    This concept revolutionized our understanding of the fundamental relationship between matter and energy in the universe.
+    # Check if the speed of light is positive
+    if speed_of_light_m_per_s <= 0:
+        raise ValueError("Speed of light must be positive")
 
-"""
-def energy_equivalence(mass):
-    """
-    The most famous equation in the world, E=mc2, arrived rather quietly.
-    In 1905, Einstein published two articles on the Special Theory of Relativity
+    # Calculate energy using the mass-energy equivalence equation
+    energy = mass_kg * speed_of_light_m_per_s**2
+    return energy
 
-    E=Energy  units:joule
-    M=mass    units:kilograms
-    c=speed of light  units:meter per second
-
-
-    """
-    c=299792458 
-
-    e=mass*c**2
-    return e
+if __name__ == "__main__":
+    energy_equivalence()
