@@ -3,11 +3,8 @@ Mass energy Equivalene
 Reference: https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence
 """
 import math
-
 """ Function to calculate energy(in joules) equivalent of a given
 mass(in kilograms) using Einstein's equation E=mc^2"""
-
-
 def calculate_energy(mass: float) -> float:
     """
     get energy equivalent of given mass in joules:
