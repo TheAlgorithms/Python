@@ -3,6 +3,7 @@ class Node:
         self.data = data
         self.ref = None
 
+
 class LinkedList:
     def __init__(self) -> None:
         self.head = None
@@ -76,10 +77,12 @@ class LinkedList:
         new_node = Node(data)
         new_node.ref = n.ref
         n.ref = new_node
-linked_list= LinkedList()
+
+
+linked_list = LinkedList()
 linked_list.add_begin(11)
 linked_list.add_end(100)
 linked_list.add_begin(22)
-linked_list.add_after(30,11)
+linked_list.add_after(30, 11)
 linked_list.print_ll()
-#https://youtu.be/xRTdfZsAz6Y?si=EMrqVJpXjDDz1kEF
+# https://youtu.be/xRTdfZsAz6Y?si=EMrqVJpXjDDz1kEF
