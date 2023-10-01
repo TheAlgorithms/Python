@@ -21,7 +21,7 @@ def num_digits(n: int) -> int:
         ...
     TypeError: Input must be an integer
     """
-    
+
     if not isinstance(n, int):
         raise TypeError("Input must be an integer")
 
@@ -55,10 +55,10 @@ def num_digits_fast(n: int) -> int:
         ...
     TypeError: Input must be an integer
     """
-    
+
     if not isinstance(n, int):
         raise TypeError("Input must be an integer")
-    
+
     return 1 if n == 0 else math.floor(math.log(abs(n), 10) + 1)
 
 
@@ -82,10 +82,10 @@ def num_digits_faster(n: int) -> int:
         ...
     TypeError: Input must be an integer
     """
-    
+
     if not isinstance(n, int):
         raise TypeError("Input must be an integer")
-    
+
     return len(str(abs(n)))
 
 
