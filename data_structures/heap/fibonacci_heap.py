@@ -233,8 +233,7 @@ class FibonacciHeap:
             return
 
         min_val = min(node.val for node in self.root_list)
-        self.min_node = next(
-            node for node in self.root_list if node.val == min_val)
+        self.min_node = next(node for node in self.root_list if node.val == min_val)
 
     def __str__(self) -> str:
         """
