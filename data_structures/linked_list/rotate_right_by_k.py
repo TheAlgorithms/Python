@@ -39,7 +39,7 @@ def insert_node(head: Node, data: int) -> Node:
     1->2->3
     """
     new_node = Node(data)
-    if head == None:
+    if head is None:
         head = new_node
         return head
     temp_node = head
@@ -79,6 +79,7 @@ def right_rotate_by_k(head: Node, k_places: int) -> Node:
 
 
 if __name__ == "__main__":
+    doctest.testmod()
     head = None
 
     head = insert_node(head, 1)
