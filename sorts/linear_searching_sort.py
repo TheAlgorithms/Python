@@ -1,5 +1,3 @@
-# This is one of the searching algorithms that involves sequentially going through every element in the list until the element is located and its position is enumerated. This method might take a long time to run if the list or array is quite long and the element being searched is deep in the array. This is the disadvantage of this method. However, this method is quite handy as it can search in an unsorted list. 
-
 #Linear search method.
 def linear_search(values, searched):
    #The function takes in only two parameters.
