@@ -48,7 +48,7 @@ def bell_numbers(max_set_length: int) -> list[int]:
     return bell
 
 
-def _binomial_coefficient(total_elements, elements_to_choose):
+def _binomial_coefficient(total_elements: int, elements_to_choose: int) -> int:
     """
     Calculate the binomial coefficient C(total_elements, elements_to_choose)
 
