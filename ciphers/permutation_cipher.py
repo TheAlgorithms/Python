@@ -1,11 +1,11 @@
 """
-The Permutation Cipher, implemented above, is a simple encryption
-technique that rearranges the characters in a message based on a secret key.
-It divides the message into blocks and applies a permutation to the characters
-within each block according to the key. The key is a sequence of unique integers
-that determine the order of character rearrangement. For more info read:-
-https://www.nku.edu/~christensen/1402%20permutation%20ciphers.pdf
+The permutation cipher, also called the transposition cipher, is a simple encryption
+technique that rearranges the characters in a message based on a secret key. It
+divides the message into blocks and applies a permutation to the characters within
+each block according to the key. The key is a sequence of unique integers that
+determine the order of character rearrangement.
 
+For more info: https://www.nku.edu/~christensen/1402%20permutation%20ciphers.pdf
 """
 import random
 
