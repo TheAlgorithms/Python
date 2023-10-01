@@ -13,13 +13,13 @@ def energy_mass_equivalence(mass:float)->float:
     Converted mass into corresponding energy
     
     For example:
-    >>>energy_mass_equivalence(2.1)
+    >>> energy_mass_equivalence(2.1)
     189000000000000000.00
-    >>>energy_mass_equivalence(3)
+    >>> energy_mass_equivalence(3)
     270000000000000000.00
-    >>>energy_mass_equivalence(3.123)
+    >>> energy_mass_equivalence(3.123)
     281070000000000032.00
-    >>.energy_mass_equivalence(1)
+    >>> energy_mass_equivalence(1)
     90000000000000000.00
     """
     energy=mass*((3*10**8)**2)
