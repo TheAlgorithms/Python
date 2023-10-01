@@ -29,7 +29,7 @@ def find_smallest_member(n: int) -> int:
             sum_of_div[j] += i
 
     checked = [False] * (n + 1)
-    max_chain_len = 0
+    max_len_of_chain = 0
     result = 0
     for i in range(2, n + 1):
         possible_chain = []
