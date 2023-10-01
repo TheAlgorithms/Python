@@ -1,7 +1,8 @@
 from typing import Optional
 
+
 class ListNode:
-    def __init__(self, val: int = 0, next: Optional['ListNode'] = None) -> None:
+    def __init__(self, val: int = 0, next: Optional["ListNode"] = None) -> None:
         self.val = val
         self.next = next
 
@@ -15,7 +16,9 @@ class Solution:
             count += 1
         return count
 
-    def reverse(self, head: Optional[ListNode], count: int, k: int) -> Optional[ListNode]:
+    def reverse(
+        self, head: Optional[ListNode], count: int, k: int
+    ) -> Optional[ListNode]:
         if count < k:
             return head
 
@@ -32,7 +35,7 @@ class Solution:
 
         if Next:
             head.next = self.reverse(Next, count - k, k)
-        
+
         return prev
 
     def reverse_k_group(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
@@ -52,12 +55,12 @@ class Solution:
         >>> new_head = sol.reverse_k_group(head, 2)
         >>> new_head.val, new_head.next.val, new_head.next.next.val, new_head.next.next.next.val, new_head.next.next.next.next.val
         (2, 1, 4, 3, 5)
-        
+
         >>> head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
         >>> new_head = sol.reverse_k_group(head, 3)
         >>> new_head.val, new_head.next.val, new_head.next.next.val, new_head.next.next.next.val, new_head.next.next.next.next.val
         (3, 2, 1, 4, 5)
-        
+
         >>> head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
         >>> new_head = sol.reverse_k_group(head, 6)
         >>> new_head.val, new_head.next.val, new_head.next.next.val, new_head.next.next.next.val, new_head.next.next.next.next.val
@@ -67,7 +70,12 @@ class Solution:
         new_head, current_tail, next_group_head, success = self.reverse(head, k)
 
         while success:
-            new_group_head, new_group_tail, next_next_group_head, success = self.reverse(next_group_head, k)
+            (
+                new_group_head,
+                new_group_tail,
+                next_next_group_head,
+                success,
+            ) = self.reverse(next_group_head, k)
 
             # Connect the tail of the previous group to the head of the new group
             current_tail.next = new_group_head
