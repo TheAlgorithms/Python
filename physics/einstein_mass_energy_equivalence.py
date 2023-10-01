@@ -5,7 +5,10 @@
 
 # Source: https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence
 
-def calculate_energy_from_mass(mass_kg: float, speed_of_light_m_per_s: float = 299792458) -> float:
+
+def calculate_energy_from_mass(
+    mass_kg: float, speed_of_light_m_per_s: float = 299792458
+) -> float:
     """
     Calculate the energy equivalent of a given mass using Einstein's mass-energy equivalence equation, E=mc².
 
@@ -25,16 +28,17 @@ def calculate_energy_from_mass(mass_kg: float, speed_of_light_m_per_s: float = 2
     # Check if the mass is non-negative
     if mass_kg < 0:
         raise ValueError("Mass cannot be negative")
-    
+
     # Check if the speed of light is positive
     if speed_of_light_m_per_s <= 0:
         raise ValueError("Speed of light must be positive")
 
     # Calculate energy using the mass-energy equivalence equation
     energy_equivalent_joules = mass_kg * speed_of_light_m_per_s**2
-    
+
     # Return the energy equivalent in joules
     return energy_equivalent_joules
+
 
 if __name__ == "__main__":
     # Import the doctest module to run tests
