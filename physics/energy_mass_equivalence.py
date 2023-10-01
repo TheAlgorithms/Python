@@ -4,7 +4,6 @@
 
 import doctest
 
-
 def mass_to_energy(mass_kg: float) -> float:
     """
     Calculate the energy equivalent of a given mass using E=mc^2.
@@ -59,18 +58,15 @@ def get_valid_mass_input() -> float:
     2.5
     """
     while True:
-        mass_str = input("Enter the mass in kilograms (a positive number): ")
+        mass_str = input("Mass in kilograms: ")
         if is_valid_mass(mass_str):
             return float(mass_str)
         else:
-            print("Invalid input. Please enter a positive number for mass.")
+            print("Invalid input.")
 
 
 if __name__ == "__main__":
     doctest.testmod()  # Run doctests in the docstrings
     mass = get_valid_mass_input()
     energy = mass_to_energy(mass)
-    print(
-        f"The energy equivalent of {mass} kilograms is "
-        f"{format(energy, '.15e')} joules."
-    )
+    print(f"The energy equivalent of {mass} kg is " f"{format(energy, '.15e')} joules.")
