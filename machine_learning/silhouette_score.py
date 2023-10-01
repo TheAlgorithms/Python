@@ -19,7 +19,7 @@
 import numpy as np
 from typing import Union
 
-def pairwise_distances(X: np.ndarray) -> np.ndarray:
+def pairwise_distances(data_points: np.ndarray) -> np.ndarray:
     """
 
     Compute pairwise distances between data points in the input array X.
@@ -42,11 +42,11 @@ def pairwise_distances(X: np.ndarray) -> np.ndarray:
            [2.82842712, 1.41421356, 0.        , 1.41421356],
            [4.24264069, 2.82842712, 1.41421356, 0.        ]])
     """
-    n = X.shape[0]
+    n = data_points.shape[0]
     distances = np.zeros((n, n))
     for i in range(n):
         for j in range(i, n):
-            distances[i, j] = np.linalg.norm(X[i] - X[j])
+            distances[i, j] = np.linalg.norm(data_points[i] - data_points[j])
             distances[j, i] = distances[i, j]
     return distances
 
