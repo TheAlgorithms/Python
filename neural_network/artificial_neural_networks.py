@@ -4,7 +4,6 @@ Title: Simplified Implementation of Artificial Neural Networks
 Description: This Python code offers a straightforward approach to utilizing Artificial Neural Networks for tasks involving both classification and regression. For more information on multiclass classification, you can refer to [this Wikipedia page](https://en.wikipedia.org/wiki/Multiclass_classification).
 
 """
-
 import tensorflow as tf
 import pandas as pd
 import numpy as np
