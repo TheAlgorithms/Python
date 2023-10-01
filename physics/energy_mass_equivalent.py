@@ -2,9 +2,11 @@ import scipy.constants as const
 import math
 
 
-def energy_equivalent_for_stationary_mass(mass_kg):
+def energy_equivalent_for_stationary_mass(mass_kg: float) ->float | ValueError:
     """
     Calculate the energy equivalent for a given mass using E=mc^2.
+
+    Wikipedia link:"https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence#:~:text=11%20External%20links-,Description,even%20when%20they%20are%20stationary."
 
     Parameters:
         mass_kg (float): Mass in kilograms.(must be positive)
@@ -12,7 +14,7 @@ def energy_equivalent_for_stationary_mass(mass_kg):
     Returns:
         float: Energy equivalent in joules.
 
-    >>>energy_equivalent_for_stationary_mass(4)                 
+    >>> energy_equivalent_for_stationary_mass(4)                     
     3.5950207149472704e+17
 
     """
@@ -24,7 +26,7 @@ def energy_equivalent_for_stationary_mass(mass_kg):
     return energy_joules
 
 
-def energy_equivalent_for_moving_mass(mass_kg, velocity_m_s):
+def energy_equivalent_for_moving_mass(mass_kg: float, velocity_m_s: float) ->float | ValueError:
     """
     Calculate the energy equivalent for a moving mass using relativistic energy-momentum relation(E^2= m^2*c^4 +p^2*c^2).
 
@@ -35,7 +37,7 @@ def energy_equivalent_for_moving_mass(mass_kg, velocity_m_s):
     Returns:
         float: Energy equivalent in joules.
 
-    >>>energy_equivalent_for_moving_mass(1,5675)       
+    >>> energy_equivalent_for_moving_mass(1,5675)           
     1701322225868.2546
     """
     if mass_kg<0:
