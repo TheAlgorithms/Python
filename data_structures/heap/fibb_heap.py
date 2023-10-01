@@ -33,7 +33,7 @@ class FibonacciHeap:
     def extract_min(self) -> int:
         """
         Extract and return the minimum key from the Fibonacci Heap.
-    
+
         Returns:
             int: The minimum key in the heap.
         """
