@@ -8,7 +8,9 @@
 
 
 class StringMatch:
-    def __init__(self, function_method_name="Z_FUNCTION", separator="\uFFFF") -> None:
+    def __init__(
+        self, function_method_name: str = "Z_FUNCTION", separator: str = "\uFFFF"
+    ) -> None:
         """
         Initialize the StringMatch class.
 
@@ -18,32 +20,6 @@ class StringMatch:
 
         Note:
             You can specify the matching algorithm using 'function_method_name'.
-
-        Examples:
-        >>> StringMatch().match("aaaaaaaaaa","a")
-        >>> (10, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-        >>> StringMatch().match("joeuljjo","jo")
-        >>> (2, [0, 6])
-        >>> StringMatch().match("abababbab","ab")
-        >>> (4, [0, 2, 4, 7])
-        >>> StringMatch().match("abaaabaa","aaba")
-        >>> (1, [3])
-        >>> StringMatch().match("becodecode","becode")
-        >>> (1, [0])
-        >>> StringMatch().match("bbcws","xwfaq")
-        >>> (0, [])
-
-
-        >>> StringMatch(function_method_name='PI_FUNCTION').match("aaaaaaaaaa","a")
-        >>> (10, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-        >>> StringMatch(function_method_name='PI_FUNCTION').match("joeuljjo","jo")
-        >>> (2, [0, 6])
-        >>> StringMatch(function_method_name='PI_FUNCTION').match("abababbab","ab")
-        >>> (4, [0, 2, 4, 7])
-        >>> StringMatch(function_method_name='PI_FUNCTION').match("abaaabaa","aaba")
-        >>> (1, [3])
-        >>> StringMatch(function_method_name='PI_FUNCTION').match("bbcws","xwfaq")
-        >>> (0, [])
         """
         self.__separator = separator  # default is '\uFFFF' least used Unicode
 
@@ -55,9 +31,9 @@ class StringMatch:
         # to be added...
 
         if function_method_name in self.__function_dictionary:
-            self.Function = self.__function_dictionary[function_method_name]
+            self.use_function = self.__function_dictionary[function_method_name]
         else:  # Default to Z-function
-            self.Function = self.__zfun_match
+            self.use_function = self.__zfun_match
 
     def match(self, text: str, pattern: str) -> tuple[int, list[int]]:
         """
@@ -69,6 +45,20 @@ class StringMatch:
 
         Returns:
             tuple: A tuple containing the occurrence count and occurrence indices.
+
+        Examples:
+        >>> print(StringMatch().match("aaaaaaaaaa","a"))
+        (10, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+        >>> print(StringMatch().match("joeuljjo","jo"))
+        (2, [0, 6])
+        >>> print(StringMatch().match("abababbab","ab"))
+        (4, [0, 2, 4, 7])
+        >>> print(StringMatch().match("abaaabaa","aaba"))
+        (1, [3])
+        >>> print(StringMatch().match("becodecode","becode"))
+        (1, [0])
+        >>> print(StringMatch().match("bbcws","xwfaq"))
+        (0, [])
         """
 
         def is_valid_text() -> bool:
@@ -93,7 +83,9 @@ class StringMatch:
             print("Err : Pattern contains separator")
             return (-1, [])
 
-        occurrence_count, occurrence_indices = self.Function(text=text, pattern=pattern)
+        occurrence_count, occurrence_indices = self.use_function(
+            text=text, pattern=pattern
+        )
 
         return occurrence_count, occurrence_indices
 
@@ -107,6 +99,20 @@ class StringMatch:
 
         Returns:
             tuple: A tuple containing the occurrence count and occurrence indices.
+
+        Examples:
+        >>> print(StringMatch().match("aaaaaaaaaa","a"))
+        (10, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+        >>> print(StringMatch().match("joeuljjo","jo"))
+        (2, [0, 6])
+        >>> print(StringMatch().match("abababbab","ab"))
+        (4, [0, 2, 4, 7])
+        >>> print(StringMatch().match("abaaabaa","aaba"))
+        (1, [3])
+        >>> print(StringMatch().match("becodecode","becode"))
+        (1, [0])
+        >>> print(StringMatch().match("bbcws","xwfaq"))
+        (0, [])
         """
         merged_string = self.__merge_text_and_pattern(text=text, pattern=pattern)
 
@@ -134,6 +140,9 @@ class StringMatch:
 
         Returns:
             tuple: A tuple containing the occurrence count and occurrence indices.
+
+        >>> print(StringMatch(function_method_name='PI_FUNCTION').match("aaaaaa","a"))
+        (6, [0, 1, 2, 3, 4, 5])
         """
         merged_string = self.__merge_text_and_pattern(text=text, pattern=pattern)
 
@@ -161,6 +170,10 @@ class StringMatch:
 
         Returns:
             str: The merged string.
+
+        Examples:
+        >>> print(StringMatch()._StringMatch__merge_text_and_pattern("A","B"))
+        B￿A
         """
         merged_string = pattern
         merged_string += self.__separator
@@ -177,6 +190,10 @@ class StringMatch:
 
         Returns:
             list: A list of Z-function values for the input string.
+
+        Examples:
+        >>> print(StringMatch(separator='$')._StringMatch__z_function("abaabca"))
+        [0, 0, 1, 2, 0, 0, 1]
         """
         s = merged_string
 
@@ -201,13 +218,17 @@ class StringMatch:
 
     def __pi_function(self, merged_string: str) -> list[int]:
         """
-        Calculate the Pi-function values for a given string.
+                Calculate the Pi-function values for a given string.
 
-        Args:
-            merged_string (str): The string for which Pi-function.
+                Args:
+                    merged_string (str): The string for which Pi-function.
 
-        Returns:
-            list: A list of Pi-function values for the input string.
+                Returns:
+                    list: A list of Pi-function values for the input string.
+
+                Examples:
+        >>> print(StringMatch()._StringMatch__pi_function("abaabca"))
+        [0, 0, 1, 1, 2, 0, 1]
         """
         s = merged_string
 
