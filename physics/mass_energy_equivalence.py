@@ -1,6 +1,6 @@
 import math
 # Function to calculate energy equivalent of a given mass in kilograms using Einstein's equation E=mc^2
-def calculate_energy(mass):
+def calculate_energy(mass): #mass should be in kilograms
     # Speed of light in meters per second (approximately)
     speed_of_light = 299792458
     
