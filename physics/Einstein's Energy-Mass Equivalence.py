@@ -2,7 +2,7 @@ c= 299792458
 def energy_equivalence(mass):
    
     # Check if the mass is non-negative
-    if mass_kg < 0:
+    if mass < 0:
         raise ValueError("mass should be positive")
 
     # Check if the speed of light is positive
