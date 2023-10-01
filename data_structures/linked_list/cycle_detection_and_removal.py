@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from typing import Any
+import doctest
 
 
 class ContainsLoopError(Exception):
@@ -91,6 +92,7 @@ class Node:
 
 
 if __name__ == "__main__":
+    doctest.testmod()
     root_node = Node(1)
     root_node.next_node = Node(2)
     root_node.next_node.next_node = Node(3)
