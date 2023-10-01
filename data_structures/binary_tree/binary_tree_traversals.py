@@ -1,12 +1,12 @@
-# https://en.wikipedia.org/wiki/Tree_traversal
 from __future__ import annotations
 
 from collections import deque
-from collections.abc import Sequence
+from collections.abc import Generator, Sequence
 from dataclasses import dataclass
 from typing import Any
 
 
+# https://en.wikipedia.org/wiki/Tree_traversal
 @dataclass
 class Node:
     data: int
@@ -31,44 +31,56 @@ def make_tree() -> Node | None:
     return tree
 
 
-def preorder(root: Node | None) -> list[int]:
+def preorder(root: Node | None) -> Generator[int, None, None]:
     """
     Pre-order traversal visits root node, left subtree, right subtree.
-    >>> preorder(make_tree())
+    >>> list(preorder(make_tree()))
     [1, 2, 4, 5, 3]
     """
-    return [root.data, *preorder(root.left), *preorder(root.right)] if root else []
+    if not root:
+        return
+    yield root.data
+    yield from preorder(root.left)
+    yield from preorder(root.right)
 
 
-def postorder(root: Node | None) -> list[int]:
+def postorder(root: Node | None) -> Generator[int, None, None]:
     """
     Post-order traversal visits left subtree, right subtree, root node.
-    >>> postorder(make_tree())
+    >>> list(postorder(make_tree()))
     [4, 5, 2, 3, 1]
     """
-    return postorder(root.left) + postorder(root.right) + [root.data] if root else []
+    if not root:
+        return
+    yield from postorder(root.left)
+    yield from postorder(root.right)
+    yield root.data
 
 
-def inorder(root: Node | None) -> list[int]:
+def inorder(root: Node | None) -> Generator[int, None, None]:
     """
     In-order traversal visits left subtree, root node, right subtree.
-    >>> inorder(make_tree())
+    >>> list(inorder(make_tree()))
     [4, 2, 5, 1, 3]
     """
-    return [*inorder(root.left), root.data, *inorder(root.right)] if root else []
+    if not root:
+        return
+    yield from inorder(root.left)
+    yield root.data
+    yield from inorder(root.right)
 
 
-def reverse_inorder(root: Node | None) -> list[int]:
+def reverse_inorder(root: Node | None) -> Generator[int, None, None]:
     """
     Reverse in-order traversal visits right subtree, root node, left subtree.
-    >>> reverse_inorder(make_tree())
+    >>> list(reverse_inorder(make_tree()))
     [3, 1, 5, 2, 4]
     """
-    return (
-        [*reverse_inorder(root.right), root.data, *reverse_inorder(root.left)]
-        if root
-        else []
-    )
+    if not root:
+        return
+    yield from reverse_inorder(root.right)
+    yield root.data
+    yield from reverse_inorder(root.left)
 
 
 def height(root: Node | None) -> int:
@@ -178,10 +190,10 @@ def main() -> None:  # Main function for testing.
     root = make_tree()
 
     # All Traversals of the binary are as follows:
-    print(f"In-order Traversal: {inorder(root)}")
-    print(f"Reverse In-order Traversal: {reverse_inorder(root)}")
-    print(f"Pre-order Traversal: {preorder(root)}")
-    print(f"Post-order Traversal: {postorder(root)}", "\n")
+    print(f"In-order Traversal: {list(inorder(root))}")
+    print(f"Reverse In-order Traversal: {list(reverse_inorder(root))}")
+    print(f"Pre-order Traversal: {list(preorder(root))}")
+    print(f"Post-order Traversal: {list(postorder(root))}", "\n")
 
     print(f"Height of Tree: {height(root)}", "\n")
 
