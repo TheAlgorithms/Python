@@ -14,4 +14,5 @@ def energy_equivalence(mass):
     return energy
 
 if __name__ == "__main__":
+    
     energy_equivalence()
