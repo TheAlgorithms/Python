@@ -33,7 +33,7 @@ class FibonacciHeap:
     def extract_min(self) -> int:
         """
         Extract and return the minimum key from the Fibonacci Heap.
-    
+
         Returns:
             int: The minimum key in the heap.
         """
@@ -60,7 +60,6 @@ class FibonacciHeap:
                 self._consolidate()
             self.num_nodes -= 1
         return min_node.key or None
-
 
     def _link(self, min1: FibonacciHeapNode, min2: FibonacciHeapNode) -> None:
         """
