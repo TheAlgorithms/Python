@@ -17,8 +17,9 @@
 
 
 import numpy as np
+from typing import Union
 
-def pairwise_distances(X):
+def pairwise_distances(X: np.ndarray) -> np.ndarray:
     """
     Compute pairwise distances between data points in the input array X.
 
@@ -37,7 +38,7 @@ def pairwise_distances(X):
             distances[j, i] = distances[i, j]
     return distances
 
-def silhouette_score(X, cluster_labels):
+def silhouette_score(X: np.ndarray, cluster_labels: Union[list, np.ndarray]) -> float:
     """
     Calculate the silhouette score for a set of data points and their corresponding cluster labels.
 
@@ -51,6 +52,15 @@ def silhouette_score(X, cluster_labels):
     Returns:
     float: The average silhouette score for the clustering. The score ranges from -1 (a poor clustering)
     to +1 (a perfect clustering), with 0 indicating overlapping clusters.
+
+    Example:
+    >>> import numpy as np
+    >>> from machine_learning.silhouette_score import silhouette_score
+    >>> X = np.array([[1, 2], [2, 3], [3, 4], [4, 5]])
+    >>> cluster_labels = [0, 0, 1, 1]
+    >>> score = silhouette_score(X, cluster_labels)
+    >>> round(score, 2)
+    0.36
     """
     distances = pairwise_distances(X)
     n = len(X)
