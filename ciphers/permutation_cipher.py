@@ -21,8 +21,8 @@ def generate_valid_block_size(message_length: int) -> int:
         int: A valid block size.
 
     Example:
-        generate_valid_block_size(12)
-        3
+        >>> generate_valid_block_size(2)
+        2
     """
     while True:
         block_size = random.randint(2, message_length)
@@ -41,8 +41,8 @@ def generate_permutation_key(block_size: int) -> list:
         list[int]: A list containing a random permutation of digits.
 
     Example:
-        generate_permutation_key(4)
-        [3, 4, 1, 2]
+        >>> generate_permutation_key(1)
+        [1]
     """
     digits = list(range(1, block_size + 1))
     random.shuffle(digits)
@@ -118,6 +118,13 @@ def decrypt(encrypted_message: str, key: list) -> str:
 
 
 def main() -> None:
+    """
+    Driver function to pass message to get encrypted, then decrypted.
+
+    Example:
+    >>> main()
+    Decrypted message: HELLO WORLD
+    """
     message = "HELLO WORLD"
     encrypted_message, key = encrypt(message)
 
