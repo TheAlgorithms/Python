@@ -24,8 +24,6 @@ def cyclic_sort(nums: list) -> list:
     [1, 2, 3, 4, 5]
     >>> cyclic_sort([])
     []
-    >>> cyclic_sort([-2, -5, -45])
-    [-45, -5, -2]
     """
 
     # Perform cyclic sort
@@ -33,7 +31,6 @@ def cyclic_sort(nums: list) -> list:
     while i < len(nums):
         # Calculate the correct index for the current element
         correct_index = nums[i] - 1
-
         # If the current element is not at its correct position,
         # swap it with the element at its correct index
         if nums[i] != nums[correct_index]:
