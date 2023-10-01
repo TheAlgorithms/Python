@@ -4,6 +4,8 @@
 #                     Output : "Hi There !"
 # Time Complexity: O(1) 
 # Auxiliary Space: O(1)
+# refrence links : wikipedia = "https://en.wikipedia.org/wiki/Rope_(data_structure)"
+#                  geeks for geeks = "https://www.geeksforgeeks.org/ropes-data-structure-fast-string-concatenation/"
 
 
 LEAF_LEN = 2  # Define a constant for the maximum number of characters in leaf nodes
