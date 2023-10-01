@@ -17,7 +17,7 @@ scikit-fuzzy
 scikit-learn
 statsmodels
 sympy
-tensorflow
+tensorflow ; python_version < '3.12'
 texttable
 tweepy
 xgboost
