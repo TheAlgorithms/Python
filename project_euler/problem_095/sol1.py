@@ -18,7 +18,7 @@ Since this chain returns to its starting point, it is called an amicable chain.
 Find the smallest member of the longest amicable chain with no element exceeding one million.
 """
 
-def solution(number : int = 10**6) -> int:
+def solution(number: int = 10**6) -> int:
     """
     Returns the smallest member when n = 1000000
     >>> solution(1000000)
