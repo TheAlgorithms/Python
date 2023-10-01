@@ -2,10 +2,12 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+
 @dataclass
 class ListNode:
     data: int
     next_node: ListNode | None = None
+
 
 def print_linked_list(head: ListNode | None) -> None:
     """
@@ -33,6 +35,7 @@ def print_linked_list(head: ListNode | None) -> None:
         print(head.data, end="->")
         head = head.next_node
     print(head.data)
+
 
 def insert_node(head: ListNode | None, data: int) -> ListNode:
     """
@@ -62,6 +65,7 @@ def insert_node(head: ListNode | None, data: int) -> ListNode:
     temp_node.next_node = new_node
     return head
 
+
 class Solution:
     def reverse_k_group(self, head: ListNode | None, k: int) -> ListNode | None:
         """
@@ -85,6 +89,7 @@ class Solution:
         >>> print_linked_list(new_head)
         2->1->4->3->6->5
         """
+
         def reverse_group(head: ListNode | None, k: int) -> tuple:
             prev_group_tail = None
             nodes_left = k
@@ -111,12 +116,18 @@ class Solution:
         new_head, current_tail, next_group_head, success = reverse_group(head, k)
 
         while success:
-            new_group_head, new_group_tail, next_next_group_head, success = reverse_group(next_group_head, k)
+            (
+                new_group_head,
+                new_group_tail,
+                next_next_group_head,
+                success,
+            ) = reverse_group(next_group_head, k)
             current_tail.next_node = new_group_head
             current_tail = new_group_tail
             next_group_head = next_next_group_head
 
         return new_head
+
 
 if __name__ == "__main__":
     import doctest
