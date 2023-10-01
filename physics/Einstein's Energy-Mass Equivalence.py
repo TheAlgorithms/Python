@@ -21,5 +21,5 @@ def energy_equivalence(mass):
     """
     c=299792458 
 
-    E=mass*c**2
-    return E
+    e=mass*c**2
+    return e
