@@ -86,7 +86,7 @@ def encrypt(
     return encrypted_message, key
 
 
-def decrypt(encrypted_message: str, key: list) -> str:
+def decrypt(encrypted_message: str, key: list[int]) -> str:
     """
     Decrypt an encrypted message using a permutation cipher with block rearrangement.
 
