@@ -1,131 +1,147 @@
-from typing import List, Optional
-
-
 class Node:
-    def __init__(self, data: int):
+    def __init__(self, data: int = None):
         self.data = data
         self.next = None
 
+    def __repr__(self):
+        """Returns a visual representation of the node and all its following nodes."""
+        string_rep = ""
+        temp = self
+        while temp:
+            string_rep += f"<{temp.data}> ---> "
+            temp = temp.next
+        string_rep += "<END>"
+        return string_rep
 
-def create(A: List[int]) -> Optional[Node]:
+
+def create(arr: list[int]) -> Node:
     """
-    Create a linked list from an array.
+    Creates a linked list from an array and returns the head of the linked list.
 
     Args:
-        A (List[int]): The input array.
+        arr (list[int]): The array of integers.
 
     Returns:
-        Optional[Node]: The head of the linked list.
+        Node: The head of the linked list.
 
     Example:
-        >>> A = [1, 3, 5, 7, 9, 11, 11, 15, 17, 19]
-        >>> head = create(A)
-        >>> display(head)
-        1 3 5 7 9 11 15 17 19
+        >>> arr = [1, 3, 5, 7, 9, 11, 11, 15, 17, 19]
+        >>> head = create(arr)
+        >>> head.data
+        1
+        >>> head.next.data
+        3
     """
-    if not A:
-        return None
+    if not arr:
+        raise ValueError("The array is empty")
 
-    head = Node(A[0])
-    last = head
+    head = Node(arr[0])
+    current = head
 
-    for data in A[1:]:
-        last.next = Node(data)
-        last = last.next
+    for data in arr[1:]:
+        current.next = Node(data)
+        current = current.next
 
     return head
 
 
-def display(head: Optional[Node]) -> None:
+def display(head: Node) -> str:
     """
-    Display the elements of a linked list.
+    Display the elements of the linked list.
 
     Args:
-        head (Optional[Node]): The head of the linked list.
-
-    Example:
-        >>> A = [1, 3, 5, 7, 9, 11, 11, 15, 17, 19]
-        >>> head = create(A)
-        >>> display(head)
-        1 3 5 7 9 11 11 15 17 19
-    """
-    while head:
-        print(head.data, end=" ")
-        head = head.next
-    print()
-
-
-def count(head: Optional[Node]) -> int:
-    """
-    Count the number of nodes in a linked list.
-
-    Args:
-        head (Optional[Node]): The head of the linked list.
+        head (Node): The head of the linked list.
 
     Returns:
-        int: The count of nodes.
+        str: A visual representation of the linked list.
 
     Example:
-        >>> A = [1, 3, 5, 7, 9, 11, 11, 15, 17, 19]
-        >>> head = create(A)
+        >>> arr = [1, 3, 5, 7, 9]
+        >>> head = create(arr)
+        >>> display(head)
+        '<1> ---> <3> ---> <5> ---> <7> ---> <9> ---> <END>'
+    """
+    result = ""
+    current = head
+    while current:
+        result += f"<{current.data}> ---> "
+        current = current.next
+    result += "<END>"
+    return result
+
+
+def count(head: Node) -> int:
+    """
+    Count the number of nodes in the linked list.
+
+    Args:
+        head (Node): The head of the linked list.
+
+    Returns:
+        int: The count of nodes in the linked list.
+
+    Example:
+        >>> arr = [1, 3, 5, 7, 9]
+        >>> head = create(arr)
         >>> count(head)
-        10
+        5
     """
     count = 0
-    while head:
+    current = head
+    while current:
         count += 1
-        head = head.next
+        current = current.next
     return count
 
 
-def delete(head: Optional[Node], index: int) -> int:
+def delete(head: Node, index: int) -> int:
     """
-    Delete a node at a given index from a linked list.
+    Delete a node at a given index from the linked list and return its value.
 
     Args:
-        head (Optional[Node]): The head of the linked list.
+        head (Node): The head of the linked list.
         index (int): The index at which the node should be deleted (1-based index).
 
     Returns:
-        int: The data of the deleted node, or -1 if the index is out of range.
+        int: The value of the deleted node.
 
     Example:
-        >>> A = [1, 3, 5, 7, 9, 11, 11, 15, 17, 19]
-        >>> head = create(A)
+        >>> arr = [1, 3, 5, 7, 9]
+        >>> head = create(arr)
         >>> delete(head, 3)
         5
+        >>> display(head)
+        '<1> ---> <3> ---> <7> ---> <9> ---> <END>'
     """
     if index < 1 or index > count(head):
         return -1
 
     if index == 1:
-        data = head.data
+        value = head.data
         head = head.next
-        return data
+        return value
     else:
-        prev = head
         current = head
-        for _ in range(index - 1):
-            prev = current
+        for _ in range(index - 2):
             current = current.next
-        data = current.data
-        prev.next = current.next
-        return data
+        value = current.next.data
+        current.next = current.next.next
+        return value
 
 
-def remove_duplicates(head: Optional[Node]) -> None:
+def remove_duplicates(head: Node):
     """
-    Remove duplicate elements from a sorted linked list.
+    Remove duplicates from a sorted linked list.
 
     Args:
-        head (Optional[Node]): The head of the linked list.
+        head (Node): The head of the sorted linked list.
 
     Example:
-        >>> A = [1, 3, 3, 5, 5, 7, 7, 9]
-        >>> head = create(A)
+        >>> arr = [1, 3, 3, 5, 5, 7]
+        >>> head = create(arr)
         >>> remove_duplicates(head)
         >>> display(head)
-        1 3 5 7 9
+        '<1> ---> <3> ---> <5> ---> <7> ---> <END>'
     """
     current = head
     while current and current.next:
@@ -136,10 +152,8 @@ def remove_duplicates(head: Optional[Node]) -> None:
 
 
 if __name__ == "__main__":
-    print("Linked List!")
-
-    A = [1, 3, 5, 7, 9, 11, 11, 15, 17, 19]
-    head = create(A)
-
+    arr = [1, 3, 5, 7, 9, 11, 11, 15, 17, 19]
+    head = create(arr)
     remove_duplicates(head)
-    display(head)
+    print("Linked List:")
+    print(display(head))
