@@ -4,13 +4,12 @@
 
 import doctest
 
-
-def mass_to_energy(mass_kg):
+def mass_to_energy(mass_kg: float) -> float:
     """
     Calculate the energy equivalent of a given mass using E=mc^2.
 
     :param mass_kg: Mass in kilograms.
-    :return: Energy in joules.
+    :return: Energy in joules as a float.
     >>> format(mass_to_energy(1), '.15e')  # 1 kg
     '8.987551787368176e+16'
     >>> format(mass_to_energy(0.5), '.15e')  # 0.5 kg
@@ -20,8 +19,7 @@ def mass_to_energy(mass_kg):
     energy_joules = mass_kg * speed_of_light**2
     return energy_joules
 
-
-def is_valid_mass(mass_str):
+def is_valid_mass(mass_str: str) -> bool:
     """
     Check if the input string represents a valid positive float for mass.
 
@@ -42,12 +40,23 @@ def is_valid_mass(mass_str):
     except ValueError:
         return False
 
-
-def get_valid_mass_input():
+def get_valid_mass_input() -> float:
     """
     Prompt the user for a valid positive mass input.
 
     :return: Valid mass as a float.
+    >>> input_values = ["1.5", "-1", "abc", "0", "2.5"]
+    >>> output_values = [1.5, -1, "abc", 0, 2.5]
+    >>> for val in input_values:
+    ...     print(get_valid_mass_input())
+    Enter the mass in kilograms (a positive number): 1.5
+    Enter the mass in kilograms (a positive number): -1
+    Enter the mass in kilograms (a positive number): abc
+    Invalid input. Please enter a positive number for mass.
+    Enter the mass in kilograms (a positive number): 0
+    Invalid input. Please enter a positive number for mass.
+    Enter the mass in kilograms (a positive number): 2.5
+    2.5
     """
     while True:
         mass_str = input("Enter the mass in kilograms (a positive number): ")
@@ -56,11 +65,9 @@ def get_valid_mass_input():
         else:
             print("Invalid input. Please enter a positive number for mass.")
 
-
 if __name__ == "__main__":
     doctest.testmod()  # Run doctests in the docstrings
     mass = get_valid_mass_input()
     energy = mass_to_energy(mass)
-    print(
-        f"The energy equivalent of {mass} kilograms is {format(energy, '.15e')} joules."
-    )
+    print(f"The energy equivalent of {mass} kilograms is {format(energy, '.15e')} joules.")
+
