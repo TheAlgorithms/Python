@@ -1,0 +1,57 @@
+def is_safe(board, row, col, N):
+    # Check if there is a queen in the same column
+    for i in range(row):
+        if board[i][col] == 1:
+            return False
+    
+    # Check upper-left diagonal
+    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
+        if board[i][j] == 1:
+            return False
+    
+    # Check upper-right diagonal
+    for i, j in zip(range(row, -1, -1), range(col, N)):
+        if board[i][j] == 1:
+            return False
+    
+    return True
+
+def solve_n_queens_util(board, row, N):
+    if row == N:
+        return [board[:]]
+    
+    solutions = []
+    for col in range(N):
+        if is_safe(board, row, col, N):
+            board[row][col] = 1
+            solutions += solve_n_queens_util(board, row + 1, N)
+            board[row][col] = 0  # Backtrack
+    
+    return solutions
+
+def solve_n_queens(N):
+    board = [[0] * N for _ in range(N)]
+    solutions = solve_n_queens_util(board, 0, N)
+    return solutions
+
+def print_solution(solution):
+    for row in solution:
+        for cell in row:
+            if cell == 1:
+                print("Q", end=" ")
+            else:
+                print(".", end=" ")
+        print()
+
+if __name__ == "__main__":
+    N = 8  # You can change this to solve for different board sizes
+    solutions = solve_n_queens(N)
+    
+    if solutions:
+        print(f"Solutions for {N}-Queens:")
+        for idx, solution in enumerate(solutions, start=1):
+            print(f"Solution {idx}:")
+            print_solution(solution)
+            print()
+    else:
+        print(f"No solutions found for {N}-Queens.")
