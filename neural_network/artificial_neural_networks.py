@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 from tensorflow import keras
 
 class ANN_classifier:
+
     """
     Implementation of an Artificial Neural Network for classification tasks.
 
