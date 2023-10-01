@@ -7,6 +7,7 @@ for both theoretical analysis and real-world problem-solving.
 
 """
 
+
 def three_sum(nums: list[int]) -> list[list[int]]:
     """
     Find all unique triplets in a sorted array of integers that sum up to zero.
