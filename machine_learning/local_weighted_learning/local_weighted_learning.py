@@ -122,7 +122,7 @@ def local_weight_regression(
     """
     y_pred = np.zeros(len(x_train))  # Initialize array of predictions
     for i, item in enumerate(x_train):
-        y_pred[i] = np.dot(item, local_weight(item, x_train, y_train, tau))
+        y_pred[i] = np.dot(item, local_weight(item, x_train, y_train, tau)).item()
 
     return y_pred
 
