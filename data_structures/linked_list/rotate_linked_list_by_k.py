@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 class Node:
     def __init__(self, data: int) -> None:
         self.data = data
@@ -12,7 +13,7 @@ def print_linked_list(head: Node) -> None:
 
     Parameters:
         head (Node): The head of the linked list to be printed.
-    
+
     >>> head = None
     >>> head = insert_node(head, 0)
     >>> head = insert_node(head, 2)
@@ -100,7 +101,7 @@ def right_rotate_by_k(head: Node, k: int) -> Node:
     k = k % length
 
     if k == 0:
-        return head  #As No rotation needed.
+        return head  # As No rotation needed.
 
     # Find the new head position after rotation.
     new_head_index = length - k
@@ -120,17 +121,18 @@ def right_rotate_by_k(head: Node, k: int) -> Node:
 
     return new_head
 
+
 if __name__ == "__main__":
-    import doctest 
+    import doctest
 
     doctest.testmod()
     head = None
 
-    head = insert_node(head, 5)
-    head = insert_node(head, 1)
+    # head = insert_node(head, 5)
+    # head = insert_node(head, 1)
     head = insert_node(head, 2)
     head = insert_node(head, 4)
-    head = insert_node(head, 3)
+    # head = insert_node(head, 3)
 
     print("Original list: ", end="")
     print_linked_list(head)
