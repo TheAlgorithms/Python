@@ -1,12 +1,16 @@
 from typing import Optional
 
+
 class ListNode:
     def __init__(self, val=0):
         self.val = val
         self.next = None
 
+
 class Solution:
-    def reverse(self, head: Optional[ListNode], k: int) -> tuple[Optional[ListNode], Optional[ListNode], Optional[ListNode], bool]:
+    def reverse(
+        self, head: Optional[ListNode], k: int
+    ) -> tuple[Optional[ListNode], Optional[ListNode], Optional[ListNode], bool]:
         """
         Reverse the next k nodes in a linked list.
 
@@ -15,7 +19,7 @@ class Solution:
             k (int): The number of nodes to reverse.
 
         Returns:
-            tuple[Optional[ListNode], Optional[ListNode], Optional[ListNode], bool]: 
+            tuple[Optional[ListNode], Optional[ListNode], Optional[ListNode], bool]:
                 - The new head of the reversed group.
                 - The tail of the reversed group.
                 - The new head after the reversed group.
@@ -100,7 +104,8 @@ class Solution:
 
         return reversed_head
 
+
 if __name__ == "__main__":
     import doctest
-    
+
     doctest.testmod()
