@@ -26,7 +26,7 @@ iris = datasets.load_iris()
 
 dataframe = pd.DataFrame(iris.data, columns=iris.feature_names)
 datafrane["flower"] = iris.target
-dataframe["flower"] = dataframe["flower"].apply(lambda x: iris.target_names[x])
+dataframe["flower"] = dataframe["flower"].apply(lambda labels: iris.target_names[labels])
 dataframe[47:150]
 
 scores = []
