@@ -41,12 +41,6 @@ class LinkedList:
         new_node = Node(data)
         new_node.ref = n.ref
         n.ref = new_node
-
-
-linked_list = LinkedList()
-linked_list.add_begin(11)
-linked_list.add_end(100)
-linked_list.add_begin(22)
-linked_list.add_after(30, 11)
-linked_list.print_ll()
-# https://youtu.be/xRTdfZsAz6Y?si=EMrqVJpXjDDz1kEF
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
