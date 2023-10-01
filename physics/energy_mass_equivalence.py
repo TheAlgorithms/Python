@@ -70,4 +70,6 @@ if __name__ == "__main__":
     doctest.testmod()  # Run doctests in the docstrings
     mass = get_valid_mass_input()
     energy = mass_to_energy(mass)
-    print(f"The energy equivalent of {mass} kg is " f"{format(energy, '.15e')} joules.")
+    print(f"The energy equivalent of {mass} kg is " 
+          f"{format(energy, '.15e')} joules."
+        )
