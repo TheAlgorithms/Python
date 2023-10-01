@@ -1,6 +1,7 @@
 import math
 import scipy.constants as const
 
+
 def energy_equivalent_for_stationary_mass(mass_kg: float) -> float | ValueError:
     """
     Calculate the energy equivalent for a given mass using E=mc^2.
