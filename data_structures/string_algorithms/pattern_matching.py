@@ -7,6 +7,27 @@
 # https://cp-algorithms.com/string/prefix-function.html
 
 
+def isequal(index_1: int, index_2: int, s: str) -> bool:
+    """
+    Check if two characters at the given indices in a string are equal.
+
+    Args:
+        index_1 (int): The index of the first character.
+        index_2 (int): The index of the second character.
+        s (str): The string in which to compare characters.
+
+    Returns:
+        bool: If same character then return True, else return False
+
+    Examples:
+    >>> isequal(1,2,"caab")
+    True
+    >>> isequal(1,2,"cadb")
+    False
+    """
+    return s[index_1] == s[index_2]
+
+
 class StringMatch:
     def __init__(
         self, function_method_name: str = "Z_FUNCTION", separator: str = "\uFFFF"
@@ -60,28 +81,7 @@ class StringMatch:
         >>> print(StringMatch().match("bbcws","xwfaq"))
         (0, [])
         """
-
-        def is_valid_text() -> bool:
-            return all(char != self.__separator for char in text)
-            # for char in text:
-            #     if char == self.__separator:
-            #         return False
-            # return True
-
-        def is_valid_pattern() -> bool:
-            return all(char != self.__separator for char in pattern)
-            # for char in text:
-            #     if char == self.__separator:
-            #         return False
-            # return True
-
-        if not is_valid_text():
-            print("Err : Text contains separator")
-            return (-1, [])
-
-        if not is_valid_pattern():
-            print("Err : Pattern contains separator")
-            return (-1, [])
+        # assume the text and pattern do not contain separator
 
         occurrence_count, occurrence_indices = self.use_function(
             text=text, pattern=pattern
@@ -203,13 +203,10 @@ class StringMatch:
 
         l, r = 0, 0
 
-        def isequal(index_1: int, index_2: int) -> bool:
-            return s[index_1] == s[index_2]
-
         for i in range(1, n):
             if i < r:
                 z[i] = min(r - i, z[i - l])
-            while i + z[i] < n and isequal(z[i], i + z[i]):
+            while i + z[i] < n and isequal(z[i], i + z[i], s):
                 z[i] += 1
             if i + z[i] > r:
                 l, r = i, i + z[i]
@@ -236,14 +233,11 @@ class StringMatch:
 
         pi = [0] * n
 
-        def isequal(index_1: int, index_2: int) -> bool:
-            return s[index_1] == s[index_2]
-
         for i in range(1, n):
             j = pi[i - 1]
-            while j > 0 and not isequal(i, j):
+            while j > 0 and not isequal(i, j, s):
                 j = pi[j - 1]
-            if isequal(i, j):
+            if isequal(i, j, s):
                 j += 1
             pi[i] = j
 
