@@ -38,32 +38,27 @@ class FibonacciHeap:
             int: The minimum key in the heap.
         """
         min_node = self.min_node
-        if not min_node:
-            return None
-
-        if min_node.child:
-            child = min_node.child
-            while True:
-                next_child = child.next
-                child.prev = min_node.prev
-                child.next = min_node.next
-                min_node.prev.next = child
-                min_node.next.prev = child
-                if next_child == min_node.child:
-                    break
-                child = next_child
-            min_node.child = None
-
-        min_node.prev.next = min_node.next
-        min_node.next.prev = min_node.prev
-
-        if min_node == min_node.next:
-            self.min_node = None
-        else:
-            self.min_node = min_node.next
-            self._consolidate()
-
-        self.num_nodes -= 1
+        if min_node:
+            if min_node.child:
+                child = min_node.child
+                while True:
+                    next_child = child.next
+                    child.prev = min_node.prev
+                    child.next = min_node.next
+                    min_node.prev.next = child
+                    min_node.next.prev = child
+                    if next_child == min_node.child:
+                        break
+                    child = next_child
+                min_node.child = None
+            min_node.prev.next = min_node.next
+            min_node.next.prev = min_node.prev
+            if min_node == min_node.next:
+                self.min_node = None
+            else:
+                self.min_node = min_node.next
+                self._consolidate()
+            self.num_nodes -= 1
         return min_node.key if min_node else None
 
     def _link(self, min1: FibonacciHeapNode, min2: FibonacciHeapNode) -> None:
@@ -93,10 +88,9 @@ class FibonacciHeap:
 
     def _consolidate(self) -> None:
         """
-        Consolidate trees in the Fibonacci Heap
-        to ensure there are no two trees with the same degree.
+        Consolidate trees in the Fibonacci Heap to ensure there are no two trees with the same degree.
         """
-        max_degree = int(self.num_nodes**0.5) + 1
+        max_degree = int(self.num_nodes ** 0.5) + 1
         degree_list = [None] * max_degree
         nodes = [self.min_node]
         current = self.min_node.next
@@ -120,7 +114,6 @@ class FibonacciHeap:
                     self.min_node = node
                 elif node.key < self.min_node.key:
                     self.min_node = node
-
 
 # Example usage:
 fib_heap = FibonacciHeap()
