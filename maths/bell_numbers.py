@@ -5,13 +5,6 @@ integers. In other words, the first (n + 1) Bell numbers.
 
 For more information about Bell numbers, refer to:
 https://en.wikipedia.org/wiki/Bell_number
-
-Example:
-To calculate the Bell numbers for sets of lengths from 0 to 5:
-
->>> import bell_numbers
->>> bell_numbers.bell_numbers(5)
-[1, 1, 2, 5, 15, 52]
 """
 
 
