@@ -1,14 +1,18 @@
 from typing import Optional, Union, Tuple
 
+
 class ListNode:
     def __init__(self, val: int = 0) -> None:
         self.val = val
         self.next = None
 
+
 class Solution:
-    def reverse(self, head: Optional[ListNode], node_size: int) -> Union[
+    def reverse(
+        self, head: Optional[ListNode], node_size: int
+    ) -> Union[
         Tuple[Optional[ListNode], Optional[ListNode], Optional[ListNode], bool],
-        Tuple[Optional[ListNode], None, None, bool]
+        Tuple[Optional[ListNode], None, None, bool],
     ]:
         """
         Reverse the next k(node_size) nodes in a linked list.
@@ -18,7 +22,7 @@ class Solution:
             node_size (int): The number of nodes to reverse.
 
         Returns:
-            tuple[Optional[ListNode], Optional[ListNode], Optional[ListNode], bool]: 
+            tuple[Optional[ListNode], Optional[ListNode], Optional[ListNode], bool]:
                 - The new head of the reversed group.
                 - The tail of the reversed group.
                 - The new head after the reversed group.
@@ -64,8 +68,9 @@ class Solution:
 
         return prev_group_end, current_group_end, head, True
 
-    def reverse_k_group(self, head: Optional[ListNode], group_size: int) -> Optional[ListNode]:
-
+    def reverse_k_group(
+        self, head: Optional[ListNode], group_size: int
+    ) -> Optional[ListNode]:
         """
         Reverse nodes in a linked list in groups of k(group_size).
 
@@ -104,7 +109,8 @@ class Solution:
 
         return reversed_head
 
+
 if __name__ == "__main__":
     import doctest
-    
+
     doctest.testmod()
