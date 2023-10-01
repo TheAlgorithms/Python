@@ -341,6 +341,7 @@
   * [Palindrome Partitioning](dynamic_programming/palindrome_partitioning.py)
   * [Regex Match](dynamic_programming/regex_match.py)
   * [Rod Cutting](dynamic_programming/rod_cutting.py)
+  * [Smith Waterman](dynamic_programming/smith_waterman.py)
   * [Subset Generation](dynamic_programming/subset_generation.py)
   * [Sum Of Subset](dynamic_programming/sum_of_subset.py)
   * [Tribonacci](dynamic_programming/tribonacci.py)
@@ -567,7 +568,6 @@
   * [Dual Number Automatic Differentiation](maths/dual_number_automatic_differentiation.py)
   * [Entropy](maths/entropy.py)
   * [Euclidean Distance](maths/euclidean_distance.py)
-  * [Euclidean Gcd](maths/euclidean_gcd.py)
   * [Euler Method](maths/euler_method.py)
   * [Euler Modified](maths/euler_modified.py)
   * [Eulers Totient](maths/eulers_totient.py)
@@ -747,6 +747,7 @@
   * [Scoring Algorithm](other/scoring_algorithm.py)
   * [Sdes](other/sdes.py)
   * [Tower Of Hanoi](other/tower_of_hanoi.py)
+  * [Word Search](other/word_search.py)
 
 ## Physics
   * [Altitude Pressure](physics/altitude_pressure.py)
