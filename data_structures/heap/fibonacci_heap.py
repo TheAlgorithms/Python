@@ -2,8 +2,7 @@
 # Reference: https://en.wikipedia.org/wiki/Fibonacci_heap
 
 from __future__ import annotations
-from collections.abc import Iterable, Iterator
-from typing import Any, Generic, TypeVar
+from typing import Generic, TypeVar
 
 T = TypeVar("T", bound=int)
 
@@ -62,9 +61,7 @@ class FibonacciHeap(Generic[T]):
                 self.min_node = new_node
         self.num_nodes += 1
 
-    def _link_nodes(
-        self, min_node: FibonacciNode[T], new_node: FibonacciNode[T]
-    ) -> None:
+    def _link_nodes(self, min_node: FibonacciNode[T], new_node: FibonacciNode[T]) -> None:
         """
         Link two nodes together in the Fibonacci Heap.
 
@@ -79,6 +76,9 @@ class FibonacciHeap(Generic[T]):
         >>> node1.next == node2 and node2.prev == node1
         True
         """
+        if min_node is None or new_node is None:
+            raise ValueError("min_node and new_node cannot be None")
+
         new_node.next = min_node.next
         min_node.next = new_node
         new_node.prev = min_node
@@ -98,7 +98,7 @@ class FibonacciHeap(Generic[T]):
         >>> fh.min_node.key
         3
         """
-        max_degree = int(self.num_nodes**0.5) + 1
+        max_degree = int(self.num_nodes ** 0.5) + 1
         degree_buckets: list[FibonacciNode[T] | None] = [None] * max_degree
 
         current_node = self.min_node
@@ -181,11 +181,12 @@ class FibonacciHeap(Generic[T]):
         >>> node1.next == node1.prev == node1
         True
         """
+        if node is None:
+            raise ValueError("node cannot be None")
+
         node.prev.next = node.next
         node.next.prev = node.prev
 
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
