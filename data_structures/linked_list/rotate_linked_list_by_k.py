@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
 
+
+@dataclass
 class Node:
-    def __init__(self, data: int) -> None:
-        self.data = data
-        self.next = None
+    data: int
+    next_node: Node | None = None
 
 
 def print_linked_list(head: Node | None) -> None:
@@ -17,8 +19,7 @@ def print_linked_list(head: Node | None) -> None:
             head (Node | None): The head of the linked list to be printed,
     or None if the linked list is empty.
 
-        >>> head = None
-        >>> head = insert_node(head, 0)
+        >>> head = insert_node(None, 0)
         >>> head = insert_node(head, 2)
         >>> head = insert_node(head, 1)
         >>> print_linked_list(head)
@@ -30,9 +31,9 @@ def print_linked_list(head: Node | None) -> None:
     """
     if head is None:
         return
-    while head.next is not None:
+    while head.next_node is not None:
         print(head.data, end="->")
-        head = head.next
+        head = head.next_node
     print(head.data)
 
 
@@ -47,8 +48,7 @@ def insert_node(head: Node | None, data: int) -> Node:
     Returns:
         Node: The new head of the linked list.
 
-    >>> head = None
-    >>> head = insert_node(head, 10)
+    >>> head = insert_node(None, 10)
     >>> head = insert_node(head, 9)
     >>> head = insert_node(head, 8)
     >>> print_linked_list(head)
@@ -60,68 +60,75 @@ def insert_node(head: Node | None, data: int) -> Node:
         return new_node
 
     temp_node = head
-    while temp_node.next is not None:
-        temp_node = temp_node.next
+    while temp_node.next_node:
+        temp_node = temp_node.next_node
 
-    temp_node.next = new_node  # type: ignore
+    temp_node.next_node = new_node  # type: ignore
     return head
 
 
-def right_rotate_by_k(head: Node | None, rotation: int) -> Node | None:
+def rotate_to_the_right(head: Node | None, places: int) -> Node:
     """
-    Rotate a linked list to the right by rotation times.
+    Rotate a linked list to the right by places times.
 
     Parameters:
-        head (Node | None): The head of the linked list.
-        rotation (int): The number of places to rotate.
+        head: The head of the linked list.
+        places: The number of places to rotate.
 
     Returns:
-        Node | None: The head of the rotated linked list\
-if the linked list is not None, otherwise None.
+        Node: The head of the rotated linked list.
 
-    >>> head = None
-    >>> head = insert_node(head, 1)
+    >>> rotate_to_the_right(None, places=1)
+    Traceback (most recent call last):
+        ...
+    ValueError: The linked list is empty.
+    >>> head = insert_node(None, 1)
+    >>> rotate_to_the_right(head, places=1) == head
+    True
+    >>> head = insert_node(None, 1)
     >>> head = insert_node(head, 2)
     >>> head = insert_node(head, 3)
     >>> head = insert_node(head, 4)
     >>> head = insert_node(head, 5)
-    >>> rotation = 2
-    >>> new_head = right_rotate_by_k(head, rotation)
+    >>> new_head = rotate_to_the_right(head, places=2)
     >>> print_linked_list(new_head)
     4->5->1->2->3
     """
     # Check if the list is empty or has only one element
-    if head is None or head.next is None:
+    if not head:
+        raise ValueError("The linked list is empty.")
+
+    if head.next_node is None:
         return head
 
     # Calculate the length of the linked list
     length = 1
     temp_node = head
-    while temp_node.next is not None:
+    while temp_node.next_node is not None:
         length += 1
-        temp_node = temp_node.next
+        temp_node = temp_node.next_node
 
-    # Adjust the value of rotation to avoid unnecessary rotations.
-    rotation %= length
+    # Adjust the value of places to avoid places longer than the list.
+    places %= length
 
-    if rotation == 0:
-        return head  # As No rotation needed.
+    if places == 0:
+        return head  # As no rotation is needed.
 
     # Find the new head position after rotation.
-    new_head_index = length - rotation
+    new_head_index = length - places
 
     # Traverse to the new head position
     temp_node = head
     for _ in range(new_head_index - 1):
-        temp_node = temp_node.next
+        temp_node = temp_node.next_node
 
     # Update pointers to perform rotation
-    new_head = temp_node.next
-    temp_node.next = None
+    new_head = temp_node.next_node
+    temp_node.next_node = None
     temp_node = new_head
-    while temp_node.next is not None:
-        temp_node = temp_node.next
-    temp_node.next = head
+    while temp_node.next_node:
+        temp_node = temp_node.next_node
+    temp_node.next_node = head
 
     return new_head
 
@@ -130,8 +137,7 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    head = None
-    head = insert_node(head, 5)
+    head = insert_node(None, 5)
     head = insert_node(head, 1)
     head = insert_node(head, 2)
     head = insert_node(head, 4)
@@ -140,8 +146,7 @@ if __name__ == "__main__":
     print("Original list: ", end="")
     print_linked_list(head)
 
-    k = 3
-    new_head = right_rotate_by_k(head, k)
+    new_head = rotate_to_the_right(head, places=3)
 
     print("After", k, "iterations: ", end="")
     print_linked_list(new_head)
