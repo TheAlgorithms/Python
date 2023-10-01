@@ -11,6 +11,9 @@ from sklearn.model_selection import GridSearchCV
 from sklearn import svm
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
+from sklearn import datasets
+import pandas as pd
+
 
 model_params = {
     "svm": {
@@ -27,11 +30,9 @@ model_params = {
     },
 }
 
-from sklearn import datasets
+
 
 iris = datasets.load_iris()
-
-import pandas as pd
 
 df = pd.DataFrame(iris.data, columns=iris.feature_names)
 df["flower"] = iris.target
