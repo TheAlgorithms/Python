@@ -69,4 +69,32 @@ class ANN_regressor:
         return self.params.append(keras.layers.Dense(units=unit, activation=activate))
 
 if __name__ == "__main__":
+    # Dummy data for demonstration
+    X_train = np.random.rand(100, 10)
+    y_train = np.random.randint(0, 2, size=(100,))
+    X_test = np.random.rand(10, 10)
+
     obj = ANN_classifier(3)
+
+    # Train the classifier
+    obj.train(X_train, y_train)
+
+    # Predict using the trained classifier
+    predictions = obj.predict(X_test)
+
+    print(predictions)
+
+    # Dummy data for regression
+    y_train_regressor = np.random.rand(100, 1)
+    X_test_regressor = np.random.rand(10, 10)
+
+    obj_regressor = ANN_regressor(1)
+
+    # Train the regressor
+    obj_regressor.train(X_train, y_train_regressor)
+
+    # Predict using the trained regressor
+    predictions_regressor = obj_regressor.predict(X_test_regressor)
+
+    print(predictions_regressor)
+
