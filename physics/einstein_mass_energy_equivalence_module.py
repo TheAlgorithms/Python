@@ -8,6 +8,7 @@
 
 # Module for Einstein's Energy-Mass Equivalence.
 
+
 def calculate_energy_equivalent(mass):
     """
     Calculate the energy equivalent of a given mass.
@@ -18,13 +19,14 @@ def calculate_energy_equivalent(mass):
     :rtype: float
     """
     # Constants
-    G = 6.67430e-11 # Gravitational constant
-    c = 3.0e8 # Speed of light
-    h = 6.62607004e-34 # Planck constant
+    G = 6.67430e-11  # Gravitational constant
+    c = 3.0e8  # Speed of light
+    h = 6.62607004e-34  # Planck constant
 
     # Calculate energy equivalent
     energy_equivalent = mass * c**2
 
     return energy_equivalent
+
 
 # Happy Coding!
