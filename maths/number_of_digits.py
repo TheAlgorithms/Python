@@ -100,7 +100,7 @@ def benchmark() -> None:
         timing = timeit(f"__main__.{call}", setup="import __main__")
         print(f"{call}: {func(value)} -- {timing} seconds")
 
-    for value in ('262144', 1125899906842624, 1267650600228229401496703205376):
+    for value in (262144, 1125899906842624, 1267650600228229401496703205376):
         for func in (num_digits, num_digits_fast, num_digits_faster):
             benchmark_a_function(func, value)
         print()
