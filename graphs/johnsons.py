@@ -2,6 +2,8 @@
 # For the problem to be well-defined, there should be no cycles in the graph with a negative total weight.
 
 from typing import Dict, Union
+
+
 # Link to reference - https://en.wikipedia.org/wiki/Johnson%27s_algorithm
 class Graph:
     def __init__(self) -> None:
@@ -19,11 +21,15 @@ class Graph:
     def __contains__(self, key: Union[int, str]) -> bool:
         return key in self.vertices
 
-    def add_edge(self, src_key: Union[int, str], dest_key: Union[int, str], weight: int = 1) -> None:
+    def add_edge(
+        self, src_key: Union[int, str], dest_key: Union[int, str], weight: int = 1
+    ) -> None:
         """Add edge from src_key to dest_key with given weight."""
         self.vertices[src_key].add_neighbour(self.vertices[dest_key], weight)
 
-    def does_edge_exist(self, src_key: Union[int, str], dest_key: Union[int, str]) -> bool:
+    def does_edge_exist(
+        self, src_key: Union[int, str], dest_key: Union[int, str]
+    ) -> bool:
         """Return True if there is an edge from src_key to dest_key."""
         return self.vertices[src_key].does_it_point_to(self.vertices[dest_key])
 
@@ -43,7 +49,7 @@ class Vertex:
         """Return key corresponding to this vertex object."""
         return self.key
 
-    def add_neighbour(self, dest: 'Vertex', weight: int) -> None:
+    def add_neighbour(self, dest: "Vertex", weight: int) -> None:
         """Make this vertex point to dest with given edge weight."""
         self.points_to[dest] = weight
 
@@ -51,17 +57,18 @@ class Vertex:
         """Return all vertices pointed to by this vertex."""
         return self.points_to.keys()
 
-    def get_weight(self, dest: 'Vertex') -> int:
+    def get_weight(self, dest: "Vertex") -> int:
         """Get weight of edge from this vertex to dest."""
         return self.points_to[dest]
 
-    def set_weight(self, dest: 'Vertex', weight: int) -> None:
+    def set_weight(self, dest: "Vertex", weight: int) -> None:
         """Set weight of edge from this vertex to dest."""
         self.points_to[dest] = weight
 
-    def does_it_point_to(self, dest: 'Vertex') -> bool:
+    def does_it_point_to(self, dest: "Vertex") -> bool:
         """Return True if this vertex points to dest."""
         return dest in self.points_to
+
 
 def johnson(g: Graph) -> Dict[Vertex, Dict[Vertex, int]]:
     """Return distance where distance[u][v] is the min distance from u to v.
