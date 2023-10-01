@@ -102,7 +102,7 @@ if the linked list is not None, otherwise None.
         temp_node = temp_node.next
 
     # Adjust the value of rotation to avoid unnecessary rotations.
-    rotation = rotation % length
+    rotation %= length
 
     if rotation == 0:
         return head  # As No rotation needed.
