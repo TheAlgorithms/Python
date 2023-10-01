@@ -1,8 +1,8 @@
 """
-The "Three Sum" problem is a commonly encountered problem in computer 
-science and data analysis.the Three Sum problem has practical applications 
-in various fields, including data analysis, optimization, algorithmic research, 
-pattern recognition, and cryptography. Its versatility makes it a valuable problem 
+The "Three Sum" problem is a commonly encountered problem in computer
+science and data analysis.the Three Sum problem has practical applications
+in various fields, including data analysis, optimization, algorithmic research,
+pattern recognition, and cryptography. Its versatility makes it a valuable problem
 for both theoretical analysis and real-world problem-solving.
 
 """
