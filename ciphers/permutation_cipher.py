@@ -30,7 +30,7 @@ def generate_valid_block_size(message_length: int) -> int:
             return block_size
 
 
-def generate_permutation_key(block_size: int) -> list:
+def generate_permutation_key(block_size: int) -> list[int]:
     """
     Generate a random permutation key of a specified block size.
 
