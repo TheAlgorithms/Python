@@ -3,7 +3,7 @@ Problem 95
 Url: https://projecteuler.net/problem=95
 Statement:
 The proper divisors of a number are all the divisors excluding the number itself.
-For example, the proper divisors of  28 is 1,2,4,7 and 14 
+For example, the proper divisors of  28 is 1,2,4,7 and 14
 As the sum of these divisors is equal to 28, we call it a perfect number.
 
 Interestingly the sum of the proper divisors of 220 is 284
