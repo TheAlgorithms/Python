@@ -14,7 +14,7 @@ def print_linked_list(head: Node | None) -> None:
     This function prints the elements of a linked list iteratively, separated by '->'.
 
     Parameters:
-        head (Node | None): The head of the linked list to be printed,\
+        head (Node | None): The head of the linked list to be printed,
 or None if the linked list is empty.
 
     >>> head = None
