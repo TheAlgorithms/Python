@@ -88,7 +88,8 @@ class FibonacciHeap:
 
     def _consolidate(self) -> None:
         """
-        Consolidate trees in the Fibonacci Heap to ensure there are no two trees with the same degree.
+        Consolidate trees in the Fibonacci Heap
+        to ensure there are no two trees with the same degree.
         """
         max_degree = int(self.num_nodes**0.5) + 1
         degree_list = [None] * max_degree
