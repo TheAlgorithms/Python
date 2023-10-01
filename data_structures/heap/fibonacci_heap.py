@@ -24,9 +24,39 @@ class FibonacciNode:
         self.parent = None
         self.mark = False
 
-    def add_child(self, child: "FibonacciNode") -> None:
+    def add_child(self, child):
         """
         Add a child to this node.
+
+        >>> parent = FibonacciNode(5)
+        >>> child1 = FibonacciNode(3)
+        >>> child2 = FibonacciNode(7)
+        >>> parent.add_child(child1)
+        >>> parent.child
+        <__main__.FibonacciNode object at ...>
+        >>> parent.child.val
+        3
+        >>> parent.child.right.val
+        3
+        >>> parent.child.left.val
+        3
+        >>> parent.child.parent
+        <__main__.FibonacciNode object at ...>
+        >>> parent.child.degree
+        1
+        >>> parent.add_child(child2)
+        >>> parent.child.right.val
+        7
+        >>> parent.child.left.val
+        3
+        >>> child1.parent
+        <__main__.FibonacciNode object at ...>
+        >>> child1.left.val
+        7
+        >>> child1.right.val
+        7
+        >>> child1.degree
+        0
         """
         if self.child is None:
             self.child = child
@@ -203,7 +233,8 @@ class FibonacciHeap:
             return
 
         min_val = min(node.val for node in self.root_list)
-        self.min_node = next(node for node in self.root_list if node.val == min_val)
+        self.min_node = next(
+            node for node in self.root_list if node.val == min_val)
 
     def __str__(self) -> str:
         """
