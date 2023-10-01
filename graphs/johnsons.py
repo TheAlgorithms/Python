@@ -1,5 +1,7 @@
 #The problem is to find the shortest distance between all pairs of vertices in a weighted directed graph that can have negative edge weights.
 #For the problem to be well-defined, there should be no cycles in the graph with a negative total weight.
+
+# Link to reference - https://en.wikipedia.org/wiki/Johnson%27s_algorithm
 class Graph:
     def __init__(self):
         # dictionary containing keys that map to the corresponding vertex object
