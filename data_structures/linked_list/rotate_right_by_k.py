@@ -29,7 +29,7 @@ def print_list(head: Node) -> None:
     print(head.data)
 
 
-def insert_node(head: Node, data: int) -> Node:
+def insert_node(head: Node | None, data: int) -> Node:
     """
     Returns new head of linked list after inserting new node
     >>> head = None
