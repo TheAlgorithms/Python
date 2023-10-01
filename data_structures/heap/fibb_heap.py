@@ -1,5 +1,5 @@
 class FibonacciHeapNode:
-    def __init__(self, key):
+    def __init__(self, key: int) -> None:
         self.key = key
         self.parent = None
         self.child = None
@@ -8,13 +8,18 @@ class FibonacciHeapNode:
         self.next = self
         self.prev = self
 
-
 class FibonacciHeap:
-    def __init__(self):
+    def __init__(self) -> None:
         self.min_node = None
         self.num_nodes = 0
 
-    def insert(self, key):
+    def insert(self, key: int) -> None:
+        """
+        Insert a key into the Fibonacci Heap.
+
+        Args:
+            key (int): The key to be inserted.
+        """
         new_node = FibonacciHeapNode(key)
         if self.min_node is None:
             self.min_node = new_node
@@ -24,7 +29,13 @@ class FibonacciHeap:
                 self.min_node = new_node
         self.num_nodes += 1
 
-    def extract_min(self):
+    def extract_min(self) -> int:
+        """
+        Extract and return the minimum key from the Fibonacci Heap.
+
+        Returns:
+            int: The minimum key in the heap.
+        """
         min_node = self.min_node
         if min_node:
             if min_node.child:
@@ -49,7 +60,14 @@ class FibonacciHeap:
             self.num_nodes -= 1
         return min_node.key if min_node else None
 
-    def _link(self, min1, min2):
+    def _link(self, min1: FibonacciHeapNode, min2: FibonacciHeapNode) -> None:
+        """
+        Link two trees of the same degree together.
+
+        Args:
+            min1 (FibonacciHeapNode): The first tree.
+            min2 (FibonacciHeapNode): The second tree.
+        """
         min1.next.prev = min2
         min2.next.prev = min1
         min1.next, min2.next = min2.next, min1.next
@@ -67,8 +85,11 @@ class FibonacciHeap:
         min1.degree += 1
         min2.marked = False
 
-    def _consolidate(self):
-        max_degree = int(self.num_nodes**0.5) + 1
+    def _consolidate(self) -> None:
+        """
+        Consolidate trees in the Fibonacci Heap to ensure there are no two trees with the same degree.
+        """
+        max_degree = int(self.num_nodes ** 0.5) + 1
         degree_list = [None] * max_degree
         nodes = [self.min_node]
         current = self.min_node.next
@@ -92,7 +113,6 @@ class FibonacciHeap:
                     self.min_node = node
                 elif node.key < self.min_node.key:
                     self.min_node = node
-
 
 # Example usage:
 fib_heap = FibonacciHeap()
