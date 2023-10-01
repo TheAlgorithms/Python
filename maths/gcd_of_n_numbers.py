@@ -35,13 +35,8 @@ def get_factors(
     else we increase factor by one
     """
 
-    match number:
-        case int(number) if number == 1:
-            return Counter({1: 1})
-        case int(num) if number > 0:
-            number = num
-        case _:
-            raise TypeError("number must be integer and greater than zero")
+    if not isinstance(number, int) or number <= 0:
+        raise TypeError("number must be an integer and greater than zero")
 
     factors = factors or Counter()
 
