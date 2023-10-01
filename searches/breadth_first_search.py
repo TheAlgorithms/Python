@@ -36,6 +36,8 @@ def breadth_first_search(root) -> None:
         >>> breadth_first_search(root)
         # No output as the tree is empty.
     """
+
+def searchBFS(root):
     if root is None:
         print("# No output as the tree is empty.")
         return
@@ -47,6 +49,7 @@ def breadth_first_search(root) -> None:
     while queue:
         current_node = queue.pop(0)
         result.append(current_node.value)
+        print(current_node.value, end=" ")
 
         if current_node.left:
             queue.append(current_node.left)
@@ -72,3 +75,15 @@ if __name__ == "__main__":
     # Test with an empty tree
     root = None
     breadth_first_search(root)
+
+# Constructing the search tree
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+root.right.left = Node(6)
+root.right.right = Node(7)
+
+print("Breadth-First Search traversal:")
+searchBFS(root)
