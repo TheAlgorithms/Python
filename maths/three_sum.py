@@ -1,15 +1,10 @@
 """
-The "Three Sum" problem is a commonly encountered problem in computer science and data analysis.
+The "Three Sum" problem is a commonly encountered problem in computer 
+science and data analysis.the Three Sum problem has practical applications 
+in various fields, including data analysis, optimization, algorithmic research, 
+pattern recognition, and cryptography. Its versatility makes it a valuable problem 
+for both theoretical analysis and real-world problem-solving.
 
-1. **Data Analysis**: In data analysis and statistics, the Three Sum problem can be used to identify sets of data points that, when combined, result in a specific outcome or condition. For example, it can be applied to financial data to find combinations of transactions that balance an account.
-
-2. **Optimization**: In optimization problems, such as resource allocation or scheduling, the Three Sum problem can help identify combinations of resources or tasks that result in a desired outcome. This is valuable in industries like logistics and project management.
-
-3. **Algorithmic Research**: Researchers and algorithm designers often use the Three Sum problem as a benchmark for evaluating the efficiency and performance of algorithms. It serves as a challenging problem to test new algorithmic techniques.
-
-4. **Cryptography**: Some cryptographic protocols involve operations on large numbers or sets of numbers. The Three Sum problem can be used as part of cryptographic algorithms to verify or validate certain conditions.
-
-In summary, the Three Sum problem has practical applications in various fields, including data analysis, optimization, algorithmic research, pattern recognition, and cryptography. Its versatility makes it a valuable problem for both theoretical analysis and real-world problem-solving.
 """
 
 def three_sum(nums: list[int]) -> list[list[int]]:
