@@ -41,6 +41,9 @@ class LinkedList:
         new_node = Node(data)
         new_node.ref = n.ref
         n.ref = new_node
+
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
