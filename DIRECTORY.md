@@ -530,7 +530,6 @@
 
 ## Maths
   * [Abs](maths/abs.py)
-  * [Add](maths/add.py)
   * [Addition Without Arithmetic](maths/addition_without_arithmetic.py)
   * [Aliquot Sum](maths/aliquot_sum.py)
   * [Allocation Number](maths/allocation_number.py)
@@ -1141,8 +1140,6 @@
   * [Quick Sort](sorts/quick_sort.py)
   * [Quick Sort 3 Partition](sorts/quick_sort_3_partition.py)
   * [Radix Sort](sorts/radix_sort.py)
-  * [Random Normal Distribution Quicksort](sorts/random_normal_distribution_quicksort.py)
-  * [Random Pivot Quick Sort](sorts/random_pivot_quick_sort.py)
   * [Recursive Bubble Sort](sorts/recursive_bubble_sort.py)
   * [Recursive Insertion Sort](sorts/recursive_insertion_sort.py)
   * [Recursive Mergesort Array](sorts/recursive_mergesort_array.py)
