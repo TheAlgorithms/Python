@@ -9,6 +9,8 @@ where m is mass and c is the speed of light in vaccume(a constant value) in mete
 The function takes a single argument mass(in kg) having datatype float and
 returns the energy(in joule) having datatype float
 """
+
+
 def calculate_energy(mass: float) -> float:
     """
     get energy equivalent of given mass in joules:
@@ -29,6 +31,7 @@ def calculate_energy(mass: float) -> float:
     speed_of_light = 299792458
     energy = mass * speed_of_light**2
     return energy
+
 
 if __name__ == "__main__":
     mass = float(input("Enter mass (in kilograms): "))
