@@ -81,3 +81,4 @@ def is_title(string):
         bool: True if the string is in title case, False otherwise.
     """
     return string.istitle()
+
