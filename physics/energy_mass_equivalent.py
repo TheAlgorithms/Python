@@ -53,12 +53,12 @@ def energy_equivalent_for_moving_mass(
     momentum = (
         mass_kg
         * velocity_m_s
-        / math.sqrt(1 - (velocity_m_s**2 / speed_of_light**2))
+        / (1 - (velocity_m_s**2 / speed_of_light**2))**(1/2)
     )
 
     # Calculating energy using the relativistic energy-momentum relation
     energy_joules = (
-        (mass_kg * speed_of_light) ** 2 + (momentum * speed_of_light) ** 2
+        (mass_kg * (speed_of_light)**2) ** 2 + (momentum * speed_of_light) ** 2
     ) ** (1 / 2)
     return energy_joules
 
