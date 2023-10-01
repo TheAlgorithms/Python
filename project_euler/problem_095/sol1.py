@@ -4,7 +4,7 @@ Url: https://projecteuler.net/problem=95
 """
 def solution(n: int = 10**6) -> int:
     """
-    Returns the smallest member of the longest amicable chain with no element exceeding one million
+    Returns the smallest member when n = 1000000
     >> 14316
     """
 
