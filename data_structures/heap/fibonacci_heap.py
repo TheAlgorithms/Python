@@ -15,10 +15,10 @@ class FibonacciTree:
 
     def __init__(self, key: int) -> None:
         self.key = key
-        self.children: list['FibonacciTree'] = []
+        self.children: list["FibonacciTree"] = []
         self.order = 0
 
-    def add_at_end(self, child_node: 'FibonacciTree') -> None:
+    def add_at_end(self, child_node: "FibonacciTree") -> None:
         """
         Adds a child node 'child_node' to the end of the children list.
 
@@ -53,8 +53,8 @@ class FibonacciHeap:
     """
 
     def __init__(self) -> None:
-        self.trees: list['FibonacciTree'] = []
-        self.least: 'FibonacciTree' | None = None
+        self.trees: list["FibonacciTree"] = []
+        self.least: "FibonacciTree" | None = None
         self.count = 0
 
     def insert(self, key: int) -> None:
@@ -66,7 +66,7 @@ class FibonacciHeap:
         """
         new_tree = FibonacciTree(key)
         self.trees.append(new_tree)
-        if (self.least is None or key < self.least.key):
+        if self.least is None or key < self.least.key:
             self.least = new_tree
         self.count = self.count + 1
 
@@ -88,8 +88,7 @@ class FibonacciHeap:
         Returns:
             int: The minimum key.
         """
-        smallest = self.least
-        if smallest is not None:
+        if (smallest := self.least) is not None:
             for child in smallest.children:
                 if child is not None:
                     self.trees.append(child)
@@ -129,9 +128,10 @@ class FibonacciHeap:
         for k in aux:
             if k is not None:
                 self.trees.append(k)
-                if (self.least is None or k.key < self.least.key):
+                if self.least is None or k.key < self.least.key:
                     self.least = k
-                    
+
+
 def floor_log2(x: int) -> int:
     """
     Computes the floor of the base-2 logarithm of 'x'.
@@ -144,11 +144,14 @@ def floor_log2(x: int) -> int:
     """
     return math.floor(math.log2(x)) if x > 0 else 0
 
+
 # Doctest for floor_log2
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
