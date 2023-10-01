@@ -45,5 +45,5 @@ def find_smallest_member(n):
     return result
 
 if __name__ == "__main__":
-    print(find_smallest_member(10**6))
+    print(f"Solution : {find_smallest_member(10**6)}")
 
