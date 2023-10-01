@@ -7,14 +7,14 @@
 # https://cp-algorithms.com/string/prefix-function.html
 
 
-def isequal(index_1: int, index_2: int, s: str) -> bool:
+def isequal(index_1: int, index_2: int, string_to_check: str) -> bool:
     """
     Check if two characters at the given indices in a string are equal.
 
     Args:
         index_1 (int): The index of the first character.
         index_2 (int): The index of the second character.
-        s (str): The string in which to compare characters.
+        string_to_check (str): The string in which to compare characters.
 
     Returns:
         bool: If same character then return True, else return False
@@ -25,7 +25,7 @@ def isequal(index_1: int, index_2: int, s: str) -> bool:
     >>> isequal(1,2,"cadb")
     False
     """
-    return s[index_1] == s[index_2]
+    return string_to_check[index_1] == string_to_check[index_2]
 
 
 class StringMatch:
