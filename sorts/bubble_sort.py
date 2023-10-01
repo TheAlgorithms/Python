@@ -52,4 +52,5 @@ if __name__ == "__main__":
     unsorted = [int(item) for item in user_input.split(",")]
     start = time.process_time()
     print(*bubble_sort(unsorted), sep=",")
-    print(f"Processing time: {(time.process_time() - start)%1e9 + 7}")
+    stop = time.process_time()
+    print(f"Processing time: {(stop - start)%1e9 + 7}")
