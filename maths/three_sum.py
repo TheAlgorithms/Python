@@ -1,12 +1,12 @@
-def three_sum(nums: list[int]) -> list[list[int]]:
+def three_sum(nums: list[int]) -> tuple[tuple[int]]:
     """
     Find all unique triplets in a sorted array of integers that sum up to zero.
 
     Args:
-        nums (list[int]): A sorted list of integers.
+        nums: A sorted list of integers.
 
     Returns:
-        list[list[int]]: A list of lists containing unique triplets that sum up to zero.
+         A list of lists containing unique triplets that sum up to zero.
 
     Example:
         >>> three_sum([-1, 0, 1, 2, -1, -4])
