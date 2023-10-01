@@ -44,6 +44,7 @@ def quick_sort(collection: list) -> list:
 
 if __name__ == "__main__":
     import time
+
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
     start = time.process_time()
