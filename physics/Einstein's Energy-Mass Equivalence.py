@@ -1,6 +1,5 @@
 c= 299792458
-def energy_equivalence(mass):
-   
+def energy_equivalence(mass_kg):
     # Check if the mass is non-negative
     if mass < 0:
         raise ValueError("mass should be positive")
@@ -13,6 +12,8 @@ def energy_equivalence(mass):
     energy = mass * c **2
     return energy
 
+
 if __name__ == "__main__":
-    
+
     energy_equivalence()
+
