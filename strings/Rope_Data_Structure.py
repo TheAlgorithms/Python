@@ -1,4 +1,4 @@
-#This is a Rope Data Structure for fast string concatination 
+#This is a Rope Data Structure for fast string concatination using Rope Structure method
 #This code defines a rope data structure and functions to create, print, and concatenate ropes. It then creates two ropes for input strings 'a' and 'b', concatenates them into 'root3', and prints the concatenated result.
 # Expected output :   Input  : a[] = "Hi ", b[] = "There !"
 #                     Output : "Hi There !"
