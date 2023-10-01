@@ -1,4 +1,3 @@
-
 # Reference: https://en.wikipedia.org/wiki/Fibonacci_heap
 
 import math
@@ -15,12 +14,12 @@ class FibonacciTree:
         order (int): The number of children the node has.
     """
 
-    def __init__(self, key:int) -> None:
+    def __init__(self, key: int) -> None:
         self.key = key
         self.children: List[FibonacciTree] = []
         self.order = 0
 
-    def add_at_end(self, child_node: 'FibonacciTree') -> None:
+    def add_at_end(self, child_node: "FibonacciTree") -> None:
         """
         Adds a child node 'child_node' to the end of the children list.
 
@@ -30,9 +29,11 @@ class FibonacciTree:
         self.children.append(child_node)
         self.order = self.order + 1
 
+
 # Doctest for add_at_end
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
 
@@ -59,12 +60,12 @@ class FibonacciHeap:
         count (int): The total number of nodes in the heap.
     """
 
-    def __init__(self)->None:
+    def __init__(self) -> None:
         self.trees: List[FibonacciTree] = []
         self.least = None
         self.count = 0
 
-    def insert(self,key:int)->None:
+    def insert(self, key: int) -> None:
         """
         Inserts a new node with the given key into the Fibonacci heap.
 
@@ -73,11 +74,11 @@ class FibonacciHeap:
         """
         new_tree = FibonacciTree(key)
         self.trees.append(new_tree)
-        if (self.least is None or key < self.least.key):
+        if self.least is None or key < self.least.key:
             self.least = new_tree
         self.count = self.count + 1
 
-    def get_min(self)->int:
+    def get_min(self) -> int:
         """
         Returns the minimum key in the Fibonacci heap.
 
@@ -88,14 +89,14 @@ class FibonacciHeap:
             return -1
         return self.least.key
 
-    def extract_min(self)->int:
+    def extract_min(self) -> int:
         """
         Removes and returns the node with the minimum key from the Fibonacci heap.
 
         Returns:
             int: The minimum key.
         """
-        smallest = None  
+        smallest = None
         if self.least is not None:
             smallest = self.least
             for child in smallest.children:
@@ -110,7 +111,7 @@ class FibonacciHeap:
             return smallest.key
         return -1
 
-    def consolidate(self)->None:
+    def consolidate(self) -> None:
         """
         Consolidates trees in the Fibonacci heap to maintain the heap's structure.
         """
@@ -133,8 +134,9 @@ class FibonacciHeap:
         for k in aux:
             if k is not None:
                 self.trees.append(k)
-                if (self.least is None or k.key < self.least.key):
+                if self.least is None or k.key < self.least.key:
                     self.least = k
+
 
 def floor_log2(x: int) -> int:
     """
@@ -147,11 +149,15 @@ def floor_log2(x: int) -> int:
         int: The floor of the base-2 logarithm of 'x'.
     """
     return math.frexp(x)[1] - 1
+
+
 # Doctest for floor_log2
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
