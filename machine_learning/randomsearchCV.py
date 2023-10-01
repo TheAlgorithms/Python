@@ -4,19 +4,36 @@ from tqdm import  tqdm
 import random
 
 def randomized_search_cv_custom(x_train_total, y_train_total, classifier, param_range, num_of_total_fold):
-    '''
+    """
     Random Search sets up a grid of hyperparameter values and selects random combinations to train the model and score. 
     This allows you to explicitly control the number of parameter combinations that are attempted.
-    '''
-    # x_train_total: its numpy array of shape, (n,d)
-    # y_train_total: its numpy array of shape, (n,) or (n,1)
-    # classifier: its typically KNeighborsClassifier()
-    # param_range: Integer representing how many hyper-parameters I am considering for each iteration
-    # num_of_total_fold: an integer, represents number of num_of_total_fold we need to devide the data and test our model
 
-    # generating hyper-parameter range
-    # generate 10 unique values(uniform random distribution) in the given range - starting 1 to "param_range"
-    # ex: if param_range = 50, we need to generate 10 random numbers in range 1 to 50
+    Parameters:
+    - x_train_total (numpy.ndarray): Input features of shape (n, d).
+    - y_train_total (numpy.ndarray): Target values of shape (n,) or (n,1).
+    - classifier: The machine learning classifier, e.g., KNeighborsClassifier().
+    - param_range (int): The range of hyperparameter values to consider.
+    - num_of_total_fold (int): The number of folds for cross-validation.
+
+    Returns:
+    - train_scores (list): List of train accuracy scores for each hyperparameter.
+    - test_scores (list): List of test accuracy scores for each hyperparameter.
+    - classifier_params (dict): The best hyperparameters found.
+
+    Examples:
+    >>> x_train_total = np.array([[1, 2], [3, 4], [5, 6], [7, 8]])
+    >>> y_train_total = np.array([0, 1, 0, 1])
+    >>> classifier = KNeighborsClassifier()
+    >>> param_range = 10
+    >>> num_of_total_fold = 3
+    >>> train_scores, test_scores, classifier_params = randomized_search_cv_custom(x_train_total, y_train_total, classifier, param_range, num_of_total_fold)
+    >>> isinstance(train_scores, list)
+    True
+    >>> isinstance(test_scores, list)
+    True
+    >>> isinstance(classifier_params, dict)
+    True
+    """
     ten_random_values_for_param_range = sorted(random.sample(range(1, param_range), 10))
 
     train_scores = []
