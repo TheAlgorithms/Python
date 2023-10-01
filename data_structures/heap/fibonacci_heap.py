@@ -4,7 +4,6 @@ from typing import Generic, TypeVar, Optional
 
 T = TypeVar("T", bound=int)
 
-
 class FibonacciNode(Generic[T]):
     def __init__(self, key: T) -> None:
         """
@@ -15,8 +14,8 @@ class FibonacciNode(Generic[T]):
         """
         self.key: T = key
         self.degree: int = 0
-        self.parent: Optional[FibonacciNode[T]] = None
-        self.child: Optional[FibonacciNode[T]] = None
+        self.parent: Optional[FibonacciNode[T] | None] = None
+        self.child: Optional[FibonacciNode[T] | None] = None
         self.is_marked: bool = False
         self.next: FibonacciNode[T] = self
         self.prev: FibonacciNode[T] = self
@@ -100,15 +99,13 @@ class FibonacciHeap(Generic[T]):
         >>> fh.min_node.key
         3
         """
-        max_degree = int(self.num_nodes**0.5) + 1
+        max_degree = int(self.num_nodes ** 0.5) + 1
         degree_buckets: list[FibonacciNode[T] | None] = [None] * max_degree
 
         current_node = self.min_node
         nodes_to_visit = [current_node]
         while True:
-            current_node = (
-                current_node.next if current_node.next is not None else current_node
-            )
+            current_node = current_node.next if current_node.next is not None else current_node
             if current_node == self.min_node:
                 break
             nodes_to_visit.append(current_node)
@@ -193,8 +190,6 @@ class FibonacciHeap(Generic[T]):
         node.prev.next = node.next
         node.next.prev = node.prev
 
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
