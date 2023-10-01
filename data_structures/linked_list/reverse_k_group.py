@@ -1,11 +1,7 @@
-"""
-https://www.topcoder.com/thrive/articles/reverse-node-in-k-group
-"""
 from typing import Optional
 
-
 class ListNode:
-    def __init__(self, val=0, next=None):
+    def __init__(self, val: int = 0, next: Optional['ListNode'] = None) -> None:
         self.val = val
         self.next = next
 
@@ -19,9 +15,7 @@ class Solution:
             count += 1
         return count
 
-    def reverse(
-        self, head: Optional[ListNode], count: int, k: int
-    ) -> Optional[ListNode]:
+    def reverse(self, head: Optional[ListNode], count: int, k: int) -> Optional[ListNode]:
         if count < k:
             return head
 
@@ -38,39 +32,49 @@ class Solution:
 
         if Next:
             head.next = self.reverse(Next, count - k, k)
-
+        
         return prev
 
-    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+    def reverse_k_group(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         """
-        Reverse a linked list in groups of size k.
+        Reverse k-sized groups of nodes in a linked list.
 
         Args:
             head: The head of the linked list.
-            k: The group size for reversing.
+            k: The size of the groups to reverse.
 
         Returns:
             The new head of the reversed linked list.
 
+        Examples:
         >>> sol = Solution()
-        >>> linked_list = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
-        >>> reversed_list = sol.reverseKGroup(linked_list, 2)
-        >>> reversed_list.val
-        2
-        >>> reversed_list.next.val
-        1
-        >>> reversed_list.next.next.val
-        4
-        >>> reversed_list.next.next.next.val
-        3
-        >>> reversed_list.next.next.next.next.val
-        5
-        >>> reversed_list.next.next.next.next.next is None
-        True
+        >>> head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
+        >>> new_head = sol.reverse_k_group(head, 2)
+        >>> new_head.val, new_head.next.val, new_head.next.next.val, new_head.next.next.next.val, new_head.next.next.next.next.val
+        (2, 1, 4, 3, 5)
+        
+        >>> head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
+        >>> new_head = sol.reverse_k_group(head, 3)
+        >>> new_head.val, new_head.next.val, new_head.next.next.val, new_head.next.next.next.val, new_head.next.next.next.next.val
+        (3, 2, 1, 4, 5)
+        
+        >>> head = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
+        >>> new_head = sol.reverse_k_group(head, 6)
+        >>> new_head.val, new_head.next.val, new_head.next.next.val, new_head.next.next.next.val, new_head.next.next.next.next.val
+        (1, 2, 3, 4, 5)
         """
-        count = self.length(head)
-        ans = self.reverse(head, count, k)
-        return ans
+
+        new_head, current_tail, next_group_head, success = self.reverse(head, k)
+
+        while success:
+            new_group_head, new_group_tail, next_next_group_head, success = self.reverse(next_group_head, k)
+
+            # Connect the tail of the previous group to the head of the new group
+            current_tail.next = new_group_head
+            current_tail = new_group_tail
+            next_group_head = next_next_group_head
+
+        return new_head
 
 
 if __name__ == "__main__":
