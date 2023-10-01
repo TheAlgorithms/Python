@@ -9,24 +9,24 @@ class Node:
 
 def print_linked_list(head: Node | None) -> None:
     """
-    Print the entire linked list iteratively.
+        Print the entire linked list iteratively.
 
-    This function prints the elements of a linked list iteratively, separated by '->'.
+        This function prints the elements of a linked list iteratively, separated by '->'.
 
-    Parameters:
-        head (Node | None): The head of the linked list to be printed,
-or None if the linked list is empty.
+        Parameters:
+            head (Node | None): The head of the linked list to be printed,
+    or None if the linked list is empty.
 
-    >>> head = None
-    >>> head = insert_node(head, 0)
-    >>> head = insert_node(head, 2)
-    >>> head = insert_node(head, 1)
-    >>> print_linked_list(head)
-    0->2->1
-    >>> head = insert_node(head, 4)
-    >>> head = insert_node(head, 5)
-    >>> print_linked_list(head)
-    0->2->1->4->5
+        >>> head = None
+        >>> head = insert_node(head, 0)
+        >>> head = insert_node(head, 2)
+        >>> head = insert_node(head, 1)
+        >>> print_linked_list(head)
+        0->2->1
+        >>> head = insert_node(head, 4)
+        >>> head = insert_node(head, 5)
+        >>> print_linked_list(head)
+        0->2->1->4->5
     """
     if head is None:
         return
