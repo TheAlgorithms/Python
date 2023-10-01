@@ -33,33 +33,39 @@ class FibonacciHeap:
     def extract_min(self) -> int:
         """
         Extract and return the minimum key from the Fibonacci Heap.
-
+    
         Returns:
             int: The minimum key in the heap.
         """
         min_node = self.min_node
-        if min_node:
-            if min_node.child:
-                child = min_node.child
-                while True:
-                    next_child = child.next
-                    child.prev = min_node.prev
-                    child.next = min_node.next
-                    min_node.prev.next = child
-                    min_node.next.prev = child
-                    if next_child == min_node.child:
-                        break
-                    child = next_child
-                min_node.child = None
-            min_node.prev.next = min_node.next
-            min_node.next.prev = min_node.prev
-            if min_node == min_node.next:
-                self.min_node = None
-            else:
-                self.min_node = min_node.next
-                self._consolidate()
-            self.num_nodes -= 1
-        return min_node.key or None
+        if not min_node:
+            return None
+    
+        if min_node.child:
+            child = min_node.child
+            while True:
+                next_child = child.next
+                child.prev = min_node.prev
+                child.next = min_node.next
+                min_node.prev.next = child
+                min_node.next.prev = child
+                if next_child == min_node.child:
+                    break
+                child = next_child
+            min_node.child = None
+    
+        min_node.prev.next = min_node.next
+        min_node.next.prev = min_node.prev
+    
+        if min_node == min_node.next:
+            self.min_node = None
+        else:
+            self.min_node = min_node.next
+            self._consolidate()
+    
+        self.num_nodes -= 1
+        return min_node.key if min_node else None
+
 
     def _link(self, min1: FibonacciHeapNode, min2: FibonacciHeapNode) -> None:
         """
