@@ -4,7 +4,7 @@
 # In[ ]:
 
 
-Gravitational Search Algorithm: 
+Gravitational Search Algorithm:
 Reference: https://link.springer.com/article/10.1007/s11042-020-09831-4#:~:text=Gravitational%20search%20algorithm%20is%20a,efficiently%20solve%20complex%20optimization%20problems.
 
 import numpy as np
@@ -68,4 +68,3 @@ if __name__ == "__main__":
     best_solution, best_value = gravitational_search_algorithm(sphere, 20, 10, 100, -5, 5)
     # Return results without additional print statements
     # You can use doctests to demonstrate how to use the function and test cases.
-
