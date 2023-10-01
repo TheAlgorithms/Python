@@ -33,7 +33,7 @@ def get_subreddit_data(
         headers={"User-agent": "A random string"},
     )
     if response.status_code == 429:
-        raise requests.HTTPError
+        raise requests.HTTPError(response=response)
 
     data = response.json()
     if not wanted_data:
