@@ -10,7 +10,7 @@ https://www.nku.edu/~christensen/1402%20permutation%20ciphers.pdf
 import random
 
 
-def generate_valid_block_size(message_length) -> int:
+def generate_valid_block_size(message_length: int) -> int:
     """
     Generate a valid block size that is a factor of the message length.
 
@@ -30,7 +30,7 @@ def generate_valid_block_size(message_length) -> int:
             return block_size
 
 
-def generate_permutation_key(block_size) -> list:
+def generate_permutation_key(block_size: int) -> list:
     """
     Generate a random permutation key of a specified block size.
 
@@ -50,7 +50,9 @@ def generate_permutation_key(block_size) -> list:
     return key
 
 
-def encrypt(message, key=None, block_size=None) -> tuple:
+def encrypt(
+    message: str, key: list | None = None, block_size: int | None = None
+) -> tuple:
     """
     Encrypt a message using a permutation cipher with block rearrangement using a key.
 
@@ -85,7 +87,7 @@ def encrypt(message, key=None, block_size=None) -> tuple:
     return encrypted_message, key
 
 
-def decrypt(encrypted_message, key) -> str:
+def decrypt(encrypted_message: str, key: list) -> str:
     """
     Decrypt an encrypted message using a permutation cipher with block rearrangement.
 
