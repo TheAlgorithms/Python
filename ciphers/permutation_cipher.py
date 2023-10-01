@@ -24,10 +24,11 @@ def generate_valid_block_size(message_length: int) -> int:
         >>> generate_valid_block_size(2)
         2
     """
-    while True:
-        block_size = random.randint(2, message_length)
-        if message_length % block_size == 0:
-            return block_size
+    block_sizes = [
+        block_size for block_size in range(2, message_length + 1)
+        if message_length % block_size == 0
+    ]
+    return random.choice(block_size)
 
 
 def generate_permutation_key(block_size: int) -> list[int]:
