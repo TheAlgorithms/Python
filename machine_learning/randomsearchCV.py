@@ -3,9 +3,12 @@ from sklearn.metrics import accuracy_score
 from tqdm import tqdm
 import random
 
-def randomized_search_cv_custom(x_train_total, y_train_total, classifier, param_range, num_of_total_fold):
+
+def randomized_search_cv_custom(
+    x_train_total, y_train_total, classifier, param_range, num_of_total_fold
+):
     """
-    Random Search sets up a grid of hyperparameter values and selects random combinations to train the model and score. 
+    Random Search sets up a grid of hyperparameter values and selects random combinations to train the model and score.
     This allows you to explicitly control the number of parameter combinations that are attempted.
 
     Parameters:
