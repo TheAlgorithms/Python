@@ -4,18 +4,27 @@ from __future__ import annotations
 def solve_maze(maze: list[list[int]]) -> bool:
     """
     This method solves the "rat in maze" problem.
-    In this problem we have some n by n matrix, a start point and an end point.
-    We want to go from the start to the end. In this matrix zeroes represent walls
-    and ones paths we can use.
+    In this problem, we have an n by n binary matrix where each
+    cell in the matrix contains a value 0 or 1.
+    In this matrix, 1 represent a valid path that can be
+    followed to reach the end of the matrix,
+    while 0 is a dead end. The rat is allowed to move in 4 directions:
+    UP, DOWN, LEFT, RIGHT.
+    Given a starting point (0, 0) and an ending point (n-1, n-1),
+    return True if it's possible for the rat to reach the ending point
+    from the starting point.
     Parameters :
         maze(2D matrix) : maze
     Returns:
         Return: True if the maze has a solution or False if it does not.
-    >>> maze = [[0, 1, 0, 1, 1],
-    ...         [0, 0, 0, 0, 0],
-    ...         [1, 0, 1, 0, 1],
-    ...         [0, 0, 1, 0, 0],
-    ...         [1, 0, 0, 1, 0]]
+        It also prints out the valid path from start to end with 1s
+        representing the valid path
+        if there’s a solution or “No solution exists!” if it does not.
+    >>> maze = [[1, 0, 1, 0, 0],
+    ...         [1, 1, 1, 1, 1],
+    ...         [0, 1, 0, 1, 0],
+    ...         [1, 1, 0, 1, 1],
+    ...         [0, 1, 1, 0, 1]]
     >>> solve_maze(maze)
     [1, 0, 0, 0, 0]
     [1, 1, 1, 1, 0]
@@ -24,11 +33,11 @@ def solve_maze(maze: list[list[int]]) -> bool:
     [0, 0, 0, 0, 1]
     True
 
-    >>> maze = [[0, 1, 0, 1, 1],
-    ...         [0, 0, 0, 0, 0],
-    ...         [0, 0, 0, 0, 1],
-    ...         [0, 0, 0, 0, 0],
-    ...         [0, 0, 0, 0, 0]]
+    >>> maze = [[1, 0, 1, 0, 0],
+    ...         [1, 1, 1, 1, 1],
+    ...         [1, 1, 1, 1, 0],
+    ...         [1, 1, 1, 1, 1],
+    ...         [1, 1, 1, 1, 1]]
     >>> solve_maze(maze)
     [1, 0, 0, 0, 0]
     [1, 0, 0, 0, 0]
@@ -37,24 +46,24 @@ def solve_maze(maze: list[list[int]]) -> bool:
     [1, 1, 1, 1, 1]
     True
 
-    >>> maze = [[0, 0, 0],
-    ...         [0, 1, 0],
-    ...         [1, 0, 0]]
+    >>> maze = [[1, 1, 1],
+    ...         [1, 0, 1],
+    ...         [0, 1, 1]]
     >>> solve_maze(maze)
     [1, 1, 1]
     [0, 0, 1]
     [0, 0, 1]
     True
 
-    >>> maze = [[0, 1, 0],
-    ...         [0, 1, 0],
-    ...         [1, 0, 0]]
+    >>> maze = [[1, 0, 1],
+    ...         [1, 0, 1],
+    ...         [0, 1, 1]]
     >>> solve_maze(maze)
     No solution exists!
     False
 
-    >>> maze = [[0, 1],
-    ...         [1, 0]]
+    >>> maze = [[1, 0],
+    ...         [0, 1]]
     >>> solve_maze(maze)
     No solution exists!
     False
@@ -93,7 +102,7 @@ def run_maze(maze: list[list[int]], i: int, j: int, solutions: list[list[int]]) 
 
     if lower_flag and upper_flag:
         # check for already visited and block points.
-        block_flag = (not solutions[i][j]) and (not maze[i][j])
+        block_flag = (not solutions[i][j]) and maze[i][j] == 1
         if block_flag:
             # check visited
             solutions[i][j] = 1
