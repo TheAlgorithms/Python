@@ -4,6 +4,7 @@
 
 import doctest
 
+
 def mass_to_energy(mass_kg: float) -> float:
     """
     Calculate the energy equivalent of a given mass using E=mc^2.
