@@ -20,7 +20,7 @@ def calculate_energy(mass: float) -> float:
     >>> calculate_energy(3.0)
     2.6962655362104528e+17
     >>> calculate_energy(5)
-    4.493775893684088e+17
+    449377589368408820
     >>> calculate_energy(-5)
     Traceback (most recent call last):
       ...
