@@ -23,7 +23,7 @@ def bisection(x, y):
         else:
             x = z
 
-    print("The value of root is : ", "%.4f" % z)
+    print(f"The value of root is : {z:.4f}")
 
 
 a = int(input())
