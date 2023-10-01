@@ -146,7 +146,8 @@ if __name__ == "__main__":
     print("Original list: ", end="")
     print_linked_list(head)
 
-    new_head = rotate_to_the_right(head, places=3)
+    places = 3
+    new_head = rotate_to_the_right(head, places)
 
-    print("After", k, "iterations: ", end="")
+    print(f"After {places} iterations: ", end="")
     print_linked_list(new_head)
