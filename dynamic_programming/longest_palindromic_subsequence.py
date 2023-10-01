@@ -4,6 +4,7 @@ Given a string s, find the longest palindromic subsequence's length in s.
 Input: s = "bbbab"
 Output: 4
 Explanation: One possible longest palindromic subsequence is "bbbb".
+Leetcode link: https://leetcode.com/problems/longest-palindromic-subsequence/description/
 """
 
 
