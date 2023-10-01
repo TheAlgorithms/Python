@@ -1,7 +1,7 @@
-
 # Reference: https://en.wikipedia.org/wiki/Fibonacci_heap
 
 import math
+
 
 class FibonacciTree:
     """
@@ -66,7 +66,7 @@ class FibonacciHeap:
         """
         new_tree = FibonacciTree(key)
         self.trees.append(new_tree)
-        if (self.least is None or key < self.least.key):
+        if self.least is None or key < self.least.key:
             self.least = new_tree
         self.count = self.count + 1
 
@@ -88,8 +88,7 @@ class FibonacciHeap:
         Returns:
             int: The minimum key.
         """
-        smallest = self.least
-        if smallest is not None:
+        if (smallest := self.least) is not None:
             for child in smallest.children:
                 self.trees.append(child)
             self.trees.remove(smallest)
@@ -124,8 +123,9 @@ class FibonacciHeap:
         for k in aux:
             if k is not None:
                 self.trees.append(k)
-                if (self.least is None or k.key < self.least.key):
+                if self.least is None or k.key < self.least.key:
                     self.least = k
+
 
 def floor_log2(x):
     """
@@ -139,6 +139,8 @@ def floor_log2(x):
     """
     return math.frexp(x)[1] - 1
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
