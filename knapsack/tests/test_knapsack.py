@@ -45,8 +45,17 @@ class Test(unittest.TestCase):
         val = [60, 100, 120]
         w = [10, 20, 30]
         c = len(val)
-        self.assertEqual(k.knapsack(cap, w, val, c), 220)
+        self.assertEqual(k.knapsack(cap, w, val, c, False), 220)
 
+    def test_knapsack_repetition(self):
+        """
+        test for the knapsack
+        """
+        cap = 50
+        val = [60, 100, 120]
+        w = [10, 20, 30]
+        c = len(val)
+        self.assertEqual(k.knapsack(cap, w, val, c, True), 300)
 
 if __name__ == "__main__":
     unittest.main()
