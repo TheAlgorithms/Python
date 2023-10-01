@@ -1,9 +1,11 @@
 from typing import List, Optional
 
+
 class Node:
     def __init__(self, data: int):
         self.data = data
         self.next = None
+
 
 def create(A: List[int]) -> Optional[Node]:
     """
@@ -23,15 +25,16 @@ def create(A: List[int]) -> Optional[Node]:
     """
     if not A:
         return None
-    
+
     head = Node(A[0])
     last = head
-    
+
     for data in A[1:]:
         last.next = Node(data)
         last = last.next
-    
+
     return head
+
 
 def display(head: Optional[Node]) -> None:
     """
@@ -47,9 +50,10 @@ def display(head: Optional[Node]) -> None:
         1 3 5 7 9 11 11 15 17 19
     """
     while head:
-        print(head.data, end=' ')
+        print(head.data, end=" ")
         head = head.next
     print()
+
 
 def count(head: Optional[Node]) -> int:
     """
@@ -72,6 +76,7 @@ def count(head: Optional[Node]) -> int:
         count += 1
         head = head.next
     return count
+
 
 def delete(head: Optional[Node], index: int) -> int:
     """
@@ -107,6 +112,7 @@ def delete(head: Optional[Node], index: int) -> int:
         prev.next = current.next
         return data
 
+
 def remove_duplicates(head: Optional[Node]) -> None:
     """
     Remove duplicate elements from a sorted linked list.
@@ -128,11 +134,12 @@ def remove_duplicates(head: Optional[Node]) -> None:
         else:
             current = current.next
 
+
 if __name__ == "__main__":
     print("Linked List!")
 
     A = [1, 3, 5, 7, 9, 11, 11, 15, 17, 19]
     head = create(A)
-    
+
     remove_duplicates(head)
     display(head)
