@@ -24,10 +24,10 @@ model_params = {
 
 iris = datasets.load_iris()
 
-df = pd.DataFrame(iris.data, columns=iris.feature_names)
-df["flower"] = iris.target
-df["flower"] = df["flower"].apply(lambda x: iris.target_names[x])
-df[47:150]
+dataframe = pd.DataFrame(iris.data, columns=iris.feature_names)
+datafrane["flower"] = iris.target
+dataframe["flower"] = dataframe["flower"].apply(lambda x: iris.target_names[x])
+dataframe[47:150]
 
 scores = []
 
@@ -41,5 +41,5 @@ for model_name, mp in model_params.items():
             "best_params": clf.best_params_,
         }
     )
-df = pd.DataFrame(scores, columns=["model", "best_scores", "best_params"])
-df
+dataframe = pd.DataFrame(scores, columns=["model", "best_scores", "best_params"])
+dataframe
