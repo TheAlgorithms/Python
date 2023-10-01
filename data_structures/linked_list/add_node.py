@@ -10,7 +10,7 @@ class LinkedList:
             print("The Linked List is empty ")
         else:
             n= self.head
-            while n is n ot None:
+            while n is not None:
                 print(n.data)
                 n=n.ref
     def add_begin(self,data): #to add a node in the beginning
