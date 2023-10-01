@@ -7,7 +7,7 @@ def solve_maze(
     source_column: int,
     destination_row: int,
     destination_column: int,
-) -> list[list[int]] | None:
+) -> list[list[int]]:
     """
     This method solves the "rat in maze" problem.
     Parameters :
@@ -17,7 +17,11 @@ def solve_maze(
         - destination_row (int): The row index of the destination point.
         - destination_column (int): The column index of the destination point.
     Returns:
-        Return: solution(2D matrix) if path exist ,otherwise None.
+        - solution (list[list[int]]): A 2D matrix representing the solution path\
+ if it exists.
+    Raises:
+        - ValueError: If no solution exists or if the source or\
+destination coordinates are invalid.
     Description:
         This method navigates through a maze represented as an n by n matrix,
         starting from a specified source cell  and
@@ -75,27 +79,38 @@ def solve_maze(
     ...         [0, 1, 1],
     ...         [1, 0, 1]]
     >>> solve_maze(maze,0,1,len(maze)-1,len(maze)-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: No solution exists!
 
     >>> maze = [[0, 0],
     ...         [1, 1]]
     >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: No solution exists!
 
     >>> maze = [[0, 1],
     ...         [1, 0]]
     >>> solve_maze(maze,2,0,len(maze)-1,len(maze)-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid source or destination coordinates
 
     >>> maze = [[1, 0, 0],
     ...         [0, 1, 1],
     ...         [1, 0, 0]]
     >>> solve_maze(maze,0,1,len(maze),len(maze)-1)
-
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid source or destination coordinates
     """
     size = len(maze)
     # Check if source and destination coordinates are Invalid.
     if not (0 <= source_row <= size - 1 and 0 <= source_column <= size - 1) or (
         not (0 <= destination_row <= size - 1 and 0 <= destination_column <= size - 1)
     ):
-        return None
+        raise ValueError("Invalid source or destination coordinates")
     # We need to create solution object to save path.
     solutions = [[1 for _ in range(size)] for _ in range(size)]
     solved = run_maze(
@@ -104,7 +119,7 @@ def solve_maze(
     if solved:
         return solutions
     else:
-        return None
+        raise ValueError("No solution exists!")
 
 
 def run_maze(
@@ -114,7 +129,7 @@ def run_maze(
     destination_row: int,
     destination_column: int,
     solutions: list[list[int]],
-) -> list[list[int]] | None:
+) -> bool:
     """
     This method is recursive starting from (i, j) and going in one of four directions:
     up, down, left, right.
@@ -130,7 +145,7 @@ def run_maze(
     # Final check point.
     if i == destination_row and j == destination_column and maze[i][j] == 0:
         solutions[i][j] = 0
-        return solutions
+        return True
 
     lower_flag = (not i < 0) and (not j < 0)  # Check lower bounds
     upper_flag = (i < size) and (j < size)  # Check upper bounds
@@ -155,11 +170,11 @@ def run_maze(
                     maze, i, j - 1, destination_row, destination_column, solutions
                 )
             ):
-                return solutions
+                return True
 
             solutions[i][j] = 1
-            return None
-    return None
+            return False
+    return False
 
 
 if __name__ == "__main__":
