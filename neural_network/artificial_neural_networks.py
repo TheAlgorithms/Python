@@ -10,6 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from tensorflow import keras
 
+
 class ANN_classifier:
 
     """
@@ -40,21 +41,27 @@ class ANN_classifier:
 
     def __init__(self, no_of_classes: int) -> None:
         self.params = [
-            keras.layers.Dense(units=6, activation='relu'),
-            keras.layers.Dense(units=8, activation='relu'),
-            keras.layers.Dense(units=10, activation='relu')
+            keras.layers.Dense(units=6, activation="relu"),
+            keras.layers.Dense(units=8, activation="relu"),
+            keras.layers.Dense(units=10, activation="relu"),
         ]
-        self.optimizer: str = 'binary_crossentropy'
-        self.loss: str = 'adam'
+        self.optimizer: str = "binary_crossentropy"
+        self.loss: str = "adam"
         self.ann = keras.Sequential(self.params)
-        self.ann.add(keras.layers.Dense(units=no_of_classes, activation='sigmoid'))
+        self.ann.add(keras.layers.Dense(units=no_of_classes, activation="sigmoid"))
 
         if no_of_classes > 1:
-            self.ann.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+            self.ann.compile(
+                optimizer="adam",
+                loss="sparse_categorical_crossentropy",
+                metrics=["accuracy"],
+            )
         else:
-            self.ann.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+            self.ann.compile(
+                optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"]
+            )
 
-    def neuro_compile(self, opt: str = 'adam', lo: str = 'binary_crossentropy') -> None:
+    def neuro_compile(self, opt: str = "adam", lo: str = "binary_crossentropy") -> None:
         """
         Set the optimizer and loss for the neural network.
 
@@ -70,7 +77,7 @@ class ANN_classifier:
         """
         self.optimizer = opt
         self.loss = lo
-        self.ann.compile(optimizer=self.optimizer, loss=self.loss, metrics=['accuracy'])
+        self.ann.compile(optimizer=self.optimizer, loss=self.loss, metrics=["accuracy"])
 
     def train(self, X_train: np.ndarray, y_train: np.ndarray) -> None:
         """
@@ -124,10 +131,14 @@ class ANN_classifier:
         >>> obj = ANN_classifier(2)
         >>> obj.add_layer(unit=12, activate='relu')
         """
-        self.params.insert(len(self.params)-1, keras.layers.Dense(units=unit, activation=activate))
-        self.ann.compile(optimizer=self.optimizer, loss=self.loss, metrics=['accuracy'])
+        self.params.insert(
+            len(self.params) - 1, keras.layers.Dense(units=unit, activation=activate)
+        )
+        self.ann.compile(optimizer=self.optimizer, loss=self.loss, metrics=["accuracy"])
 
-    def update_neurons(self, new_no: int, u: int = 6, activate: str = 'sigmoid') -> None:
+    def update_neurons(
+        self, new_no: int, u: int = 6, activate: str = "sigmoid"
+    ) -> None:
         """
         Update a layer in the network.
 
@@ -142,8 +153,9 @@ class ANN_classifier:
         >>> obj = ANN_classifier(2)
         >>> obj.update_neurons(new_no=2, u=8, activate='relu')
         """
-        self.params[new_no-1] = keras.layers.Dense(units=u, activation=activate)
-        self.ann.compile(optimizer=self.optimizer, loss=self.loss, metrics=['accuracy'])
+        self.params[new_no - 1] = keras.layers.Dense(units=u, activation=activate)
+        self.ann.compile(optimizer=self.optimizer, loss=self.loss, metrics=["accuracy"])
+
 
 class ANN_regressor:
     """
@@ -170,13 +182,13 @@ class ANN_regressor:
 
     def __init__(self, no_of_classes: int) -> None:
         self.params = [
-            keras.layers.Dense(units=6, activation='relu'),
-            keras.layers.Dense(units=8, activation='relu'),
-            keras.layers.Dense(units=10, activation='relu')
+            keras.layers.Dense(units=6, activation="relu"),
+            keras.layers.Dense(units=8, activation="relu"),
+            keras.layers.Dense(units=10, activation="relu"),
         ]
         self.ann = tf.keras.Sequential(self.params)
-        self.ann.add(keras.layers.Dense(units=no_of_classes, activation='sigmoid'))
-        self.ann.compile(optimizer='adam', loss='mean_squared_error')
+        self.ann.add(keras.layers.Dense(units=no_of_classes, activation="sigmoid"))
+        self.ann.compile(optimizer="adam", loss="mean_squared_error")
 
     def train(self, X_train: np.ndarray, y_train: np.ndarray) -> None:
         """
@@ -231,6 +243,7 @@ class ANN_regressor:
         >>> obj.add_layer(unit=12, activate='relu')
         """
         return self.params.append(keras.layers.Dense(units=unit, activation=activate))
+
 
 if __name__ == "__main__":
     # Dummy data for demonstration
