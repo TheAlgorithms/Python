@@ -13,32 +13,30 @@ Since this chain returns to its starting point, it is called an amicable chain.
 Find the smallest member of the longest amicable chain with no element exceeding one million.
 """
 
-def find_smallest_member(N):
+def find_smallest_member(n):
 
-    # calculate sum of proper divisors for every number up to N
-    sum_div = [0] * (N+1)
-    for i in range(1, N//2+1):
-        for j in range(i*2, N+1, i):
-            sum_div[j] += i
+    sum_of_div = [0] * (n+1)
+    for i in range(1, n//2+1):
+        for j in range(i*2, n+1, i):
+            sum_of_div[j] += i
 
-    # find amicable chains
-    visited = [False] * (N+1)
+    checked = [False] * (n+1)
     max_chain_len = 0
     result = 0
-    for i in range(2, N+1):
-        chain = []
+    for i in range(2, n+1):
+        possible_chain = []
         j = i
-        while not visited[j]:
-            visited[j] = True
-            chain.append(j)
-            j = sum_div[j]
-            if j > N:
+        while not checked[j]:
+            checked[j] = True
+            possible_chain.append(j)
+            j = sum_of_div[j]
+            if j > n:
                 break
-            if j in chain:
-                chain_len = len(chain) - chain.index(j)
-                if chain_len > max_chain_len:
-                    max_chain_len = chain_len
-                    result = min(chain[-chain_len:])
+            if j in possible_chain:
+                len_of_chain = len(possible_chain) - possible_chain.index(j)
+                if len_of_chain > max_len_of_chain:
+                    max_len_of_chain = len_of_chain
+                    result = min(possible_chain[-len_of_chain:])
                 break
     return result
 
