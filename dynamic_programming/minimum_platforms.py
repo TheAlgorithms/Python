@@ -35,4 +35,7 @@ def minimum_platforms(arrival, departure):
 arrival_times = [900, 940, 950, 1100, 1500, 1800]
 departure_times = [910, 1200, 1120, 1130, 1900, 2000]
 
-print("Minimum number of platforms required:", minimum_platforms(arrival_times, departure_times))
+print(
+    "Minimum number of platforms required:",
+    minimum_platforms(arrival_times, departure_times),
+)
