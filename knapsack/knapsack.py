@@ -5,7 +5,13 @@ from __future__ import annotations
 from functools import lru_cache
 
 
-def knapsack(capacity: int, weights: list[int], values: list[int], counter: int, allow_repetition=False) -> int:
+def knapsack(
+    capacity: int,
+    weights: list[int],
+    values: list[int],
+    counter: int,
+    allow_repetition=False,
+) -> int:
     """
     Returns the maximum value that can be put in a knapsack of a capacity cap,
     whereby each weight w has a specific value val with option to allow repetitive selection of items
@@ -27,6 +33,7 @@ def knapsack(capacity: int, weights: list[int], values: list[int], counter: int,
     tthe result is 300 cause the values of 60*5 (pick 5 times)
     which is the limit of the capacity.
     """
+
     @lru_cache()
     def knapsack_recur(cap: int, c: int) -> int:
         # Base Case
@@ -44,10 +51,15 @@ def knapsack(capacity: int, weights: list[int], values: list[int], counter: int,
         else:
             without_new_value = knapsack_recur(cap, c - 1)
             if allow_repetition:
-                new_value_included = values[c - 1] + knapsack_recur(cap - weights[c - 1], c)
+                new_value_included = values[c - 1] + knapsack_recur(
+                    cap - weights[c - 1], c
+                )
             else:
-                new_value_included = values[c - 1] + knapsack_recur(cap - weights[c - 1], c - 1)
+                new_value_included = values[c - 1] + knapsack_recur(
+                    cap - weights[c - 1], c - 1
+                )
             return max(new_value_included, without_new_value)
+
     return knapsack_recur(capacity, counter)
 
 
