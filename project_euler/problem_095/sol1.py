@@ -2,7 +2,7 @@
 Problem 95
 Url: https://projecteuler.net/problem=95
 """
-def find_smallest_member(n: int) -> int:
+def solution(n: int = 10**6) -> int:
     """
     Returns the smallest member of the longest amicable chain with no element exceeding one million
     >> 14316
@@ -35,4 +35,7 @@ def find_smallest_member(n: int) -> int:
 
 
 if __name__ == "__main__":
-    print(f"Solution : {find_smallest_member(10**6)}")
+    import doctest
+
+    doctest.testmod()
+    print(f"{solution() = }")
