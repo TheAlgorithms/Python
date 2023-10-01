@@ -4,7 +4,6 @@ from typing import Generic, TypeVar
 
 T = TypeVar("T", bound=int)
 
-
 class FibonacciNode(Generic[T]):
     def __init__(self, key: T) -> None:
         """
@@ -100,27 +99,29 @@ class FibonacciHeap(Generic[T]):
         >>> fh.min_node.key
         3
         """
-        max_degree = int(self.num_nodes**0.5) + 1
+        max_degree = int(self.num_nodes ** 0.5) + 1
         degree_buckets: list[FibonacciNode[T] | None] = [None] * max_degree
 
         current_node = self.min_node
         nodes_to_visit = [current_node]
         while True:
-            current_node = current_node.next
+            current_node = current_node.next if current_node.next is not None else current_node
             if current_node == self.min_node:
                 break
             nodes_to_visit.append(current_node)
 
         for node in nodes_to_visit:
-            degree = node.degree
-            while degree_buckets[degree]:
-                other = degree_buckets[degree]
-                if node.key > other.key:
-                    node, other = other, node
-                self._link_nodes(node, other)
-                degree_buckets[degree] = None
-                degree += 1
-            degree_buckets[degree] = node
+            if node is not None:
+                degree = node.degree
+                while degree_buckets[degree]:
+                    other = degree_buckets[degree]
+                    if node.key is not None and other.key is not None:
+                        if node.key > other.key:
+                            node, other = other, node
+                        self._link_nodes(node, other)
+                    degree_buckets[degree] = None
+                    degree += 1
+                degree_buckets[degree] = node
 
         self.min_node = None
         for node in degree_buckets:
@@ -189,8 +190,6 @@ class FibonacciHeap(Generic[T]):
         node.prev.next = node.next
         node.next.prev = node.prev
 
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
