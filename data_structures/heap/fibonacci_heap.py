@@ -4,6 +4,7 @@ from typing import Generic, TypeVar
 
 T = TypeVar("T", bound=int)
 
+
 class FibonacciNode(Generic[T]):
     def __init__(self, key: T) -> None:
         """
@@ -99,7 +100,7 @@ class FibonacciHeap(Generic[T]):
         >>> fh.min_node.key
         3
         """
-        max_degree = int(self.num_nodes ** 0.5) + 1
+        max_degree = int(self.num_nodes**0.5) + 1
         degree_buckets: list[FibonacciNode[T] | None] = [None] * max_degree
 
         current_node = self.min_node
@@ -188,6 +189,8 @@ class FibonacciHeap(Generic[T]):
         node.prev.next = node.next
         node.next.prev = node.prev
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
