@@ -4,6 +4,7 @@ class Node:
         self.left = None
         self.right = None
 
+
 def searchBFS(root):
     if root is None:
         return
@@ -13,12 +14,13 @@ def searchBFS(root):
 
     while queue:
         current_node = queue.pop(0)
-        print(current_node.value, end=' ')
+        print(current_node.value, end=" ")
 
         if current_node.left:
             queue.append(current_node.left)
         if current_node.right:
             queue.append(current_node.right)
+
 
 # Constructing the search tree
 root = Node(1)
