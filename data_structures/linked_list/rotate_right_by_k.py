@@ -51,7 +51,7 @@ def insert_node(head: Node | None, data: int) -> Node:
     return head
 
 
-def right_rotate_by_k(head: Node | None, k_places: int) -> Node:
+def right_rotate_by_k(head: Node | None, k_places: int) -> Node | None:
     """
     This function receives head and k as input
     parameters and returns head of linked list
