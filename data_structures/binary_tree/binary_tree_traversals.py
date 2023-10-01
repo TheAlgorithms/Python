@@ -1,9 +1,7 @@
 from __future__ import annotations
 
 from collections import deque
-
 from collections.abc import Generator
-
 from dataclasses import dataclass
 
 
