@@ -26,10 +26,8 @@ def quick_sort(arr):
 def adaptive_range_sort(unsorted):
     """
     Adaptive Range Sort using Counting Sort and Quick Sort algorithms in Python.
-    
     Sorts a list of integers by choosing an appropriate sorting algorithm based on the range of values.
-    If the range is small, Counting Sort is used for efficiency. Otherwise, Quick Sort is used.
-
+    If the range is small, Counting Sort is used otherwise, Quick Sort is used.
     :param unsorted: A list of integers to be sorted.
     :return: A new sorted list containing the same integers in ascending order.
     
