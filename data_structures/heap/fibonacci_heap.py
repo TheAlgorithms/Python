@@ -1,200 +1,144 @@
+
 # Reference: https://en.wikipedia.org/wiki/Fibonacci_heap
 
-from typing import Generic, TypeVar, Optional
+import math
 
-T = TypeVar("T", bound=int)
+class FibonacciTree:
+    """
+    FibonacciTree represents a node in a Fibonacci heap.
 
+    Attributes:
+        key (int): The key value associated with the node.
+        children (list): A list of child nodes.
+        order (int): The number of children the node has.
+    """
 
-class FibonacciNode(Generic[T]):
-    def __init__(self, key: T) -> None:
+    def __init__(self, key):
+        self.key = key
+        self.children = []
+        self.order = 0
+
+    def add_at_end(self, t):
         """
-        Create a new FibonacciNode with the given key.
+        Adds a child node 't' to the end of the children list.
 
         Args:
-            key (T): The key value associated with the node.
+            t (FibonacciTree): The child node to add.
         """
-        self.key: T = key
-        self.degree: int = 0
-        self.parent: Optional[FibonacciNode[T]] | None = None
-        self.child: Optional[FibonacciNode[T]] | None = None
-        self.is_marked: bool = False
-        self.next: FibonacciNode[T] = self
-        self.prev: FibonacciNode[T] = self
+        self.children.append(t)
+        self.order = self.order + 1
 
 
-class FibonacciHeap(Generic[T]):
-    def __init__(self) -> None:
-        """
-        Create a new Fibonacci Heap.
+class FibonacciHeap:
+    """
+    FibonacciHeap represents a priority queue data structure with efficient
+    amortized time complexities for various operations.
 
-        The Fibonacci Heap is initialized as an empty heap.
-        """
-        self.min_node: FibonacciNode[T] | None = None
-        self.num_nodes: int = 0
+    Usage:
+    >>> heap = FibonacciHeap()
+    >>> heap.insert(5)
+    >>> heap.insert(3)
+    >>> heap.insert(7)
+    >>> heap.get_min()
+    3
+    >>> heap.extract_min()
+    3
+    >>> heap.get_min()
+    5
 
-    def insert(self, key: T) -> None:
+    Attributes:
+        trees (list): A list of FibonacciTree objects.
+        least (FibonacciTree): A reference to the node with the minimum key.
+        count (int): The total number of nodes in the heap.
+    """
+
+    def __init__(self):
+        self.trees = []
+        self.least = None
+        self.count = 0
+
+    def insert(self, key):
         """
-        Insert a new node with the given key into the Fibonacci Heap.
+        Inserts a new node with the given key into the Fibonacci heap.
 
         Args:
-            key (T): The key value to insert.
-
-        >>> fh = FibonacciHeap()
-        >>> fh.insert(5)
-        >>> fh.insert(3)
-        >>> fh.insert(8)
-        >>> fh.extract_min()
-        3
-        >>> fh.extract_min()
-        5
-        >>> fh.extract_min()
-        8
+            key (int): The key to insert.
         """
-        new_node = FibonacciNode(key)
-        if self.min_node is None:
-            self.min_node = new_node
-        else:
-            self._link_nodes(self.min_node, new_node)
-            if key < self.min_node.key:
-                self.min_node = new_node
-        self.num_nodes += 1
+        new_tree = FibonacciTree(key)
+        self.trees.append(new_tree)
+        if (self.least is None or key < self.least.key):
+            self.least = new_tree
+        self.count = self.count + 1
 
-    def _link_nodes(
-        self,
-        min_node: FibonacciNode[T] | None,
-        new_node: FibonacciNode[T] | None,
-    ) -> None:
+    def get_min(self):
         """
-        Link two nodes together in the Fibonacci Heap.
-
-        Args:
-            min_node (FibonacciNode): The minimum node.
-            new_node (FibonacciNode): The new node to be linked.
-
-        >>> fh = FibonacciHeap()
-        >>> node1 = FibonacciNode(3)
-        >>> node2 = FibonacciNode(5)
-        >>> fh._link_nodes(node1, node2)
-        >>> node1.next == node2 and node2.prev == node1
-        True
-        """
-        if min_node is None or new_node is None:
-            raise ValueError("min_node and new_node cannot be None")
-
-        new_node.next = min_node.next
-        min_node.next = new_node
-        new_node.prev = min_node
-        new_node.next.prev = new_node
-
-    def _consolidate(self) -> None:
-        """
-        Consolidate the heap by combining trees with the same degree.
-
-        This is an internal method used to maintain the Fibonacci Heap's properties.
-
-        >>> fh = FibonacciHeap()
-        >>> fh.insert(5)
-        >>> fh.insert(3)
-        >>> fh.insert(8)
-        >>> fh._consolidate()
-        >>> fh.min_node.key
-        3
-        """
-        max_degree = int(self.num_nodes**0.5) + 1
-        degree_buckets: list[FibonacciNode[T] | None] = [None] * max_degree
-
-        current_node = self.min_node
-        nodes_to_visit = [current_node]
-        while True:
-            current_node = (
-                current_node.next if current_node.next is not None else current_node
-            )
-            if current_node == self.min_node:
-                break
-            nodes_to_visit.append(current_node)
-
-        for node in nodes_to_visit:
-            if node is not None:
-                degree = node.degree
-                while degree_buckets[degree]:
-                    other = degree_buckets[degree]
-                    if node.key is not None and other.key is not None:
-                        if node.key > other.key:
-                            node, other = other, node
-                        self._link_nodes(node, other)
-                    degree_buckets[degree] = None
-                    degree += 1
-                degree_buckets[degree] = node
-
-        self.min_node = None
-        for node in degree_buckets:
-            if node:
-                if self.min_node is None or node.key < self.min_node.key:
-                    self.min_node = node
-
-    def extract_min(self) -> T | None:
-        """
-        Extract the minimum element from the Fibonacci Heap.
+        Returns the minimum key in the Fibonacci heap.
 
         Returns:
-            T | None: The minimum element, or None if the heap is empty.
-
-        >>> fh = FibonacciHeap()
-        >>> fh.insert(5)
-        >>> fh.insert(3)
-        >>> fh.insert(8)
-        >>> fh.extract_min()
-        3
-        >>> fh.extract_min()
-        5
-        >>> fh.extract_min()
-        8
-        >>> fh.extract_min()
+            int: The minimum key.
         """
-        min_node = self.min_node
-        if min_node:
-            if min_node.child:
-                child = min_node.child
-                while True:
-                    next_child = child.next
-                    child.prev = min_node.prev
-                    child.next = min_node.next
-                    min_node.prev.next = child
-                    min_node.next.prev = child
-                    min_node.child = None
-                    if next_child == min_node.child:
-                        break
-                    child = next_child
-            self._remove_node(min_node)
-            if min_node == min_node.next:
-                self.min_node = None
+        if self.least is None:
+            return None
+        return self.least.key
+
+    def extract_min(self):
+        """
+        Removes and returns the node with the minimum key from the Fibonacci heap.
+
+        Returns:
+            int: The minimum key.
+        """
+        smallest = self.least
+        if smallest is not None:
+            for child in smallest.children:
+                self.trees.append(child)
+            self.trees.remove(smallest)
+            if self.trees == []:
+                self.least = None
             else:
-                self.min_node = min_node.next
-                self._consolidate()
-            self.num_nodes -= 1
-        return min_node.key if min_node else None
+                self.least = self.trees[0]
+                self.consolidate()
+            self.count = self.count - 1
+            return smallest.key
 
-    def _remove_node(self, node: FibonacciNode[T]) -> None:
+    def consolidate(self):
         """
-        Remove a node from the doubly linked list of nodes.
-
-        Args:
-            node (FibonacciNode): The node to remove.
-
-        >>> fh = FibonacciHeap()
-        >>> node1 = FibonacciNode(3)
-        >>> fh._remove_node(node1)
-        >>> node1.next == node1.prev == node1
-        True
+        Consolidates trees in the Fibonacci heap to maintain the heap's structure.
         """
-        if node is None:
-            raise ValueError("node cannot be None")
+        aux = (floor_log2(self.count) + 1) * [None]
 
-        node.prev.next = node.next
-        node.next.prev = node.prev
+        while self.trees != []:
+            x = self.trees[0]
+            order = x.order
+            self.trees.remove(x)
+            while aux[order] is not None:
+                y = aux[order]
+                if x.key > y.key:
+                    x, y = y, x
+                x.add_at_end(y)
+                aux[order] = None
+                order = order + 1
+            aux[order] = x
 
+        self.least = None
+        for k in aux:
+            if k is not None:
+                self.trees.append(k)
+                if (self.least is None or k.key < self.least.key):
+                    self.least = k
+
+def floor_log2(x):
+    """
+    Computes the floor of the base-2 logarithm of 'x'.
+
+    Args:
+        x (int): The input number.
+
+    Returns:
+        int: The floor of the base-2 logarithm of 'x'.
+    """
+    return math.frexp(x)[1] - 1
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
