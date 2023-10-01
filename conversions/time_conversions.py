@@ -1,7 +1,7 @@
 from typing import Union
 
 
-def seconds_to_minutes(seconds: Union[int, float], ndigits: int = 2) -> float:
+def seconds_to_minutes(seconds: float, ndigits: int = 2) -> float:
     """
     Convert seconds to minutes and round it to the specified number of decimal places.
 
@@ -23,7 +23,7 @@ def seconds_to_minutes(seconds: Union[int, float], ndigits: int = 2) -> float:
     return round(float(seconds) / 60, ndigits)
 
 
-def minutes_to_seconds(minutes: Union[int, float], ndigits: int = 2) -> float:
+def minutes_to_seconds(minutes: float, ndigits: int = 2) -> float:
     """
     Convert minutes to seconds and round it to the specified number of decimal places.
 
@@ -45,7 +45,7 @@ def minutes_to_seconds(minutes: Union[int, float], ndigits: int = 2) -> float:
     return round(float(minutes) * 60, ndigits)
 
 
-def hours_to_minutes(hours: Union[int, float], ndigits: int = 2) -> float:
+def hours_to_minutes(hours: float, ndigits: int = 2) -> float:
     """
     Convert hours to minutes and round it to the specified number of decimal places.
 
@@ -67,7 +67,7 @@ def hours_to_minutes(hours: Union[int, float], ndigits: int = 2) -> float:
     return round(float(hours) * 60, ndigits)
 
 
-def minutes_to_hours(minutes: Union[int, float], ndigits: int = 2) -> float:
+def minutes_to_hours(minutes: float, ndigits: int = 2) -> float:
     """
     Convert minutes to hours and round it to the specified number of decimal places.
 
@@ -89,7 +89,7 @@ def minutes_to_hours(minutes: Union[int, float], ndigits: int = 2) -> float:
     return round(float(minutes) / 60, ndigits)
 
 
-def days_to_hours(days: Union[int, float], ndigits: int = 2) -> float:
+def days_to_hours(days: float, ndigits: int = 2) -> float:
     """
     Convert days to hours and round it to the specified number of decimal places.
 
@@ -111,7 +111,7 @@ def days_to_hours(days: Union[int, float], ndigits: int = 2) -> float:
     return round(float(days) * 24, ndigits)
 
 
-def hours_to_days(hours: Union[int, float], ndigits: int = 2) -> float:
+def hours_to_days(hours: float, ndigits: int = 2) -> float:
     """
     Convert hours to days and round it to the specified number of decimal places.
 
@@ -135,5 +135,4 @@ def hours_to_days(hours: Union[int, float], ndigits: int = 2) -> float:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
