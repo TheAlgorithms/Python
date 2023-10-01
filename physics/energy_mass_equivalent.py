@@ -1,15 +1,16 @@
-import scipy.constants as const
 import math
-
+import scipy.constants as const
 
 def energy_equivalent_for_stationary_mass(mass_kg: float) -> float | ValueError:
     """
     Calculate the energy equivalent for a given mass using E=mc^2.
 
-    Wikipedia link:"https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence#:~:text=11%20External%20links-,Description,even%20when%20they%20are%20stationary."
+    Wikipedia link:
+    "https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence"
 
     Parameters:
-        mass_kg (float): Mass in kilograms.(must be positive)
+        mass_kg (float): Mass in kilograms.
+        (must be positive)
 
     Returns:
         float: Energy equivalent in joules.
@@ -30,11 +31,14 @@ def energy_equivalent_for_moving_mass(
     mass_kg: float, velocity_m_s: float
 ) -> float | ValueError:
     """
-    Calculate the energy equivalent for a moving mass using relativistic energy-momentum relation(E^2= m^2*c^4 +p^2*c^2).
+    Calculate the energy equivalent for a moving mass using relativistic energy-momentum relation
+    (E^2= m^2*c^4 +p^2*c^2).
 
     Parameters:
-        mass_kg (float): Mass in kilograms.(must be positive)
-        velocity_m_s (float): Velocity in meters per second.(can be negative as well as positive)
+        mass_kg (float): Mass in kilograms.
+        (must be positive)
+        velocity_m_s (float): Velocity in meters per second.
+        (can be negative as well as positive)
 
     Returns:
         float: Energy equivalent in joules.
