@@ -7,12 +7,15 @@ class Node:
         self.next = None
 
 
-def print_linked_list(head: Node) -> None:
+def print_linked_list(head: Node | None) -> None:
     """
     Print the entire linked list iteratively.
 
+    This function prints the elements of a linked list iteratively, separated by '->'.
+
     Parameters:
-        head (Node): The head of the linked list to be printed.
+        head (Node | None): The head of the linked list to be printed,\
+or None if the linked list is empty.
 
     >>> head = None
     >>> head = insert_node(head, 0)
@@ -33,12 +36,12 @@ def print_linked_list(head: Node) -> None:
     print(head.data)
 
 
-def insert_node(head: Node, data: int) -> Node:
+def insert_node(head: Node | None, data: int) -> Node:
     """
     Insert a new node at the end of a linked list and return the new head.
 
     Parameters:
-        head (Node): The head of the linked list.
+        head (Node | None): The head of the linked list.
         data (int): The data to be inserted into the new node.
 
     Returns:
@@ -60,20 +63,21 @@ def insert_node(head: Node, data: int) -> Node:
     while temp_node.next is not None:
         temp_node = temp_node.next
 
-    temp_node.next = new_node
+    temp_node.next = new_node  # type: ignore
     return head
 
 
-def right_rotate_by_k(head: Node, k: int) -> Node:
+def right_rotate_by_k(head: Node | None, rotation: int) -> Node | None:
     """
-    Rotate a linked list to the right by k times.
+    Rotate a linked list to the right by rotation times.
 
     Parameters:
-        head (Node): The head of the linked list.
-        k (int): The number of places to rotate.
+        head (Node | None): The head of the linked list.
+        rotation (int): The number of places to rotate.
 
     Returns:
-        Node: The head of the rotated linked list.
+        Node | None: The head of the rotated linked list\
+if the linked list is not None, otherwise None.
 
     >>> head = None
     >>> head = insert_node(head, 1)
@@ -81,8 +85,8 @@ def right_rotate_by_k(head: Node, k: int) -> Node:
     >>> head = insert_node(head, 3)
     >>> head = insert_node(head, 4)
     >>> head = insert_node(head, 5)
-    >>> k = 2
-    >>> new_head = right_rotate_by_k(head, k)
+    >>> rotation = 2
+    >>> new_head = right_rotate_by_k(head, rotation)
     >>> print_linked_list(new_head)
     4->5->1->2->3
     """
@@ -97,14 +101,14 @@ def right_rotate_by_k(head: Node, k: int) -> Node:
         length += 1
         temp_node = temp_node.next
 
-    # Adjust the value of k to avoid unnecessary rotations.
-    k = k % length
+    # Adjust the value of rotation to avoid unnecessary rotations.
+    rotation = rotation % length
 
-    if k == 0:
+    if rotation == 0:
         return head  # As No rotation needed.
 
     # Find the new head position after rotation.
-    new_head_index = length - k
+    new_head_index = length - rotation
 
     # Traverse to the new head position
     temp_node = head
@@ -127,12 +131,11 @@ if __name__ == "__main__":
 
     doctest.testmod()
     head = None
-
-    # head = insert_node(head, 5)
-    # head = insert_node(head, 1)
+    head = insert_node(head, 5)
+    head = insert_node(head, 1)
     head = insert_node(head, 2)
     head = insert_node(head, 4)
-    # head = insert_node(head, 3)
+    head = insert_node(head, 3)
 
     print("Original list: ", end="")
     print_linked_list(head)
