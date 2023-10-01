@@ -46,8 +46,7 @@ def generate_permutation_key(block_size: int) -> list:
     """
     digits = list(range(1, block_size + 1))
     random.shuffle(digits)
-    key = digits
-    return key
+    return digits
 
 
 def encrypt(
