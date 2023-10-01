@@ -1,11 +1,8 @@
-# Implementation of a Fibonacci Heap based on the concepts described in "Introduction to Algorithms" by Cormen, Leiserson, Rivest, and Stein.
 # Reference: https://en.wikipedia.org/wiki/Fibonacci_heap
 
-from __future__ import annotations
 from typing import Generic, TypeVar
 
 T = TypeVar("T", bound=int)
-
 
 class FibonacciNode(Generic[T]):
     def __init__(self, key: T) -> None:
@@ -62,7 +59,9 @@ class FibonacciHeap(Generic[T]):
         self.num_nodes += 1
 
     def _link_nodes(
-        self, min_node: FibonacciNode[T], new_node: FibonacciNode[T]
+        self,
+        min_node: FibonacciNode[T] | None,
+        new_node: FibonacciNode[T] | None,
     ) -> None:
         """
         Link two nodes together in the Fibonacci Heap.
@@ -100,7 +99,7 @@ class FibonacciHeap(Generic[T]):
         >>> fh.min_node.key
         3
         """
-        max_degree = int(self.num_nodes**0.5) + 1
+        max_degree = int(self.num_nodes ** 0.5) + 1
         degree_buckets: list[FibonacciNode[T] | None] = [None] * max_degree
 
         current_node = self.min_node
@@ -189,8 +188,6 @@ class FibonacciHeap(Generic[T]):
         node.prev.next = node.next
         node.next.prev = node.prev
 
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
