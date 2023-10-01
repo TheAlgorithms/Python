@@ -1,0 +1,84 @@
+"""
+
+Title: Simplified Implementation of Artificial Neural Networks
+
+Description: This Python code offers a straightforward approach to utilizing Artificial Neural Networks for tasks involving both classification and regression.
+
+"""
+
+import tensorflow as tf
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from tensorflow import keras
+
+
+class ANN_classifier:
+
+    def __init__(self, no_of_classes):
+        self.params = [
+            keras.layers.Dense(units = 6, activation = 'relu'),
+            keras.layers.Dense(units = 8, activation = 'relu'),
+            keras.layers.Dense(units = 10, activation = 'relu'),
+            
+        ]
+
+        self.optimizer = 'binary_crossentropy'
+        self.loss = 'adam'
+
+        self.ann = keras.Sequential(self.params)
+        self.ann.add(keras.layers.Dense(units = no_of_classes, activation = 'sigmoid'))
+
+        if (no_of_classes > 1):
+            self.ann.compile(optimizer = 'adam', loss = 'sparse_categorical_crossentropy', metrics = ['accuracy'])
+        else:
+            self.ann.compile(optimizer = 'adam', loss = 'binary_crossentropy', metrics = ['accuracy'])
+    
+    def neuro_compile(self,opt = 'adam',lo = 'binary_crossentropy'):
+        self.optimizer = opt
+        self.loss = lo
+        self.ann.compile(optimizer = self.optimizer, loss = self.loss, metrics = ['accuracy'])
+    
+    def train(self,X_train, y_train):
+        self.ann.fit(X_train, y_train, batch_size = 32, epochs = 100)
+
+    def predict(self, X_test):
+        predicted = self.ann.predict(X_test)
+        return predicted
+
+    def add_layer(self, unit, activate):
+        self.params.insert(len(self.params)-1,keras.layers.Dense(units = unit, activation = activate))
+        self.ann.compile(optimizer = self.optimizer, loss = self.loss, metrics = ['accuracy'])
+
+    def update_neurons(self, new_no, u=6, activate = 'sigmoid'):
+        self.params[new_no-1] = keras.layers.Dense(units = u, activation = activate)
+        self.ann.compile(optimizer = self.optimizer, loss = self.loss, metrics = ['accuracy'])
+
+
+        
+class ANN_regressor:
+
+    def __init__(self, no_of_classes):
+        self.params = [
+            keras.layers.Dense(units = 6, activation = 'relu'),
+            keras.layers.Dense(units = 8, activation = 'relu'),
+            keras.layers.Dense(units = 10, activation = 'relu'),
+        ]
+
+        self.ann = tf.keras.Sequential(self.params)
+        self.ann.add(keras.layers.Dense(units = no_of_classes, activation = 'sigmoid'))
+        self.ann.compile(optimizer='adam', loss='mean_squared_error')
+    
+    def train(self, X_train, y_train):
+         self.ann.fit(X_train,y_train,batch_size=32,epochs=100)
+
+    def predict(self, X_test):
+        predicted = self.ann.predict(X_test)
+        return predicted
+
+    def add_layer(self, unit, activate):
+        return self.params.append(keras.layers.Dense(units = unit, activation = activate))
+
+
+if __name__ == "__main__":
+    obj = ANN_classifier(3)
