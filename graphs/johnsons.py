@@ -1,34 +1,33 @@
 # The problem is to find the shortest distance between all pairs of vertices in a weighted directed graph that can have negative edge weights.
 # For the problem to be well-defined, there should be no cycles in the graph with a negative total weight.
 
-
+from typing import Dict, Union
 # Link to reference - https://en.wikipedia.org/wiki/Johnson%27s_algorithm
 class Graph:
-    def __init__(self):
-        # dictionary containing keys that map to the corresponding vertex object
-        self.vertices = {}
+    def __init__(self) -> None:
+        self.vertices: Dict[Union[int, str], Vertex] = {}
 
-    def add_vertex(self, key):
+    def add_vertex(self, key: Union[int, str]) -> None:
         """Add a vertex with the given key to the graph."""
         vertex = Vertex(key)
         self.vertices[key] = vertex
 
-    def get_vertex(self, key):
+    def get_vertex(self, key: Union[int, str]) -> Vertex:
         """Return vertex object with the corresponding key."""
         return self.vertices[key]
 
-    def __contains__(self, key):
+    def __contains__(self, key: Union[int, str]) -> bool:
         return key in self.vertices
 
-    def add_edge(self, src_key, dest_key, weight=1):
+    def add_edge(self, src_key: Union[int, str], dest_key: Union[int, str], weight: int = 1) -> None:
         """Add edge from src_key to dest_key with given weight."""
         self.vertices[src_key].add_neighbour(self.vertices[dest_key], weight)
 
-    def does_edge_exist(self, src_key, dest_key):
+    def does_edge_exist(self, src_key: Union[int, str], dest_key: Union[int, str]) -> bool:
         """Return True if there is an edge from src_key to dest_key."""
         return self.vertices[src_key].does_it_point_to(self.vertices[dest_key])
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.vertices)
 
     def __iter__(self):
@@ -36,36 +35,35 @@ class Graph:
 
 
 class Vertex:
-    def __init__(self, key):
-        self.key = key
-        self.points_to = {}
+    def __init__(self, key: Union[int, str]) -> None:
+        self.key: Union[int, str] = key
+        self.points_to: Dict[Vertex, int] = {}
 
-    def get_key(self):
+    def get_key(self) -> Union[int, str]:
         """Return key corresponding to this vertex object."""
         return self.key
 
-    def add_neighbour(self, dest, weight):
+    def add_neighbour(self, dest: 'Vertex', weight: int) -> None:
         """Make this vertex point to dest with given edge weight."""
         self.points_to[dest] = weight
 
-    def get_neighbours(self):
+    def get_neighbours(self) -> Dict[Vertex, int]:
         """Return all vertices pointed to by this vertex."""
         return self.points_to.keys()
 
-    def get_weight(self, dest):
+    def get_weight(self, dest: 'Vertex') -> int:
         """Get weight of edge from this vertex to dest."""
         return self.points_to[dest]
 
-    def set_weight(self, dest, weight):
+    def set_weight(self, dest: 'Vertex', weight: int) -> None:
         """Set weight of edge from this vertex to dest."""
         self.points_to[dest] = weight
 
-    def does_it_point_to(self, dest):
+    def does_it_point_to(self, dest: 'Vertex') -> bool:
         """Return True if this vertex points to dest."""
         return dest in self.points_to
 
-
-def johnson(g):
+def johnson(g: Graph) -> Dict[Vertex, Dict[Vertex, int]]:
     """Return distance where distance[u][v] is the min distance from u to v.
 
     distance[u][v] is the shortest distance from vertex u to v.
@@ -109,7 +107,7 @@ def johnson(g):
     return distance
 
 
-def bellman_ford(g, source):
+def bellman_ford(g: Graph, source: Vertex) -> Dict[Vertex, int]:
     """Return distance where distance[v] is min distance from source to v.
 
     This will return a dictionary distance.
@@ -128,7 +126,7 @@ def bellman_ford(g, source):
     return distance
 
 
-def dijkstra(g, source):
+def dijkstra(g: Graph, source: Vertex) -> Dict[Vertex, int]:
     """Return distance where distance[v] is min distance from source to v.
 
     This will return a dictionary distance.
