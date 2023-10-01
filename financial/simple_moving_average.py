@@ -4,7 +4,7 @@ https://en.wikipedia.org/wiki/Moving_average
 """
 
 
-def simple_moving_average(data, window_size):
+def simple_moving_average(data: list[float], window_size: int) -> list[float]:
     """
 
 
