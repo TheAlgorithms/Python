@@ -1141,7 +1141,6 @@
   * [Quick Sort](sorts/quick_sort.py)
   * [Quick Sort 3 Partition](sorts/quick_sort_3_partition.py)
   * [Radix Sort](sorts/radix_sort.py)
-  * [Random Normal Distribution Quicksort](sorts/random_normal_distribution_quicksort.py)
   * [Recursive Bubble Sort](sorts/recursive_bubble_sort.py)
   * [Recursive Insertion Sort](sorts/recursive_insertion_sort.py)
   * [Recursive Mergesort Array](sorts/recursive_mergesort_array.py)
