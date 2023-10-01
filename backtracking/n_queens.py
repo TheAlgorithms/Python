@@ -26,32 +26,21 @@ def is_safe(board: list[list[int]], row: int, column: int) -> bool:
     Boolean Value
 
     """
-    
-    n = len(board) # Size of the board
-    
-    # Check if there is any queen in the same row
-    for i in range(n):
-        if board[row][i] == 1:
-            return False
-    # Check if there is any queen in the same column
-    for i in range(n):
-        if board[i][column] == 1:
-            return False
-    # Check if there is any queen in the left upper diagonal
-    for i, j in zip(range(row, -1, -1), range(column, -1, -1)):
-        if board[i][j] == 1:
-            return False
-    # Check if there is any queen in the right upper diagonal
-    for i, j in zip(range(row, -1, -1), range(column, n)):
-        if board[i][j] == 1:
-            return False
-    return True
+
+    n = len(board)  # Size of the board
+
+    # Check if there is any queen in the same row, column,
+    # left upper diagonal, and right upper diagonal
+    return all(board[i][j] != 1 for i, j in zip(range(row, -1, -1), range(column, n))) \
+        and all(board[i][j] != 1 for i, j in zip(range(row, -1, -1), range(column, -1, -1))) \
+        and all(board[i][j] != 1 for i, j in zip(range(row, n), range(column, n))) \
+        and all(board[i][j] != 1 for i, j in zip(range(row, n), range(column, -1, -1)))
 
 
 def solve(board: list[list[int]], row: int) -> bool:
     """
-    This function creates a state space tree and calls the safe function until it receives a
-    False Boolean and terminates that branch and backtracks to the next
+    This function creates a state space tree and calls the safe function until it
+    receives a False Boolean and terminates that branch and backtracks to the next
     possible solution branch.
     """
     if row >= len(board):
