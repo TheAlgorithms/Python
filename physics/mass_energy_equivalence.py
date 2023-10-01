@@ -28,7 +28,7 @@ def calculate_energy(mass: float) -> float:
     # Speed of light in meters per second (approximately)
     speed_of_light = 299792458
     # Calculate energy using the equation E=mc^2
-    energy = mass * m.pow(speed_of_light, 2)
+    energy = mass * speed_of_light**2
     # return value has unit Joules
     return energy
 
