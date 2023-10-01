@@ -10,6 +10,7 @@ class Node:
         self.left = None
         self.right = None
 
+
 def breadth_first_search(root) -> None:
     """
     Perform a breadth-first search traversal of a binary tree and print the values of nodes.
@@ -37,6 +38,7 @@ def breadth_first_search(root) -> None:
         # No output as the tree is empty.
     """
 
+
 def searchBFS(root):
     if root is None:
         print("# No output as the tree is empty.")
@@ -58,6 +60,7 @@ def searchBFS(root):
 
     print("Breadth-First Search traversal:")
     print(" ".join(map(str, result)))
+
 
 if __name__ == "__main__":
     # Constructing the search tree
