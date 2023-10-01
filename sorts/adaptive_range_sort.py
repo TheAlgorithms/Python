@@ -9,6 +9,7 @@ def counting_sort(arr):
         sorted_arr.extend([i + min_val] * count[i])
     return sorted_arr
 
+
 def quick_sort(arr):
     if len(arr) <= 1:
         return arr
@@ -23,6 +24,7 @@ def quick_sort(arr):
                 right.append(x)
         return quick_sort(left) + [pivot] + quick_sort(right)
 
+
 def adaptive_range_sort(unsorted):
     """
     Adaptive Range Sort using Counting Sort and Quick Sort algorithms in Python.
@@ -30,7 +32,7 @@ def adaptive_range_sort(unsorted):
     If the range is small, Counting Sort is used otherwise, Quick Sort is used.
     :param unsorted: A list of integers to be sorted.
     :return: A new sorted list containing the same integers in ascending order.
-    
+
     Examples:
     >>> adaptive_range_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
@@ -50,6 +52,7 @@ def adaptive_range_sort(unsorted):
     else:
         # Use Quick Sort for larger range of values
         return quick_sort(unsorted)
+
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
