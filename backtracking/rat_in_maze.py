@@ -64,9 +64,9 @@ def solve_maze(maze: list[list[int]]) -> bool:
     solutions = [[0 for _ in range(size)] for _ in range(size)]
     solved = run_maze(maze, 0, 0, solutions)
     if solved:
-        solved=(solutions,1)
+        solved = (solutions, 1)
     else:
-        solved="No solution exists!"
+        solved = "No solution exists!"
     return solved
 
 
@@ -113,7 +113,14 @@ def run_maze(maze: list[list[int]], i: int, j: int, solutions: list[list[int]]) 
 
 
 if __name__ == "__main__":
-    maze = [[0, 1, 0, 1, 1],[0, 0, 0, 0, 0],[1, 0, 1, 0, 1],[0, 0, 1, 0, 0],[1, 0, 0, 1, 0]]
+    maze = [
+        [0, 1, 0, 1, 1],
+        [0, 0, 0, 0, 0],
+        [1, 0, 1, 0, 1],
+        [0, 0, 1, 0, 0],
+        [1, 0, 0, 1, 0],
+    ]
     print(solve_maze(maze))
     import doctest
+
     doctest.testmod()
