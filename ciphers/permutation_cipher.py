@@ -1,10 +1,10 @@
 """
-The Permutation Cipher, implemented above, is a simple encryption
-technique that rearranges the characters in a message based on a secret key.
-It divides the message into blocks and applies a permutation to the characters
-within each block according to the key. The key is a sequence of unique integers
-that determine the order of character rearrangement. For more info read:-
-https://www.nku.edu/~christensen/1402%20permutation%20ciphers.pdf
+The permutation cipher, also called the transposition cipher, is a simple encryption
+technique that rearranges the characters in a message based on a secret key. It
+divides the message into blocks and applies a permutation to the characters within
+each block according to the key. The key is a sequence of unique integers that
+determine the order of character rearrangement.
+For more info: https://www.nku.edu/~christensen/1402%20permutation%20ciphers.pdf
 
 """
 import random
@@ -21,16 +21,19 @@ def generate_valid_block_size(message_length: int) -> int:
         int: A valid block size.
 
     Example:
-        >>> generate_valid_block_size(2)
-        2
+        >>> random.seed(1)
+        >>> generate_valid_block_size(12)
+        3
     """
-    while True:
-        block_size = random.randint(2, message_length)
-        if message_length % block_size == 0:
-            return block_size
+    block_sizes = [
+        block_size
+        for block_size in range(2, message_length + 1)
+        if message_length % block_size == 0
+    ]
+    return random.choice(block_sizes)
 
 
-def generate_permutation_key(block_size: int) -> list:
+def generate_permutation_key(block_size: int) -> list[int]:
     """
     Generate a random permutation key of a specified block size.
 
@@ -41,18 +44,18 @@ def generate_permutation_key(block_size: int) -> list:
         list[int]: A list containing a random permutation of digits.
 
     Example:
-        >>> generate_permutation_key(1)
-        [1]
+        >>> random.seed(0)
+        >>> generate_permutation_key(4)
+        [2, 0, 1, 3]
     """
-    digits = list(range(1, block_size + 1))
+    digits = list(range(block_size))
     random.shuffle(digits)
-    key = digits
-    return key
+    return digits
 
 
 def encrypt(
-    message: str, key: list | None = None, block_size: int | None = None
-) -> tuple:
+    message: str, key: list[int] | None = None, block_size: int | None = None
+) -> tuple[str, list[int]]:
     """
     Encrypt a message using a permutation cipher with block rearrangement using a key.
 
@@ -81,13 +84,13 @@ def encrypt(
 
     for i in range(0, message_length, block_size):
         block = message[i : i + block_size]
-        rearranged_block = [block[digit - 1] for digit in key]
+        rearranged_block = [block[digit] for digit in key]
         encrypted_message += "".join(rearranged_block)
 
     return encrypted_message, key
 
 
-def decrypt(encrypted_message: str, key: list) -> str:
+def decrypt(encrypted_message: str, key: list[int]) -> str:
     """
     Decrypt an encrypted message using a permutation cipher with block rearrangement.
 
@@ -111,7 +114,7 @@ def decrypt(encrypted_message: str, key: list) -> str:
         block = encrypted_message[i : i + key_length]
         original_block = [""] * key_length
         for j, digit in enumerate(key):
-            original_block[digit - 1] = block[j]
+            original_block[digit] = block[j]
         decrypted_message += "".join(original_block)
 
     return decrypted_message
