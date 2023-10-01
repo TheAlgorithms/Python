@@ -1,6 +1,3 @@
-from typing import Union
-
-
 def seconds_to_minutes(seconds: float, ndigits: int = 2) -> float:
     """
     Convert seconds to minutes and round it to the specified number of decimal places.
