@@ -9,7 +9,7 @@ https://en.wikipedia.org/wiki/Heap%27s_algorithm.
 
 def heaps(arr: list) -> list:
     """
-    Pure python implementation of the Heap's algorithm (recursive version),
+    Pure Python implementation of the Heap's algorithm (recursive version),
     returning all permutations of a list.
 
     >>> heaps([])
