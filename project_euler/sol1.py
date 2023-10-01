@@ -16,21 +16,22 @@ Since this chain returns to its starting point, it is called an amicable chain.
 Find the smallest member of the longest amicable chain with no element exceeding one million.
 """
 
-def find_smallest_member(n : int) -> int:
+
+def find_smallest_member(n: int) -> int:
     """
     Returns the smallest member of the longest amicable chain with no element exceeding one million
     >> 14316
     """
 
-    sum_of_div = [0] * (n+1)
-    for i in range(1, n//2+1):
-        for j in range(i*2, n+1, i):
+    sum_of_div = [0] * (n + 1)
+    for i in range(1, n // 2 + 1):
+        for j in range(i * 2, n + 1, i):
             sum_of_div[j] += i
 
-    checked = [False] * (n+1)
+    checked = [False] * (n + 1)
     max_chain_len = 0
     result = 0
-    for i in range(2, n+1):
+    for i in range(2, n + 1):
         possible_chain = []
         j = i
         while not checked[j]:
@@ -47,6 +48,6 @@ def find_smallest_member(n : int) -> int:
                 break
     return result
 
+
 if __name__ == "__main__":
     print(f"Solution : {find_smallest_member(10**6)}")
-
