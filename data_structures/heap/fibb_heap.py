@@ -95,7 +95,7 @@ class FibonacciHeap:
         """
         Consolidate trees in the Fibonacci Heap to ensure there are no two trees with the same degree.
         """
-        max_degree = int(self.num_nodes ** 0.5) + 1
+        max_degree = int(self.num_nodes**0.5) + 1
         degree_list = [None] * max_degree
         nodes = [self.min_node]
         current = self.min_node.next
@@ -119,6 +119,7 @@ class FibonacciHeap:
                     self.min_node = node
                 elif node.key < self.min_node.key:
                     self.min_node = node
+
 
 # Example usage:
 fib_heap = FibonacciHeap()
