@@ -64,9 +64,9 @@ def solve_maze(maze: list[list[int]]) -> bool:
     solutions = [[0 for _ in range(size)] for _ in range(size)]
     solved = run_maze(maze, 0, 0, solutions)
     if solved:
-        print((solutions,1))
+        print((solutions, 1))
     else:
-        print(([],0))
+        print(([], 0))
     return solved
 
 
