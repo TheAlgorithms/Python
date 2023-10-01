@@ -130,7 +130,7 @@ def rotate_to_the_right(head: Node, places: int) -> Node:
         temp_node = temp_node.next_node
     temp_node.next_node = head
 
-    return new_head
+    areturn new_head
 
 
 if __name__ == "__main__":
