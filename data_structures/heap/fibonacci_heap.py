@@ -64,6 +64,8 @@ class FibonacciHeap:
     - Delete minimum: Amortized O(log n)
     - Decrease key: Amortized O(1)
     - Delete node: Amortized O(log n)
+
+    For more details, refer to the Wikipedia page on [Fibonacci Heap](https://en.wikipedia.org/wiki/Fibonacci_heap).
     """
 
     def __init__(self):
@@ -214,35 +216,6 @@ class FibonacciHeap:
         return f"Fibonacci Heap (Minimum: {self.min_node.val})"
 
 
-# Unit Tests
 if __name__ == "__main__":
-    import random
-
-    # Create a Fibonacci Heap
-    fib_heap = FibonacciHeap()
-
-    # Insert random values
-    for _ in range(10):
-        val = random.randint(1, 100)
-        fib_heap.insert(val)
-
-    print(fib_heap)
-    print("Minimum:", fib_heap.find_min())
-
-    # Delete minimum
-    min_val = fib_heap.delete_min()
-    print("Deleted Minimum:", min_val)
-    print(fib_heap)
-
-    # Decrease a key
-    node_to_decrease = fib_heap.root_list[2]
-    new_val = random.randint(1, 10)
-    print("Decreasing key of node", node_to_decrease.val, "to", new_val)
-    fib_heap.decrease_key(node_to_decrease, new_val)
-    print(fib_heap)
-
-    # Delete a node
-    node_to_delete = fib_heap.root_list[4]
-    print("Deleting node", node_to_delete.val)
-    fib_heap.delete_node(node_to_delete)
-    print(fib_heap)
+    import doctest
+    doctest.testmod()
