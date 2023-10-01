@@ -15,10 +15,10 @@ class FibonacciTree:
 
     def __init__(self, key: int) -> None:
         self.key = key
-        self.children: list["FibonacciTree"] = []
+        self.children: list['FibonacciTree'] = []
         self.order = 0
 
-    def add_at_end(self, child_node: "FibonacciTree") -> None:
+    def add_at_end(self, child_node: 'FibonacciTree') -> None:
         """
         Adds a child node 'child_node' to the end of the children list.
 
@@ -53,8 +53,8 @@ class FibonacciHeap:
     """
 
     def __init__(self) -> None:
-        self.trees: list["FibonacciTree"] = []
-        self.least: "FibonacciTree" | None = None
+        self.trees: list['FibonacciTree'] = []
+        self.least = None
         self.count = 0
 
     def insert(self, key: int) -> None:
@@ -66,7 +66,7 @@ class FibonacciHeap:
         """
         new_tree = FibonacciTree(key)
         self.trees.append(new_tree)
-        if self.least is None or key < self.least.key:
+        if (self.least is None or key < self.least.key):
             self.least = new_tree
         self.count = self.count + 1
 
@@ -88,7 +88,8 @@ class FibonacciHeap:
         Returns:
             int: The minimum key.
         """
-        if (smallest := self.least) is not None:
+        smallest = self.least
+        if smallest is not None:
             for child in smallest.children:
                 if child is not None:
                     self.trees.append(child)
@@ -106,7 +107,8 @@ class FibonacciHeap:
         """
         Consolidates trees in the Fibonacci heap to maintain the heap's structure.
         """
-        aux = (floor_log2(self.count) + 1) * [None]
+        max_degree = floor_log2(self.count) + 1  # Maximum possible degree
+        aux = [None] * max_degree
 
         # Filter out None values from self.trees
         valid_trees = [tree for tree in self.trees if tree is not None]
@@ -117,7 +119,7 @@ class FibonacciHeap:
             valid_trees.remove(x)
             while aux[order] is not None:
                 y = aux[order]
-                if x.key > y.key:
+                if x.key > y.key :
                     x, y = y, x
                 x.add_at_end(y)
                 aux[order] = None
@@ -128,9 +130,12 @@ class FibonacciHeap:
         for k in aux:
             if k is not None:
                 self.trees.append(k)
-                if self.least is None or k.key < self.least.key:
+                if (self.least is None):
                     self.least = k
-
+                    continue
+                if(self.least.key > k.key):
+                    self.least=k
+                    continue
 
 def floor_log2(x: int) -> int:
     """
@@ -144,14 +149,11 @@ def floor_log2(x: int) -> int:
     """
     return math.floor(math.log2(x)) if x > 0 else 0
 
-
 # Doctest for floor_log2
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
