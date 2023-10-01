@@ -8,13 +8,14 @@ def get_matrix_input() -> list[list[float]]:
     print("Enter the number of equations:", end=" ")
     num_eq = int(input())
     print(f"Enter coefficients for {num_eq} equations (one row at a time):")
-    
+
     matrix = []
     for _ in range(num_eq):
         row = list(map(float, input().split()))
         matrix.append(row)
-    
+
     return matrix
+
 
 def gaussian_elimination(matrix: list[list[float]]) -> list[float]:
     """
@@ -46,6 +47,7 @@ def gaussian_elimination(matrix: list[list[float]]) -> list[float]:
     solutions = [row[-1] for row in matrix]
 
     return solutions
+
 
 if __name__ == "__main__":
     matrix = get_matrix_input()
