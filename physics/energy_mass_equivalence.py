@@ -1,4 +1,4 @@
-# Created by Pronay Debnath
+## Created by Pronay Debnath
 # Date:- 1/10/2023
 # Energy-Mass Equivalence in Python
 
@@ -8,7 +8,6 @@ import doctest
 def mass_to_energy(mass_kg: float) -> float:
     """
     Calculate the energy equivalent of a given mass using E=mc^2.
-
     :param mass_kg: Mass in kilograms.
     :return: Energy in joules as a float.
     >>> format(mass_to_energy(1), '.15e')  # 1 kg
@@ -24,7 +23,6 @@ def mass_to_energy(mass_kg: float) -> float:
 def is_valid_mass(mass_str: str) -> bool:
     """
     Check if the input string represents a valid positive float for mass.
-
     :param mass_str: Input string.
     :return: True if valid, False otherwise.
     >>> is_valid_mass("1.5")
@@ -46,7 +44,6 @@ def is_valid_mass(mass_str: str) -> bool:
 def get_valid_mass_input() -> float:
     """
     Prompt the user for a valid positive mass input.
-
     :return: Valid mass as a float.
     >>> input_values = ["1.5", "-1", "abc", "0", "2.5"]
     >>> output_values = [1.5, -1, "abc", 0, 2.5]
@@ -74,5 +71,6 @@ if __name__ == "__main__":
     mass = get_valid_mass_input()
     energy = mass_to_energy(mass)
     print(
-        f"The energy equivalent of {mass} kilograms is {format(energy, '.15e')} joules."
+        f"The energy equivalent of {mass} kilograms is "
+        f"{format(energy, '.15e')} joules."
     )
