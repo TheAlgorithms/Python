@@ -1,3 +1,4 @@
+import doctest
 import math
 import scipy.constants
 
@@ -68,6 +69,4 @@ def energy_equivalent_for_moving_mass(
 
 
 if __name__ == "__main__":
-    import doctest
-
     doctest.testmod()
