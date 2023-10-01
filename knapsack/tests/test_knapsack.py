@@ -57,5 +57,6 @@ class Test(unittest.TestCase):
         c = len(val)
         self.assertEqual(k.knapsack(cap, w, val, c, True), 300)
 
+
 if __name__ == "__main__":
     unittest.main()
