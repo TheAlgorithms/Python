@@ -4,7 +4,7 @@ import doctest
 
 
 class Node:
-    def __init__(self, data: int) -> None:
+    def __init__(self, data: int) -> None | Node:
         self.data = data
         self.next = None
 
