@@ -13,7 +13,7 @@ def energy_equivalent_for_stationary_mass(mass_kg: float) -> float | ValueError:
         float: Energy equivalent in joules.
 
     >>> energy_equivalent_for_stationary_mass(4)
-    3.5950207149472704e+17
+    359502071494727056
 
     """
     if mass_kg < 0:
@@ -42,7 +42,7 @@ def energy_equivalent_for_moving_mass(
         float: Energy equivalent in joules.
 
     >>> energy_equivalent_for_moving_mass(1,5675)
-    1701322225868.2546
+    8.987551788978458e+16
     """
     if mass_kg < 0:
         ValueError("mass of object cannot be negative")
