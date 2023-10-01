@@ -1,6 +1,5 @@
 import math
-import scipy.constants as const
-
+import scipy.constants
 
 def energy_equivalent_for_stationary_mass(mass_kg: float) -> float | ValueError:
     """
@@ -23,7 +22,7 @@ def energy_equivalent_for_stationary_mass(mass_kg: float) -> float | ValueError:
     if mass_kg < 0:
         ValueError("mass of object cannot be negative")
 
-    speed_of_light = const.speed_of_light  # Speed of light in meters/second
+    speed_of_light = scipy.constants.speed_of_light  # Speed of light in meters/second
     energy_joules = mass_kg * (speed_of_light**2)
     return energy_joules
 
@@ -32,7 +31,8 @@ def energy_equivalent_for_moving_mass(
     mass_kg: float, velocity_m_s: float
 ) -> float | ValueError:
     """
-    Calculate the energy equivalent for a moving mass using relativistic energy-momentum relation
+    Calculate the energy equivalent for a moving mass using 
+    relativistic energy-momentum relation
     (E^2= m^2*c^4 +p^2*c^2).
 
     Parameters:
@@ -50,7 +50,7 @@ def energy_equivalent_for_moving_mass(
     if mass_kg < 0:
         ValueError("mass of object cannot be negative")
 
-    speed_of_light = const.speed_of_light  # Speed of light in meters/second
+    speed_of_light = scipy.constants.speed_of_light  # Speed of light in meters/second
 
     # Calculating momentum
     momentum = (
