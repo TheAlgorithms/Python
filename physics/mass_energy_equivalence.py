@@ -5,23 +5,16 @@ Reference:https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence
 """
 
 
-
-
-
-
-
-
-
-
 import math
 
-def mass_energy_equivalence(mass:float)->float:
+
+def mass_energy_equivalence(mass: float) -> float:
     """
     Calculate energy equivalent of given mass
     >>mass_energy_equivalence(2.1)
     189000000000000000.00
     """
-    return "{:.2f}".format(mass * ((3 * 10 ** 8) ** 2))
+    return "{:.2f}".format(mass * ((3 * 10**8) ** 2))
 
 
 if __name__ == "__main__":
