@@ -43,6 +43,6 @@ def permute_backtrack(nums: list[int]) -> list[list[int]]:
 if __name__ == "__main__":
     import doctest
 
-    res = permute_backtrack([1, 2, 3])
-    print(res)
+    result = permute_backtrack([1, 2, 3])
+    print(result)
     doctest.testmod()
