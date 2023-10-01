@@ -1,7 +1,16 @@
+"""
+Linear regression is the most basic type of regression commonly used for
+predictive analysis. The idea is pretty simple: we have a dataset and we have
+features associated with it. Features should be chosen very cautiously
+as they determine how much our model will be able to make future predictions.
+We try to set the weight of these features, using "sum of rectangular area
+over sum of square area" method which is a direct method.
+In this particular code, I had used a CSGO dataset (ADR vs Rating).
+We try to best fit a line through dataset and estimate the parameters.
+"""
 import numpy as np
 import requests
 
-# Function to collect the CSGO dataset
 def collect_dataset():
     response = requests.get(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
@@ -18,7 +27,6 @@ def collect_dataset():
     dataset = np.matrix(data)
     return dataset
 
-# Function to calculate Mean Absolute Error (MAE)
 def calculate_mae(predicted_y, original_y):
     """Calculate Mean Absolute Error (MAE)
     :param predicted_y: Contains the output of prediction (result vector)
@@ -45,16 +53,12 @@ def simple_solve(data_x, data_y):
     Beta_1 = float(Rect_Area / Square_Area)
     Beta_0 = y_bar - Beta_1 * x_bar
 
-    # Calculate SSE (Sum of Squares Error)
     SSE = sum((data_y[idx] - (Beta_1 * val + Beta_0)) ** 2 for idx, val in enumerate(data_x))
 
-    # Calculate MSE (Mean Square Error)
     MSE = SSE / (len(data_x) - 2)  # Degrees of freedom is len(data_x) - 2 for simple linear regression
 
-    # Calculate half of MSE
     half_MSE = MSE / 2
 
-    # Calculate MAE (Mean Absolute Error) using the separate function
     MAE = calculate_mae([Beta_1 * val + Beta_0 for val in data_x], data_y)
 
     print("SSE is:", SSE)
@@ -64,7 +68,6 @@ def simple_solve(data_x, data_y):
     print("Coefficient (Beta_1) is:", Beta_1)
     print("Intercept (Beta_0) is:", Beta_0)
 
-# Main driver function
 def main():
     """Driver function"""
     data = collect_dataset()
