@@ -1,7 +1,7 @@
 from random import randint
 from tempfile import TemporaryFile
 
-import numpy as np
+import  as np
 
 
 def _in_place_quick_sort(a, start, end):
