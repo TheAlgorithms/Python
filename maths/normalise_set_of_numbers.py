@@ -1,6 +1,9 @@
 from typing import List, Union
 
-def normalize_array(arr: List[float], lower_bound: float, upper_bound: float) -> List[float]:
+
+def normalize_array(
+    arr: List[float], lower_bound: float, upper_bound: float
+) -> List[float]:
     """
     Normalize an array to the range [0, 1]
     given the lower and upper bounds.
@@ -31,9 +34,7 @@ def normalize_array(arr: List[float], lower_bound: float, upper_bound: float) ->
     return normalized_arr
 
 
-
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
