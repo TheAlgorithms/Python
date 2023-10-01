@@ -8,6 +8,7 @@ class FibonacciNode:
         self.prev = self
         self.next = self
 
+
 class FibonacciHeap:
     def __init__(self):
         self.min_node = None
@@ -16,7 +17,7 @@ class FibonacciHeap:
     def insert(self, key):
         # Create a new node and initialize it with the given key
         new_node = FibonacciNode(key)
-        
+
         # If the heap is empty, set the new node as the minimum
         if self.min_node is None:
             self.min_node = new_node
@@ -25,7 +26,7 @@ class FibonacciHeap:
             self._link(self.min_node, new_node)
             if key < self.min_node.key:
                 self.min_node = new_node
-        
+
         # Increment the number of nodes in the heap
         self.num_nodes += 1
 
@@ -40,7 +41,7 @@ class FibonacciHeap:
         root2.marked = False
 
     def _consolidate(self):
-        max_degree = int(self.num_nodes ** 0.5)
+        max_degree = int(self.num_nodes**0.5)
         nodes = [None] * (max_degree + 1)
         current = self.min_node
 
@@ -94,6 +95,7 @@ class FibonacciHeap:
 
         self.num_nodes -= 1
         return min_node.key
+
 
 # Example usage:
 fib_heap = FibonacciHeap()
