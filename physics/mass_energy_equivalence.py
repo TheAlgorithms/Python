@@ -20,11 +20,11 @@ def calculate_energy(mass: float) -> float:
     >>> calculate_energy(-5)
     Traceback (most recent call last):
       ...
-        raise TypeError("mass cannot negative, less than 0")
-    TypeError: mass cannot negative, less than 0
+        raise TypeError("Mass cannot be negative")
+    TypeError: Mass cannot be negative
     """
     if mass < 0:
-        raise TypeError("mass cannot negative, less than 0")
+        raise TypeError("Mass cannot be negative")
     # Speed of light in meters per second (approximately)
     speed_of_light = 299792458
     # Calculate energy using the equation E=mc^2
