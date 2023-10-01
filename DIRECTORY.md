@@ -1092,6 +1092,7 @@
 ## Searches
   * [Binary Search](searches/binary_search.py)
   * [Binary Tree Traversal](searches/binary_tree_traversal.py)
+  * [Breadth First Search](searches/breadth_first_search.py)
   * [Double Linear Search](searches/double_linear_search.py)
   * [Double Linear Search Recursion](searches/double_linear_search_recursion.py)
   * [Fibonacci Search](searches/fibonacci_search.py)
