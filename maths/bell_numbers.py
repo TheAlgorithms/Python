@@ -1,5 +1,7 @@
 """
-Bell numbers represent the number of ways to partition a set into non-empty subsets. This module provides functions to calculate Bell numbers for sets of integers. In other words, the first (n + 1) Bell numbers.
+Bell numbers represent the number of ways to partition a set into non-empty
+subsets. This module provides functions to calculate Bell numbers for sets of
+integers. In other words, the first (n + 1) Bell numbers.
 
 For more information about Bell numbers, refer to:
 https://en.wikipedia.org/wiki/Bell_number
@@ -13,15 +15,17 @@ To calculate the Bell numbers for sets of lengths from 0 to 5:
 """
 
 
-def bell_numbers(n: int) -> list[int]:
+def bell_numbers(max_set_length: int) -> list[int]:
     """
-    Calculate Bell numbers for the sets of lengths from 0 to n. In other words, calculate first (n + 1) Bell numbers.
+    Calculate Bell numbers for the sets of lengths from 0 to max_set_length.
+    In other words, calculate first (max_set_length + 1) Bell numbers.
 
     Args:
-        n (int): The maximum length of the sets for which Bell numbers are calculated.
+        max_set_length (int): The maximum length of the sets for which
+        Bell numbers are calculated.
 
     Returns:
-        list: A list of Bell numbers for sets of lengths from 0 to n.
+        list: A list of Bell numbers for sets of lengths from 0 to max_set_length.
 
     Examples:
     >>> bell_numbers(0)
@@ -31,29 +35,29 @@ def bell_numbers(n: int) -> list[int]:
     >>> bell_numbers(5)
     [1, 1, 2, 5, 15, 52]
     """
-    if n < 0:
-        raise ValueError("n must be non-negative")
+    if max_set_length < 0:
+        raise ValueError("max_set_length must be non-negative")
 
-    bell = [0] * (n + 1)
+    bell = [0] * (max_set_length + 1)
     bell[0] = 1
 
-    for i in range(1, n + 1):
+    for i in range(1, max_set_length + 1):
         for j in range(i):
             bell[i] += _binomial_coefficient(i - 1, j) * bell[j]
 
     return bell
 
 
-def _binomial_coefficient(n: int, k: int) -> int:
+def _binomial_coefficient(total_elements, elements_to_choose):
     """
-    Calculate the binomial coefficient C(n, k) using dynamic programming.
+    Calculate the binomial coefficient C(total_elements, elements_to_choose)
 
     Args:
-        n (int): Total number of elements.
-        k (int): Number of elements to choose.
+        total_elements (int): The total number of elements.
+        elements_to_choose (int): The number of elements to choose.
 
     Returns:
-        int: The binomial coefficient C(n, k).
+        int: The binomial coefficient C(total_elements, elements_to_choose).
 
     Examples:
     >>> _binomial_coefficient(5, 2)
@@ -61,15 +65,15 @@ def _binomial_coefficient(n: int, k: int) -> int:
     >>> _binomial_coefficient(6, 3)
     20
     """
-    if k == 0 or k == n:
+    if elements_to_choose in {0, total_elements}:
         return 1
 
-    if k > n - k:
-        k = n - k
+    if elements_to_choose > total_elements - elements_to_choose:
+        elements_to_choose = total_elements - elements_to_choose
 
     coefficient = 1
-    for i in range(k):
-        coefficient *= n - i
+    for i in range(elements_to_choose):
+        coefficient *= total_elements - i
         coefficient //= i + 1
 
     return coefficient
