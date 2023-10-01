@@ -3,6 +3,7 @@
 
 # Source: https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence
 
+
 def mass_energy_equivalence(mass: float, c: float = 299792458) -> float:
     """
     Calculate the energy equivalent of a given mass using Einstein's mass-energy equivalence equation, E=mc².
@@ -27,6 +28,7 @@ def mass_energy_equivalence(mass: float, c: float = 299792458) -> float:
 
     energy = mass * c**2
     return energy
+
 
 if __name__ == "__main__":
     import doctest
