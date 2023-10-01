@@ -137,9 +137,7 @@ def level_order(root: Node | None) -> Sequence[int]:
             process_queue.append(node.right)
 
 
-def get_nodes_from_left_to_right(
-    root: Node | None, level: int
-) -> Sequence[int]:
+def get_nodes_from_left_to_right(root: Node | None, level: int) -> Sequence[int]:
     """
     Lazy traversal to get nodes from left to right at a particular level of a binary tree.
 
@@ -165,9 +163,7 @@ def get_nodes_from_left_to_right(
     yield from populate_output(root, level)
 
 
-def get_nodes_from_right_to_left(
-    root: Node | None, level: int
-) -> Sequence[int]:
+def get_nodes_from_right_to_left(root: Node | None, level: int) -> Sequence[int]:
     """
     Lazy traversal to get nodes from right to left at a particular level of a binary tree.
 
