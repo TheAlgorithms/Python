@@ -1,6 +1,7 @@
 import math
 import scipy.constants
 
+
 def energy_equivalent_for_stationary_mass(mass_kg: float) -> float | ValueError:
     """
     Calculate the energy equivalent for a given mass using E=mc^2.
@@ -31,7 +32,7 @@ def energy_equivalent_for_moving_mass(
     mass_kg: float, velocity_m_s: float
 ) -> float | ValueError:
     """
-    Calculate the energy equivalent for a moving mass using 
+    Calculate the energy equivalent for a moving mass using
     relativistic energy-momentum relation
     (E^2= m^2*c^4 +p^2*c^2).
 
