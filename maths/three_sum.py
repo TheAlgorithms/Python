@@ -1,10 +1,5 @@
 """
-The "Three Sum" problem is a commonly encountered problem in computer
-science and data analysis.the Three Sum problem has practical applications
-in various fields, including data analysis, optimization, algorithmic research,
-pattern recognition, and cryptography. Its versatility makes it a valuable problem
-for both theoretical analysis and real-world problem-solving.
-
+https://en.wikipedia.org/wiki/3SUM
 """
 
 
@@ -16,14 +11,12 @@ def three_sum(nums: list[int]) -> list[list[int]]:
         nums: A sorted list of integers.
 
     Returns:
-         A list of lists containing unique triplets that sum up to zero.
+        A list of lists containing unique triplets that sum up to zero.
 
-    Example:
-        >>> three_sum([-1, 0, 1, 2, -1, -4])
-        [[-1, -1, 2], [-1, 0, 1]]
-        >>> three_sum([1, 2, 3, 4])
-        []
-
+    >>> three_sum([-1, 0, 1, 2, -1, -4])
+    [[-1, -1, 2], [-1, 0, 1]]
+    >>> three_sum([1, 2, 3, 4])
+    []
     """
     nums.sort()
     ans = []
@@ -48,7 +41,6 @@ def three_sum(nums: list[int]) -> list[list[int]]:
     return ans
 
 
-# Run the doctests
 if __name__ == "__main__":
     import doctest
 
