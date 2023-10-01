@@ -37,6 +37,7 @@ def three_sum(nums: list[int]) -> list[list[int]]:
                     high -= 1
     return ans
 
+
 # Run the doctests
 if __name__ == "__main__":
     import doctest
