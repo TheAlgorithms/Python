@@ -13,45 +13,42 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 
 model_params = {
-    'svm':{
-        'model':svm.SVC(gamma='auto'),
-        'params':{
-            'C':[1,10,20],
-            'kernel':['rbf','linear']
-        }
+    "svm": {
+        "model": svm.SVC(gamma="auto"),
+        "params": {"C": [1, 10, 20], "kernel": ["rbf", "linear"]},
     },
-    'random_forest':{
-        'model':RandomForestClassifier(),
-        'params':{
-            'n_estimators':[1,5,10]
-        }
+    "random_forest": {
+        "model": RandomForestClassifier(),
+        "params": {"n_estimators": [1, 5, 10]},
     },
-    'logistic_regression':{
-        'model':LogisticRegression(solver='liblinear',multi_class='auto'),
-        'params':{
-            'C':[1,5,10]
-        }
-    }
+    "logistic_regression": {
+        "model": LogisticRegression(solver="liblinear", multi_class="auto"),
+        "params": {"C": [1, 5, 10]},
+    },
 }
 
-from sklearn import  datasets
+from sklearn import datasets
+
 iris = datasets.load_iris()
 
 import pandas as pd
-df = pd.DataFrame(iris.data,columns=iris.feature_names)
-df['flower'] = iris.target
-df['flower'] = df['flower'].apply(lambda x: iris.target_names[x])
+
+df = pd.DataFrame(iris.data, columns=iris.feature_names)
+df["flower"] = iris.target
+df["flower"] = df["flower"].apply(lambda x: iris.target_names[x])
 df[47:150]
 
 scores = []
 
-for model_name,mp in model_params.items():
-  clf = GridSearchCV(mp['model'],mp['params'],cv=5,return_train_score=False)
-  clf.fit(iris.data,iris.target)
-  scores.append({
-      'model':model_name,
-      'best_scores':clf.best_score_,
-      'best_params':clf.best_params_
-  })
-df = pd.DataFrame(scores,columns=['model','best_scores','best_params'])
+for model_name, mp in model_params.items():
+    clf = GridSearchCV(mp["model"], mp["params"], cv=5, return_train_score=False)
+    clf.fit(iris.data, iris.target)
+    scores.append(
+        {
+            "model": model_name,
+            "best_scores": clf.best_score_,
+            "best_params": clf.best_params_,
+        }
+    )
+df = pd.DataFrame(scores, columns=["model", "best_scores", "best_params"])
 df
