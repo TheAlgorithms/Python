@@ -50,8 +50,8 @@ def generate_permutation_key(block_size: int) -> list[int]:
 
 
 def encrypt(
-    message: str, key: list | None = None, block_size: int | None = None
-) -> tuple:
+    message: str, key: list[int] | None = None, block_size: int | None = None
+) -> tuple[str, list[int]]:
     """
     Encrypt a message using a permutation cipher with block rearrangement using a key.
 
