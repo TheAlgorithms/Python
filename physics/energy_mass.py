@@ -1,5 +1,5 @@
 """
-The Energy-Mass Equivalence Law, as formulated by Albert Einstein's theory of special relativity, states that the energy (E) of an object is directly proportional to its mass (m) and the square of the speed of light (c), 
+The Energy-Mass Equivalence Law, as formulated by Albert Einstein's theory of special relativity, states that the energy (E) of an object is directly proportional to its mass (m) and the square of the speed of light (c),
 represented by the famous equation:
 E=mc²
 
@@ -13,12 +13,15 @@ This groundbreaking concept reveals that mass and energy are interchangeable, an
 
 c_const = 299792458
 
-def energy_mass (mass : float):
-  if(mass<=0):
-    raise ValueError("Invalid inputs. Enter positive value for mass")
-  
-  return mass*(c_const^2)
+
+def energy_mass(mass: float):
+    if mass <= 0:
+        raise ValueError("Invalid inputs. Enter positive value for mass")
+
+    return mass * (c_const ^ 2)
+
 
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
