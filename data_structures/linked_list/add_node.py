@@ -1,7 +1,7 @@
 class Node: #define a class named node having data and ref as attributes
     def __init__(self,data:int)->None:
         self.data=data
-        self.ref= None 
+        self.ref= None
 class LinkedList:
     def __init__(self)->None #define head of the linked list i.e initiate the linked list
         self.head=None
@@ -13,10 +13,10 @@ class LinkedList:
             while n is not None:
                 print(n.data)
                 n=n.ref
-    def add_begin(self,data)->None: #to add a node in the beginning 
+    def add_begin(self,data)->None: #to add a node in the beginning
         new_node= Node(data) #define data of the new node
         new_node.ref= self.head #make the ref or adress of node to the head node
-        self.head = new_node 
+        self.head = new_node
     def add_end(self,data)->None:
         new_node= Node(data)
         if self.head is None:
@@ -34,7 +34,7 @@ class LinkedList:
             n=n.ref
         new_node=Node(data)
         new_node.ref= n.ref
-        n.ref= new_node 
+        n.ref= new_node
 linked_list= LinkedList() # main driver function here we define the linked list
 linked_list.add_begin(11) #added 11 to the beginning of out linked list
 linked_list.add_end(100)
