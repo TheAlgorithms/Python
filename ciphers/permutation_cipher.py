@@ -44,7 +44,7 @@ def generate_permutation_key(block_size: int) -> list:
         >>> generate_permutation_key(1)
         [1]
     """
-    digits = list(range(1, block_size + 1))
+    digits = list(range(block_size))
     random.shuffle(digits)
     return digits
 
