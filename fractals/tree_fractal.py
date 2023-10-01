@@ -6,7 +6,6 @@ Wikipedia to learn about fractal tree (or canopy) : https://en.wikipedia.org/wik
 
 import turtle  # importing the module required
 
-
 turtle.speed("fastest")
 
 # turning the turtle to upwards
