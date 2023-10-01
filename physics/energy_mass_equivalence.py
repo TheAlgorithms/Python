@@ -4,6 +4,7 @@
 
 import doctest
 
+
 def mass_to_energy(mass_kg: float) -> float:
     """
     Calculate the energy equivalent of a given mass using E=mc^2.
@@ -18,6 +19,7 @@ def mass_to_energy(mass_kg: float) -> float:
     speed_of_light = 299792458  # Speed of light in meters per second (m/s)
     energy_joules = mass_kg * speed_of_light**2
     return energy_joules
+
 
 def is_valid_mass(mass_str: str) -> bool:
     """
@@ -39,6 +41,7 @@ def is_valid_mass(mass_str: str) -> bool:
         return mass >= 0
     except ValueError:
         return False
+
 
 def get_valid_mass_input() -> float:
     """
@@ -65,9 +68,11 @@ def get_valid_mass_input() -> float:
         else:
             print("Invalid input. Please enter a positive number for mass.")
 
+
 if __name__ == "__main__":
     doctest.testmod()  # Run doctests in the docstrings
     mass = get_valid_mass_input()
     energy = mass_to_energy(mass)
-    print(f"The energy equivalent of {mass} kilograms is {format(energy, '.15e')} joules.")
-
+    print(
+        f"The energy equivalent of {mass} kilograms is {format(energy, '.15e')} joules."
+    )
