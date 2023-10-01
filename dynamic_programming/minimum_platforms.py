@@ -1,5 +1,6 @@
 from typing import List
 
+
 def minimum_platforms(arrival: List[int], departure: List[int]) -> int:
     """
     Calculate the minimum number of platforms required at a railway station.
@@ -32,8 +33,12 @@ def minimum_platforms(arrival: List[int], departure: List[int]) -> int:
 
     return result
 
+
 # Example usage:
 arrival_times = [900, 940, 950, 1100, 1500, 1800]
 departure_times = [910, 1200, 1120, 1130, 1900, 2000]
 
-print("Minimum number of platforms required:", minimum_platforms(arrival_times, departure_times))
+print(
+    "Minimum number of platforms required:",
+    minimum_platforms(arrival_times, departure_times),
+)
