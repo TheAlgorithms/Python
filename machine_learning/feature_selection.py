@@ -20,7 +20,6 @@ Gravitational%20search%20algorithm%20is%20a,efficiently%20solve%20complex%20opti
 """
 
 
-
 import numpy as np
 from sklearn.datasets import load_iris
 from sklearn.feature_selection import SelectKBest, f_classif, chi2
@@ -28,6 +27,7 @@ from sklearn.feature_selection import RFE
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+
 
 def cfs_feature_selection(X, y, k=2):
     """
@@ -45,6 +45,7 @@ def cfs_feature_selection(X, y, k=2):
     X_selected = selector.fit_transform(X, y)
     return X_selected
 
+
 def chi2_feature_selection(X, y, k=2):
     """
     Perform feature selection using the Chi-squared (χ²) Test.
@@ -60,6 +61,7 @@ def chi2_feature_selection(X, y, k=2):
     selector = SelectKBest(score_func=chi2, k=k)
     X_selected = selector.fit_transform(X, y)
     return X_selected
+
 
 def rfe_feature_selection(X, y, num_features=2):
     """
@@ -78,6 +80,7 @@ def rfe_feature_selection(X, y, num_features=2):
     X_selected = rfe.fit_transform(X, y)
     return X_selected
 
+
 def gsa_feature_selection(X, y, population_size=50, max_iterations=100):
     """
     Perform feature selection using the Gravitational Search Algorithm (GSA).
@@ -92,6 +95,7 @@ def gsa_feature_selection(X, y, population_size=50, max_iterations=100):
         best_solution: The optimal subset of features.
         best_fitness: The fitness (accuracy) of the best solution.
     """
+
     def fitness_function(selected_features):
         clf = RandomForestClassifier(random_state=42)
         clf.fit(X_train[:, selected_features], y_train)
@@ -99,13 +103,17 @@ def gsa_feature_selection(X, y, population_size=50, max_iterations=100):
         return accuracy
 
     # Initialize GSA parameters
-    population = np.random.choice([0, 1], size=(population_size, X.shape[1]), replace=True)
+    population = np.random.choice(
+        [0, 1], size=(population_size, X.shape[1]), replace=True
+    )
     best_solution = None
     best_fitness = 0
 
     for iteration in range(max_iterations):
         # Calculate fitness for each solution in the population
-        fitness_values = [fitness_function(selected_features) for selected_features in population]
+        fitness_values = [
+            fitness_function(selected_features) for selected_features in population
+        ]
 
         # Find the best solution
         best_index = np.argmax(fitness_values)
@@ -122,19 +130,23 @@ def gsa_feature_selection(X, y, population_size=50, max_iterations=100):
 
     return best_solution, best_fitness
 
+
 # Example usage:
 iris = load_iris()
 X, y = iris.data, iris.target
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
 
 X_cfs = cfs_feature_selection(X, y, k=2)
 X_chi2 = chi2_feature_selection(X, y, k=2)
 X_rfe = rfe_feature_selection(X, y, num_features=2)
-best_gsa_solution, best_gsa_fitness = gsa_feature_selection(X, y, population_size=50, max_iterations=100)
+best_gsa_solution, best_gsa_fitness = gsa_feature_selection(
+    X, y, population_size=50, max_iterations=100
+)
 
 print("CFS Selected Features:", X_cfs.shape[1])
 print("Chi-squared Selected Features:", X_chi2.shape[1])
 print("RFE Selected Features:", X_rfe.shape[1])
 print("Best GSA Subset of Features:", best_gsa_solution)
 print("Best GSA Fitness (Accuracy):", best_gsa_fitness)
-
