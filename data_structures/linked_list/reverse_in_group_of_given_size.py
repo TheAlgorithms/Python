@@ -63,10 +63,9 @@ def print_linked_list(head: Node | None) -> None:
         print(head.data)
 
 
-def reverse_k_nodes(head: Node | None, k: int) -> Node | None:
+def reverse_k_nodes(head: Node | None, group_size: int) -> Node | None:
     """
     reverse nodes within groups of size k
-    >>> k = 3
     >>> head = insert_node(None, 1)
     >>> head = insert_node(head, 2)
     >>> head = insert_node(head, 3)
@@ -86,12 +85,12 @@ def reverse_k_nodes(head: Node | None, k: int) -> Node | None:
 
     previous_node = dummy_head
 
-    while length >= k:
+    while length >= group_size:
         assert previous_node
         current_node = previous_node.nextt
         assert current_node
         next_node = current_node.nextt
-        for _ in range(1, k):
+        for _ in range(1, group_size):
             assert next_node, current_node
             current_node.nextt = next_node.nextt
             assert previous_node
@@ -101,7 +100,7 @@ def reverse_k_nodes(head: Node | None, k: int) -> Node | None:
             assert current_node
             next_node = current_node.nextt
         previous_node = current_node
-        length -= k
+        length -= group_size
     assert dummy_head
     return dummy_head.nextt
 
