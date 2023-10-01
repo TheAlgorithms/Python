@@ -4,7 +4,7 @@ import doctest
 
 
 class Node:
-    def __init__(self, data: int) -> None | Node:
+    def __init__(self, data: int) -> None:
         self.data = data
         self.next = None
 
@@ -82,9 +82,8 @@ def right_rotate_by_k(head: Node | None, k_places: int) -> Node | None:
 
 if __name__ == "__main__":
     doctest.testmod()
-    head = None
 
-    head = insert_node(head, 1)
+    head = insert_node(None, 1)
     head = insert_node(head, 2)
     head = insert_node(head, 3)
     head = insert_node(head, 4)
