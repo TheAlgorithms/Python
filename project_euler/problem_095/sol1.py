@@ -2,6 +2,8 @@
 Problem 95
 Url: https://projecteuler.net/problem=95
 """
+
+
 def solution(n: int = 10**6) -> int:
     """
     Returns the smallest member when n = 1000000
