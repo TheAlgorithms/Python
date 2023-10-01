@@ -9,7 +9,7 @@ class Node:
         self.next = None
 
 
-def print_list(head: Node) -> None:
+def print_list(head: Node | None) -> None:
     """
     Prints the entire linked list iteratively
     >>> head = None
@@ -23,10 +23,11 @@ def print_list(head: Node) -> None:
     >>> print_list(head)
     1->2->3->4->5
     """
-    while head.next is not None:
-        print(head.data, end="->")
-        head = head.next
-    print(head.data)
+    if head is not None:
+        while head.next is not None:
+            print(head.data, end="->")
+            head = head.next
+        print(head.data)
 
 
 def insert_node(head: Node | None, data: int) -> Node:
@@ -50,7 +51,7 @@ def insert_node(head: Node | None, data: int) -> Node:
     return head
 
 
-def right_rotate_by_k(head: Node, k_places: int) -> Node:
+def right_rotate_by_k(head: Node | None, k_places: int) -> Node:
     """
     This function receives head and k as input
     parameters and returns head of linked list
