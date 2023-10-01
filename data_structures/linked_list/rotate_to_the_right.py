@@ -120,6 +120,7 @@ def rotate_to_the_right(head: Node, places: int) -> Node:
     # Traverse to the new head position
     temp_node = head
     for _ in range(new_head_index - 1):
+        assert temp_node.next_node
         temp_node = temp_node.next_node
 
     # Update pointers to perform rotation
