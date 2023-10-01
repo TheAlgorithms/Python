@@ -62,7 +62,9 @@ class FibonacciHeap(Generic[T]):
                 self.min_node = new_node
         self.num_nodes += 1
 
-    def _link_nodes(self, min_node: FibonacciNode[T], new_node: FibonacciNode[T]) -> None:
+    def _link_nodes(
+        self, min_node: FibonacciNode[T], new_node: FibonacciNode[T]
+    ) -> None:
         """
         Link two nodes together in the Fibonacci Heap.
 
@@ -96,7 +98,7 @@ class FibonacciHeap(Generic[T]):
         >>> fh.min_node.key
         3
         """
-        max_degree = int(self.num_nodes ** 0.5) + 1
+        max_degree = int(self.num_nodes**0.5) + 1
         degree_buckets: list[FibonacciNode[T] | None] = [None] * max_degree
 
         current_node = self.min_node
@@ -165,7 +167,7 @@ class FibonacciHeap(Generic[T]):
                 self._consolidate()
             self.num_nodes -= 1
         return min_node.key if min_node else None
-        
+
     def _remove_node(self, node: FibonacciNode[T]) -> None:
         """
         Remove a node from the doubly linked list of nodes.
@@ -182,6 +184,8 @@ class FibonacciHeap(Generic[T]):
         node.prev.next = node.next
         node.next.prev = node.prev
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
