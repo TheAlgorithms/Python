@@ -21,6 +21,7 @@ from typing import Union
 
 def pairwise_distances(X: np.ndarray) -> np.ndarray:
     """
+    
     Compute pairwise distances between data points in the input array X.
 
     Parameters:
