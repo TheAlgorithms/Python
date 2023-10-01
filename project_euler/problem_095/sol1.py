@@ -4,7 +4,7 @@ Url: https://projecteuler.net/problem=95
 """
 
 
-def solution(number : int = 10**6) -> int:
+def solution(number: int = 10**6) -> int:
     """
     Returns the smallest member when n = 1000000
     >> 14316
