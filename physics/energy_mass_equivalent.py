@@ -1,4 +1,3 @@
-
 def energy_equivalent_for_stationary_mass(mass_kg: float) -> float | ValueError:
     """
     Calculate the energy equivalent for a given mass using E=mc^2.
@@ -58,12 +57,13 @@ def energy_equivalent_for_moving_mass(
     )
 
     # Calculating energy using the relativistic energy-momentum relation
-    energy_joules =(
+    energy_joules = (
         (mass_kg * speed_of_light) ** 2 + (momentum * speed_of_light) ** 2
-    )**(1/2)
+    ) ** (1 / 2)
     return energy_joules
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
