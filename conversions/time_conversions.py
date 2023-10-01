@@ -135,4 +135,5 @@ def hours_to_days(hours: float, ndigits: int = 2) -> float:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
