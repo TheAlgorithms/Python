@@ -12,7 +12,7 @@ class FibonacciNode:
     - mark (boolean flag to indicate if the node has lost a child)
     """
 
-    def __init__(self, val):
+    def __init__(self, val: int) -> None:
         """
         Initialize a FibonacciNode with the given value.
         """
@@ -24,7 +24,7 @@ class FibonacciNode:
         self.parent = None
         self.mark = False
 
-    def add_child(self, child):
+    def add_child(self, child: "FibonacciNode") -> None:
         """
         Add a child to this node.
         """
@@ -38,7 +38,7 @@ class FibonacciNode:
         child.parent = self
         self.degree += 1
 
-    def remove_child(self, child):
+    def remove_child(self, child: "FibonacciNode") -> None:
         """
         Remove a child from this node's children.
         """
@@ -68,7 +68,7 @@ class FibonacciHeap:
     For more details, refer to the Wikipedia page on [Fibonacci Heap](https://en.wikipedia.org/wiki/Fibonacci_heap).
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initialize an empty Fibonacci Heap.
         """
@@ -76,7 +76,7 @@ class FibonacciHeap:
         self.root_list = []
         self.size = 0
 
-    def insert(self, val):
+    def insert(self, val: int) -> None:
         """
         Insert a new element with the given value into the Fibonacci Heap.
         """
@@ -90,13 +90,13 @@ class FibonacciHeap:
         self.root_list.append(new_node)
         self.size += 1
 
-    def _link(self, min_node, new_node):
+    def _link(self, min_node: FibonacciNode, new_node: FibonacciNode) -> None:
         """
         Link two nodes in the Fibonacci Heap.
         """
         min_node.add_child(new_node)
 
-    def find_min(self):
+    def find_min(self) -> int:
         """
         Find the minimum element in the Fibonacci Heap.
         """
@@ -104,7 +104,7 @@ class FibonacciHeap:
             raise Exception("Heap is empty")
         return self.min_node.val
 
-    def _consolidate(self):
+    def _consolidate(self) -> None:
         """
         Consolidate nodes with the same degree in the Fibonacci Heap.
         """
@@ -128,7 +128,7 @@ class FibonacciHeap:
             if node and (self.min_node is None or node.val < self.min_node.val):
                 self.min_node = node
 
-    def delete_min(self):
+    def delete_min(self) -> int:
         """
         Delete the minimum element from the Fibonacci Heap.
         """
@@ -154,7 +154,7 @@ class FibonacciHeap:
 
         return min_val
 
-    def decrease_key(self, node, new_val):
+    def decrease_key(self, node: FibonacciNode, new_val: int) -> None:
         """
         Decrease the key of a node in the Fibonacci Heap.
         """
@@ -168,7 +168,7 @@ class FibonacciHeap:
         if node.val < self.min_node.val:
             self.min_node = node
 
-    def _cut(self, node, parent):
+    def _cut(self, node: FibonacciNode, parent: FibonacciNode) -> None:
         """
         Cut a node from its parent in the Fibonacci Heap.
         """
@@ -176,7 +176,7 @@ class FibonacciHeap:
         self.root_list.append(node)
         node.mark = False
 
-    def _cascading_cut(self, node):
+    def _cascading_cut(self, node: FibonacciNode) -> None:
         """
         Perform a cascading cut operation in the Fibonacci Heap.
         """
@@ -188,14 +188,14 @@ class FibonacciHeap:
                 self._cut(node, parent)
                 self._cascading_cut(parent)
 
-    def delete_node(self, node):
+    def delete_node(self, node: FibonacciNode) -> None:
         """
         Delete a specific node from the Fibonacci Heap.
         """
         self.decrease_key(node, float("-inf"))
         self.delete_min()
 
-    def _update_min_node(self):
+    def _update_min_node(self) -> None:
         """
         Update the minimum node in the Fibonacci Heap.
         """
@@ -207,7 +207,7 @@ class FibonacciHeap:
         self.min_node = next(
             node for node in self.root_list if node.val == min_val)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Return a string representation of the Fibonacci Heap.
         """
