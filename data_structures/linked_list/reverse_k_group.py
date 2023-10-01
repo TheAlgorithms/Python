@@ -3,10 +3,12 @@ https://www.topcoder.com/thrive/articles/reverse-node-in-k-group
 """
 from typing import Optional
 
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
 
 class Solution:
     def length(self, head: Optional[ListNode]) -> int:
@@ -17,7 +19,9 @@ class Solution:
             count += 1
         return count
 
-    def reverse(self, head: Optional[ListNode], count: int, k: int) -> Optional[ListNode]:
+    def reverse(
+        self, head: Optional[ListNode], count: int, k: int
+    ) -> Optional[ListNode]:
         if count < k:
             return head
 
@@ -34,7 +38,7 @@ class Solution:
 
         if Next:
             head.next = self.reverse(Next, count - k, k)
-        
+
         return prev
 
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
@@ -68,7 +72,8 @@ class Solution:
         ans = self.reverse(head, count, k)
         return ans
 
+
 if __name__ == "__main__":
     import doctest
-    
+
     doctest.testmod()
