@@ -67,7 +67,7 @@ def insert_node(head: Node | None, data: int) -> Node:
     return head
 
 
-def rotate_to_the_right(head: Node | None, places: int) -> Node:
+def rotate_to_the_right(head: Node, places: int) -> Node:
     """
     Rotate a linked list to the right by places times.
 
