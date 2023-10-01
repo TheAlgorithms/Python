@@ -34,9 +34,6 @@ def calculate_energy(mass: float) -> float:
 
 
 if __name__ == "__main__":
-    # Input the mass from the user
     mass = float(input("Enter mass (in kilograms): "))
-    # Calculate the energy equivalent
     energy = calculate_energy(mass)
-    # Display the result
     print(f"Energy equivalent: {energy} joules")
