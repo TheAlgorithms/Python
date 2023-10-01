@@ -1,3 +1,11 @@
+"""
+Heap's (iterative) algorithm returns the list of all permutations possible from a list.
+It minimizes movement by generating each permutation from the previous one
+by swapping only two elements.
+More information:
+https://en.wikipedia.org/wiki/Heap%27s_algorithm.
+"""
+
 def heaps(arr: list) -> list:
     """
     Pure python implementation of the Heap's algorithm (recursive version),
