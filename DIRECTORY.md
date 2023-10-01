@@ -341,6 +341,7 @@
   * [Palindrome Partitioning](dynamic_programming/palindrome_partitioning.py)
   * [Regex Match](dynamic_programming/regex_match.py)
   * [Rod Cutting](dynamic_programming/rod_cutting.py)
+  * [Smith Waterman](dynamic_programming/smith_waterman.py)
   * [Subset Generation](dynamic_programming/subset_generation.py)
   * [Sum Of Subset](dynamic_programming/sum_of_subset.py)
   * [Tribonacci](dynamic_programming/tribonacci.py)
@@ -529,7 +530,6 @@
 
 ## Maths
   * [Abs](maths/abs.py)
-  * [Add](maths/add.py)
   * [Addition Without Arithmetic](maths/addition_without_arithmetic.py)
   * [Aliquot Sum](maths/aliquot_sum.py)
   * [Allocation Number](maths/allocation_number.py)
@@ -567,7 +567,6 @@
   * [Dual Number Automatic Differentiation](maths/dual_number_automatic_differentiation.py)
   * [Entropy](maths/entropy.py)
   * [Euclidean Distance](maths/euclidean_distance.py)
-  * [Euclidean Gcd](maths/euclidean_gcd.py)
   * [Euler Method](maths/euler_method.py)
   * [Euler Modified](maths/euler_modified.py)
   * [Eulers Totient](maths/eulers_totient.py)
@@ -1141,8 +1140,6 @@
   * [Quick Sort](sorts/quick_sort.py)
   * [Quick Sort 3 Partition](sorts/quick_sort_3_partition.py)
   * [Radix Sort](sorts/radix_sort.py)
-  * [Random Normal Distribution Quicksort](sorts/random_normal_distribution_quicksort.py)
-  * [Random Pivot Quick Sort](sorts/random_pivot_quick_sort.py)
   * [Recursive Bubble Sort](sorts/recursive_bubble_sort.py)
   * [Recursive Insertion Sort](sorts/recursive_insertion_sort.py)
   * [Recursive Mergesort Array](sorts/recursive_mergesort_array.py)
