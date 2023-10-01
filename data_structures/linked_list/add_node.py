@@ -1,11 +1,11 @@
-class Node: #define a class named node having data and ref as attributes
+class Node:
     def __init__(self,data:int)->None:
         self.data=data
         self.ref= None
 class LinkedList:
-    def __init__(self)->None #define head of the linked list i.e initiate the linked list
+    def __init__(self)->None:
         self.head=None
-    def print_ll(self): # to print the linked list
+    def print_ll(self):
         if self.head is None:
             print("The Linked List is empty ")
         else:
