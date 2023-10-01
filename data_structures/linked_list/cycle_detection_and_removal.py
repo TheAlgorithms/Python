@@ -46,6 +46,7 @@ class Node:
     def remove_loop(self) -> None:
         """
         Removes the loop in the linked list if one exists.
+        Wikipedia Reference: [Linked list](https://en.wikipedia.org/wiki/Linked_list)
 
         >>> root_node = Node(1)
         >>> root_node.next_node = Node(2)
