@@ -6,6 +6,7 @@
 
 import numpy as np
 
+
 def collect_dataset():
     """
     Collect dataset of CSGO
@@ -14,6 +15,7 @@ def collect_dataset():
     Returns:
         np.ndarray: dataset obtained from the link as a matrix
     """
+
 
 def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
     """
@@ -30,6 +32,7 @@ def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
         np.ndarray: Updated Feature's using curr_features - alpha_ * gradient(w.r.t. feature)
     """
 
+
 def sum_of_square_error(data_x, data_y, len_data, theta):
     """
     Return sum of square error for error calculation
@@ -44,6 +47,7 @@ def sum_of_square_error(data_x, data_y, len_data, theta):
         float: sum of square error computed from given feature's
     """
 
+
 def run_linear_regression(data_x, data_y):
     """
     Implement Linear regression over the dataset
@@ -57,6 +61,7 @@ def run_linear_regression(data_x, data_y):
         float: final error value
     """
 
+
 def mean_absolute_error(predicted_y, original_y):
     """
     Return mean absolute error for error calculation
@@ -68,6 +73,7 @@ def mean_absolute_error(predicted_y, original_y):
     Returns:
         float: mean absolute error computed from given feature's
     """
+
 
 def main():
     """Driver function"""
@@ -83,6 +89,6 @@ def main():
     for i in range(len_result):
         print(f"{theta[0, i]:.5f}")
 
+
 if __name__ == "__main__":
     main()
-
