@@ -180,8 +180,7 @@ class FibonacciHeap:
         """
         Perform a cascading cut operation in the Fibonacci Heap.
         """
-        parent = node.parent
-        if parent:
+        if parent := node.parent:
             if not node.mark:
                 node.mark = True
             else:
@@ -204,8 +203,7 @@ class FibonacciHeap:
             return
 
         min_val = min(node.val for node in self.root_list)
-        self.min_node = next(
-            node for node in self.root_list if node.val == min_val)
+        self.min_node = next(node for node in self.root_list if node.val == min_val)
 
     def __str__(self) -> str:
         """
@@ -218,4 +216,5 @@ class FibonacciHeap:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
