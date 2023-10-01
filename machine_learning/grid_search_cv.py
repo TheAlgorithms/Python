@@ -31,7 +31,6 @@ model_params = {
 }
 
 
-
 iris = datasets.load_iris()
 
 df = pd.DataFrame(iris.data, columns=iris.feature_names)
