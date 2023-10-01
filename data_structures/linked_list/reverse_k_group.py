@@ -1,116 +1,139 @@
-from typing import Optional, Union, Tuple
+from __future__ import annotations
 
+from dataclasses import dataclass
 
+@dataclass
 class ListNode:
-    def __init__(self, val: int = 0) -> None:
-        self.val = val
-        self.next = None
+    data: int
+    next_node: ListNode | None = None
 
+def print_linked_list(head: ListNode | None) -> None:
+    """
+    Print the entire linked list iteratively.
+
+    This function prints the elements of a linked list separated by '->'.
+
+    Parameters:
+        head (ListNode | None): The head of the linked list to be printed,
+        or None if the linked list is empty.
+
+    >>> head = insert_node(None, 0)
+    >>> head = insert_node(head, 2)
+    >>> head = insert_node(head, 1)
+    >>> print_linked_list(head)
+    0->2->1
+    >>> head = insert_node(head, 4)
+    >>> head = insert_node(head, 5)
+    >>> print_linked_list(head)
+    0->2->1->4->5
+    """
+    if head is None:
+        return
+    while head.next_node is not None:
+        print(head.data, end="->")
+        head = head.next_node
+    print(head.data)
+
+def insert_node(head: ListNode | None, data: int) -> ListNode:
+    """
+    Insert a new node at the end of a linked list and return the new head.
+
+    Parameters:
+        head: The head of the linked list.
+        data: The data to be inserted into the new node.
+
+    Returns:
+        The new head of the linked list.
+
+    >>> head = insert_node(None, 10)
+    >>> head = insert_node(head, 9)
+    >>> head = insert_node(head, 8)
+    >>> print_linked_list(head)
+    10->9->8
+    """
+    new_node = ListNode(data)
+    if head is None:
+        return new_node
+
+    temp_node = head
+    while temp_node.next_node:
+        temp_node = temp_node.next_node
+
+    temp_node.next_node = new_node
+    return head
 
 class Solution:
-    def reverse(
-        self, head: Optional[ListNode], node_size: int
-    ) -> Union[
-        Tuple[Optional[ListNode], Optional[ListNode], Optional[ListNode], bool],
-        Tuple[Optional[ListNode], None, None, bool],
-    ]:
+    def reverse_k_group(self, head: ListNode | None, k: int) -> ListNode | None:
         """
-        Reverse the next k(node_size) nodes in a linked list.
+        Reverse k-sized groups of nodes in a linked list.
 
-        Args:
-            head (Optional[ListNode]): The head of the linked list.
-            node_size (int): The number of nodes to reverse.
+        Parameters:
+            head: The head of the linked list.
+            k: The size of each group to reverse.
 
         Returns:
-            tuple[Optional[ListNode], Optional[ListNode], Optional[ListNode], bool]:
-                - The new head of the reversed group.
-                - The tail of the reversed group.
-                - The new head after the reversed group.
-                - A boolean indicating if there are more nodes to reverse.
+            The head of the reversed linked list.
 
-        Example:
-        >>> sol = Solution()
-        >>> head = ListNode(1)
-        >>> head.next = ListNode(2)
-        >>> head.next.next = ListNode(3)
-        >>> head.next.next.next = ListNode(4)
-        >>> head.next.next.next.next = ListNode(5)
-        >>> reversed_head, tail, new_head, found = sol.reverse(head, 2)
-        >>> reversed_head.val
-        2
-        >>> tail.val
-        1
-        >>> new_head.val
-        3
-        >>> found
-        True
+        >>> head = insert_node(None, 1)
+        >>> head = insert_node(head, 2)
+        >>> head = insert_node(head, 3)
+        >>> head = insert_node(head, 4)
+        >>> head = insert_node(head, 5)
+        >>> head = insert_node(head, 6)
+        >>> solution = Solution()
+        >>> new_head = solution.reverse_k_group(head, 2)
+        >>> print_linked_list(new_head)
+        2->1->4->3->6->5
         """
-        prev_group_end = None
-        remaining_count = node_size
-        current_group_start = head
+        def reverse_group(head: ListNode | None, k: int) -> tuple:
+            prev_group_tail = None
+            nodes_left = k
+            current_group_head = head
 
-        # Calculate the remaining nodes in the list
-        while current_group_start:
-            current_group_start = current_group_start.next
-            remaining_count -= 1
+            while current_group_head:
+                current_group_head = current_group_head.next_node
+                nodes_left -= 1
 
-        # If there are less than k nodes remaining, return the original head
-        if remaining_count > 0:
-            return head, None, None, False
+            if nodes_left > 0:
+                return head, None, None, False
 
-        current_group_end = head
-        while head and node_size > 0:
-            node_size -= 1
-            next_node = head.next
-            head.next = prev_group_end
-            prev_group_end = head
-            head = next_node
+            current_tail = head
 
-        return prev_group_end, current_group_end, head, True
+            while head and k > 0:
+                k -= 1
+                next_node = head.next_node
+                head.next_node = prev_group_tail
+                prev_group_tail = head
+                head = next_node
 
-    def reverse_k_group(
-        self, head: Optional[ListNode], group_size: int
-    ) -> Optional[ListNode]:
-        """
-        Reverse nodes in a linked list in groups of k(group_size).
+            return prev_group_tail, current_tail, head, True
 
-        Args:
-            head (Optional[ListNode]): The head of the linked list.
-            group_size (int): The number of nodes in each group to reverse.
+        new_head, current_tail, next_group_head, success = reverse_group(head, k)
 
-        Returns:
-            Optional[ListNode]: The new head of the reversed linked list.
+        while success:
+            new_group_head, new_group_tail, next_next_group_head, success = reverse_group(next_group_head, k)
+            current_tail.next_node = new_group_head
+            current_tail = new_group_tail
+            next_group_head = next_next_group_head
 
-        Example:
-        >>> sol = Solution()
-        >>> head = ListNode(1)
-        >>> head.next = ListNode(2)
-        >>> head.next.next = ListNode(3)
-        >>> head.next.next.next = ListNode(4)
-        >>> head.next.next.next.next = ListNode(5)
-        >>> new_head = sol.reverse_k_group(head, 2)
-        >>> new_head.val
-        2
-        >>> new_head.next.val
-        1
-        >>> new_head.next.next.val
-        4
-        >>> new_head.next.next.next.val
-        3
-        >>> new_head.next.next.next.next.val
-        5
-        """
-        reversed_head, tail, new_head, found = self.reverse(head, group_size)
-
-        while found:
-            group_head, group_tail, new_head, found = self.reverse(new_head, group_size)
-            tail.next = group_head
-            tail = group_tail
-
-        return reversed_head
-
+        return new_head
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    head = insert_node(None, 5)
+    head = insert_node(head, 1)
+    head = insert_node(head, 2)
+    head = insert_node(head, 4)
+    head = insert_node(head, 3)
+
+    print("Original list: ", end="")
+    print_linked_list(head)
+
+    k = 3
+    solution = Solution()
+    new_head = solution.reverse_k_group(head, k)
+
+    print(f"After reversing groups of size {k}: ", end="")
+    print_linked_list(new_head)
