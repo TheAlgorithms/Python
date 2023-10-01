@@ -1,5 +1,5 @@
 """
-Mass energy Equivalene
+Mass-energy equivalence
 Reference: https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence
 """
 import math as m
