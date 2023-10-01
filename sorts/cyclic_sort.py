@@ -9,6 +9,7 @@ For manual testing run:
 python cyclic_sort.py
 """
 
+
 def cyclic_sort(nums: list) -> list:
     """
     Sorts the input list in-place using the Cyclic Sort algorithm.
@@ -32,7 +33,7 @@ def cyclic_sort(nums: list) -> list:
     while i < len(nums):
         # Calculate the correct index for the current element
         correct_index = nums[i] - 1
-        
+
         # If the current element is not at its correct position,
         # swap it with the element at its correct index
         if nums[i] != nums[correct_index]:
@@ -43,6 +44,7 @@ def cyclic_sort(nums: list) -> list:
             i += 1
 
     return nums
+
 
 if __name__ == "__main__":
     import doctest
