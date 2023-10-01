@@ -2,9 +2,13 @@
 # Check Code on : https://cses.fi/problemset/result/5753335/
 # Date : 1st Oct 2023
 
+# references
+# https://cp-algorithms.com/string/z-function.html
+# https://cp-algorithms.com/string/prefix-function.html
+
 
 class StringMatch:
-    def __init__(self, function_method_name="Z_FUNCTION", separator="\uFFFF"):
+    def __init__(self, function_method_name="Z_FUNCTION", separator="\uFFFF") -> None:
         """
         Initialize the StringMatch class.
 
@@ -14,6 +18,32 @@ class StringMatch:
 
         Note:
             You can specify the matching algorithm using 'function_method_name'.
+
+        Examples:
+        >>> StringMatch().match("aaaaaaaaaa","a")
+        >>> (10, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+        >>> StringMatch().match("joeuljjo","jo")
+        >>> (2, [0, 6])
+        >>> StringMatch().match("abababbab","ab")
+        >>> (4, [0, 2, 4, 7])
+        >>> StringMatch().match("abaaabaa","aaba")
+        >>> (1, [3])
+        >>> StringMatch().match("becodecode","becode")
+        >>> (1, [0])
+        >>> StringMatch().match("bbcws","xwfaq")
+        >>> (0, [])
+
+
+        >>> StringMatch(function_method_name='PI_FUNCTION').match("aaaaaaaaaa","a")
+        >>> (10, [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+        >>> StringMatch(function_method_name='PI_FUNCTION').match("joeuljjo","jo")
+        >>> (2, [0, 6])
+        >>> StringMatch(function_method_name='PI_FUNCTION').match("abababbab","ab")
+        >>> (4, [0, 2, 4, 7])
+        >>> StringMatch(function_method_name='PI_FUNCTION').match("abaaabaa","aaba")
+        >>> (1, [3])
+        >>> StringMatch(function_method_name='PI_FUNCTION').match("bbcws","xwfaq")
+        >>> (0, [])
         """
         self.__separator = separator  # default is '\uFFFF' least used Unicode
 
@@ -29,7 +59,7 @@ class StringMatch:
         else:  # Default to Z-function
             self.Function = self.__zfun_match
 
-    def match(self, text: str, pattern: str):
+    def match(self, text: str, pattern: str) -> tuple[int, list[int]]:
         """
         Perform string matching on the given text using the selected algorithm.
 
@@ -41,33 +71,33 @@ class StringMatch:
             tuple: A tuple containing the occurrence count and occurrence indices.
         """
 
-        def is_valid_text():
-            return all(char != self.separator for char in text)
+        def is_valid_text() -> bool:
+            return all(char != self.__separator for char in text)
             # for char in text:
             #     if char == self.__separator:
             #         return False
             # return True
 
-        def is_valid_pattern():
-            return all(char != self.separator for char in pattern)
+        def is_valid_pattern() -> bool:
+            return all(char != self.__separator for char in pattern)
             # for char in text:
             #     if char == self.__separator:
             #         return False
             # return True
 
         if not is_valid_text():
-            print("Err : Text ")
-            return
+            print("Err : Text contains separator")
+            return (-1, [])
 
         if not is_valid_pattern():
-            print("Err : Pattern ")
-            return
+            print("Err : Pattern contains separator")
+            return (-1, [])
 
         occurrence_count, occurrence_indices = self.Function(text=text, pattern=pattern)
 
         return occurrence_count, occurrence_indices
 
-    def __zfun_match(self, text: str, pattern: str):
+    def __zfun_match(self, text: str, pattern: str) -> tuple[int, list[int]]:
         """
         Perform string matching using the Z-function algorithm.
 
@@ -94,7 +124,7 @@ class StringMatch:
 
         return pattern_count, pattern_indices
 
-    def __pifun_match(self, text: str, pattern: str):
+    def __pifun_match(self, text: str, pattern: str) -> tuple[int, list[int]]:
         """
         Perform string matching using the Pi-function algorithm.
 
@@ -121,7 +151,7 @@ class StringMatch:
 
         return pattern_count, pattern_indices
 
-    def __merge_text_and_pattern(self, text: str, pattern: str):
+    def __merge_text_and_pattern(self, text: str, pattern: str) -> str:
         """
         Merge the text and pattern using a separator character.
 
@@ -138,7 +168,7 @@ class StringMatch:
 
         return merged_string
 
-    def __z_function(self, merged_string: str):
+    def __z_function(self, merged_string: str) -> list[int]:
         """
         Calculate the Z-function values for a given string.
 
@@ -156,7 +186,7 @@ class StringMatch:
 
         l, r = 0, 0
 
-        def isequal(index_1: int, index_2: int):
+        def isequal(index_1: int, index_2: int) -> bool:
             return s[index_1] == s[index_2]
 
         for i in range(1, n):
@@ -169,7 +199,7 @@ class StringMatch:
 
         return z
 
-    def __pi_function(self, merged_string: str):
+    def __pi_function(self, merged_string: str) -> list[int]:
         """
         Calculate the Pi-function values for a given string.
 
@@ -185,7 +215,7 @@ class StringMatch:
 
         pi = [0] * n
 
-        def isequal(index_1: int, index_2: int):
+        def isequal(index_1: int, index_2: int) -> bool:
             return s[index_1] == s[index_2]
 
         for i in range(1, n):
@@ -199,19 +229,19 @@ class StringMatch:
         return pi
 
 
-"""
-usage:
+if __name__ == "__main__":
+    import doctest
 
-0. import file :)
+    print(StringMatch().match("aaaaaaaaaa", "a"))
+    print(StringMatch().match("joeuljjo", "jo"))
+    print(StringMatch().match("abababbab", "ab"))
+    print(StringMatch().match("abaaabaa", "aaba"))
+    print(StringMatch().match("becodecode", "becode"))
+    print(StringMatch().match("bbcws", "xwfaq"))
+    print(StringMatch(function_method_name="PI_FUNCTION").match("aaaaaaaaaa", "a"))
+    print(StringMatch(function_method_name="PI_FUNCTION").match("joeuljjo", "jo"))
+    print(StringMatch(function_method_name="PI_FUNCTION").match("abababbab", "ab"))
+    print(StringMatch(function_method_name="PI_FUNCTION").match("abaaabaa", "aaba"))
+    print(StringMatch(function_method_name="PI_FUNCTION").match("bbcws", "xwfaq"))
 
-1. Create Object Of the Class StringMatch with custom fields
-
-obj = StringMatch(function_method_name='PI_FUNCTION', separator'$' )
-
-2. provide text and pattern to the object method @match
-
-text = "Hello It's Python"
-pattern = "Python"
-frq, List = obj.match(text=text, pattern=pattern)
-
-"""
+    doctest.testmod()
