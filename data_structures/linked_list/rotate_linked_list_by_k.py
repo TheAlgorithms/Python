@@ -11,7 +11,7 @@ def print_linked_list(head: Node | None) -> None:
     """
         Print the entire linked list iteratively.
 
-        This function prints the elements of a linked list iteratively, separated by '->'.
+        This function prints the elements of a linked list separated by '->'.
 
         Parameters:
             head (Node | None): The head of the linked list to be printed,
