@@ -6,6 +6,7 @@ class FibonacciNode:
         self.degree = 0
         self.parent = None
 
+
 class FibonacciHeap:
     def __init__(self):
         self.trees = []
