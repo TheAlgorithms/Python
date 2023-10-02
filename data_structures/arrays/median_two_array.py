@@ -1,12 +1,6 @@
 """
-This algorithm for finding the median of two sorted arrays would
-typically be used in scenarios where you have two sorted sets
-of data (arrays) and need to calculate the middle value or the average
-of the middle values to get a representative central value. Common use cases
-include statistical analysis and data processing in various fields
-such as finance, engineering, and scientific research.
+https://www.enjoyalgorithms.com/blog/median-of-two-sorted-arrays
 """
-
 
 def find_median_sorted_arrays(nums1: list[int], nums2: list[int]) -> float:
     """
