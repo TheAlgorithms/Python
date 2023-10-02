@@ -5,6 +5,7 @@
 """
 from typing import List
 
+
 def generate_all_combinations(n: int, k: int) -> List[List[int]]:
     """
     Generate all possible combinations of k numbers out of 1...n.
