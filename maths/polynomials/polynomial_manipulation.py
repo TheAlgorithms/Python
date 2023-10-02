@@ -1,5 +1,6 @@
 import doctest
 
+
 class Polynomial:
     def __init__(self, coefficients):
         """
@@ -65,6 +66,7 @@ class Polynomial:
 
         return Polynomial(result)
 
+
 # Example usage and doctests:
 if __name__ == "__main__":
     doctest.testmod()
@@ -80,4 +82,3 @@ if __name__ == "__main__":
     result_multiply = poly1.multiply(poly2)
 
     print("All tests passed.")
-  
