@@ -23,7 +23,7 @@ def diophantine(a: int, b: int, c: int) -> tuple[float, float]:
 
     assert (
         c % greatest_common_divisor(a, b) == 0
-    )  # greatest_common_divisor(a,b) is in Algorithms' directory's gcd file
+    )  # greatest_common_divisor(a,b) is in maths directory
     (d, x, y) = extended_gcd(a, b)  # extended_gcd(a,b) function implemented below
     r = c / d
     return (r * x, r * y)
