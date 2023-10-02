@@ -23,7 +23,7 @@ smtp_serv = ""
 smtp_port = 587
 
 
-def test_ip(ip: str) -> str, str | None:
+def test_ip(ip: str) -> Tuple[str, str] | None:
     detects = []
     result = requests.get(
         "https://api.blacklistchecker.com/check/" + ip, auth=(api_key, "")
