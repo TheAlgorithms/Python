@@ -1,5 +1,5 @@
 """
-* Binary Multiplication
+* Binary Exponentiation with Multiplication
 * This is a method to find a*b in a time complexity of O(log b)
 * This is one of the most commonly used methods of finding result of multiplication.
 * Also useful in cases where solution to (a*b)%c is required,
