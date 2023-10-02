@@ -3,8 +3,7 @@ from typing import Union
 
 
 def dijkstra(
-    graph: dict[str, dict[str, int]], start: str
-) -> dict[str, Union[int, float]]:
+    graph: dict[str, dict[str, int]], start: str) -> dict[str, Union[int, float]]:
     """
     Find the shortest path from a starting node to all other nodes in a weighted graph.
 
