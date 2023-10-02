@@ -62,7 +62,7 @@ def minimum_waiting_time(queries: list[int]) -> int:
     Returns:
         total_waiting_time: minimum time measured in picoseconds 
 
-    Queries is directely sorted in-place here in place of lists. Gives a complexity of (nlogn) and is faster then the previous version.
+    Queries is directely sorted in-place here in place of lists. Gives a complexity of (nlogn) but it is faster then the previous version.
     """
     n = len(queries)
     if n in (0, 1):
