@@ -1,5 +1,8 @@
-def intToRoman(num: int) -> str:
-    # criação de dicionário para armazenar os valores dos numerais e respectivos correspondentes romanos
+def int_to_roman(num: int) -> str:
+    '''
+    criação de dicionário para armazenar os valores 
+    dos numerais e respectivos correspondentes romanos
+    '''
     roman_values = {
         1: 'I',
         4: 'IV',
@@ -17,7 +20,10 @@ def intToRoman(num: int) -> str:
       }
 
     roman_str = ''
-    # cria uma lista com as keys para conseguir percorrer ela de baixo pra cima
+    '''
+    cria uma lista com as keys para 
+    conseguir percorrer ela de baixo pra cima
+    '''
     lista_indices = list(roman_values.keys())
     for value in lista_indices[::-1]:
       while num >= value:
