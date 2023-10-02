@@ -32,7 +32,7 @@
 
 
 
-def winnerOfGame(self, colors: str) -> bool:
+def winner_of_game(self, colors: str) -> bool:
         alice, bob = 0, 0
         left = 0
         # two pointers approach
