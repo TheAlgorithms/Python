@@ -1,5 +1,6 @@
 # https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm
 
+
 def knuth_morris_pratt(text, pattern):
     """
     Knuth-Morris-Pratt (KMP) string search algorithm in Python.
@@ -8,6 +9,7 @@ def knuth_morris_pratt(text, pattern):
     :param pattern: The pattern to search for in the text.
     :return: A list of starting positions where the pattern is found in the text.
     """
+
     def build_prefix_table(pattern):
         """
         Build the prefix table for the given pattern.
@@ -37,6 +39,7 @@ def knuth_morris_pratt(text, pattern):
             positions.append(i - j + 1)
             j = prefix_table[j - 1]
     return positions
+
 
 if __name__ == "__main__":
     text = input("Enter the text: ")
