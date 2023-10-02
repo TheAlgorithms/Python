@@ -126,4 +126,3 @@ if __name__ == "__main__":
     print("Given example output: ", max_sum)
 
     doctest.testmod()
-
