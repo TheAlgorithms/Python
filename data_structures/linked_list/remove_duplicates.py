@@ -53,7 +53,7 @@ def insert_node(head: Node | None, data: int) -> Node:
     return head
 
 
-def remove_duplicates(head: Node | None):
+def remove_duplicates(head: Node | None) -> Node | None:
     """
     Remove nodes with duplicate data
 
@@ -65,7 +65,7 @@ def remove_duplicates(head: Node | None):
     >>> head=insert_node(head,4)
     >>> head=insert_node(head,5)
     >>> head=insert_node(head,5)
-    >>> head=insert_node(head,3)
+    >>> head=insert_node(head,5)
     >>> new_head= remove_duplicates(head)
     >>> print_linked_list(new_head)
     1->2->3->4->5
@@ -73,14 +73,14 @@ def remove_duplicates(head: Node | None):
     if head is None or head.next_node is None:
         return head
 
-    has_occurred = dict()
+    has_occurred = {}
 
     new_head = head
     last_node = head
     has_occurred[head.data] = True
     current_node = head.next_node
     while current_node is not None:
-        if current_node.data not in has_occurred.keys():
+        if current_node.data not in has_occurred:
             last_node.next_node = current_node
             last_node = current_node
             has_occurred[current_node.data] = True
