@@ -32,10 +32,9 @@ def test_ip(ip: str) -> Any:
                 detects.append(n.get("name"))
         return (res, detects)
 
+
 def isip(ip: str) -> bool:
-    match = re.match(\
-        r'[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}', ip\
-        )
+    match = re.match(r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}", ip)
     if not bool(match):
         return False
     octets = ip.split(".")
@@ -43,7 +42,7 @@ def isip(ip: str) -> bool:
         if int(b) < 0 or int(b) > 255:
             return False
     return True
-    
+
 
 res_txt = "IP blacklists check returned next results:\n"
 send_param = 0
