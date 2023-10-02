@@ -18,7 +18,7 @@ class Node:
         self.right: Node | None = None
 
 
-def get_tree_inorder(tree: Node | None, tree_list: list | None) -> list:  
+def get_tree_inorder(tree: Node | None, tree_list: list | None) -> list:
     r"""
     Prints the inorder traversal of a tree
 
