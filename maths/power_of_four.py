@@ -32,7 +32,7 @@
 import math
 
 
-def ispower_of_four(num : int) -> bool:
+def ispower_of_four(num: int) -> bool:
     if num <= 0:
         return False
 
