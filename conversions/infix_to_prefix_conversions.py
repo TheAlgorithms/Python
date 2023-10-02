@@ -3,11 +3,9 @@ Infix to Prefix Expression Converter
 This script defines functions to convert infix expressions to prefix expressions
 using the shunting-yard algorithm. It also includes definitions for SI and Binary
 unit prefixes.
-Author: "Arunkumar [halfhearted]"
-Date: "02-10-2023"
+Author: Arunkumar [halfhearted]
+Date: 02-10-2023
 """
-
-
 from __future__ import annotations
 from enum import Enum, unique
 from typing import TypeVar
@@ -68,19 +66,34 @@ class SIUnit(Enum):
         return {unit.name: unit.value for unit in cls if unit.value < 0}
 
 
-def infix_to_prefix(expression):
+def infix_to_prefix(expression) -> str:
     """
     Convert an infix expression to a prefix expression.
+    Args:
+        expression (str): The infix expression to convert.
+    Returns:
+        str: The converted prefix expression.
+
+    >>> infix_to_prefix("2+2")
+    '+22'
+    >>> infix_to_prefix("(1+2)*3")
+    '*+123'
+    >>> infix_to_prefix("a*(b+c)")
+    '*a+bc'
+    >>> infix_to_prefix("1+2*3")
+    '+1*23'
+    >>> infix_to_prefix("a * b + c / d")
+    '+*ab/cd'
     """
 
-    def precedence(operator):
+    def precedence(operator) -> int:
         precedence_dict = {"+": 1, "-": 1, "*": 2, "/": 2, "^": 3}
         return precedence_dict.get(operator, 0)
 
-    def is_operator(char):
+    def is_operator(char) -> bool:
         return char in "+-*/^"
 
-    def infix_to_postfix(infix_expr):
+    def infix_to_postfix(infix_expr) -> str:
         postfix = []
         stack = []
         for char in infix_expr:
