@@ -16,5 +16,3 @@ num = x ^ (x >> 1)
 
 # To check if all bits are set in 'num'
 return allBitsAreSet(num)
-
-
