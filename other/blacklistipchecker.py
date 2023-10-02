@@ -6,7 +6,6 @@
 import json
 import logging
 import sys
-from typing import list, tuple
 
 import requests
 from IPy import IP
@@ -45,10 +44,10 @@ if len(sys.argv) > 1:
             IP(x)
         except Exception as ex:
             print("Argument isn`t a valid ip(" + x + ")\n")
-            print(ex + "\n Skipping argument")
+            print(str(ex) + "\n Skipping argument")
             logging.exception("Caught an error")
         else:
-            if test_ip(x):
+            if test_ip(x) is not None:
                 res, detec = test_ip(x)
                 if res == "limit exceeded":
                     res_txt = res_txt + " LIMIT Exceeded!"
@@ -68,11 +67,11 @@ else:
         IP(x)
     except Exception as ex:
         print("Argument isn`t a valid ip(" + x + ")")
-        print(ex + "\n")
+        print(str(ex) + "\n")
         logging.exception("Caught an error")
         sys.exit()
     else:
-        if test_ip(x):
+        if test_ip(x) is not None:
             res, detec = test_ip(x)
             if res == "limit exceeded":
                 res_txt = res_txt + "Limit Exceeded!\n"
