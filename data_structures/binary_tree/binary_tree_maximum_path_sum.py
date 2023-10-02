@@ -1,19 +1,9 @@
-"""
-A path in a binary tree is a sequence of nodes where each pair
-of adjacent nodes in the sequence has an edge connecting
-them. A node can only appear in the sequence at most once. Note
-that the path does not need to pass through the root.
-
-The path sum of a path is the sum of the node's values in the path.
-
-Given the root of a binary tree, return the maximum path sum of any non-empty path.
-
-Leetcode Reference : https://leetcode.com/problems/binary-tree-maximum-path-sum/
-"""
 from __future__ import annotations
+
 from dataclasses import dataclass
 
 
+# Leetcode Reference : https://leetcode.com/problems/binary-tree-maximum-path-sum/
 @dataclass
 class TreeNode:
     val: int
@@ -57,7 +47,7 @@ class GetMaxPathSum:
     29
     """
 
-    def __init__(self, root) -> None:
+    def __init__(self, root: TreeNode) -> None:
         self.sum = -9999999999
         self.root = root
 
@@ -126,4 +116,3 @@ if __name__ == "__main__":
     print("Given example output: ", max_sum)
 
     doctest.testmod()
-
