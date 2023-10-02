@@ -7,7 +7,7 @@ class Polynomial:
         """
         Initialize a polynomial with a list of coefficients.
         Args:
-        coefficients (list[int]): Coefficients from the highest order to the constant term.
+        coefficients (list[int]): Coefficients from the highest order to constant term.
         """
         self.coefficients = coefficients
 
