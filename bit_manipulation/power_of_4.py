@@ -10,8 +10,8 @@ n     = 0..100..00
 n - 1 = 0..011..11
 
 n & (n - 1) - no intersections = 0
-If the number is a power of 4 then it should be a power of 2 
-and the set bit should be at an odd position
+If the number is a power of 4 then it should be a power of 2
+and the set bit should be at an odd position.
 """
 
 
