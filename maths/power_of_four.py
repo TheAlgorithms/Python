@@ -31,6 +31,7 @@
 
 import math
 
+
 def ispower_of_four(num: int) -> bool:
     if num <= 0:
         return False
@@ -43,4 +44,3 @@ def ispower_of_four(num: int) -> bool:
 # Example usage:
 print(ispower_of_four(16))  # Output: True
 print(ispower_of_four(5))  # Output: False
-
