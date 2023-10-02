@@ -34,7 +34,7 @@ def longest_palindromic_subsequence(s: str) -> tuple[int, str]:
         raise ValueError("Input string cannot be empty or None")
 
     n = len(s)
-    #create a table to store results of subproblems
+    # Create a table to store results of subproblems
     dp = [[0] * n for _ in range(n)]
 
     for i in range(n):
