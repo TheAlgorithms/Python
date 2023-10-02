@@ -3,7 +3,8 @@ import numpy as np
 """
 The GELU (Gaussian Error Linear Unit) activation function
 is a smooth, non-linear function used in neural networks.
-For more details: https://en.wikipedia.org/wiki/Gaussian_error_linear_unit
+For more details: 
+https://en.wikipedia.org/wiki/Gaussian_error_linear_unit
 """
 
 
