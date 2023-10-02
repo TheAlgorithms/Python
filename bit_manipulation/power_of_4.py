@@ -51,7 +51,7 @@ def power_of_4(number: int) -> bool:
         while number:
             c += 1
             number >>= 1
-        return c%2
+        return c % 2
     else:
         return False
 
