@@ -14,6 +14,7 @@ from typing import List, Tuple
 
 api_key = "key_CAMF5HI5t4ZzkmgGkioI1tius"
 
+
 def test_ip(ip: str) -> Tuple[str, List] | Tuple[str, str] | None:
     result = requests.get(
         "https://api.blacklistchecker.com/check/" + ip, auth=(api_key, "")
