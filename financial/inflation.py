@@ -14,7 +14,6 @@ Source: https://en.wikipedia.org/wiki/Inflation
 
 '''
 
-import doctest
 
 def calculate_future_value(present_value : float, inflation_rate : float , years : int) -> float:
     """
@@ -55,4 +54,5 @@ def main() -> None:
 inflation rate of {inflation_rate}%, will be ${future_value:f}")
 
 if __name__ == "__main__":
+    import doctest
     doctest.testmod()
