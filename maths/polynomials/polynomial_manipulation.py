@@ -1,13 +1,12 @@
-import doctest
-from typing import list
+from typing import List
 
 
 class Polynomial:
-    def __init__(self, coefficients: list[int]) -> None:
+    def __init__(self, coefficients: List[int]) -> None:
         """
         Initialize a polynomial with a list of coefficients.
         Args:
-        coefficients (list[int]): Coefficients from the highest order to constant term.
+        coefficients (List[int]): Coefficients from the highest order to constant term.
         """
         self.coefficients = coefficients
 
@@ -79,5 +78,6 @@ class Polynomial:
 
 
 if __name__ == "__main__":
+    import doctest
     doctest.testmod()
     print("All tests passed.")
