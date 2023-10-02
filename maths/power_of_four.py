@@ -31,8 +31,8 @@
 
 import math
 
-def ispower_of_four(n):
 
+def ispower_of_four(n):
     if n <= 0:
         return False
 
@@ -43,4 +43,4 @@ def ispower_of_four(n):
 
 # Example usage:
 print(ispower_of_four(16))  # Output: True
-print(ispower_of_four(5))   # Output: False
+print(ispower_of_four(5))  # Output: False
