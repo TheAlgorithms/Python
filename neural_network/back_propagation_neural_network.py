@@ -44,9 +44,7 @@ class DenseLayer:
         self.weight = None
         self.bias = None
         self.activation = activation
-        if learning_rate is None:
-            learning_rate = 0.3
-        self.learn_rate = learning_rate
+        self.learn_rate = 0.3 if learning_rate is None else learning_rate
         self.is_input_layer = is_input_layer
 
     def initializer(self, back_units):
