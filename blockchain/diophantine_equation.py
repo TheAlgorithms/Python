@@ -69,6 +69,7 @@ def diophantine_all_soln(a: int, b: int, c: int, n: int = 2) -> None:
         y = y0 - i * p
         print(x, y)
 
+
 def extended_gcd(a: int, b: int) -> tuple[int, int, int]:
     """
     Extended Euclid's Algorithm : If d divides a and b and d = a*x + b*y for integers
