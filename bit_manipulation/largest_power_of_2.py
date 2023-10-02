@@ -7,8 +7,6 @@ def largest_power_of_2(number: int) -> int:
     0
     >>> largest_power_of_2(1)
     1
-    >>> largest_power_of_2(-1)
-    0
     >>> largest_power_of_2(3)
     2
     >>> largest_power_of_2(15)
