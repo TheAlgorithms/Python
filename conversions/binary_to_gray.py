@@ -9,27 +9,23 @@ The below function will convert any binary string to gray string.
 
 >>> bin_to_gray("1111")
 '1000'
-
->>> bin_to_gray("")
-ValueError: Empty string was passed to the function
-
->>> bin_to_gray("100112")
-ValueError: Non-binary value was passed to the function
 """
 
 
 def bin_to_gray(bin_code: str) -> str:
     """
     Convert a binary code to gray code equivalent
-    #https://en.wikipedia.org/wiki/Gray_code#:~:text=For%20example%2C%20the%20representation%20of,to%20change%2C%20instead%20of%20two.
+    https://en.wikipedia.org/wiki/Gray_code
 
     --------------LOGIC----------------
     Binary to Gray:
-        Here the most significant bit of the gray code is same as the given binary code
-        so we don't need to make any changes
-        Further traversing the binary from 1st index(i.e 2nd position) we take the xor of current
-        index character  of binary code with the previous index character of binary code
-        and add it to our converted gray code
+        Here the most significant bit of the gray code is same as 
+        the given binary code so we don't need to make any changes
+        Further traversing the binary from 1st index
+        (i.e 2nd position) we take the xor of current
+        index character  of binary code with the previous index 
+        character of binary code and add it to our converted
+        gray code
 
     """
     if not all(char in "01" for char in bin_code):
