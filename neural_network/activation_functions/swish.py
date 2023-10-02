@@ -1,10 +1,13 @@
 import numpy as np
-'''
+
+"""
 Swish is a smooth, non-monotonic activation function used in neural networks. It is defined by the formula f(x) = x * sigmoid(x). Swish combines the benefits of ReLU and sigmoid functions.
 It is differentiable and has been proposed as an alternative to ReLU-based activations to potentially improve model training.
 
 For more details: https://en.wikipedia.org/wiki/Swish_function
-'''
+"""
+
+
 def swish(vector: np.ndarray) -> np.ndarray:
     """
     Implements the Swish activation function.
@@ -26,6 +29,8 @@ def swish(vector: np.ndarray) -> np.ndarray:
     """
     return vector * (1 / (1 + np.exp(-vector)))
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

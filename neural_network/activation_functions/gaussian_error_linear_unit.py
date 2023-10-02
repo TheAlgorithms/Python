@@ -1,8 +1,11 @@
 import numpy as np
-'''
-The GELU (Gaussian Error Linear Unit) activation function is a smooth, non-linear function used in neural networks. 
+
+"""
+The GELU (Gaussian Error Linear Unit) activation function is a smooth, non-linear function used in neural networks.
 For more details: https://en.wikipedia.org/wiki/Gaussian_error_linear_unit
-'''
+"""
+
+
 def gelu(vector: np.ndarray) -> np.ndarray:
     """
     Implements the GELU (Gaussian Error Linear Unit) activation function.
@@ -22,8 +25,14 @@ def gelu(vector: np.ndarray) -> np.ndarray:
     >>> gelu(np.array([-9.2, -0.3, 0.45, -4.56]))
     array([-0.00000000e+00, -1.14629076e-01,  3.03128456e-01, -3.63404370e-06])
     """
-    return 0.5 * vector * (1 + np.tanh(np.sqrt(2 / np.pi) * (vector + 0.044715 * vector**3)))
+    return (
+        0.5
+        * vector
+        * (1 + np.tanh(np.sqrt(2 / np.pi) * (vector + 0.044715 * vector**3)))
+    )
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

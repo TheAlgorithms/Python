@@ -1,11 +1,12 @@
 import numpy as np
 
-'''
+"""
 Soft Exponential can adapt to various tasks by adjusting the parameter alpha.
 It is a customizable activation function that can learn different activation characteristics based on the problem requirements.
 
 For more details: http://www.gabormelli.com/RKB/Soft_Exponential_Activation_Function#:~:text=A%20Soft%20Exponential%20Activation%20Function,identity%2C%20logarithm%20and%20exponential%20functions%20.
-'''
+"""
+
 
 def soft_exponential(vector: np.ndarray, alpha: float) -> np.ndarray:
     """
@@ -40,6 +41,8 @@ def soft_exponential(vector: np.ndarray, alpha: float) -> np.ndarray:
     else:
         return vector
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
