@@ -10,7 +10,7 @@ n     = 0..100..00
 n - 1 = 0..011..11
 
 n & (n - 1) - no intersections = 0
-If the number is a power of 4 then it should be a power of 2 
+If the number is a power of 4 then it should be a power of 2
 and the set bit should be at an odd position
 """
 
@@ -52,7 +52,7 @@ def power_of_4(number: int) -> bool:
         while number:
             c += 1
             number >>= 1
-        return c%2==1
+        return c % 2 == 1
     else:
         return False
 
