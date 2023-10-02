@@ -118,23 +118,18 @@ class CoordinateCompressor:
         """
         return self.reverse_map[num] if num < len(self.reverse_map) else -1
 
-    @staticmethod
-    def how_to_use() -> None:
-        """
-        Example usage of CoordinateCompressor.
-        """
-        arr = [100, 10, 52, 83]
-        cc = CoordinateCompressor(arr)
-        compressed = [0] * len(arr)
-        decompressed = [0] * len(arr)
-
-        for i, original in enumerate(arr):
-            compressed[i] = cc.compress(original)
-            decompressed[i] = cc.decompress(compressed[i])
-            print(f"Original: {original}, Compressed: {compressed[i]}")
-
 
 if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
+
+    arr = [100, 10, 52, 83]
+    cc = CoordinateCompressor(arr)
+    compressed = [0] * len(arr)
+    decompressed = [0] * len(arr)
+
+    for i, original in enumerate(arr):
+        compressed[i] = cc.compress(original)
+        decompressed[i] = cc.decompress(compressed[i])
+        print(f"Original: {original}, Compressed: {compressed[i]}")
