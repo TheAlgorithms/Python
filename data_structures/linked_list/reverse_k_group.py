@@ -50,7 +50,7 @@ class LinkedList:
         '0 -> 1 -> 2 -> 3 -> 4'
         """
         return " -> ".join([str(node) for node in self])
-
+        
     def append(self, data: int) -> None:
         """
         >>> ll = LinkedList([1, 2])
@@ -87,14 +87,11 @@ class LinkedList:
             return
 
         length = len(self)
-
         dummy_head = Node(0)
         dummy_head.next_node = self.head
-
         previous_node = dummy_head
 
         while length >= group_size:
-            # assert previous_node
             current_node = previous_node.next_node
             assert current_node
             next_node = current_node.next_node
@@ -103,13 +100,10 @@ class LinkedList:
                 current_node.next_node = next_node.next_node
                 assert previous_node
                 next_node.next_node = previous_node.next_node
-                # assert previous_node
                 previous_node.next_node = next_node
-                # assert current_node
                 next_node = current_node.next_node
             previous_node = current_node
             length -= group_size
-        # assert dummy_head
         self.head = dummy_head.next_node
 
 
@@ -117,7 +111,6 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
     ll = LinkedList([1, 2, 3, 4, 5])
     print(f"Original Linked List: {ll}")
     k = 2
