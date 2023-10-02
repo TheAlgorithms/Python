@@ -59,7 +59,7 @@ if len(sys.argv) > 1:
                         break
                     else:
                         res_txt = res_txt + str(res) +' is detected in '+ str(detec) +' blacklists \n \n'
-else:   
+else:
     print('Type in ip to check')
     x = input()
     try:
