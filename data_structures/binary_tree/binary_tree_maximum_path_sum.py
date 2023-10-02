@@ -10,23 +10,18 @@ Given the root of a binary tree, return the maximum path sum of any non-empty pa
 
 Leetcode Reference : https://leetcode.com/problems/binary-tree-maximum-path-sum/
 """
+from __future__ import annotations
+from dataclasses import dataclass
 
 
+@dataclass
 class TreeNode:
-
-    """
-    TreeNode has tree variables, val -> Stores value of the node
-    left, right -> Stores the pointer to left or right node.
-    """
-
-    def __init__(self, val: int) -> None:
-        self.val: int = val
-        self.left: TreeNode | None = None
-        self.right: TreeNode | None = None
+    val: int
+    left: TreeNode | None = None
+    right: TreeNode | None = None
 
 
 class GetMaxPathSum:
-
     r"""
 
     GetMaxPathSum takes root node of a tree as initial argument.
@@ -67,7 +62,6 @@ class GetMaxPathSum:
         self.root = root
 
     def traverse(self, root: TreeNode | None) -> int:
-
         """
         Returns maximum path sum by recursively taking max_path_sum from left
         and max_path_sum from right if current Node has a left or right Node.
@@ -88,7 +82,6 @@ class GetMaxPathSum:
         return root.val + max(right_sum, left_sum)
 
     def max_path_sum(self) -> int:
-
         """
         Driver method to get max_path_sum by calling traverse method.
         :return max_path_sum:
@@ -133,3 +126,4 @@ if __name__ == "__main__":
     print("Given example output: ", max_sum)
 
     doctest.testmod()
+
