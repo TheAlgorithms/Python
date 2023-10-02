@@ -1,4 +1,3 @@
-
 # This CLI script checks if entered ips are or
 # aren`t blacklisted on different lists
 # After configuration it can even send an email report
@@ -21,6 +20,7 @@ smtp_user = ""
 smtp_passw = ""
 smtp_serv = ""
 smtp_port = 587
+
 
 def test_ip(ip: str) -> Tuple[str, List] | Tuple[str, str] | None:
     result = requests.get(
