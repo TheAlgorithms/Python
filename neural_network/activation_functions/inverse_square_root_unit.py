@@ -1,5 +1,12 @@
 import numpy as np
 
+'''
+ISRU (Inverse Square Root Unit) is an activation function defined as f(x) = x / sqrt(1 + alpha * x^2). 
+It introduces non-linearity while controlling the slope for negative values using the alpha parameter.
+
+For more details: http://www.gabormelli.com/RKB/Inverse_Square_Root_Unit_(ISRU)_Activation_Function#:~:text=An%20Inverse%20Square%20Root%20Unit,activation%20of%20ISRUs%20in%20RNNs.
+'''
+
 def isru(vector: np.ndarray, alpha: float) -> np.ndarray:
     """
     Implements the ISRU (Inverse Square Root Unit) activation function.
