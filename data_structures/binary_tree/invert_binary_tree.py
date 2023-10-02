@@ -83,7 +83,7 @@ def invert_binary_tree(root: Node | None) -> None:
          9   8   7
     """
 
-    if root != None:  # If root is not None
+    if root is not None:  # If root is not None
         temp: Node = root.left  # Save left Node in a temp variable
         # Swap the Nodes
         root.left = root.right
