@@ -1,5 +1,7 @@
-import math
+# https://www.electronics-tutorials.ws/accircuits/power-factor-correction.html
+# https://www.youtube.com/watch?v=YZcBkFdstEU
 
+import math
 
 
 def shunt_capacitor_power_factor_correction(
