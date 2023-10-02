@@ -13,7 +13,7 @@ from email.message import EmailMessage
 import json
 import logging
 
-API_key = ""
+api_key = ""
 subject = ""
 mail_from = ""
 mail_to = ""
@@ -23,10 +23,10 @@ smtp_serv = ""
 smtp_port = 587
 
 
-def test_ip(ip):
+def test_ip(ip: str) -> str, str | None:
     detects = []
     result = requests.get(
-        "https://api.blacklistchecker.com/check/" + ip, auth=(API_Key, "")
+        "https://api.blacklistchecker.com/check/" + ip, auth=(api_key, "")
     )
     result_dec = json.loads(result.content)
     print(result_dec)
