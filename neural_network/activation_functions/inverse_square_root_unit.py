@@ -24,8 +24,10 @@ def isru(vector: np.ndarray, alpha: float) -> np.ndarray:
     Formula: ISRU(x, alpha) = x / sqrt(1 + alpha * x^2)
 
     Use Case & Importance:
-    - ISRU introduces non-linearity while controlling the slope for negative values.
-    - It can be used in neural networks to customize the activation function's behavior.
+    - ISRU introduces non-linearity while controlling 
+    the slope for negative values.
+    - It can be used in neural networks to customize
+    the activation function's behavior.
 
     Examples:
     >>> isru(np.array([2.3, 0.6, -2, -3.8], dtype=float), 0.1)
