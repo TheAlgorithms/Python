@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
 
 
@@ -49,7 +50,7 @@ class LinkedList:
         '0 -> 1 -> 2 -> 3 -> 4'
         """
         return " -> ".join([str(node) for node in self])
-
+        
     def append(self, data: int) -> None:
         """
         >>> ll = LinkedList([1, 2])
@@ -95,12 +96,12 @@ class LinkedList:
         while length >= group_size:
             # assert previous_node
             current_node = previous_node.next_node
-            # assert current_node
+            assert current_node
             next_node = current_node.next_node
             for _ in range(1, group_size):
-                # assert next_node, current_node
+                assert next_node, current_node
                 current_node.next_node = next_node.next_node
-                # assert previous_node
+                assert previous_node
                 next_node.next_node = previous_node.next_node
                 # assert previous_node
                 previous_node.next_node = next_node
@@ -116,6 +117,7 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
     ll = LinkedList([1, 2, 3, 4, 5])
     print(f"Original Linked List: {ll}")
     k = 2
