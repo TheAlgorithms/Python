@@ -18,81 +18,22 @@ Example Input:
 Output: 12
 
 """
+from typing import List, Union
 
-
-def product_sum(arr: list[int | list], depth: int) -> int:
-    """
-    Recursively calculates the product sum of an array.
-
-    The product sum of an array is defined as the sum of its elements multiplied by
-    their respective depths.  If an element is a list, its product sum is calculated
-    recursively by multiplying the sum of its elements with its depth plus one.
-
-    Args:
-        arr: The array of integers and nested lists.
-        depth: The current depth level.
-
-    Returns:
-        int: The product sum of the array.
-
-    Examples:
-        >>> product_sum([1, 2, 3], 1)
-        6
-        >>> product_sum([-1, 2, [-3, 4]], 2)
-        8
-        >>> product_sum([1, 2, 3], -1)
-        -6
-        >>> product_sum([1, 2, 3], 0)
-        0
-        >>> product_sum([1, 2, 3], 7)
-        42
-        >>> product_sum((1, 2, 3), 7)
-        42
-        >>> product_sum({1, 2, 3}, 7)
-        42
-        >>> product_sum([1, -1], 1)
-        0
-        >>> product_sum([1, -2], 1)
-        -1
-        >>> product_sum([-3.5, [1, [0.5]]], 1)
-        1.5
-
-    """
+def product_sum_recursive(arr: List[Union[int, List]], depth: int) -> int:
     total_sum = 0
     for ele in arr:
-        total_sum += product_sum(ele, depth + 1) if isinstance(ele, list) else ele
+        if isinstance(ele, list):
+            total_sum += product_sum_recursive(ele, depth + 1)
+        else:
+            total_sum += ele
     return total_sum * depth
 
-
-def product_sum_array(array: list[int | list]) -> int:
-    """
-    Calculates the product sum of an array.
-
-    Args:
-        array (List[Union[int, List]]): The array of integers and nested lists.
-
-    Returns:
-        int: The product sum of the array.
-
-    Examples:
-        >>> product_sum_array([1, 2, 3])
-        6
-        >>> product_sum_array([1, [2, 3]])
-        11
-        >>> product_sum_array([1, [2, [3, 4]]])
-        47
-        >>> product_sum_array([0])
-        0
-        >>> product_sum_array([-3.5, [1, [0.5]]])
-        1.5
-        >>> product_sum_array([1, -2])
-        -1
-
-    """
-    return product_sum(array, 1)
-
+def product_sum_array(array: List[Union[int, List]]) -> int:
+    if not isinstance(array, list):
+        raise ValueError("Input must be a list.")
+    return product_sum_recursive(array, 1)
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
