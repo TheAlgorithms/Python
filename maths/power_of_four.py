@@ -43,4 +43,4 @@ def ispower_of_four(num):
 
 # Example usage:
 print(ispower_of_four(16))  # Output: True
-print(ispower_of_four(5))   # Output: False
+print(ispower_of_four(5))  # Output: False
