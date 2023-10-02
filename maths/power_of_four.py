@@ -32,7 +32,7 @@
 
 import math
 
-def isPowerOfFour(n):
+def ispower_of_four(n):
     if n <= 0:
         return False
 
@@ -41,5 +41,5 @@ def isPowerOfFour(n):
     return logarithm4.is_integer()
 
 # Example usage:
-print(isPowerOfFour(16))  # Output: True
-print(isPowerOfFour(5))   # Output: False
+print(ispower_of_four(16))  # Output: True
+print(ispower_of_four(5))   # Output: False
