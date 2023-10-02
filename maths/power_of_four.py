@@ -31,12 +31,12 @@
 
 import math
 
-def ispower_of_four(n):
 
-    if n <= 0:
+def ispower_of_four(num):
+    if num <= 0:
         return False
 
-    logarithm4 = math.log10(n) / math.log10(4)
+    logarithm4 = math.log10(num) / math.log10(4)
 
     return logarithm4.is_integer()
 
@@ -44,4 +44,3 @@ def ispower_of_four(n):
 # Example usage:
 print(ispower_of_four(16))  # Output: True
 print(ispower_of_four(5))   # Output: False
-
