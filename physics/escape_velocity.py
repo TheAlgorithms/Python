@@ -8,6 +8,7 @@ Description:
 
 import math
 
+
 def calculate_escape_velocity(
     mass_celestial_body: float, distance_from_center: float
 ) -> float:
@@ -56,9 +57,11 @@ def calculate_escape_velocity(
     if distance_from_center <= 0:
         raise ValueError("Distance from the center must be greater than zero!")
 
-    escape_velocity = math.sqrt(2 * gravitational_constant * mass_celestial_body
-    / distance_from_center)
+    escape_velocity = math.sqrt(
+        2 * gravitational_constant * mass_celestial_body / distance_from_center
+    )
     return escape_velocity
+
 
 if __name__ == "__main__":
     import doctest
