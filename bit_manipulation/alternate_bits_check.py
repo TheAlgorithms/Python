@@ -17,13 +17,14 @@ def bitsareinlltorder(input_number) -> bool:
 
     # To check if all bits are set in 'num'
     return allbitsareset(result_number)
-    
+
+
 input_by_user = 15
 
-if (bitsAreInAltOrder(input_by_user)):
-    print("Yes");
+if bitsAreInAltOrder(input_by_user):
+    print("Yes")
 else:
-    print("No");
+    print("No")
 
 
 """
