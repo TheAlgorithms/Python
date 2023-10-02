@@ -1,4 +1,4 @@
-'''
+"""
 Author Suvan Banerjee (@suvanbanerjee)
 Date: 2023-02-10
 Description: This program calculates the future value of money based on the present
@@ -12,11 +12,14 @@ to a reduction in the purchasing power of money.
 
 Source: https://en.wikipedia.org/wiki/Inflation
 
-'''
+"""
 
 import doctest
 
-def calculate_future_value(present_value : float, inflation_rate : float , years : int) -> float:
+
+def calculate_future_value(
+    present_value: float, inflation_rate: float, years: int
+) -> float:
     """
     Calculate the future value of money considering inflation.
 
@@ -39,20 +42,24 @@ def calculate_future_value(present_value : float, inflation_rate : float , years
     13468.550065500534
     """
 
-    future_value = present_value * (1 + inflation_rate/100)**years
+    future_value = present_value * (1 + inflation_rate / 100) ** years
     return future_value
+
 
 def main() -> None:
     print("Inflation Calculator")
-    print("="*20)
+    print("=" * 20)
     present_value = float(input("Enter the present value of money: $"))
     inflation_rate = float(input("Enter the annual inflation rate (as a percentage): "))
     years = int(input("Enter the number of years: "))
 
     future_value = calculate_future_value(present_value, inflation_rate, years)
 
-    print(f"The future value of ${present_value:f} after {years} years, with an annual \
-inflation rate of {inflation_rate}%, will be ${future_value:f}")
+    print(
+        f"The future value of ${present_value:f} after {years} years, with an annual \
+inflation rate of {inflation_rate}%, will be ${future_value:f}"
+    )
+
 
 if __name__ == "__main__":
     doctest.testmod()
