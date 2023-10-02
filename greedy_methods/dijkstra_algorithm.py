@@ -1,12 +1,12 @@
 import heapq
+from typing import Dict, Union
 
-
-def dijkstra(graph, start):
+def dijkstra(graph:Dict[str, Dict[str, int]], start: str)->Dict[str, Union[int, float]]:
     """
-    Shortest path from a starting to all other nodes in a weighted graph
+    Find the shortest path from a starting node to all other nodes in a weighted graph.
 
     Args:
-        graph (dict): Representing the weighted graph in {node: {neighbor: weight}}
+        graph (dict): Representing the weighted graph in {node: {neighbor: weight}}.
         start (str): The starting node.
 
     Returns:
@@ -23,7 +23,7 @@ def dijkstra(graph, start):
         >>> dijkstra(graph, 'A')
         {'A': 0, 'B': 1, 'C': 3, 'D': 4}
     """
-    distances = {node: float("inf") for node in graph}
+    distances = {node: float('inf') for node in graph}
     distances[start] = 0
     priority_queue = [(0, start)]
 
@@ -42,13 +42,11 @@ def dijkstra(graph, start):
 
     return distances
 
-
 if __name__ == "__main__":
     import doctest
+    result = doctest.testmod()
 
-    res = doctest.testmod()
-
-    if res.failed == 0:
+    if result.failed == 0:
         print("All tests passed!")
     else:
-        print(f"{res.failed} test(s) failed.")
+        print(f"{result.failed} test(s) failed.")
