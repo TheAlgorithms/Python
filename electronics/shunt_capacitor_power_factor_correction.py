@@ -12,7 +12,7 @@ def shunt_capacitor_power_factor_correction(
     expected_power_factor: float,
 ) -> float:
     """
-    Calculate shunt capacitor that will be added in order to achieve the 
+    Calculate shunt capacitor that will be added in order to achieve the
     expected power factor
 
     Examples:
