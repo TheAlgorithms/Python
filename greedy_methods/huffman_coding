@@ -1,0 +1,66 @@
+# Huffman Tree Node Implementation
+import heapq
+
+class Node:
+    def __init__(self, freq, symbol, left=None, right=None):
+        # frequency of symbol
+        self.freq = freq
+        
+        # symbol name (character)
+        self.symbol = symbol
+        
+        # node left of the current node
+        self.left = left
+        
+        # node right of the current node
+        self.right = right
+        
+        # Huffman code direction (0/1)
+        self.huff = ''
+
+    def __lt__(self, nxt):
+        return self.freq < nxt.freq
+
+# Utility function to print Huffman codes for all symbols in the Huffman tree
+def printNodes(node, val=''):
+    # Huffman code for the current node
+    newVal = val + str(node.huff)
+    
+    # if the node is not an edge node, traverse inside it
+    if node.left:
+        printNodes(node.left, newVal)
+    if node.right:
+        printNodes(node.right, newVal)
+    
+    # if the node is an edge node, display its Huffman code
+    if not node.left and not node.right:
+        print(f"{node.symbol} -> {newVal}")
+
+# Accepting user input for characters and frequencies
+chars = input("Enter characters separated by spaces: ").split()
+freq = list(map(int, input("Enter corresponding frequencies separated by spaces: ").split()))
+
+# List containing unused nodes
+nodes = []
+
+# Converting characters and frequencies into Huffman tree nodes and storing them in a priority queue
+for x in range(len(chars)):
+    heapq.heappush(nodes, Node(freq[x], chars[x]))
+
+# Building the Huffman Tree
+while len(nodes) > 1:
+    # Sort all nodes in ascending order based on their frequency
+    left = heapq.heappop(nodes)
+    right = heapq.heappop(nodes)
+    
+    # Assign directional value to these nodes
+    left.huff = 0
+    right.huff = 1
+    
+    # Combine the two smallest nodes to create a new node as their parent
+    newNode = Node(left.freq + right.freq, left.symbol + right.symbol, left, right)
+    heapq.heappush(nodes, newNode)
+
+# Huffman Tree construction is complete, now printing Huffman codes
+print("Huffman Codes:")
+printNodes(nodes[0])
