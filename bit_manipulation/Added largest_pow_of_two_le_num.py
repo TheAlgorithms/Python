@@ -32,7 +32,7 @@ def largest_power_of_two(number: int) -> int:
     """
     if isinstance(number, float):
         raise TypeError("Please enter an int type input")
-    if (number <= 0):
+    if number <= 0:
         return 0
     x = 1
     while (x << 1) <= number:
