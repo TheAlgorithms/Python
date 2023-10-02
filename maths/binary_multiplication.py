@@ -12,6 +12,29 @@
 
 
 def b_expo(a: int, b: int) -> int:
+    """
+        Calculate the result of multiplying 'a' and 'b' using bitwise multiplication.
+        Parameters:
+        a (int): The first number.
+        b (int): The second number.
+        Returns:
+        int: The result of 'a' multiplied by 'b'.
+        Examples:
+        >>> b_expo(2, 3)
+        6
+        >>> b_expo(5, 0)
+        0
+        >>> b_expo(3, 4)
+        12
+        >>> b_expo(10, 5)
+        50
+        >>> b_expo(0, 5)
+        0
+        >>> b_expo(2, 1)
+        2
+        >>> b_expo(1, 10)
+        10
+        """
     res = 0
     while b > 0:
         if b & 1:
@@ -21,6 +44,11 @@ def b_expo(a: int, b: int) -> int:
         b >>= 1
 
     return res
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
 
 
 def b_expo_mod(a: int, b: int, c: int) -> int:
