@@ -1,11 +1,15 @@
 import numpy as np
 
 """
-Soft Exponential can adapt to various tasks by adjusting the parameter alpha.
+Soft Exponential can adapt to various tasks by 
+adjusting the parameter alpha.
 It is a customizable activation function that can
-learn different activation characteristics based on the problem requirements.
+learn different activation characteristics
+based on the problem requirements.
 
-For more details: https://lightrun.com/answers/keras-team-keras-soft-exponential-activation-function
+For more details: 
+https://lightrun.com/answers/keras-team-keras
+-soft-exponential-activation-function
 """
 
 
