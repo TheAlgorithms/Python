@@ -2,6 +2,12 @@
 Calculates the sum of two non-negative integers using bitwise operators
 Wikipedia explanation: https://en.wikipedia.org/wiki/Binary_number
 """
+# a = int(input("a = "))
+# b = int(input("b = "))
+# def calculate_sum(a, b):
+#     Max = 0x7FFFFFFF
+#     return (a & Max) if b > Max else a | b
+# print(calculate_sum(a, b))
 
 
 def bitwise_addition_recursive(number: int, other_number: int) -> int:
