@@ -124,7 +124,7 @@ def construct_tree() -> TreeNode:
     return root
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     tree = GetMaxPathSum(construct_tree())
