@@ -66,7 +66,7 @@ class GetMaxPathSum:
         self.sum = -9999999999
         self.root = root
 
-    def traverse(self, root: TreeNode | None) -> int:
+    def traverse(self, root: TreeNode) -> int:
 
         """
         Returns maximum path sum by recursively taking max_path_sum from left
