@@ -9,8 +9,8 @@ import math
 from typing import List, Tuple, Optional
 
 """
-    Annotations: 
-    
+    Annotations:
+
     n: number of nodes in the graph
     adj: adjacency list for the graph
     timer: keeps track of the current time
