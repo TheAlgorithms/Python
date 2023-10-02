@@ -7,6 +7,7 @@ Description:
 
 import math
 
+
 def calculate_escape_velocity(
     mass_celestial_body: float, distance_from_center: float
 ) -> float:
@@ -39,7 +40,9 @@ def calculate_escape_velocity(
 
     """
 
-    gravitational_constant = 6.67430e-11  # Universal gravitational constant (m^3/kg/s^2)
+    gravitational_constant = (
+        6.67430e-11  # Universal gravitational constant (m^3/kg/s^2)
+    )
 
     if mass_celestial_body <= 0:
         raise ValueError("Mass of celestial body must be greater than zero!")
@@ -51,6 +54,7 @@ def calculate_escape_velocity(
         2 * gravitational_constant * mass_celestial_body / distance_from_center
     )
     return escape_velocity
+
 
 if __name__ == "__main__":
     import doctest
