@@ -43,7 +43,7 @@ def get_tree_inorder(tree: Node | None, tree_list: list | None) -> list:
     return tree_list
 
 
-def invert_binary_tree(root: Node | None) -> None:
+def invert_binary_tree(root: Node | None) -> Node | None:
     r"""
     Inverts the binary tree with the given root and returns the root
 
@@ -84,7 +84,7 @@ def invert_binary_tree(root: Node | None) -> None:
     """
 
     if root is not None:  # If root is not None
-        temp: Node = root.left  # Save left Node in a temp variable
+        temp: Node | None = root.left  # Save left Node in a temp variable
         # Swap the Nodes
         root.left = root.right
         root.right = temp
