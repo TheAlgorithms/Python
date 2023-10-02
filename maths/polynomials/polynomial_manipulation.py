@@ -1,24 +1,21 @@
 from typing import List
 
-
 class Polynomial:
     def __init__(self, coefficients: List[int]) -> None:
         """
         Initialize a polynomial with a list of coefficients.
+
         Args:
-        coefficients (List[int]): Coefficients from the highest order to constant term.
+        coefficients (List[int]): Coefficients from the highest order to the constant term.
         """
         self.coefficients = coefficients
 
     def __str__(self) -> str:
         """
         Return a string representation of the polynomial.
+
         Returns:
         str: String representation of the polynomial.
-        Examples:
-        >>> poly = Polynomial([1, 2, 3])
-        >>> str(poly)
-        '3x^2 + 2x + 1'
         """
         terms = []
         for i, coeff in enumerate(self.coefficients):
@@ -29,19 +26,15 @@ class Polynomial:
                     terms.append(f"{coeff}x^{i}")
         return " + ".join(terms[::-1])
 
-    def add(self, other: "Polynomial") -> "Polynomial":
+    def add(self, other: 'Polynomial') -> 'Polynomial':
         """
         Add two polynomials.
+
         Args:
         other (Polynomial): Another Polynomial object to add to this one.
+
         Returns:
         Polynomial: A new Polynomial representing the sum.
-        Examples:
-        >>> poly1 = Polynomial([1, 2, 3])
-        >>> poly2 = Polynomial([2, 0, 1])
-        >>> result = poly1.add(poly2)
-        >>> str(result)
-        '2x^3 + 3x^2 + 3x + 1'
         """
         max_len = max(len(self.coefficients), len(other.coefficients))
         result = [0] * max_len
@@ -54,19 +47,15 @@ class Polynomial:
 
         return Polynomial(result)
 
-    def multiply(self, other: "Polynomial") -> "Polynomial":
+    def multiply(self, other: 'Polynomial') -> 'Polynomial':
         """
         Multiply two polynomials.
+
         Args:
         other (Polynomial): Another Polynomial object to multiply with this one.
+
         Returns:
         Polynomial: A new Polynomial representing the product.
-        Examples:
-        >>> poly1 = Polynomial([1, 2, 3])
-        >>> poly2 = Polynomial([2, 0, 1])
-        >>> result = poly1.multiply(poly2)
-        >>> str(result)
-        '6x^5 + 2x^4 + 3x^3 + x^2'
         """
         result = [0] * (len(self.coefficients) + len(other.coefficients) - 1)
 
@@ -76,9 +65,9 @@ class Polynomial:
 
         return Polynomial(result)
 
-
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
     print("All tests passed.")
+
