@@ -17,9 +17,9 @@ def greatest_common_divisor(a: int, b: int) -> int:
     >>> greatest_common_divisor(0, 10)
     10
     """
-    if a == 0:
-        return b
-    greatest_common_divisor(b % a, a)
+    while b:
+        a, b = b, a % b
+    return a
 
 def gcd_by_iterative(x: int, y: int) -> int:
     """
