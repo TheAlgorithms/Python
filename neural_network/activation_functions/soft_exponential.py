@@ -29,8 +29,10 @@ def soft_exponential(vector: np.ndarray, alpha: float) -> np.ndarray:
                                         x, alpha = 0)
 
     Use Case & Importance:
-    - Soft Exponential provides flexibility in controlling the activation's behavior with the parameter alpha.
-    - It can adapt to various tasks and learn different activation characteristics.
+    - Soft Exponential provides flexibility in controlling the
+    activation's behavior with the parameter alpha.
+    - It can adapt to various tasks and learn different
+    activation characteristics.
 
     Examples:
     >>> soft_exponential(np.array([2.3, 0.6, -2, -3.8], dtype=float), 0.1)
