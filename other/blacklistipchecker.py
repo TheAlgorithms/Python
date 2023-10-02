@@ -11,11 +11,12 @@ from IPy import IP
 import smtplib
 from email.message import EmailMessage
 import json
+import logging
 
 API_key = ''
 subject = ''
-from = ''
-to = ''
+mail_from = ''
+mail_to = ''
 smtp_user = ''
 smtp_passw = ''
 smtp_serv = ''
@@ -49,8 +50,9 @@ if len(sys.argv) > 1:
         else:
             try:
                 IP(x)
-            except:
+            except Exception as ex:
                 print('Argument isn`t a valid ip('+x+")\n Skipping argument")
+                logging.exception('Caught an error')
             else:
                 if test_ip(x):
                     res, detec = test_ip(x)
@@ -64,8 +66,9 @@ else:
     x = input()
     try:
         IP(x)
-    except:
+    except Exception as ex:
         print('Argument isn`t a valid ip('+x+")")
+        logging.exception('Caught an error')
         sys.exit()
     else:
         if test_ip(x):
@@ -87,8 +90,8 @@ else:
         msg = EmailMessage()
         msg.set_content(res_txt)
         msg['Subject'] = subject
-        msg['From'] = from
-        msg['To'] = to
+        msg['From'] = mail_from
+        msg['To'] = mail_to
         try:
             smtp_server = smtplib.SMTP(smtp_server, smtp_port)
             smtp_server.ehlo()
