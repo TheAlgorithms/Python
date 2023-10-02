@@ -1,11 +1,9 @@
-######################################
+
 # This CLI script checks if entered ips are or
 # aren`t blacklisted on different lists
 # After configuration it can even send an email report
 # You need to get API key on blacklistchecker
 # to make it work (it`s free 30 IPs per month)
-######################################
-
 
 import requests
 import sys
@@ -57,7 +55,8 @@ if len(sys.argv) > 1:
             try:
                 IP(x)
             except Exception as ex:
-                print("Argument isn`t a valid ip(" + x + ")\n" + ex + "\n Skipping argument")
+                print("Argument isn`t a valid ip(" + x + ")\n")
+                print(ex + "\n Skipping argument")
                 logging.exception("Caught an error")
             else:
                 if test_ip(x):
@@ -79,7 +78,8 @@ else:
     try:
         IP(x)
     except Exception as ex:
-        print("Argument isn`t a valid ip(" + x + ")"+ ex + "\n)
+        print("Argument isn`t a valid ip(" + x + ")")
+        print(ex + "\n")
         logging.exception("Caught an error")
         sys.exit()
     else:
