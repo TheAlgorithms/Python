@@ -2,7 +2,6 @@
 https://en.wikipedia.org/wiki/Median
 """
 
-
 def median(matrix: list[list[int]]) -> int:
     """
     Calculate the median of a sorted matrix.
@@ -33,7 +32,6 @@ def median(matrix: list[list[int]]) -> int:
 
     # Return the median
     return linear[mid]
-
 
 if __name__ == "__main__":
     import doctest
