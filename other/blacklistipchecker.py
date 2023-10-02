@@ -14,16 +14,15 @@ api_key = "key_CAMF5HI5t4ZzkmgGkioI1tius"
 
 
 def test_ip(ip: str) -> Any:
-    result = requests.get(
-        "https://api.blacklistchecker.com/check/" + ip, auth=(api_key, "")
-    )
+    link = f"https://api.blacklistchecker.com/check/{ip}"
+    result = requests.get(link, auth=(api_key, "")
     result_dec = json.loads(result.content)
     print(result_dec)
     if result_dec.get("statusCode"):
         res = "limit exceeded"
         detects = "!"
         return (res, detects)
-    elif result_dec.get("detections") != 0:
+    else result_dec.get("detections") != 0:
         res = ip
         blsts = result_dec.get("blacklists")
         detects = []
