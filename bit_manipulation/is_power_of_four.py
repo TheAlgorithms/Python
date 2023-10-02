@@ -8,19 +8,23 @@ Task :- Given an integer N, find whether that integer is a power of 4 or not.
 
 """
 
-def power_of_four(N):
+def is_power_of_four(N: int) -> bool:
   """
     Returns whether a number is a power of 4 or not
-    >>> power_of_four(8)
+    >>> is_power_of_four(8)
     False
-    >>> power_of_four(4)
+    >>> is_power_of_four(4)
     True
-    >>> power_of_four(16)
+    >>> is_power_of_four(16)
     True
-    >>> power_of_four(-1)
+    >>> is_power_of_four(-1)
     Traceback (most recent call last):
         ...
     ValueError: number must be positive
+    >>> is_power_of_four(9.8)
+    Traceback (most recent call last):
+        ...
+    TypeError: unsupported operand type(s) for &: 'float' and 'float'
   """
   
   #For non-positive numbers
@@ -35,8 +39,8 @@ def power_of_four(N):
 
 
 if __name__ == "__main__":
-  
   import doctest
+  
   doctest.testmod()
 
 
