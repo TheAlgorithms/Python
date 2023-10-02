@@ -9,116 +9,115 @@ class Node:
     next_node: Node | None = None
 
 
-def insert_node(head: Node | None, data: int) -> Node:
-    """
-    Insert a new node at the end of a linked list and return the new head.
-    >>> head = insert_node(None, 1)
-    >>> head = insert_node(head, 2)
-    >>> head = insert_node(head, 3)
-    >>> print_linked_list(head)
-    1->2->3
-    """
-    new_node = Node(data)
-    # If the linked list is empty, the new_node becomes the head
-    if head is None:
-        return new_node
+class LinkedList:
+    def __init__(self, ints: Iterable[int]) -> None:
+        self.head: Node | None = None
+        for i in ints:
+            self.append(i)
 
-    temp_node = head
-    while temp_node.next_node is not None:
-        temp_node = temp_node.next_node
+    def __iter__(self) -> Iterator[int]:
+        """
+        >>> ints = []
+        >>> list(LinkedList(ints)) == ints
+        True
+        >>> ints = tuple(range(5))
+        >>> tuple(LinkedList(ints)) == ints
+        True
+        """
+        node = self.head
+        while node:
+            yield node.data
+            node = node.next_node
 
-    temp_node.next_node = new_node  # type: ignore
-    return head
+    def __len__(self) -> int:
+        """
+        >>> for i in range(3):
+        ...     len(LinkedList(range(i))) == i
+        True
+        True
+        True
+        >>> len(LinkedList("abcdefgh"))
+        8
+        """
+        return sum(1 for _ in self)
 
+    def __str__(self) -> str:
+        """
+        >>> str(LinkedList([]))
+        ''
+        >>> str(LinkedList(range(5)))
+        '0 -> 1 -> 2 -> 3 -> 4'
+        """
+        return " -> ".join([str(node) for node in self])
+        
+    def append(self, data: int) -> None:
+        """
+        >>> ll = LinkedList([1, 2])
+        >>> tuple(ll)
+        (1, 2)
+        >>> ll.append(3)
+        >>> tuple(ll)
+        (1, 2, 3)
+        >>> ll.append(4)
+        >>> tuple(ll)
+        (1, 2, 3, 4)
+        >>> len(ll)
+        4
+        """
+        if not self.head:
+            self.head = Node(data)
+            return
+        node = self.head
+        while node.next_node:
+            node = node.next_node
+        node.next_node = Node(data)
 
-def length_of_linked_list(head: Node | None) -> int:
-    """
-    find length of linked list
-    >>> head = insert_node(None, 10)
-    >>> head = insert_node(head, 9)
-    >>> head = insert_node(head, 8)
-    >>> length_of_linked_list(head)
-    3
-    """
-    length = 0
-    while head is not None:
-        length += 1
-        head = head.next_node
-    return length
+    def reverse_k_nodes(self, group_size: int) -> None:
+        """
+        reverse nodes within groups of size k
+        >>> ll = LinkedList([1, 2, 3, 4, 5])
+        >>> ll.reverse_k_nodes(2)
+        >>> tuple(ll)
+        (2, 1, 4, 3, 5)
+        >>> str(ll)
+        '2 -> 1 -> 4 -> 3 -> 5'
+        """
+        if self.head is None or self.head.next_node is None:
+            return
 
+        length = len(self)
 
-def print_linked_list(head: Node | None) -> None:
-    """
-    print the entire linked list
-    >>> head = insert_node(None, 1)
-    >>> head = insert_node(head, 2)
-    >>> head = insert_node(head, 3)
-    >>> print_linked_list(head)
-    1->2->3
-    """
-    if head is not None:
-        while head.next_node is not None:
-            print(head.data, end="->")
-            head = head.next_node
-        print(head.data)
+        dummy_head = Node(0)
+        dummy_head.next_node = self.head
 
+        previous_node = dummy_head
 
-def reverse_k_nodes(head: Node | None, group_size: int) -> Node | None:
-    """
-    reverse nodes within groups of size k
-    >>> head = insert_node(None, 1)
-    >>> head = insert_node(head, 2)
-    >>> head = insert_node(head, 3)
-    >>> head = insert_node(head, 4)
-    >>> head = insert_node(head, 5)
-    >>> new_head = reverse_k_nodes(head, 2)
-    >>> print_linked_list(new_head)
-    2->1->4->3->5
-    """
-    if head is None or head.next_node is None:
-        return head
-
-    length = length_of_linked_list(head)
-
-    dummy_head = Node(0)
-    dummy_head.next_node = head
-
-    previous_node = dummy_head
-
-    while length >= group_size:
-        assert previous_node
-        current_node = previous_node.next_node
-        assert current_node
-        next_node = current_node.next_node
-        for _ in range(1, group_size):
-            assert next_node, current_node
-            current_node.next_node = next_node.next_node
-            assert previous_node
-            next_node.next_node = previous_node.next_node
-            assert previous_node
-            previous_node.next_node = next_node
-            assert current_node
+        while length >= group_size:
+            # assert previous_node
+            current_node = previous_node.next_node
+            # assert current_node
             next_node = current_node.next_node
-        previous_node = current_node
-        length -= group_size
-    assert dummy_head
-    return dummy_head.next_node
+            for _ in range(1, group_size):
+                # assert next_node, current_node
+                current_node.next_node = next_node.next_node
+                # assert previous_node
+                next_node.next_node = previous_node.next_node
+                # assert previous_node
+                previous_node.next_node = next_node
+                # assert current_node
+                next_node = current_node.next_node
+            previous_node = current_node
+            length -= group_size
+        # assert dummy_head
+        self.head = dummy_head.next_node
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
+    ll = LinkedList([1, 2, 3, 4, 5])
+    print(f"Original Linked List: {ll}")
     k = 2
-    head = insert_node(None, 1)
-    head = insert_node(head, 2)
-    head = insert_node(head, 3)
-    head = insert_node(head, 4)
-    head = insert_node(head, 5)
-
-    print("Original Linked List: ", end="")
-    print_linked_list(head)
-    print(f"After reversing groups of size {k}: ", end="")
-    new_head = reverse_k_nodes(head, k)
-    print_linked_list(new_head)
+    ll.reverse_k_nodes(k)
+    print(f"After reversing groups of size {k}: {ll}")
