@@ -1,5 +1,6 @@
 # https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm
 
+
 def knuth_morris_pratt(text: str, pattern: str) -> list[int]:
     """
     Knuth-Morris-Pratt (KMP) string search algorithm in Python.
@@ -19,6 +20,7 @@ def knuth_morris_pratt(text: str, pattern: str) -> list[int]:
     []
 
     """
+
     def build_prefix_table(pattern: str) -> list[int]:
         """
         Build the prefix table for the given pattern.
@@ -59,6 +61,7 @@ def knuth_morris_pratt(text: str, pattern: str) -> list[int]:
             positions.append(i - j + 1)
             j = prefix_table[j - 1]
     return positions
+
 
 if __name__ == "__main__":
     text = input("Enter the text: ")
