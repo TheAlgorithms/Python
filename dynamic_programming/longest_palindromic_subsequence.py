@@ -3,7 +3,8 @@ LPS Problem Statement: Find the length of the longest palindromic subsequence
 in a given string. A palindromic subsequence is a sequence that reads the same
 forward and backward, but not necessarily continuous.
 
-Example: For the input "babad," the longest palindromic subsequence can be "bab" or "aba."
+Example: For the input "babad," the longest palindromic subsequence
+can be "bab" or "aba."
 """
 
 
@@ -15,8 +16,8 @@ def longest_palindromic_subsequence(s: str) -> tuple[int, str]:
         s (str): The input string.
 
     Returns:
-        Tuple[int, str]: A tuple containing the length of the longest palindromic subsequence
-        and the subsequence itself.
+        Tuple[int, str]: A tuple containing the length of the longest
+        palindromic subsequence and the subsequence itself.
 
     Raises:
         ValueError: If the input string is empty or None.
@@ -33,7 +34,7 @@ def longest_palindromic_subsequence(s: str) -> tuple[int, str]:
         raise ValueError("Input string cannot be empty or None")
 
     n = len(s)
-    # create a table to store results of subproblems
+    #create a table to store results of subproblems
     dp = [[0] * n for _ in range(n)]
 
     for i in range(n):
