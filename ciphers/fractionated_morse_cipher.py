@@ -158,8 +158,10 @@ def decrypt_fractionated_morse(ciphertext: str, key: str) -> str:
     return decrypted_text
 
 
-def main():
-    """Example usage of Fractionated Morse Cipher."""
+def main() -> None:
+    """
+    Example usage of Fractionated Morse Cipher.
+    """
     plaintext = "defend the east"
     print("Plain Text:", plaintext)
     key = "ROUNDTABLE"
