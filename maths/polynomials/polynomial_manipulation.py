@@ -1,24 +1,21 @@
 import doctest
-from typing import List
+from typing import list
 
 
 class Polynomial:
-    def __init__(self, coefficients: List[int]) -> None:
+    def __init__(self, coefficients: list[int]) -> None:
         """
         Initialize a polynomial with a list of coefficients.
-
         Args:
-        coefficients (List[int]): Coefficients from the highest order to the constant term.
+        coefficients (list[int]): Coefficients from the highest order to the constant term.
         """
         self.coefficients = coefficients
 
     def __str__(self) -> str:
         """
         Return a string representation of the polynomial.
-
         Returns:
         str: String representation of the polynomial.
-
         Examples:
         >>> poly = Polynomial([1, 2, 3])
         >>> str(poly)
@@ -36,13 +33,10 @@ class Polynomial:
     def add(self, other: "Polynomial") -> "Polynomial":
         """
         Add two polynomials.
-
         Args:
         other (Polynomial): Another Polynomial object to add to this one.
-
         Returns:
         Polynomial: A new Polynomial representing the sum.
-
         Examples:
         >>> poly1 = Polynomial([1, 2, 3])
         >>> poly2 = Polynomial([2, 0, 1])
@@ -64,13 +58,10 @@ class Polynomial:
     def multiply(self, other: "Polynomial") -> "Polynomial":
         """
         Multiply two polynomials.
-
         Args:
         other (Polynomial): Another Polynomial object to multiply with this one.
-
         Returns:
         Polynomial: A new Polynomial representing the product.
-
         Examples:
         >>> poly1 = Polynomial([1, 2, 3])
         >>> poly2 = Polynomial([2, 0, 1])
