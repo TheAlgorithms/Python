@@ -1,8 +1,7 @@
 from typing import List
 
-
 class Polynomial:
-    def __init__(self, coefficients: List[int]):
+    def __init__(self, coefficients: List[int]) -> None:
         """
         Initialize a polynomial with a list of coefficients.
 
@@ -27,7 +26,7 @@ class Polynomial:
                     terms.append(f"{coeff}x^{i}")
         return " + ".join(terms[::-1])
 
-    def add(self, other: "Polynomial") -> "Polynomial":
+    def add(self, other: 'Polynomial') -> 'Polynomial':
         """
         Add two polynomials.
 
@@ -48,7 +47,7 @@ class Polynomial:
 
         return Polynomial(result)
 
-    def multiply(self, other: "Polynomial") -> "Polynomial":
+    def multiply(self, other: 'Polynomial') -> 'Polynomial':
         """
         Multiply two polynomials.
 
@@ -66,17 +65,31 @@ class Polynomial:
 
         return Polynomial(result)
 
+# Doctests for __str__, add, and multiply methods:
+def doctest_polynomial_methods():
+    """
+    >>> poly1 = Polynomial([1, 2, 3])
+    >>> poly2 = Polynomial([2, 0, 1])
+    
+    >>> str(poly1)
+    '3x^2 + 2x + 1'
+    
+    >>> str(poly2)
+    '2x^3 + x'
+    
+    >>> result_add = poly1.add(poly2)
+    >>> str(result_add)
+    '2x^3 + 3x^2 + 3x + 1'
+    
+    >>> result_multiply = poly1.multiply(poly2)
+    >>> str(result_multiply)
+    '6x^5 + 2x^4 + 3x^3 + x^2'
+    """
+    pass
 
 # Example usage and doctests:
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
-    # Create two polynomials: 3x^2 + 2x + 1 and 2x^3 + x
-    poly1 = Polynomial([1, 2, 3])
-    poly2 = Polynomial([2, 0, 1])
-    # Add two polynomials
-    result_add = poly1.add(poly2)
-    # Multiply two polynomials
-    result_multiply = poly1.multiply(poly2)
+    doctest_polynomial_methods()
     print("All tests passed.")
