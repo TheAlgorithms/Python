@@ -6,6 +6,7 @@ class FibonacciNode:
         self.degree = 0
         self.parent = None
 
+
 class FibonacciHeap:
     def __init__(self):
         self.trees = []
@@ -86,8 +87,7 @@ class FibonacciHeap:
         node.marked = False
 
     def cascading_cut(self, node):
-        parent = node.parent
-        if parent is not None:
+        if (parent := node.parent) is not None:
             if not node.marked:
                 node.marked = True
             else:
