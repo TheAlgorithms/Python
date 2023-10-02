@@ -1,4 +1,3 @@
-
 # LeetCdoe No. 2038. Remove Colored Pieces if Both Neighbors are the Same Color
 # Problem Statement:
 
@@ -26,13 +25,7 @@
 # Thus, Bob wins, so return false.
 
 # Example 3: Input: colors = "ABBBBBBBAAA" Output: false
-# Explanation: ABBBBBBBAAA -> ABBBBBBBAA, 
-# Alice moves first. Her only option is to remove the second to last 'A' from the right. 
-# ABBBBBBBAA -> ABBBBBBAA. Next is Bob's turn. 
-# He has many options for which 'B' piece to remove. 
-# He can pick any.On Alice's second turn, 
-# she has no more pieces that she can remove. Thus, Bob wins, so return false.
- 
+
 
 # Constraints: 1 <= colors.length <= 105, 
 # colors consists of only the letters 'A' and 'B'.
@@ -71,26 +64,25 @@
 
 
 
-
 def winner_of_game(self, colors: str) -> bool:
-        alice, bob = 0, 0
-        left = 0
-        # two pointers approach
-        # we use sliding window algorithm here 
-        for right in range(len(colors)):
-            if colors[left] != colors[right]:
-                left = right
-            #extra: size of the window: 
-            extra = right - left + 1 - 2
-            if extra > 0:
-                if colors[right] == "A":
-                    alice += 1
-                if colors[right] == "B":
-                    bob += 1
-        return alice > bob    
+    alice, bob = 0, 0
+    left = 0
+    # two pointers approach
+    # we use sliding window algorithm here
+    for right in range(len(colors)):
+        if colors[left] != colors[right]:
+            left = right
+        # extra: size of the window:
+        extra = right - left + 1 - 2
+        if extra > 0:
+            if colors[right] == "A":
+                alice += 1
+            if colors[right] == "B":
+                bob += 1
+    return alice > bob
+
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-            
