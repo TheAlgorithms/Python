@@ -1,4 +1,4 @@
-'''<----------------------------------------2 POINTER SOLUTION --------------------------------------->
+"""<----------------------------------------2 POINTER SOLUTION --------------------------------------->
 
 Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. Let these two numbers be numbers[index1] and numbers[index2] where 1 <= index1 < index2 < numbers.length.
 Return the indices of the two numbers, index1 and index2, added by one as an integer array [index1, index2] of length 2.
@@ -21,22 +21,27 @@ Output: [1,2]
 Explanation: The sum of -1 and 0 is -1. Therefore index1 = 1, index2 = 2. We return [1, 2].
 
 
-#-------------------------CODE----------------# '''
+#-------------------------CODE----------------# """
+
+
 def two_sum(self, numbers: List[int], target: int) -> List[int]:
     n = len(numbers)
-    l = 0 
-    r = n-1
+    l = 0
+    r = n - 1
     res = []
-    while l<r:
-        if (numbers[l] + numbers[r] ==target):
-            res.append(l+1)
-            res.append(r+1)
-        if (numbers[l]+numbers[r]>target):
-            r-=1
+    while l < r:
+        if numbers[l] + numbers[r] == target:
+            res.append(l + 1)
+            res.append(r + 1)
+        if numbers[l] + numbers[r] > target:
+            r -= 1
         else:
-            l+=1
+            l += 1
     res.sort()
     return res
+
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
