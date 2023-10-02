@@ -19,7 +19,7 @@ class Node:
         self.right: Node | None = None
 
 
-def get_tree_inorder(tree: Optional[Node], tree_list: list = None) -> list:  
+def get_tree_inorder(tree: Optional[Node], tree_list: list = None) -> list:
     """
     Prints the inorder traversal of a tree
     """
@@ -33,8 +33,8 @@ def get_tree_inorder(tree: Optional[Node], tree_list: list = None) -> list:
 
     return tree_list
 
-def invert_binary_tree(root: Optional[Node]) -> None:
 
+def invert_binary_tree(root: Optional[Node]) -> None:
     r"""
     The tree looks like this
           1
@@ -66,26 +66,25 @@ def invert_binary_tree(root: Optional[Node]) -> None:
           1
          /  \
         3    2
-       /    / \    
-      6    5   4    
-          /   / \      
-         9   8   7   
+       /    / \
+      6    5   4
+          /   / \
+         9   8   7
     """
 
-
-    if root != None: #If root is not None
-            temp : Node = root.left  #Save left Node in a temp variable
-            # Swap the Nodes
-            root.left = root.right 
-            root.right = temp
-            # Now, invoke the function recursively for both the children
-            invert_binary_tree(root.left) 
-            invert_binary_tree(root.right)
+    if root != None:  # If root is not None
+        temp: Node = root.left  # Save left Node in a temp variable
+        # Swap the Nodes
+        root.left = root.right
+        root.right = temp
+        # Now, invoke the function recursively for both the children
+        invert_binary_tree(root.left)
+        invert_binary_tree(root.right)
     # Return the Node
     return root
 
 
 if __name__ == "__main__":
-    
     import doctest
+
     doctest.testmod()
