@@ -1,10 +1,5 @@
-# Created by Pronay Debnath
-# Date:- 2/10/2023
-# Power of four using logarithm
-
 import math
 import doctest
-
 
 def is_power_of_four(number_to_check: int) -> bool:
     """
@@ -27,7 +22,6 @@ def is_power_of_four(number_to_check: int) -> bool:
     False
     """
     return number_to_check > 0 and math.log(number_to_check, 4).is_integer()
-
 
 if __name__ == "__main__":
     doctest.testmod()
