@@ -31,7 +31,7 @@ def and_gate(input_1: int, input_2: int) -> int:
     >>> and_gate(2, 1)  # Added test case with invalid input
     "Please enter valid input values: 0 or 1"
     """
-    if input_1 not in (0, 1) or input_2 not in (0, 1):
+    if input_1 not in {0, 1} or input_2 not in {0, 1}:
         return "Please enter valid input values: 0 or 1"
     return int((input_1, input_2).count(0) == 0)
 
