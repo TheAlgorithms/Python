@@ -33,7 +33,7 @@ class CoordinateCompressor:
     the list.
     """
 
-    def __init__(self, arr):
+    def __init__(self, arr: list) -> None:
         """
         Initialize the CoordinateCompressor with a list.
 
@@ -57,9 +57,19 @@ class CoordinateCompressor:
         self.n = len(arr)  # The length of the input list
         self.compress_coordinates()
 
-    def compress_coordinates(self):
+    def compress_coordinates(self) -> None:
         """
         Compress the coordinates in the input list.
+
+        >>> arr = [100, 10, 52, 83]
+        >>> cc = CoordinateCompressor(arr)
+        >>> cc.coordinate_map[83]
+        2
+        >>> cc.coordinate_map.get(80,-1)  # Value not in the original list
+        -1
+        >>> cc.reverse_map[2]  # Value not in the original list
+        83
+
         """
         key = 0
         for val in self.arr:
@@ -68,12 +78,12 @@ class CoordinateCompressor:
                 self.reverse_map[key] = val
                 key += 1
 
-    def compress(self, num):
+    def compress(self, original: any) -> int:
         """
         Compress a single value.
 
         Args:
-        num (any) : The value to compress.
+        original (any) : The value to compress.
 
         Returns:
         int: The compressed integer, or -1 if not found in the original list.
@@ -86,9 +96,9 @@ class CoordinateCompressor:
         -1
 
         """
-        return self.coordinate_map.get(num, -1)
+        return self.coordinate_map.get(original, -1)
 
-    def decompress(self, num):
+    def decompress(self, num: int) -> any:
         """
         Decompress a single integer.
 
@@ -109,7 +119,7 @@ class CoordinateCompressor:
         return self.reverse_map[num] if num < len(self.reverse_map) else -1
 
     @staticmethod
-    def how_to_use():
+    def how_to_use() -> None:
         """
         Example usage of CoordinateCompressor.
         """
@@ -118,10 +128,10 @@ class CoordinateCompressor:
         compressed = [0] * len(arr)
         decompressed = [0] * len(arr)
 
-        for i in range(len(arr)):
-            compressed[i] = cc.compress(arr[i])
+        for i, original in enumerate(arr):
+            compressed[i] = cc.compress(original)
             decompressed[i] = cc.decompress(compressed[i])
-            print(f"Original: {arr[i]}, Compressed: {compressed[i]}")
+            print(f"Original: {original}, Compressed: {compressed[i]}")
 
 
 if __name__ == "__main__":
