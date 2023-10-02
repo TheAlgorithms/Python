@@ -36,8 +36,7 @@ def isip(ip: str) -> bool:
     match = re.match(r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}", ip)
     if not bool(match):
         return False
-    octets = ip.split(".")
-    return all(not (int(b) < 0 or int(b) > 255) for b in octets)
+    return all(0 <= int(octet) <= 255 for octet in ip.split("."))
 
 
 res_txt = "IP blacklists check returned next results:\n"
