@@ -36,22 +36,9 @@ https://www.youtube.com/watch?v=4RhLNDqcjpA
 
 """
 import string
+from maths.greatest_common_divisor import greatest_common_divisor
 
 import numpy
-
-
-def greatest_common_divisor(a: int, b: int) -> int:
-    """
-    >>> greatest_common_divisor(4, 8)
-    4
-    >>> greatest_common_divisor(8, 4)
-    4
-    >>> greatest_common_divisor(4, 7)
-    1
-    >>> greatest_common_divisor(0, 10)
-    10
-    """
-    return b if a == 0 else greatest_common_divisor(b % a, a)
 
 
 class HillCipher:

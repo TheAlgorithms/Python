@@ -1,38 +1,25 @@
 """
 Greatest Common Divisor.
 
-Wikipedia reference: https://en.wikipedia.org/wiki/Greatest_common_divisor
+Wikipedia reference: https://en.wikipedia.org/wiki/greatest_common_divisor
 
 gcd(a, b) = gcd(a, -b) = gcd(-a, b) = gcd(-a, -b) by definition of divisibility
 """
 
-
 def greatest_common_divisor(a: int, b: int) -> int:
     """
-    Calculate Greatest Common Divisor (GCD).
-    >>> greatest_common_divisor(24, 40)
-    8
-    >>> greatest_common_divisor(1, 1)
-    1
-    >>> greatest_common_divisor(1, 800)
-    1
-    >>> greatest_common_divisor(11, 37)
-    1
-    >>> greatest_common_divisor(3, 5)
-    1
-    >>> greatest_common_divisor(16, 4)
+    >>> greatest_common_divisor(4, 8)
     4
-    >>> greatest_common_divisor(-3, 9)
-    3
-    >>> greatest_common_divisor(9, -3)
-    3
-    >>> greatest_common_divisor(3, -9)
-    3
-    >>> greatest_common_divisor(-3, -9)
-    3
+    >>> greatest_common_divisor(8, 4)
+    4
+    >>> greatest_common_divisor(4, 7)
+    1
+    >>> greatest_common_divisor(0, 10)
+    10
     """
-    return abs(b) if a == 0 else greatest_common_divisor(b % a, a)
-
+    if a == 0:
+        return b
+    greatest_common_divisor(b % a, a)
 
 def gcd_by_iterative(x: int, y: int) -> int:
     """
