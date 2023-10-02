@@ -9,7 +9,20 @@ Task :- Given an integer N, find whether that integer is a power of 4 or not.
 """
 
 def power_of_four(N):
-
+  """
+    Returns whether a number is a power of 4 or not
+    >>> power_of_four(8)
+    False
+    >>> power_of_four(4)
+    True
+    >>> power_of_four(16)
+    True
+    >>> power_of_four(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: number must be positive
+  """
+  
   #For non-positive numbers
   if N <= 0:
     raise ValueError("number must be positive")
