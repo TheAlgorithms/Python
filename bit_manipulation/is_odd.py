@@ -16,7 +16,7 @@ def is_odd(number: int) -> bool:
     >>> is_odd(1)
     True
     >>> is_odd(4)
-    Flase
+    False
     >>> is_odd(9)
     False
     >>> is_odd(15)
