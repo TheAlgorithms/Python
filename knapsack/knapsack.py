@@ -4,43 +4,61 @@
 from __future__ import annotations
 
 
-def knapsack(capacity: int, weights: list[int], values: list[int], counter: int) -> int:
+def knapsack(capacity, weights, values, permit_repetition=False):
     """
-    Returns the maximum value that can be put in a knapsack of a capacity cap,
-    whereby each weight w has a specific value val.
+    #Parameters:
+    #capacity - max item weight knapsack can hold
+    #weights - list of item weights
+    #values -list of item values
+    #permit_repetition - boolean restricting repetitve selection of items
 
     >>> cap = 50
     >>> val = [60, 100, 120]
     >>> w = [10, 20, 30]
-    >>> c = len(val)
-    >>> knapsack(cap, w, val, c)
+    >>> knapsack(cap, w, val, permit_repetition=False)
     220
 
-    The result is 220 cause the values of 100 and 120 got the weight of 50
-    which is the limit of the capacity.
+    >>> knapsack(cap, w, val, permit_repetition=True)
+    300
     """
+    # assign length of weights to variable n
+    n = len(weights)
+    # create 2d list called dp
+    # each row represents a subproblem
+    # dp size is (n + 1) rows and (capacity + 1) columns
+    # initialize each element of dp to 0
+    # use a loop to generate 'n + 1' rows, one for each item plus an extra row for the base case
+    dp = [[0] * (capacity + 1) for _ in range(n + 1)]
 
-    # Base Case
-    if counter == 0 or capacity == 0:
-        return 0
+    # Two nested loops iterate over each item (i) and each capacity (w)
+    # For each subproblem (i, w), check:
+    # 1) If i == 0 (no items selected) or w == 0 (no capacity), set dp[i][w] to 0 (base case).
+    # 2) If the weight of the current item (weights[i - 1]) <= to w, calculate maximum value based on:
+    #    i. If item been picked up 1 or 1+ times = permit_repetition = True
+    #   ii. If item picked up only 1 time = permit_repetition = False
+    # 3) If the weight of the current item > the current capacity, set dp[i][w] to the value without including the current item.
+    # 4) The final result is stored in dp[n][capacity], which represents the maximum value with all items in given capacity
+    for i in range(n + 1):
+        for w in range(capacity + 1):
+            if i == 0 or w == 0:
+                dp[i][w] = 0
+            elif weights[i - 1] <= w:
+                if permit_repetition:
+                    dp[i][w] = max(
+                        dp[i - 1][w], dp[i][w - weights[i - 1]] + values[i - 1]
+                    )
+                else:
+                    dp[i][w] = max(
+                        dp[i - 1][w], dp[i - 1][w - weights[i - 1]] + values[i - 1]
+                    )
+            else:
+                dp[i][w] = dp[i - 1][w]
 
-    # If weight of the nth item is more than Knapsack of capacity,
-    #   then this item cannot be included in the optimal solution,
-    # else return the maximum of two cases:
-    #   (1) nth item included
-    #   (2) not included
-    if weights[counter - 1] > capacity:
-        return knapsack(capacity, weights, values, counter - 1)
-    else:
-        left_capacity = capacity - weights[counter - 1]
-        new_value_included = values[counter - 1] + knapsack(
-            left_capacity, weights, values, counter - 1
-        )
-        without_new_value = knapsack(capacity, weights, values, counter - 1)
-        return max(new_value_included, without_new_value)
+    return dp[n][capacity]
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
