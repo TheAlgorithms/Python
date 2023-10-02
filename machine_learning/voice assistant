@@ -1,0 +1,221 @@
+import urllib
+import pyttsx3 
+import speech_recognition as sr 
+import datetime
+import wikipedia 
+import webbrowser 
+import os
+import smtplib
+import pyaudio
+import AppOpener
+import random  
+import requests 
+import openai
+import json
+
+engine = pyttsx3.init('sapi5')
+voices = engine.getProperty('voices')
+# print(voices[1].id)
+engine.setProperty('voice', voices[1].id)
+
+def speak(audio):
+    engine.say(audio)
+    engine.runAndWait()
+
+def wishMe():
+    hour = int(datetime.datetime.now().hour)
+    if hour>=0 and hour<12:
+        speak("Good Morning!")
+
+    elif hour>=12 and hour<18:
+        speak("Good Afternoon!")   
+
+    else:
+        speak("Good Evening!")  
+
+    speak("hi! i am saksham, python based desktop level assistent, how can i help you")       
+
+def takeCommand():
+
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening...")
+        r.pause_threshold = 1
+        audio = r.listen(source)
+
+    try:
+        print("Recognizing...")    
+        query = r.recognize_google(audio, language='en-in')
+        print(f"User said: {query}\n")
+
+    except Exception as e:
+
+        print("Say that again please...")  
+        return "None"
+    return query
+
+def sendEmail(to, content):
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.ehlo()
+    server.starttls()
+    server.login('enter mail id', 'password')
+    server.sendmail('enter mail sender ', to, content)
+    server.close()
+if __name__ == "__main__":
+    wishMe()
+    while True:
+
+        query = takeCommand().lower()
+        if 'open youtube' in query:
+            speak('opening youtube......')
+            print("opening youtube....")
+            webbrowser.open("youtube.com")
+
+        elif 'open google' in query:
+            speak('opening google....')
+            print("opening google....")
+            webbrowser.open("google.com")
+
+        elif 'open stackoverflow' in query:
+            speak
+            print("opening stack....")
+            webbrowser.open("stackoverflow.com")
+
+        elif 'open spotify' in query:
+            speak('opening spotify....')
+            print("opening spotify....")
+            webbrowser.open("https://open.spotify.com/")
+
+
+        elif 'music' in query:
+            music_dir = 'give path'
+            songs = os.listdir(music_dir)
+            print(songs)    
+            os.startfile(os.path.join(music_dir, songs[0]))
+
+        elif 'the time' in query:
+            strTime = datetime.datetime.now().strftime("%H:%M:%S")    
+            speak(f"Sir, the time is {strTime}")
+
+        elif 'open code' in query:
+            codePath = "give path"
+            os.startfile(codePath)
+
+        elif 'open photos' in query:
+            photoPath = "give path"
+            os.startfile(photoPath)   
+
+
+        elif 'close whatsapp'in query:
+            speak("closing whatsapp sir")
+            from AppOpener import close
+            close("whatsapp") 
+
+
+        elif 'open whatsapp'in query:
+            speak("opening whatsapp sir")
+            from AppOpener import open 
+            open("whatsapp") 
+
+        elif'open vs' in query:
+
+            from AppOpener import open
+            open("visual studio code")
+
+
+
+        elif 'close vs'in query:
+
+            from AppOpener import close
+            close("visual studio code")
+
+        elif 'close camera'in query:
+            speak("closing camera sir")
+            from AppOpener import close
+            close("camera")       
+        elif 'open camera'in query:
+            speak("opening camera sir")
+            from AppOpener import open 
+            open("camera") 
+
+        elif'news'in query:
+
+             def get_news(api_key, country_code):
+                   url = f"https://newsapi.org/v2/top-headlines?country={country_code}&apiKey={api_key}"
+                   response = requests.get(url)
+                   data = response.json()
+                   if data["status"] == "ok":
+                       articles = data["articles"]
+                       for article in articles:
+                            title = article["title"]
+                            source = article["source"]["name"]
+                            print(f"Title: {title}\nSource: {source}\n")
+                            speak(f"Title: {title}\nSource: {source}\n")
+                   else:
+                         print("Error occurred while fetching news.")
+             api_key = "enter  api your api key"
+             country_code = "in"
+             get_news(api_key, country_code)
+        elif'weather'in query:
+             def get_weather(api_key, city):
+                   url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
+                   response = requests.get(url)
+                   data = response.json()
+                   if data["cod"] == 200:
+                       temperature = data["main"]["temp"]
+                       humidity = data["main"]["humidity"]
+                       weather_desc = data["weather"][0]["description"]
+                       print(f"Weather forecast for: {city}\n Temperature: {temperature}°C\nHumidity: {humidity}%\nWeather description: {weather_desc}\n")
+                       speak( f"Weather forecast for: {city}\n Temperature: {temperature}°C\nHumidity: {humidity}%\nWeather description: {weather_desc}\n")
+
+                   else:
+                        print("Error occurred while fetching weather data.")
+             api_key = "enter your api key"
+             city = "mumbai"
+             get_weather(api_key, city)
+
+        elif 'stop' in query:
+            query= query.replace("stop","")
+            speak(f"this is saksham,signing out have a great day")
+            break
+
+        elif 'call sarthi' in query:
+             openai.api_key = 'give your api key'
+
+# Function to start a conversation
+          def start_chat():
+              print("sarthi: Hello! How can I assist you today?")
+              speak("sarthi: Hello! How can I assist you today?")
+              while True:
+                    user_input = takeCommand().lower()      
+                    response = ask_question(user_input)
+                    print("Sarthi:", response)
+                    speak( response)
+                    if should_end_chat(response):
+                       break
+          def ask_question(question):
+               prompt = f'User: {question}\nsarthi:'
+               response = openai.Completion.create(
+                   engine='text-davinci-003',
+                   prompt=prompt,
+                   max_tokens=50,
+                   n=1,
+                   stop=None,
+                   temperature=0.7
+                   )
+               return response.choices[0].text.strip()
+
+          def should_end_chat(response):
+             response = response.lower()
+             if 'goodbye' in response:
+                  print("sarthi: Goodbye! Have a great day!")
+                  speak("sarthi: Goodbye! Have a great day!")
+                  return True
+             elif 'thank you' in response:
+                   print("sarthi: You're welcome!")
+                   speak("sarthi: You're welcome!")
+                   return False
+             else:
+                  return False
+
+          start_chat()
