@@ -5,7 +5,7 @@ Description: This program calculates the future value of money based on the pres
 value, inflation rate, and number of years.
 
 --------------------------------------------
-In economics, inflation is a general increase of the prices. This is usually measured 
+In economics, inflation is a general increase of the prices. This is usually measured
 using the consumer price index (CPI).When the general price level rises, each unit of
  currency buys fewer goods and services; consequently, inflation corresponds
 to a reduction in the purchasing power of money.
