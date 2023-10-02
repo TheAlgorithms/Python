@@ -4,7 +4,7 @@
 # Time Complexity : O(logn)
 
 
-def binary_exponentiation(a, n):
+def binary_exponentiation(a: int, n: int) -> int:
     if n == 0:
         return 1
 
