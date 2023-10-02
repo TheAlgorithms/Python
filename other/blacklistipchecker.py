@@ -15,7 +15,7 @@ api_key = "key_CAMF5HI5t4ZzkmgGkioI1tius"
 
 def test_ip(ip: str) -> Any:
     link = f"https://api.blacklistchecker.com/check/{ip}"
-    result = requests.get(link, auth=(api_key, "")
+    result = requests.get(link, auth=(api_key, ""))
     result_dec = json.loads(result.content)
     print(result_dec)
     if result_dec.get("statusCode"):
