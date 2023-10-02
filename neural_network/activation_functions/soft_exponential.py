@@ -1,14 +1,17 @@
 import numpy as np
 
-'''
+"""
 Soft Exponential can adapt to various tasks by
 adjusting the parameter alpha.
 It is a customizable activation function that can
-learn different activation
-characteristics based on the problem requirements.
+learn different activation characteristics
+based on the problem requirements.
 
-For more details: https://lightrun.com/answers/keras-team-keras-soft-exponential-activation-function
-'''
+For more details:
+https://lightrun.com/answers/keras-team-keras
+-soft-exponential-activation-function
+"""
+
 
 def soft_exponential(vector: np.ndarray, alpha: float) -> np.ndarray:
     """
@@ -26,8 +29,10 @@ def soft_exponential(vector: np.ndarray, alpha: float) -> np.ndarray:
                                         x, alpha = 0)
 
     Use Case & Importance:
-    - Soft Exponential provides flexibility in controlling the activation's behavior with the parameter alpha.
-    - It can adapt to various tasks and learn different activation characteristics.
+    - Soft Exponential provides flexibility in controlling the
+    activation's behavior with the parameter alpha.
+    - It can adapt to various tasks and learn different
+    activation characteristics.
 
     Examples:
     >>> soft_exponential(np.array([2.3, 0.6, -2, -3.8], dtype=float), 0.1)
@@ -43,6 +48,8 @@ def soft_exponential(vector: np.ndarray, alpha: float) -> np.ndarray:
     else:
         return vector
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
