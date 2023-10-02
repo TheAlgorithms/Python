@@ -1,5 +1,5 @@
 """
-* Binary Exponentiation with Multiplication
+* Binary Multiplication
 * This is a method to find a*b in a time complexity of O(log b)
 * This is one of the most commonly used methods of finding result of multiplication.
 * Also useful in cases where solution to (a*b)%c is required,
@@ -12,6 +12,15 @@
 
 
 def b_expo(a: int, b: int) -> int:
+    """
+    Find Binary Multiplication
+
+    >>> b_expo(2,3)
+    6
+
+    >>> b_expo(-2,3)
+    -6
+    """
     res = 0
     while b > 0:
         if b & 1:
@@ -24,6 +33,16 @@ def b_expo(a: int, b: int) -> int:
 
 
 def b_expo_mod(a: int, b: int, c: int) -> int:
+    """
+    Find Binary Exponiation Mode
+    Given method work like (a*b)%c
+
+
+    >>> b_expo_mod(2,3,4)
+    2
+    >>> b_expo_mod(2,3,3)
+    0
+    """
     res = 0
     while b > 0:
         if b & 1:
