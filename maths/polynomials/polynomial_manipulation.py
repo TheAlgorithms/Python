@@ -1,17 +1,16 @@
-import doctest
-
+from typing import List
 
 class Polynomial:
-    def __init__(self, coefficients):
+    def __init__(self, coefficients: List[int]):
         """
         Initialize a polynomial with a list of coefficients.
 
         Args:
-        coefficients (list): Coefficients from the highest order to the constant term.
+        coefficients (List[int]): Coefficients from the highest order to the constant term.
         """
         self.coefficients = coefficients
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Return a string representation of the polynomial.
 
@@ -27,7 +26,7 @@ class Polynomial:
                     terms.append(f"{coeff}x^{i}")
         return " + ".join(terms[::-1])
 
-    def add(self, other):
+    def add(self, other: 'Polynomial') -> 'Polynomial':
         """
         Add two polynomials.
 
@@ -48,7 +47,7 @@ class Polynomial:
 
         return Polynomial(result)
 
-    def multiply(self, other):
+    def multiply(self, other: 'Polynomial') -> 'Polynomial':
         """
         Multiply two polynomials.
 
@@ -66,19 +65,15 @@ class Polynomial:
 
         return Polynomial(result)
 
-
 # Example usage and doctests:
 if __name__ == "__main__":
+    import doctest
     doctest.testmod()
-
     # Create two polynomials: 3x^2 + 2x + 1 and 2x^3 + x
     poly1 = Polynomial([1, 2, 3])
     poly2 = Polynomial([2, 0, 1])
-
     # Add two polynomials
     result_add = poly1.add(poly2)
-
     # Multiply two polynomials
     result_multiply = poly1.multiply(poly2)
-
     print("All tests passed.")
