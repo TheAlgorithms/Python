@@ -27,9 +27,9 @@ def mish(vector: np.ndarray) -> np.ndarray:
     Formula: Mish(x) = x * tanh(softplus(x))
 
     Use Case & Importance:
-    - Mish is a smooth, non-monotonic activation function 
+    - Mish is a smooth, non-monotonic activation function
     that combines the benefits of ReLU and Sigmoid.
-    - It can help with training deep neural networks by 
+    - It can help with training deep neural networks by
     mitigating the vanishing gradient problem.
 
     Examples:
