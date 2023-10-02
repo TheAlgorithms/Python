@@ -1,4 +1,5 @@
 def intToRoman(num: int) -> str:
+    # criação de dicionário para armazenar os valores dos numerais e respectivos correspondentes romanos
     roman_values = {
         1: 'I',
         4: 'IV',
@@ -23,3 +24,8 @@ def intToRoman(num: int) -> str:
           roman_str += roman_values[value]
           num -= value
     return roman_str
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
