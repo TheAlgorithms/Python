@@ -18,6 +18,7 @@ def bitsareinlltorder(x) -> bool:
     # To check if all bits are set in 'num'
     return allbitsareset(num)
 
+
 """
 >>> Input :  15
 >>> Output :  No
