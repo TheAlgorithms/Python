@@ -2,7 +2,7 @@ import os
 import sys
 import time
 
-import transposition_cipher as trans_cipher
+from . import transposition_cipher as trans_cipher
 
 
 def main() -> None:
