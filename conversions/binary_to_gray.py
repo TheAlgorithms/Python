@@ -19,11 +19,11 @@ def bin_to_gray(bin_code: str) -> str:
 
     --------------LOGIC----------------
     Binary to Gray:
-        Here the most significant bit of the gray code is same as 
+        Here the most significant bit of the gray code is same as
         the given binary code so we don't need to make any changes
         Further traversing the binary from 1st index
         (i.e 2nd position) we take the xor of current
-        index character  of binary code with the previous index 
+        index character  of binary code with the previous index
         character of binary code and add it to our converted
         gray code
 

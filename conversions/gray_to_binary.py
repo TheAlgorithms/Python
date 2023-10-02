@@ -19,12 +19,12 @@ def gray_to_bin(gray_code: str) -> str:
 
     --------------LOGIC----------------
     Gray to Binary:
-        Here the most significant bit of the Binary code is same 
-        as the given Gray code, so we direclty copy it. Further 
-        traversing the Gray code we check if the current character 
-        of Gray code is '0', if it is '0' we copy the value of 
-        previous index of converted Binary code, else we copy 
-        the flipped value of  current Gray character to our 
+        Here the most significant bit of the Binary code is same
+        as the given Gray code, so we direclty copy it. Further
+        traversing the Gray code we check if the current character
+        of Gray code is '0', if it is '0' we copy the value of
+        previous index of converted Binary code, else we copy
+        the flipped value of  current Gray character to our
         binary code.
 
     """
