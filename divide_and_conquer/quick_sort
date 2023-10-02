@@ -1,0 +1,54 @@
+# Python3 implementation of QuickSort
+
+# Function to find the partition position
+def partition(arr, low, high):
+    # Choose the rightmost element as pivot
+    pivot = arr[high]
+    
+    # Pointer for the greater element
+    i = low - 1
+    
+    # Traverse through all elements, compare each element with pivot
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            # If element smaller than pivot is found, swap it with the greater element pointed by i
+            i = i + 1
+            # Swapping element at i with element at j
+            arr[i], arr[j] = arr[j], arr[i]
+    
+    # Swap the pivot element with the greater element specified by i
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    
+    # Return the position from where partition is done
+    return i + 1
+
+# Function to perform quicksort
+def quicksort(arr, low, high):
+    if low < high:
+        # Find pivot element such that elements smaller than pivot are on the left,
+        # and elements greater than pivot are on the right
+        pi = partition(arr, low, high)
+        
+        # Recursive call on the left of pivot
+        quicksort(arr, low, pi - 1)
+        
+        # Recursive call on the right of pivot
+        quicksort(arr, pi + 1, high)
+
+# Driver code
+if __name__ == '__main__':
+    # User input for array elements
+    input_array = input("Enter array elements separated by spaces: ")
+    
+    # Converting input string to a list of integers
+    array = list(map(int, input_array.split()))
+    
+    N = len(array)
+ 
+    # Function call: Sorting the input array using QuickSort
+    quicksort(array, 0, N - 1)
+    
+    # Output: Displaying the sorted array
+    print('Sorted array:')
+    for x in array:
+        print(x, end=" ")
