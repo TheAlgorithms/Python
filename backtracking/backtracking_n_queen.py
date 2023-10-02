@@ -16,10 +16,13 @@ def is_safe(board, row, col, n):
 
     return True
 
+
 def solve_n_queens(n):
     def backtrack(row):
         if row == n:
-            solutions.append(["".join("Q" if cell == 1 else "." for cell in row) for row in board])
+            solutions.append(
+                ["".join("Q" if cell == 1 else "." for cell in row) for row in board]
+            )
             return
         for col in range(n):
             if is_safe(board, row, col, n):
@@ -31,6 +34,7 @@ def solve_n_queens(n):
     solutions = []
     backtrack(0)
     return solutions
+
 
 # Example: Solve the N-Queens problem for N = 4
 n = 4
