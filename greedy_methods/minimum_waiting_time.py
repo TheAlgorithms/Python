@@ -47,9 +47,10 @@ ensures that the function produces the correct output.
 
 #     doctest.testmod()
 
-'''
+"""
 Optimized Version of the Code
-'''
+"""
+
 
 def minimum_waiting_time(queries: list[int]) -> int:
     """
@@ -60,22 +61,24 @@ def minimum_waiting_time(queries: list[int]) -> int:
         queries: A list of queries measured in picoseconds
 
     Returns:
-        total_waiting_time: minimum time measured in picoseconds 
+        total_waiting_time: minimum time measured in picoseconds
 
     Queries is directely sorted in-place here in place of lists. Gives a complexity of (nlogn) but it is faster then the previous version.
     """
     n = len(queries)
     if n in (0, 1):
         return 0
-    
+
     total_waiting_time = 0
-    queries.sort() 
-    
+    queries.sort()
+
     for i in range(n):
         total_waiting_time += queries[i] * (n - i - 1)
-    
+
     return total_waiting_time
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
