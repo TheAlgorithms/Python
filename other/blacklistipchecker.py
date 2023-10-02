@@ -26,8 +26,7 @@ def test_ip(ip: str) -> Any:
     elif result_dec.get("detections") != 0:
         res = ip
         blsts = result_dec.get("blacklists")
-        detects = None
-        detects = list(detects)
+        detects = []
         for n in blsts:
             if n.get("detected") is True:
                 detects.append(n.get("name"))
@@ -39,10 +38,7 @@ def isip(ip: str) -> bool:
     if not bool(match):
         return False
     octets = ip.split(".")
-    for b in octets:
-        if int(b) < 0 or int(b) > 255:
-            return False
-    return True
+    return all(not (int(b) < 0 or int(b) > 255) for b in octets)
 
 
 res_txt = "IP blacklists check returned next results:\n"
