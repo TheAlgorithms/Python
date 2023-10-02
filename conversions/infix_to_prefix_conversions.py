@@ -5,6 +5,7 @@ from typing import TypeVar
 # Create a generic variable that can be 'Enum', or any subclass.
 T = TypeVar("T", bound=Enum)
 
+
 @unique
 class BinaryUnit(Enum):
     yotta = 80
@@ -15,6 +16,7 @@ class BinaryUnit(Enum):
     giga = 30
     mega = 20
     kilo = 10
+
 
 @unique
 class SIUnit(Enum):
@@ -55,12 +57,14 @@ class SIUnit(Enum):
         """
         return {unit.name: unit.value for unit in cls if unit.value < 0}
 
+
 def infix_to_prefix(expression):
     """
     Convert an infix expression to a prefix expression.
     """
+
     def precedence(operator):
-        precedence_dict = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
+        precedence_dict = {"+": 1, "-": 1, "*": 2, "/": 2, "^": 3}
         return precedence_dict.get(operator, 0)
 
     def is_operator(char):
@@ -72,34 +76,36 @@ def infix_to_prefix(expression):
         for char in infix_expr:
             if char.isalnum():  # Operand
                 postfix.append(char)
-            elif char == '(':  # Left parenthesis
+            elif char == "(":  # Left parenthesis
                 stack.append(char)
-            elif char == ')':  # Right parenthesis
-                while stack and stack[-1] != '(':
+            elif char == ")":  # Right parenthesis
+                while stack and stack[-1] != "(":
                     postfix.append(stack.pop())
                 stack.pop()  # Pop '('
             elif is_operator(char):
                 while (
                     stack
-                    and stack[-1] != '('
+                    and stack[-1] != "("
                     and precedence(char) <= precedence(stack[-1])
                 ):
                     postfix.append(stack.pop())
                 stack.append(char)
         while stack:
             postfix.append(stack.pop())
-        return ''.join(postfix)
+        return "".join(postfix)
 
     # Reverse the input expression
-    infix_expr = expression[::-1]  
+    infix_expr = expression[::-1]
     # Swap '(' and ')' to handle correctly in reverse
-    infix_expr = infix_expr.replace('(', 'X').replace(')', '(').replace('X', ')')  
+    infix_expr = infix_expr.replace("(", "X").replace(")", "(").replace("X", ")")
     postfix_expr = infix_to_postfix(infix_expr)
     # Reverse the postfix expression to get prefix
     prefix_expr = postfix_expr[::-1]
     return prefix_expr
 
+
 # Example usage:
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
