@@ -1,11 +1,12 @@
 """
-This algorithm for finding the median of two sorted arrays would 
-typically be used in scenarios where you have two sorted sets 
-of data (arrays) and need to calculate the middle value or the average 
-of the middle values to get a representative central value. Common use cases 
-include statistical analysis and data processing in various fields 
+This algorithm for finding the median of two sorted arrays would
+typically be used in scenarios where you have two sorted sets
+of data (arrays) and need to calculate the middle value or the average
+of the middle values to get a representative central value. Common use cases
+include statistical analysis and data processing in various fields
 such as finance, engineering, and scientific research.
 """
+
 
 def find_median_sorted_arrays(nums1: list[int], nums2: list[int]) -> float:
     """
@@ -57,6 +58,7 @@ def find_median_sorted_arrays(nums1: list[int], nums2: list[int]) -> float:
     middle1 = merged[total // 2 - 1]
     middle2 = merged[total // 2]
     return (float(middle1) + float(middle2)) / 2.0
+
 
 if __name__ == "__main__":
     import doctest
