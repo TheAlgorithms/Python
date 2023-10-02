@@ -49,7 +49,7 @@ class LinkedList:
         '0 -> 1 -> 2 -> 3 -> 4'
         """
         return " -> ".join([str(node) for node in self])
-        
+
     def append(self, data: int) -> None:
         """
         >>> ll = LinkedList([1, 2])
