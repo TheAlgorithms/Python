@@ -24,7 +24,7 @@ Explanation: The sum of -1 and 0 is -1. Therefore index1 = 1, index2 = 2. We ret
 #-------------------------CODE----------------# '''
 def two_sum(self, numbers: List[int], target: int) -> List[int]:
     n = len(numbers)
-    l = 0 
+    l = 0
     r = n-1
     res = []
     while l<r:
