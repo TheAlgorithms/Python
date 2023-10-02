@@ -12,7 +12,8 @@ def shunt_capacitor_power_factor_correction(
     expected_power_factor: float,
 ) -> float:
     """
-    Calculate shunt capacitor that will be added in order to achieve the expected power factor from the current power factor
+    Calculate shunt capacitor that will be added in order to achieve the 
+    expected power factor
 
     Examples:
     >>> shunt_capacitor_power_factor_correction(120,60,4000,0.8,0.95)
@@ -59,7 +60,6 @@ def shunt_capacitor_power_factor_correction(
     change_reactive_power = current_reactive_power - expected_reactive_power
 
     return change_reactive_power / (2 * math.pi * frequency * (voltage**2))
-    pass
 
 
 if __name__ == "__main__":
