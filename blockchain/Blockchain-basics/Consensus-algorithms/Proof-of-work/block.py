@@ -2,6 +2,7 @@
 import datetime
 from hashlib import sha256
 
+
 # Create a Block class
 class Block:
     # Initialize the Block object with transactions and the previous block's hash
@@ -16,10 +17,17 @@ class Block:
     # Generate a hash for the block
     def generate_hash(self):
         # Create a block header by combining timestamp, transactions, previous hash, and nonce
-        block_header = str(self.time_stamp) + str(self.transactions) + str(self.previous_hash) + str(self.nonce)
+        block_header = (
+            str(self.time_stamp)
+            + str(self.transactions)
+            + str(self.previous_hash)
+            + str(self.nonce)
+        )
         # Calculate the SHA-256 hash of the block header
         block_hash = sha256(block_header.encode())
-        return block_hash.hexdigest()  # Return the hexadecimal representation of the hash
+        return (
+            block_hash.hexdigest()
+        )  # Return the hexadecimal representation of the hash
 
     # Print the contents of the block
     def print_contents(self):
@@ -27,6 +35,7 @@ class Block:
         print("transactions:", self.transactions)
         print("current hash:", self.generate_hash())
         print("previous hash:", self.previous_hash)
+
 
 # This is the end of the Block class definition
 

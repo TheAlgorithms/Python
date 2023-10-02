@@ -4,6 +4,7 @@ from datetime import datetime
 # Print the current date and time
 print(datetime.now())
 
+
 # Create a Block class
 class Block:
     # Initialize a timestamp variable with a default value of 0
@@ -18,6 +19,7 @@ class Block:
 
         # Set the timestamp to the current date and time
         self.timestamp = datetime.now()
+
 
 # This is the end of the Block class definition
 
