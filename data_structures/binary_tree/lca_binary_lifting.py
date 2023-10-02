@@ -1,8 +1,8 @@
-'''
+"""
 Let G be a tree. For every query of the form (u, v) we want to find the lowest common ancestor of the nodes u and v, i.e. we want to find a node w that lies on the path from u to the root node, that lies on the path from v to the root node, and if there are multiple nodes we pick the one that is farthest away from the root node. In other words the desired node w is the lowest ancestor of u and v. In particular if u is an ancestor of v, then u is their lowest common ancestor.
 
 This algorithm will need O(Nlog N) for preprocessing the tree, and then O(log N) for each LCA query.
-'''
+"""
 
 import math
 
@@ -15,12 +15,13 @@ tin = []
 tout = []
 up = []
 
+
 def dfs(v, p):
     global timer
     tin[v] = timer
     up[v][0] = p
     for i in range(1, l + 1):
-        up[v][i] = up[up[v][i-1]][i-1]
+        up[v][i] = up[up[v][i - 1]][i - 1]
 
     for u in adj[v]:
         if u != p:
@@ -58,10 +59,9 @@ def preprocess(root):
 
 # Test code
 if __name__ == "__main__":
-    
     # Number of nodes in the graph
     n = 9
-    adj = [[] for _ in range(n+1)]
+    adj = [[] for _ in range(n + 1)]
     edges = [(0, 1), (0, 2), (0, 3), (1, 4), (2, 5), (2, 6), (2, 7), (3, 8)]
     for u, v in edges:
         adj[u].append(v)
