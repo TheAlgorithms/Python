@@ -3,15 +3,15 @@
 # You need to get API key on blacklistchecker
 # to make it work (it`s free 30 IPs per month)
 
-import sys
 import json
 import logging
+import sys
+from typing import list, tuple
+
 import requests
 from IPy import IP
-from typing import list, tuple, Any
 
 api_key = "key_CAMF5HI5t4ZzkmgGkioI1tius"
-
 
 def test_ip(ip: str) -> tuple[str, list] | tuple[str, str] | None:
     result = requests.get(
