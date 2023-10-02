@@ -5,6 +5,7 @@ Leetcode problem reference: https://leetcode.com/problems/invert-binary-tree/
 """
 
 from __future__ import annotations
+from typing import Optional
 
 
 class Node:
@@ -18,61 +19,73 @@ class Node:
         self.right: Node | None = None
 
 
-def display(tree: Node | None) -> None:
+def get_tree_inorder(tree: Optional[Node], tree_list: list = None) -> list:  
     """
     Prints the inorder traversal of a tree
     """
+    if tree_list is None:
+        tree_list = []
+
     if tree:
-        display(tree.left)
-        print(tree.value, end=" ")
-        display(tree.right)
+        get_tree_inorder(tree.left, tree_list)
+        tree_list.append(tree.value)
+        get_tree_inorder(tree.right, tree_list)
+
+    return tree_list
+
+def invert_binary_tree(root: Optional[Node]) -> None:
+
+    r"""
+    The tree looks like this
+          1
+         /  \
+        2    3
+       / \    \
+      4   5    6
+     / \   \
+    7   8   9
 
 
-def invert_binary_tree(root: Node | None) -> None:
+    >>> tree = Node(1)
+    >>> tree.left = Node(2)
+    >>> tree.right = Node(3)
+    >>> tree.left.left = Node(4)
+    >>> tree.left.right = Node(5)
+    >>> tree.right.right = Node(6)
+    >>> tree.left.left.left = Node(7)
+    >>> tree.left.left.right = Node(8)
+    >>> tree.left.right.right = Node(9)
+
+    >>> get_tree_inorder(tree)
+    [7, 4, 8, 2, 5, 9, 1, 3, 6]
+    >>> inverted_tree = invert_binary_tree(tree)
+    >>> get_tree_inorder(inverted_tree)
+    [6, 3, 1, 9, 5, 2, 8, 4, 7]
+
+    The inverted tree looks like this
+          1
+         /  \
+        3    2
+       /    / \    
+      6    5   4    
+          /   / \      
+         9   8   7   
     """
-    Inverts a binary tree and returns the root node of the binary tree
-    """
-    if root != None:  # If root is not None
-        temp: Node = root.left  # Save left Node in a temp variable
-        # Swap the Nodes
-        root.left = root.right
-        root.right = temp
-        # Now, invoke the function recursively for both the children
-        invert_binary_tree(root.left)
-        invert_binary_tree(root.right)
+
+
+    if root != None: #If root is not None
+            temp : Node = root.left  #Save left Node in a temp variable
+            # Swap the Nodes
+            root.left = root.right 
+            root.right = temp
+            # Now, invoke the function recursively for both the children
+            invert_binary_tree(root.left) 
+            invert_binary_tree(root.right)
     # Return the Node
     return root
 
 
 if __name__ == "__main__":
-    # Create a binary tree with 7 Nodes
-    t1: Node = Node(1)
-    t1.left = Node(2)
-    t1.right = Node(3)
-    t1.left.left = Node(4)
-    t1.left.right = Node(5)
-    t1.right.left = Node(6)
-    t1.right.right = Node(7)
-
-    """
-     The tree is like
-              1
-        2         3
-      4   5     6    7
-    """
-
-    print("Tree: ", end=" ")
-    display(t1)
-
-    # Invert the binary tree (t1) and store the returned Node in t2
-    t2: Node = invert_binary_tree(t1)
-    """
-     The inverted tree is like
-             1
-        3         2
-      7    6    5   4
-    """
-
-    print("\nInverted Tree: ", end=" ")
-    display(t2)
-    print()
+    
+    import doctest
+    doctest.testmod()
