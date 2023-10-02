@@ -5,7 +5,7 @@ Description: This program calculates the future value of money based on the pres
 '''
 
 
-def calculate_future_value(present_value, inflation_rate, years):
+def calculate_future_value(present_value : float, inflation_rate : float , years : int) -> float:
     """Calculates the future value of money"""
     future_value = present_value * (1 + inflation_rate/100)**years
     return future_value
