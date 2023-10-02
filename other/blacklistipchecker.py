@@ -1,7 +1,9 @@
 ######################################
-# This CLI script checks if entered ips are or aren`t blacklisted on different lists
+# This CLI script checks if entered ips are or
+# aren`t blacklisted on different lists
 # After configuration it can even send an email report
-# You need to get API key on blacklistchecker to make it work (it`s free 30 IPs per month)
+# You need to get API key on blacklistchecker
+# to make it work (it`s free 30 IPs per month)
 ######################################
 
 
@@ -22,9 +24,7 @@ smtp_passw = ""
 smtp_serv = ""
 smtp_port = 587
 
-
-def test_ip(ip: str) -> Tuple[str, str] | None:
-    detects = []
+def test_ip(ip: str) -> Tuple[str, List] | Tuple[str, str] | None:
     result = requests.get(
         "https://api.blacklistchecker.com/check/" + ip, auth=(api_key, "")
     )
@@ -37,8 +37,10 @@ def test_ip(ip: str) -> Tuple[str, str] | None:
     elif result_dec.get("detections") != 0:
         res = ip
         blsts = result_dec.get("blacklists")
+        detects = None
+        detects = List(detects)
         for n in blsts:
-            if n.get("detected") == True:
+            if n.get("detected") is True:
                 detects.append(n.get("name"))
         return (res, detects)
     else:
@@ -55,7 +57,7 @@ if len(sys.argv) > 1:
             try:
                 IP(x)
             except Exception as ex:
-                print("Argument isn`t a valid ip(" + x + ")\n Skipping argument")
+                print("Argument isn`t a valid ip(" + x + ")\n" + ex + "\n Skipping argument")
                 logging.exception("Caught an error")
             else:
                 if test_ip(x):
@@ -77,7 +79,7 @@ else:
     try:
         IP(x)
     except Exception as ex:
-        print("Argument isn`t a valid ip(" + x + ")")
+        print("Argument isn`t a valid ip(" + x + ")"+ ex + "\n)
         logging.exception("Caught an error")
         sys.exit()
     else:
