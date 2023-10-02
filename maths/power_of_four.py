@@ -1,7 +1,5 @@
 import math
 import doctest
-
-
 def is_power_of_four(number_to_check: int) -> bool:
     """
     Determine if an integer is a power of four.
@@ -23,8 +21,6 @@ def is_power_of_four(number_to_check: int) -> bool:
     False
     """
     return number_to_check > 0 and math.log(number_to_check, 4).is_integer()
-
-
 if __name__ == "__main__":
     doctest.testmod()
     number_to_check = int(input("Enter an integer: "))
