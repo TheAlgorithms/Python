@@ -1,4 +1,4 @@
-# Problem Statement: 
+# Problem Statement:
 # Link : https://leetcode.com/problems/power-of-four/description/
 
 
@@ -17,9 +17,8 @@
 # Output: true
 
 
-
 # Intuition:
-# The intuition behind this code is based on the property of powers of four. In base-4 (quaternary) representation, any power of four will have only one '1' digit followed by zero or more '0' digits. 
+# The intuition behind this code is based on the property of powers of four. In base-4 (quaternary) representation, any power of four will have only one '1' digit followed by zero or more '0' digits.
 # For example, 4^0 = 1, 4^1 = 4, 4^2 = 16, and so on. In base-4, these numbers are represented as 1, 10, 100, and so on.
 # So, if you take the base-10 logarithm of a power of four and divide it by the base-10 logarithm of 4, you should get an integer. If you get an integer, it means the number is a power of four.
 
@@ -33,12 +32,14 @@
 import math
 
 def ispower_of_four(n):
+
     if n <= 0:
         return False
 
     logarithm4 = math.log10(n) / math.log10(4)
 
     return logarithm4.is_integer()
+
 
 # Example usage:
 print(ispower_of_four(16))  # Output: True
