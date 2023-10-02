@@ -1,4 +1,4 @@
-def bin_exp_mod(a, n, b):
+def bin_exp_mod(a: int, n: int, b: int) -> int:
     """
     >>> bin_exp_mod(3, 4, 5)
     1
