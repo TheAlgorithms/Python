@@ -1,9 +1,9 @@
 from __future__ import annotations
 from enum import Enum, unique
-from typing import TypeVar 
+from typing import TypeVar
 
 # Create a generic variable that can be 'Enum', or any subclass.
-T = TypeVar("T", bound="Enum")
+T = TypeVar("T", bound=Enum)
 
 @unique
 class BinaryUnit(Enum):
@@ -43,7 +43,7 @@ class SIUnit(Enum):
     def get_positive(cls: type[T]) -> dict:
         """
         Returns a dictionary with only the elements of this enum
-        that has a positive value
+        that have a positive value.
         """
         return {unit.name: unit.value for unit in cls if unit.value > 0}
 
@@ -51,7 +51,7 @@ class SIUnit(Enum):
     def get_negative(cls: type[T]) -> dict:
         """
         Returns a dictionary with only the elements of this enum
-        that has a negative value
+        that have a negative value.
         """
         return {unit.name: unit.value for unit in cls if unit.value < 0}
 
@@ -90,14 +90,16 @@ def infix_to_prefix(expression):
             postfix.append(stack.pop())
         return ''.join(postfix)
 
-    infix_expr = expression[::-1]  # Reverse the input expression
-    infix_expr = infix_expr.replace('(', 'X').replace(')', '(').replace('X', ')')  # Swap '(' and ')' to handle correctly in reverse
+    # Reverse the input expression
+    infix_expr = expression[::-1]  
+    # Swap '(' and ')' to handle correctly in reverse
+    infix_expr = infix_expr.replace('(', 'X').replace(')', '(').replace('X', ')')  
     postfix_expr = infix_to_postfix(infix_expr)
-    prefix_expr = postfix_expr[::-1]  # Reverse the postfix expression to get prefix
+    # Reverse the postfix expression to get prefix
+    prefix_expr = postfix_expr[::-1]
     return prefix_expr
 
 # Example usage:
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-    
