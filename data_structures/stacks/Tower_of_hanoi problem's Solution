@@ -1,0 +1,55 @@
+#Tower_of_hanoi problem for 3 disks
+
+
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        if not self.is_empty():
+            return self.items.pop()
+
+    def peek(self):
+        if not self.is_empty():
+            return self.items[-1]
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+def tower_of_hanoi(n, source, auxiliary, target):
+    stack = []
+    step = 0
+    while True:
+        if n == 1:
+            print(f"Move disk 1 from {source} to {target}")
+            step += 1
+        else:
+            if step == 0:
+                stack.append((n, source, auxiliary, target))
+                n -= 1
+            elif step == 1:
+                print(f"Move disk {n} from {source} to {target}")
+                stack.append((n, auxiliary, source, target))
+                n -= 1
+            elif step == 2:
+                step = 0
+                continue
+        if len(stack) > 0:
+            n, source, auxiliary, target = stack.pop()
+            step += 1
+        else:
+            break
+
+def tower_of_hanoi(n, source_peg, auxiliary_peg, target_peg):
+    if n == 1:
+        print(f"Move disk 1 from {source_peg} to {target_peg}")
+        return
+    tower_of_hanoi(n - 1, source_peg, target_peg, auxiliary_peg)
+    print(f"Move disk {n} from {source_peg} to {target_peg}")
+    tower_of_hanoi(n - 1, auxiliary_peg, source_peg, target_peg)
+
+# Example usage:
+tower_of_hanoi(3, 'A', 'B', 'C')
