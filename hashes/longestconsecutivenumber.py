@@ -1,4 +1,5 @@
-#using hash set
+# using hash set
+
 
 def longestConsecutive(nums):
     if len(nums) == 0:
@@ -15,6 +16,7 @@ def longestConsecutive(nums):
         if count > len(nums) / 2:
             break
     return count
+
 
 size = int(input())
 nums = list(map(int, input().split()))
