@@ -19,9 +19,19 @@ class Node:
         self.right: Node | None = None
 
 
-def get_tree_inorder(tree: Optional[Node], tree_list: list = None) -> list:
-    """
+def get_tree_inorder(tree: Optional[Node], tree_list: list = None) -> list:  
+    r"""
     Prints the inorder traversal of a tree
+
+    >>> tree = Node(1)
+    >>> tree.left = Node(2)
+    >>> tree.right = Node(3)
+    >>> tree.left.left = Node(4)
+    >>> tree.left.right = Node(5)
+    >>> tree.right.left = Node(6)
+    >>> tree.right.right = Node(7)
+    >>> get_tree_inorder(tree)
+    [4, 2, 5, 1, 6, 3, 7]
     """
     if tree_list is None:
         tree_list = []
