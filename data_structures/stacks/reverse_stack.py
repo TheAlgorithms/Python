@@ -1,5 +1,6 @@
 from stack import Stack  # Assuming you have a Stack class defined in 'stack.py'
 
+
 def reverse_stack(stack):
     """
     Reverse the elements of a stack using another stack.
@@ -32,6 +33,7 @@ def reverse_stack(stack):
     while not reversed_stack.is_empty():
         item = reversed_stack.pop()
         stack.push(item)
+
 
 if __name__ == "__main__":
     from doctest import testmod
