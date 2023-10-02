@@ -34,22 +34,22 @@ def gray_to_bin(gray_code: str) -> str:
         raise ValueError("Empty string was passed to the function")
 
     sb = []
-    matrice = [['', ''] for _ in range(len(gray_code))]
+    matrice = [["", ""] for _ in range(len(gray_code))]
 
     matrice[0][0] = gray_code[0]
     matrice[0][1] = gray_code[0]
 
     for i in range(1, len(gray_code)):
         matrice[i][0] = gray_code[i]
-        if gray_code[i] == '0':
+        if gray_code[i] == "0":
             matrice[i][1] = matrice[i - 1][1]
         else:
-            matrice[i][1] = '1' if matrice[i - 1][1] == '0' else '0'
+            matrice[i][1] = "1" if matrice[i - 1][1] == "0" else "0"
 
     for i in range(len(gray_code)):
         sb.append(matrice[i][1])
 
-    return ''.join(sb)
+    return "".join(sb)
 
 
 if __name__ == "__main__":

@@ -40,14 +40,14 @@ def bin_to_gray(bin_code: str) -> str:
     matrice[0][1] = bin_code[0]
 
     for i in range(1, len(bin_code)):
-        x = '0' if bin_code[i] == bin_code[i - 1] else '1'
+        x = "0" if bin_code[i] == bin_code[i - 1] else "1"
         matrice[i][1] = x
         matrice[i][0] = bin_code[i]
 
     for i in range(len(bin_code)):
         sb.append(matrice[i][1])
 
-    return ''.join(sb)
+    return "".join(sb)
 
 
 if __name__ == "__main__":
