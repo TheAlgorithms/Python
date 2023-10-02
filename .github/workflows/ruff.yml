@@ -13,4 +13,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: pip install --user ruff
-    - run: ruff --format=github .
+    - run: ruff --output-format=github .
