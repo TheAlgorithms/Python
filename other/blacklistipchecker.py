@@ -18,14 +18,13 @@ def test_ip(ip: str) -> Any:
     result = requests.get(link, auth=(api_key, ""))
     result_dec = json.loads(result.content)
     print(result_dec)
+    detects: list[str] = []
     if result_dec.get("statusCode") == 401:
         res = "limit exceeded!"
-        detects: list[str] = []
         return (res, detects)
     elif result_dec.get("detections") != 0:
         res = ip
         blsts = result_dec.get("blacklists")
-        detects: list[str] = []
         for n in blsts:
             if n.get("detected") is True:
                 detects.append(n.get("name"))
