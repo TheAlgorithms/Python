@@ -12,14 +12,6 @@
 
 
 def b_expo(a: int, b: int) -> int:
-    """
-    Find binary multiplication
-    >>> b_expo(2,3)
-    6
-
-    >>> b_expo(2,-3)
-    -6
-    """
     res = 0
     while b > 0:
         if b & 1:
@@ -32,12 +24,6 @@ def b_expo(a: int, b: int) -> int:
 
 
 def b_expo_mod(a: int, b: int, c: int) -> int:
-    """
-    find Exponentiation mod
-
-    >>> b_expo_mod(2,3,4)
-    2
-    """
     res = 0
     while b > 0:
         if b & 1:
