@@ -1,20 +1,18 @@
 from __future__ import annotations
-
 from collections import deque
 from collections.abc import Generator
 from dataclasses import dataclass
 
-
-# https://en.wikipedia.org/wiki/Tree_traversal
+# Define a data structure for a binary tree node.
 @dataclass
 class Node:
     data: int
     left: Node | None = None
     right: Node | None = None
 
-
+# Function to create a sample binary tree.
 def make_tree() -> Node | None:
-    r"""
+    """
     The below tree
         1
        / \
@@ -29,7 +27,7 @@ def make_tree() -> Node | None:
     tree.left.right = Node(5)
     return tree
 
-
+# Pre-order traversal of the binary tree.
 def preorder(root: Node | None) -> Generator[int, None, None]:
     """
     Pre-order traversal visits root node, left subtree, right subtree.
@@ -42,7 +40,7 @@ def preorder(root: Node | None) -> Generator[int, None, None]:
     yield from preorder(root.left)
     yield from preorder(root.right)
 
-
+# Post-order traversal of the binary tree.
 def postorder(root: Node | None) -> Generator[int, None, None]:
     """
     Post-order traversal visits left subtree, right subtree, root node.
@@ -55,7 +53,7 @@ def postorder(root: Node | None) -> Generator[int, None, None]:
     yield from postorder(root.right)
     yield root.data
 
-
+# In-order traversal of the binary tree.
 def inorder(root: Node | None) -> Generator[int, None, None]:
     """
     In-order traversal visits left subtree, root node, right subtree.
@@ -68,7 +66,7 @@ def inorder(root: Node | None) -> Generator[int, None, None]:
     yield root.data
     yield from inorder(root.right)
 
-
+# Reverse in-order traversal of the binary tree.
 def reverse_inorder(root: Node | None) -> Generator[int, None, None]:
     """
     Reverse in-order traversal visits right subtree, root node, left subtree.
@@ -81,7 +79,7 @@ def reverse_inorder(root: Node | None) -> Generator[int, None, None]:
     yield root.data
     yield from reverse_inorder(root.left)
 
-
+# Function to calculate the height of the binary tree.
 def height(root: Node | None) -> int:
     """
     Recursive function for calculating the height of the binary tree.
@@ -92,13 +90,12 @@ def height(root: Node | None) -> int:
     """
     return (max(height(root.left), height(root.right)) + 1) if root else 0
 
-
+# Level-order traversal of the binary tree.
 def level_order(root: Node | None) -> Generator[int, None, None]:
     """
     Returns a list of nodes value from a whole binary tree in Level Order Traverse.
     Level Order traverse: Visit nodes of the tree level-by-level.
     """
-
     if root is None:
         return
 
@@ -113,7 +110,7 @@ def level_order(root: Node | None) -> Generator[int, None, None]:
         if node.right:
             process_queue.append(node.right)
 
-
+# Function to get nodes from left to right at a specific level.
 def get_nodes_from_left_to_right(
     root: Node | None, level: int
 ) -> Generator[int, None, None]:
@@ -121,7 +118,6 @@ def get_nodes_from_left_to_right(
     Returns a list of nodes value from a particular level:
     Left to right direction of the binary tree.
     """
-
     def populate_output(root: Node | None, level: int) -> Generator[int, None, None]:
         if not root:
             return
@@ -133,7 +129,7 @@ def get_nodes_from_left_to_right(
 
     yield from populate_output(root, level)
 
-
+# Function to get nodes from right to left at a specific level.
 def get_nodes_from_right_to_left(
     root: Node | None, level: int
 ) -> Generator[int, None, None]:
@@ -141,7 +137,6 @@ def get_nodes_from_right_to_left(
     Returns a list of nodes value from a particular level:
     Right to left direction of the binary tree.
     """
-
     def populate_output(root: Node | None, level: int) -> Generator[int, None, None]:
         if root is None:
             return
@@ -153,7 +148,7 @@ def get_nodes_from_right_to_left(
 
     yield from populate_output(root, level)
 
-
+# Zigzag traversal of the binary tree.
 def zigzag(root: Node | None) -> Generator[int, None, None]:
     """
     ZigZag traverse:
@@ -173,12 +168,12 @@ def zigzag(root: Node | None) -> Generator[int, None, None]:
             yield from get_nodes_from_right_to_left(root, h)
             flag = 0
 
-
-def main() -> None:  # Main function for testing.
+# Main function for testing.
+def main() -> None:
     # Create binary tree.
     root = make_tree()
 
-    # All Traversals of the binary are as follows:
+    # All Traversals of the binary tree are as follows:
     print(f"In-order Traversal: {list(inorder(root))}")
     print(f"Reverse In-order Traversal: {list(reverse_inorder(root))}")
     print(f"Pre-order Traversal: {list(preorder(root))}")
@@ -196,7 +191,6 @@ def main() -> None:  # Main function for testing.
 
     print("\nZigZag order Traversal: ")
     print(f"{list(zigzag(root))}")
-
 
 if __name__ == "__main__":
     import doctest
