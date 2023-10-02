@@ -16,7 +16,7 @@ def max_load_current(rf: float, rs: float, rl: float, vm: float) -> tuple:
     rf = Forward Resistance of Diode
     rs = Transformer secondary winding resistance
     rl = load resistance
-    vm = maximum volatge or peak voltage
+    vm = maximum voltage or peak voltage
     Cases:-
     >>> max_load_current(rf=2 , rs=4 , rl=6 , vm=15 )
     Result(name='max_load_current', value=1.25)
@@ -29,10 +29,10 @@ def max_load_current(rf: float, rs: float, rl: float, vm: float) -> tuple:
     >>> max_load_current(rf=0 , rs=0 , rl=0 , vm=15 )
     Traceback (most recent call last):
         ...
-    ValueError: Atleast one Resistance must be non zero
+    ValueError: At least one Resistance must be non zero
     """
     if (rf, rs, rl).count(0) == 3:
-        raise ValueError("Atleast one Resistance must be non zero")
+        raise ValueError("At least one Resistance must be non zero")
     elif rf < 0 or rs < 0 or rl < 0:
         raise ValueError("Resistance cannot be negative")
     elif vm == 0:
@@ -63,7 +63,7 @@ def dc_voltage(vm: float) -> tuple:
     In all cases negative sign shows
     the opposite direction of current or voltage.
     Vdc = average dc current
-    vm = maximum volatge or peak voltage
+    vm = maximum voltage or peak voltage
     cases:
     >>> dc_voltage(vm=2)
     Result(name='Vdc', value=0.636)
