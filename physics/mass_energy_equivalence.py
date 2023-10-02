@@ -11,7 +11,7 @@ The function takes a single argument mass(in kg) having datatype float and
 returns the energy(in joule) having datatype float
 """
 
-speed_of_light = 299792458
+SPEED_OF_LIGHT = 299792458
 
 
 def calculate_energy(mass: float) -> float:
@@ -31,7 +31,7 @@ def calculate_energy(mass: float) -> float:
     """
     if mass < 0:
         raise TypeError("Mass cannot be negative")
-    energy = mass * speed_of_light**2
+    energy = mass * SPEED_OF_LIGHT**2
     return energy
 
 
