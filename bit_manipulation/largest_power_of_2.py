@@ -7,9 +7,9 @@ def largest_power_of_2(number: int) -> int:
 
     last_set_bit = 0
     while number:
-        last_set_bit+=1
-        number>>=1
-    return 2**(last_set_bit-1)
+        last_set_bit += 1
+        number >>= 1
+    return 2 ** (last_set_bit - 1)
 
 
 if __name__ == "__main__":
