@@ -6,6 +6,7 @@ Wikipedia reference: https://en.wikipedia.org/wiki/greatest_common_divisor
 gcd(a, b) = gcd(a, -b) = gcd(-a, b) = gcd(-a, -b) by definition of divisibility
 """
 
+
 def greatest_common_divisor(a: int, b: int) -> int:
     """
     >>> greatest_common_divisor(4, 8)
@@ -20,6 +21,7 @@ def greatest_common_divisor(a: int, b: int) -> int:
     if a == 0:
         return b
     greatest_common_divisor(b % a, a)
+
 
 def gcd_by_iterative(x: int, y: int) -> int:
     """
