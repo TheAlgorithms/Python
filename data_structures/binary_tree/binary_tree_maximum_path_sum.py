@@ -19,10 +19,10 @@ class TreeNode:
     left, right -> Stores the pointer to left or right node.
     """
 
-    def __init__(self, val: int, left=None, right=None) -> None:
+    def __init__(self, val: int) -> None:
         self.val: int = val
-        self.left: TreeNode | None = left
-        self.right: TreeNode | None = right
+        self.left: TreeNode | None = None
+        self.right: TreeNode | None = None
 
 
 class GetMaxPathSum:
@@ -62,11 +62,11 @@ class GetMaxPathSum:
     29
     """
 
-    def __init__(self, root):
+    def __init__(self, root) -> None:
         self.sum = -9999999999
         self.root = root
 
-    def traverse(self, root: TreeNode) -> int:
+    def traverse(self, root: TreeNode | None) -> int:
 
         """
         Returns maximum path sum by recursively taking max_path_sum from left
@@ -98,13 +98,22 @@ class GetMaxPathSum:
 
 
 def construct_tree() -> TreeNode:
-    """
+    r"""
     The below tree
        -10
        / \
       9   20
          /  \
        15    7
+
+    >>> root = TreeNode(-10)
+    >>> root.left = TreeNode(9)
+    >>> root.right = TreeNode(20)
+    >>> root.right.left = TreeNode(15)
+    >>> root.right.right = TreeNode(7)
+
+    >>> GetMaxPathSum(construct_tree()).max_path_sum()
+    42
     """
 
     root = TreeNode(-10)
