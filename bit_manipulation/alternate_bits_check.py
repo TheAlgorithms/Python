@@ -19,12 +19,12 @@ def bitsareinaltorder(input_number) -> bool:
     return allbitsareset(result_number)
 
 
-input_by_user = 15;
+input_by_user = 15
 
 if bitsareinaltorder(input_by_user):
-    print("Yes");
+    print("Yes")
 else:
-    print("No");
+    print("No")
 
 
 """
