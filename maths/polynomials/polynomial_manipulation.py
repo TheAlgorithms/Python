@@ -1,5 +1,5 @@
+import doctest
 from typing import List
-
 
 class Polynomial:
     def __init__(self, coefficients: List[int]) -> None:
@@ -17,6 +17,11 @@ class Polynomial:
 
         Returns:
         str: String representation of the polynomial.
+        
+        Examples:
+        >>> poly = Polynomial([1, 2, 3])
+        >>> str(poly)
+        '3x^2 + 2x + 1'
         """
         terms = []
         for i, coeff in enumerate(self.coefficients):
@@ -27,7 +32,7 @@ class Polynomial:
                     terms.append(f"{coeff}x^{i}")
         return " + ".join(terms[::-1])
 
-    def add(self, other: "Polynomial") -> "Polynomial":
+    def add(self, other: 'Polynomial') -> 'Polynomial':
         """
         Add two polynomials.
 
@@ -36,6 +41,13 @@ class Polynomial:
 
         Returns:
         Polynomial: A new Polynomial representing the sum.
+        
+        Examples:
+        >>> poly1 = Polynomial([1, 2, 3])
+        >>> poly2 = Polynomial([2, 0, 1])
+        >>> result = poly1.add(poly2)
+        >>> str(result)
+        '2x^3 + 3x^2 + 3x + 1'
         """
         max_len = max(len(self.coefficients), len(other.coefficients))
         result = [0] * max_len
@@ -48,7 +60,7 @@ class Polynomial:
 
         return Polynomial(result)
 
-    def multiply(self, other: "Polynomial") -> "Polynomial":
+    def multiply(self, other: 'Polynomial') -> 'Polynomial':
         """
         Multiply two polynomials.
 
@@ -57,6 +69,13 @@ class Polynomial:
 
         Returns:
         Polynomial: A new Polynomial representing the product.
+        
+        Examples:
+        >>> poly1 = Polynomial([1, 2, 3])
+        >>> poly2 = Polynomial([2, 0, 1])
+        >>> result = poly1.multiply(poly2)
+        >>> str(result)
+        '6x^5 + 2x^4 + 3x^3 + x^2'
         """
         result = [0] * (len(self.coefficients) + len(other.coefficients) - 1)
 
@@ -66,34 +85,6 @@ class Polynomial:
 
         return Polynomial(result)
 
-
-# Doctests for __str__, add, and multiply methods:
-def doctest_polynomial_methods():
-    """
-    >>> poly1 = Polynomial([1, 2, 3])
-    >>> poly2 = Polynomial([2, 0, 1])
-
-    >>> str(poly1)
-    '3x^2 + 2x + 1'
-
-    >>> str(poly2)
-    '2x^3 + x'
-
-    >>> result_add = poly1.add(poly2)
-    >>> str(result_add)
-    '2x^3 + 3x^2 + 3x + 1'
-
-    >>> result_multiply = poly1.multiply(poly2)
-    >>> str(result_multiply)
-    '6x^5 + 2x^4 + 3x^3 + x^2'
-    """
-    pass
-
-
-# Example usage and doctests:
 if __name__ == "__main__":
-    import doctest
-
     doctest.testmod()
-    doctest_polynomial_methods()
     print("All tests passed.")
