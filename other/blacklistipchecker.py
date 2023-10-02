@@ -44,7 +44,7 @@ if len(sys.argv) > 1:
             IP(x)
         except Exception as ex:
             print("Argument isn`t a valid ip(" + x + ")\n")
-            print(str(ex) + "\n Skipping argument")
+            print(f"{ex}\n Skipping argument")
             logging.exception("Caught an error")
         else:
             if test_ip(x) is not None:
