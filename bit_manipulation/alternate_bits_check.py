@@ -1,7 +1,7 @@
 # function to check if all the bits
 # are set or not in the binary
 # representation of 'input_number'
-def allbitsareset(input_number) -> bool:
+def allbitsareset(input_number: int) -> bool:
     # if true, then all bits are set
     if ((input_number + 1) & input_number) == 0:
         return True
@@ -12,7 +12,7 @@ def allbitsareset(input_number) -> bool:
 
 # Function to check if a number
 # has bits in alternate pattern
-def bitsareinaltorder(input_number) -> bool:
+def bitsareinaltorder(input_number: int) -> bool:
     result_number = input_number ^ (input_number >> 1)
 
     # To check if all bits are set in 'num'
