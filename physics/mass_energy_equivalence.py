@@ -2,10 +2,9 @@
 Mass-energy equivalence
 Reference: https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence
 
-Here it defines a Function to calculate energy(in joules) equivalent of a given
-mass(in kilograms) using Einstein's Mass-energy equivalence equation E=mc^2
-where m is mass and c = 299,792,458 meter per second is the speed of light
-in vacuum (a constant value).
+This file defines a function to calculate energy (in joules) equivalent to a given
+mass (in kilograms) using Einstein's mass-energy equivalence equation E=mc^2,
+where m is mass and c = 299,792,458 m/s is the speed of light in a vacuum.
 
 The function takes a single argument mass(in kg) having datatype float and
 returns the energy(in joule) having datatype float
