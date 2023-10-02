@@ -26,7 +26,6 @@ class TreeNode:
 
 
 class GetMaxPathSum:
-
     r"""
 
     GetMaxPathSum takes root node of a tree as initial argument.
@@ -67,7 +66,6 @@ class GetMaxPathSum:
         self.root = root
 
     def traverse(self, root: TreeNode | None) -> int:
-
         """
         Returns maximum path sum by recursively taking max_path_sum from left
         and max_path_sum from right if current Node has a left or right Node.
@@ -88,7 +86,6 @@ class GetMaxPathSum:
         return root.val + max(right_sum, left_sum)
 
     def max_path_sum(self) -> int:
-
         """
         Driver method to get max_path_sum by calling traverse method.
         :return max_path_sum:
@@ -124,7 +121,7 @@ def construct_tree() -> TreeNode:
     return root
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     tree = GetMaxPathSum(construct_tree())
