@@ -158,15 +158,9 @@ def decrypt_fractionated_morse(ciphertext: str, key: str) -> str:
     return decrypted_text
 
 
-def main() -> None:
+if __name__ == "__main__":
     """
     Example usage of Fractionated Morse Cipher.
-    
-    >>> main()
-    Plain Text: defend the east
-    Encrypted: ESOAVVLJRSSTRX
-    Decrypted: DEFEND THE EAST
-    
     """
     plaintext = "defend the east"
     print("Plain Text:", plaintext)
@@ -177,7 +171,3 @@ def main() -> None:
 
     decrypted_text = decrypt_fractionated_morse(ciphertext, key)
     print("Decrypted:", decrypted_text)
-
-
-if __name__ == "__main__":
-    main()
