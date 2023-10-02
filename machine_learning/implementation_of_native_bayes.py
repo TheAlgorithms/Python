@@ -2,20 +2,21 @@
 # https://www.github.com/JehanPatel
 
 # What is Naive Bayes Classifier?
-# The Naïve Bayes classifier is a supervised machine learning algorithm, 
-# which is used for classification tasks, like text classification. 
-# Unlike discriminative classifiers, like logistic regression, it does not 
+# The Naïve Bayes classifier is a supervised machine learning algorithm,
+# which is used for classification tasks, like text classification.
+# Unlike discriminative classifiers, like logistic regression, it does not
 # learn which features are most important to differentiate between classes.
 
 # Implementation
 
 dataset = [
-    ['Sunny', 'Hot', 'High', 'Weak', 'No'],
-    ['Overcast', 'Cool', 'Normal', 'Strong', 'Yes'],
-    ['Rainy', 'Cool', 'High', 'Weak', 'Yes'],
+    ["Sunny", "Hot", "High", "Weak", "No"],
+    ["Overcast", "Cool", "Normal", "Strong", "Yes"],
+    ["Rainy", "Cool", "High", "Weak", "Yes"],
 ]
 
 # converting string labels to integer
+
 
 def preprocess_dataset(dataset):
     classes = set(example[-1] for example in dataset)
@@ -26,9 +27,11 @@ def preprocess_dataset(dataset):
         preprocessed_dataset.append(preprocessed_example)
     return preprocessed_dataset, class_mapping
 
+
 preprocessed_dataset, class_mapping = preprocess_dataset(dataset)
 
 # calculating probabilities
+
 
 def calculate_probabilities(dataset):
     attribute_counts = {}
@@ -49,4 +52,6 @@ def calculate_probabilities(dataset):
     for attribute in attribute_counts:
         probabilities[attribute] = {}
         for class_ in class_counts:
-            probabilities[attribute][class_] = attribute_counts[attribute][class_] / class_
+            probabilities[attribute][class_] = (
+                attribute_counts[attribute][class_] / class_
+            )
