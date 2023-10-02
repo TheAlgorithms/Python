@@ -2,6 +2,7 @@
 
 from typing import List
 
+
 def knuth_morris_pratt(text: str, pattern: str) -> List[int]:
     """
     Knuth-Morris-Pratt (KMP) string search algorithm in Python.
@@ -10,6 +11,7 @@ def knuth_morris_pratt(text: str, pattern: str) -> List[int]:
     :param pattern: The pattern to search for in the text.
     :return: A list of starting positions where the pattern is found in the text.
     """
+
     def build_prefix_table(pattern: str) -> List[int]:
         """
         Build the prefix table for the given pattern.
@@ -50,6 +52,7 @@ def knuth_morris_pratt(text: str, pattern: str) -> List[int]:
             positions.append(i - j + 1)
             j = prefix_table[j - 1]
     return positions
+
 
 if __name__ == "__main__":
     text = input("Enter the text: ")
