@@ -19,8 +19,8 @@ def test_ip(ip: str) -> Any:
     result_dec = json.loads(result.content)
     print(result_dec)
     if result_dec.get("statusCode") == 401:
-        res = "limit exceeded"
-        detects = "!"
+        res = "limit exceeded!"
+        detects = []
         return (res, detects)
     elif result_dec.get("detections") != 0:
         res = ip
