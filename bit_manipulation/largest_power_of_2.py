@@ -19,7 +19,7 @@ def largest_power_of_2(number: int) -> int:
     128
     >>> largest_pow_of_two_less_than_or_equal_to_a_number(999999)
     524288
-    
+
     """
 
     last_set_bit = 0
