@@ -49,9 +49,9 @@ def power_of_4(number: int) -> bool:
     if number & (number - 1) == 0:
         c = 0
         while number:
-            c += 1
-            number >>= 1
-        if c & 1:
+            c+=1
+            number>>=1
+        if c%2:
             return True
         else:
             return False
