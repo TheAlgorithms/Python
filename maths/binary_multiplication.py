@@ -24,7 +24,7 @@ def b_expo(a: int, b: int) -> int:
 
     Examples:
     >>> b_expo(2, 3)
-
+    6
     >>> b_expo(5, 0)
     0
     >>> b_expo(3, 4)
