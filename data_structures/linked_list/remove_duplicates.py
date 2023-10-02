@@ -2,10 +2,12 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+
 @dataclass
 class Node:
     data: int
     next_node: Node | None = None
+
 
 def print_linked_list(head: Node | None) -> None:
     """
@@ -28,6 +30,7 @@ def print_linked_list(head: Node | None) -> None:
         head = head.next_node
     print(head.data)
 
+
 def insert_node(head: Node | None, data: int) -> Node:
     """
     Insert a new node at the end of a linked list
@@ -46,10 +49,11 @@ def insert_node(head: Node | None, data: int) -> Node:
     temp_node = head
     while temp_node.next_node:
         temp_node = temp_node.next_node
-    temp_node.next_node = new_node  
+    temp_node.next_node = new_node
     return head
 
-def remove_duplicates(head:Node | None):
+
+def remove_duplicates(head: Node | None):
     """
     Remove nodes with duplicate data
 
@@ -69,34 +73,35 @@ def remove_duplicates(head:Node | None):
     if head is None or head.next_node is None:
         return head
 
-    has_occurred=dict()
+    has_occurred = dict()
 
-    new_head=head
-    last_node=head
-    has_occurred[head.data]=True
-    current_node=head.next_node
+    new_head = head
+    last_node = head
+    has_occurred[head.data] = True
+    current_node = head.next_node
     while current_node is not None:
         if current_node.data not in has_occurred.keys():
-            last_node.next_node=current_node
-            last_node=current_node
-            has_occurred[current_node.data]=True
-        current_node=current_node.next_node
-    last_node.next_node=None
+            last_node.next_node = current_node
+            last_node = current_node
+            has_occurred[current_node.data] = True
+        current_node = current_node.next_node
+    last_node.next_node = None
     return new_head
+
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
 
-    head=insert_node(None,1)
-    head=insert_node(head,1)
-    head=insert_node(head,2)
-    head=insert_node(head,3)
-    head=insert_node(head,3)
-    head=insert_node(head,4)
-    head=insert_node(head,5)
-    head=insert_node(head,5)
+    head = insert_node(None, 1)
+    head = insert_node(head, 1)
+    head = insert_node(head, 2)
+    head = insert_node(head, 3)
+    head = insert_node(head, 3)
+    head = insert_node(head, 4)
+    head = insert_node(head, 5)
+    head = insert_node(head, 5)
 
-    new_head= remove_duplicates(head)
+    new_head = remove_duplicates(head)
     print_linked_list(new_head)
