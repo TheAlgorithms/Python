@@ -53,13 +53,7 @@ if len(sys.argv) > 1:
                     res_txt = res_txt + " LIMIT Exceeded!"
                     break
                 else:
-                    res_txt = (
-                        res_txt
-                        + str(res)
-                        + " is detected in "
-                        + str(detec)
-                        + " blacklists \n \n"
-                    )
+                    res_txt += f"{res} is detected in {detec} blacklists \n \n"
 else:
     print("Type in ip to check")
     x = input()
