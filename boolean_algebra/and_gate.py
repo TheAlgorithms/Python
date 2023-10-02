@@ -53,4 +53,4 @@ if __name__ == "__main__":
     print(and_gate(0, 0))
     print(and_gate(0, 1))
     print(and_gate(1, 1))
-    print(and_gate(2, 1)) # Throws an error and ask for valid input
+    print(and_gate(2, 1))  # Throws an error and ask for valid input
