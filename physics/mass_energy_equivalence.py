@@ -32,4 +32,3 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod(name="mass_energy_equivalence")
-
