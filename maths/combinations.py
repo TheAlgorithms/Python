@@ -39,6 +39,6 @@ def combinations(n: int, k: int) -> int:
 
 
 if __name__ == "__main__":
-    import doctest;
-    
-    doctest.testmod();
+    import doctest
+
+    doctest.testmod()
