@@ -1,4 +1,4 @@
-"""<----------------------------------------2 POINTER SOLUTION --------------------------------------->
+"""Pointer Solution
 
 Given a 1-indexed array of integers numbers that is 
 already sorted 
