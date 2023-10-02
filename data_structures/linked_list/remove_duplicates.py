@@ -31,7 +31,7 @@ def print_linked_list(head: Node | None) -> None:
     print(head.data)
 
 
-def insert_node(head: Node | None, data: int) -> Node:
+def insert_node(head: Node | None, data: int) -> Node | None:
     """
     Insert a new node at the end of a linked list
     and return the new head.
@@ -78,7 +78,9 @@ def remove_duplicates(head: Node | None) -> Node | None:
     new_head = head
     last_node = head
     has_occurred[head.data] = True
-    current_node = head.next_node
+    current_node = None
+    if head.next_node:
+        current_node = head.next_node
     while current_node is not None:
         if current_node.data not in has_occurred:
             last_node.next_node = current_node
