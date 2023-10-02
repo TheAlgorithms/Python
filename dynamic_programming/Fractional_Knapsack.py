@@ -19,7 +19,8 @@ def fractional_knapsack(items, capacity):
 
     return total_value, knapsack
 
-#user cases
+
+# user cases
 items = [(2, 10), (3, 5), (5, 15), (7, 7), (1, 6)]
 capacity = 10
 max_value, knapsack_contents = fractional_knapsack(items, capacity)
