@@ -33,7 +33,7 @@ repos:
           - tomli
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: "1.1.0"
+    rev: "1.2.0"
     hooks:
       - id: pyproject-fmt
 

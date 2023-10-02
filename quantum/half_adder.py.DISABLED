@@ -1,3 +1,4 @@
+# DISABLED!!
 #!/usr/bin/env python3
 """
 Build a half-adder quantum circuit that takes two bits as input,
