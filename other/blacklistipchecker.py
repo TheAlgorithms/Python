@@ -4,9 +4,10 @@
 # to make it work (it`s free 30 IPs per month)
 
 import json
+import re
 import sys
 from typing import Any
-import re
+
 import requests
 
 api_key = "key_CAMF5HI5t4ZzkmgGkioI1tius"
