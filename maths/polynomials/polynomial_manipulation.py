@@ -1,6 +1,7 @@
 import doctest
 from typing import List
 
+
 class Polynomial:
     def __init__(self, coefficients: List[int]) -> None:
         """
@@ -17,7 +18,7 @@ class Polynomial:
 
         Returns:
         str: String representation of the polynomial.
-        
+
         Examples:
         >>> poly = Polynomial([1, 2, 3])
         >>> str(poly)
@@ -32,7 +33,7 @@ class Polynomial:
                     terms.append(f"{coeff}x^{i}")
         return " + ".join(terms[::-1])
 
-    def add(self, other: 'Polynomial') -> 'Polynomial':
+    def add(self, other: "Polynomial") -> "Polynomial":
         """
         Add two polynomials.
 
@@ -41,7 +42,7 @@ class Polynomial:
 
         Returns:
         Polynomial: A new Polynomial representing the sum.
-        
+
         Examples:
         >>> poly1 = Polynomial([1, 2, 3])
         >>> poly2 = Polynomial([2, 0, 1])
@@ -60,7 +61,7 @@ class Polynomial:
 
         return Polynomial(result)
 
-    def multiply(self, other: 'Polynomial') -> 'Polynomial':
+    def multiply(self, other: "Polynomial") -> "Polynomial":
         """
         Multiply two polynomials.
 
@@ -69,7 +70,7 @@ class Polynomial:
 
         Returns:
         Polynomial: A new Polynomial representing the product.
-        
+
         Examples:
         >>> poly1 = Polynomial([1, 2, 3])
         >>> poly2 = Polynomial([2, 0, 1])
@@ -84,6 +85,7 @@ class Polynomial:
                 result[i + j] += self.coefficients[i] * other.coefficients[j]
 
         return Polynomial(result)
+
 
 if __name__ == "__main__":
     doctest.testmod()
