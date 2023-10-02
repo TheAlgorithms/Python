@@ -26,6 +26,7 @@ def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
         >>> is_bipartite(graph2)
         False
     """
+
     def dfs(node, color):
         vis[node] = color
         for nbor in graph[node]:
@@ -37,8 +38,10 @@ def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
 
     return all(not (vis[node] == -1 and not dfs(node, 0)) for node in graph)
 
+
 if __name__ == "__main__":
     import doctest
+
     result = doctest.testmod()
 
     if result.failed == 0:
