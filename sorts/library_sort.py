@@ -64,6 +64,7 @@ def library_sort(collection: list) -> list:
 
     return library(left, right)
 
+
 def library(left: list, right: list) -> list:
     """
     Merges two sorted collections into a single sorted collection.
@@ -95,6 +96,7 @@ def library(left: list, right: list) -> list:
     result.extend(right[j:])
 
     return result
+
 
 if __name__ == "__main__":
     import doctest
