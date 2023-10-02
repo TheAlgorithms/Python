@@ -14,7 +14,7 @@ Explanation: The subarray [5,4,-1,7,8] has the largest sum 23.
 """
 
 
-def Max_SubArray(self, nums: List[int]) -> int:
+def max_subArray(self, nums: List[int]) -> int:
     # kadane's algorithm#
     curr = 0
     maxtillnow = -inf
