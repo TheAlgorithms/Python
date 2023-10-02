@@ -9,13 +9,13 @@ on the path from u to the root node, that
 lies on the path from v to the root node,
 and if there are multiple nodes we pick the
 one that is farthest away from the root node.
- 
+
 In other words the desired node w is the
 lowest ancestor of u and v.
 In particular if u is an ancestor of v,
 then u is their lowest common ancestor.
 
-This algorithm will need O(Nlog N) for 
+This algorithm will need O(Nlog N) for
 preprocessing the tree,
 and then O(log N) for each LCA query.
 
