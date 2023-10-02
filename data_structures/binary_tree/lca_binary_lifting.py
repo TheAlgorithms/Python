@@ -9,7 +9,7 @@ This algorithm will need O(Nlog N) for preprocessing the tree, and then O(log N)
 import math
 
 
-#  Abbrevations: 
+#  Abbrevations:
 
 #  n: number of nodes in the graph
 #  adj: adjacency list for the graph
