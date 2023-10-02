@@ -32,7 +32,7 @@ def invert_binary_tree(root: Node| None) -> None:
     Inverts a binary tree and returns the root node of the binary tree
     """
     if root != None: #If root is not None
-            temp = root.left  #Save left Node in a temp variable
+            temp : Node = root.left  #Save left Node in a temp variable
             # Swap the Nodes
             root.left = root.right 
             root.right = temp
@@ -44,7 +44,7 @@ def invert_binary_tree(root: Node| None) -> None:
 
 if __name__ == "__main__":
     # Create a binary tree with 7 Nodes
-    t1 = Node(1)
+    t1 : Node = Node(1)
     t1.left = Node(2)
     t1.right = Node(3)
     t1.left.left = Node(4)
@@ -63,7 +63,7 @@ if __name__ == "__main__":
     display(t1)  
 
     #Invert the binary tree (t1) and store the returned Node in t2
-    t2 = invert_binary_tree(t1)  
+    t2 : Node = invert_binary_tree(t1)  
     """
      The inverted tree is like
              1
