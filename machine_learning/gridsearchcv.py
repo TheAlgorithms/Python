@@ -1,47 +1,30 @@
-from sklearn.model_selection import GridSearchCV
-from sklearn import svm
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn import datasets
-import pandas as pd
-
-
-model_params = {
-    "svm": {
-        "model": svm.SVC(gamma="auto"),
-        "params": {"C": [1, 10, 20], "kernel": ["rbf", "linear"]},
-    },
-    "random_forest": {
-        "model": RandomForestClassifier(),
-        "params": {"n_estimators": [1, 5, 10]},
-    },
-    "logistic_regression": {
-        "model": LogisticRegression(solver="liblinear", multi_class="auto"),
-        "params": {"C": [1, 5, 10]},
-    },
-}
-
-
-iris = datasets.load_iris()
-
-dataframe = pd.DataFrame(iris.data, columns=iris.feature_names)
-datafrane["flower"] = iris.target
-dataframe["flower"] = dataframe["flower"].apply(
-    lambda labels: iris.target_names[labels]
-)
-dataframe[47:150]
-
-scores = []
-
-for model_name, mp in model_params.items():
-    clf = GridSearchCV(mp["model"], mp["params"], cv=5, return_train_score=False)
-    clf.fit(iris.data, iris.target)
-    scores.append(
-        {
-            "model": model_name,
-            "best_scores": clf.best_score_,
-            "best_params": clf.best_params_,
-        }
-    )
-dataframe = pd.DataFrame(scores, columns=["model", "best_scores", "best_params"])
-dataframe
+def grid_search_cv(model, param_grid, X, y, cv=5):
+    best_score = None
+    best_params = None
+    
+    # Generate all possible parameter combinations
+    param_combinations = np.array(np.meshgrid(*param_grid.values())).T.reshape(-1, len(param_grid))
+    
+    for params in param_combinations:
+        scores = []
+        for train_idx, val_idx in cross_validate_indices(len(X), cv):
+            X_train, X_val = X[train_idx], X[val_idx]
+            y_train, y_val = y[train_idx], y[val_idx]
+            
+            # Fit the model with the current parameters
+            model.set_params(**dict(zip(param_grid.keys(), params)))
+            model.fit(X_train, y_train)
+            
+            # Evaluate the model on the validation set
+            score = model.score(X_val, y_val)
+            scores.append(score)
+        
+        # Calculate the mean score across folds
+        mean_score = np.mean(scores)
+        
+        # Update the best score and parameters if necessary
+        if best_score is None or mean_score > best_score:
+            best_score = mean_score
+            best_params = dict(zip(param_grid.keys(), params))
+    
+    return best_params, best_score
