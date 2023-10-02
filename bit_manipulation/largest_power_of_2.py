@@ -26,9 +26,9 @@ def largest_power_of_2(number: int) -> int:
     while number:
         last_set_bit += 1
         number >>= 1
-    if last_set_bit==0:
+    if last_set_bit == 0:
         return 0
-    return 2**(last_set_bit - 1)
+    return 2 ** (last_set_bit - 1)
 
 
 if __name__ == "__main__":
