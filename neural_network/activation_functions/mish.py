@@ -1,12 +1,16 @@
 import numpy as np
 
 """
-Mish is a non-monotonic activation function defined as
+Mish is a non-monotonic activation 
+function defined as
 f(x) = x * tanh(softplus(x)).
-It smoothly combines the characteristics of ReLU and Sigmoid functions.
-The "softplus" function is a smooth approximation of the ReLU.
+It smoothly combines the characteristics 
+of ReLU and Sigmoid functions.
+The "softplus" function is a smooth
+approximation of the ReLU.
 
-For more details: https://paperswithcode.com/method/mish
+For more details: 
+https://paperswithcode.com/method/mish
 """
 
 
