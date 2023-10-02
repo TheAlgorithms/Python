@@ -1,6 +1,6 @@
 # Building a Transaction Representation
 
-Welcome to this hands-on lesson where you'll embark on the journey of constructing your own blockchain in Python! This tutorial assumes a prior understanding of Python syntax, functions, loops, library imports, and class construction. However, we've included some hints along the way to assist you. If you're new to Python, you may find it beneficial to [acquire some foundational Python knowledge through geeksforgeeks](https://www.codecademy.com/learn/learn-python).
+Welcome to this hands-on lesson where you'll embark on the journey of constructing your own blockchain in Python! This tutorial assumes a prior understanding of Python syntax, functions, loops, library imports, and class construction. However, we've included some hints along the way to assist you. If you're new to Python, you may find it beneficial to [acquire some foundational Python knowledge through geeksforgeeks](https://www.geeksforgeeks.org/python-programming-language/)
 
 ## The Role of Transactions
 
