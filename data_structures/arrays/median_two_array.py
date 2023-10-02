@@ -41,7 +41,6 @@ class Solution:
             middle2 = merged[total // 2]
             return (float(middle1) + float(middle2)) / 2.0
 
-
 if __name__ == "__main__":
     import doctest
 
