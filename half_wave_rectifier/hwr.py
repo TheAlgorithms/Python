@@ -19,9 +19,9 @@ def max_load_current(rf: float, rs: float, rl: float, vm: float) -> tuple:
     vm = maximum volatge or peak voltage
     Cases:-
     >>> max_load_current(rf=2 , rs=4 , rl=6 , vm=15 )
-    Result(name='max_load_current, value=1.25)
+    Result(name='max_load_current', value=1.25)
     >>> max_load_current(rf=2 , rs=4 , rl=6 , vm=0 )
-    Result(name='max_load_current, value=0.0)
+    Result(name='max_load_current', value=0.0)
     >>> max_load_current(rf=2 , rs=-4 , rl=6 , vm=15 )
     Traceback (most recent call last):
         ...
@@ -36,9 +36,9 @@ def max_load_current(rf: float, rs: float, rl: float, vm: float) -> tuple:
     elif rf < 0 or rs < 0 or rl < 0:
         raise ValueError("Resistance cannot be negative")
     elif vm == 0:
-        return Result("max_load_current ", vm / (rf + rs + rl))
+        return Result("max_load_current", vm / (rf + rs + rl))
     else:
-        return Result("max_load_current ", vm / (rf + rs + rl))
+        return Result("max_load_current", vm / (rf + rs + rl))
 
 
 def dc_current(im: float) -> tuple:
@@ -49,12 +49,12 @@ def dc_current(im: float) -> tuple:
     Idc = average dc current
     im = maximum current or peak current
     cases:
-    >>>DC_current(im=2)
+    >>> dc_current(im=2)
     Result(name='Idc', value=0.636)
-    >>>DC_current(im=0)
+    >>> dc_current(im=0)
     Result(name='Idc', value=0.0)
     """
-    return Result("Idc ", im * 0.318)
+    return Result("Idc", im * 0.318)
 
 
 def dc_voltage(vm: float) -> tuple:
@@ -65,12 +65,12 @@ def dc_voltage(vm: float) -> tuple:
     Vdc = average dc current
     vm = maximum volatge or peak voltage
     cases:
-    >>>DC_volatge(vm=2)
+    >>> dc_voltage(vm=2)
     Result(name='Vdc', value=0.636)
-    >>>DC_voltage(vm=0)
+    >>> dc_voltage(vm=0)
     Result(name='Vdc', value=0.0)
     """
-    return Result("Vdc ", 0.318 * vm)
+    return Result("Vdc", 0.318 * vm)
 
 
 def max_current(vm: float, rl: float) -> tuple:
@@ -81,9 +81,9 @@ def max_current(vm: float, rl: float) -> tuple:
     vm = maximum voltage or peak voltage
     rl = load resistance
     cases:
-    >>>max_current(vm=2, rl=5)
+    >>> max_current(vm=2, rl=5)
     Result(name='Max_current_Im', value=0.4)
-    >>>max_current(vm=2, rl=-5)
+    >>> max_current(vm=2, rl=-5)
     Traceback (most recent call last):
         ...
     ValueError: Resistance cannot be negative and equal to zero
@@ -92,7 +92,7 @@ def max_current(vm: float, rl: float) -> tuple:
     if rl <= 0:
         raise ValueError("Resistance cannot be negative and equal to zero")
     else:
-        return Result("Max_current_Im ", vm / rl)
+        return Result("Max_current_Im", vm / rl)
 
 
 def rms_current(im: float) -> tuple:
@@ -103,15 +103,15 @@ def rms_current(im: float) -> tuple:
     Irms = Root Mean Square Value of current
     im = maximum current or peak current
     cases:
-    >>>rms_current(im=10)
+    >>> rms_current(im=10)
     Result(name='Irms', value=5.0)
-    >>>rms_current(im=0)
+    >>> rms_current(im=0)
     Result(name='Irms', value=0.0)
     """
-    return Result("Irms ", im / 2)
+    return Result("Irms", im / 2)
 
 
-def rms_volatge(vm: float) -> tuple:
+def rms_voltage(vm: float) -> tuple:
     """
     This function calculate the RMS(Root Mean Square) value of voltage(Vrms).
     In all cases negative sign shows
@@ -119,12 +119,12 @@ def rms_volatge(vm: float) -> tuple:
     Vrms = Root Mean Square Value of voltage
     vm = maximum voltage or peak voltage
     cases:
-    >>>rms_voltage(vm=20)
+    >>> rms_voltage(vm=20)
     Result(name='Vrms', value=10.0)
-    >>>rms_voltage(vm=0)
+    >>> rms_voltage(vm=0)
     Result(name='Vrms', value=0.0)
     """
-    return Result("Vrms ", vm / 2)
+    return Result("Vrms", vm / 2)
 
 
 if __name__ == "__main__":
