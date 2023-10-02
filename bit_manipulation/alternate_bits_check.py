@@ -12,19 +12,19 @@ def allbitsareset(input_number) -> bool:
 
 # Function to check if a number
 # has bits in alternate pattern
-def bitsareinlltorder(input_number) -> bool:
+def bitsareinaltorder(input_number) -> bool:
     result_number = input_number ^ (input_number >> 1)
 
     # To check if all bits are set in 'num'
     return allbitsareset(result_number)
 
 
-input_by_user = 15
+input_by_user = 15;
 
 if bitsareinaltorder(input_by_user):
-    print("Yes")
+    print("Yes");
 else:
-    print("No")
+    print("No");
 
 
 """
