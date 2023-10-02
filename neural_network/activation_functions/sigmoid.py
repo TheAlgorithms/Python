@@ -1,5 +1,14 @@
-import numpy as np
+"""
+Implements the Sigmoid Activation function.
 
+A sigmoid function is a mathematical function having a characteristic 
+"S"-shaped curve or sigmoid curve.
+
+Script inspired from its corresponding Wikipedia article
+https://en.wikipedia.org/wiki/Sigmoid_function
+"""
+
+import numpy as np
 
 def sigmoid(vector: np.ndarray) -> np.ndarray:
     """
@@ -22,7 +31,6 @@ def sigmoid(vector: np.ndarray) -> np.ndarray:
 
     """
     return 1 / (1 + np.exp(-vector))
-
 
 if __name__ == "__main__":
     import doctest
