@@ -1,5 +1,6 @@
 import heapq
 
+
 def dijkstra(graph, start):
     """
     Shortest path from a starting to all other nodes in a weighted graph
@@ -22,7 +23,7 @@ def dijkstra(graph, start):
         >>> dijkstra(graph, 'A')
         {'A': 0, 'B': 1, 'C': 3, 'D': 4}
     """
-    distances = {node: float('inf') for node in graph}
+    distances = {node: float("inf") for node in graph}
     distances[start] = 0
     priority_queue = [(0, start)]
 
@@ -41,8 +42,10 @@ def dijkstra(graph, start):
 
     return distances
 
+
 if __name__ == "__main__":
     import doctest
+
     res = doctest.testmod()
 
     if res.failed == 0:
