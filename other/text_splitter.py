@@ -4,13 +4,13 @@ lectus fermentum. Maecenas quis imperdiet ligula. Phasellus\
 non laoreet arcu. Mauris tristique commodo ipsum vel fermentum.\
 Ut ut auctor diam. Nulla vel porta lorem, in scelerisque justo.\
 Suspendisse facilisis mollis arcu non eleifend. Donec lacinia\
-elit vel leo fermentum, a condimentum ex fermentum. Nam non\
+elit vel leo fermentum, a condimentum ex fermentum. Name non\
 augue quis leo mollis ultrices non fermentum nibh. Sed egestas\
 venenatis velit pulvinar rhoncus. Vivamus feugiat orci\
 porttitor, placerat lorem vel, sodales nunc. Phasellus\
 sed ornare ipsum. Aliquam sed sem vitae sem dictum semper sed\
 a lectus. Pellentesque non commodo nunc. Cras at egestas enim,\
-rhoncus pretium diam. Donec varius, odio id fermentum dignissim,\
+rhoncus pretium diam. Donec various, odio id fermentum dignissim,\
 orci dui finibus urna, in aliquam urna ligula at nunc. Proin\
 laoreet tristique tincidunt. Aliquam viverra quam erat, eget\
 cursus mauris posuere ac. Sed commodo efficitur leo, scelerisque\
