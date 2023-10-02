@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Polynomial:
     def __init__(self, coefficients: List[int]) -> None:
         """
@@ -26,7 +27,7 @@ class Polynomial:
                     terms.append(f"{coeff}x^{i}")
         return " + ".join(terms[::-1])
 
-    def add(self, other: 'Polynomial') -> 'Polynomial':
+    def add(self, other: "Polynomial") -> "Polynomial":
         """
         Add two polynomials.
 
@@ -47,7 +48,7 @@ class Polynomial:
 
         return Polynomial(result)
 
-    def multiply(self, other: 'Polynomial') -> 'Polynomial':
+    def multiply(self, other: "Polynomial") -> "Polynomial":
         """
         Multiply two polynomials.
 
@@ -65,9 +66,9 @@ class Polynomial:
 
         return Polynomial(result)
 
+
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
     print("All tests passed.")
-
