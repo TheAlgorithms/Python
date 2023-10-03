@@ -1,5 +1,7 @@
-import os
+#!/usr/bin/env python3
+
 from cryptography.fernet import Fernet
+import os
 
 def generate_key():
     key = Fernet.generate_key()
@@ -21,7 +23,7 @@ def encrypt_directory(input_directory, key):
             with open(input_file_path, "wb") as file:
                 file.write(encrypted_data)
 
-            print(f"File '{input_file_path}' encrypted and replaced with the encrypted version.")
+            print(f"Encrypted '{input_file_path}' ")
 
 def decrypt_directory(input_directory, key):
     cipher_suite = Fernet(key)
@@ -39,13 +41,13 @@ def decrypt_directory(input_directory, key):
                 with open(input_file_path, "wb") as file:
                     file.write(decrypted_data)
 
-                print(f"File '{input_file_path}' decrypted and replaced with the decrypted version.")
+                print(f"Decrypted '{input_file_path}'")
             except Exception as e:
-                print(f"Failed to decrypt '{input_file_path}': {str(e)}")
+                print(f"Failed to decrypt")
 
 if __name__ == "__main__":
-    action = input("Enter 'e' for encryp' or 'd' decrypt: ")
-    input_directory = input(f"Your current directory:{os.getcwd()}\nEnter the directory path: ")
+    action = input("Enter 'e' for encrypt' or 'd' decrypt: ")
+    input_directory = input(f"Enter path: ")
 
     if action == "e":
         generate_key()
