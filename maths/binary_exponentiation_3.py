@@ -11,7 +11,7 @@
 """
 
 
-def b_expo(a, b):
+def b_expo(a: int, b: int) -> int:
     res = 1
     while b > 0:
         if b & 1:
@@ -23,7 +23,7 @@ def b_expo(a, b):
     return res
 
 
-def b_expo_mod(a, b, c):
+def b_expo_mod(a: int, b: int, c: int) -> int:
     res = 1
     while b > 0:
         if b & 1:
