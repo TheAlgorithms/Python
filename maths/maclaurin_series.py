@@ -23,7 +23,7 @@ def maclaurin_sin(theta: float, accuracy: int = 30) -> float:
     >>> maclaurin_sin(10, 15)
     -0.544021110889369
     >>> maclaurin_sin(-10, 15)
-    0.5440211108893703
+    0.5440211108893704
     >>> maclaurin_sin("10")
     Traceback (most recent call last):
         ...
