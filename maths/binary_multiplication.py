@@ -23,19 +23,19 @@ def b_multi(a: int, b: int) -> int:
     int: The result of 'a' multiplied by 'b'.
 
     Examples:
-    >>> b_expo(2, 3)
+    >>> b_multi(2, 3)
     6
-    >>> b_expo(5, 0)
+    >>> b_multi(5, 0)
     0
-    >>> b_expo(3, 4)
+    >>> b_multi(3, 4)
     12
-    >>> b_expo(10, 5)
+    >>> b_multi(10, 5)
     50
-    >>> b_expo(0, 5)
+    >>> b_multi(0, 5)
     0
-    >>> b_expo(2, 1)
+    >>> b_multi(2, 1)
     2
-    >>> b_expo(1, 10)
+    >>> b_multi(1, 10)
     10
     """
     res = 0
@@ -62,17 +62,17 @@ def b_multi_mod(a: int, b: int, c: int) -> int:
     int: The result of (a * b) % c.
 
     Examples:
-    >>> b_expo_mod(2, 3, 5)
+    >>> b_multi_mod(2, 3, 5)
     1
-    >>> b_expo_mod(5, 0, 7)
+    >>> b_multi_mod(5, 0, 7)
     0
-    >>> b_expo_mod(3, 4, 6)
+    >>> b_multi_mod(3, 4, 6)
     0
-    >>> b_expo_mod(10, 5, 13)
+    >>> b_multi_mod(10, 5, 13)
     11
-    >>> b_expo_mod(2, 1, 5)
+    >>> b_multi_mod(2, 1, 5)
     2
-    >>> b_expo_mod(1, 10, 3)
+    >>> b_multi_mod(1, 10, 3)
     1
     """
     res = 0
@@ -88,7 +88,6 @@ def b_multi_mod(a: int, b: int, c: int) -> int:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
 
 """
