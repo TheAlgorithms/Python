@@ -1,6 +1,6 @@
 def infix_to_postfix(expression):
     def precedence(operator):
-        precedence_dict = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
+        precedence_dict = {"+": 1, "-": 1, "*": 2, "/": 2, "^": 3}
         return precedence_dict.get(operator, 0)
 
     def is_operator(char):
@@ -12,21 +12,24 @@ def infix_to_postfix(expression):
     for char in expression:
         if char.isalnum():
             postfix.append(char)
-        elif char == '(':
+        elif char == "(":
             stack.append(char)
-        elif char == ')':
-            while stack and stack[-1] != '(':
+        elif char == ")":
+            while stack and stack[-1] != "(":
                 postfix.append(stack.pop())
             stack.pop()  # Pop the '('
         elif is_operator(char):
-            while stack and stack[-1] != '(' and precedence(char) <= precedence(stack[-1]):
+            while (
+                stack and stack[-1] != "(" and precedence(char) <= precedence(stack[-1])
+            ):
                 postfix.append(stack.pop())
             stack.append(char)
 
     while stack:
         postfix.append(stack.pop())
 
-    return ''.join(postfix)
+    return "".join(postfix)
+
 
 def evaluate_postfix(expression):
     stack = []
@@ -37,19 +40,20 @@ def evaluate_postfix(expression):
         elif char in "+-*/^":
             operand2 = stack.pop()
             operand1 = stack.pop()
-            if char == '+':
+            if char == "+":
                 result = operand1 + operand2
-            elif char == '-':
+            elif char == "-":
                 result = operand1 - operand2
-            elif char == '*':
+            elif char == "*":
                 result = operand1 * operand2
-            elif char == '/':
+            elif char == "/":
                 result = operand1 / operand2
-            elif char == '^':
-                result = operand1 ** operand2
+            elif char == "^":
+                result = operand1**operand2
             stack.append(result)
 
     return stack.pop()
+
 
 # Example usage:
 infix_expression = "3 + 4 * (2 - 1)"
