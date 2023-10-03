@@ -1,5 +1,6 @@
 import doctest
 import random
+from typing import Tuple
 
 
 def fitness_function(input_value: float) -> float:
@@ -28,7 +29,7 @@ def fitness_function(input_value: float) -> float:
     return input_value**2 - 3 * input_value + 2
 
 
-def genetic_algorithm():
+def genetic_algorithm() -> Tuple[float, float]:
     """
     A simplified genetic algorithm example.
 
