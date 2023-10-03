@@ -1,5 +1,6 @@
 from typing import List
 
+
 class StockBuySell:
     def __init__(self, prices: List[int]):
         self.prices = prices
