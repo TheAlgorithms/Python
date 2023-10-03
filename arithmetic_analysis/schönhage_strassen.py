@@ -1,105 +1,156 @@
-import cmath
+import math
 
-def fast_fourier_transform(poly: list) -> list:
+def recursive_number_theoretic_transform(a: list, w: int, p: int) -> list:
     """
-    Compute the Fast Fourier Transform of a polynomial.
+    Recursive function for number-theoretic transform.
+    Reference: https://en.wikipedia.org/wiki/Sch%C3%B6nhage%E2%80%93Strassen_algorithm
     
     Args:
-    - poly: A list of complex coefficients representing the polynomial.
+    - a: List of integers representing polynomial coefficients.
+    - w: Primitive nth root of unity modulo p.
+    - p: Prime modulus.
     
     Returns:
-    - A list of complex numbers representing the point-value form of the polynomial.
-    
-    >>> abs(fast_fourier_transform([1, 2, 3, 4])[3] + 2 + 2j) < 1e-10
-    True
+    - List of integers representing polynomial in point-value form.
     """
-    n = len(poly)
-    if n <= 1:
-        return poly
-    even_terms = fast_fourier_transform(poly[0::2])
-    odd_terms = fast_fourier_transform(poly[1::2])
-    combined = [0] * n
+    n = len(a)
+    if n == 1:
+        return a
+    a0 = a[::2]
+    a1 = a[1::2]
+    f0 = recursive_number_theoretic_transform(a0, w**2 % p, p)
+    f1 = recursive_number_theoretic_transform(a1, w**2 % p, p)
+    x = 1
+    f = [0] * n
     for i in range(n // 2):
-        t = cmath.exp(-2j * cmath.pi * i / n) * odd_terms[i]
-        combined[i] = even_terms[i] + t
-        combined[i + n//2] = even_terms[i] - t
-    return combined
+        f[i] = (f0[i] + x * f1[i]) % p
+        f[i + n // 2] = (f0[i] - x * f1[i]) % p
+        x = x * w % p
+    return f
 
-def inverse_fast_fourier_transform(poly: list) -> list:
+def number_theoretic_transform(a: list, p: int, g: int) -> list:
     """
-    Compute the Inverse Fast Fourier Transform of a polynomial.
+    Compute the number-theoretic transform of a polynomial.
+    Reference: https://en.wikipedia.org/wiki/Sch%C3%B6nhage%E2%80%93Strassen_algorithm
     
     Args:
-    - poly: A list of complex coefficients representing the polynomial in point-value form.
+    - a: List of integers representing polynomial coefficients.
+    - p: Prime modulus.
+    - g: Primitive root of p.
     
     Returns:
-    - A list of complex numbers representing the coefficient form of the polynomial.
-    
-    >>> abs(inverse_fast_fourier_transform([(10+0j), (-2+2j), (-2+0j), (-2-2j)])[1] - 2) < 1e-10
-    True
+    - List of integers representing polynomial in point-value form.
     """
-    n = len(poly)
-    poly = fast_fourier_transform([x.conjugate() for x in poly])
-    return [x.conjugate()/n for x in poly]
+    n = len(a)
+    assert (p - 1) % n == 0
+    w = pow(g, (p - 1) // n, p)
+    return recursive_number_theoretic_transform(a, w, p)
 
-def multiply_using_fft(poly1: list, poly2: list) -> list:
+def recursive_inverse_ntt(f: list, w: int, p: int) -> list:
     """
-    Multiply two polynomials using FFT.
+    Recursive function for inverse number-theoretic transform.
+    Reference: https://en.wikipedia.org/wiki/Sch%C3%B6nhage%E2%80%93Strassen_algorithm
     
     Args:
-    - poly1: First polynomial represented as a list of complex coefficients.
-    - poly2: Second polynomial represented as a list of complex coefficients.
+    - f: List of integers representing polynomial in point-value form.
+    - w: Primitive nth root of unity modulo p.
+    - p: Prime modulus.
     
     Returns:
-    - A list of complex coefficients representing the product polynomial.
+    - List of integers representing polynomial coefficients.
     """
-    n = len(poly1) + len(poly2) - 1
-    m = 1
-    while m < n:
-        m *= 2
-    poly1 += [0] * (m - len(poly1))
-    poly2 += [0] * (m - len(poly2))
+    n = len(f)
+    if n == 1:
+        return f
+    f0 = f[::2]
+    f1 = f[1::2]
+    a0 = recursive_inverse_ntt(f0, w**2 % p, p)
+    a1 = recursive_inverse_ntt(f1, w**2 % p, p)
+    x = 1
+    a = [0] * n
+    for i in range(n // 2):
+        a[i] = (a0[i] + x * a1[i]) % p
+        a[i + n // 2] = (a0[i] - x * a1[i]) % p
+        x = x * w % p
+    return a
 
-    transformed_poly1 = fast_fourier_transform(poly1)
-    transformed_poly2 = fast_fourier_transform(poly2)
-    return [a*b for a, b in zip(transformed_poly1, transformed_poly2)]
-
-def perform_carry_propagation(values: list) -> list:
+def inverse_number_theoretic_transform(f: list, p: int, g: int) -> list:
     """
-    Convert the complex values obtained after inverse FFT into integers by rounding and carry propagation.
+    Compute the inverse number-theoretic transform of a polynomial.
+    Reference: https://en.wikipedia.org/wiki/Sch%C3%B6nhage%E2%80%93Strassen_algorithm
     
     Args:
-    - values: List of complex numbers.
+    - f: List of integers representing polynomial in point-value form.
+    - p: Prime modulus.
+    - g: Primitive root of p.
     
     Returns:
-    - List of integers after performing carry propagation.
+    - List of integers representing polynomial coefficients.
     """
-    result = []
+    n = len(f)
+    assert (p - 1) % n == 0
+    w = pow(g, (p - 1) // n, p)
+    w_inv = pow(w, p - 2, p)
+    return [x * pow(n, p - 2, p) % p for x in recursive_inverse_ntt(f, w_inv, p)]
+
+def multiply_polynomials(a: list, b: list, p: int, g: int) -> list:
+    """
+    Multiply two polynomials using the number-theoretic transform.
+    Reference: https://en.wikipedia.org/wiki/Sch%C3%B6nhage%E2%80%93Strassen_algorithm
+    
+    Args:
+    - a: List of integers representing the first polynomial's coefficients.
+    - b: List of integers representing the second polynomial's coefficients.
+    - p: Prime modulus.
+    - g: Primitive root of p.
+    
+    Returns:
+    - List of integers representing the coefficients of the product polynomial.
+    """
+    n = 1
+    while n < len(a) + len(b) - 1:
+        n *= 2
+    a += [0] * (n - len(a))
+    b += [0] * (n - len(b))
+    
+    fa = number_theoretic_transform(a, p, g)
+    fb = number_theoretic_transform(b, p, g)
+    
+    fc = [x * y % p for x, y in zip(fa, fb)]
+    
+    c = inverse_number_theoretic_transform(fc, p, g)
+    
+    # Remove trailing zeros
+    while len(c) > 0 and c[-1] == 0:
+        c.pop()
+    return c
+
+def multiply_numbers(x: int, y: int, p: int, g: int) -> int:
+    """
+    Multiply two numbers using polynomial multiplication based on the number-theoretic transform.
+    Reference: https://en.wikipedia.org/wiki/Sch%C3%B6nhage%E2%80%93Strassen_algorithm
+    
+    Args:
+    - x: First integer number.
+    - y: Second integer number.
+    - p: Prime modulus.
+    - g: Primitive root of p.
+    
+    Returns:
+    - The product of the two numbers.
+    """
+    a = [int(digit) for digit in str(x)][::-1]  # Reverse the digits to match polynomial representation
+    b = [int(digit) for digit in str(y)][::-1]  # Reverse the digits to match polynomial representation
+    c = multiply_polynomials(a, b, p, g)
     carry = 0
-    for val in values:
-        current_value = int(val.real + 0.5) + carry
-        result.append(current_value % 10)
-        carry = current_value // 10
+    for i in range(len(c)):
+        c[i] += carry
+        carry = c[i] // 10
+        c[i] %= 10
     while carry:
-        result.append(carry % 10)
+        c.append(carry % 10)
         carry //= 10
-    return result[::-1]
+    return int(''.join(map(str, c[::-1])))
 
-def fast_multiply_numbers(num1: int, num2: int) -> int:
-    """
-    Multiply two integers using FFT-based polynomial multiplication.
-    
-    Args:
-    - num1: First integer.
-    - num2: Second integer.
-    
-    Returns:
-    - The product of the two integers.
-    
-    >>> fast_multiply_numbers(12345, 6789)
-    83810205
-    """
-    poly1 = [int(digit) for digit in str(num1)][::-1]
-    poly2 = [int(digit) for digit in str(num2)][::-1]
-    product_poly = inverse_fast_fourier_transform(multiply_using_fft(poly1, poly2))
-    return int(''.join(map(str, perform_carry_propagation(product_poly))))
+# Test the multiplication of two numbers
+multiply_numbers(12345, 6789, p, g)
