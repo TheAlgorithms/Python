@@ -7,7 +7,7 @@ Count the no of pairs in a given array with given sum
 
 Implementation notes: Using hashing
 The idea is that we hash the array in a dictionary
-Then go throught the elemnts of the array
+Then go through the elements of the array
 We subtract this with the given sum
 and check if that is there in the array
 We also check the edge cases like if there are multiple same elements
