@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 class TreeNode:
     """
     A binary tree node has a value, left child, and right child.
@@ -10,7 +11,12 @@ class TreeNode:
         right: The right child of the node.
     """
 
-    def __init__(self, val: int = 0, left:TreeNode = None, right:TreeNode = None) -> None:
+    def __init__(
+        self,
+        val: int = 0,
+        left: TreeNode | None = None,
+        right: TreeNode | None = None,
+    ) -> None:
         if not isinstance(val, int):
             raise TypeError("Value must be an integer.")
         self.val = val
@@ -19,7 +25,7 @@ class TreeNode:
 
 
 # Helper functions
-def are_trees_identical(root1: TreeNode, root2: TreeNode) -> bool:
+def are_trees_identical(root1: TreeNode | None, root2: TreeNode | None) -> bool:
     """
     Check if two binary trees are identical.
 
@@ -61,7 +67,7 @@ def are_trees_identical(root1: TreeNode, root2: TreeNode) -> bool:
 
 
 # Main functions
-def serialize(root: TreeNode) -> str:
+def serialize(root: TreeNode | None) -> str:
     """
     Serialize a binary tree to a string using preorder traversal.
 
@@ -90,7 +96,7 @@ def serialize(root: TreeNode) -> str:
     return str(root.val) + "," + serialize(root.left) + "," + serialize(root.right)
 
 
-def deserialize(data: str) -> TreeNode:
+def deserialize(data: str) -> TreeNode | None:
     """
     Deserialize a string to a binary tree.
 
@@ -115,12 +121,19 @@ def deserialize(data: str) -> TreeNode:
     >>> deserialized = deserialize(dummy_data)
     >>> are_trees_identical(root, deserialized)
     False
+    >>> deserialize("")
+    Traceback (most recent call last):
+        ...
+    ValueError: Data cannot be empty.
     """
+
+    if data == "":
+        raise ValueError("Data cannot be empty.")
 
     # Split the serialized string by comma to get node values
     nodes = data.split(",")
 
-    def build_tree() -> TreeNode:
+    def build_tree() -> TreeNode | None:
         # Get the next value from the list
         val = nodes.pop(0)
 
