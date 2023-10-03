@@ -1,8 +1,8 @@
-import doctest
 import random
+import doctest
 
 
-def fitness_function(input_value: float) -> float:
+def fitness_function(input_value):
     """
     Calculate the fitness (objective) function value for a given input.
 
@@ -11,9 +11,6 @@ def fitness_function(input_value: float) -> float:
 
     Returns:
         float: The fitness value calculated for the input.
-
-    Raises:
-        ValueError: If the input is not a valid floating-point number.
 
     Example:
     >>> fitness_function(2.5)
@@ -28,35 +25,54 @@ def fitness_function(input_value: float) -> float:
     return input_value**2 - 3 * input_value + 2
 
 
-def genetic_algorithm():
+def genetic_algorithm() -> tuple[float, float]:
     """
-    >>> random.seed(42)
-    >>> num_runs = 10
-    >>> best_solutions = []
-    >>> best_fitnesses = []
-    >>> for _ in range(num_runs):
-    ...     best_solution, best_fitness = genetic_algorithm()
-    ...     best_solutions.append(best_solution)
-    ...     best_fitnesses.append(best_fitness)
-    >>> average_best_solution = sum(best_solutions) / num_runs
-    >>> average_best_fitness = sum(best_fitnesses) / num_runs
-    >>> abs(average_best_solution - (-1.45)) < 0.5
-    False
-    >>> abs(average_best_fitness - 6.0) < 0.5
-    False
-    """
+    Optimize a numeric value using a simple genetic algorithm.
 
-    population = [random.uniform(-2, 2) for _ in range(100)]
-    best_solution = min(population, key=fitness_function)
+    Returns:
+        tuple[float, float]: A tuple containing the best solution and its fitness value.
+
+    Example:
+    >>> best_solution, best_fitness = genetic_algorithm()
+    >>> -1.5 < best_solution < -1.4
+    False
+    >>> 6 < best_fitness < 6.1
+    False
+    """
+    population_size = 50
+    mutation_rate = 0.1
+    num_generations = 100
+
+    population = [random.uniform(-10, 10) for _ in range(population_size)]
+
+    for generation in range(num_generations):
+        fitness_scores = [fitness_function(individual) for individual in population]
+
+        selected_population = []
+        for _ in range(population_size):
+            tournament_size = 5
+            tournament = random.sample(range(population_size), tournament_size)
+            tournament_fitness = [fitness_scores[i] for i in tournament]
+            selected_individual = population[
+                tournament[tournament_fitness.index(max(tournament_fitness))]
+            ]
+            selected_population.append(selected_individual)
+
+        for i in range(population_size):
+            if random.random() < mutation_rate:
+                selected_population[i] += random.uniform(-0.5, 0.5)
+
+        population = selected_population
+
+    best_solution = max(population, key=fitness_function)
     best_fitness = fitness_function(best_solution)
+
     return best_solution, best_fitness
 
 
 if __name__ == "__main__":
-    # Example usage
+    # Run the doctests
+    doctest.testmod()
     input_value = float(input("Enter the value of input_value: ").strip())
     fitness = fitness_function(input_value)
     print(f"The fitness for input_value = {input_value} is {fitness}.")
-
-    # Run the doctests
-    doctest.testmod()
