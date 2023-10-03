@@ -1,8 +1,10 @@
+from typing import List
+
 class StockBuySell:
-    def __init__(self, prices):
+    def __init__(self, prices: List[int]):
         self.prices = prices
 
-    def max_profit_type1(self):
+    def max_profit_type1(self) -> int:
         if not self.prices:
             return 0
 
@@ -17,7 +19,7 @@ class StockBuySell:
 
         return max_profit
 
-    def max_profit_type2(self):
+    def max_profit_type2(self) -> int:
         if not self.prices:
             return 0
 
@@ -40,6 +42,3 @@ print("Maximum profit (Type 1):", max_profit_type1)
 trader_type2 = StockBuySell(prices_type)
 max_profit_type2 = trader_type2.max_profit_type2()
 print("Maximum profit (Type 2):", max_profit_type2)
-
-
-
