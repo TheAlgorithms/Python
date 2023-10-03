@@ -16,12 +16,17 @@ api_key = "key_CAMF5HI5t4ZzkmgGkioI1tius"
 def test_ip(ip: str) -> Any:
     """
     This function tests if an IP is blacklisted on different lists.
-    It returns a tuple with the IP and a list of the blacklists where it was detected.
+    It returns a tuple with the IP and a list of the\
+    blacklists where it was detected.
     >>> test_ip('8.8.8.8')
-    {'statusCode': 401, 'error': 'Too Many Requests', 'message': 'You do not have enough credits on your account. Please upgrade to make another request.'}
+    {'statusCode': 401, 'error': 'Too Many Requests',\
+    'message': 'You do not have enough credits on your\
+    account. Please upgrade to make another request.'}
     ('limit exceeded!', [])
     >>> test_ip('127.0.0.1')
-    {'statusCode': 401, 'error': 'Too Many Requests', 'message': 'You do not have enough credits on your account. Please upgrade to make another request.'}
+    {'statusCode': 401, 'error': 'Too Many Requests',\
+    'message': 'You do not have enough credits on your\
+    account. Please upgrade to make another request.'}
     ('limit exceeded!', [])
     >>> test_ip('256.256.256.256')
     None
