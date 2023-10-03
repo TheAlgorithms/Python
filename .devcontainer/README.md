@@ -26,7 +26,7 @@ Running VS Code inside a Docker container can be useful for many reasons, but in
    4. Once Docker is running, you can confirm that everything is working by opening a new terminal window and typing the           command
      > docker --version
 
-### Installation 
+### Installation
 
 Go onto the Extenion section in VS Code and Search for Dev Containers extension and Click on INTSALL!
 
