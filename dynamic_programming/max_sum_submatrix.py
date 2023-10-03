@@ -11,6 +11,8 @@ is [[4, -1, 2],
 Kadane's algorithm is a simple dynamic programming algorithm that solves the maximum
 subarray sum problem in O(n) time and O(1) space. We modify this algorithm to solve the maximum
 submatrix sum problem in O(nm^2) time and O(n) space.
+
+Reference: https://www.geeksforgeeks.org/maximum-sum-submatrix/
 """
 
 from collections.abc import Sequence
