@@ -1,6 +1,7 @@
 import hashlib
 import doctest
 
+
 def merkle_root(transactions):
     """
     Calculate the Merkle Root Hash for a list of transactions using the Merkle Tree algorithm.
@@ -30,15 +31,18 @@ def merkle_root(transactions):
         # Combine pairs of transactions and hash them together
         for i in range(0, len(current_level), 2):
             if i + 1 < len(current_level):
-                combined_hash = hashlib.sha256(current_level[i] + current_level[i + 1]).digest()
+                combined_hash = hashlib.sha256(
+                    current_level[i] + current_level[i + 1]
+                ).digest()
             else:
                 combined_hash = hashlib.sha256(current_level[i]).digest()
-            
+
             next_level.append(combined_hash)
 
         current_level = next_level
 
     return current_level[0]
+
 
 if __name__ == "__main__":
     doctest.testmod()
