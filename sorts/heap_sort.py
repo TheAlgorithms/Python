@@ -32,22 +32,23 @@ def heap_sort(unsorted):
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered by ascending
-
     Examples:
     >>> heap_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
-
     >>> heap_sort([])
     []
-
     >>> heap_sort([-2, -5, -45])
     [-45, -5, -2]
     """
     n = len(unsorted)
+    # Build a max-heap
     for i in range(n // 2 - 1, -1, -1):
         heapify(unsorted, i, n)
+    # Extract elements one by one
     for i in range(n - 1, 0, -1):
+        # Swap the root (largest element) with the last element
         unsorted[0], unsorted[i] = unsorted[i], unsorted[0]
+        # Heapify the reduced heap
         heapify(unsorted, 0, i)
     return unsorted
 
