@@ -7,26 +7,25 @@ def evaluate_postfix(expression):
         if char.isnumeric():
             # If the token is a numeric operand, push it onto the stack
             stack.append(int(char))
-        elif char in "+-*/^":
+        elif char in '+-*/^':
             # If the token is an operator
             operand2 = stack.pop()
             operand1 = stack.pop()
-            if char == "+":
+            if char == '+':
                 result = operand1 + operand2
-            elif char == "-":
+            elif char == '-':
                 result = operand1 - operand2
-            elif char == "*":
+            elif char == '*':
                 result = operand1 * operand2
-            elif char == "/":
+            elif char == '/':
                 result = operand1 / operand2
-            elif char == "^":
-                result = operand1**operand2
+            elif char == '^':
+                result = operand1 ** operand2
             # Push the result back onto the stack
             stack.append(result)
 
     # The final result should be the only element left in the stack
     return stack[0]
-
 
 postfix_expression = "3 4 2 1 - * +"
 result = evaluate_postfix(postfix_expression)
