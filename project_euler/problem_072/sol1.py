@@ -21,6 +21,8 @@ Sum of phi(d), for all d|n = n. This result can be used to find phi(n) using a s
 Time: 1 sec
 """
 
+import numpy as np
+
 
 def solution(limit: int = 1_000_000) -> int:
     """
@@ -33,14 +35,15 @@ def solution(limit: int = 1_000_000) -> int:
     304191
     """
 
-    phi = [i - 1 for i in range(limit + 1)]
+    # generating an array from -1 to limit
+    phi = np.arange(-1, limit)
 
     for i in range(2, limit + 1):
         if phi[i] == i - 1:
-            for j in range(2 * i, limit + 1, i):
-                phi[j] -= phi[j] // i
+            ind = np.arange(2 * i, limit + 1, i)  # indexes for selection
+            phi[ind] -= phi[ind] // i
 
-    return sum(phi[2 : limit + 1])
+    return np.sum(phi[2 : limit + 1])
 
 
 if __name__ == "__main__":

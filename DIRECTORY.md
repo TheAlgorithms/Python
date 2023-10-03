@@ -26,7 +26,6 @@
   * [Hamiltonian Cycle](backtracking/hamiltonian_cycle.py)
   * [Knight Tour](backtracking/knight_tour.py)
   * [Minimax](backtracking/minimax.py)
-  * [Minmax](backtracking/minmax.py)
   * [N Queens](backtracking/n_queens.py)
   * [N Queens Math](backtracking/n_queens_math.py)
   * [Power Sum](backtracking/power_sum.py)
@@ -51,6 +50,7 @@
   * [Index Of Rightmost Set Bit](bit_manipulation/index_of_rightmost_set_bit.py)
   * [Is Even](bit_manipulation/is_even.py)
   * [Is Power Of Two](bit_manipulation/is_power_of_two.py)
+  * [Missing Number](bit_manipulation/missing_number.py)
   * [Numbers Different Signs](bit_manipulation/numbers_different_signs.py)
   * [Reverse Bits](bit_manipulation/reverse_bits.py)
   * [Single Bit Manipulation Operations](bit_manipulation/single_bit_manipulation_operations.py)
@@ -132,7 +132,6 @@
   * [Run Length Encoding](compression/run_length_encoding.py)
 
 ## Computer Vision
-  * [Cnn Classification](computer_vision/cnn_classification.py)
   * [Flip Augmentation](computer_vision/flip_augmentation.py)
   * [Haralick Descriptors](computer_vision/haralick_descriptors.py)
   * [Harris Corner](computer_vision/harris_corner.py)
@@ -232,6 +231,8 @@
     * [Merge Two Lists](data_structures/linked_list/merge_two_lists.py)
     * [Middle Element Of Linked List](data_structures/linked_list/middle_element_of_linked_list.py)
     * [Print Reverse](data_structures/linked_list/print_reverse.py)
+    * [Reverse K Group](data_structures/linked_list/reverse_k_group.py)
+    * [Rotate To The Right](data_structures/linked_list/rotate_to_the_right.py)
     * [Singly Linked List](data_structures/linked_list/singly_linked_list.py)
     * [Skip List](data_structures/linked_list/skip_list.py)
     * [Swap Nodes](data_structures/linked_list/swap_nodes.py)
@@ -318,7 +319,6 @@
   * [Floyd Warshall](dynamic_programming/floyd_warshall.py)
   * [Integer Partition](dynamic_programming/integer_partition.py)
   * [Iterating Through Submasks](dynamic_programming/iterating_through_submasks.py)
-  * [K Means Clustering Tensorflow](dynamic_programming/k_means_clustering_tensorflow.py)
   * [Knapsack](dynamic_programming/knapsack.py)
   * [Longest Common Subsequence](dynamic_programming/longest_common_subsequence.py)
   * [Longest Common Substring](dynamic_programming/longest_common_substring.py)
@@ -341,6 +341,7 @@
   * [Palindrome Partitioning](dynamic_programming/palindrome_partitioning.py)
   * [Regex Match](dynamic_programming/regex_match.py)
   * [Rod Cutting](dynamic_programming/rod_cutting.py)
+  * [Smith Waterman](dynamic_programming/smith_waterman.py)
   * [Subset Generation](dynamic_programming/subset_generation.py)
   * [Sum Of Subset](dynamic_programming/sum_of_subset.py)
   * [Tribonacci](dynamic_programming/tribonacci.py)
@@ -379,9 +380,6 @@
   * [Koch Snowflake](fractals/koch_snowflake.py)
   * [Mandelbrot](fractals/mandelbrot.py)
   * [Sierpinski Triangle](fractals/sierpinski_triangle.py)
-
-## Fuzzy Logic
-  * [Fuzzy Operations](fuzzy_logic/fuzzy_operations.py)
 
 ## Genetic Algorithm
   * [Basic String](genetic_algorithm/basic_string.py)
@@ -513,8 +511,6 @@
   * Local Weighted Learning
     * [Local Weighted Learning](machine_learning/local_weighted_learning/local_weighted_learning.py)
   * [Logistic Regression](machine_learning/logistic_regression.py)
-  * Lstm
-    * [Lstm Prediction](machine_learning/lstm/lstm_prediction.py)
   * [Mfcc](machine_learning/mfcc.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
   * [Polynomial Regression](machine_learning/polynomial_regression.py)
@@ -529,7 +525,6 @@
 
 ## Maths
   * [Abs](maths/abs.py)
-  * [Add](maths/add.py)
   * [Addition Without Arithmetic](maths/addition_without_arithmetic.py)
   * [Aliquot Sum](maths/aliquot_sum.py)
   * [Allocation Number](maths/allocation_number.py)
@@ -567,7 +562,6 @@
   * [Dual Number Automatic Differentiation](maths/dual_number_automatic_differentiation.py)
   * [Entropy](maths/entropy.py)
   * [Euclidean Distance](maths/euclidean_distance.py)
-  * [Euclidean Gcd](maths/euclidean_gcd.py)
   * [Euler Method](maths/euler_method.py)
   * [Euler Modified](maths/euler_modified.py)
   * [Eulers Totient](maths/eulers_totient.py)
@@ -611,7 +605,6 @@
   * [Matrix Exponentiation](maths/matrix_exponentiation.py)
   * [Max Sum Sliding Window](maths/max_sum_sliding_window.py)
   * [Median Of Two Arrays](maths/median_of_two_arrays.py)
-  * [Miller Rabin](maths/miller_rabin.py)
   * [Mobius Function](maths/mobius_function.py)
   * [Modular Exponential](maths/modular_exponential.py)
   * [Monte Carlo](maths/monte_carlo.py)
@@ -677,6 +670,7 @@
   * [Sylvester Sequence](maths/sylvester_sequence.py)
   * [Tanh](maths/tanh.py)
   * [Test Prime Check](maths/test_prime_check.py)
+  * [Three Sum](maths/three_sum.py)
   * [Trapezoidal Rule](maths/trapezoidal_rule.py)
   * [Triplet Sum](maths/triplet_sum.py)
   * [Twin Prime](maths/twin_prime.py)
@@ -747,6 +741,7 @@
   * [Scoring Algorithm](other/scoring_algorithm.py)
   * [Sdes](other/sdes.py)
   * [Tower Of Hanoi](other/tower_of_hanoi.py)
+  * [Word Search](other/word_search.py)
 
 ## Physics
   * [Altitude Pressure](physics/altitude_pressure.py)
@@ -1067,17 +1062,7 @@
     * [Sol1](project_euler/problem_800/sol1.py)
 
 ## Quantum
-  * [Bb84](quantum/bb84.py)
-  * [Deutsch Jozsa](quantum/deutsch_jozsa.py)
-  * [Half Adder](quantum/half_adder.py)
-  * [Not Gate](quantum/not_gate.py)
   * [Q Fourier Transform](quantum/q_fourier_transform.py)
-  * [Q Full Adder](quantum/q_full_adder.py)
-  * [Quantum Entanglement](quantum/quantum_entanglement.py)
-  * [Quantum Teleportation](quantum/quantum_teleportation.py)
-  * [Ripple Adder Classic](quantum/ripple_adder_classic.py)
-  * [Single Qubit Measure](quantum/single_qubit_measure.py)
-  * [Superdense Coding](quantum/superdense_coding.py)
 
 ## Scheduling
   * [First Come First Served](scheduling/first_come_first_served.py)
@@ -1140,8 +1125,6 @@
   * [Quick Sort](sorts/quick_sort.py)
   * [Quick Sort 3 Partition](sorts/quick_sort_3_partition.py)
   * [Radix Sort](sorts/radix_sort.py)
-  * [Random Normal Distribution Quicksort](sorts/random_normal_distribution_quicksort.py)
-  * [Random Pivot Quick Sort](sorts/random_pivot_quick_sort.py)
   * [Recursive Bubble Sort](sorts/recursive_bubble_sort.py)
   * [Recursive Insertion Sort](sorts/recursive_insertion_sort.py)
   * [Recursive Mergesort Array](sorts/recursive_mergesort_array.py)

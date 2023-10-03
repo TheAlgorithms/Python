@@ -1,4 +1,4 @@
-def binomial_coefficient(n, r):
+def binomial_coefficient(n: int, r: int) -> int:
     """
     Find binomial coefficient using pascals triangle.
 
