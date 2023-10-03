@@ -6,7 +6,7 @@ https://www.electronics-tutorials.ws/boolean/sum-of-product.html
 https://www.electronics-tutorials.ws/boolean/product-of-sum.html
 """
 
-from typing import list
+from __future__ import annotations
 
 
 def generate_sum_of_product(variables: list[str], min_terms: list[int]) -> str:
