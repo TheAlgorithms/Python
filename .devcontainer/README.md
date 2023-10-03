@@ -32,6 +32,6 @@ step -2: Search for "Remote - Containers" and install it.
 **Reopen in DevContainer**
 After installing the "Remote - Containers" extension, you should see a green icon in the bottom-left corner of Visual Studio Code. Click on it, and then select "Reopen in Container." This will use the configuration in .devcontainer/devcontainer.json to build and start your DevContainer.
 
-For any referneces follow the link below :-
+For any references follow the link below :-
 
 https://code.visualstudio.com/docs/devcontainers/tutorial
