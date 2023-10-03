@@ -1,10 +1,11 @@
 """
-Wiki: 
+Wiki:
 https://en.wikipedia.org/wiki/Canonical_normal_form
-Other resources: 
+Other resources:
 https://www.electronics-tutorials.ws/boolean/sum-of-product.html
 https://www.electronics-tutorials.ws/boolean/product-of-sum.html
 """
+
 
 def generate_sop(variables, min_terms):
     """
@@ -26,7 +27,6 @@ def generate_sop(variables, min_terms):
 
     """
     sop_terms = []
-    
 
     # Create a function to convert a minterm to a term
     def minterm_to_term(minterm):
@@ -37,8 +37,8 @@ def generate_sop(variables, min_terms):
             if (minterm >> i) & 1 == 0:
                 term.append(f"!{var}")  # Append negated variable if bit is 0
             else:
-                term.append(var)       # Append variable if bit is 1
-        return " & ".join(term)       # Combine variables with AND operator
+                term.append(var)  # Append variable if bit is 1
+        return " & ".join(term)  # Combine variables with AND operator
 
     for minterm in min_terms:
         term = minterm_to_term(minterm)
@@ -46,6 +46,7 @@ def generate_sop(variables, min_terms):
 
     sop_expression = " | ".join(sop_terms)  # Combine terms with OR operator
     return sop_expression
+
 
 def generate_pos(variables, max_terms):
     """
@@ -75,10 +76,10 @@ def generate_pos(variables, max_terms):
         for i, var in enumerate(variables):
             # Check if the i-th bit of the maxterm is 0
             if (maxterm >> i) & 1 == 0:
-                term.append(var)       # Append variable if bit is 0
+                term.append(var)  # Append variable if bit is 0
             else:
                 term.append(f"!{var}")  # Append negated variable if bit is 1
-        return " | ".join(term)       # Combine variables with OR operator
+        return " | ".join(term)  # Combine variables with OR operator
 
     for maxterm in max_terms:
         term = maxterm_to_term(maxterm)
@@ -86,6 +87,7 @@ def generate_pos(variables, max_terms):
 
     pos_expression = " & ".join(pos_terms)  # Combine terms with AND operator
     return pos_expression
+
 
 # Example usage:
 
