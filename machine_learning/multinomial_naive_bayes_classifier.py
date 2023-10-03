@@ -58,7 +58,12 @@ class MultinomialNBClassifier:
         self._check_X(X)
         if X.shape[0] != len(y):
             raise ValueError(
-                "The expected shape for array y is (" + str(X.shape[0]) + ",), but got (" + str(len(y)) + ",)")
+                "The expected shape for array y is ("
+                + str(X.shape[0])
+                + ",), but got ("
+                + str(len(y))
+                + ",)"
+            )
 
     def fit(self, X, y):
         """
@@ -81,10 +86,14 @@ class MultinomialNBClassifier:
             data_class_i = X[grouped_indices[class_i]]
             prior_class_i = data_class_i.shape[0] / n_examples
             self.priors[i] = prior_class_i
-            tot_features_count = data_class_i.sum()   # count of all features in class_i
-            features_count = np.array(data_class_i.sum(axis=0))[0]   # count of each feature x_j in class_i
+            tot_features_count = data_class_i.sum()  # count of all features in class_i
+            features_count = np.array(data_class_i.sum(axis=0))[
+                0
+            ]  # count of each feature x_j in class_i
             for j, n_j in enumerate(features_count):
-                self.features_probs[i][j] = (self.alpha + n_j) / (tot_features_count + self.alpha * n_features)
+                self.features_probs[i][j] = (self.alpha + n_j) / (
+                    tot_features_count + self.alpha * n_features
+                )
 
     def predict(self, X):
         """
@@ -117,19 +126,22 @@ class MultinomialNBClassifier:
         log_priors = np.log(self.priors)
         for instance in X:
             theta = instance.multiply(log_features_probs).sum(axis=1)
-            likelihood = [log_prior_class_i + theta[i] for i, log_prior_class_i in enumerate(log_priors)]
+            likelihood = [
+                log_prior_class_i + theta[i]
+                for i, log_prior_class_i in enumerate(log_priors)
+            ]
             y_pred.append(self.classes[np.argmax(likelihood)])
         return np.array(y_pred)
 
 
 def main():
-    newsgroups_train = fetch_20newsgroups(subset='train')
-    newsgroups_test = fetch_20newsgroups(subset='test')
-    X_train = newsgroups_train['data']
-    y_train = newsgroups_train['target']
-    X_test = newsgroups_test['data']
-    y_test = newsgroups_test['target']
-    vectorizer = TfidfVectorizer(stop_words='english')
+    newsgroups_train = fetch_20newsgroups(subset="train")
+    newsgroups_test = fetch_20newsgroups(subset="test")
+    X_train = newsgroups_train["data"]
+    y_train = newsgroups_train["target"]
+    X_test = newsgroups_test["data"]
+    y_test = newsgroups_test["target"]
+    vectorizer = TfidfVectorizer(stop_words="english")
     X_train = vectorizer.fit_transform(X_train)
     X_test = vectorizer.transform(X_test)
 
@@ -138,10 +150,12 @@ def main():
     model.fit(X_train, y_train)
 
     y_pred = model.predict(X_test)
-    print("Accuracy of naive bayes text classifier: " + str(accuracy_score(y_test, y_pred)))
+    print(
+        "Accuracy of naive bayes text classifier: "
+        + str(accuracy_score(y_test, y_pred))
+    )
 
 
 if __name__ == "__main__":
     main()
     doctest.testmod()
-
