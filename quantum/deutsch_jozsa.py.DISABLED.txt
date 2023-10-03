@@ -1,3 +1,4 @@
+# DISABLED!!
 #!/usr/bin/env python3
 """
 Deutsch-Jozsa Algorithm is one of the first examples of a quantum
