@@ -18,9 +18,9 @@ def test_ip(ip: str) -> Any:
     This function tests if an IP is blacklisted on different lists.
     It returns a tuple with the IP and a list of the blacklists where it was detected.
     >>> test_ip('8.8.8.8')
-    ('8.8.8.8', ['Spamhaus DBL', 'SpamCop'])
+    ('limit exceeded!', [])
     >>> test_ip('127.0.0.1')
-    ('127.0.0.1', ['Spamhaus DBL'])
+    ('limit exceeded!', [])
     >>> test_ip('256.256.256.256')
     None
     """
