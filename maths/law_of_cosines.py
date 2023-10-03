@@ -23,9 +23,13 @@ def law_of_cosines(a, b, angle_c):
     
     return c
 
-# Example usage:
-a = 5
-b = 7
-angle_C_degrees = 60
-c = law_of_cosines(a, b, angle_C_degrees)
-print(f"The length of side 'c' is {c:.2f}")
+if __name__ == "__main__":
+    # Input values from the user or other sources
+    a = float(input("Enter the length of side 'a': "))
+    b = float(input("Enter the length of side 'b': "))
+    angle_C_degrees = float(input("Enter the measure of angle 'C' in degrees: "))
+    
+    # Calculate the length of side 'c'
+    c = law_of_cosines(a, b, angle_C_degrees)
+    print(f"The length of side 'c' is {c:.2f}")
+
