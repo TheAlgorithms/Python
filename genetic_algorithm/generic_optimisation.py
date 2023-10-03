@@ -1,17 +1,21 @@
 import random
 
+
 # Define the fitness function (objective function)
 def fitness_function(x):
-    return x**2 + 3*x + 2
+    return x**2 + 3 * x + 2
+
 
 # Genetic Algorithm parameters
 population_size = 100
 mutation_rate = 0.01
 num_generations = 100
 
+
 # Initialize the population with random individuals
 def initialize_population(size):
     return [random.uniform(-10, 10) for _ in range(size)]
+
 
 # Select individuals for reproduction based on their fitness
 def select_parents(population):
@@ -20,11 +24,13 @@ def select_parents(population):
     probabilities = [score / total_fitness for score in fitness_scores]
     return random.choices(population, probabilities, k=2)
 
+
 # Create a new individual through crossover (blend two parents)
 def crossover(parent1, parent2):
     alpha = random.uniform(0, 1)
     child = alpha * parent1 + (1 - alpha) * parent2
     return child
+
 
 # Mutate an individual
 def mutate(individual):
@@ -32,6 +38,7 @@ def mutate(individual):
         return individual + random.uniform(-0.1, 0.1)
     else:
         return individual
+
 
 # Genetic Algorithm
 population = initialize_population(population_size)
