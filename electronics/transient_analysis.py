@@ -4,9 +4,9 @@
 which may be in the form of opening and closing of
 switches or sudden changes in sources etc. Whenever
 such a change occurs, the circuit which was in a particular
-steady state condition will go to another steady state condition. 
-Transient analysis is the analysis of the circuits during 
-the time it changes from one steady state condition to 
+steady state condition will go to another steady state condition.
+Transient analysis is the analysis of the circuits during
+the time it changes from one steady state condition to
 another steady state condition
 Source:
 https://webstor.srmist.edu.in/web_assets/srm_mainsite/files/2018/transient-analysis.pdf
@@ -19,7 +19,7 @@ def transient_resp_rl(
     resistance: float, inductance: float, voltage: float, current: float, time: float
 ) -> tuple:
     """
-    This function can calculate voltage and current 
+    This function can calculate voltage and current
     of a RL circuit in transient state for a given period
 
     Examples are given below:
@@ -39,9 +39,7 @@ def transient_resp_rl(
     elif inductance <= 0:
         raise ValueError("Inductance cannot be zero or negative")
     elif voltage == 0 and current == 0:
-        raise ValueError(
-            "Voltage and current both cannot be zero"
-        )
+        raise ValueError("Voltage and current both cannot be zero")
     else:
         time_const = inductance / resistance
         if current == 0:
@@ -62,7 +60,7 @@ def transient_resp_rc(
     resistance: float, capacitance: float, voltage: float, current: float, time: float
 ) -> tuple:
     """
-    This function can calculate voltage and current 
+    This function can calculate voltage and current
     of a RL circuit in transient state for a given period
 
     Examples are given below:
@@ -82,9 +80,7 @@ def transient_resp_rc(
     elif capacitance <= 0:
         raise ValueError("Capacitance cannot be zero or negative")
     elif voltage == 0 and current == 0:
-        raise ValueError(
-            "Voltage and current both cannot be zero"
-        )
+        raise ValueError("Voltage and current both cannot be zero")
     else:
         time_const = resistance * capacitance
         if current == 0:
