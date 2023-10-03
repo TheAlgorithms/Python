@@ -43,6 +43,7 @@
   * [Binary Twos Complement](bit_manipulation/binary_twos_complement.py)
   * [Binary Xor Operator](bit_manipulation/binary_xor_operator.py)
   * [Bitwise Addition Recursive](bit_manipulation/bitwise_addition_recursive.py)
+  * [Convert To Base -2](bit_manipulation/convert_to_base_-2.py)
   * [Count 1S Brian Kernighan Method](bit_manipulation/count_1s_brian_kernighan_method.py)
   * [Count Number Of One Bits](bit_manipulation/count_number_of_one_bits.py)
   * [Gray Code Sequence](bit_manipulation/gray_code_sequence.py)
