@@ -1,8 +1,15 @@
 # https://webstor.srmist.edu.in/web_assets/srm_mainsite/files/2018/transient-analysis.pdf
 
-"""Electric circuits will be subjected to sudden changes which may be in the form of opening and closing of
-switches or sudden changes in sources etc. Whenever such a change occurs, the circuit which was in a particular steady state condition will go to another steady state condition. Transient analysis is the analysis of the circuits during the time it changes from one steady state condition to another steady state condition
-Source : https://webstor.srmist.edu.in/web_assets/srm_mainsite/files/2018/transient-analysis.pdf
+"""Electric circuits will be subjected to sudden changes
+which may be in the form of opening and closing of
+switches or sudden changes in sources etc. Whenever
+such a change occurs, the circuit which was in a particular
+steady state condition will go to another steady state condition. 
+Transient analysis is the analysis of the circuits during 
+the time it changes from one steady state condition to 
+another steady state condition
+Source:
+https://webstor.srmist.edu.in/web_assets/srm_mainsite/files/2018/transient-analysis.pdf
 """
 
 from math import e, pow
@@ -12,7 +19,8 @@ def transient_resp_rl(
     resistance: float, inductance: float, voltage: float, current: float, time: float
 ) -> tuple:
     """
-    This function can calculate voltage and current of a RL circuit in transient state for a given period
+    This function can calculate voltage and current 
+    of a RL circuit in transient state for a given period
 
     Examples are given below:
     >>> transient_resp_rl(150,400*10**-6,9,0,2*10**-6)
@@ -24,7 +32,7 @@ def transient_resp_rl(
     >>> transient_resp_rl(150,400*10**-6,0,0,2*10**-6)
     Traceback (most recent call last):
      ...
-    ValueError: Voltage and current both cannot be zero please give anyone parameter to calculate
+    ValueError: Voltage and current both cannot be zero
     """
     if resistance <= 0:
         raise ValueError("Resistance cannot be zero or negative")
@@ -32,7 +40,7 @@ def transient_resp_rl(
         raise ValueError("Inductance cannot be zero or negative")
     elif voltage == 0 and current == 0:
         raise ValueError(
-            "Voltage and current both cannot be zero please give anyone parameter to calculate"
+            "Voltage and current both cannot be zero"
         )
     else:
         time_const = inductance / resistance
@@ -54,7 +62,8 @@ def transient_resp_rc(
     resistance: float, capacitance: float, voltage: float, current: float, time: float
 ) -> tuple:
     """
-    This function can calculate voltage and current of a RL circuit in transient state for a given period
+    This function can calculate voltage and current 
+    of a RL circuit in transient state for a given period
 
     Examples are given below:
     >>> transient_resp_rc(50000,2*10**-6,100,0,50*10**-3)
@@ -66,7 +75,7 @@ def transient_resp_rc(
     >>> transient_resp_rc(50000,2*10**-6,0,0,50*10**-3)
     Traceback (most recent call last):
      ...
-    ValueError: Voltage and current both cannot be zero please give anyone parameter to calculate
+    ValueError: Voltage and current both cannot be zero
     """
     if resistance <= 0:
         raise ValueError("Resistance cannot be zero or negative")
@@ -74,7 +83,7 @@ def transient_resp_rc(
         raise ValueError("Capacitance cannot be zero or negative")
     elif voltage == 0 and current == 0:
         raise ValueError(
-            "Voltage and current both cannot be zero please give anyone parameter to calculate"
+            "Voltage and current both cannot be zero"
         )
     else:
         time_const = resistance * capacitance
