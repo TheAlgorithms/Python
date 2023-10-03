@@ -1,3 +1,6 @@
+#url: https://en.wikipedia.org/wiki/Law_of_cosines
+
+
 import math
 
 def law_of_cosines(a, b, angle_c):
