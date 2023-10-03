@@ -8,7 +8,6 @@ class Node:
     def __init__(self, data: Any):
         """
         Initialize a new Node with the given data.
-
         Args:
             data (Any): The data to be stored in the node.
         """
@@ -27,7 +26,6 @@ class CircularLinkedList:
     def __iter__(self) -> Iterator[Any]:
         """
         Iterator method to allow iterating through the Circular Linked List.
-
         Yields:
             Iterator[Any]: The data of each node in the list.
         """
@@ -41,7 +39,6 @@ class CircularLinkedList:
     def __len__(self) -> int:
         """
         Get the length (number of nodes) in the Circular Linked List.
-
         Returns:
             int: The number of nodes in the list.
         """
@@ -50,7 +47,6 @@ class CircularLinkedList:
     def __repr__(self):
         """
         Generate a string representation of the Circular Linked List.
-
         Returns:
             str: A string representation of the list in the format "data1->data2->...->dataN".
         """
@@ -59,7 +55,6 @@ class CircularLinkedList:
     def insert_tail(self, data: Any) -> None:
         """
         Insert a node with the given data at the end of the Circular Linked List.
-
         Args:
             data (Any): The data to be inserted.
         """
@@ -68,7 +63,6 @@ class CircularLinkedList:
     def insert_head(self, data: Any) -> None:
         """
         Insert a node with the given data at the beginning of the Circular Linked List.
-
         Args:
             data (Any): The data to be inserted.
         """
@@ -77,7 +71,6 @@ class CircularLinkedList:
     def insert_nth(self, index: int, data: Any) -> None:
         """
         Insert a node with the given data at the specified index in the Circular Linked List.
-
         Args:
             index (int): The index at which to insert the data.
             data (Any): The data to be inserted.
@@ -106,10 +99,8 @@ class CircularLinkedList:
     def delete_front(self):
         """
         Delete and return the data of the node at the front of the Circular Linked List.
-
         Returns:
             Any: The data of the deleted node.
-
         Raises:
             IndexError: If the list is empty.
         """
@@ -118,10 +109,8 @@ class CircularLinkedList:
     def delete_tail(self) -> Any:
         """
         Delete and return the data of the node at the end of the Circular Linked List.
-
         Returns:
             Any: The data of the deleted node.
-
         Raises:
             IndexError: If the list is empty.
         """
@@ -130,13 +119,10 @@ class CircularLinkedList:
     def delete_nth(self, index: int = 0) -> Any:
         """
         Delete and return the data of the node at the specified index in the Circular Linked List.
-
         Args:
             index (int): The index of the node to be deleted. Defaults to 0.
-
         Returns:
             Any: The data of the deleted node.
-
         Raises:
             IndexError: If the index is out of range.
         """
@@ -161,7 +147,6 @@ class CircularLinkedList:
     def is_empty(self) -> bool:
         """
         Check if the Circular Linked List is empty.
-
         Returns:
             bool: True if the list is empty, False otherwise.
         """
@@ -171,7 +156,6 @@ class CircularLinkedList:
 def test_circular_linked_list() -> None:
     """
     Test cases for the CircularLinkedList class.
-
     >>> test_circular_linked_list()
     """
     circular_linked_list = CircularLinkedList()
