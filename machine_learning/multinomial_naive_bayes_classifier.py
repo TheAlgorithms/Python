@@ -1,8 +1,10 @@
 """
 Implementation from scratch of a Multinomial Naive Bayes Classifier.
-The algorithm is trained and tested on the twenty_newsgroup dataset from sklearn to perform text classification
+The algorithm is trained and tested on the twenty_newsgroup dataset
+from sklearn to perform text classification
 
-Here the Wikipedia page to understand the theory behind this kind of probabilistic models:
+Here the Wikipedia page to understand the theory behind this kind
+of probabilistic models:
 https://en.wikipedia.org/wiki/Naive_Bayes_classifier
 """
 
@@ -28,7 +30,8 @@ def group_indices_by_target(targets: ArrayLike) -> dict:
     Returns
     ----------
     grouped_indices : dict of (label : list)
-                      Maps each target label to the list of indices of the examples with that label
+                      Maps each target label to the list of indices of the
+                      examples with that label
 
     Example
     ----------
@@ -90,8 +93,8 @@ class MultinomialNBClassifier:
 
         Example
         ----------
-        Let's test the function following an example taken from the documentation of the MultinomialNB model
-        from sklearn
+        Let's test the function following an example taken from the documentation
+        of the MultinomialNB model from sklearn
         >>> rng = np.random.RandomState(1)
         >>> data = rng.randint(5, size=(6, 100))
         >>> data = sparse.csr_matrix(data)
