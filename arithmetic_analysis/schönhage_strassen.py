@@ -1,5 +1,6 @@
 import doctest
 
+
 def number_theoretic_transform(
     polynomial_coeffs: list[int], prime_modulus: int, primitive_root: int
 ) -> list[int]:
@@ -55,18 +56,28 @@ def recursive_ntt_transform(
         return polynomial_coeffs_recursive
     even_coeffs = polynomial_coeffs_recursive[::2]
     odd_coeffs = polynomial_coeffs_recursive[1::2]
-    even_transformed = recursive_ntt_transform(even_coeffs, root_of_unity**2 % prime_modulus, prime_modulus)
-    odd_transformed = recursive_ntt_transform(odd_coeffs, root_of_unity**2 % prime_modulus, prime_modulus)
+    even_transformed = recursive_ntt_transform(
+        even_coeffs, root_of_unity**2 % prime_modulus, prime_modulus
+    )
+    odd_transformed = recursive_ntt_transform(
+        odd_coeffs, root_of_unity**2 % prime_modulus, prime_modulus
+    )
     multiplier = 1
     transformed = [0] * n
     for i in range(n // 2):
-        transformed[i] = (even_transformed[i] + multiplier * odd_transformed[i]) % prime_modulus
-        transformed[i + n // 2] = (even_transformed[i] - multiplier * odd_transformed[i]) % prime_modulus
+        transformed[i] = (
+            even_transformed[i] + multiplier * odd_transformed[i]
+        ) % prime_modulus
+        transformed[i + n // 2] = (
+            even_transformed[i] - multiplier * odd_transformed[i]
+        ) % prime_modulus
         multiplier = multiplier * root_of_unity % prime_modulus
     return transformed
 
 
-def inverse_ntt(point_values: list[int], prime_modulus: int, primitive_root: int) -> list[int]:
+def inverse_ntt(
+    point_values: list[int], prime_modulus: int, primitive_root: int
+) -> list[int]:
     """
     Compute the inverse number-theoretic transform of a polynomial.
 
@@ -92,10 +103,15 @@ def inverse_ntt(point_values: list[int], prime_modulus: int, primitive_root: int
     assert (prime_modulus - 1) % n == 0
     omega = pow(primitive_root, (prime_modulus - 1) // n, prime_modulus)
     omega_inv = pow(omega, prime_modulus - 2, prime_modulus)
-    return [(coeff * pow(n, prime_modulus - 2, prime_modulus)) % prime_modulus for coeff in recursive_inverse_ntt(point_values, omega_inv, prime_modulus)]
+    return [
+        (coeff * pow(n, prime_modulus - 2, prime_modulus)) % prime_modulus
+        for coeff in recursive_inverse_ntt(point_values, omega_inv, prime_modulus)
+    ]
 
 
-def recursive_inverse_ntt(point_values_recursive: list[int], root_of_unity: int, prime_modulus: int) -> list[int]:
+def recursive_inverse_ntt(
+    point_values_recursive: list[int], root_of_unity: int, prime_modulus: int
+) -> list[int]:
     """
     Recursive function for inverse number-theoretic transform.
 
@@ -124,18 +140,27 @@ def recursive_inverse_ntt(point_values_recursive: list[int], root_of_unity: int,
         return point_values_recursive
     even_vals = point_values_recursive[::2]
     odd_vals = point_values_recursive[1::2]
-    even_coeffs = recursive_inverse_ntt(even_vals, root_of_unity**2 % prime_modulus, prime_modulus)
-    odd_coeffs = recursive_inverse_ntt(odd_vals, root_of_unity**2 % prime_modulus, prime_modulus)
+    even_coeffs = recursive_inverse_ntt(
+        even_vals, root_of_unity**2 % prime_modulus, prime_modulus
+    )
+    odd_coeffs = recursive_inverse_ntt(
+        odd_vals, root_of_unity**2 % prime_modulus, prime_modulus
+    )
     multiplier = 1
     coeffs = [0] * n
     for i in range(n // 2):
         coeffs[i] = (even_coeffs[i] + multiplier * odd_coeffs[i]) % prime_modulus
-        coeffs[i + n // 2] = (even_coeffs[i] - multiplier * odd_coeffs[i]) % prime_modulus
+        coeffs[i + n // 2] = (
+            even_coeffs[i] - multiplier * odd_coeffs[i]
+        ) % prime_modulus
         multiplier = multiplier * root_of_unity % prime_modulus
     return coeffs
 
+
 def convolve_polynomials(
-    polynomial_a_point_values: list[int], polynomial_b_point_values: list[int], prime_modulus: int
+    polynomial_a_point_values: list[int],
+    polynomial_b_point_values: list[int],
+    prime_modulus: int,
 ) -> list[int]:
     """
     Compute the convolution of two polynomials in point-value form.
@@ -156,10 +181,15 @@ def convolve_polynomials(
     >>> convolve_polynomials(transformed_a, transformed_b, 998244353)
     [4, 11, 20, 30, 20, 11, 4]
     """
-    return [(a * b) % prime_modulus for a, b in zip(polynomial_a_point_values, polynomial_b_point_values)]
+    return [
+        (a * b) % prime_modulus
+        for a, b in zip(polynomial_a_point_values, polynomial_b_point_values)
+    ]
 
 
-def multiply_numbers(number_a: int, number_b: int, prime_modulus: int, primitive_root: int) -> int:
+def multiply_numbers(
+    number_a: int, number_b: int, prime_modulus: int, primitive_root: int
+) -> int:
     """
     Multiply two numbers using the Schönhage-Strassen algorithm.
 
@@ -192,7 +222,8 @@ def multiply_numbers(number_a: int, number_b: int, prime_modulus: int, primitive
 
     # Perform pointwise multiplication
     result_point_values = [
-        ((a % prime_modulus) * (b % prime_modulus)) % prime_modulus for a, b in zip(point_values_a, point_values_b)
+        ((a % prime_modulus) * (b % prime_modulus)) % prime_modulus
+        for a, b in zip(point_values_a, point_values_b)
     ]
 
     # Compute the inverse NTT to obtain the result in coefficient form
@@ -204,9 +235,14 @@ def multiply_numbers(number_a: int, number_b: int, prime_modulus: int, primitive
         result = (result * 10 + coeff) % prime_modulus
 
     return result
-    
 
-def multiply_polynomials(polynomial_a: list[int], polynomial_b: list[int], prime_modulus: int, primitive_root: int) -> list[int]:
+
+def multiply_polynomials(
+    polynomial_a: list[int],
+    polynomial_b: list[int],
+    prime_modulus: int,
+    primitive_root: int,
+) -> list[int]:
     """
     Multiply two polynomials using the Schönhage-Strassen algorithm.
 
@@ -230,12 +266,17 @@ def multiply_polynomials(polynomial_a: list[int], polynomial_b: list[int], prime
     [4, 11, 20, 30, 20, 11, 4]
     """
     # Compute NTT of the coefficient lists
-    point_values_a = number_theoretic_transform(polynomial_a, prime_modulus, primitive_root)
-    point_values_b = number_theoretic_transform(polynomial_b, prime_modulus, primitive_root)
+    point_values_a = number_theoretic_transform(
+        polynomial_a, prime_modulus, primitive_root
+    )
+    point_values_b = number_theoretic_transform(
+        polynomial_b, prime_modulus, primitive_root
+    )
 
     # Perform pointwise multiplication
     result_point_values = [
-        ((a % prime_modulus) * (b % prime_modulus)) % prime_modulus for a, b in zip(point_values_a, point_values_b)
+        ((a % prime_modulus) * (b % prime_modulus)) % prime_modulus
+        for a, b in zip(point_values_a, point_values_b)
     ]
 
     # Compute the inverse NTT to obtain the result in coefficient form
@@ -243,6 +284,6 @@ def multiply_polynomials(polynomial_a: list[int], polynomial_b: list[int], prime
 
     return result_coeffs
 
+
 # Running the doctests for all functions
 doctest.testmod()
-
