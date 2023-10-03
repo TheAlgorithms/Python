@@ -19,7 +19,7 @@ def baseNeg2(n: int) -> str:
     Examples:
     >>> baseNeg2(0)
     '0'
-    
+
     >>> baseNeg2(1)
     '1'
 
@@ -53,41 +53,42 @@ def baseNeg2(n: int) -> str:
     Traceback (most recent call last):
         ...
     TypeError: Input 'n' must be an integer
-    
+
     >>> baseNeg2(-0.5)
     Traceback (most recent call last):
         ...
     TypeError: Input 'n' must be an integer
-    
+
     >>> baseNeg2(255)
     '100000011'
     """
-    
+
     # Check if the input 'n' is an integer
     if not isinstance(n, int):
         raise TypeError("Input 'n' must be an integer")
-    
+
     # Handle the case when 'n' is 0
     if n == 0:
         return "0"
-    
+
     result = []
     while n != 0:
         # Calculate the remainder when dividing by -2
         remainder = n % (-2)
         # Perform integer division by -2
-        n //= (-2)
-        
+        n //= -2
+
         # If the remainder is negative, adjust it and increment 'n' accordingly
         if remainder < 0:
             remainder += 2
             n += 1
-        
+
         # Append the remainder (0 or 1) as a string to the result
         result.append(str(remainder))
-    
+
     # Reverse the result list and join the elements to form the final negative base (-2) representation
-    return ''.join(result[::-1])
+    return "".join(result[::-1])
+
 
 if __name__ == "__main__":
     import doctest
