@@ -3,10 +3,12 @@
 from cryptography.fernet import Fernet
 import os
 
+
 def generate_key():
     key = Fernet.generate_key()
     with open("encryption_key.key", "wb") as key_file:
         key_file.write(key)
+
 
 def encrypt_directory(input_directory, key):
     cipher_suite = Fernet(key)
@@ -24,6 +26,7 @@ def encrypt_directory(input_directory, key):
                 file.write(encrypted_data)
 
             print(f"Encrypted '{input_file_path}' ")
+
 
 def decrypt_directory(input_directory, key):
     cipher_suite = Fernet(key)
@@ -44,6 +47,7 @@ def decrypt_directory(input_directory, key):
                 print(f"Decrypted '{input_file_path}'")
             except Exception as e:
                 print(f"Failed to decrypt")
+
 
 if __name__ == "__main__":
     action = input("Enter 'e' for encrypt' or 'd' decrypt: ")
