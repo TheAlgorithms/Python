@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+
 def merge(left_half: list, right_half: list) -> list:
     """Merge two sorted lists into a single sorted list."""
     # Your existing code...
+
 
 def merge_sort(array: list) -> list:
     """Sorts an array using the merge sort algorithm.
