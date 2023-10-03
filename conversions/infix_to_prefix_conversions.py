@@ -41,7 +41,7 @@ def infix_to_prefix(expression) -> str:
     def is_operator(char) -> bool:
         return char in "+-*/^"
 
-    def infix_to_postfix(infix_expr) -> str:
+    def infix_to_prefix(infix_expr) -> str:
         postfix = []
         stack = []
         for char in infix_expr:
@@ -69,7 +69,7 @@ def infix_to_prefix(expression) -> str:
     infix_expr = expression[::-1]
     # Swap '(' and ')' to handle correctly in reverse
     infix_expr = infix_expr.replace("(", "X").replace(")", "(").replace("X", ")")
-    postfix_expr = infix_to_postfix(infix_expr)
+    postfix_expr = infix_to_prefix(infix_expr)
     # Reverse the postfix expression to get prefix
     prefix_expr = postfix_expr[::-1]
     return prefix_expr
