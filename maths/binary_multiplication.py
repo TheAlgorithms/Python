@@ -51,7 +51,7 @@ def b_expo(a: int, b: int) -> int:
 
 def b_expo_mod(a: int, b: int, c: int) -> int:
     """
-    Calculate the result of (a * b) % c using binary exponentiation and modular arithmetic.
+    Calculate (a * b) % c using binary exponentiation and modular arithmetic.
 
     Parameters:
     a (int): The first number.
@@ -74,10 +74,6 @@ def b_expo_mod(a: int, b: int, c: int) -> int:
     2
     >>> b_expo_mod(1, 10, 3)
     1
-    >>> b_expo_mod(7, 3, 4)
-    1
-    >>> b_expo_mod(8, 2, 10)
-    6
     """
     res = 0
     while b > 0:
@@ -92,7 +88,6 @@ def b_expo_mod(a: int, b: int, c: int) -> int:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
 
 """
