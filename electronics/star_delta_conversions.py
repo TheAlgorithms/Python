@@ -10,7 +10,8 @@ def star_to_delta(
     """
 
     Convert's star resistor arrangement to delta
-
+    
+    Examples
     >>> star_to_delta(5,7.5,3.0)
     [15.0, 10.0, 25.0]
     >>> star_to_delta(5,75,12)
@@ -44,7 +45,7 @@ def delta_to_star(
 
     Convert's delta resistor arrangement to star
 
-    Exaples:
+    Examples:
     >>> delta_to_star(10,25,15)
     [5.0, 7.5, 3.0]
     >>> delta_to_star(6,6,6)
