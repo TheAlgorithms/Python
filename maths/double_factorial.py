@@ -7,7 +7,7 @@ def double_factorial_recursive(n: int) -> int:
     https://en.wikipedia.org/wiki/Double_factorial
 
     >>> import math
-    >>> double_factorial_iterative(5) == math.prod(range(5, 0, -2))
+    >>> all(double_factorial_recursive(i) == math.prod(range(i, 0, -2)) for i in range(20))
     True
     >>> double_factorial_recursive(0.1)
     Traceback (most recent call last):
@@ -33,7 +33,7 @@ def double_factorial_iterative(num: int) -> int:
     https://en.wikipedia.org/wiki/Double_factorial
 
     >>> import math
-    >>> double_factorial_iterative(5) == math.prod(range(5, 0, -2))
+    >>> all(double_factorial_iterative(i) == math.prod(range(i, 0, -2)) for i in range(20))
     True
     >>> double_factorial_iterative(0.1)
     Traceback (most recent call last):
