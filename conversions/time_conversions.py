@@ -8,6 +8,9 @@ USAGE :
     -> value : The number of units you want to convert
     -> from_type : From which type you want to convert
     -> to_type : To which type you want to convert
+
+    REFERENCES:
+    Wikipedia Reference:  https://en.wikipedia.org/wiki/Unit_of_time
 """
 
 from typing import NamedTuple
