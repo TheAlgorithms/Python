@@ -1,6 +1,9 @@
 """
 Implementation from scratch of a Multinomial Naive Bayes Classifier.
 The algorithm is trained and tested on the twenty_newsgroup dataset from sklearn to perform text classification
+
+Here the Wikipedia page to understand the theory behind this kind of probabilistic models:
+https://en.wikipedia.org/wiki/Naive_Bayes_classifier
 """
 
 
