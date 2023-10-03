@@ -5,7 +5,7 @@ for _l in range(po):
     a = int(kpo[0])
     b = int(kpo[1])
 
-    def matrix(r: int, c: int):
+    def matrix(r: int, c: int)->None:
         _symbols = [".", "+", "-", "|"]
         t = c * 2 + 1
         # first two lines
@@ -54,3 +54,8 @@ for _l in range(po):
             print()
 
     matrix(a, b)
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    main()
