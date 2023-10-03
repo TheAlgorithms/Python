@@ -1,15 +1,16 @@
 import math
 
+
 def recursive_number_theoretic_transform(a: list, w: int, p: int) -> list:
     """
     Recursive function for number-theoretic transform.
     Reference: https://en.wikipedia.org/wiki/Sch%C3%B6nhage%E2%80%93Strassen_algorithm
-    
+
     Args:
     - a: List of integers representing polynomial coefficients.
     - w: Primitive nth root of unity modulo p.
     - p: Prime modulus.
-    
+
     Returns:
     - List of integers representing polynomial in point-value form.
     """
@@ -28,16 +29,17 @@ def recursive_number_theoretic_transform(a: list, w: int, p: int) -> list:
         x = x * w % p
     return f
 
+
 def number_theoretic_transform(a: list, p: int, g: int) -> list:
     """
     Compute the number-theoretic transform of a polynomial.
     Reference: https://en.wikipedia.org/wiki/Sch%C3%B6nhage%E2%80%93Strassen_algorithm
-    
+
     Args:
     - a: List of integers representing polynomial coefficients.
     - p: Prime modulus.
     - g: Primitive root of p.
-    
+
     Returns:
     - List of integers representing polynomial in point-value form.
     """
@@ -46,16 +48,17 @@ def number_theoretic_transform(a: list, p: int, g: int) -> list:
     w = pow(g, (p - 1) // n, p)
     return recursive_number_theoretic_transform(a, w, p)
 
+
 def recursive_inverse_ntt(f: list, w: int, p: int) -> list:
     """
     Recursive function for inverse number-theoretic transform.
     Reference: https://en.wikipedia.org/wiki/Sch%C3%B6nhage%E2%80%93Strassen_algorithm
-    
+
     Args:
     - f: List of integers representing polynomial in point-value form.
     - w: Primitive nth root of unity modulo p.
     - p: Prime modulus.
-    
+
     Returns:
     - List of integers representing polynomial coefficients.
     """
@@ -74,16 +77,17 @@ def recursive_inverse_ntt(f: list, w: int, p: int) -> list:
         x = x * w % p
     return a
 
+
 def inverse_number_theoretic_transform(f: list, p: int, g: int) -> list:
     """
     Compute the inverse number-theoretic transform of a polynomial.
     Reference: https://en.wikipedia.org/wiki/Sch%C3%B6nhage%E2%80%93Strassen_algorithm
-    
+
     Args:
     - f: List of integers representing polynomial in point-value form.
     - p: Prime modulus.
     - g: Primitive root of p.
-    
+
     Returns:
     - List of integers representing polynomial coefficients.
     """
@@ -93,17 +97,18 @@ def inverse_number_theoretic_transform(f: list, p: int, g: int) -> list:
     w_inv = pow(w, p - 2, p)
     return [x * pow(n, p - 2, p) % p for x in recursive_inverse_ntt(f, w_inv, p)]
 
+
 def multiply_polynomials(a: list, b: list, p: int, g: int) -> list:
     """
     Multiply two polynomials using the number-theoretic transform.
     Reference: https://en.wikipedia.org/wiki/Sch%C3%B6nhage%E2%80%93Strassen_algorithm
-    
+
     Args:
     - a: List of integers representing the first polynomial's coefficients.
     - b: List of integers representing the second polynomial's coefficients.
     - p: Prime modulus.
     - g: Primitive root of p.
-    
+
     Returns:
     - List of integers representing the coefficients of the product polynomial.
     """
@@ -112,35 +117,40 @@ def multiply_polynomials(a: list, b: list, p: int, g: int) -> list:
         n *= 2
     a += [0] * (n - len(a))
     b += [0] * (n - len(b))
-    
+
     fa = number_theoretic_transform(a, p, g)
     fb = number_theoretic_transform(b, p, g)
-    
+
     fc = [x * y % p for x, y in zip(fa, fb)]
-    
+
     c = inverse_number_theoretic_transform(fc, p, g)
-    
+
     # Remove trailing zeros
     while len(c) > 0 and c[-1] == 0:
         c.pop()
     return c
 
+
 def multiply_numbers(x: int, y: int, p: int, g: int) -> int:
     """
     Multiply two numbers using polynomial multiplication based on the number-theoretic transform.
     Reference: https://en.wikipedia.org/wiki/Sch%C3%B6nhage%E2%80%93Strassen_algorithm
-    
+
     Args:
     - x: First integer number.
     - y: Second integer number.
     - p: Prime modulus.
     - g: Primitive root of p.
-    
+
     Returns:
     - The product of the two numbers.
     """
-    a = [int(digit) for digit in str(x)][::-1]  # Reverse the digits to match polynomial representation
-    b = [int(digit) for digit in str(y)][::-1]  # Reverse the digits to match polynomial representation
+    a = [int(digit) for digit in str(x)][
+        ::-1
+    ]  # Reverse the digits to match polynomial representation
+    b = [int(digit) for digit in str(y)][
+        ::-1
+    ]  # Reverse the digits to match polynomial representation
     c = multiply_polynomials(a, b, p, g)
     carry = 0
     for i in range(len(c)):
@@ -150,7 +160,8 @@ def multiply_numbers(x: int, y: int, p: int, g: int) -> int:
     while carry:
         c.append(carry % 10)
         carry //= 10
-    return int(''.join(map(str, c[::-1])))
+    return int("".join(map(str, c[::-1])))
+
 
 # Test the multiplication of two numbers
 multiply_numbers(12345, 6789, p, g)
