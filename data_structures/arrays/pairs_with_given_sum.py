@@ -16,7 +16,7 @@ to avoid the same pair getting counted twice
 """
 
 
-def pairs_with_sum(arr: list, sum: int) -> int:
+def pairs_with_sum(arr: list, req_sum: int) -> int:
     """
     Return the no. of pairs with sum "sum"
 
@@ -36,8 +36,8 @@ def pairs_with_sum(arr: list, sum: int) -> int:
     ans = 0
     for i in arr:
         d[i] -= 1
-        if sum - i in d and d[sum - i] != 0:
-            ans += d[sum - i]
+        if req_sum - i in d and d[req_sum - i] != 0:
+            ans += d[req_sum - i]
         d[i] += 1
     return ans // 2
 
