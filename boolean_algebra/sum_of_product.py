@@ -138,9 +138,9 @@ def generate_product_of_sum(variables: list[str], max_terms: list[int]) -> str:
 input_variables = input("Enter a list of space-separated variables: ").strip()
 variables = input_variables.split()
 input_minterms = input("Enter a list of space-separated minterms: ").strip()
-min_terms = input_minterms.split()
+min_terms = [int(term) for term in input_minterms.split()]  # Convert input to list of integers
 input_maxterms = input("Enter a list of space-separated maxterms: ").strip()
-max_terms = input_maxterms.split()
+max_terms = [int(term) for term in input_maxterms.split()]  # Convert input to list of integers
 sum_of_product_expression = generate_sum_of_product(variables, min_terms)
 product_of_sum_expression = generate_product_of_sum(variables, max_terms)
 
