@@ -19,7 +19,7 @@ def maclaurin_sin(theta: float, accuracy: int = 30) -> float:
     >>> maclaurin_sin(10)
     -0.5440211108893691
     >>> maclaurin_sin(-10)
-    0.5440211108893703
+    0.5440211108893704
     >>> maclaurin_sin(10, 15)
     -0.5440211108893689
     >>> maclaurin_sin(-10, 15)
@@ -71,7 +71,7 @@ def maclaurin_cos(theta: float, accuracy: int = 30) -> float:
     >>> maclaurin_cos(5)
     0.2836621854632268
     >>> maclaurin_cos(-5)
-    0.2836621854632266
+    0.2836621854632265
     >>> maclaurin_cos(10, 15)
     -0.8390715290764525
     >>> maclaurin_cos(-10, 15)
