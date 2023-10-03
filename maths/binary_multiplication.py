@@ -69,7 +69,7 @@ def b_expo_mod(a: int, b: int, c: int) -> int:
     >>> b_expo_mod(3, 4, 6)
     0
     >>> b_expo_mod(10, 5, 13)
-    8
+    11
     >>> b_expo_mod(2, 1, 5)
     2
     >>> b_expo_mod(1, 10, 3)
