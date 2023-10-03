@@ -33,6 +33,13 @@ class PCA:
         3. Calculate the eigenvalues and eigenvectors of the covariance matrix
         4. Sort the eigenvalues and eigenvectors in descending order of the eigenvalues
         5. Choose the first n eigenvectors, where n is the number of components
+        >>> test_data = np.array([
+        ... [1.2, 2.3, 3.4], [4.5, 5.6, 6.7], [7.8, 8.9, 9.0], [10.1, 11.2, 12.3]
+        ... ])
+        >>> test_pca = PCA(2)
+        >>> test_pca.fit(test_data)
+        array([[4.41304280e+01, 2.58645300e-15, 1.52905333e-01],
+               [4.41304280e+01, 1.52905333e-01, 2.58645300e-15]])
         """
         self.mean = np.mean(x, axis=0)
         x = x - self.mean
