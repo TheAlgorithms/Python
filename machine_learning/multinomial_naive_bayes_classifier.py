@@ -13,9 +13,10 @@ from scipy import sparse
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.datasets import fetch_20newsgroups
 from sklearn.metrics import accuracy_score
+from numpy.typing import ArrayLike
 
 
-def group_indices_by_target(targets):
+def group_indices_by_target(targets: ArrayLike) -> dict:
     """
     Associates to each target label the indices of the examples with that label
 
@@ -50,35 +51,24 @@ class MultinomialNBClassifier:
         self.priors = None
         self.alpha = alpha
 
-    def _check_X(self, X):
-        if not sparse.issparse(X):
-            raise ValueError("Matrix X must be an instance of scipy.sparse.csr_matrix")
-
-    def _check_X_y(self, X, y):
-        self._check_X(X)
-        if X.shape[0] != len(y):
-            raise ValueError(
-                "The expected shape for array y is (" + str(X.shape[0]) + ",), but got (" + str(len(y)) + ",)")
-
-    def fit(self, X, y):
+    def fit(self, data: sparse.csr_matrix, y: ArrayLike) -> None:
         """
         Parameters
         ----------
-        X : scipy.sparse.csr_matrix of shape (n_samples, n_features)
+        data : scipy.sparse.csr_matrix of shape (n_samples, n_features)
             Multinomial training examples
 
         y : array-like of shape (n_samples,)
             Target labels
         """
-        self._check_X_y(X, y)
-        n_examples, n_features = X.shape
+        n_examples, n_features = data.shape
         grouped_indices = group_indices_by_target(y)
         self.classes = list(grouped_indices.keys())
         self.priors = np.zeros(shape=len(self.classes))
         self.features_probs = np.zeros(shape=(len(self.classes), n_features))
 
         for i, class_i in enumerate(self.classes):
-            data_class_i = X[grouped_indices[class_i]]
+            data_class_i = data[grouped_indices[class_i]]
             prior_class_i = data_class_i.shape[0] / n_examples
             self.priors[i] = prior_class_i
             tot_features_count = data_class_i.sum()   # count of all features in class_i
@@ -86,11 +76,11 @@ class MultinomialNBClassifier:
             for j, n_j in enumerate(features_count):
                 self.features_probs[i][j] = (self.alpha + n_j) / (tot_features_count + self.alpha * n_features)
 
-    def predict(self, X):
+    def predict(self, data: sparse.csr_matrix) -> np.array:
         """
         Parameters
         ----------
-        X : scipy.sparse.csr_matrix of shape (n_samples, n_features)
+        data : scipy.sparse.csr_matrix of shape (n_samples, n_features)
             Multinomial test examples
 
         Returns
@@ -103,41 +93,43 @@ class MultinomialNBClassifier:
         Let's test the function following an example taken from the documentation of the MultinomialNB model
         from sklearn
         >>> rng = np.random.RandomState(1)
-        >>> X = rng.randint(5, size=(6, 100))
-        >>> X = sparse.csr_matrix(X)
+        >>> data = rng.randint(5, size=(6, 100))
+        >>> data = sparse.csr_matrix(data)
         >>> y = np.array([1, 2, 3, 4, 5, 6])
         >>> model = MultinomialNBClassifier()
-        >>> model.fit(X, y)
-        >>> model.predict(X[2:3])
+        >>> model.fit(data, y)
+        >>> model.predict(data[2:3])
         array([3])
         """
-        self._check_X(X)
         y_pred = []
         log_features_probs = np.log(self.features_probs)
         log_priors = np.log(self.priors)
-        for instance in X:
+        for instance in data:
             theta = instance.multiply(log_features_probs).sum(axis=1)
             likelihood = [log_prior_class_i + theta[i] for i, log_prior_class_i in enumerate(log_priors)]
             y_pred.append(self.classes[np.argmax(likelihood)])
         return np.array(y_pred)
 
 
-def main():
+def main() -> None:
+    """
+    Performs the text classification on the twenty_newsgroup dataset from sklearn
+    """
     newsgroups_train = fetch_20newsgroups(subset='train')
     newsgroups_test = fetch_20newsgroups(subset='test')
-    X_train = newsgroups_train['data']
+    x_train = newsgroups_train['data']
     y_train = newsgroups_train['target']
-    X_test = newsgroups_test['data']
+    x_test = newsgroups_test['data']
     y_test = newsgroups_test['target']
     vectorizer = TfidfVectorizer(stop_words='english')
-    X_train = vectorizer.fit_transform(X_train)
-    X_test = vectorizer.transform(X_test)
+    x_train = vectorizer.fit_transform(x_train)
+    x_test = vectorizer.transform(x_test)
 
     model = MultinomialNBClassifier()
     print("Start training")
-    model.fit(X_train, y_train)
+    model.fit(x_train, y_train)
 
-    y_pred = model.predict(X_test)
+    y_pred = model.predict(x_test)
     print("Accuracy of naive bayes text classifier: " + str(accuracy_score(y_test, y_pred)))
 
 
