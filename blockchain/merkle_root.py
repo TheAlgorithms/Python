@@ -2,6 +2,7 @@ import hashlib
 from typing import List, Optional
 import doctest
 
+
 def merkle_root(transactions: List[bytes]) -> Optional[bytes]:
     """
     Calculate the Merkle Root Hash for a list of transactions using the Merkle Tree algorithm.
@@ -15,7 +16,7 @@ def merkle_root(transactions: List[bytes]) -> Optional[bytes]:
     >>> merkle_root(transactions).hex()
     '2a98ce6f17215458f14d2ef9a300f94c387f93a26e8ef272704103605329c4f19'
     """
-    
+
     if not transactions:
         return None
 
@@ -42,6 +43,7 @@ def merkle_root(transactions: List[bytes]) -> Optional[bytes]:
         current_level = next_level
 
     return current_level[0]
+
 
 if __name__ == "__main__":
     doctest.testmod()
