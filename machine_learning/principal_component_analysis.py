@@ -27,25 +27,18 @@ class PCA:
         self.mean = None
         self.components = None
 
-    def fit(self, vector: np.ndarray[float]) -> np.ndarray[float]:
+    def fit(self, vector: np.ndarray[float]) -> None:
         """
         Parameters:
         vector: The data to be fitted
 
-        Fit the PCA model to the given data and find the principal components
+        Fit the PCA model to the given data
         The process of performing PCA involves the following steps:
         1. Normalize the data by subtracting the mean from each data point
         2. Calculate the covariance matrix of the normalized data
         3. Calculate the eigenvalues and eigenvectors of the covariance matrix
         4. Sort the eigenvalues and eigenvectors in descending order of the eigenvalues
         5. Choose the first n eigenvectors, where n is the number of components
-        >>> test_data = np.array([
-        ... [1.2, 2.3, 3.4], [4.5, 5.6, 6.7], [7.8, 8.9, 9.0], [10.1, 11.2, 12.3]
-        ... ])
-        >>> test_pca = PCA(2)
-        >>> test_pca.fit(test_data)
-        array([[4.41304280e+01, 2.58645300e-15, 1.52905333e-01],
-               [4.41304280e+01, 1.52905333e-01, 2.58645300e-15]])
         """
         self.mean = np.mean(vector, axis=0)
         vector = vector - self.mean
@@ -59,7 +52,6 @@ class PCA:
         eigen_vector = eigen_vector[indexes]
 
         self.components = eigen_vector[: self.n]
-        return self.components
 
     def transform(self, vector: np.ndarray[float]) -> np.ndarray[float]:
         """
@@ -73,8 +65,6 @@ class PCA:
         ... ])
         >>> test_pca = PCA(2)
         >>> test_pca.fit(test_data)
-        array([[4.41304280e+01, 2.58645300e-15, 1.52905333e-01],
-               [4.41304280e+01, 1.52905333e-01, 2.58645300e-15]])
         >>> test_pca.transform(test_data)
         array([[-208.09344033, -208.13166667],
                [ -61.95844033,  -61.99666667],
@@ -98,7 +88,7 @@ if __name__ == "__main__":
     data = np.column_stack((X1, X2, X3, X4))
 
     pca = PCA(2)
-    principal_components = pca.fit(data)
+    pca.fit(data)
     post_pca_data = pca.transform(data)
 
     print("Shape of X (Data Points) is: ", data.shape)
