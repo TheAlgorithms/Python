@@ -4,28 +4,30 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
-        i=1
-        arr=[]
-        h=head
+    def reverseBetween(
+        self, head: Optional[ListNode], left: int, right: int
+    ) -> Optional[ListNode]:
+        i = 1
+        arr = []
+        h = head
         while head:
-            if left==i:
+            if left == i:
                 arr.append(head.val)
-            elif left<i<right:
+            elif left < i < right:
                 arr.append(head.val)
-            elif i==right:
+            elif i == right:
                 arr.append(head.val)
-            i+=1
-            head=head.next
-        j=1
-        head=h
+            i += 1
+            head = head.next
+        j = 1
+        head = h
         while head:
-            if j==left:
-                head.val=arr.pop(-1)
-            elif left<j<right:
-                head.val=arr.pop(-1)
-            elif j==right:
-                head.val=arr.pop(-1)
-            head=head.next
-            j+=1
+            if j == left:
+                head.val = arr.pop(-1)
+            elif left < j < right:
+                head.val = arr.pop(-1)
+            elif j == right:
+                head.val = arr.pop(-1)
+            head = head.next
+            j += 1
         return h
