@@ -14,6 +14,21 @@ api_key = "key_CAMF5HI5t4ZzkmgGkioI1tius"
 
 
 def test_ip(ip: str) -> Any:
+    
+    """
+    This function tests if an IP is blacklisted on different lists.
+    It returns a tuple with the IP and a list of the blacklists where it was detected.
+    
+    >>> test_ip('8.8.8.8')
+    ('8.8.8.8', ['Spamhaus DBL', 'SpamCop'])
+    
+    >>> test_ip('127.0.0.1')
+    ('127.0.0.1', ['Spamhaus DBL'])
+    
+    >>> test_ip('256.256.256.256')
+    None
+    """
+    
     link = f"https://api.blacklistchecker.com/check/{ip}"
     result = requests.get(link, auth=(api_key, ""))
     result_dec = json.loads(result.content)
@@ -32,6 +47,20 @@ def test_ip(ip: str) -> Any:
 
 
 def isip(ip: str) -> bool:
+    """
+    Check if a given string is a valid IP address.
+
+    >>> isip('192.168.0.1')
+    True
+    >>> isip('10.0.0.256')
+    False
+    >>> isip('127.0.0.1')
+    True
+    >>> isip('google.com')
+    False
+    >>> isip('2001:0db8:85a3:0000:0000:8a2e:0370:7334')
+    False
+    """
     match = re.match(r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}", ip)
     if not bool(match):
         return False
