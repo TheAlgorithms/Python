@@ -9,7 +9,7 @@ def star_to_delta(
 ) -> list[float]:
     """
 
-    Convert's star resistor arrangment to delta
+    Convert's star resistor arrangement to delta
 
     >>> star_to_delta(5,7.5,3.0)
     [15.0, 10.0, 25.0]
@@ -24,15 +24,15 @@ def star_to_delta(
     if resistor_a <= 0 or resistor_b <= 0 or resistor_c <= 0:
         raise ValueError("resistance value is zero or negative")
 
-    delta_arrangment = []
+    delta_arrangement = []
     resistance_chain = (
         resistor_a * resistor_b + resistor_b * resistor_c + resistor_c * resistor_a
     )
-    delta_arrangment.append(resistance_chain / resistor_a)
-    delta_arrangment.append(resistance_chain / resistor_b)
-    delta_arrangment.append(resistance_chain / resistor_c)
+    delta_arrangement.append(resistance_chain / resistor_a)
+    delta_arrangement.append(resistance_chain / resistor_b)
+    delta_arrangement.append(resistance_chain / resistor_c)
 
-    return delta_arrangment
+    return delta_arrangement
 
 
 def delta_to_star(
@@ -42,7 +42,7 @@ def delta_to_star(
 ) -> list[float]:
     """
 
-    Convert's delta resistor arrangment to star
+    Convert's delta resistor arrangement to star
 
     Exaples:
     >>> delta_to_star(10,25,15)
@@ -58,13 +58,13 @@ def delta_to_star(
     if resistor_a <= 0 or resistor_b <= 0 or resistor_c <= 0:
         raise ValueError("resistance value is zero or negative")
 
-    star_arrangment = []
+    star_arrangement = []
     resistance_sum = resistor_a + resistor_b + resistor_c
-    star_arrangment.append((resistor_a * resistor_b) / resistance_sum)
-    star_arrangment.append((resistor_b * resistor_c) / resistance_sum)
-    star_arrangment.append((resistor_c * resistor_a) / resistance_sum)
+    star_arrangement.append((resistor_a * resistor_b) / resistance_sum)
+    star_arrangement.append((resistor_b * resistor_c) / resistance_sum)
+    star_arrangement.append((resistor_c * resistor_a) / resistance_sum)
 
-    return star_arrangment
+    return star_arrangement
 
 
 if __name__ == "__main__":
