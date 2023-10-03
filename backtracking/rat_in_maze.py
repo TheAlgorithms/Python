@@ -6,13 +6,15 @@ def solve_maze(maze: list[list[int]]) -> bool:
     This method solves the "rat in maze" problem.
     In this problem, we have an n by n binary matrix where each
     cell in the matrix contains a value 0 or 1.
-    In this matrix, 1 represent a valid path that can be
+    In this matrix, 1 represents a valid path that can be
     followed to reach the end of the matrix,
-    while 0 is a dead end. The rat is allowed to move in 4 directions:
+    while 0 represents an obstacle.
+    A path that the rat takes cannot include any cell that is an obstacle.
+    The rat is allowed to move in 4 directions:
     UP, DOWN, LEFT, RIGHT.
     Given a starting point (0, 0) and an ending point (n-1, n-1),
     return True if it's possible for the rat to reach the ending point
-    from the starting point.
+    from the starting point or False otherwise.
     Parameters :
         maze(2D matrix) : maze
     Returns:
