@@ -16,7 +16,7 @@ to avoid the same pair getting counted twice
 """
 
 
-def pairs_with_sum(arr, k):
+def pairs_with_sum(arr, k) -> int:
     """
     Return the no. of pairs with sum k
 
