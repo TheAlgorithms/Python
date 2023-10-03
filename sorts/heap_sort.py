@@ -1,7 +1,7 @@
 def heapify(arr, root, size):
     """
     Heapify a subtree rooted at 'root' to maintain the max-heap property.
-    
+
     Args:
         arr (list): The input list.
         root (int): The index of the root element of the subtree.
