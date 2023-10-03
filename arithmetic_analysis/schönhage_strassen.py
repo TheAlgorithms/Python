@@ -1,6 +1,4 @@
-import math
 import doctest
-
 
 def number_theoretic_transform(
     polynomial_coeffs: list, prime_modulus: int, primitive_root: int
