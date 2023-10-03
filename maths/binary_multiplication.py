@@ -58,17 +58,17 @@ def binary_multiply(a: int, b: int) -> int:
     return res
 
 
-def binary_mod_multiply(a: int, b: int, c: int) -> int:
+def binary_mod_multiply(a: int, b: int, modulus: int) -> int:
     """
     Calculate (a * b) % c using binary multiplication and modular arithmetic.
 
     Parameters:
     a (int): The first number.
     b (int): The second number.
-    c (int): The modulus.
+    modulus (int): The modulus.
 
     Returns:
-    int: (a * b) % c.
+    int: (a * b) % modulus.
 
     Examples:
     >>> binary_mod_multiply(2, 3, 5)
@@ -87,7 +87,7 @@ def binary_mod_multiply(a: int, b: int, c: int) -> int:
     res = 0
     while b > 0:
         if b & 1:
-            res = ((res % c) + (a % c)) % c
+            res = ((res % modulus) + (a % modulus)) % modulus
 
         a += a
         b >>= 1
