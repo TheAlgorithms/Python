@@ -14,7 +14,7 @@ def infix_to_postfix(expression):
         elif char in "+-*/^":
             # If the character is an operator
             while stack and precedence[char] <= precedence.get(stack[-1], 0):
-# Pop operators from the stack and add to the output
+                # Pop operators from the stack and add to the output
                 output.append(stack.pop())
             # Push the current operator onto the stack
             stack.append(char)
@@ -24,16 +24,16 @@ def infix_to_postfix(expression):
         elif char == ")":
             # If a close parenthesis is encountered
             while stack and stack[-1] != "(":
-# Pop operators from the stack and print until an open parenthesis is found
+                # Pop operators from the stack and print until an open parenthesis is found
                 output.append(stack.pop())
             # Pop the open parenthesis from the stack
             stack.pop()
 
-# Pop any remaining operators from the stack and add to the output
+    # Pop any remaining operators from the stack and add to the output
     while stack:
         output.append(stack.pop())
 
- # Convert the output list to a string and return
+    # Convert the output list to a string and return
     return "".join(output)
 
 
