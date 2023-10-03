@@ -7,11 +7,6 @@ Author: Arunkumar [halfhearted]
 Date: 02-10-2023
 """
 from __future__ import annotations
-from enum import Enum, unique
-from typing import TypeVar
-
-# Create a generic variable that can be 'Enum', or any subclass.
-T = TypeVar("T", bound=Enum)
 
 
 def infix_to_prefix(expression: str) -> str:
