@@ -88,7 +88,6 @@ def b_multi_mod(a: int, b: int, c: int) -> int:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
 
 """
