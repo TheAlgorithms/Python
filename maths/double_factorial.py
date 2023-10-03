@@ -6,7 +6,7 @@ def double_factorial_recursive(n: int) -> int:
     To learn about the theory behind this algorithm:
     https://en.wikipedia.org/wiki/Double_factorial
 
-    >>> import prod from math
+    >>> from math import prod
     >>> all(double_factorial_recursive(i) == prod(range(i, 0, -2)) for i in range(20))
     True
     >>> double_factorial_recursive(0.1)
@@ -32,7 +32,7 @@ def double_factorial_iterative(num: int) -> int:
     To learn about the theory behind this algorithm:
     https://en.wikipedia.org/wiki/Double_factorial
 
-    >>> import prod from math
+    >>> from math import prod
     >>> all(double_factorial_iterative(i) == prod(range(i, 0, -2)) for i in range(20))
     True
     >>> double_factorial_iterative(0.1)
