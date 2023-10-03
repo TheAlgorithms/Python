@@ -22,14 +22,14 @@ def largest_power_of_2(number: int) -> int:
     524288
 
     """
-
-    last_set_bit = 0
-    while number:
-        last_set_bit += 1
-        number >>= 1
-    if last_set_bit == 0:
+    if number==0:
         return 0
-    return 2 ** (last_set_bit - 1)
+    else:
+        last_set_bit = 0
+        while number:
+            last_set_bit += 1
+            number >>= 1
+        return 2 ** (last_set_bit - 1)
 
 
 if __name__ == "__main__":
