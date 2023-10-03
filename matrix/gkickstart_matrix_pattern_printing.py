@@ -53,8 +53,8 @@ for _l in range(po):
             j = j + 1
             print()
 
-    matrix(a, b)
+
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
+    matrix(a, b)
