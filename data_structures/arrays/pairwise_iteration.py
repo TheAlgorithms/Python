@@ -69,7 +69,7 @@ def pairwise_iteration_comprehension(
     """
     Generate pairs of elements from an iterable with a given step size.
 
-    This function uses list comprehensions to get the itens that are step
+    This function uses list comprehensions to get the items that are step
     distance from each other and later the `iter()` conversion to create
     two independent list iterators (`a` and `b`) from the input iterable.
     The `next` function is used to offset the `b` iterator by one index,
@@ -113,15 +113,15 @@ def pairwise_iteration_comprehension(
         >>> list(pairwise_iteration_comprehension(['a'], step=1))
         []
     """
-    # creates a list, using list comprehensions, that only stores itens
+    # creates a list, using list comprehensions, that only stores items
     # that are n steps apart from each other.
-    itens = [item for i, item in enumerate(iterable) if i % step == 0]
+    items = [item for i, item in enumerate(iterable) if i % step == 0]
 
     # creates two independent list iterators (a and b) from the list
     # we created earlier, using the iter() function. This means we can
     # use next() on each one without affecting the other, no matter the
     # iterable type
-    a, b = (iter(itens), iter(itens))
+    a, b = (iter(items), iter(items))
 
     # Offsets the second iterator (b) by one step to create a staggered
     # alignment.
