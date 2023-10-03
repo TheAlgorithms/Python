@@ -7,7 +7,10 @@ Source : https://webstor.srmist.edu.in/web_assets/srm_mainsite/files/2018/transi
 
 from math import e, pow
 
-def transient_resp_rl(resistance:float, inductance:float, voltage:float, current:float, time:float) -> tuple:
+
+def transient_resp_rl(
+    resistance: float, inductance: float, voltage: float, current: float, time: float
+) -> tuple:
     """
     This function can calculate voltage and current of a RL circuit in transient state for a given period
 
@@ -47,7 +50,9 @@ def transient_resp_rl(resistance:float, inductance:float, voltage:float, current
     return None
 
 
-def transient_resp_rc(resistance:float, capacitance:float,voltage:float,current:float,time:float) -> tuple:
+def transient_resp_rc(
+    resistance: float, capacitance: float, voltage: float, current: float, time: float
+) -> tuple:
     """
     This function can calculate voltage and current of a RL circuit in transient state for a given period
 
