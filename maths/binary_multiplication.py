@@ -1,5 +1,5 @@
 """
-* Binary Exponentiation with Multiplication
+* Binary Multiplication with Multiplication
 * This is a method to find a*b in a time complexity of O(log b)
 * This is one of the most commonly used methods of finding result of multiplication.
 * Also useful in cases where solution to (a*b)%c is required,
@@ -11,7 +11,7 @@
 """
 
 
-def b_expo(a: int, b: int) -> int:
+def b_multi(a: int, b: int) -> int:
     """
         Calculate the result of multiplying 'a' and 'b' using bitwise multiplication.
 
@@ -49,7 +49,7 @@ def b_expo(a: int, b: int) -> int:
     return res
 
 
-def b_expo_mod(a: int, b: int, c: int) -> int:
+def b_multi_mod(a: int, b: int, c: int) -> int:
     """
        Calculate the result of (a * b) % c using binary exponentiation and modular arithmetic.
 
