@@ -1,41 +1,50 @@
 """
-* Binary Multiplication with Multiplication
-* This is a method to find a*b in a time complexity of O(log b)
-* This is one of the most commonly used methods of finding result of multiplication.
-* Also useful in cases where solution to (a*b)%c is required,
-* where a,b,c can be numbers over the computers calculation limits.
-* Done using iteration, can also be done using recursion
+Binary Multiplication
+This is a method to find a*b in a time complexity of O(log b)
+This is one of the most commonly used methods of finding result of multiplication.
+Also useful in cases where solution to (a*b)%c is required,
+where a,b,c can be numbers over the computers calculation limits.
+Done using iteration, can also be done using recursion
 
-* @author chinmoy159
-* @version 1.0 dated 10/08/2017
+Let's say you need to calculate a * b
+RULE 1 : a * b = (a+a) * (b/2) ---- example : 4 * 4 = (4+4) * (4/2) = 8 * 2
+RULE 2 : IF b is odd, then ---- a * b = a + (a * (b - 1)), where (b - 1) is even.
+Once b is even, repeat the process to get a * b
+Repeat the process until b = 1 or b = 0, because a*1 = a and a*0 = 0
+
+As far as the modulo is concerned,
+the fact : (a+b) % c = ((a%c) + (b%c)) % c
+Now apply RULE 1 or 2, whichever is required.
+
+@author chinmoy159
 """
 
 
-def b_multi(a: int, b: int) -> int:
+def binary_multiply(a: int, b: int) -> int:
     """
-    Calculate the result of multiplying 'a' and 'b' using bitwise multiplication.
+    Multiply 'a' and 'b' using bitwise multiplication.
 
     Parameters:
     a (int): The first number.
     b (int): The second number.
 
     Returns:
-    int: The result of 'a' multiplied by 'b'.
+    int: a * b
 
     Examples:
-    >>> b_multi(2, 3)
+    >>> binary_multiply(2, 3)
     6
-    >>> b_multi(5, 0)
+    >>> binary_multiply(5, 0)
     0
-    >>> b_multi(3, 4)
+    >>> binary_multiply(3, 4)
     12
-    >>> b_multi(10, 5)
+    >>> binary_multiply(10, 5)
     50
-    >>> b_multi(0, 5)
+    >>> binary_multiply(0, 5)
     0
-    >>> b_multi(2, 1)
+    >>> binary_multiply(2, 1)
     2
-    >>> b_multi(1, 10)
+    >>> binary_multiply(1, 10)
     10
     """
     res = 0
@@ -49,9 +58,9 @@ def b_multi(a: int, b: int) -> int:
     return res
 
 
-def b_multi_mod(a: int, b: int, c: int) -> int:
+def binary_mod_multiply(a: int, b: int, c: int) -> int:
     """
-    Calculate (a * b) % c using binary exponentiation and modular arithmetic.
+    Calculate (a * b) % c using binary multiplication and modular arithmetic.
 
     Parameters:
     a (int): The first number.
@@ -59,20 +68,20 @@ def b_multi_mod(a: int, b: int, c: int) -> int:
     c (int): The modulus.
 
     Returns:
-    int: The result of (a * b) % c.
+    int: (a * b) % c.
 
     Examples:
-    >>> b_multi_mod(2, 3, 5)
+    >>> binary_mod_multiply(2, 3, 5)
     1
-    >>> b_multi_mod(5, 0, 7)
+    >>> binary_mod_multiply(5, 0, 7)
     0
-    >>> b_multi_mod(3, 4, 6)
+    >>> binary_mod_multiply(3, 4, 6)
     0
-    >>> b_multi_mod(10, 5, 13)
+    >>> binary_mod_multiply(10, 5, 13)
     11
-    >>> b_multi_mod(2, 1, 5)
+    >>> binary_mod_multiply(2, 1, 5)
     2
-    >>> b_multi_mod(1, 10, 3)
+    >>> binary_mod_multiply(1, 10, 3)
     1
     """
     res = 0
@@ -90,17 +99,3 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
-"""
-* Wondering how this method works !
-* It's pretty simple.
-* Let's say you need to calculate a ^ b
-* RULE 1 : a * b = (a+a) * (b/2) ---- example : 4 * 4 = (4+4) * (4/2) = 8 * 2
-* RULE 2 : IF b is ODD, then ---- a * b = a + (a * (b - 1)) :: where (b - 1) is even.
-* Once b is even, repeat the process to get a * b
-* Repeat the process till b = 1 OR b = 0, because a*1 = a AND a*0 = 0
-*
-* As far as the modulo is concerned,
-* the fact : (a+b) % c = ((a%c) + (b%c)) % c
-* Now apply RULE 1 OR 2, whichever is required.
-"""
