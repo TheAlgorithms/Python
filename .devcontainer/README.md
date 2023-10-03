@@ -15,9 +15,9 @@ Running VS Code inside a Docker container can be useful for many reasons, but in
 
 ### Prerequisites
 
-1. **INSTALL VS CODE** : You need Visual Studio Code installed.
+1. **INSTALL VS CODE** : You need [Visual Studio Code](https://code.visualstudio.com/) installed.
 2. **INSTALL DOCKER**
-   1. Docker is needed to create and manage your containers.
+   1. [Docker](https://www.docker.com/products/docker-desktop/) is needed to create and manage your containers.
    2. Download and install Docker Desktop, or an alternative Docker option, like Docker on a remote host or Docker compliant        CLI
    3. Run the Docker Desktop application to start Docker. You will know it's running if you look in the activity tray and          see the Docker whale icon.
 
