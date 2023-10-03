@@ -27,7 +27,7 @@ def pairs_with_sum(arr: list, req_sum: int) -> int:
     >>> pairs_with_sum([1,7,6,2,5,4,3,1,9,8],7)
     4
     """
-    d = dict()
+    d = {}
     for i in arr:
         if i in d:
             d[i] += 1
