@@ -10,7 +10,6 @@ Running VS Code inside a Docker container can be useful for many reasons, but in
   - [Installation](#installation)
 - [Getting Sample](#usage)
 - [Development Environment](#development-environment)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Introduction
@@ -37,17 +36,9 @@ Explain how users can use your project. Include code examples, usage scenarios, 
 
 If you are using DevContainers or Docker for development, provide instructions on how to set up the development environment using your DevContainer configuration.
 
-## Contributing
-
-Explain how others can contribute to your project. Include guidelines for reporting bugs, suggesting enhancements, and submitting pull requests.
-
 ## License
-
-Specify the license under which your project is distributed. For example:
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-## Acknowledgments
 
-If your project relies on third-party libraries, tools, or resources, acknowledge and credit them here.
 
