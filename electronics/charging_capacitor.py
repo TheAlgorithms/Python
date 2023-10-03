@@ -89,12 +89,11 @@ def charging_capacitor(
         elif capacitance == 0:
             raise ValueError("Capacitance cannot be zero.")
     else:
-        return( 
-            round(
-            source_voltage
-            * (1 - exp(-time_sec / (resistance * capacitance))),
-            3,)
+        return round(
+            source_voltage * (1 - exp(-time_sec / (resistance * capacitance))),
+            3,
         )
+
 
 if __name__ == "__main__":
     import doctest
