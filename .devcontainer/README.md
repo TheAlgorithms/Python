@@ -19,8 +19,11 @@ Running VS Code inside a Docker container can be useful for many reasons, but in
    2. Download and install Docker Desktop, or an alternative Docker option, like Docker on a remote host or Docker compliant        CLI
    3. Run the Docker Desktop application to start Docker. You will know it's running if you look in the activity tray and          see the Docker whale icon.
 
-Docker might take a few minutes to start. If the whale icon is animated, it is probably still in the process of starting. You can click on the icon to see the status.
+
 ![docker-status](https://github.com/Manavbangotra/Python/assets/87271558/792766c3-2d68-461d-8e22-cfa7e22c0d23)
+
+  4. Once Docker is running, you can confirm that everything is working by opening a new terminal window and typing the command
+     > docker --version
 
 ### Prerequisites
 
