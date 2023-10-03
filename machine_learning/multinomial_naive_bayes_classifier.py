@@ -17,8 +17,6 @@ from sklearn.datasets import fetch_20newsgroups
 from sklearn.metrics import accuracy_score
 
 
-
-
 def group_indices_by_target(targets: ArrayLike) -> dict:
     """
     Associates to each target label the indices of the examples with that label
