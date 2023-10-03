@@ -30,16 +30,16 @@ def pairs_with_sum(arr, k):
     d = {}
     for i in arr:
         if i in d:
-            d[i]+=1
+            d[i] += 1
         else:
             d[i] = 1
     ans = 0
     for i in arr:
-        d[i]-=1
-        if k-i in d and d[k-i]!=0:
-            ans+=d[k-i]
-        d[i]+=1
-    return ans//2
+        d[i] -= 1
+        if k - i in d and d[k - i] != 0:
+            ans += d[k - i]
+        d[i] += 1
+    return ans // 2
 
 
 if __name__ == "__main__":
