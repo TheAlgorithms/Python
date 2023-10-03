@@ -22,7 +22,7 @@ def largest_power_of_2(number: int) -> int:
     524288
 
     """
-    if number==0:
+    if number == 0:
         return 0
     else:
         last_set_bit = 0
