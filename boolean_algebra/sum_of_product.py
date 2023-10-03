@@ -7,6 +7,8 @@ https://www.electronics-tutorials.ws/boolean/product-of-sum.html
 """
 
 from typing import List
+
+
 def generate_sum_of_product(variables: List[str], min_terms: List[int]) -> str:
     """
     Generates a Sum of Products (sum_of_product) expression.
@@ -27,29 +29,28 @@ def generate_sum_of_product(variables: List[str], min_terms: List[int]) -> str:
 
     """
     sum_of_product_terms = []
-    
 
     # Create a function to convert a minterm to a term
     def minterm_to_term(minterm: int) -> str:
         """
-    Converts a minterm to a term.
+        Converts a minterm to a term.
 
-    Args:
-        minterm (int): The minterm to be converted.
+        Args:
+            minterm (int): The minterm to be converted.
 
-    Returns:
-        str: The term representation of the minterm.
+        Returns:
+            str: The term representation of the minterm.
 
-    Examples:
-        >>> minterm_to_term(0)
-        '!A & !B & !C'
+        Examples:
+            >>> minterm_to_term(0)
+            '!A & !B & !C'
 
-        >>> minterm_to_term(5)
-        'A & !B & C'
+            >>> minterm_to_term(5)
+            'A & !B & C'
 
-        >>> minterm_to_term(7)
-        'A & B & C'
-    """
+            >>> minterm_to_term(7)
+            'A & B & C'
+        """
         term = []
         minterm = int(minterm)  # Convert minterm to an integer
         for i, var in enumerate(variables):
@@ -57,15 +58,18 @@ def generate_sum_of_product(variables: List[str], min_terms: List[int]) -> str:
             if (minterm >> i) & 1 == 0:
                 term.append(f"!{var}")  # Append negated variable if bit is 0
             else:
-                term.append(var)       # Append variable if bit is 1
-        return " & ".join(term)       # Combine variables with AND operator
+                term.append(var)  # Append variable if bit is 1
+        return " & ".join(term)  # Combine variables with AND operator
 
     for minterm in min_terms:
         term = minterm_to_term(minterm)
         sum_of_product_terms.append(f"({term})")  # Enclose each term in parentheses
 
-    sum_of_product_expression = " | ".join(sum_of_product_terms)  # Combine terms with OR operator
+    sum_of_product_expression = " | ".join(
+        sum_of_product_terms
+    )  # Combine terms with OR operator
     return sum_of_product_expression
+
 
 def generate_product_of_sum(variables: List[str], max_terms: List[int]) -> str:
     """
@@ -91,40 +95,43 @@ def generate_product_of_sum(variables: List[str], max_terms: List[int]) -> str:
     # Create a function to convert a maxterm to a term
     def maxterm_to_term(maxterm: int) -> str:
         """
-    Converts a maxterm to a term.
+        Converts a maxterm to a term.
 
-    Args:
-        maxterm (int): The maxterm to be converted.
+        Args:
+            maxterm (int): The maxterm to be converted.
 
-    Returns:
-        str: The term representation of the maxterm.
+        Returns:
+            str: The term representation of the maxterm.
 
-    Examples:
-        >>> maxterm_to_term(0)
-        'A | B | C'
+        Examples:
+            >>> maxterm_to_term(0)
+            'A | B | C'
 
-        >>> maxterm_to_term(3)
-        '!A | !B | C'
+            >>> maxterm_to_term(3)
+            '!A | !B | C'
 
-        >>> maxterm_to_term(5)
-        '!A | B | !C'
-    """
+            >>> maxterm_to_term(5)
+            '!A | B | !C'
+        """
         term = []
         maxterm = int(maxterm)  # Convert maxterm to an integer
         for i, var in enumerate(variables):
             # Check if the i-th bit of the maxterm is 0
             if (maxterm >> i) & 1 == 0:
-                term.append(var)       # Append variable if bit is 0
+                term.append(var)  # Append variable if bit is 0
             else:
                 term.append(f"!{var}")  # Append negated variable if bit is 1
-        return " | ".join(term)       # Combine variables with OR operator
+        return " | ".join(term)  # Combine variables with OR operator
 
     for maxterm in max_terms:
         term = maxterm_to_term(maxterm)
         product_of_sum_terms.append(f"({term})")  # Enclose each term in parentheses
 
-    product_of_sum_expression = " & ".join(product_of_sum_terms)  # Combine terms with AND operator
+    product_of_sum_expression = " & ".join(
+        product_of_sum_terms
+    )  # Combine terms with AND operator
     return product_of_sum_expression
+
 
 # Example usage:
 
@@ -139,4 +146,3 @@ product_of_sum_expression = generate_product_of_sum(variables, max_terms)
 
 print("sum_of_product Expression:", sum_of_product_expression)
 print("product_of_sum Expression:", product_of_sum_expression)
-
