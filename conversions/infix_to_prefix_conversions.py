@@ -34,14 +34,14 @@ def infix_to_prefix(expression: str) -> str:
     '+*ab/cd'
     """
 
-    def precedence(operator:str) -> int:
+    def precedence(operator: str) -> int:
         """
         Get the precedence of an operator.
         Args:
             operator (str): The operator.
         Returns:
             int: The precedence value.
-        
+
         >>> precedence("+")
         1
         >>> precedence("-")
@@ -58,7 +58,7 @@ def infix_to_prefix(expression: str) -> str:
         precedence_dict = {"+": 1, "-": 1, "*": 2, "/": 2, "^": 3}
         return precedence_dict.get(operator, 0)
 
-    def is_operator(char:str) -> bool:
+    def is_operator(char: str) -> bool:
         """
         Check if a character is an operator.
         Args:
@@ -81,7 +81,7 @@ def infix_to_prefix(expression: str) -> str:
         """
         return char in "+-*/^"
 
-    def infix_to_prefix(infix_expr:str) -> str:
+    def infix_to_prefix(infix_expr: str) -> str:
         """
         Convert an infix expression to a prefix expression.
         Args:
