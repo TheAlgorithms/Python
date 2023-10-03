@@ -1,7 +1,6 @@
 # How To use the DevConatiner
 
-This section walks you through running Visual Studio Code in a Docker container using the Dev Containers extension.
-
+In this section we are going learn how to run Visual Studio Code in a Docker container using the Dev Containers extension.
 Running VS Code inside a Docker container can be useful for many reasons, but in this walkthrough we'll focus on using a Docker container to set up a development environment that is separate from your local environment.
 
 ## Table of Contents
@@ -9,7 +8,7 @@ Running VS Code inside a Docker container can be useful for many reasons, but in
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-- [Usage](#usage)
+- [Getting Sample](#usage)
 - [Development Environment](#development-environment)
 - [Contributing](#contributing)
 - [License](#license)
