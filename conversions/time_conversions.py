@@ -22,12 +22,12 @@ class FromTo(NamedTuple):
 
 
 TIME_CONVERSION = {
-    "decade": FromTo(315360000, 1/315360000),
-    "year": FromTo(31536000, 1/31536000),
-    "month": FromTo(2592000, 1/2592000),
-    "day": FromTo(86400, 1/86400),
-    "week": FromTo(604800,1/604800),
-    "minutes": FromTo(60, 1/60),
+    "decade": FromTo(315360000, 1 / 315360000),
+    "year": FromTo(31536000, 1 / 31536000),
+    "month": FromTo(2592000, 1 / 2592000),
+    "day": FromTo(86400, 1 / 86400),
+    "week": FromTo(604800, 1 / 604800),
+    "minutes": FromTo(60, 1 / 60),
     "seconds": FromTo(1, 1),
 }
 
