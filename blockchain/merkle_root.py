@@ -1,15 +1,14 @@
 import doctest
 import hashlib
+from typing import List, Optional
 
-
-def merkle_root(transactions):
+def merkle_root(transactions: List[bytes]) -> Optional[bytes]:
     """
     Calculate the Merkle Root Hash for a list of transactions using the Merkle Tree algorithm.
 
     :param transactions: List of transaction data (bytes) to build the Merkle Tree from.
-    :type transactions: list[bytes]
     :return: The Merkle Root Hash as a hexadecimal string.
-    :rtype: str
+    :rtype: bytes
 
     Example:
     >>> transactions = [b"tx1", b"tx2", b"tx3", b"tx4"]
@@ -37,13 +36,12 @@ def merkle_root(transactions):
                 ).digest()
             else:
                 combined_hash = hashlib.sha256(current_level[i]).digest()
-
+            
             next_level.append(combined_hash)
 
         current_level = next_level
 
     return current_level[0]
-
 
 if __name__ == "__main__":
     doctest.testmod()
