@@ -6,10 +6,10 @@ https://www.electronics-tutorials.ws/boolean/sum-of-product.html
 https://www.electronics-tutorials.ws/boolean/product-of-sum.html
 """
 
-from typing import List
+from typing import list
 
 
-def generate_sum_of_product(variables: List[str], min_terms: List[int]) -> str:
+def generate_sum_of_product(variables: list[str], min_terms: list[int]) -> str:
     """
     Generates a Sum of Products (sum_of_product) expression.
 
@@ -71,7 +71,7 @@ def generate_sum_of_product(variables: List[str], min_terms: List[int]) -> str:
     return sum_of_product_expression
 
 
-def generate_product_of_sum(variables: List[str], max_terms: List[int]) -> str:
+def generate_product_of_sum(variables: list[str], max_terms: list[int]) -> str:
     """
     Generates a Product of Sums (product_of_sum) expression.
 
