@@ -1,5 +1,6 @@
 """
-Implementation from scratch of a basic Multinomial Naive Bayes classifier for text classification.
+Implementation from scratch of a Multinomial Naive Bayes Classifier.
+The algorithm is trained and tested on the twenty_newsgroup dataset from sklearn to perform text classification
 """
 
 
@@ -54,7 +55,7 @@ class MultinomialNBClassifier:
         self._check_X(X)
         if X.shape[0] != len(y):
             raise ValueError(
-                "The expected dimension for array y is (" + str(X.shape[0]) + ",), but got (" + str(len(y)) + ",)")
+                "The expected shape for array y is (" + str(X.shape[0]) + ",), but got (" + str(len(y)) + ",)")
 
     def fit(self, X, y):
         """
