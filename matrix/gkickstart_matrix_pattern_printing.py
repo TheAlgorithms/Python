@@ -56,5 +56,6 @@ for _l in range(po):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     matrix(a, b)
