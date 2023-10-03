@@ -29,19 +29,24 @@ Running VS Code inside a Docker container can be useful for many reasons, but in
 ### Installation of DevConatiners Extension
 
 Go onto the Extenion section in VS Code and Search for Dev Containers extension and Click on INTSALL!
+
 ![dev-containers-extension](https://github.com/Manavbangotra/Python/assets/87271558/cf3fd5e6-c5a2-4b11-91a7-20bb033b8db2)
 
 **Check installation**
 With the Dev Containers extension installed, you will see a new Status bar item at the far left.
+
 ![remote-status-bar](https://github.com/Manavbangotra/Python/assets/87271558/31947513-1749-45b3-9b53-df004025234d)
 
 The Remote Status bar item can quickly show you in which context VS Code is running (local or remote) and clicking on the item will bring up the Dev Containers commands.
+
 <img width="606" alt="dev-containers-commands-simple" src="https://github.com/Manavbangotra/Python/assets/87271558/d97ecec1-0dfa-4f4c-bd94-d020f5013351">
 
 ### GETTING-SAMPLE
 To create a Docker container, we are going to open a GitHub repository with a Node.js project.
 Open the Command Palette (F1) to run the command Dev Containers: Try a Dev Container Sample... and select the Node sample from the list.
+
 ![select-a-sample](https://github.com/Manavbangotra/Python/assets/87271558/86431325-7005-4e0f-b1f8-f2f37979b8fd)
+
 Note: There are other dev container samples such as vscode-remote-try-python or vscode-remote-try-java, but this tutorial will use vscode-remote-try-node.
 
 **Wait for the container to build**
