@@ -1,11 +1,12 @@
 # Remove the unused import statement
 # import random
 
+
 # Your code here
 def fitness_function(x: float) -> float:
     """
     Calculate the fitness (objective) function value for a given input.
-    
+
     Args:
         x (float): The input value for which the fitness is calculated.
 
@@ -23,9 +24,10 @@ def fitness_function(x: float) -> float:
     """
     if not isinstance(x, (int, float)):
         raise ValueError("Input must be a valid number.")
-    
+
     # Define your fitness function here (e.g., x^2, or any other function)
-    return x**2 + 3*x + 2
+    return x**2 + 3 * x + 2
+
 
 if __name__ == "__main__":
     # Example usage
