@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 class TreeNode:
     """
     A binary tree node has a value, left child, and right child.
@@ -8,7 +10,7 @@ class TreeNode:
         right: The right child of the node.
     """
 
-    def __init__(self, val: int = 0, left=None, right=None) -> None:
+    def __init__(self, val: int = 0, left:TreeNode = None, right:TreeNode = None) -> None:
         if not isinstance(val, int):
             raise TypeError("Value must be an integer.")
         self.val = val
@@ -118,7 +120,7 @@ def deserialize(data: str) -> TreeNode:
     # Split the serialized string by comma to get node values
     nodes = data.split(",")
 
-    def build_tree():
+    def build_tree() -> TreeNode:
         # Get the next value from the list
         val = nodes.pop(0)
 
