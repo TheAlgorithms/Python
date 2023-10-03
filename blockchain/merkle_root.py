@@ -1,6 +1,6 @@
-import doctest
 import hashlib
 from typing import List, Optional
+import doctest
 
 def merkle_root(transactions: List[bytes]) -> Optional[bytes]:
     """
@@ -15,7 +15,7 @@ def merkle_root(transactions: List[bytes]) -> Optional[bytes]:
     >>> merkle_root(transactions).hex()
     '2a98ce6f17215458f14d2ef9a300f94c387f93a26e8ef272704103605329c4f19'
     """
-
+    
     if not transactions:
         return None
 
@@ -36,7 +36,7 @@ def merkle_root(transactions: List[bytes]) -> Optional[bytes]:
                 ).digest()
             else:
                 combined_hash = hashlib.sha256(current_level[i]).digest()
-            
+
             next_level.append(combined_hash)
 
         current_level = next_level
