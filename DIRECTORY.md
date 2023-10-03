@@ -381,6 +381,9 @@
   * [Mandelbrot](fractals/mandelbrot.py)
   * [Sierpinski Triangle](fractals/sierpinski_triangle.py)
 
+## Fuzzy Logic
+  * [Fuzzy Operations](fuzzy_logic/fuzzy_operations.py)
+
 ## Genetic Algorithm
   * [Basic String](genetic_algorithm/basic_string.py)
 
