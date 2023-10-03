@@ -8,14 +8,15 @@ of probabilistic models:
 https://en.wikipedia.org/wiki/Naive_Bayes_classifier
 """
 
-
-import numpy as np
 import doctest
+import numpy as np
+from numpy.typing import ArrayLike
 from scipy import sparse
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.datasets import fetch_20newsgroups
 from sklearn.metrics import accuracy_score
-from numpy.typing import ArrayLike
+
+
 
 
 def group_indices_by_target(targets: ArrayLike) -> dict:
