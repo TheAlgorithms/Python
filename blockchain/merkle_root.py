@@ -1,5 +1,5 @@
-import hashlib
 import doctest
+import hashlib
 
 def merkle_root(transactions):
     """
@@ -10,6 +10,7 @@ def merkle_root(transactions):
     :return: The Merkle Root Hash as a hexadecimal string.
     :rtype: str
 
+    Example:
     >>> transactions = [b"tx1", b"tx2", b"tx3", b"tx4"]
     >>> merkle_root(transactions).hex()
     '2a98ce6f17215458f14d2ef9a300f94c387f93a26e8ef272704103605329c4f19'
@@ -30,7 +31,9 @@ def merkle_root(transactions):
         # Combine pairs of transactions and hash them together
         for i in range(0, len(current_level), 2):
             if i + 1 < len(current_level):
-                combined_hash = hashlib.sha256(current_level[i] + current_level[i + 1]).digest()
+                combined_hash = hashlib.sha256(
+                    current_level[i] + current_level[i + 1]
+                ).digest()
             else:
                 combined_hash = hashlib.sha256(current_level[i]).digest()
             
