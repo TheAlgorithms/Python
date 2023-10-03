@@ -18,14 +18,20 @@ import numpy as np
 class PCA:
     def __init__(self, n_components: int) -> None:
         """
+        Parameters:
+        n_components: The number of components required after dimensionality reduction
+
         Create a PCA object with the given number of components
         """
         self.n = n_components
         self.mean = None
         self.components = None
 
-    def fit(self, x: np.ndarray[float]) -> np.ndarray[float]:
+    def fit(self, vector: np.ndarray[float]) -> np.ndarray[float]:
         """
+        Parameters:
+        vector: The data to be fitted
+
         Fit the PCA model to the given data and find the principal components
         The process of performing PCA involves the following steps:
         1. Normalize the data by subtracting the mean from each data point
@@ -41,10 +47,10 @@ class PCA:
         array([[4.41304280e+01, 2.58645300e-15, 1.52905333e-01],
                [4.41304280e+01, 1.52905333e-01, 2.58645300e-15]])
         """
-        self.mean = np.mean(x, axis=0)
-        x = x - self.mean
+        self.mean = np.mean(vector, axis=0)
+        vector = vector - self.mean
 
-        cov = np.cov(x.T)
+        cov = np.cov(vector.T)
 
         eigen_vector, eigen_value = np.linalg.eig(cov)
         eigen_vector = eigen_vector.T
@@ -55,8 +61,11 @@ class PCA:
         self.components = eigen_vector[: self.n]
         return self.components
 
-    def transform(self, x: np.ndarray[float]) -> np.ndarray[float]:
+    def transform(self, vector: np.ndarray[float]) -> np.ndarray[float]:
         """
+        Parameters:
+        vector: The data to be transformed
+
         Transform the given data using the fitted PCA model
 
         >>> test_data = np.array([
@@ -72,8 +81,8 @@ class PCA:
                [  84.02365433,   84.13833333],
                [ 186.02822633,  185.99      ]])
         """
-        x = x - self.mean
-        return np.dot(x, np.transpose(self.components))
+        vector = vector - self.mean
+        return np.dot(vector, np.transpose(self.components))
 
 
 if __name__ == "__main__":
