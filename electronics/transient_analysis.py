@@ -7,18 +7,18 @@ Source : https://webstor.srmist.edu.in/web_assets/srm_mainsite/files/2018/transi
 
 from math import e,pow
 
-def transient_resp_RL(resistance:float, inductance:float, voltage:float, current:float, time:float) -> tuple:
+def transient_resp_rl(resistance:float, inductance:float, voltage:float, current:float, time:float) -> tuple:
     """
     This function can calculate voltage and current of a RL circuit in transient state for a given period
     
     Examples are given below:
-    >>> transient_resp_RL(150,400*10**-6,9,0,2*10**-6)
+    >>> transient_resp_rl(150,400*10**-6,9,0,2*10**-6)
     ('Current', 0.03165800683553911, 'Voltage', 4.251298974669132)
-    >>> transient_resp_RL(-150,400*10**-6,9,0,2*10**-6)
+    >>> transient_resp_rl(-150,400*10**-6,9,0,2*10**-6)
     Traceback (most recent call last):
      ...
     ValueError: Resistance cannot be zero or negative
-    >>> transient_resp_RL(150,400*10**-6,0,0,2*10**-6)
+    >>> transient_resp_rl(150,400*10**-6,0,0,2*10**-6)
     Traceback (most recent call last):
      ...
     ValueError: Voltage and current both cannot be zero please give anyone parameter to calculate
@@ -43,18 +43,18 @@ def transient_resp_RL(resistance:float, inductance:float, voltage:float, current
     return None
 
 
-def transient_resp_RC(resistance:float, capacitance:float,voltage:float,current:float,time:float) -> tuple:
+def transient_resp_rc(resistance:float, capacitance:float,voltage:float,current:float,time:float) -> tuple:
     """
     This function can calculate voltage and current of a RL circuit in transient state for a given period
     
     Examples are given below:
-    >>> transient_resp_RC(50000,2*10**-6,100,0,50*10**-3)
+    >>> transient_resp_rc(50000,2*10**-6,100,0,50*10**-3)
     ('Current', 0.001213061319425267, 'Voltage', 39.346934028736655)
-    >>> transient_resp_RC(-50000,2*10**-6,100,0,50*10**-3)
+    >>> transient_resp_rc(-50000,2*10**-6,100,0,50*10**-3)
     Traceback (most recent call last):
      ...
     ValueError: Resistance cannot be zero or negative
-    >>> transient_resp_RC(50000,2*10**-6,0,0,50*10**-3)
+    >>> transient_resp_rc(50000,2*10**-6,0,0,50*10**-3)
     Traceback (most recent call last):
      ... 
     ValueError: Voltage and current both cannot be zero please give anyone parameter to calculate
