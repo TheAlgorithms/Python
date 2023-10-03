@@ -1,6 +1,8 @@
-po = int(input("ENTER NUMBER OF TRIALS : "))
+# po = int(input("ENTER NUMBER OF TRIALS : "))
+po=1
 for _l in range(po):
-    i = str(input("ENTER NUMBER OF ROWS AND COLUMNS : ").strip())
+    # i = str(input("ENTER NUMBER OF ROWS AND COLUMNS : ").strip())
+    i= "2 3"
     kpo = str(i).split(" ")
     a = int(kpo[0])
     b = int(kpo[1])
@@ -56,6 +58,6 @@ for _l in range(po):
 
 if __name__ == "__main__":
     import doctest
-
-    doctest.testmod()
     matrix(a, b)
+    doctest.testmod()
+  
