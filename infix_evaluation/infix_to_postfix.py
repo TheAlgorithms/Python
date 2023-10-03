@@ -24,7 +24,7 @@ def infix_to_postfix(expression):
         elif char == ")":
             # If a close parenthesis is encountered
             while stack and stack[-1] != "(":
-                # Pop operators from the stack and print until an open parenthesis is found
+# Pop operators from the stack and print until an open parenthesis is found
                 output.append(stack.pop())
             # Pop the open parenthesis from the stack
             stack.pop()
