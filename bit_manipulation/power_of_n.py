@@ -1,10 +1,10 @@
-'''
+"""
 Wikipedia explanation: https://en.wikipedia.org/wiki/Exponentiation
-'''
+"""
 def binary_exponentiation(number: float, power: int) -> float:
     """
     Function to calculate number raised to the power (i.e., number^power) where number is a float number and power is an integer and it will return float value
-
+    
     >>> binary_exponentiation(2.00000, 10)
     1024.0
 
