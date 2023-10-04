@@ -34,7 +34,7 @@ def solve_maze(
     ...         [1, 0, 1, 0, 1],
     ...         [0, 0, 1, 0, 0],
     ...         [1, 0, 0, 1, 0]]
-    >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
+    >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)    # doctest: +NORMALIZE_WHITESPACE
     [[0, 1, 1, 1, 1],
     [0, 0, 0, 0, 1],
     [1, 1, 1, 0, 1],
