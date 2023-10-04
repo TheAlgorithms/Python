@@ -1,5 +1,6 @@
 from typing import List
 
+
 def spiral_order(matrix: List[List[int]]) -> List[int]:
     """
     Traverses a 2D matrix in a spiral order and returns the elements in a list.
@@ -65,6 +66,8 @@ def spiral_order(matrix: List[List[int]]) -> List[int]:
 
     return ans
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
