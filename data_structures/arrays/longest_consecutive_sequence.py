@@ -45,9 +45,18 @@ class Solution:
         # Return the answer
         return ans
     
+    
 '''
 Idea
-1. First, we put all the numbers into a dictionary, and note the index of each number. This is to make sure the lookup time when we check if a number is in the list is O(1). We also initialize a seen list for later use.
+1.  First, we put all the numbers into a dictionary, and note the index of each number. 
+    This is to make sure the lookup time when we check if a number is in the list is O(1). 
+    We also initialize a seen list for later use.
 
-2. Then, we loop through the numbers, and for each number n, we check if it's already in seen list. If so, we skip it. Otherwise, we start counting the length of the consecutive sequence starting from n. This is done by checking if n+1 is in the dictionary. If so, we increment the counter, and set the seen status of n to 1. Otherwise, we set the seen status of n to 1, and break the loop. This is because if n+1 is not in the dictionary, then the consecutive sequence starting from n is over. And we don't need to count the length of the consecutive sequence starting from n+1, since we will eventually count it when we reach n+1.
+2.  Then, we loop through the numbers, and for each number n, we check if it's already in seen list.
+    If so, we skip it. Otherwise, we start counting the length of the consecutive sequence starting from n. 
+    This is done by checking if n+1 is in the dictionary. If so, we increment the counter, and set the seen status of n to 1. 
+    Otherwise, we set the seen status of n to 1, and break the loop. 
+    This is because if n+1 is not in the dictionary, then the consecutive sequence starting from n is over. 
+    And we don't need to count the length of the consecutive sequence starting from n+1, since we will eventually count it when we reach n+1.
+
 '''
