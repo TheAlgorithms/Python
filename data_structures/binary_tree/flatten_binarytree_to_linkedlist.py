@@ -87,7 +87,6 @@ def display_linked_list(root: TreeNode | None) -> None:
         >>> root.right.right = TreeNode(3)
         >>> display_linked_list(root)
         1 2 3
-
         >>> root = None
         >>> display_linked_list(root)
         (no output)
