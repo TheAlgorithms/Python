@@ -1,13 +1,24 @@
-black
-flake8
+beautifulsoup4
+fake_useragent
+imageio
+keras
+lxml
 matplotlib
-mypy
 numpy
 opencv-python
 pandas
 pillow
-pytest
+projectq
+qiskit ; python_version < '3.12'
+qiskit-aer ; python_version < '3.12'
 requests
-sklearn
+rich
+scikit-fuzzy
+scikit-learn
+statsmodels
 sympy
-tensorflow
+tensorflow ; python_version < '3.12'
+texttable
+tweepy
+xgboost
+yulewalker

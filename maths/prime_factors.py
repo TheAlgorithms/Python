@@ -1,13 +1,13 @@
 """
 python/black : True
 """
-from typing import List
+from __future__ import annotations
 
 
-def prime_factors(n: int) -> List[int]:
+def prime_factors(n: int) -> list[int]:
     """
     Returns prime factors of n as a list.
-    
+
     >>> prime_factors(0)
     []
     >>> prime_factors(100)

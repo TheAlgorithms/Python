@@ -1,46 +1,50 @@
-LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-def main():
-    message = input('Enter message: ')
-    key = input('Enter key [alphanumeric]: ')
-    mode = input('Encrypt/Decrypt [e/d]: ')
 
-    if mode.lower().startswith('e'):
-        mode = 'encrypt'
-        translated = encryptMessage(key, message)
-    elif mode.lower().startswith('d'):
-        mode = 'decrypt'
-        translated = decryptMessage(key, message)
+def main() -> None:
+    message = input("Enter message: ")
+    key = input("Enter key [alphanumeric]: ")
+    mode = input("Encrypt/Decrypt [e/d]: ")
 
-    print('\n%sed message:' % mode.title())
+    if mode.lower().startswith("e"):
+        mode = "encrypt"
+        translated = encrypt_message(key, message)
+    elif mode.lower().startswith("d"):
+        mode = "decrypt"
+        translated = decrypt_message(key, message)
+
+    print(f"\n{mode.title()}ed message:")
     print(translated)
 
-def encryptMessage(key, message):
-    '''
-    >>> encryptMessage('HDarji', 'This is Harshil Darji from Dharmaj.')
+
+def encrypt_message(key: str, message: str) -> str:
+    """
+    >>> encrypt_message('HDarji', 'This is Harshil Darji from Dharmaj.')
     'Akij ra Odrjqqs Gaisq muod Mphumrs.'
-    '''
-    return translateMessage(key, message, 'encrypt')
+    """
+    return translate_message(key, message, "encrypt")
 
-def decryptMessage(key, message):
-    '''
-    >>> decryptMessage('HDarji', 'Akij ra Odrjqqs Gaisq muod Mphumrs.')
+
+def decrypt_message(key: str, message: str) -> str:
+    """
+    >>> decrypt_message('HDarji', 'Akij ra Odrjqqs Gaisq muod Mphumrs.')
     'This is Harshil Darji from Dharmaj.'
-    '''
-    return translateMessage(key, message, 'decrypt')
+    """
+    return translate_message(key, message, "decrypt")
 
-def translateMessage(key, message, mode):
+
+def translate_message(key: str, message: str, mode: str) -> str:
     translated = []
-    keyIndex = 0
+    key_index = 0
     key = key.upper()
 
     for symbol in message:
         num = LETTERS.find(symbol.upper())
         if num != -1:
-            if mode == 'encrypt':
-                num += LETTERS.find(key[keyIndex])
-            elif mode == 'decrypt':
-                num -= LETTERS.find(key[keyIndex])
+            if mode == "encrypt":
+                num += LETTERS.find(key[key_index])
+            elif mode == "decrypt":
+                num -= LETTERS.find(key[key_index])
 
             num %= len(LETTERS)
 
@@ -49,12 +53,13 @@ def translateMessage(key, message, mode):
             elif symbol.islower():
                 translated.append(LETTERS[num].lower())
 
-            keyIndex += 1
-            if keyIndex == len(key):
-                keyIndex = 0
+            key_index += 1
+            if key_index == len(key):
+                key_index = 0
         else:
             translated.append(symbol)
-    return ''.join(translated)
+    return "".join(translated)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

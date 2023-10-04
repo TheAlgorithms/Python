@@ -1,0 +1,34 @@
+name: "build"
+
+on:
+  pull_request:
+  schedule:
+    - cron: "0 0 * * *" # Run everyday
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+          allow-prereleases: true
+      - uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools six wheel
+          python -m pip install pytest-cov -r requirements.txt
+      - name: Run tests
+        # TODO: #8818 Re-enable quantum tests
+        run: pytest
+            --ignore=quantum/q_fourier_transform.py
+            --ignore=project_euler/
+            --ignore=scripts/validate_solutions.py
+            --cov-report=term-missing:skip-covered
+            --cov=. .
+      - if: ${{ success() }}
+        run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md

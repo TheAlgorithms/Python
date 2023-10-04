@@ -1,17 +1,19 @@
 """
-    disjoint set
+    Disjoint set.
     Reference: https://en.wikipedia.org/wiki/Disjoint-set_data_structure
 """
 
 
 class Node:
-    def __init__(self, data):
+    def __init__(self, data: int) -> None:
         self.data = data
+        self.rank: int
+        self.parent: Node
 
 
-def make_set(x):
+def make_set(x: Node) -> None:
     """
-    make x as a set.
+    Make x as a set.
     """
     # rank is the distance from x to its' parent
     # root's rank is 0
@@ -19,14 +21,17 @@ def make_set(x):
     x.parent = x
 
 
-def union_set(x, y):
+def union_set(x: Node, y: Node) -> None:
     """
-    union two sets.
+    Union of two sets.
     set with bigger rank should be parent, so that the
     disjoint set tree will be more flat.
     """
     x, y = find_set(x), find_set(y)
-    if x.rank > y.rank:
+    if x == y:
+        return
+
+    elif x.rank > y.rank:
         y.parent = x
     else:
         x.parent = y
@@ -34,9 +39,9 @@ def union_set(x, y):
             y.rank += 1
 
 
-def find_set(x):
+def find_set(x: Node) -> Node:
     """
-    return the parent of x
+    Return the parent of x
     """
     if x != x.parent:
         x.parent = find_set(x.parent)
@@ -51,10 +56,11 @@ def find_python_set(node: Node) -> set:
     for s in sets:
         if node.data in s:
             return s
-    raise ValueError(f"{node.data} is not in {sets}")
+    msg = f"{node.data} is not in {sets}"
+    raise ValueError(msg)
 
 
-def test_disjoint_set():
+def test_disjoint_set() -> None:
     """
     >>> test_disjoint_set()
     """

@@ -1,6 +1,7 @@
 """
 Implementation of finding nth fibonacci number using matrix exponentiation.
-Time Complexity is about O(log(n)*8), where 8 is the complexity of matrix multiplication of size 2 by 2.
+Time Complexity is about O(log(n)*8), where 8 is the complexity of matrix
+multiplication of size 2 by 2.
 And on the other hand complexity of bruteforce solution is O(n).
 As we know
     f[n] = f[n-1] + f[n-1]
@@ -13,7 +14,9 @@ Converting to matrix,
 So we just need the n times multiplication of the matrix [1,1],[1,0]].
 We can decrease the n times multiplication by following the divide and conquer approach.
 """
-def multiply(matrix_a, matrix_b):
+
+
+def multiply(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[int]]:
     matrix_c = []
     n = len(matrix_a)
     for i in range(n):
@@ -27,11 +30,11 @@ def multiply(matrix_a, matrix_b):
     return matrix_c
 
 
-def identity(n):
+def identity(n: int) -> list[list[int]]:
     return [[int(row == column) for column in range(n)] for row in range(n)]
 
 
-def nth_fibonacci_matrix(n):
+def nth_fibonacci_matrix(n: int) -> int:
     """
     >>> nth_fibonacci_matrix(100)
     354224848179261915075
@@ -51,7 +54,7 @@ def nth_fibonacci_matrix(n):
     return res_matrix[0][0]
 
 
-def nth_fibonacci_bruteforce(n):
+def nth_fibonacci_bruteforce(n: int) -> int:
     """
     >>> nth_fibonacci_bruteforce(100)
     354224848179261915075
@@ -62,16 +65,19 @@ def nth_fibonacci_bruteforce(n):
         return n
     fib0 = 0
     fib1 = 1
-    for i in range(2, n + 1):
+    for _ in range(2, n + 1):
         fib0, fib1 = fib1, fib0 + fib1
     return fib1
 
 
-def main():
-    fmt = "{} fibonacci number using matrix exponentiation is {} and using bruteforce is {}\n"
+def main() -> None:
     for ordinal in "0th 1st 2nd 3rd 10th 100th 1000th".split():
         n = int("".join(c for c in ordinal if c in "0123456789"))  # 1000th --> 1000
-        print(fmt.format(ordinal, nth_fibonacci_matrix(n), nth_fibonacci_bruteforce(n)))
+        print(
+            f"{ordinal} fibonacci number using matrix exponentiation is "
+            f"{nth_fibonacci_matrix(n)} and using bruteforce is "
+            f"{nth_fibonacci_bruteforce(n)}\n"
+        )
     # from timeit import timeit
     # print(timeit("nth_fibonacci_matrix(1000000)",
     #              "from main import nth_fibonacci_matrix", number=5))
@@ -82,4 +88,7 @@ def main():
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     main()

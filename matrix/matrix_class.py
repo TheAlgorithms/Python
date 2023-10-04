@@ -1,9 +1,12 @@
-# An OOP aproach to representing and manipulating matrices
+# An OOP approach to representing and manipulating matrices
+
+from __future__ import annotations
 
 
 class Matrix:
     """
-    Matrix object generated from a 2D array where each element is an array representing a row.
+    Matrix object generated from a 2D array where each element is an array representing
+    a row.
     Rows can contain type int or float.
     Common operations and information available.
     >>> rows = [
@@ -16,13 +19,13 @@ class Matrix:
     [[1. 2. 3.]
      [4. 5. 6.]
      [7. 8. 9.]]
-    
+
     Matrix rows and columns are available as 2D arrays
-    >>> print(matrix.rows)
+    >>> matrix.rows
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    >>> print(matrix.columns())
+    >>> matrix.columns()
     [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
-    
+
     Order is returned as a tuple
     >>> matrix.order
     (3, 3)
@@ -33,7 +36,8 @@ class Matrix:
     >>> matrix.is_invertable()
     False
 
-    Identity, Minors, Cofactors and Adjugate are returned as Matrices.  Inverse can be a Matrix or Nonetype
+    Identity, Minors, Cofactors and Adjugate are returned as Matrices.  Inverse can be
+    a Matrix or Nonetype
     >>> print(matrix.identity())
     [[1. 0. 0.]
      [0. 1. 0.]
@@ -46,18 +50,22 @@ class Matrix:
     [[-3. 6. -3.]
      [6. -12. 6.]
      [-3. 6. -3.]]
-    >>> print(matrix.adjugate()) # won't be apparent due to the nature of the cofactor matrix
+    >>>  # won't be apparent due to the nature of the cofactor matrix
+    >>> print(matrix.adjugate())
     [[-3. 6. -3.]
      [6. -12. 6.]
      [-3. 6. -3.]]
-    >>> print(matrix.inverse())
-    None
+    >>> matrix.inverse()
+    Traceback (most recent call last):
+        ...
+    TypeError: Only matrices with a non-zero determinant have an inverse
 
     Determinant is an int, float, or Nonetype
     >>> matrix.determinant()
     0
 
-    Negation, scalar multiplication, addition, subtraction, multiplication and exponentiation are available and all return a Matrix
+    Negation, scalar multiplication, addition, subtraction, multiplication and
+    exponentiation are available and all return a Matrix
     >>> print(-matrix)
     [[-1. -2. -3.]
      [-4. -5. -6.]
@@ -97,13 +105,13 @@ class Matrix:
      [198. 243. 288. 304.]
      [306. 378. 450. 472.]
      [414. 513. 612. 640.]]
-
     """
 
-    def __init__(self, rows):
+    def __init__(self, rows: list[list[int]]):
         error = TypeError(
-            "Matrices must be formed from a list of zero or more lists containing at least "
-            "one and the same number of values, each of which must be of type int or float."
+            "Matrices must be formed from a list of zero or more lists containing at "
+            "least one and the same number of values, each of which must be of type "
+            "int or float."
         )
         if len(rows) != 0:
             cols = len(rows[0])
@@ -120,55 +128,54 @@ class Matrix:
             self.rows = []
 
     # MATRIX INFORMATION
-    def columns(self):
+    def columns(self) -> list[list[int]]:
         return [[row[i] for row in self.rows] for i in range(len(self.rows[0]))]
 
     @property
-    def num_rows(self):
+    def num_rows(self) -> int:
         return len(self.rows)
 
     @property
-    def num_columns(self):
+    def num_columns(self) -> int:
         return len(self.rows[0])
 
     @property
-    def order(self):
-        return (self.num_rows, self.num_columns)
+    def order(self) -> tuple[int, int]:
+        return self.num_rows, self.num_columns
 
     @property
-    def is_square(self):
+    def is_square(self) -> bool:
         return self.order[0] == self.order[1]
 
-    def identity(self):
+    def identity(self) -> Matrix:
         values = [
             [0 if column_num != row_num else 1 for column_num in range(self.num_rows)]
             for row_num in range(self.num_rows)
         ]
         return Matrix(values)
 
-    def determinant(self):
+    def determinant(self) -> int:
         if not self.is_square:
-            return None
+            return 0
         if self.order == (0, 0):
             return 1
         if self.order == (1, 1):
-            return self.rows[0][0]
+            return int(self.rows[0][0])
         if self.order == (2, 2):
-            return (self.rows[0][0] * self.rows[1][1]) - (
-                self.rows[0][1] * self.rows[1][0]
+            return int(
+                (self.rows[0][0] * self.rows[1][1])
+                - (self.rows[0][1] * self.rows[1][0])
             )
         else:
             return sum(
-                [
-                    self.rows[0][column] * self.cofactors().rows[0][column]
-                    for column in range(self.num_columns)
-                ]
+                self.rows[0][column] * self.cofactors().rows[0][column]
+                for column in range(self.num_columns)
             )
 
-    def is_invertable(self):
+    def is_invertable(self) -> bool:
         return bool(self.determinant())
 
-    def get_minor(self, row, column):
+    def get_minor(self, row: int, column: int) -> int:
         values = [
             [
                 self.rows[other_row][other_column]
@@ -180,12 +187,12 @@ class Matrix:
         ]
         return Matrix(values).determinant()
 
-    def get_cofactor(self, row, column):
+    def get_cofactor(self, row: int, column: int) -> int:
         if (row + column) % 2 == 0:
             return self.get_minor(row, column)
         return -1 * self.get_minor(row, column)
 
-    def minors(self):
+    def minors(self) -> Matrix:
         return Matrix(
             [
                 [self.get_minor(row, column) for column in range(self.num_columns)]
@@ -193,7 +200,7 @@ class Matrix:
             ]
         )
 
-    def cofactors(self):
+    def cofactors(self) -> Matrix:
         return Matrix(
             [
                 [
@@ -206,25 +213,27 @@ class Matrix:
             ]
         )
 
-    def adjugate(self):
+    def adjugate(self) -> Matrix:
         values = [
             [self.cofactors().rows[column][row] for column in range(self.num_columns)]
             for row in range(self.num_rows)
         ]
         return Matrix(values)
 
-    def inverse(self):
+    def inverse(self) -> Matrix:
         determinant = self.determinant()
-        return None if not determinant else self.adjugate() * (1 / determinant)
+        if not determinant:
+            raise TypeError("Only matrices with a non-zero determinant have an inverse")
+        return self.adjugate() * (1 / determinant)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return str(self.rows)
 
-    def __str__(self):
+    def __str__(self) -> str:
         if self.num_rows == 0:
             return "[]"
         if self.num_rows == 1:
-            return "[[" + ". ".join(self.rows[0]) + "]]"
+            return "[[" + ". ".join(str(self.rows[0])) + "]]"
         return (
             "["
             + "\n ".join(
@@ -237,7 +246,7 @@ class Matrix:
         )
 
     # MATRIX MANIPULATION
-    def add_row(self, row, position=None):
+    def add_row(self, row: list[int], position: int | None = None) -> None:
         type_error = TypeError("Row must be a list containing all ints and/or floats")
         if not isinstance(row, list):
             raise type_error
@@ -253,7 +262,7 @@ class Matrix:
         else:
             self.rows = self.rows[0:position] + [row] + self.rows[position:]
 
-    def add_column(self, column, position=None):
+    def add_column(self, column: list[int], position: int | None = None) -> None:
         type_error = TypeError(
             "Column must be a list containing all ints and/or floats"
         )
@@ -275,18 +284,18 @@ class Matrix:
             ]
 
     # MATRIX OPERATIONS
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
         if not isinstance(other, Matrix):
-            raise TypeError("A Matrix can only be compared with another Matrix")
+            return NotImplemented
         return self.rows == other.rows
 
-    def __ne__(self, other):
+    def __ne__(self, other: object) -> bool:
         return not self == other
 
-    def __neg__(self):
+    def __neg__(self) -> Matrix:
         return self * -1
 
-    def __add__(self, other):
+    def __add__(self, other: Matrix) -> Matrix:
         if self.order != other.order:
             raise ValueError("Addition requires matrices of the same order")
         return Matrix(
@@ -296,7 +305,7 @@ class Matrix:
             ]
         )
 
-    def __sub__(self, other):
+    def __sub__(self, other: Matrix) -> Matrix:
         if self.order != other.order:
             raise ValueError("Subtraction requires matrices of the same order")
         return Matrix(
@@ -306,13 +315,17 @@ class Matrix:
             ]
         )
 
-    def __mul__(self, other):
+    def __mul__(self, other: Matrix | float) -> Matrix:
         if isinstance(other, (int, float)):
-            return Matrix([[element * other for element in row] for row in self.rows])
+            return Matrix(
+                [[int(element * other) for element in row] for row in self.rows]
+            )
         elif isinstance(other, Matrix):
             if self.num_columns != other.num_rows:
-                raise ValueError("The number of columns in the first matrix must "
-                                 "be equal to the number of rows in the second")
+                raise ValueError(
+                    "The number of columns in the first matrix must "
+                    "be equal to the number of rows in the second"
+                )
             return Matrix(
                 [
                     [Matrix.dot_product(row, column) for column in other.columns()]
@@ -320,9 +333,11 @@ class Matrix:
                 ]
             )
         else:
-            raise TypeError("A Matrix can only be multiplied by an int, float, or another matrix")
+            raise TypeError(
+                "A Matrix can only be multiplied by an int, float, or another matrix"
+            )
 
-    def __pow__(self, other):
+    def __pow__(self, other: int) -> Matrix:
         if not isinstance(other, int):
             raise TypeError("A Matrix can only be raised to the power of an int")
         if not self.is_square:
@@ -330,19 +345,19 @@ class Matrix:
         if other == 0:
             return self.identity()
         if other < 0:
-            if self.is_invertable:
+            if self.is_invertable():
                 return self.inverse() ** (-other)
             raise ValueError(
                 "Only invertable matrices can be raised to a negative power"
             )
         result = self
-        for i in range(other - 1):
+        for _ in range(other - 1):
             result *= self
         return result
 
     @classmethod
-    def dot_product(cls, row, column):
-        return sum([row[i] * column[i] for i in range(len(row))])
+    def dot_product(cls, row: list[int], column: list[int]) -> int:
+        return sum(row[i] * column[i] for i in range(len(row)))
 
 
 if __name__ == "__main__":

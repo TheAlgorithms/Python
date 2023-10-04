@@ -1,53 +1,70 @@
 import math
 
-def main():
-    message = input('Enter message: ')
-    key = int(input('Enter key [2-%s]: ' % (len(message) - 1)))
-    mode = input('Encryption/Decryption [e/d]: ')
+"""
+In cryptography, the TRANSPOSITION cipher is a method of encryption where the
+positions of plaintext are shifted a certain number(determined by the key) that
+follows a regular system that results in the permuted text, known as the encrypted
+text. The type of transposition cipher demonstrated under is the ROUTE cipher.
+"""
 
-    if mode.lower().startswith('e'):
-        text = encryptMessage(key, message)
-    elif mode.lower().startswith('d'):
-        text = decryptMessage(key, message)
+
+def main() -> None:
+    message = input("Enter message: ")
+    key = int(input(f"Enter key [2-{len(message) - 1}]: "))
+    mode = input("Encryption/Decryption [e/d]: ")
+
+    if mode.lower().startswith("e"):
+        text = encrypt_message(key, message)
+    elif mode.lower().startswith("d"):
+        text = decrypt_message(key, message)
 
     # Append pipe symbol (vertical bar) to identify spaces at the end.
-    print('Output:\n%s' %(text + '|'))
+    print(f"Output:\n{text + '|'}")
 
-def encryptMessage(key, message):
+
+def encrypt_message(key: int, message: str) -> str:
     """
-    >>> encryptMessage(6, 'Harshil Darji')
+    >>> encrypt_message(6, 'Harshil Darji')
     'Hlia rDsahrij'
     """
-    cipherText = [''] * key
+    cipher_text = [""] * key
     for col in range(key):
         pointer = col
         while pointer < len(message):
-            cipherText[col] += message[pointer]
+            cipher_text[col] += message[pointer]
             pointer += key
-    return ''.join(cipherText)
+    return "".join(cipher_text)
 
-def decryptMessage(key, message):
+
+def decrypt_message(key: int, message: str) -> str:
     """
-    >>> decryptMessage(6, 'Hlia rDsahrij')
+    >>> decrypt_message(6, 'Hlia rDsahrij')
     'Harshil Darji'
     """
-    numCols = math.ceil(len(message) / key)
-    numRows = key
-    numShadedBoxes = (numCols * numRows) - len(message)
-    plainText = [""] * numCols
-    col = 0; row = 0;
+    num_cols = math.ceil(len(message) / key)
+    num_rows = key
+    num_shaded_boxes = (num_cols * num_rows) - len(message)
+    plain_text = [""] * num_cols
+    col = 0
+    row = 0
 
     for symbol in message:
-        plainText[col] += symbol
+        plain_text[col] += symbol
         col += 1
 
-        if (col == numCols) or (col == numCols - 1) and (row >= numRows - numShadedBoxes):
+        if (
+            (col == num_cols)
+            or (col == num_cols - 1)
+            and (row >= num_rows - num_shaded_boxes)
+        ):
             col = 0
             row += 1
 
-    return "".join(plainText)
+    return "".join(plain_text)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()

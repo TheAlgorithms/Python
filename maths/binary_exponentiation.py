@@ -4,16 +4,15 @@
 # Time Complexity : O(logn)
 
 
-def binary_exponentiation(a, n):
-
-    if (n == 0):
+def binary_exponentiation(a: int, n: int) -> int:
+    if n == 0:
         return 1
 
-    elif (n % 2 == 1):
+    elif n % 2 == 1:
         return binary_exponentiation(a, n - 1) * a
 
     else:
-        b = binary_exponentiation(a, n / 2)
+        b = binary_exponentiation(a, n // 2)
         return b * b
 
 
@@ -25,4 +24,4 @@ if __name__ == "__main__":
         print("Invalid literal for integer")
 
     RESULT = binary_exponentiation(BASE, POWER)
-    print("{}^({}) : {}".format(BASE, POWER, RESULT))
+    print(f"{BASE}^({POWER}) : {RESULT}")

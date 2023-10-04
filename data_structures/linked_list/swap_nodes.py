@@ -1,75 +1,84 @@
+from typing import Any
+
+
 class Node:
-    def __init__(self, data):
-        self.data = data;
-        self.next = None
+    def __init__(self, data: Any) -> None:
+        """
+        Initialize a new Node with the given data.
+
+        Args:
+            data: The data to be stored in the node.
+
+        """
+        self.data = data
+        self.next: Node | None = None  # Reference to the next node
 
 
-class Linkedlist:
-    def __init__(self):
-        self.head = None
+class LinkedList:
+    def __init__(self) -> None:
+        """
+        Initialize an empty Linked List.
+        """
+        self.head: Node | None = None  # Reference to the head (first node)
 
     def print_list(self):
+        """
+        Print the elements of the Linked List in order.
+        """
         temp = self.head
         while temp is not None:
-            print(temp.data)
+            print(temp.data, end=" ")
             temp = temp.next
+        print()
 
-# adding nodes
-    def push(self, new_data):
+    def push(self, new_data: Any) -> None:
+        """
+        Add a new node with the given data to the beginning of the Linked List.
+        Args:
+            new_data (Any): The data to be added to the new node.
+        """
         new_node = Node(new_data)
         new_node.next = self.head
         self.head = new_node
 
-# swapping nodes
-    def swapNodes(self, d1, d2):
-        prevD1 = None
-        prevD2 = None
-        if d1 == d2:
+    def swap_nodes(self, node_data_1, node_data_2) -> None:
+        """
+        Swap the positions of two nodes in the Linked List based on their data values.
+        Args:
+            node_data_1: Data value of the first node to be swapped.
+            node_data_2: Data value of the second node to be swapped.
+
+
+        Note:
+            If either of the specified data values isn't found then, no swapping occurs.
+        """
+        if node_data_1 == node_data_2:
             return
         else:
-            # find d1
-            D1 = self.head
-            while D1 is not None and D1.data != d1:
-                prevD1 = D1
-                D1 = D1.next
-                # find d2
-            D2 = self.head
-            while D2 is not None and D2.data != d2:
-                prevD2 = D2
-                D2 = D2.next
-            if D1 is None and D2 is None:
+            node_1 = self.head
+            while node_1 is not None and node_1.data != node_data_1:
+                node_1 = node_1.next
+
+            node_2 = self.head
+            while node_2 is not None and node_2.data != node_data_2:
+                node_2 = node_2.next
+
+            if node_1 is None or node_2 is None:
                 return
-            # if D1 is head
-            if prevD1 is not None:
-                prevD1.next = D2
-            else:
-                self.head = D2
-            # if D2 is head
-            if prevD2 is not None:
-                prevD2.next = D1
-            else:
-                self.head = D1
-            temp = D1.next
-            D1.next = D2.next
-            D2.next = temp
 
-# swapping code ends here
+            # Swap the data values of the two nodes
+            node_1.data, node_2.data = node_2.data, node_1.data
 
 
+if __name__ == "__main__":
+    ll = LinkedList()
+    for i in range(5, 0, -1):
+        ll.push(i)
 
-if __name__ == '__main__':
-    list = Linkedlist()
-    list.push(5)
-    list.push(4)
-    list.push(3)
-    list.push(2)
-    list.push(1)
+    print("Original Linked List:")
+    ll.print_list()
 
-    list.print_list()
+    ll.swap_nodes(1, 4)
+    print("After swapping the nodes whose data is 1 and 4:")
 
-    list.swapNodes(1, 4)
-    print("After swapping")
-    list.print_list()
-
-
-
+    ll.print_list()

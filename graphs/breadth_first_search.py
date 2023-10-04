@@ -1,65 +1,92 @@
 #!/usr/bin/python
-# encoding=utf8
 
 """ Author: OMKAR PATHAK """
+from __future__ import annotations
+
+from queue import Queue
 
 
-class Graph():
-    def __init__(self):
-        self.vertex = {}
+class Graph:
+    def __init__(self) -> None:
+        self.vertices: dict[int, list[int]] = {}
 
-    # for printing the Graph vertexes
-    def printGraph(self):
-        for i in self.vertex.keys():
-            print(i,' -> ', ' -> '.join([str(j) for j in self.vertex[i]]))
+    def print_graph(self) -> None:
+        """
+        prints adjacency list representation of graaph
+        >>> g = Graph()
+        >>> g.print_graph()
+        >>> g.add_edge(0, 1)
+        >>> g.print_graph()
+        0  :  1
+        """
+        for i in self.vertices:
+            print(i, " : ", " -> ".join([str(j) for j in self.vertices[i]]))
 
-    # for adding the edge beween two vertexes
-    def addEdge(self, fromVertex, toVertex):
-        # check if vertex is already present,
-        if fromVertex in self.vertex.keys():
-            self.vertex[fromVertex].append(toVertex)
+    def add_edge(self, from_vertex: int, to_vertex: int) -> None:
+        """
+        adding the edge between two vertices
+        >>> g = Graph()
+        >>> g.print_graph()
+        >>> g.add_edge(0, 1)
+        >>> g.print_graph()
+        0  :  1
+        """
+        if from_vertex in self.vertices:
+            self.vertices[from_vertex].append(to_vertex)
         else:
-            # else make a new vertex
-            self.vertex[fromVertex] = [toVertex]
+            self.vertices[from_vertex] = [to_vertex]
 
-    def BFS(self, startVertex):
-        # Take a list for stoting already visited vertexes
-        visited = [False] * len(self.vertex)
+    def bfs(self, start_vertex: int) -> set[int]:
+        """
+        >>> g = Graph()
+        >>> g.add_edge(0, 1)
+        >>> g.add_edge(0, 1)
+        >>> g.add_edge(0, 2)
+        >>> g.add_edge(1, 2)
+        >>> g.add_edge(2, 0)
+        >>> g.add_edge(2, 3)
+        >>> g.add_edge(3, 3)
+        >>> sorted(g.bfs(2))
+        [0, 1, 2, 3]
+        """
+        # initialize set for storing already visited vertices
+        visited = set()
 
-        # create a list to store all the vertexes for BFS
-        queue = []
+        # create a first in first out queue to store all the vertices for BFS
+        queue: Queue = Queue()
 
         # mark the source node as visited and enqueue it
-        visited[startVertex] = True
-        queue.append(startVertex)
+        visited.add(start_vertex)
+        queue.put(start_vertex)
 
-        while queue:
-            startVertex = queue.pop(0)
-            print(startVertex, end = ' ')
+        while not queue.empty():
+            vertex = queue.get()
 
-            # mark all adjacent nodes as visited and print them
-            for i in self.vertex[startVertex]:
-                if visited[i] == False:
-                    queue.append(i)
-                    visited[i] = True
+            # loop through all adjacent vertex and enqueue it if not yet visited
+            for adjacent_vertex in self.vertices[vertex]:
+                if adjacent_vertex not in visited:
+                    queue.put(adjacent_vertex)
+                    visited.add(adjacent_vertex)
+        return visited
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod(verbose=True)
+
     g = Graph()
-    g.addEdge(0, 1)
-    g.addEdge(0, 2)
-    g.addEdge(1, 2)
-    g.addEdge(2, 0)
-    g.addEdge(2, 3)
-    g.addEdge(3, 3)
+    g.add_edge(0, 1)
+    g.add_edge(0, 2)
+    g.add_edge(1, 2)
+    g.add_edge(2, 0)
+    g.add_edge(2, 3)
+    g.add_edge(3, 3)
 
-    g.printGraph()
-    print('BFS:')
-    g.BFS(2)
+    g.print_graph()
+    # 0  :  1 -> 2
+    # 1  :  2
+    # 2  :  0 -> 3
+    # 3  :  3
 
-    # OUTPUT:
-    # 0  ->  1 -> 2
-    # 1  ->  2
-    # 2  ->  0 -> 3
-    # 3  ->  3
-    # BFS:
-    # 2 0 3 1
+    assert sorted(g.bfs(2)) == [0, 1, 2, 3]

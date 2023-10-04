@@ -1,15 +1,18 @@
 """
 Testing here assumes that numpy and linalg is ALWAYS correct!!!!
 
-If running from PyCharm you can place the following line in "Additional Arguments" for the pytest run configuration
+If running from PyCharm you can place the following line in "Additional Arguments" for
+the pytest run configuration
 -vv -m mat_ops -p no:cacheprovider
 """
 
+import logging
+
 # standard libraries
 import sys
+
 import numpy as np
-import pytest
-import logging
+import pytest  # type: ignore
 
 # Custom/local libraries
 from matrix import matrix_operation as matop
@@ -29,8 +32,9 @@ logger.addHandler(stream_handler)
 
 
 @pytest.mark.mat_ops
-@pytest.mark.parametrize(('mat1', 'mat2'), [(mat_a, mat_b), (mat_c, mat_d), (mat_d, mat_e),
-                                            (mat_f, mat_h)])
+@pytest.mark.parametrize(
+    ("mat1", "mat2"), [(mat_a, mat_b), (mat_c, mat_d), (mat_d, mat_e), (mat_f, mat_h)]
+)
 def test_addition(mat1, mat2):
     if (np.array(mat1)).shape < (2, 2) or (np.array(mat2)).shape < (2, 2):
         with pytest.raises(TypeError):
@@ -48,8 +52,9 @@ def test_addition(mat1, mat2):
 
 
 @pytest.mark.mat_ops
-@pytest.mark.parametrize(('mat1', 'mat2'), [(mat_a, mat_b), (mat_c, mat_d), (mat_d, mat_e),
-                                            (mat_f, mat_h)])
+@pytest.mark.parametrize(
+    ("mat1", "mat2"), [(mat_a, mat_b), (mat_c, mat_d), (mat_d, mat_e), (mat_f, mat_h)]
+)
 def test_subtraction(mat1, mat2):
     if (np.array(mat1)).shape < (2, 2) or (np.array(mat2)).shape < (2, 2):
         with pytest.raises(TypeError):
@@ -67,8 +72,9 @@ def test_subtraction(mat1, mat2):
 
 
 @pytest.mark.mat_ops
-@pytest.mark.parametrize(('mat1', 'mat2'), [(mat_a, mat_b), (mat_c, mat_d), (mat_d, mat_e),
-                                            (mat_f, mat_h)])
+@pytest.mark.parametrize(
+    ("mat1", "mat2"), [(mat_a, mat_b), (mat_c, mat_d), (mat_d, mat_e), (mat_f, mat_h)]
+)
 def test_multiplication(mat1, mat2):
     if (np.array(mat1)).shape < (2, 2) or (np.array(mat2)).shape < (2, 2):
         logger.info(f"\n\t{test_multiplication.__name__} returned integer")
@@ -81,7 +87,9 @@ def test_multiplication(mat1, mat2):
         assert theo == act
     else:
         with pytest.raises(ValueError):
-            logger.info(f"\n\t{test_multiplication.__name__} does not meet dim requirements")
+            logger.info(
+                f"\n\t{test_multiplication.__name__} does not meet dim requirements"
+            )
             assert matop.subtract(mat1, mat2)
 
 
@@ -100,7 +108,7 @@ def test_identity():
 
 
 @pytest.mark.mat_ops
-@pytest.mark.parametrize('mat', [mat_a, mat_b, mat_c, mat_d, mat_e, mat_f])
+@pytest.mark.parametrize("mat", [mat_a, mat_b, mat_c, mat_d, mat_e, mat_f])
 def test_transpose(mat):
     if (np.array(mat)).shape < (2, 2):
         with pytest.raises(TypeError):

@@ -1,8 +1,8 @@
 alphabets = [chr(i) for i in range(32, 126)]
-gear_one = [i for i in range(len(alphabets))]
-gear_two = [i for i in range(len(alphabets))]
-gear_three = [i for i in range(len(alphabets))]
-reflector = [i for i in reversed(range(len(alphabets)))]
+gear_one = list(range(len(alphabets)))
+gear_two = list(range(len(alphabets)))
+gear_three = list(range(len(alphabets)))
+reflector = list(reversed(range(len(alphabets))))
 code = []
 gear_one_pos = gear_two_pos = gear_three_pos = 0
 
@@ -40,20 +40,20 @@ def engine(input_character):
     rotator()
 
 
-if __name__ == '__main__':
-    decode = input("Type your message:\n")
-    decode = list(decode)
+if __name__ == "__main__":
+    decode = list(input("Type your message:\n"))
     while True:
         try:
             token = int(input("Please set token:(must be only digits)\n"))
             break
         except Exception as error:
             print(error)
-    for i in range(token):
+    for _ in range(token):
         rotator()
-    for i in decode:
-        engine(i)
+    for j in decode:
+        engine(j)
     print("\n" + "".join(code))
     print(
         f"\nYour Token is {token} please write it down.\nIf you want to decode "
-        f"this message again you should input same digits as token!")
+        "this message again you should input same digits as token!"
+    )

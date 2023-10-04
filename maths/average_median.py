@@ -1,11 +1,17 @@
-def median(nums):
+from __future__ import annotations
+
+
+def median(nums: list) -> int | float:
     """
     Find median of a list of numbers.
+    Wiki: https://en.wikipedia.org/wiki/Median
 
     >>> median([0])
     0
-    >>> median([4,1,3,2])
+    >>> median([4, 1, 3, 2])
     2.5
+    >>> median([2, 70, 6, 50, 20, 8, 4])
+    8
 
     Args:
         nums: List of nums
@@ -13,22 +19,23 @@ def median(nums):
     Returns:
         Median.
     """
-    sorted_list = sorted(nums)
-    med = None
-    if len(sorted_list) % 2 == 0:
-        mid_index_1 = len(sorted_list) // 2
-        mid_index_2 = (len(sorted_list) // 2) - 1
-        med = (sorted_list[mid_index_1] + sorted_list[mid_index_2]) / float(2)
-    else:
-        mid_index = (len(sorted_list) - 1) // 2
-        med = sorted_list[mid_index]
-    return med
+    # The sorted function returns list[SupportsRichComparisonT@sorted]
+    # which does not support `+`
+    sorted_list: list[int] = sorted(nums)
+    length = len(sorted_list)
+    mid_index = length >> 1
+    return (
+        (sorted_list[mid_index] + sorted_list[mid_index - 1]) / 2
+        if length % 2 == 0
+        else sorted_list[mid_index]
+    )
+
 
 def main():
-    print("Odd number of numbers:")
-    print(median([2, 4, 6, 8, 20, 50, 70]))
-    print("Even number of numbers:")
-    print(median([2, 4, 6, 8, 20, 50]))
+    import doctest
 
-if __name__ == '__main__':
+    doctest.testmod()
+
+
+if __name__ == "__main__":
     main()
