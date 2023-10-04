@@ -2,6 +2,7 @@
 Wikipedia explanation: https://en.wikipedia.org/wiki/Exponentiation
 """
 
+
 def binary_exponentiation(number: float, power: int) -> float:
     """
     Function to calculate number raised to the power
