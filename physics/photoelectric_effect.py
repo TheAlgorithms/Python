@@ -1,20 +1,20 @@
 """
 The photoelectric effect is the emission of electrons when electromagnetic radiation ,
-such as light, hits a material. Electrons emitted in this manner are called 
+such as light, hits a material. Electrons emitted in this manner are called
 photoelectrons.
 
-In 1905, Einstein proposed a theory of the photoelectric effect using a concept that 
-light consists of tiny packets of energy known as photons or light quanta. Each packet 
+In 1905, Einstein proposed a theory of the photoelectric effect using a concept that
+light consists of tiny packets of energy known as photons or light quanta. Each packet
 carries energy hv that is proportional to the frequency v of the corresponding
-electromagnetic wave. The proportionality constant h has become known as the 
+electromagnetic wave. The proportionality constant h has become known as the
 Planck constant. In the range of kinetic energies of the electrons that are removed from
-their varying atomic bindings by the absorption of a photon of energy hv, the highest 
+their varying atomic bindings by the absorption of a photon of energy hv, the highest
 kinetic energy K_max is :
 
 K_max = hv-W
 
-Here, W is the minimum energy required to remove an electron from the surface of the 
-material. It is called the work function of the surface 
+Here, W is the minimum energy required to remove an electron from the surface of the
+material. It is called the work function of the surface
 
 Reference: https://en.wikipedia.org/wiki/Photoelectric_effect
 
