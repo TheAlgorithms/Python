@@ -185,6 +185,7 @@
     * [Diff Views Of Binary Tree](data_structures/binary_tree/diff_views_of_binary_tree.py)
     * [Distribute Coins](data_structures/binary_tree/distribute_coins.py)
     * [Fenwick Tree](data_structures/binary_tree/fenwick_tree.py)
+    * [Flatten Binarytree To Linkedlist](data_structures/binary_tree/flatten_binarytree_to_linkedlist.py)
     * [Inorder Tree Traversal 2022](data_structures/binary_tree/inorder_tree_traversal_2022.py)
     * [Is Bst](data_structures/binary_tree/is_bst.py)
     * [Lazy Segment Tree](data_structures/binary_tree/lazy_segment_tree.py)
@@ -691,6 +692,7 @@
   * [Matrix Class](matrix/matrix_class.py)
   * [Matrix Operation](matrix/matrix_operation.py)
   * [Max Area Of Island](matrix/max_area_of_island.py)
+  * [Median Matrix](matrix/median_matrix.py)
   * [Nth Fibonacci Using Matrix Exponentiation](matrix/nth_fibonacci_using_matrix_exponentiation.py)
   * [Pascal Triangle](matrix/pascal_triangle.py)
   * [Rotate Matrix](matrix/rotate_matrix.py)
@@ -1053,6 +1055,7 @@
     * [Sol1](project_euler/problem_493/sol1.py)
   * Problem 551
     * [Sol1](project_euler/problem_551/sol1.py)
+    * [Sol2](project_euler/problem_551/sol2.py)
   * Problem 587
     * [Sol1](project_euler/problem_587/sol1.py)
   * Problem 686
