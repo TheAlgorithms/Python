@@ -1,6 +1,6 @@
 
-//This is an Implementation of AES alhgorithm in CBC version 1 mode
-//Wiki: https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation
+#This is an Implementation of AES alhgorithm in CBC version 1 mode
+#Wiki: https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation
 
 
 
