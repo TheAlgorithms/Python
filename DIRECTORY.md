@@ -170,6 +170,7 @@
 
 ## Data Structures
   * Arrays
+    * [Median Two Array](data_structures/arrays/median_two_array.py)
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
     * [Product Sum](data_structures/arrays/product_sum.py)
