@@ -14,18 +14,30 @@ https://stephenjoel2k.medium.com/two-heaps-min-heap-max-heap-c3d32cbb671d
 """
 
 
+# data_structures/heap/two_way_heaps_method.py
+
 import heapq
 from typing import Union
-
-
 class MedianFinder:
+    """
+    A class for finding the median of a stream of numbers using two heaps.
+
+    Examples:
+        >>> median_finder = MedianFinder()
+        >>> median_finder.insert(5)
+        >>> median_finder.insert(8)
+        >>> median_finder.insert(2)
+        >>> median_finder.insert(10)
+        >>> median_finder.insert(1)
+        >>> median_finder.insert(7)
+        >>> median_finder.insert(6)
+        >>> median = median_finder.find_Median()
+        >>> median
+        6.0
+    """
+
     def __init__(self) -> None:
-        """
-        Initialize the MedianFinder with empty max and min heaps.
-        
-        Examples:
-            >>> median_finder = MedianFinder()
-        """
+        """Initialize the MedianFinder with empty max and min heaps."""
         self.maxheap = []
         self.minheap = []
 
@@ -35,11 +47,6 @@ class MedianFinder:
 
         Args:
             value (int | float): A number to be inserted in the heap.
-
-        Examples:
-            >>> median_finder = MedianFinder()
-            >>> median_finder.insert(10)
-            >>> median_finder.insert(20)
         """
         if not self.maxheap or value <= -self.maxheap[0]:
             heapq.heappush(self.maxheap, -value)
@@ -80,8 +87,18 @@ def main() -> None:
     """
     Run the example with a stream of numbers.
 
-    Returns:
-        None
+    Examples:
+        >>> median_finder = MedianFinder()
+        >>> median_finder.insert(5)
+        >>> median_finder.insert(8)
+        >>> median_finder.insert(2)
+        >>> median_finder.insert(10)
+        >>> median_finder.insert(1)
+        >>> median_finder.insert(7)
+        >>> median_finder.insert(6)
+        >>> median = median_finder.find_median()
+        >>> print("Median:", median)
+        Median: 6
     """
     median_finder = MedianFinder()
 
@@ -91,11 +108,10 @@ def main() -> None:
         median_finder.insert(value)
 
     median = median_finder.find_median()
-    print("Median:", median)  # Median = 6.0
-
+    print("Median:", median)  # Median = 6
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
     main()
+
