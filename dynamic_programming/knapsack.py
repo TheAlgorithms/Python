@@ -6,6 +6,7 @@ Note that only the integer weights 0-1 knapsack problem is solvable
 using dynamic programming.
 """
 
+
 def mf_knapsack(i, wt, val, j, f):
     """
     This code involves the concept of memory functions. Here we solve the subproblems
@@ -138,7 +139,15 @@ if __name__ == "__main__":
     w = 6
     optimal_solution, _ = knapsack(w, wt, val, n)
     print(optimal_solution)
-    print(mf_knapsack(n, wt, val, w, [[0] * (w + 1)] + [[0] + [-1] * (w + 1) for _ in range(n + 1)]))  # switched the n and w
+    print(
+        mf_knapsack(
+            n,
+            wt,
+            val,
+            w,
+            [[0] * (w + 1)] + [[0] + [-1] * (w + 1) for _ in range(n + 1)],
+        )
+    )  # switched the n and w
 
     # testing the dynamic programming problem with example
     # the optimal subset for the above example are items 3 and 4
