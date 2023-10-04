@@ -22,14 +22,11 @@ def median(matrix: list[list[int]]) -> int:
         >>> median(matrix)
         3
     """
-    # Flatten the matrix into a 1D list
-    linear = [num for row in matrix for num in row]
-
-    # Sort the 1D list
-    linear.sort()
+    # Flatten the matrix into a sorted 1D list
+    linear = sorted(num for row in matrix for num in row)
 
     # Calculate the middle index
-    mid = (0 + len(linear) - 1) // 2
+    mid = (len(linear) - 1) // 2
 
     # Return the median
     return linear[mid]
