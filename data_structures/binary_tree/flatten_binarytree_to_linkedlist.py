@@ -86,7 +86,7 @@ def display_linked_list(root: TreeNode | None) -> None:
         >>> root.right = TreeNode(2)
         >>> root.right.right = TreeNode(3)
         >>> display_linked_list(root)
-        1 2 3
+        1 2 3 
         >>> root = None
         >>> display_linked_list(root)
         (no output)
@@ -99,6 +99,35 @@ def display_linked_list(root: TreeNode | None) -> None:
 
 def main() -> None:
     # Create a sample binary tree
+        """
+    Demonstrate flattening a binary tree and displaying the flattened linked list.
+
+    Examples:
+        >>> from data_structures.binary_tree.flatten_binarytree_to_linkedlist import TreeNode, flatten, display_linked_list, main
+
+        >>> # Create a sample binary tree
+        >>> root = TreeNode(1)
+        >>> root.left = TreeNode(2)
+        >>> root.right = TreeNode(5)
+        >>> root.left.left = TreeNode(3)
+        >>> root.left.right = TreeNode(4)
+        >>> root.right.right = TreeNode(6)
+
+        >>> # Flatten the binary tree to a linked list
+        >>> flatten(root)
+
+        >>> # Display the flattened linked list to verify correctness
+        >>> display_linked_list(root)
+        1 2 3 4 5 6 
+
+        >>> # Test the main function
+        >>> if __name__ == "__main__":
+        ...     main()
+        ...
+        Flattened Linked List:
+        1 2 3 4 5 6
+    """
+
     root = TreeNode(1)
     root.left = TreeNode(2)
     root.right = TreeNode(5)
