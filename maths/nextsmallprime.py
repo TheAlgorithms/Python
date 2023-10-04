@@ -9,7 +9,7 @@ smaller than or equal to input"""
 >>> nsmallestprime(20)
 19
 """
-def nsmallestprime(int n)-> int :
+def nsmallestprime(n)-> int :
   if n<2:
     raise ValueError("n must be greater than 2")
   def prime(i):
