@@ -6,21 +6,19 @@ Note that only the integer weights 0-1 knapsack problem is solvable
 using dynamic programming.
 """
 
-
-def mf_knapsack(i, wt, val, j):
+def mf_knapsack(i, wt, val, j, f):
     """
     This code involves the concept of memory functions. Here we solve the subproblems
     which are needed unlike the below example
     F is a 2D array with -1s filled up
     """
-    global f  # a global dp table for knapsack
     if f[i][j] < 0:
         if j < wt[i - 1]:
-            val = mf_knapsack(i - 1, wt, val, j)
+            val = mf_knapsack(i - 1, wt, val, j, f)
         else:
             val = max(
-                mf_knapsack(i - 1, wt, val, j),
-                mf_knapsack(i - 1, wt, val, j - wt[i - 1]) + val[i - 1],
+                mf_knapsack(i - 1, wt, val, j, f),
+                mf_knapsack(i - 1, wt, val, j - wt[i - 1], f) + val[i - 1],
             )
         f[i][j] = val
     return f[i][j]
@@ -36,7 +34,7 @@ def knapsack(w, wt, val, n):
             else:
                 dp[i][w_] = dp[i - 1][w_]
 
-    return dp[n][w_], dp
+    return dp[n][w], dp
 
 
 def knapsack_with_example_solution(w: int, wt: list, val: list):
@@ -91,6 +89,7 @@ def knapsack_with_example_solution(w: int, wt: list, val: list):
             )
             raise TypeError(msg)
 
+    f = [[0] * (w + 1)] + [[0] + [-1] * (w + 1) for _ in range(num_items + 1)]
     optimal_val, dp_table = knapsack(w, wt, val, num_items)
     example_optional_set: set = set()
     _construct_solution(dp_table, wt, num_items, w, example_optional_set)
@@ -137,10 +136,9 @@ if __name__ == "__main__":
     wt = [4, 3, 2, 3]
     n = 4
     w = 6
-    f = [[0] * (w + 1)] + [[0] + [-1] * (w + 1) for _ in range(n + 1)]
     optimal_solution, _ = knapsack(w, wt, val, n)
     print(optimal_solution)
-    print(mf_knapsack(n, wt, val, w))  # switched the n and w
+    print(mf_knapsack(n, wt, val, w, [[0] * (w + 1)] + [[0] + [-1] * (w + 1) for _ in range(n + 1)]))  # switched the n and w
 
     # testing the dynamic programming problem with example
     # the optimal subset for the above example are items 3 and 4
