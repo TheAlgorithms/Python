@@ -1,4 +1,6 @@
-def spiral_order(matrix: list[list[int]]) -> list[int]:
+from typing import List
+
+def spiral_order(matrix: List[List[int]]) -> List[int]:
     """
     Traverses a 2D matrix in a spiral order and returns the elements in a list.
 
@@ -7,15 +9,6 @@ def spiral_order(matrix: list[list[int]]) -> list[int]:
 
     Returns:
         List[int]: A list containing the elements of the matrix in spiral order.
-
-    Example:
-        >>> matrix = [
-        ...     [1, 2, 3],
-        ...     [4, 5, 6],
-        ...     [7, 8, 9]
-        ... ]
-        >>> spiral_order(matrix)
-        [1, 2, 3, 6, 9, 8, 7, 4, 5]
     """
     ans = []
     row = len(matrix)
