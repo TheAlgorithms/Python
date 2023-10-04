@@ -10,7 +10,7 @@ class Node:
         """
         Initialize a new Node with the given data.
         Args:
-            data (Any): The data to be stored in the node.
+            data: The data to be stored in the node.
         """
         self.data: Any = data
         self.next: Node | None = None  # Reference to the next node
