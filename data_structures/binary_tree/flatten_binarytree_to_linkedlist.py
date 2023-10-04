@@ -5,13 +5,14 @@ This code defines an algorithm to flatten a binary tree into a linked list
 represented using the right pointers of the tree nodes. It uses in-place
 flattening and demonstrates the flattening process along with a display
 function to visualize the flattened linked list.
-Explanation: 
+Explanation:
 https://www.geeksforgeeks.org/flatten-a-binary-tree-into-linked-list
 
 Author: Arunkumar A
 Date: 04/09/2023
 """
 from __future__ import annotations
+
 
 class TreeNode:
     """
