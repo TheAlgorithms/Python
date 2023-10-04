@@ -9,47 +9,42 @@ In brute-force method time complexity of this medianfinder algorithm would be O(
 
 a medium article to better understand this algorithm
 
-https://stephenjoel2k.medium.com/two-heaps-min-heap-max-heap-c3d32cbb671d 
+https://stephenjoel2k.medium.com/two-heaps-min-heap-max-heap-c3d32cbb671d
 
 """
 
 
 import heapq
 
+
 class MedianFinder:
-
-
     def __init__(self):
         self.maxheap = []
         self.minheap = []
 
-
-    def insert(self , value):
+    def insert(self, value):
         if not self.maxheap or value <= -self.maxheap[0]:
-            heapq.heappush(self.maxheap , -value)
-        else :
-            heapq.heappush(self.minheap , value)        
+            heapq.heappush(self.maxheap, -value)
+        else:
+            heapq.heappush(self.minheap, value)
 
         if len(self.maxheap) - len(self.minheap) > 1:
-            heapq.heappush(self.minheap , -heapq.heappop(self.maxheap))    
+            heapq.heappush(self.minheap, -heapq.heappop(self.maxheap))
 
         elif len(self.minheap) - len(self.maxheap) > 1:
-            heapq.heappush(self.maxheap , -heapq.heappop(self.minheap))
-    
+            heapq.heappush(self.maxheap, -heapq.heappop(self.minheap))
 
     def findMedian(self):
         if len(self.maxheap) == len(self.minheap):
             return (-self.maxheap[0] + self.minheap[0]) / 2.0
-        
+
         elif len(self.maxheap) > len(self.minheap):
             return -self.maxheap[0]
-        
+
         return self.minheap[0]
 
 
 def main():
-    
-
     median_finder = MedianFinder()
 
     stream_of_number = [5, 8, 2, 10, 1, 7, 6]
@@ -58,6 +53,7 @@ def main():
         median_finder.insert(value)
 
     median = median_finder.findMedian()
-    print("Median:" , median)    # Median = 6
+    print("Median:", median)  # Median = 6
+
 
 main()
