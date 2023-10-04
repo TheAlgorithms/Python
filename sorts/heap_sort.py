@@ -50,7 +50,7 @@ if __name__ == "__main__":
     user_input = input("Enter numbers separated by commas: ").strip()
     try:
         unsorted = [int(item) for item in user_input.split(",")]
-        sorted_list = heap_sort(unsorted)
-        print("Sorted list:", sorted_list)
     except ValueError:
         print("Invalid input. Please enter a list of integers separated by commas.")
+        exit()
+    print(f"Sorted list: {heap_sort(unsorted)}")
