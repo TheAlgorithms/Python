@@ -12,7 +12,7 @@ def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
     no edge that connects vertices of the same set.
 
     Args:
-        graph (DefaultDict[int, List[int]]): An adjacency list representing the graph.
+        graph: An adjacency list representing the graph.
 
     Returns:
         bool: True if the graph is Bipartite, False otherwise.
