@@ -29,7 +29,10 @@ def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
 
     def dpth(node, col):
         vis[node] = col
-        return any(vis[nbor]==col or (vis[nbor]==-1 and not dpth(nbor,1-col)) for nbor in graph[node])
+        return any(
+            vis[nbor] == col or (vis[nbor] == -1 and not dpth(nbor, 1 - col))
+            for nbor in graph[node]
+        )
 
     vis: defaultdict[int, int] = defaultdict(lambda: -1)
 
