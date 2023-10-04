@@ -1,6 +1,5 @@
 
 def findClosestValueInBst(tree, target):
-    # Write your code here.
 	diff=float('inf')
 	old=0
 	val=0
@@ -26,7 +25,6 @@ def find(tree,target,dif,old,val):
 		return val
 		
 
-# This is the class of the input tree. Do not edit.
 class BST:
     def __init__(self, value):
         self.value = value
