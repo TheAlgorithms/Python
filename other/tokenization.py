@@ -1,7 +1,8 @@
-#Tokenization: Splitting text into words or sentences.
-#https://www.tutorialspoint.com/natural_language_processing/natural_language_processing_python.htm
+# Tokenization: Splitting text into words or sentences.
+# https://www.tutorialspoint.com/natural_language_processing/natural_language_processing_python.htm
 import nltk
-nltk.download('punkt')
+
+nltk.download("punkt")
 from nltk.tokenize import word_tokenize, sent_tokenize
 
 text = "NLTK is a leading platform for building Python programs to work with human language data."

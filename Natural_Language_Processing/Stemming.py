@@ -1,4 +1,4 @@
-#Stemming: Reducing words to their root form.
+# Stemming: Reducing words to their root form.
 from nltk.stem import PorterStemmer
 
 stemmer = PorterStemmer()
