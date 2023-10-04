@@ -1,8 +1,5 @@
 
-python 1.
-
 def generateDocument(characters, document):
-    # Write your code here
 	k=[]
 	for a in characters:
 		k.append(a)
@@ -12,12 +9,10 @@ def generateDocument(characters, document):
 			continue
 		else:
 			return False
-		
     return True
-python 2.
+
 
 def generateDocument(characters, document):
-    # Write your code here
 	s=[]
 	z=''
 	for i in characters:
@@ -32,8 +27,7 @@ def generateDocument(characters, document):
 	            if( characters[b] in s):					
 	                s.remove(characters[b])
 	                k=k+1
-	                break
-# 		
+	                break	
 	print(s)
 	if(z==document):
 		return True
