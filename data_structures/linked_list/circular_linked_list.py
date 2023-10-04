@@ -1,4 +1,3 @@
-# Enables forward annotations for type hinting
 from __future__ import annotations
 
 from collections.abc import Iterator
