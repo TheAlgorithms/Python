@@ -8,11 +8,13 @@ def find_subsets(ind, nums, ds, ans_list):
         find_subsets(i + 1, nums, ds, ans_list)
         ds.pop()
 
+
 def all_subsets(arr):
     nums = sorted(arr)
     ans_list = []
     find_subsets(0, nums, [], ans_list)
     return ans_list
+
 
 if __name__ == "__main__":
     input_set = [10, 12, 12]
