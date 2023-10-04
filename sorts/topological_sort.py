@@ -5,7 +5,13 @@
 #   b  c
 #  / \
 # d  e
-edges: dict[str, list[str]] = {"a": ["c", "b"], "b": ["d", "e"], "c": [], "d": [], "e": []}
+edges: dict[str, list[str]] = {
+    "a": ["c", "b"],
+    "b": ["d", "e"],
+    "c": [],
+    "d": [],
+    "e": [],
+}
 vertices: list[str] = ["a", "b", "c", "d", "e"]
 
 
