@@ -11,20 +11,19 @@ def solve_maze(
     """
     This method solves the "rat in maze" problem.
     Parameters :
-        - maze(2D matrix) : maze
-        - source_row (int): The row index of the starting point.
-        - source_column (int): The column index of the starting point.
-        - destination_row (int): The row index of the destination point.
-        - destination_column (int): The column index of the destination point.
+        - maze: A two dimensional matrix of zeros and ones.
+        - source_row: The row index of the starting point.
+        - source_column: The column index of the starting point.
+        - destination_row: The row index of the destination point.
+        - destination_column: The column index of the destination point.
     Returns:
-        - solution (list[list[int]]): A 2D matrix representing the solution path
-            if it exists.
+        - solution: A 2D matrix representing the solution path if it exists.
     Raises:
         - ValueError: If no solution exists or if the source or
             destination coordinates are invalid.
     Description:
         This method navigates through a maze represented as an n by n matrix,
-        starting from a specified source cell  and
+        starting from a specified source cell and
         aiming to reach a destination cell.
         The maze consists of walls (1s) and open paths (0s).
         By providing custom row and column values, the source and destination
@@ -150,9 +149,9 @@ def run_maze(
     up, down, left, right.
     If a path is found to destination it returns True otherwise it returns False.
     Parameters
-        maze(2D matrix) : maze
+        maze: A two dimensional matrix of zeros and ones.
         i, j : coordinates of matrix
-        solutions(2D matrix) : solutions
+        solutions: A two dimensional matrix of solutions.
     Returns:
         Boolean if path is found True, Otherwise False.
     """
