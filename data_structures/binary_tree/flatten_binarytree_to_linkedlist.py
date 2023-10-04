@@ -1,0 +1,125 @@
+"""
+Binary Tree Flattening Algorithm
+
+This code defines an algorithm to flatten a binary tree into a linked list
+represented using the right pointers of the tree nodes. It uses in-place
+flattening and demonstrates the flattening process along with a display
+function to visualize the flattened linked list.
+
+Author: Arunkumar A
+Date: 04/09/2023
+"""
+from __future__ import annotations
+
+class TreeNode:
+    """
+    A TreeNode has data variable and pointers to TreeNode objects
+    for its left and right children.
+    """
+
+    def __init__(self, data: int) -> None:
+        self.data = data
+        self.left: TreeNode | None = None
+        self.right: TreeNode | None = None
+
+
+def flatten(root: TreeNode | None) -> None:
+    """
+    Flatten a binary tree into a linked list in-place, where the linked list is
+    represented using the right pointers of the tree nodes.
+
+    Args:
+        root (TreeNode): The root of the binary tree to be flattened.
+
+    Examples:
+        >>> root = TreeNode(1)
+        >>> root.left = TreeNode(2)
+        >>> root.right = TreeNode(5)
+        >>> root.left.left = TreeNode(3)
+        >>> root.left.right = TreeNode(4)
+        >>> root.right.right = TreeNode(6)
+        >>> flatten(root)
+        >>> root.data
+        1
+        >>> root.right is None
+        True
+        >>> root.right = TreeNode(2)
+        >>> root.right.data
+        2
+        >>> root.right.right is None
+        True
+        >>> root.right.right = TreeNode(3)
+        >>> root.right.right.data
+        3
+        >>> root.right.right.right is None
+        True
+
+    """
+    if not root:
+        return
+
+    # Flatten the left subtree
+    flatten(root.left)
+
+    # Save the right subtree
+    right_subtree = root.right
+
+    # Make the left subtree the new right subtree
+    root.right = root.left
+    root.left = None
+
+    # Find the end of the new right subtree
+    current = root
+    while current.right:
+        current = current.right
+
+    # Append the original right subtree to the end
+    current.right = right_subtree
+
+    # Flatten the updated right subtree
+    flatten(right_subtree)
+
+
+def display_linked_list(root: TreeNode | None) -> None:
+    """
+    Display the flattened linked list.
+
+    Args:
+        root (TreeNode | None): The root of the flattened linked list.
+
+    Examples:
+        >>> root = TreeNode(1)
+        >>> root.right = TreeNode(2)
+        >>> root.right.right = TreeNode(3)
+        >>> display_linked_list(root)
+        1 2 3
+
+        >>> root = None
+        >>> display_linked_list(root)
+        (no output)
+    """
+    current = root
+    while current:
+        print(current.data, end=" ")
+        current = current.right
+
+
+def main() -> None:
+    # Create a sample binary tree
+    root = TreeNode(1)
+    root.left = TreeNode(2)
+    root.right = TreeNode(5)
+    root.left.left = TreeNode(3)
+    root.left.right = TreeNode(4)
+    root.right.right = TreeNode(6)
+
+    # Flatten the binary tree to a linked list
+    flatten(root)
+
+    # Display the flattened linked list to verify correctness
+    print("Flattened Linked List:")
+    display_linked_list(root)
+
+
+if __name__ == "__main__":
+    main()
