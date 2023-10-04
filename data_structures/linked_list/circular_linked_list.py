@@ -1,7 +1,6 @@
 # Enables forward annotations for type hinting
 from __future__ import annotations
 
-import doctest
 from collections.abc import Iterator
 from typing import Any
 
