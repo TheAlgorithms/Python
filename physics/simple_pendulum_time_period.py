@@ -31,16 +31,12 @@ Reference : https://unacademy.com/content/nda/study-material/physics/what-is-the
 
 def simple_pendulum_time_period(length: float) -> float:
     """
-    >>> simple_pendulum_time_period(1.34)
-    0.857167413819559
-    >>> simple_pendulum_time_period(0.45)
-    0.49672899372041895
-    >>> simple_pendulum_time_period(2.6)
-    1.193987904579067
-    >>> simple_pendulum_time_period(3.23)
-    1.3308052775536363
-    >>> simple_pendulum_time_period(34)
-    4.3177024674613955
+    >>> simple_pendulum_time_period(1.2)
+    2.198654994580058
+    >>> simple_pendulum_time_period(3.4)
+    3.7008878292526237
+    >>> simple_pendulum_time_period(9.8)
+    6.28318
     >>> simple_pendulum_time_period(-2)
     Traceback (most recent call last):
         ...
@@ -50,7 +46,7 @@ def simple_pendulum_time_period(length: float) -> float:
     """
     if length < 0:
         raise ValueError("The length cannot be a negative number")
-    return 2 * 3.14159 * ((length / 9 / 8) ** 0.5)
+    return 2 * 3.14159 * ((length / 9.8) ** 0.5)
 
 
 if __name__ == "__main__":
