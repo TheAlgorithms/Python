@@ -1,7 +1,9 @@
 import doctest
+
+
 def decimal_to_negative_base_2(n: int) -> int:
     """
-    This function returns the number negative base 2 
+    This function returns the number negative base 2
     of the decimal number of the input data.
 
     Args:
@@ -33,6 +35,7 @@ def decimal_to_negative_base_2(n: int) -> int:
         ans = str(rem) + ans
 
     return int(ans)
+
 
 if __name__ == "__main__":
     doctest.testmod()
