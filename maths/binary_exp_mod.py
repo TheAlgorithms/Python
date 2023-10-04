@@ -1,4 +1,4 @@
-def bin_exp_mod(a, n, b):
+def bin_exp_mod(a: int, n: int, b: int) -> int:
     """
     >>> bin_exp_mod(3, 4, 5)
     1
@@ -13,7 +13,7 @@ def bin_exp_mod(a, n, b):
     if n % 2 == 1:
         return (bin_exp_mod(a, n - 1, b) * a) % b
 
-    r = bin_exp_mod(a, n / 2, b)
+    r = bin_exp_mod(a, n // 2, b)
     return (r * r) % b
 
 

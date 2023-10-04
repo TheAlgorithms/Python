@@ -47,7 +47,7 @@ def combination_sum(candidates: list, target: int) -> list:
     >>> combination_sum([-8, 2.3, 0], 1)
     Traceback (most recent call last):
         ...
-    RecursionError: maximum recursion depth exceeded in comparison
+    RecursionError: maximum recursion depth exceeded
     """
     path = []  # type: list[int]
     answer = []  # type: list[int]
