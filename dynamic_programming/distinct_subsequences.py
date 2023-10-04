@@ -1,9 +1,10 @@
 from future import __annotations__
 
+
 def subsequenceCounting(s1: str, s2: str, n: int, m: int) -> int:
     """
     Uses bottom-up dynamic programming/tabulation
-    to count the number of distinct 
+    to count the number of distinct
     subsequences of string s2 in string s1
 
     >>> s1 = "babgbag"
@@ -28,12 +29,13 @@ def subsequenceCounting(s1: str, s2: str, n: int, m: int) -> int:
             # 1. Include the current character in both s1 and s2 (dp[i-1][j-1])
             # 2. Skip the current character in s1 (dp[i-1][j])
             if s1[i - 1] == s2[j - 1]:
-                dp[i][j] = (dp[i - 1][j - 1] + dp[i - 1][j])  
+                dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j]
             else:
                 dp[i - 1][j]
 
     # The final value in dp[n][m] is the count of distinct subsequences
     return dp[n][m]
+
 
 if __name__ == "__main__":
     import doctest
@@ -41,6 +43,9 @@ if __name__ == "__main__":
     doctest.testmod()
     s1 = "babgbag"
     s2 = "bag"
-    
+
     # Find the number of distinct subsequences of string s2 in string s1
-    print("The Count of Distinct Subsequences is", subsequenceCounting(s1, s2, len(s1), len(s2)))
+    print(
+        "The Count of Distinct Subsequences is",
+        subsequenceCounting(s1, s2, len(s1), len(s2)),
+    )
