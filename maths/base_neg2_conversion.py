@@ -1,5 +1,5 @@
 import doctest
-def decimal_to_negative_base_2(n: int) -> int:
+def decimal_to_negative_base_2(num: int) -> int:
     """
     This function returns the number negative base 2 
     of the decimal number of the input data.
@@ -20,15 +20,15 @@ def decimal_to_negative_base_2(n: int) -> int:
         >>> decimal_to_negative_base_2(7)
         11011
     """
-    if n == 0:
+    if num == 0:
         return 0
     ans = ""
-    while n != 0:
-        rem = n % -2
-        n = n // -2
+    while num != 0:
+        rem = num % -2
+        num = num // -2
         if rem < 0:
             rem += 2
-            n += 1
+            num += 1
 
         ans = str(rem) + ans
 
