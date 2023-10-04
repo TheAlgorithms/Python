@@ -1,4 +1,6 @@
-"""Factorial of a positive integer -- https://en.wikipedia.org/wiki/Factorial
+"""
+
+Factorial of a positive integer -- https://en.wikipedia.org/wiki/Factorial
 """
 
 
