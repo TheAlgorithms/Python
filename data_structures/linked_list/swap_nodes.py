@@ -30,7 +30,7 @@ class LinkedList:
             temp = temp.next
         print()  # Move to the next line after printing all elements
 
-    def push(self, new_data: Any):
+    def push(self, new_data: Any) -> None:
         """
         Add a new node with the given data to the beginning of the Linked List.
         Args:
