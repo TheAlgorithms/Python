@@ -49,6 +49,7 @@
   * [Highest Set Bit](bit_manipulation/highest_set_bit.py)
   * [Index Of Rightmost Set Bit](bit_manipulation/index_of_rightmost_set_bit.py)
   * [Is Even](bit_manipulation/is_even.py)
+  * [Is Odd](bit_manipulation/is_odd.py)
   * [Is Power Of Two](bit_manipulation/is_power_of_two.py)
   * [Missing Number](bit_manipulation/missing_number.py)
   * [Numbers Different Signs](bit_manipulation/numbers_different_signs.py)
