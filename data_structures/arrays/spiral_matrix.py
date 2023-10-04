@@ -1,4 +1,6 @@
-def spiral_order(matrix) -> None:
+from typing import List
+
+def spiral_order(matrix: List[List[int]]) -> List[int]:
     """
     Traverses a 2D matrix in a spiral order and returns the elements in a list.
 
@@ -23,43 +25,46 @@ def spiral_order(matrix) -> None:
     count = 0
     total = row * column
 
-    startingrow = 0
-    startingcol = 0
-    endingrow = row - 1
-    endingcolumn = column - 1
+    starting_row = 0
+    starting_col = 0
+    ending_row = row - 1
+    ending_col = column - 1
+
     while count < total:
-        for i in range(startingcol, endingcolumn + 1):
+        # Left to Right
+        for i in range(starting_col, ending_col + 1):
             if count >= total:
                 break
-            ans.append(matrix[startingrow][i])
+            ans.append(matrix[starting_row][i])
             count += 1
-        startingrow += 1
+        starting_row += 1
 
-        for i in range(startingrow, endingrow + 1):
+        # Top to Bottom
+        for i in range(starting_row, ending_row + 1):
             if count >= total:
                 break
-            ans.append(matrix[i][endingcolumn])
+            ans.append(matrix[i][ending_col])
             count += 1
-        endingcolumn -= 1
+        ending_col -= 1
 
-        for i in range(endingcolumn, startingcol - 1, -1):
+        # Right to Left
+        for i in range(ending_col, starting_col - 1, -1):
             if count >= total:
                 break
-            ans.append(matrix[endingrow][i])
+            ans.append(matrix[ending_row][i])
             count += 1
-        endingrow -= 1
+        ending_row -= 1
 
-        for i in range(endingrow, startingrow - 1, -1):
+        # Bottom to Top
+        for i in range(ending_row, starting_row - 1, -1):
             if count >= total:
                 break
-            ans.append(matrix[i][startingcol])
+            ans.append(matrix[i][starting_col])
             count += 1
-        startingcol += 1
+        starting_col += 1
 
     return ans
 
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
