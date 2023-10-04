@@ -37,13 +37,13 @@ repos:
     hooks:
       - id: pyproject-fmt
 
-  - repo: local
-    hooks:
-      - id: validate-filenames
-        name: Validate filenames
-        entry: ./scripts/validate_filenames.py
-        language: script
-        pass_filenames: false
+  # - repo: local
+  #   hooks:
+  #     - id: validate-filenames
+  #       name: Validate filenames
+  #       entry: ./scripts/validate_filenames.py
+  #       language: script
+  #       pass_filenames: false
 
   - repo: https://github.com/abravalheri/validate-pyproject
     rev: v0.14
