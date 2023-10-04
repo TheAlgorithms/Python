@@ -1,5 +1,7 @@
-from __future__ import annotations  # Enables forward annotations for type hinting
+# Enables forward annotations for type hinting
+from __future__ import annotations
 
+import doctest
 from collections.abc import Iterator
 from typing import Any
 
@@ -48,7 +50,7 @@ class CircularLinkedList:
         """
         Generate a string representation of the Circular Linked List.
         Returns:
-            str: A string representation of the list in the format "data1->data2->...->dataN".
+            str: A string representation of the list in the format "1->2->....->N".
         """
         return "->".join(str(item) for item in iter(self))
 
@@ -70,7 +72,7 @@ class CircularLinkedList:
 
     def insert_nth(self, index: int, data: Any) -> None:
         """
-        Insert a node with the given data at the specified index in the Circular Linked List.
+        Insert and return the data of the node at the nth pos in Circular Linked List.
         Args:
             index (int): The index at which to insert the data.
             data (Any): The data to be inserted.
@@ -118,7 +120,7 @@ class CircularLinkedList:
 
     def delete_nth(self, index: int = 0) -> Any:
         """
-        Delete and return the data of the node at the specified index in the Circular Linked List.
+        Delete and return the data of the node at the nth pos in Circular Linked List.
         Args:
             index (int): The index of the node to be deleted. Defaults to 0.
         Returns:
@@ -210,6 +212,4 @@ def test_circular_linked_list() -> None:
 
 
 if __name__ == "__main__":
-    import doctest
-
     doctest.testmod()

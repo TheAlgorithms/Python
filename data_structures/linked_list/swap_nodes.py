@@ -24,7 +24,7 @@ class LinkedList:
         """
         Print the elements of the Linked List in order.
 
-        This method iterates through the list and prints each element, separated by a space.
+        This method iterates through the list and prints each element.
         """
         temp = self.head
         while temp is not None:
@@ -52,7 +52,7 @@ class LinkedList:
             node_data_2 (Any): Data value of the second node to be swapped.
 
         Note:
-            If either of the specified data values is not found in the Linked List, no swapping occurs.
+            If either of the specified data values isn't found then, no swapping occurs.
         """
         if node_data_1 == node_data_2:
             return
