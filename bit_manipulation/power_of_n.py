@@ -3,6 +3,7 @@ __author__ = "Himanshu Gupta"
 __version__ = "1.0.0"
 __date__ = "2023-09-03"
 
+
 def binaryExponentiation(x: float, n: int) -> float:
     """
     Function to calculate x raised to the power n (i.e., x^n) where x is a float number and n is an integer and it will return float value
@@ -40,5 +41,5 @@ def binaryExponentiation(x: float, n: int) -> float:
 
 if __name__ == "__main__":
     import doctest
-    
+
     doctest.testmod()
