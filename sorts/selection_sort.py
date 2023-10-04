@@ -41,6 +41,12 @@ def selection_sort(collection: list[int]) -> list[int]:
 
 
 if __name__ == "__main__":
+    import time
+    
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
+    
+    start = time.process_time()
     print(selection_sort(unsorted))
+    stop = time.process_time()
+    print(f"Processing time: {(stop-start)%1e9 + 7}")
