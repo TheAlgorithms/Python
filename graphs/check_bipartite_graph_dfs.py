@@ -27,18 +27,13 @@ def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
         False
     """
 
-    def dpthfrst(node, color):
+    def dpth(node, color):
         vis[node] = color
-        for nbor in graph[node]:
-            if vis[nbor] == color or (
-                vis[nbor] == -1 and not dpthfrst(nbor, 1 - color)
-            ):
-                return False
-        return True
+        return any(vis[nbor] == color or (vis[nbor] == -1 and not dpth(nbor, 1 - color)) for nbor in graph[node])
 
     vis: defaultdict[int, int] = defaultdict(lambda: -1)
 
-    return all(not (vis[node] == -1 and not dpthfrst(node, 0)) for node in graph)
+    return all(not (vis[node] == -1 and not dpth(node, 0)) for node in graph)
 
 
 if __name__ == "__main__":
