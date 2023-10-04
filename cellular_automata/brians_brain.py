@@ -2,8 +2,9 @@
 Brian's Brain cellular automaton implemented in Python.
 https://en.wikipedia.org/wiki/Brian%27s_Brain
 """
-from PIL import Image
 import doctest
+
+from PIL import Image
 
 # Define some initial configurations for Brian's Brain
 INITIAL_PULSER_PATTERN = [
@@ -17,11 +18,10 @@ INITIAL_PULSER_PATTERN = [
 # 1: Cell_On
 # 2: Cell_Dying
 
-
 def compute_next_generation(current_cells: list[list[int]]) -> list[list[int]]:
     """
     Generates the next generation for a given state of Brian's Brain.
-
+    
     >>> compute_next_generation([[0, 1, 0], [0, 2, 0], [0, 1, 0]])
     [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
     """
@@ -29,14 +29,14 @@ def compute_next_generation(current_cells: list[list[int]]) -> list[list[int]]:
     for row_index in range(len(current_cells)):
         next_row = []
         for col_index in range(len(current_cells[row_index])):
-            # Calculate the number of live neighbours
+            # Calculate number of live neighbours
             live_neighbour_count = sum(
                 current_cells[row][col] == 1
-                for row in range(row_index - 1, row_index + 2)
-                for col in range(col_index - 1, col_index + 2)
-                if 0 <= row < len(current_cells)
-                and 0 <= col < len(current_cells[row_index])
-                and (row, col) != (row_index, col_index)
+                for row in range(row_index-1, row_index+2)
+                for col in range(col_index-1, col_index+2)
+                if (0 <= row < len(current_cells) and 
+                    0 <= col < len(current_cells[row_index]) and 
+                    (row, col) != (row_index, col_index))
             )
 
             # Rules for Brian's Brain:
@@ -52,16 +52,18 @@ def compute_next_generation(current_cells: list[list[int]]) -> list[list[int]]:
         next_state.append(next_row)
     return next_state
 
-
-def generate_animation_frames(
-    initial_cells: list[list[int]], number_of_frames: int
-) -> list[Image.Image]:
-    """
+def generate_animation_frames(initial_cells: list[list[int]], 
+                              number_of_frames: int) -> list[Image.Image]:
+     """
     Generates a list of images of subsequent Brian's Brain states.
+    
+    >>> len(generate_animation_frames(INITIAL_PULSER_PATTERN, 5))
+    5
+    
     """
     animation_frames = []
     for _ in range(number_of_frames):
-        # Create an image for the current state
+        # Create image for current state
         img_frame = Image.new("RGB", (len(initial_cells[0]), len(initial_cells)))
         frame_pixels = img_frame.load()
 
@@ -81,10 +83,8 @@ def generate_animation_frames(
         initial_cells = compute_next_generation(initial_cells)
     return animation_frames
 
-
 if __name__ == "__main__":
     doctest.testmod()
     animation_frames = generate_animation_frames(INITIAL_PULSER_PATTERN, 16)
-    animation_frames[0].save(
-        "brians_brain.gif", save_all=True, append_images=animation_frames[1:]
-    )
+    animation_frames[0].save("brians_brain.gif", save_all=True, 
+                             append_images=animation_frames[1:])
