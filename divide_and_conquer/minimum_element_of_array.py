@@ -11,8 +11,9 @@ It returns the ith smallest element of the array A[p: r], where 1 ≤ i ≤ r-p+
 (From Introduction to Algorithms, Fourth Edition, Cormen, 2022: Chapter 9.2)
 """
 from __future__ import annotations
-from typing import Any
+
 import random
+from typing import Any
 
 
 def partition(array, p, r) -> int:
