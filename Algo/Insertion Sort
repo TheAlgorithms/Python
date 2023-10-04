@@ -1,8 +1,5 @@
-
-
-
 def insertionSort(array):
-    # Write your code here
+
 	k=0
 	for a in range(0,len(array)-1):
 		for b in range(a+1,len(array)):
