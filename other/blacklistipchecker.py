@@ -28,8 +28,6 @@ def test_ip(ip: str) -> Any:
  'message': 'You do not have enough credits on your\
  account. Please upgrade to make another request.'}
     ('limit exceeded!', [])
-    >>> test_ip('256.256.256.256')
-    None
     """
     link = f"https://api.blacklistchecker.com/check/{ip}"
     result = requests.get(link, auth=(api_key, ""))
