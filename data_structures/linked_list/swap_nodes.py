@@ -2,19 +2,21 @@ from typing import Any
 
 
 class Node:
-    def __init__(self, data: Any):
+    def __init__(self, data: Any) -> None:
+
         """
         Initialize a new Node with the given data.
 
         Args:
-            data (Any): The data to be stored in the node.
+            data: The data to be stored in the node.
+
         """
         self.data = data
         self.next = None  # Reference to the next node
 
 
 class LinkedList:
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initialize an empty Linked List.
         """
@@ -28,7 +30,7 @@ class LinkedList:
         while temp is not None:
             print(temp.data, end=" ")
             temp = temp.next
-        print()  # Move to the next line after printing all elements
+        print()
 
     def push(self, new_data: Any) -> None:
         """
