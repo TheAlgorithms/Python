@@ -44,8 +44,9 @@ class LinkedList:
         """
         Swap the positions of two nodes in the Linked List based on their data values.
         Args:
-            node_data_1 (Any): Data value of the first node to be swapped.
-            node_data_2 (Any): Data value of the second node to be swapped.
+            node_data_1: Data value of the first node to be swapped.
+            node_data_2: Data value of the second node to be swapped.
+
 
         Note:
             If either of the specified data values isn't found then, no swapping occurs.
