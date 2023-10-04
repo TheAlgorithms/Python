@@ -51,5 +51,5 @@ if __name__ == "__main__":
     s2 = "bag"
 
     # Find the number of distinct subsequences of string s2 in string s1
-    print("The Count of Distinct Subsequences is ",end="")
+    print("The Count of Distinct Subsequences is ", end="")
     print(subsequence_counting(s1, s2, len(s1), len(s2)))
