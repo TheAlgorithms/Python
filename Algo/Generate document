@@ -1,0 +1,41 @@
+
+python 1.
+
+def generateDocument(characters, document):
+    # Write your code here
+	k=[]
+	for a in characters:
+		k.append(a)
+	for m in range(0,len(document)):
+		if(document[m] in k):
+			k.remove(document[m])
+			continue
+		else:
+			return False
+		
+    return True
+python 2.
+
+def generateDocument(characters, document):
+    # Write your code here
+	s=[]
+	z=''
+	for i in characters:
+		if(i):
+			s.append(i)
+	k=1
+	for a in range(0,len(document)):
+	    for b in range(0,len(characters)):
+	        if(document[a]==characters[b]):
+				z=z+characters[b]
+				print(z)
+	            if( characters[b] in s):					
+	                s.remove(characters[b])
+	                k=k+1
+	                break
+# 		
+	print(s)
+	if(z==document):
+		return True
+	else:
+	    return False
