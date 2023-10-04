@@ -21,19 +21,19 @@ class MedianFinder:
     def __init__(self) -> None:
         """
         Initialize the MedianFinder with empty max and min heaps.
-
+        
         Examples:
             >>> median_finder = MedianFinder()
         """
         self.maxheap = []
         self.minheap = []
 
-    def insert(self, value) -> None:
+    def insert(self, value: Union[int, float]) -> None:
         """
         Insert a value into the max and min heaps.
 
         Args:
-            value (int): A number to be inserted in the heap.
+            value (int | float): A number to be inserted in the heap.
 
         Examples:
             >>> median_finder = MedianFinder()
@@ -74,7 +74,6 @@ class MedianFinder:
         elif len(self.maxheap) > len(self.minheap):
             return -self.maxheap[0]
         return self.minheap[0]
-
 
 def main() -> None:
     """
