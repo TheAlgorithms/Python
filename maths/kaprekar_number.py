@@ -36,10 +36,10 @@ def iskaprekar(n):
 	
 	# compare with original number
 	return False
-	
-# Driver method
-i=1
-while i<10000 :
-	if (iskaprekar(i)) :
-		print (i,end=" ")
-	i = i + 1
+
+i = input("Enter the number to check:")
+if (iskaprekar(i)) :
+	print ("The number is a Kaprekar number",end=" ")
+else:
+	print("The number is not a Kaprekar number",end=" ")
+
