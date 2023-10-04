@@ -1,9 +1,5 @@
 
-Python
-1.
-
 def bubbleSort(array):
-    # Write your code here
 	k=0
 	l=0
 	s=array
