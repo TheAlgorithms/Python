@@ -1,8 +1,3 @@
-from __future__ import annotations
-
-import re
-
-
 def natural_sort(input_list: list[str]) -> list[str]:
     """
     Sort the given list of strings in the way that humans expect.
@@ -13,7 +8,7 @@ def natural_sort(input_list: list[str]) -> list[str]:
     >>> example1 = ['2 ft 7 in', '1 ft 5 in', '10 ft 2 in', '2 ft 11 in', '7 ft 6 in']
     >>> sorted(example1)
     ['1 ft 5 in', '10 ft 2 in', '2 ft 11 in', '2 ft 7 in', '7 ft 6 in']
-    >>> # The natural sort algorithm sort based on meaning and not computer code point.
+    >>> # The natural sort algorithm sorts based on meaning and not computer code point.
     >>> natural_sort(example1)
     ['1 ft 5 in', '2 ft 7 in', '2 ft 11 in', '7 ft 6 in', '10 ft 2 in']
 
@@ -25,7 +20,7 @@ def natural_sort(input_list: list[str]) -> list[str]:
     """
 
     def alphanum_key(key):
-        return [int(s) if s.isdigit() else s.lower() for s in re.split("([0-9]+)", key)]
+        return [int(s) if s.isdigit() else s.casefold() for s in re.split(r'(\d+)', key)]
 
     return sorted(input_list, key=alphanum_key)
 
