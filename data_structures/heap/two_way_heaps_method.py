@@ -7,6 +7,10 @@ larger number.
 this arrangement helps us in retrieving the median of a stream of numbers easily and the time complexity of algorithm is constant [O(1)].
 In brute-force method time complexity of this medianfinder algorithm would be O(n logn)
 
+a medium article to better understand this algorithm
+
+https://stephenjoel2k.medium.com/two-heaps-min-heap-max-heap-c3d32cbb671d 
+
 """
 
 
