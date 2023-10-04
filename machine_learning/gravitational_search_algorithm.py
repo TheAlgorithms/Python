@@ -1,6 +1,7 @@
-Gravitational Search Algorithm
+"""
+gravitational_search_algorithm
 Reference: https://www.sciencedirect.com/science/article/abs/pii/S0020025509001200
-
+"""
 
 import numpy as np
 def collect_dataset():
@@ -11,7 +12,7 @@ def collect_dataset():
     Returns:
         np.ndarray: dataset obtained from the link as a matrix
     """
-
+    pass
 
 def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
     """
@@ -27,7 +28,7 @@ def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
     Returns:
         np.ndarray: Updated Feature's using curr_features - alpha_ * gradient(w.r.t. feature)
     """
-
+    pass
 
 def sum_of_square_error(data_x, data_y, len_data, theta):
     """
@@ -42,7 +43,7 @@ def sum_of_square_error(data_x, data_y, len_data, theta):
     Returns:
         float: sum of square error computed from given feature's
     """
-
+    pass
 
 def run_linear_regression(data_x, data_y):
     """
@@ -56,7 +57,7 @@ def run_linear_regression(data_x, data_y):
         np.ndarray: feature vector for the line of best fit
         float: final error value
     """
-
+    pass
 
 def mean_absolute_error(predicted_y, original_y):
     """
@@ -69,7 +70,7 @@ def mean_absolute_error(predicted_y, original_y):
     Returns:
         float: mean absolute error computed from given feature's
     """
-
+    pass
 
 def main():
     """Driver function"""
