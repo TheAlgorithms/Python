@@ -17,6 +17,7 @@ https://stephenjoel2k.medium.com/two-heaps-min-heap-max-heap-c3d32cbb671d
 import heapq
 from typing import Union
 
+
 class MedianFinder:
     def __init__(self) -> None:
         """
@@ -93,7 +94,9 @@ def main() -> None:
     median = median_finder.find_median()
     print("Median:", median)  # Median = 6.0
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()
