@@ -55,4 +55,5 @@ def simple_pendulum_time_period(l: float) -> float:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
