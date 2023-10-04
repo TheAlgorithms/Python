@@ -14,4 +14,4 @@ def pig_latin(sentence):
 statement = input("Enter a string: ")
 answer = pig_latin(statement)
 
-print('The PIG LATIN of the entered string is "{}"'.format(answer))
+print(f"The PIG LATIN of the entered string is \"{answer}\"")
