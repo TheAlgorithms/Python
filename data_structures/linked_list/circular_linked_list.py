@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 # Enables forward annotations for type hinting
 from __future__ import annotations
-=======
-from __future__ import annotations  # Enables forward annotations for type hinting
->>>>>>> 8a04d2e519f7a5c0efc182e2010cc324f5f0dee5
 
 import doctest
 from collections.abc import Iterator
@@ -54,11 +50,7 @@ class CircularLinkedList:
         """
         Generate a string representation of the Circular Linked List.
         Returns:
-<<<<<<< HEAD
             str: A string representation of the list in the format "1->2->....->N".
-=======
-            str: A string representation of the list in the format "data1->data2->...->dataN".
->>>>>>> 8a04d2e519f7a5c0efc182e2010cc324f5f0dee5
         """
         return "->".join(str(item) for item in iter(self))
 
@@ -80,11 +72,7 @@ class CircularLinkedList:
 
     def insert_nth(self, index: int, data: Any) -> None:
         """
-<<<<<<< HEAD
         Insert and return the data of the node at the nth pos in Circular Linked List.
-=======
-        Insert a node with the given data at the specified index in the Circular Linked List.
->>>>>>> 8a04d2e519f7a5c0efc182e2010cc324f5f0dee5
         Args:
             index (int): The index at which to insert the data.
             data (Any): The data to be inserted.
@@ -132,11 +120,7 @@ class CircularLinkedList:
 
     def delete_nth(self, index: int = 0) -> Any:
         """
-<<<<<<< HEAD
         Delete and return the data of the node at the nth pos in Circular Linked List.
-=======
-        Delete and return the data of the node at the specified index in the Circular Linked List.
->>>>>>> 8a04d2e519f7a5c0efc182e2010cc324f5f0dee5
         Args:
             index (int): The index of the node to be deleted. Defaults to 0.
         Returns:
