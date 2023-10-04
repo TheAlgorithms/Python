@@ -1,5 +1,6 @@
 from typing import List
 
+
 def selection_sort(input_array: List[int]) -> List[int]:
     """
     Sorts a list of integers in ascending order using the selection sort algorithm.
@@ -23,6 +24,7 @@ def selection_sort(input_array: List[int]) -> List[int]:
         input_array[i], input_array[min_idx] = input_array[min_idx], input_array[i]
 
     return input_array
+
 
 if __name__ == "__main__":
     # Example usage:
