@@ -40,7 +40,7 @@ class LinkedList:
         new_node.next = self.head
         self.head = new_node
 
-    def swap_nodes(self, node_data_1, node_data_2):
+    def swap_nodes(self, node_data_1, node_data_2) -> None:
         """
         Swap the positions of two nodes in the Linked List based on their data values.
         Args:
