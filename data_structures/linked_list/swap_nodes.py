@@ -3,7 +3,6 @@ from typing import Any
 
 class Node:
     def __init__(self, data: Any) -> None:
-
         """
         Initialize a new Node with the given data.
 
