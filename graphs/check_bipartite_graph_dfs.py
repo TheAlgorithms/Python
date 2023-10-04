@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 
-def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
+def is_bipartite(gph: defaultdict[int, list[int]]) -> bool:
     """
     Check whether a graph is Bipartite or not using Depth-First Search (DFS).
 
@@ -18,12 +18,12 @@ def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
         True if there's no edge that connects vertices of the same set, False otherwise.
 
     Examples:
-        >>> graph1 = defaultdict(list,{0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 4: []})
-        >>> is_bipartite(graph1)
+        >>> gph1 = defaultdict(list, {0: [1, 2], 1: [0, 3], 2: [0, 4], 3: [1], 4: [2]})
+        >>> is_bipartite(gph1)
         True
 
-        >>> graph2 = defaultdict(list, {0: [1, 2], 1: [0, 2], 2: [0, 1]})
-        >>> is_bipartite(graph2)
+        >>> gph2 = defaultdict(list, {0: [1, 2], 1: [0, 2], 2: [0, 1]})
+        >>> is_bipartite(gph2)
         False
     """
 
@@ -31,12 +31,12 @@ def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
         vis[node] = col
         return any(
             vis[nbor] == col or (vis[nbor] == -1 and not dpth(nbor, 1 - col))
-            for nbor in graph[node]
+            for nbor in gph[node]
         )
 
     vis: defaultdict[int, int] = defaultdict(lambda: -1)
 
-    return all(not (vis[node] == -1 and not dpth(node, 0)) for node in graph)
+    return all(not (vis[node] == -1 and not dpth(node, 0)) for node in gph)
 
 
 if __name__ == "__main__":
