@@ -18,7 +18,7 @@ def solve_maze(
         - destination_column (int): The column index of the destination point.
     Returns:
         - solution (list[list[int]]): A 2D matrix representing the solution path
-            if it exists.
+        if it exists.
     Raises:
         - ValueError: If no solution exists or if the source or
             destination coordinates are invalid.
