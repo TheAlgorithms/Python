@@ -18,10 +18,10 @@ def solve_maze(
         - destination_column (int): The column index of the destination point.
     Returns:
         - solution (list[list[int]]): A 2D matrix representing the solution path
-    ... if it exists.
+            if it exists.
     Raises:
-        - ValueError: If no solution exists or if the source or\
-destination coordinates are invalid.
+        - ValueError: If no solution exists or if the source or
+            destination coordinates are invalid.
     Description:
         This method navigates through a maze represented as an n by n matrix,
         starting from a specified source cell  and
@@ -35,8 +35,11 @@ destination coordinates are invalid.
     ...         [0, 0, 1, 0, 0],
     ...         [1, 0, 0, 1, 0]]
     >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
-    [[0, 1, 1, 1, 1], [0, 0, 0, 0, 1], [1, 1, 1, 0, 1],\
- [1, 1, 1, 0, 0], [1, 1, 1, 1, 0]]
+    [[0, 1, 1, 1, 1], 
+    [0, 0, 0, 0, 1], 
+    [1, 1, 1, 0, 1],
+    [1, 1, 1, 0, 0], 
+    [1, 1, 1, 1, 0]]
 
     Note:
         In the output maze, the zeros (0s) represent one of the possible
@@ -48,20 +51,27 @@ destination coordinates are invalid.
     ...         [0, 0, 0, 0, 0],
     ...         [0, 0, 0, 0, 0]]
     >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
-    [[0, 1, 1, 1, 1], [0, 1, 1, 1, 1], [0, 1, 1, 1, 1],\
- [0, 1, 1, 1, 1], [0, 0, 0, 0, 0]]
+    [[0, 1, 1, 1, 1], 
+    [0, 1, 1, 1, 1], 
+    [0, 1, 1, 1, 1],
+    [0, 1, 1, 1, 1], 
+    [0, 0, 0, 0, 0]]
 
     >>> maze = [[0, 0, 0],
     ...         [0, 1, 0],
     ...         [1, 0, 0]]
     >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
-    [[0, 0, 0], [1, 1, 0], [1, 1, 0]]
+    [[0, 0, 0], 
+    [1, 1, 0], 
+    [1, 1, 0]]
 
     >>> maze = [[1, 0, 0],
     ...         [0, 1, 0],
     ...         [1, 0, 0]]
     >>> solve_maze(maze,0,1,len(maze)-1,len(maze)-1)
-    [[1, 0, 0], [1, 1, 0], [1, 1, 0]]
+    [[1, 0, 0], 
+    [1, 1, 0], 
+    [1, 1, 0]]
 
     >>> maze = [[1, 1, 0, 0, 1, 0, 0, 1],
     ...         [1, 0, 1, 0, 0, 1, 1, 1],
@@ -72,9 +82,14 @@ destination coordinates are invalid.
     ...         [0, 1, 0, 1, 0, 1, 1, 1],
     ...         [1, 1, 0, 0, 0, 0, 0, 1]]
     >>> solve_maze(maze,0,2,len(maze)-1,2)
-    [[1, 1, 0, 0, 1, 1, 1, 1], [1, 1, 1, 0, 0, 1, 1, 1], [1, 1, 1, 1, 0, 1, 1, 1],\
- [1, 1, 1, 0, 0, 1, 1, 1], [1, 1, 0, 0, 1, 1, 1, 1], [1, 1, 0, 1, 1, 1, 1, 1],\
- [1, 1, 0, 1, 1, 1, 1, 1], [1, 1, 0, 1, 1, 1, 1, 1]]
+    [[1, 1, 0, 0, 1, 1, 1, 1], 
+    [1, 1, 1, 0, 0, 1, 1, 1], 
+    [1, 1, 1, 1, 0, 1, 1, 1],
+    [1, 1, 1, 0, 0, 1, 1, 1], 
+    [1, 1, 0, 0, 1, 1, 1, 1], 
+    [1, 1, 0, 1, 1, 1, 1, 1],
+    [1, 1, 0, 1, 1, 1, 1, 1], 
+    [1, 1, 0, 1, 1, 1, 1, 1]]
     >>> maze = [[1, 0, 0],
     ...         [0, 1, 1],
     ...         [1, 0, 1]]
@@ -98,7 +113,7 @@ destination coordinates are invalid.
     ValueError: Invalid source or destination coordinates
 
     >>> maze = [[1, 0, 0],
-    ...         [0, 1, 1],
+    ...         [0, 1, 0],
     ...         [1, 0, 0]]
     >>> solve_maze(maze,0,1,len(maze),len(maze)-1)
     Traceback (most recent call last):
@@ -180,4 +195,4 @@ def run_maze(
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()
+    doctest.testmod(optionflags=doctest.NORMALIZE_WHITESPACE)
