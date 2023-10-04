@@ -1,7 +1,4 @@
 
-python
-1.
-
 import math
 k= [1,45,12,6,9,4,8,10,18,19,20]
 k=sorted(k)
