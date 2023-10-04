@@ -1,4 +1,6 @@
 import doctest
+
+
 def decimal_to_negative_base_2(num: int) -> int:
     """
     This function returns the number negative base 2
