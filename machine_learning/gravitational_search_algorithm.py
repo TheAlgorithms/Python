@@ -4,6 +4,8 @@ Reference: https://www.sciencedirect.com/science/article/abs/pii/S00200255090012
 """
 
 import numpy as np
+
+
 def collect_dataset():
     """
     Collect dataset of CSGO
@@ -13,6 +15,7 @@ def collect_dataset():
         np.ndarray: dataset obtained from the link as a matrix
     """
     pass
+
 
 def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
     """
@@ -30,6 +33,7 @@ def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
     """
     pass
 
+
 def sum_of_square_error(data_x, data_y, len_data, theta):
     """
     Return sum of square error for error calculation
@@ -45,6 +49,7 @@ def sum_of_square_error(data_x, data_y, len_data, theta):
     """
     pass
 
+
 def run_linear_regression(data_x, data_y):
     """
     Implement Linear regression over the dataset
@@ -59,6 +64,7 @@ def run_linear_regression(data_x, data_y):
     """
     pass
 
+
 def mean_absolute_error(predicted_y, original_y):
     """
     Return mean absolute error for error calculation
@@ -71,6 +77,7 @@ def mean_absolute_error(predicted_y, original_y):
         float: mean absolute error computed from given feature's
     """
     pass
+
 
 def main():
     """Driver function"""
