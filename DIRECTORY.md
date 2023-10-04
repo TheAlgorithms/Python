@@ -709,7 +709,7 @@
     * [Exponential Linear Unit](neural_network/activation_functions/exponential_linear_unit.py)
     * [Leaky Rectified Linear Unit](neural_network/activation_functions/leaky_rectified_linear_unit.py)
     * [Scaled Exponential Linear Unit](neural_network/activation_functions/scaled_exponential_linear_unit.py)
-    * [Relu](neural_network/activation_functions/relu.py)
+    * [Rectified Linear Unit](neural_network/activation_functions/rectified_linear_unit.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
   * [Perceptron](neural_network/perceptron.py)
