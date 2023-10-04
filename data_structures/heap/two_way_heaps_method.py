@@ -9,13 +9,14 @@ In brute-force method time complexity of this medianfinder algorithm would be O(
 
 a medium article to better understand this algorithm
 
-https://stephenjoel2k.medium.com/two-heaps-min-heap-max-heap-c3d32cbb671d 
+https://stephenjoel2k.medium.com/two-heaps-min-heap-max-heap-c3d32cbb671d
 
 """
 
 
 import heapq
 from typing import Union
+
 
 class MedianFinder:
     def __init__(self) -> None:
