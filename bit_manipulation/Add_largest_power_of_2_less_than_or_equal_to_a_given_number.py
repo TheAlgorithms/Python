@@ -28,12 +28,10 @@ def add_largest(num: int) -> int:
         raise TypeError("num must be an integer !!")
     if num <= 0:
         return 0
-    temp = num
-    count = 0
-    while num != 1:
-        num = num >> 1
-        count += 1
-    res = 2**count + temp
+    res = 1
+    while (res << 1) <= num:
+        res <<= 1
+    res += num
     return res
 
 
