@@ -26,7 +26,7 @@ def binary_exponentiation(number: float, power: int) -> float:
         power = -1 * power
         number = 1.0 / number
 
-    result = 1
+    result = 1.0
     while power != 0:
         if power % 2 == 1:
             result *= number
