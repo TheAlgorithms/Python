@@ -21,7 +21,7 @@ class MedianFinder:
     def __init__(self) -> None:
         """
         Initialize the MedianFinder with empty max and min heaps.
-        
+
         Examples:
             >>> median_finder = MedianFinder()
         """
@@ -74,6 +74,7 @@ class MedianFinder:
         elif len(self.maxheap) > len(self.minheap):
             return -self.maxheap[0]
         return self.minheap[0]
+
 
 def main() -> None:
     """
