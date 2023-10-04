@@ -1,3 +1,6 @@
+'''
+Wikipedia explanation: https://en.wikipedia.org/wiki/Exponentiation
+'''
 # Assign values to author and version.
 __author__ = "Himanshu Gupta"
 __version__ = "1.0.0"
