@@ -1,37 +1,37 @@
-def spiralOrder(matrix):
+def spiral_order(matrix):
     ans = []
-    Row = len(matrix)
-    Column = len(matrix[0])
+    row = len(matrix)
+    column = len(matrix[0])
     count = 0
-    total = Row * Column
+    total = row * column
 
-    startingRow = 0
+    startingrow = 0
     startingcol = 0
-    endingRow = Row - 1
-    endingColumn = Column - 1
+    endingrow = row - 1
+    endingcolumn = column - 1
     while count < total:
-        for i in range(startingcol, endingColumn + 1):
+        for i in range(startingcol, endingcolumn + 1):
             if count >= total:
                 break
-            ans.append(matrix[startingRow][i])
+            ans.append(matrix[startingrow][i])
             count += 1
-        startingRow += 1
+        startingrow += 1
 
-        for i in range(startingRow, endingRow + 1):
+        for i in range(startingrow, endingrow + 1):
             if count >= total:
                 break
-            ans.append(matrix[i][endingColumn])
+            ans.append(matrix[i][endingcolumn])
             count += 1
-        endingColumn -= 1
+        endingcolumn -= 1
 
-        for i in range(endingColumn, startingcol - 1, -1):
+        for i in range(endingcolumn, startingcol - 1, -1):
             if count >= total:
                 break
-            ans.append(matrix[endingRow][i])
+            ans.append(matrix[endingrow][i])
             count += 1
-        endingRow -= 1
+        endingrow -= 1
 
-        for i in range(endingRow, startingRow - 1, -1):
+        for i in range(endingrow, startingrow - 1, -1):
             if count >= total:
                 break
             ans.append(matrix[i][startingcol])
@@ -39,3 +39,13 @@ def spiralOrder(matrix):
         startingcol += 1
 
     return ans
+
+if __name__ == "__main__":
+    import doctest
+
+    result = spiral_roder([
+        [1, 2, 3, 4],
+        [5, 6, 7, 8],
+        [9, 10, 11, 12]])
+    print(result)
+    doctest.testmod()
