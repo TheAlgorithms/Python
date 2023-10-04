@@ -132,7 +132,5 @@ def display_linked_list(root: TreeNode | None) -> None:
 
 
 if __name__ == "__main__":
-    root = build_tree()
-    flatten(root)
-    print("Flattened Linked List:")
-    display_linked_list(root)
+    print(f"Flattened Linked List:")
+    display_linked_list(flatten(build_tree()))
