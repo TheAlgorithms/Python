@@ -1,3 +1,7 @@
+Gravitational Search Algorithm
+Reference: https://www.sciencedirect.com/science/article/abs/pii/S0020025509001200
+
+
 import numpy as np
 def collect_dataset():
     """
