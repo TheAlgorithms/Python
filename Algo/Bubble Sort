@@ -1,0 +1,16 @@
+
+Python
+1.
+
+def bubbleSort(array):
+    # Write your code here
+	k=0
+	l=0
+	s=array
+	while (array==s.sort()):
+		for a in range(0, len(array)-1):
+			if(array[a]>array[a+1]):
+				k=array[a]
+				array[a]=array[a+2]
+				array[a+1]=k
+	return array
