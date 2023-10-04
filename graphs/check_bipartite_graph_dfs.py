@@ -15,7 +15,7 @@ def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
         graph: An adjacency list representing the graph.
 
     Returns:
-        bool: True if the graph is Bipartite, False otherwise.
+        True if there is no edge that connects vertices of the same set, False otherwise.
 
     Examples:
         >>> graph1=defaultdict(list,{0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 4: []})
