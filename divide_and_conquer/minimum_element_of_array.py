@@ -15,7 +15,7 @@ import random
 from typing import Any
 
 
-def partition(array, p, r):
+def partition(array, p, r) -> int:
     """
     Partition the array.
     Args:
@@ -37,7 +37,7 @@ def partition(array, p, r):
     return i + 1
 
 
-def randomized_partition(array, p, r):
+def randomized_partition(array, p, r) -> int:
     """
     Randomized partition of the array.
     Args:
@@ -55,7 +55,7 @@ def randomized_partition(array, p, r):
     return partition(array, p, r)
 
 
-def selection_sort(array: list, p, r, i) -> list | None | Any:
+def selection_sort(array: list, p: int, r: int, i: int) -> list | None | Any:
     """
     Returns a list of sorted array elements using selection sort.
     Args:
