@@ -1,12 +1,16 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 # Define the target distribution (standard normal in this case)
 def target_distribution(x):
     return np.exp(-0.5 * x**2) / np.sqrt(2 * np.pi)
 
+
 # Metropolis-Hastings algorithm
-def metropolis_hastings(target_dist, proposal_dist, num_samples, initial_state=0, burn_in=1000):
+def metropolis_hastings(
+    target_dist, proposal_dist, num_samples, initial_state=0, burn_in=1000
+):
     samples = []
     current_state = initial_state
 
@@ -27,9 +31,11 @@ def metropolis_hastings(target_dist, proposal_dist, num_samples, initial_state=0
 
     return samples
 
+
 # Proposal distribution (e.g., a Gaussian with a small standard deviation)
 def gaussian_proposal():
     return np.random.normal(0, 0.5)
+
 
 # Number of samples to generate
 num_samples = 10000
@@ -38,10 +44,10 @@ num_samples = 10000
 samples = metropolis_hastings(target_distribution, gaussian_proposal, num_samples)
 
 # Plot the results
-plt.hist(samples, bins=50, density=True, label='Samples')
+plt.hist(samples, bins=50, density=True, label="Samples")
 x = np.linspace(-5, 5, 1000)
-plt.plot(x, target_distribution(x), 'r', label='True Distribution')
-plt.xlabel('x')
-plt.ylabel('Probability Density')
+plt.plot(x, target_distribution(x), "r", label="True Distribution")
+plt.xlabel("x")
+plt.ylabel("Probability Density")
 plt.legend()
 plt.show()
