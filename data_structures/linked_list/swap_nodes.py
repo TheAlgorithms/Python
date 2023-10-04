@@ -78,5 +78,6 @@ if __name__ == "__main__":
     ll.print_list()
 
     ll.swap_nodes(1, 4)
-    print("After swapping nodes 1 and 4:")
+    print("After swapping the nodes whose data is 1 and 4:")
+
     ll.print_list()
