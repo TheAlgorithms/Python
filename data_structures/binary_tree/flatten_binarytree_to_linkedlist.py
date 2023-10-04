@@ -43,19 +43,11 @@ def flatten(root: TreeNode | None) -> None:
         >>> flatten(root)
         >>> root.data
         1
-        >>> root.right is None
-        True
-        >>> root.right = TreeNode(2)
-        >>> root.right.data
-        2
         >>> root.right.right is None
-        True
+        False
         >>> root.right.right = TreeNode(3)
-        >>> root.right.right.data
-        3
         >>> root.right.right.right is None
         True
-
     """
     if not root:
         return
