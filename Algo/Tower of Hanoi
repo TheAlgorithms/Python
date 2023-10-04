@@ -1,0 +1,42 @@
+
+
+def fun(n,arr1,arr2,arr3):
+    
+    if(n>1):
+        arr2.append(arr1.pop())
+        n=n-1
+        print(arr1,arr2,arr3)
+        fun(arr1,arr2,arr3)
+    elif(n==1):
+        arr3.append(arr1.pop())
+        n=n-1
+        print(arr1,arr2,arr3)
+        fun(n,arr1,arr2,arr3)
+    else:
+        print(arr1,arr2,arr3)
+        if(len(arr2)>0):
+            arr3.append(arr2.pop())
+            fun(arr1,arr2,arr3)
+        else:
+            print(arr1,arr2,arr3)
+            
+fun(6,['r1','r2','r3','r4','r5','r6'],[],[])
+    
+O/P
+
+Command Line Arguments
+ 
+['r1', 'r2', 'r3', 'r4', 'r5'] ['r6'] []
+['r1', 'r2', 'r3', 'r4'] ['r6', 'r5'] []
+['r1', 'r2', 'r3'] ['r6', 'r5', 'r4'] []
+['r1', 'r2'] ['r6', 'r5', 'r4', 'r3'] []
+['r1'] ['r6', 'r5', 'r4', 'r3', 'r2'] []
+[] ['r6', 'r5', 'r4', 'r3', 'r2'] ['r1']
+[] ['r6', 'r5', 'r4', 'r3', 'r2'] ['r1']
+[] ['r6', 'r5', 'r4', 'r3'] ['r1', 'r2']
+[] ['r6', 'r5', 'r4'] ['r1', 'r2', 'r3']
+[] ['r6', 'r5'] ['r1', 'r2', 'r3', 'r4']
+[] ['r6'] ['r1', 'r2', 'r3', 'r4', 'r5']
+[] [] ['r1', 'r2', 'r3', 'r4', 'r5', 'r6']
+[] [] ['r1', 'r2', 'r3', 'r4', 'r5', 'r6']
+
