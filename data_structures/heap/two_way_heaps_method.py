@@ -17,7 +17,6 @@ https://stephenjoel2k.medium.com/two-heaps-min-heap-max-heap-c3d32cbb671d
 import heapq
 from typing import Union
 
-
 class MedianFinder:
     def __init__(self) -> None:
         """
@@ -51,12 +50,12 @@ class MedianFinder:
         elif len(self.minheap) - len(self.maxheap) > 1:
             heapq.heappush(self.maxheap, -heapq.heappop(self.minheap))
 
-    def find_Median(self) -> Union[int, float]:
+    def find_median(self) -> Union[int, float]:
         """
         Find the median of the stream of numbers.
 
         Returns:
-            Union[int, float]: The median of the stream.
+            int | float: The median of the stream.
 
         Examples:
             >>> median_finder = MedianFinder()
@@ -67,7 +66,7 @@ class MedianFinder:
             >>> median_finder.insert(1)
             >>> median_finder.insert(7)
             >>> median_finder.insert(6)
-            >>> median_finder.find_Median()
+            >>> median_finder.find_median()
             6
         """
         if len(self.maxheap) == len(self.minheap):
@@ -90,5 +89,10 @@ def main() -> None:
     for value in stream_of_numbers:
         median_finder.insert(value)
 
-    median = median_finder.find_Median()
-    print("Median:", median)  # Median = 6
+    median = median_finder.find_median()
+    print("Median:", median)  # Median = 6.0
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+    main()
