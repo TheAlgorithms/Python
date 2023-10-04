@@ -30,7 +30,9 @@ def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
     def dpthfrst(node, color):
         vis[node] = color
         for nbor in graph[node]:
-            if vis[nbor] == color or (vis[nbor] == -1 and not dpthfrst(nbor, 1 - color)):
+            if vis[nbor] == color or (
+                vis[nbor] == -1 and not dpthfrst(nbor, 1 - color)
+            ):
                 return False
         return True
 
