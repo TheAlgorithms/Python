@@ -16,6 +16,7 @@ def heapify(arr: List[int], n: int, i: int) -> None:
 
 
 def heap_sort(arr: List[int]) -> None:
+
     n = len(arr)
 
     # Build max heap
@@ -34,14 +35,8 @@ heap_sort(arr)
 print("Sorted array:", arr)
 
 def heap_sort(arr: List[int]) -> None:
-    """
-    Sorts the input list in-place using the Heap Sort algorithm.
+  
 
-    >>> arr = [12, 11, 13, 5, 6, 7]
-    >>> heap_sort(arr)
-    >>> arr
-    [5, 6, 7, 11, 12, 13]
-    """
     n = len(arr)
     for i in range(n // 2 - 1, -1, -1):
         heapify(arr, n, i)
