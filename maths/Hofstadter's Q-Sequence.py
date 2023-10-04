@@ -3,6 +3,7 @@ from sys import setrecursionlimit
 # Set the recursion limit to avoid reaching the maximum recursion depth
 setrecursionlimit(10000)
 
+
 def hofstadter(n):
     """
     Recursive function to calculate Hofstadter H(n) using the given recurrence relation.
@@ -28,6 +29,7 @@ def hofstadter(n):
         res = hofstadter(n - hofstadter(n - 1)) + hofstadter(n - hofstadter(n - 2))
         result[n] = res
         return res
+
 
 result = {}  # Dictionary to store previously calculated results
 value = int(input("Enter the positive integer value:"))
