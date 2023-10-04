@@ -90,19 +90,7 @@ solve(board, 0)
 print("The total no. of solutions are :", len(solution))
 
 
-
-
-
-
-
-
 # Implementation using depth first search
-
-
-
-
-
-
 
 
 r"""
@@ -257,23 +245,7 @@ if __name__ == "__main__":
     n_queens_solution(4)
 
 
-
-
-
-
-
-
-
-
 # Implementation of n queens in sudoku problem
-
-
-
-
-
-
-
-
 
 
 """
@@ -408,7 +380,3 @@ if __name__ == "__main__":
             print_solution(solution)
         else:
             print("Cannot find a solution.")
-
-
-
-
