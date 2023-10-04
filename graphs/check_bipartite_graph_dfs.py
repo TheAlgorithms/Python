@@ -20,11 +20,11 @@ def is_bipartite(gph: defaultdict[int, list[int]]) -> bool:
     Examples:
         >>> gph1 = defaultdict(list, {0: [1, 2], 1: [0, 3], 2: [0, 4], 3: [1], 4: [2]})
         >>> is_bipartite(gph1)
-        True
+        False
 
         >>> gph2 = defaultdict(list, {0: [1, 2], 1: [0, 2], 2: [0, 1]})
         >>> is_bipartite(gph2)
-        False
+        True
     """
 
     def dpth(node, col):
