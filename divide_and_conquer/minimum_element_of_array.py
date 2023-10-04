@@ -1,9 +1,12 @@
 """
-Return the minimum element of an array using the divide-and-conquer algorithm for selection sort.
+Return the minimum element of an array using the
+divide-and-conquer algorithm for selection sort.
 Like quick sort algorithm it partitions the input array recursively.
-But unlike quicksort, which recursively processes both sides of the partition,
+But unlike quicksort,
+which recursively processes both sides of the partition,
 this algorithm works on only one side of the partition.
-The expected running time of this selection sort algorithm is 0(n), assuming that the elements are distinct.
+The expected running time of this selection sort algorithm is 0(n),
+assuming that the elements are distinct.
 It returns the ith smallest element of the array A[p: r], where 1 ≤ i ≤ r-p+1.
 (From Introduction to Algorithms, Fourth Edition, Cormen, 2022: Chapter 9.2)
 """
