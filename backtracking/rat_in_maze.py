@@ -18,7 +18,7 @@ def solve_maze(
         - destination_column (int): The column index of the destination point.
     Returns:
         - solution (list[list[int]]): A 2D matrix representing the solution path
-        if it exists.
+            if it exists.
     Raises:
         - ValueError: If no solution exists or if the source or
             destination coordinates are invalid.
@@ -50,7 +50,7 @@ def solve_maze(
     ...         [0, 0, 0, 0, 1],
     ...         [0, 0, 0, 0, 0],
     ...         [0, 0, 0, 0, 0]]
-    >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
+    >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)    # doctest: +NORMALIZE_WHITESPACE
     [[0, 1, 1, 1, 1],
     [0, 1, 1, 1, 1],
     [0, 1, 1, 1, 1],
@@ -60,7 +60,7 @@ def solve_maze(
     >>> maze = [[0, 0, 0],
     ...         [0, 1, 0],
     ...         [1, 0, 0]]
-    >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
+    >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)    # doctest: +NORMALIZE_WHITESPACE
     [[0, 0, 0],
     [1, 1, 0],
     [1, 1, 0]]
@@ -68,7 +68,7 @@ def solve_maze(
     >>> maze = [[1, 0, 0],
     ...         [0, 1, 0],
     ...         [1, 0, 0]]
-    >>> solve_maze(maze,0,1,len(maze)-1,len(maze)-1)
+    >>> solve_maze(maze,0,1,len(maze)-1,len(maze)-1)    # doctest: +NORMALIZE_WHITESPACE
     [[1, 0, 0],
     [1, 1, 0],
     [1, 1, 0]]
@@ -81,7 +81,7 @@ def solve_maze(
     ...         [0, 0, 0, 1, 1, 1, 0, 1],
     ...         [0, 1, 0, 1, 0, 1, 1, 1],
     ...         [1, 1, 0, 0, 0, 0, 0, 1]]
-    >>> solve_maze(maze,0,2,len(maze)-1,2)
+    >>> solve_maze(maze,0,2,len(maze)-1,2)  # doctest: +NORMALIZE_WHITESPACE
     [[1, 1, 0, 0, 1, 1, 1, 1],
     [1, 1, 1, 0, 0, 1, 1, 1],
     [1, 1, 1, 1, 0, 1, 1, 1],
