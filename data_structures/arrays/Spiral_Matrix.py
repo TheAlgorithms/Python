@@ -59,7 +59,7 @@ def spiral_order(matrix) -> None:
     return ans
 
 
-
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
