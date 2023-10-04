@@ -8,7 +8,6 @@ numpy
 opencv-python
 pandas
 pillow
-pre-commit
 projectq
 qiskit ; python_version < '3.12'
 qiskit-aer ; python_version < '3.12'
