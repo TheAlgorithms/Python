@@ -29,7 +29,7 @@ Reference : https://unacademy.com/content/nda/study-material/physics/what-is-the
 """
 
 
-def simple_pendulum_time_period(l: float) -> float:
+def simple_pendulum_time_period(length: float) -> float:
     """
     >>> simple_pendulum_time_period(1.34)
     0.857167413819559
@@ -48,9 +48,9 @@ def simple_pendulum_time_period(l: float) -> float:
     >>> simple_pendulum_time_period(0)
     0.0
     """
-    if l < 0:
+    if length < 0:
         raise ValueError("The length cannot be a negative number")
-    return 2 * 3.14159 * ((l / 9 / 8) ** 0.5)
+    return 2 * 3.14159 * ((length / 9 / 8) ** 0.5)
 
 
 if __name__ == "__main__":
