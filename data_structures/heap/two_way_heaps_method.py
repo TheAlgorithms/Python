@@ -83,6 +83,7 @@ class MedianFinder:
             return -self.maxheap[0]
         return self.minheap[0]
 
+
 def main() -> None:
     """
     Run the example with a stream of numbers.
