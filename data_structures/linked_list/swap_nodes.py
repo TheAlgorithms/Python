@@ -23,12 +23,7 @@ class LinkedList:
     def print_list(self):
         """
         Print the elements of the Linked List in order.
-
-<<<<<<< HEAD
         This method iterates through the list and prints each element.
-=======
-        This method iterates through the list and prints each element, separated by a space.
->>>>>>> 8a04d2e519f7a5c0efc182e2010cc324f5f0dee5
         """
         temp = self.head
         while temp is not None:
@@ -39,7 +34,6 @@ class LinkedList:
     def push(self, new_data: Any):
         """
         Add a new node with the given data to the beginning of the Linked List.
-
         Args:
             new_data (Any): The data to be added to the new node.
         """
@@ -50,17 +44,12 @@ class LinkedList:
     def swap_nodes(self, node_data_1, node_data_2):
         """
         Swap the positions of two nodes in the Linked List based on their data values.
-
         Args:
             node_data_1 (Any): Data value of the first node to be swapped.
             node_data_2 (Any): Data value of the second node to be swapped.
 
         Note:
-<<<<<<< HEAD
             If either of the specified data values isn't found then, no swapping occurs.
-=======
-            If either of the specified data values is not found in the Linked List, no swapping occurs.
->>>>>>> 8a04d2e519f7a5c0efc182e2010cc324f5f0dee5
         """
         if node_data_1 == node_data_2:
             return
