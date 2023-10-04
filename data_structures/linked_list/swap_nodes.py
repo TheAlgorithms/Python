@@ -11,7 +11,7 @@ class Node:
 
         """
         self.data = data
-        self.next = None  # Reference to the next node
+        self.next: Node | None = None  # Reference to the next node
 
 
 class LinkedList:
@@ -19,7 +19,7 @@ class LinkedList:
         """
         Initialize an empty Linked List.
         """
-        self.head = None  # Reference to the head (first node)
+        self.head: Node | None = None  # Reference to the head (first node)
 
     def print_list(self):
         """

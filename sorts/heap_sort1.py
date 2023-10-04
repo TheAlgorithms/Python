@@ -1,5 +1,6 @@
 from typing import List
 
+
 def heapify(arr: List[int], n: int, i: int) -> None:
     largest = i
     left, right = 2 * i + 1, 2 * i + 2
@@ -33,6 +34,7 @@ def heap_sort(arr: List[int]) -> None:
 arr = [12, 11, 13, 5, 6, 7]
 heap_sort(arr)
 print("Sorted array:", arr)
+
 
 def heap_sort(arr: List[int]) -> None:
   
