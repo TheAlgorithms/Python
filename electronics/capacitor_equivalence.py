@@ -1,6 +1,7 @@
-#https://farside.ph.utexas.edu/teaching/316/lectures/node46.html
+# https://farside.ph.utexas.edu/teaching/316/lectures/node46.html
 
 from __future__ import annotations
+
 
 def capacitor_parallel(capacitors: list[float]) -> float:
     """
@@ -24,6 +25,7 @@ def capacitor_parallel(capacitors: list[float]) -> float:
             raise ValueError(msg)
         index += 1
     return sum_c
+
 
 def capacitor_series(capacitors: list[float]) -> float:
     """
@@ -50,6 +52,7 @@ def capacitor_series(capacitors: list[float]) -> float:
         first_sum += 1 / float(capacitor)
         index += 1
     return 1 / first_sum
+
 
 if __name__ == "__main__":
     import doctest
