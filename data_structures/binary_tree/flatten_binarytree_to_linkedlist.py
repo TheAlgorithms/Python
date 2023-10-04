@@ -12,6 +12,7 @@ Date: 04/09/2023
 """
 from __future__ import annotations
 
+
 class TreeNode:
     """
     A TreeNode has data variable and pointers to TreeNode objects
