@@ -25,6 +25,37 @@ class TreeNode:
         self.right: TreeNode | None = None
 
 
+def build_tree() -> TreeNode:
+    """
+    Build and return a sample binary tree.
+
+    Returns:
+        TreeNode: The root of the binary tree.
+
+    Examples:
+        >>> root = build_tree()
+        >>> root.data
+        1
+        >>> root.left.data
+        2
+        >>> root.right.data
+        5
+        >>> root.left.left.data
+        3
+        >>> root.left.right.data
+        4
+        >>> root.right.right.data
+        6
+    """
+    root = TreeNode(1)
+    root.left = TreeNode(2)
+    root.right = TreeNode(5)
+    root.left.left = TreeNode(3)
+    root.left.right = TreeNode(4)
+    root.right.right = TreeNode(6)
+    return root
+
+
 def flatten(root: TreeNode | None) -> None:
     """
     Flatten a binary tree into a linked list in-place, where the linked list is
@@ -100,22 +131,8 @@ def display_linked_list(root: TreeNode | None) -> None:
         current = current.right
 
 
-def main() -> None:
-    # Create a sample binary tree
-    root = TreeNode(1)
-    root.left = TreeNode(2)
-    root.right = TreeNode(5)
-    root.left.left = TreeNode(3)
-    root.left.right = TreeNode(4)
-    root.right.right = TreeNode(6)
-
-    # Flatten the binary tree to a linked list
+if __name__ == "__main__":
+    root = build_tree()
     flatten(root)
-
-    # Display the flattened linked list to verify correctness
     print("Flattened Linked List:")
     display_linked_list(root)
-
-
-if __name__ == "__main__":
-    main()
