@@ -89,12 +89,12 @@ def display_linked_list(root: TreeNode | None) -> None:
         1 2 3
         >>> root = None
         >>> display_linked_list(root)
-        (no output)
+
     """
     current = root
     while current:
         if current.right is None:
-            print(current.data)
+            print(current.data, end="")
             break
         print(current.data, end=" ")
         current = current.right
