@@ -23,7 +23,6 @@ class LinkedList:
     def print_list(self):
         """
         Print the elements of the Linked List in order.
-        This method iterates through the list and prints each element.
         """
         temp = self.head
         while temp is not None:
