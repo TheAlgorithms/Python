@@ -1,12 +1,10 @@
 from __future__ import annotations
 from typing import Any
 
-
 class Node:
     def __init__(self, data: Any):
         self.data: Any = data
         self.next: Node | None = None
-
 
 class CircularLinkedList:
     def __init__(self) -> None:
@@ -83,10 +81,7 @@ class CircularLinkedList:
 
 
 def test_circular_linked_list() -> None:
-    """
-    Test cases for the CircularLinkedList class.
-    >>> test_circular_linked_list()
-    """
+
     circular_linked_list = CircularLinkedList()
     assert len(circular_linked_list) == 0
     assert circular_linked_list.is_empty() is True
@@ -94,15 +89,15 @@ def test_circular_linked_list() -> None:
 
     try:
         circular_linked_list.delete_front()
-        raise AssertionError  # This should not happen
+        raise AssertionError
     except IndexError:
-        assert True  # This should happen
+        assert True
 
     try:
         circular_linked_list.delete_tail()
-        raise AssertionError  # This should not happen
+        raise AssertionError
     except IndexError:
-        assert True  # This should happen
+        assert True
 
     try:
         circular_linked_list.delete_nth(-1)
@@ -140,5 +135,4 @@ def test_circular_linked_list() -> None:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
