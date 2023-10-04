@@ -10,7 +10,8 @@ def pig_latin(sentence):
         result = sentence[i:] + sentence[:i] + "ay"
     return result
 
+
 statement = input("Enter a string: ")
 answer = pig_latin(statement)
 
-print("The PIG LATIN of the entered string is \"{}\"".format(answer))
+print('The PIG LATIN of the entered string is "{}"'.format(answer))
