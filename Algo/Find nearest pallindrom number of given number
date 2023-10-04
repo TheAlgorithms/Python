@@ -1,0 +1,18 @@
+def fun(a):
+    string=str(a)
+    if(len(string)==1):
+        return a
+    num=0
+    for k in range(0,len(string)//2):
+        if(string[k]==string[len(string)-1-k]):
+            num+=1
+    if(num==len(string)//2):
+        print(a)
+        return a
+    else:
+        k=fun(a+1)
+        return k
+    
+        
+m=fun(1231356)
+print(m)
