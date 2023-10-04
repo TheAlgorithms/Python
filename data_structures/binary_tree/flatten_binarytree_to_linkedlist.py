@@ -86,7 +86,7 @@ def display_linked_list(root: TreeNode | None) -> None:
         >>> root.right = TreeNode(2)
         >>> root.right.right = TreeNode(3)
         >>> display_linked_list(root)
-        1 2 3 
+        1 2 3
         >>> root = None
         >>> display_linked_list(root)
         (no output)
@@ -118,7 +118,7 @@ def main() -> None:
 
         >>> # Display the flattened linked list to verify correctness
         >>> display_linked_list(root)
-        1 2 3 4 5 6 
+        1 2 3 4 5 6
 
         >>> # Test the main function
         >>> if __name__ == "__main__":
