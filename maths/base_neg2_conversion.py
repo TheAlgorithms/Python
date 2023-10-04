@@ -4,7 +4,7 @@ def decimal_to_negative_base_2(n):
     This function returns the number negative base 2 of the decimal number of the input data.
 
     Args:
-        n (int): The decimal number to convert.
+        int: The decimal number to convert.
 
     Returns:
         int: The negative base 2 number.
