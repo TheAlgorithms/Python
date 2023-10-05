@@ -6,7 +6,7 @@ Longest Consecutive Sequence Problem from LeetCode
 """
 
 
-def longest_consecutive_sequence(nums: List[int]) -> int:
+def longest_consecutive_sequence(nums:list[int]) -> int:
     """
     Finds the length of the longest consecutive sequence in a list of numbers.
 
