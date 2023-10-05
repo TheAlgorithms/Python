@@ -41,7 +41,69 @@ class DecisionTree:
         Returns:
             tuple: The decision tree structure.
         """
-        # Your existing _build_tree implementation
+        if depth == self.max_depth or len(np.unique(labels)) == 1:
+            return (np.bincount(labels).argmax(),)
+
+        num_features = len(features[0])
+        best_split_feature = None
+        best_split_value = None
+        best_split_score = np.inf
+
+        for feature in range(num_features):
+            unique_values = np.unique(np.array(features)[:, feature])
+            for value in unique_values:
+                left_mask = np.array(features)[:, feature] <= value
+                right_mask = np.array(features)[:, feature] > value
+
+                if (
+                    len(np.array(labels)[left_mask]) == 0
+                    or len(np.array(labels)[right_mask]) == 0
+                ):
+                    continue
+
+                left_score = self._calculate_gini(np.array(labels)[left_mask])
+                right_score = self._calculate_gini(np.array(labels)[right_mask])
+                weighted_score = (
+                    len(np.array(labels)[left_mask]) * left_score
+                    + len(np.array(labels)[right_mask]) * right_score
+                ) / len(labels)
+
+                if weighted_score < best_split_score:
+                    best_split_score = weighted_score
+                    best_split_feature = feature
+                    best_split_value = value
+
+        if best_split_feature is None:
+            return (np.bincount(labels).argmax(),)
+
+        left_split = self._build_tree(
+            [
+                np.array(features)[
+                    np.array(features)[:, best_split_feature] <= best_split_value
+                ]
+            ],
+            [
+                np.array(labels)[
+                    np.array(features)[:, best_split_feature] <= best_split_value
+                ]
+            ],
+            depth + 1,
+        )
+        right_split = self._build_tree(
+            [
+                np.array(features)[
+                    np.array(features)[:, best_split_feature] > best_split_value
+                ]
+            ],
+            [
+                np.array(labels)[
+                    np.array(features)[:, best_split_feature] > best_split_value
+                ]
+            ],
+            depth + 1,
+        )
+
+        return (best_split_feature, best_split_value, left_split, right_split)
 
     def _calculate_gini(self, labels) -> float:
         """
@@ -53,7 +115,10 @@ class DecisionTree:
         Returns:
             float: The Gini impurity.
         """
-        # Your existing _calculate_gini implementation
+        if len(labels) == 0:
+            return 0
+        p_i = np.bincount(labels) / len(labels)
+        return 1 - np.sum(p_i**2)
 
     def predict(self, features) -> list:
         """
@@ -78,7 +143,14 @@ class DecisionTree:
         Returns:
             int: Predicted label.
         """
-        # Your existing _predict_tree implementation
+        if len(tree) == 1:
+            return tree[0]
+        feature, value, left, right = tree
+        if data_point[feature] <= value:
+            return self._predict_tree(data_point, left)
+        else:
+            return self._predict_tree(data_point, right)
+
 
 
 if __name__ == "__main__":
