@@ -4,54 +4,55 @@ date:   4 OCT 2023
 Longest Consecutive Sequence Problem from LeetCode
 
 """
+//can u add 
+def longest_consecutive_sequence(nums):
+    
+    """
+    Finds the length of the longest consecutive sequence in a list of numbers.
 
+    Args:
+        nums (List[int]): A list of integers.
 
-def longest_consecutive_sequence(self, nums: List[int]) -> int:
-    # Create a map of all numbers in the array to their index
-    nmap = defaultdict(int)
-    for i in range(len(nums)):
-        if nums[i] not in nmap:
-            nmap[nums[i]] = i
-    # Create a seen array to keep track of whether a number has been seen before
-    seen, ans = [0] * len(nums), 0
-    # Iterate through each number in the array
-    for n in nums:
-        # Set curr to the current number, and count to 1
-        curr, count = n, 1
-        # If we've already seen this number, skip it
-        if seen[nmap[n]]:
-            continue
-        # Otherwise, iterate through all consecutive numbers after curr
-        while curr + 1 in nmap:
-            # Increment curr
-            curr += 1
-            # Check if we've seen this number before
-            ix = nmap[curr]
-            if seen[ix]:
-                # If we have, add it to the count and break out of the loop
-                count += seen[ix]
-                break
-            else:
-                # Otherwise, add it to the seen array and increment the count
-                seen[ix] = 1
-                count += 1
-        # Add the count to the seen array and update the answer
-        seen[nmap[n]], ans = count, max(ans, count)
-    # Return the answer
-    return ans
+    Returns:
+        int: The length of the longest consecutive sequence.
 
+    Examples:
+        >>> longest_consecutive_sequence([100, 4, 200, 1, 3, 2])
+        4
+        >>> longest_consecutive_sequence([1, 2, 3, 4, 5])
+        5
+        >>> longest_consecutive_sequence([5, 4, 3, 2, 1])
+        5
+        >>> longest_consecutive_sequence([])
+        0
+    """
+    
+    if not nums:
+        return 0
 
-"""
-Idea
-1.  First, we put all the numbers into a dictionary, and note the index of each number.
-    This is to make sure the lookup time when we check if a number is in the list is O(1).
-    We also initialize a seen list for later use.
+    # Create a set of all the numbers in the list
+    num_set = set(nums)
+    longest_sequence = 0
 
-2.  Then, we loop through the numbers, and for each number n, we check if it's already in seen list.
-    If so, we skip it. Otherwise, we start counting the length of the consecutive sequence starting from n.
-    This is done by checking if n+1 is in the dictionary. If so, we increment the counter, and set the seen status of n to 1.
-    Otherwise, we set the seen status of n to 1, and break the loop.
-    This is because if n+1 is not in the dictionary, then the consecutive sequence starting from n is over.
-    And we don't need to count the length of the consecutive sequence starting from n+1, since we will eventually count it when we reach n+1.
+    # Iterate over the set of numbers
+    for num in num_set:
+        # If the number that is one less than the current number is not in the set, then this is the beginning of a sequence
+        if num - 1 not in num_set:  # Start of a potential sequence
+            # Store the current number in a variable and initiate a sequence length counter
+            current_num = num
+            current_sequence = 1
 
-"""
+            # While the next number is in the set, increment the current number and the sequence counter
+            while current_num + 1 in num_set:
+                current_num += 1
+                current_sequence += 1
+
+            # Update the longest sequence if the current sequence is longer
+            longest_sequence = max(longest_sequence, current_sequence)
+
+    return longest_sequence
+
+'''
+This code takes in a list of numbers and returns the length of the longest sequence of consecutive numbers in the list.
+For example, if the list is [1, 3, 2, 4, 5, 6, 7], the function will return 5, since the longest sequence of consecutive numbers is [3, 4, 5, 6, 7].
+'''
