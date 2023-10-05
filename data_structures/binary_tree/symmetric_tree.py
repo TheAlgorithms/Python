@@ -18,7 +18,7 @@ class Node:
 
 
 def is_symmetric_tree(tree: Node) -> bool:
-    """
+    r"""
     Test cases for is_symmetric_tree function.
 
     The below tree looks like this
