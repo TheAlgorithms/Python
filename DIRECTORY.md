@@ -469,6 +469,7 @@
   * [Djb2](hashes/djb2.py)
   * [Elf](hashes/elf.py)
   * [Enigma Machine](hashes/enigma_machine.py)
+  * [Fletcher16](hashes/fletcher16.py)
   * [Hamming Code](hashes/hamming_code.py)
   * [Luhn](hashes/luhn.py)
   * [Md5](hashes/md5.py)
