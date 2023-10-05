@@ -19,6 +19,7 @@ Output: 3
 
 """
 
+
 def equilibrium_index(arr: list[int], n: int) -> int:
     """
     Find the equilibrium index of an array.
@@ -42,14 +43,15 @@ def equilibrium_index(arr: list[int], n: int) -> int:
     """
     total_sum = sum(arr)
     left_sum = 0
-    
+
     for i in range(n):
         total_sum -= arr[i]
         if left_sum == total_sum:
             return i
         left_sum += arr[i]
-    
+
     return -1
+
 
 if __name__ == "__main__":
     import doctest
