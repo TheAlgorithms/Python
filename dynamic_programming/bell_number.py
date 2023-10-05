@@ -1,10 +1,13 @@
 from functools import lru_cache
 
 @lru_cache
-def bell_number(n):
+def bell_number(n: int) -> int:
     """
     Calculate the Bell Number for a given integer n.
 
+    :param n: The integer for which to calculate the Bell Number.
+    :return: The Bell Number for the given integer n.
+    
     >>> bell_number(5)
     52
     >>> bell_number(0)
