@@ -1,5 +1,5 @@
 """
-Given the root of a binary tree, check whether it is a mirror of itself 
+Given the root of a binary tree, check whether it is a mirror of itself
 (i.e., symmetric around its center).
 
 Leetcode reference: https://leetcode.com/problems/symmetric-tree/
@@ -19,12 +19,12 @@ def is_symmetric_tree(tree: Node) -> bool:
     Test cases for is_symmetric_tree function.
 
     The below tree looks like this
-           1
-         /   \
-        2      2
-       / \    / \
-      3   4   4  3
-    
+            1
+          /   \
+         2      2
+        / \    / \
+       3   4   4  3
+
     >>> tree = Node(1)
     >>> tree.left = Node(2)
     >>> tree.right = Node(2)
