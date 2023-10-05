@@ -15,8 +15,7 @@ from cv2 import (
 )
 from digital_image_processing.filters.gaussian_filter import gaussian_filter
 
-
-def my_laplacian(ksize: int, src: np.ndarray) -> np.ndarray:
+def my_laplacian(src: np.ndarray, ksize: int) -> np.ndarray:
     """
     :param src: the source image, which should be a grayscale or color image.
     :param ksize: the size of the kernel used to compute the Laplacian filter,
