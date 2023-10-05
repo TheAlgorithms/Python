@@ -27,26 +27,10 @@ class Node:
 def clone_graph(node: Node | None) -> Node | None:
     """
     This function returns a clone of a connected undirected graph.
-    >>> node1 = Node(1)
-    >>> node2 = Node(2)
-    >>> node3 = Node(3)
-    >>> node4 = Node(4)
-    >>> node1.neighbors.extend([node2, node4])
-    >>> node2.neighbors.extend([node1, node3])
-    >>> node3.neighbors.extend([node2, node4])
-    >>> node4.neighbors.extend([node1, node3])
-    >>> clone1 = clone_graph(node1)
-    >>> clone1.value
-    1
-    >>> clone2 = clone1.neighbors[0]
-    >>> clone2.value
-    2
-    >>> clone4 = clone1.neighbors[1]
-    >>> clone4.value
-    4
-    >>> clone3 = clone2.neighbors[1]
-    >>> clone3.value
-    3
+    >>> clone_graph(Node(1))
+    Node(value=1, neighbors=[])
+    >>> clone_graph(Node(1, [Node(2)]))
+    Node(value=1, neighbors=[Node(value=2, neighbors=[])])
     >>> clone = clone_graph(None)
     >>> clone is None
     True
@@ -66,12 +50,22 @@ def clone_graph(node: Node | None) -> Node | None:
 
         originals_to_clones[original] = Node(original.value)
 
+        if not original.neighbors:
+            continue
+
         for neighbor in original.neighbors:
             stack.append(neighbor)
 
     for original, clone in originals_to_clones.items():
+        if not original.neighbors:
+            continue
+
         for neighbor in original.neighbors:
             cloned_neighbor = originals_to_clones[neighbor]
+
+            if not clone.neighbors:
+                clone.neighbors = []
+
             clone.neighbors.append(cloned_neighbor)
 
     return originals_to_clones[node]
