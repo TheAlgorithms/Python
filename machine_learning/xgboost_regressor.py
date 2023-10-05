@@ -1,7 +1,5 @@
 import numpy as np
 import pandas as pd
-from collections import defaultdict
-import math
 
 class XGBoostRegressor():
     '''Implementation of XGBoost regressor.
