@@ -45,6 +45,42 @@ def snake_to_camel_case(input_str: str, use_pascal: bool = False) -> str:
 
     return "".join([initial_word, *capitalized_words])
 
+def camel_to_snake_case(input_str: str) -> str:
+    """
+    Transforms a camelCase given string to snake_case
+
+    >>> camel_to_snake_case("someRandomString")
+    'some_random_string'
+
+    >>> camel_to_snake_case("SomeRandomString")
+    'some_random_string'
+
+    >>> camel_to_snake_case("someRandomStringWithNumbers123")
+    'some_random_string_with_numbers_123'
+
+    >>> camel_to_snake_case("SomeRandomStringWithNumbers123")
+    'some_random_string_with_numbers_123'
+
+    >>> camel_to_snake_case(123)
+    Traceback (most recent call last):
+        ...
+    ValueError: Expected string as input, found <class 'int'>
+    """
+
+    if not isinstance(input_str, str):
+        msg = f"Expected string as input, found {type(input_str)}"
+        raise ValueError(msg)
+
+    result = []
+    for char in input_str:
+        if char.isupper():
+            result.append("_")
+            result.append(char.lower())
+        else:
+            result.append(char)
+
+    return "".join(result)
+
 
 if __name__ == "__main__":
     from doctest import testmod
