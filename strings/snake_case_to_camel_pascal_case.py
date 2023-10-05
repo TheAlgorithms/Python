@@ -81,7 +81,7 @@ def camel_to_snake_case(input_str: str) -> str:
             if result[-1].isdigit():
                 result.append(char)
             else:
-                result.append('_')
+                result.append("_")
                 result.append(char)
         else:
             result.append(char)
