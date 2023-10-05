@@ -1,4 +1,4 @@
-def match_word_pattern(pattern :str, input_string: str) -> bool:
+def match_word_pattern(pattern: str, input_string: str) -> bool:
     """
     Determine if a given pattern matches a string using backtracking.
 
@@ -15,6 +15,7 @@ def match_word_pattern(pattern :str, input_string: str) -> bool:
     >>> match_word_pattern("GG", "PythonJavaPython")
     False
     """
+
     def backtrack(pattern_index, str_index):
         if pattern_index == len(pattern) and str_index == len(input_string):
             return True
@@ -42,6 +43,8 @@ def match_word_pattern(pattern :str, input_string: str) -> bool:
     str_map: dict[str,str] = {}
     return backtrack(0, 0)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
