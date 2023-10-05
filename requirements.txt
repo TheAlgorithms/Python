@@ -9,6 +9,8 @@ opencv-python
 pandas
 pillow
 projectq
+pyTelegramBotAPI
+python-dotenv
 qiskit ; python_version < '3.12'
 qiskit-aer ; python_version < '3.12'
 requests
