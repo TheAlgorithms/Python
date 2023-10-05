@@ -1,28 +1,21 @@
 from functools import lru_cache
 
-
 @lru_cache
 def bell_number(number_of_partitions: int) -> int:
     """
-        Calculate the Bell Number for a given number of partitions.
+    Calculate the Bell Number for a given number of partitions.
 
-    <<<<<<< HEAD
-        :param number_of_partitions: The number of partitions for which to calculate the Bell Number.
-        :return: The Bell Number for the given number of partitions.
+    :param number_of_partitions: The number of partitions for which to calculate the Bell Number.
+    :return: The Bell Number for the given number of partitions.
 
-    =======
-        :param n: The integer for which to calculate the Bell Number.
-        :return: The Bell Number for the given integer n.
-
-    >>>>>>> 6ce697b751440851f1d49525087e41d495adc9a8
-        >>> bell_number(5)
-        52
-        >>> bell_number(0)
-        1
-        >>> bell_number(-1)
-        Traceback (most recent call last):
-            ...
-        ValueError: Number of partitions should not be negative.
+    >>> bell_number(5)
+    52
+    >>> bell_number(0)
+    1
+    >>> bell_number(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: Number of partitions should not be negative.
     """
     if number_of_partitions < 0:
         raise ValueError("Number of partitions should not be negative.")
@@ -41,8 +34,6 @@ def bell_number(number_of_partitions: int) -> int:
 
     return bell_n[number_of_partitions]
 
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
