@@ -48,9 +48,9 @@ def largest_divisible_subset(array: list[int]) -> list[int]:
     last_index = -1
 
     # Find the maximum length and its corresponding index
-    for i in range(array_size):
-        if memo[i] > ans:
-            ans = memo[i]
+    for i, memo_item in enumerate(memo):
+        if memo_item > ans:
+            ans = memo_item
             last_index = i
 
     # Reconstruct the divisible subset
