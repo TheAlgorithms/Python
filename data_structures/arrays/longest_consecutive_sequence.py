@@ -1,11 +1,10 @@
 """
-author: Sarthak Sharma https://github.com/Sarthak950  https://sarthak950.netlify.app
+author: Sarthak Sharma https://github.com/Sarthak950  
+Website: https://sarthak950.netlify.app
 date:   4 OCT 2023
 Longest Consecutive Sequence Problem from LeetCode
-
 """
 def longest_consecutive_sequence(nums):
-
     """
     Finds the length of the longest consecutive sequence in a list of numbers.
 
@@ -25,7 +24,6 @@ def longest_consecutive_sequence(nums):
         >>> longest_consecutive_sequence([])
         0
     """
-
     if not nums:
         return 0
 
@@ -35,13 +33,16 @@ def longest_consecutive_sequence(nums):
 
     # Iterate over the set of numbers
     for num in num_set:
-        # If the number that is one less than the current number is not in the set, then this is the beginning of a sequence
+        # If the number that is one less than the current number is not in the set,
+        # then this is the beginning of a sequence
         if num - 1 not in num_set:  # Start of a potential sequence
-            # Store the current number in a variable and initiate a sequence length counter
+            # Store the current number in a variable 
+            # and initiate a sequence length counter
             current_num = num
             current_sequence = 1
 
-            # While the next number is in the set, increment the current number and the sequence counter
+            # While the next number is in the set, 
+            # increment the current number and the sequence counter
             while current_num + 1 in num_set:
                 current_num += 1
                 current_sequence += 1
@@ -50,9 +51,9 @@ def longest_consecutive_sequence(nums):
             longest_sequence = max(longest_sequence, current_sequence)
 
     return longest_sequence
-
 '''
-This code takes in a list of numbers and returns the length of the longest sequence of consecutive numbers in the list.
-For example, if the list is [1, 3, 2, 4, 5, 6, 7], the function will return 5, since the longest sequence of consecutive numbers is [3, 4, 5, 6, 7].
-'''
+This code takes in a list of numbers and returns the length of 
+the longest sequence of consecutive numbers in the list.
+For example, if the list is [1, 3, 2, 4, 5, 6, 7], the function will return 5, 
+since the longest sequence of consecutive numbers is [3, 4, 5, 6, 7].
 '''
