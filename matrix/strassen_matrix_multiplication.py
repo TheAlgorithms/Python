@@ -5,6 +5,7 @@ Article about it here:
 https://www.interviewbit.com/blog/strassens-matrix-multiplication/
 """
 
+
 import numpy as np
 
 
@@ -61,8 +62,8 @@ def strassen(a, b):
 if __name__ == "__main__":
     print(
         "Strassen's Matrix Multiplication Algorithm\n"
-        + "only works on square matrices whose dimension is a power of 2.\n"
-        + "So, please enter a valid dimension(size) of matrix.\n"
+        "only works on square matrices whose dimension is a power of 2.\n"
+        "So, please enter a valid dimension(size) of matrix.\n"
     )
 
     n = int(input("Enter size of matrix: "))
