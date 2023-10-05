@@ -54,14 +54,13 @@ def sort_frequency(f: Dict[str, int], desc: bool = True) -> Dict[str, int]:
     >>> sort_frequency(frequency, desc=False)
     {'banana': 1, 'cherry': 2, 'apple': 3}
     """
-    sorted_frequency = dict(
-        sorted(f.items(), key=lambda item: item[1], reverse=desc))
+    sorted_frequency = dict(sorted(f.items(), key=lambda item: item[1], reverse=desc))
 
     return sorted_frequency
 
 
 def print_output() -> None:
-    input_text = ''
+    input_text = ""
     """
     Calculate word count and word frequency, and print the results.
 
@@ -73,14 +72,15 @@ def print_output() -> None:
     """
     words = split_words(input_text)
     print(input_text)
-    m = f'Provided text includes {len(words)} words.\nHere there is the words\' frequency:\n{sort_frequency(word_frequency(words))}'
+    m = f"Provided text includes {len(words)} words.\nHere there is the words' frequency:\n{sort_frequency(word_frequency(words))}"
     print(m)
 
 
 def main():
     import doctest
+
     doctest.testmod()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
