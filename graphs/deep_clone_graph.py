@@ -12,9 +12,9 @@ neighbors.
 
 
 class Node:
-    def __init__(self, value=0, neighbors=None):
+    def __init__(self, value: int = 0, neighbors: list | None = None) -> None:
         self.value = value
-        self.neighbors = neighbors if neighbors is not None else []
+        self.neighbors = neighbors or []
 
 
 def clone_graph(node: Node | None) -> Node | None:
@@ -32,20 +32,18 @@ def clone_graph(node: Node | None) -> Node | None:
 
     originals_to_clones = {}  # map nodes to clones
 
-    def create_clones(node: Node) -> None:
-        """
-        This helper function populates the originals_to_clones map with
-        the original nodes in the graph mapped to newly created clones.
-        """
-        if node in originals_to_clones:
-            return
+    stack = [node]
 
-        originals_to_clones[node] = Node(node.value)
+    while stack:
+        original = stack.pop()
 
-        for neighbor in node.neighbors:
-            create_clones(neighbor)
+        if original in originals_to_clones:
+            continue
 
-    create_clones(node)
+        originals_to_clones[original] = Node(original.value)
+
+        for neighbor in original.neighbors:
+            stack.append(neighbor)
 
     for original, clone in originals_to_clones.items():
         for neighbor in original.neighbors:
