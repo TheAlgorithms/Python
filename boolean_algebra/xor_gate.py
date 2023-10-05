@@ -44,3 +44,5 @@ def test_xor_gate() -> None:
 if __name__ == "__main__":
     print(xor_gate(0, 0))
     print(xor_gate(0, 1))
+    print(xor_gate(1, 0))
+    print(xor_gate(1, 1))
