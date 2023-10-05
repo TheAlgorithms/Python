@@ -57,11 +57,13 @@ https://www.toppr.com/ask/content/concept/sign-convention-for-mirrors-210189/)
 
 """
 
-from math import isclose
+
 def focal_length(distance_of_object: float, distance_of_image: float) -> float:
     """
-    >>> isclose(focal_length(10, 20), 6.666666666666667)
+    >>> from math import isclose
+    >>> isclose(focal_length(10, 20), 6.66666666666666)
     True
+    >>> from math import isclose
     >>> isclose(focal_length(9.5, 6.7), 3.929012346)
     True
     >>> focal_length(0, 20)
@@ -81,8 +83,10 @@ def focal_length(distance_of_object: float, distance_of_image: float) -> float:
 
 def object_distance(focal_length: float, distance_of_image: float) -> float:
     """
+    >>> from math import isclose
     >>> isclose(object_distance(30, 20), -60.0)
     True
+    >>> from math import isclose
     >>> isclose(object_distance(10.5, 11.7), 102.375)
     True
     >>> object_distance(90, 0)
@@ -102,8 +106,10 @@ def object_distance(focal_length: float, distance_of_image: float) -> float:
 
 def image_distance(focal_length: float, distance_of_object: float) -> float:
     """
+    >>> from math import isclose
     >>> isclose(image_distance(10, 40), 13.33333333)
     True
+    >>> from math import isclose
     >>> isclose(image_distance(1.5, 6.7), 1.932692308)
     True
     >>> image_distance(0, 0)
