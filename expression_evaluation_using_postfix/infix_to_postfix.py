@@ -10,7 +10,24 @@ Converting an infix expression to postfix notation is useful because it
 makes it easier to evaluate expressions using a stack-based algorithm. """
 
 
-def infix_to_postfix(expression):
+def infix_to_postfix(expression: str) -> str:
+    """
+    Convert an infix expression to postfix notation.
+    
+    Args:
+        expression (str): The infix expression to convert.
+        
+    Returns:
+        str: The postfix expression.
+    
+    >>> infix_to_postfix("3 + 4 * ( 2 - 1 )")
+    '3 4 2 1 - * +'
+    >>> infix_to_postfix("5 * ( 4 + 2 ) / 3")
+    '5 4 2 + * 3 /'
+    >>> infix_to_postfix("2 ^ 3 ^ 2")
+    '2 3 2 ^ ^'
+    """
+    
     # Initialize an empty stack to store operators temporarily
     stack = []
 
