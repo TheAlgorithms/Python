@@ -5,9 +5,9 @@ Program to find the shortest palindrome in the given string
 
 def shortestpalindrome(s: str) -> str:
     """
-    >>> shortestPalindrome("aacecaaa")
+    >>> shortestpalindrome("aacecaaa")
     'aaacecaaa'
-    >>> shortestPalindrome("abcd")
+    >>> shortestpalindrome("abcd")
     'dcbabcd'
     """
 
