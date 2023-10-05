@@ -9,12 +9,19 @@ Return a deep copy (clone) of the graph.
 Each node in the graph contains a value (int) and a list (List[Node]) of its
 neighbors.
 """
+from dataclasses import dataclass
 
 
+@dataclass
 class Node:
-    def __init__(self, value: int = 0, neighbors: list | None = None) -> None:
-        self.value = value
-        self.neighbors = neighbors or []
+    value: int = 0
+    neighbors: list["Node"] | None = None
+
+    def __post_init__(self):
+        self.neighbors = self.neighbors or []
+
+    def __hash__(self):
+        return id(self)
 
 
 def clone_graph(node: Node | None) -> Node | None:
@@ -24,10 +31,10 @@ def clone_graph(node: Node | None) -> Node | None:
     >>> node2 = Node(2)
     >>> node3 = Node(3)
     >>> node4 = Node(4)
-    >>> node1.neighbors = [node2, node4]
-    >>> node2.neighbors = [node1, node3]
-    >>> node3.neighbors = [node2, node4]
-    >>> node4.neighbors = [node1, node3]
+    >>> node1.neighbors.extend([node2, node4])
+    >>> node2.neighbors.extend([node1, node3])
+    >>> node3.neighbors.extend([node2, node4])
+    >>> node4.neighbors.extend([node1, node3])
     >>> clone1 = clone_graph(node1)
     >>> clone1.value
     1
