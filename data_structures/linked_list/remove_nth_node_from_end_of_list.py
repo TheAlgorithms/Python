@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+"""Learn more about this algorithm: https://www.geeksforgeeks.org/delete-nth-node-from-the-end-of-the-given-linked-list/"""
+
 
 class Node:
     def __init__(self, data: int) -> None:
@@ -11,13 +13,14 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
+    # from middle_element_of_linked_list
     def append(self, new_data: int) -> int:
         new_node = Node(new_data)
         new_node.next = self.head
         self.head = new_node
         return self.head.data
 
-    def view(self):
+    def view(self) -> str:
         ret = ""
         temp = self.head
         while temp is not None:
@@ -26,7 +29,7 @@ class LinkedList:
             temp = temp.next
         return ret[:-2]
 
-    def remove_nth_from_end(self, n) -> int | None:
+    def remove_nth_from_end(self, n: int) -> Node | None:
         """
         >>> link = LinkedList()
         >>> link.remove_nth_from_end(3)
@@ -50,8 +53,7 @@ class LinkedList:
         >>> link.append(-20)
         -20
         >>> link.remove_nth_from_end(3)
-        5 -> 6 -> 8 -> 8 -> 10 -> 12 -> -25 -> -20
-        #removed 17
+        5->6->8->8->10->12->-25->-20
         >>>
         """
         # want to have two pointers, one at the start and the other k nodes forward
@@ -71,10 +73,6 @@ class LinkedList:
             print(f"Try with an N in range of: 1 to {size}")
             return None
 
-        if n == size:
-            self.head = self.head.next
-            return link.view()
-
         first = self.head
         for _i in range(n):
             first = first.next
@@ -88,7 +86,7 @@ class LinkedList:
 
         if prev:
             prev.next = second.next
-        return self.view()
+        return self.head
 
 
 if __name__ == "__main__":
@@ -96,5 +94,8 @@ if __name__ == "__main__":
     for _ in range(int(input().strip())):
         data = int(input().strip())
         link.append(data)
+    print("Before list:")
     print(link.view())
     print(link.remove_nth_from_end(int(input().strip())))
+    print("After list: ")
+    print(link.view())
