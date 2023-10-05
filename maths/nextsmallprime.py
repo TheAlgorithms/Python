@@ -8,6 +8,8 @@ smaller than or equal to input"""
 9973
 >>> nsmallestprime(20)
 19
+>>> nsmallestprime(24)
+23
 """
 
 
@@ -25,5 +27,4 @@ def nsmallestprime(n) -> int:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
