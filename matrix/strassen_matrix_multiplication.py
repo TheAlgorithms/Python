@@ -10,20 +10,18 @@ import numpy as np
 import numpy.typing as npt
 
 
-def input_matrix(matrix: npt.ArrayLike, size_of_matrix: int) -> None:
-    print("Enter matrix:")
-    for i in range(size_of_matrix):
-        for j in range(size_of_matrix):
-            matrix[i][j] = int(input(f"Enter element [{i+1},{j+1}]: "))
-    print()
-
-
-def print_matrix(matrix: npt.ArrayLike, size_of_matrix: int) -> None:
+def print_matrix(matrix: npt.ArrayLike) -> None:
+    """
+    >>> matrix_a = np.array([[5, 6], [7, 8]])
+    >>> print_matrix(matrix_a)
+    5 6 
+    7 8 
+    """
+    size_of_matrix = len(matrix)
     for i in range(size_of_matrix):
         for j in range(size_of_matrix):
             print(matrix[i][j], end=" ")
         print()
-    print()
 
 
 def strassen(matrix_a: npt.ArrayLike, matrix_b: npt.ArrayLike) -> np.ndarray:
@@ -68,26 +66,30 @@ def strassen(matrix_a: npt.ArrayLike, matrix_b: npt.ArrayLike) -> np.ndarray:
 
 
 def main() -> None:
-    print(
-        "Strassen's Matrix Multiplication Algorithm\n"
-        "only works on square matrices whose dimension is a power of 2.\n"
-        "So, please enter a valid dimension(size) of matrix.\n"
-    )
+    """
+    >>> main()
+    Matrix A:
+    1 2 
+    3 4 
+    Matrix B:
+    5 6 
+    7 8 
+    Multiplication result:
+    19 22 
+    43 50 
+    """
+    matrix_a = np.array([[1, 2], [3, 4]])
+    matrix_b = np.array([[5, 6], [7, 8]])
 
-    n = int(input("Enter size of matrix: "))
-    a = np.zeros(shape=(n, n), dtype=np.int64)
-    b = np.zeros(shape=(n, n), dtype=np.int64)
-
-    input_matrix(a, n)
     print("Matrix A:")
-    print_matrix(a, n)
-    input_matrix(b, n)
-    print("Matrix B:")
-    print_matrix(b, n)
+    print_matrix(matrix_a)
 
-    c = strassen(a, b)
+    print("Matrix B:")
+    print_matrix(matrix_b)
+
+    result_matrix = strassen(matrix_a, matrix_b)
     print("Multiplication result:")
-    print_matrix(c, n)
+    print_matrix(result_matrix)
 
 
 if __name__ == "__main__":
