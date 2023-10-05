@@ -32,7 +32,6 @@ def largest_divisible_subset(items: list[int]) -> list[int]:
 
     number_of_items = len(items)
 
-
     # Initialize memo with 1s and hash with increasing numbers
     memo = [1] * number_of_items
     hash_array = list(range(number_of_items))
