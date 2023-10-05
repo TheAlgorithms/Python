@@ -39,8 +39,9 @@ def match_word_pattern(pattern: str, input_string: str) -> bool:
             del pattern_map[char]
             del str_map[substr]
         return False
-    pattern_map: dict[str,str] = {}
-    str_map: dict[str,str] = {}
+
+    pattern_map: dict[str, str] = {}
+    str_map: dict[str, str] = {}
     return backtrack(0, 0)
 
 
