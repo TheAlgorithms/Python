@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 
-def largest_divisible_subset(array: list[int]) -> list[int]:
+def largest_divisible_subset(items: list[int]) -> list[int]:
     """
     Algorithm to find the biggest subset
     in the given array such that for any
@@ -15,7 +15,7 @@ def largest_divisible_subset(array: list[int]) -> list[int]:
     [-3]
     >>> largest_divisible_subset([1, 2, 4, 8])
     [8, 4, 2, 1]
-    >>> largest_divisible_subset([1, 2, 4, 8])
+    >>> largest_divisible_subset((1, 2, 4, 8))
     [8, 4, 2, 1]
     >>> largest_divisible_subset([1, 1, 1])
     [1, 1, 1]
@@ -26,21 +26,21 @@ def largest_divisible_subset(array: list[int]) -> list[int]:
     >>> largest_divisible_subset([])
     []
     """
-    array_size = len(array)
+    # Sort the array in ascending order as the sequence does not matter we only have to
+    # pick up a subset.
+    items = sorted(items)
 
-    # Sort the array in ascending order
-    # as the sequence does not matter
-    # we only have to pick up a subset
-    array.sort()
+    number_of_items = len(items)
 
-    # Initialize memo and hash arrays with 1s
-    memo = [1] * array_size
-    hash_array = list(range(array_size))
+
+    # Initialize memo with 1s and hash with increasing numbers
+    memo = [1] * number_of_items
+    hash_array = list(range(number_of_items))
 
     # Iterate through the array
-    for i, item in enumerate(array):
+    for i, item in enumerate(items):
         for prev_index in range(i):
-            if ((array[prev_index] != 0 and item % array[prev_index]) == 0) and (
+            if ((items[prev_index] != 0 and item % items[prev_index]) == 0) and (
                 (1 + memo[prev_index]) > memo[i]
             ):
                 memo[i] = 1 + memo[prev_index]
@@ -58,10 +58,10 @@ def largest_divisible_subset(array: list[int]) -> list[int]:
     # Reconstruct the divisible subset
     if last_index == -1:
         return []
-    result = [array[last_index]]
+    result = [items[last_index]]
     while hash_array[last_index] != last_index:
         last_index = hash_array[last_index]
-        result.append(array[last_index])
+        result.append(items[last_index])
 
     return result
 
@@ -72,12 +72,6 @@ if __name__ == "__main__":
     testmod()
 
     items = [1, 16, 7, 8, 4]
-
-    if len(items) == 0:
-        print("No items to form subset!")
-    else:
-        answer = largest_divisible_subset(items)
-        if len(answer) == 0:
-            print("No subset found")
-        else:
-            print(f"The longest divisible subset of {items} is {answer}.")
+    print(
+        f"The longest divisible subset of {items} is {largest_divisible_subset(items)}."
+    )
