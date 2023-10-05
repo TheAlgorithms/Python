@@ -45,6 +45,7 @@ def snake_to_camel_case(input_str: str, use_pascal: bool = False) -> str:
 
     return "".join([initial_word, *capitalized_words])
 
+
 def camel_to_snake_case(input_str: str) -> str:
     """
     Transforms a camelCase given string to snake_case
