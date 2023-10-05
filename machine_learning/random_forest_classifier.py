@@ -1,6 +1,7 @@
 import numpy as np
 from typing import Optional, Tuple, Union
 
+
 class DecisionTree:
     """
     Decision Tree classifier.
@@ -30,7 +31,7 @@ class DecisionTree:
 
     def _build_tree(
         self, features: list[np.ndarray], labels: list[int], depth: int
-    ) -> Union[Tuple[int], Tuple[int, float, 'DecisionTree', 'DecisionTree']]:
+    ) -> Union[Tuple[int], Tuple[int, float, "DecisionTree", "DecisionTree"]]:
         """
         Recursively build the decision tree.
 
@@ -133,7 +134,11 @@ class DecisionTree:
         """
         return [self._predict_tree(data_point, self.tree) for data_point in features]
 
-    def _predict_tree(self, data_point: np.ndarray, tree: Union[Tuple[int], Tuple[int, float, 'DecisionTree', 'DecisionTree']]) -> int:
+    def _predict_tree(
+        self,
+        data_point: np.ndarray,
+        tree: Union[Tuple[int], Tuple[int, float, "DecisionTree", "DecisionTree"]],
+    ) -> int:
         """
         Recursively traverse the decision tree to make predictions.
 
