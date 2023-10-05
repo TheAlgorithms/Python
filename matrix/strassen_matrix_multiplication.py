@@ -27,11 +27,13 @@ def print_matrix(matrix: npt.ArrayLike) -> None:
         print()
 
 
-def strassen(matrix_a: npt.ArrayLike, matrix_b: npt.ArrayLike) -> np.ndarray:
+def strassen_multiplication(
+    matrix_a: npt.ArrayLike, matrix_b: npt.ArrayLike
+) -> np.ndarray:
     """
     >>> matrix_a = np.array([[1, 2], [3, 4]])
     >>> matrix_b = np.array([[5, 6], [7, 8]])
-    >>> strassen(matrix_a, matrix_b)
+    >>> strassen_multiplication(matrix_a, matrix_b)
     array([[19, 22],
            [43, 50]])
     """
@@ -51,13 +53,13 @@ def strassen(matrix_a: npt.ArrayLike, matrix_b: npt.ArrayLike) -> np.ndarray:
     b21 = matrix_b[k:, :k]
     b22 = matrix_b[k:, k:]
 
-    p1 = strassen(a11, b12 - b22)
-    p2 = strassen(a11 + a12, b22)
-    p3 = strassen(a21 + a22, b11)
-    p4 = strassen(a22, b21 - b11)
-    p5 = strassen(a11 + a22, b11 + b22)
-    p6 = strassen(a12 - a22, b21 + b22)
-    p7 = strassen(a11 - a21, b11 + b12)
+    p1 = strassen_multiplication(a11, b12 - b22)
+    p2 = strassen_multiplication(a11 + a12, b22)
+    p3 = strassen_multiplication(a21 + a22, b11)
+    p4 = strassen_multiplication(a22, b21 - b11)
+    p5 = strassen_multiplication(a11 + a22, b11 + b22)
+    p6 = strassen_multiplication(a12 - a22, b21 + b22)
+    p7 = strassen_multiplication(a11 - a21, b11 + b12)
 
     c11 = p5 + p4 - p2 + p6
     c12 = p1 + p2
@@ -90,7 +92,7 @@ def main() -> None:
     print("Matrix B:")
     print_matrix(matrix_b)
 
-    result_matrix = strassen(matrix_a, matrix_b)
+    result_matrix = strassen_multiplication(matrix_a, matrix_b)
     print("Multiplication result:")
     print_matrix(result_matrix)
 
