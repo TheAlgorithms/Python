@@ -17,8 +17,8 @@ def cashier():
         print("Change: ", change)
         print("Thank you for shopping with us!")
         choice = input("Enter '1' to return to main menu or '2' to exit: ")
-        if choice == '1':
+        if choice == "1":
             continue
-        elif choice == '2':
+        elif choice == "2":
             print("Thank you for shopping with us!")
             break
