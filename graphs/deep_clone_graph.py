@@ -50,17 +50,11 @@ def clone_graph(node: Node | None) -> Node | None:
 
         originals_to_clones[original] = Node(original.value)
 
-        if not original.neighbors:
-            continue
-
-        for neighbor in original.neighbors:
+        for neighbor in original.neighbors or []:
             stack.append(neighbor)
 
     for original, clone in originals_to_clones.items():
-        if not original.neighbors:
-            continue
-
-        for neighbor in original.neighbors:
+        for neighbor in original.neighbors or []:
             cloned_neighbor = originals_to_clones[neighbor]
 
             if not clone.neighbors:
