@@ -1,5 +1,18 @@
 # Contributing guidelines
 
+## Contribution Checklist
+
+- [X] Read the [Code of Conduct](CODE_OF_CONDUCT.md).
+- [X] Fork the repository.
+- [X] Clone the repository to your local machine.
+- [X] Create a new branch for your changes.
+- [X] Make your changes and commit them.
+- [X] Push your changes to your forked repository.
+- [X] Create a pull request.
+- [ ] Review and address feedback from maintainers.
+- [ ] Your pull request is merged! 🎉
+
+
 ## Before contributing
 
 Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms/community).
