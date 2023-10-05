@@ -17,7 +17,6 @@ import numpy as np
 
 
 def my_laplacian(src: np.ndarray, ksize: int) -> np.ndarray:
-
     """
     :param src: the source image, which should be a grayscale or color image.
     :param ksize: the size of the kernel used to compute the Laplacian filter,
@@ -59,6 +58,7 @@ def my_laplacian(src: np.ndarray, ksize: int) -> np.ndarray:
     )
 
     return laplacian_result
+
 
 if __name__ == "__main__":
     # read original image
