@@ -2,12 +2,23 @@
 # @File    : laplacian_filter.py
 # @Time    : 10/04/2023
 
-from cv2 import BORDER_DEFAULT, cvtColor, CV_64F, COLOR_BGR2GRAY,  filter2D, GaussianBlur, imread, imshow, waitKey
+from cv2 import (
+    BORDER_DEFAULT,
+    cvtColor,
+    CV_64F,
+    COLOR_BGR2GRAY,
+    filter2D,
+    GaussianBlur,
+    imread,
+    imshow,
+    waitKey,
+)
 import numpy as np
 
 
-def my_laplacian(src, ddepth=-1, ksize=3, scale=1, delta=0, bordertype='default') -> np.ndarray:
-
+def my_laplacian(
+    src, ddepth=-1, ksize=3, scale=1, delta=0, bordertype="default"
+) -> np.ndarray:
     """
     :param src: the source image, which should be a grayscale or color image.
     :param ddepth: the desired depth of the destination image,
