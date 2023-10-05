@@ -16,8 +16,9 @@ class Node:
         self.left: Node | None = None
         self.right: Node | None = None
 
+
 class SymmetricTree:
-    def is_symmetric_tree(self,tree: Node) -> bool:
+    def is_symmetric_tree(self, tree: Node) -> bool:
         r"""
         Test cases for is_symmetric_tree function.
 
@@ -62,9 +63,7 @@ class SymmetricTree:
             return True
         return self.is_mirror(tree.left, tree.right)
 
-
-    def is_mirror(self,left, right) -> bool:
-
+    def is_mirror(self, left, right) -> bool:
         if left is None and right is None:
             # Both sides are empty, which is symmetric.
             return True
@@ -73,7 +72,9 @@ class SymmetricTree:
             return False
         if left.data == right.data:
             # The values match, so check the subtree
-            return self.is_mirror(left.left, right.right) and self.is_mirror(left.right, right.left)
+            return self.is_mirror(left.left, right.right) and self.is_mirror(
+                left.right, right.left
+            )
         return False
 
 
