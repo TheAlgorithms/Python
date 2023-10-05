@@ -16,7 +16,9 @@ import random
 from typing import Any
 
 
-def partition(array: list, starting_index: int, ending_index: int) -> int:
+def partition(array: list,
+              starting_index: int,
+              ending_index: int) -> int:
     """
     Partition the array.
     Args:
@@ -43,7 +45,9 @@ def partition(array: list, starting_index: int, ending_index: int) -> int:
     return i + 1
 
 
-def randomized_partition(array: list, starting_index: int, ending_index: int) -> int:
+def randomized_partition(array: list,
+                         starting_index: int,
+                         ending_index: int) -> int:
     """
     Randomized partition of the array.
     Args:
@@ -67,16 +71,18 @@ def randomized_partition(array: list, starting_index: int, ending_index: int) ->
     return partition(array, starting_index, ending_index)
 
 
-def selection_sort(
-    array: list, starting_index: int, ending_index: int, smallest_element: int
-) -> list | None | Any:
+def selection_sort(array: list,
+                   starting_index: int,
+                   ending_index: int,
+                   smallest_element: int) -> list | None | Any:
     """
     Returns a list of sorted array elements using selection sort.
     Args:
         array: list of elements
         starting_index: starting index of the array
         ending_index: ending index of the array
-        smallest_element: the ith smallest element of the array A[p: r], where 1 ≤ i ≤ r-p+1
+        smallest_element: the ith smallest element of
+                          the array A[p: r], where 1 ≤ i ≤ r-p+1
 
     Returns:
         sorted array
@@ -108,9 +114,8 @@ def selection_sort(
         return array
 
     if starting_index == ending_index:
-        return array[
-            starting_index
-        ]  # 1 <= i <= r - p + 1 when p == r means that i == 1
+        # 1 <= i <= r - p + 1 when p == r means that i == 1
+        return array[starting_index]
 
     q = randomized_partition(array, starting_index, ending_index)
 
