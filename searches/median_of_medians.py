@@ -19,7 +19,8 @@ https://en.wikipedia.org/wiki/Median_of_medians
 5
 """
 
-def median_of_five(arr:list) -> int:
+
+def median_of_five(arr: list) -> int:
     """
     >>> median_of_five([2, 4, 5, 7, 899])
     5
@@ -35,10 +36,11 @@ def median_of_five(arr:list) -> int:
     :param arr: Array to find median of
     :return: median of arr
     """
-    arr=sorted(arr)
-    return arr[len(arr)//2]
+    arr = sorted(arr)
+    return arr[len(arr) // 2]
 
-def median_of_medians(arr:list) -> int:
+
+def median_of_medians(arr: list) -> int:
     """
     Return a pivot to partition data on by calculating
     Median of medians of input data
@@ -46,16 +48,20 @@ def median_of_medians(arr:list) -> int:
     :param k: The rank to be searched
     :return: element at rank k
     """
-    if len(arr) <= 5:        return median_of_five(arr)
+    if len(arr) <= 5:
+        return median_of_five(arr)
     medians = []
-    i=0
-    while i<len(arr):
-        if (i + 4) <= len(arr):            medians.append(median_of_five(arr[i:].copy()))
-        else:                              medians.append(median_of_five(arr[i:i+5].copy()))
-        i+=5
+    i = 0
+    while i < len(arr):
+        if (i + 4) <= len(arr):
+            medians.append(median_of_five(arr[i:].copy()))
+        else:
+            medians.append(median_of_five(arr[i : i + 5].copy()))
+        i += 5
     return median_of_medians(medians)
 
-def quick_select(arr:list, k:int) -> int:
+
+def quick_select(arr: list, k: int) -> int:
     """
     >>> quick_select([2, 4, 5, 7, 899, 54, 32], 5)
     32
@@ -76,7 +82,7 @@ def quick_select(arr:list, k:int) -> int:
     """
 
     # Invalid Input
-    if k>len(arr):
+    if k > len(arr):
         return -1
 
     # x is the estimated pivot by median of medians algorithm
@@ -94,7 +100,10 @@ def quick_select(arr:list, k:int) -> int:
         else:
             right.append(arr[i])
     rank_X = len(left) + 1
-    if(rank_X==k):        answer = x
-    elif rank_X>k:        answer = quick_select(left,k)
-    elif rank_X<k:        answer = quick_select(right,k-rank_X)
-    return answer;
+    if rank_X == k:
+        answer = x
+    elif rank_X > k:
+        answer = quick_select(left, k)
+    elif rank_X < k:
+        answer = quick_select(right, k - rank_X)
+    return answer
