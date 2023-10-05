@@ -1,6 +1,7 @@
 import numpy as np
 from typing import Optional
 
+
 class DecisionTree:
     """
     Decision Tree classifier.
@@ -78,6 +79,7 @@ class DecisionTree:
             int: Predicted label.
         """
         # Your existing _predict_tree implementation
+
 
 if __name__ == "__main__":
     import doctest
