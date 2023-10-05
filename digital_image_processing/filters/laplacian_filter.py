@@ -6,7 +6,7 @@ from cv2 import BORDER_DEFAULT, CV_64F, COLOR_BGR2GRAY, cvtColor, filter2D, imre
 from gaussian_filter import gaussian_filter
 import numpy as np
 
-def my_laplacian(src:np.ndarray, ksize:int) -> np.ndarray:
+def my_laplacian(ksize:int, src:np.ndarray) -> np.ndarray:
 
     """
     :param src: the source image, which should be a grayscale or color image.
