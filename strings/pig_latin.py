@@ -39,6 +39,6 @@ def pig_latin(word: str) -> str:
 
 
 if __name__ == "__main__":
-    print(f"{pig_latin("friends") = }")
+    print(f"{pig_latin('friends') = }")
     word = input("Enter a word: ")
     print(f"{pig_latin(word) = }")
