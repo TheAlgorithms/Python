@@ -10,38 +10,45 @@ import numpy as np
 import numpy.typing as npt
 
 
-def input_matrix(matrix: npt.ArrayLike, sizeOfMatrix: int) -> None:
+def input_matrix(matrix: npt.ArrayLike, size_of_matrix: int) -> None:
     print("Enter matrix:")
-    for i in range(sizeOfMatrix):
-        for j in range(sizeOfMatrix):
+    for i in range(size_of_matrix):
+        for j in range(size_of_matrix):
             matrix[i][j] = int(input(f"Enter element [{i+1},{j+1}]: "))
     print()
 
 
-def print_matrix(matrix: npt.ArrayLike, sizeOfMatrix: int) -> None:
-    for i in range(sizeOfMatrix):
-        for j in range(sizeOfMatrix):
+def print_matrix(matrix: npt.ArrayLike, size_of_matrix: int) -> None:
+    for i in range(size_of_matrix):
+        for j in range(size_of_matrix):
             print(matrix[i][j], end=" ")
         print()
     print()
 
 
-def strassen(matrixA: npt.ArrayLike, matrixB: npt.ArrayLike) -> np.ndarray:
-    n = len(matrixA)
+def strassen(matrix_a: npt.ArrayLike, matrix_b:npt.ArrayLike) -> np.ndarray:
+    """
+    >>> matrix_a = np.array([[1, 2], [3, 4]])
+    >>> matrix_b = np.array([[5, 6], [7, 8]])
+    >>> strassen(matrix_a, matrix_b)
+    array([[19, 22],
+           [43, 50]])
+    """
+    n = len(matrix_a)
     if n == 1:
-        return matrixA * matrixB
+        return matrix_a * matrix_b
 
     c = np.zeros(shape=(n, n), dtype=np.int64)
     k = n // 2
 
-    a11 = matrixA[:k, :k]
-    a12 = matrixA[:k, k:]
-    a21 = matrixA[k:, :k]
-    a22 = matrixA[k:, k:]
-    b11 = matrixB[:k, :k]
-    b12 = matrixB[:k, k:]
-    b21 = matrixB[k:, :k]
-    b22 = matrixB[k:, k:]
+    a11 = matrix_a[:k, :k]
+    a12 = matrix_a[:k, k:]
+    a21 = matrix_a[k:, :k]
+    a22 = matrix_a[k:, k:]
+    b11 = matrix_b[:k, :k]
+    b12 = matrix_b[:k, k:]
+    b21 = matrix_b[k:, :k]
+    b22 = matrix_b[k:, k:]
 
     p1 = strassen(a11, b12 - b22)
     p2 = strassen(a11 + a12, b22)
@@ -60,7 +67,7 @@ def strassen(matrixA: npt.ArrayLike, matrixB: npt.ArrayLike) -> np.ndarray:
     return c
 
 
-if __name__ == "__main__":
+def main() -> None:
     print(
         "Strassen's Matrix Multiplication Algorithm\n"
         "only works on square matrices whose dimension is a power of 2.\n"
@@ -81,3 +88,10 @@ if __name__ == "__main__":
     c = strassen(a, b)
     print("Multiplication result:")
     print_matrix(c, n)
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    main()
