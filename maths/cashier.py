@@ -5,6 +5,7 @@ Source:
     https://www.ekorkode.com/2020/12/python-program-kasir-sederhana-source-code-full.html
 """
 
+
 def cashier():
     """
     A function that simulates a cashier system. It takes input for item name, price, and quantity, calculates the total price,
@@ -34,6 +35,7 @@ def cashier():
         elif choice == "2":
             print("Thank you for shopping with us!")
             break
+
 
 if __name__ == "__main__":
     import doctest
