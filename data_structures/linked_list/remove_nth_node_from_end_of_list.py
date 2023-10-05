@@ -94,7 +94,7 @@ if __name__ == "__main__":
     for _ in range(int(input().strip())):
         data = int(input().strip())
         link.append(data)
-    print("Before list:")
+    print("Before list: ")
     print(link.view())
     print(link.remove_nth_from_end(int(input().strip())))
     print("After list: ")
