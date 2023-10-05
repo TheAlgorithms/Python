@@ -59,6 +59,8 @@ def gamma_recursive(num: float) -> float:
     >>> from math import isclose, gamma as math_gamma
     >>> gamma_recursive(0.5)
     1.7724538509055159
+    >>> gamma_recursive(1)
+    1.0
     >>> gamma_recursive(2)
     1.0
     >>> gamma_recursive(3.5)
@@ -99,15 +101,6 @@ def gamma_recursive(num: float) -> float:
         return math.sqrt(math.pi)
     else:
         return 1.0 if num == 1 else (num - 1) * gamma_recursive(num - 1)
-
-
-def test_gamma_recursive() -> None:
-    """
-    >>> test_gamma_recursive()
-    """
-    assert gamma_recursive(0.5) == math.sqrt(math.pi)
-    assert gamma_recursive(1) == 1.0
-    assert gamma_recursive(2) == 1.0
 
 
 if __name__ == "__main__":
