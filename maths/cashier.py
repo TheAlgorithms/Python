@@ -6,7 +6,7 @@ Source:
 """
 
 
-def cashier():
+def cashier() -> None:
     """
     A function that simulates a cashier system.
     It takes input for item name, price,
