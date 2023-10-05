@@ -32,7 +32,7 @@ class GasStation:
     cost: int
 
 
-def get_gas_stations(gas_quantities: list[int], costs: list[int]) -> tuple[GasStation]:
+def get_gas_stations(gas_quantities: list[int], costs: list[int]) -> tuple[GasStation, ...]:
     """
     This function returns a tuple of gas stations.
 
@@ -56,7 +56,7 @@ def get_gas_stations(gas_quantities: list[int], costs: list[int]) -> tuple[GasSt
     )
 
 
-def can_complete_journey(gas_stations: tuple[GasStation]) -> int:
+def can_complete_journey(gas_stations: tuple[GasStation, ...]) -> int:
     """
     This function returns the index from which to start the journey
     in order to reach the end.
