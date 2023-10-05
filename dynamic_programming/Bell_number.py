@@ -1,4 +1,6 @@
 from functools import lru_cache
+
+
 @lru_cache
 def bell_number(number_of_partitions: int) -> int:
     """
@@ -26,6 +28,9 @@ def bell_number(number_of_partitions: int) -> int:
         for j in range(i):
             bell_n[i] += bell_n[j]
     return bell_n[number_of_partitions]
+
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
