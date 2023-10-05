@@ -27,6 +27,7 @@ def shortestpalindrome(s: str) -> str:
 
     return ""
 
+
 if __name__ == "__main__":
     from doctest import testmod
 
