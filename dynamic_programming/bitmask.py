@@ -10,6 +10,8 @@ Find the total no of ways in which the tasks can be distributed.
 """
 from collections import defaultdict
 from typing import List, Dict
+
+
 class TaskAssignment:
     def __init__(self, task_performed: List[List[int]], total_tasks: int) -> None:
         """
@@ -21,7 +23,10 @@ class TaskAssignment:
         total_tasks (int): The total number of tasks to be assigned.
         """
         self.total_tasks = total_tasks
-        self.dp = [[-1 for _ in range(total_tasks + 1)] for _ in range(1 << len(task_performed))]
+        self.dp = [
+            [-1 for _ in range(total_tasks + 1)]
+            for _ in range(1 << len(task_performed))
+        ]
         self.task = defaultdict(list)
         self.final_mask = (1 << len(task_performed)) - 1
 
@@ -82,7 +87,6 @@ if __name__ == "__main__":
     total_ways = assignment.count_total_ways(task_performed)
 
     print("Total number of ways to distribute tasks:", total_ways)
-
 
     """
     For the particular example the tasks can be distributed as
