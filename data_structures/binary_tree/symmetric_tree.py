@@ -65,14 +65,15 @@ class SymmetricTree:
 
     def is_mirror(self, left: Node | None, right:Node | Node) -> bool:
         """
-        Check if two binary trees are mirrors of each other.
-
-        Args:
-            left (Node | None): The root of the left subtree.
-            right (Node | None): The root of the right subtree.
-
-        Returns:
-            bool: True if the two trees are mirrors, False otherwise.
+        >>> tree1 = Node(1)
+        >>> tree1.left = Node(2)
+        >>> tree1.right = Node(2)
+        >>> tree1.left.left = Node(3)
+        >>> tree1.left.right = Node(4)
+        >>> tree1.right.left = Node(4)
+        >>> tree1.right.right = Node(3)
+        >>> SymmetricTree().is_mirror(tree1.left, tree1.right)
+        True
         """
         if left is None and right is None:
             # Both sides are empty, which is symmetric.
