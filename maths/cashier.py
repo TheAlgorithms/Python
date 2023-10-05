@@ -15,6 +15,41 @@ def cashier():
     and prints a receipt.
     It then prompts the user to either return to the main menu
     or exit the program.
+
+    >>> # Test case 1: User enters valid inputs and chooses to return to main menu
+    >>> # Enter item name: Apple
+    >>> # Enter item price: 1.5
+    >>> # Enter item quantity: 2
+    >>> # Total price: 3.0
+    >>> # Enter payment amount: 5
+    >>> # Change: 2.0
+    >>> # Receipt:
+    >>> # Item name: Apple
+    >>> # Item price: 1.5
+    >>> # Item quantity: 2
+    >>> # Total price: 3.0
+    >>> # Payment: 5.0
+    >>> # Change: 2.0
+    >>> # Thank you for shopping with us!
+    >>> # Enter '1' to return to main menu or '2' to exit: 1
+    >>>
+    >>> # Test case 2: User enters valid inputs and chooses to exit
+    >>> # Enter item name: Banana
+    >>> # Enter item price: 2.0
+    >>> # Enter item quantity: 3
+    >>> # Total price: 6.0
+    >>> # Enter payment amount: 10
+    >>> # Change: 4.0
+    >>> # Receipt:
+    >>> # Item name: Banana
+    >>> # Item price: 2.0
+    >>> # Item quantity: 3
+    >>> # Total price: 6.0
+    >>> # Payment: 10.0
+    >>> # Change: 4.0
+    >>> # Thank you for shopping with us!
+    >>> # Enter '1' to return to main menu or '2' to exit: 2
+
     """
     while True:
         item_name = input("Enter item name: ")
