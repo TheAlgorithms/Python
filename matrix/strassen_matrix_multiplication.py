@@ -60,11 +60,7 @@ def strassen(a, b):
 
 
 if __name__ == "__main__":
-    print(
-        "Strassen's Matrix Multiplication Algorithm\n"
-        "only works on square matrices whose dimension is a power of 2.\n"
-        "So, please enter a valid dimension(size) of matrix.\n"
-    )
+    print("NOTE: Strassen's Matrix Multiplication Algorithm only works on square matrices whose dimension is a power of 2.\nPlease enter a valid dimension(size) of matrix (power of 2).\n")
 
     n = int(input("Enter size of matrix: "))
     a = np.zeros(shape=(n, n), dtype=np.int64)
