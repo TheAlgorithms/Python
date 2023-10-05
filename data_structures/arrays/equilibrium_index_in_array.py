@@ -20,7 +20,7 @@ Output: 3
 """
 
 
-def equilibrium_index(arr: list[int], n: int) -> int:
+def equilibrium_index(arr: list[int], size: int) -> int:
     """
     Find the equilibrium index of an array.
 
@@ -44,7 +44,7 @@ def equilibrium_index(arr: list[int], n: int) -> int:
     total_sum = sum(arr)
     left_sum = 0
 
-    for i in range(n):
+    for i in range(size):
         total_sum -= arr[i]
         if left_sum == total_sum:
             return i
