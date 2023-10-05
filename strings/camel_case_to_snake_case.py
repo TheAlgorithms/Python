@@ -1,5 +1,6 @@
 import re
 
+
 def camel_to_snake_case(input_str: str) -> str:
     """
     Transforms a camelCase or PascalCase given string to snake_case
@@ -27,10 +28,10 @@ def camel_to_snake_case(input_str: str) -> str:
         raise ValueError(msg)
 
     # Use regular expression to split words on capital letters and numbers
-    words = re.findall(r'[A-Z][a-z]*|\d+|[a-z]+', input_str)
+    words = re.findall(r"[A-Z][a-z]*|\d+|[a-z]+", input_str)
 
     # Join the words with underscores and convert to lowercase
-    return '_'.join(words).lower()
+    return "_".join(words).lower()
 
 
 if __name__ == "__main__":
