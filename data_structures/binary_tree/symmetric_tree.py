@@ -4,6 +4,8 @@ Given the root of a binary tree, check whether it is a mirror of itself
 
 Leetcode reference: https://leetcode.com/problems/symmetric-tree/
 """
+
+
 class Node:
     """
     A Node has data variable and pointers to Nodes to its left and right.
@@ -13,6 +15,7 @@ class Node:
         self.data = data
         self.left: Node | None = None
         self.right: Node | None = None
+
 
 def is_symmetric_tree(tree: Node) -> bool:
     """
@@ -57,9 +60,10 @@ def is_symmetric_tree(tree: Node) -> bool:
     if tree is None:
         # An empty tree is considered symmetric.
         return True
-    return is_mirror(tree.left,tree.right)
+    return is_mirror(tree.left, tree.right)
 
-def is_mirror(left,right):
+
+def is_mirror(left, right):
     if left is None and right is None:
         # Both sides are empty, which is symmetric.
         return True
@@ -70,6 +74,7 @@ def is_mirror(left,right):
         # The values match, so check the subtree
         return is_mirror(left.left, right.right) and is_mirror(left.right, right.left)
     return False
+
 
 def main() -> None:
     # Create a symmetric tree for testing.
@@ -82,6 +87,7 @@ def main() -> None:
     tree.right.right = Node(3)
 
     print(is_symmetric_tree(tree))
+
 
 if __name__ == "__main__":
     main()
