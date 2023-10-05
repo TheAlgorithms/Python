@@ -1,4 +1,20 @@
-def evaluate_postfix(expression):
+def evaluate_postfix(expression: str) -> int:
+     """
+    Evaluate a postfix expression and return the result.
+    
+    Args:
+        expression (str): The postfix expression to evaluate.
+        
+    Returns:
+        int or float: The result of the evaluation.
+    
+    >>> evaluate_postfix("3 4 2 1 - * +")
+    7
+    >>> evaluate_postfix("5 4 2 + * 3 /")
+    10.0
+    >>> evaluate_postfix("2 3 2 ^ ^")
+    512
+    """
     # Initialize an empty stack to store operands
     stack = []
 
