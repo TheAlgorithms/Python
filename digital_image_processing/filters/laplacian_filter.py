@@ -59,6 +59,7 @@ def my_laplacian(ksize: int, src: np.ndarray) -> np.ndarray:
 
     return laplacian_result
 
+
 if __name__ == "__main__":
     # read original image
     img = imread(r"digital_image_processing/image_data/lena.jpg")
