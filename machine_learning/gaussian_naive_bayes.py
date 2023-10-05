@@ -57,7 +57,8 @@ import numpy as np
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
-from sklearn.metrics import confusion_matrix  
+from sklearn.metrics import confusion_matrix
+
 
 class GaussianNaiveBayes:
     def fit(self, X, y):
@@ -74,16 +75,19 @@ class GaussianNaiveBayes:
             )
 
     def _calculate_likelihood(self, mean, var, x):
-        return (
-            1 / np.sqrt(2 * np.pi * var)
-        ) * np.exp(-(x - mean) ** 2 / (2 * var))
+        return (1 / np.sqrt(2 * np.pi * var)) * np.exp(-((x - mean) ** 2) / (2 * var))
 
     def _calculate_posterior(self, x):
         posteriors = []
         for i, c in enumerate(self.classes):
             prior = np.log(self.parameters[i]["prior"])
-            likelihood = np.sum(np.log(self._calculate_likelihood(
-                self.parameters[i]["mean"], self.parameters[i]["var"], x)))
+            likelihood = np.sum(
+                np.log(
+                    self._calculate_likelihood(
+                        self.parameters[i]["mean"], self.parameters[i]["var"], x
+                    )
+                )
+            )
             posterior = prior + likelihood
             posteriors.append(posterior)
         return self.classes[np.argmax(posteriors)]
@@ -92,6 +96,7 @@ class GaussianNaiveBayes:
         y_pred = [self._calculate_posterior(x) for x in X]
         return np.array(y_pred)
 
+
 def main():
     # Load Iris dataset
     iris = load_iris()
@@ -99,7 +104,7 @@ def main():
     # Split dataset into train and test data
     x = iris["data"]  # features
     y = iris["target"]
-    
+
     x_train, x_test, y_train, y_test = train_test_split(
         x, y, test_size=0.3, random_state=1
     )
@@ -112,20 +117,21 @@ def main():
 
     # Display Confusion Matrix
     cm = confusion_matrix(y_test, y_pred)
-    plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
+    plt.imshow(cm, interpolation="nearest", cmap=plt.cm.Blues)
     plt.title("Normalized Confusion Matrix - IRIS Dataset")
     plt.colorbar()
     plt.xticks(np.arange(len(iris.target_names)), iris.target_names, rotation=45)
     plt.yticks(np.arange(len(iris.target_names)), iris.target_names)
     plt.tight_layout()
-    plt.ylabel('True label')
-    plt.xlabel('Predicted label')
+    plt.ylabel("True label")
+    plt.xlabel("Predicted label")
     plt.show()
 
     # Calculate accuracy
     time.sleep(1.8)
     accuracy = (y_test == y_pred).mean()
     print(f"The overall accuracy of the model is: {round(accuracy * 100, 2)}%")
+
 
 if __name__ == "__main__":
     main()
