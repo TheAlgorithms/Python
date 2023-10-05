@@ -1,5 +1,6 @@
 from typing import Optional
 
+
 def strip(user_string: str, characters: Optional[str] = None) -> str:
     """
     Remove leading and trailing characters (whitespace by default) from a string.
@@ -39,6 +40,8 @@ def strip(user_string: str, characters: Optional[str] = None) -> str:
         left_stripped = user_string.lstrip(characters)
         return left_stripped.rstrip(characters)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
