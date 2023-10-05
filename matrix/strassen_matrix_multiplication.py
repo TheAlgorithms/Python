@@ -20,6 +20,9 @@ def print_matrix(matrix: npt.ArrayLike) -> None:
     size_of_matrix = len(matrix)
     for i in range(size_of_matrix):
         for j in range(size_of_matrix):
+            if (j == size_of_matrix - 1):
+                print(matrix[i][j], end="")
+                continue
             print(matrix[i][j], end=" ")
         print()
 
