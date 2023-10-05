@@ -13,7 +13,7 @@ from cv2 import (
     imshow,
     waitKey,
 )
-from gaussian_filter import gaussian_filter
+from digital_image_processing.filters.gaussian_filter import gaussian_filter
 
 def my_laplacian(src:np.ndarray, ksize: int) -> np.ndarray:
     """
@@ -61,7 +61,7 @@ def my_laplacian(src:np.ndarray, ksize: int) -> np.ndarray:
 
 if __name__ == "__main__":
     # read original image
-    img = imread(r"digital_image_processing/image_data/lena.jpg")
+    img = imread(r"../image_data/lena.jpg")
 
     # turn image in gray scale value
     gray = cvtColor(img, COLOR_BGR2GRAY)
