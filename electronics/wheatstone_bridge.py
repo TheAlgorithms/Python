@@ -4,7 +4,7 @@ from __future__ import annotations
 
 def wheatstone_solver(
     resistance_1: float, resistance_2: float, resistance_3: float
-) -> tuple:
+) -> float:
     """
     This function can calculate the unknown resistance in an wheatstone network.
 
@@ -26,11 +26,10 @@ def wheatstone_solver(
     if resistance_1 <= 0 or resistance_2 <= 0 or resistance_3 <= 0:
         raise ValueError("All resistance values must be positive")
     else:
-        return (resistance_2 / resistance_1) * resistance_3
+        return float((resistance_2 / resistance_1) * resistance_3)
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-# print(wheatstone_solver(356,234,976))
