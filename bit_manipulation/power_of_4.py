@@ -42,9 +42,11 @@ def power_of_4(number: int) -> bool:
     >>> power_of_4(1.2)
     Traceback (most recent call last):
         ...
-    TypeError: unsupported operand type(s) for &: 'float' and 'float'
+    TypeError: number must be an integer
 
     """
+    if not isinstance(number, int):
+        raise TypeError("number must be an integer")
     if number <= 0:
         raise ValueError("number must be positive")
     if number & (number - 1) == 0:
