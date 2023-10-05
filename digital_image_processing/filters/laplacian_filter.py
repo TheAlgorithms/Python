@@ -2,7 +2,7 @@
 # @File    : laplacian_filter.py
 # @Time    : 10/04/2023
 
-from cv2 import imread, cvtColor, COLOR_BGR2GRAY,  filter2D, imshow, waitKey, CV_64F, BORDER_DEFAULT, GaussianBlur
+from cv2 import BORDER_DEFAULT, cvtColor, CV_64F, COLOR_BGR2GRAY,  filter2D, GaussianBlur, imread, imshow, waitKey 
 import numpy as np
 
 
@@ -13,13 +13,13 @@ def my_laplacian(src, ddepth=-1, ksize=3, scale=1, delta=0, bordertype='default'
   :param ddepth: the desired depth of the destination image,
                 -1 or one of np.uint8, np.uint16, np.int16, np.float32 or np.float64.
   :param ksize: the size of the kernel used to compute the Laplacian filter,
-                which can be 1, 3, 5 or 7. A larger kernel size will produce more accurate results.
+                which can be 1, 3, 5 or 7.
   :param scale: an optional scaling factor applied to the computed Laplacian values,
                 which can be used to enhance or reduce the effect of the filter.
   :param delta: an optional value added to the computed Laplacian values,
                 which can be used to shift the output image intensity range.
   :param bordertype: an optional flag that specifies how to handle the image borders,
-                    which can be one of 'default', 'replicate', 'reflect', or 'constant'.
+                    which can be one of 'default', 'reflect', or 'constant'.
 
   """
 
