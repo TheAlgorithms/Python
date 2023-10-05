@@ -63,7 +63,7 @@ class SymmetricTree:
             return True
         return self.is_mirror(tree.left, tree.right)
 
-    def is_mirror(self, left: Node | None, right:Node | Node) -> bool:
+    def is_mirror(self, left: Node | None, right: Node | Node) -> bool:
         """
         >>> tree1 = Node(1)
         >>> tree1.left = Node(2)
@@ -83,8 +83,9 @@ class SymmetricTree:
             return False
         if left.data == right.data:
             # The values match, so check the subtree
-            return self.is_mirror(left.left, right.right) \
-                   and self.is_mirror(left.right, right.left)
+            return self.is_mirror(left.left, right.right) and self.is_mirror(
+                left.right, right.left
+            )
         return False
 
 
