@@ -16,7 +16,17 @@ def match_word_pattern(pattern: str, input_string: str) -> bool:
     False
     """
 
-    def backtrack(pattern_index, str_index):
+    def backtrack(pattern_index: int, str_index: int) -> bool:
+        """
+        >>> backtrack(0, 0)
+        True
+
+        >>> backtrack(0, 1)
+        True
+
+        >>> backtrack(0, 4)
+        False
+        """
         if pattern_index == len(pattern) and str_index == len(input_string):
             return True
         if pattern_index == len(pattern) or str_index == len(input_string):
@@ -39,7 +49,6 @@ def match_word_pattern(pattern: str, input_string: str) -> bool:
             del pattern_map[char]
             del str_map[substr]
         return False
-
     pattern_map: dict[str, str] = {}
     str_map: dict[str, str] = {}
     return backtrack(0, 0)
@@ -47,5 +56,4 @@ def match_word_pattern(pattern: str, input_string: str) -> bool:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
