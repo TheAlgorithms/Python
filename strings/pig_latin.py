@@ -1,8 +1,7 @@
-# pig_latin.py
-
-
-def pig_latin(sentence: str) -> str:
+def pig_latin(word: str) -> str:
     """Compute the piglatin of a given string.
+
+    https://en.wikipedia.org/wiki/Pig_Latin
 
     Usage examples:
     >>> pig_latin("pig")
@@ -23,23 +22,23 @@ def pig_latin(sentence: str) -> str:
     'omeletway'
     >>> pig_latin("are")
     'areway'
-
+    >>> pig_latin(" ")
+    ''
+    >>> pig_latin(None)
+    ''
     """
-
-    sentence = sentence.lower()
-    length = len(sentence)
-    if sentence[0] in "aeiou":
-        result = sentence + "way"
-    else:
-        for i in range(length):
-            if sentence[i] in "aeiou":
-                break
-        result = sentence[i:] + sentence[:i] + "ay"
-    return result
+    if not (word or "").strip():
+        return ""
+    word = word.lower()
+    if word[0] in "aeiou":
+        return f"{word}way"
+    for i, char in enumerate(word):
+        if char in "aeiou":
+            break
+    return f"{word[i:]}{word[:i]}ay"
 
 
-# statement = input("Enter a string: ")
-statement = "friends"  # giving a sample input
-answer = pig_latin(statement)
-
-print(f'The PIG LATIN of the given string is "{answer}"')
+if __name__ == "__main__":
+    print(f"{pig_latin("friends") = }")
+    word = input("Enter a word: ")
+    print(f"{pig_latin(word) = }")
