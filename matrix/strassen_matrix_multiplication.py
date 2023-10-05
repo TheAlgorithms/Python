@@ -14,8 +14,8 @@ def print_matrix(matrix: npt.ArrayLike) -> None:
     """
     >>> matrix_a = np.array([[5, 6], [7, 8]])
     >>> print_matrix(matrix_a)
-    5 6 
-    7 8 
+    5 6
+    7 8
     """
     size_of_matrix = len(matrix)
     for i in range(size_of_matrix):
@@ -69,14 +69,14 @@ def main() -> None:
     """
     >>> main()
     Matrix A:
-    1 2 
-    3 4 
+    1 2
+    3 4
     Matrix B:
-    5 6 
-    7 8 
+    5 6
+    7 8
     Multiplication result:
-    19 22 
-    43 50 
+    19 22
+    43 50
     """
     matrix_a = np.array([[1, 2], [3, 4]])
     matrix_b = np.array([[5, 6], [7, 8]])
