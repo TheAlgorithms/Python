@@ -72,7 +72,7 @@ if __name__ == "__main__":
     testmod()
 
     items = [1, 16, 7, 8, 4]
-    
+
     if len(items) == 0:
         print("No items to form subset!")
     else:
@@ -80,6 +80,4 @@ if __name__ == "__main__":
         if len(answer) == 0:
             print("No subset found")
         else:
-            print(
-        f"The longest divisible subset of {items} is {answer}."
-    )
+            print(f"The longest divisible subset of {items} is {answer}.")
