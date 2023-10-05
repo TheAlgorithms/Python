@@ -1,12 +1,11 @@
-# https://en.wikipedia.org/wiki/Tree_traversal
 from __future__ import annotations
 
 from collections import deque
-from collections.abc import Sequence
+from collections.abc import Generator
 from dataclasses import dataclass
-from typing import Any
 
 
+# https://en.wikipedia.org/wiki/Tree_traversal
 @dataclass
 class Node:
     data: int
@@ -31,44 +30,56 @@ def make_tree() -> Node | None:
     return tree
 
 
-def preorder(root: Node | None) -> list[int]:
+def preorder(root: Node | None) -> Generator[int, None, None]:
     """
     Pre-order traversal visits root node, left subtree, right subtree.
-    >>> preorder(make_tree())
+    >>> list(preorder(make_tree()))
     [1, 2, 4, 5, 3]
     """
-    return [root.data, *preorder(root.left), *preorder(root.right)] if root else []
+    if not root:
+        return
+    yield root.data
+    yield from preorder(root.left)
+    yield from preorder(root.right)
 
 
-def postorder(root: Node | None) -> list[int]:
+def postorder(root: Node | None) -> Generator[int, None, None]:
     """
     Post-order traversal visits left subtree, right subtree, root node.
-    >>> postorder(make_tree())
+    >>> list(postorder(make_tree()))
     [4, 5, 2, 3, 1]
     """
-    return postorder(root.left) + postorder(root.right) + [root.data] if root else []
+    if not root:
+        return
+    yield from postorder(root.left)
+    yield from postorder(root.right)
+    yield root.data
 
 
-def inorder(root: Node | None) -> list[int]:
+def inorder(root: Node | None) -> Generator[int, None, None]:
     """
     In-order traversal visits left subtree, root node, right subtree.
-    >>> inorder(make_tree())
+    >>> list(inorder(make_tree()))
     [4, 2, 5, 1, 3]
     """
-    return [*inorder(root.left), root.data, *inorder(root.right)] if root else []
+    if not root:
+        return
+    yield from inorder(root.left)
+    yield root.data
+    yield from inorder(root.right)
 
 
-def reverse_inorder(root: Node | None) -> list[int]:
+def reverse_inorder(root: Node | None) -> Generator[int, None, None]:
     """
     Reverse in-order traversal visits right subtree, root node, left subtree.
-    >>> reverse_inorder(make_tree())
+    >>> list(reverse_inorder(make_tree()))
     [3, 1, 5, 2, 4]
     """
-    return (
-        [*reverse_inorder(root.right), root.data, *reverse_inorder(root.left)]
-        if root
-        else []
-    )
+    if not root:
+        return
+    yield from reverse_inorder(root.right)
+    yield root.data
+    yield from reverse_inorder(root.left)
 
 
 def height(root: Node | None) -> int:
@@ -82,95 +93,85 @@ def height(root: Node | None) -> int:
     return (max(height(root.left), height(root.right)) + 1) if root else 0
 
 
-def level_order(root: Node | None) -> Sequence[Node | None]:
+def level_order(root: Node | None) -> Generator[int, None, None]:
     """
     Returns a list of nodes value from a whole binary tree in Level Order Traverse.
     Level Order traverse: Visit nodes of the tree level-by-level.
     """
-    output: list[Any] = []
 
     if root is None:
-        return output
+        return
 
     process_queue = deque([root])
 
     while process_queue:
         node = process_queue.popleft()
-        output.append(node.data)
+        yield node.data
 
         if node.left:
             process_queue.append(node.left)
         if node.right:
             process_queue.append(node.right)
-    return output
 
 
 def get_nodes_from_left_to_right(
     root: Node | None, level: int
-) -> Sequence[Node | None]:
+) -> Generator[int, None, None]:
     """
     Returns a list of nodes value from a particular level:
     Left to right direction of the binary tree.
     """
-    output: list[Any] = []
 
-    def populate_output(root: Node | None, level: int) -> None:
+    def populate_output(root: Node | None, level: int) -> Generator[int, None, None]:
         if not root:
             return
         if level == 1:
-            output.append(root.data)
+            yield root.data
         elif level > 1:
-            populate_output(root.left, level - 1)
-            populate_output(root.right, level - 1)
+            yield from populate_output(root.left, level - 1)
+            yield from populate_output(root.right, level - 1)
 
-    populate_output(root, level)
-    return output
+    yield from populate_output(root, level)
 
 
 def get_nodes_from_right_to_left(
     root: Node | None, level: int
-) -> Sequence[Node | None]:
+) -> Generator[int, None, None]:
     """
     Returns a list of nodes value from a particular level:
     Right to left direction of the binary tree.
     """
-    output: list[Any] = []
 
-    def populate_output(root: Node | None, level: int) -> None:
+    def populate_output(root: Node | None, level: int) -> Generator[int, None, None]:
         if root is None:
             return
         if level == 1:
-            output.append(root.data)
+            yield root.data
         elif level > 1:
-            populate_output(root.right, level - 1)
-            populate_output(root.left, level - 1)
+            yield from populate_output(root.right, level - 1)
+            yield from populate_output(root.left, level - 1)
 
-    populate_output(root, level)
-    return output
+    yield from populate_output(root, level)
 
 
-def zigzag(root: Node | None) -> Sequence[Node | None] | list[Any]:
+def zigzag(root: Node | None) -> Generator[int, None, None]:
     """
     ZigZag traverse:
     Returns a list of nodes value from left to right and right to left, alternatively.
     """
     if root is None:
-        return []
-
-    output: list[Sequence[Node | None]] = []
+        return
 
     flag = 0
     height_tree = height(root)
 
     for h in range(1, height_tree + 1):
         if not flag:
-            output.append(get_nodes_from_left_to_right(root, h))
+            yield from get_nodes_from_left_to_right(root, h)
             flag = 1
         else:
-            output.append(get_nodes_from_right_to_left(root, h))
+            yield from get_nodes_from_right_to_left(root, h)
             flag = 0
-
-    return output
 
 
 def main() -> None:  # Main function for testing.
@@ -178,23 +179,23 @@ def main() -> None:  # Main function for testing.
     root = make_tree()
 
     # All Traversals of the binary are as follows:
-    print(f"In-order Traversal: {inorder(root)}")
-    print(f"Reverse In-order Traversal: {reverse_inorder(root)}")
-    print(f"Pre-order Traversal: {preorder(root)}")
-    print(f"Post-order Traversal: {postorder(root)}", "\n")
+    print(f"In-order Traversal: {list(inorder(root))}")
+    print(f"Reverse In-order Traversal: {list(reverse_inorder(root))}")
+    print(f"Pre-order Traversal: {list(preorder(root))}")
+    print(f"Post-order Traversal: {list(postorder(root))}", "\n")
 
     print(f"Height of Tree: {height(root)}", "\n")
 
     print("Complete Level Order Traversal: ")
-    print(level_order(root), "\n")
+    print(f"{list(level_order(root))} \n")
 
     print("Level-wise order Traversal: ")
 
     for level in range(1, height(root) + 1):
-        print(f"Level {level}:", get_nodes_from_left_to_right(root, level=level))
+        print(f"Level {level}:", list(get_nodes_from_left_to_right(root, level=level)))
 
     print("\nZigZag order Traversal: ")
-    print(zigzag(root))
+    print(f"{list(zigzag(root))}")
 
 
 if __name__ == "__main__":
