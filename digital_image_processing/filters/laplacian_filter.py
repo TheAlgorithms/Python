@@ -21,7 +21,12 @@ def my_laplacian(src: np.ndarray, ksize: int) -> np.ndarray:
     """
     :param src: the source image, which should be a grayscale or color image.
     :param ksize: the size of the kernel used to compute the Laplacian filter,
-                  which can be 1, 3, 5 or 7.
+                  which can be 1, 3, 5, or 7.
+
+    >>> my_laplacian(src=np.array([]), ksize=0)
+    Traceback (most recent call last):
+        ...
+    ValueError: ksize must be in (1, 3, 5, 7)
     """
     kernels = {
         1: np.array([[0, -1, 0], [-1, 4, -1], [0, -1, 0]]),
