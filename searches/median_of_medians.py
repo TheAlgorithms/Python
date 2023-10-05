@@ -19,8 +19,7 @@ https://en.wikipedia.org/wiki/Median_of_medians
 5
 """
 
-
-def median_of_five(arr: list) -> int:
+def median_of_five(arr:list) -> int:
     """
     >>> median_of_five([2, 4, 5, 7, 899])
     5
@@ -36,32 +35,39 @@ def median_of_five(arr: list) -> int:
     :param arr: Array to find median of
     :return: median of arr
     """
-    arr = sorted(arr)
-    return arr[len(arr) // 2]
+    arr=sorted(arr)
+    return arr[len(arr)//2]
 
-
-def median_of_medians(arr: list) -> int:
+def median_of_medians(arr:list) -> int:
+    """
+    >>> median_of_medians([2, 4, 5, 7, 899, 54, 32])
+    54
+    >>> median_of_medians([5, 7, 899, 54, 32])
+    32
+    >>> median_of_medians([5, 4, 3, 2])
+    4
+    >>> median_of_medians([3, 5, 7, 10, 2, 12])
+    12
+    """
     """
     Return a pivot to partition data on by calculating
     Median of medians of input data
-    :param arr: The data to be sorted (a list)
-    :param k: The rank to be searched
-    :return: element at rank k
+    :param arr: The data to be checked (a list)
+    :return: median of medians of input array
     """
     if len(arr) <= 5:
         return median_of_five(arr)
     medians = []
-    i = 0
-    while i < len(arr):
+    i=0
+    while i<len(arr):
         if (i + 4) <= len(arr):
             medians.append(median_of_five(arr[i:].copy()))
         else:
-            medians.append(median_of_five(arr[i : i + 5].copy()))
-        i += 5
+            medians.append(median_of_five(arr[i:i+5].copy()))
+        i+=5
     return median_of_medians(medians)
 
-
-def quick_select(arr: list, k: int) -> int:
+def quick_select(arr:list, target:int) -> int:
     """
     >>> quick_select([2, 4, 5, 7, 899, 54, 32], 5)
     32
@@ -76,13 +82,13 @@ def quick_select(arr: list, k: int) -> int:
     """
     Two way partition the data into smaller and greater lists,
     in relationship to the pivot
-    :param arr: The data to be sorted (a list)
-    :param k: The rank to be searched
-    :return: element at rank k
+    :param arr: The data to be searched (a list)
+    :param target: The rank to be searched
+    :return: element at rank target
     """
 
     # Invalid Input
-    if k > len(arr):
+    if target>len(arr):
         return -1
 
     # x is the estimated pivot by median of medians algorithm
@@ -99,11 +105,11 @@ def quick_select(arr: list, k: int) -> int:
             check = True
         else:
             right.append(arr[i])
-    rank_X = len(left) + 1
-    if rank_X == k:
+    rank_x = len(left) + 1
+    if(rank_x==target):
         answer = x
-    elif rank_X > k:
-        answer = quick_select(left, k)
-    elif rank_X < k:
-        answer = quick_select(right, k - rank_X)
+    elif rank_x>target:
+        answer = quick_select(left,target)
+    elif rank_x<target:
+        answer = quick_select(right,target-rank_x)
     return answer
