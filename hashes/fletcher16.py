@@ -4,12 +4,12 @@ The Fletcher checksum is an algorithm for computing a position-dependent checksu
 Source: https://en.wikipedia.org/wiki/Fletcher%27s_checksum
 '''
 
-def fletcher16(data):
+def fletcher16(text: str) -> int:
     '''
     Loops through every character in the data and adds to two sums
-
     fletcher16('hello world') == 6752
     '''
+    data = bytes(text, "ascii")
     sum1 = 0
     sum2 = 0
     for character in data:
@@ -20,5 +20,4 @@ def fletcher16(data):
 
 if __name__ == "__main__":
     text = input("Enter a text: ")
-    stuffs = bytes(text, "ascii")
-    print(fletcher16(stuffs))
+    print(fletcher16(text))
