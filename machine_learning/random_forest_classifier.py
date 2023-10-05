@@ -26,6 +26,13 @@ class DecisionTree:
 
         Returns:
             None
+
+        Examples:
+            >>> np.random.seed(42)
+            >>> X = np.random.rand(100, 2)
+            >>> y = (X[:, 0] + X[:, 1] > 1).astype(int)
+            >>> tree = DecisionTree(max_depth=3)
+            >>> tree.fit(X, y)
         """
         self.tree = self._build_tree(features, labels, depth=0)
 
@@ -42,6 +49,13 @@ class DecisionTree:
 
         Returns:
             tuple: The decision tree structure.
+
+        Examples:
+            >>> np.random.seed(42)
+            >>> X = np.random.rand(100, 2)
+            >>> y = (X[:, 0] + X[:, 1] > 1).astype(int)
+            >>> tree = DecisionTree(max_depth=3)
+            >>> tree._build_tree(X, y, depth=0)
         """
         if depth == self.max_depth or len(np.unique(labels)) == 1:
             return (np.bincount(labels).argmax(),)
@@ -116,6 +130,11 @@ class DecisionTree:
 
         Returns:
             float: The Gini impurity.
+
+        Examples:
+            >>> labels = [0, 0, 1, 1, 1]
+            >>> tree = DecisionTree(max_depth=3)
+            >>> tree._calculate_gini(labels)
         """
         if len(labels) == 0:
             return 0
@@ -131,7 +150,16 @@ class DecisionTree:
 
         Returns:
             List[int]: Predicted labels.
+
+        Examples:
+            >>> np.random.seed(42)
+            >>> X = np.random.rand(100, 2)
+            >>> y = (X[:, 0] + X[:, 1] > 1).astype(int)
+            >>> tree = DecisionTree(max_depth=3)
+            >>> tree.fit(X, y)
+            >>> predictions = tree.predict([np.array([0.7, 0.3]), np.array([0.2, 0.8])])
         """
+
         return [self._predict_tree(data_point, self.tree) for data_point in features]
 
     def _predict_tree(self, data_point: np.ndarray, tree: tuple) -> int:
@@ -144,6 +172,15 @@ class DecisionTree:
 
         Returns:
             int: Predicted label.
+
+        Examples:
+            >>> np.random.seed(42)
+            >>> X = np.random.rand(100, 2)
+            >>> y = (X[:, 0] + X[:, 1] > 1).astype(int)
+            >>> tree = DecisionTree(max_depth=3)
+            >>> tree.fit(X, y)
+            >>> data_point = np.array([0.7, 0.3])
+            >>> prediction = tree._predict_tree(data_point, tree.tree)
         """
         if len(tree) == 1:
             return tree[0]
