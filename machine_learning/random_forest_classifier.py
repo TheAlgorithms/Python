@@ -1,5 +1,4 @@
 import numpy as np
-from typing import Optional, List
 
 
 class DecisionTree:
@@ -7,22 +6,22 @@ class DecisionTree:
     Decision Tree classifier.
 
     Parameters:
-        max_depth (Optional[int]): Maximum depth of the tree. If None, the tree grows until pure nodes or min_samples_split is reached.
+        max_depth (int, optional): Maximum depth of the tree. If None, the tree grows until pure nodes or min_samples_split is reached.
 
     Attributes:
         tree (tuple): The decision tree structure.
     """
 
-    def __init__(self, max_depth: Optional[int] = None) -> None:
+    def __init__(self, max_depth: int = None) -> None:
         self.max_depth = max_depth
 
-    def fit(self, features: List[np.ndarray], labels: List[int]) -> None:
+    def fit(self, features: list[np.ndarray], labels: list[int]) -> None:
         """
         Fit the decision tree to the training data.
 
         Parameters:
-            features (List[np.ndarray]): The input features.
-            labels (List[int]): The target labels.
+            features (list of numpy.ndarray): The input features.
+            labels (list of int): The target labels.
 
         Returns:
             None
@@ -37,14 +36,14 @@ class DecisionTree:
         self.tree = self._build_tree(features, labels, depth=0)
 
     def _build_tree(
-        self, features: List[np.ndarray], labels: List[int], depth: int
+        self, features: list[np.ndarray], labels: list[int], depth: int
     ) -> tuple:
         """
         Recursively build the decision tree.
 
         Parameters:
-            features (List[np.ndarray]): The input features.
-            labels (List[int]): The target labels.
+            features (list of numpy.ndarray): The input features.
+            labels (list of int): The target labels.
             depth (int): The current depth of the tree.
 
         Returns:
@@ -121,12 +120,12 @@ class DecisionTree:
 
         return (best_split_feature, best_split_value, left_split, right_split)
 
-    def _calculate_gini(self, labels: List[int]) -> float:
+    def _calculate_gini(self, labels: list[int]) -> float:
         """
         Calculate the Gini impurity for a given set of labels.
 
         Parameters:
-            labels (List[int]): A list of labels.
+            labels (list of int): A list of labels.
 
         Returns:
             float: The Gini impurity.
@@ -141,15 +140,15 @@ class DecisionTree:
         p_i = np.bincount(labels) / len(labels)
         return 1 - np.sum(p_i**2)
 
-    def predict(self, features: List[np.ndarray]) -> List[int]:
+    def predict(self, features: list[np.ndarray]) -> list[int]:
         """
         Make predictions for input features.
 
         Parameters:
-            features (List[np.ndarray]): The input features.
+            features (list of numpy.ndarray): The input features.
 
         Returns:
-            List[int]: Predicted labels.
+            list of int: Predicted labels.
 
         Examples:
             >>> np.random.seed(42)
