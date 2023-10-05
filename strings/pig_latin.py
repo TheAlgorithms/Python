@@ -1,7 +1,7 @@
 # pig_latin.py
 
-def pig_latin(sentence:str) -> str:
 
+def pig_latin(sentence: str) -> str:
     """Compute the piglatin of a given string.
 
     Usage examples:
@@ -37,8 +37,9 @@ def pig_latin(sentence:str) -> str:
         result = sentence[i:] + sentence[:i] + "ay"
     return result
 
-#statement = input("Enter a string: ")
-statement = "friends" #giving a sample input
+
+# statement = input("Enter a string: ")
+statement = "friends"  # giving a sample input
 answer = pig_latin(statement)
 
-print(f"The PIG LATIN of the given string is \"{answer}\"")
+print(f'The PIG LATIN of the given string is "{answer}"')
