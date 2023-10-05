@@ -42,7 +42,7 @@ def get_gas_stations(gas_quantities: list[int], costs: list[int]) -> tuple[GasSt
 
     Returns:
         A tuple of gas stations
-    
+
     >>> gas_stations = get_gas_stations([1, 2, 3, 4, 5], [3, 4, 5, 1, 2])
     >>> len(gas_stations)
     5
