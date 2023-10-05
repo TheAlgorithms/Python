@@ -16,13 +16,13 @@ import random
 from typing import Any
 
 
-def partition(array: list, p: int, r: int) -> int:
+def partition(array: list, starting_index: int, ending_index: int) -> int:
     """
     Partition the array.
     Args:
         array: list of elements
-        p: starting index of the array
-        r: ending index of the array
+        starting_index: starting index of the array
+        ending_index: ending index of the array
 
     Returns:
         index of the pivot
@@ -33,23 +33,23 @@ def partition(array: list, p: int, r: int) -> int:
     0
 
     """
-    pivot = array[r]
-    i = p - 1
-    for j in range(p, r):
+    pivot = array[ending_index]
+    i = starting_index - 1
+    for j in range(starting_index, ending_index):
         if array[j] <= pivot:
             i += 1
             array[i], array[j] = array[j], array[i]
-    array[i + 1], array[r] = array[r], array[i + 1]
+    array[i + 1], array[ending_index] = array[ending_index], array[i + 1]
     return i + 1
 
 
-def randomized_partition(array: list, p: int, r: int) -> int:
+def randomized_partition(array: list, starting_index: int, ending_index: int) -> int:
     """
     Randomized partition of the array.
     Args:
         array: list of elements
-        p: starting index of the array
-        r: ending index of the array
+        starting_index: starting index of the array
+        ending_index: ending index of the array
 
     Returns:
         call to partition function
@@ -62,19 +62,19 @@ def randomized_partition(array: list, p: int, r: int) -> int:
 
     """
 
-    rand_idx = random.randint(p, r)
-    array[rand_idx], array[r] = array[r], array[rand_idx]
-    return partition(array, p, r)
+    rand_idx = random.randint(starting_index, ending_index)
+    array[rand_idx], array[ending_index] = array[ending_index], array[rand_idx]
+    return partition(array, starting_index, ending_index)
 
 
-def selection_sort(array: list, p: int, r: int, i: int) -> list | None | Any:
+def selection_sort(array: list, starting_index: int, ending_index: int, smallest_element: int) -> list | None | Any:
     """
     Returns a list of sorted array elements using selection sort.
     Args:
         array: list of elements
-        p: starting index of the array
-        r: ending index of the array
-        i: the ith smallest element of the array A[p: r], where 1 ≤ i ≤ r-p+1
+        starting_index: starting index of the array
+        ending_index: ending index of the array
+        smallest_element: the ith smallest element of the array A[p: r], where 1 ≤ i ≤ r-p+1
 
     Returns:
         sorted array
@@ -105,19 +105,19 @@ def selection_sort(array: list, p: int, r: int, i: int) -> list | None | Any:
     if array is None or len(array) == 0:
         return array
 
-    if p == r:
-        return array[p]  # 1 <= i <= r - p + 1 when p == r means that i == 1
+    if starting_index == ending_index:
+        return array[starting_index]  # 1 <= i <= r - p + 1 when p == r means that i == 1
 
-    q = randomized_partition(array, p, r)
+    q = randomized_partition(array, starting_index, ending_index)
 
-    k = q - p + 1
+    k = q - starting_index + 1
 
-    if i == k:
+    if smallest_element == k:
         return array[q]  # the pivot value is the answer
-    elif i < k:
-        return selection_sort(array, p, q - 1, i)
+    elif smallest_element < k:
+        return selection_sort(array, starting_index, q - 1, smallest_element)
     else:
-        return selection_sort(array, q + 1, r, i - k)
+        return selection_sort(array, q + 1, ending_index, smallest_element - k)
 
 
 if __name__ == "__main__":
