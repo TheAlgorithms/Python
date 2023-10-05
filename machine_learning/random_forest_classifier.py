@@ -1,3 +1,4 @@
+from typing import Optional
 import numpy as np
 
 
@@ -13,7 +14,7 @@ class DecisionTree:
         tree (tuple): The decision tree structure.
     """
 
-    def __init__(self, max_depth: int = None) -> None:
+    def __init__(self, max_depth: Optional[int] = None) -> None:
         self.max_depth = max_depth
 
     def fit(self, features: list[np.ndarray], labels: list[int]) -> None:
