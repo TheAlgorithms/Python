@@ -74,7 +74,7 @@ def print_matrix(matrix: list) -> None:
 def actual_strassen(matrix_a: list, matrix_b: list) -> list:
     """
     Recursive function to calculate the product of two matrices, using the Strassen
-    Algorithm.  It only supports even length matrices.
+    Algorithm. It only supports square matrices of any size that is a power of 2.
     """
     if matrix_dimensions(matrix_a) == (2, 2):
         return default_matrix_multiplication(matrix_a, matrix_b)
