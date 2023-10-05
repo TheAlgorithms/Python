@@ -129,8 +129,8 @@ def strassen(matrix1: list, matrix2: list) -> list:
     new_matrix1 = matrix1
     new_matrix2 = matrix2
 
-    # Adding zeros to the matrices so that the arrays dimensions are the same and also
-    # power of 2
+    # Adding zeros to the matrices to convert them both into square matrices of equal
+    # dimensions that are a power of 2
     for i in range(maxim):
         if i < dimension1[0]:
             for _ in range(dimension1[1], maxim):
