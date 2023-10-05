@@ -1,5 +1,5 @@
 """
-Fixes #9374
+Fixes #9347
 Name : Sharnabh Banerjee
 
 """
@@ -35,8 +35,7 @@ def add_largest(num: int) -> int:
     # Left Bit Shift till it res is less than or equal to the given number
     while (res << 1) <= num:
         res <<= 1
-    res += num
-    return res
+    return res + num
 
 
 if __name__ == "__main__":
