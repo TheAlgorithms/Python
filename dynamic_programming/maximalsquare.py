@@ -5,6 +5,7 @@ It follows a dynamic programming algorithm and DP on Grids approach
 Leetcode link for the problem: leetcode.com/problems/maximal-square/
 """
 
+
 def maximal_square(matrix: list[list[str]]) -> int:
     """
     >>> maximal_square([
@@ -47,6 +48,8 @@ def maximal_square(matrix: list[list[str]]) -> int:
 
     return maxval * maxval
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
