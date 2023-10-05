@@ -66,7 +66,7 @@ def focal_length(distance_of_object: float, distance_of_image: float) -> float:
     >>> from math import isclose
     >>> isclose(focal_length(9.5, 6.7), 3.929012346)
     True
-    >>> focal_length(0, 20)
+    >>> focal_length(0, 20)  # doctest: +NORMALIZE_WHITESPACE
     Traceback (most recent call last):
         ...
     ValueError: Invalid inputs. Enter non zero values with respect
@@ -89,7 +89,7 @@ def object_distance(focal_length: float, distance_of_image: float) -> float:
     >>> from math import isclose
     >>> isclose(object_distance(10.5, 11.7), 102.375)
     True
-    >>> object_distance(90, 0)
+    >>> object_distance(90, 0)  # doctest: +NORMALIZE_WHITESPACE
     Traceback (most recent call last):
         ...
     ValueError: Invalid inputs. Enter non zero values with respect
@@ -112,7 +112,7 @@ def image_distance(focal_length: float, distance_of_object: float) -> float:
     >>> from math import isclose
     >>> isclose(image_distance(1.5, 6.7), 1.932692308)
     True
-    >>> image_distance(0, 0)
+    >>> image_distance(0, 0)  # doctest: +NORMALIZE_WHITESPACE
     Traceback (most recent call last):
         ...
     ValueError: Invalid inputs. Enter non zero values with respect
