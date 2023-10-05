@@ -7,40 +7,41 @@ https://www.interviewbit.com/blog/strassens-matrix-multiplication/
 
 
 import numpy as np
+import numpy.typing as npt
 
 
-def input_matrix(m, n):
+def input_matrix(matrix: npt.ArrayLike, sizeOfMatrix: int) -> None:
     print("Enter matrix:")
-    for i in range(n):
-        for j in range(n):
-            m[i][j] = int(input(f"Enter element [{i+1},{j+1}]: "))
+    for i in range(sizeOfMatrix):
+        for j in range(sizeOfMatrix):
+            matrix[i][j] = int(input(f"Enter element [{i+1},{j+1}]: "))
     print()
 
 
-def print_matrix(m, n):
-    for i in range(n):
-        for j in range(n):
-            print(m[i][j], end=" ")
+def print_matrix(matrix: npt.ArrayLike, sizeOfMatrix: int) -> None:
+    for i in range(sizeOfMatrix):
+        for j in range(sizeOfMatrix):
+            print(matrix[i][j], end=" ")
         print()
     print()
 
 
-def strassen(a, b):
-    n = len(a)
+def strassen(matrixA: npt.ArrayLike, matrixB:npt.ArrayLike) -> np.ndarray:
+    n = len(matrixA)
     if n == 1:
-        return a * b
+        return matrixA * matrixB
 
     c = np.zeros(shape=(n, n), dtype=np.int64)
     k = n // 2
 
-    a11 = a[:k, :k]
-    a12 = a[:k, k:]
-    a21 = a[k:, :k]
-    a22 = a[k:, k:]
-    b11 = b[:k, :k]
-    b12 = b[:k, k:]
-    b21 = b[k:, :k]
-    b22 = b[k:, k:]
+    a11 = matrixA[:k, :k]
+    a12 = matrixA[:k, k:]
+    a21 = matrixA[k:, :k]
+    a22 = matrixA[k:, k:]
+    b11 = matrixB[:k, :k]
+    b12 = matrixB[:k, k:]
+    b21 = matrixB[k:, :k]
+    b22 = matrixB[k:, k:]
 
     p1 = strassen(a11, b12 - b22)
     p2 = strassen(a11 + a12, b22)
