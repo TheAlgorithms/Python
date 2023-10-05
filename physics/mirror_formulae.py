@@ -58,6 +58,8 @@ https://www.toppr.com/ask/content/concept/sign-convention-for-mirrors-210189/)
 """
 
 from math import isclose
+
+
 def focal_length(distance_of_object: float, distance_of_image: float) -> float:
     """
     >>> isclose(focal_length(10, 20), 6.666666666666667)
