@@ -10,7 +10,7 @@
 - [ ] Push your changes to your forked repository.
 - [ ] Create a pull request.
 - [ ] Review and address feedback from maintainers.
-- [ ] Yay! Your pull request is merged. 
+- [ ] Yay! Your pull request is merged.
 
 
 ## Before contributing
