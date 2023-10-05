@@ -15,13 +15,13 @@ Running VS Code inside a Docker container can be useful for many reasons, but in
 - [Contributing](#contributing)
 - [License](#license)
 
-  
+
 ## Introduction
 Provide a brief introduction to your project. Explain its purpose, goals, and any key features that it provides.
 
 
 ## Getting Started
-Guide users on how to get started with your project. Include instructions on how to install, configure, and run your project. 
+Guide users on how to get started with your project. Include instructions on how to install, configure, and run your project.
 
 ## Prerequisites
 List any prerequisites or dependencies that users need to have installed before they can use your project.
