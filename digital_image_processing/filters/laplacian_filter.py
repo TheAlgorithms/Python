@@ -2,12 +2,21 @@
 # @File    : laplacian_filter.py
 # @Date    : 10/04/2023
 
-from cv2 import BORDER_DEFAULT, CV_64F, COLOR_BGR2GRAY, cvtColor, filter2D, imread, imshow, waitKey
+from cv2 import (
+    BORDER_DEFAULT,
+    CV_64F,
+    COLOR_BGR2GRAY,
+    cvtColor,
+    filter2D,
+    imread,
+    imshow,
+    waitKey,
+)
 from gaussian_filter import gaussian_filter
 import numpy as np
 
-def my_laplacian(src:np.ndarray, ksize:int) -> np.ndarray:
 
+def my_laplacian(src: np.ndarray, ksize: int) -> np.ndarray:
     """
     :param src: the source image, which should be a grayscale or color image.
     :param ksize: the size of the kernel used to compute the Laplacian filter,
@@ -58,7 +67,7 @@ if __name__ == "__main__":
     gray = cvtColor(img, COLOR_BGR2GRAY)
 
     # Applying gaussian filter
-    blur_image = gaussian_filter(gray,3, sigma=1)
+    blur_image = gaussian_filter(gray, 3, sigma=1)
 
     # Apply multiple Kernel to detect edges
     laplacian_image = my_laplacian(blur_image, ksize=3)
