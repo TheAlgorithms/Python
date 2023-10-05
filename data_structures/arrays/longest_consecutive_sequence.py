@@ -6,7 +6,7 @@ Longest Consecutive Sequence Problem from LeetCode
 """
 
 
-def longestConsecutiveSequence(self, nums: List[int]) -> int:
+def longest_consecutive_sequence(self, nums: List[int]) -> int:
     # Create a map of all numbers in the array to their index
     nmap = defaultdict(int)
     for i in range(len(nums)):
