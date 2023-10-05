@@ -63,7 +63,7 @@ def is_symmetric_tree(tree: Node) -> bool:
     return is_mirror(tree.left, tree.right)
 
 
-def is_mirror(left, right):
+def is_mirror(left, right) -> bool:
     if left is None and right is None:
         # Both sides are empty, which is symmetric.
         return True
