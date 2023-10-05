@@ -67,7 +67,8 @@ if __name__ == "__main__":
 
     testmod()
 
-    array = [1, 16, 7, 8, 4]
+    items = [1, 16, 7, 8, 4]
+    print(f"The longest divisible subset of {items} is {largest_divisible_subset(items)}.")
 
     answer = largest_divisible_subset(array)
 
