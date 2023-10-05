@@ -158,6 +158,7 @@ class DecisionTree:
             >>> tree.fit(X, y)
             >>> predictions = tree.predict([np.array([0.7, 0.3]), np.array([0.2, 0.8])])
         """
+
         return [self._predict_tree(data_point, self.tree) for data_point in features]
 
     def _predict_tree(self, data_point: np.ndarray, tree: tuple) -> int:
