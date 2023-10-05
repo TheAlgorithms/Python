@@ -35,6 +35,7 @@ class TwoArraysOneStack:
         else:
             print("Stack 2 is empty")
 
+
 # Example usage:
 stack = TwoArraysOneStack(5)
 
