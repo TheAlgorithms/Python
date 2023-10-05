@@ -1,5 +1,4 @@
 def strip(user_string: str, characters: str | None = None) -> str:
-
     """
     Remove leading and trailing characters (whitespace by default) from a string.
 
@@ -31,7 +30,7 @@ def strip(user_string: str, characters: str | None = None) -> str:
         'NoWhitespaceHere'
 
     Note:
-        Right-stripping is performed after left-stripping when 
+        Right-stripping is performed after left-stripping when
         characters are specified.
     """
 
@@ -41,6 +40,8 @@ def strip(user_string: str, characters: str | None = None) -> str:
         left_stripped = user_string.lstrip(characters)
         return left_stripped.rstrip(characters)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
