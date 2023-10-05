@@ -8,13 +8,12 @@ The fact that the sum of a subarray (or window) of size k can be calculated in O
 # O(n) solution in Python3 for finding
 # maximum sum of a subarray of size k
 
+
 # Returns maximum sum in
 # a subarray of size k.
 def maxSum(arr, n, k):
-
     # k must be smaller than n
-    if (n < k):
-
+    if n < k:
         print("Invalid")
         return -1
 
@@ -30,16 +29,14 @@ def maxSum(arr, n, k):
     # current window.
     curr_sum = res
     for i in range(k, n):
-
-        curr_sum += arr[i] - arr[i-k]
+        curr_sum += arr[i] - arr[i - k]
         res = max(res, curr_sum)
 
     return res
 
+
 # Driver code
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
-
-
-
