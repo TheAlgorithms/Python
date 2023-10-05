@@ -152,7 +152,6 @@ class DecisionTree:
             return self._predict_tree(data_point, right)
 
 
-
 if __name__ == "__main__":
     import doctest
 
