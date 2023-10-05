@@ -15,7 +15,7 @@ def largest_divisible_subset(array: list[int]) -> list[int]:
     [-3]
     >>> largest_divisible_subset([1, 2, 4, 8])
     [8, 4, 2, 1]
-    >>> largest_divisible_subset((1, 2, 4, 8))
+    >>> largest_divisible_subset([1, 2, 4, 8])
     [8, 4, 2, 1]
     >>> largest_divisible_subset([1, 1, 1])
     [1, 1, 1]
@@ -40,7 +40,9 @@ def largest_divisible_subset(array: list[int]) -> list[int]:
     # Iterate through the array
     for i, item in enumerate(array):
         for prev_index in range(i):
-            if item % array[prev_index] == 0 and 1 + memo[prev_index] > memo[i]:
+            if ((array[prev_index] != 0 and item % array[prev_index]) == 0) and (
+                (1 + memo[prev_index]) > memo[i]
+            ):
                 memo[i] = 1 + memo[prev_index]
                 hash_array[i] = prev_index
 
@@ -54,6 +56,8 @@ def largest_divisible_subset(array: list[int]) -> list[int]:
             last_index = i
 
     # Reconstruct the divisible subset
+    if last_index == -1:
+        return []
     result = [array[last_index]]
     while hash_array[last_index] != last_index:
         last_index = hash_array[last_index]
@@ -71,7 +75,11 @@ if __name__ == "__main__":
     print(
         f"The longest divisible subset of {items} is {largest_divisible_subset(items)}."
     )
-
-    answer = largest_divisible_subset(array)
-
-    print("The longest divisible subset elements are:", answer)
+    if len(items) == 0:
+        print("No items to form subset!")
+    else:
+        answer = largest_divisible_subset(items)
+        if len(answer) == 0:
+            print("No subset found")
+        else:
+            print("The longest divisible subset elements are:", answer)
