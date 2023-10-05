@@ -43,6 +43,12 @@ def get_gas_stations(gas_quantities: list[int], costs: list[int]) -> list[GasSta
 
     Returns:
         gas_stations [list]: a list of gas stations
+
+    Examples:
+    >>> get_gas_stations([1, 2, 3, 4, 5], [3, 4, 5, 1, 2])
+    [GasStation(gas_quantity=1, cost=3), GasStation(gas_quantity=2, cost=4), \
+GasStation(gas_quantity=3, cost=5), GasStation(gas_quantity=4, cost=1), \
+GasStation(gas_quantity=5, cost=2)]
     """
     gas_stations = [
         GasStation(gas_quantity, cost)
