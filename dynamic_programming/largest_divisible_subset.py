@@ -38,9 +38,9 @@ def largest_divisible_subset(array: list[int]) -> list[int]:
     hash_array = list(range(array_size))
 
     # Iterate through the array
-    for i in range(array_size):
+    for i, item in enumerate(array):
         for prev_index in range(i):
-            if array[i] % array[prev_index] == 0 and 1 + memo[prev_index] > memo[i]:
+            if item % array[prev_index] == 0 and 1 + memo[prev_index] > memo[i]:
                 memo[i] = 1 + memo[prev_index]
                 hash_array[i] = prev_index
 
