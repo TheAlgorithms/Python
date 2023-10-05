@@ -272,7 +272,7 @@ class Deque:
         assert not self.is_empty(), "Deque is empty."
 
         topop = self._back
-        # if only one value in the queue: point the front and back to None
+        # if only one element in the queue: point the front and back to None
         # else remove one element from back
         if self._front == self._back:
             self._front = None
@@ -319,7 +319,7 @@ class Deque:
         assert not self.is_empty(), "Deque is empty."
 
         topop = self._front
-        # if only one value in the queue: point the front and back to None
+        # if only one element in the queue: point the front and back to None
         # else remove one element from front
         if self._front == self._back:
             self._front = None
@@ -458,3 +458,5 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    dq = Deque([3])
+    dq.pop()
