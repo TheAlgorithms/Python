@@ -1,4 +1,4 @@
-def convert_to_minus_2_base(number):
+def convert_to_minus_2_base(number) -> int:
     """
     >>> convert_to_minus_2_base(5)
     '11'
