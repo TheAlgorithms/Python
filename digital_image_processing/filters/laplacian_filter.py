@@ -17,12 +17,11 @@ import numpy as np
 
 
 def my_laplacian(src: np.ndarray, ksize: int) -> np.ndarray:
-    
     """
     :param src: the source image, which should be a grayscale or color image.
     :param ksize: the size of the kernel used to compute the Laplacian filter,
                   which can be 1, 3, 5 or 7.
-    
+
     """
 
     # Create a Laplacian kernel matrix according to the ksize
