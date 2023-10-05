@@ -57,6 +57,11 @@ https://www.toppr.com/ask/content/concept/sign-convention-for-mirrors-210189/)
 
 """
 
+<<<<<<< HEAD
+=======
+from math import isclose
+
+>>>>>>> e5f2d76ef48721e71993e4b491c4bb4ce23f74c0
 
 def focal_length(distance_of_object: float, distance_of_image: float) -> float:
     """
