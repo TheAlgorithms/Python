@@ -4,32 +4,32 @@ from numpy import inf
 from scipy.integrate import quad
 
 
-def gamma(num: float) -> float:
+def gamma_iterative(num: float) -> float:
     """
     https://en.wikipedia.org/wiki/Gamma_function
-    In mathematics, the gamma function is one commonly
+    In mathematics, the gamma_iterative function is one commonly
     used extension of the factorial function to complex numbers.
-    The gamma function is defined for all complex numbers except the non-positive
+    The gamma_iterative function is defined for all complex numbers except the non-positive
     integers
-    >>> gamma(-1)
+    >>> gamma_iterative(-1)
     Traceback (most recent call last):
         ...
     ValueError: math domain error
-    >>> gamma(0)
+    >>> gamma_iterative(0)
     Traceback (most recent call last):
         ...
     ValueError: math domain error
-    >>> gamma(9)
+    >>> gamma_iterative(9)
     40320.0
     >>> from math import gamma as math_gamma
-    >>> all(.99999999 < gamma(i) / math_gamma(i) <= 1.000000001
+    >>> all(.99999999 < gamma_iterative(i) / math_gamma(i) <= 1.000000001
     ...     for i in range(1, 50))
     True
-    >>> gamma(-1)/math_gamma(-1) <= 1.000000001
+    >>> gamma_iterative(-1)/math_gamma(-1) <= 1.000000001
     Traceback (most recent call last):
         ...
     ValueError: math domain error
-    >>> gamma(3.3) - math_gamma(3.3) <= 0.00000001
+    >>> gamma_iterative(3.3) - math_gamma(3.3) <= 0.00000001
     True
     """
     if num <= 0:
