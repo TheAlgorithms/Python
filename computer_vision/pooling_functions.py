@@ -129,7 +129,7 @@ def global_average_pooling(arr: np.ndarray) -> np.ndarray:
             The input 2D matrix.
     Returns:
         numpy array of the global average pooled matrix.
-    Sample Input Output:
+
     >>> global_average_pooling(np.array([[1,2,3],[5,6,7],[9,10,11],[13,14,15]]))
     array([[8.]])
     >>> global_average_pooling(np.array([[147, 180, 122],[241, 76, 32],[126, 13, 157]]))
