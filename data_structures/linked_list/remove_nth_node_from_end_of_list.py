@@ -1,6 +1,6 @@
-from __future__ import annotations
-
 """Learn more about this algorithm: https://www.geeksforgeeks.org/delete-nth-node-from-the-end-of-the-given-linked-list/"""
+
+from __future__ import annotations
 
 
 class Node:
@@ -9,18 +9,40 @@ class Node:
         self.next = None
 
 
+class LinkedListExceptionError(Exception):
+    pass
+
+
 class LinkedList:
     def __init__(self):
         self.head = None
 
     # from middle_element_of_linked_list
     def append(self, new_data: int) -> int:
+        """
+        >>> link = LinkedList()
+        >>> link.append(5)
+        5
+        >>> link.append(6)
+        6
+        """
         new_node = Node(new_data)
         new_node.next = self.head
         self.head = new_node
+        if not self.head:
+            raise LinkedListExceptionError(
+                "Unexpected error: Head of linked list is None after append operation."
+            )
         return self.head.data
 
     def view(self) -> str:
+        """
+        >>> link = LinkedList()
+        >>> link.append(5)
+        >>> link.append(6)
+        >>> link.view()
+        '6->5'
+        """
         ret = ""
         temp = self.head
         while temp is not None:
@@ -29,7 +51,7 @@ class LinkedList:
             temp = temp.next
         return ret[:-2]
 
-    def remove_nth_from_end(self, n: int) -> Node | None:
+    def remove_nth_from_end(self, position_from_end: int) -> Node | None:
         """
         >>> link = LinkedList()
         >>> link.remove_nth_from_end(3)
@@ -69,12 +91,12 @@ class LinkedList:
             size += 1
             current = current.next
 
-        if n > size or n <= 0:
+        if position_from_end > size or position_from_end <= 0:
             print(f"Try with an N in range of: 1 to {size}")
             return None
 
         first = self.head
-        for _i in range(n):
+        for _i in range(position_from_end):
             first = first.next
         second = self.head
         prev = None
