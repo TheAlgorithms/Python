@@ -5,9 +5,11 @@ Reference: https://www.geeksforgeeks.org/equilibrium-index-of-an-array/
 Python doctests can be run with the following command:
 python -m doctest -v equilibrium_index.py
 
-Given a sequence arr[] of size n, this function returns an equilibrium index (if any) or -1 if no equilibrium index exists.
+Given a sequence arr[] of size n, this function returns
+an equilibrium index (if any) or -1 if no equilibrium index exists.
 
-The equilibrium index of an array is an index such that the sum of elements at lower indexes is equal to the sum of elements at higher indexes.
+The equilibrium index of an array is an index such that the sum of
+elements at lower indexes is equal to the sum of elements at higher indexes.
 
 
 
