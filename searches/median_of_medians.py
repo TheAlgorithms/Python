@@ -19,7 +19,8 @@ https://en.wikipedia.org/wiki/Median_of_medians
 5
 """
 
-def median_of_five(arr:list) -> int:
+
+def median_of_five(arr: list) -> int:
     """
     >>> median_of_five([2, 4, 5, 7, 899])
     5
@@ -35,10 +36,11 @@ def median_of_five(arr:list) -> int:
     :param arr: Array to find median of
     :return: median of arr
     """
-    arr=sorted(arr)
-    return arr[len(arr)//2]
+    arr = sorted(arr)
+    return arr[len(arr) // 2]
 
-def median_of_medians(arr:list) -> int:
+
+def median_of_medians(arr: list) -> int:
     """
     >>> median_of_medians([2, 4, 5, 7, 899, 54, 32])
     54
@@ -58,16 +60,17 @@ def median_of_medians(arr:list) -> int:
     if len(arr) <= 5:
         return median_of_five(arr)
     medians = []
-    i=0
-    while i<len(arr):
+    i = 0
+    while i < len(arr):
         if (i + 4) <= len(arr):
             medians.append(median_of_five(arr[i:].copy()))
         else:
-            medians.append(median_of_five(arr[i:i+5].copy()))
-        i+=5
+            medians.append(median_of_five(arr[i : i + 5].copy()))
+        i += 5
     return median_of_medians(medians)
 
-def quick_select(arr:list, target:int) -> int:
+
+def quick_select(arr: list, target: int) -> int:
     """
     >>> quick_select([2, 4, 5, 7, 899, 54, 32], 5)
     32
@@ -88,7 +91,7 @@ def quick_select(arr:list, target:int) -> int:
     """
 
     # Invalid Input
-    if target>len(arr):
+    if target > len(arr):
         return -1
 
     # x is the estimated pivot by median of medians algorithm
@@ -106,10 +109,10 @@ def quick_select(arr:list, target:int) -> int:
         else:
             right.append(arr[i])
     rank_x = len(left) + 1
-    if(rank_x==target):
+    if rank_x == target:
         answer = x
-    elif rank_x>target:
-        answer = quick_select(left,target)
-    elif rank_x<target:
-        answer = quick_select(right,target-rank_x)
+    elif rank_x > target:
+        answer = quick_select(left, target)
+    elif rank_x < target:
+        answer = quick_select(right, target - rank_x)
     return answer
