@@ -1,4 +1,4 @@
-def convert_to_minus_2_base(number) -> int:
+def convert_to_minus_2_base(number: int) -> str:
     """
     >>> convert_to_minus_2_base(5)
     '11'
@@ -36,4 +36,4 @@ def convert_to_minus_2_base(number) -> int:
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod
+    doctest.testmod()
