@@ -50,9 +50,8 @@ def my_laplacian(src, ddepth=-1, ksize=3, scale=1, delta=0, bordertype='default'
 
 
 if __name__ == "__main__":
-
-  # read original image
-  img = imread(r"../image_data/lena.jpg")
+    # read original image
+    img = imread(r"../image_data/lena.jpg")
 
   # turn image in gray scale value
   gray = cvtColor(img,COLOR_BGR2GRAY)
