@@ -4,8 +4,10 @@
 # Here we assume that p is a prime number, b divides a, and p doesn't divide b
 # Wikipedia reference: https://en.wikipedia.org/wiki/Fermat%27s_little_theorem
 
+from typing import Union
 
-def binary_exponentiation(a, n, mod):
+
+def binary_exponentiation(a: int, n: Union[int, float], mod: int) -> int:
     if n == 0:
         return 1
 
