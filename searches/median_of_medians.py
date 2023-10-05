@@ -6,16 +6,18 @@ deterministically
 https://en.wikipedia.org/wiki/Median_of_medians
 """
 
-def MedianofFive(arr:list) -> int:
+
+def MedianofFive(arr: list) -> int:
     """
     Return the median of the input list
     :param arr: Array to find median of
     :return: median of arr
     """
-    arr=sorted(arr)
-    return arr[len(arr)//2]
+    arr = sorted(arr)
+    return arr[len(arr) // 2]
 
-def MedianofMedians(arr:list) -> int:
+
+def MedianofMedians(arr: list) -> int:
     """
     Return a pivot to partition data on by calculating
     Median of medians of input data
@@ -23,16 +25,20 @@ def MedianofMedians(arr:list) -> int:
     :param k: The rank to be searched
     :return: element at rank k
     """
-    if len(arr) <= 5:        return MedianofFive(arr)
+    if len(arr) <= 5:
+        return MedianofFive(arr)
     medians = []
-    i=0
-    while i<len(arr):
-        if (i + 4) <= len(arr):            medians.append(MedianofFive(arr[i:].copy()))
-        else:                              medians.append(MedianofFive(arr[i:i+5].copy()))
-        i+=5
+    i = 0
+    while i < len(arr):
+        if (i + 4) <= len(arr):
+            medians.append(MedianofFive(arr[i:].copy()))
+        else:
+            medians.append(MedianofFive(arr[i : i + 5].copy()))
+        i += 5
     return MedianofMedians(medians)
 
-def QuickSelect(arr:list, k:int) -> int:
+
+def QuickSelect(arr: list, k: int) -> int:
     """
     >>> QuickSelect([2, 4, 5, 7, 899, 54, 32], 5)
     32
@@ -53,7 +59,7 @@ def QuickSelect(arr:list, k:int) -> int:
     """
 
     # Invalid Input
-    if k>len(arr):
+    if k > len(arr):
         return None
 
     # x is the estimated pivot by median of medians algorithm
@@ -72,7 +78,10 @@ def QuickSelect(arr:list, k:int) -> int:
         else:
             right.append(arr[i])
     rankX = len(left) + 1
-    if(rankX==k):        answer = x
-    elif rankX>k:        answer = QuickSelect(left,k)
-    elif rankX<k:        answer = QuickSelect(right,k-rankX)
-    return answer;
+    if rankX == k:
+        answer = x
+    elif rankX > k:
+        answer = QuickSelect(left, k)
+    elif rankX < k:
+        answer = QuickSelect(right, k - rankX)
+    return answer
