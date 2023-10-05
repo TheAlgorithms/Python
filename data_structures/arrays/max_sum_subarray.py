@@ -37,10 +37,14 @@ def maxSum(arr, n, k):
     return res
  
 # Driver code
-arr = [1, 4, 2, 10, 2, 3, 1, 0, 20]
-k = 4
-n = len(arr)
-print(maxSum(arr, n, k)
+if __name__ == "__main__":
+    import doctest
+    arr = [1, 4, 2, 10, 2, 3, 1, 0, 20]
+    k = 4
+    n = len(arr)
+    print(maxSum(arr, n, k) 
+    doctest.testmod()
+
 
 # result
 24
