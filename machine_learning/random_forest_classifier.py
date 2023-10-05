@@ -1,6 +1,7 @@
 import numpy as np
 from typing import Optional, List
 
+
 class DecisionTree:
     """
     Decision Tree classifier.
@@ -54,13 +55,18 @@ class DecisionTree:
                 left_mask = np.array(X)[:, feature] <= value
                 right_mask = np.array(X)[:, feature] > value
 
-                if len(np.array(y)[left_mask]) == 0 or len(np.array(y)[right_mask]) == 0:
+                if (
+                    len(np.array(y)[left_mask]) == 0
+                    or len(np.array(y)[right_mask]) == 0
+                ):
                     continue
 
                 left_score = self._calculate_gini(np.array(y)[left_mask])
                 right_score = self._calculate_gini(np.array(y)[right_mask])
-                weighted_score = (len(np.array(y)[left_mask]) * left_score +
-                                  len(np.array(y)[right_mask]) * right_score) / len(y)
+                weighted_score = (
+                    len(np.array(y)[left_mask]) * left_score
+                    + len(np.array(y)[right_mask]) * right_score
+                ) / len(y)
 
                 if weighted_score < best_split_score:
                     best_split_score = weighted_score
@@ -70,10 +76,16 @@ class DecisionTree:
         if best_split_feature is None:
             return (np.bincount(y).argmax(),)
 
-        left_split = self._build_tree([np.array(X)[np.array(X)[:, best_split_feature] <= best_split_value]],
-                                      [np.array(y)[np.array(X)[:, best_split_feature] <= best_split_value]], depth + 1)
-        right_split = self._build_tree([np.array(X)[np.array(X)[:, best_split_feature] > best_split_value]],
-                                       [np.array(y)[np.array(X)[:, best_split_feature] > best_split_value]], depth + 1)
+        left_split = self._build_tree(
+            [np.array(X)[np.array(X)[:, best_split_feature] <= best_split_value]],
+            [np.array(y)[np.array(X)[:, best_split_feature] <= best_split_value]],
+            depth + 1,
+        )
+        right_split = self._build_tree(
+            [np.array(X)[np.array(X)[:, best_split_feature] > best_split_value]],
+            [np.array(y)[np.array(X)[:, best_split_feature] > best_split_value]],
+            depth + 1,
+        )
 
         return (best_split_feature, best_split_value, left_split, right_split)
 
@@ -123,6 +135,8 @@ class DecisionTree:
         else:
             return self._predict_tree(x, right)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
