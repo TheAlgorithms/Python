@@ -6,7 +6,7 @@ class DecisionTree:
     Decision Tree classifier.
 
     Parameters:
-        max_depth (int): Maximum depth of the tree. If None, the tree grows until pure nodes or min_samples_split is reached.
+        max_depth (int): Max tree depth; None for growth until pure nodes or min_samples_split.
 
     Attributes:
         tree (tuple): The decision tree structure.
