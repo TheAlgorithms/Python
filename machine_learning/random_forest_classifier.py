@@ -1,6 +1,7 @@
 import numpy as np
 from typing import Optional
 
+
 class DecisionTree:
     """
     Decision Tree classifier.
