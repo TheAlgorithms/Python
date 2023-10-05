@@ -37,6 +37,7 @@ import matplotlib.pyplot as plt  # Optional for visualization
 
 TAG = "GRAVITATIONAL-SEARCH-ALGORITHM/ "
 
+
 def initialize_agents(n_agents, n_dimensions, search_space):
     """
     Initialize agents with random positions within the search space.
@@ -54,6 +55,7 @@ def initialize_agents(n_agents, n_dimensions, search_space):
         agents[:, i] = agents[:, i] * (dimension[1] - dimension[0]) + dimension[0]
     return agents
 
+
 def calculate_fitness(agents, objective_function):
     """
     Calculate fitness values for each agent based on the objective function.
@@ -67,6 +69,7 @@ def calculate_fitness(agents, objective_function):
     """
     fitness = np.array([objective_function(agent) for agent in agents])
     return fitness
+
 
 def update_agents(agents, G, alpha, beta):
     """
@@ -91,7 +94,17 @@ def update_agents(agents, G, alpha, beta):
                 agents[i] += F * direction
     return agents
 
-def run_gsa(n_agents, n_dimensions, n_iterations, search_space, objective_function, G0, alpha, beta):
+
+def run_gsa(
+    n_agents,
+    n_dimensions,
+    n_iterations,
+    search_space,
+    objective_function,
+    G0,
+    alpha,
+    beta,
+):
     """
     Run the Gravitational Search Algorithm.
 
@@ -110,7 +123,7 @@ def run_gsa(n_agents, n_dimensions, n_iterations, search_space, objective_functi
     - best_fitness (float): Best fitness value found.
     """
     agents = initialize_agents(n_agents, n_dimensions, search_space)
-    best_fitness = float('inf')
+    best_fitness = float("inf")
     best_agent = None
     for iteration in range(n_iterations):
         fitness = calculate_fitness(agents, objective_function)
@@ -121,6 +134,7 @@ def run_gsa(n_agents, n_dimensions, n_iterations, search_space, objective_functi
         G = G0 / (1 + iteration)
         agents = update_agents(agents, G, alpha, beta)
     return best_agent, best_fitness
+
 
 if __name__ == "__main__":
     # Example usage:
@@ -136,9 +150,15 @@ if __name__ == "__main__":
     beta = 2.0
 
     best_agent, best_fitness = run_gsa(
-        n_agents, n_dimensions, n_iterations, search_space, objective_function, G0, alpha, beta
+        n_agents,
+        n_dimensions,
+        n_iterations,
+        search_space,
+        objective_function,
+        G0,
+        alpha,
+        beta,
     )
 
     print(f"Best Agent: {best_agent}")
     print(f"Best Fitness Value: {best_fitness}")
-
