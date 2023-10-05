@@ -16,9 +16,6 @@ class Node:
         self.value = value
         self.neighbors = neighbors or []
 
-    def __repr__(self):
-        return f"Node({self.value}, {self.neighbors})"
-
 
 def clone_graph(node: Node | None) -> Node | None:
     """
