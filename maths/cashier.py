@@ -1,4 +1,16 @@
+"""
+Simulation of cashier system.
+
+Source:
+    https://www.ekorkode.com/2020/12/python-program-kasir-sederhana-source-code-full.html
+"""
+
 def cashier():
+    """
+    A function that simulates a cashier system. It takes input for item name, price, and quantity, calculates the total price,
+    takes payment amount, calculates the change, and prints a receipt. It then prompts the user to either return to the main menu
+    or exit the program.
+    """
     while True:
         item_name = input("Enter item name: ")
         item_price = float(input("Enter item price: "))
@@ -22,3 +34,8 @@ def cashier():
         elif choice == "2":
             print("Thank you for shopping with us!")
             break
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
