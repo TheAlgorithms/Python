@@ -25,6 +25,7 @@ def shortestpalindrome(s: str) -> str:
             # construct shortest palindrome by concatenating reversed prefix & string
             return r[:i] + s
 
+    return ""
 
 if __name__ == "__main__":
     from doctest import testmod
