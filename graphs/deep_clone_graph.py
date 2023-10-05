@@ -57,8 +57,7 @@ def clone_graph(node: Node | None) -> Node | None:
 
         originals_to_clones[original] = Node(original.value)
 
-        for neighbor in original.neighbors or []:
-            stack.append(neighbor)
+        stack.extend(original.neighbors or [])
 
     for original, clone in originals_to_clones.items():
         for neighbor in original.neighbors or []:
