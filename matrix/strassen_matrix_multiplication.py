@@ -26,7 +26,7 @@ def print_matrix(matrix: npt.ArrayLike, size_of_matrix: int) -> None:
     print()
 
 
-def strassen(matrix_a: npt.ArrayLike, matrix_b:npt.ArrayLike) -> np.ndarray:
+def strassen(matrix_a: npt.ArrayLike, matrix_b: npt.ArrayLike) -> np.ndarray:
     """
     >>> matrix_a = np.array([[1, 2], [3, 4]])
     >>> matrix_b = np.array([[5, 6], [7, 8]])
