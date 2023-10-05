@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class DecisionTree:
     """
     Decision Tree classifier.
@@ -66,7 +67,9 @@ class DecisionTree:
 
                 left_score = self._calculate_gini(y[left_mask])
                 right_score = self._calculate_gini(y[right_mask])
-                weighted_score = (len(y[left_mask]) * left_score + len(y[right_mask]) * right_score) / len(y)
+                weighted_score = (
+                    len(y[left_mask]) * left_score + len(y[right_mask]) * right_score
+                ) / len(y)
 
                 if weighted_score < best_split_score:
                     best_split_score = weighted_score
@@ -76,8 +79,16 @@ class DecisionTree:
         if best_split_feature is None:
             return (np.bincount(y).argmax(),)
 
-        left_split = self._build_tree(X[X[:, best_split_feature] <= best_split_value], y[X[:, best_split_feature] <= best_split_value], depth + 1)
-        right_split = self._build_tree(X[X[:, best_split_feature] > best_split_value], y[X[:, best_split_feature] > best_split_value], depth + 1)
+        left_split = self._build_tree(
+            X[X[:, best_split_feature] <= best_split_value],
+            y[X[:, best_split_feature] <= best_split_value],
+            depth + 1,
+        )
+        right_split = self._build_tree(
+            X[X[:, best_split_feature] > best_split_value],
+            y[X[:, best_split_feature] > best_split_value],
+            depth + 1,
+        )
 
         return (best_split_feature, best_split_value, left_split, right_split)
 
@@ -127,23 +138,25 @@ class DecisionTree:
         else:
             return self._predict_tree(x, right)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
 
 # Example usage:
-#if __name__ == "__main__":
-    # Generate some random data for demonstration
-    #np.random.seed(42)
-    #X = np.random.rand(100, 2)
-    #y = (X[:, 0] + X[:, 1] > 1).astype(int)
+# if __name__ == "__main__":
+# Generate some random data for demonstration
+# np.random.seed(42)
+# X = np.random.rand(100, 2)
+# y = (X[:, 0] + X[:, 1] > 1).astype(int)
 
-    # Create and train a Random Forest classifier
-    #rf_classifier = RandomForestClassifier(n_estimators=100, max_depth=None)
-    #rf_classifier.fit(X, y)
+# Create and train a Random Forest classifier
+# rf_classifier = RandomForestClassifier(n_estimators=100, max_depth=None)
+# rf_classifier.fit(X, y)
 
-    # Make predictions
-    #new_data = np.array([[0.7, 0.3], [0.2, 0.8]])
-    #predictions = rf_classifier.predict(new_data)
-    #print(predictions)
+# Make predictions
+# new_data = np.array([[0.7, 0.3], [0.2, 0.8]])
+# predictions = rf_classifier.predict(new_data)
+# print(predictions)
