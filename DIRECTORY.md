@@ -1186,6 +1186,7 @@
   * [Reverse Letters](strings/reverse_letters.py)
   * [Reverse Long Words](strings/reverse_long_words.py)
   * [Reverse Words](strings/reverse_words.py)
+  * [Shortest Palindrome](strings/shortest_palindrome.py)
   * [Snake Case To Camel Pascal Case](strings/snake_case_to_camel_pascal_case.py)
   * [Split](strings/split.py)
   * [String Switch Case](strings/string_switch_case.py)
