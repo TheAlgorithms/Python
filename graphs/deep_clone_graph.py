@@ -17,10 +17,18 @@ class Node:
     value: int = 0
     neighbors: list["Node"] | None = None
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
+        """
+        >>> Node(3).neighbors
+        []
+        """
         self.neighbors = self.neighbors or []
 
-    def __hash__(self):
+    def __hash__(self) -> int:
+        """
+        >>> hash(Node(3)) != 0
+        True
+        """
         return id(self)
 
 
