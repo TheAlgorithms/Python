@@ -36,4 +36,5 @@ def decimal_to_negative_base_2(num: int) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
