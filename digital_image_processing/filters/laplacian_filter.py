@@ -21,13 +21,13 @@ def my_laplacian(
 ) -> np.ndarray:
     """
     :param src: the source image, which should be a grayscale or color image.
-    :param ddepth: the desired depth of the destination image, 
+    :param ddepth: the desired depth of the destination image,
                   -1 or one of np.uint8, np.uint16, np.int16, np.float32 or np.float64.
-    :param ksize: the size of the kernel used to compute the Laplacian filter, 
+    :param ksize: the size of the kernel used to compute the Laplacian filter,
                   which can be 1, 3, 5 or 7. A larger kernel size will produce more accurate results, but also more noise.
-    :param scale: an optional scaling factor applied to the computed Laplacian values, 
+    :param scale: an optional scaling factor applied to the computed Laplacian values,
                   which can be used to enhance or reduce the effect of the filter.
-    :[aram delta: an optional value added to the computed Laplacian values, 
+    :[aram delta: an optional value added to the computed Laplacian values,
                   which can be used to shift the output image intensity range.
     :param borderType: an optional flag that specifies how to handle the image borders.
 
@@ -81,20 +81,19 @@ def my_laplacian(
 
 
 if __name__ == "__main__":
+    # read original image
+    img = imread(r"../image_data/lena.jpg")
 
-  # read original image
-  img = imread(r"../image_data/lena.jpg")
+    # turn image in gray scale value
+    gray = cvtColor(img, COLOR_BGR2GRAY)
 
-  # turn image in gray scale value
-  gray = cvtColor(img, COLOR_BGR2GRAY)
+    # Applying gaussian filter
+    blur_image = gaussian_filter(gray, 3, sigma=1)
 
-  # Applying gaussian filter
-  blur_image = gaussian_filter(gray, 3, sigma=1)
+    # Apply multiple Kernel to detect edges
+    laplacian_image = my_laplacian(blur_image, ddepth=CV_64F, ksize=3)
 
-  # Apply multiple Kernel to detect edges
-  laplacian_image = my_laplacian(blur_image, ddepth=CV_64F, ksize=3)
+    imshow("Original image", img)
+    imshow("Deteced edges using laplacian filter", laplacian_image)
 
-  imshow("Original image", img)
-  imshow("Deteced edges using laplacian filter", laplacian_image)
-
-  waitKey(0)
+    waitKey(0)
