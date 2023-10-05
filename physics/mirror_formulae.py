@@ -57,13 +57,13 @@ https://www.toppr.com/ask/content/concept/sign-convention-for-mirrors-210189/)
 
 """
 
-
+from math import isclose
 def focal_length(distance_of_object: float, distance_of_image: float) -> float:
     """
-    >>> focal_length(10, 20)
-    6.666666666666667
-    >>> focal_length(9.5, 6.7)
-    3.929012346
+    >>> isclose(focal_length(10, 20), 6.666666666666667)
+    True
+    >>> isclose(focal_length(9.5, 6.7), 3.929012346)
+    True
     >>> focal_length(0, 20)
     Traceback (most recent call last):
         ...
@@ -81,10 +81,10 @@ def focal_length(distance_of_object: float, distance_of_image: float) -> float:
 
 def object_distance(focal_length: float, distance_of_image: float) -> float:
     """
-    >>> object_distance(30, 20)
-    -60
-    >>> object_distance(10.5, 11.7)
-    102.375
+    >>> isclose(object_distance(30, 20), -60.0)
+    True
+    >>> isclose(object_distance(10.5, 11.7), 102.375)
+    True
     >>> object_distance(90, 0)
     Traceback (most recent call last):
         ...
@@ -100,12 +100,12 @@ def object_distance(focal_length: float, distance_of_image: float) -> float:
     return object_distance
 
 
-def image_distance(distance_of_object: float, focal_length: float) -> float:
+def image_distance(focal_length: float, distance_of_object: float) -> float:
     """
-    >>> image_distance(10, 40)
-    13.33333333
-    >>> image_distance(1.5, 6.7)
-    1.932692308
+    >>> isclose(image_distance(10, 40), 13.33333333)
+    True
+    >>> isclose(image_distance(1.5, 6.7), 1.932692308)
+    True
     >>> image_distance(0, 0)
     Traceback (most recent call last):
         ...
@@ -117,5 +117,5 @@ def image_distance(distance_of_object: float, focal_length: float) -> float:
         raise ValueError(
             "Invalid inputs. Enter non zero values with respect to the sign convention."
         )
-    image_distance = 1 / ((1 / focal_length) + (1 / distance_of_object))
+    image_distance = 1 / ((1 / focal_length) - (1 / distance_of_object))
     return image_distance
