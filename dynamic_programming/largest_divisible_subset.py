@@ -7,12 +7,24 @@ def largest_divisible_subset(array: list[int]) -> list[int]:
     in the given array such that for any
     2 elements x and y in the subset,
     either x divides y or y divides x
-    >>> largest_divisible_subset([1,16,7,8,4])
+    >>> largest_divisible_subset([1, 16, 7, 8, 4])
     [16, 8, 4, 1]
-    >>> largest_divisible_subset([1,2,3])
+    >>> largest_divisible_subset([1, 2, 3])
     [2, 1]
+    >>> largest_divisible_subset([-1, -2, -3])
+    [-3]
     >>> largest_divisible_subset([1, 2, 4, 8])
     [8, 4, 2, 1]
+    >>> largest_divisible_subset((1, 2, 4, 8))
+    [8, 4, 2, 1]
+    >>> largest_divisible_subset([1, 1, 1])
+    [1, 1, 1]
+    >>> largest_divisible_subset([0, 0, 0])
+    [0, 0, 0]
+    >>> largest_divisible_subset([-1, -1, -1])
+    [-1, -1, -1]
+    >>> largest_divisible_subset([])
+    []
     """
     array_size = len(array)
 
