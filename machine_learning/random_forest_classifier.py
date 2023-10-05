@@ -1,6 +1,5 @@
 import numpy as np
-from typing import Optional
-
+from typing import Optional, Tuple, Union
 
 class DecisionTree:
     """
@@ -10,36 +9,38 @@ class DecisionTree:
         max_depth (Optional[int]): Maximum depth of the tree. If None, the tree grows until pure nodes or min_samples_split is reached.
 
     Attributes:
-        tree (tuple): The decision tree structure.
+        tree (Union[Tuple[int], Tuple[int, float, 'DecisionTree', 'DecisionTree']]): The decision tree structure.
     """
 
     def __init__(self, max_depth: Optional[int] = None) -> None:
         self.max_depth = max_depth
 
-    def fit(self, features, labels) -> None:
+    def fit(self, features: list[np.ndarray], labels: list[int]) -> None:
         """
         Fit the decision tree to the training data.
 
         Parameters:
-            features: The input features.
-            labels: The target labels.
+            features (list[numpy.ndarray]): The input features.
+            labels (list[int]): The target labels.
 
         Returns:
             None
         """
         self.tree = self._build_tree(features, labels, depth=0)
 
-    def _build_tree(self, features, labels, depth) -> tuple:
+    def _build_tree(
+        self, features: list[np.ndarray], labels: list[int], depth: int
+    ) -> Union[Tuple[int], Tuple[int, float, 'DecisionTree', 'DecisionTree']]:
         """
         Recursively build the decision tree.
 
         Parameters:
-            features: The input features.
-            labels: The target labels.
-            depth: The current depth of the tree.
+            features (list[numpy.ndarray]): The input features.
+            labels (list[int]): The target labels.
+            depth (int): The current depth of the tree.
 
         Returns:
-            tuple: The decision tree structure.
+            Union[Tuple[int], Tuple[int, float, 'DecisionTree', 'DecisionTree']]: The decision tree structure.
         """
         if depth == self.max_depth or len(np.unique(labels)) == 1:
             return (np.bincount(labels).argmax(),)
@@ -105,12 +106,12 @@ class DecisionTree:
 
         return (best_split_feature, best_split_value, left_split, right_split)
 
-    def _calculate_gini(self, labels) -> float:
+    def _calculate_gini(self, labels: list[int]) -> float:
         """
         Calculate the Gini impurity for a given set of labels.
 
         Parameters:
-            labels: A list of labels.
+            labels (list[int]): A list of labels.
 
         Returns:
             float: The Gini impurity.
@@ -120,25 +121,25 @@ class DecisionTree:
         p_i = np.bincount(labels) / len(labels)
         return 1 - np.sum(p_i**2)
 
-    def predict(self, features) -> list:
+    def predict(self, features: list[np.ndarray]) -> list[int]:
         """
         Make predictions for input features.
 
         Parameters:
-            features: The input features.
+            features (list[numpy.ndarray]): The input features.
 
         Returns:
-            list: Predicted labels.
+            list[int]: Predicted labels.
         """
         return [self._predict_tree(data_point, self.tree) for data_point in features]
 
-    def _predict_tree(self, data_point, tree) -> int:
+    def _predict_tree(self, data_point: np.ndarray, tree: Union[Tuple[int], Tuple[int, float, 'DecisionTree', 'DecisionTree']]) -> int:
         """
         Recursively traverse the decision tree to make predictions.
 
         Parameters:
-            data_point: Input features for a single data point.
-            tree: The decision tree structure.
+            data_point (numpy.ndarray): Input features for a single data point.
+            tree (Union[Tuple[int], Tuple[int, float, 'DecisionTree', 'DecisionTree']]): The decision tree structure.
 
         Returns:
             int: Predicted label.
