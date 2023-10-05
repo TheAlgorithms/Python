@@ -73,8 +73,9 @@ class SymmetricTree:
             return False
         if left.data == right.data:
             # The values match, so check the subtree
-            return SymmetricTree.is_mirror(left.left, right.right) \
-                   and SymmetricTree.is_mirror(left.right, right.left)
+            return SymmetricTree.is_mirror(
+                left.left, right.right
+            ) and SymmetricTree.is_mirror(left.right, right.left)
         return False
 
 
