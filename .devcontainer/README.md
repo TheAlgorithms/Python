@@ -1,37 +1,43 @@
-# Setting Up DevContainer
+# How To use the DevConatiner
+In this section we are going learn how to run Visual Studio Code in a Docker container using the Dev Containers extension.
+Running VS Code inside a Docker container can be useful for many reasons, but in this walkthrough we'll focus on using a Docker container to set up a development environment that is separate from your local environment.
 
-This repository includes a DevContainer configuration that allows you to set up a development environment. Follow these steps to get started:
+-https://code.visual.studio.com/docs/devcontainers/tutorial
 
-**Prerequisites**
+## Table of Contents
+- [Introduction](#introduction)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Getting Sample](#usage)
+- [Development Environment](#development-environment)
+- [Contributing](#contributing)
+- [License](#license)
 
-Before you begin, ensure that you have the following prerequisites installed on your system:
+  
+## Introduction
+Provide a brief introduction to your project. Explain its purpose, goals, and any key features that it provides.
 
-- Visual Studio Code(https://code.visualstudio.com/)
-- Docker(https://www.docker.com/)
 
-**Clone the Repository**
-Clone this repository to your local machine using Git:
-```bash
-git clone <repository-url>
-```
+## Getting Started
+Guide users on how to get started with your project. Include instructions on how to install, configure, and run your project. 
 
-**Open the cloned repository in Visual Studio Code:**
-```bash
-cd <repository-directory>
-code .
-```
+## Prerequisites
+List any prerequisites or dependencies that users need to have installed before they can use your project.
 
-**Install the "Remote - Containers" Extension**
+## Installation
+Provide step-by-step instructions on how to install your project. You can use your DevContainer setup for this section.
 
-In Visual Studio Code, install the "Remote - Containers" extension if you haven't already. This extension enables you to develop inside a DevContainer:
+## Usage
+Explain how users can use your project. Include code examples, usage scenarios, and any other relevant information.
 
-step -1: Click on the Extensions icon in the left sidebar.
+## Development Environment
+If you are using DevContainers or Docker for development, provide instructions on how to set up the development environment using your DevContainer configuration.
 
-step -2: Search for "Remote - Containers" and install it.
+## Contributing
+Explain how others can contribute to your project. Include guidelines for reporting bugs, suggesting enhancements, and submitting pull requests.
 
-**Reopen in DevContainer**
-After installing the "Remote - Containers" extension, you should see a green icon in the bottom-left corner of Visual Studio Code. Click on it, and then select "Reopen in Container." This will use the configuration in .devcontainer/devcontainer.json to build and start your DevContainer.
-
-For any references follow the link below :-
-
-https://code.visualstudio.com/docs/devcontainers/tutorial
+## License
+Specify the license under which your project is distributed. For example:
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
