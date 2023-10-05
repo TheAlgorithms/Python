@@ -31,8 +31,7 @@ def clone_graph(node: Node | None) -> Node | None:
     Node(value=1, neighbors=[])
     >>> clone_graph(Node(1, [Node(2)]))
     Node(value=1, neighbors=[Node(value=2, neighbors=[])])
-    >>> clone = clone_graph(None)
-    >>> clone is None
+    >>> clone_graph(None) is None
     True
     """
     if not node:
