@@ -30,10 +30,7 @@ def is_disarium(num: int) -> bool:
     for i in temp:
         answer += int(i) ** exponent
         exponent += 1
-    if answer == num:
-        return True
-    else:
-        return False
+    return answer == num
 
 
 if __name__ == "__main__":
