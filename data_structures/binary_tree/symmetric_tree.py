@@ -16,82 +16,68 @@ class Node:
         self.left: Node | None = None
         self.right: Node | None = None
 
+class SymmetricTree:
+    def is_symmetric_tree(self,tree: Node) -> bool:
+        r"""
+        Test cases for is_symmetric_tree function.
 
-def is_symmetric_tree(tree: Node) -> bool:
-    r"""
-    Test cases for is_symmetric_tree function.
+        The below tree looks like this
+               1
+             /   \
+            2      2
+           / \    / \
+          3   4   4  3
 
-    The below tree looks like this
-            1
-          /   \
-         2      2
-        / \    / \
-       3   4   4  3
+        >>> tree = Node(1)
+        >>> tree.left = Node(2)
+        >>> tree.right = Node(2)
+        >>> tree.left.left = Node(3)
+        >>> tree.left.right = Node(4)
+        >>> tree.right.left = Node(4)
+        >>> tree.right.right = Node(3)
 
-    >>> tree = Node(1)
-    >>> tree.left = Node(2)
-    >>> tree.right = Node(2)
-    >>> tree.left.left = Node(3)
-    >>> tree.left.right = Node(4)
-    >>> tree.right.left = Node(4)
-    >>> tree.right.right = Node(3)
+        >>> SymmetricTree().is_symmetric_tree(tree)
+        True
 
-    >>> is_symmetric_tree(tree)
-    True
+        The below tree looks like this
+              1
+            /   \
+          2      2
+         / \    / \
+        3   4   3  4
 
-    The below tree looks like this
-           1
-         /   \
-        2      2
-       / \    / \
-      3   4   3  4
+        >>> tree2 = Node(1)
+        >>> tree2.left = Node(2)
+        >>> tree2.right = Node(2)
+        >>> tree2.left.left = Node(3)
+        >>> tree2.left.right = Node(4)
+        >>> tree2.right.left = Node(3)
+        >>> tree2.right.right = Node(4)
 
-    >>> tree2 = Node(1)
-    >>> tree2.left = Node(2)
-    >>> tree2.right = Node(2)
-    >>> tree2.left.left = Node(3)
-    >>> tree2.left.right = Node(4)
-    >>> tree2.right.left = Node(3)
-    >>> tree2.right.right = Node(4)
-
-    >>> is_symmetric_tree(tree2)
-    False
-    """
-    if tree is None:
-        # An empty tree is considered symmetric.
-        return True
-    return is_mirror(tree.left, tree.right)
+        >>> SymmetricTree().is_symmetric_tree(tree2)
+        False
+        """
+        if tree is None:
+            # An empty tree is considered symmetric.
+            return True
+        return self.is_mirror(tree.left, tree.right)
 
 
-def is_mirror(left, right) -> bool:
-    if left is None and right is None:
-        # Both sides are empty, which is symmetric.
-        return True
-    if left is None or right is None:
-        # One side is empty while the other is not, which is not symmetric.
+    def is_mirror(self,left, right) -> bool:
+
+        if left is None and right is None:
+            # Both sides are empty, which is symmetric.
+            return True
+        if left is None or right is None:
+            # One side is empty while the other is not, which is not symmetric.
+            return False
+        if left.data == right.data:
+            # The values match, so check the subtree
+            return self.is_mirror(left.left, right.right) and self.is_mirror(left.right, right.left)
         return False
-    if left.data == right.data:
-        # The values match, so check the subtree
-        return is_mirror(left.left, right.right) and is_mirror(left.right, right.left)
-    return False
-
-
-def main() -> None:
-    # Create a symmetric tree for testing.
-    tree = Node(1)
-    tree.left = Node(2)
-    tree.right = Node(2)
-    tree.left.left = Node(3)
-    tree.left.right = Node(4)
-    tree.right.left = Node(4)
-    tree.right.right = Node(3)
-
-    print(is_symmetric_tree(tree))
 
 
 if __name__ == "__main__":
-    main()
-
     from doctest import testmod
 
     testmod()
