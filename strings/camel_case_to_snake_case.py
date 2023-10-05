@@ -5,8 +5,8 @@ def camel_to_snake_case(input_str: str) -> str:
     >>> camel_to_snake_case("someRandomString")
     'some_random_string'
 
-    >>> camel_to_snake_case("SomeRandomString")
-    'some_random_string'
+    >>> camel_to_snake_case("SomeRandomStr#ng")
+    'some_random_str_ng'
 
     >>> camel_to_snake_case("123someRandom123String123")
     '123_some_random_123_string_123'
@@ -21,30 +21,35 @@ def camel_to_snake_case(input_str: str) -> str:
 
     """
 
-    import re
-
     # check for invalid input type
     if not isinstance(input_str, str):
         msg = f"Expected string as input, found {type(input_str)}"
         raise ValueError(msg)
 
-    # Replace all characters that are not letters or numbers with the underscore
-    snake_str = re.sub(r"[^a-zA-Z0-9]", "_", input_str)
+    snake_str = ""
 
-    # Find where lowercase meets uppercase. Insert underscore between them
-    snake_str = re.sub(r"([a-z])([A-Z])", r"\1_\2", snake_str).lower()
+    for index, char in enumerate(input_str):
+        if char.isupper():
+            snake_str += "_" + char.lower()
 
-    # Find the sequence of digits at the beginning
-    snake_str = re.sub(r"^(\d+)", r"\1_", snake_str)
+        # if char is lowercase but proceeded by a digit:
+        elif input_str[index - 1].isdigit() and char.islower():
+            snake_str += "_" + char
 
-    # Find the sequence of digits at the end
-    snake_str = re.sub(r"(\d+)$", r"_\1", snake_str)
+        # if char is a digit proceeded by a letter:
+        elif input_str[index - 1].isalpha() and char.isnumeric():
+            snake_str += "_" + char.lower()
 
-    # Find where letter meets digits
-    snake_str = re.sub(r"([a-z])(\d+)", r"\1_\2", snake_str)
+        # if char is not alphanumeric:
+        elif not char.isalnum():
+            snake_str += "_"
 
-    # Find where digits meet letter
-    snake_str = re.sub(r"(\d+)([a-z])", r"\1_\2", snake_str)
+        else:
+            snake_str += char
+
+    # remove leading underscore
+    if snake_str[0] == "_":
+        snake_str = snake_str[1:]
 
     return snake_str
 
