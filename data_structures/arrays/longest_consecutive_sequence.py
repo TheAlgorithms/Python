@@ -4,9 +4,8 @@ date:   4 OCT 2023
 Longest Consecutive Sequence Problem from LeetCode
 
 """
-//can u add
 def longest_consecutive_sequence(nums):
-
+    
     """
     Finds the length of the longest consecutive sequence in a list of numbers.
 
@@ -26,7 +25,7 @@ def longest_consecutive_sequence(nums):
         >>> longest_consecutive_sequence([])
         0
     """
-
+    
     if not nums:
         return 0
 
@@ -55,4 +54,5 @@ def longest_consecutive_sequence(nums):
 '''
 This code takes in a list of numbers and returns the length of the longest sequence of consecutive numbers in the list.
 For example, if the list is [1, 3, 2, 4, 5, 6, 7], the function will return 5, since the longest sequence of consecutive numbers is [3, 4, 5, 6, 7].
+'''
 '''
