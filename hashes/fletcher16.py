@@ -12,9 +12,7 @@ Source: https://en.wikipedia.org/wiki/Fletcher%27s_checksum
 
 def fletcher16(text: str) -> int:
     """
-    Loops through every character in the data and adds to two sums
-
-
+    Loop through every character in the data and add to two sums.
 
     >>> fletcher16('hello world')
     6752
