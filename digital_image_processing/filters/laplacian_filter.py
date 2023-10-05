@@ -15,7 +15,6 @@ from cv2 import (
 from gaussian_filter import gaussian_filter
 import numpy as np
 
-
 def my_laplacian(ksize: int, src: np.ndarray) -> np.ndarray:
     """
     :param src: the source image, which should be a grayscale or color image.
@@ -71,7 +70,7 @@ if __name__ == "__main__":
     blur_image = gaussian_filter(gray, 3, sigma=1)
 
     # Apply multiple Kernel to detect edges
-    laplacian_image = my_laplacian(blur_image, ksize=3)
+    laplacian_image = my_laplacian(ksize=3, src=blur_image)
 
     imshow("Original image", img)
     imshow("Deteced edges using laplacian filter", laplacian_image)
