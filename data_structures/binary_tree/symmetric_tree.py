@@ -63,7 +63,7 @@ class SymmetricTree:
             return True
         return self.is_mirror(tree.left, tree.right)
 
-    def is_mirror(self, left: Node | None, right: Node | Node) -> bool:
+    def is_mirror(self, left: Node | None, right: Node | None) -> bool:
         """
         >>> tree1 = Node(1)
         >>> tree1.left = Node(2)
