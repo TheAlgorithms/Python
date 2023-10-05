@@ -35,7 +35,7 @@ def add_largest(num: int) -> int:
     """Left Bit Shift till it res is less than or equal to the given number"""
     while (res << 1) <= num:
         res <<= 1
-    
+
     """Return the Final Result"""
     return res + num
 
