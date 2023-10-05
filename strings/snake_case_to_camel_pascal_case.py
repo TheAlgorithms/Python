@@ -72,11 +72,17 @@ def camel_to_snake_case(input_str: str) -> str:
         msg = f"Expected string as input, found {type(input_str)}"
         raise ValueError(msg)
 
-    result = []
-    for char in input_str:
+    result = [input_str[0].lower()]
+    for char in input_str[1:]:
         if char.isupper():
             result.append("_")
             result.append(char.lower())
+        elif char.isdigit():
+            if result[-1].isdigit():
+                result.append(char)
+            else:
+                result.append('_')
+                result.append(char)
         else:
             result.append(char)
 
