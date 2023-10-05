@@ -8,11 +8,11 @@ Source:
 
 def cashier():
     """
-    A function that simulates a cashier system. 
-    It takes input for item name, price, 
+    A function that simulates a cashier system.
+    It takes input for item name, price,
     and quantity, calculates the total price,
-    takes payment amount, calculates the change, 
-    and prints a receipt. 
+    takes payment amount, calculates the change,
+    and prints a receipt.
     It then prompts the user to either return to the main menu
     or exit the program.
     """
