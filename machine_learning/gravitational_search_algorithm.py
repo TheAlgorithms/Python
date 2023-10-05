@@ -1,4 +1,3 @@
-
 """
 Gravitational Search Algorithm
 
@@ -28,6 +27,7 @@ Usage:
 from typing import List, Tuple, Callable
 import numpy as np
 
+
 def objective_function(x: np.ndarray) -> float:
     """
     Objective function to minimize.
@@ -40,7 +40,10 @@ def objective_function(x: np.ndarray) -> float:
     """
     return np.sum(x**2)  # Minimize the sum of squares
 
-def initialize_agents(n_agents: int, n_dimensions: int, search_space: List[Tuple[float, float]]) -> np.ndarray:
+
+def initialize_agents(
+    n_agents: int, n_dimensions: int, search_space: List[Tuple[float, float]]
+) -> np.ndarray:
     """
     Initialize agents with random positions within the search space.
 
@@ -57,7 +60,10 @@ def initialize_agents(n_agents: int, n_dimensions: int, search_space: List[Tuple
         agents[:, i] = agents[:, i] * (dimension[1] - dimension[0]) + dimension[0]
     return agents
 
-def calculate_fitness(agents: np.ndarray, objective_function: Callable[[np.ndarray], float]) -> np.ndarray:
+
+def calculate_fitness(
+    agents: np.ndarray, objective_function: Callable[[np.ndarray], float]
+) -> np.ndarray:
     """
     Calculate fitness values for each agent based on the objective function.
 
@@ -71,11 +77,9 @@ def calculate_fitness(agents: np.ndarray, objective_function: Callable[[np.ndarr
     fitness = np.array([objective_function(agent) for agent in agents])
     return fitness
 
+
 def update_agents(
-    agents: np.ndarray,
-    G: float,
-    alpha: float,
-    beta: float
+    agents: np.ndarray, G: float, alpha: float, beta: float
 ) -> np.ndarray:
     """
     Update agent positions based on gravitational forces.
@@ -90,6 +94,7 @@ def update_agents(
     - numpy.ndarray: Updated agent positions.
     """
     # ...
+
 
 def run_gsa(
     n_agents: int,
@@ -133,6 +138,7 @@ def run_gsa(
 
     return best_agent, best_fitness
 
+
 def update_gravitational_constant(G0: float, alpha: float, beta: float) -> float:
     """
     Update the gravitational constant G based on iterations.
@@ -147,8 +153,9 @@ def update_gravitational_constant(G0: float, alpha: float, beta: float) -> float
     """
     # ...
 
+
 # Doctests
 if __name__ == "__main__":
     import doctest
-    doctest.testmod()
 
+    doctest.testmod()
