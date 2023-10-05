@@ -1,7 +1,7 @@
 """
 An IMPLY Gate is a logic gate in boolean algebra which results to 1 if 
-either input 1 is 0, or if input 1 is 1, then imput 2 is 1. It is true is input 1
-implies input 2.
+either input 1 is 0, or if input 1 is 1, then the output is 1 only if input 2 is 1. 
+It is true if input 1 implies input 2.
 
 Following is the truth table of an IMPLY Gate:
     ------------------------------
