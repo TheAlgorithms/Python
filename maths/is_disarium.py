@@ -1,5 +1,4 @@
-def is_disarium(num:int) -> bool:
-
+def is_disarium(num: int) -> bool:
     """A Disarium number is an integer where the sum of each digit raised to the power of its position in the number, is equal to the number.
 
     Example- 175 is a disarium number because 1^1 + 7^2 + 5^3 = 1 + 49 + 125 = 175
@@ -32,6 +31,7 @@ def is_disarium(num:int) -> bool:
         return True
     else:
         return False
-    
+
+
 if __name__ == "__main__":
-    print(F"{is_disarium(2547) = }")
+    print(f"{is_disarium(2547) = }")
