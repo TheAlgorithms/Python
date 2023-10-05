@@ -2,7 +2,7 @@
 # @File    : laplacian_filter.py
 # @Time    : 10/04/2023
 
-from cv2 import BORDER_DEFAULT, cvtColor, CV_64F, COLOR_BGR2GRAY,  filter2D, GaussianBlur, imread, imshow, waitKey 
+from cv2 import BORDER_DEFAULT, cvtColor, CV_64F, COLOR_BGR2GRAY,  filter2D, GaussianBlur, imread, imshow, waitKey
 import numpy as np
 
 
