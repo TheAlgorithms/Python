@@ -16,7 +16,7 @@ import random
 from typing import Any
 
 
-def partition(array, p, r) -> int:
+def partition(array: list, p: int, r: int) -> int:
     """
     Partition the array.
     Args:
@@ -26,6 +26,11 @@ def partition(array, p, r) -> int:
 
     Returns:
         index of the pivot
+
+
+    >>> arr = [-2, 3, -10, 11, 99, 100000, 100, -200]
+    >>> partition(arr, 0, len(arr) - 1)
+    0
 
     """
     pivot = array[r]
@@ -38,7 +43,7 @@ def partition(array, p, r) -> int:
     return i + 1
 
 
-def randomized_partition(array, p, r) -> int:
+def randomized_partition(array: list, p: int, r: int) -> int:
     """
     Randomized partition of the array.
     Args:
@@ -48,6 +53,12 @@ def randomized_partition(array, p, r) -> int:
 
     Returns:
         call to partition function
+
+
+    >>> arr = [-2, 3, -10, 11, 99, 100000, 100, -200]
+    >>> arr1 = randomized_partition(arr, 0, len(arr) - 1)
+    >>> arr == arr1
+    False
 
     """
 
