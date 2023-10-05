@@ -2,15 +2,15 @@
 
 ## Contribution Checklist
 
-- [X] Read the [Code of Conduct](CODE_OF_CONDUCT.md).
-- [X] Fork the repository.
-- [X] Clone the repository to your local machine.
-- [X] Create a new branch for your changes.
-- [X] Make your changes and commit them.
-- [X] Push your changes to your forked repository.
-- [X] Create a pull request.
+- [ ] Read the [Code of Conduct](CODE_OF_CONDUCT.md).
+- [ ] Fork the repository.
+- [ ] Clone the repository to your local machine.
+- [ ] Create a new branch for your changes.
+- [ ] Implement your changes and commit them.
+- [ ] Push your changes to your forked repository.
+- [ ] Create a pull request.
 - [ ] Review and address feedback from maintainers.
-- [ ] Your pull request is merged! 🎉
+- [ ] Yay! Your pull request is merged. 
 
 
 ## Before contributing
