@@ -29,7 +29,23 @@ def make_symmetric_tree() -> Node:
             2     2
           / \    / \
          3   4   4  3
-        """
+
+        >>> tree = make_symmetric_tree()
+        >>> tree.data
+        1
+        >>> tree.left.data
+        2
+        >>> tree.right.data
+        2
+        >>> tree.left.left.data
+        3
+        >>> tree.left.right.data
+        4
+        >>> tree.right.left.data
+        4
+        >>> tree.right.right.data
+        3
+    """
     tree = Node(1)
     tree.left = Node(2)
     tree.right = Node(2)
@@ -49,7 +65,24 @@ def make_asymmetric_tree() -> Node:
             2     2
           / \    / \
          3   4   3  4
-        """
+
+        >>> tree = make_asymmetric_tree()
+        >>> tree.data
+        1
+        >>> tree.left.data
+        2
+        >>> tree.right.data
+        2
+        >>> tree.left.left.data
+        3
+        >>> tree.left.right.data
+        4
+        >>> tree.right.left.data
+        3
+        >>> tree.right.right.data
+        4
+    """
+
     tree = Node(1)
     tree.left = Node(2)
     tree.right = Node(2)
