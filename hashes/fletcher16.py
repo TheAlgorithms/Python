@@ -7,7 +7,15 @@ Source: https://en.wikipedia.org/wiki/Fletcher%27s_checksum
 def fletcher16(text: str) -> int:
     '''
     Loops through every character in the data and adds to two sums
-    fletcher16('hello world') == 6752
+
+
+
+    >>> fletcher16('hello world')
+    6752
+    >>> fletcher16('onethousandfourhundredthirtyfour')
+    28347
+    >>> fletcher16('The quick brown fox jumps over the lazy dog.')
+    5655
     '''
     data = bytes(text, "ascii")
     sum1 = 0
@@ -19,5 +27,5 @@ def fletcher16(text: str) -> int:
 
 
 if __name__ == "__main__":
-    text = input("Enter a text: ")
-    print(fletcher16(text))
+    import doctest
+    doctest.testmod()
