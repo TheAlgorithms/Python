@@ -7,17 +7,20 @@ Leetcode reference: https://leetcode.com/problems/symmetric-tree/
 from __future__ import annotations
 from dataclasses import dataclass
 
+
 @dataclass
 class Node:
     """
     A Node has data variable and pointers to Nodes to its left and right.
     """
+
     data: int
     left: Node | None = None
     right: Node | None = None
 
+
 def make_symmetric_tree() -> Node:
-        r"""
+    r"""
         Create a symmetric tree for testing.
         The tree looks like this:
                1
@@ -26,17 +29,18 @@ def make_symmetric_tree() -> Node:
           / \    / \
          3   4   4  3
         """
-        tree = Node(1)
-        tree.left = Node(2)
-        tree.right = Node(2)
-        tree.left.left = Node(3)
-        tree.left.right = Node(4)
-        tree.right.left = Node(4)
-        tree.right.right = Node(3)
-        return tree
+    tree = Node(1)
+    tree.left = Node(2)
+    tree.right = Node(2)
+    tree.left.left = Node(3)
+    tree.left.right = Node(4)
+    tree.right.left = Node(4)
+    tree.right.right = Node(3)
+    return tree
+
 
 def make_asymmetric_tree() -> Node:
-        r"""
+    r"""
         Create a asymmetric tree for testing.
         The tree looks like this:
                1
@@ -45,19 +49,20 @@ def make_asymmetric_tree() -> Node:
           / \    / \
          3   4   3  4
         """
-        tree = Node(1)
-        tree.left = Node(2)
-        tree.right = Node(2)
-        tree.left.left = Node(3)
-        tree.left.right = Node(4)
-        tree.right.left = Node(3)
-        tree.right.right = Node(4)
-        return tree
+    tree = Node(1)
+    tree.left = Node(2)
+    tree.right = Node(2)
+    tree.left.left = Node(3)
+    tree.left.right = Node(4)
+    tree.right.left = Node(3)
+    tree.right.right = Node(4)
+    return tree
+
 
 class SymmetricTree:
     def is_symmetric_tree(self, tree: Node) -> bool:
         r"""
-        Test cases for is_symmetric_tree function        
+        Test cases for is_symmetric_tree function
 
         >>> SymmetricTree().is_symmetric_tree(make_symmetric_tree())
         True
