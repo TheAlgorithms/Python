@@ -2,8 +2,7 @@
 Program to find the shortest palindrome in the given string
 """
 
-# 'shortestPalindrome' function that takes a string 's' as input and returns a string as output.
-def shortestPalindrome(s: str) -> str:
+def shortestpalindrome(s: str) -> str:
     
     """
     >>> shortestPalindrome("aacecaaa")
@@ -23,7 +22,7 @@ def shortestPalindrome(s: str) -> str:
     for i in range(len(s) + 1):
         # Check if the substring of 's' starting from index 'i' matches with the reversed string 'r'.
         if s.startswith(r[i:]):
-            # If a palindrome is found, construct the shortest palindrome by concatenating the reversed prefix 'r[:i]' with the original string 's'.
+            # If palindrome found, construct shortest palindrome by concatenating reversed prefix 'r[:i]' with original string 's'.
             return r[:i] + s
 
 if __name__ == "__main__":
