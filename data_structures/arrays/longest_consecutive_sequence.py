@@ -6,25 +6,19 @@ Longest Consecutive Sequence Problem from LeetCode
 """
 
 
-def longest_consecutive_sequence(nums: list[int]) -> int:
+def longest_consecutive_sequence(nums:list[int]) -> int:
     """
     Finds the length of the longest consecutive sequence in a list of numbers.
 
-    Args:
-        nums (List[int]): A list of integers.
-
-    Returns:
-        int: The length of the longest consecutive sequence.
-
     Examples:
-        >>> longest_consecutive_sequence([100, 4, 200, 1, 3, 2])
-        4
-        >>> longest_consecutive_sequence([1, 2, 3, 4, 5])
-        5
-        >>> longest_consecutive_sequence([5, 4, 3, 2, 1])
-        5
-        >>> longest_consecutive_sequence([])
-        0
+    >>> longest_consecutive_sequence([100, 4, 200, 1, 3, 2])
+    4
+    >>> longest_consecutive_sequence([1, 2, 3, 4, 5])
+    5
+    >>> longest_consecutive_sequence([5, 4, 3, 2, 1])
+    5
+    >>> longest_consecutive_sequence([])
+    0
     """
     if not nums:
         return 0
