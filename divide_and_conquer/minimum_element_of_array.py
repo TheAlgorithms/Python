@@ -67,7 +67,9 @@ def randomized_partition(array: list, starting_index: int, ending_index: int) ->
     return partition(array, starting_index, ending_index)
 
 
-def selection_sort(array: list, starting_index: int, ending_index: int, smallest_element: int) -> list | None | Any:
+def selection_sort(
+    array: list, starting_index: int, ending_index: int, smallest_element: int
+) -> list | None | Any:
     """
     Returns a list of sorted array elements using selection sort.
     Args:
@@ -106,7 +108,9 @@ def selection_sort(array: list, starting_index: int, ending_index: int, smallest
         return array
 
     if starting_index == ending_index:
-        return array[starting_index]  # 1 <= i <= r - p + 1 when p == r means that i == 1
+        return array[
+            starting_index
+        ]  # 1 <= i <= r - p + 1 when p == r means that i == 1
 
     q = randomized_partition(array, starting_index, ending_index)
 
