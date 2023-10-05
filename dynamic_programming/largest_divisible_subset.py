@@ -3,10 +3,8 @@ from __future__ import annotations
 
 def largest_divisible_subset(items: list[int]) -> list[int]:
     """
-    Algorithm to find the biggest subset
-    in the given array such that for any
-    2 elements x and y in the subset,
-    either x divides y or y divides x
+    Algorithm to find the biggest subset in the given array such that for any 2 elements
+    x and y in the subset, either x divides y or y divides x.
     >>> largest_divisible_subset([1, 16, 7, 8, 4])
     [16, 8, 4, 1]
     >>> largest_divisible_subset([1, 2, 3])
