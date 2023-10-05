@@ -17,7 +17,7 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 
 
-def clone_graph(node: Node | None) -> None | None:
+def clone_graph(node: Node | None) -> Node | None:
     """
     This function returns a clone of a connected undirected graph.
     >>> clone_graph(Node(1))
@@ -33,6 +33,10 @@ def clone_graph(node: Node | None) -> None | None:
     originals_to_clones = {}  # map nodes to clones
 
     def create_clones(node: Node) -> None:
+        """
+        This helper function populates the originals_to_clones map with
+        the original nodes in the graph mapped to newly created clones.
+        """
         if node in originals_to_clones:
             return
 
@@ -43,13 +47,10 @@ def clone_graph(node: Node | None) -> None | None:
 
     create_clones(node)
 
-    def connect_clones_to_cloned_neighbors() -> None:
-        for original, clone in originals_to_clones.items():
-            for neighbor in original.neighbors:
-                cloned_neighbor = originals_to_clones[neighbor]
-                clone.neighbors.append(cloned_neighbor)
-
-    connect_clones_to_cloned_neighbors()
+    for original, clone in originals_to_clones.items():
+        for neighbor in original.neighbors:
+            cloned_neighbor = originals_to_clones[neighbor]
+            clone.neighbors.append(cloned_neighbor)
 
     return originals_to_clones[node]
 
