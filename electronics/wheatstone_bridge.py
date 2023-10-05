@@ -6,7 +6,13 @@ def wheatstone_solver(
     resistance_1: float, resistance_2: float, resistance_3: float
 ) -> float:
     """
-    This function can calculate the unknown resistance in an wheatstone network.
+    This function can calculate the unknown resistance in an wheatstone network,
+    given that the three other resistances in the network are known.
+    The formula to calculate the same is:
+
+    ---------------
+    |Rx=(R2/R1)*R3|
+    ---------------
 
     Usage examples:
     >>> wheatstone_solver(resistance_1=2, resistance_2=4, resistance_3=5)
