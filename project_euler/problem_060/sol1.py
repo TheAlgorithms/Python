@@ -72,7 +72,7 @@ def is_prime(number: int, k: int = 3) -> bool:
         for a in random.sample(range(2, number - 2), k):
             x = pow(a, d, number)
             if x != 1 and x + 1 != number:
-                for r in range(1, s):
+                for _ in range(1, s):
                     x = pow(x, 2, number)
                     if x == 1:
                         return False
