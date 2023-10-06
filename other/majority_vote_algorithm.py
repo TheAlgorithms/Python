@@ -8,7 +8,7 @@ URL : https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm
 """
 
 
-def majority_element(nums: List[int], partition: int) -> List[int]:
+def majority_element(nums: list[int], partition: int) -> list[int]:
     """
     >>> majority_element([1, 2, 2, 3, 1, 3, 2],3)
     [2]
