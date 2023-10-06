@@ -11,6 +11,7 @@ This constraint is typically imposed to limit the size of the output string,
 as the "Count and Say" sequence grows exponentially with n.
 """
 
+
 class Solution:
     def count_and_say(self, n: int) -> str:
         """
@@ -48,8 +49,9 @@ class Solution:
 
         return result
 
+
 # Run doctests
 if __name__ == "__main__":
     import doctest
-    doctest.testmod()
 
+    doctest.testmod()
