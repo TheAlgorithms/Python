@@ -24,7 +24,7 @@ we backtrack to the previous step and try a different path.
 """
 
 
-def generate_parentheses(n)->None:
+def generate_parentheses(n) -> None:
     """
 
     >>> generate_parentheses(3)
@@ -37,7 +37,8 @@ def generate_parentheses(n)->None:
     ['']
 
     """
-    def backtrack(x='', left=0, right=0)->None:
+
+    def backtrack(x="", left=0, right=0) -> None:
         if len(x) == 2 * n:
             sol.append(x)
             return
@@ -50,7 +51,8 @@ def generate_parentheses(n)->None:
     backtrack()
     return sol
 
-def main()->None:
+
+def main() -> None:
     print(generate_parentheses(3))
 
 
