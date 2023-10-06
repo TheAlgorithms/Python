@@ -1,9 +1,9 @@
 """
 Palindrome Six-Digit Numbers
 
-This program finds six-digit numbers that 
+This program finds six-digit numbers that
 are palindromes and can be
-expressed as the product of 
+expressed as the product of
 two three-digit numbers.
 
 References:
