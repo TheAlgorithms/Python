@@ -66,4 +66,4 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    print(sieve(10**6))
+    print(f"{sieve(10**6) = }")
