@@ -11,7 +11,7 @@ import numpy as np
 
 def mish(vector: np.ndarray) -> np.ndarray:
     """
-        Implements the GELU activation function.
+        Implements the Mish activation function.
 
         Parameters:
             vector (np.ndarray): The input array for Mish activation.
@@ -20,7 +20,7 @@ def mish(vector: np.ndarray) -> np.ndarray:
             np.ndarray: The input array after applying the Mish activation.
 
         Formula:
-            f(x) = x * np.tanh(np.softplus(x)) = x * np.tanh(np.log(1 + np.exp(x)))
+            f(x) = x * tanh(softplus(x)) = x * tanh(ln(1 + e^x))
 
     Examples:
     >>> mish(vector=np.array([2.3,0.6,-2,-3.8]))
