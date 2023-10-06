@@ -29,7 +29,10 @@ irregular math with lots of mixing.
 Reference : https://byjus.com/physics/reynolds-number/
 """
 
-def reynolds_number(density:float, velocity:float, diameter:float, viscosity:float) -> float :
+
+def reynolds_number(
+    density: float, velocity: float, diameter: float, viscosity: float
+) -> float:
     """
     >>> reynolds_number(900,2.5,0.05,0.4)
     281.25
@@ -47,9 +50,12 @@ def reynolds_number(density:float, velocity:float, diameter:float, viscosity:flo
     ValueError: please ensure that density, diameter and viscosity are non negative
     """
 
-    if density <= 0 or diameter <=0 or viscosity <= 0 :
-        raise ValueError("please ensure that density, diameter and viscosity are non negative")
-    return (density * abs(velocity) * diameter)/viscosity
+    if density <= 0 or diameter <= 0 or viscosity <= 0:
+        raise ValueError(
+            "please ensure that density, diameter and viscosity are non negative"
+        )
+    return (density * abs(velocity) * diameter) / viscosity
+
 
 if __name__ == "__main__":
     import doctest
