@@ -5,7 +5,7 @@ from __future__ import annotations
 import math
 
 """
-Data object for stack
+Object stored on the stack
 """
 class StackData:
     def __init__(self, current_value: float, min_value: float, max_value: float) -> None:
@@ -23,6 +23,8 @@ class MinMaxStack:
 
     def push_value(self, value: float) -> bool:
         """
+        Push new value on top of stack
+
         >>> test_stack = MinMaxStack(3)
         >>> test_stack.push_value(1)
         True
@@ -53,6 +55,8 @@ class MinMaxStack:
 
     def pop_value(self) -> float:
         """
+        Remove the top value from the stack.
+
         >>> test_stack = MinMaxStack()
         >>> test_stack.push_value(1)
         True
@@ -74,6 +78,8 @@ class MinMaxStack:
 
     def get_current_max(self) -> float:
         """
+        Get the highest value on the stack in constant time
+
         test_stack = MinMaxStack(3)
         >>> test_stack.push_value(-450.45)
         True
@@ -104,6 +110,8 @@ class MinMaxStack:
 
     def get_current_min(self) -> float:
         """
+        Get the lowest value on the stack in constant time
+
         >>> test_stack = MinMaxStack(3)
         >>> test_stack.push_value(123)
         True
@@ -133,6 +141,9 @@ class MinMaxStack:
         return -math.inf
 
     def stack_is_valid(self) -> bool:
+        """
+        Validate stack is not empty
+        """
         if len(self.stack) == 0:
             print("Stack is empty")
             return False
