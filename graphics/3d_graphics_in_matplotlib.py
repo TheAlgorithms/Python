@@ -1,21 +1,25 @@
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
-from typing import List, Tuple
 
 
 def create_3d_cube(
-    vertices: List[Tuple[float, float, float]], faces: List[List[int]]
+    vertices: list[tuple[float, float, float]], faces: list[list[int]]
 ) -> None:
     """
     Create a 3D cube using Matplotlib.
 
     Args:
-        vertices (List[Tuple[float, float, float]]): List of 8 (x, y, z) vertex coordinates.
-        faces (List[List[int]]): List of 12 face definitions, where each face is a list of 4 vertex indices.
+        vertices (List[Tuple[float, float, float]]): List of 8 (x, y, z)
+        vertex coordinates.
+
+        faces (List[List[int]]): List of 12 face definitions, where each face is a
+        list of 4 vertex indices.
 
     Example:
-        >>> vertices = [(0, 0, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0), (0, 0, 1), (1, 0, 1), (1, 1, 1), (0, 1, 1)]
-        >>> faces = [(0, 1, 2, 3), (4, 5, 6, 7), (0, 3, 7, 4), (1, 2, 6, 5), (0, 1, 5, 4), (2, 3, 7, 6)]
+        >>> vertices = [(0, 0, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0),
+        ...             (0, 0, 1), (1, 0, 1), (1, 1, 1), (0, 1, 1)]
+        >>> faces = [(0, 1, 2, 3), (4, 5, 6, 7), (0, 3, 7, 4),
+        ...         (1, 2, 6, 5), (0, 1, 5, 4), (2, 3, 7, 6)]
         >>> create_3d_cube(vertices, faces)  # doctest: +SKIP
     """
     fig = plt.figure()
@@ -75,3 +79,4 @@ if __name__ == "__main__":
         print("All tests passed!")
     else:
         print(f"{result.failed} test(s) failed.")
+
