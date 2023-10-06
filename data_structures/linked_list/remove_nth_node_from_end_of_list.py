@@ -6,7 +6,7 @@ from __future__ import annotations
 class Node:
     def __init__(self, data: int) -> None:
         self.data = data
-        self.next = None
+        self.next: Node | None = None
 
 
 class LinkedListExceptionError(Exception):
@@ -14,8 +14,8 @@ class LinkedListExceptionError(Exception):
 
 
 class LinkedList:
-    def __init__(self):  # type: ignore
-        self.head = None
+    def __init__(self) -> None:
+        self.head: Node | None = None
 
     # from middle_element_of_linked_list
     def append(self, new_data: int) -> int:
@@ -80,13 +80,12 @@ class LinkedList:
         """
         # want to have two pointers, one at the start and the other k nodes forward
         # We could complete this in one pass if we stored a self.size variable
-
         if not self.head:
             print("No element found.")
             return None
 
         size = 0
-        current = self.head
+        current: Node | None = self.head
         while current:
             size += 1
             current = current.next
@@ -95,19 +94,25 @@ class LinkedList:
             print(f"Try with an N in range of: 1 to {size}")
             return None
 
-        first = self.head
+        first: Node | None = self.head
         for _i in range(position_from_end):
-            first = first.next
-        second = self.head
-        prev = None
+            if first:
+                first = first.next
+
+        second: Node | None = self.head
+        prev: Node | None = None
 
         while first:
             first = first.next
             prev = second
-            second = second.next
+            if second:
+                second = second.next
 
-        if prev:
+        if prev and second:
             prev.next = second.next
+        elif not prev and self.head:
+            self.head = self.head.next
+
         return self.head
 
 
