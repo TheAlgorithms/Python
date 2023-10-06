@@ -1,5 +1,6 @@
 from typing import List, Tuple
 
+
 def equi_emf(
     cells: List[Tuple[float, float]], connection_type: str
 ) -> Tuple[float, float]:
@@ -32,6 +33,7 @@ def equi_emf(
 
     return total_emf, total_internal_resistance
 
+
 def main() -> None:
     """
     Main function to calculate equivalent EMF and internal resistance of cells.
@@ -41,14 +43,14 @@ def main() -> None:
     >>> import sys
     >>> sys.stdin = io.StringIO('3\\n1.5\\n0.2\\n2.0\\n0.3\\n1.0\\n0.1\\n2\\n')
     >>> main()
-    Enter the number of cells: 
-    Enter the EMF of cell 1: 
-    Enter the internal resistance of cell 1: 
-    Enter the EMF of cell 2: 
-    Enter the internal resistance of cell 2: 
-    Enter the EMF of cell 3: 
-    Enter the internal resistance of cell 3: 
-    Select the connection type (1/2): 
+    Enter the number of cells:
+    Enter the EMF of cell 1:
+    Enter the internal resistance of cell 1:
+    Enter the EMF of cell 2:
+    Enter the internal resistance of cell 2:
+    Enter the EMF of cell 3:
+    Enter the internal resistance of cell 3:
+    Select the connection type (1/2):
     Invalid choice. Please select 1 or 2.
     Equivalent Cell Parameters:
     Equivalent EMF: 4.5 volts
@@ -85,6 +87,7 @@ def main() -> None:
     print("\nEquivalent Cell Parameters:")
     print(f"Equivalent EMF: {eq_emf} volts")
     print(f"Equivalent Internal Resistance: {eq_int_res} ohms")
+
 
 if __name__ == "__main__":
     main()
