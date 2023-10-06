@@ -32,13 +32,9 @@ Problem Statement:-
 
 '''
 
-		
-from typing import List
 from collections import defaultdict
-
-
 class Solution:
-    def cherrypickup(self, grid: list[list[int]]) -> int:
+    def cherry_pickup(self, grid: list[list[int]]) -> int:
         self.dp = defaultdict(int)
         return self.recurse(grid, 0, 0, len(grid[0])-1) 
 
@@ -77,5 +73,5 @@ if __name__ == "__main__":
     ]
 
     solution = Solution()
-    result = solution.cherrypickup(grid)
+    result = solution.cherry_pickup(grid)
     print(result)  # Output: 19
