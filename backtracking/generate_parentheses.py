@@ -24,7 +24,7 @@ we backtrack to the previous step and try a different path.
 """
 
 
-def generate_parentheses(number : int = 3):
+def generate_parentheses(number : int):
     """
 
     >>> generate_parentheses(3)
@@ -38,7 +38,7 @@ def generate_parentheses(number : int = 3):
 
     """
     
-    def backtrack(x : str = "",left : int = 0, right : int = 0 ):
+    def backtrack(x="",left=0,right=0 ):
         
         if len(x) == 2 * number:
             result.append(x)
@@ -51,6 +51,10 @@ def generate_parentheses(number : int = 3):
     result = []
     backtrack()
     return result
+
+
+def main():
+    print(generate_parentheses(3))
 
 if __name__ == "__main__":
     import doctest
