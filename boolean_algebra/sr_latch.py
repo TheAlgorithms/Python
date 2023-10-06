@@ -1,5 +1,6 @@
 """
-SR latch (this is a cross-coupled NOR implementation; for a cross-coupled NAND, just complement the inputs before applying them):
+SR latch (this is a cross-coupled NOR implementation;
+for a cross-coupled NAND, just complement the inputs before applying them):
 is a simple memory element that stores 1 bit of information
 State table:
    | Input 1(set pin) | Input 2(reset pin) | q  (not q) |
