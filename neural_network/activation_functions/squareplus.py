@@ -9,12 +9,13 @@ https://en.wikipedia.org/wiki/Rectifier_(neural_networks)#Squareplus
 import numpy as np
 
 
-def squareplus(vector: np.ndarray) -> np.ndarray:
+def squareplus(vector: np.ndarray, beta: float) -> np.ndarray:
     """
     Implements the SquarePlus activation function.
 
     Parameters:
         vector (np.ndarray): The input array for the SquarePlus activation.
+        beta (float): size of the curved region
 
     Returns:
         np.ndarray: The input array after applying the SquarePlus activation.
@@ -22,13 +23,13 @@ def squareplus(vector: np.ndarray) -> np.ndarray:
     Formula: f(x) = x^2 if x > 0 else f(x) = 0
 
     Examples:
-    >>> squareplus(np.array([2.3, 0.6, -2, -3.8]))
+    >>> squareplus(np.array([2.3, 0.6, -2, -3.8]), beta=2)
     array([5.29, 0.36, 0.  , 0.  ])
 
-    >>> squareplus(np.array([-9.2, -0.3, 0.45, -4.56]))
-    array([0.    , 0.    , 0.2025, 0.    ])
+    >>> squareplus(np.array([-9.2, -0.3, 0.45, -4.56]), beta=3)
+    array([0.      , 0.      , 0.091125, 0.      ])
     """
-    return np.where(vector > 0, vector**2, 0)
+    return np.where(vector > 0, vector**beta, 0)
 
 
 if __name__ == "__main__":
