@@ -29,24 +29,23 @@ def shunt_capacitor_power_factor_correction(
       ...
     ValueError: voltage is zero no excitation
     """
-    
 
     if (
         not isinstance(current_power_factor, (int, float))
         or not isinstance(expected_power_factor, (int, float))
-        or current_power_factor  < -1
-        or current_power_factor  >  1
+        or current_power_factor < -1
+        or current_power_factor > 1
         or expected_power_factor < -1
-        or expected_power_factor >  1
+        or expected_power_factor > 1
     ):
         raise ValueError("power_factor must be a valid float value between -1 and 1.")
-    
+
     if frequency == 0:
         raise ValueError("frequency is zero dc circuit")
 
     if voltage == 0:
         raise ValueError("voltage is zero no excitation")
-        
+
     current_theta = math.acos(current_power_factor)
     expected_theta = math.acos(expected_power_factor)
 
@@ -62,7 +61,6 @@ def shunt_capacitor_power_factor_correction(
     change_reactive_power = current_reactive_power - expected_reactive_power
 
     return change_reactive_power / (2 * math.pi * frequency * (voltage**2))
-
 
 
 def shunt_inductor_power_factor_correction(
@@ -90,14 +88,14 @@ def shunt_inductor_power_factor_correction(
       ...
     ValueError: voltage is zero no excitation
     """
-    
+
     if (
         not isinstance(current_power_factor, (int, float))
         or not isinstance(expected_power_factor, (int, float))
-        or current_power_factor  < -1
-        or current_power_factor  >  1
+        or current_power_factor < -1
+        or current_power_factor > 1
         or expected_power_factor < -1
-        or expected_power_factor >  1
+        or expected_power_factor > 1
     ):
         raise ValueError("power_factor must be a valid float value between -1 and 1.")
 
@@ -121,11 +119,10 @@ def shunt_inductor_power_factor_correction(
     """
     change_reactive_power = current_reactive_power - expected_reactive_power
 
-    return (voltage**2) / ( 2 * math.pi * frequency * change_reactive_power )
-
+    return (voltage**2) / (2 * math.pi * frequency * change_reactive_power)
 
 
 if __name__ == "__main__":
     import doctest
-    
+
     doctest.testmod()
