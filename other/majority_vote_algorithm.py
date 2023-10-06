@@ -1,7 +1,8 @@
 import collections
 
 """
-This is Booyer-Moore Majority Vote Algorithm. The problem statement goes like Given an integer array of size n, find all elements that appear more than ⌊ n/k ⌋ times.
+This is Booyer-Moore Majority Vote Algorithm. The problem statement goes like:
+Given an integer array of size n, find all elements that appear more than ⌊ n/k ⌋ times.
 We have to solve in O(n) time and O(1) Space.
 URL : https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm
 
