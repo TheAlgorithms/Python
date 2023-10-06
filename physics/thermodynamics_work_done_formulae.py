@@ -39,7 +39,7 @@ on the type of process. The different types of processes are as follows:
     2) Isothermal Reversible Process: A process that can be reversed to
     its initial state by an infinitesimal change in an external parameter
     is called an isothermal reversible process. The work done in an
-    isothermal reversible process is given by the formula:
+    isothermal reversible process is given by formula:
 
         ------------------------------
         |     W = -nRTln(Vf/Vi)      |
