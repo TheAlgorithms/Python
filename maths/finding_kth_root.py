@@ -1,5 +1,5 @@
 """
-Finding the real root of a given degree of a given number, 
+Finding the real root of a given degree of a given number,
 rounding to the nearest given number of decimal places without using **
 
 Input:
