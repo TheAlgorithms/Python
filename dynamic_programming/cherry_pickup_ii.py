@@ -33,10 +33,6 @@ Problem Statement:-
 """
 
 
-<<<<<<< HEAD
-=======
-from typing import List
->>>>>>> 807559ce2afe527cd20ebadd784a014984cd3a92
 from collections import defaultdict
 class Solution:
     def cherry_pickup(self, grid: list[list[int]]) -> int:
