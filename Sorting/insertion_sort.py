@@ -8,6 +8,7 @@ def insertionsort(arr):
             j -= 1
         arr[j + 1] = key
 
+
 # Example usage:
 arr = [3, 6, 8, 10, 1, 2, 1]
 insertionsort(arr)

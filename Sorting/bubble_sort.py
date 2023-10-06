@@ -6,6 +6,7 @@ def bubblesort(arr):
             if arr[j] > arr[j + 1]:
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
 
+
 # Example usage:
 arr = [3, 6, 8, 10, 1, 2, 1]
 bubblesort(arr)

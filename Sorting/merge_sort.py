@@ -28,6 +28,7 @@ def mergesort(arr):
     # Recursively merge and sort the left and right partitions.
     return merge(mergesort(left), mergesort(right))
 
+
 # Example usage:
 arr = [3, 6, 8, 10, 1, 2, 1]
 sorted_arr = mergesort(arr)

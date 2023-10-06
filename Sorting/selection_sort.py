@@ -8,6 +8,7 @@ def selectionsort(arr):
         # Swap the found minimum element with the first element.
         arr[i], arr[min_index] = arr[min_index], arr[i]
 
+
 # Example usage:
 arr = [3, 6, 8, 10, 1, 2, 1]
 selectionsort(arr)
