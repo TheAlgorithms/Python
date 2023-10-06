@@ -1,4 +1,5 @@
 import collections
+
 """
 This is Booyer-Moore Majority Vote Algorithm. The problem statement goes like:
 Given an integer array of size n, find all elements that appear more than ⌊ n/k ⌋ times.
@@ -12,17 +13,24 @@ def majority_element(total_votes: list[int], min_votes_required: int) -> list[in
     >>> majority_element([1, 2, 2, 3, 1, 3, 2],3)
     [2]
     """
-    majority_candidate_counter : Dict[int, int] = collections.Counter()
+    majority_candidate_counter: Dict[int, int] = collections.Counter()
     for vote in total_votes:
         majority_candidate_counter[vote] += 1
         if len(majority_candidate_counter) == min_votes_required:
-            majority_candidate_counter-=collections.Counter(set(majority_candidate_counter))
-    majority_candidate_counter = collections.Counter(vote for vote in total_votes 
-                                                     if vote in majority_candidate_counter)
-    return [vote for vote in majority_candidate_counter 
-            if majority_candidate_counter[vote] > len(total_votes) / min_votes_required]
+            majority_candidate_counter -= collections.Counter(
+                set(majority_candidate_counter)
+            )
+    majority_candidate_counter = collections.Counter(
+        vote for vote in total_votes if vote in majority_candidate_counter
+    )
+    return [
+        vote
+        for vote in majority_candidate_counter
+        if majority_candidate_counter[vote] > len(total_votes) / min_votes_required
+    ]
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
