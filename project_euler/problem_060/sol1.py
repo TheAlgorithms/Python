@@ -24,22 +24,23 @@ def sieve_of_eratosthenes(limit: int) -> List[int]:
     [2, 3]
     """
     is_prime = [True] * limit
-    if(limit>2):
+    if limit > 2:
         is_prime[0] = False
         is_prime[1] = False
         is_prime[2] = True
-    
+
     for number in range(3, int(limit**0.5) + 1, 2):
         if is_prime[number]:
             for multiple in range(number * 2, limit, number):
                 is_prime[multiple] = False
-    
+
     primes = [2]
     for number in range(3, limit, 2):
         if is_prime[number]:
             primes.append(number)
-    
+
     return primes
+
 
 # Miller–Rabin primality test
 def is_prime(number: int, k: int = 3) -> bool:
@@ -82,6 +83,7 @@ def is_prime(number: int, k: int = 3) -> bool:
                     return False
         return True
 
+
 # Check if two numbers form a prime pair
 def forms_prime_pair(num1: int, num2: int) -> bool:
     """
@@ -105,6 +107,7 @@ def forms_prime_pair(num1: int, num2: int) -> bool:
     num2_num1_concat = int(num2_str + num1_str)
     return is_prime(num1_num2_concat) and is_prime(num2_num1_concat)
 
+
 # Finding prime numbers up to a given limit
 def find_primes(limit: int) -> List[int]:
     """
@@ -123,6 +126,7 @@ def find_primes(limit: int) -> List[int]:
 
     """
     return sieve_of_eratosthenes(limit)
+
 
 # Problem solution
 def find_lowest_sum_of_five_primes(primes: List[int]) -> int:
@@ -150,17 +154,31 @@ def find_lowest_sum_of_five_primes(primes: List[int]) -> int:
                 for prime3 in primes:
                     if prime3 < prime2:
                         continue
-                    if forms_prime_pair(prime1, prime3) and forms_prime_pair(prime2, prime3):
+                    if forms_prime_pair(prime1, prime3) and forms_prime_pair(
+                        prime2, prime3
+                    ):
                         for prime4 in primes:
                             if prime4 < prime3:
                                 continue
-                            if forms_prime_pair(prime1, prime4) and forms_prime_pair(prime2, prime4) and forms_prime_pair(prime3, prime4):
+                            if (
+                                forms_prime_pair(prime1, prime4)
+                                and forms_prime_pair(prime2, prime4)
+                                and forms_prime_pair(prime3, prime4)
+                            ):
                                 for prime5 in primes:
                                     if prime5 < prime4:
                                         continue
-                                    if forms_prime_pair(prime1, prime5) and forms_prime_pair(prime2, prime5) and forms_prime_pair(prime3, prime5) and forms_prime_pair(prime4, prime5):
-                                        return prime1 + prime2 + prime3 + prime4 + prime5
+                                    if (
+                                        forms_prime_pair(prime1, prime5)
+                                        and forms_prime_pair(prime2, prime5)
+                                        and forms_prime_pair(prime3, prime5)
+                                        and forms_prime_pair(prime4, prime5)
+                                    ):
+                                        return (
+                                            prime1 + prime2 + prime3 + prime4 + prime5
+                                        )
     return 0
+
 
 def solution(primes_limit: int = 10000) -> int:
     """
@@ -180,6 +198,8 @@ def solution(primes_limit: int = 10000) -> int:
     # Run the function and print the output
     return find_lowest_sum_of_five_primes(primes_list)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
