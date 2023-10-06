@@ -16,12 +16,9 @@ def sieve(n: int) -> list[int]:
 
     """
 
-    if n < 0 or isinstance(n, float):
-        word = f"Number must be positive and integer, obtained {n}"
-        raise ValueError(word)
-
-    if n == 0:
-        word = f"Number should not be zero n {n}"
+    if n <= 0 or isinstance(n, float):
+        word = f"Number must be positive and integer 
+        and not equal to 0, obtained {n}"
         raise ValueError(word)
 
     in_prime = []
