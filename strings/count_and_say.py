@@ -6,7 +6,7 @@ def countAndSay(n: int) -> str:
     a recursive formula. To get the next number in the sequence, you "say"
     the previous number and then convert it into a new number string.
 
-	Examples:
+        Examples:
         >>> countAndSay(1)
         '1'
         >>> countAndSay(4)
@@ -18,20 +18,22 @@ def countAndSay(n: int) -> str:
     """
     if n == 1:
         return "1"
-    
+
     prev = countAndSay(n - 1)
     result = ""
     count = 1
-    
+
     for i in range(len(prev)):
         if i + 1 < len(prev) and prev[i] == prev[i + 1]:
             count += 1
         else:
             result += str(count) + prev[i]
             count = 1
-    
+
     return result
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
