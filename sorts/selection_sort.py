@@ -11,7 +11,7 @@ python selection_sort.py
 """
 
 
-def selection_sort(collection):
+def selection_sort(collection: list[int]) -> list[int]:
     """Pure implementation of the selection sort algorithm in Python
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
