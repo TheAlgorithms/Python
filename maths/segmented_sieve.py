@@ -16,7 +16,7 @@ def sieve(n: int) -> list[int]:
 
     """
 
-    if n < 0 or type(n) == float:
+    if n < 0 or isinstance(n, float):
         word = f"Number must be positive and integer, obtained {n}"
         raise ValueError(word)
 
