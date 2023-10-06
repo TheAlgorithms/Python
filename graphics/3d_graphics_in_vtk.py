@@ -1,67 +1,73 @@
-import vtkmodules.all as vtk
-from vtkmodules.util.colors import tomato, white
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 
 
-def create_renderer() -> vtk.vtkRenderWindowInteractor:
+def create_3d_cube(
+    vertices: list[tuple[float, float, float]], faces: list[list[int]]
+) -> None:
     """
-    Create a VTK renderer with a 3D scene containing a multicolored cube
-    on a white background.
+    Create a 3D cube using Matplotlib.
 
-    This function creates a VTK renderer with a 3D scene containing a
-    multicolored cube on a white background.
-
-    Returns:
-        vtk.vtkRenderWindowInteractor: A VTK render window interactor for interaction.
+    Args:
+        vertices (list of tuple): List of 8 (x, y, z) vertex coordinates.
+        faces (list of list): List of 12 face definitions, where each face
+        is a list of 4 vertex indices.
 
     Example:
-        >>> render_window_interactor = create_renderer()
-        >>> isinstance(render_window_interactor, vtk.vtkRenderWindowInteractor)
-        True
+        >>> vertices = [(0, 0, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0),
+        ...             (0, 0, 1), (1, 0, 1), (1, 1, 1), (0, 1, 1)]
+        >>> faces = [(0, 1, 2, 3), (4, 5, 6, 7), (0, 3, 7, 4), (1, 2, 6, 5),
+        ...          (0, 1, 5, 4), (2, 3, 7, 6), (0, 1, 2, 3), (4, 5, 6, 7),
+        ...          (0, 3, 7, 4), (1, 2, 6, 5), (0, 1, 5, 4), (2, 3, 7, 6)]
+        >>> create_3d_cube(vertices, faces)  # doctest: +SKIP
     """
-    # Create a VTK renderer
-    renderer = vtk.vtkRenderer()
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection="3d")
 
-    # Create a VTK render window
-    render_window = vtk.vtkRenderWindow()
-    render_window.AddRenderer(renderer)
+    # Create a Poly3DCollection
+    cube = [[vertices[iv] for iv in face] for face in faces]
+    ax.add_collection3d(
+        Poly3DCollection(
+            cube, facecolors="cyan", linewidths=3, edgecolors="r", alpha=0.25
+        )
+    )
 
-    # Create a VTK render window interactor
-    render_window_interactor = vtk.vtkRenderWindowInteractor()
-    render_window_interactor.SetRenderWindow(render_window)
+    # Remove axis labels and markings
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_zticks([])
+    ax.set_xlabel("")
+    ax.set_ylabel("")
+    ax.set_zlabel("")
+    ax.grid(False)
 
-    # Create a VTK cube source
-    cube = vtk.vtkCubeSource()
-
-    # Create a VTK mapper
-    cube_mapper = vtk.vtkPolyDataMapper()
-    cube_mapper.SetInputConnection(cube.GetOutputPort())
-
-    # Create a VTK actor
-    cube_actor = vtk.vtkActor()
-    cube_actor.SetMapper(cube_mapper)
-
-    # Set the cube's colors
-    cube_actor.GetProperty().SetColor(tomato)
-    cube_actor.GetProperty().SetDiffuse(0.7)
-    cube_actor.GetProperty().SetSpecular(0.4)
-
-    # Add the actor to the renderer
-    renderer.AddActor(cube_actor)
-
-    # Set the background color of the renderer to white
-    renderer.SetBackground(white)
-
-    # Set up the camera position and focal point
-    renderer.GetActiveCamera().Azimuth(30)
-    renderer.GetActiveCamera().Elevation(30)
-    renderer.ResetCamera()
-
-    return render_window_interactor
+    plt.title("3D Cube")
+    plt.show()
 
 
 if __name__ == "__main__":
-    # Create a VTK renderer with a 3D scene
-    render_window_interactor = create_renderer()
+    # Define vertices and faces for a 3D cube
+    vertices = [
+        (0, 0, 0),
+        (1, 0, 0),
+        (1, 1, 0),
+        (0, 1, 0),
+        (0, 0, 1),
+        (1, 0, 1),
+        (1, 1, 1),
+        (0, 1, 1),
+    ]
+    faces = [
+        (0, 1, 2, 3),
+        (4, 5, 6, 7),
+        (0, 3, 7, 4),
+        (1, 2, 6, 5),
+        (0, 1, 5, 4),
+        (2, 3, 7, 6),
+    ]
+
+    # Create and display the 3D cube
+    create_3d_cube(vertices, faces)
 
     # Use doctest to test the function
     import doctest
@@ -72,6 +78,3 @@ if __name__ == "__main__":
         print("All tests passed!")
     else:
         print(f"{result.failed} test(s) failed.")
-
-    # Initialize the interactor and start the rendering loop
-    render_window_interactor.Start()
