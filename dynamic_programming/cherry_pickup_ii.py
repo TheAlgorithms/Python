@@ -27,33 +27,36 @@ class Solution:
         return self.recurse(grid, 0, 0, len(grid[0])-1) 
 
     
-    def recurse(self, grid, r, c1, c2):
+    def recurse(self, grid, row, column1, column2):
         # Reached the end
-        if r == len(grid): return 0
+        if row == len(grid): return 0
         
         # Both robots can't share same tile
-        if c1 == c2: return float('-inf')
+        if column1 == column2: return float('-inf')
 
-        if 0 <= r < len(grid) and 0 <= c1 < len(grid[0]) and 0 <= c2 < len(grid[0]):
+        if 0 <= row < len(grid) and 0 <= column1 < len(grid[0]) and 0 <= column2 < len(grid[0]):
             res = 0
-            for y1 in [c1-1, c1, c1+1]:
-                for y2 in [c2-1, c2, c2+1]:
-                    if self.dp.get((r+1, y1, y2)): val = self.dp[(r+1, y1, y2)]
-                    else: val = self.recurse(grid, r+1, y1, y2)
+            for y1 in [column1-1, column1, column1+1]:
+                for y2 in [column2-1, column2, column2+1]:
+                    if self.dp.get((row+1, y1, y2)): val = self.dp[(row+1, y1, y2)]
+                    else: val = self.recurse(grid, row+1, y1, y2)
                     res = max(res, val)
                     
-            self.dp[(r, c1, c2)] = grid[r][c1] + grid[r][c2] + res
-            return grid[r][c1] + grid[r][c2] + res
+            self.dp[(row, column1, column2)] = grid[row][column1] + grid[row][column2] + res
+            return grid[row][column1] + grid[row][column2] + res
 
         
         return float('-inf')
 
-grid = [
-    [3, 1, 1],
-    [2, 5, 1],
-    [1, 5, 3]
-]
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+    grid = [
+        [3, 1, 1],
+        [2, 5, 1],
+        [1, 5, 3]
+    ]
 
-solution = Solution()
-result = solution.cherryPickup(grid)
-print(result)  # Output: 19
+    solution = Solution()
+    result = solution.cherryPickup(grid)
+    print(result)  # Output: 19
