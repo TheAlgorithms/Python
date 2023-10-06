@@ -4,12 +4,12 @@ derangements possible for k objects
 https://en.wikipedia.org/wiki/Derangement
 """
 
-def derangement(k: int) -> int:
+def derangement(objects: int) -> int:
     """
     Calculates the number of derangements of k objects.
-    :param k:the number of objects ( -1 < k < 1560 )
+    :param objects:the number of objects ( -1 < objects < 1560 )
     :return :the number of derangements
-    :raises :ValueError: If k is negative.
+    :raises :ValueError: If objects is negative.
 
     Examples:
         >>> derangements(3)
@@ -19,13 +19,13 @@ def derangement(k: int) -> int:
         >>> derangements(10)
         1334961
     """
-    if k < 0:
+    if objects < 0:
         raise ValueError("k must be a non-negative integer. Retry")
 
     # Base cases
-    if k == 0:
+    if objects == 0:
         return 0
-    if k == 1:
+    if objects == 1:
         return 0
 
     # Initialize the derangement counts
@@ -35,7 +35,7 @@ def derangement(k: int) -> int:
 
     # Calculate derangements using dynamic programming
     # Answer: F(n) = (n - 1) * ( F(n - 1) + F(n - 2) )
-    for i in range(3, k + 1):
+    for i in range(3, objects + 1):
         answer = (i - 1) * (derange_1 + derange_2)
         derange_2 = derange_1
         derange_1 = answer
