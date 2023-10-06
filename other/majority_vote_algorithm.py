@@ -16,9 +16,7 @@ def majority_element(total_votes: list[int], max_candidates: int) -> list[int]:
     for vote in total_votes:
         majority_candidate_counter[vote] += 1
         if len(majority_candidate_counter) == max_candidates:
-            majority_candidate_counter -= Counter(
-                set(majority_candidate_counter)
-            )
+            majority_candidate_counter -= Counter(set(majority_candidate_counter))
     majority_candidate_counter = Counter(
         vote for vote in total_votes if vote in majority_candidate_counter
     )
