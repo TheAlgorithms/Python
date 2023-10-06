@@ -47,17 +47,17 @@ def finding_kth_root(number: float, deg: int, decimal_place: int) -> float:
             "Cannot calculate real root of an even degree of a negative number."
         )
 
-    hi, lo = number, 0
+    hi, lo = number, 0.0
     if number < 0:
         hi = -number
 
-    error = 1
+    error = 1.0
     for _i in range(decimal_place + 1):
         error /= 10
 
     while hi - lo >= error:  # Precision is not reached, continue looping
         mid = (hi + lo) / 2
-        product = 1
+        product = 1.0
         for _i in range(deg):
             product *= mid
 
