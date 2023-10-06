@@ -61,7 +61,7 @@ def is_valid_sudoku_board(sudoku_board: list[list[str]]) -> bool:
         ...
     Exception: Number of rows must be 9.
     >>> is_valid_sudoku_board(
-    ...        [["1"], ["2"], ["3"], ["4"], ["5"], ["6"], ["7"], ["8"], ["9"]])
+    ...        [["1"], ["2"], ["3"], ["4"], ["5"], ["6"], ["7"], ["8"], ["9"]]
     ...  )
     Traceback (most recent call last):
         ...
@@ -74,28 +74,28 @@ def is_valid_sudoku_board(sudoku_board: list[list[str]]) -> bool:
         if len(row) != NUM_COLS:
             raise Exception("Number of columns must be 9.")
 
-    row_values = defaultdict(set)  # maps each row to a set
-    col_values = defaultdict(set)  # maps each col to a set
-    box_values = defaultdict(set)  # maps each 3x3 box to a set
+    row_values: defaultdict[int, set[str]] = defaultdict(set)
+    col_values: defaultdict[int, set[str]] = defaultdict(set)
+    box_values: defaultdict[tuple[int, int], set[str]] = defaultdict(set)
 
-    for row in range(NUM_ROWS):
-        for col in range(NUM_COLS):
-            value = sudoku_board[row][col]
+    for r in range(NUM_ROWS):
+        for c in range(NUM_COLS):
+            value = sudoku_board[r][c]
 
             if value == EMPTY_CELL:
                 continue
 
-            box = (row // 3, col // 3)
+            box = (r // 3, c // 3)
 
             if (
-                value in row_values[row]
-                or value in col_values[col]
+                value in row_values[r]
+                or value in col_values[c]
                 or value in box_values[box]
             ):
                 return not IS_VALID
 
-            row_values[row].add(value)
-            col_values[col].add(value)
+            row_values[r].add(value)
+            col_values[c].add(value)
             box_values[box].add(value)
 
     return IS_VALID
