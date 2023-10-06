@@ -1,5 +1,5 @@
 def update_bit(n: int, pos: int, value: int) -> int:
-    '''
+    """
     It is a program to update a bit at given position
 
     Details:update the bit at position pos of the
@@ -16,11 +16,12 @@ def update_bit(n: int, pos: int, value: int) -> int:
     7
     >>> update_bit(10,0,1) #0b1011
     11
-    '''
+    """
 
     mask = ~(1 << pos)
     n = n & mask
     return n | (value << pos)
+
 
 if __name__ == "__main__":
     import doctest
