@@ -3,7 +3,9 @@ from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from typing import List, Tuple
 
 
-def create_3d_cube(vertices: List[Tuple[float, float, float]], faces: List[List[int]]) -> None:
+def create_3d_cube(
+    vertices: List[Tuple[float, float, float]], faces: List[List[int]]
+) -> None:
     """
     Create a 3D cube using Matplotlib.
 
@@ -17,31 +19,49 @@ def create_3d_cube(vertices: List[Tuple[float, float, float]], faces: List[List[
         >>> create_3d_cube(vertices, faces)  # doctest: +SKIP
     """
     fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
+    ax = fig.add_subplot(111, projection="3d")
 
     # Create a Poly3DCollection
     cube = [[vertices[iv] for iv in face] for face in faces]
-    ax.add_collection3d(Poly3DCollection(cube, facecolors='cyan', linewidths=1, edgecolors='r', alpha=.25))
+    ax.add_collection3d(
+        Poly3DCollection(
+            cube, facecolors="cyan", linewidths=1, edgecolors="r", alpha=0.25
+        )
+    )
 
     # Remove axis labels and markings
     ax.set_xticks([])
     ax.set_yticks([])
     ax.set_zticks([])
-    ax.set_xlabel('')
-    ax.set_ylabel('')
-    ax.set_zlabel('')
+    ax.set_xlabel("")
+    ax.set_ylabel("")
+    ax.set_zlabel("")
     ax.grid(False)
 
-    plt.title('3D Cube')
+    plt.title("3D Cube")
     plt.show()
 
 
 if __name__ == "__main__":
     # Define vertices and faces for a 3D cube
-    vertices = [(0, 0, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0),
-                (0, 0, 1), (1, 0, 1), (1, 1, 1), (0, 1, 1)]
-    faces = [(0, 1, 2, 3), (4, 5, 6, 7), (0, 3, 7, 4), (1, 2, 6, 5),
-             (0, 1, 5, 4), (2, 3, 7, 6)]
+    vertices = [
+        (0, 0, 0),
+        (1, 0, 0),
+        (1, 1, 0),
+        (0, 1, 0),
+        (0, 0, 1),
+        (1, 0, 1),
+        (1, 1, 1),
+        (0, 1, 1),
+    ]
+    faces = [
+        (0, 1, 2, 3),
+        (4, 5, 6, 7),
+        (0, 3, 7, 4),
+        (1, 2, 6, 5),
+        (0, 1, 5, 4),
+        (2, 3, 7, 6),
+    ]
 
     # Create and display the 3D cube
     create_3d_cube(vertices, faces)
