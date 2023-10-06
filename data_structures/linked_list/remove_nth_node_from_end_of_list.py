@@ -14,7 +14,7 @@ class LinkedListExceptionError(Exception):
 
 
 class LinkedList:
-    def __init__(self):
+    def __init__(self):  # type: ignore
         self.head = None
 
     # from middle_element_of_linked_list
