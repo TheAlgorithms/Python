@@ -1,7 +1,7 @@
 import sys
 
 """
-The famous Floyd Warshall Alogirthm to
+The famous Floyd Warshall Algorithm to
 find the shortest distance between all
 pairs of given vertices.
 Wikipedia link:  https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm
