@@ -19,7 +19,7 @@ def majority_element(votes: list[int], votes_needed_to_win: int) -> list[int]:
     majority_candidate_counter = Counter()
     for vote in votes:
         majority_candidate_counter[vote] += 1
-        if len(majority_candidate_counter) == votes_needed_to_win :
+        if len(majority_candidate_counter) == votes_needed_to_win:
             majority_candidate_counter -= Counter(set(majority_candidate_counter))
     majority_candidate_counter = Counter(
         vote for vote in votes if vote in majority_candidate_counter
@@ -27,7 +27,7 @@ def majority_element(votes: list[int], votes_needed_to_win: int) -> list[int]:
     return [
         vote
         for vote in majority_candidate_counter
-        if majority_candidate_counter[vote] > len(votes) / votes_needed_to_win 
+        if majority_candidate_counter[vote] > len(votes) / votes_needed_to_win
     ]
 
 
