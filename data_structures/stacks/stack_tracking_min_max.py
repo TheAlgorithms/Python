@@ -43,8 +43,7 @@ class MinMaxStack:
         >>> test_stack.push_value(4)
         Traceback (most recent call last):
             ...
-        Exception: Max stack size reached. Remove elements before
-        adding new ones or increase stack size.
+        Exception: Max stack size reached.
 
         """
 
