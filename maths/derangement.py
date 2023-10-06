@@ -13,12 +13,12 @@ def derangement(objects: int) -> int:
     :raises :ValueError: If objects is negative.
 
     Examples:
-        >>> derangements(3)
-        2
-        >>> derangements(5)
-        44
-        >>> derangements(10)
-        1334961
+    >>> derangement(3)
+    2
+    >>> derangement(5)
+    44
+    >>> derangement(10)
+    1334961
     """
     if objects < 0:
         raise ValueError("k must be a non-negative integer. Retry")
