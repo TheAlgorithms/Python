@@ -23,7 +23,7 @@ If we reach a point where we can not add more parentheses to the solution,
 we backtrack to the previous step and try a different path.
 """
 
-def generate_parentheses(n):
+def generate_parentheses(n)->None:
     """
 
     >>> generate_parentheses(3)
@@ -36,7 +36,7 @@ def generate_parentheses(n):
     ['']
     
     """
-    def backtrack(x='', left=0, right=0):
+    def backtrack(x='', left=0, right=0)->None:
         if len(x) == 2 * n:
             sol.append(x)
             return
@@ -49,7 +49,7 @@ def generate_parentheses(n):
     backtrack()
     return sol
 
-def main():
+def main() -> None:
     print(generate_parentheses(3))
 
 if __name__ == "__main__":
