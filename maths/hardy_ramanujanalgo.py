@@ -4,7 +4,7 @@
 import math
 
 
-def exact_prime_factor_count(n):
+def exact_prime_factor_count(n: int) -> int:
     """
     >>> exact_prime_factor_count(51242183)
     3
