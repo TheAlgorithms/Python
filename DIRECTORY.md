@@ -722,6 +722,7 @@
   * Activation Functions
     * [Exponential Linear Unit](neural_network/activation_functions/exponential_linear_unit.py)
     * [Leaky Rectified Linear Unit](neural_network/activation_functions/leaky_rectified_linear_unit.py)
+    * [Mish](neural_network/activation_functions/mish.py)
     * [Rectified Linear Unit](neural_network/activation_functions/rectified_linear_unit.py)
     * [Scaled Exponential Linear Unit](neural_network/activation_functions/scaled_exponential_linear_unit.py)
     * [Sigmoid Linear Unit](neural_network/activation_functions/sigmoid_linear_unit.py)
