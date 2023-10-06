@@ -4,6 +4,7 @@ derangements possible for k objects
 https://en.wikipedia.org/wiki/Derangement
 """
 
+
 def derangement(objects: int) -> int:
     """
     Calculates the number of derangements of k objects.
