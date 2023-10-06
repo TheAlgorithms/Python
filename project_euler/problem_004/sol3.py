@@ -6,7 +6,6 @@ This program finds six-digit numbers that are palindromes and can be expressed a
 References:
     - https://en.wikipedia.org/wiki/Palindrome
 """
-import time
 
 
 def is_palindrome(number: int) -> bool:
@@ -30,26 +29,27 @@ def is_palindrome(number: int) -> bool:
     return str_num == str_num[::-1]
 
 
-def find_palindrome_products() -> list:
+def solution(n: int = 998001) -> int:
     """
-    Finds six-digit numbers that are palindromes and can be expressed as the product of two three-digit numbers.
-    Returns a list of tuples where each tuple contains the palindrome number and its two three-digit factors.
+    Returns the largest palindrome made from the product of two 3-digit
+    numbers which is less than n.
 
-    >>> find_palindrome_products()
-    [(...), (...), ...]
+    >>> solution(20000)
+    19591
+    >>> solution(30000)
+    29992
+    >>> solution(40000)
+    39893
     """
 
-    results = []
-    for i in range(100000, 999999):
-        if is_palindrome(i):
-            for j in range(100, 999):
-                quotient = i // j
-                if i % j == 0 and 100 <= quotient <= 999:
-                    results.append((i, j, quotient))
-    return results
+    answer = 0
+    for i in range(999, 99, -1):  # 3 digit numbers range from 999 down to 100
+        for j in range(999, 99, -1):
+            product = i * j
+            if is_palindrome(product) and product < n:
+                answer = max(answer, product)
+    return answer
 
 
 if __name__ == "__main__":
-    palindromes = find_palindrome_products()
-    print("solution() =" , max(palindromes)[0])
-
+    print(f"{solution() = }")
