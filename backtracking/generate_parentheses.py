@@ -18,6 +18,7 @@ If we reach a point where we can not add more parentheses to the solution,
 we backtrack to the previous step and try a different path.
 """
 
+
 def generate_parentheses(number: int = 0) -> list[str]:
     """
     >>> generate_parentheses(3)
@@ -29,8 +30,8 @@ def generate_parentheses(number: int = 0) -> list[str]:
     >>> generate_parentheses(0)
     ['']
     """
-    def backtrack(parentheses : str = "",left : int = 0,right : int = 0) -> None:
 
+    def backtrack(parentheses: str = "", left: int = 0, right: int = 0) -> None:
         if len(parentheses) == 2 * number:
             result.append(parentheses)
             return
@@ -42,6 +43,7 @@ def generate_parentheses(number: int = 0) -> list[str]:
     result = []
     backtrack()
     return result
+
 
 if __name__ == "__main__":
     import doctest
