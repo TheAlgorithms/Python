@@ -1,5 +1,3 @@
-
-
 """
 Time complexity(Average Case): 0(m)
 
