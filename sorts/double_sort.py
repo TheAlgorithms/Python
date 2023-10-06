@@ -1,9 +1,16 @@
-def double_sort(lst):
-    """This sorting algorithm sorts an array using the principle of bubble sort,
+def swap(collection, i, j):
+    """Swap elements at indices i and j in the collection."""
+    collection[i], collection[j] = collection[j], collection[i]
+
+def double_sort(collection):
+    """
+    This sorting algorithm sorts an array using the principle of bubble sort,
     but does it both from left to right and right to left.
     Hence, it's called "Double sort"
+
     :param collection: mutable ordered sequence of elements
     :return: the same collection in ascending order
+
     Examples:
     >>> double_sort([-1 ,-2 ,-3 ,-4 ,-5 ,-6 ,-7])
     [-7, -6, -5, -4, -3, -2, -1]
@@ -14,29 +21,29 @@ def double_sort(lst):
     >>> double_sort([-3, 10, 16, -42, 29]) == sorted([-3, 10, 16, -42, 29])
     True
     """
-    no_of_elements = len(lst)
-    for _ in range(
-        int(((no_of_elements - 1) / 2) + 1)
-    ):  # we don't need to traverse to end of list as
-        for j in range(no_of_elements - 1):
-            if (
-                lst[j + 1] < lst[j]
-            ):  # applying bubble sort algorithm from left to right (or forwards)
-                temp = lst[j + 1]
-                lst[j + 1] = lst[j]
-                lst[j] = temp
-            if (
-                lst[no_of_elements - 1 - j] < lst[no_of_elements - 2 - j]
-            ):  # applying bubble sort algorithm from right to left (or backwards)
-                temp = lst[no_of_elements - 1 - j]
-                lst[no_of_elements - 1 - j] = lst[no_of_elements - 2 - j]
-                lst[no_of_elements - 2 - j] = temp
-    return lst
+    n = len(collection)
+    for i in range(n // 2):
+        swapped = False
+
+        # Bubble sort from left to right
+        for j in range(i, n - i - 1):
+            if collection[j] > collection[j + 1]:
+                swap(collection, j, j + 1)
+                swapped = True
+
+        # Bubble sort from right to left
+        for j in range(n - i - 2, i, -1):
+            if collection[j] < collection[j - 1]:
+                swap(collection, j, j - 1)
+                swapped = True
+
+        if not swapped:
+            break
 
 
 if __name__ == "__main__":
-    print("enter the list to be sorted")
-    lst = [int(x) for x in input().split()]  # inputing elements of the list in one line
-    sorted_lst = double_sort(lst)
-    print("the sorted list is")
-    print(sorted_lst)
+    print("Enter the list to be sorted (space-separated integers):")
+    input_list = [int(x) for x in input().split()]
+    double_sort(input_list)
+    print("The sorted list is:")
+    print(input_list)
