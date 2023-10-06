@@ -35,6 +35,8 @@ def power_of_4(number: int) -> bool:
     False
     >>> power_of_4(17)
     False
+    >>> power_of_4(64)
+    True
     >>> power_of_4(-1)
     Traceback (most recent call last):
         ...
