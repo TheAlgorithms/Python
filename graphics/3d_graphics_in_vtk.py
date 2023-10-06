@@ -4,7 +4,7 @@ from vtkmodules.util.colors import tomato, white
 
 def create_renderer() -> vtk.vtkRenderWindowInteractor:
     """
-    Create a VTK renderer with a 3D scene containing a multicolored cube 
+    Create a VTK renderer with a 3D scene containing a multicolored cube
     on a white background.
 
     This function creates a VTK renderer with a 3D scene containing a
