@@ -32,6 +32,10 @@ def generate_parentheses(number: int = 0) -> list[str]:
     """
 
     def backtrack(parentheses: str = "", left: int = 0, right: int = 0) -> None:
+        """
+        backtrack()
+        >>> None
+        """
         if len(parentheses) == 2 * number:
             result.append(parentheses)
             return
@@ -40,7 +44,7 @@ def generate_parentheses(number: int = 0) -> list[str]:
         if right < left:
             backtrack(parentheses + ")", left, right + 1)
 
-    result = []
+    result: list[str] = []
     backtrack()
     return result
 
