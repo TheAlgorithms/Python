@@ -31,12 +31,12 @@ Problem Statement:-
    https://leetcode.com/problems/cherry-pickup-ii
 
 """
-
-
 from collections import defaultdict
 class Solution:
+    def __init__(self):
+        self.dp: defaultdict[int] = defaultdict(int)
+
     def cherry_pickup(self, grid: list[list[int]]) -> int:
-        self.dp = defaultdict(int)
         return self.recurse(grid, 0, 0, len(grid[0]) - 1)
 
     def recurse(self, grid, row, column1, column2):
