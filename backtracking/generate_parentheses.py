@@ -29,15 +29,15 @@ def generate_parentheses(number : int = 0) -> list:
     >>> generate_parentheses(0)
     ['']
     """
-    def backtrack(x : str = "",left : int = 0,right : int = 0) -> None:
+    def backtrack(parantheses : str = "",left : int = 0,right : int = 0) -> None:
 
-        if len(x) == 2 * number:
-            result.append(x)
+        if len(parantheses) == 2 * number:
+            result.append(parantheses)
             return
         if left < number:
-            backtrack(x + "(", left + 1, right)
+            backtrack(parantheses + "(", left + 1, right)
         if right < left:
-            backtrack(x + ")", left, right + 1)
+            backtrack(parantheses + ")", left, right + 1)
 
     result = []
     backtrack()
