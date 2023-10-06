@@ -27,4 +27,4 @@ To delve deeper into the world of computer vision, consider exploring these reso
 
 - [Algorithmia - Introduction to Computer Vision](https://www.algorithmia.com/blog/introduction-to-computer-vision): An informative article providing insights into the fundamentals of computer vision and its real-world applications.
 
-Feel free to contribute to this repository and help us expand our understanding of computer vision and its evolving landscape.
+Please consider contributing to this repository to help us further explore the fascinating world of computer vision and its rapidly evolving landscape
