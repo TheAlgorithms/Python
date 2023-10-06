@@ -54,7 +54,7 @@ def dc_current(im: float) -> tuple:
     >>> dc_current(im=0)
     Result(name='Idc', value=0.0)
     """
-    return Result("Idc", 2*im * 0.318)
+    return Result("Idc", 2 * im * 0.318)
 
 
 def dc_voltage(vm: float) -> tuple:
@@ -70,7 +70,7 @@ def dc_voltage(vm: float) -> tuple:
     >>> dc_voltage(vm=0)
     Result(name='Vdc', value=0.0)
     """
-    return Result("Vdc", 2*0.318 * vm)
+    return Result("Vdc", 2 * 0.318 * vm)
 
 
 def max_current(vm: float, rl: float) -> tuple:
@@ -108,7 +108,7 @@ def rms_current(im: float) -> tuple:
     >>> rms_current(im=0)
     Result(name='Irms', value=0.0)
     """
-    return Result("Irms", im*0.707)
+    return Result("Irms", im * 0.707)
 
 
 def rms_voltage(vm: float) -> tuple:
@@ -124,7 +124,7 @@ def rms_voltage(vm: float) -> tuple:
     >>> rms_voltage(vm=0)
     Result(name='Vrms', value=0.0)
     """
-    return Result("Vrms", vm*0.707)
+    return Result("Vrms", vm * 0.707)
 
 
 if __name__ == "__main__":
