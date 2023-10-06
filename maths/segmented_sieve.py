@@ -4,7 +4,22 @@ import math
 
 
 def sieve(n: int) -> list[int]:
-    """Segmented Sieve."""
+    """
+    Segmented Sieve.
+
+    Examples:
+    >>> sieve(2**3)
+    [2, 3, 5, 7]
+
+    >>> sieve(3**3)
+    [2, 3, 5, 7, 11, 13, 17, 19, 23]
+
+    >>> sieve()
+    Traceback (most recent call last):
+        ...
+    TypeError: sieve() missing 1 required positional argument: 'n'
+
+    """
     in_prime = []
     start = 2
     end = int(math.sqrt(n))  # Size of every segment
@@ -42,4 +57,9 @@ def sieve(n: int) -> list[int]:
     return prime
 
 
-print(sieve(10**6))
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
+    print(sieve(10**6))
