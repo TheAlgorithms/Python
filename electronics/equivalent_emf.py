@@ -8,13 +8,13 @@ def equi_emf(cells, connection_type):
         if connection_type == "series":
             tot_int_res += int_res
         elif connection_type == "parallel":
-            
             tot_int_res += 1 / int_res
 
     if connection_type == "parallel":
         tot_int_res = 1 / tot_int_res
 
     return total_emf, tot_int_res
+
 
 def main():
     # Input: Number of cells
@@ -48,6 +48,7 @@ def main():
     print("\nEquivalent Cell Parameters:")
     print(f"Equivalent EMF: {eq_emf} volts")
     print(f"Equivalent Internal Resistance: {eq_int_res} ohms")
+
 
 if __name__ == "__main__":
     main()
