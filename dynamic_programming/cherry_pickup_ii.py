@@ -1,19 +1,34 @@
 '''
-You are given a rows x cols matrix grid representing a field of cherries where grid[i][j] represents the number of cherries that you can collect from the (i, j) cell.
+You are given a rows x cols matrix grid representing a field of
+cherries where grid[i][j] represents the
+number of cherries that you can
+collect from the (i, j) cell.
 
-You have two robots that can collect cherries for you:
+You have two robots that can
+collect cherries for you:
 
-Robot #1 is located at the top-left corner (0, 0), and
-Robot #2 is located at the top-right corner (0, cols - 1).
-Return the maximum number of cherries collection using both robots by following the rules below:
+Robot #1 is located at the top-left 
+corner (0, 0), and
+Robot #2 is located at the
+top-right corner (0, cols - 1).
 
-1. From a cell (i, j), robots can move to cell (i + 1, j - 1), (i + 1, j), or (i + 1, j + 1).
-2. When any robot passes through a cell, It picks up all cherries, and the cell becomes an empty cell.
-3. When both robots stay in the same cell, only one takes the cherries.
-4. Both robots cannot move outside of the grid at any moment.
+Return the maximum number of cherries
+collection using both robots by
+following the rules below:
+
+1. From a cell (i, j), robots can move to cell
+   (i + 1, j - 1), (i + 1, j), or (i + 1, j + 1).
+2. When any robot passes through a cell, 
+   picks up all cherries,
+   and the cell becomes an empty cell.
+3. When both robots stay in the same cell,
+   only one takes the cherries.
+4. Both robots cannot move outside
+   of the grid at any moment.
 5. Both robots should reach the bottom row in grid.
 
-Problem Statement:- https://leetcode.com/problems/cherry-pickup-ii
+Problem Statement:-
+   https://leetcode.com/problems/cherry-pickup-ii
 
 '''
 
@@ -21,14 +36,18 @@ Problem Statement:- https://leetcode.com/problems/cherry-pickup-ii
 from typing import List
 from collections import defaultdict
 
+
 class Solution:
-    def cherryPickup(self, grid: List[List[int]]) -> int:
+    def cherrypickup(self, grid: list[list[int]]) -> int:
         self.dp = defaultdict(int)
         return self.recurse(grid, 0, 0, len(grid[0])-1) 
 
     
     def recurse(self, grid, row, column1, column2):
         # Reached the end
+        if row == len(grid):
+            return 0
+
         if row == len(grid): return 0
         
         # Both robots can't share same tile
@@ -58,5 +77,5 @@ if __name__ == "__main__":
     ]
 
     solution = Solution()
-    result = solution.cherryPickup(grid)
+    result = solution.cherrypickup(grid)
     print(result)  # Output: 19
