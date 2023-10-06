@@ -1,25 +1,27 @@
+from collections.abc import Sequence
+
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 
 
 def create_3d_cube(
-    vertices: list[tuple[float, float, float]], faces: list[list[int]]
+    vertices: Sequence[tuple[float, float, float]], faces: Sequence[Sequence[int]]
 ) -> None:
     """
     Create a 3D cube using Matplotlib.
 
     Args:
-        vertices (List[Tuple[float, float, float]]): List of 8 (x, y, z)
+        vertices (Sequence[Tuple[float, float, float]]): Sequence of 8 (x, y, z)
         vertex coordinates.
 
-        faces (List[List[int]]): List of 12 face definitions, where each face is a
-        list of 4 vertex indices.
+        faces (Sequence[Sequence[int]]): Sequence of 12 face definitions, where each
+        face is a sequence of 4 vertex indices.
 
     Example:
         >>> vertices = [(0, 0, 0), (1, 0, 0), (1, 1, 0), (0, 1, 0),
         ...             (0, 0, 1), (1, 0, 1), (1, 1, 1), (0, 1, 1)]
         >>> faces = [(0, 1, 2, 3), (4, 5, 6, 7), (0, 3, 7, 4),
-        ...         (1, 2, 6, 5), (0, 1, 5, 4), (2, 3, 7, 6)]
+        ...          (1, 2, 6, 5), (0, 1, 5, 4), (2, 3, 7, 6)]
         >>> create_3d_cube(vertices, faces)  # doctest: +SKIP
     """
     fig = plt.figure()
