@@ -24,7 +24,7 @@ def finding_kth_root(number: float, deg: int, decimal_place: int) -> float:
     >>> finding_kth_root(5, 1, 3)
     5.0
     >>> finding_kth_root(0, 2, 2)
-    0
+    0.0
     >>> finding_kth_root(125.7, 2, 0)
     11.0
     >>> finding_kth_root(-123, 5, 3)
@@ -68,9 +68,9 @@ def finding_kth_root(number: float, deg: int, decimal_place: int) -> float:
             lo = mid
 
     if number < 0:
-        return -round(lo, decimal_place)
+        return -round(float(lo), decimal_place)
 
-    return round(lo, decimal_place)
+    return round(float(lo), decimal_place)
 
 
 if __name__ == "__main__":
