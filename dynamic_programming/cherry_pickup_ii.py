@@ -1,4 +1,4 @@
-'''
+"""
 You are given a rows x cols matrix grid representing a field of cherries where grid[i][j] represents the number of cherries that you can collect from the (i, j) cell.
 
 You have two robots that can collect cherries for you:
@@ -15,44 +15,44 @@ Return the maximum number of cherries collection using both robots by following 
 
 Problem Statement:- https://leetcode.com/problems/cherry-pickup-ii
 
-'''
+"""
 
-		
+
 from typing import List
 from collections import defaultdict
+
 
 class Solution:
     def cherryPickup(self, grid: List[List[int]]) -> int:
         self.dp = defaultdict(int)
-        return self.recurse(grid, 0, 0, len(grid[0])-1) 
+        return self.recurse(grid, 0, 0, len(grid[0]) - 1)
 
-    
     def recurse(self, grid, r, c1, c2):
         # Reached the end
-        if r == len(grid): return 0
-        
+        if r == len(grid):
+            return 0
+
         # Both robots can't share same tile
-        if c1 == c2: return float('-inf')
+        if c1 == c2:
+            return float("-inf")
 
         if 0 <= r < len(grid) and 0 <= c1 < len(grid[0]) and 0 <= c2 < len(grid[0]):
             res = 0
-            for y1 in [c1-1, c1, c1+1]:
-                for y2 in [c2-1, c2, c2+1]:
-                    if self.dp.get((r+1, y1, y2)): val = self.dp[(r+1, y1, y2)]
-                    else: val = self.recurse(grid, r+1, y1, y2)
+            for y1 in [c1 - 1, c1, c1 + 1]:
+                for y2 in [c2 - 1, c2, c2 + 1]:
+                    if self.dp.get((r + 1, y1, y2)):
+                        val = self.dp[(r + 1, y1, y2)]
+                    else:
+                        val = self.recurse(grid, r + 1, y1, y2)
                     res = max(res, val)
-                    
+
             self.dp[(r, c1, c2)] = grid[r][c1] + grid[r][c2] + res
             return grid[r][c1] + grid[r][c2] + res
 
-        
-        return float('-inf')
+        return float("-inf")
 
-grid = [
-    [3, 1, 1],
-    [2, 5, 1],
-    [1, 5, 3]
-]
+
+grid = [[3, 1, 1], [2, 5, 1], [1, 5, 3]]
 
 solution = Solution()
 result = solution.cherryPickup(grid)
