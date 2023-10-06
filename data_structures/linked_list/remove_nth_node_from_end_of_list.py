@@ -21,7 +21,7 @@ class LinkedList:
     def __init__(self) -> None:
         self.head: Node | None = None
 
-    # from middle_element_of_linked_list
+    # pulled from middle_element_of_linked_list
     def append(self, new_data: int) -> int:
         """
         >>> link = LinkedList()
