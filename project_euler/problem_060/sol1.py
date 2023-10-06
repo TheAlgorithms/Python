@@ -43,13 +43,13 @@ def sieve_of_eratosthenes(limit: int) -> list[int]:
     return primes
 
 
-def is_prime(number: int, k: int = 3) -> bool:
+def is_prime(number: int, test_size: int = 3) -> bool:
     """
     Tests if a given number is prime using the Miller-Rabin primality test.
 
     Parameters:
     number (int): The number to be tested for primality.
-    k (int): The number of iterations for the Miller-Rabin test.
+    test_size (int): The number of iterations for the Miller-Rabin test.
 
     Returns:
     bool: True if the number is probably prime, False otherwise.
@@ -69,7 +69,7 @@ def is_prime(number: int, k: int = 3) -> bool:
         s, d = 0, number - 1
         while d % 2 == 0:
             s, d = s + 1, d >> 1
-        for a in random.sample(range(2, number - 2), k):
+        for a in random.sample(range(2, number - 2), test_size):
             x = pow(a, d, number)
             if x != 1 and x + 1 != number:
                 for _ in range(1, s):
