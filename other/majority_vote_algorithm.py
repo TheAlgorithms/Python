@@ -13,7 +13,7 @@ def majority_element(total_votes: list[int], min_votes_required: int) -> list[in
     >>> majority_element([1, 2, 2, 3, 1, 3, 2],3)
     [2]
     """
-    majority_candidate_counter: dict[str, int] = collections.Counter()
+    majority_candidate_counter: Counter[int, int] = collections.Counter()
     for vote in total_votes:
         majority_candidate_counter[vote] += 1
         if len(majority_candidate_counter) == min_votes_required:
