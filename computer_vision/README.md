@@ -1,11 +1,30 @@
 # Computer Vision
 
-Computer vision is a field of computer science that works on enabling computers to see, identify and process images in the same way that human does, and provide appropriate output.
+Computer vision is a fascinating field of computer science dedicated to enabling computers to mimic human vision processes, including image recognition, interpretation, and the extraction of meaningful information from visual data. This technology has applications in a wide range of domains, from self-driving cars to medical image analysis.
 
-It is like imparting human intelligence and instincts to a computer.
-Image processing and computer vision are a little different from each other. Image processing means applying some algorithms for transforming image from one form to the other like smoothing, contrasting, stretching, etc.
+## What is Computer Vision?
 
-While computer vision comes from modelling image processing using the techniques of machine learning, computer vision applies machine learning to recognize patterns for interpretation of images (much like the process of visual reasoning of human vision).
+At its core, computer vision strives to replicate the remarkable abilities of human vision, allowing computers to:
 
-* <https://en.wikipedia.org/wiki/Computer_vision>
-* <https://www.algorithmia.com/blog/introduction-to-computer-vision>
+- **See**: Capture and acquire images or video streams from various sources, such as cameras or sensors.
+- **Identify**: Recognize objects, people, text, and other visual elements within these images.
+- **Process**: Analyze and manipulate images to extract relevant information.
+- **Interpret**: Make decisions and take actions based on the visual data, similar to how humans perceive their surroundings.
+
+## Image Processing vs. Computer Vision
+
+While closely related, image processing and computer vision are distinct concepts:
+
+- **Image Processing**: Image processing involves applying a set of algorithms to manipulate images, enhancing their quality or extracting specific features. Operations may include smoothing, contrast adjustment, and edge detection.
+
+- **Computer Vision**: Computer vision goes beyond image processing by incorporating machine learning techniques to enable computers to understand and interpret visual data. It focuses on recognizing patterns, objects, and structures within images and videos.
+
+## Resources
+
+To delve deeper into the world of computer vision, consider exploring these resources:
+
+- [Wikipedia - Computer Vision](https://en.wikipedia.org/wiki/Computer_vision): A comprehensive overview of computer vision's history, concepts, and applications.
+
+- [Algorithmia - Introduction to Computer Vision](https://www.algorithmia.com/blog/introduction-to-computer-vision): An informative article providing insights into the fundamentals of computer vision and its real-world applications.
+
+Feel free to contribute to this repository and help us expand our understanding of computer vision and its evolving landscape.
