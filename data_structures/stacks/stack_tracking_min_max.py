@@ -1,22 +1,30 @@
-"""
-Python3 stack implementation that retrieves min/max elements of the stack in constant time
-"""
 from __future__ import annotations
+
 import math
 
 """
-Object stored on the stack
+Python3 stack implementation that retrieves min/max
+elements of the stack in constant time
 """
+
+
 class StackData:
-    def __init__(self, current_value: float, min_value: float, max_value: float) -> None:
+    """
+    Object stored on the stack
+    """
+
+    def __init__(self, current_value: float, min_value: float
+                 , max_value: float) -> None:
         self.current_value = current_value
         self.min_value = min_value
         self.max_value = max_value
 
-"""
-Main stack implementation
-"""
+
 class MinMaxStack:
+    """
+    Main stack implementation
+    """
+
     def __init__(self, max_stack_size: int = 10) -> None:
         self.max_size = max_stack_size
         self.stack = []
@@ -35,12 +43,13 @@ class MinMaxStack:
         >>> test_stack.push_value(4)
         Traceback (most recent call last):
             ...
-        Exception: Max stack size reached. Remove elements before adding new ones or increase stack size.
+        Exception: Max stack size reached. Remove elements before
+        adding new ones or increase stack size.
 
         """
 
         if len(self.stack) == self.max_size:
-            raise Exception("Max stack size reached. Remove elements before adding new ones or increase stack size.")
+            raise Exception("Max stack size reached.")
 
         if len(self.stack) == 0:
             self.stack.append(StackData(value, value, value))
@@ -80,7 +89,7 @@ class MinMaxStack:
         """
         Get the highest value on the stack in constant time
 
-        test_stack = MinMaxStack(3)
+        >>> test_stack = MinMaxStack(3)
         >>> test_stack.push_value(-450.45)
         True
         >>> test_stack.push_value(450.45)
@@ -154,3 +163,4 @@ class MinMaxStack:
 if __name__ == "__main__":
     from doctest import testmod
     testmod()
+
