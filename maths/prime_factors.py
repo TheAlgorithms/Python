@@ -65,9 +65,7 @@ def unique_prime_factors(n: int) -> list[int]:
     True
     >>> unique_prime_factors(10**-354)
     []
-    >>> unique_prime_factors(
-
-    )
+    >>> unique_prime_factors('hello')
     Traceback (most recent call last):
         ...
     TypeError: '<=' not supported between instances of 'int' and 'str'
