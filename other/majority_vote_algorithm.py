@@ -16,7 +16,7 @@ def majority_element(votes: list[int], votes_needed_to_win: int) -> list[int]:
     >>> majority_element([1, 2, 2, 3, 1, 3, 2], 4)
     [1, 2, 3]
     """
-    majority_candidate_counter : Counter[int] = Counter()
+    majority_candidate_counter: Counter[int] = Counter()
     for vote in votes:
         majority_candidate_counter[vote] += 1
         if len(majority_candidate_counter) == votes_needed_to_win:
