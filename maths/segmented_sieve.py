@@ -8,13 +8,22 @@ def sieve(n: int) -> list[int]:
     Segmented Sieve.
 
     Examples:
-    >>> sieve(2**3)
+    >>> sieve(8)
     [2, 3, 5, 7]
 
-    >>> sieve(3**3)
+    >>> sieve(27)
     [2, 3, 5, 7, 11, 13, 17, 19, 23]
 
     """
+
+    if n < 0:
+        word = f"Number should not be negative n {n}"
+        raise ValueError(word)
+
+    if n == 0:
+        word = f"Number should not be zero n {n}"
+        raise ValueError(word)
+    
     in_prime = []
     start = 2
     end = int(math.sqrt(n))  # Size of every segment
