@@ -45,9 +45,9 @@ def floyd_warshall(adjacency_matrix: list[list[int]], n: int) -> list[list[int]]
     for intermediate_vertex in range(n):
         for vertex1 in range(n):
             for vertex2 in range(n):
-                check1=(shortest_distance[vertex1][intermediate_vertex] != sys.maxsize)
-                check2=(shortest_distance[intermediate_vertex][vertex2] != sys.maxsize)
-                if (check1 and check2):
+                check1 = shortest_distance[vertex1][intermediate_vertex] != sys.maxsize
+                check2 = shortest_distance[intermediate_vertex][vertex2] != sys.maxsize
+                if check1 and check2:
                     shortest_distance[vertex1][vertex2] = min(
                         shortest_distance[vertex1][vertex2],
                         shortest_distance[vertex1][intermediate_vertex]
