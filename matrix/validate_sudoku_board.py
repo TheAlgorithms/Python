@@ -60,7 +60,9 @@ def is_valid_sudoku_board(sudoku_board: list[list[str]]) -> bool:
     Traceback (most recent call last):
         ...
     Exception: Number of rows must be 9.
-    >>> is_valid_sudoku_board([["1"], ["2"], ["3"], ["4"], ["5"], ["6"], ["7"], ["8"], ["9"]])
+    >>> is_valid_sudoku_board(
+    ...        [["1"], ["2"], ["3"], ["4"], ["5"], ["6"], ["7"], ["8"], ["9"]])
+    ...  )
     Traceback (most recent call last):
         ...
     Exception: Number of columns must be 9.
