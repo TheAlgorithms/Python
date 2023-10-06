@@ -1,20 +1,22 @@
 import vtkmodules.all as vtk
+from vtkmodules.util.colors import tomato, white
 
 
-def create_renderer():
+def create_renderer() -> vtk.vtkRenderWindowInteractor:
     """
-    Create a VTK renderer with a 3D scene containing a multicolored cube on a white bg.
+    Create a VTK renderer with a 3D scene containing a multicolored cube 
+    on a white background.
 
     This function creates a VTK renderer with a 3D scene containing a
     multicolored cube on a white background.
 
     Returns:
-        vtk.vtkRenderer: A VTK renderer with the 3D scene.
+        vtk.vtkRenderWindowInteractor: A VTK render window interactor for interaction.
 
     Example:
-        >>> renderer = create_renderer()
-        >>> isinstance(renderer, vtk.vtkRenderer)
-        False
+        >>> render_window_interactor = create_renderer()
+        >>> isinstance(render_window_interactor, vtk.vtkRenderWindowInteractor)
+        True
     """
     # Create a VTK renderer
     renderer = vtk.vtkRenderer()
@@ -39,8 +41,7 @@ def create_renderer():
     cube_actor.SetMapper(cube_mapper)
 
     # Set the cube's colors
-    colors = vtk.vtkNamedColors()
-    cube_actor.GetProperty().SetColor(colors.GetColor3d("Tomato"))
+    cube_actor.GetProperty().SetColor(tomato)
     cube_actor.GetProperty().SetDiffuse(0.7)
     cube_actor.GetProperty().SetSpecular(0.4)
 
@@ -48,19 +49,19 @@ def create_renderer():
     renderer.AddActor(cube_actor)
 
     # Set the background color of the renderer to white
-    renderer.SetBackground(colors.GetColor3d("White"))
+    renderer.SetBackground(white)
 
     # Set up the camera position and focal point
     renderer.GetActiveCamera().Azimuth(30)
     renderer.GetActiveCamera().Elevation(30)
     renderer.ResetCamera()
 
-    return render_window
+    return render_window_interactor
 
 
 if __name__ == "__main__":
     # Create a VTK renderer with a 3D scene
-    render_window = create_renderer()
+    render_window_interactor = create_renderer()
 
     # Use doctest to test the function
     import doctest
@@ -73,7 +74,4 @@ if __name__ == "__main__":
         print(f"{result.failed} test(s) failed.")
 
     # Initialize the interactor and start the rendering loop
-    render_window.Render()
-
-    render_window_interactor = render_window.GetInteractor()
     render_window_interactor.Start()
