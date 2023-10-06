@@ -1,8 +1,12 @@
 """Learn more about this algorithm: https://www.geeksforgeeks.org/delete-nth-node-from-the-end-of-the-given-linked-list/"""
 
+
 from __future__ import annotations
 
+from dataclasses import dataclass
 
+
+@dataclass
 class Node:
     def __init__(self, data: int) -> None:
         self.data = data
@@ -55,7 +59,9 @@ class LinkedList:
         """
         >>> link = LinkedList()
         >>> link.remove_nth_from_end(3)
-        No element found.
+        Traceback (most recent call last):
+        ...
+        IndexError: No element found.
         >>> link.append(5)
         5
         >>> link.append(6)
@@ -70,6 +76,10 @@ class LinkedList:
         12
         >>> link.append(17)
         17
+        >>> link.remove_nth_from_end(100)
+        Traceback (most recent call last):
+        ...
+        IndexError: Index out of boundes error.
         >>> link.append(-25)
         -25
         >>> link.append(-20)
@@ -81,8 +91,7 @@ class LinkedList:
         # want to have two pointers, one at the start and the other k nodes forward
         # We could complete this in one pass if we stored a self.size variable
         if not self.head:
-            print("No element found.")
-            return None
+            raise IndexError("No element found.")
 
         size = 0
         current: Node | None = self.head
@@ -91,7 +100,7 @@ class LinkedList:
             current = current.next
 
         if position_from_end > size or position_from_end <= 0:
-            print(f"Try with an N in range of: 1 to {size}")
+            raise IndexError("Index out of boundes error.")
             return None
 
         first: Node | None = self.head
