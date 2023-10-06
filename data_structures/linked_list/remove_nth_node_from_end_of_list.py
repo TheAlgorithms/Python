@@ -43,7 +43,9 @@ class LinkedList:
         """
         >>> link = LinkedList()
         >>> link.append(5)
+        5
         >>> link.append(6)
+        6
         >>> link.view()
         '6->5'
         """
@@ -79,13 +81,13 @@ class LinkedList:
         >>> link.remove_nth_from_end(100)
         Traceback (most recent call last):
         ...
-        IndexError: Index out of boundes error.
+        IndexError: Index out of bounds error.
         >>> link.append(-25)
         -25
         >>> link.append(-20)
         -20
         >>> link.remove_nth_from_end(3)
-        5->6->8->8->10->12->-25->-20
+        Node()
         >>>
         """
         # want to have two pointers, one at the start and the other k nodes forward
@@ -100,13 +102,19 @@ class LinkedList:
             current = current.next
 
         if position_from_end > size or position_from_end <= 0:
-            raise IndexError("Index out of boundes error.")
+            raise IndexError("Index out of bounds error.")
             return None
 
         first: Node | None = self.head
         for _i in range(position_from_end):
             if first:
                 first = first.next
+
+        # This condition checks if position_from_end is equal to the size of the list.
+        # If it is, then we simply delete the head node of the list.
+        if not first:
+            self.head = self.head.next if self.head else None
+            return self.head
 
         second: Node | None = self.head
         prev: Node | None = None
@@ -119,8 +127,6 @@ class LinkedList:
 
         if prev and second:
             prev.next = second.next
-        elif not prev and self.head:
-            self.head = self.head.next
 
         return self.head
 
