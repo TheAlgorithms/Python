@@ -2,6 +2,7 @@ def swap(collection, i, j):
     """Swap elements at indices i and j in the collection."""
     collection[i], collection[j] = collection[j], collection[i]
 
+
 def double_sort(collection):
     """
     This sorting algorithm sorts an array using the principle of bubble sort,
