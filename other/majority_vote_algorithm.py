@@ -9,8 +9,12 @@ from collections import Counter
 
 def majority_element(total_votes: list[int], max_candidates: int) -> list[int]:
     """
-    >>> majority_element([1, 2, 2, 3, 1, 3, 2],3)
+    >>> majority_element([1, 2, 2, 3, 1, 3, 2], 3)
     [2]
+    >>> majority_element([1, 2, 2, 3, 1, 3, 2], 2)
+    ?
+    >>> majority_element([1, 2, 2, 3, 1, 3, 2], 4)
+    ?
     """
     majority_candidate_counter: Counter[int] = Counter()
     for vote in total_votes:
