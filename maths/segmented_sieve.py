@@ -23,7 +23,7 @@ def sieve(n: int) -> list[int]:
     if n == 0:
         word = f"Number should not be zero n {n}"
         raise ValueError(word)
-    
+
     in_prime = []
     start = 2
     end = int(math.sqrt(n))  # Size of every segment
