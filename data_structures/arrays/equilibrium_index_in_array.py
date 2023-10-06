@@ -25,8 +25,8 @@ def equilibrium_index(arr: list[int], size: int) -> int:
     Find the equilibrium index of an array.
 
     Args:
-        arr (List[int]): The input array of integers.
-        n (int): The size of the array.
+        arr : The input array of integers.
+        size : The size of the array.
 
     Returns:
         int: The equilibrium index or -1 if no equilibrium index exists.
