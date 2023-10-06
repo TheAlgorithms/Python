@@ -9,17 +9,16 @@ https://en.wikipedia.org/wiki/Naive_Bayes_classifier
 """
 
 import doctest
+
 import numpy as np
-from numpy.typing import ArrayLike
+import numpy.typing as npt
 from scipy import sparse
-from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.datasets import fetch_20newsgroups
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import accuracy_score
 
 
-
-
-def group_indices_by_target(targets: ArrayLike) -> dict:
+def group_indices_by_target(targets: npt.ArrayLike) -> dict:
     """
     Associates to each target label the indices of the examples with that label
 
@@ -49,24 +48,24 @@ def group_indices_by_target(targets: ArrayLike) -> dict:
 
 
 class MultinomialNBClassifier:
-    def __init__(self, alpha=1):
+    def __init__(self, alpha: int = 1):
         self.classes = None
         self.features_probs = None
         self.priors = None
         self.alpha = alpha
 
-    def fit(self, data: sparse.csr_matrix, y: ArrayLike) -> None:
+    def fit(self, data: sparse.csr_matrix, targets: npt.ArrayLike) -> None:
         """
         Parameters
         ----------
         data : scipy.sparse.csr_matrix of shape (n_samples, n_features)
             Multinomial training examples
 
-        y : array-like of shape (n_samples,)
+        targets : array-like of shape (n_samples,)
             Target labels
         """
         n_examples, n_features = data.shape
-        grouped_indices = group_indices_by_target(y)
+        grouped_indices = group_indices_by_target(targets)
         self.classes = list(grouped_indices.keys())
         self.priors = np.zeros(shape=len(self.classes))
         self.features_probs = np.zeros(shape=(len(self.classes), n_features))
@@ -76,15 +75,13 @@ class MultinomialNBClassifier:
             prior_class_i = data_class_i.shape[0] / n_examples
             self.priors[i] = prior_class_i
             tot_features_count = data_class_i.sum()  # count of all features in class_i
-            features_count = np.array(data_class_i.sum(axis=0))[
-                0
-            ]  # count of each feature x_j in class_i
+            features_count = np.array(data_class_i.sum(axis=0))[0]
             for j, n_j in enumerate(features_count):
                 self.features_probs[i][j] = (self.alpha + n_j) / (
                     tot_features_count + self.alpha * n_features
                 )
 
-    def predict(self, data: sparse.csr_matrix) -> np.array:
+    def predict(self, data: sparse.csr_matrix) -> np.ndarray:
         """
         Parameters
         ----------
@@ -123,9 +120,6 @@ class MultinomialNBClassifier:
 
 
 def main() -> None:
-    """
-    Performs the text classification on the twenty_newsgroup dataset from sklearn
-    """
     newsgroups_train = fetch_20newsgroups(subset="train")
     newsgroups_test = fetch_20newsgroups(subset="test")
     x_train = newsgroups_train["data"]
