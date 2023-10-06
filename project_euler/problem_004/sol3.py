@@ -51,5 +51,4 @@ def find_palindrome_products() -> list:
 
 if __name__ == "__main__":
     palindromes = find_palindrome_products()
-    print("solution() =" , max(palindromes)[0])
-
+    print("solution() =", max(palindromes)[0])
