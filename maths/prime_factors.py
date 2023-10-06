@@ -45,6 +45,7 @@ def prime_factors(n: int) -> list[int]:
         factors.append(n)
     return factors
 
+
 def unique_prime_factors(n: int) -> list[int]:
     """
     Returns unique prime factors of n as a list.
@@ -65,7 +66,7 @@ def unique_prime_factors(n: int) -> list[int]:
     >>> unique_prime_factors(10**-354)
     []
     >>> unique_prime_factors(
-        
+
     )
     Traceback (most recent call last):
         ...
