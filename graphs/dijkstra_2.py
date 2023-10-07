@@ -14,7 +14,6 @@ def print_dist(dist, v):
     2       3
     3       INF
     """
-
     print("\nVertex Distance")
     for i in range(v):
         if dist[i] != float("inf"):
@@ -56,7 +55,10 @@ def dijkstra(graph, v, src):
     src (int): The source vertex.
 
     Example:
-    >>> graph = [[0.0, 2.0, float('inf'), 1.0], [2.0, 0.0, 4.0, float('inf')], [float('inf'), 4.0, 0.0, 3.0], [1.0, float('inf'), 3.0, 0.0]]
+    >>> graph = [[0.0, 2.0, float('inf'), 1.0], 
+                [2.0, 0.0, 4.0, float('inf')], 
+                [float('inf'), 4.0, 0.0, 3.0], 
+                [1.0, float('inf'), 3.0, 0.0]]
     >>> dijkstra(graph, 4, 0)
     Vertex Distance
     0       0
@@ -64,7 +66,6 @@ def dijkstra(graph, v, src):
     2       3
     3       1
     """
-    
     mdist = [float("inf") for _ in range(v)]
     vset = [False for _ in range(v)]
     mdist[src] = 0.0
@@ -81,7 +82,7 @@ def dijkstra(graph, v, src):
             ):
                 mdist[i] = mdist[u] + graph[u][i]
 
-    print_dist(mdist, i)
+    print_dist(mdist, v)
 
 
 if __name__ == "__main__":
