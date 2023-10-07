@@ -1,6 +1,6 @@
 def remove_invalid_parentheses(input_string: str) -> list[str]:
     """
-    Removes the minimum number of invalid parentheses 
+    Removes the minimum number of invalid parentheses
     to make the input string valid.
 
     Args:
@@ -19,6 +19,7 @@ def remove_invalid_parentheses(input_string: str) -> list[str]:
         >>> remove_invalid_parentheses(")(")
         ['']
     """
+
     def is_valid(next_string: str) -> bool:
         """
         Helper function to check if a string has valid parentheses.
@@ -28,7 +29,7 @@ def remove_invalid_parentheses(input_string: str) -> list[str]:
 
         Returns:
             bool: True if the parentheses in the string are valid, False otherwise.
-        
+
         Examples:
         >>> is_valid("(a)())")
         False
@@ -42,15 +43,17 @@ def remove_invalid_parentheses(input_string: str) -> list[str]:
         """
         count: int = 0
         for char in next_string:
-            if char == '(':
+            if char == "(":
                 count += 1
-            elif char == ')':
+            elif char == ")":
                 count -= 1
                 if count < 0:
                     return False
         return count == 0
 
-    def dfs(current_string: str, start_index: int, left_removed: int, right_removed: int) -> None:
+    def dfs(
+        current_string: str, start_index: int, left_removed: int, right_removed: int
+    ) -> None:
         """
         Depth-first search function to generate valid combinations
         of the input string.
@@ -79,19 +82,28 @@ def remove_invalid_parentheses(input_string: str) -> list[str]:
         for i in range(start_index, len(current_string)):
             if i > start_index and current_string[i] == current_string[i - 1]:
                 continue
-            if current_string[i] == '(' and left_removed > 0:
-                dfs(current_string[:i] + current_string[i + 1:],
-                    i, left_removed - 1, right_removed)
-            elif current_string[i] == ')' and right_removed > 0:
-                dfs(current_string[:i] + current_string[i + 1:],
-                    i, left_removed, right_removed - 1)
+            if current_string[i] == "(" and left_removed > 0:
+                dfs(
+                    current_string[:i] + current_string[i + 1 :],
+                    i,
+                    left_removed - 1,
+                    right_removed,
+                )
+            elif current_string[i] == ")" and right_removed > 0:
+                dfs(
+                    current_string[:i] + current_string[i + 1 :],
+                    i,
+                    left_removed,
+                    right_removed - 1,
+                )
+
     valid_parentheses: set = set()
     left_removed_count: int = 0
     right_removed_count: int = 0
     for char in input_string:
-        if char == '(':
+        if char == "(":
             left_removed_count += 1
-        elif char == ')':
+        elif char == ")":
             if left_removed_count > 0:
                 left_removed_count -= 1
             else:
@@ -102,4 +114,5 @@ def remove_invalid_parentheses(input_string: str) -> list[str]:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
