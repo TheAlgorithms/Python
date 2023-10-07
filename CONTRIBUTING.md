@@ -42,7 +42,7 @@ GitHub will use this tag to [auto-close the issue](https://docs.github.com/en/is
 
 If you want to mark check boxes while committing a PR,
 __Do's__
-* Mark the box emptu box [ ] with the small letter 'x' so
+* Mark the box empty box [ ] with the small letter 'x' so
   - Uncheck box : [ ]
   - Checked Box : [x]
 
