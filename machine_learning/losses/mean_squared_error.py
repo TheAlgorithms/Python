@@ -25,3 +25,8 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     mse = np.mean(squared_errors)
 
     return mse
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
