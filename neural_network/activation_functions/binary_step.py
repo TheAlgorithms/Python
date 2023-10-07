@@ -1,8 +1,12 @@
 """
 This script demonstrates the implementation of the Binary Step function.
 
-It's a kind of activation functionif in which if the input to the activation function is greater than a threshold,
-the neuron is activated, else it is deactivated
+It's an activation function in which if the input to the 
+activation function is greater than a threshold, the neuron is 
+activated, else it is deactivated
+
+It's a simple activation function which is mentioned in this wikipedia article:
+https://en.wikipedia.org/wiki/Activation_function
 """
 
 
