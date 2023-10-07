@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def binary_cross_entropy(y_true, y_pred, epsilon=1e-15):
+def binary_cross_entropy(y_true: list[int], y_pred: list[float], epsilon: int=1e-15) -> float:
     """
     Calculate the BCE Loss between true labels and predicted probabilities.
 
