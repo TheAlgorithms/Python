@@ -1,7 +1,7 @@
 # Min-Max probelem solved using Divide and Conquer
 def find_min_max(arr, left, right):
     """
-    Finds the minimum and maximum elements in an array using a divide and conquer method.
+    Finds the minimum and maximum elements in an array using divide and conquer method.
 
     Args:
         arr (list): The input array.
