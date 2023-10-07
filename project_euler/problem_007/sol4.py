@@ -32,13 +32,13 @@ def nth_prime(n: int) -> [int]:
         if prime_counter == n:
             return num
 
+
 def solution() -> int:
     """
     Returns the 10001st prime number.
     """
-    result = nth_prime(10001)
 
-    if result is not None:
+    if (result := nth_prime(10001)) is not None:
         return result
     else:
         return -1
