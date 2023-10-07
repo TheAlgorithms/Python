@@ -1,4 +1,4 @@
-#Min-Max probelem solved using Divide and Conquer
+# Min-Max probelem solved using Divide and Conquer
 def find_min_max(arr, left, right):
     """
     Finds the minimum and maximum elements in an array using a divide and conquer method.
@@ -48,9 +48,8 @@ def find_min_max(arr, left, right):
     # Combine the results from the two halves to find the overall minimum and maximum.
     return min(min1, min2), max(max1, max2)
 
+
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
-
