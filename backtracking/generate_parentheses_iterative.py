@@ -14,16 +14,16 @@
     5. Return the result containing all valid combinations.
 
     Args:
-        n (int): The desired length of the parentheses combinations.
+        n (int): The desired length of the parentheses combinations
 
     Returns:
-        list: A list of strings representing valid combinations of parentheses.
+        list: A list of strings representing valid combinations of parentheses
 
     Time Complexity:
-        O(2^(2n)).
+        O(2^(2n))
 
     Space Complexity:
-        O(2^(2n)).
+        O(2^(2n))
 """
 
 
