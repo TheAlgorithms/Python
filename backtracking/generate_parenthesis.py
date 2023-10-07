@@ -128,6 +128,7 @@ def print_all_parenthesis(total_list: list[str]) -> None:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     n = 3
