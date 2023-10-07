@@ -25,9 +25,22 @@ Dynamic Programming: top -> down.
 """
 import datetime
 
-import pytz
 
-tz_maroc = pytz.timezone("Africa/Casablanca")
+class CustomTimeZone(datetime.tzinfo):
+    def utcoffset(self, dt):
+        print(dt)
+        return datetime.timedelta(hours=1)
+
+    def dst(self, dt):
+        print(dt)
+        return datetime.timedelta(0)
+
+    def tzname(self, dt):
+        print(dt)
+        return "Custom Time Zone"
+
+
+tz_maroc = CustomTimeZone()
 
 now_maroc = datetime.datetime.now(tz=tz_maroc)
 
