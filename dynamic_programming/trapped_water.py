@@ -12,7 +12,7 @@ The amount of water that will be stored is equal to minimum of maximum height of
 on both sides minus height of bar at current position.
 """
 
-def trapped_rainwater(height: list[int] = None) -> int:
+def trapped_rainwater(height : list[int] = None) -> int:
     """
     The trapped_rainwater function calculates the total amount of rainwater
     that can be trapped given an array of bar heights.
