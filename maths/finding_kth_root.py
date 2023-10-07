@@ -55,13 +55,13 @@ def finding_kth_root(number: float, deg: int, decimal_place: int) -> float:
         hi = -number
 
     error = 1.0
-    for i in range(decimal_place + 1):
+    for _i in range(decimal_place + 1):
         error /= 10
 
     while hi - lo >= error:  # Precision is not reached, continue looping
         mid = (hi + lo) / 2
         product = 1.0
-        for i in range(deg):
+        for _i in range(deg):
             product *= mid
 
         if product > abs(number):  # Overestimation, higher bound decreases to mid
