@@ -23,14 +23,14 @@ def backtrack(
     (0, 1)
     >>> backtrack(10, 3, 1, 0, 0)
     (0, 0)
-    >>> backtrack(46, 2, 1, 0, 0)
-    (0, 2)
-    >>> backtrack(10, 10, 1, 0, 0)
-    (0, 0)
-    >>> backtrack(40, 2, 1, 0, 0)
+    >>> backtrack(20, 2, 1, 0, 0)
     (0, 1)
-    >>> backtrack(50, 1, 1, 0, 0)
-    (0, 3658)
+    >>> backtrack(15, 10, 1, 0, 0)
+    (0, 0)
+    >>> backtrack(16, 2, 1, 0, 0)
+    (0, 1)
+    >>> backtrack(20, 1, 1, 0, 0)
+    (0, 64)
     """
     if current_sum == needed_sum:
         # If the sum of the powers is equal to needed_sum, then we have a solution.
@@ -61,13 +61,13 @@ def solve(needed_sum: int, power: int) -> int:
     1
     >>> solve(10, 3)
     0
-    >>> solve(46, 2)
-    2
-    >>> solve(10, 10)
-    0
-    >>> solve(40, 2)
+    >>> solve(20, 2)
     1
-    >>> solve(50, 1)
+    >>> solve(15, 10)
+    0
+    >>> solve(16, 2)
+    1
+    >>> solve(20, 1)
     Traceback (most recent call last):
         ...
     ValueError: Invalid input
