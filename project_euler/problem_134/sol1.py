@@ -77,7 +77,7 @@ def chinese_reminder(reminders: list[int], modulos: list[int]) -> int:
         total_prod *= p[i]
 
     for i in range(1, k):
-        prod *= p[i-1]
+        prod *= p[i - 1]
         ans += x[i] * prod
         ans %= total_prod
     return ans
@@ -122,7 +122,7 @@ def get_s(p1: int, p2: int) -> int:
     """
     k = int(log10(p1)) + 1
     a = [0, p1]
-    p = [p2, 10 ** k]
+    p = [p2, 10**k]
     return chinese_reminder(a, p)
 
 
@@ -136,9 +136,9 @@ def solution(left: int = 5, right: int = 1000000) -> int:
     primes = segmented_sieve(left, right + 500)
     n = len(primes)
     res = 0
-    for i in range(n-1):
+    for i in range(n - 1):
         if left <= primes[i] <= right:
-            res += get_s(primes[i], primes[i+1])
+            res += get_s(primes[i], primes[i + 1])
     return res
 
 
