@@ -17,6 +17,7 @@ from cv2 import (
 
 from digital_image_processing.filters.gaussian_filter import gaussian_filter
 
+
 def my_laplacian(src: np.ndarray, ksize: int) -> np.ndarray:
     """
     :param src: the source image, which should be a grayscale or color image.
@@ -33,7 +34,6 @@ def my_laplacian(src: np.ndarray, ksize: int) -> np.ndarray:
         1: np.array([[0, -1, 0], [-1, 4, -1], [0, -1, 0]]),
         3: np.array([[0, 1, 0], [1, -4, 1], [0, 1, 0]]),
         5: np.array(
-
             [
                 [0, 0, -1, 0, 0],
                 [0, -1, -2, -1, 0],
@@ -41,10 +41,8 @@ def my_laplacian(src: np.ndarray, ksize: int) -> np.ndarray:
                 [0, -1, -2, -1, 0],
                 [0, 0, -1, 0, 0],
             ]
-
         ),
         7: np.array(
-
             [
                 [0, 0, 0, -1, 0, 0, 0],
                 [0, 0, -2, -3, -2, 0, 0],
@@ -54,7 +52,6 @@ def my_laplacian(src: np.ndarray, ksize: int) -> np.ndarray:
                 [0, 0, -2, -3, -2, 0, 0],
                 [0, 0, 0, -1, 0, 0, 0],
             ]
-
         ),
     }
     if ksize not in kernels:
@@ -65,7 +62,6 @@ def my_laplacian(src: np.ndarray, ksize: int) -> np.ndarray:
     return filter2D(
         src, CV_64F, kernels[ksize], 0, borderType=BORDER_DEFAULT, anchor=(0, 0)
     )
-
 
 
 if __name__ == "__main__":
@@ -84,6 +80,5 @@ if __name__ == "__main__":
     imshow("Original image", img)
 
     imshow("Detected edges using laplacian filter", laplacian_image)
-
 
     waitKey(0)
