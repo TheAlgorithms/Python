@@ -1,3 +1,7 @@
+# Python3 program to implement 
+# flood fill algorithm
+
+# Dimensions of paint screen 
 M = 8
 N = 8
 
@@ -27,13 +31,6 @@ def floodFillUtil(screen, x, y, prevC, newC):
 def floodFill(screen, x, y, newC):
 	prevC = screen[x][y]
 	if(prevC==newC):
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-	    return
-floodFillUtil(screen, x, y, prevC, newC)
-=======
->>>>>>> 465d50ba4d94bb4d47859306b64ee2c2622ed279
 	    return
 	floodFillUtil(screen, x, y, prevC, newC)
 
