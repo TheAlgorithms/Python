@@ -76,9 +76,9 @@ class SegmentTree:
 
         >>> s = SegmentTree([1, 2, 3, 4, 5])
         >>> s.query(1, 3)
-        3
+        2
         >>> s.query(1, 5)
-        5
+        7
         """
         return self.query_recursive(1, 0, self.N - 1, a - 1, b - 1)
 
