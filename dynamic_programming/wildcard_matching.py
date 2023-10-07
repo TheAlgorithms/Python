@@ -23,35 +23,11 @@ wildcard matching
 Dynamic Programming: top -> down.
 
 """
-import datetime
+from datetime import datetime, timedelta, timezone
 
+country_timezone = timezone(timedelta(hours=1))
 
-class CustomTimeZone(datetime.tzinfo):
-    def utcoffset(self, dt):
-        print(dt)
-        return datetime.timedelta(hours=0)
-
-    def dst(self, dt):
-        print(dt)
-        return datetime.timedelta(0)
-
-    def tzname(self, dt):
-        print(dt)
-        return "Custom Time Zone"
-
-
-def get_current_time_in_casablanca():
-    tz_maroc = CustomTimeZone()
-    now_maroc = datetime.datetime.now(tz=tz_maroc)
-    return now_maroc
-
-
-current_time_in_casablanca = get_current_time_in_casablanca()
-
-
-tz_maroc = CustomTimeZone()
-
-now_maroc = datetime.datetime.now(tz=tz_maroc)
+current_time_in_country = datetime.now(tz=country_timezone)
 
 
 def is_match(string: str, pattern: str) -> bool:
