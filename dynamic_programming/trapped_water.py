@@ -28,6 +28,8 @@ def trapped_rainwater(height: list[int] = None) -> int:
     """
     if not height:
         return 0
+    if any(height < 0):
+        raise ValueError("No height can be negative")
     length = len(height)
 
     left_max = [0] * length
