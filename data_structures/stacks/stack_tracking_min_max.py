@@ -27,7 +27,7 @@ class MinMaxStack:
 
     def __init__(self, max_stack_size: int = 10) -> None:
         self.max_size = max_stack_size
-        self.stack = []
+        self.stack: list[StackData] = []
 
     def push_value(self, value: float) -> bool:
         """
