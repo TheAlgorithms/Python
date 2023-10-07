@@ -32,8 +32,8 @@ def trapped_rainwater(height: list[int] = None) -> int:
 
     left_max = [0] * length
     left_max[0] = height[0]
-    for i in range(1, length):
-        left_max[i] = max(height[i], left_max[i - 1])
+    for i, height in enumerate(heights, 1):
+        left_max[i] = max(height, left_max[i - 1])
 
     right_max = [0] * length
     right_max[length - 1] = height[length - 1]
