@@ -104,4 +104,3 @@ if __name__ == "__main__":
         print("All tests passed")
     else:
         print(f"{result} test(s) failed")
-    
