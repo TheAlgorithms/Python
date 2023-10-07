@@ -8,7 +8,7 @@ class Item:
     weight: int
     value: int
 
-    def not_really__eq__(self, other: object) -> bool:
+    def __eq__(self, other: 'Item') -> bool:
         return self.weight == other.weight and self.value == other.value
 
 
