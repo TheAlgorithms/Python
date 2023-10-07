@@ -1,7 +1,7 @@
 """
 
 Note:
-    This algorithm has memory persistance.
+    This algorithm has memory persistence.
     So multiple runs on the same runtime will carry junk and scramble the result!
 """
 
