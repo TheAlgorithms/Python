@@ -12,6 +12,7 @@ References:
     - https://en.wikipedia.org/wiki/Prime_number
 """
 
+
 # Function to find the nth prime number
 def nth_prime(n: int) -> [int]:
     """
@@ -40,6 +41,7 @@ def nth_prime(n: int) -> [int]:
         if prime_counter == n:  # If we have found the nth prime number
             return num  # Return the current number
 
+
 # Function to find the solution for Project Euler Problem 7
 def solution() -> int:
     """
@@ -51,6 +53,7 @@ def solution() -> int:
         return result
     else:
         return -1  # Return -1 to indicate an error if input is invalid
+
 
 if __name__ == "__main__":
     print(f"{solution() = }")  # Print the result of the solution function
