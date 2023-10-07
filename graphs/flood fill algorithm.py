@@ -35,7 +35,7 @@ def floodFill(screen, x, y, newC):
 	prevC = screen[x][y]
 	if(prevC==newC):
 <<<<<<< HEAD
-	    return 
+	    return
 floodFillUtil(screen, x, y, prevC, newC)
 =======
 	    return
