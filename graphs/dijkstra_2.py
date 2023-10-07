@@ -9,12 +9,12 @@ def print_dist(dist, v):
     Example:
     >>> print_dist([0.0, 2.0, 3.0, float('inf')], 4)
     Vertex Distance
-    0 	 0
-    1 	 2
-    2 	 3
-    3 	 INF
+    0     0
+    1     2
+    2     3
+    3     INF
     """
-    print("\nVertex Distance")
+    print("Vertex Distance")
     for i in range(v):
         if dist[i] != float("inf"):
             print(i, "\t", int(dist[i]), end="\t")
