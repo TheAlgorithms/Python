@@ -8,7 +8,7 @@ from cv2 import (
     cvtColor,
     filter2D,
     imshow,
-    waitKey,
+    waitKey
 )
 
 from digital_image_processing.filters.gaussian_filter import gaussian_filter
