@@ -22,9 +22,7 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
         raise ValueError("Input arrays must have the same length.")
 
     squared_errors = np.square(np.subtract(y_true, y_pred))
-    mse = np.mean(squared_errors)
-
-    return mse
+    return np.mean(squared_errors)
 
 
 if __name__ == "__main__":
