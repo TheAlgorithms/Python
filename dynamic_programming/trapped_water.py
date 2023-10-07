@@ -28,7 +28,7 @@ def trapped_rainwater(height: list[int]) -> int:
     """
     if not height or height == []:
         return 0
-    if any(height < 0):
+    if any(h < 0 for h in height):
         raise ValueError("No height can be negative")
     length = len(height)
 
