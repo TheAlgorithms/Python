@@ -2,13 +2,12 @@
 # @File    : laplacian_filter.py
 # @Date    : 10/04/2023
 
+import cv2
 from cv2 import (
     BORDER_DEFAULT,
     COLOR_BGR2GRAY,
-    CV_64F,
     cvtColor,
     filter2D,
-    imread,
     imshow,
     waitKey,
 )
@@ -59,13 +58,13 @@ def my_laplacian(ksize: int, src: np.ndarray) -> np.ndarray:
 
     # Apply the Laplacian kernel using convolution
     return filter2D(
-        src, CV_64F, kernels[ksize], 0, borderType=BORDER_DEFAULT, anchor=(0, 0)
+        src, cv2.CV_64F, kernels[ksize], 0, borderType=BORDER_DEFAULT, anchor=(0, 0)
     )
 
 
 if __name__ == "__main__":
     # read original image
-    img = imread(r"../image_data/lena.jpg")
+    img = cv2.imread(r"../image_data/lena.jpg")
 
     # turn image in gray scale value
     gray = cvtColor(img, COLOR_BGR2GRAY)
