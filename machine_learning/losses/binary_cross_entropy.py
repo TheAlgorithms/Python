@@ -32,6 +32,7 @@ def binary_cross_entropy(
 
     return bce_loss
 
+
 if __name__ == "__main__":
     import doctest
 
