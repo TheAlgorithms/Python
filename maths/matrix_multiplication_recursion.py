@@ -20,14 +20,14 @@ def matrix_multiply_recursive(matrix_a: list, matrix_b: list) -> list:
     >>> matrix_a = [[1, 2], [3, 4]]
     >>> matrix_b = [[5, 6], [7, 8]]
     >>> result = [[0, 0], [0, 0]]
-    >>> multiply(0, 0, 0, matrix_a, matrix_b, result)
+    >>> matrix_multiply_recursive(matrix_a, matrix_b)
     >>> result
     [[19, 22], [43, 50]]
 
     >>> matrix_a = [[1, 2], [3, 4]]
     >>> matrix_b = [[5, 6, 7], [8, 9, 10]]
     >>> result = [[0, 0, 0], [0, 0, 0]]
-    >>> multiply(0, 0, 0, matrix_a, matrix_b, result)
+    >>> matrix_multiply_recursive(matrix_a, matrix_b)
     >>> result
         [[21, 24, 27], [47, 54, 61]]
 
@@ -62,15 +62,11 @@ def matrix_multiply_recursive(matrix_a: list, matrix_b: list) -> list:
         >>> matrix_b = [[5, 6], [7, 8]]
         >>> result = [[0, 0], [0, 0]]
         >>> multiply(0, 0, 0, matrix_a, matrix_b, result)
-        >>> result
-        [[19, 22], [43, 50]]
 
         >>> matrix_a = [[1, 2], [3, 4]]
         >>> matrix_b = [[5, 6, 7], [8, 9, 10]]
         >>> result = [[0, 0, 0], [0, 0, 0]]
         >>> multiply(0, 0, 0, matrix_a, matrix_b, result)
-        >>> result
-        [[21, 24, 27], [47, 54, 61]]
 
         """
 
