@@ -26,20 +26,16 @@ def nth_prime(n: int) -> [int]:
     if n < 1:
         return None
 
-    prime_counter = (
-        2  # Initialize the prime counter to 2 since 2 is the first prime 
-    )
+    prime_counter = 2  # Initialize the prime counter to 2 since 2 is the first prime
     for num in range(3, n**2, 2):  # Loop through odd numbers starting from 3
         divisor = 1  # Initialize the divisor to 1
         while (
             divisor * divisor < num
         ):  # Loop through divisors up to the square root of the current number
-            divisor += 2  
-            if (
-                num % divisor == 0
-            ):  # If the current number is divisible by the divisor
+            divisor += 2
+            if num % divisor == 0:  # If the current number is divisible by the divisor
                 break  # Exit the loop
-        else:  
+        else:
             prime_counter += 1  # Increment the prime counter
         if prime_counter == n:  # If we have found the nth prime number
             return num  # Return the current number
