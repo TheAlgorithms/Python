@@ -4,6 +4,7 @@ imageio
 keras
 lxml
 matplotlib
+mypy
 numpy
 opencv-python
 pandas
