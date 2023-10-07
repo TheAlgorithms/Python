@@ -18,7 +18,7 @@ def nth_prime(n: int) -> int:
     int: The nth prime number, or None if n is less than 1.
     """
     if n < 1:
-        return None
+        return 0
 
     prime_counter = 2
     for num in range(3, n**2, 2):
