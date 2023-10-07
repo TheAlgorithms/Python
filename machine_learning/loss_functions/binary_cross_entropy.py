@@ -8,7 +8,7 @@ It's widely used in binary classification tasks.
 Formula:
 BCE = -Σ(y_true * log(y_pred) + (1 - y_true) * log(1 - y_pred))
 
-Source: 
+Source:
 [Wikipedia - Cross entropy](https://en.wikipedia.org/wiki/Cross_entropy)
 """
 

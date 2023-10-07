@@ -8,7 +8,7 @@ It serves as a measure of the model's accuracy in regression tasks.
 Formula:
 MSE = (1/n) * Σ(y_true - y_pred)^2
 
-Source: 
+Source:
 [Wikipedia - Mean squared error](https://en.wikipedia.org/wiki/Mean_squared_error)
 """
 
