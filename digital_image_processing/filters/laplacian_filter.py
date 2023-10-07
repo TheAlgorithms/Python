@@ -2,14 +2,7 @@
 # @File    : laplacian_filter.py
 # @Date    : 10/04/2023
 import cv2
-from cv2 import (
-    BORDER_DEFAULT,
-    COLOR_BGR2GRAY,
-    cvtColor,
-    filter2D,
-    imshow,
-    waitKey
-)
+from cv2 import BORDER_DEFAULT, COLOR_BGR2GRAY, cvtColor, filter2D, imshow, waitKey
 
 from digital_image_processing.filters.gaussian_filter import gaussian_filter
 import numpy as np
