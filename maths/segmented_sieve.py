@@ -14,11 +14,25 @@ def sieve(n: int) -> list[int]:
     >>> sieve(27)
     [2, 3, 5, 7, 11, 13, 17, 19, 23]
 
+    >>> sieve(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Number 0 must instead be a positive integer
+
+    >>> sieve(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: Number -1 must instead be a positive integer
+
+    >>> sieve(22.2)
+    Traceback (most recent call last):
+        ...
+    ValueError: Number 22.2 must instead be a positive integer
     """
 
     if n <= 0 or isinstance(n, float):
-        word = f"Number must be positive, integer and not equal to 0, obtained {n}"
-        raise ValueError(word)
+        msg = f"Number {n} must instead be a positive integer"
+        raise ValueError(msg)
 
     in_prime = []
     start = 2
