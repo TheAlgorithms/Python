@@ -26,8 +26,7 @@ def trapped_rainwater(height: list[int] = None) -> int:
     trapped_rainwater([7,1,5,3,6,4])
     >>> 9
     """
-    if height is None:
-        height = []
+    if not height:
         return 0
     length = len(height)
 
