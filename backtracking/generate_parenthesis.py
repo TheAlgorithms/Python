@@ -109,15 +109,27 @@ def print_all_parenthesis(total_list: list[str]) -> None:
     Returns:
         None, but the result is printed.
 
-    """
-    import doctest
+    Examples:
+        >>> print_all_parenthesis(total_list=['((()))', '(()())', '(())()', '()(())', '()()()'])
+        ((()))
+        (()())
+        (())()
+        ()(())
+        ()()()
+        >>> print_all_parenthesis(total_list=['()'])
+        ()
+        >>> print_all_parenthesis(total_list=[''])
+        <BLANKLINE>
 
-    doctest.testmod()
+    """
     for i in total_list:
         print(i)
 
 
 if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+
     n = 3
     print(f"The number of pairs of parentheses is {n}.")
     total_list = generate_parenthesis(n)
