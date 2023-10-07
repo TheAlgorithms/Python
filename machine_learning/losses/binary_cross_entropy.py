@@ -1,18 +1,16 @@
 """
 Binary Cross-Entropy (BCE) Loss Function
 
-This script defines the Binary Cross-Entropy (BCE) loss function, which is commonly used for binary classification problems.
+This script defines the Binary Cross-Entropy (BCE) loss function, commonly used for binary classification.
 
 Description:
-Binary Cross-Entropy (BCE), also known as log loss or logistic loss, is a popular loss function for binary classification tasks.
-It quantifies the dissimilarity between the true binary labels (0 or 1) and the predicted probabilities produced by a model.
-Lower BCE values indicate better alignment between predicted probabilities and true labels.
+BCE quantifies dissimilarity between true binary labels (0 or 1) and predicted probabilities.
+It's widely used in binary classification tasks.
 
 Formula:
 BCE = -Σ(y_true * log(y_pred) + (1 - y_true) * log(1 - y_pred))
 
-Source:
-- [Wikipedia - Cross entropy](https://en.wikipedia.org/wiki/Cross_entropy)
+Source: [Wikipedia - Cross entropy](https://en.wikipedia.org/wiki/Cross_entropy)
 """
 
 import numpy as np
