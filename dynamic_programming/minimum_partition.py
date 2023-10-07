@@ -4,6 +4,28 @@ Partition a set into two subsets such that the difference of subset sums is mini
 
 
 def find_min(arr):
+    """
+    Partition a set into two subsets such that the difference of subset sums is minimum.
+
+    Examples:
+    >>> find_min([1, 6, 11, 5])
+    1
+
+    >>> find_min([3, 1, 4, 2, 2])
+    0
+
+    >>> find_min([1, 2, 3, 4, 5])
+    1
+
+    >>> find_min([1, 2, 7])
+    4
+
+    >>> find_min([10, 5, 3, 7, 2, 8])
+    1
+
+    >>> find_min([4, 2, 8, 6])
+    0
+    """
     n = len(arr)
     s = sum(arr)
 
