@@ -5,6 +5,45 @@
 
 
 def binary_exponentiation(a: int, n: int) -> int:
+    """
+
+    >>> binary_exponentiation(1, 1)
+    1
+
+    >>> binary_exponentiation(2, 1)
+    2
+
+    >>> binary_exponentiation(3, 1)
+    3
+
+    >>> binary_exponentiation(4, 1)
+    4
+
+    >>> binary_exponentiation(1, 2)
+    1
+
+    >>> binary_exponentiation(2, 2)
+    4
+
+    >>> binary_exponentiation(3, 2)
+    9
+
+    >>> binary_exponentiation(4, 2)
+    16
+
+    >>> binary_exponentiation(1, 3)
+    1
+
+    >>> binary_exponentiation(2, 3)
+    8
+
+    >>> binary_exponentiation(3, 3)
+    27
+
+    >>> binary_exponentiation(4, 3)
+    64
+
+    """
     if n == 0:
         return 1
 
@@ -17,11 +56,6 @@ def binary_exponentiation(a: int, n: int) -> int:
 
 
 if __name__ == "__main__":
-    try:
-        BASE = int(input("Enter Base : ").strip())
-        POWER = int(input("Enter Power : ").strip())
-    except ValueError:
-        print("Invalid literal for integer")
+    import doctest
 
-    RESULT = binary_exponentiation(BASE, POWER)
-    print(f"{BASE}^({POWER}) : {RESULT}")
+    doctest.testmod()

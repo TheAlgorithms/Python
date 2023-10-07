@@ -12,6 +12,45 @@
 
 
 def b_expo(a: int, b: int) -> int:
+    """
+
+    >>> b_expo(1, 1)
+    1
+
+    >>> b_expo(2, 1)
+    2
+
+    >>> b_expo(3, 1)
+    3
+
+    >>> b_expo(4, 1)
+    4
+
+    >>> b_expo(1, 2)
+    1
+
+    >>> b_expo(2, 2)
+    4
+
+    >>> b_expo(3, 2)
+    9
+
+    >>> b_expo(4, 2)
+    16
+
+    >>> b_expo(1, 3)
+    1
+
+    >>> b_expo(2, 3)
+    8
+
+    >>> b_expo(3, 3)
+    27
+
+    >>> b_expo(4, 3)
+    64
+
+    """
     res = 1
     while b > 0:
         if b & 1:
@@ -24,6 +63,81 @@ def b_expo(a: int, b: int) -> int:
 
 
 def b_expo_mod(a: int, b: int, c: int) -> int:
+    """
+
+    >>> b_expo_mod(1, 1, 7)
+    1
+
+    >>> b_expo_mod(2, 1, 7)
+    2
+
+    >>> b_expo_mod(3, 1, 7)
+    3
+
+    >>> b_expo_mod(4, 1, 7)
+    4
+
+    >>> b_expo_mod(1, 2, 7)
+    1
+
+    >>> b_expo_mod(2, 2, 7)
+    4
+
+    >>> b_expo_mod(3, 2, 7)
+    2
+
+    >>> b_expo_mod(4, 2, 7)
+    2
+
+    >>> b_expo_mod(1, 3, 7)
+    1
+
+    >>> b_expo_mod(2, 3, 7)
+    1
+
+    >>> b_expo_mod(3, 3, 7)
+    6
+
+    >>> b_expo_mod(4, 3, 7)
+    1
+
+    >>> b_expo_mod(1, 1, 5)
+    1
+
+    >>> b_expo_mod(2, 1, 5)
+    2
+
+    >>> b_expo_mod(3, 1, 5)
+    3
+
+    >>> b_expo_mod(4, 1, 5)
+    4
+
+    >>> b_expo_mod(1, 2, 5)
+    1
+
+    >>> b_expo_mod(2, 2, 5)
+    4
+
+    >>> b_expo_mod(3, 2, 5)
+    4
+
+    >>> b_expo_mod(4, 2, 5)
+    1
+
+    >>> b_expo_mod(1, 3, 5)
+    1
+
+    >>> b_expo_mod(2, 3, 5)
+    3
+
+    >>> b_expo_mod(3, 3, 5)
+    2
+
+    >>> b_expo_mod(4, 3, 5)
+    4
+
+    """
     res = 1
     while b > 0:
         if b & 1:
@@ -48,3 +162,11 @@ def b_expo_mod(a: int, b: int, c: int) -> int:
 * the fact : (a*b) % c = ((a%c) * (b%c)) % c
 * Now apply RULE 1 OR 2 whichever is required.
 """
+
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
