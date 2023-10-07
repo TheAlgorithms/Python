@@ -19,13 +19,13 @@ def backtrack(
     """
     >>> backtrack(13, 2, 1, 0, 0)
     (0, 1)
-    >>> backtrack(100, 2, 1, 0, 0)
-    (0, 3)
-    >>> backtrack(100, 3, 1, 0, 0)
+    >>> backtrack(10, 2, 1, 0, 0)
     (0, 1)
-    >>> backtrack(86, 2, 1, 0, 0)
-    (0, 3)
-    >>> backtrack(100, 10, 1, 0, 0)
+    >>> backtrack(10, 3, 1, 0, 0)
+    (0, 0)
+    >>> backtrack(46, 2, 1, 0, 0)
+    (0, 2)
+    >>> backtrack(10, 10, 1, 0, 0)
     (0, 0)
     >>> backtrack(40, 2, 1, 0, 0)
     (0, 1)
@@ -57,13 +57,13 @@ def solve(needed_sum: int, power: int) -> int:
     """
     >>> solve(13, 2)
     1
-    >>> solve(100, 2)
-    3
-    >>> solve(100, 3)
+    >>> solve(10, 2)
     1
-    >>> solve(86, 2)
-    3
-    >>> solve(100, 10)
+    >>> solve(10, 3)
+    0
+    >>> solve(46, 2)
+    2
+    >>> solve(10, 10)
     0
     >>> solve(40, 2)
     1
