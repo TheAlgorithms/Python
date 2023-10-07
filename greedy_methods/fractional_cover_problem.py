@@ -17,6 +17,15 @@ class Item:
 
         Returns:
             bool: True if the objects are equal, False otherwise.
+
+        Examples:
+        >>> item1 = Item(10, 60)
+        >>> item2 = Item(10, 60)
+        >>> item3 = Item(20, 100)
+        >>> item1 == item2
+        True
+        >>> item1 == item3
+        False
         """
         return self.weight == other.weight and self.value == other.value
 
@@ -95,3 +104,4 @@ if __name__ == "__main__":
         print("All tests passed")
     else:
         print(f"{result} test(s) failed")
+    
