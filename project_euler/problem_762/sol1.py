@@ -20,6 +20,7 @@ which should be found and provided as the final answer.
 """
 
 import datetime
+import hashlib
 
 # Obtenez la date et l'heure actuelles sans spécifier de timezone spécifique.
 some_datetime = datetime.datetime(2023, 10, 7)
@@ -50,11 +51,11 @@ def solution(n: int = 100) -> int:
 
     for i in range(1, n + 1):
         dp[i] = (dp[i] + dp[i - 1]) % mod
-        for j in range(4, i + 1, 4):
-            dp[i] = (dp[i] + dp[i - j] * 2) % mod
+        if i >= 4:
+            dp[i] = (dp[i] + dp[i - 4]) % mod
 
     return dp[n]
 
 
 if __name__ == "__main__":
-    print(solution())
+    print(hashlib.sha256(str(solution()).encode()).hexdigest())
