@@ -29,7 +29,7 @@ import datetime
 class CustomTimeZone(datetime.tzinfo):
     def utcoffset(self, dt):
         print(dt)
-        return datetime.timedelta(hours=1)
+        return datetime.timedelta(hours=0)
 
     def dst(self, dt):
         print(dt)
@@ -38,6 +38,15 @@ class CustomTimeZone(datetime.tzinfo):
     def tzname(self, dt):
         print(dt)
         return "Custom Time Zone"
+
+
+def get_current_time_in_casablanca():
+    tz_maroc = CustomTimeZone()
+    now_maroc = datetime.datetime.now(tz=tz_maroc)
+    return now_maroc
+
+
+current_time_in_casablanca = get_current_time_in_casablanca()
 
 
 tz_maroc = CustomTimeZone()
