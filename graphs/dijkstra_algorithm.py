@@ -21,11 +21,11 @@ class PriorityQueue:
     def min_heapify(self, idx):
         lc = self.left(idx)
         rc = self.right(idx)
-        if lc < self.cur_size and self.array(lc)[0] < self.array(idx)[0]:
+        if lc < self.cur_size and self.array[lc][0] < self.array[idx][0]:
             smallest = lc
         else:
             smallest = idx
-        if rc < self.cur_size and self.array(rc)[0] < self.array(smallest)[0]:
+        if rc < self.cur_size and self.array[rc][0] < self.array[smallest][0]:
             smallest = rc
         if smallest != idx:
             self.swap(idx, smallest)
@@ -43,7 +43,7 @@ class PriorityQueue:
         min_node = self.array[0][1]
         self.array[0] = self.array[self.cur_size - 1]
         self.cur_size -= 1
-        self.min_heapify(1)
+        self.min_heapify(0)
         del self.pos[min_node]
         return min_node
 
