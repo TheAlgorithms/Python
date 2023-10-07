@@ -56,9 +56,9 @@ def dijkstra(graph, v, src):
 
     Example:
     >>> graph = [[0.0, 2.0, float('inf'), 1.0],
-    [2.0, 0.0, 4.0, float('inf')],
-    [float('inf'), 4.0, 0.0, 3.0], 
-    [1.0, float('inf'), 3.0, 0.0]]
+    ...          [2.0, 0.0, 4.0, float('inf')],
+    ...          [float('inf'), 4.0, 0.0, 3.0],
+    ...          [1.0, float('inf'), 3.0, 0.0]]
     >>> dijkstra(graph, 4, 0)
     Vertex Distance
     0       0
