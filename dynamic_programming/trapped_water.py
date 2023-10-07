@@ -25,9 +25,10 @@ def trapped_rainwater(height = None) -> int:
     >>> 6
     trapped_rainwater([7,1,5,3,6,4])
     >>> 9
-    trapped_rainwater([0,1,0,2,1,0,1,3,2,1,2,1])
+    trapped_rainwater([])
     >>> 0
-
+    trapped_rainwater()
+    >>> 0
     """
     if height is None:
         height = []
