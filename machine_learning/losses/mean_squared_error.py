@@ -1,17 +1,16 @@
 """
 Mean Squared Error (MSE) Loss Function
 
-This script defines the Mean Squared Error (MSE) loss function, which is commonly used for regression problems.
+This script defines the Mean Squared Error (MSE) loss function, commonly used for regression problems.
 
 Description:
-The Mean Squared Error (MSE) measures the average squared difference between the true values (ground truth) and the predicted values produced by a model.
-It is widely used in regression tasks and serves as a measure of the model's accuracy.
+MSE measures the average squared difference between true values (ground truth) and predicted values.
+It serves as a measure of the model's accuracy in regression tasks.
 
 Formula:
 MSE = (1/n) * Σ(y_true - y_pred)^2
 
-Source:
-- [Wikipedia - Mean squared error](https://en.wikipedia.org/wiki/Mean_squared_error)
+Source: [Wikipedia - Mean squared error](https://en.wikipedia.org/wiki/Mean_squared_error)
 """
 
 import numpy as np
