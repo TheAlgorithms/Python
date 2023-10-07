@@ -17,6 +17,19 @@ def matrix_multiply_recursive(matrix_a: list, matrix_b: list) -> list:
     :param matrix_b: Input matrices where length of matrices is
                     as same as number of columns matrix_a.
 
+    >>> matrix_a = [[1, 2], [3, 4]]
+    >>> matrix_b = [[5, 6], [7, 8]]
+    >>> result = [[0, 0], [0, 0]]
+    >>> multiply(0, 0, 0, matrix_a, matrix_b, result)
+    >>> result
+    [[19, 22], [43, 50]]
+
+    >>> matrix_a = [[1, 2], [3, 4]]
+    >>> matrix_b = [[5, 6, 7], [8, 9, 10]]
+    >>> result = [[0, 0, 0], [0, 0, 0]]
+    >>> multiply(0, 0, 0, matrix_a, matrix_b, result)
+    >>> result
+        [[21, 24, 27], [47, 54, 61]]
     """
 
     # Check if matrices can be multiplied
@@ -44,19 +57,6 @@ def matrix_multiply_recursive(matrix_a: list, matrix_b: list) -> list:
         :param j: Indices used for iteration during multiplication.
         :param k: Indices used for iteration during multiplication.
 
-        >>> matrix_a = [[1, 2], [3, 4]]
-        >>> matrix_b = [[5, 6], [7, 8]]
-        >>> result = [[0, 0], [0, 0]]
-        >>> multiply(0, 0, 0, matrix_a, matrix_b, result)
-        >>> result
-        [[19, 22], [43, 50]]
-
-        >>> matrix_a = [[1, 2], [3, 4]]
-        >>> matrix_b = [[5, 6, 7], [8, 9, 10]]
-        >>> result = [[0, 0, 0], [0, 0, 0]]
-        >>> multiply(0, 0, 0, matrix_a, matrix_b, result)
-        >>> result
-        [[21, 24, 27], [47, 54, 61]]
         """
 
         if i_loop >= len(matrix_a):
