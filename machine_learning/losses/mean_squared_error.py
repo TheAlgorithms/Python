@@ -17,7 +17,7 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
     >>> mse = mean_squared_error(true_values, predicted_values)
     >>> mse
-    0.10599999999999987
+    0.028000000000000032
     """
     if len(y_true) != len(y_pred):
         raise ValueError("Input arrays must have the same length.")
