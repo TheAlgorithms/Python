@@ -15,13 +15,16 @@ References:
 import time
 from typing import Optional
 
+
 # Function to find the nth prime number
 def nth_prime(n: int) -> Optional[int]:
     """
     Returns the nth prime number.
 
+
     Args:
         n (int): The position of the prime number to find.
+
 
     Returns:
         int: The nth prime number, or None if n is less than 1.
