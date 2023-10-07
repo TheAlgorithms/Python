@@ -11,7 +11,7 @@ Matrix multiplication is a fundamental operation in linear algebra and computer 
 """
 
 
-def matrix_multiply_recursive(matrix_a: list, matrix_b: list):
+def matrix_multiply_recursive(matrix_a: list, matrix_b: list) -> list:
     """
     :param matrix_a: Input matrices.
     :param matrix_b: Input matrices where length of matrices is 
@@ -28,25 +28,26 @@ def matrix_multiply_recursive(matrix_a: list, matrix_b: list):
               for _ in range(len(matrix_a))]
 
     # Recursive multiplication of matrices
-    def multiply(i, j, k, matrix_a, matrix_b, result):
+    def multiply(i_loop: int, j_loop: int, k_loop: int, matrix_a: list, matrix_b: list, result: list) -> function:
         """
         :param matrix_a: Input matrices.
         :param matrix_b: Input matrices where length of matrices is 
                     as same as number of columns matrix_a.
         :param result: Result matrix
-        :param i: Indices used for iteration during multiplication.
-        :param j: Indices used for iteration during multiplication.
-        :param k: Indices used for iteration during multiplication.
+        :param i_loop: Indices used for iteration during multiplication.
+        :param j_loop: Indices used for iteration during multiplication.
+        :param k_loop: Indices used for iteration during multiplication.
         """
 
-        if i >= len(matrix_a):
+        if i_loop >= len(matrix_a):
             return
-        if j >= len(matrix_b[0]):
-            return multiply(matrix_a, matrix_b, result, i + 1, 0, 0)
-        if k >= len(matrix_b):
-            return multiply(matrix_a, matrix_b, result, i, j + 1, 0)
-        result[i][j] += matrix_a[i][k] * matrix_b[k][j]
-        multiply(matrix_a, matrix_b, result, i, j, k + 1)
+        if j_loop >= len(matrix_b[0]):
+            return multiply(matrix_a, matrix_b, result, i_loop + 1, 0, 0)
+        if k_loop >= len(matrix_b):
+            return multiply(matrix_a, matrix_b, result, i_loop, j_loop + 1, 0)
+        result[i_loop][j_loop] += matrix_a[i_loop][k_loop] * \
+            matrix_b[k_loop][j_loop]
+        multiply(matrix_a, matrix_b, result, i_loop, j_loop, k_loop + 1)
 
     # Perform matrix multiplication
     multiply(matrix_a, matrix_b, result, 0, 0, 0)
