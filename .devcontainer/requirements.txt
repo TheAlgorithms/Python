@@ -1,0 +1,24 @@
+beautifulsoup4
+fake_useragent
+imageio
+keras
+lxml
+matplotlib
+numpy
+opencv-python
+pandas
+pillow
+projectq
+qiskit ; python_version < '3.12'
+qiskit-aer ; python_version < '3.12'
+requests
+rich
+scikit-fuzzy
+scikit-learn
+statsmodels
+sympy
+tensorflow ; python_version < '3.12'
+texttable
+tweepy
+xgboost
+yulewalker
