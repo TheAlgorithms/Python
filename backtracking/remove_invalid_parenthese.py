@@ -1,13 +1,14 @@
 def remove_invalid_parentheses(input_string: str) -> list[str]:
     """
-    Removes the minimum number of invalid parentheses 
+    Removes the minimum number of invalid parentheses
     to make the input string valid.
 
     Args:
         input_string (str): The input string containing parentheses.
 
     Returns:
-        List[str]: A list of valid strings after removing the minimum number of parentheses.
+        List[str]: A list of valid strings after removing 
+        the minimum number of parentheses.
 
     Examples:
         >>> remove_invalid_parentheses(")(a)())")
