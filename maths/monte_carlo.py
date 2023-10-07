@@ -17,7 +17,32 @@ def pi_estimator(iterations: int):
     4. After all the dots are placed, divide the dots in the circle by the total.
     5. Multiply this value by 4 to get your estimate of pi.
     6. Print the estimated and numpy value of pi
+    
+    Note:
+        this function relies on a random method. So consistent testing is
+        impossible!
+    
+    >>> pi_estimator("a")
+    Traceback (most recent call last):
+        ...
+    ValueError: iterations must be a integer!
+    
+    >>> pi_estimator(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: iterations must be at least 1!
+    
+    >>> pi_estimator(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: iterations must be at least 1!
     """
+    try:
+        iterations = int(iterations)
+    except Exception as e:
+        raise ValueError("iterations must be a integer!") from e
+    if iterations < 1:
+        raise ValueError("iterations must be at least 1!")
 
     # A local function to see if a dot lands in the circle.
     def is_in_circle(x: float, y: float) -> bool:
@@ -33,9 +58,8 @@ def pi_estimator(iterations: int):
     )
     # The ratio of the area for circle to square is pi/4.
     pi_estimate = proportion * 4
-    print(f"The estimated value of pi is {pi_estimate}")
-    print(f"The numpy value of pi is {pi}")
-    print(f"The total error is {abs(pi - pi_estimate)}")
+    error_value = abs(pi - pi_estimate)
+    return pi_estimate, error_value
 
 
 def area_under_curve_estimator(
@@ -60,6 +84,11 @@ def area_under_curve_estimator(
         c. Expected value = average of the function evaluations
     4. Estimated value of integral = Expected value * (max_value - min_value)
     5. Returns estimated value
+    
+    Note:
+        this function relies on a random method. So consistent testing is
+        impossible!
+    
     """
 
     return mean(
@@ -76,6 +105,10 @@ def area_under_line_estimator_check(
     1. Calls "area_under_curve_estimator" function
     2. Compares with the expected value
     3. Prints estimated, expected and error value
+    
+    Note:
+        this function relies on a random method. So consistent testing is
+        impossible!
     """
 
     def identity_function(x: float) -> float:
@@ -102,6 +135,10 @@ def area_under_line_estimator_check(
 def pi_estimator_using_area_under_curve(iterations: int) -> None:
     """
     Area under curve y = sqrt(4 - x^2) where x lies in 0 to 2 is equal to pi
+    
+    Note:
+        this function relies on a random method. So consistent testing is
+        impossible!
     """
 
     def function_to_integrate(x: float) -> float:
