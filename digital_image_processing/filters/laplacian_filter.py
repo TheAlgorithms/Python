@@ -8,7 +8,7 @@ from digital_image_processing.filters.gaussian_filter import gaussian_filter
 import numpy as np
 
 
-def my_laplacian(src: np.ndarray, ksize: int) -> np.ndarray:
+def my_laplacian(ksize: int, src: np.ndarray) -> np.ndarray:
     """
     :param src: the source image, which should be a grayscale or color image.
     :param ksize: the size of the kernel used to compute the Laplacian filter,
