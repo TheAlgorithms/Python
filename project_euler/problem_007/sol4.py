@@ -51,8 +51,8 @@ def solution() -> int:
     """
     Returns the 10001st prime number.
     """
-    result = nth_prime(10001)      # Find the 10001st prime number
-    
+    result = nth_prime(10001)  # Find the 10001st prime number
+
     if result is not None:
         return result
     else:
