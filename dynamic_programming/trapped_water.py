@@ -26,7 +26,7 @@ def trapped_rainwater(height: list[int]) -> int:
     trapped_rainwater([7,1,5,3,6,4])
     >>> 9
     """
-    if not height or height==[]:
+    if not height or height == []:
         return 0
     if any(height < 0):
         raise ValueError("No height can be negative")
