@@ -21,10 +21,10 @@ def trapped_rainwater(height: list[int]) -> int:
     on both sides for each bar, and then computing the trapped water above each bar.
     The function returns the total trapped water.
 
-    trapped_rainwater([0,1,0,2,1,0,1,3,2,1,2,1])
-    >>> 6
-    trapped_rainwater([7,1,5,3,6,4])
-    >>> 9
+    >>> trapped_rainwater([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1])
+    6
+    >>> trapped_rainwater([7, 1, 5, 3, 6, 4])
+    9
     """
     if not height:
         return 0
