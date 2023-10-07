@@ -110,12 +110,11 @@ def print_all_parenthesis(total_list: list[str]) -> None:
         None, but the result is printed.
 
     Examples:
-        >>> print_all_parenthesis(total_list=['((()))', '(()())', '(())()', '()(())', '()()()'])
+        >>> print_all_parenthesis(total_list=['((()))', '(()())', '(())()', '()(())'])
         ((()))
         (()())
         (())()
         ()(())
-        ()()()
         >>> print_all_parenthesis(total_list=['()'])
         ()
         >>> print_all_parenthesis(total_list=[''])
