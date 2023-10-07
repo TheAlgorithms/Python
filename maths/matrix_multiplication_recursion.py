@@ -34,7 +34,7 @@ def matrix_multiply_recursive(matrix_a: list, matrix_b: list) -> list:
         matrix_a: list,
         matrix_b: list,
         result: list,
-    ) -> function:
+    ) -> multiply:
         """
         :param matrix_a: Input matrices.
         :param matrix_b: Input matrices where length of matrices is
