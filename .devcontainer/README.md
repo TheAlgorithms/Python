@@ -36,7 +36,7 @@ Docker Installation (Linux-Ubuntu)
   export IMAGE_NAME=<Enter the name of your image>
   export IMAGE_VERSION=<Enter the version of your image>
   export ABSOLUTE_PATH_TO_WORKDIR=<Enter the absolute path to the work directory>
-  export WORK_DIR=<Enter the workspace name inside the container>
+  export WORKDIR=<Enter the workspace name inside the container>
   ```
 
 2.Build the image
