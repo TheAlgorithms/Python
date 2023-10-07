@@ -8,29 +8,8 @@ class Item:
     weight: int
     value: int
 
-    def __eq__(self, other: object) -> bool:
-        """
-        Compare two Item objects for equality based on weight and value attributes.
-
-        Args:
-            other (object): Another object to compare with.
-
-        Returns:
-            bool: True if the objects are equal, False otherwise.
-
-        Examples:
-        >>> item1 = Item(10, 60)
-        >>> item2 = Item(10, 60)
-        >>> item3 = Item(20, 100)
-        >>> item1 == item2
-        True
-        >>> item1 == item3
-        False
-        """
-        if not isinstance(other, Item):
-            return False  # Return False for non-Item objects
+    def not_really__eq__(self, other: object) -> bool:
         return self.weight == other.weight and self.value == other.value
-
 
 def fractional_cover(items: list[Item], capacity: int) -> float:
     """
