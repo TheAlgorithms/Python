@@ -1,4 +1,20 @@
 def print_dist(dist, v):
+    """
+    Print vertex distances.
+
+    Parameters:
+    dist (list): A list of distances.
+    v (int): The number of vertices.
+
+    Example:
+    >>> print_dist([0.0, 2.0, 3.0, float('inf')], 4)
+    Vertex Distance
+    0       0
+    1       2
+    2       3
+    3       INF
+    """
+
     print("\nVertex Distance")
     for i in range(v):
         if dist[i] != float("inf"):
@@ -9,6 +25,18 @@ def print_dist(dist, v):
 
 
 def min_dist(mdist, vset, v):
+    """
+    Find the vertex with the minimum distance.
+
+    Parameters:
+    mdist (list): A list of distances.
+    vset (list): A list of boolean values indicating visited vertices.
+    v (int): The number of vertices.
+
+    Example:
+    >>> min_dist([0.0, 2.0, 3.0, float('inf')], [False, True, False, False], 4)
+    0
+    """
     min_val = float("inf")
     min_ind = -1
     for i in range(v):
@@ -19,6 +47,24 @@ def min_dist(mdist, vset, v):
 
 
 def dijkstra(graph, v, src):
+    """
+    Implement Dijkstra's algorithm to find the shortest path.
+
+    Parameters:
+    graph (list): The graph represented as an adjacency matrix.
+    v (int): The number of vertices.
+    src (int): The source vertex.
+
+    Example:
+    >>> graph = [[0.0, 2.0, float('inf'), 1.0], [2.0, 0.0, 4.0, float('inf')], [float('inf'), 4.0, 0.0, 3.0], [1.0, float('inf'), 3.0, 0.0]]
+    >>> dijkstra(graph, 4, 0)
+    Vertex Distance
+    0       0
+    1       2
+    2       3
+    3       1
+    """
+    
     mdist = [float("inf") for _ in range(v)]
     vset = [False for _ in range(v)]
     mdist[src] = 0.0
