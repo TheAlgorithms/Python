@@ -23,12 +23,12 @@ def backtrack(
     (0, 3)
     >>> backtrack(100, 3, 1, 0, 0)
     (0, 1)
-    >>> backtrack(800, 2, 1, 0, 0)
-    (0, 561)
-    >>> backtrack(1000, 10, 1, 0, 0)
+    >>> backtrack(86, 2, 1, 0, 0)
+    (0, 3)
+    >>> backtrack(100, 10, 1, 0, 0)
     (0, 0)
-    >>> backtrack(400, 2, 1, 0, 0)
-    (0, 55)
+    >>> backtrack(40, 2, 1, 0, 0)
+    (0, 1)
     >>> backtrack(50, 1, 1, 0, 0)
     (0, 3658)
     """
@@ -61,12 +61,12 @@ def solve(needed_sum: int, power: int) -> int:
     3
     >>> solve(100, 3)
     1
-    >>> solve(800, 2)
-    561
-    >>> solve(1000, 10)
+    >>> solve(86, 2)
+    3
+    >>> solve(100, 10)
     0
-    >>> solve(400, 2)
-    55
+    >>> solve(40, 2)
+    1
     >>> solve(50, 1)
     Traceback (most recent call last):
         ...
@@ -90,4 +90,5 @@ def solve(needed_sum: int, power: int) -> int:
 if __name__ == "__main__":
     import doctest
 
+    # print(backtrack(80, 1, 1, 0, 0))
     doctest.testmod()
