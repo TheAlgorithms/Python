@@ -83,6 +83,7 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
+
     number = int(input("Enter number: ").strip())
     if is_carmichael_number(number):
         print(f"{number} is a Carmichael Number.")
