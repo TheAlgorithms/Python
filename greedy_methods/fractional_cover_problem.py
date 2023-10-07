@@ -27,6 +27,8 @@ class Item:
         >>> item1 == item3
         False
         """
+        if not isinstance(other, Item):
+            return NotImplemented
         return self.weight == other.weight and self.value == other.value
 
 
