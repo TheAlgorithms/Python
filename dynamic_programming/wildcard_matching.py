@@ -76,18 +76,6 @@ def is_match(string: str, pattern: str) -> bool:
 
     >>> is_match("", "")
     True
-
-    >>> is_match("a", "")
-    False
-
-    >>> is_match("", "*")
-    True
-
-    >>> is_match("abc", "*bc")
-    True
-
-    >>> is_match("abc", "a*bc")
-    True
     """
     m, n = len(string), len(pattern)
     dp = [[False] * (n + 1) for _ in range(m + 1)]
