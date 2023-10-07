@@ -1,6 +1,7 @@
-# Explanation:- https://en.wikipedia.org/wiki/Set_cover_problem
+# https://en.wikipedia.org/wiki/Set_cover_problem
 
 from dataclasses import dataclass
+from operator import attrgetter
 
 
 @dataclass
@@ -8,79 +9,85 @@ class Item:
     weight: int
     value: int
 
+    @property
+    def ratio(self) -> float:
+        """
+        Return the value-to-weight ratio for the item.
+
+        Returns:
+            float: The value-to-weight ratio for the item.
+
+        Examples:
+        >>> Item(10, 65).ratio
+        6.5
+
+        >>> Item(20, 100).ratio
+        5.0
+
+        >>> Item(30, 120).ratio
+        4.0
+        """
+        return self.value / self.weight
+
 
 def fractional_cover(items: list[Item], capacity: int) -> float:
     """
     Solve the Fractional Cover Problem.
 
     Args:
-        items (List[Item]): A list of items, where each item is represented as an
-            Item object with weight and value attributes.
-        capacity (int): The maximum weight capacity of the knapsack.
+        items: A list of items, where each item has weight and value attributes.
+        capacity: The maximum weight capacity of the knapsack.
 
     Returns:
-        float: The maximum value that can be obtained by selecting fractions of items to
-        cover the knapsack's capacity.
+        The maximum value that can be obtained by selecting fractions of items to cover
+        the knapsack's capacity.
 
     Raises:
-        ValueError: If the `capacity` is negative.
+        ValueError: If capacity is negative.
 
     Examples:
-    >>> items = [Item(10, 60), Item(20, 100), Item(30, 120)]
-    >>> fractional_cover(items, 50)
+    >>> fractional_cover((Item(10, 60), Item(20, 100), Item(30, 120)), capacity=50)
     240.0
 
-    >>> items = [Item(20, 100), Item(30, 120), Item(10, 60)]
-    >>> fractional_cover(items, 25)
+    >>> fractional_cover([Item(20, 100), Item(30, 120), Item(10, 60)], capacity=25)
     135.0
 
-    >>> items = [Item(10, 60), Item(20, 100), Item(30, 120)]
-    >>> fractional_cover(items, 60)
+    >>> fractional_cover([Item(10, 60), Item(20, 100), Item(30, 120)], capacity=60)
     280.0
 
-    >>> items = [Item(5, 30), Item(10, 60), Item(15, 90)]
-    >>> fractional_cover(items, 30)
+    >>> fractional_cover(items=[Item(5, 30), Item(10, 60), Item(15, 90)], capacity=30)
     180.0
 
-    >>> items = []
-    >>> fractional_cover(items, 50)
+    >>> fractional_cover(items=[], capacity=50)
     0.0
 
-    >>> items = [Item(10, 60)]
-    >>> fractional_cover(items, 5)
+    >>> fractional_cover(items=[Item(10, 60)], capacity=5)
     30.0
 
-    >>> items = [Item(10, 60)]
-    >>> fractional_cover(items, 1)
+    >>> fractional_cover(items=[Item(10, 60)], capacity=1)
     6.0
 
-    >>> items = [Item(1, 1)]
-    >>> fractional_cover(items, 0)
+    >>> fractional_cover(items=[Item(10, 60)], capacity=0)
     0.0
 
-    >>> items = [Item(10, 60)]
-    >>> fractional_cover(items, -1)
+    >>> fractional_cover(items=[Item(10, 60)], capacity=-1)
     Traceback (most recent call last):
         ...
     ValueError: Capacity cannot be negative
     """
     if capacity < 0:
         raise ValueError("Capacity cannot be negative")
-    # Calculate the value-to-weight ratios for each item
-    ratios = [(item.value / item.weight, item) for item in items]
-
-    # Sort the items by their value-to-weight ratio in descending order
-    ratios.sort(key=lambda item_ratio: item_ratio[0], reverse=True)
 
     total_value = 0.0
     remaining_capacity = capacity
 
-    for ratio, item in ratios:
+    # Sort the items by their value-to-weight ratio in descending order
+    for item in sorted(items, key=attrgetter("ratio"), reverse=True):
         if remaining_capacity == 0:
             break
 
         weight_taken = min(item.weight, remaining_capacity)
-        total_value += weight_taken * ratio
+        total_value += weight_taken * item.ratio
         remaining_capacity -= weight_taken
 
     return total_value
@@ -89,8 +96,7 @@ def fractional_cover(items: list[Item], capacity: int) -> float:
 if __name__ == "__main__":
     import doctest
 
-    result = doctest.testmod().failed
-    if result == 0:
-        print("All tests passed")
-    else:
+    if result := doctest.testmod().failed:
         print(f"{result} test(s) failed")
+    else:
+        print("All tests passed")
