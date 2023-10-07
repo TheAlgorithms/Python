@@ -34,6 +34,7 @@ def nth_prime(n: int) -> int:
 
     return 0
 
+
 def solution() -> int:
     """
     Returns the 10001st prime number.
