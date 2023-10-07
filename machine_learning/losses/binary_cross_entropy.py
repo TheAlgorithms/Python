@@ -29,9 +29,7 @@ def binary_cross_entropy(
     bce_loss = -(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))
 
     # Take the mean over all samples
-    bce_loss = np.mean(bce_loss)
-
-    return bce_loss
+    return np.mean(bce_loss)
 
 
 if __name__ == "__main__":
