@@ -86,8 +86,8 @@ def dijkstra(graph, v, src):
 
 
 if __name__ == "__main__":
-    V = int(input("Enter number of vertices: ").strip())
-    E = int(input("Enter number of edges: ").strip())
+    V = int(input("Enter the number of vertices: ").strip())
+    E = int(input("Enter the number of edges: ").strip())
 
     graph = [[float("inf") for i in range(V)] for j in range(V)]
 
@@ -101,5 +101,5 @@ if __name__ == "__main__":
         weight = float(input("Enter weight:").strip())
         graph[src][dst] = weight
 
-    gsrc = int(input("\nEnter shortest path source:").strip())
+    gsrc = int(input("\nEnter the shortest path source:").strip())
     dijkstra(graph, V, gsrc)
