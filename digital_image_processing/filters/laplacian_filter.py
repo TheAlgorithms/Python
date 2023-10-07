@@ -1,7 +1,6 @@
 # @Author  : ojas-wani
 # @File    : laplacian_filter.py
 # @Date    : 10/04/2023
-
 import cv2
 from cv2 import (
     BORDER_DEFAULT,
