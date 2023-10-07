@@ -9,7 +9,7 @@ References:
 """
 
 
-def nth_prime(n: int) -> [int]:
+def nth_prime(n: int) -> int:
     """
     Returns the nth prime number.
     Args:
