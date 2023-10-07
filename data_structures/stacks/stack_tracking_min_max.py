@@ -13,8 +13,9 @@ class StackData:
     Object stored on the stack
     """
 
-    def __init__(self, current_value: float, min_value: float
-                 , max_value: float) -> None:
+    def __init__(
+        self, current_value: float, min_value: float, max_value: float
+    ) -> None:
         self.current_value = current_value
         self.min_value = min_value
         self.max_value = max_value
@@ -161,5 +162,5 @@ class MinMaxStack:
 
 if __name__ == "__main__":
     from doctest import testmod
-    testmod()
 
+    testmod()
