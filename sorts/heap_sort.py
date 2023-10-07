@@ -9,10 +9,9 @@ python3 -m doctest -v heap_sort.py
 For manual testing run:
 python heap_sort.py
 """
-from typing import List
 
 
-def heapify(unsorted_list: List[int], index: int, heap_size: int) -> None:
+def heapify(unsorted_list: list[int], index: int, heap_size: int) -> None:
     """
 
     :param unsorted_list: unsorted list containing integers numbers
@@ -37,7 +36,7 @@ def heapify(unsorted_list: List[int], index: int, heap_size: int) -> None:
         heapify(unsorted_list, largest, heap_size)
 
 
-def heap_sort(unsorted_list: List[int]) -> List[int]:
+def heap_sort(unsorted_list: list[int]) -> list[int]:
     """
     Pure implementation of the heap sort algorithm in Python
 
