@@ -1,7 +1,7 @@
 """
 This script implements the Sobovela Modified Hyperbolic Tangent function.
 
-The function the applies the Sobovela Modified Hyperbolic Tangent function
+The function applies the Sobovela Modified Hyperbolic Tangent function
 to each element of the vector.
 
 More details about the activation function can be found on:
