@@ -34,46 +34,46 @@ now_maroc = datetime.datetime.now(tz=tz_maroc)
 
 def is_match(string: str, pattern: str) -> bool:
     """
-    >>> isMatch("aa", "a")
+    >>> is_match("aa", "a")
     False
 
-    >>> isMatch("abc", "abc")
+    >>> is_match("abc", "abc")
     True
 
-    >>> isMatch("abc", "*c")
+    >>> is_match("abc", "*c")
     True
 
-    >>> isMatch("abc", "a*")
+    >>> is_match("abc", "a*")
     True
 
-    >>> isMatch("abc", "*a*")
+    >>> is_match("abc", "*a*")
     True
 
-    >>> isMatch("abc", "?b?")
+    >>> is_match("abc", "?b?")
     True
 
-    >>> isMatch("abc", "*?")
+    >>> is_match("abc", "*?")
     True
 
-    >>> isMatch("abc", "a*d")
+    >>> is_match("abc", "a*d")
     False
 
-    >>> isMatch("abc", "a*c?")
+    >>> is_match("abc", "a*c?")
     False
 
-    >>> isMatch("", "")
+    >>> is_match("", "")
     True
 
-    >>> isMatch("a", "")
+    >>> is_match("a", "")
     False
 
-    >>> isMatch("", "*")
+    >>> is_match("", "*")
     True
 
-    >>> isMatch("abc", "*bc")
+    >>> is_match("abc", "*bc")
     True
 
-    >>> isMatch("abc", "a*bc")
+    >>> is_match("abc", "a*bc")
     True
 
     """
