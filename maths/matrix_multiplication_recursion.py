@@ -81,7 +81,6 @@ def matrix_multiply_recursive(matrix_a: list, matrix_b: list) -> list:
 
 
 if __name__ == "__main__":
-
     # Input matrixes
     matrix_a = [
         [1, 2, 3, 4],
