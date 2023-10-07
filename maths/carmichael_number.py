@@ -21,6 +21,17 @@ def gcd(a: int, b: int) -> int:
 
 
 def power(x: int, y: int, mod: int) -> int:
+    """
+    >>> power(1,2,3)
+    1
+
+
+    >>> power(2,4,7)
+    2
+
+    >>> power(4,2,9)
+    7
+    """
     if y == 0:
         return 1
     temp = power(x, y // 2, mod) % mod
@@ -31,6 +42,37 @@ def power(x: int, y: int, mod: int) -> int:
 
 
 def is_carmichael_number(n: int) -> bool:
+    """
+    >>> is_carmichael_number(1)
+    True
+
+    >>> is_carmichael_number(2)
+    True
+
+    >>> is_carmichael_number(8)
+    False
+
+    >>> is_carmichael_number(245)
+    False
+
+    >>> is_carmichael_number(561)
+    True
+
+    >>> is_carmichael_number(1105)
+    True
+
+    >>> is_carmichael_number(1729)
+    True
+
+    >>> is_carmichael_number(1728)
+    False
+
+    >>> is_carmichael_number(8910)
+    False
+
+    >>> is_carmichael_number(8911)
+    True
+    """
     b = 2
     while b < n:
         if gcd(b, n) == 1 and power(b, n - 1, n) != 1:
@@ -40,8 +82,6 @@ def is_carmichael_number(n: int) -> bool:
 
 
 if __name__ == "__main__":
-    number = int(input("Enter number: ").strip())
-    if is_carmichael_number(number):
-        print(f"{number} is a Carmichael Number.")
-    else:
-        print(f"{number} is not a Carmichael Number.")
+    import doctest
+
+    doctest.testmod()
