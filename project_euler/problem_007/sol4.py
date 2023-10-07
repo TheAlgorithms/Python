@@ -29,9 +29,10 @@ def nth_prime(n: int) -> int:
                 break
         else:
             prime_counter += 1
-        if prime_counter == n:
-            return num
+            if prime_counter == n:
+                return num
 
+    return 0
 
 def solution() -> int:
     """
