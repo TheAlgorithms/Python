@@ -37,6 +37,18 @@ def inorder(root, res):
 
 
 def tree_sort(arr):
+    """
+
+    >>> tree_sort([5, 2, 7])
+    [2, 5, 7]
+
+    >>> tree_sort([5, -4, 9, 2, 7])
+    [-4, 2, 5, 7, 9]
+    
+    >>> tree_sort([5, 6, 1, -1, 4, 37, 2, 7])
+    [-1, 1, 2, 4, 5, 6, 7, 37]
+    
+    """
     # Build BST
     if len(arr) == 0:
         return arr
@@ -50,4 +62,7 @@ def tree_sort(arr):
 
 
 if __name__ == "__main__":
-    print(tree_sort([10, 1, 3, 2, 9, 14, 13]))
+    import doctest
+
+    doctest.testmod()
+
