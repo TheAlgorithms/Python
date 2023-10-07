@@ -64,7 +64,7 @@ def dijkstra(graph, v, src):
     2       3
     3       1
     """
-    
+
     mdist = [float("inf") for _ in range(v)]
     vset = [False for _ in range(v)]
     mdist[src] = 0.0
