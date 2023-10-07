@@ -8,6 +8,7 @@ References:
 - https://en.wikipedia.org/wiki/Prime_number
 """
 
+
 def nth_prime(n: int) -> [int]:
     """
     Returns the nth prime number.
@@ -41,6 +42,7 @@ def solution() -> int:
         return result
     else:
         return -1
+
 
 if __name__ == "__main__":
     print(f"{solution() = }")
