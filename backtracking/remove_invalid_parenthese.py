@@ -7,7 +7,7 @@ def remove_invalid_parentheses(input_string: str) -> list[str]:
         input_string (str): The input string containing parentheses.
 
     Returns:
-        List[str]: A list of valid strings after removing 
+        List[str]: A list of valid strings after removing
         the minimum number of parentheses.
 
     Examples:
@@ -27,7 +27,6 @@ def remove_invalid_parentheses(input_string: str) -> list[str]:
 
         Params:
             next_string (str): The input string to be checked.
-
         Returns:
             bool: True if the parentheses in the string are valid, False otherwise.
 
@@ -51,10 +50,9 @@ def remove_invalid_parentheses(input_string: str) -> list[str]:
                 if count < 0:
                     return False
         return count == 0
-
     def dfs(
-        current_string: str, start_index: int, left_removed: int, right_removed: int
-    ) -> None:
+            current_string: str, start_index: int, left_removed: int,
+            right_removed: int) -> None:
         """
         Depth-first search function to generate valid combinations
         of the input string.
@@ -85,19 +83,18 @@ def remove_invalid_parentheses(input_string: str) -> list[str]:
                 continue
             if current_string[i] == "(" and left_removed > 0:
                 dfs(
-                    current_string[:i] + current_string[i + 1 :],
+                    current_string[:i] + current_string[i + 1:],
                     i,
                     left_removed - 1,
                     right_removed,
                 )
             elif current_string[i] == ")" and right_removed > 0:
                 dfs(
-                    current_string[:i] + current_string[i + 1 :],
+                    current_string[:i] + current_string[i + 1:],
                     i,
                     left_removed,
                     right_removed - 1,
                 )
-
     valid_parentheses: set = set()
     left_removed_count: int = 0
     right_removed_count: int = 0
@@ -110,7 +107,9 @@ def remove_invalid_parentheses(input_string: str) -> list[str]:
             else:
                 right_removed_count += 1
     dfs(input_string, 0, left_removed_count, right_removed_count)
-    return sorted(list(valid_parentheses))
+    output_list: list = list(valid_parentheses)
+    output_list.sort()
+    return output_list
 
 
 if __name__ == "__main__":
