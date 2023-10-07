@@ -13,7 +13,7 @@ on both sides minus height of bar at current position.
 """
 
 
-def trapped_rainwater(height: list = None) -> int:
+def trapped_rainwater(height = None) -> int:
     """
     The trapped_rainwater function calculates the total amount of rainwater
     that can be trapped given an array of bar heights.
