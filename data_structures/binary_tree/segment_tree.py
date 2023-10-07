@@ -3,7 +3,8 @@ import math
 
 class SegmentTree:
     def __init__(self, a):
-        self.N = len(a)
+        self.A = a
+        self.N = len(self.A)
         self.st = [0] * (
             4 * self.N
         )  # approximate the overall size of segment tree with array N
@@ -36,7 +37,7 @@ class SegmentTree:
 
     def build(self, idx, l, r):  # noqa: E741
         if l == r:
-            self.st[idx] = A[l]
+            self.st[idx] = self.A[l]
         else:
             mid = (l + r) // 2
             self.build(self.left(idx), l, mid)
@@ -76,9 +77,9 @@ class SegmentTree:
 
         >>> s = SegmentTree([1, 2, 3, 4, 5])
         >>> s.query(1, 3)
-        2
+        3
         >>> s.query(1, 5)
-        7
+        5
         """
         return self.query_recursive(1, 0, self.N - 1, a - 1, b - 1)
 
