@@ -20,7 +20,7 @@ def binary_cross_entropy(
     >>> predicted_probs = np.array([0.2, 0.7, 0.9, 0.3, 0.8])
     >>> bce_loss = binary_cross_entropy(true_labels, predicted_probs)
     >>> bce_loss
-    0.6785203447911846
+    0.2529995012327421
     """
     # Clip predicted probabilities to avoid log(0) and log(1)
     y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
