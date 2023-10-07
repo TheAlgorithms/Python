@@ -1,16 +1,16 @@
-# Python3 program to implement 
+# Python3 program to implement
 # flood fill algorithm
 
-# Dimensions of paint screen 
+# Dimensions of paint screen
 M = 8
 N = 8
 
-# A recursive function to replace 
-# previous color 'prevC' at '(x, y)' 
-# and all surrounding pixels of (x, y) 
-# with new color 'newC' and 
+# A recursive function to replace
+# previous color 'prevC' at '(x, y)'
+# and all surrounding pixels of (x, y)
+# with new color 'newC' and
 def floodFillUtil(screen, x, y, prevC, newC):
-	
+
 	# Base cases
 	if (x < 0 or x >= M or y < 0 or
 		y >= N or screen[x][y] != prevC or
@@ -26,22 +26,22 @@ def floodFillUtil(screen, x, y, prevC, newC):
 	floodFillUtil(screen, x, y + 1, prevC, newC)
 	floodFillUtil(screen, x, y - 1, prevC, newC)
 
-# It mainly finds the previous color on (x, y) and 
-# calls floodFillUtil() 
+# It mainly finds the previous color on (x, y) and
+# calls floodFillUtil()
 def floodFill(screen, x, y, newC):
 	prevC = screen[x][y]
 	if(prevC==newC):
-	    return 
+	    return
     floodFillUtil(screen, x, y, prevC, newC)
 
 # Driver Code
-screen = [[1, 1, 1, 1, 1, 1, 1, 1], 
-		[1, 1, 1, 1, 1, 1, 0, 0], 
-		[1, 0, 0, 1, 1, 0, 1, 1], 
-		[1, 2, 2, 2, 2, 0, 1, 0], 
-		[1, 1, 1, 2, 2, 0, 1, 0], 
-		[1, 1, 1, 2, 2, 2, 2, 0], 
-		[1, 1, 1, 1, 1, 2, 1, 1], 
+screen = [[1, 1, 1, 1, 1, 1, 1, 1],
+		[1, 1, 1, 1, 1, 1, 0, 0],
+		[1, 0, 0, 1, 1, 0, 1, 1],
+		[1, 2, 2, 2, 2, 0, 1, 0],
+		[1, 1, 1, 2, 2, 0, 1, 0],
+		[1, 1, 1, 2, 2, 2, 2, 0],
+		[1, 1, 1, 1, 1, 2, 1, 1],
 		[1, 1, 1, 1, 1, 2, 2, 1]]
 
 x = 4
