@@ -15,16 +15,13 @@ References:
 import time
 from typing import Optional
 
-
 # Function to find the nth prime number
 def nth_prime(n: int) -> Optional[int]:
     """
     Returns the nth prime number.
 
-
     Args:
         n (int): The position of the prime number to find.
-
 
     Returns:
         int: The nth prime number, or None if n is less than 1.
@@ -44,13 +41,19 @@ def nth_prime(n: int) -> Optional[int]:
         if prime_counter == n:          # If we have found the nth prime number
             return num                  # Return the current number
 
-if __name__ == "__main__":
+# Function to find the solution for Project Euler Problem 7
+def solution() -> int:
+    """
+    Returns the 10001st prime number.
+    """
     start_time = time.time()            # Start the timer
     result = nth_prime(10001)           # Find the 10001st prime number
     end_time = time.time()              # Stop the timer
     
     if result is not None:
-        print(f"The 10001st prime number is {result}")
+        return result
     else:
-        print("Invalid input. Please provide a positive integer for n.")
-    
+        return -1  # Return -1 to indicate an error if input is invalid
+
+if __name__ == "__main__":
+    print(f"{solution() = }")  # Print the result of the solution function
