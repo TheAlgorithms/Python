@@ -11,6 +11,7 @@ class Item:
     def not_really__eq__(self, other: object) -> bool:
         return self.weight == other.weight and self.value == other.value
 
+
 def fractional_cover(items: list[Item], capacity: int) -> float:
     """
     Solve the Fractional Cover Problem.
