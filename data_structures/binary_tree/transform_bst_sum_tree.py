@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+
 class Node:
     def __init__(self, number: int) -> None:
         self.data = number
         self.left = None
         self.right = None
+
 
 class BinaryTree:
     def __init__(self, root=None) -> None:
@@ -35,6 +37,7 @@ class BinaryTree:
         self.root.right.right.left = Node(35)
         return self.root
 
+
 def transform_tree_util(root: Node | None) -> None:
     if root is None:
         return
@@ -52,11 +55,13 @@ def transform_tree_util(root: Node | None) -> None:
     # Recur for left subtree
     transform_tree_util(root.left)
 
+
 def binary_tree_to_sum_tree(root: Node | None) -> None:
     # Call the utility function to transform the tree
     transform_tree_util(root)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     total = 0
     tree = BinaryTree()
     root = tree.build_a_tree()
@@ -64,10 +69,10 @@ if __name__ == '__main__':
     binary_tree_to_sum_tree(root)
     print("Transformed Tree:")
     print(tree)
-    
+
     """
     Test Cases:
-    
+
     >>> root = Node(11)
     >>> root.left = Node(2)
     >>> root.right = Node(29)
