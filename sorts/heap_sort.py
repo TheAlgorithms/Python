@@ -9,26 +9,35 @@ python3 -m doctest -v heap_sort.py
 For manual testing run:
 python heap_sort.py
 """
+from typing import List
 
 
-def heapify(unsorted, index, heap_size):
+def heapify(unsorted_list: List[int], index: int, heap_size: int) -> None:
+    """
+
+    :param unsorted_list: unsorted list containing integers numbers
+    :param index: index
+    :param heap_size: size of the heap
+    :return: None
+    """
     largest = index
     left_index = 2 * index + 1
     right_index = 2 * index + 2
-    if left_index < heap_size and unsorted[left_index] > unsorted[largest]:
+    if left_index < heap_size and unsorted_list[left_index] > unsorted_list[largest]:
         largest = left_index
 
-    if right_index < heap_size and unsorted[right_index] > unsorted[largest]:
+    if right_index < heap_size and unsorted_list[right_index] > unsorted_list[largest]:
         largest = right_index
 
     if largest != index:
-        unsorted[largest], unsorted[index] = unsorted[index], unsorted[largest]
-        heapify(unsorted, largest, heap_size)
+        unsorted_list[largest], unsorted_list[index] = unsorted_list[index], unsorted_list[largest]
+        heapify(unsorted_list, largest, heap_size)
 
 
-def heap_sort(unsorted):
+def heap_sort(unsorted_list: List[int]) -> List[int]:
     """
     Pure implementation of the heap sort algorithm in Python
+
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered by ascending
@@ -42,17 +51,20 @@ def heap_sort(unsorted):
 
     >>> heap_sort([-2, -5, -45])
     [-45, -5, -2]
+
+    >>> heap_sort([3, 7, 9, 28, 123, -5, 8, -30, -200, 0, 4])
+    [-200, -30, -5, 0, 3, 4, 7, 8, 9, 28, 123]
     """
-    n = len(unsorted)
+    n = len(unsorted_list)
     for i in range(n // 2 - 1, -1, -1):
-        heapify(unsorted, i, n)
+        heapify(unsorted_list, i, n)
     for i in range(n - 1, 0, -1):
-        unsorted[0], unsorted[i] = unsorted[i], unsorted[0]
-        heapify(unsorted, 0, i)
-    return unsorted
+        unsorted_list[0], unsorted_list[i] = unsorted_list[i], unsorted_list[0]
+        heapify(unsorted_list, 0, i)
+    return unsorted_list
 
 
 if __name__ == "__main__":
-    user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    print(heap_sort(unsorted))
+    import doctest
+
+    doctest.testmod()
