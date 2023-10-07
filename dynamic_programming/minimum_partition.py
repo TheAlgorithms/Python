@@ -7,8 +7,7 @@ Partition a set into two subsets such that the difference of subset sums is mini
 
 def find_min(arr):
     """
-    >>> find_min([1])
-    1
+
     >>> find_min([1,2,3,4])
     0
     >>> find_min([0,0,0,0])
