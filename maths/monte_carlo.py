@@ -39,7 +39,7 @@ def pi_estimator(iterations: int):
     """
     try:
         iterations = int(iterations)
-    except Exception as e:
+    except ValueError as e:
         raise ValueError("iterations must be a integer!") from e
     if iterations < 1:
         raise ValueError("iterations must be at least 1!")
