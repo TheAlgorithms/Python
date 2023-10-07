@@ -1,20 +1,21 @@
-"""
-Linear regression is the most basic type of regression commonly used for
-predictive analysis. The idea is pretty simple: we have a dataset and we have
-features associated with it. Features should be chosen very cautiously
-as they determine how much our model will be able to make future predictions.
-We try to set the weight of these features, over many iterations, so that they best
-fit our dataset. In this particular code, I had used a CSGO dataset (ADR vs
-Rating). We try to best fit a line through dataset and estimate the parameters.
-"""
 import numpy as np
 import requests
 
 
 def collect_dataset():
-    """Collect dataset of CSGO
-    The dataset contains ADR vs Rating of a Player
-    :return : dataset obtained from the link, as matrix
+    """
+    Collect dataset of CSGO.
+
+    The dataset contains ADR vs Rating of a Player.
+
+    :return: dataset obtained from the link, as a matrix
+
+    Example:
+    >>> dataset = collect_dataset()
+    >>> dataset.shape
+    (100, 2)
+    >>> dataset[0, 0]
+    75.45
     """
     response = requests.get(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
@@ -31,14 +32,25 @@ def collect_dataset():
 
 
 def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
-    """Run steep gradient descent and updates the Feature vector accordingly_
-    :param data_x   : contains the dataset
-    :param data_y   : contains the output associated with each data-entry
-    :param len_data : length of the data_
-    :param alpha    : Learning rate of the model
-    :param theta    : Feature vector (weight's for our model)
-    ;param return    : Updated Feature's, using
-                       curr_features - alpha_ * gradient(w.r.t. feature)
+    """
+    Run steep gradient descent and update the Feature vector accordingly.
+
+    :param data_x: contains the dataset
+    :param data_y: contains the output associated with each data-entry
+    :param len_data: length of the data
+    :param alpha: Learning rate of the model
+    :param theta: Feature vector (weights for our model)
+    :return: Updated Feature's using curr_features - alpha * gradient(w.r.t. feature)
+
+    Example:
+    >>> data_x = np.array([[1, 2], [1, 3], [1, 4]])
+    >>> data_y = np.array([3, 4, 5])
+    >>> len_data = 3
+    >>> alpha = 0.01
+    >>> theta = np.array([0, 0])
+    >>> updated_theta = run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta)
+    >>> updated_theta
+    array([0.08, 0.23])
     """
     n = len_data
 
@@ -50,12 +62,23 @@ def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
 
 
 def sum_of_square_error(data_x, data_y, len_data, theta):
-    """Return sum of square error for error calculation
-    :param data_x    : contains our dataset
-    :param data_y    : contains the output (result vector)
-    :param len_data  : len of the dataset
-    :param theta     : contains the feature vector
-    :return          : sum of square error computed from given feature's
+    """
+    Return sum of square error for error calculation.
+
+    :param data_x: contains our dataset
+    :param data_y: contains the output (result vector)
+    :param len_data: length of the dataset
+    :param theta: contains the feature vector
+    :return: sum of square error computed from given features
+
+    Example:
+    >>> data_x = np.array([[1, 2], [1, 3], [1, 4]])
+    >>> data_y = np.array([3, 4, 5])
+    >>> len_data = 3
+    >>> theta = np.array([0.08, 0.23])
+    >>> error = sum_of_square_error(data_x, data_y, len_data, theta)
+    >>> round(error, 2)
+    0.01
     """
     prod = np.dot(theta, data_x.transpose())
     prod -= data_y.transpose()
@@ -65,10 +88,19 @@ def sum_of_square_error(data_x, data_y, len_data, theta):
 
 
 def run_linear_regression(data_x, data_y):
-    """Implement Linear regression over the dataset
-    :param data_x  : contains our dataset
-    :param data_y  : contains the output (result vector)
-    :return        : feature for line of best fit (Feature vector)
+    """
+    Implement Linear regression over the dataset.
+
+    :param data_x: contains our dataset
+    :param data_y: contains the output (result vector)
+    :return: feature for the line of best fit (Feature vector)
+
+    Example:
+    >>> data_x = np.array([[1, 2], [1, 3], [1, 4]])
+    >>> data_y = np.array([3, 4, 5])
+    >>> theta = run_linear_regression(data_x, data_y)
+    >>> theta
+    array([0.07, 0.22])
     """
     iterations = 100000
     alpha = 0.0001550
@@ -79,7 +111,8 @@ def run_linear_regression(data_x, data_y):
     theta = np.zeros((1, no_features))
 
     for i in range(iterations):
-        theta = run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta)
+        theta = run_steep_gradient_descent(
+            data_x, data_y, len_data, alpha, theta)
         error = sum_of_square_error(data_x, data_y, len_data, theta)
         print(f"At Iteration {i + 1} - Error is {error:.5f}")
 
@@ -87,17 +120,28 @@ def run_linear_regression(data_x, data_y):
 
 
 def mean_absolute_error(predicted_y, original_y):
-    """Return sum of square error for error calculation
-    :param predicted_y   : contains the output of prediction (result vector)
-    :param original_y    : contains values of expected outcome
-    :return          : mean absolute error computed from given feature's
+    """
+    Return mean absolute error for error calculation.
+
+    :param predicted_y: contains the output of prediction (result vector)
+    :param original_y: contains values of the expected outcome
+    :return: mean absolute error computed from given features
+
+    Example:
+    >>> predicted_y = np.array([2, 4, 6])
+    >>> original_y = np.array([1, 3, 5])
+    >>> error = mean_absolute_error(predicted_y, original_y)
+    >>> error
+    1.0
     """
     total = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
     return total / len(original_y)
 
 
 def main():
-    """Driver function"""
+    """
+    Driver function
+    """
     data = collect_dataset()
 
     len_data = data.shape[0]
