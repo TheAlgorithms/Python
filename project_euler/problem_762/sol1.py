@@ -10,7 +10,7 @@ For example, when N=2, there are 2 different possible arrangements. When N=10, t
 
 """
 
-def solution(N:int=100000):
+def solution(N:int=100):
     """
     Calculates the number of different possible arrangements of amoebas after N divisions.
 
@@ -22,10 +22,10 @@ def solution(N:int=100000):
     :rtype: int
     
     >>> solution(10)
-    1301
+    45
 
     >>> solution(100)
-    125923036
+    759055971
     
     """
     MOD = 10**9
