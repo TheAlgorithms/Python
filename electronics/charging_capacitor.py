@@ -1,6 +1,5 @@
 # source - The ARRL Handbook for Radio Communications
-
-from math import exp  # value of exp = 2.718281828459…
+# https://en.wikipedia.org/wiki/RC_time_constant
 
 """
 Description
@@ -10,13 +9,12 @@ at a general speed but when a resistor is connected in the  circuit with in seri
 a capacitor then the capacitor charges slowly means it will take more time than usual.
 while the capacitor is being charged, the voltage is in exponential function with time.
 
-in the this function there is RC which is 'resistance(ohms)*capacitance(farads)'.
-also represented as τ (tau).
-
-with the help of RC-timeconstant we can find the voltage at any time 't' from the
-initiation of charging a capacitor with the help of the exponential function
-containing RC.Both at charging and discharging of a capacitor.
+'resistance(ohms) * capacitance(farads)' is called RC-timeconstant which may also be
+represented as τ (tau).  By using this RC-timeconstant we can find the voltage at any
+time 't' from the initiation of charging a capacitor with the help of the exponential
+function containing RC.  Both at charging and discharging of a capacitor.
 """
+from math import exp  # value of exp = 2.718281828459…
 
 
 def charging_capacitor(
@@ -39,68 +37,32 @@ def charging_capacitor(
     >>> charging_capacitor(source_voltage=15,resistance=200,capacitance=20,time_sec=2)
     0.007
 
+    >>> charging_capacitor(20, 2000, 30*pow(10,-5), 4)
+    19.975
+
     >>> charging_capacitor(source_voltage=0,resistance=10.0,capacitance=.30,time_sec=3)
     Traceback (most recent call last):
         ...
-    ValueError: source voltage cannot be zero.
-
-    >>> charging_capacitor(20, 2000, 30*pow(10,-5), 4)
-    19.975
+    ValueError: Source voltage must be positive.
 
     >>> charging_capacitor(source_voltage=20,resistance=-2000,capacitance=30,time_sec=4)
     Traceback (most recent call last):
         ...
-    ValueError: Resistance cannot be negative.
-
-    >>> charging_capacitor(source_voltage=-2,resistance=20,capacitance=30,time_sec=4)
-    Traceback (most recent call last):
-        ...
-    ValueError: source voltage cannot be negative.
-
-    >>> charging_capacitor(source_voltage=8,resistance=0,capacitance=30,time_sec=4)
-    Traceback (most recent call last):
-        ...
-    ValueError: Resistance cannot be zero.
+    ValueError: Resistance must be positive.
 
     >>> charging_capacitor(source_voltage=30,resistance=1500,capacitance=0,time_sec=4)
     Traceback (most recent call last):
         ...
-    ValueError: Capacitance cannot be zero.
-
-    >>> charging_capacitor(source_voltage=30,resistance=23,capacitance=-40,time_sec=5)
-    Traceback (most recent call last):
-        ...
-    ValueError: Capacitance cannot be negative.
+    ValueError: Capacitance must be positive.
     """
 
     if source_voltage <= 0:
-        if source_voltage < 0:
-            raise ValueError("source voltage cannot be negative.")
-        elif source_voltage == 0:
-            raise ValueError("source voltage cannot be zero.")
-        else:
-            return 0
-
-    elif resistance <= 0:
-        if resistance < 0:
-            raise ValueError("Resistance cannot be negative.")
-        elif resistance == 0:
-            raise ValueError("Resistance cannot be zero.")
-        else:
-            return 0
-
-    elif capacitance <= 0:
-        if capacitance < 0:
-            raise ValueError("Capacitance cannot be negative.")
-        elif capacitance == 0:
-            raise ValueError("Capacitance cannot be zero.")
-        else:
-            return 0
-
-    else:
-        return round(
-            source_voltage * (1 - exp(-time_sec / (resistance * capacitance))), 3
-        )
+        raise ValueError("Source voltage must be positive.")
+    if resistance <= 0:
+        raise ValueError("Resistance must be positive.")
+    if capacitance <= 0:
+        raise ValueError("Capacitance must be positive.")
+    return round(source_voltage * (1 - exp(-time_sec / (resistance * capacitance))), 3)
 
 
 if __name__ == "__main__":
