@@ -4,11 +4,11 @@ Reference: https://en.wikipedia.org/wiki/Greatest_common_divisor
 """
 
 from collections import Counter
-
+from typing import Union
 
 def get_factors(
     number: int, factors: Counter | None = None, factor: int = 2
-) -> Counter:
+) -> Union[Counter, TypeError]:
     """
     this is a recursive function for get all factors of number
     >>> get_factors(45)
