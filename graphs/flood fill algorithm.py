@@ -9,7 +9,7 @@ N = 8
 # previous color 'prevC' at '(x, y)'
 # and all surrounding pixels of (x, y)
 # with new color 'newC' and
-def floodFillUtil(screen, x, y, prevC, newC):
+def flood_Fill_Util(screen, x, y, prevC, newC):
 
 	# Base cases
 	if (x < 0 or x >= M or y < 0 or
@@ -28,11 +28,11 @@ def floodFillUtil(screen, x, y, prevC, newC):
 
 # It mainly finds the previous color on (x, y) and
 # calls floodFillUtil()
-def floodFill(screen, x, y, newC):
+def flood_Fill(screen, x, y, newC):
 	prevC = screen[x][y]
 	if(prevC==newC):
 	    return
-	floodFillUtil(screen, x, y, prevC, newC)
+	flood_Fill_Util(screen, x, y, prevC, newC)
 
 # Driver Code
 screen = [[1, 1, 1, 1, 1, 1, 1, 1],
@@ -46,8 +46,8 @@ screen = [[1, 1, 1, 1, 1, 1, 1, 1],
 
 x = 4
 y = 4
-newC = 3
-floodFill(screen, x, y, newC)
+new_C = 3
+flood_Fill(screen, x, y, new_C)
 
 print ("Updated screen after call to floodFill:")
 for i in range(M):
