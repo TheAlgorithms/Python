@@ -1,7 +1,7 @@
 """
 
 Note:
-    This algorithm has memory persistance. 
+    This algorithm has memory persistance.
     So multiple runs on the same runtime will carry junk and scramble the result!
 """
 
@@ -55,7 +55,7 @@ def encode_or_decode(message, token):
     (['/', '0', "'", '%', ' '], 3)
 
     """
-    
+
     for _ in range(token):
         rotator()
     for j in message:
@@ -84,6 +84,5 @@ def menu():
 
 if __name__ == "__main__":
     import doctest
-    
-    doctest.testmod()
 
+    doctest.testmod()
