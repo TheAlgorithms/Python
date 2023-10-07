@@ -8,7 +8,16 @@ class Item:
     weight: int
     value: int
 
-    def __eq__(self, other):
+    def __eq__(self, other: 'Item') -> bool:
+        """
+        Compare two Item objects for equality based on weight and value attributes.
+
+        Args:
+            other (Item): Another Item object to compare with.
+
+        Returns:
+            bool: True if the objects are equal, False otherwise.
+        """
         return self.weight == other.weight and self.value == other.value
 
 
@@ -57,24 +66,12 @@ def fractional_cover(items: list[Item], capacity: int) -> float:
     >>> items = [Item(1, 1)]
     >>> fractional_cover(items, 0)
     0.0
-
-    >>> items = [Item(1, 1)]
-    >>> fractional_cover(items, 1)
-    1.0
-
-    >>> items = [Item(1, 1)]
-    >>> fractional_cover(items, 2)
-    1.0
-
-    >>> items = [Item(1, 1)]
-    >>> fractional_cover(items, 0)
-    0.0
     """
     # Calculate the value-to-weight ratios for each item
     ratios = [(item.value / item.weight, item) for item in items]
 
     # Sort the items by their value-to-weight ratio in descending order
-    ratios.sort(key=lambda x: x[0], reverse=True)
+    ratios.sort(key=lambda item_ratio: item_ratio[0], reverse=True)
 
     total_value = 0.0
     remaining_capacity = capacity
@@ -88,7 +85,6 @@ def fractional_cover(items: list[Item], capacity: int) -> float:
         remaining_capacity -= weight_taken
 
     return total_value
-
 
 if __name__ == "__main__":
     import doctest
