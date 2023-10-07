@@ -75,7 +75,6 @@ def is_match(string: str, pattern: str) -> bool:
 
     >>> is_match("abc", "a*bc")
     True
-
     """
     m, n = len(string), len(pattern)
     dp = [[False] * (n + 1) for _ in range(m + 1)]
