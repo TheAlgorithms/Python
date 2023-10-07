@@ -28,7 +28,8 @@ def matrix_multiply_recursive(matrix_a: list, matrix_b: list) -> list:
               for _ in range(len(matrix_a))]
 
     # Recursive multiplication of matrices
-    def multiply(i_loop: int, j_loop: int, k_loop: int, matrix_a: list, matrix_b: list, result: list) -> function:
+    def multiply(i_loop: int, j_loop: int, k_loop: int, matrix_a: list, 
+                 matrix_b: list, result: list) -> multiply:
         """
         :param matrix_a: Input matrices.
         :param matrix_b: Input matrices where length of matrices is
