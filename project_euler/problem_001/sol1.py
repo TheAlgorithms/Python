@@ -31,3 +31,6 @@ def solution(n: int = 1000) -> int:
 
 if __name__ == "__main__":
     print(f"{solution() = }")
+    from doctest import testmod
+
+    testmod()
