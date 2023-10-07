@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def mean_squared_error(y_true, y_pred):
+def mean_squared_error(y_true: list[float], y_pred: list[float]) -> float:
     """
     Calculate the Mean Squared Error (MSE) between two arrays.
 
