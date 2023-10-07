@@ -12,17 +12,23 @@ References:
     - https://en.wikipedia.org/wiki/Prime_number
 """
 
+import time
+from typing import Optional
+
 # Function to find the nth prime number
-def nth_prime(n):
+def nth_prime(n: int) -> Optional[int]:
     """
     Returns the nth prime number.
-    
+
     Args:
         n (int): The position of the prime number to find.
-        
+
     Returns:
-        int: The nth prime number.
+        int: The nth prime number, or None if n is less than 1.
     """
+    if n < 1:
+        return None
+
     prime_counter = 2                   # Initialize the prime counter to 2 since 2 is the first prime number
     for num in range(3, n ** 2, 2):     # Loop through odd numbers starting from 3
         divisor = 1                     # Initialize the divisor to 1
@@ -40,4 +46,8 @@ if __name__ == "__main__":
     result = nth_prime(10001)           # Find the 10001st prime number
     end_time = time.time()              # Stop the timer
     
-    print(f"{result = }")               # Print the 10001st prime number
+    if result is not None:
+        print(f"The 10001st prime number is {result}")
+    else:
+        print("Invalid input. Please provide a positive integer for n.")
+    
