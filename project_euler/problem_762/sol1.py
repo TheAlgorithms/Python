@@ -36,6 +36,7 @@ def solution(N:int=100000):
         dp[i] = (dp[i] + dp[i - 1]) % MOD
         for j in range(4, i + 1, 4):
             dp[i] = (dp[i] + dp[i - j] * 2) % MOD
+            
 
     return dp[N]
 
