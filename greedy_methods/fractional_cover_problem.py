@@ -22,6 +22,9 @@ def fractional_cover(items: list[Item], capacity: int) -> float:
         float: The maximum value that can be obtained by selecting fractions of items to
         cover the knapsack's capacity.
 
+    Raises:
+        ValueError: If the `capacity` is negative.
+
     Examples:
     >>> items = [Item(10, 60), Item(20, 100), Item(30, 120)]
     >>> fractional_cover(items, 50)
@@ -54,7 +57,15 @@ def fractional_cover(items: list[Item], capacity: int) -> float:
     >>> items = [Item(1, 1)]
     >>> fractional_cover(items, 0)
     0.0
+
+    >>> items = [Item(10, 60)]
+    >>> fractional_cover(items, -1)
+    Traceback (most recent call last):
+        ...
+    ValueError: Capacity cannot be negative
     """
+    if capacity < 0:
+        raise ValueError("Capacity cannot be negative")
     # Calculate the value-to-weight ratios for each item
     ratios = [(item.value / item.weight, item) for item in items]
 
