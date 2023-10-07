@@ -2,7 +2,8 @@
 Finding the real root of a given degree of a given number
 rounding to the nearest given number of decimal places without using ** or pow()
 
-[Problem link] https://www.geeksforgeeks.org/calculating-n-th-real-root-using-binary-search/
+[Problem link] 
+https://www.geeksforgeeks.org/calculating-n-th-real-root-using-binary-search/
 
 Input:
     - number: 3
