@@ -24,8 +24,7 @@ def matrix_multiply_recursive(matrix_a: list, matrix_b: list) -> list:
         raise ValueError("Invalid matrix dimensions")
 
     # Initialize the result matrix with zeros
-    result = [[0 for _ in range(len(matrix_b[0]))]
-              for _ in range(len(matrix_a))]
+    result = [[0 for _ in range(len(matrix_b[0]))] for _ in range(len(matrix_a))]
 
     # Recursive multiplication of matrices
     def multiply(
@@ -44,7 +43,7 @@ def matrix_multiply_recursive(matrix_a: list, matrix_b: list) -> list:
         :param i: Indices used for iteration during multiplication.
         :param j: Indices used for iteration during multiplication.
         :param k: Indices used for iteration during multiplication.
-        
+
         >>> matrix_a = [[1, 2], [3, 4]]
         >>> matrix_b = [[5, 6], [7, 8]]
         >>> result = [[0, 0], [0, 0]]
@@ -66,8 +65,7 @@ def matrix_multiply_recursive(matrix_a: list, matrix_b: list) -> list:
             return multiply(i_loop + 1, 0, 0, matrix_a, matrix_b, result)
         if k_loop >= len(matrix_b):
             return multiply(matrix_a, matrix_b, result, i_loop, j_loop + 1, 0)
-        result[i_loop][j_loop] += matrix_a[i_loop][k_loop] * \
-            matrix_b[k_loop][j_loop]
+        result[i_loop][j_loop] += matrix_a[i_loop][k_loop] * matrix_b[k_loop][j_loop]
         multiply(i_loop, j_loop, k_loop + 1, matrix_a, matrix_b, result)
 
     # Perform matrix multiplication
