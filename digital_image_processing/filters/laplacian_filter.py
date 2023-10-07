@@ -2,7 +2,6 @@
 # @File    : laplacian_filter.py
 # @Date    : 10/04/2023
 
-import numpy as np
 from cv2 import (
     BORDER_DEFAULT,
     COLOR_BGR2GRAY,
@@ -14,9 +13,8 @@ from cv2 import (
     waitKey,
 )
 
-
 from digital_image_processing.filters.gaussian_filter import gaussian_filter
-
+import numpy as np
 
 def my_laplacian(ksize: int, src: np.ndarray) -> np.ndarray:
     """

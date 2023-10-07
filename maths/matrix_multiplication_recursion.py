@@ -44,7 +44,7 @@ def matrix_multiply_recursive(matrix_a: list, matrix_b: list) -> list:
         :param i: Indices used for iteration during multiplication.
         :param j: Indices used for iteration during multiplication.
         :param k: Indices used for iteration during multiplication.
-        
+       
         >>> matrix_a = [[1, 2], [3, 4]]
         >>> matrix_b = [[5, 6], [7, 8]]
         >>> result = [[0, 0], [0, 0]]
