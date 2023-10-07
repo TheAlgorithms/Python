@@ -8,7 +8,7 @@ class Item:
     weight: int
     value: int
 
-    def __eq__(self, other: 'Item') -> bool:
+    def __eq__(self, other: "Item") -> bool:
         """
         Compare two Item objects for equality based on weight and value attributes.
 
@@ -85,6 +85,7 @@ def fractional_cover(items: list[Item], capacity: int) -> float:
         remaining_capacity -= weight_taken
 
     return total_value
+
 
 if __name__ == "__main__":
     import doctest
