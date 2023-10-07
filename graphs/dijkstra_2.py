@@ -9,10 +9,10 @@ def print_dist(dist, v):
     Example:
     >>> print_dist([0.0, 2.0, 3.0, float('inf')], 4)
     Vertex Distance
-    0 	 0	
-    1 	 2	
-    2 	 3	
-    3 	 INF	
+    0 	 0
+    1 	 2
+    2 	 3
+    3 	 INF
     """
     print("\nVertex Distance")
     for i in range(v):
@@ -61,10 +61,10 @@ def dijkstra(graph, v, src):
     ...          [1.0, float('inf'), 3.0, 0.0]]
     >>> dijkstra(graph, 4, 0)
     Vertex Distance
-    0 	 0	
-    1 	 2	
-    2 	 3	
-    3 	 1	
+    0 	 0
+    1 	 2
+    2 	 3
+    3 	 1
     """
     mdist = [float("inf") for _ in range(v)]
     vset = [False for _ in range(v)]
