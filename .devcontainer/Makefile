@@ -12,7 +12,7 @@ endif
 default: build
 
 build:
-	docker build -t ${IMAGE_NAME}\:${IMAGE_VERSION} -f Dockerfile .
+	docker build -t ${IMAGE_NAME}\:${IMAGE_VERSION} -f dockerfile .
 
 setup-env:
 	docker run -it -v ${ABSOLUTE_PATH_TO_WORKDIR}\:/${WORKDIR} ${IMAGE_NAME}\:${IMAGE_VERSION} bash
