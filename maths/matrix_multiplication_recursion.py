@@ -68,12 +68,7 @@ if __name__ == "__main__":
         [13, 14, 15, 16],
         [13, 14, 15, 16],
     ]
-    matrix_b = [
-        [5, 8, 1, 2], 
-        [6, 7, 3, 0], 
-        [4, 5, 9, 1], 
-        [2, 6, 10, 14]
-    ]
+    matrix_b = [[5, 8, 1, 2], [6, 7, 3, 0], [4, 5, 9, 1], [2, 6, 10, 14]]
 
     result_matrix = matrix_multiply_recursive(matrix_a, matrix_b)
     for row in result_matrix:
