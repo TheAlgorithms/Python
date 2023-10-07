@@ -10,6 +10,10 @@ def upper(word: str) -> str:
     'WHAT'
     >>> upper("wh[]32")
     'WH[]32'
+    >>> upper("WH[]3_aA2")
+    'WH[]3_AA2'
+    >>> upper("bomdia&compania")
+    'BOMDIA&COMPANIA'
     """
 
     # Converting to ascii value int value and checking to see if char is a lower letter
