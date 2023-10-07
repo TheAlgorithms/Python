@@ -4,7 +4,6 @@ imageio
 keras
 lxml
 matplotlib
-mypy
 numpy
 opencv-python
 pandas
@@ -21,6 +20,5 @@ sympy
 tensorflow ; python_version < '3.12'
 texttable
 tweepy
-types-pytz
 xgboost
 yulewalker
