@@ -8,12 +8,12 @@ class Item:
     weight: int
     value: int
 
-    def __eq__(self, other: "Item") -> bool:
+    def __eq__(self, other: object) -> bool:
         """
         Compare two Item objects for equality based on weight and value attributes.
 
         Args:
-            other (Item): Another Item object to compare with.
+            other (object): Another object to compare with.
 
         Returns:
             bool: True if the objects are equal, False otherwise.
@@ -28,7 +28,7 @@ class Item:
         False
         """
         if not isinstance(other, Item):
-            return NotImplemented
+            return False  # Return False for non-Item objects
         return self.weight == other.weight and self.value == other.value
 
 
@@ -106,3 +106,4 @@ if __name__ == "__main__":
         print("All tests passed")
     else:
         print(f"{result} test(s) failed")
+        
