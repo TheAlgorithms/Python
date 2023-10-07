@@ -16,10 +16,11 @@ def binary_cross_entropy(
     - bce_loss: Binary Cross-Entropy Loss.
 
     Example Usage:
-    true_labels = np.array([0, 1, 1, 0, 1])
-    predicted_probs = np.array([0.2, 0.7, 0.9, 0.3, 0.8])
-    bce_loss = binary_cross_entropy(true_labels, predicted_probs)
-    print(f"Binary Cross-Entropy Loss: {bce_loss}")
+    >>> true_labels = np.array([0, 1, 1, 0, 1])
+    >>> predicted_probs = np.array([0.2, 0.7, 0.9, 0.3, 0.8])
+    >>> bce_loss = binary_cross_entropy(true_labels, predicted_probs)
+    >>> bce_loss
+    0.6785203447911846
     """
     # Clip predicted probabilities to avoid log(0) and log(1)
     y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
