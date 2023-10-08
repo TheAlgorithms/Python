@@ -5,7 +5,7 @@ satisfies the following modular arithmetic condition:
 
     power(b, n-1) MOD n = 1,
     for all b ranging from 1 to n such that b and
-    n are relatively prime, i.e, greatest_common_divisor(b, n) = 1
+    n are relatively prime, i.e, gcd(b, n) = 1
 
 Examples of Carmichael Numbers: 561, 1105, ...
 https://en.wikipedia.org/wiki/Carmichael_number
