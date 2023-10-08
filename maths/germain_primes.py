@@ -1,5 +1,5 @@
 """
-A Germain prime is any prime p, where 2p + 1 is also prime.
+A Sophie Germain prime is any prime p, where 2p + 1 is also prime.
 The second number, 2p + 1 is called a safe prime.
 
 Examples of Germain primes include: 2, 3, 5, 11, 23
