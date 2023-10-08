@@ -19,7 +19,7 @@ def soboleva_modified_hyperbolic_tangent(
     Implements the Soboleva Modified Hyperbolic Tangent function
 
     Parameters:
-        vector (ndarray): A vector that consitis of numeric values
+        vector (ndarray): A vector that consists of numeric values
         a_value (float): parameter a of the equation
         b_value (float): parameter b of the equation
         c_value (float): parameter c of the equation
