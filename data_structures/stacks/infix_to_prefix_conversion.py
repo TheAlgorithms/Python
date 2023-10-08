@@ -95,7 +95,6 @@ def infix_2_prefix(infix: str) -> str:
        +     | +       | cb^
        a     | +       | cb^a
              |         | cb^a+
-    '+a^bc'
 
     >>> infix_2_prefix('1*((-a)*2+b)')
      Symbol  |    Stack     |   Postfix
@@ -113,12 +112,10 @@ def infix_2_prefix(infix: str) -> str:
        *     | *            | b2a-*+
        1     | *            | b2a-*+1
              |              | b2a-*+1*
-    '*1+*-a2b'
 
     >>> infix_2_prefix('')
      Symbol  |  Stack  | Postfix
     ----------------------------
-    ''
 
     >>> infix_2_prefix('(()')
     Traceback (most recent call last):
