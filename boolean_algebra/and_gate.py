@@ -33,7 +33,10 @@ def and_gate(*args) -> int:
     >>> and_gate(1, 1, 0, 1)
     0
     """
-    return int(all(args))
+    if all(isinstance(arg, int) for arg in args):
+        return int(all(args))
+    else:
+        raise TypeError("Input values must be integers")
 
 def test_and_gate() -> None:
     """

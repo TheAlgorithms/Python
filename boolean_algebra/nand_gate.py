@@ -1,6 +1,6 @@
 """
-A NAND Gate is a logic gate in boolean algebra which results to 0 (False) if both
-the inputs are 1, and 1 (True) otherwise. It's similar to adding
+A NAND Gate is a logic gate in boolean algebra which results to 0 (False) if any
+of the inputs is 1, and 1 (True) otherwise. It's similar to adding
 a NOT gate along with an AND gate.
 Following is the truth table of a NAND Gate:
     ------------------------------
@@ -15,7 +15,7 @@ Refer - https://www.geeksforgeeks.org/logic-gates-in-python/
 """
 
 
-def nand_gate(input_1: int, input_2: int) -> int:
+def nand_gate(*args) -> int:
     """
     Calculate NAND of the input values
     >>> nand_gate(0, 0)
@@ -27,7 +27,10 @@ def nand_gate(input_1: int, input_2: int) -> int:
     >>> nand_gate(1, 1)
     0
     """
-    return int((input_1, input_2).count(0) != 0)
+    if all(isinstance(arg, int) for arg in args):
+        return int(any(arg == 0 for arg in args))
+    else:
+        raise TypeError("Input values must be integers")
 
 
 def test_nand_gate() -> None:
@@ -38,6 +41,9 @@ def test_nand_gate() -> None:
     assert nand_gate(0, 1) == 1
     assert nand_gate(1, 0) == 1
     assert nand_gate(1, 1) == 0
+    assert nand_gate(1, 1, 1) == 0
+    assert nand_gate(0, 1, 1) == 0
+    assert nand_gate(0, 0, 0) == 1
 
 
 if __name__ == "__main__":
@@ -45,3 +51,6 @@ if __name__ == "__main__":
     print(nand_gate(0, 1))
     print(nand_gate(1, 0))
     print(nand_gate(1, 1))
+    print(nand_gate(1, 1, 1))
+    print(nand_gate(0, 1, 1))
+    print(nand_gate(0, 0, 0))
