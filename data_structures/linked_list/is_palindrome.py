@@ -1,10 +1,11 @@
 from dataclasses import dataclass
+from typing import Optional
 
 
 @dataclass
 class ListNode:
     val: int = 0
-    next_node: "ListNode" = None
+    next_node: Optional["ListNode"] = None
 
 
 def is_palindrome(head: ListNode) -> bool:
