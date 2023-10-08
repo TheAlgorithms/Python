@@ -32,7 +32,7 @@ def infix_2_postfix(infix: str) -> str:
     print(
         "Symbol".center(8),
         "Stack".center(print_width),
-        "Postfix".rjust((print_width-7) // 2 + 7),
+        "Postfix".rjust((print_width - 7) // 2 + 7),
         sep=" | ",
     )
     print("-" * (print_width * 3 + 7))
@@ -60,20 +60,20 @@ def infix_2_postfix(infix: str) -> str:
                 ):
                     post_fix.append(stack.pop())  # pop stack & add to Postfix
                 stack.append(x)  # push x to stack
-                
+
         if post_fix != []:
             print(
                 x.center(8),
                 ("".join(stack)).ljust(print_width),
                 "".join(post_fix),
                 sep=" | ",
-            )   #Output in tabular format
+            )  # Output in tabular format
 
-        else: # Post_fix is empty -> remove trailing space in table
+        else:  # Post_fix is empty -> remove trailing space in table
             print(
                 x.center(8) + " | " + ("".join(stack)).ljust(print_width) + " |"
-            )   #Output in tabular format
-    
+            )  # Output in tabular format
+
     while len(stack) > 0:  # while stack is not empty
         if stack[-1] == "(":  # open bracket with no close bracket
             raise ValueError("Invalid bracket position(s)")
@@ -85,7 +85,6 @@ def infix_2_postfix(infix: str) -> str:
             "".join(post_fix),
             sep=" | ",
         )  # Output in tabular format
-        
 
     return "".join(post_fix)  # return Postfix as str
 
