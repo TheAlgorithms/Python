@@ -1,10 +1,11 @@
 from collections import deque
-
+from typing import Optional
 
 class StackUsingQueues:
-    def __init__(self):
-        self.queue1 = deque()
-        self.queue2 = deque()
+
+    def __init__(self) -> None:
+        self.queue1: deque = deque()
+        self.queue2: deque = deque()
 
     def push(self, value: int) -> None:
         """
@@ -12,7 +13,7 @@ class StackUsingQueues:
 
         Args:
             value (int): The element to push onto the stack.
-
+        
         Example:
             >>> stack = StackUsingQueues()
             >>> stack.push(1)
@@ -37,13 +38,13 @@ class StackUsingQueues:
         if self.queue1:
             self.queue1.popleft()
 
-    def top(self) -> int:
+    def top(self) -> Optional[int]:
         """
         Returns the top element of the stack without removing it.
 
         Returns:
-            int: The top element of the stack.
-
+            int: The top element of the stack, or None if the stack is empty.
+        
         Example:
             >>> stack = StackUsingQueues()
             >>> stack.push(1)
@@ -61,7 +62,7 @@ class StackUsingQueues:
 
         Returns:
             int: The size of the stack.
-
+        
         Example:
             >>> stack = StackUsingQueues()
             >>> stack.size()
@@ -83,7 +84,7 @@ class StackUsingQueues:
 
         Returns:
             bool: True if the stack is empty, False otherwise.
-
+        
         Example:
             >>> stack = StackUsingQueues()
             >>> stack.is_empty()
@@ -94,13 +95,13 @@ class StackUsingQueues:
         """
         return len(self.queue1) == 0
 
-    def peek(self) -> int:
+    def peek(self) -> Optional[int]:
         """
         Returns the top element of the stack without removing it.
 
         Returns:
-            int: The top element of the stack.
-
+            int: The top element of the stack, or None if the stack is empty.
+        
         Example:
             >>> stack = StackUsingQueues()
             >>> stack.push(1)
@@ -112,25 +113,6 @@ class StackUsingQueues:
             return self.queue1[0]
         return None
 
-
 if __name__ == "__main__":
-    stack = StackUsingQueues()
-
-    # Push some elements onto the stack
-    stack.push(1)
-    stack.push(2)
-    stack.push(3)
-
-    print("Stack size:", stack.size())
-    print("Top element:", stack.top())
-
-    # Pop elements from the stack
-    stack.pop()
-    print("Top element after pop:", stack.top())
-
-    stack.pop()
-    print("Top element after another pop:", stack.top())
-
-    print("Is stack empty?", stack.is_empty())
-    print("Peek at the top element:", stack.peek())
-    print("Final stack size:", stack.size())
+    import doctest
+    doctest.testmod()
