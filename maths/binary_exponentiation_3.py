@@ -12,6 +12,16 @@
 
 
 def b_expo(a: int, b: int) -> int:
+    """
+    >>> b_expo(2, 10)
+    1024
+    >>> b_expo(9, 0)
+    1
+    >>> b_expo(0, 12)
+    0
+    >>> b_expo(4,12)
+    16777216
+    """
     res = 1
     while b > 0:
         if b & 1:
@@ -24,6 +34,16 @@ def b_expo(a: int, b: int) -> int:
 
 
 def b_expo_mod(a: int, b: int, c: int) -> int:
+    """
+    >>> b_expo_mod(2, 10, 1000000007)
+    1024
+    >>> b_expo_mod(11,13,19)
+    11
+    >>> b_expo_mod(0, 19, 20)
+    0
+    >>> b_expo_mod(15, 5 , 4)
+    3
+    """
     res = 1
     while b > 0:
         if b & 1:
