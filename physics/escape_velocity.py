@@ -2,8 +2,8 @@
 Title: Calculate Escape Velocity
 
 Description:
-    This algorithm calculates the escape velocity required for an object to
-    leave the gravitational influence of a celestial body.
+    Calculate the escape velocity required for an object to leave the
+    gravitational influence of a celestial body.
 """
 
 import math
