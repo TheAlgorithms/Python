@@ -152,6 +152,15 @@ class MinMaxStack:
     def stack_is_valid(self) -> bool:
         """
         Validate stack is not empty
+
+        >>> test_stack = MinMaxStack(3)
+        >>> test_stack.stack_is_valid()
+        Stack is empty
+        False
+        >>> test_stack.push_value(0)
+        True
+        >>> test_stack.stack_is_valid()
+        True
         """
         if len(self.stack) == 0:
             print("Stack is empty")
