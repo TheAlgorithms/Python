@@ -58,9 +58,7 @@
   * [Single Bit Manipulation Operations](bit_manipulation/single_bit_manipulation_operations.py)
 
 ## Blockchain
-  * [Chinese Remainder Theorem](blockchain/chinese_remainder_theorem.py)
   * [Diophantine Equation](blockchain/diophantine_equation.py)
-  * [Modular Division](blockchain/modular_division.py)
 
 ## Boolean Algebra
   * [And Gate](boolean_algebra/and_gate.py)
@@ -101,6 +99,7 @@
   * [Diffie Hellman](ciphers/diffie_hellman.py)
   * [Elgamal Key Generator](ciphers/elgamal_key_generator.py)
   * [Enigma Machine2](ciphers/enigma_machine2.py)
+  * [Fractionated Morse Cipher](ciphers/fractionated_morse_cipher.py)
   * [Hill Cipher](ciphers/hill_cipher.py)
   * [Mixed Keyword Cypher](ciphers/mixed_keyword_cypher.py)
   * [Mono Alphabetic Ciphers](ciphers/mono_alphabetic_ciphers.py)
@@ -352,6 +351,7 @@
   * [Smith Waterman](dynamic_programming/smith_waterman.py)
   * [Subset Generation](dynamic_programming/subset_generation.py)
   * [Sum Of Subset](dynamic_programming/sum_of_subset.py)
+  * [Trapped Water](dynamic_programming/trapped_water.py)
   * [Tribonacci](dynamic_programming/tribonacci.py)
   * [Viterbi](dynamic_programming/viterbi.py)
   * [Word Break](dynamic_programming/word_break.py)
@@ -360,6 +360,7 @@
   * [Apparent Power](electronics/apparent_power.py)
   * [Builtin Voltage](electronics/builtin_voltage.py)
   * [Carrier Concentration](electronics/carrier_concentration.py)
+  * [Charging Capacitor](electronics/charging_capacitor.py)
   * [Circular Convolution](electronics/circular_convolution.py)
   * [Coulombs Law](electronics/coulombs_law.py)
   * [Electric Conductivity](electronics/electric_conductivity.py)
@@ -466,6 +467,7 @@
     * [Test Min Spanning Tree Prim](graphs/tests/test_min_spanning_tree_prim.py)
 
 ## Greedy Methods
+  * [Fractional Cover Problem](greedy_methods/fractional_cover_problem.py)
   * [Fractional Knapsack](greedy_methods/fractional_knapsack.py)
   * [Fractional Knapsack 2](greedy_methods/fractional_knapsack_2.py)
   * [Gas Station](greedy_methods/gas_station.py)
@@ -524,6 +526,9 @@
   * Local Weighted Learning
     * [Local Weighted Learning](machine_learning/local_weighted_learning/local_weighted_learning.py)
   * [Logistic Regression](machine_learning/logistic_regression.py)
+  * Loss Functions
+    * [Binary Cross Entropy](machine_learning/loss_functions/binary_cross_entropy.py)
+    * [Mean Squared Error](machine_learning/loss_functions/mean_squared_error.py)
   * [Mfcc](machine_learning/mfcc.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
   * [Polynomial Regression](machine_learning/polynomial_regression.py)
@@ -565,6 +570,7 @@
   * [Catalan Number](maths/catalan_number.py)
   * [Ceil](maths/ceil.py)
   * [Check Polygon](maths/check_polygon.py)
+  * [Chinese Remainder Theorem](maths/chinese_remainder_theorem.py)
   * [Chudnovsky Algorithm](maths/chudnovsky_algorithm.py)
   * [Collatz Sequence](maths/collatz_sequence.py)
   * [Combinations](maths/combinations.py)
@@ -619,6 +625,7 @@
   * [Max Sum Sliding Window](maths/max_sum_sliding_window.py)
   * [Median Of Two Arrays](maths/median_of_two_arrays.py)
   * [Mobius Function](maths/mobius_function.py)
+  * [Modular Division](maths/modular_division.py)
   * [Modular Exponential](maths/modular_exponential.py)
   * [Monte Carlo](maths/monte_carlo.py)
   * [Monte Carlo Dice](maths/monte_carlo_dice.py)
@@ -727,6 +734,7 @@
     * [Scaled Exponential Linear Unit](neural_network/activation_functions/scaled_exponential_linear_unit.py)
     * [Sigmoid Linear Unit](neural_network/activation_functions/sigmoid_linear_unit.py)
     * [Softplus](neural_network/activation_functions/softplus.py)
+    * [Squareplus](neural_network/activation_functions/squareplus.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
   * [Perceptron](neural_network/perceptron.py)
@@ -1202,6 +1210,7 @@
   * [Snake Case To Camel Pascal Case](strings/snake_case_to_camel_pascal_case.py)
   * [Split](strings/split.py)
   * [String Switch Case](strings/string_switch_case.py)
+  * [Strip](strings/strip.py)
   * [Text Justification](strings/text_justification.py)
   * [Top K Frequent Words](strings/top_k_frequent_words.py)
   * [Upper](strings/upper.py)
