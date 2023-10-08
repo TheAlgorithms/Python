@@ -40,6 +40,37 @@ def is_germain_prime(number: int) -> bool:
     return False
 
 
+def is_safe_prime(number: int) -> bool:
+    """Checks if input number and (number - 1)/2 are prime.
+    The smallest safe prime is 5, with the Germain prime is 2.
+
+    >>> is_safe_prime(5)
+    True
+    >>> is_safe_prime(11)
+    True
+    >>> is_safe_prime(1)
+    False
+    >>> is_safe_prime(2)
+    False
+    >>> is_safe_prime(3)
+    False
+    >>> is_safe_prime(47)
+    True
+    >>> is_safe_prime('abc')
+    Traceback (most recent call last):
+        ...
+    TypeError: Input value must be a positive integer. Input value: abc
+    """
+    if not isinstance(number, int) or number < 1:
+        msg = f"Input value must be a positive integer. Input value: {number}"
+        raise TypeError(msg)
+
+    if is_prime(number):
+        if (number - 1) % 2 == 0 and is_prime((number - 1) // 2):
+            return True
+    return False
+
+
 if __name__ == "__main__":
     from doctest import testmod
 
