@@ -31,7 +31,7 @@ def is_germain_prime(number: int) -> bool:
         ...
     TypeError: Input value must be a positive integer. Input value: abc
     """
-    if not isinstance(number, int) or not number >= 1:
+    if not isinstance(number, int) or number < 1:
         msg = f"Input value must be a positive integer. Input value: {number}"
         raise TypeError(msg)
 
