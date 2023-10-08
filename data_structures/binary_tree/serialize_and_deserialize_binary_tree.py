@@ -1,20 +1,16 @@
 from collections.abc import Generator
-
 """
     The class Node is used to create nodes of the Binary Tree.
-
+    
     Agrs : Takes value x to create an object of Node with value x.
-
+    
     Returns : Creates new object of Node.
 """
-
-
 class Node:
-    def __init__(self, data: int) -> None:
+    def __init__(self, data: int)-> None:
         self.value = data
         self.left : Node | None = None
         self.right : Node | None = None
-
 
 def make_tree() -> Node:
     r"""
@@ -36,14 +32,13 @@ def make_tree() -> Node:
     return root
     """
     Serialize Function takes root as a parameter and returns a String.
-
+    
     Agrs:
             root : Takes root node as a parameter.
-
+    
     Returns: A string of preorder traversal of nodes in tree
              with null values of leaf nodes.
     """
-
 
 def serialize(root: Node | None) -> str | None:
     """
@@ -51,28 +46,25 @@ def serialize(root: Node | None) -> str | None:
     '20,2,N,N,13,4,N,N,5,N,N'
     """
     result = []
-
-    def depth_first_search(node: Node) -> None:
+    def depth_first_search(node: Node)-> None:
         if not node:
             result.append("N")
             return
         result.append(str(node.value))
         depth_first_search(node.left)
         depth_first_search(node.right)
-
     depth_first_search(root)
     return ",".join(result)
 
     """
     Deserialize Function takes String as a parameter and returns root of tree.
 
-    Agrs :
+    Agrs : 
             String : Takes string of all node values with null values
             of leaf nodes separated by comma as a parameter.
-
+    
     Returns : Root of the tree created after deserialing the string.
     """
-
 
 def deserialize(data: str | None) -> Node | None:
     """
@@ -83,7 +75,6 @@ def deserialize(data: str | None) -> Node | None:
     global index
     index = 0
     node_values = data.split(",")
-
     def depth_first_search() -> Node | None:
         global index
         if node_values[index] == "N":
@@ -94,12 +85,9 @@ def deserialize(data: str | None) -> Node | None:
         root.left = depth_first_search()
         root.right = depth_first_search()
         return root
-
     return depth_first_search()
 
-    # This method is written to traverse the tree created by deserialize method.
-
-
+    #This method is written to traverse the tree created by deserialize method.
 def preorder(root: Node | None) -> Generator[int, None, None]:
     """
     >>> list(preorder(make_tree()))
@@ -109,9 +97,8 @@ def preorder(root: Node | None) -> Generator[int, None, None]:
     """
     if root:
         yield root.value
-        yield from preorder(root.left)
-        yield from preorder(root.right)
-
+        yield from  preorder(root.left)
+        yield from  preorder(root.right)
 
 def main() -> None:  # Main function for testing.
     # Create binary tree.
@@ -121,8 +108,6 @@ def main() -> None:  # Main function for testing.
     deserialized_root = deserialize(serialized_string)
     print(f"The Deserialized Tree : {list(preorder(deserialized_root))}")
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     import doctest
-
     doctest.testmod()
