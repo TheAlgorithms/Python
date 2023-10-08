@@ -6,14 +6,14 @@ class StackUsingQueues:
         self.queue1 = []
         self.queue2 = []
 
-    def push(self,item):
-        while len(self.queue1)!= 0:
+    def push(self, item):
+        while len(self.queue1) != 0:
             """
             enqueuing queue 2 using the values from queue 1 bringing them out in First
             In First Out (F.I.F.O) order.
             """
             self.queue2.append(self.queue1[0])
-            self.queue1 .pop(0)
+            self.queue1.pop(0)
             """
             adding the new value to queue 1
             """
@@ -23,12 +23,9 @@ class StackUsingQueues:
         returning the values from queue 2 to queue 1 so as
         to replicate the stack data structure
         """
-        while len(self.queue2)!= 0:
+        while len(self.queue2) != 0:
             self.queue1.append(self.queue2[0])
             self.queue2.pop(0)
-
-
-
 
     def pop(self):
         if len(self.queue1) != 0:
@@ -44,12 +41,6 @@ class StackUsingQueues:
         else:
             return None
 
-
-
-
-
-
-
     def peek(self):
         """
         Function to see the last value inserted in the stack
@@ -60,5 +51,3 @@ class StackUsingQueues:
             return self.queue1[0]
         else:
             return None
-
-
