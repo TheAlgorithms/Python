@@ -2,7 +2,7 @@
      - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
     Name - - CNN - Convolution Neural Network For Photo Recognizing
     Goal - - Recognize Handing Writing Word Photo
-    Detail：Total 5 layers neural network
+    Detail: Total 5 layers neural network
             * Convolution layer
             * Pooling layer
             * Input layer layer of BP
@@ -24,7 +24,7 @@ class CNN:
         self, conv1_get, size_p1, bp_num1, bp_num2, bp_num3, rate_w=0.2, rate_t=0.2
     ):
         """
-        :param conv1_get: [a,c,d]，size, number, step of convolution kernel
+        :param conv1_get: [a,c,d], size, number, step of convolution kernel
         :param size_p1: pooling size
         :param bp_num1: units number of flatten layer
         :param bp_num2: units number of hidden layer
@@ -71,7 +71,7 @@ class CNN:
         with open(save_path, "wb") as f:
             pickle.dump(model_dic, f)
 
-        print(f"Model saved： {save_path}")
+        print(f"Model saved: {save_path}")
 
     @classmethod
     def read_model(cls, model_path):
@@ -210,7 +210,7 @@ class CNN:
     def train(
         self, patterns, datas_train, datas_teach, n_repeat, error_accuracy, draw_e=bool
     ):
-        # model traning
+        # model training
         print("----------------------Start Training-------------------------")
         print((" - - Shape: Train_Data  ", np.shape(datas_train)))
         print((" - - Shape: Teach_Data  ", np.shape(datas_teach)))
