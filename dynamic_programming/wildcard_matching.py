@@ -82,3 +82,9 @@ def is_match(string: str, pattern: str) -> bool:
                 dp[i][j] = dp[i - 1][j] or dp[i][j - 1]
 
     return dp[m][n]
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
