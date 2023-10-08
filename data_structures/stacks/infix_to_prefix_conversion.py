@@ -73,7 +73,7 @@ def infix_2_postfix(infix: str) -> str:
         "-": 1,
     }  # Priority of each operator
 
-    print_width = min(len(infix), 7)
+    print_width = max(len(infix), 7)
     # Print table header for output
     print(
         "Symbol".center(8),
