@@ -39,8 +39,7 @@ class StackUsingQueues:
             And since stack follows Last In First Out (L.I.F.O) order the
             following has been implemented.
             """
-            popped = self.queue1[0]
-            self.queue1.pop(0)
+            popped = self.queue1.pop(0)
             return popped
         else:
             return None
