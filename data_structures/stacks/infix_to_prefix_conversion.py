@@ -15,7 +15,7 @@ Enter an Infix Equation = a + b ^c
 """
 
 
-def infix_2_postfix(infix):
+def infix_2_postfix(infix: str) -> str:
     stack = []
     post_fix = []
     priority = {
@@ -26,6 +26,7 @@ def infix_2_postfix(infix):
         "+": 1,
         "-": 1,
     }  # Priority of each operator
+    
     print_width = len(infix) if (len(infix) > 7) else 7
 
     # Print table header for output
@@ -43,6 +44,9 @@ def infix_2_postfix(infix):
         elif x == "(":
             stack.append(x)  # if x is "(" push to Stack
         elif x == ")":  # if x is ")" pop stack until "(" is encountered
+            if len(stack) == 0: # close bracket without open bracket
+                raise ValueError("Invalid bracket position(s)")
+            
             while stack[-1] != "(":
                 post_fix.append(stack.pop())  # Pop stack & add the content to Postfix
             stack.pop()
@@ -50,7 +54,8 @@ def infix_2_postfix(infix):
             if len(stack) == 0:
                 stack.append(x)  # If stack is empty, push x to stack
             else:  # while priority of x is not > priority of element in the stack
-                while len(stack) > 0 and priority[x] <= priority[stack[-1]]:
+                while len(stack) > 0 and stack[-1] != '(' \
+                      and priority[x] <= priority[stack[-1]]:
                     post_fix.append(stack.pop())  # pop stack & add to Postfix
                 stack.append(x)  # push x to stack
 
@@ -62,6 +67,9 @@ def infix_2_postfix(infix):
         )  # Output in tabular format
 
     while len(stack) > 0:  # while stack is not empty
+        if stack[-1] == '(':    # open bracket with no close bracket
+            raise ValueError("Invalid bracket position(s)")
+        
         post_fix.append(stack.pop())  # pop stack & add to Postfix
         print(
             " ".center(8),
@@ -73,9 +81,54 @@ def infix_2_postfix(infix):
     return "".join(post_fix)  # return Postfix as str
 
 
-def infix_2_prefix(infix):
-    infix = list(infix[::-1])  # reverse the infix equation
+def infix_2_prefix(infix: str) -> str:
+    """
+    >>> infix_2_prefix('a+b^c')
+     Symbol  |  Stack  | Postfix
+    ----------------------------
+       c     |         | c      
+       ^     | ^       | c      
+       b     | ^       | cb     
+       +     | +       | cb^    
+       a     | +       | cb^a   
+             |         | cb^a+  
+    '+a^bc'
+    
+    >>> infix_2_prefix('1*((-a)*2+b)')
+     Symbol  |    Stack     |   Postfix   
+    -------------------------------------------
+       (     | (            |             
+       b     | (            | b           
+       +     | (+           | b           
+       2     | (+           | b2          
+       *     | (+*          | b2          
+       (     | (+*(         | b2          
+       a     | (+*(         | b2a         
+       -     | (+*(-        | b2a         
+       )     | (+*          | b2a-        
+       )     |              | b2a-*+      
+       *     | *            | b2a-*+      
+       1     | *            | b2a-*+1     
+             |              | b2a-*+1*    
+    '*1+*-a2b'
+    
+    >>> infix_2_prefix('')
+     Symbol  |  Stack  | Postfix
+    ----------------------------
+    ''
 
+    >>> infix_2_prefix('(()')
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid bracket position(s)
+
+    >>> infix_2_prefix('())')
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid bracket position(s)
+    """
+    infix = list(infix[::-1])  # reverse the infix equation
+    
     for i in range(len(infix)):
         if infix[i] == "(":
             infix[i] = ")"  # change "(" to ")"
@@ -88,6 +141,9 @@ def infix_2_prefix(infix):
 
 
 if __name__ == "__main__":
+    from doctest import testmod
+    testmod()
+    
     Infix = input("\nEnter an Infix Equation = ")  # Input an Infix equation
     Infix = "".join(Infix.split())  # Remove spaces from the input
     print("\n\t", Infix, "(Infix) -> ", infix_2_prefix(Infix), "(Prefix)")
