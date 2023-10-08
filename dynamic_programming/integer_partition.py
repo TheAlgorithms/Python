@@ -11,27 +11,32 @@ def partition(m: int) -> int:
     for i in range(m + 1):
         memo[i][0] = 1
 
-    for n in range(m + 1):
-        for k in range(1, m):
-            memo[n][k] += memo[n][k - 1]
-            if n - k > 0:
-                memo[n][k] += memo[n - k - 1][k]
+    for total in range(m + 1):
+        for largest_num in range(1, m):
+            memo[total][largest_num] += memo[total][largest_num - 1]
+            if total - largest_num > 0:
+                memo[total][largest_num] += memo[total - largest_num - 1][largest_num]
 
     return memo[m][m - 1]
-
 
 if __name__ == "__main__":
     import sys
 
     if len(sys.argv) == 1:
         try:
-            n = int(input("Enter a number: ").strip())
-            print(partition(n))
+            n = int(input("Enter a positive integer: ").strip())
+            if n <= 0:
+                print("Please enter a positive integer.")
+            else:
+                print("Number of ways to partition:", partition(n))
         except ValueError:
-            print("Please enter a number.")
+            print("Please enter a valid positive integer.")
     else:
         try:
             n = int(sys.argv[1])
-            print(partition(n))
+            if n <= 0:
+                print("Please pass a positive integer.")
+            else:
+                print("Number of ways to partition:", partition(n))
         except ValueError:
-            print("Please pass a number.")
+            print("Please pass a valid positive integer.")
