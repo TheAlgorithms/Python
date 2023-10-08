@@ -1,5 +1,6 @@
 import random
 import sys
+
 from maths.greatest_common_divisor import gcd_by_iterative
 
 from . import cryptomath_module as cryptomath

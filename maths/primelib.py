@@ -38,6 +38,7 @@ goldbach(number)  // Goldbach's assumption
 """
 
 from math import sqrt
+
 from maths.greatest_common_divisor import gcd_by_iterative
 
 
