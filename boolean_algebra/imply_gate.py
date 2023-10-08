@@ -30,7 +30,7 @@ def imply_gate(input_1: int, input_2: int) -> int:
     >>> imply_gate(1, 1)
     1
     """
-    return int((input_1 == 0) or (input_2 == 1))
+    return int(input_1 == 0 or input_2 == 1)
 
 
 def test_imply_gate() -> None:
