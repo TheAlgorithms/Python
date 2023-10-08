@@ -109,9 +109,7 @@ def remove_invalid_parentheses(input_string: str) -> list[str]:
             else:
                 right_removed_count += 1
     dfs(input_string, 0, left_removed_count, right_removed_count)
-    output_list: list = list(valid_parentheses)
-    output_list.sort()
-    return output_list
+    return sorted(valid_parentheses)
 
 
 if __name__ == "__main__":
