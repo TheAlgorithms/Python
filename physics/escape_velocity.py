@@ -9,7 +9,7 @@ Description:
 import math
 
 
-def calculate_escape_velocity(
+def escape_velocity(
     mass_celestial_body: float, distance_from_center: float
 ) -> float:
     """
