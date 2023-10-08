@@ -36,7 +36,7 @@ def solve(op,open,close, ans):
         solve(op2, open, close-1, ans)
 
 
-def generateParenthesis(n):
+def generate_parenthesis(n):
     open = n
     close = n
     ans=[]
