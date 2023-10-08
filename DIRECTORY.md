@@ -1197,7 +1197,6 @@
   * [Rabin Karp](strings/rabin_karp.py)
   * [Remove Duplicate](strings/remove_duplicate.py)
   * [Reverse Letters](strings/reverse_letters.py)
-  * [Reverse Long Words](strings/reverse_long_words.py)
   * [Reverse Words](strings/reverse_words.py)
   * [Snake Case To Camel Pascal Case](strings/snake_case_to_camel_pascal_case.py)
   * [Split](strings/split.py)
