@@ -67,7 +67,7 @@ class Graph:
         >>> g.add_edge(2, 3)
         >>> g.add_edge(3, 3)
         >>> g.dfs()
-        0 1 2 3 
+        0 1 2 3
         """
         # visited array for storing already visited nodes
         visited = [False] * len(self.vertex)
@@ -94,7 +94,7 @@ class Graph:
         >>> g.add_edge(3, 3)
         >>> visited = [False] * len(g.vertex)
         >>> g.dfs_recursive(0, visited)
-        0 1 2 3 
+        0 1 2 3
         """
         # mark start vertex as visited
         visited[start_vertex] = True
@@ -121,6 +121,7 @@ if __name__ == "__main__":
     g.dfs()
 
     import doctest
+
     # Run doctests
     doctest.testmod()
 
