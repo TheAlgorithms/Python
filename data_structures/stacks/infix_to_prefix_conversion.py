@@ -20,6 +20,12 @@ def infix_2_postfix(infix: str) -> str:
     receives the infix notation as a string
     and returns the postfix notation as a string
     >>> infix_2_postfix("1+2")
+    Symbol  |  Stack  | Postfix
+    ----------------------------
+       1     |         | 1
+       +     | +       | 1
+       2     | +       | 12
+             |         | 12+
     '12+'
     """
     stack = []
@@ -84,6 +90,12 @@ def infix_2_prefix(infix: str) -> str:
     receives infix notation as a string
     and returns prefix notation as a string
     >>> infix_2_prefix("1+2")
+    Symbol  |  Stack  | Postfix
+    ----------------------------
+       2     |         | 2
+       +     | +       | 2
+       1     | +       | 21
+             |         | 21+
     '+12'
     """
     infix_list = []
