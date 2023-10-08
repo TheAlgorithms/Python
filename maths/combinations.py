@@ -36,8 +36,8 @@ def combinations(n: int, k: int) -> int:
         raise ValueError("Please enter positive integers for n and k where n >= k")
     res = 1
     for i in range(k):
-        res = res * (n - i)
-        res = res // (i + 1)
+        res *= (n - i)
+        res //= (i + 1)
     return res
 
 
