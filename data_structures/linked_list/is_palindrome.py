@@ -1,14 +1,13 @@
 from dataclasses import dataclass
-from typing import Optional
 
 
 @dataclass
 class ListNode:
     val: int = 0
-    next_node: Optional["ListNode"] = None
+    next_node: "ListNode | None" = None
 
 
-def is_palindrome(head: ListNode) -> bool:
+def is_palindrome(head: "ListNode | None") -> bool:
     """
     Check if a linked list is a palindrome.
 
@@ -37,14 +36,18 @@ def is_palindrome(head: ListNode) -> bool:
     if not head:
         return True
     # split the list to two parts
-    fast, slow = head.next_node, head
+    fast: "ListNode | None" = head.next_node
+    slow: "ListNode | None" = head
     while fast and fast.next_node:
         fast = fast.next_node.next_node
-        slow = slow.next_node
-    second = slow.next_node
-    slow.next_node = None  # Don't forget here! But forget still works!
+        slow = slow.next_node if slow else None
+    if slow:
+        # slow will always be defined,
+        # adding this check to resolve mypy static check
+        second = slow.next_node
+        slow.next_node = None  # Don't forget here! But forget still works!
     # reverse the second part
-    node = None
+    node: "ListNode | None" = None
     while second:
         nxt = second.next_node
         second.next_node = node
@@ -52,7 +55,7 @@ def is_palindrome(head: ListNode) -> bool:
         second = nxt
     # compare two parts
     # second part has the same or one less node
-    while node:
+    while node and head:
         if node.val != head.val:
             return False
         node = node.next_node
@@ -60,7 +63,7 @@ def is_palindrome(head: ListNode) -> bool:
     return True
 
 
-def is_palindrome_stack(head: ListNode) -> bool:
+def is_palindrome_stack(head: "ListNode | None") -> bool:
     """
     Check if a linked list is a palindrome using a stack.
 
@@ -90,26 +93,33 @@ def is_palindrome_stack(head: ListNode) -> bool:
         return True
 
     # 1. Get the midpoint (slow)
-    slow = fast = cur = head
+    slow: "ListNode | None" = head
+    fast: "ListNode | None" = head
     while fast and fast.next_node:
-        fast, slow = fast.next_node.next_node, slow.next_node
+        fast = fast.next_node.next_node
+        slow = slow.next_node if slow else None
 
-    # 2. Push the second half into the stack
-    stack = [slow.val]
-    while slow.next_node:
-        slow = slow.next_node
-        stack.append(slow.val)
+    # slow will always be defined,
+    # adding this check to resolve mypy static check
+    if slow:
+        stack = [slow.val]
 
-    # 3. Comparison
-    while stack:
-        if stack.pop() != cur.val:
-            return False
-        cur = cur.next_node
+        # 2. Push the second half into the stack
+        while slow.next_node:
+            slow = slow.next_node
+            stack.append(slow.val)
+
+        # 3. Comparison
+        cur: "ListNode | None" = head
+        while stack and cur:
+            if stack.pop() != cur.val:
+                return False
+            cur = cur.next_node
 
     return True
 
 
-def is_palindrome_dict(head: ListNode) -> bool:
+def is_palindrome_dict(head: "ListNode | None") -> bool:
     """
     Check if a linked list is a palindrome using a dictionary.
 
@@ -142,7 +152,7 @@ def is_palindrome_dict(head: ListNode) -> bool:
     """
     if not head or not head.next_node:
         return True
-    d = {}
+    d: dict[int, list[int]] = {}
     pos = 0
     while head:
         if head.val in d:
