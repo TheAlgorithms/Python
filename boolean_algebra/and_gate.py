@@ -1,6 +1,6 @@
 """
-An AND Gate is a logic gate in boolean algebra which results to 1 (True) if both the
-inputs are 1, and 0 (False) otherwise.
+An AND Gate is a logic gate in boolean algebra which results to 1 (True) if all
+input values are truthy (not equal to 0), and 0 (False) otherwise.
 
 Following is the truth table of an AND Gate:
     ------------------------------
