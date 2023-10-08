@@ -1,4 +1,5 @@
 import doctest
+
 def solve(op: str, open: int, close: int, ans: list[str]) -> None:
     if open == 0 and close == 0:
         ans.append(op)
