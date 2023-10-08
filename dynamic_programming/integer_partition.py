@@ -19,6 +19,7 @@ def partition(m: int) -> int:
 
     return memo[m][m - 1]
 
+
 if __name__ == "__main__":
     import sys
 
