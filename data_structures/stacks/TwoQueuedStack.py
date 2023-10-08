@@ -5,8 +5,8 @@ class StackUsingQueues:
 
         >>> stack = StackUsingQueues()
         """
-        self.queue1 = []
-        self.queue2 = []
+        self.queue1:list = []
+        self.queue2:list = []
 
     def push(self, item:int) -> None:
         """
