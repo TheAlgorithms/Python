@@ -4,12 +4,12 @@ class ListNode:
         self.next = next_node
 
 
-def is_palindrome(head):
+def is_palindrome(head: Node) -> bool:
     """
     Check if a linked list is a palindrome.
 
     Args:
-        head (ListNode): The head of the linked list.
+        head: The head of the linked list.
 
     Returns:
         bool: True if the linked list is a palindrome, False otherwise.
