@@ -1,19 +1,15 @@
 """
 Python program for the Fractionated Morse Cipher.
 
-The Fractionated Morse cipher first converts the plaintext to morse code,
-then enciphers fixed-size blocks of morse code back to letters.
+The Fractionated Morse cipher first converts the plaintext to Morse code,
+then enciphers fixed-size blocks of Morse code back to letters.
 This procedure means plaintext letters are mixed into the ciphertext letters,
 making it more secure than substitution ciphers.
 
 http://practicalcryptography.com/ciphers/fractionated-morse-cipher/
-
 """
-
-
 import string
 
-# Define Morse code dictionary
 MORSE_CODE_DICT = {
     "A": ".-",
     "B": "-...",
@@ -86,7 +82,7 @@ def encode_to_morse(plaintext: str) -> str:
         plaintext: The plaintext message to encode.
 
     Returns:
-        str: The Morse code representation of the plaintext message.
+        The Morse code representation of the plaintext message.
 
     Example:
         >>> encode_to_morse("defend the east")
@@ -99,11 +95,11 @@ def encrypt_fractionated_morse(plaintext: str, key: str) -> str:
     """Encrypt a plaintext message using Fractionated Morse Cipher.
 
     Args:
-        plaintext (str): The plaintext message to encrypt.
-        key (str): The encryption key.
+        plaintext: The plaintext message to encrypt.
+        key: The encryption key.
 
     Returns:
-        str: The encrypted ciphertext.
+        The encrypted ciphertext.
 
     Example:
         >>> encrypt_fractionated_morse("defend the east","Roundtable")
@@ -133,11 +129,11 @@ def decrypt_fractionated_morse(ciphertext: str, key: str) -> str:
     """Decrypt a ciphertext message encrypted with Fractionated Morse Cipher.
 
     Args:
-        ciphertext (str): The ciphertext message to decrypt.
-        key (str): The decryption key.
+        ciphertext: The ciphertext message to decrypt.
+        key: The decryption key.
 
     Returns:
-        str: The decrypted plaintext message.
+        The decrypted plaintext message.
 
     Example:
         >>> decrypt_fractionated_morse("ESOAVVLJRSSTRX","Roundtable")
