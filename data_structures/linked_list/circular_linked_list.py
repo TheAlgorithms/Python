@@ -20,8 +20,8 @@ class CircularLinkedList:
         """
         Initialize an empty Circular Linked List.
         """
-        self.head = None  # Reference to the head (first node)
-        self.tail = None  # Reference to the tail (last node)
+        self.head: Node | None = None  # Reference to the head (first node)
+        self.tail: Node | None = None  # Reference to the tail (last node)
 
     def __iter__(self) -> Iterator[Any]:
         """
@@ -30,7 +30,7 @@ class CircularLinkedList:
             The data of each node in the linked list.
         """
         node = self.head
-        while self.head:
+        while node:
             yield node.data
             node = node.next
             if node == self.head:
@@ -74,17 +74,20 @@ class CircularLinkedList:
         """
         if index < 0 or index > len(self):
             raise IndexError("list index out of range.")
-        new_node = Node(data)
+        new_node: Node = Node(data)
         if self.head is None:
             new_node.next = new_node  # First node points to itself
             self.tail = self.head = new_node
         elif index == 0:  # Insert at the head
             new_node.next = self.head
+            assert self.tail is not None  # List is not empty, tail exists
             self.head = self.tail.next = new_node
         else:
-            temp = self.head
+            temp: Node | None = self.head
             for _ in range(index - 1):
+                assert temp is not None
                 temp = temp.next
+            assert temp is not None
             new_node.next = temp.next
             temp.next = new_node
             if index == len(self) - 1:  # Insert at the tail
@@ -120,16 +123,21 @@ class CircularLinkedList:
         """
         if not 0 <= index < len(self):
             raise IndexError("list index out of range.")
-        delete_node = self.head
+
+        assert self.head is not None and self.tail is not None
+        delete_node: Node = self.head
         if self.head == self.tail:  # Just one node
             self.head = self.tail = None
         elif index == 0:  # Delete head node
+            assert self.tail.next is not None
             self.tail.next = self.tail.next.next
             self.head = self.head.next
         else:
-            temp = self.head
+            temp: Node | None = self.head
             for _ in range(index - 1):
+                assert temp is not None
                 temp = temp.next
+            assert temp is not None and temp.next is not None
             delete_node = temp.next
             temp.next = temp.next.next
             if index == len(self) - 1:  # Delete at tail
