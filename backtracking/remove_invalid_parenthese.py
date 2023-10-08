@@ -97,9 +97,9 @@ def remove_invalid_parentheses(input_string: str) -> list[str]:
                     right_removed - 1,
                 )
 
-    valid_parentheses: set = set()
-    left_removed_count: int = 0
-    right_removed_count: int = 0
+    valid_parentheses = set()
+    left_removed_count = 0
+    right_removed_count = 0
     for char in input_string:
         if char == "(":
             left_removed_count += 1
