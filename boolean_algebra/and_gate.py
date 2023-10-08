@@ -38,6 +38,7 @@ def and_gate(*args) -> int:
     else:
         raise TypeError("Input values must be integers")
 
+
 def test_and_gate() -> None:
     """
     Tests the and_gate function
@@ -48,6 +49,7 @@ def test_and_gate() -> None:
     assert and_gate(1, 1) == 1
     assert and_gate(1, 1, 1) == 1
     assert and_gate(1, 1, 0, 1) == 0
+
 
 if __name__ == "__main__":
     test_and_gate()
