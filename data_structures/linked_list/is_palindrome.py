@@ -1,13 +1,15 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 
 
 @dataclass
 class ListNode:
     val: int = 0
-    next_node: "ListNode | None" = None
+    next_node: ListNode | None = None
 
 
-def is_palindrome(head: "ListNode | None") -> bool:
+def is_palindrome(head: ListNode | None) -> bool:
     """
     Check if a linked list is a palindrome.
 
@@ -36,8 +38,8 @@ def is_palindrome(head: "ListNode | None") -> bool:
     if not head:
         return True
     # split the list to two parts
-    fast: "ListNode | None" = head.next_node
-    slow: "ListNode | None" = head
+    fast: ListNode | None = head.next_node
+    slow: ListNode | None = head
     while fast and fast.next_node:
         fast = fast.next_node.next_node
         slow = slow.next_node if slow else None
@@ -47,7 +49,7 @@ def is_palindrome(head: "ListNode | None") -> bool:
         second = slow.next_node
         slow.next_node = None  # Don't forget here! But forget still works!
     # reverse the second part
-    node: "ListNode | None" = None
+    node: ListNode | None = None
     while second:
         nxt = second.next_node
         second.next_node = node
@@ -63,7 +65,7 @@ def is_palindrome(head: "ListNode | None") -> bool:
     return True
 
 
-def is_palindrome_stack(head: "ListNode | None") -> bool:
+def is_palindrome_stack(head: ListNode | None) -> bool:
     """
     Check if a linked list is a palindrome using a stack.
 
@@ -93,8 +95,8 @@ def is_palindrome_stack(head: "ListNode | None") -> bool:
         return True
 
     # 1. Get the midpoint (slow)
-    slow: "ListNode | None" = head
-    fast: "ListNode | None" = head
+    slow: ListNode | None = head
+    fast: ListNode | None = head
     while fast and fast.next_node:
         fast = fast.next_node.next_node
         slow = slow.next_node if slow else None
@@ -110,7 +112,7 @@ def is_palindrome_stack(head: "ListNode | None") -> bool:
             stack.append(slow.val)
 
         # 3. Comparison
-        cur: "ListNode | None" = head
+        cur: ListNode | None = head
         while stack and cur:
             if stack.pop() != cur.val:
                 return False
@@ -119,7 +121,7 @@ def is_palindrome_stack(head: "ListNode | None") -> bool:
     return True
 
 
-def is_palindrome_dict(head: "ListNode | None") -> bool:
+def is_palindrome_dict(head: ListNode | None) -> bool:
     """
     Check if a linked list is a palindrome using a dictionary.
 
