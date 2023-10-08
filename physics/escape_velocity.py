@@ -32,13 +32,13 @@ def escape_velocity(mass_celestial_body: float, distance_from_center: float) -> 
     ... distance_from_center=6.371e6)
     11188.464977716847
     >>> calculate_escape_velocity(mass_celestial_body=1.989e30,
-    distance_from_center=6.9634e8)
+    ... distance_from_center=6.9634e8)
     617713.607596756
     >>> calculate_escape_velocity(mass_celestial_body=3.3011e23,
-    distance_from_center=3.3895e6)
+    ... distance_from_center=3.3895e6)
     5651.451689426722
     >>> calculate_escape_velocity(mass_celestial_body=0.0,
-    distance_from_center=6.371e6)
+    ... distance_from_center=6.371e6)
     0.0
     >>> calculate_escape_velocity(mass_celestial_body=1e-4,
     distance_from_center=1e-4)
