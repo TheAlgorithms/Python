@@ -13,7 +13,7 @@ This problem is solved using Backtracking
 """
 
 
-def solve(op, open, close, ans) -> int :
+def solve(op, open, close, ans) -> int:
     if open == 0 and close == 0:
         ans.append(op)
         return
@@ -38,7 +38,7 @@ def solve(op, open, close, ans) -> int :
         solve(op2, open, close - 1, ans)
 
 
-def generate_parenthesis(n) -> list[str] :
+def generate_parenthesis(n) -> list[str]:
     open = n
     close = n
     ans = []
