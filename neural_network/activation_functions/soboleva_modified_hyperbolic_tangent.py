@@ -22,7 +22,7 @@ def soboleva_modified_hyperbolic_tangent(
         vector (ndarray): A vector that consitis of numeric values
         a_value (float): paramenter a of the equation
         b_value (float): parameter b of the equation
-        c_value (float): parameter c of the equation        
+        c_value (float): parameter c of the equation
         d_value (float): parameter d of the equation
 
     Returns:
