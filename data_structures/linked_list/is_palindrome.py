@@ -3,6 +3,7 @@ class ListNode:
         self.val = val
         self.next = next
 
+
 def is_palindrome(head):
     """
     Check if a linked list is a palindrome.
@@ -155,6 +156,7 @@ def is_palindrome_dict(head):
         if middle > 1:
             return False
     return True
+
 
 if __name__ == "__main__":
     import doctest
