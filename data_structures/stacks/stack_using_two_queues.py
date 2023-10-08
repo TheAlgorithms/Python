@@ -1,7 +1,7 @@
 from collections import deque
 
-class StackUsingQueues:
 
+class StackUsingQueues:
     def __init__(self):
         self.queue1 = deque()
         self.queue2 = deque()
@@ -12,7 +12,7 @@ class StackUsingQueues:
 
         Args:
             value (int): The element to push onto the stack.
-        
+
         Example:
             >>> stack = StackUsingQueues()
             >>> stack.push(1)
@@ -43,7 +43,7 @@ class StackUsingQueues:
 
         Returns:
             int: The top element of the stack.
-        
+
         Example:
             >>> stack = StackUsingQueues()
             >>> stack.push(1)
@@ -61,7 +61,7 @@ class StackUsingQueues:
 
         Returns:
             int: The size of the stack.
-        
+
         Example:
             >>> stack = StackUsingQueues()
             >>> stack.size()
@@ -83,7 +83,7 @@ class StackUsingQueues:
 
         Returns:
             bool: True if the stack is empty, False otherwise.
-        
+
         Example:
             >>> stack = StackUsingQueues()
             >>> stack.is_empty()
@@ -100,7 +100,7 @@ class StackUsingQueues:
 
         Returns:
             int: The top element of the stack.
-        
+
         Example:
             >>> stack = StackUsingQueues()
             >>> stack.push(1)
@@ -111,6 +111,7 @@ class StackUsingQueues:
         if self.queue1:
             return self.queue1[0]
         return None
+
 
 if __name__ == "__main__":
     stack = StackUsingQueues()
