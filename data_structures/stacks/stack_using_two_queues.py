@@ -1,51 +1,135 @@
-class Stack:
+from collections import deque
+
+class StackUsingQueues:
+
     def __init__(self):
-        self.items = []
+        self.queue1 = deque()
+        self.queue2 = deque()
 
-    def push(self, item):
-        self.items.append(item)
+    def push(self, value: int) -> None:
+        """
+        Pushes an element onto the stack.
 
-    def pop(self):
-        if not self.is_empty():
-            return self.items.pop()
-        else:
-            return "Stack is empty"
+        Args:
+            value (int): The element to push onto the stack.
+        
+        Example:
+            >>> stack = StackUsingQueues()
+            >>> stack.push(1)
+            >>> stack.push(2)
+            >>> stack.push(3)
+        """
+        self.queue2.append(value)
+        while self.queue1:
+            self.queue2.append(self.queue1.popleft())
+        self.queue1, self.queue2 = self.queue2, self.queue1
 
-    def peek(self):
-        if not self.is_empty():
-            return self.items[-1]
-        else:
-            return "Stack is empty"
+    def pop(self) -> None:
+        """
+        Pops and removes the top element from the stack.
 
-    def is_empty(self):
-        return len(self.items) == 0
+        Example:
+            >>> stack = StackUsingQueues()
+            >>> stack.push(1)
+            >>> stack.push(2)
+            >>> stack.pop()
+        """
+        if self.queue1:
+            self.queue1.popleft()
 
-    def size(self):
-        return len(self.items)
+    def top(self) -> int:
+        """
+        Returns the top element of the stack without removing it.
 
+        Returns:
+            int: The top element of the stack.
+        
+        Example:
+            >>> stack = StackUsingQueues()
+            >>> stack.push(1)
+            >>> stack.push(2)
+            >>> stack.top()
+            2
+        """
+        if self.queue1:
+            return self.queue1[0]
+        return None
 
-# Create a stack
-stack = Stack()
+    def size(self) -> int:
+        """
+        Returns the current size (number of elements) of the stack.
 
-# PUSH operation
-stack.push(1)
-stack.push(2)
-stack.push(3)
+        Returns:
+            int: The size of the stack.
+        
+        Example:
+            >>> stack = StackUsingQueues()
+            >>> stack.size()
+            0
+            >>> stack.push(1)
+            >>> stack.push(2)
+            >>> stack.push(3)
+            >>> stack.size()
+            3
+            >>> stack.pop()
+            >>> stack.size()
+            2
+        """
+        return len(self.queue1)
 
-# Display the stack
-print("Stack:", stack.items)
+    def is_empty(self) -> bool:
+        """
+        Checks if the stack is empty.
 
-# POP operation
-popped_item = stack.pop()
-print("Popped item:", popped_item)
+        Returns:
+            bool: True if the stack is empty, False otherwise.
+        
+        Example:
+            >>> stack = StackUsingQueues()
+            >>> stack.is_empty()
+            True
+            >>> stack.push(1)
+            >>> stack.is_empty()
+            False
+        """
+        return len(self.queue1) == 0
 
-# Display the updated stack
-print("Stack after POP:", stack.items)
+    def peek(self) -> int:
+        """
+        Returns the top element of the stack without removing it.
 
-# PEEK operation
-top_item = stack.peek()
-print("Top item (PEEK):", top_item)
+        Returns:
+            int: The top element of the stack.
+        
+        Example:
+            >>> stack = StackUsingQueues()
+            >>> stack.push(1)
+            >>> stack.push(2)
+            >>> stack.peek()
+            2
+        """
+        if self.queue1:
+            return self.queue1[0]
+        return None
 
-# Check the size of the stack
-stack_size = stack.size()
-print("Stack size:", stack_size)
+if __name__ == "__main__":
+    stack = StackUsingQueues()
+
+    # Push some elements onto the stack
+    stack.push(1)
+    stack.push(2)
+    stack.push(3)
+
+    print("Stack size:", stack.size())
+    print("Top element:", stack.top())
+
+    # Pop elements from the stack
+    stack.pop()
+    print("Top element after pop:", stack.top())
+
+    stack.pop()
+    print("Top element after another pop:", stack.top())
+
+    print("Is stack empty?", stack.is_empty())
+    print("Peek at the top element:", stack.peek())
+    print("Final stack size:", stack.size())
