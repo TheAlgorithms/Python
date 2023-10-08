@@ -4,6 +4,7 @@
     Problem source: https://leetcode.com/problems/generate-parentheses/
 """
 
+
 class Solution:
     def generateParenthesis(self, n):
         valid = []
@@ -15,12 +16,12 @@ class Solution:
                 return
 
             if open_count > 0:
-                s += '('
+                s += "("
                 generate(s, open_count - 1, close_count)
                 s = s[:-1]
 
             if close_count > 0 and open_count < close_count:
-                s += ')'
+                s += ")"
                 generate(s, open_count, close_count - 1)
                 s = s[:-1]
 
@@ -28,7 +29,7 @@ class Solution:
             raise ValueError("Input value must be non-negative")
 
         # Start the generation process with an empty string and n opening and closing parentheses
-        generate('', n, n)
+        generate("", n, n)
         """
         The function employs backtracking to generate all valid combinations of n pairs of parentheses. It maintains two counters, open_count and close_count, representing available open and close parentheses.
 
