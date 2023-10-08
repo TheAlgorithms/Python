@@ -1,4 +1,4 @@
-# Step by Step instructions for using DevContainer
+# Step by Step instructions for new user to use DevContainer 
 
 ## Step 1: Install Visual Studio Code
 
