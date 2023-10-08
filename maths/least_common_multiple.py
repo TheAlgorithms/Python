@@ -1,5 +1,6 @@
 import unittest
 from timeit import timeit
+
 from maths.greatest_common_divisor import greatest_common_divisor
 
 

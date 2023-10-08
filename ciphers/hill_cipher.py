@@ -36,9 +36,10 @@ https://www.youtube.com/watch?v=4RhLNDqcjpA
 
 """
 import string
-from maths.greatest_common_divisor import greatest_common_divisor
 
 import numpy
+
+from maths.greatest_common_divisor import greatest_common_divisor
 
 
 class HillCipher:
