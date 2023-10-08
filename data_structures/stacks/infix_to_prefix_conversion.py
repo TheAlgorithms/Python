@@ -86,15 +86,16 @@ def infix_2_prefix(infix: str) -> str:
     >>> infix_2_prefix("1+2")
     '+12'
     """
-    infix = list(infix[::-1])  # reverse the infix equation
+    infix_list = []
+    infix_list = list(infix[::-1])  # reverse the infix equation
 
-    for i in range(len(infix)):
-        if infix[i] == "(":
-            infix[i] = ")"  # change "(" to ")"
-        elif infix[i] == ")":
-            infix[i] = "("  # change ")" to "("
+    for i in range(len(infix_list)):
+        if infix_list[i] == "(":
+            infix_list[i] = ")"  # change "(" to ")"
+        elif infix_list[i] == ")":
+            infix_list[i] = "("  # change ")" to "("
 
-    return (infix_2_postfix("".join(infix)))[
+    return (infix_2_postfix("".join(infix_list)))[
         ::-1
     ]  # call infix_2_postfix on Infix, return reverse of Postfix
 

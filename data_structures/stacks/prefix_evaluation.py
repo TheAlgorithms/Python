@@ -10,7 +10,7 @@ calc = {
 }
 
 
-def is_operand(char: chr) -> bool:
+def is_operand(char: str) -> bool:
     """
     Return True if the given char char is an operand, e.g. it is a number
     >>> is_operand("1")
