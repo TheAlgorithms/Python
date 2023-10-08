@@ -1,53 +1,68 @@
-class Stack:
+class StackWithQueues:
     def __init__(self):
-        self.queue1 = Queue()
-        self.queue2 = Queue()
+        self.queue1 = []
+        self.queue2 = []
 
-    def is_empty(self):
-        return self.queue2.is_empty()
-
-    def push(self, data):
-        self.queue1.enqueue(data)
-        while not self.queue2.is_empty():
-            x = self.queue2.dequeue()
-            self.queue1.enqueue(x)
-        self.queue1, self.queue2 = self.queue2, self.queue1
+    def push(self, element):
+        self.queue1.append(element)
 
     def pop(self):
-        return self.queue2.dequeue()
+        if not self.queue1:
+            return None
 
+        while len(self.queue1) > 1:
+            self.queue2.append(self.queue1.pop(0))
 
-class Queue:
-    def __init__(self):
-        self.items = []
+        element = self.queue1.pop(0)
 
-    def is_empty(self):
-        return self.items == []
+        self.queue1, self.queue2 = self.queue2, self.queue1
 
-    def enqueue(self, data):
-        self.items.append(data)
+        return element
 
-    def dequeue(self):
-        return self.items.pop(0)
+    def peek(self):
+        if not self.queue1:
+            return None
 
+        while len(self.queue1) > 1:
+            self.queue2.append(self.queue1.pop(0))
 
-s = Stack()
+        element = self.queue1[0]
 
-print('Menu')
-print('push <value>')
-print('pop')
-print('quit')
+        self.queue2.append(self.queue1.pop(0))
+
+        self.queue1, self.queue2 = self.queue2, self.queue1
+
+        return element
+
+# Initialize the stack
+stack = StackWithQueues()
 
 while True:
-    do = input('What would you like to do? ').split()
+    print("\nChoose operation:")
+    print("1. Push")
+    print("2. Pop")
+    print("3. Peek")
+    print("4. Quit")
 
-    operation = do[0].strip().lower()
-    if operation == 'push':
-        s.push(int(do[1]))
-    elif operation == 'pop':
-        if s.is_empty():
-            print('Stack is empty.')
+    choice = input("Enter choice (1/2/3/4): ")
+
+    if choice == '1':
+        element = input("Enter element to push: ")
+        stack.push(element)
+        print(f"{element} pushed onto the stack.")
+    elif choice == '2':
+        popped_element = stack.pop()
+        if popped_element is not None:
+            print(f"Popped element: {popped_element}")
         else:
-            print('Popped value: ', s.pop())
-    elif operation == 'quit':
+            print("Stack is empty.")
+    elif choice == '3':
+        peeked_element = stack.peek()
+        if peeked_element is not None:
+            print(f"Top element: {peeked_element}")
+        else:
+            print("Stack is empty.")
+    elif choice == '4':
         break
+    else:
+        print("Invalid choice. Please try again.")
