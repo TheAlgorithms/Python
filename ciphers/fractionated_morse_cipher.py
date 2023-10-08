@@ -83,7 +83,7 @@ def encode_to_morse(plaintext: str) -> str:
     """Encode a plaintext message into Morse code.
 
     Args:
-        plaintext (str): The plaintext message to encode.
+        plaintext: The plaintext message to encode.
 
     Returns:
         str: The Morse code representation of the plaintext message.
