@@ -56,7 +56,8 @@ class Graph:
 
     def dfs(self) -> None:
         """
-        Perform depth-first search (DFS) traversal on the graph and print the visited vertices.
+        Perform depth-first search (DFS) traversal on the graph
+        and print the visited vertices.
 
         Example:
         >>> g = Graph()
@@ -99,11 +100,12 @@ class Graph:
         # mark start vertex as visited
         visited[start_vertex] = True
 
-        print(start_vertex, end=" ")
+        print(start_vertex, end="")
 
         # Recur for all the vertices that are adjacent to this node
         for i in self.vertex:
             if not visited[i]:
+                print(" ", end="")
                 self.dfs_recursive(i, visited)
 
 
