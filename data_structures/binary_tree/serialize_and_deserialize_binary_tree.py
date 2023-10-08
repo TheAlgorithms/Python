@@ -12,7 +12,7 @@ class Node:
         self.left = None
         self.right = None
 
-def make_tree() -> Node | None:
+def make_tree() -> Node:
     r"""
     The Tree has :
 
@@ -46,7 +46,7 @@ def serialize(root: Node | None) -> str | None:
     '20,2,N,N,13,4,N,N,5,N,N'
     """
     result = []
-    def depth_first_search(node)-> Node | None:
+    def depth_first_search(node: Node)-> None:
         if not node:
             result.append("N")
             return
