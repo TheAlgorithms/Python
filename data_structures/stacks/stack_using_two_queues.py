@@ -4,7 +4,7 @@ class Stack:
 
     def push(self, item):
         self.items.append(item)
-    
+
     def pop(self):
         if not self.is_empty():
             return self.items.pop()
@@ -22,6 +22,7 @@ class Stack:
 
     def size(self):
         return len(self.items)
+
 
 # Create a stack
 stack = Stack()
