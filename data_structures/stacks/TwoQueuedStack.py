@@ -1,14 +1,14 @@
 class StackUsingQueues:
     def __init__(self) -> None:
         """
-        Initialize the stack using two queues.
+        Initializing the stack using two queues.
 
         >>> stack = StackUsingQueues()
         """
         self.queue1 = []
         self.queue2 = []
 
-    def push(self, item) -> None:
+    def push(self, item:int) -> None:
         """
         Push an item onto the stack.
 
