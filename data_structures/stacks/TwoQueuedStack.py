@@ -8,7 +8,7 @@ class StackUsingQueues:
         self.queue1 = []
         self.queue2 = []
 
-    def push(self, item:int) -> None:
+    def push(self, item: int) -> None:
         """
         Push an item onto the stack.
 
