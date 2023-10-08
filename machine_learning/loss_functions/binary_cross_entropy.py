@@ -34,7 +34,15 @@ def binary_cross_entropy(
     >>> predicted_probs = np.array([0.2, 0.7, 0.9, 0.3, 0.8])
     >>> binary_cross_entropy(true_labels, predicted_probs)
     0.2529995012327421
+    >>> true_labels = np.array([0, 1, 1, 0, 1])
+    >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
+    >>> binary_cross_entropy(true_labels, predicted_probs)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input arrays must have the same length.
     """
+    if len(y_true) != len(y_pred):
+        raise ValueError("Input arrays must have the same length.")
     # Clip predicted probabilities to avoid log(0) and log(1)
     y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
 
