@@ -25,7 +25,7 @@ def huber_loss(y_true: np.ndarray, y_pred: np.ndarray, delta: float) -> float:
     - y_pred: The predicted values.
 
     Returns:
-    - mse: The mean of Huber Loss between y_true and y_pred.
+    - huber_loss: The mean of Huber Loss between y_true and y_pred.
 
     Example usage:
     >>> true_values = np.array([0.9, 10.0, 2.0, 1.0, 5.2])
