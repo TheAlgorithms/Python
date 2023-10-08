@@ -8,7 +8,7 @@ def reverse_letters(sentence: str, length: int = 0) -> str:
     >>> reverse_letters("nohtyP is nohtyP", 2)
     'Python is Python'
     >>> reverse_letters("1 12 123 1234 54321 654321", 0)
-    '1 21 321 432112345 123456'
+    '1 21 321 4321 12345 123456'
     >>> reverse_letters("racecar")
     'racecar'
     """
