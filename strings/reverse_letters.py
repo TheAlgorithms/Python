@@ -14,9 +14,8 @@ def reverse_letters(sentence: str, length: int) -> str:
     )
 
 
-
 if __name__ == "__main__":
     import doctest
-    
     doctest.testmod()
+
     print(reverse_letters("Hey wollef sroirraw"))
