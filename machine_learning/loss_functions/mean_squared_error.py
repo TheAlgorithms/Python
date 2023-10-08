@@ -31,6 +31,12 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
     >>> mean_squared_error(true_values, predicted_values)
     0.028000000000000032
+    >>> true_labels = np.array([0, 1, 1, 0, 1])
+    >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
+    >>> binary_cross_entropy(true_labels, predicted_probs)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input arrays must have the same length.
     """
     if len(y_true) != len(y_pred):
         raise ValueError("Input arrays must have the same length.")
