@@ -69,4 +69,3 @@ class StackUsingQueues:
             return self.queue1[0]
         else:
             return 0
-
