@@ -62,10 +62,9 @@ def escape_velocity(
     if distance_from_center <= 0:
         raise ValueError("Distance from the center must be greater than zero!")
 
-    escape_velocity = math.sqrt(
+    return math.sqrt(
         2 * gravitational_constant * mass_celestial_body / distance_from_center
     )
-    return escape_velocity
 
 
 if __name__ == "__main__":
