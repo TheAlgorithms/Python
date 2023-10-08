@@ -15,7 +15,7 @@ Enter an Infix Equation = a + b ^c
 """
 
 
-def infix_2_postfix(infix: list[str]) -> str:
+def infix_2_postfix(infix: str) -> str:
     stack = []
     post_fix = []
     priority = {
@@ -130,15 +130,15 @@ def infix_2_prefix(infix: str) -> str:
         ...
     ValueError: Invalid bracket position(s)
     """
-    infix = list(infix[::-1])  # reverse the infix equation
+    new_infix = list(infix[::-1])  # reverse the infix equation
 
-    for i in range(len(infix)):
-        if infix[i] == "(":
-            infix[i] = ")"  # change "(" to ")"
-        elif infix[i] == ")":
-            infix[i] = "("  # change ")" to "("
+    for i in range(len(new_infix)):
+        if new_infix[i] == "(":
+            new_infix[i] = ")"  # change "(" to ")"
+        elif new_infix[i] == ")":
+            new_infix[i] = "("  # change ")" to "("
 
-    return (infix_2_postfix("".join(infix)))[
+    return (infix_2_postfix("".join(new_infix)))[
         ::-1
     ]  # call infix_2_postfix on Infix, return reverse of Postfix
 
