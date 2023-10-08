@@ -1,3 +1,5 @@
+# for explanation refer this  https://www.geeksforgeeks.org/implement-stack-using-queue/
+
 class StackWithQueues:
     def __init__(self):
         self.queue1 = []
@@ -33,6 +35,7 @@ class StackWithQueues:
         self.queue1, self.queue2 = self.queue2, self.queue1
 
         return element
+
 
 # Initialize the stack
 stack = StackWithQueues()
