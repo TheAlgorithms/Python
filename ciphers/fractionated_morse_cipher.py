@@ -118,9 +118,7 @@ def encrypt_fractionated_morse(plaintext: str, key: str) -> str:
     padding_length = 3 - (len(morse_code) % 3)
     morse_code += "x" * padding_length
 
-    fractionated_morse_dict = {
-        value: key for key, value in zip(key, MORSE_COMBINATIONS)
-    }
+    fractionated_morse_dict = {v: k for k, v in zip(key, MORSE_COMBINATIONS)}
     fractionated_morse_dict["xxx"] = ""
     encrypted_text = "".join(
         [
