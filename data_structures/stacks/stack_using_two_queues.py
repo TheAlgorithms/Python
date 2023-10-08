@@ -36,6 +36,25 @@ class StackWithQueues:
 
         return element
 
+    """
+    >>> stack = StackWithQueues()
+    >>> stack.push(1)
+    >>> stack.push(2)
+    >>> stack.push(3)
+    >>> stack.peek()
+    3
+    >>> stack.pop()
+    3
+    >>> stack.peek()
+    2
+    >>> stack.pop()
+    2
+    >>> stack.pop()
+    1
+    >>> stack.peek() is None
+    True
+    """
+
 
 # Initialize the stack
 stack = StackWithQueues()
