@@ -16,7 +16,7 @@ Refer - https://www.geeksforgeeks.org/logic-gates-in-python/
 """
 
 
-def and_gate(input_1: int, input_2: int) -> int:
+def and_gate(*args) -> int:
     """
     Calculate AND of the input values
 
@@ -28,9 +28,12 @@ def and_gate(input_1: int, input_2: int) -> int:
     0
     >>> and_gate(1, 1)
     1
+    >>> and_gate(1, 1, 1)
+    1
+    >>> and_gate(1, 1, 0, 1)
+    0
     """
-    return int((input_1, input_2).count(0) == 0)
-
+    return int(all(args))
 
 def test_and_gate() -> None:
     """
@@ -40,9 +43,14 @@ def test_and_gate() -> None:
     assert and_gate(0, 1) == 0
     assert and_gate(1, 0) == 0
     assert and_gate(1, 1) == 1
-
+    assert and_gate(1, 1, 1) == 1
+    assert and_gate(1, 1, 0, 1) == 0
 
 if __name__ == "__main__":
+    test_and_gate()
+    print(and_gate(1, 0))
     print(and_gate(0, 0))
     print(and_gate(0, 1))
     print(and_gate(1, 1))
+    print(and_gate(1, 1, 1))
+    print(and_gate(1, 1, 0, 1))
