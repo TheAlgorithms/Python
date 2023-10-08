@@ -15,7 +15,7 @@ Enter an Infix Equation = a + b ^c
 """
 
 
-def infix_2_postfix(infix: str) -> str:
+def infix_2_postfix(infix: list[str]) -> str:
     stack = []
     post_fix = []
     priority = {
