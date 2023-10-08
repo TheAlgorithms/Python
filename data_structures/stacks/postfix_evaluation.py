@@ -51,6 +51,10 @@ def parse_token(token: str | float) -> float | str:
     -------
     float or str
         Returns a float if `token` is a number or a str if `token` is an operator
+    >>> parse_token("-")
+    '-'
+    >>> parse_token("12")
+    12.0
     """
     if token in OPERATORS:
         return token
@@ -188,6 +192,8 @@ def evaluate(post_fix: list[str], verbose: bool = False) -> float:
 
 
 if __name__ == "__main__":
+    from doctest import testmod
+    testmod()
     # Create a loop so that the user can evaluate postfix expressions multiple times
     while True:
         expression = input("Enter a Postfix Expression (space separated): ").split(" ")

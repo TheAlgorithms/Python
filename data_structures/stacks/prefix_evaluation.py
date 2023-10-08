@@ -10,19 +10,18 @@ calc = {
 }
 
 
-def is_operand(c):
+def is_operand(char: chr) -> bool:
     """
-    Return True if the given char c is an operand, e.g. it is a number
-
+    Return True if the given char char is an operand, e.g. it is a number
     >>> is_operand("1")
     True
     >>> is_operand("+")
     False
     """
-    return c.isdigit()
+    return char.isdigit()
 
 
-def evaluate(expression):
+def evaluate(expression: str) -> int | float:
     """
     Evaluate a given expression in prefix notation.
     Asserts that the given expression is valid.
@@ -35,23 +34,26 @@ def evaluate(expression):
     stack = []
 
     # iterate over the string in reverse order
-    for c in expression.split()[::-1]:
+    for char in expression.split()[::-1]:
         # push operand to stack
-        if is_operand(c):
-            stack.append(int(c))
+        if is_operand(char):
+            stack.append(int(char))
 
         else:
             # pop values from stack can calculate the result
-            # push the result onto the stack again
-            o1 = stack.pop()
-            o2 = stack.pop()
-            stack.append(calc[c](o1, o2))
+            # push the result into the stack again
+            operand1 = stack.pop()
+            operand2 = stack.pop()
+            stack.append(calc[char](operand1, operand2))
 
     return stack.pop()
 
 
 # Driver code
 if __name__ == "__main__":
+    from doctest import testmod
+    testmod()
+
     test_expression = "+ 9 * 2 6"
     print(evaluate(test_expression))
 

@@ -15,7 +15,13 @@ Enter an Infix Equation = a + b ^c
 """
 
 
-def infix_2_postfix(infix):
+def infix_2_postfix(infix: str) -> str:
+    """
+    receives the infix notation as a string
+    and returns the postfix notation as a string
+    >>> infix_2_postfix("1+2")
+    '12+'
+    """
     stack = []
     post_fix = []
     priority = {
@@ -73,7 +79,13 @@ def infix_2_postfix(infix):
     return "".join(post_fix)  # return Postfix as str
 
 
-def infix_2_prefix(infix):
+def infix_2_prefix(infix: str) -> str:
+    """
+    receives infix notation as a string 
+    and returns prefix notation as a string 
+    >>> infix_2_prefix("1+2")
+    '+12'
+    """
     infix = list(infix[::-1])  # reverse the infix equation
 
     for i in range(len(infix)):
@@ -90,4 +102,5 @@ def infix_2_prefix(infix):
 if __name__ == "__main__":
     Infix = input("\nEnter an Infix Equation = ")  # Input an Infix equation
     Infix = "".join(Infix.split())  # Remove spaces from the input
-    print("\n\t", Infix, "(Infix) -> ", infix_2_prefix(Infix), "(Prefix)")
+    print("\n\t", Infix, "(Infix) -> ", infix_2_prefix(Infix), "(Prefix)\n")
+    print("\n\t", Infix, "(Infix) -> ", infix_2_postfix(Infix), "(Postfix)")
