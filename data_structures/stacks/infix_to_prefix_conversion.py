@@ -27,13 +27,12 @@ def infix_2_postfix(infix: str) -> str:
         "-": 1,
     }  # Priority of each operator
 
-    print_width = len(infix)
-
+    print_width = len(infix) if len(infix) > 7 else 7
     # Print table header for output
     print(
         "Symbol".center(8),
         "Stack".center(print_width),
-        "Postfix".center(print_width),
+        "Postfix".rjust((print_width-7) // 2 + 7),
         sep=" | ",
     )
     print("-" * (print_width * 3 + 7))
@@ -61,14 +60,20 @@ def infix_2_postfix(infix: str) -> str:
                 ):
                     post_fix.append(stack.pop())  # pop stack & add to Postfix
                 stack.append(x)  # push x to stack
+                
+        if post_fix != []:
+            print(
+                x.center(8),
+                ("".join(stack)).ljust(print_width),
+                "".join(post_fix),
+                sep=" | ",
+            )   #Output in tabular format
 
-        print(
-            x.center(8),
-            ("".join(stack)).ljust(print_width),
-            ("".join(post_fix)).ljust(print_width),
-            sep=" | ",
-        )  # Output in tabular format
-
+        else: # Post_fix is empty -> remove trailing space in table
+            print(
+                x.center(8) + " | " + ("".join(stack)).ljust(print_width) + " |"
+            )   #Output in tabular format
+    
     while len(stack) > 0:  # while stack is not empty
         if stack[-1] == "(":  # open bracket with no close bracket
             raise ValueError("Invalid bracket position(s)")
@@ -77,16 +82,17 @@ def infix_2_postfix(infix: str) -> str:
         print(
             " ".center(8),
             ("".join(stack)).ljust(print_width),
-            ("".join(post_fix)).ljust(print_width),
+            "".join(post_fix),
             sep=" | ",
         )  # Output in tabular format
+        
 
     return "".join(post_fix)  # return Postfix as str
 
 
 def infix_2_prefix(infix: str) -> str:
     """
-    >>> infix_2_prefix('a+b^c')
+    >>> infix_2_prefix("a+b^c")
      Symbol  |  Stack  | Postfix
     ----------------------------
        c     |         | c
@@ -95,8 +101,9 @@ def infix_2_prefix(infix: str) -> str:
        +     | +       | cb^
        a     | +       | cb^a
              |         | cb^a+
+    '+a^bc'
 
-    >>> infix_2_prefix('1*((-a)*2+b)')
+    >>> infix_2_prefix("1*((-a)*2+b)")
      Symbol  |    Stack     |   Postfix
     -------------------------------------------
        (     | (            |
@@ -112,10 +119,12 @@ def infix_2_prefix(infix: str) -> str:
        *     | *            | b2a-*+
        1     | *            | b2a-*+1
              |              | b2a-*+1*
+    '*1+*-a2b'
 
     >>> infix_2_prefix('')
      Symbol  |  Stack  | Postfix
     ----------------------------
+    ''
 
     >>> infix_2_prefix('(()')
     Traceback (most recent call last):
