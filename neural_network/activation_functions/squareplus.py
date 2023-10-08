@@ -20,7 +20,7 @@ def squareplus(vector: np.ndarray, beta: float) -> np.ndarray:
     Returns:
         np.ndarray: The input array after applying the SquarePlus activation.
 
-    Formula: f(x) = ( x + (x^2 + b)**0.5 ) / 2
+    Formula: f(x) = ( x + sqrt(x^2 + b) ) / 2
 
     Examples:
     >>> squareplus(np.array([2.3, 0.6, -2, -3.8]), beta=2)
