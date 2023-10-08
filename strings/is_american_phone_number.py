@@ -1,5 +1,6 @@
 import re
 
+
 def is_us_phone_number(phone: str) -> bool:
     """
     Determine whether the string is a valid US phone number or not.
@@ -27,6 +28,7 @@ def is_us_phone_number(phone: str) -> bool:
     pattern = re.compile(r"^\+?\d{0,1}\s?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$")
 
     return bool(re.search(pattern, phone))
+
 
 if __name__ == "__main__":
     phone = "+1 (123) 456-7890"
