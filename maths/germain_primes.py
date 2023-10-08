@@ -12,7 +12,7 @@ from prime_check import is_prime
 
 
 def is_germain_prime(number: int) -> bool:
-    """ Checks if input number and 2*number + 1 are prime.
+    """Checks if input number and 2*number + 1 are prime.
 
     >>> is_germain_prime(3)
     True
@@ -35,7 +35,7 @@ def is_germain_prime(number: int) -> bool:
         msg = f"Input value must be a positive integer. Input value: {number}"
         raise TypeError(msg)
 
-    if is_prime(number) and is_prime(2*number + 1):
+    if is_prime(number) and is_prime(2 * number + 1):
         return True
     return False
 
