@@ -193,6 +193,7 @@ def evaluate(post_fix: list[str], verbose: bool = False) -> float:
 
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
     # Create a loop so that the user can evaluate postfix expressions multiple times
     while True:

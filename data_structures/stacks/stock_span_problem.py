@@ -8,7 +8,7 @@ on the current day is less than or equal to its price on the given day.
 """
 
 
-def calculate_span(prices: list[int]) ->  list[int]:
+def calculate_span(prices: list[int]) -> list[int]:
     """
     function to calculate the span values
     and store them in the array (2nd parameter)
@@ -22,7 +22,7 @@ def calculate_span(prices: list[int]) ->  list[int]:
     [1, 1, 2, 4, 0]
     """
     n = len(prices)
-    if n==0:
+    if n == 0:
         return []
     span_values = [0 for _ in range(n + 1)]
     # Create a stack and push index of fist element to it
@@ -46,7 +46,7 @@ def calculate_span(prices: list[int]) ->  list[int]:
         if len(stack) == 0:
             span_values[i] = i + 1
         else:
-            span_values[i] = (i - stack[0])
+            span_values[i] = i - stack[0]
 
         # Push this element to stack
         stack.append(i)
@@ -59,16 +59,17 @@ def print_array(array: list[int], length: int) -> None:
         print(array[i], end=" ")
     print()
 
+
 # Driver program to test above function
-if __name__=='__main__':
+if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
 
     prices = [10, 4, 5, 90, 120, 80]
-    
 
     # Fill the span values in array span_values[]
-    span_values=calculate_span(prices)
+    span_values = calculate_span(prices)
 
     # Print the calculated span values
     print_array(span_values, len(prices))

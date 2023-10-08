@@ -79,8 +79,9 @@ def dijkstras_two_stack_algorithm(equation: str) -> int:
 
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
-    
+
     equation = "(5 + ((4 * 2) * (2 + 3)))"
     # answer = 45
     print(f"{equation} = {dijkstras_two_stack_algorithm(equation)}")

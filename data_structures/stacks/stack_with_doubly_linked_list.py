@@ -93,6 +93,7 @@ class Stack(Generic[T]):
 # Code execution starts here
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
     # Start with the empty stack
     stack: Stack[int] = Stack()

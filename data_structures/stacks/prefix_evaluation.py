@@ -52,6 +52,7 @@ def evaluate(expression: str) -> int | float:
 # Driver code
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
 
     test_expression = "+ 9 * 2 6"

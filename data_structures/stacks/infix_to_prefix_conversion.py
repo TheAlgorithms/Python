@@ -81,8 +81,8 @@ def infix_2_postfix(infix: str) -> str:
 
 def infix_2_prefix(infix: str) -> str:
     """
-    receives infix notation as a string 
-    and returns prefix notation as a string 
+    receives infix notation as a string
+    and returns prefix notation as a string
     >>> infix_2_prefix("1+2")
     '+12'
     """
