@@ -1,5 +1,6 @@
 # for explanation refer this  https://www.geeksforgeeks.org/implement-stack-using-queue/
 
+
 class StackWithQueues:
     def __init__(self):
         self.queue1 = []
@@ -49,23 +50,23 @@ while True:
 
     choice = input("Enter choice (1/2/3/4): ")
 
-    if choice == '1':
+    if choice == "1":
         element = input("Enter element to push: ")
         stack.push(element)
         print(f"{element} pushed onto the stack.")
-    elif choice == '2':
+    elif choice == "2":
         popped_element = stack.pop()
         if popped_element is not None:
             print(f"Popped element: {popped_element}")
         else:
             print("Stack is empty.")
-    elif choice == '3':
+    elif choice == "3":
         peeked_element = stack.peek()
         if peeked_element is not None:
             print(f"Top element: {peeked_element}")
         else:
             print("Stack is empty.")
-    elif choice == '4':
+    elif choice == "4":
         break
     else:
         print("Invalid choice. Please try again.")
