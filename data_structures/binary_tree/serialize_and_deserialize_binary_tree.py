@@ -9,8 +9,8 @@ from collections.abc import Generator
 class Node:
     def __init__(self, data: int)-> None:
         self.value = data
-        self.left = None
-        self.right = None
+        self.left : Node | None = None
+        self.right : Node | None = None
 
 def make_tree() -> Node:
     r"""
