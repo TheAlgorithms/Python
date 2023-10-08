@@ -63,10 +63,7 @@ def is_safe_prime(number: int) -> bool:
         msg = f"Input value must be a positive integer. Input value: {number}"
         raise TypeError(msg)
 
-    if is_prime(number):
-        if (number - 1) % 2 == 0 and is_prime((number - 1) // 2):
-            return True
-    return False
+    return (number - 1) % 2 == 0 and is_prime(number) and is_prime((number - 1) // 2)
 
 
 if __name__ == "__main__":
