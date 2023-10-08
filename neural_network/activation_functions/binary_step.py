@@ -1,8 +1,8 @@
 """
 This script demonstrates the implementation of the Binary Step function.
 
-It's an activation function in which the neuron is activated if the input is positive or 0,
-else it is deactivated
+It's an activation function in which the neuron is activated if the input is positive
+or 0, else it is deactivated
 
 It's a simple activation function which is mentioned in this wikipedia article:
 https://en.wikipedia.org/wiki/Activation_function
