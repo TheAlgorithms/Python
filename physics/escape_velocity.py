@@ -28,8 +28,7 @@ def escape_velocity(mass_celestial_body: float, distance_from_center: float) -> 
     units (6.67430e-11 m³/kg/s²).
 
     Examples:
-    >>> calculate_escape_velocity(mass_celestial_body=5.972e24,
-    ... distance_from_center=6.371e6)
+    >>> escape_velocity(mass_celestial_body=5.972e24, distance_from_center=6.371e6)
     11188.464977716847
     >>> calculate_escape_velocity(mass_celestial_body=1.989e30,
     ... distance_from_center=6.9634e8)
