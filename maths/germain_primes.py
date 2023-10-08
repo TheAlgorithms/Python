@@ -8,7 +8,7 @@ Their corresponding safe primes: 5, 7, 11, 23, 47
 https://en.wikipedia.org/wiki/Safe_and_Sophie_Germain_primes
 """
 
-from prime_check import is_prime
+from maths.prime_check import is_prime
 
 
 def is_germain_prime(number: int) -> bool:
