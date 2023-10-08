@@ -130,6 +130,11 @@ def is_palindrome_dict(head):
 
         >>> is_palindrome_dict(ListNode(1, ListNode(2, ListNode(2, ListNode(1)))))
         True
+
+        >>> is_palindrome_dict(\
+            ListNode(\
+                1, ListNode(2, ListNode(1, ListNode(3, ListNode(2, ListNode(1)))))))
+        False
     """
     if not head or not head.next:
         return True
