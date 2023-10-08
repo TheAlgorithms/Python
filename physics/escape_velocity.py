@@ -9,9 +9,7 @@ Description:
 import math
 
 
-def escape_velocity(
-    mass_celestial_body: float, distance_from_center: float
-) -> float:
+def escape_velocity(mass_celestial_body: float, distance_from_center: float) -> float:
     """
     Calculate the escape velocity required for an object to leave the
     gravitational influence of a celestial body.
