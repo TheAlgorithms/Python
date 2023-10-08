@@ -16,6 +16,52 @@ Enter an Infix Equation = a + b ^c
 
 
 def infix_2_postfix(infix: str) -> str:
+    """
+    >>> infix_2_postfix("a+b^c")
+     Symbol  |  Stack  | Postfix
+    ----------------------------
+       a     |         | a
+       +     | +       | a
+       b     | +       | ab
+       ^     | +^      | ab
+       c     | +^      | abc
+             | +       | abc^
+             |         | abc^+
+    'abc^+'
+
+    >>> infix_2_postfix("1*((-a)*2+b)")
+     Symbol  |    Stack     |   Postfix
+    -------------------------------------------
+       1     |              | 1
+       *     | *            | 1
+       (     | *(           | 1
+       (     | *((          | 1
+       -     | *((-         | 1
+       a     | *((-         | 1a
+       )     | *(           | 1a-
+       *     | *(*          | 1a-
+       2     | *(*          | 1a-2
+       +     | *(+          | 1a-2*
+       b     | *(+          | 1a-2*b
+       )     | *            | 1a-2*b+
+             |              | 1a-2*b+*
+    '1a-2*b+*'
+
+    >>> infix_2_postfix("")
+     Symbol  |  Stack  | Postfix
+    ----------------------------
+    ''
+
+    >>> infix_2_postfix("(()")
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid bracket position(s)
+
+    >>> infix_2_postfix("())")
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid bracket position(s)
+    """
     stack = []
     post_fix = []
     priority = {
