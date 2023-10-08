@@ -8,7 +8,7 @@ Source: https://en.wikipedia.org/wiki/Stewart%27s_theorem
 """
 
 
-def stewart(a: float, b: float, c: float, n: float, m: float) -> float:
+def stewart(lena: float, lenb: float, lenc: float, lenn: float, lenm: float) -> float:
     """
     Given the side lengths of the triangle (a,b,c), where the cevian intersects
     the side with side length a and splits it into segments with lengths n and m,
@@ -27,6 +27,11 @@ def stewart(a: float, b: float, c: float, n: float, m: float) -> float:
     >>> stewart(3,2,4,1.7,1.3)
     2.9308701779505686
     """
+    a = lena
+    b = lenb
+    c = lenc
+    n = lenn
+    m = lenm
     if a + b <= c or b + c <= a or a + c <= b:
         raise ValueError("This triangle violates the triangle inequality")
     if n + m != a:
