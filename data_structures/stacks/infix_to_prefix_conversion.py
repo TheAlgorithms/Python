@@ -27,7 +27,7 @@ def infix_2_postfix(infix: list[str]) -> str:
         "-": 1,
     }  # Priority of each operator
 
-    print_width = len(infix) if (len(infix) > 7) else 7
+    print_width = len(infix)
 
     # Print table header for output
     print(
