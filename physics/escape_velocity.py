@@ -31,7 +31,7 @@ def calculate_escape_velocity(
 
     Examples:
     >>> calculate_escape_velocity(mass_celestial_body=5.972e24,
-    distance_from_center=6.371e6)
+    ... distance_from_center=6.371e6)
     11188.464977716847
     >>> calculate_escape_velocity(mass_celestial_body=1.989e30,
     distance_from_center=6.9634e8)
