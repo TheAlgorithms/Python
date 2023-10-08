@@ -40,7 +40,7 @@ def matrix_multiply_recursive(matrix_a: list, matrix_b: list) -> list:
         matrix_a: list,
         matrix_b: list,
         result: list,
-    ) -> any:
+    ) -> None:
         """
         :param matrix_a: Input matrices.
         :param matrix_b: Input matrices where length of matrices is
@@ -67,7 +67,7 @@ def matrix_multiply_recursive(matrix_a: list, matrix_b: list) -> list:
         if k_loop >= len(matrix_b):
             return multiply(i_loop, j_loop + 1, 0, matrix_a, matrix_b, result)
         result[i_loop][j_loop] += matrix_a[i_loop][k_loop] * matrix_b[k_loop][j_loop]
-        multiply(i_loop, j_loop, k_loop + 1, matrix_a, matrix_b, result)
+        return multiply(i_loop, j_loop, k_loop + 1, matrix_a, matrix_b, result)
 
     # Perform matrix multiplication
     multiply(0, 0, 0, matrix_a, matrix_b, result)
