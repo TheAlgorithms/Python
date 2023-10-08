@@ -8,6 +8,7 @@ Armstrong numbers are also called Narcissistic numbers and Pluperfect numbers.
 
 On-Line Encyclopedia of Integer Sequences entry: https://oeis.org/A005188
 """
+import math
 PASSING = (1, 153, 370, 371, 1634, 24678051, 115132219018763992565095597973971522401)
 FAILING: tuple = (-153, -1, 0, 1.2, 200, "A", [], {}, None)
 
@@ -29,9 +30,7 @@ def armstrong_number(n: int) -> bool:
     number_of_digits = 0
     temp = n
     # Calculation of digits of the number
-    while temp > 0:
-        number_of_digits += 1
-        temp //= 10
+    number_of_digits = math.floor(math.log10(temp)) + 1
     # Dividing number into separate digits and find Armstrong number
     temp = n
     while temp > 0:
