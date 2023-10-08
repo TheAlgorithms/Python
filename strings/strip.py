@@ -1,4 +1,4 @@
-def strip(user_string: str, characters: str | None = None) -> str:
+def strip(user_string: str, characters: str = " \t\n\r") -> str:
     """
     Remove leading and trailing characters (whitespace by default) from a string.
 
@@ -17,9 +17,9 @@ def strip(user_string: str, characters: str | None = None) -> str:
         'world'
         >>> strip("123hello123", "123")
         'hello'
+        >>> strip("")
+        ''
     """
-    if characters is None:
-        characters = " \t\n\r"
 
     start = 0
     end = len(user_string)
