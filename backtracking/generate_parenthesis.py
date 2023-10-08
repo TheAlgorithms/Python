@@ -1,5 +1,6 @@
 import doctest
 
+
 def solve(op: str, open: int, close: int, ans: list[str]) -> None:
     if open == 0 and close == 0:
         ans.append(op)
@@ -41,5 +42,6 @@ def generate_parenthesis(n: int) -> list[str]:  # n = no. of pairs of parenthesi
     solve(op, open, close, ans)
     if n > 0:
         return ans
-        
+
+
 doctest.testmod()
