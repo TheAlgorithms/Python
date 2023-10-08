@@ -7,6 +7,7 @@ class Node:
         self.left = None
         self.right = None
 
+
 class BinaryTree:
     def __init__(self, root=None) -> None:
         self.root = root
@@ -38,10 +39,10 @@ class BinaryTree:
     def _traverse_inorder(self, node: Node) -> int:
         """
         Test Case for BinaryTree's _traverse_inorder method:
-        
+
         >>> tree = BinaryTree()
         >>> root = tree.build_a_tree()
-        
+
         # Inorder traversal of the tree should yield nodes in ascending order.
         >>> list(tree._traverse_inorder(root))
         [1, 2, 7, 11, 15, 29, 35, 40]
@@ -66,31 +67,30 @@ class BinaryTree:
 
 def transform_tree_util(root: Node | None) -> None:
     """
-  Test Case for binary_tree_to_sum_tree:
->>>  tree = BinaryTree()
->>>  root = tree.build_a_tree()
-    # Transform the given binary tree into a sum tree
->>> binary_tree_to_sum_tree(root)
+      Test Case for binary_tree_to_sum_tree:
+    >>>  tree = BinaryTree()
+    >>>  root = tree.build_a_tree()
+        # Transform the given binary tree into a sum tree
+    >>> binary_tree_to_sum_tree(root)
 
 
->>> root.data
-139
->>> root.left.data
-31
->>> root.right.data
-75
->>> root.left.left.data
-1
->>> root.left.right.data
-7
->>> root.right.left.data
-15
->>> root.right.right.data
-40
->>> root.right.right.left.data
-35
-
-"""
+    >>> root.data
+    139
+    >>> root.left.data
+    31
+    >>> root.right.data
+    75
+    >>> root.left.left.data
+    1
+    >>> root.left.right.data
+    7
+    >>> root.right.left.data
+    15
+    >>> root.right.right.data
+    40
+    >>> root.right.right.left.data
+    35
+    """
     if root is None:
         return
 
