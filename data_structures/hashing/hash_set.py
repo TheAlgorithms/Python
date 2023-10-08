@@ -1,6 +1,8 @@
 """
 Basic HashSet implementation using open addressing and linear probing
 """
+
+
 class HashSet:
     def __init__(
         self,
