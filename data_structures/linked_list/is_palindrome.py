@@ -151,6 +151,7 @@ def is_palindrome_dict(head):
             return False
     return True
 
+
 if __name__ == "__main__":
     import doctest
 
