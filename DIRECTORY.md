@@ -54,6 +54,7 @@
   * [Largest Pow Of Two Le Num](bit_manipulation/largest_pow_of_two_le_num.py)
   * [Missing Number](bit_manipulation/missing_number.py)
   * [Numbers Different Signs](bit_manipulation/numbers_different_signs.py)
+  * [Power Of 4](bit_manipulation/power_of_4.py)
   * [Reverse Bits](bit_manipulation/reverse_bits.py)
   * [Single Bit Manipulation Operations](bit_manipulation/single_bit_manipulation_operations.py)
 
@@ -171,6 +172,7 @@
 
 ## Data Structures
   * Arrays
+    * [Equilibrium Index In Array](data_structures/arrays/equilibrium_index_in_array.py)
     * [Median Two Array](data_structures/arrays/median_two_array.py)
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
@@ -467,6 +469,7 @@
     * [Test Min Spanning Tree Prim](graphs/tests/test_min_spanning_tree_prim.py)
 
 ## Greedy Methods
+  * [Best Time To Buy And Sell Stock](greedy_methods/best_time_to_buy_and_sell_stock.py)
   * [Fractional Cover Problem](greedy_methods/fractional_cover_problem.py)
   * [Fractional Knapsack](greedy_methods/fractional_knapsack.py)
   * [Fractional Knapsack 2](greedy_methods/fractional_knapsack_2.py)
@@ -597,6 +600,7 @@
   * [Gaussian](maths/gaussian.py)
   * [Gaussian Error Linear Unit](maths/gaussian_error_linear_unit.py)
   * [Gcd Of N Numbers](maths/gcd_of_n_numbers.py)
+  * [Germain Primes](maths/germain_primes.py)
   * [Greatest Common Divisor](maths/greatest_common_divisor.py)
   * [Greedy Coin Change](maths/greedy_coin_change.py)
   * [Hamming Numbers](maths/hamming_numbers.py)
@@ -727,12 +731,14 @@
 ## Neural Network
   * [2 Hidden Layers Neural Network](neural_network/2_hidden_layers_neural_network.py)
   * Activation Functions
+    * [Binary Step](neural_network/activation_functions/binary_step.py)
     * [Exponential Linear Unit](neural_network/activation_functions/exponential_linear_unit.py)
     * [Leaky Rectified Linear Unit](neural_network/activation_functions/leaky_rectified_linear_unit.py)
     * [Mish](neural_network/activation_functions/mish.py)
     * [Rectified Linear Unit](neural_network/activation_functions/rectified_linear_unit.py)
     * [Scaled Exponential Linear Unit](neural_network/activation_functions/scaled_exponential_linear_unit.py)
     * [Sigmoid Linear Unit](neural_network/activation_functions/sigmoid_linear_unit.py)
+    * [Soboleva Modified Hyperbolic Tangent](neural_network/activation_functions/soboleva_modified_hyperbolic_tangent.py)
     * [Softplus](neural_network/activation_functions/softplus.py)
     * [Squareplus](neural_network/activation_functions/squareplus.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
@@ -1110,6 +1116,7 @@
   * [Interpolation Search](searches/interpolation_search.py)
   * [Jump Search](searches/jump_search.py)
   * [Linear Search](searches/linear_search.py)
+  * [Median Of Medians](searches/median_of_medians.py)
   * [Quick Select](searches/quick_select.py)
   * [Sentinel Linear Search](searches/sentinel_linear_search.py)
   * [Simple Binary Search](searches/simple_binary_search.py)
