@@ -52,14 +52,13 @@ def escape_velocity(mass_celestial_body: float, distance_from_center: float) -> 
     ValueError: Distance from the center must be greater than zero!
 
     """
-    gravitational_constant = 6.67430e-11  # Universal gravitational constant in SI units
-
     if mass_celestial_body <= 0:
         raise ValueError("Mass of celestial body must be greater than zero!")
 
     if distance_from_center <= 0:
         raise ValueError("Distance from the center must be greater than zero!")
 
+    gravitational_constant = 6.67430e-11  # Universal gravitational constant in SI units
     return math.sqrt(
         2 * gravitational_constant * mass_celestial_body / distance_from_center
     )
