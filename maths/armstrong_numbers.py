@@ -1,4 +1,5 @@
 import math
+
 """
 An Armstrong number is equal to the sum of its own digits each raised to the
 power of the number of digits.
@@ -31,7 +32,7 @@ def armstrong_number(n: int) -> bool:
     temp = n
     # Calculation of digits of the number
     number_of_digits = math.floor(math.log10(temp)) + 1
-    
+
     # Dividing number into separate digits and find Armstrong number
     temp = n
     while temp > 0:
