@@ -12,11 +12,14 @@ Implementation notes: Use bit manipulation.
 289
 
 """
-def findSquare(number : int) -> int:
-        square=0
-        for _ in range(abs(number)):
-            square+= abs(number)
-        return square
+
+
+def findSquare(number: int) -> int:
+    square = 0
+    for _ in range(abs(number)):
+        square += abs(number)
+    return square
+
 
 if __name__ == "__main__":
     import doctest
