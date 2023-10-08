@@ -43,5 +43,4 @@ def generate_parenthesis(n: int) -> list[str]:  # n = no. of pairs of parenthesi
 
 if __name__ == "__main__":
     import doctest
-
-    doctest.testmod()
+doctest.testmod()
