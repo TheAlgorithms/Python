@@ -45,4 +45,4 @@ def generate_parenthesis(n):
     return ans
     
 
-print(generateParenthesis(3))
+print(generate_parenthesis(3))
