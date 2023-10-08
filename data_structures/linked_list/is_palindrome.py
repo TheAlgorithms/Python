@@ -1,4 +1,29 @@
 def is_palindrome(head):
+    """
+    Check if a linked list is a palindrome.
+
+    Args:
+        head (ListNode): The head of the linked list.
+
+    Returns:
+        bool: True if the linked list is a palindrome, False otherwise.
+
+    Examples:
+        >>> is_palindrome(None)
+        True
+
+        >>> is_palindrome(ListNode(1))
+        True
+
+        >>> is_palindrome(ListNode(1, ListNode(2)))
+        False
+
+        >>> is_palindrome(ListNode(1, ListNode(2, ListNode(1))))
+        True
+
+        >>> is_palindrome(ListNode(1, ListNode(2, ListNode(2, ListNode(1)))))
+        True
+    """
     if not head:
         return True
     # split the list to two parts
@@ -26,6 +51,31 @@ def is_palindrome(head):
 
 
 def is_palindrome_stack(head):
+    """
+    Check if a linked list is a palindrome using a stack.
+
+    Args:
+        head (ListNode): The head of the linked list.
+
+    Returns:
+        bool: True if the linked list is a palindrome, False otherwise.
+
+    Examples:
+        >>> is_palindrome_stack(None)
+        True
+
+        >>> is_palindrome_stack(ListNode(1))
+        True
+
+        >>> is_palindrome_stack(ListNode(1, ListNode(2)))
+        False
+
+        >>> is_palindrome_stack(ListNode(1, ListNode(2, ListNode(1))))
+        True
+
+        >>> is_palindrome_stack(ListNode(1, ListNode(2, ListNode(2, ListNode(1)))))
+        True
+    """
     if not head or not head.next:
         return True
 
@@ -50,6 +100,31 @@ def is_palindrome_stack(head):
 
 
 def is_palindrome_dict(head):
+    """
+    Check if a linked list is a palindrome using a dictionary.
+
+    Args:
+        head (ListNode): The head of the linked list.
+
+    Returns:
+        bool: True if the linked list is a palindrome, False otherwise.
+
+    Examples:
+        >>> is_palindrome_dict(None)
+        True
+
+        >>> is_palindrome_dict(ListNode(1))
+        True
+
+        >>> is_palindrome_dict(ListNode(1, ListNode(2)))
+        False
+
+        >>> is_palindrome_dict(ListNode(1, ListNode(2, ListNode(1))))
+        True
+
+        >>> is_palindrome_dict(ListNode(1, ListNode(2, ListNode(2, ListNode(1)))))
+        True
+    """
     if not head or not head.next:
         return True
     d = {}
@@ -75,3 +150,8 @@ def is_palindrome_dict(head):
         if middle > 1:
             return False
     return True
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
