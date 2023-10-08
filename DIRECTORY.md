@@ -787,7 +787,6 @@
   * [Rms Speed Of Molecule](physics/rms_speed_of_molecule.py)
   * [Shear Stress](physics/shear_stress.py)
   * [Speed Of Sound](physics/speed_of_sound.py)
-  * [Thermodynamics Work Done Formulae](physics/thermodynamics_work_done_formulae.py)
 
 ## Project Euler
   * Problem 001
