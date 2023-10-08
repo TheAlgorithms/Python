@@ -43,9 +43,8 @@ class HashSet:
         if data is not None:
             self._keys[key] = data
 
-    def _collision_resolution(self, key, data=None):
+    def _collision_resolution(self, key):
         new_key = self.hash_function(key + 1)
-
         while self.values[new_key] is not None and self.values[new_key] != key:
             if self.values.count(None) > 0:
                 new_key = self.hash_function(new_key + 1)
@@ -74,7 +73,7 @@ class HashSet:
             pass
 
         else:
-            collision_resolution = self._collision_resolution(key, data)
+            collision_resolution = self._collision_resolution(key)
             if collision_resolution is not None:
                 self._set_value(collision_resolution, data)
             else:
