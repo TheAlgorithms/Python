@@ -37,7 +37,7 @@ def pluperfect_number(n: int) -> bool:
     for digit in num_str:
         digit_histogram[int(digit)] += 1
 
-    total = sum(cnt * (i ** num_digits) for i, cnt in enumerate(digit_histogram))
+    total = sum(cnt * (i**num_digits) for i, cnt in enumerate(digit_histogram))
     return n == total
 
 
@@ -65,4 +65,3 @@ if __name__ == "__main__":
 
     doctest.testmod()
     main()
-
