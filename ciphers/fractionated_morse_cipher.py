@@ -6,7 +6,7 @@ then enciphers fixed-size blocks of morse code back to letters.
 This procedure means plaintext letters are mixed into the ciphertext letters,
 making it more secure than substitution ciphers.
 
-For more information visit - http://practicalcryptography.com/ciphers/fractionated-morse-cipher/
+http://practicalcryptography.com/ciphers/fractionated-morse-cipher/
 
 """
 
