@@ -8,28 +8,28 @@ Their corresponding safe primes: 5, 7, 11, 23, 47
 https://en.wikipedia.org/wiki/Safe_and_Sophie_Germain_primes
 """
 
-from maths.prime_check import is_prime
+from prime_check import is_prime
 
 
 def is_germain_prime(number: int) -> bool:
     """ Checks if input number and 2*number + 1 are prime.
 
     >>> is_germain_prime(3)
-        True
+    True
     >>> is_germain_prime(11)
-        True
+    True
     >>> is_germain_prime(4)
-        False
+    False
     >>> is_germain_prime(23)
-        True
+    True
     >>> is_germain_prime(13)
-        False
+    False
     >>> is_germain_prime(20)
-        False
+    False
     >>> is_germain_prime('abc')
     Traceback (most recent call last):
         ...
-    TypeError: Input value must be a positive integer. Input value: 'abc'
+    TypeError: Input value must be a positive integer. Input value: abc
     """
     if not isinstance(number, int) or not number >= 1:
         msg = f"Input value must be a positive integer. Input value: {number}"
