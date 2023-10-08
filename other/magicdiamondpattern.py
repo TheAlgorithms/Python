@@ -74,17 +74,6 @@ def pretty_print(n):
 
 
 if __name__ == "__main__":
-    print(r"| /\ | |- |  |-  |--| |\  /| |-")
-    print(r"|/  \| |- |_ |_  |__| | \/ | |_")
-    K = 1
-    while K:
-        user_number = int(input("enter the number and , and see the magic : "))
-        print()
-        print(pretty_print(user_number))
-        K = int(input("press 0 to exit... and 1 to continue..."))
-
-    print("Good Bye...")
-
     import doctest
 
     doctest.testmod()
