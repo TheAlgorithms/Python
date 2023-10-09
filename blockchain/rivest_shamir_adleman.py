@@ -32,8 +32,9 @@ from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.asymmetric import padding, rsa
 
+from typing import Tuple, Union
 
-def generate_key_pair():
+def generate_key_pair() -> Tuple[rsa.RSAPrivateKey, rsa.RSAPublicKey]:
     """
     Generate RSA key pair.
 
@@ -57,19 +58,19 @@ def generate_key_pair():
     return private_key, public_key
 
 
-def encrypt(message, public_key):
+def encrypt(message: str, public_key: rsa.RSAPublicKey) -> bytes:
     """
     Encrypt a message using RSA.
 
     Args:
         message (str): Message to be encrypted.
-        public_key: Public key for encryption.
+        public_key (rsa.RSAPublicKey): Public key for encryption.
 
     Returns:
         bytes: Encrypted ciphertext.
 
     >>> private_key, public_key = generate_key_pair()
-    >>> message = "Hello, this is a message to be encrypted!"
+    >>> message = "Hello, this is a message to be encrypted!" 
     >>> ciphertext = encrypt(message, public_key)
     >>> decrypted_message = decrypt(ciphertext, private_key)
     >>> decrypted_message == message
@@ -87,13 +88,13 @@ def encrypt(message, public_key):
     return ciphertext
 
 
-def decrypt(ciphertext, private_key):
+def decrypt(ciphertext: bytes, private_key: rsa.RSAPrivateKey) -> str:
     """
     Decrypt a ciphertext using RSA.
 
     Args:
         ciphertext (bytes): Encrypted ciphertext.
-        private_key: Private key for decryption.
+        private_key (rsa.RSAPrivateKey): Private key for decryption.
 
     Returns:
         str: Decrypted plaintext.
