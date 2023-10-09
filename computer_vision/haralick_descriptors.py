@@ -431,3 +431,37 @@ if __name__ == "__main__":
     print("Ranking:")
     for idx, file_idx in enumerate(indexed_distances):
         print(f"({idx}) {files[file_idx]}", end="\n")
+
+'''The code provided is already quite comprehensive, and it deals with image processing, particularly in the context of texture analysis using Haralick descriptors. However, I can suggest some general enhancements and additional features:
+
+Modularization and Functionality Expansion:
+
+You could further modularize the code by breaking down functionalities into separate functions, which can make it more readable and easier to maintain.
+Comments and Documentation:
+
+Adding detailed comments and function docstrings helps in understanding the code. It also makes it easier for others (and yourself in the future) to work with the code.
+Error Handling:
+
+Consider adding error handling to handle potential exceptions. For example, when opening an image file, you should check if the file exists.
+Performance Optimization:
+
+If performance is a concern, you might consider using optimized libraries or algorithms for specific tasks. For example, for some operations, OpenCV might be more efficient than manual numpy operations.
+Input Validation:
+
+Make sure to validate input data, especially when reading user input. This helps prevent errors or unexpected behavior.
+Testing:
+
+Consider writing unit tests to verify the correctness of your functions. This can be especially important if the code is part of a larger project.
+File Handling:
+
+Add checks to ensure that the files exist before trying to open or process them.
+Logging:
+
+Implement a logging system to record important events or debug information. This can be invaluable for diagnosing issues.
+Configurability:
+
+You could add options to configure parameters like kernel sizes, thresholds, etc., so that users can experiment with different settings.
+Parallelization:
+
+Depending on the size of the images and the number of images to process, you might benefit from parallelizing some operations to speed up processing.
+'''
