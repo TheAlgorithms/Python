@@ -7,6 +7,7 @@ You must write an algorithm that runs in O(n) time and uses O(1) extra space.
 Leetcode reference: https://leetcode.com/problems/lexicographical-numbers/
 """
 
+
 def lexical_order(n: int) -> list[int]:
     """
     >>> lexical_order(13)
