@@ -99,7 +99,7 @@ def test_local_binary_pattern():
     from os import getenv  # Speed up our Continuous Integration tests
 
     file_name = "lena_small.jpg" if getenv("CI") else "lena.jpg"
-    file_path = f"digital_image_processing/image_data/{file_name}.jpg"
+    file_path = f"digital_image_processing/image_data/{file_name}"
 
     # Reading the image and converting it to grayscale
     image = imread(file_path, 0)
