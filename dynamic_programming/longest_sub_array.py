@@ -12,7 +12,7 @@ Given an array, to find the longest and continuous sub array and get the max sum
 
 def longest_sub_array(arr:list):
     """
-       Find the longest continuous subarray with the maximum sum within a given list of integers.
+       Find the longest continuous subarray with the maximum sum.
 
        Args:
        arr (list): A list of integers.
