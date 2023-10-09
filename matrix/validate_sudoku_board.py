@@ -21,10 +21,8 @@ Only the filled cells need to be validated according to the mentioned rules.
 
 from collections import defaultdict
 
-NUM_ROWS = 9
-NUM_COLS = 9
+NUM_SQUARES = 9
 EMPTY_CELL = "."
-IS_VALID = True
 
 
 def is_valid_sudoku_board(sudoku_board: list[list[str]]) -> bool:
@@ -59,43 +57,42 @@ def is_valid_sudoku_board(sudoku_board: list[list[str]]) -> bool:
     >>> is_valid_sudoku_board([["1", "2", "3", "4", "5", "6", "7", "8", "9"]])
     Traceback (most recent call last):
         ...
-    Exception: Number of rows must be 9.
+    ValueError: Sudoku boards must be 9x9 squares.
     >>> is_valid_sudoku_board(
     ...        [["1"], ["2"], ["3"], ["4"], ["5"], ["6"], ["7"], ["8"], ["9"]]
     ...  )
     Traceback (most recent call last):
         ...
-    Exception: Number of columns must be 9.
+    ValueError: Sudoku boards must be 9x9 squares.
     """
-    if len(sudoku_board) != NUM_ROWS:
-        raise Exception("Number of rows must be 9.")
-
-    for row in sudoku_board:
-        if len(row) != NUM_COLS:
-            raise Exception("Number of columns must be 9.")
+    if len(sudoku_board) != NUM_SQUARES or (
+        any(len(row) != NUM_SQUARES for row in sudoku_board)
+    ):
+        error_message = f"Sudoku boards must be {NUM_SQUARES}x{NUM_SQUARES} squares."
+        raise ValueError(error_message)
 
     row_values: defaultdict[int, set[str]] = defaultdict(set)
     col_values: defaultdict[int, set[str]] = defaultdict(set)
     box_values: defaultdict[tuple[int, int], set[str]] = defaultdict(set)
 
-    for r in range(NUM_ROWS):
-        for c in range(NUM_COLS):
-            value = sudoku_board[r][c]
+    for row in range(NUM_SQUARES):
+        for col in range(NUM_SQUARES):
+            value = sudoku_board[row][col]
 
             if value == EMPTY_CELL:
                 continue
 
-            box = (r // 3, c // 3)
+            box = (row // 3, col // 3)
 
             if (
-                value in row_values[r]
-                or value in col_values[c]
+                value in row_values[row]
+                or value in col_values[col]
                 or value in box_values[box]
             ):
-                return not IS_VALID
+                return False
 
-            row_values[r].add(value)
-            col_values[c].add(value)
+            row_values[row].add(value)
+            col_values[col].add(value)
             box_values[box].add(value)
 
-    return IS_VALID
+    return True
