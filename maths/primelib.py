@@ -21,7 +21,6 @@ get_primes_between(pNumber1, pNumber2)
 
 is_even(number)
 is_odd(number)
-gcd(number1, number2)  // greatest common divisor
 kg_v(number1, number2)  // least common multiple
 get_divisors(number)    // all divisors of 'number' inclusive 1, number
 is_perfect_number(number)
@@ -39,6 +38,8 @@ goldbach(number)  // Goldbach's assumption
 """
 
 from math import sqrt
+
+from maths.greatest_common_divisor import gcd_by_iterative
 
 
 def is_prime(number: int) -> bool:
@@ -317,39 +318,6 @@ def goldbach(number):
 # ----------------------------------------------
 
 
-def gcd(number1, number2):
-    """
-    Greatest common divisor
-    input: two positive integer 'number1' and 'number2'
-    returns the greatest common divisor of 'number1' and 'number2'
-    """
-
-    # precondition
-    assert (
-        isinstance(number1, int)
-        and isinstance(number2, int)
-        and (number1 >= 0)
-        and (number2 >= 0)
-    ), "'number1' and 'number2' must been positive integer."
-
-    rest = 0
-
-    while number2 != 0:
-        rest = number1 % number2
-        number1 = number2
-        number2 = rest
-
-    # precondition
-    assert isinstance(number1, int) and (
-        number1 >= 0
-    ), "'number' must been from type int and positive"
-
-    return number1
-
-
-# ----------------------------------------------------
-
-
 def kg_v(number1, number2):
     """
     Least common multiple
@@ -567,14 +535,14 @@ def simplify_fraction(numerator, denominator):
     ), "The arguments must been from type int and 'denominator' != 0"
 
     # build the greatest common divisor of numerator and denominator.
-    gcd_of_fraction = gcd(abs(numerator), abs(denominator))
+    gcd_of_fraction = gcd_by_iterative(abs(numerator), abs(denominator))
 
     # precondition
     assert (
         isinstance(gcd_of_fraction, int)
         and (numerator % gcd_of_fraction == 0)
         and (denominator % gcd_of_fraction == 0)
-    ), "Error in function gcd(...,...)"
+    ), "Error in function gcd_by_iterative(...,...)"
 
     return (numerator // gcd_of_fraction, denominator // gcd_of_fraction)
 
