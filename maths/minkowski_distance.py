@@ -18,21 +18,19 @@ def minkowski_distance(
     >>> minkowski_distance([1.0], [2.0], -1)
     Traceback (most recent call last):
         ...
-    Exception: The order must be greater than or equal to 1.
+    ValueError: The order must be greater than or equal to 1.
     >>> minkowski_distance([1.0], [1.0, 2.0], 1)
     Traceback (most recent call last):
         ...
-    Exception: Both points must have the same dimension.
+    ValueError: Both points must have the same dimension.
     """
     if order < 1:
-        raise Exception("The order must be greater than or equal to 1.")
+        raise ValueError("The order must be greater than or equal to 1.")
 
     if len(point_a) != len(point_b):
-        raise Exception("Both points must have the same dimension.")
+        raise ValueError("Both points must have the same dimension.")
 
-    return float(
-        sum(abs(a - b) ** order for a, b in zip(point_a, point_b)) ** (1 / order)
-    )
+    return sum(abs(a - b) ** order for a, b in zip(point_a, point_b)) ** (1 / order)
 
 
 if __name__ == "__main__":
