@@ -10,16 +10,13 @@ Date: 9th October 2023
 """
 
 
-from typing import List
-
-
-def sort_into_wave_optimized(arr: List[int]) -> List[int]:
+def sort_into_wave_optimized(arr: list[int]) -> list[int]:
     """
     Args:
         arr : The input array to be sorted into a wave array.
 
     Returns:
-        List : The sorted wave array.
+        list : The sorted wave array.
 
     Examples:
         >>> sort_into_wave_optimized([1, 2, 3, 4, 5])
