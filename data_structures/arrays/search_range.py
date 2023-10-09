@@ -12,40 +12,41 @@ https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-
 """
 
 def search_range(nums: list[int], target: int) -> list[int]:
-        """
-        >>> searchRange([5,7,7,8,8,10],8)
-        [3, 4]
+    """
+    >>> searchRange([5,7,7,8,8,10],8)
+    [3, 4]
 
-        >>> searchRange([5,7,7,8,8,10],6)
-        [-1, -1]
+    >>> searchRange([5,7,7,8,8,10],6)
+    [-1, -1]
 
-        >>> searchRange([],3)
-        [-1, -1]
+    >>> searchRange([],3)
+    [-1, -1]
 
-        >>> searchRange([5,7,8,9,9],7)
-        [1, 1]
-        """
-        def binary_search(nums,target,left):
-            low,high=0, len(nums)-1
-            index=-1
-            while(low<=high):
-                mid=(low+high)//2
-                if nums[mid]==target:
-                    index=mid
-                    if left:
-                        high=mid-1
-                    else:
-                        low=mid+1
-                elif nums[mid]<target:
-                    low=mid+1
+    >>> searchRange([5,7,8,9,9],7)
+    [1, 1]
+    """
+
+    def binary_search(nums, target, left):
+        low, high = 0, len(nums) - 1
+        index = -1
+        while low <= high:
+            mid = (low + high) // 2
+            if nums[mid] == target:
+                index = mid
+                if left:
+                    high = mid - 1
                 else:
-                    high=mid-1
-            return index
+                    low = mid + 1
+            elif nums[mid] < target:
+                low = mid + 1
+            else:
+                high = mid - 1
+        return index
 
-        left_index=binary_search(nums,target,left=True)
-        right_index=binary_search(nums,target,left=False)
+    left_index = binary_search(nums, target, left=True)
+    right_index = binary_search(nums, target, left=False)
 
-        return [left_index, right_index]
+    return [left_index, right_index]
 
 
 if __name__ == "__main__":
