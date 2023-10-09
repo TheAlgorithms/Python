@@ -21,6 +21,7 @@ def commutative_law_and(a: bool, b: bool) -> bool:
     """
     return a and b
 
+
 def commutative_law_or(a: bool, b: bool) -> bool:
     """
     Implement the commutative law for OR: A OR B = B OR A.
@@ -44,6 +45,8 @@ def commutative_law_or(a: bool, b: bool) -> bool:
     """
     return a or b
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
