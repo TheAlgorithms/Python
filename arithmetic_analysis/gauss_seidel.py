@@ -15,6 +15,7 @@ def is_diagonally_dominant(matrix):
             return False
     return True
 
+
 def gauss_seidel(matrix, vector, initial_guess, max_iterations=100, tol=1e-6):
     """
     Solve a system of linear equations using the Gauss-Seidel method.
@@ -33,7 +34,9 @@ def gauss_seidel(matrix, vector, initial_guess, max_iterations=100, tol=1e-6):
     ValueError: If the matrix is not diagonally dominant.
     """
     if not is_diagonally_dominant(matrix):
-        raise ValueError("Matrix is not diagonally dominant, Gauss-Seidel may not converge.")
+        raise ValueError(
+            "Matrix is not diagonally dominant, Gauss-Seidel may not converge."
+        )
 
     n = len(matrix)
     x = initial_guess.copy()
@@ -52,6 +55,8 @@ def gauss_seidel(matrix, vector, initial_guess, max_iterations=100, tol=1e-6):
 
     return x
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

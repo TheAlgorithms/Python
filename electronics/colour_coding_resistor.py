@@ -1,5 +1,6 @@
 from typing import List
 
+
 def decode_resistor_colors(colors: List[str]) -> float:
     """
     Calculate the resistance value of a resistor based on its color bands.
@@ -32,9 +33,18 @@ def decode_resistor_colors(colors: List[str]) -> float:
         raise ValueError("A resistor must have at least three color bands.")
 
     color_values = {
-        "black": 0, "brown": 1, "red": 2, "orange": 3, "yellow": 4,
-        "green": 5, "blue": 6, "violet": 7, "gray": 8, "white": 9,
-        "gold": 0.1, "silver": 0.01
+        "black": 0,
+        "brown": 1,
+        "red": 2,
+        "orange": 3,
+        "yellow": 4,
+        "green": 5,
+        "blue": 6,
+        "violet": 7,
+        "gray": 8,
+        "white": 9,
+        "gold": 0.1,
+        "silver": 0.01,
     }
 
     first_band_value = color_values.get(colors[0].lower(), None)
@@ -47,6 +57,7 @@ def decode_resistor_colors(colors: List[str]) -> float:
     resistance = (first_band_value * 10 + second_band_value) * multiplier_value
 
     return resistance
+
 
 if __name__ == "__main__":
     import doctest
