@@ -10,7 +10,7 @@ Given an array, to find the longest and continuous sub array and get the max sum
 """
 
 
-def longest_sub_array(arr: list):
+def longest_subarray(arr: list):
     """
     Find the longest continuous subarray with the maximum sum.
 
@@ -21,41 +21,37 @@ def longest_sub_array(arr: list):
     A Integer which is the max subarray sum in the whole array.
 
     Examples:
-    >>> longest_sub_array([1, 2, 3, 2, 5])
+    >>> longest_subarray([1, 2, 3, 2, 5])
     13
 
-    >>> longest_sub_array([5, -4, 3, -2, 1])
+    >>> longest_subarray([5, -4, 3, -2, 1])
     5
 
-    >>> longest_sub_array([1, 2, 3, -2, 5])
+    >>> longest_subarray([1, 2, 3, -2, 5])
     9
 
-    >>> longest_sub_array([10, 20, -30, 40, 50])
+    >>> longest_subarray([10, 20, -30, 40, 50])
     90
 
-    >>> longest_sub_array([])
+    >>> longest_subarray([])
     0
     """
 
-    max_so_far = arr[0]
-    max_ending_here = arr[0]
-    max_len = 1
-    curr_len = 1
+    if not arr:
+        return 0
+
+    max_sum = arr[0]
+    current_sum = arr[0]
 
     for i in range(1, len(arr)):
-        if max_ending_here < 0:
-            max_ending_here = arr[i]
-            curr_len = 1
+        if arr[i] > (current_sum + arr[i]):
+            current_sum = arr[i]
         else:
-            max_ending_here += arr[i]
-            curr_len += 1
-        if max_ending_here > max_so_far:
-            max_so_far = max_ending_here
-            max_len = curr_len
-        elif max_ending_here == max_so_far:
-            max_len = max(max_len, curr_len)
+            current_sum += arr[i]
 
-    return max_len
+        max_sum = max(max_sum, current_sum)
+
+    return max_sum
 
 
 if __name__ == "__main__":
