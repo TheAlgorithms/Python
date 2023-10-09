@@ -96,7 +96,9 @@ def test_nearest_neighbour(
 
 
 def test_local_binary_pattern():
-    file_path = "digital_image_processing/image_data/lena_small.jpg"
+    from os import getenv  # Speed up our Continuous Integration tests
+    file_name = "lena_small.jpg" if getenv("CI") else "lena.jpg"
+    file_path = f"digital_image_processing/image_data/{file_name}.jpg"
 
     # Reading the image and converting it to grayscale.
     image = imread(file_path, 0)
