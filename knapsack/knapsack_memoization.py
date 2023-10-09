@@ -15,24 +15,26 @@ Calculate:
      The maximum profit that the shopkeeper can make given maxmum weight that can
 be carried.
 
-This problem is implemented here with MEMOIZATION method using the concept of 
+This problem is implemented here with MEMOIZATION method using the concept of
 Dynamic Programming
 """
 """
 for more information visit https://en.wikipedia.org/wiki/Memoization
 """
 
-def knapsack(values:list, weights:list, num_of_items:int, max_weight:int, dp:list
-             ) -> int:
+
+def knapsack(
+    values: list, weights: list, num_of_items: int, max_weight: int, dp: list
+) -> int:
     """
     Function description is as follows-
     :param weights: Take a list of weights
     :param values: Take a list of profits corresponding to the weights
     :param number_of_items: number of items available to pick from
     :param max_weight: Maximum weight that could be carried
-    :param dp: it is a list of list, i.e, a table whose (i,j) 
+    :param dp: it is a list of list, i.e, a table whose (i,j)
                 cell represents the maximum profit earned
-                for i items and j as the maximum weight allowed, it 
+                for i items and j as the maximum weight allowed, it
                 is an essential part for implementing this problem
                 using memoization dynamic programming
     :return: Maximum expected gain
@@ -64,38 +66,44 @@ def knapsack(values:list, weights:list, num_of_items:int, max_weight:int, dp:lis
     >>> knapsack(values,wt,n,w,dp)
     75
     """
-    #no profit gain if any of these two become zero
-    if max_weight == 0 or num_of_items == 0: 
+    # no profit gain if any of these two become zero
+    if max_weight == 0 or num_of_items == 0:
         dp[num_of_items][max_weight] = 0
         return 0
-    #if this case is previously encountered => maximum gain for this case is already
-    elif dp[num_of_items][max_weight] != -1: 
-        #in dp table
+    # if this case is previously encountered => maximum gain for this case is already
+    elif dp[num_of_items][max_weight] != -1:
+        # in dp table
         return dp[num_of_items][max_weight]
-    
-    #if the item can be included in the bag
-    elif weights[num_of_items-1] <= max_weight: 
+
+    # if the item can be included in the bag
+    elif weights[num_of_items - 1] <= max_weight:
         # ans1 stores the maximum profit if the item at
         #  index num_of_items -1 is included in the bag
-        incl = knapsack(values,weights,num_of_items-1,
-                        max_weight-weights[num_of_items-1],dp)
+        incl = knapsack(
+            values,
+            weights,
+            num_of_items - 1,
+            max_weight - weights[num_of_items - 1],
+            dp,
+        )
         ans1 = values[num_of_items - 1] + incl
-        # ans2 stores the maximum profit if the item at 
+        # ans2 stores the maximum profit if the item at
         # index num_of_items -1 is not included in the bag
-        ans2 = knapsack(values, weights, num_of_items-1, max_weight, dp)
+        ans2 = knapsack(values, weights, num_of_items - 1, max_weight, dp)
         # the final answer is the maximum profit gained from any of ans1 or ans2
         dp[num_of_items][max_weight] = max(ans1, ans2)
         return dp[num_of_items][max_weight]
-    
+
     # if the item's weight exceeds the max_weight of the bag
     #  => it cannot be included in the bag
-    else: 
-        dp[num_of_items][max_weight] = knapsack(values, weights, 
-                                                num_of_items-1, max_weight, dp)
+    else:
+        dp[num_of_items][max_weight] = knapsack(
+            values, weights, num_of_items - 1, max_weight, dp
+        )
         return dp[num_of_items][max_weight]
-    
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
-    doctest.testmod(name='knapsack', verbose=True)
+
+    doctest.testmod(name="knapsack", verbose=True)
