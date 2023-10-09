@@ -1,0 +1,26 @@
+#Finding Skewness and Kurtosis of a distribution
+import numpy as np
+
+def calculation_of_skewness(data):
+    n=len(data)
+    mean_=np.mean(data)
+    std_deviation=np.std(data)
+    skewness=(n/((n-1)*(n-2)))*np.sum(((data-mean_)/std_deviation)**3)
+    return skewness
+
+def calculation_of_kurtosis(data):
+    n=len(data)
+    mean_=np.mean(data)
+    std_deviation=np.std(data)
+    kurtosis=(n*(n+1)/((n-1)*(n-2)*(n-3)))*np.sum(((data-mean_)/std_deviation)**4)-(3*(n-1)**2)/((n-2)*(n-3))
+    return kurtosis
+
+#Data input in the form of a list
+data=eval(input("Input the values of the distribution in the form of a list (eg:[1,2,2,3,3,3,4,4,4,4]) : "))
+#function call 
+skewness = calculation_of_skewness(data)
+kurtosis = calculation_of_kurtosis(data)
+
+print("Skewness:", skewness)
+print("Kurtosis:", kurtosis)
+
