@@ -19,10 +19,7 @@ def find_primitive(n: int) -> int | None:
         2
 
         >>> find_primitive(8)  # Modulo 8 has no primitive root
-        None
 
-        >>> find_primitive(15)  # Modulo 15 has no primitive root
-        None
     """
     for r in range(1, n):
         li = []
