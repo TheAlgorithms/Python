@@ -9,10 +9,10 @@ Leetcode reference: https://leetcode.com/problems/lexicographical-numbers/
 
 def lexical_order(n: int) -> list[int]:
     """
-    >>> lexicalOrder(13)
+    >>> lexical_order(13)
     [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    >>> lexicalOrder(2)
+    >>> lexical_order(2)
     [1, 2]
     """
 
