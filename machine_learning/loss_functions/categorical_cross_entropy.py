@@ -13,6 +13,7 @@ Resources:
 
 import numpy as np
 
+
 def categorical_crossentropy(
     y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-15
 ) -> float:
@@ -43,13 +44,15 @@ def categorical_crossentropy(
     """
     if y_true.shape != y_pred.shape:
         raise ValueError("Input arrays must have the same length.")
-    
+
     # Clip predicted probabilities to avoid log(0)
     y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
 
     # Calculate categorical cross-entropy loss
     return -np.sum(y_true * np.log(y_pred)) / len(y_true)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
