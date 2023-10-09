@@ -41,7 +41,6 @@ def combination_util(arr, n, r, index, data, i):
     combination_util(arr, n, r, index, data, i + 1)
 
 
-
 def print_combination(arr, n, r):
     data = [0] * r
     combination_util(arr, n, r, 0, data, 0)
