@@ -2,8 +2,9 @@
 
 
 def combination_util(arr, n, r, index, data, i):
-     """
+    """
     Generate and print all combinations of 'r' elements from the input list 'arr'.
+
     Args:
     arr (list): The input list from which combinations are generated.
     n (int): The total number of elements in the input list 'arr'.
@@ -11,8 +12,10 @@ def combination_util(arr, n, r, index, data, i):
     index (int): The current index in the 'data' array.
     data (list): Temporary array to store the current combination being generated.
     i (int): The current index in the input list 'arr'.
+
     Returns:
     None: This function prints the combinations but does not return a value.
+
     Examples:
     >>> arr = [1, 2, 3, 4]
     >>> n = len(arr)
@@ -44,6 +47,6 @@ def print_combination(arr, n, r):
 
 
 if __name__ == "__main__":
-   import doctest
+    import doctest
 
     doctest.testmod()
