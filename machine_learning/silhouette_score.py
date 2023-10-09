@@ -1,31 +1,28 @@
 """
-    Silhouette Score Calculation : https://en.wikipedia.org/wiki/Silhouette_(clustering)
+Silhouette Score Calculation : https://en.wikipedia.org/wiki/Silhouette_(clustering)
 
-    The Silhouette Score is a metric used to evaluate the quality of clusters in a clustering algorithm.
-    It measures how similar an object is to its own cluster (cohesion) compared to other clusters (separation).
-    A higher silhouette score indicates better clustering quality.
+The Silhouette Score is a metric used to evaluate the quality of clusters in a clustering algorithm.
+It measures how similar an object is to its own cluster (cohesion) compared to other clusters (separation).
+A higher silhouette score indicates better clustering quality.
 
-    In this algorithm:
-    - Pairwise distances between data points are computed using Euclidean distance.
-    - For each data point:
-      1. 'a' is calculated as the average distance to other data points in the same cluster.
-      2. 'b' is calculated as the minimum average distance to data points in different clusters.
-      3. The silhouette score is determined as (b - a) / max(a, b) and ranges from -1 to +1.
-         (0 indicates overlapping clusters, negative values suggest incorrect clustering, and positive values indicate good clustering)
+In this algorithm:
+- Pairwise distances between data points are computed using Euclidean distance.
+- For each data point:
+  1. 'a' is calculated as the average distance to other data points in the same cluster.
+  2. 'b' is calculated as the minimum average distance to data points in different clusters.
+  3. The silhouette score is determined as (b - a) / max(a, b) and ranges from -1 to +1.
+     (0 indicates overlapping clusters, negative values suggest incorrect clustering, and positive values indicate good clustering)
 """
-
-
 
 import numpy as np
 from typing import Union
 
 def pairwise_distances(data_points: np.ndarray) -> np.ndarray:
     """
-
     Compute pairwise distances between data points in the input array X.
 
     Parameters:
-    X (numpy.ndarray): The input data array of shape (n_samples, n_features).
+    data_points (numpy.ndarray): The input data array of shape (n_samples, n_features).
 
     Returns:
     numpy.ndarray: A square matrix of pairwise distances where distances[i, j] represents
@@ -33,7 +30,7 @@ def pairwise_distances(data_points: np.ndarray) -> np.ndarray:
 
     Example:
     >>> import numpy as np
-    >>> from machine_learning.silhouette_score import pairwise_distances  # Replace 'your_module' with the actual module name
+    >>> from machine_learning.silhouette_score import pairwise_distances
     >>> data_points = np.array([[1, 2], [2, 3], [3, 4], [4, 5]])
     >>> distances = pairwise_distances(data_points)
     >>> distances
