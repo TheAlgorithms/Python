@@ -17,6 +17,7 @@ In this algorithm:
 import numpy as np
 from typing import Union
 
+
 def pairwise_distances(data_points: np.ndarray) -> np.ndarray:
     """
     Compute pairwise distances between data points in the input array X.
@@ -47,7 +48,10 @@ def pairwise_distances(data_points: np.ndarray) -> np.ndarray:
             distances[j, i] = distances[i, j]
     return distances
 
-def silhouette_score(data_points: np.ndarray, cluster_labels: Union[list, np.ndarray]) -> float:
+
+def silhouette_score(
+    data_points: np.ndarray, cluster_labels: Union[list, np.ndarray]
+) -> float:
     """
     Calculate the silhouette score for a set of data points and their corresponding cluster labels.
 
@@ -76,8 +80,18 @@ def silhouette_score(data_points: np.ndarray, cluster_labels: Union[list, np.nda
     silhouette_values = []
 
     for i in range(n):
-        a = np.mean([distances[i, j] for j in range(n) if cluster_labels[j] == cluster_labels[i] and j != i])
-        b_values = [np.mean([distances[i, j] for j in range(n) if cluster_labels[j] == k]) for k in set(cluster_labels) if k != cluster_labels[i]]
+        a = np.mean(
+            [
+                distances[i, j]
+                for j in range(n)
+                if cluster_labels[j] == cluster_labels[i] and j != i
+            ]
+        )
+        b_values = [
+            np.mean([distances[i, j] for j in range(n) if cluster_labels[j] == k])
+            for k in set(cluster_labels)
+            if k != cluster_labels[i]
+        ]
         b = min(b_values) if b_values else 0.0
         silhouette = (b - a) / max(a, b) if max(a, b) != 0 else 0.0
         silhouette_values.append(silhouette)
