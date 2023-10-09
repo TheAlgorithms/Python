@@ -12,9 +12,9 @@ def chebyshev_distance(point_a: list[float], point_b: list[float]) -> float:
     >>> chebyshev_distance([1.0], [2.0, 2.0])
     Traceback (most recent call last):
         ...
-    Exception: Both points must have the same dimension.
+    ValueError: Both points must have the same dimension.
     """
     if len(point_a) != len(point_b):
-        raise Exception("Both points must have the same dimension.")
+        raise ValueError("Both points must have the same dimension.")
 
-    return float(max(abs(a - b) for a, b in zip(point_a, point_b)))
+    return max(abs(a - b) for a, b in zip(point_a, point_b))
