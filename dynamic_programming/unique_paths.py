@@ -5,8 +5,6 @@ the robot tries to move to the bottom-right corner.
 The robot can only move either down or right at any point in time.
 Return number of all  possible unique paths robot can take.
 """
-
-
 def uniquepaths(self, m, n):
     """
     >>> uniquepaths(3,2)
@@ -27,8 +25,6 @@ def uniquepaths(self, m, n):
             dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
 
     return dp[m - 1][n - 1]
-
-
 if __name__ == "__main__":
     import doctest
 
