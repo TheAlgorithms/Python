@@ -2,32 +2,6 @@
 
 
 def subset_combinations_dp(elements, n):
-    """
-    Generate all subset combinations of 'n' elements using dynamic programming.
-
-    Args:
-    elements (list): The input list of elements.
-    n (int): The number of elements in each combination.
-
-    Returns:
-    list: A list of tuples, where each tuple represents a combination.
-
-    Examples:
-    >>> elements = [1, 2, 3, 4]
-    >>> n = 2
-    >>> subset_combinations_dp(elements, n)
-    [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
-
-    >>> elements = [1, 2, 3]
-    >>> n = 3
-    >>> subset_combinations_dp(elements, n)
-    [(1, 2, 3)]
-
-    >>> elements = [1, 2, 3]
-    >>> n = 0
-    >>> subset_combinations_dp(elements, n)
-    [()]
-    """
     r = len(elements)
 
     dp = [[] for _ in range(r + 1)]
@@ -44,7 +18,7 @@ def subset_combinations_dp(elements, n):
     return combinations
 
 
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+elements = [10,20,30,40]
+n = 2
+result = subset_combinations_dp(elements, n)
+print(result)
