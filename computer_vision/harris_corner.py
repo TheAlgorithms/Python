@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 
+
 class HarrisCorner:
     def __init__(self, k: float, window_size: int):
         if k not in (0.04, 0.06):
@@ -21,9 +22,15 @@ class HarrisCorner:
 
         for y in range(offset, h - offset):
             for x in range(offset, w - offset):
-                wxx = ixx[y - offset : y + offset + 1, x - offset : x + offset + 1].sum()
-                wyy = iyy[y - offset : y + offset + 1, x - offset : x + offset + 1].sum()
-                wxy = ixy[y - offset : y + offset + 1, x - offset : x + offset + 1].sum()
+                wxx = ixx[
+                    y - offset : y + offset + 1, x - offset : x + offset + 1
+                ].sum()
+                wyy = iyy[
+                    y - offset : y + offset + 1, x - offset : x + offset + 1
+                ].sum()
+                wxy = ixy[
+                    y - offset : y + offset + 1, x - offset : x + offset + 1
+                ].sum()
 
                 det = (wxx * wyy) - (wxy**2)
                 trace = wxx + wyy
@@ -33,6 +40,7 @@ class HarrisCorner:
                     corner_list.append([x, y, r])
 
         return np.array(corner_list)
+
 
 if __name__ == "__main__":
     try:
