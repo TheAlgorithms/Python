@@ -18,6 +18,7 @@ def caesar_cipher(text, key):
     # Recursively cipher the remaining text and concatenate with the first character
     return char + caesar_cipher(text[1:], key)
 
+
 # Example text to cipher
 text = "The Algorithms!"
 # Example key to shift by
