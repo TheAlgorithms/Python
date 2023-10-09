@@ -22,7 +22,7 @@ def sort_into_wave_optimized(arr: list[int]) -> list[int]:
         >>> sort_into_wave_optimized([1, 2, 3, 4, 5])
         [2, 1, 4, 3, 5]
         >>> sort_into_wave_optimized([4, 2, 8, 1, 6, 3])
-        [2, 1, 8, 3, 6, 4]
+        [4, 2, 8, 1, 6, 3]
     """
     n = len(arr)
 
@@ -40,5 +40,5 @@ def sort_into_wave_optimized(arr: list[int]) -> list[int]:
 
 
 if __name__ == "__main__":
-    input_arr = [1, 2, 3, 4, 5]
+    input_arr = [4, 2, 8, 1, 6, 3]
     print("Sorted Wave Array:", sort_into_wave_optimized(input_arr))
