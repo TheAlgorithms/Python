@@ -1,7 +1,7 @@
 # Print all subset combinations of n element in given set of r element.
 
 
-def combination_util(arr, n, r, index, data, i):
+def combinations(arr, n, r, index, data, i):
     """
     Generate and print all combinations of 'r' elements from the input list 'arr'.
     Args:
@@ -18,7 +18,7 @@ def combination_util(arr, n, r, index, data, i):
     >>> n = len(arr)
     >>> r = 2
     >>> data = [0] * r
-    >>> combination_util(arr, n, r, 0, data, 0)
+    >>> combinations(arr, n, r, 0, data, 0)
     1 2
     1 3
     1 4
@@ -34,13 +34,13 @@ def combination_util(arr, n, r, index, data, i):
     if i >= n:
         return
     data[index] = arr[i]
-    combination_util(arr, n, r, index + 1, data, i + 1)
-    combination_util(arr, n, r, index, data, i + 1)
+    combinations(arr, n, r, index + 1, data, i + 1)
+    combinations(arr, n, r, index, data, i + 1)
 
 
 def print_combination(arr, n, r):
     data = [0] * r
-    combination_util(arr, n, r, 0, data, 0)
+    combinations(arr, n, r, 0, data, 0)
 
 
 if __name__ == "__main__":
