@@ -101,7 +101,7 @@ def test_local_binary_pattern():
     file_name = "lena_small.jpg" if getenv("CI") else "lena.jpg"
     file_path = f"digital_image_processing/image_data/{file_name}.jpg"
 
-    # Reading the image and converting it to grayscale.
+    # Reading the image and converting it to grayscale
     image = imread(file_path, 0)
 
     # Test for get_neighbors_pixel function() return not None
