@@ -32,12 +32,12 @@ def subset_combinations_dp(elements, n):
 
     dp = [[] for _ in range(r + 1)]
 
-    dp[0].append([])
+    dp[0].append(())
 
     for i in range(1, r + 1):
         for j in range(i, 0, -1):
             for prev_combination in dp[j - 1]:
-                dp[j].append(prev_combination + [elements[i - 1]])
+                dp[j].append(tuple(prev_combination) + (elements[i - 1],))
 
     combinations = dp[n]
 
