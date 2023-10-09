@@ -10,10 +10,12 @@ IMAGE_DIR = ""
 OUTPUT_DIR = ""
 FLIP_TYPE = 1  # (0 is vertical, 1 is horizontal)
 
+
 def random_chars(length: int) -> str:
     """Generates a random string of alphanumeric characters."""
     chars = ascii_lowercase + digits
-    return ''.join(random.choice(chars) for _ in range(length))
+    return "".join(random.choice(chars) for _ in range(length))
+
 
 def get_dataset(label_dir: str, img_dir: str) -> tuple[list, list]:
     """
@@ -27,6 +29,7 @@ def get_dataset(label_dir: str, img_dir: str) -> tuple[list, list]:
         Tuple containing a list of image paths and a list of labels.
     """
     # ... (rest of the function remains the same) ...
+
 
 def update_image_and_anno(
     img_list: list, anno_list: list, flip_type: int = 1
@@ -43,6 +46,7 @@ def update_image_and_anno(
         Tuple containing updated images, updated annotations, and their corresponding paths.
     """
     # ... (rest of the function remains the same) ...
+
 
 def main() -> None:
     """
@@ -66,6 +70,7 @@ def main() -> None:
             annos_list.append(obj)
         with open(f"{file_root}.txt", "w") as outfile:
             outfile.write("\n".join(line for line in annos_list))
+
 
 if __name__ == "__main__":
     main()

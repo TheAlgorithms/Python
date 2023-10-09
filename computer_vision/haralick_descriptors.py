@@ -432,7 +432,7 @@ if __name__ == "__main__":
     for idx, file_idx in enumerate(indexed_distances):
         print(f"({idx}) {files[file_idx]}", end="\n")
 
-'''The code provided is already quite comprehensive, and it deals with image processing, particularly in the context of texture analysis using Haralick descriptors. However, I can suggest some general enhancements and additional features:
+"""The code provided is already quite comprehensive, and it deals with image processing, particularly in the context of texture analysis using Haralick descriptors. However, I can suggest some general enhancements and additional features:
 
 Modularization and Functionality Expansion:
 
@@ -464,4 +464,4 @@ You could add options to configure parameters like kernel sizes, thresholds, etc
 Parallelization:
 
 Depending on the size of the images and the number of images to process, you might benefit from parallelizing some operations to speed up processing.
-'''
+"""

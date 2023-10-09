@@ -49,9 +49,13 @@ class PoolingLayer:
                     break
                 # compute the maximum/average of the pooling matrix
                 if self.pooling_type == "max":
-                    updated_arr[mat_i][mat_j] = np.max(arr[i : i + self.size, j : j + self.size])
+                    updated_arr[mat_i][mat_j] = np.max(
+                        arr[i : i + self.size, j : j + self.size]
+                    )
                 elif self.pooling_type == "avg":
-                    updated_arr[mat_i][mat_j] = int(np.average(arr[i : i + self.size, j : j + self.size]))
+                    updated_arr[mat_i][mat_j] = int(
+                        np.average(arr[i : i + self.size, j : j + self.size])
+                    )
                 else:
                     raise ValueError("Invalid pooling type")
 
@@ -91,4 +95,3 @@ if __name__ == "__main__":
     avgpooling_layer = PoolingLayer(size=3, stride=2, pooling_type="avg")
     avgpooled_image = avgpooling_layer.forward(np.array(image))
     Image.fromarray(avgpooled_image).show()
-
