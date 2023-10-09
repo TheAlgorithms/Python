@@ -54,13 +54,12 @@
   * [Largest Pow Of Two Le Num](bit_manipulation/largest_pow_of_two_le_num.py)
   * [Missing Number](bit_manipulation/missing_number.py)
   * [Numbers Different Signs](bit_manipulation/numbers_different_signs.py)
+  * [Power Of 4](bit_manipulation/power_of_4.py)
   * [Reverse Bits](bit_manipulation/reverse_bits.py)
   * [Single Bit Manipulation Operations](bit_manipulation/single_bit_manipulation_operations.py)
 
 ## Blockchain
-  * [Chinese Remainder Theorem](blockchain/chinese_remainder_theorem.py)
   * [Diophantine Equation](blockchain/diophantine_equation.py)
-  * [Modular Division](blockchain/modular_division.py)
 
 ## Boolean Algebra
   * [And Gate](boolean_algebra/and_gate.py)
@@ -101,6 +100,7 @@
   * [Diffie Hellman](ciphers/diffie_hellman.py)
   * [Elgamal Key Generator](ciphers/elgamal_key_generator.py)
   * [Enigma Machine2](ciphers/enigma_machine2.py)
+  * [Fractionated Morse Cipher](ciphers/fractionated_morse_cipher.py)
   * [Hill Cipher](ciphers/hill_cipher.py)
   * [Mixed Keyword Cypher](ciphers/mixed_keyword_cypher.py)
   * [Mono Alphabetic Ciphers](ciphers/mono_alphabetic_ciphers.py)
@@ -172,6 +172,7 @@
 
 ## Data Structures
   * Arrays
+    * [Equilibrium Index In Array](data_structures/arrays/equilibrium_index_in_array.py)
     * [Median Two Array](data_structures/arrays/median_two_array.py)
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
@@ -352,6 +353,7 @@
   * [Smith Waterman](dynamic_programming/smith_waterman.py)
   * [Subset Generation](dynamic_programming/subset_generation.py)
   * [Sum Of Subset](dynamic_programming/sum_of_subset.py)
+  * [Trapped Water](dynamic_programming/trapped_water.py)
   * [Tribonacci](dynamic_programming/tribonacci.py)
   * [Viterbi](dynamic_programming/viterbi.py)
   * [Word Break](dynamic_programming/word_break.py)
@@ -360,6 +362,7 @@
   * [Apparent Power](electronics/apparent_power.py)
   * [Builtin Voltage](electronics/builtin_voltage.py)
   * [Carrier Concentration](electronics/carrier_concentration.py)
+  * [Charging Capacitor](electronics/charging_capacitor.py)
   * [Circular Convolution](electronics/circular_convolution.py)
   * [Coulombs Law](electronics/coulombs_law.py)
   * [Electric Conductivity](electronics/electric_conductivity.py)
@@ -466,6 +469,8 @@
     * [Test Min Spanning Tree Prim](graphs/tests/test_min_spanning_tree_prim.py)
 
 ## Greedy Methods
+  * [Best Time To Buy And Sell Stock](greedy_methods/best_time_to_buy_and_sell_stock.py)
+  * [Fractional Cover Problem](greedy_methods/fractional_cover_problem.py)
   * [Fractional Knapsack](greedy_methods/fractional_knapsack.py)
   * [Fractional Knapsack 2](greedy_methods/fractional_knapsack_2.py)
   * [Gas Station](greedy_methods/gas_station.py)
@@ -524,6 +529,10 @@
   * Local Weighted Learning
     * [Local Weighted Learning](machine_learning/local_weighted_learning/local_weighted_learning.py)
   * [Logistic Regression](machine_learning/logistic_regression.py)
+  * Loss Functions
+    * [Binary Cross Entropy](machine_learning/loss_functions/binary_cross_entropy.py)
+    * [Huber Loss](machine_learning/loss_functions/huber_loss.py)
+    * [Mean Squared Error](machine_learning/loss_functions/mean_squared_error.py)
   * [Mfcc](machine_learning/mfcc.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
   * [Polynomial Regression](machine_learning/polynomial_regression.py)
@@ -565,6 +574,7 @@
   * [Catalan Number](maths/catalan_number.py)
   * [Ceil](maths/ceil.py)
   * [Check Polygon](maths/check_polygon.py)
+  * [Chinese Remainder Theorem](maths/chinese_remainder_theorem.py)
   * [Chudnovsky Algorithm](maths/chudnovsky_algorithm.py)
   * [Collatz Sequence](maths/collatz_sequence.py)
   * [Combinations](maths/combinations.py)
@@ -591,6 +601,7 @@
   * [Gaussian](maths/gaussian.py)
   * [Gaussian Error Linear Unit](maths/gaussian_error_linear_unit.py)
   * [Gcd Of N Numbers](maths/gcd_of_n_numbers.py)
+  * [Germain Primes](maths/germain_primes.py)
   * [Greatest Common Divisor](maths/greatest_common_divisor.py)
   * [Greedy Coin Change](maths/greedy_coin_change.py)
   * [Hamming Numbers](maths/hamming_numbers.py)
@@ -599,6 +610,7 @@
   * [Hexagonal Number](maths/hexagonal_number.py)
   * [Integration By Simpson Approx](maths/integration_by_simpson_approx.py)
   * [Interquartile Range](maths/interquartile_range.py)
+  * [Is Disarium](maths/is_disarium.py)
   * [Is Int Palindrome](maths/is_int_palindrome.py)
   * [Is Ip V4 Address Valid](maths/is_ip_v4_address_valid.py)
   * [Is Square Free](maths/is_square_free.py)
@@ -619,6 +631,7 @@
   * [Max Sum Sliding Window](maths/max_sum_sliding_window.py)
   * [Median Of Two Arrays](maths/median_of_two_arrays.py)
   * [Mobius Function](maths/mobius_function.py)
+  * [Modular Division](maths/modular_division.py)
   * [Modular Exponential](maths/modular_exponential.py)
   * [Monte Carlo](maths/monte_carlo.py)
   * [Monte Carlo Dice](maths/monte_carlo_dice.py)
@@ -655,6 +668,7 @@
   * [Radix2 Fft](maths/radix2_fft.py)
   * [Remove Digit](maths/remove_digit.py)
   * [Runge Kutta](maths/runge_kutta.py)
+  * [Seconds Timeconversion](maths/seconds_timeConversion.py)
   * [Segmented Sieve](maths/segmented_sieve.py)
   * Series
     * [Arithmetic](maths/series/arithmetic.py)
@@ -720,12 +734,16 @@
 ## Neural Network
   * [2 Hidden Layers Neural Network](neural_network/2_hidden_layers_neural_network.py)
   * Activation Functions
+    * [Binary Step](neural_network/activation_functions/binary_step.py)
     * [Exponential Linear Unit](neural_network/activation_functions/exponential_linear_unit.py)
     * [Leaky Rectified Linear Unit](neural_network/activation_functions/leaky_rectified_linear_unit.py)
     * [Mish](neural_network/activation_functions/mish.py)
     * [Rectified Linear Unit](neural_network/activation_functions/rectified_linear_unit.py)
     * [Scaled Exponential Linear Unit](neural_network/activation_functions/scaled_exponential_linear_unit.py)
     * [Sigmoid Linear Unit](neural_network/activation_functions/sigmoid_linear_unit.py)
+    * [Soboleva Modified Hyperbolic Tangent](neural_network/activation_functions/soboleva_modified_hyperbolic_tangent.py)
+    * [Softplus](neural_network/activation_functions/softplus.py)
+    * [Squareplus](neural_network/activation_functions/squareplus.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
   * [Perceptron](neural_network/perceptron.py)
@@ -1101,6 +1119,7 @@
   * [Interpolation Search](searches/interpolation_search.py)
   * [Jump Search](searches/jump_search.py)
   * [Linear Search](searches/linear_search.py)
+  * [Median Of Medians](searches/median_of_medians.py)
   * [Quick Select](searches/quick_select.py)
   * [Sentinel Linear Search](searches/sentinel_linear_search.py)
   * [Simple Binary Search](searches/simple_binary_search.py)
@@ -1201,6 +1220,7 @@
   * [Snake Case To Camel Pascal Case](strings/snake_case_to_camel_pascal_case.py)
   * [Split](strings/split.py)
   * [String Switch Case](strings/string_switch_case.py)
+  * [Strip](strings/strip.py)
   * [Text Justification](strings/text_justification.py)
   * [Top K Frequent Words](strings/top_k_frequent_words.py)
   * [Upper](strings/upper.py)
