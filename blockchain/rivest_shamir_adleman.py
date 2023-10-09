@@ -34,6 +34,7 @@ from cryptography.hazmat.primitives.asymmetric import padding, rsa
 
 from typing import Tuple, Union
 
+
 def generate_key_pair() -> Tuple[rsa.RSAPrivateKey, rsa.RSAPublicKey]:
     """
     Generate RSA key pair.
@@ -70,7 +71,7 @@ def encrypt(message: str, public_key: rsa.RSAPublicKey) -> bytes:
         bytes: Encrypted ciphertext.
 
     >>> private_key, public_key = generate_key_pair()
-    >>> message = "Hello, this is a message to be encrypted!" 
+    >>> message = "Hello, this is a message to be encrypted!"
     >>> ciphertext = encrypt(message, public_key)
     >>> decrypted_message = decrypt(ciphertext, private_key)
     >>> decrypted_message == message
