@@ -1,3 +1,7 @@
+# return all subset combinations of n element in given set of r element.
+
+
+
 def subset_combinations_dp(elements, n):
     r = len(elements)
 
