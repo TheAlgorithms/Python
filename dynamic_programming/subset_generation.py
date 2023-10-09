@@ -40,15 +40,10 @@ def combinations(arr, n, r, index=0, data=None, i=0):
     combinations(arr, n, r, index, data, i + 1)
 
 
-def print_combination(arr, n, r):
-    data = [0] * r
-    combinations(arr, n, r, 0, data, 0)
-
-
 if __name__ == "__main__":
     arr = [10, 20, 30, 40, 50]
-    print_combination(arr, len(arr), 3)
-
+    r = 3
+    combinations(arr,5,3)
     import doctest
 
     doctest.testmod()
