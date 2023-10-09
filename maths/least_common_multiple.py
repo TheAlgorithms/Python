@@ -1,6 +1,8 @@
 import unittest
 from timeit import timeit
 
+from maths.greatest_common_divisor import greatest_common_divisor
+
 
 def least_common_multiple_slow(first_num: int, second_num: int) -> int:
     """
@@ -18,26 +20,6 @@ def least_common_multiple_slow(first_num: int, second_num: int) -> int:
     while (common_mult % first_num > 0) or (common_mult % second_num > 0):
         common_mult += max_num
     return common_mult
-
-
-def greatest_common_divisor(a: int, b: int) -> int:
-    """
-    Calculate Greatest Common Divisor (GCD).
-    see greatest_common_divisor.py
-    >>> greatest_common_divisor(24, 40)
-    8
-    >>> greatest_common_divisor(1, 1)
-    1
-    >>> greatest_common_divisor(1, 800)
-    1
-    >>> greatest_common_divisor(11, 37)
-    1
-    >>> greatest_common_divisor(3, 5)
-    1
-    >>> greatest_common_divisor(16, 4)
-    4
-    """
-    return b if a == 0 else greatest_common_divisor(b % a, a)
 
 
 def least_common_multiple_fast(first_num: int, second_num: int) -> int:
