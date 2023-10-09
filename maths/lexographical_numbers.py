@@ -1,13 +1,13 @@
 """
-Given an integer n, return all the numbers in the range [1, n] sorted in lexicographical order.
+Given an integer n, return all the numbers in the range [1, n]
+sorted in lexicographical order.
 
-You must write an algorithm that runs in O(n) time and uses O(1) extra space. 
+You must write an algorithm that runs in O(n) time and uses O(1) extra space.
 
 Leetcode reference: https://leetcode.com/problems/lexicographical-numbers/
 """
-from __future__ import annotations
 
-def lexicalOrder(n: int) -> list[int]:
+def lexical_order(n: int) -> list[int]:
         """
         >>> lexicalOrder(13)
         [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9]

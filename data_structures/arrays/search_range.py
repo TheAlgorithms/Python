@@ -2,17 +2,16 @@
 Problem: Find First and Last Position of Element in Sorted Array
 
 Description:
-Given an array of integers nums sorted in non-decreasing order, 
+Given an array of integers nums sorted in non-decreasing order,
 find the starting and ending position of a given target value.
 
 If target is not found in the array, return [-1, -1].
 
-Leetcode ref: 
+Leetcode ref:
 https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 """
-from __future__ import annotations
- 
-def searchRange(nums: list[int], target: int) -> list[int]:
+
+def search_range(nums: list[int], target: int) -> list[int]:
         """
         >>> searchRange([5,7,7,8,8,10],8)
         [3, 4]
