@@ -27,8 +27,9 @@ O(n) - The algorithm uses an array of size n to store the ugly numbers.
 Sources:
 - Dynamic Programming and Ugly Numbers: https://www.geeksforgeeks.org/ugly-numbers/
 """
+
+
 def nth_ugly_number(n: int) -> int:
-    
     """
     Return the nth ugly number.
     >>> nth_ugly_number(5)
@@ -40,10 +41,10 @@ def nth_ugly_number(n: int) -> int:
     >>> nth_ugly_number(-1)
     Traceback (most recent call last):
     ValueError: Index for nth ugly number should be ≥ 0
-    
+
     """
     if n < 0:
-         raise ValueError("Index for nth ugly number should be ≥ 0")
+        raise ValueError("Index for nth ugly number should be ≥ 0")
     dp = [1] * (n + 1)
     ptr1 = 0
     ptr2 = 0
@@ -59,11 +60,11 @@ def nth_ugly_number(n: int) -> int:
             ptr2 += 1
         if dp[i] == five:
             ptr3 += 1
-            
+
     return dp[n - 1]
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     # User input to find the nth Ugly Number
     print("\n********* Ugly Numbers Using Dynamic Programming ************\n")
     print("\n*** Enter -1 to quit ***")
@@ -75,14 +76,13 @@ if __name__ == "__main__":
                 print("\n********* END ************")
                 break
             else:
-                
                 ugly_number = nthUglyNumber(n)
                 print(f"The {n}th Ugly Number is: {ugly_number}")
                 print("Try another index to find a Ugly Number: ", end="")
     except (NameError, ValueError):
         print("\n********* Invalid input, END ************\n")
-        
+
 import doctest
-    
+
 # Test cases for nthUglyNumber function
-doctest.testmod()        
+doctest.testmod()
