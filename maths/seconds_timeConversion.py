@@ -1,4 +1,4 @@
-def timeConversion(sec:int) -> int:
+def timeConversion(sec: int) -> int:
     """
     This simple python program converts seconds to days, hours, minutes and seconds
 
@@ -25,7 +25,10 @@ def timeConversion(sec:int) -> int:
 
     return days, hours, minutes, seconds
 
+
 if __name__ == "__main__":
-    seconds = 256 #assign the input here
-    print(f"{timeConversion(seconds)[0]} days {timeConversion(seconds)[1]} hours\
- {timeConversion(seconds)[2]} minutes {timeConversion(seconds)[3]} seconds")
+    seconds = 256  # assign the input here
+    print(
+        f"{timeConversion(seconds)[0]} days {timeConversion(seconds)[1]} hours\
+ {timeConversion(seconds)[2]} minutes {timeConversion(seconds)[3]} seconds"
+    )
