@@ -1,0 +1,10 @@
+//calculation of a to the power b using bitwise operator
+def powerCalculation(base, pow):
+    ans = 1
+    while pow > 0:
+        if pow & 1 == 1:
+            ans = ans * base
+        base *= base
+        pow = pow >> 1
+    print(ans)
+
