@@ -1,0 +1,21 @@
+# Recursive selection sort function
+def selection_sort(arr, i):
+    # Base case: the array is sorted when i reaches the end
+    if i == len(arr) - 1:
+        return arr
+    # Find the minimum element in the unsorted part of the array
+    min_index = i
+    for j in range(i + 1, len(arr)):
+        if arr[j] < arr[min_index]:
+            min_index = j
+    # Swap the minimum element with the first element of the unsorted part
+    arr[i], arr[min_index] = arr[min_index], arr[i]
+    # Recursively sort the remaining unsorted part of the array
+    return selection_sort(arr, i + 1)
+
+# Example array to sort
+arr = [64, 45, 17, 23, 11, 34, 81, 6, 20, 2, 53, 98, 67]
+# Call the recursive selection sort function with i = 0
+sorted_arr = selection_sort(arr, 0)
+# Print the sorted array
+print(sorted_arr)
