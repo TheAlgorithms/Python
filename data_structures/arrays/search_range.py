@@ -13,16 +13,16 @@ https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-
 
 def search_range(nums: list[int], target: int) -> list[int]:
     """
-    >>> searchRange([5,7,7,8,8,10],8)
+    >>> search_range([5,7,7,8,8,10],8)
     [3, 4]
 
-    >>> searchRange([5,7,7,8,8,10],6)
+    >>> search_range([5,7,7,8,8,10],6)
     [-1, -1]
 
-    >>> searchRange([],3)
+    >>> search_range([],3)
     [-1, -1]
 
-    >>> searchRange([5,7,8,9,9],7)
+    >>> search_range([5,7,8,9,9],7)
     [1, 1]
     """
 
