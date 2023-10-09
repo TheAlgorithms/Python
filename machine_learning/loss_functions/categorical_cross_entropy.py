@@ -62,10 +62,9 @@ def categorical_cross_entropy(
     if not np.all((y_true == 0) | (y_true == 1)):
         raise ValueError("y_true must be one-hot encoded.")
 
-    if not np.all(np.isclose(np.sum(y_pred, axis=1), 1,
-                             rtol=epsilon, atol=epsilon)):
+    if not np.all(np.isclose(np.sum(y_pred, axis=1), 1, rtol=epsilon, atol=epsilon)):
         raise ValueError("Predicted probabilities must sum to approximately 1.")
-  
+
     # Clip predicted probabilities to avoid log(0)
     y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
 
@@ -75,4 +74,5 @@ def categorical_cross_entropy(
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
