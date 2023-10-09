@@ -9,7 +9,7 @@ def combinations(arr, n, r, index=0, data=None, i=0):
     n (int): The total number of elements in the input list 'arr'.
     r (int): The size of the combinations to be generated.
     index (int, optional): The current index in the 'data' array. Defaults to 0.
-    data (list, optional): Temporary array to store the current combination being generated. Defaults to None.
+    data (list, optional): Temporary array to store the current combination.
     i (int, optional): The current index in the input list 'arr'. Defaults to 0.
     Returns:
     None: This function prints the combinations but does not return a value.
