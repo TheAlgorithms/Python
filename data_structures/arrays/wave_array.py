@@ -38,7 +38,6 @@ def sort_into_wave_optimized(arr: List[int]) -> List[int]:
         # swap them to make arr[i] <= arr[i+1]
         if i < n - 1 and arr[i] < arr[i + 1]:
             arr[i], arr[i + 1] = arr[i + 1], arr[i]
-    
     return arr
 
 if __name__ == "__main__":
