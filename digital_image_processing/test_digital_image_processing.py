@@ -96,6 +96,11 @@ def test_nearest_neighbour(
 
 
 def test_local_binary_pattern():
+    #pull request 10161 before:
+    #"digital_image_processing/image_data/lena.jpg"
+    
+    #after: "digital_image_processing/image_data/lena_small.jpg"
+    
     from os import getenv  # Speed up our Continuous Integration tests
 
     file_name = "lena_small.jpg" if getenv("CI") else "lena.jpg"
