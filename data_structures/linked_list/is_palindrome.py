@@ -147,9 +147,11 @@ def is_palindrome_dict(head: ListNode | None) -> bool:
         >>> is_palindrome_dict(ListNode(1, ListNode(2, ListNode(2, ListNode(1)))))
         True
 
-        >>> is_palindrome_dict(\
-            ListNode(\
-                1, ListNode(2, ListNode(1, ListNode(3, ListNode(2, ListNode(1)))))))
+        >>> is_palindrome_dict(
+        ...     ListNode(
+        ...         1, ListNode(2, ListNode(1, ListNode(3, ListNode(2, ListNode(1)))))
+        ...     )
+        ... )
         False
     """
     if not head or not head.next_node:
