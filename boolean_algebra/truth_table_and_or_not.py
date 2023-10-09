@@ -18,6 +18,7 @@ def truth_table_and():
             c = a and b
             print(f"{a}\t{b}\t{c}")
 
+
 def truth_table_or():
     """
     Generate the truth table for the logical OR operator (a OR b).
@@ -38,6 +39,7 @@ def truth_table_or():
             c = a or b
             print(f"{a}\t{b}\t{c}")
 
+
 def truth_table_not():
     """
     Generate the truth table for the logical NOT operator (NOT a).
@@ -54,6 +56,7 @@ def truth_table_not():
     for a in [0, 1]:
         c = not a
         print(f"{a}\t{c}")
+
 
 if __name__ == "__main__":
     truth_table_and()
