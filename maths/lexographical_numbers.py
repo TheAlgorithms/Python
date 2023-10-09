@@ -8,7 +8,7 @@ Leetcode reference: https://leetcode.com/problems/lexicographical-numbers/
 """
 
 
-def lexical_order(n: int) -> list[int]:
+def lexical_order(num: int) -> list[int]:
     """
     >>> lexical_order(13)
     [1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -21,7 +21,7 @@ def lexical_order(n: int) -> list[int]:
         of characters according to their position in the alphabet.
         """
 
-    numbers = [str(i) for i in range(1, n + 1)]
+    numbers = [str(i) for i in range(1, num + 1)]
     numbers.sort()
     res = list(map(int, numbers))
     return res
