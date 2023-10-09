@@ -27,11 +27,7 @@ def search_range(nums: list[int], target: int) -> list[int]:
     [1, 1]
     """
 
-<<<<<<< HEAD
     def binary_search(nums:list, target:int, left:bool) -> int:
-=======
-    def binary_search(nums: list, target: int, left: bool) -> list[int]:
->>>>>>> ed2739d28f25dd51ecf531173a35c22b4ab31d9c
         """
         >>> binary_search([1, 2, 3, 4, 5], 3, leftmost=True)
         2
