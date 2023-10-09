@@ -16,16 +16,15 @@ class HashSet:
         self.charge_factor = 1 if charge_factor is None else charge_factor
         self._keys: dict = {}
 
-    def keys(self)->list:
+    def keys(self) -> list:
         """
         >>> hashset = HashSet(2)
         >>> hashset.add(10)
         >>> hashset.keys()
         [10]
-        
+
         """
         return list(self._keys.values())
-    
 
     def add(self, value):
         self.insert_data(value)
@@ -93,4 +92,5 @@ class HashSet:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
