@@ -11,23 +11,7 @@ Examples of Carmichael Numbers: 561, 1105, ...
 https://en.wikipedia.org/wiki/Carmichael_number
 """
 
-
-def gcd(a: int, b: int) -> int:
-    """
-
-    Examples:
-    >>> gcd(9, 3)
-    3
-
-    >>> gcd(2, 1)
-    1
-    """
-
-    if a < b:
-        return gcd(b, a)
-    if a % b == 0:
-        return b
-    return gcd(b, a % b)
+from maths.greatest_common_divisor import greatest_common_divisor
 
 
 def power(x: int, y: int, mod: int) -> int:
@@ -72,7 +56,7 @@ def is_carmichael_number(n: int) -> bool:
 
     b = 2
     while b < n:
-        if gcd(b, n) == 1 and power(b, n - 1, n) != 1:
+        if greatest_common_divisor(b, n) == 1 and power(b, n - 1, n) != 1:
             return False
         b += 1
     return True
