@@ -34,9 +34,7 @@ def damerau_levenshtein_distance(first_string: str, second_string: str) -> int:
     """
 
     # Create a dynamic programming matrix to store the distances
-    dp_matrix = [
-        [None] * (len(second_string) + 1) for _ in range(len(first_string) + 1)
-    ]
+    dp_matrix = [[0] * (len(second_string) + 1) for _ in range(len(first_string) + 1)]
 
     # Initialize the matrix
     for i in range(len(first_string) + 1):
