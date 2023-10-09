@@ -8,7 +8,7 @@ Return number of all  possible unique paths robot can take.
 
 
 def uniquepaths(self, m, n):
-    """ "
+    """
     >>> uniquepaths(3,2)
     3
     >>> uniquepaths(3,7)
