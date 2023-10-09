@@ -43,7 +43,4 @@ def combinations(arr, n, r, index=0, data=None, i=0):
 if __name__ == "__main__":
     arr = [10, 20, 30, 40, 50]
     r = 3
-    combinations(arr, 5, 3)
-    import doctest
-
-    doctest.testmod()
+    combinations(arr, len(arr), r)
