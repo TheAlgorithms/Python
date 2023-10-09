@@ -11,6 +11,7 @@ Leetcode ref:
 https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 """
 
+
 def search_range(nums: list[int], target: int) -> list[int]:
     """
     >>> searchRange([5,7,7,8,8,10],8)
