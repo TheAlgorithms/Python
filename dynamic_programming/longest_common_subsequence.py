@@ -29,49 +29,36 @@ def longest_common_subsequence(x: str, y: str):
     >>> longest_common_subsequence("computer", "food")
     (1, 'o')
     """
-    # find the length of strings
+    # Get the lengths of the input strings
+    m, n = len(x), len(y)
 
-    assert x is not None
-    assert y is not None
+    # Initialize a matrix to store dynamic programming values
+    l = [[0] * (n + 1) for _ in range(m + 1)]
 
-    m = len(x)
-    n = len(y)
-
-    # declaring the array for storing the dp values
-    l = [[0] * (n + 1) for _ in range(m + 1)]  # noqa: E741
-
+    # Populate the matrix using dynamic programming
     for i in range(1, m + 1):
         for j in range(1, n + 1):
-            match = 1 if x[i - 1] == y[j - 1] else 0
+            # If the characters match, add 1 to the LCS length
+            l[i][j] = max(l[i - 1][j], l[i][j - 1], l[i - 1][j - 1] + (x[i - 1] == y[j - 1]))
 
-            l[i][j] = max(l[i - 1][j], l[i][j - 1], l[i - 1][j - 1] + match)
-
+    # Trace back to find the LCS itself
     seq = ""
     i, j = m, n
     while i > 0 and j > 0:
-        match = 1 if x[i - 1] == y[j - 1] else 0
-
-        if l[i][j] == l[i - 1][j - 1] + match:
-            if match == 1:
-                seq = x[i - 1] + seq
-            i -= 1
-            j -= 1
-        elif l[i][j] == l[i - 1][j]:
+        if x[i - 1] == y[j - 1]:
+            # Add matching character to the LCS
+            seq = x[i - 1] + seq
+            i, j = i - 1, j - 1
+        elif l[i - 1][j] > l[i][j - 1]:
             i -= 1
         else:
             j -= 1
 
+    # Return the length of LCS and the LCS sequence
     return l[m][n], seq
 
-
 if __name__ == "__main__":
-    a = "AGGTAB"
-    b = "GXTXAYB"
-    expected_ln = 4
-    expected_subseq = "GTAB"
-
+    # Example usage
+    a, b = "AGGTAB", "GXTXAYB"
     ln, subseq = longest_common_subsequence(a, b)
     print("len =", ln, ", sub-sequence =", subseq)
-    import doctest
-
-    doctest.testmod()
