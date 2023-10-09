@@ -66,7 +66,7 @@ def combination_sum(candidates: list, target: int) -> list:
 
 
 def main() -> None:
-    print(combination_sum([], 1))
+    print(combination_sum([-8, 2.3, 0], 1))
 
 
 if __name__ == "__main__":
