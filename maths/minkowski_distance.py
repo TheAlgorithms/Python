@@ -11,10 +11,16 @@ def minkowski_distance(
 
     https://en.wikipedia.org/wiki/Minkowski_distance
 
+    Note: due to floating point calculation errors the output of this
+    function may be inaccurate.
+
     >>> minkowski_distance([1.0, 1.0], [2.0, 2.0], 1)
     2.0
     >>> minkowski_distance([1.0, 2.0, 3.0, 4.0], [5.0, 6.0, 7.0, 8.0], 2)
     8.0
+    >>> import numpy as np
+    >>> np.isclose(5.0, minkowski_distance([5.0], [0.0], 3))
+    True
     >>> minkowski_distance([1.0], [2.0], -1)
     Traceback (most recent call last):
         ...
