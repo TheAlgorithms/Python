@@ -14,6 +14,7 @@ https://en.wikipedia.org/wiki/Carmichael_number
 from maths.greatest_common_divisor import greatest_common_divisor
 
 
+
 def power(x: int, y: int, mod: int) -> int:
     """
 
