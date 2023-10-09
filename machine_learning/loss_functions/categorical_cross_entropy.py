@@ -32,27 +32,47 @@ def categorical_cross_entropy(
     Example:
     >>> true_labels = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
     >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1], [0.0, 0.1, 0.9]])
-    >>> categorical_crossentropy(true_labels, pred_probs)
-    0.18913199175146167
+    >>> categorical_cross_entropy(true_labels, pred_probs)
+    0.567395975254385
 
     >>> y_true = np.array([[1, 0], [0, 1]])
     >>> y_pred = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
-    >>> categorical_crossentropy(y_true, y_pred)
+    >>> categorical_cross_entropy(y_true, y_pred)
     Traceback (most recent call last):
         ...
-    ValueError: Input arrays must have the same length.
+    ValueError: Input arrays must have the same shape.
+
+    >>> y_true = np.array([[2, 0, 1], [1, 0, 0]])
+    >>> y_pred = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
+    >>> categorical_cross_entropy(y_true, y_pred)
+    Traceback (most recent call last):
+        ...
+    ValueError: y_true must be one-hot encoded.
+
+    >>> y_true = np.array([[1, 0, 0], [0, 1, 0]])
+    >>> y_pred = np.array([[0.9, 0.1, 0.1], [0.2, 0.7, 0.1]])
+    >>> categorical_cross_entropy(y_true, y_pred)
+    Traceback (most recent call last):
+        ...
+    ValueError: Predicted probabilities must sum to approximately 1.
     """
     if y_true.shape != y_pred.shape:
-        raise ValueError("Input arrays must have the same length.")
+        raise ValueError("Input arrays must have the same shape.")
 
+    if not np.all((y_true == 0) | (y_true == 1)):
+        raise ValueError("y_true must be one-hot encoded.")
+
+    if not np.all(np.isclose(np.sum(y_pred, axis=1), 1,
+                             rtol=epsilon, atol=epsilon)):
+        raise ValueError("Predicted probabilities must sum to approximately 1.")
+  
     # Clip predicted probabilities to avoid log(0)
     y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
 
     # Calculate categorical cross-entropy loss
-    return -np.sum(y_true * np.log(y_pred)) / len(y_true)
+    return -np.sum(y_true * np.log(y_pred))
 
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
