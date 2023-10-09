@@ -1,4 +1,4 @@
-def truth_table_and():
+def truth_table_and() -> None:
     """
     Generate the truth table for the logical AND operator (a AND b).
 
@@ -9,6 +9,8 @@ def truth_table_and():
     0    1    0
     1    0    0
     1    1    1
+
+    :return: None
     """
     print("Truth table of AND:\n")
     print("a\tb\ta AND b")
@@ -19,7 +21,7 @@ def truth_table_and():
             print(f"{a}\t{b}\t{c}")
 
 
-def truth_table_or():
+def truth_table_or() -> None:
     """
     Generate the truth table for the logical OR operator (a OR b).
 
@@ -30,6 +32,8 @@ def truth_table_or():
     0    1    1
     1    0    1
     1    1    1
+
+    :return: None
     """
     print("\nTruth table of OR:\n")
     print("a\tb\ta OR b")
@@ -40,7 +44,7 @@ def truth_table_or():
             print(f"{a}\t{b}\t{c}")
 
 
-def truth_table_not():
+def truth_table_not() -> None:
     """
     Generate the truth table for the logical NOT operator (NOT a).
 
@@ -49,6 +53,8 @@ def truth_table_not():
     ----------
     0    1
     1    0
+
+    :return: None
     """
     print("\nTruth table of NOT:\n")
     print("a\tNOT a")
