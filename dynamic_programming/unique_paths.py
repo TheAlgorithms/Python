@@ -1,17 +1,17 @@
 """
 There is a robot on an m x n grid.
-The robot is initially located at the top-left corner of grid the robot tries to move to the bottom-right corner.
+The robot is initially located at the top-left corner of grid 
+the robot tries to move to the bottom-right corner.
 The robot can only move either down or right at any point in time.
 Return number of all  possible unique paths robot can take.
-
 """
 
 
 def uniquepaths(self, m, n):
     """ "
-    >>>uniquepaths(3,2)
+    >>> uniquepaths(3,2)
     3
-    >>>uniquepaths(3,7)
+    >>> uniquepaths(3,7)
     28
     """
     dp = [[0] * n for _ in range(m)]
