@@ -3,7 +3,7 @@
 
 def subset_combinations_dp(elements, n):
     """
-    Generate all subset combinations of 'n' elements from 'elements' using dynamic programming.
+    Generate all subset combinations of 'n' elements using dynamic programming.
 
     Args:
     elements (list): The input list of elements.
