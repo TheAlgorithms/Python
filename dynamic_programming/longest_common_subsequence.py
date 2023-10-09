@@ -39,7 +39,9 @@ def longest_common_subsequence(x: str, y: str):
     for i in range(1, m + 1):
         for j in range(1, n + 1):
             # If the characters match, add 1 to the LCS length
-            l[i][j] = max(l[i - 1][j], l[i][j - 1], l[i - 1][j - 1] + (x[i - 1] == y[j - 1]))
+            l[i][j] = max(
+                l[i - 1][j], l[i][j - 1], l[i - 1][j - 1] + (x[i - 1] == y[j - 1])
+            )
 
     # Trace back to find the LCS itself
     seq = ""
@@ -56,6 +58,7 @@ def longest_common_subsequence(x: str, y: str):
 
     # Return the length of LCS and the LCS sequence
     return l[m][n], seq
+
 
 if __name__ == "__main__":
     # Example usage
