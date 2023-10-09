@@ -128,4 +128,3 @@ if __name__ == "__main__":
     testmod(name="invert_modulo", verbose=True)
     testmod(name="extended_gcd", verbose=True)
     testmod(name="extended_euclid", verbose=True)
-    testmod(name="greatest_common_divisor", verbose=True)
