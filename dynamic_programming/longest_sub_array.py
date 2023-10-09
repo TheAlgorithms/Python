@@ -17,19 +17,19 @@ class SubArray:
 
     def solve_sub_array(self):
         """
-              Solve the maximum subarray sum problem using dynamic programming.
-              Returns:
-              int: The maximum subarray sum.
-              Examples:
-              >>> subarray = SubArray("1, 2, 3, -2, 5")
-              >>> subarray.solve_sub_array()
-              9
-              >>> subarray = SubArray("-2, 1, -3, 4, -1, 2, 1, -5, 4")
-              >>> subarray.solve_sub_array()
-              6
-              >>> subarray = SubArray("1")
-              >>> subarray.solve_sub_array()
-              1
+        Solve the maximum subarray sum problem using dynamic programming.
+        Returns:
+        int: The maximum subarray sum.
+        Examples:
+        >>> subarray = SubArray("1, 2, 3, -2, 5")
+        >>> subarray.solve_sub_array()
+        9
+        >>> subarray = SubArray("-2, 1, -3, 4, -1, 2, 1, -5, 4")
+        >>> subarray.solve_sub_array()
+        6
+        >>> subarray = SubArray("1")
+        >>> subarray.solve_sub_array()
+        1
         """
         rear = [int(self.array[0])] * len(self.array)
         sum_value = [int(self.array[0])] * len(self.array)
