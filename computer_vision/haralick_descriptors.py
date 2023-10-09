@@ -133,7 +133,6 @@ if __name__ == "__main__":
     q_value = (q_value_list[0], q_value_list[1])
 
     parameters = {"format": int(input()), "threshold": int(input())}
-
     b_number = int(input())
 
     files, descriptors = [], []
