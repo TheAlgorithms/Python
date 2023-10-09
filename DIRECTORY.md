@@ -560,7 +560,7 @@
   * [Bell Numbers](maths/bell_numbers.py)
   * [Binary Exp Mod](maths/binary_exp_mod.py)
   * [Binary Exponentiation](maths/binary_exponentiation.py)
-  * [Binary Exponentiation 3](maths/binary_exponentiation_3.py)
+  * [Binary Exponentiation 2](maths/binary_exponentiation_2.py)
   * [Binary Multiplication](maths/binary_multiplication.py)
   * [Binomial Coefficient](maths/binomial_coefficient.py)
   * [Binomial Distribution](maths/binomial_distribution.py)
