@@ -1,4 +1,4 @@
-def time_conversion(sec: int) -> int:
+def time_conversion(sec: int) -> tuple:
     """
     This simple python program converts seconds to days, hours, minutes and seconds
 
