@@ -5,8 +5,9 @@ Use Newtons forward interpolation to obtain the interpolating polynomial and hen
 calculate y(2) for the following: 
 x: 1 3 5 7 9
 y: 6 10 62 210 50
-"""
 
+Reference URL: https://www.geeksforgeeks.org/newton-forward-backward-interpolation/
+"""
 
 from sympy import simplify, symbols, lambdify
 import numpy as np
@@ -14,8 +15,8 @@ import pprint
 
 n = int( input ('Enter number of data points : ') )
 210
-x = np . zeros (( n ) )
-y = np . zeros (( n , n ) )
+x = np.zeros (( n ) )
+y = np.zeros (( n , n ) )
 
 # Reading data points
 print ('Enter data for x and y: ')
@@ -39,7 +40,7 @@ t= symbols ('t')
 f=[] # f is a list type data
 p=( t-x[0])/( x[1]-x[0])
 f . append ( p )
-for i in range (1 , n-1 ):
+for i in range (1, n-1 ):
     f . append ( f[i-1]*( p-i )/( i+1 ) )
     poly =y[0][0]
 for i in range ( n-1 ):
@@ -47,7 +48,7 @@ for i in range ( n-1 ):
 
 simp_poly = simplify ( poly )
 print ('\ nTHE INTERPOLATING POLYNOMIAL IS\n') 
-pprint ( simp_poly )
+pprint.pprint ( simp_poly )
 
 # if you want to interpolate at some point the next session will help
 inter = input ('Do you want to interpolate at a point (y/n)? ') # y
@@ -56,3 +57,7 @@ if inter =='y':
     interpol = lambdify (t , simp_poly )
     result = interpol ( a )
     print ('\ nThe value of the function at ' ,a ,'is\n', result ) 
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
