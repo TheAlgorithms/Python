@@ -1,3 +1,7 @@
+'''
+Maximum Product Subarray
+This algorithm finds the contiguous subarray within an array that has the largest product. 
+'''
 def maxProoductSubarray(nums, n):
 	ans = nums[0]
 
