@@ -10,10 +10,6 @@ Description :
     (of a given mass, kept at a constant temperature) is inversely proportional to the
     volume occupied by it.
 
-    In other words, the pressure and volume of a gas are inversely proportional to each
-    other as long as the temperature and the quantity of gas are kept constant.
-    Boyle's law was put forward by the Anglo-Irish chemist Robert Boyle in the year 1662
-
     For a gas, the relationship between volume and pressure (at constant mass and
     temperature) can be expressed mathematically as follows.
 
