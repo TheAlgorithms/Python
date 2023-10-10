@@ -13,10 +13,11 @@ We have also defined an auxiliary function,
 to find the sum of the proper divisors of a number.
 """
 
+
 def sum_of_divisors(n: int) -> int:
     """
     Find the sum of the proper divisors of a number.
-    
+
     Examples:
     >>> sum_of_divisors(220)
     284
@@ -27,14 +28,15 @@ def sum_of_divisors(n: int) -> int:
     for i in range(1, n):
         if n % i == 0:
             sum += i
-    
+
     return sum
+
 
 def is_amicable_pair(a: int, b: int) -> bool:
     """
     Check if two numbers (a and b) are amicable numbers.
     Arguments must be positive integers.
-    
+
     Examples:
     >>> is_amicable_pair(220, 284)
     True
@@ -60,6 +62,8 @@ def is_amicable_pair(a: int, b: int) -> bool:
 
     return sum_of_divisors(a) == b and sum_of_divisors(b) == a
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
