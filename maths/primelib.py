@@ -597,7 +597,7 @@ def fib(n):
         ans += fib1
         fib1 = tmp
 
-    return and
+    return ans
 
 if __name__ == "__main__":
     doctest.testmod()
