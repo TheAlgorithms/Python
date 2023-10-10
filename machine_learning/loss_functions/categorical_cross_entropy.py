@@ -66,14 +66,14 @@ def categorical_cross_entropy(
     if y_true.shape != y_pred.shape:
         raise ValueError("Input arrays must have the same shape.")
 
-    if np.any((y_test != 0) & (y_test != 1)) or np.any(y_test.sum(axis=1) != 1):
+    if np.any((y_true != 0) & (y_true != 1)) or np.any(y_true.sum(axis=1) != 1):
         raise ValueError("y_true must be one-hot encoded.")
 
     if not np.all(np.isclose(np.sum(y_pred, axis=1), 1, rtol=epsilon, atol=epsilon)):
         raise ValueError("Predicted probabilities must sum to approximately 1.")
 
     # Clip predicted probabilities to avoid log(0)
-    y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
+    y_pred = np.clip(y_pred, epsilon, 1)
 
     # Calculate categorical cross-entropy loss
     return -np.sum(y_true * np.log(y_pred))
@@ -81,5 +81,4 @@ def categorical_cross_entropy(
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
