@@ -1,6 +1,6 @@
 """
-You're a caring parent, and you want to give your children cookies. Each child has a specific cookie size they like (their "greed factor"). 
-You have different-sized cookies. Your goal is to give cookies to as many children as possible by matching the cookie size to 
+You're a caring parent, and you want to give your children cookies. Each child has a specific cookie size they like (their "greed factor").
+You have different-sized cookies. Your goal is to give cookies to as many children as possible by matching the cookie size to
 each child's greed factor. How many children can you make happy?
 
 Example: g = [1,2,3], s = [1,1], where g is the greed factor and s is the cookie size.
@@ -24,6 +24,7 @@ This method ensures that you maximize the number of happy children efficiently."
 """
 from typing import List
 
+
 def max_happy_children(g: List[int], s: List[int]) -> int:
     """
     Calculate the maximum number of happy children by distributing cookies.
@@ -37,10 +38,10 @@ def max_happy_children(g: List[int], s: List[int]) -> int:
     """
     g.sort()
     s.sort()
-    
+
     child = 0
     for cookie in s:
         if child < len(g) and cookie >= g[child]:
             child += 1
-    
+
     return child
