@@ -38,7 +38,7 @@ goldbach(number)  // Goldbach's assumption
 """
 
 from math import sqrt
-
+import doctest
 from maths.greatest_common_divisor import gcd_by_iterative
 
 
@@ -46,6 +46,15 @@ def is_prime(number: int) -> bool:
     """
     input: positive integer 'number'
     returns true if 'number' is prime otherwise false.
+
+    >>> is_prime(97)
+    True
+    >>> is_prime(9991)
+    False
+    >>> is_prime(-3)
+    Traceback (most recent call last):
+        ...
+    AssertionError: 'number' must been an int and positive
     """
 
     # precondition
@@ -588,4 +597,7 @@ def fib(n):
         ans += fib1
         fib1 = tmp
 
-    return ans
+    return and
+    
+if __name__ == "__main__":
+    doctest.testmod()
