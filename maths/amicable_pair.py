@@ -65,6 +65,7 @@ def is_amicable_pair(number_1: int, number_2: int) -> bool:
     else:
         return False
 
+
 if __name__ == "__main__":
     import doctest
 
