@@ -47,7 +47,7 @@ SYMBOLS = {
     "....|||": 19
 }
 
-def mayan_to_int(mayan_levels: []) -> int:
+def mayan_to_int(mayan_levels: list[str]) -> int:
     """
     Conversion from mayan to decimal
     >>> mayan_to_int(["o", ".", "..||"])
@@ -82,16 +82,16 @@ def mayan_to_int(mayan_levels: []) -> int:
 
     return decimal_number
 
-def int_to_mayan(number: int) -> []:
+def int_to_mayan(number: int) -> list[str]:
     """
     Conversion from decimal to mayan.
     >>> int_to_mayan(32)
-    ["o", ".", "..||"]
-    >>> mayan_to_int(429)
-    [".", ".", "....|"]
-    >>> mayan_to_int(5125)
-    ["..||", ".|||", "|"]
-    >>> mayan_to_int(-10)
+    ['.', '..||']
+    >>> int_to_mayan(429)
+    ['.', '.', '....|']
+    >>> int_to_mayan(5125)
+    ['..||', '.|||', '|']
+    >>> int_to_mayan(-10)
     Traceback (most recent call last):
         ...
     ValueError: Invalid 'number' value: -10,  Supported values greater than zero (positives).
@@ -111,7 +111,6 @@ def int_to_mayan(number: int) -> []:
         power = levels - (index + 1)
         
         quotient = int(remainder / (20 ** power))
-        print(quotient)
         remainder = number % (20 ** power)
 
         mayan_levels.append(list(SYMBOLS)[quotient])
