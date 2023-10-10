@@ -58,6 +58,11 @@ def check_validity(values: dict[str, float]) -> None:
         ...
     ValueError: Invalid input k is not a valid variable
 
+    >>> check_validity({'v1':2,'v2':4,'p1':-6})
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid input p1 must be greater than 0
+
     >>> check_validity({'v1':2,'v2':4,'p1':6})
 
     """
@@ -68,6 +73,9 @@ def check_validity(values: dict[str, float]) -> None:
         for value in values:
             if value not in valid_variables:
                 msg = f"Invalid input {value} is not a valid variable"
+                raise ValueError(msg)
+            if values[value] <= 0:
+                msg = f"Invalid input {value} must be greater than 0"
                 raise ValueError(msg)
         return
 
@@ -91,6 +99,11 @@ def find_target_variable(values: dict[str, float]) -> str:
     Traceback (most recent call last):
         ...
     ValueError: Invalid input k is not a valid variable
+
+    >>> find_target_variable({'v1':1,'v2':-2,'p2':4})
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid input v2 must be greater than 0
 
     """
     check_validity(values)
@@ -122,6 +135,11 @@ def boyles_law(values: dict[str, float]) -> dict[str, str]:
     Traceback (most recent call last):
         ...
     ValueError: Invalid input k is not a valid variable
+
+    >>> boyles_law({'p1':2,'v2':1, 'v1':-6})
+    Traceback (most recent call last):
+        ...
+    ValueError: Invalid input v1 must be greater than 0
 
     >>> boyles_law({'p1':100,'v2':150, 'v1':120})
     {'p2': '80.0 Pa'}
