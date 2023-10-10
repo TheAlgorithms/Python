@@ -13,6 +13,7 @@ We have also defined an auxiliary function,
 to find the 'sum' of the proper divisors of a number.
 """
 
+
 def sum_of_divisors(number: int) -> int:
     """
     Find the sum of the proper divisors of a number.
@@ -29,6 +30,7 @@ def sum_of_divisors(number: int) -> int:
             sum += i
 
     return sum
+
 
 def is_amicable_pair(number_1: int, number_2: int) -> bool:
     """
