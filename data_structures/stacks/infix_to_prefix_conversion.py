@@ -16,6 +16,39 @@ Enter an Infix Equation = a + b ^c
 
 
 def infix_2_postfix(infix):
+    """
+    >>> infix_2_postfix("a+b^c")  # doctest: +NORMALIZE_WHITESPACE
+     Symbol  |  Stack  | Postfix
+    ----------------------------
+       a     |         | a
+       +     | +       | a
+       b     | +       | ab
+       ^     | +^      | ab
+       c     | +^      | abc
+             | +       | abc^
+             |         | abc^+
+    'abc^+'
+    >>> infix_2_postfix("1*((-a)*2+b)")
+    Traceback (most recent call last):
+        ...
+    KeyError: '('
+    >>> infix_2_postfix("")
+     Symbol  |  Stack  | Postfix
+    ----------------------------
+    ''
+    >>> infix_2_postfix("(()")  # doctest: +NORMALIZE_WHITESPACE
+     Symbol  |  Stack  | Postfix
+    ----------------------------
+       (     | (       |
+       (     | ((      |
+       )     | (       |
+             |         | (
+    '('
+    >>> infix_2_postfix("())")
+    Traceback (most recent call last):
+        ...
+    IndexError: list index out of range
+    """
     stack = []
     post_fix = []
     priority = {
@@ -74,6 +107,42 @@ def infix_2_postfix(infix):
 
 
 def infix_2_prefix(infix):
+    """
+    >>> infix_2_prefix("a+b^c")  # doctest: +NORMALIZE_WHITESPACE
+     Symbol  |  Stack  | Postfix
+    ----------------------------
+       c     |         | c
+       ^     | ^       | c
+       b     | ^       | cb
+       +     | +       | cb^
+       a     | +       | cb^a
+             |         | cb^a+
+    '+a^bc'
+
+    >>> infix_2_prefix("1*((-a)*2+b)")
+    Traceback (most recent call last):
+        ...
+    KeyError: '('
+
+    >>> infix_2_prefix('')
+     Symbol  |  Stack  | Postfix
+    ----------------------------
+    ''
+
+    >>> infix_2_prefix('(()')
+    Traceback (most recent call last):
+        ...
+    IndexError: list index out of range
+
+    >>> infix_2_prefix('())')  # doctest: +NORMALIZE_WHITESPACE
+     Symbol  |  Stack  | Postfix
+    ----------------------------
+       (     | (       |
+       (     | ((      |
+       )     | (       |
+             |         | (
+    '('
+    """
     infix = list(infix[::-1])  # reverse the infix equation
 
     for i in range(len(infix)):
@@ -88,6 +157,10 @@ def infix_2_prefix(infix):
 
 
 if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
+
     Infix = input("\nEnter an Infix Equation = ")  # Input an Infix equation
     Infix = "".join(Infix.split())  # Remove spaces from the input
     print("\n\t", Infix, "(Infix) -> ", infix_2_prefix(Infix), "(Prefix)")
