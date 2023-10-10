@@ -1,9 +1,10 @@
 # Predicting Customer Churn rate using Decision Tree
 # Dataset from Kaggle: https://www.kaggle.com/code/korfanakis/predicting-customer-churn-with-machine-learning/input
 import pandas as pd
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import train_test_split
 from sklearn import metrics
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+
 
 df = pd.read_csv("churn_modelling.csv")
 
