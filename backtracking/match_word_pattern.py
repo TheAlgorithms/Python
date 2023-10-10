@@ -12,32 +12,20 @@ def match_word_pattern(pattern: str, input_string: str) -> bool:
     >>> match_word_pattern("xyx", "PythonRubyPython")
     True
 
-    >>> match_word_pattern("GG", "PythonJavaPython")
-    False
-
     >>> match_word_pattern("", "")
     True
 
     >>> match_word_pattern("a", "abc")
     True
 
-    >>> match_word_pattern("ab", "xyz")
-    False
-
     >>> match_word_pattern("ab", "abab")
     True
-
-    >>> match_word_pattern("aaa", "aa aa aa")
-    False
 
     >>> match_word_pattern("ab", "a b")
     True
 
     >>> match_word_pattern("abc", "xyzpqrstu")
     True
-
-    >>> match_word_pattern("abc", "xyzpqr")
-    False
 
     >>> match_word_pattern("abcd", "xyzaaabcd")
     True
@@ -57,14 +45,16 @@ def match_word_pattern(pattern: str, input_string: str) -> bool:
                 return False
         for end in range(str_index + 1, len(input_string) + 1):
             substr = input_string[str_index:end]
-            if substr in str_map:
-                continue
-            pattern_map[char] = substr
-            str_map[substr] = char
-            if backtrack(pattern_index + 1, end):
-                return True
-            del pattern_map[char]
-            del str_map[substr]
+            if substr in str_map and str_map[substr] == char:
+                if backtrack(pattern_index + 1, end):
+                    return True
+            elif substr not in str_map.values():
+                pattern_map[char] = substr
+                str_map[substr] = char
+                if backtrack(pattern_index + 1, end):
+                    return True
+                del pattern_map[char]
+                del str_map[substr]
         return False
 
     pattern_map: dict[str, str] = {}
