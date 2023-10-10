@@ -9,7 +9,7 @@ import sklearn.tree as tree
 from sklearn import metrics
 from sklearn.model_selection import train_test_split
 
-df = pd.read_csv("Churn_Modelling.csv")
+df = pd.read_csv("churn_modelling.csv")
 
 # prints the first 5 rows of the dataset
 # print(df.head())
