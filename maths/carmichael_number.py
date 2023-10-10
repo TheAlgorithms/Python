@@ -10,6 +10,7 @@ satisfies the following modular arithmetic condition:
 Examples of Carmichael Numbers: 561, 1105, ...
 https://en.wikipedia.org/wiki/Carmichael_number
 """
+
 from maths.greatest_common_divisor import greatest_common_divisor
 
 
