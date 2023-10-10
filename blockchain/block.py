@@ -3,7 +3,8 @@ from hashlib import sha256
 
 def updatehash(*args):
     """
-    This function takes in arbitary number of arguments and returns a sha256 hash object in hexadecimal.
+    This function takes in arbitary number of arguments
+    and returns a sha256 hash object in hexadecimal.
     - Exmple :
         >>> updatehash(1,2,3,4,5)
         '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5'
@@ -12,25 +13,18 @@ def updatehash(*args):
         '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5'
 
     """
-    # create a hashing text
     hashing_text = ""
-    # create a hashing object
     h = sha256()
-
-    # loop through each argument and hash
     for arg in args:
         hashing_text += str(arg)
-
-    # update the hashing object with the hashing text
     h.update(hashing_text.encode("utf-8"))
-    # return the hexadeciaml hash
     return h.hexdigest()
 
 
-# block class
 class Block:
     """
-    Block class represents each block in the blockchain and it's attributes.
+    Block class represents each block in the blockchain
+    and it's attributes.
     Atruibutes:
         - data : data to be stored in the block
         - number : the number of the block
@@ -40,23 +34,17 @@ class Block:
         - hash : returns the hash of the block
         - __str__ : returns a string representation of the block
     """
-
-    # __init__ is a special method in python that is called when an object is created.
     def __init__(self, number=0, previous_hash="0" * 64, data=None, nonce=0):
         self.data = data
         self.number = number
         self.previous_hash = previous_hash
         self.nonce = nonce
-
-    # hash method (returns the hash of the block)
-    def hash(self):
+    def hashdata(self):
         return updatehash(self.number, self.previous_hash, self.data, self.nonce)
 
-    # __str__ is a special method in python that is called when an object is printed.
     def __str__(self):
-        return str(
-            "Block#: %s\nHash: %s\nPrevious: %s\nData: %s\nNonce: %s\n"
-            % (self.number, self.hash(), self.previous_hash, self.data, self.nonce)
+        return str("Block#: {}\nHash: {}\nPrevious: {}\nData: {}\nNonce: {}\n".format
+            (self.number, self.hashdata(), self.previous_hash, self.data, self.nonce)
         )
 
     """
