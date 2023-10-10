@@ -2,6 +2,8 @@ import os
 import random
 import sys
 
+from maths.greatest_common_divisor import gcd_by_iterative
+
 from . import cryptomath_module, rabin_miller
 
 
@@ -27,7 +29,7 @@ def generate_key(key_size: int) -> tuple[tuple[int, int], tuple[int, int]]:
     # Generate e that is relatively prime to (p - 1) * (q - 1)
     while True:
         e = random.randrange(2 ** (key_size - 1), 2 ** (key_size))
-        if cryptomath_module.gcd(e, (p - 1) * (q - 1)) == 1:
+        if gcd_by_iterative(e, (p - 1) * (q - 1)) == 1:
             break
 
     # Calculate d that is mod inverse of e

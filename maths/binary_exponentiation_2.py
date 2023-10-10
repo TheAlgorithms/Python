@@ -1,13 +1,19 @@
 """
-* Binary Exponentiation for Powers
-* This is a method to find a^b in a time complexity of O(log b)
-* This is one of the most commonly used methods of finding powers.
-* Also useful in cases where solution to (a^b)%c is required,
-* where a,b,c can be numbers over the computers calculation limits.
-* Done using iteration, can also be done using recursion
+Binary Exponentiation
+This is a method to find a^b in O(log b) time complexity
+This is one of the most commonly used methods of exponentiation
+It's also useful when the solution to (a^b) % c is required because a, b, c may be
+over the computer's calculation limits
 
-* @author chinmoy159
-* @version 1.0 dated 10/08/2017
+Let's say you need to calculate a ^ b
+- RULE 1 : a ^ b = (a*a) ^ (b/2) ---- example : 4 ^ 4 = (4*4) ^ (4/2) = 16 ^ 2
+- RULE 2 : IF b is odd, then a ^ b = a * (a ^ (b - 1)), where b - 1 is even
+Once b is even, repeat the process until b = 1 or b = 0, because a^1 = a and a^0 = 1
+
+For modular exponentiation, we use the fact that (a*b) % c = ((a%c) * (b%c)) % c
+Now apply RULE 1 or 2 as required
+
+@author chinmoy159
 """
 
 
@@ -53,18 +59,3 @@ def b_expo_mod(a: int, b: int, c: int) -> int:
         b >>= 1
 
     return res
-
-
-"""
-* Wondering how this method works !
-* It's pretty simple.
-* Let's say you need to calculate a ^ b
-* RULE 1 : a ^ b = (a*a) ^ (b/2) ---- example : 4 ^ 4 = (4*4) ^ (4/2) = 16 ^ 2
-* RULE 2 : IF b is ODD, then ---- a ^ b = a * (a ^ (b - 1)) :: where (b - 1) is even.
-* Once b is even, repeat the process to get a ^ b
-* Repeat the process till b = 1 OR b = 0, because a^1 = a AND a^0 = 1
-*
-* As far as the modulo is concerned,
-* the fact : (a*b) % c = ((a%c) * (b%c)) % c
-* Now apply RULE 1 OR 2 whichever is required.
-"""
