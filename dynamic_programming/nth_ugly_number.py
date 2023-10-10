@@ -82,7 +82,7 @@ if __name__ == "__main__":
                 print("\n********* END ************")
                 break
             else:
-                ugly_number = nth_Ugly_Number(n)
+                ugly_number = nth_ugly_number(n)
                 print(f"The {n}th Ugly Number is: {ugly_number}")
                 print("Try another index to find a Ugly Number: ", end="")
     except (NameError, ValueError):
