@@ -47,18 +47,26 @@ def is_carmichael_number(n: int) -> bool:
     Traceback (most recent call last):
          ...
     ValueError: Number 5.1 must instead be integer
+
+    >>> is_carmichael_number(-7)
+    Traceback (most recent call last):
+         ...
+    ValueError: Number -7 must instead be integer
+
+    >>> is_carmichael_number(0)
+    Traceback (most recent call last):
+         ...
+    ValueError: Number 0 must instead be integer
     """
 
-    if not isinstance(n, int):
+    if n <= 0 or not isinstance(n, int):
         msg = f"Number {n} must instead be integer"
         raise ValueError(msg)
 
-    b = 2
-    while b < n:
-        if greatest_common_divisor(b, n) == 1 and power(b, n - 1, n) != 1:
-            return False
-        b += 1
-    return True
+    return all(
+        power(b, n - 1, n) == 1
+        for b in range(2, n) if greatest_common_divisor(b, n) == 1
+    )
 
 
 if __name__ == "__main__":
