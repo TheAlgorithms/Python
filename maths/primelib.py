@@ -598,6 +598,6 @@ def fib(n):
         fib1 = tmp
 
     return and
-    
+
 if __name__ == "__main__":
     doctest.testmod()
