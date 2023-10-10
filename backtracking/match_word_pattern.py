@@ -14,19 +14,36 @@ def match_word_pattern(pattern: str, input_string: str) -> bool:
 
     >>> match_word_pattern("GG", "PythonJavaPython")
     False
+
+    >>> match_word_pattern("", "")
+    True
+
+    >>> match_word_pattern("a", "abc")
+    True
+
+    >>> match_word_pattern("ab", "xyz")
+    False
+
+    >>> match_word_pattern("ab", "abab")
+    True
+
+    >>> match_word_pattern("aaa", "aa aa aa")
+    False
+
+    >>> match_word_pattern("ab", "a b")
+    True
+
+    >>> match_word_pattern("abc", "xyzpqrstu")
+    True
+
+    >>> match_word_pattern("abc", "xyzpqr")
+    False
+
+    >>> match_word_pattern("abcd", "xyzaaabcd")
+    True
     """
 
     def backtrack(pattern_index: int, str_index: int) -> bool:
-        """
-        >>> backtrack(0, 0)
-        True
-
-        >>> backtrack(0, 1)
-        True
-
-        >>> backtrack(0, 4)
-        False
-        """
         if pattern_index == len(pattern) and str_index == len(input_string):
             return True
         if pattern_index == len(pattern) or str_index == len(input_string):
