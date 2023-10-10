@@ -62,6 +62,7 @@ def is_amicable_pair(num_1: int, num_2: int) -> bool:
 
     return sum_of_divisors(num_1) == num_2 and sum_of_divisors(num_2) == num_1
 
+
 if __name__ == "__main__":
     import doctest
 
