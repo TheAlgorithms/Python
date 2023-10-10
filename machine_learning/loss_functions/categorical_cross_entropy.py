@@ -5,7 +5,7 @@ This function calculates the Categorical Cross-Entropy Loss between true class
 labels and predicted class probabilities.
 
 Formula:
-Categorical Cross-Entropy Loss = -Σ(y_true * log(y_pred))
+Categorical Cross-Entropy Loss = -Σ(y_true * ln(y_pred))
 
 Resources:
 - [Wikipedia - Cross entropy](https://en.wikipedia.org/wiki/Cross_entropy)
