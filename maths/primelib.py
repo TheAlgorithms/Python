@@ -38,7 +38,6 @@ goldbach(number)  // Goldbach's assumption
 """
 
 from math import sqrt
-import doctest
 from maths.greatest_common_divisor import gcd_by_iterative
 
 
@@ -601,4 +600,5 @@ def fib(n):
 
 
 if __name__ == "__main__":
+    import doctest
     doctest.testmod()
