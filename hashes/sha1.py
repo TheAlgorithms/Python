@@ -1,26 +1,28 @@
 """
-Demonstrates implementation of SHA1 Hash function in a Python class and gives utilities
-to find hash of string or hash of text from a file.
+Implementation of the SHA1 hash function and gives utilities to find hash of string or
+hash of text from a file. Also contains a Test class to verify that the generated hash
+matches what is returned by the hashlib library
+
 Usage: python sha1.py --string "Hello World!!"
        python sha1.py --file "hello_world.txt"
        When run without any arguments, it prints the hash of the string "Hello World!!
        Welcome to Cryptography"
-Also contains a Test class to verify that the generated Hash is same as that
-returned by the hashlib library
 
-SHA1 hash or SHA1 sum of a string is a cryptographic function which means it is easy
+SHA1 hash or SHA1 sum of a string is a cryptographic function, which means it is easy
 to calculate forwards but extremely difficult to calculate backwards. What this means
-is, you can easily calculate the hash of  a string, but it is extremely difficult to
-know the original string if you have its hash. This property is useful to communicate
-securely, send encrypted messages and is very useful in payment systems, blockchain
-and cryptocurrency etc.
-The Algorithm as described in the reference:
+is you can easily calculate the hash of a string, but it is extremely difficult to know
+the original string if you have its hash. This property is useful for communicating
+securely, send encrypted messages and is very useful in payment systems, blockchain and
+cryptocurrency etc.
+
+The algorithm as described in the reference:
 First we start with a message. The message is padded and the length of the message
 is added to the end. It is then split into blocks of 512 bits or 64 bytes. The blocks
 are then processed one at a time. Each block must be expanded and compressed.
-The value after each compression is added to a 160bit buffer called the current hash
-state. After the last block is processed the current hash state is returned as
+The value after each compression is added to a 160-bit buffer called the current hash
+state. After the last block is processed, the current hash state is returned as
 the final hash.
+
 Reference: https://deadhacker.com/2006/02/21/sha-1-illustrated/
 """
 import argparse
@@ -30,18 +32,18 @@ import struct
 
 class SHA1Hash:
     """
-    Class to contain the entire pipeline for SHA1 Hashing Algorithm
+    Class to contain the entire pipeline for SHA1 hashing algorithm
     >>> SHA1Hash(bytes('Allan', 'utf-8')).final_hash()
     '872af2d8ac3d8695387e7c804bf0e02c18df9e6e'
     """
 
     def __init__(self, data):
         """
-        Inititates the variables data and h. h is a list of 5 8-digit Hexadecimal
+        Initiates the variables data and h. h is a list of 5 8-digit hexadecimal
         numbers corresponding to
         (1732584193, 4023233417, 2562383102, 271733878, 3285377520)
         respectively. We will start with this as a message digest. 0x is how you write
-        Hexadecimal numbers in Python
+        hexadecimal numbers in Python
         """
         self.data = data
         self.h = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0]
@@ -90,7 +92,7 @@ class SHA1Hash:
         For each block, the variable h that was initialized is copied to a,b,c,d,e
         and these 5 variables a,b,c,d,e undergo several changes. After all the blocks
         are processed, these 5 variables are pairwise added to h ie a to h[0], b to h[1]
-        and so on.  This h becomes our final hash which is returned.
+        and so on. This h becomes our final hash which is returned.
         """
         self.padded_data = self.padding()
         self.blocks = self.split_blocks()
@@ -135,7 +137,7 @@ def test_sha1_hash():
 def main():
     """
     Provides option 'string' or 'file' to take input and prints the calculated SHA1
-    hash.  unittest.main() has been commented because we probably don't want to run
+    hash. unittest.main() has been commented out because we probably don't want to run
     the test each time.
     """
     # unittest.main()
