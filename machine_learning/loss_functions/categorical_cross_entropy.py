@@ -49,6 +49,13 @@ def categorical_cross_entropy(
         ...
     ValueError: y_true must be one-hot encoded.
 
+    >>> y_true = np.array([[1, 0, 1], [1, 0, 0]])
+    >>> y_pred = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
+    >>> categorical_cross_entropy(y_true, y_pred)
+    Traceback (most recent call last):
+        ...
+    ValueError: y_true must be one-hot encoded.
+
     >>> y_true = np.array([[1, 0, 0], [0, 1, 0]])
     >>> y_pred = np.array([[0.9, 0.1, 0.1], [0.2, 0.7, 0.1]])
     >>> categorical_cross_entropy(y_true, y_pred)
