@@ -4,7 +4,36 @@ import math
 
 
 def sieve(n: int) -> list[int]:
-    """Segmented Sieve."""
+    """
+    Segmented Sieve.
+
+    Examples:
+    >>> sieve(8)
+    [2, 3, 5, 7]
+
+    >>> sieve(27)
+    [2, 3, 5, 7, 11, 13, 17, 19, 23]
+
+    >>> sieve(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Number 0 must instead be a positive integer
+
+    >>> sieve(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: Number -1 must instead be a positive integer
+
+    >>> sieve(22.2)
+    Traceback (most recent call last):
+        ...
+    ValueError: Number 22.2 must instead be a positive integer
+    """
+
+    if n <= 0 or isinstance(n, float):
+        msg = f"Number {n} must instead be a positive integer"
+        raise ValueError(msg)
+
     in_prime = []
     start = 2
     end = int(math.sqrt(n))  # Size of every segment
@@ -42,4 +71,9 @@ def sieve(n: int) -> list[int]:
     return prime
 
 
-print(sieve(10**6))
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
+    print(f"{sieve(10**6) = }")
