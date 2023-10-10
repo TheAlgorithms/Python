@@ -30,19 +30,19 @@ def terminal_velocity(
     >>> terminal_velocity(-5, 50, -0.2, -2)
     Traceback (most recent call last):
         ...
-    ValueError: mass, density, area and the drag coeffiecient all need to be positive
+    ValueError: mass, density, area and the drag coefficient all need to be positive
     >>> terminal_velocity(3, -20, -1, 2)
     Traceback (most recent call last):
         ...
-    ValueError: mass, density, area and the drag coeffiecient all need to be positive
+    ValueError: mass, density, area and the drag coefficient all need to be positive
     >>> terminal_velocity(-2, -1, -0.44, -1)
     Traceback (most recent call last):
         ...
-    ValueError: mass, density, area and the drag coeffiecient all need to be positive
+    ValueError: mass, density, area and the drag coefficient all need to be positive
     """
     if mass <= 0 or density <= 0 or area <= 0 or drag_coefficient <= 0:
         raise ValueError(
-            "mass, density, area and the drag coeffiecient all need to be positive"
+            "mass, density, area and the drag coefficient all need to be positive"
         )
     return ((2 * mass * 9.8) / (density * area * drag_coefficient)) ** 0.5
 
