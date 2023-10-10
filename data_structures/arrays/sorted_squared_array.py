@@ -1,6 +1,6 @@
 def sorted_squared_array(arr: list[int]) -> list:
     """
-    Returns the sqaure of the initial sorted array in ascending order
+    Returns the square of the initial sorted array in ascending order
     >>> sorted_squared_array( [-5, -4, -3, 2, 5])
     [4, 9, 16, 25, 25]
     >>> sorted_squared_array( [-1, 0, 1, 2])
