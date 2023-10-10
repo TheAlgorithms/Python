@@ -1,4 +1,7 @@
 """
+Title : Computing the terminal velocity of an object falling
+        through a fluid.
+
 Terminal velocity is defined as the highest velocity attained by an
 object falling through a fluid. It is observed when the sum of drag force
 and buoyancy is equal to the downward gravity force acting on the
@@ -14,6 +17,8 @@ g = Acceleration due to gravity (value taken : 9.8 m/s^2)
 ρ = Density of the fluid through which the object is falling (in Kg/m^3)
 A = Projected area of the object (in m^2)
 Cd = Drag coefficient (dimensionless)
+
+Reference : https://byjus.com/physics/derivation-of-terminal-velocity/
 """
 
 
