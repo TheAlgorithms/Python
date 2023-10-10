@@ -1,70 +1,99 @@
-def wght_cng_or(wgt, T, al):
-    O = wgt[0] * 0 + wgt[1] * 0
-    if O <= T:
-        Ol = wgt[0] * 0 + wgt[1] * 1
-        if Ol >= T:
-            Ole = wgt[0] * 1 + wgt[1] * 0
-            if Ole >= T:
-                Ola = wgt[0] * 1 + wgt[1] * 1
-                if Ola >= T:
-                    return wgt
+
+from typing import List, Tuple
+
+def weight_change_or(weight: List[float], threshold: float, learning_rate: float) -> List[float]:
+    output = weight[0]*0 + weight[1]*0
+    if output <= threshold:
+        output_left = weight[0]*0 + weight[1]*1
+        if output_left >= threshold:
+            output_left_down = weight[0]*1 + weight[1]*0
+            if output_left_down >= threshold:
+                output_all = weight[0]*1 + weight[1]*1
+                if output_all >= threshold:
+                    return weight
                 else:
-                    wgt[0] = wgt[0] + al * 1 * 1
-                    wgt[1] = wgt[1] + al * 1 * 1
-                    return wght_cng_or(wgt, T, al)
+                    weight[0] = weight[0] + learning_rate*1*1
+                    weight[1] = weight[1] + learning_rate*1*1
+                    return weight_change_or(weight, threshold, learning_rate)
             else:
-                wgt[0] = wgt[0] + al * 1 * 1
-                wgt[1] = wgt[1] + al * 1 * 0
-                return wght_cng_or(wgt, T, al)
+                weight[0] = weight[0] + learning_rate*1*1
+                weight[1] = weight[1] + learning_rate*1*0
+                return weight_change_or(weight, threshold, learning_rate)
         else:
-            wgt[0] = wgt[0] + al * 1 * 0
-            wgt[1] = wgt[1] + al * 1 * 1
-            return wght_cng_or(wgt, T, al)
+            weight[0] = weight[0] + learning_rate*1*0
+            weight[1] = weight[1] + learning_rate*1*1
+            return weight_change_or(weight, threshold, learning_rate)
     else:
-        T += al
-        return wght_cng_or(wgt, T, al)
+        threshold += learning_rate
+        return weight_change_or(weight, threshold, learning_rate)
 
 
-def wght_cng_and(wgt, T, al):
-    O = wgt[0] * 0 + wgt[1] * 0
-    if O <= T:
-        Ol = wgt[0] * 0 + wgt[1] * 1
-        if Ol <= T:
-            Ole = wgt[0] * 1 + wgt[1] * 0
-            if Ole <= T:
-                Ola = wgt[0] * 1 + wgt[1] * 1
-                if Ola >= T:
-                    return wgt
+def weight_change_and(weight: List[float], threshold: float, learning_rate: float) -> List[float]:
+    output = weight[0]*0 + weight[1]*0
+    if output <= threshold:
+        output_left = weight[0]*0 + weight[1]*1
+        if output_left <= threshold:
+            output_left_down = weight[0]*1 + weight[1]*0
+            if output_left_down <= threshold:
+                output_all = weight[0]*1 + weight[1]*1
+                if output_all >= threshold:
+                    return weight
                 else:
-                    wgt[0] = wgt[0] + (al * 1 * 1)
-                    wgt[1] = wgt[1] + (al * 1 * 1)
-                    return wght_cng_and(wgt, T, al)
+                    weight[0] = weight[0] + (learning_rate*1*1)
+                    weight[1] = weight[1] + (learning_rate*1*1)
+                    return weight_change_and(weight, threshold, learning_rate)
             else:
-                wgt[0] = wgt[0] - (al * 1 * 1)
-                wgt[1] = wgt[1] - (al * 1 * 0)
-                return wght_cng_and(wgt, T, al)
+                weight[0] = weight[0] - (learning_rate*1*1)
+                weight[1] = weight[1] - (learning_rate*1*0)
+                return weight_change_and(weight, threshold, learning_rate)
         else:
-            wgt[0] = wgt[0] - (al * 1 * 0)
-            wgt[1] = wgt[1] - (al * 1 * 1)
-            return wght_cng_and(wgt, T, al)
+            weight[0] = weight[0] - (learning_rate*1*0)
+            weight[1] = weight[1] - (learning_rate*1*1)
+            return weight_change_and(weight, threshold, learning_rate)
     else:
-        T += al
-        return wght_cng_and(wgt, T, al)
+        threshold += learning_rate
+        return weight_change_and(weight, threshold, learning_rate)
 
 
-def and_gate(wgt, A, B, T, al):
-    wgt = wght_cng_and(wgt, T, al)
-    O = wgt[0] * A + wgt[1] * B
-    if O >= T:
+def and_gate(weight: List[float], input_a: int, input_b: int, threshold: float, learning_rate: float) -> int:
+    """
+    This function implements the AND gate using the Adaline algorithm.
+
+    Args:
+        weight (List[float]): The weights for the Adaline algorithm.
+        input_a (int): The first input value.
+        input_b (int): The second input value.
+        threshold (float): The threshold value for the Adaline algorithm.
+        learning_rate (float): The learning rate for the Adaline algorithm.
+
+    Returns:
+        int: The output of the AND gate.
+    """
+    weight = weight_change_and(weight, threshold, learning_rate)
+    output = weight[0]*input_a + weight[1]*input_b
+    if output >= threshold:
         return 1
     else:
         return 0
 
 
-def or_gate(wgt, A, B, T, al):
-    wgt = wght_cng_or(wgt, T, al)
-    O = wgt[0] * A + wgt[1] * B
-    if O >= T:
+def or_gate(weight: List[float], input_a: int, input_b: int, threshold: float, learning_rate: float) -> int:
+    """
+    This function implements the OR gate using the Adaline algorithm.
+
+    Args:
+        weight (List[float]): The weights for the Adaline algorithm.
+        input_a (int): The first input value.
+        input_b (int): The second input value.
+        threshold (float): The threshold value for the Adaline algorithm.
+        learning_rate (float): The learning rate for the Adaline algorithm.
+
+    Returns:
+        int: The output of the OR gate.
+    """
+    weight = weight_change_or(weight, threshold, learning_rate)
+    output = weight[0]*input_a + weight[1]*input_b
+    if output >= threshold:
         return 1
     else:
         return 0
@@ -72,10 +101,10 @@ def or_gate(wgt, A, B, T, al):
 
 weight = [1.2, 0.6]
 weight2 = [1.2, 0.6]
-T = 1
-al = 0.5
-A, B = input("Input the value of A and B:").split()
-A = int(A)
-B = int(B)
-print("\nThe output of OR is:", or_gate(weight, A, B, T, al))
-print("\nThe output of AND is:", and_gate(weight2, A, B, T, al))
+threshold = 1
+learning_rate = 0.5
+input_a, input_b = input("Input the value of A and B:").split()
+input_a = int(input_a)
+input_b = int(input_b)
+print("\nThe output of OR is:", or_gate(weight, input_a, input_b, threshold, learning_rate))
+print("\nThe output of AND is:", and_gate(weight2, input_a, input_b, threshold, learning_rate))
