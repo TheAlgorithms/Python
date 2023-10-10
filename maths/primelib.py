@@ -574,7 +574,7 @@ def fib(n):
     """
     input: positive integer 'n'
     returns the n-th fibonacci term , indexing by 0
-    
+
     >>> fib(5)
     8
     >>> fib(99)
@@ -595,6 +595,8 @@ def fib(n):
 
     return ans
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
