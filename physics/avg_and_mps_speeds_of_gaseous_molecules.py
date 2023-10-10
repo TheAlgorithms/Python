@@ -1,7 +1,8 @@
 """
 The root-mean-square, average and most probable speeds are derived from 
 the Maxwell-Boltzmann distribution. The Maxwell-Boltzmann distribution is a 
-probability distribution that describes the distribution of speeds for particles in a gas.
+probability distribution that describes the distribution of speeds for particles 
+in a gas.
 The distribution is given by the following equation:
 
         -------------------------------------------------
@@ -24,24 +25,25 @@ from 0 to infinity and dividing by the total number of molecules. The result is:
         | vavg = √8RT/πM    |
         ---------------------
 
-The most probable speed is the speed at which the Maxwell-Boltzmann distribution is at its maximum. 
-This can be found by differentiating the Maxwell-Boltzmann distribution with respect to v 
-and setting the result equal to zero. The result is:
+The most probable speed is the speed at which the Maxwell-Boltzmann distribution 
+is at its maximum. This can be found by differentiating the Maxwell-Boltzmann 
+distribution with respect to v and setting the result equal to zero. The result is:
 
         ---------------------
         | vmp = √2RT/M      |
         ---------------------
 
-The root-mean-square speed is another measure of the average speed of the molecules in a gas. 
-It is calculated by taking the square root of the average of the 
-squares of the speeds of the molecules. The result is:
+The root-mean-square speed is another measure of the average speed 
+of the molecules in a gas. It is calculated by taking the square root 
+of the average of the squares of the speeds of the molecules. The result is:
 
         ---------------------
         | vrms = √3RT/m     |
         ---------------------
 
 Here we have defined functions to calculate the average and 
-most probable speeds of molecules in a gas given the temperature and molar mass of the gas.
+most probable speeds of molecules in a gas given the 
+temperature and molar mass of the gas.
 """
 
 # necessary constants
