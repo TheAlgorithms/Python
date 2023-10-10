@@ -1,24 +1,24 @@
 def wght_cng_or(wgt, T, al):
-    O = wgt[0]*0+wgt[1]*0
+    O = wgt[0] * 0 + wgt[1] * 0
     if O <= T:
-        Ol = wgt[0]*0+wgt[1]*1
+        Ol = wgt[0] * 0 + wgt[1] * 1
         if Ol >= T:
-            Ole = wgt[0]*1+wgt[1]*0
+            Ole = wgt[0] * 1 + wgt[1] * 0
             if Ole >= T:
-                Ola = wgt[0]*1+wgt[1]*1
+                Ola = wgt[0] * 1 + wgt[1] * 1
                 if Ola >= T:
                     return wgt
                 else:
-                    wgt[0] = wgt[0]+al*1*1
-                    wgt[1] = wgt[1]+al*1*1
+                    wgt[0] = wgt[0] + al * 1 * 1
+                    wgt[1] = wgt[1] + al * 1 * 1
                     return wght_cng_or(wgt, T, al)
             else:
-                wgt[0] = wgt[0]+al*1*1
-                wgt[1] = wgt[1]+al*1*0
+                wgt[0] = wgt[0] + al * 1 * 1
+                wgt[1] = wgt[1] + al * 1 * 0
                 return wght_cng_or(wgt, T, al)
         else:
-            wgt[0] = wgt[0]+al*1*0
-            wgt[1] = wgt[1]+al*1*1
+            wgt[0] = wgt[0] + al * 1 * 0
+            wgt[1] = wgt[1] + al * 1 * 1
             return wght_cng_or(wgt, T, al)
     else:
         T += al
@@ -26,26 +26,26 @@ def wght_cng_or(wgt, T, al):
 
 
 def wght_cng_and(wgt, T, al):
-    O = wgt[0]*0+wgt[1]*0
+    O = wgt[0] * 0 + wgt[1] * 0
     if O <= T:
-        Ol = wgt[0]*0+wgt[1]*1
+        Ol = wgt[0] * 0 + wgt[1] * 1
         if Ol <= T:
-            Ole = wgt[0]*1+wgt[1]*0
+            Ole = wgt[0] * 1 + wgt[1] * 0
             if Ole <= T:
-                Ola = wgt[0]*1+wgt[1]*1
+                Ola = wgt[0] * 1 + wgt[1] * 1
                 if Ola >= T:
                     return wgt
                 else:
-                    wgt[0] = wgt[0]+(al*1*1)
-                    wgt[1] = wgt[1]+(al*1*1)
+                    wgt[0] = wgt[0] + (al * 1 * 1)
+                    wgt[1] = wgt[1] + (al * 1 * 1)
                     return wght_cng_and(wgt, T, al)
             else:
-                wgt[0] = wgt[0]-(al*1*1)
-                wgt[1] = wgt[1]-(al*1*0)
+                wgt[0] = wgt[0] - (al * 1 * 1)
+                wgt[1] = wgt[1] - (al * 1 * 0)
                 return wght_cng_and(wgt, T, al)
         else:
-            wgt[0] = wgt[0]-(al*1*0)
-            wgt[1] = wgt[1]-(al*1*1)
+            wgt[0] = wgt[0] - (al * 1 * 0)
+            wgt[1] = wgt[1] - (al * 1 * 1)
             return wght_cng_and(wgt, T, al)
     else:
         T += al
@@ -54,7 +54,7 @@ def wght_cng_and(wgt, T, al):
 
 def and_gate(wgt, A, B, T, al):
     wgt = wght_cng_and(wgt, T, al)
-    O = wgt[0]*A+wgt[1]*B
+    O = wgt[0] * A + wgt[1] * B
     if O >= T:
         return 1
     else:
@@ -63,7 +63,7 @@ def and_gate(wgt, A, B, T, al):
 
 def or_gate(wgt, A, B, T, al):
     wgt = wght_cng_or(wgt, T, al)
-    O = wgt[0]*A+wgt[1]*B
+    O = wgt[0] * A + wgt[1] * B
     if O >= T:
         return 1
     else:

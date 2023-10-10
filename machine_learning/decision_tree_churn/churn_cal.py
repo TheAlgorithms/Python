@@ -15,13 +15,22 @@ df = pd.read_csv("churn_modelling.csv")
 # print(df.head())
 
 # Sorting the dependent and independent values
-x = df[['CreditScore', 'Age', 'Tenure', 'Balance', 'NumOfProducts',
-        'HasCrCard', 'IsActiveMember', 'EstimatedSalary']].values
-y = df['Exited']
+x = df[
+    [
+        "CreditScore",
+        "Age",
+        "Tenure",
+        "Balance",
+        "NumOfProducts",
+        "HasCrCard",
+        "IsActiveMember",
+        "EstimatedSalary",
+    ]
+].values
+y = df["Exited"]
 
 # Splitting the dataset into training and testing data
-x_test, x_train, y_test, y_train = train_test_split(
-    x, y, test_size=0.3, random_state=3)
+x_test, x_train, y_test, y_train = train_test_split(x, y, test_size=0.3, random_state=3)
 
 # Creating the decision tree classifier
 decTree = DecisionTreeClassifier(criterion="entropy", max_depth=4)
