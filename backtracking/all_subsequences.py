@@ -82,12 +82,11 @@ def create_state_space_tree(
     create_state_space_tree(sequence, current_subsequence, index + 1)
     current_subsequence.pop()
 
-doctest.testmod()
 
-# if __name__ == "__main__":
-#     seq: list[Any] = [1, 2, 3]
-#     generate_all_subsequences(seq)
+if __name__ == "__main__":
+    seq: list[Any] = [1, 2, 3]
+    generate_all_subsequences(seq)
 
-#     seq.clear()
-#     seq.extend(["A", "B", "C"])
-#     generate_all_subsequences(seq)
+    seq.clear()
+    seq.extend(["A", "B", "C"])
+    generate_all_subsequences(seq)
