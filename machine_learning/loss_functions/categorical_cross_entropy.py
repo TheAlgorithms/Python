@@ -81,4 +81,5 @@ def categorical_cross_entropy(
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
