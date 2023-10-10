@@ -1,23 +1,24 @@
-'''
+"""
 Maximum Product Subarray
-This algorithm finds the contiguous subarray within an array that has the largest product. 
-'''
+This algorithm finds the contiguous subarray within an array that has the largest product.
+"""
+
+
 def maxProoductSubarray(nums, n):
-	ans = nums[0]
+    ans = nums[0]
 
-	for i in range(n):
-		mul = nums[i]
-		for j in range(i + 1, n):
-			ans = max(ans, mul)
-			mul *= nums[j]
+    for i in range(n):
+        mul = nums[i]
+        for j in range(i + 1, n):
+            ans = max(ans, mul)
+            mul *= nums[j]
 
-		# changing the result for index n-1th
-		ans = max(ans, mul)
+        # changing the result for index n-1th
+        ans = max(ans, mul)
 
-	return ans
+    return ans
 
 
 nums = [1, -2, -3, 0, 7, -8, -2]
 n = len(nums)
 print("Maximum Sub array is ", maxProoductSubarray(nums, n))
-
