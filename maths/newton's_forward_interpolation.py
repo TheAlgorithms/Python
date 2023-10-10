@@ -30,9 +30,9 @@ for i in range(1, n):
         y[j][i] = y[j + 1][i - 1] - y[j][i - 1]
 print("\ nFORWARD DIFFERENCE TABLE \n")
 for i in range(0, n):
-    print(f'{x[i]:0.2f} ', end='')
+    print(f"{x[i]:0.2f} ", end="")
     for j in range(0, n - i):
-        print(f'\t\t{y[i][j]:0.2f}', end="")
+        print(f"\t\t{y[i][j]:0.2f}", end="")
     print()
 
 # obtaining the polynomial
@@ -60,4 +60,5 @@ if inter == "y":
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
