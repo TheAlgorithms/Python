@@ -66,7 +66,8 @@ def is_carmichael_number(n: int) -> bool:
 
     return all(
         power(b, n - 1, n) == 1
-        for b in range(2, n) if greatest_common_divisor(b, n) == 1
+        for b in range(2, n)
+        if greatest_common_divisor(b, n) == 1
     )
 
 
