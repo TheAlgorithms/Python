@@ -574,6 +574,11 @@ def fib(n):
     """
     input: positive integer 'n'
     returns the n-th fibonacci term , indexing by 0
+
+    >>> fib(5)
+    8
+    >>> fib(99)
+    354224848179261915075
     """
 
     # precondition
@@ -589,3 +594,9 @@ def fib(n):
         fib1 = tmp
 
     return ans
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
