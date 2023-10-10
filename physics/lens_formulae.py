@@ -79,7 +79,9 @@ def focal_length_of_lens(
     return focal_length
 
 
-def object_distance(focal_length_of_lens: float, image_distance_from_lens: float) -> float:
+def object_distance(
+    focal_length_of_lens: float, image_distance_from_lens: float
+) -> float:
     """
     Doctests:
     >>> from math import isclose
@@ -106,7 +108,9 @@ def object_distance(focal_length_of_lens: float, image_distance_from_lens: float
     return object_distance
 
 
-def image_distance(focal_length_of_lens: float, object_distance_from_lens: float) -> float:
+def image_distance(
+    focal_length_of_lens: float, object_distance_from_lens: float
+) -> float:
     """
     Doctests:
     >>> from math import isclose
