@@ -1,5 +1,8 @@
 """
-The root-mean-square, average and most probable speeds are derived from the Maxwell-Boltzmann distribution. The Maxwell-Boltzmann distribution is a probability distribution that describes the distribution of speeds for particles in a gas. The distribution is given by the following equation:
+The root-mean-square, average and most probable speeds are derived from 
+the Maxwell-Boltzmann distribution. The Maxwell-Boltzmann distribution is a 
+probability distribution that describes the distribution of speeds for particles in a gas.
+The distribution is given by the following equation:
     
         -------------------------------------------------
         | f(v) = (M/2πRT)^(3/2) * 4πv^2 * e^(-Mv^2/2RT) |
@@ -11,27 +14,34 @@ where:
     R is the gas constant
     T is the absolute temperature
 
-More information about the Maxwell-Boltzmann distribution can be found here: https://en.wikipedia.org/wiki/Maxwell%E2%80%93Boltzmann_distribution
+More information about the Maxwell-Boltzmann distribution can be found here: 
+https://en.wikipedia.org/wiki/Maxwell%E2%80%93Boltzmann_distribution
     
-The average speed can be calculated by integrating the Maxwell-Boltzmann distribution from 0 to infinity and dividing by the total number of molecules. The result is:
+The average speed can be calculated by integrating the Maxwell-Boltzmann distribution 
+from 0 to infinity and dividing by the total number of molecules. The result is:
         
         ---------------------
         | vavg = √8RT/πM    |
         ---------------------
         
-The most probable speed is the speed at which the Maxwell-Boltzmann distribution is at its maximum. This can be found by differentiating the Maxwell-Boltzmann distribution with respect to v and setting the result equal to zero. The result is:
+The most probable speed is the speed at which the Maxwell-Boltzmann distribution is at its maximum. 
+This can be found by differentiating the Maxwell-Boltzmann distribution with respect to v 
+and setting the result equal to zero. The result is:
 
         ---------------------
         | vmp = √2RT/M      |
         ---------------------
         
-The root-mean-square speed is another measure of the average speed of the molecules in a gas. It is calculated by taking the square root of the average of the squares of the speeds of the molecules. The result is:
+The root-mean-square speed is another measure of the average speed of the molecules in a gas. 
+It is calculated by taking the square root of the average of the 
+squares of the speeds of the molecules. The result is:
 
         ---------------------
         | vrms = √3RT/m     |
         ---------------------
 
-Here we have defined functions to calculate the average and most probable speeds of molecules in a gas given the temperature and molar mass of the gas.
+Here we have defined functions to calculate the average and 
+most probable speeds of molecules in a gas given the temperature and molar mass of the gas.
 """
 
 # necessary constants
@@ -40,8 +50,9 @@ R = 8.3144626181 # gas constant
 
 def avg_speed_of_molecule(temperature: float, molar_mass: float) -> float:
     """
-    Takes the temperature (in K) and molar mass (in kg/mol) of a gas and returns the average speed of a molecule in the gas (in m/s).
-    
+    Takes the temperature (in K) and molar mass (in kg/mol) of a gas 
+    and returns the average speed of a molecule in the gas (in m/s).
+
     Examples:
     >>> avg_speed_of_molecule(273, 0.028) # nitrogen at 273 K
     454.34887551126405
@@ -54,11 +65,12 @@ def avg_speed_of_molecule(temperature: float, molar_mass: float) -> float:
         raise Exception("Molar mass should be greater than 0 kg/mol")
     else:
         return (8 * R * temperature / (PI * molar_mass)) ** 0.5
-    
+
 def mps_speed_of_molecule(temperature: float, molar_mass: float) -> float:
     """
-    Takes the temperature (in K) and molar mass (in kg/mol) of a gas and returns the most probable speed of a molecule in the gas (in m/s).
-    
+    Takes the temperature (in K) and molar mass (in kg/mol) of a gas 
+    and returns the most probable speed of a molecule in the gas (in m/s).
+
     Examples:
     >>> mps_speed_of_molecule(273, 0.028) # nitrogen at 273 K
     402.6562070215111
@@ -71,9 +83,8 @@ def mps_speed_of_molecule(temperature: float, molar_mass: float) -> float:
         raise Exception("Molar mass should be greater than 0 kg/mol")
     else:
         return (2 * R * temperature / molar_mass) ** 0.5
-    
+
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    
