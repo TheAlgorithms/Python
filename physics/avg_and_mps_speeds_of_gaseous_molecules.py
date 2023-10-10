@@ -8,19 +8,19 @@ The distribution is given by the following equation:
         -------------------------------------------------
         | f(v) = (M/2πRT)^(3/2) * 4πv^2 * e^(-Mv^2/2RT) |
         -------------------------------------------------
-   
+
 where:
     f(v) is the fraction of molecules with a speed v
     M is the molar mass of the gas in kg/mol
     R is the gas constant
     T is the absolute temperature
 
-More information about the Maxwell-Boltzmann distribution can be found here: 
+More information about the Maxwell-Boltzmann distribution can be found here:
 https://en.wikipedia.org/wiki/Maxwell%E2%80%93Boltzmann_distribution
 
-The average speed can be calculated by integrating the Maxwell-Boltzmann distribution 
+The average speed can be calculated by integrating the Maxwell-Boltzmann distribution
 from 0 to infinity and dividing by the total number of molecules. The result is:
- 
+
         ---------------------
         | vavg = √8RT/πM    |
         ---------------------
@@ -53,7 +53,7 @@ R = 8.3144626181  # gas constant
 
 def avg_speed_of_molecule(temperature: float, molar_mass: float) -> float:
     """
-    Takes the temperature (in K) and molar mass (in kg/mol) of a gas 
+    Takes the temperature (in K) and molar mass (in kg/mol) of a gas
     and returns the average speed of a molecule in the gas (in m/s).
 
     Examples:
@@ -69,9 +69,10 @@ def avg_speed_of_molecule(temperature: float, molar_mass: float) -> float:
     else:
         return (8 * R * temperature / (PI * molar_mass)) ** 0.5
 
+
 def mps_speed_of_molecule(temperature: float, molar_mass: float) -> float:
     """
-    Takes the temperature (in K) and molar mass (in kg/mol) of a gas 
+    Takes the temperature (in K) and molar mass (in kg/mol) of a gas
     and returns the most probable speed of a molecule in the gas (in m/s).
 
     Examples:
@@ -87,8 +88,8 @@ def mps_speed_of_molecule(temperature: float, molar_mass: float) -> float:
     else:
         return (2 * R * temperature / molar_mass) ** 0.5
 
+
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
