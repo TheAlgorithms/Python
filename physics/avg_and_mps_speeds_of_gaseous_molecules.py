@@ -45,8 +45,9 @@ most probable speeds of molecules in a gas given the temperature and molar mass 
 """
 
 # necessary constants
-PI = 3.1415926535 # pi
-R = 8.3144626181 # gas constant
+PI = 3.1415926535  # pi
+R = 8.3144626181  # gas constant
+
 
 def avg_speed_of_molecule(temperature: float, molar_mass: float) -> float:
     """
@@ -88,3 +89,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
