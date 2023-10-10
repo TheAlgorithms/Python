@@ -1,4 +1,27 @@
 # secret code generator :
+def code(input_string: str) -> str:
+    """
+    Encrypts the input string using a specific encryption algorithm.
+
+    Args:
+        input_string (str): The input string to be encrypted.
+
+    Returns:
+        str: The encrypted string.
+
+    Examples:
+        >>> code("hello")
+        'olleh'
+        
+        >>> code("world")
+        'dlrow'
+    """
+    encrypted_string = input_string[::-1]  # Example encryption: reverse the input string
+    return encrypted_string
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
 str1 = "axz"
 str2 = "byz"
 
