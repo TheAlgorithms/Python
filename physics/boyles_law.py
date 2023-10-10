@@ -3,11 +3,8 @@ Title : Implementation of Boyle's law.
 
 Description :
     Boyle's law, also referred to as the Boyle-Mariotte law, or Mariotte's law
-    (especially in France), is an experimental gas law that describes the relationship
-    between pressure and volume of a confined gas.
-
-    Boyle's law is a gas law which states that the pressure exerted by a gas
-    (of a given mass, kept at a constant temperature) is inversely proportional to the
+    (especially in France), is a gas law which states that the pressure exerted
+    by a gas of a fixed mass and temperature is inversely proportional to the
     volume occupied by it.
 
     For a gas, the relationship between volume and pressure (at constant mass and
