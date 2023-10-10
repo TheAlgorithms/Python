@@ -586,7 +586,7 @@ def get_primes_between(p_number_1, p_number_2):
             pNumber1 < pNumber2
     returns a list of all prime numbers between 'pNumber1' (exclusive)
             and 'pNumber2' (exclusive)
-    
+
     >>> get_primes_between(3,67)
     [5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61]
     >>> get_primes_between(0)
@@ -827,6 +827,7 @@ def fib(n):
         fib1 = tmp
 
     return ans
+
 
 if __name__ == "__main__":
     import doctest
