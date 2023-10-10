@@ -8,6 +8,7 @@
 from __future__ import annotations
 import doctest
 
+
 def generate_all_permutations(sequence: list[int | str]) -> None:
     create_state_space_tree(sequence, [], 0, [0 for i in range(len(sequence))])
 
@@ -74,7 +75,7 @@ def create_state_space_tree(
 
 
 """
-remove the comment to take an input from the user   
+remove the comment to take an input from the user
 
 print("Enter the elements")
 sequence = list(map(int, input().split()))
