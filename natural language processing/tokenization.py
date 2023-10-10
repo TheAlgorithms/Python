@@ -27,9 +27,11 @@ print("Tokens using NLTK:",tokens)
 # Load English tokenizer, tagger, parser, NER and word vectors
 nlp = English()
 
-text = """Here we've handpicked some of the interesting deals on the best camera smartphones under
- Rs. 20,000. This ranges from OnePlus Nord CE 3 Lite 5G to Redmi Note 12 5G. Shoppers are advised 
- to compare prices with Flipkart's ongoing Big Billion Days Sale 2023 before placing the order."""
+text = """Here we've handpicked some of the interesting deals on 
+the best camera smartphones under Rs. 20,000. This ranges from 
+OnePlus Nord CE 3 Lite 5G to Redmi Note 12 5G. Shoppers are advised 
+to compare prices with Flipkart's ongoing Big Billion Days Sale
+2023 before placing the order."""
 
 #  "nlp" Object is used to create documents with linguistic annotations.
 my_doc = nlp(text)
@@ -39,3 +41,6 @@ token_list = []
 for token in my_doc:
     token_list.append(token.text)
 print("Tokens using Spacy:",token_list)
+
+#REFERENCE:
+# https://en.wikipedia.org/wiki/Lexical_analysis#Tokenization
