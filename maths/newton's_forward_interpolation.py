@@ -30,7 +30,7 @@ for i in range(1, n):
 
 print("\nFORWARD DIFFERENCE TABLE\n")
 for i in range(n):
-    print(f"{x[i]:0.2f} ", end='')
+    print(f"{x[i]:0.2f} ", end="")
     for j in range(n - i):
         print(f"\t\t{y[i][j]:0.2f}", end="")
     print()
