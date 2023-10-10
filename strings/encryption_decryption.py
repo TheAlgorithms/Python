@@ -12,15 +12,19 @@ def code(input_string: str) -> str:
     Examples:
         >>> code("hello")
         'olleh'
-        
+
         >>> code("world")
         'dlrow'
     """
-    encrypted_string = input_string[::-1]  # Example encryption: reverse the input string
+    encrypted_string = input_string[
+        ::-1
+    ]  # Example encryption: reverse the input string
     return encrypted_string
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 str1 = "axz"
 str2 = "byz"
