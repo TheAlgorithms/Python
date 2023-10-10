@@ -59,7 +59,7 @@ def categorical_cross_entropy(
     if y_true.shape != y_pred.shape:
         raise ValueError("Input arrays must have the same shape.")
 
-    if not np.all((y_true == 0) | (y_true == 1)):
+    if not np.array_equal(y_true[y_true != 0], [1]):
         raise ValueError("y_true must be one-hot encoded.")
 
     if not np.all(np.isclose(np.sum(y_pred, axis=1), 1, rtol=epsilon, atol=epsilon)):
