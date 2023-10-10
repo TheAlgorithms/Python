@@ -3,7 +3,7 @@
 """
 Prints the nth ugly number n being the user input.
 
-Ugly numbers are a sequence of positive integers that are defined as numbers 
+Ugly numbers are a sequence of positive integers that are defined as numbers
 whose only prime factors are 2, 3, and 5.
 The sequence 1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, … shows the first 11 ugly numbers.
 By convention, 1 is included
@@ -33,6 +33,8 @@ Sources:
 """
 
 import doctest
+
+
 def nth_ugly_number(n: int) -> int:
     """
     Return the nth ugly number.
@@ -85,7 +87,6 @@ if __name__ == "__main__":
                 print("Try another index to find a Ugly Number: ", end="")
     except (NameError, ValueError):
         print("\n********* Invalid input, END ************\n")
-
 
 
 # Test cases for nthUglyNumber function
