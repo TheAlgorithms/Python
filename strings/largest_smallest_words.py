@@ -1,6 +1,9 @@
 from typing import Tuple, Optional
 
-def find_smallest_and_largest_words(input_string: str) -> Tuple[Optional[str], Optional[str]]:
+
+def find_smallest_and_largest_words(
+    input_string: str,
+) -> Tuple[Optional[str], Optional[str]]:
     """
     Find the smallest and largest words in a given input string based on their length.
 
@@ -27,8 +30,10 @@ def find_smallest_and_largest_words(input_string: str) -> Tuple[Optional[str], O
 
     return smallest_word, largest_word
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     input_string = input("Enter a sentence:\n").strip()
