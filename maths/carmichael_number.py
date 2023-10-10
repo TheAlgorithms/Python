@@ -61,7 +61,7 @@ def is_carmichael_number(n: int) -> bool:
     """
 
     if n <= 0 or not isinstance(n, int):
-        msg = f"Number {n} must instead be integer"
+        msg = f"Number {n} must instead be a positive integer"
         raise ValueError(msg)
 
     return all(
