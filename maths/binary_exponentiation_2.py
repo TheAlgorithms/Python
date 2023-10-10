@@ -25,7 +25,7 @@ def b_expo(a: int, b: int) -> int:
     1
     >>> b_expo(0, 12)
     0
-    >>> b_expo(4,12)
+    >>> b_expo(4, 12)
     16777216
     """
     res = 1
@@ -43,11 +43,11 @@ def b_expo_mod(a: int, b: int, c: int) -> int:
     """
     >>> b_expo_mod(2, 10, 1000000007)
     1024
-    >>> b_expo_mod(11,13,19)
+    >>> b_expo_mod(11, 13, 19)
     11
     >>> b_expo_mod(0, 19, 20)
     0
-    >>> b_expo_mod(15, 5 , 4)
+    >>> b_expo_mod(15, 5, 4)
     3
     """
     res = 1
