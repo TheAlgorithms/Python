@@ -1,7 +1,7 @@
 from hashlib import sha256
 
 
-def updatehash(*args):
+def updatehash(*args) -> str:
     """
     >>> updatehash(1,2,3,4,5)
     '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5'
@@ -28,20 +28,28 @@ class Block:
         - __str__ : returns a string representation of the block
     """
 
-    def __init__(self, number=0, previous_hash="0" * 64, data=None, nonce=0):
+    def __init__(
+        self,
+        number: int,
+        previous_hash: str = "0" * 64,
+        data: object = None,
+        nonce: int = 0,
+    ) -> None:
         self.data = data
         self.number = number
         self.previous_hash = previous_hash
         self.nonce = nonce
 
-    def hashdata(self):
+    def hashdata(self) -> str:
         return updatehash(self.number, self.previous_hash, self.data, self.nonce)
 
-    def __str__(self):
-        return str(
-            "Block#: {}\nHash: {}\nPrevious: {}\nData: {}\nNonce: {}\n".format(
-                self.number, self.hashdata(), self.previous_hash, self.data, self.nonce
-            )
+    def __str__(self) -> str:
+        return (
+            f"Block#: {self.number}\n"
+            f"Hash: {self.previous_hash}\n"
+            f"Previous: {self.previous_hash}\n"
+            f"Data: {self.data}\n"
+            f"Nonce: {self.nonce}\n"
         )
 
     """
