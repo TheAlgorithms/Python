@@ -2,7 +2,7 @@
 Amicable numbers are two different natural numbers such that the sum
 of the proper divisors of each is equal to the other number.
 That is, s(a)=b and s(b)=a, where s(n) is equal to
-the sum of positive divisors of n except n itself.
+the 'sum' of positive divisors of n except n itself.
 Here, a and b form a pair of amicable numbers.
 
 More information about amicable numbers can be found here:
@@ -10,7 +10,7 @@ https://en.wikipedia.org/wiki/Amicable_numbers
 
 Here, we have defined a function to check if two numbers are amicable.
 We have also defined an auxiliary function,
-to find the sum of the proper divisors of a number.
+to find the 'sum' of the proper divisors of a number.
 """
 
 def sum_of_divisors(number: int) -> int:
@@ -57,8 +57,11 @@ def is_amicable_pair(number_1: int, number_2: int) -> bool:
     """
     if number_1 <= 0 or number_2 <= 0:
         raise ValueError("Numbers must be positive integers.")
-    
-    return sum_of_divisors(number_1) == number_2 and sum_of_divisors(number_2) == number_1
+
+    if sum_of_divisors(number_1) == number_2 and sum_of_divisors(number_2) == number_1:
+        return True
+    else:
+        return False
 
 if __name__ == "__main__":
     import doctest
