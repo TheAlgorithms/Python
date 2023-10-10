@@ -42,7 +42,7 @@ Sources :
 valid_variables: list[str] = ["v1", "v2", "p1", "p2"]
 
 
-def check_validity(values: dict[str, float]) -> bool:
+def check_validity(values: dict[str, float]):
     """
 
     Function takes dictionary as an input and returns True if the input
@@ -51,7 +51,7 @@ def check_validity(values: dict[str, float]) -> bool:
     >>> check_validity({})
     Traceback (most recent call last):
         ...
-    ValueError: Invalid input expected 3 items got 0
+    ValueError: Invalid input expected 3 items, got 0
 
     >>> check_validity({'v1':2,'v2':4,'k':6})
     Traceback (most recent call last):
@@ -59,18 +59,17 @@ def check_validity(values: dict[str, float]) -> bool:
     ValueError: Invalid input k is not a valid variable
 
     >>> check_validity({'v1':2,'v2':4,'p1':6})
-    True
 
     """
-    if len(values) == 3:
+    if len(values) != 3:
+        msg = f"Invalid input expected {3} items, got {len(values)}"
+        raise ValueError(msg)
+    else:
         for value in values:
             if value not in valid_variables:
                 msg = f"Invalid input {value} is not a valid variable"
                 raise ValueError(msg)
-        return True
-    else:
-        msg = f"Invalid input expected {3} items got {len(values)}"
-        raise ValueError(msg)
+        return
 
 
 def find_target_variable(values: dict[str, float]) -> str:
@@ -83,7 +82,7 @@ def find_target_variable(values: dict[str, float]) -> str:
     >>> find_target_variable({})
     Traceback (most recent call last):
         ...
-    ValueError: Invalid input expected 3 items got 0
+    ValueError: Invalid input expected 3 items, got 0
 
     >>> find_target_variable({'v1':1,'v2':2,'p2':4})
     'p1'
@@ -94,14 +93,11 @@ def find_target_variable(values: dict[str, float]) -> str:
     ValueError: Invalid input k is not a valid variable
 
     """
-    is_valid = check_validity(values)
-    if is_valid:
-        for variable in valid_variables:
-            if variable not in values:
-                return variable
-        raise ValueError("Input is invalid")
-    else:
-        raise ValueError("Input is invalid")
+    check_validity(values)
+    for variable in valid_variables:
+        if variable not in values:
+            return variable
+    raise ValueError("Input is invalid")
 
 
 def boyles_law(values: dict[str, float]) -> dict[str, str]:
@@ -115,12 +111,12 @@ def boyles_law(values: dict[str, float]) -> dict[str, str]:
     >>> boyles_law({'p1':2,'v2':1})
     Traceback (most recent call last):
         ...
-    ValueError: Invalid input expected 3 items got 2
+    ValueError: Invalid input expected 3 items, got 2
 
     >>> boyles_law({})
     Traceback (most recent call last):
         ...
-    ValueError: Invalid input expected 3 items got 0
+    ValueError: Invalid input expected 3 items, got 0
 
     >>> boyles_law({'p1':2,'v2':1, 'k':6})
     Traceback (most recent call last):
@@ -140,32 +136,29 @@ def boyles_law(values: dict[str, float]) -> dict[str, str]:
     {'v1': '31.32 L'}
 
     """
-    is_valid = check_validity(values)
-    if is_valid:
-        target = find_target_variable(values)
-        float_precision = ".3f"
-        if target == "p1":
-            p1 = float(
-                format((values["p2"] * values["v2"]) / values["v1"], float_precision)
-            )
-            return {"p1": f"{p1} Pa"}
-        elif target == "v1":
-            v1 = float(
-                format((values["p2"] * values["v2"]) / values["p1"], float_precision)
-            )
-            return {"v1": f"{v1} L"}
-        elif target == "p2":
-            p2 = float(
-                format((values["p1"] * values["v1"]) / values["v2"], float_precision)
-            )
-            return {"p2": f"{p2} Pa"}
-        else:
-            v2 = float(
-                format((values["p1"] * values["v1"]) / values["p2"], float_precision)
-            )
-            return {"v2": f"{v2} L"}
+    check_validity(values)
+    target = find_target_variable(values)
+    float_precision = ".3f"
+    if target == "p1":
+        p1 = float(
+            format((values["p2"] * values["v2"]) / values["v1"], float_precision)
+        )
+        return {"p1": f"{p1} Pa"}
+    elif target == "v1":
+        v1 = float(
+            format((values["p2"] * values["v2"]) / values["p1"], float_precision)
+        )
+        return {"v1": f"{v1} L"}
+    elif target == "p2":
+        p2 = float(
+            format((values["p1"] * values["v1"]) / values["v2"], float_precision)
+        )
+        return {"p2": f"{p2} Pa"}
     else:
-        raise ValueError("Input is invalid")
+        v2 = float(
+            format((values["p1"] * values["v1"]) / values["p2"], float_precision)
+        )
+        return {"v2": f"{v2} L"}
 
 
 if __name__ == "__main__":
