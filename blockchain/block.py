@@ -3,15 +3,9 @@ from hashlib import sha256
 
 def updatehash(*args):
     """
-    This function takes in arbitary number of arguments
-    and returns a sha256 hash object in hexadecimal.
     - Exmple :
         >>> updatehash(1,2,3,4,5)
         '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5'
-    -doctest :
-        >>> updatehash(1,2,3,4,5)
-        '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5'
-
     """
     hashing_text = ""
     h = sha256()
