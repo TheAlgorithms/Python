@@ -24,6 +24,20 @@ def power(x: int, y: int, mod: int) -> int:
 
 
 def is_carmichael_number(n: int) -> bool:
+    """
+    Doctests :
+    >>> is_carmichael_number(561)
+    True
+    >>> is_carmichael_number(1105)
+    True
+    >>> is_carmichael_number(4)
+    False
+    >>> is_carmichael_number(8911)
+    True
+    >>> is_carmichael_number(900)
+    False
+    """
+
     b = 2
     while b < n:
         if greatest_common_divisor(b, n) == 1 and power(b, n - 1, n) != 1:
