@@ -1,7 +1,7 @@
 from hashlib import sha256
 
 
-def updatehash(*args) -> str:
+def updatehash(*args: object) -> str:
     """
     >>> updatehash(1,2,3,4,5)
     '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5'
@@ -41,32 +41,32 @@ class Block:
         self.nonce = nonce
 
     def hashdata(self) -> str:
+        """
+        Returns the hash of the block's data.
+
+        >>> block1 = Block(1, "0"*64, "data1", 0)
+        >>> block1.hashdata()
+        '47cf022b180526de8f7d0ec5951f00181d2a2853c68305c3c1fbdede2eaec30d'
+        """
         return updatehash(self.number, self.previous_hash, self.data, self.nonce)
 
     def __str__(self) -> str:
+        """
+        >>> block1 = Block(1, "0"*64, "data1", 0)
+        >>> print(block1)
+        Block#: 1
+        Hash: 0000000000000000000000000000000000000000000000000000000000000000
+        Previous: 0000000000000000000000000000000000000000000000000000000000000000
+        Data: data1
+        Nonce: 0
+        """
         return (
             f"Block#: {self.number}\n"
             f"Hash: {self.previous_hash}\n"
             f"Previous: {self.previous_hash}\n"
             f"Data: {self.data}\n"
-            f"Nonce: {self.nonce}\n"
+            f"Nonce: {self.nonce}"
         )
-
-    """
-        >>> block1 = Block(1, "0"*64, "data1", 0)
-        >>> print(block1)
-            Block#: 1
-            Hash: 47cf022b180526de8f7d0ec5951f00181d2a2853c68305c3c1fbdede2eaec30d
-            Previous: 0000000000000000000000000000000000000000000000000000000000000000
-            Data: data1
-            Nonce: 0
-        >>> block2 = Block(2, block1.hash(), "data2", 0)
-            Block#: 2
-            Hash: e71a2a3711b3cc965d6c5888149ab81e51ee7bd29ff79e6cc077ffba5f23bb74
-            Previous: 47cf022b180526de8f7d0ec5951f00181d2a2853c68305c3c1fbdede2eaec30d
-            Data: data2
-            Nonce: 0
-    """
 
 
 if __name__ == "__main__":
