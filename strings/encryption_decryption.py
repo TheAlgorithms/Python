@@ -3,7 +3,7 @@ str1 = "axz"
 str2 = "byz"
 
 
-def code()-> None: 
+def code() -> None:
     print("\n***YOU CAME TO CODING SECTION***\n")
     code = input(" enter string to be encripted :  ")
     if len(code) >= 3:
@@ -16,7 +16,7 @@ def code()-> None:
         print(f"\n code is  : {code[::-1]} \n")
 
 
-def decode()-> None:  # def function() -> None:
+def decode() -> None:  # def function() -> None:
     print("\n***YOU CAME TO DeCODING SECTION***\n")
     code = input(" \nenter string to be decripted :  ")
     if len(code) >= 3:
