@@ -42,10 +42,10 @@ Sources :
 valid_variables: list[str] = ["v1", "v2", "p1", "p2"]
 
 
-def check_validity(values: dict[str, float]):
+def check_validity(values: dict[str, float]) -> None:
     """
 
-    Function takes dictionary as an input and returns True if the input
+    Function takes dictionary as an input and returns nothing if the input
     is valid
 
     >>> check_validity({})
