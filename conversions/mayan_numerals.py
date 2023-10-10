@@ -1,5 +1,5 @@
 """
-Conversion of numbers from the decimal number system to the vigecimal numeral system 
+Conversion of numbers from the decimal number system to the vigecimal numeral system
 used by the Mayans in their time.
 
 Available Functions:
@@ -10,13 +10,13 @@ USAGE :
 -> Import this file into their respective project.
 -> Use the function mayan_to_int() for conversion of numbers in the Mayan system to decimal.
 -> Parameters :
-    -> mayan_levels[] : The Mayan numbers arranged according to their level (determined by their 
+    -> mayan_levels[] : The Mayan numbers arranged according to their level (determined by their
                         position in the arrangement), the zero symbol can be include.
 -> Or use the function int_to_mayan() for conversion of decimal numbers to the Mayan system. The zero
     symbol is not include in the return array.
 -> Parameters :
     -> number : The decimal number to convert in the Mayan system.
-    
+
 REFERENCES :
 -> Wikipedia reference: https://en.wikipedia.org/wiki/Maya_numerals
 -> Wikipedia reference: https://en.wikipedia.org/wiki/Positional_notation
@@ -25,27 +25,28 @@ REFERENCES :
 """
 
 SYMBOLS = {
-    "o"      : 0,
-    "."      : 1,
-    ".."     : 2,
-    "..."    : 3,
-    "...."   : 4,
-    "|"      : 5,
-    ".|"     : 6,
-    "..|"    : 7,
-    "...|"   : 8,
-    "....|"  : 9,
-    "||"     : 10,
-    ".||"    : 11,
-    "..||"   : 12,
-    "...||"  : 13,
-    "....||" : 14,
-    "|||"    : 15,
-    ".|||"   : 16,
-    "..|||"  : 17,
-    "...|||" : 18,
-    "....|||": 19
+    "o": 0,
+    ".": 1,
+    "..": 2,
+    "...": 3,
+    "....": 4,
+    "|": 5,
+    ".|": 6,
+    "..|": 7,
+    "...|": 8,
+    "....|": 9,
+    "||": 10,
+    ".||": 11,
+    "..||": 12,
+    "...||": 13,
+    "....||": 14,
+    "|||": 15,
+    ".|||": 16,
+    "..|||": 17,
+    "...|||": 18,
+    "....|||": 19,
 }
+
 
 def mayan_to_int(mayan_levels: list[str]) -> int:
     """
@@ -77,10 +78,11 @@ def mayan_to_int(mayan_levels: list[str]) -> int:
 
         level_value = SYMBOLS[symbol]
         power = levels - (index + 1)
-        
-        decimal_number += level_value * (20 ** power)
+
+        decimal_number += level_value * (20**power)
 
     return decimal_number
+
 
 def int_to_mayan(number: int) -> list[str]:
     """
@@ -98,34 +100,35 @@ def int_to_mayan(number: int) -> list[str]:
     """
 
     if number < 0:
-            raise ValueError(
-                f"Invalid 'number' value: {number!r},  Supported values greater than zero (positives)."
-            )
+        raise ValueError(
+            f"Invalid 'number' value: {number!r},  Supported values greater than zero (positives)."
+        )
 
     mayan_levels = []
-    
+
     levels = get_levels(number)
     remainder = number
 
     for index in range(levels):
         power = levels - (index + 1)
-        
-        quotient = int(remainder / (20 ** power))
-        remainder = number % (20 ** power)
+
+        quotient = int(remainder / (20**power))
+        remainder = number % (20**power)
 
         mayan_levels.append(list(SYMBOLS)[quotient])
-        
+
     return mayan_levels
 
+
 def get_levels(number: int) -> int:
-  quotient = number
-  levels = 0
+    quotient = number
+    levels = 0
 
-  while quotient >= 1:
-    quotient = quotient / 20
-    levels += 1
+    while quotient >= 1:
+        quotient = quotient / 20
+        levels += 1
 
-  return levels
+    return levels
 
 
 if __name__ == "__main__":
