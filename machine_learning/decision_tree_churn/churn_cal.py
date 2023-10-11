@@ -1,10 +1,11 @@
 import doctest
 
+import numpy as np
 import pandas as pd
 from sklearn import model_selection, tree
 
 
-def calculate_churn_rate():
+def calculate_churn_rate() -> np.ndarray:
     """
     Calculates the churn rate of customers using a decision tree classifier.
 
