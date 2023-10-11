@@ -57,10 +57,11 @@ def binary_xor(input1: str, input2: str) -> str:
 def addition(number_1: str, number_2: str, number_of_bits: int) -> tuple[str, str]:
     """
     return tuple with ('sum','carry')
-    The number of bits in 'sum' is same as the value of number_of_bits passed to the function.
+    The number of bits in 'sum' = number_of_bits passed to the function.
     (i.e, if number_of_bits = 5, the length of 'sum' will also be 5).
 
-    Explanation: The formula of sum and carry for each bit in binary operations are:
+    Explanation:
+    The formula of sum and carry for each bit in binary operations are:
     carry:    C5 C4 C3 C2 C1 C0
     number_1:    A4 A3 A2 A1 A0
     number_2:  + B4 B3 B2 B1 B0
@@ -81,7 +82,7 @@ def addition(number_1: str, number_2: str, number_of_bits: int) -> tuple[str, st
     .
     and so on.
 
-    The numbers are reversed so that the individual bits are traversed from right to left.
+    The numbers are reversed so that individual bits are traversed from R to L.
     Finally, the resultant sum is reversed again to retain the original format.
 
     >>> addition('1010','1101', 4)
