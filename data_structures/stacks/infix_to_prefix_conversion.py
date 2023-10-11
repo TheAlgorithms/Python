@@ -14,6 +14,7 @@ Enter an Infix Equation = a + b ^c
          a+b^c (Infix) ->  +a^bc (Prefix)
 """
 
+
 def infix_2_postfix(infix):
     """
     >>> infix_2_postfix("a+b^c")  # doctest: +NORMALIZE_WHITESPACE
@@ -28,7 +29,7 @@ def infix_2_postfix(infix):
              |         | abc^+
     'abc^+'
 
-    >>> infix_2_postfix("1*((-a)*2+b)")   # doctest: +NORMALIZE_WHITESPACE 
+    >>> infix_2_postfix("1*((-a)*2+b)")   # doctest: +NORMALIZE_WHITESPACE
       Symbol  |    Stack     |   Postfix
     -------------------------------------------
        1     |              | 1
