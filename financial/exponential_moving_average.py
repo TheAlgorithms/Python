@@ -4,8 +4,8 @@
     Reference: https://www.investopedia.com/terms/e/ema.asp#toc-what-is-an-exponential-moving-average-ema
 
     Exponential moving average is used in finance to analyze changes stock prices.
-    EMA is used in conjuction with Simple moving average (SMA), EMA reacts to the
-    changes inthe value quicker than SMA, which is one of the advantages of using EMA.
+    EMA is used in conjunction with Simple moving average (SMA), EMA reacts to the
+    changes in the value quicker than SMA, which is one of the advantages of using EMA.
 """
 
 
