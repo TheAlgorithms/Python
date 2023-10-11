@@ -26,7 +26,7 @@ def create_state_space_tree(
     :param sequence: The input sequence for which permutations are generated.
     :param current_sequence: The current permutation being built.
     :param index: The current index in the sequence.
-    :param index_used: A list to track which elements are used in the current permutation.
+    :param index_used: list to track which elements are used in permutation.
 
     Example 1:
     >>> sequence = [1, 2, 3]
