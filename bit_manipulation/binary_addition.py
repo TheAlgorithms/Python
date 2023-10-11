@@ -1,16 +1,49 @@
 def AND(input1: str, input2: str) -> str:
+    """
+    AND gate logic.
+    >>> AND('0','1')
+    '0'
+    >>> AND('0','0')
+    '0'
+    >>> AND('1','1')
+    '1'
+    >>> AND('1','0')
+    '0'
+    """
     if(input1 == '1' and input2 == '1'):
         return '1'
     else:
         return '0'
     
 def OR(input1: str, input2: str) -> str:
+    """
+    OR gate logic.
+    >>> OR('0','1')
+    '1'
+    >>> OR('0','0')
+    '0'
+    >>> OR('1','1')
+    '1'
+    >>> OR('1','0')
+    '1'
+    """
     if(input1 == '1' or input2 == '1'):
         return '1'
     else:
         return '0'
     
 def XOR(input1: str, input2: str) -> str:
+    """
+    XOR gate logic.
+    >>> XOR('0','1')
+    '1'
+    >>> XOR('0','0')
+    '0'
+    >>> XOR('1','1')
+    '0'
+    >>> XOR('1','0')
+    '1'
+    """
     if(input1 == input2):
         return '0'
     else:
