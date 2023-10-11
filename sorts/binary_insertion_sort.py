@@ -1,7 +1,7 @@
 """
 This is a pure Python implementation of the binary insertion sort algorithm
 
-For doctests run following command:
+For doctest run the following command:
 python -m doctest -v binary_insertion_sort.py
 or
 python3 -m doctest -v binary_insertion_sort.py
@@ -9,11 +9,7 @@ python3 -m doctest -v binary_insertion_sort.py
 For manual testing run:
 python binary_insertion_sort.py
 """
-
-from typing import List
-
-
-def binary_insertion_sort(collection: List[int]) -> List[int]:
+def binary_insertion_sort(collection: list) -> list:
     """
     Pure implementation of the binary insertion sort algorithm in Python.
 
@@ -21,8 +17,6 @@ def binary_insertion_sort(collection: List[int]) -> List[int]:
     comparable items inside.
     :return: The same collection ordered in ascending order.
     """
-    # Rest of the code
-
     n = len(collection)
     for i in range(1, n):
         val = collection[i]
@@ -39,7 +33,6 @@ def binary_insertion_sort(collection: List[int]) -> List[int]:
         collection[low] = val
     return collection
 
-
 def test_binary_insertion_sort():
     # Basic test cases
     assert binary_insertion_sort([0, 4, 1234, 4, 1]) == [0, 1, 4, 4, 1234]
@@ -52,13 +45,11 @@ def test_binary_insertion_sort():
 
     # Test sorting with random integer values
     import random
-
     collection = random.sample(range(-50, 50), 100)
     assert binary_insertion_sort(collection) == sorted(collection)
 
     # Test sorting with random alphanumeric characters
     import string
-
     collection = random.choices(string.ascii_letters + string.digits, k=100)
     assert binary_insertion_sort(collection) == sorted(collection)
 
@@ -83,7 +74,6 @@ def test_binary_insertion_sort():
     assert binary_insertion_sort(single_element_list) == [42]
 
     print("All test cases passed.")
-
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
