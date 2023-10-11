@@ -826,6 +826,7 @@ def fib(n):
 
     return ans
 
+
 if __name__ == "__main__":
     import doctest
 
