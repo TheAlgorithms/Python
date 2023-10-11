@@ -180,7 +180,7 @@ def infix_2_prefix(infix: str) -> str:
             reversed_infix[i] = "("  # change ")" to "("
 
     # call infix_2_postfix on Infix, return reverse of Postfix
-    return (infix_2_postfix("".join(reversed_infix)))[::-1]  
+    return (infix_2_postfix("".join(reversed_infix)))[::-1]
 
 
 if __name__ == "__main__":
