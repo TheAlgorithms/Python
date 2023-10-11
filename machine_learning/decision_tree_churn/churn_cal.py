@@ -1,7 +1,7 @@
 # Predicting Customer Churn rate using Decision Tree
 # Dataset from Kaggle: https://www.kaggle.com/code/korfanakis/predicting-customer-churn-with-machine-learning/input
 import pandas as pd
-from sklearn import metrics , model_selection ,tree
+from sklearn import metrics, model_selection, tree
 
 df = pd.read_csv("churn_modelling.csv")
 
@@ -9,13 +9,24 @@ df = pd.read_csv("churn_modelling.csv")
 # print(df.head())
 
 # Sorting the dependent and independent values
-x = df[['CreditScore', 'Age', 'Tenure', 'Balance', 'NumOfProducts',
-        'HasCrCard', 'IsActiveMember', 'EstimatedSalary']].values
-y = df['Exited']
+x = df[
+    [
+        "CreditScore",
+        "Age",
+        "Tenure",
+        "Balance",
+        "NumOfProducts",
+        "HasCrCard",
+        "IsActiveMember",
+        "EstimatedSalary",
+    ]
+].values
+y = df["Exited"]
 
 # Splitting the dataset into training and testing data
 x_test, x_train, y_test, y_train = model_selection.train_test_split(
-    x, y, test_size=0.3, random_state=3)
+    x, y, test_size=0.3, random_state=3
+)
 
 # Creating the decision tree classifier
 decision_tree = tree.DecisionTreeClassifier(criterion="entropy", max_depth=4)
