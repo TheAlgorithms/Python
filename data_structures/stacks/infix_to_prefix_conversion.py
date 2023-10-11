@@ -171,17 +171,16 @@ def infix_2_prefix(infix: str) -> str:
         ...
     ValueError: invalid expression
     """
-    new_infix = list(infix[::-1])  # reverse the infix equation
+    reversed_infix = list(infix[::-1])  # reverse the infix equation
 
-    for i in range(len(new_infix)):
-        if new_infix[i] == "(":
-            new_infix[i] = ")"  # change "(" to ")"
-        elif new_infix[i] == ")":
-            new_infix[i] = "("  # change ")" to "("
+    for i in range(len(reversed_infix)):
+        if reversed_infix[i] == "(":
+            reversed_infix[i] = ")"  # change "(" to ")"
+        elif reversed_infix[i] == ")":
+            reversed_infix[i] = "("  # change ")" to "("
 
-    return (infix_2_postfix("".join(new_infix)))[
-        ::-1
-    ]  # call infix_2_postfix on Infix, return reverse of Postfix
+    # call infix_2_postfix on Infix, return reverse of Postfix
+    return (infix_2_postfix("".join(reversed_infix)))[::-1]  
 
 
 if __name__ == "__main__":
