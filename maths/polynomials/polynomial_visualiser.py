@@ -25,6 +25,7 @@ def evaluate_polynomial(x_value: float) -> float:
         result += coef * (x_value ** i)
     return result
 
+
 # Create an array of x-values using np.linspace
 x_values = np.linspace(-10, 10, 400)  # Adjust the range and number of points as needed
 
