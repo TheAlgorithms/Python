@@ -15,7 +15,7 @@ def calculate_churn_rate() -> np.ndarray:
 
     churn_md = pd.read_csv("churn_modelling.csv")
 
-    # Sorting the dependent and independent values
+    # Sort the dependent and independent values
     x = churn_md[
         [
             "CreditScore",
