@@ -25,7 +25,7 @@ def calculate_churn_rate(filename: str = "churn_modelling.csv") -> np.ndarray:
             "IsActiveMember",
             "EstimatedSalary",
         ]
-    ].values
+    ].to_numpy()
     y = churn_md["Exited"]
 
     # Splitting the dataset into training and testing data
@@ -49,4 +49,4 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    print(f"{calculate_churn_rate('churn_modelling.csv') = }")
+    print(f"{calculate_churn_rate('churn_modelling.csv')=}")
