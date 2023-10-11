@@ -123,6 +123,7 @@ def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
             return seq
 
 
+
 if __name__ == "__main__":
     _, operations = compute_transform_tables("Python", "Algorithms", -1, 1, 2, 2)
 
@@ -134,44 +135,29 @@ if __name__ == "__main__":
     i = 0
     cost = 0
 
-    with open("min_cost.txt", "w") as file:
-        for op in sequence:
-            print("".join(string))
-
-            if op[0] == "C":
-                file.write("%-16s" % "Copy %c" % op[1])
-                file.write("\t\t\t" + "".join(string))
-                file.write("\r\n")
-
-                cost -= 1
-            elif op[0] == "R":
-                string[i] = op[2]
-
-                file.write("%-16s" % ("Replace %c" % op[1] + " with " + str(op[2])))
-                file.write("\t\t" + "".join(string))
-                file.write("\r\n")
-
-                cost += 1
-            elif op[0] == "D":
-                string.pop(i)
-
-                file.write("%-16s" % "Delete %c" % op[1])
-                file.write("\t\t\t" + "".join(string))
-                file.write("\r\n")
-
-                cost += 2
-            else:
-                string.insert(i, op[1])
-
-                file.write("%-16s" % "Insert %c" % op[1])
-                file.write("\t\t\t" + "".join(string))
-                file.write("\r\n")
-
-                cost += 2
-
-            i += 1
-
+    for op in sequence:
         print("".join(string))
-        print("Cost: ", cost)
+        if op[0] == "C":
+            print("%-16s" % "Copy %c" % op[1])
+            cost -= 1
+        elif op[0] == "R":
+            string[i] = op[2]
+            print("%-16s" % ("Replace %c" % op[1] + " with " + str(op[2])))
+            cost += 1
+        elif op[0] == "D":
+            string.pop(i)
+            print("%-16s" % "Delete %c" % op[1])
+            cost += 2
+        else:
+            string.insert(i, op[1])
+            print("%-16s" % "Insert %c" % op[1])
+            cost += 2
 
-        file.write("\r\nMinimum cost: " + str(cost))
+        i += 1
+
+    print("".join(string))
+    print("Cost: ", cost)
+    print("Minimum cost: " + str(cost))
+    import doctest
+
+    doctest.testmod()
