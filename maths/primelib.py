@@ -729,11 +729,10 @@ def simplify_fraction(numerator, denominator):
     (1, 2)
     >>> simplify_fraction(10, -1)
     (10, -1)
-    AssertionError: The arguments must been from type int and 'denominator' != 0"
     >>> simplify_fraction("test","test")
     Traceback (most recent call last):
         ...
-    AssertionError: The arguments must been from type int and 'denominator' != 0"
+    AssertionError: The arguments must been from type int and 'denominator' != 0
     """
 
     # precondition
