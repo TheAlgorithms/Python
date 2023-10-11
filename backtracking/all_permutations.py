@@ -6,7 +6,6 @@
         where n denotes the length of the given sequence.
 """
 from __future__ import annotations
-import doctest
 
 
 def generate_all_permutations(sequence: list[int | str]) -> None:

@@ -6,7 +6,7 @@ Time complexity: O(2^n),
 where n denotes the length of the given sequence.
 """
 from __future__ import annotations
-import doctest
+
 from typing import Any
 
 
