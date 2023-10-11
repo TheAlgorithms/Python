@@ -9,6 +9,8 @@ python3 -m doctest -v binary_insertion_sort.py
 For manual testing run:
 python binary_insertion_sort.py
 """
+
+
 def binary_insertion_sort(collection: list) -> list:
     """
     Pure implementation of the binary insertion sort algorithm in Python.
@@ -33,6 +35,7 @@ def binary_insertion_sort(collection: list) -> list:
         collection[low] = val
     return collection
 
+
 def test_binary_insertion_sort():
     # Basic test cases
     assert binary_insertion_sort([0, 4, 1234, 4, 1]) == [0, 1, 4, 4, 1234]
@@ -45,11 +48,13 @@ def test_binary_insertion_sort():
 
     # Test sorting with random integer values
     import random
+
     collection = random.sample(range(-50, 50), 100)
     assert binary_insertion_sort(collection) == sorted(collection)
 
     # Test sorting with random alphanumeric characters
     import string
+
     collection = random.choices(string.ascii_letters + string.digits, k=100)
     assert binary_insertion_sort(collection) == sorted(collection)
 
@@ -74,6 +79,7 @@ def test_binary_insertion_sort():
     assert binary_insertion_sort(single_element_list) == [42]
 
     print("All test cases passed.")
+
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
