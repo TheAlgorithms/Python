@@ -43,7 +43,17 @@ def method_2(boundary: list[int], steps: int) -> float:
             # Test with a cubic function f(x) = x^3
             >>> round(method_2([0, 1], 1000), 10)
             0.3320026653
+
+            # Test with invalid input
+
+            >>> round(method_2([0, 2], 0), 10)
+            0.0
+            >>> round(method_2((0, 2), -10), 10)
+            0.0
         """
+    if steps <= 0:
+        return 0.0
+
     h = (boundary[1] - boundary[0]) / steps
     a = boundary[0]
     b = boundary[1]
