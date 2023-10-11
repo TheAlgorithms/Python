@@ -9,8 +9,9 @@ For manual testing run:
 python circle_sort.py
 """
 
+
 def stalin_sort(collection: list) -> list:
-    """Pure implementation of bogosort algorithm in Python
+    """Pure implementation of stalin sort algorithm in Python
     :param collection: some mutable ordered collection with heterogeneous
     comparable items inside
     :return: the same collection ordered by ascending
@@ -24,11 +25,12 @@ def stalin_sort(collection: list) -> list:
     """
     i = 1
     while i < len(collection):
-        if collection[i] < collection[i-1]:
+        if collection[i] < collection[i - 1]:
             collection.pop(i)
         else:
             i += 1
     return collection
+
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
