@@ -8,6 +8,7 @@ The only solution is 2^2+3^2. Constraints: 1<=X<=1000, 2<=N<=10.
 
 from math import pow
 
+
 def backtrack(
     needed_sum: int,
     power: int,
