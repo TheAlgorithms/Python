@@ -23,5 +23,8 @@ if __name__ == "__main__":
     except ValueError:
         print("Invalid literal for integer")
 
-    RESULT = binary_exponentiation(BASE, POWER)
-    print(f"{BASE}^({POWER}) : {RESULT}")
+    if POWER<0:
+        print("Negative value of power detected, enter a non-negative value of power")
+    else:
+        RESULT = binary_exponentiation(BASE, POWER)
+        print(f"{BASE}^({POWER}) : {RESULT}")
