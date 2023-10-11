@@ -17,6 +17,34 @@ def compute_transform_tables(
     delete_cost: int,
     insert_cost: int,
 ) -> tuple[list[list[int]], list[list[str]]]:
+    """
+        Compute transformation tables for string alignment.
+
+        Args:
+            source_string (str): The source string.
+            destination_string (str): The destination string.
+            copy_cost (int): Cost of copying a character.
+            replace_cost (int): Cost of replacing a character.
+            delete_cost (int): Cost of deleting a character.
+            insert_cost (int): Cost of inserting a character.
+
+        Returns:
+            tuple[list[list[int]], list[list[str]]]: A tuple containing two lists:
+            - The first list is a table of minimum costs for transformations.
+            - The second list is a table of transformation operations.
+
+        Example:
+            >>> costs, ops = compute_transform_tables("kitten", "sitting", 1, 1, 1, 1)
+            >>> costs[3][3]
+            2
+            >>> costs[4][4]
+            3
+            >>> ops[3][3]
+            'Ct'
+            >>> ops[4][4]
+            'Rs'
+        """
+
     source_seq = list(source_string)
     destination_seq = list(destination_string)
     len_source_seq = len(source_seq)
@@ -58,6 +86,26 @@ def compute_transform_tables(
 
 
 def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
+    """
+       Assemble a list of transformation operations.
+
+       Args:
+           ops (list[list[str]]): The table of transformation operations.
+           i (int): The current row.
+           j (int): The current column.
+
+       Returns:
+           list[str]: A list of transformation operations.
+
+       Example:
+           >>> ops = [["0", "0", "0"], ["0", "Ct", "Dh"], ["0", "Ie", "Ri"]]
+           >>> assemble_transformation(ops, 2, 2)
+           ['Ri', 'Ie', 'Ct', 'Dh']
+           >>> assemble_transformation(ops, 1, 1)
+           ['Ct', 'Dh']
+           >>> assemble_transformation(ops, 0, 0)
+           []
+       """
     if i == 0 and j == 0:
         return []
     else:
