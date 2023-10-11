@@ -13,37 +13,37 @@ def method_2(boundary: list[int], steps:int) -> float:
     # "Simpson Rule"
     # int(f) = delta_x/2 * (b-a)/3*(f1 + 4f2 + 2f_3 + ... + fn)
     """
-       Calculate the definite integral of a function using Simpson's Rule.
+    Calculate the definite integral of a function using Simpson's Rule.
 
-        :param boundary: A list containing the lower and upper bounds of integration.
-        :param steps: The number of steps or resolution for the integration.
-        :return: The approximate integral value.
+     :param boundary: A list containing the lower and upper bounds of integration.
+     :param steps: The number of steps or resolution for the integration.
+     :return: The approximate integral value.
 
-         >>> round(method_2([0, 2, 4], 10), 10)
-            2.6666666667
+      >>> round(method_2([0, 2, 4], 10), 10)
+         2.6666666667
 
-            >>> round(method_2([2, 0], 10), 10)
-            -0.2666666667
+         >>> round(method_2([2, 0], 10), 10)
+         -0.2666666667
 
-            >>> round(method_2([-2, -1], 10), 10)
-            2.172
+         >>> round(method_2([-2, -1], 10), 10)
+         2.172
 
-            # Test with a linear function f(x) = x
-            >>> round(method_2([0, 1], 10), 10)
-            0.3333333333
+         # Test with a linear function f(x) = x
+         >>> round(method_2([0, 1], 10), 10)
+         0.3333333333
 
-            # Test with a constant function f(x) = 5
-            >>> round(method_2([0, 2], 10), 10)
-            2.6666666667
+         # Test with a constant function f(x) = 5
+         >>> round(method_2([0, 2], 10), 10)
+         2.6666666667
 
-            # Test with a quadratic function f(x) = x^2
-            >>> round(method_2([0, 2], 100), 10)
-            2.5621226667
+         # Test with a quadratic function f(x) = x^2
+         >>> round(method_2([0, 2], 100), 10)
+         2.5621226667
 
-            # Test with a cubic function f(x) = x^3
-            >>> round(method_2([0, 1], 1000), 10)
-            0.3320026653
-       """
+         # Test with a cubic function f(x) = x^3
+         >>> round(method_2([0, 1], 1000), 10)
+         0.3320026653
+    """
     h = (boundary[1] - boundary[0]) / steps
     a = boundary[0]
     b = boundary[1]
