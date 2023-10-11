@@ -1,22 +1,22 @@
-def AND(input1, input2):
+def AND(input1, input2) -> str:
     if(input1 == '1' and input2 == '1'):
         return '1'
     else:
         return '0'
     
-def OR(input1, input2):
+def OR(input1, input2) -> str:
     if(input1 == '1' or input2 == '1'):
         return '1'
     else:
         return '0'
     
-def XOR(input1, input2):
+def XOR(input1, input2) -> str:
     if(input1 == input2):
         return '0'
     else:
         return '1'
     
-def addition(number_1: str, number_2: str, number_of_bits:int):
+def addition(number_1: str, number_2: str, number_of_bits:int) -> (str,str):
     """
     return tuple with ('sum','carry')
     The length of (number of bits in) 'sum' is same as the value of integer argument number_of_bits passed to the function. (i.e, if number_of_bits = 5, the length of 'sum' will also be 5 irrespective of the number of bits of number_1 and number_2).
