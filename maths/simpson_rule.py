@@ -12,6 +12,14 @@ method 2:
 def method_2(boundary, steps):
     # "Simpson Rule"
     # int(f) = delta_x/2 * (b-a)/3*(f1 + 4f2 + 2f_3 + ... + fn)
+    '''
+    >>> method_2([0, 1], 10)
+    0.33333333333333326
+    >>> method_2([0, 10], 100)
+    333.3333333333324
+    >>> method_2([-5, 5], 5)
+    61.33333333333333
+    '''
     h = (boundary[1] - boundary[0]) / steps
     a = boundary[0]
     b = boundary[1]
@@ -48,4 +56,6 @@ def main():
 
 
 if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
     main()
