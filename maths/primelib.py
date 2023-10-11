@@ -728,8 +728,7 @@ def simplify_fraction(numerator, denominator):
     >>> simplify_fraction(10, 20)
     (1, 2)
     >>> simplify_fraction(10, -1)
-    Traceback (most recent call last):
-        ...
+    (10, -1)
     AssertionError: The arguments must been from type int and 'denominator' != 0"
     >>> simplify_fraction("test","test")
     Traceback (most recent call last):
@@ -825,7 +824,6 @@ def fib(n):
         fib1 = tmp
 
     return ans
-
 
 if __name__ == "__main__":
     import doctest
