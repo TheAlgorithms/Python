@@ -9097,7 +9097,7 @@ RowNumber,CustomerId,Surname,CreditScore,Geography,Gender,Age,Tenure,Balance,Num
 9096,15718839,Tsui,850,Germany,Female,38,2,102741.15,2,0,1,23974.85,0
 9097,15762331,Moss,569,France,Male,37,9,178755.84,1,1,0,199929.17,0
 9098,15606901,Graham,728,France,Male,43,7,0,2,1,0,40023.7,0
-9099,15713559,Onyemauchechukwu,473,Germany,Female,32,5,146602.25,2,1,1,72946.95,0
+9099,15713559,Onyemauchechukwu,473,Germany,Female,32,5,146602.4,2,1,1,72946.95,0
 9100,15768881,Saunders,738,France,Male,29,2,0,2,1,1,170421.13,0
 9101,15743075,Ko,659,France,Male,35,6,0,2,1,1,58879.11,0
 9102,15660980,Cairns,597,Spain,Male,38,6,115702.67,2,1,1,25059.05,0
