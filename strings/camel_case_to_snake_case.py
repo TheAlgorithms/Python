@@ -29,7 +29,7 @@ def camel_to_snake_case(input_str: str) -> str:
     prev_char = ''
 
     for char in input_str:
-        if char.isupper():
+        if char.isupper() and not prev_char.isdigit():
             snake_str += f"_{char.lower()}"
         elif char.islower() and prev_char.isdigit():
             snake_str += f"_{char}"
