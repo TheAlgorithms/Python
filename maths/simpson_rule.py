@@ -24,6 +24,11 @@ def method_2(boundary: list[int], steps: int) -> float:
 
      >>> round(method_2([0, 2], 10), 10)
      2.6666666667
+    >>> round(method_2([0, 2], 0), 10)
+    >>> round(method_2((0, 2), -10), 10)
+    >>> round(method_2([0, 2, 4], 10), 10)
+    >>> round(method_2([2, 0], 10), 10)
+    >>> round(method_2([-2, -1], 10), 10)
     """
     h = (boundary[1] - boundary[0]) / steps
     a = boundary[0]
