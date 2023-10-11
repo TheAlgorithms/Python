@@ -13,10 +13,10 @@ def calculate_churn_rate() -> np.ndarray:
     array([0, 0, 0, 0, 1])
     """
 
-    df = pd.read_csv("churn_modelling.csv")
+    churn_md = pd.read_csv("churn_modelling.csv")
 
     # Sorting the dependent and independent values
-    x = df[
+    x = churn_md[
         [
             "CreditScore",
             "Age",
@@ -28,7 +28,7 @@ def calculate_churn_rate() -> np.ndarray:
             "EstimatedSalary",
         ]
     ].values
-    y = df["Exited"]
+    y = churn_md["Exited"]
 
     # Splitting the dataset into training and testing data
     x_test, x_train, y_test, y_train = model_selection.train_test_split(
@@ -52,4 +52,4 @@ if __name__ == "__main__":
     pred_tree = calculate_churn_rate()
     doctest.testmod()
     # Printing the predicted values
-    print(pred_tree[0:5])
+    print(pred_tree)
