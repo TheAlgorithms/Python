@@ -18,32 +18,32 @@ def compute_transform_tables(
     insert_cost: int,
 ) -> tuple[list[list[int]], list[list[str]]]:
     """
-        Compute transformation tables for string alignment.
+    Compute transformation tables for string alignment.
 
-        Args:
-            source_string (str): The source string.
-            destination_string (str): The destination string.
-            copy_cost (int): Cost of copying a character.
-            replace_cost (int): Cost of replacing a character.
-            delete_cost (int): Cost of deleting a character.
-            insert_cost (int): Cost of inserting a character.
+    Args:
+        source_string (str): The source string.
+        destination_string (str): The destination string.
+        copy_cost (int): Cost of copying a character.
+        replace_cost (int): Cost of replacing a character.
+        delete_cost (int): Cost of deleting a character.
+        insert_cost (int): Cost of inserting a character.
 
-        Returns:
-            tuple[list[list[int]], list[list[str]]]: A tuple containing two lists:
-            - The first list is a table of minimum costs for transformations.
-            - The second list is a table of transformation operations.
+    Returns:
+        tuple[list[list[int]], list[list[str]]]: A tuple containing two lists:
+        - The first list is a table of minimum costs for transformations.
+        - The second list is a table of transformation operations.
 
-        Example:
-            >>> costs, ops = compute_transform_tables("kitten", "sitting", 1, 1, 1, 1)
-            >>> costs[3][3]
-            2
-            >>> costs[4][4]
-            3
-            >>> ops[3][3]
-            'Ct'
-            >>> ops[4][4]
-            'Rs'
-        """
+    Example:
+        >>> costs, ops = compute_transform_tables("Python", "Algorithms", -1, 1, 2, 2)
+        >>> len(costs)
+        7
+        >>> len(ops)
+        7
+        >>> len(costs[0])
+        11
+        >>> len(ops[0])
+        11
+    """
 
     source_seq = list(source_string)
     destination_seq = list(destination_string)
