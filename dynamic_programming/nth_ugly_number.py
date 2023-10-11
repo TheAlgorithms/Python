@@ -35,7 +35,7 @@ Sources:
 import doctest
 
 
-def nth_ugly_number(n: int) -> int:
+def nth_ugly_number(index: int) -> int:
     """
     Return the nth ugly number.
     >>> nth_ugly_number(5)
@@ -49,13 +49,13 @@ def nth_ugly_number(n: int) -> int:
     ValueError: Index for nth ugly number should be ≥ 0
 
     """
-    if n < 0:
+    if index < 0:
         raise ValueError("Index for nth ugly number should be ≥ 0")
-    dp = [1] * (n + 1)
+    dp = [1] * (index + 1)
     ptr1 = 0
     ptr2 = 0
     ptr3 = 0
-    for i in range(1, n):
+    for i in range(1, index):
         two = dp[ptr1] * 2
         three = dp[ptr2] * 3
         five = dp[ptr3] * 5
@@ -67,7 +67,7 @@ def nth_ugly_number(n: int) -> int:
         if dp[i] == five:
             ptr3 += 1
 
-    return dp[n - 1]
+    return dp[index - 1]
 
 
 if __name__ == "__main__":
@@ -77,13 +77,13 @@ if __name__ == "__main__":
     print("\nEnter the index (≥ 0) of the Ugly number to find: ", end="")
     try:
         while True:
-            n = int(input().strip())
-            if n < 0:
+            index = int(input().strip())
+            if index < 0:
                 print("\n********* END ************")
                 break
             else:
-                ugly_number = nth_ugly_number(n)
-                print(f"The {n}th Ugly Number is: {ugly_number}")
+                ugly_number = nth_ugly_number(index)
+                print(f"The {index}th Ugly Number is: {ugly_number}")
                 print("Try another index to find a Ugly Number: ", end="")
     except (NameError, ValueError):
         print("\n********* Invalid input, END ************\n")
