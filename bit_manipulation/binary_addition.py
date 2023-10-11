@@ -1,16 +1,16 @@
-def AND(input1, input2) -> str:
+def AND(input1: str, input2: str) -> str:
     if(input1 == '1' and input2 == '1'):
         return '1'
     else:
         return '0'
     
-def OR(input1, input2) -> str:
+def OR(input1: str, input2: str) -> str:
     if(input1 == '1' or input2 == '1'):
         return '1'
     else:
         return '0'
     
-def XOR(input1, input2) -> str:
+def XOR(input1: str, input2: str) -> str:
     if(input1 == input2):
         return '0'
     else:
