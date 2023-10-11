@@ -1,3 +1,5 @@
+# Information on Binary Addition:
+# https://www.tutorialspoint.com/addition-of-two-n-bit-binary-numbers
 def AND(input1: str, input2: str) -> str:
     """
     AND gate logic.
@@ -10,11 +12,12 @@ def AND(input1: str, input2: str) -> str:
     >>> AND('1','0')
     '0'
     """
-    if(input1 == '1' and input2 == '1'):
-        return '1'
+    if input1 == "1" and input2 == "1":
+        return "1"
     else:
-        return '0'
-    
+        return "0"
+
+
 def OR(input1: str, input2: str) -> str:
     """
     OR gate logic.
@@ -27,11 +30,12 @@ def OR(input1: str, input2: str) -> str:
     >>> OR('1','0')
     '1'
     """
-    if(input1 == '1' or input2 == '1'):
-        return '1'
+    if input1 == "1" or input2 == "1":
+        return "1"
     else:
-        return '0'
-    
+        return "0"
+
+
 def XOR(input1: str, input2: str) -> str:
     """
     XOR gate logic.
@@ -44,12 +48,13 @@ def XOR(input1: str, input2: str) -> str:
     >>> XOR('1','0')
     '1'
     """
-    if(input1 == input2):
-        return '0'
+    if input1 == input2:
+        return "0"
     else:
-        return '1'
-    
-def addition(number_1: str, number_2: str, number_of_bits:int) -> (str,str):
+        return "1"
+
+
+def addition(number_1: str, number_2: str, number_of_bits: int) -> (str, str):
     """
     return tuple with ('sum','carry')
     The length of (number of bits in) 'sum' is same as the value of integer argument number_of_bits passed to the function. (i.e, if number_of_bits = 5, the length of 'sum' will also be 5 irrespective of the number of bits of number_1 and number_2).
@@ -96,17 +101,21 @@ def addition(number_1: str, number_2: str, number_of_bits:int) -> (str,str):
 
     Do not perform an operation as this  >>> addition('101','10', 2)  since adding 3-bit number with any other number results to atleast 3 bit number but you are expecting a 2 bit number which is not possible.
     """
-    number_1 = number_1.zfill(number_of_bits) #zero padding at front
-    number_2 = number_2.zfill(number_of_bits) #zero padding at front
-    reversed_number_1 = number_1[::-1] # reverse for right to left traversal of bits using for loop
-    reversed_number_2 = number_2[::-1] # reverse for right to left traversal of bits using for loop
-    carry = '0' # initial carry in (C0) = 0
-    sum = ''
+    number_1 = number_1.zfill(number_of_bits)  # zero padding at front
+    number_2 = number_2.zfill(number_of_bits)  # zero padding at front
+    reversed_number_1 = number_1[
+        ::-1
+    ]  # reverse for right to left traversal of bits using for loop
+    reversed_number_2 = number_2[
+        ::-1
+    ]  # reverse for right to left traversal of bits using for loop
+    carry = "0"  # initial carry in (C0) = 0
+    sum = ""
     for i in range(number_of_bits):
-        sum = sum + XOR(XOR(reversed_number_1[i],reversed_number_2[i]),carry)
+        sum = sum + XOR(XOR(reversed_number_1[i], reversed_number_2[i]), carry)
         intermediate_xor = XOR(reversed_number_1[i], reversed_number_2[i])
         intermediate_and = AND(reversed_number_1[i], reversed_number_2[i])
-        carry = OR(intermediate_and, AND(intermediate_xor,carry))
+        carry = OR(intermediate_and, AND(intermediate_xor, carry))
     sum = sum[::-1]
     return sum, carry
 
