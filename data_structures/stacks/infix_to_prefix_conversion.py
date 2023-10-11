@@ -15,7 +15,7 @@ Enter an Infix Equation = a + b ^c
 """
 
 
-def infix_2_postfix(infix):
+def infix_2_postfix(infix: str) -> str:
     """
     >>> infix_2_postfix("a+b^c")  # doctest: +NORMALIZE_WHITESPACE
      Symbol  |  Stack  | Postfix
@@ -28,22 +28,35 @@ def infix_2_postfix(infix):
              | +       | abc^
              |         | abc^+
     'abc^+'
-    >>> infix_2_postfix("1*((-a)*2+b)")
-    Traceback (most recent call last):
-        ...
-    KeyError: '('
+
+    >>> infix_2_postfix("1*((-a)*2+b)")   # doctest: +NORMALIZE_WHITESPACE
+      Symbol  |    Stack     |   Postfix
+    -------------------------------------------
+       1     |              | 1
+       *     | *            | 1
+       (     | *(           | 1
+       (     | *((          | 1
+       -     | *((-         | 1
+       a     | *((-         | 1a
+       )     | *(           | 1a-
+       *     | *(*          | 1a-
+       2     | *(*          | 1a-2
+       +     | *(+          | 1a-2*
+       b     | *(+          | 1a-2*b
+       )     | *            | 1a-2*b+
+             |              | 1a-2*b+*
+    '1a-2*b+*'
+
     >>> infix_2_postfix("")
      Symbol  |  Stack  | Postfix
     ----------------------------
     ''
-    >>> infix_2_postfix("(()")  # doctest: +NORMALIZE_WHITESPACE
-     Symbol  |  Stack  | Postfix
-    ----------------------------
-       (     | (       |
-       (     | ((      |
-       )     | (       |
-             |         | (
-    '('
+
+    >>> infix_2_postfix("(()")
+    Traceback (most recent call last):
+        ...
+    ValueError: invalid expression
+
     >>> infix_2_postfix("())")
     Traceback (most recent call last):
         ...
@@ -59,7 +72,7 @@ def infix_2_postfix(infix):
         "+": 1,
         "-": 1,
     }  # Priority of each operator
-    print_width = len(infix) if (len(infix) > 7) else 7
+    print_width = max(len(infix), 7)
 
     # Print table header for output
     print(
@@ -76,6 +89,9 @@ def infix_2_postfix(infix):
         elif x == "(":
             stack.append(x)  # if x is "(" push to Stack
         elif x == ")":  # if x is ")" pop stack until "(" is encountered
+            if len(stack) == 0:  # close bracket without open bracket
+                raise IndexError("list index out of range")
+
             while stack[-1] != "(":
                 post_fix.append(stack.pop())  # Pop stack & add the content to Postfix
             stack.pop()
@@ -83,7 +99,7 @@ def infix_2_postfix(infix):
             if len(stack) == 0:
                 stack.append(x)  # If stack is empty, push x to stack
             else:  # while priority of x is not > priority of element in the stack
-                while len(stack) > 0 and priority[x] <= priority[stack[-1]]:
+                while stack and stack[-1] != "(" and priority[x] <= priority[stack[-1]]:
                     post_fix.append(stack.pop())  # pop stack & add to Postfix
                 stack.append(x)  # push x to stack
 
@@ -95,6 +111,9 @@ def infix_2_postfix(infix):
         )  # Output in tabular format
 
     while len(stack) > 0:  # while stack is not empty
+        if stack[-1] == "(":  # open bracket with no close bracket
+            raise ValueError("invalid expression")
+
         post_fix.append(stack.pop())  # pop stack & add to Postfix
         print(
             " ".center(8),
@@ -106,7 +125,7 @@ def infix_2_postfix(infix):
     return "".join(post_fix)  # return Postfix as str
 
 
-def infix_2_prefix(infix):
+def infix_2_prefix(infix: str) -> str:
     """
     >>> infix_2_prefix("a+b^c")  # doctest: +NORMALIZE_WHITESPACE
      Symbol  |  Stack  | Postfix
@@ -119,10 +138,23 @@ def infix_2_prefix(infix):
              |         | cb^a+
     '+a^bc'
 
-    >>> infix_2_prefix("1*((-a)*2+b)")
-    Traceback (most recent call last):
-        ...
-    KeyError: '('
+    >>> infix_2_prefix("1*((-a)*2+b)") # doctest: +NORMALIZE_WHITESPACE
+     Symbol  |    Stack     |   Postfix
+    -------------------------------------------
+       (     | (            |
+       b     | (            | b
+       +     | (+           | b
+       2     | (+           | b2
+       *     | (+*          | b2
+       (     | (+*(         | b2
+       a     | (+*(         | b2a
+       -     | (+*(-        | b2a
+       )     | (+*          | b2a-
+       )     |              | b2a-*+
+       *     | *            | b2a-*+
+       1     | *            | b2a-*+1
+             |              | b2a-*+1*
+    '*1+*-a2b'
 
     >>> infix_2_prefix('')
      Symbol  |  Stack  | Postfix
@@ -134,26 +166,21 @@ def infix_2_prefix(infix):
         ...
     IndexError: list index out of range
 
-    >>> infix_2_prefix('())')  # doctest: +NORMALIZE_WHITESPACE
-     Symbol  |  Stack  | Postfix
-    ----------------------------
-       (     | (       |
-       (     | ((      |
-       )     | (       |
-             |         | (
-    '('
+    >>> infix_2_prefix('())')
+    Traceback (most recent call last):
+        ...
+    ValueError: invalid expression
     """
-    infix = list(infix[::-1])  # reverse the infix equation
+    reversed_infix = list(infix[::-1])  # reverse the infix equation
 
-    for i in range(len(infix)):
-        if infix[i] == "(":
-            infix[i] = ")"  # change "(" to ")"
-        elif infix[i] == ")":
-            infix[i] = "("  # change ")" to "("
+    for i in range(len(reversed_infix)):
+        if reversed_infix[i] == "(":
+            reversed_infix[i] = ")"  # change "(" to ")"
+        elif reversed_infix[i] == ")":
+            reversed_infix[i] = "("  # change ")" to "("
 
-    return (infix_2_postfix("".join(infix)))[
-        ::-1
-    ]  # call infix_2_postfix on Infix, return reverse of Postfix
+    # call infix_2_postfix on Infix, return reverse of Postfix
+    return (infix_2_postfix("".join(reversed_infix)))[::-1]
 
 
 if __name__ == "__main__":
