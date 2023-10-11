@@ -2,6 +2,8 @@
 This is a Python implementation of stalin sort algorithm.
 Stalin sort removes the lement that is not in ascending order
 
+More info on : https://www.geeksforgeeks.org/add-elements-in-start-to-sort-the-array-variation-of-stalin-sort/
+
 For doctests run following command:
 python3 -m doctest -v stalin_sort.py
 
