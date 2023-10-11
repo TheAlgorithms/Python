@@ -54,10 +54,10 @@ def binary_xor(input1: str, input2: str) -> str:
         return "1"
 
 
-def addition(number_1: str, number_2: str, number_of_bits: int) -> (str, str):
+def addition(number_1: str, number_2: str, number_of_bits: int) -> tuple[str, str]:
     """
     return tuple with ('sum','carry')
-    The number of bits in 'sum' is same as the value of integer argument number_of_bits passed to the function.
+    The number of bits in 'sum' is same as the value of number_of_bits passed to the function.
     (i.e, if number_of_bits = 5, the length of 'sum' will also be 5).
 
     Explanation: The formula of sum and carry for each bit in binary operations are:
@@ -81,7 +81,7 @@ def addition(number_1: str, number_2: str, number_of_bits: int) -> (str, str):
     .
     and so on.
 
-    The numbers are reversed before operation so that the individual bits are traversed from right to left.
+    The numbers are reversed so that the individual bits are traversed from right to left.
     Finally, the resultant sum is reversed again to retain the original format.
 
     >>> addition('1010','1101', 4)
@@ -102,7 +102,7 @@ def addition(number_1: str, number_2: str, number_of_bits: int) -> (str, str):
     ('111', '0')
 
     Do not perform an operation as this  >>> addition('101','10', 2).
-    Since adding 3-bit number with any other number results to atleast 3 bit number
+    Since adding 3-bit number with any other number results to at least 3 bit number
     but you are expecting a 2 bit number which is not possible.
     """
     number_1 = number_1.zfill(number_of_bits)  # zero padding at front
