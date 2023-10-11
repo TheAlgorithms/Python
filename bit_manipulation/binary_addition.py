@@ -1,15 +1,15 @@
 # Information on Binary Addition:
 # https://www.tutorialspoint.com/addition-of-two-n-bit-binary-numbers
-def AND(input1: str, input2: str) -> str:
+def binary_and(input1: str, input2: str) -> str:
     """
     AND gate logic.
-    >>> AND('0','1')
+    >>> binary_and('0','1')
     '0'
-    >>> AND('0','0')
+    >>> binary_and('0','0')
     '0'
-    >>> AND('1','1')
+    >>> binary_and('1','1')
     '1'
-    >>> AND('1','0')
+    >>> binary_and('1','0')
     '0'
     """
     if input1 == "1" and input2 == "1":
@@ -18,16 +18,16 @@ def AND(input1: str, input2: str) -> str:
         return "0"
 
 
-def OR(input1: str, input2: str) -> str:
+def binary_or(input1: str, input2: str) -> str:
     """
     OR gate logic.
-    >>> OR('0','1')
+    >>> binary_or('0','1')
     '1'
-    >>> OR('0','0')
+    >>> binary_or('0','0')
     '0'
-    >>> OR('1','1')
+    >>> binary_or('1','1')
     '1'
-    >>> OR('1','0')
+    >>> binary_or('1','0')
     '1'
     """
     if input1 == "1" or input2 == "1":
@@ -36,16 +36,16 @@ def OR(input1: str, input2: str) -> str:
         return "0"
 
 
-def XOR(input1: str, input2: str) -> str:
+def binary_xor(input1: str, input2: str) -> str:
     """
     XOR gate logic.
-    >>> XOR('0','1')
+    >>> binary_xor('0','1')
     '1'
-    >>> XOR('0','0')
+    >>> binary_xor('0','0')
     '0'
-    >>> XOR('1','1')
+    >>> binary_xor('1','1')
     '0'
-    >>> XOR('1','0')
+    >>> binary_xor('1','0')
     '1'
     """
     if input1 == input2:
@@ -57,7 +57,8 @@ def XOR(input1: str, input2: str) -> str:
 def addition(number_1: str, number_2: str, number_of_bits: int) -> (str, str):
     """
     return tuple with ('sum','carry')
-    The length of (number of bits in) 'sum' is same as the value of integer argument number_of_bits passed to the function. (i.e, if number_of_bits = 5, the length of 'sum' will also be 5 irrespective of the number of bits of number_1 and number_2).
+    The number of bits in 'sum' is same as the value of integer argument number_of_bits passed to the function.
+    (i.e, if number_of_bits = 5, the length of 'sum' will also be 5).
 
     Explanation: The formula of sum and carry for each bit in binary operations are:
     carry:    C5 C4 C3 C2 C1 C0
@@ -80,7 +81,8 @@ def addition(number_1: str, number_2: str, number_of_bits: int) -> (str, str):
     .
     and so on.
 
-    The numbers are reversed before operation so that the individual bits are traversed from right to left(using for loop) as we perform in addition by hand. Finally, the resultant sum is reversed again to retain the original format.
+    The numbers are reversed before operation so that the individual bits are traversed from right to left.
+    Finally, the resultant sum is reversed again to retain the original format.
 
     >>> addition('1010','1101', 4)
     ('0111', '1')
@@ -99,7 +101,9 @@ def addition(number_1: str, number_2: str, number_of_bits: int) -> (str, str):
     >>> addition('101','10', 3)
     ('111', '0')
 
-    Do not perform an operation as this  >>> addition('101','10', 2)  since adding 3-bit number with any other number results to atleast 3 bit number but you are expecting a 2 bit number which is not possible.
+    Do not perform an operation as this  >>> addition('101','10', 2).
+    Since adding 3-bit number with any other number results to atleast 3 bit number
+    but you are expecting a 2 bit number which is not possible.
     """
     number_1 = number_1.zfill(number_of_bits)  # zero padding at front
     number_2 = number_2.zfill(number_of_bits)  # zero padding at front
@@ -110,14 +114,16 @@ def addition(number_1: str, number_2: str, number_of_bits: int) -> (str, str):
         ::-1
     ]  # reverse for right to left traversal of bits using for loop
     carry = "0"  # initial carry in (C0) = 0
-    sum = ""
+    binary_sum = ""
     for i in range(number_of_bits):
-        sum = sum + XOR(XOR(reversed_number_1[i], reversed_number_2[i]), carry)
-        intermediate_xor = XOR(reversed_number_1[i], reversed_number_2[i])
-        intermediate_and = AND(reversed_number_1[i], reversed_number_2[i])
-        carry = OR(intermediate_and, AND(intermediate_xor, carry))
-    sum = sum[::-1]
-    return sum, carry
+        binary_sum = binary_sum + binary_xor(
+            binary_xor(reversed_number_1[i], reversed_number_2[i]), carry
+        )
+        intermediate_xor = binary_xor(reversed_number_1[i], reversed_number_2[i])
+        intermediate_and = binary_and(reversed_number_1[i], reversed_number_2[i])
+        carry = binary_or(intermediate_and, binary_and(intermediate_xor, carry))
+    binary_sum = binary_sum[::-1]
+    return binary_sum, carry
 
 
 if __name__ == "__main__":
