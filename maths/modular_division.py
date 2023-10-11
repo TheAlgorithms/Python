@@ -28,7 +28,9 @@ def modular_division(a: int, b: int, n: int) -> int:
     4
 
     """
-    assert n > 1 and a > 0 and greatest_common_divisor(a, n) == 1
+    assert n > 1
+    assert a > 0
+    assert greatest_common_divisor(a, n) == 1
     (d, t, s) = extended_gcd(n, a)  # Implemented below
     x = (b * s) % n
     return x
@@ -86,7 +88,8 @@ def extended_gcd(a: int, b: int) -> tuple[int, int, int]:
     ** extended_gcd function is used when d = gcd(a,b) is required in output
 
     """
-    assert a >= 0 and b >= 0
+    assert a >= 0
+    assert b >= 0
 
     if b == 0:
         d, x, y = a, 1, 0
@@ -95,7 +98,8 @@ def extended_gcd(a: int, b: int) -> tuple[int, int, int]:
         x = q
         y = p - q * (a // b)
 
-    assert a % d == 0 and b % d == 0
+    assert a % d == 0
+    assert b % d == 0
     assert d == a * x + b * y
 
     return (d, x, y)

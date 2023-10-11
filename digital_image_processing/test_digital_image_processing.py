@@ -73,7 +73,8 @@ def test_median_filter():
 
 def test_sobel_filter():
     grad, theta = sob.sobel_filter(gray)
-    assert grad.any() and theta.any()
+    assert grad.any()
+    assert theta.any()
 
 
 def test_sepia():
