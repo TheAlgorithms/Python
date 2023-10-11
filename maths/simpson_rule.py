@@ -33,26 +33,34 @@ def method_2(boundary: list[int], steps: int) -> float:
             0.3333333333
 
             # Test with a constant function f(x) = 5
+
             >>> round(method_2([0, 2], 10), 10)
             2.6666666667
 
             # Test with a quadratic function f(x) = x^2
+
             >>> round(method_2([0, 2], 100), 10)
             2.5621226667
 
             # Test with a cubic function f(x) = x^3
+
             >>> round(method_2([0, 1], 1000), 10)
             0.3320026653
 
             # Test with invalid input
 
             >>> round(method_2([0, 2], 0), 10)
-            0.0
+            Traceback (most recent call last):
+                ...
+            ZeroDivisionError: Number of steps must be greater than zero
+
             >>> round(method_2((0, 2), -10), 10)
-            0.0
+            Traceback (most recent call last):
+                ...
+            ZeroDivisionError: Number of steps must be greater than zero
         """
     if steps <= 0:
-        return 0.0
+         raise ZeroDivisionError("Number of steps must be greater than zero")
 
     h = (boundary[1] - boundary[0]) / steps
     a = boundary[0]
