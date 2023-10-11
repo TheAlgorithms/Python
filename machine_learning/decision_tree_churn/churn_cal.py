@@ -1,19 +1,19 @@
-import doctest
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from sklearn import model_selection, tree
 
 
-def calculate_churn_rate() -> np.ndarray:
+def calculate_churn_rate(filename: str = "churn_modelling.csv") -> np.ndarray:
     """
-    Calculates the churn rate of customers using a decision tree classifier.
+    Calculate the churn rate of customers using a decision tree classifier.
 
     >>> calculate_churn_rate()
     array([0, 0, 0, 0, 1])
     """
 
-    churn_md = pd.read_csv("churn_modelling.csv")
+    churn_md = pd.read_csv(Path(__file__).with_name(filename).absolute())
 
     # Sort the dependent and independent values
     x = churn_md[
@@ -44,8 +44,7 @@ def calculate_churn_rate() -> np.ndarray:
 
 
 if __name__ == "__main__":
-    # Predicting the churn rate
-    pred_tree = calculate_churn_rate()
+    from doctest import testmod
+    
     doctest.testmod()
-    # Printing the predicted values
-    print(pred_tree)
+    print(f"{calculate_churn_rate('churn_modelling.csv') = }")
