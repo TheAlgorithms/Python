@@ -14,7 +14,6 @@ Enter an Infix Equation = a + b ^c
          a+b^c (Infix) ->  +a^bc (Prefix)
 """
 
-
 def infix_2_postfix(infix):
     """
     >>> infix_2_postfix("a+b^c")  # doctest: +NORMALIZE_WHITESPACE
@@ -28,14 +27,30 @@ def infix_2_postfix(infix):
              | +       | abc^
              |         | abc^+
     'abc^+'
-    >>> infix_2_postfix("1*((-a)*2+b)")
-    Traceback (most recent call last):
-        ...
-    KeyError: '('
+
+    >>> infix_2_postfix("1*((-a)*2+b)")   # doctest: +NORMALIZE_WHITESPACE 
+      Symbol  |    Stack     |   Postfix
+    -------------------------------------------
+       1     |              | 1
+       *     | *            | 1
+       (     | *(           | 1
+       (     | *((          | 1
+       -     | *((-         | 1
+       a     | *((-         | 1a
+       )     | *(           | 1a-
+       *     | *(*          | 1a-
+       2     | *(*          | 1a-2
+       +     | *(+          | 1a-2*
+       b     | *(+          | 1a-2*b
+       )     | *            | 1a-2*b+
+             |              | 1a-2*b+*
+    '1a-2*b+*'
+
     >>> infix_2_postfix("")
      Symbol  |  Stack  | Postfix
     ----------------------------
     ''
+
     >>> infix_2_postfix("(()")  # doctest: +NORMALIZE_WHITESPACE
      Symbol  |  Stack  | Postfix
     ----------------------------
@@ -44,6 +59,7 @@ def infix_2_postfix(infix):
        )     | (       |
              |         | (
     '('
+
     >>> infix_2_postfix("())")
     Traceback (most recent call last):
         ...
@@ -83,7 +99,11 @@ def infix_2_postfix(infix):
             if len(stack) == 0:
                 stack.append(x)  # If stack is empty, push x to stack
             else:  # while priority of x is not > priority of element in the stack
-                while len(stack) > 0 and priority[x] <= priority[stack[-1]]:
+                while (
+                    len(stack) > 0
+                    and stack[-1] != "("
+                    and priority[x] <= priority[stack[-1]]
+                ):
                     post_fix.append(stack.pop())  # pop stack & add to Postfix
                 stack.append(x)  # push x to stack
 
@@ -119,10 +139,23 @@ def infix_2_prefix(infix):
              |         | cb^a+
     '+a^bc'
 
-    >>> infix_2_prefix("1*((-a)*2+b)")
-    Traceback (most recent call last):
-        ...
-    KeyError: '('
+    >>> infix_2_prefix("1*((-a)*2+b)") # doctest: +NORMALIZE_WHITESPACE
+     Symbol  |    Stack     |   Postfix
+    -------------------------------------------
+       (     | (            |
+       b     | (            | b
+       +     | (+           | b
+       2     | (+           | b2
+       *     | (+*          | b2
+       (     | (+*(         | b2
+       a     | (+*(         | b2a
+       -     | (+*(-        | b2a
+       )     | (+*          | b2a-
+       )     |              | b2a-*+
+       *     | *            | b2a-*+
+       1     | *            | b2a-*+1
+             |              | b2a-*+1*
+    '*1+*-a2b'
 
     >>> infix_2_prefix('')
      Symbol  |  Stack  | Postfix
