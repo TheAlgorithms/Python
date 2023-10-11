@@ -1,0 +1,28 @@
+def generate_subsets(arr):
+    """
+    Generate all possible subsets of an array.
+
+    :param arr: List of elements.
+    :return: A tuple containing the list of subsets and the count of subsets.
+
+    >>> generate_subsets([1, 2, 3])
+    ([
+        [], [1], [2], [3],
+        [1, 2], [1, 3], [2, 3],
+        [1, 2, 3]
+    ], 8)
+
+    >>> generate_subsets([])
+    ([[]], 1)
+    """
+    subsets = [[]]
+    for elem in arr:
+        new_subsets = [subset + [elem] for subset in subsets]
+        subsets.extend(new_subsets)
+    return subsets, len(subsets)
+
+if __name__ == "__main__":
+    arr = [1, 2, 3]
+    subsets, count = generate_subsets(arr)
+    print("Subsets:", subsets)
+    print("Number of subsets:", count)
