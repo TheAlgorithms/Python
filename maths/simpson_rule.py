@@ -9,7 +9,7 @@ method 2:
 """
 
 
-def method_2(boundary, steps):
+def method_2(boundary: list[int], steps: int) -> float:
     # "Simpson Rule"
     # int(f) = delta_x/2 * (b-a)/3*(f1 + 4f2 + 2f_3 + ... + fn)
     """
