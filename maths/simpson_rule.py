@@ -1,7 +1,7 @@
 """
 Numerical integration or quadrature for a smooth function f with known values at x_i
 
-This method is the classical approach of suming 'Equally Spaced Abscissas'
+This method is the classical approach of summing 'Equally Spaced Abscissas'
 
 method 2:
 "Simpson Rule"
@@ -12,6 +12,19 @@ method 2:
 def method_2(boundary, steps):
     # "Simpson Rule"
     # int(f) = delta_x/2 * (b-a)/3*(f1 + 4f2 + 2f_3 + ... + fn)
+    """
+       Calculate the definite integral of a function using Simpson's Rule.
+
+        :param boundary: A list containing the lower and upper bounds of integration.
+        :param steps: The number of steps or resolution for the integration.
+        :return: The approximate integral value.
+
+        >>> round(method_2([0, 1], 10), 10)
+        0.3333333333
+
+        >>> round(method_2([0, 2], 10), 10)
+        2.6666666667
+       """
     h = (boundary[1] - boundary[0]) / steps
     a = boundary[0]
     b = boundary[1]
@@ -48,4 +61,7 @@ def main():
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     main()
