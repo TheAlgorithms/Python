@@ -87,25 +87,25 @@ def compute_transform_tables(
 
 def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
     """
-       Assemble a list of transformation operations.
+    Assemble a list of transformation operations.
 
-       Args:
-           ops (list[list[str]]): The table of transformation operations.
-           i (int): The current row.
-           j (int): The current column.
+    Args:
+        ops (list[list[str]]): The table of transformation operations.
+        i (int): The current row.
+        j (int): The current column.
 
-       Returns:
-           list[str]: A list of transformation operations.
+    Returns:
+        list[str]: A list of transformation operations.
 
-       Example:
-           >>> ops = [["0", "0", "0"], ["0", "Ct", "Dh"], ["0", "Ie", "Ri"]]
-           >>> assemble_transformation(ops, 2, 2)
-           ['Ri', 'Ie', 'Ct', 'Dh']
-           >>> assemble_transformation(ops, 1, 1)
-           ['Ct', 'Dh']
-           >>> assemble_transformation(ops, 0, 0)
-           []
-       """
+    Example:
+        >>> ops = [["0", "0", "0"], ["0", "Ct", "Dh"], ["0", "Ie", "Ri"]]
+        >>> assemble_transformation(ops, 2, 2)
+        ['Ri', 'Ie', 'Ct', 'Dh']
+        >>> assemble_transformation(ops, 1, 1)
+        ['Ct', 'Dh']
+        >>> assemble_transformation(ops, 0, 0)
+        []
+    """
     if i == 0 and j == 0:
         return []
     else:
