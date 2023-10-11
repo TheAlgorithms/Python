@@ -123,7 +123,6 @@ def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
             return seq
 
 
-
 if __name__ == "__main__":
     _, operations = compute_transform_tables("Python", "Algorithms", -1, 1, 2, 2)
 
