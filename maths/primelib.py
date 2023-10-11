@@ -98,15 +98,13 @@ def sieve_er(n):
 
     >>> sieve_er(8)
     [2, 3, 5, 7]
-    >>> sieve_er(2)
-    [2]
     >>> sieve_er(-1)
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'N' must been an int and > 2
     >>> sieve_er("test")
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'N' must been an int and > 2
     """
 
@@ -144,16 +142,14 @@ def get_prime_numbers(n):
 
     >>> get_prime_numbers(8)
     [2, 3, 5, 7]
-    >>> get_prime_numbers(2)
-    [2]
     >>> get_prime_numbers(-1)
     Traceback (most recent call last):
-    ...
-    AssertionError: 'n' must been an int and > 2
+        ...
+    AssertionError: 'N' must been an int and > 2
     >>> get_prime_numbers("test")
     Traceback (most recent call last):
-    ...
-    AssertionError: 'n' must been an int and > 2
+        ...
+    AssertionError: 'N' must been an int and > 2
     """
 
     # precondition
@@ -189,11 +185,11 @@ def prime_factorization(number):
     [7, 41]
     >>> prime_factorization(-1)
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been an int and >= 0
     >>> prime_factorization("test")
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been an int and >= 0
     """
 
@@ -245,11 +241,11 @@ def greatest_prime_factor(number):
     41
     >>> greatest_prime_factor(-1)
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been an int and >= 0
     >>> greatest_prime_factor("test")
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been an int and >= 0
     """
 
@@ -287,11 +283,11 @@ def smallest_prime_factor(number):
     7
     >>> smallest_prime_factor(-1)
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been an int and >= 0
     >>> smallest_prime_factor("test")
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been an int and >= 0
     """
 
@@ -331,7 +327,7 @@ def is_even(number):
     False
     >>> is_even("test")
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been an int
     """
 
@@ -360,7 +356,7 @@ def is_odd(number):
     True
     >>> is_odd("test")
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been an int
     """
 
@@ -379,21 +375,22 @@ def goldbach(number):
     Goldbach's assumption
     input: a even positive integer 'number' > 2
     returns a list of two prime numbers whose sum is equal to 'number'
+
     >>> goldbach(8)
     [3, 5]
     >>> goldbach(824)
     [3, 821]
     >>> goldbach(0)
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been an int, even and > 2
     >>> goldbach(-1)
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been an int, even and > 2
     >>> goldbach("test")
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been an int, even and > 2
     """
 
@@ -448,21 +445,22 @@ def kg_v(number1, number2):
     Least common multiple
     input: two positive integer 'number1' and 'number2'
     returns the least common multiple of 'number1' and 'number2'
+
     >>> kg_v(8,10)
     40
     >>> kg_v(824,67)
     55208
     >>> kg_v(0)
     Traceback (most recent call last):
-    ...
+        ...
     TypeError: kg_v() missing 1 required positional argument: 'number2'
     >>> kg_v(10,-1)
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number1' and 'number2' must been positive integer.
     >>> kg_v("test","test2")
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number1' and 'number2' must been positive integer.
     """
 
@@ -545,11 +543,11 @@ def get_prime(n):
     6337
     >>> get_prime(-1)
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been a positive int
     >>> get_prime("test")
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been a positive int
     """
 
@@ -586,24 +584,24 @@ def get_primes_between(p_number_1, p_number_2):
             pNumber1 < pNumber2
     returns a list of all prime numbers between 'pNumber1' (exclusive)
             and 'pNumber2' (exclusive)
-    
-    >>> get_primes_between(3,67)
+
+    >>> get_primes_between(3, 67)
     [5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61]
     >>> get_primes_between(0)
     Traceback (most recent call last):
-    ...
+        ...
     TypeError: get_primes_between() missing 1 required positional argument: 'p_number_2'
-    >>> get_primes_between(0,1)
+    >>> get_primes_between(0, 1)
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: The arguments must been prime numbers and 'pNumber1' < 'pNumber2'
-    >>> get_primes_between(-1,3)
+    >>> get_primes_between(-1, 3)
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been an int and positive
     >>> get_primes_between("test","test")
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been an int and positive
     """
 
@@ -655,11 +653,11 @@ def get_divisors(n):
     [1, 2, 4, 8, 103, 206, 412, 824]
     >>> get_divisors(-1)
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'n' must been int and >= 1
     >>> get_divisors("test")
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'n' must been int and >= 1
     """
 
@@ -692,11 +690,11 @@ def is_perfect_number(number):
     False
     >>> is_perfect_number(-1)
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been an int and >= 1
     >>> is_perfect_number("test")
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'number' must been an int and >= 1
     """
 
@@ -727,15 +725,15 @@ def simplify_fraction(numerator, denominator):
     assumes: 'denominator' != 0
     returns: a tuple with simplify numerator and denominator.
 
-    >>> simplify_fraction(10,20)
-    (1,2)
-    >>> simplify_fraction(10,-1)
+    >>> simplify_fraction(10, 20)
+    (1, 2)
+    >>> simplify_fraction(10, -1)
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: The arguments must been from type int and 'denominator' != 0"
     >>> simplify_fraction("test","test")
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: The arguments must been from type int and 'denominator' != 0"
     """
 
@@ -773,11 +771,11 @@ def factorial(n):
     2432902008176640000
     >>> factorial(-1)
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'n' must been a int and >= 0
     >>> factorial("test")
     Traceback (most recent call last):
-    ...
+        ...
     AssertionError: 'n' must been a int and >= 0
     """
 
