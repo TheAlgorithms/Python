@@ -99,11 +99,7 @@ def infix_2_postfix(infix: str) -> str:
             if len(stack) == 0:
                 stack.append(x)  # If stack is empty, push x to stack
             else:  # while priority of x is not > priority of element in the stack
-                while (
-                    stack
-                    and stack[-1] != "("
-                    and priority[x] <= priority[stack[-1]]
-                ):
+                while stack and stack[-1] != "(" and priority[x] <= priority[stack[-1]]:
                     post_fix.append(stack.pop())  # pop stack & add to Postfix
                 stack.append(x)  # push x to stack
 
@@ -117,7 +113,7 @@ def infix_2_postfix(infix: str) -> str:
     while len(stack) > 0:  # while stack is not empty
         if stack[-1] == "(":  # open bracket with no close bracket
             raise ValueError("invalid expression")
-        
+
         post_fix.append(stack.pop())  # pop stack & add to Postfix
         print(
             " ".center(8),
