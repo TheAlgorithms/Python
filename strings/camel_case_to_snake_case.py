@@ -23,35 +23,27 @@ def camel_to_snake_case(input_str: str) -> str:
 
     # check for invalid input type
     if not isinstance(input_str, str):
-        msg = f"Expected string as input, found {type(input_str)}"
-        raise ValueError(msg)
+        raise ValueError(f"Expected string as input, found {type(input_str)}")
 
     snake_str = ""
+    prev_char = ''
 
-    for index, char in enumerate(input_str):
+    for char in input_str:
         if char.isupper():
-            snake_str += "_" + char.lower()
-
-        # if char is lowercase but proceeded by a digit:
-        elif input_str[index - 1].isdigit() and char.islower():
-            snake_str += "_" + char
-
-        # if char is a digit proceeded by a letter:
-        elif input_str[index - 1].isalpha() and char.isnumeric():
-            snake_str += "_" + char.lower()
-
-        # if char is not alphanumeric:
+            snake_str += f"_{char.lower()}"
+        elif char.islower() and prev_char.isdigit():
+            snake_str += f"_{char}"
+        elif char.isnumeric() and prev_char.isalpha():
+            snake_str += f"_{char.lower()}"
         elif not char.isalnum():
             snake_str += "_"
-
         else:
             snake_str += char
 
-    # remove leading underscore
-    if snake_str[0] == "_":
-        snake_str = snake_str[1:]
+        prev_char = char
 
-    return snake_str
+    # remove leading underscore
+    return snake_str.lstrip('_')
 
 
 if __name__ == "__main__":
