@@ -67,8 +67,8 @@ class TestLeastCommonMultiple(unittest.TestCase):
             slow_result = least_common_multiple_slow(first_num, second_num)
             fast_result = least_common_multiple_fast(first_num, second_num)
             with self.subTest(i=i):
-                self.assertEqual(slow_result, self.expected_results[i])
-                self.assertEqual(fast_result, self.expected_results[i])
+                assert slow_result == self.expected_results[i]
+                assert fast_result == self.expected_results[i]
 
 
 if __name__ == "__main__":
