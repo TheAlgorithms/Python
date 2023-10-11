@@ -235,7 +235,7 @@ def report_generator(
         ]  # group by cluster number
         .agg(
             [
-                ("sum", np.sum),
+                ("sum", "sum"),
                 ("mean_with_zeros", lambda x: np.mean(np.nan_to_num(x))),
                 ("mean_without_zeros", lambda x: x.replace(0, np.NaN).mean()),
                 (
@@ -248,7 +248,7 @@ def report_generator(
                         )
                     ),
                 ),
-                ("mean_with_na", np.mean),
+                ("mean_with_na", "mean"),
                 ("min", lambda x: x.min()),
                 ("5%", lambda x: x.quantile(0.05)),
                 ("25%", lambda x: x.quantile(0.25)),
