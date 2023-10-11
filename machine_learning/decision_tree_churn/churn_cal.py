@@ -46,5 +46,5 @@ def calculate_churn_rate(filename: str = "churn_modelling.csv") -> np.ndarray:
 if __name__ == "__main__":
     from doctest import testmod
 
-    doctest.testmod()
+    testmod()
     print(f"{calculate_churn_rate('churn_modelling.csv') = }")
