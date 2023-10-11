@@ -791,15 +791,19 @@ def factorial(n):
 # -------------------------------------------------------------------
 
 
-def fib(n):
+def fib(n: int) -> int:
     """
     input: positive integer 'n'
     returns the n-th fibonacci term , indexing by 0
 
     >>> fib(0)
     1
+    >>> fib(5)
+    8
     >>> fib(20)
     10946
+    >>> fib(99)
+    354224848179261915075
     >>> fib(-1)
     Traceback (most recent call last):
     ...
