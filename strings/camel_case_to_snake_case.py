@@ -26,7 +26,7 @@ def camel_to_snake_case(input_str: str) -> str:
         raise ValueError(f"Expected string as input, found {type(input_str)}")
 
     snake_str = ""
-    prev_char = ''
+    prev_char = ""
 
     for char in input_str:
         if char.isupper() and not prev_char.isdigit():
@@ -43,7 +43,7 @@ def camel_to_snake_case(input_str: str) -> str:
         prev_char = char
 
     # remove leading underscore
-    return snake_str.lstrip('_')
+    return snake_str.lstrip("_")
 
 
 if __name__ == "__main__":
