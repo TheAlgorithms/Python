@@ -10,39 +10,24 @@ For manual testing run:
 python binary_insertion_sort.py
 """
 
+from typing import List
 
-def binary_insertion_sort(collection: list) -> list:
-    """Pure implementation of the binary insertion sort algorithm in Python
-    :param collection: some mutable ordered collection with heterogeneous
-    comparable items inside
-    :return: the same collection ordered by ascending
 
-    Examples:
-    >>> binary_insertion_sort([0, 4, 1234, 4, 1])
-    [0, 1, 4, 4, 1234]
-    >>> binary_insertion_sort([]) == sorted([])
-    True
-    >>> binary_insertion_sort([-1, -2, -3]) == sorted([-1, -2, -3])
-    True
-    >>> lst = ['d', 'a', 'b', 'e', 'c']
-    >>> binary_insertion_sort(lst) == sorted(lst)
-    True
-    >>> import random
-    >>> collection = random.sample(range(-50, 50), 100)
-    >>> binary_insertion_sort(collection) == sorted(collection)
-    True
-    >>> import string
-    >>> collection = random.choices(string.ascii_letters + string.digits, k=100)
-    >>> binary_insertion_sort(collection) == sorted(collection)
-    True
+def binary_insertion_sort(collection: List[int]) -> List[int]:
     """
+    Pure implementation of the binary insertion sort algorithm in Python.
+
+    :param collection: A mutable ordered collection with homogeneous
+    comparable items inside.
+    :return: The same collection ordered in ascending order.
+    """
+    # Rest of the code
 
     n = len(collection)
     for i in range(1, n):
         val = collection[i]
         low = 0
         high = i - 1
-
         while low <= high:
             mid = (low + high) // 2
             if val < collection[mid]:
@@ -55,7 +40,53 @@ def binary_insertion_sort(collection: list) -> list:
     return collection
 
 
+def test_binary_insertion_sort():
+    # Basic test cases
+    assert binary_insertion_sort([0, 4, 1234, 4, 1]) == [0, 1, 4, 4, 1234]
+    assert binary_insertion_sort([]) == []
+    assert binary_insertion_sort([-1, -2, -3]) == [-3, -2, -1]
+
+    # Test sorting of characters
+    lst = ["d", "a", "b", "e", "c"]
+    assert binary_insertion_sort(lst) == ["a", "b", "c", "d", "e"]
+
+    # Test sorting with random integer values
+    import random
+
+    collection = random.sample(range(-50, 50), 100)
+    assert binary_insertion_sort(collection) == sorted(collection)
+
+    # Test sorting with random alphanumeric characters
+    import string
+
+    collection = random.choices(string.ascii_letters + string.digits, k=100)
+    assert binary_insertion_sort(collection) == sorted(collection)
+
+    # Test with a reversed list
+    reversed_list = list(range(10, 0, -1))
+    assert binary_insertion_sort(reversed_list) == list(range(1, 11))
+
+    # Test with a list of the same elements
+    same_elements_list = [5] * 10
+    assert binary_insertion_sort(same_elements_list) == [5] * 10
+
+    # Test sorting with negative numbers
+    negative_numbers = [-5, -1, -10, -3, -2]
+    assert binary_insertion_sort(negative_numbers) == [-10, -5, -3, -2, -1]
+
+    # Test with a large list of random integers
+    large_collection = random.sample(range(-1000, 1000), 1000)
+    assert binary_insertion_sort(large_collection) == sorted(large_collection)
+
+    # Test with a single-element list
+    single_element_list = [42]
+    assert binary_insertion_sort(single_element_list) == [42]
+
+    print("All test cases passed.")
+
+
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
-    print(binary_insertion_sort(unsorted))
+    sorted_list = binary_insertion_sort(unsorted)
+    print("Sorted list:", sorted_list)
