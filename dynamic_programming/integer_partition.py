@@ -20,6 +20,8 @@ def partition(m: int) -> int:
         >>> partition(6)
         3
     """
+    # ... (the existing code of the function)
+
     memo: list[list[int]] = [[0 for _ in range(m)] for _ in range(m + 1)]
     for i in range(m + 1):
         memo[i][0] = 1
