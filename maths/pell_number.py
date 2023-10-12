@@ -29,7 +29,7 @@ def pell_number_iterative(n: int) -> int:
     if n < 0:
         raise ValueError("The input number must be non-negative.")
 
-    if n == 0 or n == 1:
+    if n in (0, 1):
         return n
 
     prev_prev_num = 0
@@ -70,7 +70,7 @@ def pell_number_recursive(n: int) -> int:
     if n < 0:
         raise ValueError("The input number must be non-negative.")
 
-    if n == 0 or n == 1:
+    if n in (0, 1):
         return n
 
     return 2 * pell_number_recursive(n - 1) + pell_number_recursive(n - 2)
