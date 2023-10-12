@@ -200,7 +200,8 @@ def unit_basis_vector(dimension: int, pos: int) -> Vector:
     at index 'pos' (indexing at 0)
     """
     # precondition
-    assert isinstance(dimension, int) and (isinstance(pos, int))
+    assert isinstance(dimension, int)
+    assert isinstance(pos, int)
     ans = [0] * dimension
     ans[pos] = 1
     return Vector(ans)
@@ -213,11 +214,9 @@ def axpy(scalar: float, x: Vector, y: Vector) -> Vector:
     computes the axpy operation
     """
     # precondition
-    assert (
-        isinstance(x, Vector)
-        and isinstance(y, Vector)
-        and (isinstance(scalar, (int, float)))
-    )
+    assert isinstance(x, Vector)
+    assert isinstance(y, Vector)
+    assert isinstance(scalar, (int, float))
     return x * scalar + y
 
 
