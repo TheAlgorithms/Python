@@ -63,6 +63,7 @@
 
 ## Boolean Algebra
   * [And Gate](boolean_algebra/and_gate.py)
+  * [Imply Gate](boolean_algebra/imply_gate.py)
   * [Nand Gate](boolean_algebra/nand_gate.py)
   * [Nor Gate](boolean_algebra/nor_gate.py)
   * [Not Gate](boolean_algebra/not_gate.py)
@@ -174,7 +175,9 @@
 ## Data Structures
   * Arrays
     * [Equilibrium Index In Array](data_structures/arrays/equilibrium_index_in_array.py)
+    * [Find Triplets With 0 Sum](data_structures/arrays/find_triplets_with_0_sum.py)
     * [Median Two Array](data_structures/arrays/median_two_array.py)
+    * [Pairs With Given Sum](data_structures/arrays/pairs_with_given_sum.py)
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
     * [Product Sum](data_structures/arrays/product_sum.py)
@@ -385,6 +388,7 @@
 
 ## Financial
   * [Equated Monthly Installments](financial/equated_monthly_installments.py)
+  * [Exponential Moving Average](financial/exponential_moving_average.py)
   * [Interest](financial/interest.py)
   * [Present Value](financial/present_value.py)
   * [Price Plus Tax](financial/price_plus_tax.py)
