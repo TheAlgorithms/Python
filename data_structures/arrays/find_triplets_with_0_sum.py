@@ -18,5 +18,7 @@ def find_triplets_with_0_sum(nums: list[int]) -> list[list[int]]:
         >>> find_triplets_with_0_sum([1, 2, 3, 0, -1, -2, -3])
         [[-3, 0, 3], [-3, 1, 2], [-2, -1, 3], [-2, 0, 2], [-1, 0, 1]]
     """
-    tuples = sorted(set(abc for abc in combinations(sorted(nums), 3) if not sum(abc)))
-    return [list(x) for x in tuples]
+    return [
+        list(x)
+        for x in sorted({abc for abc in combinations(sorted(nums), 3) if not sum(abc)})
+    ]
