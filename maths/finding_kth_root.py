@@ -27,7 +27,7 @@ def finding_kth_root(number: float, k: int, decimal_place: int) -> float:
     Returns
     -------
     The k-th root of `number`, rounded off to `decimal_place` decimal places.
-    
+
     >>> finding_kth_root(3, 2, 5)
     1.73205
     >>> finding_kth_root(122.683, 10, 7)
