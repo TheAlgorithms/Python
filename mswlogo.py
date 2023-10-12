@@ -1,28 +1,37 @@
 import turtle as t
 
+
 def forward(distance):
     t.forward(distance)
+
 
 def backward(distance):
     t.backward(distance)
 
+
 def left(angle):
     t.left(angle)
+
 
 def right(angle):
     t.right(angle)
 
+
 def penup():
     t.penup()
+
 
 def pendown():
     t.pendown()
 
+
 def clear():
     t.clear()
 
+
 def reset():
     t.reset()
+
 
 def main():
     # Set up the turtle screen
@@ -38,11 +47,13 @@ def main():
         "PU": penup,
         "PD": pendown,
         "CLEAR": clear,
-        "RESET": reset
+        "RESET": reset,
     }
 
     while True:
-        user_input = input("Enter Logo command (e.g., 'FD 100', 'RT 90', 'CLEAR', 'RESET', 'EXIT'): ").upper()
+        user_input = input(
+            "Enter Logo command (e.g., 'FD 100', 'RT 90', 'CLEAR', 'RESET', 'EXIT'): "
+        ).upper()
         if user_input == "EXIT":
             break
 
@@ -58,6 +69,7 @@ def main():
                 print("Invalid argument. Please enter a number.")
 
     t.done()
+
 
 if __name__ == "__main__":
     main()
