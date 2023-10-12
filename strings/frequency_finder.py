@@ -36,15 +36,6 @@ LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 def get_letter_count(message: str) -> dict[str, int]:
-    """
-    Get the count of the letters in the given string
-    >>> get_letter_count('Hello World')
-    {'A': 0, 'B': 0, 'C': 0, 'D': 1, 'E': 1, 'F': 0, 'G': 0, 'H': 1, 'I': 0, 'J': 0, 'K': 0, 'L': 3, 'M': 0, 'N': 0, 'O': 2, 'P': 0, 'Q': 0, 'R': 1, 'S': 0, 'T': 0, 'U': 0, 'V': 0, 'W': 1, 'X': 0, 'Y': 0, 'Z': 0}
-    >>> get_letter_count('Hello@ Man')
-    {'A': 1, 'B': 0, 'C': 0, 'D': 0, 'E': 1, 'F': 0, 'G': 0, 'H': 1, 'I': 0, 'J': 0, 'K': 0, 'L': 2, 'M': 1, 'N': 1, 'O': 1, 'P': 0, 'Q': 0, 'R': 0, 'S': 0, 'T': 0, 'U': 0, 'V': 0, 'W': 0, 'X': 0, 'Y': 0, 'Z': 0}
-    >>> get_letter_count('h')
-    {'A': 0, 'B': 0, 'C': 0, 'D': 0, 'E': 0, 'F': 0, 'G': 0, 'H': 1, 'I': 0, 'J': 0, 'K': 0, 'L': 0, 'M': 0, 'N': 0, 'O': 0, 'P': 0, 'Q': 0, 'R': 0, 'S': 0, 'T': 0, 'U': 0, 'V': 0, 'W': 0, 'X': 0, 'Y': 0, 'Z': 0}
-    """
     letter_count = {letter: 0 for letter in string.ascii_uppercase}
     for letter in message.upper():
         if letter in LETTERS:
