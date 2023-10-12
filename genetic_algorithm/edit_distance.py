@@ -9,9 +9,9 @@ def edit_distance(source, target):
     Hence, this algorithm comes in handy when we are trying to quantify the
     mutations in successive generations.
     Args:
-    source (string): This is the source string, the initial string with
+    source (type __string__): This is the source string, the initial string with
     respect to which we are calculating the edit_distance for the target
-    target (string): This is the target string, which is formed after n
+    target (type __string__): This is the target string, which is formed after n
     number of operations performed on the source string.
     Assumptions:
     The cost of operations (insertion, deletion and subtraction) is all 1
