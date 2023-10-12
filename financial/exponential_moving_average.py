@@ -63,11 +63,8 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    def test_gen_func(arr: list[float]):
-        yield from arr
-
     test_series = [2, 5, 3, 8.2, 6, 9, 10]
-    test_generator = test_gen_func(test_series)
+    test_generator = (ele for ele in test_series)
     test_window_size = 3
     result = exponential_moving_average(test_generator, test_window_size)
     print("Test series: ", test_series)
