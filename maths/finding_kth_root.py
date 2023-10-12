@@ -4,22 +4,30 @@ rounding to the nearest given number of decimal places without using ** or pow()
 
 [Problem link]
 https://www.geeksforgeeks.org/calculating-n-th-real-root-using-binary-search/
-
-Input:
-    - number: 3
-    - deg: 2
-    - decimal_place: 5
-Output:
-    - 1.73205
 """
 
 
-def finding_kth_root(number: float, deg: int, decimal_place: int) -> float:
+def finding_kth_root(number: float, k: int, decimal_place: int) -> float:
     """
     Implementing binary search to find the kth root of a number.
-    Negative numbers are treated the same way as positive numbers,
+    Negative numbers are treated like positive numbers,
     with the minus sign added at the end.
 
+    Parameters
+    ----------
+    number
+        The given number for the calculation.
+
+    k
+        The degree of the root.
+
+    decimal_place
+        The number of decimal places of the final result.
+
+    Returns
+    -------
+    The k-th root of `number`, rounded off to `decimal_place` decimal places.
+    
     >>> finding_kth_root(3, 2, 5)
     1.73205
     >>> finding_kth_root(122.683, 10, 7)
@@ -35,20 +43,17 @@ def finding_kth_root(number: float, deg: int, decimal_place: int) -> float:
     >>> finding_kth_root(-123, 4, 3)
     Traceback (most recent call last):
         ...
-    ValueError: Cannot calculate real root of an even degree of a negative number.
+    ValueError: math domain error
     >>> finding_kth_root(123, -1, 3)
     Traceback (most recent call last):
         ...
-    ValueError: Degree of the root must be at least 1.
-
+    ValueError: math domain error
     """
-    if deg < 1:
-        raise ValueError("Degree of the root must be at least 1.")
+    if k < 1:
+        raise ValueError("math domain error")
 
-    if deg % 2 == 0 and number < 0:
-        raise ValueError(
-            "Cannot calculate real root of an even degree of a negative number."
-        )
+    if k % 2 == 0 and number < 0:
+        raise ValueError("math domain error")
 
     hi, lo = number, 0.0
     if number < 0:
@@ -61,7 +66,7 @@ def finding_kth_root(number: float, deg: int, decimal_place: int) -> float:
     while hi - lo >= error:  # Precision is not reached, continue looping
         mid = (hi + lo) / 2
         product = 1.0
-        for _i in range(deg):
+        for _i in range(k):
             product *= mid
 
         if product > abs(number):  # Overestimation, higher bound decreases to mid
