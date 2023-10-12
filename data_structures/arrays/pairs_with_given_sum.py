@@ -17,6 +17,8 @@ to avoid the same pair getting counted twice
 """
 
 from collections import defaultdict
+
+
 def pairs_with_sum(arr: list, req_sum: int) -> int:
     """
     Return the no. of pairs with sum "sum"
@@ -33,10 +35,10 @@ def pairs_with_sum(arr: list, req_sum: int) -> int:
         d[i] += 1
     ans = 0
     for i in arr:
-        d[i]-=1
+        d[i] -= 1
         if req_sum - i in d and d[req_sum - i] != 0:
-            ans += d[req_sum - i]-1
-        d[i]+=1
+            ans += d[req_sum - i] - 1
+        d[i] += 1
     return ans // 2
 
 
