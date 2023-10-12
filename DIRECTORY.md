@@ -532,6 +532,7 @@
   * [Logistic Regression](machine_learning/logistic_regression.py)
   * Loss Functions
     * [Binary Cross Entropy](machine_learning/loss_functions/binary_cross_entropy.py)
+    * [Categorical Cross Entropy](machine_learning/loss_functions/categorical_cross_entropy.py)
     * [Huber Loss](machine_learning/loss_functions/huber_loss.py)
     * [Mean Squared Error](machine_learning/loss_functions/mean_squared_error.py)
   * [Mfcc](machine_learning/mfcc.py)

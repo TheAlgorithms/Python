@@ -19,6 +19,8 @@ ignore = [    # `ruff rule S101` for a description of that rule
   "PLW0120",  # `else` clause on loop without a `break` statement -- FIX ME
   "PLW060",   # Using global for `{name}` but no assignment is done -- DO NOT FIX
   "PLW2901",  # PLW2901: Redefined loop variable -- FIX ME
+  "PT011",    # `pytest.raises(Exception)` is too broad, set the `match` parameter or use a more specific exception
+  "PT018",    # Assertion should be broken down into multiple parts
   "RUF00",    # Ambiguous unicode character and other rules
   "RUF100",   # Unused `noqa` directive -- FIX ME
   "S101",     # Use of `assert` detected -- DO NOT FIX
@@ -37,6 +39,7 @@ select = [  # https://beta.ruff.rs/docs/rules
   "BLE",    # flake8-blind-except
   "C4",     # flake8-comprehensions
   "C90",    # McCabe cyclomatic complexity
+  "DJ",     # flake8-django
   "DTZ",    # flake8-datetimez
   "E",      # pycodestyle
   "EM",     # flake8-errmsg
@@ -52,9 +55,11 @@ select = [  # https://beta.ruff.rs/docs/rules
   "ISC",  # flake8-implicit-str-concat
   "N",      # pep8-naming
   "NPY",    # NumPy-specific rules
+  "PD",   # pandas-vet
   "PGH",    # pygrep-hooks
   "PIE",    # flake8-pie
   "PL",     # Pylint
+  "PT",   # flake8-pytest-style
   "PYI",    # flake8-pyi
   "RSE",    # flake8-raise
   "RUF",    # Ruff-specific rules
@@ -70,11 +75,8 @@ select = [  # https://beta.ruff.rs/docs/rules
   # "ANN",  # flake8-annotations  # FIX ME?
   # "COM",  # flake8-commas
   # "D",    # pydocstyle -- FIX ME?
-  # "DJ",   # flake8-django
   # "ERA",  # eradicate -- DO NOT FIX
   # "FBT",  # flake8-boolean-trap  # FIX ME
-  # "PD",   # pandas-vet
-  # "PT",   # flake8-pytest-style
   # "PTH",  # flake8-use-pathlib  # FIX ME
   # "Q",    # flake8-quotes
   # "RET",  # flake8-return  # FIX ME?
