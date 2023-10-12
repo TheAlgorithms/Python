@@ -175,3 +175,7 @@ if __name__ == "__main__":
 
         heap.heap_sort()
         print(f"heap-sorted array: {heap}\n")
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
