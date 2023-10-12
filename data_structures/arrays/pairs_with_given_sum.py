@@ -19,7 +19,7 @@ def pairs_with_sum(arr: list, req_sum: int) -> int:
     >>> pairs_with_sum([1, 7, 6, 2, 5, 4, 3, 1, 9, 8], 7)
     4
     """
-    return sum(int(bool(a + b == req_sum)) for a, b in combinations(arr, 2))
+    return len([1 for a, b in combinations(arr, 2) if a + b == req_sum])
 
 
 if __name__ == "__main__":
