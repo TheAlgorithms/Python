@@ -8,16 +8,21 @@
     changes in the value quicker than SMA, which is one of the advantages of using EMA.
 """
 
+from collections.abc import Iterator
 
-def exponential_moving_average(series: list[float], window_size: int) -> list[float]:
+
+def exponential_moving_average(
+    series_generator: Iterator[float], window_size: int
+) -> Iterator[float]:
     """
-    Returns the exponential moving average of the given array list
-    >>> exponential_moving_average([2, 5, 3, 8.2, 6, 9, 10], 3)
+    Returns the generator which generates exponential moving average of the given
+    series generator
+    >>> list(exponential_moving_average((ele for ele in [2, 5, 3, 8.2, 6, 9, 10]), 3))
     [2.0, 3.5, 3.25, 5.725, 5.8625, 7.43125, 8.715625]
 
-    :param series: Array of numbers (Time series data)
+    :param series_generator: Generator which generates numbers
     :param window_size: Window size for calculating average (window_size > 0)
-    :return: Resulting array of exponentially averaged numbers
+    :return: Returns generator of which returns exponentially averaged numbers
 
     Formula:
 
@@ -30,31 +35,27 @@ def exponential_moving_average(series: list[float], window_size: int) -> list[fl
 
     if window_size <= 0:
         raise ValueError("window_size must be > 0")
-    elif window_size >= len(series):
-        raise ValueError("window_size must be < length of series")
-
-    # Resultent array
-    exp_averaged_arr: list[float] = []
 
     # Calculating smoothing factor
     alpha = 2 / (1 + window_size)
 
-    # Exponential average at timestamp t
-    st = series[0]
+    # Defining timestamp t
+    t = 0
 
-    for t in range(len(series)):
+    # Exponential average at timestamp t
+    st = None
+
+    for xt in series_generator:
         if t <= window_size:
             # Assigning simple moving average till the window_size for the first time
             # is reached
-            st = (st + series[t]) * 0.5
-            exp_averaged_arr.append(st)
+            st = float(xt) if st is None else (st + xt) * 0.5
         else:
             # Calculating exponential moving average based on current timestamp data
             # point and previous exponential average value
-            st = (alpha * series[t]) + ((1 - alpha) * st)
-            exp_averaged_arr.append(st)
-
-    return exp_averaged_arr
+            st = (alpha * xt) + ((1 - alpha) * st)
+        t += 1
+        yield st
 
 
 if __name__ == "__main__":
@@ -62,9 +63,13 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
+    def test_gen_func(arr: list[float]):
+        yield from arr
+
     test_series = [2, 5, 3, 8.2, 6, 9, 10]
+    test_generator = test_gen_func(test_series)
     test_window_size = 3
-    result = exponential_moving_average(test_series, test_window_size)
+    result = exponential_moving_average(test_generator, test_window_size)
     print("Test series: ", test_series)
     print("Window size: ", test_window_size)
-    print("Result: ", result)
+    print("Result: ", list(result))
