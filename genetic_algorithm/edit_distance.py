@@ -21,7 +21,7 @@ def edit_distance(source: str, target: str) -> int:
     :param target: str
     :return: int
 
-    >>> edit_distance("GATTIC, GALTIC)
+    >>> edit_distance("GATTIC", "GALTIC")
     1
     """
     delta = {True: 0, False: 1}  # Substitution
