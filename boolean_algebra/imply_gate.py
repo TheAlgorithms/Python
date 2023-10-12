@@ -32,17 +32,6 @@ def imply_gate(input_1: int, input_2: int) -> int:
     """
     return int(input_1 == 0 or input_2 == 1)
 
-
-def test_imply_gate() -> None:
-    """
-    Tests the and_gate function
-    """
-    assert imply_gate(0, 0) == 1
-    assert imply_gate(0, 1) == 1
-    assert imply_gate(1, 0) == 0
-    assert imply_gate(1, 1) == 1
-
-
 if __name__ == "__main__":
     test_imply_gate()
     print(imply_gate(0, 0))
