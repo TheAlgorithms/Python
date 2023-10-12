@@ -1,6 +1,6 @@
 """
-An NIMPLY Gate is a logic gate in boolean algebra which results to 0 if 
-either input 1 is 0, or if input 1 is 1, then it is 0 only if input 2 is 1. 
+An NIMPLY Gate is a logic gate in boolean algebra which results to 0 if
+either input 1 is 0, or if input 1 is 1, then it is 0 only if input 2 is 1.
 It is false if input 1 implies input 2. It is the negated form of imply
 
 Following is the truth table of an NIMPLY Gate:
