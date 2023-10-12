@@ -46,10 +46,8 @@ most probable speeds of molecules in a gas given the
 temperature and molar mass of the gas.
 """
 
-# necessary constants
-PI = 3.1415926535  # pi
-R = 8.3144626181  # gas constant
-
+# import the constants R and PI from the scipy.constants library
+from scipy.constants import R, pi as PI
 
 def avg_speed_of_molecule(temperature: float, molar_mass: float) -> float:
     """
@@ -58,16 +56,24 @@ def avg_speed_of_molecule(temperature: float, molar_mass: float) -> float:
 
     Examples:
     >>> avg_speed_of_molecule(273, 0.028) # nitrogen at 273 K
-    454.34887551126405
+    454.3488755020387
     >>> avg_speed_of_molecule(300, 0.032) # oxygen at 300 K
-    445.5257273482451
+    445.52572733919885
+    >>> avg_speed_of_molecule(-273, 0.028) # invalid temperature
+    Traceback (most recent call last):
+        ...
+    Exception: Absolute temperature cannot be less than 0 K
+    >>> avg_speed_of_molecule(273, 0) # invalid molar mass
+    Traceback (most recent call last):
+        ...
+    Exception: Molar mass should be greater than 0 kg/mol
     """
+
     if temperature < 0:
         raise Exception("Absolute temperature cannot be less than 0 K")
     if molar_mass <= 0:
         raise Exception("Molar mass should be greater than 0 kg/mol")
-    else:
-        return (8 * R * temperature / (PI * molar_mass)) ** 0.5
+    return (8 * R * temperature / (PI * molar_mass)) ** 0.5
 
 
 def mps_speed_of_molecule(temperature: float, molar_mass: float) -> float:
@@ -77,16 +83,24 @@ def mps_speed_of_molecule(temperature: float, molar_mass: float) -> float:
 
     Examples:
     >>> mps_speed_of_molecule(273, 0.028) # nitrogen at 273 K
-    402.6562070215111
+    402.65620701908966
     >>> mps_speed_of_molecule(300, 0.032) # oxygen at 300 K
-    394.83689555229637
+    394.836895549922
+    >>> mps_speed_of_molecule(-273, 0.028) # invalid temperature
+    Traceback (most recent call last):
+        ...
+    Exception: Absolute temperature cannot be less than 0 K
+    >>> mps_speed_of_molecule(273, 0) # invalid molar mass
+    Traceback (most recent call last):
+        ...
+    Exception: Molar mass should be greater than 0 kg/mol
     """
+
     if temperature < 0:
         raise Exception("Absolute temperature cannot be less than 0 K")
     if molar_mass <= 0:
         raise Exception("Molar mass should be greater than 0 kg/mol")
-    else:
-        return (2 * R * temperature / molar_mass) ** 0.5
+    return (2 * R * temperature / molar_mass) ** 0.5
 
 
 if __name__ == "__main__":
