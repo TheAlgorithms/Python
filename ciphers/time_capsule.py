@@ -20,7 +20,7 @@ char_list = list(char)
 
 
 # function to shuffle the character list according to the time
-def change_key()->None:
+def change_key() -> None:
     global char_list
     global char
     global current_time
@@ -85,7 +85,7 @@ current_time = time.strftime("%H", t)
 
 
 # function to encrypt the text
-def encryption()->None:
+def encryption() -> None:
     password = input("Enter the text to be encrypted: ")
     passlist = list(password)
     change_key()
@@ -99,7 +99,7 @@ def encryption()->None:
 
 
 #  function to decrypt the text
-def decryption()->None:
+def decryption() -> None:
     password = input("Enter the text to be decrypted: ")
     passlist = list(password)
     change_key()
