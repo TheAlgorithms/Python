@@ -1,5 +1,5 @@
-#First, make sure you have Matplotlib installed. You can install it using pip if you haven't already
-#pip install matplotlib
+# First, make sure you have Matplotlib installed. You can install it using pip if you haven't already
+# pip install matplotlib
 
 import numpy as np
 import matplotlib.pyplot as plt
