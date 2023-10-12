@@ -735,6 +735,7 @@
 
 ## Neural Network
   * [2 Hidden Layers Neural Network](neural_network/2_hidden_layers_neural_network.py)
+  * [Multi-Layer Perceptron](neural_network/Multi-Layer%20Perceptron.ipynb)
   * Activation Functions
     * [Binary Step](neural_network/activation_functions/binary_step.py)
     * [Exponential Linear Unit](neural_network/activation_functions/exponential_linear_unit.py)
