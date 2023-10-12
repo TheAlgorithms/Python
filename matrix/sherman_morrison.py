@@ -114,7 +114,8 @@ class Matrix:
 
         # Validation
         assert isinstance(another, Matrix)
-        assert self.row == another.row and self.column == another.column
+        assert self.row == another.row
+        assert self.column == another.column
 
         # Add
         result = Matrix(self.row, self.column)
@@ -225,7 +226,8 @@ class Matrix:
         """
 
         # Size validation
-        assert isinstance(u, Matrix) and isinstance(v, Matrix)
+        assert isinstance(u, Matrix)
+        assert isinstance(v, Matrix)
         assert self.row == self.column == u.row == v.row  # u, v should be column vector
         assert u.column == v.column == 1  # u, v should be column vector
 

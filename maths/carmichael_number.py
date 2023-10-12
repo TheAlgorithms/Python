@@ -16,11 +16,9 @@ from maths.greatest_common_divisor import greatest_common_divisor
 
 def power(x: int, y: int, mod: int) -> int:
     """
-
     Examples:
     >>> power(2, 15, 3)
     2
-
     >>> power(5, 1, 30)
     5
     """
@@ -36,14 +34,19 @@ def power(x: int, y: int, mod: int) -> int:
 
 def is_carmichael_number(n: int) -> bool:
     """
-
     Examples:
-    >>> is_carmichael_number(562)
+    >>> is_carmichael_number(4)
     False
-
     >>> is_carmichael_number(561)
     True
-
+    >>> is_carmichael_number(562)
+    False
+    >>> is_carmichael_number(900)
+    False
+    >>> is_carmichael_number(1105)
+    True
+    >>> is_carmichael_number(8911)
+    True
     >>> is_carmichael_number(5.1)
     Traceback (most recent call last):
          ...
