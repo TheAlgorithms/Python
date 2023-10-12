@@ -4,8 +4,6 @@ partitions into exactly k parts plus the number of partitions into at least k-1 
 Subtracting 1 from each part of a partition of n into k parts gives a partition of n-k
 into k parts. These two facts together are used for this algorithm.
 """
-
-
 def partition(m: int) -> int:
     """
     Calculate the number of ways to partition a positive integer into distinct positive integers.
