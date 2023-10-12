@@ -12,6 +12,7 @@
 
 import string
 import time
+import doctest
 
 # defualt character list
 char = " " + string.punctuation + string.ascii_letters + string.digits
@@ -19,7 +20,7 @@ char_list = list(char)
 
 
 # function to shuffle the character list according to the time
-def change_key():
+def change_key()->None:
     global char_list
     global char
     global current_time
@@ -84,7 +85,7 @@ current_time = time.strftime("%H", t)
 
 
 # function to encrypt the text
-def encryption():
+def encryption()->None:
     password = input("Enter the text to be encrypted: ")
     passlist = list(password)
     change_key()
@@ -98,7 +99,7 @@ def encryption():
 
 
 #  function to decrypt the text
-def decryption():
+def decryption()->None:
     password = input("Enter the text to be decrypted: ")
     passlist = list(password)
     change_key()
@@ -112,7 +113,7 @@ def decryption():
 
 
 #  main program
-
+doctest.testmod()
 print("Welcome to the Encryption and Decryption Program")
 
 print("Select the Encryption Key")
