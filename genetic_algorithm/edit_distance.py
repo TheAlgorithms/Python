@@ -4,7 +4,7 @@ def edit_distance(source, target):
     how dissimilar two strings are to one another, that is measured by
     counting the minimum number of operations required to transform one string
     into another.
-    In genetic algorithms consisting of A,T, G, and C ncleotides, this matching
+    In genetic algorithms consisting of A,T, G, and C nucleotides, this matching
     becomes essential in understanding the mutation in succesive genes.
     Hence, this algorithm comes in handy when we are trying to quantify the
     mutations in successive generations.
@@ -15,6 +15,14 @@ def edit_distance(source, target):
     number of operations performed on the source string.
     Assumptions:
     The cost of operations (insertion, deletion and subtraction) is all 1
+    Given two integers, return the sum.
+
+    :param source: str
+    :param target: str
+    :return: int
+
+    >>> edit_distance("GATTIC, GALTIC)
+    1
     """
     delta = {True: 0, False: 1}  # Substitution
 
