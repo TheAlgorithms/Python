@@ -46,8 +46,8 @@ most probable speeds of molecules in a gas given the
 temperature and molar mass of the gas.
 """
 
-# import the constants R and PI from the scipy.constants library
-from scipy.constants import R, pi as PI
+# import the constants R and pi from the scipy.constants library
+from scipy.constants import R, pi
 
 def avg_speed_of_molecule(temperature: float, molar_mass: float) -> float:
     """
@@ -73,7 +73,7 @@ def avg_speed_of_molecule(temperature: float, molar_mass: float) -> float:
         raise Exception("Absolute temperature cannot be less than 0 K")
     if molar_mass <= 0:
         raise Exception("Molar mass should be greater than 0 kg/mol")
-    return (8 * R * temperature / (PI * molar_mass)) ** 0.5
+    return (8 * R * temperature / (pi * molar_mass)) ** 0.5
 
 
 def mps_speed_of_molecule(temperature: float, molar_mass: float) -> float:
