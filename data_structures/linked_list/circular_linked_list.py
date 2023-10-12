@@ -124,7 +124,8 @@ class CircularLinkedList:
         if not 0 <= index < len(self):
             raise IndexError("list index out of range.")
 
-        assert self.head is not None and self.tail is not None
+        assert self.head is not None
+        assert self.tail is not None
         delete_node: Node = self.head
         if self.head == self.tail:  # Just one node
             self.head = self.tail = None
@@ -137,7 +138,8 @@ class CircularLinkedList:
             for _ in range(index - 1):
                 assert temp is not None
                 temp = temp.next
-            assert temp is not None and temp.next is not None
+            assert temp is not None
+            assert temp.next is not None
             delete_node = temp.next
             temp.next = temp.next.next
             if index == len(self) - 1:  # Delete at tail
