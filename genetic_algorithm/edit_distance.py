@@ -5,7 +5,7 @@ def edit_distance(source: str, target: str) -> int:
     counting the minimum number of operations required to transform one string
     into another.
     In genetic algorithms consisting of A,T, G, and C nucleotides, this matching
-    becomes essential in understanding the mutation in succesive genes.
+    becomes essential in understanding the mutation in successive genes.
     Hence, this algorithm comes in handy when we are trying to quantify the
     mutations in successive generations.
     Args:
