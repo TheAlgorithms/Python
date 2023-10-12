@@ -128,7 +128,7 @@ def plot_heterogeneity(heterogeneity, k):
 def kmeans(
     data, k, initial_centroids, maxiter=500, record_heterogeneity=None, verbose=False
 ):
-    """This function runs k-means on given data and initial set of centroids.
+    """Runs k-means on given data and initial set of centroids.
     maxiter: maximum number of iterations to run.(default=500)
     record_heterogeneity: (optional) a list, to store the history of heterogeneity
                           as function of iterations
@@ -195,20 +195,20 @@ if False:  # change to true to run this test case.
 
 
 def report_generator(
-    df: pd.DataFrame, clustering_variables: np.ndarray, fill_missing_report=None
+    predicted: pd.DataFrame, clustering_variables: np.ndarray, fill_missing_report=None
 ) -> pd.DataFrame:
     """
-    Generates a clustering report. This function takes 2 arguments as input:
-        df - dataframe with predicted cluster column
+    Generate a clustering report given these two arguments:
+        predicted - dataframe with predicted cluster column
         fill_missing_report - dictionary of rules on how we are going to fill in missing
         values for final generated report (not included in modelling);
-    >>> data = pd.DataFrame()
-    >>> data['numbers'] = [1, 2, 3]
-    >>> data['col1'] = [0.5, 2.5, 4.5]
-    >>> data['col2'] = [100, 200, 300]
-    >>> data['col3'] = [10, 20, 30]
-    >>> data['Cluster'] = [1, 1, 2]
-    >>> report_generator(data, ['col1', 'col2'], 0)
+    >>> predicted = pd.DataFrame()
+    >>> predicted['numbers'] = [1, 2, 3]
+    >>> predicted['col1'] = [0.5, 2.5, 4.5]
+    >>> predicted['col2'] = [100, 200, 300]
+    >>> predicted['col3'] = [10, 20, 30]
+    >>> predicted['Cluster'] = [1, 1, 2]
+    >>> report_generator(predicted, ['col1', 'col2'], 0)
                Features               Type   Mark           1           2
     0    # of Customers        ClusterSize  False    2.000000    1.000000
     1    % of Customers  ClusterProportion  False    0.666667    0.333333
@@ -226,11 +226,11 @@ def report_generator(
     """
     # Fill missing values with given rules
     if fill_missing_report:
-        df = df.fillna(value=fill_missing_report)
-    df["dummy"] = 1
-    numeric_cols = df.select_dtypes(np.number).columns
+        predicted = predicted.fillna(value=fill_missing_report)
+    predicted["dummy"] = 1
+    numeric_cols = predicted.select_dtypes(np.number).columns
     report = (
-        df.groupby(["Cluster"])[  # construct report dataframe
+        predicted.groupby(["Cluster"])[  # construct report dataframe
             numeric_cols
         ]  # group by cluster number
         .agg(
@@ -267,46 +267,43 @@ def report_generator(
         .rename(index=str, columns={"level_0": "Features", "level_1": "Type"})
     )  # rename columns
     # calculate the size of cluster(count of clientID's)
+    # avoid SettingWithCopyWarning
     clustersize = report[
         (report["Features"] == "dummy") & (report["Type"] == "count")
-    ].copy()  # avoid SettingWithCopyWarning
-    clustersize.Type = (
-        "ClusterSize"  # rename created cluster df to match report column names
-    )
+    ].copy()
+    # rename created predicted cluster to match report column names
+    clustersize.Type = "ClusterSize"
     clustersize.Features = "# of Customers"
+    # calculating the proportion of cluster
     clusterproportion = pd.DataFrame(
-        clustersize.iloc[:, 2:].values
-        / clustersize.iloc[:, 2:].values.sum()  # calculating the proportion of cluster
+        clustersize.iloc[:, 2:].to_numpy() / clustersize.iloc[:, 2:].to_numpy().sum()
     )
-    clusterproportion[
-        "Type"
-    ] = "% of Customers"  # rename created cluster df to match report column names
+    # rename created predicted cluster to match report column names
+    clusterproportion["Type"] = "% of Customers"
     clusterproportion["Features"] = "ClusterProportion"
     cols = clusterproportion.columns.tolist()
     cols = cols[-2:] + cols[:-2]
     clusterproportion = clusterproportion[cols]  # rearrange columns to match report
     clusterproportion.columns = report.columns
+    # generating dataframe with count of nan values
     a = pd.DataFrame(
         abs(
-            report[report["Type"] == "count"].iloc[:, 2:].values
-            - clustersize.iloc[:, 2:].values
+            report[report["Type"] == "count"].iloc[:, 2:].to_numpy()
+            - clustersize.iloc[:, 2:].to_numpy()
         )
-    )  # generating df with count of nan values
+    )
     a["Features"] = 0
     a["Type"] = "# of nan"
-    a.Features = report[
-        report["Type"] == "count"
-    ].Features.tolist()  # filling values in order to match report
+    # filling values in order to match report
+    a.Features = report[report["Type"] == "count"].Features.tolist()
     cols = a.columns.tolist()
     cols = cols[-2:] + cols[:-2]
     a = a[cols]  # rearrange columns to match report
     a.columns = report.columns  # rename columns to match report
-    report = report.drop(
-        report[report.Type == "count"].index
-    )  # drop count values except for cluster size
-    report = pd.concat(
-        [report, a, clustersize, clusterproportion], axis=0
-    )  # concat report with cluster size and nan values
+    # drop count values except for cluster size
+    report = report.drop(report[report.Type == "count"].index)
+    # concat report with cluster size and nan values
+    report = pd.concat([report, a, clustersize, clusterproportion], axis=0)
     report["Mark"] = report["Features"].isin(clustering_variables)
     cols = report.columns.tolist()
     cols = cols[0:2] + cols[-1:] + cols[2:-1]
