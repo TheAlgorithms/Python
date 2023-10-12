@@ -4,6 +4,7 @@ Date    : October 3, 2023
 
 Task:
 Count the no of pairs in a given array with given sum
+Problem URL- https://practice.geeksforgeeks.org/problems/count-pairs-with-given-sum5022/0
 
 Implementation notes: Using hashing
 The idea is that we hash the array in a dictionary
@@ -15,7 +16,7 @@ Finally we divide the count by 2
 to avoid the same pair getting counted twice
 """
 
-
+from collections import defaultdict
 def pairs_with_sum(arr: list, req_sum: int) -> int:
     """
     Return the no. of pairs with sum "sum"
@@ -27,18 +28,15 @@ def pairs_with_sum(arr: list, req_sum: int) -> int:
     >>> pairs_with_sum([1,7,6,2,5,4,3,1,9,8],7)
     4
     """
-    d: dict = {}
+    d = defaultdict(int)
     for i in arr:
-        if i in d:
-            d[i] += 1
-        else:
-            d[i] = 1
+        d[i] += 1
     ans = 0
     for i in arr:
-        d[i] -= 1
+        d[i]-=1
         if req_sum - i in d and d[req_sum - i] != 0:
-            ans += d[req_sum - i]
-        d[i] += 1
+            ans += d[req_sum - i]-1
+        d[i]+=1
     return ans // 2
 
 
