@@ -1,4 +1,4 @@
-def edit_distance(source: str, target: str): -> int
+def edit_distance(source: str, target: str) -> int:
     """
     Edit distance algorithm is a string metric, i.e., it is a way of quantifying
     how dissimilar two strings are to one another, that is measured by
