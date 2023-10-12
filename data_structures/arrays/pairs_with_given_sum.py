@@ -17,8 +17,6 @@ to avoid the same pair getting counted twice
 """
 
 
-
-
 def pairs_with_sum(arr: list, req_sum: int) -> int:
     """
     Return the no. of pairs with sum "sum"
@@ -45,4 +43,5 @@ def pairs_with_sum(arr: list, req_sum: int) -> int:
 if __name__ == "__main__":
     import doctest
     from collections import defaultdict
+
     doctest.testmod()
