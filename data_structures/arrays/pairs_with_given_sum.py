@@ -16,7 +16,7 @@ Finally we divide the count by 2
 to avoid the same pair getting counted twice
 """
 
-from collections import defaultdict
+
 
 
 def pairs_with_sum(arr: list, req_sum: int) -> int:
@@ -44,5 +44,5 @@ def pairs_with_sum(arr: list, req_sum: int) -> int:
 
 if __name__ == "__main__":
     import doctest
-
+    from collections import defaultdict
     doctest.testmod()
