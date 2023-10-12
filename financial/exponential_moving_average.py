@@ -43,13 +43,13 @@ def exponential_moving_average(
     t = 0
 
     # Exponential average at timestamp t
-    st = None
+    st = 0.0
 
     for xt in series_generator:
         if t <= window_size:
             # Assigning simple moving average till the window_size for the first time
             # is reached
-            st = float(xt) if st is None else (st + xt) * 0.5
+            st = float(xt) if t == 0 else (st + xt) * 0.5
         else:
             # Calculating exponential moving average based on current timestamp data
             # point and previous exponential average value
