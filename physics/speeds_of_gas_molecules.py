@@ -49,6 +49,7 @@ temperature and molar mass of the gas.
 # import the constants R and PI from the scipy.constants library
 from scipy.constants import R, pi as PI
 
+
 def avg_speed_of_molecule(temperature: float, molar_mass: float) -> float:
     """
     Takes the temperature (in K) and molar mass (in kg/mol) of a gas
