@@ -10,13 +10,13 @@
 # Author: Aayush Kewat
 
 
-
 import string
 import time
 
 # defualt character list
-char = " " + string.punctuation + string.ascii_letters + string.digits 
+char = " " + string.punctuation + string.ascii_letters + string.digits
 char_list = list(char)
+
 
 # function to shuffle the character list according to the time
 def change_key():
@@ -25,7 +25,7 @@ def change_key():
     global current_time
     var = int(1)
     var = var + int(current_time)
-    while var>24:
+    while var > 24:
         var = var - 24
     if var == 1:
         char = " " + string.punctuation + string.ascii_letters + string.digits
@@ -40,7 +40,7 @@ def change_key():
     elif var == 6:
         char = " " + string.punctuation + string.digits + string.ascii_letters
     elif var == 7:
-        char = string.punctuation + " "  + string.ascii_letters + string.digits
+        char = string.punctuation + " " + string.ascii_letters + string.digits
     elif var == 8:
         char = string.ascii_letters + " " + string.punctuation + string.digits
     elif var == 9:
@@ -76,11 +76,12 @@ def change_key():
     elif var == 24:
         char = string.ascii_letters + string.digits + string.punctuation + " "
     char_list = list(char)
-    
+
 
 # deault time
 t = time.localtime()
 current_time = time.strftime("%H", t)
+
 
 # function to encrypt the text
 def encryption():
@@ -94,6 +95,7 @@ def encryption():
             enctrpt = enctrpt - 94
         passlist[i] = char_list[enctrpt]
     print("".join(passlist))
+
 
 #  function to decrypt the text
 def decryption():
