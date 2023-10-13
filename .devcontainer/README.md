@@ -1,51 +1,43 @@
 **DevContainer Setup Guide**
 
-**Prerequisites:**
-- Ensure you have Docker installed: [Docker](https://www.docker.com/get-started)
-- Install Visual Studio Code: [Visual Studio Code](https://code.visualstudio.com/download)
-- Add Remote - Containers extension for VSCode: [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-
-**Getting Started:**
-
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your/repository.git
-   cd repository
+   git clone <repository-url>
+   cd <repository-folder>
    ```
 
-2. **Navigate to the DevContainer Directory:**
+2. **Navigate to the DevContainer Folder:**
    ```bash
    cd .devcontainer
    ```
 
-3. **Open in Visual Studio Code:**
+3. **Review the Configuration Files:**
+   - Open `Dockerfile` and make sure it has the necessary dependencies and configurations for your project.
+   - Inspect `devcontainer.json` to ensure it specifies the required extensions, settings, and Docker settings.
+
+4. **Build the Docker Image:**
    ```bash
-   code .
+   docker build -t <your-image-name> .
    ```
 
-4. **Reopen in DevContainer:**
-   - Press `F1` to open the command palette.
-   - Type `Remote-Containers: Reopen in Container` and select it.
+5. **Open VS Code in the DevContainer:**
+   - Launch VS Code, ensuring you have the "Remote - Containers" extension installed.
+   - Open the cloned repository in VS Code.
+   - You should be prompted at the bottom-right to "Reopen in Container." Click on it.
 
-5. **Wait for Container to Build:**
-   The initial launch takes time as the container is built. Subsequent launches are faster.
+6. **Wait for the Container to Build:**
+   - VS Code will now build the container based on the configurations you've provided. This may take a few minutes.
 
-6. **Verify DevContainer:**
-   Open a terminal in VSCode. The prompt should now display the container name.
-   ```bash
-   your-username@container-name:~$
-   ```
+7. **Verify Container Connection:**
+   - Once the container is built, check the bottom-left corner of VS Code. It should indicate that you are now inside the container.
 
-7. **Start Your Development:**
-   Begin coding within the DevContainer environment with pre-configured tools and dependencies.
+8. **Open an Algorithm and Run It:**
+   - Navigate to the algorithm file you want to run.
+   - Write or modify the code as needed.
+   - Run the code as you normally would.
 
-**Stopping and Restarting:**
-- To stop, close VSCode.
-- To restart, repeat steps 3 and 4.
+Remember to tailor the Dockerfile and devcontainer.json to the specific requirements of your project. If issues persist, carefully check error messages during the build process, as they often provide insights into what might be going wrong.
 
-**Customization:**
-- Modify the DevContainer configuration in `devcontainer.json` if necessary.
 
-You're ready to code! For any issues, consult our documentation or contact support.
 For more details visit:
 https://code.visualstudio.com/docs/devcontainers/tutorial
