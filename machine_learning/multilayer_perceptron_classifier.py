@@ -2,103 +2,67 @@ import numpy as np
 
 
 class MLP:
-    """Multi-Layer Perceptron model.
-
-    Attributes:
-        num_inputs (int): Number of input features
-        num_hidden (int): Number of neurons in the hidden layer
-        num_outputs (int): Number of output classes
-        w1 (numpy array): Weights from inputs to the hidden layer
-        b1 (numpy array): Biases for the hidden layer
-        w2 (numpy array): Weights from the hidden layer to outputs
-        b2 (numpy array): Biases for the output layer
-
-    Examples:
-        # Create an MLP model with 2 input features, 3 hidden neurons, and 1 out class
-        >>> mlp = MLP(2, 3, 1)
-        # Forward pass using the model with a batch of input data
-        >>> x = np.array([[1.0, 2.0]])
-        >>> y_pred = mlp.forward(x)
-        # Training the model using backpropagation
-        >>> x_train = np.array([[1.0, 2.0], [3.0, 4.0]])
-        >>> y_train = np.array([[0.0], [1.0]])
-        >>> mlp.fit(x_train, y_train, epochs=100, learning_rate=0.01)
+    """
+    A simple Multi-Layer Perceptron with one hidden layer.
     """
 
     def __init__(self, num_inputs, num_hidden, num_outputs):
-        """Initialize the model.
-
-        Args:
-            num_inputs (int): Number of input features
-            num_hidden (int): Number of neurons in the hidden layer
-            num_outputs (int): Number of output classes
         """
-        self.w1 = np.random.randn(num_inputs, num_hidden)
-        self.b1 = np.zeros(num_hidden)
-        self.w2 = np.random.randn(num_hidden, num_outputs)
-        self.b2 = np.zeros(num_outputs)
+        Initialize the weights and biases of the network.
+        Weights are initialized randomly using numpy's random rand function.
+        Biases are initialized to zero.
+        """
+        self.weights1 = np.random.rand(num_inputs, num_hidden)
+        self.biases1 = np.zeros(num_hidden)
+        self.weights2 = np.random.rand(num_hidden, num_outputs)
+        self.biases2 = np.zeros(num_outputs)
 
-    def forward(self, x):
-        """Perform the forward pass.
+    def forward(self, inputs):
+        """
+        Perform the forward pass of the MLP.
 
-        Args:
-            x (numpy array): Batch of input data
+        Parameters:
+        inputs (np.ndarray): Input data
 
         Returns:
-            y_pred (numpy array): The predicted outputs
-
-        Examples:
-            >>> mlp = MLP(2, 3, 1)
-            >>> x = np.array([[1.0, 2.0]])
-            >>> y_pred = mlp.forward(x)
+        np.ndarray: Outputs from the MLP
         """
-        # Hidden layer
-        self.z1 = np.dot(x, self.w1) + self.b1
-        self.a1 = np.tanh(self.z1)
 
-        # Output layer
-        self.z2 = np.dot(self.a1, self.w2) + self.b2
-        y_pred = self.z2
+        # Calculate the outputs from the first hidden layer
+        z1 = inputs.dot(self.weights1) + self.biases1
+        a1 = np.tanh(z1)
 
-        return y_pred
+        # Calculate the outputs from the second output layer
+        z2 = a1.dot(self.weights2) + self.biases2
+        return z2
 
-    def fit(self, x, y, epochs=100, learning_rate=0.01):
-        """Train the model using backpropagation.
-
-        Args:
-            x (numpy array): Training data
-            y (numpy array): Target classes
-            epochs (int): Number of training epochs
-            learning_rate (float): Learning rate for gradient descent
-
-        Examples:
-            >>> mlp = MLP(2, 3, 1)
-            >>> x_train = np.array([[1.0, 2.0], [3.0, 4.0]])
-            >>> y_train = np.array([[0.0], [1.0]])
-            >>> mlp.fit(X_train, y_train, epochs=100, learning_rate=0.01)
+    def fit(self, inputs, labels, epochs, learning_rate):
         """
-        for epoch in range(epochs):
-            # Forward pass
-            y_pred = self.forward(x)
+        Train the MLP using backpropagation.
 
-            # Compute loss
-            loss = np.mean((y_pred - y) ** 2)
+        Parameters:
+        inputs (np.ndarray): Input data
+        labels (np.ndarray): Target outputs
+        epochs (int): Number of training iterations
+        learning_rate (float): Learning rate for weight updates
+        """
 
-            # Backpropagation
-            dl_dypred = 2 * (y_pred - y)
-            dl_dz2 = dl_dypred
-            dl_dw2 = np.dot(self.a1.T, dl_dz2)
-            dl_db2 = np.sum(dl_dz2, axis=0)
+        for _ in range(epochs):
+            # Perform the forward pass
+            outputs = self.forward(inputs)
 
-            dl_da1 = np.dot(dl_dz2, self.w2.T)
-            dl_dz1 = dl_da1 * (1 - np.power(self.a1, 2))
-            dl_dw1 = np.dot(x.T, dl_dz1)
-            dl_db1 = np.sum(dl_dz1, axis=0)
+            # Calculate the gradients via backpropagation
+            dz2 = 2 * (outputs - labels)
+            dw2 = np.dot(self.a1.T, dz2)
+            db2 = dz2.sum(axis=0)
 
-            # Update weights and biases
-            self.w1 -= learning_rate * dl_dw1
-            self.b1 -= learning_rate * dl_db1
-            self.w2 -= learning_rate * dl_dw2
-            self.b2 -= learning_rate * dl_db2
+            da1 = np.dot(dz2, self.weights2.T)
+            dz1 = da1 * (1 - np.power(self.a1, 2))
+            dw1 = np.dot(inputs.T, dz1)
+            db1 = dz1.sum(axis=0)
 
-    doctest.testmod()
+            # Update the weights and biases
+            self.weights1 -= learning_rate * dw1
+            self.biases1 -= learning_rate * db1
+            self.weights2 -= learning_rate * dw2
+            self.biases2 -= learning_rate * db2
