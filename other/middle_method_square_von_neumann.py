@@ -1,4 +1,4 @@
-'''
+"""
 
 The "Middle Square Method" is a technique for generating
 pseudorandom numbers. You start with a 4-digit number,
@@ -18,7 +18,8 @@ The example module supplies one function, MiddleSquareMethod(seed, max_sample).m
 
 >>> MiddleSquareMethod(seed=333, max_sample=10).makeRandom()
 'Invalid value. The seed that have 4 digits'
-'''
+"""
+
 
 class MiddleSquareMethod:
     def __init__(self, seed: int, max_sample: int = 10):
@@ -29,7 +30,7 @@ class MiddleSquareMethod:
         max_sample = self.max_sample
         # receive only four digits numbers
         if len(str(seed)) != 4:
-            return 'Invalid value. The seed that have 4 digits'
+            return "Invalid value. The seed that have 4 digits"
 
         # instancing the list that will receive the results
         rand_values = []
@@ -37,7 +38,7 @@ class MiddleSquareMethod:
         vl = seed
 
         # making the calcs and append the pseudorandom value
-        flag= True
+        flag = True
         while flag:
 
             if len(rand_values) >= max_sample:
@@ -50,16 +51,16 @@ class MiddleSquareMethod:
 
             rand_values.append(value);
 
-            vl = vl ** 2
+            vl = vl**2
             flag2 = True
             c = 0
 
             # making the capture of middle four digits
             while flag2:
-                if len(str(vl)[c:len(str(vl))]) != 4:
-                    c+=1
+                if len(str(vl)[c : len(str(vl))]) != 4:
+                    c += 1
                 else:
-                    vl = int(str(vl)[c:len(str(vl))])
+                    vl = int(str(vl)[c : len(str(vl))])
                     flag2 = False
 
         #   print('tamanho ', len(rand_values))
