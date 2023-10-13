@@ -57,7 +57,6 @@ class MiddleSquareMethod:
         #   print('tamanho ', len(rand_values))
         return rand_values
 
-
 if __name__ == "__main__":
     import doctest
 
