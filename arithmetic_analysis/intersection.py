@@ -1,6 +1,7 @@
 import math
 from collections.abc import Callable
 
+
 def intersection(function: Callable[[float], float], x0: float, x1: float) -> float:
     """
     Find the root of the given function using the secant method.
@@ -89,10 +90,13 @@ def intersection(function: Callable[[float], float], x0: float, x1: float) -> fl
         x_n = x_n1
         x_n1 = x_n2
 
+
 # Define the 'f' function for testing
 def f(x: float) -> float:
     return math.pow(x, 3) - (2 * x) - 5
 
-if __name__ == "__main__":
-    print(intersection(f, 3, 3.5))  # Output will depend on the specific 'f' function used.
 
+if __name__ == "__main__":
+    print(
+        intersection(f, 3, 3.5)
+    )  # Output will depend on the specific 'f' function used.
