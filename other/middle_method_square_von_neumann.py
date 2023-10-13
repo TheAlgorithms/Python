@@ -11,28 +11,28 @@ not be suitable for all applications.]
 
 This is the "Middle Square Method" module.
 
-The example module supplies one function, MiddleSquareMethod(seed, maxSample).makeRandom().  For example,
+The example module supplies one function, MiddleSquareMethod(seed, max_sample).makeRandom().  For example,
 
->>> MiddleSquareMethod(seed=3333, maxSample=10).makeRandom()
+>>> MiddleSquareMethod(seed=3333, max_sample=10).makeRandom()
 [0.3333, 0.8889, 0.4321, 0.1041, 0.3681, 0.9761, 0.7121, 0.8641, 0.6881, 0.8161]
 
->>> MiddleSquareMethod(seed=333, maxSample=10).makeRandom()
+>>> MiddleSquareMethod(seed=333, max_sample=10).makeRandom()
 'Invalid value. The seed that have 4 digits'
 '''
 
 class MiddleSquareMethod:
-    def __init__(self, seed, maxSample = 10):
+    def __init__(self, seed: int, max_sample: int = 10):
         self.seed = seed
-        self.maxSample = maxSample
+        self.max_sample = max_sample
     def makeRandom(self):
         seed = self.seed
-        maxSample = self.maxSample
+        max_sample = self.max_sample
         # receive only four digits numbers
         if len(str(seed)) != 4:
             return 'Invalid value. The seed that have 4 digits'
 
         # instancing the list that will receive the results
-        randValues = []
+        rand_values = []
 
         vl = seed
 
@@ -40,15 +40,15 @@ class MiddleSquareMethod:
         flag= True
         while flag:
 
-            if len(randValues) >= maxSample:
+            if len(rand_values) >= max_sample:
                 break;
             value = vl/10000
 
-            if value in randValues:
+            if value in rand_values:
                 flag = False
                 break
 
-            randValues.append(value);
+            rand_values.append(value);
 
             vl = vl ** 2
             flag2 = True
@@ -62,11 +62,11 @@ class MiddleSquareMethod:
                     vl = int(str(vl)[c:len(str(vl))])
                     flag2 = False
 
-        #   print('tamanho ', len(randValues))
-        return randValues
+        #   print('tamanho ', len(rand_values))
+        return rand_values
 
 
 if __name__ == "__main__":
     import doctest
-    # print(MiddleSquareMethod(seed=3333, maxSample=10).makeRandom())
+    # print(MiddleSquareMethod(seed=3333, max_sample=10).makeRandom())
     doctest.testmod()
