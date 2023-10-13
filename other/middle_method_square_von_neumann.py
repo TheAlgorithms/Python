@@ -12,6 +12,7 @@ Test cases
 # pseudorandom numbers.
 # Link: https://en.wikipedia.org/wiki/Pseudorandom_number_generator
 
+
 class MiddleSquareMethod:
     def __init__(self, seed: int, max_sample: int = 10) -> None:
         self.seed = seed
@@ -56,6 +57,7 @@ class MiddleSquareMethod:
 
         #   print('tamanho ', len(rand_values))
         return rand_values
+
 
 if __name__ == "__main__":
     import doctest
