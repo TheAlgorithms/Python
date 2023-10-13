@@ -58,7 +58,9 @@ def damerau_levenshtein_distance(first_string: str, second_string: str) -> int:
                 and first_string[i - 1] == second_string[j - 2]
                 and first_string[i - 2] == second_string[j - 1]
             ):
-                dp_matrix[i][j] = min(dp_matrix[i][j], dp_matrix[i - 2][j - 2] + cost) # Transposition
+                dp_matrix[i][j] = min(
+                    dp_matrix[i][j], dp_matrix[i - 2][j - 2] + cost
+                )  # Transposition
 
     return dp_matrix[len(first_string)][len(second_string)]
 
