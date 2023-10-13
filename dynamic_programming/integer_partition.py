@@ -4,8 +4,6 @@ partitions into exactly k parts plus the number of partitions into at least k-1 
 Subtracting 1 from each part of a partition of n into k parts gives a partition of n-k
 into k parts. These two facts together are used for this algorithm.
 """
-
-
 def partition(m: int) -> int:
     """
     Calculate the number of ways to partition a positive integer into distinct positive integers.
@@ -17,26 +15,26 @@ def partition(m: int) -> int:
         int: The number of ways to partition the integer.
 
     Examples:
-        * https://en.wikipedia.org/wiki/Partition_(number_theory)
-        * https://en.wikipedia.org/wiki/Partition_function_(number_theory)
+        * [Wikipedia - Partition (number theory)]
+        * [Wikipedia - Partition function (number theory)]
 
-        #>>> partition(5)
+        >>> partition(5)
         5
-        #>>> partition(7)
+        >>> partition(7)
         15
-        #>>> partition(100)
+        >>> partition(100)
         190569292
-        #>>> partition(1_000)
+        >>> partition(1_000)
         24061467864032622473692149727991
-        #>>> partition(-7)
+        >>> partition(-7)
         Traceback (most recent call last):
             ...
         IndexError: list index out of range
-        #>>> partition(0)
+        >>> partition(0)
         Traceback (most recent call last):
             ...
         IndexError: list assignment index out of range
-        #>>> partition(7.8)
+        >>> partition(7.8)
         Traceback (most recent call last):
             ...
         TypeError: 'float' object cannot be interpreted as an integer
@@ -52,7 +50,6 @@ def partition(m: int) -> int:
                 memo[total][largest_num] += memo[total - largest_num - 1][largest_num]
 
     return memo[m][m - 1]
-
 
 if __name__ == "__main__":
     import sys
