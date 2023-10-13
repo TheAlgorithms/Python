@@ -3,33 +3,39 @@ Partition a set into two subsets such that the difference of subset sums is mini
 """
 
 
-def find_min(arr):
+def find_min(numbers: list[int]) -> int:
     """
-
-    >>> find_min([1,2,3,4])
+    >>> find_min([1, 2, 3, 4])
     0
-    >>> find_min([0,0,0,0])
+    >>> find_min([0, 0, 0, 0])
     0
-    >>> find_min([-1,-5,5,1])
+    >>> find_min([-1, -5, 5, 1])
     0
-    >>> find_min([0,0,0,1,2,-4])
-    -1
-    >>> find_min([9,9,9,9,9])
-    9
-    >>> find_min([])
+    >>> find_min([-1, -5, 5, 1])
     0
-    >>> find_min([0,0,0,0])
-    0
-    >>> find_min([-1,-5,-10,-3])
-    -1
-    >>> find_min([1,5,10,3])
+    >>> find_min([9, 9, 9, 9, 9])
     1
-    >>> find_min([-1,0,1])
+    >>> find_min([1, 5, 10, 3])
+    1
+    >>> find_min([-1, 0, 1])
     0
-
+    >>> find_min(range(10, 0, -1))
+    1
+    >>> find_min([0, 0, 0, 1, 2, -4])
+    Traceback (most recent call last):
+        ...
+    IndexError: list assignment index out of range
+    >>> find_min([])
+    Traceback (most recent call last):
+        ...
+    UnboundLocalError: cannot access local variable 'diff' where it is not associated with a value
+    >>> find_min([-1, -5, -10, -3])
+    Traceback (most recent call last):
+        ...
+    IndexError: list assignment index out of range
     """
-    n = len(arr)
-    s = sum(arr)
+    n = len(numbers)
+    s = sum(numbers)
 
     dp = [[False for x in range(s + 1)] for y in range(n + 1)]
 
@@ -43,8 +49,8 @@ def find_min(arr):
         for j in range(1, s + 1):
             dp[i][j] = dp[i][j - 1]
 
-            if arr[i - 1] <= j:
-                dp[i][j] = dp[i][j] or dp[i - 1][j - arr[i - 1]]
+            if numbers[i - 1] <= j:
+                dp[i][j] = dp[i][j] or dp[i - 1][j - numbers[i - 1]]
 
     for j in range(int(s / 2), -1, -1):
         if dp[n][j] is True:
