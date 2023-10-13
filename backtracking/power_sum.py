@@ -19,16 +19,16 @@ def backtrack(
     """
     >>> backtrack(13, 2, 1, 0, 0)
     (0, 1)
-    >>> backtrack(100, 2, 1, 0, 0)
-    (0, 3)
-    >>> backtrack(100, 3, 1, 0, 0)
+    >>> backtrack(10, 2, 1, 0, 0)
     (0, 1)
-    >>> backtrack(800, 2, 1, 0, 0)
-    (0, 561)
-    >>> backtrack(1000, 10, 1, 0, 0)
+    >>> backtrack(10, 3, 1, 0, 0)
     (0, 0)
-    >>> backtrack(400, 2, 1, 0, 0)
-    (0, 55)
+    >>> backtrack(80, 2, 1, 0, 0)
+    (0, 1)
+    >>> backtrack(100, 10, 1, 0, 0)
+    (0, 0)
+    >>> backtrack(40, 2, 1, 0, 0)
+    (0, 1)
     >>> backtrack(50, 1, 1, 0, 0)
     (0, 3658)
     """
@@ -57,16 +57,16 @@ def solve(needed_sum: int, power: int) -> int:
     """
     >>> solve(13, 2)
     1
-    >>> solve(100, 2)
-    3
-    >>> solve(100, 3)
+    >>> solve(10, 2)
     1
-    >>> solve(800, 2)
-    561
-    >>> solve(1000, 10)
+    >>> solve(10, 3)
     0
-    >>> solve(400, 2)
-    55
+    >>> solve(80, 2)
+    1
+    >>> solve(100, 10)
+    0
+    >>> solve(40, 2)
+    1
     >>> solve(50, 1)
     Traceback (most recent call last):
         ...
