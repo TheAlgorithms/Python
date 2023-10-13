@@ -11,7 +11,7 @@ into k parts. These two facts together are used for this algorithm.
 def partition(m: int) -> int:
     """
     >>> partition(5)
-    5
+    7
     >>> partition(7)
     15
     >>> partition(100)
