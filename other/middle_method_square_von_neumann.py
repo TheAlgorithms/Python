@@ -12,6 +12,7 @@ Test cases
 # pseudorandom numbers.
 # Link: https://en.wikipedia.org/wiki/Pseudorandom_number_generator
 
+from typing import List
 
 class MiddleSquareMethod:
     def __init__(self, seed: int, max_sample: int = 10) -> None:
@@ -26,7 +27,7 @@ class MiddleSquareMethod:
             return "Invalid value. The seed that have 4 digits"
 
         # instancing the list that will receive the results
-        rand_values = []
+        rand_values: List[float] = []
 
         vl = seed
 
