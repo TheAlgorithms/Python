@@ -1,5 +1,5 @@
-
 import doctest
+
 
 def find_smallest_and_largest_words(input_string: str):
     """
@@ -27,12 +27,13 @@ def find_smallest_and_largest_words(input_string: str):
     """
     words = input_string.split()
     if not words:
-        return '', ''
+        return "", ""
 
     smallest_word = min(words, key=len)
     largest_word = max(words, key=len)
 
     return smallest_word, largest_word
+
 
 if __name__ == "__main__":
     doctest.testmod()
