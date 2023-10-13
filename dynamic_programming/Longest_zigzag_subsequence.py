@@ -2,7 +2,7 @@ def longest_zigzag(nums):
     n = len(nums)
     if n <= 1:
         return n
-    
+
     dp = [[1, 1] for _ in range(n)]
     max_length = 1
 

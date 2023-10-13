@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 
+
 class MeanShiftSegmentation:
     def __init__(self, spatial_radius, color_radius, min_density):
         """
@@ -20,10 +21,12 @@ class MeanShiftSegmentation:
             weight_total = 0.0
             for j in range(len(data)):
                 x_j, y_j, color_j = data[j]
-                spatial_dist = np.sqrt((x - x_j)**2 + (y - y_j)**2)
+                spatial_dist = np.sqrt((x - x_j) ** 2 + (y - y_j) ** 2)
                 color_dist = np.linalg.norm(color - color_j)
-                spatial_weight = np.exp(-0.5 * (spatial_dist / self.spatial_radius)**2)
-                color_weight = np.exp(-0.5 * (color_dist / self.color_radius)**2)
+                spatial_weight = np.exp(
+                    -0.5 * (spatial_dist / self.spatial_radius) ** 2
+                )
+                color_weight = np.exp(-0.5 * (color_dist / self.color_radius) ** 2)
                 weight = spatial_weight * color_weight
                 x_new += x_j * weight
                 y_new += y_j * weight
@@ -58,7 +61,12 @@ class MeanShiftSegmentation:
                         if j < 0 or j >= height or i < 0 or i >= width:
                             continue
                         if labels[j, i] != 0:
-                            if np.linalg.norm(data[y * width + x] - data[j * width + i]) < self.color_radius:
+                            if (
+                                np.linalg.norm(
+                                    data[y * width + x] - data[j * width + i]
+                                )
+                                < self.color_radius
+                            ):
                                 labels[y, x] = labels[j, i]
                                 break
 
@@ -75,14 +83,17 @@ class MeanShiftSegmentation:
 
         return labels
 
+
 if __name__ == "__main__":
-    segmentation = MeanShiftSegmentation(spatial_radius=10, color_radius=30, min_density=50)
+    segmentation = MeanShiftSegmentation(
+        spatial_radius=10, color_radius=30, min_density=50
+    )
     labels = segmentation.segment("path_to_image.jpg")
 
     # Create a color map for visualization
     colormap = np.random.randint(0, 255, size=(np.max(labels) + 1, 3))
     colored_labels = colormap[labels]
-    
-    cv2.imshow('Mean-Shift Segmentation', colored_labels)
+
+    cv2.imshow("Mean-Shift Segmentation", colored_labels)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
