@@ -17,7 +17,7 @@ class MiddleSquareMethod:
         self.seed = seed
         self.max_sample = max_sample
 
-    def make_random(self) -> None:
+    def make_random(self) -> list:
         seed = self.seed
         max_sample = self.max_sample
         # receive only four digits numbers
