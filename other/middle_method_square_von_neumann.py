@@ -26,7 +26,7 @@ class MiddleSquareMethod:
         self.seed = seed
         self.max_sample = max_sample
 
-    def make_Random(self):
+    def make_Random(self) -> None:
 
         seed = self.seed
         max_sample = self.max_sample
