@@ -1,125 +1,95 @@
-import pandas as pd
+
 import numpy as np
-from sklearn.datasets import load_digits
+from sklearn.datasets import load_iris
+from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.metrics import accuracy_score, classification_report
-from sklearn.preprocessing import LabelEncoder
-from sklearn.feature_selection import SelectKBest, chi2
-import matplotlib.pyplot as plt
+from sklearn.tree import DecisionTreeRegressor
 
 
-def load_data():
-    digits = load_digits()
-    x = digits.data
-    y = digits.target
-    return x, y
+class GradientBoostingClassifier:
+    def __init__(self, n_estimators: int = 100, learning_rate: float = 0.1) -> None:
+        """
+        Initialize a GradientBoostingClassifier.
 
+        Parameters:
+        - n_estimators (int): The number of weak learners to train.
+        - learning_rate (float): The learning rate for updating the model.
 
-def clean_data(x, y):
-    # Convert to DataFrame
-    df = pd.DataFrame(x, columns=[f"pixel_{i}" for i in range(x.shape[1])])
-    df["target"] = y
-    return df
+        Attributes:
+        - n_estimators (int): The number of weak learners.
+        - learning_rate (float): The learning rate.
+        - models (list): A list to store the trained weak learners.
+        """
+        self.n_estimators = n_estimators
+        self.learning_rate = learning_rate
+        self.models: list[tuple[DecisionTreeRegressor, float]] = []
 
+    def fit(self, x: np.ndarray, y: np.ndarray) -> None:
+        """
+        Fit the GradientBoostingClassifier to the training data.
 
-def feature_engineering(df):
-    # Perform feature engineering (if needed)
-    # For this example, we will skip this step
-    return df
+        Parameters:
+        - x (np.ndarray): The training features.
+        - y (np.ndarray): The target values.
 
+        Returns:
+        None
+        """
+        for _ in range(self.n_estimators):
+            # Calculate the pseudo-residuals
+            residuals = -self.gradient(y, self.predict(x))
+            # Fit a weak learner (e.g., decision tree) to the residuals
+            model = DecisionTreeRegressor(max_depth=1)
+            model.fit(x, residuals)
+            # Update the model by adding the weak learner with a learning rate
+            self.models.append((model, self.learning_rate))
 
-def feature_selection(df):
-    x = df.drop("target", axis=1)
-    y = df["target"]
+    def predict(self, x: np.ndarray) -> np.ndarray:
+        """
+        Make predictions on input data.
 
-    # Perform feature selection using chi-square test
-    selector = SelectKBest(chi2, k=10)
-    x_new = selector.fit_transform(x, y)
+        Parameters:
+        - x (np.ndarray): The input data for making predictions.
 
-    # Update DataFrame with selected features
-    selected_features = x.columns[selector.get_support()]
-    df = df[selected_features]
-    df["target"] = y
+        Returns:
+        - np.ndarray: An array of binary predictions (-1 or 1).
+        """
+        # Initialize predictions with zeros
+        predictions = np.zeros(x.shape[0])
+        for model, learning_rate in self.models:
+            predictions += learning_rate * model.predict(x)
+        return np.sign(predictions)  # Convert to binary predictions (-1 or 1)
 
-    return df
+    def gradient(self, y: np.ndarray, y_pred: np.ndarray) -> np.ndarray:
+        """
+        Calculate the negative gradient (pseudo-residuals) for logistic loss.
 
+        Parameters:
+        - y (np.ndarray): The target values.
+        - y_pred (np.ndarray): The predicted values.
 
-def encode_target(df):
-    le = LabelEncoder()
-    df["target"] = le.fit_transform(df["target"])
-    return df
-
-
-def split_data(df):
-    x = df.drop("target", axis=1)
-    y = df["target"]
-    x_train, x_test, y_train, y_test = train_test_split(
-        x, y, test_size=0.2, random_state=42
-    )
-    return x_train, x_test, y_train, y_test
-
-
-def train_model(x_train, y_train):
-    model = GradientBoostingClassifier()
-    model.fit(x_train, y_train)
-    return model
-
-
-def evaluate_model(model, x_test, y_test):
-    y_pred = model.predict(x_test)
-    accuracy = accuracy_score(y_test, y_pred)
-    report = classification_report(y_test, y_pred)
-    return accuracy, report
-
-
-def plot_feature_importance(model, features):
-    feature_importance = model.feature_importances_
-    sorted_indices = np.argsort(feature_importance)
-
-    plt.figure(figsize=(10, 6))
-    plt.barh(
-        range(len(sorted_indices)), feature_importance[sorted_indices], align="center"
-    )
-    plt.yticks(range(len(sorted_indices)), features[sorted_indices])
-    plt.xlabel("Feature Importance")
-    plt.ylabel("Features")
-    plt.title("Gradient Boosting Classifier - Feature Importance")
-    plt.show()
-
-
-def main():
-    # Load data
-    x, y = load_data()
-
-    # Clean data
-    df = clean_data(x, y)
-
-    # Feature engineering
-    df = feature_engineering(df)
-
-    # Feature selection
-    df = feature_selection(df)
-
-    # Encoding target
-    df = encode_target(df)
-
-    # Split data
-    x_train, x_test, y_train, y_test = split_data(df)
-
-    # Train model
-    model = train_model(x_train, y_train)
-
-    # Evaluate model
-    accuracy, report = evaluate_model(model, x_test, y_test)
-
-    # Plot feature importance
-    plot_feature_importance(model, df.columns[:-1])
-
-    # Print accuracy and classification report
-    print(f"Accuracy: {accuracy}")
-    print(f"\nClassification Report:\n{report}")
+        Returns:
+        - np.ndarray: An array of pseudo-residuals.
+        """
+        return -y / (1 + np.exp(y * y_pred))
 
 
 if __name__ == "__main__":
-    main()
+    iris = load_iris()
+    X, y = iris.data, iris.target
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
+
+    clf = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1)
+    clf.fit(X_train, y_train)
+
+    y_pred = clf.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    print(f"Accuracy: {accuracy:.2f}")
+
+# Perform some calculations in doctests
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
