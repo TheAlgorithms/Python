@@ -17,7 +17,7 @@ pen.hideturtle()
 colors = ['red', 'purple', 'blue', 'green', 'orange', 'yellow']
 #to generate the benzene 
 t = turtle.Pen()
-turtle.bgcolor('black')
+t.screen.bgcolor("black")
 for x in range(360):
 	t.pencolor(colors[x%6])
 	t.width(x//100 + 1)
