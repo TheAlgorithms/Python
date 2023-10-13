@@ -76,7 +76,7 @@ if __name__ == "__main__":
     # Create a color map for visualization
     colormap = np.random.randint(0, 255, size=(np.max(labels) + 1, 3))
     colored_labels = colormap[labels]
-    
+
     cv2.imshow('Mean-Shift Segmentation', colored_labels)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
