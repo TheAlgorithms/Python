@@ -15,16 +15,21 @@ import random
 
 def jacobi_symbol(random_a: int, number: int) -> int:
     """
-    Calculate the Jacobi symbol. The Jacobi symbol is a mathematical function
-    used to determine whether an integer is a quadratic residue modulo
-    another integer (usually prime) or not.
+    Calculate the Jacobi symbol. The Jacobi symbol is a generalization
+    of the Legendre symbol, which can be used to simplify computations involving
+    quadratic residues. The Jacobi symbol is used in primality tests, like the
+    Solovay-Strassen test, because it helps determine if an integer is a
+    quadratic residue modulo a given modulus, providing valuable information
+    about the number's potential primality or compositeness.
 
     Parameters:
-        random_a (int): A randomly chosen integer from 2 to n-2 (inclusive)
-        number (int): The number that is tested for primality
+        random_a: A randomly chosen integer from 2 to n-2 (inclusive)
+        number: The number that is tested for primality
 
     Returns:
-        jacobi_symbol (int): The Jacobi symbol
+        jacobi_symbol: The Jacobi symbol is a mathematical function
+        used to determine whether an integer is a quadratic residue modulo
+        another integer (usually prime) or not.
 
     >>> jacobi_symbol(2, 13)
     -1
@@ -34,10 +39,8 @@ def jacobi_symbol(random_a: int, number: int) -> int:
     0
     """
 
-    if random_a == 0:
-        return 0
-    if random_a == 1:
-        return 1
+    if random_a in (0, 1):
+        return random_a
 
     random_a %= number
     t = 1
@@ -65,12 +68,13 @@ def solovay_strassen(number: int, iterations: int) -> bool:
     the Solovay-Strassen Primality test
 
     Parameters:
-        number (int): The number that is tested for primality
-        iterations (int): The iterations/accuracy for the test
+        number: The number that is tested for primality
+        iterations: The number of times that the test is run
+        which effects the accuracy
 
     Returns:
-        result (bool): True if number is probably prime and false
-        if composite
+        result: True if number is probably prime and false
+        if not
 
     >>> random.seed(10)
     >>> solovay_strassen(13, 5)
