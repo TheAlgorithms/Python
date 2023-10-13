@@ -1,7 +1,7 @@
 """
 YouTube Explanation: https://www.youtube.com/watch?v=f2xi3c1S95M
 
-Given an integer n, return the minimum steps to 1
+Given an integer n, return the minimum steps from n to 1
 
 AVAILABLE STEPS:
     * Decrement by 1

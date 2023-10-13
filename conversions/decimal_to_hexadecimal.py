@@ -57,7 +57,8 @@ def decimal_to_hexadecimal(decimal: float) -> str:
     >>> decimal_to_hexadecimal(-256) == hex(-256)
     True
     """
-    assert type(decimal) in (int, float) and decimal == int(decimal)
+    assert isinstance(decimal, (int, float))
+    assert decimal == int(decimal)
     decimal = int(decimal)
     hexadecimal = ""
     negative = False

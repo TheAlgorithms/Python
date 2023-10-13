@@ -19,14 +19,13 @@ def get_initial_point(a: float) -> float:
 
 
 def square_root_iterative(
-    a: float, max_iter: int = 9999, tolerance: float = 0.00000000000001
+    a: float, max_iter: int = 9999, tolerance: float = 1e-14
 ) -> float:
     """
-    Square root is aproximated using Newtons method.
+    Square root approximated using Newton's method.
     https://en.wikipedia.org/wiki/Newton%27s_method
 
-    >>> all(abs(square_root_iterative(i)-math.sqrt(i)) <= .00000000000001
-    ...     for i in range(500))
+    >>> all(abs(square_root_iterative(i) - math.sqrt(i)) <= 1e-14 for i in range(500))
     True
 
     >>> square_root_iterative(-1)
