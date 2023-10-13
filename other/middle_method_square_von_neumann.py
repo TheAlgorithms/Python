@@ -25,6 +25,7 @@ class MiddleSquareMethod:
     def __init__(self, seed: int, max_sample: int = 10):
         self.seed = seed
         self.max_sample = max_sample
+
     def makeRandom(self):
         seed = self.seed
         max_sample = self.max_sample
@@ -40,16 +41,15 @@ class MiddleSquareMethod:
         # making the calcs and append the pseudorandom value
         flag = True
         while flag:
-
             if len(rand_values) >= max_sample:
-                break;
-            value = vl/10000
+                break
+            value = vl / 10000
 
             if value in rand_values:
                 flag = False
                 break
 
-            rand_values.append(value);
+            rand_values.append(value)
 
             vl = vl**2
             flag2 = True
@@ -69,5 +69,6 @@ class MiddleSquareMethod:
 
 if __name__ == "__main__":
     import doctest
+
     # print(MiddleSquareMethod(seed=3333, max_sample=10).makeRandom())
     doctest.testmod()
