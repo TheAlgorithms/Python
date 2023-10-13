@@ -20,7 +20,7 @@ def predict_party_victory(senate: str) -> str:
 
         >>> predict_party_victory("RRDDDD")
         'Dire'
-        
+
         >>> predict_party_victory("RDDRDD")
         'Dire'
     """
@@ -31,7 +31,7 @@ def predict_party_victory(senate: str) -> str:
             republican_senators.append(index)
         else:
             democratic_senators.append(index)
-    
+
     while democratic_senators and republican_senators:
         democratic_turn = democratic_senators.popleft()
         republican_turn = republican_senators.popleft()
@@ -40,11 +40,10 @@ def predict_party_victory(senate: str) -> str:
             republican_senators.append(democratic_turn + len(senate))
         else:
             democratic_senators.append(republican_turn + len(senate))
-    
+
     return "Radiant" if republican_senators else "Dire"
 
 
 if __name__ == "__main__":
         import doctest
     doctest.testmod()
-
