@@ -9,7 +9,7 @@ def find_smallest_and_largest_words(input_string: str) -> Tuple[str, str]:
         input_string (str): The input string to analyze.
 
     Returns:
-        tuple of (str, str): A tuple containing the smallest and largest words found.
+        Tuple[str, str]: A tuple containing the smallest and largest words found.
         If no words are found, both values in the tuple will be empty strings.
 
     Examples:
