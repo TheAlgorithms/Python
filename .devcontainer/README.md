@@ -9,7 +9,7 @@
 Open VS Code and install the "Remote Development" extension. This extension pack includes the tools required to develop inside a container. To do this:
 
    - Open the Extensions view by clicking on the Extensions icon in the Activity Bar on the side of the window or use the keyboard shortcut `Ctrl+Shift+X`.
-   
+
    - Search for "Remote Development" and install the extension pack provided by Microsoft.
 
 ## Step 2: Create a Dev Container Configuration
@@ -58,5 +58,5 @@ Once the container is built and your project is open:
 
 That's it! You're now set up to use dev containers for your development environment. This approach enhances consistency across different development machines and facilitates collaboration among team members.
 --
-For more details visit: 
+For more details visit:
 https://code.visualstudio.com/docs/devcontainers/tutorial
