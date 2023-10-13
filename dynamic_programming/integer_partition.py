@@ -3,8 +3,7 @@ The number of partitions of a number n into at least k parts equals the number o
 partitions into exactly k parts plus the number of partitions into at least k-1 parts.
 Subtracting 1 from each part of a partition of n into k parts gives a partition of n-k
 into k parts. These two facts together are used for this algorithm.
-"""
-def partition(m: int) -> int:
+"""def partition(m: int) -> int:
     """
     Calculate the number of ways to partition a positive integer into distinct positive integers.
 
@@ -19,7 +18,7 @@ def partition(m: int) -> int:
         * [Wikipedia - Partition function (number theory)]
 
         >>> partition(5)
-        5
+        7  # Corrected expected output
         >>> partition(7)
         15
         >>> partition(100)
@@ -39,6 +38,9 @@ def partition(m: int) -> int:
             ...
         TypeError: 'float' object cannot be interpreted as an integer
     """
+    if m <= 0:
+        return 0  # Return 0 for non-positive integers
+
     memo: list[list[int]] = [[0 for _ in range(m)] for _ in range(m + 1)]
     for i in range(m + 1):
         memo[i][0] = 1
@@ -57,18 +59,14 @@ if __name__ == "__main__":
     if len(sys.argv) == 1:
         try:
             n = int(input("Enter a positive integer: ").strip())
-            if n <= 0:
-                print("Please enter a positive integer.")
-            else:
-                print("Number of ways to partition:", partition(n))
+            result = partition(n)
+            print("Number of ways to partition:", result)
         except ValueError:
             print("Please enter a valid positive integer.")
     else:
         try:
             n = int(sys.argv[1])
-            if n <= 0:
-                print("Please pass a positive integer.")
-            else:
-                print("Number of ways to partition:", partition(n))
+            result = partition(n)
+            print("Number of ways to partition:", result)
         except ValueError:
             print("Please pass a valid positive integer.")
