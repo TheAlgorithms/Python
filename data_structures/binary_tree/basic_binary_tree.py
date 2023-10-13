@@ -1,101 +1,113 @@
 from __future__ import annotations
 
+from typing import Optional
+
 
 class Node:
-    """
-    A Node has data variable and pointers to Nodes to its left and right.
-    """
-
     def __init__(self, data: int) -> None:
-        self.data = data
-        self.left: Node | None = None
-        self.right: Node | None = None
+        self.data: int = data
+        self.left: Optional[Node] = None  # noqa: UP007
+        self.right: Optional[Node] = None  # noqa: UP007
+
+    def display(self, node: Optional[Node] = None) -> None:  # noqa: UP007
+        if node is None:
+            node = self
+        if node:
+            self.display(node.left)
+            print(node.data)
+            self.display(node.right)
 
 
-def display(tree: Node | None) -> None:  # In Order traversal of the tree
-    """
-    >>> root = Node(1)
-    >>> root.left = Node(0)
-    >>> root.right = Node(2)
-    >>> display(root)
-    0
-    1
-    2
-    >>> display(root.right)
-    2
-    """
-    if tree:
-        display(tree.left)
-        print(tree.data)
-        display(tree.right)
+class BinaryTree:
+    def __init__(self, root: Optional[Node] = None) -> None:  # noqa: UP007
+        self.root: Optional[Node] = root  # noqa: UP007
 
+    def display(self, node: Optional[Node] = None) -> None:  # noqa: UP007
+        """
+        Prints the tree in order traversal
 
-def depth_of_tree(tree: Node | None) -> int:
-    """
-    Recursive function that returns the depth of a binary tree.
+        Examples:
+        >>> tree = BinaryTree(Node(1))
+        >>> tree.display()
+        1
 
-    >>> root = Node(0)
-    >>> depth_of_tree(root)
-    1
-    >>> root.left = Node(0)
-    >>> depth_of_tree(root)
-    2
-    >>> root.right = Node(0)
-    >>> depth_of_tree(root)
-    2
-    >>> root.left.right = Node(0)
-    >>> depth_of_tree(root)
-    3
-    >>> depth_of_tree(root.left)
-    2
-    """
-    return 1 + max(depth_of_tree(tree.left), depth_of_tree(tree.right)) if tree else 0
+        >>> tree.root.left = Node(2)
+        >>> tree.root.right = Node(3)
+        >>> tree.display()
+        2
+        1
+        3
+        """
+        if node is None:
+            node = self.root
+        if node:
+            self.display(node.left)
+            print(node.data)
+            self.display(node.right)
 
+    def depth(self) -> int:
+        """
+        Returns the depth of the tree
 
-def is_full_binary_tree(tree: Node) -> bool:
-    """
-    Returns True if this is a full binary tree
+        Examples:
 
-    >>> root = Node(0)
-    >>> is_full_binary_tree(root)
-    True
-    >>> root.left = Node(0)
-    >>> is_full_binary_tree(root)
-    False
-    >>> root.right = Node(0)
-    >>> is_full_binary_tree(root)
-    True
-    >>> root.left.left = Node(0)
-    >>> is_full_binary_tree(root)
-    False
-    >>> root.right.right = Node(0)
-    >>> is_full_binary_tree(root)
-    False
-    """
-    if not tree:
-        return True
-    if tree.left and tree.right:
-        return is_full_binary_tree(tree.left) and is_full_binary_tree(tree.right)
-    else:
-        return not tree.left and not tree.right
+        >>> tree = BinaryTree(Node(1))
+        >>> tree.depth()
+        1
 
+        >>> tree.root.left = Node(2)
+        >>> tree.depth()
+        2
 
-def main() -> None:  # Main function for testing.
-    tree = Node(1)
-    tree.left = Node(2)
-    tree.right = Node(3)
-    tree.left.left = Node(4)
-    tree.left.right = Node(5)
-    tree.left.right.left = Node(6)
-    tree.right.left = Node(7)
-    tree.right.left.left = Node(8)
-    tree.right.left.left.right = Node(9)
+        >>> tree.root.right = Node(3)
+        >>> tree.depth()
+        2
+        """
+        if self.root is None:
+            return 0
+        else:
+            return self._depth(self.root)
 
-    print(is_full_binary_tree(tree))
-    print(depth_of_tree(tree))
-    print("Tree is: ")
-    display(tree)
+    def _depth(self, node: Optional[Node]) -> int:  # noqa: UP007
+        if node is None:
+            return 0
+        else:
+            return 1 + max(self._depth(node.left), self._depth(node.right))
+
+    def is_full(self) -> bool:
+        """
+        Returns True if the tree is full
+
+        Examples:
+
+        >>> tree = BinaryTree(Node(1))
+        >>> tree.is_full()
+        True
+
+        >>> tree.root.left = Node(2)
+        >>> tree.is_full()
+        False
+
+        >>> tree.root.right = Node(3)
+        >>> tree.is_full()
+        True
+        """
+        if self.root is None:
+            return True
+        else:
+            return self._is_full(self.root)
+
+    def _is_full(self, node: Node) -> bool:
+        if node is None:
+            return True
+        if node.left is None and node.right is None:
+            return True
+        if node.left is not None and node.right is not None:
+            return self._is_full(node.left) and self._is_full(node.right)
+        return False
 
 
 if __name__ == "__main__":
-    main()
+    import doctest
+
+    doctest.testmod()
