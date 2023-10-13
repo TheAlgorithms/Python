@@ -6,7 +6,6 @@ We have to find all combinations of unique squares adding up to 13.
 The only solution is 2^2+3^2. Constraints: 1<=X<=1000, 2<=N<=10.
 """
 
-from math import pow
 
 
 def backtrack(
@@ -37,7 +36,7 @@ def backtrack(
         solutions_count += 1
         return current_sum, solutions_count
 
-    i_to_n = int(pow(current_number, power))
+    i_to_n = int(current_number**power)
     if current_sum + i_to_n <= needed_sum:
         # If the sum of the powers is less than needed_sum, then continue adding powers.
         current_sum += i_to_n
@@ -89,6 +88,5 @@ def solve(needed_sum: int, power: int) -> int:
 
 if __name__ == "__main__":
     import doctest
-
-    # print(backtrack(80, 1, 1, 0, 0))
+    
     doctest.testmod()
