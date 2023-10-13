@@ -24,7 +24,7 @@ def jacobi_symbol(random_a: int, number: int) -> int:
         number (int): The number that is tested for primality
 
     Returns:
-        jocobi_symbol (int): The jacobi symbol
+        jacobi_symbol (int): The Jacobi symbol
 
     >>> jacobi_symbol(2, 13)
     -1
@@ -39,12 +39,12 @@ def jacobi_symbol(random_a: int, number: int) -> int:
     if random_a == 1:
         return 1
 
-    random_a = random_a % number
+    random_a %= number
     t = 1
 
     while random_a != 0:
         while random_a % 2 == 0:
-            random_a = random_a // 2
+            random_a //= 2
             r = number % 8
             if r in (3, 5):
                 t = -t
@@ -54,27 +54,25 @@ def jacobi_symbol(random_a: int, number: int) -> int:
         if random_a % 4 == number % 4 == 3:
             t = -t
 
-        random_a = random_a % number
+        random_a %= number
 
-    if number == 1:
-        return t
-    else:
-        return 0
+    return t if number == 1 else 0
 
 
-def solovay_strassen(number: int, accuracy: int) -> bool:
+def solovay_strassen(number: int, iterations: int) -> bool:
     """
     Check whether the input number is prime or not using
     the Solovay-Strassen Primality test
 
     Parameters:
         number (int): The number that is tested for primality
-        accuracy (int): The accuracy for the test
+        iterations (int): The iterations/accuracy for the test
 
     Returns:
         result (bool): True if number is probably prime and false
         if composite
 
+    >>> random.seed(10)
     >>> solovay_strassen(13, 5)
     True
     >>> solovay_strassen(9, 10)
@@ -88,7 +86,7 @@ def solovay_strassen(number: int, accuracy: int) -> bool:
     if number <= 3:
         return True
 
-    for _ in range(accuracy):
+    for _ in range(iterations):
         a = random.randint(2, number - 2)
         x = jacobi_symbol(a, number)
         y = pow(a, (number - 1) // 2, number)
