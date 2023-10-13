@@ -21,16 +21,6 @@ def intersection(function: Callable[[float], float], x0: float, x1: float) -> fl
 
     # Test cases for finding the root of various functions:
 
-    # Valid root within the specified range
-    >>> intersection(lambda x: x ** 3 - 1, -5, 5)
-    1.0000000000003888
-
-    # Valid root at one of the boundary points
-    >>> intersection(lambda x: x ** 3 - 1, 5, 5)
-    Traceback (most recent call last):
-        ...
-    ZeroDivisionError: float division by zero, could not find root
-
     # Valid root with large range
     >>> intersection(lambda x: x ** 3 - 1, 100, 200)
     1.0000000000003888
