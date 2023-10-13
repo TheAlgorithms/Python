@@ -1,5 +1,6 @@
 from collections import deque
 
+
 def predict_party_victory(senate: str) -> str:
     """
     Predict the winning party in the Senate based on the order of actions.
@@ -45,5 +46,5 @@ def predict_party_victory(senate: str) -> str:
 
 
 if __name__ == "__main__":
-        import doctest
+    import doctest
     doctest.testmod()
