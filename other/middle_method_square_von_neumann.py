@@ -1,4 +1,4 @@
-'''
+"""
 
 The "Middle Square Method" is a technique for generating
 pseudorandom numbers. You start with a 4-digit number,
@@ -18,18 +18,20 @@ The example module supplies one function, MiddleSquareMethod(seed, maxSample).ma
 
 >>> MiddleSquareMethod(seed=333, maxSample=10).makeRandom()
 'Invalid value. The seed that have 4 digits'
-'''
+"""
+
 
 class MiddleSquareMethod:
-    def __init__(self, seed, maxSample = 10):
+    def __init__(self, seed, maxSample=10):
         self.seed = seed
         self.maxSample = maxSample
+
     def makeRandom(self):
         seed = self.seed
         maxSample = self.maxSample
         # receive only four digits numbers
         if len(str(seed)) != 4:
-            return 'Invalid value. The seed that have 4 digits'
+            return "Invalid value. The seed that have 4 digits"
 
         # instancing the list that will receive the results
         randValues = []
@@ -37,29 +39,28 @@ class MiddleSquareMethod:
         vl = seed
 
         # making the calcs and append the pseudorandom value
-        flag= True
+        flag = True
         while flag:
-
             if len(randValues) >= maxSample:
-                break;
-            value = vl/10000
+                break
+            value = vl / 10000
 
             if value in randValues:
                 flag = False
                 break
 
-            randValues.append(value);
+            randValues.append(value)
 
-            vl = vl ** 2
+            vl = vl**2
             flag2 = True
             c = 0
 
             # making the capture of middle four digits
             while flag2:
-                if len(str(vl)[c:len(str(vl))]) != 4:
-                    c+=1
+                if len(str(vl)[c : len(str(vl))]) != 4:
+                    c += 1
                 else:
-                    vl = int(str(vl)[c:len(str(vl))])
+                    vl = int(str(vl)[c : len(str(vl))])
                     flag2 = False
 
         #   print('tamanho ', len(randValues))
@@ -68,5 +69,6 @@ class MiddleSquareMethod:
 
 if __name__ == "__main__":
     import doctest
+
     # print(MiddleSquareMethod(seed=3333, maxSample=10).makeRandom())
     doctest.testmod()
