@@ -1,7 +1,8 @@
-def pell_number_iterative(n: int) -> int:
+def pell_number_iterative(subscript: int) -> int:
     """
-    This function returns the nth Pell number iteratively, where n is a
-    non-negative integer. Pell numbers are defined by the recurrence relation:
+    This function returns the `subscript`-th Pell number iteratively, where
+    `subscript` is a non-negative integer. Pell numbers are defined by the
+    recurrence relation:
 
     P_0 = 0, P_1 = 1, P_n = 2 * P_(n-1) + P_(n-2)
 
@@ -23,19 +24,19 @@ def pell_number_iterative(n: int) -> int:
         ...
     ValueError: The input number must be non-negative.
     """
-    if not isinstance(n, int):
+    if not isinstance(subscript, int):
         raise ValueError("The input must be an integer.")
 
-    if n < 0:
+    if subscript < 0:
         raise ValueError("The input number must be non-negative.")
 
-    if n in (0, 1):
-        return n
+    if subscript in (0, 1):
+        return subscript
 
     prev_prev_num = 0
     prev_num = 1
 
-    for _ in range(2, n + 1):
+    for _ in range(2, subscript + 1):
         temp = 2 * prev_num + prev_prev_num
         prev_prev_num = prev_num
         prev_num = temp
@@ -43,11 +44,11 @@ def pell_number_iterative(n: int) -> int:
     return prev_num
 
 
-def pell_number_recursive(n: int) -> int:
+def pell_number_recursive(subscript: int) -> int:
     """
-    This function calculates the nth Pell number recursively. Due to its
-    recursive nature, this function grows exponentially with n. For large
-    values of n, use pell_number_iterative instead.
+    This function calculates the `subscript`-th Pell number recursively. Due to
+    its recursive nature, this function grows exponentially with `subscript`.
+    For large values of `subscript`, use pell_number_iterative instead.
 
     >>> pell_number_recursive(0)
     0
@@ -64,13 +65,15 @@ def pell_number_recursive(n: int) -> int:
         ...
     ValueError: The input number must be non-negative.
     """
-    if not isinstance(n, int):
+    if not isinstance(subscript, int):
         raise ValueError("The input must be an integer.")
 
-    if n < 0:
+    if subscript < 0:
         raise ValueError("The input number must be non-negative.")
 
-    if n in (0, 1):
-        return n
+    if subscript in (0, 1):
+        return subscript
 
-    return 2 * pell_number_recursive(n - 1) + pell_number_recursive(n - 2)
+    return 2 * pell_number_recursive(subscript - 1) + pell_number_recursive(
+        subscript - 2
+    )
