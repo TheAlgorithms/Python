@@ -43,7 +43,6 @@ def damerau_levenshtein_distance(first_string: str, second_string: str) -> int:
         dp_matrix[0][j] = j
 
     # Fill the matrix
-    # for i in range(1, length_of_first_string + 1):
     for i, first_char in enumerate(first_string, start=1):
         for j, second_char in enumerate(second_string, start=1):
             cost = int(first_char != second_char)
