@@ -5,6 +5,7 @@
 * [ ] Add an algorithm?
 * [ ] Fix a bug or typo in an existing algorithm?
 * [ ] Documentation change?
+* [ ] Add test scenarios?
 
 ### Checklist:
 * [ ] I have read [CONTRIBUTING.md](https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md).
