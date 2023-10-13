@@ -39,4 +39,5 @@ def gray_to_binary(gray: str) -> str:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
