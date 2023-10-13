@@ -8,12 +8,13 @@
 
 # // Link of the paper--> http://www.researchmathsci.org/JMIart/JMI-v25-8.pdf
 
+
 class LCSubseqSubstr:
     @staticmethod
     def lcss(x, y, m, n, w):
-        maxlength = 0    # keeps the max length of LCSS
+        maxlength = 0  # keeps the max length of LCSS
         lastindexony = n  # keeps the last index of LCSS in Y
-        w= [[0] * (n + 1) for _ in range(m + 1)]
+        w = [[0] * (n + 1) for _ in range(m + 1)]
 
         for i in range(1, m + 1):
             for j in range(1, n + 1):
@@ -25,7 +26,8 @@ class LCSubseqSubstr:
                     maxlength = w[i][j]
                     lastindexony = j
 
-        return y[lastindexony - maxlength:lastindexony]
+        return y[lastindexony - maxlength : lastindexony]
+
 
 if __name__ == "__main__":
     x = input("Input the first string: ")
