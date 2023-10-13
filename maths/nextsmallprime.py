@@ -1,4 +1,4 @@
-"""This code finds the 
+"""This code finds the
 greatest prime number that is
 smaller than or equal to input"""
 """
