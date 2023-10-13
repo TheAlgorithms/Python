@@ -23,6 +23,7 @@ def capitalize(sentence: str) -> str:
 
 if __name__ == "__main__":
     from doctest import testmod
-    s1=input("Enter a string:")
+
+    s1 = input("Enter a string:")
     print(capitalize(s1))
     testmod()
