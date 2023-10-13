@@ -7,7 +7,7 @@ def predict_party_victory(senate: str) -> str:
 
     Args:
         senate (str): A string representing the order of senators in the Senate.
-            'R' represents a Republican senator, and 'D' represents a Democratic senator.
+        'R' represents a Republican senator, and 'D' represents a Democratic senator.
 
     Returns:
         str: The name of the winning party, either "Radiant" or "Dire."
@@ -25,7 +25,8 @@ def predict_party_victory(senate: str) -> str:
         >>> predict_party_victory("RDDRDD")
         'Dire'
     """
-    democratic_senators, republican_senators = deque(), deque()
+    democratic_senators: deque[int] = deque()
+    republican_senators: deque[int] = deque()
 
     for index, senator in enumerate(senate):
         if senator == "R":
