@@ -11,8 +11,7 @@ https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
 def damerau_levenshtein_distance(first_string: str, second_string: str) -> int:
     """
     Implements the Damerau-Levenshtein distance algorithm that measures
-    the edit distance between two string. This function calculates the true
-    Damerau-Levenshtein distance with adjacent transpositions.
+    the edit distance between two string.
 
     Parameters:
         first_string (string): The first string
@@ -53,14 +52,13 @@ def damerau_levenshtein_distance(first_string: str, second_string: str) -> int:
                 dp_matrix[i - 1][j - 1] + cost,  # Substitution
             )
 
-            # Calculate Transposition
             if (
                 i > 1
                 and j > 1
                 and first_string[i - 1] == second_string[j - 2]
                 and first_string[i - 2] == second_string[j - 1]
             ):
-                dp_matrix[i][j] = min(dp_matrix[i][j], dp_matrix[i - 2][j - 2] + cost)
+                dp_matrix[i][j] = min(dp_matrix[i][j], dp_matrix[i - 2][j - 2] + cost) # Transposition
 
     return dp_matrix[len(first_string)][len(second_string)]
 
