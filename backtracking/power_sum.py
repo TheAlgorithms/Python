@@ -7,7 +7,6 @@ The only solution is 2^2+3^2. Constraints: 1<=X<=1000, 2<=N<=10.
 """
 
 
-
 def backtrack(
     needed_sum: int,
     power: int,
@@ -88,5 +87,5 @@ def solve(needed_sum: int, power: int) -> int:
 
 if __name__ == "__main__":
     import doctest
-    
+
     doctest.testmod()
