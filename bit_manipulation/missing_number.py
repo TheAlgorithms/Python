@@ -19,3 +19,5 @@ def find_missing_number(nums: list[int]) -> int:
         missing_number ^= i ^ nums[i]
 
     return missing_number
+num=eval(input("Enter a list:"))
+print(find_missing_number(num))
