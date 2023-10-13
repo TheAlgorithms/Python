@@ -14,6 +14,7 @@ Test cases
 
 from typing import List
 
+
 class MiddleSquareMethod:
     def __init__(self, seed: int, max_sample: int = 10) -> None:
         self.seed = seed
