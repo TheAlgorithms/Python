@@ -26,6 +26,6 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-arr=eval(input("Enter list"))
-req_sum=int(input("Enter number"))
-print(pairs_with_sum(arr,req_sum))
+arr = eval(input("Enter list"))
+req_sum = int(input("Enter number"))
+print(pairs_with_sum(arr, req_sum))
