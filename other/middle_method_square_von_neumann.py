@@ -7,9 +7,17 @@ it with zeros on the left, select the 4 central digits
 and treat them as decimal places of a number between 0
 and 1. It is a simple approach, but it is important to
 note that it does not produce true randomness and may
-not be suitable for all applications.
+not be suitable for all applications.]
 
+This is the "Middle Square Method" module.
 
+The example module supplies one function, MiddleSquareMethod(seed, maxSample).makeRandom().  For example,
+
+>>> MiddleSquareMethod(seed=3333, maxSample=10).makeRandom()
+[0.3333, 0.8889, 0.4321, 0.1041, 0.3681, 0.9761, 0.7121, 0.8641, 0.6881, 0.8161]
+
+>>> MiddleSquareMethod(seed=333, maxSample=10).makeRandom()
+'Invalid value. The seed that have 4 digits'
 '''
 
 class MiddleSquareMethod:
@@ -21,7 +29,7 @@ class MiddleSquareMethod:
         maxSample = self.maxSample
         # receive only four digits numbers
         if len(str(seed)) != 4:
-            return 'Invalid value. The seed that have 4 algarismes'
+            return 'Invalid value. The seed that have 4 digits'
 
         # instancing the list that will receive the results
         randValues = []
@@ -59,5 +67,6 @@ class MiddleSquareMethod:
 
 
 if __name__ == "__main__":
-    mms = MiddleSquareMethod(seed=3333, maxSample=10)
-    print(mms.makeRandom())
+    import doctest
+    # print(MiddleSquareMethod(seed=3333, maxSample=10).makeRandom())
+    doctest.testmod()
