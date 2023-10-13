@@ -33,7 +33,7 @@ class MeanShiftSegmentation:
     def segment(self, image_path):
         image = cv2.imread(image_path)
         height, width, _ = image.shape
-        data = [(x, y, color) for (y, x), color in np.ndenumerate(image]
+        data = [(x, y, color) for (y, x), color in np.ndenumerate(image)]
         data = self.mean_shift(data)
 
         labels = np.zeros((height, width), dtype=int)
@@ -52,7 +52,7 @@ class MeanShiftSegmentation:
                         if j < 0 or j >= height or i < 0 or i >= width:
                             continue
                         if labels[j, i] != 0:
-                            if np.linalg.norm(data[y * width + x] - data[j * width + i]) < self.color_radius:
+                            if np.linalg.norm(data[y * width + x][:2] - data[j * width + i][:2]) < self.color_radius:
                                 labels[y, x] = labels[j, i]
                                 break
 
@@ -76,7 +76,7 @@ if __name__ == "__main__":
     # Create a color map for visualization
     colormap = np.random.randint(0, 255, size=(np.max(labels) + 1, 3))
     colored_labels = colormap[labels]
-
+    
     cv2.imshow('Mean-Shift Segmentation', colored_labels)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
