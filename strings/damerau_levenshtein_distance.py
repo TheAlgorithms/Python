@@ -11,14 +11,14 @@ https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
 def damerau_levenshtein_distance(first_string: str, second_string: str) -> int:
     """
     Implements the Damerau-Levenshtein distance algorithm that measures
-    the edit distance between two string.
+    the edit distance between two strings.
 
     Parameters:
-        first_string (string): The first string
-        second_string (string): The second string
+        first_string: The first string to compare
+        second_string: The second string to compare
 
     Returns:
-        distance (int): The edit distance between the first and second strings
+        distance: The edit distance between the first and second strings
 
     >>> damerau_levenshtein_distance("cat", "cut")
     1
@@ -32,18 +32,23 @@ def damerau_levenshtein_distance(first_string: str, second_string: str) -> int:
     3
     """
 
+    length_of_first_string = len(first_string)
+    length_of_second_string = len(second_string)
+
     # Create a dynamic programming matrix to store the distances
-    dp_matrix = [[0] * (len(second_string) + 1) for _ in range(len(first_string) + 1)]
+    dp_matrix = [
+        [0] * (length_of_second_string + 1) for _ in range(length_of_first_string + 1)
+    ]
 
     # Initialize the matrix
-    for i in range(len(first_string) + 1):
+    for i in range(length_of_first_string + 1):
         dp_matrix[i][0] = i
-    for j in range(len(second_string) + 1):
+    for j in range(length_of_second_string + 1):
         dp_matrix[0][j] = j
 
     # Fill the matrix
-    for i in range(1, len(first_string) + 1):
-        for j in range(1, len(second_string) + 1):
+    for i in range(1, length_of_first_string + 1):
+        for j in range(1, length_of_second_string + 1):
             cost = 0 if first_string[i - 1] == second_string[j - 1] else 1
 
             dp_matrix[i][j] = min(
@@ -62,7 +67,7 @@ def damerau_levenshtein_distance(first_string: str, second_string: str) -> int:
                     dp_matrix[i][j], dp_matrix[i - 2][j - 2] + cost
                 )  # Transposition
 
-    return dp_matrix[len(first_string)][len(second_string)]
+    return dp_matrix[length_of_first_string][length_of_second_string]
 
 
 if __name__ == "__main__":
