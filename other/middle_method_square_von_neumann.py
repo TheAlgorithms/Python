@@ -1,24 +1,16 @@
 """
+Test cases
 
-The "Middle Square Method" is a technique for generating
-pseudorandom numbers. You start with a 4-digit number,
-square it, make sure the result has 8 digits by padding
-it with zeros on the left, select the 4 central digits
-and treat them as decimal places of a number between 0
-and 1. It is a simple approach, but it is important to
-note that it does not produce true randomness and may
-not be suitable for all applications.]
-
-This is the "Middle Square Method" module.
-
-The example module supplies one function, MiddleSquareMethod(seed, max_sample).make_Random().  For example,
-
->>> MiddleSquareMethod(seed=3333, max_sample=10).make_Random()
+>>> MiddleSquareMethod(seed=3333, max_sample=10).make_random()
 [0.3333, 0.8889, 0.4321, 0.1041, 0.3681, 0.9761, 0.7121, 0.8641, 0.6881, 0.8161]
 
->>> MiddleSquareMethod(seed=333, max_sample=10).make_Random()
+>>> MiddleSquareMethod(seed=333, max_sample=10).make_random()
 'Invalid value. The seed that have 4 digits'
 """
+
+# The "Middle Square Method" is a technique for generating
+# pseudorandom numbers.
+# Link: https://en.wikipedia.org/wiki/Pseudorandom_number_generator
 
 
 class MiddleSquareMethod:
@@ -70,5 +62,5 @@ class MiddleSquareMethod:
 if __name__ == "__main__":
     import doctest
 
-    # print(MiddleSquareMethod(seed=3333, max_sample=10).make_Random())
+    # print(MiddleSquareMethod(seed=3333, max_sample=10).make_random())
     doctest.testmod()
