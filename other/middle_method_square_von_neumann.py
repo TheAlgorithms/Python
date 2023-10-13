@@ -27,7 +27,6 @@ class MiddleSquareMethod:
         self.max_sample = max_sample
 
     def make_Random(self) -> None:
-
         seed = self.seed
         max_sample = self.max_sample
         # receive only four digits numbers
@@ -70,5 +69,6 @@ class MiddleSquareMethod:
 
 if __name__ == "__main__":
     import doctest
+
     # print(MiddleSquareMethod(seed=3333, max_sample=10).make_Random())
     doctest.testmod()
