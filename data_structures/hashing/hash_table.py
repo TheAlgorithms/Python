@@ -5,6 +5,20 @@ from .number_theory.prime_numbers import next_prime
 class HashTable:
     """
     Basic Hash Table example with open addressing and linear probing
+    >>> ht = HashTable(10)
+    >>> ht.insert_data('foo')
+    >>> ht.insert_data('bar')
+    >>> len(ht.keys())
+    2
+
+    >>> 'foo' in ht.keys().values()
+    True
+    >>> ht.insert_data('foo')  # Duplicates allowed
+    >>> ht.values.count('foo')
+    1
+
+    >>> ht.balanced_factor()
+    0.2
     """
 
     def __init__(
@@ -29,7 +43,7 @@ class HashTable:
         )
 
     def hash_function(self, key):
-        return key % self.size_table
+        return hash(key) % self.size_table
 
     def _step_by_step(self, step_ord):
         print(f"step {step_ord}")
