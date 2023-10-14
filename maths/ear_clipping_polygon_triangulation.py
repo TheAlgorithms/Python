@@ -5,7 +5,7 @@ Wikipedia : https://en.wikipedia.org/wiki/Polygon_triangulation
 """
 
 
-def is_ear(polygon: list[tuple[float, float]], i: int, direction: str) -> bool:
+def is_ear(polygon: list[tuple[float, float]], point_idx: int, direction: str) -> bool:
     """
     This function determines whether three points form an ear.
 
@@ -21,12 +21,12 @@ def is_ear(polygon: list[tuple[float, float]], i: int, direction: str) -> bool:
     True
     """
     # Calculate indices for the previous and next vertices in the polygon.
-    prev_idx = (i - 1) % len(polygon)
-    next_idx = (i + 1) % len(polygon)
+    prev_idx = (point_idx - 1) % len(polygon)
+    next_idx = (point_idx + 1) % len(polygon)
 
     # Retrieve the coordinates of the previous, current, and next vertices.
     prev_point = polygon[prev_idx]
-    point = polygon[i]
+    point = polygon[point_idx]
     next_point = polygon[next_idx]
 
     # Check if the vertex is convex based on the polygon's orientation.
@@ -34,7 +34,7 @@ def is_ear(polygon: list[tuple[float, float]], i: int, direction: str) -> bool:
         # Check if there are any points inside the triangle formed by the current vertex
         # and its neighbors.
         for j in range(len(polygon)):
-            if j not in (prev_idx, i, next_idx) and is_point_inside_triangle(
+            if j not in (prev_idx, point_idx, next_idx) and is_point_inside_triangle(
                 prev_point, point, next_point, polygon[j]
             ):
                 return False  # The 'ear' is not valid because there's a point
@@ -45,10 +45,10 @@ def is_ear(polygon: list[tuple[float, float]], i: int, direction: str) -> bool:
 
 
 def is_convex(
-    p: tuple[float, float],
+    point: tuple[float, float],
     prev_p: tuple[float, float],
     next_p: tuple[float, float],
-    direction,
+    direction: str,
 ) -> bool:
     """
     Determine with the ccw, if 3 points are convex.
@@ -63,13 +63,13 @@ def is_convex(
     """
     # Calculate the cross product based on the polygon's orientation.
     if direction == "counter-clockwise":
-        cross_product = (next_p[0] - p[0]) * (prev_p[1] - p[1]) - (prev_p[0] - p[0]) * (
-            next_p[1] - p[1]
-        )
+        cross_product = (next_p[0] - point[0]) * (prev_p[1] - point[1]) - (
+            prev_p[0] - point[0]
+        ) * (next_p[1] - point[1])
     else:
-        cross_product = (prev_p[0] - p[0]) * (next_p[1] - p[1]) - (next_p[0] - p[0]) * (
-            prev_p[1] - p[1]
-        )
+        cross_product = (prev_p[0] - point[0]) * (next_p[1] - point[1]) - (
+            next_p[0] - point[0]
+        ) * (prev_p[1] - point[1])
     # Determine if the angle is convex (cross product is non-negative).
     return cross_product >= 0
 
@@ -103,7 +103,7 @@ def direction(polygon: list[tuple[float, float]]) -> str:
     'counter-clockwise'
     """
     # Find the point with the lowest y-coordinate (and leftmost if tied).
-    point_0 = min(polygon, key=lambda p: (p[1], p[0]))
+    point_0 = min(polygon, key=lambda point: (point[1], point[0]))
     idx_p0 = polygon.index(point_0)
 
     # Calculate the indices of the previous and next points.
