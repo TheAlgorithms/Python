@@ -128,6 +128,10 @@ class BankDetails:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    
     ifsc_code = "<YOUR_IFSC_CODE>"
 
     # Check the length of the provided IFSC code.
