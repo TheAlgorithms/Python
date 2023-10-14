@@ -1,5 +1,4 @@
 import numpy as np
-import doctest
 
 """
 Mean Absolute Percentage Error (MAPE):
@@ -42,10 +41,8 @@ def mean_absolute_percentage_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
     """
     try:
         if len(y_true) != len(y_pred):
-            raise ValueError(
-                f"The length of the target array ({len(y_true)}) and"
-                f" the predicted array ({len(y_pred)}) are not the same."
-            )
+            error_message = "the lenght of the two arrays should be same."
+            raise ValueError(error_message)
 
         # Calculate the absolute percentage difference between y_true and y_pred
         # addded 1e-9 to avoid divison by 0 (smoothing).
@@ -61,4 +58,5 @@ def mean_absolute_percentage_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
 
 
 if __name__ == "__main__":
+    import doctest
     doctest.testmod()
