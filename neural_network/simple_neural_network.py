@@ -24,6 +24,9 @@ def sigmoid_function(value: float, deriv: bool = False) -> float:
 # Initial Value
 INITIAL_VALUE = 0.02
 
+def forward_propagation(expected, number_propagations):
+    # Random weight initialization
+    weight = 2 * (random.random() - 0.5)
 
 def forward_propagation(expected: int, number_propagations: int) -> float:
     """Return the value found after the forward propagation training.
@@ -47,8 +50,9 @@ def forward_propagation(expected: int, number_propagations: int) -> float:
         layer_1_error = (expected / 100) - layer_1
         # Error delta
         layer_1_delta = layer_1_error * sigmoid_function(layer_1, True)
-        # Update weight
-        weight += INITIAL_VALUE * layer_1_delta
+        # Update weight using elementwise_multiply function
+        weight_list = elementwise_multiply(INITIAL_VALUE, layer_1_delta)
+        weight += sum(weight_list)
 
     return layer_1 * 100
 
