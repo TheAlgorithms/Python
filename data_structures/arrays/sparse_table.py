@@ -35,7 +35,7 @@ def build_sparse_table(arr: list[int], arr_length: int) -> list[int]:
     k = int(math.log2(arr_length)) + 1
     lookup = [[0 for i in range(arr_length)] for j in range(k)]
 
-    for i in range(0, arr_length):
+    for i in range(arr_length):
         lookup[0][i] = arr[i]
 
     j = 1
