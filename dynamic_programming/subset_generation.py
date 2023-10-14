@@ -89,9 +89,6 @@ def print_combination(arr, n, r):
 if __name__ == "__main__":
     # Driver code to check the function above
     # arr = [10,20,30,40,50]
-    import doctest
-
-    doctest.testmod()
     arr = [10, 20, 30, 40, 50]
     print_combination(arr, len(arr), 3)
     # This code is contributed by Ambuj sahu
