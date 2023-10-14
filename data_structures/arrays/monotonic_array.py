@@ -29,12 +29,17 @@ class Solution:
 
         return is_increasing or is_decreasing  # Return true if either condition is met
 
+
 # Test cases
-if __name__ == '__main__':
+if __name__ == "__main__":
     solution = Solution()
     assert solution.isMonotonic([1, 2, 2, 3]) is True  # Increasing
     assert solution.isMonotonic([3, 2, 1]) is True  # Decreasing
     assert solution.isMonotonic([1, 3, 2]) is False  # Not monotonic
-    assert solution.isMonotonic([1, 1, 1, 1]) is True  # All equal values are considered monotonic
-    assert solution.isMonotonic([1]) is True  # Single-element array is considered monotonic
+    assert (
+        solution.isMonotonic([1, 1, 1, 1]) is True
+    )  # All equal values are considered monotonic
+    assert (
+        solution.isMonotonic([1]) is True
+    )  # Single-element array is considered monotonic
     assert solution.isMonotonic([]) is True  # Empty array is considered monotonic
