@@ -30,6 +30,7 @@ def logical_left_rotation(number: int, rotation_amount: int) -> str:
     return "0b" + rotated_number.zfill(length)
 
 
+
 def logical_right_rotation(number: int, rotation_amount: int) -> str:
     """
     Take in 2 positive integers.
@@ -61,3 +62,8 @@ def logical_right_rotation(number: int, rotation_amount: int) -> str:
     rotated_number = binary_number[-rotation_amount:] + binary_number[:-rotation_amount]
 
     return "0b" + rotated_number.zfill(length)
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
