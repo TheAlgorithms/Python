@@ -1,4 +1,4 @@
-from typing import List, Tuple, Union
+from typing import list, tuple, Union
 
 
 def combination_util(
