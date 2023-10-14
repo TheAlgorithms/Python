@@ -13,9 +13,8 @@ Date : 14th October 2023
 """
 
 
-
 class TreeNode:
-    def __init__(self, key: int):
+    def __init__(self, key: int) -> None:
         """
         Initialize a TreeNode with the given key.
 
