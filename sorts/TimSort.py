@@ -8,12 +8,14 @@ def calcMinRun(n):
         n >>= 1
     return n + r
 
+
 def insertionSort(arr, left, right):
     for i in range(left + 1, right + 1):
         j = i
         while j > left and arr[j] < arr[j - 1]:
             arr[j], arr[j - 1] = arr[j - 1], arr[j]
             j -= 1
+
 
 def merge(arr, l, m, r):
     len1, len2 = m - l + 1, r - m
@@ -46,6 +48,7 @@ def merge(arr, l, m, r):
         k += 1
         j += 1
 
+
 def timSort(arr):
     n = len(arr)
     minRun = calcMinRun(n)
@@ -57,7 +60,6 @@ def timSort(arr):
     size = minRun
     while size < n:
         for left in range(0, n, 2 * size):
-
             mid = min(n - 1, left + size - 1)
             right = min((left + 2 * size - 1), (n - 1))
 
@@ -66,10 +68,9 @@ def timSort(arr):
 
         size = 2 * size
 
-if __name__ == "__main__":
 
-    arr = [-2, 7, 15, -14, 0, 15, 0,
-           7, -7, -4, -13, 5, 8, -14, 12]
+if __name__ == "__main__":
+    arr = [-2, 7, 15, -14, 0, 15, 0, 7, -7, -4, -13, 5, 8, -14, 12]
 
     print("Given Array is")
     print(arr)
@@ -79,7 +80,7 @@ if __name__ == "__main__":
     print("After Sorting Array is")
     print(arr)
 
-#Given Array is
-#-2  7  15  -14  0  15  0  7  -7  -4  -13  5  8  -14  12  
-#After Sorting Array is
-#-14  -14  -13  -7  -4  -2  0  0  5  7  7  8  12  15  15  
+# Given Array is
+# -2  7  15  -14  0  15  0  7  -7  -4  -13  5  8  -14  12
+# After Sorting Array is
+# -14  -14  -13  -7  -4  -2  0  0  5  7  7  8  12  15  15
