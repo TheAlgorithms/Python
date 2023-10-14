@@ -12,14 +12,22 @@ def find_missing_number(nums: list[int]) -> int:
         >>> find_missing_number([0, 1, 3, 4])
         2
     """
+
     n = len(nums)
-    missing_number = n
+    #missing_number = n        
+
+    #Debug
+    #Finding the starting number entered
+    start = min(nums)
+    missing_number = start + n 
 
     for i in range(n):
-        missing_number ^= i ^ nums[i]
+        #missing_number ^= i ^ nums[i]
+        #Debug
+        missing_number ^= (start+i) ^ nums[i]
 
     return missing_number
 
-
-num = eval(input("Enter a list:"))
+#Calling the function
+num=eval(input("Enter a list:"))
 print(find_missing_number(num))
