@@ -25,10 +25,10 @@ def logical_left_rotation(number: int, rotation_amount: int) -> str:
 
     binary_number = bin(number)[2:]
     rotated_number = (
-        binary_number[-(rotation_amount % len(binary_number)):]
-        + binary_number[:-(rotation_amount % len(binary_number))]
+        binary_number[-(rotation_amount % len(binary_number)) :]
+        + binary_number[: -(rotation_amount % len(binary_number))]
     )
-    return '0b' + rotated_number.zfill(len(binary_number))
+    return "0b" + rotated_number.zfill(len(binary_number))
 
 
 def logical_right_rotation(number: int, rotation_amount: int) -> str:
@@ -57,5 +57,8 @@ def logical_right_rotation(number: int, rotation_amount: int) -> str:
         return bin(number)[2:]
 
     binary_number = bin(number)[2:]
-    rotated_number = binary_number[-rotation_amount % len(binary_number):] + binary_number[:-rotation_amount % len(binary_number)]
-    return '0b' + rotated_number.zfill(len(binary_number))
+    rotated_number = (
+        binary_number[-rotation_amount % len(binary_number) :]
+        + binary_number[: -rotation_amount % len(binary_number)]
+    )
+    return "0b" + rotated_number.zfill(len(binary_number))
