@@ -25,14 +25,14 @@ and frequency emitted from the source remain constant.
 All these results are summarized by the Doppler formula:
 
     f = (f0 * (v + v0)) / (v - vs)
-    
+
 where:
     f: frequency of the wave
     f0: frequency of the wave when the source is stationary
     v: velocity of the wave in the medium
     v0: velocity of the observer, positive if the observer is moving towards the source
     vs: velocity of the source, positive if the source is moving towards the observer
-    
+
 Doppler's effect has many applications in physics and engineering,
 such as radar, astronomy, medical imaging and seismology.
 
@@ -43,6 +43,7 @@ Now, we will implement a function that calculates the frequency of a wave as a f
 of the frequency of the wave when the source is stationary, the velocity of the wave
 in the medium, the velocity of the observer and the velocity of the source.
 """
+
 
 def doppler_effect(f0: float, v: float, v0: float, vs: float) -> float:
     """
@@ -92,6 +93,7 @@ def doppler_effect(f0: float, v: float, v0: float, vs: float) -> float:
         print("Negative frequency implies vs > v or v0 > v (in opposite direction)")
         return None
     return f
+
 
 if __name__ == "__main__":
     import doctest
