@@ -3,9 +3,15 @@
 import requests
 
 
+# Slack messaging function using a webhook URL
 def send_slack_message(message_body: str, slack_url: str) -> None:
+    # Define headers for the HTTP POST request.
     headers = {"Content-Type": "application/json"}
+
+    # Send the message to the Slack channel using the given webhook URL.
     response = requests.post(slack_url, json={"text": message_body}, headers=headers)
+
+    #  Check the response status code for any errors.
     if response.status_code != 200:
         msg = (
             "Request to slack returned an error "
