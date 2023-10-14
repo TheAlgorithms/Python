@@ -22,10 +22,10 @@ import numpy as np
 kf = KalmanFilter(dim_x=1, dim_z=1)
 
 # Define the state transition matrix
-kf.F = np.array([[1.]])
+kf.F = np.array([[1.0]])
 
 # Define the measurement function
-kf.H = np.array([[1.]])
+kf.H = np.array([[1.0]])
 
 # Define the measurement noise covariance
 kf.R = 1
@@ -34,10 +34,10 @@ kf.R = 1
 kf.Q = 0.001
 
 # Initialize the state estimate
-kf.x = np.array([0.])
+kf.x = np.array([0.0])
 
 # Initialize the state covariance
-kf.P = np.array([[1.]])
+kf.P = np.array([[1.0]])
 
 # Simulate measurements
 measurements = [1, 2, 3, 4, 5]
