@@ -25,6 +25,12 @@ def find_secret_passcode(logins: List[str]) -> int:
     :type logins: List[str]
     :return: The shortest possible secret passcode.
     :rtype: int
+
+    >>> find_secret_passcode(["135", "259", "235", "189", "690", "168", "120", "136", "289", "589", "160", "165", "580", "369", "250", "280"])
+    12356890
+
+    >>> find_secret_passcode(["426", "281", "061", "819", "268", "406", "420", "428", "209", "689", "019", "421", "469", "261", "681", "201"])
+    4206819
     """
     s = Counter()
     c = Counter()
@@ -49,6 +55,9 @@ def solution(input_file: str = 'keylog.txt') -> int:
     :type input_file: str
     :return: The shortest possible secret passcode.
     :rtype: int
+
+    >>> solution("keylog_test.txt")
+    6312980
     """
     with open(input_file, 'r') as file:
         logins = [line.strip() for line in file.readlines()]
