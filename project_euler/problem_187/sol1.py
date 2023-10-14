@@ -22,21 +22,24 @@ def calculate_prime_numbers(max_number: int) -> list[int]:
     [2, 3, 5, 7]
     """
 
+    # List containing a bool value for every number below max_number/2
     is_prime = [True] * max_number
+
     for i in range(2, isqrt(max_number - 1) + 1):
         if is_prime[i]:
+            # Mark all multiple of i as not prime
             for j in range(i**2, max_number, i):
                 is_prime[j] = False
 
     return [i for i in range(2, max_number) if is_prime[i]]
 
 
-def solution(max_number: int = 10**8) -> int:
+def slow_solution(max_number: int = 10**8) -> int:
     """
     Returns the number of composite integers below max_number have precisely two,
     not necessarily distinct, prime factors
 
-    >>> solution(30)
+    >>> slow_solution(30)
     10
     """
 
@@ -53,6 +56,30 @@ def solution(max_number: int = 10**8) -> int:
 
     return semiprimes_count
 
+def solution(max_number: int = 10**8) -> int:
+    """
+    Returns the number of composite integers below max_number have precisely two,
+    not necessarily distinct, prime factors
+
+    >>> solution(30)
+    10
+    """
+
+    prime_numbers = calculate_prime_numbers(max_number // 2)
+
+    semiprimes_count = 0
+    left = 0
+    right = len(prime_numbers) - 1
+    for left in range(len(prime_numbers)):
+        if left > right:
+            break
+        for right in range(right, left - 1, -1):
+            if prime_numbers[left] * prime_numbers[right] < max_number:
+                break
+        semiprimes_count += right - left + 1
+
+    return semiprimes_count
+
 
 if __name__ == "__main__":
-    print(f"{solution() = }")
+    print(f"Solution: {solution()}")
