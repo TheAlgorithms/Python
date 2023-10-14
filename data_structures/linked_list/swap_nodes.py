@@ -47,10 +47,32 @@ class LinkedList:
         Args:
             node_data_1: Data value of the first node to be swapped.
             node_data_2: Data value of the second node to be swapped.
-
-
         Note:
             If either of the specified data values isn't found then, no swapping occurs.
+        Example 1: Swapping two nodes in the middle of the list
+        >>> ll = LinkedList()
+        >>> ll.push(1)
+        >>> ll.push(2)
+        >>> ll.push(3)
+        >>> ll.swap_nodes(2, 3)
+        >>> ll.print_list()
+        2 3 1
+        Example 2: Swapping nodes at the beginning and end of the list
+        >>> ll = LinkedList()
+        >>> ll.push(1)
+        >>> ll.push(2)
+        >>> ll.push(3)
+        >>> ll.swap_nodes(1, 3)
+        >>> ll.print_list()
+        3 2 1
+        Example 3: No swapping occurs if one of the data values is not found
+        >>> ll = LinkedList()
+        >>> ll.push(1)
+        >>> ll.push(2)
+        >>> ll.push(3)
+        >>> ll.swap_nodes(1, 2)
+        >>> ll.print_list()
+        2 1 3
         """
         if node_data_1 == node_data_2:
             return
