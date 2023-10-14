@@ -31,8 +31,10 @@ def find_smallest_and_largest_words(input_string: str) -> tuple:
 
     return smallest_word, largest_word
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     input_string = input("Enter a sentence:\n").strip()
