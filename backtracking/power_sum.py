@@ -35,7 +35,7 @@ def backtrack(
         solutions_count += 1
         return current_sum, solutions_count
 
-    i_to_n = current_number ** power
+    i_to_n = current_number**power
     if current_sum + i_to_n <= needed_sum:
         # If the sum of the powers is less than needed_sum, then continue adding powers.
         current_sum += i_to_n
