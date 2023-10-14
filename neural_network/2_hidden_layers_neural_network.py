@@ -196,7 +196,7 @@ class TwoHiddenLayerNeuralNetwork:
         >>> output_val = numpy.array(([0], [1], [1]), dtype=float)
         >>> nn = TwoHiddenLayerNeuralNetwork(input_val, output_val)
         >>> nn.train(output_val, 1000, False)
-        >>> nn.predict([0,1,0]) in (0, 1)
+        >>> nn.predict([0, 1, 0]) in (0, 1)
         True
         """
 
@@ -221,7 +221,7 @@ class TwoHiddenLayerNeuralNetwork:
             )
         )
 
-        return int(self.layer_between_second_hidden_layer_and_output > 0.6)
+        return int((self.layer_between_second_hidden_layer_and_output > 0.6)[0])
 
 
 def sigmoid(value: numpy.ndarray) -> numpy.ndarray:
