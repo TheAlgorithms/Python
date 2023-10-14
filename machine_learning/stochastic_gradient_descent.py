@@ -14,19 +14,19 @@ parameter_vector = [2, 4, 1, 5]
 m = len(train_data)
 LEARNING_RATE = 0.009
 
+
 # Calculate the error for a given example
 def error(example_no: int, data_set: str = "train") -> float:
     """
-    Calculate the error (the difference between the predicted and actual output) 
+    Calculate the error (the difference between the predicted and actual output)
     for a given example.
 
     :param example_no: Index of the example.
     :param data_set: 'train' or 'test' to specify the dataset.
     :return: The error for the example (float).
     """
-    return hypothesis_value(example_no, data_set) - actual_output(
-        example_no, data_set
-    )
+    return hypothesis_value(example_no, data_set) - actual_output(example_no, data_set)
+
 
 # Get the actual output for a given example
 def actual_output(example_no: int, data_set: str) -> float:
@@ -42,12 +42,16 @@ def actual_output(example_no: int, data_set: str) -> float:
     elif data_set == "test":
         return test_data[example_no][1]
     return None
+
+
 def _hypothesis_value(data_input_tuple: tuple) -> float:
     hyp_val = 0
     for i in range(len(parameter_vector) - 1):
         hyp_val += data_input_tuple[i] * parameter_vector[i + 1]
     hyp_val += parameter_vector[0]
     return hyp_val
+
+
 # Calculate the hypothesis value for a given example
 def hypothesis_value(example_no: int, data_set: str) -> float:
     """
@@ -63,6 +67,7 @@ def hypothesis_value(example_no: int, data_set: str) -> float:
         return _hypothesis_value(test_data[example_no][0])
     return None
 
+
 # Get the derivative of the cost function for a specific parameter index and example
 def cost_derivative(index: int, example_no: int) -> float:
     """
@@ -74,6 +79,7 @@ def cost_derivative(index: int, example_no: int) -> float:
     """
     derivative_value = error(example_no) * train_data[example_no][0][index]
     return derivative_value
+
 
 # Main function for running stochastic gradient descent
 def SGD() -> None:
@@ -107,6 +113,7 @@ def SGD() -> None:
             break
     print(("Number of iterations (Stochastic Gradient Descent):", j))
 
+
 # Function for testing the stochastic gradient descent
 def test_SGD() -> None:
     """
@@ -115,6 +122,7 @@ def test_SGD() -> None:
     for i in range(len(test_data)):
         print(("Actual output value:", actual_output(i, "test")))
         print(("Hypothesis output (SGD):", hypothesis_value(i, "test")))
+
 
 if __name__ == "__main__":
     SGD()
