@@ -6,7 +6,7 @@
     Finding the minimum value of a subset [L..R] of a static array.
 
     Overall time complexity: O(nlogn)
-    Overall space complexity: O(nlogn)    
+    Overall space complexity: O(nlogn)
 
     Wikipedia link: https://en.wikipedia.org/wiki/Range_minimum_query
 """
@@ -35,13 +35,12 @@ def build_sparse_table(arr: list[int], n: int) -> list[int]:
     k = int(math.log2(n)) + 1
     lookup = [[0 for i in range(n)] for j in range(k)]
 
-    for i in range(0, n): 
-        lookup[0][i] = arr[i] 
+    for i in range(0, n):
+        lookup[0][i] = arr[i]
 
     j = 1
 
-    while (1 << j) <= n: 
- 
+    while (1 << j) <= n:
         # Compute the minimum value for all intervals with size (2 ** j)
         i = 0
         while (i + (1 << j) - 1) < n:
@@ -82,12 +81,14 @@ def query(lookup: list[int], L: int, R: int) -> int:
         raise IndexError("list index out of range")
 
     """
-    Find the highest power of 2 
+    Find the highest power of 2
     that is at least the number of elements in a given range.
     """
-    j = int(math.log2(R - L + 1)) 
-    return min(lookup[j][R - (1 << j) + 1], lookup[j][L]) 
- 
+    j = int(math.log2(R - L + 1))
+    return min(lookup[j][R - (1 << j) + 1], lookup[j][L])
+
+
 if __name__ == "__main__":
     from doctest import testmod
-    testmod() 
+
+    testmod()
