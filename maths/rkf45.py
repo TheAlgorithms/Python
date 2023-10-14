@@ -1,12 +1,12 @@
 from collections.abc import Callable
+
 import numpy as np
 
 
 class RangeError(Exception):
     "Will be raised when initial x is greater than or equal to final x"
 
-
-def rkf45(
+def runge_futta_fehlberg_45(
     ode: Callable,
     y0: float,
     x0: float,
