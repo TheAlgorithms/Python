@@ -47,8 +47,8 @@ def forward_propagation(expected: int, number_propagations: int) -> float:
         layer_1_error = (expected / 100) - layer_1
         # Error delta
         layer_1_delta = layer_1_error * sigmoid_function(layer_1, True)
-        # Update weight
-        weight += INITIAL_VALUE * layer_1_delta
+        # Update weight using a list comprehension
+        weight = weight + [INITIAL_VALUE * w_d for w_d in layer_1_delta]
 
     return layer_1 * 100
 
