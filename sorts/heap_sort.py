@@ -1,4 +1,8 @@
+import doctest
+
 """
+Heap sort in Python
+
 This is a pure Python implementation of the heap sort algorithm.
 
 For doctests run following command:
@@ -8,51 +12,66 @@ python3 -m doctest -v heap_sort.py
 
 For manual testing run:
 python heap_sort.py
+
 """
 
 
-def heapify(unsorted, index, heap_size):
-    largest = index
-    left_index = 2 * index + 1
-    right_index = 2 * index + 2
-    if left_index < heap_size and unsorted[left_index] > unsorted[largest]:
-        largest = left_index
-
-    if right_index < heap_size and unsorted[right_index] > unsorted[largest]:
-        largest = right_index
-
-    if largest != index:
-        unsorted[largest], unsorted[index] = unsorted[index], unsorted[largest]
-        heapify(unsorted, largest, heap_size)
-
-
-def heap_sort(unsorted):
+def heapify(unsorted, n, i):
     """
-    Pure implementation of the heap sort algorithm in Python
-    :param collection: some mutable ordered collection with heterogeneous
-    comparable items inside
-    :return: the same collection ordered by ascending
+    Heapify subtree rooted at index i.
 
-    Examples:
-    >>> heap_sort([0, 5, 3, 2, 2])
-    [0, 2, 2, 3, 5]
+    n is size of heap.
 
-    >>> heap_sort([])
-    []
-
-    >>> heap_sort([-2, -5, -45])
-    [-45, -5, -2]
+    >>> unsorted = [3, 2, 1, 5, 6, 4]
+    >>> n = len(unsorted)
+    >>> i = 0
+    >>> heapify(unsorted, n, i)
+    >>> unsorted
+    [6, 5, 1, 3, 2, 4]
     """
+
+    largest = i
+    left = 2 * i + 1
+    right = 2 * i + 2
+
+    if left < n and unsorted[i] < unsorted[left]:
+        largest = left
+
+    if right < n and unsorted[largest] < unsorted[right]:
+        largest = right
+
+    if largest != i:
+        unsorted[i], unsorted[largest] = unsorted[largest], unsorted[i]
+        heapify(unsorted, n, largest)
+
+
+def heapSort(unsorted):  # noqa: N802
+    """
+    Heap sort an array.
+
+    >>> unsorted = [3, 2, 1, 5, 6, 4]
+    >>> heapSort(unsorted)
+    >>> unsorted
+    [1, 2, 3, 4, 5, 6]
+    """
+
     n = len(unsorted)
-    for i in range(n // 2 - 1, -1, -1):
-        heapify(unsorted, i, n)
+
+    # Build a maxheap.
+    for i in range(n, -1, -1):
+        heapify(unsorted, n, i)
+
+    # One by one extract elements
     for i in range(n - 1, 0, -1):
-        unsorted[0], unsorted[i] = unsorted[i], unsorted[0]
-        heapify(unsorted, 0, i)
-    return unsorted
+        unsorted[i], unsorted[0] = unsorted[0], unsorted[i]
+        heapify(unsorted, i, 0)
 
 
 if __name__ == "__main__":
-    user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    print(heap_sort(unsorted))
+    user_input = input("Enter numbers separated by comma: ").strip()
+    unsorted = [int(x) for x in user_input.split(",")]
+    heapSort(unsorted)
+    print(unsorted)
+
+
+doctest.testmod(verbose=True)
