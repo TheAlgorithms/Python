@@ -17,6 +17,3 @@ def find_missing_number(nums: list[int]) -> int:
     actual_sum = sum(nums)
 
     return expected_sum - actual_sum
-
-
-
