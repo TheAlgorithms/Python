@@ -24,8 +24,10 @@ def sigmoid_function(value: float, deriv: bool = False) -> float:
 def elementwise_multiply(value, array):
     return [value * x for x in array]
 
+
 # Initial Value
 INITIAL_VALUE = 0.02
+
 
 def forward_propagation(expected: int, number_propagations: int) -> float:
     """Return the value found after the forward propagation training.
