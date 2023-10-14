@@ -137,13 +137,13 @@ def benchmark() -> None:
     # Benchmark 1
     # Running performance benchmarks...
     # slow_solution : 101.6903272999989
-    # for+solution  : 26.314361600001575
+    # for+solution  : 24.294732899994415
     # solution      : 27.701841400004923
 
     # Benchmark 2
     # Running performance benchmarks...
     # slow_solution : 102.99227166666242
-    # for_solution  : 26.099807300000975
+    # for_solution  : 24.557546600000933
     # solution      : 24.87333139999828
 
     from timeit import timeit
