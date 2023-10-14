@@ -58,5 +58,5 @@ if __name__ == "_main_":
     from doctest import testmod
 
     testmod()
-n = input("Enter : ") 
+n = input("Enter : ")
 print(camel_to_snake_case(n))
