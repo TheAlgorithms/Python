@@ -10,10 +10,10 @@ kf.F = np.array([[1.0]])
 kf.H = np.array([[1.0]])
 
 # Define the measurement noise covariance
-kf.R = 1
+kf.R = np.array([[1.0]])
 
 # Define the process noise covariance
-kf.Q = 0.001
+kf.Q = np.array([[0.001]])
 
 # Initialize the state estimate
 kf.x = np.array([0.0])
