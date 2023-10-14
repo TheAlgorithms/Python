@@ -12,7 +12,7 @@
 """
 
 
-def build_sparse_table(arr: list[int], n: int) -> list[int]:
+def build_sparse_table(arr: list[int], arr_length: int) -> list[int]:
     """
     Precompute range minimum queries with power of two length
     and store the precomputed values in a table.
@@ -32,18 +32,18 @@ def build_sparse_table(arr: list[int], n: int) -> list[int]:
         raise ValueError("math domain error")
 
     # Initialise lookup table
-    k = int(math.log2(n)) + 1
-    lookup = [[0 for i in range(n)] for j in range(k)]
+    k = int(math.log2(arr_length)) + 1
+    lookup = [[0 for i in range(arr_length)] for j in range(k)]
 
-    for i in range(0, n):
+    for i in range(0, arr_length):
         lookup[0][i] = arr[i]
 
     j = 1
 
-    while (1 << j) <= n:
+    while (1 << j) <= arr_length:
         # Compute the minimum value for all intervals with size (2 ** j)
         i = 0
-        while (i + (1 << j) - 1) < n:
+        while (i + (1 << j) - 1) < arr_length:
             lookup[j][i] = min(lookup[j - 1][i + (1 << (j - 1))], lookup[j - 1][i])
             i += 1
 
@@ -52,7 +52,7 @@ def build_sparse_table(arr: list[int], n: int) -> list[int]:
     return lookup
 
 
-def query(lookup: list[int], L: int, R: int) -> int:
+def query(lookup: list[int], left_bound: int, right_bound: int) -> int:
     """
     >>> query(build_sparse_table([8, 1, 0, 3, 4, 9, 3], 7), 0, 4)
     0
@@ -77,15 +77,15 @@ def query(lookup: list[int], L: int, R: int) -> int:
 
     if lookup == []:
         raise ValueError("math domain error")
-    if L < 0 or R >= len(lookup[0]):
+    if left_bound < 0 or right_bound >= len(lookup[0]):
         raise IndexError("list index out of range")
 
     """
     Find the highest power of 2
     that is at least the number of elements in a given range.
     """
-    j = int(math.log2(R - L + 1))
-    return min(lookup[j][R - (1 << j) + 1], lookup[j][L])
+    j = int(math.log2(right_bound - left_bound + 1))
+    return min(lookup[j][right_bound - (1 << j) + 1], lookup[j][left_bound])
 
 
 if __name__ == "__main__":
