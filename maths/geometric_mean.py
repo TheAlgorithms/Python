@@ -3,7 +3,7 @@ The Geometric Mean of n numbers is defined as the n-th root of the product
 of those numbers. It is used to measure the central tendenct of the numbers.
 https://en.wikipedia.org/wiki/Geometric_mean
 """
-def compute_geometric_mean(*args: float) -> float:
+def compute_geometric_mean(*args: float or int) -> float:
     """
     Return the geometric mean of the argument numbers.
     >>> compute_geometric_mean(2,8)
