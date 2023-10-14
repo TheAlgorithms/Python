@@ -18,7 +18,7 @@ def combination_util(arr, n, r, index, data, i):
     -1 -2
     -1 -3
     -2 -3
-    both of these should return nothing
+
     >>> combination_util([], 0, 2, 0, [0, 0], 0)
 
     >>> combination_util([1], 1, 2, 0, [0, 0], 0)
@@ -26,9 +26,7 @@ def combination_util(arr, n, r, index, data, i):
 
     """
     if index == r:
-        for j in range(r):
-            print(data[j], end=" ")
-        print(" ")
+        print(" ".join(map(str, data[:r])))
         return
     #  When no more elements are there to put in data[]
     if i >= n:
@@ -60,7 +58,24 @@ def print_combination(arr, n, r):
 
     >>> print_combination([], 3, 2)
 
-    >>> print_combination([1], 3, 2)"""
+    >>> print_combination([1], 3, 2)
+
+    >>> print_combination([1, 2, 2], 3, 2)
+    1 2
+    1 2
+    2 2
+
+    >>> print_combination(['a', 'b', 'c'], 3, 2)
+    a b
+    a c
+    b c
+
+    >>> print_combination([1, 'a', 2], 3, 2)
+    1 a
+    1 2
+    a 2
+
+    """
     # A temporary array to store all combination one by one
     # returns nothing if n < r
     if len(arr) < r:
@@ -73,9 +88,6 @@ def print_combination(arr, n, r):
 if __name__ == "__main__":
     # Driver code to check the function above
     # arr = [10,20,30,40,50]
-    import doctest
-
-    doctest.testmod()
 
     arr = [10, 20, 30, 40, 50]
     print_combination(arr, len(arr), 3)
