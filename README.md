@@ -40,12 +40,6 @@ Implementations are for learning purposes only. They may be less efficient than 
 
 Read through our [Contribution Guidelines](CONTRIBUTING.md) before you contribute.
 
-## Top Contributors
-
-<a href="https://github.com/TheAlgorithms/Python/graphs/contributors">
-  <img class="dark-light" src="https://contrib.rocks/image?repo=TheAlgorithms/Python&anon=0&columns=25&max=100&r=true" />
-</a>
-
 ## Community Channels
 
 We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://gitter.im/TheAlgorithms/community)! Community channels are a great way for you to ask questions and get help. Please join us!
@@ -53,3 +47,10 @@ We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://git
 ## List of Algorithms
 
 See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
+
+## Top Contributors
+
+<a href="https://github.com/TheAlgorithms/Python/graphs/contributors">
+  <img class="dark-light" src="https://contrib.rocks/image?repo=TheAlgorithms/Python&anon=0&columns=25&max=100&r=true" />
+</a>
+
