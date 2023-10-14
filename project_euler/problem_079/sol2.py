@@ -17,7 +17,6 @@ to determine the shortest possible secret passcode of unknown length.
 from collections import Counter
 
 
-
 def find_secret_passcode(logins: list[str]) -> int:
     """
     Find the shortest possible secret passcode of unknown length.
@@ -33,20 +32,20 @@ def find_secret_passcode(logins: list[str]) -> int:
     >>> find_secret_passcode(["426", "281", "061", "819", "268", "406", "420", "428", "209", "689", "019", "421", "469", "261", "681", "201"])
     4206819
     """
-    s = Counter()
-    c = Counter()
-    r = []
+    char_to_sum = Counter()
+    char_to_count = Counter()
+    result = []
 
     for login in logins:
         for idx, char in enumerate(login):
-            if char not in s:
-                r.append(char)
-            s[char] += idx
-            c[char] += 1
+            if char not in char_to_sum:
+                result.append(char)
+            char_to_sum[char] += idx
+            char_to_count[char] += 1
 
-    r.sort(key=lambda a: s[a] / c[a])
+    result.sort(key=lambda character: char_to_sum[character] / char_to_count[character])
 
-    return int("".join(r))
+    return int("".join(result))
 
 
 def solution(input_file: str = "keylog.txt") -> int:
@@ -69,6 +68,3 @@ def solution(input_file: str = "keylog.txt") -> int:
 
 if __name__ == "__main__":
     print(f"{solution() = }")
-    print(find_secret_passcode(["135", "259", "235", "189", "690", "168", "120", "136", "289", "589", "160", "165", "580", "369", "250", "280"]))
-    print(solution("keylog_test.txt"))
-    #4206819
