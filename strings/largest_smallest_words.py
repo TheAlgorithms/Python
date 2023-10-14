@@ -1,8 +1,4 @@
-import doctest
-from typing import Tuple
-
-
-def find_smallest_and_largest_words(input_string: str) -> Tuple[str, str]:
+def find_smallest_and_largest_words(input_string: str) -> tuple:
     """
     Find the smallest and largest words in a given input string based on their length.
 
@@ -10,8 +6,8 @@ def find_smallest_and_largest_words(input_string: str) -> Tuple[str, str]:
         input_string (str): The input string to analyze.
 
     Returns:
-        Tuple[str, str]: A tuple containing the smallest and largest words found.
-        If no words are found, both values in the tuple will be empty strings.
+        tuple: A tuple containing the smallest and largest words found.
+        If no words are found, both values in the tuple will be None.
 
     Examples:
     >>> find_smallest_and_largest_words("My name is abc")
@@ -22,21 +18,21 @@ def find_smallest_and_largest_words(input_string: str) -> Tuple[str, str]:
 
     >>> find_smallest_and_largest_words("OnlyOneWord")
     ('OnlyOneWord', 'OnlyOneWord')
-
-    >>> find_smallest_and_largest_words("")
-    ('', '')
     """
     words = input_string.split()
     if not words:
-        return "", ""
+        return None, None
+
+    # Handle punctuation and special characters
+    words = [word.strip(".,!?()[]{}") for word in words]
 
     smallest_word = min(words, key=len)
     largest_word = max(words, key=len)
 
     return smallest_word, largest_word
 
-
 if __name__ == "__main__":
+    import doctest
     doctest.testmod()
 
     input_string = input("Enter a sentence:\n").strip()
