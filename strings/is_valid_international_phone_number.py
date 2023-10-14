@@ -1,5 +1,6 @@
 import re
 
+
 def is_valid_international_phone_number(phone: str) -> bool:
     """
     Determine whether the string is a valid international phone number or not.
@@ -18,6 +19,7 @@ def is_valid_international_phone_number(phone: str) -> bool:
 
     return bool(re.match(pattern, phone))
 
-if __name__ == '__main':
+
+if __name__ == "__main":
     str1 = "+919132896815"
     print(is_valid_international_phone_number(str1))
