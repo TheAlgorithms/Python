@@ -59,4 +59,5 @@ def mean_absolute_percentage_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
