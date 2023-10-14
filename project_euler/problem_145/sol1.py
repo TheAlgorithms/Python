@@ -30,6 +30,10 @@ def reversible_numbers(
     >>> reversible_numbers(3, 0, [0] * 3, 3)
     100
     """
+    # There exist no reversible 1, 5, 9, 13 (ie. 4k+1) digit numbers
+    if (length - 1) % 4 == 0:
+        return 0
+
     if remaining_length == 0:
         if digits[0] == 0 or digits[-1] == 0:
             return 0
@@ -94,3 +98,6 @@ def solution(max_power: int = 9) -> int:
 
 if __name__ == "__main__":
     print(f"{solution() = }")
+
+    # for i in range(1, 15):
+    #     print(f"{i}. {reversible_numbers(i, 0, [0]*i, i)}")
