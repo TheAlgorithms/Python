@@ -1,3 +1,6 @@
+import ast
+
+
 def find_missing_number(nums: list[int]) -> int:
     """
     Finds the missing number in a list of consecutive integers.
@@ -30,5 +33,5 @@ def find_missing_number(nums: list[int]) -> int:
 
 
 # Calling the function
-num = eval(input("Enter a list:"))
+num = ast.literal_eval(input("Enter a list:"))
 print(find_missing_number(num))
