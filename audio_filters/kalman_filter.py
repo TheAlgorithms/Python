@@ -3,7 +3,7 @@ Kalman Filter in Python
 
 This script demonstrates the implementation of a one-dimensional Kalman
 filter using the 'filterpy' library.
-The Kalman filter is used for estimating the state of a linear 
+The Kalman filter is used for estimating the state of a linear
 dynamic system that is subject to Gaussian noise.
 
 The steps involved in the Kalman filter algorithm are as follows:
