@@ -23,7 +23,7 @@ def camel_to_snake_case(input_str: str) -> str:
 
     # check for invalid input type
     if not isinstance(input_str, str):
-        msg = f"Expected string as input, found {type(input_str)}"
+        msg = "Expected string as input, found {type(input_str)}"
         raise ValueError(msg)
 
     snake_str = ""
@@ -54,7 +54,9 @@ def camel_to_snake_case(input_str: str) -> str:
     return snake_str
 
 
-if __name__ == "__main__":
+if __name__ == "_main_":
     from doctest import testmod
 
     testmod()
+n = input("Enter : ") 
+print(camel_to_snake_case(n))
