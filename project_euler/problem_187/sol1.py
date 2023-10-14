@@ -16,7 +16,8 @@ from math import isqrt
 
 def slow_calculate_prime_numbers(max_number: int) -> list[int]:
     """
-    Returns prime numbers below max_number
+    Returns prime numbers below max_number.
+    See: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
     >>> slow_calculate_prime_numbers(10)
     [2, 3, 5, 7]
@@ -37,7 +38,7 @@ def slow_calculate_prime_numbers(max_number: int) -> list[int]:
 def slow_solution(max_number: int = 10**8) -> int:
     """
     Returns the number of composite integers below max_number have precisely two,
-    not necessarily distinct, prime factors
+    not necessarily distinct, prime factors.
 
     >>> slow_solution(30)
     10
@@ -59,7 +60,8 @@ def slow_solution(max_number: int = 10**8) -> int:
 
 def calculate_prime_numbers(max_number: int) -> list[int]:
     """
-    Returns prime numbers below max_number
+    Returns prime numbers below max_number.
+    See: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
     >>> calculate_prime_numbers(10)
     [2, 3, 5, 7]
@@ -83,7 +85,7 @@ def calculate_prime_numbers(max_number: int) -> list[int]:
 def for_solution(max_number: int = 10**8) -> int:
     """
     Returns the number of composite integers below max_number have precisely two,
-    not necessarily distinct, prime factors
+    not necessarily distinct, prime factors.
 
     >>> for_solution(30)
     10
@@ -108,7 +110,7 @@ def for_solution(max_number: int = 10**8) -> int:
 def solution(max_number: int = 10**8) -> int:
     """
     Returns the number of composite integers below max_number have precisely two,
-    not necessarily distinct, prime factors
+    not necessarily distinct, prime factors.
 
     >>> solution(30)
     10
