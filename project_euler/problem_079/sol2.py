@@ -17,7 +17,6 @@ to determine the shortest possible secret passcode of unknown length.
 from collections import Counter
 
 
-
 def find_secret_passcode(logins: list[str]) -> int:
     """
     Find the shortest possible secret passcode of unknown length.
@@ -69,6 +68,27 @@ def solution(input_file: str = "keylog.txt") -> int:
 
 if __name__ == "__main__":
     print(f"{solution() = }")
-    print(find_secret_passcode(["135", "259", "235", "189", "690", "168", "120", "136", "289", "589", "160", "165", "580", "369", "250", "280"]))
+    print(
+        find_secret_passcode(
+            [
+                "135",
+                "259",
+                "235",
+                "189",
+                "690",
+                "168",
+                "120",
+                "136",
+                "289",
+                "589",
+                "160",
+                "165",
+                "580",
+                "369",
+                "250",
+                "280",
+            ]
+        )
+    )
     print(solution("keylog_test.txt"))
-    #4206819
+    # 4206819
