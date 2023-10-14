@@ -23,6 +23,22 @@ def mean_absolute_percentage_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
 
     Returns:
     float: The MAPE between y_true and y_pred.
+
+    Examples:
+    >>> y_true = np.array([10, 20, 30, 40])
+    >>> y_pred = np.array([12, 18, 33, 45])
+    >>> mean_absolute_percentage_error(y_true, y_pred)
+    9.722222222222221
+
+    >>> y_true = np.array([1, 2, 3, 4])
+    >>> y_pred = np.array([2, 3, 4, 5])
+    >>> mean_absolute_percentage_error(y_true, y_pred)
+    25.0
+
+    >>> y_true = np.array([5, 0, 10, 20])
+    >>> y_pred = np.array([5, 0, 9, 15])
+    >>> mean_absolute_percentage_error(y_true, y_pred)
+    18.75
     """
     try:
         if len(y_true) != len(y_pred):
