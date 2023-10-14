@@ -12,9 +12,9 @@ def upper(word: str) -> str:
     'WH[]32'
     """
 
-    # Converting to ascii value int value and checking to see if char is a lower letter
-    # if it is a lowercase letter it is getting shift by 32 which makes it an uppercase
-    # case letter
+    # Converting to ASCII value, obtaining the integer representation
+    # and checking to see if the character is a lowercase letter.
+    # If it is a lowercase letter, it is shifted by 32, making it an uppercase letter.
     return "".join(chr(ord(char) - 32) if "a" <= char <= "z" else char for char in word)
 
 
