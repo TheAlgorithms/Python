@@ -24,9 +24,11 @@ def sigmoid_function(value: float, deriv: bool = False) -> float:
 # Initial Value
 INITIAL_VALUE = 0.02
 
+
 def forward_propagation(expected, number_propagations):
     # Random weight initialization
     weight = 2 * (random.random() - 0.5)
+
 
 def forward_propagation(expected: int, number_propagations: int) -> float:
     """Return the value found after the forward propagation training.
