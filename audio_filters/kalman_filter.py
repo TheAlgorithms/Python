@@ -1,7 +1,6 @@
 import numpy as np
 from filterpy.kalman import KalmanFilter
 
-# Create a one-dimensional Kalman filter
 kf = KalmanFilter(dim_x=1, dim_z=1)
 
 # Define the state transition matrix
@@ -28,8 +27,8 @@ measurements = [1, 2, 3, 4, 5]
 # Perform filtering
 filtered_state_means = []
 for z in measurements:
-  kf.predict()
-  kf.update(z)
-  filtered_state_means.append(kf.x[0])
+    kf.predict()
+    kf.update(z)
+    filtered_state_means.append(kf.x[0])
 
 print("Filtered state means:", filtered_state_means)
