@@ -9,13 +9,14 @@ def find_missing_number(nums: list[int]) -> int:
         The missing number.
 
     Example:
-        >>> find_missing_number([0, 1, 3, 4])
+        >>> find_missing_number([1, 3, 4, 5, 6])
         2
     """
     n = len(nums)
-    missing_number = n
+    expected_sum = (n + 1) * (nums[0] + nums[-1]) // 2
+    actual_sum = sum(nums)
 
-    for i in range(n):
-        missing_number ^= i ^ nums[i]
+    return expected_sum - actual_sum
 
-    return missing_number
+
+
