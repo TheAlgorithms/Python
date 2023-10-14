@@ -1,12 +1,8 @@
 from typing import List, Tuple, Union
 
+
 def combination_util(
-    arr: List[int], 
-    n: int, 
-    r: int, 
-    index: int, 
-    data: List[int], 
-    i: int
+    arr: List[int], n: int, r: int, index: int, data: List[int], i: int
 ) -> Union[Tuple[int, ...], None]:
     """
     Generate all combinations of 'r' elements from a given set of 'n' elements.
@@ -33,6 +29,7 @@ def combination_util(
     else:
         return res1, res2
 
+
 def get_combinations(arr: List[int], n: int, r: int) -> List[Tuple[int, ...]]:
     """
     Generate all combinations of 'r' elements from the given list of elements.
@@ -44,6 +41,7 @@ def get_combinations(arr: List[int], n: int, r: int) -> List[Tuple[int, ...]]:
     """
     data = [0] * r
     return combination_util(arr, n, r, 0, data, 0)
+
 
 if __name__ == "__main__":
     arr = [10, 20, 30, 40, 50]
