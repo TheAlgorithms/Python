@@ -25,7 +25,7 @@ from __future__ import annotations
 
 def astable_mode(
     resistance_1: float, resistance_2: float, capacitance: float
-) -> dict[str:float, str:float]:
+) -> dict[str: float, str: float]:
     """
     Usage examples:
     >>> astable_mode(resistance_1=45, resistance_2=45, capacitance=7)
