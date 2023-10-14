@@ -12,7 +12,7 @@
 """
 
 
-def build_sparse_table(arr: list[int], arr_length: int) -> list[int]:
+def build_sparse_table(arr: list[int], arr_length: int) -> list[list[int]]:
     """
     Precompute range minimum queries with power of two length
     and store the precomputed values in a table.
@@ -52,7 +52,7 @@ def build_sparse_table(arr: list[int], arr_length: int) -> list[int]:
     return lookup
 
 
-def query(lookup: list[int], left_bound: int, right_bound: int) -> int:
+def query(lookup: list[list[int]], left_bound: int, right_bound: int) -> int:
     """
     >>> query(build_sparse_table([8, 1, 0, 3, 4, 9, 3], 7), 0, 4)
     0
