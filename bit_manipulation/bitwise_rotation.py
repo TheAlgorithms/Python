@@ -18,17 +18,19 @@ def logical_left_rotation(number: int, rotation_amount: int) -> str:
     '0b0110'
     """
 
-    if rotation_amount < 0:
-        rotation_amount = len(bin(number)[2:]) - rotation_amount
-    elif rotation_amount == 0:
-        return bin(number)[2:]
-
     binary_number = bin(number)[2:]
+    length = len(binary_number)
+
+    if rotation_amount < 0:
+        rotation_amount = length - abs(rotation_amount) % length
+    elif rotation_amount == 0:
+        return "0b" + binary_number
+
     rotated_number = (
-        binary_number[-(rotation_amount % len(binary_number)) :]
-        + binary_number[: -(rotation_amount % len(binary_number))]
+        binary_number[rotation_amount % length :]
+        + binary_number[: rotation_amount % length]
     )
-    return "0b" + rotated_number.zfill(len(binary_number))
+    return "0b" + rotated_number.zfill(length)
 
 
 def logical_right_rotation(number: int, rotation_amount: int) -> str:
@@ -51,15 +53,17 @@ def logical_right_rotation(number: int, rotation_amount: int) -> str:
     '0b1001'
     """
 
-    if rotation_amount < 0:
-        rotation_amount = len(bin(number)[2:]) - rotation_amount
-    elif rotation_amount == 0:
-        return bin(number)[2:]
-
     binary_number = bin(number)[2:]
+    length = len(binary_number)
+
+    if rotation_amount < 0:
+        rotation_amount = length - abs(rotation_amount) % length
+    elif rotation_amount == 0:
+        return "0b" + binary_number
+
     rotated_number = (
-        binary_number[-rotation_amount % len(binary_number) :]
-        + binary_number[: -rotation_amount % len(binary_number)]
+        binary_number[-rotation_amount % length :]
+        + binary_number[: -rotation_amount % length]
     )
 
-    return "0b" + rotated_number.zfill(len(binary_number))
+    return "0b" + rotated_number.zfill(length)
