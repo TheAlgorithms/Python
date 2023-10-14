@@ -44,17 +44,17 @@ of the frequency of the wave when the source is stationary, the velocity of the 
 in the medium, the velocity of the observer and the velocity of the source.
 """
 
-
-def doppler_effect(
-    org_freq: float, wave_vel: float, obs_vel: float, src_vel: float
-) -> float:
+def doppler_effect(org_freq: float,
+                   wave_vel: float,
+                   obs_vel: float,
+                   src_vel: float) -> float:
     """
     Input Parameters:
     -----------------
     org_freq: frequency of the wave when the source is stationary
     wave_vel: velocity of the wave in the medium
-    obs_vel: velocity of the observer, positive if the observer is moving towards the source
-    src_vel: velocity of the source, positive if the source is moving towards the observer
+    obs_vel: velocity of the observer, +ve if the observer is moving towards the source
+    src_vel: velocity of the source, +ve if the source is moving towards the observer
 
     Returns:
     --------
@@ -98,7 +98,6 @@ def doppler_effect(
         print("Non-positive frequency implies vs > v or v0 > v(in opposite direction)")
         return 0.0
     return doppler_freq
-
 
 if __name__ == "__main__":
     import doctest
