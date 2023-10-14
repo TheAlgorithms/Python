@@ -15,9 +15,11 @@ def find_missing_number(nums: list[int]) -> int:
         2
         >>> find_missing_number([6, 5, 4, 2, 1])
         3
+        >>> find_missing_number([6, 1, 5, 3, 4])
+        2
     """
-    low = min(nums[0], nums[-1])
-    high = max(nums[0], nums[-1])
+    low = min(nums)
+    high = max(nums)
     missing_number = high
 
     for i in range(low, high):
