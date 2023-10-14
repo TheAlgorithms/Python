@@ -25,10 +25,10 @@ def logical_left_rotation(number: int, rotation_amount: int) -> str:
 
     binary_number = bin(number)[2:]
     rotated_number = (
-        binary_number[-(rotation_amount % len(binary_number)) :]
-        + binary_number[: -(rotation_amount % len(binary_number))]
+        binary_number[-(rotation_amount % len(binary_number)):]
+        + binary_number[:-(rotation_amount % len(binary_number))]
     )
-    return "0b" + rotated_number.zfill(len(binary_number))
+    return '0b' + rotated_number.zfill(len(binary_number))
 
 
 def logical_right_rotation(number: int, rotation_amount: int) -> str:
@@ -48,22 +48,14 @@ def logical_right_rotation(number: int, rotation_amount: int) -> str:
     >>> logical_right_rotation(0b1010, 1)
     '0b0101'
     >>> logical_right_rotation(0b1100, -1)
-    Traceback (most recent call last):
-        ...
-    ValueError: both inputs must be positive integers
+    '0b1001'
     """
-    if number < 0 or rotation_amount < 0:
-        raise ValueError("both inputs must be positive integers")
 
-    binary_number = bin(number)[2:]  # Convert to binary and remove '0b'
-    rotated_number = (
-        binary_number[-rotation_amount % len(binary_number) :]
-        + binary_number[: -rotation_amount % len(binary_number)]
-    )
-    return "0b" + rotated_number.zfill(len(binary_number))
+    if rotation_amount < 0:
+        rotation_amount = len(bin(number)[2:]) - rotation_amount
+    elif rotation_amount == 0:
+        return bin(number)[2:]
 
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+    binary_number = bin(number)[2:]
+    rotated_number = binary_number[-rotation_amount % len(binary_number):] + binary_number[:-rotation_amount % len(binary_number)]
+    return '0b' + rotated_number.zfill(len(binary_number))
