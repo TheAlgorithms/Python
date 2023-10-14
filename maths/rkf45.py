@@ -1,11 +1,8 @@
 from collections.abc import Callable
 import numpy as np
 
-
 class RangeError(Exception):
     "Will be raised when initial x is greater than or equal to final x"
-    pass
-
 
 def rkf45(
     ode: Callable,
@@ -15,7 +12,7 @@ def rkf45(
     xn: float,
 ) -> np.ndarray:
     """
-    Calculate Numerical-Solution to an ODE at each nodal point using Runge-Kutta-Fehlberg Method (rkf45) of order 5.
+    Solve ODE using Runge-Kutta-Fehlberg Method (rkf45) of order 5.
 
     Reference: https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta%E2%80%93Fehlberg_method
 
@@ -25,7 +22,6 @@ def rkf45(
     x0 (float) : Initial value of x.
     step_size (float) : Increament value of x (step-size).
     xn (float) : Final value of x.
-
 
     Returns:
         np.ndarray: Solution of y at each nodal point
