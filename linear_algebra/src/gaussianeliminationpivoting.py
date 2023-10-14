@@ -1,11 +1,13 @@
 import numpy as np
 
+
 def custom_pivoting(a, n, i):
     min_index = i
     for index in range(i + 1, n):
         if abs(a[index][i]) < abs(a[min_index][i]):
             min_index = index
     return min_index
+
 
 def custom_gauss_elimination_pivoting(a, b, n):
     result = []
@@ -26,6 +28,7 @@ def custom_gauss_elimination_pivoting(a, b, n):
             b[q] = b[q] - result[n - p - 1] * a[q][p]
     return result
 
+
 # Example usage:
 # n_size = 3
 # a_matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype=float)
@@ -35,5 +38,5 @@ def custom_gauss_elimination_pivoting(a, b, n):
 # print("Solution:", solution)
 
 
-#URL that points to Wikipedia or another similar explanation.
-#>>>>>>URL:https://courses.engr.illinois.edu/cs357/su2013/lectures/lecture07.pdf<<<<<#
+# URL that points to Wikipedia or another similar explanation.
+# >>>>>>URL:https://courses.engr.illinois.edu/cs357/su2013/lectures/lecture07.pdf<<<<<#
