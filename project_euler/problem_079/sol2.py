@@ -15,15 +15,15 @@ to determine the shortest possible secret passcode of unknown length.
 """
 
 from collections import Counter
-from typing import List
 
 
-def find_secret_passcode(logins: List[str]) -> int:
+
+def find_secret_passcode(logins: list[str]) -> int:
     """
     Find the shortest possible secret passcode of unknown length.
 
     :param logins: A list of successful login attempts.
-    :type logins: List[str]
+    :type logins: list[str]
     :return: The shortest possible secret passcode.
     :rtype: int
 
@@ -51,7 +51,7 @@ def find_secret_passcode(logins: List[str]) -> int:
 
 def solution(input_file: str = "keylog.txt") -> int:
     """
-    Find the shortest possible secret passcode for successful login attempts given by `input_file` text file.
+    Find the shortest possible passcode login by `input_file` text file.
 
     :param input_file: The name of the text file containing successful login attempts.
     :type input_file: str
@@ -61,7 +61,7 @@ def solution(input_file: str = "keylog.txt") -> int:
     >>> solution("keylog_test.txt")
     6312980
     """
-    with open(input_file, "r") as file:
+    with open(input_file) as file:
         logins = [line.strip() for line in file.readlines()]
 
     return find_secret_passcode(logins)
