@@ -1,26 +1,26 @@
-# Return all subset combinations of n element in given set of r element.
+from typing import List, Tuple, Union
 
 
-def combination_util(arr, n, r, index, data, i):
+def combination_util(
+    arr: List[int], n: int, r: int, index: int, data: List[int], i: int
+) -> Union[Tuple[int, ...], None]:
     """
-    Current combination is ready to be returned, return it
-    arr[]  ---> Input Array
-    data[] ---> Temporary array to store current combination
-    start & end ---> Staring and Ending indexes in arr[]
-    index  ---> Current index in data[]
-    r ---> Size of a combination to be returned
+    Generate all combinations of 'r' elements from a given set of 'n' elements.
+
+    :param arr: List of input elements
+    :param n: Number of elements in the input list
+    :param r: Size of the combination to be generated
+    :param index: Current index in the 'data' list
+    :param data: Temporary list to store the current combination
+    :param i: Current index in the 'arr' list
+    :return: A tuple representing a combination of 'r' elements, or None if no more combinations are possible.
     """
     if index == r:
         return tuple(data)
-    #  When no more elements are there to put in data[]
     if i >= n:
         return None
-    # current is included, put next at next location
     data[index] = arr[i]
     res1 = combination_util(arr, n, r, index + 1, data, i + 1)
-    # current is excluded, replace it with
-    # next (Note that i+1 is passed, but
-    # index is not changed)
     res2 = combination_util(arr, n, r, index, data, i + 1)
     if res1 is None:
         return res2
@@ -30,15 +30,19 @@ def combination_util(arr, n, r, index, data, i):
         return res1, res2
 
 
-def get_combinations(arr, n, r):
-    # A temporary array to store all combination one by one
+def get_combinations(arr: List[int], n: int, r: int) -> List[Tuple[int, ...]]:
+    """
+    Generate all combinations of 'r' elements from the given list of elements.
+
+    :param arr: List of input elements
+    :param n: Number of elements in the input list
+    :param r: Size of the combination to be generated
+    :return: A list of tuples representing combinations of 'r' elements.
+    """
     data = [0] * r
-    # Return all combination using temporary array 'data[]'
     return combination_util(arr, n, r, 0, data, 0)
 
 
 if __name__ == "__main__":
-    # Driver code to check the function above
     arr = [10, 20, 30, 40, 50]
     print(get_combinations(arr, len(arr), 3))
-    # This code is contributed by Ambuj sahu
