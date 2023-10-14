@@ -44,15 +44,17 @@ of the frequency of the wave when the source is stationary, the velocity of the 
 in the medium, the velocity of the observer and the velocity of the source.
 """
 
-
-def doppler_effect(f0: float, v: float, v0: float, vs: float) -> float:
+def doppler_effect(org_freq: float,
+                   wave_vel: float,
+                   obs_vel: float,
+                   src_vel: float) -> float:
     """
     Input Parameters:
     -----------------
-    f0: frequency of the wave when the source is stationary
-    v: velocity of the wave in the medium
-    v0: velocity of the observer, positive if the observer is moving towards the source
-    vs: velocity of the source, positive if the source is moving towards the observer
+    org_freq: frequency of the wave when the source is stationary
+    wave_vel: velocity of the wave in the medium
+    obs_vel: velocity of the observer, positive if the observer is moving towards the source
+    src_vel: velocity of the source, positive if the source is moving towards the observer
 
     Returns:
     --------
@@ -74,26 +76,28 @@ def doppler_effect(f0: float, v: float, v0: float, vs: float) -> float:
     >>> doppler_effect(100, 330, 10, 330) #source moving at the same speed as the wave
     Error: Division by zero
     Infinite frequency implies vs = v and observer infront of the source
+    0.0
     >>> doppler_effect(100, 330, 10, 340) #source moving faster than the wave
-    Error: Negative frequency
-    Negative frequency implies vs > v or v0 > v (in opposite direction)
+    Error: Non-positive frequency
+    Non-positive frequency implies vs > v or v0 > v(in opposite direction)
+    0.0
     >>> doppler_effect(100, 330, -340, 10) #observer moving faster than the wave
-    Error: Negative frequency
-    Negative frequency implies vs > v or v0 > v (in opposite direction)
+    Error: Non-positive frequency
+    Non-positive frequency implies vs > v or v0 > v(in opposite direction)
+    0.0
     """
 
     try:
-        f = (f0 * (v + v0)) / (v - vs)
+        doppler_freq = (org_freq * (wave_vel + obs_vel)) / (wave_vel - src_vel)
     except ZeroDivisionError:
         print("Error: Division by zero")
         print("Infinite frequency implies vs = v and observer infront of the source")
-        return None
-    if f < 0:
-        print("Error: Negative frequency")
-        print("Negative frequency implies vs > v or v0 > v (in opposite direction)")
-        return None
-    return f
-
+        return 0.0
+    if doppler_freq <= 0:
+        print("Error: Non-positive frequency")
+        print("Non-positive frequency implies vs > v or v0 > v(in opposite direction)")
+        return 0.0
+    return doppler_freq
 
 if __name__ == "__main__":
     import doctest
