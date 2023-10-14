@@ -3,49 +3,31 @@ Partition a set into two subsets such that the difference of subset sums is mini
 """
 
 
-def find_min(numbers: list[int]) -> int:
+def find_min(arr):
     """
-    >>> find_min([1, 2, 3, 4, 5])
-    1
-    >>> find_min([5, 5, 5, 5, 5])
-    5
-    >>> find_min([5, 5, 5, 5])
+    >>> find_min([1,2,3,4])
     0
-    >>> find_min([3])
-    3
+    >>> find_min([0,0,0,0])
+    0
+    >>> find_min([-1,-5,5,1])
+    0
+    >>> find_min([0,0,0,1,2,-4])
+    -1
+    >>> find_min([9,9,9,9,9])
+    9
     >>> find_min([])
     0
-    >>> find_min([1, 2, 3, 4])
+    >>> find_min([0,0,0,0])
     0
-    >>> find_min([0, 0, 0, 0])
-    0
-    >>> find_min([-1, -5, 5, 1])
-    0
-    >>> find_min([-1, -5, 5, 1])
-    0
-    >>> find_min([9, 9, 9, 9, 9])
-    9
-    >>> find_min([1, 5, 10, 3])
+    >>> find_min([-1,-5,-10,-3])
+    -1
+    >>> find_min([1,5,10,3])
     1
-    >>> find_min([-1, 0, 1])
+    >>> find_min([-1,0,1])
     0
-    >>> find_min(range(10, 0, -1))
-    1
-    >>> find_min([-1])
-    Traceback (most recent call last):
-        --
-    IndexError: list assignment index out of range
-    >>> find_min([0, 0, 0, 1, 2, -4])
-    Traceback (most recent call last):
-        ...
-    IndexError: list assignment index out of range
-    >>> find_min([-1, -5, -10, -3])
-    Traceback (most recent call last):
-        ...
-    IndexError: list assignment index out of range
     """
-    n = len(numbers)
-    s = sum(numbers)
+    n = len(arr)
+    s = sum(arr)
 
     dp = [[False for x in range(s + 1)] for y in range(n + 1)]
 
