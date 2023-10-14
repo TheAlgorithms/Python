@@ -20,17 +20,16 @@ where n and m are lengths of the input_string and pattern respectively.
 
 """
 
-
 def is_pattern_match(input_string : str, pattern : str) -> bool:
     """
-    is_pattern_match("baaabab","*****ba*****ba")
-    >>> False
-    is_pattern_match("baaabab","*****ba*****ab")
-    >>> True
-    is_pattern_match("aa","*")
-    >>> True
-    
+    >>> is_pattern_match('baaabab','*****ba*****ba')
+    False
+    >>> is_pattern_match('baaabab','*****ba*****ab')
+    True
+    >>> is_pattern_match('aa','*')
+    True
     """
+    
     input_length = len(input_string)
     pattern_length = len(pattern)
 
@@ -61,4 +60,4 @@ if __name__ == "__main__":
     import doctest
     doctest.testmod()
 
-    print(is_pattern_match("baaabab","*****ba*****ab"))
+    print(f"{is_pattern_match('baaabab','*****ba*****ab')}")
