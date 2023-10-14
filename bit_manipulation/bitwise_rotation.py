@@ -1,4 +1,3 @@
-
 def logical_left_rotation(number: int, rotation_amount: int) -> str:
     """
     Take in 2 positive integers.
@@ -20,7 +19,10 @@ def logical_left_rotation(number: int, rotation_amount: int) -> str:
     """
 
     binary_number = bin(number)
-    rotated_number = binary_number[-rotation_amount % len(binary_number):] + binary_number[:-rotation_amount % len(binary_number)]
+    rotated_number = (
+        binary_number[-rotation_amount % len(binary_number) :]
+        + binary_number[: -rotation_amount % len(binary_number)]
+    )
     return rotated_number
 
 
@@ -45,9 +47,11 @@ def logical_right_rotation(number: int, rotation_amount: int) -> str:
     """
 
     binary_number = bin(number)
-    rotated_number = binary_number[-rotation_amount % len(binary_number):] + binary_number[:-rotation_amount % len(binary_number)]
+    rotated_number = (
+        binary_number[-rotation_amount % len(binary_number) :]
+        + binary_number[: -rotation_amount % len(binary_number)]
+    )
     return rotated_number
-
 
 
 if __name__ == "__main__":
