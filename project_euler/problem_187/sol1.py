@@ -94,14 +94,14 @@ def for_solution(max_number: int = 10**8) -> int:
     prime_numbers = calculate_prime_numbers(max_number // 2)
 
     semiprimes_count = 0
-    left = 0
     right = len(prime_numbers) - 1
     for left in range(len(prime_numbers)):
         if left > right:
             break
-        for right in range(right, left - 2, -1):
-            if prime_numbers[left] * prime_numbers[right] < max_number:
+        for r in range(right, left - 2, -1):
+            if prime_numbers[left] * prime_numbers[r] < max_number:
                 break
+        right = r
         semiprimes_count += right - left + 1
 
     return semiprimes_count
