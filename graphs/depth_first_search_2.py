@@ -1,8 +1,9 @@
-""" 
-Author: OMKAR PATHAK 
+"""
+Author: OMKAR PATHAK
 
 Class representing a directed graph.
 """
+
 
 class Graph:
     def __init__(self):
@@ -58,7 +59,7 @@ class Graph:
         >>> g.add_edge(2, 3)
         >>> g.add_edge(3, 3)
         >>> g.dfs()
-        0 1 2 3 
+        0 1 2 3
         """
 
     def dfs_recursive(self, start_vertex: int, visited: list) -> None:
@@ -75,9 +76,11 @@ class Graph:
         >>> g.add_edge(3, 3)
         >>> visited = [False] * len(g.vertex)
         >>> g.dfs_recursive(0, visited)
-        0 1 2 3 
+        0 1 2 3
         """
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
