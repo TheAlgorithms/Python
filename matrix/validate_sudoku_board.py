@@ -96,3 +96,12 @@ def is_valid_sudoku_board(sudoku_board: list[list[str]]) -> bool:
             box_values[box].add(value)
 
     return True
+
+if __name__ == "__main__":
+    print(tuple(get_boxes(one_to_nine_board)))
+    from doctest import testmod
+    from timeit import timeit
+
+    testmod()
+    print(timeit("is_valid_sudoku_board(valid_board)", globals=globals()))
+    print(timeit("is_valid_sudoku_board(invalid_board)", globals=globals()))
