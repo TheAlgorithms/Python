@@ -26,9 +26,7 @@ def logical_left_rotation(number: int, rotation_amount: int) -> str:
     elif rotation_amount == 0:
         return "0b" + binary_number
 
-    rotated_number = (
-        binary_number[rotation_amount:] + binary_number[:rotation_amount]
-    )
+    rotated_number = binary_number[rotation_amount:] + binary_number[:rotation_amount]
     return "0b" + rotated_number.zfill(length)
 
 
@@ -60,8 +58,6 @@ def logical_right_rotation(number: int, rotation_amount: int) -> str:
     elif rotation_amount == 0:
         return "0b" + binary_number
 
-    rotated_number = (
-        binary_number[-rotation_amount:] + binary_number[:-rotation_amount]
-    )
+    rotated_number = binary_number[-rotation_amount:] + binary_number[:-rotation_amount]
 
     return "0b" + rotated_number.zfill(length)
