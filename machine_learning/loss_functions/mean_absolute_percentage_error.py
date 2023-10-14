@@ -27,17 +27,17 @@ def mean_absolute_percentage_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
     >>> y_true = np.array([10, 20, 30, 40])
     >>> y_pred = np.array([12, 18, 33, 45])
     >>> mean_absolute_percentage_error(y_true, y_pred)
-    9.722222222222221
+    13.124999992135416
 
     >>> y_true = np.array([1, 2, 3, 4])
     >>> y_pred = np.array([2, 3, 4, 5])
     >>> mean_absolute_percentage_error(y_true, y_pred)
-    25.0
+    52.083332977430565
 
     >>> y_true = np.array([5, 0, 10, 20])
     >>> y_pred = np.array([5, 0, 9, 15])
     >>> mean_absolute_percentage_error(y_true, y_pred)
-    18.75
+    8.749999994374999
     """
     try:
         if len(y_true) != len(y_pred):
@@ -46,7 +46,7 @@ def mean_absolute_percentage_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
 
         # Calculate the absolute percentage difference between y_true and y_pred
         # added 1e-9 to avoid division by 0 (smoothing).
-        absolute_percentage_diff = np.abs((y_true - y_pred) / (y_true + 1e-9))
+        absolute_percentage_diff = np.abs((y_true - y_pred) / (y_true + 0.00000001))
 
         # Calculate the mean and multiply by 100 for percentage.
         error = np.mean(absolute_percentage_diff) * 100
