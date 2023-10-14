@@ -13,9 +13,7 @@ def find_missing_number(nums: list[int]) -> int:
         2
     """
     n = len(nums)
-    missing_number = n
-
-    for i in range(n):
-        missing_number ^= i ^ nums[i]
-
+    total_sum = (n * (n + 1)) // 2  # Sum of consecutive integers formula
+    actual_sum = sum(nums)
+    missing_number = total_sum - actual_sum
     return missing_number
