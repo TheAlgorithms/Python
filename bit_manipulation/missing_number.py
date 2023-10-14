@@ -15,7 +15,10 @@ def find_missing_number(nums: list[int]) -> int:
     n = len(nums)
     missing_number = n
 
-    for i in range(n):
-        missing_number ^= i ^ nums[i]
-
+    for i in range(n+1):
+        if nums[i]!=i:
+            missing_number=i
+            break
     return missing_number
+
+print(find_missing_number([0,1,3,4]))
