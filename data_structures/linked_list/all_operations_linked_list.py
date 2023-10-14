@@ -4,6 +4,7 @@ class Node:
         self.data = data
         self.next = None
 
+
 # Define the singly linked list class
 class SinglyLinkedList:
     def __init__(self):
@@ -91,6 +92,7 @@ class SinglyLinkedList:
             print(current.data, end=" -> ")
             current = current.next
         print("None")
+
 
 # Main program
 if __name__ == "__main__":
