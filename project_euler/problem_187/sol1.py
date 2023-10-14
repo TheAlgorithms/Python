@@ -97,7 +97,7 @@ def for_solution(max_number: int = 10**8) -> int:
     for left in range(len(prime_numbers)):
         if left > right:
             break
-        for right in range(right, left - 1, -1):
+        for right in range(right, left - 2, -1):
             if prime_numbers[left] * prime_numbers[right] < max_number:
                 break
         semiprimes_count += right - left + 1
