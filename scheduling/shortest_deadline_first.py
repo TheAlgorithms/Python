@@ -6,19 +6,22 @@ scheduling algorithm, which schedules processes based on their deadlines.
 If a process cannot meet its deadline, it is marked as "Idle."
 
 Reference: 
-https://www.geeksforgeeks.org/earliest-deadline-first-edf-cpu-scheduling-algorithm/
+https://www.geeksforgeeks.org/
+earliest-deadline-first-edf-cpu-scheduling-algorithm/
 
 Author: Arunkumar
 Date: 14th October 2023
 '''
 
-def earliest_deadline_first_scheduling(processes: list[tuple[str, int, int, int]]) -> list[str]:
+def earliest_deadline_first_scheduling(processes:
+                     list[tuple[str, int, int, int]]) -> list[str]:
     """
     Perform Earliest Deadline First (EDF) scheduling.
 
     Args:
-        processes (List[Tuple[str, int, int, int]]): A list of processes with their names,
-            arrival times, deadlines, and execution times.
+        processes (List[Tuple[str, int, int, int]]): A list of
+        processes with their names,
+        arrival times, deadlines, and execution times.
 
     Returns:
         List[str]: A list of process names in the order they are executed.
