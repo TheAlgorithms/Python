@@ -3,7 +3,12 @@ import matplotlib.pyplot as plt
 
 # Define your polynomial coefficients
 # You can change these coefficients as per your needs
-coefficients = [-2, 0, 1]  # Enter the polynomial coefficients from lowest to highest degree
+coefficients = [
+    -2,
+    0,
+    1,
+]  # Enter the polynomial coefficients from lowest to highest degree
+
 
 # Function to evaluate the polynomial
 def evaluate_polynomial(x_value: float) -> float:
@@ -22,7 +27,7 @@ def evaluate_polynomial(x_value: float) -> float:
     """
     result = 0
     for i, coef in enumerate(coefficients):
-        result += coef * (x_value ** i)
+        result += coef * (x_value**i)
     return result
 
 
@@ -34,9 +39,9 @@ y_values = evaluate_polynomial(x_values)
 
 # Create the matplotlib plot
 plt.figure(figsize=(8, 6))
-plt.plot(x_values, y_values, label="Polynomial Visualizer", color='blue')
-plt.axhline(0, color='red', linewidth=1)
-plt.axvline(0, color='red', linewidth=1)
+plt.plot(x_values, y_values, label="Polynomial Visualizer", color="blue")
+plt.axhline(0, color="red", linewidth=1)
+plt.axvline(0, color="red", linewidth=1)
 
 # Set the axis limits
 plt.xlim(-50, 50)
