@@ -12,10 +12,15 @@ def find_missing_number(nums: list[int]) -> int:
         >>> find_missing_number([0, 1, 3, 4])
         2
     """
-    n = len(nums)
-    missing_number = n
+    xor_list = nums[0]
+    xor_range = 1
 
-    for i in range(n):
-        missing_number ^= i ^ nums[i]
+    for i in range(1, len(nums)):
+        xor_list ^= nums[i]
+
+    for i in range(2, len(nums) + 2):
+        xor_range ^= i
+
+    missing_number = xor_list ^ xor_range
 
     return missing_number
