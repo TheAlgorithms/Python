@@ -17,7 +17,6 @@ to determine the shortest possible secret passcode of unknown length.
 from collections import Counter
 
 
-
 def find_secret_passcode(logins: list[str]) -> int:
     """
     Find the shortest possible secret passcode of unknown length.
