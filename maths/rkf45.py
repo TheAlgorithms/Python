@@ -1,7 +1,6 @@
 from collections.abc import Callable
 import numpy as np
 
-
 class RangeError(Exception):
     "Will be raised when initial x is greater than or equal to final x"
 
