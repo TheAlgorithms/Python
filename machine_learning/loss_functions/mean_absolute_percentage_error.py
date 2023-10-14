@@ -2,7 +2,7 @@ import numpy as np
 import doctest
 
 """
-Mean Absolute Percentage Error (MAPE): 
+Mean Absolute Percentage Error (MAPE):
 MAPE calculates the average of the absolute percentage differences between the
 predicted and true values.
 
