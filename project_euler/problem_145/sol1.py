@@ -79,11 +79,11 @@ def slow_reversible_numbers(
 def slow_solution(max_power: int = 9) -> int:
     """
     To evaluate the solution, use solution()
-    >>> solution(3)
+    >>> slow_solution(3)
     120
-    >>> solution(6)
+    >>> slow_solution(6)
     18720
-    >>> solution(7)
+    >>> slow_solution(7)
     68720
     """
     result = 0
