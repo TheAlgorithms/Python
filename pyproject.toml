@@ -130,8 +130,7 @@ addopts = [
 [tool.coverage.report]
 omit = [
   ".env/*",
-  "project_euler/*",
-  "scripts/*"
+  "project_euler/*"
 ]
 sort = "Cover"
 
