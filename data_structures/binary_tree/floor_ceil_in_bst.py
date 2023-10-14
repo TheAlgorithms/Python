@@ -1,4 +1,4 @@
-'''
+"""
 The floor of a key 'k' in a BST is the maximum
 value that is smaller than or equal to 'k'.
 
@@ -8,28 +8,25 @@ value that is greater than or equal to 'k'.
 Reference:
 https://bit.ly/46uB0a2
 
-
 Author : Arunkumar
 Date : 14th October 2023
+"""
 
-'''
-
-
-from typing import Optional
 
 class TreeNode:
     def __init__(self, key: int):
         """
         Initialize a TreeNode with the given key.
-        
+
         Args:
             key (int): The key value for the node.
         """
         self.key = key
-        self.left: Optional[TreeNode] = None
-        self.right: Optional[TreeNode] = None
+        self.left: TreeNode | None = None
+        self.right: TreeNode | None = None
 
-def floor_ceiling(root: Optional[TreeNode], key: int) -> tuple[Optional[int], Optional[int]]:
+
+def floor_ceiling(root: TreeNode | None, key: int) -> tuple[int | None, int | None]:
     """
     Find the floor and ceiling values for a given key in a Binary Search Tree (BST).
 
@@ -38,7 +35,8 @@ def floor_ceiling(root: Optional[TreeNode], key: int) -> tuple[Optional[int], Op
         key (int): The key for which to find the floor and ceiling.
 
     Returns:
-        tuple[Optional[int], Optional[int]]: A tuple containing the floor and ceiling values, respectively.
+        tuple[int | None, int | None]:
+        A tuple containing the floor and ceiling values, respectively.
 
     Examples:
         >>> root = TreeNode(10)
@@ -64,7 +62,9 @@ def floor_ceiling(root: Optional[TreeNode], key: int) -> tuple[Optional[int], Op
 
     while root is not None:
         if root.key == key:
-            return root.key, root.key
+            floor_val = root.key
+            ceiling_val = root.key
+            break
 
         if key < root.key:
             ceiling_val = root.key
@@ -74,6 +74,7 @@ def floor_ceiling(root: Optional[TreeNode], key: int) -> tuple[Optional[int], Op
             root = root.right
 
     return floor_val, ceiling_val
+
 
 if __name__ == "__main__":
     import doctest
