@@ -45,12 +45,12 @@ def heapify(unsorted, n, i):
         heapify(unsorted, n, largest)
 
 
-def heapSort(unsorted):  # noqa: N802
+def heap_sort(unsorted):  # noqa: N802
     """
     Heap sort an array.
 
     >>> unsorted = [3, 2, 1, 5, 6, 4]
-    >>> heapSort(unsorted)
+    >>> heap_sort(unsorted)
     >>> unsorted
     [1, 2, 3, 4, 5, 6]
     """
@@ -70,7 +70,7 @@ def heapSort(unsorted):  # noqa: N802
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by comma: ").strip()
     unsorted = [int(x) for x in user_input.split(",")]
-    heapSort(unsorted)
+    heap_sort(unsorted)
     print(unsorted)
 
 
