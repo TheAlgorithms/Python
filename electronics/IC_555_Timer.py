@@ -7,9 +7,9 @@ def astable_mode(
 ) -> dist[str:float]:
     """
     This function can calculate the frequency and duty cycle of an astable 555 timer.
-    The function takes in the value of the external resistances (in OHMS) and 
+    The function takes in the value of the external resistances (in OHMS) and
     capacitance (in microFARADS), and calculates the following:
-    
+
     -------------------------------------
     | Freq = 1.44 /[( R1+ 2 x R2) x C1] |               ... in Hz
     -------------------------------------
