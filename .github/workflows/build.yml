@@ -32,6 +32,6 @@ jobs:
         # TODO: #8818 Re-enable quantum tests
         run: pytest
             --cov-report=term-missing:skip-covered
-            --cov=.
+            --cov=. .
       - if: ${{ success() }}
         run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
