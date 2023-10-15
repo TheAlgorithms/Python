@@ -182,6 +182,7 @@
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
     * [Product Sum](data_structures/arrays/product_sum.py)
+    * [Sparse Table](data_structures/arrays/sparse_table.py)
   * Binary Tree
     * [Avl Tree](data_structures/binary_tree/avl_tree.py)
     * [Basic Binary Tree](data_structures/binary_tree/basic_binary_tree.py)
@@ -370,6 +371,7 @@
   * [Builtin Voltage](electronics/builtin_voltage.py)
   * [Carrier Concentration](electronics/carrier_concentration.py)
   * [Charging Capacitor](electronics/charging_capacitor.py)
+  * [Charging Inductor](electronics/charging_inductor.py)
   * [Circular Convolution](electronics/circular_convolution.py)
   * [Coulombs Law](electronics/coulombs_law.py)
   * [Electric Conductivity](electronics/electric_conductivity.py)
