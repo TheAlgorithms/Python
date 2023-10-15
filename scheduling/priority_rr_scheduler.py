@@ -12,7 +12,7 @@ class Job:
         Job.job_counter += 1
 
 
-def priority_rr_scheduling(jobs, time_quantum):
+def priority_rr_scheduling(jobs: List[Job], time_quantum: int) -> List[Tuple[int, int]]:
     queue = deque(jobs)
     waiting_queue = deque()
     current_time = 0
