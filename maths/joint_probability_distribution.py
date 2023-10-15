@@ -4,19 +4,8 @@ def calculate_joint_probability(
     x_values: list, y_values: list, x_probabilities: list, y_probabilities: list
 ) -> dict:
     """
-    >>>calculate_joint_probability([1,2],[-2,5,8],[0.7,0.3],[0.3,0.5,0.2])
-    P(X=1, Y=-2) = 0.21
-    P(X=1, Y=5) = 0.35
-    P(X=1, Y=8) = 0.13999999999999999
-    P(X=2, Y=-2) = 0.09
-    P(X=2, Y=5) = 0.15
-    P(X=2, Y=8) = 0.06
-    P(X=1, Y=-2) = 0.21
-    P(X=1, Y=5) = 0.35
-    P(X=1, Y=8) = 0.13999999999999999
-    P(X=2, Y=-2) = 0.09
-    P(X=2, Y=5) = 0.15
-    P(X=2, Y=8) = 0.06
+    >>>calculate_joint_probability([1],[1],[1],[1])
+    {(1,1):1}
 
     """
     joint_distribution = {}
@@ -26,7 +15,6 @@ def calculate_joint_probability(
         for y, y_prob in zip(y_values, y_probabilities):
             joint_prob = x_prob * y_prob
             joint_distribution[(x, y)] = joint_prob
-    print(joint_distribution)
     return joint_distribution
 
 
@@ -54,6 +42,10 @@ def variance(values: list, probabilities: list) -> float:
 def covariance(
     x_values: list, y_values: list, x_probabilities: list, y_probabilities: list
 ) -> float:
+    """
+    >>>covariance([],[],[],[])
+    
+    """
     mean_x = expectation(x_values, x_probabilities)
     mean_y = expectation(y_values, y_probabilities)
     return sum(
@@ -65,6 +57,11 @@ def covariance(
 
 # Function to calculate the standard deviation
 def standard_deviation(variance: list) -> float:
+    """
+    >>>variance(4)
+    2
+    
+    """
     return variance**0.5
 
 
