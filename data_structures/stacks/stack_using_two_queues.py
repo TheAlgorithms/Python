@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    stack = StackWithQueues()
+    stack: StackWithQueues | None = StackWithQueues()
     while stack:
         print("\nChoose operation:")
         print("1. Push")
