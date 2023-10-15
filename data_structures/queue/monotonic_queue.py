@@ -23,7 +23,7 @@ def max_sliding_window(arr: list[float], k: int) -> list[float]:
         if queue and i - queue._front.val >= k:
             queue.popleft()
         # keep the queue monotonically decreasing
-        # so that the max value is always in the top
+        # so that the max value is always on the top
         while queue and arr[i] >= arr[queue._back.val]:
             queue.pop()
         queue.append(i)
