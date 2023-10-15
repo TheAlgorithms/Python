@@ -1,4 +1,4 @@
-    """
+"""
     Given a list of integers, return elements a, b, c such that a + b + c = 0.
     Args:
         nums: list of integers
