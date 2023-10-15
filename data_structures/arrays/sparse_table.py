@@ -16,7 +16,7 @@ def build_sparse_table(number_list: list[int]) -> list[list[int]]:
     """
     Precompute range minimum queries with power of two length and store the precomputed
     values in a table.
-    
+
     >>> build_sparse_table([8, 1, 0, 3, 4, 9, 3])
     [[8, 1, 0, 3, 4, 9, 3], [1, 0, 0, 3, 4, 3, 0], [0, 0, 0, 3, 0, 0, 0]]
     >>> build_sparse_table([3, 1, 9])
@@ -56,10 +56,9 @@ def build_sparse_table(number_list: list[int]) -> list[list[int]]:
         while (i + (1 << j) - 1) < length:
             # split range [i, i + 2 ** j] and find minimum of 2 halves
             sparse_table[j][i] = min(
-                sparse_table[j - 1][i + (1 << (j - 1))],
-                sparse_table[j - 1][i]
+                sparse_table[j - 1][i + (1 << (j - 1))], sparse_table[j - 1][i]
             )
-            
+
             i += 1
 
         j += 1
@@ -100,10 +99,7 @@ def query(sparse_table: list[list[int]], left_bound: int, right_bound: int) -> i
     minimum of 2 overlapping smaller subsets: [left_bound, left_bound + 2 ** j - 1]
     and [right_bound - 2 ** j + 1, right_bound]
     """
-    return min(
-        sparse_table[j][right_bound - (1 << j) + 1],
-        sparse_table[j][left_bound]
-    ) 
+    return min(sparse_table[j][right_bound - (1 << j) + 1], sparse_table[j][left_bound])
 
 
 if __name__ == "__main__":
