@@ -16,15 +16,19 @@ from math import isqrt
 
 def calculate_prime_numbers(max_number: int) -> list[int]:
     """
-    Returns prime numbers below max_number
+    Returns prime numbers below max_number.
+    See: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
     >>> calculate_prime_numbers(10)
     [2, 3, 5, 7]
     """
 
+    # List containing a bool value for every number below max_number/2
     is_prime = [True] * max_number
+
     for i in range(2, isqrt(max_number - 1) + 1):
         if is_prime[i]:
+            # Mark all multiple of i as not prime
             for j in range(i**2, max_number, i):
                 is_prime[j] = False
 
