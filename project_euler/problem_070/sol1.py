@@ -26,7 +26,7 @@ use cross multiplication.
 
 References:
 Finding totients
-https://en.wikipedia.org/wiki/Euler's_totient_function#Euler's_product_formula
+https://en.wikipedia.org/wiki/Euler%27s_totient_function#Euler%27s_product_formula
 """
 from __future__ import annotations
 
