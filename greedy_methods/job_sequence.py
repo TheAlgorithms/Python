@@ -24,6 +24,7 @@ than the current time, or skip it otherwise.
 from typing import Any
 from dataclasses import dataclass
 
+
 @dataclass
 class Task:
     task_id: Any
@@ -42,7 +43,11 @@ def max_tasks(tasks_info: list[tuple[int, int]]) -> list:
 
     tasks.sort(key=lambda task: task.reward, reverse=True)
 
-    schedule = [task.task_id for current_time, task in enumerate(tasks, start=1) if task.deadline >= current_time]
+    schedule = [
+        task.task_id
+        for current_time, task in enumerate(tasks, start=1)
+        if task.deadline >= current_time
+    ]
 
     return schedule
 
