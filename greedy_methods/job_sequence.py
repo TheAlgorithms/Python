@@ -25,6 +25,7 @@ from dataclasses import dataclass
 from operator import attrgetter
 from typing import Any
 
+
 @dataclass
 class Task:
     task_id: Any
@@ -42,7 +43,7 @@ def max_tasks(tasks_info: list[tuple[int, int]]) -> list:
     """
     tasks = [Task(i, d, p) for i, (d, p) in enumerate(tasks_info)]
 
-    tasks.sort(key=attrgetter('reward'), reverse=True)
+    tasks.sort(key=attrgetter("reward"), reverse=True)
 
     schedule = [
         task.task_id
