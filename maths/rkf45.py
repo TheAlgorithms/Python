@@ -117,8 +117,3 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
