@@ -55,7 +55,7 @@ def added_solution_file_path() -> list[pathlib.Path]:
     solution_file_paths = []
     headers = {
         "Accept": "application/vnd.github.v3+json",
-        "Authorization": "token " + os.environ["GITHUB_TOKEN"],
+        "Authorization": f"token {os.getenv('GITHUB_TOKEN', '')}",
     }
     files = requests.get(get_files_url(), headers=headers).json()
     for file in files:
