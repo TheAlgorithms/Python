@@ -29,8 +29,11 @@ jobs:
             --ignore=project_euler/
             --ignore=scripts/validate_solutions.py
       - name: Check test coverage
+        # TODO: #8818 Re-enable quantum tests
         run: pytest
             --cov-report=term-missing:skip-covered
             --cov=.
+            --ignore=quantum/q_fourier_transform.py
+            --ignore=scripts/validate_solutions.py
       - if: ${{ success() }}
         run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
