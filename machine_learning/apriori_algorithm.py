@@ -23,7 +23,7 @@ def load_data() -> list[list[str]]:
     return [["milk"], ["milk", "butter"], ["milk", "bread"], ["milk", "bread", "chips"]]
 
 
-def prune(itemset: list, candidates: tuple[list[str]], length: int) -> list:
+def prune(itemset: list, candidates: list, length: int) -> list:
     """
     Prune candidate itemsets that are not frequent.
     The goal of pruning is to filter out candidate itemsets that are not frequent.  This
@@ -87,7 +87,7 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
             frequent_itemsets.append((sorted(item), counts[i]))
 
         length += 1
-        itemset = prune(itemset, combinations(itemset, length), length)
+        itemset = prune(itemset, list(combinations(itemset, length)), length)
 
     return frequent_itemsets
 
