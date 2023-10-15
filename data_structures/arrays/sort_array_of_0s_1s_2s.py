@@ -1,12 +1,9 @@
 """
 Author: Aditya Pathak
 Date: 15th Oct 2023
-Given an array of integers consisting of 0s, 1s and 2s only, we need to
-return the sorted array in O(n) complexity i.e., without actually sorting.
-
+Given an array of integers consisting of 0s, 1s and 2s only, we need to return the sorted array in O(n) complexity i.e., without actually sorting.
 https://practice.geeksforgeeks.org/problems/sort-an-array-o f-0s-1s-and-2s4231/
 """
-
 
 def sort012(arr: list[int]) -> list[int]:
     """
@@ -22,8 +19,6 @@ def sort012(arr: list[int]) -> list[int]:
     """
     return arr.count(0) * [0] + arr.count(1) * [1] + arr.count(2) * [2]
 
-
 if __name__ == "__main__":
     from doctest import testmod
-
     testmod()
