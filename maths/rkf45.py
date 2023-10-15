@@ -58,7 +58,7 @@ def runge_futta_fehlberg_45(
     ...     return x
     >>> y = runge_futta_fehlberg_45(f, -1, 0, -0.2, 0)
     Traceback (most recent call last):
-    IncrementError: Increament of x (step size) should be positve.
+    IncrementError: Increment of x (step size) should be positive.
     >>> def f(x,y):
     ...     return x + y
     >>> y = runge_futta_fehlberg_45(f, 0, 0, 0.2, -1)
@@ -69,7 +69,7 @@ def runge_futta_fehlberg_45(
         raise RangeError("Final x should be greater than initial x.")
 
     if step_size == 0 or step_size < 0:
-        raise IncrementError("Increament of x (step size) should be positve.")
+        raise IncrementError("Increment of x (step size) should be positive.")
 
     n = int((x_final - x_initial) / step_size)
     y = np.zeros(
@@ -116,4 +116,6 @@ def runge_futta_fehlberg_45(
 if __name__ == "__main__":
     import doctest
 
+
     doctest.testmod()
+
