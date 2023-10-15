@@ -50,7 +50,7 @@ def runge_kutta_fehlberg_45(
     >>> y = runge_kutta_fehlberg_45(f, 0, 0, 0.2, -1)
     Traceback (most recent call last):
         ...
-    ValueError: The final value x must be greater than initial value of x.
+    ValueError: The final value of x must be greater than initial value of x.
     >>> def f(x, y):
     ...     return x
     >>> y = runge_kutta_fehlberg_45(f, -1, 0, -0.2, 0)
