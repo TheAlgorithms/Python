@@ -1,6 +1,8 @@
 # https://en.wikipedia.org/wiki/Joint_probability_distribution
 # Function to calculate the joint probability distribution
-def calculate_joint_probability(x_values : list, y_values : list, x_probabilities: list, y_probabilities: list) -> dict:
+def calculate_joint_probability(
+    x_values: list, y_values: list, x_probabilities: list, y_probabilities: list
+) -> dict:
     """
     >>>calculate_joint_probability([1,2],[-2,5,8],[0.7,0.3],[0.3,0.5,0.2])
     P(X=1, Y=-2) = 0.21
@@ -49,7 +51,9 @@ def variance(values: list, probabilities: list) -> float:
 
 
 # Function to calculate the covariance
-def covariance(x_values: list, y_values: list, x_probabilities: list, y_probabilities: list) -> float:
+def covariance(
+    x_values: list, y_values: list, x_probabilities: list, y_probabilities: list
+) -> float:
     mean_x = expectation(x_values, x_probabilities)
     mean_y = expectation(y_values, y_probabilities)
     return sum(
