@@ -1,4 +1,4 @@
-def block_sort(lst: List[int]) -> List[int]:
+def block_sort(lst: list) -> list:
     """
     Sorts a list using the Block Sort algorithm.
 
@@ -38,11 +38,12 @@ def block_sort(lst: List[int]) -> List[int]:
         # Append the minimum element to the sorted result.
         sorted_result.append(min_block.pop(0))
 
-        # If the block is empty after the pop operation, remove it from the list of blocks.
+        # If the block is empty after the pop operation,
+        # remove it from the list of blocks.
         if not min_block:
             blocks.remove(min_block)
 
-    return sorted_lst
+    return sorted_result
 
 
 if __name__ == "__main__":
