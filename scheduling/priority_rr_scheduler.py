@@ -13,6 +13,31 @@ class Job:
 
 
 def priority_rr_scheduling(jobs: List[Job], time_quantum: int) -> List[Tuple[int, int]]:
+    """
+    Perform Priority Round Robin scheduling.
+
+    Parameters:
+    - jobs (List[Job]): A list of Job objects representing the jobs to be scheduled.
+    - time_quantum (int): The time quantum for the Round Robin scheduling.
+
+    Returns:
+    - List[Tuple[int, int]]: A list of tuples where each tuple contains the job number and the time at which
+      the job completed its execution.
+
+    Example:
+    >>> job1 = Job("Job1", 2, 10)
+    >>> job2 = Job("Job2", 1, 5)
+    >>> job3 = Job("Job3", 3, 8)
+    >>> job4 = Job("Job4", 1, 2)
+
+    >>> jobs = [job1, job2, job3, job4]
+
+    >>> time_quantum = 2
+
+    >>> result = priority_rr_scheduling(jobs, time_quantum)
+    >>> result
+    [(2, 5), (4, 7), (1, 17), (3, 25)]
+    """
     queue = deque(jobs)
     waiting_queue = deque()
     current_time = 0
