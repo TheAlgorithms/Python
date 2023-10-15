@@ -45,13 +45,17 @@ The total distance is calculated by adding up the distances.
 Once the code has finished executing,
 it will print the shortest possible path and the total distance of the path."""
 
-cost = 0
-tsp_graph = np.array(
-    [[0, 22, 26, 30], [30, 0, 45, 35], [25, 45, 0, 60], [30, 35, 40, 0]]
-)
-num_cities = len(tsp_graph[0])
-city = 0
-visited = np.zeros(num_cities, dtype=int)
-print("Shortest Path:  \n", end=" ")
-travelling_salesman(tsp_graph, city)
-print(f"\nMinimum Cost: {cost} ", end=" ")
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+    cost = 0
+    tsp_graph = np.array(
+        [[0, 22, 26, 30], [30, 0, 45, 35], [25, 45, 0, 60], [30, 35, 40, 0]]
+    )
+    num_cities = len(tsp_graph[0])
+    city = 0
+    visited = np.zeros(num_cities, dtype=int)
+    print("Shortest Path:  \n", end=" ")
+    travelling_salesman(tsp_graph, city)
+    print(f"\nMinimum Cost: {cost} ", end=" ")
