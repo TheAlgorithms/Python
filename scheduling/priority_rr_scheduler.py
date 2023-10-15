@@ -56,3 +56,5 @@ if __name__ == "__main__":
     print("\nJob Execution Order:")
     for job, time in result:
         print(f"Job{job} completed at time {time}")
+
+# Reference Link - https://www.scaler.com/topics/operating-system/priority-scheduling-algorithm/
