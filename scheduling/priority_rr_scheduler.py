@@ -1,6 +1,7 @@
 from collections import deque
 from typing import List, Tuple
 
+
 class Job:
     job_counter: int = 1
 
