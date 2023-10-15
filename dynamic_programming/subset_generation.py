@@ -48,5 +48,4 @@ if __name__ == "__main__":
     print(f"{subset_combinations_dp(elements=[10, 20, 30, 40], n=2) = }")
 
     import doctest
-
     doctest.testmod()
