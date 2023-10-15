@@ -41,7 +41,7 @@ def generate_candidates(itemset: list[str], length: int) -> list[list[str]]:
         for j in range(i + 1, len(itemset)):
             # Create a candidate by taking the union of two lists
             candidate = list(itemset[i]) + [
-                item for item in list(itemset[j]) if item not in list(itemset[i])
+                item for item in itemset[j] if item not in itemset[i]
             ]
             if len(candidate) == length:
                 candidates.append(candidate)
@@ -95,7 +95,7 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
     >>> apriori(data, 3)
     []
     """
-    itemset = [transaction for transaction in data]
+    itemset = [list(transaction) for transaction in data]
     frequent_itemsets = []
     length = 1
 
