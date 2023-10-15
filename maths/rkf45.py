@@ -116,6 +116,4 @@ def runge_futta_fehlberg_45(
 if __name__ == "__main__":
     import doctest
 
-
     doctest.testmod()
-
