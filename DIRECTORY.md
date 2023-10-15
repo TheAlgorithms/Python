@@ -554,6 +554,7 @@
   * [Word Frequency Functions](machine_learning/word_frequency_functions.py)
   * [Xgboost Classifier](machine_learning/xgboost_classifier.py)
   * [Xgboost Regressor](machine_learning/xgboost_regressor.py)
+  * [Apriori Algorithm](machine_learning/apriori_algorithm.py)
 
 ## Maths
   * [Abs](maths/abs.py)
