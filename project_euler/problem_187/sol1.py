@@ -14,12 +14,12 @@ not necessarily distinct, prime factors?
 from math import isqrt
 
 
-def calculate_prime_numbers(max_number: int) -> list[int]:
+def slow_calculate_prime_numbers(max_number: int) -> list[int]:
     """
     Returns prime numbers below max_number.
     See: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
-    >>> calculate_prime_numbers(10)
+    >>> slow_calculate_prime_numbers(10)
     [2, 3, 5, 7]
     """
 
@@ -33,6 +33,33 @@ def calculate_prime_numbers(max_number: int) -> list[int]:
                 is_prime[j] = False
 
     return [i for i in range(2, max_number) if is_prime[i]]
+
+
+def calculate_prime_numbers(max_number: int) -> list[int]:
+    """
+    Returns prime numbers below max_number.
+    See: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+
+    >>> calculate_prime_numbers(10)
+    [2, 3, 5, 7]
+    """
+
+    if max_number <= 2:
+        return []
+
+    # List containing a bool value for every odd number below max_number/2
+    is_prime = [True] * (max_number // 2)
+
+    for i in range(3, isqrt(max_number - 1) + 1, 2):
+        if is_prime[i // 2]:
+            # Mark all multiple of i as not prime using list slicing
+            is_prime[i**2 // 2 :: i] = [False] * (
+                # Same as: (max_number - (i**2)) // (2 * i) + 1
+                # but faster than len(is_prime[i**2 // 2 :: i])
+                len(range(i**2 // 2, max_number // 2, i))
+            )
+
+    return [2] + [2 * i + 1 for i in range(1, max_number // 2) if is_prime[i]]
 
 
 def solution(max_number: int = 10**8) -> int:
