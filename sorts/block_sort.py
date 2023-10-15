@@ -34,16 +34,18 @@ def block_sort(lst: List[int]) -> List[int]:
     while blocks:
         # Find the block with the minimum first element.
         min_block = min(blocks, key=lambda block: block[0])
-    
+
         # Append the minimum element to the sorted result.
         sorted_result.append(min_block.pop(0))
-    
+
         # If the block is empty after the pop operation, remove it from the list of blocks.
         if not min_block:
             blocks.remove(min_block)
 
     return sorted_lst
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
