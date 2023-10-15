@@ -130,7 +130,9 @@ addopts = [
 [tool.coverage.report]
 omit = [
   ".env/*",
-  "project_euler/*"
+  "project_euler/*",
+  "quantum/q_fourier_transform.py",
+  "scripts/validate_solutions.py"
 ]
 sort = "Cover"
 
