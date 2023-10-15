@@ -35,10 +35,11 @@ def calculate_joint_probability(
 
 
 def main():
-    print(calculate_joint_probability([1],[1,2],[0.5],[0.1,0,5]))
-    
+    print(calculate_joint_probability([1], [1, 2], [0.5], [0.1, 0, 5]))
+
+
 if __name__ == "__main__":
     import doctest
+
     ans = main()
     doctest.testmod()
-
