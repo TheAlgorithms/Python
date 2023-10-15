@@ -28,6 +28,7 @@ class StackWithQueues:
         ...
     IndexError: pop from an empty deque
     """
+
     main_queue: deque[int] = field(default_factory=deque)
     temp_queue: deque[int] = field(default_factory=deque)
 
