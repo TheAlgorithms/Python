@@ -1,6 +1,22 @@
 # https://en.wikipedia.org/wiki/Joint_probability_distribution
 # Function to calculate the joint probability distribution
 def calculate_joint_probability(x_values, y_values, x_probabilities, y_probabilities) -> dict:
+    """
+    >>>calculate_joint_probability([1,2],[-2,5,8],[0.7,0.3],[0.3,0.5,0.2])
+    P(X=1, Y=-2) = 0.21
+    P(X=1, Y=5) = 0.35
+    P(X=1, Y=8) = 0.13999999999999999
+    P(X=2, Y=-2) = 0.09
+    P(X=2, Y=5) = 0.15
+    P(X=2, Y=8) = 0.06
+    P(X=1, Y=-2) = 0.21
+    P(X=1, Y=5) = 0.35
+    P(X=1, Y=8) = 0.13999999999999999
+    P(X=2, Y=-2) = 0.09
+    P(X=2, Y=5) = 0.15
+    P(X=2, Y=8) = 0.06
+    
+    """
     joint_distribution = {}
 
     # Calculate the joint probability for all combinations of (X, Y)
@@ -8,17 +24,26 @@ def calculate_joint_probability(x_values, y_values, x_probabilities, y_probabili
         for y, y_prob in zip(y_values, y_probabilities):
             joint_prob = x_prob * y_prob
             joint_distribution[(x, y)] = joint_prob
-
+    print(joint_distribution)
     return joint_distribution
 
 
 # Function to calculate the expectation (mean)
 def expectation(values, probabilities) -> float:
+    """
+    >>>expectation([1,2],[0.7,0.3])
+    1.2999999999999999999999
+    
+    """
     return sum(x * p for x, p in zip(values, probabilities))
 
 
 # Function to calculate the variance
 def variance(values, probabilities) -> float:
+    """
+    >>>variance([1,2],[0.7,0.3])
+    0.21000
+    """
     mean = expectation(values, probabilities)
     return sum((x - mean) ** 2 * p for x, p in zip(values, probabilities))
 
