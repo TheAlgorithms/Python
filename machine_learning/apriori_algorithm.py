@@ -1,19 +1,16 @@
 """
-Apriori Algorithm is a Association rule mining technique,
-also known as market basket analysis,
-aims to discover interesting relationships or associations
-among a set of items in a transactional or relational database.
+Apriori Algorithm is a Association rule mining technique, also known as market basket
+analysis, aims to discover interesting relationships or associations among a set of
+items in a transactional or relational database.
 
-For example, Apriori Algorithm state:
-"If a customer buys item A and item B,
-then they are likely to buy item C."
-This rule suggests a relationship between items A, B, and C,
-indicating that customers who purchased A and B are more
-likely to purchase item C as well.
+For example, Apriori Algorithm states: "If a customer buys item A and item B, then they
+are likely to buy item C."  This rule suggests a relationship between items A, B, and C,
+indicating that customers who purchased A and B are more likely to also purchase item C.
 
 WIKI: https://en.wikipedia.org/wiki/Apriori_algorithm
 Examples: https://www.kaggle.com/code/earthian/apriori-association-rules-mining
 """
+from itertools import combinations
 
 
 def load_data() -> list[list[str]]:
@@ -23,39 +20,16 @@ def load_data() -> list[list[str]]:
     >>> load_data()
     [['milk'], ['milk', 'butter'], ['milk', 'bread'], ['milk', 'bread', 'chips']]
     """
-    # Sample transaction dataset
-    data = [["milk"], ["milk", "butter"], ["milk", "bread"], ["milk", "bread", "chips"]]
-    return data
-
-
-def generate_candidates(itemset: list, length: int) -> list:
-    """
-    Generates candidate itemsets of size k from the given itemsets.
-
-    >>> itemsets = ['A', 'B', 'C', 'D']
-    >>> generate_candidates(itemsets, 2)
-    [['A', 'B'], ['A', 'C'], ['A', 'D'], ['B', 'C'], ['B', 'D'], ['C', 'D']]
-    """
-    candidates = []
-    for i in range(len(itemset)):
-        for j in range(i + 1, len(itemset)):
-            # Create a candidate by taking the union of two lists
-            candidate = list(itemset[i]) + [
-                item for item in itemset[j] if item not in itemset[i]
-            ]
-            if len(candidate) == length:
-                candidates.append(candidate)
-
-    return candidates
+    return [["milk"], ["milk", "butter"], ["milk", "bread"], ["milk", "bread", "chips"]]
 
 
 def prune(itemset: list, candidates: list, length: int) -> list:
-    # Prune candidate itemsets
     """
-    The goal of pruning is to filter out candidate itemsets that are not frequent.
-    This is done by checking if all the (k-1) subsets of a candidate itemset
-    are present in the frequent itemsets of the previous iteration
-    (valid subsequences of the frequent itemsets from the previous iteration).
+    Prune candidate itemsets that are not frequent.
+    The goal of pruning is to filter out candidate itemsets that are not frequent.  This
+    is done by checking if all the (k-1) subsets of a candidate itemset are present in
+    the frequent itemsets of the previous iteration (valid subsequences of the frequent
+    itemsets from the previous iteration).
 
     Prunes candidate itemsets that are not frequent.
 
@@ -113,8 +87,7 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
             frequent_itemsets.append((sorted(item), counts[i]))
 
         length += 1
-        candidates = generate_candidates(itemset, length)
-        itemset = prune(itemset, candidates, length)
+        itemset = prune(itemset, combinations(itemset, length), length)
 
     return frequent_itemsets
 
@@ -134,8 +107,6 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    data = load_data()
-    min_support = 2  # user-defined threshold or minimum support level
-    frequent_itemsets = apriori(data, min_support)
-    for itemset, support in frequent_itemsets:
-        print(f"{itemset}: {support}")
+    # user-defined threshold or minimum support level
+    frequent_itemsets = apriori(data=load_data(), min_support=2)
+    print("\n".join(f"{itemset}: {support}" for itemset, support in frequent_itemsets))
