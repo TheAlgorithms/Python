@@ -8,10 +8,10 @@ def maclaurin_sin(theta: float, accuracy: int = 30) -> float:
     """
     Finds the maclaurin approximation of sin
 
-
     :param theta: the angle to which sin is found
     :param accuracy: the degree of accuracy wanted minimum
     :return: the value of sine in radians
+
 
     >>> from math import isclose, sin
     >>> all(isclose(maclaurin_sin(x, 50), sin(x)) for x in range(-25, 25))
@@ -59,9 +59,12 @@ def maclaurin_sin(theta: float, accuracy: int = 30) -> float:
 def maclaurin_cos(theta: float, accuracy: int = 30) -> float:
     """
     Finds the maclaurin approximation of cos
+
     :param theta: the angle to which cos is found
     :param accuracy: the degree of accuracy wanted
     :return: the value of cosine in radians
+
+
     >>> from math import isclose, cos
     >>> all(isclose(maclaurin_cos(x, 50), cos(x)) for x in range(-25, 25))
     True
@@ -112,3 +115,8 @@ if __name__ == "__main__":
     print(maclaurin_sin(-10))
     print(maclaurin_sin(10, 15))
     print(maclaurin_sin(-10, 15))
+
+    print(maclaurin_cos(5))
+    print(maclaurin_cos(-5))
+    print(maclaurin_cos(10, 15))
+    print(maclaurin_cos(-10, 15))
