@@ -1,6 +1,7 @@
 from collections import deque
 from typing import List, Tuple
 
+
 class Job:
     job_counter: int = 1
 
@@ -10,6 +11,7 @@ class Job:
         self.burst_time = burst_time
         self.job_number: int = Job.job_counter
         Job.job_counter += 1
+
 
 def priority_rr_scheduling(jobs: List[Job], time_quantum: int) -> List[Tuple[int, int]]:
     """
@@ -58,13 +60,17 @@ def priority_rr_scheduling(jobs: List[Job], time_quantum: int) -> List[Tuple[int
             completed_jobs.append((current_job.job_number, current_time))
 
         # Check for new arrivals
-        while queue and queue[0].priority > 0 and queue[0].priority > current_job.priority:
+        while (
+            queue and queue[0].priority > 0 and queue[0].priority > current_job.priority
+        ):
             waiting_queue.append(queue.popleft())
 
     return completed_jobs
 
+
 # Integrated tests
 import unittest
+
 
 class TestPriorityRRScheduler(unittest.TestCase):
     def test_priority_rr_scheduling(self):
@@ -80,6 +86,7 @@ class TestPriorityRRScheduler(unittest.TestCase):
         self.assertEqual(result, expected_result)
 
         # Add more test cases as needed
+
 
 if __name__ == "__main__":
     unittest.main()
