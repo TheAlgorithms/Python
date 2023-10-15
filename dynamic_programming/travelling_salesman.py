@@ -50,6 +50,7 @@ it will print the shortest possible path and the total distance of the path."""
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     cost = 0
     tsp_graph = np.array(
