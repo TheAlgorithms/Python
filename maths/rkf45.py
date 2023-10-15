@@ -36,33 +36,33 @@ def runge_futta_fehlberg_45(
     >>> y = runge_futta_fehlberg_45(f, 0, 0, 0.2, 1)
     >>> y[1]
     0.2027100937470787
-    >>> y = runge_futta_fehlberg_45(5, 0, 0, 0.1, 1)
-    Traceback (most recent call last):
-        ...
-    TypeError: 'int' object is not callable
     >>> def f(x,y):
     ...     return x
     >>> y = runge_futta_fehlberg_45(f, -1, 0, 0.2, 0)
     >>> y[1]
     -0.18000000000000002
-    >>> def f(x, y):
-    ...     return x
-    >>> y = runge_futta_fehlberg_45(f, -1, 0, -0.2, 0)
+    >>> y = runge_futta_fehlberg_45(5, 0, 0, 0.1, 1)
     Traceback (most recent call last):
         ...
-    ValueError: Step size must be positve.
+    TypeError: 'int' object is not callable
     >>> def f(x, y):
     ...     return x + y
     >>> y = runge_futta_fehlberg_45(f, 0, 0, 0.2, -1)
     Traceback (most recent call last):
         ...
     ValueError: The final value x must be greater than initial value of x.
+    >>> def f(x, y):
+    ...     return x
+    >>> y = runge_futta_fehlberg_45(f, -1, 0, -0.2, 0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Step size must be positive.
     """
     if x_initial >= x_final:
         raise ValueError("The final value x must be greater than initial value of x.")
 
     if step_size <= 0:
-        raise ValueError("Step size must be positve.")
+        raise ValueError("Step size must be positive.")
 
     n = int((x_final - x_initial) / step_size)
     y = np.zeros(
