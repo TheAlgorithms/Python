@@ -120,6 +120,7 @@ def matrix_chain_order(dims: list[int]) -> int:
 def elapsed_time(msg: str) -> None:
     # print(f"Starting: {msg}")
     from time import perf_counter_ns
+
     start = perf_counter_ns()
     yield
     print(f"Finished: {msg} in {(perf_counter_ns() - start) / 10 ** 9} seconds.")
