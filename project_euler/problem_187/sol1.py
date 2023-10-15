@@ -133,5 +133,24 @@ def solution(max_number: int = 10**8) -> int:
     return semiprimes_count
 
 
+def benchmark() -> None:
+    """
+    Benchmarks
+    """
+    # Running performance benchmarks...
+    # slow_solution : 108.50874730000032
+    # while_sol     : 28.09581200000048
+    # solution      : 25.063097400000515
+
+    from timeit import timeit
+
+    print("Running performance benchmarks...")
+
+    print(f"slow_solution : {timeit('slow_solution()', globals=globals(), number=10)}")
+    print(f"while_sol     : {timeit('while_solution()', globals=globals(), number=10)}")
+    print(f"solution      : {timeit('solution()', globals=globals(), number=10)}")
+
+
 if __name__ == "__main__":
     print(f"Solution: {solution()}")
+    benchmark()
