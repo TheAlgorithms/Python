@@ -10,7 +10,36 @@ def perfect_cube(n: int) -> bool:
     val = n ** (1 / 3)
     return (val * val * val) == n
 
+def perfect_cube_binary_search(n: int) -> bool:
+    """
+    Check if a number is a perfect cube or not using binary search.
+    Time complexity : O(Log(n))
+    Space complexity: O(1)
+
+    >>> perfect_cube_binary_search(27)
+    True
+    >>> perfect_cube_binary_search(64)
+    True
+    >>> perfect_cube_binary_search(4)
+    False
+    >>> perfect_cube_binary_search("a")
+    Traceback (most recent call last):
+        ...
+    TypeError: '<=' not supported between instances of 'int' and 'str'
+    """
+    left = 0
+    right = n
+    while left <= right:
+        mid = left + (right - left) // 2
+        if mid*mid*mid == n:
+            return True
+        elif mid*mid*mid < n:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return False
 
 if __name__ == "__main__":
-    print(perfect_cube(27))
-    print(perfect_cube(4))
+    import doctest
+
+    doctest.testmod()
