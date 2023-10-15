@@ -4,8 +4,11 @@ def calculate_joint_probability(
     x_values: list, y_values: list, x_probabilities: list, y_probabilities: list
 ) -> dict:
     """
+    Examples:
     >>>calculate_joint_probability([1],[1],[1],[1])
     {(1,1):1}
+    >>>calculate_joint_probability([1][1,2][0.5][0.1,0.5])
+    {(1,1):0.05 , (1,2):0.25}
 
     """
     joint_distribution = {}
@@ -21,8 +24,11 @@ def calculate_joint_probability(
 # Function to calculate the expectation (mean)
 def expectation(values: list, probabilities: list) -> float:
     """
+    Examples:
     >>>expectation([1,2],[0.7,0.3])
     1.2999999999999999999999
+    >>>expectation([-2,5,8],[0.3,0.5,0.2])
+    3.5
 
     """
     return sum(x * p for x, p in zip(values, probabilities))
@@ -31,8 +37,11 @@ def expectation(values: list, probabilities: list) -> float:
 # Function to calculate the variance
 def variance(values: list, probabilities: list) -> float:
     """
+    Examples:
     >>>variance([1,2],[0.7,0.3])
     0.21000
+    >>>variance([-2.5.8],[0.3,0.5,0.2])
+    14.25
     """
     mean = expectation(values, probabilities)
     return sum((x - mean) ** 2 * p for x, p in zip(values, probabilities))
@@ -43,7 +52,11 @@ def covariance(
     x_values: list, y_values: list, x_probabilities: list, y_probabilities: list
 ) -> float:
     """
-    >>>covariance([],[],[],[])
+    Examples:
+    >>>covariance([1,2],[-2,5 ,8],[0.7, 0.3],[0.3, 0.5, 0.2])
+    0
+    >>>covariance([1],[1],[1],[1])
+    0
     
     """
     mean_x = expectation(x_values, x_probabilities)
@@ -58,8 +71,11 @@ def covariance(
 # Function to calculate the standard deviation
 def standard_deviation(variance: list) -> float:
     """
-    >>>variance(4)
+    Examples
+    >>>standard_deviation(4)
     2
+    >>>standard_deviation(9)
+    3
     
     """
     return variance**0.5
@@ -114,11 +130,14 @@ stddev_x = standard_deviation(variance_x)
 stddev_y = standard_deviation(variance_y)
 
 # Print the results
-print(f"Expectation (mean) of X: {mean_x}")
-print(f"Expectation (mean) of Y: {mean_y}")
-print(f"Expectation (mean) of XY: {mean_xy}")
-print(f"Variance of X: {variance_x}")
-print(f"Variance of Y: {variance_y}")
-print(f"Covariance between X and Y: {cov_xy}")
-print(f"Standard Deviation of X: {stddev_x}")
-print(f"Standard Deviation of Y: {stddev_y}")
+print(f"Expectation (mean) of X: {expectation(x_values, x_probabilities)}")
+print(f"Expectation (mean) of Y: {expectation(y_values, y_probabilities)}")
+print(f"Expectation (mean) of XY: {expectation(
+    [x * y for x in x_values for y in y_values],
+    [px * py for px in x_probabilities for py in y_probabilities],
+)}")
+print(f"Variance of X: {variance(x_values, x_probabilities)}")
+print(f"Variance of Y: {variance(y_values, y_probabilities)}")
+print(f"Covariance between X and Y: {covariance(x_values, y_values, x_probabilities, y_probabilities)}")
+print(f"Standard Deviation of X: {standard_deviation(variance_x)}")
+print(f"Standard Deviation of Y: {standard_deviation(variance_y)}")
