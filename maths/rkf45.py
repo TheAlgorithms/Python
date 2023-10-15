@@ -59,7 +59,9 @@ def runge_kutta_fehlberg_45(
     ValueError: Step size must be positive.
     """
     if x_initial >= x_final:
-        raise ValueError("The final value of x must be greater than initial value of x.")
+        raise ValueError(
+            "The final value of x must be greater than initial value of x."
+        )
 
     if step_size <= 0:
         raise ValueError("Step size must be positive.")
