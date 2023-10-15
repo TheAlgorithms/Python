@@ -73,7 +73,7 @@ import unittest
 
 
 class TestPriorityRRScheduler(unittest.TestCase):
-    def test_priority_rr_scheduling(self):
+    def test_priority_rr_scheduling(self) -> None:
         # Test case 1
         job1 = Job("Job1", 2, 10)
         job2 = Job("Job2", 1, 5)
