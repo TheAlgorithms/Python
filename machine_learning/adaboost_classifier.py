@@ -18,11 +18,12 @@ the previous weak learners, so that subsequent weak learners focus more on
 these misclassified instances.
 """
 
+
 class AdaBoost:
     def __init__(self, n_estimators: int = 50):
         """
         Initialize the AdaBoost classifier.
-        
+
         Parameters:
         - n_estimators (int): The number of weak learners to combine in the ensemble.
 
@@ -55,7 +56,9 @@ class AdaBoost:
 
             err = np.dot(w, y_pred != y) / np.sum(w)  # Calculate the weighted error
 
-            alpha = 0.5 * np.log((1 - err) / max(err, 1e-10))  # Calculate alpha for the model
+            alpha = 0.5 * np.log(
+                (1 - err) / max(err, 1e-10)
+            )  # Calculate alpha for the model
             w = w * np.exp(-alpha * y * y_pred)  # Update sample weights
             w /= np.sum(w)  # Normalize the weights
 
@@ -76,7 +79,9 @@ class AdaBoost:
         results = np.zeros(n_samples)  # Initialize results array
 
         for alpha, model in zip(self.alphas, self.models):
-            results += alpha * model.predict(x)  # Weighted combination of model predictions
+            results += alpha * model.predict(
+                x
+            )  # Weighted combination of model predictions
 
         return np.sign(results)  # Convert results into binary classification
 
@@ -99,7 +104,8 @@ class AdaBoost:
 
         # Calculate accuracy
         accuracy = np.mean(predictions == y)
-        print(f'Accuracy: {accuracy}')
+        print(f"Accuracy: {accuracy}")
+
 
 if __name__ == "__main__":
     doctest.testmod(verbose=True)  # Run doctests for documentation
