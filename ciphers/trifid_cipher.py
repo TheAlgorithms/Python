@@ -52,7 +52,7 @@ def __prepare(
     """__prepare validates the entered message and alphabet to check if
        it satisfies all the given requirements:
 
-       1) message must not create numbers like 1,2,3 etc
+       1) message must not contain numbers like 1,2,3 etc
        2) Key must have all the alphabets the message has
        3) Length of the key has to be 27
        
