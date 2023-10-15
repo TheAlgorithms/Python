@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from .double_ended_queue import Deque
+from collections import deque
 
 arr = [1, 3, -1, -3, 5, 3, 6, 7]
 window_size = 3
@@ -17,19 +17,19 @@ def max_sliding_window(arr: list[float], window_size: int) -> list[float]:
     True
     """
     max_val = []
-    queue = Deque()
+    mono_queue: deque = deque()
     for i in range(len(arr)):
         # pop the element if the index is outside the window size k
-        if queue and i - queue._front.val >= window_size:
-            queue.popleft()
+        if mono_queue and i - mono_queue[0] >= window_size:
+            mono_queue.popleft()
         # keep the queue monotonically decreasing
         # so that the max value is always on the top
-        while queue and arr[i] >= arr[queue._back.val]:
-            queue.pop()
-        queue.append(i)
+        while mono_queue and arr[i] >= arr[mono_queue[-1]]:
+            mono_queue.pop()
+        mono_queue.append(i)
         # the maximum value is the first element in queue
         if i >= window_size - 1:
-            max_val.append(arr[queue._front.val])
+            max_val.append(arr[mono_queue[0]])
     return max_val
 
 
