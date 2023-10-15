@@ -44,8 +44,7 @@ def octal_to_hex(octal: str) -> str:
         revhex += hex_char[decimal & 15]
         decimal >>= 4
 
-    hexadecimal = "0X" + revhex[::-1]
-    return hexadecimal
+    return "0x" + revhex[::-1]
 
 
 if __name__ == "__main__":
