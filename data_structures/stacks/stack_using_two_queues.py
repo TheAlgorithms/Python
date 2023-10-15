@@ -1,43 +1,12 @@
-# for explanation refer this  https://www.geeksforgeeks.org/implement-stack-using-queue/
+from collections import deque
+from dataclasses import dataclass, field
 
 
+@dataclass
 class StackWithQueues:
-    def __init__(self):
-        self.queue1 = []
-        self.queue2 = []
-
-    def push(self, element):
-        self.queue1.append(element)
-
-    def pop(self):
-        if not self.queue1:
-            return None
-
-        while len(self.queue1) > 1:
-            self.queue2.append(self.queue1.pop(0))
-
-        element = self.queue1.pop(0)
-
-        self.queue1, self.queue2 = self.queue2, self.queue1
-
-        return element
-
-    def peek(self):
-        if not self.queue1:
-            return None
-
-        while len(self.queue1) > 1:
-            self.queue2.append(self.queue1.pop(0))
-
-        element = self.queue1[0]
-
-        self.queue2.append(self.queue1.pop(0))
-
-        self.queue1, self.queue2 = self.queue2, self.queue1
-
-        return element
-
     """
+    https://www.geeksforgeeks.org/implement-stack-using-queue/
+
     >>> stack = StackWithQueues()
     >>> stack.push(1)
     >>> stack.push(2)
@@ -54,38 +23,60 @@ class StackWithQueues:
     1
     >>> stack.peek() is None
     True
+    >>> stack.pop()
+    Traceback (most recent call last):
+        ...
+    IndexError: pop from an empty deque
     """
+    main_queue: deque[int] = field(default_factory=deque)
+    temp_queue: deque[int] = field(default_factory=deque)
+
+    def push(self, item):
+        self.temp_queue.append(item)
+        while self.main_queue:
+            self.temp_queue.append(self.main_queue.popleft())
+        self.main_queue, self.temp_queue = self.temp_queue, self.main_queue
+
+    def pop(self):
+        return self.main_queue.popleft()
+
+    def peek(self):
+        return self.main_queue[0] if self.main_queue else None
 
 
-# Initialize the stack
-stack = StackWithQueues()
+if __name__ == "__main__":
+    import doctest
 
-while True:
-    print("\nChoose operation:")
-    print("1. Push")
-    print("2. Pop")
-    print("3. Peek")
-    print("4. Quit")
+    doctest.testmod()
 
-    choice = input("Enter choice (1/2/3/4): ")
+    stack = StackWithQueues()
+    while stack:
+        print("\nChoose operation:")
+        print("1. Push")
+        print("2. Pop")
+        print("3. Peek")
+        print("4. Quit")
 
-    if choice == "1":
-        element = input("Enter element to push: ")
-        stack.push(element)
-        print(f"{element} pushed onto the stack.")
-    elif choice == "2":
-        popped_element = stack.pop()
-        if popped_element is not None:
-            print(f"Popped element: {popped_element}")
+        choice = input("Enter choice (1/2/3/4): ")
+
+        if choice == "1":
+            element = input("Enter element to push: ")
+            stack.push(element)
+            print(f"{element} pushed onto the stack.")
+        elif choice == "2":
+            popped_element = stack.pop()
+            if popped_element is not None:
+                print(f"Popped element: {popped_element}")
+            else:
+                print("Stack is empty.")
+        elif choice == "3":
+            peeked_element = stack.peek()
+            if peeked_element is not None:
+                print(f"Top element: {peeked_element}")
+            else:
+                print("Stack is empty.")
+        elif choice == "4":
+            del stack
+            stack = None
         else:
-            print("Stack is empty.")
-    elif choice == "3":
-        peeked_element = stack.peek()
-        if peeked_element is not None:
-            print(f"Top element: {peeked_element}")
-        else:
-            print("Stack is empty.")
-    elif choice == "4":
-        break
-    else:
-        print("Invalid choice. Please try again.")
+            print("Invalid choice. Please try again.")
