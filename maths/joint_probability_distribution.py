@@ -57,7 +57,7 @@ def covariance(
     0
     >>>covariance([1],[1],[1],[1])
     0
-    
+
     """
     mean_x = expectation(x_values, x_probabilities)
     mean_y = expectation(y_values, y_probabilities)
@@ -76,7 +76,7 @@ def standard_deviation(variance: list) -> float:
     2
     >>>standard_deviation(9)
     3
-    
+
     """
     return variance**0.5
 
