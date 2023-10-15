@@ -34,12 +34,12 @@ def search(
     ...         if grid[i][j] == 1:
     ...             heuristic[i][j] = 99
     >>> path, action = search(grid, init, goal, cost, heuristic)
-    >>> path
-    [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [4, 1],  # doctest: +NORMALIZE_WHITESPACE
-    [4, 2], [4, 3], [3, 3], [2, 3], [2, 4], [2, 5], [3, 5], [4, 5]]
-    >>> action
-    [[0, 0, 0, 0, 0, 0], [2, 0, 0, 0, 0, 0],  # doctest: +NORMALIZE_WHITESPACE
-    [2, 0, 0, 0, 3, 3], [2, 0, 0, 0, 0, 2], [2, 3, 3, 3, 0, 2]]
+    >>> path  # doctest: +NORMALIZE_WHITESPACE
+    [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [4, 1], [4, 2], [4, 3], [3, 3],
+    [2, 3], [2, 4], [2, 5], [3, 5], [4, 5]]
+    >>> action  # doctest: +NORMALIZE_WHITESPACE
+    [[0, 0, 0, 0, 0, 0], [2, 0, 0, 0, 0, 0], [2, 0, 0, 0, 3, 3],
+    [2, 0, 0, 0, 0, 2], [2, 3, 3, 3, 0, 2]]
     """
     closed = [
         [0 for col in range(len(grid[0]))] for row in range(len(grid))
