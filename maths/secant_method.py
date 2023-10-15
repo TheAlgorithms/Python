@@ -58,15 +58,19 @@ def secant_method(
     if guess_1 == guess_2:
         raise ValueError("Value of both guesses cannot be same.")
 
-    x = np.zeros((iterations + 2),)
+    x = np.zeros(
+        (iterations + 2),
+    )
     x[0] = guess_1
     x[1] = guess_2
 
     for i in range(iterations):
-        x[i+2] = x[i+1] - (equation(x[i+1])*(x[i+1]-x[i]))/(equation(x[i+1])-equation(x[i]))
+        x[i + 2] = x[i + 1] - (equation(x[i + 1]) * (x[i + 1] - x[i])) / (
+            equation(x[i + 1]) - equation(x[i])
+        )
 
-        if abs(x[i+2]-x[i+1]) <= accuracy:
-            return x[i+2]
+        if abs(x[i + 2] - x[i + 1]) <= accuracy:
+            return x[i + 2]
 
     raise ValueError("Secant method failed!")
 
