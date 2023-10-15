@@ -141,6 +141,36 @@ def has_same_digits(num1: int, num2: int) -> bool:
     return sorted(str(num1)) == sorted(str(num2))
 
 
+def slow_solution(max_n: int = 10000000) -> int:
+    """
+    Finds the value of n from 1 to max such that n/φ(n) produces a minimum.
+
+    >>> slow_solution(100)
+    21
+
+    >>> slow_solution(10000)
+    4435
+    """
+    totients = slow_get_totients(max_n + 1)
+
+    return common_solution(totients, max_n)
+
+
+def slicing_solution(max_n: int = 10000000) -> int:
+    """
+    Finds the value of n from 1 to max such that n/φ(n) produces a minimum.
+
+    >>> slicing_solution(100)
+    21
+
+    >>> slicing_solution(10000)
+    4435
+    """
+    totients = slicing_get_totients(max_n + 1)
+
+    return common_solution(totients, max_n)
+
+
 def solution(max_n: int = 10000000) -> int:
     """
     Finds the value of n from 1 to max such that n/φ(n) produces a minimum.
