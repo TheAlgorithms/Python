@@ -41,7 +41,7 @@ def calculation_span(price: list[float]):
     return s
 
 
-price = [10, 4, 5, 90, 120, 80]
+price = [10.0, 4.0, 5.0, 90.0, 120.0, 80.0]
 S = calculation_span(price)
 print(S)
 
