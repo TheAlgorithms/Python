@@ -23,15 +23,13 @@ jobs:
           python -m pip install --upgrade pip setuptools six wheel
           python -m pip install pytest-cov -r requirements.txt
       - name: Run tests
-        # TODO: #8818 Re-enable quantum tests
+        # TODO: #8818 Re-enable quantum tests (files are currently disabled)
         run: pytest
-            --ignore=quantum/q_fourier_transform.py
             --ignore=project_euler/
             --ignore=scripts/validate_solutions.py
       - name: Check test coverage
-        # TODO: #8818 Re-enable quantum tests
         run: pytest
             --cov-report=term-missing:skip-covered
-            --cov=. .
+            --cov=.
       - if: ${{ success() }}
         run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
