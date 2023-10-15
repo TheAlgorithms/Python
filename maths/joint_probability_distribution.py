@@ -1,6 +1,8 @@
 # https://en.wikipedia.org/wiki/Joint_probability_distribution
 # Function to calculate the joint probability distribution
-def calculate_joint_probability(x_values, y_values, x_probabilities, y_probabilities) -> dict:
+def calculate_joint_probability(
+    x_values, y_values, x_probabilities, y_probabilities
+) -> dict:
     """
     >>>calculate_joint_probability([1,2],[-2,5,8],[0.7,0.3],[0.3,0.5,0.2])
     P(X=1, Y=-2) = 0.21
@@ -15,7 +17,7 @@ def calculate_joint_probability(x_values, y_values, x_probabilities, y_probabili
     P(X=2, Y=-2) = 0.09
     P(X=2, Y=5) = 0.15
     P(X=2, Y=8) = 0.06
-    
+
     """
     joint_distribution = {}
 
@@ -33,7 +35,7 @@ def expectation(values, probabilities) -> float:
     """
     >>>expectation([1,2],[0.7,0.3])
     1.2999999999999999999999
-    
+
     """
     return sum(x * p for x, p in zip(values, probabilities))
 
