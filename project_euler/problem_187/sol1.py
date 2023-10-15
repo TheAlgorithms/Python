@@ -88,7 +88,7 @@ def slow_solution(max_number: int = 10**8) -> int:
 def solution(max_number: int = 10**8) -> int:
     """
     Returns the number of composite integers below max_number have precisely two,
-    not necessarily distinct, prime factors
+    not necessarily distinct, prime factors.
 
     >>> solution(30)
     10
@@ -97,16 +97,18 @@ def solution(max_number: int = 10**8) -> int:
     prime_numbers = calculate_prime_numbers(max_number // 2)
 
     semiprimes_count = 0
-    left = 0
     right = len(prime_numbers) - 1
-    while left <= right:
-        while prime_numbers[left] * prime_numbers[right] >= max_number:
-            right -= 1
+    for left in range(len(prime_numbers)):
+        if left > right:
+            break
+        for r in range(right, left - 2, -1):
+            if prime_numbers[left] * prime_numbers[r] < max_number:
+                break
+        right = r
         semiprimes_count += right - left + 1
-        left += 1
 
     return semiprimes_count
 
 
 if __name__ == "__main__":
-    print(f"{solution() = }")
+    print(f"Solution: {solution()}")
