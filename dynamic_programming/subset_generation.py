@@ -19,7 +19,4 @@ def subset_combinations_dp(elements, n):
 
 
 if __name__ == "__main__":
-    elements = [10, 20, 30, 40]
-    n = 2
-    result = subset_combinations_dp(elements, n)
-    print(result)
+    print(f"{subset_combinations_dp(elements=[10, 20, 30, 40], n=2) = }")
