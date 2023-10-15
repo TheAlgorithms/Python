@@ -55,6 +55,10 @@ def covariance(
     x_probabilities: list[float],
     y_probabilities: list[float],
 ) -> float:
+    """
+    >>> covariance([1, 2], [-2, 5, 8], [0.7, 0.3], [0.3, 0.5, 0.2])
+    -2.7755575615628914e-17
+    """
     mean_x = expectation(x_values, x_probabilities)
     mean_y = expectation(y_values, y_probabilities)
     return sum(
@@ -66,6 +70,10 @@ def covariance(
 
 # Function to calculate the standard deviation
 def standard_deviation(variance: float) -> float:
+    """
+    >>> standard_deviation(0.21)
+    0.458257569495584
+    """
     return variance**0.5
 
 
