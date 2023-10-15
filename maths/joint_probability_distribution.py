@@ -5,7 +5,7 @@ def calculate_joint_probability(
 ) -> dict:
     """
     Given two random variables that are defined on the same probability space,
-    [1] the joint probability distribution is the corresponding 
+    [1] the joint probability distribution is the corresponding
     probability distribution on all possible pairs of outputs.
     The joint distribution can just as well be considered for any given
       number of random variables.
