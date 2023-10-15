@@ -22,6 +22,7 @@ than the current time, or skip it otherwise.
 
 from typing import Any
 
+
 class Task:
     def __init__(self, task_id: Any, deadline: int, reward: int) -> None:
         self.task_id = task_id
