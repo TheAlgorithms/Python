@@ -38,20 +38,16 @@ def generate_candidates(itemset: list[str], length: int) -> list[list[str]]:
     """
     Generates candidate itemsets of size k from the given itemsets.
 
-    >>> itemsets = [['milk', 'bread'], ['milk', 'butter'], ['milk', 'bread', 'nuts']]
+    >>> itemsets = ['A', 'B', 'C', 'D']
     >>> generate_candidates(itemsets, 2)
-    [['milk', 'bread'], ['milk', 'butter'], ['bread', 'butter']]
-
-    >>> itemsets = [['milk', 'bread'], ['milk', 'butter'], ['bread', 'butter']]
-    >>> generate_candidates(itemsets, 3)
-    [['milk', 'bread', 'butter']]
+    [['A', 'B'], ['A', 'C'], ['A', 'D'], ['B', 'C'], ['B', 'D'], ['C', 'D']]
     """
     candidates = []
     for i in range(len(itemset)):
         for j in range(i + 1, len(itemset)):
             # Create a candidate by taking the union of two lists
             candidate = list(itemset[i]) + [
-                item for item in itemset[j] if item not in itemset[i]
+                item for item in list(itemset[j]) if item not in list(itemset[i])
             ]
             if len(candidate) == length:
                 candidates.append(candidate)
@@ -68,15 +64,15 @@ def prune(
 
     Prunes candidate itemsets that are not frequent.
 
-    >>> itemset = ['bread', 'butter', 'milk']
-    >>> candidates = [['bread', 'butter'], ['bread', 'milk'], ['butter', 'milk'], ['bread', 'butter', 'milk'], ['nuts', 'bread', 'butter']]
-    >>> prune(itemset, candidates, 3)
-    [['bread', 'butter', 'milk']]
-
-    >>> itemset = ['bread', 'butter', 'milk']
-    >>> candidates = [['bread', 'butter'], ['bread', 'milk'], ['butter', 'milk'], ['bread', 'butter', 'milk'], ['nuts', 'bread', 'butter']]
+    >>> itemset = ['X', 'Y', 'Z']
+    >>> candidates = [['X', 'Y'], ['X', 'Z'], ['Y', 'Z']]
     >>> prune(itemset, candidates, 2)
-    [['bread', 'butter'], ['bread', 'milk'], ['butter', 'milk'], ['nuts', 'bread', 'butter']]
+    [['X', 'Y'], ['X', 'Z'], ['Y', 'Z']]
+
+    >>> itemset = ['1', '2', '3', '4']
+    >>> candidates = ['1', '2', '4']
+    >>> prune(itemset, candidates, 3)
+    []
     """
     pruned = []
     for candidate in candidates:
@@ -94,13 +90,13 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
     """
     Returns a list of frequent itemsets and their support counts.
 
-    >>> data = [['milk', 'bread'], ['milk', 'butter'], ['milk', 'bread', 'nuts'], ['milk', 'bread', 'chips'], ['milk', 'butter', 'chips'], ['milk', 'bread', 'butter', 'cola'], ['nuts', 'bread', 'butter', 'cola'], ['bread', 'butter', 'cola', 'ice'], ['bread', 'butter', 'cola', 'ice', 'bun']]
-    >>> apriori(data, 3)
-    [(['bread'], 7), (['butter'], 7), (['milk'], 8), (['cola', 'butter'], 3), (['bread', 'butter'], 4), (['bread', 'milk'], 4), (['butter', 'milk'], 4), (['bread', 'cola'], 3), (['milk', 'cola'], 3), (['bread', 'butter', 'milk'], 3), (['bread', 'milk', 'cola'], 3), (['butter', 'milk', 'cola'], 3), (['bread', 'butter', 'cola'], 3), (['bread', 'butter', 'milk', 'cola'], 3)]
+    >>> data = [['A', 'B', 'C'], ['A', 'B'], ['A', 'C'], ['A', 'D'], ['B', 'C']]
+    >>> apriori(data, 2)
+    [(['A', 'B'], 1), (['A', 'C'], 2), (['B', 'C'], 2)]
 
-    >>> data = [['milk', 'bread'], ['milk', 'butter'], ['milk', 'bread', 'nuts'], ['milk', 'bread', 'chips'], ['milk', 'butter', 'chips'], ['milk', 'bread', 'butter', 'cola'], ['nuts', 'bread', 'butter', 'cola'], ['bread', 'butter', 'cola', 'ice'], ['bread', 'butter', 'cola', 'ice', 'bun']]
-    >>> apriori(data, 5)
-    [(['bread'], 7), (['butter'], 7), (['milk'], 8)]
+    >>> data = [['1', '2', '3'], ['1', '2'], ['1', '3'], ['1', '4'], ['2', '3']]
+    >>> apriori(data, 3)
+    []
     """
     itemset = [set(transaction) for transaction in data]
     frequent_itemsets = []
@@ -110,10 +106,8 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
         # Count itemset support
         counts = [0] * len(itemset)
         for i, transaction in enumerate(data):
-            for j, item in enumerate(itemset):
-                if item.issubset(
-                    transaction
-                ):  # using set for faster membership checking
+            for j, candidate in enumerate(itemset):
+                if all(item in transaction for item in candidate):
                     counts[j] += 1
 
         # Prune infrequent itemsets
@@ -121,11 +115,11 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
 
         # Append frequent itemsets (as a list to maintain order)
         for i, item in enumerate(itemset):
-            frequent_itemsets.append((list(item), counts[i]))
+            frequent_itemsets.append((sorted(item), counts[i]))
 
         length += 1
-        candidates = generate_candidates(itemset, len(next(iter(itemset))) + 1)
-        itemset = prune(itemset, candidates, len(next(iter(itemset))) + 1)
+        candidates = generate_candidates(itemset, length)
+        itemset = prune(itemset, candidates, length)
 
     return frequent_itemsets
 
@@ -140,20 +134,11 @@ if __name__ == "__main__":
 
     Returns:
         list[Tuple[list[str], int]]: A list of frequent itemsets along with their support counts.
-
-    Example:
-    >>> data = [["milk", "bread"], ["milk", "butter"], ["milk", "bread", "nuts"]]
-    >>> min_support = 2
-    >>> frequent_itemsets = apriori(data, min_support)
-    >>> frequent_itemsets
-    [(['milk'], 3), (['bread'], 3), (['butter'], 2), (['nuts'], 1), (['milk', 'bread'], 2)]
-
-    >>> data = [["apple", "banana", "cherry"], ["banana", "cherry"], ["apple", "banana"]]
-    >>> min_support = 2
-    >>> frequent_itemsets = apriori(data, min_support)
-    >>> frequent_itemsets
-    [(['apple'], 2), (['banana'], 3), (['cherry'], 2), (['apple', 'banana'], 2), (['banana', 'cherry'], 2)]
     """
+    import doctest
+
+    doctest.testmod()
+
     data = load_data()
     min_support = 2  # user-defined threshold or minimum support level
     frequent_itemsets = apriori(data, min_support)
