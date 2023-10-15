@@ -47,3 +47,15 @@ We are on [Discord](https://the-algorithms.com/discord) and [Gitter](https://git
 ## List of Algorithms
 
 See our [directory](DIRECTORY.md) for easier navigation and a better overview of the project.
+
+
+## 👥 Contributors
+
+<div align="center">
+  <a href="https://github.com/TheAlgorithms/Python/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=TheAlgorithms/Python&max=100&columns=10"  />
+  </a>
+  <p>Join our community and become a contributor today! 🚀 </p>
+</div>
+
+
