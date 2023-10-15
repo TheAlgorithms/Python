@@ -30,7 +30,37 @@ https://en.wikipedia.org/wiki/Euler's_totient_function#Euler's_product_formula
 """
 from __future__ import annotations
 
+from math import isqrt
+
 import numpy as np
+
+
+def calculate_prime_numbers(max_number: int) -> list[int]:
+    """
+    Returns prime numbers below max_number.
+    See: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
+
+    >>> calculate_prime_numbers(10)
+    [2, 3, 5, 7]
+    >>> calculate_prime_numbers(2)
+    []
+    """
+    if max_number <= 2:
+        return []
+
+    # List containing a bool value for every odd number below max_number/2
+    is_prime = [True] * (max_number // 2)
+
+    for i in range(3, isqrt(max_number - 1) + 1, 2):
+        if is_prime[i // 2]:
+            # Mark all multiple of i as not prime using list slicing
+            is_prime[i**2 // 2 :: i] = [False] * (
+                # Same as: (max_number - (i**2)) // (2 * i) + 1
+                # but faster than len(is_prime[i**2 // 2 :: i])
+                len(range(i**2 // 2, max_number // 2, i))
+            )
+
+    return [2] + [2 * i + 1 for i in range(1, max_number // 2) if is_prime[i]]
 
 
 def slow_get_totients(max_one: int) -> list[int]:
@@ -70,6 +100,26 @@ def slicing_get_totients(max_one: int):
     for i in range(2, max_one):
         if totients[i] == i:
             totients[i::i] -= totients[i::i] // i
+
+    return totients.tolist()
+
+
+def get_totients(limit):
+    """
+    Calculates a list of totients from 0 to max_one exclusive, using the
+    definition of Euler's product formula.
+
+    >>> get_totients(5)
+    [0, 1, 1, 2, 2]
+
+    >>> get_totients(10)
+    [0, 1, 1, 2, 2, 4, 2, 6, 4, 6]
+    """
+    totients = np.arange(limit)
+    primes = calculate_prime_numbers(limit)
+
+    for i in primes:
+        totients[i::i] -= totients[i::i] // i
 
     return totients.tolist()
 
