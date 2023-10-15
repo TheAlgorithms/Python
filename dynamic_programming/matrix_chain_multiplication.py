@@ -2,6 +2,15 @@
 Find the minimum number of multiplications needed to multiply chain of matrices.
 Reference: https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/
 
+The algorithm has interesting real-world applications. Example:
+1. Image transformations in Computer Graphics as images are composed of matrix.
+2. Solve complex polynomial equations in the field of algebra using least
+processing power.
+3. Calculate overall impact of macroeconomic decisions as economic
+equations involve number of variables.
+4. Self-driving car navigation can be made more accurate as matrix multiplication
+can accurately determine position and orientation of obstacles in short time.
+
 Python doctests can be run with the following command:
 python -m doctest -v matrix_chain_multiply.py
 
