@@ -3,7 +3,7 @@
 
 def subset_combinations_dp(elements: list, n: int) -> list:
     """
-        Generate all possible combinations of n elements from the given list of elements using dynamic programming.
+        Compute n-element combinations from a given list using dynamic programming.
         Args:
             elements (list): The list of elements from which combinations will be generated.
             n (int): The number of elements in each combination.
@@ -17,12 +17,12 @@ def subset_combinations_dp(elements: list, n: int) -> list:
             [(1, 2, 3)]
             >>> subset_combinations_dp(elements=[42], n=1)
             [(42,)]
-            >>> subset_combinations_dp(elements=[1, 2, 3, 4, 5], n=3)
-            [(1, 2, 3), (1, 2, 4), (1, 3, 4), (2, 3, 4), (1, 2, 5), (1, 3, 5), (2, 3, 5), (1, 4, 5), (2, 4, 5), (3, 4, 5)]
             >>> subset_combinations_dp(elements=[6, 7, 8, 9], n=4)
             [(6, 7, 8, 9)]
             >>> subset_combinations_dp(elements=[10, 20, 30, 40, 50], n=0)
             [()]
+            >>> subset_combinations_dp(elements=[1, 2, 3, 4], n=2)
+            [(1, 2), (1, 3), (2, 3), (1, 4), (2, 4), (3, 4)]
             >>> subset_combinations_dp(elements=[1, 'apple', 3.14], n=2)
             [(1, 'apple'), (1, 3.14), ('apple', 3.14)]
             >>> subset_combinations_dp(elements=['single'], n=0)
