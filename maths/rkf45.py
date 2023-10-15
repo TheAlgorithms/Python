@@ -1,10 +1,19 @@
+"""
+Module contains an implementation of the Runge-Kutta-Fehlberg method to solve ODEs.
+"""
+
 from collections.abc import Callable
+
 
 import numpy as np
 
 
 class RangeError(Exception):
     "Will be raised when initial x is greater than or equal to final x"
+
+
+class IncrementError(Exception):
+    "Will be raised when value of stepsize (Increment of x) is not positive."
 
 
 def runge_futta_fehlberg_45(
@@ -32,12 +41,35 @@ def runge_futta_fehlberg_45(
     # exact value of y[1] is tan(0.2) = 0.2027100355086
     >>> def f(x,y):
     ...     return 1+y**2
-    >>> y=runge_futta_fehlberg_45(f, 0, 0, 0.2, 1)
+    >>> y = runge_futta_fehlberg_45(f, 0, 0, 0.2, 1)
     >>> y[1]
     0.2027100937470787
+    >>> def f(x,y):
+    ...     return 5
+    >>> y = runge_futta_fehlberg_45(f, 0, 0, 0.1, 1)
+    >>> y[1]
+    0.5
+    >>> def f(x,y):
+    ...     return x
+    >>> y = runge_futta_fehlberg_45(f, -1, 0, 0.2, 0)
+    >>> y[1]
+    -0.18000000000000002
+    >>> def f(x,y):
+    ...     return x
+    >>> y = runge_futta_fehlberg_45(f, -1, 0, -0.2, 0)
+    Traceback (most recent call last):
+    IncrementError: Increament of x (step size) should be positve.
+    >>> def f(x,y):
+    ...     return x + y
+    >>> y = runge_futta_fehlberg_45(f, 0, 0, 0.2, -1)
+    Traceback (most recent call last):
+    RangeError: Final x should be greater than initial x.
     """
     if x_initial >= x_final:
-        raise RangeError("Final value of x should be greater than initial value of x.")
+        raise RangeError("Final x should be greater than initial x.")
+
+    if step_size == 0 or step_size < 0:
+        raise IncrementError("Increament of x (step size) should be positve.")
 
     n = int((x_final - x_initial) / step_size)
     y = np.zeros(
@@ -54,11 +86,13 @@ def runge_futta_fehlberg_45(
         )
         k4 = step_size * ode(
             x[i] + (12 / 13) * step_size,
-            y[i] + (1932 / 2197) * k1 - (7200 / 2197) * k2 + (7296 / 2197) * k3,
+            y[i] + (1932 / 2197) * k1 - (7200 / 2197) *
+            k2 + (7296 / 2197) * k3,
         )
         k5 = step_size * ode(
             x[i] + step_size,
-            y[i] + (439 / 216) * k1 - 8 * k2 + (3680 / 513) * k3 - (845 / 4104) * k4,
+            y[i] + (439 / 216) * k1 - 8 * k2 +
+            (3680 / 513) * k3 - (845 / 4104) * k4,
         )
         k6 = step_size * ode(
             x[i] + step_size / 2,
@@ -80,6 +114,12 @@ def runge_futta_fehlberg_45(
         x[i + 1] = step_size + x[i]
     return y
 
+
+if __name__ == "__main__":
+    import doctest
+
+
+    doctest.testmod()
 
 if __name__ == "__main__":
     import doctest
