@@ -23,7 +23,7 @@ def load_data() -> list[list[str]]:
     return [["milk"], ["milk", "butter"], ["milk", "bread"], ["milk", "bread", "chips"]]
 
 
-def prune(itemset: list, candidates: list, length: int) -> list:
+def prune(itemset: list, candidates: tuple[list[str]], length: int) -> list:
     """
     Prune candidate itemsets that are not frequent.
     The goal of pruning is to filter out candidate itemsets that are not frequent.  This
