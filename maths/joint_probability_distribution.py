@@ -23,7 +23,7 @@ def calculate_joint_probability(
     >>> calculate_joint_probability([1],[1],[1],[1])
     {(1,1):1}
     >>> calculate_joint_probability([1][1,2][0.5][0.1,0.5])
-    {(1,1):0.05 , (1,2):0.25}
+    {(1,1):0.05 , (1,2): 0.25}
 
     """
     joint_distribution = {}
@@ -38,6 +38,6 @@ def calculate_joint_probability(
 
 if __name__ == "__main__":
     import doctest
-
-    # print(calculate_joint_probability([1], [1, 2], [0.5], [0.1, 0, 5]))
     doctest.testmod()
+    print(calculate_joint_probability([1], [1, 2], [0.5], [0.1, 0.5]))
+
