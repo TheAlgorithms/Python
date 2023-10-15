@@ -1,11 +1,15 @@
 """
-Apriori Algorithm is a Association rule mining technique, also known as market basket analysis, is a data mining technique that aims to discover interesting relationships or associations among a set of items in a transactional or relational database. It focuses on finding patterns and dependencies between items based on their co-occurrence in transactions.
+Apriori Algorithm is a Association rule mining technique, 
+also known as market basket analysis, 
+aims to discover interesting relationships or associations 
+among a set of items in a transactional or relational database. 
 
-Association rule mining is commonly used in retail and e-commerce industries to uncover relationships between products that are frequently purchased together. The technique helps businesses understand customer behavior, improve marketing strategies, optimize product placement, and support decision-making processes.
-
-The output of association rule mining is typically represented in the form of "if-then" rules, known as association rules. These rules consist of an antecedent (a set of items) and a consequent (another item or set of items). The rules indicate the likelihood or support of the consequent item(s) appearing in transactions that contain the antecedent item(s). The strength of the association is measured by various metrics such as support, confidence, and lift.
-
-For example, Apriori Algorithm state: "If a customer buys item A and item B, then they are likely to buy item C." This rule suggests a relationship between items A, B, and C, indicating that customers who purchased A and B are more likely to purchase item C as well.
+For example, Apriori Algorithm state: 
+"If a customer buys item A and item B, 
+then they are likely to buy item C." 
+This rule suggests a relationship between items A, B, and C, 
+indicating that customers who purchased A and B are more 
+likely to purchase item C as well.
 
 WIKI: https://en.wikipedia.org/wiki/Apriori_algorithm
 Examples: https://www.kaggle.com/code/earthian/apriori-association-rules-mining
@@ -17,7 +21,10 @@ def load_data() -> list[list[str]]:
     Returns a sample transaction dataset.
 
     >>> load_data()
-    [['milk', 'bread'], ['milk', 'butter'], ['milk', 'bread', 'nuts'], ['milk', 'bread', 'chips'], ['milk', 'butter', 'chips'], ['milk', 'bread', 'butter', 'cola'], ['nuts', 'bread', 'butter', 'cola'], ['bread', 'butter', 'cola', 'ice'], ['bread', 'butter', 'cola', 'ice', 'bun']]
+    [['milk', 'bread'], ['milk', 'butter'], ['milk', 'bread', 'nuts'], 
+    ['milk', 'bread', 'chips'], ['milk', 'butter', 'chips'], 
+    ['milk', 'bread', 'butter', 'cola'], ['nuts', 'bread', 'butter', 'cola'],
+    ['bread', 'butter', 'cola', 'ice'], ['bread', 'butter', 'cola', 'ice', 'bun']]
     """
     # Sample transaction dataset
     data = [
@@ -60,7 +67,10 @@ def prune(
 ) -> list[list[str]]:
     # Prune candidate itemsets
     """
-    The goal of pruning is to filter out candidate itemsets that are not frequent. This is done by checking if all the (k-1) subsets of a candidate itemset are present in the frequent itemsets of the previous iteration (valid subsequences of the frequent itemsets from the previous iteration).
+    The goal of pruning is to filter out candidate itemsets that are not frequent.
+    This is done by checking if all the (k-1) subsets of a candidate itemset 
+    are present in the frequent itemsets of the previous iteration 
+    (valid subsequences of the frequent itemsets from the previous iteration).
 
     Prunes candidate itemsets that are not frequent.
 
@@ -105,7 +115,7 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
     while itemset:
         # Count itemset support
         counts = [0] * len(itemset)
-        for i, transaction in enumerate(data):
+        for transaction in data:
             for j, candidate in enumerate(itemset):
                 if all(item in transaction for item in candidate):
                     counts[j] += 1
@@ -129,11 +139,11 @@ if __name__ == "__main__":
     Apriori algorithm for finding frequent itemsets.
 
     Args:
-        data (list[list[str]]): A list of transactions, where each transaction is a list of items.
-        min_support (int): The minimum support threshold for frequent itemsets.
+        data: A list of transactions, where each transaction is a list of items.
+        min_support: The minimum support threshold for frequent itemsets.
 
     Returns:
-        list[Tuple[list[str], int]]: A list of frequent itemsets along with their support counts.
+        A list of frequent itemsets along with their support counts.
     """
     import doctest
 
