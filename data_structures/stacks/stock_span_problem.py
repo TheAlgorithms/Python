@@ -10,38 +10,38 @@ on the current day is less than or equal to its price on the given day.
 
 def calculation_span(price, s):
     """
-       Calculate the span values for a given list of stock prices.
-       Args:
-           price (list): List of stock prices.
-           s (list): List to store the span values.
-       Returns:
-           None
-       >>> price = [10, 4, 5, 90, 120, 80]
-       >>> S = [0 for i in range(len(price) + 1)]
-       >>> calculation_span(price, S)
-       >>> S
-       [1, 1, 2, 4, 5, 6, 0]
-       >>> price = [100, 50, 60, 70, 80, 90]
-       >>> S = [0 for i in range(len(price) + 1)]
-       >>> calculation_span(price, S)
-       >>> S
-       [1, 1, 2, 3, 4, 5, 0]
-       >>> price = [5, 4, 3, 2, 1]
-       >>> S = [0 for i in range(len(price) + 1)]
-       >>> calculation_span(price, S)
-       >>> S
-       [1, 1, 2, 3, 4, 0]
-       >>> price = [1, 2, 3, 4, 5]
-       >>> S = [0 for i in range(len(price) + 1)]
-       >>> calculation_span(price, S)
-       >>> S
-       [1, 2, 3, 4, 5, 0]
-       >>> price = [10, 20, 30, 40, 50]
-       >>> S = [0 for i in range(len(price) + 1)]
-       >>> calculation_span(price, S)
-       >>> S
-       [1, 2, 3, 4, 5, 0]
-        """
+    Calculate the span values for a given list of stock prices.
+    Args:
+        price (list): List of stock prices.
+        s (list): List to store the span values.
+    Returns:
+        None
+    >>> price = [10, 4, 5, 90, 120, 80]
+    >>> S = [0 for i in range(len(price) + 1)]
+    >>> calculation_span(price, S)
+    >>> S
+    [1, 1, 2, 4, 5, 6, 0]
+    >>> price = [100, 50, 60, 70, 80, 90]
+    >>> S = [0 for i in range(len(price) + 1)]
+    >>> calculation_span(price, S)
+    >>> S
+    [1, 1, 2, 3, 4, 5, 0]
+    >>> price = [5, 4, 3, 2, 1]
+    >>> S = [0 for i in range(len(price) + 1)]
+    >>> calculation_span(price, S)
+    >>> S
+    [1, 1, 2, 3, 4, 0]
+    >>> price = [1, 2, 3, 4, 5]
+    >>> S = [0 for i in range(len(price) + 1)]
+    >>> calculation_span(price, S)
+    >>> S
+    [1, 2, 3, 4, 5, 0]
+    >>> price = [10, 20, 30, 40, 50]
+    >>> S = [0 for i in range(len(price) + 1)]
+    >>> calculation_span(price, S)
+    >>> S
+    [1, 2, 3, 4, 5, 0]
+    """
     n = len(price)
     st = []
     st.append(0)
