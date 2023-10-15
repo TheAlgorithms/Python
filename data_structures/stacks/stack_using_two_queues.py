@@ -63,7 +63,7 @@ if __name__ == "__main__":
         choice = input("Enter choice (1/2/3/4): ")
 
         if choice == "1":
-            element = input("Enter element to push: ")
+            element = int(input("Enter an integer to push: ").strip())
             stack.push(element)
             print(f"{element} pushed onto the stack.")
         elif choice == "2":
