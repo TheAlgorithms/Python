@@ -1,6 +1,7 @@
 def octal_to_hex(octal: str) -> str:
     """
     Convert an Octal number to Hexadecimal number.
+    For more information: https://en.wikipedia.org/wiki/Octal
 
     >>> octal_to_hex("100")
     '0X40'
@@ -18,8 +19,6 @@ def octal_to_hex(octal: str) -> str:
     Traceback (most recent call last):
         ...
     ValueError: Empty string was passed to the function
-
-    For more information: https://en.wikipedia.org/wiki/Octal
     """
 
     if not isinstance(octal, str):
