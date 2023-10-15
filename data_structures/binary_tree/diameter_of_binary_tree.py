@@ -12,12 +12,12 @@ class Node:
   
 # utility class to pass height object
 class Height:
-	def __init(self):
+	def __init__(self):
 		self.h = 0
 
 
 # Function to calculate diameter of the given binary tree
-def calculate_diameter(root, height):
+def calculate_diameter(root:Node, height:int) -> int:
 
 	# to store height of left and right subtree
 	lh = Height()
@@ -48,7 +48,7 @@ def calculate_diameter(root, height):
 	return max(lh.h + rh.h + 1, max(ldiameter, rdiameter))
 
 
-def diameter(root):
+def diameter(root:Node) -> int:
 	height = Height()
 	return calculate_diameter(root, height)
 
