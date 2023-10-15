@@ -15,7 +15,7 @@ def calculate_joint_probability(x_values : list, y_values : list, x_probabilitie
     P(X=2, Y=-2) = 0.09
     P(X=2, Y=5) = 0.15
     P(X=2, Y=8) = 0.06
-    
+
     """
     joint_distribution = {}
 
@@ -33,7 +33,7 @@ def expectation(values: list, probabilities: list) -> float:
     """
     >>>expectation([1,2],[0.7,0.3])
     1.2999999999999999999999
-    
+
     """
     return sum(x * p for x, p in zip(values, probabilities))
 
