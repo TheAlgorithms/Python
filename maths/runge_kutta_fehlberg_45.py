@@ -7,7 +7,7 @@ from collections.abc import Callable
 import numpy as np
 
 
-def runge_futta_fehlberg_45(
+def runge_kutta_fehlberg_45(
     func: Callable,
     x_initial: float,
     y_initial: float,
@@ -33,33 +33,35 @@ def runge_futta_fehlberg_45(
     # exact value of y[1] is tan(0.2) = 0.2027100937470787
     >>> def f(x, y):
     ...     return 1 + y**2
-    >>> y = runge_futta_fehlberg_45(f, 0, 0, 0.2, 1)
+    >>> y = runge_kutta_fehlberg_45(f, 0, 0, 0.2, 1)
     >>> y[1]
     0.2027100937470787
     >>> def f(x,y):
     ...     return x
-    >>> y = runge_futta_fehlberg_45(f, -1, 0, 0.2, 0)
+    >>> y = runge_kutta_fehlberg_45(f, -1, 0, 0.2, 0)
     >>> y[1]
     -0.18000000000000002
-    >>> y = runge_futta_fehlberg_45(5, 0, 0, 0.1, 1)
+    >>> y = runge_kutta_fehlberg_45(5, 0, 0, 0.1, 1)
     Traceback (most recent call last):
         ...
     TypeError: 'int' object is not callable
     >>> def f(x, y):
     ...     return x + y
-    >>> y = runge_futta_fehlberg_45(f, 0, 0, 0.2, -1)
+    >>> y = runge_kutta_fehlberg_45(f, 0, 0, 0.2, -1)
     Traceback (most recent call last):
         ...
-    ValueError: The final value x must be greater than initial value of x.
+    ValueError: The final value of x must be greater than initial value of x.
     >>> def f(x, y):
     ...     return x
-    >>> y = runge_futta_fehlberg_45(f, -1, 0, -0.2, 0)
+    >>> y = runge_kutta_fehlberg_45(f, -1, 0, -0.2, 0)
     Traceback (most recent call last):
         ...
     ValueError: Step size must be positive.
     """
     if x_initial >= x_final:
-        raise ValueError("The final value x must be greater than initial value of x.")
+        raise ValueError(
+            "The final value of x must be greater than initial value of x."
+        )
 
     if step_size <= 0:
         raise ValueError("Step size must be positive.")
