@@ -62,6 +62,29 @@ def calculate_prime_numbers(max_number: int) -> list[int]:
     return [2] + [2 * i + 1 for i in range(1, max_number // 2) if is_prime[i]]
 
 
+def slow_solution(max_number: int = 10**8) -> int:
+    """
+    Returns the number of composite integers below max_number have precisely two,
+    not necessarily distinct, prime factors.
+
+    >>> slow_solution(30)
+    10
+    """
+
+    prime_numbers = slow_calculate_prime_numbers(max_number // 2)
+
+    semiprimes_count = 0
+    left = 0
+    right = len(prime_numbers) - 1
+    while left <= right:
+        while prime_numbers[left] * prime_numbers[right] >= max_number:
+            right -= 1
+        semiprimes_count += right - left + 1
+        left += 1
+
+    return semiprimes_count
+
+
 def solution(max_number: int = 10**8) -> int:
     """
     Returns the number of composite integers below max_number have precisely two,
