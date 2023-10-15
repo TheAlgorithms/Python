@@ -10,8 +10,8 @@ Source:
 """
 
 
-# Acceleration Constant on Earth (unit m/s^2)
-g = 9.80665
+# Acceleration Constant on Earth (unit m/s^2) imported from scipy
+from scipy.constants import g
 
 
 def archimedes_principle(
@@ -30,13 +30,27 @@ def archimedes_principle(
     4885.3
     >>> archimedes_principle(fluid_density=997, volume=0.7)
     6844.061035
+    >>> archimedes_principle(fluid_density=997, volume=-0.7)
+    Traceback (most recent call last):
+        ...
+    ValueError: Impossible Object volume
+    >>> archimedes_principle(fluid_density=0, volume=0.7)
+    Traceback (most recent call last):
+        ...
+    ValueError: Impossible fluid density
+    >>> archimedes_principle(fluid_density=997, volume=0.7, gravity=0)
+    0.0
+    >>> archimedes_principle(fluid_density=997, volume=0.7, gravity=-9.8)
+    Traceback (most recent call last):
+        ...
+    ValueError: Impossible Gravity
     """
 
     if fluid_density <= 0:
         raise ValueError("Impossible fluid density")
-    if volume < 0:
+    if volume <= 0:
         raise ValueError("Impossible Object volume")
-    if gravity <= 0:
+    if gravity < 0:
         raise ValueError("Impossible Gravity")
 
     return fluid_density * gravity * volume
