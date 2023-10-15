@@ -11,20 +11,28 @@ def calculate_joint_probability(x_values, y_values, x_probabilities, y_probabili
 
     return joint_distribution
 
+
 # Function to calculate the expectation (mean)
 def expectation(values, probabilities) -> float:
     return sum(x * p for x, p in zip(values, probabilities))
 
+
 # Function to calculate the variance
 def variance(values, probabilities) -> float:
     mean = expectation(values, probabilities)
-    return sum((x - mean)**2 * p for x, p in zip(values, probabilities))
+    return sum((x - mean) ** 2 * p for x, p in zip(values, probabilities))
+
 
 # Function to calculate the covariance
 def covariance(x_values, y_values, x_probabilities, y_probabilities) -> float:
     mean_x = expectation(x_values, x_probabilities)
     mean_y = expectation(y_values, y_probabilities)
-    return sum((x - mean_x) * (y - mean_y) * px * py for x, px in zip(x_values, x_probabilities) for y, py in zip(y_values, y_probabilities))
+    return sum(
+        (x - mean_x) * (y - mean_y) * px * py
+        for x, px in zip(x_values, x_probabilities)
+        for y, py in zip(y_values, y_probabilities)
+    )
+
 
 # Function to calculate the standard deviation
 def standard_deviation(variance) -> float:
@@ -48,26 +56,31 @@ x_probabilities = [float(p) for p in x_probabilities]
 y_probabilities = [float(p) for p in y_probabilities]
 
 # Calculate the joint probability distribution
-joint_distribution = calculate_joint_probability(x_values, y_values, x_probabilities, y_probabilities)
+joint_distribution = calculate_joint_probability(
+    x_values, y_values, x_probabilities, y_probabilities
+)
 
 # Print the joint probability distribution
 for (x, y), probability in joint_distribution.items():
-    print(f'P(X={x}, Y={y}) = {probability}')
-
-
+    print(f"P(X={x}, Y={y}) = {probability}")
 
 
 # Calculate the joint probability distribution
-joint_distribution = calculate_joint_probability(x_values, y_values, x_probabilities, y_probabilities)
+joint_distribution = calculate_joint_probability(
+    x_values, y_values, x_probabilities, y_probabilities
+)
 
 # Print the joint probability distribution
 for (x, y), probability in joint_distribution.items():
-    print(f'P(X={x}, Y={y}) = {probability}')
+    print(f"P(X={x}, Y={y}) = {probability}")
 
 # Calculate the statistics
 mean_x = expectation(x_values, x_probabilities)
 mean_y = expectation(y_values, y_probabilities)
-mean_xy = expectation([x * y for x in x_values for y in y_values], [px * py for px in x_probabilities for py in y_probabilities])
+mean_xy = expectation(
+    [x * y for x in x_values for y in y_values],
+    [px * py for px in x_probabilities for py in y_probabilities],
+)
 variance_x = variance(x_values, x_probabilities)
 variance_y = variance(y_values, y_probabilities)
 cov_xy = covariance(x_values, y_values, x_probabilities, y_probabilities)
