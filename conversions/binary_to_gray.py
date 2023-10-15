@@ -1,7 +1,5 @@
 """
-This code converts gray code to binary
-and
-binary code to gray code.
+Convert gray code into binary code and vice versa.
 """
 
 
