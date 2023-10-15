@@ -18,6 +18,7 @@ the previous weak learners, so that subsequent weak learners focus more on
 these misclassified instances.
 """
 
+
 class AdaBoost:
     def __init__(self, n_estimators=50):
         """
@@ -80,6 +81,7 @@ class AdaBoost:
 
         return np.sign(results)  # Convert results into binary classification
 
+
 def main() -> None:
     """
     Main function to demonstrate the AdaBoost classifier on the Iris dataset.
@@ -99,7 +101,8 @@ def main() -> None:
 
     # Calculate accuracy
     accuracy = np.mean(predictions == y)
-    print(f'Accuracy: {accuracy}')
+    print(f"Accuracy: {accuracy}")
+
 
 if __name__ == "__main__":
     doctest.testmod(verbose=True)  # Run doctests for documentation
