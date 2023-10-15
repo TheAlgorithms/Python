@@ -8,7 +8,7 @@ on the current day is less than or equal to its price on the given day.
 """
 
 
-def calculation_span(price: list[float]):
+def calculation_span(price: list[float]) -> list[float]:
     """
     Calculate the span values for a given list of stock prices.
     Args:
