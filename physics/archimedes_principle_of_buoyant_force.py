@@ -19,11 +19,11 @@ def archimedes_principle(
     """
     Args:
         fluid_density: density of fluid (kg/m^3)
-        volume: volume of object / liquid being displaced by object (m^3)
-        gravity: Acceleration from gravity. Gravitational force on system,
-            Default is Earth Gravity
+        volume: volume of object/liquid being displaced by the object (m^3)
+        gravity: Acceleration from gravity. Gravitational force on the system,
+            The default is Earth Gravity
     returns:
-        buoyant force on object in Newtons
+        the buoyant force on an object in Newtons
 
     >>> archimedes_principle(fluid_density=500, volume=4, gravity=9.8)
     19600.0
@@ -34,7 +34,7 @@ def archimedes_principle(
     >>> archimedes_principle(fluid_density=997, volume=-0.7)
     Traceback (most recent call last):
         ...
-    ValueError: Impossible Object volume
+    ValueError: Impossible object volume
     >>> archimedes_principle(fluid_density=0, volume=0.7)
     Traceback (most recent call last):
         ...
@@ -44,7 +44,7 @@ def archimedes_principle(
     >>> archimedes_principle(fluid_density=997, volume=0.7, gravity=-9.8)
     Traceback (most recent call last):
         ...
-    ValueError: Impossible Gravity
+    ValueError: Impossible gravity
     """
 
     if fluid_density <= 0:
