@@ -27,7 +27,7 @@ def octal_to_hex(octal: str) -> str:
         octal = octal[2:]
     if octal == "":
         raise ValueError("Empty string was passed to the function")
-    if any(char not in "01234567" for char in octal)
+    if any(char not in "01234567" for char in octal):
         raise ValueError("Not a Valid Octal Number")
 
     decimal = 0
@@ -42,7 +42,7 @@ def octal_to_hex(octal: str) -> str:
         revhex += hex_char[decimal & 15]
         decimal >>= 4
 
-    return "0x" + revhex[::-1]
+    return "0X" + revhex[::-1]
 
 
 if __name__ == "__main__":
@@ -62,3 +62,4 @@ if __name__ == "__main__":
 
         print(f"Hex of '0o{num}' is: {hexadecimal}")
         print(f"Expected was: {expected}")
+        print("---")
