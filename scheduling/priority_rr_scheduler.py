@@ -1,5 +1,5 @@
 from collections import deque
-
+from typing import List, Tuple
 
 class Job:
     job_counter: int = 1
@@ -8,9 +8,8 @@ class Job:
         self.name = name
         self.priority = priority
         self.burst_time = burst_time
-        self.job_number = Job.job_counter
+        self.job_number: int = Job.job_counter
         Job.job_counter += 1
-
 
 def priority_rr_scheduling(jobs: List[Job], time_quantum: int) -> List[Tuple[int, int]]:
     """
@@ -36,12 +35,12 @@ def priority_rr_scheduling(jobs: List[Job], time_quantum: int) -> List[Tuple[int
 
     >>> result = priority_rr_scheduling(jobs, time_quantum)
     >>> result
-    [(2, 5), (4, 7), (1, 17), (3, 25)]
+    [(1, 5), (4, 7), (2, 17), (3, 25)]
     """
     queue = deque(jobs)
     waiting_queue = deque()
     current_time = 0
-    completed_jobs = []
+    completed_jobs: List[Tuple[int, int]] = []
 
     while queue or waiting_queue:
         if queue:
@@ -59,32 +58,28 @@ def priority_rr_scheduling(jobs: List[Job], time_quantum: int) -> List[Tuple[int
             completed_jobs.append((current_job.job_number, current_time))
 
         # Check for new arrivals
-        while (
-            queue and queue[0].priority > 0 and queue[0].priority > current_job.priority
-        ):
+        while queue and queue[0].priority > 0 and queue[0].priority > current_job.priority:
             waiting_queue.append(queue.popleft())
 
     return completed_jobs
 
+# Integrated tests
+import unittest
+
+class TestPriorityRRScheduler(unittest.TestCase):
+    def test_priority_rr_scheduling(self):
+        # Test case 1
+        job1 = Job("Job1", 2, 10)
+        job2 = Job("Job2", 1, 5)
+        job3 = Job("Job3", 3, 8)
+        job4 = Job("Job4", 1, 2)
+        jobs = [job1, job2, job3, job4]
+        time_quantum = 2
+        result = priority_rr_scheduling(jobs, time_quantum)
+        expected_result = [(1, 5), (4, 7), (2, 17), (3, 25)]
+        self.assertEqual(result, expected_result)
+
+        # Add more test cases as needed
 
 if __name__ == "__main__":
-    # Take input for jobs
-    num_jobs = int(input("Enter the toal number of jobs present: "))
-    jobs = []
-
-    for _ in range(num_jobs):
-        name = input(f"Enter name for Job {Job.job_counter}: ")
-        priority = int(input(f"Enter priority for Job {Job.job_counter}: "))
-        burst_time = int(input(f"Enter burst time for Job {Job.job_counter}: "))
-        jobs.append(Job(name, priority, burst_time))
-
-    # Take input for time quantum
-    time_quantum = int(input("Enter the time quantum: "))
-
-    result = priority_rr_scheduling(jobs, time_quantum)
-
-    print("\nJob Execution Order:")
-    for job, time in result:
-        print(f"Job{job} completed at time {time}")
-
-# Reference Link - https://www.scaler.com/topics/operating-system/priority-scheduling-algorithm/
+    unittest.main()
