@@ -1,43 +1,111 @@
 # https://en.wikipedia.org/wiki/Joint_probability_distribution
 # Function to calculate the joint probability distribution
-def calculate_joint_probability(
-    x_values: list, y_values: list, x_probabilities: list, y_probabilities: list
+
+
+def joint_probability_distribution(
+    x_values: list[int],
+    y_values: list[int],
+    x_probabilities: list[float],
+    y_probabilities: list[float],
 ) -> dict:
     """
-    Given two random variables that are defined on the same probability space,
-    [1] the joint probability distribution is the corresponding
-    probability distribution on all possible pairs of outputs.
-    The joint distribution can just as well be considered for any given
-      number of random variables.
-
-    Args:
-        lst (List[int]): The X values.
-        2nd (List[int]): The y values.
-        3rd (List[int]): The x probability.
-        4th (List[int]): The y probability.
-
-    Returns:
-        List[int]: The Joint probability.
-
-    Examples:
-    >>> calculate_joint_probability([1],[1],[1],[1])
-    {(1,1):1}
-    >>> calculate_joint_probability([1][1,2][0.5][0.1,0.5])
-    {(1,1):0.05 , (1,2): 0.25}
-
+    >>> joint_distribution =  joint_probability_distribution(
+    ...     [1, 2], [-2, 5, 8], [0.7, 0.3], [0.3, 0.5, 0.2]
+    ... )
+    >>> from math import isclose
+    >>> isclose(joint_distribution.pop((1, 8)), 0.14)
+    True
+    >>> joint_distribution
+    {(1, -2): 0.21, (1, 5): 0.35, (2, -2): 0.09, (2, 5): 0.15, (2, 8): 0.06}
     """
-    joint_distribution = {}
+    return {
+        (x, y): x_prob * y_prob
+        for x, x_prob in zip(x_values, x_probabilities)
+        for y, y_prob in zip(y_values, y_probabilities)
+    }
 
-    # Calculate the joint probability for all combinations of (X, Y)
-    for x, x_prob in zip(x_values, x_probabilities):
-        for y, y_prob in zip(y_values, y_probabilities):
-            joint_prob = x_prob * y_prob
-            joint_distribution[(x, y)] = joint_prob
-    return joint_distribution
+
+# Function to calculate the expectation (mean)
+def expectation(values: list, probabilities: list) -> float:
+    """
+    >>> from math import isclose
+    >>> isclose(expectation([1, 2], [0.7, 0.3]), 1.3)
+    True
+    """
+    return sum(x * p for x, p in zip(values, probabilities))
+
+
+# Function to calculate the variance
+def variance(values: list, probabilities: list) -> float:
+    """
+    >>> from math import isclose
+    >>> isclose(variance([1,2],[0.7,0.3]), 0.21)
+    True
+    """
+    mean = expectation(values, probabilities)
+    return sum((x - mean) ** 2 * p for x, p in zip(values, probabilities))
+
+
+# Function to calculate the covariance
+def covariance(
+    x_values: list, y_values: list, x_probabilities: list, y_probabilities: list
+) -> float:
+    mean_x = expectation(x_values, x_probabilities)
+    mean_y = expectation(y_values, y_probabilities)
+    return sum(
+        (x - mean_x) * (y - mean_y) * px * py
+        for x, px in zip(x_values, x_probabilities)
+        for y, py in zip(y_values, y_probabilities)
+    )
+
+
+# Function to calculate the standard deviation
+def standard_deviation(variance: list) -> float:
+    return variance**0.5
 
 
 if __name__ == "__main__":
-    import doctest
+    from doctest import testmod
 
-    doctest.testmod()
-    print(calculate_joint_probability([1], [1, 2], [0.5], [0.1, 0.5]))
+    testmod()
+    # Input values for X and Y
+    x_values = input("Enter values of X separated by spaces: ").split()
+    y_values = input("Enter values of Y separated by spaces: ").split()
+
+    # Convert input values to integers
+    x_values = [int(x) for x in x_values]
+    y_values = [int(y) for y in y_values]
+
+    # Input probabilities for X and Y
+    x_probabilities = input("Enter probabilities for X separated by spaces: ").split()
+    y_probabilities = input("Enter probabilities for Y separated by spaces: ").split()
+    assert len(x_values) == len(x_probabilities)
+    assert len(y_values) == len(y_probabilities)
+
+    # Convert input probabilities to floats
+    x_probabilities = [float(p) for p in x_probabilities]
+    y_probabilities = [float(p) for p in y_probabilities]
+
+    # Calculate the joint probability distribution
+    jpd = joint_probability_distribution(
+        x_values, y_values, x_probabilities, y_probabilities
+    )
+
+    # Print the joint probability distribution
+    print(
+        "\n".join(
+            f"P(X={x}, Y={y}) = {probability}" for (x, y), probability in jpd.items()
+        )
+    )
+    mean_xy = expectation(
+        [x * y for x in x_values for y in y_values],
+        [px * py for px in x_probabilities for py in y_probabilities],
+    )
+    print(f"x mean: {expectation(x_values, x_probabilities) = }")
+    print(f"y mean: {expectation(y_values, y_probabilities) = }")
+    print(f"xy mean: {mean_xy}")
+    print(f"x: {variance(x_values, x_probabilities) = }")
+    print(f"y: {variance(y_values, y_probabilities) = }")
+    print(f"{covariance(x_values, y_values, x_probabilities, y_probabilities) = }")
+    print(f"x: {standard_deviation(variance(x_values, x_probabilities)) = }")
+    print(f"y: {standard_deviation(variance(y_values, y_probabilities)) = }")
