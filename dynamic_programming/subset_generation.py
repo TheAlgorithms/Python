@@ -23,7 +23,7 @@ def subset_combinations_dp(elements: list[int], n: int) -> list[tuple[int, ...]]
         >>> subset_combinations_dp(elements=[1, 2, 3, 4], n=2)
         [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
         >>> subset_combinations_dp(elements=[1, 'apple', 3.14], n=2)
-        [(1, 'apple'), (1, 3.14), ('apple', 3.14)]\
+        [(1, 'apple'), (1, 3.14), ('apple', 3.14)]
     """
     r = len(elements)
     if n > r:
