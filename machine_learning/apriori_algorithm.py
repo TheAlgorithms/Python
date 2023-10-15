@@ -49,9 +49,7 @@ def generate_candidates(itemset: list, length: int) -> list:
     return candidates
 
 
-def prune(
-    itemset: list, candidates: list, length: int
-) -> list:
+def prune(itemset: list, candidates: list, length: int) -> list:
     # Prune candidate itemsets
     """
     The goal of pruning is to filter out candidate itemsets that are not frequent.
