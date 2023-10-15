@@ -13,6 +13,7 @@ Examples: https://www.kaggle.com/code/earthian/apriori-association-rules-mining
 
 from typing import List, Tuple
 
+
 def load_data() -> List[List[str]]:
     """
     Returns a sample transaction dataset.
@@ -46,18 +47,24 @@ def generate_candidates(itemset: List[str], length: int) -> List[List[str]]:
     >>> generate_candidates(itemsets, 3)
     [['milk', 'bread', 'butter']]
     """
+
+def generate_candidates(itemset: List[str], length: int):
     candidates = []
     for i in range(len(itemset)):
         for j in range(i + 1, len(itemset)):
             # Create a candidate by taking the union of two lists
-            candidate = list(itemset[i]) + [item for item in itemset[j] if item not in itemset[i]]
+            candidate = list(itemset[i]) + [
+                item for item in itemset[j] if item not in itemset[i]
+            ]
             if len(candidate) == length:
                 candidates.append(candidate)
 
     return candidates
 
 
-def prune(itemset: List[str], candidates: List[List[str]], length: int) -> List[List[str]]:
+def prune(
+    itemset: List[str], candidates: List[List[str]], length: int
+) -> List[List[str]]:
     # Prune candidate itemsets
     """
     The goal of pruning is to filter out candidate itemsets that are not frequent. This is done by checking if all the (k-1) subsets of a candidate itemset are present in the frequent itemsets of the previous iteration (valid subsequences of the frequent itemsets from the previous iteration).
@@ -85,6 +92,7 @@ def prune(itemset: List[str], candidates: List[List[str]], length: int) -> List[
             pruned.append(candidate)
     return pruned
 
+
 def apriori(data: List[List[str]], min_support: int) -> List[Tuple[List[str], int]]:
     """
     Returns a list of frequent itemsets and their support counts.
@@ -106,12 +114,14 @@ def apriori(data: List[List[str]], min_support: int) -> List[Tuple[List[str], in
         counts = [0] * len(itemset)
         for i, transaction in enumerate(data):
             for j, item in enumerate(itemset):
-                if item.issubset(transaction): # using set for faster membership checking
+                if item.issubset(
+                    transaction
+                ):  # using set for faster membership checking
                     counts[j] += 1
 
         # Prune infrequent itemsets
         itemset = [item for i, item in enumerate(itemset) if counts[i] >= min_support]
-        
+
         # Append frequent itemsets (as a list to maintain order)
         for i, item in enumerate(itemset):
             frequent_itemsets.append((list(item), counts[i]))
@@ -148,7 +158,7 @@ if __name__ == "__main__":
     [(['apple'], 2), (['banana'], 3), (['cherry'], 2), (['apple', 'banana'], 2), (['banana', 'cherry'], 2)]
     """
     data = load_data()
-    min_support = 2 # user-defined threshold or minimum support level 
+    min_support = 2  # user-defined threshold or minimum support level
     frequent_itemsets = apriori(data, min_support)
     for itemset, support in frequent_itemsets:
         print(f"{itemset}: {support}")
