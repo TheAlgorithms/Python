@@ -31,6 +31,7 @@ class Task:
     deadline: int
     reward: int
 
+
 def max_tasks(tasks_info: list[tuple[int, int]]) -> list:
     """
     >>> max_tasks([(4, 20), (1, 10), (1, 40), (1, 30)])
