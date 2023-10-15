@@ -9,10 +9,10 @@ class RangeError(Exception):
 
 def runge_futta_fehlberg_45(
     ode: Callable,
-    y0: float,
-    x0: float,
+    x_initial: float,
+    y_initial: float,
     step_size: float,
-    xn: float,
+    x_final: float,
 ) -> np.ndarray:
     """
     Solve ODE using Runge-Kutta-Fehlberg Method (rkf45) of order 5.
@@ -20,32 +20,32 @@ def runge_futta_fehlberg_45(
     Reference: https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta%E2%80%93Fehlberg_method
 
     args:
-    ode (callable): Ordinary Differential Equation as function of x and y.
-    y0 (float) : Initial value of y.
-    x0 (float) : Initial value of x.
-    step_size (float) : Increament value of x (step-size).
-    xn (float) : Final value of x.
+    ode : Ordinary Differential Equation as function of x and y.
+    x_initial : Initial value of x.
+    y_initial : Initial value of y.
+    step_size : Increment value of x.
+    x_final : Final value of x.
 
     Returns:
         np.ndarray: Solution of y at each nodal point
 
-    #excact value of y[1] is tan(0.2) = 0.2027100355086
+    # exact value of y[1] is tan(0.2) = 0.2027100355086
     >>> def f(x,y):
     ...     return 1+y**2
-    >>> y=rkf45(f,0,0,0.2,1)
+    >>> y=runge_futta_fehlberg_45(f, 0, 0, 0.2, 1)
     >>> y[1]
     0.2027100937470787
     """
-    if x0 >= xn:
+    if x_initial >= x_final:
         raise RangeError("Final value of x should be greater than initial value of x.")
 
-    n = int((xn - x0) / step_size)
+    n = int((x_final - x_initial) / step_size)
     y = np.zeros(
         (n + 1),
     )
     x = np.zeros(n + 1)
-    y[0] = y0
-    x[0] = x0
+    y[0] = y_initial
+    x[0] = x_initial
     for i in range(n):
         k1 = step_size * ode(x[i], y[i])
         k2 = step_size * ode(x[i] + step_size / 4, y[i] + k1 / 4)
