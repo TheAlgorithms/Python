@@ -5,11 +5,11 @@ Author: grpathak22
 Date: 15 October 2023
 Travelling Salesman Problem using Dynamic Programming
 """
-def travelling_salesman(tsp_graph,city) -> None:
+def travelling_salesman(tsp_graph: np.ndarray,city: int) -> None:
     """Solve the traveling salesman problem using dynamic programming.
 
   Args:
-    distance_matrix: A square matrix of distances between cities.
+    tsp_graph: A square matrix of distances between cities.
     city: Starting city which is initially 0(index)
     
   Returns:
@@ -43,7 +43,7 @@ def travelling_salesman(tsp_graph,city) -> None:
     Set the current city to be the closest unvisited city.
 4)Return to the starting city.
 The code also keeps track of the total distance traveled,
-The total distance is calculated by adding up the distances between each pair of visited cities.
+The total distance is calculated by adding up the distances.
 
 Once the code has finished executing, 
 it will print the shortest possible path and the total distance of the path."""
