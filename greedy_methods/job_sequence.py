@@ -20,10 +20,11 @@ each point is to either schedule the current task if its deadline is greater
 than the current time, or skip it otherwise.
 """
 
+from typing import Any
 
 class Task:
-    def __init__(self, id: int, deadline: int, reward: int) -> None:
-        self.id = id
+    def __init__(self, task_id: Any, deadline: int, reward: int) -> None:
+        self.task_id = task_id
         self.deadline = deadline
         self.reward = reward
 
@@ -44,7 +45,7 @@ def max_tasks(tasks_info: list[tuple[int]]) -> int:
 
     for task in tasks:
         if task.deadline > current_time:
-            schedule.append(task.id)
+            schedule.append(task.task_id)
             current_time += 1
 
     return len(schedule), schedule
