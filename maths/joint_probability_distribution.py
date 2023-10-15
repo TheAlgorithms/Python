@@ -1,5 +1,7 @@
-# https://en.wikipedia.org/wiki/Joint_probability_distribution
-# Function to calculate the joint probability distribution
+"""
+Calculate joint probability distribution
+https://en.wikipedia.org/wiki/Joint_probability_distribution
+"""
 
 
 def joint_probability_distribution(
@@ -36,7 +38,7 @@ def expectation(values: list, probabilities: list) -> float:
 
 
 # Function to calculate the variance
-def variance(values: list, probabilities: list) -> float:
+def variance(values: list[int], probabilities: list[float]) -> float:
     """
     >>> from math import isclose
     >>> isclose(variance([1,2],[0.7,0.3]), 0.21)
@@ -48,7 +50,10 @@ def variance(values: list, probabilities: list) -> float:
 
 # Function to calculate the covariance
 def covariance(
-    x_values: list, y_values: list, x_probabilities: list, y_probabilities: list
+    x_values: list[int],
+    y_values: list[int],
+    x_probabilities: list[float],
+    y_probabilities: list[float],
 ) -> float:
     mean_x = expectation(x_values, x_probabilities)
     mean_y = expectation(y_values, y_probabilities)
@@ -60,7 +65,7 @@ def covariance(
 
 
 # Function to calculate the standard deviation
-def standard_deviation(variance: list) -> float:
+def standard_deviation(variance: float) -> float:
     return variance**0.5
 
 
@@ -69,22 +74,22 @@ if __name__ == "__main__":
 
     testmod()
     # Input values for X and Y
-    x_values = input("Enter values of X separated by spaces: ").split()
-    y_values = input("Enter values of Y separated by spaces: ").split()
+    x_vals = input("Enter values of X separated by spaces: ").split()
+    y_vals = input("Enter values of Y separated by spaces: ").split()
 
     # Convert input values to integers
-    x_values = [int(x) for x in x_values]
-    y_values = [int(y) for y in y_values]
+    x_values = [int(x) for x in x_vals]
+    y_values = [int(y) for y in y_vals]
 
     # Input probabilities for X and Y
-    x_probabilities = input("Enter probabilities for X separated by spaces: ").split()
-    y_probabilities = input("Enter probabilities for Y separated by spaces: ").split()
-    assert len(x_values) == len(x_probabilities)
-    assert len(y_values) == len(y_probabilities)
+    x_probs = input("Enter probabilities for X separated by spaces: ").split()
+    y_probs = input("Enter probabilities for Y separated by spaces: ").split()
+    assert len(x_values) == len(x_probs)
+    assert len(y_values) == len(y_probs)
 
     # Convert input probabilities to floats
-    x_probabilities = [float(p) for p in x_probabilities]
-    y_probabilities = [float(p) for p in y_probabilities]
+    x_probabilities = [float(p) for p in x_probs]
+    y_probabilities = [float(p) for p in y_probs]
 
     # Calculate the joint probability distribution
     jpd = joint_probability_distribution(
