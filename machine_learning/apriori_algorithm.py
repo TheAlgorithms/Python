@@ -14,6 +14,12 @@ Examples: https://www.kaggle.com/code/earthian/apriori-association-rules-mining
 from typing import List, Tuple
 
 def load_data() -> List[List[str]]:
+    """
+    Returns a sample transaction dataset.
+
+    >>> load_data()
+    [['milk', 'bread'], ['milk', 'butter'], ['milk', 'bread', 'nuts'], ['milk', 'bread', 'chips'], ['milk', 'butter', 'chips'], ['milk', 'bread', 'butter', 'cola'], ['nuts', 'bread', 'butter', 'cola'], ['bread', 'butter', 'cola', 'ice'], ['bread', 'butter', 'cola', 'ice', 'bun']]
+    """
     # Sample transaction dataset
     data = [
         ["milk", "bread"],
@@ -28,7 +34,18 @@ def load_data() -> List[List[str]]:
     ]
     return data
 
-def generate_candidates(itemset: List[str], length: int):
+def generate_candidates(itemset: List[str], length: int) -> List[List[str]]:
+    """
+    Generates candidate itemsets of size k from the given itemsets.
+
+    >>> itemsets = [['milk', 'bread'], ['milk', 'butter'], ['milk', 'bread', 'nuts']]
+    >>> generate_candidates(itemsets, 2)
+    [['milk', 'bread'], ['milk', 'butter'], ['bread', 'butter']]
+
+    >>> itemsets = [['milk', 'bread'], ['milk', 'butter'], ['bread', 'butter']]
+    >>> generate_candidates(itemsets, 3)
+    [['milk', 'bread', 'butter']]
+    """
     candidates = []
     for i in range(len(itemset)):
         for j in range(i + 1, len(itemset)):
@@ -44,6 +61,18 @@ def prune(itemset: List[str], candidates: List[List[str]], length: int) -> List[
     # Prune candidate itemsets
     """
     The goal of pruning is to filter out candidate itemsets that are not frequent. This is done by checking if all the (k-1) subsets of a candidate itemset are present in the frequent itemsets of the previous iteration (valid subsequences of the frequent itemsets from the previous iteration).
+
+    Prunes candidate itemsets that are not frequent.
+
+    >>> itemset = ['bread', 'butter', 'milk']
+    >>> candidates = [['bread', 'butter'], ['bread', 'milk'], ['butter', 'milk'], ['bread', 'butter', 'milk'], ['nuts', 'bread', 'butter']]
+    >>> prune(itemset, candidates, 3)
+    [['bread', 'butter', 'milk']]
+
+    >>> itemset = ['bread', 'butter', 'milk']
+    >>> candidates = [['bread', 'butter'], ['bread', 'milk'], ['butter', 'milk'], ['bread', 'butter', 'milk'], ['nuts', 'bread', 'butter']]
+    >>> prune(itemset, candidates, 2)
+    [['bread', 'butter'], ['bread', 'milk'], ['butter', 'milk'], ['nuts', 'bread', 'butter']]
     """
     pruned = []
     for candidate in candidates:
@@ -57,6 +86,17 @@ def prune(itemset: List[str], candidates: List[List[str]], length: int) -> List[
     return pruned
 
 def apriori(data: List[List[str]], min_support: int) -> List[Tuple[List[str], int]]:
+    """
+    Returns a list of frequent itemsets and their support counts.
+
+    >>> data = [['milk', 'bread'], ['milk', 'butter'], ['milk', 'bread', 'nuts'], ['milk', 'bread', 'chips'], ['milk', 'butter', 'chips'], ['milk', 'bread', 'butter', 'cola'], ['nuts', 'bread', 'butter', 'cola'], ['bread', 'butter', 'cola', 'ice'], ['bread', 'butter', 'cola', 'ice', 'bun']]
+    >>> apriori(data, 3)
+    [(['bread'], 7), (['butter'], 7), (['milk'], 8), (['cola', 'butter'], 3), (['bread', 'butter'], 4), (['bread', 'milk'], 4), (['butter', 'milk'], 4), (['bread', 'cola'], 3), (['milk', 'cola'], 3), (['bread', 'butter', 'milk'], 3), (['bread', 'milk', 'cola'], 3), (['butter', 'milk', 'cola'], 3), (['bread', 'butter', 'cola'], 3), (['bread', 'butter', 'milk', 'cola'], 3)]
+
+    >>> data = [['milk', 'bread'], ['milk', 'butter'], ['milk', 'bread', 'nuts'], ['milk', 'bread', 'chips'], ['milk', 'butter', 'chips'], ['milk', 'bread', 'butter', 'cola'], ['nuts', 'bread', 'butter', 'cola'], ['bread', 'butter', 'cola', 'ice'], ['bread', 'butter', 'cola', 'ice', 'bun']]
+    >>> apriori(data, 5)
+    [(['bread'], 7), (['butter'], 7), (['milk'], 8)]
+    """
     itemset = [set(transaction) for transaction in data]
     frequent_itemsets = []
     length = 1
