@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from collections import deque
 from dataclasses import dataclass, field
 
@@ -28,20 +30,19 @@ class StackWithQueues:
         ...
     IndexError: pop from an empty deque
     """
-
     main_queue: deque[int] = field(default_factory=deque)
     temp_queue: deque[int] = field(default_factory=deque)
 
-    def push(self, item):
+    def push(self, item: int) -> None:
         self.temp_queue.append(item)
         while self.main_queue:
             self.temp_queue.append(self.main_queue.popleft())
         self.main_queue, self.temp_queue = self.temp_queue, self.main_queue
 
-    def pop(self):
+    def pop(self) -> int:
         return self.main_queue.popleft()
 
-    def peek(self):
+    def peek(self) -> int | None:
         return self.main_queue[0] if self.main_queue else None
 
 
