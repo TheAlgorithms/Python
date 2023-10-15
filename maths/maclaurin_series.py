@@ -1,39 +1,114 @@
-from __future__ import annotations
-
-from .double_ended_queue import Deque
-
-arr = [1, 3, -1, -3, 5, 3, 6, 7]
-window_size = 3
-expect = [3, 3, 5, 5, 6, 7]
+"""
+https://en.wikipedia.org/wiki/Taylor_series#Trigonometric_functions
+"""
+from math import factorial, pi
 
 
-def max_sliding_window(arr: list[float], window_size: int) -> list[float]:
+def maclaurin_sin(theta: float, accuracy: int = 30) -> float:
     """
-    Given an array of integers nums, there is a sliding window of size k which is moving
-    from the very left of the array to the very right.
-    Each time the sliding window of length window_size moves right by one position.
-    Return the max sliding window.
-    >>> max_sliding_window(arr, window_size) == expect
+    Finds the maclaurin approximation of sin
+
+
+    :param theta: the angle to which sin is found
+    :param accuracy: the degree of accuracy wanted minimum
+    :return: the value of sine in radians
+
+    >>> from math import isclose, sin
+    >>> all(isclose(maclaurin_sin(x, 50), sin(x)) for x in range(-25, 25))
     True
+    >>> maclaurin_sin(10)
+    -0.5440211108893691
+    >>> maclaurin_sin(-10)
+    0.5440211108893704
+    >>> maclaurin_sin(10, 15)
+    -0.544021110889369
+    >>> maclaurin_sin(-10, 15)
+    0.5440211108893704
+    >>> maclaurin_sin("10")
+    Traceback (most recent call last):
+        ...
+    ValueError: maclaurin_sin() requires either an int or float for theta
+    >>> maclaurin_sin(10, -30)
+    Traceback (most recent call last):
+        ...
+    ValueError: maclaurin_sin() requires a positive int for accuracy
+    >>> maclaurin_sin(10, 30.5)
+    Traceback (most recent call last):
+        ...
+    ValueError: maclaurin_sin() requires a positive int for accuracy
+    >>> maclaurin_sin(10, "30")
+    Traceback (most recent call last):
+        ...
+    ValueError: maclaurin_sin() requires a positive int for accuracy
     """
-    max_val = []
-    queue = Deque()
-    for i in range(len(arr)):
-        # pop the element if the index is outside the window size k
-        if queue and i - queue._front.val >= window_size:
-            queue.popleft()
-        # keep the queue monotonically decreasing
-        # so that the max value is always on the top
-        while queue and arr[i] >= arr[queue._back.val]:
-            queue.pop()
-        queue.append(i)
-        # the maximum value is the first element in queue
-        if i >= window_size - 1:
-            max_val.append(arr[queue._front.val])
-    return max_val
+
+    if not isinstance(theta, (int, float)):
+        raise ValueError("maclaurin_sin() requires either an int or float for theta")
+
+    if not isinstance(accuracy, int) or accuracy <= 0:
+        raise ValueError("maclaurin_sin() requires a positive int for accuracy")
+
+    theta = float(theta)
+    div = theta // (2 * pi)
+    theta -= 2 * div * pi
+    return sum(
+        (-1) ** r * theta ** (2 * r + 1) / factorial(2 * r + 1) for r in range(accuracy)
+    )
+
+
+def maclaurin_cos(theta: float, accuracy: int = 30) -> float:
+    """
+    Finds the maclaurin approximation of cos
+    :param theta: the angle to which cos is found
+    :param accuracy: the degree of accuracy wanted
+    :return: the value of cosine in radians
+    >>> from math import isclose, cos
+    >>> all(isclose(maclaurin_cos(x, 50), cos(x)) for x in range(-25, 25))
+    True
+    >>> maclaurin_cos(5)
+    0.2836621854632268
+    >>> maclaurin_cos(-5)
+    0.2836621854632265
+    >>> maclaurin_cos(10, 15)
+    -0.8390715290764524
+    >>> maclaurin_cos(-10, 15)
+    -0.8390715290764521
+    >>> maclaurin_cos("10")
+    Traceback (most recent call last):
+        ...
+    ValueError: maclaurin_cos() requires either an int or float for theta
+    >>> maclaurin_cos(10, -30)
+    Traceback (most recent call last):
+        ...
+    ValueError: maclaurin_cos() requires a positive int for accuracy
+    >>> maclaurin_cos(10, 30.5)
+    Traceback (most recent call last):
+        ...
+    ValueError: maclaurin_cos() requires a positive int for accuracy
+    >>> maclaurin_cos(10, "30")
+    Traceback (most recent call last):
+        ...
+    ValueError: maclaurin_cos() requires a positive int for accuracy
+    """
+
+    if not isinstance(theta, (int, float)):
+        raise ValueError("maclaurin_cos() requires either an int or float for theta")
+
+    if not isinstance(accuracy, int) or accuracy <= 0:
+        raise ValueError("maclaurin_cos() requires a positive int for accuracy")
+
+    theta = float(theta)
+    div = theta // (2 * pi)
+    theta -= 2 * div * pi
+    return sum((-1) ** r * theta ** (2 * r) / factorial(2 * r) for r in range(accuracy))
 
 
 if __name__ == "__main__":
-    from doctest import testmod
+    import doctest
 
-    testmod()
+    doctest.testmod()
+
+    print(maclaurin_sin(10))
+    print(maclaurin_sin(-10))
+    print(maclaurin_sin(10, 15))
+    print(maclaurin_sin(-10, 15))
