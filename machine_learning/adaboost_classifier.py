@@ -18,6 +18,7 @@ the previous weak learners, so that subsequent weak learners focus more on
 these misclassified instances.
 """
 
+
 class AdaBoost:
     def __init__(self, n_estimators: int = 50) -> None:
         """
@@ -99,7 +100,8 @@ class AdaBoost:
 
         # Calculate accuracy
         accuracy = np.mean(predictions == y)
-        print(f'Accuracy: {accuracy}')
+        print(f"Accuracy: {accuracy}")
+
 
 if __name__ == "__main__":
     doctest.testmod(verbose=True)  # Run doctests for documentation
