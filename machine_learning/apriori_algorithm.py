@@ -35,6 +35,7 @@ def load_data() -> List[List[str]]:
     ]
     return data
 
+
 def generate_candidates(itemset: List[str], length: int) -> List[List[str]]:
     """
     Generates candidate itemsets of size k from the given itemsets.
@@ -47,6 +48,7 @@ def generate_candidates(itemset: List[str], length: int) -> List[List[str]]:
     >>> generate_candidates(itemsets, 3)
     [['milk', 'bread', 'butter']]
     """
+
 
 def generate_candidates(itemset: List[str], length: int):
     candidates = []
