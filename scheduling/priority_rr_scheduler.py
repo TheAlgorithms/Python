@@ -1,5 +1,6 @@
 from collections import deque
 
+
 class Job:
     job_counter = 1
 
@@ -9,6 +10,7 @@ class Job:
         self.burst_time = burst_time
         self.job_number = Job.job_counter
         Job.job_counter += 1
+
 
 def priority_rr_scheduling(jobs, time_quantum):
     queue = deque(jobs)
@@ -32,10 +34,13 @@ def priority_rr_scheduling(jobs, time_quantum):
             completed_jobs.append((current_job.job_number, current_time))
 
         # Check for new arrivals
-        while queue and queue[0].priority > 0 and queue[0].priority > current_job.priority:
+        while (
+            queue and queue[0].priority > 0 and queue[0].priority > current_job.priority
+        ):
             waiting_queue.append(queue.popleft())
 
     return completed_jobs
+
 
 if __name__ == "__main__":
     # Take input for jobs
