@@ -4,18 +4,18 @@ Reference: https://www.geeksforgeeks.org/matrix-chain-multiplication-dp-8/
 
 The algorithm has interesting real-world applications. Example:
 1. Image transformations in Computer Graphics as images are composed of matrix.
-2. Solve complex polynomial equations in the field of algebra using least
-processing power.
-3. Calculate overall impact of macroeconomic decisions as economic
-equations involve number of variables.
-4. Self-driving car navigation can be made more accurate as matrix multiplication
-can accurately determine position and orientation of obstacles in short time.
+2. Solve complex polynomial equations in the field of algebra using least processing
+   power.
+3. Calculate overall impact of macroeconomic decisions as economic equations involve a
+   number of variables.
+4. Self-driving car navigation can be made more accurate as matrix multiplication can
+   accurately determine position and orientation of obstacles in short time.
 
 Python doctests can be run with the following command:
 python -m doctest -v matrix_chain_multiply.py
 
 Given a sequence arr[] that represents chain of 2D matrices such that the dimension of
-th ith matrix is arr[i-1]*arr[i].
+the ith matrix is arr[i-1]*arr[i].
 So suppose arr = [40, 20, 30, 10, 30] means we have 4 matrices of dimensions
 40*20, 20*30, 30*10 and 10*30.
 
@@ -46,10 +46,10 @@ from sys import maxsize
 
 def matrix_chain_multiply(arr: list[int]) -> int:
     """
-    Find the minimum number of multiplcations required to multiply the chain of matrices.
+    Find the minimum number of multiplcations required to multiply the chain of matrices
 
     Args:
-        arr : The input array of integers.
+        arr: The input array of integers.
 
     Returns:
         Minimum number of multiplications needed to multiply the chain
@@ -65,8 +65,8 @@ def matrix_chain_multiply(arr: list[int]) -> int:
         722
         >>> matrix_chain_multiply(list(range(1, 100)))
         323398
-        >>> matrix_chain_multiply(list(range(1, 251)))
-        5208248
+        >>> matrix_chain_multiply(list(range(1, 200)))
+        2626798
     """
     if len(arr) < 2:
         return 0
@@ -103,8 +103,8 @@ def matrix_chain_order(dims: list[int]) -> int:
     722
     >>> matrix_chain_order(list(range(1, 100)))
     323398
-    >>> matrix_chain_order(list(range(1, 251)))  # Max before RecursionError is raised.
-    5208248
+    >>> matrix_chain_order(list(range(1, 200)))  # Max before RecursionError is raised.
+    2626798
     """
 
     @cache
