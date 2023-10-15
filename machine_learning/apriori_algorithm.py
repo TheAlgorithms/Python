@@ -24,12 +24,7 @@ def load_data() -> list[list[str]]:
     [['milk'], ['milk', 'butter'], ['milk', 'bread'], ['milk', 'bread', 'chips']]
     """
     # Sample transaction dataset
-    data = [
-        ["milk"],
-        ["milk", "butter"],
-        ["milk", "bread"],
-        ["milk", "bread", "chips"]
-    ]
+    data = [["milk"], ["milk", "butter"], ["milk", "bread"], ["milk", "bread", "chips"]]
     return data
 
 
