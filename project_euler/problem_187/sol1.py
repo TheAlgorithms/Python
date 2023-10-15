@@ -21,7 +21,7 @@ def slow_calculate_prime_numbers(max_number: int) -> list[int]:
 
     >>> slow_calculate_prime_numbers(10)
     [2, 3, 5, 7]
-    
+
     >>> slow_calculate_prime_numbers(2)
     []
     """
@@ -45,7 +45,7 @@ def calculate_prime_numbers(max_number: int) -> list[int]:
 
     >>> calculate_prime_numbers(10)
     [2, 3, 5, 7]
-    
+
     >>> calculate_prime_numbers(2)
     []
     """
