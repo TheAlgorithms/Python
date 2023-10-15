@@ -133,6 +133,8 @@ omit = [
   "project_euler/*",
   "scripts/validate_solutions.py"
 ]
+
+[tool.coverage.report]
 sort = "Cover"
 
 [tool.codespell]
