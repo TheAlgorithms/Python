@@ -265,6 +265,7 @@
     * [Postfix Evaluation](data_structures/stacks/postfix_evaluation.py)
     * [Prefix Evaluation](data_structures/stacks/prefix_evaluation.py)
     * [Stack](data_structures/stacks/stack.py)
+    * [Stack Using Two Queues](data_structures/stacks/stack_using_two_queues.py)
     * [Stack With Doubly Linked List](data_structures/stacks/stack_with_doubly_linked_list.py)
     * [Stack With Singly Linked List](data_structures/stacks/stack_with_singly_linked_list.py)
     * [Stock Span Problem](data_structures/stacks/stock_span_problem.py)
@@ -791,7 +792,7 @@
 
 ## Physics
   * [Altitude Pressure](physics/altitude_pressure.py)
-  * [Archimedes Principle](physics/archimedes_principle.py)
+  * [Archimedes Principle Of Buoyant Force](physics/archimedes_principle_of_buoyant_force.py)
   * [Basic Orbital Capture](physics/basic_orbital_capture.py)
   * [Casimir Effect](physics/casimir_effect.py)
   * [Centripetal Force](physics/centripetal_force.py)
