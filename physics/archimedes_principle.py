@@ -10,8 +10,8 @@ Source:
 """
 
 
-# Acceleration Constant on Earth (unit m/s^2) imported from scipy
-from scipy.constants import g
+# Acceleration Constant on Earth (unit m/s^2)
+g = 9.80665
 
 
 def archimedes_principle(
