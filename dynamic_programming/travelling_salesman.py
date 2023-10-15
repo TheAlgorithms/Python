@@ -5,14 +5,16 @@ Author: grpathak22
 Date: 15 October 2023
 Travelling Salesman Problem using Dynamic Programming
 """
-def travelling_salesman(tsp_graph: np.ndarray,city: int) -> None:
+
+
+def travelling_salesman(tsp_graph: np.ndarray, city: int) -> None:
     """Solve the traveling salesman problem using dynamic programming.
-  Args:
-    distance_matrix: A square matrix of distances between cities.
-    city: Starting city which is initially 0(index)
-  Returns:
-    None
-  """
+    Args:
+      distance_matrix: A square matrix of distances between cities.
+      city: Starting city which is initially 0(index)
+    Returns:
+      None
+    """
     global cost
     adjacent_vertex, min_val = 999, 999
     visited[city] = 1
