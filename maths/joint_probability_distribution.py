@@ -1,3 +1,4 @@
+# https://en.wikipedia.org/wiki/Joint_probability_distribution
 # Function to calculate the joint probability distribution
 def calculate_joint_probability(x_values, y_values, x_probabilities, y_probabilities):
     joint_distribution = {}
