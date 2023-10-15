@@ -25,7 +25,7 @@ def secant_method(
     guess_1: First guess for secant method.
     guess_2: Second guess for secant method.
     accuracy: Desired level of precision or tolerance.
-    iterations: Method does not always guarantee root. Hence required some stopping criteria.
+    iterations: Method does not always guarantee root. Required some stopping criteria.
 
     Returns:
         Root of equation accurate upto given accuracy.
