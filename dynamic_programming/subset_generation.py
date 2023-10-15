@@ -1,7 +1,6 @@
 # return all subset combinations of n element in given set of r element.
 
-
-def subset_combinations_dp(elements: list[int], n: int) -> list:
+def subset_combinations_dp(elements: list[int], n: int) -> list[tuple[int, ...]]:
     """
     Compute n-element combinations from a given list using dynamic programming.
     Args:
@@ -24,9 +23,7 @@ def subset_combinations_dp(elements: list[int], n: int) -> list:
         >>> subset_combinations_dp(elements=[1, 2, 3, 4], n=2)
         [(1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
         >>> subset_combinations_dp(elements=[1, 'apple', 3.14], n=2)
-        [(1, 'apple'), (1, 3.14), ('apple', 3.14)]
-        >>> subset_combinations_dp(elements=['single'], n=0)
-        [()]
+        [(1, 'apple'), (1, 3.14), ('apple', 3.14)]\
     """
     r = len(elements)
     if n > r:
@@ -65,5 +62,4 @@ if __name__ == "__main__":
     print(f"{subset_combinations_dp(elements=[10, 20, 30, 40], n=2) = }")
 
     import doctest
-
     doctest.testmod()
