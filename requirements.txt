@@ -1,5 +1,4 @@
 beautifulsoup4
-cryptography
 fake_useragent
 imageio
 keras
