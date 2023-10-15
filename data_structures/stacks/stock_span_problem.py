@@ -8,61 +8,42 @@ on the current day is less than or equal to its price on the given day.
 """
 
 
-def calculation_span(price, s):
+def calculation_span(price):
     """
        Calculate the span values for a given list of stock prices.
        Args:
            price (list): List of stock prices.
-           s (list): List to store the span values.
        Returns:
-           None
        >>> price = [10, 4, 5, 90, 120, 80]
-       >>> S = [0 for i in range(len(price) + 1)]
-       >>> calculation_span(price, S)
-       >>> S
-       [1, 1, 2, 4, 5, 6, 0]
+       >>> calculation_span(price)
+       [1, 1, 2, 4, 5, 6]
        >>> price = [100, 50, 60, 70, 80, 90]
-       >>> S = [0 for i in range(len(price) + 1)]
-       >>> calculation_span(price, S)
-       >>> S
-       [1, 1, 2, 3, 4, 5, 0]
+       >>> calculation_span(price)
+       [1, 1, 2, 3, 4, 5]
        >>> price = [5, 4, 3, 2, 1]
-       >>> S = [0 for i in range(len(price) + 1)]
-       >>> calculation_span(price, S)
-       >>> S
-       [1, 1, 2, 3, 4, 0]
+       >>> calculation_span(price)
+       [1, 1, 2, 3, 4]
        >>> price = [1, 2, 3, 4, 5]
-       >>> S = [0 for i in range(len(price) + 1)]
-       >>> calculation_span(price, S)
-       >>> S
-       [1, 2, 3, 4, 5, 0]
+       >>> calculation_span(price)
+       [1, 2, 3, 4, 5]
        >>> price = [10, 20, 30, 40, 50]
-       >>> S = [0 for i in range(len(price) + 1)]
-       >>> calculation_span(price, S)
-       >>> S
-       [1, 2, 3, 4, 5, 0]
+       >>> calculation_span(price)
+       [1, 2, 3, 4, 5]
         """
     n = len(price)
-    st = []
-    st.append(0)
+    st = [0]
+    s = [0] * n
     s[0] = 1
     for i in range(1, n):
         while len(st) > 0 and price[st[0]] <= price[i]:
             st.pop()
         s[i] = i + 1 if len(st) <= 0 else (i - st[0])
-
-
-def print_array(arr, n):
-    for i in range(n):
-        print(arr[i], end=" ")
+    return s
 
 
 price = [10, 4, 5, 90, 120, 80]
-S = [0 for i in range(len(price) + 1)]
-
-calculation_span(price, S)
-
-print_array(S, len(price))
+S = calculation_span(price)
+print(S)
 
 if __name__ == "__main__":
     import doctest
