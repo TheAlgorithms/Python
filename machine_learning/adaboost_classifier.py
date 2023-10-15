@@ -9,14 +9,15 @@ Implementation of basic AdaBoost classifier on iris dataset.
 The following classifier uses a pre-built DecisionTreeClassifier
 from scikit-learn as a weak learner.
 
-AdaBoost (Adaptive Boosting) is an ensemble learning technique 
-used for classification problems. It combines multiple weak learners 
-(in this case, decision trees with maximum depth 1) to create a 
-strong classifier. The key idea behind AdaBoost is to give 
-more weight to the training instances thatare misclassified by 
-the previous weak learners, so that subsequent weak learners focus more on 
+AdaBoost (Adaptive Boosting) is an ensemble learning technique
+used for classification problems. It combines multiple weak learners
+(in this case, decision trees with maximum depth 1) to create a
+strong classifier. The key idea behind AdaBoost is to give
+more weight to the training instances thatare misclassified by
+the previous weak learners, so that subsequent weak learners focus more on
 these misclassified instances.
 """
+
 
 class AdaBoost:
     def __init__(self, n_estimators=50):
@@ -35,7 +36,9 @@ class AdaBoost:
 
             err = np.dot(w, y_pred != y) / np.sum(w)  # Calculate the weighted error
 
-            alpha = 0.5 * np.log((1 - err) / max(err, 1e-10))  # Calculate alpha for the model
+            alpha = 0.5 * np.log(
+                (1 - err) / max(err, 1e-10)
+            )  # Calculate alpha for the model
             w = w * np.exp(-alpha * y * y_pred)  # Update sample weights
             w /= np.sum(w)  # Normalize the weights
 
@@ -47,9 +50,12 @@ class AdaBoost:
         results = np.zeros(n_samples)  # Initialize results array
 
         for alpha, model in zip(self.alphas, self.models):
-            results += alpha * model.predict(X)  # Weighted combination of model predictions
+            results += alpha * model.predict(
+                X
+            )  # Weighted combination of model predictions
 
         return np.sign(results)  # Convert results into binary classification
+
 
 def main():
     # Generate a sample dataset
@@ -67,7 +73,8 @@ def main():
 
     # Calculate accuracy
     accuracy = np.mean(predictions == y)
-    print(f'Accuracy: {accuracy}')
+    print(f"Accuracy: {accuracy}")
+
 
 if __name__ == "__main__":
     doctest.testmod(verbose=True)  # Run doctests for documentation
