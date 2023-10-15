@@ -21,22 +21,14 @@ def load_data() -> list[list[str]]:
     Returns a sample transaction dataset.
 
     >>> load_data()
-    [['milk', 'bread'], ['milk', 'butter'], ['milk', 'bread', 'nuts'],
-    ['milk', 'bread', 'chips'], ['milk', 'butter', 'chips'],
-    ['milk', 'bread', 'butter', 'cola'], ['nuts', 'bread', 'butter', 'cola'],
-    ['bread', 'butter', 'cola', 'ice'], ['bread', 'butter', 'cola', 'ice', 'bun']]
+    [['milk'], ['milk', 'butter'], ['milk', 'bread', 'nuts'], ['milk', 'bread', 'chips']]
     """
     # Sample transaction dataset
     data = [
-        ["milk", "bread"],
+        ["milk"],
         ["milk", "butter"],
         ["milk", "bread", "nuts"],
-        ["milk", "bread", "chips"],
-        ["milk", "butter", "chips"],
-        ["milk", "bread", "butter", "cola"],
-        ["nuts", "bread", "butter", "cola"],
-        ["bread", "butter", "cola", "ice"],
-        ["bread", "butter", "cola", "ice", "bun"],
+        ["milk", "bread", "chips"]
     ]
     return data
 
@@ -108,7 +100,7 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
     >>> apriori(data, 3)
     []
     """
-    itemset = [set(transaction) for transaction in data]
+    itemset = [list(transaction) for transaction in data]
     frequent_itemsets = []
     length = 1
 
