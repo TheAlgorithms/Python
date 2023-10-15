@@ -33,15 +33,15 @@ from __future__ import annotations
 import numpy as np
 
 
-def get_totients(max_one: int) -> list[int]:
+def slow_get_totients(max_one: int) -> list[int]:
     """
     Calculates a list of totients from 0 to max_one exclusive, using the
     definition of Euler's product formula.
 
-    >>> get_totients(5)
+    >>> slow_get_totients(5)
     [0, 1, 1, 2, 2]
 
-    >>> get_totients(10)
+    >>> slow_get_totients(10)
     [0, 1, 1, 2, 2, 4, 2, 6, 4, 6]
     """
     totients = np.arange(max_one)
@@ -50,6 +50,26 @@ def get_totients(max_one: int) -> list[int]:
         if totients[i] == i:
             x = np.arange(i, max_one, i)  # array of indexes to select
             totients[x] -= totients[x] // i
+
+    return totients.tolist()
+
+
+def slicing_get_totients(max_one: int):
+    """
+    Calculates a list of totients from 0 to max_one exclusive, using the
+    definition of Euler's product formula.
+
+    >>> slicing_get_totients(5)
+    [0, 1, 1, 2, 2]
+
+    >>> slicing_get_totients(10)
+    [0, 1, 1, 2, 2, 4, 2, 6, 4, 6]
+    """
+    totients = np.arange(max_one)
+
+    for i in range(2, max_one):
+        if totients[i] == i:
+            totients[i::i] -= totients[i::i] // i
 
     return totients.tolist()
 
