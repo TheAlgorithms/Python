@@ -10,6 +10,7 @@ def perfect_cube(n: int) -> bool:
     val = n ** (1 / 3)
     return (val * val * val) == n
 
+
 def perfect_cube_binary_search(n: int) -> bool:
     """
     Check if a number is a perfect cube or not using binary search.
@@ -31,13 +32,14 @@ def perfect_cube_binary_search(n: int) -> bool:
     right = n
     while left <= right:
         mid = left + (right - left) // 2
-        if mid*mid*mid == n:
+        if mid * mid * mid == n:
             return True
-        elif mid*mid*mid < n:
+        elif mid * mid * mid < n:
             left = mid + 1
         else:
             right = mid - 1
     return False
+
 
 if __name__ == "__main__":
     import doctest
