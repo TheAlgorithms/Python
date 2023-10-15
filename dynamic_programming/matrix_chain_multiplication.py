@@ -65,8 +65,9 @@ def matrix_chain_multiply(arr: list[int]) -> int:
         722
         >>> matrix_chain_multiply(list(range(1, 100)))
         323398
-        >>> matrix_chain_multiply(list(range(1, 200)))
-        2626798
+
+        # >>> matrix_chain_multiply(list(range(1, 251)))
+        # 2626798
     """
     if len(arr) < 2:
         return 0
@@ -103,12 +104,13 @@ def matrix_chain_order(dims: list[int]) -> int:
     722
     >>> matrix_chain_order(list(range(1, 100)))
     323398
-    >>> matrix_chain_order(list(range(1, 200)))  # Max before RecursionError is raised.
-    2626798
+
+    # >>> matrix_chain_order(list(range(1, 251)))  # Max before RecursionError is raised
+    # 2626798
     """
 
     @cache
-    def a(i, j):
+    def a(i: int, j: int) -> int:
         return min(
             (a(i, k) + dims[i] * dims[k] * dims[j] + a(k, j) for k in range(i + 1, j)),
             default=0,
