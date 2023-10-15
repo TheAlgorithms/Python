@@ -3,6 +3,7 @@
 
 from typing import List
 
+
 class smallerNumbersThanCurrent:
     def smaller_numbers_than_current(self, nums: List[int]) -> List[int]:
         """
@@ -29,7 +30,7 @@ class smallerNumbersThanCurrent:
             count[num] += 1
 
         for i in range(len(nums)):
-            total = sum(count[:nums[i]])
+            total = sum(count[: nums[i]])
             res.append(total)
 
         return res
