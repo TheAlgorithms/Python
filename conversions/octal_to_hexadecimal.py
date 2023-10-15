@@ -62,11 +62,5 @@ if __name__ == "__main__":
 
         assert hexadecimal == expected
 
-        print(
-            "Hex of '0o"
-            + num
-            + "' is : "
-            + hexadecimal
-            + " - and Expected was : "
-            + expected
-        )
+        print(f"Hex of '0o{num}' is: {hexadecimal}")
+        print(f"Expected was: {expected}")
