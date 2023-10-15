@@ -1,5 +1,7 @@
 # return all subset combinations of n element in given set of r element.
 
+from typing import List
+
 
 def subset_combinations_dp(elements: list, n: int) -> list:
     """
@@ -30,7 +32,7 @@ def subset_combinations_dp(elements: list, n: int) -> list:
         """
     r = len(elements)
 
-    dp = [[] for _ in range(r + 1)]
+    dp: List[List[tuple]] = [[] for _ in range(r + 1)]
 
     dp[0].append(())
 
@@ -48,4 +50,5 @@ if __name__ == "__main__":
     print(f"{subset_combinations_dp(elements=[10, 20, 30, 40], n=2) = }")
 
     import doctest
+
     doctest.testmod()
