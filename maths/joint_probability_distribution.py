@@ -1,6 +1,6 @@
 # https://en.wikipedia.org/wiki/Joint_probability_distribution
 # Function to calculate the joint probability distribution
-def calculate_joint_probability(x_values, y_values, x_probabilities, y_probabilities):
+def calculate_joint_probability(x_values, y_values, x_probabilities, y_probabilities) -> dict:
     joint_distribution = {}
 
     # Calculate the joint probability for all combinations of (X, Y)
@@ -12,22 +12,22 @@ def calculate_joint_probability(x_values, y_values, x_probabilities, y_probabili
     return joint_distribution
 
 # Function to calculate the expectation (mean)
-def expectation(values, probabilities):
+def expectation(values, probabilities) -> float:
     return sum(x * p for x, p in zip(values, probabilities))
 
 # Function to calculate the variance
-def variance(values, probabilities):
+def variance(values, probabilities) -> float:
     mean = expectation(values, probabilities)
     return sum((x - mean)**2 * p for x, p in zip(values, probabilities))
 
 # Function to calculate the covariance
-def covariance(x_values, y_values, x_probabilities, y_probabilities):
+def covariance(x_values, y_values, x_probabilities, y_probabilities) -> float:
     mean_x = expectation(x_values, x_probabilities)
     mean_y = expectation(y_values, y_probabilities)
     return sum((x - mean_x) * (y - mean_y) * px * py for x, px in zip(x_values, x_probabilities) for y, py in zip(y_values, y_probabilities))
 
 # Function to calculate the standard deviation
-def standard_deviation(variance):
+def standard_deviation(variance) -> float:
     return variance**0.5
 
 
