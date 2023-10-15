@@ -22,7 +22,7 @@ than the current time, or skip it otherwise.
 
 
 class Task:
-    def __init__(self, id : int, deadline : int, reward : int):
+    def __init__(self, id : int, deadline : int, reward : int) -> None:
         self.id = id
         self.deadline = deadline
         self.reward = reward
