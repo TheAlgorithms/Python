@@ -1,4 +1,10 @@
-def octal_to_hex(n: str) -> str:
+def hex_char(value: int) -> str:
+    if value < 10:
+        return str(value)
+    return chr(value + 55)  # (i-10 + 65) i.e. for characters
+
+
+def octal_to_hex(octal: str) -> str:
     """
     Convert an Octal number to Hexadecimal number.
 
@@ -22,25 +28,20 @@ def octal_to_hex(n: str) -> str:
     For more information: https://en.wikipedia.org/wiki/Octal
     """
 
-    if not isinstance(n, str):
+    if not isinstance(octal, str):
         raise TypeError("Expected a string as input")
-    if n.startswith("0o"):
-        n = n[2:]
-    if n == "":
+    if octal.startswith("0o"):
+        octal = octal[2:]
+    if octal == "":
         raise ValueError("Empty string was passed to the function")
-    for char in n:
+    for char in octal:
         if char not in "01234567":
             raise ValueError("Not a Valid Octal Number")
 
-    def hex_char(i: int) -> str:
-        if i < 10:
-            return str(i)
-        return chr(i + 55)  # (i-10 + 65) i.e. for characters
-
     decimal = 0
-    for i in str(n):
+    for char in str(octal):
         decimal <<= 3
-        decimal |= int(i)
+        decimal |= int(char)
 
     revhex = ""
     while decimal:
@@ -58,6 +59,8 @@ if __name__ == "__main__":
 
     nums = ["030", "100", "247", "235", "007"]
 
+    ## Main Tests
+
     for num in nums:
         hexadecimal = octal_to_hex(num)
         expected = hex(int(num, 8)).upper()
@@ -72,3 +75,8 @@ if __name__ == "__main__":
             + " - and Expected was : "
             + expected
         )
+
+    ## Doctests for hex_char function
+
+    for i in range(16):
+        assert hex_char(i) == hex(i)[2:].upper()
