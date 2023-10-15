@@ -28,7 +28,7 @@ def load_data() -> list[list[str]]:
         ["milk"],
         ["milk", "butter"],
         ["milk", "bread", "nuts"],
-        ["milk", "bread", "chips"]
+        ["milk", "bread", "chips"],
     ]
     return data
 
