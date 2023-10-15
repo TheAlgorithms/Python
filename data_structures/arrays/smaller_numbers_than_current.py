@@ -11,7 +11,8 @@ class SmallerNumbersThanCurrent:
             nums (list[int]): The input list of integers.
 
         Returns:
-            list[int]: A list containing the count of elements smaller than each element in the input list.
+            list[int]: A list containing the count of elements smaller than each element
+            in the input list.
 
         Examples:
             >>> solution = SmallerNumbersThanCurrent()
