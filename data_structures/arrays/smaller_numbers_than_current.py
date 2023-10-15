@@ -1,20 +1,20 @@
-# Count the number of elements smaller than each element in the input list.
-# Reference : https://cassandriel.medium.com/leetcode-1365-how-many-numbers-are-smaller-than-the-current-number-1c8354ee5d84
+# Count the number of elements smaller than each element in the input list. Reference :
+# https://cassandriel.medium.com/leetcode-1365-how-many-numbers-are-smaller-than-the-current-number-1c8354ee5d84
 
-from typing import List
 
-class smallerNumbersThanCurrent:
-    def smaller_numbers_than_current(self, nums: List[int]) -> List[int]:
+class SmallerNumbersThanCurrent:
+    def smaller_numbers_than_current(self, nums: list[int]) -> list[int]:
         """
+        Count the number of elements smaller than each element in the input list.
 
         Args:
-            nums (List[int]): The input list of integers.
+            nums (list[int]): The input list of integers.
 
         Returns:
-            List[int]: A list containing the count of elements smaller than each element in the input list.
+            list[int]: A list containing the count of elements smaller than each element in the input list.
 
         Examples:
-            >>> solution = smallerNumbersThanCurrent()
+            >>> solution = SmallerNumbersThanCurrent()
             >>> solution.smaller_numbers_than_current([8, 1, 2, 2, 3])
             [4, 0, 1, 1, 3]
             >>> solution.smaller_numbers_than_current([6, 5, 4, 8])
