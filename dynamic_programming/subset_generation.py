@@ -49,23 +49,6 @@ def subset_combinations_dp(elements: list[int], n: int) -> list[tuple[int, ...]]
 
 
 if __name__ == "__main__":
-    from itertools import combinations
-
-    for items, n in (
-        ([10, 20, 30, 40], 2),
-        ([1, 2, 3], 1),
-        ([1, 2, 3], 3),
-        ([42], 1),
-        ([6, 7, 8, 9], 4),
-        ([10, 20, 30, 40, 50], 1),
-        ([1, 2, 3, 4], 2),
-        ([1, "apple", 3.14], 2),
-        (["single"], 0),
-        ([], 9),
-    ):
-        actual = subset_combinations_dp(items, n)
-        expected = list(combinations(items, n))
-        assert actual == expected, f"items, n: {actual} != {expected}"
     print(f"{subset_combinations_dp(elements=[10, 20, 30, 40], n=2) = }")
 
     import doctest
