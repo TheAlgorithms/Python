@@ -1,10 +1,9 @@
 from collections import deque
 
-
 class Job:
-    job_counter = 1
+    job_counter: int = 1
 
-    def __init__(self, name, priority, burst_time):
+    def __init__(self, name: str, priority: int, burst_time: int) -> None:
         self.name = name
         self.priority = priority
         self.burst_time = burst_time
