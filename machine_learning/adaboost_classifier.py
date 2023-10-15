@@ -20,7 +20,7 @@ these misclassified instances.
 
 
 class AdaBoost:
-    def __init__(self, n_estimators: int = 50):
+    def __init__(self, n_estimators: int = 50) -> None:
         """
         Initialize the AdaBoost classifier.
 
