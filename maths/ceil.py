@@ -3,6 +3,7 @@ https://en.wikipedia.org/wiki/Floor_and_ceiling_functions
 """
 import unittest
 
+
 def ceil(x: float) -> int:
     """
     Return the ceiling of x as an Integral.
@@ -22,12 +23,11 @@ def ceil(x: float) -> int:
     """
     if not isinstance(x, (int, float)):
         raise ValueError("Input must be a float or integer")
-    
+
     return int(x) if x - int(x) <= 0 else int(x) + 1
 
 
 class TestCeil(unittest.TestCase):
-
     def test_ceil_float(self):
         self.assertEqual(ceil(1.5), 2)
 
@@ -45,5 +45,6 @@ class TestCeil(unittest.TestCase):
 
 if __name__ == "__main__":
     import doctest
+
     unittest.main()
     doctest.testmod()
