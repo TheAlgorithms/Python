@@ -182,6 +182,7 @@
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
     * [Product Sum](data_structures/arrays/product_sum.py)
+    * [Sparse Table](data_structures/arrays/sparse_table.py)
   * Binary Tree
     * [Avl Tree](data_structures/binary_tree/avl_tree.py)
     * [Basic Binary Tree](data_structures/binary_tree/basic_binary_tree.py)
@@ -340,6 +341,7 @@
   * [Longest Increasing Subsequence O(Nlogn)](dynamic_programming/longest_increasing_subsequence_o(nlogn).py)
   * [Longest Palindromic Subsequence](dynamic_programming/longest_palindromic_subsequence.py)
   * [Longest Sub Array](dynamic_programming/longest_sub_array.py)
+  * [Matrix Chain Multiplication](dynamic_programming/matrix_chain_multiplication.py)
   * [Matrix Chain Order](dynamic_programming/matrix_chain_order.py)
   * [Max Non Adjacent Sum](dynamic_programming/max_non_adjacent_sum.py)
   * [Max Product Subarray](dynamic_programming/max_product_subarray.py)
@@ -370,6 +372,7 @@
   * [Builtin Voltage](electronics/builtin_voltage.py)
   * [Carrier Concentration](electronics/carrier_concentration.py)
   * [Charging Capacitor](electronics/charging_capacitor.py)
+  * [Charging Inductor](electronics/charging_inductor.py)
   * [Circular Convolution](electronics/circular_convolution.py)
   * [Coulombs Law](electronics/coulombs_law.py)
   * [Electric Conductivity](electronics/electric_conductivity.py)
@@ -524,6 +527,7 @@
   * [Simplex](linear_programming/simplex.py)
 
 ## Machine Learning
+  * [Apriori Algorithm](machine_learning/apriori_algorithm.py)
   * [Astar](machine_learning/astar.py)
   * [Data Transformations](machine_learning/data_transformations.py)
   * [Decision Tree](machine_learning/decision_tree.py)
@@ -554,7 +558,6 @@
   * [Word Frequency Functions](machine_learning/word_frequency_functions.py)
   * [Xgboost Classifier](machine_learning/xgboost_classifier.py)
   * [Xgboost Regressor](machine_learning/xgboost_regressor.py)
-  * [Apriori Algorithm](machine_learning/apriori_algorithm.py)
 
 ## Maths
   * [Abs](maths/abs.py)
