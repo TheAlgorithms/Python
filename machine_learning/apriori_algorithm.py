@@ -28,7 +28,7 @@ def load_data() -> list[list[str]]:
     return data
 
 
-def generate_candidates(itemset: list[str], length: int) -> list[list[str]]:
+def generate_candidates(itemset: list, length: int) -> list:
     """
     Generates candidate itemsets of size k from the given itemsets.
 
@@ -50,8 +50,8 @@ def generate_candidates(itemset: list[str], length: int) -> list[list[str]]:
 
 
 def prune(
-    itemset: list[str], candidates: list[list[str]], length: int
-) -> list[list[str]]:
+    itemset: list, candidates: list, length: int
+) -> list:
     # Prune candidate itemsets
     """
     The goal of pruning is to filter out candidate itemsets that are not frequent.
