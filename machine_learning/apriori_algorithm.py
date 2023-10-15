@@ -11,6 +11,7 @@ WIKI: https://en.wikipedia.org/wiki/Apriori_algorithm
 Examples: https://www.kaggle.com/code/earthian/apriori-association-rules-mining
 """
 
+
 def load_data() -> list[list[str]]:
     """
     Returns a sample transaction dataset.
@@ -31,6 +32,7 @@ def load_data() -> list[list[str]]:
         ["bread", "butter", "cola", "ice", "bun"],
     ]
     return data
+
 
 def generate_candidates(itemset: list[str], length: int):
     """
@@ -57,7 +59,9 @@ def generate_candidates(itemset: list[str], length: int):
     return candidates
 
 
-def prune(itemset: list[str], candidates: list[list[str]], length: int ) -> list[list[str]]:
+def prune(
+    itemset: list[str], candidates: list[list[str]], length: int
+) -> list[list[str]]:
     # Prune candidate itemsets
     """
     The goal of pruning is to filter out candidate itemsets that are not frequent. This is done by checking if all the (k-1) subsets of a candidate itemset are present in the frequent itemsets of the previous iteration (valid subsequences of the frequent itemsets from the previous iteration).
@@ -107,7 +111,9 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
         counts = [0] * len(itemset)
         for i, transaction in enumerate(data):
             for j, item in enumerate(itemset):
-                if item.issubset(transaction):  # using set for faster membership checking
+                if item.issubset(
+                    transaction
+                ):  # using set for faster membership checking
                     counts[j] += 1
 
         # Prune infrequent itemsets
