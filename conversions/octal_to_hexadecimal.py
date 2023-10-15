@@ -31,7 +31,7 @@ def octal_to_hex(octal: str) -> str:
         raise ValueError("Not a Valid Octal Number")
 
     decimal = 0
-    for char in str(octal):
+    for char in octal:
         decimal <<= 3
         decimal |= int(char)
 
