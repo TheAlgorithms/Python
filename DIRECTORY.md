@@ -527,6 +527,7 @@
   * [Simplex](linear_programming/simplex.py)
 
 ## Machine Learning
+  * [Apriori Algorithm](machine_learning/apriori_algorithm.py)
   * [Astar](machine_learning/astar.py)
   * [Data Transformations](machine_learning/data_transformations.py)
   * [Decision Tree](machine_learning/decision_tree.py)
@@ -557,7 +558,6 @@
   * [Word Frequency Functions](machine_learning/word_frequency_functions.py)
   * [Xgboost Classifier](machine_learning/xgboost_classifier.py)
   * [Xgboost Regressor](machine_learning/xgboost_regressor.py)
-  * [Apriori Algorithm](machine_learning/apriori_algorithm.py)
 
 ## Maths
   * [Abs](maths/abs.py)
