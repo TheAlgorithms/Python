@@ -1,5 +1,6 @@
 from typing import List
 
+
 def find_duplicate_xor(nums: List[int]) -> int:
     """
     Find the duplicate number in a list using XOR.
@@ -21,6 +22,7 @@ def find_duplicate_xor(nums: List[int]) -> int:
         result ^= num
 
     return result
+
 
 if __name__ == "__main__":
     import doctest
