@@ -191,11 +191,24 @@ stop_words = [
 ]
 
 
+# Function for normalizing the string
 def normalize_string(text: str) -> list:
     """
-    Function for normalizing the string
-    @params : unnormalized string/text
-    returns : list of text/words
+    This function normalizes the given string
+    and return a list of words
+
+
+    >>> text_1 = "where semicolons dance to the rhythm of algorithms, and"
+    >>> normalize_string(text_1)
+    ['semicolons', 'dance', 'rhythm', 'algorithms']
+
+    >>> text_2 = "bugs are the elusive mysteries waiting to "
+    >>> normalize_string(text_2)
+    ['bugs', 'elusive', 'mysteries', 'waiting']
+
+    >>> text_3 = "be unraveled by the persistent programmer's keen eye."
+    >>> normalize_string(text_3)
+    ['unraveled', 'persistent', 'programmers', 'keen', 'eye']
     """
 
     # transforming all uppercase to lowercase
@@ -228,14 +241,8 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    text_1 = "        Code is the poetry of logical minds,        "
+    text = "   Learn from your mistakes.   Never give up on your dreams."
 
-    text_2 = "where semicolons dance to the rhythm of algorithms, and"
-
-    text_3 = "bugs are the elusive mysteries waiting to "
-
-    text_4 = "be unraveled by the persistent programmer's keen eye."
-
-    normalized_text = normalize_string(text_1 + text_2 + text_3 + text_4)
+    normalized_text = normalize_string(text)
 
     print(normalized_text)
