@@ -2,10 +2,10 @@ def subset_combinations(elements: list[int], n: int) -> list:
     """
     Compute n-element combinations from a given list using dynamic programming.
     Args:
-        elements (list): The list of elements from which combinations will be generated.
-        n (int): The number of elements in each combination.
+        elements: The list of elements from which combinations will be generated.
+        n: The number of elements in each combination.
     Returns:
-        list: A list of tuples, each representing a combination of n elements.
+        A list of tuples, each representing a combination of n elements.
         >>> subset_combinations(elements=[10, 20, 30, 40], n=2)
         [(10, 20), (10, 30), (10, 40), (20, 30), (20, 40), (30, 40)]
         >>> subset_combinations(elements=[1, 2, 3], n=1)
