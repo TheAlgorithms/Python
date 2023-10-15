@@ -1111,9 +1111,6 @@
   * Problem 800
     * [Sol1](project_euler/problem_800/sol1.py)
 
-## Quantum
-  * [Q Fourier Transform](quantum/q_fourier_transform.py)
-
 ## Scheduling
   * [First Come First Served](scheduling/first_come_first_served.py)
   * [Highest Response Ratio Next](scheduling/highest_response_ratio_next.py)
