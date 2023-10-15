@@ -21,9 +21,9 @@ task if its deadline is greater than the current time.The greedy choice at
 each point is to either schedule the current task if its deadline is greater
 than the current time, or skip it otherwise.
 """
-from typing import Any
 from dataclasses import dataclass
 from operator import attrgetter
+from typing import Any
 
 @dataclass
 class Task:
