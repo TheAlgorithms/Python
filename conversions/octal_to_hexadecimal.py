@@ -27,9 +27,8 @@ def octal_to_hex(octal: str) -> str:
         octal = octal[2:]
     if octal == "":
         raise ValueError("Empty string was passed to the function")
-    for char in octal:
-        if char not in "01234567":
-            raise ValueError("Not a Valid Octal Number")
+    if any(char not in "01234567" for char in octal)
+        raise ValueError("Not a Valid Octal Number")
 
     decimal = 0
     for char in str(octal):
