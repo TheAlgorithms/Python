@@ -81,10 +81,23 @@ def solution(max_n: int = 10000000) -> int:
     >>> solution(10000)
     4435
     """
+    totients = get_totients(max_n + 1)
 
+    return common_solution(totients, max_n)
+
+
+def common_solution(totients: list[int], max_n: int = 10000000) -> int:
+    """
+    Finds the value of n from 1 to max such that n/φ(n) produces a minimum.
+
+    >>> common_solution(get_totients(101), 100)
+    21
+
+    >>> common_solution(get_totients(10001), 10000)
+    4435
+    """
     min_numerator = 1  # i
     min_denominator = 0  # φ(i)
-    totients = get_totients(max_n + 1)
 
     for i in range(2, max_n + 1):
         t = totients[i]
