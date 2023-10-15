@@ -14,6 +14,7 @@ AdaBoost assigns varying weights to data points,
 prioritizing misclassified samples with each iteration.
 """
 
+
 def data_handling(data: dict) -> tuple:
     # Split dataset into features and target
     # data is features
@@ -27,6 +28,7 @@ def data_handling(data: dict) -> tuple:
     """
     return (data["data"], data["target"])
 
+
 def adaboost(features: np.ndarray, target: np.ndarray) -> AdaBoostClassifier:
     """
     Initialize and train an AdaBoost classifier.
@@ -37,6 +39,7 @@ def adaboost(features: np.ndarray, target: np.ndarray) -> AdaBoostClassifier:
     classifier = AdaBoostClassifier()
     classifier.fit(features, target)
     return classifier
+
 
 def main() -> None:
     """
@@ -61,7 +64,7 @@ def main() -> None:
 
     # Displaying the accuracy of the AdaBoost classifier
     accuracy = accuracy_score(y_test, y_pred)
-    print(f'Accuracy of the AdaBoost classifier: {accuracy}')
+    print(f"Accuracy of the AdaBoost classifier: {accuracy}")
 
     # Displaying the confusion matrix of the classifier with both training and test sets
     ConfusionMatrixDisplay.from_estimator(
@@ -74,6 +77,7 @@ def main() -> None:
     )
     plt.title("Normalized Confusion Matrix - IRIS Dataset")
     plt.show()
+
 
 if __name__ == "__main__":
     doctest.testmod(verbose=True)
