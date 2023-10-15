@@ -1,5 +1,6 @@
 from collections import deque
 
+
 class Job:
     job_counter: int = 1
 
