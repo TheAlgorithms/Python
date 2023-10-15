@@ -9,13 +9,15 @@ messages = [
     "Hey, how are you?",
     "Win a free iPhone!",
     "Discounts on luxury watches",
-    "Meet singles in your area"
+    "Meet singles in your area",
 ]
 
 labels = np.array([0, 1, 1, 1])  # 0: not spam, 1: spam
 
 # Split data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(messages, labels, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    messages, labels, test_size=0.2, random_state=42
+)
 
 # Vectorize the text data using CountVectorizer
 vectorizer = CountVectorizer()
