@@ -191,11 +191,26 @@ stop_words = [
 ]
 
 
+# Function for normalizing the string
 def normalize_string(text: str) -> list:
     """
-    Function for normalizing the string
-    @params : unnormalized string/text
-    returns : list of text/words
+    This fuction normalizes the given string
+
+    >>> test_1 = "        Code is the poetry of logical minds,        "
+    >>> normalize_string(test_1)
+    ['code', 'poetry', 'logical', 'minds']
+
+    >>> test_2 = "where semicolons dance to the rhythm of algorithms, and"
+    >>> normalize_string(test_2)
+    ['semicolons', 'dance', 'rhythm', 'algorithms']
+
+    >>> test_3 = "bugs are the elusive mysteries waiting to "
+    >>> normalize_string(test_3)
+    ['bugs', 'elusive', 'mysteries', 'waiting']
+
+    >>> test_4 = "be unraveled by the persistent programmer's keen eye."
+    >>> normalize_string(test_4)
+    ['unraveled', 'persistent', 'programmers', 'keen', 'eye']
     """
 
     # transforming all uppercase to lowercase
@@ -226,16 +241,10 @@ def normalize_string(text: str) -> list:
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()
+    doctest.testmod(name="normalize_string", verbose=True)
 
-    text_1 = "        Code is the poetry of logical minds,        "
+    text = "  Make the desired   changes to the code, documentation"
 
-    text_2 = "where semicolons dance to the rhythm of algorithms, and"
-
-    text_3 = "bugs are the elusive mysteries waiting to "
-
-    text_4 = "be unraveled by the persistent programmer's keen eye."
-
-    normalized_text = normalize_string(text_1 + text_2 + text_3 + text_4)
+    normalized_text = normalize_string(text)
 
     print(normalized_text)
