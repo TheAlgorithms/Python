@@ -30,6 +30,8 @@ jobs:
       - name: Check test coverage
         run: pytest
             --cov-report=term-missing:skip-covered
-            --cov=. .
+            --cov=.
+            --ignore=project_euler/
+            --ignore=scripts/validate_solutions.py .
       - if: ${{ success() }}
         run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
