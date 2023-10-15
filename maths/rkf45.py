@@ -79,13 +79,11 @@ def runge_futta_fehlberg_45(
         )
         k4 = step_size * func(
             x[i] + (12 / 13) * step_size,
-            y[i] + (1932 / 2197) * k1 - (7200 / 2197) *
-            k2 + (7296 / 2197) * k3,
+            y[i] + (1932 / 2197) * k1 - (7200 / 2197) * k2 + (7296 / 2197) * k3,
         )
         k5 = step_size * func(
             x[i] + step_size,
-            y[i] + (439 / 216) * k1 - 8 * k2 +
-            (3680 / 513) * k3 - (845 / 4104) * k4,
+            y[i] + (439 / 216) * k1 - 8 * k2 + (3680 / 513) * k3 - (845 / 4104) * k4,
         )
         k6 = step_size * func(
             x[i] + step_size / 2,
