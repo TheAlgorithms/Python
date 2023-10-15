@@ -30,7 +30,7 @@ def block_sort(lst: list) -> list:
 
     sorted_lst = []
     while blocks:
-        min_block = min(blocks, key=lambda x: x[0])
+        min_block = min(blocks, key=lambda block: block[0])
         sorted_lst.append(min_block.pop(0))
         if not min_block:
             blocks.remove(min_block)
