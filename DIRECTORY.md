@@ -265,6 +265,7 @@
     * [Postfix Evaluation](data_structures/stacks/postfix_evaluation.py)
     * [Prefix Evaluation](data_structures/stacks/prefix_evaluation.py)
     * [Stack](data_structures/stacks/stack.py)
+    * [Stack Using Two Queues](data_structures/stacks/stack_using_two_queues.py)
     * [Stack With Doubly Linked List](data_structures/stacks/stack_with_doubly_linked_list.py)
     * [Stack With Singly Linked List](data_structures/stacks/stack_with_singly_linked_list.py)
     * [Stock Span Problem](data_structures/stacks/stock_span_problem.py)
@@ -361,6 +362,7 @@
   * [Trapped Water](dynamic_programming/trapped_water.py)
   * [Tribonacci](dynamic_programming/tribonacci.py)
   * [Viterbi](dynamic_programming/viterbi.py)
+  * [Wildcard Matching](dynamic_programming/wildcard_matching.py)
   * [Word Break](dynamic_programming/word_break.py)
 
 ## Electronics
@@ -373,6 +375,7 @@
   * [Electric Conductivity](electronics/electric_conductivity.py)
   * [Electric Power](electronics/electric_power.py)
   * [Electrical Impedance](electronics/electrical_impedance.py)
+  * [Ic 555 Timer](electronics/ic_555_timer.py)
   * [Ind Reactance](electronics/ind_reactance.py)
   * [Ohms Law](electronics/ohms_law.py)
   * [Real And Reactive Power](electronics/real_and_reactive_power.py)
@@ -622,6 +625,7 @@
   * [Is Ip V4 Address Valid](maths/is_ip_v4_address_valid.py)
   * [Is Square Free](maths/is_square_free.py)
   * [Jaccard Similarity](maths/jaccard_similarity.py)
+  * [Joint Probability Distribution](maths/joint_probability_distribution.py)
   * [Juggler Sequence](maths/juggler_sequence.py)
   * [Karatsuba](maths/karatsuba.py)
   * [Krishnamurthy Number](maths/krishnamurthy_number.py)
@@ -675,8 +679,8 @@
   * [Radians](maths/radians.py)
   * [Radix2 Fft](maths/radix2_fft.py)
   * [Remove Digit](maths/remove_digit.py)
-  * [Rkf45](maths/rkf45.py)
   * [Runge Kutta](maths/runge_kutta.py)
+  * [Runge Kutta Fehlberg 45](maths/runge_kutta_fehlberg_45.py)
   * [Segmented Sieve](maths/segmented_sieve.py)
   * Series
     * [Arithmetic](maths/series/arithmetic.py)
@@ -789,7 +793,7 @@
 
 ## Physics
   * [Altitude Pressure](physics/altitude_pressure.py)
-  * [Archimedes Principle](physics/archimedes_principle.py)
+  * [Archimedes Principle Of Buoyant Force](physics/archimedes_principle_of_buoyant_force.py)
   * [Basic Orbital Capture](physics/basic_orbital_capture.py)
   * [Casimir Effect](physics/casimir_effect.py)
   * [Centripetal Force](physics/centripetal_force.py)
