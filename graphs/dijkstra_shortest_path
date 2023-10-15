@@ -1,0 +1,53 @@
+import sys
+
+def print_distances(distances):
+    print("\nVertex Distance")
+    for vertex, distance in enumerate(distances):
+        if distance != sys.maxsize:
+            print(f"{vertex}\t{int(distance)}\t", end="")
+        else:
+            print(f"{vertex}\tINF\t", end="")
+        print()
+
+def find_min_distance(distances, visited):
+    min_distance = sys.maxsize
+    min_index = -1
+    for vertex, distance in enumerate(distances):
+        if not visited[vertex] and distance < min_distance:
+            min_distance = distance
+            min_index = vertex
+    return min_index
+
+def dijkstra(graph, source):
+    vertices = len(graph)
+    distances = [sys.maxsize] * vertices
+    visited = [False] * vertices
+    distances[source] = 0
+
+    for _ in range(vertices - 1):
+        u = find_min_distance(distances, visited)
+        visited[u] = True
+        for v in range(vertices):
+            if not visited[v] and graph[u][v] != sys.maxsize and distances[u] + graph[u][v] < distances[v]:
+                distances[v] = distances[u] + graph[u][v]
+
+    print_distances(distances)
+
+if __name__ == "__main__":
+    num_vertices = int(input("Enter the number of vertices: ").strip())
+    num_edges = int(input("Enter the number of edges: ").strip())
+
+    graph = [[sys.maxsize] * num_vertices for _ in range(num_vertices)]
+
+    for i in range(num_vertices):
+        graph[i][i] = 0.0
+
+    for i in range(num_edges):
+        print("\nEdge", i + 1)
+        src = int(input("Enter source: ").strip())
+        dst = int(input("Enter destination: ").strip())
+        weight = float(input("Enter weight: ").strip())
+        graph[src][dst] = weight
+
+    shortest_path_source = int(input("\nEnter the shortest path source: ").strip())
+    dijkstra(graph, shortest_path_source)
