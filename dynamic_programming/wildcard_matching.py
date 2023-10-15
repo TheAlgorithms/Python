@@ -20,8 +20,7 @@ where n and m are lengths of the input_string and pattern respectively.
 
 """
 
-
-def is_pattern_match(input_string: str, pattern: str) -> bool:
+def is_pattern_match(input_string : str, pattern : str) -> bool:
     """
     >>> is_pattern_match('baaabab','*****ba*****ba')
     False
@@ -30,18 +29,13 @@ def is_pattern_match(input_string: str, pattern: str) -> bool:
     >>> is_pattern_match('aa','*')
     True
     """
-
+    
     input_length = len(input_string)
     pattern_length = len(pattern)
 
-    match_matrix = [
-        [False for i in range(pattern_length + 1)] for j in range(input_length + 1)
-    ]
+    match_matrix = [[False] * (pattern_length + 1) for _ in range(input_length + 1)]
 
     match_matrix[0][0] = True
-
-    for i in range(1, input_length + 1):
-        match_matrix[i][0] = False
 
     for j in range(1, pattern_length + 1):
         if pattern[j - 1] == "*":
@@ -49,7 +43,7 @@ def is_pattern_match(input_string: str, pattern: str) -> bool:
 
     for i in range(1, input_length + 1):
         for j in range(1, pattern_length + 1):
-            if input_string[i - 1] == pattern[j - 1] or pattern[j - 1] == "?":
+            if pattern[j - 1] in ("?", input_string[i - 1]):
                 match_matrix[i][j] = match_matrix[i - 1][j - 1]
             elif pattern[j - 1] == "*":
                 match_matrix[i][j] = match_matrix[i - 1][j] or match_matrix[i][j - 1]
@@ -57,7 +51,6 @@ def is_pattern_match(input_string: str, pattern: str) -> bool:
                 match_matrix[i][j] = False
 
     return match_matrix[input_length][pattern_length]
-
 
 if __name__ == "__main__":
     import doctest
