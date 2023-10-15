@@ -34,9 +34,9 @@ def calculate_joint_probability(
     return joint_distribution
 
 
-def main():
+def main() -> None:
     print(calculate_joint_probability([1],[1,2],[0.5],[0.1,0,5]))
-    
+
 if __name__ == "__main__":
     import doctest
     ans = main()
