@@ -16,7 +16,7 @@ def travelling_salesman(tsp_graph,city) -> None:
     None
   """
     global cost
-    adjacent_vertex,min_val = 999,999
+    adjacent_vertex, min_val = 999, 999
     visited[city] = 1
     print((city + 1), end=" ")
     for k in range(num_cities):
@@ -33,6 +33,7 @@ def travelling_salesman(tsp_graph,city) -> None:
         return
     travelling_salesman(tsp_graph,adjacent_vertex)
 
+
 """
 1)Initialize a set of visited cities to be empty.
 2)Set the current city to be the starting city.
@@ -48,12 +49,9 @@ Once the code has finished executing,
 it will print the shortest possible path and the total distance of the path."""
 
 cost = 0
-tsp_graph = np.array([
-  [0, 22, 26, 30],
-  [30, 0, 45, 35],
-  [25, 45, 0, 60],
-  [30, 35, 40, 0]
-])
+tsp_graph = np.array(
+    [[0, 22, 26, 30], [30, 0, 45, 35], [25, 45, 0, 60], [30, 35, 40, 0]]
+)
 num_cities = len(tsp_graph[0])
 city = 0
 visited = np.zeros(num_cities, dtype=int)
