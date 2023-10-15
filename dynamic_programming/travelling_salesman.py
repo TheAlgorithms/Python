@@ -5,16 +5,18 @@ Author: grpathak22
 Date: 15 October 2023
 Travelling Salesman Problem using Dynamic Programming
 """
-def travelling_salesman(tsp_graph,city) -> None:
+
+
+def travelling_salesman(tsp_graph, city) -> None:
     """Solve the traveling salesman problem using dynamic programming.
 
-  Args:
-    distance_matrix: A square matrix of distances between cities.
-    city: Starting city which is initially 0(index)
-    
-  Returns:
-    None
-  """
+    Args:
+      distance_matrix: A square matrix of distances between cities.
+      city: Starting city which is initially 0(index)
+
+    Returns:
+      None
+    """
     global cost
     adjacent_vertex, min_val = 999, 999
     visited[city] = 1
@@ -31,7 +33,7 @@ def travelling_salesman(tsp_graph,city) -> None:
         print((adjacent_vertex + 1), end=" ")
         cost = cost + tsp_graph[city][adjacent_vertex]
         return
-    travelling_salesman(tsp_graph,adjacent_vertex)
+    travelling_salesman(tsp_graph, adjacent_vertex)
 
 
 """
@@ -45,7 +47,7 @@ def travelling_salesman(tsp_graph,city) -> None:
 The code also keeps track of the total distance traveled,
 The total distance is calculated by adding up the distances between each pair of visited cities.
 
-Once the code has finished executing, 
+Once the code has finished executing,
 it will print the shortest possible path and the total distance of the path."""
 
 cost = 0
@@ -56,5 +58,5 @@ num_cities = len(tsp_graph[0])
 city = 0
 visited = np.zeros(num_cities, dtype=int)
 print("Shortest Path:  \n", end=" ")
-travelling_salesman(tsp_graph,city)
+travelling_salesman(tsp_graph, city)
 print(f"\nMinimum Cost: {cost} ", end=" ")
