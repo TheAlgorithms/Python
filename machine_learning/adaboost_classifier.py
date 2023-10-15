@@ -10,9 +10,10 @@ from sklearn.model_selection import train_test_split
 """
 AdaBoost or Adaptive Boosting, is an ensemble learning technique in machine learning.
 It operates by combining multiple weak learners,in an iterative manner.
-AdaBoost assigns varying weights to data points, 
+AdaBoost assigns varying weights to data points,
 prioritizing misclassified samples with each iteration.
 """
+
 
 def data_handling(data: dict) -> tuple:
     # Split dataset into features and target
@@ -21,11 +22,12 @@ def data_handling(data: dict) -> tuple:
     Split dataset into features and target.
     >>> data_handling({'data':'[5.1, 3.5, 1.4, 0.2]','target':([0])})
     ('[5.1, 3.5, 1.4, 0.2]', [0])
-    >>> data_handling({'data': '[4.9, 3.0, 1.4, 0.2], [4.7, 3.2, 1.3, 0.2]', 
+    >>> data_handling({'data': '[4.9, 3.0, 1.4, 0.2], [4.7, 3.2, 1.3, 0.2]',
     'target': ([0, 0])})
     ('[4.9, 3.0, 1.4, 0.2], [4.7, 3.2, 1.3, 0.2]', [0, 0])
     """
     return (data["data"], data["target"])
+
 
 def adaboost(features: np.ndarray, target: np.ndarray) -> AdaBoostClassifier:
     """
@@ -37,6 +39,7 @@ def adaboost(features: np.ndarray, target: np.ndarray) -> AdaBoostClassifier:
     classifier = AdaBoostClassifier()
     classifier.fit(features, target)
     return classifier
+
 
 def main():
     """
@@ -61,7 +64,7 @@ def main():
 
     # Displaying the accuracy of the AdaBoost classifier
     accuracy = accuracy_score(y_test, y_pred)
-    print(f'Accuracy of the AdaBoost classifier: {accuracy}')
+    print(f"Accuracy of the AdaBoost classifier: {accuracy}")
 
     # Displaying the confusion matrix of the classifier with both training and test sets
     ConfusionMatrixDisplay.from_estimator(
@@ -74,6 +77,7 @@ def main():
     )
     plt.title("Normalized Confusion Matrix - IRIS Dataset")
     plt.show()
+
 
 if __name__ == "__main__":
     doctest.testmod(verbose=True)
