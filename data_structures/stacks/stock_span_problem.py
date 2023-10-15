@@ -8,7 +8,7 @@ on the current day is less than or equal to its price on the given day.
 """
 
 
-def calculation_span(price: list[float]):
+def calculation_span(price: list[float]) -> list[float]:
     """
     Calculate the span values for a given list of stock prices.
     Args:
@@ -16,28 +16,28 @@ def calculation_span(price: list[float]):
     Returns:
     >>> price = [10, 4, 5, 90, 120, 80]
     >>> calculation_span(price)
-    [1, 1, 2, 4, 5, 6]
+    [1.0, 1.0, 2.0, 4.0, 5.0, 6.0]
     >>> price = [100, 50, 60, 70, 80, 90]
     >>> calculation_span(price)
-    [1, 1, 2, 3, 4, 5]
+    [1.0, 1.0, 2.0, 3.0, 4.0, 5.0]
     >>> price = [5, 4, 3, 2, 1]
     >>> calculation_span(price)
-    [1, 1, 2, 3, 4]
+    [1.0, 1.0, 2.0, 3.0, 4.0]
     >>> price = [1, 2, 3, 4, 5]
     >>> calculation_span(price)
-    [1, 2, 3, 4, 5]
+    [1.0, 2.0, 3.0, 4.0, 5.0]
     >>> price = [10, 20, 30, 40, 50]
     >>> calculation_span(price)
-    [1, 2, 3, 4, 5]
+    [1.0, 2.0, 3.0, 4.0, 5.0]
     """
     n = len(price)
     st = [0]
-    s = [0] * n
-    s[0] = 1
+    s = [0.0] * n
+    s[0] = 1.0
     for i in range(1, n):
         while len(st) > 0 and price[st[0]] <= price[i]:
             st.pop()
-        s[i] = i + 1 if len(st) <= 0 else (i - st[0])
+        s[i] = float(i + 1) if len(st) <= 0 else float(i - st[0])
     return s
 
 
