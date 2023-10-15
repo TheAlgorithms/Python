@@ -127,7 +127,7 @@ addopts = [
     "--showlocals",
 ]
 
-[tool.coverage.report]
+[tool.coverage.run]
 omit = [
   ".env/*",
   "project_euler/*",
