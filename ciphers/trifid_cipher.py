@@ -12,6 +12,7 @@ Syntax : encrypt_message(plaintext, key)
          decrypt_message(encrypted, key)
 """
 
+
 def __encrypt_part(message_part: str, character_to_number: dict[str, str]) -> str:
     one, two, three = "", "", ""
     tmp = []
@@ -48,25 +49,24 @@ def __decrypt_part(
 def __prepare(
     message: str, alphabet: str
 ) -> tuple[str, str, dict[str, str], dict[str, str]]:
-
     """__prepare validates the entered message and alphabet to check if
-       it satisfies all the given requirements:
+    it satisfies all the given requirements:
 
        1) message must not contain numbers like 1,2,3 etc
        2) Key must have all the alphabets the message has
        3) Length of the key has to be 27
-       
+
        >>> __prepare("hello", "ABCDEHG")
        Traceback (most recent call last):
        ...
        KeyError: 'Length of alphabet has to be 27.'
 
-       >>> __prepare("hello", "AABCDEFGGIJKLMNOPQRSTUVWXYZ")
-       Traceback (most recent call last):
-       ...
-        raise ValueError("Each message character has to be included in alphabet!")
-       ValueError: Each message character has to be included in alphabet!
-       """
+    >>> __prepare("hello", "AABCDEFGGIJKLMNOPQRSTUVWXYZ")
+    Traceback (most recent call last):
+    ...
+     raise ValueError("Each message character has to be included in alphabet!")
+    ValueError: Each message character has to be included in alphabet!
+    """
     # Validate message and alphabet, set to upper and remove spaces
     alphabet = alphabet.replace(" ", "").upper()
     message = message.replace(" ", "").upper()
@@ -127,7 +127,7 @@ def encrypt_message(
     1) If not provided, default alphabet is taken as "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     2) If not provided, default period is taken as 5
     3) message is a compulsory argument
-    
+
     >>> print(encrypt_message("hello world"))
     BOJN.WKPOY
 
@@ -163,7 +163,7 @@ def decrypt_message(
     1) If not provided, default alphabet is taken as "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     2) If not provided, default period is taken as 5
     3) message is a compulsory argument
-    
+
     >>> print(decrypt_message("BOJN.IYSS"))
     HELLOGUYS
 
