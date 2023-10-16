@@ -52,7 +52,7 @@ def is_polish_national_id(input_str: str) -> bool:
     if input_int < 10100000 or input_int > 99923199999:
         return False
 
-    # check month corectness
+    # check month correctness
     month = int(input_str[2:4])
 
     if (
@@ -64,7 +64,7 @@ def is_polish_national_id(input_str: str) -> bool:
     ):
         return False
 
-    # check day corectness
+    # check day correctness
     day = int(input_str[4:6])
 
     if day not in range(1, 32):
@@ -77,7 +77,7 @@ def is_polish_national_id(input_str: str) -> bool:
     digits_to_check = str(input_str)[:-1]  # cut off the checksum
 
     for index, digit in enumerate(digits_to_check):
-        # Multiply corresponding digits and multipiers.
+        # Multiply corresponding digits and multipliers.
         # In case of a double-digit result, add only the last digit.
         subtotal += (int(digit) * multipliers[index]) % 10
 
