@@ -71,11 +71,10 @@ def ohms_law(
     elif voltage is None:
         return current * resistance
     elif resistance is None:
-        resistance = voltage / current
-        return {"resistance": resistance}
+        return voltage / current
     else:
-            # All parameters are None, return None
-            return None
+        # All parameters are None, return None
+        return None
 # Run Doctest
 if __name__ == "__main__":
     import doctest
