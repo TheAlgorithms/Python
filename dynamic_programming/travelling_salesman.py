@@ -3,6 +3,8 @@ import numpy as np
 """Author: grpathak22
 Date: 15 October 2023
 Travelling Salesman Problem using Dynamic Programming """
+
+
 def travelling_salesman(tsp_graph: np.ndarray, city: int) -> None:
     """
     Solve the traveling salesman problem using dynamic programming.
@@ -46,8 +48,8 @@ it will print the shortest possible path and the total distance of the path."""
 
 
 if __name__ == "__main__":
-    
     import doctest
+
     doctest.testmod()
     cost = 0
     tsp_graph = np.array(
