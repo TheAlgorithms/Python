@@ -167,6 +167,31 @@ def for_solution(max_number: int = 10**8) -> int:
     return semiprimes_count
 
 
+def solution(max_number: int = 10**8) -> int:
+    """
+    Returns the number of composite integers below max_number have precisely two,
+    not necessarily distinct, prime factors.
+
+    >>> solution(30)
+    10
+    """
+
+    prime_numbers = np_calculate_prime_numbers(max_number // 2)
+
+    semiprimes_count = 0
+    right = len(prime_numbers) - 1
+    for left in range(len(prime_numbers)):
+        if left > right:
+            break
+        for r in range(right, left - 2, -1):
+            if prime_numbers[left] * prime_numbers[r] < max_number:
+                break
+        right = r
+        semiprimes_count += right - left + 1
+
+    return semiprimes_count
+
+
 def benchmark() -> None:
     """
     Benchmarks
