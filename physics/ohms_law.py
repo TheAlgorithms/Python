@@ -50,10 +50,8 @@ def ohms_law(voltage: float, current: float, resistance: float) -> Union[float, 
     - Providing all three parameters will raise an error.
     """
     # Check that exactly two parameters are provided
-    if sum(param is not None for param in [current, voltage, resistance]) != 2:
-        raise ValueError(
-            "Exactly two parameters (current, voltage, or resistance) must be provided."
-        )
+    if sum(param is not None for param in [voltage, current, resistance]) != 2:
+        raise ValueError("Exactly two parameters (voltage, current, or resistance) must be provided.")
 
     # Check for negative values
     if current < 0:
@@ -76,7 +74,8 @@ def ohms_law(voltage: float, current: float, resistance: float) -> Union[float, 
     else:
         # All parameters are None, return None
         return None
-
+# Run Doctest
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
