@@ -37,14 +37,14 @@ def collect_dataset():
 
 
 def lasso_regression(x, y, alpha, max_iterations, learning_rate):
-    '''
+    """
     Lasso regression function
     :param x : contains the data
     :param y : contains the output associated with each data entry
     :param alpha: regularization parameter
     :param max_iterations : integer representing max interations
     :param learning_rate : learning rate used for optimization
-    '''
+    """
     n_samples, n_features = x.shape
     weights = np.zeros(n_features)
     for _ in range(max_iterations):
@@ -56,9 +56,9 @@ def lasso_regression(x, y, alpha, max_iterations, learning_rate):
 
 
 def main():
-    '''
+    """
     driver funtion
-    '''
+    """
     data = collect_dataset()
 
     data_x = data[:, :-1]
