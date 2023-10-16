@@ -15,7 +15,7 @@ V = I*R (where R is a proportionality constant)
 Source :
 - https://byjus.com/physics/ohms-law/
 """
-def ohms_law(voltage=None, current=None, resistance=None) -> float:
+def ohms_law(current=None, voltage=None, resistance=None):
     """
     Example Usages:
     ohms_law(current=2, resistance=4)
@@ -34,7 +34,9 @@ def ohms_law(voltage=None, current=None, resistance=None) -> float:
     """
     # Check that exactly two parameters are provided
     if sum(param is not None for param in [current, voltage, resistance]) != 2:
-        raise ValueError("Exactly two parameters (current, voltage, or resistance) must be provided.")
+        raise ValueError(
+            "Exactly two parameters (current, voltage, or resistance) must be provided."
+        )
 
     # Check for negative values
     if current is not None and current < 0:
@@ -47,15 +49,14 @@ def ohms_law(voltage=None, current=None, resistance=None) -> float:
     # Calculate the missing parameter
     if current is None:
         current = voltage / resistance
-        return {'current': current}
+        return {"current": current}
     elif voltage is None:
         voltage = current * resistance
-        return {'voltage': voltage}
+        return {"voltage": voltage}
     elif resistance is None:
         resistance = voltage / current
         return {'resistance': resistance}
-    
-# Run doctest
+
 if __name__ == "__main__":
     import doctest
 
