@@ -142,12 +142,12 @@ def while_solution(max_number: int = 10**8) -> int:
     return semiprimes_count
 
 
-def solution(max_number: int = 10**8) -> int:
+def for_solution(max_number: int = 10**8) -> int:
     """
     Returns the number of composite integers below max_number have precisely two,
     not necessarily distinct, prime factors.
 
-    >>> solution(30)
+    >>> for_solution(30)
     10
     """
 
