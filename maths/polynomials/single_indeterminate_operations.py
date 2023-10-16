@@ -187,6 +187,7 @@ class Polynomial:
         """
         return not self.__eq__(polynomial_2)
 
+
 def add(a: int, b: int) -> int:
     """
     Adds two non-negative numbers.
@@ -199,4 +200,4 @@ def add(a: int, b: int) -> int:
     >>> add(-1, -1)
     -2
     """
-    return a+b
+    return a + b
