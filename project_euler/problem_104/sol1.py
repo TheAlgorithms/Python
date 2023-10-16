@@ -58,21 +58,18 @@ def is_pandigital_end(number: int) -> bool:
 
     """
 
-    check_last = [0] * 11
+    digit_count = [0] * 10
 
-    # mark last 9 numbers
+    # Count the occurrences of each digit[0-9]
     for _ in range(9):
-        check_last[int(number % 10)] = 1
+        digit_count[int(number % 10)] = 1
         number = number // 10
-    # flag
-    f = True
 
-    # check last 9 numbers for pandigitality
-
+    # Return False if any digit is missing
     for x in range(9):
-        if not check_last[x + 1]:
-            f = False
-    return f
+        if not digit_count[x + 1]:
+            return False
+    return True
 
 
 def solution() -> int:
