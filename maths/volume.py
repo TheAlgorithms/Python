@@ -494,7 +494,7 @@ def vol_icosahedron(tri_side: float) -> float:
     """
     if tri_side < 0:
         raise ValueError("vol_icosahedron() only accepts non-negative values")
-    return pow(tri_side, 3) * ((3 + pow(5, 1 / 2)) * 5 / 12)
+    return tri_side**3 * (3 + 5**0.5) * 5 / 12
 
 
 def main():
