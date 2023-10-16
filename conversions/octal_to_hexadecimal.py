@@ -4,9 +4,9 @@ def octal_to_hex(octal: str) -> str:
     For more information: https://en.wikipedia.org/wiki/Octal
 
     >>> octal_to_hex("100")
-    '0X40'
+    '0x40'
     >>> octal_to_hex("235")
-    '0X9D'
+    '0x9D'
     >>> octal_to_hex(17)
     Traceback (most recent call last):
         ...
@@ -42,7 +42,7 @@ def octal_to_hex(octal: str) -> str:
         revhex += hex_char[decimal & 15]
         decimal >>= 4
 
-    return "0X" + revhex[::-1]
+    return "0x" + revhex[::-1]
 
 
 if __name__ == "__main__":
@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     for num in nums:
         hexadecimal = octal_to_hex(num)
-        expected = hex(int(num, 8)).upper()
+        expected = "0x" + hex(int(num, 8))[2:].upper()
 
         assert hexadecimal == expected
 
