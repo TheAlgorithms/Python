@@ -2,11 +2,11 @@
 Lasso regression, a vital predictive analysis technique,
 helps identify pivotal features within datasets.
 These features profoundly impact prediction accuracy.
-In our code, we use a CS:GO dataset to 
+In our code, we use a CS:GO dataset to
 link Average Damage per Round (ADR) to a player's Rating.
 Lasso's special touch is feature selection;
 it trims irrelevant features by nudging some coefficients to zero,
-fine-tuning the model's accuracy. In essence, 
+fine-tuning the model's accuracy. In essence,
 Lasso elegantly balances feature significance,
 refining predictive power in various fields, from finance to healthcare,
 to harness valuable insights and improve predictions.
