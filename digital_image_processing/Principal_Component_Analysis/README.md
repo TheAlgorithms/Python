@@ -26,7 +26,7 @@ pip install scikit-learn numpy matplotlib
 
 ```
 
-#### Dataset: 
+#### Dataset:
 [Digits Dataset](https://scikit-learn.org/stable/auto_examples/datasets/plot_digits_last_image.html)
 
 
