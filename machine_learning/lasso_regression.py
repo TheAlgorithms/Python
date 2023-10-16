@@ -17,6 +17,11 @@ import requests
 
 
 def collect_dataset():
+    """
+    Collect dataset of CSGO
+    The dataset contains ADR vs Rating of a Player
+    :return : dataset obtained from the link, as matrix
+    """
     response = requests.get(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
         "master/Week1/ADRvsRating.csv"
@@ -32,6 +37,13 @@ def collect_dataset():
 
 
 def lasso_regression(x, y, alpha, max_iterations, learning_rate):
+    '''
+    Lasso regression function
+    :param x : contains the data
+    :param y : contains the output associated with each data entry
+    :param max_iterations : integer representing max interations
+    :param learning_rate : learning rate used for optimization
+    '''
     n_samples, n_features = x.shape
     weights = np.zeros(n_features)
     for _ in range(max_iterations):
@@ -43,6 +55,9 @@ def lasso_regression(x, y, alpha, max_iterations, learning_rate):
 
 
 def main():
+    '''
+    driver funtion
+    '''
     data = collect_dataset()
 
     data_x = data[:, :-1]
