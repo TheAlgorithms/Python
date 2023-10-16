@@ -57,7 +57,7 @@ def lasso_regression(x, y, alpha, max_iterations, learning_rate):
 def main():
     """
     driver code
-    def main()-> = None    
+    def main()-> = None
     """
     data = collect_dataset()
 
@@ -79,4 +79,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
