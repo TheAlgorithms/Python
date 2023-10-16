@@ -4,11 +4,23 @@
 # comments: This program output the
 # best time to buy and sell stock with fees
 #############################
-import doctest
+from typing import List
 
 
 class Solution:
-    def solve(self, prices, index, fee, buy, dp):
+    def solve(
+        self, prices: List[int], index: int, fee: int, buy: int, dp: List[List[int]]
+    ) -> int:
+        """
+        Calculate the maximum profit with the given parameters.
+
+        :param prices: List of prices for each day.
+        :param index: Current day index.
+        :param fee: Transaction fee.
+        :param buy: Buy or sell flag (1 for buy, 0 for sell).
+        :param dp: Memoization table.
+        :return: Maximum profit achievable.
+        """
         if index >= len(prices):
             return 0
         if dp[index][buy] != -1:
@@ -29,7 +41,15 @@ class Solution:
         dp[index][buy] = profit
         return profit
 
-    def maxprofit(self, prices, fee):
+    def maxprofit(self, prices: List[int], fee: int) -> int:
+        """
+        Calculate the maximum profit achievable when buying and
+        selling stocks with a fee.
+
+        :param prices: List of stock prices for each day.
+        :param fee: Transaction fee.
+        :return: Maximum profit achievable.
+        """
         n = len(prices)
         dp = [[-1] * 2 for _ in range(n)]
 
@@ -37,7 +57,9 @@ class Solution:
 
 
 def main():
-    ## This is the function for taking input and output ##
+    """
+    This is the function for taking input and output.
+    """
     prices = list(map(int, input("Enter the list of prices: ").split()))
     fee = int(input("Enter the transaction fee: "))
 
@@ -48,5 +70,7 @@ def main():
 
 
 if __name__ == "__main__":
+    import doctest
+
     doctest.testmod()
     main()
