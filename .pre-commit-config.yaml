@@ -16,7 +16,7 @@ repos:
     -   id: auto-walrus
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.0.292
+    rev: v0.1.0
     hooks:
       - id: ruff
 
@@ -46,7 +46,7 @@ repos:
         pass_filenames: false
 
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.14
+    rev: v0.15
     hooks:
       - id: validate-pyproject
 
