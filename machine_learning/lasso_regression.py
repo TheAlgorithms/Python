@@ -56,7 +56,8 @@ def lasso_regression(x, y, alpha, max_iterations, learning_rate):
 
 def main():
     """
-    def function() -> None:
+    driver code
+    def main()-> = None    
     """
     data = collect_dataset()
 
@@ -78,6 +79,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-    import doctest
 
-    doctest.testmod(name="collect_dataset", verbose=True)
