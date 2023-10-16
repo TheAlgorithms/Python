@@ -51,13 +51,11 @@ def lasso_regression(x, y, alpha, max_iterations, learning_rate):
         y_pred = x.dot(weights)
         gradient = -(1 / n_samples) * x.T.dot(y - y_pred) + alpha * np.sign(weights)
         weights -= learning_rate * gradient
-
     return weights
-
 
 def main():
     """
-    driver funtion
+    def function() -> None:
     """
     data = collect_dataset()
 
