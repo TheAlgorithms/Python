@@ -34,37 +34,13 @@ def is_pandigital_both(number: int) -> bool:
 
     """
 
-    check_last = [0] * 11
-    check_front = [0] * 11
+    # Check end
+    if not is_pandigital_end(number):
+        return False
 
-    # mark last 9 numbers
-    for _ in range(9):
-        check_last[int(number % 10)] = 1
-        number = number // 10
-    # flag
-    f = True
-
-    # check last 9 numbers for pandigitality
-
-    for x in range(9):
-        if not check_last[x + 1]:
-            f = False
-    if not f:
-        return f
-
-    # mark first 9 numbers
+    # Check start
     number = int(str(number)[:9])
-
-    for _ in range(9):
-        check_front[int(number % 10)] = 1
-        number = number // 10
-
-    # check first 9 numbers for pandigitality
-
-    for x in range(9):
-        if not check_front[x + 1]:
-            f = False
-    return f
+    return is_pandigital_end(number)
 
 
 def is_pandigital_end(number: int) -> bool:
