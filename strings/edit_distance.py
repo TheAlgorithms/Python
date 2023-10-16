@@ -23,7 +23,7 @@ def edit_distance(source: str, target: str) -> int:
     1
     """
     delta = {True: 0, False: 1}  # Substitution
-    
+
     if len(source) == 0:
         return len(target)
     elif len(target) == 0:
