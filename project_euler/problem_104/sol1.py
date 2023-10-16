@@ -95,23 +95,23 @@ def solution() -> int:
     billion = 1_000_000_000  # Equivalent to 10**9
 
     # Check fibonacci numbers % 10**9
-    for k in range(max_k):
+    for k in range(3, max_k):
         mk = (mk_2 + mk_1) % billion
         mk_2 = mk_1
         mk_1 = mk
 
         if is_pandigital_end(mk):
-            end_pandigital[k + 3] = 1
+            end_pandigital[k] = 1
 
     # Check fibonacci numbers
-    for k in range(max_k):
+    for k in range(3, max_k):
         fk = fk_2 + fk_1
         fk_2 = fk_1
         fk_1 = fk
 
         # perform check only if k is in end_pandigital
-        if end_pandigital[k + 3] and is_pandigital_both(fk):
-            return k + 3
+        if end_pandigital[k] and is_pandigital_both(fk):
+            return k
 
     # Not found
     return -1
