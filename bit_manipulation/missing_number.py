@@ -17,14 +17,22 @@ def find_missing_number(nums: list[int]) -> int:
         Traceback (most recent call last):
         ...
         ValueError: negative values not supported
+        >>> find_missing_number([1, 3, 4, 5, 6])
+        2
+        >>> find_missing_number([6, 5, 4, 2, 1])
+        3
+        >>> find_missing_number([6, 1, 5, 3, 4])
+        2
     """
-    n = len(nums)
-    missing_number = n
+    low = min(nums)
+    high = max(nums)
+    missing_number = high
 
-    for i in range(n):
-        if nums[i] < 0:
+    for i in range(low, high):
+        index = i - low
+        if nums[index] < 0:
             raise ValueError("negative values not supported")
-        missing_number ^= i ^ nums[i]
+        missing_number ^= i ^ nums[index]
 
     return missing_number
 
