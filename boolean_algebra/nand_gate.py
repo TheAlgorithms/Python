@@ -30,18 +30,7 @@ def nand_gate(input_1: int, input_2: int) -> int:
     return int((input_1, input_2).count(0) != 0)
 
 
-def test_nand_gate() -> None:
-    """
-    Tests the nand_gate function
-    """
-    assert nand_gate(0, 0) == 1
-    assert nand_gate(0, 1) == 1
-    assert nand_gate(1, 0) == 1
-    assert nand_gate(1, 1) == 0
-
-
 if __name__ == "__main__":
-    print(nand_gate(0, 0))
-    print(nand_gate(0, 1))
-    print(nand_gate(1, 0))
-    print(nand_gate(1, 1))
+    import doctest
+
+    doctest.testmod()
