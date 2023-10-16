@@ -82,7 +82,7 @@ class TestSolution(unittest.TestCase):
         assert s.maxprofit(prices2, fee2) == 6
 
 
-def main()->None:
+def main() -> None:
     """
     This is the function for taking input and output.
     """
