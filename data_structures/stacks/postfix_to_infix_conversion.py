@@ -1,5 +1,6 @@
 """
 https://math.oxford.emory.edu/site/cs171/postfixExpressions/
+https://en.wikipedia.org/wiki/Shunting_yard_algorithm
 """
 
 
