@@ -340,7 +340,6 @@
   * [Longest Increasing Subsequence](dynamic_programming/longest_increasing_subsequence.py)
   * [Longest Increasing Subsequence O(Nlogn)](dynamic_programming/longest_increasing_subsequence_o(nlogn).py)
   * [Longest Palindromic Subsequence](dynamic_programming/longest_palindromic_subsequence.py)
-  * [Longest Sub Array](dynamic_programming/longest_sub_array.py)
   * [Matrix Chain Multiplication](dynamic_programming/matrix_chain_multiplication.py)
   * [Matrix Chain Order](dynamic_programming/matrix_chain_order.py)
   * [Max Non Adjacent Sum](dynamic_programming/max_non_adjacent_sum.py)
@@ -486,6 +485,7 @@
   * [Fractional Knapsack](greedy_methods/fractional_knapsack.py)
   * [Fractional Knapsack 2](greedy_methods/fractional_knapsack_2.py)
   * [Gas Station](greedy_methods/gas_station.py)
+  * [Minimum Coin Change](greedy_methods/minimum_coin_change.py)
   * [Minimum Waiting Time](greedy_methods/minimum_waiting_time.py)
   * [Optimal Merge Pattern](greedy_methods/optimal_merge_pattern.py)
 
@@ -618,7 +618,6 @@
   * [Gcd Of N Numbers](maths/gcd_of_n_numbers.py)
   * [Germain Primes](maths/germain_primes.py)
   * [Greatest Common Divisor](maths/greatest_common_divisor.py)
-  * [Greedy Coin Change](maths/greedy_coin_change.py)
   * [Hamming Numbers](maths/hamming_numbers.py)
   * [Hardy Ramanujanalgo](maths/hardy_ramanujanalgo.py)
   * [Harshad Numbers](maths/harshad_numbers.py)
