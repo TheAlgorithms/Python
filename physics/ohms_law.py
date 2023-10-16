@@ -15,6 +15,8 @@ V = I*R (where R is a proportionality constant)
 Source :
 - https://byjus.com/physics/ohms-law/
 """
+
+
 def ohms_law(voltage=None, current=None, resistance=None) -> float:
     """
     Example Usages:
@@ -55,9 +57,10 @@ def ohms_law(voltage=None, current=None, resistance=None) -> float:
         return {"voltage": voltage}
     elif resistance is None:
         resistance = voltage / current
-        return {'resistance': resistance}
+        return {"resistance": resistance}
 
-#Run Doctest
+
+# Run Doctest
 if __name__ == "__main__":
     import doctest
 
