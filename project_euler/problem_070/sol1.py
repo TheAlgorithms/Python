@@ -84,7 +84,7 @@ def slow_get_totients(max_one: int) -> list[int]:
     return totients.tolist()
 
 
-def slicing_get_totients(max_one: int):
+def slicing_get_totients(max_one: int) -> list[int]:
     """
     Calculates a list of totients from 0 to max_one exclusive, using the
     definition of Euler's product formula.
@@ -104,7 +104,7 @@ def slicing_get_totients(max_one: int):
     return totients.tolist()
 
 
-def get_totients(limit):
+def get_totients(limit) -> list[int]:
     """
     Calculates a list of totients from 0 to max_one exclusive, using the
     definition of Euler's product formula.
