@@ -27,7 +27,7 @@ def nand_gate(input_1: int, input_2: int) -> int:
     >>> nand_gate(1, 1)
     0
     """
-    return int((input_1, input_2).count(0) != 0)
+    return int(not (input_1 and input_2))
 
 
 if __name__ == "__main__":
