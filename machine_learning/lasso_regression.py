@@ -41,6 +41,7 @@ def lasso_regression(x, y, alpha, max_iterations, learning_rate):
     Lasso regression function
     :param x : contains the data
     :param y : contains the output associated with each data entry
+    :param alpha: regularization parameter
     :param max_iterations : integer representing max interations
     :param learning_rate : learning rate used for optimization
     '''
