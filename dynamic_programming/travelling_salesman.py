@@ -1,14 +1,11 @@
 import numpy as np
 
-"""
-Author: grpathak22
+"""Author: grpathak22
 Date: 15 October 2023
-Travelling Salesman Problem using Dynamic Programming
-"""
-
-
+Travelling Salesman Problem using Dynamic Programming """
 def travelling_salesman(tsp_graph: np.ndarray, city: int) -> None:
-    """Solve the traveling salesman problem using dynamic programming.
+    """
+    Solve the traveling salesman problem using dynamic programming.
     Args:
       distance_matrix: A square matrix of distances between cities.
       city: Starting city which is initially 0(index)
