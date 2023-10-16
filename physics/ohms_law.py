@@ -55,7 +55,9 @@ def ohms_law(
     """
     # Check that exactly two parameters are provided
     if sum(param is not None for param in [voltage, current, resistance]) != 2:
-        raise ValueError("Exactly two parameters (voltage, current, or resistance) must be provided.")
+        raise ValueError(
+            "Exactly two parameters (voltage, current, or resistance) must be provided."
+        )
 
     # Check for negative values
     if current is not None and current < 0:
@@ -75,7 +77,10 @@ def ohms_law(
     else:
         # All parameters are None, return None
         return None
+
+
 # Run Doctest
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
