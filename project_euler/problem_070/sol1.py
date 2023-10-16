@@ -275,7 +275,8 @@ def benchmark() -> None:
     Benchmark
     """
     # Running performance benchmarks...
-    # Solution    : 56.19136740000067
+    # Solution    : 49.389978999999585
+    # Py Solution : 56.19136740000067
     # Slicing Sol : 70.83823779999875
     # Slow Sol    : 118.29514729999937
 
@@ -284,12 +285,14 @@ def benchmark() -> None:
     print("Running performance benchmarks...")
 
     print(f"Solution    : {timeit('solution()', globals=globals(), number=10)}")
+    print(f"Py Solution : {timeit('py_solution()', globals=globals(), number=10)}")
     print(f"Slicing Sol : {timeit('slicing_solution()', globals=globals(), number=10)}")
     print(f"Slow Sol    : {timeit('slow_solution()', globals=globals(), number=10)}")
 
 
 if __name__ == "__main__":
     print(f"Solution    : {solution()}")
+    print(f"Py Solution : {py_solution()}")
     print(f"Slicing Sol : {slicing_solution()}")
     print(f"Slow Sol    : {slow_solution()}")
     benchmark()
