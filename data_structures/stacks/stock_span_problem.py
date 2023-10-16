@@ -29,6 +29,10 @@ def calculation_span(price: list[float]) -> list[float]:
     >>> price = [10, 20, 30, 40, 50]
     >>> calculation_span(price)
     [1.0, 2.0, 3.0, 4.0, 5.0]
+    >>> calculation_span(price=[100, 80, 60, 70, 60, 75, 85])
+    [1.0, 1.0, 1.0, 2.0, 1.0, 4.0, 6.0]
+    >>> calculation_span(price=[10, 4, 5, 90, 120, 80])
+    [1.0, 1.0, 2.0, 4.0, 5.0, 1.0]
     """
     n = len(price)
     st = [0]
