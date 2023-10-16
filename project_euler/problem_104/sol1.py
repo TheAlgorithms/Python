@@ -72,30 +72,28 @@ def is_pandigital_end(number: int) -> bool:
     return True
 
 
-def solution() -> int:
+def solution(a: int = 1, b: int = 1, ck: int = 3, max_k: int = 10_00_000) -> int:
     """
     Outputs the answer is the least Fibonacci number pandigital from both sides.
     >>> solution()
     329468
     """
 
-    max_k: int = 10_00_000
-
     # Fibonacci numbers
-    fk_2 = 1  # fk - 2
-    fk_1 = 1  # fk - 1
+    fk_2 = a  # fk - 2
+    fk_1 = b  # fk - 1
     # fk      # fk_1 + fk_2
 
     # Fibonacci numbers mod billion
-    mk_2 = 1 % billion  # (fk - 2) % billion
-    mk_1 = 1 % billion  # (fk - 1) % billion
+    mk_2 = a % billion  # (fk - 2) % billion
+    mk_1 = b % billion  # (fk - 1) % billion
     # mk                # (fk    ) % billion
 
     end_pandigital = [0] * max_k
     billion = 1_000_000_000  # Equivalent to 10**9
 
     # Check fibonacci numbers % 10**9
-    for k in range(3, max_k):
+    for k in range(ck, max_k):
         mk = (mk_2 + mk_1) % billion
         mk_2 = mk_1
         mk_1 = mk
@@ -104,7 +102,7 @@ def solution() -> int:
             end_pandigital[k] = 1
 
     # Check fibonacci numbers
-    for k in range(3, max_k):
+    for k in range(ck, max_k):
         fk = fk_2 + fk_1
         fk_2 = fk_1
         fk_1 = fk
