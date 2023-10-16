@@ -1,7 +1,10 @@
 """
 Description :
-Calculate one of the parameters (current, voltage, or resistance) in an electrical circuit based on Ohm's law.
-Ohm's law(Ω) states that the current through a conductor between two points is directly proportional to the voltage across the two points.
+Calculate one of the parameters (current, voltage, or resistance) 
+in an electrical circuit based on Ohm's law.
+Ohm's law(Ω) states that the current through a 
+conductor between two points is directly 
+proportional to the voltage across the two points.
 V is proportional to I.
 V = I*R (where R is a proportionality constant)
 
