@@ -13,6 +13,8 @@ V = I*R (where R is a proportionality constant)
     A dictionary with the calculated parameter and its value.
 
 """
+
+
 def ohms_law(current=None, voltage=None, resistance=None):
     """
     Example Usages:
@@ -32,7 +34,9 @@ def ohms_law(current=None, voltage=None, resistance=None):
     """
     # Check that exactly two parameters are provided
     if sum(param is not None for param in [current, voltage, resistance]) != 2:
-        raise ValueError("Exactly two parameters (current, voltage, or resistance) must be provided.")
+        raise ValueError(
+            "Exactly two parameters (current, voltage, or resistance) must be provided."
+        )
 
     # Check for negative values
     if current is not None and current < 0:
@@ -45,14 +49,16 @@ def ohms_law(current=None, voltage=None, resistance=None):
     # Calculate the missing parameter
     if current is None:
         current = voltage / resistance
-        return {'current': current}
+        return {"current": current}
     elif voltage is None:
         voltage = current * resistance
-        return {'voltage': voltage}
+        return {"voltage": voltage}
     elif resistance is None:
         resistance = voltage / current
-        return {'resistance': resistance}
+        return {"resistance": resistance}
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
