@@ -110,6 +110,10 @@ class Graph:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     g = Graph()
     g.add_edge(0, 1)
     g.add_edge(0, 2)
@@ -121,16 +125,3 @@ if __name__ == "__main__":
     g.print_graph()
     print("DFS:")
     g.dfs()
-
-    import doctest
-
-    # Run doctests
-    doctest.testmod()
-
-    # OUTPUT:
-    # 0  ->  1 -> 2
-    # 1  ->  2
-    # 2  ->  0 -> 3
-    # 3  ->  3
-    # DFS:
-    #  0 1 2 3
