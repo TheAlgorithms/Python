@@ -72,16 +72,16 @@ def is_polish_national_id(input_str: str) -> bool:
 
     # check the checksum
     multipliers = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3]
-    sum = 0
+    subtotal = 0
 
     digits_to_check = str(input_str)[:-1]  # cut off the checksum
 
     for index, digit in enumerate(digits_to_check):
         # Multiply corresponding digits and multipiers.
         # In case of a double-digit result, add only the last digit.
-        sum += (int(digit) * multipliers[index]) % 10
+        subtotal += (int(digit) * multipliers[index]) % 10
 
-    checksum = 10 - sum % 10
+    checksum = 10 - subtotal % 10
 
     if checksum != input_int % 10:
         return False
