@@ -55,13 +55,12 @@ def winner_of_game(colors: str) -> bool:
 
     Example:
         >>> colors = "AAABABB"
-        >>> winner_of_game(colors)  
-        True    
-        
+        >>> winner_of_game(colors)
+        True
     """
     alice, bob = 0, 0
     left = 0
-    
+
     # two pointers approach
     # we use sliding window algorithm here
     for right in range(len(colors)):
@@ -77,3 +76,7 @@ def winner_of_game(colors: str) -> bool:
     return alice > bob
 
 
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
