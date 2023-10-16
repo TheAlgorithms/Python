@@ -45,4 +45,5 @@ if __name__ == "__main__":
     # print(xor_gate(0, 0))
     # print(xor_gate(0, 1))
     import doctest
+
     doctest.testmod()

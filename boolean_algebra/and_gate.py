@@ -49,4 +49,5 @@ if __name__ == "__main__":
     # print(and_gate(0, 1))
     # print(and_gate(1, 1))
     import doctest
+
     doctest.testmod()

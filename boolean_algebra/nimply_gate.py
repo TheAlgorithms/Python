@@ -39,4 +39,5 @@ if __name__ == "__main__":
     # print(nimply_gate(1, 0))
     # print(nimply_gate(1, 1))
     import doctest
+
     doctest.testmod()

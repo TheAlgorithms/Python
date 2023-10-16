@@ -36,4 +36,5 @@ if __name__ == "__main__":
     # print(not_gate(0))
     # print(not_gate(1))
     import doctest
+
     doctest.testmod()
