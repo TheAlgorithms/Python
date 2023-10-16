@@ -1,8 +1,10 @@
 """
-Given a string and a positive number k, find the longest substring of the string containing k distinct characters. 
+Given a string and a positive number k, find the longest substring of the string containing k distinct characters.
 If k is more than the total number of distinct characters in the string, return the whole string.
 //https://medium.com/techie-delight/top-problems-on-sliding-window-technique-8e63f1e2b1fa
 """
+
+
 def find_longest_substring(input_str, k):
     if input_str is None or len(input_str) == 0:
         return input_str
@@ -26,10 +28,10 @@ def find_longest_substring(input_str, k):
                 end = right
                 start = left
 
-    return input_str[start:end+1]
+    return input_str[start : end + 1]
+
 
 input_str = "abcbdbdbbdcdabd"
 k = 2
 result = find_longest_substring(input_str, k)
 print(result)
-
