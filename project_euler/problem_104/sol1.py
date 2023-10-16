@@ -79,34 +79,41 @@ def solution() -> int:
     329468
     """
 
-    a = 1
-    b = 1
-    c = 2
-    # temporary Fibonacci numbers
+    max_k: int = 10_00_000
 
-    a1 = 1
-    b1 = 1
-    c1 = 2
-    # temporary Fibonacci numbers mod 1e9
+    # Fibonacci numbers
+    fk_2 = 1  # fk - 2
+    fk_1 = 1  # fk - 1
+    # fk      # fk_1 + fk_2
 
-    # mod m=1e9, done for fast optimisation
-    tocheck = [0] * 1000000
-    m = 1000000000
+    # Fibonacci numbers mod billion
+    mk_2 = 1 % billion  # (fk - 2) % billion
+    mk_1 = 1 % billion  # (fk - 1) % billion
+    # mk                # (fk    ) % billion
 
-    for x in range(1000000):
-        c1 = (a1 + b1) % m
-        a1 = b1 % m
-        b1 = c1 % m
-        if is_pandigital_end(b1):
-            tocheck[x + 3] = 1
+    end_pandigital = [0] * max_k
+    billion = 1_000_000_000  # Equivalent to 10**9
 
-    for x in range(1000000):
-        c = a + b
-        a = b
-        b = c
-        # perform check only if in tocheck
-        if tocheck[x + 3] and is_pandigital_both(b):
-            return x + 3  # first 2 already done
+    # Check fibonacci numbers % 10**9
+    for k in range(max_k):
+        mk = (mk_2 + mk_1) % billion
+        mk_2 = mk_1
+        mk_1 = mk
+
+        if is_pandigital_end(mk):
+            end_pandigital[k + 3] = 1
+
+    # Check fibonacci numbers
+    for k in range(max_k):
+        fk = fk_2 + fk_1
+        fk_2 = fk_1
+        fk_1 = fk
+
+        # perform check only if k is in end_pandigital
+        if end_pandigital[k + 3] and is_pandigital_both(fk):
+            return k + 3
+
+    # Not found
     return -1
 
 
