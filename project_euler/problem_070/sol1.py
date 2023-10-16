@@ -150,6 +150,26 @@ def get_totients(limit) -> list[int]:
     return totients.tolist()
 
 
+def np_get_totients(limit) -> list[int]:
+    """
+    Calculates a list of totients from 0 to max_one exclusive, using the
+    definition of Euler's product formula.
+
+    >>> np_get_totients(5)
+    [0, 1, 1, 2, 2]
+
+    >>> np_get_totients(10)
+    [0, 1, 1, 2, 2, 4, 2, 6, 4, 6]
+    """
+    totients = np.arange(limit)
+    primes = np_calculate_prime_numbers(limit)
+
+    for i in primes:
+        totients[i::i] -= totients[i::i] // i
+
+    return totients.tolist()
+
+
 def has_same_digits(num1: int, num2: int) -> bool:
     """
     Return True if num1 and num2 have the same frequency of every digit, False
@@ -197,6 +217,21 @@ def slicing_solution(max_n: int = 10000000) -> int:
     return common_solution(totients, max_n)
 
 
+def py_solution(max_n: int = 10000000) -> int:
+    """
+    Finds the value of n from 1 to max such that n/φ(n) produces a minimum.
+
+    >>> py_solution(100)
+    21
+
+    >>> py_solution(10000)
+    4435
+    """
+    totients = get_totients(max_n + 1)
+
+    return common_solution(totients, max_n)
+
+
 def solution(max_n: int = 10000000) -> int:
     """
     Finds the value of n from 1 to max such that n/φ(n) produces a minimum.
@@ -207,7 +242,7 @@ def solution(max_n: int = 10000000) -> int:
     >>> solution(10000)
     4435
     """
-    totients = get_totients(max_n + 1)
+    totients = np_get_totients(max_n + 1)
 
     return common_solution(totients, max_n)
 
