@@ -20,8 +20,11 @@ sys.set_int_max_str_digits(0)  # type: ignore
 
 def is_pandigital_both(number: int) -> bool:
     """
-    Takes a number and checks if it is pandigital both from start and end
+    Checks if the first 9 and last 9 digits of a number are `1-9 pandigital`.
 
+    Returns:
+        bool - True if the first 9 and last 9 digits contain all the digits 1 to 9,
+              False otherwise
 
     >>> is_pandigital_both(123456789987654321)
     True
@@ -31,7 +34,6 @@ def is_pandigital_both(number: int) -> bool:
 
     >>> is_pandigital_both(1234567895765677987654321)
     True
-
     """
 
     # Check end
@@ -45,7 +47,10 @@ def is_pandigital_both(number: int) -> bool:
 
 def is_pandigital_end(number: int) -> bool:
     """
-    Takes a number and checks if it is pandigital from END
+    Checks if the last 9 digits of a number are `1-9 pandigital`.
+
+    Returns:
+        bool - True if the last 9 digits contain all the digits 1 to 9, False otherwise
 
     >>> is_pandigital_end(123456789987654321)
     True
@@ -55,7 +60,6 @@ def is_pandigital_end(number: int) -> bool:
 
     >>> is_pandigital_end(12345678957656779870004321)
     False
-
     """
 
     digit_count = [0] * 10
@@ -74,10 +78,24 @@ def is_pandigital_end(number: int) -> bool:
 
 def solution(a: int = 1, b: int = 1, ck: int = 3, max_k: int = 10_00_000) -> int:
     """
-    Outputs the answer is the least Fibonacci number pandigital from both sides.
+    Returns index `k` of the least Fibonacci number `F(k)` that is `1-9 pandigital`
+    from both sides. Here `ck <= k < max_k`.
+
+    Parameters:
+        a: int - First fibonacci number `F(k)-2`
+        b: int - Second fibonacci number `F(k)-1`
+        ck: int - Initial index `k` of the Fibonacci number `F(k)`
+        max_k: int - Maximum index `k` of the Fibonacci number `F(k)`
+
+    Returns:
+        int - index `k` of the least `1-9 pandigital` Fibonacci number `F(k)`
+
     >>> solution()
     329468
     """
+
+    # Equivalent to 10**9, for getting no higher then 9 digit numbers
+    billion = 1_000_000_000
 
     # Fibonacci numbers
     fk_2 = a  # fk - 2
@@ -90,7 +108,6 @@ def solution(a: int = 1, b: int = 1, ck: int = 3, max_k: int = 10_00_000) -> int
     # mk                # (fk    ) % billion
 
     end_pandigital = [0] * max_k
-    billion = 1_000_000_000  # Equivalent to 10**9
 
     # Check fibonacci numbers % 10**9
     for k in range(ck, max_k):
