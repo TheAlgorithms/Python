@@ -1,18 +1,27 @@
 """
-This code converts gray code to binary
-and
-binary code to gray code.
+Convert gray code into binary code and vice versa.
+
+gray code:
+In the binary numbering scheme known as gray code,
+which is sometimes referred to as reflected binary code or unit distance code,
+two subsequent values only differ by one bit. In other words,
+Gray code is useful for error correction, rotary encoders, and
+digital communication since only one bit changes its value 
+as you go from one number to the next.
+
+
+Reference : https://en.wikipedia.org/wiki/Gray_code
 """
 
 
 def binary_to_gray(binary: str) -> str:
     """
     Convert a binary number to Gray code
+
     binary: A binary number as a string.
     return: The Gray code representation as a string.
     >>> binary_to_gray("1101101")
     '1011011'
-
     """
     gray = binary[0]
     for i in range(1, len(binary)):
