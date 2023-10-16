@@ -18,18 +18,18 @@ import sys
 sys.set_int_max_str_digits(0)  # type: ignore
 
 
-def check(number: int) -> bool:
+def is_pandigital_both(number: int) -> bool:
     """
     Takes a number and checks if it is pandigital both from start and end
 
 
-    >>> check(123456789987654321)
+    >>> is_pandigital_both(123456789987654321)
     True
 
-    >>> check(120000987654321)
+    >>> is_pandigital_both(120000987654321)
     False
 
-    >>> check(1234567895765677987654321)
+    >>> is_pandigital_both(1234567895765677987654321)
     True
 
     """
@@ -67,17 +67,17 @@ def check(number: int) -> bool:
     return f
 
 
-def check1(number: int) -> bool:
+def is_pandigital_end(number: int) -> bool:
     """
     Takes a number and checks if it is pandigital from END
 
-    >>> check1(123456789987654321)
+    >>> is_pandigital_end(123456789987654321)
     True
 
-    >>> check1(120000987654321)
+    >>> is_pandigital_end(120000987654321)
     True
 
-    >>> check1(12345678957656779870004321)
+    >>> is_pandigital_end(12345678957656779870004321)
     False
 
     """
@@ -124,7 +124,7 @@ def solution() -> int:
         c1 = (a1 + b1) % m
         a1 = b1 % m
         b1 = c1 % m
-        if check1(b1):
+        if is_pandigital_end(b1):
             tocheck[x + 3] = 1
 
     for x in range(1000000):
@@ -132,7 +132,7 @@ def solution() -> int:
         a = b
         b = c
         # perform check only if in tocheck
-        if tocheck[x + 3] and check(b):
+        if tocheck[x + 3] and is_pandigital_both(b):
             return x + 3  # first 2 already done
     return -1
 
