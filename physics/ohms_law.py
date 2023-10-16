@@ -1,4 +1,5 @@
 """
+Description :
 Calculate one of the parameters (current, voltage, or resistance) in an electrical circuit based on Ohm's law.
 Ohm's law(Ω) states that the current through a conductor between two points is directly proportional to the voltage across the two points.
 V is proportional to I.
@@ -11,9 +12,10 @@ V = I*R (where R is a proportionality constant)
 
     Returns:
     A dictionary with the calculated parameter and its value.
-
+Source :
+- https://byjus.com/physics/ohms-law/
 """
-def ohms_law(current=None, voltage=None, resistance=None):
+def ohms_law(voltage=None, current=None, resistance=None) -> float:
     """
     Example Usages:
     ohms_law(current=2, resistance=4)
@@ -52,7 +54,9 @@ def ohms_law(current=None, voltage=None, resistance=None):
     elif resistance is None:
         resistance = voltage / current
         return {'resistance': resistance}
-
+    
+# Run doctest
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
