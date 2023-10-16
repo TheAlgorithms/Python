@@ -4,17 +4,17 @@
 # comments: This program output the
 # best time to buy and sell stock with fees
 #############################
-from typing import List
+# from typing import list
 
 
 class Solution:
     def solve(
-        self, prices: List[int], index: int, fee: int, buy: int, dp: List[List[int]]
+        self, prices: list[int], index: int, fee: int, buy: int, dp: list[list[int]]
     ) -> int:
         """
         Calculate the maximum profit with the given parameters.
 
-        :param prices: List of prices for each day.
+        :param prices: list of prices for each day.
         :param index: Current day index.
         :param fee: Transaction fee.
         :param buy: Buy or sell flag (1 for buy, 0 for sell).
@@ -41,12 +41,12 @@ class Solution:
         dp[index][buy] = profit
         return profit
 
-    def maxprofit(self, prices: List[int], fee: int) -> int:
+    def maxprofit(self, prices: list[int], fee: int) -> int:
         """
         Calculate the maximum profit achievable when buying and
         selling stocks with a fee.
 
-        :param prices: List of stock prices for each day.
+        :param prices: list of stock prices for each day.
         :param fee: Transaction fee.
         :return: Maximum profit achievable.
         """
