@@ -38,7 +38,7 @@ Run the provided Jupyter Notebook (digits_pca.ipynb) to see PCA applied to the D
 
 [Aswin P Kumar](https://github.com/AswinPKumar01)
 <br>
-[Connect with me](https://www.linkedin.com/in/aswinpkumarvit/)\
+[Connect with me](https://www.linkedin.com/in/aswinpkumarvit/)
 
 
 
