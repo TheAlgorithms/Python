@@ -199,7 +199,8 @@ def benchmark() -> None:
     # Running performance benchmarks...
     # slow_solution : 108.50874730000032
     # while_sol     : 28.09581200000048
-    # solution      : 25.063097400000515
+    # for_sol       : 25.063097400000515
+    # solution      : 5.219610300000568
 
     from timeit import timeit
 
@@ -207,6 +208,7 @@ def benchmark() -> None:
 
     print(f"slow_solution : {timeit('slow_solution()', globals=globals(), number=10)}")
     print(f"while_sol     : {timeit('while_solution()', globals=globals(), number=10)}")
+    print(f"for_sol       : {timeit('for_solution()', globals=globals(), number=10)}")
     print(f"solution      : {timeit('solution()', globals=globals(), number=10)}")
 
 
