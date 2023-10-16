@@ -50,7 +50,6 @@ class Node:
         return left_depth + right_depth + 1
 
 
-
 if __name__ == "__main__":
     from doctest import testmod
 
