@@ -1,9 +1,9 @@
-'''
-——→ Introduction to Pytorch Autograd (TORCH.AUTOGRAD) :- 
+"""
+——→ Introduction to Pytorch Autograd (TORCH.AUTOGRAD) :-
 
 >>> [torch.autograd] is Pytorch's automatic differential engine that powers neural network training.
 
-—→ Background :- 
+—→ Background :-
 
 >>> Neural network (NN's) are a collection of nested function that are executed on some input data.
     These functions are defined by parameters (consist of weights & biases).
@@ -22,9 +22,9 @@
 
 ——→ Defining New Autograd Functions
 
->>> In this example we define our own model as y = a + b * P₃(c + dx) instead of y = a + b*x + c*x² + d*x³, where 
-    P₃(x) = (1/2)*(5*x³ - 3*x) is the legendre polynomial of degree three. 
-'''
+>>> In this example we define our own model as y = a + b * P₃(c + dx) instead of y = a + b*x + c*x² + d*x³, where
+    P₃(x) = (1/2)*(5*x³ - 3*x) is the legendre polynomial of degree three.
+"""
 
 
 import torch
@@ -47,7 +47,7 @@ class LegendrePolynomial3(torch.autograd.Function):
         objects for use in the backward pass using the ctx.save_for_backward method.
         """
         ctx.save_for_backward(input)
-        return 0.5 * (5 * input ** 3 - 3 * input)
+        return 0.5 * (5 * input**3 - 3 * input)
 
     @staticmethod
     def backward(ctx, grad_output):
@@ -56,8 +56,8 @@ class LegendrePolynomial3(torch.autograd.Function):
         with respect to the output, and we need to compute the gradient of the loss
         with respect to the input.
         """
-        input, = ctx.saved_tensors
-        return grad_output * 1.5 * (5 * input ** 2 - 1)
+        (input,) = ctx.saved_tensors
+        return grad_output * 1.5 * (5 * input**2 - 1)
 
 
 dtype = torch.float
@@ -110,4 +110,4 @@ for t in range(2000):
         c.grad = None
         d.grad = None
 
-print(f'Result: y = {a.item()} + {b.item()} * P3({c.item()} + {d.item()} x)')
+print(f"Result: y = {a.item()} + {b.item()} * P3({c.item()} + {d.item()} x)")
