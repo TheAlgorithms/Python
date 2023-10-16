@@ -61,12 +61,12 @@ if __name__ == "__main__":
     root.left.right = Node(5)
     r"""
     Constructed binary tree is
-		1
+        1
        / \
       2	  3
      / \
-	4	 5
+    4	 5
     """
-    print(f"{root.diameter() = }")
-    print(f"{root.left.diameter() = }")
-    print(f"{root.right.diameter() = }")
+    print(f"{root.diameter() = }")  # 4
+    print(f"{root.left.diameter() = }")  # 3
+    print(f"{root.right.diameter() = }")  # 1
