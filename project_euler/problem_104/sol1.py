@@ -70,10 +70,7 @@ def is_pandigital_end(number: int) -> bool:
         number = number // 10
 
     # Return False if any digit is missing
-    for x in range(9):
-        if not digit_count[x + 1]:
-            return False
-    return True
+    return all(digit_count[x + 1] for x in range(9))
 
 
 def solution(a: int = 1, b: int = 1, ck: int = 3, max_k: int = 10_00_000) -> int:
