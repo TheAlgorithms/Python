@@ -1,9 +1,9 @@
 """
 Description :
-Calculate one of the parameters (current, voltage, or resistance) 
+Calculate one of the parameters (current, voltage, or resistance)
 in an electrical circuit based on Ohm's law.
-Ohm's law(Ω) states that the current through a 
-conductor between two points is directly 
+Ohm's law(Ω) states that the current through a
+conductor between two points is directly
 proportional to the voltage across the two points.
 V is proportional to I.
 V = I*R (where R is a proportionality constant)
@@ -20,6 +20,7 @@ Source :
 """
 
 from typing import Union
+
 
 def ohms_law(voltage: float, current: float, resistance: float) -> Union[float, None]:
     """
@@ -51,7 +52,9 @@ def ohms_law(voltage: float, current: float, resistance: float) -> Union[float, 
     """
     # Check that exactly two parameters are provided
     if sum(param is not None for param in [voltage, current, resistance]) != 2:
-        raise ValueError("Exactly two parameters (voltage, current, or resistance) must be provided.")
+        raise ValueError(
+            "Exactly two parameters (voltage, current, or resistance) must be provided."
+        )
 
     # Check for negative values
     if current < 0:
@@ -74,6 +77,8 @@ def ohms_law(voltage: float, current: float, resistance: float) -> Union[float, 
     else:
         # All parameters are None, return None
         return None
+
+
 # Run Doctest
 if __name__ == "__main__":
     import doctest
