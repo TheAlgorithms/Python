@@ -10,7 +10,6 @@ References:
 https://en.wikipedia.org/wiki/Quantum_Fourier_transform
 https://qiskit.org/textbook/ch-algorithms/quantum-fourier-transform.html
 """
-
 import math
 
 import numpy as np
@@ -20,8 +19,6 @@ from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, exec
 
 def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts.Counts:
     """
-    # >>> quantum_fourier_transform(2)
-    # {'00': 2500, '01': 2500, '11': 2500, '10': 2500}
     # quantum circuit for number_of_qubits = 3:
                                                ┌───┐
     qr_0: ──────■──────────────────────■───────┤ H ├─X─
@@ -36,8 +33,24 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
     Returns:
         qiskit.result.counts.Counts: distribute counts.
 
-    >>> quantum_fourier_transform(2)
-    {'00': 2500, '01': 2500, '10': 2500, '11': 2500}
+    >>> result = quantum_fourier_transform(2)
+    >>> 2350<=result['10']<=2600
+    True
+    >>> 2350<=result['00']<=2600
+    True
+    >>> 2350<=result['11']<=2600
+    True
+    >>> 2350<=result['01']<=2600
+    True
+    >>> res = quantum_fourier_transform(3)
+    >>> 1150<=res['000']<=1350 and 1150<=res['001']<=1350
+    True
+    >>> 1150<=res['010']<=1350 and 1150<=res['100']<=1350
+    True
+    >>> 1150<=res['101']<=1350 and 1150<=res['110']<=1350
+    True
+    >>> 1150<=res['011']<=1350 and 1150<=res['111']<=1350
+    True
     >>> quantum_fourier_transform(-1)
     Traceback (most recent call last):
         ...
