@@ -6,19 +6,20 @@ If k is more than the total number of distinct characters in the string, return 
 # Define the character range
 CHAR_RANGE = 128
 
+
 # Function to find the longest substring of a given string containing
 # `k` distinct characters using a sliding window
 def find_longest_substring(input_str: str, k: int) -> str:
     """
     Find the longest substring of a given string containing at most k distinct characters.
-    
+
     Args:
         input_str (str): The input string to search in.
         k (int): The maximum number of distinct characters allowed in the substring.
-    
+
     Returns:
         str: The longest substring containing at most k distinct characters.
-    
+
     Example:
         >>> find_longest_substring("abcbdbdbbdcdabd", 2)
         'bdbdbbd'
@@ -57,13 +58,10 @@ def find_longest_substring(input_str: str, k: int) -> str:
         high += 1
 
     # Return the longest substring found at `input_str[begin…end]`
-    return input_str[begin:end + 1]
+    return input_str[begin : end + 1]
 
-if __name__ == '__main':
-    s = 'abcbdbdbbdcdabd'
+
+if __name__ == "__main":
+    s = "abcbdbdbbdcdabd"
     k = 2
     print(find_longest_substring(s, k))
-
-
-
- 
