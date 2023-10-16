@@ -53,6 +53,7 @@ def lasso_regression(x, y, alpha, max_iterations, learning_rate):
         weights -= learning_rate * gradient
     return weights
 
+
 def main():
     """
     def function() -> None:
