@@ -53,7 +53,6 @@ class BinaryTree:
         binary_tree.root.right = Node(3)
         return binary_tree
 
-
     @classmethod
     def medium_tree(cls) -> BinaryTree:
         """
@@ -72,7 +71,6 @@ class BinaryTree:
         five.right = six = Node(6)
         six.right = Node(7)
         return binary_tree
-
 
     def depth(self) -> int:
         """
@@ -104,6 +102,7 @@ class BinaryTree:
         False
         """
         return self.root.is_full()
+
 
 if __name__ == "__main__":
     import doctest
