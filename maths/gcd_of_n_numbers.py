@@ -5,8 +5,7 @@ Reference: https://en.wikipedia.org/wiki/Greatest_common_divisor
 from collections import Counter
 
 
-def get_factors(number: int, factors=None, factor: int = 2) -> Counter:
-    # type: ignore
+def get_factors(number: int, factor: int = 2, **kwargs) -> Counter:
     """
     this is a recursive function for get all factors of number
     >>> get_factors(45)
@@ -39,7 +38,7 @@ def get_factors(number: int, factors=None, factor: int = 2) -> Counter:
     elif not isinstance(number, int) or number <= 0:
         raise TypeError("number must be integer and greater than zero")
 
-    factors = factors or Counter()
+    factors = kwargs.get("factors", Counter())
 
     if number == factor:  # break condition
         # all numbers are factors of itself
@@ -49,11 +48,11 @@ def get_factors(number: int, factors=None, factor: int = 2) -> Counter:
     if number % factor > 0:
         # if it is greater than zero
         # so it is not a factor of number and we check next number
-        return get_factors(number, factors, factor + 1)
+        return get_factors(number, factor + 1, factors=factors)
 
     factors[factor] += 1
     # else we update factors (that is Counter(dict-like) type) and check again
-    return get_factors(number // factor, factors, factor)
+    return get_factors(number // factor, factor, factors=factors)
 
 
 def get_greatest_common_divisor(*numbers: int) -> int:
