@@ -1,6 +1,6 @@
 """
-You are given a list of segments, where each segment is represented by its left and right endpoints. 
-The task is to find the minimum number of points needed to cover all the segments. 
+You are given a list of segments, where each segment is represented by its left and right endpoints.
+The task is to find the minimum number of points needed to cover all the segments.
 If you can cover all the segments with points, return the points' positions; otherwise, return -1.
 
 Implement the SegmentIntersection class with the following methods:
@@ -20,6 +20,7 @@ Use the following implementation notes as a guide:
 6. Remove any segments in the list that intersect with x.
 7. Return the count of points and the list of points.
 """
+
 
 class SegmentIntersection:
     def __init__(self, segments):
@@ -60,6 +61,8 @@ class SegmentIntersection:
             self.segments = [seg for seg in self.segments if seg[0] > x1]
         return len(points), points
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
