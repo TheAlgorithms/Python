@@ -2,11 +2,11 @@
 Mean Squared Logarithmic Error (MSLE) Loss Function
 
 Description:
-MSLE measures the mean squared logarithmic difference between 
-true values and predicted values, particularly useful when 
-dealing with regression problems involving skewed or large-value 
-targets. It is often used when the relative differences between 
-predicted and true values are more important than absolute 
+MSLE measures the mean squared logarithmic difference between
+true values and predicted values, particularly useful when
+dealing with regression problems involving skewed or large-value
+targets. It is often used when the relative differences between
+predicted and true values are more important than absolute
 differences.
 
 Formula:
@@ -51,4 +51,5 @@ def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
