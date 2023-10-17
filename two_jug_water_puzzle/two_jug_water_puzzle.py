@@ -33,7 +33,7 @@ def pour_water(to_Jug_Cap, from_Jug_Cap, d):
     return step
 
 
-def findMinimumSteps(n, m, d):
+def find_minimum_steps(n, m, d):
     "Find the minimum number of steps required to get d litres of water."
     "n: capacity of the first jug."
     "m: capacity of the second jug."
@@ -50,4 +50,4 @@ if __name__ == '__main__':
     n = 3
     m = 5
     d = 4
-    print("Minimum number of steps required is", findMinimumSteps(n, m, d))
+    print("Minimum number of steps required is", find_minimum_steps(n, m, d))
