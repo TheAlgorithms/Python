@@ -1,131 +1,95 @@
 """
-Author  : Alexander Pantyukhin
-Date    : November 2, 2022
-
-Task:
-Given the root of a binary tree, determine if it is a valid binary search
-tree (BST).
+Given the root of a binary tree, determine if it is a valid binary search tree (BST).
 
 A valid binary search tree is defined as follows:
-
 - The left subtree of a node contains only nodes with keys less than the node's key.
 - The right subtree of a node contains only nodes with keys greater than the node's key.
 - Both the left and right subtrees must also be binary search trees.
 
-Implementation notes:
-Depth-first search approach.
-
 leetcode: https://leetcode.com/problems/validate-binary-search-tree/
 
-Let n is the number of nodes in tree
+If n is the number of nodes in the tree then:
 Runtime: O(n)
 Space: O(1)
 """
-
 from __future__ import annotations
 
+from collections.abc import Iterator
 from dataclasses import dataclass
 
 
 @dataclass
-class TreeNode:
+class Node:
     data: float
-    left: TreeNode | None = None
-    right: TreeNode | None = None
+    left: Node | None = None
+    right: Node | None = None
 
-
-def is_binary_search_tree(root: TreeNode | None) -> bool:
-    """
-    >>> is_binary_search_tree(TreeNode(data=2,
-    ...                                left=TreeNode(data=1),
-    ...                                right=TreeNode(data=3))
-    ...                                )
-    True
-
-    >>> is_binary_search_tree(TreeNode(data=0,
-    ...                                left=TreeNode(data=-11),
-    ...                                right=TreeNode(data=3))
-    ...                                )
-    True
-
-    >>> is_binary_search_tree(TreeNode(data=5,
-    ...                                left=TreeNode(data=1),
-    ...                                right=TreeNode(data=4, left=TreeNode(data=3)))
-    ...                      )
-    False
-
-    >>> is_binary_search_tree(TreeNode(data='a',
-    ...                                left=TreeNode(data=1),
-    ...                                right=TreeNode(data=4, left=TreeNode(data=3)))
-    ...                      )
-    Traceback (most recent call last):
-     ...
-    ValueError: Each node should be type of TreeNode and data should be float.
-
-    >>> is_binary_search_tree(TreeNode(data=2,
-    ...                                left=TreeNode([]),
-    ...                                right=TreeNode(data=4, left=TreeNode(data=3)))
-    ...                                )
-    Traceback (most recent call last):
-     ...
-    ValueError: Each node should be type of TreeNode and data should be float.
-    """
-
-    # Validation
-    def is_valid_tree(node: TreeNode | None) -> bool:
+    def __iter__(self) -> Iterator[float]:
         """
-        >>> is_valid_tree(None)
+        >>> root = Node(data=2.1)
+        >>> list(root)
+        [2.1]
+        >>> root.left=Node(data=2.0)
+        >>> list(root)
+        [2.0, 2.1]
+        >>> root.right=Node(data=2.2)
+        >>> list(root)
+        [2.0, 2.1, 2.2]
+        """
+        if self.left:
+            yield from self.left
+        yield self.data
+        if self.right:
+            yield from self.right
+
+    @property
+    def is_sorted(self) -> bool:
+        """
+        >>> Node(data='abc').is_sorted
         True
-        >>> is_valid_tree('abc')
-        False
-        >>> is_valid_tree(TreeNode(data='not a float'))
-        False
-        >>> is_valid_tree(TreeNode(data=1, left=TreeNode('123')))
-        False
-        """
-        if node is None:
-            return True
-
-        if not isinstance(node, TreeNode):
-            return False
-
-        try:
-            float(node.data)
-        except (TypeError, ValueError):
-            return False
-
-        return is_valid_tree(node.left) and is_valid_tree(node.right)
-
-    if not is_valid_tree(root):
-        raise ValueError(
-            "Each node should be type of TreeNode and data should be float."
-        )
-
-    def is_binary_search_tree_recursive_check(
-        node: TreeNode | None, left_bound: float, right_bound: float
-    ) -> bool:
-        """
-        >>> is_binary_search_tree_recursive_check(None)
+        >>> Node(data=2,
+        ...      left=Node(data=1.999),
+        ...      right=Node(data=3)).is_sorted
         True
-        >>> is_binary_search_tree_recursive_check(TreeNode(data=1), 10, 20)
+        >>> Node(data=0,
+        ...      left=Node(data=0),
+        ...      right=Node(data=0)).is_sorted
+        True
+        >>> Node(data=0,
+        ...      left=Node(data=-11),
+        ...      right=Node(data=3)).is_sorted
+        True
+        >>> Node(data=5,
+        ...      left=Node(data=1),
+        ...      right=Node(data=4, left=Node(data=3))).is_sorted
         False
+        >>> Node(data='a',
+        ...      left=Node(data=1),
+        ...      right=Node(data=4, left=Node(data=3))).is_sorted
+        Traceback (most recent call last):
+            ...
+        TypeError: '<' not supported between instances of 'str' and 'int'
+        >>> Node(data=2,
+        ...      left=Node([]),
+        ...      right=Node(data=4, left=Node(data=3))).is_sorted
+        Traceback (most recent call last):
+            ...
+        TypeError: '<' not supported between instances of 'int' and 'list'
         """
-
-        if node is None:
-            return True
-
-        return (
-            left_bound < node.data < right_bound
-            and is_binary_search_tree_recursive_check(node.left, left_bound, node.data)
-            and is_binary_search_tree_recursive_check(
-                node.right, node.data, right_bound
-            )
-        )
-
-    return is_binary_search_tree_recursive_check(root, -float("inf"), float("inf"))
+        if self.left and (self.data < self.left.data or not self.left.is_sorted):
+            return False
+        if self.right and (self.data > self.right.data or not self.right.is_sorted):
+            return False
+        return True
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    tree = Node(data=2.1, left=Node(data=2.0), right=Node(data=2.2))
+    print(f"Tree {list(tree)} is sorted: {tree.is_sorted = }.")
+    tree.right.data = 2.0
+    print(f"Tree {list(tree)} is sorted: {tree.is_sorted = }.")
+    tree.right.data = 2.1
+    print(f"Tree {list(tree)} is sorted: {tree.is_sorted = }.")
