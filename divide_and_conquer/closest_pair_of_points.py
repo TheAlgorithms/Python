@@ -140,4 +140,5 @@ def closest_pair_of_points(points, points_counts):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

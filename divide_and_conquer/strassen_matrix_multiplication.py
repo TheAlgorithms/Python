@@ -171,4 +171,5 @@ if __name__ == "__main__":
     # matrix2 = [[0, 2, 1, 1], [16, 2, 3, 3], [2, 2, 7, 7], [13, 11, 22, 4]]
     # print(strassen(matrix1, matrix2))
     import doctest
+
     doctest.testmod()

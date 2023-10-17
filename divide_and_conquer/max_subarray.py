@@ -108,4 +108,5 @@ if __name__ == "__main__":
     A random simulation of this algorithm.
     """
     from doctest import testmod
+
     testmod()

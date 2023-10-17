@@ -61,4 +61,5 @@ def kth_number(lst: list[int], k: int) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()

@@ -56,4 +56,5 @@ def heaps(arr: list) -> list:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
