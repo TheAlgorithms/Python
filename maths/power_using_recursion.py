@@ -21,18 +21,20 @@ def power(base: int, exponent: int) -> float:
     1
     >>> power('a', 1)
     'a'
+    >>> power('a', 2)
+    'aa'
     >>> all(power(base, exponent) == pow(base, exponent)
     ...     for base in range(-10, 10) for exponent in range(10))
     True
-    >>> power('a','b')
+    >>> power('a', 'b')
     Traceback (most recent call last):
         ...
     TypeError: unsupported operand type(s) for -: 'str' and 'int'
-    >>> power('a',2)
+    >>> power('a', 2)
     Traceback (most recent call last):
         ...
     TypeError: can't multiply sequence by non-int of type 'str'
-    >>> power(2,-1)
+    >>> power(2, -1)
     Traceback (most recent call last):
         ...
     RecursionError: maximum recursion depth exceeded
@@ -41,6 +43,9 @@ def power(base: int, exponent: int) -> float:
 
 
 if __name__ == "__main__":
+    from doctests import testmod
+
+    testmod()
     print("Raise base to the power of exponent using recursion...")
     base = int(input("Enter the base: ").strip())
     exponent = int(input("Enter the exponent: ").strip())
