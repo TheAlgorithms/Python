@@ -1,5 +1,4 @@
-"Implementation of the two jug water puzzle."
-
+# Implementation of the two jug water puzzle.
 
 def greatest_common_divisor(a, b):
     """Return the greatest common divisor of two numbers."""
