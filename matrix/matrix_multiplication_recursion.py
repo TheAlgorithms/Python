@@ -175,8 +175,6 @@ if __name__ == "__main__":
     from functools import partial
     from timeit import timeit
 
-    short_timeit = partial(timeit, globals=globals(), number=100_000)
+    mytimeit = partial(timeit, globals=globals(), number=100_000)
     for func in ("matrix_multiply", "matrix_multiply_recursive"):
-        print(
-            f"{func:>25}(): {short_timeit(f'{func}(matrix_count_up, matrix_unordered)')}"
-        )
+        print(f"{func:>25}(): {mytimeit(f'{func}(matrix_count_up, matrix_unordered)')}")
