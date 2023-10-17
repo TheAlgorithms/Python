@@ -7,6 +7,7 @@ def majorityElement(nums: List[int]) -> Optional[int]:
     Majority Element : that have more than N/ 2 occurrences among the given elements.
     Time Complexity : O(N)
     Space Complexity : O(1)
+    For Further Reading : https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm
 
     Args:
         nums (List[int]): A list of integers.
