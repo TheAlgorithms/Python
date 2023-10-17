@@ -1,11 +1,11 @@
 "Implementation of the two jug water puzzle."
 
-def gcd(a, b):
+def greatest_common_divisor(a, b):
     "Return the greatest common divisor of a and b."
     if b == 0:
         return a
     else:
-        return gcd(b, a % b)
+        return greatest_common_divisor(b, a % b)
     
     
 def pour(toJugCap,fromJugcap,d):
@@ -35,12 +35,15 @@ def pour(toJugCap,fromJugcap,d):
     return step
 
 def minStep(n,m,d):
+    '''
+    Calculate the mini steps to get d water in jug
+    '''
     if m> n:
         temp = m
         m = n
         n = temp
         
-    if (d%(gcd(n,m)) != 0):
+    if (d%(greatest_common_divisor(n,m)) != 0):
         return -1
     
     return(min(pour(n,m,d),pour(m,n,d)))
