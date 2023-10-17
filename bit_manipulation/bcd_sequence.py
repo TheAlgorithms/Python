@@ -26,9 +26,9 @@ def bcd_sequence(num: int) ->str:
     bcd = "0b" + bcd
     return bcd
 
-   
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    
