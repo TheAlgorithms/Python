@@ -20,15 +20,15 @@ matrix_5_to_8 = [
     [7, 8],
 ]
 
-matrix_5_to_9_wide = [
-    [5, 6],
-    [7, 8, 9],
-]
-
 matrix_5_to_9_high = [
     [5, 6],
     [7, 8],
     [9],
+]
+
+matrix_5_to_9_wide = [
+    [5, 6],
+    [7, 8, 9],
 ]
 
 matrix_count_up = [
@@ -47,14 +47,22 @@ matrix_unordered = [
 matrices = (
     matrix_1_to_4,
     matrix_5_to_8,
-    matrix_5_to_9_wide,
     matrix_5_to_9_high,
+    matrix_5_to_9_wide,
     matrix_count_up,
     matrix_unordered,
 )
 
 
 def is_square(matrix: Matrix) -> bool:
+    """
+    >>> is_square([])
+    True
+    >>> is_square(matrix_1_to_4)
+    True
+    >>> is_square(matrix_5_to_8_high)
+    False
+    """
     len_matrix = len(matrix)
     return all(len(row) == len_matrix for row in matrix)
 
@@ -111,6 +119,8 @@ def matrix_multiply_recursive(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
         :param i: Index used for iteration during multiplication.
         :param j: Index used for iteration during multiplication.
         :param k: Index used for iteration during multiplication.
+        >>> 0 > 1  # Doctests in inner functions are never run
+        True
         """
         if i_loop >= len(matrix_a):
             return
