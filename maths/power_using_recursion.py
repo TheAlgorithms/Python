@@ -19,21 +19,19 @@ def power(base: int, exponent: int) -> float:
     81
     >>> power(2, 0)
     1
-    >>> power('a', 1)
-    'a'
-    >>> power('a', 2)
-    'aa'
     >>> all(power(base, exponent) == pow(base, exponent)
     ...     for base in range(-10, 10) for exponent in range(10))
     True
-    >>> power('a', 'b')
-    Traceback (most recent call last):
-        ...
-    TypeError: unsupported operand type(s) for -: 'str' and 'int'
+    >>> power('a', 1)
+    'a'
     >>> power('a', 2)
     Traceback (most recent call last):
         ...
     TypeError: can't multiply sequence by non-int of type 'str'
+    >>> power('a', 'b')
+    Traceback (most recent call last):
+        ...
+    TypeError: unsupported operand type(s) for -: 'str' and 'int'
     >>> power(2, -1)
     Traceback (most recent call last):
         ...
