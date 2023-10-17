@@ -8,12 +8,12 @@ otherwise, return -1.
 
 Implement the SegmentIntersection class with the following methods:
 
- 1. __init__(self, segments): The constructor that initializes the SegmentIntersection
- object with a list of segments.
+ 1. __init__(self, segments): The constructor that initializes the 
+ SegmentIntersection object with a list of segments.
 
- 2. find_min_points(self): A method that finds the minimum number of points needed
- to coverall the segments and returns both the count of points and their
- positions as a list.
+ 2. find_min_points(self): A method that finds the minimum number of points 
+ needed to coverall the segments and returns both the count of 
+ points and their positions as a list.
 
 Use the following implementation notes as a guide:
 
@@ -28,7 +28,7 @@ Use the following implementation notes as a guide:
 
 
 class SegmentIntersection:
-    def __init__(self, segments):
+     def __init__(self, segments: List[Tuple[int, int]]) -> None:
         """
         Initialize a SegmentIntersection object with a list of segments.
 
@@ -41,7 +41,7 @@ class SegmentIntersection:
         """
         self.segments = segments
 
-    def find_min_points(self):
+    def find_min_points(self) -> Tuple[int, List[int]]:
         """
         Find the minimum number of points needed to cover all the segments and return both
         the count of points and their positions as a list.
