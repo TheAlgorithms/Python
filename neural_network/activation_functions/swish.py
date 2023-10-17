@@ -50,7 +50,6 @@ def sigmoid_linear_unit(vector: np.ndarray) -> np.ndarray:
     return vector * sigmoid(vector)
 
 
-
 def swish(vector: np.ndarray, trainable_parameter: int) -> np.ndarray:
     """
     Parameters:
