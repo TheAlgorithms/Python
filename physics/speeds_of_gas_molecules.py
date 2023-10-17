@@ -50,12 +50,11 @@ temperature and molar mass of the gas.
 # import the constants R and pi from the scipy.constants library
 from scipy.constants import R, pi
 
-
-def avg_speed_of_molecule(temperature: float, molar_mass: float) -> float:
+def validate_inputs(temperature: float, molar_mass: float) -> None:
     """
-    Takes the temperature (in K) and molar mass (in kg/mol) of a gas
-    and returns the average speed of a molecule in the gas (in m/s).
+    Validate the inputs of temperature and molar_mass.
 
+    
     Examples:
     >>> avg_speed_of_molecule(273, 0.028) # nitrogen at 273 K
     454.3488755020387
@@ -70,20 +69,23 @@ def avg_speed_of_molecule(temperature: float, molar_mass: float) -> float:
         ...
     Exception: Molar mass should be greater than 0 kg/mol
     """
-
     if temperature < 0:
         raise Exception("Absolute temperature cannot be less than 0 K")
     if molar_mass <= 0:
         raise Exception("Molar mass should be greater than 0 kg/mol")
-    return (8 * R * temperature / (pi * molar_mass)) ** 0.5
 
+def common_calculation(temperature: float, molar_mass: float) -> float:
+    """
+    Common calculation part for average speed and most probable speed.
+    """
+    return (R * temperature / molar_mass) ** 0.5
 
-def mps_speed_of_molecule(temperature: float, molar_mass: float) -> float:
+def avg_speed_of_molecule(temperature: float, molar_mass: float) -> float:
     """
     Takes the temperature (in K) and molar mass (in kg/mol) of a gas
-    and returns the most probable speed of a molecule in the gas (in m/s).
+    and returns the average speed of a molecule in the gas (in m/s).
 
-    Examples:
+     Examples:
     >>> mps_speed_of_molecule(273, 0.028) # nitrogen at 273 K
     402.65620701908966
     >>> mps_speed_of_molecule(300, 0.032) # oxygen at 300 K
@@ -97,15 +99,19 @@ def mps_speed_of_molecule(temperature: float, molar_mass: float) -> float:
         ...
     Exception: Molar mass should be greater than 0 kg/mol
     """
+    validate_inputs(temperature, molar_mass)
+    speed = common_calculation(temperature, molar_mass)
+    return (8 / pi) ** 0.5 * speed
 
-    if temperature < 0:
-        raise Exception("Absolute temperature cannot be less than 0 K")
-    if molar_mass <= 0:
-        raise Exception("Molar mass should be greater than 0 kg/mol")
-    return (2 * R * temperature / molar_mass) ** 0.5
-
+def mps_speed_of_molecule(temperature: float, molar_mass: float) -> float:
+    """
+    Takes the temperature (in K) and molar mass (in kg/mol) of a gas
+    and returns the most probable speed of a molecule in the gas (in m/s).
+    """
+    validate_inputs(temperature, molar_mass)
+    speed = common_calculation(temperature, molar_mass)
+    return (2 ** 0.5) * speed
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
