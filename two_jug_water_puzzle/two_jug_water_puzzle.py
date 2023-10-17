@@ -51,4 +51,4 @@ if __name__ == "__main__":
     n = 3
     m = 5
     d = 4
-    print("Minimum number of steps required is", findMinimumSteps(n, m, d))
+    print("Minimum number of steps required is", find_minimum_steps(n, m, d))
