@@ -49,7 +49,8 @@ def is_polish_national_id(input_str: str) -> bool:
         raise ValueError(msg)
 
     # check number range
-    if input_int < 10100000 or input_int > 99923199999:
+    if not 10100000 <= input_int <= 99923199999:
+
         return False
 
     # check month correctness
@@ -83,10 +84,7 @@ def is_polish_national_id(input_str: str) -> bool:
 
     checksum = 10 - subtotal % 10
 
-    if checksum != input_int % 10:
-        return False
-
-    return True
+    return checksum == input_int % 10
 
 
 if __name__ == "__main__":
