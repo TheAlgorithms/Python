@@ -1,5 +1,6 @@
 # Implementation of the two jug water puzzle.
 
+
 def greatest_common_divisor(a, b):
     """Return the greatest common divisor of two numbers."""
     if b == 0:
