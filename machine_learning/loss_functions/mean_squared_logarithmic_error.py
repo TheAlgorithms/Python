@@ -11,6 +11,9 @@ differences.
 
 Formula:
 MSLE = (1/n) * Σ(log(1 + y_true) - log(1 + y_pred))^2
+
+Source:
+(https://insideaiml.com/blog/MeanSquared-Logarithmic-Error-Loss-1035)
 """
 
 import numpy as np
@@ -31,7 +34,7 @@ def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
     >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
     >>> mean_squared_logarithmic_error(true_values, predicted_values)
-    0.00308608779251813744
+    0.0030860877925181344
     >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
     >>> mean_squared_logarithmic_error(true_labels, predicted_probs)
