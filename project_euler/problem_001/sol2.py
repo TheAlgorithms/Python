@@ -24,7 +24,7 @@ def solution(n: int = 1000) -> int:
     83700
     """
 
-     n -= 1  # We subtract 1 to consider numbers below n
+    n -= 1  # We subtract 1 to consider numbers below n
     sum_of_multiples = lambda k: (k * (k + 1)) // 2  # Sum of multiples of k
     terms_3 = n // 3
     terms_5 = n // 5
