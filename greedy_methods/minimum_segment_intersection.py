@@ -8,11 +8,11 @@ otherwise, return -1.
 
 Implement the SegmentIntersection class with the following methods:
 
- 1. __init__(self, segments): The constructor that initializes the 
+ 1. __init__(self, segments): The constructor that initializes the
  SegmentIntersection object with a list of segments.
 
- 2. find_min_points(self): A method that finds the minimum number of points 
- needed to coverall the segments and returns both the count of 
+ 2. find_min_points(self): A method that finds the minimum number of points
+ needed to coverall the segments and returns both the count of
  points and their positions as a list.
 
 Use the following implementation notes as a guide:
