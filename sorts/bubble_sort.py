@@ -42,7 +42,7 @@ def bubble_sort_iterative(collection: list[Any]) -> list[Any]:
     return collection
 
 
-def bubble_sort_recursive(list_data: list, length: int = 0) -> list:
+def bubble_sort_recursive(collection: list[Any]), length: int = 0) -> list[Any]:
     """
     It is similar is bubble sort but recursive.
     :param list_data: mutable ordered sequence of elements
