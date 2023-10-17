@@ -2,13 +2,11 @@
 Gcd of N Numbers
 Reference: https://en.wikipedia.org/wiki/Greatest_common_divisor
 """
-
 from collections import Counter
 
 
-def get_factors(
-    number: int, factors: Counter | None = None, factor: int = 2
-) -> Counter:
+def get_factors(number: int, factors=None, factor: int = 2) -> Counter:
+    # type: ignore
     """
     this is a recursive function for get all factors of number
     >>> get_factors(45)
@@ -35,13 +33,11 @@ def get_factors(
     else we increase factor by one
     """
 
-    match number:
-        case int(number) if number == 1:
-            return Counter({1: 1})
-        case int(num) if number > 0:
-            number = num
-        case _:
-            raise TypeError("number must be integer and greater than zero")
+    if isinstance(number, int) and int(number) == 1:
+        return Counter({1: 1})
+
+    elif not isinstance(number, int) or number <= 0:
+        raise TypeError("number must be integer and greater than zero")
 
     factors = factors or Counter()
 
