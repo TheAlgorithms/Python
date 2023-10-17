@@ -16,16 +16,16 @@ Email: smrtpoojan@gmail.com
 import numpy as np
 
 
-def hinge_loss(y_true: np.ndarray, pred: np.ndarray) -> float:
+def hinge_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
-    Calculate the hinge loss for y_true and pred for binary classification.
+    Calculate the mean hinge loss for y_true and y_pred for binary classification.
 
     Args:
         y_true: Array of actual values (ground truth) encoded as -1 and 1.
-        pred: Array of predicted values.
+        y_pred: Array of predicted values.
 
     Returns:
-        Hinge loss
+        The hinge loss between y_true and y_pred.
 
     Examples:
     >>> y_true = np.array([-1, 1, 1, -1, 1])
@@ -38,15 +38,24 @@ def hinge_loss(y_true: np.ndarray, pred: np.ndarray) -> float:
     Traceback (most recent call last):
     ...
     ValueError: Length of predicted and actual array must be same.
+    >>> y_true = np.array([-1, 1, 10, -1, 1])
+    >>> pred = np.array([-4, -0.3, 0.7, 5, 10])
+    >>> hinge_loss(y_true, pred)
+    Traceback (most recent call last):
+    ...
+    ValueError: y_true can have values -1 or 1 only.
     """
 
-    if len(y_true) != len(pred):
+    if len(y_true) != len(y_pred):
         raise ValueError("Length of predicted and actual array must be same.")
 
-    intermidiate_result = 1.0 - (y_true * pred)
-    intermidiate_result[intermidiate_result < 0] = 0
-    loss = np.mean(intermidiate_result)
-    return loss
+    # Raise value error when y_true (encoded labels) have any other values
+    # than -1 and 1
+    if np.array_equal(np.sort(np.unique(y_true)), np.array([-1, 1])) is False:
+        raise ValueError("y_true can have values -1 or 1 only.")
+
+    hinge_losses = np.maximum(0, 1.0 - (y_true * y_pred))
+    return np.mean(hinge_losses)
 
 
 if __name__ == "__main__":
