@@ -1,7 +1,9 @@
 """
         In this problem, we want to determine all possible combinations of k
         numbers out of 1 ... n. We use backtracking to solve this problem.
-        Time complexity: O(C(n,k)) which is O(n choose k) = O((n!/(k! * (n - k)!)))
+
+        Time complexity: O(C(n,k)) which is O(n choose k) = O((n!/(k! * (n - k)!))),
+        where n determines the range of numbers to combine and k represents the size of each arr generated
 """
 from __future__ import annotations
 
@@ -10,6 +12,12 @@ def generate_all_combinations(n: int, k: int) -> list[list[int]]:
     """
     >>> generate_all_combinations(n=4, k=2)
     [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
+    >>> generate_all_combinations(n=0, k=0)
+    [[]]
+    >>> generate_all_combinations(n=10, k=0)
+    [[]]
+    >>> generate_all_combinations(n=5, k=4)
+    [[1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 4, 5], [1, 3, 4, 5], [2, 3, 4, 5]]
     """
 
     result: list[list[int]] = []
