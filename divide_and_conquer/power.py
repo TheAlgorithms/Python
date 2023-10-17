@@ -30,4 +30,5 @@ def power(a: int, b: int) -> float:
 
 
 if __name__ == "__main__":
-    print(power(-2, -3))
+    import doctest
+    doctest.testmod()

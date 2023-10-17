@@ -139,5 +139,5 @@ def closest_pair_of_points(points, points_counts):
 
 
 if __name__ == "__main__":
-    points = [(2, 3), (12, 30), (40, 50), (5, 1), (12, 10), (3, 4)]
-    print("Distance:", closest_pair_of_points(points, len(points)))
+    import doctest
+    doctest.testmod()

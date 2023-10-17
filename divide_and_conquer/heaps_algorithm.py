@@ -51,6 +51,5 @@ def heaps(arr: list) -> list:
 
 
 if __name__ == "__main__":
-    user_input = input("Enter numbers separated by a comma:\n").strip()
-    arr = [int(item) for item in user_input.split(",")]
-    print(heaps(arr))
+    import doctest
+    doctest.testmod()
