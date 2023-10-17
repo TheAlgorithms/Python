@@ -200,6 +200,7 @@
     * [Floor And Ceiling](data_structures/binary_tree/floor_and_ceiling.py)
     * [Inorder Tree Traversal 2022](data_structures/binary_tree/inorder_tree_traversal_2022.py)
     * [Is Bst](data_structures/binary_tree/is_bst.py)
+    * [Is Sum Tree](data_structures/binary_tree/is_sum_tree.py)
     * [Lazy Segment Tree](data_structures/binary_tree/lazy_segment_tree.py)
     * [Lowest Common Ancestor](data_structures/binary_tree/lowest_common_ancestor.py)
     * [Maximum Fenwick Tree](data_structures/binary_tree/maximum_fenwick_tree.py)
