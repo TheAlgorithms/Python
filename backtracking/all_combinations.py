@@ -6,6 +6,16 @@
 """
 from __future__ import annotations
 
+from itertools import combinations
+
+
+def combination_lists(n: int, k: int) -> list[list[int]]:
+    """
+    >>> combination_lists(n=4, k=2)
+    [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
+    """
+    return [list(x) for x in combinations(range(1, n + 1), k)]
+
 
 def generate_all_combinations(n: int, k: int) -> list[list[int]]:
     """
@@ -13,10 +23,18 @@ def generate_all_combinations(n: int, k: int) -> list[list[int]]:
     [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
     >>> generate_all_combinations(n=0, k=0)
     [[]]
-    >>> generate_all_combinations(n=10, k=0)
-    [[]]
+    >>> generate_all_combinations(n=10, k=-1)
+    Traceback (most recent call last):
+        ...
+    RecursionError: maximum recursion depth exceeded
+    >>> generate_all_combinations(n=-1, k=10)
+    []
     >>> generate_all_combinations(n=5, k=4)
     [[1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 4, 5], [1, 3, 4, 5], [2, 3, 4, 5]]
+    >>> from itertools import combinations
+    >>> all(generate_all_combinations(n, k) == combination_lists(n, k)
+    ...     for n in range(1, 6) for k in range(1, 6))
+    True
     """
 
     result: list[list[int]] = []
@@ -41,13 +59,17 @@ def create_all_state(
         current_list.pop()
 
 
-def print_all_state(total_list: list[list[int]]) -> None:
-    for i in total_list:
-        print(*i)
-
-
 if __name__ == "__main__":
-    n = 4
-    k = 2
-    total_list = generate_all_combinations(n, k)
-    print_all_state(total_list)
+    from doctest import testmod
+
+    testmod()
+    print(generate_all_combinations(n=4, k=2))
+    tests = ((n, k) for n in range(1, 5) for k in range(1, 5))
+    for n, k in tests:
+        print(n, k, generate_all_combinations(n, k) == combination_lists(n, k))
+
+    print("Benchmark:")
+    from timeit import timeit
+
+    for func in ("combination_lists", "generate_all_combinations"):
+        print(f"{func:>25}(): {timeit(f'{func}(n=4, k = 2)', globals=globals())}")
