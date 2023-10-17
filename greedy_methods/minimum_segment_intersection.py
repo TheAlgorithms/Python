@@ -1,14 +1,19 @@
 """
-You are given a list of segments, where each segment is represented by its left and right endpoints.
-The task is to find the minimum number of points needed to cover all the segments.
-If you can cover all the segments with points, return the points' positions; otherwise, return -1.
+You are given a list of segments, where each segment is represented by its 
+left and right endpoints.
+The task is to find the minimum number of points needed to 
+cover all the segments.
+If you can cover all the segments with points, return the points' positions;
+otherwise, return -1.
 
 Implement the SegmentIntersection class with the following methods:
 
- 1. __init__(self, segments): The constructor that initializes the SegmentIntersection object with a list of segments.
+ 1. __init__(self, segments): The constructor that initializes the SegmentIntersection 
+ object with a list of segments.
 
- 2. find_min_points(self): A method that finds the minimum number of points needed to cover
-all the segments and returns both the count of points and their positions as a list.
+ 2. find_min_points(self): A method that finds the minimum number of points needed 
+ to coverall the segments and returns both the count of points and their
+ positions as a list.
 
 Use the following implementation notes as a guide:
 
@@ -28,8 +33,8 @@ class SegmentIntersection:
         Initialize a SegmentIntersection object with a list of segments.
 
         Args:
-        segments (List[Tuple[int, int]]): A list of segments, where each segment is represented by a tuple
-            containing its left and right endpoints.
+        segments (List[Tuple[int, int]]): A list of segments, where each segment is 
+        represented by a tuple containing its left and right endpoints.
 
         Example:
         >>> segment_intersection = SegmentIntersection([(1, 3), (2, 5), (5, 6), (7, 8)])
@@ -38,8 +43,8 @@ class SegmentIntersection:
 
     def find_min_points(self):
         """
-        Find the minimum number of points needed to cover all the segments and return both the count of points
-        and their positions as a list.
+        Find the minimum number of points needed to cover all the segments and return both 
+        the count of points and their positions as a list.
 
         Returns:
         Tuple[int, List[int]]: A tuple containing the count of points and their positions.
