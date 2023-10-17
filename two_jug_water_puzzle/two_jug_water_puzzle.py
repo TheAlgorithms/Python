@@ -46,7 +46,8 @@ def findMinimumSteps(n, m, d):
         return -1
     return min(pour_water(m, n, d), pour_water(n, m, d))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     n = 3
     m = 5
     d = 4
