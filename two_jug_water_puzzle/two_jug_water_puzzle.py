@@ -8,25 +8,25 @@ def greatest_common_divisor(a, b):
         return greatest_common_divisor(b, a % b)
 
 
-def pour_water(to_Jug_Cap, from_Jug_Cap, d):
+def pour_water(to_jug_cap, from_jug_cap, d):
     "Pour water from one jug to another jug."
     "fromJugCap: capacity of the jug from which water is poured."
     "toJugCap: capacity of the jug to which water is poured."
     "d: amount of water to be poured."
-    from_Jug = from_Jug_Cap
-    to_Jug = 0
+    from_jug = from_jug_cap
+    to_jug = 0
     step = 1
-    while from_Jug != d and to_Jug != d:
-        temp = min(from_Jug, to_Jug_Cap - to_Jug)
-        to_Jug = to_Jug + temp
-        from_Jug = from_Jug - temp
+    while from_jug != d and to_jug != d:
+        temp = min(from_jug, to_jug_cap - to_jug)
+        to_jug = to_jug + temp
+        from_jug = from_jug - temp
         step = step + 1
-        if from_Jug == d or to_Jug == d:
+        if from_jug == d or to_jug == d:
             break
-        if from_Jug == 0:
-            from_Jug = from_Jug_Cap
+        if from_jug == 0:
+            from_jug = from_jug_cap
             step = step + 1
-        if to_Jug == to_Jug_Cap:
+        if to_Jug == to_jug_cap:
             to_Jug = 0
             step = step + 1
     return step
