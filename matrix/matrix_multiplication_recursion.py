@@ -60,11 +60,18 @@ def is_square(matrix: Matrix) -> bool:
     True
     >>> is_square(matrix_1_to_4)
     True
-    >>> is_square(matrix_5_to_8_high)
+    >>> is_square(matrix_5_to_9_high)
     False
     """
     len_matrix = len(matrix)
     return all(len(row) == len_matrix for row in matrix)
+
+
+def matrix_multiply(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
+    return [
+        [sum(a * b for a, b in zip(row, col)) for col in zip(*matrix_b)]
+        for row in matrix_a
+    ]
 
 
 def matrix_multiply_recursive(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
@@ -151,8 +158,10 @@ if __name__ == "__main__":
                 print(row)
             print("Result:")
             try:
-                for row in matrix_multiply_recursive(matrix_a, matrix_b):
+                result = matrix_multiply_recursive(matrix_a, matrix_b)
+                for row in result:
                     print(row)
+                assert result == matrix_multiply(matrix_a, matrix_b)
             except ValueError as e:
                 print(f"{e!r}")
             print()
