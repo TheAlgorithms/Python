@@ -12,10 +12,10 @@ def gcd(a, b):
     else:
 <<<<<<< HEAD:TwoJugWaterPuzzle/00_two_jug_water_puzzle.py
         return greatest_common_divisor(b, a % b)
-    
-    
+
+
 def pour(toJugCap,fromJugcap,d):
-    ''' 
+    '''
 =======
         return gcd(b, a % b)
 
@@ -56,10 +56,10 @@ def minStep(n,m,d):
         temp = m
         m = n
         n = temp
-        
+
     if (d%(greatest_common_divisor(n,m)) != 0):
         return -1
-    
+
     return(min(pour(n,m,d),pour(m,n,d)))
 =======
 
