@@ -111,16 +111,18 @@ if __name__ == "__main__":
     doctest.testmod()
 
     user_input = input("Enter numbers separated by a comma:").strip()
-    unsorted = [int(item) if isinstance(item, int) else float(item)
-                for item in user_input.split(",")]
+    unsorted = [
+        int(item) if isinstance(item, int) else float(item)
+        for item in user_input.split(",")
+    ]
 
     num_runs = 1000
-    timer_iterative = timeit('bubble_sort_iterative(unsorted[:])',
-                             globals=globals(),
-                             number=num_runs)
-    timer_recursive = timeit('bubble_sort_recursive(unsorted[:])',
-                             globals=globals(),
-                             number=num_runs)
+    timer_iterative = timeit(
+        "bubble_sort_iterative(unsorted[:])", globals=globals(), number=num_runs
+    )
+    timer_recursive = timeit(
+        "bubble_sort_recursive(unsorted[:])", globals=globals(), number=num_runs
+    )
 
     print("\nIterative bubble sort:")
     print(*bubble_sort_iterative(unsorted), sep=",")
