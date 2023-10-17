@@ -24,13 +24,18 @@ def solution(n: int = 1000) -> int:
     83700
     """
 
-    total = 0
-    terms = (n - 1) // 3
-    total += ((terms) * (6 + (terms - 1) * 3)) // 2  # total of an A.P.
-    terms = (n - 1) // 5
-    total += ((terms) * (10 + (terms - 1) * 5)) // 2
-    terms = (n - 1) // 15
-    total -= ((terms) * (30 + (terms - 1) * 15)) // 2
+     n -= 1  # We subtract 1 to consider numbers below n
+    sum_of_multiples = lambda k: (k * (k + 1)) // 2  # Sum of multiples of k
+    terms_3 = n // 3
+    terms_5 = n // 5
+    terms_15 = n // 15
+
+    total = (
+        3 * sum_of_multiples(terms_3) +
+        5 * sum_of_multiples(terms_5) -
+        15 * sum_of_multiples(terms_15)
+    )
+
     return total
 
 
