@@ -1,5 +1,6 @@
 from queue import PriorityQueue
 
+
 class Node:
     def __init__(self, data, row, col):
         self.data = data
@@ -32,9 +33,5 @@ def merge_k_sorted_arrays(k_arrays):
 
 
 # Example usage
-k_arrays = [
-    [1, 4, 7],
-    [2, 5, 8],
-    [3, 6, 9]
-]
+k_arrays = [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
 print(merge_k_sorted_arrays(k_arrays))
