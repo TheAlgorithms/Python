@@ -9,6 +9,21 @@ we get 3, 5, 6 and 9. The sum of these multiples is 23.
 Find the sum of all the multiples of 3 or 5 below 1000.
 """
 
+def sum_of_multiples(k):
+    """
+    Calculate the sum of the first 'k' natural numbers,
+    which are multiples of a given number 'k'.
+    
+    Args:
+    k (int): The number of which multiples are to be summed.
+
+    Returns:
+    int: The sum of multiples of 'k'.
+    """
+
+    return (k * (k + 1)) // 2
+
+
 
 def solution(n: int = 1000) -> int:
     """
@@ -25,7 +40,6 @@ def solution(n: int = 1000) -> int:
     """
 
     n -= 1  # We subtract 1 to consider numbers below n
-    sum_of_multiples = lambda k: (k * (k + 1)) // 2  # Sum of multiples of k
     terms_3 = n // 3
     terms_5 = n // 5
     terms_15 = n // 15
