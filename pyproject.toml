@@ -128,7 +128,10 @@ addopts = [
 ]
 
 [tool.coverage.report]
-omit = [".env/*"]
+omit = [
+  ".env/*",
+  "project_euler/*"
+]
 sort = "Cover"
 
 [tool.codespell]

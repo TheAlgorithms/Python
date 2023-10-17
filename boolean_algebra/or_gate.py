@@ -29,18 +29,7 @@ def or_gate(input_1: int, input_2: int) -> int:
     return int((input_1, input_2).count(1) != 0)
 
 
-def test_or_gate() -> None:
-    """
-    Tests the or_gate function
-    """
-    assert or_gate(0, 0) == 0
-    assert or_gate(0, 1) == 1
-    assert or_gate(1, 0) == 1
-    assert or_gate(1, 1) == 1
-
-
 if __name__ == "__main__":
-    print(or_gate(0, 1))
-    print(or_gate(1, 0))
-    print(or_gate(0, 0))
-    print(or_gate(1, 1))
+    import doctest
+
+    doctest.testmod()
