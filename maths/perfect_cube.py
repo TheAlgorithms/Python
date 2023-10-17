@@ -28,6 +28,8 @@ def perfect_cube_binary_search(n: int) -> bool:
         ...
     TypeError: '<=' not supported between instances of 'int' and 'str'
     """
+    if n < 0:
+        n = -n
     left = 0
     right = n
     while left <= right:
