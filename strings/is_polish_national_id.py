@@ -50,7 +50,6 @@ def is_polish_national_id(input_str: str) -> bool:
 
     # check number range
     if not 10100000 <= input_int <= 99923199999:
-
         return False
 
     # check month correctness
