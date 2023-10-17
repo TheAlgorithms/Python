@@ -89,6 +89,7 @@ if __name__ == "__main__":
     doctest.testmod()
     tree = Node(data=2.1, left=Node(data=2.0), right=Node(data=2.2))
     print(f"Tree {list(tree)} is sorted: {tree.is_sorted = }.")
+    assert tree.right
     tree.right.data = 2.0
     print(f"Tree {list(tree)} is sorted: {tree.is_sorted = }.")
     tree.right.data = 2.1
