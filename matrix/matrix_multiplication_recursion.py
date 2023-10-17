@@ -68,6 +68,10 @@ def is_square(matrix: Matrix) -> bool:
 
 
 def matrix_multiply(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
+    """
+    >>> matrix_multiply(matrix_1_to_4, matrix_5_to_8)
+    [[19, 22], [43, 50]]
+    """
     return [
         [sum(a * b for a, b in zip(row, col)) for col in zip(*matrix_b)]
         for row in matrix_a
@@ -166,3 +170,13 @@ if __name__ == "__main__":
                 print(f"{e!r}")
             print()
             matrix_a = matrix_b
+
+    print("Benchmark:")
+    from functools import partial
+    from timeit import timeit
+
+    short_timeit = partial(timeit, globals=globals(), number=100_000)
+    for func in ("matrix_multiply", "matrix_multiply_recursive"):
+        print(
+            f"{func:>25}(): {short_timeit(f'{func}(matrix_count_up, matrix_unordered)')}"
+        )
