@@ -8,7 +8,7 @@ Apriori by efficiently constructing the FP-Tree
 WIKI: https://athena.ecs.csus.edu/~mei/associationcw/FpGrowth.html
 Examples: https://www.javatpoint.com/fp-growth-algorithm-in-data-mining
 """
-
+from typing import Union
 
 class TreeNode:
     """
@@ -46,7 +46,7 @@ class TreeNode:
             child.disp(ind + 1)
 
 
-def create_tree(data_set: list, min_sup: int = 1) -> (TreeNode, dict):
+def create_tree(data_set: list, min_sup: int = 1) -> tuple[TreeNode, dict]:
     """
     Create FP tree
 
@@ -91,7 +91,7 @@ def create_tree(data_set: list, min_sup: int = 1) -> (TreeNode, dict):
             header_table[item][0] += 1
 
     for k in list(header_table.keys()):
-        if header_table[k] < min_sup:
+        if header_table[k][0] < min_sup:
             del header_table[k]
 
     freq_item_set = set(header_table.keys())
@@ -102,7 +102,7 @@ def create_tree(data_set: list, min_sup: int = 1) -> (TreeNode, dict):
     for k in header_table:
         header_table[k] = [header_table[k], None]
 
-    fp_tree = TreeNode("Null Set", 1, None)
+    fp_tree = TreeNode("Null Set", 1, None)  # Parent is None for the root node
     for tran_set in data_set:
         local_d = {}
         for item in tran_set:
@@ -254,7 +254,7 @@ def find_prefix_path(base_pat: frozenset, tree_node: "TreeNode") -> dict:
         ascend_tree(tree_node, prefix_path)
         if len(prefix_path) > 1:
             cond_pats[frozenset(prefix_path[1:])] = tree_node.count
-        tree_node = tree_node.node_link
+        tree_node: Union[TreeNode, None] = tree_node.node_link
     return cond_pats
 
 
