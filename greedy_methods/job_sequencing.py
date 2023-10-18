@@ -42,5 +42,3 @@ def job_sequence_with_deadlines(jobs):
 
 if __name__ == "__main__":
     import doctest
-
-    doctest.testmod()
