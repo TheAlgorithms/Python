@@ -29,13 +29,13 @@ class TreeNode:
     """
 
     def __init__(
-        self, name_value: str, num_occur: int, parent_node: "TreeNode"
+        self, name_value: str, num_occur: int, parent_node: 'TreeNode'
     ) -> None:
         self.name = name_value
         self.count = num_occur
         self.node_link = None
         self.parent = parent_node
-        self.children = {}
+        self.children: dict[str, TreeNode] = {}
 
     def inc(self, num_occur: int) -> None:
         self.count += num_occur
@@ -46,7 +46,7 @@ class TreeNode:
             child.disp(ind + 1)
 
 
-def create_tree(data_set: list, min_sup: int = 1) -> ("TreeNode", dict):
+def create_tree(data_set: list, min_sup: int = 1) -> (TreeNode, dict):
     """
     Create FP tree
 
@@ -84,7 +84,7 @@ def create_tree(data_set: list, min_sup: int = 1) -> ("TreeNode", dict):
     ['B', 'C']
 
     """
-    header_table = {}
+    header_table: dict[str, list] = {}
     for trans in data_set:
         for item in trans:
             header_table[item] = header_table.get(item, 0) + 1
@@ -118,7 +118,7 @@ def create_tree(data_set: list, min_sup: int = 1) -> ("TreeNode", dict):
 
 
 def update_tree(
-    items: list, in_tree: "TreeNode", header_table: dict, count: int
+    items: list, in_tree: TreeNode, header_table: dict, count: int
 ) -> None:
     """
     Update the FP-Tree with a transaction.
@@ -162,7 +162,7 @@ def update_tree(
         update_tree(items[1:], in_tree.children[items[0]], header_table, count)
 
 
-def update_header(node_to_test: "TreeNode", target_node: "TreeNode") -> None:
+def update_header(node_to_test: TreeNode, target_node: TreeNode) -> None:
     """
     Update the header table with a node link.
 
@@ -195,7 +195,7 @@ def update_header(node_to_test: "TreeNode", target_node: "TreeNode") -> None:
     node_to_test.node_link = target_node
 
 
-def ascend_tree(leaf_node: "TreeNode", prefix_path: list) -> None:
+def ascend_tree(leaf_node: TreeNode, prefix_path: list) -> None:
     """
     Ascend the FP-Tree from a leaf node to its root,
     adding item names to the prefix path.
@@ -260,7 +260,7 @@ def find_prefix_path(base_pat: frozenset, tree_node: "TreeNode") -> dict:
 
 
 def mine_tree(
-    in_tree: "TreeNode",
+    in_tree: TreeNode,
     header_table: dict,
     min_sup: int,
     pre_fix: set,
@@ -310,7 +310,7 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    data_set = [
+    data_set: list = [
         frozenset(["bread", "milk", "cheese"]),
         frozenset(["bread", "milk"]),
         frozenset(["bread", "diapers"]),
@@ -321,6 +321,6 @@ if __name__ == "__main__":
         frozenset(["bread", "milk", "cheese", "diapers"]),
     ]
     fp_tree, header_table = create_tree(data_set, min_sup=3)
-    freq_items = []
+    freq_items: list = []
     mine_tree(fp_tree, header_table, 3, set(), freq_items)
     print(freq_items)
