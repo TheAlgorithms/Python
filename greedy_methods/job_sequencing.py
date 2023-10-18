@@ -1,3 +1,7 @@
+# https://en.wikipedia.org/wiki/job_sequencing_problem
+# https://www.guru99.com/job_sequencing_with_deadline.html
+
+
 def job_sequence_with_deadlines(jobs):
     """
     Solve the Job Sequencing Problem with Deadlines.
