@@ -2,7 +2,7 @@
 
 ## Before contributing
 
-Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt on the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms/community).
+Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Before sending your pull requests, make sure that you __read the whole guidelines__. If you have any doubt about the contributing guide, please feel free to [state it clearly in an issue](https://github.com/TheAlgorithms/Python/issues/new) or ask the community in [Gitter](https://gitter.im/TheAlgorithms/community).
 
 ## Contributing
 
@@ -13,9 +13,9 @@ We are very happy that you are considering implementing algorithms and data stru
 - You did your work - no plagiarism allowed
   - Any plagiarized work will not be merged.
 - Your work will be distributed under [MIT License](LICENSE.md) once your pull request is merged
-- Your submitted work fulfils or mostly fulfils our styles and standards
+- Your submitted work fulfills or mostly fulfills our styles and standards
 
-__New implementation__ is welcome! For example, new solutions for a problem, different representations for a graph data structure or algorithm designs with different complexity but __identical implementation__ of an existing implementation is not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
+__New implementation__ is welcome! For example, new solutions for a problem, different representations for a graph data structure, or algorithm designs with different complexity but __identical implementation__ of an existing implementation are not allowed. Please check whether the solution is already implemented or not before submitting your pull request.
 
 __Improving comments__ and __writing proper tests__ are also highly welcome.
 
@@ -23,7 +23,7 @@ __Improving comments__ and __writing proper tests__ are also highly welcome.
 
 We appreciate any contribution, from fixing a grammar mistake in a comment to implementing complex algorithms. Please read this section if you are contributing your work.
 
-Your contribution will be tested by our [automated testing on GitHub Actions](https://github.com/TheAlgorithms/Python/actions) to save time and mental energy.  After you have submitted your pull request, you should see the GitHub Actions tests start to run at the bottom of your submission page.  If those tests fail, then click on the ___details___ button try to read through the GitHub Actions output to understand the failure.  If you do not understand, please leave a comment on your submission page and a community member will try to help.
+Your contribution will be tested by our [automated testing on GitHub Actions](https://github.com/TheAlgorithms/Python/actions) to save time and mental energy.  After you have submitted your pull request, you should see the GitHub Actions tests start to run at the bottom of your submission page.  If those tests fail, then click on the ___details___ button and try to read through the GitHub Actions output to understand the failure.  If you do not understand, please leave a comment on your submission page and a community member will try to help.
 
 #### Issues
 
@@ -42,7 +42,7 @@ GitHub will use this tag to [auto-close the issue](https://docs.github.com/en/is
 
 An Algorithm is one or more functions (or classes) that:
 * take one or more inputs,
-* perform some internal calculations or data manipulations,
+* Perform some internal calculations or data manipulations,
 * return one or more outputs,
 * have minimal side effects (Ex. `print()`, `plot()`, `read()`, `write()`).
 
@@ -52,13 +52,13 @@ Algorithms should:
 * have intuitive class and function names that make their purpose clear to readers
 * use Python naming conventions and intuitive variable names to ease comprehension
 * be flexible to take different input values
-* have Python type hints for their input parameters and return values
+* have Python type-hints for their input parameters and return values
 * raise Python exceptions (`ValueError`, etc.) on erroneous input values
 * have docstrings with clear explanations and/or URLs to source materials
 * contain doctests that test both valid and erroneous input values
 * return all calculation results instead of printing or plotting them
 
-Algorithms in this repo should not be how-to examples for existing Python packages.  Instead, they should perform internal calculations or manipulations to convert input values into different output values.  Those calculations or manipulations can use data types, classes, or functions of existing Python packages but each algorithm in this repo should add unique value.
+Algorithms in this repo should not be how-to examples for existing Python packages.  Instead, they should perform internal calculations or manipulations to convert input values into different output values.  Those calculations or manipulations can use data types, classes, or functions of existing Python packages but each algorithm in this repo should add a unique value.
 
 #### Pre-commit plugin
 Use [pre-commit](https://pre-commit.com/#installation) to automatically format your code to match our coding style:
@@ -79,7 +79,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
 - Please write in Python 3.12+. For instance:  `print()` is a function in Python 3 so `print "Hello"` will *not* work but `print("Hello")` will.
 - Please focus hard on the naming of functions, classes, and variables.  Help your reader by using __descriptive names__ that can help you to remove redundant comments.
-  - Single letter variable names are *old school* so please avoid them unless their life only spans a few lines.
+  - Single-letter variable names are *old school* so please avoid them unless their life only spans a few lines.
   - Expand acronyms because `gcd()` is hard to understand but `greatest_common_divisor()` is not.
   - Please follow the [Python Naming Conventions](https://pep8.org/#prescriptive-naming-conventions) so variable_names and function_names should be lower_case, CONSTANTS in UPPERCASE, ClassNames should be CamelCase, etc.
 
@@ -99,7 +99,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   ruff .
   ```
 
-- Original code submission require docstrings or comments to describe your work.
+- Original code submission requires docstrings or comments to describe your work.
 
 - More on docstrings and comments:
 
@@ -111,7 +111,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   x = x + 2	# increased by 2
   ```
 
-  This is too trivial. Comments are expected to be explanatory. For comments, you can write them above, on or below a line of code, as long as you are consistent within the same piece of code.
+  This is too trivial. Comments are expected to be explanatory. For comments, you can write them above, on, or below a line of code, as long as you are consistent within the same piece of code.
 
   We encourage you to put docstrings inside your functions but please pay attention to the indentation of docstrings. The following is a good example:
 
@@ -168,7 +168,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
   Instructions on how to install mypy can be found [here](https://github.com/python/mypy). Please use the command `mypy --ignore-missing-imports .` to test all files or `mypy --ignore-missing-imports path/to/file.py` to test a specific file.
 
-- [__List comprehensions and generators__](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) are preferred over the use of `lambda`, `map`, `filter`, `reduce` but the important thing is to demonstrate the power of Python in code that is easy to read and maintain.
+- [__List comprehensions and generators__](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) are preferred over the use of `lambda`, `map`, `filter`, and `reduce` but the important thing is to demonstrate the power of Python in code that is easy to read and maintain.
 
 - Avoid importing external libraries for basic algorithms. Only use those libraries for complicated algorithms.
 - If you need a third-party module that is not in the file __requirements.txt__, please add it to that file as part of your submission.
@@ -176,7 +176,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 #### Other Requirements for Submissions
 - If you are submitting code in the `project_euler/` directory, please also read [the dedicated Guideline](https://github.com/TheAlgorithms/Python/blob/master/project_euler/README.md) before contributing to our Project Euler library.
 - The file extension for code files should be `.py`. Jupyter Notebooks should be submitted to [TheAlgorithms/Jupyter](https://github.com/TheAlgorithms/Jupyter).
-- Strictly use snake_case (underscore_separated) in your file_name, as it will be easy to parse in future using scripts.
+- Strictly use snake_case (underscore_separated) in your file_name, as it will be easy to parse in the future using scripts.
 - Please avoid creating new directories if at all possible. Try to fit your work into the existing directory structure.
 - If possible, follow the standard *within* the folder you are submitting to.
 - If you have modified/added code work, make sure the code compiles before submitting.
