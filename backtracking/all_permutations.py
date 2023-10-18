@@ -63,7 +63,7 @@ def create_state_space_tree(
     if index == len(sequence):
         # Copying b/c popping current_sequence is part of this recursive algo.
         # Can't have pointer to that arr
-        current_sequence_copy = [num for num in current_sequence]
+        current_sequence_copy = list(current_sequence)
         output.append(current_sequence_copy)
         return
 
@@ -71,9 +71,12 @@ def create_state_space_tree(
         if not index_used[i]:
             current_sequence.append(sequence[i])
             index_used[i] = True
-            create_state_space_tree(
-                sequence, current_sequence, index + 1, index_used, output
-            )
+            # function spaced like this b/c linter 88 char limit
+            create_state_space_tree(sequence,
+                                    current_sequence, 
+                                    index + 1, 
+                                    index_used, 
+                                    output)
             current_sequence.pop()
             index_used[i] = False
     return output
