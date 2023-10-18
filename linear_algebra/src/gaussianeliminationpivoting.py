@@ -1,6 +1,4 @@
 import numpy as np
-from typing import List
-
 
 def custom_pivoting(a: np.ndarray, n: int, i: int) -> int:
     """
@@ -15,35 +13,32 @@ def custom_pivoting(a: np.ndarray, n: int, i: int) -> int:
     - int: The index of the minimum absolute value in the i-th column.
 
     Example:
-    >>> a_matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype=float)
-    >>> custom_pivoting(a_matrix, 3, 1)
+    >> a_matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype=float)
+    >> custom_pivoting(a_matrix, 3, 1)
     0
-    """
+    """    
     min_index = i
     for index in range(i + 1, n):
         if abs(a[index][i]) < abs(a[min_index][i]):
             min_index = index
     return min_index
 
-
-def custom_gauss_elimination_pivoting(
-    a: List[List[float]], b: List[float], n: int
-) -> List[float]:
+def custom_gauss_elimination_pivoting(a: list, b: list, n: int) -> list:
     """
     Solves a system of linear equations using Gaussian elimination with partial pivoting.
 
     Parameters:
-    - a (List[List[float]]): The coefficient matrix.
-    - b (List[float]): The constant vector.
+    - a (list): The coefficient matrix.
+    - b (list): The constant vector.
     - n (int): The size of the system.
 
     Returns:
-    - List[float]: The solution vector.
+    - list: The solution vector.
 
     Example:
-    >>> a_matrix = [[2, 3, 4], [1, -2, 3], [3, 4, 5]]
-    >>> b_vector = [20, 9, 11]
-    >>> custom_gauss_elimination_pivoting(a_matrix, b_vector, 3)
+    >>a_matrix = [[2, 3, 4], [1, -2, 3], [3, 4, 5]]
+    >> b_vector = [20, 9, 11]
+    >> custom_gauss_elimination_pivoting(a_matrix, b_vector, 3)
     [1.0, 2.0, 3.0]
     """
     result = []
@@ -65,6 +60,8 @@ def custom_gauss_elimination_pivoting(
     return result
 
 
+
+
 # Example usage:
 # n_size = 3
 # a_matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype=float)
@@ -74,5 +71,5 @@ def custom_gauss_elimination_pivoting(
 # print("Solution:", solution)
 
 
-# URL that points to Wikipedia or another similar explanation.
-# >>>>>>URL:https://courses.engr.illinois.edu/cs357/su2013/lectures/lecture07.pdf<<<<<#
+#URL that points to Wikipedia or another similar explanation.
+#>>>>>>URL:https://courses.engr.illinois.edu/cs357/su2013/lectures/lecture07.pdf<<<<<#
