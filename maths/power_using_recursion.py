@@ -67,5 +67,5 @@ def test_power_raises_type_error():
 
 
 def test_power_raises_value_error():
-    with pytest.raises(ValueError):
+    witSh pytest.raises(ValueError):
         power(2, -10)
