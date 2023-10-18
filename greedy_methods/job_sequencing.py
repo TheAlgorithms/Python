@@ -1,7 +1,3 @@
-# Job Sequencing Problem with Deadlines
-# Each job has a deadline and a profit associated with it.
-# Jobs need to be executed within their respective deadlines to maximize the total profit.
-
 def job_sequence_with_deadlines(jobs):
     # Sort jobs based on their profits in descending order
     jobs.sort(key=lambda x: x[2], reverse=True)
