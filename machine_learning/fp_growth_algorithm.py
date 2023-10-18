@@ -106,9 +106,11 @@ def create_tree(data_set: list, min_sup: int = 1) -> ('TreeNode', dict):
             if item in freq_item_set:
                 local_d[item] = header_table[item][0]
         if len(local_d) > 0:
-            ordered_items = [v[0] for v in sorted(local_d.items(),
-                                                  key=lambda p: p[1], reverse=True)]
+            sorted_items = sorted(local_d.items(), 
+                                  key=lambda item_info: item_info[1], reverse=True)
+            ordered_items = [item[0] for item in sorted_items]
             update_tree(ordered_items, fp_tree, header_table, 1)
+
 
     return fp_tree, header_table
 
@@ -283,7 +285,8 @@ def mine_tree(in_tree: 'TreeNode', header_table: dict,
     >>> all(expected in frequent_itemsets for expected in expe_itm)
     True
     """
-    big_l = [v[0] for v in sorted(header_table.items(), key=lambda p: p[1][0])]
+    sorted_items = sorted(header_table.items(), key=lambda item_info: item_info[1][0])
+    big_l = [item[0] for item in sorted_items]
     for base_pat in big_l:
         new_freq_set = pre_fix.copy()
         new_freq_set.add(base_pat)
@@ -311,5 +314,5 @@ if __name__ == '__main__':
     ]
     fp_tree, header_table = create_tree(data_set, min_sup=3)
     freq_items = []
-    mine_tree(fp_tree, header_table, 3, set([]), freq_items)
+    mine_tree(fp_tree, header_table, 3, set(), freq_items)
     print(freq_items)
