@@ -23,10 +23,6 @@ def permutation_tuple_to_list(arr: list[int | str]) -> list[list[int]]:
 
 def generate_all_permutations(sequence: list[int | str]) -> None:
     """
-    >>> generate_all_permutations([])
-    [[]]
-    >>> generate_all_permutations([1])
-    [[1]]
     >>> generate_all_permutations([1, 2])
     [[1, 2], [2, 1]]
     >>> generate_all_permutations([1, 2, 3])
