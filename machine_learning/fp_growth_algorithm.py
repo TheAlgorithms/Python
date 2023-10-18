@@ -108,11 +108,11 @@ def create_tree(data_set: list, min_sup: int = 1) -> ("TreeNode", dict):
             if item in freq_item_set:
                 local_d[item] = header_table[item][0]
         if len(local_d) > 0:
-            sorted_items = sorted(local_d.items(), 
-                                  key=lambda item_info: item_info[1], reverse=True)
+            sorted_items = sorted(
+                local_d.items(), key=lambda item_info: item_info[1], reverse=True
+            )
             ordered_items = [item[0] for item in sorted_items]
             update_tree(ordered_items, fp_tree, header_table, 1)
-
 
     return fp_tree, header_table
 
