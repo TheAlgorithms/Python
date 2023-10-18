@@ -40,7 +40,7 @@ class LinkedList:
 
         Returns:
             None
-        
+
         Raises:
             None
         """
@@ -71,7 +71,7 @@ class LinkedList:
 
         Returns:
             None
-        
+
         Raises:
             None
         """
@@ -130,7 +130,7 @@ class LinkedList:
 
         Returns:
             None
-        
+
         Raises:
             None
         """
