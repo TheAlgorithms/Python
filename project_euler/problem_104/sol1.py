@@ -89,7 +89,7 @@ def is_pandigital_start(number: int) -> bool:
     return is_pandigital_end(number)
 
 
-def solution(a: int = 1, b: int = 1, ck: int = 3, max_k: int = 10_00_000) -> int:
+def slow_solution(a: int = 1, b: int = 1, ck: int = 3, max_k: int = 10_00_000) -> int:
     """
     Returns index `k` of the least Fibonacci number `F(k)` that is `1-9 pandigital`
     from both sides. Here `ck <= k < max_k`.
@@ -103,7 +103,7 @@ def solution(a: int = 1, b: int = 1, ck: int = 3, max_k: int = 10_00_000) -> int
     Returns:
         int - index `k` of the least `1-9 pandigital` Fibonacci number `F(k)`
 
-    >>> solution()
+    >>> slow_solution()
     329468
     """
 
@@ -139,6 +139,72 @@ def solution(a: int = 1, b: int = 1, ck: int = 3, max_k: int = 10_00_000) -> int
 
         # perform check only if k is in end_pandigital
         if end_pandigital[k] and is_pandigital_both(fk):
+            return k
+
+    # Not found
+    return -1
+
+
+def solution(a: int = 1, b: int = 1, ck: int = 3, max_k: int = 10_00_000) -> int:
+    """
+    Returns index `k` of the least Fibonacci number `F(k)` that is `1-9 pandigital`
+    from both sides. Here `ck <= k < max_k`.
+
+    Parameters:
+        a: int - First fibonacci number `F(k)-2`
+        b: int - Second fibonacci number `F(k)-1`
+        ck: int - Initial index `k` of the Fibonacci number `F(k)`
+        max_k: int - Maximum index `k` of the Fibonacci number `F(k)`
+
+    Returns:
+        int - index `k` of the least `1-9 pandigital` Fibonacci number `F(k)`
+
+    >>> solution()
+    329468
+    """
+
+    # Equivalent to 10**9, for getting no higher then 9 digit numbers
+    billion = 1_000_000_000
+
+    # For reserving 9 digits (and a few more digits for carry) from the start
+    billion_plus = billion * 1_000_000
+
+    # Fibonacci numbers
+    fk_2 = a  # fk - 2
+    fk_1 = b  # fk - 1
+    # fk      # fk_1 + fk_2
+
+    # Fibonacci numbers mod billion
+    mk_2 = a % billion  # (fk - 2) % billion
+    mk_1 = b % billion  # (fk - 1) % billion
+    # mk                # (fk    ) % billion
+
+    end_pandigital = [0] * max_k
+
+    # Check fibonacci numbers % 10**9
+    for k in range(ck, max_k):
+        mk = (mk_2 + mk_1) % billion
+        mk_2 = mk_1
+        mk_1 = mk
+
+        if is_pandigital_end(mk):
+            end_pandigital[k] = 1
+
+    # Check fibonacci numbers
+    for k in range(ck, max_k):
+        fk = fk_2 + fk_1
+        fk_2 = fk_1
+        fk_1 = fk
+
+        # We don't care about the digits after the 9'th one
+        # But still we need to keep some digits after after the 9'th
+        # Because of carry
+        if fk_2 > billion_plus:
+            fk_1 //= 10
+            fk_2 //= 10
+
+        # perform check only if k is in end_pandigital
+        if end_pandigital[k] and is_pandigital_start(fk):
             return k
 
     # Not found
