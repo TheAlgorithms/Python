@@ -20,6 +20,9 @@ for d ≤ 1,000,000?
 def solution(limit: int = 1000000) -> int:
     """
     Return the number of reduced proper fractions with denominator less than limit.
+
+    Time: 1 sec
+
     >>> solution(8)
     21
     >>> solution(1000)
