@@ -84,10 +84,11 @@ def create_tree(data_set: list, min_sup: int = 1) -> (TreeNode, dict):
     ['B', 'C']
 
     """
-    header_table: dict[str, list] = {}
+    header_table: dict = {}
     for trans in data_set:
         for item in trans:
-            header_table[item] = header_table.get(item, 0) + 1
+            header_table[item] = header_table.get(item, [0, None])
+            header_table[item][0] += 1
 
     for k in list(header_table.keys()):
         if header_table[k] < min_sup:
@@ -247,9 +248,9 @@ def find_prefix_path(base_pat: frozenset, tree_node: "TreeNode") -> dict:
     >>> sorted(cond_pat.keys())
     []
     """
-    cond_pats = {}
+    cond_pats: dict = {}
     while tree_node is not None:
-        prefix_path = []
+        prefix_path: list = []
         ascend_tree(tree_node, prefix_path)
         if len(prefix_path) > 1:
             cond_pats[frozenset(prefix_path[1:])] = tree_node.count
