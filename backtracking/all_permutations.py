@@ -21,7 +21,7 @@ def permutation_tuple_to_list(arr: list[int | str]) -> list[list[int]]:
     return [list(output_tuple) for output_tuple in permutations(arr)]
 
 
-def generate_all_permutations(sequence: list[int | str]) -> None:
+def generate_all_permutations(sequence: list[int | str]) -> list[list[int]]:
     """
     >>> generate_all_permutations([])
     [[]]
@@ -52,7 +52,7 @@ def create_state_space_tree(
     current_sequence: list[int | str],
     index: int,
     index_used: list[int],
-    output: list[list[int]],
+    output: list[list[int | str]],
 ) -> None:
     """
     Creates a state space tree to iterate through each branch using DFS.
@@ -72,12 +72,13 @@ def create_state_space_tree(
             current_sequence.append(sequence[i])
             index_used[i] = True
             # function spaced like this b/c linter 88 char limit
-            create_state_space_tree(
-                sequence, current_sequence, index + 1, index_used, output
-            )
+            create_state_space_tree(sequence,
+                                    current_sequence, 
+                                    index + 1, 
+                                    index_used, 
+                                    output)
             current_sequence.pop()
             index_used[i] = False
-    return output
 
 
 """
