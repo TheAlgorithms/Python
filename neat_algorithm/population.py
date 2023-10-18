@@ -1,10 +1,13 @@
-from genome import Genome
-from geneh import GeneHistory
-from species import Species
+#!/bin/python
 
 import random
-import numpy as np
+
 import matplotlib.pyplot as plt
+import numpy as np
+from geneh import GeneHistory
+from genome import Genome
+from species import Species
+
 
 class Population:
     def __init__(self, pop_len, n_inputs, n_outputs):
@@ -16,7 +19,7 @@ class Population:
 
         for _ in range(pop_len):
             self.population.append(Genome(self.gh))
-            # temp 
+            # temp
             for _ in range(random.randint(10, 50)):
                 self.population[-1].mutate()
 
@@ -24,15 +27,12 @@ class Population:
         self.best = self.population[self.best_index]
         self.max_species = 5
         self.species = []
-        pass
 
     def fitness_sharing(self):
         for i in range(self.pop_len):
-            # For now, fitness_sharing dosen't work
+            # For now, fitness_sharing doesn't work
             self.population[i].adjusted_fitness = self.population[i].fitness
-            pass
-        pass
-    
+
     def speciate(self):
         # Clear all species
         self.species.clear()
@@ -54,8 +54,7 @@ class Population:
                     self.species.append(Species(self.population[i]))
         if True:
             for s in self.species:
-                print('Species : ', s.get_len())
-        pass
+                print("Species : ", s.get_len())
 
     def plot_cluster(self):
         values = []
@@ -65,19 +64,20 @@ class Population:
             cd = self.population[0].calculate_compatibility(self.population[i])
             values.append(cd)
             yvalues[i] = i
-        plt.plot(values, yvalues, 'ro')
+        plt.plot(values, yvalues, "ro")
         plt.show()
-        pass
-    
-    # Heuristic for testing
-    def next(self):
-        self.best_index = self.best_index + 1 if self.best_index <= self.pop_len - 2 else 0
-        self.best = self.population[self.best_index]
-        print(self.best_index)
-        pass
 
-    def prev(self):
-        self.best_index = self.best_index - 1 if self.best_index > 0 else self.pop_len - 1
+    # Heuristic for testing
+    def next_best(self):
+        self.best_index = (
+            self.best_index + 1 if self.best_index <= self.pop_len - 2 else 0
+        )
         self.best = self.population[self.best_index]
         print(self.best_index)
-        pass
+
+    def prev_best(self):
+        self.best_index = (
+            self.best_index - 1 if self.best_index > 0 else self.pop_len - 1
+        )
+        self.best = self.population[self.best_index]
+        print(self.best_index)

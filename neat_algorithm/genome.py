@@ -1,7 +1,10 @@
-from node import Node
-from gene import Gene
+#!/bin/python3
 
 import random
+
+from gene import Gene
+from node import Node
+
 
 class Genome:
     def __init__(self, gh):
@@ -12,7 +15,7 @@ class Genome:
         self.n_outputs = gh.n_outputs
         # Total Nodes (used as ctr)
         self.total_nodes = 0
-        
+
         # Nodes and genes
         self.nodes = []
         self.genes = []
@@ -30,7 +33,6 @@ class Genome:
         for _ in range(self.n_outputs):
             self.nodes.append(Node(self.total_nodes, 1))
             self.total_nodes += 1
-        pass
 
     def clone(self):
         clone = Genome(self.gh)
@@ -49,10 +51,7 @@ class Genome:
 
     # Gene with inno exists
     def exists(self, inno):
-        for g in self.genes:
-            if g.inno == inno:
-                return True
-        return False
+        return any(g.inno == inno for g in self.genes)
 
     # Connect nodes
     def connect_nodes(self, n1, n2):
@@ -74,7 +73,6 @@ class Genome:
             self.gh.global_inno += 1
             self.gh.all_genes.append(x.clone())
             self.genes.append(x)
-        pass
 
     # Mutate add gene
     def add_gene(self):
@@ -86,8 +84,7 @@ class Genome:
             n2 = random.choice(self.nodes)
 
         self.connect_nodes(n1, n2)
-        pass
-    
+
     # Random Mutations
     def mutate(self):
         if len(self.genes) == 0:
@@ -100,7 +97,6 @@ class Genome:
             self.add_gene()
         if random.random() < 0.02:
             self.add_node()
-        pass
 
     def get_node(self, n):
         for i in range(len(self.nodes)):
@@ -121,12 +117,11 @@ class Genome:
         # Add in_genes
         for i in range(len(self.genes)):
             self.genes[i].out_node.in_genes.append(self.genes[i])
-        pass
 
     # Get Outputs
     def get_outputs(self, inputs):
         if len(inputs) != self.n_inputs:
-            print('Wrong number of inputs')
+            print("Wrong number of inputs")
             return [-1]
 
         # Input layers outputs are the specified inputs
@@ -166,12 +161,12 @@ class Genome:
     def calculate_compatibility(self, partner):
         try:
             p1_highest_inno = max([(a.inno) for a in self.genes])
-        except Exception:
+        except NotImplementedError:
             p1_highest_inno = 0
 
         try:
             p2_highest_inno = max([(a.inno) for a in partner.genes])
-        except Exception:
+        except NotImplementedError:
             p2_highest_inno = 0
 
         # Set highest inno (Should be one with highest fitness)
@@ -188,7 +183,7 @@ class Genome:
         flag = 0
 
         total_weights = 0
-        
+
         for i in range(highest_inno):
             e1 = self.exists(i)
             e2 = partner.exists(i)
@@ -198,21 +193,22 @@ class Genome:
                 total_weights += self.get_weight(i) - partner.get_weight(i)
                 continue
 
-        disjoint = (flag+1) - matching
+        disjoint = (flag + 1) - matching
         excess = highest_inno - flag
 
         if matching == 0:
             matching = 1
         avg_weights = total_weights / matching
 
-        N = 1 if highest_inno < 20 else highest_inno
-        excess_coeff = c1 * excess / N
-        disjoint_coeff = c2 * disjoint / N
+        n = 1 if highest_inno < 20 else highest_inno
+        excess_coeff = c1 * excess / n
+        disjoint_coeff = c2 * disjoint / n
         weight_coeff = c3 * avg_weights
 
         # Compatibility distance
         cd = excess_coeff + disjoint_coeff + weight_coeff
 
+        # Debugging
         # print(matching, disjoint, excess)
         # print("Compatibility Distance", cd)
         return cd
@@ -247,15 +243,14 @@ class Genome:
         self.genes[-2].weight = g.weight
         g.enabled = False
         self.nodes.append(n)
-        pass
 
     # Get Some info
     def get_info(self) -> str:
-        s = 'Genome -----------------------\n'
+        s = "Genome -----------------------\n"
         for g in self.genes:
             s += g.get_info()
 
-        s += '------------------------------'
+        s += "------------------------------"
         return s
 
     def __str__(self):
@@ -266,15 +261,22 @@ class Genome:
         ds.fill((255, 255, 255, 0))
         # Set Positions
         w, h = ds.get_size()
-        vert_gap = h / (self.n_inputs+1)
+        vert_gap = h / (self.n_inputs + 1)
         for i in range(self.n_inputs):
             self.nodes[i].pos = [30, self.nodes[i].number * vert_gap + vert_gap]
-        vert_gap = h / (self.n_outputs+1)
-        for i in range(self.n_inputs, self.n_inputs+self.n_outputs):
-            self.nodes[i].pos = [w - 30, (self.nodes[i].number - self.n_inputs) * vert_gap + vert_gap]
+        vert_gap = h / (self.n_outputs + 1)
+        for i in range(self.n_inputs, self.n_inputs + self.n_outputs):
+            self.nodes[i].pos = [
+                w - 30,
+                (self.nodes[i].number - self.n_inputs) * vert_gap + vert_gap,
+            ]
         vert_gap = h / ((len(self.nodes) - (self.n_inputs + self.n_outputs)) + 1)
-        for i in range(self.n_inputs+self.n_outputs, len(self.nodes)):
-            self.nodes[i].pos = [w/2, (self.nodes[i].number - self.n_inputs - self.n_outputs) * vert_gap + vert_gap]
+        for i in range(self.n_inputs + self.n_outputs, len(self.nodes)):
+            self.nodes[i].pos = [
+                w / 2,
+                (self.nodes[i].number - self.n_inputs - self.n_outputs) * vert_gap
+                + vert_gap,
+            ]
 
         # Show Genes
         for g in self.genes:
@@ -282,4 +284,3 @@ class Genome:
         # Show nodes
         for n in self.nodes:
             n.show(ds)
-        pass

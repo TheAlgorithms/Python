@@ -1,5 +1,9 @@
-import pygame
+#!/bin/python3
+
 import math
+
+import pygame
+
 
 class Node:
     def __init__(self, node, layer):
@@ -12,7 +16,7 @@ class Node:
         # all genes coming to this node
         self.in_genes = []
         # Sigmoid activation
-        self.sigmoid = lambda x : 1 / (1 + math.exp(-x))
+        self.sigmoid = lambda x: 1 / (1 + math.exp(-x))
 
         # For Showing
         self.color = (255, 255, 255)
@@ -21,8 +25,6 @@ class Node:
         self.radius = 5
         self.border_radius = 2
         self.pos = [0, 0]
-
-        pass
 
     # Clone the node
     def clone(self):
@@ -34,7 +36,7 @@ class Node:
     # Calculate output value
     def calculate(self):
         if self.layer == 0:
-            print('No calculations for first layer')
+            print("No calculations for first layer")
             return
 
         s = 0
@@ -42,10 +44,8 @@ class Node:
             if g.enabled:
                 s += g.in_node.output * g.weight
         self.output = self.sigmoid(s)
-        pass
 
     # Only for showing
     def show(self, ds):
         pygame.draw.circle(ds, self.bcolor, self.pos, self.radius + self.border_radius)
         pygame.draw.circle(ds, self.color, self.pos, self.radius)
-        pass

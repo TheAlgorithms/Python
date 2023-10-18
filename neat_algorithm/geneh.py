@@ -1,3 +1,6 @@
+#!/bin/python3
+
+
 class GeneHistory:
     def __init__(self, n_inputs, n_outputs):
         # Inputs
@@ -10,7 +13,6 @@ class GeneHistory:
         self.global_inno = 0
         # Highest hidden layer
         self.highest_hidden = 2
-        pass
 
     # Check if already exists in history
     def exists(self, n1, n2):

@@ -1,5 +1,9 @@
+#!/bin/python3
+
 import random
+
 import pygame
+
 
 class Gene:
     def __init__(self, i, o):
@@ -14,7 +18,6 @@ class Gene:
 
         # For showing
         self.color = (0, 255, 0)
-        pass
 
     # Clone the gene
     def clone(self):
@@ -23,7 +26,7 @@ class Gene:
         g.enabled = self.enabled
         g.inno = self.inno
         return g
-    
+
     # Simple mutations to weight
     def mutate(self):
         if random.random() < 0.1:
@@ -40,7 +43,7 @@ class Gene:
         s += str(self.in_node.number) + "(" + str(self.in_node.layer) + ") -> "
         s += str(self.out_node.number) + "(" + str(self.out_node.layer) + ") "
         s += str(self.weight) + " "
-        s += str(self.enabled) + '\n'
+        s += str(self.enabled) + "\n"
         return s
 
     def __str__(self) -> str:
@@ -52,4 +55,3 @@ class Gene:
         if not self.enabled:
             self.color = (0, 255, 0)
         pygame.draw.line(ds, self.color, self.in_node.pos, self.out_node.pos, 2)
-        pass
