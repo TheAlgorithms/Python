@@ -23,7 +23,7 @@ def power(base: int, exponent: int) -> float:
     >>> power(2, 0)
     1
     >>> all(power(base, exponent) == pow(base, exponent)
-    ...for base in range(-10, 10) for exponent in range(10))
+    ...     for base in range(-10, 10) for exponent in range(10))
     True
     """
     if exponent == 0:
