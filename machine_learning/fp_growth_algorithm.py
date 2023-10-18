@@ -12,6 +12,7 @@ Examples: https://www.javatpoint.com/fp-growth-algorithm-in-data-mining
 from typing import Optional
 
 
+
 class TreeNode:
     """
     Initialize a TreeNode.
