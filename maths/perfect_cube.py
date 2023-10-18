@@ -26,8 +26,14 @@ def perfect_cube_binary_search(n: int) -> bool:
     >>> perfect_cube_binary_search("a")
     Traceback (most recent call last):
         ...
-    TypeError: '<=' not supported between instances of 'int' and 'str'
+    TypeError: perfect_cube_binary_search() only accepts integers
+    >>> perfect_cube_binary_search(0.1)
+    Traceback (most recent call last):
+        ...
+    TypeError: perfect_cube_binary_search() only accepts integers
     """
+    if not isinstance(n, int):
+        raise TypeError("perfect_cube_binary_search() only accepts integers")
     if n < 0:
         n = -n
     left = 0
