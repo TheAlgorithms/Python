@@ -9,7 +9,7 @@ WIKI: https://athena.ecs.csus.edu/~mei/associationcw/FpGrowth.html
 Examples: https://www.javatpoint.com/fp-growth-algorithm-in-data-mining
 """
 
-from typing import Optional, Union
+from typing import Optional
 
 
 class TreeNode:
@@ -194,6 +194,13 @@ def update_header(node_to_test: TreeNode, target_node: TreeNode) -> None:
     while node_to_test.node_link is not None:
         node_to_test = node_to_test.node_link
     node_to_test.node_link = target_node
+    if node_to_test.node_link is None:
+        new_node = TreeNode(None, 1, node_to_test)
+        node_to_test.node_link = new_node
+        update_header(new_node, header_table)
+        return new_node
+    else:
+        node_to_test = node_to_test.node_link
 
 
 def ascend_tree(leaf_node: TreeNode, prefix_path: list) -> None:
@@ -256,7 +263,7 @@ def find_prefix_path(base_pat: frozenset, tree_node: TreeNode) -> dict:
         ascend_tree(tree_node, prefix_path)
         if len(prefix_path) > 1:
             cond_pats[frozenset(prefix_path[1:])] = tree_node.count
-        tree_node: TreeNode | None = tree_node.node_link
+        tree_node = tree_node.node_link
     return cond_pats
 
 
