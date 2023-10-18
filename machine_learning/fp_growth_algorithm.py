@@ -9,9 +9,7 @@ WIKI: https://athena.ecs.csus.edu/~mei/associationcw/FpGrowth.html
 Examples: https://www.javatpoint.com/fp-growth-algorithm-in-data-mining
 """
 
-from typing import Optional
-
-
+from typing import Optional, Union
 
 class TreeNode:
     """
@@ -194,6 +192,10 @@ def update_header(node_to_test: TreeNode, target_node: TreeNode) -> None:
     """
     while node_to_test.node_link is not None:
         node_to_test = node_to_test.node_link
+    # Modify the type hint for node_link to allow for either TreeNode or None
+    node_link: Optional[TreeNode] = None
+
+    # Now you can assign a TreeNode or None to node_link without any type errors
     if node_to_test.node_link is None:
         node_to_test.node_link = target_node
 
@@ -259,7 +261,7 @@ def find_prefix_path(base_pat: frozenset, tree_node: TreeNode) -> dict:
         ascend_tree(tree_node, prefix_path)
         if len(prefix_path) > 1:
             cond_pats[frozenset(prefix_path[1:])] = tree_node.count
-        tree_node: [TreeNode | None] = tree_node.node_link
+        tree_node: Union[TreeNode,None] = tree_node.node_link
     return cond_pats
 
 
@@ -304,7 +306,7 @@ def mine_tree(
         new_freq_set.add(base_pat)
         freq_item_list.append(new_freq_set)
         cond_patt_bases = find_prefix_path(base_pat, header_table[base_pat][1])
-        my_cond_tree, my_head = create_tree(cond_patt_bases.keys(), min_sup)
+        my_cond_tree, my_head = create_tree(list(cond_patt_bases.keys()), min_sup)
         if my_head is not None:
             mine_tree(my_cond_tree, my_head, min_sup, new_freq_set, freq_item_list)
 
