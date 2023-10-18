@@ -1,34 +1,36 @@
 """
-The FP-Growth (Frequent Pattern Growth) algorithm is a widely used 
-data mining technique for discovering frequent itemsets in 
+The FP-Growth (Frequent Pattern Growth) algorithm is a widely used
+data mining technique for discovering frequent itemsets in
 large transaction databases.
-It overcomes some of the limitations of traditional methods like 
+It overcomes some of the limitations of traditional methods like
 Apriori by efficiently constructing the FP-Tree
 
 WIKI: https://athena.ecs.csus.edu/~mei/associationcw/FpGrowth.html
 Examples: https://www.javatpoint.com/fp-growth-algorithm-in-data-mining
 """
 
+
 class TreeNode:
     """
-        Initialize a TreeNode.
+    Initialize a TreeNode.
 
-        Args:
-            name_value (str): The name of the node.
-            num_occur (int): The number of occurrences of the node.
-            parent_node (TreeNode): The parent node.
+    Args:
+        name_value (str): The name of the node.
+        num_occur (int): The number of occurrences of the node.
+        parent_node (TreeNode): The parent node.
 
-        Example:
-        >>> parent = TreeNode("Parent", 1, None)
-        >>> child = TreeNode("Child", 2, parent)
-        >>> child.name
-        'Child'
-        >>> child.count
-        2
+    Example:
+    >>> parent = TreeNode("Parent", 1, None)
+    >>> child = TreeNode("Child", 2, parent)
+    >>> child.name
+    'Child'
+    >>> child.count
+    2
     """
 
-    def __init__(self, name_value: str, num_occur: int, 
-                 parent_node: 'TreeNode') -> None:
+    def __init__(
+        self, name_value: str, num_occur: int, parent_node: "TreeNode"
+    ) -> None:
         self.name = name_value
         self.count = num_occur
         self.node_link = None
@@ -39,17 +41,17 @@ class TreeNode:
         self.count += num_occur
 
     def disp(self, ind: int = 1) -> None:
-        print('  ' * ind, self.name, ' ', self.count)
+        print("  " * ind, self.name, " ", self.count)
         for child in self.children.values():
             child.disp(ind + 1)
 
 
-def create_tree(data_set: list, min_sup: int = 1) -> ('TreeNode', dict):
+def create_tree(data_set: list, min_sup: int = 1) -> ("TreeNode", dict):
     """
     Create FP tree
 
     Args:
-        data_set (list): A list of transactions, where each transaction 
+        data_set (list): A list of transactions, where each transaction
         is a list of items.
         min_sup (int, optional): The minimum support threshold.
         Items with support less than this will be pruned. Default is 1.
@@ -89,7 +91,7 @@ def create_tree(data_set: list, min_sup: int = 1) -> ('TreeNode', dict):
 
     for k in list(header_table.keys()):
         if header_table[k] < min_sup:
-            del (header_table[k])
+            del header_table[k]
 
     freq_item_set = set(header_table.keys())
 
@@ -99,22 +101,24 @@ def create_tree(data_set: list, min_sup: int = 1) -> ('TreeNode', dict):
     for k in header_table:
         header_table[k] = [header_table[k], None]
 
-    fp_tree = TreeNode('Null Set', 1, None)
+    fp_tree = TreeNode("Null Set", 1, None)
     for tran_set in data_set:
         local_d = {}
         for item in tran_set:
             if item in freq_item_set:
                 local_d[item] = header_table[item][0]
         if len(local_d) > 0:
-            ordered_items = [v[0] for v in sorted(local_d.items(),
-                                                  key=lambda p: p[1], reverse=True)]
+            ordered_items = [
+                v[0] for v in sorted(local_d.items(), key=lambda p: p[1], reverse=True)
+            ]
             update_tree(ordered_items, fp_tree, header_table, 1)
 
     return fp_tree, header_table
 
 
-def update_tree(items: list, in_tree: 'TreeNode', 
-                header_table: dict, count: int) -> None:
+def update_tree(
+    items: list, in_tree: "TreeNode", header_table: dict, count: int
+) -> None:
     """
     Update the FP-Tree with a transaction.
 
@@ -157,7 +161,7 @@ def update_tree(items: list, in_tree: 'TreeNode',
         update_tree(items[1:], in_tree.children[items[0]], header_table, count)
 
 
-def update_header(node_to_test: 'TreeNode', target_node: 'TreeNode') -> None:
+def update_header(node_to_test: "TreeNode", target_node: "TreeNode") -> None:
     """
     Update the header table with a node link.
 
@@ -190,9 +194,9 @@ def update_header(node_to_test: 'TreeNode', target_node: 'TreeNode') -> None:
     node_to_test.node_link = target_node
 
 
-def ascend_tree(leaf_node: 'TreeNode', prefix_path: list) -> None:
+def ascend_tree(leaf_node: "TreeNode", prefix_path: list) -> None:
     """
-    Ascend the FP-Tree from a leaf node to its root, 
+    Ascend the FP-Tree from a leaf node to its root,
     adding item names to the prefix path.
 
     Args:
@@ -220,7 +224,7 @@ def ascend_tree(leaf_node: 'TreeNode', prefix_path: list) -> None:
         ascend_tree(leaf_node.parent, prefix_path)
 
 
-def find_prefix_path(base_pat: frozenset, tree_node: 'TreeNode') -> dict:
+def find_prefix_path(base_pat: frozenset, tree_node: "TreeNode") -> dict:
     """
     Find the conditional pattern base for a given base pattern.
 
@@ -254,8 +258,13 @@ def find_prefix_path(base_pat: frozenset, tree_node: 'TreeNode') -> dict:
     return cond_pats
 
 
-def mine_tree(in_tree: 'TreeNode', header_table: dict, 
-              min_sup: int, pre_fix: set, freq_item_list: list) -> None:
+def mine_tree(
+    in_tree: "TreeNode",
+    header_table: dict,
+    min_sup: int,
+    pre_fix: set,
+    freq_item_list: list,
+) -> None:
     """
     Mine the FP-Tree recursively to discover frequent itemsets.
 
@@ -294,20 +303,20 @@ def mine_tree(in_tree: 'TreeNode', header_table: dict,
             mine_tree(my_cond_tree, my_head, min_sup, new_freq_set, freq_item_list)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
 
     data_set = [
-        frozenset(['bread', 'milk', 'cheese']),
-        frozenset(['bread', 'milk']),
-        frozenset(['bread', 'diapers']),
-        frozenset(['bread', 'milk', 'diapers']),
-        frozenset(['milk', 'diapers']),
-        frozenset(['milk', 'cheese']),
-        frozenset(['diapers', 'cheese']),
-        frozenset(['bread', 'milk', 'cheese', 'diapers'])
+        frozenset(["bread", "milk", "cheese"]),
+        frozenset(["bread", "milk"]),
+        frozenset(["bread", "diapers"]),
+        frozenset(["bread", "milk", "diapers"]),
+        frozenset(["milk", "diapers"]),
+        frozenset(["milk", "cheese"]),
+        frozenset(["diapers", "cheese"]),
+        frozenset(["bread", "milk", "cheese", "diapers"]),
     ]
     fp_tree, header_table = create_tree(data_set, min_sup=3)
     freq_items = []
