@@ -17,6 +17,30 @@ for d ≤ 1,000,000?
 """
 
 
+def set_generate_primes(limit: int) -> set:
+    """
+    Returns prime numbers below max_number.
+
+    >>> set_generate_primes(10)
+    {2, 3, 5, 7}
+    >>> set_generate_primes(2)
+    set()
+    """
+
+    if limit <= 2:
+        return set()
+
+    primes = set(range(3, limit, 2))
+    primes.add(2)
+
+    for p in range(3, limit, 2):
+        if p not in primes:
+            continue
+        primes.difference_update(set(range(p * p, limit, p)))
+
+    return primes
+
+
 def solution(limit: int = 1000000) -> int:
     """
     Return the number of reduced proper fractions with denominator less than limit.
@@ -28,13 +52,8 @@ def solution(limit: int = 1000000) -> int:
     >>> solution(1000)
     304191
     """
-    primes = set(range(3, limit, 2))
-    primes.add(2)
-    for p in range(3, limit, 2):
-        if p not in primes:
-            continue
-        primes.difference_update(set(range(p * p, limit, p)))
 
+    primes = set_generate_primes(limit)
     phi = [float(n) for n in range(limit + 1)]
 
     for p in primes:
