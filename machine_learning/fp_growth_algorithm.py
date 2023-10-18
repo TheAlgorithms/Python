@@ -30,7 +30,7 @@ class TreeNode:
     """
 
     def __init__(
-        self, name_value: str, num_occur: int, parent_node: Optional['TreeNode'] = None
+        self, name_value: str, num_occur: int, parent_node: Optional["TreeNode"] = None
     ) -> None:
         self.name = name_value
         self.count = num_occur
@@ -98,7 +98,7 @@ def create_tree(data_set: list, min_sup: int = 1) -> tuple[TreeNode, dict]:
     freq_item_set = set(header_table.keys())
 
     if len(freq_item_set) == 0:
-        return TreeNode('Null Set', 1, None), {}
+        return TreeNode("Null Set", 1, None), {}
 
     for k in header_table:
         header_table[k] = [header_table[k], None]
@@ -198,7 +198,6 @@ def update_header(node_to_test: TreeNode, target_node: TreeNode) -> None:
     # Now you can assign a TreeNode or None to node_link without any type errors
     if node_to_test.node_link is None:
         node_to_test.node_link = target_node
-
 
 
 def ascend_tree(leaf_node: TreeNode, prefix_path: list) -> None:
