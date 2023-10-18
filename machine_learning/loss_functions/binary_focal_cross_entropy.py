@@ -3,7 +3,7 @@ Binary Focal Cross-Entropy (BFCE) Loss Function
 
 Description:
 Quantifies dissimilarity between true labels (0 or 1) and predicted probabilities.
-It's a variation of binary cross-entropy that addresses class imbalance by 
+It's a variation of binary cross-entropy that addresses class imbalance by
 focusing on hard examples.
 
 Formula:
@@ -17,9 +17,13 @@ Source:
 
 import numpy as np
 
+
 def binary_focal_cross_entropy(
-        y_true: np.ndarray, y_pred: np.ndarray, 
-        gamma: float = 2.0, alpha: float = 0.25, epsilon: float = 1e-15
+    y_true: np.ndarray,
+    y_pred: np.ndarray,
+    gamma: float = 2.0,
+    alpha: float = 0.25,
+    epsilon: float = 1e-15,
 ) -> float:
     """
     Calculate the BFCE Loss between true labels and predicted probabilities.
@@ -52,8 +56,10 @@ def binary_focal_cross_entropy(
     y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
 
     # Focal loss calculation
-    bcfe_loss = -(alpha * (1 - y_pred) ** gamma * y_true * np.log(y_pred) 
-                   + (1 - alpha) * y_pred ** gamma * (1 - y_true) * np.log(1 - y_pred))
+    bcfe_loss = -(
+        alpha * (1 - y_pred) ** gamma * y_true * np.log(y_pred)
+        + (1 - alpha) * y_pred**gamma * (1 - y_true) * np.log(1 - y_pred)
+    )
 
     # Take the mean over all samples
     return np.mean(bcfe_loss)
