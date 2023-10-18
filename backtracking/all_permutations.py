@@ -10,7 +10,7 @@ from __future__ import annotations
 from itertools import permutations
 
 
-def permutation_tuple_to_list(arr: list[int | str]) -> list[list[int]]:
+def permutation_tuple_to_list(arr: list[int | str]) -> list[list[int | str]]:
     """
     Default permutation output is list of tuples
     >>> permutation_tuple_to_list([1,2])
@@ -21,7 +21,7 @@ def permutation_tuple_to_list(arr: list[int | str]) -> list[list[int]]:
     return [list(output_tuple) for output_tuple in permutations(arr)]
 
 
-def generate_all_permutations(sequence: list[int | str]) -> list[list[int]]:
+def generate_all_permutations(sequence: list[int | str]) -> list[list[int | str]]:
     """
     >>> generate_all_permutations([])
     [[]]
@@ -42,7 +42,7 @@ def generate_all_permutations(sequence: list[int | str]) -> list[list[int]]:
     >>> generate_all_permutations(test_arr) == permutation_tuple_to_list(test_arr)
     True
     """
-    output: list[list[int]] = []
+    output: list[list[int | str]] = []
     create_state_space_tree(sequence, [], 0, [0 for i in range(len(sequence))], output)
     return output
 
