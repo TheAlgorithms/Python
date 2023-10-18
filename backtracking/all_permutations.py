@@ -72,11 +72,9 @@ def create_state_space_tree(
             current_sequence.append(sequence[i])
             index_used[i] = True
             # function spaced like this b/c linter 88 char limit
-            create_state_space_tree(sequence,
-                                    current_sequence, 
-                                    index + 1, 
-                                    index_used, 
-                                    output)
+            create_state_space_tree(
+                sequence, current_sequence, index + 1, index_used, output
+            )
             current_sequence.pop()
             index_used[i] = False
 
