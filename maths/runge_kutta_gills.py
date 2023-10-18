@@ -1,12 +1,13 @@
 """
 Use the Runge-Kutta-Gill's method of order 4 to solve Ordinary Differential Equations.
+Author : Ravi Kumar
 """
 
 from collections.abc import Callable
 
-from math import sqrt
-
 import numpy as np
+
+from math import sqrt
 
 
 def runge_kutta_gills(
