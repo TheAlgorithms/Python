@@ -193,12 +193,7 @@ def update_header(node_to_test: TreeNode, target_node: TreeNode) -> None:
     """
     while node_to_test.node_link is not None:
         node_to_test = node_to_test.node_link
-    # Modify the type hint for node_link to allow for either TreeNode or None
-    node_link: Optional[TreeNode] = None
-
-    # Now you can assign a TreeNode or None to node_link without any type errors
-    if node_to_test.node_link is None:
-        node_to_test.node_link = target_node
+    node_to_test.node_link = target_node
 
 
 def ascend_tree(leaf_node: TreeNode, prefix_path: list) -> None:
@@ -261,7 +256,7 @@ def find_prefix_path(base_pat: frozenset, tree_node: TreeNode) -> dict:
         ascend_tree(tree_node, prefix_path)
         if len(prefix_path) > 1:
             cond_pats[frozenset(prefix_path[1:])] = tree_node.count
-        tree_node: Union[TreeNode, None] = tree_node.node_link
+        tree_node: TreeNode | None = tree_node.node_link
     return cond_pats
 
 
