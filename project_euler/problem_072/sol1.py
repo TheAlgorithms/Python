@@ -36,7 +36,7 @@ def solution(limit: int = 1_000_000) -> int:
     """
 
     # generating an array from -1 to limit
-    phi = np.arange(-1, limit)
+    phi = np.arange(-1, limit, dtype=np.int64)
 
     for i in range(2, limit + 1):
         if phi[i] == i - 1:
