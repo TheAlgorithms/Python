@@ -36,13 +36,7 @@ def is_pandigital_both(number: int) -> bool:
     True
     """
 
-    # Check end
-    if not is_pandigital_end(number):
-        return False
-
-    # Check start
-    number = int(str(number)[:9])
-    return is_pandigital_end(number)
+    return is_pandigital_end(number) and is_pandigital_start(number)
 
 
 def is_pandigital_end(number: int) -> bool:
@@ -61,16 +55,38 @@ def is_pandigital_end(number: int) -> bool:
     >>> is_pandigital_end(12345678957656779870004321)
     False
     """
-
-    digit_count = [0] * 10
+    digit_count = [True] + [False] * 9
 
     # Count the occurrences of each digit[0-9]
     for _ in range(9):
-        digit_count[int(number % 10)] = 1
-        number = number // 10
+        number, mod = divmod(number, 10)
+        if digit_count[mod]:
+            return False
+        digit_count[mod] = True
 
     # Return False if any digit is missing
-    return all(digit_count[x + 1] for x in range(9))
+    return all(digit_count[1:])
+
+
+def is_pandigital_start(number: int) -> bool:
+    """
+    Checks if the first 9 digits of a number are `1-9 pandigital`.
+
+    Returns:
+        bool - True if the first 9 digits contain all the digits 1 to 9, False otherwise
+
+    >>> is_pandigital_start(123456789987654321)
+    True
+
+    >>> is_pandigital_start(120000987654321)
+    False
+
+    >>> is_pandigital_start(1234567895765677987654321)
+    True
+    """
+
+    number = int(str(number)[:9])
+    return is_pandigital_end(number)
 
 
 def solution(a: int = 1, b: int = 1, ck: int = 3, max_k: int = 10_00_000) -> int:
