@@ -8,7 +8,9 @@ Apriori by efficiently constructing the FP-Tree
 WIKI: https://athena.ecs.csus.edu/~mei/associationcw/FpGrowth.html
 Examples: https://www.javatpoint.com/fp-growth-algorithm-in-data-mining
 """
-from typing import Union
+
+from typing import Optional
+
 
 class TreeNode:
     """
@@ -29,7 +31,7 @@ class TreeNode:
     """
 
     def __init__(
-        self, name_value: str, num_occur: int, parent_node: "TreeNode"
+        self, name_value: str, num_occur: int, parent_node: Optional['TreeNode'] = None
     ) -> None:
         self.name = name_value
         self.count = num_occur
@@ -97,7 +99,7 @@ def create_tree(data_set: list, min_sup: int = 1) -> tuple[TreeNode, dict]:
     freq_item_set = set(header_table.keys())
 
     if len(freq_item_set) == 0:
-        return None, None
+        return TreeNode('Null Set', 1, None), {}
 
     for k in header_table:
         header_table[k] = [header_table[k], None]
@@ -191,7 +193,9 @@ def update_header(node_to_test: TreeNode, target_node: TreeNode) -> None:
     """
     while node_to_test.node_link is not None:
         node_to_test = node_to_test.node_link
-    node_to_test.node_link = target_node
+    if node_to_test.node_link is None:
+        node_to_test.node_link = target_node
+
 
 
 def ascend_tree(leaf_node: TreeNode, prefix_path: list) -> None:
@@ -224,7 +228,7 @@ def ascend_tree(leaf_node: TreeNode, prefix_path: list) -> None:
         ascend_tree(leaf_node.parent, prefix_path)
 
 
-def find_prefix_path(base_pat: frozenset, tree_node: "TreeNode") -> dict:
+def find_prefix_path(base_pat: frozenset, tree_node: TreeNode) -> dict:
     """
     Find the conditional pattern base for a given base pattern.
 
@@ -254,7 +258,7 @@ def find_prefix_path(base_pat: frozenset, tree_node: "TreeNode") -> dict:
         ascend_tree(tree_node, prefix_path)
         if len(prefix_path) > 1:
             cond_pats[frozenset(prefix_path[1:])] = tree_node.count
-        tree_node: Union[TreeNode, None] = tree_node.node_link
+        tree_node: [TreeNode | None] = tree_node.node_link
     return cond_pats
 
 
@@ -299,7 +303,7 @@ def mine_tree(
         new_freq_set.add(base_pat)
         freq_item_list.append(new_freq_set)
         cond_patt_bases = find_prefix_path(base_pat, header_table[base_pat][1])
-        my_cond_tree, my_head = create_tree(cond_patt_bases, min_sup)
+        my_cond_tree, my_head = create_tree(cond_patt_bases.keys(), min_sup)
         if my_head is not None:
             mine_tree(my_cond_tree, my_head, min_sup, new_freq_set, freq_item_list)
 
