@@ -191,11 +191,9 @@ def update_header(node_to_test: TreeNode, target_node: TreeNode ) -> None:
     >>> node2.node_link is None
     True
     """
-    if node_to_test.node_link is None:
-        node_to_test.node_link = target_node
-    else:
-        while node_to_test.node_link is not None:
-            node_to_test = node_to_test.node_link
+    while node_to_test is not None and node_to_test.node_link is not None:
+        node_to_test = node_to_test.node_link
+    if node_to_test is not None:
         node_to_test.node_link = target_node
 
 
