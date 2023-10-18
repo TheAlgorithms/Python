@@ -29,7 +29,7 @@ class TreeNode:
     """
 
     def __init__(
-        self, name_value: str, num_occur: int, parent_node: 'TreeNode'
+        self, name_value: str, num_occur: int, parent_node: "TreeNode"
     ) -> None:
         self.name = name_value
         self.count = num_occur
@@ -117,9 +117,7 @@ def create_tree(data_set: list, min_sup: int = 1) -> (TreeNode, dict):
     return fp_tree, header_table
 
 
-def update_tree(
-    items: list, in_tree: TreeNode, header_table: dict, count: int
-) -> None:
+def update_tree(items: list, in_tree: TreeNode, header_table: dict, count: int) -> None:
     """
     Update the FP-Tree with a transaction.
 
