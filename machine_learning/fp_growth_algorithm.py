@@ -226,7 +226,7 @@ def ascend_tree(leaf_node: TreeNode, prefix_path: list) -> None:
         ascend_tree(leaf_node.parent, prefix_path)
 
 
-def find_prefix_path(base_pat: frozenset, tree_node: [TreeNode | None][0]) -> dict:
+def find_prefix_path(base_pat: frozenset, tree_node: TreeNode | None) -> dict:
     """
     Find the conditional pattern base for a given base pattern.
 
