@@ -23,6 +23,10 @@ def permutation_tuple_to_list(arr: list[int | str]) -> list[list[int]]:
 
 def generate_all_permutations(sequence: list[int | str]) -> None:
     """
+    >>> generate_all_permutations([])
+    [[]]
+    >>> generate_all_permutations([1])
+    [[1]]
     >>> generate_all_permutations([1, 2])
     [[1, 2], [2, 1]]
     >>> generate_all_permutations([1, 2, 3])
@@ -35,10 +39,12 @@ def generate_all_permutations(sequence: list[int | str]) -> None:
     [['a', 'b'], ['b', 'a']]
     >>> from itertools import permutations
     >>> test_arr = [num for num in range(0, 6)]
-    >>> all(generate_all_permutations(test_arr) == list(permutations[test_arr]))
+    >>> generate_all_permutations(test_arr) == permutation_tuple_to_list(test_arr)
     True
     """
-    create_state_space_tree(sequence, [], 0, [0 for i in range(len(sequence))])
+    output: list[list[int]] = []
+    create_state_space_tree(sequence, [], 0, [0 for i in range(len(sequence))], output)
+    return output
 
 
 def create_state_space_tree(
@@ -46,6 +52,7 @@ def create_state_space_tree(
     current_sequence: list[int | str],
     index: int,
     index_used: list[int],
+    output: list[list[int]],
 ) -> None:
     """
     Creates a state space tree to iterate through each branch using DFS.
@@ -54,16 +61,20 @@ def create_state_space_tree(
     """
 
     if index == len(sequence):
-        print(current_sequence)
+        # Copying b/c popping current_sequence is part of this recursive algo. 
+        # Can't have pointer to that arr
+        current_sequence_copy = [num for num in current_sequence] 
+        output.append(current_sequence_copy)
         return
 
     for i in range(len(sequence)):
         if not index_used[i]:
             current_sequence.append(sequence[i])
             index_used[i] = True
-            create_state_space_tree(sequence, current_sequence, index + 1, index_used)
+            create_state_space_tree(sequence, current_sequence, index + 1, index_used, output)
             current_sequence.pop()
             index_used[i] = False
+    return output
 
 
 """
