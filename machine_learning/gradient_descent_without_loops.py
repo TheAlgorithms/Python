@@ -103,8 +103,10 @@ def test_gradient_descent() -> None:
     predictions = predict(test_x, weights, bias)
     print("Testing: ")
     for i in range(test_x.shape[-1]):
-        print(f'Actual output value: {test_y[0, i]}\t\
-              Predicted output value: {predictions[0, i]}')
+        print(
+            f"Actual output value: {test_y[0, i]}\t\
+              Predicted output value: {predictions[0, i]}"
+        )
     print()
 
 
