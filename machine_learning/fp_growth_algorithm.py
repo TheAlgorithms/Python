@@ -11,6 +11,7 @@ Examples: https://www.javatpoint.com/fp-growth-algorithm-in-data-mining
 
 from typing import Optional, Union
 
+
 class TreeNode:
     """
     Initialize a TreeNode.
@@ -260,7 +261,7 @@ def find_prefix_path(base_pat: frozenset, tree_node: TreeNode) -> dict:
         ascend_tree(tree_node, prefix_path)
         if len(prefix_path) > 1:
             cond_pats[frozenset(prefix_path[1:])] = tree_node.count
-        tree_node: Union[TreeNode,None] = tree_node.node_link
+        tree_node: Union[TreeNode, None] = tree_node.node_link
     return cond_pats
 
 
