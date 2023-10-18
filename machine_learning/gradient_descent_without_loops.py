@@ -5,7 +5,7 @@ function.
 import numpy as np
 
 
-def random_linear_function(x0, x1, x2):
+def random_linear_function(x0: float, x1: float, x2: float) -> float:
     return -0.44562 * x0 + 1.07831 * x1 + 0.34078 * x2 - 0.60752
 
 
@@ -68,8 +68,8 @@ def gradient_descent(
     y: np.ndarray,
     weights: np.ndarray,
     bias: np.ndarray,
-    learning_rate=0.001,
-    iterations=10000,
+    learning_rate: float = 0.001,
+    iterations: int = 10000,
 ) -> tuple:
     """
     Uses gradient descent to train the model.
@@ -91,7 +91,7 @@ def gradient_descent(
     return weights, bias
 
 
-def test_gradient_descent():
+def test_gradient_descent() -> None:
     """
     Prints actual output and predicted output side by side for a model.
     """
@@ -105,9 +105,6 @@ def test_gradient_descent():
     for i in range(test_x.shape[-1]):
         print(f'Actual output value: {test_y[0, i]}\t\
               Predicted output value: {predictions[0, i]}')
-        print(
-            f"Actual output value: {test_y[0, i]} \tPredicted output value: {predictions[0, i]}"
-        )
     print()
 
 
