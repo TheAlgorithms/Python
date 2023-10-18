@@ -38,3 +38,9 @@ def job_sequence_with_deadlines(jobs):
     return [
         job_id for job_id in result if job_id != -1
     ]  # Return the sequence of selected jobs
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
