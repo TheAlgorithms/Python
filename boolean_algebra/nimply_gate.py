@@ -34,7 +34,6 @@ def nimply_gate(input_1: int, input_2: int) -> int:
 
 
 if __name__ == "__main__":
-    print(nimply_gate(0, 0))
-    print(nimply_gate(0, 1))
-    print(nimply_gate(1, 0))
-    print(nimply_gate(1, 1))
+    import doctest
+
+    doctest.testmod()
