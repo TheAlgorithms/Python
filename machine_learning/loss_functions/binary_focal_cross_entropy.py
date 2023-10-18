@@ -7,7 +7,8 @@ It's a variation of binary cross-entropy that addresses class imbalance by
 focusing on hard examples.
 
 Formula:
-Focal Loss = -Σ(alpha * (1 - y_pred)**gamma * y_true * log(y_pred) + (1 - alpha) * y_pred**gamma * (1 - y_true) * log(1 - y_pred))
+Focal Loss = -Σ(alpha * (1 - y_pred)**gamma * y_true * log(y_pred) 
+                + (1 - alpha) * y_pred**gamma * (1 - y_true) * log(1 - y_pred))
 
 Source:
 [Lin et al., 2018](https://arxiv.org/pdf/1708.02002.pdf)
