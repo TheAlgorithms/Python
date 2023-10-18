@@ -35,7 +35,7 @@ class TreeNode:
     ) -> None:
         self.name = name_value
         self.count = num_occur
-        self.node_link = TreeNode = None  # Initialize node_link to None
+        self.node_link = None  # Initialize node_link to None
         self.parent = parent_node
         self.children: dict[str, TreeNode] = {}
 
@@ -163,7 +163,7 @@ def update_tree(items: list, in_tree: TreeNode, header_table: dict, count: int) 
         update_tree(items[1:], in_tree.children[items[0]], header_table, count)
 
 
-def update_header(node_to_test: TreeNode, target_node: TreeNode) -> None:
+def update_header(node_to_test: TreeNode, target_node: TreeNode | None) -> None:
     """
     Update the header table with a node link.
 
