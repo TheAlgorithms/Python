@@ -211,5 +211,22 @@ def solution(a: int = 1, b: int = 1, ck: int = 3, max_k: int = 10_00_000) -> int
     return -1
 
 
+def benchmark() -> None:
+    """
+    Benchmark
+    """
+    # Running performance benchmarks...
+    # Solution : 8.59146850000252   to  9.774559199999203
+    # Slow Sol : 57.75938980000137  to  61.15365279999969
+
+    from timeit import timeit
+
+    print("Running performance benchmarks...")
+
+    print(f"Solution : {timeit('solution()', globals=globals(), number=10)}")
+    print(f"Slow Sol : {timeit('slow_solution()', globals=globals(), number=10)}")
+
+
 if __name__ == "__main__":
     print(f"{solution() = }")
+    benchmark()
