@@ -163,7 +163,7 @@ def update_tree(items: list, in_tree: TreeNode, header_table: dict, count: int) 
         update_tree(items[1:], in_tree.children[items[0]], header_table, count)
 
 
-def update_header(node_to_test: TreeNode, target_node: TreeNode | None) -> None:
+def update_header(node_to_test: TreeNode | None, target_node: TreeNode | None) -> None:
     """
     Update the header table with a node link.
 
