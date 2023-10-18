@@ -74,11 +74,16 @@ def runge_kutta_gills(
     x[0] = x_initial
     for i in range(n):
         k1 = step_size * func(x[i], y[i])
-        k2 = step_size * func(x[i] + step_size / 2 , y[i] + k1 / 2)
-        k3 = step_size * func(x[i] + step_size/2 ,y[i] + (-0.5+1/sqrt(2)) * k1 + (1-1/sqrt(2)) * k2)
-        k4 = step_size * func(x[i] + step_size , y[i] - (1/sqrt(2)) * k2 + (1+1/sqrt(2))* k3)
+        k2 = step_size * func(x[i] + step_size / 2, y[i] + k1 / 2)
+        k3 = step_size * func(
+            x[i] + step_size / 2,
+            y[i] + (-0.5 + 1 / sqrt(2)) * k1 + (1 - 1 / sqrt(2)) * k2,
+        )
+        k4 = step_size * func(
+            x[i] + step_size, y[i] - (1 / sqrt(2)) * k2 + (1 + 1 / sqrt(2)) * k3
+        )
 
-        y[i+1] = y[i] + (k1 + (2-sqrt(2))*k2 + (2+sqrt(2))*k3 + k4)/6
+        y[i + 1] = y[i] + (k1 + (2 - sqrt(2)) * k2 + (2 + sqrt(2)) * k3 + k4) / 6
         x[i + 1] = step_size + x[i]
     return y
 
