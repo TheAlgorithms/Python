@@ -7,8 +7,41 @@
 """
 from __future__ import annotations
 
+from itertools import permutations
+
+
+def permutation_tuple_to_list(arr: list[int | str]) -> list[list[int]]:
+    """
+    Default permutation output is list of tuples
+    >>> permutation_tuple_to_list([1,2])
+    [[1, 2], [2, 1]]
+    >>> permutation_tuple_to_list(['a', 'b'])
+    [['a', 'b'], ['b', 'a']]
+    """
+    return [list(output_tuple) for output_tuple in permutations(arr)]
+
 
 def generate_all_permutations(sequence: list[int | str]) -> None:
+    """
+    >>> generate_all_permutations([])
+    [[]]
+    >>> generate_all_permutations([1])
+    [[1]]
+    >>> generate_all_permutations([1, 2])
+    [[1, 2], [2, 1]]
+    >>> generate_all_permutations([1, 2, 3])
+    [[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]
+    >>> generate_all_permutations([-1, 2])
+    [[-1, 2], [2, -1]]
+    >>> generate_all_permutations([1, -2])
+    [[1, -2], [-2, 1]]
+    >>> generate_all_permutations(['a', 'b'])
+    [['a', 'b'], ['b', 'a']]
+    >>> from itertools import permutations
+    >>> test_arr = [num for num in range(0, 6)]
+    >>> all(generate_all_permutations(test_arr) == list(permutations[test_arr]))
+    True
+    """
     create_state_space_tree(sequence, [], 0, [0 for i in range(len(sequence))])
 
 
@@ -49,3 +82,8 @@ generate_all_permutations(sequence)
 
 sequence_2: list[int | str] = ["A", "B", "C"]
 generate_all_permutations(sequence_2)
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
