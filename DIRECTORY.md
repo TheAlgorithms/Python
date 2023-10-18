@@ -534,6 +534,7 @@
   * [Data Transformations](machine_learning/data_transformations.py)
   * [Decision Tree](machine_learning/decision_tree.py)
   * [Dimensionality Reduction](machine_learning/dimensionality_reduction.py)
+  * [FP Growth Algorithm](machine_learning/fp_growth_algorithm.py)
   * Forecasting
     * [Run](machine_learning/forecasting/run.py)
   * [Gradient Descent](machine_learning/gradient_descent.py)
