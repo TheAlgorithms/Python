@@ -2,10 +2,11 @@ def calculate_parity_bit(message):
     # Count the number of set bits (1s) in the message
     parity = 0
     for bit in message:
-        if bit == '1':
+        if bit == "1":
             parity ^= 1  # XOR operation to toggle the parity bit
     # Append the calculated parity bit to the message
     return message + str(parity)
+
 
 def verify_parity_bit(message_with_parity):
     # Count the number of set bits (1s) in the message (excluding the parity bit)
@@ -13,10 +14,11 @@ def verify_parity_bit(message_with_parity):
     parity_bit = message_with_parity[-1]
     parity = 0
     for bit in data_bits:
-        if bit == '1':
+        if bit == "1":
             parity ^= 1
     # Check if the calculated parity matches the received parity bit
     return parity == int(parity_bit)
+
 
 # Example usage
 message = "1101001"  # 7-bit message
