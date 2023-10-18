@@ -64,8 +64,8 @@ def cost(y_true: np.ndarray, y_predicted: np.ndarray) -> float:
 
 
 def gradient_descent(
-    x: np.ndarray,
-    y: np.ndarray,
+    input_x: np.ndarray,
+    output_y: np.ndarray,
     weights: np.ndarray,
     bias: np.ndarray,
     learning_rate: float = 0.001,
@@ -77,17 +77,17 @@ def gradient_descent(
     Prints cost function every 1000 epochs.
     """
     for iteration in range(iterations):
-        yhat = predict(x, weights, bias)
-        dz = 2 * (yhat - y)
-        dw = dz @ x.T / m
+        yhat = predict(input_x, weights, bias)
+        dz = 2 * (yhat - output_y)
+        dw = dz @ input_x.T / m
         db = np.mean(dz)
         weights -= learning_rate * dw
         bias -= learning_rate * db
 
         if iteration % 1000 == 0:
-            print(f"Cost after {iteration} iterations: {cost(y, yhat)}")
+            print(f"Cost after {iteration} iterations: {cost(output_y, yhat)}")
 
-    print(f"Final cost: {cost(y, yhat)}\n")
+    print(f"Final cost: {cost(output_y, yhat)}\n")
     return weights, bias
 
 
