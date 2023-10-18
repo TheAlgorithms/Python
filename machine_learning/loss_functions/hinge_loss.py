@@ -51,7 +51,7 @@ def hinge_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
     # Raise value error when y_true (encoded labels) have any other values
     # than -1 and 1
-    if np.array_equal(np.sort(np.unique(y_true)), np.array([-1, 1])) is False:
+    if np.any((y_true != -1) & (y_true != 1)):
         raise ValueError("y_true can have values -1 or 1 only.")
 
     hinge_losses = np.maximum(0, 1.0 - (y_true * y_pred))
