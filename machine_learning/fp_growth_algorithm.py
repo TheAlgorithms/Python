@@ -35,7 +35,7 @@ class TreeNode:
     ) -> None:
         self.name = name_value
         self.count = num_occur
-        self.node_link = None  # Initialize node_link to None
+        self.node_link = TreeNode = None  # Initialize node_link to None
         self.parent = parent_node
         self.children: dict[str, TreeNode] = {}
 
