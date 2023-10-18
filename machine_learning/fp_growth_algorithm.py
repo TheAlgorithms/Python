@@ -10,6 +10,7 @@ Examples: https://www.javatpoint.com/fp-growth-algorithm-in-data-mining
 """
 from typing import Union
 
+
 class TreeNode:
     """
     Initialize a TreeNode.
