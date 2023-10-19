@@ -17,6 +17,8 @@ from queue import Queue
         >>> is_bipartite(defaultdict(list, {0: [1, 2], 1: [0, 2], 2: [0, 1]}))
         True"""
 
+
+
 def check_bipartite(graph:defaultdict[int, list[int]]) -> bool:
     queue = Queue()
     visited = [False] * len(graph)
