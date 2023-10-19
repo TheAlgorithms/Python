@@ -31,7 +31,8 @@ def check_bipartite(graph: dict[int, list[int]]) -> bool:
         graph (dict[int, list[int]]): An adjacency list representing the graph.
 
         Returns:
-        bool: True if there's no edge that connects vertices of the same set, False otherwise.
+        bool: True if there's no edge that connects vertices of the same set,
+        False otherwise.
 
         Examples:
         >>> bfs({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]})
@@ -100,13 +101,14 @@ def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
         Args:
         node (int): The current node being visited.
         color (int): The color assigned to the current node.
-        graph (defaultdict[int, list[int]]): An adjacency list representing the graph.
-
+        graph (defaultdict[int, list[int]]): An adjacency list 
+        representing the graph.
         Returns:
-        bool: True if the graph is bipartite starting from the current node, False otherwise.
-
+        bool: True if the graph is bipartite
+        starting from the current node, False otherwise.
         Examples:
-        >>> depth_first_search(0, 0, defaultdict(list, {0: [1, 2], 1: [0, 3], 2: [0, 4], 3: [1], 4: [2]}))
+        >>> depth_first_search(0, 0, defaultdict(list, {0: [1, 2], 1: [0, 3],
+        2: [0, 4], 3: [1], 4: [2]}))
         False
         >>> depth_first_search(0, 0, defaultdict(list, {0: [1, 2], 1: [0, 2], 2: [0, 1]}))
         True
