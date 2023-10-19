@@ -10,6 +10,8 @@ def vernam_encrypt(plaintext: str, key: str) -> str:
     'RIJVS'
     """
     return ciphertext
+
+
 def vernam_decrypt(ciphertext: str, key: str) -> str:
     decrypted_text = ""
     for i in range(len(ciphertext)):
@@ -22,6 +24,8 @@ def vernam_decrypt(ciphertext: str, key: str) -> str:
     'HELLO'
     """
     return decrypted_text
+
+
 # Example usage
 plaintext = input("Enter the message: ").upper()
 key = input("Enter the key: ").upper()
@@ -34,8 +38,8 @@ print("Decrypted:", decrypted_text)
 
 # Tests
 
-#encrypt_txt = vernam_encrypt("HELLO", "KEY")
-#print(encrypt_txt)
+# encrypt_txt = vernam_encrypt("HELLO", "KEY")
+# print(encrypt_txt)
 
-#decrypt_txt = vernam_decrypt(encrypt_txt, "KEY")
-#print(decrypt_txt)
+# decrypt_txt = vernam_decrypt(encrypt_txt, "KEY")
+# print(decrypt_txt)
