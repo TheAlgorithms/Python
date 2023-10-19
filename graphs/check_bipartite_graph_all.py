@@ -101,7 +101,7 @@ def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
         Args:
         node (int): The current node being visited.
         color (int): The color assigned to the current node.
-        graph (defaultdict[int, list[int]]): An adjacency list 
+        graph (defaultdict[int, list[int]]): An adjacency list
         representing the graph.
         Returns:
         bool: True if the graph is bipartite
