@@ -39,3 +39,8 @@ print("\n\n")
 print("Plaintext:", plaintext)
 print("Encrypted:", encrypted_text)
 print("Decrypted:", decrypted_text)
+
+if __name__ == "__main__":
+    import doctest
+    
+    doctest.testmod()
