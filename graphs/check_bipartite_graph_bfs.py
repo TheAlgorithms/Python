@@ -32,15 +32,21 @@ def check_bipartite(graph):
     >>> check_bipartite(
     ... {7: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 4: [0]}
     ... )
+    Traceback (most recent call last):
+        ...
     KeyError: 0
     >>> check_bipartite(
     ... {0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 9: [0]}
     ... )
+    Traceback (most recent call last):
+        ...
     KeyError: 4
     >>> check_bipartite(
     ... {0: [-1, 3], 1: [0, -2]}
     ... )
-    KeyError: -1
+    Traceback (most recent call last):
+        ...
+    IndexError: list index out of range
     >>> check_bipartite(
     ... {-1: [0, 2], 0: [-1, 1], 1: [0, 2], 2: [-1, 1]}
     ... )
@@ -48,6 +54,8 @@ def check_bipartite(graph):
     >>> check_bipartite(
     ... {0.9: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}
     ... )
+    Traceback (most recent call last):
+        ...
     KeyError: 0
     >>> check_bipartite(
     ... {0: [1.0, 3.0], 1.0: [0, 2.0], 2.0: [1.0, 3.0], 3.0: [0, 2.0]}
@@ -56,10 +64,14 @@ def check_bipartite(graph):
     >>> check_bipartite(
     ... {"a": [1, 3], "b": [0, 2], "c": [1, 3], "d": [0, 2]}
     ... )
+    Traceback (most recent call last):
+        ...
     KeyError: 0
     >>> check_bipartite(
     ... {0: ["b", "d"], 1: ["a", "c"], 2: ["b", "d"], 3: ["a", "c"]}
     ... )
+    Traceback (most recent call last):
+        ...
     TypeError: list indices must be integers or slices, not str
     """
     queue = Queue()
@@ -97,3 +109,5 @@ def check_bipartite(graph):
 if __name__ == "__main__":
     # Adjacency List of graph
     print(check_bipartite({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}))
+    import doctest
+    doctest.testmod()
