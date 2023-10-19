@@ -34,8 +34,8 @@ if __name__ == "__main__":
 
 
 # Example usage
-plaintext = input("Enter the message: ").upper()
-key = input("Enter the key: ").upper()
+plaintext = "HELLO"
+key = "KEY"
 encrypted_text = vernam_encrypt(plaintext, key)
 decrypted_text = vernam_decrypt(encrypted_text, key)
 print("\n\n")
