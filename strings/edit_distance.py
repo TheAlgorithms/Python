@@ -4,10 +4,10 @@ def edit_distance(source: str, target: str) -> int:
     how dissimilar two strings are to one another. It is measured by
     counting the minimum number of operations required to transform one string
     into another.
-    
+
     This implementation assumes that the cost of operations (insertion, deletion and
     substitution) is always 1
-    
+
     Args:
     source: the initial string with respect to which we are calculating the edit distance
         for the target
