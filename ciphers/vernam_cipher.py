@@ -47,8 +47,8 @@ print("Decrypted:", decrypted_text)
 
 # Tests
 
-# encrypt_txt = vernam_encrypt("HELLO", "KEY")
-# print(encrypt_txt)
+encrypt_txt = vernam_encrypt("HELLO", "KEY")
+print(encrypt_txt)
 
-# decrypt_txt = vernam_decrypt(encrypt_txt, "KEY")
-# print(decrypt_txt)
+decrypt_txt = vernam_decrypt(encrypt_txt, "KEY")
+print(decrypt_txt)
