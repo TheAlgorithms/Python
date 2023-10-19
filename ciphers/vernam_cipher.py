@@ -37,13 +37,6 @@ print("Encrypted:", encrypted_text)
 print("Decrypted:", decrypted_text)
 
 import doctest
-
 doctest.testmod()
 
-# Tests
 
-encrypt_txt = vernam_encrypt("HELLO", "KEY")
-print(encrypt_txt)
-
-decrypt_txt = vernam_decrypt(encrypt_txt, "KEY")
-print(decrypt_txt)
