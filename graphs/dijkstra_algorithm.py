@@ -28,8 +28,8 @@ class PriorityQueue:
         {}
         """
         self.cur_size = 0
-        self.array = []
-        self.node_positions = {}  # To store the pos of node in array
+        self.array: list[tuple] = []
+        self.node_positions: dict[str, int] = {}  # To store the pos of node in array
 
     def is_empty(self) -> bool:
         """
@@ -242,14 +242,16 @@ class Graph:
         >>> graph_test.get_adjacency_list()
         {}
         """
-        self.adjacency_list = defaultdict(list)  # To store graph: u -> (v,w)
+        self.adjacency_list: dict[int, list[tuple[int, int]]] = defaultdict(
+            list
+        )  # to store graph: u -> (v,w)
         self.num_nodes = num_nodes  # Number of nodes in graph
         self.dist_from_src = [
             0
         ] * self.num_nodes  # To store the distance from source vertex
         self.parent_idx = [-1] * self.num_nodes  # To store the path
 
-    def get_adjacency_list(self) -> dict:
+    def get_adjacency_list(self) -> dict[int, list[tuple[int, int]]]:
         """
         Returns the defaultdict adjacency_list converted to dict()
         """
@@ -351,6 +353,18 @@ class Graph:
         Node 2 has distance: 1
         >>> graph_test.dist_from_src
         [0, 2, 1]
+
+        >>> graph_test = Graph(3)
+        >>> graph_test.add_edge(0, 1, 1)
+        >>> graph_test.add_edge(1, 2, 2)
+        >>> graph_test.add_edge(0, 2, 2)
+        >>> graph_test.dijkstra(0)
+        Distance from node: 0
+        Node 0 has distance: 0
+        Node 1 has distance: 1
+        Node 2 has distance: 2
+        >>> graph_test.dist_from_src
+        [0, 1, 2]
         """
         self.dist_from_src = [
             sys.maxsize
@@ -365,7 +379,7 @@ class Graph:
         )  # track all vertices initially
 
         while not priority_queue.is_empty():
-            u = (
+            u = int(
                 priority_queue.extract_min()
             )  # return node with the min dist from source
 
@@ -478,7 +492,7 @@ if __name__ == "__main__":
         graph.add_edge(7, 8, 7)
         return graph
 
-    print("\nGraph prior to Dijkstra algorithm sorting:")
+    print("\nGraph:")
     test_graph = init_test_graph()
     test_graph.show_graph()
 
@@ -491,6 +505,14 @@ if __name__ == "__main__":
     )
     print(f"\nDijkstra processing time: {timer_dijkstra:.5f} s for {num_runs} runs")
 
-    print("\nGraph after Dijkstra algorithm sorting:")
+    print("\nGraph shortest paths after Dijkstra algorithm sorting:")
     test_graph.dijkstra(src=0, is_show_distance=False)
-    test_graph.show_graph()
+    test_graph.show_path(0, 0)
+    test_graph.show_path(0, 1)
+    test_graph.show_path(0, 2)
+    test_graph.show_path(0, 3)
+    test_graph.show_path(0, 4)
+    test_graph.show_path(0, 5)
+    test_graph.show_path(0, 6)
+    test_graph.show_path(0, 7)
+    test_graph.show_path(0, 8)
