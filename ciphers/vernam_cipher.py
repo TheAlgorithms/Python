@@ -28,6 +28,10 @@ def vernam_decrypt(ciphertext: str, key: str) -> str:
         decrypted_text += chr(65 + ct)
     return decrypted_text
 
+if __name__ == "__main__":
+    from doctest import testmod
+    doctest.testmod()
+
 
 # Example usage
 plaintext = input("Enter the message: ").upper()
@@ -38,7 +42,3 @@ print("\n\n")
 print("Plaintext:", plaintext)
 print("Encrypted:", encrypted_text)
 print("Decrypted:", decrypted_text)
-
-
-if __name__ == "__main__":
-    doctest.testmod()
