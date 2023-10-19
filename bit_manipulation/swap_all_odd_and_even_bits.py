@@ -1,9 +1,13 @@
 def swap_odd_even_bits(num):
     # Get all even bits
-    even_bits = num & 0xAAAAAAAA  # 0xAAAAAAAA is a 32-bit number with all even bits set to 1
+    even_bits = (
+        num & 0xAAAAAAAA
+    )  # 0xAAAAAAAA is a 32-bit number with all even bits set to 1
 
     # Get all odd bits
-    odd_bits = num & 0x55555555  # 0x55555555 is a 32-bit number with all odd bits set to 1
+    odd_bits = (
+        num & 0x55555555
+    )  # 0x55555555 is a 32-bit number with all odd bits set to 1
 
     # Right shift even bits by 1 and left shift odd bits by 1 to swap them
     even_bits >>= 1
@@ -13,6 +17,7 @@ def swap_odd_even_bits(num):
     result = even_bits | odd_bits
 
     return result
+
 
 # Example usage:
 num = 23  # Binary: 10111
