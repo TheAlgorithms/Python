@@ -18,8 +18,7 @@ from queue import Queue
         True"""
 
 
-
-def check_bipartite(graph:defaultdict[int, list[int]]) -> bool:
+def check_bipartite(graph: defaultdict[int, list[int]]) -> bool:
     queue = Queue()
     visited = [False] * len(graph)
     color = [-1] * len(graph)
@@ -55,9 +54,6 @@ def check_bipartite(graph:defaultdict[int, list[int]]) -> bool:
 if __name__ == "__main__":
     # Adjacency List of graph
     print(check_bipartite({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}))
-
-
-
 
 
 def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
