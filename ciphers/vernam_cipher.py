@@ -1,6 +1,3 @@
-import doctest
-
-
 def vernam_encrypt(plaintext: str, key: str) -> str:
     """
     >>> vernam_encrypt("HELLO","KEY")
