@@ -190,6 +190,7 @@ def update_header(node_to_test: TreeNode, target_node: TreeNode) -> TreeNode:
     >>> node2.node_link is None
     True
     """
+    node_to_test = node_to_test or TreeNode("", 0, None)
     while node_to_test.node_link is not None:
         node_to_test = node_to_test.node_link
     node_to_test.node_link = target_node
