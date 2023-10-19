@@ -4,7 +4,8 @@ Given an array of integers and an integer k, find the kth largest element in the
 https://stackoverflow.com/questions/251781/how-to-find-the-kth-largest-element-in-an-unsorted-array-of-length-n-in-on
 """
 
-def partition(arr,low,high):
+
+def partition(arr, low, high):
     """
     Partitions list based on the pivot element
     Args:
@@ -20,15 +21,17 @@ def partition(arr,low,high):
         >>> partition([7,1,4,5,9,2,6,5,8],0,8)
         1
     """
-    pivot=arr[high]
-    i=low-1
-    for j in range(low,high):
-        if arr[j]>= pivot:
-            i+=1
-            arr[i], arr[j]=arr[j],arr[i]
-    arr[i+1],arr[high]=arr[high],arr[i+1]
-    return i+1
-def kth_largest_element(arr,k):
+    pivot = arr[high]
+    i = low - 1
+    for j in range(low, high):
+        if arr[j] >= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    return i + 1
+
+
+def kth_largest_element(arr, k):
     """
     Finds the kth largest element in a list.
 
@@ -51,18 +54,21 @@ def kth_largest_element(arr,k):
     """
     if not 1 <= k <= len(arr):
         return "Invalid value of k"
-    low,high=0,len(arr)-1
-    while low<=high:
-        if low>len(arr)-1 or high<0:
+    low, high = 0, len(arr) - 1
+    while low <= high:
+        if low > len(arr) - 1 or high < 0:
             return "Invalid value of k"
-        pivot_index=partition(arr,low,high)
-        if pivot_index==k-1:
+        pivot_index = partition(arr, low, high)
+        if pivot_index == k - 1:
             return arr[pivot_index]
-        elif pivot_index>k-1:
-            high=pivot_index-1
+        elif pivot_index > k - 1:
+            high = pivot_index - 1
         else:
-            low=pivot_index+1
+            low = pivot_index + 1
     return "Kth largest element not found"
-if __name__=="__main__":
+
+
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
