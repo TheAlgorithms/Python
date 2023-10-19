@@ -17,12 +17,12 @@
 from queue import Queue
 
 
-def check_bipartite(graph):
+def check_bipartite(graph) -> bool:
     queue = Queue()
     visited = [False] * len(graph)
     color = [-1] * len(graph)
 
-    def bfs():
+    def bfs() -> bool:
         while not queue.empty():
             u = queue.get()
             visited[u] = True
