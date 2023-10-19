@@ -1,3 +1,9 @@
+"""
+Given an array of integers and an integer k, find the kth largest element in the array
+
+https://stackoverflow.com/questions/251781/how-to-find-the-kth-largest-element-in-an-unsorted-array-of-length-n-in-on
+"""
+
 def partition(arr,low,high):
     """
     Partitions list based on the pivot element
