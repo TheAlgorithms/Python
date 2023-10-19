@@ -14,9 +14,9 @@ Resources:
 """
 import numpy as np
 
+
 def categorical_focal_cross_entropy(
-        y_true: np.ndarray, y_pred: np.ndarray,
-        gamma: float = 2.0, epsilon: float = 1e-15
+    y_true: np.ndarray, y_pred: np.ndarray, gamma: float = 2.0, epsilon: float = 1e-15
 ) -> float:
     """
     Calculate Categorical Focal Cross-Entropy Loss between true class labels and
