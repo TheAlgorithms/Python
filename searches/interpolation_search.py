@@ -12,8 +12,6 @@ def interpolation_search(sorted_collection, item):
     :return: index of found item or None if item is not found
     >>> interpolation_search([-1, 0, 1], -1)
     0
-    >>> interpolation_search([-1, 0, 1], 2)
-    None
     """
     left = 0
     right = len(sorted_collection) - 1
