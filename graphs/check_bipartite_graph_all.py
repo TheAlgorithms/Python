@@ -1,5 +1,4 @@
-
-''' Check whether Graph is Bipartite or Not using BFS
+""" Check whether Graph is Bipartite or Not using BFS
  https://www.geeksforgeeks.org/bipartite-graph/
   Args:
         graph: An adjacency list representing the graph.
@@ -13,7 +12,7 @@
         ... )
         False
         >>> is_bipartite(defaultdict(list, {0: [1, 2], 1: [0, 2], 2: [0, 1]}))
-        True'''
+        True"""
 from queue import Queue
 
 
@@ -107,4 +106,3 @@ if __name__ == "__main__":
         print(f"{result.failed} test(s) failed.")
     else:
         print("All tests passed!")
-    
