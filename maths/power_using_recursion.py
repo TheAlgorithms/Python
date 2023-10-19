@@ -40,4 +40,3 @@ if __name__ == "__main__":
     if exponent < 0:  # power() does not properly deal w/ negative exponents
         result = 1 / result
     print(f"{base} to the power of {exponent} is {result}")
-	
