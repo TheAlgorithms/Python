@@ -1,3 +1,5 @@
+import doctest
+
 def vernam_encrypt(plaintext: str, key: str) -> str:
     """
     >>> vernam_encrypt("HELLO","KEY")
@@ -41,6 +43,4 @@ print("Encrypted:", encrypted_text)
 print("Decrypted:", decrypted_text)
 
 if __name__ == "__main__":
-    import doctest
-
     doctest.testmod()
