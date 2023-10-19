@@ -1,6 +1,6 @@
 def vernam_encrypt(plaintext: str, key: str) -> str:
     """
-    >>>vernam_encrypt("HELLO","KEY")
+    >>> vernam_encrypt("HELLO","KEY")
     'RIJVS'
     """
     ciphertext = ""
@@ -14,7 +14,7 @@ def vernam_encrypt(plaintext: str, key: str) -> str:
 
 def vernam_decrypt(ciphertext: str, key: str) -> str:
     """
-    >>>vernam_decrypt("RIJVS","KEY")
+    >>> vernam_decrypt("RIJVS","KEY")
     'HELLO'
     """
     decrypted_text = ""
