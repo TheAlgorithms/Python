@@ -2,8 +2,6 @@ from collections import defaultdict
 from queue import Queue
 
 
-
-
 def check_bipartite(graph: dict[int, list[int]]) -> bool:
     """
     Check whether a graph is Bipartite or not using Depth-First Search (DFS).
