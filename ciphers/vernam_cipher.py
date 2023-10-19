@@ -36,6 +36,9 @@ print("Plaintext:", plaintext)
 print("Encrypted:", encrypted_text)
 print("Decrypted:", decrypted_text)
 
+import doctest
+doctest.testmod()
+
 # Tests
 
 encrypt_txt = vernam_encrypt("HELLO", "KEY")
