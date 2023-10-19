@@ -39,13 +39,13 @@ def xgboost(
 
 def main() -> None:
     """
-    >>> main()
-    Mean Absolute Error : 0.30957163379906033
-    Mean Square Error  : 0.22611560196662744
-
     The URL for this algorithm
     https://xgboost.readthedocs.io/en/stable/
     California house price dataset is used to demonstrate the algorithm.
+
+    Expected error values:
+    Mean Absolute Error: 0.30957163379906033
+    Mean Square Error: 0.22611560196662744
     """
     # Load California house price dataset
     california = fetch_california_housing()
@@ -55,8 +55,8 @@ def main() -> None:
     )
     predictions = xgboost(x_train, y_train, x_test)
     # Error printing
-    print(f"Mean Absolute Error : {mean_absolute_error(y_test, predictions)}")
-    print(f"Mean Square Error  : {mean_squared_error(y_test, predictions)}")
+    print(f"Mean Absolute Error: {mean_absolute_error(y_test, predictions)}")
+    print(f"Mean Square Error: {mean_squared_error(y_test, predictions)}")
 
 
 if __name__ == "__main__":
