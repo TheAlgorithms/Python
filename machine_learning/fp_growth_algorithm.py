@@ -191,11 +191,10 @@ def update_header(node_to_test: TreeNode, target_node: TreeNode) -> None:
     >>> node2.node_link is None
     True
     """
-    if node_to_test is None:
-        node_to_test = TreeNode(None, 0, None)
-    while node_to_test is not None and node_to_test.node_link is not None:
-        node_to_test = node_to_test.node_link
-    node_to_test.node_link = target_node
+    if node_to_test is not None:
+        while node_to_test.node_link is not None:
+            node_to_test = node_to_test.node_link
+        node_to_test.node_link = target_node
 
 
 def ascend_tree(leaf_node: TreeNode, prefix_path: list) -> None:
