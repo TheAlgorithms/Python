@@ -6,6 +6,7 @@ A valid binary search tree is defined as follows:
 - The right subtree of a node contains only nodes with keys greater than the node's key.
 - Both the left and right subtrees must also be binary search trees.
 
+In effect, a binary tree is a valid BST if its nodes are sorted in ascending order.
 leetcode: https://leetcode.com/problems/validate-binary-search-tree/
 
 If n is the number of nodes in the tree then:
