@@ -11,7 +11,7 @@ def edit_distance(source: str, target: str) -> int:
     source: the initial string with respect to which we are calculating the edit
         distance for the target
     target: the target string, formed after performing n operations on the source string
-    
+
     >>> edit_distance("GATTIC", "GALTIC")
     1
     """
