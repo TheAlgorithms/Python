@@ -201,7 +201,7 @@ def decrypt_message(
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-    # msg = "DEFEND THE EAST WALL OF THE CASTLE."
-    # encrypted = encrypt_message(msg, "EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
-    # decrypted = decrypt_message(encrypted, "EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
-    # print(f"Encrypted: {encrypted}\nDecrypted: {decrypted}")
+    msg = "DEFEND THE EAST WALL OF THE CASTLE."
+    encrypted = encrypt_message(msg, "EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
+    decrypted = decrypt_message(encrypted, "EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
+    print(f"Encrypted: {encrypted}\nDecrypted: {decrypted}")
