@@ -354,17 +354,19 @@ class Graph:
         >>> graph_test.dist_from_src
         [0, 2, 1]
 
-        >>> graph_test = Graph(3)
-        >>> graph_test.add_edge(0, 1, 1)
+        >>> graph_test = Graph(4)
+        >>> graph_test.add_edge(0, 1, 4)
         >>> graph_test.add_edge(1, 2, 2)
-        >>> graph_test.add_edge(0, 2, 2)
+        >>> graph_test.add_edge(2, 3, 1)
+        >>> graph_test.add_edge(0, 2, 3)
         >>> graph_test.dijkstra(0)
         Distance from node: 0
         Node 0 has distance: 0
-        Node 1 has distance: 1
-        Node 2 has distance: 2
+        Node 1 has distance: 4
+        Node 2 has distance: 3
+        Node 3 has distance: 4
         >>> graph_test.dist_from_src
-        [0, 1, 2]
+        [0, 4, 3, 4]
         """
         self.dist_from_src = [
             sys.maxsize
