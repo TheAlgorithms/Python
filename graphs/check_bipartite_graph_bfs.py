@@ -10,6 +10,24 @@ from queue import Queue
 
 
 def check_bipartite(graph):
+    """
+    >>> check_bipartite(
+        ... {0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}
+        ... )
+    True
+    >>> check_bipartite(
+        ... {0: [1, 2, 3], 1: [0, 2], 2: [0, 1, 3], 3: [0, 2]}
+        ... )
+    False
+    >>> check_bipartite(
+        ... {0: [4], 1: [], 2: [4], 3: [4], 4: [0, 2, 3]}
+        ... )
+    True
+    >>> check_bipartite(
+        ... {0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2], 4: [0]}
+        ... )
+    False
+    """
     queue = Queue()
     visited = [False] * len(graph)
     color = [-1] * len(graph)
