@@ -1,3 +1,6 @@
+from collections import defaultdict
+from queue import Queue
+
 """ Check whether Graph is Bipartite or Not using BFS
  https://www.geeksforgeeks.org/bipartite-graph/
   Args:
@@ -13,10 +16,8 @@
         False
         >>> is_bipartite(defaultdict(list, {0: [1, 2], 1: [0, 2], 2: [0, 1]}))
         True"""
-from queue import Queue
 
-
-def check_bipartite(graph:Dict[int, List[int]]) -> bool:
+def check_bipartite(graph:any) -> bool:
     queue = Queue()
     visited = [False] * len(graph)
     color = [-1] * len(graph)
@@ -54,7 +55,7 @@ if __name__ == "__main__":
     print(check_bipartite({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}))
 
 
-from collections import defaultdict
+
 
 
 def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
