@@ -12,8 +12,8 @@ from queue import Queue
 def check_bipartite(graph):
     """
     >>> check_bipartite(
-        ... {0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}
-        ... )
+    ... {0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}
+    ... )
     True
     >>> check_bipartite(
         ... {0: [1, 2, 3], 1: [0, 2], 2: [0, 1, 3], 3: [0, 2]}
