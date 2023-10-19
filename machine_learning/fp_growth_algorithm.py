@@ -190,12 +190,9 @@ def update_header(node_to_test: TreeNode, target_node: TreeNode) -> TreeNode:
     >>> node2.node_link is None
     True
     """
-    if node_to_test.node_link is None:
-        node_to_test.node_link = target_node
-    else:
-        while node_to_test.node_link is not None:
-            node_to_test = node_to_test.node_link
-        node_to_test.node_link = target_node
+    while node_to_test.node_link is not None:
+        node_to_test = node_to_test.node_link
+    node_to_test.node_link = target_node
     # Return the updated node
     return node_to_test
 
@@ -308,7 +305,8 @@ def mine_tree(
         my_cond_tree, my_head = create_tree(list(cond_patt_bases.keys()), min_sup)
         if my_head is not None:
             # Pass header_table[base_pat][1] as node_to_test to update_header
-            header_table[base_pat][1] = update_header(header_table[base_pat][1], my_cond_tree)
+            header_table[base_pat][1] = update_header(header_table[base_pat][1],
+                                                    my_cond_tree)
             mine_tree(my_cond_tree, my_head, min_sup, new_freq_set, freq_item_list)
 
 
