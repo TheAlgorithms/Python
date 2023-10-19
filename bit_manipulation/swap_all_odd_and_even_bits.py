@@ -50,4 +50,4 @@ if __name__ == "__main__":
 
     doctest.testmod()
     for i in (-1, 0, 1, 2, 3, 4, 23, 24):
-        print(show_bits(i, swap_odd_even_bits(i)), '\n')
+        print(show_bits(i, swap_odd_even_bits(i)), "\n")
