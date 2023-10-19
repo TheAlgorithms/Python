@@ -1,17 +1,19 @@
-def encryption(plaintext: str, key:str)-> str:
+def encryption(plaintext: str, key: str) -> str:
     """
     >>> encryption("HELLO","KEY")
     'RIJVS'
     """
-    return vernam_encrypt(plaintext,key)
+    return vernam_encrypt(plaintext, key)
 
-def decryption(ciphertext: str, key:str)-> str:
+
+def decryption(ciphertext: str, key: str) -> str:
     """
     >>> decryption("RIJVS","KEY")
     'HELLO'
     """
-    return vernam_decrypt(plaintext,key)
-    
+    return vernam_decrypt(plaintext, key)
+
+
 def vernam_encrypt(plaintext: str, key: str) -> str:
     ciphertext = ""
     for i in range(len(plaintext)):
@@ -19,7 +21,7 @@ def vernam_encrypt(plaintext: str, key: str) -> str:
         while ct > 25:
             ct = ct - 26
         ciphertext += chr(65 + ct)
-   
+
     return ciphertext
 
 
@@ -45,8 +47,8 @@ print("Decrypted:", decrypted_text)
 
 # Tests
 
-#encrypt_txt = vernam_encrypt("HELLO", "KEY")
-#print(encrypt_txt)
+# encrypt_txt = vernam_encrypt("HELLO", "KEY")
+# print(encrypt_txt)
 
-#decrypt_txt = vernam_decrypt(encrypt_txt, "KEY")
-#print(decrypt_txt)
+# decrypt_txt = vernam_decrypt(encrypt_txt, "KEY")
+# print(decrypt_txt)
