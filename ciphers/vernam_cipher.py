@@ -31,12 +31,10 @@ print("Plaintext:", plaintext)
 print("Encrypted:", encrypted_text)
 print("Decrypted:", decrypted_text)
 
-#Tests
+# Tests
 
-encrypt_txt = vernam_encrypt("HELLO","KEY")
+encrypt_txt = vernam_encrypt("HELLO", "KEY")
 print(encrypt_txt)
 
-decrypt_txt = vernam_decrypt(encrypt_txt,"KEY")
+decrypt_txt = vernam_decrypt(encrypt_txt, "KEY")
 print(decrypt_txt)
-
-
