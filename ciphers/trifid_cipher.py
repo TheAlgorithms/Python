@@ -1,6 +1,8 @@
 """
-    The trifid cipher uses a table to fractionate each plaintext letter into a trigram,mixes the constituents of the trigrams, and then applies the table in reverse to turn these mixed trigrams into ciphertext letters.
-    https://en.wikipedia.org/wiki/Trifid_cipher
+The trifid cipher uses a table to fractionate each plaintext letter into a 
+trigram,mixes the constituents of the trigrams, and then applies the table 
+in reverse to turn these mixed trigrams into ciphertext letters.
+https://en.wikipedia.org/wiki/Trifid_cipher
 """
 
 from __future__ import annotations
@@ -8,15 +10,11 @@ from __future__ import annotations
 
 def __encrypt_part(message_part: str, character_to_number: dict[str, str]) -> str:
     """
-        Arranges the triagram value of each letter of 'message_part' vertically and joins them horizontally
-        
-        >>> __encrypt_part('ASK',{'A': '111', 'B': '112', 'C': '113', 'D': '121', 'E': '122', 'F': '123', 'G': '131', 'H': '132', 'I': '133', 'J': '211', 'K': '212', 'L': '213', 'M': '221', 'N': '222', 'O': '223', 'P': '231', 'Q': '232', 'R': '233', 'S': '311', 'T': '312', 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332', '+': '333'})
-        '132111112'
+    Arranges the triagram value of each letter of 'message_part' vertically 
+    and joins them horizontally
 
-        1 3 2
-        1 1 1
-        1 1 2
-
+    >>> __encrypt_part('ASK',{'A': '111', 'B': '112', 'C': '113', 'D': '121', 'E': '122', 'F': '123', 'G': '131', 'H': '132', 'I': '133', 'J': '211', 'K': '212', 'L': '213', 'M': '221', 'N': '222', 'O': '223', 'P': '231', 'Q': '232', 'R': '233', 'S': '311', 'T': '312', 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332', '+': '333'})
+    '132111112'
     """
     one, two, three = "", "", ""
     tmp = []
@@ -36,10 +34,12 @@ def __decrypt_part(
     message_part: str, character_to_number: dict[str, str]
 ) -> tuple[str, str, str]:
     """
-        Converts each letter of the input string into there respective trigram values, joins them and splits them into three equal groups of strings. Then returns the group of strings .
+    Converts each letter of the input string into there respective trigram 
+    values, joins them and splits them into three equal groups of strings. 
+    Then returns the group of strings .
 
-        >>> __decrypt_part('ABCDE',{'A': '111', 'B': '112', 'C': '113', 'D': '121', 'E': '122', 'F': '123', 'G': '131', 'H': '132', 'I': '133', 'J': '211', 'K': '212', 'L': '213', 'M': '221', 'N': '222', 'O': '223', 'P': '231', 'Q': '232', 'R': '233', 'S': '311', 'T': '312', 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332', '+': '333'})
-        ('11111', '21131', '21122')
+    >>> __decrypt_part('ABCDE',{'A': '111', 'B': '112', 'C': '113', 'D': '121', 'E': '122', 'F': '123', 'G': '131', 'H': '132', 'I': '133', 'J': '211', 'K': '212', 'L': '213', 'M': '221', 'N': '222', 'O': '223', 'P': '231', 'Q': '232', 'R': '233', 'S': '311', 'T': '312', 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332', '+': '333'})
+    ('11111', '21131', '21122')
     """
     tmp, this_part = "", ""
     result = []
@@ -60,30 +60,33 @@ def __prepare(
     message: str, alphabet: str
 ) -> tuple[str, str, dict[str, str], dict[str, str]]:
     """
-       A helper function that generates the triagrams and assigns each letter of the alphabet to its corresponding triagram and stores this in a dictionary ("character_to_number" and "number_to_character") after confirming if the alphabet's length is 27.
+    A helper function that generates the triagrams and assigns each letter 
+    of the alphabet to its corresponding triagram and stores this in a 
+    dictionary ("character_to_number" and "number_to_character") after 
+    confirming if the alphabet's length is 27.
 
-        >>> __prepare('I aM a BOy','abCdeFghijkLmnopqrStuVwxYZ+')
-        ('IAMABOY', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ+', {'A': '111', 'B': '112', 'C': '113', 'D': '121', 'E': '122', 'F': '123', 'G': '131', 'H': '132', 'I': '133', 'J': '211', 'K': '212', 'L': '213', 'M': '221', 'N': '222', 'O': '223', 'P': '231', 'Q': '232', 'R': '233', 'S': '311', 'T': '312', 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332', '+': '333'}, {'111': 'A', '112': 'B', '113': 'C', '121': 'D', '122': 'E', '123': 'F', '131': 'G', '132': 'H', '133': 'I', '211': 'J', '212': 'K', '213': 'L', '221': 'M', '222': 'N', '223': 'O', '231': 'P', '232': 'Q', '233': 'R', '311': 'S', '312': 'T', '313': 'U', '321': 'V', '322': 'W', '323': 'X', '331': 'Y', '332': 'Z', '333': '+'})
+    >>> __prepare('I aM a BOy','abCdeFghijkLmnopqrStuVwxYZ+')
+    ('IAMABOY', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ+', {'A': '111', 'B': '112', 'C': '113', 'D': '121', 'E': '122', 'F': '123', 'G': '131', 'H': '132', 'I': '133', 'J': '211', 'K': '212', 'L': '213', 'M': '221', 'N': '222', 'O': '223', 'P': '231', 'Q': '232', 'R': '233', 'S': '311', 'T': '312', 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332', '+': '333'}, {'111': 'A', '112': 'B', '113': 'C', '121': 'D', '122': 'E', '123': 'F', '131': 'G', '132': 'H', '133': 'I', '211': 'J', '212': 'K', '213': 'L', '221': 'M', '222': 'N', '223': 'O', '231': 'P', '232': 'Q', '233': 'R', '311': 'S', '312': 'T', '313': 'U', '321': 'V', '322': 'W', '323': 'X', '331': 'Y', '332': 'Z', '333': '+'})
 
-        >>> __prepare('I aM a BOy','abCdeFghijkLmnopqrStuVw')
-        Traceback (most recent call last):
-            ...
-        KeyError: 'Length of alphabet has to be 27.'
+    >>> __prepare('I aM a BOy','abCdeFghijkLmnopqrStuVw')
+    Traceback (most recent call last):
+        ...
+    KeyError: 'Length of alphabet has to be 27.'
 
-        >>> __prepare('I aM a BOy','abCdeFghijkLmnopqrStuVwxyzzwwtyyujjgfd')
-        Traceback (most recent call last):
-            ...
-        KeyError: 'Length of alphabet has to be 27.'
+    >>> __prepare('I aM a BOy','abCdeFghijkLmnopqrStuVwxyzzwwtyyujjgfd')
+    Traceback (most recent call last):
+        ...
+    KeyError: 'Length of alphabet has to be 27.'
 
-        >>> __prepare('am i a boy?','abCdeFghijkLmnopqrStuVwxYZ+')
-        Traceback (most recent call last):
-            ...
-        ValueError: Each message character has to be included in alphabet!
+    >>> __prepare('am i a boy?','abCdeFghijkLmnopqrStuVwxYZ+')
+    Traceback (most recent call last):
+        ...
+    ValueError: Each message character has to be included in alphabet!
 
-        >>> __prepare(500,'abCdeFghijkLmnopqrStuVwxYZ+')
-        Traceback (most recent call last):
-            ...
-        AttributeError: 'int' object has no attribute 'replace'
+    >>> __prepare(500,'abCdeFghijkLmnopqrStuVwxYZ+')
+    Traceback (most recent call last):
+        ...
+    AttributeError: 'int' object has no attribute 'replace'
     """
     # Validate message and alphabet, set to upper and remove spaces
     alphabet = alphabet.replace(" ", "").upper()
@@ -139,16 +142,20 @@ def encrypt_message(
     message: str, alphabet: str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.", period: int = 5
 ) -> str:
     """
-        Encrypts a message using the trifid_cipher. Any punctuatuions that would be used should be added to the alphabet.'message' is the message you want to encrypt, 'alphabet' are the characters you want to use for the cipher, 'period' is the number of characters you want in a group whilst encrypting.  
+    Encrypts a message using the trifid_cipher. Any punctuatuions that
+    would be used should be added to the alphabet.'message' is the 
+    message you want to encrypt, 'alphabet' are the characters you want 
+    to use for the cipher, 'period' is the number of characters you want 
+    in a group whilst encrypting.  
 
-        >>> encrypt_message('I am a boy')
-        'BCDGBQY'
+    >>> encrypt_message('I am a boy')
+    'BCDGBQY'
 
-        >>> encrypt_message(' ')
-        ''
+    >>> encrypt_message(' ')
+    ''
 
-        >>> encrypt_message('   aide toi le c  iel      ta id  era    ','FELIXMARDSTBCGHJKNOPQUVWYZ+',5)
-        'FMJFVOISSUFTFPUFEQQC'
+    >>> encrypt_message('   aide toi le c  iel      ta id  era    ','FELIXMARDSTBCGHJKNOPQUVWYZ+',5)
+    'FMJFVOISSUFTFPUFEQQC'
 
     """
     message, alphabet, character_to_number, number_to_character = __prepare(
@@ -171,13 +178,15 @@ def decrypt_message(
     message: str, alphabet: str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.", period: int = 5
 ) -> str:
     """
-        Decrypts a trifid_cipher encrypted message .'message' is the message you want to decrypt, 'alphabet' are the characters used for the cipher, 'period' is the number of characters used in grouping when it was encrypted.
+    Decrypts a trifid_cipher encrypted message .'message' is the message you 
+    want to decrypt, 'alphabet' are the characters used for the cipher, 
+    'period' is the number of characters used in grouping when it was encrypted.
 
-        >>> decrypt_message('BCDGBQY')
-        'IAMABOY'
-        >>> decrypt_message('FMJFVOISSUFTFPUFEQQC','FELIXMARDSTBCGHJKNOPQUVWYZ+',5)
-        'AIDETOILECIELTAIDERA'
-       
+    >>> decrypt_message('BCDGBQY')
+    'IAMABOY'
+
+    >>> decrypt_message('FMJFVOISSUFTFPUFEQQC','FELIXMARDSTBCGHJKNOPQUVWYZ+',5)
+    'AIDETOILECIELTAIDERA'
     """
     message, alphabet, character_to_number, number_to_character = __prepare(
         message, alphabet
