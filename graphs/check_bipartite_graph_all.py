@@ -16,7 +16,7 @@
 from queue import Queue
 
 
-def check_bipartite(graph) -> bool:
+def check_bipartite(graph:Dict[int, List[int]]) -> bool:
     queue = Queue()
     visited = [False] * len(graph)
     color = [-1] * len(graph)
