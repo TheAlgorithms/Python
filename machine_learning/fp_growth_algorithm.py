@@ -163,7 +163,7 @@ def update_tree(items: list, in_tree: TreeNode, header_table: dict, count: int) 
         update_tree(items[1:], in_tree.children[items[0]], header_table, count)
 
 
-def update_header(node_to_test: TreeNode, target_node: TreeNode) -> None:
+def update_header(node_to_test: TreeNode, target_node: TreeNode) -> TreeNode:
     """
     Update the header table with a node link.
 
@@ -184,17 +184,20 @@ def update_header(node_to_test: TreeNode, target_node: TreeNode) -> None:
 
     >>> node1 = TreeNode("A", 3, None)
     >>> node2 = TreeNode("B", 4, None)
-    >>> update_header(node1, node2)
-
+    >>> node1 = update_header(node1, node2)
     >>> node1.node_link.name
     'B'
     >>> node2.node_link is None
     True
     """
-    if node_to_test is not None:
+    if node_to_test.node_link is None:
+        node_to_test.node_link = target_node
+    else:
         while node_to_test.node_link is not None:
             node_to_test = node_to_test.node_link
         node_to_test.node_link = target_node
+    # Return the updated node
+    return node_to_test
 
 
 def ascend_tree(leaf_node: TreeNode, prefix_path: list) -> None:
@@ -304,9 +307,9 @@ def mine_tree(
         cond_patt_bases = find_prefix_path(base_pat, header_table[base_pat][1])
         my_cond_tree, my_head = create_tree(list(cond_patt_bases.keys()), min_sup)
         if my_head is not None:
-            mine_tree(my_cond_tree, my_head, min_sup, new_freq_set, freq_item_list)
             # Pass header_table[base_pat][1] as node_to_test to update_header
-            update_header(header_table[base_pat][1], my_cond_tree)
+            header_table[base_pat][1] = update_header(header_table[base_pat][1], my_cond_tree)
+            mine_tree(my_cond_tree, my_head, min_sup, new_freq_set, freq_item_list)
 
 
 if __name__ == "__main__":
