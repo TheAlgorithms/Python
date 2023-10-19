@@ -31,7 +31,6 @@ def vernam_decrypt(ciphertext: str, key: str) -> str:
 
 if __name__ == "__main__":
     from doctest import testmod
-
     doctest.testmod()
 
 
