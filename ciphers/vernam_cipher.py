@@ -37,6 +37,7 @@ print("Encrypted:", encrypted_text)
 print("Decrypted:", decrypted_text)
 
 import doctest
+
 doctest.testmod()
 
 # Tests
