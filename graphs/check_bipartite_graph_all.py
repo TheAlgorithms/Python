@@ -1,9 +1,13 @@
 from collections import defaultdict
 from queue import Queue
 
-""" Check whether Graph is Bipartite or Not using BFS
- https://www.geeksforgeeks.org/bipartite-graph/
-  Args:
+
+
+
+def check_bipartite(graph: dict[int, list[int]]) -> bool:
+    """ Check whether Graph is Bipartite or Not using BFS
+    https://www.geeksforgeeks.org/bipartite-graph/
+     Args:
         graph: An adjacency list representing the graph.
 
     Returns:
@@ -16,14 +20,18 @@ from queue import Queue
         False
         >>> is_bipartite(defaultdict(list, {0: [1, 2], 1: [0, 2], 2: [0, 1]}))
         True"""
-
-
-def check_bipartite(graph: dict[int, list[int]]) -> bool:
+    
     queue: Queue = Queue()
     visited = [False] * len(graph)
     color = [-1] * len(graph)
 
     def bfs() -> bool:
+        """
+        Perform Breadth-First Search on the graph to check for bipartiteness.
+
+        Returns:
+            bool: True if the graph is bipartite, False otherwise.
+        """
         while not queue.empty():
             u = queue.get()
             visited[u] = True
@@ -54,7 +62,7 @@ def check_bipartite(graph: dict[int, list[int]]) -> bool:
 if __name__ == "__main__":
     # Adjacency List of graph
     print(check_bipartite({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}))
-    
+
 if __name__ == "__main__":
     import doctest
 
@@ -89,6 +97,16 @@ def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
     """
 
     def depth_first_search(node: int, color: int) -> bool:
+        """
+        Perform depth-first search starting from a node with a specified color.
+
+        Args:
+            node (int): The current node being visited.
+            color (int): The color assigned to the current node.
+
+        Returns:
+            bool: True if the graph is bipartite starting from the current node, False otherwise.
+        """
         visited[node] = color
         return any(
             visited[neighbour] == color
