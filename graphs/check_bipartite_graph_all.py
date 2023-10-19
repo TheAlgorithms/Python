@@ -27,10 +27,19 @@ def check_bipartite(graph: dict[int, list[int]]) -> bool:
 
     def bfs() -> bool:
         """
-        Perform Breadth-First Search on the graph to check for bipartiteness.
+        Perform Breadth-First Search (BFS) on a graph to check if it's bipartite.
+
+        Args:
+        graph (dict[int, list[int]]): An adjacency list representing the graph.
 
         Returns:
-            bool: True if the graph is bipartite, False otherwise.
+        bool: True if there's no edge that connects vertices of the same set, False otherwise.
+
+        Examples:
+        >>> bfs({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]})
+        True
+        >>> bfs({0: [1, 2, 3], 1: [0, 2], 2: [0, 1, 3], 3: [0, 2]})
+        False
         """
         while not queue.empty():
             u = queue.get()
@@ -63,16 +72,6 @@ if __name__ == "__main__":
     # Adjacency List of graph
     print(check_bipartite({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}))
 
-if __name__ == "__main__":
-    import doctest
-
-    result = doctest.testmod()
-
-    if result.failed:
-        print(f"{result.failed} test(s) failed.")
-    else:
-        print("All tests passed!")
-
 
 def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
     """
@@ -101,11 +100,18 @@ def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
         Perform depth-first search starting from a node with a specified color.
 
         Args:
-            node (int): The current node being visited.
-            color (int): The color assigned to the current node.
+        node (int): The current node being visited.
+        color (int): The color assigned to the current node.
+        graph (defaultdict[int, list[int]]): An adjacency list representing the graph.
 
         Returns:
-            bool: True if the graph is bipartite starting from the current node, False otherwise.
+        bool: True if the graph is bipartite starting from the current node, False otherwise.
+
+        Examples:
+        >>> depth_first_search(0, 0, defaultdict(list, {0: [1, 2], 1: [0, 3], 2: [0, 4], 3: [1], 4: [2]}))
+        False
+        >>> depth_first_search(0, 0, defaultdict(list, {0: [1, 2], 1: [0, 2], 2: [0, 1]}))
+        True
         """
         visited[node] = color
         return any(
