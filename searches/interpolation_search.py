@@ -61,10 +61,14 @@ def interpolation_search_by_recursion(sorted_collection, item, left, right):
     :param item: item value to search
     :return: index of found item or None if item is not found
     >>> sorted_collection = [-1, 0, 1]
-    >>> interpolation_search_by_recursion(sorted_collection, -1, 0, len(sorted_collection) - 1)
+    >>> interpolation_search_by_recursion(
+    ... sorted_collection, -1, 0, len(sorted_collection) - 1
+    ... )
     0
     >>> sorted_collection = [-1, 0, 1]
-    >>> interpolation_search_by_recursion(sorted_collection, 2, 0, len(sorted_collection) - 1)
+    >>> interpolation_search_by_recursion(
+    ... sorted_collection, 2, 0, len(sorted_collection) - 1
+    ... )
     None
     """
 
