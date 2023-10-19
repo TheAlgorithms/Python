@@ -57,9 +57,6 @@ if __name__ == "__main__":
     print(check_bipartite({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}))
 
 
-
-
-
 def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
     """
     Check whether a graph is Bipartite or not using Depth-First Search (DFS).
