@@ -28,11 +28,6 @@ def vernam_decrypt(ciphertext: str, key: str) -> str:
         decrypted_text += chr(65 + ct)
     return decrypted_text
 
-
-import doctest
-
-doctest.testmod()
-
 # Example usage
 plaintext = input("Enter the message: ").upper()
 key = input("Enter the key: ").upper()
