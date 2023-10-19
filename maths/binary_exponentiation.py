@@ -5,6 +5,12 @@
 
 
 def binary_exponentiation(a: int, n: int) -> int:
+    """
+    >>> binary_exponentiation(3, 5)
+    243
+    >>> binary_exponentiation(10, 3)
+    1000
+    """
     if n == 0:
         return 1
 
@@ -17,6 +23,10 @@ def binary_exponentiation(a: int, n: int) -> int:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     try:
         BASE = int(input("Enter Base : ").strip())
         POWER = int(input("Enter Power : ").strip())
