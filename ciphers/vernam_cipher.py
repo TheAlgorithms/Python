@@ -30,15 +30,16 @@ def vernam_decrypt(ciphertext: str, key: str) -> str:
 
 
 if __name__ == "__main__":
-    doctest.testmod()
+    from doctest import testmod
 
+    testmod()
 
-# Example usage
-plaintext = "HELLO"
-key = "KEY"
-encrypted_text = vernam_encrypt(plaintext, key)
-decrypted_text = vernam_decrypt(encrypted_text, key)
-print("\n\n")
-print("Plaintext:", plaintext)
-print("Encrypted:", encrypted_text)
-print("Decrypted:", decrypted_text)
+    # Example usage
+    plaintext = "HELLO"
+    key = "KEY"
+    encrypted_text = vernam_encrypt(plaintext, key)
+    decrypted_text = vernam_decrypt(encrypted_text, key)
+    print("\n\n")
+    print("Plaintext:", plaintext)
+    print("Encrypted:", encrypted_text)
+    print("Decrypted:", decrypted_text)
