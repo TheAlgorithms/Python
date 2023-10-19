@@ -5,18 +5,25 @@ def vernam_encrypt(plaintext: str, key: str) -> str:
         while ct > 25:
             ct = ct - 26
         ciphertext += chr(65 + ct)
+     """
+    >>> vernam_encrypt("HELLO","KEY")
+    'RIJVS'
+    """
     return ciphertext
 
 
 def vernam_decrypt(ciphertext: str, key: str) -> str:
     decrypted_text = ""
-    ciphertext.upper()
-    key.upper()
     for i in range(len(ciphertext)):
         ct = ord(ciphertext[i]) - ord(key[i % len(key)])
         while ct < 0:
             ct = 26 + ct
         decrypted_text += chr(65 + ct)
+
+    """
+    >>> vernam_decrypt("RIJVS","KEY")
+    'HELLO'
+    """
     return decrypted_text
 
 
@@ -33,8 +40,8 @@ print("Decrypted:", decrypted_text)
 
 # Tests
 
-encrypt_txt = vernam_encrypt("HELLO", "KEY")
-print(encrypt_txt)
+#encrypt_txt = vernam_encrypt("HELLO", "KEY")
+#print(encrypt_txt)
 
-decrypt_txt = vernam_decrypt(encrypt_txt, "KEY")
-print(decrypt_txt)
+#decrypt_txt = vernam_decrypt(encrypt_txt, "KEY")
+#print(decrypt_txt)
