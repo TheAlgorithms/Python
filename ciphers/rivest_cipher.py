@@ -15,7 +15,6 @@ https://en.wikipedia.org/wiki/RC4
 https://tools.ietf.org/html/rfc6229
 """
 
-
 class RC4:
     def __init__(self, key: bytes):
         """
@@ -115,10 +114,7 @@ class RC4:
         >>> encrypted = rc4.encrypt(plaintext)
         >>> decrypted = rc4.decrypt(encrypted)
         """
-        return self.encrypt(
-            encrypted_message
-        )  # RC4 decryption is the same as encryption
-
+        return self.encrypt(encrypted_message)  # RC4 decryption is the same as encryption
 
 def main():
     key = b"SecretKey"  # Replace with your secret key
@@ -132,7 +128,6 @@ def main():
     print("Original message:", plaintext)
     print("Encrypted message:", encrypted)
     print("Decrypted message:", decrypted.decode("utf-8"))
-
 
 if __name__ == "__main__":
     main()
