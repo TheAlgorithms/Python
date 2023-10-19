@@ -163,7 +163,7 @@ def update_tree(items: list, in_tree: TreeNode, header_table: dict, count: int) 
         update_tree(items[1:], in_tree.children[items[0]], header_table, count)
 
 
-def update_header(node_to_test: TreeNode, target_node: TreeNode) -> None:
+def update_header(node_to_test: Optional[TreeNode], target_node: TreeNode) -> None:
     """
     Update the header table with a node link.
 
@@ -191,9 +191,9 @@ def update_header(node_to_test: TreeNode, target_node: TreeNode) -> None:
     >>> node2.node_link is None
     True
     """
-    while node_to_test is not None and node_to_test.node_link is not None:
-        node_to_test = node_to_test.node_link
     if node_to_test is not None:
+        while node_to_test is not None and node_to_test.node_link is not None:
+            node_to_test = node_to_test.node_link
         node_to_test.node_link = target_node
 
 
