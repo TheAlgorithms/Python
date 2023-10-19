@@ -4,8 +4,8 @@
 
 * [ ] Add an algorithm?
 * [ ] Fix a bug or typo in an existing algorithm?
+* [ ] Add or change doctests? -- Note: Please avoid changing both code and tests in a single pull request.
 * [ ] Documentation change?
-* [ ] Add test scenarios?
 
 ### Checklist:
 * [ ] I have read [CONTRIBUTING.md](https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md).
