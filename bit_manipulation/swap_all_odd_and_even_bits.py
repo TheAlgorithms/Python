@@ -30,7 +30,7 @@ def swap_odd_even_bits(num: int) -> int:
     10: 00001010
     >>> print(show_bits(6, swap_odd_even_bits(6)))
     6: 00000110
-    5: 00000101
+    9: 00001001
     >>> print(show_bits(23, swap_odd_even_bits(23)))
     23: 00010111
     43: 00101011
