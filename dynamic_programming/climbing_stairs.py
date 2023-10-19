@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
+
 def climb_stairs(number_of_steps: int) -> int:
     """
     Calculate the number of distinct ways to climb a staircase with a given number of steps.
-    
+
     This problem is from LeetCode No. 70: Climbing Stairs.
 
     Args:
@@ -25,17 +26,21 @@ def climb_stairs(number_of_steps: int) -> int:
             ...
         AssertionError: number_of_steps needs to be a positive integer, your input: -7
     """
-    assert isinstance(number_of_steps, int) and number_of_steps > 0, f"number_of_steps needs to be a positive integer, your input: {number_of_steps}"
-    
+    assert (
+        isinstance(number_of_steps, int) and number_of_steps > 0
+    ), f"number_of_steps needs to be a positive integer, your input: {number_of_steps}"
+
     if number_of_steps == 1:
         return 1
-    
+
     previous, current = 1, 1
     for _ in range(number_of_steps - 1):
         current, previous = current + previous, current
-    
+
     return current
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
