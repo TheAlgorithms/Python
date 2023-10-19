@@ -4,18 +4,16 @@ from queue import Queue
 
 def check_bipartite(graph: dict[int, list[int]]) -> bool:
     """
-    Check whether a graph is Bipartite or not using Depth-First Search (DFS).
+    Check if a graph is Bipartite using Depth-First Search.
 
     Args:
-        graph (defaultdict[int, list[int]]): An adjacency list representing the graph.
+        graph: Adjacency list representing the graph.
 
     Returns:
-        bool: True if there's no edge that connects vertices of the same set, False otherwise.
+        bool: True if no edge connects same set vertices.
 
     Examples:
-        >>> is_bipartite(
-        ...     defaultdict(list, {0: [1, 2], 1: [0, 3], 2: [0, 4], 3: [1], 4: [2]})
-        ... )
+        >>> is_bipartite(defaultdict(list, {0: [1, 2], 1: [0, 3], ...}))
         False
         >>> is_bipartite(defaultdict(list, {0: [1, 2], 1: [0, 2], 2: [0, 1]}))
         True
@@ -32,7 +30,7 @@ def check_bipartite(graph: dict[int, list[int]]) -> bool:
             graph (dict[int, list[int]]): An adjacency list representing the graph.
 
         Returns:
-            bool: True if there's no edge that connects vertices of the same set, False otherwise.
+            bool: True if there's no edge, False otherwise.
 
         Examples:
             >>> bfs({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]})
@@ -74,24 +72,19 @@ if __name__ == "__main__":
 
 def is_bipartite(graph: defaultdict[int, list[int]]) -> bool:
     """
-    Check whether a graph is Bipartite or not using Depth-First Search (DFS).
-
-    https://www.geeksforgeeks.org/check-if-a-given-graph-is-bipartite-using-dfs/
-
+    Check if a graph is Bipartite using Breadth-First Search.
 
     Args:
-        graph: An adjacency list representing the graph.
+        graph: Adjacency list representing the graph.
 
     Returns:
-        True if there's no edge that connects vertices of the same set, False otherwise.
+        bool: True if no edge connects same set vertices.
 
     Examples:
-        >>> is_bipartite(
-        ...     defaultdict(list, {0: [1, 2], 1: [0, 3], 2: [0, 4], 3: [1], 4: [2]})
-        ... )
-        False
-        >>> is_bipartite(defaultdict(list, {0: [1, 2], 1: [0, 2], 2: [0, 1]}))
+        >>> check_bipartite({0: [1, 3], 1: [0, 2], 2: [1, 3], ...})
         True
+        >>> check_bipartite({0: [1, 2, 3], 1: [0, 2], ...})
+        False
     """
 
     def depth_first_search(node: int, color: int) -> bool:
