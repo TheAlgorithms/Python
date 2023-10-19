@@ -31,7 +31,7 @@ def power(base: int, exponent: int) -> float:
 
 if __name__ == "__main__":
     from doctests import testmod
-Sa
+
     testmod()
     print("Raise base to the power of exponent using recursion...")
     base = int(input("Enter the base: ").strip())
