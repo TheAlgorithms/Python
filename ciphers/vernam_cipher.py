@@ -11,7 +11,6 @@ def vernam_encrypt(plaintext: str, key: str) -> str:
     """
     return ciphertext
 
-
 def vernam_decrypt(ciphertext: str, key: str) -> str:
     decrypted_text = ""
     for i in range(len(ciphertext)):
@@ -24,7 +23,6 @@ def vernam_decrypt(ciphertext: str, key: str) -> str:
     'HELLO'
     """
     return decrypted_text
-
 
 # Example usage
 plaintext = input("Enter the message: ").upper()
