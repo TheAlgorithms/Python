@@ -305,6 +305,8 @@ def mine_tree(
         my_cond_tree, my_head = create_tree(list(cond_patt_bases.keys()), min_sup)
         if my_head is not None:
             mine_tree(my_cond_tree, my_head, min_sup, new_freq_set, freq_item_list)
+            # Pass header_table[base_pat][1] as node_to_test to update_header
+            update_header(header_table[base_pat][1], my_cond_tree)
 
 
 if __name__ == "__main__":
