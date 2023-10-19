@@ -54,7 +54,7 @@ def check_bipartite(graph: dict[int, list[int]]) -> bool:
 if __name__ == "__main__":
     # Adjacency List of graph
     print(check_bipartite({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}))
-    
+
 if __name__ == "__main__":
     import doctest
 
