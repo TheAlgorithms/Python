@@ -7,19 +7,17 @@ https://en.wikipedia.org/wiki/Trifid_cipher
 
 from __future__ import annotations
 
+TEST_CHARACTER_TO_NUMBER = {'A': '111', 'B': '112', 'C':'113', 'D': '121', 'E':'122', 'F': '123','G': '131', 'H': '132', 'I': '133','J': '211', 'K': '212', 'L': '213', 'M': '221', 'N': '222','O': '223', 'P': '231', 'Q': '232', 'R': '233', 'S': '311', 'T': '312','U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332','+': '333'}
+
+TEST_NUMBER_TO_CHARACTER = {value: key for key, value in 
+                            TEST_CHARACTER_TO_NUMBER.items()}
 
 def __encrypt_part(message_part: str, character_to_number: dict[str, str]) -> str:
     """
     Arrange the triagram value of each letter of 'message_part' vertically and join them
     horizontally.
 
-    >>> __encrypt_part('ASK',
-    ... {'A': '111', 'B': '112', 'C':'113', 'D': '121', 'E': '122', 'F': '123',
-    ... 'G': '131', 'H': '132', 'I': '133',
-    ... 'J': '211', 'K': '212', 'L': '213', 'M': '221', 'N': '222',
-    ... 'O': '223', 'P': '231', 'Q': '232', 'R': '233', 'S': '311', 'T': '312',
-    ... 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332',
-    ... '+': '333'})
+    >>> __encrypt_part('ASK', TEST_CHARACTER_TO_NUMBER)
     '132111112'
 
     """
@@ -41,17 +39,10 @@ def __decrypt_part(
     message_part: str, character_to_number: dict[str, str]
 ) -> tuple[str, str, str]:
     """
-    1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678
         Convert each letter of the input string into their respective trigram values, join
         them and split them into three equal groups of strings which are returned.
 
-        >>> __decrypt_part('ABCDE',
-        ... {'A': '111', 'B': '112', 'C':'113', 'D': '121', 'E': '122', 'F': '123',
-        ... 'G': '131', 'H': '132', 'I': '133',
-        ... 'J': '211', 'K': '212', 'L': '213', 'M': '221', 'N': '222',
-        ... 'O': '223', 'P': '231', 'Q': '232', 'R': '233', 'S': '311', 'T': '312',
-        ... 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332',
-        ... '+': '333'})
+        >>> __decrypt_part('ABCDE', TEST_CHARACTER_TO_NUMBER)
         ('11111', '21131', '21122')
     """
     tmp, this_part = "", ""
@@ -80,17 +71,7 @@ def __prepare(
 
     >>> test = __prepare('I aM a BOy','abCdeFghijkLmnopqrStuVwxYZ+')
     >>> expected = ('IAMABOY','ABCDEFGHIJKLMNOPQRSTUVWXYZ+',
-    ... {'A': '111', 'B': '112', 'C':'113', 'D': '121', 'E': '122', 'F': '123',
-    ... 'G': '131', 'H': '132', 'I': '133',
-    ... 'J': '211', 'K': '212', 'L': '213', 'M': '221', 'N': '222',
-    ... 'O': '223', 'P': '231', 'Q': '232', 'R': '233', 'S': '311', 'T': '312',
-    ... 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332',
-    ... '+': '333'},
-    ... {'111': 'A', '112': 'B', '113': 'C', '121': 'D', '122': 'E',
-    ... '123': 'F', '131': 'G', '132': 'H', '133': 'I', '211': 'J', '212': 'K',
-    ... '213': 'L', '221': 'M', '222': 'N', '223': 'O', '231': 'P', '232': 'Q',
-    ... '233': 'R', '311': 'S', '312': 'T', '313': 'U', '321': 'V', '322': 'W',
-    ... '323': 'X', '331': 'Y', '332': 'Z', '333': '+'})
+    ... TEST_CHARACTER_TO_NUMBER, TEST_NUMBER_TO_CHARACTER)
     >>> test == expected
     True
 
