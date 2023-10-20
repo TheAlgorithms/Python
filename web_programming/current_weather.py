@@ -1,6 +1,6 @@
 import requests
 
-APPID = ""  # <-- Put your OpenWeatherMap appid here!
+APPID = "79de5817a4d223b536ce61a0f630a4b4"  # <-- Put your OpenWeatherMap appid here!
 URL_BASE = "https://api.openweathermap.org/data/2.5/"
 
 
