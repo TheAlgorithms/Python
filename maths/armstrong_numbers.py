@@ -29,9 +29,7 @@ def armstrong_number(n: int) -> bool:
     number_of_digits = 0
     temp = n
     # Calculation of digits of the number
-    while temp > 0:
-        number_of_digits += 1
-        temp //= 10
+    number_of_digits = len(str(n))
     # Dividing number into separate digits and find Armstrong number
     temp = n
     while temp > 0:
