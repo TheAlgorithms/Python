@@ -14,6 +14,14 @@ def signum(num: float) -> int:
     1
     >>> signum(0)
     0
+    >>> signum("a")
+    0
+    >>> signum([])
+    0
+    >>> signum(-10)
+    -1
+    >>> signum(10)
+    1
     """
     if num < 0:
         return -1
@@ -35,7 +43,7 @@ def test_signum() -> None:
     assert signum(-123456789) == -1
 
 
-if __name__ == "__main":
+if __ame__ == "__main":
     print(signum(12))
     print(signum(-12))
     print(signum(0))
