@@ -243,8 +243,8 @@ def decrypt_message(
 
     decrypted_numeric = []
     decrypted = ""
-    
-    for i in range(0, len(message) , period):
+
+    for i in range(0, len(message), period):
         a, b, c = __decrypt_part(message[i : i + period], character_to_number)
 
         for j in range(len(a)):
@@ -258,6 +258,7 @@ def decrypt_message(
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     msg = "DEFEND THE EAST WALL OF THE CASTLE."
     encrypted = encrypt_message(msg, "EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
