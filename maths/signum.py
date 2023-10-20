@@ -15,7 +15,9 @@ def signum(num) -> int:
     >>> signum(0)
     0
     >>> signum("a")
-    0
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     >>> signum([])
     0
     >>> signum(-10)
