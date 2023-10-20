@@ -3,7 +3,9 @@ This is pure Python implementation of interpolation search algorithm
 """
 
 
-def interpolation_search(sorted_collection: list[int] | tuple[int], item: int) -> int | None:
+def interpolation_search(
+    sorted_collection: list[int] | tuple[int], item: int
+) -> int | None:
     """Pure implementation of interpolation search algorithm in Python
     Be careful collection must be ascending sorted, otherwise result will be
     unpredictable
@@ -72,7 +74,9 @@ def interpolation_search(sorted_collection: list[int] | tuple[int], item: int) -
     return None
 
 
-def interpolation_search_by_recursion(sorted_collection: list[int] | tuple[int], item: int, left: int, right: int) -> int | None:
+def interpolation_search_by_recursion(
+    sorted_collection: list[int] | tuple[int], item: int, left: int, right: int
+) -> int | None:
     """Pure implementation of interpolation search algorithm in Python by recursion
     Be careful collection must be ascending sorted, otherwise result will be
     unpredictable
