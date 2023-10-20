@@ -65,9 +65,7 @@
 
 ## Boolean Algebra
   * [And Gate](boolean_algebra/and_gate.py)
-  * [Imply Gate](boolean_algebra/imply_gate.py)
   * [Nand Gate](boolean_algebra/nand_gate.py)
-  * [Nimply Gate](boolean_algebra/nimply_gate.py)
   * [Nor Gate](boolean_algebra/nor_gate.py)
   * [Not Gate](boolean_algebra/not_gate.py)
   * [Or Gate](boolean_algebra/or_gate.py)
@@ -180,9 +178,7 @@
 ## Data Structures
   * Arrays
     * [Equilibrium Index In Array](data_structures/arrays/equilibrium_index_in_array.py)
-    * [Find Triplets With 0 Sum](data_structures/arrays/find_triplets_with_0_sum.py)
     * [Median Two Array](data_structures/arrays/median_two_array.py)
-    * [Pairs With Given Sum](data_structures/arrays/pairs_with_given_sum.py)
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
     * [Product Sum](data_structures/arrays/product_sum.py)
@@ -402,7 +398,6 @@
 
 ## Financial
   * [Equated Monthly Installments](financial/equated_monthly_installments.py)
-  * [Exponential Moving Average](financial/exponential_moving_average.py)
   * [Interest](financial/interest.py)
   * [Present Value](financial/present_value.py)
   * [Price Plus Tax](financial/price_plus_tax.py)
@@ -711,7 +706,6 @@
   * [Sin](maths/sin.py)
   * [Sock Merchant](maths/sock_merchant.py)
   * [Softmax](maths/softmax.py)
-  * [Solovay Strassen Primality Test](maths/solovay_strassen_primality_test.py)
   * [Square Root](maths/square_root.py)
   * [Sum Of Arithmetic Series](maths/sum_of_arithmetic_series.py)
   * [Sum Of Digits](maths/sum_of_digits.py)
@@ -753,7 +747,6 @@
   * [Spiral Print](matrix/spiral_print.py)
   * Tests
     * [Test Matrix Operation](matrix/tests/test_matrix_operation.py)
-  * [Validate Sudoku Board](matrix/validate_sudoku_board.py)
 
 ## Networking Flow
   * [Ford Fulkerson](networking_flow/ford_fulkerson.py)
@@ -829,7 +822,6 @@
   * [Rms Speed Of Molecule](physics/rms_speed_of_molecule.py)
   * [Shear Stress](physics/shear_stress.py)
   * [Speed Of Sound](physics/speed_of_sound.py)
-  * [Speeds Of Gas Molecules](physics/speeds_of_gas_molecules.py)
 
 ## Project Euler
   * Problem 001
@@ -1220,7 +1212,6 @@
   * [Capitalize](strings/capitalize.py)
   * [Check Anagrams](strings/check_anagrams.py)
   * [Credit Card Validator](strings/credit_card_validator.py)
-  * [Damerau Levenshtein Distance](strings/damerau_levenshtein_distance.py)
   * [Detecting English Programmatically](strings/detecting_english_programmatically.py)
   * [Dna](strings/dna.py)
   * [Edit Distance](strings/edit_distance.py)
@@ -1255,7 +1246,6 @@
   * [String Switch Case](strings/string_switch_case.py)
   * [Strip](strings/strip.py)
   * [Text Justification](strings/text_justification.py)
-  * [Title](strings/title.py)
   * [Top K Frequent Words](strings/top_k_frequent_words.py)
   * [Upper](strings/upper.py)
   * [Wave](strings/wave.py)
