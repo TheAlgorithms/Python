@@ -457,7 +457,7 @@ def test_cancel_data():
         request = urllib.request.Request(
             CANCER_DATASET_URL,
             headers={"User-Agent": "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)"},
-        )
+        )  # noqa: S310
         response = urllib.request.urlopen(request)  # noqa: S310
         content = response.read().decode("utf-8")
         with open(r"cancel_data.csv", "w") as f:
