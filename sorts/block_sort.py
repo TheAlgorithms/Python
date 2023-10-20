@@ -28,14 +28,22 @@ def block_sort(lst: list) -> list:
     for block in blocks:
         block.sort()
 
-    sorted_lst = []
+    sorted_result = []  # Initialize an empty list to store the sorted elements.
+
+    # Continue the loop until all blocks are merged.
     while blocks:
+        # Find the block with the minimum first element.
         min_block = min(blocks, key=lambda block: block[0])
-        sorted_lst.append(min_block.pop(0))
+
+        # Append the minimum element to the sorted result.
+        sorted_result.append(min_block.pop(0))
+
+        # If the block is empty after the pop operation,
+        # remove it from the list of blocks.
         if not min_block:
             blocks.remove(min_block)
 
-    return sorted_lst
+    return sorted_result
 
 
 if __name__ == "__main__":
