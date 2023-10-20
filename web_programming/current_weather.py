@@ -1,6 +1,6 @@
 import requests
 
-APPID = ""  # <-- Put your OpenWeatherMap appid here!
+APPID = "79de5817a4d223b536ce61a0f630a4b4"  # <-- Put your OpenWeatherMap appid here!
 URL_BASE = "https://api.openweathermap.org/data/2.5/"
 
 
@@ -26,5 +26,25 @@ if __name__ == "__main__":
         location = input("Enter a location:").strip()
         if location:
             pprint(current_weather(location))
+
+
+            #for extracting exact data from json 
+            json_data = current_weather(location)
+            condition = json_data['weather'][0]['main']
+            description=json_data['weather'][0]['description']
+            temp = int(json_data['main']['temp'] - 273.15)
+            pressure = json_data['main']['pressure']
+            humidity = json_data['main']['humidity']
+            wind = json_data['wind']['speed']
+
+
+
+            print("\n Condition:",condition)
+            print("\n description:",description)
+            print("\n temp:",temp)
+            print("\n pressure:",pressure)
+            print("\n humidity:",humidity)
+            print("\n wind:",wind)
+            
         else:
             break
