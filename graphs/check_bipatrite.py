@@ -1,5 +1,6 @@
 from collections import defaultdict, deque
 
+
 def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
     """
     Check if a graph is bipartite using DFS.
@@ -19,6 +20,7 @@ def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
     >>> is_bipartite_dfs(defaultdict(list, {0: [1, 2], 1: [0, 3], 2: [0, 1]}))
     False
     """
+
     def dfs(node, color):
         """
         Perform Depth-First Search (DFS) on the graph starting from a node.
@@ -42,6 +44,7 @@ def is_bipartite_dfs(graph: defaultdict[int, list[int]]) -> bool:
         if visited[node] == -1 and not dfs(node, 0):
             return False
     return True
+
 
 def is_bipartite_bfs(graph: defaultdict[int, list[int]]) -> bool:
     """
@@ -77,6 +80,8 @@ def is_bipartite_bfs(graph: defaultdict[int, list[int]]) -> bool:
                     elif visited[neighbor] == visited[curr_node]:
                         return False
     return True
+
+
 if __name__ == "__main":
     import doctest
 
