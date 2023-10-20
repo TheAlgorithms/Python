@@ -60,6 +60,8 @@ def check_bipartite(graph):
     >>> check_bipartite(
     ... {0: [1.0, 3.0], 1.0: [0, 2.0], 2.0: [1.0, 3.0], 3.0: [0, 2.0]}
     ... )
+    Traceback (most recent call last):
+        ...
     TypeError: list indices must be integers or slices, not float
     >>> check_bipartite(
     ... {"a": [1, 3], "b": [0, 2], "c": [1, 3], "d": [0, 2]}
