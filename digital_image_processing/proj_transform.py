@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 # read the image using opencv
-imgInput = cv2.imread('./images/sedcatok1.png')
+imgInput = cv2.imread('./image_data/sedcatok1.jpg')
 
 # set the width and height of the output image in px
 # width, height = 718, 718
@@ -28,7 +28,7 @@ imgOutput = cv2.warpPerspective(imgInput, trnsMatrix, (width,height))
 cv2.imshow("Original Image", imgInput)
 cv2.imshow("Final Image", imgOutput)
 
-cv2.imwrite('./images/outputimg.png', imgOutput)
+cv2.imwrite('./image_data/outputimg.jpg', imgOutput)
 
 # end the program on pressing some key
 cv2.waitKey(0)
