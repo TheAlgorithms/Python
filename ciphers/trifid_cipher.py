@@ -1,63 +1,35 @@
 """
-The trifid cipher uses a table to fractionate each plaintext letter into a
-trigram,mixes the constituents of the trigrams, and then applies the table
-in reverse to turn these mixed trigrams into ciphertext letters.
+The trifid cipher uses a table to fractionate each plaintext letter into a trigram,
+mixes the constituents of the trigrams, and then applies the table in reverse to turn
+these mixed trigrams into ciphertext letters.
+
 https://en.wikipedia.org/wiki/Trifid_cipher
 """
 
 from __future__ import annotations
 
+# fmt: off
 TEST_CHARACTER_TO_NUMBER = {
-    "A": "111",
-    "B": "112",
-    "C": "113",
-    "D": "121",
-    "E": "122",
-    "F": "123",
-    "G": "131",
-    "H": "132",
-    "I": "133",
-    "J": "211",
-    "K": "212",
-    "L": "213",
-    "M": "221",
-    "N": "222",
-    "O": "223",
-    "P": "231",
-    "Q": "232",
-    "R": "233",
-    "S": "311",
-    "T": "312",
-    "U": "313",
-    "V": "321",
-    "W": "322",
-    "X": "323",
-    "Y": "331",
-    "Z": "332",
-    "+": "333",
+    "A": "111", "B": "112", "C": "113", "D": "121", "E": "122", "F": "123", "G": "131",
+    "H": "132", "I": "133", "J": "211", "K": "212", "L": "213", "M": "221", "N": "222",
+    "O": "223", "P": "231", "Q": "232", "R": "233", "S": "311", "T": "312", "U": "313",
+    "V": "321", "W": "322", "X": "323", "Y": "331", "Z": "332", "+": "333",
 }
+# fmt: off
 
-TEST_NUMBER_TO_CHARACTER = {
-    value: key for key, value in TEST_CHARACTER_TO_NUMBER.items()
-}
+TEST_NUMBER_TO_CHARACTER = {val: key for key, val in TEST_CHARACTER_TO_NUMBER.items()}
 
 
 def __encrypt_part(message_part: str, character_to_number: dict[str, str]) -> str:
     """
-    Arrange the triagram value of each letter of 'message_part' vertically and join them
-    horizontally.
+    Arrange the triagram value of each letter of 'message_part' vertically and join
+    them horizontally.
 
     >>> __encrypt_part('ASK', TEST_CHARACTER_TO_NUMBER)
     '132111112'
-
     """
     one, two, three = "", "", ""
-    tmp = []
-
-    for character in message_part:
-        tmp.append(character_to_number[character])
-
-    for each in tmp:
+    for each in (character_to_number[character] for character in message_part):
         one += each[0]
         two += each[1]
         three += each[2]
@@ -75,12 +47,9 @@ def __decrypt_part(
     >>> __decrypt_part('ABCDE', TEST_CHARACTER_TO_NUMBER)
     ('11111', '21131', '21122')
     """
-    tmp, this_part = "", ""
+    this_part = "".join(character_to_number[character] for character in message_part)
     result = []
-
-    for character in message_part:
-        this_part += character_to_number[character]
-
+    tmp = ""
     for digit in this_part:
         tmp += digit
         if len(tmp) == len(message_part):
@@ -94,10 +63,10 @@ def __prepare(
     message: str, alphabet: str
 ) -> tuple[str, str, dict[str, str], dict[str, str]]:
     """
-    A helper function that generates the triagrams and assigns each letter
-    of the alphabet to its corresponding triagram and stores this in a
-    dictionary ("character_to_number" and "number_to_character") after
-    confirming if the alphabet's length is 27.
+    A helper function that generates the triagrams and assigns each letter of the
+    alphabet to its corresponding triagram and stores this in a dictionary
+    ("character_to_number" and "number_to_character") after confirming if the
+    alphabet's length is 27.
 
     >>> test = __prepare('I aM a BOy','abCdeFghijkLmnopqrStuVwxYZ+')
     >>> expected = ('IAMABOY','ABCDEFGHIJKLMNOPQRSTUVWXYZ+',
@@ -136,45 +105,14 @@ def __prepare(
     # Check length and characters
     if len(alphabet) != 27:
         raise KeyError("Length of alphabet has to be 27.")
-    for each in message:
-        if each not in alphabet:
-            raise ValueError("Each message character has to be included in alphabet!")
+    if any(char not in alphabet for char in message):
+        raise ValueError("Each message character has to be included in alphabet!")
 
     # Generate dictionares
-    numbers = (
-        "111",
-        "112",
-        "113",
-        "121",
-        "122",
-        "123",
-        "131",
-        "132",
-        "133",
-        "211",
-        "212",
-        "213",
-        "221",
-        "222",
-        "223",
-        "231",
-        "232",
-        "233",
-        "311",
-        "312",
-        "313",
-        "321",
-        "322",
-        "323",
-        "331",
-        "332",
-        "333",
-    )
-    character_to_number = {}
-    number_to_character = {}
-    for letter, number in zip(alphabet, numbers):
-        character_to_number[letter] = number
-        number_to_character[number] = letter
+    character_to_number = dict(zip(alphabet, TEST_CHARACTER_TO_NUMBER.values()))
+    number_to_character = {
+        number: letter for letter, number in character_to_number.items()
+    }
 
     return message, alphabet, character_to_number, number_to_character
 
@@ -211,16 +149,16 @@ def encrypt_message(
     message, alphabet, character_to_number, number_to_character = __prepare(
         message, alphabet
     )
-    encrypted, encrypted_numeric = "", ""
 
+    encrypted_numeric = ""
     for i in range(0, len(message) + 1, period):
         encrypted_numeric += __encrypt_part(
             message[i : i + period], character_to_number
         )
 
+    encrypted = ""
     for i in range(0, len(encrypted_numeric), 3):
         encrypted += number_to_character[encrypted_numeric[i : i + 3]]
-
     return encrypted
 
 
@@ -253,18 +191,13 @@ def decrypt_message(
     )
 
     decrypted_numeric = []
-    decrypted = ""
-
     for i in range(0, len(message), period):
         a, b, c = __decrypt_part(message[i : i + period], character_to_number)
 
         for j in range(len(a)):
             decrypted_numeric.append(a[j] + b[j] + c[j])
 
-    for each in decrypted_numeric:
-        decrypted += number_to_character[each]
-
-    return decrypted
+    return "".join(number_to_character[each] for each in decrypted_numeric)
 
 
 if __name__ == "__main__":
