@@ -112,4 +112,5 @@ if __name__ == "__main__":
     # Adjacency List of graph
     print(check_bipartite({0: [1, 3], 1: [0, 2], 2: [1, 3], 3: [0, 2]}))
     import doctest
+
     doctest.testmod()
