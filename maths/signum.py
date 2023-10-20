@@ -8,35 +8,38 @@ def signum(num: float) -> int:
     Applies signum function on the number
 
     Custom test cases:
-    >>> signum(-20)
-    -1
-    >>> signum(20)
-    1
-    >>> signum(0)
-    0
-    >>> signum("a")
-    0
-    >>> signum([])
-    0
     >>> signum(-10)
     -1
     >>> signum(10)
     1
+    >>> signum(0)
+    0
+    >>> signum(-20.5)
+    -1
+    >>> signum(20.5)
+    1
+    >>> signum(-1e-6)
+    -1
+    >>> signum(1e-6)
+    1
+    >>> signum("Hello")
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
+    >>> signum([])
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'list' and 'int'
     """
-    if isinstance(num, (int, float)):
-        if num < 0:
-            return -1
-        elif num > 0:
-            return 1
-        else:
-            return 0
-    else:
-        return 0
+    if num < 0:
+        return -1
+    return 1 if num else 0
 
 
 def test_signum() -> None:
     """
     Tests the signum function
+    >>> test_signum()
     """
     assert signum(5) == 1
     assert signum(-5) == -1
@@ -47,8 +50,6 @@ def test_signum() -> None:
     assert signum(-1e-6) == -1
     assert signum(123456789) == 1
     assert signum(-123456789) == -1
-    assert signum("hello") == 0
-    assert signum([]) == 0
 
 
 if __name__ == "__main__":
