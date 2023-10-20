@@ -41,18 +41,18 @@ def __decrypt_part(
     message_part: str, character_to_number: dict[str, str]
 ) -> tuple[str, str, str]:
     """
-1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678
-    Convert each letter of the input string into their respective trigram values, join
-    them and split them into three equal groups of strings which are returned.
+    1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678
+        Convert each letter of the input string into their respective trigram values, join
+        them and split them into three equal groups of strings which are returned.
 
-    >>> __decrypt_part('ABCDE',
-    ... {'A': '111', 'B': '112', 'C':'113', 'D': '121', 'E': '122', 'F': '123',
-    ... 'G': '131', 'H': '132', 'I': '133',
-    ... 'J': '211', 'K': '212', 'L': '213', 'M': '221', 'N': '222',
-    ... 'O': '223', 'P': '231', 'Q': '232', 'R': '233', 'S': '311', 'T': '312',
-    ... 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332',
-    ... '+': '333'})
-    ('11111', '21131', '21122')
+        >>> __decrypt_part('ABCDE',
+        ... {'A': '111', 'B': '112', 'C':'113', 'D': '121', 'E': '122', 'F': '123',
+        ... 'G': '131', 'H': '132', 'I': '133',
+        ... 'J': '211', 'K': '212', 'L': '213', 'M': '221', 'N': '222',
+        ... 'O': '223', 'P': '231', 'Q': '232', 'R': '233', 'S': '311', 'T': '312',
+        ... 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332',
+        ... '+': '333'})
+        ('11111', '21131', '21122')
     """
     tmp, this_part = "", ""
     result = []
