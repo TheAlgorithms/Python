@@ -3,9 +3,7 @@ This is pure Python implementation of interpolation search algorithm
 """
 
 
-def interpolation_search(
-    sorted_collection: list[int] | tuple[int], item: int
-) -> int | None:
+def interpolation_search(sorted_collection: list[int] | tuple[int], item: int) -> int | None:
     """Pure implementation of interpolation search algorithm in Python
     Be careful collection must be ascending sorted, otherwise result will be
     unpredictable
@@ -16,6 +14,7 @@ def interpolation_search(
     0
     >>> interpolation_search([-1, 0, 1], 2) == None
     True
+    >>> interpolation_search([5, 0, 1], 2) == None
     >>> interpolation_search([], -1) == None
     True
     >>> interpolation_search((-1, 0, 1), 0)
@@ -74,9 +73,7 @@ def interpolation_search(
     return None
 
 
-def interpolation_search_by_recursion(
-    sorted_collection: list[int] | tuple[int], item: int, left: int, right: int
-) -> int | None:
+def interpolation_search_by_recursion(sorted_collection: list[int] | tuple[int], item: int, left: int, right: int) -> int | None:
     """Pure implementation of interpolation search algorithm in Python by recursion
     Be careful collection must be ascending sorted, otherwise result will be
     unpredictable
@@ -84,49 +81,31 @@ def interpolation_search_by_recursion(
     :param sorted_collection: some ascending sorted collection with comparable items
     :param item: item value to search
     :return: index of found item or None if item is not found
-    >>> interpolation_search_by_recursion(
-    ... [-1, 0, 1], -1, 0, 2
-    ... )
+    >>> interpolation_search_by_recursion([-1, 0, 1], -1, 0, 2)
     0
-    >>> interpolation_search_by_recursion(
-    ... [-1, 0, 1], 2, 0, 2
-    ... ) == None
+    >>> interpolation_search_by_recursion([-1, 0, 1], 2, 0, 2) == None
     True
-    >>> interpolation_search_by_recursion(
-    ... [], -1, 0, 0
-    ... ) == None
+    >>> interpolation_search_by_recursion([], -1, 0, 0) == None
     Traceback (most recent call last):
         ...
     IndexError: list index out of range
-    >>> interpolation_search_by_recursion(
-    ... (-1, 0, 1), 0, 0, 2
-    ... )
+    >>> interpolation_search_by_recursion((-1, 0, 1), 0, 0, 2)
     1
-    >>> interpolation_search_by_recursion(
-    ... range(100), 99, 0, 99
-    ... )
+    >>> interpolation_search_by_recursion(range(100), 99, 0, 99)
     99
-    >>> interpolation_search_by_recursion(
-    ... {-1, 0, 1}, -1, 0, 2
-    ... )
+    >>> interpolation_search_by_recursion({-1, 0, 1}, -1, 0, 2)
     Traceback (most recent call last):
         ...
     TypeError: 'set' object is not subscriptable
-    >>> interpolation_search_by_recursion(
-    ... [-1.0, 0, 1], -1.0, 0, 2
-    ... )
+    >>> interpolation_search_by_recursion([-1.0, 0, 1], -1.0, 0, 2)
     Traceback (most recent call last):
         ...
     TypeError: list indices must be integers or slices, not float
-    >>> interpolation_search_by_recursion(
-    ... ["A", "B", "C"], "C", 0, 2
-    ... )
+    >>> interpolation_search_by_recursion(["A", "B", "C"], "C", 0, 2)
     Traceback (most recent call last):
         ...
     TypeError: unsupported operand type(s) for -: 'str' and 'str'
-    >>> interpolation_search_by_recursion(
-    ... {1:4, 2:9, 0:42}, 1, 0, 2
-    ... ) == None
+    >>> interpolation_search_by_recursion({1:4, 2:9, 0:42}, 1, 0, 2) == None
     True
     """
 
