@@ -7,10 +7,40 @@ https://en.wikipedia.org/wiki/Trifid_cipher
 
 from __future__ import annotations
 
-TEST_CHARACTER_TO_NUMBER = {'A': '111', 'B': '112', 'C':'113', 'D': '121', 'E':'122', 'F': '123','G': '131', 'H': '132', 'I': '133','J': '211', 'K': '212', 'L': '213', 'M': '221', 'N': '222','O': '223', 'P': '231', 'Q': '232', 'R': '233', 'S': '311', 'T': '312','U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332','+': '333'}
+TEST_CHARACTER_TO_NUMBER = {
+    "A": "111",
+    "B": "112",
+    "C": "113",
+    "D": "121",
+    "E": "122",
+    "F": "123",
+    "G": "131",
+    "H": "132",
+    "I": "133",
+    "J": "211",
+    "K": "212",
+    "L": "213",
+    "M": "221",
+    "N": "222",
+    "O": "223",
+    "P": "231",
+    "Q": "232",
+    "R": "233",
+    "S": "311",
+    "T": "312",
+    "U": "313",
+    "V": "321",
+    "W": "322",
+    "X": "323",
+    "Y": "331",
+    "Z": "332",
+    "+": "333",
+}
 
-TEST_NUMBER_TO_CHARACTER = {value: key for key, value in 
-                            TEST_CHARACTER_TO_NUMBER.items()}
+TEST_NUMBER_TO_CHARACTER = {
+    value: key for key, value in TEST_CHARACTER_TO_NUMBER.items()
+}
+
 
 def __encrypt_part(message_part: str, character_to_number: dict[str, str]) -> str:
     """
@@ -39,11 +69,11 @@ def __decrypt_part(
     message_part: str, character_to_number: dict[str, str]
 ) -> tuple[str, str, str]:
     """
-        Convert each letter of the input string into their respective trigram values, join
-        them and split them into three equal groups of strings which are returned.
+    Convert each letter of the input string into their respective trigram values, join
+    them and split them into three equal groups of strings which are returned.
 
-        >>> __decrypt_part('ABCDE', TEST_CHARACTER_TO_NUMBER)
-        ('11111', '21131', '21122')
+    >>> __decrypt_part('ABCDE', TEST_CHARACTER_TO_NUMBER)
+    ('11111', '21131', '21122')
     """
     tmp, this_part = "", ""
     result = []
