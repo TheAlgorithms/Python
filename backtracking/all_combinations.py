@@ -49,6 +49,10 @@ def create_all_state(
     current_list: list[int],
     total_list: list[list[int]],
 ) -> None:
+    """
+    This function populates the input "total" list with every possible
+    combination of numbers from 1 to k using backtracking.
+    """
     if level == 0:
         total_list.append(current_list[:])
         return
