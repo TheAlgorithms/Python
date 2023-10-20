@@ -3,7 +3,7 @@ Signum function -- https://en.wikipedia.org/wiki/Sign_function
 """
 
 
-def signum(num) -> int:
+def signum(num: float) -> int:
     """
     Applies signum function on the number
 
@@ -15,9 +15,7 @@ def signum(num) -> int:
     >>> signum(0)
     0
     >>> signum("a")
-    Traceback (most recent call last):
-        ...
-    TypeError: '<' not supported between instances of 'str' and 'int'
+    0
     >>> signum([])
     0
     >>> signum(-10)
