@@ -1,5 +1,14 @@
 def get_word_pattern(word: str) -> str:
     """
+    Returns numerical pattern of character appearances in given word
+    >>> get_word_pattern()
+    Traceback (most recent call last):
+    ...
+    TypeError: get_word_pattern() missing 1 required positional argument: 'word'
+    >>> get_word_pattern("")
+
+    >>> get_word_pattern(" ")
+    0
     >>> get_word_pattern("pattern")
     '0.1.2.2.3.4.5'
     >>> get_word_pattern("word pattern")
