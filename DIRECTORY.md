@@ -549,13 +549,7 @@
   * Local Weighted Learning
     * [Local Weighted Learning](machine_learning/local_weighted_learning/local_weighted_learning.py)
   * [Logistic Regression](machine_learning/logistic_regression.py)
-  * Loss Functions
-    * [Binary Cross Entropy](machine_learning/loss_functions/binary_cross_entropy.py)
-    * [Categorical Cross Entropy](machine_learning/loss_functions/categorical_cross_entropy.py)
-    * [Hinge Loss](machine_learning/loss_functions/hinge_loss.py)
-    * [Huber Loss](machine_learning/loss_functions/huber_loss.py)
-    * [Mean Squared Error](machine_learning/loss_functions/mean_squared_error.py)
-    * [Mean Squared Logarithmic Error](machine_learning/loss_functions/mean_squared_logarithmic_error.py)
+  * [Loss Functions](machine_learning/loss_functions.py)
   * [Mfcc](machine_learning/mfcc.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
   * [Polynomial Regression](machine_learning/polynomial_regression.py)
