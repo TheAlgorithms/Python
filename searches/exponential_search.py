@@ -42,6 +42,7 @@ def exponential_search(sorted_collection: list[int], item: int) -> int | None:
         sorted_collection=sorted_collection, item=item, left=left, right=right
     )
 
+
 if __name__ == "__main__":
     import doctest
 
