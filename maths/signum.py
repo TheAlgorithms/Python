@@ -43,7 +43,7 @@ def test_signum() -> None:
     assert signum(-123456789) == -1
 
 
-if __ame__ == "__main":
+if __name__ == "__main":
     print(signum(12))
     print(signum(-12))
     print(signum(0))
