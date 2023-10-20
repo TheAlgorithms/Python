@@ -5,12 +5,13 @@ Signum function -- https://en.wikipedia.org/wiki/Sign_function
 
 def signum(num: float) -> int:
     """
-    Applies signum function on the number
+     Applies signum function on the number
 
-    >>> signum(-10)
-    -1
-    >>> signum(10)
-    1
+    Custom test cases:
+    >>> signum(-20)
+    -2
+    >>> signum(20)
+    2
     >>> signum(0)
     0
     """
