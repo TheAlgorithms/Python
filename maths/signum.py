@@ -3,7 +3,7 @@ Signum function -- https://en.wikipedia.org/wiki/Sign_function
 """
 
 
-def signum(num: float) -> int:
+def signum(num) -> int:
     """
     Applies signum function on the number
 
@@ -15,9 +15,7 @@ def signum(num: float) -> int:
     >>> signum(0)
     0
     >>> signum("a")
-    Traceback (most recent call last):
-        ...
-    TypeError: '<' not supported between instances of 'str' and 'int'
+    0
     >>> signum([])
     0
     >>> signum(-10)
@@ -25,9 +23,15 @@ def signum(num: float) -> int:
     >>> signum(10)
     1
     """
-    if num < 0:
-        return -1
-    return 1 if num else 0
+    if isinstance(num, (int, float)):
+        if num < 0:
+            return -1
+        elif num > 0:
+            return 1
+        else:
+            return 0
+    else:
+        return 0
 
 
 def test_signum() -> None:
@@ -43,6 +47,8 @@ def test_signum() -> None:
     assert signum(-1e-6) == -1
     assert signum(123456789) == 1
     assert signum(-123456789) == -1
+    assert signum("hello") == 0
+    assert signum([]) == 0
 
 
 if __name__ == "__main__":
