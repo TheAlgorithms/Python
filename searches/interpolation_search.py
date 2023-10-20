@@ -13,7 +13,7 @@ def interpolation_search(sorted_collection, item):
     >>> interpolation_search([-1, 0, 1], -1)
     0
     >>> interpolation_search([-1, 0, 1], 2)
-    
+
     """
     left = 0
     right = len(sorted_collection) - 1
@@ -69,7 +69,7 @@ def interpolation_search_by_recursion(sorted_collection, item, left, right):
     >>> interpolation_search_by_recursion(
     ... sorted_collection, 2, 0, len(sorted_collection) - 1
     ... )
-    
+
     """
 
     # avoid divided by 0 during interpolation
