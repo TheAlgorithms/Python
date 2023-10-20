@@ -10,8 +10,8 @@ from __future__ import annotations
 
 def __encrypt_part(message_part: str, character_to_number: dict[str, str]) -> str:
     """
-    Arranges the triagram value of each letter of 'message_part' vertically
-    and joins them horizontally
+    Arrange the triagram value of each letter of 'message_part' vertically and join them
+    horizontally.
 
     >>> __encrypt_part('ASK',
     ... {'A': '111', 'B': '112', 'C':'113', 'D': '121', 'E': '122', 'F': '123',
