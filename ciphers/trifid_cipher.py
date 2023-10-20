@@ -1,6 +1,6 @@
 """
-The trifid cipher uses a table to fractionate each plaintext letter into a 
-trigram,mixes the constituents of the trigrams, and then applies the table 
+The trifid cipher uses a table to fractionate each plaintext letter into a
+trigram,mixes the constituents of the trigrams, and then applies the table
 in reverse to turn these mixed trigrams into ciphertext letters.
 https://en.wikipedia.org/wiki/Trifid_cipher
 """
@@ -10,7 +10,7 @@ from __future__ import annotations
 
 def __encrypt_part(message_part: str, character_to_number: dict[str, str]) -> str:
     """
-    Arranges the triagram value of each letter of 'message_part' vertically 
+    Arranges the triagram value of each letter of 'message_part' vertically
     and joins them horizontally
 
     >>> __encrypt_part('ASK',
@@ -18,7 +18,7 @@ def __encrypt_part(message_part: str, character_to_number: dict[str, str]) -> st
     ... 'G': '131', 'H': '132', 'I': '133',
     ... 'J': '211', 'K': '212', 'L': '213', 'M': '221', 'N': '222',
     ... 'O': '223', 'P': '231', 'Q': '232', 'R': '233', 'S': '311', 'T': '312',
-    ... 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332', 
+    ... 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332',
     ... '+': '333'})
     '132111112'
 
@@ -41,8 +41,8 @@ def __decrypt_part(
     message_part: str, character_to_number: dict[str, str]
 ) -> tuple[str, str, str]:
     """
-    Converts each letter of the input string into there respective trigram 
-    values, joins them and splits them into three equal groups of strings. 
+    Converts each letter of the input string into there respective trigram
+    values, joins them and splits them into three equal groups of strings.
     Then returns the group of strings .
 
     >>> __decrypt_part('ABCDE',
@@ -50,7 +50,7 @@ def __decrypt_part(
     ... 'G': '131', 'H': '132', 'I': '133',
     ... 'J': '211', 'K': '212', 'L': '213', 'M': '221', 'N': '222',
     ... 'O': '223', 'P': '231', 'Q': '232', 'R': '233', 'S': '311', 'T': '312',
-    ... 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332', 
+    ... 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332',
     ... '+': '333'})
     ('11111', '21131', '21122')
     """
@@ -73,9 +73,9 @@ def __prepare(
     message: str, alphabet: str
 ) -> tuple[str, str, dict[str, str], dict[str, str]]:
     """
-    A helper function that generates the triagrams and assigns each letter 
-    of the alphabet to its corresponding triagram and stores this in a 
-    dictionary ("character_to_number" and "number_to_character") after 
+    A helper function that generates the triagrams and assigns each letter
+    of the alphabet to its corresponding triagram and stores this in a
+    dictionary ("character_to_number" and "number_to_character") after
     confirming if the alphabet's length is 27.
 
     >>> test = __prepare('I aM a BOy','abCdeFghijkLmnopqrStuVwxYZ+')
@@ -84,7 +84,7 @@ def __prepare(
     ... 'G': '131', 'H': '132', 'I': '133',
     ... 'J': '211', 'K': '212', 'L': '213', 'M': '221', 'N': '222',
     ... 'O': '223', 'P': '231', 'Q': '232', 'R': '233', 'S': '311', 'T': '312',
-    ... 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332', 
+    ... 'U': '313', 'V': '321', 'W': '322', 'X': '323', 'Y': '331', 'Z': '332',
     ... '+': '333'},
     ... {'111': 'A', '112': 'B', '113': 'C', '121': 'D', '122': 'E',
     ... '123': 'F', '131': 'G', '132': 'H', '133': 'I', '211': 'J', '212': 'K',
@@ -93,7 +93,7 @@ def __prepare(
     ... '323': 'X', '331': 'Y', '332': 'Z', '333': '+'})
     >>> test == expected
     True
-    
+
     Testing with incomplete alphabet
     >>> __prepare('I aM a BOy','abCdeFghijkLmnopqrStuVw')
     Traceback (most recent call last):
@@ -176,16 +176,15 @@ def encrypt_message(
     ===============
 
     Encrypts a message using the trifid_cipher. Any punctuatuions that
-    would be used should be added to the alphabet.  
+    would be used should be added to the alphabet.
 
     PARAMETERS
     ----------
 
     *   message: The message you want to encrypt.
     *   alphabet (optional): The characters to be used for the cipher .
-    *   period (optional): The number of characters you want in a group whilst 
+    *   period (optional): The number of characters you want in a group whilst
         encrypting.
-    
 
     >>> encrypt_message('I am a boy')
     'BCDGBQY'
@@ -228,7 +227,7 @@ def decrypt_message(
 
     *   message: The message you want to decrypt .
     *   alphabet (optional): The characters used for the cipher.
-    *   period (optional): The number of characters used in grouping when it 
+    *   period (optional): The number of characters used in grouping when it
         was encrypted.
 
     >>> decrypt_message('BCDGBQY')
@@ -241,16 +240,16 @@ def decrypt_message(
     message, alphabet, character_to_number, number_to_character = __prepare(
         message, alphabet
     )
-    
+
     decrypted_numeric = []
     decrypted = ""
     
     for i in range(0, len(message) , period):
         a, b, c = __decrypt_part(message[i : i + period], character_to_number)
-    
+
         for j in range(len(a)):
             decrypted_numeric.append(a[j] + b[j] + c[j])
-    
+
     for each in decrypted_numeric:
         decrypted += number_to_character[each]
 
