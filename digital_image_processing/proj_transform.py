@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 # read the image using opencv
-img_input = cv2.imread('./image_data/lena.jpg')
+img_input = cv2.imread("./image_data/lena.jpg")
 
 # set the width and height of the output image in px
 # width, height = 718, 718
@@ -18,11 +18,11 @@ pts1 = np.float32([[0, height], [width, height], [width, 0], [0, 0]])
 pts2 = np.float32([[142, 142], [362, 32], [418, 358], [127, 461]])
 
 # get the projective transformation matrix
-trns_matrix = cv2.getPerspectiveTransform(pts1,pts2)
+trns_matrix = cv2.getPerspectiveTransform(pts1, pts2)
 
 
 # apply the projective transformation
-img_output = cv2.warpPerspective(img_input, trns_matrix, (width,height))
+img_output = cv2.warpPerspective(img_input, trns_matrix, (width, height))
 
 # display the original and the final image
 cv2.imshow("Original Image", img_input)
