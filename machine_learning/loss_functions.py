@@ -198,7 +198,7 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     True
     >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
-    >>> mean_squared_error(true_values, predicted_values)
+    >>> mean_squared_error(true_labels, predicted_probs)
     Traceback (most recent call last):
     ...
     ValueError: Input arrays must have the same length.
