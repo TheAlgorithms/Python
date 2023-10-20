@@ -12,10 +12,10 @@ height = img_input.shape[0]
 width = img_input.shape[1]
 
 # set the initial coordinates of the four points
-pts1 = np.float32([[0,height], [width,height], [width,0], [0,0]])
+pts1 = np.float32([[0, height], [width, height], [width, 0], [0, 0]])
 
 # set the final coordinates of the four points
-pts2 = np.float32([[142,142], [362,32], [418,358], [127,461]])
+pts2 = np.float32([[142, 142], [362, 32], [418, 358], [127, 461]])
 
 # get the projective transformation matrix
 trns_matrix = cv2.getPerspectiveTransform(pts1,pts2)
