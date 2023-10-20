@@ -780,6 +780,7 @@
 ## Other
   * [Activity Selection](other/activity_selection.py)
   * [Alternative List Arrange](other/alternative_list_arrange.py)
+  * [Blacklistipchecker](other/blacklistipchecker.py)
   * [Davisb Putnamb Logemannb Loveland](other/davisb_putnamb_logemannb_loveland.py)
   * [Dijkstra Bankers Algorithm](other/dijkstra_bankers_algorithm.py)
   * [Doomsday](other/doomsday.py)
