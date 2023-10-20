@@ -72,7 +72,9 @@ def interpolation_search(sorted_collection: list[int], item: int) -> int | None:
     return None
 
 
-def interpolation_search_by_recursion(sorted_collection: list[int], item: int, left: int, right: int) -> int | None:
+def interpolation_search_by_recursion(
+    sorted_collection: list[int], item: int, left: int, right: int
+) -> int | None:
     """Pure implementation of interpolation search algorithm in Python by recursion
     Be careful collection must be ascending sorted, otherwise result will be
     unpredictable
