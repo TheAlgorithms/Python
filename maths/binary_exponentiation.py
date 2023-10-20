@@ -5,6 +5,23 @@
 
 
 def binary_exponentiation(a: int, n: int) -> int:
+    """
+    Compute a number raised by some quantity
+    >>> binary_exponentiation(-1, 3)
+    -1
+    >>> binary_exponentiation(-1, 4)
+    1
+    >>> binary_exponentiation(2, 2)
+    4
+    >>> binary_exponentiation(3, 5)
+    243
+    >>> binary_exponentiation(10, 3)
+    1000
+    >>> binary_exponentiation(5e3, 1)
+    5000.0
+    >>> binary_exponentiation(-5e3, 1)
+    -5000.0
+    """
     if n == 0:
         return 1
 
@@ -17,8 +34,12 @@ def binary_exponentiation(a: int, n: int) -> int:
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     try:
-        BASE = int(input("Enter Base : ").strip())
+        BASE = int(float(input("Enter Base : ").strip()))
         POWER = int(input("Enter Power : ").strip())
     except ValueError:
         print("Invalid literal for integer")
