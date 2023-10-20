@@ -7,10 +7,10 @@ def block_sort(lst: list) -> list:
     sorted list.
 
     Args:
-        lst (list[int]): The unsorted list to be sorted.
+        lst (List[int]): The unsorted list to be sorted.
 
     Returns:
-        list[int]: The sorted list.
+        List[int]: The sorted list.
 
     Examples:
         >>> block_sort([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5])
