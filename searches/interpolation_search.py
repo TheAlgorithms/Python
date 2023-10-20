@@ -14,7 +14,6 @@ def interpolation_search(sorted_collection: list[int] | tuple[int], item: int) -
     0
     >>> interpolation_search([-1, 0, 1], 2) == None
     True
-    >>> interpolation_search([5, 0, 1], 2) == None
     >>> interpolation_search([], -1) == None
     True
     >>> interpolation_search((-1, 0, 1), 0)
