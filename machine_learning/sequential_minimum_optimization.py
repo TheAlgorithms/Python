@@ -454,7 +454,7 @@ def test_cancel_data():
     print("Hello!\nStart test svm by smo algorithm!")
     # 0: download dataset and load into pandas' dataframe
     if not os.path.exists(r"cancel_data.csv"):
-        request = urllib.request.Request(
+        request = urllib.request.Request(  # noqa: S310
             CANCER_DATASET_URL,
             headers={"User-Agent": "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)"},
         )
