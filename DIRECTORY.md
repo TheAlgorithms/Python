@@ -61,6 +61,11 @@
   * [Swap All Odd And Even Bits](bit_manipulation/swap_all_odd_and_even_bits.py)
 
 ## Blockchain
+  * Blog Smart Contracts
+    * [Blog Eosio Blockchain](blockchain/Blog_smart_contracts/blog_EOSIO_blockchain.py)
+    * [Blog Near Protocol](blockchain/Blog_smart_contracts/blog_NEAR_protocol.py)
+    * [Blog Tendermint Blockchain](blockchain/Blog_smart_contracts/blog_Tendermint_blockchain.py)
+    * [Blog Eth](blockchain/Blog_smart_contracts/blog_eth.py)
   * [Diophantine Equation](blockchain/diophantine_equation.py)
 
 ## Boolean Algebra
