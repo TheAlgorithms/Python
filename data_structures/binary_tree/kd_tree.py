@@ -1,4 +1,3 @@
-
 class MinimumCostCalculator:
     def calculate_min_cost(self, points):
         def find(parent, x):
@@ -42,6 +41,7 @@ class MinimumCostCalculator:
                     break
         return min_cost
 
+
 # Define test cases
 test_cases = [
     ([[0, 0], [2, 2], [3, 1], [4, 5], [1, 4]], 10),
@@ -55,4 +55,3 @@ for points, expected_result in test_cases:
     assert result == expected_result, f"Test failed: {result} != {expected_result}"
 
 print("All tests passed")
-
