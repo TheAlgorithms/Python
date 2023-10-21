@@ -24,7 +24,6 @@ def brewsters_angle(n1, n2):
     theta_b_degrees = math.degrees(theta_b)
 
     return theta_b, theta_b_degrees
-
 if __name__ == "__main":
     # Get user input for refractive indices
     n1 = float(input("Enter the refractive index of the initial medium (n1): "))
