@@ -10,10 +10,8 @@ Examples: https://www.javatpoint.com/fp-growth-algorithm-in-data-mining
 """
 
 from typing import Optional
-from dataclasses import dataclass, field
 
 
-@dataclass
 class TreeNode:
     """
     Initialize a TreeNode.
@@ -32,19 +30,14 @@ class TreeNode:
     2
     """
 
-    # def __init__(
-    #     self, name_value: str, num_occur: int, parent_node: Optional["TreeNode"] = None
-    # ) -> None:
-    #     self.name = name_value
-    #     self.count = num_occur
-    #     self.node_link = TreeNode | None  # Initialize node_link to None
-    #     self.parent = parent_node
-    #     self.children: dict[str, TreeNode] = {}
-    name: str
-    count: int
-    node_link: Optional['TreeNode'] = None  # Initialize node_link to None
-    parent: Optional["TreeNode"] = None
-    children: dict[str, "TreeNode"] = field(default_factory=dict)
+    def __init__(
+        self, name_value: str, num_occur: int, parent_node: Optional["TreeNode"] = None
+    ) -> None:
+        self.name = name_value
+        self.count = num_occur
+        self.node_link = None  # Initialize node_link to None
+        self.parent = parent_node
+        self.children: dict[str, TreeNode] = {}
 
     def inc(self, num_occur: int) -> None:
         self.count += num_occur
@@ -57,7 +50,7 @@ class TreeNode:
 
 def create_tree(data_set: list, min_sup: int = 1) -> tuple[TreeNode, dict]:
     """
-    Create Frequent Pattern tree
+    Create FP tree
 
     Args:
         data_set (list): A list of transactions, where each transaction
@@ -200,7 +193,10 @@ def update_header(node_to_test: TreeNode, target_node: TreeNode) -> TreeNode:
     while node_to_test.node_link is not None:
         node_to_test = node_to_test.node_link
     if node_to_test.node_link is None:
-        node_to_test.node_link = target_node
+        node_to_test.node_link = TreeNode(
+            target_node.name, target_node.count, node_to_test
+        )
+    # Return the updated node
     return node_to_test
 
 
@@ -302,7 +298,6 @@ def mine_tree(
     >>> all(expected in frequent_itemsets for expected in expe_itm)
     True
     """
-    new_head: Optional['TreeNode'] = None
     sorted_items = sorted(header_table.items(), key=lambda item_info: item_info[1][0])
     big_l = [item[0] for item in sorted_items]
     for base_pat in big_l:
@@ -316,7 +311,6 @@ def mine_tree(
             header_table[base_pat][1] = update_header(
                 header_table[base_pat][1], my_cond_tree
             )
-            my_head = new_head
             mine_tree(my_cond_tree, my_head, min_sup, new_freq_set, freq_item_list)
 
 
