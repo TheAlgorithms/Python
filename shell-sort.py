@@ -1,5 +1,6 @@
 from typing import List
 
+
 def shell_sort(arr: List[int]) -> None:
     """
     Perform Shell Sort on the given list 'arr' in place.
@@ -26,6 +27,7 @@ def shell_sort(arr: List[int]) -> None:
                 i -= gap
             j += 1
         gap = gap // 2
+
 
 if __name__ == "__main__":
     arr2 = [12, 34, 54, 2, 3]
