@@ -6,7 +6,7 @@ used methods of exponentiation. The method is also useful for modular exponentia
 when the solution to (a^b) % c is required.
 
 To calculate a^b:
-- If b is even, then a b = (a * a)^(b / 2)
+- If b is even, then a^b = (a * a)^(b / 2)
 - If b is odd, then a^b = a * a^(b - 1)
 Repeat until b = 1 or b = 0
 
@@ -14,10 +14,14 @@ For modular exponentiation, we use the fact that (a * b) % c = ((a % c) * (b % c
 """
 
 
-def binary_exp_recursive(base: int, exponent: int) -> int:
+def binary_exp_recursive(base: float, exponent: int) -> float:
     """
+    Computes a^b recursively, where a is the base and b is the exponent
+
     >>> binary_exp_recursive(3, 5)
     243
+    >>> binary_exp_recursive(11, 13)
+    34522712143931
     >>> binary_exp_recursive(-1, 3)
     -1
     >>> binary_exp_recursive(0, 5)
@@ -26,6 +30,8 @@ def binary_exp_recursive(base: int, exponent: int) -> int:
     3
     >>> binary_exp_recursive(3, 0)
     1
+    >>> binary_exp_recursive(1.5, 4)
+    5.0625
     >>> binary_exp_recursive(3, -1)
     Traceback (most recent call last):
         ...
@@ -44,10 +50,14 @@ def binary_exp_recursive(base: int, exponent: int) -> int:
     return b * b
 
 
-def binary_exp_iterative(base: int, exponent: int) -> int:
+def binary_exp_iterative(base: float, exponent: int) -> float:
     """
+    Computes a^b iteratively, where a is the base and b is the exponent
+
     >>> binary_exp_iterative(3, 5)
     243
+    >>> binary_exp_iterative(11, 13)
+    34522712143931
     >>> binary_exp_iterative(-1, 3)
     -1
     >>> binary_exp_iterative(0, 5)
@@ -56,6 +66,8 @@ def binary_exp_iterative(base: int, exponent: int) -> int:
     3
     >>> binary_exp_iterative(3, 0)
     1
+    >>> binary_exp_iterative(1.5, 4)
+    5.0625
     >>> binary_exp_iterative(3, -1)
     Traceback (most recent call last):
         ...
@@ -75,12 +87,17 @@ def binary_exp_iterative(base: int, exponent: int) -> int:
     return res
 
 
-def binary_exp_mod_recursive(base: int, exponent: int, modulus: int) -> int:
+def binary_exp_mod_recursive(base: float, exponent: int, modulus: int) -> float:
     """
+    Computes a^b % c recursively, where a is the base, b is the exponent, and c is the
+    modulus
+
     >>> binary_exp_mod_recursive(3, 4, 5)
     1
-    >>> binary_exp_mod_recursive(7, 13, 10)
-    7
+    >>> binary_exp_mod_recursive(11, 13, 7)
+    4
+    >>> binary_exp_mod_recursive(1.5, 4, 3)
+    2.0625
     >>> binary_exp_mod_recursive(7, -1, 10)
     Traceback (most recent call last):
         ...
@@ -105,12 +122,17 @@ def binary_exp_mod_recursive(base: int, exponent: int, modulus: int) -> int:
     return (r * r) % modulus
 
 
-def binary_exp_mod_iterative(base: int, exponent: int, modulus: int) -> int:
+def binary_exp_mod_iterative(base: float, exponent: int, modulus: int) -> float:
     """
+    Computes a^b % c iteratively, where a is the base, b is the exponent, and c is the
+    modulus
+
     >>> binary_exp_mod_iterative(3, 4, 5)
     1
-    >>> binary_exp_mod_iterative(7, 13, 10)
-    7
+    >>> binary_exp_mod_iterative(11, 13, 7)
+    4
+    >>> binary_exp_mod_iterative(1.5, 4, 3)
+    2.0625
     >>> binary_exp_mod_iterative(7, -1, 10)
     Traceback (most recent call last):
         ...
@@ -137,12 +159,16 @@ def binary_exp_mod_iterative(base: int, exponent: int, modulus: int) -> int:
 
 
 if __name__ == "__main__":
-    import doctest
+    from timeit import timeit
 
-    doctest.testmod()
+    setup = "from __main__ import *"
+    runs = 1000
 
-    BASE = int(input("Enter base: ").strip())
-    POWER = int(input("Enter power: ").strip())
+    a = 1269380576
+    b = 374
+    c = 34
 
-    RESULT = binary_exp_recursive(BASE, POWER)
-    print(f"{BASE}^({POWER}): {RESULT}")
+    print(timeit(f"binary_exp_recursive({a}, {b})", setup=setup, number=runs))
+    print(timeit(f"binary_exp_iterative({a}, {b})", setup=setup, number=runs))
+    print(timeit(f"binary_exp_mod_recursive({a}, {b})", setup=setup, number=runs))
+    print(timeit(f"binary_exp_mod_iterative({a}, {b})", setup=setup, number=runs))
