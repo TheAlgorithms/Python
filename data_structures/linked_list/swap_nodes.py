@@ -25,6 +25,12 @@ class LinkedList:
         """
         Print the elements of the Linked List in order.
 
+        Args:
+            No arguments
+
+        Returns:
+            None
+
         Examples:
             >>> new_list = LinkedList()
             >>> new_list.push(0)
@@ -34,12 +40,6 @@ class LinkedList:
             >>> new_list.push(4)
             >>> new_list.print_list()
             4 3 2 2 0
-
-        Args:
-            No arguments.
-
-        Returns:
-            None
         """
         temp = self.head
         while temp is not None:
@@ -56,6 +56,9 @@ class LinkedList:
         Args:
             new_data (Any): The data to be added to the new node.
 
+        Returns:
+            None
+
         Examples:
             >>> new_list = LinkedList()
             >>> new_list.push(5)
@@ -65,12 +68,6 @@ class LinkedList:
             >>> new_list.push(1)
             >>> new_list.print_list()
             1 2 3 4 5
-
-        Returns:
-            None
-
-        Raises:
-            None
         """
         new_node = Node(new_data)
         new_node.next = self.head
@@ -126,9 +123,6 @@ class LinkedList:
             True
 
         Returns:
-            None
-        
-        Raises:
             None
         """
         if node_data_1 == node_data_2:
