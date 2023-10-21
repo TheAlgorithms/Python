@@ -321,7 +321,7 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
     >>> exponential_search([0, 5, 7, 10, 15], 6)
     -1
     """
-    sorted_collection = sorted(sorted_collection)
+    # sorted_collection = sorted(sorted_collection)
     bound = 1
     while bound < len(sorted_collection) and sorted_collection[bound] < item:
         bound *= 2
@@ -337,8 +337,23 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
 
 if __name__ == "__main__":
     import doctest
+    import timeit
 
     doctest.testmod()
+
+    random_list = list(range(1000))
+    exponential_search_result = timeit.timeit(
+        stmt="exponential_search(random_list, 0)",
+        setup="from __main__ import exponential_search,random_list",
+        number=10000,
+    )
+    binary_search_result = timeit.timeit(
+        stmt="binary_search(random_list, 0)",
+        setup="from __main__ import binary_search,random_list",
+        number=10000,
+    )
+    print("exponential_search", exponential_search_result)
+    print("binary_search", binary_search_result)
 
     user_input = input("Enter numbers separated by comma:\n").strip()
     collection = sorted(int(item) for item in user_input.split(","))
