@@ -99,7 +99,7 @@ class LinkedList:
             >>> new_list.print_list()
             5 2 3 4 1
 
-        When just a single value is present in the linkedlist.
+        When one value is present and the other isn't in the linkedlist.
             >>> second_list = LinkedList()
             >>> second_list.push(6)
             >>> second_list.push(7)
