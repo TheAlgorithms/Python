@@ -76,25 +76,25 @@ def doppler_effect(
     >>> doppler_effect(100, 330, 10, 330) #source moving at the same speed as the wave
     Traceback (most recent call last):
         ...
-    ZeroDivisionError: Division by zero implies vs = v and observer infront of the source
+    ZeroDivisionError: Division by zero implies vs=v and observer infront of the source
     >>> doppler_effect(100, 330, 10, 340) #source moving faster than the wave
     Traceback (most recent call last):
         ...
-    ValueError: Non-positive frequency implies vs > v or v0 > v(in opposite direction)
+    ValueError: Non-positive frequency implies vs>v or v0>v(in opposite direction)
     >>> doppler_effect(100, 330, -340, 10) #observer moving faster than the wave
     Traceback (most recent call last):
         ...
-    ValueError: Non-positive frequency implies vs > v or v0 > v(in opposite direction)
+    ValueError: Non-positive frequency implies vs>v or v0>v(in opposite direction)
     """
 
     if wave_vel == src_vel:
         raise ZeroDivisionError(
-            "Division by zero implies vs = v and observer infront of the source"
+            "Division by zero implies vs=v and observer infront of the source"
         )
     doppler_freq = (org_freq * (wave_vel + obs_vel)) / (wave_vel - src_vel)
     if doppler_freq <= 0:
         raise ValueError(
-            "Non-positive frequency implies vs > v or v0 > v(in opposite direction)"
+            "Non-positive frequency implies vs>v or v0>v(in opposite direction)"
         )
     return doppler_freq
 
