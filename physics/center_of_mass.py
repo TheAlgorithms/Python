@@ -6,7 +6,7 @@ Description:
 
 In physics, the center of mass of a distribution of mass in space (sometimes referred
 to as the barycenter or balance point) is the unique point at any given time where the
-weighted relative positionof the distributed mass sums to zero. This is the point to
+weighted relative position of the distributed mass sums to zero. This is the point to
 which a force may be applied to cause a linear acceleration without an angular
 acceleration.
 
