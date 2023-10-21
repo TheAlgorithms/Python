@@ -1,53 +1,44 @@
+from __future__ import annotations
+
+from collections.abc import Iterator
+from dataclasses import dataclass
 from typing import Any
 
 
+@dataclass
 class Node:
-    def __init__(self, data: Any) -> None:
-        """
-        Initialize a new Node with the given data.
-
-        Args:
-            data: The data to be stored in the node.
-
-        """
-        self.data = data
-        self.next: Node | None = None  # Reference to the next node
+    data: Any
+    next_node: Node | None = None
 
 
+@dataclass
 class LinkedList:
-    def __init__(self) -> None:
-        """
-        Initialize an empty Linked List.
-        """
-        self.head: Node | None = None  # Reference to the head (first node)
+    head: Node | None = None
 
-    def print_list(self):
+    def __iter__(self) -> Iterator:
         """
-        Print the elements of the Linked List in order.
-
-        Args:
-            No arguments
-
-        Returns:
-            None
-
-        Examples:
-            >>> new_list = LinkedList()
-            >>> new_list.push(0)
-            >>> new_list.push(2)
-            >>> new_list.push(2)
-            >>> new_list.push(3)
-            >>> new_list.push(4)
-            >>> new_list.print_list()
-            4 3 2 2 0
+        >>> linked_list = LinkedList()
+        >>> list(linked_list)
+        []
+        >>> linked_list.push(0)
+        >>> tuple(linked_list)
+        (0,)
         """
-        temp = self.head
-        while temp is not None:
-            if not temp.next:
-                print(temp.data)
-            else:
-                print(temp.data, end=" ")
-            temp = temp.next
+        node = self.head
+        while node:
+            yield node.data
+            node = node.next_node
+
+    def __len__(self) -> int:
+        """
+        >>> linked_list = LinkedList()
+        >>> len(linked_list)
+        0
+        >>> linked_list.push(0)
+        >>> len(linked_list)
+        1
+        """
+        return sum(1 for _ in self)
 
     def push(self, new_data: Any) -> None:
         """
@@ -60,20 +51,20 @@ class LinkedList:
             None
 
         Examples:
-            >>> new_list = LinkedList()
-            >>> new_list.push(5)
-            >>> new_list.push(4)
-            >>> new_list.push(3)
-            >>> new_list.push(2)
-            >>> new_list.push(1)
-            >>> new_list.print_list()
-            1 2 3 4 5
+            >>> linked_list = LinkedList()
+            >>> linked_list.push(5)
+            >>> linked_list.push(4)
+            >>> linked_list.push(3)
+            >>> linked_list.push(2)
+            >>> linked_list.push(1)
+            >>> list(linked_list)
+            [1, 2, 3, 4, 5]
         """
         new_node = Node(new_data)
-        new_node.next = self.head
+        new_node.next_node = self.head
         self.head = new_node
 
-    def swap_nodes(self, node_data_1, node_data_2) -> None:
+    def swap_nodes(self, node_data_1: Any, node_data_2: Any) -> None:
         """
         Swap the positions of two nodes in the Linked List based on their data values.
 
@@ -86,20 +77,20 @@ class LinkedList:
             If either of the specified data values isn't found then, no swapping occurs.
 
         Examples:
-        When both values are present in a linkedlist.
-            >>> new_list = LinkedList()
-            >>> new_list.push(5)
-            >>> new_list.push(4)
-            >>> new_list.push(3)
-            >>> new_list.push(2)
-            >>> new_list.push(1)
-            >>> new_list.print_list()
-            1 2 3 4 5
-            >>> new_list.swap_nodes(1, 5)
-            >>> new_list.print_list()
-            5 2 3 4 1
+        When both values are present in a linked list.
+            >>> linked_list = LinkedList()
+            >>> linked_list.push(5)
+            >>> linked_list.push(4)
+            >>> linked_list.push(3)
+            >>> linked_list.push(2)
+            >>> linked_list.push(1)
+            >>> list(linked_list)
+            [1, 2, 3, 4, 5]
+            >>> linked_list.swap_nodes(1, 5)
+            >>> tuple(linked_list)
+            (5, 2, 3, 4, 1)
 
-        When one value is present and the other isn't in the linkedlist.
+        When one value is present and the other isn't in the linked list.
             >>> second_list = LinkedList()
             >>> second_list.push(6)
             >>> second_list.push(7)
@@ -108,7 +99,7 @@ class LinkedList:
             >>> second_list.swap_nodes(1, 6) is None
             True
 
-        When both values are absent in the linkedlist.
+        When both values are absent in the linked list.
             >>> second_list = LinkedList()
             >>> second_list.push(10)
             >>> second_list.push(9)
@@ -127,34 +118,31 @@ class LinkedList:
         """
         if node_data_1 == node_data_2:
             return
-        else:
-            node_1 = self.head
-            while node_1 is not None and node_1.data != node_data_1:
-                node_1 = node_1.next
 
-            node_2 = self.head
-            while node_2 is not None and node_2.data != node_data_2:
-                node_2 = node_2.next
-
-            if node_1 is None or node_2 is None:
-                return
-
-            # Swap the data values of the two nodes
-            node_1.data, node_2.data = node_2.data, node_1.data
+        node_1 = self.head
+        while node_1 and node_1.data != node_data_1:
+            node_1 = node_1.next_node
+        node_2 = self.head
+        while node_2 and node_2.data != node_data_2:
+            node_2 = node_2.next_node
+        if node_1 is None or node_2 is None:
+            return
+        # Swap the data values of the two nodes
+        node_1.data, node_2.data = node_2.data, node_1.data
 
 
 if __name__ == "__main__":
     """
-    Python script that outputs the swap of nodes in a linkedlist.
+    Python script that outputs the swap of nodes in a linked list.
     """
-    ll = LinkedList()
+    from doctest import testmod
+
+    testmod()
+    linked_list = LinkedList()
     for i in range(5, 0, -1):
-        ll.push(i)
+        linked_list.push(i)
 
-    print("Original Linked List:")
-    ll.print_list()
-
-    ll.swap_nodes(1, 4)
-    print("After swapping the nodes whose data is 1 and 4:")
-
-    ll.print_list()
+    print(f"Original Linked List: {list(linked_list)}")
+    linked_list.swap_nodes(1, 4)
+    print(f"Modified Linked List: {list(linked_list)}")
+    print("After swapping the nodes whose data is 1 and 4.")
