@@ -3,14 +3,16 @@
 unionfind
 """
 
+
 class UnionFind:
     """
     initialize a unionfind
     """
+
     def __init__(self, n):
         self.pa = list(range(n))
-        self.size = [1] * n  # size of the current 
-    
+        self.size = [1] * n  # size of the current
+
     """
     Returns the parent of the element x (root element).
     >>> uf = UnionFind(3)
@@ -19,11 +21,12 @@ class UnionFind:
     >>> uf.find(1)
     1
     """
+
     def find(self, x):
         if self.pa[x] != x:
             self.pa[x] = self.find(self.pa[x])
         return self.pa[x]
-    
+
     """
     Returns the union of tree x and tree y.
     we connect a tree with fewer nodes to another tree.
@@ -35,6 +38,7 @@ class UnionFind:
     >>> uf.union(4)
     2
     """
+
     def union(self, x, y):
         x, y = self.find(x), self.find(y)
         if x == y:
@@ -53,14 +57,14 @@ class UnionFind:
     >>> uf.getSize(1)
     2
     """
+
     def getSize(self, x):
         return self.size[x]
+
 
 if __name__ == "__main__":
     # test
     uf = UnionFind(6)
-    uf.union(1,2)
-    uf.union(2,4)
+    uf.union(1, 2)
+    uf.union(2, 4)
     assert uf.getSize(1) == 3
-
-    
