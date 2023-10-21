@@ -174,6 +174,7 @@
   * [Roman Numerals](conversions/roman_numerals.py)
   * [Speed Conversions](conversions/speed_conversions.py)
   * [Temperature Conversions](conversions/temperature_conversions.py)
+  * [Time Conversions](conversions/time_conversions.py)
   * [Volume Conversions](conversions/volume_conversions.py)
   * [Weight Conversion](conversions/weight_conversion.py)
 
