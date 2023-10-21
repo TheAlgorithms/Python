@@ -1,142 +1,124 @@
-# Python Program to perform 3 way Merge Sort
+from typing import List
 
-""" Merge the sorted ranges [low, mid1), [mid1,mid2) 
-and [mid2, high) mid1 is first midpoint 
-index in overall range to merge mid2 is second 
-midpoint index in overall range to merge"""
+def merge(g_array: List[int], low: int, mid1: int, mid2: int, high: int, dest_array: List[int]) -> None:
+    """
+    Merge the sorted subarrays [low, mid1), [mid1, mid2), and [mid2, high) into a single sorted array.
 
+    :param g_array: The original array to be merged.
+    :param low: The index of the lower bound of the current subarray.
+    :param mid1: The first midpoint index.
+    :param mid2: The second midpoint index.
+    :param high: The index of the upper bound (exclusive) of the current subarray.
+    :param dest_array: An auxiliary array used for merging.
+    :return: None
+    """
+    i = low
+    j = mid1
+    k = mid2
+    l = low
 
-def merge(gArray, low, mid1, mid2, high, destArray):
-	i = low
-	j = mid1
-	k = mid2
-	l = low
+    while ((i < mid1) and (j < mid2) and (k < high)):
+        if g_array[i] < g_array[j]:
+            if g_array[i] < g_array[k]:
+                dest_array[l] = g_array[i]
+                l += 1
+                i += 1
+            else:
+                dest_array[l] = g_array[k]
+                l += 1
+                k += 1
+        else:
+            if g_array[j] < g_array[k]:
+                dest_array[l] = g_array[j]
+                l += 1
+                j += 1
+            else:
+                dest_array[l] = g_array[k]
+                l += 1
+                k += 1
 
-	# Choose smaller of the smallest in the three ranges
-	while ((i < mid1) and (j < mid2) and (k < high)):
-		if(gArray[i] < gArray[j]):
-			if(gArray[i] < gArray[k]):
-				destArray[l] = gArray[i]
-				l += 1
-				i += 1
-			else:
-				destArray[l] = gArray[k]
-				l += 1
-				k += 1
-		else:
-			if(gArray[j] < gArray[k]):
-				destArray[l] = gArray[j]
-				l += 1
-				j += 1
-			else:
-				destArray[l] = gArray[k]
-				l += 1
-				k += 1
+    while (i < mid1) and (j < mid2):
+        if g_array[i] < g_array[j]:
+            dest_array[l] = g_array[i]
+            l += 1
+            i += 1
+        else:
+            dest_array[l] = g_array[j]
+            l += 1
+            j += 1
 
-	# Case where first and second ranges
-	# have remaining values
-	while ((i < mid1) and (j < mid2)):
-		if(gArray[i] < gArray[j]):
-			destArray[l] = gArray[i]
-			l += 1
-			i += 1
-		else:
-			destArray[l] = gArray[j]
-			l += 1
-			j += 1
+    while (j < mid2) and (k < high):
+        if g_array[j] < g_array[k]:
+            dest_array[l] = g_array[j]
+            l += 1
+            j += 1
+        else:
+            dest_array[l] = g_array[k]
+            l += 1
+            k += 1
 
-	# case where second and third ranges
-	# have remaining values
-	while ((j < mid2) and (k < high)):
-		if(gArray[j] < gArray[k]):
-			destArray[l] = gArray[j]
-			l += 1
-			j += 1
-		else:
-			destArray[l] = gArray[k]
-			l += 1
-			k += 1
+    while (i < mid1) and (k < high):
+        if g_array[i] < g_array[k]:
+            dest_array[l] = g_array[i]
+            l += 1
+            i += 1
+        else:
+            dest_array[l] = g_array[k]
+            l += 1
+            k += 1
 
-	# Case where first and third ranges have
-	# remaining values
-	while ((i < mid1) and (k < high)):
-		if(gArray[i] < gArray[k]):
-			destArray[l] = gArray[i]
-			l += 1
-			i += 1
-		else:
-			destArray[l] = gArray[k]
-			l += 1
-			k += 1
+    while i < mid1:
+        dest_array[l] = g_array[i]
+        l += 1
+        i += 1
 
-	# Copy remaining values from the first range
-	while (i < mid1):
-		destArray[l] = gArray[i]
-		l += 1
-		i += 1
+    while j < mid2:
+        dest_array[l] = g_array[j]
+        l += 1
+        j += 1
 
-	# Copy remaining values from the second range
-	while (j < mid2):
-		destArray[l] = gArray[j]
-		l += 1
-		j += 1
+    while k < high:
+        dest_array[l] = g_array[k]
+        l += 1
+        k += 1
 
-	# Copy remaining values from the third range
-	while (k < high):
-		destArray[l] = gArray[k]
-		l += 1
-		k += 1
+def merge_sort_3way_rec(g_array: List[int], low: int, high: int, dest_array: List[int]) -> None:
+    """
+    Recursive function to perform 3-way merge sort on the given array.
 
+    :param g_array: The original array to be sorted.
+    :param low: The index of the lower bound of the current subarray.
+    :param high: The index of the upper bound (exclusive) of the current subarray.
+    :param dest_array: An auxiliary array used for merging.
+    :return: None
+    """
+    if high - low < 2:
+        return
 
-""" Performing the merge sort algorithm on the 
-given array of values in the rangeof indices 
-[low, high). low is minimum index, high is 
-maximum index (exclusive) """
+    mid1 = low + ((high - low) // 3)
+    mid2 = low + 2 * ((high - low) // 3) + 1
 
+    merge_sort_3way_rec(dest_array, low, mid1, g_array)
+    merge_sort_3way_rec(dest_array, mid1, mid2, g_array)
+    merge_sort_3way_rec(dest_array, mid2, high, g_array)
 
-def mergeSort3WayRec(gArray, low, high, destArray):
-	# If array size is 1 then do nothing
-	if (high - low < 2):
-		return
+    merge(dest_array, low, mid1, mid2, high, g_array)
 
-	# Splitting array into 3 parts
-	mid1 = low + ((high - low) // 3)
-	mid2 = low + 2 * ((high - low) // 3) + 1
+def merge_sort_3way(g_array: List[int], size: int) -> List[int]:
+    """
+    Perform 3-way merge sort on the given array.
 
-	# Sorting 3 arrays recursively
-	mergeSort3WayRec(destArray, low, mid1, gArray)
-	mergeSort3WayRec(destArray, mid1, mid2, gArray)
-	mergeSort3WayRec(destArray, mid2, high, gArray)
+    :param g_array: List of integers to be sorted.
+    :param size: The size of the array.
+    :return: A new list containing the sorted elements.
+    """
+    if size == 0:
+        return []
 
-	# Merging the sorted arrays
-	merge(destArray, low, mid1, mid2, high, gArray)
-
-
-def mergeSort3Way(gArray, n):
-	# if array size is zero return null
-	if (n == 0):
-		return
-
-	# creating duplicate of given array
-	fArray = []
-
-	# copying elements of given array into
-	# duplicate array
-	fArray = gArray.copy()
-
-	# sort function
-	mergeSort3WayRec(fArray, 0, n, gArray)
-
-	# copy back elements of duplicate array
-	# to given array
-	gArray = fArray.copy()
-
-	# return the sorted array
-	return gArray
-
+    g_array_copy = g_array.copy()
+    merge_sort_3way_rec(g_array_copy, 0, size, g_array)
+    return g_array_copy
 
 data = [10, -2, -5, 8, 31, 2, 1, 9, 7, 3]
-data = mergeSort3Way(data, 10)
-print("After 3 way merge sort: ", end="")
-for i in range(10):
-	print(f"{data[i]} ", end="")
+sorted_data = merge_sort_3way(data, 10)
+print("After 3-way merge sort:", sorted_data)
