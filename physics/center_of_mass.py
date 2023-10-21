@@ -24,6 +24,8 @@ R = (Σ(mi * ri) / Σ(mi))
 Reference: https://en.wikipedia.org/wiki/Center_of_mass#:~:text=The%20center%20of%20mass%20is%20the%20unique%20point%20at%20the,distribution%20of%20mass%20in%20space.
 
 """
+
+
 from typing import NamedTuple
 
 
@@ -57,19 +59,23 @@ def center_of_mass(particles: list[Particle]) -> Coord3D:
     Examples
     --------
 
-    >>> center_of_mass([(1.5, 4, 3.4, 4), (5, 6.8, 7, 8.1), (9.4, 10.1, 11.6, 12.9)])
-    (6.71, 8.05, 8.8)
+    >>> center_of_mass([\
+    Particle(1.5, 4, 3.4, 4), Particle(5, 6.8, 7, 8.1), Particle(9.4, 10.1, 11.6, 12)])
+    Coord3D(x=6.61, y=7.98, z=8.69)
 
 
-    >>> center_of_mass([(1, 2, 3, 4), (5, 6, 7, 8), (9, 10, 11, 12)])
-    (6.33, 7.33, 8.33)
+    >>> center_of_mass([\
+    Particle(1, 2, 3, 4), Particle(5, 6, 7, 8), Particle(9, 10, 11, 12)])
+    Coord3D(x=6.33, y=7.33, z=8.33)
 
-    >>> center_of_mass([(1, 2, 3, -4), (5, 6, 7, 8), (9, 10, 11, 12)])
+    >>> center_of_mass([\
+    Particle(1, 2, 3, -4), Particle(5, 6, 7, 8), Particle(9, 10, 11, 12)])
     Traceback (most recent call last):
         ...
     ValueError: Mass of all particles must be greater than 0
 
-    >>> center_of_mass([(1, 2, 3, 0), (5, 6, 7, 8), (9, 10, 11, 12)])
+    >>> center_of_mass([\
+    Particle(1, 2, 3, 0), Particle(5, 6, 7, 8), Particle(9, 10, 11, 12)])
     Traceback (most recent call last):
         ...
     ValueError: Mass of all particles must be greater than 0
