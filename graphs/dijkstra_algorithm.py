@@ -49,6 +49,7 @@ class PriorityQueue:
         >>> priority_queue_test = PriorityQueue()
         >>> priority_queue_test.cur_size = 3
         >>> priority_queue_test.pos = {'A': 0, 'B': 1, 'C': 2}
+
         >>> priority_queue_test.array = [(5, 'A'), (10, 'B'), (15, 'C')]
         >>> priority_queue_test.min_heapify(0)
         Traceback (most recent call last):
