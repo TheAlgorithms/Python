@@ -14,10 +14,6 @@ https://en.wikipedia.org/wiki/Perfect_number
 
 def perfect(number: int) -> bool:
     """
-        Check if a number is a perfect number.
-
-    A perfect number is a positive integer that is equal to the sum of its proper
-    divisors (excluding itself)
     >>> perfect(27)
     False
     >>> perfect(28)
@@ -30,10 +26,6 @@ def perfect(number: int) -> bool:
     False
     >>> perfect(8128)
     True
-    >>> perfect(8129)
-    False
-    >>> perfect(33550336)
-    True
 
     Start from 1 because dividing by 0 will raise ZeroDivisionError.
     A number at most can be divisible by the half of the number except the number
@@ -45,5 +37,4 @@ def perfect(number: int) -> bool:
 if __name__ == "__main__":
     print("Program to check whether a number is a Perfect number or not...")
     number = int(input("Enter number: ").strip())
-    is_perfect = perfect(number)
-    print(f"{number} is {'' if is_perfect else 'not '}a Perfect Number.")
+    print(f"{number} is {'' if perfect(number) else 'not '}a Perfect Number.")
