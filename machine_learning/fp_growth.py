@@ -193,7 +193,9 @@ def update_header(node_to_test: TreeNode, target_node: TreeNode) -> TreeNode:
     while node_to_test.node_link is not None:
         node_to_test = node_to_test.node_link
     if node_to_test.node_link is None:
-        node_to_test.node_link = TreeNode(target_node.name, target_node.count, node_to_test)
+        node_to_test.node_link = TreeNode(
+            target_node.name, target_node.count, node_to_test
+        )
     # Return the updated node
     return node_to_test
 
