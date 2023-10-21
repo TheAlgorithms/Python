@@ -14,16 +14,32 @@ https://en.wikipedia.org/wiki/Perfect_number
 
 def perfect(number: int) -> bool:
     """
+    Check if a number is a perfect number.
+
+    A perfect number is a positive integer that is equal to the sum of its proper
+    divisors (excluding itself).
+
+    Args:
+        number (int): The number to be checked.
+
+    Returns:
+        bool: True if the number is a perfect number, False otherwise.
+
+    Examples:
     >>> perfect(27)
     False
     >>> perfect(28)
     True
     >>> perfect(29)
     False
-
-    Start from 1 because dividing by 0 will raise ZeroDivisionError.
-    A number at most can be divisible by the half of the number except the number
-    itself.  For example, 6 is at most can be divisible by 3 except by 6 itself.
+    >>> perfect(6)
+    True
+    >>> perfect(12)
+    False
+    >>> perfect(496)
+    True
+    >>> perfect(8128)
+    True
     """
     return sum(i for i in range(1, number // 2 + 1) if number % i == 0) == number
 
