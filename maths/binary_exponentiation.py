@@ -46,17 +46,17 @@ def binary_exp_recursive(base: int, exponent: int) -> int:
 
 def binary_exp_iterative(base: int, exponent: int) -> int:
     """
-    >>> binary_exp_recursive(3, 5)
+    >>> binary_exp_iterative(3, 5)
     243
-    >>> binary_exp_recursive(-1, 3)
+    >>> binary_exp_iterative(-1, 3)
     -1
-    >>> binary_exp_recursive(0, 5)
+    >>> binary_exp_iterative(0, 5)
     0
-    >>> binary_exp_recursive(3, 1)
+    >>> binary_exp_iterative(3, 1)
     3
-    >>> binary_exp_recursive(3, 0)
+    >>> binary_exp_iterative(3, 0)
     1
-    >>> binary_exp_recursive(3, -1)
+    >>> binary_exp_iterative(3, -1)
     Traceback (most recent call last):
         ...
     ValueError: Exponent must be a non-negative integer
@@ -107,15 +107,15 @@ def binary_exp_mod_recursive(base: int, exponent: int, modulus: int) -> int:
 
 def binary_exp_mod_iterative(base: int, exponent: int, modulus: int) -> int:
     """
-    >>> binary_exp_mod_recursive(3, 4, 5)
+    >>> binary_exp_mod_iterative(3, 4, 5)
     1
-    >>> binary_exp_mod_recursive(7, 13, 10)
+    >>> binary_exp_mod_iterative(7, 13, 10)
     7
-    >>> binary_exp_mod_recursive(7, -1, 10)
+    >>> binary_exp_mod_iterative(7, -1, 10)
     Traceback (most recent call last):
         ...
     ValueError: Exponent must be a non-negative integer
-    >>> binary_exp_mod_recursive(7, 13, 0)
+    >>> binary_exp_mod_iterative(7, 13, 0)
     Traceback (most recent call last):
         ...
     ValueError: Modulus must be a positive integer
