@@ -9,7 +9,6 @@ class Node:
         self.hd = 0
 
 
-
 def topview(root):
     if not root:
         return []
