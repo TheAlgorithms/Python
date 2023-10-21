@@ -42,7 +42,7 @@ class TreeNode:
     #     self.children: dict[str, TreeNode] = {}
     name: str
     count: int
-    node_link: Optional['TreeNode'] = None  # Initialize node_link to None
+    node_link: Optional["TreeNode"] = None  # Initialize node_link to None
     parent: Optional["TreeNode"] = None
     children: dict[str, "TreeNode"] = field(default_factory=dict)
 
@@ -302,7 +302,7 @@ def mine_tree(
     >>> all(expected in frequent_itemsets for expected in expe_itm)
     True
     """
-    new_head: Optional['TreeNode'] = None
+    new_head: Optional["TreeNode"] = None
     sorted_items = sorted(header_table.items(), key=lambda item_info: item_info[1][0])
     big_l = [item[0] for item in sorted_items]
     for base_pat in big_l:
