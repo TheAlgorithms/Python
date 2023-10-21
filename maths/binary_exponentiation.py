@@ -76,7 +76,7 @@ def binary_exp_iterative(base: float, exponent: int) -> float:
     if exponent < 0:
         raise ValueError("Exponent must be a non-negative integer")
 
-    res = 1
+    res: int | float = 1
     while exponent > 0:
         if exponent & 1:
             res *= base
@@ -147,7 +147,7 @@ def binary_exp_mod_iterative(base: float, exponent: int, modulus: int) -> float:
     if modulus <= 0:
         raise ValueError("Modulus must be a positive integer")
 
-    res = 1
+    res: int | float = 1
     while exponent > 0:
         if exponent & 1:
             res = ((res % modulus) * (base % modulus)) % modulus
@@ -161,14 +161,36 @@ def binary_exp_mod_iterative(base: float, exponent: int, modulus: int) -> float:
 if __name__ == "__main__":
     from timeit import timeit
 
-    setup = "from __main__ import *"
-    runs = 1000
-
     a = 1269380576
     b = 374
     c = 34
 
-    print(timeit(f"binary_exp_recursive({a}, {b})", setup=setup, number=runs))
-    print(timeit(f"binary_exp_iterative({a}, {b})", setup=setup, number=runs))
-    print(timeit(f"binary_exp_mod_recursive({a}, {b})", setup=setup, number=runs))
-    print(timeit(f"binary_exp_mod_iterative({a}, {b})", setup=setup, number=runs))
+    runs = 100_000
+    print(
+        timeit(
+            f"binary_exp_recursive({a}, {b})",
+            setup="from __main__ import binary_exp_recursive",
+            number=runs,
+        )
+    )
+    print(
+        timeit(
+            f"binary_exp_iterative({a}, {b})",
+            setup="from __main__ import binary_exp_iterative",
+            number=runs,
+        )
+    )
+    print(
+        timeit(
+            f"binary_exp_mod_recursive({a}, {b}, {c})",
+            setup="from __main__ import binary_exp_mod_recursive",
+            number=runs,
+        )
+    )
+    print(
+        timeit(
+            f"binary_exp_mod_iterative({a}, {b}, {c})",
+            setup="from __main__ import binary_exp_mod_iterative",
+            number=runs,
+        )
+    )
