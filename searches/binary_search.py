@@ -324,6 +324,7 @@ def exponential_search(sorted_collection: list[int], item: int) -> int | None:
     >>> exponential_search([0, 5, 7, 10, 15], 6)
 
     """
+    sorted_collection = sorted(sorted_collection)
     bound = 1
     while bound < len(sorted_collection) and sorted_collection[bound] < item:
         bound *= 2
