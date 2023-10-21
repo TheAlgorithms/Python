@@ -1,7 +1,7 @@
 from collections import deque
 
 
-class TreeNode:
+class node:
     def __init__(self, data):
         self.data = data
         self.left = None
@@ -9,7 +9,7 @@ class TreeNode:
         self.horiz_dist = 0
 
 
-def topView(root):
+def topview(root):
     if not root:
         return []
 
@@ -32,13 +32,13 @@ def topView(root):
     return top_view_nodes
 
 
-root = TreeNode(1)
-root.left = TreeNode(2)
-root.right = TreeNode(3)
-root.left.left = TreeNode(4)
-root.left.right = TreeNode(5)
-root.right.left = TreeNode(6)
-root.right.right = TreeNode(7)
+root = node(1)
+root.left = node(2)
+root.right = node(3)
+root.left.left = node(4)
+root.left.right = node(5)
+root.right.left = node(6)
+root.right.right = node(7)
 
-result = topView(root)
+result = topview(root)
 print(result)
