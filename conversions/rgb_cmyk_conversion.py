@@ -1,4 +1,4 @@
-def rgb_to_cmyk(r_input, g_input, b_input: int) -> tuple[int, int, int, int]:
+def rgb_to_cmyk(r_input: int, g_input: int, b_input: int) -> tuple[int, int, int, int]:
     """
     Simple RGB to CMYK conversion. Returns percentages of CMYK paint.
     https://www.programmingalgorithms.com/algorithm/rgb-to-cmyk/
