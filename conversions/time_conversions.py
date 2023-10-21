@@ -1,9 +1,9 @@
 """
-A unit of time is any particular time interval, used as a standard 
-way of measuring or expressing duration. 
+A unit of time is any particular time interval, used as a standard
+way of measuring or expressing duration.
 The base unit of time in the International System of Units (SI),
 and by extension most of the Western world, is the second,
-defined as about 9 billion oscillations of the caesium atom. 
+defined as about 9 billion oscillations of the caesium atom.
 
 WIKI: https://en.wikipedia.org/wiki/Unit_of_time
 """
@@ -23,6 +23,7 @@ time_chart_inverse: dict[str, float] = {
     "days": 1 / 86400.0,  # 1 day = 1/86400 weeks
     "weeks": 1 / 604800.0,  # 1 week = 1/604800 seconds
 }
+
 
 def convert_time(time_value: float, unit_from: str, unit_to: str) -> float:
     """
@@ -47,8 +48,10 @@ def convert_time(time_value: float, unit_from: str, unit_to: str) -> float:
         raise ValueError(msg)
     return round(time_value * time_chart[unit_from] * time_chart_inverse[unit_to], 3)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     print(convert_time(3600, "seconds", "hours"))
