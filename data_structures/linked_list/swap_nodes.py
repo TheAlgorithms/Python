@@ -40,9 +40,6 @@ class LinkedList:
 
         Returns:
             None
-        
-        Raises:
-            None
         """
         temp = self.head
         while temp is not None:
@@ -129,9 +126,6 @@ class LinkedList:
             True
 
         Returns:
-            None
-        
-        Raises:
             None
         """
         if node_data_1 == node_data_2:
