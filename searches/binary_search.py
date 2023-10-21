@@ -214,8 +214,11 @@ def binary_search(sorted_collection: list[int], item: int) -> int | None:
     >>> binary_search([0, 5, 7, 10, 15], 6)
 
     """
-    sorted_collection = sorted(sorted_collection)
-
+    if not all(
+        sorted_collection[i] <= sorted_collection[i + 1]
+        for i in range(len(sorted_collection) - 1)
+    ):
+        raise ValueError("input of function is not sorted")
     left = 0
     right = len(sorted_collection) - 1
 
@@ -323,7 +326,11 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
     >>> exponential_search([0, 5, 7, 10, 15], 6)
     -1
     """
-    sorted_collection = sorted(sorted_collection)
+    if not all(
+        sorted_collection[i] <= sorted_collection[i + 1]
+        for i in range(len(sorted_collection) - 1)
+    ):
+        raise ValueError("input of function is not sorted")
     bound = 1
     while bound < len(sorted_collection) and sorted_collection[bound] < item:
         bound *= 2
