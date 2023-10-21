@@ -20,10 +20,10 @@ def perfect(number: int) -> bool:
     divisors (excluding itself).
 
     Args:
-        number (int): The number to be checked.
+        number: The number to be checked.
 
     Returns:
-        bool: True if the number is a perfect number, False otherwise.
+        True if the number is a perfect number, False otherwise.
 
     Examples:
     >>> perfect(27)
