@@ -51,3 +51,4 @@ if result == -1:
     print ("Element not found in the array")
 else:
     print ("Element is present at index %d" %result)
+    
