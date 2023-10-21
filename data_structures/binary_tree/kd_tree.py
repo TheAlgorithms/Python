@@ -41,6 +41,7 @@ class Solution:
                     break
         return min_cost
 
+
 points = [[0, 0], [2, 2], [3, 1], [4, 5], [1, 4]]
 solution = Solution()
 result = solution.mincost(points)
