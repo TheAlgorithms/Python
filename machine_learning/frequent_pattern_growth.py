@@ -12,6 +12,7 @@ Examples: https://www.javatpoint.com/fp-growth-algorithm-in-data-mining
 # from dataclasses import dataclass, field
 from typing import Optional
 
+
 # @dataclass
 class TreeNode:
     """
@@ -32,8 +33,7 @@ class TreeNode:
     """
 
     def __init__(
-        self, name_value: str, num_occur: int, 
-    parent_node: Optional["TreeNode"] = None
+        self, name_value: str, num_occur: int, parent_node: Optional["TreeNode"] = None
     ) -> None:
         self.name = name_value
         self.count = num_occur
@@ -46,7 +46,6 @@ class TreeNode:
     # node_link: Optional["TreeNode"] = None
     # parent: Optional["TreeNode"] = None
     # children: dict[str, "TreeNode"] = field(default_factory=dict)
-
 
     def inc(self, num_occur: int) -> None:
         self.count += num_occur
