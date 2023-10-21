@@ -1,5 +1,6 @@
-class Solution:
-    def mincost(self, points):
+
+class MinimumCostCalculator:
+    def calculate_min_cost(self, points):
         def find(parent, x):
             if parent[x] == x:
                 return x
@@ -41,8 +42,17 @@ class Solution:
                     break
         return min_cost
 
+# Define test cases
+test_cases = [
+    ([[0, 0], [2, 2], [3, 1], [4, 5], [1, 4]], 10),
+    # Add more test cases here
+]
 
-points = [[0, 0], [2, 2], [3, 1], [4, 5], [1, 4]]
-solution = Solution()
-result = solution.mincost(points)
-print("Minimum Cost:", result)
+# Run tests
+for points, expected_result in test_cases:
+    calculator = MinimumCostCalculator()
+    result = calculator.calculate_min_cost(points)
+    assert result == expected_result, f"Test failed: {result} != {expected_result}"
+
+print("All tests passed")
+
