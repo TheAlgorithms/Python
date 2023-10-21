@@ -7,12 +7,13 @@ class Onepad:
         """
         Function to encrypt text using pseudo-random numbers
         >>> Onepad().encrypt("")
-        [] []
+        ([], [])
         >>> random.seed(1)
         >>> Onepad().encrypt(" ")
-        [6969] [69]
+        ([6969], [69])
+        >>> random.seed(1)
         >>> Onepad().encrypt("Hello")
-        [9729, 114756, 4653, 31309, 10492] [69, 292, 33, 131, 61]
+        ([9729, 114756, 4653, 31309, 10492], [69, 292, 33, 131, 61])
         """
         plain = [ord(i) for i in text]
         key = []
@@ -29,9 +30,9 @@ class Onepad:
         """
         Function to decrypt text using pseudo-random numbers.
         >>> Onepad().decrypt([], [])
-
+        ''
         >>> Onepad().decrypt([35], [])
-
+        ''
         >>> Onepad().decrypt([], [35])
         Traceback (most recent call last):
         ...
@@ -39,7 +40,7 @@ class Onepad:
 
         >>> random.seed(1)
         >>> Onepad().decrypt([9729, 114756, 4653, 31309, 10492], [69, 292, 33, 131, 61])
-        Hello
+        'Hello'
         """
         plain = []
         for i in range(len(key)):
