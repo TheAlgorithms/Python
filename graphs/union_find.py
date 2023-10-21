@@ -1,7 +1,6 @@
 """
 2023/10/21 shining in shanghai
 unionfind
-thanks ref: https://oi-wiki.org/ds/dsu/
 """
 
 class UnionFind:
@@ -57,6 +56,11 @@ class UnionFind:
     def getSize(self, x):
         return self.size[x]
 
-
+if __name__ == "__main__":
+    # test
+    uf = UnionFind(6)
+    uf.union(1,2)
+    uf.union(2,4)
+    assert uf.getSize(1) == 3
 
     
