@@ -1,6 +1,9 @@
 from typing import List
 
-def merge(g_array: List[int], low: int, mid1: int, mid2: int, high: int, dest_array: List[int]) -> None:
+
+def merge(
+    g_array: List[int], low: int, mid1: int, mid2: int, high: int, dest_array: List[int]
+) -> None:
     """
     Merge the sorted subarrays [low, mid1), [mid1, mid2), and [mid2, high) into a single sorted array.
 
@@ -17,7 +20,7 @@ def merge(g_array: List[int], low: int, mid1: int, mid2: int, high: int, dest_ar
     k = mid2
     l = low
 
-    while ((i < mid1) and (j < mid2) and (k < high)):
+    while (i < mid1) and (j < mid2) and (k < high):
         if g_array[i] < g_array[j]:
             if g_array[i] < g_array[k]:
                 dest_array[l] = g_array[i]
@@ -82,7 +85,10 @@ def merge(g_array: List[int], low: int, mid1: int, mid2: int, high: int, dest_ar
         l += 1
         k += 1
 
-def merge_sort_3way_rec(g_array: List[int], low: int, high: int, dest_array: List[int]) -> None:
+
+def merge_sort_3way_rec(
+    g_array: List[int], low: int, high: int, dest_array: List[int]
+) -> None:
     """
     Recursive function to perform 3-way merge sort on the given array.
 
@@ -104,6 +110,7 @@ def merge_sort_3way_rec(g_array: List[int], low: int, high: int, dest_array: Lis
 
     merge(dest_array, low, mid1, mid2, high, g_array)
 
+
 def merge_sort_3way(g_array: List[int], size: int) -> List[int]:
     """
     Perform 3-way merge sort on the given array.
@@ -118,6 +125,7 @@ def merge_sort_3way(g_array: List[int], size: int) -> List[int]:
     g_array_copy = g_array.copy()
     merge_sort_3way_rec(g_array_copy, 0, size, g_array)
     return g_array_copy
+
 
 data = [10, -2, -5, 8, 31, 2, 1, 9, 7, 3]
 sorted_data = merge_sort_3way(data, 10)
