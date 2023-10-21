@@ -130,4 +130,3 @@ def merge_sort_3way(g_array: List[int], size: int) -> List[int]:
 data = [10, -2, -5, 8, 31, 2, 1, 9, 7, 3]
 sorted_data = merge_sort_3way(data, 10)
 print("After 3-way merge sort:", sorted_data)
-
