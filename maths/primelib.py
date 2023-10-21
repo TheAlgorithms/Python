@@ -51,6 +51,10 @@ def is_prime(number: int) -> bool:
     True
     >>> is_prime(10)
     False
+    >>> is_prime(97)
+    True
+    >>> is_prime(9991)
+    False
     >>> is_prime(-1)
     Traceback (most recent call last):
         ...
