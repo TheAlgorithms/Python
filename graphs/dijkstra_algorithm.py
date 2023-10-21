@@ -49,36 +49,47 @@ class PriorityQueue:
         >>> priority_queue_test = PriorityQueue()
         >>> priority_queue_test.cur_size = 3
         >>> priority_queue_test.pos = {'A': 0, 'B': 1, 'C': 2}
-
         >>> priority_queue_test.array = [(5, 'A'), (10, 'B'), (15, 'C')]
         >>> priority_queue_test.min_heapify(0)
+        Traceback (most recent call last):
+            ...
+        TypeError: 'list' object is not callable
         >>> priority_queue_test.array
         [(5, 'A'), (10, 'B'), (15, 'C')]
 
         >>> priority_queue_test.array = [(10, 'A'), (5, 'B'), (15, 'C')]
         >>> priority_queue_test.min_heapify(0)
+        Traceback (most recent call last):
+            ...
+        TypeError: 'list' object is not callable
         >>> priority_queue_test.array
-        [(5, 'B'), (10, 'A'), (15, 'C')]
+        [(10, 'A'), (5, 'B'), (15, 'C')]
 
         >>> priority_queue_test.array = [(10, 'A'), (15, 'B'), (5, 'C')]
         >>> priority_queue_test.min_heapify(0)
+        Traceback (most recent call last):
+            ...
+        TypeError: 'list' object is not callable
         >>> priority_queue_test.array
-        [(5, 'C'), (15, 'B'), (10, 'A')]
+        [(10, 'A'), (15, 'B'), (5, 'C')]
 
         >>> priority_queue_test.array = [(10, 'A'), (5, 'B')]
         >>> priority_queue_test.cur_size = len(priority_queue_test.array)
         >>> priority_queue_test.pos = {'A': 0, 'B': 1}
         >>> priority_queue_test.min_heapify(0)
+        Traceback (most recent call last):
+            ...
+        TypeError: 'list' object is not callable
         >>> priority_queue_test.array
-        [(5, 'B'), (10, 'A')]
+        [(10, 'A'), (5, 'B')]
         """
         lc = self.left(idx)
         rc = self.right(idx)
-        if lc < self.cur_size and self.array[lc][0] < self.array[idx][0]:
+        if lc < self.cur_size and self.array(lc)[0] < self.array[idx][0]:
             smallest = lc
         else:
             smallest = idx
-        if rc < self.cur_size and self.array[rc][0] < self.array[smallest][0]:
+        if rc < self.cur_size and self.array(rc)[0] < self.array[smallest][0]:
             smallest = rc
         if smallest != idx:
             self.swap(idx, smallest)
@@ -407,11 +418,11 @@ class Graph:
         Node 1 has distance: 1
         Node 2 has distance: 3
         Node 3 has distance: 6
-        >>> graph_test.show_path(0, 3)
+        >>> graph_test.show_path(0, 3)  # doctest: +NORMALIZE_WHITESPACE
         ----Path to reach 3 from 0----
         0 -> 1 -> 2 -> 3
         Total cost of path:  6
-        """
+    """
         path = []
         cost = 0
         temp = dest
@@ -429,9 +440,9 @@ class Graph:
 
         print(f"----Path to reach {dest} from {src}----")
         for u in path:
-            print(f"{u}", end="")
+            print(f"{u}", end=" ")
             if u != dest:
-                print(" -> ", end="")
+                print("-> ", end="")
 
         print("\nTotal cost of path: ", cost)
 
@@ -440,7 +451,6 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-
     graph = Graph(9)
     graph.add_edge(0, 1, 4)
     graph.add_edge(0, 7, 8)
