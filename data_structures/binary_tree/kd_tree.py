@@ -53,5 +53,4 @@ for points, expected_result in test_cases:
     calculator = MinimumCostCalculator()
     result = calculator.calculate_min_cost(points)
     assert result == expected_result, f"Test failed: {result} != {expected_result}"
-
 print("All tests passed")
