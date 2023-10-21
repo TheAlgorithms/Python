@@ -318,8 +318,8 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
     4
     >>> exponential_search([0, 5, 7, 10, 15], 5)
     1
-    >>> exponential_search([0, 5, 7, 10, 15], 6) = None
-    True
+    >>> exponential_search([0, 5, 7, 10, 15], 6)
+    -1
     """
     sorted_collection = sorted(sorted_collection)
     bound = 1
