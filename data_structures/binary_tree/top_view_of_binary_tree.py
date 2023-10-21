@@ -1,12 +1,13 @@
 from collections import deque
 
 
-class TreeNode:
+class Node:
     def __init__(self, data):
         self.data = data
         self.left = None
         self.right = None
-        self.horiz_dist = 0
+        self.hd = 0
+
 
 
 def topview(root):
@@ -33,13 +34,13 @@ def topview(root):
     return top_view_nodes
 
 
-root = TreeNode(1)
-root.left = TreeNode(2)
-root.right = TreeNode(3)
-root.left.left = TreeNode(4)
-root.left.right = TreeNode(5)
-root.right.left = TreeNode(6)
-root.right.right = TreeNode(7)
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+root.right.left = Node(6)
+root.right.right = Node(7)
 
 result = topview(root)
 print(result)
