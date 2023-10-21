@@ -10,7 +10,7 @@ def rgb_to_cmyk(r_input, g_input, b_input: int) -> tuple[int, int, int, int]:
     >>> rgb_to_cmyk(255, 200, "a")
     Traceback (most recent call last):
         ...
-    ValueError: Expected int as input, found (<class 'int'>, <class 'int'>, <class 'str'>)
+    ValueError: Expected int, found (<class 'int'>, <class 'int'>, <class 'str'>)
 
     >>> rgb_to_cmyk(255, 255, 999)
     Traceback (most recent call last):
@@ -36,10 +36,13 @@ def rgb_to_cmyk(r_input, g_input, b_input: int) -> tuple[int, int, int, int]:
     (100, 100, 0, 0)
     """
 
-    if type(r_input) != int or type(g_input) != int or type(b_input) != int:
-        raise ValueError(
-            f"Expected int as input, found {type(r_input), type(g_input), type(b_input)}"
-        )
+    if (
+        not isinstance(r_input, int)
+        or not isinstance(g_input, int)
+        or not isinstance(b_input, int)
+    ):
+        msg = f"Expected int, found {type(r_input), type(g_input), type(b_input)}"
+        raise ValueError(msg)
 
     if not 0 <= r_input < 256 or not 0 <= g_input < 256 or not 0 <= b_input < 256:
         raise ValueError("Expected int of the range 0..255")
