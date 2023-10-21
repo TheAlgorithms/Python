@@ -337,7 +337,6 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-
     user_input = input("Enter numbers separated by comma:\n").strip()
     collection = sorted(int(item) for item in user_input.split(","))
     target = int(input("Enter a single number to be found in the list:\n"))
