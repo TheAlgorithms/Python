@@ -11,6 +11,7 @@ For manual testing run:
 python3 expontial_search.py
 """
 
+
 def binary_search(arr, left, right, target) -> int:
     """
     Binary search function to find the position of the target in the array.
@@ -34,6 +35,7 @@ def binary_search(arr, left, right, target) -> int:
             right = mid - 1
     return -1
 
+
 def exponential_search(arr, n, x) -> int:
     """
     Exponential search function to find the position of the target in the array.
@@ -55,6 +57,7 @@ def exponential_search(arr, n, x) -> int:
 
     return binary_search(arr, i // 2, min(i, n - 1), x)
 
+
 # Driver Code
 arr = [2, 3, 4, 10, 40]
 n = len(arr)
@@ -64,4 +67,3 @@ if result == -1:
     print("Element not found in the array")
 else:
     print(f"Element is present at index {result}")
-    
