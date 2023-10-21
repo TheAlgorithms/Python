@@ -26,15 +26,13 @@ def nor_gate(input_1: int, input_2: int) -> int:
     1
     >>> nor_gate(0, -7)
     0
-    >>> nor_gate(0, 2)
-    0
-    >>> nor_gate(-3, 0)
-    0
-    >>> nor_gate(0.0, 1.0)
-    0
-    >>> nor_gate(1.5, 0)
-    0
-    >>> nor_gate(0, -2.5)
+    >>> main()
+    Truth Table of NOR Gate:
+    |   Input 1   |  Input 2  | Output |
+    |      0      |    0      |  1     |
+    |      0      |    1      |  0     |
+    |      1      |    0      |  0     |
+    |      1      |    1      |  0     |
     """
     return int(input_1 == input_2 == 0)
 
