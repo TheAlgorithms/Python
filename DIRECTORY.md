@@ -541,6 +541,7 @@
   * [Dimensionality Reduction](machine_learning/dimensionality_reduction.py)
   * Forecasting
     * [Run](machine_learning/forecasting/run.py)
+  * [Frequent Pattern Growth Algorithm](machine_learning/frequent_pattern_growth.py)
   * [Gradient Descent](machine_learning/gradient_descent.py)
   * [K Means Clust](machine_learning/k_means_clust.py)
   * [K Nearest Neighbours](machine_learning/k_nearest_neighbours.py)
