@@ -24,22 +24,34 @@ R = (Σ(mi * ri) / Σ(mi))
 Reference: https://en.wikipedia.org/wiki/Center_of_mass#:~:text=The%20center%20of%20mass%20is%20the%20unique%20point%20at%20the,distribution%20of%20mass%20in%20space.
 
 """
+from typing import NamedTuple
 
 
-def center_of_mass(
-    particles: list[tuple[float, float, float, float]]
-) -> tuple[float, float, float]:
+class Particle(NamedTuple):
+    x: float
+    y: float
+    z: float
+    mass: float
+
+
+class Coord3D(NamedTuple):
+    x: float
+    y: float
+    z: float
+
+
+def center_of_mass(particles: list[Particle]) -> Coord3D:
     """
     Input Parameters
     ----------------
-    particles (List[Tuple[float, float, float, float]]):
+    particles: list(Particle):
     A list of particles where each particle is a tuple with it´s (x, y, z)
     position and it´s mass.
 
     Returns
     -------
-    Tuple[float, float, float]:
-    A tuple with de coordinates of the center of mass (Xcm, Ycm, Zcm)
+    Coord3D:
+    A tuple with the coordinates of the center of mass (Xcm, Ycm, Zcm)
     rounded to two decimal places.
 
     Examples
@@ -72,21 +84,21 @@ def center_of_mass(
         raise ValueError("No particles provided")
 
     for particle in particles:
-        if particle[3] <= 0:
+        if particle.mass <= 0:
             raise ValueError("Mass of all particles must be greater than 0")
 
-    total_mass = sum(particle[3] for particle in particles)
+    total_mass = sum(particle.mass for particle in particles)
 
     center_of_mass_x = round(
-        sum(particle[0] * particle[3] for particle in particles) / total_mass, 2
+        sum(particle.x * particle.mass for particle in particles) / total_mass, 2
     )
     center_of_mass_y = round(
-        sum(particle[1] * particle[3] for particle in particles) / total_mass, 2
+        sum(particle.y * particle.mass for particle in particles) / total_mass, 2
     )
     center_of_mass_z = round(
-        sum(particle[2] * particle[3] for particle in particles) / total_mass, 2
+        sum(particle.z * particle.mass for particle in particles) / total_mass, 2
     )
-    return (center_of_mass_x, center_of_mass_y, center_of_mass_z)
+    return Coord3D(center_of_mass_x, center_of_mass_y, center_of_mass_z)
 
 
 if __name__ == "__main__":
