@@ -64,7 +64,7 @@ def perfect(number: int) -> bool:
 
 if __name__ == "__main__":
     from doctest import testmod
-    
+
     testmod()
     print("Program to check whether a number is a Perfect number or not...")
     try:
