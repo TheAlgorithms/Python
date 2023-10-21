@@ -1,3 +1,16 @@
+"""
+This is pure Python implementation of exponential search.
+
+Resources used:
+https://en.wikipedia.org/wiki/Exponential_search
+
+For doctests run following command:
+python3 -m doctest -v expontial_search.py
+
+For manual testing run:
+python3 expontial_search.py
+"""
+
 def binarySearch( arr, l, r, x):
     if r >= l:
         mid = l + ( r-l ) // 2
@@ -41,7 +54,6 @@ def exponentialSearch(arr, n, x):
      
  
 # Driver Code
-
 
 arr = [2, 3, 4, 10, 40]
 n = len(arr)
