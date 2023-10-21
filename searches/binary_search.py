@@ -327,9 +327,12 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
         bound *= 2
     left = bound // 2
     right = min(bound, len(sorted_collection) - 1)
-    return binary_search_by_recursion(
+    last_result = binary_search_by_recursion(
         sorted_collection=sorted_collection, item=item, left=left, right=right
     )
+    if last_result is None:
+        return -1
+    return last_result
 
 
 if __name__ == "__main__":
