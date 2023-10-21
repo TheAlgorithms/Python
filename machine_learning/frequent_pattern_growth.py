@@ -9,9 +9,10 @@ WIKI: https://athena.ecs.csus.edu/~mei/associationcw/FpGrowth.html
 Examples: https://www.javatpoint.com/fp-growth-algorithm-in-data-mining
 """
 
+# from dataclasses import dataclass, field
 from typing import Optional
 
-
+# @dataclass
 class TreeNode:
     """
     Initialize a TreeNode.
@@ -31,13 +32,21 @@ class TreeNode:
     """
 
     def __init__(
-        self, name_value: str, num_occur: int, parent_node: Optional["TreeNode"] = None
+        self, name_value: str, num_occur: int, 
+    parent_node: Optional["TreeNode"] = None
     ) -> None:
         self.name = name_value
         self.count = num_occur
         self.node_link = None  # Initialize node_link to None
         self.parent = parent_node
         self.children: dict[str, TreeNode] = {}
+
+    # name: str
+    # count: int
+    # node_link: Optional["TreeNode"] = None
+    # parent: Optional["TreeNode"] = None
+    # children: dict[str, "TreeNode"] = field(default_factory=dict)
+
 
     def inc(self, num_occur: int) -> None:
         self.count += num_occur
@@ -50,7 +59,7 @@ class TreeNode:
 
 def create_tree(data_set: list, min_sup: int = 1) -> tuple[TreeNode, dict]:
     """
-    Create FP tree
+    Create Frequent Pattern tree
 
     Args:
         data_set (list): A list of transactions, where each transaction
@@ -96,9 +105,7 @@ def create_tree(data_set: list, min_sup: int = 1) -> tuple[TreeNode, dict]:
         if header_table[k][0] < min_sup:
             del header_table[k]
 
-    freq_item_set = set(header_table.keys())
-
-    if len(freq_item_set) == 0:
+    if not (freq_item_set := set(header_table)):
         return TreeNode("Null Set", 1, None), {}
 
     for k in header_table:
@@ -193,9 +200,7 @@ def update_header(node_to_test: TreeNode, target_node: TreeNode) -> TreeNode:
     while node_to_test.node_link is not None:
         node_to_test = node_to_test.node_link
     if node_to_test.node_link is None:
-        node_to_test.node_link = TreeNode(
-            target_node.name, target_node.count, node_to_test
-        )
+        node_to_test.node_link = target_node
     # Return the updated node
     return node_to_test
 
