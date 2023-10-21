@@ -40,6 +40,11 @@ def perfect(number: int) -> bool:
     True
     >>> perfect(8128)
     True
+    >>> perfect(0)
+    >>> perfect(-3)
+    >>> perfect(12.34)
+    >>> perfect("day")
+    >>> perfect(["call"])
     """
     return sum(i for i in range(1, number // 2 + 1) if number % i == 0) == number
 
