@@ -6,7 +6,7 @@ class Node:
         self.data = data
         self.left = None
         self.right = None
-        self.hd = 0
+        self.horiz_dist = 0
 
 
 def topview(root):
