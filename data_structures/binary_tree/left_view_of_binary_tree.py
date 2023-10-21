@@ -1,10 +1,8 @@
 class Node:
-    def _init_(self, val):
-        self.data = val
-        self.left = None
-        self.right = None
-
-
+    def __init__(self, data, left=None, right=None):
+        self.data = data
+        self.left = left
+        self.right = right
 def fun(root, d, l):
     if root is None:
         return
@@ -12,14 +10,10 @@ def fun(root, d, l):
         d[l] = root.data
     fun(root.left, d, l + 1)
     fun(root.right, d, l + 1)
-
-
 def leftview(root):
     d = {}
     fun(root, d, 0)
     return list(d.values())
-
-
 root = Node(1)
 root.left = Node(2)
 root.right = Node(3)
