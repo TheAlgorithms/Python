@@ -16,35 +16,35 @@ def perfect(number: int) -> bool:
     """
     Check if a number is a perfect number.
 
-    A perfect number is a positive integer that is equal to the sum of its proper
-    divisors (excluding itself).
+       A perfect number is a positive integer that is equal to the sum of its proper
+       divisors (excluding itself).
 
-    Args:
-        number (int): The number to be checked.
+       Args:
+           number (int): The number to be checked.
 
-    Returns:
-        bool: True if the number is a perfect number, False otherwise.
+       Returns:
+           bool: True if the number is a perfect number, False otherwise.
 
-    Examples:
-    >>> perfect(27)
-    False
-    >>> perfect(28)
-    True
-    >>> perfect(29)
-    False
-    >>> perfect(6)
-    True
-    >>> perfect(12)
-    False
-    >>> perfect(496)
-    True
-    >>> perfect(8128)
-    True
+       Examples:
+       >>> perfect(27)
+       False
+       >>> perfect(28)
+       True
+       >>> perfect(29)
+       False
+       >>> perfect(6)
+       True
+       >>> perfect(12)
+       False
+       >>> perfect(496)
+       True
+       >>> perfect(8128)
+       True
     """
-    return sum(i for i in range(1, number // 2 + 1) if number % i == 0) == number
+    return sum(i for i in range(1, ((number // 2) + 1)) if number % i == 0) == number
 
 
 if __name__ == "__main__":
-    print("Program to check whether a number is a Perfect number or not...")
+    print("Program to check whether a number is a Perfect number or not.......")
     number = int(input("Enter number: ").strip())
-    print(f"{number} is {'' if perfect(number) else 'not '}a Perfect Number.")
+    print(f"{number} is {'' if perfect(number) else 'not '} a Perfect Number.")
