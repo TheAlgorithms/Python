@@ -1,6 +1,6 @@
 def perfect_cube(n: int) -> bool:
     """
-    C Check if a number is a perfect cube or not.
+    Check if a number is a perfect cube or not.
 
     >>> perfect_cube(27)
     True
