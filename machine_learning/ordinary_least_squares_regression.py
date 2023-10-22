@@ -16,7 +16,7 @@ WIKI: https://en.wikipedia.org/wiki/Ordinary_least_squares
 import numpy as np
 
 
-def ols_regression(x, y):
+def ols_regression(x: np.ndarray, y: np.ndarray) -> tuple:
     """
     Performs Ordinary Least Squares Regression (OLSR) on the given data.
 
