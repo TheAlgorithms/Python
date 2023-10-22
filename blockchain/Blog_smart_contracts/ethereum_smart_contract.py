@@ -1,12 +1,12 @@
-'''
+"""
 blockchain smart contracts in Python using various blockchain platforms and frameworks.
-'''
+"""
 from web3 import Web3
 from solcx import compile_standard
 
-w3 = Web3(Web3.HTTPProvider('http://127.0.0.1:8545'))
+w3 = Web3(Web3.HTTPProvider("http://127.0.0.1:8545"))
 
-contract_source_code = '''
+contract_source_code = """
 pragma solidity ^0.8.0;
 
 contract BlogContract {
@@ -53,24 +53,31 @@ contract BlogContract {
         blogs[0].currentPostKey = postId;
     }
 }
-'''
+"""
 
-compiled_sol = compile_standard({
-    "language": "Solidity",
-    "sources": {"blog_contract.sol": {"content": contract_source_code}},
-    "settings":
-        {"outputSelection": {
-            "*": {"*": ["metadata", "evm.bytecode", "evm.bytecode.sourceMap"]}
-        }}
-})
+compiled_sol = compile_standard(
+    {
+        "language": "Solidity",
+        "sources": {"blog_contract.sol": {"content": contract_source_code}},
+        "settings": {
+            "outputSelection": {
+                "*": {"*": ["metadata", "evm.bytecode", "evm.bytecode.sourceMap"]}
+            }
+        },
+    }
+)
 
-bytecode = compiled_sol['contracts']['blog_contract.sol']['BlogContract']['evm']['bytecode']['object']
-abi = compiled_sol['contracts']['blog_contract.sol']['BlogContract']['metadata']['output']['abi']
+bytecode = compiled_sol["contracts"]["blog_contract.sol"]["BlogContract"]["evm"][
+    "bytecode"
+]["object"]
+abi = compiled_sol["contracts"]["blog_contract.sol"]["BlogContract"]["metadata"][
+    "output"
+]["abi"]
 
 account_address = w3.eth.accounts[0]
 BlogContract = w3.eth.contract(abi=abi, bytecode=bytecode)
 
-tx_hash = BlogContract.constructor().transact({'from': account_address})
+tx_hash = BlogContract.constructor().transact({"from": account_address})
 tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
 
 contract_address = tx_receipt.contractAddress
