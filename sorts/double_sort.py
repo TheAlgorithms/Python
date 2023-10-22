@@ -26,12 +26,17 @@ def double_sort(lst):
             if (
                 lst[no_of_elements - 1 - j] < lst[no_of_elements - 2 - j]
             ):  # applying bubble sort algorithm from right to left (or backwards)
-                lst[no_of_elements - 1 - j], lst[no_of_elements - 2 - j] = lst[no_of_elements - 2 - j], lst[no_of_elements - 1 - j]
+                lst[no_of_elements - 1 - j], lst[no_of_elements - 2 - j] = (
+                    lst[no_of_elements - 2 - j],
+                    lst[no_of_elements - 1 - j],
+                )
 
 
 if __name__ == "__main__":
     print("Enter the list to be sorted: ")
-    lst = [int(x) for x in input().split() if x]  # inputing elements of the list in one line
+    lst = [
+        int(x) for x in input().split() if x
+    ]  # inputing elements of the list in one line
     double_sort(lst)
     print("the sorted list is")
     print(lst)
