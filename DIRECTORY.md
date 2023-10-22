@@ -548,6 +548,7 @@
   * [Loss Functions](machine_learning/loss_functions.py)
   * [Mfcc](machine_learning/mfcc.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
+  * [Ordinary Least Squares Regression](machine_learning/ordinary_least_squares_regression.py)
   * [Polynomial Regression](machine_learning/polynomial_regression.py)
   * [Scoring Functions](machine_learning/scoring_functions.py)
   * [Self Organizing Map](machine_learning/self_organizing_map.py)
