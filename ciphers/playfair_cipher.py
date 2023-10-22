@@ -122,7 +122,7 @@ def encode(plaintext: str, key: str) -> str:
 def decode(ciphertext: str, key: str) -> str:
     """The decode function decodes the input string
     using the provided key and returns a decoded string
-    
+
     >>> print(decode("BMZFAZRZDH", "HAZARD"))
     FIREHAZARD
     >>> print(decode("HNBWBPQT", "AUTOMOBILE"))
