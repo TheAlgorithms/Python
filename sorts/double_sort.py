@@ -31,7 +31,7 @@ def double_sort(lst):
 
 if __name__ == "__main__":
     print("Enter the list to be sorted: ")
-    lst = [int(x) if x for x in input().split()]  # inputing elements of the list in one line
+    lst = [int(x) for x in input().split() if x]  # inputing elements of the list in one line
     double_sort(lst)
     print("the sorted list is")
     print(lst)
