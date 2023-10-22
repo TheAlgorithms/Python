@@ -541,7 +541,7 @@
   * [Dimensionality Reduction](machine_learning/dimensionality_reduction.py)
   * Forecasting
     * [Run](machine_learning/forecasting/run.py)
-  * [Frequent Pattern Growth Algorithm](machine_learning/frequent_pattern_growth.py)
+  * [Frequent Pattern Growth](machine_learning/frequent_pattern_growth.py)
   * [Gradient Descent](machine_learning/gradient_descent.py)
   * [K Means Clust](machine_learning/k_means_clust.py)
   * [K Nearest Neighbours](machine_learning/k_nearest_neighbours.py)
@@ -649,6 +649,7 @@
   * [Numerical Integration](maths/numerical_integration.py)
   * [Odd Sieve](maths/odd_sieve.py)
   * [Perfect Cube](maths/perfect_cube.py)
+  * [Perfect Number](maths/perfect_number.py)
   * [Perfect Square](maths/perfect_square.py)
   * [Persistence](maths/persistence.py)
   * [Pi Generator](maths/pi_generator.py)
@@ -767,7 +768,6 @@
     * [Swish](neural_network/activation_functions/swish.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
-  * [Perceptron](neural_network/perceptron.py)
   * [Simple Neural Network](neural_network/simple_neural_network.py)
 
 ## Other
@@ -803,8 +803,10 @@
   * [Archimedes Principle Of Buoyant Force](physics/archimedes_principle_of_buoyant_force.py)
   * [Basic Orbital Capture](physics/basic_orbital_capture.py)
   * [Casimir Effect](physics/casimir_effect.py)
+  * [Center Of Mass](physics/center_of_mass.py)
   * [Centripetal Force](physics/centripetal_force.py)
   * [Coulombs Law](physics/coulombs_law.py)
+  * [Doppler Frequency](physics/doppler_frequency.py)
   * [Grahams Law](physics/grahams_law.py)
   * [Horizontal Projectile Motion](physics/horizontal_projectile_motion.py)
   * [Hubble Parameter](physics/hubble_parameter.py)
