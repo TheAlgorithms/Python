@@ -20,11 +20,11 @@ class MinimumCostCalculator:
        def find(parent, x):
             """
             Find the representative (root) of the set to which element x belongs.
-            
+
             Args:
                 parent (list): A list representing the parent of each element in the set.
                 x: The element whose representative is to be found.
-        
+
             Returns:
                 int: The representative (root) of the set containing element x.
             """
@@ -57,14 +57,14 @@ class MinimumCostCalculator:
        def manhattan_distance(p1, p2):
             """
             Calculate the Manhattan distance between two points represented as (x, y) coordinates.
-        
+
             Args:
                 p1 (tuple): The first point as a tuple (x1, y1).
                 p2 (tuple): The second point as a tuple (x2, y2).
-        
+
             Returns:
                 int: The Manhattan distance between the two points.
-        
+
             Example:
             >>> manhattan_distance((0, 0), (2, 2))
             4
