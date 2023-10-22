@@ -60,7 +60,6 @@ def fib_iterative(n: int) -> list[int]:
         fib.append(fib[-1] + fib[-2])
     return fib
 
-
 def fib_recursive(n: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using recursion
@@ -81,6 +80,18 @@ def fib_recursive(n: int) -> list[int]:
     def fib_recursive_term(i: int) -> int:
         """
         Calculates the i-th (0-indexed) Fibonacci number using recursion
+        >>> fib_recursive_term(0)
+        0
+        >>> fib_recursive_term(1)
+        1
+        >>> fib_recursive_term(5)
+        5
+        >>> fib_recursive_term(10)
+        55
+        >>> fib_recursive_term(-1)
+        Traceback (most recent call last):
+            ...
+        Exception: n is negative
         """
         if i < 0:
             raise Exception("n is negative")
@@ -197,6 +208,10 @@ def fib_binet(n: int) -> list[int]:
 
 
 if __name__ == "__main__":
+
+    import doctest
+    doctest.testmod()
+    
     num = 30
     time_func(fib_iterative, num)
     time_func(fib_recursive, num)  # Around 3s runtime
