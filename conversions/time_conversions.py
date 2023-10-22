@@ -13,15 +13,12 @@ time_chart: dict[str, float] = {
     "hours": 3600.0,  # 1 hour = 60 minutes = 3600 seconds
     "days": 86400.0,  # 1 day = 24 hours = 1440 min = 86400 sec
     "weeks": 604800.0,  # 1 week=7d=168hr=10080min = 604800 sec
+    "months": 2629800.0,  # Approximate value for a month in seconds
+    "years": 31557600.0,  # Approximate value for a year in seconds
 }
 
-time_chart_inverse: dict[str, float] = {
-    "seconds": 1.0,
-    "minutes": 1 / 60.0,  # 1 minute = 1/60 hours
-    "hours": 1 / 3600.0,  # 1 hour = 1/3600 days
-    "days": 1 / 86400.0,  # 1 day = 1/86400 weeks
-    "weeks": 1 / 604800.0,  # 1 week = 1/604800 seconds
-}
+time_chart_inverse: dict[str, float] = {key: 1 / value for key, 
+                                        value in time_chart.items()}
 
 
 def convert_time(time_value: float, unit_from: str, unit_to: str) -> float:
@@ -38,14 +35,30 @@ def convert_time(time_value: float, unit_from: str, unit_to: str) -> float:
     14.0
     >>> convert_time(0.5, "hours", "minutes")
     30.0
+    >>> convert_time(-3600, "seconds", "hours")
+    Error: 'time_value' must be a non-negative number.
+    >>> convert_time("Hello", "hours", "minutes")
+    Error: 'time_value' must be a non-negative number.
+    >>> convert_time([0, 1, 2], "weeks", "days")
+    Error: 'time_value' must be a non-negative number.
+    >>> convert_time(50, "HOURS", "days")
+    2.083
+    >>> convert_time(50, "hours", "YEARS")
+    0.006
     """
-    if unit_to not in time_chart or unit_from not in time_chart_inverse:
-        msg = (
-            f"Incorrect 'from_type' or 'to_type' value: {unit_from!r}, {unit_to!r}\n"
-            f"Valid values are: {', '.join(time_chart_inverse)}"
-        )
-        raise ValueError(msg)
-    return round(time_value * time_chart[unit_from] * time_chart_inverse[unit_to], 3)
+    if unit_to.lower() not in time_chart or unit_from.lower() not in time_chart_inverse:
+        valid_units = ", ".join(time_chart_inverse)
+        print(
+        f"Error: Invalid unit: {unit_from if unit_from.lower() not in time_chart_inverse else unit_to}."
+        f" Valid units are {valid_units}.")
+
+        return None
+
+    if not isinstance(time_value, (int, float)) or time_value < 0:
+        print("Error: 'time_value' must be a non-negative number.")
+        return None
+    return round(time_value * time_chart[unit_from.lower()] * 
+                 time_chart_inverse[unit_to.lower()], 3)
 
 
 if __name__ == "__main__":
@@ -53,4 +66,8 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    print(convert_time(3600, "seconds", "hours"))
+    print(f"{convert_time(3600,'seconds', 'hours') = }")
+    print(f"{convert_time(360, 'days', 'months') = }")
+    print(f"{convert_time(360, 'months', 'years') = }")
+    print(f"{convert_time(360, 'cool', 'months') = }")
+    
