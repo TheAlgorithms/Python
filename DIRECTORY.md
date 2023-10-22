@@ -62,10 +62,10 @@
 
 ## Blockchain
   * Blog Smart Contracts
-    * [Blog Eosio Blockchain](blockchain/Blog_smart_contracts/blog_EOSIO_blockchain.py)
-    * [Blog Near Protocol](blockchain/Blog_smart_contracts/blog_NEAR_protocol.py)
-    * [Blog Tendermint Blockchain](blockchain/Blog_smart_contracts/blog_Tendermint_blockchain.py)
-    * [Blog Eth](blockchain/Blog_smart_contracts/blog_eth.py)
+    * [Eosio Smart Contract](blockchain/Blog_smart_contracts/eosio_smart_contract.py)
+    * [Ethereum Smart Contract](blockchain/Blog_smart_contracts/ethereum_smart_contract.py)
+    * [Near Protocol Smart Contract](blockchain/Blog_smart_contracts/near_protocol_smart_contract.py)
+    * [Tendermint Smart Contract](blockchain/Blog_smart_contracts/tendermint_smart_contract.py)
   * [Diophantine Equation](blockchain/diophantine_equation.py)
 
 ## Boolean Algebra
