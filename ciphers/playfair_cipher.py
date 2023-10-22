@@ -1,3 +1,24 @@
+"""
+https://en.wikipedia.org/wiki/Playfair_cipher#Description
+
+The Playfair cipher was developed by Charles Wheatstone in 1854
+It's use was heavily promotedby Lord Playfair, hence its name
+
+Some features of the Playfair cipher are:
+
+1) It was the first literal diagram substitution cipher
+2) It is a manual symmetric encryption technique
+3) It is a multiple letter encryption cipher
+
+The implementation in the code below encodes alphabets only.
+It removes spaces, special characters and numbers from the 
+code.
+
+Playfair is no longer used by military forces because of known 
+insecurities and of the advent of automated encryption devices. 
+This cipher is regarded as insecure since before World War I.
+"""
+
 import itertools
 import string
 from collections.abc import Generator, Iterable
@@ -60,11 +81,27 @@ def generate_table(key: str) -> list[str]:
 
 
 def encode(plaintext: str, key: str) -> str:
+
+    """encode function encodes the given plaintext by taking
+    two strings, the plaintext and the key, as input
+    and returns an encoded string
+
+    >>> print(encode("Hello", "MONARCHY"))
+    CFSUPM
+    >>> print(encode("attack on the left flank", "EMERGENCY"))
+    DQZSBYFSDZFMFNLOHFDRSG
+    >>> print(encode("Sorry!", "SPECIAL"))
+    AVXETX
+    >>> print(encode("Number 1", "NUMBER"))
+    UMBENF
+    >>> print(encode("Photosynthesis!", "THE SUN"))
+    OEMHQHVCHESUKE
+    """
+
     table = generate_table(key)
     plaintext = prepare_input(plaintext)
     ciphertext = ""
 
-    # https://en.wikipedia.org/wiki/Playfair_cipher#Description
     for char1, char2 in chunker(plaintext, 2):
         row1, col1 = divmod(table.index(char1), 5)
         row2, col2 = divmod(table.index(char2), 5)
@@ -83,10 +120,20 @@ def encode(plaintext: str, key: str) -> str:
 
 
 def decode(ciphertext: str, key: str) -> str:
+    """The decode function decodes the input string
+    using the provided key and returns a decoded string
+    
+    >>> print(decode("BMZFAZRZDH", "HAZARD"))
+    FIREHAZARD
+    >>> print(decode("HNBWBPQT", "AUTOMOBILE"))
+    DRIVINGX
+    >>> print(decode("SLYSSAQS", "CASTLE"))
+    ATXTACKX
+    """
+
     table = generate_table(key)
     plaintext = ""
 
-    # https://en.wikipedia.org/wiki/Playfair_cipher#Description
     for char1, char2 in chunker(ciphertext, 2):
         row1, col1 = divmod(table.index(char1), 5)
         row2, col2 = divmod(table.index(char2), 5)
@@ -102,3 +149,10 @@ def decode(ciphertext: str, key: str) -> str:
             plaintext += table[row2 * 5 + col1]
 
     return plaintext
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+
+    print("Encoded:",encode("BYE AND THANKS", "GREETING"))
+    print("Decoded:",decode("CXRBANRLBALQ", "GREETING"))
