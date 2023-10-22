@@ -155,5 +155,5 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    print("Encoded:",encode("BYE AND THANKS", "GREETING"))
-    print("Decoded:",decode("CXRBANRLBALQ", "GREETING"))
+    print("Encoded:", encode("BYE AND THANKS", "GREETING"))
+    print("Decoded:", decode("CXRBANRLBALQ", "GREETING"))
