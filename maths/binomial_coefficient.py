@@ -1,9 +1,37 @@
 def binomial_coefficient(n: int, r: int) -> int:
     """
-    Find binomial coefficient using pascals triangle.
+    Find binomial coefficient using Pascal's triangle.
+
+    Calculate C(n, r) using Pascal's triangle.
+
+    :param n: The total number of items.
+    :param r: The number of items to choose.
+    :return: The binomial coefficient C(n, r).
 
     >>> binomial_coefficient(10, 5)
     252
+    >>> binomial_coefficient(5, 2)
+    10
+    >>> binomial_coefficient(10, 0)
+    1
+    >>> binomial_coefficient(10, 10)
+    1
+    >>> binomial_coefficient(5, 6)  # This should raise a ValueError
+    Traceback (most recent call last):
+        ...
+    ValueError: r should be between 0 and n (inclusive)
+    >>> binomial_coefficient(3, 5)  # This should raise a ValueError
+    Traceback (most recent call last):
+        ...
+    ValueError: r should be between 0 and n (inclusive)
+    >>> binomial_coefficient(-2, 3)  # This should raise a ValueError
+    Traceback (most recent call last):
+        ...
+    ValueError: n should be a non-negative integer
+    >>> binomial_coefficient(5, -1)  # This should raise a ValueError
+    Traceback (most recent call last):
+        ...
+    ValueError: r should be a non-negative integer
     """
     c = [0 for i in range(r + 1)]
     # nc0 = 1
