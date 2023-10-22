@@ -35,7 +35,7 @@ def method_1(boundary, steps):
 
 def make_points(a, b, h):
     """
-    Generate the points.
+    Generate the respective points.
 
     Doctest:
     >>> result = list(make_points(0.0, 1.0, 0.1))
