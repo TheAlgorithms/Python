@@ -50,9 +50,10 @@ def convert_time(time_value: float, unit_from: str, unit_to: str) -> float:
     if unit_to.lower() not in time_chart or unit_from.lower() not in time_chart_inverse:
         valid_units = ", ".join(time_chart_inverse)
         print(
-        f"Error: Invalid unit: "
-        f"{unit_from if unit_from.lower() not in time_chart_inverse else unit_to}."
-        f" Valid units are {valid_units}.")
+            f"Error: Invalid unit: "
+            f"{unit_from if unit_from.lower() not in time_chart_inverse else unit_to}."
+            f" Valid units are {valid_units}."
+        )
 
         return None
 
