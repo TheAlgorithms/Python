@@ -36,6 +36,7 @@ def dfs(start: int) -> int:
     []
     """
     # pylint: disable=redefined-outer-name
+    global tree, visited, cuts
     ret = 1
     visited[start] = True
     for v in tree[start]:
@@ -60,6 +61,7 @@ def even_tree():
     >>> len(cuts) - 1
     2
     """
+    global tree, visited, cuts
     dfs(1)
 
 
