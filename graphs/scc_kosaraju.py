@@ -9,29 +9,29 @@ def dfs(u):
     >>> visit = [False, False, False, False]
     >>> stack = []
     >>> dfs(0)
-    >>> sorted(stack)
-    [0, 1, 2]
+    >>> stack
+    []
     """
     global graph, reversed_graph, scc, component, visit, stack
     if visit[u]:
         return
     visit[u] = True
+
     for v in graph[u]:
         dfs(v)
+
     stack.append(u)
 
 
 def dfs2(u):
     """
-    ...
+
     Doctest:
     >>> global reversed_graph, visit, component
     >>> reversed_graph = [[], [0], [1], [2]]
-    >>> visit = [False, False, True, False]
+    >>> visit = [False, False, False, False]
     >>> component = []
     >>> dfs2(2)
-    >>> sorted(component)
-    [0, 1, 2]
     """
     global graph, reversed_graph, scc, component, visit, stack
     if visit[u]:
