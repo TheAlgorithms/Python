@@ -4,10 +4,10 @@
 N, Q = map(int, input().split())
 seqList, lastAns = [[] for i in range(N)], 0
 for i in range(Q):
-  op, x, y = map(int, input().split())
-  seq = seqList[(x ^ lastAns) % N]
-  if op == 1:
-    seq.append(y)
-  else:
-    lastAns = seq[y % len(seq)]
-    print(lastAns)
+    op, x, y = map(int, input().split())
+    seq = seqList[(x ^ lastAns) % N]
+    if op == 1:
+        seq.append(y)
+    else:
+        lastAns = seq[y % len(seq)]
+        print(lastAns)
