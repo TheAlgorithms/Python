@@ -17,8 +17,9 @@ time_chart: dict[str, float] = {
     "years": 31557600.0,  # Approximate value for a year in seconds
 }
 
-time_chart_inverse: dict[str, float] = {key: 1 / value for key, 
-                                        value in time_chart.items()}
+time_chart_inverse: dict[str, float] = {
+    key: 1 / value for key, value in time_chart.items()
+}
 
 
 def convert_time(time_value: float, unit_from: str, unit_to: str) -> float:
@@ -49,16 +50,21 @@ def convert_time(time_value: float, unit_from: str, unit_to: str) -> float:
     if unit_to.lower() not in time_chart or unit_from.lower() not in time_chart_inverse:
         valid_units = ", ".join(time_chart_inverse)
         print(
-        f"Error: Invalid unit: {unit_from if unit_from.lower() not in time_chart_inverse else unit_to}."
-        f" Valid units are {valid_units}.")
+            f"Error: Invalid unit: {unit_from if unit_from.lower() not in time_chart_inverse else unit_to}."
+            f" Valid units are {valid_units}."
+        )
 
         return None
 
     if not isinstance(time_value, (int, float)) or time_value < 0:
         print("Error: 'time_value' must be a non-negative number.")
         return None
-    return round(time_value * time_chart[unit_from.lower()] * 
-                 time_chart_inverse[unit_to.lower()], 3)
+    return round(
+        time_value
+        * time_chart[unit_from.lower()]
+        * time_chart_inverse[unit_to.lower()],
+        3,
+    )
 
 
 if __name__ == "__main__":
@@ -70,4 +76,3 @@ if __name__ == "__main__":
     print(f"{convert_time(360, 'days', 'months') = }")
     print(f"{convert_time(360, 'months', 'years') = }")
     print(f"{convert_time(360, 'cool', 'months') = }")
-    
