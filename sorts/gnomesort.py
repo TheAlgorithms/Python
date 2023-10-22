@@ -10,6 +10,7 @@ def gnome_sort(arr):
             index -= 1
     return arr
 
+
 unsorted_list = [64, 34, 25, 12, 22, 11, 90]
 sorted_list = gnome_sort(unsorted_list)
 print(sorted_list)
