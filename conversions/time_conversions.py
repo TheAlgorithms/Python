@@ -1,11 +1,10 @@
 """
-A unit of time is any particular time interval, used as a standard
-way of measuring or expressing duration.
-The base unit of time in the International System of Units (SI),
-and by extension most of the Western world, is the second,
-defined as about 9 billion oscillations of the caesium atom.
+A unit of time is any particular time interval, used as a standard way of measuring or
+expressing duration.  The base unit of time in the International System of Units (SI),
+and by extension most of the Western world, is the second, defined as about 9 billion
+oscillations of the caesium atom.
 
-WIKI: https://en.wikipedia.org/wiki/Unit_of_time
+https://en.wikipedia.org/wiki/Unit_of_time
 """
 
 time_chart: dict[str, float] = {
