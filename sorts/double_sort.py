@@ -1,4 +1,4 @@
-def double_sort(lst):
+def double_sort(lst) -> None:
     """This sorting algorithm sorts an array using the principle of bubble sort,
     but does it both from left to right and right to left.
     Hence, it's called "Double sort"
@@ -34,9 +34,9 @@ def double_sort(lst):
 
 if __name__ == "__main__":
     print("Enter the list to be sorted: ")
-    lst = [
+    unsorted = [
         int(x) for x in input().split() if x
     ]  # inputing elements of the list in one line
     double_sort(lst)
     print("the sorted list is")
-    print(lst)
+    print(unsorted)
