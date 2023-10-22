@@ -2,6 +2,16 @@ from __future__ import annotations
 
 
 def dfs(u):
+    """
+    Doctest:
+    >>> global graph, visit, stack
+    >>> graph = [[1], [2], [0], []]
+    >>> visit = [False, False, False, False]
+    >>> stack = []
+    >>> dfs(0)
+    >>> stack
+    [2, 1, 0]
+    """
     global graph, reversed_graph, scc, component, visit, stack
     if visit[u]:
         return
@@ -12,6 +22,17 @@ def dfs(u):
 
 
 def dfs2(u):
+    """
+    ...
+    Doctest:
+    >>> global reversed_graph, visit, component
+    >>> reversed_graph = [[], [0], [1], [2]]
+    >>> visit = [False, False, True, False]
+    >>> component = []
+    >>> dfs2(2)
+    >>> component
+    [2, 1, 0]
+    """
     global graph, reversed_graph, scc, component, visit, stack
     if visit[u]:
         return
@@ -22,6 +43,16 @@ def dfs2(u):
 
 
 def kosaraju():
+    """
+    Doctest:
+    >>> global n, m, graph, reversed_graph, stack, visit, scc, component
+    >>> n, m = 4, 4
+    >>> graph = [[1], [2], [0], []]
+    >>> reversed_graph = [[2], [0], [1], []]
+    >>> stack, visit, scc, component = [], [False]*n, [], []
+    >>> kosaraju()
+    [[0, 2, 1], [3]]
+    """
     global graph, reversed_graph, scc, component, visit, stack
     for i in range(n):
         dfs(i)
@@ -51,4 +82,7 @@ if __name__ == "__main__":
     visit: list[bool] = [False] * n
     scc: list[int] = []
     component: list[int] = []
+    import doctest
+
+    doctest.testmod()
     print(kosaraju())
