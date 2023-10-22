@@ -75,5 +75,7 @@ if __name__ == "__main__":
         tree[v].append(u)
 
     even_tree()
+    import doctest
 
+    doctest.testmod()
     print(len(cuts) - 1)
