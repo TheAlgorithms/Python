@@ -81,20 +81,20 @@ def generate_table(key: str) -> list[str]:
 
 
 def encode(plaintext: str, key: str) -> str:
-    """encode function encodes the given plaintext by taking
-    two strings, the plaintext and the key, as input
-    and returns an encoded string
+    """
+    Encode the given plaintext using the Playfair cipher.
+    Takes the plaintext and the key as input and returns the encoded string.
 
-    >>> print(encode("Hello", "MONARCHY"))
-    CFSUPM
-    >>> print(encode("attack on the left flank", "EMERGENCY"))
-    DQZSBYFSDZFMFNLOHFDRSG
-    >>> print(encode("Sorry!", "SPECIAL"))
-    AVXETX
-    >>> print(encode("Number 1", "NUMBER"))
-    UMBENF
-    >>> print(encode("Photosynthesis!", "THE SUN"))
-    OEMHQHVCHESUKE
+    >>> encode("Hello", "MONARCHY")
+    'CFSUPM'
+    >>> encode("attack on the left flank", "EMERGENCY")
+    'DQZSBYFSDZFMFNLOHFDRSG'
+    >>> encode("Sorry!", "SPECIAL")
+    'AVXETX'
+    >>> encode("Number 1", "NUMBER")
+    'UMBENF'
+    >>> encode("Photosynthesis!", "THE SUN")
+    'OEMHQHVCHESUKE'
     """
 
     table = generate_table(key)
@@ -119,15 +119,15 @@ def encode(plaintext: str, key: str) -> str:
 
 
 def decode(ciphertext: str, key: str) -> str:
-    """The decode function decodes the input string
-    using the provided key and returns a decoded string
+    """
+    Decode the input string using the provided key.
 
-    >>> print(decode("BMZFAZRZDH", "HAZARD"))
-    FIREHAZARD
-    >>> print(decode("HNBWBPQT", "AUTOMOBILE"))
-    DRIVINGX
-    >>> print(decode("SLYSSAQS", "CASTLE"))
-    ATXTACKX
+    >>> decode("BMZFAZRZDH", "HAZARD")
+    'FIREHAZARD'
+    >>> decode("HNBWBPQT", "AUTOMOBILE")
+    'DRIVINGX'
+    >>> decode("SLYSSAQS", "CASTLE")
+    'ATXTACKX'
     """
 
     table = generate_table(key)
