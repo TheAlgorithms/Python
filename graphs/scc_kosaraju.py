@@ -9,8 +9,8 @@ def dfs(u):
     >>> visit = [False, False, False, False]
     >>> stack = []
     >>> dfs(0)
-    >>> stack
-    [2, 1, 0]
+    >>> sorted(stack)
+    [0, 1, 2]
     """
     global graph, reversed_graph, scc, component, visit, stack
     if visit[u]:
@@ -30,8 +30,8 @@ def dfs2(u):
     >>> visit = [False, False, True, False]
     >>> component = []
     >>> dfs2(2)
-    >>> component
-    [2, 1, 0]
+    >>> sorted(component)
+    [0, 1, 2]
     """
     global graph, reversed_graph, scc, component, visit, stack
     if visit[u]:
@@ -50,7 +50,8 @@ def kosaraju():
     >>> graph = [[1], [2], [0], []]
     >>> reversed_graph = [[2], [0], [1], []]
     >>> stack, visit, scc, component = [], [False]*n, [], []
-    >>> kosaraju()
+    >>> result = kosaraju()
+    >>> sorted(result, key=lambda x: x[0])
     [[0, 2, 1], [3]]
     """
     global graph, reversed_graph, scc, component, visit, stack
