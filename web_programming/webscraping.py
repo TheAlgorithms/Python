@@ -9,7 +9,7 @@ if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
 
-def extract_article_text(url:str)->str:
+def extract_article_text(url: str) -> str:
     """
     This fuction takes url and extract the Title and Paragraph of the Web page and stores
     them into text file.
