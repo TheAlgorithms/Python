@@ -37,6 +37,6 @@ if __name__ == "__main__":
     unsorted = [
         int(x) for x in input().split() if x
     ]  # inputing elements of the list in one line
-    double_sort(lst)
+    double_sort(unsorted)
     print("the sorted list is")
     print(unsorted)
