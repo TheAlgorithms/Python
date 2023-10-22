@@ -29,7 +29,10 @@ def double_sort(collection: list[Any]) -> list[Any]:
             if (
                 collection[no_of_elements - 1 - j] < collection[no_of_elements - 2 - j]
             ):  # applying bubble sort algorithm from right to left (or backwards)
-                collection[no_of_elements - 1 - j], collection[no_of_elements - 2 - j] = (
+                (
+                    collection[no_of_elements - 1 - j],
+                    collection[no_of_elements - 2 - j],
+                ) = (
                     collection[no_of_elements - 2 - j],
                     collection[no_of_elements - 1 - j],
                 )
