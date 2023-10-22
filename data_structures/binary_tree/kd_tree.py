@@ -14,6 +14,7 @@ class MinimumCostCalculator:
         >>> calculator.calculate_min_cost([[0, 0], [2, 2], [3, 1], [4, 5], [1, 4]])
         10
         """
+
         def find(parent, x):
             if parent[x] == x:
                 return x
@@ -31,8 +32,7 @@ class MinimumCostCalculator:
                 v (int): The second element to be united.
             """
             root_u = find(parent, u)
-            root_v = find(parent, v)
-            if root_u != root_v:
+            if root_u != (root_v := find(parent, v)):
                 if rank[root_u] < rank[root_v]:
                     parent[root_u] = root_v
                 elif rank[root_u] > rank[root_v]:
@@ -64,6 +64,7 @@ class MinimumCostCalculator:
                 if edges_added == n - 1:
                     break
         return min_cost
+
 
 # Define test cases
 test_cases = [
