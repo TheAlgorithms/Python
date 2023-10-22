@@ -9,7 +9,6 @@
 """
 from __future__ import annotations
 
-# Create a list to store solutions
 solution = []
 
 
