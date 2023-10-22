@@ -1,5 +1,19 @@
 class MinimumCostCalculator:
-    def calculate_min_cost(self, points):
+    def calculate_min_cost(self, points) -> int:
+        """
+        Calculate the minimum cost to connect all points using the Manhattan distance.
+
+        Args:
+            points (List[List[int]]): A list of points represented as [x, y] coordinates.
+
+        Returns:
+            int: The minimum cost to connect all points.
+
+        Example:
+        >>> calculator = MinimumCostCalculator()
+        >>> calculator.calculate_min_cost([[0, 0], [2, 2], [3, 1], [4, 5], [1, 4]])
+        10
+        """
         def find(parent, x):
             if parent[x] == x:
                 return x
@@ -40,7 +54,6 @@ class MinimumCostCalculator:
                 if edges_added == n - 1:
                     break
         return min_cost
-
 
 # Define test cases
 test_cases = [
