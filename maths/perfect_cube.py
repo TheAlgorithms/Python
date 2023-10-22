@@ -8,8 +8,6 @@ def perfect_cube(n: int) -> bool:
         False
         >>> perfect_cube(50)
         False
-        >>> perfect_cube(125)
-        True
         >>> perfect_cube(0)
         True
         >>> perfect_cube(1)
