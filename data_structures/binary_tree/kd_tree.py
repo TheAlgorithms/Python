@@ -1,3 +1,5 @@
+from typing import List
+
 class MinimumCostCalculator:
     def calculate_min_cost(self, points) -> int:
         """
@@ -15,11 +17,22 @@ class MinimumCostCalculator:
         10
         """
 
-        def find(parent, x):
+       def find(parent, x):
+            """
+            Find the representative (root) of the set to which element x belongs.
+            
+            Args:
+                parent (list): A list representing the parent of each element in the set.
+                x: The element whose representative is to be found.
+        
+            Returns:
+                int: The representative (root) of the set containing element x.
+            """
             if parent[x] == x:
                 return x
             parent[x] = find(parent, parent[x])
             return parent[x]
+
 
         def union(parent: List[int], rank: List[int], u: int, v: int) -> None:
             """
@@ -41,8 +54,25 @@ class MinimumCostCalculator:
                     parent[root_v] = root_u
                     rank[root_u] += 1
 
-        def manhattan_distance(p1, p2):
+       def manhattan_distance(p1, p2):
+            """
+            Calculate the Manhattan distance between two points represented as (x, y) coordinates.
+        
+            Args:
+                p1 (tuple): The first point as a tuple (x1, y1).
+                p2 (tuple): The second point as a tuple (x2, y2).
+        
+            Returns:
+                int: The Manhattan distance between the two points.
+        
+            Example:
+            >>> manhattan_distance((0, 0), (2, 2))
+            4
+            >>> manhattan_distance((3, 1), (4, 5))
+            5
+            """
             return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
+
 
         n = len(points)
         edges = []
@@ -78,3 +108,8 @@ for points, expected_result in test_cases:
     result = calculator.calculate_min_cost(points)
     assert result == expected_result, f"Test failed: {result} != {expected_result}"
 print("All tests passed")
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod(verbose=True)
