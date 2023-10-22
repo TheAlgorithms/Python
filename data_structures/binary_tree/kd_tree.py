@@ -1,7 +1,5 @@
-from typing import List
-
 class MinimumCostCalculator:
-    def calculate_min_cost(self, points: List[List[int]) -> int:
+    def calculate_min_cost(self, points) -> int:
         """
         Calculate the minimum cost to connect all points using the Manhattan distance.
 
