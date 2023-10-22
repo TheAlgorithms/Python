@@ -22,21 +22,16 @@ def double_sort(lst):
             if (
                 lst[j + 1] < lst[j]
             ):  # applying bubble sort algorithm from left to right (or forwards)
-                temp = lst[j + 1]
-                lst[j + 1] = lst[j]
-                lst[j] = temp
+                lst[j], lst[j + 1] = lst[j + 1], lst[j]
             if (
                 lst[no_of_elements - 1 - j] < lst[no_of_elements - 2 - j]
             ):  # applying bubble sort algorithm from right to left (or backwards)
-                temp = lst[no_of_elements - 1 - j]
-                lst[no_of_elements - 1 - j] = lst[no_of_elements - 2 - j]
-                lst[no_of_elements - 2 - j] = temp
-    return lst
+                lst[no_of_elements - 1 - j], lst[no_of_elements - 2 - j] = lst[no_of_elements - 2 - j], lst[no_of_elements - 1 - j]
 
 
 if __name__ == "__main__":
-    print("enter the list to be sorted")
-    lst = [int(x) for x in input().split()]  # inputing elements of the list in one line
-    sorted_lst = double_sort(lst)
+    print("Enter the list to be sorted: ")
+    lst = [int(x) if x for x in input().split()]  # inputing elements of the list in one line
+    double_sort(lst)
     print("the sorted list is")
-    print(sorted_lst)
+    print(lst)
