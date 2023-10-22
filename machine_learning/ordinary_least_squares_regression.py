@@ -1,13 +1,13 @@
 """
 Ordinary Least Squares Regression (OLSR):
 
-Ordinary Least Squares Regression (OLSR) is a statistical method for 
-estimating the parameters of a linear regression model. 
-It is the most commonly used regression method, 
-and it is based on the principle of minimizing 
+Ordinary Least Squares Regression (OLSR) is a statistical method for
+estimating the parameters of a linear regression model.
+It is the most commonly used regression method,
+and it is based on the principle of minimizing
 the sum of the squared residuals.
 
-Below is simple implementation of OLSR 
+Below is simple implementation of OLSR
 without using any external libraries.
 
 WIKI: https://en.wikipedia.org/wiki/Ordinary_least_squares
@@ -15,8 +15,9 @@ WIKI: https://en.wikipedia.org/wiki/Ordinary_least_squares
 
 import numpy as np
 
+
 def ols_regression(x, y):
-  """
+    """
     Performs Ordinary Least Squares Regression (OLSR) on the given data.
 
     Args:
@@ -35,20 +36,21 @@ def ols_regression(x, y):
     0.0
     >>> round(b, 2)  # Slope should be 2.0
     2.0
-  """
+    """
 
-  # Calculate the mean of the independent variable and 
-  # the dependent variable.
-  x_mean = np.mean(x)
-  y_mean = np.mean(y)
+    # Calculate the mean of the independent variable and
+    # the dependent variable.
+    x_mean = np.mean(x)
+    y_mean = np.mean(y)
 
-  # Calculate the slope of the regression line.
-  b = np.sum((x - x_mean) * (y - y_mean)) / np.sum((x - x_mean)**2)
+    # Calculate the slope of the regression line.
+    b = np.sum((x - x_mean) * (y - y_mean)) / np.sum((x - x_mean) ** 2)
 
-  # Calculate the intercept of the regression line.
-  a = y_mean - b * x_mean
+    # Calculate the intercept of the regression line.
+    a = y_mean - b * x_mean
 
-  return a, b
+    return a, b
+
 
 if __name__ == "__main__":
     import doctest
@@ -63,14 +65,14 @@ if __name__ == "__main__":
     a, b = ols_regression(x, y)
 
     # Intercept (a) and slope (b) of the regression line
-    print('Intercept:', a)
-    print('Slope:', b)
+    print("Intercept:", a)
+    print("Slope:", b)
 
-    # Predict the target variable for a new data point with 
+    # Predict the target variable for a new data point with
     # an independent variable value of 6
     x_new = 6
 
     # Make a prediction
     y_pred = a + b * x_new
 
-    print('Prediction:', y_pred)
+    print("Prediction:", y_pred)
