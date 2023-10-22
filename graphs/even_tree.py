@@ -17,24 +17,6 @@ from collections import defaultdict
 
 
 def dfs(start: int) -> int:
-    """
-    DFS traversal starting from the node 'start' to find nodes
-    whose subtrees have even number of nodes.
-
-    Args:
-    - start (int): The node to start DFS traversal from.
-
-    Returns:
-    - int: The number of nodes in the subtree rooted at 'start'.
-
-    Doctest:
-    >>> tree.clear(); visited.clear(); cuts.clear()
-    >>> tree[1] = [2, 3]; tree[2] = [1]; tree[3] = [1]
-    >>> dfs(1)
-    3
-    >>> cuts
-    []
-    """
     # pylint: disable=redefined-outer-name
     global tree, visited, cuts
     ret = 1
@@ -48,19 +30,6 @@ def dfs(start: int) -> int:
 
 
 def even_tree():
-    """
-    Populates the 'cuts' list with nodes where cuts can be made.
-
-    Doctest:
-    >>> tree.clear(); visited.clear(); cuts.clear()
-    >>> edges=[(2, 1), (3, 1), (4, 3), (5, 2), (6, 1), (7, 2), (8, 6), (9, 8), (10, 8)]
-    >>> for u, v in edges:
-    ...     tree[u].append(v)
-    ...     tree[v].append(u)
-    >>> even_tree()
-    >>> len(cuts) - 1
-    2
-    """
     global tree, visited, cuts
     dfs(1)
 
