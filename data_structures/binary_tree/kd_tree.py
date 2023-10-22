@@ -1,5 +1,7 @@
+from typing import List
+
 class MinimumCostCalculator:
-    def calculate_min_cost(self, points) -> int:
+    def calculate_min_cost(self, points: List[List[int]) -> int:
         """
         Calculate the minimum cost to connect all points using the Manhattan distance.
 
@@ -14,23 +16,32 @@ class MinimumCostCalculator:
         >>> calculator.calculate_min_cost([[0, 0], [2, 2], [3, 1], [4, 5], [1, 4]])
         10
         """
-
         def find(parent, x):
             if parent[x] == x:
                 return x
             parent[x] = find(parent, parent[x])
             return parent[x]
 
-        def union(parent, rank, x, y):
-            root_x = find(parent, x)
-            if root_x != (root_y := find(parent, y)):
-                if rank[root_x] < rank[root_y]:
-                    parent[root_x] = root_y
-                elif rank[root_x] > rank[root_y]:
-                    parent[root_y] = root_x
+        def union(parent: List[int], rank: List[int], u: int, v: int) -> None:
+            """
+            Unite two sets by linking their roots based on rank.
+
+            Args:
+                parent (List[int]): A list representing the parent of each element.
+                rank (List[int]): A list representing the rank of each element.
+                u (int): The first element to be united.
+                v (int): The second element to be united.
+            """
+            root_u = find(parent, u)
+            root_v = find(parent, v)
+            if root_u != root_v:
+                if rank[root_u] < rank[root_v]:
+                    parent[root_u] = root_v
+                elif rank[root_u] > rank[root_v]:
+                    parent[root_v] = root_u
                 else:
-                    parent[root_y] = root_x
-                    rank[root_x] += 1
+                    parent[root_v] = root_u
+                    rank[root_u] += 1
 
         def manhattan_distance(p1, p2):
             return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
@@ -55,7 +66,6 @@ class MinimumCostCalculator:
                 if edges_added == n - 1:
                     break
         return min_cost
-
 
 # Define test cases
 test_cases = [
