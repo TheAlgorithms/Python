@@ -1,0 +1,28 @@
+selection of the string-matching algorithm
+..........................................
+
+	Efficiency (Time Complexity): 
+					
+					The KMP algorithm has a time complexity of O(n + m), where n is the 					length of the text and m is the length of the pattern to be matched. 					This linear time complexity makes it efficient for searching for a 					pattern in a relatively large text. In comparison, naive string-					matching algorithms have a time complexity of O(n * m), making them 					less efficient for larger texts.
+	Ease of Implementation: 
+					Although the KMP algorithm involves a bit more complexity in its 					implementation compared to the naive algorithm, it is still 						relatively straightforward to understand and implement. The algorithm 					can be implemented in a manageable number of lines of code and is 					well-documented in computer science literature.
+	Scalability and Flexibility: 
+					The KMP algorithm performs well with large texts and patterns. As it 					avoids unnecessary character comparisons, it can handle texts and 					patterns of considerable sizes without significant performance 						degradation.
+
+Working for 
+............
+	Pattern can be included 
+
+	^ -> starts with
+	$ -> ends with
+	. -> any character without \n (new line)
+	| -> Either or
+	\d-> digits (0-9)
+
+Other characters will be taken in the context as normal characters.
+
+
+Implementation
+................
+
+	I have used python and pycharm IDE for implementation. I haven't used any libraries for implementation.Here in my implementation, I split the pattern by "|" and passing subpatterns to generate patterns for dot and digit included patterns. After generating patterns I have searched for ^ and $ characters. Likewise pattern matching is done.

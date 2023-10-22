@@ -1,0 +1,45 @@
+Sample test cases
+..................
+
+You have to put this text in text.txt file.
+You have to put these pattern one by one in pattern.txt file.
+Then run the python file.
+
+...........................................................................................................
+Text: "Hello I am Kasun Udara,I am 22 years old. I am creating a Regular Expression Engine"
+
+
+Pattern: "am"
+Expected output: Patterns found at positions: [(8, 'am'), (25, 'am'), (44, 'am')]
+
+Pattern: "am|re|Regular|\d\d"
+Expected output:  Patterns found at positions: [(8, 'am'), (25, 'am'), (28, '22'), (44, 'am'), (48, 're'), (58, 'Regular'), (69, 're')]
+
+Pattern: "Regular|Expression"
+Expected Output: Patterns found at positions: [(58, 'Regular'), (66, 'Expression')]
+
+Pattern: "^Hello|Engine$|creating"
+Expected output: Patterns found at positions: [(0, 'Hello'), (47, 'creating'), (77, 'Engine')]
+
+Pattern: "xyz"
+Expected output: Patterns not found in the text.
+
+Pattern: "^Hello"
+Expected output: Patterns found at positions: [(0, 'Hello')]
+
+Pattern: "Engine$|\d"
+Expected output: Patterns found at positions: [(28, '2'), (29, '2'), (77, 'Engine')]
+
+Pattern: "^Hello|$Engine|Engine$|am|Kasun|re"
+Expected output: Patterns found at positions: [(0, 'Hello'), (8, 'am'), (11, 'Kasun'), (25, 'am'), (44, 'am'), (48, 're'), (69, 're'), (77, 'Engine')]
+
+Pattern: ^Hello|$Engine|Engine$|am|Kasun|r.|Uda.a
+Expected output: Patterns found at positions: [(0, 'Hello'), (8, 'am'), (11, 'Kasun'), (17, 'Udara'), (20, 'ra'), (25, 'am'), (34, 'rs'), (44, 'am'), (48, 're'), (64, 'r '), (69, 're'), (77, 'Engine')]
+
+Pattern: ^H.llo|$En.ine|En.ine$|am|Ka.un|r.|Uda.a|\d.
+Expected output: Patterns found at positions: [(0, 'Hello'), (2, 'll'), (8, 'am'), (11, 'Kasun'), (17, 'Udara'), (20, 'ra'), (25, 'am'), (28, '22'), (34, 'rs'), (44, 'am'), (48, 're'), (64, 'r '), (69, 're'), (71, 'ss'), (77, 'Engine')]
+
+
+...........................................................................................................
+
+You may test for your testcases including ^ $ | . \d characters. Other characters will be taken in the context as normal characters.
