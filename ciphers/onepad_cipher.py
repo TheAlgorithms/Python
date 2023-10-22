@@ -8,12 +8,22 @@ class Onepad:
         Function to encrypt text using pseudo-random numbers
         >>> Onepad().encrypt("")
         ([], [])
+        >>> Onepad().encrypt([])
+        ([], [])
         >>> random.seed(1)
         >>> Onepad().encrypt(" ")
         ([6969], [69])
         >>> random.seed(1)
         >>> Onepad().encrypt("Hello")
         ([9729, 114756, 4653, 31309, 10492], [69, 292, 33, 131, 61])
+        >>> Onepad().encrypt(1)
+        Traceback (most recent call last):
+        ...
+        TypeError: 'int' object is not iterable
+        >>> Onepad().encrypt(1.1)
+        Traceback (most recent call last):
+        ...
+        TypeError: 'float' object is not iterable
         """
         plain = [ord(i) for i in text]
         key = []
@@ -37,7 +47,6 @@ class Onepad:
         Traceback (most recent call last):
         ...
         IndexError: list index out of range
-
         >>> random.seed(1)
         >>> Onepad().decrypt([9729, 114756, 4653, 31309, 10492], [69, 292, 33, 131, 61])
         'Hello'
