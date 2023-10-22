@@ -44,7 +44,9 @@ def ols_regression(x_point: np.ndarray, y_point: np.ndarray) -> tuple:
     y_mean = np.mean(y_point)
 
     # Calculate the slope of the regression line.
-    slope = np.sum((x_point - x_mean) * (y_point - y_mean)) / np.sum((x_point - x_mean) ** 2)
+    slope = np.sum((x_point - x_mean) * (y_point - y_mean)) / np.sum(
+        (x_point - x_mean) ** 2
+    )
 
     # Calculate the intercept of the regression line.
     intercept = y_mean - slope * x_mean
