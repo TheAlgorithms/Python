@@ -10,8 +10,16 @@ method 1:
 
 
 def method_1(boundary, steps):
+    """
+    Compute the integral using the extended trapezoidal rule.
+
+    Doctest:
+    >>> method_1([0.0, 1.0], 10.0)
+    0.3349999999999999
+    """
     # "extended trapezoidal rule"
     # int(f) = dx/2 * (f1 + 2f2 + ... + fn)
+
     h = (boundary[1] - boundary[0]) / steps
     a = boundary[0]
     b = boundary[1]
@@ -26,13 +34,31 @@ def method_1(boundary, steps):
 
 
 def make_points(a, b, h):
+    """
+    Generate the points.
+
+    Doctest:
+    >>> result = list(make_points(0.0, 1.0, 0.1))
+    >>> result  # doctest: +NORMALIZE_WHITESPACE
+    [0.1, 0.2, 0.30000000000000004, 0.4, 0.5,
+     0.6, 0.7, 0.7999999999999999, 0.8999999999999999]
+    """
+
     x = a + h
+
     while x < (b - h):
         yield x
         x = x + h
 
 
 def f(x):  # enter your function here
+    """
+    Doctest:
+    >>> f(2)
+    4
+    >>> f(3)
+    9
+    """
     y = (x - 0) * (x - 0)
     return y
 
@@ -47,4 +73,7 @@ def main():
 
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
     main()
