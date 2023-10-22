@@ -14,11 +14,9 @@ clothes = {
 
 graph = [[1, 4], [2, 4], [3], [], [], [4], [2, 7], [3], []]
 
-visited = [0 for x in range(len(graph))]
-stack = []
-
 
 def print_stack(stack, clothes):
+    """Prints the clothes in the order they should be worn."""
     order = 1
     while stack:
         current_clothing = stack.pop()
@@ -26,22 +24,46 @@ def print_stack(stack, clothes):
         order += 1
 
 
-def depth_first_search(u, visited, graph):
+def depth_first_search(u, visited, graph, stack):
+    """
+    A depth first search starting from vertex u.
+
+    Doctest:
+    >>> visited = [0 for _ in range(len(graph))]
+    >>> stack = []
+    >>> depth_first_search(0, visited, graph, stack)
+    >>> stack
+    [3, 2, 4, 1, 0]
+    """
     visited[u] = 1
     for v in graph[u]:
         if not visited[v]:
-            depth_first_search(v, visited, graph)
+            depth_first_search(v, visited, graph, stack)
 
     stack.append(u)
 
 
-def topological_sort(graph, visited):
+def topological_sort(graph):
+    """
+    Performs a topological sort on the graph.
+
+    Doctest:
+    >>> stack = topological_sort(graph)
+    >>> stack
+    [3, 2, 4, 1, 0, 5, 7, 6, 8]
+    """
+    visited = [0 for _ in range(len(graph))]
+    stack = []
     for v in range(len(graph)):
         if not visited[v]:
-            depth_first_search(v, visited, graph)
+            depth_first_search(v, visited, graph, stack)
+    return stack
 
 
 if __name__ == "__main__":
-    topological_sort(graph, visited)
-    print(stack)
-    print_stack(stack, clothes)
+    result = topological_sort(graph)
+    print(result)
+    print_stack(result, clothes)
+    import doctest
+
+    doctest.testmod()
