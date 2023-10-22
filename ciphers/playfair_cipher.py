@@ -11,11 +11,11 @@ Some features of the Playfair cipher are:
 3) It is a multiple letter encryption cipher
 
 The implementation in the code below encodes alphabets only.
-It removes spaces, special characters and numbers from the 
+It removes spaces, special characters and numbers from the
 code.
 
-Playfair is no longer used by military forces because of known 
-insecurities and of the advent of automated encryption devices. 
+Playfair is no longer used by military forces because of known
+insecurities and of the advent of automated encryption devices.
 This cipher is regarded as insecure since before World War I.
 """
 
@@ -81,7 +81,6 @@ def generate_table(key: str) -> list[str]:
 
 
 def encode(plaintext: str, key: str) -> str:
-
     """encode function encodes the given plaintext by taking
     two strings, the plaintext and the key, as input
     and returns an encoded string
@@ -150,8 +149,10 @@ def decode(ciphertext: str, key: str) -> str:
 
     return plaintext
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     print("Encoded:",encode("BYE AND THANKS", "GREETING"))
