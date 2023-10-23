@@ -1,24 +1,24 @@
 """
 You are given an array nums of n positive integers.
 
-You can perform two types of operations on any 
+You can perform two types of operations on any
 element of the array any number of times:
 
 If the element is even, divide it by 2.
-For example, if the array is [1,2,3,4], then you can do this operation 
+For example, if the array is [1,2,3,4], then you can do this operation
 on the last element, and the array will be [1,2,3,2].
 If the element is odd, multiply it by 2.
 For example, if the array is [1,2,3,4], then you can do this operation
 on the first element, and the array will be [2,2,3,4].
-The deviation of the array is the maximum difference between 
+The deviation of the array is the maximum difference between
 any two elements in the array.
 
-Return the minimum deviation the array can have after performing 
+Return the minimum deviation the array can have after performing
 some number of operations.
 """
 
 from heapq import heapify, heappop, heappush
- 
+
 
 class Solution:
     def minimum_deviation(self, nums) -> int:
@@ -29,7 +29,7 @@ class Solution:
             nums (List[int]): A list of positive integers.
 
         Returns:
-            temp_mindeviation (int): The minimum deviation of the array after operations.
+            temp_mindeviation (int): The minimum deviation of array after operations.
 
         Examples:
             >>> solution = Solution()
@@ -45,11 +45,11 @@ class Solution:
         temp_min = -min(heapque, key=lambda num: -num)
         temp_mindeviation = -heapque[0] - temp_min
 
-        while h and h[0] % 2 == 0:
-            n = heappop(h) // 2
-            heappush(h, n)
+        while heapque and heapque[0] % 2 == 0:
+            n = heappop(heapque) // 2
+            heappush(heapque, n)
             temp_min = min(temp_min, -n)
-            temp_mindeviation = min(temp_mindeviation, -h[0] - temp_min)
+            temp_mindeviation = min(temp_mindeviation, -heapque[0] - temp_min)
 
         return temp_mindeviation
 
