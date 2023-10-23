@@ -81,6 +81,10 @@ def kth_largest_element(arr: list[int], position: int) -> int:
         Traceback (most recent call last):
         ...
         ValueError: The position should be an integer
+        >>> kth_largest_element((4,6,1,2),4)
+        Traceback (most recent call last):
+        ...
+        TypeError: 'tuple' object does not support item assignment
     """
     if not arr:
         return -1
