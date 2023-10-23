@@ -19,7 +19,8 @@ def calculate_prefix_sum(matrix: list[list[int]]) -> list[list[int]]:
     rows = len(matrix)
     cols = len(matrix[0])
 
-    # Initialize the prefix sum matrix with zeros, with the same dimensions as the original matrix.
+    # Initialize the prefix sum matrix with zeros, with the
+    # same dimensions as the original matrix.
     prefix_sum = [[0 for _ in range(cols)] for _ in range(rows)]
 
     # Calculate the prefix sum for the top-left cell.
