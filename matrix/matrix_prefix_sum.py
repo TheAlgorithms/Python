@@ -2,6 +2,7 @@
 
 from typing import List
 
+
 def calculate_prefix_sum(matrix: List[List[int]]) -> List[List[int]]:
     """
     Calculate the prefix sum of a 2D matrix.
@@ -9,16 +10,16 @@ def calculate_prefix_sum(matrix: List[List[int]]) -> List[List[int]]:
     Prefix sum is a technique used to efficiently calculate the cumulative sum of subarrays in a 2D array.
     The idea is to compute a new array where each element represents the sum of all elements in the original array
     up to that position.
-    
+
     Prefix Sum Formula:
     prefix_sum[i][j] = prefix_sum[i - 1][j] + prefix_sum[i][j - 1] - prefix_sum[i - 1][j - 1] + matrix[i][j]
 
     :param matrix: A 2D matrix.
     :return: A matrix containing the prefix sums.
-    
+
     >>> calculate_prefix_sum([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
     [[1, 2, 3], [2, 4, 6], [3, 6, 9]]
-    
+
     >>> calculate_prefix_sum([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     [[1, 3, 6], [5, 12, 21], [12, 27, 45]]
     """
@@ -27,7 +28,7 @@ def calculate_prefix_sum(matrix: List[List[int]]) -> List[List[int]]:
 
     # Initialize the prefix sum matrix with zeros, with the same dimensions as the original matrix.
     prefix_sum = [[0 for _ in range(cols)] for _ in range(rows)]
-    
+
     # The prefix sum at the top-left corner is the same as the original matrix value.
     prefix_sum[0][0] = matrix[0][0]
 
@@ -46,20 +47,20 @@ def calculate_prefix_sum(matrix: List[List[int]]) -> List[List[int]]:
     # Update the values in the cells using the general formula.
     for i in range(1, rows):
         for j in range(1, cols):
-
             # The value in each cell is the sum of:
             # - The cell above it (prefix_sum[i-1][j])
             # - The cell to the left of it (prefix_sum[i][j-1])
             # - Subtracting the overlapping cell (top-left: prefix_sum[i-1][j-1])
             # - Adding the value from the original matrix (matrix[i][j])
             prefix_sum[i][j] = (
-                prefix_sum[i - 1][j]       # Sum of values above
-                + prefix_sum[i][j - 1]     # Sum of values to the left
-                - prefix_sum[i - 1][j - 1] # Subtract the overlapping cell
-                + matrix[i][j]             # Add the value from the original matrix
+                prefix_sum[i - 1][j]  # Sum of values above
+                + prefix_sum[i][j - 1]  # Sum of values to the left
+                - prefix_sum[i - 1][j - 1]  # Subtract the overlapping cell
+                + matrix[i][j]  # Add the value from the original matrix
             )
 
     return prefix_sum
+
 
 def display_matrix(matrix):
     """
@@ -71,13 +72,9 @@ def display_matrix(matrix):
         # Join the elements of each row with spaces and print the result.
         print(" ".join(str(cell) for cell in row))
 
+
 if __name__ == "__main__":
-    a = [
-        [1, 1, 1, 1],
-        [1, 1, 1, 1],
-        [1, 1, 1, 1],
-        [1, 1, 1, 1]
-    ]
+    a = [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]
     # Calculate the prefix sum of the 2D matrix
     prefix_sum_matrix = calculate_prefix_sum(a)
 
