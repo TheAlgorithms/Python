@@ -394,6 +394,7 @@
   * [Interest](financial/interest.py)
   * [Present Value](financial/present_value.py)
   * [Price Plus Tax](financial/price_plus_tax.py)
+  * [Simple Moving Average](financial/simple_moving_average.py)
 
 ## Fractals
   * [Julia Sets](fractals/julia_sets.py)
@@ -706,6 +707,7 @@
     * [Polygonal Numbers](maths/special_numbers/polygonal_numbers.py)
     * [Pronic Number](maths/special_numbers/pronic_number.py)
     * [Proth Number](maths/special_numbers/proth_number.py)
+    * [Triangular Numbers](maths/special_numbers/triangular_numbers.py)
     * [Ugly Numbers](maths/special_numbers/ugly_numbers.py)
     * [Weird Number](maths/special_numbers/weird_number.py)
   * [Sum Of Arithmetic Series](maths/sum_of_arithmetic_series.py)
