@@ -19,7 +19,7 @@ fib_binet runtime: 0.0174 ms
 import functools
 from math import sqrt
 from time import time
-from collections.abc import Generator
+from collections.abc import Iterator
 
 
 def time_func(func, *args, **kwargs):
@@ -61,10 +61,9 @@ def fib_iterative(n: int) -> list[int]:
         fib.append(fib[-1] + fib[-2])
     return fib
 
-def fib_iterative_yield(n: int) -> Generator[int]:
+def fib_iterative_yield(n: int) -> Iterator[int]:
     """
-    Calculates the first n (1-indexed) Fibonacci numbers using iteration with yield method to save memory
-    >>> f = fib_iterative_yield(3)
+    Calculates the first n (1-indexed) Fibonacci numbers using iteration with yield
     >>> next(f)
     1
     >>> next(f)
