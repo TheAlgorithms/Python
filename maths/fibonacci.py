@@ -61,6 +61,7 @@ def fib_iterative(n: int) -> list[int]:
         fib.append(fib[-1] + fib[-2])
     return fib
 
+
 def fib_iterative_yield(n: int) -> Iterator[int]:
     """
     Calculates the first n (1-indexed) Fibonacci numbers using iteration with yield
