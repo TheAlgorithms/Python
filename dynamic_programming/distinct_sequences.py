@@ -1,6 +1,7 @@
 """
 author: Aayush Soni
-Given two strings s and t, return the number of distinct subsequences of s which equals t.
+Given two strings s and t, return the number of distinct subsequences
+of s which equals t.
 Input: s = "babgbag", t = "bag"
 Output: 5
 Explanation: As shown below, there are 5 ways you can generate "bag" from s.
