@@ -42,11 +42,64 @@ def sigmoid_function(z):
 
     @param z:  input to the function
     @returns: returns value in the range 0 to 1
+
+    Examples:
+    >>> sigmoid_function(4)
+    0.9820137900379085
+    >>> sigmoid_function(np.array([-3,3]))
+    array([0.04742587, 0.95257413])
+    >>> sigmoid_function(np.array([-3,3,1]))
+    array([0.04742587, 0.95257413, 0.73105858])
     """
     return 1 / (1 + np.exp(-z))
 
 
 def cost_function(h, y):
+    """
+    Cost function quantifies the error between predicted and expected values.
+    The cost function used in Logistic Regression is called Log Loss
+    or Cross Entropy Function.
+
+    J(θ) = (1/m) * Σ [ -y * log(hθ(x)) - (1 - y) * log(1 - hθ(x)) ]
+
+    Where:
+       - J(θ) is the cost that we want to minimize during training
+       - m is the number of training examples
+       - Σ represents the summation over all training examples
+       - y is the actual binary label (0 or 1) for a given example
+       - hθ(x) is the predicted probability that x belongs to the positive class
+
+    @param h: the output of sigmoid function. It is the estimated probability
+    that the input example 'x' belongs to the positive class
+
+    @param y: the actual binary label associated with input example 'x'
+
+    Examples:
+    >>> h1 = sigmoid_function(0.3)
+    >>> h2 = sigmoid_function(-4.3)
+    >>> h3 = sigmoid_function(8.1)
+    >>> h = np.array([h1,h2,h3])
+    >>> y = np.array([1,0,1])
+    >>> cost_function(h,y)
+    0.18937868932131605
+    >>> h1 = sigmoid_function(4)
+    >>> h2 = sigmoid_function(3)
+    >>> h3 = sigmoid_function(1)
+    >>> h = np.array([h1,h2,h3])
+    >>> y = np.array([1,0,0])
+    >>> cost_function(h,y)
+    1.459999655669926
+    >>> h1 = sigmoid_function(4)
+    >>> h2 = sigmoid_function(-3)
+    >>> h3 = sigmoid_function(-1)
+    >>> h = np.array([h1,h2,h3])
+    >>> y = np.array([1,0,0])
+    >>> cost_function(h,y)
+    0.1266663223365915
+
+    References:
+       - https://en.wikipedia.org/wiki/Logistic_regression
+    """
     return (-y * np.log(h) - (1 - y) * np.log(1 - h)).mean()
 
 
@@ -75,6 +128,10 @@ def logistic_reg(alpha, x, y, max_iterations=70000):
 # In[68]:
 
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
     iris = datasets.load_iris()
     x = iris.data[:, :2]
     y = (iris.target != 0) * 1
