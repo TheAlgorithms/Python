@@ -30,16 +30,16 @@ g = Acceleration due to gravity (value taken : 9.8 m/s^2)
 
 Reference : https://byjus.com/jee/simple-pendulum/
 """
-
+from scipy.constants import g
 
 def time_period_simple_pendulum(length: float) -> float:
     """
     >>> time_period_simple_pendulum(1.23)
-    2.2259685262423705
+    2.2252136710666166
     >>> time_period_simple_pendulum(2.37)
-    3.089873051721361
+    3.088825235169592
     >>> time_period_simple_pendulum(5.63)
-    4.762342885477521
+    4.760727912429414
     >>> time_period_simple_pendulum(-12)
     Traceback (most recent call last):
         ...
@@ -49,7 +49,7 @@ def time_period_simple_pendulum(length: float) -> float:
     """
     if length < 0:
         raise ValueError("The length should be non-negative")
-    return (2 * 3.14159) * (length / 9.8) ** 0.5
+    return (2 * 3.14159) * (length / g) ** 0.5
 
 
 if __name__ == "__main__":
