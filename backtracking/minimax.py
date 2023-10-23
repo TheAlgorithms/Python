@@ -17,9 +17,9 @@ def minimax(
 ) -> int:
     """
     This function implements the minimax algorithm, which helps achieve the optimal
-    score for a player in a two-player game by checking all possible moves. If the player
-    is the maximizer, then the score is maximized. If the player is the minimizer, then
-    the score is minimized.
+    score for a player in a two-player game by checking all possible moves.
+    If the player is the maximizer, then the score is maximized.
+    If the player is the minimizer, then the score is minimized.
 
     Parameters:
     - depth: Current depth in the game tree.
