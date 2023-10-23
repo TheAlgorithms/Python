@@ -7,7 +7,7 @@ Reference: https://en.wikipedia.org/wiki/Moving_average
 """
 
 
-def simple_moving_average(data: list[int], window_size: int) -> list[float | None]:
+def simple_moving_average(data: list[float], window_size: int) -> list[float | None]:
     """
     Calculate the simple moving average (SMA) for some given time series data.
 
