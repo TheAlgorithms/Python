@@ -48,8 +48,13 @@ class LinkedList:
         >>> tuple(linked_list)
         (1,)
         """
+        visited = []
         node = self.head
         while node:
+            # Avoid infinite loop in there's a cycle
+            if node in visited:
+                return
+            visited.append(node)
             yield node.data
             node = node.next_node
 
@@ -59,6 +64,15 @@ class LinkedList:
 
         Args:
             data (Any): The data to be stored in the new node.
+
+        Examples:
+        >>> linked_list = LinkedList()
+        >>> linked_list.add_node(1)
+        >>> linked_list.add_node(2)
+        >>> linked_list.add_node(3)
+        >>> linked_list.add_node(4)
+        >>> tuple(linked_list)
+        (1, 2, 3, 4)
         """
         new_node = Node(data)
 
