@@ -58,7 +58,7 @@ class XORCipher:
 
         # precondition
         assert isinstance(key, int)
-        assert isinstance(content, list)
+        assert isinstance(content, str)
 
         key = key or self.__key or 1
 
