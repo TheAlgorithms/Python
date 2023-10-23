@@ -50,7 +50,6 @@ def minimax(
     12
     """
 
-    # Check for invalid inputs
     if depth < 0:
         raise ValueError("Depth cannot be less than 0")
     if len(scores) == 0:
