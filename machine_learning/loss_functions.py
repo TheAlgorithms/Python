@@ -79,16 +79,14 @@ def binary_focal_cross_entropy(
     """
     if len(y_true) != len(y_pred):
         raise ValueError("Input arrays must have the same length.")
-    # Clip predicted probabilities to avoid log(0) and log(1)
+    # Clip predicted probabilities to avoid log(0)
     y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
 
-    # Focal loss calculation
     bcfe_loss = -(
         alpha * (1 - y_pred) ** gamma * y_true * np.log(y_pred)
         + (1 - alpha) * y_pred**gamma * (1 - y_true) * np.log(1 - y_pred)
     )
 
-    # Take the mean over all samples
     return np.mean(bcfe_loss)
 
 
