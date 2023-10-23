@@ -16,7 +16,7 @@ from heapq import heapify, heappop, heappush
 
 
 class Solution:
-    def minimumDeviation(self, nums) -> int:
+    def minimum_deviation(self, nums) -> int:
         """
         Function to find the minimum deviation of an array after performing operations.
 
