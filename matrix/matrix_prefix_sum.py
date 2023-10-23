@@ -59,6 +59,17 @@ def display_matrix(matrix: list[list[int]]) -> None:
     Display a 2D matrix.
 
     :param matrix: A 2D matrix.
+    
+    Display a 2D matrix by printing each row's elements separated by spaces.
+
+    >>> display_matrix([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    1 2 3
+    4 5 6
+    7 8 9
+
+    >>> display_matrix([[10, 20, 30], [40, 50, 60]])
+    10 20 30
+    40 50 60
     """
     for row in matrix:
         # Join the elements of each row with spaces and print the result.
