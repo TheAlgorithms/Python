@@ -1,4 +1,5 @@
 from scipy.constants import g
+
 """
 Title : Computing the terminal velocity of an object falling
         through a fluid.
