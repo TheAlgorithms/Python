@@ -1,4 +1,4 @@
-def insertionSort(arr):
+def insertionsort(arr):
     n = len(arr)  # Get the length of the array
 
     if n <= 1:
@@ -19,5 +19,5 @@ def insertionSort(arr):
 
 # Sorting the array [12, 11, 13, 5, 6] using insertionSort
 arr = [12, 11, 13, 5, 6]
-insertionSort(arr)
+insertionsort(arr)
 print(arr)
