@@ -211,7 +211,7 @@ if __name__ == "__main__":
 
     import doctest
     doctest.testmod()
-    
+
     num = 30
     time_func(fib_iterative, num)
     time_func(fib_recursive, num)  # Around 3s runtime
