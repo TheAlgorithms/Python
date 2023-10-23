@@ -65,8 +65,8 @@ def display_matrix(matrix: list[list[int]]) -> None:
 
 if __name__ == "__main__":
     matrix = [
-        [1, 1, 1, 1], 
-        [1, 1, 1, 1], 
+        [1, 1, 1, 1],
+        [1, 1, 1, 1],
         [1, 1, 1, 1],
         [1, 1, 1, 1]
     ]
