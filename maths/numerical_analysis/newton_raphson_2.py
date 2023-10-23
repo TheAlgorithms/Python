@@ -1,64 +1,112 @@
 """
-Author: P Shreyas Shetty
-Implementation of Newton-Raphson method for solving equations of kind
-f(x) = 0. It is an iterative method where solution is found by the expression
-    x[n+1] = x[n] + f(x[n])/f'(x[n])
-If no solution exists, then either the solution will not be found when iteration
-limit is reached or the gradient f'(x[n]) approaches zero. In both cases, exception
-is raised. If iteration limit is reached, try increasing maxiter.
-"""
+The Newton-Raphson method (aka the Newton method) is a root-finding algorithm that
+approximates a root of a given real-valued function f(x). It is an iterative method
+given by the formula
 
-import math as m
+x_{n + 1} = x_n + f(x_n) / f'(x_n)
+
+with the precision of the approximation increasing as the number of iterations increase.
+
+Reference: https://en.wikipedia.org/wiki/Newton%27s_method
+"""
 from collections.abc import Callable
 
-DerivativeFunc = Callable[[float], float]
+RealFunc = Callable[[float], float]
 
 
-def calc_derivative(f: DerivativeFunc, a: float, h: float = 0.001) -> float:
+def calc_derivative(f: RealFunc, x: float, delta_x: float = 1e-3) -> float:
     """
-    Calculates derivative at point a for function f using finite difference
-    method
+    Approximate the derivative of a function f(x) at a point x using the finite
+    difference method
+
+    >>> import math
+    >>> derivative = calc_derivative(lambda x: x**2, 2)
+    >>> math.isclose(derivative, 4)
+    True
+    >>> derivative = calc_derivative(lambda x: math.sin(x), 0)
+    >>> math.isclose(derivative, 1)
+    True
     """
-    return (f(a + h) - f(a - h)) / (2 * h)
+    return (f(x + delta_x / 2) - f(x - delta_x / 2)) / delta_x
 
 
 def newton_raphson(
-    f: DerivativeFunc,
+    f: RealFunc,
     x0: float = 0,
-    maxiter: int = 100,
-    step: float = 0.0001,
-    maxerror: float = 1e-6,
-    logsteps: bool = False,
+    max_iter: int = 100,
+    step: float = 1e-6,
+    max_error: float = 1e-6,
+    log_steps: bool = False,
 ) -> tuple[float, float, list[float]]:
-    a = x0  # set the initial guess
-    steps = [a]
-    error = abs(f(a))
-    f1 = lambda x: calc_derivative(f, x, h=step)  # noqa: E731  Derivative of f(x)
-    for _ in range(maxiter):
-        if f1(a) == 0:
-            raise ValueError("No converging solution found")
-        a = a - f(a) / f1(a)  # Calculate the next estimate
-        if logsteps:
+    """
+    Find a root of the given function f using the Newton-Raphson method.
+
+    :param f: A real-valued single-variable function
+    :param x0: Initial guess
+    :param max_iter: Maximum number of iterations
+    :param step: Step size of x, used to approximate f'(x)
+    :param max_error: Maximum approximation error
+    :param log_steps: bool denoting whether to log intermediate steps
+
+    :return: A tuple containing the approximation, the error, and the intermediate
+        steps. If log_steps is False, then an empty list is returned for the third
+        element of the tuple.
+
+    :raises ZeroDivisionError: The derivative approaches 0.
+    :raises ArithmeticError: No solution exists, or the solution isn't found before the
+        iteration limit is reached.
+
+    >>> import math
+    >>> tolerance = 1e-15
+    >>> root, *_ = newton_raphson(lambda x: x**2 - 5*x + 2, 0.4, max_error=tolerance)
+    >>> math.isclose(root, (5 - math.sqrt(17)) / 2, abs_tol=tolerance)
+    True
+    >>> root, *_ = newton_raphson(lambda x: math.log(x) - 1, 2, max_error=tolerance)
+    >>> math.isclose(root, math.e, abs_tol=tolerance)
+    True
+    >>> root, *_ = newton_raphson(math.sin, 1, max_error=tolerance)
+    >>> math.isclose(root, 0, abs_tol=tolerance)
+    True
+    >>> newton_raphson(math.cos, 0)
+    Traceback (most recent call last):
+    ...
+    ZeroDivisionError: No converging solution found, zero derivative
+    >>> newton_raphson(lambda x: x**2 + 1, 2)
+    Traceback (most recent call last):
+    ...
+    ArithmeticError: No converging solution found, iteration limit reached
+    """
+
+    def f_derivative(x: float) -> float:
+        return calc_derivative(f, x, step)
+
+    a = x0  # Set initial guess
+    steps = []
+    for _ in range(max_iter):
+        if log_steps:  # Log intermediate steps
             steps.append(a)
-        if error < maxerror:
-            break
-    else:
-        raise ValueError("Iteration limit reached, no converging solution found")
-    if logsteps:
-        # If logstep is true, then log intermediate steps
-        return a, error, steps
-    return a, error, []
+
+        error = abs(f(a))
+        if error < max_error:
+            return a, error, steps
+
+        if f_derivative(a) == 0:
+            raise ZeroDivisionError("No converging solution found, zero derivative")
+        a -= f(a) / f_derivative(a)  # Calculate next estimate
+    raise ArithmeticError("No converging solution found, iteration limit reached")
 
 
 if __name__ == "__main__":
-    from matplotlib import pyplot as plt
+    import doctest
+    from math import exp, tanh
 
-    f = lambda x: m.tanh(x) ** 2 - m.exp(3 * x)  # noqa: E731
-    solution, error, steps = newton_raphson(
-        f, x0=10, maxiter=1000, step=1e-6, logsteps=True
+    doctest.testmod()
+
+    def func(x: float) -> float:
+        return tanh(x) ** 2 - exp(3 * x)
+
+    solution, err, steps = newton_raphson(
+        func, x0=10, max_iter=100, step=1e-6, log_steps=True
     )
-    plt.plot([abs(f(x)) for x in steps])
-    plt.xlabel("step")
-    plt.ylabel("error")
-    plt.show()
-    print(f"solution = {{{solution:f}}}, error = {{{error:f}}}")
+    print(f"{solution=}, {err=}")
+    print("\n".join(str(x) for x in steps))
