@@ -58,17 +58,18 @@ def kth_largest_element(arr: list[int], position: int) -> int:
         >>> kth_largest_element([2, 5, 6, 1, 9, 3, 8, 4, 7, 3, 5], 1)
         9
         >>> kth_largest_element([2, 5, 6, 1, 9, 3, 8, 4, 7, 3, 5], -2)
-        "Traceback (most recent call last):
+        "Exception raised:
+        Traceback (most recent call last):
         ...
-        ValueError: Invalid value of 'k'"
+        ValueError: Invalid value of 'position'"
         >>> kth_largest_element([9, 1, 3, 6, 7, 9, 8, 4, 2, 4, 9], 110)
         "Traceback (most recent call last):
         ...
-        ValueError: Invalid value of 'k'"
+        ValueError: Invalid value of 'position'"
         >>> kth_largest_element([1, 2, 4, 3, 5, 9, 7, 6, 5, 9, 3], 0)
         "Traceback (most recent call last):
         ...
-        ValueError: Invalid value of 'k'"
+        ValueError: Invalid value of 'position'"
         >>> kth_largest_element(['apple', 'cherry', 'date','banana'], 2)
         'cherry'
         >>> kth_largest_element([3.1, 1.2, 5.6, 4.7,7.9,5,0], 2)
@@ -80,7 +81,7 @@ def kth_largest_element(arr: list[int], position: int) -> int:
         >>> kth_largest_element([3.1, 1.2, 5.6, 4.7,7.9,5,0], 1.5)
         "Traceback (most recent call last):
         ...
-        ValueError: k should be an integer"
+        ValueError: The position should be an integer"
     """
     if not arr:
         return -1
