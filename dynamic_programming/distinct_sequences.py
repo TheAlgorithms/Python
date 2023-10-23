@@ -12,6 +12,7 @@ Explanation: As shown below, there are 5 ways you can generate "bag" from s.
 Leetcode link: https://leetcode.com/problems/distinct-subsequences/description/
 """
 
+
 def count_distinct_subsequences(s: str, t: str) -> int:
     """
     This function calculates the number of distinct
