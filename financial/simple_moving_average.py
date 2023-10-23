@@ -1,6 +1,6 @@
 """
 The Simple Moving Average (SMA) is a statistical calculation used to analyze data points
-by creating a constantly updated average price over a specific time period. In finance, SMA is 
+by creating a constantly updated average price over a specific time period. In finance, SMA is
 often used in time series analysis to smooth out price data and identify trends.
 
 Reference: https://en.wikipedia.org/wiki/Moving_average
