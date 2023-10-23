@@ -3,7 +3,7 @@
 # sorting by finding min_index
 
 
-def selectionSort(array, size):
+def selectionsort(array, size):
     for ind in range(size):
         min_index = ind
 
@@ -17,6 +17,6 @@ def selectionSort(array, size):
 
 arr = [-2, 45, 0, 11, -9, 88, -97, -202, 747]
 size = len(arr)
-selectionSort(arr, size)
+selectionsort(arr, size)
 print("The array after sorting in Ascending Order by selection sort is:")
 print(arr)
