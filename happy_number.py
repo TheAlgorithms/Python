@@ -29,6 +29,8 @@ def is_happy_number(n: int) -> bool:
         n = sum(int(digit) ** 2 for digit in str(n))
 
     return n == 1
+
+
 if __name__ == "__main__":
     import doctest
 
