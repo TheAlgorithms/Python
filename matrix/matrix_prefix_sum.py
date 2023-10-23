@@ -10,9 +10,6 @@ def calculate_prefix_sum(matrix: list[list[int]]) -> list[list[int]]:
     :param matrix: A 2D matrix.
     :return: A matrix containing the prefix sums.
     
-    :param matrix: A 2D matrix.
-    :return: A matrix containing the prefix sums.
-    
     >>> calculate_prefix_sum([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
     [[1, 2, 3], [2, 4, 6], [3, 6, 9]]
     
