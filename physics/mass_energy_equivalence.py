@@ -18,8 +18,7 @@ Reference:
 https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence
 """
 
-# speed of light in vacuum (c) in m/s
-SPEED_OF_LIGHT = 299792458.0
+from scipy.constants import c  # speed of light in vacuum (299792458 m/s)
 
 
 def energy_from_mass(mass: float) -> float:
@@ -44,7 +43,7 @@ def energy_from_mass(mass: float) -> float:
     """
     if mass < 0:
         raise ValueError("Mass can't be negative.")
-    return mass * SPEED_OF_LIGHT * SPEED_OF_LIGHT
+    return mass * c**2
 
 
 def mass_from_energy(energy: float) -> float:
@@ -69,7 +68,7 @@ def mass_from_energy(energy: float) -> float:
     """
     if energy < 0:
         raise ValueError("Energy can't be negative.")
-    return energy / (SPEED_OF_LIGHT * SPEED_OF_LIGHT)
+    return energy / c**2
 
 
 if __name__ == "__main__":
