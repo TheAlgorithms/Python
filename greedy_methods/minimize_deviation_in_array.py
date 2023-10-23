@@ -33,11 +33,11 @@ class Solution:
 
         Examples:
             >>> solution = Solution()
-            >>> solution.minimumDeviation([1, 2, 3, 4])
+            >>> solution.minimum_deviation([1, 2, 3, 4])
             1
-            >>> solution.minimumDeviation([5, 10, 20, 30, 30])
+            >>> solution.minimum_deviation([5, 10, 20, 30, 30])
             5
-            >>> solution.minimumDeviation([8, 8, 8, 8, 8])
+            >>> solution.minimum_deviation([8, 8, 8, 8, 8])
             0
         """
         heapque = [-n * 2 if n % 2 else -n for n in nums]
