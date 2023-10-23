@@ -12,7 +12,9 @@ from __future__ import annotations
 import math
 
 
-def minimax(depth: int, node_index: int, is_max: bool, scores: list[int], height: float) -> int:
+def minimax(
+    depth: int, node_index: int, is_max: bool, scores: list[int], height: float
+) -> int:
     """
     This function implements the minimax algorithm,
     which helps achieve the maximum score in a game
