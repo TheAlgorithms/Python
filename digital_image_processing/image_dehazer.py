@@ -1,10 +1,9 @@
-import cv2
 import numpy as np
+import cv2
 
 """
   Implemented Image dehazer using OpenCV and Dark Channel
 """
-
 
 def dehaze_image(image, omega=0.78, t0=0.01):
     # Step 1: Compute the dark channel of the input image
