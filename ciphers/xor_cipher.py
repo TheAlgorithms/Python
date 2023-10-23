@@ -44,7 +44,7 @@ class XORCipher:
         key = key or self.__key or 1
 
         # make sure key is an appropriate size
-        key %= 255
+        key %= 256
 
         return [chr(ord(ch) ^ key) for ch in content]
 
@@ -63,7 +63,7 @@ class XORCipher:
         key = key or self.__key or 1
 
         # make sure key is an appropriate size
-        key %= 255
+        key %= 256
 
         return [chr(ord(ch) ^ key) for ch in content]
 
@@ -81,9 +81,8 @@ class XORCipher:
 
         key = key or self.__key or 1
 
-        # make sure key can be any size
-        while key > 255:
-            key -= 255
+        # make sure key is an appropriate size
+        key %= 256
 
         # This will be returned
         ans = ""
@@ -107,9 +106,8 @@ class XORCipher:
 
         key = key or self.__key or 1
 
-        # make sure key can be any size
-        while key > 255:
-            key -= 255
+        # make sure key is an appropriate size
+        key %= 256
 
         # This will be returned
         ans = ""
@@ -131,6 +129,9 @@ class XORCipher:
         # precondition
         assert isinstance(file, str)
         assert isinstance(key, int)
+
+        # make sure key is an appropriate size
+        key %= 256
 
         try:
             with open(file) as fin, open("encrypt.out", "w+") as fout:
@@ -155,6 +156,9 @@ class XORCipher:
         # precondition
         assert isinstance(file, str)
         assert isinstance(key, int)
+
+        # make sure key is an appropriate size
+        key %= 256
 
         try:
             with open(file) as fin, open("decrypt.out", "w+") as fout:
