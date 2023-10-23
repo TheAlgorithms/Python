@@ -80,8 +80,8 @@ def kth_largest_element(arr: list[int],k: int) -> int:
         pivot_index=partition(arr,low,high)
         if pivot_index==k-1:
             return arr[pivot_index]
-        elif pivot_index>k-1:
-            high=pivot_index-1
+        elif pivot_index > k - 1:
+            high = pivot_index - 1
         else:
             low=pivot_index+1
     return -1
