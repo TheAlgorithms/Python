@@ -15,7 +15,7 @@ Return the minimum deviation the array can have after performing some number of 
 from heapq import heapify, heappop, heappush
 
 class Solution:
-    def minimumDeviation(self, nums):
+    def minimumDeviation(self, nums) -> int:
         """
         Function to find the minimum deviation of an array after performing operations.
 
@@ -34,16 +34,16 @@ class Solution:
             >>> solution.minimumDeviation([8, 8, 8, 8, 8])
             0
         """
-        h = [-n * 2 if n % 2 else -n for n in nums]
-        heapify(h)
-        temp_min = -min(h, key=lambda x: -x)
-        temp_mindeviation = -h[0] - temp_min
+        heapque = [-n * 2 if n % 2 else -n for n in nums]
+        heapify(heapque)
+        temp_min = -min(heapque, key=lambda num: -num)
+        temp_mindeviation = -heapque[0] - temp_min
 
-        while h and h[0] % 2 == 0:
-            n = heappop(h) // 2
-            heappush(h, n) 
+        while heapque and heapque[0] % 2 == 0:
+            n = heappop(heapque) // 2
+            heappush(heapque, n) 
             temp_min = min(temp_min, -n)
-            temp_mindeviation = min(temp_mindeviation, -h[0] - temp_min)
+            temp_mindeviation = min(temp_mindeviation, -heapque[0] - temp_min)
         
         return temp_mindeviation
 
