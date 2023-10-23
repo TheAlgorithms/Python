@@ -5,7 +5,10 @@ import numpy as np
   Implemented Image dehazer using OpenCV and Dark Channel
 """
 
-def dehaze_image(image: np.ndarray, omega: float = 0.78, t0: float = 0.01) -> np.ndarray:
+
+def dehaze_image(
+    image: np.ndarray, omega: float = 0.78, t0: float = 0.01
+) -> np.ndarray:
     """
     Dehaze an input image using the dark channel prior method.
 
@@ -23,7 +26,7 @@ def dehaze_image(image: np.ndarray, omega: float = 0.78, t0: float = 0.01) -> np
     >>> dehazed_result.shape
     (height, width, 3)
     """
-  
+
     # Step 1: Compute the dark channel of the input image
     dark_channel = cv2.ximgproc.createFastGlobalSmootherFilter(image, 10, 0.05)
     dark_channel = dark_channel.filter(image)
