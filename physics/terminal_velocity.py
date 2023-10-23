@@ -1,5 +1,3 @@
-from scipy.constants import g
-
 """
 Title : Computing the terminal velocity of an object falling
         through a fluid.
@@ -22,6 +20,8 @@ Cd = Drag coefficient (dimensionless)
 
 Reference : https://byjus.com/physics/derivation-of-terminal-velocity/
 """
+
+from scipy.constants import g
 
 
 def terminal_velocity(
