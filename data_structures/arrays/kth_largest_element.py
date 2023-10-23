@@ -51,8 +51,12 @@ def kth_largest_element(elements: list[int], k: int) -> int:
     Examples:
         >>> kth_largest_element([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5], 3)
         5
+        >>> kth_largest_element([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5], 2.5)
+        -1
         >>> kth_largest_element([2, 5, 6, 1, 9, 3, 8, 4, 7, 3, 5], 1)
         9
+        >>> kth_largest_element([2, 5, 6, 1, 9, 3, 8, 4, 7, 3, 5], -2)
+        -1
         >>> kth_largest_element([9, 1, 3, 6, 7, 9, 8, 4, 2, 4, 9], 11)
         1
         >>> kth_largest_element([1, 2, 4, 3, 5, 9, 7, 6, 5, 9, 3], 0)
