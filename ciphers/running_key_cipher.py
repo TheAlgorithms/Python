@@ -42,7 +42,23 @@ def running_key_decrypt(key: str, ciphertext: str) -> str:
     return "".join(plaintext)
 
 
+def test_running_key_encrypt():
+    """
+    >>> key = "How does the duck know that? said Victor"
+    >>> plaintext = "DEFEND THIS"
+    >>> ciphertext = running_key_encrypt(key, plaintext)
+    >>> decrypted_text = running_key_decrypt(key, ciphertext)
+    >>> decrypted_text == "DEFENDTHIS"
+    True
+    """
+
+
 if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+    test_running_key_encrypt()
+
     key = "How does the duck know that? said Victor"
     plaintext = input("Enter the plaintext: ").upper()
     encrypted_text = running_key_encrypt(key, plaintext)
