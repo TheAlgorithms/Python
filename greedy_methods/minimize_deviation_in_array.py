@@ -23,29 +23,29 @@ class Solution:
             nums (List[int]): A list of positive integers.
 
         Returns:
-            min_deviation (int): The minimum deviation of the array after operations.
+            temp_mindeviation (int): The minimum deviation of the array after operations.
 
         Examples:
             >>> solution = Solution()
             >>> solution.minimumDeviation([1, 2, 3, 4])
             1
             >>> solution.minimumDeviation([5, 10, 20, 30, 30])
-            25
+            5
             >>> solution.minimumDeviation([8, 8, 8, 8, 8])
             0
         """
-        hq = [-n * 2 if n % 2 else -n for n in nums]
-        heapify(hq)
-        min_ = -min(hq, key=lambda x: -x)
-        min_deviation = -hq[0] - min_
+        h = [-n * 2 if n % 2 else -n for n in nums]
+        heapify(h)
+        temp_min = -min(h, key=lambda x: -x)
+        temp_mindeviation = -h[0] - temp_min
 
-        while hq and hq[0] % 2 == 0:
-            n = heappop(hq) // 2
-            heappush(hq, n) 
-            min_ = min(min_, -n)
-            min_deviation = min(min_deviation, -hq[0] - min_)
+        while h and h[0] % 2 == 0:
+            n = heappop(h) // 2
+            heappush(h, n) 
+            temp_min = min(temp_min, -n)
+            temp_mindeviation = min(temp_mindeviation, -h[0] - temp_min)
         
-        return min_deviation
+        return temp_mindeviation
 
 if __name__ == "__main__":
     import doctest
