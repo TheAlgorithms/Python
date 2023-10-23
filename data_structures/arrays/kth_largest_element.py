@@ -1,16 +1,22 @@
 """
-Given an array of integers and an integer k, find the kth largest element in the array
+Given an array of integers and an integer k, find the kth largest element in the array.
 
 https://stackoverflow.com/questions/251781
 """
 
-def partition(arr,low,high):
+def partition(arr: list[int],low: int,high: int) -> int:
     """
-    Partitions list based on the pivot element
+    Partitions list based on the pivot element.
+
+    This function rearranges the elements in the input list 'elements' such that
+    all elements greater than or equal to the chosen pivot are on the right side
+    of the pivot, and all elements smaller than the pivot are on the left side.
+
     Args:
         arr: The list to be partitioned
         low: The lower index of the list
         high: The higher index of the list
+
     Returns:
         int: The index of pivot element after partitioning
 
@@ -32,7 +38,9 @@ def partition(arr,low,high):
             arr[i], arr[j]=arr[j],arr[i]
     arr[i+1],arr[high]=arr[high],arr[i+1]
     return i+1
-def kth_largest_element(arr,k):
+
+
+def kth_largest_element(arr: list[int],k: int) -> int:
     """
     Finds the kth largest element in a list.
 
@@ -64,11 +72,11 @@ def kth_largest_element(arr,k):
         -1
     """
     if not 1 <= k <= len(arr):
-        return "Invalid value of k"
+        return -1
     low,high=0,len(arr)-1
     while low<=high:
         if low>len(arr)-1 or high<0:
-            return "Invalid value of k"
+            return -1
         pivot_index=partition(arr,low,high)
         if pivot_index==k-1:
             return arr[pivot_index]
@@ -76,8 +84,7 @@ def kth_largest_element(arr,k):
             high=pivot_index-1
         else:
             low=pivot_index+1
-    return "Kth largest element not found"
+    return -1
 if __name__=="__main__":
     import doctest
-
     doctest.testmod()
