@@ -12,8 +12,8 @@ Explanation: As shown below, there are 5 ways you can generate "bag" from s.
 Leetcode link: https://leetcode.com/problems/distinct-subsequences/description/
 """
 
-def countDistinctSubsequences(s: str, t: str) -> int:
 
+def countDistinctSubsequences(s: str, t: str) -> int:
     """
     This function calculates the number of distinct subsequences of s that equal t.
 
@@ -51,7 +51,6 @@ def countDistinctSubsequences(s: str, t: str) -> int:
     # Fill dp[][] in a bottom-up manner
     for i in range(1, m + 1):
         for j in range(1, n + 1):
-
             # If the last characters don't match,
             # the value is the same as the value without the last character in s.
             if t[i - 1] != s[j - 1]:
@@ -65,6 +64,7 @@ def countDistinctSubsequences(s: str, t: str) -> int:
                 dp[i][j] = dp[i][j - 1] + dp[i - 1][j - 1]
 
     return dp[m][n]
+
 
 if __name__ == "__main__":
     s = "babgbag"
