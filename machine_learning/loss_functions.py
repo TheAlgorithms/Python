@@ -84,7 +84,7 @@ def binary_focal_cross_entropy(
 
     # Focal loss calculation
     bcfe_loss = -(
-        alpha * (1 - y_pred)**gamma * y_true * np.log(y_pred)
+        alpha * (1 - y_pred) ** gamma * y_true * np.log(y_pred)
         + (1 - alpha) * y_pred**gamma * (1 - y_true) * np.log(1 - y_pred)
     )
 
