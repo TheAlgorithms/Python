@@ -58,7 +58,7 @@ def calculate_prefix_sum(matrix: list[list[int]]) -> list[list[int]]:
 
     return prefix_sum
 
-def display_matrix(matrix):
+def display_matrix(matrix) -> None:
     """
     Display a 2D matrix.
 
