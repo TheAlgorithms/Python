@@ -17,9 +17,9 @@ fib_binet runtime: 0.0174 ms
 """
 
 import functools
+from collections.abc import Iterator
 from math import sqrt
 from time import time
-from collections.abc import Iterator
 
 
 def time_func(func, *args, **kwargs):
