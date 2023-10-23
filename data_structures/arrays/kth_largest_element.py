@@ -61,8 +61,10 @@ def kth_largest_element(arr: list[int], k: int) -> int:
         "Traceback (most recent call last):
         ...
         ValueError: Invalid value of 'k'"
-        >>> kth_largest_element([9, 1, 3, 6, 7, 9, 8, 4, 2, 4, 9], 11)
-        1
+        >>> kth_largest_element([9, 1, 3, 6, 7, 9, 8, 4, 2, 4, 9], 110)
+        "Traceback (most recent call last):
+        ...
+        ValueError: Invalid value of 'k'"
         >>> kth_largest_element([1, 2, 4, 3, 5, 9, 7, 6, 5, 9, 3], 0)
         "Traceback (most recent call last):
         ...
