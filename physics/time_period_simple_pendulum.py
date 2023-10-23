@@ -32,6 +32,7 @@ Reference : https://byjus.com/jee/simple-pendulum/
 """
 from scipy.constants import g
 
+
 def time_period_simple_pendulum(length: float) -> float:
     """
     >>> time_period_simple_pendulum(1.23)
