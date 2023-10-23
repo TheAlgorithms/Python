@@ -1,6 +1,5 @@
 # Python Program to find prefix sum of a 2D array
 
-
 def calculate_prefix_sum(matrix: list[list[int]]) -> list[list[int]]:
     """
     Calculate the prefix sum of a 2D matrix.
@@ -73,6 +72,6 @@ if __name__ == "__main__":
     ]
     # Calculate the prefix sum of the 2D matrix
     prefix_sum_matrix = calculate_prefix_sum(matrix)
-    
+
     # Display the prefix sum matrix
     display_matrix(prefix_sum_matrix)
