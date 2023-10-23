@@ -65,14 +65,9 @@ def display_matrix(matrix: list[list[int]]) -> None:
 
 
 if __name__ == "__main__":
-    matrix = [
-        [1, 1, 1, 1],
-        [1, 1, 1, 1],
-        [1, 1, 1, 1],
-        [1, 1, 1, 1]
-    ]
+    matrix = [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]
     # Calculate the prefix sum of the 2D matrix
     prefix_sum_matrix = calculate_prefix_sum(matrix)
-    
+
     # Display the prefix sum matrix
     display_matrix(prefix_sum_matrix)
