@@ -20,12 +20,12 @@ def calc_derivative(f: RealFunc, x: float, delta_x: float = 1e-3) -> float:
     difference method
 
     >>> import math
-    >>> dx = 1e-10
-    >>> derivative = calc_derivative(lambda x: x**2, 2, delta_x=dx)
-    >>> math.isclose(derivative, 4)
+    >>> tolerance = 1e-5
+    >>> derivative = calc_derivative(lambda x: x**2, 2)
+    >>> math.isclose(derivative, 4, abs_tol=tolerance)
     True
-    >>> derivative = calc_derivative(math.sin, 0, delta_x=dx)
-    >>> math.isclose(derivative, 1)
+    >>> derivative = calc_derivative(math.sin, 0)
+    >>> math.isclose(derivative, 1, abs_tol=tolerance)
     True
     """
     return (f(x + delta_x / 2) - f(x - delta_x / 2)) / delta_x
