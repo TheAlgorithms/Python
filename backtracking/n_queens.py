@@ -17,40 +17,39 @@ def is_safe(board: list[list[int]], row: int, column: int) -> bool:
     This function returns a boolean value True if it is safe to place a queen there
     considering the current state of the board.
 
-    Parameters :
-    board(2D matrix) : board
-    row ,column : coordinates of the cell on a board
+    Parameters:
+    board (2D matrix): The chessboard
+    row, column: Coordinates of the cell on the board
 
-    Returns :
+    Returns:
     Boolean Value
 
     """
-    for i in range(len(board)):
-        if board[row][i] == 1:
-            return False
-    for i in range(len(board)):
-        if board[i][column] == 1:
-            return False
-    for i, j in zip(range(row, -1, -1), range(column, -1, -1)):
-        if board[i][j] == 1:
-            return False
-    for i, j in zip(range(row, -1, -1), range(column, len(board))):
-        if board[i][j] == 1:
-            return False
-    return True
+
+    n = len(board)  # Size of the board
+
+    # Check if there is any queen in the same row, column,
+    # left upper diagonal, and right upper diagonal
+    return (
+        all(board[i][j] != 1 for i, j in zip(range(row, -1, -1), range(column, n)))
+        and all(
+            board[i][j] != 1 for i, j in zip(range(row, -1, -1), range(column, -1, -1))
+        )
+        and all(board[i][j] != 1 for i, j in zip(range(row, n), range(column, n)))
+        and all(board[i][j] != 1 for i, j in zip(range(row, n), range(column, -1, -1)))
+    )
 
 
 def solve(board: list[list[int]], row: int) -> bool:
     """
-    It creates a state space tree and calls the safe function until it receives a
-    False Boolean and terminates that branch and backtracks to the next
+    This function creates a state space tree and calls the safe function until it
+    receives a False Boolean and terminates that branch and backtracks to the next
     possible solution branch.
     """
     if row >= len(board):
         """
-        If the row number exceeds N we have board with a successful combination
+        If the row number exceeds N, we have a board with a successful combination
         and that combination is appended to the solution list and the board is printed.
-
         """
         solution.append(board)
         printboard(board)
@@ -58,9 +57,9 @@ def solve(board: list[list[int]], row: int) -> bool:
         return True
     for i in range(len(board)):
         """
-        For every row it iterates through each column to check if it is feasible to
+        For every row, it iterates through each column to check if it is feasible to
         place a queen there.
-        If all the combinations for that particular branch are successful the board is
+        If all the combinations for that particular branch are successful, the board is
         reinitialized for the next possible combination.
         """
         if is_safe(board, row, i):
@@ -77,14 +76,14 @@ def printboard(board: list[list[int]]) -> None:
     for i in range(len(board)):
         for j in range(len(board)):
             if board[i][j] == 1:
-                print("Q", end=" ")
+                print("Q", end=" ")  # Queen is present
             else:
-                print(".", end=" ")
+                print(".", end=" ")  # Empty cell
         print()
 
 
-# n=int(input("The no. of queens"))
+# Number of queens (e.g., n=8 for an 8x8 board)
 n = 8
 board = [[0 for i in range(n)] for j in range(n)]
 solve(board, 0)
-print("The total no. of solutions are :", len(solution))
+print("The total number of solutions are:", len(solution))
