@@ -84,13 +84,13 @@ def kth_largest_element(arr: list[int], k: int) -> int:
     """
     if not arr:
         return -1
-    if not isinstance(k,int):
+    if not isinstance(k, int):
         raise ValueError("'k' should be an integer")
     if not 1 <= k <= len(arr):
         raise ValueError("Invalid value of 'k'")
-    low,high=0,len(arr)-1
-    while low<=high:
-        if low>len(arr)-1 or high<0:
+    low, high = 0, len(arr) - 1
+    while low <= high:
+        if low > len(arr) - 1 or high < 0:
             return -1
         pivot_index = partition(arr, low, high)
         if pivot_index == k - 1:
