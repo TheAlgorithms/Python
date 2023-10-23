@@ -212,8 +212,6 @@ def fib_binet(n: int) -> list[int]:
     return [round(phi**i / sqrt_5) for i in range(n + 1)]
 
 
-
-
 if __name__ == "__main__":
     num = 30
     time_func(fib_iterative, num)
@@ -221,5 +219,4 @@ if __name__ == "__main__":
     time_func(fib_recursive_cached, num)  # Around 0ms runtime
     time_func(fib_memoization, num)
     time_func(fib_binet, num)
-    time_func(fib_iterative_yield, num) 
-    
+    time_func(fib_iterative_yield, num)
