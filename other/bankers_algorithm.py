@@ -17,8 +17,6 @@ before deciding whether allocation should be allowed to continue.
 
 from __future__ import annotations
 
-import time
-
 import numpy as np
 
 test_claim_vector = [8, 5, 9, 7]
@@ -216,7 +214,6 @@ class BankersAlgorithm:
             "Initial Available Resources:       "
             + " ".join(str(x) for x in self.__available_resources())
         )
-        time.sleep(1)
 
 
 if __name__ == "__main__":
