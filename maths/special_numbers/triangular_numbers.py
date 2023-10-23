@@ -8,7 +8,7 @@ https://en.wikipedia.org/wiki/Triangular_number
 """
 
 
-def nth_triangular_number(position: int) -> int:
+def triangular_number(position: int) -> int:
     """
     Generate the triangular number at the specified position.
 
@@ -18,16 +18,21 @@ def nth_triangular_number(position: int) -> int:
     Returns:
         int: The triangular number at the specified position.
 
+    Raises:
+        ValueError: If `position` is negative.
+
     Examples:
-    >>> nth_triangular_number(1)
+    >>> triangular_number(1)
     1
-    >>> nth_triangular_number(3)
+    >>> triangular_number(3)
     6
-    >>> nth_triangular_number(5)
-    15
+    >>> triangular_number(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: param `position` must be non-negative
     """
-    if position < 1:
-        raise ValueError("param `position` must be greater than 0")
+    if position < 0:
+        raise ValueError("param `position` must be non-negative")
 
     return position * (position + 1) // 2
 
