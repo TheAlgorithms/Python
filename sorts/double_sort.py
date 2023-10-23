@@ -22,13 +22,15 @@ def double_sort(collection: list[Any]) -> list[Any]:
         int(((no_of_elements - 1) / 2) + 1)
     ):  # we don't need to traverse to end of list as
         for j in range(no_of_elements - 1):
+            # apply the bubble sort algorithm from left to right (or forwards)
             if (
                 collection[j + 1] < collection[j]
-            ):  # applying bubble sort algorithm from left to right (or forwards)
+            ):
                 collection[j], collection[j + 1] = collection[j + 1], collection[j]
+            # apply the bubble sort algorithm from right to left (or backwards)
             if (
                 collection[no_of_elements - 1 - j] < collection[no_of_elements - 2 - j]
-            ):  # applying bubble sort algorithm from right to left (or backwards)
+            ):
                 (
                     collection[no_of_elements - 1 - j],
                     collection[no_of_elements - 2 - j],
@@ -40,9 +42,7 @@ def double_sort(collection: list[Any]) -> list[Any]:
 
 
 if __name__ == "__main__":
-    print("Enter the list to be sorted: ")
-    unsorted = [
-        int(x) for x in input().split() if x
-    ]  # inputing elements of the list in one line
+    # allow the user to input the elements of the list on one line
+    unsorted = [int(x) for x in input("Enter the list to be sorted: ").split() if x]
     print("the sorted list is")
-    print(double_sort(unsorted))
+    print(f"{double_sort(unsorted) = }")
