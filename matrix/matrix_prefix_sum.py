@@ -1,18 +1,19 @@
 # Python Program to find prefix sum of a 2D array
 
+
 def calculate_prefix_sum(matrix: list[list[int]]) -> list[list[int]]:
     """
     Calculate the prefix sum of a 2D matrix.
     Prefix Sum Formula:
-    prefix_sum[i][j] = prefix_sum[i - 1][j] + prefix_sum[i][j - 1] 
+    prefix_sum[i][j] = prefix_sum[i - 1][j] + prefix_sum[i][j - 1]
                     - prefix_sum[i - 1][j - 1] + matrix[i][j]
 
     :param matrix: A 2D matrix.
     :return: A matrix containing the prefix sums.
-    
+
     >>> calculate_prefix_sum([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
     [[1, 2, 3], [2, 4, 6], [3, 6, 9]]
-    
+
     >>> calculate_prefix_sum([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
     [[1, 3, 6], [5, 12, 21], [12, 27, 45]]
     """
@@ -42,13 +43,14 @@ def calculate_prefix_sum(matrix: list[list[int]]) -> list[list[int]]:
             # - Subtracting the overlapping cell
             # - Adding the value from the original matrix
             prefix_sum[i][j] = (
-                prefix_sum[i - 1][j] +
-                prefix_sum[i][j - 1] -
-                prefix_sum[i - 1][j - 1] +
-                matrix[i][j]
+                prefix_sum[i - 1][j]
+                + prefix_sum[i][j - 1]
+                - prefix_sum[i - 1][j - 1]
+                + matrix[i][j]
             )
 
     return prefix_sum
+
 
 def display_matrix(matrix: list[list[int]]) -> None:
     """
@@ -60,13 +62,9 @@ def display_matrix(matrix: list[list[int]]) -> None:
         # Join the elements of each row with spaces and print the result.
         print(" ".join(map(str, row)))
 
+
 if __name__ == "__main__":
-    matrix = [
-        [1, 1, 1, 1], 
-        [1, 1, 1, 1], 
-        [1, 1, 1, 1],
-        [1, 1, 1, 1]
-    ]
+    matrix = [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]
     # Calculate the prefix sum of the 2D matrix
     prefix_sum_matrix = calculate_prefix_sum(matrix)
 
