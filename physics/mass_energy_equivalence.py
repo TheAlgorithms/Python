@@ -32,7 +32,7 @@ def energy_from_mass(mass: float) -> float:
     >>> energy_from_mass(124.56)
     1.11948945063458e+19
     >>> energy_from_mass(320)
-    28760165719578164480
+    2.8760165719578165e+19
     >>> energy_from_mass(0)
     0.0
     >>> energy_from_mass(-967.9)
