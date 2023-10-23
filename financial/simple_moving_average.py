@@ -9,7 +9,9 @@ Reference: https://en.wikipedia.org/wiki/Moving_average
 from collections.abc import Sequence
 
 
-def simple_moving_average(data: Sequence[float], window_size: int) -> list[float | None]:
+def simple_moving_average(
+    data: Sequence[float], window_size: int
+) -> list[float | None]:
     """
     Calculate the simple moving average (SMA) for some given time series data.
 
