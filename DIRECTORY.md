@@ -815,6 +815,7 @@
   * [Kinetic Energy](physics/kinetic_energy.py)
   * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
   * [Malus Law](physics/malus_law.py)
+  * [Mass Energy Equivalence](physics/mass_energy_equivalence.py)
   * [Mirror Formulae](physics/mirror_formulae.py)
   * [N Body Simulation](physics/n_body_simulation.py)
   * [Newtons Law Of Gravitation](physics/newtons_law_of_gravitation.py)
