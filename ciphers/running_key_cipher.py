@@ -42,7 +42,7 @@ def running_key_decrypt(key: str, ciphertext: str) -> str:
     return "".join(plaintext)
 
 
-def test_running_key_encrypt():
+def test_running_key_encrypt() -> None:
     """
     >>> key = "How does the duck know that? said Victor"
     >>> plaintext = "DEFEND THIS"
