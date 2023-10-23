@@ -3,22 +3,27 @@
 def calculate_prefix_sum(matrix: list[list[int]]) -> list[list[int]]:
     """
     Calculate the prefix sum of a 2D matrix.
-
-    Prefix sum is a technique used to efficiently calculate the cumulative sum of subarrays in a 2D array.
-    The idea is to compute a new array where each element represents the sum of all elements in the original array
-    up to that position.
-
     Prefix Sum Formula:
-    prefix_sum[i][j] = prefix_sum[i - 1][j] + prefix_sum[i][j - 1] - prefix_sum[i - 1][j - 1] + matrix[i][j]
+    prefix_sum[i][j] = prefix_sum[i - 1][j] + prefix_sum[i][j - 1] 
+                    - prefix_sum[i - 1][j - 1] + matrix[i][j]
 
     :param matrix: A 2D matrix.
     :return: A matrix containing the prefix sums.
+    
+    :param matrix: A 2D matrix.
+    :return: A matrix containing the prefix sums.
+    
+    >>> calculate_prefix_sum([[1, 1, 1], [1, 1, 1], [1, 1, 1]])
+    [[1, 2, 3], [2, 4, 6], [3, 6, 9]]
+    
+    >>> calculate_prefix_sum([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    [[1, 3, 6], [5, 12, 21], [12, 27, 45]]
     """
     rows = len(matrix)
     cols = len(matrix[0])
 
     # Initialize the prefix sum matrix with zeros, with the same dimensions as the original matrix.
-    prefix_sum = [[0 for _ in range(cols)] for _ in range(rows]
+    prefix_sum = [[0 for _ in range(cols)] for _ in range(rows)]
 
     # Calculate the prefix sum for the top-left cell.
     prefix_sum[0][0] = matrix[0][0]
@@ -56,7 +61,7 @@ def display_matrix(matrix: list[list[int]]) -> None:
     """
     for row in matrix:
         # Join the elements of each row with spaces and print the result.
-        print(" ".join(map(str, row))
+        print(" ".join(map(str, row)))
 
 if __name__ == "__main__":
     matrix = [
