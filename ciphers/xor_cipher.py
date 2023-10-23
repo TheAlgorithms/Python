@@ -35,6 +35,22 @@ class XORCipher:
         output: encrypted string 'content' as a list of chars
         if key not passed the method uses the key by the constructor.
         otherwise key = 1
+
+        Empty list
+        >>> XORCipher().encrypt("", 5)
+        []
+
+        One key
+        >>> XORCipher().encrypt("hallo welt", 1)
+        ['i', '`', 'm', 'm', 'n', '!', 'v', 'd', 'm', 'u']
+
+        Normal key
+        >>> XORCipher().encrypt("HALLO WELT", 32)
+        ['h', 'a', 'l', 'l', 'o', '\\x00', 'w', 'e', 'l', 't']
+
+        Key greater than 255
+        >>> XORCipher().encrypt("hallo welt", 256)
+        ['h', 'a', 'l', 'l', 'o', ' ', 'w', 'e', 'l', 't']
         """
 
         # precondition
@@ -54,6 +70,22 @@ class XORCipher:
         output: decrypted string 'content' as a list of chars
         if key not passed the method uses the key by the constructor.
         otherwise key = 1
+
+        Empty list
+        >>> XORCipher().decrypt("", 5)
+        []
+
+        One key
+        >>> XORCipher().decrypt("hallo welt", 1)
+        ['i', '`', 'm', 'm', 'n', '!', 'v', 'd', 'm', 'u']
+
+        Normal key
+        >>> XORCipher().decrypt("HALLO WELT", 32)
+        ['h', 'a', 'l', 'l', 'o', '\\x00', 'w', 'e', 'l', 't']
+
+        Key greater than 255
+        >>> XORCipher().decrypt("hallo welt", 256)
+        ['h', 'a', 'l', 'l', 'o', ' ', 'w', 'e', 'l', 't']
         """
 
         # precondition
@@ -73,6 +105,22 @@ class XORCipher:
         output: encrypted string 'content'
         if key not passed the method uses the key by the constructor.
         otherwise key = 1
+
+        Empty list
+        >>> XORCipher().encrypt_string("", 5)
+        ''
+
+        One key
+        >>> XORCipher().encrypt_string("hallo welt", 1)
+        'i`mmn!vdmu'
+
+        Normal key
+        >>> XORCipher().encrypt_string("HALLO WELT", 32)
+        'hallo\\x00welt'
+
+        Key greater than 255
+        >>> XORCipher().encrypt_string("hallo welt", 256)
+        'hallo welt'
         """
 
         # precondition
@@ -98,6 +146,22 @@ class XORCipher:
         output: decrypted string 'content'
         if key not passed the method uses the key by the constructor.
         otherwise key = 1
+
+        Empty list
+        >>> XORCipher().decrypt_string("", 5)
+        ''
+
+        One key
+        >>> XORCipher().decrypt_string("hallo welt", 1)
+        'i`mmn!vdmu'
+
+        Normal key
+        >>> XORCipher().decrypt_string("HALLO WELT", 32)
+        'hallo\\x00welt'
+
+        Key greater than 255
+        >>> XORCipher().decrypt_string("hallo welt", 256)
+        'hallo welt'
         """
 
         # precondition
@@ -171,6 +235,11 @@ class XORCipher:
 
         return True
 
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
 
 # Tests
 # crypt = XORCipher()
