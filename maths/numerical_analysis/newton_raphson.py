@@ -5,42 +5,41 @@
 from __future__ import annotations
 
 from decimal import Decimal
-from math import *  # noqa: F403
 
-from sympy import diff
+from sympy import diff, lambdify, symbols
 
 
-def newton_raphson(
-    func: str, a: float | Decimal, precision: float = 10**-10
-) -> float:
+def newton_raphson(func: str, a: float | Decimal, precision: float = 1e-10) -> float:
     """Finds root from the point 'a' onwards by Newton-Raphson method
     >>> newton_raphson("sin(x)", 2)
     3.1415926536808043
-    >>> newton_raphson("x**2 - 5*x +2", 0.4)
+    >>> newton_raphson("x**2 - 5*x + 2", 0.4)
     0.4384471871911695
     >>> newton_raphson("x**2 - 5", 0.1)
     2.23606797749979
-    >>> newton_raphson("log(x)- 1", 2)
+    >>> newton_raphson("log(x) - 1", 2)
     2.718281828458938
     """
-    x = a
+    x = symbols("x")
+    f = lambdify(x, func, "math")
+    f_derivative = lambdify(x, diff(func), "math")
+    x_curr = a
     while True:
-        x = Decimal(x) - (
-            Decimal(eval(func)) / Decimal(eval(str(diff(func))))  # noqa: S307
-        )
-        # This number dictates the accuracy of the answer
-        if abs(eval(func)) < precision:  # noqa: S307
-            return float(x)
+        x_curr = Decimal(x_curr) - Decimal(f(x_curr)) / Decimal(f_derivative(x_curr))
+        if abs(f(x_curr)) < precision:
+            return float(x_curr)
 
 
-# Let's Execute
 if __name__ == "__main__":
-    # Find root of trigonometric function
+    import doctest
+
+    doctest.testmod()
+
     # Find value of pi
     print(f"The root of sin(x) = 0 is {newton_raphson('sin(x)', 2)}")
     # Find root of polynomial
     print(f"The root of x**2 - 5*x + 2 = 0 is {newton_raphson('x**2 - 5*x + 2', 0.4)}")
-    # Find Square Root of 5
+    # Find value of e
     print(f"The root of log(x) - 1 = 0 is {newton_raphson('log(x) - 1', 2)}")
-    # Exponential Roots
+    # Find root of exponential function
     print(f"The root of exp(x) - 1 = 0 is {newton_raphson('exp(x) - 1', 0)}")
