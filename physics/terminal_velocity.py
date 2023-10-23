@@ -1,3 +1,4 @@
+from scipy.constants import g
 """
 Title : Computing the terminal velocity of an object falling
         through a fluid.
@@ -13,7 +14,7 @@ Vt = ((2 * m * g)/(ρ * A * Cd))^0.5
 where :
 Vt = Terminal velocity (in m/s)
 m = Mass of the falling object (in Kg)
-g = Acceleration due to gravity (value taken : 9.8 m/s^2)
+g = Acceleration due to gravity (value taken : imported from scipy)
 ρ = Density of the fluid through which the object is falling (in Kg/m^3)
 A = Projected area of the object (in m^2)
 Cd = Drag coefficient (dimensionless)
@@ -27,11 +28,11 @@ def terminal_velocity(
 ) -> float:
     """
     >>> terminal_velocity(1, 25, 0.6, 0.77)
-    1.3026778945578592
+    1.3031197996044768
     >>> terminal_velocity(2, 100, 0.45, 0.23)
-    1.9461345311993645
+    1.9467947148674276
     >>> terminal_velocity(5, 50, 0.2, 0.5)
-    4.427188724235731
+    4.428690551393267
     >>> terminal_velocity(-5, 50, -0.2, -2)
     Traceback (most recent call last):
         ...
@@ -49,7 +50,7 @@ def terminal_velocity(
         raise ValueError(
             "mass, density, area and the drag coefficient all need to be positive"
         )
-    return ((2 * mass * 9.8) / (density * area * drag_coefficient)) ** 0.5
+    return ((2 * mass * g) / (density * area * drag_coefficient)) ** 0.5
 
 
 if __name__ == "__main__":
