@@ -14,7 +14,8 @@ Leetcode link: https://leetcode.com/problems/distinct-subsequences/description/
 
 def count_distinct_subsequences(s: str, t: str) -> int:
     """
-    This function calculates the number of distinct subsequences of s that equal t.
+    This function calculates the number of distinct
+    subsequences of s that equal t.
 
     :param s: The input string s.
     :param t: The target string t.
@@ -68,5 +69,5 @@ def count_distinct_subsequences(s: str, t: str) -> int:
 if __name__ == "__main__":
     s = "babgbag"
     t = "bag"
-    result = countDistinctSubsequences(s, t)
+    result = count_distinct_subsequences(s, t)
     print(f"The number of distinct subsequences of '{t}' in '{s}' is {result}.")
