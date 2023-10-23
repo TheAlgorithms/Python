@@ -48,13 +48,13 @@ class LinkedList:
         >>> tuple(linked_list)
         (1,)
         """
-        visited = []
+        visited = set()
         node = self.head
         while node:
             # Avoid infinite loop in there's a cycle
             if node in visited:
                 return
-            visited.append(node)
+            visited.add(node)
             yield node.data
             node = node.next_node
 
