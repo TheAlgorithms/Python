@@ -42,10 +42,10 @@ class Solution:
 
         while h and h[0] % 2 == 0:
             n = heappop(h) // 2
-            heappush(h, n) 
+            heappush(h, n)
             temp_min = min(temp_min, -n)
             temp_mindeviation = min(temp_mindeviation, -h[0] - temp_min)
-        
+
         return temp_mindeviation
 
 
