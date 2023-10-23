@@ -4,7 +4,7 @@ def calculate_prefix_sum(matrix: list[list[int]]) -> list[list[int]]:
     """
     Calculate the prefix sum of a 2D matrix.
     Prefix Sum Formula:
-    prefix_sum[i][j] = prefix_sum[i - 1][j] + prefix_sum[i][j - 1] 
+    prefix_sum[i][j] = prefix_sum[i - 1][j] + prefix_sum[i][j - 1]
     - prefix_sum[i - 1][j - 1] + matrix[i][j]
 
     :param matrix: A 2D matrix.
@@ -63,13 +63,13 @@ def display_matrix(matrix: list[list[int]]) -> None:
 
 if __name__ == "__main__":
     matrix = [
-        [1, 1, 1, 1], 
-        [1, 1, 1, 1], 
+        [1, 1, 1, 1],
+        [1, 1, 1, 1],
         [1, 1, 1, 1],
         [1, 1, 1, 1]
     ]
     # Calculate the prefix sum of the 2D matrix
     prefix_sum_matrix = calculate_prefix_sum(matrix)
-
+    
     # Display the prefix sum matrix
     display_matrix(prefix_sum_matrix)
