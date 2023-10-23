@@ -35,7 +35,7 @@ def partition(array, low, high):
 # function to perform quicksort
 
 
-def quickSort(array, low, high):
+def quicksort(array, low, high):
     if low < high:
         # Find pivot element such that
         # element smaller than pivot are on the left
@@ -43,10 +43,10 @@ def quickSort(array, low, high):
         pi = partition(array, low, high)
 
         # Recursive call on the left of pivot
-        quickSort(array, low, pi - 1)
+        quicksort(array, low, pi - 1)
 
         # Recursive call on the right of pivot
-        quickSort(array, pi + 1, high)
+        quicksort(array, pi + 1, high)
 
 
 data = [1, 7, 4, 1, 10, 9, -2]
@@ -55,7 +55,7 @@ print(data)
 
 size = len(data)
 
-quickSort(data, 0, size - 1)
+quicksort(data, 0, size - 1)
 
 print("Sorted Array in Ascending Order:")
 print(data)
