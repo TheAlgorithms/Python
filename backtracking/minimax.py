@@ -89,5 +89,5 @@ def main() -> None:
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()  # Run doctests to ensure the function behaves as expected
-    main()  # Run the main function to demonstrate the minimax algorithm in action
+    doctest.testmod()
+    main()
