@@ -23,14 +23,10 @@ def double_sort(collection: list[Any]) -> list[Any]:
     ):  # we don't need to traverse to end of list as
         for j in range(no_of_elements - 1):
             # apply the bubble sort algorithm from left to right (or forwards)
-            if (
-                collection[j + 1] < collection[j]
-            ):
+            if collection[j + 1] < collection[j]:
                 collection[j], collection[j + 1] = collection[j + 1], collection[j]
             # apply the bubble sort algorithm from right to left (or backwards)
-            if (
-                collection[no_of_elements - 1 - j] < collection[no_of_elements - 2 - j]
-            ):
+            if collection[no_of_elements - 1 - j] < collection[no_of_elements - 2 - j]:
                 (
                     collection[no_of_elements - 1 - j],
                     collection[no_of_elements - 2 - j],
