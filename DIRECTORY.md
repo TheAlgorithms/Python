@@ -826,6 +826,7 @@
   * [Shear Stress](physics/shear_stress.py)
   * [Speed Of Sound](physics/speed_of_sound.py)
   * [Speeds Of Gas Molecules](physics/speeds_of_gas_molecules.py)
+  * [Terminal Velocity](physics/terminal_velocity.py)
 
 ## Project Euler
   * Problem 001
