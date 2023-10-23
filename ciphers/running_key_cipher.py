@@ -1,4 +1,11 @@
-def running_key_encrypt(key, plaintext):
+def running_key_encrypt(key: str, plaintext: str) -> str:
+    """
+    Encrypts the plaintext using the Running Key Cipher.
+
+    :param key: The running key (long piece of text).
+    :param plaintext: The plaintext to be encrypted.
+    :return: The ciphertext.
+    """
     plaintext = plaintext.replace(" ", "").upper()
     key = key.replace(" ", "").upper()
     key_length = len(key)
@@ -13,7 +20,14 @@ def running_key_encrypt(key, plaintext):
     return "".join(ciphertext)
 
 
-def running_key_decrypt(key, ciphertext):
+def running_key_decrypt(key: str, ciphertext: str) -> str:
+    """
+    Decrypts the ciphertext using the Running Key Cipher.
+
+    :param key: The running key (long piece of text).
+    :param ciphertext: The ciphertext to be decrypted.
+    :return: The plaintext.
+    """
     ciphertext = ciphertext.replace(" ", "").upper()
     key = key.replace(" ", "").upper()
     key_length = len(key)
