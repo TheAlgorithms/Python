@@ -1,4 +1,4 @@
-def is_happy_number(n: int) -> bool:
+def is_happy_number(number: int) -> bool:
     """
     Check if a number is a happy number.
     https://en.wikipedia.org/wiki/Happy_number
@@ -26,11 +26,11 @@ def is_happy_number(n: int) -> bool:
     # Create a set to store seen numbers and detect cycles
     seen = set()
 
-    while n != 1 and n not in seen:
-        seen.add(n)
-        n = sum(int(digit) ** 2 for digit in str(n))
+    while number != 1 and number not in seen:
+        seen.add(number)
+        number = sum(int(digit) ** 2 for digit in str(number))
 
-    return n == 1
+    return number == 1
 if __name__ == "__main__":
     import doctest
 
