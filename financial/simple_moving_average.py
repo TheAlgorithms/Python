@@ -6,17 +6,11 @@ https://en.wikipedia.org/wiki/Moving_average
 
 def simple_moving_average(data: list[int], window_size: int) -> list[float | None]:
     """
-
+    Calculate the simple moving average (SMA) for some given time series data.
 
     :param data: A list of numerical data points.
     :param window_size: An integer representing the size of the SMA window.
     :return: A list of SMA values with the same length as the input data.
-
-    The Simple Moving Average (SMA) is a statistical calculation used to
-    analyze data points by creating
-    a constantly updated average price over a specific time period.
-    In finance, SMA is often used in technical
-    analysis to smooth out price data and identify trends.
 
     Example:
     >>> sma = simple_moving_average([10, 12, 15, 13, 14, 16, 18, 17, 19, 21], 3)
