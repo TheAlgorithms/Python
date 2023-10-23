@@ -16,11 +16,19 @@ def simple_moving_average(data: list[float], window_size: int) -> list[float | N
     :param window_size: An integer representing the size of the SMA window.
     :return: A list of SMA values with the same length as the input data.
 
-    Example:
+    Examples:
     >>> sma = simple_moving_average([10, 12, 15, 13, 14, 16, 18, 17, 19, 21], 3)
     >>> [round(value, 2) if value is not None else None for value in sma]
     [None, None, 12.33, 13.33, 14.0, 14.33, 16.0, 17.0, 18.0, 19.0]
+    >>> simple_moving_average([10, 12, 15], 5)
+    [None, None, None]
+    >>> simple_moving_average([10, 12, 15, 13, 14, 16, 18, 17, 19, 21], 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: Window size must be a positive integer
     """
+    if window_size < 1:
+        raise ValueError("Window size must be a positive integer")
 
     sma: list[float | None] = []
 
