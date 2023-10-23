@@ -60,6 +60,7 @@ def fib_iterative(n: int) -> list[int]:
         fib.append(fib[-1] + fib[-2])
     return fib
 
+
 def fib_recursive(n: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using recursion
@@ -208,8 +209,8 @@ def fib_binet(n: int) -> list[int]:
 
 
 if __name__ == "__main__":
-
     import doctest
+
     doctest.testmod()
 
     num = 30
