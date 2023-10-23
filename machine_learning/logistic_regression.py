@@ -28,6 +28,21 @@ from sklearn import datasets
 
 
 def sigmoid_function(z):
+    """
+    Also known as Logistic Function.
+
+                1
+    f(x) =   -------
+              1 + e⁻ˣ
+
+    The sigmoid function approaches a value of 1 as its input 'x' becomes
+    increasing positive. Opposite for negative values.
+
+    Reference: https://en.wikipedia.org/wiki/Sigmoid_function
+
+    @param z:  input to the function
+    @returns: returns value in the range 0 to 1
+    """
     return 1 / (1 + np.exp(-z))
 
 
