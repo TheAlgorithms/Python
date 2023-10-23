@@ -4,6 +4,19 @@ import math
 
 
 def res(x, y):
+    """
+    Reduces large number to a more manageable number
+    >>> res(5, 7)
+    4.892790030352132
+    >>> res(0, 5)
+    0
+    >>> res(3, 0)
+    1
+    >>> res(-1, 5)
+    Traceback (most recent call last):
+    ...
+    ValueError: math domain error
+    """
     if 0 not in (x, y):
         # We use the relation x^y = y*log10(x), where 10 is the base.
         return y * math.log10(x)
