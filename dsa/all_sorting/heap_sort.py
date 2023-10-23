@@ -34,7 +34,7 @@ def heapify(arr, n, i):
 # The main function to sort an array of given size
 
 
-def heapSort(arr):
+def heapsort(arr):
     n = len(arr)
 
     # Build a maxheap.
@@ -60,7 +60,7 @@ arr = [
     6,
     7,
 ]
-heapSort(arr)
+heapsort(arr)
 n = len(arr)
 print("Sorted array is")
 for i in range(n):
