@@ -8,7 +8,7 @@ This module contains classes and functions for doing linear algebra.
 
 ### class Vector
 -
-    - This class represents a vector of arbitrary size and related operations.
+This class represents a vector of arbitrary size and related operations.
 
     **Overview of the methods:**
 
@@ -16,8 +16,8 @@ This module contains classes and functions for doing linear algebra.
     - set(components) : changes the vector components.
     - \_\_str\_\_() : toString method
     - component(i): gets the i-th component (0-indexed)
-    - \_\_len\_\_() : gets the size / length of the vector (number of components)
-    - euclidean_length() : returns the eulidean length of the vector
+    - \_\_len\_\_() : gets the size/length  of the vector (number of components)
+    - euclidean_length() : returns the euclidean length of the vector
     - operator + : vector addition
     - operator - : vector subtraction
     - operator * : scalar multiplication and dot product
@@ -40,7 +40,7 @@ This module contains classes and functions for doing linear algebra.
     **Overview of the methods:**
 
     -  \_\_str\_\_() : returns a string representation
-    - operator * : implements the matrix vector multiplication
+    - operator * : implements matrix vector multiplication
                    implements the matrix-scalar multiplication.
     - change_component(x, y, value) : changes the specified component.
     - component(x, y) : returns the specified component.
