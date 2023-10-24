@@ -37,25 +37,31 @@ def binary_insertion_sort(collection: list) -> list:
     True
     """
 
-    n = len(collection)
+      n = len(collection)
     for i in range(1, n):
-        val = collection[i]
+        value_to_insert = collection[i]
         low = 0
         high = i - 1
 
         while low <= high:
             mid = (low + high) // 2
-            if val < collection[mid]:
+            if value_to_insert < collection[mid]:
                 high = mid - 1
             else:
                 low = mid + 1
+
         for j in range(i, low, -1):
             collection[j] = collection[j - 1]
-        collection[low] = val
+
+        collection[low] = value_to_insert
+
     return collection
 
-
-if __name__ == "__main__":
-    user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    print(binary_insertion_sort(unsorted))
+if __name__ == "__main":
+    try:
+        user_input = input("Enter numbers separated by a comma:\n").strip()
+        unsorted = [int(item) for item in user_input.split(",")]
+        sorted_list = binary_insertion_sort(unsorted)
+        print(sorted_list)
+    except ValueError:
+        print("Invalid input. Please enter valid integers separated by commas.")
