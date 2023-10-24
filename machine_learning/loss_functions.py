@@ -262,10 +262,11 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
 def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
-    Calculate the mean absolute error (MAE) between ground truth and predicted values.
+    Calculates the Mean Absolute Error (MAE) between ground truth (observed) and predicted values.
 
     MAE measures the absolute difference between true values and predicted values.
 
+    Equation:
     MAE = (1/n) * Σ(abs(y_true - y_pred))
 
     Reference: https://en.wikipedia.org/wiki/Mean_absolute_error
@@ -278,8 +279,12 @@ def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
     >>> np.isclose(mean_absolute_error(true_values, predicted_values), 0.16)
     True
+    >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
+    >>> np.isclose(mean_absolute_error(true_values, predicted_values), 2.16)
+    False
     >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
-    >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
+    >>> predicted_probs = np.array([0.3, 0.8, 0.9, 5.2])
     >>> mean_absolute_error(true_labels, predicted_probs)
     Traceback (most recent call last):
     ...
