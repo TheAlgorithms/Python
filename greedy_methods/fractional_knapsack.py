@@ -27,7 +27,9 @@ def frac_knapsack(vl, wt, w, n):
     >>> frac_knapsack([10, 40, 30, 50], [5, 4, 6, 3], 8, 400)
     95.0
     >>> frac_knapsack("ABCD", [5, 4, 6, 3], 8, 400)
-    ?
+    Traceback (most recent call last):
+        ...
+    TypeError: unsupported operand type(s) for /: 'str' and 'int'
     """
 
     r = sorted(zip(vl, wt), key=lambda x: x[0] / x[1], reverse=True)
