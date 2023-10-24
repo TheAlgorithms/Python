@@ -15,7 +15,9 @@ from typing import List
 import bisect
 
 
-def bisect_left(sorted_collection: List[int], item: int, lo: int = 0, hi: int = -1) -> int:
+def bisect_left(
+    sorted_collection: List[int], item: int, lo: int = 0, hi: int = -1
+) -> int:
     """
     Locates the first element in a sorted array that is larger or equal to a given
     value.
@@ -40,7 +42,9 @@ def bisect_left(sorted_collection: List[int], item: int, lo: int = 0, hi: int = 
     return lo
 
 
-def bisect_right(sorted_collection: List[int], item: int, lo: int = 0, hi: int = -1) -> int:
+def bisect_right(
+    sorted_collection: List[int], item: int, lo: int = 0, hi: int = -1
+) -> int:
     """
     Locates the first element in a sorted array that is larger than a given value.
 
@@ -64,7 +68,9 @@ def bisect_right(sorted_collection: List[int], item: int, lo: int = 0, hi: int =
     return lo
 
 
-def insort_left(sorted_collection: List[int], item: int, lo: int = 0, hi: int = -1) -> None:
+def insort_left(
+    sorted_collection: List[int], item: int, lo: int = 0, hi: int = -1
+) -> None:
     """
     Inserts a given value into a sorted array before other values with the same value.
 
@@ -76,7 +82,9 @@ def insort_left(sorted_collection: List[int], item: int, lo: int = 0, hi: int = 
     sorted_collection.insert(bisect_left(sorted_collection, item, lo, hi), item)
 
 
-def insort_right(sorted_collection: List[int], item: int, lo: int = 0, hi: int = -1) -> None:
+def insort_right(
+    sorted_collection: List[int], item: int, lo: int = 0, hi: int = -1
+) -> None:
     """
     Inserts a given value into a sorted array after other values with the same value.
 
