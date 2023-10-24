@@ -1,10 +1,7 @@
 import numpy as np
 
 
-def mean_absolute_percentage_error(
-    y_true: np.ndarray,
-    y_pred: np.ndarray
-    ) -> float:
+def mean_absolute_percentage_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
     Calculate the Mean Absolute Percentage Error between y_true and y_pred.
 
@@ -54,7 +51,6 @@ def mean_absolute_percentage_error(
 
     except ValueError as e:
         raise e
-
 
 
 def binary_cross_entropy(
