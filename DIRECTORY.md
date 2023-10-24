@@ -233,6 +233,7 @@
     * [Deque Doubly](data_structures/linked_list/deque_doubly.py)
     * [Doubly Linked List](data_structures/linked_list/doubly_linked_list.py)
     * [Doubly Linked List Two](data_structures/linked_list/doubly_linked_list_two.py)
+    * [Floyds Cycle Detection](data_structures/linked_list/floyds_cycle_detection.py)
     * [From Sequence](data_structures/linked_list/from_sequence.py)
     * [Has Loop](data_structures/linked_list/has_loop.py)
     * [Is Palindrome](data_structures/linked_list/is_palindrome.py)
@@ -394,6 +395,7 @@
   * [Interest](financial/interest.py)
   * [Present Value](financial/present_value.py)
   * [Price Plus Tax](financial/price_plus_tax.py)
+  * [Simple Moving Average](financial/simple_moving_average.py)
 
 ## Fractals
   * [Julia Sets](fractals/julia_sets.py)
@@ -640,10 +642,7 @@
     * [Intersection](maths/numerical_analysis/intersection.py)
     * [Nevilles Method](maths/numerical_analysis/nevilles_method.py)
     * [Newton Forward Interpolation](maths/numerical_analysis/newton_forward_interpolation.py)
-    * [Newton Method](maths/numerical_analysis/newton_method.py)
     * [Newton Raphson](maths/numerical_analysis/newton_raphson.py)
-    * [Newton Raphson 2](maths/numerical_analysis/newton_raphson_2.py)
-    * [Newton Raphson New](maths/numerical_analysis/newton_raphson_new.py)
     * [Numerical Integration](maths/numerical_analysis/numerical_integration.py)
     * [Runge Kutta](maths/numerical_analysis/runge_kutta.py)
     * [Runge Kutta Fehlberg 45](maths/numerical_analysis/runge_kutta_fehlberg_45.py)
@@ -706,6 +705,7 @@
     * [Polygonal Numbers](maths/special_numbers/polygonal_numbers.py)
     * [Pronic Number](maths/special_numbers/pronic_number.py)
     * [Proth Number](maths/special_numbers/proth_number.py)
+    * [Triangular Numbers](maths/special_numbers/triangular_numbers.py)
     * [Ugly Numbers](maths/special_numbers/ugly_numbers.py)
     * [Weird Number](maths/special_numbers/weird_number.py)
   * [Sum Of Arithmetic Series](maths/sum_of_arithmetic_series.py)
@@ -826,6 +826,7 @@
   * [Shear Stress](physics/shear_stress.py)
   * [Speed Of Sound](physics/speed_of_sound.py)
   * [Speeds Of Gas Molecules](physics/speeds_of_gas_molecules.py)
+  * [Terminal Velocity](physics/terminal_velocity.py)
 
 ## Project Euler
   * Problem 001
