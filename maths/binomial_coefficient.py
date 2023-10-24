@@ -8,13 +8,13 @@ def binomial_coefficient(n: int, r: int) -> int:
     :param r: The number of items to choose.
     :return: The binomial coefficient C(n, r).
 
-    >>> binomial_coefficient(10, 5)
+    >>> binomial_coefficient(10, 5) #TODO: Fix this test
     252
-    >>> binomial_coefficient(5, 2)
+    >>> binomial_coefficient(5, 2)  #TODO: Fix this test
     10
     >>> binomial_coefficient(10, 0)
     1
-    >>> binomial_coefficient(10, 10)
+    >>> binomial_coefficient(10, 10) #TODO: Fix this test
     1
     >>> binomial_coefficient(5, 6)  # This should raise a ValueError
     Traceback (most recent call last):
