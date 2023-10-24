@@ -1,33 +1,58 @@
 import requests
 
-# Replace the API_KEY with your free Weatherstack API key
-API_KEY = ""  # <-- Put your free Weatherstack API key here!
-URL_BASE = "http://api.weatherstack.com/current"
+# Replace these API keys with your respective API keys
+OPENWEATHERMAP_API_KEY = ""  # <-- Put your OpenWeatherMap API key here!
+WEATHERSTACK_API_KEY = ""  # <-- Put your Weatherstack API key here!
 
+# Define the URL for OpenWeatherMap API with placeholders
+OPENWEATHERMAP_URL_BASE = "https://api.openweathermap.org/data/2.5/weather"
+WEATHERSTACK_URL_BASE = "http://api.weatherstack.com/current"
 
-# Function to fetch current weather data for a given location
-def current_weather(location: str, api_key: str = API_KEY) -> dict:
-    # Prepare the parameters to send in the API request
-    params = {
-        "access_key": api_key,  # API key for authentication
-        "query": location,
-    }
+def current_weather(location: str, api_provider: str, api_key: str) -> dict:
+    if api_provider == "openweathermap":
+        # For OpenWeatherMap, we assume that location contains the name of the city
+        params = {
+            "q": location,
+            "appid": api_key
+        }
+    elif api_provider == "weatherstack":
+        # For Weatherstack, location can be a city name or latitude, longitude
+        if location.replace(',', '').replace('.', '').isdigit():
+            # If location is numeric, assume it's latitude, longitude
+            lat, lon = location.split(',')
+            params = {
+                "lat": lat,
+                "lon": lon,
+                "appid": api_key
+            }
+        else:
+            params = {
+                "access_key": api_key,
+                "query": location
+            }
+    else:
+        raise ValueError("Invalid API provider. Use 'openweathermap' or 'weatherstack'.")
 
-    # Make an HTTP GET request to the Weatherstack API and parse the response as JSON
-    response = requests.get(URL_BASE, params=params)
+    response = requests.get(OPENWEATHERMAP_URL_BASE, params=params) if api_provider == "openweathermap" else requests.get(WEATHERSTACK_URL_BASE, params=params)
     weather_data = response.json()
-
-    return weather_data  # Return the weather data as a dictionary
-
+    return weather_data
 
 if __name__ == "__main__":
     from pprint import pprint
 
     while True:
-        location = input("Enter a location (city name): ").strip()
+        location = input("Enter a location (city name or latitude,longitude): ").strip()
+        api_provider = input("Enter the API provider (openweathermap or weatherstack): ").strip()
 
-        if location:
-            # Fetch and print the current weather data for the specified location
-            pprint(current_weather(location, API_KEY))
+        if location and api_provider:
+            try:
+                if api_provider == "openweathermap":
+                    pprint(current_weather(location, api_provider, OPENWEATHERMAP_API_KEY))
+                elif api_provider == "weatherstack":
+                    pprint(current_weather(location, api_provider, WEATHERSTACK_API_KEY))
+                else:
+                    print("Invalid API provider. Use 'openweathermap' or 'weatherstack'.")
+            except ValueError as e:
+                print(e)
         else:
             break
