@@ -58,6 +58,7 @@ def binary_insertion_sort(collection: list) -> list:
 
     return collection
 
+
 if __name__ == "__main":
     try:
         user_input = input("Enter numbers separated by a comma:\n").strip()
