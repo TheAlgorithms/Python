@@ -1,4 +1,4 @@
-# import requests
+import requests
 
 # Put your API key(s) here
 OPENWEATHERMAP_API_KEY = ""
