@@ -1,19 +1,18 @@
 import matplotlib.pyplot as plt
 
 
-class Dda_Line:
+class DdaLine:
     def __init__(self, x1: int, y1: int, x2: int, y2: int) -> None:
         """
-        Initialize a Dda_Line object.
-
-        Args:
-            x1 (int): X-coordinate of the first point.
-            y1 (int): Y-coordinate of the first point.
-            x2 (int): X-coordinate of the second point.
-            y2 (int): Y-coordinate of the second point.
-
-        Initializes the object with the given coordinates and initializes
-        empty lists for storing the x and y values of the line.
+        >>> line = DdaLine(1, 2, 3, 4)
+        >>> line.x1
+        1
+        >>> line.y1
+        2
+        >>> line.x2
+        3
+        >>> line.y2
+        4
         """
         self.x1 = x1
         self.x2 = x2
@@ -25,10 +24,12 @@ class Dda_Line:
 
     def draw_line(self) -> None:
         """
-        Implement the DDA Line Algorithm to calculate the line's points.
-
-        Calculates the points along the line using the Digital Differential
-        Analyzer (DDA) algorithm and stores them in x_values and y_values lists.
+        >>> line = Dda_Line(1, 1, 4, 4)
+        >>> line.draw_line()
+        >>> line.x_values
+        [1.0, 2.0, 3.0, 4.0]
+        >>> line.y_values
+        [1.0, 2.0, 3.0, 4.0]
         """
         dx = self.x2 - self.x1
         dy = self.y2 - self.y1
@@ -52,12 +53,7 @@ class Dda_Line:
             self.y_values.append(y)
 
     def plot_line(self) -> None:
-        """
-        Plot the line using Matplotlib.
-
-        Plots the line using the x and y values calculated in the draw_line
-        method. It adds labels, a title, and displays the plot.
-        """
+        """ """
         plt.plot(self.x_values, self.y_values)
         plt.xlabel("X-Axis")
         plt.ylabel("Y-Axis")
@@ -71,7 +67,7 @@ if __name__ == "__main__":
     x2 = int(input("Enter the X2 Coordinate: "))
     y2 = int(input("Enter the Y2 Coordinate: "))
 
-    line = Dda_Line(x1, y1, x2, y2)
+    line = DdaLine(x1, y1, x2, y2)
 
     line.draw_line()
     line.plot_line()
