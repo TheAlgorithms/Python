@@ -17,7 +17,7 @@ def generate_parenthesis(n: int) -> list[str]:
     This function uses a recursive approach to generate the combinations.
 
     Time Complexity: O(2^(2n)) - In the worst case, we have 2^(2n) combinations.
-    Space Complexity: O(2n) - Space used for recursion, where 'n' is the number of pairs.
+    Space Complexity: O(n) - Space used for recursion, where 'n' is the number of pairs.
 
     Example 1:
     >>> generate_parenthesis(3)
