@@ -2,8 +2,8 @@
 
 import matplotlib.pyplot as plt
 
-class BressenhamLineAlgo:
 
+class BressenhamLineAlgo:
     def __init__(self, x1: int, y1: int, x2: int, y2: int) -> None:
         """
         Initialize the BresenhamLineAlgo object.
@@ -27,19 +27,18 @@ class BressenhamLineAlgo:
         >>> line.y2
         5
         """
-         
+
         self.x1 = x1
         self.y1 = y1
         self.x2 = x2
         self.y2 = y2
 
-        self.dx: int= abs(self.x2 - self.x1)
+        self.dx: int = abs(self.x2 - self.x1)
         self.dy: int = abs(self.y2 - self.y1)
         self.p: int = 2 * self.dy - self.dx
 
         self.x_values: list(float) = []
         self.y_values: list(float) = []
-
 
     def draw_line(self) -> None:
         """
@@ -47,7 +46,7 @@ class BressenhamLineAlgo:
 
         Calculates the points along the line using Bresenham's algorithm
         and stores them in x_values and y_values lists.
-        
+
         >>> line = BresenhamLineAlgo(1, 1, 4, 4)
         >>> line.draw_line()
         >>> line.x_values
@@ -70,7 +69,7 @@ class BressenhamLineAlgo:
                 y += 1
 
             x += 1
-        
+
         print(self.x_values)
         print(self.y_values)
 
@@ -80,18 +79,17 @@ class BressenhamLineAlgo:
 
         Plots the line using the x and y values calculated in the draw_line
         method. It adds labels, a title, and displays the plot.
-        
+
         """
         plt.plot(self.x_values, self.y_values)
-        plt.xlabel('X-Axis')
-        plt.ylabel('Y-Axis')
-        plt.title('Bressenham Line Algo Implementation')
+        plt.xlabel("X-Axis")
+        plt.ylabel("Y-Axis")
+        plt.title("Bressenham Line Algo Implementation")
         plt.grid()
         plt.show()
 
 
 if __name__ == "__main__":
-
     x1 = int(input("Enter the X1 Coordinate: "))
     y1 = int(input("Enter the Y1 Coordinate: "))
     x2 = int(input("Enter the X2 Coordinate: "))
@@ -101,4 +99,3 @@ if __name__ == "__main__":
 
     line.draw_line()
     line.plot_line()
-
