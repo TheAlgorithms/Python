@@ -5,7 +5,7 @@ def mean_absolute_percentage_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
     """
     Calculate the Mean Absolute Percentage Error between y_true and y_pred.
 
-    Mean Absolute Percentage Error calculates the average of the absolute.
+    Mean Absolute Percentage Error calculates the average of the absolute
     percentage differences between the predicted and true values.
 
     Formula = (Σ|y_true[i]-Y_pred[i]/y_true[i]|)/n
