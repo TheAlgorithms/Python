@@ -59,6 +59,4 @@ if __name__ == "__main__":
     input_str = "babgbag"
     target_str = "bag"
     result = count_distinct_subsequences(input_str, target_str)
-    print(
-        f"The number of distinct subsequences of '{target_str}' in '{input_str}' is {result}."
-    )
+    print(f"{result}")
