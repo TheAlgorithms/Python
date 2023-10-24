@@ -16,7 +16,7 @@ def binomial_coefficient(n: int, r: int) -> int:
     1
     >>> binomial_coefficient(10, 10)  # TODO: Fix this test
     1
-    
+
     # >>> binomial_coefficient(5, 6)  # TODO: This should raise an error
     # Traceback (most recent call last):
     #     ...
