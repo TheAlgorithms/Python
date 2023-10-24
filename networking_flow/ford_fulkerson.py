@@ -6,15 +6,32 @@ Description:
 """
 
 
-def bfs(graph, s, t, parent):
-    # Return True if there is node that has not iterated.
-    visited = [False] * len(graph)
-    queue = []
+def bfs(graph: list, s: int, t: int, parent: list) -> bool:
+    """
+    This function returns True if there is node that has not iterated.
+
+    Args:
+        graph (list): Adjacency matrix of graph
+        s (int): Source
+        t (int): Sink
+        parent (list): Parent list
+
+    Returns:
+        bool: True if there is node that has not iterated.
+    """
+
+    visited = [False] * len(graph)  # Mark all nodes as not visited
+    queue = []  # BFS queue
+
+    # Source node
     queue.append(s)
     visited[s] = True
 
     while queue:
+        # Pop the front node
         u = queue.pop(0)
+
+        # Traverse all adjacent nodes of u
         for ind in range(len(graph[u])):
             if visited[ind] is False and graph[u][ind] > 0:
                 queue.append(ind)
@@ -24,11 +41,23 @@ def bfs(graph, s, t, parent):
     return visited[t]
 
 
-def ford_fulkerson(graph, source, sink):
+def ford_fulkerson(graph: list, source: int, sink: int) -> int:
+    """
+    This function returns maximum flow from source to sink in given graph.
+
+    Args:
+        graph (list): Adjacency matrix of graph
+        source (int): Source
+        sink (int): Sink
+
+    Returns:
+        int: Maximum flow
+    """
+
     # This array is filled by BFS and to store path
     parent = [-1] * (len(graph))
     max_flow = 0
-    while bfs(graph, source, sink, parent):
+    while bfs(graph, source, sink, parent):  # While there is path from source to sink
         path_flow = float("Inf")
         s = sink
 
@@ -45,6 +74,7 @@ def ford_fulkerson(graph, source, sink):
             graph[u][v] -= path_flow
             graph[v][u] += path_flow
             v = parent[v]
+
     return max_flow
 
 
