@@ -3,8 +3,8 @@ Ford-Fulkerson Algorithm for Maximum Flow Problem
 * https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm
 
 Description:
-    (1) Start with initial flow as 0;
-    (2) Choose augmenting path from source to sink and add path to flow;
+    (1) Start with initial flow as 0
+    (2) Choose the augmenting path from source to sink and add the path to flow
 """
 graph = [
     [0, 16, 13, 0, 0, 0],
@@ -18,7 +18,7 @@ graph = [
 
 def breadth_first_search(graph: list, source: int, sink: int, parents: list) -> bool:
     """
-    This function returns True if there is node that has not iterated.
+    This function returns True if there is a node that has not iterated.
 
     Args:
         graph: Adjacency matrix of graph
@@ -27,7 +27,7 @@ def breadth_first_search(graph: list, source: int, sink: int, parents: list) -> 
         parents: Parent list
 
     Returns:
-        bool: True if there is node that has not iterated.
+        True if there is a node that has not iterated.
 
     >>> breadth_first_search(graph, 0, 5, [-1, -1, -1, -1, -1, -1])
     True
@@ -36,41 +36,37 @@ def breadth_first_search(graph: list, source: int, sink: int, parents: list) -> 
         ...
     IndexError: list index out of range
     """
-
     visited = [False] * len(graph)  # Mark all nodes as not visited
-    queue = []  # BFS queue
+    queue = []  # breadth-first search queue
 
     # Source node
     queue.append(source)
     visited[source] = True
 
     while queue:
-        # Pop the front node
-        u = queue.pop(0)
-
+        u = queue.pop(0). # Pop the front node
         # Traverse all adjacent nodes of u
         for ind, node in enumerate(graph[u]):
             if visited[ind] is False and node > 0:
                 queue.append(ind)
                 visited[ind] = True
                 parents[ind] = u
-
     return visited[sink]
 
 
 def ford_fulkerson(graph: list, source: int, sink: int) -> int:
     """
-    This function returns maximum flow from source to sink in given graph.
+    This function returns the maximum flow from source to sink in the given graph.
 
     CAUTION: This function changes the given graph.
 
     Args:
-        graph (list): Adjacency matrix of graph
-        source (int): Source
-        sink (int): Sink
+        graph: Adjacency matrix of graph
+        source: Source
+        sink: Sink
 
     Returns:
-        int: Maximum flow
+        Maximum flow
 
     >>> test_graph = [
     ...     [0, 16, 13, 0, 0, 0],
@@ -83,17 +79,17 @@ def ford_fulkerson(graph: list, source: int, sink: int) -> int:
     >>> ford_fulkerson(test_graph, 0, 5)
     23
     """
-
-    # This array is filled by breadth first search and to store path
+    # This array is filled by breadth-first search and to store path
     parent = [-1] * (len(graph))
     max_flow = 0
-    # While there is path from source to sink
+    
+    # While there is a path from source to sink
     while breadth_first_search(graph, source, sink, parent):
         path_flow = int(1e9)  # Infinite value
         s = sink
 
         while s != source:
-            # Find the minimum value in select path
+            # Find the minimum value in the selected path
             path_flow = min(path_flow, graph[parent[s]][s])
             s = parent[s]
 
