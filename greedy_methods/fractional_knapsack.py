@@ -4,7 +4,9 @@ from itertools import accumulate
 # Reference Link: https://en.wikipedia.org/wiki/Continuous_knapsack_problem
 
 
-def frac_knapsack(values: list[int], weights: list[int], capacity: int, max_items: int) -> float:
+def frac_knapsack(
+    values: list[int], weights: list[int], capacity: int, max_items: int
+) -> float:
     """
     This function implements fractional knapsack problem.
 
