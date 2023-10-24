@@ -16,6 +16,31 @@ def search(
     cost: int,
     heuristic: list[list[int]],
 ) -> tuple[list[list[int]], list[list[int]]]:
+    """
+    Search for a path on a grid avoiding obstacles.
+    >>> grid = [[0, 1, 0, 0, 0, 0],
+    ...         [0, 1, 0, 0, 0, 0],
+    ...         [0, 1, 0, 0, 0, 0],
+    ...         [0, 1, 0, 0, 1, 0],
+    ...         [0, 0, 0, 0, 1, 0]]
+    >>> init = [0, 0]
+    >>> goal = [len(grid) - 1, len(grid[0]) - 1]
+    >>> cost = 1
+    >>> heuristic = [[0] * len(grid[0]) for _ in range(len(grid))]
+    >>> heuristic = [[0 for row in range(len(grid[0]))] for col in range(len(grid))]
+    >>> for i in range(len(grid)):
+    ...     for j in range(len(grid[0])):
+    ...         heuristic[i][j] = abs(i - goal[0]) + abs(j - goal[1])
+    ...         if grid[i][j] == 1:
+    ...             heuristic[i][j] = 99
+    >>> path, action = search(grid, init, goal, cost, heuristic)
+    >>> path  # doctest: +NORMALIZE_WHITESPACE
+    [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [4, 1], [4, 2], [4, 3], [3, 3],
+    [2, 3], [2, 4], [2, 5], [3, 5], [4, 5]]
+    >>> action  # doctest: +NORMALIZE_WHITESPACE
+    [[0, 0, 0, 0, 0, 0], [2, 0, 0, 0, 0, 0], [2, 0, 0, 0, 3, 3],
+    [2, 0, 0, 0, 0, 2], [2, 3, 3, 3, 0, 2]]
+    """
     closed = [
         [0 for col in range(len(grid[0]))] for row in range(len(grid))
     ]  # the reference grid
