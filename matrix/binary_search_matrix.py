@@ -9,6 +9,10 @@ def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -
     0
     >>> binary_search(matrix, 0, len(matrix) - 1, 23)
     -1
+    >>> binary_search(matrix, 0, len(matrix) - 1, 15)
+    4
+    >>> binary_search(matrix, 0, len(matrix) - 1, 7)
+    2
     """
 
     r = int((lower_bound + upper_bound) // 2)
@@ -37,6 +41,21 @@ def mat_bin_search(value: int, matrix: list) -> list:
     >>> mat_bin_search(target, matrix)
     [0, 0]
     >>> target = 34
+    >>> mat_bin_search(target, matrix)
+    [-1, -1]
+    >>> target = 5
+    >>> mat_bin_search(target, matrix)
+    [1, 1]
+    >>> target = 23
+    >>> mat_bin_search(target, matrix)
+    [4, 2]
+    >>> target = 30
+    >>> mat_bin_search(target, matrix)
+    [4, 4]
+    >>> target = 19
+    >>> mat_bin_search(target, matrix)
+    [1, 4]
+    >>> target = 20
     >>> mat_bin_search(target, matrix)
     [-1, -1]
     """
