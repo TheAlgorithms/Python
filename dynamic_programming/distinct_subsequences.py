@@ -39,7 +39,7 @@ def count_distinct_subsequences(input_str: str, target_str: str) -> int:
     # Create a matrix to store counts of subsequences.
     # dp[i][j] stores the count of occurrences of `target_str[1..i]` in
     # `input_str[1..j]`.
-    dp = [[0 for _ in range(input_len + 1)] for __ in range(target_len + 1]
+    dp = [[0 for _ in range(input_len + 1)] for __ in range(target_len + 1)]
 
     # Initialize the matrix.
     for i in range(target_len + 1):
