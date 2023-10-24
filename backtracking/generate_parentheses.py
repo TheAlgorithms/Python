@@ -7,7 +7,6 @@ Output: ["(())","()()"]
 Leetcode link: https://leetcode.com/problems/generate-parentheses/description/
 """
 
-
 def generate_parenthesis(n: int) -> list[str]:
     """
     Generate valid combinations of balanced parentheses for a given n.
@@ -52,8 +51,6 @@ def generate_parenthesis(n: int) -> list[str]:
     backtrack("", 0, 0)
     return result
 
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
