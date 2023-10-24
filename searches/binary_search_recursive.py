@@ -1,5 +1,6 @@
 from typing import List, Optional
 
+
 def binary_search(arr: List[int], target: int, low: int, high: int) -> Optional[int]:
     """
     Perform a recursive binary search to find the target value in a sorted array.
@@ -24,6 +25,7 @@ def binary_search(arr: List[int], target: int, low: int, high: int) -> Optional[
         return binary_search(arr, target, low, mid - 1)  # Search in the left half
     else:
         return binary_search(arr, target, mid + 1, high)  # Search in the right half
+
 
 # Example usage and doctest
 arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
