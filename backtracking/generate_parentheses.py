@@ -7,8 +7,7 @@ Output: ["(())","()()"]
 Leetcode link: https://leetcode.com/problems/generate-parentheses/description/
 """
 
-
-def generateParenthesis(n: int) -> list[str]:
+def generate_parenthesis(n: int) -> list[str]:
     """
     Generate valid combinations of balanced parentheses for a given n.
 
@@ -21,15 +20,23 @@ def generateParenthesis(n: int) -> list[str]:
     Space Complexity: O(2n) - Space used for recursion, where 'n' is the number of pairs.
 
     Example 1:
-    >>> generateParenthesis(3)
+    >>> generate_parenthesis(3)
     ['((()))', '(()())', '(())()', '()(())', '()()()']
 
     Example 2:
-    >>> generateParenthesis(1)
+    >>> generate_parenthesis(1)
     ['()']
     """
 
-    def backtrack(partial, open_count, close_count):
+    def backtrack(partial: str, open_count: int, close_count: int) -> None:
+        """
+        Generate valid combinations of balanced parentheses.
+
+        :param partial: A string representing the current combination.
+        :param open_count: An integer representing the count of open parentheses.
+        :param close_count: An integer representing the count of close parentheses.
+        :return: None
+        """
         if len(partial) == 2 * n:
             result.append(partial)
             return
@@ -44,8 +51,6 @@ def generateParenthesis(n: int) -> list[str]:
     backtrack("", 0, 0)
     return result
 
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
