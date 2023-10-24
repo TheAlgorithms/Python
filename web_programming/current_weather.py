@@ -5,8 +5,8 @@ OPENWEATHERMAP_URL_BASE = "https://api.openweathermap.org/data/2.5/weather"
 WEATHERSTACK_URL_BASE = "http://api.weatherstack.com/current"
 
 # Replace these API keys with your respective API keys
-OPENWEATHERMAP_API_KEY = "5e27ef729510b19f5f7c07e6388d8dfe"
-WEATHERSTACK_API_KEY = "26c96ba14d56916edf916a4092f22960"
+OPENWEATHERMAP_API_KEY = "Your_OpenWeatherMap_API_Key_Here"
+WEATHERSTACK_API_KEY = "Your_Weatherstack_API_Key_Here"
 
 
 def current_weather(location: str) -> tuple[dict]:
