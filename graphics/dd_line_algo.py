@@ -1,8 +1,20 @@
 import matplotlib.pyplot as plt
 
 
-class dda_line:
-    def __init__(self, x1, y1, x2, y2) -> None:
+class Dda_Line:
+    def __init__(self, x1: int, y1: int, x2: int, y2: int) -> None:
+        """
+        Initialize a Dda_Line object.
+
+        Args:
+            x1 (int): X-coordinate of the first point.
+            y1 (int): Y-coordinate of the first point.
+            x2 (int): X-coordinate of the second point.
+            y2 (int): Y-coordinate of the second point.
+
+        Initializes the object with the given coordinates and initializes
+        empty lists for storing the x and y values of the line.
+        """
         self.x1 = x1
         self.x2 = x2
         self.y1 = y1
@@ -11,9 +23,15 @@ class dda_line:
         self.x_values = []
         self.y_values = []
 
-    def draw_line(self):
-        dx = x2 - x1
-        dy = y2 - y1
+    def draw_line(self) -> None:
+        """
+        Implement the DDA Line Algorithm to calculate the line's points.
+
+        Calculates the points along the line using the Digital Differential
+        Analyzer (DDA) algorithm and stores them in x_values and y_values lists.
+        """
+        dx = self.x2 - self.x1
+        dy = self.y2 - self.y1
 
         steps = max(abs(dx), abs(dy))
 
@@ -33,22 +51,27 @@ class dda_line:
             self.x_values.append(x)
             self.y_values.append(y)
 
-    def plot_line(self):
+    def plot_line(self) -> None:
+        """
+        Plot the line using Matplotlib.
+
+        Plots the line using the x and y values calculated in the draw_line
+        method. It adds labels, a title, and displays the plot.
+        """
         plt.plot(self.x_values, self.y_values)
         plt.xlabel("X-Axis")
         plt.ylabel("Y-Axis")
-        plt.title("DDA Line Algo Implementation")
+        plt.title("DDA Line Algorithm Implementation")
         plt.grid()
         plt.show()
 
-
 if __name__ == "__main__":
-    x1 = int(input("Enter the X1 Cordinate: "))
-    y1 = int(input("Enter the Y1 Cordinate: "))
-    x2 = int(input("Enter the X2 Cordinate: "))
-    y2 = int(input("Enter the Y2 Cordinate: "))
+    x1 = int(input("Enter the X1 Coordinate: "))
+    y1 = int(input("Enter the Y1 Coordinate: "))
+    x2 = int(input("Enter the X2 Coordinate: "))
+    y2 = int(input("Enter the Y2 Coordinate: "))
 
-    line = dda_line(x1, y1, x2, y2)
+    line = Dda_Line(x1, y1, x2, y2)
 
     line.draw_line()
     line.plot_line()
