@@ -10,7 +10,7 @@ def current_weather(location: str, api_key: str = API_KEY) -> dict:
     # Prepare the parameters to send in the API request
     params = {
         "access_key": api_key,  # API key for authentication
-        "query": location,  # The location (city name) for which weather data is requested
+        "query": location,
     }
 
     # Make an HTTP GET request to the Weatherstack API and parse the response as JSON
