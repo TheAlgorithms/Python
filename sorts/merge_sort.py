@@ -51,6 +51,10 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    print(*merge_sort(unsorted), sep=",")
+    try:
+        user_input = input("Enter numbers separated by a comma:\n").strip()
+        unsorted = [int(item) for item in user_input.split(",")]
+        sorted_list = merge_sort(unsorted)
+        print(*sorted_list, sep=",")
+    except ValueError:
+        print("Invalid input. Please enter valid integers separated by commas.")
