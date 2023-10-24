@@ -39,8 +39,8 @@ class DdaLine:
         x_increment = dx / steps
         y_increment = dy / steps
 
-        x = self.x1
-        y = self.y1
+        x: float = self.x1
+        y: float = self.y1
 
         self.x_values.append(x)
         self.y_values.append(y)
