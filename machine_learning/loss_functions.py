@@ -260,6 +260,47 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     squared_errors = (y_true - y_pred) ** 2
     return np.mean(squared_errors)
 
+def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    """
+    Calculate the mean absolute error (MAE) between ground truth and predicted values.
+
+    MAE measures the absolute difference between true values and predicted values.
+
+    MAE = (1/n) * Σ(abs(y_true - y_pred))
+
+    Reference: https://en.wikipedia.org/wiki/Mean_absolute_error
+
+    Parameters:
+    - y_true: The true values (ground truth)
+    - y_pred: The predicted values
+
+    >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
+    >>> np.isclose(mean_absolute_error(true_values, predicted_values), 0.16)
+    True
+    >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
+    >>> mean_absolute_error(true_labels, predicted_probs)
+    Traceback (most recent call last):
+    ...
+    ValueError: Input arrays must have the same length.
+    >>> true_labels = '1.0, 2.0, 3.0, 4.0'
+    >>> predicted_probs = '0.3, 0.8, 0.9, 0.2'
+    >>> mean_absolute_error(true_labels, predicted_probs)
+    Traceback (most recent call last):
+    ...
+    ValueError: Could not convert input to NumPy array.
+    """
+    if len(y_true) != len(y_pred):
+        raise ValueError("Input arrays must have the same length.")
+
+    if isinstance(y_true, np.ndarray) and isinstance(y_pred, np.ndarray):
+        return np.mean(abs(y_true - y_pred))
+    else:
+        try:
+            return np.mean(abs(np.asarray(y_true) - np.asarray(y_pred)))
+        except ValueError as error:
+            raise error("Could not convert input to NumPy array.")
 
 def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
