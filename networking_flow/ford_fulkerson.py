@@ -44,7 +44,7 @@ def breadth_first_search(graph: list, source: int, sink: int, parents: list) -> 
     visited[source] = True
 
     while queue:
-        u = queue.pop(0). # Pop the front node
+        u = queue.pop(0)  # Pop the front node
         # Traverse all adjacent nodes of u
         for ind, node in enumerate(graph[u]):
             if visited[ind] is False and node > 0:
