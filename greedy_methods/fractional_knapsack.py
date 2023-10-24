@@ -26,9 +26,13 @@ def frac_knapsack(
     >>> frac_knapsack([10, 40, 30, 50], [5, 4, 6, 3], 8, 4)
     95.0
     >>> frac_knapsack([10, 40, 30, 50], [5, 4, 6], 8, 4)
-    60.0
+    Traceback (most recent call last):
+        ...
+    ValueError: zip() argument 2 is shorter than argument 1
     >>> frac_knapsack([10, 40, 30], [5, 4, 6, 3], 8, 4)
-    60.0
+    Traceback (most recent call last):
+        ...
+    ValueError: zip() argument 2 is longer than argument 1
     >>> frac_knapsack([10, 40, 30, 50], [5, 4, 6, 3], 0, 4)
     0
     >>> frac_knapsack([10, 40, 30, 50], [5, 4, 6, 3], 8, 0)
@@ -48,7 +52,7 @@ def frac_knapsack(
     """
 
     # sort in descending order of value/weight ratio
-    r = sorted(zip(values, weights),
+    r = sorted(zip(values, weights, strict=True),
                key=lambda x: x[0] / x[1], reverse=True)
 
     values, weights = [i[0] for i in r], [i[1] for i in r]  # unzip the list
