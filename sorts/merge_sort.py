@@ -27,7 +27,7 @@ def merge_sort(collection: list) -> list:
     >>> merge_sort([-2, -5, -45])
     [-45, -5, -2]
     """
-    
+
     def merge(left: list, right: list) -> list:
         """
         Merge two sorted lists into a single sorted list.
@@ -48,11 +48,12 @@ def merge_sort(collection: list) -> list:
     mid_index = len(collection) // 2
     return merge(merge_sort(collection[:mid_index]), merge_sort(collection[mid_index:]))
 
+
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    
+
     try:
         user_input = input("Enter numbers separated by a comma:\n").strip()
         unsorted = [int(item) for item in user_input.split(",")]
