@@ -8,30 +8,41 @@ def binomial_coefficient(n: int, r: int) -> int:
     :param r: The number of items to choose.
     :return: The binomial coefficient C(n, r).
 
-    >>> binomial_coefficient(10, 5)  # TODO: Fix this test
+    >>> binomial_coefficient(10, 5)
     252
-    >>> binomial_coefficient(5, 2)  # TODO: Fix this test
-    10
     >>> binomial_coefficient(10, 0)
     1
-    >>> binomial_coefficient(10, 10)  # TODO: Fix this test
+    >>> binomial_coefficient(0, 10)
     1
-
-    # >>> binomial_coefficient(5, 6)  # TODO: This should raise an error
-    # Traceback (most recent call last):
-    #     ...
-    # ValueError: r should be between 0 and n (inclusive)
-    # >>> binomial_coefficient(3, 5)  # TODO: This should raise a error
-    # Traceback (most recent call last):
-    #     ...
-    # ValueError: r should be between 0 and n (inclusive)
-    >>> binomial_coefficient(-2, 3)  # TODO: This should raise a error
+    >>> binomial_coefficient(10, 10)
+    1
+    >>> binomial_coefficient(5, 2)
+    10
+    >>> binomial_coefficient(5, 6)
     0
+    >>> binomial_coefficient(3, 5)
+    0
+    >>> binomial_coefficient(-2, 3)
+    Traceback (most recent call last):
+        ...
+    ValueError: n and r must be non-negative integers
     >>> binomial_coefficient(5, -1)
     Traceback (most recent call last):
         ...
-    IndexError: list assignment index out of range
+    ValueError: n and r must be non-negative integers
+    >>> binomial_coefficient(10.1, 5)
+    Traceback (most recent call last):
+        ...
+    TypeError: 'float' object cannot be interpreted as an integer
+    >>> binomial_coefficient(10, 5.1)
+    Traceback (most recent call last):
+        ...
+    TypeError: 'float' object cannot be interpreted as an integer
     """
+    if n < 0 or r < 0:
+        raise ValueError("n and r must be non-negative integers")
+    if 0 in (n, r):
+        return 1
     c = [0 for i in range(r + 1)]
     # nc0 = 1
     c[0] = 1
