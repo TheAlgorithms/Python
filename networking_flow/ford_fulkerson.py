@@ -58,7 +58,7 @@ def ford_fulkerson(graph: list, source: int, sink: int) -> int:
     parent = [-1] * (len(graph))
     max_flow = 0
     while bfs(graph, source, sink, parent):  # While there is path from source to sink
-        path_flow = 1e9  # Infinite value
+        path_flow = int(1e9)  # Infinite value
         s = sink
 
         while s != source:
