@@ -26,6 +26,7 @@ def find_missing_number(nums: list[int]) -> int:
         missing_number ^= i ^ nums[i - low]
 
     return missing_number
-    
+
+
 if __name__ == "__main__":
     import doctest
