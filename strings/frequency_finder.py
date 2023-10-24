@@ -58,7 +58,6 @@ def get_frequency_order(message: str) -> str:
     >>> get_frequency_order('h')
     'HZQXJKVBPYGFWMUCLDRSNIOATE'
     """
-
     letter_to_freq = get_letter_count(message)
     freq_to_letter: dict[int, list[str]] = {
         freq: [] for letter, freq in letter_to_freq.items()
