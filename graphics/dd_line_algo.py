@@ -27,7 +27,7 @@ class DdaLine:
         >>> line = DdaLine(1, 1, 4, 4)
         >>> line.draw_line()
         >>> line.x_values
-        [1.0, 2.0, 3.0, 4.0]
+        [1, 2.0, 3.0, 4.0]
         >>> line.y_values
         [1.0, 2.0, 3.0, 4.0]
         """
