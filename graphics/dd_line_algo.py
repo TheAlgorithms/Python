@@ -24,7 +24,7 @@ class DdaLine:
 
     def draw_line(self) -> None:
         """
-        >>> line = Dda_Line(1, 1, 4, 4)
+        >>> line = DdaLine(1, 1, 4, 4)
         >>> line.draw_line()
         >>> line.x_values
         [1.0, 2.0, 3.0, 4.0]
