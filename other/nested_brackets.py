@@ -14,7 +14,35 @@ brackets and returns true if S is nested and false otherwise.
 """
 
 
-def is_balanced(s):
+def is_balanced(s: str) -> bool:
+    """
+    >>> is_balanced("")
+    True
+    >>> is_balanced("()")
+    True
+    >>> is_balanced("[]")
+    True
+    >>> is_balanced("{}")
+    True
+    >>> is_balanced("()[]{}")
+    True
+    >>> is_balanced("(())")
+    True
+    >>> is_balanced("[[")
+    False
+    >>> is_balanced("([{}])")
+    True
+    >>> is_balanced("(()[)]")
+    False
+    >>> is_balanced("([)]")
+    False
+    >>> is_balanced("[[()]]")
+    True
+    >>> is_balanced("(()(()))")
+    True
+    >>> is_balanced("]")
+    False
+    """
     stack = []
     open_brackets = set({"(", "[", "{"})
     closed_brackets = set({")", "]", "}"})
