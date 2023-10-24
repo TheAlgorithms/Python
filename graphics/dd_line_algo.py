@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-class DDA_Lines:
+class dda_line:
     def __init__(self, x1, y1, x2, y2) -> None:
         self.x1 = x1
         self.x2 = x2
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     x2 = int(input("Enter the X2 Cordinate: "))
     y2 = int(input("Enter the Y2 Cordinate: "))
 
-    line = DDA_Lines(x1, y1, x2, y2)
+    line = dda_line(x1, y1, x2, y2)
 
     line.draw_line()
     line.plot_line()
