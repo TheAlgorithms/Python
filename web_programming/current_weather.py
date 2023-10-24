@@ -9,7 +9,7 @@ OPENWEATHERMAP_API_KEY = "Your_OpenWeatherMap_API_Key_Here"
 WEATHERSTACK_API_KEY = "Your_Weatherstack_API_Key_Here"
 
 
-def current_weather(location: str) -> tuple[dict]:
+def current_weather(location: str) -> tuple[dict, ...]:
     weather_data = ()
 
     if OPENWEATHERMAP_API_KEY and WEATHERSTACK_API_KEY:
