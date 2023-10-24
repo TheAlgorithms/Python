@@ -9,8 +9,9 @@ URL_BASE = "http://api.weatherstack.com/current"
 def current_weather(location: str, api_key: str = API_KEY) -> dict:
     # Prepare the parameters to send in the API request
     params = {
-        "access_key": api_key,  # API key for authentication 
-"query": location,}
+        "access_key": api_key,  # API key for authentication
+        "query": location,
+    }
 
     # Make an HTTP GET request to the Weatherstack API and parse the response as JSON
     response = requests.get(URL_BASE, params=params)
