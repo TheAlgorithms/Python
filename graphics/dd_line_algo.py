@@ -29,7 +29,7 @@ class DdaLine:
         >>> line.x_values
         [1, 2.0, 3.0, 4.0]
         >>> line.y_values
-        [1.0, 2.0, 3.0, 4.0]
+        [1, 2.0, 3.0, 4.0]
         """
         dx = self.x2 - self.x1
         dy = self.y2 - self.y1
