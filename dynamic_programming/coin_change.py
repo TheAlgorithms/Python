@@ -1,8 +1,7 @@
-
 def countWaysToMakeChange(arr, n, T):
     # Initialize a list 'prev' to store the number of ways for different target amounts
     prev = [0] * (T + 1)
-    
+
     # Initialize the base condition for the first element in the array
     for i in range(T + 1):
         if i % arr[0] == 0:
@@ -24,12 +23,13 @@ def countWaysToMakeChange(arr, n, T):
 
             # Store the total number of ways in 'cur'
             cur[target] = notTaken + taken
-        
+
         # Update 'prev' with the results from 'cur' for the next iteration
         prev = cur
 
     # Return the total number of ways for the given target amount
     return prev[T]
+
 
 def main():
     arr = [1, 2, 3]
@@ -38,5 +38,6 @@ def main():
 
     print("The total number of ways is", countWaysToMakeChange(arr, n, target))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
