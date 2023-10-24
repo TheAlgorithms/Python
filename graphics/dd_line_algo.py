@@ -61,6 +61,7 @@ class DdaLine:
         plt.grid()
         plt.show()
 
+
 if __name__ == "__main__":
     x1 = int(input("Enter the X1 Coordinate: "))
     y1 = int(input("Enter the Y1 Coordinate: "))
