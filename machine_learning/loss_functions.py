@@ -260,6 +260,7 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     squared_errors = (y_true - y_pred) ** 2
     return np.mean(squared_errors)
 
+
 def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
     Calculates the Mean Absolute Error (MAE) between ground truth (observed)
@@ -307,6 +308,7 @@ def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
             return np.mean(abs(np.asarray(y_true) - np.asarray(y_pred)))
         except ValueError as error:
             raise error("Could not convert input to NumPy array.")
+
 
 def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
