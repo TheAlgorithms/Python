@@ -7,6 +7,7 @@ Output: 5
 Leetcode link: https://leetcode.com/problems/distinct-subsequences/description/
 """
 
+
 def count_distinct_subsequences(input_str: str, target_str: str) -> int:
     """
     Calculate the number of distinct subsequences of `input_str`
