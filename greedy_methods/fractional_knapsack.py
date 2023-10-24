@@ -46,7 +46,7 @@ def frac_knapsack(vl: list, wt: list, w: int, n: int) -> float:
     """
 
     # sort in descending order of value/weight ratio
-    r = sorted(zip(vl, wt), key=lambda x: x[0] / x[1], reverse=True)
+    r = sorted(zip(vl, wt), key=lambda x: x[0] / x[1], reverse=True, strict=True)
 
     vl, wt = [i[0] for i in r], [i[1] for i in r]  # unzip the list
     acc = list(accumulate(wt))  # cumulative sum of weights
