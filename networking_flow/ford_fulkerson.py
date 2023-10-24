@@ -82,7 +82,7 @@ def ford_fulkerson(graph: list, source: int, sink: int) -> int:
     # This array is filled by breadth-first search and to store path
     parent = [-1] * (len(graph))
     max_flow = 0
-    
+
     # While there is a path from source to sink
     while breadth_first_search(graph, source, sink, parent):
         path_flow = int(1e9)  # Infinite value
