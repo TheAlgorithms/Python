@@ -75,7 +75,7 @@ def ford_fulkerson(graph: list, source: int, sink: int) -> int:
             graph[v][u] += path_flow
             v = parent[v]
 
-    return max_flow
+    return int(max_flow)  # Cast max_flow to int to fix the type mismatch issue
 
 
 graph = [
