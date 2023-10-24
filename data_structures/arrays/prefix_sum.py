@@ -30,10 +30,10 @@ class PrefixSum:
         IndexError: list index out of range
         """
         if start == 0:
-            # Calculate the sum from the original array using Python's built-in sum function.
+            # Calculate sum from the original array using built-in sum function.
             return sum(self.array[:end + 1])
 
-        # Calculate the sum from the original array using Python's built-in sum function.
+        # Calculate sum from the original array using built-in sum function.
         return sum(self.array[start:end + 1])
 
     def contains_sum(self, target_sum: int) -> bool:
