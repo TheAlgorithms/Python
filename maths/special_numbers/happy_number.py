@@ -31,6 +31,8 @@ def is_happy_number(number: int) -> bool:
         number = sum(int(digit) ** 2 for digit in str(number))
 
     return number == 1
+
+
 if __name__ == "__main__":
     import doctest
 
