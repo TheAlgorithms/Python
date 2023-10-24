@@ -32,9 +32,7 @@ def backtrack(
     """
     if len(partial) == 2 * n:
         # When the combination is complete, add it to the result.
-        result.append(
-            partial
-        )
+        result.append(partial)
         return
 
     if open_count < n:
