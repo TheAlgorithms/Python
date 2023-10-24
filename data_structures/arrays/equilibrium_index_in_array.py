@@ -51,7 +51,8 @@ def equilibrium_index(arr: list[int]) -> int:
 
     return -1
 
+
 if __name__ == "__main__":
     import doctest
-    doctest.testmod()
 
+    doctest.testmod()
