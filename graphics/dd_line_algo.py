@@ -19,8 +19,8 @@ class DdaLine:
         self.y1 = y1
         self.y2 = y2
 
-        self.x_values = []
-        self.y_values = []
+        self.x_values: list[float] = []
+        self.y_values: list[float] = []
 
     def draw_line(self) -> None:
         """
