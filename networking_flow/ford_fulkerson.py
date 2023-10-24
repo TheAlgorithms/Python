@@ -58,7 +58,7 @@ def ford_fulkerson(graph: list, source: int, sink: int) -> int:
     parent = [-1] * (len(graph))
     max_flow = 0
     while bfs(graph, source, sink, parent):  # While there is path from source to sink
-        path_flow = float("Inf")
+        path_flow = 1e9  # Infinite value
         s = sink
 
         while s != source:
@@ -75,7 +75,7 @@ def ford_fulkerson(graph: list, source: int, sink: int) -> int:
             graph[v][u] += path_flow
             v = parent[v]
 
-    return int(max_flow)  # Cast max_flow to int to fix the type mismatch issue
+    return max_flow
 
 
 graph = [
