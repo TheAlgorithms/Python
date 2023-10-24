@@ -1,6 +1,8 @@
 from bisect import bisect
 from itertools import accumulate
 
+# Reference Link: https://en.wikipedia.org/wiki/Continuous_knapsack_problem
+
 
 def frac_knapsack(vl: list, wt: list, w: int, n: int) -> float:
     """
