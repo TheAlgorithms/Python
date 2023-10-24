@@ -26,6 +26,8 @@ def frac_knapsack(vl, wt, w, n):
     130
     >>> frac_knapsack([10, 40, 30, 50], [5, 4, 6, 3], 8, 400)
     95.0
+    >>> frac_knapsack("ABCD", [5, 4, 6, 3], 8, 400)
+    ?
     """
 
     r = sorted(zip(vl, wt), key=lambda x: x[0] / x[1], reverse=True)
