@@ -11,6 +11,7 @@ def binary_search(arr, target, low, high):
     else:
         return binary_search(arr, target, mid + 1, high)  # Search in the right half
 
+
 # Example usage
 arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 target = 5
