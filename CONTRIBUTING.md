@@ -38,6 +38,28 @@ Fixes #10
 ```
 GitHub will use this tag to [auto-close the issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) if and when the PR is merged.
 
+### How to mark Checkboxes during a PR
+
+If you want to mark check boxes while committing a PR,
+__Do's__
+* Mark the box empty box [ ] with the small letter 'x' so
+  - Uncheck box : [ ]
+  - Checked Box : [x]
+
+  Ex,
+  [x] Type 1
+  [x] Type 2
+  [ ] Type 3
+  [ ] Type 4
+
+__Dont's__
+* __Do not__ mark the `Check Boxes` with :
+  - &check; - html checkbox example
+  - ✅ - emoji checkbox example
+  - &#9746; - unicode checkbox example
+
+__Note : The Commit will only accept [x] or [ ]__
+
 #### What is an Algorithm?
 
 An Algorithm is one or more functions (or classes) that:
