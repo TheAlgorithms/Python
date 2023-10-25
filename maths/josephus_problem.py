@@ -1,12 +1,12 @@
 """
 The Josephus problem is a famous theoretical problem related to a certain
 counting-out game. This module provides functions to solve the Josephus problem
-for n people and a step size of k.
+for num_people and a step_size.
 
 The Josephus problem is defined as follows:
-- n people are standing in a circle.
+- num_people are standing in a circle.
 - Starting with a specified person, you count around the circle,
-  skipping a fixed number of people (k).
+  skipping a fixed number of people (step_size).
 - The person at which you stop counting is eliminated from the circle.
 - The counting continues until only one person remains.
 
@@ -15,13 +15,13 @@ https://en.wikipedia.org/wiki/Josephus_problem
 """
 
 
-def josephus_recursive(n: int, k: int) -> int:
+def josephus_recursive(num_people: int, step_size: int) -> int:
     """
-    Solve the Josephus problem for n people and a step size of k recursively.
+    Solve the Josephus problem for num_people and a step_size recursively.
 
     Args:
-        n (int): Number of people.
-        k (int): Step size for elimination.
+        num_people (int): Number of people.
+        step_size (int): Step size for elimination.
 
     Returns:
         int: The position of the last person remaining.
@@ -32,19 +32,19 @@ def josephus_recursive(n: int, k: int) -> int:
         >>> josephus_recursive(10, 2)
         4
     """
-    if n == 1:
+    if num_people == 1:
         return 0
 
-    return (josephus_recursive(n - 1, k) + k) % n
+    return (josephus_recursive(num_people - 1, step_size) + step_size) % num_people
 
 
-def find_winner(n: int, k: int) -> int:
+def find_winner(num_people: int, step_size: int) -> int:
     """
-    Find the winner of the Josephus problem for n people and a step size of k.
+    Find the winner of the Josephus problem for num_people and a step_size.
 
     Args:
-        n (int): Number of people.
-        k (int): Step size for elimination.
+        num_people (int): Number of people.
+        step_size (int): Step size for elimination.
 
     Returns:
         int: The position of the last person remaining (1-based index).
@@ -55,16 +55,16 @@ def find_winner(n: int, k: int) -> int:
         >>> find_winner(10, 2)
         5
     """
-    return josephus_recursive(n, k) + 1
+    return josephus_recursive(num_people, step_size) + 1
 
 
-def josephus_iterative(n: int, k: int) -> int:
+def josephus_iterative(num_people: int, step_size: int) -> int:
     """
-    Solve the Josephus problem for n people and a step size of k iteratively.
+    Solve the Josephus problem for num_people and a step_size iteratively.
 
     Args:
-        n (int): The number of people in the circle.
-        k (int): The number of steps to take before eliminating someone.
+        num_people (int): The number of people in the circle.
+        step_size (int): The number of steps to take before eliminating someone.
 
     Returns:
         int: The position of the last person standing.
@@ -75,11 +75,11 @@ def josephus_iterative(n: int, k: int) -> int:
         >>> josephus_iterative(7, 3)
         4
     """
-    circle = list(range(1, n + 1))
+    circle = list(range(1, num_people + 1))
     current = 0
 
     while len(circle) > 1:
-        current = (current + k - 1) % len(circle)
+        current = (current + step_size - 1) % len(circle)
         circle.pop(current)
 
     return circle[0]
