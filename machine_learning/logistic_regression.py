@@ -14,8 +14,6 @@ Helpful resources:
 Coursera ML course
 https://medium.com/@martinpella/logistic-regression-from-scratch-in-python-124c5636b8ac
 """
-from typing import Union
-
 import numpy as np
 from matplotlib import pyplot as plt
 from sklearn import datasets
@@ -29,7 +27,7 @@ from sklearn import datasets
 # classification problems
 
 
-def sigmoid_function(z: Union[int, np.ndarray]) -> Union[int, np.ndarray]:
+def sigmoid_function(z: np.ndarray) -> np.ndarray:
     """
     Also known as Logistic Function.
 
@@ -64,7 +62,7 @@ def sigmoid_function(z: Union[int, np.ndarray]) -> Union[int, np.ndarray]:
     return 1 / (1 + np.exp(-z))
 
 
-def cost_function(h: Union[int, np.ndarray], y: Union[int, np.ndarray]) -> int:
+def cost_function(h: np.ndarray, y: np.ndarray) -> int:
     """
     Cost function quantifies the error between predicted and expected values.
     The cost function used in Logistic Regression is called Log Loss
