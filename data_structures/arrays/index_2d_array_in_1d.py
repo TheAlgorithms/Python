@@ -28,13 +28,18 @@ class Index2DArrayIterator:
         and all columns are the same size.
     """
 
-    def __init__(self, array: list[list[int]]):
+    def __init__(self, array: list[list[int]]) -> None:
         self.array = array
         self.cols = len(array[0])
         self.n = len(array) * len(array[0])
         self.i = 0
 
     def __iter__(self) -> Iterator[int]:
+        """
+        >>> t = Index2DArrayIterator([[5],[-523],[-1],[34],[0]])
+        >>> t.__iter__() is not None
+        True
+        """
         return self
 
     def __next__(self) -> int:
