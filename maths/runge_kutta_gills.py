@@ -1,7 +1,8 @@
 """
 Use the Runge-Kutta-Gill's method of order 4 to solve Ordinary Differential Equations.
 
-https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods
+
+https://www.geeksforgeeks.org/gills-4th-order-method-to-solve-differential-equations/
 Author : Ravi Kumar
 """
 from collections.abc import Callable
@@ -11,7 +12,7 @@ import numpy as np
 
 
 def runge_kutta_gills(
-    func: Callable,
+    func: Callable[[float, float], float],
     x_initial: float,
     y_initial: float,
     step_size: float,
@@ -19,8 +20,6 @@ def runge_kutta_gills(
 ) -> np.ndarray:
     """
     Solve an Ordinary Differential Equations using Runge-Kutta-Gills Method of order 4.
-
-    https://www.geeksforgeeks.org/gills-4th-order-method-to-solve-differential-equations/
 
     args:
     func: An ordinary differential equation (ODE) as function of x and y.
@@ -67,25 +66,21 @@ def runge_kutta_gills(
         raise ValueError("Step size must be positive.")
 
     n = int((x_final - x_initial) / step_size)
-    y = np.zeros(
-        (n + 1),
-    )
-    x = np.zeros(n + 1)
+    y = np.zeros(n + 1)
     y[0] = y_initial
-    x[0] = x_initial
     for i in range(n):
-        k1 = step_size * func(x[i], y[i])
-        k2 = step_size * func(x[i] + step_size / 2, y[i] + k1 / 2)
+        k1 = step_size * func(x_initial, y[i])
+        k2 = step_size * func(x_initial + step_size / 2, y[i] + k1 / 2)
         k3 = step_size * func(
-            x[i] + step_size / 2,
+            x_initial + step_size / 2,
             y[i] + (-0.5 + 1 / sqrt(2)) * k1 + (1 - 1 / sqrt(2)) * k2,
         )
         k4 = step_size * func(
-            x[i] + step_size, y[i] - (1 / sqrt(2)) * k2 + (1 + 1 / sqrt(2)) * k3
+            x_initial + step_size, y[i] - (1 / sqrt(2)) * k2 + (1 + 1 / sqrt(2)) * k3
         )
 
         y[i + 1] = y[i] + (k1 + (2 - sqrt(2)) * k2 + (2 + sqrt(2)) * k3 + k4) / 6
-        x[i + 1] = step_size + x[i]
+        x_initial = step_size + x_initial
     return y
 
 
