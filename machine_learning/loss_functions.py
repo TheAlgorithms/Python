@@ -337,10 +337,8 @@ def mean_absolute_percentage_error(
         raise ValueError("The length of the two arrays should be the same.")
 
     y_true = np.where(y_true == 0, epsilon, y_true)
-    # Calculate the absolute percentage difference between y_true and y_pred
     absolute_percentage_diff = np.abs((y_true - y_pred) / y_true)
 
-    # Calculate the mean.
     return np.mean(absolute_percentage_diff)
 
 
