@@ -1,6 +1,9 @@
 from typing import List, Tuple, Union
 
-def binary_search(array: List[int], lower_bound: int, upper_bound: int, value: int) -> int:
+
+def binary_search(
+    array: List[int], lower_bound: int, upper_bound: int, value: int
+) -> int:
     """
     Binary search in a sorted 1D array.
     Returns the index of the value if found, or -1 if not found.
@@ -15,7 +18,10 @@ def binary_search(array: List[int], lower_bound: int, upper_bound: int, value: i
             upper_bound = mid - 1
     return -1
 
-def search_2d_matrix(value: int, matrix: List[List[int]]) -> Union[List[int], Tuple[int, int]]:
+
+def search_2d_matrix(
+    value: int, matrix: List[List[int]]
+) -> Union[List[int], Tuple[int, int]]:
     """
     Search for a value in a sorted 2D matrix.
     Returns the index [row, col] of the value if found, or (-1, -1) if not found.
@@ -35,6 +41,7 @@ def search_2d_matrix(value: int, matrix: List[List[int]]) -> Union[List[int], Tu
             col -= 1
 
     return (-1, -1)
+
 
 if __name__ == "__main__":
     import doctest
