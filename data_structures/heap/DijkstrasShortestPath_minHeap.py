@@ -1,7 +1,3 @@
-# Dijkstra's Shortest Path Algorithm finds the shortest path from a specified source vertex to all other
-# vertices in a weighted graph. It can be implemented using a min_heap to efficiently select the next
-# vertex to explore.
-
 import heapq
 
 
