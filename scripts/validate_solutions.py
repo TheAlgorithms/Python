@@ -8,7 +8,9 @@ import requests
 import pytest
 
 PROJECT_EULER_DIR_PATH = pathlib.Path.cwd().joinpath("project_euler")
-PROJECT_EULER_ANSWERS_PATH = pathlib.Path.cwd().joinpath("scripts", "project_euler_answers.json")
+PROJECT_EULER_ANSWERS_PATH = pathlib.Path.cwd().joinpath(
+    "scripts", "project_euler_answers.json"
+)
 
 with open(PROJECT_EULER_ANSWERS_PATH) as file_handle:
     PROBLEM_ANSWERS: dict[str, str] = json.load(file_handle)
@@ -89,7 +91,10 @@ def test_solution(solution_path: pathlib.Path, expected_hash: str) -> None:
 
 @pytest.mark.parametrize(
     "solution_path, expected_hash",
-    [(path, PROBLEM_ANSWERS[path.parent.name[8:].zfill(3)]) for path in collect_solution_file_paths()],
+    [
+        (path, PROBLEM_ANSWERS[path.parent.name[8:].zfill(3)])
+        for path in collect_solution_file_paths()
+    ],
     ids=lambda args: f"{args[0].parent.name}/{args[0].name}",
 )
 def test_project_euler(solution_path: pathlib.Path, expected_hash: str) -> None:
