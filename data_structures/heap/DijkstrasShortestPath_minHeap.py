@@ -26,6 +26,7 @@ class Graph:
                     heapq.heappush(min_heap, (distances[v], v))
         return distances
 
+
 if __name__ == "__main__":
     import doctest
 
@@ -43,5 +44,4 @@ if __name__ == "__main__":
 # src_vertex = 0
 # shortest_distances = g.dijkstra(src_vertex)
 # print("shortest distances from vertex", src_vertex,
-#"to all other vertices", shortest_distances)
-
+# "to all other vertices", shortest_distances)
