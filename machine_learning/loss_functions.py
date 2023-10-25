@@ -297,7 +297,9 @@ def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
     return np.mean(squared_logarithmic_errors)
 
 
-def mean_absolute_percentage_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+def mean_absolute_percentage_error(
+    y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-9
+) -> float:
     """
     Calculate the Mean Absolute Percentage Error between y_true and y_pred.
 
@@ -319,28 +321,27 @@ def mean_absolute_percentage_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
     >>> y_true = np.array([10, 20, 30, 40])
     >>> y_pred = np.array([12, 18, 33, 45])
     >>> mean_absolute_percentage_error(y_true, y_pred)
-    13.124999992135416
+    0.13124999992135416
 
     >>> y_true = np.array([1, 2, 3, 4])
     >>> y_pred = np.array([2, 3, 4, 5])
     >>> mean_absolute_percentage_error(y_true, y_pred)
-    52.083332977430565
+    0.52083332977430565
 
     >>> y_true = np.array([5, 0, 10, 20])
     >>> y_pred = np.array([5, 0, 9, 15])
     >>> mean_absolute_percentage_error(y_true, y_pred)
-    8.749999994374999
+    0.08749999994374999
     """
     if len(y_true) != len(y_pred):
         raise ValueError("The length of the two arrays should be the same.")
 
+    y_true = np.where(y_true == 0, epsilon, y_true)
     # Calculate the absolute percentage difference between y_true and y_pred
-    # added 1e-9 to avoid division by 0 (smoothing).
-    absolute_percentage_diff = np.abs((y_true - y_pred) / (y_true + 0.00000001))
+    absolute_percentage_diff = np.abs((y_true - y_pred) / y_true)
 
-    # Calculate the mean and multiply by 100 for percentage.
-    error = np.mean(absolute_percentage_diff) * 100
-    return error
+    # Calculate the mean.
+    return np.mean(absolute_percentage_diff)
 
 
 if __name__ == "__main__":
