@@ -74,7 +74,7 @@ class AdamsBashforth:
 
     >>> def f(x, y):
     ...     return x
-    >>> y = AdamsBashforth(f, [0, 0.2, 0.4, 0.6, 0.8], [0, 0, 0.04, 0.128, 0.307], -0.2, 1).step_5()
+    >>> y = AdamsBashforth(f,[0,0.2,0.4,0.6,0.8],[0,0,0.04,0.128 0.307],-0.2,1).step_5()
     Traceback (most recent call last):
         ...
     ValueError: Step size must be positive.
