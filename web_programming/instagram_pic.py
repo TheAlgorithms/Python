@@ -2,7 +2,6 @@ from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
 
-
 def download_image(url):
     try:
         response = requests.get(url)
@@ -29,7 +28,6 @@ def download_image(url):
             print("No meta tag with 'og:image' property found.")
     except requests.exceptions.RequestException as e:
         print(f"An error occurred during the HTTP request: {e}")
-
 
 if __name__ == "__main__":
     url = input("Enter image URL: ").strip()
