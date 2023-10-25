@@ -16,10 +16,10 @@ def merge_two_sorted_arrays(nums1: list[int], nums2: list[int]) -> list[int]:
 
     Examples:
         >>> merge_two_sorted_arrays([1,5,7], [0,4,9])
-        [0,1,4,5,7,9]
+        [0, 1, 4, 5, 7, 9]
 
         >>> merge_two_sorted_arrays([-11,5,45], [0,5,9])
-        [-11,0,5,5,9,45]
+        [-11, 0, 5, 5, 9, 45]
     """
 
     if not nums1 and not nums2:
