@@ -297,6 +297,51 @@ def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
     return np.mean(squared_logarithmic_errors)
 
 
+def mean_absolute_percentage_error(
+    y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-15
+) -> float:
+    """
+    Calculate the Mean Absolute Percentage Error between y_true and y_pred.
+
+    Mean Absolute Percentage Error calculates the average of the absolute
+    percentage differences between the predicted and true values.
+
+    Formula = (Σ|y_true[i]-Y_pred[i]/y_true[i]|)/n
+
+    Source: https://stephenallwright.com/good-mape-score/
+
+    Parameters:
+    y_true (np.ndarray): Numpy array containing true/target values.
+    y_pred (np.ndarray): Numpy array containing predicted values.
+
+    Returns:
+    float: The Mean Absolute Percentage error between y_true and y_pred.
+
+    Examples:
+    >>> y_true = np.array([10, 20, 30, 40])
+    >>> y_pred = np.array([12, 18, 33, 45])
+    >>> mean_absolute_percentage_error(y_true, y_pred)
+    0.13125
+
+    >>> y_true = np.array([1, 2, 3, 4])
+    >>> y_pred = np.array([2, 3, 4, 5])
+    >>> mean_absolute_percentage_error(y_true, y_pred)
+    0.5208333333333333
+
+    >>> y_true = np.array([34, 37, 44, 47, 48, 48, 46, 43, 32, 27, 26, 24])
+    >>> y_pred = np.array([37, 40, 46, 44, 46, 50, 45, 44, 34, 30, 22, 23])
+    >>> mean_absolute_percentage_error(y_true, y_pred)
+    0.064671076436071
+    """
+    if len(y_true) != len(y_pred):
+        raise ValueError("The length of the two arrays should be the same.")
+
+    y_true = np.where(y_true == 0, epsilon, y_true)
+    absolute_percentage_diff = np.abs((y_true - y_pred) / y_true)
+
+    return np.mean(absolute_percentage_diff)
+
+
 if __name__ == "__main__":
     import doctest
 
