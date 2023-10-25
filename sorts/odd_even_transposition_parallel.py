@@ -81,10 +81,10 @@ def odd_even_transposition(arr):
     # True
     # >>> odd_even_transposition([False, True, False]) == sorted([False, False, True])
     # True
-    >>> odd_even_transposition([1, 32.0, 9]) == sorted([False, False, True])
-    False
-    # >>> odd_even_transposition([1, 32.0, 9]) == sorted([1.0, 32, 9.0])
-    # True
+    # >>> odd_even_transposition([1, 32.0, 9]) == sorted([False, False, True])
+    # False
+    >>> odd_even_transposition([1, 32.0, 9]) == sorted([1.0, 32, 9.0])
+    True
     # >>> unsorted_list = [-442, -98, -554, 266, -491, 985, -53, -529, 82, -429]
     # >>> odd_even_transposition(unsorted_list) == sorted(unsorted_list)
     # True
