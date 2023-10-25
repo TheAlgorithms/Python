@@ -95,6 +95,10 @@ def odd_even_transposition(arr):
     Traceback (most recent call last):
         ...
     TypeError: '>' not supported between instances of 'bool' and 'str'
+    >>> odd_even_transposition([8, "a"]) == sorted(["a", 8])
+    Traceback (most recent call last):
+        ...
+    TypeError: '<' not supported between instances of 'str' and 'int'
     """
     process_array_ = []
     result_pipe = []
