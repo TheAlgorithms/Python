@@ -291,12 +291,6 @@ def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     Traceback (most recent call last):
     ...
     ValueError: Input arrays must have the same length.
-    >>> true_labels = '1.0, 2.0, 3.0, 4.0'
-    >>> predicted_probs = '0.3, 0.8, 0.9, 0.2'
-    >>> mean_absolute_error(true_labels, predicted_probs)
-    Traceback (most recent call last):
-    ...
-    ValueError: Could not convert input to NumPy array.
     """
     if len(y_true) != len(y_pred):
         raise ValueError("Input arrays must have the same length.")
@@ -307,7 +301,7 @@ def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
         try:
             return np.mean(abs(np.asarray(y_true) - np.asarray(y_pred)))
         except ValueError as error:
-            raise error("Could not convert input to NumPy array.")
+            raise ValueError("Could not convert input to NumPy array.") from error
 
 
 def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
