@@ -75,15 +75,15 @@ class GradientBoostingClassifier:
 
 if __name__ == "__main__":
     iris = load_iris()
-    X, y = iris.data, iris.target
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42
+    x, y = iris.data, iris.target
+    x_train, x_test, y_train, y_test = train_test_split(
+        x, y, test_size=0.2, random_state=42
     )
 
     clf = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1)
-    clf.fit(X_train, y_train)
+    clf.fit(x_train, y_train)
 
-    y_pred = clf.predict(X_test)
+    y_pred = clf.predict(x_test)
     accuracy = accuracy_score(y_test, y_pred)
     print(f"Accuracy: {accuracy:.2f}")
 
