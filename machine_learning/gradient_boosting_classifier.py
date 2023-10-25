@@ -3,6 +3,7 @@ from sklearn.datasets import load_iris
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
+from typing import List, Tuple
 
 
 class GradientBoostingClassifier:
@@ -21,7 +22,7 @@ class GradientBoostingClassifier:
         """
         self.n_estimators = n_estimators
         self.learning_rate = learning_rate
-        self.models = []
+        self.models: List[Tuple[DecisionTreeRegressor, float]] = []
 
     def fit(self, features: np.ndarray, target: np.ndarray) -> None:
         """
