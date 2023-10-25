@@ -75,10 +75,10 @@ def odd_even_transposition(arr):
     """
     # >>> odd_even_transposition(list(range(10)[::-1])) == sorted(list(range(10)[::-1]))
     # True
-    >>> odd_even_transposition(["a", "x", "c"]) == sorted(["x", "a", "c"])
-    True
-    # >>> odd_even_transposition([1.9, 42.0, 2.8]) == sorted([1.9, 42.0, 2.8])
+    # >>> odd_even_transposition(["a", "x", "c"]) == sorted(["x", "a", "c"])
     # True
+    >>> odd_even_transposition([1.9, 42.0, 2.8]) == sorted([1.9, 42.0, 2.8])
+    True
     # >>> odd_even_transposition([False, True, False]) == sorted([False, False, True])
     # True
     # >>> odd_even_transposition([1, 32.0, 9]) == sorted([False, False, True])
