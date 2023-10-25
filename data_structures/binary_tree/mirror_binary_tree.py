@@ -3,6 +3,7 @@ from collections.abc import Iterator
 from dataclasses import dataclass
 from typing import Optional, List
 
+
 @dataclass
 class Node:
     """A Node has a value and pointers to its left and right Nodes."""
@@ -39,6 +40,7 @@ class Node:
             mirrored_node.right = self.left.mirror(False) if self.left else None
             return mirrored_node
 
+
 def make_tree_seven() -> Node:
     """Return a binary tree with 7 nodes."""
     tree = Node(1)
@@ -49,6 +51,7 @@ def make_tree_seven() -> Node:
     tree.right.left = Node(6)
     tree.right.right = Node(7)
     return tree
+
 
 def make_tree_nine() -> Node:
     """Return a binary tree with 9 nodes."""
@@ -63,6 +66,7 @@ def make_tree_nine() -> Node:
     tree.left.right.right = Node(9)
     return tree
 
+
 def main() -> None:
     """Mirror binary trees and print the results."""
     trees = {
@@ -74,6 +78,7 @@ def main() -> None:
         print(f"The {name} tree: {list(tree)}")
         mirrored_tree = tree.mirror(False)
         print(f"Mirror of {name} tree: {list(mirrored_tree)}")
+
 
 if __name__ == "__main__":
     main()
