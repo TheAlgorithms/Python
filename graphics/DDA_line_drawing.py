@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 
+
 def dda_line(x1, y1, x2, y2):
     # Calculate the differences in x and y coordinates
     dx = x2 - x1
@@ -27,6 +28,7 @@ def dda_line(x1, y1, x2, y2):
 
     return x_points, y_points
 
+
 if __name__ == "__main__":
     # Input the coordinates of the two endpoints of the line
     x1 = int(input("Enter x1: "))
@@ -38,9 +40,9 @@ if __name__ == "__main__":
     x_points, y_points = dda_line(x1, y1, x2, y2)
 
     # Plot the line using Matplotlib
-    plt.plot(x_points, y_points, marker='o')
-    plt.title('DDA Line Drawing Algorithm')
-    plt.xlabel('X-axis')
-    plt.ylabel('Y-axis')
+    plt.plot(x_points, y_points, marker="o")
+    plt.title("DDA Line Drawing Algorithm")
+    plt.xlabel("X-axis")
+    plt.ylabel("Y-axis")
     plt.grid()
     plt.show()
