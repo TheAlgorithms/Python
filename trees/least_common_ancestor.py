@@ -29,10 +29,10 @@ def insert(temp, data):
 
 
 def make_tree(elements):
-    tree = TreeNode(elements[0])
+    tr = TreeNode(elements[0])
     for element in elements[1:]:
-        insert(tree, element)
-    return tree
+        insert(tr, element)
+    return tr
 
 
 class Solution:
