@@ -29,20 +29,20 @@ def insert(temp, data):
 
 
 def make_tree(elements):
-    Tree = TreeNode(elements[0])
+    tree = TreeNode(elements[0])
     for element in elements[1:]:
-        insert(Tree, element)
-    return Tree
+        insert(tree, element)
+    return tree
 
 
-class Solution(object):
-    def lowestCommonAncestor(self, root, p, q):
+class Solution:
+    def lowestcommonancestor(self, root, p, q):
         if not root:
             return None
-        if root.data == p or root.data == q:
+        if root.data in (p, q):
             return root
-        left = self.lowestCommonAncestor(root.left, p, q)
-        right = self.lowestCommonAncestor(root.right, p, q)
+        left = self.lowestcommonancestor(root.left, p, q)
+        right = self.lowestcommonancestor(root.right, p, q)
         if right and left:
             return root
         return right or left
@@ -50,4 +50,4 @@ class Solution(object):
 
 ob1 = Solution()
 tree = make_tree([3, 5, 1, 6, 2, 0, 8, None, None, 7, 4])
-print(ob1.lowestCommonAncestor(tree, 5, 1).data)
+print(ob1.lowestcommonancestor(tree, 5, 1).data)
