@@ -57,6 +57,8 @@ def frac_knapsack(
     Traceback (most recent call last):
         ...
     TypeError: unsupported operand type(s) for /: 'str' and 'int'
+    >>> frac_knapsack([500], [30], 10, 1)
+    166.66666666666666
     """
 
     # Input validation
@@ -68,15 +70,18 @@ def frac_knapsack(
         zip(values, weights, strict=True), key=lambda x: x[0] / x[1], reverse=True
     )
 
-    values, weights = [i[0] for i in r], [i[1] for i in r]  # unzip the list
+    values, weights = zip(*r)  # unzip the sorted list
     acc = list(accumulate(weights))  # cumulative sum of weights
+
     # find the index of the weight just greater than capacity
     k = bisect(acc, capacity)
 
-    if k == 0:  # no item can be put into the knapsack
-        return 0
-    elif k != max_items:  # fractional part of the kth item can be put into the knapsack
-        return sum(values[:k]) + (capacity - acc[k - 1]) * (values[k]) / (weights[k])
+    if k == 0:  # first item is greater than capacity
+        fraction = capacity / weights[0]
+        return fraction * values[0]
+    elif k < max_items:  # fractional part of the kth item can be put into the knapsack
+        fraction = (capacity - acc[k - 1]) / weights[k]
+        return sum(values[:k]) + fraction * values[k]
     return sum(values[:k])  # all items can be put into the knapsack
 
 
