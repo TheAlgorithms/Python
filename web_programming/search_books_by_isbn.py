@@ -19,6 +19,10 @@ def get_openlibrary_data(olid: str = "isbn/0140328726") -> dict:
     {'publishers': ['Puffin'], 'number_of_pages': 96, 'isbn_10': ['0140328726'], ...
     # >>> get_openlibrary_data(olid='/authors/OL7353617A')  # doctest: +ELLIPSIS
     {'name': 'Adrian Brisku', 'created': {'type': '/type/datetime', ...
+    >>> get_openlibrary_data("isbn//0140328726")
+    Traceback (most recent call last):
+        ...
+    ValueError: isbn//0140328726 is not a valid Open Library olid
     """
     new_olid = olid.strip().strip("/")  # Remove leading/trailing whitespace & slashes
     if new_olid.count("/") != 1:
@@ -30,6 +34,8 @@ def get_openlibrary_data(olid: str = "isbn/0140328726") -> dict:
 def summarize_book(ol_book_data: dict) -> dict:
     """
     Given Open Library book data, return a summary as a Python dict.
+    >>> summarize_book(get_openlibrary_data("isbn/0140328726"))
+    {'Title': 'Fantastic Mr. Fox', 'Publish date': 'October 1, 1988', 'Authors': 'Roald Dahl', 'Number of pages:': 96, 'First sentence': 'Down in the valley there were three farms.', 'ISBN (10)': '0140328726', 'ISBN (13)': '9780140328721'}
     """
     desired_keys = {
         "title": "Title",
