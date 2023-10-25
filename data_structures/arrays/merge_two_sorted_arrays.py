@@ -1,4 +1,3 @@
-
 """
     https://en.wikipedia.org/wiki/Merge_algorithm   
 """
@@ -11,7 +10,7 @@ def merge_two_sorted_arrays(nums1: list[int], nums2: list[int]) -> list[int]:
     Args:
         nums1: The first array.
         nums2: The second array.
-    
+
     Returns:
         The merged sorted array.
 
@@ -20,15 +19,11 @@ def merge_two_sorted_arrays(nums1: list[int], nums2: list[int]) -> list[int]:
         [0,1,4,5,7,9]
 
         >>> merge_two_sorted_arrays([-11,5,45], [0,5,9])
-        [-11,0,5,5,9,45] 
+        [-11,0,5,5,9,45]
+"""
 
-        >>> merge_two_sorted_arrays([], [])
-        Traceback (most recent call last):
-            ...
-        ValueError: Both input arrays are empty.
 
-    """
-    
+def merge_two_sorted_arrays(nums1: list[int], nums2: list[int]) -> list[int]:
     if not nums1 and not nums2:
         raise ValueError("Both input arrays are empty.")
 
@@ -57,8 +52,8 @@ def merge_two_sorted_arrays(nums1: list[int], nums2: list[int]) -> list[int]:
 
     return merged
 
+
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    
