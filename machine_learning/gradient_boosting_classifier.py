@@ -4,6 +4,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
 
+
 class GradientBoostingClassifier:
     def __init__(self, n_estimators: int = 100, learning_rate: float = 0.1) -> None:
         """
