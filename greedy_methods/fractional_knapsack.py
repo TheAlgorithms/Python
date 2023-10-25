@@ -70,7 +70,7 @@ def frac_knapsack(
         zip(values, weights, strict=True), key=lambda x: x[0] / x[1], reverse=True
     )
 
-    values, weights = zip(*r)  # unzip the sorted list
+    values, weights = [i[0] for i in r], [i[1] for i in r]  # unzip
     acc = list(accumulate(weights))  # cumulative sum of weights
 
     # find the index of the weight just greater than capacity
