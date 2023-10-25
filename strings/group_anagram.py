@@ -10,7 +10,7 @@ Leetcode link: https://leetcode.com/problems/group-anagrams/description/
 """
 
 
-def group_anagrams(words):
+def group_anagrams(words: list[str]) -> dict[str, list[str]]:
     """
     Group anagrams in a list of words.
 
