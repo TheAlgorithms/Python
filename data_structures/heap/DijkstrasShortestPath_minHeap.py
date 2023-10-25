@@ -2,11 +2,11 @@ import heapq
 
 
 class Graph:
-    def __init__(self, vertices):
+    def __init__(self, vertices) -> None:
         self.V = vertices
         self.graph = [[] for _ in range(vertices)]
 
-    def add_edge(self, u, v, w):
+    def add_edge(self, u, v, w) -> None:
         self.graph[u].append((v, w))
         self.graph[v].append((u, w))
 
@@ -37,4 +37,5 @@ class Graph:
 # g.add_edge(3,4,7)
 # src_vertex = 0
 # shortest_distances = g.dijkstra(src_vertex)
-# print("shortest distances from vertex", src_vertex, "to all other vertices", shortest_distances)
+# print("shortest distances from vertex", src_vertex,
+"to all other vertices", shortest_distances)
