@@ -1,7 +1,11 @@
 
 """
-    https://en.wikipedia.org/wiki/Merge_algorithm
+    https://en.wikipedia.org/wiki/Merge_algorithm   
+"""
 
+def merge_two_sorted_arrays(nums1: list[int], nums2: list[int]) -> list[int]:
+
+    """
     Merge two sorted arrays.
 
     Args:
@@ -16,10 +20,14 @@
         [0,1,4,5,7,9]
 
         >>> merge_two_sorted_arrays([-11,5,45], [0,5,9])
-        [-11,0,5,5,9,45]    
-"""
+        [-11,0,5,5,9,45] 
 
-def merge_two_sorted_arrays(nums1: list[int], nums2: list[int]) -> list[int]:
+        >>> merge_two_sorted_arrays([], [])
+        Traceback (most recent call last):
+            ...
+        ValueError: Both input arrays are empty.
+
+    """
     
     if not nums1 and not nums2:
         raise ValueError("Both input arrays are empty.")
@@ -29,22 +37,22 @@ def merge_two_sorted_arrays(nums1: list[int], nums2: list[int]) -> list[int]:
     merged = []
 
     # Merge the two arrays
-    while i < len(arr1) and j < len(arr2):
-        if arr1[i] < arr2[j]:
-            merged.append(arr1[i])
+    while i < len(nums1) and j < len(nums2):
+        if nums1[i] < nums2[j]:
+            merged.append(nums1[i])
             i += 1
         else:
-            merged.append(arr2[j])
+            merged.append(nums2[j])
             j += 1
 
     # Merge remaining elements
-    while i < len(arr1):
-        merged.append(arr1[i])
+    while i < len(nums1):
+        merged.append(nums1[i])
         i += 1
 
     # Merge remaining elements
-    while j < len(arr2):
-        merged.append(arr2[j])
+    while j < len(nums2):
+        merged.append(nums2[j])
         j += 1
 
     return merged
