@@ -9,11 +9,20 @@ from collections.abc import Callable
 
 import numpy as np
 
-class AdamsBashforth:
-    def __init__(self, func: Callable[[float, float], float], x_initials: list[float], y_initials: list[float], step_size: float, x_final: float):
 
+class AdamsBashforth:
+    def __init__(
+        self,
+        func: Callable[[float, float], float],
+        x_initials: list[float],
+        y_initials: list[float],
+        step_size: float,
+        x_final: float,
+    ):
         if x_initials[-1] >= x_final:
-            raise ValueError("The final value of x must be greater than the initial values of x.")
+            raise ValueError(
+                "The final value of x must be greater than the initial values of x."
+            )
 
         if step_size <= 0:
             raise ValueError("Step size must be positive.")
@@ -69,7 +78,7 @@ class AdamsBashforth:
     Traceback (most recent call last):
         ...
     ValueError: Step size must be positive.
-    
+
     >>> def f(x, y):
     ...     return (x -y)/2
     >>> y = AdamsBashforth(f, [0, 0.2, 0.4], [0, 0, 0.04], 0.2, 1).step_2()
@@ -91,7 +100,9 @@ class AdamsBashforth:
         y[1] = y_1
 
         for i in range(n):
-            y[i+2] = y[i+1] + (self.step_size/2)*(3*self.func(x_1, y[i+1]) - self.func(x_0, y[i]))
+            y[i + 2] = y[i + 1] + (self.step_size / 2) * (
+                3 * self.func(x_1, y[i + 1]) - self.func(x_0, y[i])
+            )
             x_0 = x_1
             x_1 = x_1 + self.step_size
 
@@ -110,8 +121,12 @@ class AdamsBashforth:
         y[1] = y_1
         y[2] = y_2
 
-        for i in range(n+1):
-            y[i+3] = y[i+2] + (self.step_size/12)*(23*self.func(x_2 , y[i+2]) -16*self.func(x_1, y[i+1]) + 5*self.func(x_0, y[i]))
+        for i in range(n + 1):
+            y[i + 3] = y[i + 2] + (self.step_size / 12) * (
+                23 * self.func(x_2, y[i + 2])
+                - 16 * self.func(x_1, y[i + 1])
+                + 5 * self.func(x_0, y[i])
+            )
             x_0 = x_1
             x_1 = x_2
             x_2 = x_2 + self.step_size
@@ -133,7 +148,12 @@ class AdamsBashforth:
         y[3] = y_3
 
         for i in range(n):
-            y[i+4] = y[i+3] + (self.step_size/24) * (55 * self.func(x_3, y[i+3]) - 59 * self.func(x_2 , y[i+2]) + 37*self.func(x_1, y[i+1]) - 9*self.func(x_0, y[i]))
+            y[i + 4] = y[i + 3] + (self.step_size / 24) * (
+                55 * self.func(x_3, y[i + 3])
+                - 59 * self.func(x_2, y[i + 2])
+                + 37 * self.func(x_1, y[i + 1])
+                - 9 * self.func(x_0, y[i])
+            )
             x_0 = x_1
             x_1 = x_2
             x_2 = x_3
@@ -156,8 +176,14 @@ class AdamsBashforth:
         y[3] = y_3
         y[4] = y_4
 
-        for i in range(n+1):
-            y[i+5] = y[i+4] + (self.step_size/720) * (1901 * self.func(x_4, y[i+4]) - 2774 * self.func(x_3, y[i+3]) - 2616 * self.func(x_2 , y[i+2]) - 1274 *self.func(x_1, y[i+1]) + 251*self.func(x_0, y[i]))
+        for i in range(n + 1):
+            y[i + 5] = y[i + 4] + (self.step_size / 720) * (
+                1901 * self.func(x_4, y[i + 4])
+                - 2774 * self.func(x_3, y[i + 3])
+                - 2616 * self.func(x_2, y[i + 2])
+                - 1274 * self.func(x_1, y[i + 1])
+                + 251 * self.func(x_0, y[i])
+            )
             x_0 = x_1
             x_1 = x_2
             x_2 = x_3
@@ -165,6 +191,7 @@ class AdamsBashforth:
             x_4 = x_4 + self.step_size
 
         return y
+
 
 if __name__ == "__main__":
     import doctest
