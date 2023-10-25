@@ -5,29 +5,26 @@ import json
 import os
 import pathlib
 from types import ModuleType
-
-import pytest
 import requests
+import pytest
 
 PROJECT_EULER_DIR_PATH = pathlib.Path.cwd().joinpath("project_euler")
-PROJECT_EULER_ANSWERS_PATH = pathlib.Path.cwd().joinpath(
-    "scripts", "project_euler_answers.json"
-)
+PROJECT_EULER_ANSWERS_PATH = pathlib.Path.cwd().joinpath("scripts", "project_euler_answers.json")
 
 with open(PROJECT_EULER_ANSWERS_PATH) as file_handle:
     PROBLEM_ANSWERS: dict[str, str] = json.load(file_handle)
 
 
 def convert_path_to_module(file_path: pathlib.Path) -> ModuleType:
-    """Converts a file path to a Python module"""
+    """Converts a file path to a Python module."""
     spec = importlib.util.spec_from_file_location(file_path.name, str(file_path))
-    module = importlib.util.module_from_spec(spec)  # type: ignore
-    spec.loader.exec_module(module)  # type: ignore
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
     return module
 
 
 def all_solution_file_paths() -> list[pathlib.Path]:
-    """Collects all the solution file path in the Project Euler directory"""
+    """Collects all the solution file paths in the Project Euler directory."""
     solution_file_paths = []
     for problem_dir_path in PROJECT_EULER_DIR_PATH.iterdir():
         if problem_dir_path.is_file() or problem_dir_path.name.startswith("_"):
@@ -46,12 +43,8 @@ def get_files_url() -> str:
     return event["pull_request"]["url"] + "/files"
 
 
-def added_solution_file_path() -> list[pathlib.Path]:
-    """Collects only the solution file path which got added in the current
-    pull request.
-
-    This will only be triggered if the script is ran from GitHub Actions.
-    """
+def added_solution_file_paths() -> list[pathlib.Path]:
+    """Collects only the solution file paths added in the current pull request."""
     solution_file_paths = []
     headers = {
         "Accept": "application/vnd.github.v3+json",
@@ -72,25 +65,34 @@ def added_solution_file_path() -> list[pathlib.Path]:
 
 def collect_solution_file_paths() -> list[pathlib.Path]:
     if os.environ.get("CI") and os.environ.get("GITHUB_EVENT_NAME") == "pull_request":
-        # Return only if there are any, otherwise default to all solutions
-        if filepaths := added_solution_file_path():
+        # Return only if there are any; otherwise, default to all solutions
+        if filepaths := added_solution_file_paths():
             return filepaths
     return all_solution_file_paths()
 
 
-@pytest.mark.parametrize(
-    "solution_path",
-    collect_solution_file_paths(),
-    ids=lambda path: f"{path.parent.name}/{path.name}",
-)
-def test_project_euler(solution_path: pathlib.Path) -> None:
-    """Testing for all Project Euler solutions"""
-    # problem_[extract this part] and pad it with zeroes for width 3
-    problem_number: str = solution_path.parent.name[8:].zfill(3)
-    expected: str = PROBLEM_ANSWERS[problem_number]
+def hash_solution(solution: int) -> str:
+    """Hashes the solution to compare with expected values."""
+    return hashlib.sha256(str(solution).encode()).hexdigest()
+
+
+def test_solution(solution_path: pathlib.Path, expected_hash: str) -> None:
+    """Test an individual Project Euler solution."""
     solution_module = convert_path_to_module(solution_path)
-    answer = str(solution_module.solution())  # type: ignore
-    answer = hashlib.sha256(answer.encode()).hexdigest()
+    solution_function = getattr(solution_module, "solution", None)
+    assert solution_function is not None, "Solution function not found"
+    answer = solution_function()
+    hashed_answer = hash_solution(answer)
     assert (
-        answer == expected
-    ), f"Expected solution to {problem_number} to have hash {expected}, got {answer}"
+        hashed_answer == expected_hash
+    ), f"Hash mismatch for {solution_path.name}. Expected: {expected_hash}, Got: {hashed_answer}"
+
+
+@pytest.mark.parametrize(
+    "solution_path, expected_hash",
+    [(path, PROBLEM_ANSWERS[path.parent.name[8:].zfill(3)]) for path in collect_solution_file_paths()],
+    ids=lambda args: f"{args[0].parent.name}/{args[0].name}",
+)
+def test_project_euler(solution_path: pathlib.Path, expected_hash: str) -> None:
+    """Testing for all Project Euler solutions."""
+    test_solution(solution_path, expected_hash)
