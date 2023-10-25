@@ -298,7 +298,7 @@ def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
 
 
 def mean_absolute_percentage_error(
-    y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-9
+    y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-15
 ) -> float:
     """
     Calculate the Mean Absolute Percentage Error between y_true and y_pred.
@@ -321,17 +321,17 @@ def mean_absolute_percentage_error(
     >>> y_true = np.array([10, 20, 30, 40])
     >>> y_pred = np.array([12, 18, 33, 45])
     >>> mean_absolute_percentage_error(y_true, y_pred)
-    0.13124999992135416
+    0.13125
 
     >>> y_true = np.array([1, 2, 3, 4])
     >>> y_pred = np.array([2, 3, 4, 5])
     >>> mean_absolute_percentage_error(y_true, y_pred)
-    0.52083332977430565
+    0.5208333333333333
 
-    >>> y_true = np.array([5, 0, 10, 20])
-    >>> y_pred = np.array([5, 0, 9, 15])
+    >>> y_true = np.array([34, 37, 44, 47, 48, 48, 46, 43, 32, 27, 26, 24])
+    >>> y_pred = np.array([37, 40, 46, 44, 46, 50, 45, 44, 34, 30, 22, 23])
     >>> mean_absolute_percentage_error(y_true, y_pred)
-    0.08749999994374999
+    0.064671076436071
     """
     if len(y_true) != len(y_pred):
         raise ValueError("The length of the two arrays should be the same.")
