@@ -1,5 +1,5 @@
 """
-    https://en.wikipedia.org/wiki/Merge_algorithm   
+    https://en.wikipedia.org/wiki/Merge_algorithm
 """
 
 def merge_two_sorted_arrays(nums1: list[int], nums2: list[int]) -> list[int]:
