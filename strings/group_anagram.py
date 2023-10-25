@@ -24,7 +24,7 @@ def group_anagrams(words):
     >>> group_anagrams(["listen", "silent", "hello", "world"])
     {'eilnst': ['listen', 'silent'], 'ehllo': ['hello'], 'dlorw': ['world']}
     """
-    grouped_words = dict()
+    grouped_words = {}
 
     # Put all anagram words together in a dictionary
     # where the key is the sorted word
@@ -39,8 +39,8 @@ def group_anagrams(words):
 
 
 if __name__ == "__main__":
-    arr = ["cat", "dog", "tac", "god", "act"]
-    groups = group_anagrams(arr)
+    words = ["cat", "dog", "tac", "god", "act"]
+    groups = group_anagrams(words)
 
     # Sort the groups for consistent output
     sorted_groups = sorted(groups)
