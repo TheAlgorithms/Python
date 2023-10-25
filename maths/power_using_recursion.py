@@ -15,6 +15,8 @@
 
 def power(base: int, exponent: int) -> float:
     """
+    Calculate the power of a base raised to an exponent.
+
     >>> power(3, 4)
     81
     >>> power(2, 0)
