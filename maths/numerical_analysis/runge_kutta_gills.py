@@ -1,7 +1,6 @@
 """
 Use the Runge-Kutta-Gill's method of order 4 to solve Ordinary Differential Equations.
 
-
 https://www.geeksforgeeks.org/gills-4th-order-method-to-solve-differential-equations/
 Author : Ravi Kumar
 """
@@ -80,7 +79,7 @@ def runge_kutta_gills(
         )
 
         y[i + 1] = y[i] + (k1 + (2 - sqrt(2)) * k2 + (2 + sqrt(2)) * k3 + k4) / 6
-        x_initial = step_size + x_initial
+        x_initial += step_size
     return y
 
 
