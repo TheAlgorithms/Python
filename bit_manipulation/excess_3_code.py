@@ -1,4 +1,4 @@
-def excess_3_code(number:int)->str:
+def excess_3_code(number: int) -> str:
     """
     Find excess 3 code of integer base 10.
     We add 3 to all digits in the decimal number then convert to binary coded decimal number.
@@ -18,7 +18,6 @@ def excess_3_code(number:int)->str:
     for digit in str(max(0, number)):
         num += str(bin(int(digit)+ 3))[2:].zfill(4)
     return "0b" + num
-
 
 
 if __name__ == "__main__":
