@@ -2,15 +2,15 @@
 Retrieves the value of an 0-indexed 1D index from a 2D array.
 There are two ways to retrieve value(s):
 
-1. Index2DArrayIterator(array) -> Iterator[int]
-This iterator allows you to iterate through a 2D array by passing in the array and
+1. Index2DArrayIterator(matrix) -> Iterator[int]
+This iterator allows you to iterate through a 2D array by passing in the matrix and
 calling next(your_iterator). You can also use the iterator in a loop.
 Examples:
-list(Index2DArrayIterator(array))
-set(Index2DArrayIterator(array))
-tuple(Index2DArrayIterator(array))
-sum(Index2DArrayIterator(array))
--5 in Index2DArrayIterator(array)
+list(Index2DArrayIterator(matrix))
+set(Index2DArrayIterator(matrix))
+tuple(Index2DArrayIterator(matrix))
+sum(Index2DArrayIterator(matrix))
+-5 in Index2DArrayIterator(matrix)
 
 2. index_2d_array_in_1d(array: list[int], index: int) -> int
 This function allows you to provide a 2D array and a 0-indexed 1D integer index,
@@ -64,8 +64,8 @@ def index_2d_array_in_1d(array: list[list[int]], index: int) -> int:
     Retrieves the value of the one-dimensional index from a two-dimensional array.
 
     Args:
-        array (List[int]): A 2D array of integers where all rows are the same size and
-        all columns are the same size.
+        array: A 2D array of integers where all rows are the same size and all
+               columns are the same size.
         index: A 1D index.
 
     Returns:
