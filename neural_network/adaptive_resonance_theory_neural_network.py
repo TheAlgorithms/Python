@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class ART:
     def __init__(self, input_size, rho, alpha):
         self.W = np.ones((1, input_size))
@@ -28,7 +29,8 @@ class ART:
     def update(self, x):
         self.W = self.alpha * x + (1 - self.alpha) * self.W
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     input_size = 2
     rho = 0.9
     alpha = 0.1
