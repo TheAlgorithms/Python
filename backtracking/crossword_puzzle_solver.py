@@ -1,4 +1,5 @@
-def solve_crossword(puzzle, words):
+# https://www.geeksforgeeks.org/solve-crossword-puzzle/
+def solve_crossword(puzzle, words) -> None:
     rows, cols = len(puzzle), len(puzzle[0])
 
     def is_valid(word, r, c, direction):
@@ -7,7 +8,7 @@ def solve_crossword(puzzle, words):
         else:  # direction == "down"
             return r + len(word) <= rows and all(puzzle[r + i][c] in ("", word[i]) for i in range(len(word)))
 
-    def place_word(word, r, c, direction):
+    def place_word(word, r, c, direction) -> None:
         if direction == "across":
             for i in range(len(word)):
                 puzzle[r][c + i] = word[i]
@@ -15,7 +16,7 @@ def solve_crossword(puzzle, words):
             for i in range(len(word)):
                 puzzle[r + i][c] = word[i]
 
-    def remove_word(word, r, c, direction):
+    def remove_word(word, r, c, direction) -> None:
         if direction == "across":
             for i in range(len(word)):
                 puzzle[r][c + i] = ""
