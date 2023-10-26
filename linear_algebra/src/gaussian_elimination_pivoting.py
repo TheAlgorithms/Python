@@ -30,19 +30,19 @@ def custom_gauss_elimination_pivoting(
     matrix: list, const_vector: list, num_equations: int
 ) -> list:
     """
-    Solves a system of linear equations using Gaussian
-elimination with partial pivoting.
-    Parameters:
-    - coeff_matrix (list): The coefficient matrix.
-    - const_vector (list): The constant vector.
-    - num_equations (int): The number of equations in the system.
-    Returns:
-    - list: The solution vector.
-    Example:
-    >>> a_matrix = [[2, 3, 4], [1, -2, 3], [3, 4, 5]]
-    >>> b_vector = [20, 9, 11]
-    >>> custom_gauss_elimination_pivoting(a_matrix, b_vector, 3)
-    [1.0, 2.0, 3.0]
+        Solves a system of linear equations using Gaussian
+    elimination with partial pivoting.
+        Parameters:
+        - coeff_matrix (list): The coefficient matrix.
+        - const_vector (list): The constant vector.
+        - num_equations (int): The number of equations in the system.
+        Returns:
+        - list: The solution vector.
+        Example:
+        >>> a_matrix = [[2, 3, 4], [1, -2, 3], [3, 4, 5]]
+        >>> b_vector = [20, 9, 11]
+        >>> custom_gauss_elimination_pivoting(a_matrix, b_vector, 3)
+        [1.0, 2.0, 3.0]
     """
     result = []
     for i in range(num_equations - 1):
