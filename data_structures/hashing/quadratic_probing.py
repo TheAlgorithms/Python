@@ -21,6 +21,8 @@ class QuadraticProbing(HashTable):
 
         Hash + 1², Hash + 2², Hash + 3² .... Hash + n²
 
+        reference:
+            - https://en.wikipedia.org/wiki/Quadratic_probing
         e.g:
         1. Create hash table with size 7
         >>> qp = QuadraticProbing(7)
@@ -41,9 +43,6 @@ class QuadraticProbing(HashTable):
         >>> qp.insert_data(111)
         >>> qp.keys()
         {0: 0, 7: 999, 3: 111}
-
-        reference:
-            - https://en.wikipedia.org/wiki/Quadratic_probing
         """
 
         i = 1
