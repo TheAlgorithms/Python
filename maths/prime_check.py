@@ -40,7 +40,7 @@ def is_prime(number: int) -> bool:
     """
 
     # precondition
-    if(not isinstance(number, int) or not number >= 0):
+    if not isinstance(number, int) or not number >= 0:
         raise ValueError("is_prime() only accepts positive integers")
 
     if 1 < number < 4:
