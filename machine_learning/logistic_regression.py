@@ -46,15 +46,15 @@ def sigmoid_function(z: np.ndarray) -> np.ndarray:
     Examples:
     >>> sigmoid_function(4)
     0.9820137900379085
-    >>> sigmoid_function(np.array([-3,3]))
+    >>> sigmoid_function(np.array([-3, 3]))
     array([0.04742587, 0.95257413])
-    >>> sigmoid_function(np.array([-3,3,1]))
+    >>> sigmoid_function(np.array([-3, 3, 1]))
     array([0.04742587, 0.95257413, 0.73105858])
-    >>> sigmoid_function(np.array([-0.01,-2,-1.9]))
+    >>> sigmoid_function(np.array([-0.01, -2, -1.9]))
     array([0.49750002, 0.11920292, 0.13010847])
-    >>> sigmoid_function(np.array([-1.3,5.3,12]))
+    >>> sigmoid_function(np.array([-1.3, 5.3, 12]))
     array([0.21416502, 0.9950332 , 0.99999386])
-    >>> sigmoid_function(np.array([0.01,0.02,4.1]))
+    >>> sigmoid_function(np.array([0.01, 0.02, 4.1]))
     array([0.50249998, 0.50499983, 0.9836975 ])
     >>> sigmoid_function(np.array([0.8]))
     array([0.68997448])
@@ -86,27 +86,27 @@ def cost_function(h: np.ndarray, y: np.ndarray) -> int:
     >>> h1 = sigmoid_function(0.3)
     >>> h2 = sigmoid_function(-4.3)
     >>> h3 = sigmoid_function(8.1)
-    >>> h = np.array([h1,h2,h3])
-    >>> y = np.array([1,0,1])
+    >>> h = np.array([h1, h2, h3])
+    >>> y = np.array([1, 0, 1])
     >>> cost_function(h,y)
     0.18937868932131605
     >>> h1 = sigmoid_function(4)
     >>> h2 = sigmoid_function(3)
     >>> h3 = sigmoid_function(1)
-    >>> h = np.array([h1,h2,h3])
-    >>> y = np.array([1,0,0])
+    >>> h = np.array([h1, h2, h3])
+    >>> y = np.array([1, 0, 0])
     >>> cost_function(h,y)
     1.459999655669926
     >>> h1 = sigmoid_function(4)
     >>> h2 = sigmoid_function(-3)
     >>> h3 = sigmoid_function(-1)
-    >>> h = np.array([h1,h2,h3])
-    >>> y = np.array([1,0,0])
+    >>> h = np.array([h1, h2, h3])
+    >>> y = np.array([1, 0, 0])
     >>> cost_function(h,y)
     0.1266663223365915
     >>> h = sigmoid_function(0)
     >>> y = 1
-    >>> cost_function(h,y)
+    >>> cost_function(h, y)
     0.6931471805599453
 
     References:
