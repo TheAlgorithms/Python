@@ -10,74 +10,65 @@ Example
              / \   /
             4   7 13
 
->>> t = BinarySearchTree()
->>> t.insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
->>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
-8 3 1 6 4 7 10 14 13
-
->>> tuple(i.value for i in t.traversal_tree(inorder))
+>>> tree = BinarySearchTree()
+>>> tree.insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
+>>> tuple(node.value for node in tree.traversal_tree())  # inorder traversal (sorted)
 (1, 3, 4, 6, 7, 8, 10, 13, 14)
->>> tuple(t)
-(1, 3, 4, 6, 7, 8, 10, 13, 14)
->>> t.find_kth_smallest(3, t.root)
-4
->>> tuple(t)[3-1]
-4
+>>> tuple(node.value for node in tree.traversal_tree(postorder))
+(1, 4, 7, 6, 3, 13, 14, 10, 8)
 
->>> print(" ".join(repr(i.value) for i in t.traversal_tree(postorder)))
-1 4 7 6 3 13 14 10 8
->>> t.remove(20)
+>>> tuple(tree)
+(1, 3, 4, 6, 7, 8, 10, 13, 14)
+>>> iter_t = iter(tree)
+>>> next(iter_t)
+1
+>>> next(iter_t)
+3
+>>> tuple(tree)[3-1]  # 3rd smallest element in a zero-indexed tuple
+4
+>>> sum(tree)
+66
+
+>>> tuple(node.value for node in tree.traversal_tree(postorder))
+(1, 4, 7, 6, 3, 13, 14, 10, 8)
+>>> tree.remove(20)
 Traceback (most recent call last):
     ...
 ValueError: Value 20 not found
->>> BinarySearchTree().search(6)
-Traceback (most recent call last):
-    ...
-IndexError: Warning: Tree is empty! please use another.
 
 Other example:
 
->>> testlist = (8, 3, 6, 1, 10, 14, 13, 4, 7)
->>> t = BinarySearchTree()
->>> for i in testlist:
-...     t.insert(i)
+>>> values = (8, 3, 6, 1, 10, 14, 13, 4, 7)
+>>> tree = BinarySearchTree()
+>>> for value in values:
+...     tree.insert(value)
 
 Prints all the elements of the list in order traversal
->>> print(t)
+>>> print(tree)
 {'8': ({'3': (1, {'6': (4, 7)})}, {'10': (None, {'14': (13, None)})})}
 
 Test existence
->>> t.search(6) is not None
+>>> 6 in tree
 True
->>> 6 in t
-True
->>> t.search(-1) is not None
-False
->>> -1 in t
+>>> -1 in tree
 False
 
->>> t.search(6).is_right
+>>> tree.search(6).is_right
 True
->>> t.search(1).is_right
+>>> tree.search(1).is_right
 False
 
->>> t.get_max().value
+>>> max(tree)
 14
->>> max(t)
-14
->>> t.get_min().value
+>>> min(tree)
 1
->>> min(t)
-1
->>> t.empty()
+>>> not tree
 False
->>> not t
-False
->>> for i in testlist:
-...     t.remove(i)
->>> t.empty()
-True
->>> not t
+>>> for value in values:
+...     tree.remove(value)
+>>> list(tree)
+[]
+>>> not tree
 True
 """
 from __future__ import annotations
@@ -144,15 +135,12 @@ class BinarySearchTree:
         else:
             self.root = new_children
 
-    def empty(self) -> bool:
-        return self.root is None
-
     def __insert(self, value) -> None:
         """
         Insert a new node in Binary Search Tree with value label
         """
         new_node = Node(value)  # create a new Node
-        if self.empty():  # if Tree is empty
+        if not self:  # if Tree is empty
             self.root = new_node  # set its root
         else:  # Tree is not empty
             parent_node = self.root  # from root
@@ -178,47 +166,32 @@ class BinarySearchTree:
             self.__insert(value)
 
     def search(self, value) -> Node | None:
-        if self.empty():
+        if not self:
             raise IndexError("Warning: Tree is empty! please use another.")
-        else:
-            node = self.root
-            # use lazy evaluation here to avoid NoneType Attribute error
-            while node is not None and node.value is not value:
-                node = node.left if value < node.value else node.right
-            return node
+        node = self.root
+        # use lazy evaluation here to avoid NoneType Attribute error
+        while node and node.value is not value:
+            node = node.left if value < node.value else node.right
+        return node
 
     def get_max(self, node: Node | None = None) -> Node | None:
         """
         We go deep on the right branch
         """
         if node is None:
-            if self.root is None:
+            if not self.root:
                 return None
             node = self.root
 
-        if not self.empty():
+        if self:
             while node.right is not None:
                 node = node.right
-        return node
-
-    def get_min(self, node: Node | None = None) -> Node | None:
-        """
-        We go deep on the left branch
-        """
-        if node is None:
-            node = self.root
-        if self.root is None:
-            return None
-        if not self.empty():
-            node = self.root
-            while node.left is not None:
-                node = node.left
         return node
 
     def remove(self, value: int) -> None:
         # Look for the node with that label
         node = self.search(value)
-        if node is None:
+        if not node:
             msg = f"Value {value} not found"
             raise ValueError(msg)
 
@@ -229,29 +202,18 @@ class BinarySearchTree:
         elif node.right is None:  # Has only left children
             self.__reassign_nodes(node, node.left)
         else:
-            predecessor = self.get_max(
-                node.left
-            )  # Gets the max value of the left branch
+            # Gets the max value of the left branch
+            predecessor = self.get_max(node.left)
             self.remove(predecessor.value)  # type: ignore
-            node.value = (
-                predecessor.value  # type: ignore
-            )  # Assigns the value to the node to delete and keep tree structure
+            # Assigns the value to the node to delete and keep tree structure
+            node.value = predecessor.value  # type: ignore
 
-    def preorder_traverse(self, node: Node | None) -> Iterable:
-        if node is not None:
+    @classmethod
+    def preorder_traverse(cls, node: Node | None) -> Iterable:
+        if node:
             yield node  # Preorder Traversal
-            yield from self.preorder_traverse(node.left)
-            yield from self.preorder_traverse(node.right)
-
-    def traversal_tree(self, traversal_function=None) -> Any:
-        """
-        This function traversal the tree.
-        You can pass a function to traversal the tree as needed by client code
-        """
-        if traversal_function is None:
-            return self.preorder_traverse(self.root)
-        else:
-            return traversal_function(self.root)
+            yield from cls.preorder_traverse(node.left)
+            yield from cls.preorder_traverse(node.right)
 
     def inorder(self, arr: list, node: Node | None) -> None:
         """Perform an inorder traversal and append values of the nodes to
@@ -261,11 +223,12 @@ class BinarySearchTree:
             arr.append(node.value)
             self.inorder(arr, node.right)
 
-    def find_kth_smallest(self, k: int, node: Node) -> int:
-        """Return the kth smallest element in a binary search tree"""
-        arr: list[int] = []
-        self.inorder(arr, node)  # append all values to list using inorder traversal
-        return arr[k - 1]
+    def traversal_tree(self, traversal_function=None) -> Any:
+        """
+        This function traversal the tree.
+        You can pass a function to traversal the tree as needed by client code
+        """
+        return (traversal_function or inorder)(self.root)
 
 
 def inorder(curr_node: Node | None) -> list[Node]:
@@ -273,17 +236,17 @@ def inorder(curr_node: Node | None) -> list[Node]:
     inorder (left, self, right)
     """
     node_list = []
-    if curr_node is not None:
+    if curr_node:
         node_list = inorder(curr_node.left) + [curr_node] + inorder(curr_node.right)
     return node_list
 
 
 def postorder(curr_node: Node | None) -> list[Node]:
     """
-    postOrder (left, right, self)
+    postorder (left, right, self)
     """
     node_list = []
-    if curr_node is not None:
+    if curr_node:
         node_list = postorder(curr_node.left) + postorder(curr_node.right) + [curr_node]
     return node_list
 
