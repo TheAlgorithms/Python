@@ -14,7 +14,7 @@ def capacitor_parallel(capacitors: list[float]) -> float:
         ...
     ValueError: Capacitor at index 2 has a negative value!
     """
-    sum_c = 0
+    sum_c = 0.0
     for index, capacitor in enumerate(capacitors):
         if capacitor < 0:
             msg = f"Capacitor at index {index} has a negative value!"
@@ -38,7 +38,7 @@ def capacitor_series(capacitors: list[float]) -> float:
     ValueError: Capacitor at index 2 has a negative or zero value!
     """
 
-    first_sum = 0
+    first_sum = 0.0
     for index, capacitor in enumerate(capacitors):
         if capacitor <= 0:
             msg = f"Capacitor at index {index} has a negative or zero value!"
