@@ -43,6 +43,22 @@ class QuadraticProbing(HashTable):
         >>> qp.insert_data(111)
         >>> qp.keys()
         {0: 0, 7: 999, 3: 111}
+
+        3. Try to add three data elements when the size is two
+        >>> qp =  QuadraticProbing(2)
+        >>> qp.insert_data(0)
+        >>> qp.insert_data(999)
+        >>> qp.insert_data(111)
+        >>> qp.keys()
+        {0: 0, 4: 999, 1: 111}
+
+        4. Try to add three data elements when the size is one
+        >>> qp =  QuadraticProbing(1)
+        >>> qp.insert_data(0)
+        >>> qp.insert_data(999)
+        >>> qp.insert_data(111)
+        >>> qp.keys()
+        {4: 999, 1: 111}
         """
 
         i = 1
