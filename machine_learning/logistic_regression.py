@@ -83,30 +83,22 @@ def cost_function(h: np.ndarray, y: np.ndarray) -> int:
     @param y: the actual binary label associated with input example 'x'
 
     Examples:
-    >>> h1 = sigmoid_function(0.3)
-    >>> h2 = sigmoid_function(-4.3)
-    >>> h3 = sigmoid_function(8.1)
-    >>> h = np.array([h1, h2, h3])
-    >>> y = np.array([1, 0, 1])
-    >>> cost_function(h,y)
+    >>> estimations = np.array([
+    ...     sigmoid_function(0.3), sigmoid_function(-4.3), sigmoid_function(8.1)
+    ... ])
+    >>> cost_function(h=estimations, y=np.array([1, 0, 1]))
     0.18937868932131605
-    >>> h1 = sigmoid_function(4)
-    >>> h2 = sigmoid_function(3)
-    >>> h3 = sigmoid_function(1)
-    >>> h = np.array([h1, h2, h3])
-    >>> y = np.array([1, 0, 0])
-    >>> cost_function(h,y)
+    >>> estimations = np.array([
+    ...     sigmoid_function(4), sigmoid_function(3), sigmoid_function(1)
+    ... ])
+    >>> cost_function(h=estimations, y=np.array([1, 0, 0]))
     1.459999655669926
-    >>> h1 = sigmoid_function(4)
-    >>> h2 = sigmoid_function(-3)
-    >>> h3 = sigmoid_function(-1)
-    >>> h = np.array([h1, h2, h3])
-    >>> y = np.array([1, 0, 0])
-    >>> cost_function(h,y)
+    >>> estimations = np.array([
+    ...     sigmoid_function(4), sigmoid_function(-3), sigmoid_function(-1)
+    ... ])
+    >>> cost_function(h=estimations, y=np.array([1, 0, 0]))
     0.1266663223365915
-    >>> h = sigmoid_function(0)
-    >>> y = 1
-    >>> cost_function(h, y)
+    >>> cost_function(h=np.array([sigmoid_function(0)]), y=np.array([1]))
     0.6931471805599453
 
     References:
