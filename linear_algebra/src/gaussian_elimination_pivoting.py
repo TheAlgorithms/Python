@@ -1,7 +1,7 @@
-import numpy as np
-import time
 import sys
+import time
 
+import numpy as np
 
 matrixab = np.loadtxt("matrix.txt")
 B = np.copy(matrixab[:, matrixab.shape[1] - 1])
