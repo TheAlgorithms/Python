@@ -14,13 +14,12 @@ def foo(matrix):
     numofcolumns = ab.shape[1] - 1
     xlst = []
 
-    """"Lead element search"""
+    """Lead element search"""
     print("Matrix before leading coefficient search: ")
     print(ab)
     print(" ")
 
     """Upper triangular matrix"""
-
     for columnnum in range(numofrows):
         for i in range(columnnum, numofcolumns):
             if abs(ab[i][columnnum]) > abs(ab[columnnum][columnnum]):
@@ -31,9 +30,8 @@ def foo(matrix):
                 pass
         if columnnum != 0:
             for i in range(columnnum, numofrows):
-                ab[i, :] = (
-                    ab[i, :]
-                    - ab[i, columnnum - 1]
+                ab[i, :] -= (
+                    ab[i, columnnum - 1]
                     / ab[columnnum - 1, columnnum - 1]
                     * ab[columnnum - 1, :]
                 )
@@ -58,8 +56,8 @@ def foo(matrix):
     print("x vector: ")
     print(xlst)
     print(" ")
-    print("Start time: ", start, "End time: ", stop)
-    print("Elapsed time during the whole function in seconds:", stop - start)
+    print(f"Start time: {start}, End time: {stop}")
+    print(f"Elapsed time during the whole function in seconds: {stop - start}")
 
     return np.asarray(xlst)
 
@@ -79,7 +77,7 @@ deltab = modifiedb - B
 deltax = vectorofxalpha - vectorofxbeta
 print(" ")
 conda = abs(np.sum(deltax) / np.sum(vectorofxalpha)) * (np.sum(B) / np.sum(deltab))
-print("Cond(A) =< {:03f}".f(conda))
+print(f"Cond(A) =< {conda:0.6f}")
 
 
 # Example usage:
