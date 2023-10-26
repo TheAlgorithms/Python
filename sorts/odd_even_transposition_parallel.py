@@ -86,7 +86,7 @@ def odd_even_transposition(arr:List[int])->List[int]:
     temp_rs = Pipe()
     temp_rr = Pipe()
     process_array_.append(
-        Process(
+        Process(   
             target=oe_process,
             args=(0, arr[0], None, temp_rs, None, temp_rr, result_pipe[0],len(arr)),
         )
