@@ -774,8 +774,8 @@
 ## Other
   * [Activity Selection](other/activity_selection.py)
   * [Alternative List Arrange](other/alternative_list_arrange.py)
+  * [Bankers Algorithm](other/bankers_algorithm.py)
   * [Davis Putnam Logemann Loveland](other/davis_putnam_logemann_loveland.py)
-  * [Dijkstra Bankers Algorithm](other/dijkstra_bankers_algorithm.py)
   * [Doomsday](other/doomsday.py)
   * [Fischer Yates Shuffle](other/fischer_yates_shuffle.py)
   * [Gauss Easter](other/gauss_easter.py)
