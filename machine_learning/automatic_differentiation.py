@@ -44,7 +44,7 @@ from enum import Enum
 from types import TracebackType
 
 import numpy as np
-from typing_extensions import Self
+from typing_extensions import Self  # noqa: UP035
 
 
 class Variable:
@@ -192,7 +192,7 @@ class GradientTracker:
         object is already created. This class follows singleton
         design pattern.
         """
-        if cls.instance == None:
+        if cls.instance is None:
             cls.instance = super().__new__(cls)
         return cls.instance
 
