@@ -253,13 +253,13 @@ def matrix_concurrency(image: np.ndarray, coordinate: tuple[int, int]) -> np.nda
 
 
 def haralick_descriptors(matrix: np.ndarray) -> list[float]:
-    """Calculates all 8 Haralick descriptors based on co-occurence input matrix.
+    """Calculates all 8 Haralick descriptors based on co-occurrence input matrix.
     All descriptors are as follows:
     Maximum probability, Inverse Difference, Homogeneity, Entropy,
     Energy, Dissimilarity, Contrast and Correlation
 
     Args:
-        matrix: Co-occurence matrix to use as base for calculating descriptors.
+        matrix: Co-occurrence matrix to use as base for calculating descriptors.
 
     Returns:
         Reverse ordered list of resulting descriptors

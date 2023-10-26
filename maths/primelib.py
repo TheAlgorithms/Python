@@ -51,6 +51,10 @@ def is_prime(number: int) -> bool:
     True
     >>> is_prime(10)
     False
+    >>> is_prime(97)
+    True
+    >>> is_prime(9991)
+    False
     >>> is_prime(-1)
     Traceback (most recent call last):
         ...
@@ -450,6 +454,8 @@ def kg_v(number1, number2):
     40
     >>> kg_v(824,67)
     55208
+    >>> kg_v(1, 10)
+    10
     >>> kg_v(0)
     Traceback (most recent call last):
         ...
