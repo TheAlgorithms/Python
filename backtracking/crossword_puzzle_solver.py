@@ -1,53 +1,104 @@
 # https://www.geeksforgeeks.org/solve-crossword-puzzle/
-from typing import List, Optional
+from typing import List
 
+def solve_crossword(puzzle: List[List[str]], words: List[str]) -> List[List[str]]:
+    
+    """
+    Solve a crossword puzzle by placing words from the provided list into the puzzle.
 
-def solve_crossword(
-    puzzle: List[List[str]], words: List[str]
-) -> Optional[List[List[str]]]:
+    Args:
+        puzzle (List[List[str]]): The crossword puzzle grid.
+        words (List[str]): List of words to place in the puzzle.
+
+    Returns:
+        Optional[List[List[str]]]: The solved crossword puzzle, or None if no solution is found.
+    """
     rows, cols = len(puzzle), len(puzzle[0])
 
-    def is_valid(word: str, r: int, c: int, direction: str) -> bool:
-        if direction == "across":
-            return c + len(word) <= cols and all(
-                puzzle[r][c + i] in ("", word[i]) for i in range(len(word))
-            )
-        else:  # direction == "down"
-            return r + len(word) <= rows and all(
-                puzzle[r + i][c] in ("", word[i]) for i in range(len(word))
-            )
+    def is_valid(word: str, row: int, col: int, direction: str) -> bool:
+        """
+        Check if placing a word in a specific direction at a given position is valid.
+    
+        Args:
+            word (str): The word to be placed.
+            row (int): The starting row position.
+            col (int): The starting column position.
+            direction (str): Either "across" or "down".
+    
+        Returns:
+            bool: True if the placement is valid, otherwise False.
+        """
 
-    def place_word(word: str, r: int, c: int, direction: str) -> None:
         if direction == "across":
-            for i in range(len(word)):
-                puzzle[r][c + i] = word[i]
+            return col + len(word) <= cols and all(puzzle[row][col + i] in ("", word[i]) for i in range(len(word)))
         else:  # direction == "down"
-            for i in range(len(word)):
-                puzzle[r + i][c] = word[i]
+            return row + len(word) <= rows and all(puzzle[row + i][col] in ("", word[i]) for i in range(len(word)))
 
-    def remove_word(word: str, r: int, c: int, direction: str) -> None:
+    def place_word(word: str, row: int, col: int, direction: str) -> None:
+        """
+        Place a word in the crossword puzzle at a specific position and direction.
+    
+        Args:
+            word (str): The word to be placed.
+            row (int): The starting row position.
+            col (int): The starting column position.
+            direction (str): Either "across" or "down".
+    
+        Returns:
+            None
+        """
         if direction == "across":
             for i in range(len(word)):
-                puzzle[r][c + i] = ""
+                puzzle[row][col + i] = word[i]
         else:  # direction == "down"
             for i in range(len(word)):
-                puzzle[r + i][c] = ""
+                puzzle[row + i][col] = word[i]
+
+    def remove_word(word: str, row: int, col: int, direction: str) -> None:
+        """
+        Remove a word from the crossword puzzle at a specific position and direction.
+    
+        Args:
+            word (str): The word to be removed.
+            row (int): The starting row position.
+            col (int): The starting column position.
+            direction (str): Either "across" or "down".
+    
+        Returns:
+            None
+        """
+        if direction == "across":
+            for i in range(len(word)):
+                puzzle[row][col + i] = ""
+        else:  # direction == "down"
+            for i in range(len(word)):
+                puzzle[row + i][col] = ""
 
     def backtrack(puzzle: List[List[str]], words: List[str]) -> bool:
-        for r in range(rows):
-            for c in range(cols):
-                if puzzle[r][c] == "":
+        """
+        Recursively backtrack to solve the crossword puzzle.
+    
+        Args:
+            puzzle (List[List[str]]): The crossword puzzle grid.
+            words (List[str]): List of words to place in the puzzle.
+    
+        Returns:
+            bool: True if a solution is found, otherwise False.
+        """
+        for row in range(rows):
+            for col in range(cols):
+                if puzzle[row][col] == "":
                     for word in words[:]:
                         for direction in ["across", "down"]:
-                            if is_valid(word, r, c, direction):
-                                place_word(word, r, c, direction)
+                            if is_valid(word, row, col, direction):
+                                place_word(word, row, col, direction)
                                 words.remove(word)
                                 if not words:
                                     return True
                                 if backtrack(puzzle, words):
                                     return True
                                 words.append(word)
-                                remove_word(word, r, c, direction)
+                                remove_word(word, row, col, direction)
                     return False
         return True
 
@@ -57,7 +108,6 @@ def solve_crossword(
         return copied_puzzle
     else:
         return None
-
 
 # Example usage:
 puzzle = [
