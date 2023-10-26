@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def custom_pivoting(matrix: np.ndarray, num_rows: int, column_index: int) -> int:
     """
     Selects the index of the minimum absolute
@@ -24,7 +23,6 @@ def custom_pivoting(matrix: np.ndarray, num_rows: int, column_index: int) -> int
         if abs(matrix[index][column_index]) < abs(matrix[min_index][column_index]):
             min_index = index
     return min_index
-
 
 def custom_gauss_elimination_pivoting(
     matrix: list, const_vector: list, num_equations: int
