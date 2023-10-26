@@ -1,29 +1,32 @@
-""" https://en.wikipedia.org/wiki/Cocktail_shaker_sort """
 """
-    Pure implementation of the cocktail shaker sort algorithm in Python.
-    >>> cocktail_shaker_sort([4, 5, 2, 1, 2])
-    [1, 2, 2, 4, 5]
+An implementation of the cocktail shaker sort algorithm in pure Python.
 
-    >>> cocktail_shaker_sort([-4, 5, 0, 1, 2, 11])
-    [-4, 0, 1, 2, 5, 11]
-
-    >>> cocktail_shaker_sort([0.1, -2.4, 4.4, 2.2])
-    [-2.4, 0.1, 2.2, 4.4]
-
-    >>> cocktail_shaker_sort([1, 2, 3, 4, 5])
-    [1, 2, 3, 4, 5]
-
-    >>> cocktail_shaker_sort([-4, -5, -24, -7, -11])
-    [-24, -11, -7, -5, -4]
+https://en.wikipedia.org/wiki/Cocktail_shaker_sort
 """
+from typing import TypeVar
+
+T = TypeVar("T")
 
 
-def cocktail_shaker_sort(arr):
+def cocktail_shaker_sort(arr: list[T]) -> list[T]:
     """
     Sorts a list using the Cocktail Shaker Sort algorithm.
 
     :param arr: List of elements to be sorted.
     :return: Sorted list.
+
+    >>> cocktail_shaker_sort([4, 5, 2, 1, 2])
+    [1, 2, 2, 4, 5]
+    >>> cocktail_shaker_sort([-4, 5, 0, 1, 2, 11])
+    [-4, 0, 1, 2, 5, 11]
+    >>> cocktail_shaker_sort([0.1, -2.4, 4.4, 2.2])
+    [-2.4, 0.1, 2.2, 4.4]
+    >>> cocktail_shaker_sort([1, 2, 3, 4, 5])
+    [1, 2, 3, 4, 5]
+    >>> cocktail_shaker_sort((-4, -5, -24, -7, -11))
+    [-24, -11, -7, -5, -4]
+    >>> cocktail_shaker_sort(["elderberry", "banana", "date", "apple", "cherry"])
+    ["apple", "banana", "cherry", "date", "elderberry"]
     """
     start, end = 0, len(arr) - 1
 
@@ -57,13 +60,6 @@ def cocktail_shaker_sort(arr):
 
 if __name__ == "__main__":
     import doctest
-
-    doctest.testmod()
-
-    user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    sorted_list = cocktail_shaker_sort(unsorted)
-    print(f"Sorted list: {sorted_list}")
 
     doctest.testmod()
     user_input = input("Enter numbers separated by a comma:\n").strip()
