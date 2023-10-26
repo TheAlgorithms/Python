@@ -9,6 +9,14 @@ def print_dist(dist, v):
 
 
 def min_dist(mdist, vset, v):
+    """
+    >>> min_dist([inf, 0.0], [False, False], 2)
+    1
+    >>> min_dist([0.0, inf, inf], [False, False, False], 3)
+    0
+    >>> min_dist([0.0, inf, 4.0], [True, False, False], 3)
+    2
+    """
     min_val = float("inf")
     min_ind = -1
     for i in range(v):
@@ -19,22 +27,16 @@ def min_dist(mdist, vset, v):
 
 
 def dijkstra(graph, v, src):
-    """
-    >>> dijkstra([0, 0, 7, 0], [3, 0, 0, 4.3], [0, 0, 0, 5.6], [0, 8, 0, 0],4,1)
-    Vertex Distance
-    0 	 3
-    1 	 0
-    2 	 10
-    >>> dijkstra([0, 4], [3, 0], 2, 1)
-    Vertex Distance
-    0 	 3
-    """
     mdist = [float("inf") for _ in range(v)]
     vset = [False for _ in range(v)]
     mdist[src] = 0.0
 
     for _ in range(v - 1):
         u = min_dist(mdist, vset, v)
+        print(u)
+        print(mdist)
+        print(vset)
+        print(v)
         vset[u] = True
 
         for i in range(v):
