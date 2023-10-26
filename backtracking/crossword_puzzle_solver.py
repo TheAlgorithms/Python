@@ -1,8 +1,8 @@
 # https://www.geeksforgeeks.org/solve-crossword-puzzle/
 from typing import List
 
+
 def solve_crossword(puzzle: List[List[str]], words: List[str]) -> List[List[str]]:
-    
     """
     Solve a crossword puzzle by placing words from the provided list into the puzzle.
 
@@ -18,32 +18,36 @@ def solve_crossword(puzzle: List[List[str]], words: List[str]) -> List[List[str]
     def is_valid(word: str, row: int, col: int, direction: str) -> bool:
         """
         Check if placing a word in a specific direction at a given position is valid.
-    
+
         Args:
             word (str): The word to be placed.
             row (int): The starting row position.
             col (int): The starting column position.
             direction (str): Either "across" or "down".
-    
+
         Returns:
             bool: True if the placement is valid, otherwise False.
         """
 
         if direction == "across":
-            return col + len(word) <= cols and all(puzzle[row][col + i] in ("", word[i]) for i in range(len(word)))
+            return col + len(word) <= cols and all(
+                puzzle[row][col + i] in ("", word[i]) for i in range(len(word))
+            )
         else:  # direction == "down"
-            return row + len(word) <= rows and all(puzzle[row + i][col] in ("", word[i]) for i in range(len(word)))
+            return row + len(word) <= rows and all(
+                puzzle[row + i][col] in ("", word[i]) for i in range(len(word))
+            )
 
     def place_word(word: str, row: int, col: int, direction: str) -> None:
         """
         Place a word in the crossword puzzle at a specific position and direction.
-    
+
         Args:
             word (str): The word to be placed.
             row (int): The starting row position.
             col (int): The starting column position.
             direction (str): Either "across" or "down".
-    
+
         Returns:
             None
         """
@@ -57,13 +61,13 @@ def solve_crossword(puzzle: List[List[str]], words: List[str]) -> List[List[str]
     def remove_word(word: str, row: int, col: int, direction: str) -> None:
         """
         Remove a word from the crossword puzzle at a specific position and direction.
-    
+
         Args:
             word (str): The word to be removed.
             row (int): The starting row position.
             col (int): The starting column position.
             direction (str): Either "across" or "down".
-    
+
         Returns:
             None
         """
@@ -77,11 +81,11 @@ def solve_crossword(puzzle: List[List[str]], words: List[str]) -> List[List[str]
     def backtrack(puzzle: List[List[str]], words: List[str]) -> bool:
         """
         Recursively backtrack to solve the crossword puzzle.
-    
+
         Args:
             puzzle (List[List[str]]): The crossword puzzle grid.
             words (List[str]): List of words to place in the puzzle.
-    
+
         Returns:
             bool: True if a solution is found, otherwise False.
         """
@@ -108,6 +112,7 @@ def solve_crossword(puzzle: List[List[str]], words: List[str]) -> List[List[str]
         return copied_puzzle
     else:
         return None
+
 
 # Example usage:
 puzzle = [
