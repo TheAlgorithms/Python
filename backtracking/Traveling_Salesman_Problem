@@ -1,0 +1,32 @@
+import math
+
+def tsp(graph, visited, current, n, count, cost, ans, start):
+    if count == n and graph[current][start] > 0:
+        ans[0] = min(ans[0], cost + graph[current][start])
+        return
+
+    for i in range(n):
+        if not visited[i] and graph[current][i] > 0:
+            visited[i] = True
+            tsp(graph, visited, i, n, count + 1, cost + graph[current][i], ans, start)
+            visited[i] = False
+
+def traveling_salesman(graph):
+    n = len(graph)
+    visited = [False] * n
+    ans = [float('inf')]
+    visited[0] = True
+    tsp(graph, visited, 0, n, 1, 0, ans, 0)
+
+    return ans[0]
+
+# Example usage:
+graph = [
+    [0, 29, 20, 21],
+    [29, 0, 15, 16],
+    [20, 15, 0, 28],
+    [21, 16, 28, 0]
+]
+
+shortest_path_length = traveling_salesman(graph)
+print("Shortest path length:", shortest_path_length)
