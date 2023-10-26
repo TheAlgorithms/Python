@@ -2,6 +2,7 @@ from __future__ import annotations
 from maths.greatest_common_divisor import greatest_common_divisor
 from typing import List, Tuple
 
+
 def diophantine(a: int, b: int, c: int) -> Tuple[float, float]:
     """
     Diophantine Equation : Given integers a,b,c ( at least one of a and b != 0), the
@@ -16,7 +17,10 @@ def diophantine(a: int, b: int, c: int) -> Tuple[float, float]:
     r = c / d
     return (r * x, r * y)
 
-def diophantine_all_soln(a: int, b: int, c: int, n: int = 2) -> List[Tuple[float, float]]:
+
+def diophantine_all_soln(
+    a: int, b: int, c: int, n: int = 2
+) -> List[Tuple[float, float]]:
     """
     Finding All solutions of Diophantine Equations.
     """
@@ -39,6 +43,7 @@ def diophantine_all_soln(a: int, b: int, c: int, n: int = 2) -> List[Tuple[float
     # Return the list of solutions
     return solutions
 
+
 def extended_gcd(a: int, b: int) -> Tuple[int, int, int]:
     """
     Extended Euclid's Algorithm.
@@ -51,6 +56,7 @@ def extended_gcd(a: int, b: int) -> Tuple[int, int, int]:
     y = p - q * (a // b)
 
     return (d, x, y)
+
 
 if __name__ == "__main__":
     from doctest import testmod
