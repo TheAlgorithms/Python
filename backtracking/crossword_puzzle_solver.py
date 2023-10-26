@@ -10,8 +10,10 @@
 """
 from typing import List, Optional
 
-def solve_crossword(puzzle: List[List[str]], words: List[str]) -> Optional[List[List[str]]]:
 
+def solve_crossword(
+    puzzle: List[List[str]], words: List[str]
+) -> Optional[List[List[str]]]:
     rows, cols = len(puzzle), len(puzzle[0])
 
     def is_valid_placement(word: str, row: int, col: int, direction: str) -> bool:
@@ -28,9 +30,13 @@ def solve_crossword(puzzle: List[List[str]], words: List[str]) -> Optional[List[
             bool: True if the placement is valid, otherwise False.
         """
         if direction == "across":
-            return col + len(word) <= cols and all(puzzle[row][col + i] in ("", word[i]) for i in range(len(word)))
+            return col + len(word) <= cols and all(
+                puzzle[row][col + i] in ("", word[i]) for i in range(len(word))
+            )
         else:  # direction == "down"
-            return row + len(word) <= rows and all(puzzle[row + i][col] in ("", word[i]) for i in range(len(word)))
+            return row + len(word) <= rows and all(
+                puzzle[row + i][col] in ("", word[i]) for i in range(len(word))
+            )
 
     def place_word(word: str, row: int, col: int, direction: str) -> None:
         """
@@ -106,6 +112,7 @@ def solve_crossword(puzzle: List[List[str]], words: List[str]) -> Optional[List[
         return copied_puzzle
     else:
         return None
+
 
 # Example usage:
 puzzle = [
