@@ -1,5 +1,6 @@
 # https://stackoverflow.com/questions/1322510/given-an-integer-how-do-i-find-the-next-largest-power-of-two-using-bit-twiddlin
 
+
 def find_previous_power_of_two(number: int) -> int:
     """
     Find the largest power of two that is less than or equal to a given integer.
@@ -38,6 +39,7 @@ def find_previous_power_of_two(number: int) -> int:
         power <<= 1  # Equivalent to multiplying by 2
 
     return power >> 1
+
 
 if __name__ == "__main__":
     import doctest
