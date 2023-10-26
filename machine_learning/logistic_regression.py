@@ -27,7 +27,7 @@ from sklearn import datasets
 # classification problems
 
 
-def sigmoid_function(z: np.ndarray) -> np.ndarray:
+def sigmoid_function(z: float | np.ndarray) -> float | np.ndarray:
     """
     Also known as Logistic Function.
 
@@ -46,15 +46,15 @@ def sigmoid_function(z: np.ndarray) -> np.ndarray:
     Examples:
     >>> sigmoid_function(4)
     0.9820137900379085
-    >>> sigmoid_function(np.array([-3, 3]))
+    >>> sigmoid_function(np.array([-3,3]))
     array([0.04742587, 0.95257413])
-    >>> sigmoid_function(np.array([-3, 3, 1]))
+    >>> sigmoid_function(np.array([-3,3,1]))
     array([0.04742587, 0.95257413, 0.73105858])
-    >>> sigmoid_function(np.array([-0.01, -2, -1.9]))
+    >>> sigmoid_function(np.array([-0.01,-2,-1.9]))
     array([0.49750002, 0.11920292, 0.13010847])
-    >>> sigmoid_function(np.array([-1.3, 5.3, 12]))
+    >>> sigmoid_function(np.array([-1.3,5.3,12]))
     array([0.21416502, 0.9950332 , 0.99999386])
-    >>> sigmoid_function(np.array([0.01, 0.02, 4.1]))
+    >>> sigmoid_function(np.array([0.01,0.02,4.1]))
     array([0.50249998, 0.50499983, 0.9836975 ])
     >>> sigmoid_function(np.array([0.8]))
     array([0.68997448])
@@ -62,7 +62,7 @@ def sigmoid_function(z: np.ndarray) -> np.ndarray:
     return 1 / (1 + np.exp(-z))
 
 
-def cost_function(h: np.ndarray, y: np.ndarray) -> int:
+def cost_function(h: np.ndarray, y: np.ndarray) -> float:
     """
     Cost function quantifies the error between predicted and expected values.
     The cost function used in Logistic Regression is called Log Loss
@@ -83,22 +83,17 @@ def cost_function(h: np.ndarray, y: np.ndarray) -> int:
     @param y: the actual binary label associated with input example 'x'
 
     Examples:
-    >>> estimations = np.array([
-    ...     sigmoid_function(0.3), sigmoid_function(-4.3), sigmoid_function(8.1)
-    ... ])
-    >>> cost_function(h=estimations, y=np.array([1, 0, 1]))
+    >>> estimations = sigmoid_function(np.array([0.3,-4.3,8.1]))
+    >>> cost_function(h=estimations,y=np.array([1,0,1]))
     0.18937868932131605
-    >>> estimations = np.array([
-    ...     sigmoid_function(4), sigmoid_function(3), sigmoid_function(1)
-    ... ])
-    >>> cost_function(h=estimations, y=np.array([1, 0, 0]))
+    >>> estimations = sigmoid_function(np.array([4,3,1]))
+    >>> cost_function(h=estimations,y=np.array([1,0,0]))
     1.459999655669926
-    >>> estimations = np.array([
-    ...     sigmoid_function(4), sigmoid_function(-3), sigmoid_function(-1)
-    ... ])
-    >>> cost_function(h=estimations, y=np.array([1, 0, 0]))
+    >>> estimations = sigmoid_function(np.array([4,-3,-1]))
+    >>> cost_function(h=estimations,y=np.array([1,0,0]))
     0.1266663223365915
-    >>> cost_function(h=np.array([sigmoid_function(0)]), y=np.array([1]))
+    >>> estimations = sigmoid_function(0)
+    >>> cost_function(h=estimations,y=np.array([1]))
     0.6931471805599453
 
     References:
