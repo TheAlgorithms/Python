@@ -1,9 +1,4 @@
-# https://www.geeksforgeeks.org/solve-crossword-puzzle/
-from typing import List
-
-
-def solve_crossword(puzzle: List[List[str]], words: List[str]) -> List[List[str]]:
-    """
+"""
     Solve a crossword puzzle by placing words from the provided list into the puzzle.
 
     Args:
@@ -12,10 +7,14 @@ def solve_crossword(puzzle: List[List[str]], words: List[str]) -> List[List[str]
 
     Returns:
         Optional[List[List[str]]]: The solved crossword puzzle, or None if no solution is found.
-    """
+"""
+from typing import List, Optional
+
+def solve_crossword(puzzle: List[List[str]], words: List[str]) -> Optional[List[List[str]]]:
+
     rows, cols = len(puzzle), len(puzzle[0])
 
-    def is_valid(word: str, row: int, col: int, direction: str) -> bool:
+    def is_valid_placement(word: str, row: int, col: int, direction: str) -> bool:
         """
         Check if placing a word in a specific direction at a given position is valid.
 
@@ -28,15 +27,10 @@ def solve_crossword(puzzle: List[List[str]], words: List[str]) -> List[List[str]
         Returns:
             bool: True if the placement is valid, otherwise False.
         """
-
         if direction == "across":
-            return col + len(word) <= cols and all(
-                puzzle[row][col + i] in ("", word[i]) for i in range(len(word))
-            )
+            return col + len(word) <= cols and all(puzzle[row][col + i] in ("", word[i]) for i in range(len(word)))
         else:  # direction == "down"
-            return row + len(word) <= rows and all(
-                puzzle[row + i][col] in ("", word[i]) for i in range(len(word))
-            )
+            return row + len(word) <= rows and all(puzzle[row + i][col] in ("", word[i]) for i in range(len(word)))
 
     def place_word(word: str, row: int, col: int, direction: str) -> None:
         """
@@ -94,7 +88,7 @@ def solve_crossword(puzzle: List[List[str]], words: List[str]) -> List[List[str]
                 if puzzle[row][col] == "":
                     for word in words[:]:
                         for direction in ["across", "down"]:
-                            if is_valid(word, row, col, direction):
+                            if is_valid_placement(word, row, col, direction):
                                 place_word(word, row, col, direction)
                                 words.remove(word)
                                 if not words:
@@ -112,7 +106,6 @@ def solve_crossword(puzzle: List[List[str]], words: List[str]) -> List[List[str]
         return copied_puzzle
     else:
         return None
-
 
 # Example usage:
 puzzle = [
