@@ -41,6 +41,8 @@ None
 from __future__ import annotations
 
 from enum import Enum
+from types import TracebackType
+from typing import Self
 
 import numpy as np
 
@@ -52,13 +54,13 @@ class Variable:
     will be calculated.
     """
 
-    def __init__(self, value):
+    def __init__(self, value) -> None:
         self.value = np.array(value)
 
         # pointers to the operations to which the Variable is input
-        self.param_to = []
+        self.param_to: list[Operation] = []
         # pointer to the operation of which the Variable is output of
-        self.result_of = None
+        self.result_of: Operation = Operation(OpType.NOOP)
 
     def __str__(self) -> str:
         return f"Variable({self.value})"
@@ -127,10 +129,10 @@ class Variable:
                 )
         return result
 
-    def add_param_to(self, param_to: Operation):
+    def add_param_to(self, param_to: Operation) -> None:
         self.param_to.append(param_to)
 
-    def add_result_of(self, result_of: Operation):
+    def add_result_of(self, result_of: Operation) -> None:
         self.result_of = result_of
 
 
@@ -146,6 +148,7 @@ class OpType(Enum):
     DIV = 3
     MATMUL = 4
     POWER = 5
+    NOOP = 6
 
 
 class Operation:
@@ -159,16 +162,14 @@ class Operation:
         self,
         op_type: OpType,
         other_params: dict | None = None,
-    ):
+    ) -> None:
         self.op_type = op_type
-        self.params: list[Variable] = []
-        self.output: Variable | None = None
         self.other_params = {} if other_params is None else other_params
 
-    def add_params(self, params: list[Variable]):
+    def add_params(self, params: list[Variable]) -> None:
         self.params = params
 
-    def add_output(self, output: Variable):
+    def add_output(self, output: Variable) -> None:
         self.output = output
 
     def __eq__(self, value) -> bool:
@@ -183,7 +184,7 @@ class GradientTracker:
     based on the computation graph.
     """
 
-    def __new__(cls):
+    def __new__(cls) -> Self:
         """
         Executes at the creation of class object and returns if
         object is already created. This class follows singleton
@@ -193,14 +194,19 @@ class GradientTracker:
             cls.instance = super().__new__(cls)
         return cls.instance
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.enabled = False
 
-    def __enter__(self):
+    def __enter__(self) -> Self:
         self.enabled = True
         return self
 
-    def __exit__(self, exc_type, exc_value, tb):
+    def __exit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc: BaseException | None,
+        traceback: TracebackType | None,
+    ) -> None:
         self.enabled = False
 
     def add_operation(
@@ -209,7 +215,7 @@ class GradientTracker:
         params: list[Variable],
         output: Variable,
         other_params: dict | None = None,
-    ):
+    ) -> None:
         """
         Adds Operation object to the related Variable objects for
         creating computational graph for calculating gradients.
@@ -242,6 +248,7 @@ class GradientTracker:
         Returns:
             Gradient of the source variable with respect to the target variable
         """
+
         # partial derivatives with respect to target
         partial_deriv = {target: np.ones_like(target.numpy())}
 
@@ -260,7 +267,8 @@ class GradientTracker:
                     partial_deriv[param] = dparam_dtarget
 
                 if param.result_of:
-                    operation_queue.append(param.result_of)
+                    if param.result_of != OpType.NOOP:
+                        operation_queue.append(param.result_of)
 
         if source in partial_deriv:
             return partial_deriv[source]
