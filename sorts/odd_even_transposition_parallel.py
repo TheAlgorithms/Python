@@ -35,7 +35,7 @@ def oe_process(
     l_send,
     r_send,
     lr_cv,
-    rr_cv, 
+    rr_cv,
     result_pipe,
     arr_len: int,
 ) -> None:
