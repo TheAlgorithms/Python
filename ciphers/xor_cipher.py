@@ -38,7 +38,8 @@ class XORCipher:
         """
 
         # precondition
-        assert isinstance(key, int) and isinstance(content, str)
+        assert isinstance(key, int)
+        assert isinstance(content, str)
 
         key = key or self.__key or 1
 
@@ -56,7 +57,8 @@ class XORCipher:
         """
 
         # precondition
-        assert isinstance(key, int) and isinstance(content, list)
+        assert isinstance(key, int)
+        assert isinstance(content, list)
 
         key = key or self.__key or 1
 
@@ -74,7 +76,8 @@ class XORCipher:
         """
 
         # precondition
-        assert isinstance(key, int) and isinstance(content, str)
+        assert isinstance(key, int)
+        assert isinstance(content, str)
 
         key = key or self.__key or 1
 
@@ -99,7 +102,8 @@ class XORCipher:
         """
 
         # precondition
-        assert isinstance(key, int) and isinstance(content, str)
+        assert isinstance(key, int)
+        assert isinstance(content, str)
 
         key = key or self.__key or 1
 
@@ -125,7 +129,8 @@ class XORCipher:
         """
 
         # precondition
-        assert isinstance(file, str) and isinstance(key, int)
+        assert isinstance(file, str)
+        assert isinstance(key, int)
 
         try:
             with open(file) as fin, open("encrypt.out", "w+") as fout:
@@ -148,7 +153,8 @@ class XORCipher:
         """
 
         # precondition
-        assert isinstance(file, str) and isinstance(key, int)
+        assert isinstance(file, str)
+        assert isinstance(key, int)
 
         try:
             with open(file) as fin, open("decrypt.out", "w+") as fout:

@@ -7,7 +7,7 @@
 
 # Order is important. The last matching pattern has the most precedence.
 
-/.*  @cclauss @dhruvmanila
+/.*  @cclauss
 
 # /arithmetic_analysis/
 
@@ -69,7 +69,7 @@
 
 # /other/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
 
-/project_euler/  @dhruvmanila
+# /project_euler/
 
 # /quantum/
 

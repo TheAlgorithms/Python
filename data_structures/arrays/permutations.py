@@ -10,7 +10,7 @@ def permute_recursive(nums: list[int]) -> list[list[int]]:
         return [[]]
     for _ in range(len(nums)):
         n = nums.pop(0)
-        permutations = permute_recursive(nums)
+        permutations = permute_recursive(nums.copy())
         for perm in permutations:
             perm.append(n)
         result.extend(permutations)
@@ -43,6 +43,6 @@ def permute_backtrack(nums: list[int]) -> list[list[int]]:
 if __name__ == "__main__":
     import doctest
 
-    res = permute_backtrack([1, 2, 3])
-    print(res)
+    result = permute_backtrack([1, 2, 3])
+    print(result)
     doctest.testmod()
