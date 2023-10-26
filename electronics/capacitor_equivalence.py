@@ -14,40 +14,36 @@ def capacitor_parallel(capacitors: list[float]) -> float:
         ...
     ValueError: Capacitor at index 2 has a negative value!
     """
-    sum_c = 0.00
-    index = 0
-    for capacitor in capacitors:
-        sum_c += capacitor
+    sum_c = 0
+    for index, capacitor in enumerate(capacitors):
         if capacitor < 0:
             msg = f"Capacitor at index {index} has a negative value!"
             raise ValueError(msg)
-        index += 1
+        sum_c += capacitor
     return sum_c
 
 
 def capacitor_series(capacitors: list[float]) -> float:
     """
     Ceq = 1/ (1/C1 + 1/C2 + ... + 1/Cn)
-    >>> capacitor_series([5.71389,12,3])
+    >>> capacitor_series([5.71389, 12, 3])
     1.6901062252507735
-    >>> capacitor_series([5.71389,12, -3])
+    >>> capacitor_series([5.71389, 12, -3])
     Traceback (most recent call last):
         ...
     ValueError: Capacitor at index 2 has a negative or zero value!
-    >>> capacitor_series([5.71389,12, 0.000])
+    >>> capacitor_series([5.71389, 12, 0.000])
     Traceback (most recent call last):
         ...
     ValueError: Capacitor at index 2 has a negative or zero value!
     """
 
-    first_sum = 0.00
-    index = 0
-    for capacitor in capacitors:
+    first_sum = 0
+    for index, capacitor in enumerate(capacitors):
         if capacitor <= 0:
             msg = f"Capacitor at index {index} has a negative or zero value!"
             raise ValueError(msg)
-        first_sum += 1 / float(capacitor)
-        index += 1
+        first_sum += 1 / capacitor
     return 1 / first_sum
 
 
