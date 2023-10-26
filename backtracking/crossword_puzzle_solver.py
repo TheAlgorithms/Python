@@ -1,14 +1,21 @@
 # https://www.geeksforgeeks.org/solve-crossword-puzzle/
 from typing import List, Optional
 
-def solve_crossword(puzzle: List[List[str]], words: List[str]) -> Optional[List[List[str]]]:
+
+def solve_crossword(
+    puzzle: List[List[str]], words: List[str]
+) -> Optional[List[List[str]]]:
     rows, cols = len(puzzle), len(puzzle[0])
 
     def is_valid(word: str, r: int, c: int, direction: str) -> bool:
         if direction == "across":
-            return c + len(word) <= cols and all(puzzle[r][c + i] in ("", word[i]) for i in range(len(word)))
+            return c + len(word) <= cols and all(
+                puzzle[r][c + i] in ("", word[i]) for i in range(len(word))
+            )
         else:  # direction == "down"
-            return r + len(word) <= rows and all(puzzle[r + i][c] in ("", word[i]) for i in range(len(word)))
+            return r + len(word) <= rows and all(
+                puzzle[r + i][c] in ("", word[i]) for i in range(len(word))
+            )
 
     def place_word(word: str, r: int, c: int, direction: str) -> None:
         if direction == "across":
@@ -50,6 +57,7 @@ def solve_crossword(puzzle: List[List[str]], words: List[str]) -> Optional[List[
         return copied_puzzle
     else:
         return None
+
 
 # Example usage:
 puzzle = [
