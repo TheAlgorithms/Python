@@ -22,11 +22,11 @@ def partition(arr: list[int], low: int, high: int) -> int:
         int: The index of pivot element after partitioning
 
         Examples:
-        >>> partition([3,1,4,5,9,2,6,5,3,5],0,9)
+        >>> partition([3, 1, 4, 5, 9, 2, 6, 5, 3, 5], 0, 9)
         4
-        >>> partition([7,1,4,5,9,2,6,5,8],0,8)
+        >>> partition([7, 1, 4, 5, 9, 2, 6, 5, 8], 0, 8)
         1
-        >>> partition(['apple', 'cherry', 'date','banana'], 0, 3)
+        >>> partition(['apple', 'cherry', 'date', 'banana'], 0, 3)
         2
         >>> partition([3.1, 1.2, 5.6, 4.7], 0, 3)
         1
@@ -44,10 +44,15 @@ def partition(arr: list[int], low: int, high: int) -> int:
 def kth_largest_element(arr: list[int], position: int) -> int:
     """
     Finds the kth largest element in a list.
+    Should deliver similar results to:
+    ```python
+    def kth_largest_element(arr, position):
+        return sorted(arr)[-position]
+    ```
 
     Args:
-        nums : The list of numbers.
-        k : The position of the desired kth largest element.
+        nums: The list of numbers.
+        k: The position of the desired kth largest element.
 
     Returns:
         int: The kth largest element.
@@ -69,19 +74,19 @@ def kth_largest_element(arr: list[int], position: int) -> int:
         Traceback (most recent call last):
         ...
         ValueError: Invalid value of 'position'
-        >>> kth_largest_element(['apple', 'cherry', 'date','banana'], 2)
+        >>> kth_largest_element(['apple', 'cherry', 'date', 'banana'], 2)
         'cherry'
         >>> kth_largest_element([3.1, 1.2, 5.6, 4.7,7.9,5,0], 2)
         5.6
-        >>> kth_largest_element([-2,-5,-4,-1],1)
+        >>> kth_largest_element([-2, -5, -4, -1], 1)
         -1
         >>> kth_largest_element([], 1)
         -1
-        >>> kth_largest_element([3.1, 1.2, 5.6, 4.7,7.9,5,0], 1.5)
+        >>> kth_largest_element([3.1, 1.2, 5.6, 4.7, 7.9, 5, 0], 1.5)
         Traceback (most recent call last):
         ...
         ValueError: The position should be an integer
-        >>> kth_largest_element((4,6,1,2),4)
+        >>> kth_largest_element((4, 6, 1, 2), 4)
         Traceback (most recent call last):
         ...
         TypeError: 'tuple' object does not support item assignment
