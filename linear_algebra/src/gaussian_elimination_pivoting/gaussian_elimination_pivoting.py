@@ -80,7 +80,6 @@ conda = abs(np.sum(deltax) / np.sum(vectorofxalpha)) * (np.sum(B) / np.sum(delta
 print(f"Cond(A) =< {conda:0.6f}")
 
 
-
 # Example usage:
 # n_size = 3
 # a_matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype=float)
