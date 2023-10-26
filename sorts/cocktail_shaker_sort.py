@@ -26,7 +26,7 @@ def cocktail_shaker_sort(arr: list[T]) -> list[T]:
     >>> cocktail_shaker_sort([-4, -5, -24, -7, -11])
     [-24, -11, -7, -5, -4]
     >>> cocktail_shaker_sort(["elderberry", "banana", "date", "apple", "cherry"])
-    ["apple", "banana", "cherry", "date", "elderberry"]
+    ['apple', 'banana', 'cherry', 'date', 'elderberry']
     >>> cocktail_shaker_sort((-4, -5, -24, -7, -11))
     Traceback (most recent call last):
         ...
@@ -39,7 +39,7 @@ def cocktail_shaker_sort(arr: list[T]) -> list[T]:
 
         # Pass from left to right
         for i in range(start, end):
-            if arr[i] > arr[i + 1]:  # typing: ignore[operator]
+            if arr[i] > arr[i + 1]:  # typing: ignore
                 arr[i], arr[i + 1] = arr[i + 1], arr[i]
                 swapped = True
 
@@ -50,7 +50,7 @@ def cocktail_shaker_sort(arr: list[T]) -> list[T]:
 
         # Pass from right to left
         for i in range(end, start, -1):
-            if arr[i] < arr[i - 1]:  # typing: ignore[operator]
+            if arr[i] < arr[i - 1]:  # typing: ignore
                 arr[i], arr[i - 1] = arr[i - 1], arr[i]
                 swapped = True
 
