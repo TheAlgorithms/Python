@@ -10,9 +10,8 @@ comparisons.
 They are synchronized with locks and message passing but other forms of
 synchronization could be used.
 """
-from multiprocessing import Lock, Pipe, Process,connection
+from multiprocessing import Lock, Pipe, Process
 from traceback import format_exc
-from typing import List
 
 # lock used to ensure that two processes do not access a pipe at the same time
 process_lock = Lock()
@@ -30,7 +29,16 @@ arr_len = length of the list to be sorted
 """
 
 
-def oe_process(position:int, value:List[int], l_send:connection, r_send:connection, lr_cv:connection, rr_cv:connection, result_pipe:connection,arr_len:int)->None:
+def oe_process(
+    position,
+    value,
+    l_send,
+    r_send,
+    lr_cv,
+    rr_cv,
+    result_pipe,
+    arr_len: int,
+) -> None:
     global process_lock
 
     # we perform n swaps since after n swaps we know we are sorted
@@ -74,7 +82,7 @@ arr = the list to be sorted
 """
 
 
-def odd_even_transposition(arr:List[int])->List[int]:
+def odd_even_transposition(arr):
     process_array_ = []
     result_pipe = []
     # initialize the list of pipes where the values will be retrieved
@@ -86,9 +94,9 @@ def odd_even_transposition(arr:List[int])->List[int]:
     temp_rs = Pipe()
     temp_rr = Pipe()
     process_array_.append(
-        Process(   
+        Process(
             target=oe_process,
-            args=(0, arr[0], None, temp_rs, None, temp_rr, result_pipe[0],len(arr)),
+            args=(0, arr[0], None, temp_rs, None, temp_rr, result_pipe[0], len(arr)),
         )
     )
     temp_lr = temp_rs
@@ -100,7 +108,16 @@ def odd_even_transposition(arr:List[int])->List[int]:
         process_array_.append(
             Process(
                 target=oe_process,
-                args=(i, arr[i], temp_ls, temp_rs, temp_lr, temp_rr, result_pipe[i],len(arr)),
+                args=(
+                    i,
+                    arr[i],
+                    temp_ls,
+                    temp_rs,
+                    temp_lr,
+                    temp_rr,
+                    result_pipe[i],
+                    len(arr),
+                ),
             )
         )
         temp_lr = temp_rs
@@ -117,7 +134,7 @@ def odd_even_transposition(arr:List[int])->List[int]:
                 temp_lr,
                 None,
                 result_pipe[len(arr) - 1],
-                len(arr)
+                len(arr),
             ),
         )
     )
@@ -138,10 +155,10 @@ def main():
     try:
         # taking input of the list
         arr = [int(item) for item in input("Enter the list items : ").split()]
-        print("\nInitial List:",*arr)
+        print("\nInitial List:", *arr)
         arr = odd_even_transposition(arr)
-        print("\nSorted List: ",*arr)
-    except Exception:
+        print("\nSorted List: ", *arr)
+    except ValueError:
         print(f"Exception😤:\n {format_exc()} ")
 
 
