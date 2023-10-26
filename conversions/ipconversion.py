@@ -1,5 +1,6 @@
 # https://www.geeksforgeeks.org/convert-ip-address-to-integer-and-vice-versa/
 
+
 def ip_to_decimal(ip_address: str) -> int:
     """
     Convert an IPv4 address to its decimal representation.
@@ -16,7 +17,7 @@ def ip_to_decimal(ip_address: str) -> int:
     167772415
     """
 
-    ip_parts = ip_address.split('.')
+    ip_parts = ip_address.split(".")
     if len(ip_parts) != 4:
         raise ValueError("Invalid IPv4 address format")
 
@@ -25,6 +26,7 @@ def ip_to_decimal(ip_address: str) -> int:
         decimal_ip = (decimal_ip << 8) + int(part)
 
     return decimal_ip
+
 
 def decimal_to_ip(decimal_ip: int) -> str:
     """
@@ -51,7 +53,8 @@ def decimal_to_ip(decimal_ip: int) -> str:
         decimal_ip >>= 8
 
     ip_parts.reverse()
-    return '.'.join(ip_parts)
+    return ".".join(ip_parts)
+
 
 if __name__ == "__main__":
     import doctest
