@@ -27,8 +27,8 @@ def tarjan(g: list[list[int]]) -> list[list[int]]:
     >>> a = [0, 1, 2, 3, 4, 5, 4]
     >>> b = [1, 0, 3, 2, 5, 4, 0]
     >>> n = 7
-    >>> sorted(tarjan(create_graph(n, list(zip(a, b))))) ==
-    ... sorted(tarjan(create_graph(n, list(reversed(zip(a, b))))))
+    >>> sorted(tarjan(create_graph(n, list(zip(a, b))))) == sorted(
+    ...     tarjan(create_graph(n, list(reversed(zip(a, b))))))
     True
     >>> a = [0, 1, 2, 3, 4, 5, 6]
     >>> b = [0, 1, 2, 3, 4, 5, 6]
