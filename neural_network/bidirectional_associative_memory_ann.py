@@ -18,6 +18,7 @@ print(W)
 
 # Define the BAM function
 
+
 def BAM(input_vector):
     output_vector = np.zeros(len(Y1))
     for j in range(len(Y1)):
@@ -26,6 +27,7 @@ def BAM(input_vector):
             sum += input_vector[i] * W[i][j]
         output_vector[j] = sum
     return output_vector
+
 
 # Test the BAM function with the input vector X1
 
