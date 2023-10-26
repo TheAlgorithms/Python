@@ -4,9 +4,13 @@ def solve_crossword(puzzle, words) -> None:
 
     def is_valid(word, r, c, direction):
         if direction == "across":
-            return c + len(word) <= cols and all(puzzle[r][c + i] in ("", word[i]) for i in range(len(word)))
+            return c + len(word) <= cols and all(
+                puzzle[r][c + i] in ("", word[i]) for i in range(len(word))
+            )
         else:  # direction == "down"
-            return r + len(word) <= rows and all(puzzle[r + i][c] in ("", word[i]) for i in range(len(word)))
+            return r + len(word) <= rows and all(
+                puzzle[r + i][c] in ("", word[i]) for i in range(len(word))
+            )
 
     def place_word(word, r, c, direction) -> None:
         if direction == "across":
@@ -49,6 +53,7 @@ def solve_crossword(puzzle, words) -> None:
     else:
         return None
 
+
 # Example usage:
 puzzle = [
     ["#", "#", "c", "#", "#", "#", "#", "#", "#"],
@@ -59,7 +64,7 @@ puzzle = [
     ["#", "#", "t", "#", "t", "a", "x", "i", "#"],
     ["#", "#", "e", "#", "#", "n", "#", "#", "#"],
     ["#", "#", "n", "#", "a", "t", "e", "x", "#"],
-    ["#", "#", "#", "#", "x", "#", "#", "#", "#"]
+    ["#", "#", "#", "#", "x", "#", "#", "#", "#"],
 ]
 
 words = ["car", "cat", "tax", "rat", "ate", "axe", "won"]
