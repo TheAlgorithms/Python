@@ -1,5 +1,6 @@
 # https://www.geeksforgeeks.org/detect-if-two-integers-have-opposite-signs/
 
+
 def have_different_signs(number1: int, number2: int) -> bool:
     """
     Check if two integers have different signs.
@@ -20,6 +21,7 @@ def have_different_signs(number1: int, number2: int) -> bool:
 
     # Check if the signs of the two numbers are different
     return (number1 < 0 and number2 >= 0) or (number1 >= 0 and number2 < 0)
+
 
 if __name__ == "__main__":
     import doctest
