@@ -15,7 +15,7 @@ def solve_crossword(
     Returns:
         Optional[List[List[str]]]: The solved crossword puzzle, or None if no solution is found.
     """
-    
+
     rows, cols = len(puzzle), len(puzzle[0])
 
     def is_valid_placement(word: str, row: int, col: int, direction: str) -> bool:
