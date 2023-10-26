@@ -10,7 +10,9 @@ comparisons.
 They are synchronized with locks and message passing but other forms of
 synchronization could be used.
 """
-from multiprocessing import Lock, Pipe, Process
+from multiprocessing import Lock, Pipe, Process,connection
+from traceback import format_exc
+from typing import List
 
 # lock used to ensure that two processes do not access a pipe at the same time
 process_lock = Lock()
@@ -18,22 +20,23 @@ process_lock = Lock()
 """
 The function run by the processes that sorts the list
 
-position = the position in the list the process represents, used to know which
-            neighbor we pass our value to
-value = the initial value at list[position]
+"position" ----> the position in the list the process represents, used to know which
+neighbor we pass our value to
+"value" ----> the initial value at list[position]
 LSend, RSend = the pipes we use to send to our left and right neighbors
 LRcv, RRcv = the pipes we use to receive from our left and right neighbors
 resultPipe = the pipe used to send results back to main
+arr_len = length of the list to be sorted
 """
 
 
-def oe_process(position, value, l_send, r_send, lr_cv, rr_cv, result_pipe):
+def oe_process(position:int, value:List[int], l_send:connection, r_send:connection, lr_cv:connection, rr_cv:connection, result_pipe:connection,arr_len:int)->None:
     global process_lock
 
     # we perform n swaps since after n swaps we know we are sorted
     # we *could* stop early if we are sorted already, but it takes as long to
     # find out we are sorted as it does to sort the list with this algorithm
-    for i in range(10):
+    for i in range(arr_len):
         if (i + position) % 2 == 0 and r_send is not None:
             # send your value to your right neighbor
             process_lock.acquire()
@@ -71,7 +74,7 @@ arr = the list to be sorted
 """
 
 
-def odd_even_transposition(arr):
+def odd_even_transposition(arr:List[int])->List[int]:
     process_array_ = []
     result_pipe = []
     # initialize the list of pipes where the values will be retrieved
@@ -85,7 +88,7 @@ def odd_even_transposition(arr):
     process_array_.append(
         Process(
             target=oe_process,
-            args=(0, arr[0], None, temp_rs, None, temp_rr, result_pipe[0]),
+            args=(0, arr[0], None, temp_rs, None, temp_rr, result_pipe[0],len(arr)),
         )
     )
     temp_lr = temp_rs
@@ -97,7 +100,7 @@ def odd_even_transposition(arr):
         process_array_.append(
             Process(
                 target=oe_process,
-                args=(i, arr[i], temp_ls, temp_rs, temp_lr, temp_rr, result_pipe[i]),
+                args=(i, arr[i], temp_ls, temp_rs, temp_lr, temp_rr, result_pipe[i],len(arr)),
             )
         )
         temp_lr = temp_rs
@@ -114,6 +117,7 @@ def odd_even_transposition(arr):
                 temp_lr,
                 None,
                 result_pipe[len(arr) - 1],
+                len(arr)
             ),
         )
     )
@@ -131,12 +135,14 @@ def odd_even_transposition(arr):
 
 # creates a reverse sorted list and sorts it
 def main():
-    arr = list(range(10, 0, -1))
-    print("Initial List")
-    print(*arr)
-    arr = odd_even_transposition(arr)
-    print("Sorted List\n")
-    print(*arr)
+    try:
+        # taking input of the list
+        arr = [int(item) for item in input("Enter the list items : ").split()]
+        print("\nInitial List:",*arr)
+        arr = odd_even_transposition(arr)
+        print("\nSorted List: ",*arr)
+    except Exception:
+        print(f"Exception😤:\n {format_exc()} ")
 
 
 if __name__ == "__main__":
