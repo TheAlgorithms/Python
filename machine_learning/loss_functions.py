@@ -295,13 +295,7 @@ def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     if len(y_true) != len(y_pred):
         raise ValueError("Input arrays must have the same length.")
 
-    if isinstance(y_true, np.ndarray) and isinstance(y_pred, np.ndarray):
-        return np.mean(abs(y_true - y_pred))
-    else:
-        try:
-            return np.mean(abs(np.asarray(y_true) - np.asarray(y_pred)))
-        except ValueError as error:
-            raise ValueError("Could not convert input to NumPy array.") from error
+    return np.mean(abs(y_true - y_pred))
 
 
 def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
