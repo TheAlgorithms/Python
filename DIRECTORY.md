@@ -170,6 +170,8 @@
   * Arrays
     * [Equilibrium Index In Array](data_structures/arrays/equilibrium_index_in_array.py)
     * [Find Triplets With 0 Sum](data_structures/arrays/find_triplets_with_0_sum.py)
+    * [Index 2D Array In 1D](data_structures/arrays/index_2d_array_in_1d.py)
+    * [Kth Largest Element](data_structures/arrays/kth_largest_element.py)
     * [Median Two Array](data_structures/arrays/median_two_array.py)
     * [Pairs With Given Sum](data_structures/arrays/pairs_with_given_sum.py)
     * [Permutations](data_structures/arrays/permutations.py)
@@ -368,6 +370,7 @@
 ## Electronics
   * [Apparent Power](electronics/apparent_power.py)
   * [Builtin Voltage](electronics/builtin_voltage.py)
+  * [Capacitor Equivalence](electronics/capacitor_equivalence.py)
   * [Carrier Concentration](electronics/carrier_concentration.py)
   * [Charging Capacitor](electronics/charging_capacitor.py)
   * [Charging Inductor](electronics/charging_inductor.py)
@@ -648,6 +651,7 @@
     * [Numerical Integration](maths/numerical_analysis/numerical_integration.py)
     * [Runge Kutta](maths/numerical_analysis/runge_kutta.py)
     * [Runge Kutta Fehlberg 45](maths/numerical_analysis/runge_kutta_fehlberg_45.py)
+    * [Runge Kutta Gills](maths/numerical_analysis/runge_kutta_gills.py)
     * [Secant Method](maths/numerical_analysis/secant_method.py)
     * [Simpson Rule](maths/numerical_analysis/simpson_rule.py)
     * [Square Root](maths/numerical_analysis/square_root.py)
@@ -814,6 +818,7 @@
   * [Ideal Gas Law](physics/ideal_gas_law.py)
   * [In Static Equilibrium](physics/in_static_equilibrium.py)
   * [Kinetic Energy](physics/kinetic_energy.py)
+  * [Lens Formulae](physics/lens_formulae.py)
   * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
   * [Malus Law](physics/malus_law.py)
   * [Mass Energy Equivalence](physics/mass_energy_equivalence.py)
