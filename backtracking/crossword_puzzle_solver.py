@@ -1,4 +1,11 @@
-"""
+# https://www.geeksforgeeks.org/solve-crossword-puzzle/
+from typing import List, Optional
+
+
+def solve_crossword(
+    puzzle: List[List[str]], words: List[str]
+) -> Optional[List[List[str]]]:
+    """
     Solve a crossword puzzle by placing words from the provided list into the puzzle.
 
     Args:
@@ -7,13 +14,8 @@
 
     Returns:
         Optional[List[List[str]]]: The solved crossword puzzle, or None if no solution is found.
-"""
-from typing import List, Optional
-
-
-def solve_crossword(
-    puzzle: List[List[str]], words: List[str]
-) -> Optional[List[List[str]]]:
+    """
+    
     rows, cols = len(puzzle), len(puzzle[0])
 
     def is_valid_placement(word: str, row: int, col: int, direction: str) -> bool:
@@ -132,3 +134,8 @@ if solution:
         print(" ".join(row))
 else:
     print("No solution found.")
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
