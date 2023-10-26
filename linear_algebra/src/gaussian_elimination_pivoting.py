@@ -69,9 +69,7 @@ def custom_gauss_elimination_pivoting(
         result.append(const_vector[row_index] / coeff_matrix[row_index][row_index])
         for q in range(row_index - 1, -1, -1):
             const_vector[q] -= (
-                result[num_equations - 1 - row_index] * coeff_matrix[q][row_index]
-            )
-
+                result[num_equations - 1 - row_index] * coeff_matrix[q][row_index])
     return result
 
 
