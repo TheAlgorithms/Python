@@ -3,7 +3,7 @@ Demonstration of the Automatic Differentiation (Reverse mode).
 
 Reference: https://en.wikipedia.org/wiki/Automatic_differentiation
 
-Author: Poojan Smart
+Author: Poojan smart
 Email: smrtpoojan@gmail.com
 
 Examples:
@@ -42,9 +42,9 @@ from __future__ import annotations
 
 from enum import Enum
 from types import TracebackType
-from typing import Self
 
 import numpy as np
+from typing_extensions import Self
 
 
 class Variable:
@@ -184,13 +184,15 @@ class GradientTracker:
     based on the computation graph.
     """
 
+    instance = None
+
     def __new__(cls) -> Self:
         """
         Executes at the creation of class object and returns if
         object is already created. This class follows singleton
         design pattern.
         """
-        if not hasattr(cls, "instance"):
+        if cls.instance == None:
             cls.instance = super().__new__(cls)
         return cls.instance
 
