@@ -1,6 +1,4 @@
 import numpy as np
-
-
 def custom_pivoting(matrix: np.ndarray, n: int, i: int) -> int:
     """
     Selects the index of the minimum absolute
@@ -26,8 +24,6 @@ def custom_pivoting(matrix: np.ndarray, n: int, i: int) -> int:
         if abs(matrix[index][i]) < abs(matrix[min_index][i]):
             min_index = index
     return min_index
-
-
 def custom_gauss_elimination_pivoting(
     coeff_matrix: list, const_vector: list, n: int
 ) -> list:
@@ -52,21 +48,16 @@ def custom_gauss_elimination_pivoting(
     result = []
     for i in range(n - 1):
         new_index = custom_pivoting(coeff_matrix, n, i)
-        coeff_matrix[i], coeff_matrix[new_index] = (
-            coeff_matrix[new_index],
-            coeff_matrix[i],
-        )
-        const_vector[i], const_vector[new_index] = (
-            const_vector[new_index],
-            const_vector[i],
-        )
+        coeff_matrix[i], coeff_matrix[new_index] = coeff_matrix[new_index], 
+        coeff_matrix[i]
+        const_vector[i], const_vector[new_index] = const_vector[new_index], 
+        const_vector[i]
         pivot = coeff_matrix[i][i]
         for j in range(i + 1, n):
             m = -1 * coeff_matrix[j][i] / pivot
             for k in range(n):
                 coeff_matrix[j][k] += m * coeff_matrix[i][k]
             const_vector[j] += m * const_vector[i]
-
     for p in range(n - 1, -1, -1):
         result.append(const_vector[p] / coeff_matrix[p][p])
         for q in range(p - 1, -1, -1):
