@@ -1,7 +1,7 @@
 import numpy as np
 
-def custom_pivoting(matrix: np.ndarray, num_rows: int,
-                    column_index: int) -> int:
+
+def custom_pivoting(matrix: np.ndarray, num_rows: int, column_index: int) -> int:
     """
     Selects the index of the minimum absolute
     value in the specified column of a matrix.
@@ -25,8 +25,10 @@ def custom_pivoting(matrix: np.ndarray, num_rows: int,
             min_index = index
     return min_index
 
-def custom_gauss_elimination_pivoting(coeff_matrix: list,
-                                      const_vector: list, num_equations: int) -> list:
+
+def custom_gauss_elimination_pivoting(
+    coeff_matrix: list, const_vector: list, num_equations: int
+) -> list:
     """
     Solves a system of linear equations using Gaussian
     elimination with partial pivoting.
@@ -48,9 +50,9 @@ def custom_gauss_elimination_pivoting(coeff_matrix: list,
     result = []
     for i in range(num_equations - 1):
         new_index = custom_pivoting(coeff_matrix, num_equations, i)
-        coeff_matrix[i], coeff_matrix[new_index] = coeff_matrix[new_index],
+        coeff_matrix[i], coeff_matrix[new_index] = (coeff_matrix[new_index],)
         coeff_matrix[i]
-        const_vector[i], const_vector[new_index] = const_vector[new_index],
+        const_vector[i], const_vector[new_index] = (const_vector[new_index],)
         const_vector[i]
         pivot = coeff_matrix[i][i]
         for j in range(i + 1, num_equations):
@@ -62,9 +64,11 @@ def custom_gauss_elimination_pivoting(coeff_matrix: list,
     for row_index in range(num_equations - 1, -1, -1):
         result.append(const_vector[row_index] / coeff_matrix[row_index][row_index])
         for q in range(row_index - 1, -1, -1):
-            const_vector[q] = const_vector[q] - result[num_equations - row_index - 1] * coeff_matrix[q][row_index]
+            const_vector[q] = (
+                const_vector[q]
+                - result[num_equations - row_index - 1] * coeff_matrix[q][row_index]
+            )
     return result
-
 
 
 # Example usage:
