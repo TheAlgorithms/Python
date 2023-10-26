@@ -1,6 +1,8 @@
+import numpy as np
 def custom_pivoting(matrix: np.ndarray, n: int, i: int) -> int:
     """
-    Selects the index of the minimum absolute value in the i-th column of a matrix.
+    Selects the index of the minimum absolute 
+    value in the i-th column of a matrix.
 
     Parameters:
     - matrix (np.ndarray): The input matrix.
@@ -8,10 +10,12 @@ def custom_pivoting(matrix: np.ndarray, n: int, i: int) -> int:
     - i (int): The column index.
 
     Returns:
-    - int: The index of the minimum absolute value in the i-th column.
+    - int: The index of the minimum absolute value in the 
+    i-th column.
 
     Example:
-    >>> a_matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype=float)
+    >>> a_matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 
+    dtype=float)
     >>> custom_pivoting(a_matrix, 3, 1)
     0
     """
@@ -26,7 +30,8 @@ def custom_gauss_elimination_pivoting(
     coeff_matrix: list, const_vector: list, n: int
 ) -> list:
     """
-    Solves a system of linear equations using Gaussian elimination with partial pivoting.
+    Solves a system of linear equations 
+    using Gaussian elimination with partial pivoting.
 
     Parameters:
     - coeff_matrix (list): The coefficient matrix.
