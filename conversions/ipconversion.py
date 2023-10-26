@@ -17,7 +17,7 @@ def ip_to_decimal(ip_address: str) -> int:
     167772415
     """
 
-    ip_parts = ip_address.split(".")
+    octets = ip_address.split(".")
     if len(ip_parts) != 4:
         raise ValueError("Invalid IPv4 address format")
 
