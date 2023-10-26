@@ -261,6 +261,43 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     return np.mean(squared_errors)
 
 
+def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    """
+    Calculates the Mean Absolute Error (MAE) between ground truth (observed)
+        and predicted values.
+
+    MAE measures the absolute difference between true values and predicted values.
+
+    Equation:
+    MAE = (1/n) * Σ(abs(y_true - y_pred))
+
+    Reference: https://en.wikipedia.org/wiki/Mean_absolute_error
+
+    Parameters:
+    - y_true: The true values (ground truth)
+    - y_pred: The predicted values
+
+    >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
+    >>> np.isclose(mean_absolute_error(true_values, predicted_values), 0.16)
+    True
+    >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
+    >>> np.isclose(mean_absolute_error(true_values, predicted_values), 2.16)
+    False
+    >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> predicted_probs = np.array([0.3, 0.8, 0.9, 5.2])
+    >>> mean_absolute_error(true_labels, predicted_probs)
+    Traceback (most recent call last):
+    ...
+    ValueError: Input arrays must have the same length.
+    """
+    if len(y_true) != len(y_pred):
+        raise ValueError("Input arrays must have the same length.")
+
+    return np.mean(abs(y_true - y_pred))
+
+
 def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
     Calculate the mean squared logarithmic error (MSLE) between ground truth and
@@ -295,6 +332,51 @@ def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
 
     squared_logarithmic_errors = (np.log1p(y_true) - np.log1p(y_pred)) ** 2
     return np.mean(squared_logarithmic_errors)
+
+
+def mean_absolute_percentage_error(
+    y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-15
+) -> float:
+    """
+    Calculate the Mean Absolute Percentage Error between y_true and y_pred.
+
+    Mean Absolute Percentage Error calculates the average of the absolute
+    percentage differences between the predicted and true values.
+
+    Formula = (Σ|y_true[i]-Y_pred[i]/y_true[i]|)/n
+
+    Source: https://stephenallwright.com/good-mape-score/
+
+    Parameters:
+    y_true (np.ndarray): Numpy array containing true/target values.
+    y_pred (np.ndarray): Numpy array containing predicted values.
+
+    Returns:
+    float: The Mean Absolute Percentage error between y_true and y_pred.
+
+    Examples:
+    >>> y_true = np.array([10, 20, 30, 40])
+    >>> y_pred = np.array([12, 18, 33, 45])
+    >>> mean_absolute_percentage_error(y_true, y_pred)
+    0.13125
+
+    >>> y_true = np.array([1, 2, 3, 4])
+    >>> y_pred = np.array([2, 3, 4, 5])
+    >>> mean_absolute_percentage_error(y_true, y_pred)
+    0.5208333333333333
+
+    >>> y_true = np.array([34, 37, 44, 47, 48, 48, 46, 43, 32, 27, 26, 24])
+    >>> y_pred = np.array([37, 40, 46, 44, 46, 50, 45, 44, 34, 30, 22, 23])
+    >>> mean_absolute_percentage_error(y_true, y_pred)
+    0.064671076436071
+    """
+    if len(y_true) != len(y_pred):
+        raise ValueError("The length of the two arrays should be the same.")
+
+    y_true = np.where(y_true == 0, epsilon, y_true)
+    absolute_percentage_diff = np.abs((y_true - y_pred) / y_true)
+
+    return np.mean(absolute_percentage_diff)
 
 
 if __name__ == "__main__":
