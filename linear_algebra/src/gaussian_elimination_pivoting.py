@@ -48,19 +48,13 @@ def custom_gauss_elimination_pivoting(
     >>> custom_gauss_elimination_pivoting(a_matrix, b_vector, 3)
     [1.0, 2.0, 3.0]
     """
-    result = []
-
+    result: List[float] = []
+    
     # Forward elimination
     for i in range(num_equations - 1):
         new_index = custom_pivoting(coeff_matrix, num_equations, i)
-        coeff_matrix[i], coeff_matrix[new_index] = (
-            coeff_matrix[new_index],
-            coeff_matrix[i],
-        )
-        const_vector[i], const_vector[new_index] = (
-            const_vector[new_index],
-            const_vector[i],
-        )
+        coeff_matrix[i], coeff_matrix[new_index] = coeff_matrix[new_index], coeff_matrix[i]
+        const_vector[i], const_vector[new_index] = const_vector[new_index], const_vector[i]
         pivot = coeff_matrix[i][i]
         for j in range(i + 1, num_equations):
             m = -1 * coeff_matrix[j][i] / pivot
@@ -70,13 +64,8 @@ def custom_gauss_elimination_pivoting(
 
     # Backward substitution
     for row_index in range(num_equations - 1, -1, -1):
-        temp_sum = sum(
-            coeff_matrix[row_index][col] * result[col]
-            for col in range(row_index + 1, num_equations)
-        )
-        result.append(
-            (const_vector[row_index] - temp_sum) / coeff_matrix[row_index][row_index]
-        )
+        temp_sum = sum(coeff_matrix[row_index][col] * result[col] for col in range(row_index + 1, num_equations))
+        result.append((const_vector[row_index] - temp_sum) / coeff_matrix[row_index][row_index])
 
     result.reverse()
     return result
