@@ -30,7 +30,7 @@ def custom_gauss_elimination_pivoting(
     matrix: list, const_vector: list, num_equations: int
 ) -> list:
     """
-    Solves a system of linear equations using Gaussian 
+    Solves a system of linear equations using Gaussian
     elimination with partial pivoting.
 
     Parameters:
