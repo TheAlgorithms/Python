@@ -31,16 +31,13 @@ def custom_gauss_elimination_pivoting(
 ) -> list:
     """
     Solves a system of linear equations using Gaussian
-    elimination with partial pivoting.
-
+elimination with partial pivoting.
     Parameters:
     - coeff_matrix (list): The coefficient matrix.
     - const_vector (list): The constant vector.
     - num_equations (int): The number of equations in the system.
-
     Returns:
     - list: The solution vector.
-
     Example:
     >>> a_matrix = [[2, 3, 4], [1, -2, 3], [3, 4, 5]]
     >>> b_vector = [20, 9, 11]
