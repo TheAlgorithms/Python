@@ -3,12 +3,9 @@ An implementation of the cocktail shaker sort algorithm in pure Python.
 
 https://en.wikipedia.org/wiki/Cocktail_shaker_sort
 """
-from typing import TypeVar
-
-T = TypeVar("T")
 
 
-def cocktail_shaker_sort(arr: list[T]) -> list[T]:
+def cocktail_shaker_sort(arr: list[int]) -> list[int]:
     """
     Sorts a list using the Cocktail Shaker Sort algorithm.
 
@@ -39,7 +36,7 @@ def cocktail_shaker_sort(arr: list[T]) -> list[T]:
 
         # Pass from left to right
         for i in range(start, end):
-            if arr[i] > arr[i + 1]:  # typing: ignore
+            if arr[i] > arr[i + 1]:
                 arr[i], arr[i + 1] = arr[i + 1], arr[i]
                 swapped = True
 
@@ -50,7 +47,7 @@ def cocktail_shaker_sort(arr: list[T]) -> list[T]:
 
         # Pass from right to left
         for i in range(end, start, -1):
-            if arr[i] < arr[i - 1]:  # typing: ignore
+            if arr[i] < arr[i - 1]:
                 arr[i], arr[i - 1] = arr[i - 1], arr[i]
                 swapped = True
 
