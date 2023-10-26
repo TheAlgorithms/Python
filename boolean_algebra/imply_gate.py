@@ -34,7 +34,6 @@ def imply_gate(input_1: int, input_2: int) -> int:
 
 
 if __name__ == "__main__":
-    print(imply_gate(0, 0))
-    print(imply_gate(0, 1))
-    print(imply_gate(1, 0))
-    print(imply_gate(1, 1))
+    import doctest
+
+    doctest.testmod()
