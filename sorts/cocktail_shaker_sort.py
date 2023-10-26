@@ -16,10 +16,12 @@
     >>> cocktail_shaker_sort([-4, -5, -24, -7, -11])
     [-24, -11, -7, -5, -4]
 """
+
+
 def cocktail_shaker_sort(arr):
     """
     Sorts a list using the Cocktail Shaker Sort algorithm.
-    
+
     :param arr: List of elements to be sorted.
     :return: Sorted list.
     """
@@ -52,16 +54,16 @@ def cocktail_shaker_sort(arr):
 
     return arr
 
+
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    
+
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
     sorted_list = cocktail_shaker_sort(unsorted)
     print(f"Sorted list: {sorted_list}")
-
 
     doctest.testmod()
     user_input = input("Enter numbers separated by a comma:\n").strip()
