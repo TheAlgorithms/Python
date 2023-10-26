@@ -14,14 +14,17 @@ def custom_pivoting(matrix: np.ndarray, n: int, i: int) -> int:
     >>> a_matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype=float)
     >>> custom_pivoting(a_matrix, 3, 1)
     0
-    """    
+    """
     min_index = i
     for index in range(i + 1, n):
         if abs(matrix[index][i]) < abs(matrix[min_index][i]):
             min_index = index
     return min_index
 
-def custom_gauss_elimination_pivoting(coeff_matrix: list, const_vector: list, n: int) -> list:
+
+def custom_gauss_elimination_pivoting(
+    coeff_matrix: list, const_vector: list, n: int
+) -> list:
     """
     Solves a system of linear equations using Gaussian elimination with partial pivoting.
 
@@ -42,8 +45,14 @@ def custom_gauss_elimination_pivoting(coeff_matrix: list, const_vector: list, n:
     result = []
     for i in range(n - 1):
         new_index = custom_pivoting(coeff_matrix, n, i)
-        coeff_matrix[i], coeff_matrix[new_index] = coeff_matrix[new_index], coeff_matrix[i]
-        const_vector[i], const_vector[new_index] = const_vector[new_index], const_vector[i]
+        coeff_matrix[i], coeff_matrix[new_index] = (
+            coeff_matrix[new_index],
+            coeff_matrix[i],
+        )
+        const_vector[i], const_vector[new_index] = (
+            const_vector[new_index],
+            const_vector[i],
+        )
         pivot = coeff_matrix[i][i]
         for j in range(i + 1, n):
             m = -1 * coeff_matrix[j][i] / pivot
