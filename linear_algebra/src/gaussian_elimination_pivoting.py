@@ -2,7 +2,7 @@ import numpy as np
 import sys
 import time
 
-matrixAB = np.loadtxt('matrix.txt')
+matrixAB = np.loadtxt("matrix.txt")
 B = np.copy(matrixAB[:, matrixAB.shape[1] - 1])
 
 
@@ -30,7 +30,12 @@ def foo(matrix):
                 pass
         if columnNum != 0:
             for i in range(columnNum, numOfRows):
-                AB[i, :] = AB[i, :] - AB[i, columnNum - 1] / AB[columnNum - 1, columnNum - 1] * AB[columnNum - 1, :]
+                AB[i, :] = (
+                    AB[i, :]
+                    - AB[i, columnNum - 1]
+                    / AB[columnNum - 1, columnNum - 1]
+                    * AB[columnNum - 1, :]
+                )
 
     print("Upper triangular matrix: ")
     print(AB.round(3))
