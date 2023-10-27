@@ -7,7 +7,7 @@ import imutils
 import cv2
 
 
-def watershed_image(path_image):
+def watershed_image(path_image) -> None :
     # Load the image and perform pyramid mean shift filtering
     image = cv2.imread("/content/watershed_coins_01.webp")
     shifted = cv2.pyrMeanShiftFiltering(image, 21, 51)
@@ -18,9 +18,9 @@ def watershed_image(path_image):
 
     # Compute Euclidean distance, then find peaks in this distance map
     D = ndimage.distance_transform_edt(thresh)
-    localMax = peak_local_max(D, indices=False, min_distance=20, labels=thresh)
+    local_max = peak_local_max(D, indices=False, min_distance=20, labels=thresh)
     # Apply the Watershed algorithm
-    markers = ndimage.label(localMax, structure=np.ones((3, 3)))[0]
+    markers = ndimage.label(local_max, structure=np.ones((3, 3)))[0]
     labels = watershed(-D, markers, mask=thresh)
 
     # Loop over the unique labels returned by the Watershed algorithm
@@ -40,7 +40,7 @@ def watershed_image(path_image):
         cv2.circle(image, (int(x), int(y)), int(r), (0, 255, 0), 2)
         cv2.putText(
             image,
-            "#{}".format(label),
+            f"#{label}",
             (int(x) - 10, int(y)),
             cv2.FONT_HERSHEY_SIMPLEX,
             0.6,
