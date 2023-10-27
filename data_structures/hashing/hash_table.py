@@ -213,7 +213,7 @@ class HashTable:
         >>> ht.keys()
         {2: 17, 3: 18, 4: 99}
 
-        2. The collission will be with all keys, so new hash will be created for all
+        3. Trying to insert float key in hash
         >>> ht = HashTable(1)
         >>> ht.insert_data(17)
         >>> ht.insert_data(18)
