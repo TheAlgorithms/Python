@@ -1,7 +1,10 @@
 # https://www.geeksforgeeks.org/solve-crossword-puzzle/
 from typing import Optional
 
-def solve_crossword(puzzle: list[list[str]], words: list[str]) -> Optional[list[list[str]]]:
+
+def solve_crossword(
+    puzzle: list[list[str]], words: list[str]
+) -> Optional[list[list[str]]]:
     """
     Solve a crossword puzzle by placing words from the provided list into the puzzle.
 
@@ -113,13 +116,11 @@ def solve_crossword(puzzle: list[list[str]], words: list[str]) -> Optional[list[
         return None
 
 
-
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-   
-    
+
     # Example usage:
     puzzle = [
         ["#", "#", "c", "#", "#", "#", "#"],
@@ -132,7 +133,7 @@ if __name__ == "__main__":
     ]
     words = ["car", "rack", "bat", "cat", "rat", "in", "tax", "eat"]
     solution = solve_crossword(puzzle, words)
-    
+
     if solution:
         for row in solution:
             print(" ".join(row))
