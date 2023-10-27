@@ -9,6 +9,7 @@ to the sum of its own digits, each raised to the power of the number of digits.
 https://mathworld.wolfram.com/NarcissisticNumber.html
 """
 
+
 def is_armstrong(num: int) -> bool:
     """
     >>> is_armstrong(-1)
@@ -27,14 +28,14 @@ def is_armstrong(num: int) -> bool:
     # Negative integer shall not be an Armstrong number
     if num < 0:
         return False
-    
+
     num_str = str(num)
     num_digits = len(num_str)
     sum_of_powers = 0
     for digit_char in num_str:
         digit = int(digit_char)
-        sum_of_powers += digit ** num_digits
-    
+        sum_of_powers += digit**num_digits
+
     return num == sum_of_powers
 
 
