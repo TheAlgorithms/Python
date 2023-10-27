@@ -1,13 +1,23 @@
 from collections import defaultdict
 from typing import dict, list
 
-
 class Graph:
     def __init__(self, subjects: list[str]) -> None:
+        """
+        Initialize a Graph instance with a list of subjects.
+
+        :param subjects: A list of subjects to be represented in the graph.
+        """
         self.subjects = subjects
         self.graph = defaultdict(list)
 
     def add_edge(self, subject1: str, subject2: str) -> None:
+        """
+        Add an edge between two subjects in the graph.
+
+        :param subject1: The first subject to connect.
+        :param subject2: The second subject to connect.
+        """
         self.graph[subject1].append(subject2)
         self.graph[subject2].append(subject1)
 
@@ -30,10 +40,10 @@ class Graph:
                 available_colors.add(color_map[subject])
         return color_map
 
+
     def get_minimum_time_slots(self) -> int:
         color_map = self.graph_coloring()
         return max(color_map.values())
-
 
 # Example usage
 subjects = ["Math", "Physics", "Chemistry", "Biology"]
@@ -49,5 +59,7 @@ graph.add_edge("Math", "Chemistry")
 graph.add_edge("Physics", "Chemistry")
 graph.add_edge("Physics", "Biology")
 
-minimum_time_slots = graph.get_minimum_time_slots()
-print(f"Minimum time slots needed: {minimum_time_slots}")
+# Example doctest for add_edge method
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
