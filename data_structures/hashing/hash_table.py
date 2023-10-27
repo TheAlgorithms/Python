@@ -187,7 +187,7 @@ class HashTable:
             - https://en.wikipedia.org/wiki/Linear_probing
 
         Examples:
-        1. The collission will be with keys 18 & 99, so new hash will be created for 99
+        1. The collision will be with keys 18 & 99, so new hash will be created for 99
         >>> ht = HashTable(3)
         >>> ht.insert_data(17)
         >>> ht.insert_data(18)
@@ -195,7 +195,7 @@ class HashTable:
         >>> ht.keys()
         {2: 17, 0: 18, 1: 99}
 
-        2. The collission will be with keys 17 & 101, so new hash
+        2. The collision will be with keys 17 & 101, so new hash
         will be created for 101
         >>> ht = HashTable(4)
         >>> ht.insert_data(17)
@@ -205,7 +205,7 @@ class HashTable:
         >>> ht.keys()
         {1: 17, 2: 18, 3: 99, 0: 101}
 
-        2. The collission will be with all keys, so new hash will be created for all
+        2. The collision will be with all keys, so new hash will be created for all
         >>> ht = HashTable(1)
         >>> ht.insert_data(17)
         >>> ht.insert_data(18)
