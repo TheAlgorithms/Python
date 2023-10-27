@@ -21,6 +21,29 @@ class HashTable:
         self._keys: dict = {}
 
     def keys(self):
+        """
+        The keys function returns a dictionary containing the key value pairs.
+        key being the index number in hash table and value being the data value.
+
+        Examples:
+        1. creating HashTable with size 10 and inserting 3 elements
+        >>> ht = HashTable(10)
+        >>> ht.insert_data(10)
+        >>> ht.insert_data(20)
+        >>> ht.insert_data(30)
+        >>> ht.keys()
+        {0: 10, 1: 20, 2: 30}
+
+        2. creating HashTable with size 5 and inserting 5 elements
+        >>> ht = HashTable(5)
+        >>> ht.insert_data(5)
+        >>> ht.insert_data(4)
+        >>> ht.insert_data(3)
+        >>> ht.insert_data(2)
+        >>> ht.insert_data(1)
+        >>> ht.keys()
+        {0: 5, 4: 4, 3: 3, 2: 2, 1: 1}
+        """
         return self._keys
 
     def balanced_factor(self):
@@ -37,6 +60,43 @@ class HashTable:
         print(self.values)
 
     def bulk_insert(self, values):
+        """
+        bulk_insert is used for entering more than one element at a time
+        in the HashTable.
+
+        Examples:
+        1.
+        >>> ht = HashTable(5)
+        >>> ht.bulk_insert((10,20,30))
+        step 1
+        [0, 1, 2, 3, 4]
+        [10, None, None, None, None]
+        step 2
+        [0, 1, 2, 3, 4]
+        [10, 20, None, None, None]
+        step 3
+        [0, 1, 2, 3, 4]
+        [10, 20, 30, None, None]
+
+        2.
+        >>> ht = HashTable(5)
+        >>> ht.bulk_insert([5,4,3,2,1])
+        step 1
+        [0, 1, 2, 3, 4]
+        [5, None, None, None, None]
+        step 2
+        [0, 1, 2, 3, 4]
+        [5, None, None, None, 4]
+        step 3
+        [0, 1, 2, 3, 4]
+        [5, None, None, 3, 4]
+        step 4
+        [0, 1, 2, 3, 4]
+        [5, None, 2, 3, 4]
+        step 5
+        [0, 1, 2, 3, 4]
+        [5, 1, 2, 3, 4]
+        """
         i = 1
         self.__aux_list = values
         for value in values:
@@ -69,6 +129,21 @@ class HashTable:
             self.insert_data(value)
 
     def insert_data(self, data):
+        """
+        insert_data is used for inserting a single element at a time in the HashTable.
+
+        Examples:
+
+        >>> ht = HashTable(3)
+        >>> ht.insert_data(5)
+        >>> ht.keys()
+        {2: 5}
+        >>> ht = HashTable(5)
+        >>> ht.insert_data(30)
+        >>> ht.insert_data(50)
+        >>> ht.keys()
+        {0: 30, 1: 50}
+        """
         key = self.hash_function(data)
 
         if self.values[key] is None:
@@ -84,3 +159,9 @@ class HashTable:
             else:
                 self.rehashing()
                 self.insert_data(data)
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
