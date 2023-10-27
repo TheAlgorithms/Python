@@ -1,10 +1,7 @@
 import matplotlib.pyplot as plt
 from typing import List, Tuple
 
-
-def digital_differential_analyzer_line(
-    x1: int, y1: int, x2: int, y2: int
-) -> Tuple[List[int], List[int]]:
+def digital_differential_analyzer_line(x1: int, y1: int, x2: int, y2: int) -> Tuple[List[int], List[int]]:
     """
     Draw a line using the Digital Differential Analyzer (DDA) algorithm.
 
@@ -15,8 +12,8 @@ def digital_differential_analyzer_line(
         y2 (int): The y-coordinate of the ending point.
 
     Returns:
-        Tuple[List[int], List[int]]: A tuple of two lists, where the first list contains
-        the x-coordinates of the line points, and the second list contains the y-coordinates.
+        Tuple of two lists, where the first list contains the x-coordinates of the line points,
+        and the second list contains the y-coordinates.
 
     Example:
         >>> digital_differential_analyzer_line(0, 0, 3, 2)
@@ -44,11 +41,10 @@ def digital_differential_analyzer_line(
     for _ in range(steps):
         x += x_increment
         y += y_increment
-        x_points.append(round(x))
-        y_points.append(round(y))
+        x_points.append(int(round(x)))
+        y_points.append(int(round(y)))
 
     return x_points, y_points
-
 
 if __name__ == "__main__":
     # Input the coordinates of the two endpoints of the line
