@@ -31,13 +31,9 @@ def spiral_order(matrix):
 
     return result
 
+
 # Example usage:
-matrix = [
-    [1, 2, 3, 4],
-    [5, 6, 7, 8],
-    [9, 10, 11, 12],
-    [13, 14, 15, 16]
-]
+matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
 
 result = spiral_order(matrix)
-print(' '.join(map(str, result)))
+print(" ".join(map(str, result)))
