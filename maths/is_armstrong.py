@@ -6,8 +6,9 @@ to the sum of its own digits, each raised to the power of the number of digits.
 153 is an Armstrong number because 1^3 + 5^3 + 3^3 = 153
 8208 is an Armstrong number because 8^4 + 2^4 + 0^4 + 8^4 = 8208
 
-https://en.wikipedia.org/wiki/Narcissistic_number
+https://mathworld.wolfram.com/NarcissisticNumber.html
 """
+
 def is_armstrong(num: int) -> bool:
     """
     >>> is_armstrong(-1)
@@ -23,6 +24,10 @@ def is_armstrong(num: int) -> bool:
     >>> is_armstrong(24364)
     False
     """
+    # Negative integer shall not be an Armstrong number
+    if num < 0:
+        return False
+    
     num_str = str(num)
     num_digits = len(num_str)
     sum_of_powers = 0
