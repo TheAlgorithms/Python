@@ -7,7 +7,7 @@ import imutils
 import cv2
 
 
-def watershed_image(path_image) -> None :
+def watershed_image(path_image) -> None:
     # Load the image and perform pyramid mean shift filtering
     image = cv2.imread("/content/watershed_coins_01.webp")
     shifted = cv2.pyrMeanShiftFiltering(image, 21, 51)
