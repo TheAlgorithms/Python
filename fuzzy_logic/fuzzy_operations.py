@@ -1,10 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
+
 """"
  FuzzySet class for triangular fuzzy sets
  Author: Shreya123714
  Source: https://en.wikipedia.org/wiki/Fuzzy_set
 """
+
 
 class FuzzySet:
     """
@@ -39,7 +41,6 @@ class FuzzySet:
         self.b = b  # Peak value
         self.c = c  # Right boundary
 
-
     def membership(self, x):
         """
         Calculate the membership value of an input 'x' in the fuzzy set.
@@ -58,7 +59,6 @@ class FuzzySet:
         elif self.b < x < self.c:
             return (self.c - x) / (self.c - self.b)
 
-
     def union(self, other):
         """
         Calculate the union of this fuzzy set with another fuzzy set.
@@ -71,11 +71,15 @@ class FuzzySet:
         """
 
         union_name = f"{self.name} ∪ {other.name}"
-        return FuzzySet(union_name, min(self.a, other.a), max(self.c, other.c), (self.b + other.b) / 2)
-
+        return FuzzySet(
+            union_name,
+            min(self.a, other.a),
+            max(self.c, other.c),
+            (self.b + other.b) / 2,
+        )
 
     def intersection(self, other):
-         """
+        """
         Calculate the intersection of this fuzzy set with another fuzzy set.
 
         Args:
@@ -84,9 +88,13 @@ class FuzzySet:
         Returns:
             FuzzySet: A new fuzzy set representing the intersection.
         """
-         intersection_name = f"{self.name} ∩ {other.name}"
-         return FuzzySet(intersection_name, max(self.a, other.a), min(self.c, other.c), (self.b + other.b) / 2)
-
+        intersection_name = f"{self.name} ∩ {other.name}"
+        return FuzzySet(
+            intersection_name,
+            max(self.a, other.a),
+            min(self.c, other.c),
+            (self.b + other.b) / 2,
+        )
 
     def complement(self):
         """
@@ -98,7 +106,6 @@ class FuzzySet:
         complement_name = f"¬{self.name}"
         return FuzzySet(complement_name, 1 - self.c, 1 - self.a, 1 - self.b)
 
-
     def plot(self):
         """
         Plot the membership function of the fuzzy set.
@@ -107,8 +114,6 @@ class FuzzySet:
         y = [self.membership(xi) for xi in x]
 
         plt.plot(x, y, label=self.name)
-
-
 
     def __str__(self):
         return f"{self.name}: [{self.a}, {self.b}, {self.c}]"
@@ -121,7 +126,7 @@ if __name__ == "__main__":
 
     A.plot()
     B.plot()
-    
+
     plt.xlabel("x")
     plt.ylabel("Membership")
     plt.legend()
@@ -139,5 +144,3 @@ if __name__ == "__main__":
     plt.ylabel("Membership")
     plt.legend()
     plt.show()
-
-
