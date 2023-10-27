@@ -1,5 +1,5 @@
 #python prog to capitilize the string
-def custom_upper(string):
+def custom_upper(string) -> None:
     upper_string=""
     for char in string:
         if 'a'<=char<='z':
@@ -8,7 +8,7 @@ def custom_upper(string):
             upper_string+=char
     return upper_string
 
-def custom_lower(string):
+def custom_lower(string) -> None:
     lower_string=""
     for char in string:
         if 'A'<=char<='Z':
@@ -18,10 +18,10 @@ def custom_lower(string):
     return lower_string
 
 
-def custom_capitalize(w):
+def custom_capitalize(w)-> None:
     return custom_upper(w[0])+custom_lower(w[1:])
 
-def custom_title(string):
+def custom_title(string)-> None:
     words=string.split()
     tcw=[]
     for i in words:
@@ -31,4 +31,4 @@ def custom_title(string):
     print(sentence)
 
 string=input("enter the string")
-custom_title(string)
+custom_title(string)M
