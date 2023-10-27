@@ -1,7 +1,7 @@
 def spiralorder(matrix):
     """
+    The spiralorder function returns a list containing the values of matrix in spiral order.
     Given a 2D array, print it in spiral form.
-
     Examples:
 
     Input:  {{1,    2,   3,   4},
