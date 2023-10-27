@@ -1,6 +1,7 @@
 from collections import defaultdict
 from typing import Dict, List
 
+
 class Graph:
     def __init__(self, subjects: List[str]) -> None:
         self.subjects = subjects
