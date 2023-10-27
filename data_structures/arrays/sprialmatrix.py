@@ -29,13 +29,13 @@ def spiralorder(matrix):
 
     # Iterate from 0 to R * C - 1
     for i in range(m * n):
-        i=i
+        i = i
         ans.append(matrix[x][y])
         seen[x][y] = True
         cr = x + dr[di]
         cc = y + dc[di]
 
-        if cr>=0 and cr < m and cc>=0 and cc < n and not (seen[cr][cc]):
+        if cr >= 0 and cr < m and cc >= 0 and cc < n and not (seen[cr][cc]):
             x = cr
             y = cc
         else:
