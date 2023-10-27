@@ -28,6 +28,7 @@ def lagrange_interpolation(x: list[float], y: list[float], value: float) -> floa
 
     return ans
 
+
 def main():
     """
     Main function for performing Lagrange interpolation.
@@ -53,6 +54,7 @@ def main():
     interpolated_value = lagrange_interpolation(x, y, value_to_interpolate)
 
     print(f"The interpolated value at {value_to_interpolate} is {interpolated_value}")
+
 
 if __name__ == "__main__":
     main()
