@@ -54,13 +54,13 @@ class DoubleHash(HashTable):
         >>> dh.keys()
         {10: 10, 9: 20, 8: 30}
 
-        3. Try to add three data elements when the size is one
-        >>> dh = DoubleHash(2)
+        3. Try to add three data elements when the size is four
+        >>> dh = DoubleHash(4)
         >>> dh.insert_data(10)
         >>> dh.insert_data(20)
         >>> dh.insert_data(30)
         >>> dh.keys()
-        {10: 10, 9: 20, 8: 30}
+        {9: 20, 10: 10, 8: 30}
         """
         i = 1
         new_key = self.hash_function(data)
