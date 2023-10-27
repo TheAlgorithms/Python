@@ -1,9 +1,9 @@
 from collections import defaultdict
-from typing import Dict, List
+from typing import dict, list
 
 
 class Graph:
-    def __init__(self, subjects: List[str]) -> None:
+    def __init__(self, subjects: list[str]) -> None:
         self.subjects = subjects
         self.graph = defaultdict(list)
 
@@ -11,7 +11,7 @@ class Graph:
         self.graph[subject1].append(subject2)
         self.graph[subject2].append(subject1)
 
-    def graph_coloring(self) -> Dict[str, int]:
+    def graph_coloring(self) -> dict[str, int]:
         color_map = {}
         available_colors = set(range(1, len(self.subjects) + 1))
         for subject in self.subjects:
