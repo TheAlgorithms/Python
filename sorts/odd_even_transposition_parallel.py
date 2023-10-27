@@ -91,14 +91,6 @@ def odd_even_transposition(arr):
     >>> unsorted_list = [-442, -98, -554, 266, -491, 985, -53, -529, 82, -429]
     >>> odd_even_transposition(unsorted_list) == sorted(unsorted_list + [1])
     False
-    # >>> odd_even_transposition([False, "a", 8]) == sorted([False, "a", 8])
-    # Traceback (most recent call last):
-    #     ...
-    # TypeError: '>' not supported between instances of 'bool' and 'str'
-    # >>> odd_even_transposition([8, "a"]) == sorted(["a", 8])
-    # Traceback (most recent call last):
-    #     ...
-    # TypeError: '<' not supported between instances of 'str' and 'int'
     """
     process_array_ = []
     result_pipe = []
