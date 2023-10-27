@@ -54,5 +54,8 @@ def watershed_image(path_image: str) -> None:
     # Dhow the output image
     cv2.imshow("Result image", image)
 
+if __name__ == "__main__":
+    watershed_image("PATH_TO_YOUR_IMAGE")
+    waitKey(0)
+    destroyAllWindows()
 
-watershed_image("PATH_TO_YOUR_IMAGE")
