@@ -67,7 +67,7 @@ def solve_crossword(puzzle: list[list[str]], words: list[str]) -> bool:
     ...     ['', '', '', '']
     ... ]
 
-    >>> words = ['word', 'another', 'more', 'last']
+    >>> words = ['word', 'four', 'more', 'last']
     >>> solve_crossword(puzzle, words)
     True
     """
