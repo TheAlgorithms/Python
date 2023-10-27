@@ -24,7 +24,7 @@ Find F(10^7).
     In this path, the largest number is 113. Among all possible paths, this path has the 
     smallest maximum number. Therefore, 103 is not considered a relative of 2.
 """
-from typing import Any, Callable, Dict, Generator, Generic, List, Optional, TypeVar, cast
+
 import heapq
 
 def sqrt(x: int) -> int:
@@ -39,9 +39,9 @@ def sqrt(x: int) -> int:
 		i //= 2
 	return y
 
-def list_primality(n: int) -> List[bool]:
+def list_primality(n: int) -> list[bool]:
 	# Sieve of Eratosthenes
-	result: List[bool] = [True] * (n + 1)
+	result: list[bool] = [True] * (n + 1)
 	result[0] = result[1] = False
 	for i in range(sqrt(n) + 1):
 		if result[i]:

@@ -16,7 +16,7 @@ Solutions to Modular Equations:
 - Using the Chinese remainder theorem, we get 2^N solutions, where N is the number of unique prime factors of n.
 - The largest solution among these is used for the M() function.
 """
-from typing import Any, Callable, Dict, Generator, Generic, List, Optional, TypeVar, cast
+from typing import Any, Callable, Optional, TypeVar, cast
 
 def sqrt(x: int) -> int:
 	assert x >= 0
@@ -30,8 +30,8 @@ def sqrt(x: int) -> int:
 		i //= 2
 	return y
 
-def list_smallest_prime_factors(n: int) -> List[int]:
-	result: List[Optional[int]] = [None] * (n + 1)
+def list_smallest_prime_factors(n: int) -> list[int]:
+	result: list[Optional[int]] = [None] * (n + 1)
 	limit = sqrt(n)
 	for i in range(2, len(result)):
 		if result[i] is None:
@@ -40,7 +40,7 @@ def list_smallest_prime_factors(n: int) -> List[int]:
 				for j in range(i * i, n + 1, i):
 					if result[j] is None:
 						result[j] = i
-	return cast(List[int], result)
+	return cast(list[int], result)
 
 def solution():
 	LIMIT = 10**7
