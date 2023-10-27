@@ -28,9 +28,7 @@ def spiralorder(matrix):
     di = 0
 
     # Iterate from 0 to R * C - 1
-    j = 0
     for i in range(m * n):
-        j = i
         ans.append(matrix[x][y])
         seen[x][y] = True
         cr = x + dr[di]
