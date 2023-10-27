@@ -1,9 +1,9 @@
 def excess_3_code(number: int) -> str:
     """
-    Find excess 3 code of integer base 10.
-    We add 3 to all digits in the decimal number
-    then convert to binary coded decimal number.
-    Example:
+    Find excess-3 code of integer base 10.
+    Add 3 to all digits in a decimal number then convert to a binary-coded decimal.
+    https://en.wikipedia.org/wiki/Excess-3
+
     >>> excess_3_code(0)
     '0b0011'
     >>> excess_3_code(3)
