@@ -35,7 +35,7 @@ class Variable:
     """
     Class represents n-dimensional object which is used to wrap numpy array on which
     operations will be performed and the gradient will be calculated.
-    
+
     Examples:
     >>> Variable(5.0)
     Variable(5.0)
@@ -317,7 +317,8 @@ class GradientTracker:
             power = operation.other_params["power"]
             return power * (params[0].to_ndarray() ** (power - 1))
 
-        raise ValueError(f"invalid operation type: {operation.op_type}")
+        err_msg = f"invalid operation type: {operation.op_type}"
+        raise ValueError(err_msg)
 
 
 if __name__ == "__main__":
