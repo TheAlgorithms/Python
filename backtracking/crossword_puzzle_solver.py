@@ -1,5 +1,6 @@
 # https://www.geeksforgeeks.org/solve-crossword-puzzle/
 
+
 def is_valid(puzzle: list[list[str]], word: str, row: int, col: int) -> bool:
     """
     Check if a word can be placed at the given position.
@@ -9,9 +10,10 @@ def is_valid(puzzle: list[list[str]], word: str, row: int, col: int) -> bool:
     True
     """
     for i in range(len(word)):
-        if row + i >= len(puzzle) or puzzle[row + i][col] != '':
+        if row + i >= len(puzzle) or puzzle[row + i][col] != "":
             return False
     return True
+
 
 def place_word(puzzle: list[list[str]], word: str, row: int, col: int) -> None:
     """
@@ -25,6 +27,7 @@ def place_word(puzzle: list[list[str]], word: str, row: int, col: int) -> None:
     for i in range(len(word)):
         puzzle[row + i][col] = word[i]
 
+
 def remove_word(puzzle: list[list[str]], word: str, row: int, col: int) -> None:
     """
     Remove a word from the given position.
@@ -35,7 +38,8 @@ def remove_word(puzzle: list[list[str]], word: str, row: int, col: int) -> None:
     [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']]
     """
     for i in range(len(word)):
-        puzzle[row + i][col] = ''
+        puzzle[row + i][col] = ""
+
 
 def solve_crossword(puzzle: list[list[str]], words: list[str]) -> bool:
     """
@@ -48,7 +52,7 @@ def solve_crossword(puzzle: list[list[str]], words: list[str]) -> bool:
     """
     for row in range(len(puzzle)):
         for col in range(len(puzzle[0])):
-            if puzzle[row][col] == '':
+            if puzzle[row][col] == "":
                 for word in words:
                     if is_valid(puzzle, word, row, col):
                         place_word(puzzle, word, row, col)
@@ -60,13 +64,14 @@ def solve_crossword(puzzle: list[list[str]], words: list[str]) -> bool:
                 return False
     return True
 
+
 # Replace with your actual puzzle and words
-PUZZLE = [['' for _ in range(3)] for _ in range(3)]
-WORDS = ['cat', 'dog', 'pig']
+PUZZLE = [["" for _ in range(3)] for _ in range(3)]
+WORDS = ["cat", "dog", "pig"]
 
 if solve_crossword(PUZZLE, WORDS):
-    print('Solution found:')
+    print("Solution found:")
 else:
-    print('No solution found:')
+    print("No solution found:")
 for row in PUZZLE:
-    print(' '.join(row))
+    print(" ".join(row))
