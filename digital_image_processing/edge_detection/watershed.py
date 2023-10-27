@@ -8,10 +8,10 @@ import cv2
 
 
 def watershed_image(path_image: str) -> None:
-    '''
+    """
     Watershed is a classic algorithm used for segmentation, specially when
     has overlapping objects in images.
-    '''
+    """
     # Load the image and perform pyramid mean shift filtering
     image = cv2.imread("/content/watershed_coins_01.webp")
     shifted = cv2.pyrMeanShiftFiltering(image, 21, 51)
