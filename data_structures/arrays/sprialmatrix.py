@@ -3,7 +3,6 @@ from typing import list
 
 def spiralorder(matrix: list[list[int]]) -> list[int]:
     """
-    The spiralorder function returns a list containing the values of matrix in spiral order.
     Get the elements of a 2D matrix in spiral order.
 
     Args:
@@ -31,7 +30,7 @@ def spiralorder(matrix: list[list[int]]) -> list[int]:
     y = 0
     di = 0
 
-    for i in range(m * n):
+    for _ in range(m * n):  # Removed the unnecessary loop variable `i`
         ans.append(matrix[x][y])
         seen[x][y] = True
         cr = x + dr[di]
