@@ -13,6 +13,7 @@ synchronization could be used.
 from multiprocessing import Lock, Pipe, Process
 
 # lock used to ensure that two processes do not access a pipe at the same time
+# NOTE This breaks testing on build runner. May work better locally
 # process_lock = Lock()
 
 """
