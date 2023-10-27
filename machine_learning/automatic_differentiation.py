@@ -3,58 +3,51 @@ Demonstration of the Automatic Differentiation (Reverse mode).
 
 Reference: https://en.wikipedia.org/wiki/Automatic_differentiation
 
-Author: Poojan smart
+Author: Poojan Smart
 Email: smrtpoojan@gmail.com
-
-Examples:
-
->>> with GradientTracker() as tracker:
-...     a = Variable([2.0, 5.0])
-...     b = Variable([1.0, 2.0])
-...     m = Variable([1.0, 2.0])
-...     c = a + b
-...     d = a * b
-...     e = c / d
->>> print(tracker.gradient(e, a))
-[-0.25 -0.04]
->>> print(tracker.gradient(e, b))
-[-1.   -0.25]
->>> print(tracker.gradient(e, m))
-None
-
->>> with GradientTracker() as tracker:
-...     a = Variable([[2.0, 5.0]])
-...     b = Variable([[1.0], [2.0]])
-...     c = a @ b
->>> print(tracker.gradient(c, a))
-[[1. 2.]]
->>> print(tracker.gradient(c, b))
-[[2.]
- [5.]]
-
->>> with GradientTracker() as tracker:
-...     a = Variable([[2.0, 5.0]])
-...     b = a ** 3
->>> print(tracker.gradient(b, a))
-[[12. 75.]]
 """
 from __future__ import annotations
 
+from collections import defaultdict
 from enum import Enum
 from types import TracebackType
+from typing import Any
 
 import numpy as np
 from typing_extensions import Self  # noqa: UP035
 
 
-class Variable:
+class OpType(Enum):
     """
-    Class represents n-dimensional object which is used to wrap
-    numpy array on which operations will be performed and gradient
-    will be calculated.
+    Class represents list of supported operations on Variable for gradient calculation.
     """
 
-    def __init__(self, value) -> None:
+    ADD = 0
+    SUB = 1
+    MUL = 2
+    DIV = 3
+    MATMUL = 4
+    POWER = 5
+    NOOP = 6
+
+
+class Variable:
+    """
+    Class represents n-dimensional object which is used to wrap numpy array on which
+    operations will be performed and the gradient will be calculated.
+    
+    Examples:
+    >>> Variable(5.0)
+    Variable(5.0)
+    >>> Variable([5.0, 2.9])
+    Variable([5.  2.9])
+    >>> Variable([5.0, 2.9]) + Variable([1.0, 5.5])
+    Variable([6.  8.4])
+    >>> Variable([[8.0, 10.0]])
+    Variable([[ 8. 10.]])
+    """
+
+    def __init__(self, value: Any) -> None:
         self.value = np.array(value)
 
         # pointers to the operations to which the Variable is input
@@ -62,10 +55,10 @@ class Variable:
         # pointer to the operation of which the Variable is output of
         self.result_of: Operation = Operation(OpType.NOOP)
 
-    def __str__(self) -> str:
+    def __repr__(self) -> str:
         return f"Variable({self.value})"
 
-    def numpy(self) -> np.ndarray:
+    def to_ndarray(self) -> np.ndarray:
         return self.value
 
     def __add__(self, other: Variable) -> Variable:
@@ -74,7 +67,7 @@ class Variable:
         with GradientTracker() as tracker:
             # if tracker is enabled, computation graph will be updated
             if tracker.enabled:
-                tracker.add_operation(OpType.ADD, params=[self, other], output=result)
+                tracker.append(OpType.ADD, params=[self, other], output=result)
         return result
 
     def __sub__(self, other: Variable) -> Variable:
@@ -83,7 +76,7 @@ class Variable:
         with GradientTracker() as tracker:
             # if tracker is enabled, computation graph will be updated
             if tracker.enabled:
-                tracker.add_operation(OpType.SUB, params=[self, other], output=result)
+                tracker.append(OpType.SUB, params=[self, other], output=result)
         return result
 
     def __mul__(self, other: Variable) -> Variable:
@@ -92,7 +85,7 @@ class Variable:
         with GradientTracker() as tracker:
             # if tracker is enabled, computation graph will be updated
             if tracker.enabled:
-                tracker.add_operation(OpType.MUL, params=[self, other], output=result)
+                tracker.append(OpType.MUL, params=[self, other], output=result)
         return result
 
     def __truediv__(self, other: Variable) -> Variable:
@@ -101,7 +94,7 @@ class Variable:
         with GradientTracker() as tracker:
             # if tracker is enabled, computation graph will be updated
             if tracker.enabled:
-                tracker.add_operation(OpType.DIV, params=[self, other], output=result)
+                tracker.append(OpType.DIV, params=[self, other], output=result)
         return result
 
     def __matmul__(self, other: Variable) -> Variable:
@@ -110,9 +103,7 @@ class Variable:
         with GradientTracker() as tracker:
             # if tracker is enabled, computation graph will be updated
             if tracker.enabled:
-                tracker.add_operation(
-                    OpType.MATMUL, params=[self, other], output=result
-                )
+                tracker.append(OpType.MATMUL, params=[self, other], output=result)
         return result
 
     def __pow__(self, power: int) -> Variable:
@@ -121,7 +112,7 @@ class Variable:
         with GradientTracker() as tracker:
             # if tracker is enabled, computation graph will be updated
             if tracker.enabled:
-                tracker.add_operation(
+                tracker.append(
                     OpType.POWER,
                     params=[self],
                     output=result,
@@ -134,21 +125,6 @@ class Variable:
 
     def add_result_of(self, result_of: Operation) -> None:
         self.result_of = result_of
-
-
-class OpType(Enum):
-    """
-    Class represents list of supported operations on Variable for
-    gradient calculation.
-    """
-
-    ADD = 0
-    SUB = 1
-    MUL = 2
-    DIV = 3
-    MATMUL = 4
-    POWER = 5
-    NOOP = 6
 
 
 class Operation:
@@ -173,15 +149,45 @@ class Operation:
         self.output = output
 
     def __eq__(self, value) -> bool:
-        if isinstance(value, OpType):
-            return self.op_type == value
-        return False
+        return self.op_type == value if isinstance(value, OpType) else False
 
 
 class GradientTracker:
     """
     Class contains methods to compute partial derivatives of Variable
     based on the computation graph.
+
+    Examples:
+
+    >>> with GradientTracker() as tracker:
+    ...     a = Variable([2.0, 5.0])
+    ...     b = Variable([1.0, 2.0])
+    ...     m = Variable([1.0, 2.0])
+    ...     c = a + b
+    ...     d = a * b
+    ...     e = c / d
+    >>> tracker.gradient(e, a)
+    array([-0.25, -0.04])
+    >>> tracker.gradient(e, b)
+    array([-1.  , -0.25])
+    >>> tracker.gradient(e, m) is None
+    True
+
+    >>> with GradientTracker() as tracker:
+    ...     a = Variable([[2.0, 5.0]])
+    ...     b = Variable([[1.0], [2.0]])
+    ...     c = a @ b
+    >>> tracker.gradient(c, a)
+    array([[1., 2.]])
+    >>> tracker.gradient(c, b)
+    array([[2.],
+           [5.]])
+
+    >>> with GradientTracker() as tracker:
+    ...     a = Variable([[2.0, 5.0]])
+    ...     b = a ** 3
+    >>> tracker.gradient(b, a)
+    array([[12., 75.]])
     """
 
     instance = None
@@ -211,7 +217,7 @@ class GradientTracker:
     ) -> None:
         self.enabled = False
 
-    def add_operation(
+    def append(
         self,
         op_type: OpType,
         params: list[Variable],
@@ -252,7 +258,8 @@ class GradientTracker:
         """
 
         # partial derivatives with respect to target
-        partial_deriv = {target: np.ones_like(target.numpy())}
+        partial_deriv = defaultdict(lambda: 0)
+        partial_deriv[target] = np.ones_like(target.to_ndarray())
 
         # iterating through each operations in the computation graph
         operation_queue = [target.result_of]
@@ -263,18 +270,12 @@ class GradientTracker:
                 # of variables with respect to the target
                 dparam_doutput = self.derivative(param, operation)
                 dparam_dtarget = dparam_doutput * partial_deriv[operation.output]
-                if param in partial_deriv:
-                    partial_deriv[param] += dparam_dtarget
-                else:
-                    partial_deriv[param] = dparam_dtarget
+                partial_deriv[param] += dparam_dtarget
 
-                if param.result_of:
-                    if param.result_of != OpType.NOOP:
-                        operation_queue.append(param.result_of)
+                if param.result_of and param.result_of != OpType.NOOP:
+                    operation_queue.append(param.result_of)
 
-        if source in partial_deriv:
-            return partial_deriv[source]
-        return None
+        return partial_deriv.get(source)
 
     def derivative(self, param: Variable, operation: Operation) -> np.ndarray:
         """
@@ -290,32 +291,33 @@ class GradientTracker:
         """
         params = operation.params
 
-        derivative = None
-
         if operation == OpType.ADD:
-            derivative = np.ones_like(params[0].numpy(), dtype=np.float64)
-        elif operation == OpType.SUB:
+            return np.ones_like(params[0].to_ndarray(), dtype=np.float64)
+        if operation == OpType.SUB:
             if params[0] == param:
-                derivative = np.ones_like(params[0].numpy(), dtype=np.float64)
-            else:
-                derivative = -np.ones_like(params[1].numpy(), dtype=np.float64)
-        elif operation == OpType.MUL:
-            derivative = (
-                params[1].numpy().T if params[0] == param else params[0].numpy().T
+                return np.ones_like(params[0].to_ndarray(), dtype=np.float64)
+            return -np.ones_like(params[1].to_ndarray(), dtype=np.float64)
+        if operation == OpType.MUL:
+            return (
+                params[1].to_ndarray().T
+                if params[0] == param
+                else params[0].to_ndarray().T
             )
-        elif operation == OpType.DIV:
+        if operation == OpType.DIV:
             if params[0] == param:
-                derivative = 1 / params[1].numpy()
-            else:
-                derivative = -params[0].numpy() / (params[1].numpy() ** 2)
-        elif operation == OpType.MATMUL:
-            derivative = (
-                params[1].numpy().T if params[0] == param else params[0].numpy().T
+                return 1 / params[1].to_ndarray()
+            return -params[0].to_ndarray() / (params[1].to_ndarray() ** 2)
+        if operation == OpType.MATMUL:
+            return (
+                params[1].to_ndarray().T
+                if params[0] == param
+                else params[0].to_ndarray().T
             )
-        elif operation == OpType.POWER:
+        if operation == OpType.POWER:
             power = operation.other_params["power"]
-            derivative = power * (params[0].numpy() ** (power - 1))
-        return derivative
+            return power * (params[0].to_ndarray() ** (power - 1))
+
+        raise ValueError(f"invalid operation type: {operation.op_type}")
 
 
 if __name__ == "__main__":
