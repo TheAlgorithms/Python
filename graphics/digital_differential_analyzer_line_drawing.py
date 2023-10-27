@@ -4,7 +4,7 @@ from typing import List, Tuple
 
 def digital_differential_analyzer_line(
     x1: int, y1: int, x2: int, y2: int
-) -> Tuple[List[int], List[int]]:
+) -> tuple[list[int], list[int]]:
     """
     Draw a line using the Digital Differential Analyzer (DDA) algorithm.
 
