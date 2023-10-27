@@ -16,17 +16,16 @@ def quick_sort(array):
     [-45, -5, -2]
     """
     array_length = len(array)
-    if( array_length <= 1):
+    if array_length <= 1:
         return array
     else:
         pivot = ARRAY[0]
-        greater = [ element for element in array[1:] if element > pivot ]
-        lesser = [ element for element in array[1:] if element <= pivot ]
+        greater = [element for element in array[1:] if element > pivot]
+        lesser = [element for element in array[1:] if element <= pivot]
         return quick_sort(lesser) + [pivot] + quick_sort(greater)
 
 
-if __name__ == '__main__':
-
-    user_input = input('Enter numbers separated by a comma:\n').strip()
-    unsorted = [ int(item) for item in user_input.split(',') ]
-    print( quick_sort(unsorted) )
+if __name__ == "__main__":
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    unsorted = [int(item) for item in user_input.split(",")]
+    print(quick_sort(unsorted))
