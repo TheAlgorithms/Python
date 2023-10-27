@@ -16,65 +16,79 @@ Solutions to Modular Equations:
 - Using the Chinese remainder theorem, we get 2^N solutions, where N is the number of unique prime factors of n.
 - The largest solution among these is used for the M() function.
 """
-from typing import Any, Callable, Dict, Generator, Generic, List, Optional, TypeVar, cast
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Generator,
+    Generic,
+    List,
+    Optional,
+    TypeVar,
+    cast,
+)
+
 
 def sqrt(x: int) -> int:
-	assert x >= 0
-	i: int = 1
-	while i * i <= x:
-		i *= 2
-	y: int = 0
-	while i > 0:
-		if (y + i)**2 <= x:
-			y += i
-		i //= 2
-	return y
+    assert x >= 0
+    i: int = 1
+    while i * i <= x:
+        i *= 2
+    y: int = 0
+    while i > 0:
+        if (y + i) ** 2 <= x:
+            y += i
+        i //= 2
+    return y
+
 
 def list_smallest_prime_factors(n: int) -> List[int]:
-	result: List[Optional[int]] = [None] * (n + 1)
-	limit = sqrt(n)
-	for i in range(2, len(result)):
-		if result[i] is None:
-			result[i] = i
-			if i <= limit:
-				for j in range(i * i, n + 1, i):
-					if result[j] is None:
-						result[j] = i
-	return cast(List[int], result)
+    result: List[Optional[int]] = [None] * (n + 1)
+    limit = sqrt(n)
+    for i in range(2, len(result)):
+        if result[i] is None:
+            result[i] = i
+            if i <= limit:
+                for j in range(i * i, n + 1, i):
+                    if result[j] is None:
+                        result[j] = i
+    return cast(List[int], result)
+
 
 def solution():
-	LIMIT = 10**7
-	
-	smallestprimefactor = list_smallest_prime_factors(LIMIT)
-	
-	ans = 0
-	for i in range(1, LIMIT + 1):
-		# Compute factorization as coprime prime powers. e.g. 360 = {2^3, 3^2, 5^1}
-		factorization = []
-		j = i
-		while j != 1:
-			p = smallestprimefactor[j]
-			q = 1
-			while True:
-				j //= p
-				q *= p
-				if j % p != 0:
-					break
-			factorization.append(q)
-		
-		solns = [0]
-		modulus = 1
-		for q in factorization:
-			# Use Chinese remainder theorem; cache parts of it
-			recip = pow(q, -1, modulus)
-			newmod = q * modulus
-			solns = [((0 + (x    ) * recip * q) % newmod) for x in solns] + \
-			        [((1 + (x - 1) * recip * q) % newmod) for x in solns]
-			modulus = newmod
-		
-		ans += max(solns)
-	return str(ans)
+    LIMIT = 10**7
+
+    smallestprimefactor = list_smallest_prime_factors(LIMIT)
+
+    ans = 0
+    for i in range(1, LIMIT + 1):
+        # Compute factorization as coprime prime powers. e.g. 360 = {2^3, 3^2, 5^1}
+        factorization = []
+        j = i
+        while j != 1:
+            p = smallestprimefactor[j]
+            q = 1
+            while True:
+                j //= p
+                q *= p
+                if j % p != 0:
+                    break
+            factorization.append(q)
+
+        solns = [0]
+        modulus = 1
+        for q in factorization:
+            # Use Chinese remainder theorem; cache parts of it
+            recip = pow(q, -1, modulus)
+            newmod = q * modulus
+            solns = [((0 + (x) * recip * q) % newmod) for x in solns] + [
+                ((1 + (x - 1) * recip * q) % newmod) for x in solns
+            ]
+            modulus = newmod
+
+        ans += max(solns)
+    return str(ans)
 
 
 if __name__ == "__main__":
-	print(solution())
+    print(solution())
