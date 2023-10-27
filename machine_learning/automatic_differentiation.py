@@ -35,7 +35,7 @@ class Variable:
     """
     Class represents n-dimensional object which is used to wrap numpy array on which
     operations will be performed and the gradient will be calculated.
-    
+
     Examples:
     >>> Variable(5.0)
     Variable(5.0)
