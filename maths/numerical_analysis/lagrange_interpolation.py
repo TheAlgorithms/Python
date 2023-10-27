@@ -1,6 +1,7 @@
 import math
 from typing import List
 
+
 def lagrange_interpolation(x: List[float], y: List[float], value: float) -> float:
     """
     Calculate the Lagrange interpolation of a function based on provided data points.
@@ -14,7 +15,7 @@ def lagrange_interpolation(x: List[float], y: List[float], value: float) -> floa
         float: The interpolated value of the function at the specified 'value'.
 
     for eg.:
-        
+
         >>> x = [5, 6, 9, 11]
         >>> y = [12, 13, 14, 16]
         >>> lagrange_interpolation(x, y, 10)
@@ -24,7 +25,7 @@ def lagrange_interpolation(x: List[float], y: List[float], value: float) -> floa
     ans = 0
     n = len(x)
 
-    for i in range(n):  
+    for i in range(n):
         term = y[i]
         for j in range(n):
             if i != j:
@@ -32,6 +33,7 @@ def lagrange_interpolation(x: List[float], y: List[float], value: float) -> floa
         ans += term
 
     return ans
+
 
 def main():
     """
@@ -53,6 +55,7 @@ def main():
     interpolated_value = lagrange_interpolation(x, y, value_to_interpolate)
 
     print(f"The interpolated value at {value_to_interpolate} is {interpolated_value}")
+
 
 if __name__ == "__main__":
     main()
