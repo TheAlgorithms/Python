@@ -11,7 +11,7 @@ def watershed_image(path_image: str) -> None:
     """
     Classic algorithm used for segmentation and useful when has overlapping objects in images.
     """
-    
+
     # Load the image and perform pyramid mean shift filtering
     image = cv2.imread("/content/watershed_coins_01.webp")
     shifted = cv2.pyrMeanShiftFiltering(image, 21, 51)
