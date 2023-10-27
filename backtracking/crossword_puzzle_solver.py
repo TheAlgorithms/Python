@@ -1,5 +1,6 @@
 # https://www.geeksforgeeks.org/solve-crossword-puzzle/
 
+
 def is_valid(puzzle: list[list[str]], word: str, row: int, col: int) -> bool:
     """
     Check if a word can be placed at the given position.
@@ -14,9 +15,10 @@ def is_valid(puzzle: list[list[str]], word: str, row: int, col: int) -> bool:
     True
     """
     for i in range(len(word)):
-        if row + i >= len(puzzle) or puzzle[row + i][col] != '':
+        if row + i >= len(puzzle) or puzzle[row + i][col] != "":
             return False
     return True
+
 
 def place_word(puzzle: list[list[str]], word: str, row: int, col: int) -> None:
     """
@@ -35,6 +37,7 @@ def place_word(puzzle: list[list[str]], word: str, row: int, col: int) -> None:
     for i in range(len(word)):
         puzzle[row + i][col] = word[i]
 
+
 def remove_word(puzzle: list[list[str]], word: str, row: int, col: int) -> None:
     """
     Remove a word from the given position.
@@ -50,7 +53,8 @@ def remove_word(puzzle: list[list[str]], word: str, row: int, col: int) -> None:
     [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']]
     """
     for i in range(len(word)):
-        puzzle[row + i][col] = ''
+        puzzle[row + i][col] = ""
+
 
 def solve_crossword(puzzle: list[list[str]], words: list[str]) -> bool:
     """
@@ -62,7 +66,7 @@ def solve_crossword(puzzle: list[list[str]], words: list[str]) -> bool:
     ...     ['', '', '', ''],
     ...     ['', '', '', '']
     ... ]
-    
+
     >>> words = ['word', 'another', 'more', 'last']
     >>> solve_crossword(puzzle, words)
     True
