@@ -1,4 +1,3 @@
-
 def spiralorder(matrix: list[list[int]]) -> list[int]:
     """
     Get the elements of a 2D matrix in spiral order.
