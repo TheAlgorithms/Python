@@ -1,5 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
+""""
+ FuzzySet class for triangular fuzzy sets
+ Author: Shreya123714
+ Source: https://en.wikipedia.org/wiki/Fuzzy_set
+"""
 
 class FuzzySet:
     """
