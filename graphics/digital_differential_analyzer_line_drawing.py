@@ -1,7 +1,10 @@
 import matplotlib.pyplot as plt
 from typing import List, Tuple
 
-def digital_differential_analyzer_line(x1: int, y1: int, x2: int, y2: int) -> Tuple[List[int], List[int]]:
+
+def digital_differential_analyzer_line(
+    x1: int, y1: int, x2: int, y2: int
+) -> Tuple[List[int], List[int]]:
     """
     Draw a line using the Digital Differential Analyzer (DDA) algorithm.
 
@@ -45,6 +48,7 @@ def digital_differential_analyzer_line(x1: int, y1: int, x2: int, y2: int) -> Tu
         y_points.append(int(round(y)))
 
     return x_points, y_points
+
 
 if __name__ == "__main__":
     # Input the coordinates of the two endpoints of the line
