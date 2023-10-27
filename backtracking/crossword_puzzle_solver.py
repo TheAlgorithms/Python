@@ -1,19 +1,16 @@
 # https://www.geeksforgeeks.org/solve-crossword-puzzle/
-from typing import List, Optional
+from typing import Optional
 
-
-def solve_crossword(
-    puzzle: List[List[str]], words: List[str]
-) -> Optional[List[List[str]]]:
+def solve_crossword(puzzle: list[list[str]], words: list[str]) -> Optional[list[list[str]]]:
     """
     Solve a crossword puzzle by placing words from the provided list into the puzzle.
 
     Args:
-        puzzle (List[List[str]]): The crossword puzzle grid.
-        words (List[str]): List of words to place in the puzzle.
+        puzzle (list[list[str]]): The crossword puzzle grid.
+        words (list[str]): list of words to place in the puzzle.
 
     Returns:
-        Optional[List[List[str]]]: The solved crossword puzzle, or None if no solution is found.
+        Optional[list[list[str]]]: The solved crossword puzzle, or None if no solution is found.
     """
 
     rows, cols = len(puzzle), len(puzzle[0])
@@ -80,13 +77,13 @@ def solve_crossword(
             for i in range(len(word)):
                 puzzle[row + i][col] = ""
 
-    def backtrack(puzzle: List[List[str]], words: List[str]) -> bool:
+    def backtrack(puzzle: list[list[str]], words: list[str]) -> bool:
         """
         Recursively backtrack to solve the crossword puzzle.
 
         Args:
-            puzzle (List[List[str]]): The crossword puzzle grid.
-            words (List[str]): List of words to place in the puzzle.
+            puzzle (list[list[str]]): The crossword puzzle grid.
+            words (list[str]): list of words to place in the puzzle.
 
         Returns:
             bool: True if a solution is found, otherwise False.
@@ -116,26 +113,28 @@ def solve_crossword(
         return None
 
 
-# Example usage:
-puzzle = [
-    ["#", "#", "c", "#", "#", "#", "#"],
-    ["#", "#", "r", "a", "c", "k", "#"],
-    ["#", "#", "o", "#", "#", "#", "#"],
-    ["#", "#", "r", "#", "b", "#", "#"],
-    ["#", "#", "a", "a", "t", "a", "x"],
-    ["#", "#", "t", "#", "i", "n", "#"],
-    ["#", "#", "e", "#", "n", "#", "#"],
-]
-words = ["car", "rack", "bat", "cat", "rat", "in", "tax", "eat"]
-solution = solve_crossword(puzzle, words)
-
-if solution:
-    for row in solution:
-        print(" ".join(row))
-else:
-    print("No solution found.")
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+   
+    
+    # Example usage:
+    puzzle = [
+        ["#", "#", "c", "#", "#", "#", "#"],
+        ["#", "#", "r", "a", "c", "k", "#"],
+        ["#", "#", "o", "#", "#", "#", "#"],
+        ["#", "#", "r", "#", "b", "#", "#"],
+        ["#", "#", "a", "a", "t", "a", "x"],
+        ["#", "#", "t", "#", "i", "n", "#"],
+        ["#", "#", "e", "#", "n", "#", "#"],
+    ]
+    words = ["car", "rack", "bat", "cat", "rat", "in", "tax", "eat"]
+    solution = solve_crossword(puzzle, words)
+    
+    if solution:
+        for row in solution:
+            print(" ".join(row))
+    else:
+        print("No solution found.")
