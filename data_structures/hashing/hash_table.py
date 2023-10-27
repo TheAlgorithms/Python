@@ -70,6 +70,8 @@ class HashTable:
         >>> ht.hash_function(-18)
         2
         >>> ht.hash_function(18.5)
+        2
+        >>> ht.hash_function(18.5)
         3.5
         >>> ht.hash_function(0)
         0
@@ -209,7 +211,7 @@ class HashTable:
         >>> ht = HashTable(1)
         >>> ht.insert_data(17)
         >>> ht.insert_data(18)
-        >>> ht.insert_data(99)
+        >>> ht.insert_data(99.99)
         >>> ht.keys()
         {2: 17, 3: 18, 4: 99}
 
