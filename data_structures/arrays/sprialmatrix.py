@@ -1,13 +1,13 @@
-from typing import List
+from typing import list
 
 
-def spiralOrder(matrix: List[List[int]]) -> List[int]:
+def spiralorder(matrix: list[list[int]]) -> list[int]:
     """
     The spiralorder function returns a list containing the values of matrix in spiral order.
     Get the elements of a 2D matrix in spiral order.
 
     Args:
-    matrix (List[List[int]]): The input 2D matrix.
+    matrix (list[list[int]]): The input 2D matrix.
 
     Returns:
     List[int]: A list containing the elements of the matrix in spiral order.
