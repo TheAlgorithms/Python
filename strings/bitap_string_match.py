@@ -14,7 +14,7 @@ python3 -m doctest -v bitap_string_match.py
 """
 
 
-def bitap_string_match(text: str, pattern: str) -> int | None:
+def bitap_string_match(text: str, pattern: str) -> int:
     """
     Retrieves the index of the first occurrence of pattern in text.
 
@@ -23,7 +23,7 @@ def bitap_string_match(text: str, pattern: str) -> int | None:
         pattern: A string consisting only of lowercase alphabetical characters.
 
     Returns:
-        int: The index where pattern first occurs.
+        int: The index where pattern first occurs. Return -1  if not found.
 
     >>> bitap_string_match('abdabababc', 'ababc')
     5
@@ -35,30 +35,30 @@ def bitap_string_match(text: str, pattern: str) -> int | None:
     0
     >>> bitap_string_match('abdabababc', 'c')
     9
-    >>> bitap_string_match('abdabababc', 'fofosdfo') is None
-    True
-    >>> bitap_string_match('abdab', 'fofosdfo') is None
-    True
+    >>> bitap_string_match('abdabababc', 'fofosdfo')
+    -1
+    >>> bitap_string_match('abdab', 'fofosdfo')
+    -1
     """
     m: int = len(pattern)
     if m == 0:
         return 0
     if m > len(text):
-        return None
+        return -1
 
     # Initial state of bit string 1110
     state: int = ~1
     # Bit = 0 if character appears at index, and 1 otherwise
     pattern_mask: list[int] = [~0] * 27  # 1111
 
-    for i in range(m):
+    for i, char in enumerate(pattern):
         # For the pattern mask for this character, set the bit to 0 for each i
         # the character appears.
-        pattern_index: int = ord(pattern[i]) - ord("a")
+        pattern_index: int = ord(char) - ord("a")
         pattern_mask[pattern_index] &= ~(1 << i)
 
-    for i in range(len(text)):
-        text_index: int = ord(text[i]) - ord("a")
+    for i, char in enumerate(text):
+        text_index = ord(char) - ord("a")
         # If this character does not appear in pattern, it's pattern mask is 1111.
         # Performing a bitwise OR between state and 1111 will reset the state to 1111
         # and start searching the start of pattern again.
@@ -70,7 +70,7 @@ def bitap_string_match(text: str, pattern: str) -> int | None:
         if (state & (1 << m)) == 0:
             return i - m + 1
 
-    return None
+    return -1
 
 
 if __name__ == "__main__":
