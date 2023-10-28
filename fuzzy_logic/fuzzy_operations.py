@@ -126,24 +126,24 @@ def __str__(self):
     return f"{self.name}: [{self.left_boundary}, {self.peak}, {self.right_boundary}]"
 
 if __name__ == "__main__":
-    A = FuzzySet("A", 0, 0.5, 1)
-    B = FuzzySet("B", 0.2, 0.7, 1)
+    a = FuzzySet("A", 0, 0.5, 1)
+    b = FuzzySet("B", 0.2, 0.7, 1)
 
-    A.plot()
-    B.plot()
+    a.plot()
+    b.plot()
     
     plt.xlabel("x")
     plt.ylabel("Membership")
     plt.legend()
     plt.show()
 
-    union_AB = A.union(B)
-    intersection_AB = A.intersection(B)
-    complement_A = A.complement()
+    union_ab = A.union(B)
+    intersection_ab = A.intersection(B)
+    complement_a = A.complement()
 
-    union_AB.plot()
-    intersection_AB.plot()
-    complement_A.plot()
+    union_ab.plot()
+    intersection_ab.plot()
+    complement_a.plot()
 
     plt.xlabel("x")
     plt.ylabel("Membership")
