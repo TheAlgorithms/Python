@@ -1,14 +1,11 @@
-from collections.abc import Iterable
-from typing import TypeVar
-
 """
     https://en.wikipedia.org/wiki/Merge_algorithm
 """
 
-T = TypeVar("T")
+# T = TypeVar("T")
 
 
-def is_sorted(arr: Iterable[T]) -> bool:
+def is_sorted(arr) -> bool:
     """
     Check if an array is sorted in non-decreasing order.
 
