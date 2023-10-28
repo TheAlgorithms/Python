@@ -4,6 +4,7 @@ from typing import Union
 
 import numpy as np
 
+
 def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     """
     Solves a linear system of equations using
@@ -80,6 +81,7 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
 
     # Return the solution vector
     return np.asarray(x_lst)
+
 
 if __name__ == "__main__":
     # Example usage:
