@@ -62,7 +62,8 @@ def foo(matrix):
     return np.asarray(xlst)
 
 
-vectorofxalpha = foo(matrixab)
+if __name__ == "__main__":
+    vectorofxalpha = foo(matrixab)
 
 """Cond(A)"""
 modifiedb = np.copy(B)
