@@ -29,7 +29,7 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     ab = np.copy(matrix)
     num_of_rows = ab.shape[0]
     num_of_columns = ab.shape[1] - 1
-    x_lst: List[float] = []
+    x_lst: list[float] = []
 
     # Lead element search
     for column_num in range(num_of_rows):
