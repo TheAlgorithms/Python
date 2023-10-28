@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 
-
 def digital_differential_analyzer_line(
     x1: int, y1: int, x2: int, y2: int
 ) -> list[tuple[int, int]]:
@@ -26,7 +25,7 @@ def digital_differential_analyzer_line(
     dy = y2 - y1
 
     # Determine the number of steps to take
-    steps = max(abs(dx), abs(dy))
+    steps = max(abs(dx), abs(dy)
 
     # Calculate the increments for x and y
     x_increment = dx / steps
@@ -41,10 +40,8 @@ def digital_differential_analyzer_line(
     for _ in range(steps):
         x += x_increment
         y += y_increment
-        coordinates.append((int(round(x)), int(round(y))))
-
+        coordinates.append((int(round(x)), int(round(y)))
     return coordinates
-
 
 if __name__ == "__main__":
     # Input the coordinates of the two endpoints of the line
