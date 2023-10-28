@@ -1,6 +1,3 @@
-# https://www.allaboutcircuits.com/technical-articles/karnaugh-map-boolean-algebraic-simplification-technique/
-
-
 def F(A: int, B: int) -> int:
     """
     Define the function F(A, B).
@@ -10,8 +7,7 @@ def F(A: int, B: int) -> int:
     >>> F(1, 1)
     1
     """
-    return A and (not B) or (A and B) or (A and B)
-
+    return (A & (not B)) | (A & B) | (A & B)
 
 def simplify_kmap(kmap: list[list[int]]) -> str:
     """
@@ -27,13 +23,12 @@ def simplify_kmap(kmap: list[list[int]]) -> str:
             if kmap[A][B]:
                 term = ("A" if A else "A'") + ("B" if B else "B'")
                 simplified_F.append(term)
-    return " + ".join(simplified_F)
-
+    return ' + '.join(simplified_F)
 
 def main() -> None:
     """
     Main function to create and simplify a K-Map.
-
+    
     >>> main()
     [0, 1]
     [1, 1]
@@ -41,21 +36,16 @@ def main() -> None:
     Simplified Expression:
     A'B + AB' + AB
     """
+    kmap = [[0, 1], [1, 1]]
 
+    # Manually generate the product of [0, 1] and [0, 1]
 
-kmap = [[0 for _ in range(2)] for _ in range(2)]
+    for row in kmap:
+        print(row)
 
-# Manually generate the product of [0, 1] and [0, 1]
-for A in [0, 1]:
-    for B in [0, 1]:
-        kmap[A][B] = F(A, B)
-
-for row in kmap:
-    print(row)
-
-simplified_expression = simplify_kmap(kmap)
-print("\nSimplified Expression:")
-print(simplified_expression)
+    simplified_expression = simplify_kmap(kmap)
+    print("\nSimplified Expression:")
+    print(simplified_expression)
 
 if __name__ == "__main__":
     main()
