@@ -95,7 +95,8 @@ WORDS = ["cat", "dog", "pig"]
 
 if solve_crossword(PUZZLE, WORDS):
     print("Solution found:")
+    for row in PUZZLE:
+        print(" ".join(row))
 else:
     print("No solution found:")
-for row in PUZZLE:
-    print(" ".join(row))
+
