@@ -1,25 +1,28 @@
 import sys
 import time
-from typing import List, Union
 
 import numpy as np
 
 
 def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     """
-    Solves a linear system of equations using Gaussian elimination with partial pivoting.
+    Solves a linear system of equations using
+    Gaussian elimination with partial pivoting.
 
     Args:
-    - matrix (np.ndarray): Coefficient matrix with the last column representing the constants.
+    - matrix (np.ndarray): Coefficient matrix
+    with the last column representing the constants.
 
     Returns:
     - np.ndarray: Solution vector.
 
     Raises:
-    - sys.exit: If the matrix is not correct (i.e., singular).
+    - sys.exit: If the matrix is not correct
+    (i.e., singular).
 
     Example:
-    >>> A = np.array([[2, 1, -1], [-3, -1, 2], [-2, 1, 2]], dtype=float)
+    >>> A = np.array([[2, 1, -1], [-3, -1, 2]
+    , [-2, 1, 2]], dtype=float)
     >>> B = np.array([8, -11, -3], dtype=float)
     >>> solution = solve_linear_system(np.column_stack((A, B)))
     >>> np.allclose(solution, np.array([2., 3., -1.]))
@@ -81,15 +84,34 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     # Return the solution vector
     return np.asarray(x_lst)
 
-
 if __name__ == "__main__":
-    # Example usage:
-    n_size = 3
-    a_matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype=float)
-    b_vector = np.array([10, 11, 12], dtype=float)
+    vectorofxalpha = foo(matrixab)
 
-    solution = solve_linear_system(np.column_stack((a_matrix, b_vector)))
-    print("Solution:", solution)
+
+    """Cond(A)"""
+    modifiedb = np.copy(B)
+    modifiedb[np.argmax(abs(B))] = B[np.argmax(abs(B))] / 100 * 101
+
+    matrixab[:, matrixab.shape[1] - 1] = modifiedb
+    print()
+    print("Cond(A) check: ")
+    vectorofxbeta = foo(matrixab)
+
+    deltab = modifiedb - B
+    deltax = vectorofxalpha - vectorofxbeta
+    print(" ")
+    conda = abs(np.sum(deltax) / np.sum(vectorofxalpha)) * (np.sum(B) / np.sum(deltab))
+    print(f"Cond(A) =< {conda:0.6f}")
+
+
+# Example usage:
+# n_size = 3
+# a_matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype=float)
+# b_vector = np.array([10, 11, 12], dtype=float)
+
+# solution = custom_gauss_elimination_pivoting(a_matrix, b_vector, n_size)
+# print("Solution:", solution)
+
 
 # URL that points to Wikipedia or another similar explanation.
 # >>>>>>URL:https://courses.engr.illinois.edu/cs357/su2013/lectures/lecture07.pdf<<<<<#
