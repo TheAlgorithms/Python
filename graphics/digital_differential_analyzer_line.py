@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 
+
 def digital_differential_analyzer_line(
     x1: int, y1: int, x2: int, y2: int
 ) -> list[tuple[int, int]]:
@@ -43,6 +44,7 @@ def digital_differential_analyzer_line(
         coordinates.append((int(round(x)), int(round(y))))
 
     return coordinates
+
 
 if __name__ == "__main__":
     # Input the coordinates of the two endpoints of the line
