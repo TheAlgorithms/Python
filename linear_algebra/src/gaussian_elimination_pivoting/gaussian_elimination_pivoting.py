@@ -1,29 +1,21 @@
 import sys
-import time
-from typing import Union
-
 import numpy as np
-
 
 def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     """
-    Solves a linear system of equations using
-    Gaussian elimination with partial pivoting.
+    Solves a linear system of equations using Gaussian elimination with partial pivoting.
 
     Args:
-    - matrix (np.ndarray): Coefficient matrix
-    with the last column representing the constants.
+    - matrix (np.ndarray): Coefficient matrix with the last column representing the constants.
 
     Returns:
     - np.ndarray: Solution vector.
 
     Raises:
-    - sys.exit: If the matrix is not correct
-    (i.e., singular).
+    - sys.exit: If the matrix is not correct (i.e., singular).
 
     Example:
-    >>> A = np.array([[2, 1, -1], [-3, -1, 2],
-    [-2, 1, 2]], dtype=float)
+    >>> A = np.array([[2, 1, -1], [-3, -1, 2], [-2, 1, 2]], dtype=float)
     >>> B = np.array([8, -11, -3], dtype=float)
     >>> solution = solve_linear_system(np.column_stack((A, B)))
     >>> np.allclose(solution, np.array([2., 3., -1.]))
@@ -81,7 +73,6 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
 
     # Return the solution vector
     return np.asarray(x_lst)
-
 
 if __name__ == "__main__":
     # Example usage:
