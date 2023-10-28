@@ -2,6 +2,7 @@
     https://en.wikipedia.org/wiki/Merge_algorithm
 """
 
+
 def merge_two_sorted_arrays(nums1: list[any], nums2: list[any]) -> list[any]:
     """
     Merge two sorted arrays.
