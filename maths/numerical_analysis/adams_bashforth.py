@@ -1,7 +1,6 @@
 """
 Use the Adams-Bashforth methods to solve Ordinary Differential Equations.
 
-
 https://en.wikipedia.org/wiki/Linear_multistep_method
 Author : Ravi Kumar
 """
@@ -25,20 +24,18 @@ class AdamsBashforth:
 
     >>> def f(x, y):
     ...     return x + y
+    >>> AdamsBashforth(f, [0, 0.2, 0.4], [0, 0.2, 1], 0.2, 1)  # doctest: +ELLIPSIS
+    AdamsBashforth(func=..., x_initials=[0, 0.2, 0.4], y_initials=[0, 0.2, 1], step...)
     >>> AdamsBashforth(f, [0, 0.2, 1], [0, 0, 0.04], 0.2, 1).step_2()
     Traceback (most recent call last):
         ...
     ValueError: The final value of x must be greater than the initial values of x.
 
-    >>> def f(x, y):
-    ...     return x + y
     >>> AdamsBashforth(f, [0, 0.2, 0.3], [0, 0, 0.04], 0.2, 1).step_3()
     Traceback (most recent call last):
         ...
     ValueError: x-values must be equally spaced according to step size.
 
-    >>> def f(x, y):
-    ...     return x
     >>> AdamsBashforth(f,[0,0.2,0.4,0.6,0.8],[0,0,0.04,0.128,0.307],-0.2,1).step_5()
     Traceback (most recent call last):
         ...
@@ -73,8 +70,6 @@ class AdamsBashforth:
         >>> AdamsBashforth(f, [0, 0.2], [0, 0], 0.2, 1).step_2()
         array([0.  , 0.  , 0.06, 0.16, 0.3 , 0.48])
 
-        >>> def f(x, y):
-        ...     return (x -y)/2
         >>> AdamsBashforth(f, [0, 0.2, 0.4], [0, 0, 0.04], 0.2, 1).step_2()
         Traceback (most recent call last):
             ...
@@ -109,8 +104,6 @@ class AdamsBashforth:
         >>> y[3]
         0.15533333333333332
 
-        >>> def f(x, y):
-        ...     return (x -y)/2
         >>> AdamsBashforth(f, [0, 0.2], [0, 0], 0.2, 1).step_3()
         Traceback (most recent call last):
             ...
@@ -151,8 +144,6 @@ class AdamsBashforth:
         >>> y[5]
         0.5771083333333333
 
-        >>> def f(x, y):
-        ...     return (x -y)/2
         >>> AdamsBashforth(f, [0, 0.2, 0.4], [0, 0, 0.04], 0.2, 1).step_4()
         Traceback (most recent call last):
             ...
@@ -196,8 +187,6 @@ class AdamsBashforth:
         >>> y[-1]
         0.05436839444444452
 
-        >>> def f(x, y):
-        ...     return (x -y)/2
         >>> AdamsBashforth(f, [0, 0.2, 0.4], [0, 0, 0.04], 0.2, 1).step_5()
         Traceback (most recent call last):
             ...
