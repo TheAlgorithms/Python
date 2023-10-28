@@ -10,7 +10,8 @@ import numpy as np
 
 class FuzzySet:
     """
-    A class for representing and manipulating triangular fuzzy sets.
+    A class for representing and 
+    manipulating triangular fuzzy sets.
 
     Attributes:
         name (str): The name or label of the fuzzy set.
@@ -19,21 +20,27 @@ class FuzzySet:
         c (float): The right boundary of the fuzzy set.
 
     Methods:
-        membership(x): Calculate the membership value of an input 'x' in the fuzzy set.
-        union(other): Calculate the union of this fuzzy set with another fuzzy set.
-        intersection(other): Calculate the intersection of this fuzzy set with another fuzzy set.
-        complement(): Calculate the complement (negation) of this fuzzy set.
+        membership(x): Calculate the membership value 
+        of an input 'x' in the fuzzy set.
+        union(other): Calculate the union of this fuzzy set 
+        with another fuzzy set.
+        intersection(other): Calculate the intersection of this fuzzy set 
+        with another fuzzy set.
+        complement(): Calculate the complement (negation) 
+        of this fuzzy set.
         plot(): Plot the membership function of the fuzzy set.
     """
 
     def __init__(self, name, a, b, c):
         """
-        Initializes a triangular fuzzy set with the given parameters.
+        Initializes a triangular fuzzy set 
+        with the given parameters.
 
         Args:
             name (str): The name or label of the fuzzy set.
             a (float): The left boundary of the fuzzy set.
-            b (float): The peak (central) value of the fuzzy set.
+            b (float): The peak (central) value of 
+            the fuzzy set.
             c (float): The right boundary of the fuzzy set.
         """
         self.name = name  # Fuzzy set name
@@ -43,13 +50,16 @@ class FuzzySet:
 
     def membership(self, x):
         """
-        Calculate the membership value of an input 'x' in the fuzzy set.
+        Calculate the membership value of 
+        an input 'x' in the fuzzy set.
 
         Args:
-            x (float): The input value for which the membership is calculated.
+            x (float): The input value for 
+            which the membership is calculated.
 
         Returns:
-            float: The membership value of 'x' in the fuzzy set.
+            float: The membership value of 'x' in 
+            the fuzzy set.
         """
 
         if x <= self.a or x >= self.c:
@@ -61,13 +71,16 @@ class FuzzySet:
 
     def union(self, other):
         """
-        Calculate the union of this fuzzy set with another fuzzy set.
+        Calculate the union of this fuzzy set 
+        with another fuzzy set.
 
         Args:
-            other (FuzzySet): Another fuzzy set to union with.
+            other (FuzzySet): Another fuzzy set
+            to union with.
 
         Returns:
-            FuzzySet: A new fuzzy set representing the union.
+            FuzzySet: A new fuzzy 
+            set representing the union.
         """
 
         union_name = f"{self.name} ∪ {other.name}"
@@ -80,7 +93,8 @@ class FuzzySet:
 
     def intersection(self, other):
         """
-        Calculate the intersection of this fuzzy set with another fuzzy set.
+        Calculate the intersection of this 
+        fuzzy set with another fuzzy set.
 
         Args:
             other (FuzzySet): Another fuzzy set to intersect with.
@@ -132,13 +146,13 @@ if __name__ == "__main__":
     plt.legend()
     plt.show()
 
-    union_AB = A.union(B)
-    intersection_AB = A.intersection(B)
-    complement_A = A.complement()
+    union_ab = A.union(B)
+    intersection_ab = A.intersection(B)
+    complement_a = A.complement()
 
-    union_AB.plot()
-    intersection_AB.plot()
-    complement_A.plot()
+    union_ab.plot()
+    intersection_ab.plot()
+    complement_a.plot()
 
     plt.xlabel("x")
     plt.ylabel("Membership")
