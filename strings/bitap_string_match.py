@@ -2,7 +2,7 @@
 Bitap exact string matching
 https://en.wikipedia.org/wiki/Bitap_algorithm
 
-Searches for a pattern inside text, and returns the index of the first occurence
+Searches for a pattern inside text, and returns the index of the first occurrence
 of the pattern. Both text and pattern consist of lowercase alphabetical characters only.
 
 Complexity: O(m*n)
