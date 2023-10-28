@@ -84,9 +84,9 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     # Return the solution vector
     return np.asarray(x_lst)
 
+
 if __name__ == "__main__":
     vectorofxalpha = foo(matrixab)
-
 
     """Cond(A)"""
     modifiedb = np.copy(B)
