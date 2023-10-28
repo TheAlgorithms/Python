@@ -1,9 +1,10 @@
+from typing import Any
+
 """
     https://en.wikipedia.org/wiki/Merge_algorithm
 """
 
-
-def merge_two_sorted_arrays(nums1: list[int], nums2: list[int]) -> list[int]:
+def merge_two_sorted_arrays(nums1: list[any], nums2: list[any]) -> list[any]:
     """
     Merge two sorted arrays.
 
@@ -15,15 +16,30 @@ def merge_two_sorted_arrays(nums1: list[int], nums2: list[int]) -> list[int]:
         The merged sorted array.
 
     Examples:
-        >>> merge_two_sorted_arrays([1,5,7], [0,4,9])
+        >>> merge_two_sorted_arrays([1, 5, 7], [0, 4, 9])
         [0, 1, 4, 5, 7, 9]
 
-        >>> merge_two_sorted_arrays([-11,5,45], [0,5,9])
+        >>> merge_two_sorted_arrays([-11, 5, 45], [0, 5, 9])
         [-11, 0, 5, 5, 9, 45]
+
+        >>> merge_two_sorted_arrays([-11, 5, 45], [0, 5.5, 9])
+        [-11, 0, 5, 5.5, 9, 45]
+
+        >>> merge_two_sorted_arrays(['a', 'c', 'e'], ['b', 'd',  'f'])
+        ['a', 'b', 'c', 'd', 'e', 'f']
+
+        >>> merge_two_sorted_arrays([], [])
+        []
+
+        >>> merge_two_sorted_arrays([6, 2, 1], [10, 23, -11])
+        Traceback (most recent call last):
+        ...
+        ValueError: The array is not sorted
+
     """
 
-    if not nums1 and not nums2:
-        raise ValueError("Both input arrays are empty.")
+    if nums1 != sorted(nums1) or nums2 != sorted(nums2):
+        raise ValueError("The array is not sorted")
 
     # Initialize two pointers and an array to store the merged array.
     i, j = 0, 0
