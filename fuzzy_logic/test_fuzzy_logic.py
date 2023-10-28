@@ -1,6 +1,7 @@
 import unittest
 from fuzzy_operations import FuzzySet
 
+
 class TestFuzzySet(unittest.TestCase):
     def setUp(self):
         self.A = FuzzySet("A", 0, 0.5, 1)
@@ -26,6 +27,7 @@ class TestFuzzySet(unittest.TestCase):
         complement_a = self.A.complement()
         assert complement_a.membership(0.1) == 0.1  # Modify with the expected value
         assert complement_a.membership(0.75) == 0.0  # Modify with the expected value
+
 
 if __name__ == "__main__":
     unittest.main()
