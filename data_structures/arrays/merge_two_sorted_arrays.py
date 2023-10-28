@@ -1,5 +1,3 @@
-from typing import Any
-
 """
     https://en.wikipedia.org/wiki/Merge_algorithm
 """
