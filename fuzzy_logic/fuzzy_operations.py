@@ -31,22 +31,21 @@ class FuzzySet:
         plot(): Plot the membership function of the fuzzy set.
     """
 
-    def __init__(self, name, a, b, c):
+    def __init__(self, name: str, left_boundary: float, peak: float, right_boundary: float) -> None:
         """
-        Initializes a triangular fuzzy set 
-        with the given parameters.
+    Initializes a triangular fuzzy set with the given parameters.
 
-        Args:
-            name (str): The name or label of the fuzzy set.
-            a (float): The left boundary of the fuzzy set.
-            b (float): The peak (central) value of 
-            the fuzzy set.
-            c (float): The right boundary of the fuzzy set.
-        """
+    Args:
+        name (str): The name or label of the fuzzy set.
+        left_boundary (float): The left boundary of the fuzzy set.
+        peak (float): The peak (central) value of the fuzzy set.
+        right_boundary (float): The right boundary of the fuzzy set.
+    """
         self.name = name  # Fuzzy set name
-        self.a = a  # Left boundary
-        self.b = b  # Peak value
-        self.c = c  # Right boundary
+        self.left_boundary = left_boundary  # Left boundary
+        self.peak = peak  # Peak value
+        self.right_boundary = right_boundary  # Right boundary
+
 
     def membership(self, x):
         """
