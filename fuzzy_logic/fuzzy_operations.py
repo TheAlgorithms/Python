@@ -11,13 +11,13 @@ class FuzzySet:
         peak (float): The peak (central) value of the fuzzy set.
         right_boundary (float): The right boundary of the fuzzy set.
     Methods:
-        membership(x): Calculate the membership value of an 
+        membership(x): Calculate the membership value of an
         input 'x' in the fuzzy set.
-        union(other): Calculate the union of 
+        union(other): Calculate the union of
         this fuzzy set with another fuzzy set.
-        intersection(other): Calculate the intersection of 
+        intersection(other): Calculate the intersection of
         this fuzzy set with another fuzzy set.
-        complement(): Calculate the complement (negation) of 
+        complement(): Calculate the complement (negation) of
         this fuzzy set.
         plot(): Plot the membership function of the fuzzy set.
     """
@@ -40,7 +40,7 @@ class FuzzySet:
 
     def membership(self, x) -> float:
         """
-        Calculate the membership value of an 
+        Calculate the membership value of an
         input 'x' in the fuzzy set.
         Returns:
             float: The membership value of 'x' in the fuzzy set.
@@ -70,7 +70,7 @@ class FuzzySet:
 
     def intersection(self, other) -> "FuzzySet":
         """
-        Calculate the intersection of this fuzzy set 
+        Calculate the intersection of this fuzzy set
         with another fuzzy set.
         Args:
             other (FuzzySet): Another fuzzy set to intersect with.
