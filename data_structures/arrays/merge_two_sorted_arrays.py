@@ -1,4 +1,4 @@
-from typing import Iterable, Callable, List, TypeVar
+from typing import TypeVar, Iterable
 
 """
     https://en.wikipedia.org/wiki/Merge_algorithm
