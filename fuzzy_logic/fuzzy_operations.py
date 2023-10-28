@@ -38,19 +38,19 @@ class FuzzySet:
         self.peak = peak  # Peak value
         self.right_boundary = right_boundary  # Right boundary
 
-    def membership(self, x) -> float:
+    def membership(self, x: float) -> float:
         """
-        Calculate the membership value of an
-        input 'x' in the fuzzy set.
-        Returns:
-            float: The membership value of 'x' in the fuzzy set.
-        """
+    Calculate the membership value of an input 'x' in the fuzzy set.
+    Returns:
+        float: The membership value of 'x' in the fuzzy set.
+    """
         if x <= self.left_boundary or x >= self.right_boundary:
-            return 0
+            return 0.0
         elif self.left_boundary < x <= self.peak:
             return (x - self.left_boundary) / (self.peak - self.left_boundary)
         elif self.peak < x < self.right_boundary:
             return (self.right_boundary - x) / (self.right_boundary - self.peak)
+
 
     def union(self, other) -> "FuzzySet":
         """
