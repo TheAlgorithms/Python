@@ -1,9 +1,8 @@
 import matplotlib.pyplot as plt
 
-
 def digital_differential_analyzer_line(
     x1: int, y1: int, x2: int, y2: int
-) -> tuple[list[int], list[int]]:
+) -> list[tuple[int, int]]:
     """
     Draw a line using the Digital Differential Analyzer (DDA) algorithm.
 
@@ -14,12 +13,11 @@ def digital_differential_analyzer_line(
         y2 (int): The y-coordinate of the ending point.
 
     Returns:
-        tuple of two lists, where the first list contains the x-coordinates of the line points,
-        and the second list contains the y-coordinates.
+        list of coordinate pairs (x, y).
 
     Example:
         >>> digital_differential_analyzer_line(0, 0, 3, 2)
-        ([0, 1, 2, 3], [0, 1, 1, 2])
+        [(0, 0), (1, 1), (2, 1), (3, 2)]
     """
 
     # Calculate the differences in x and y coordinates
@@ -33,9 +31,8 @@ def digital_differential_analyzer_line(
     x_increment = dx / steps
     y_increment = dy / steps
 
-    # Lists to store the x and y coordinates of the line
-    x_points = [x1]
-    y_points = [y1]
+    # List to store the coordinate pairs
+    coordinates = []
 
     # Calculate and store the intermediate points
     x = x1
@@ -43,11 +40,9 @@ def digital_differential_analyzer_line(
     for _ in range(steps):
         x += x_increment
         y += y_increment
-        x_points.append(int(round(x)))
-        y_points.append(int(round(y)))
+        coordinates.append((int(round(x)), int(round(y))))
 
-    return x_points, y_points
-
+    return coordinates
 
 if __name__ == "__main__":
     # Input the coordinates of the two endpoints of the line
@@ -57,9 +52,10 @@ if __name__ == "__main__":
     y2 = int(input("Enter the y-coordinate of the ending point: "))
 
     # Calculate the points using the Digital Differential Analyzer (DDA) algorithm
-    x_points, y_points = digital_differential_analyzer_line(x1, y1, x2, y2)
+    coordinates = digital_differential_analyzer_line(x1, y1, x2, y2)
 
     # Plot the line using Matplotlib
+    x_points, y_points = zip(*coordinates)
     plt.plot(x_points, y_points, marker="o")
     plt.title("Digital Differential Analyzer Line Drawing Algorithm")
     plt.xlabel("X-axis")
