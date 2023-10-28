@@ -122,7 +122,7 @@ def solve_crossword(puzzle: list[list[str]], words: list[str]) -> bool:
 
 if __name__ == "__main__":
     PUZZLE = [[""] * 3 for _ in range(3)]
-    WORDS = ("cat", "dog", "car")
+    WORDS = ["cat", "dog", "car"]
 
     if solve_crossword(PUZZLE, WORDS):
         print("Solution found:")
