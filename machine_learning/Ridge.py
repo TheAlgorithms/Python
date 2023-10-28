@@ -1,6 +1,10 @@
+"""
+https://en.wikipedia.org/wiki/Ridge_regression
+"""
+import time as t
+
 import numpy as np
 from numpy import linalg as la
-import time as t
 
 
 class RidgeRegression:
