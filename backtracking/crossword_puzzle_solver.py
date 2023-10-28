@@ -15,6 +15,12 @@ def is_valid(
     ... ]
     >>> is_valid(puzzle, 'word', 0, 0, True)
     True
+    >>> puzzle = [
+    ...     ['', '', '', ''],
+    ...     ['', '', '', ''],
+    ...     ['', '', '', ''],
+    ...     ['', '', '', '']
+    ... ]
     >>> is_valid(puzzle, 'word', 0, 0, False)
     True
     """
@@ -88,6 +94,12 @@ def solve_crossword(puzzle: list[list[str]], words: list[str]) -> bool:
     >>> words = ['word', 'four', 'more', 'last']
     >>> solve_crossword(puzzle, words)
     True
+    >>> puzzle = [
+    ...     ['', '', '', ''],
+    ...     ['', '', '', ''],
+    ...     ['', '', '', ''],
+    ...     ['', '', '', '']
+    ... ]
     >>> words = ['word', 'four', 'more', 'paragraphs']
     >>> solve_crossword(puzzle, words)
     False
@@ -108,8 +120,8 @@ def solve_crossword(puzzle: list[list[str]], words: list[str]) -> bool:
     return True
 
 
-PUZZLE = [["" for _ in range(4)] for _ in range(4)]
-WORDS = ["word", "four", "more", "paragraph"]
+PUZZLE = [["" for _ in range(3)] for _ in range(3)]
+WORDS = ["cat", "dog", "car"]
 
 if solve_crossword(PUZZLE, WORDS):
     print("Solution found:")
