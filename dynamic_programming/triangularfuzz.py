@@ -27,6 +27,7 @@ class TriangularFuzzySet:
         else:
             return 1.0
 
+
 # Example usage:
 if __name__ == "__main__":
     # Create a triangular fuzzy set with parameters (a=2, b=4, c=6)
