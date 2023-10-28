@@ -137,14 +137,19 @@ def __str__(self):
 if __name__ == "__main__":
     a = FuzzySet("A", 0, 0.5, 1)
     b = FuzzySet("B", 0.2, 0.7, 1)
+
+    a.plot()
+    b.plot()
+
+
     plt.xlabel("x")
     plt.ylabel("Membership")
     plt.legend()
     plt.show()
 
-    union_ab = A.union(B)
-    intersection_ab = A.intersection(B)
-    complement_a = A.complement()
+    union_ab = a.union(b)
+    intersection_ab = a.intersection(b)
+    complement_a = a.complement()
 
     union_ab.plot()
     intersection_ab.plot()
