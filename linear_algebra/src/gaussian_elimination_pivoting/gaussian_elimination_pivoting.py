@@ -1,12 +1,8 @@
 import sys
 import time
-from typing import List, Union
+from typing import Union
 
 import numpy as np
-
-matrixab = np.loadtxt("matrix.txt")
-B = np.copy(matrixab[:, matrixab.shape[1] - 1])
-
 
 def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     """
@@ -25,18 +21,17 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     (i.e., singular).
 
     Example:
-    >>> A = np.array([[2, 1, -1], [-3, -1, 2]
-    , [-2, 1, 2]], dtype=float)
+    >>> A = np.array([[2, 1, -1], [-3, -1, 2],
+    [-2, 1, 2]], dtype=float)
     >>> B = np.array([8, -11, -3], dtype=float)
     >>> solution = solve_linear_system(np.column_stack((A, B)))
     >>> np.allclose(solution, np.array([2., 3., -1.]))
     True
     """
-    start = time.process_time()
     ab = np.copy(matrix)
     num_of_rows = ab.shape[0]
     num_of_columns = ab.shape[1] - 1
-    x_lst: List[Union[int, float]] = []
+    x_lst = []
 
     # Lead element search
     for column_num in range(num_of_rows):
@@ -83,29 +78,17 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
         x = line_of_x / ab[column_num, column_num]
         x_lst.append(x)
 
-    stop = time.process_time()
-
     # Return the solution vector
     return np.asarray(x_lst)
 
-
 if __name__ == "__main__":
-    vectorofxalpha = foo(matrixab)
+    # Example usage:
+    n_size = 3
+    a_matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype=float)
+    b_vector = np.array([10, 11, 12], dtype=float)
 
-    """Cond(A)"""
-    modifiedb = np.copy(B)
-    modifiedb[np.argmax(abs(B))] = B[np.argmax(abs(B))] / 100 * 101
-
-    matrixab[:, matrixab.shape[1] - 1] = modifiedb
-    print()
-    print("Cond(A) check: ")
-    vectorofxbeta = foo(matrixab)
-
-    deltab = modifiedb - B
-    deltax = vectorofxalpha - vectorofxbeta
-    print(" ")
-    conda = abs(np.sum(deltax) / np.sum(vectorofxalpha)) * (np.sum(B) / np.sum(deltab))
-    print(f"Cond(A) =< {conda:0.6f}")
+    solution = solve_linear_system(np.column_stack((a_matrix, b_vector)))
+    print("Solution:", solution)
 
 
 # Example usage:
