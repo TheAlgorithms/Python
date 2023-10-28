@@ -1,9 +1,6 @@
-
 """
     https://en.wikipedia.org/wiki/Merge_algorithm
 """
-
-# T = TypeVar("T")
 
 
 def is_sorted(arr: list) -> bool:
