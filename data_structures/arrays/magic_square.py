@@ -2,6 +2,7 @@
 
 from typing import List
 
+
 def is_magic_square(matrix: List[List[int]]) -> bool:
     """
     Check if a given 3x3 matrix is a magic square.
