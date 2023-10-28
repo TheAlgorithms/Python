@@ -1,5 +1,6 @@
 # https://www.codingninjas.com/studio/library/check-if-the-given-matrix-is-a-magic-square-or-not
 
+
 def is_magic_square(matrix):
     """
     Check if a given 3x3 matrix is a magic square.
@@ -39,6 +40,7 @@ def is_magic_square(matrix):
         return False
 
     return True
+
 
 if __name__ == "__main__":
     import doctest
