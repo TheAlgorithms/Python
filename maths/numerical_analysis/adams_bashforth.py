@@ -19,7 +19,6 @@ class AdamsBashforth:
         step_size: float,
         x_final: float,
     ) -> None:
-
         self.func = func
         self.x_initials = x_initials
         self.y_initials = y_initials
@@ -34,7 +33,10 @@ class AdamsBashforth:
         if step_size <= 0:
             raise ValueError("Step size must be positive.")
 
-        if not all(round(x1 - x0,10) == step_size for x0, x1 in zip(x_initials, x_initials[1:])):
+        if not all(
+            round(x1 - x0, 10) == step_size
+            for x0, x1 in zip(x_initials, x_initials[1:])
+        ):
             raise ValueError("x-values must be equally spaced according to step size.")
 
     """
@@ -70,7 +72,6 @@ class AdamsBashforth:
     """
 
     def step_2(self) -> np.ndarray:
-
         """
         >>> def f(x, y):
         ...     return x
@@ -106,7 +107,6 @@ class AdamsBashforth:
         return y
 
     def step_3(self) -> np.ndarray:
-
         """
         >>> def f(x, y):
         ...     return x + y
@@ -146,7 +146,6 @@ class AdamsBashforth:
         return y
 
     def step_4(self) -> np.ndarray:
-
         """
         >>> def f(x,y):
         ...     return x + y
@@ -155,7 +154,7 @@ class AdamsBashforth:
         0.30699999999999994
         >>> y[5]
         0.5771083333333333
-        
+
         >>> def f(x, y):
         ...     return (x -y)/2
         >>> AdamsBashforth(f, [0, 0.2, 0.4], [0, 0, 0.04], 0.2, 1).step_4()
@@ -192,7 +191,6 @@ class AdamsBashforth:
         return y
 
     def step_5(self) -> np.ndarray:
-
         """
         >>> def f(x,y):
         ...     return x + y
