@@ -10,7 +10,7 @@ import numpy as np
 
 class FuzzySet:
     """
-    A class for representing and 
+    A class for representing and
     manipulating triangular fuzzy sets.
 
     Attributes:
@@ -20,26 +20,26 @@ class FuzzySet:
         c (float): The right boundary of the fuzzy set.
 
     Methods:
-        membership(x): Calculate the membership value 
+        membership(x): Calculate the membership value
         of an input 'x' in the fuzzy set.
-        union(other): Calculate the union of this fuzzy set 
+        union(other): Calculate the union of this fuzzy set
         with another fuzzy set.
-        intersection(other): Calculate the intersection of this fuzzy set 
+        intersection(other): Calculate the intersection of this fuzzy set
         with another fuzzy set.
-        complement(): Calculate the complement (negation) 
+        complement(): Calculate the complement (negation)
         of this fuzzy set.
         plot(): Plot the membership function of the fuzzy set.
     """
 
     def __init__(self, name, a, b, c):
         """
-        Initializes a triangular fuzzy set 
+        Initializes a triangular fuzzy set
         with the given parameters.
 
         Args:
             name (str): The name or label of the fuzzy set.
             a (float): The left boundary of the fuzzy set.
-            b (float): The peak (central) value of 
+            b (float): The peak (central) value of
             the fuzzy set.
             c (float): The right boundary of the fuzzy set.
         """
@@ -50,15 +50,15 @@ class FuzzySet:
 
     def membership(self, x):
         """
-        Calculate the membership value of 
+        Calculate the membership value of
         an input 'x' in the fuzzy set.
 
         Args:
-            x (float): The input value for 
+            x (float): The input value for
             which the membership is calculated.
 
         Returns:
-            float: The membership value of 'x' in 
+            float: The membership value of 'x' in
             the fuzzy set.
         """
 
@@ -71,7 +71,7 @@ class FuzzySet:
 
     def union(self, other):
         """
-        Calculate the union of this fuzzy set 
+        Calculate the union of this fuzzy set
         with another fuzzy set.
 
         Args:
@@ -79,7 +79,7 @@ class FuzzySet:
             to union with.
 
         Returns:
-            FuzzySet: A new fuzzy 
+            FuzzySet: A new fuzzy
             set representing the union.
         """
 
@@ -93,7 +93,7 @@ class FuzzySet:
 
     def intersection(self, other):
         """
-        Calculate the intersection of this 
+        Calculate the intersection of this
         fuzzy set with another fuzzy set.
 
         Args:
