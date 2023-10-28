@@ -8,7 +8,7 @@ from numpy import linalg as la
 
 
 class RidgeRegression:
-    def __init__(self, x, y):
+    def __init__(self, x : list[float], y: list[float]) -> None:
         self.objvals = []
 
         # no_of_training_examples, no_of_features
@@ -44,7 +44,7 @@ class RidgeRegression:
 
     # Helper function to update weights in gradient descent
 
-    def update_weights(self):
+    def update_weights(self) -> None:
         y_pred = self.predict(self.x)
 
         # calculate gradients
@@ -59,10 +59,10 @@ class RidgeRegression:
         return self
 
     # Hypothetical function  h( x )
-    def predict(self, x):
+    def predict(self, x) -> np.ndarray:
         return x.dot(self.W) + self.b
 
-    def objval(self):
+    def objval(self) -> float:
         h_2 = la.norm(self.W, 2) ** 2
         h_3 = self.l2_penality * h_2
         h = h_3 / self.m
