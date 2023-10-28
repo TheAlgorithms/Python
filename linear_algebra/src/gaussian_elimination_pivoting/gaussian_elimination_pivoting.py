@@ -5,11 +5,11 @@ import numpy as np
 
 def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     """
-    Solves a linear system of equations using 
+    Solves a linear system of equations using
     Gaussian elimination with partial pivoting.
 
     Args:
-    - matrix (np.ndarray): Coefficient matrix 
+    - matrix (np.ndarray): Coefficient matrix
     with the last column representing the constants.
 
     Returns:
