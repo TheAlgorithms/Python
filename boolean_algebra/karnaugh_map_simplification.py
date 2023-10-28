@@ -9,6 +9,7 @@ def F(A: int, B: int) -> int:
     """
     return (A & (not B)) | (A & B) | (A & B)
 
+
 def simplify_kmap(kmap: list[list[int]]) -> str:
     """
     Simplify the K-Map.
@@ -23,12 +24,13 @@ def simplify_kmap(kmap: list[list[int]]) -> str:
             if kmap[A][B]:
                 term = ("A" if A else "A'") + ("B" if B else "B'")
                 simplified_F.append(term)
-    return ' + '.join(simplified_F)
+    return " + ".join(simplified_F)
+
 
 def main() -> None:
     """
     Main function to create and simplify a K-Map.
-    
+
     >>> main()
     [0, 1]
     [1, 1]
@@ -46,6 +48,7 @@ def main() -> None:
     simplified_expression = simplify_kmap(kmap)
     print("\nSimplified Expression:")
     print(simplified_expression)
+
 
 if __name__ == "__main__":
     main()
