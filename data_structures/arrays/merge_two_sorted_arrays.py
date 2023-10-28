@@ -1,3 +1,4 @@
+
 """
     https://en.wikipedia.org/wiki/Merge_algorithm
 """
@@ -5,7 +6,7 @@
 # T = TypeVar("T")
 
 
-def is_sorted(arr) -> bool:
+def is_sorted(arr: list) -> bool:
     """
     Check if an array is sorted in non-decreasing order.
 
@@ -13,7 +14,7 @@ def is_sorted(arr) -> bool:
     return all(arr[i] <= arr[i + 1] for i in range(len(arr) - 1))
 
 
-def merge_two_sorted_arrays(nums1: list[any], nums2: list[any]) -> list[any]:
+def merge_two_sorted_arrays(nums1: list, nums2: list) -> list:
     """
     Merge two sorted arrays.
 
