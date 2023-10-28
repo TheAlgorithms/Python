@@ -141,7 +141,6 @@ if __name__ == "__main__":
     a.plot()
     b.plot()
 
-
     plt.xlabel("x")
     plt.ylabel("Membership")
     plt.legend()
