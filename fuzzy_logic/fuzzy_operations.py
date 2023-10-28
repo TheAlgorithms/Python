@@ -57,6 +57,7 @@ class FuzzySet:
     >>> siya.union(sheru)
     FuzzySet(name='Siya ∪ Sheru', left_boundary=0.4, peak=0.7, right_boundary=1.0)
     """
+
     name: str
     left_boundary: float
     peak: float
