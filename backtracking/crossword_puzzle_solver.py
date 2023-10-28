@@ -99,4 +99,3 @@ if solve_crossword(PUZZLE, WORDS):
         print(" ".join(row))
 else:
     print("No solution found:")
-
