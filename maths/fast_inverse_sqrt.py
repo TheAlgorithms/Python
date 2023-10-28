@@ -6,7 +6,7 @@ Reference: https://en.wikipedia.org/wiki/Fast_inverse_square_root
 import struct
 
 
-def fastInvSqrt(x):
+def fastInvSqrt(x: float) -> float:
     """
     Calculate the fast inverse square root of a number.
 
