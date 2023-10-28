@@ -2,13 +2,12 @@
 
 from typing import List
 
-
 def is_magic_square(matrix: List[List[int]]) -> bool:
     """
     Check if a given 3x3 matrix is a magic square.
 
     Parameters:
-    - matrix (list): A 3x3 square matrix.
+    - matrix (List[List[int]]): A 3x3 square matrix represented as a list of lists of integers.
 
     Returns:
     - bool: True if it's a magic square, False otherwise.
@@ -42,6 +41,12 @@ def is_magic_square(matrix: List[List[int]]) -> bool:
         return False
 
     return True
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
 
 
 if __name__ == "__main__":
