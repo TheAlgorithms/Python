@@ -18,7 +18,14 @@ class AdamsBashforth:
         y_initials: list[float],
         step_size: float,
         x_final: float,
-    ):
+    ) -> None:
+
+        self.func = func
+        self.x_initials = x_initials
+        self.y_initials = y_initials
+        self.step_size = step_size
+        self.x_final = x_final
+
         if x_initials[-1] >= x_final:
             raise ValueError(
                 "The final value of x must be greater than the initial values of x."
@@ -27,14 +34,8 @@ class AdamsBashforth:
         if step_size <= 0:
             raise ValueError("Step size must be positive.")
 
-        if not all(x1 - x0 == step_size for x0, x1 in zip(x_initials, x_initials[1:])):
+        if not all(round(x1 - x0,10) == step_size for x0, x1 in zip(x_initials, x_initials[1:])):
             raise ValueError("x-values must be equally spaced according to step size.")
-
-        self.func = func
-        self.x_initials = x_initials
-        self.y_initials = y_initials
-        self.step_size = step_size
-        self.x_final = x_final
 
     """
     args:
@@ -47,49 +48,45 @@ class AdamsBashforth:
     Returns: Solution of y at each nodal point
 
     >>> def f(x, y):
-    ...     return x
-    >>> y = AdamsBashforth(f, [0, 0.2], [0, 0], 0.2, 1).step_2()
-    >>> y
-    array([0.      0.      0.06    0.178   0.3654  0.63722])
-
-    >>> def f(x,y):
     ...     return x + y
-    >>> y = AdamsBashforth(f, [0, 0.2, 0.4, 0.6], [0, 0, 0.04, 0.128], 0.2, 1).step_4()
-    >>> y[-1]
-    0.57710833
-
-    >>> def f(x, y):
-    ...     return x + y
-    >>> y = AdamsBashforth(f, [0, 0.2, 1], [0, 0, 0.04], 0.2, 1).step_3()
+    >>> AdamsBashforth(f, [0, 0.2, 1], [0, 0, 0.04], 0.2, 1).step_2()
     Traceback (most recent call last):
         ...
     ValueError: The final value of x must be greater than the all initial values of x.
 
     >>> def f(x, y):
     ...     return x + y
-    >>> y = AdamsBashforth(f, [0, 0.2, 0.3], [0, 0, 0.04], 0.2, 1).step_3()
+    >>> AdamsBashforth(f, [0, 0.2, 0.3], [0, 0, 0.04], 0.2, 1).step_3()
     Traceback (most recent call last):
         ...
     ValueError: x-values must be equally spaced according to step size.
 
     >>> def f(x, y):
     ...     return x
-    >>> y = AdamsBashforth(f,[0,0.2,0.4,0.6,0.8],[0,0,0.04,0.128 0.307],-0.2,1).step_5()
+    >>> AdamsBashforth(f,[0,0.2,0.4,0.6,0.8],[0,0,0.04,0.128 0.307],-0.2,1).step_5()
     Traceback (most recent call last):
         ...
     ValueError: Step size must be positive.
-
-    >>> def f(x, y):
-    ...     return (x -y)/2
-    >>> y = AdamsBashforth(f, [0, 0.2, 0.4], [0, 0, 0.04], 0.2, 1).step_2()
-    Traceback (most recent call last):
-        ...
-    ValueError: Insufficient nodal points values information.
     """
 
     def step_2(self) -> np.ndarray:
+
+        """
+        >>> def f(x, y):
+        ...     return x
+        >>> AdamsBashforth(f, [0, 0.2], [0, 0], 0.2, 1).step_2()
+        array([0.  , 0.  , 0.06, 0.16, 0.3 , 0.48])
+
+        >>> def f(x, y):
+        ...     return (x -y)/2
+        >>> AdamsBashforth(f, [0, 0.2, 0.4], [0, 0, 0.04], 0.2, 1).step_2()
+        Traceback (most recent call last):
+            ...
+        ValueError: Insufficient initial points information.
+        """
+
         if len(self.x_initials) != 2 or len(self.y_initials) != 2:
-            raise ValueError("Insufficient nodal points values information.")
+            raise ValueError("Insufficient initial points information.")
 
         x_0, x_1 = self.x_initials[:2]
         y_0, y_1 = self.y_initials[:2]
@@ -104,13 +101,28 @@ class AdamsBashforth:
                 3 * self.func(x_1, y[i + 1]) - self.func(x_0, y[i])
             )
             x_0 = x_1
-            x_1 = x_1 + self.step_size
+            x_1 += self.step_size
 
         return y
 
     def step_3(self) -> np.ndarray:
+
+        """
+        >>> def f(x, y):
+        ...     return x + y
+        >>> y = AdamsBashforth(f, [0, 0.2, 0.4], [0, 0, 0.04], 0.2, 1).step_3()
+        >>> y[3]
+        0.15533333333333332
+
+        >>> def f(x, y):
+        ...     return (x -y)/2
+        >>> AdamsBashforth(f, [0, 0.2], [0, 0], 0.2, 1).step_3()
+        Traceback (most recent call last):
+            ...
+        ValueError: Insufficient initial points information.
+        """
         if len(self.x_initials) != 3 or len(self.y_initials) != 3:
-            raise ValueError("Insufficient nodal points information.")
+            raise ValueError("Insufficient initial points information.")
 
         x_0, x_1, x_2 = self.x_initials[:3]
         y_0, y_1, y_2 = self.y_initials[:3]
@@ -129,13 +141,31 @@ class AdamsBashforth:
             )
             x_0 = x_1
             x_1 = x_2
-            x_2 = x_2 + self.step_size
+            x_2 += self.step_size
 
         return y
 
     def step_4(self) -> np.ndarray:
+
+        """
+        >>> def f(x,y):
+        ...     return x + y
+        >>> y = AdamsBashforth(f, [0, 0.2, 0.4, 0.6], [0, 0, 0.04, 0.128], 0.2, 1).step_4()
+        >>> y[4]
+        0.30699999999999994
+        >>> y[5]
+        0.5771083333333333
+        
+        >>> def f(x, y):
+        ...     return (x -y)/2
+        >>> AdamsBashforth(f, [0, 0.2, 0.4], [0, 0, 0.04], 0.2, 1).step_4()
+        Traceback (most recent call last):
+            ...
+        ValueError: Insufficient initial points information.
+        """
+
         if len(self.x_initials) != 4 or len(self.y_initials) != 4:
-            raise ValueError("Insufficient nodal points information.")
+            raise ValueError("Insufficient initial points information.")
 
         x_0, x_1, x_2, x_3 = self.x_initials[:4]
         y_0, y_1, y_2, y_3 = self.y_initials[:4]
@@ -157,13 +187,29 @@ class AdamsBashforth:
             x_0 = x_1
             x_1 = x_2
             x_2 = x_3
-            x_3 = x_3 + self.step_size
+            x_3 += self.step_size
 
         return y
 
     def step_5(self) -> np.ndarray:
+
+        """
+        >>> def f(x,y):
+        ...     return x + y
+        >>> y = AdamsBashforth(f, [0, 0.2, 0.4, 0.6, 0.8], [0, 0.02140, 0.02140, 0.22211, 0.42536], 0.2, 1).step_5()
+        >>> y[-1]
+        0.05436839444444452
+
+        >>> def f(x, y):
+        ...     return (x -y)/2
+        >>> AdamsBashforth(f, [0, 0.2, 0.4], [0, 0, 0.04], 0.2, 1).step_5()
+        Traceback (most recent call last):
+            ...
+        ValueError: Insufficient initial points information.
+        """
+
         if len(self.x_initials) != 5 or len(self.y_initials) != 5:
-            raise ValueError("Insufficient nodal points information.")
+            raise ValueError("Insufficient initial points information.")
 
         x_0, x_1, x_2, x_3, x_4 = self.x_initials[:5]
         y_0, y_1, y_2, y_3, y_4 = self.y_initials[:5]
@@ -188,7 +234,7 @@ class AdamsBashforth:
             x_1 = x_2
             x_2 = x_3
             x_3 = x_4
-            x_4 = x_4 + self.step_size
+            x_4 += self.step_size
 
         return y
 
