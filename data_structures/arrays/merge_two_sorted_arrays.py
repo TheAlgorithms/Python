@@ -1,4 +1,5 @@
-from typing import TypeVar, Iterable
+from collections.abc import Iterable
+from typing import TypeVar
 
 """
     https://en.wikipedia.org/wiki/Merge_algorithm
