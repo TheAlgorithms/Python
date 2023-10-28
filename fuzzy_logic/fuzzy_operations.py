@@ -1,7 +1,8 @@
 import numpy as np
-import matplotlib.pyplot as plt
-from dataclasses import dataclass
 
+import matplotlib.pyplot as plt
+
+from dataclasses import dataclass
 """
 By @Shreya123714
 
@@ -52,22 +53,6 @@ class FuzzySet:
     left_boundary: float
     peak: float
     right_boundary: float
-
-    # def __init__(
-    #     self, name: str, left_boundary: float, peak: float, right_boundary: float
-    # ) -> None:
-    """
-        Initializes a triangular fuzzy set with the given parameters.
-        Args:
-            name (str): The name or label of the fuzzy set.
-            left_boundary (float): The left boundary of the fuzzy set.
-            peak (float): The peak (central) value of the fuzzy set.
-            right_boundary (float): The right boundary of the fuzzy set.
-    """
-    # self.name = name  # Fuzzy set name
-    # self.left_boundary = left_boundary  # Left boundary
-    # self.peak = peak  # Peak value
-    # self.right_boundary = right_boundary  # Right boundary
 
     def membership(self, x: float) -> float:
         """
@@ -170,6 +155,7 @@ if __name__ == "__main__":
     plt.show()
 else:
     import unittest
+    
     from test_fuzzy_logic import TestFuzzySet
 
     suite = unittest.TestLoader().loadTestsFromTestCase(TestFuzzySet)
