@@ -1,7 +1,32 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from dataclasses import dataclass
+"""
+By @Shreya123714
+
+#How fuzzy set is created using FuzzySet Class
+>>>me = FuzzySet("Sheru",0.4,1,0.6)
+>>>me.__str__()
+'Sheru: [0.4, 1, 0.6]'
+>>>me
+FuzzySet(name='Sheru', left_boundary=0.4, peak=1, right_boundary=0.6)
+>>>s = FuzzySet("Siya",0.5,1,0.7)
+
+#Union Operations
+>>>s.union(me)
+FuzzySet(name='Siya ∪ Sheru', left_boundary=0.4, peak=0.7, right_boundary=1.0)
+
+#Intersection Operation
+>>>s.intersection(me)
+FuzzySet(name='Siya ∩ Sheru', left_boundary=0.5, peak=0.6, right_boundary=1.0)
+
+#Complement Operation
+>>>s.complement()
+FuzzySet(name='¬Siya', left_boundary=0.30000000000000004, peak=0.5, right_boundary=0)
+"""
 
 
+@dataclass
 class FuzzySet:
     """
     A class for representing and manipulating triangular fuzzy sets.
@@ -21,22 +46,26 @@ class FuzzySet:
         this fuzzy set.
         plot(): Plot the membership function of the fuzzy set.
     """
+    name: str
+    left_boundary: float
+    peak: float
+    right_boundary: float
 
-    def __init__(
-        self, name: str, left_boundary: float, peak: float, right_boundary: float
-    ) -> None:
-        """
+    # def __init__(
+    #     self, name: str, left_boundary: float, peak: float, right_boundary: float
+    # ) -> None:
+    """
         Initializes a triangular fuzzy set with the given parameters.
         Args:
             name (str): The name or label of the fuzzy set.
             left_boundary (float): The left boundary of the fuzzy set.
             peak (float): The peak (central) value of the fuzzy set.
             right_boundary (float): The right boundary of the fuzzy set.
-        """
-        self.name = name  # Fuzzy set name
-        self.left_boundary = left_boundary  # Left boundary
-        self.peak = peak  # Peak value
-        self.right_boundary = right_boundary  # Right boundary
+    """
+        # self.name = name  # Fuzzy set name
+        # self.left_boundary = left_boundary  # Left boundary
+        # self.peak = peak  # Peak value
+        # self.right_boundary = right_boundary  # Right boundary
 
     def membership(self, x: float) -> float:
         """
