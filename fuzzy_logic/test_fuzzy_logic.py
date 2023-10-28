@@ -1,5 +1,5 @@
 import unittest
-from fuzzy_operations import FuzzySet
+from fuzzy_logic.fuzzy_operations import FuzzySet
 
 
 class TestFuzzySet(unittest.TestCase):
