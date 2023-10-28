@@ -40,14 +40,14 @@ def bitap_string_match(text: str, pattern: str) -> int:
     >>> bitap_string_match('abdab', 'fofosdfo')
     -1
     """
-    m: int = len(pattern)
-    if m == 0:
+    if not pattern:
         return 0
+    m = len(pattern)
     if m > len(text):
         return -1
 
     # Initial state of bit string 1110
-    state: int = ~1
+    state = ~1
     # Bit = 0 if character appears at index, and 1 otherwise
     pattern_mask: list[int] = [~0] * 27  # 1111
 
