@@ -1,6 +1,7 @@
 import sys
 import numpy as np
 
+
 def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     """
     Solves a linear system of equations using Gaussian elimination with partial pivoting.
@@ -73,6 +74,7 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
 
     # Return the solution vector
     return np.asarray(x_lst)
+
 
 if __name__ == "__main__":
     # Example usage:
