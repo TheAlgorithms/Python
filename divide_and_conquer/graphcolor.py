@@ -1,6 +1,7 @@
 from collections import defaultdict
 from typing import dict, list
 
+
 class Graph:
     def __init__(self, subjects: list[str]) -> None:
         """
@@ -40,10 +41,10 @@ class Graph:
                 available_colors.add(color_map[subject])
         return color_map
 
-
     def get_minimum_time_slots(self) -> int:
         color_map = self.graph_coloring()
         return max(color_map.values())
+
 
 # Example usage
 subjects = ["Math", "Physics", "Chemistry", "Biology"]
@@ -62,4 +63,5 @@ graph.add_edge("Physics", "Biology")
 # Example doctest for add_edge method
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
