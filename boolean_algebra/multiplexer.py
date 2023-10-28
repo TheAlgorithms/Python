@@ -1,5 +1,6 @@
 # https://www.electrically4u.com/solved-problems-on-multiplexer/
 
+
 def mux(input0: int, input1: int, select: int) -> int:
     """
     Implement a 2-to-1 Multiplexer.
@@ -24,6 +25,7 @@ def mux(input0: int, input1: int, select: int) -> int:
         return input1
     else:
         raise ValueError("Select signal must be 0 or 1")
+
 
 if __name__ == "__main__":
     import doctest
