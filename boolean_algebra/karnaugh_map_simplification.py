@@ -25,7 +25,6 @@ def main() -> None:
     >>> main()
     [0, 1]
     [1, 1]
-
     Simplified Expression:
     A'B + AB' + AB
     """
@@ -37,7 +36,7 @@ def main() -> None:
         print(row)
 
     simplified_expression = simplify_kmap(kmap)
-    print("\nSimplified Expression:")
+    print("Simplified Expression:")
     print(simplified_expression)
 
 
