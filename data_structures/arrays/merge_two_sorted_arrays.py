@@ -1,4 +1,3 @@
-
 """
     https://en.wikipedia.org/wiki/Merge_algorithm
 """
