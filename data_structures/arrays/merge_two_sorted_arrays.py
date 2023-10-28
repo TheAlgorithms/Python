@@ -1,7 +1,17 @@
+from typing import Iterable, Callable, List, TypeVar
+
 """
     https://en.wikipedia.org/wiki/Merge_algorithm
 """
 
+T = TypeVar('T')
+
+def is_sorted(arr: Iterable[T]) -> bool:
+    """
+    Check if an array is sorted in non-decreasing order.
+
+    """
+    return all(arr[i] <= arr[i + 1] for i in range(len(arr) - 1))
 
 def merge_two_sorted_arrays(nums1: list[any], nums2: list[any]) -> list[any]:
     """
@@ -28,17 +38,22 @@ def merge_two_sorted_arrays(nums1: list[any], nums2: list[any]) -> list[any]:
         ['a', 'b', 'c', 'd', 'e', 'f']
 
         >>> merge_two_sorted_arrays([], [])
-        []
+        Traceback (most recent call last):
+        ...
+        ValueError: The arrays are empty.
 
         >>> merge_two_sorted_arrays([6, 2, 1], [10, 23, -11])
         Traceback (most recent call last):
         ...
-        ValueError: The array is not sorted
+        ValueError: The array is not sorted.
 
     """
 
-    if nums1 != sorted(nums1) or nums2 != sorted(nums2):
-        raise ValueError("The array is not sorted")
+    if not nums1 and not nums2:
+        raise ValueError("The arrays are empty.")
+
+    if not is_sorted(nums1) or not is_sorted(nums2):
+        raise ValueError("The array is not sorted.")
 
     # Initialize two pointers and an array to store the merged array.
     i, j = 0, 0
