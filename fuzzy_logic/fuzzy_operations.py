@@ -141,7 +141,7 @@ if __name__ == "__main__":
 <<<<<<< HEAD
     a.plot()
     b.plot()
-    
+
 =======
     A.plot()
     B.plot()
