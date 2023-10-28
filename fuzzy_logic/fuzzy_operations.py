@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from dataclasses import dataclass
+
 """
 By @Shreya123714
 
@@ -46,6 +47,7 @@ class FuzzySet:
         this fuzzy set.
         plot(): Plot the membership function of the fuzzy set.
     """
+
     name: str
     left_boundary: float
     peak: float
@@ -62,10 +64,10 @@ class FuzzySet:
             peak (float): The peak (central) value of the fuzzy set.
             right_boundary (float): The right boundary of the fuzzy set.
     """
-        # self.name = name  # Fuzzy set name
-        # self.left_boundary = left_boundary  # Left boundary
-        # self.peak = peak  # Peak value
-        # self.right_boundary = right_boundary  # Right boundary
+    # self.name = name  # Fuzzy set name
+    # self.left_boundary = left_boundary  # Left boundary
+    # self.peak = peak  # Peak value
+    # self.right_boundary = right_boundary  # Right boundary
 
     def membership(self, x: float) -> float:
         """
