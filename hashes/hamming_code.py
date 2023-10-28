@@ -77,6 +77,10 @@ def emitter_converter(size_par, data):
 
     >>> emitter_converter(4, "101010111111")
     ['1', '1', '1', '1', '0', '1', '0', '0', '1', '0', '1', '1', '1', '1', '1', '1']
+    >>> emitter_converter(5, "101010111111")
+    Traceback (most recent call last):
+        ...
+    ValueError: size of parity don't match with size of data
     """
     if size_par + len(data) <= 2**size_par - (len(data) - 1):
         raise ValueError("size of parity don't match with size of data")
