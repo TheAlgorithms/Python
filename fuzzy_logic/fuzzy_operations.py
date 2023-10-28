@@ -7,6 +7,7 @@ import numpy as np
  Source: https://en.wikipedia.org/wiki/Fuzzy_set
 """
 
+
 class FuzzySet:
     """
     A class for representing and
@@ -46,20 +47,22 @@ class FuzzySet:
         self.peak = peak  # Peak value
         self.right_boundary = right_boundary  # Right boundary
 
+
 def membership(self, x):
-      """
+    """
     Calculate the membership value of
     an input 'x' in the fuzzy set.
         Returns:
             float: The membership value of 'x' in
             the fuzzy set.
     """
-      if x <= self.left_boundary or x >= self.right_boundary:
-           return 0
-      elif self.left_boundary < x <= self.peak:
-          return (x - self.left_boundary) / (self.peak - self.left_boundary)
-      elif self.peak < x < self.right_boundary:
-          return (self.right_boundary - x) / (self.right_boundary - self.peak)
+    if x <= self.left_boundary or x >= self.right_boundary:
+        return 0
+    elif self.left_boundary < x <= self.peak:
+        return (x - self.left_boundary) / (self.peak - self.left_boundary)
+    elif self.peak < x < self.right_boundary:
+        return (self.right_boundary - x) / (self.right_boundary - self.peak)
+
 
 def union(self, other):
     """
@@ -82,7 +85,7 @@ def union(self, other):
         max(self.right_boundary, other.right_boundary),
         (self.peak + other.peak) / 2,
     )
-    
+
 
 def intersection(self, other):
     """
@@ -103,6 +106,7 @@ def intersection(self, other):
         (self.peak + other.peak) / 2,
     )
 
+
 def complement(self):
     """
     Calculate the complement (negation) of this fuzzy set.
@@ -111,7 +115,10 @@ def complement(self):
         FuzzySet: A new fuzzy set representing the complement.
     """
     complement_name = f"¬{self.name}"
-    return FuzzySet(complement_name, 1 - self.right_boundary, 1 - self.left_boundary, 1 - self.peak)
+    return FuzzySet(
+        complement_name, 1 - self.right_boundary, 1 - self.left_boundary, 1 - self.peak
+    )
+
 
 def plot(self):
     """
@@ -122,8 +129,10 @@ def plot(self):
 
     plt.plot(x, y, label=self.name)
 
+
 def __str__(self):
     return f"{self.name}: [{self.left_boundary}, {self.peak}, {self.right_boundary}]"
+
 
 if __name__ == "__main__":
     A = FuzzySet("A", 0, 0.5, 1)
@@ -131,7 +140,7 @@ if __name__ == "__main__":
 
     A.plot()
     B.plot()
-    
+
     plt.xlabel("x")
     plt.ylabel("Membership")
     plt.legend()
