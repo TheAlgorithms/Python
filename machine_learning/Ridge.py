@@ -8,31 +8,31 @@ from numpy import linalg as la
 
 
 class RidgeRegression:
-    def __init__(self, X, Y):
+    def __init__(self, x, y):
         self.objvals = []
 
         # no_of_training_examples, no_of_features
-        self.m, self.n = X.shape
+        self.m, self.n = x.shape
 
         # weight initialization
         self.W = np.zeros(self.n)
 
         self.b = 0
-        self.X = X
-        self.Y = Y
+        self.x = x
+        self.y = y
 
         # gradient descent learning
 
         for _ in range(self.iterations):
-            Y_pred = self.predict(self.X)
-            hh = self.objval(Y, Y_pred)
+            y_pred = self.predict(self.x)
+            hh = self.objval(y, y_pred)
 
             start = t.time()
             self.update_weights()
             end = t.time() - start
             self.timeiter.append(end)
-            Y_pred = self.predict(self.X)
-            hj = self.objval(Y, Y_pred)
+            y_pred = self.predict(self.x)
+            hj = self.objval(y, y_pred)
             self.objvals.append(hh)
             if abs(hh - hj) <= 0.0001e-05:
                 break
@@ -41,18 +41,17 @@ class RidgeRegression:
         time_iterg1 = time_g1.copy()
         time_iterg1.sort(reverse=True)
         self.timeiter = time_iterg1
-        return self
 
     # Helper function to update weights in gradient descent
 
     def update_weights(self):
-        y_pred = self.predict(self.X)
+        y_pred = self.predict(self.x)
 
         # calculate gradients
         dw = (
-            -(2 * (self.X.T).dot(self.Y - y_pred)) + (2 * self.l2_penality * self.W)
+            -(2 * (self.x.T).dot(self.y - y_pred)) + (2 * self.l2_penality * self.W)
         ) / self.m
-        db = -2 * np.sum(self.Y - y_pred) / self.m
+        db = -2 * np.sum(self.y - y_pred) / self.m
 
         # update weights
         self.W = self.W - self.learning_rate * dw
@@ -60,10 +59,10 @@ class RidgeRegression:
         return self
 
     # Hypothetical function  h( x )
-    def predict(self, X):
-        return X.dot(self.W) + self.b
+    def predict(self, x):
+        return x.dot(self.W) + self.b
 
-    def objval(self, Y, pred):
+    def objval(self):
         h_2 = la.norm(self.W, 2) ** 2
         h_3 = self.l2_penality * h_2
         h = h_3 / self.m
