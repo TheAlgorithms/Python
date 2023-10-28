@@ -47,9 +47,9 @@ def bitap_string_match(text: str, pattern: str) -> int | None:
         return None
 
     # Initial state of bit string 1110
-    state: str = ~1
+    state: int = ~1
     # Bit = 0 if character appears at index, and 1 otherwise
-    pattern_mask: [str] = [~0] * 27  # 1111
+    pattern_mask: list[int] = [~0] * 27  # 1111
 
     for i in range(m):
         # For the pattern mask for this character, set the bit to 0 for each i
