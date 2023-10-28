@@ -6,39 +6,13 @@ https://en.wikipedia.org/wiki/Linear_multistep_method
 Author : Ravi Kumar
 """
 from collections.abc import Callable
+from dataclasses import dataclass
 
 import numpy as np
 
 
+@dataclass
 class AdamsBashforth:
-    def __init__(
-        self,
-        func: Callable[[float, float], float],
-        x_initials: list[float],
-        y_initials: list[float],
-        step_size: float,
-        x_final: float,
-    ) -> None:
-        self.func = func
-        self.x_initials = x_initials
-        self.y_initials = y_initials
-        self.step_size = step_size
-        self.x_final = x_final
-
-        if x_initials[-1] >= x_final:
-            raise ValueError(
-                "The final value of x must be greater than the initial values of x."
-            )
-
-        if step_size <= 0:
-            raise ValueError("Step size must be positive.")
-
-        if not all(
-            round(x1 - x0, 10) == step_size
-            for x0, x1 in zip(x_initials, x_initials[1:])
-        ):
-            raise ValueError("x-values must be equally spaced according to step size.")
-
     """
     args:
     func: An ordinary differential equation (ODE) as function of x and y.
@@ -54,7 +28,7 @@ class AdamsBashforth:
     >>> AdamsBashforth(f, [0, 0.2, 1], [0, 0, 0.04], 0.2, 1).step_2()
     Traceback (most recent call last):
         ...
-    ValueError: The final value of x must be greater than the all initial values of x.
+    ValueError: The final value of x must be greater than the initial values of x.
 
     >>> def f(x, y):
     ...     return x + y
@@ -65,11 +39,32 @@ class AdamsBashforth:
 
     >>> def f(x, y):
     ...     return x
-    >>> AdamsBashforth(f,[0,0.2,0.4,0.6,0.8],[0,0,0.04,0.128 0.307],-0.2,1).step_5()
+    >>> AdamsBashforth(f,[0,0.2,0.4,0.6,0.8],[0,0,0.04,0.128,0.307],-0.2,1).step_5()
     Traceback (most recent call last):
         ...
     ValueError: Step size must be positive.
     """
+
+    func: Callable[[float, float], float]
+    x_initials: list[float]
+    y_initials: list[float]
+    step_size: float
+    x_final: float
+
+    def __post_init__(self) -> None:
+        if self.x_initials[-1] >= self.x_final:
+            raise ValueError(
+                "The final value of x must be greater than the initial values of x."
+            )
+
+        if self.step_size <= 0:
+            raise ValueError("Step size must be positive.")
+
+        if not all(
+            round(x1 - x0, 10) == self.step_size
+            for x0, x1 in zip(self.x_initials, self.x_initials[1:])
+        ):
+            raise ValueError("x-values must be equally spaced according to step size.")
 
     def step_2(self) -> np.ndarray:
         """
@@ -149,7 +144,8 @@ class AdamsBashforth:
         """
         >>> def f(x,y):
         ...     return x + y
-        >>> y = AdamsBashforth(f, [0, 0.2, 0.4, 0.6], [0, 0, 0.04, 0.128], 0.2, 1).step_4()
+        >>> y = AdamsBashforth(
+        ...    f, [0, 0.2, 0.4, 0.6], [0, 0, 0.04, 0.128], 0.2, 1).step_4()
         >>> y[4]
         0.30699999999999994
         >>> y[5]
@@ -194,7 +190,9 @@ class AdamsBashforth:
         """
         >>> def f(x,y):
         ...     return x + y
-        >>> y = AdamsBashforth(f, [0, 0.2, 0.4, 0.6, 0.8], [0, 0.02140, 0.02140, 0.22211, 0.42536], 0.2, 1).step_5()
+        >>> y = AdamsBashforth(
+        ...     f, [0, 0.2, 0.4, 0.6, 0.8], [0, 0.02140, 0.02140, 0.22211, 0.42536],
+        ...     0.2, 1).step_5()
         >>> y[-1]
         0.05436839444444452
 
