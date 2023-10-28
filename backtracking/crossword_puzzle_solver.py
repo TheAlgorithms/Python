@@ -50,11 +50,11 @@ def place_word(
     >>> puzzle
     [['w', '', '', ''], ['o', '', '', ''], ['r', '', '', ''], ['d', '', '', '']]
     """
-    for i in range(len(word)):
+    for i, char in enumerate(word):
         if vertical:
-            puzzle[row + i][col] = word[i]
+            puzzle[row + i][col] = char
         else:
-            puzzle[row][col + i] = word[i]
+            puzzle[row][col + i] = char
 
 
 def remove_word(
@@ -120,12 +120,13 @@ def solve_crossword(puzzle: list[list[str]], words: list[str]) -> bool:
     return True
 
 
-PUZZLE = [["" for _ in range(3)] for _ in range(3)]
-WORDS = ["cat", "dog", "car"]
+if __name__ == "__main__":
+    PUZZLE = [[""] * 3] for _ in range(3)]
+    WORDS = ("cat", "dog", "car")
 
-if solve_crossword(PUZZLE, WORDS):
-    print("Solution found:")
-    for row in PUZZLE:
-        print(" ".join(row))
-else:
-    print("No solution found:")
+    if solve_crossword(PUZZLE, WORDS):
+        print("Solution found:")
+        for row in PUZZLE:
+            print(" ".join(row))
+    else:
+        print("No solution found:")
