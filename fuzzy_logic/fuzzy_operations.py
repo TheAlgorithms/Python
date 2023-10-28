@@ -137,16 +137,6 @@ def __str__(self):
 if __name__ == "__main__":
     a = FuzzySet("A", 0, 0.5, 1)
     b = FuzzySet("B", 0.2, 0.7, 1)
-
-<<<<<<< HEAD
-    a.plot()
-    b.plot()
-    
-=======
-    A.plot()
-    B.plot()
-
->>>>>>> cacc1d104c9e972b1d7600d3d079570718a56ebc
     plt.xlabel("x")
     plt.ylabel("Membership")
     plt.legend()
