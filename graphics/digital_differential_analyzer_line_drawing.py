@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from typing import list, tuple
 
 
 def digital_differential_analyzer_line(
