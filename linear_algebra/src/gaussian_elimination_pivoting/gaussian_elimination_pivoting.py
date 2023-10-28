@@ -1,7 +1,11 @@
 import sys
 import time
+from typing import List, Union
 
 import numpy as np
+
+matrixab = np.loadtxt("matrix.txt")
+B = np.copy(matrixab[:, matrixab.shape[1] - 1])
 
 
 def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
