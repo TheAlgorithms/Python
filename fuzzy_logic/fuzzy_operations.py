@@ -137,3 +137,9 @@ if __name__ == "__main__":
     plt.ylabel("Membership")
     plt.legend()
     plt.show()
+else:
+    import unittest
+    from test_fuzzy_logic import TestFuzzySet
+
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestFuzzySet)
+    unittest.TextTestRunner(verbosity=2).run(suite)
