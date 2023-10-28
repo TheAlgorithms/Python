@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from dataclasses import dataclass
+
 """
 By @Shreya123714
 
@@ -155,7 +156,7 @@ if __name__ == "__main__":
     plt.show()
 else:
     import unittest
-    
+
     from test_fuzzy_logic import TestFuzzySet
 
     suite = unittest.TestLoader().loadTestsFromTestCase(TestFuzzySet)
