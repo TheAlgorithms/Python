@@ -4,7 +4,8 @@ from typing import Iterable, Callable, List, TypeVar
     https://en.wikipedia.org/wiki/Merge_algorithm
 """
 
-T = TypeVar('T')
+T = TypeVar("T")
+
 
 def is_sorted(arr: Iterable[T]) -> bool:
     """
@@ -12,6 +13,7 @@ def is_sorted(arr: Iterable[T]) -> bool:
 
     """
     return all(arr[i] <= arr[i + 1] for i in range(len(arr) - 1))
+
 
 def merge_two_sorted_arrays(nums1: list[any], nums2: list[any]) -> list[any]:
     """
