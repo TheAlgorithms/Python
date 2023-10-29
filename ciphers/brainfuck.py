@@ -67,7 +67,7 @@ class BFCipher:
         else:
             self.instruction: str = instruction
 
-    def __syntax_check(self):
+    def __syntax_check(self) -> None:
         """
         Performs a syntax check of the instruction and generates the
         `loop_table`.
@@ -87,7 +87,7 @@ class BFCipher:
         if len(bracket_stack) > 0:
             raise SyntaxError("Incomplete closure of bracket for instruction")
 
-    def __increment_data_ptr(self):
+    def __increment_data_ptr(self) -> None:
         """
         Increment the data pointer by one (to point to the next cell to the
         right).
@@ -96,7 +96,7 @@ class BFCipher:
         if self.data_ptr > 30000:
             raise ValueError("NullValue Reference: Data pointer referencing null.")
 
-    def __decrement_data_ptr(self):
+    def __decrement_data_ptr(self) -> None:
         """
         Decrement the data pointer by one (to point to the next cell to the
         left).
@@ -105,21 +105,21 @@ class BFCipher:
         if self.data_ptr < 0:
             raise ValueError("NullValue Reference: Data pointer referencing null.")
 
-    def __increment_data_value(self):
+    def __increment_data_value(self) -> None:
         """
         Increment the byte at the data pointer by one.
         """
         self.main_arr[self.data_ptr] += 1
         self.main_arr[self.data_ptr] = self.main_arr[self.data_ptr] & 0xFF
 
-    def __decrement_data_value(self):
+    def __decrement_data_value(self) -> None:
         """
         Decrement the byte at the data pointer by one.
         """
         self.main_arr[self.data_ptr] -= 1
         self.main_arr[self.data_ptr] = self.main_arr[self.data_ptr] & 0xFF
 
-    def __append_bracket(self):
+    def __append_bracket(self) -> None:
         """
         If the byte at the data pointer is zero, then instead of moving the
         instruction pointer forward to the next command, jump it forward to
@@ -128,7 +128,7 @@ class BFCipher:
         if self.main_arr[self.data_ptr] == 0:
             self.instruction_ptr = self.loop_table[self.instruction_ptr]
 
-    def __pop_bracket(self):
+    def __pop_bracket(self) -> None:
         """
         If the byte at the data pointer is nonzero, then instead of moving the
         instruction pointer forward to the next command, jump it back to the
@@ -137,13 +137,13 @@ class BFCipher:
         if self.main_arr[self.data_ptr] != 0:
             self.instruction_ptr = self.loop_table[self.instruction_ptr]
 
-    def __print_output(self):
+    def __print_output(self) -> None:
         """
         Output the byte at the data pointer.
         """
         self.output += chr(self.main_arr[self.data_ptr])
 
-    def __take_input(self):
+    def __take_input(self) -> None:
         """
         Accept one byte of input, storing its value in the byte at the data
         pointer.
