@@ -1,11 +1,14 @@
 import numpy as np
 import cv2
+
 """
 Implemented an image de-hazer using OpenCV and Dark Channel
 """
 
 
-def dehaze_image(image: np.ndarray, omega: float = 0.78, t0: float = 0.01) -> np.ndarray:
+def dehaze_image(
+    image: np.ndarray, omega: float = 0.78, t0: float = 0.01
+) -> np.ndarray:
     """
     Dehaze an input image using the dark channel prior method.
     Args:
