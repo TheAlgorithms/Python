@@ -37,8 +37,8 @@ def download_image(url: str) -> str:
         return f"Failed to download the image from {image_url}."
 
     file_name = f"{datetime.now():%Y-%m-%d_%H:%M:%S}.jpg"
-    with open(file_name, "wb") as file:
-        file.write(image_data)
+    with open(file_name, "wb") as out_file:
+        out_file.write(image_data)
     return f"Image downloaded and saved in the file {file_name}"
 
 
