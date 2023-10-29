@@ -45,7 +45,7 @@ class BFCipher:
         Args:
             instruction (str): A string of the BFCipher code.
         """
-        self.main_arr: list = [0]*30000
+        self.main_arr: list = [0] * 30000
         self.instruction_ptr: int = 0
         self.data_ptr: int = 0
         self.user_input: list = []
@@ -63,19 +63,21 @@ class BFCipher:
         checker_ptr: int = self.instruction_ptr
         bracket_stack = []
         while checker_ptr < len(self.instruction):
-            if self.instruction[checker_ptr] == '[':
+            if self.instruction[checker_ptr] == "[":
                 bracket_stack.append(checker_ptr)
-            elif self.instruction[checker_ptr] == ']':
+            elif self.instruction[checker_ptr] == "]":
                 if len(bracket_stack) == 0:
                     raise SyntaxError(
-                        f"Incomplete closure of bracket for instruction {checker_ptr}")
+                        f"Incomplete closure of bracket for instruction {checker_ptr}"
+                    )
                 loop_beginning_index = bracket_stack.pop()
                 self.loop_table[loop_beginning_index] = checker_ptr
                 self.loop_table[checker_ptr] = loop_beginning_index
             checker_ptr += 1
         if len(bracket_stack) > 0:
             raise SyntaxError(
-                f"Incomplete closure of bracket for instruction {checker_ptr}")
+                f"Incomplete closure of bracket for instruction {checker_ptr}"
+            )
 
     def __increment_data_ptr(self):
         """
@@ -83,8 +85,7 @@ class BFCipher:
         """
         self.data_ptr += 1
         if self.data_ptr > 30000:
-            raise ValueError(
-                "NullValue Reference: Data pointer referencing null.")
+            raise ValueError("NullValue Reference: Data pointer referencing null.")
 
     def __decrement_data_ptr(self):
         """
@@ -92,8 +93,7 @@ class BFCipher:
         """
         self.data_ptr -= 1
         if self.data_ptr < 0:
-            raise ValueError(
-                "NullValue Reference: Data pointer referencing null.")
+            raise ValueError("NullValue Reference: Data pointer referencing null.")
 
     def __increment_data_value(self):
         """
@@ -147,21 +147,21 @@ class BFCipher:
         try:
             self.__syntax_check()
             while self.instruction_ptr < len(self.instruction):
-                if self.instruction[self.instruction_ptr] == '>':
+                if self.instruction[self.instruction_ptr] == ">":
                     self.__increment_data_ptr()
-                elif self.instruction[self.instruction_ptr] == '<':
+                elif self.instruction[self.instruction_ptr] == "<":
                     self.__decrement_data_ptr()
-                elif self.instruction[self.instruction_ptr] == '+':
+                elif self.instruction[self.instruction_ptr] == "+":
                     self.__increment_data_value()
-                elif self.instruction[self.instruction_ptr] == '-':
+                elif self.instruction[self.instruction_ptr] == "-":
                     self.__decrement_data_value()
-                elif self.instruction[self.instruction_ptr] == '[':
+                elif self.instruction[self.instruction_ptr] == "[":
                     self.__append_bracket()
-                elif self.instruction[self.instruction_ptr] == ']':
+                elif self.instruction[self.instruction_ptr] == "]":
                     self.__pop_bracket()
-                elif self.instruction[self.instruction_ptr] == '.':
+                elif self.instruction[self.instruction_ptr] == ".":
                     self.__print_output()
-                elif self.instruction[self.instruction_ptr] == ',':
+                elif self.instruction[self.instruction_ptr] == ",":
                     self.__take_input()
                 self.instruction_ptr += 1
             return self.output
@@ -172,17 +172,17 @@ class BFCipher:
 
 
 if __name__ == "__main__":
-    inputs = ["testcode1.bf", "testcode2.bf"] # Add path of testcodes here
-    outputs = ["7", "Hello World!\n"] # Add expected outputs here
+    inputs = ["testcode1.bf", "testcode2.bf"]  # Add path of testcodes here
+    outputs = ["7", "Hello World!\n"]  # Add expected outputs here
     passed = failed = 0
     for input, expected_ouput in zip(inputs, outputs):
         file = open(f"tests_BFCipher/{input}", "r")
         instruction = file.read()
         output = BFCipher(instruction).compile()
         if output == expected_ouput:
-            passed+=1
+            passed += 1
         else:
-            failed+=1
+            failed += 1
         file.close()
     print(f"Passed : {passed}\nFailed : {failed}")
     if failed == 0:
