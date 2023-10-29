@@ -20,17 +20,31 @@ def josephus_recursive(num_people: int, step_size: int) -> int:
     Solve the Josephus problem for num_people and a step_size recursively.
 
     Args:
-        num_people (int): Number of people.
-        step_size (int): Step size for elimination.
+        num_people: Number of people.
+        step_size: Step size for elimination.
 
     Returns:
-        int: The position of the last person remaining.
+        The position of the last person remaining.
 
     Examples:
-        >>> josephus_recursive(7, 3)
-        3
-        >>> josephus_recursive(10, 2)
-        4
+    >>> josephus_recursive(7, 3)
+    3
+    >>> josephus_recursive(10, 2)
+    4
+    >>> josephus_recursive(0, 2)
+    ???
+    >>> josephus_recursive(1.9, 2)
+    ???
+    >>> josephus_recursive(-2, 2)
+    ???
+    >>> josephus_recursive(7, 0)
+    ???
+    >>> josephus_recursive(7, -2)
+    ???
+    >>> josephus_recursive(1_000, 0.01)
+    ???
+    >>> josephus_recursive("cat", "dog")
+    ???
     """
     if num_people == 1:
         return 0
