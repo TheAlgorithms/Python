@@ -1,9 +1,7 @@
-
-
 from sys import stdin
 
 
-def largestRoworCol(mat,nRows,mCols):
+def largestRoworCol(mat, nRows, mCols):
     # Row wise Sum
     rowSumList = []
     for i in range(nRows):
@@ -15,7 +13,7 @@ def largestRoworCol(mat,nRows,mCols):
 
     # Column wise Sum
     colSumList = []
-    i = 0;
+    i = 0
     j = 0
     for j in range(mCols):
         sumCol = 0
@@ -28,10 +26,22 @@ def largestRoworCol(mat,nRows,mCols):
     maxElementOfCol = max(colSumList)
 
     if maxElementOfRow >= maxElementOfCol:
-        return "row" + " " + str(rowSumList.index(maxElementOfRow)) + " " + str(maxElementOfRow)
+        return (
+            "row"
+            + " "
+            + str(rowSumList.index(maxElementOfRow))
+            + " "
+            + str(maxElementOfRow)
+        )
 
     else:
-        return "column" + " " + str(colSumList.index(maxElementOfCol)) + " " + str(maxElementOfCol)
+        return (
+            "column"
+            + " "
+            + str(colSumList.index(maxElementOfCol))
+            + " "
+            + str(maxElementOfCol)
+        )
 
 
 # Taking Input Using Fast I/O

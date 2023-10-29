@@ -13,7 +13,7 @@ def spiralPrint(mat, nRows, mCols):
         j = left
         c = 0
         while j <= right:
-            print(mat[i][j], end=' ')
+            print(mat[i][j], end=" ")
             j += 1
             c += 1
         if left > right or top > bottom:
@@ -23,7 +23,7 @@ def spiralPrint(mat, nRows, mCols):
         top += 1  # the top row is traversed
         i = top
         while i <= bottom:
-            print(mat[i][j], end=' ')
+            print(mat[i][j], end=" ")
             i += 1
             c += 1
         if left > right or top > bottom:
@@ -34,7 +34,7 @@ def spiralPrint(mat, nRows, mCols):
         if left > right or top > bottom:
             return
         while j >= left:
-            print(mat[i][j], end=' ')
+            print(mat[i][j], end=" ")
             j -= 1
             c += 1
         bottom -= 1
@@ -43,7 +43,7 @@ def spiralPrint(mat, nRows, mCols):
         if left > right or top > bottom:
             return
         while i >= top:
-            print(mat[i][j], end=' ')
+            print(mat[i][j], end=" ")
             i -= 1
             c += 1
         i = top
