@@ -13,7 +13,7 @@ def fast_inverse_sqrt(number: float) -> float:
     This function computes the fast inverse square root of a floating-point number
     using the famous Quake III algorithm, originally developed by id Software.
 
-    :param float number: The input number for which to calculate the inverse square root.
+    :param float number: Input number for which to calculate the inverse square root.
     :return float: The fast inverse square root of the input number.
 
     Example:
