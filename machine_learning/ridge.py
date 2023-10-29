@@ -8,7 +8,9 @@ from numpy import linalg as la
 
 
 class RidgeRegression:
-    def __init__(self, x: tuple, y: tuple, iterations: int, timeiter: list, objvals:list) -> None:
+    def __init__(self, x: tuple, y: tuple, iterations: int,/
+                  timeiter: list, objvals:list) -> None:
+        print(iterations, timeiter, objvals)
         self.objvals = []
 
         # no_of_training_examples, no_of_features
@@ -45,6 +47,15 @@ class RidgeRegression:
     # Helper function to update weights in gradient descent
 
     def update_weights(self) -> None:
+        """
+        Update the model's weights and bias using gradient descent.
+
+        This method calculates the gradients of the loss with respect to the weights (dw)
+        and bias (db), and updates the weights and bias using the gradient descent algorithm.
+
+        Returns:
+        None
+        """
         y_pred = self.predict(self.x)
 
         # calculate gradients
@@ -59,10 +70,27 @@ class RidgeRegression:
         return self
 
     # Hypothetical function  h( x )
-    def predict(self, x) -> np.ndarray:
+    def predict(self, x: tuple) -> np.ndarray:
         return x.dot(self.W) + self.b
 
     def objval(self) -> float:
+        """
+        Calculate the objective value of a model.
+
+        This method computes the objective value using the given formula:
+        h = (||W||^2) * l2_penality / m
+
+        Returns:
+        float: The calculated objective value.
+
+        Examples:
+        >>> model = RidgeRegression()
+        >>> model.W = np.array([1, 2, 3])
+        >>> model.l2_penality = 0.1 
+        >>> model.m = 100 
+        >>> model.objval()
+        0.14  # The expected objective value result
+        """
         h_2 = la.norm(self.W, 2) ** 2
         h_3 = self.l2_penality * h_2
         h = h_3 / self.m
