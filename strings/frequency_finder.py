@@ -49,6 +49,15 @@ def get_item_at_index_zero(x: tuple) -> str:
 
 
 def get_frequency_order(message: str) -> str:
+    """
+    Get the frequency order of the letters in the given string
+    >>> get_frequency_order('Hello World')
+    'LOWDRHEZQXJKVBPYGFMUCSNIAT'
+    >>> get_frequency_order('Hello@')
+    'LHOEZQXJKVBPYGFWMUCDRSNIAT'
+    >>> get_frequency_order('h')
+    'HZQXJKVBPYGFWMUCLDRSNIOATE'
+    """
     letter_to_freq = get_letter_count(message)
     freq_to_letter: dict[int, list[str]] = {
         freq: [] for letter, freq in letter_to_freq.items()

@@ -454,6 +454,8 @@ def kg_v(number1, number2):
     40
     >>> kg_v(824,67)
     55208
+    >>> kg_v(1, 10)
+    10
     >>> kg_v(0)
     Traceback (most recent call last):
         ...

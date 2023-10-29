@@ -39,6 +39,57 @@ def binary_cross_entropy(
     return np.mean(bce_loss)
 
 
+def binary_focal_cross_entropy(
+    y_true: np.ndarray,
+    y_pred: np.ndarray,
+    gamma: float = 2.0,
+    alpha: float = 0.25,
+    epsilon: float = 1e-15,
+) -> float:
+    """
+    Calculate the mean binary focal cross-entropy (BFCE) loss between true labels
+    and predicted probabilities.
+
+    BFCE loss quantifies dissimilarity between true labels (0 or 1) and predicted
+    probabilities. It's a variation of binary cross-entropy that addresses class
+    imbalance by focusing on hard examples.
+
+    BCFE = -Σ(alpha * (1 - y_pred)**gamma * y_true * log(y_pred)
+                + (1 - alpha) * y_pred**gamma * (1 - y_true) * log(1 - y_pred))
+
+    Reference: [Lin et al., 2018](https://arxiv.org/pdf/1708.02002.pdf)
+
+    Parameters:
+    - y_true: True binary labels (0 or 1).
+    - y_pred: Predicted probabilities for class 1.
+    - gamma: Focusing parameter for modulating the loss (default: 2.0).
+    - alpha: Weighting factor for class 1 (default: 0.25).
+    - epsilon: Small constant to avoid numerical instability.
+
+    >>> true_labels = np.array([0, 1, 1, 0, 1])
+    >>> predicted_probs = np.array([0.2, 0.7, 0.9, 0.3, 0.8])
+    >>> binary_focal_cross_entropy(true_labels, predicted_probs)
+    0.008257977659239775
+    >>> true_labels = np.array([0, 1, 1, 0, 1])
+    >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
+    >>> binary_focal_cross_entropy(true_labels, predicted_probs)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input arrays must have the same length.
+    """
+    if len(y_true) != len(y_pred):
+        raise ValueError("Input arrays must have the same length.")
+    # Clip predicted probabilities to avoid log(0)
+    y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
+
+    bcfe_loss = -(
+        alpha * (1 - y_pred) ** gamma * y_true * np.log(y_pred)
+        + (1 - alpha) * y_pred**gamma * (1 - y_true) * np.log(1 - y_pred)
+    )
+
+    return np.mean(bcfe_loss)
+
+
 def categorical_cross_entropy(
     y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-15
 ) -> float:
@@ -210,6 +261,43 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     return np.mean(squared_errors)
 
 
+def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    """
+    Calculates the Mean Absolute Error (MAE) between ground truth (observed)
+        and predicted values.
+
+    MAE measures the absolute difference between true values and predicted values.
+
+    Equation:
+    MAE = (1/n) * Σ(abs(y_true - y_pred))
+
+    Reference: https://en.wikipedia.org/wiki/Mean_absolute_error
+
+    Parameters:
+    - y_true: The true values (ground truth)
+    - y_pred: The predicted values
+
+    >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
+    >>> np.isclose(mean_absolute_error(true_values, predicted_values), 0.16)
+    True
+    >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
+    >>> np.isclose(mean_absolute_error(true_values, predicted_values), 2.16)
+    False
+    >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> predicted_probs = np.array([0.3, 0.8, 0.9, 5.2])
+    >>> mean_absolute_error(true_labels, predicted_probs)
+    Traceback (most recent call last):
+    ...
+    ValueError: Input arrays must have the same length.
+    """
+    if len(y_true) != len(y_pred):
+        raise ValueError("Input arrays must have the same length.")
+
+    return np.mean(abs(y_true - y_pred))
+
+
 def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
     Calculate the mean squared logarithmic error (MSLE) between ground truth and
@@ -244,6 +332,143 @@ def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
 
     squared_logarithmic_errors = (np.log1p(y_true) - np.log1p(y_pred)) ** 2
     return np.mean(squared_logarithmic_errors)
+
+
+def mean_absolute_percentage_error(
+    y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-15
+) -> float:
+    """
+    Calculate the Mean Absolute Percentage Error between y_true and y_pred.
+
+    Mean Absolute Percentage Error calculates the average of the absolute
+    percentage differences between the predicted and true values.
+
+    Formula = (Σ|y_true[i]-Y_pred[i]/y_true[i]|)/n
+
+    Source: https://stephenallwright.com/good-mape-score/
+
+    Parameters:
+    y_true (np.ndarray): Numpy array containing true/target values.
+    y_pred (np.ndarray): Numpy array containing predicted values.
+
+    Returns:
+    float: The Mean Absolute Percentage error between y_true and y_pred.
+
+    Examples:
+    >>> y_true = np.array([10, 20, 30, 40])
+    >>> y_pred = np.array([12, 18, 33, 45])
+    >>> mean_absolute_percentage_error(y_true, y_pred)
+    0.13125
+
+    >>> y_true = np.array([1, 2, 3, 4])
+    >>> y_pred = np.array([2, 3, 4, 5])
+    >>> mean_absolute_percentage_error(y_true, y_pred)
+    0.5208333333333333
+
+    >>> y_true = np.array([34, 37, 44, 47, 48, 48, 46, 43, 32, 27, 26, 24])
+    >>> y_pred = np.array([37, 40, 46, 44, 46, 50, 45, 44, 34, 30, 22, 23])
+    >>> mean_absolute_percentage_error(y_true, y_pred)
+    0.064671076436071
+    """
+    if len(y_true) != len(y_pred):
+        raise ValueError("The length of the two arrays should be the same.")
+
+    y_true = np.where(y_true == 0, epsilon, y_true)
+    absolute_percentage_diff = np.abs((y_true - y_pred) / y_true)
+
+    return np.mean(absolute_percentage_diff)
+
+
+def perplexity_loss(
+    y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-7
+) -> float:
+    """
+    Calculate the perplexity for the y_true and y_pred.
+
+    Compute the Perplexity which useful in predicting language model
+    accuracy in Natural Language Processing (NLP.)
+    Perplexity is measure of how certain the model in its predictions.
+
+    Perplexity Loss = exp(-1/N (Σ ln(p(x)))
+
+    Reference:
+    https://en.wikipedia.org/wiki/Perplexity
+
+    Args:
+        y_true: Actual label encoded sentences of shape (batch_size, sentence_length)
+        y_pred: Predicted sentences of shape (batch_size, sentence_length, vocab_size)
+        epsilon: Small floating point number to avoid getting inf for log(0)
+
+    Returns:
+        Perplexity loss between y_true and y_pred.
+
+    >>> y_true = np.array([[1, 4], [2, 3]])
+    >>> y_pred = np.array(
+    ...    [[[0.28, 0.19, 0.21 , 0.15, 0.15],
+    ...      [0.24, 0.19, 0.09, 0.18, 0.27]],
+    ...      [[0.03, 0.26, 0.21, 0.18, 0.30],
+    ...       [0.28, 0.10, 0.33, 0.15, 0.12]]]
+    ... )
+    >>> perplexity_loss(y_true, y_pred)
+    5.0247347775367945
+    >>> y_true = np.array([[1, 4], [2, 3]])
+    >>> y_pred = np.array(
+    ...    [[[0.28, 0.19, 0.21 , 0.15, 0.15],
+    ...      [0.24, 0.19, 0.09, 0.18, 0.27],
+    ...      [0.30, 0.10, 0.20, 0.15, 0.25]],
+    ...      [[0.03, 0.26, 0.21, 0.18, 0.30],
+    ...       [0.28, 0.10, 0.33, 0.15, 0.12],
+    ...       [0.30, 0.10, 0.20, 0.15, 0.25]],]
+    ... )
+    >>> perplexity_loss(y_true, y_pred)
+    Traceback (most recent call last):
+    ...
+    ValueError: Sentence length of y_true and y_pred must be equal.
+    >>> y_true = np.array([[1, 4], [2, 11]])
+    >>> y_pred = np.array(
+    ...    [[[0.28, 0.19, 0.21 , 0.15, 0.15],
+    ...      [0.24, 0.19, 0.09, 0.18, 0.27]],
+    ...      [[0.03, 0.26, 0.21, 0.18, 0.30],
+    ...       [0.28, 0.10, 0.33, 0.15, 0.12]]]
+    ... )
+    >>> perplexity_loss(y_true, y_pred)
+    Traceback (most recent call last):
+    ...
+    ValueError: Label value must not be greater than vocabulary size.
+    >>> y_true = np.array([[1, 4]])
+    >>> y_pred = np.array(
+    ...    [[[0.28, 0.19, 0.21 , 0.15, 0.15],
+    ...      [0.24, 0.19, 0.09, 0.18, 0.27]],
+    ...      [[0.03, 0.26, 0.21, 0.18, 0.30],
+    ...       [0.28, 0.10, 0.33, 0.15, 0.12]]]
+    ... )
+    >>> perplexity_loss(y_true, y_pred)
+    Traceback (most recent call last):
+    ...
+    ValueError: Batch size of y_true and y_pred must be equal.
+    """
+
+    vocab_size = y_pred.shape[2]
+
+    if y_true.shape[0] != y_pred.shape[0]:
+        raise ValueError("Batch size of y_true and y_pred must be equal.")
+    if y_true.shape[1] != y_pred.shape[1]:
+        raise ValueError("Sentence length of y_true and y_pred must be equal.")
+    if np.max(y_true) > vocab_size:
+        raise ValueError("Label value must not be greater than vocabulary size.")
+
+    # Matrix to select prediction value only for true class
+    filter_matrix = np.array(
+        [[list(np.eye(vocab_size)[word]) for word in sentence] for sentence in y_true]
+    )
+
+    # Getting the matrix containing prediction for only true class
+    true_class_pred = np.sum(y_pred * filter_matrix, axis=2).clip(epsilon, 1)
+
+    # Calculating perplexity for each sentence
+    perp_losses = np.exp(np.negative(np.mean(np.log(true_class_pred), axis=1)))
+
+    return np.mean(perp_losses)
 
 
 if __name__ == "__main__":
