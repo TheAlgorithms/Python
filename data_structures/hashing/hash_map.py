@@ -281,8 +281,8 @@ class HashMap(MutableMapping[KEY, VAL]):
         )
         return f"HashMap({val_string})"
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
