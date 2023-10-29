@@ -7,15 +7,16 @@ def insertion_sort(arr):
             j -= 1
         arr[j + 1] = key
 
+
 # Input from user
 input_list = input("Enter numbers separated by space: ")
 try:
     # Parse input string to get a list of integers
     numbers = list(map(int, input_list.split()))
-    
+
     # Call insertion_sort function
     insertion_sort(numbers)
-    
+
     # Output sorted list
     print("Sorted list:", numbers)
 except ValueError:
