@@ -10,7 +10,7 @@ def simplify_kmap(kmap: list[list[int]]) -> str:
     >>> simplify_kmap(kmap=[[0, 1], [1, 1]])
     "A'B + AB' + AB"
     >>> simplify_kmap(kmap=[[0, 0], [0, 0]])
-    "A'B + AB' + AB"
+    ''
     >>> simplify_kmap(kmap=[[0, 1], [1, -1]])
     "A'B + AB' + AB"
     >>> simplify_kmap(kmap=[[0, 1], [1, 2]])
@@ -46,9 +46,8 @@ def main() -> None:
     for row in kmap:
         print(row)
 
-    simplified_expression = simplify_kmap(kmap)
+  
     print(f"{simplify_kmap(kmap=[[0, 1], [1, 1]]) = }")
-    simplified_expression = simplify_kmap(kmap)
 
 
 if __name__ == "__main__":
