@@ -47,7 +47,7 @@ def main() -> None:
         print(row)
 
     print("Simplified Expression:")
-    print(simplify_kmap(kmap)
+    print(simplify_kmap(kmap))
 
 
 if __name__ == "__main__":
