@@ -54,25 +54,13 @@ class HashMap(MutableMapping[KEY, VAL]):
         Get next index.
 
         Implements linear open addressing.
-
-        Example 1:
-        >>> hm = HashMap(5)
-        >>> hm._get_next_ind(3)
+        >>> HashMap(5)._get_next_ind(3)
         4
-
-        Example 2:
-        >>> hm = HashMap(5)
-        >>> hm._get_next_ind(5)
+        >>> HashMap(5)._get_next_ind(5)
         1
-
-        Example 3:
-        >>> hm = HashMap(5)
-        >>> hm._get_next_ind(6)
+        >>> HashMap(5)._get_next_ind(6)
         2
-
-        Example 4:
-        >>> hm = HashMap(5)
-        >>> hm._get_next_ind(9)
+        >>> HashMap(5)._get_next_ind(9)
         0
         """
         return (ind + 1) % len(self._buckets)
@@ -104,13 +92,11 @@ class HashMap(MutableMapping[KEY, VAL]):
         So we need to increase the number of buckets to avoid collisions.
 
         >>> hm = HashMap(2)
-        >>> hm._add_item(1,10)
-        >>> hm._add_item(2,20)
+        >>> hm._add_item(1, 10)
+        >>> hm._add_item(2, 20)
         >>> hm._is_full()
         True
-
-        >>> hm = HashMap(2)
-        >>> hm._is_full()
+        >>> HashMap(2)._is_full()
         False
         """
         limit = len(self._buckets) * self._capacity_factor
@@ -145,40 +131,40 @@ class HashMap(MutableMapping[KEY, VAL]):
 
     def _add_item(self, key: KEY, val: VAL) -> None:
         """
-        1. Trying to add 3 elements when size is 5
+        Try to add 3 elements when the size is 5
         >>> hm = HashMap(5)
-        >>> hm._add_item(1,10)
-        >>> hm._add_item(2,20)
-        >>> hm._add_item(3,30)
+        >>> hm._add_item(1, 10)
+        >>> hm._add_item(2, 20)
+        >>> hm._add_item(3, 30)
         >>> hm
-        HashMap(1: 10 ,2: 20 ,3: 30)
+        HashMap(1: 10, 2: 20, 3: 30)
 
-        2. Trying to add 3 elements when size is 5
+        Try to add 3 elements when the size is 5
         >>> hm = HashMap(5)
-        >>> hm._add_item(-5,10)
-        >>> hm._add_item(6,30)
-        >>> hm._add_item(-7,20)
+        >>> hm._add_item(-5, 10)
+        >>> hm._add_item(6, 30)
+        >>> hm._add_item(-7, 20)
         >>> hm
-        HashMap(-5: 10 ,6: 30 ,-7: 20)
+        HashMap(-5: 10, 6: 30, -7: 20)
 
-        3. Trying to add 3 elements when size is 1
+        Try to add 3 elements when size is 1
         >>> hm = HashMap(1)
-        >>> hm._add_item(10,13.2)
-        >>> hm._add_item(6,5.26)
-        >>> hm._add_item(7,5.155)
+        >>> hm._add_item(10, 13.2)
+        >>> hm._add_item(6, 5.26)
+        >>> hm._add_item(7, 5.155)
         >>> hm
         HashMap(10: 13.2)
 
-        4. Trying to add element with key in floating value
+        Trying to add an element with a key that is a floating point value
         >>> hm = HashMap(5)
-        >>> hm._add_item(1.5,10)
+        >>> hm._add_item(1.5, 10)
         >>> hm
         HashMap(1.5: 10)
 
-        5. Trying to add item with same key
+        5. Trying to add an item with the same key
         >>> hm = HashMap(5)
-        >>> hm._add_item(1,10)
-        >>> hm._add_item(1,20)
+        >>> hm._add_item(1, 10)
+        >>> hm._add_item(1, 20)
         >>> hm
         HashMap(1: 20)
         """
@@ -190,23 +176,23 @@ class HashMap(MutableMapping[KEY, VAL]):
         """
         1. Changing value of item whose key is present
         >>> hm = HashMap(5)
-        >>> hm._add_item(1,10)
-        >>> hm.__setitem__(1,20)
+        >>> hm._add_item(1, 10)
+        >>> hm.__setitem__(1, 20)
         >>> hm
         HashMap(1: 20)
 
         2. Changing value of item whose key is not present
         >>> hm = HashMap(5)
-        >>> hm._add_item(1,10)
-        >>> hm.__setitem__(0,20)
+        >>> hm._add_item(1, 10)
+        >>> hm.__setitem__(0, 20)
         >>> hm
-        HashMap(0: 20 ,1: 10)
+        HashMap(0: 20, 1: 10)
 
-        3. Changing value of same item multiple times
+        3. Changing the value of the same item multiple times
         >>> hm = HashMap(5)
-        >>> hm._add_item(1,10)
-        >>> hm.__setitem__(1,20)
-        >>> hm.__setitem__(1,30)
+        >>> hm._add_item(1, 10)
+        >>> hm.__setitem__(1, 20)
+        >>> hm.__setitem__(1, 30)
         >>> hm
         HashMap(1: 30)
         """
@@ -217,29 +203,26 @@ class HashMap(MutableMapping[KEY, VAL]):
 
     def __delitem__(self, key: KEY) -> None:
         """
-        Example 1.
         >>> hm = HashMap(5)
-        >>> hm._add_item(1,10)
-        >>> hm._add_item(2,20)
-        >>> hm._add_item(3,30)
+        >>> hm._add_item(1, 10)
+        >>> hm._add_item(2, 20)
+        >>> hm._add_item(3, 30)
         >>> hm.__delitem__(3)
         >>> hm
-        HashMap(1: 10 ,2: 20)
-
-        Example 2.
+        HashMap(1: 10, 2: 20)
         >>> hm = HashMap(5)
-        >>> hm._add_item(-5,10)
-        >>> hm._add_item(6,30)
-        >>> hm._add_item(-7,20)
+        >>> hm._add_item(-5, 10)
+        >>> hm._add_item(6, 30)
+        >>> hm._add_item(-7, 20)
         >>> hm.__delitem__(-5)
         >>> hm
-        HashMap(6: 30 ,-7: 20)
+        HashMap(6: 30, -7: 20)
 
-        Example 3: Trying to remove non-existing item
+        # Trying to remove a non-existing item
         >>> hm = HashMap(5)
-        >>> hm._add_item(1,10)
-        >>> hm._add_item(2,20)
-        >>> hm._add_item(3,30)
+        >>> hm._add_item(1, 10)
+        >>> hm._add_item(2, 20)
+        >>> hm._add_item(3, 30)
         >>> hm.__delitem__(4)
         Traceback (most recent call last):
         ...
@@ -276,7 +259,7 @@ class HashMap(MutableMapping[KEY, VAL]):
         yield from (item.key for item in self._buckets if item)
 
     def __repr__(self) -> str:
-        val_string = " ,".join(
+        val_string = ", ".join(
             f"{item.key}: {item.val}" for item in self._buckets if item
         )
         return f"HashMap({val_string})"
