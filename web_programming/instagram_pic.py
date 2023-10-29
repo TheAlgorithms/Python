@@ -2,13 +2,14 @@ from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
 
+
 def download_image(url: str) -> str:
     """
     Download an image from a given URL by scraping the 'og:image' meta tag.
-    
+
     Parameters:
         url (str): The URL to scrape.
-        
+
     Returns:
         str: A message indicating the result of the operation.
     """
@@ -36,6 +37,7 @@ def download_image(url: str) -> str:
             return "No meta tag with 'og:image' property found."
     except requests.exceptions.RequestException as e:
         return f"An error occurred during the HTTP request: {e}"
+
 
 if __name__ == "__main__":
     url = input("Enter image URL: ").strip()
