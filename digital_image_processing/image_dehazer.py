@@ -1,4 +1,3 @@
-import cv2
 import numpy as np
 
 """
@@ -6,28 +5,19 @@ Implemented an image de-hazer using OpenCV and Dark Channel
 """
 
 
-def dehaze_image(
-    image: np.ndarray, omega: float = 0.78, t0: float = 0.01
-) -> np.ndarray:
+def dehaze_image( image: np.ndarray, omega: float = 0.78, t0: float = 0.01) -> np.ndarray:
     """
     Dehaze an input image using the dark channel prior method.
-
     Args:
         image: Input a hazy image as a NumPy array.
         omega: Weighting factor for transmission map calculation. Default: 0.78.
         t0: Threshold for minimum transmission value. Default: 0.01.
-
     Returns:
         Dehazed image as a NumPy array.
-
     Example:
     >>> input_image = cv2.imread('image_data/haze.jpg')
-    >>> dehazed_result = dehaze_image(input_image)
-    >>> dehazed_result.shape
-    (height, width, 3)
-    """
-
-    # Step 1: Compute the dark channel of the input image
+    """ 
+    
     dark_channel = cv2.ximgproc.createFastGlobalSmootherFilter(image, 10, 0.05)
     dark_channel = dark_channel.filter(image)
 
@@ -41,10 +31,7 @@ def dehaze_image(
     # Step 4: Dehaze the image
     dehazed_channels = []
     for i in range(3):
-        dehazed_channel = (
-            (image[:, :, i].astype(np.float32) - atmospheric_light[i])
-            / transmission[:, :, 0]
-        ) + atmospheric_light[i]
+        dehazed_channel = ((image[:, :, i].astype(np.float32) - atmospheric_light[i])/ transmission[:, :, 0]) + atmospheric_light[i]
         dehazed_channels.append(dehazed_channel)
 
     dehazed_image = np.stack(dehazed_channels, axis=-1)
