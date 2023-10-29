@@ -11,8 +11,9 @@ you can read in detail about this at
 https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 """
 
-import numpy as np
 from math import isqrt
+
+import numpy as np
 
 
 def prime_sieve_eratosthenes(num: int) -> list[int]:
