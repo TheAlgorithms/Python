@@ -98,7 +98,17 @@ def euler_phi(n: int) -> int:
     """Calculate Euler's Phi Function.
     >>> euler_phi(100)
     40
+    >>> euler_phi(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Only positive numbers are accepted
+    >>> euler_phi(-10)
+    Traceback (most recent call last):
+        ...
+    ValueError: Only positive numbers are accepted
     """
+    if n <= 0:
+        raise ValueError("Only positive numbers are accepted")
     s = n
     for x in set(prime_factors(n)):
         s *= (x - 1) / x

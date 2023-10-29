@@ -29,22 +29,10 @@ def and_gate(input_1: int, input_2: int) -> int:
     >>> and_gate(1, 1)
     1
     """
-    return int((input_1, input_2).count(0) == 0)
-
-
-def test_and_gate() -> None:
-    """
-    Tests the and_gate function
-    """
-    assert and_gate(0, 0) == 0
-    assert and_gate(0, 1) == 0
-    assert and_gate(1, 0) == 0
-    assert and_gate(1, 1) == 1
+    return int(input_1 and input_2)
 
 
 if __name__ == "__main__":
-    test_and_gate()
-    print(and_gate(1, 0))
-    print(and_gate(0, 0))
-    print(and_gate(0, 1))
-    print(and_gate(1, 1))
+    import doctest
+
+    doctest.testmod()

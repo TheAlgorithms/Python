@@ -31,14 +31,14 @@ stream_handler = logging.StreamHandler(sys.stdout)
 logger.addHandler(stream_handler)
 
 
-@pytest.mark.mat_ops
+@pytest.mark.mat_ops()
 @pytest.mark.parametrize(
     ("mat1", "mat2"), [(mat_a, mat_b), (mat_c, mat_d), (mat_d, mat_e), (mat_f, mat_h)]
 )
 def test_addition(mat1, mat2):
     if (np.array(mat1)).shape < (2, 2) or (np.array(mat2)).shape < (2, 2):
+        logger.info(f"\n\t{test_addition.__name__} returned integer")
         with pytest.raises(TypeError):
-            logger.info(f"\n\t{test_addition.__name__} returned integer")
             matop.add(mat1, mat2)
     elif (np.array(mat1)).shape == (np.array(mat2)).shape:
         logger.info(f"\n\t{test_addition.__name__} with same matrix dims")
@@ -46,19 +46,19 @@ def test_addition(mat1, mat2):
         theo = matop.add(mat1, mat2)
         assert theo == act
     else:
+        logger.info(f"\n\t{test_addition.__name__} with different matrix dims")
         with pytest.raises(ValueError):
-            logger.info(f"\n\t{test_addition.__name__} with different matrix dims")
             matop.add(mat1, mat2)
 
 
-@pytest.mark.mat_ops
+@pytest.mark.mat_ops()
 @pytest.mark.parametrize(
     ("mat1", "mat2"), [(mat_a, mat_b), (mat_c, mat_d), (mat_d, mat_e), (mat_f, mat_h)]
 )
 def test_subtraction(mat1, mat2):
     if (np.array(mat1)).shape < (2, 2) or (np.array(mat2)).shape < (2, 2):
+        logger.info(f"\n\t{test_subtraction.__name__} returned integer")
         with pytest.raises(TypeError):
-            logger.info(f"\n\t{test_subtraction.__name__} returned integer")
             matop.subtract(mat1, mat2)
     elif (np.array(mat1)).shape == (np.array(mat2)).shape:
         logger.info(f"\n\t{test_subtraction.__name__} with same matrix dims")
@@ -66,12 +66,12 @@ def test_subtraction(mat1, mat2):
         theo = matop.subtract(mat1, mat2)
         assert theo == act
     else:
+        logger.info(f"\n\t{test_subtraction.__name__} with different matrix dims")
         with pytest.raises(ValueError):
-            logger.info(f"\n\t{test_subtraction.__name__} with different matrix dims")
             assert matop.subtract(mat1, mat2)
 
 
-@pytest.mark.mat_ops
+@pytest.mark.mat_ops()
 @pytest.mark.parametrize(
     ("mat1", "mat2"), [(mat_a, mat_b), (mat_c, mat_d), (mat_d, mat_e), (mat_f, mat_h)]
 )
@@ -86,33 +86,33 @@ def test_multiplication(mat1, mat2):
         theo = matop.multiply(mat1, mat2)
         assert theo == act
     else:
+        logger.info(
+            f"\n\t{test_multiplication.__name__} does not meet dim requirements"
+        )
         with pytest.raises(ValueError):
-            logger.info(
-                f"\n\t{test_multiplication.__name__} does not meet dim requirements"
-            )
             assert matop.subtract(mat1, mat2)
 
 
-@pytest.mark.mat_ops
+@pytest.mark.mat_ops()
 def test_scalar_multiply():
     act = (3.5 * np.array(mat_a)).tolist()
     theo = matop.scalar_multiply(mat_a, 3.5)
     assert theo == act
 
 
-@pytest.mark.mat_ops
+@pytest.mark.mat_ops()
 def test_identity():
     act = (np.identity(5)).tolist()
     theo = matop.identity(5)
     assert theo == act
 
 
-@pytest.mark.mat_ops
+@pytest.mark.mat_ops()
 @pytest.mark.parametrize("mat", [mat_a, mat_b, mat_c, mat_d, mat_e, mat_f])
 def test_transpose(mat):
     if (np.array(mat)).shape < (2, 2):
+        logger.info(f"\n\t{test_transpose.__name__} returned integer")
         with pytest.raises(TypeError):
-            logger.info(f"\n\t{test_transpose.__name__} returned integer")
             matop.transpose(mat)
     else:
         act = (np.transpose(mat)).tolist()
