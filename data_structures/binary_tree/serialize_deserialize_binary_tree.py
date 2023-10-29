@@ -1,99 +1,86 @@
 from __future__ import annotations
 
+from collections.abc import Iterator
+from dataclasses import dataclass
 
+
+@dataclass
 class TreeNode:
     """
     A binary tree node has a value, left child, and right child.
 
     Props:
-        val(int): The value of the node.
+        value: The value of the node.
         left: The left child of the node.
         right: The right child of the node.
     """
 
-    def __init__(
-        self,
-        val: int = 0,
-        left: TreeNode | None = None,
-        right: TreeNode | None = None,
-    ) -> None:
-        if not isinstance(val, int):
+    value: int = 0
+    left: TreeNode | None = None
+    right: TreeNode | None = None
+
+    def __post_init__(self):
+        if not isinstance(self.value, int):
             raise TypeError("Value must be an integer.")
-        self.val = val
-        self.left = left
-        self.right = right
 
+    def __iter__(self) -> Iterator[TreeNode]:
+        """
+        Iterate through the tree in preorder.
 
-# Helper functions
-def are_trees_identical(root1: TreeNode | None, root2: TreeNode | None) -> bool:
-    """
-    Check if two binary trees are identical.
+        Returns:
+            An iterator of the tree nodes.
 
-    Args:
-        root1 (TreeNode): Tree 1
-        root2 (TreeNode): Tree 2
+        >>> list(TreeNode(1))
+        [1,null,null]
+        >>> tuple(TreeNode(1, TreeNode(2), TreeNode(3)))
+        (1,2,null,null,3,null,null, 2,null,null, 3,null,null)
+        """
+        yield self
+        yield from self.left or ()
+        yield from self.right or ()
 
-    Returns:
-        bool: True if the trees are identical, False otherwise.
+    def __len__(self) -> int:
+        """
+        Count the number of nodes in the tree.
 
-    >>> root1 = TreeNode(1)
-    >>> root1.left = TreeNode(2)
-    >>> root1.right = TreeNode(3)
-    >>> root2 = TreeNode(1)
-    >>> root2.left = TreeNode(2)
-    >>> root2.right = TreeNode(3)
-    >>> are_trees_identical(root1, root2)
-    True
-    >>> root1 = TreeNode(1)
-    >>> root1.left = TreeNode(2)
-    >>> root1.right = TreeNode(3)
-    >>> root2 = TreeNode(1)
-    >>> root2.left = TreeNode(2)
-    >>> root2.right = TreeNode(4)
-    >>> are_trees_identical(root1, root2)
-    False
-    """
+        Returns:
+            The number of nodes in the tree.
 
-    if not root1 and not root2:
-        return True
-    if not root1 or not root2:
-        return False
+        >>> len(TreeNode(1))
+        1
+        >>> len(TreeNode(1, TreeNode(2), TreeNode(3)))
+        3
+        """
+        return sum(1 for _ in self)
 
-    return (
-        root1.val == root2.val
-        and are_trees_identical(root1.left, root2.left)
-        and are_trees_identical(root1.right, root2.right)
-    )
+    def __repr__(self) -> str:
+        """
+        Represent the tree as a string.
 
+        Returns:
+            A string representation of the tree.
 
-# Main functions
-def serialize(root: TreeNode | None) -> str:
-    """
-    Serialize a binary tree to a string using preorder traversal.
+        >>> repr(TreeNode(1))
+        '1,null,null'
+        >>> repr(TreeNode(1, TreeNode(2), TreeNode(3)))
+        '1,2,null,null,3,null,null'
+        >>> repr(TreeNode(1, TreeNode(2), TreeNode(3, TreeNode(4), TreeNode(5))))
+        '1,2,null,null,3,4,null,null,5,null,null'
+        """
+        return f"{self.value},{self.left!r},{self.right!r}".replace("None", "null")
 
-    Args:
-        root(TreeNode): The root of the binary tree.
-
-    Returns:
-        A string representation of the binary tree.
-
-    >>> root = TreeNode(1)
-    >>> root.left = TreeNode(2)
-    >>> root.right = TreeNode(3)
-    >>> root.right.left = TreeNode(4)
-    >>> root.right.right = TreeNode(5)
-    >>> serialize(root)
-    '1,2,null,null,3,4,null,null,5,null,null'
-    >>> root = TreeNode(1)
-    >>> serialize(root)
-    '1,null,null'
-    """
-
-    # Use "null" to represent empty nodes in the serialization
-    if not root:
-        return "null"
-
-    return str(root.val) + "," + serialize(root.left) + "," + serialize(root.right)
+    @classmethod
+    def five_tree(cls) -> TreeNode:
+        """
+        >>> repr(TreeNode.five_tree())
+        '1,2,null,null,3,4,null,null,5,null,null'
+        """
+        root = TreeNode(1)
+        root.left = TreeNode(2)
+        root.right = TreeNode(3)
+        root.right.left = TreeNode(4)
+        root.right.right = TreeNode(5)
+        return root
 
 
 def deserialize(data: str) -> TreeNode | None:
@@ -106,44 +93,42 @@ def deserialize(data: str) -> TreeNode | None:
     Returns:
         The root of the binary tree.
 
-    >>> root = TreeNode(1)
-    >>> root.left = TreeNode(2)
-    >>> root.right = TreeNode(3)
-    >>> root.right.left = TreeNode(4)
-    >>> root.right.right = TreeNode(5)
-    >>> serialzed_data = serialize(root)
+    >>> root = TreeNode.five_tree()
+    >>> serialzed_data = repr(root)
     >>> deserialized = deserialize(serialzed_data)
-    >>> are_trees_identical(root, deserialized)
+    >>> root == deserialized
     True
-    >>> root = TreeNode(1)
-    >>> serialzed_data = serialize(root)
-    >>> dummy_data = "1,2,null,null,3,4,null,null,5,null,null"
-    >>> deserialized = deserialize(dummy_data)
-    >>> are_trees_identical(root, deserialized)
+    >>> root is deserialized  # two separate trees
     False
+    >>> root.right.right.value = 6
+    >>> root == deserialized
+    False
+    >>> serialzed_data = repr(root)
+    >>> deserialized = deserialize(serialzed_data)
+    >>> root == deserialized
+    True
     >>> deserialize("")
     Traceback (most recent call last):
         ...
     ValueError: Data cannot be empty.
     """
 
-    if data == "":
+    if not data:
         raise ValueError("Data cannot be empty.")
 
-    # Split the serialized string by comma to get node values
+    # Split the serialized string by a comma to get node values
     nodes = data.split(",")
 
     def build_tree() -> TreeNode | None:
         # Get the next value from the list
-        val = nodes.pop(0)
+        value = nodes.pop(0)
 
-        if val == "null":
+        if value == "null":
             return None
 
-        node = TreeNode(int(val))
+        node = TreeNode(int(value))
         node.left = build_tree()  # Recursively build left subtree
         node.right = build_tree()  # Recursively build right subtree
-
         return node
 
     return build_tree()
