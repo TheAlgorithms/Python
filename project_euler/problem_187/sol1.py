@@ -13,7 +13,7 @@ not necessarily distinct, prime factors?
 
 from math import isqrt
 
-import numpy as np
+from maths.prime_sieve_eratosthenes import np_prime_sieve_eratosthenes
 
 
 def slow_calculate_prime_numbers(max_number: int) -> list[int]:
@@ -68,32 +68,6 @@ def py_calculate_prime_numbers(max_number: int) -> list[int]:
             )
 
     return [2] + [2 * i + 1 for i in range(1, max_number // 2) if is_prime[i]]
-
-
-def np_calculate_prime_numbers(max_number: int) -> list[int]:
-    """
-    Returns prime numbers below max_number.
-    See: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
-
-    >>> np_calculate_prime_numbers(10)
-    [2, 3, 5, 7]
-    >>> np_calculate_prime_numbers(2)
-    []
-    """
-    if max_number <= 2:
-        return []
-
-    # List containing a bool value for every odd number below max_number/2
-    is_prime = np.ones(max_number // 2, dtype=bool)
-
-    for i in range(3, isqrt(max_number - 1) + 1, 2):
-        if is_prime[i // 2]:
-            # Mark all multiple of i as not prime using list slicing
-            is_prime[i**2 // 2 :: i] = False
-
-    primes = np.where(is_prime)[0] * 2 + 1
-    primes[0] = 2
-    return primes.tolist()
 
 
 def slow_solution(max_number: int = 10**8) -> int:
@@ -176,7 +150,7 @@ def solution(max_number: int = 10**8) -> int:
     10
     """
 
-    prime_numbers = np_calculate_prime_numbers(max_number // 2)
+    prime_numbers = np_prime_sieve_eratosthenes((max_number - 1) // 2)
 
     semiprimes_count = 0
     right = len(prime_numbers) - 1
