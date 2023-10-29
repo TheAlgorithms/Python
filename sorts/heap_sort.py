@@ -27,10 +27,7 @@ def heapify(unsorted: list[int], index: int, heap_size: int) -> None:
         largest = right_index
 
     if largest != index:
-        unsorted[largest], unsorted[index] = (
-            unsorted[index],
-            unsorted[largest],
-        )
+        unsorted[largest], unsorted[index] = (unsorted[index], unsorted[largest])
         heapify(unsorted, largest, heap_size)
 
 
