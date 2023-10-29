@@ -33,12 +33,13 @@ def fast_inverse_sqrt(number: float) -> float:
         ...
     ValueError: Input must be a positive number.
     """
-    if number<=0:
+    if number <= 0:
         raise ValueError("Input must be a positive number.")
-    i = struct.unpack('>i', struct.pack('>f', number))[0]
-    i = 0x5f3759df - (i >> 1)
-    y = struct.unpack('>f', struct.pack('>i', i))[0]
+    i = struct.unpack(">i", struct.pack(">f", number))[0]
+    i = 0x5F3759DF - (i >> 1)
+    y = struct.unpack(">f", struct.pack(">i", i))[0]
     return y * (1.5 - 0.5 * number * y * y)
+
 
 if __name__ == "__main__":
     import doctest
