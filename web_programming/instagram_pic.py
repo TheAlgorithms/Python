@@ -3,6 +3,7 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 import requests
 
+
 def download_image(url: str) -> str:
     """
     Download an image from a given URL by scraping the 'og:image' meta tag.
