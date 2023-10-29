@@ -3,6 +3,7 @@ https://en.wikipedia.org/wiki/Karnaugh_map
 https://www.allaboutcircuits.com/technical-articles/karnaugh-map-boolean-algebraic-simplification-technique
 """
 
+
 def simplify_kmap(kmap: list[list[int]]) -> str:
     """
     Simplify the Karnaugh map.
