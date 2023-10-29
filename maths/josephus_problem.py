@@ -20,32 +20,57 @@ def josephus_recursive(num_people: int, step_size: int) -> int:
     Solve the Josephus problem for num_people and a step_size recursively.
 
     Args:
-        num_people: Number of people.
-        step_size: Step size for elimination.
+        num_people: A positive integer representing the number of people.
+        step_size: A positive integer representing the step size for elimination.
 
     Returns:
         The position of the last person remaining.
 
+    Raises:
+        ValueError: If num_people or step_size is not a positive integer.
+
     Examples:
-    >>> josephus_recursive(7, 3)
-    3
-    >>> josephus_recursive(10, 2)
-    4
-    >>> josephus_recursive(0, 2)
-    ???
-    >>> josephus_recursive(1.9, 2)
-    ???
-    >>> josephus_recursive(-2, 2)
-    ???
-    >>> josephus_recursive(7, 0)
-    ???
-    >>> josephus_recursive(7, -2)
-    ???
-    >>> josephus_recursive(1_000, 0.01)
-    ???
-    >>> josephus_recursive("cat", "dog")
-    ???
+        >>> josephus_recursive(7, 3)
+        3
+        >>> josephus_recursive(10, 2)
+        4
+        >>> josephus_recursive(0, 2)
+        Traceback (most recent call last):
+            ...
+        ValueError: num_people or step_size is not a positive integer.
+        >>> josephus_recursive(1.9, 2)
+        Traceback (most recent call last):
+            ...
+        ValueError: num_people or step_size is not a positive integer.
+        >>> josephus_recursive(-2, 2)
+        Traceback (most recent call last):
+            ...
+        ValueError: num_people or step_size is not a positive integer.
+        >>> josephus_recursive(7, 0)
+        Traceback (most recent call last):
+            ...
+        ValueError: num_people or step_size is not a positive integer.
+        >>> josephus_recursive(7, -2)
+        Traceback (most recent call last):
+            ...
+        ValueError: num_people or step_size is not a positive integer.
+        >>> josephus_recursive(1_000, 0.01)
+        Traceback (most recent call last):
+            ...
+        ValueError: num_people or step_size is not a positive integer.
+        >>> josephus_recursive("cat", "dog")
+        Traceback (most recent call last):
+            ...
+        ValueError: num_people or step_size is not a positive integer.
     """
+    if (
+        not isinstance(num_people, int)
+        or not isinstance(step_size, int)
+        or num_people <= 0
+        or step_size <= 0
+    ):
+        raise ValueError("num_people or step_size is not a positive integer.")
+
     if num_people == 1:
         return 0
 
