@@ -10,6 +10,7 @@
   * [All Subsequences](backtracking/all_subsequences.py)
   * [Coloring](backtracking/coloring.py)
   * [Combination Sum](backtracking/combination_sum.py)
+  * [Crossword Puzzle Solver](backtracking/crossword_puzzle_solver.py)
   * [Hamiltonian Cycle](backtracking/hamiltonian_cycle.py)
   * [Knight Tour](backtracking/knight_tour.py)
   * [Match Word Pattern](backtracking/match_word_pattern.py)
@@ -34,6 +35,8 @@
   * [Bitwise Addition Recursive](bit_manipulation/bitwise_addition_recursive.py)
   * [Count 1S Brian Kernighan Method](bit_manipulation/count_1s_brian_kernighan_method.py)
   * [Count Number Of One Bits](bit_manipulation/count_number_of_one_bits.py)
+  * [Excess 3 Code](bit_manipulation/excess_3_code.py)
+  * [Find Previous Power Of Two](bit_manipulation/find_previous_power_of_two.py)
   * [Gray Code Sequence](bit_manipulation/gray_code_sequence.py)
   * [Highest Set Bit](bit_manipulation/highest_set_bit.py)
   * [Index Of Rightmost Set Bit](bit_manipulation/index_of_rightmost_set_bit.py)
@@ -53,6 +56,7 @@
 ## Boolean Algebra
   * [And Gate](boolean_algebra/and_gate.py)
   * [Imply Gate](boolean_algebra/imply_gate.py)
+  * [Multiplexer](boolean_algebra/multiplexer.py)
   * [Nand Gate](boolean_algebra/nand_gate.py)
   * [Nimply Gate](boolean_algebra/nimply_gate.py)
   * [Nor Gate](boolean_algebra/nor_gate.py)
@@ -149,6 +153,7 @@
   * [Excel Title To Column](conversions/excel_title_to_column.py)
   * [Hex To Bin](conversions/hex_to_bin.py)
   * [Hexadecimal To Decimal](conversions/hexadecimal_to_decimal.py)
+  * [Ipv4 Conversion](conversions/ipv4_conversion.py)
   * [Length Conversion](conversions/length_conversion.py)
   * [Molecular Chemistry](conversions/molecular_chemistry.py)
   * [Octal To Binary](conversions/octal_to_binary.py)
@@ -170,7 +175,10 @@
   * Arrays
     * [Equilibrium Index In Array](data_structures/arrays/equilibrium_index_in_array.py)
     * [Find Triplets With 0 Sum](data_structures/arrays/find_triplets_with_0_sum.py)
+    * [Index 2D Array In 1D](data_structures/arrays/index_2d_array_in_1d.py)
+    * [Kth Largest Element](data_structures/arrays/kth_largest_element.py)
     * [Median Two Array](data_structures/arrays/median_two_array.py)
+    * [Monotonic Array](data_structures/arrays/monotonic_array.py)
     * [Pairs With Given Sum](data_structures/arrays/pairs_with_given_sum.py)
     * [Permutations](data_structures/arrays/permutations.py)
     * [Prefix Sum](data_structures/arrays/prefix_sum.py)
@@ -368,6 +376,7 @@
 ## Electronics
   * [Apparent Power](electronics/apparent_power.py)
   * [Builtin Voltage](electronics/builtin_voltage.py)
+  * [Capacitor Equivalence](electronics/capacitor_equivalence.py)
   * [Carrier Concentration](electronics/carrier_concentration.py)
   * [Charging Capacitor](electronics/charging_capacitor.py)
   * [Charging Inductor](electronics/charging_inductor.py)
@@ -404,6 +413,9 @@
   * [Koch Snowflake](fractals/koch_snowflake.py)
   * [Mandelbrot](fractals/mandelbrot.py)
   * [Sierpinski Triangle](fractals/sierpinski_triangle.py)
+
+## Fuzzy Logic
+  * [Fuzzy Operations](fuzzy_logic/fuzzy_operations.py)
 
 ## Genetic Algorithm
   * [Basic String](genetic_algorithm/basic_string.py)
@@ -531,12 +543,14 @@
 ## Machine Learning
   * [Apriori Algorithm](machine_learning/apriori_algorithm.py)
   * [Astar](machine_learning/astar.py)
+  * [Automatic Differentiation](machine_learning/automatic_differentiation.py)
   * [Data Transformations](machine_learning/data_transformations.py)
   * [Decision Tree](machine_learning/decision_tree.py)
   * [Dimensionality Reduction](machine_learning/dimensionality_reduction.py)
   * Forecasting
     * [Run](machine_learning/forecasting/run.py)
   * [Frequent Pattern Growth](machine_learning/frequent_pattern_growth.py)
+  * [Gradient Boosting Classifier](machine_learning/gradient_boosting_classifier.py)
   * [Gradient Descent](machine_learning/gradient_descent.py)
   * [K Means Clust](machine_learning/k_means_clust.py)
   * [K Nearest Neighbours](machine_learning/k_nearest_neighbours.py)
@@ -638,6 +652,7 @@
   * [Monte Carlo Dice](maths/monte_carlo_dice.py)
   * [Number Of Digits](maths/number_of_digits.py)
   * Numerical Analysis
+    * [Adams Bashforth](maths/numerical_analysis/adams_bashforth.py)
     * [Bisection](maths/numerical_analysis/bisection.py)
     * [Bisection 2](maths/numerical_analysis/bisection_2.py)
     * [Integration By Simpson Approx](maths/numerical_analysis/integration_by_simpson_approx.py)
@@ -648,6 +663,7 @@
     * [Numerical Integration](maths/numerical_analysis/numerical_integration.py)
     * [Runge Kutta](maths/numerical_analysis/runge_kutta.py)
     * [Runge Kutta Fehlberg 45](maths/numerical_analysis/runge_kutta_fehlberg_45.py)
+    * [Runge Kutta Gills](maths/numerical_analysis/runge_kutta_gills.py)
     * [Secant Method](maths/numerical_analysis/secant_method.py)
     * [Simpson Rule](maths/numerical_analysis/simpson_rule.py)
     * [Square Root](maths/numerical_analysis/square_root.py)
@@ -814,6 +830,7 @@
   * [Ideal Gas Law](physics/ideal_gas_law.py)
   * [In Static Equilibrium](physics/in_static_equilibrium.py)
   * [Kinetic Energy](physics/kinetic_energy.py)
+  * [Lens Formulae](physics/lens_formulae.py)
   * [Lorentz Transformation Four Vector](physics/lorentz_transformation_four_vector.py)
   * [Malus Law](physics/malus_law.py)
   * [Mass Energy Equivalence](physics/mass_energy_equivalence.py)
@@ -1213,6 +1230,7 @@
   * [Anagrams](strings/anagrams.py)
   * [Autocomplete Using Trie](strings/autocomplete_using_trie.py)
   * [Barcode Validator](strings/barcode_validator.py)
+  * [Bitap String Match](strings/bitap_string_match.py)
   * [Boyer Moore Search](strings/boyer_moore_search.py)
   * [Camel Case To Snake Case](strings/camel_case_to_snake_case.py)
   * [Can String Be Rearranged As Palindrome](strings/can_string_be_rearranged_as_palindrome.py)
