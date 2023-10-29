@@ -38,7 +38,7 @@ def find_previous_power_of_two(number: int) -> int:
     while power <= number:
         power <<= 1  # Equivalent to multiplying by 2
 
-    return power >> 1
+    return power >> 1 if number > 1 else 1
 
 
 if __name__ == "__main__":
