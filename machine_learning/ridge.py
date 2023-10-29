@@ -86,8 +86,8 @@ class RidgeRegression:
         Examples:
         >>> model = RidgeRegression()
         >>> model.W = np.array([1, 2, 3])
-        >>> model.l2_penality = 0.1 
-        >>> model.m = 100 
+        >>> model.l2_penality = 0.1
+        >>> model.m = 100
         >>> model.objval()
         0.14  # The expected objective value result
         """
