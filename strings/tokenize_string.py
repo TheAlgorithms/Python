@@ -1,6 +1,7 @@
 # https://blog.gitnux.com/code/python-tokenize-string/#:~:text=To%20tokenize%20a%20string%20in%20Python%2C%20you%20can%20use%20the,the%20string%20at%20specific%20characters.
 
-def tokenize_string(input_string: str, delimiter: str = ' ') -> list:
+
+def tokenize_string(input_string: str, delimiter: str = " ") -> list:
     """
     Tokenize a string based on a specified delimiter.
 
@@ -18,11 +19,12 @@ def tokenize_string(input_string: str, delimiter: str = ' ') -> list:
     >>> tokenize_string("NoDelimiterInThisString")
     ['NoDelimiterInThisString']
     """
-    if delimiter == '':
+    if delimiter == "":
         raise ValueError("Delimiter cannot be an empty string")
 
     tokens = input_string.split(delimiter)
     return tokens
+
 
 if __name__ == "__main__":
     import doctest
