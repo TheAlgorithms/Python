@@ -46,7 +46,6 @@ def main() -> None:
     for row in kmap:
         print(row)
 
-  
     print(f"{simplify_kmap(kmap=[[0, 1], [1, 1]]) = }")
 
 
