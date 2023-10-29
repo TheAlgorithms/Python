@@ -9,18 +9,18 @@ import traceback
     some useful methods for interpreting instructions
 
     Description:
-    Brainfuck is an esoteric programming language created in 1993 by Urban 
+    Brainfuck is an esoteric programming language created in 1993 by Urban
     Müller.
 
-    Notable for its extreme minimalism, the language consists of only eight 
-    simple commands, a data pointer and an instruction pointer. While it is 
-    fully Turing complete, it is not intended for practical use, but to 
-    challenge and amuse programmers. Brainfuck requires one to break commands 
+    Notable for its extreme minimalism, the language consists of only eight
+    simple commands, a data pointer and an instruction pointer. While it is
+    fully Turing complete, it is not intended for practical use, but to
+    challenge and amuse programmers. Brainfuck requires one to break commands
     into microscopic steps.
 
-    The language's name is a reference to the slang term brainfuck, which refers 
-    to things so complicated or unusual that they exceed the limits of one's 
-    understanding, as it was not meant or made for designing actual software but 
+    The language's name is a reference to the slang term brainfuck, which refers
+    to things so complicated or unusual that they exceed the limits of one's
+    understanding, as it was not meant or made for designing actual software but
     to challenge the boundaries of computer programming.
     (https://en.wikipedia.org/wiki/Brainfuck)
 """
@@ -30,7 +30,7 @@ class BFCipher:
     """
     Brainfuck Interpreter.
 
-    BFCipher class processes the brainfuck instruction and returns the output 
+    BFCipher class processes the brainfuck instruction and returns the output
     after compilation.
 
     Args:
@@ -69,7 +69,7 @@ class BFCipher:
 
     def __syntax_check(self):
         """
-        Performs a syntax check of the instruction and generates the 
+        Performs a syntax check of the instruction and generates the
         `loop_table`.
         """
         checker_ptr: int = self.instruction_ptr
@@ -79,21 +79,17 @@ class BFCipher:
                 bracket_stack.append(checker_ptr)
             elif self.instruction[checker_ptr] == "]":
                 if len(bracket_stack) == 0:
-                    raise SyntaxError(
-                        "Incomplete closure of bracket for instruction"
-                    )
+                    raise SyntaxError("Incomplete closure of bracket for instruction")
                 loop_beginning_index = bracket_stack.pop()
                 self.loop_table[loop_beginning_index] = checker_ptr
                 self.loop_table[checker_ptr] = loop_beginning_index
             checker_ptr += 1
         if len(bracket_stack) > 0:
-            raise SyntaxError(
-                "Incomplete closure of bracket for instruction"
-            )
+            raise SyntaxError("Incomplete closure of bracket for instruction")
 
     def __increment_data_ptr(self):
         """
-        Increment the data pointer by one (to point to the next cell to the 
+        Increment the data pointer by one (to point to the next cell to the
         right).
         """
         self.data_ptr += 1
@@ -102,7 +98,7 @@ class BFCipher:
 
     def __decrement_data_ptr(self):
         """
-        Decrement the data pointer by one (to point to the next cell to the 
+        Decrement the data pointer by one (to point to the next cell to the
         left).
         """
         self.data_ptr -= 1
@@ -125,8 +121,8 @@ class BFCipher:
 
     def __append_bracket(self):
         """
-        If the byte at the data pointer is zero, then instead of moving the 
-        instruction pointer forward to the next command, jump it forward to 
+        If the byte at the data pointer is zero, then instead of moving the
+        instruction pointer forward to the next command, jump it forward to
         the command after the matching `]` command.
         """
         if self.main_arr[self.data_ptr] == 0:
@@ -134,8 +130,8 @@ class BFCipher:
 
     def __pop_bracket(self):
         """
-        If the byte at the data pointer is nonzero, then instead of moving the 
-        instruction pointer forward to the next command, jump it back to the 
+        If the byte at the data pointer is nonzero, then instead of moving the
+        instruction pointer forward to the next command, jump it back to the
         command after the matching `[` command.
         """
         if self.main_arr[self.data_ptr] != 0:
@@ -149,7 +145,7 @@ class BFCipher:
 
     def __take_input(self):
         """
-        Accept one byte of input, storing its value in the byte at the data 
+        Accept one byte of input, storing its value in the byte at the data
         pointer.
         """
         if self.user_input == []:
@@ -158,7 +154,7 @@ class BFCipher:
 
     def bf_compiler(self) -> str:
         """
-        Executes the brainfuck instructions and returns appropriate output after 
+        Executes the brainfuck instructions and returns appropriate output after
         compilation.
 
         Returns:
