@@ -5,8 +5,17 @@ def simplify_kmap(kmap: list[list[int]]) -> str:
     """
     Simplify the K-Map.
 
-    >>> kmap = [[0, 1], [1, 1]]
-    >>> simplify_kmap(kmap)
+    >>> simplify_kmap(kmap=[[0, 1], [1, 1]])
+    "A'B + AB' + AB"
+    >>> simplify_kmap(kmap=[[0, 0], [0, 0]])
+    "A'B + AB' + AB"
+    >>> simplify_kmap(kmap=[[0, 1], [1, -1]])
+    "A'B + AB' + AB"
+    >>> simplify_kmap(kmap=[[0, 1], [1, 2]])
+    "A'B + AB' + AB"
+    >>> simplify_kmap(kmap=[[0, 1], [1, 1.1]])
+    "A'B + AB' + AB"
+    >>> simplify_kmap(kmap=[[0, 1], [1, 'a']])
     "A'B + AB' + AB"
     """
     simplified_f = []
