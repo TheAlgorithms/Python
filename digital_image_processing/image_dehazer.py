@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 """
-  Implemented Image dehazer using OpenCV and Dark Channel
+Implemented an image de-hazer using OpenCV and Dark Channel
 """
 
 
@@ -13,12 +13,12 @@ def dehaze_image(
     Dehaze an input image using the dark channel prior method.
 
     Args:
-        image (np.ndarray): Input hazy image as a NumPy array.
-        omega (float, optional): Weighting factor for transmission map calculation. Default is 0.78.
-        t0 (float, optional): Threshold for minimum transmission value. Default is 0.01.
+        image: Input a hazy image as a NumPy array.
+        omega: Weighting factor for transmission map calculation. Default: 0.78.
+        t0: Threshold for minimum transmission value. Default: 0.01.
 
     Returns:
-        np.ndarray: Dehazed image as a NumPy array.
+        Dehazed image as a NumPy array.
 
     Example:
     >>> input_image = cv2.imread('image_data/haze.jpg')
@@ -53,18 +53,22 @@ def dehaze_image(
     return dehazed_image
 
 
-# Load the input hazy image from a file
-input_image = cv2.imread("image_path")
+if __name__ == "__main__":
+    import doctest
 
-# Apply the dehazing function to the input image
-dehazed_result = dehaze_image(input_image)
+    doctest.testmod()
+    # Load the input hazy image from a file
+    input_image = cv2.imread("image_path")
 
-# Create a side-by-side comparison of the input and dehazed images
-result = np.hstack((input_image, dehazed_result))
+    # Apply the de-hazing function to the input image
+    dehazed_result = dehaze_image(input_image)
 
-# Display the images using OpenCV
-cv2.imshow("Image", result)
+    # Create a side-by-side comparison of the input and de-hazed images
+    result = np.hstack((input_image, dehazed_result))
 
-# Wait for a key press and then close the image window
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+    # Display the images using OpenCV
+    cv2.imshow("Image", result)
+
+    # Wait for a key press and then close the image window
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
