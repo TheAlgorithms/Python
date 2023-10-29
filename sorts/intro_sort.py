@@ -26,7 +26,7 @@ def insertion_sort(array: list, start: int = 0, end: int = 0) -> list:
 def heapify(array: list, index: int, heap_size: int) -> None:  # Max Heap
     """
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
-    >>> heapify(array, len(array) // 2 , len(array))
+    >>> heapify(array, len(array) // 2, len(array))
     """
     largest = index
     left_index = 2 * index + 1  # Left Node
