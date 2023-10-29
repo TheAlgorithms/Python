@@ -91,6 +91,16 @@ def partition(array: list, low: int, high: int, pivot: int) -> int:
 
     >>> partition(array, 0, len(array), 12)
     8
+
+    >>> array = [13, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
+
+    >>> median_of_3(array, 0, 0 + ((len(array) - 0) // 2) + 1, len(array) - 1)
+    13
+
+    >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 15, 14, 27, 79, 23, 45, 14, 16]
+
+    >>> median_of_3(array, 0, 0 + ((len(array) - 0) // 2) + 1, len(array) - 1)
+    14
     """
     i = low
     j = high
@@ -160,7 +170,7 @@ def intro_sort(
         p = partition(array, start, end, pivot)
         intro_sort(array, p, end, size_threshold, max_depth)
         end = p
-    return insertion_sort(array, start, end)
+    return end
 
 
 if __name__ == "__main__":
