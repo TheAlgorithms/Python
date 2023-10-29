@@ -7,7 +7,7 @@ def tokenize_string(input_string: str, delimiter: str = " ") -> list:
 
     Args:
         input_string (str): The input string to be tokenized.
-        delimiter (str): The delimiter used for splitting the string. Default is a space.
+        delimiter (str): The delimiter used for splitting the string.Default is a space
 
     Returns:
         list: A list of tokens.
