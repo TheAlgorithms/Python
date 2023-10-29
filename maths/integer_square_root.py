@@ -2,7 +2,9 @@
 Integer Square Root Algorithm -- An efficient method to calculate the square root of a
 non-negative integer 'num' rounded down to the nearest integer. It uses a binary search
 approach to find the integer square root without using any built-in exponent functions
-or operators.  https://en.wikipedia.org/wiki/Integer_square_root
+or operators.
+* https://en.wikipedia.org/wiki/Integer_square_root
+* https://docs.python.org/3/library/math.html#math.isqrt
 Note:
     - This algorithm is designed for non-negative integers only.
     - The result is rounded down to the nearest integer.
@@ -26,8 +28,8 @@ def integer_square_root(num: int) -> int:
     25
     >>> integer_square_root(2_147_483_647)
     46340
-    >>> from math import sqrt
-    >>> all(integer_square_root(i) == int(sqrt(i)) for i in range(20))
+    >>> from math import isqrt
+    >>> all(integer_square_root(i) == isqrt(i) for i in range(20))
     True
     >>> integer_square_root(-1)
     Traceback (most recent call last):
