@@ -8,8 +8,8 @@ from numpy import linalg as la
 
 
 class RidgeRegression:
-    def __init__(self, x: tuple, y: tuple, iterations: int,/
-          timeiter: list, objvals: list) -> None:
+    def __init__(self, x: tuple, y: tuple, iterations: int,\
+                 timeiter: list, objvals: list) -> None:
         print(iterations, timeiter, objvals)
         self.objvals = []
 
@@ -50,8 +50,11 @@ class RidgeRegression:
         """
         Update the model's weights and bias using gradient descent.
 
-        This method calculates the gradients of the loss with respect to the weights (dw)
-        and bias (db), and updates the weights and bias using the gradient descent algorithm.
+        This method calculates the gradients of the loss with 
+        respect to the weights (dw)
+        
+        and bias (db), and updates the weights and bias using
+        the gradient descent algorithm.
 
         Returns:
         None
