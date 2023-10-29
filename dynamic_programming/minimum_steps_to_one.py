@@ -36,9 +36,10 @@ def min_steps_to_one(number: int) -> int:
     4
     >>> min_steps_to_one(6)
     2
+    >>> min_steps_to_one(-3)
+    ValueError: n must be greater than 0. Got n = -3
 
     :param number:
-    :return int:
     """
 
     if number <= 0:
