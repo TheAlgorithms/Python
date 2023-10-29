@@ -1,7 +1,7 @@
 from datetime import datetime
-import requests
-from bs4 import BeautifulSoup
 
+from bs4 import BeautifulSoup
+import requests
 
 def download_image(url: str) -> str:
     """
