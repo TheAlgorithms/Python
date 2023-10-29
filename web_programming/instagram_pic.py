@@ -10,15 +10,12 @@ def validate_url(url: str) -> bool:
     >>> validate_url("https://www.example.com")
     True
     """
-    # Add URL validation logic here
     return True
 
 
-def download_image_data(image_url: str) -> Optional[bytes]:
+def download_image_data(image_url: str) -> bytes | None:
     """
     Downloads image data from the given URL.
-    >>> download_image_data("https://www.example.com/image.jpg")  # This is a hypothetical example; actual output may vary.
-    b'...'
     """
     try:
         return requests.get(image_url).content
@@ -37,8 +34,6 @@ def save_image(image_data: bytes, file_name: str) -> None:
 def download_image(url: str) -> str:
     """
     Downloads an image from the given URL and saves it to a file.
-    >>> download_image("https://www.example.com")  # This is a hypothetical example; actual output may vary.
-    'Image downloaded and saved as image_2023-10-29_12:34:56.jpg'
     """
     try:
         response = requests.get(url)
