@@ -66,7 +66,7 @@ def generate_parenthesis(n: int) -> list[str]:
     ['()']
     """
 
-    result = []
+    result: list[str] = []
     backtrack("", 0, 0, n, result)
     return result
 
