@@ -8,9 +8,9 @@ from numpy import linalg as la
 
 
 class RidgeRegression:
-    def __init__(self, x: tuple, y: tuple, iterations: int,/
-                  timeiter: list, objvals:list) -> None:
-        print(iterations, timeiter, objvals)
+    def __init__(
+        self, x: tuple, y: tuple, iterations: int, timeiter: list, objvals: list
+    ) -> None:
         self.objvals = []
 
         # no_of_training_examples, no_of_features
