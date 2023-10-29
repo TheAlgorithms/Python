@@ -76,10 +76,25 @@ def np_prime_sieve_eratosthenes(max_number: int) -> list[int]:
     return primes.tolist()
 
 
+def benchmark():
+    """
+    Benchmarks
+    """
+    from timeit import timeit
+
+    print("Running performance benchmarks...")
+
+    functions = ["prime_sieve_eratosthenes", "np_prime_sieve_eratosthenes"]
+    for func in functions:
+        print(f"{func} : {timeit(f'{func}(10_000)', globals=globals(), number=10_000)}")
+
+
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
 
     user_num = int(input("Enter a positive integer: ").strip())
-    print(prime_sieve_eratosthenes(user_num))
+    print(np_prime_sieve_eratosthenes(user_num))
+
+    benchmark()
