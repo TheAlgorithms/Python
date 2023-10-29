@@ -7,6 +7,7 @@ https://en.wikipedia.org/wiki/Rectifier_(neural_networks)#Mish
 """
 
 import numpy as np
+from softplus import softplus
 
 
 def mish(vector: np.ndarray) -> np.ndarray:
@@ -30,7 +31,7 @@ def mish(vector: np.ndarray) -> np.ndarray:
     array([-0.00092952, -0.15113318,  0.33152014, -0.04745745])
 
     """
-    return vector * np.tanh(np.log(1 + np.exp(vector)))
+    return vector * np.tanh(softplus(vector))
 
 
 if __name__ == "__main__":

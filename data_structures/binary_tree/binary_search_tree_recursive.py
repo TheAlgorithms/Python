@@ -12,6 +12,8 @@ from __future__ import annotations
 import unittest
 from collections.abc import Iterator
 
+import pytest
+
 
 class Node:
     def __init__(self, label: int, parent: Node | None) -> None:
@@ -78,7 +80,7 @@ class BinarySearchTree:
                 node.right = self._put(node.right, label, node)
             else:
                 msg = f"Node with label {label} already exists"
-                raise Exception(msg)
+                raise ValueError(msg)
 
         return node
 
@@ -95,14 +97,14 @@ class BinarySearchTree:
         >>> node = t.search(3)
         Traceback (most recent call last):
             ...
-        Exception: Node with label 3 does not exist
+        ValueError: Node with label 3 does not exist
         """
         return self._search(self.root, label)
 
     def _search(self, node: Node | None, label: int) -> Node:
         if node is None:
             msg = f"Node with label {label} does not exist"
-            raise Exception(msg)
+            raise ValueError(msg)
         else:
             if label < node.label:
                 node = self._search(node.left, label)
@@ -124,7 +126,7 @@ class BinarySearchTree:
         >>> t.remove(3)
         Traceback (most recent call last):
             ...
-        Exception: Node with label 3 does not exist
+        ValueError: Node with label 3 does not exist
         """
         node = self.search(label)
         if node.right and node.left:
@@ -179,7 +181,7 @@ class BinarySearchTree:
         try:
             self.search(label)
             return True
-        except Exception:
+        except ValueError:
             return False
 
     def get_max_label(self) -> int:
@@ -190,7 +192,7 @@ class BinarySearchTree:
         >>> t.get_max_label()
         Traceback (most recent call last):
             ...
-        Exception: Binary search tree is empty
+        ValueError: Binary search tree is empty
 
         >>> t.put(8)
         >>> t.put(10)
@@ -198,7 +200,7 @@ class BinarySearchTree:
         10
         """
         if self.root is None:
-            raise Exception("Binary search tree is empty")
+            raise ValueError("Binary search tree is empty")
 
         node = self.root
         while node.right is not None:
@@ -214,7 +216,7 @@ class BinarySearchTree:
         >>> t.get_min_label()
         Traceback (most recent call last):
             ...
-        Exception: Binary search tree is empty
+        ValueError: Binary search tree is empty
 
         >>> t.put(8)
         >>> t.put(10)
@@ -222,7 +224,7 @@ class BinarySearchTree:
         8
         """
         if self.root is None:
-            raise Exception("Binary search tree is empty")
+            raise ValueError("Binary search tree is empty")
 
         node = self.root
         while node.left is not None:
@@ -359,7 +361,7 @@ class BinarySearchTreeTest(unittest.TestCase):
         assert t.root.left.left.parent == t.root.left
         assert t.root.left.left.label == 1
 
-        with self.assertRaises(Exception):  # noqa: B017
+        with pytest.raises(ValueError):
             t.put(1)
 
     def test_search(self) -> None:
@@ -371,7 +373,7 @@ class BinarySearchTreeTest(unittest.TestCase):
         node = t.search(13)
         assert node.label == 13
 
-        with self.assertRaises(Exception):  # noqa: B017
+        with pytest.raises(ValueError):
             t.search(2)
 
     def test_remove(self) -> None:
@@ -517,7 +519,7 @@ class BinarySearchTreeTest(unittest.TestCase):
         assert t.get_max_label() == 14
 
         t.empty()
-        with self.assertRaises(Exception):  # noqa: B017
+        with pytest.raises(ValueError):
             t.get_max_label()
 
     def test_get_min_label(self) -> None:
@@ -526,7 +528,7 @@ class BinarySearchTreeTest(unittest.TestCase):
         assert t.get_min_label() == 1
 
         t.empty()
-        with self.assertRaises(Exception):  # noqa: B017
+        with pytest.raises(ValueError):
             t.get_min_label()
 
     def test_inorder_traversal(self) -> None:
