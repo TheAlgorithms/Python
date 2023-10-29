@@ -1,12 +1,19 @@
-from datetime import datetime
-import requests
 from bs4 import BeautifulSoup
+import requests
 
-
-def download_image(url):
+def download_image(url: str) -> str:
+    """
+    Download an image from a given URL by scraping the 'og:image' meta tag.
+    
+    Parameters:
+        url (str): The URL to scrape.
+        
+    Returns:
+        str: A message indicating the result of the operation.
+    """
     try:
         response = requests.get(url)
-        response.raise_for_status()  # Check for HTTP errors
+        response.raise_for_status()
 
         soup = BeautifulSoup(response.text, "html.parser")
         image_meta_tag = soup.find("meta", {"property": "og:image"})
@@ -15,23 +22,21 @@ def download_image(url):
             image_url = image_meta_tag.get("content")
             if image_url:
                 image_data = requests.get(image_url).content
-
                 if image_data:
                     file_name = f"{datetime.now():%Y-%m-%d_%H:%M:%S}.jpg"
                     with open(file_name, "wb") as file:
                         file.write(image_data)
-                    print(f"Image downloaded and saved as {file_name}")
+                    return f"Image downloaded and saved as {file_name}"
                 else:
-                    print("Failed to download the image.")
+                    return "Failed to download the image."
             else:
-                print("Image URL not found in the meta tag.")
+                return "Image URL not found in the meta tag."
         else:
-            print("No meta tag with 'og:image' property found.")
+            return "No meta tag with 'og:image' property found."
     except requests.exceptions.RequestException as e:
-        print(f"An error occurred during the HTTP request: {e}")
-
+        return f"An error occurred during the HTTP request: {e}"
 
 if __name__ == "__main__":
     url = input("Enter image URL: ").strip()
-    print(f"Downloading image from {url} ...")
-    download_image(url)
+    result = download_image(url)
+    print(result)
