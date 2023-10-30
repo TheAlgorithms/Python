@@ -253,6 +253,20 @@ class HashMap(MutableMapping[KEY, VAL]):
         raise KeyError(key)
 
     def __len__(self) -> int:
+        """
+        Returns the number of items present in hashmap
+
+        >>> hm = HashMap(5)
+        >>> hm._add_item(1, 10)
+        >>> hm._add_item(2, 20)
+        >>> hm._add_item(3, 30)
+        >>> hm.__len__()
+        3
+
+        >>> hm = HashMap(5)
+        >>> hm.__len__()
+        0
+        """
         return self._len
 
     def __iter__(self) -> Iterator[KEY]:
