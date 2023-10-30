@@ -85,7 +85,7 @@ if __name__ == "__main__":
     try:
         matrix = np.loadtxt(Path(__file__).parent / "matrix.txt")
     except FileNotFoundError:
-        sys.exit(f"Error: File not found.")
+        sys.exit("Error: File not found.")
 
     # Example usage:
     solution = solve_linear_system(matrix)
