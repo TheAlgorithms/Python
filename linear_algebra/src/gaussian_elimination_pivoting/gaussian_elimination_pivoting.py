@@ -1,23 +1,30 @@
-import sys
-from pathlib import Path
-
 import numpy as np
+
+matrix = np.array(
+    [
+        [5.0, -5.0, -3.0, 4.0, -11.0],
+        [1.0, -4.0, 6.0, -4.0, -10.0],
+        [-2.0, -5.0, 4.0, -5.0, -12.0],
+        [-3.0, -3.0, 5.0, -5.0, 8.0],
+    ],
+    dtype=float,
+)
 
 
 def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     """
-    Solves a linear system of equations using
-    Gaussian elimination with partial pivoting.
+    Solve a linear system of equations using Gaussian elimination with partial pivoting
 
     Args:
-    - matrix (np.ndarray): Coefficient matrix
-    with the last column representing the constants.
+    - matrix: Coefficient matrix with the last column representing the constants.
 
     Returns:
-    - np.ndarray: Solution vector.
+    - Solution vector.
 
     Raises:
-    - sys.exit: If the matrix is not correct (i.e., singular).
+    - ValueError: If the matrix is not correct (i.e., singular).
+
+    https://courses.engr.illinois.edu/cs357/su2013/lect.htm Lecture 7
 
     Example:
     >>> A = np.array([[2, 1, -1], [-3, -1, 2], [-2, 1, 2]], dtype=float)
@@ -25,6 +32,7 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     >>> solution = solve_linear_system(np.column_stack((A, B)))
     >>> np.allclose(solution, np.array([2., 3., -1.]))
     True
+    >>> solve_linear_system(np.column_stack(([[]], [[1]])))
     """
     ab = np.copy(matrix)
     num_of_rows = ab.shape[0]
@@ -37,7 +45,7 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
             if abs(ab[i][column_num]) > abs(ab[column_num][column_num]):
                 ab[[column_num, i]] = ab[[i, column_num]]
                 if ab[column_num, column_num] == 0.0:
-                    raise sys.exit("Matrix is not correct")
+                    raise ValueError("Matrix is not correct")
             else:
                 pass
         if column_num != 0:
@@ -54,7 +62,7 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
             if abs(ab[i][column_num]) > abs(ab[column_num][column_num]):
                 ab[[column_num, i]] = ab[[i, column_num]]
                 if ab[column_num, column_num] == 0.0:
-                    raise sys.exit("Matrix is not correct")
+                    raise ValueError("Matrix is not correct")
             else:
                 pass
         if column_num != 0:
@@ -77,25 +85,13 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
 
 
 if __name__ == "__main__":
-    file_path = "matrix.txt"
+    from pathlib import Path
+
+    file_path = Path(__file__).parent / "matrix.txt"
     try:
-        matrix = np.loadtxt(Path(__file__).parent / "matrix.txt")
+        matrix = np.loadtxt(file_path)
     except FileNotFoundError:
-        sys.exit("Error: File not found.")
+        print(f"Error: {file_path} not found.  Using default matrix instead.")
 
-    # Example usage:
-    solution = solve_linear_system(matrix)
-    print("Solution:", solution)
-
-
-# Example usage:
-# n_size = 3
-# a_matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype=float)
-# b_vector = np.array([10, 11, 12], dtype=float)
-
-# solution = custom_gauss_elimination_pivoting(a_matrix, b_vector, n_size)
-# print("Solution:", solution)
-
-
-# URL that points to Wikipedia or another similar explanation.
-# >>>>>>URL:https://courses.engr.illinois.edu/cs357/su2013/lectures/lecture07.pdf<<<<<#
+    print(f"Matrix:\n{matrix}")
+    print(f"{solve_linear_system(matrix) = }")
