@@ -65,16 +65,12 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
                     * ab[column_num - 1, :]
                 )
 
-    # Find x vector
-    column_num = num_of_rows
-    while column_num != 0:
-        column_num -= 1
-        line_of_x = ab[column_num, num_of_rows]
-        if column_num + 1 != num_of_rows:
-            for y in range(1, num_of_rows - column_num):
-                line_of_x += -ab[column_num, num_of_rows - y] * x_lst[y - 1]
-        x = line_of_x / ab[column_num, column_num]
-        x_lst.append(x)
+    # Find x vector (Back Substitution)
+    for column_num in range(num_of_rows - 1, -1, -1):
+        x = ab[column_num, -1] / ab[column_num, column_num]
+        x_lst.insert(0, x)
+        for i in range(column_num - 1, -1, -1):
+            ab[i, -1] -= ab[i, column_num] * x
 
     # Return the solution vector
     return np.asarray(x_lst)
@@ -90,6 +86,7 @@ if __name__ == "__main__":
     # Example usage:
     solution = solve_linear_system(matrix)
     print("Solution:", solution)
+
 
 
 # Example usage:
