@@ -1,4 +1,5 @@
-def is_happy_number(number: int) -> bool:
+
+def is_happy_number(number) -> bool:
     """
     Check if a number is a happy number.
     https://en.wikipedia.org/wiki/Happy_number
@@ -9,7 +10,7 @@ def is_happy_number(number: int) -> bool:
        it loops endlessly in a cycle (not happy).
 
     Args:
-        number (int): The number to check for happiness.
+        number (int or float): The number to check for happiness.
 
     Returns:
         bool: True if the number is a happy number, False otherwise.
@@ -23,23 +24,23 @@ def is_happy_number(number: int) -> bool:
     True
     >>> is_happy_number(0)
     False
-    >>> is_happy_number(-19)
-    False
     >>> is_happy_number(19.1)
+    False
+    >>> is_happy_number(-19)
     False
     >>> is_happy_number("Happy")
     False
     """
 
-    # Create a set to store seen numbers and detect cycles
-    seen = set()
-
-    while number != 1 and number not in seen:
-        seen.add(number)
-        number = sum(int(digit) ** 2 for digit in str(number))
+    # Check if the input is an integer or a float
+    if isinstance(number, (int)) and number > 0:
+        # Create a set to store seen numbers and detect cycles
+        seen = set()
+        while number != 1 and number not in seen:
+            seen.add(number)
+            number = sum(int(digit) ** 2 for digit in str(number))
 
     return number == 1
-
 
 if __name__ == "__main__":
     import doctest
