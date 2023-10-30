@@ -68,7 +68,7 @@ if __name__ == "__main__":
     for n, k in tests:
         print(n, k, generate_all_combinations(n, k) == combination_lists(n, k))
 
-    print("Benchmark:")
+    print("Benchmark: ")
     from timeit import timeit
 
     for func in ("combination_lists", "generate_all_combinations"):
