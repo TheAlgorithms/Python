@@ -135,5 +135,5 @@ omit = [
 sort = "Cover"
 
 [tool.codespell]
-ignore-words-list = "3rt,ans,crate,damon,fo,followings,hist,iff,kwanza,manuel,mater,secant,som,sur,tim,toi,zar"
+ignore-words-list = "3rt,ans,bitap,crate,damon,fo,followings,hist,iff,kwanza,manuel,mater,secant,som,sur,tim,toi,zar"
 skip = "./.*,*.json,ciphers/prehistoric_men.txt,project_euler/problem_022/p022_names.txt,pyproject.toml,strings/dictionary.txt,strings/words.txt"
