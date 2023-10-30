@@ -22,14 +22,14 @@ When we encounter an '[', we recursively process its inner contents.
 """
 
 
-def decode_string_helper(input_string: str, i: int) -> tuple[str, int]:
+def decode_string_helper(input_string: str, index: int) -> tuple[str, int]:
     """
     This function returns a tuple of the decoded string and
     the last index of character processed.
 
     Args:
         input_string: The string to be decoded
-        i: The starting index of the characters to process
+        index: The starting index of the characters to process
 
     Returns:
         A tuple of result processed and the last index of character processed
@@ -43,24 +43,24 @@ def decode_string_helper(input_string: str, i: int) -> tuple[str, int]:
     result = ""
     num = 0
 
-    while i < len(input_string):
-        if input_string[i] == "[":
-            resolved, new_index = decode_string_helper(input_string, i + 1)
-            result = result + num * resolved
+    while index < len(input_string):
+        if input_string[index] == "[":
+            decoded_string, new_index = decode_string_helper(input_string, index + 1)
+            result = result + num * decoded_string
             num = 0
-            i = new_index
-        elif input_string[i] == "]":
-            return (result, i)
-        elif input_string[i].isdigit():
-            num = num * 10 + int(input_string[i])
+            index = new_index
+        elif input_string[index] == "]":
+            return (result, index)
+        elif input_string[index].isdigit():
+            num = num * 10 + int(input_string[index])
         else:  # s[i] is a letter
-            result += input_string[i]
-        i += 1
+            result += input_string[index]
+        index += 1
 
-    return result, i
+    return result, index
 
 
-def decode_string(s: str) -> str:
+def decode_string(input_string: str) -> str:
     """
     This function returns the decoded string
 
@@ -78,7 +78,7 @@ def decode_string(s: str) -> str:
     >>> decode_string("2[abc]3[cd]ef")
     'abcabccdcdcdef'
     """
-    decoded_string, _ = decode_string_helper(s, 0)
+    decoded_string, _ = decode_string_helper(input_string, 0)
     return decoded_string
 
 
