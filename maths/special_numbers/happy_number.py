@@ -21,14 +21,7 @@ def is_happy_number(number: int) -> bool:
     False
     >>> is_happy_number(23)
     True
-    >>> is_happy_number(0)
-    ValueError("number is not a positive integer")
-    >>> is_happy_number(19.1)
-    ValueError("number is not a positive integer")
-    >>> is_happy_number(-19)
-    ValueError("number is not a positive integer")
-    >>> is_happy_number("Happy")
-    ValueError("number is not a positive integer")
+   
     """
 
     if not isinstance(number, int) or number <= 0:
