@@ -10,7 +10,7 @@ The Coin Change Problem is a classic example of a problem that can be solved usi
 def greedy_coin_change(coins, target_amount):
     # Sort the coins in descending order (if not already sorted).
     coins.sort(reverse=True)
-    
+
     num_coins = 0
     change = []
 
