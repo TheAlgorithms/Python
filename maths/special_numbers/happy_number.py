@@ -21,7 +21,7 @@ def is_happy_number(number: int) -> bool:
     False
     >>> is_happy_number(23)
     True
-   
+
     """
 
     if not isinstance(number, int) or number <= 0:
