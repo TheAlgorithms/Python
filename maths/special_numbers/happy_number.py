@@ -32,7 +32,7 @@ def is_happy_number(number: int) -> bool:
     >>> is_happy_number("Happy")
     ValueError("number is not a positive integer")
     """
-    
+
     if not isinstance(number, int) or number <= 0:
         raise ValueError("number is not a positive integer")
 
@@ -43,6 +43,7 @@ def is_happy_number(number: int) -> bool:
         number = sum(int(digit) ** 2 for digit in str(number))
 
     return number == 1
+
 
 if __name__ == "__main__":
     import doctest
