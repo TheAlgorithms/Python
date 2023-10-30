@@ -1,40 +1,56 @@
 def is_happy_number(number: int) -> bool:
     """
     Check if a number is a happy number.
-    https://en.wikipedia.org/wiki/Happy_number
-    A happy number is defined by the following process:
-    1. Starting with any positive integer, replace the number by
-       the sum of the squares of its digits.
-    2. Repeat the process until the number equals 1 (happy) or
-       it loops endlessly in a cycle (not happy).
+    
+    :param number: The number to check for happiness.
+    :return: True if the number is a happy number, False otherwise.
+    
+    A happy number is a number which eventually reaches 1 when replaced by the sum of the square of each digit.
 
-    Args:
-        number (int): The number to check for happiness.
-
-    Returns:
-        bool: True if the number is a happy number, False otherwise.
-
-    Examples:
     >>> is_happy_number(19)
     True
-    >>> is_happy_number(4)
+    >>> is_happy_number(2)
     False
     >>> is_happy_number(23)
     True
-
+    >>> is_happy_number(1)
+    True
+    >>> is_happy_number(0)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input must be a positive integer
+    >>> is_happy_number(-19)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input must be a positive integer
+    >>> is_happy_number(19.1)
+    Traceback (most recent call last):
+        ...
+    TypeError: Input value of [number=19.1] must be an integer
+    >>> is_happy_number("happy")
+    Traceback (most recent call last):
+        ...
+    TypeError: Input value of [number=happy] must be an integer
     """
+    if not isinstance(number, int):
+        msg = f"Input value of [number={number}] must be an integer"
+        raise TypeError(msg)
+    if number <= 0:
+        raise ValueError("Input must be a positive integer")
+    
+    def get_next(number):
+        next_num = 0
+        while number > 0:
+            number, digit = divmod(number, 10)
+            next_num += digit ** 2
+        return next_num
 
-    if not isinstance(number, int) or number <= 0:
-        raise ValueError("number is not a positive integer")
-
-    # Create a set to store seen numbers and detect cycles
     seen = set()
     while number != 1 and number not in seen:
         seen.add(number)
-        number = sum(int(digit) ** 2 for digit in str(number))
+        number = get_next(number)
 
     return number == 1
-
 
 if __name__ == "__main__":
     import doctest
