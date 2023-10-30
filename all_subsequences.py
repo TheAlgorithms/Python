@@ -1,63 +1,52 @@
 """
-In this problem, we aim to find all possible subsequences of a given sequence.
-The algorithm employs backtracking to solve this problem.
-
-Time Complexity: O(2^n),
-where n represents the length of the given sequence.
+In this problem, we find all subsequences of a given list using backtracking.
+Time Complexity: O(2^n), where n is the list's length.
 
 Functions:
-- generate_all_subsequences(sequence: list[Any]) -> None:
-    Initiates the backtracking algorithm and prints the subsequences.
-
-- create_state_space_tree(sequence: list[Any], current_subsequence: list[Any], index: int) -> None:
-    Recursively creates the state-space tree to find all subsequences.
+- generate_all_subsequences: Initiates backtracking and prints subsequences.
+- create_state_space_tree: Recursively builds a state-space tree for subsequences.
 """
 
 from __future__ import annotations
-
 from typing import Any
 
-
 def generate_all_subsequences(sequence: list[Any]) -> None:
-    create_state_space_tree(sequence, [], 0)
-"""
-    Generates all subsequences of the given sequence.
+    """Kickstarts the backtracking algorithm.
 
-    Parameters:
-    - sequence (List[Any]): The list of elements for which to generate subsequences.
+    Args:
+    - sequence (list[Any]): Input list of elements.
 
     Returns:
-    None: Prints all the subsequences.
-"""
+    None: Outputs all subsequences to stdout.
+    """
+    create_state_space_tree(sequence, [], 0)
+
 def create_state_space_tree(
     sequence: list[Any], current_subsequence: list[Any], index: int
 ) -> None:
-    """
-    Recursively creates a state-space tree to navigate through all possible subsequences.
+    """Recursively constructs a state-space tree for subsequences.
 
-    Parameters:
-    - sequence (List[Any]): The original list of elements.
-    - current_subsequence (List[Any]): The subsequence generated so far.
-    - index (int): The index of the current element under consideration.
+    Args:
+    - sequence (list[Any]): Original list.
+    - current_subsequence (list[Any]): Current subsequence.
+    - index (int): Current index in the original list.
 
     Returns:
-    None: Prints the subsequences when the end of the original sequence is reached.
-   """
-
+    None: Outputs subsequences when reaching the end of the list.
+    """
     if index == len(sequence):
         print(current_subsequence)
         return
-    # Exclude the current element and move to the next.
 
+    # Exclude current element and proceed.
     create_state_space_tree(sequence, current_subsequence, index + 1)
-    # Include the current element in the subsequence and move to the next.
-
+    
+    # Include current element and proceed.
     current_subsequence.append(sequence[index])
     create_state_space_tree(sequence, current_subsequence, index + 1)
-    # Backtrack to explore other possibilities.
-
+    
+    # Backtrack.
     current_subsequence.pop()
-
 
 if __name__ == "__main__":
     seq: list[Any] = [3, 1, 2, 4]
