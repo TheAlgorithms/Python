@@ -21,6 +21,14 @@ def is_happy_number(number: int) -> bool:
     False
     >>> is_happy_number(23)
     True
+    >>> is_happy_number(0)
+    ?
+    >>> is_happy_number(-19)
+    ?
+    >>> is_happy_number(19.1)
+    ?
+    >>> is_happy_number("Happy")
+    ?
     """
 
     # Create a set to store seen numbers and detect cycles
