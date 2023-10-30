@@ -88,7 +88,6 @@ if __name__ == "__main__":
     print("Solution:", solution)
 
 
-
 # Example usage:
 # n_size = 3
 # a_matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype=float)
