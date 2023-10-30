@@ -83,13 +83,9 @@ if __name__ == "__main__":
     # Read the matrix from a .txt file in the same folder as the source code
     file_path = "matrix.txt"
     try:
-        matrix = np.loadtxt(
-            linear_algebra / src / gaussian_elimination_pivoting / matrix.txt
-        )
+        matrixab = np.loadtxt(Path(__file__).parent / "matrix.txt")
     except FileNotFoundError:
-        sys.exit(
-            f"Error: File '{linear_algebra/src/gaussian_elimination_pivoting/matrix.txt}' not found."
-        )
+        sys.exit(f"Error: File not found.")
 
     # Example usage:
     solution = solve_linear_system(matrix)
