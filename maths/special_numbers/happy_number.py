@@ -1,5 +1,4 @@
-# Online Python compiler (interpreter) to run Python online.
-# Write Python 3 code in this online editor and run it.
+
 def is_happy_number(number: int) -> bool:
     """
     Check if a number is a happy number.
