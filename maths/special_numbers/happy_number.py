@@ -1,4 +1,3 @@
-
 def is_happy_number(number: int) -> bool:
     """
     Check if a number is a happy number.
