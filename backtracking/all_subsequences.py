@@ -38,14 +38,14 @@ def create_state_space_tree(
         print(current_subsequence)
         return
 
-    # Exclude current element and proceed.
+    # Exclude current element
     create_state_space_tree(sequence, current_subsequence, index + 1)
     
-    # Include current element and proceed.
+    # Include current element
     current_subsequence.append(sequence[index])
     create_state_space_tree(sequence, current_subsequence, index + 1)
     
-    # Backtrack.
+    # Backtracke it
     current_subsequence.pop()
 
 if __name__ == "__main__":
