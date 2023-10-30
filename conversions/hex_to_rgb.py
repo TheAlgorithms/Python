@@ -1,3 +1,13 @@
+"""
+* Author: Cicero Tiago Carneiro Valentim (https://github.com/cicerotcv)
+* Description: Convert hexadecimal (#FF2000) color to RGB (rgb(255, 32, 0)).
+
+References:
+https://www.w3schools.com/colors/colors_rgb.asp
+https://www.w3schools.com/colors/colors_hexadecimal.asp
+"""
+
+
 def hex_to_rgb(hex_color: str) -> str:
     """
     Converts a hexadecimal color code to RGB values.
