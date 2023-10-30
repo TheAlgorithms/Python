@@ -19,10 +19,12 @@ def get_subreddit_data(
     subreddit: str, limit: int = 1, age: str = "new", wanted_data: list | None = None
 ) -> dict:
     """
-    subreddit : Subreddit to query
-    limit : Number of posts to fetch
-    age : ["new", "top", "hot"]
-    wanted_data : Get only the required data in the list
+    Return the wanted data of a given subreddit into a dict.
+
+    subreddit (str) : Subreddit to query.
+    limit (int) : Number of posts to fetch (default is 1).
+    age (str) : The way the reddit posts are sorted, either new, top, or hot (default is new).
+    wanted_data (list) : The required data the user want to get.
     """
     wanted_data = wanted_data or []
     if invalid_search_terms := ", ".join(sorted(set(wanted_data) - valid_terms)):
