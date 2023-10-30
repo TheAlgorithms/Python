@@ -1,4 +1,5 @@
 import sys
+from pathlib import Path
 
 import numpy as np
 
@@ -80,10 +81,9 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
 
 
 if __name__ == "__main__":
-    # Read the matrix from a .txt file in the same folder as the source code
     file_path = "matrix.txt"
     try:
-        matrixab = np.loadtxt(Path(__file__).parent / "matrix.txt")
+        matrix = np.loadtxt(Path(__file__).parent / "matrix.txt")
     except FileNotFoundError:
         sys.exit(f"Error: File not found.")
 
