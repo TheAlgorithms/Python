@@ -185,10 +185,29 @@ def topo(g, ind=None, q=None):
 
 
 def adjm():
-    n = input().strip()
+    r"""
+    Reading an Adjacency matrix
+
+    Parameters:
+        None
+
+    Returns:
+        tuple: A tuple containing a list of edges and number of edges
+
+    Example:
+    >>> # Simulate user input for 3 nodes
+    >>> input_data = "4\n0 1 0 1\n1 0 1 0\n0 1 0 1\n1 0 1 0\n"
+    >>> import sys,io
+    >>> original_input = sys.stdin
+    >>> sys.stdin = io.StringIO(input_data)  # Redirect stdin for testing
+    >>> adjm()
+    ([(0, 1, 0, 1), (1, 0, 1, 0), (0, 1, 0, 1), (1, 0, 1, 0)], 4)
+    >>> sys.stdin = original_input  # Restore original stdin
+    """
+    n = int(input().strip())
     a = []
     for _ in range(n):
-        a.append(map(int, input().strip().split()))
+        a.append(tuple(map(int, input().strip().split())))
     return a, n
 
 
@@ -260,10 +279,29 @@ def prim(g, s):
 
 
 def edglist():
-    n, m = map(int, input().split(" "))
+    r"""
+    Get the edges and number of edges from the user
+
+    Parameters:
+        None
+
+    Returns:
+        tuple: A tuple containing a list of edges and number of edges
+
+    Example:
+    >>> # Simulate user input for 3 edges and 4 vertices: (1, 2), (2, 3), (3, 4)
+    >>> input_data = "4 3\n1 2\n2 3\n3 4\n"
+    >>> import sys,io
+    >>> original_input = sys.stdin
+    >>> sys.stdin = io.StringIO(input_data)  # Redirect stdin for testing
+    >>> edglist()
+    ([(1, 2), (2, 3), (3, 4)], 4)
+    >>> sys.stdin = original_input  # Restore original stdin
+    """
+    n, m = tuple(map(int, input().split(" ")))
     edges = []
     for _ in range(m):
-        edges.append(map(int, input().split(" ")))
+        edges.append(tuple(map(int, input().split(" "))))
     return edges, n
 
 
@@ -278,7 +316,9 @@ def edglist():
 
 
 def krusk(e_and_n):
-    # Sort edges on the basis of distance
+    """
+    Sort edges on the basis of distance
+    """
     (e, n) = e_and_n
     e.sort(reverse=True, key=lambda x: x[2])
     s = [{i} for i in range(1, n + 1)]
@@ -299,8 +339,37 @@ def krusk(e_and_n):
                 break
 
 
-# find the isolated node in the graph
 def find_isolated_nodes(graph):
+    """
+    Find the isolated node in the graph
+
+    Parameters:
+    graph (dict): A dictionary representing a graph.
+
+    Returns:
+    list: A list of isolated nodes.
+
+    Examples:
+    >>> graph1 = {1: [2, 3], 2: [1, 3], 3: [1, 2], 4: []}
+    >>> find_isolated_nodes(graph1)
+    [4]
+
+    >>> graph2 = {'A': ['B', 'C'], 'B': ['A'], 'C': ['A'], 'D': []}
+    >>> find_isolated_nodes(graph2)
+    ['D']
+
+    >>> graph3 = {'X': [], 'Y': [], 'Z': []}
+    >>> find_isolated_nodes(graph3)
+    ['X', 'Y', 'Z']
+
+    >>> graph4 = {1: [2, 3], 2: [1, 3], 3: [1, 2]}
+    >>> find_isolated_nodes(graph4)
+    []
+
+    >>> graph5 = {}
+    >>> find_isolated_nodes(graph5)
+    []
+    """
     isolated = []
     for node in graph:
         if not graph[node]:

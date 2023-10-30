@@ -65,14 +65,14 @@ _add_with_resize_down = [
 
 @pytest.mark.parametrize(
     "operations",
-    (
+    [
         pytest.param(_add_items, id="add items"),
         pytest.param(_overwrite_items, id="overwrite items"),
         pytest.param(_delete_items, id="delete items"),
         pytest.param(_access_absent_items, id="access absent items"),
         pytest.param(_add_with_resize_up, id="add with resize up"),
         pytest.param(_add_with_resize_down, id="add with resize down"),
-    ),
+    ],
 )
 def test_hash_map_is_the_same_as_dict(operations):
     my = HashMap(initial_block_size=4)
