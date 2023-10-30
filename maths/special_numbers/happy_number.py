@@ -1,4 +1,4 @@
-def is_happy_number(number) -> bool:
+def is_happy_number(number: int) -> bool:
     """
     Check if a number is a happy number.
     https://en.wikipedia.org/wiki/Happy_number
