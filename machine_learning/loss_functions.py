@@ -470,22 +470,23 @@ def perplexity_loss(
 
     return np.mean(perp_losses)
 
+
 def contrastive_loss(inputs: np.ndarray, target: np.ndarray, m: float) -> float:
     """
-    Contrastive loss is used to bring similar samples together and dissimilar samples apart.
-    It assigns higher loss if similar pair of samples are further apart and dissimilar pair
-    of samples are closer in vector space.
-    
+    Contrastive loss is used to bring similar samples together and dissimilar samples
+    apart.It assigns higher loss if similar pair of samples are further apart and
+    dissimilar pair of samples are closer in vector space.
+
     Formula:
         contrastive loss = (1 - Y) (Σ(xi - xj)^2) + Y * max(0, m - Σ(xi - xk)^2)
-    
+
     Where,
     Y: target; (0 = input pair similar, 1 = input pair dissimilar)
     (xi, xj): similar input pairs
     (xi, xk): dissimilar input pairs
     m: hyperparameter representing lower bound (minimum) distance between dissimilar
        input pairs.
- 
+
     Reference: https://www.baeldung.com/cs/contrastive-learning
 
     Args:
