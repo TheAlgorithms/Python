@@ -32,7 +32,8 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     >>> solution = solve_linear_system(np.column_stack((A, B)))
     >>> np.allclose(solution, np.array([2., 3., -1.]))
     True
-    >>> solve_linear_system(np.column_stack(([[]], [[1]])))
+    >>> solve_linear_system(np.array([[0, 0], [0, 0]],  dtype=float))
+    array([nan, nan])
     """
     ab = np.copy(matrix)
     num_of_rows = ab.shape[0]
@@ -85,13 +86,16 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
 
 
 if __name__ == "__main__":
+    from doctest import testmod
     from pathlib import Path
 
+    testmod()
     file_path = Path(__file__).parent / "matrix.txt"
     try:
         matrix = np.loadtxt(file_path)
     except FileNotFoundError:
         print(f"Error: {file_path} not found.  Using default matrix instead.")
 
+    # Example usage:
     print(f"Matrix:\n{matrix}")
     print(f"{solve_linear_system(matrix) = }")
