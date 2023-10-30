@@ -1,66 +1,80 @@
 """
-two way heaps method is a technique used to efficiently maintain and retrieve the median of a stream of numbers (array of integers).
+The two heaps method is used to efficiently maintain and retrieve the median of a
+stream of numbers (array of integers).  It uses max_heap and min_heap where the
+max_heap is used to store the smaller half of the numbers while min_heap is used to
+store larger numbers.
 
-this method uses both max and min heap , max heap is used to store the smaller half of the numbers while min heap is used to store
-larger number.
+This arrangement helps us to easliy retrieve the median of a stream of numbers and the
+time complexity of algorithm is constant [O(1)].  In brute-force method time complexity
+of this medianfinder algorithm would be O(n logn)
 
-this arrangement helps us in retrieving the median of a stream of numbers easily and the time complexity of algorithm is constant [O(1)].
-In brute-force method time complexity of this medianfinder algorithm would be O(n logn)
-
-a medium article to better understand this algorithm
-
+A medium article to better understand this algorithm
 https://stephenjoel2k.medium.com/two-heaps-min-heap-max-heap-c3d32cbb671d
-
 """
-
-
-# data_structures/heap/two_way_heaps_method.py
-
 import heapq
-from typing import Union
+from dataclasses import dataclass, field
+from typing import Self
 
 
+@dataclass
 class MedianFinder:
     """
     A class for finding the median of a stream of numbers using two heaps.
 
     Examples:
         >>> median_finder = MedianFinder()
-        >>> median_finder.insert(5)
-        >>> median_finder.insert(8)
-        >>> median_finder.insert(2)
-        >>> median_finder.insert(10)
-        >>> median_finder.insert(1)
-        >>> median_finder.insert(7)
-        >>> median_finder.insert(6)
-        >>> median = median_finder.find_Median()
-        >>> median
-        6.0
+        >>> median_finder
+        MedianFinder(max_heap=[], min_heap=[])
+        >>> median_finder.insert_many((5, 8, 2, 10, 1, 7, 6))
+        MedianFinder(max_heap=[-5, -2, -1], min_heap=[6, 7, 8, 10])
     """
 
-    def __init__(self) -> None:
-        """Initialize the MedianFinder with empty max and min heaps."""
-        self.maxheap = []
-        self.minheap = []
+    max_heap: list[float] = field(default_factory=list)
+    min_heap: list[float] = field(default_factory=list)
 
-    def insert(self, value: Union[int, float]) -> None:
+    def insert(self, value: float) -> Self:
         """
         Insert a value into the max and min heaps.
 
         Args:
-            value (int | float): A number to be inserted in the heap.
+            value: A number to be inserted in the heap.
+
+        Examples:
+            >>> median_finder = MedianFinder()
+            >>> median_finder
+            MedianFinder(max_heap=[], min_heap=[])
+            >>> median_finder.insert(5)
+            MedianFinder(max_heap=[-5], min_heap=[])
+            >>> median_finder.insert(8)
+            MedianFinder(max_heap=[-5], min_heap=[8])
         """
-        if not self.maxheap or value <= -self.maxheap[0]:
-            heapq.heappush(self.maxheap, -value)
+        if not self.max_heap or value <= -self.max_heap[0]:
+            heapq.heappush(self.max_heap, -value)
         else:
-            heapq.heappush(self.minheap, value)
+            heapq.heappush(self.min_heap, value)
 
-        if len(self.maxheap) - len(self.minheap) > 1:
-            heapq.heappush(self.minheap, -heapq.heappop(self.maxheap))
-        elif len(self.minheap) - len(self.maxheap) > 1:
-            heapq.heappush(self.maxheap, -heapq.heappop(self.minheap))
+        if len(self.max_heap) - len(self.min_heap) > 1:
+            heapq.heappush(self.min_heap, -heapq.heappop(self.max_heap))
+        elif len(self.min_heap) - len(self.max_heap) > 1:
+            heapq.heappush(self.max_heap, -heapq.heappop(self.min_heap))
+        return self
 
-    def find_median(self) -> Union[int, float]:
+    def insert_many(self, values: list[float] | tuple[float, ...]) -> Self:
+        """
+        Insert multiple values into the max and min heaps.
+
+        Args:
+            values: A list of numbers to be inserted in the heap.
+
+        Examples:
+            >>> MedianFinder().insert_many((5, 8, 2, 10, 1, 7, 6))
+            MedianFinder(max_heap=[-5, -2, -1], min_heap=[6, 7, 8, 10])
+        """
+        for value in values:
+            self.insert(value)
+        return self
+
+    def find_median(self) -> float:
         """
         Find the median of the stream of numbers.
 
@@ -68,54 +82,24 @@ class MedianFinder:
             int | float: The median of the stream.
 
         Examples:
-            >>> median_finder = MedianFinder()
-            >>> median_finder.insert(5)
-            >>> median_finder.insert(8)
-            >>> median_finder.insert(2)
-            >>> median_finder.insert(10)
-            >>> median_finder.insert(1)
-            >>> median_finder.insert(7)
-            >>> median_finder.insert(6)
-            >>> median_finder.find_median()
+            >>> MedianFinder().find_median()
+            Traceback (most recent call last):
+                ...
+            IndexError: list index out of range
+            >>> MedianFinder().insert_many((5, 8, 2, 10, 1, 7, 6)).find_median()
             6
         """
-        if len(self.maxheap) == len(self.minheap):
-            return (-self.maxheap[0] + self.minheap[0]) / 2.0
-        elif len(self.maxheap) > len(self.minheap):
-            return -self.maxheap[0]
-        return self.minheap[0]
-
-
-def main() -> None:
-    """
-    Run the example with a stream of numbers.
-
-    Examples:
-        >>> median_finder = MedianFinder()
-        >>> median_finder.insert(5)
-        >>> median_finder.insert(8)
-        >>> median_finder.insert(2)
-        >>> median_finder.insert(10)
-        >>> median_finder.insert(1)
-        >>> median_finder.insert(7)
-        >>> median_finder.insert(6)
-        >>> median = median_finder.find_median()
-        >>> print("Median:", median)
-        Median: 6
-    """
-    median_finder = MedianFinder()
-
-    stream_of_numbers = [5, 8, 2, 10, 1, 7, 6]
-
-    for value in stream_of_numbers:
-        median_finder.insert(value)
-
-    median = median_finder.find_median()
-    print("Median:", median)  # Median = 6
+        if len(self.max_heap) == len(self.min_heap):
+            return (-self.max_heap[0] + self.min_heap[0]) / 2.0
+        elif len(self.max_heap) > len(self.min_heap):
+            return -self.max_heap[0]
+        return self.min_heap[0]
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    main()
+    median_finder = MedianFinder().insert_many((5, 8, 2, 10, 1, 7, 6))
+    print(f"{median_finder}.find_median() = {median_finder.find_median()}")
+    # MedianFinder(max_heap=[-5, -2, -1], min_heap=[6, 7, 8, 10]).find_median() = 6
