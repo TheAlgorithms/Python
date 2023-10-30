@@ -21,6 +21,13 @@ def get_subreddit_data(
     """
     Return the wanted data of a given subreddit into a dict.
 
+    >>> get_subreddit_data("learnpython")
+    # {0: (...) 'data': {(...), 'clicked': False, 'title': '<title of the post>', (...)}}
+    # All the parameters of the post are given, because the user didn't request any.
+
+    >>> get_subreddit_data("learnpython", wanted_data=["title", "url", "selftext"])
+    # {0: {'title': '', 'url': '', 'selftext': ''}}
+
     subreddit (str) : Subreddit to query.
     limit (int) : Number of posts to fetch (default is 1).
     age (str) : The way the reddit posts are sorted, either new, top, or hot (default is new).
