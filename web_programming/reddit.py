@@ -23,7 +23,8 @@ def get_subreddit_data(
 
     subreddit (str) : Subreddit to query.
     limit (int) : Number of posts to fetch (default is 1).
-    age (str) : The way the reddit posts are sorted, either new, top, or hot (default is new).
+    age (str) : The way the reddit posts are sorted, either new, top, or hot 
+                (default is new).
     wanted_data (list) : The required data the user want to get.
     """
     wanted_data = wanted_data or []
