@@ -1,12 +1,13 @@
-'''
+"""
 # Fast Fourier Transform (FFT) Implementation in Python
 
 This Python script provides a basic demonstration of the Fast Fourier Transform (FFT) algorithm without the use of external libraries like NumPy.
 The FFT is a mathematical algorithm used to transform a signal from the time domain to the frequency domain, revealing its frequency components.
 
-'''
+"""
 
 import math
+
 
 # Define a function to compute the DFT
 def dft(signal):
@@ -23,6 +24,7 @@ def dft(signal):
 
     return dft_result
 
+
 # Sample signal (complex values)
 signal = [1, 2, 3, 4]
 
@@ -31,5 +33,4 @@ dft_result = dft(signal)
 
 # Print the DFT result
 for k, (real, imag) in enumerate(dft_result):
-    print(f'X({k}) = {real} + {imag}i')
-
+    print(f"X({k}) = {real} + {imag}i")
