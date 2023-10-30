@@ -18,8 +18,8 @@ def dft(signal):
 
     for k in range(n):
         xk_real, xk_imag = 0, 0
-        for n in range(N):
-            angle = 2 * math.pi * k * n / N
+        for n in range(n):
+            angle = 2 * math.pi * k * n / n
             xk_real += signal[n] * math.cos(angle)
             xk_imag -= signal[n] * math.sin(angle)
         dft_result.append((xk_real, xk_imag))
