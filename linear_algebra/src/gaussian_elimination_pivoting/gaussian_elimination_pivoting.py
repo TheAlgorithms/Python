@@ -80,12 +80,15 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
 
 
 if __name__ == "__main__":
-    # Example usage:
-    n_size = 3
-    a_matrix = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype=float)
-    b_vector = np.array([10, 11, 12], dtype=float)
+    # Read the matrix from a .txt file in the same folder as the source code
+    file_path = "matrix.txt"
+    try:
+        matrix = np.loadtxt(file_path)
+    except FileNotFoundError:
+        sys.exit(f"Error: File '{file_path}' not found.")
 
-    solution = solve_linear_system(np.column_stack((a_matrix, b_vector)))
+    # Example usage:
+    solution = solve_linear_system(matrix)
     print("Solution:", solution)
 
 
