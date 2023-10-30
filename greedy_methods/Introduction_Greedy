@@ -1,0 +1,45 @@
+Greedy is algorithmic technique used in solving optimization problems. The greedy algorithm makes a series of choices at each step to find the best possible solution. It does so by selecting the locally optimal choice at each step, hoping that these choices will lead to a globally optimal solution. Greedy algorithms are often simpler to implement and can provide fast solutions to certain types of problems.
+
+Here's a basic outline of how a greedy algorithm works:
+
+1. Define the objective function that needs to be optimized.
+2. Identify the choices available at each step.
+3. Select the locally optimal choice.
+4. Update the solution with the chosen option.
+5. Repeat steps 2-4 until the problem is solved.
+
+Greedy algorithms are particularly useful for problems where making the locally optimal choice at each step leads to a globally optimal solution. However, they may not always guarantee the absolute best solution for all problems.
+
+Here's a simple Python example using a greedy algorithm to solve the fractional knapsack problem:
+
+```python
+def knapsack_fractional(items, capacity):
+    items.sort(key=lambda x: x[1] / x[0], reverse=True)
+    total_value = 0
+    knapsack = []
+
+    for item in items:
+        if item[0] <= capacity:
+            knapsack.append(item)
+            total_value += item[1]
+            capacity -= item[0]
+        else:
+            fraction = capacity / item[0]
+            knapsack.append((item[0], item[1] * fraction))
+            total_value += item[1] * fraction
+            break
+
+    return total_value, knapsack
+
+# Example usage:
+items = [(2, 10), (3, 5), (5, 15), (7, 7), (1, 6)]
+capacity = 15
+
+max_value, selected_items = knapsack_fractional(items, capacity)
+print("Max value:", max_value)
+print("Selected items:", selected_items)
+```
+
+In this example, the `knapsack_fractional` function uses a greedy approach to solve the fractional knapsack problem by selecting items with the highest value-to-weight ratio first.
+
+Keep in mind that not all problems can be solved optimally using greedy algorithms. You should carefully analyze the problem to determine whether a greedy approach is appropriate.
