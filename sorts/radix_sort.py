@@ -13,25 +13,13 @@ RADIX = 10
 def flatten_extend(list_of_lists: list[list]) -> list[int]:
     """
     Example:
-    >>> buckets = [
-        [10, 0],
-        [11],
-        [62, 322, 2],
-        [13],
-        [],
-        [],
-        [25],
-        [26],
-        [17],
-        [118],
-        [99]
-    ]
+    >>> buckets = [[10, 0], [11], [62, 322, 2], [13], [], [25], [26], [17], [118], [99]]
     >>> flatten_extend(buckets)
     [10, 0, 11, 62, 322, 2, 13, 25, 26, 17, 118, 99]
     """
     flat_list = []
     for l in list_of_lists:
-        flat_list.extend(row)
+        flat_list.extend(l)
     return flat_list
 
 
