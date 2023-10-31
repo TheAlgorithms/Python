@@ -10,9 +10,8 @@ import math
 from collections.abc import Iterable
 
 
-def bucket_index(
-    value: float, min_value: float, max_value: float, swap_index_m: float
-) -> float:
+def bucket_index(value: float, min_value: float,
+                 max_value: float, swap_index_m: float) -> float:
     """
     This function returns the bucket index
     Args:
@@ -31,14 +30,8 @@ def bucket_index(
     )
 
 
-def swap_index(
-    b_id: int,
-    lb: Iterable,
-    array: Iterable,
-    min_value: float,
-    max_value: float,
-    swap_index_m: float,
-) -> int:
+def swap_index(b_id: int, lb: Iterable, array: Iterable,
+               min_value: float, max_value: float, swap_index_m: float) -> int:
     """
     This function returns the bucket index
     Args:
@@ -62,16 +55,9 @@ def swap_index(
     return ind
 
 
-def rearrange(
-    i1: int,
-    i2: int,
-    original_b: int,
-    unsorted: Iterable,
-    min_value: float,
-    max_value: float,
-    swap_index_m: float,
-    lb: Iterable,
-) -> None:
+def rearrange(i1: int, i2: int, original_b: int, unsorted: Iterable,
+              min_value: float, max_value: float, swap_index_m: float,
+              lb: Iterable) -> None:
     for i in range(i1, i2):
         b_id = bucket_index(unsorted[i], min_value, max_value, swap_index_m)
         while b_id != original_b:
@@ -152,9 +138,9 @@ def flash_sort(unsorted: Iterable) -> Iterable:
     # Sort each bucket
     for i in range(m):
         if i == 0:
-            unsorted[i : l[i]] = insertion_sort(unsorted[i : l[i]])
+            unsorted[i: l[i]] = insertion_sort(unsorted[i: l[i]])
         else:
-            unsorted[l[i - 1] : l[i]] = insertion_sort(unsorted[l[i - 1] : l[i]])
+            unsorted[l[i - 1]: l[i]] = insertion_sort(unsorted[l[i - 1]: l[i]])
 
     return unsorted
 
