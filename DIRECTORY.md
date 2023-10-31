@@ -725,6 +725,7 @@
     * [Carmichael Number](maths/special_numbers/carmichael_number.py)
     * [Catalan Number](maths/special_numbers/catalan_number.py)
     * [Hamming Numbers](maths/special_numbers/hamming_numbers.py)
+    * [Happy Number](maths/special_numbers/happy_number.py)
     * [Harshad Numbers](maths/special_numbers/harshad_numbers.py)
     * [Hexagonal Number](maths/special_numbers/hexagonal_number.py)
     * [Krishnamurthy Number](maths/special_numbers/krishnamurthy_number.py)
