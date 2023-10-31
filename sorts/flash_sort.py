@@ -91,9 +91,9 @@ def flash_sort(unsorted: Iterable) -> Iterable:
     # Sort each bucket
     for i in range(m):
         if i == 0:
-            unsorted[i:l[i]] = insertion_sort(unsorted[i:l[i]])
+            unsorted[i : l[i]] = insertion_sort(unsorted[i : l[i]])
         else:
-            unsorted[l[i - 1]:l[i]] = insertion_sort(unsorted[l[i - 1]:l[i]])
+            unsorted[l[i - 1] : l[i]] = insertion_sort(unsorted[l[i - 1] : l[i]])
 
     return unsorted
 
