@@ -26,8 +26,7 @@ def simple_moving_average(
     >>> simple_moving_average([10, 12, 15], 5)
     [None, None, None]
     >>> simple_moving_average([10, 12, 15, 13, 14, 16, 18, 17, 19, 21], 0)
-    Traceback (most recent call last):
-    ...
+    Traceback (most recent call last)
     ValueError: Window size must be a positive integer
     """
     if window_size < 1:
@@ -50,7 +49,7 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    # Example data (replace with your own time series data)
+    # Example data (replace with your own custom time series data)
     data = [10, 12, 15, 13, 14, 16, 18, 17, 19, 21]
 
     # Specify the window size for the SMA
