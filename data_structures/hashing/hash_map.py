@@ -242,6 +242,25 @@ class HashMap(MutableMapping[KEY, VAL]):
             self._size_down()
 
     def __getitem__(self, key: KEY) -> VAL:
+        """
+        Returns the item at the given key
+
+        >>> hm = HashMap(5)
+        >>> hm._add_item(1, 10)
+        >>> hm.__getitem__(1)
+        10
+
+        >>> hm = HashMap(5)
+        >>> hm._add_item(10, -10)
+        >>> hm._add_item(20, -20)
+        >>> hm.__getitem__(20)
+        -20
+
+        >>> hm = HashMap(5)
+        >>> hm._add_item(-1, 10)
+        >>> hm.__getitem__(-1)
+        10
+        """
         for ind in self._iterate_buckets(key):
             item = self._buckets[ind]
             if item is None:
