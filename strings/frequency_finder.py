@@ -5,7 +5,7 @@ import string
 # Frequency of each English letter taken from https://en.wikipedia.org/wiki/Letter_frequency
 english_letter_freq = {
     # Letter frequencies in percentages
-     "E": 12.70,
+    "E": 12.70,
     "T": 9.06,
     "A": 8.17,
     "O": 7.51,
@@ -37,6 +37,7 @@ english_letter_freq = {
 ETAOIN = "ETAOINSHRDLCUMWFGYPBVKJXQZ"
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
+
 def get_letter_count(message: str) -> dict[str, int]:
     """
     Count the occurrence of each letter in the given message.
@@ -51,11 +52,13 @@ def get_letter_count(message: str) -> dict[str, int]:
 
     return letter_count
 
+
 def get_item_at_index_zero(x: tuple) -> str:
     """
     Helper function to get the first item in a tuple.
     """
     return x[0]
+
 
 def get_frequency_order(message: str) -> str:
     """
@@ -86,6 +89,7 @@ def get_frequency_order(message: str) -> str:
 
     return "".join(freq_order)
 
+
 def english_freq_match_score(message: str) -> int:
     """
     Calculate a match score based on how many of the six most frequent
@@ -106,6 +110,8 @@ def english_freq_match_score(message: str) -> int:
 
     return match_score
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
