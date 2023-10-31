@@ -23,7 +23,7 @@ def insertion_sort(array: list, start: int = 0, end: int = 0) -> list:
     >>> array = [73.568, 73.56, -45.03, 1.7, 0, 89.45]
     >>> insertion_sort(array, 0, len(array))
     [-45.03, 0, 1.7, 73.56, 73.568, 89.45]
-    
+
     """
     end = end or len(array)
     for i in range(start, end):
@@ -66,7 +66,7 @@ def heap_sort(array: list) -> list:
     ['b', 'b', 'd', 'e', 'e', 'f', 'g', 'i', 'm', 'p', 's', 'u', 'v', 'w', 'x', 'z']
     >>> heap_sort([6.2, -45.54, 8465.20, 758.56, -457.0, 0, 1, 2.879, 1.7, 11.7])
     [-457.0, -45.54, 0, 1, 1.7, 2.879, 6.2, 11.7, 758.56, 8465.2]
-    
+
     """
     n = len(array)
 
