@@ -1,5 +1,6 @@
 '''
-This program will search every even number less than the inputted number and then show which numbers passed the test and which didn't.
+This program will search every even number less than the inputted number
+and then show which numbers passed the test and which didn't.
 '''
 
 def isprime(num):
@@ -13,7 +14,7 @@ def isprime(num):
             if (num % i) == 0:
                 value = True
                 break
-        if value:
+        if value==True:
             return False
         else:
             return True
@@ -25,16 +26,16 @@ def istrue(x):
         t=t+1
 
 final_num=int(input("-->"))
-x=4
+test_num=4
 A=[]
 B=[]
-while x <= final_num:
-    if istrue(x)== 1:
-        #print(x,"follows Goldbach's conjecture")
-        A.append(x)
+while test_num <= final_num:
+    if istrue(test_num)== 1:
+        #print(test_num,"follows Goldbach's conjecture")
+        A.append(test_num)
     else:
-        print(x,"does not follow the Goldbach's conjecture")
-        B.append(x)
-    x=x+2
+        print(test_num,"does not follow the Goldbach's conjecture")
+        B.append(test_num)
+    test_num=test_num+2
 print(A, "follow the Goldbach's conjecture")
 print(B, " does not follow the Goldbach's conjecture")
