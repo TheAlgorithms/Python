@@ -39,7 +39,7 @@ def alpha_numerical_sort(unsorted: Iterable):
     str_list = []
 
     # fill each list
-    for i in input_list:
+    for i in unsorted:
         if isinstance(i, str):
             str_list.append(i)
         else:
