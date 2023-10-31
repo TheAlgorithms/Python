@@ -20,7 +20,7 @@
 from collections.abc import Iterable
 
 
-def alpha_numerical_sort(unsorted: Iterable):
+def alpha_numerical_sort(unsorted: Iterable) -> Iterable:
     """
     This function is used to alpha numerical sort an unsorted iterable as a list or a set
     Args:
