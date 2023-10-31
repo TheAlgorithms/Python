@@ -10,6 +10,8 @@
   * [All Subsequences](backtracking/all_subsequences.py)
   * [Coloring](backtracking/coloring.py)
   * [Combination Sum](backtracking/combination_sum.py)
+  * [Crossword Puzzle Solver](backtracking/crossword_puzzle_solver.py)
+  * [Generate Parentheses](backtracking/generate_parentheses.py)
   * [Hamiltonian Cycle](backtracking/hamiltonian_cycle.py)
   * [Knight Tour](backtracking/knight_tour.py)
   * [Match Word Pattern](backtracking/match_word_pattern.py)
@@ -35,6 +37,7 @@
   * [Count 1S Brian Kernighan Method](bit_manipulation/count_1s_brian_kernighan_method.py)
   * [Count Number Of One Bits](bit_manipulation/count_number_of_one_bits.py)
   * [Excess 3 Code](bit_manipulation/excess_3_code.py)
+  * [Find Previous Power Of Two](bit_manipulation/find_previous_power_of_two.py)
   * [Gray Code Sequence](bit_manipulation/gray_code_sequence.py)
   * [Highest Set Bit](bit_manipulation/highest_set_bit.py)
   * [Index Of Rightmost Set Bit](bit_manipulation/index_of_rightmost_set_bit.py)
@@ -54,6 +57,8 @@
 ## Boolean Algebra
   * [And Gate](boolean_algebra/and_gate.py)
   * [Imply Gate](boolean_algebra/imply_gate.py)
+  * [Karnaugh Map Simplification](boolean_algebra/karnaugh_map_simplification.py)
+  * [Multiplexer](boolean_algebra/multiplexer.py)
   * [Nand Gate](boolean_algebra/nand_gate.py)
   * [Nimply Gate](boolean_algebra/nimply_gate.py)
   * [Nor Gate](boolean_algebra/nor_gate.py)
@@ -108,6 +113,7 @@
   * [Rsa Cipher](ciphers/rsa_cipher.py)
   * [Rsa Factorization](ciphers/rsa_factorization.py)
   * [Rsa Key Generator](ciphers/rsa_key_generator.py)
+  * [Running Key Cipher](ciphers/running_key_cipher.py)
   * [Shuffled Shift Cipher](ciphers/shuffled_shift_cipher.py)
   * [Simple Keyword Cypher](ciphers/simple_keyword_cypher.py)
   * [Simple Substitution Cipher](ciphers/simple_substitution_cipher.py)
@@ -150,6 +156,7 @@
   * [Excel Title To Column](conversions/excel_title_to_column.py)
   * [Hex To Bin](conversions/hex_to_bin.py)
   * [Hexadecimal To Decimal](conversions/hexadecimal_to_decimal.py)
+  * [Ipv4 Conversion](conversions/ipv4_conversion.py)
   * [Length Conversion](conversions/length_conversion.py)
   * [Molecular Chemistry](conversions/molecular_chemistry.py)
   * [Octal To Binary](conversions/octal_to_binary.py)
@@ -209,6 +216,7 @@
     * [Red Black Tree](data_structures/binary_tree/red_black_tree.py)
     * [Segment Tree](data_structures/binary_tree/segment_tree.py)
     * [Segment Tree Other](data_structures/binary_tree/segment_tree_other.py)
+    * [Serialize Deserialize Binary Tree](data_structures/binary_tree/serialize_deserialize_binary_tree.py)
     * [Symmetric Tree](data_structures/binary_tree/symmetric_tree.py)
     * [Treap](data_structures/binary_tree/treap.py)
     * [Wavelet Tree](data_structures/binary_tree/wavelet_tree.py)
@@ -410,6 +418,9 @@
   * [Mandelbrot](fractals/mandelbrot.py)
   * [Sierpinski Triangle](fractals/sierpinski_triangle.py)
 
+## Fuzzy Logic
+  * [Fuzzy Operations](fuzzy_logic/fuzzy_operations.py)
+
 ## Genetic Algorithm
   * [Basic String](genetic_algorithm/basic_string.py)
 
@@ -521,6 +532,8 @@
   * [Lu Decomposition](linear_algebra/lu_decomposition.py)
   * Src
     * [Conjugate Gradient](linear_algebra/src/conjugate_gradient.py)
+    * Gaussian Elimination Pivoting
+      * [Gaussian Elimination Pivoting](linear_algebra/src/gaussian_elimination_pivoting/gaussian_elimination_pivoting.py)
     * [Lib](linear_algebra/src/lib.py)
     * [Polynom For Points](linear_algebra/src/polynom_for_points.py)
     * [Power Iteration](linear_algebra/src/power_iteration.py)
@@ -618,12 +631,14 @@
   * [Germain Primes](maths/germain_primes.py)
   * [Greatest Common Divisor](maths/greatest_common_divisor.py)
   * [Hardy Ramanujanalgo](maths/hardy_ramanujanalgo.py)
+  * [Integer Square Root](maths/integer_square_root.py)
   * [Interquartile Range](maths/interquartile_range.py)
   * [Is Int Palindrome](maths/is_int_palindrome.py)
   * [Is Ip V4 Address Valid](maths/is_ip_v4_address_valid.py)
   * [Is Square Free](maths/is_square_free.py)
   * [Jaccard Similarity](maths/jaccard_similarity.py)
   * [Joint Probability Distribution](maths/joint_probability_distribution.py)
+  * [Josephus Problem](maths/josephus_problem.py)
   * [Juggler Sequence](maths/juggler_sequence.py)
   * [Karatsuba](maths/karatsuba.py)
   * [Kth Lexicographic Permutation](maths/kth_lexicographic_permutation.py)
@@ -646,6 +661,7 @@
   * [Monte Carlo Dice](maths/monte_carlo_dice.py)
   * [Number Of Digits](maths/number_of_digits.py)
   * Numerical Analysis
+    * [Adams Bashforth](maths/numerical_analysis/adams_bashforth.py)
     * [Bisection](maths/numerical_analysis/bisection.py)
     * [Bisection 2](maths/numerical_analysis/bisection_2.py)
     * [Integration By Simpson Approx](maths/numerical_analysis/integration_by_simpson_approx.py)
@@ -1223,6 +1239,7 @@
   * [Anagrams](strings/anagrams.py)
   * [Autocomplete Using Trie](strings/autocomplete_using_trie.py)
   * [Barcode Validator](strings/barcode_validator.py)
+  * [Bitap String Match](strings/bitap_string_match.py)
   * [Boyer Moore Search](strings/boyer_moore_search.py)
   * [Camel Case To Snake Case](strings/camel_case_to_snake_case.py)
   * [Can String Be Rearranged As Palindrome](strings/can_string_be_rearranged_as_palindrome.py)
