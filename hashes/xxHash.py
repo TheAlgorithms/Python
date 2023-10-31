@@ -31,6 +31,7 @@ PRIME32_3 = 0xC2B2AE3D
 PRIME32_4 = 0x27D4EB2F
 PRIME32_5 = 0x165667B1
 
+
 def xxhash(data, seed=0):
     """
     Calculate the xxHash hash value for the given data.
@@ -53,8 +54,11 @@ def xxhash(data, seed=0):
         p = 0
         end = length - 16
         while p <= end:
-            input_bytes = data[p:p + 16]
-            input_ints = list(int.from_bytes(input_bytes, byteorder='little', signed=False) for i in range(16))
+            input_bytes = data[p : p + 16]
+            input_ints = list(
+                int.from_bytes(input_bytes, byteorder="little", signed=False)
+                for i in range(16)
+            )
             v1 += input_ints[0] * PRIME32_2
             v1 = (v1 << 13) | (v1 >> 19)
             v1 *= PRIME32_1
@@ -69,7 +73,12 @@ def xxhash(data, seed=0):
             v4 *= PRIME32_1
             p += 16
 
-        hash_value = ((v1 << 1) | (v1 >> 31)) + ((v2 << 7) | (v2 >> 25)) + ((v3 << 12) | (v3 >> 20)) + ((v4 << 18) | (v4 >> 14))
+        hash_value = (
+            ((v1 << 1) | (v1 >> 31))
+            + ((v2 << 7) | (v2 >> 25))
+            + ((v3 << 12) | (v3 >> 20))
+            + ((v4 << 18) | (v4 >> 14))
+        )
     else:
         hash_value = seed + PRIME32_5
 
@@ -77,8 +86,8 @@ def xxhash(data, seed=0):
     p = 0
     end = length
     while p <= end - 4:
-        chunk = data[p:p + 4]
-        chunk_value = int.from_bytes(chunk, byteorder='little', signed=False)
+        chunk = data[p : p + 4]
+        chunk_value = int.from_bytes(chunk, byteorder="little", signed=False)
         hash_value += chunk_value * PRIME32_3
         hash_value = ((hash_value << 17) | (hash_value >> 15)) * PRIME32_4
         p += 4
@@ -89,13 +98,15 @@ def xxhash(data, seed=0):
         hash_value = ((hash_value << 11) | (hash_value >> 21)) * PRIME32_1
         p += 1
 
-    hash_value ^= (hash_value >> 15)
+    hash_value ^= hash_value >> 15
     hash_value *= PRIME32_2
-    hash_value ^= (hash_value >> 13)
+    hash_value ^= hash_value >> 13
     hash_value *= PRIME32_3
-    hash_value ^= (hash_value >> 16)
+    hash_value ^= hash_value >> 16
     return hash_value
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
