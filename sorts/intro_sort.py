@@ -11,6 +11,18 @@ def insertion_sort(array: list, start: int = 0, end: int = 0) -> list:
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
     >>> insertion_sort(array, 0, len(array))
     [1, 2, 4, 6, 7, 8, 8, 12, 14, 14, 22, 23, 27, 45, 56, 79]
+    >>> array = [21, 15, 11, 45, -2, -11, 46]
+    >>> insertion_sort(array, 0, len(array))
+    [-11, -2, 11, 15, 21, 45, 46]
+    >>> array = [-2, 0, 89, 11, 48, 79, 12]
+    >>> insertion_sort(array, 0, len(array))
+    [-2, 0, 11, 12, 48, 79, 89]
+    >>> array = ['a', 'z', 'd', 'p', 'v', 'l', 'o', 'o']
+    >>> insertion_sort(array, 0, len(array))
+    ['a', 'd', 'l', 'o', 'o', 'p', 'v', 'z']
+    >>> array = [73.568, 73.56, -45.03, 1.7, 0, 89.45]
+    >>> insertion_sort(array, 0, len(array))
+    [-45.03, 0, 1.7, 73.56, 73.568, 89.45]
     """
     end = end or len(array)
     for i in range(start, end):
@@ -47,6 +59,12 @@ def heap_sort(array: list) -> list:
     """
     >>> heap_sort([4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12])
     [1, 2, 4, 6, 7, 8, 8, 12, 14, 14, 22, 23, 27, 45, 56, 79]
+    >>> heap_sort([-2, -11, 0, 0, 0, 87, 45, -69, 78, 12, 10, 103, 89, 52])
+    [-69, -11, -2, 0, 0, 0, 10, 12, 45, 52, 78, 87, 89, 103]
+    >>> heap_sort(['b', 'd', 'e', 'f', 'g', 'p', 'x', 'z', 'b', 's', 'e', 'u', 'v'])
+    ['b', 'b', 'd', 'e', 'e', 'f', 'g', 'p', 's', 'u', 'v', 'x', 'z']
+    >>> heap_sort([6.2, -45.54, 8465.20, 758.56, -457.0, 0, 1, 2.879, 1.7, 11.7])
+    [-457.0, -45.54, 0, 1, 1.7, 2.879, 6.2, 11.7, 758.56, 8465.2]
     """
     n = len(array)
 
@@ -91,6 +109,15 @@ def partition(array: list, low: int, high: int, pivot: int) -> int:
     >>> array = [4, 2, 6, 8, 1, 7, 8, 22, 14, 56, 27, 79, 23, 45, 14, 12]
     >>> partition(array, 0, len(array), 12)
     8
+    >>> array = [21, 15, 11, 45, -2, -11, 46]
+    >>> partition(array, 0, len(array), 15)
+    3
+    >>> array = ['a', 'z', 'd', 'p', 'v', 'l', 'o', 'o']
+    >>> partition(array, 0, len(array), 'p')
+    5
+    >>> array = [6.2, -45.54, 8465.20, 758.56, -457.0, 0, 1, 2.879, 1.7, 11.7]
+    >>> partition(array, 0, len(array), 2.879)
+    6
     """
     i = low
     j = high
