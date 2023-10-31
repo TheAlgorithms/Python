@@ -53,7 +53,20 @@ class Heap(Generic[T]):
         return str(self.h)
 
     def parent_index(self, child_idx: int) -> int | None:
-        """return the parent index of given child"""
+        """
+        return the parent index of given child
+
+        >>> h = Heap()
+        >>> h.build_max_heap([103, 9, 1, 7, 11, 15, 25, 201, 209, 107, 5])
+        >>> h.parent_index(11)
+        5
+        >>> h.parent_index(209)
+        104
+        >>> h.parent_index(1)
+        0
+        >>> h.parent_index(15)
+        7
+        """
         if child_idx > 0:
             return (child_idx - 1) // 2
         return None
