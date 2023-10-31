@@ -7,26 +7,23 @@ def isprime(num):
     value = False
 
     if num == 1:
-        # print(num, "is not a prime number")
+        #print(num, "is not a prime number")
         pass
     elif num > 1:
         for i in range(2, num):
             if (num % i) == 0:
                 value = True
                 break
-        if value==True:
+        if value == True:
             return False
         else:
             return True
-
-
 def istrue(x):
-    t = 0
-    while t <= x / 2:
-        if isprime(t) == 1 and isprime(x - t) == 1:
+    t=0
+    while t<= x/2:
+        if isprime(t) == 1 and isprime(x-t) == 1:
             return True
-        t = t + 1
-
+        t=t+1
 
 final_num=int(input("-->"))
 test_num=4
@@ -41,4 +38,4 @@ while test_num <= final_num:
         B.append(test_num)
     test_num=test_num+2
 print(A, "follow the Goldbach's conjecture")
-print(B, " does not follow the Goldbach's conjecture")
+print(B, "does not follow the Goldbach's conjecture")
