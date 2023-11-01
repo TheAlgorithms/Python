@@ -25,18 +25,6 @@ def get_english_count(message: str) -> float:
 
 
 def remove_non_letters(message: str) -> str:
-    """
-    >>> remove_non_letters("Hi! how are you?")
-    'Hi how are you'
-    >>> remove_non_letters("P^y%t)h@o*n")
-    'Python'
-    >>> remove_non_letters("1+1=2")
-    ''
-    >>> remove_non_letters("www.google.com/")
-    'wwwgooglecom'
-    >>> remove_non_letters("")
-    ''
-    """
     return "".join(symbol for symbol in message if symbol in LETTERS_AND_SPACE)
 
 
