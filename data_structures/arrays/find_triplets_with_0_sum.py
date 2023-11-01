@@ -41,7 +41,7 @@ def find_triplets_with_0_sum_hashing(arr: list) -> list:
         >>> find_triplets_with_0_sum_hashing([0, 0, 0])
         [[0, 0, 0]]
         >>> find_triplets_with_0_sum_hashing([1, 2, 3, 0, -1, -2, -3])
-        [[-3, 1, 2], [-3, 0, 3], [-2, 0, 2], [-2, -1, 3], [-1, 0, 1]]
+        [[-1, 0, 1], [-3, 1, 2], [-2, 0, 2], [-2, -1, 3], [-3, 0, 3]]
 
     Time complexity: O(N^2)
     Auxiliary Space: O(N)
