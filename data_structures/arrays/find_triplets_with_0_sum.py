@@ -23,6 +23,7 @@ def find_triplets_with_0_sum(nums: list) -> list:
         for x in sorted({abc for abc in combinations(sorted(nums), 3) if not sum(abc)})
     ]
 
+
 def find_triplets_with_0_sum_hashing(arr: list) -> list:
     """
     Function for finding the triplets with a given sum in the array using hashing.
