@@ -43,12 +43,12 @@ def to_simple_case(str_: str) -> str:
 
 def to_complex_case(text: str, upper: bool, separator: str) -> str:
     """
-    Returns the string concatenated with the delimeter we provide.
+    Returns the string concatenated with the delimiter we provide.
 
     Parameters:
     @text: The string on which we want to perform operation
     @upper: Boolean value to determine whether we want capitalized result or not
-    @separator: The delimeter with which we want to concatenate words
+    @separator: The delimiter with which we want to concatenate words
 
     Examples:
     >>> to_complex_case("one two 31235three4four", True, "_")
