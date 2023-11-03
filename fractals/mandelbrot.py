@@ -87,7 +87,7 @@ def get_color_coded_rgb(distance: float) -> tuple:
 def get_image(
     image_width: int = 800,
     image_height: int = 600,
-    figure_center_x: float = -0.6,
+    figure_center_x: float = 0.6,
     figure_center_y: float = 0,
     figure_width: float = 3.2,
     max_step: int = 50,
