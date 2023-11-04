@@ -145,6 +145,23 @@ class BinarySearchTree:
             self.root = new_children
 
     def empty(self) -> bool:
+        """
+        Returns True if the tree does not have any element(s).
+        False if the tree does have element(s).
+
+        >>> bst = BinarySearchTree()
+        >>> bst.insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
+        >>> bst.empty()
+        False
+
+        >>> bst = BinarySearchTree()
+        >>> bst.insert(1)
+        >>> bst.empty()
+        False
+
+        >>> BinarySearchTree().empty()
+        True
+        """
         return self.root is None
 
     def __insert(self, value) -> None:
