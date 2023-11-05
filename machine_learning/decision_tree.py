@@ -67,7 +67,7 @@ class DecisionTree:
         >>> dt.train(np.array([1,2,3,4,5]),np.array([[0,0,0,1,1],[0,0,0,1,1]]))
         Traceback (most recent call last):
             ...
-        ValueError: X and y have different lengths
+        ValueError: x and y have different lengths
 
         4. Try to train when x & y are of the same length but different dimensions
         >>> dt = DecisionTree()
