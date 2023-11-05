@@ -69,9 +69,6 @@ class DecisionTree:
         >>> dt = DecisionTree()
         >>> dt.train(np.array([1,2,3,4,5]),np.array([[1],[2],[3],[4],[5]]))
         Error: Data set labels must be one dimensional
-        """
-
-        """
         this section is to check that the inputs conform to our dimensionality
         constraints
         """
