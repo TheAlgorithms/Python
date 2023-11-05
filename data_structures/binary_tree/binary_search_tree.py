@@ -10,8 +10,7 @@ Example
              / \   /
             4   7 13
 
->>> t = BinarySearchTree()
->>> t.insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
+>>> t = BinarySearchTree().insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
 >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
 8 3 1 6 4 7 10 14 13
 
@@ -40,7 +39,16 @@ Other example:
 >>> testlist = (8, 3, 6, 1, 10, 14, 13, 4, 7)
 >>> t = BinarySearchTree()
 >>> for i in testlist:
-...     t.insert(i)
+...     t.insert(i)  # doctest: +ELLIPSIS
+BinarySearchTree(root=8)
+BinarySearchTree(root={'8': (3, None)})
+BinarySearchTree(root={'8': ({'3': (None, 6)}, None)})
+BinarySearchTree(root={'8': ({'3': (1, 6)}, None)})
+BinarySearchTree(root={'8': ({'3': (1, 6)}, 10)})
+BinarySearchTree(root={'8': ({'3': (1, 6)}, {'10': (None, 14)})})
+BinarySearchTree(root={'8': ({'3': (1, 6)}, {'10': (None, {'14': (13, None)})})})
+BinarySearchTree(root={'8': ({'3': (1, {'6': (4, None)})}, {'10': (None, {'14': ...
+BinarySearchTree(root={'8': ({'3': (1, {'6': (4, 7)})}, {'10': (None, {'14': (13, ...
 
 Prints all the elements of the list in order traversal
 >>> print(t)
@@ -84,7 +92,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Self
 
 
 @dataclass
@@ -145,7 +153,18 @@ class BinarySearchTree:
             self.root = new_children
 
     def empty(self) -> bool:
-        return self.root is None
+        """
+        Returns True if the tree does not have any element(s).
+        False if the tree has element(s).
+
+        >>> BinarySearchTree().empty()
+        True
+        >>> BinarySearchTree().insert(1).empty()
+        False
+        >>> BinarySearchTree().insert(8, 3, 6, 1, 10, 14, 13, 4, 7).empty()
+        False
+        """
+        return not self.root
 
     def __insert(self, value) -> None:
         """
@@ -173,9 +192,10 @@ class BinarySearchTree:
                         parent_node = parent_node.right
             new_node.parent = parent_node
 
-    def insert(self, *values) -> None:
+    def insert(self, *values) -> Self:
         for value in values:
             self.__insert(value)
+        return self
 
     def search(self, value) -> Node | None:
         if self.empty():
