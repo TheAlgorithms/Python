@@ -51,11 +51,11 @@ class DecisionTree:
         train does not have a return value
 
         Examples:
-        1. Try to train when x & y are of same length & 1 dimesions (No errors)
+        1. Try to train when x & y are of same length & 1 dimensions (No errors)
         >>> dt = DecisionTree()
         >>> dt.train(np.array([10,20,30,40,50]),np.array([0,0,0,1,1]))
 
-        2. Try to train when x is 2 dimesions
+        2. Try to train when x is 2 dimensions
         >>> dt = DecisionTree()
         >>> dt.train(np.array([[1,2,3,4,5],[1,2,3,4,5]]),np.array([0,0,0,1,1]))
         Error: Input data set must be one dimensional
@@ -65,7 +65,7 @@ class DecisionTree:
         >>> dt.train(np.array([1,2,3,4,5]),np.array([[0,0,0,1,1],[0,0,0,1,1]]))
         Error: X and y have different lengths
 
-        4. Try to train when x & y are of same length but diffetent dimesions
+        4. Try to train when x & y are of same length but diffetent dimensions
         >>> dt = DecisionTree()
         >>> dt.train(np.array([1,2,3,4,5]),np.array([[1],[2],[3],[4],[5]]))
         Error: Data set labels must be one dimensional
