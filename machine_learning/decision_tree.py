@@ -18,7 +18,7 @@ class DecisionTree:
     def mean_squared_error(self, labels, prediction):
         """
         mean_squared_error:
-        @param labels: a one dimensional numpy array
+        @param labels: a one-dimensional numpy array
         @param prediction: a floating point value
         return value: mean_squared_error calculates the error if prediction is used to
             estimate the labels
@@ -44,11 +44,11 @@ class DecisionTree:
     def train(self, x, y):
         """
         train:
-        @param x: a one dimensional numpy array
-        @param y: a one dimensional numpy array.
+        @param x: a one-dimensional numpy array
+        @param y: a one-dimensional numpy array.
         The contents of y are the labels for the corresponding X values
 
-        train does not have a return value
+        train() does not have a return value
 
         Examples:
         1. Try to train when x & y are of same length & 1 dimensions (No errors)
@@ -58,30 +58,33 @@ class DecisionTree:
         2. Try to train when x is 2 dimensions
         >>> dt = DecisionTree()
         >>> dt.train(np.array([[1,2,3,4,5],[1,2,3,4,5]]),np.array([0,0,0,1,1]))
-        Error: Input data set must be one dimensional
+        Traceback (most recent call last):
+            ...
+        ValueError: Input data set must be one-dimensional
 
-        3. Try to train when x and y are not of same length
+        3. Try to train when x and y are not of the same length
         >>> dt = DecisionTree()
         >>> dt.train(np.array([1,2,3,4,5]),np.array([[0,0,0,1,1],[0,0,0,1,1]]))
-        Error: X and y have different lengths
+        Traceback (most recent call last):
+            ...
+        ValueError: X and y have different lengths
 
-        4. Try to train when x & y are of same length but diffetent dimensions
+        4. Try to train when x & y are of the same length but different dimensions
         >>> dt = DecisionTree()
         >>> dt.train(np.array([1,2,3,4,5]),np.array([[1],[2],[3],[4],[5]]))
-        Error: Data set labels must be one dimensional
+        Traceback (most recent call last):
+            ...
+        ValueError: Data set labels must be one-dimensional
 
         This section is to check that the inputs conform to our dimensionality
         constraints
         """
         if x.ndim != 1:
-            print("Error: Input data set must be one dimensional")
-            return
+            raise ValueError("Input data set must be one-dimensional")
         if len(x) != len(y):
-            print("Error: X and y have different lengths")
-            return
+            raise ValueError("x and y have different lengths")
         if y.ndim != 1:
-            print("Error: Data set labels must be one dimensional")
-            return
+            raise ValueError("Data set labels must be one-dimensional")
 
         if len(x) < 2 * self.min_leaf_size:
             self.prediction = np.mean(y)
