@@ -10,8 +10,7 @@ Example
              / \   /
             4   7 13
 
->>> t = BinarySearchTree()
->>> t.insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
+>>> t = BinarySearchTree().insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
 >>> print(" ".join(repr(i.value) for i in t.traversal_tree()))
 8 3 1 6 4 7 10 14 13
 
@@ -40,7 +39,16 @@ Other example:
 >>> testlist = (8, 3, 6, 1, 10, 14, 13, 4, 7)
 >>> t = BinarySearchTree()
 >>> for i in testlist:
-...     t.insert(i)
+...     t.insert(i)  # doctest: +ELLIPSIS
+BinarySearchTree(root=8)
+BinarySearchTree(root={'8': (3, None)})
+BinarySearchTree(root={'8': ({'3': (None, 6)}, None)})
+BinarySearchTree(root={'8': ({'3': (1, 6)}, None)})
+BinarySearchTree(root={'8': ({'3': (1, 6)}, 10)})
+BinarySearchTree(root={'8': ({'3': (1, 6)}, {'10': (None, 14)})})
+BinarySearchTree(root={'8': ({'3': (1, 6)}, {'10': (None, {'14': (13, None)})})})
+BinarySearchTree(root={'8': ({'3': (1, {'6': (4, None)})}, {'10': (None, {'14': ...
+BinarySearchTree(root={'8': ({'3': (1, {'6': (4, 7)})}, {'10': (None, {'14': (13, ...
 
 Prints all the elements of the list in order traversal
 >>> print(t)
