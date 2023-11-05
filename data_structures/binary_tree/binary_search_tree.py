@@ -84,7 +84,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Self
 
 
 @dataclass
@@ -147,22 +147,16 @@ class BinarySearchTree:
     def empty(self) -> bool:
         """
         Returns True if the tree does not have any element(s).
-        False if the tree does have element(s).
-
-        >>> bst = BinarySearchTree()
-        >>> bst.insert(8, 3, 6, 1, 10, 14, 13, 4, 7)
-        >>> bst.empty()
-        False
-
-        >>> bst = BinarySearchTree()
-        >>> bst.insert(1)
-        >>> bst.empty()
-        False
+        False if the tree has element(s).
 
         >>> BinarySearchTree().empty()
         True
+        >>> BinarySearchTree().insert(1).empty()
+        False
+        >>> BinarySearchTree().insert(8, 3, 6, 1, 10, 14, 13, 4, 7).empty()
+        False
         """
-        return self.root is None
+        return not self.root
 
     def __insert(self, value) -> None:
         """
@@ -190,9 +184,10 @@ class BinarySearchTree:
                         parent_node = parent_node.right
             new_node.parent = parent_node
 
-    def insert(self, *values) -> None:
+    def insert(self, *values) -> Self:
         for value in values:
             self.__insert(value)
+        return self
 
     def search(self, value) -> Node | None:
         if self.empty():
