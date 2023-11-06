@@ -54,28 +54,28 @@ def find_triplets_with_0_sum_hashing(arr: list) -> list:
     output_arr = []
 
     # Set the initial element as arr[i].
-    for i, item in enumerate(arr[:-2]):
+    for index, item in enumerate(arr[:-2]):
         # to store second elements that can complement the final sum.
         set_initialize = set()
 
         # current sum needed for reaching the target sum
-        current_sum = target_sum - arr[i]
+        current_sum = target_sum - item
 
         # Traverse the subarray arr[i+1:].
-        for other_item in arr[i + 1 :]:
+        for other_item in arr[index + 1 :]:
             # required value for the second element
-            required_value = current_sum - arr[other_item]
+            required_value = current_sum - other_item
 
             # Verify if the desired value exists in the set.
             if required_value in set_initialize:
                 # finding triplet elements combination.
-                combination_array = sorted([arr[i], arr[other_item], required_value])
+                combination_array = sorted([item, other_item, required_value])
                 if combination_array not in output_arr:
                     output_arr.append(combination_array)
 
             # Include the current element in the set
             # for subsequent complement verification.
-            set_initialize.add(arr[other_item])
+            set_initialize.add(other_item)
 
     # Return all the triplet combinations.
     return output_arr
