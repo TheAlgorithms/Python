@@ -62,7 +62,7 @@ def find_triplets_with_0_sum_hashing(arr: list) -> list:
         current_sum = target_sum - arr[i]
 
         # Traverse the subarray arr[i+1:].
-        for other_item in arr[i+1:]:
+        for other_item in arr[i + 1 :]:
             # required value for the second element
             required_value = current_sum - arr[other_item]
 
