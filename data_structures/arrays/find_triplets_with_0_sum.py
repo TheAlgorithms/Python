@@ -1,7 +1,7 @@
 from itertools import combinations
 
 
-def find_triplets_with_0_sum(nums: list) -> list:
+def find_triplets_with_0_sum(nums: list[int]) -> list[list[int]]:
     """
     Given a list of integers, return elements a, b, c such that a + b + c = 0.
     Args:
@@ -24,7 +24,7 @@ def find_triplets_with_0_sum(nums: list) -> list:
     ]
 
 
-def find_triplets_with_0_sum_hashing(arr: list) -> list:
+def find_triplets_with_0_sum_hashing(arr: list[int]) -> list[list[int]]:
     """
     Function for finding the triplets with a given sum in the array using hashing.
 
@@ -79,3 +79,9 @@ def find_triplets_with_0_sum_hashing(arr: list) -> list:
 
     # Return all the triplet combinations.
     return output_arr
+
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
