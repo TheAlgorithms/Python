@@ -41,7 +41,17 @@ class SkewNode(Generic[T]):
     def merge(
         root1: SkewNode[T] | None, root2: SkewNode[T] | None
     ) -> SkewNode[T] | None:
-        """Merge 2 nodes together."""
+        """
+        Merge 2 nodes together.
+        >>> SkewNode.merge(SkewNode(10),SkewNode(-10.5)).value
+        -10.5
+        >>> SkewNode.merge(SkewNode(10),SkewNode(10.5)).value
+        10
+        >>> SkewNode.merge(SkewNode(10),SkewNode(10)).value
+        10
+        >>> SkewNode.merge(SkewNode(-100),SkewNode(-10.5)).value
+        -100
+        """
         if not root1:
             return root2
 
