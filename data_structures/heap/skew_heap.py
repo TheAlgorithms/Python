@@ -21,7 +21,20 @@ class SkewNode(Generic[T]):
 
     @property
     def value(self) -> T:
-        """Return the value of the node."""
+        """
+        Return the value of the node.
+
+        >>> sn = SkewNode(10)
+        >>> sn.value
+        10
+        >>> sn = SkewNode(-10.5)
+        >>> sn.value
+        -10.5
+        >>> sn = SkewNode()
+        Traceback (most recent call last):
+        ...
+        TypeError: SkewNode.__init__() missing 1 required positional argument: 'value'
+        """
         return self._value
 
     @staticmethod
