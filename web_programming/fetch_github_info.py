@@ -36,6 +36,8 @@ USER_TOKEN = os.environ.get("USER_TOKEN", "")
 def fetch_github_info(auth_token: str) -> dict[Any, Any]:
     """
     Fetch GitHub info of a user using the requests module
+    Input: auth_token - github user token
+    Output: json data about user from API request, in the form of a Python dictionary
     """
     headers = {
         "Authorization": f"token {auth_token}",
