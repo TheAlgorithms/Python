@@ -112,8 +112,8 @@ def product_sum_iterative(arr: list[int | list]) -> int:
             eg. queue -> [(arr, depth, multiplication_factor)]
 
         2. Loop until queue is empty
-            1. Pop starting element of queue
-            2. Iterate on starting element of queue
+            1. Take front item from Queue and pop it
+            2. Iterate on front element
                 If current element is nested list
                     - then add that into queue with updated depth
                       and multiplication factor
@@ -128,33 +128,37 @@ def product_sum_iterative(arr: list[int | list]) -> int:
 
         Step 0
             Queue - [([5, 2, [-7, 1], 3, [6, [-13, 8], 4]], 1, 1)]
-            top element - [5, 2, [-7, 1], 3, [6, [-13, 8], 4]]
-            depth - 1
-            multiplication factor - 1
+            Queue front item -
+                List - [5, 2, [-7, 1], 3, [6, [-13, 8], 4]]
+                depth - 1
+                multiplication factor - 1
 
             product sum = 0 (previous) + 5 * 1 + 2 * 1 + 3 * 1 = 10
         -------------------------------------------------------
         Step 1
             Queue - [([-7, 1], 2, 2), ([6, [-13, 8], 4], 2, 2)]
-            top element - [-7, 1]
-            depth - 2
-            multiplication factor - 2
+            Queue front item -
+                List - [-7, 1]
+                depth - 2
+                multiplication factor - 2
 
             product sum = 10 (previous) +  (-7) * 2 + 1 * 2 = -2
         -------------------------------------------------------
         Step 2
             Queue - [([6, [-13, 8], 4], 2, 2)]
-            top element - [6, [-13, 8], 4]
-            depth - 2
-            multiplication factor - 2
+            Queue front item -
+                List - [6, [-13, 8], 4]
+                depth - 2
+                multiplication factor - 2
 
             product sum = -2 (previous) + 6 * 2 +  4 * 2 = 18
         -------------------------------------------------------
         Step 3
             Queue - [([-13, 8], 3, 6)]
-            top element - [-13, 8]
-            depth - 3
-            multiplication factor - 6
+            Queue front item -
+                List - [-13, 8]
+                depth - 3
+                multiplication factor - 6
 
             product sum = 18 (previous) + (-13) * 6 + 8 * 6 = -12
         -------------------------------------------------------
@@ -182,9 +186,9 @@ def product_sum_iterative(arr: list[int | list]) -> int:
     product_sum = 0
 
     while queue:
-        starting_element, depth, multiplication_factor = queue.pop(0)
+        queue_front_list, depth, multiplication_factor = queue.pop(0)
 
-        for element in starting_element:
+        for element in queue_front_list:
             if isinstance(element, list):
                 queue.append((element, depth + 1, multiplication_factor * (depth + 1)))
             else:
