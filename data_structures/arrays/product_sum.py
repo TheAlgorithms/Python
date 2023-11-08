@@ -15,9 +15,11 @@ the product sum is x + 2 * (y + 3z).
 
 Example Input:
 [5, 2, [-7, 1], 3, [6, [-13, 8], 4]]
-Output: 12
+Output: -12
 
 """
+
+from timeit import timeit
 
 
 def product_sum(arr: list[int | list], depth: int) -> int:
@@ -92,35 +94,70 @@ def product_sum_array(array: list[int | list]) -> int:
     return product_sum(array, 1)
 
 
-def product_sum_iterative(arr: list[int | list | set | tuple]) -> int:
+def product_sum_iterative(arr: list[int | list]) -> int:
     """
-    Calculates the product sum of an array using iterative approach.
-
-    Logic :
-        1. Loop until input list have nested list/tuple/set
-            1. iterate on each item in input array
-            2. if item is nested list/tuple/set then
-                - multiply the nested item with it's depth and add it's elements
-                  to new array
-            3. if item is not nested then
-                add item to total sum
-            4. update old array with new array and increment depth value
-
-    Algorithm flow example ->
-        Step 1 --> Array - [5, 2, [-7, 1], 3, [6, [-13, 8], 4]]
-                   total sum = 0 + () = 0
-        Step 2 --> Array - [-7, 1, -7, 1, 6, [-13, 8], 4, 6, [-13, 8], 4]
-                   total sum = 0 + (5 + 2 + 3) = 10
-        Step 3 --> Array - [-13, 8, -13, 8, -13, 8, -13, 8, -13, 8, -13, 8]
-                   total sum = 10 + (-7 + 1 -7 + 1 + 6 + 4 + 6 + 4) = 18
-        Step 4 --> Array - [-13, 8, -13, 8, -13, 8, -13, 8, -13, 8, -13, 8]
-                   total sum=18 +(-13 + 8 -13 + 8 -13 + 8 -13 + 8 -13 + 8 -13 + 8)= -12
+    It Calculates the product sum of an array using iterative approach.
+    It's similar to BFS algorithm (Breadth first search algorithm).
+    It's won't run into stack overflow as compared to recursion approach
 
     Args:
-        array(List[Union[int, List, Set, Tuple]]): The array of integers/lists/tuple/set
+        array(List[Union[int, List]]): The array of integers/lists
 
     Returns:
         int: The product sum of the array.
+
+    Logic :
+        1. Initialize a queue which stores the list, current
+            depth and it's multiplication factor
+            eg. queue -> [(arr, depth, multiplication_factor)]
+
+        2. Loop until queue is empty
+            1. Pop starting element of queue
+            2. Iterate on starting element of queue
+                If current element is nested list
+                    - then add that into queue with updated depth
+                      and multiplication factor
+                Else if current element is not nested
+                    - then update product sum variable by multiplying
+                      current element with multiplicaton factor
+
+    Algorithm flow example ->
+        Input list - [5, 2, [-7, 1], 3, [6, [-13, 8], 4]]
+
+        Initialize queue - [([5, 2, [-7, 1], 3, [6, [-13, 8], 4]], 1, 1)]
+
+        Step 0
+            Queue - [([5, 2, [-7, 1], 3, [6, [-13, 8], 4]], 1, 1)]
+            top element - [5, 2, [-7, 1], 3, [6, [-13, 8], 4]]
+            depth - 1
+            multiplication factor - 1
+
+            product sum = 0 (previous) + 5 * 1 + 2 * 1 + 3 * 1 = 10
+        -------------------------------------------------------
+        Step 1
+            Queue - [([-7, 1], 2, 2), ([6, [-13, 8], 4], 2, 2)]
+            top element - [-7, 1]
+            depth - 2
+            multiplication factor - 2
+
+            product sum = 10 (previous) +  (-7) * 2 + 1 * 2 = -2
+        -------------------------------------------------------
+        Step 2
+            Queue - [([6, [-13, 8], 4], 2, 2)]
+            top element - [6, [-13, 8], 4]
+            depth - 2
+            multiplication factor - 2
+
+            product sum = -2 (previous) + 6 * 2 +  4 * 2 = 18
+        -------------------------------------------------------
+        Step 3
+            Queue - [([-13, 8], 3, 6)]
+            top element - [-13, 8]
+            depth - 3
+            multiplication factor - 6
+
+            product sum = 18 (previous) + (-13) * 6 + 8 * 6 = -12
+        -------------------------------------------------------
 
     Examples:
         >>> product_sum_iterative([1, 2, 3])
@@ -135,36 +172,49 @@ def product_sum_iterative(arr: list[int | list | set | tuple]) -> int:
         1.5
         >>> product_sum_iterative([1, -2])
         -1
-
+        >>> product_sum_iterative([5, 2, [-7, 1], 3, [6, [-13, 8], 4]])
+        -12
     """
 
-    # depth of the nested list/tuple/set
-    next_depth = 2
+    # Initialize queue with depth and multiplication factor
+    queue = [(arr, 1, 1)]
 
-    # flag to check whether list has nested items or not
-    nested_list_check = True
+    product_sum = 0
 
-    total_sum = 0
+    while queue:
+        starting_element, depth, multiplication_factor = queue.pop(0)
 
-    while nested_list_check:
-        # list to store new items
-        new_arr = []
-        nested_list_check = False
-
-        for item in arr:
-            if isinstance(item, list | tuple | set):
-                new_arr.extend(list(item) * next_depth)
-                nested_list_check = True
+        for element in starting_element:
+            if isinstance(element, list):
+                queue.append((element, depth + 1, multiplication_factor * (depth + 1)))
             else:
-                total_sum += item
+                product_sum += element * multiplication_factor
 
-        arr = new_arr
-        next_depth += 1
+    return product_sum
 
-    return total_sum
+
+def benchmark() -> None:
+    """
+    Benchmark code comparing different version.
+    """
+
+    setup = "from __main__ import product_sum_array, product_sum_iterative"
+
+    print(
+        timeit("product_sum_array([5, 2, [-7, 1], 3, [6, [-13, 8], 4]])", setup=setup)
+    )
+    # 1.1448657000437379
+
+    print(
+        timeit(
+            "product_sum_iterative([5, 2, [-7, 1], 3, [6, [-13, 8], 4]])", setup=setup
+        )
+    )
+    # 1.6824490998405963
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    benchmark()
