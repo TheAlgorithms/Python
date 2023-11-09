@@ -47,7 +47,7 @@ class Stack(Generic[T]):
         >>> S.push(20)
         Traceback (most recent call last):
         ...
-        stack.StackOverflowError
+        data_structures.stacks.stack.StackOverflowError
 
         """
         if len(self.stack) >= self.limit:
@@ -67,7 +67,7 @@ class Stack(Generic[T]):
         >>> Stack().pop()
         Traceback (most recent call last):
             ...
-        stack.StackUnderflowError
+        data_structures.stacks.stack.StackUnderflowError
         """
         if not self.stack:
             raise StackUnderflowError
@@ -86,7 +86,7 @@ class Stack(Generic[T]):
         >>> Stack().peek()
         Traceback (most recent call last):
             ...
-        stack.StackUnderflowError
+        data_structures.stacks.stack.StackUnderflowError
         """
         if not self.stack:
             raise StackUnderflowError
