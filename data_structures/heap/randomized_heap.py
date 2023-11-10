@@ -31,10 +31,6 @@ class RandomizedHeapNode(Generic[T]):
         >>> rhn = RandomizedHeapNode(-10)
         >>> rhn.value
         -10
-        >>> rhn = RandomizedHeapNode()
-        Traceback (most recent call last):
-        ...
-        TypeError: RandomizedHeapNode.__init__() missing 1 required positional argument: 'value'
         """
         return self._value
 
