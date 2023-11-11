@@ -36,13 +36,13 @@ class Stack(Generic[T]):
         """
         Push an element to the top of the stack.
 
-        >>> S =Stack(2) # stack size = 2
+        >>> S = Stack(2) # stack size = 2
         >>> S.push(10)
         >>> S.push(20)
         >>> print(S)
         [10, 20]
 
-        >>> S =Stack(1) # stack size = 1
+        >>> S = Stack(1) # stack size = 1
         >>> S.push(10)
         >>> S.push(20)
         Traceback (most recent call last):
@@ -147,12 +147,12 @@ class Stack(Generic[T]):
 
         >>> S = Stack(3)
         >>> S.push(10)
-        >>> S.__contains__(10)
+        >>> 10 in S
         True
 
         >>> S = Stack(3)
         >>> S.push(10)
-        >>> S.__contains__(20)
+        >>> 20 in S
         False
         """
         return item in self.stack
