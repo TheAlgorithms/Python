@@ -43,17 +43,17 @@ class RandomizedHeapNode(Generic[T]):
 
         >>> rhn1 = RandomizedHeapNode(10)
         >>> rhn2 = RandomizedHeapNode(20)
-        >>> RandomizedHeapNode.merge(rhn1,rhn2).value
+        >>> RandomizedHeapNode.merge(rhn1, rhn2).value
         10
 
         >>> rhn1 = RandomizedHeapNode(20)
         >>> rhn2 = RandomizedHeapNode(10)
-        >>> RandomizedHeapNode.merge(rhn1,rhn2).value
+        >>> RandomizedHeapNode.merge(rhn1, rhn2).value
         10
 
         >>> rhn1 = RandomizedHeapNode(5)
         >>> rhn2 = RandomizedHeapNode(0)
-        >>> RandomizedHeapNode.merge(rhn1,rhn2).value
+        >>> RandomizedHeapNode.merge(rhn1, rhn2).value
         0
         """
         if not root1:
