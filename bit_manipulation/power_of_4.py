@@ -52,9 +52,10 @@ def power_of_4(number: int) -> bool:
     if number <= 0:
         raise ValueError("number must be positive")
     if number & (number - 1) == 0:
-        while (number!=1 and number!=2):
+        while number != 1 and number != 2:
             number >>= 2
         return number == 1
+
 
 if __name__ == "__main__":
     import doctest
