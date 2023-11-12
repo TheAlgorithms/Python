@@ -23,51 +23,47 @@ class SkewNode(Generic[T]):
     def value(self) -> T:
         """
         Return the value of the node.
-"""
-Return the value of the node.
-
->>> sn = SkewNode(0)
->>> sn.value
-0
-
->>> sn = SkewNode(3.14159)
->>> sn.value
-3.14159
-
->>> sn = SkewNode("hello")
->>> sn.value
-'hello'
-
->>> sn = SkewNode(None)
->>> sn.value
-None
-
->>> sn = SkewNode(True)
->>> sn.value
-True
-
->>> sn = SkewNode([])
->>> sn.value
-[]
-
->>> sn = SkewNode({})
->>> sn.value
-{}
-
->>> sn = SkewNode(set())
->>> sn.value
-set()
-
->>> sn = SkewNode(0.0)
->>> sn.value
-0.0
-
->>> sn = SkewNode(-1e-10)
->>> sn.value
--1e-10
-"""
-
-
+        
+        >>> sn = SkewNode(0)
+        >>> sn.value
+        0
+        
+        >>> sn = SkewNode(3.14159)
+        >>> sn.value
+        3.14159
+        
+        >>> sn = SkewNode("hello")
+        >>> sn.value
+        'hello'
+        
+        >>> sn = SkewNode(None)
+        >>> sn.value
+        None
+        
+        >>> sn = SkewNode(True)
+        >>> sn.value
+        True
+        
+        >>> sn = SkewNode([])
+        >>> sn.value
+        []
+        
+        >>> sn = SkewNode({})
+        >>> sn.value
+        {}
+        
+        >>> sn = SkewNode(set())
+        >>> sn.value
+        set()
+        
+        >>> sn = SkewNode(0.0)
+        >>> sn.value
+        0.0
+        
+        >>> sn = SkewNode(-1e-10)
+        >>> sn.value
+        -1e-10
+        
         >>> sn = SkewNode(10)
         >>> sn.value
         10
