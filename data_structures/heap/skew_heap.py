@@ -31,7 +31,7 @@ class SkewNode(Generic[T]):
         >>> SkewNode("hello").value
         'hello'
         >>> SkewNode(None).value
-        
+
         >>> SkewNode(True).value
         True
         >>> SkewNode([]).value
