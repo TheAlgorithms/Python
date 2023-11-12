@@ -24,53 +24,31 @@ class SkewNode(Generic[T]):
         """
         Return the value of the node.
 
-        >>> sn = SkewNode(0)
-        >>> sn.value
+        >>> SkewNode(0).value
         0
-
-        >>> sn = SkewNode(3.14159)
-        >>> sn.value
+        >>> SkewNode(3.14159).value
         3.14159
-
-        >>> sn = SkewNode("hello")
-        >>> sn.value
+        >>> SkewNode("hello").value
         'hello'
-
-        >>> sn = SkewNode(None)
-        >>> sn.value
-        None
-
-        >>> sn = SkewNode(True)
-        >>> sn.value
+        >>> SkewNode(None).value
+        
+        >>> SkewNode(True).value
         True
-
-        >>> sn = SkewNode([])
-        >>> sn.value
+        >>> SkewNode([]).value
         []
-
-        >>> sn = SkewNode({})
-        >>> sn.value
+        >>> SkewNode({}).value
         {}
-
-        >>> sn = SkewNode(set())
-        >>> sn.value
+        >>> SkewNode(set()).value
         set()
-
-        >>> sn = SkewNode(0.0)
-        >>> sn.value
+        >>> SkewNode(0.0).value
         0.0
-
-        >>> sn = SkewNode(-1e-10)
-        >>> sn.value
+        >>> SkewNode(-1e-10).value
         -1e-10
-
-        >>> sn = SkewNode(10)
-        >>> sn.value
+        >>> SkewNode(10).value
         10
-        >>> sn = SkewNode(-10.5)
-        >>> sn.value
+        >>> SkewNode(-10.5).value
         -10.5
-        >>> sn = SkewNode()
+        >>> SkewNode().value
         Traceback (most recent call last):
         ...
         TypeError: SkewNode.__init__() missing 1 required positional argument: 'value'
