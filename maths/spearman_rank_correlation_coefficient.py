@@ -5,10 +5,11 @@ def rankdata(arr):
     ranked = sorted((value, index) for index, value in enumerate(arr))
     ranks = [0] * len(arr)
 
-    for pos, (value, index) in enumerate(ranked):
+    for pos, (_, index) in enumerate(ranked):
         ranks[index] = pos + 1
 
     return ranks
+
 
 def spearman_rank_correlation(x, y):
     """
