@@ -7,83 +7,60 @@
  diagonal lines.
 
 """
-from __future__ import annotations
+"""
 
-solution = []
+The N Queens puzzle is a classic problem in computer science and mathematics. 
+It involves placing N chess queens on an N×N chessboard so that no two queens threaten each other. 
+The challenge comes from the way queens move in chess: they can move any number of squares vertically, horizontally, or diagonally. 
+Therefore, the solution to the puzzle requires that no two queens share the same row, column, or diagonal.
 
-
-def is_safe(board: list[list[int]], row: int, column: int) -> bool:
-    """
-    This function returns a boolean value True if it is safe to place a queen there
-    considering the current state of the board.
-
-    Parameters:
-    board (2D matrix): The chessboard
-    row, column: Coordinates of the cell on the board
-
-    Returns:
-    Boolean Value
-
-    """
-
-    n = len(board)  # Size of the board
-
-    # Check if there is any queen in the same row, column,
-    # left upper diagonal, and right upper diagonal
-    return (
-        all(board[i][j] != 1 for i, j in zip(range(row, -1, -1), range(column, n)))
-        and all(
-            board[i][j] != 1 for i, j in zip(range(row, -1, -1), range(column, -1, -1))
-        )
-        and all(board[i][j] != 1 for i, j in zip(range(row, n), range(column, n)))
-        and all(board[i][j] != 1 for i, j in zip(range(row, n), range(column, -1, -1)))
-    )
+"""
 
 
-def solve(board: list[list[int]], row: int) -> bool:
-    """
-    This function creates a state space tree and calls the safe function until it
-    receives a False Boolean and terminates that branch and backtracks to the next
-    possible solution branch.
-    """
-    if row >= len(board):
-        """
-        If the row number exceeds N, we have a board with a successful combination
-        and that combination is appended to the solution list and the board is printed.
-        """
-        solution.append(board)
-        printboard(board)
-        print()
+def is_safe(board, row, col):
+    # Check this row on left side
+    for i in range(col):
+        if board[row][i] == 1:
+            return False
+
+    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
+        if board[i][j] == 1:
+            return False
+
+
+    for i, j in zip(range(row, len(board)), range(col, -1, -1)):
+        if board[i][j] == 1:
+            return False
+
+    return True
+
+def solve(board, col, solutions):
+    if col >= len(board):
+        solutions.append([row[:] for row in board]) 
         return True
+
+    res = False
     for i in range(len(board)):
-        """
-        For every row, it iterates through each column to check if it is feasible to
-        place a queen there.
-        If all the combinations for that particular branch are successful, the board is
-        reinitialized for the next possible combination.
-        """
-        if is_safe(board, row, i):
-            board[row][i] = 1
-            solve(board, row + 1)
-            board[row][i] = 0
-    return False
+        if is_safe(board, i, col):
+            board[i][col] = 1
+            res = solve(board, col + 1, solutions) or res
+            board[i][col] = 0  
 
+    return res
 
-def printboard(board: list[list[int]]) -> None:
-    """
-    Prints the boards that have a successful combination.
-    """
-    for i in range(len(board)):
-        for j in range(len(board)):
-            if board[i][j] == 1:
-                print("Q", end=" ")  # Queen is present
-            else:
-                print(".", end=" ")  # Empty cell
-        print()
+def printboard(board):
+    for row in board:
+        print(" ".join("Q" if cell == 1 else "." for cell in row))
 
-
-# Number of queens (e.g., n=8 for an 8x8 board)
+# Main code
 n = 8
-board = [[0 for i in range(n)] for j in range(n)]
-solve(board, 0)
-print("The total number of solutions are:", len(solution))
+board = [[0] * n for _ in range(n)]
+solutions = []
+solve(board, 0, solutions)
+
+for sol in solutions:
+    printboard(sol)
+    print()
+
+print("The total number of solutions are:", len(solutions))
+
