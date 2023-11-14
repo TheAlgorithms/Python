@@ -33,3 +33,9 @@ def single_number(nums: list) -> int:
     for el in nums:
         result ^= el
     return result
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
