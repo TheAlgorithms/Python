@@ -15,20 +15,21 @@ def single_number(nums: list) -> int:
                  every element appears twice except for one.
     :return: element that appears only one time
 
-    Examples:
+     Examples:
         Example 1
-            Input: nums = [1, 3, 3, 2, 6, 2, 1]
-            Output: 6
-        Example 2
-            Input: nums = [12, 1, 1, 7, 1, 12, 1]
-            Output: 7
-        Example 3
-            Input: nums = [6]
-            Output: 6
-    """
-    result = 0
+            >>> print(single_number([1, 3, 3, 2, 6, 2, 1]))
+            6
 
+        Example 2
+            >>> print(single_number([12, 1, 1, 7, 1, 12, 1]))
+            7
+
+        Example 3
+            >>> print(single_number([6]))
+            6
+    """
+
+    result = 0
     for el in nums:
         result ^= el
-
     return result
