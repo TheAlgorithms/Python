@@ -56,7 +56,7 @@ def spearman_rank_correlation(x, y):
     d = [rx - ry for rx, ry in zip(rank_x, rank_y)]
 
     # Calculate the sum of squared differences
-    d_squared = sum(di ** 2 for di in d)
+    d_squared = sum(di**2 for di in d)
 
     # Calculate the Spearman's rank correlation coefficient
     rho = 1 - (6 * d_squared) / (n * (n**2 - 1))
