@@ -1,6 +1,17 @@
 def rankdata(arr):
     """
     Assigns ranks to elements in the array.
+
+    :param arr: List of floats.
+    :return: List of ints representing the ranks.
+
+    Example:
+    >>> rankdata([3.2, 1.5, 4.0, 2.7, 5.1])
+    [3, 1, 4, 2, 5]
+
+    >>> rankdata([10.5, 8.1, 12.4, 9.3, 11.0])
+    [3, 1, 5, 2, 4]
+
     """
     ranked = sorted((value, index) for index, value in enumerate(arr))
     ranks = [0] * len(arr)
@@ -14,6 +25,10 @@ def rankdata(arr):
 def spearman_rank_correlation(x, y):
     """
     Calculates Spearman's rank correlation coefficient.
+
+    :param x: List of floats representing the first variable.
+    :param y: List of floats representing the second variable.
+    :return: Spearman's rank correlation coefficient.
 
     Example Usage :
 
@@ -41,7 +56,7 @@ def spearman_rank_correlation(x, y):
     d = [rx - ry for rx, ry in zip(rank_x, rank_y)]
 
     # Calculate the sum of squared differences
-    d_squared = sum(di**2 for di in d)
+    d_squared = sum(di ** 2 for di in d)
 
     # Calculate the Spearman's rank correlation coefficient
     rho = 1 - (6 * d_squared) / (n * (n**2 - 1))
