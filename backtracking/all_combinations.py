@@ -36,6 +36,8 @@ def generate_all_combinations(n: int, k: int) -> list[list[int]]:
     ...     for n in range(1, 6) for k in range(1, 6))
     True
     """
+    if k < 0 or n < 0 or k > n:
+        return []  # Return an empty list for invalid input
 
     result: list[list[int]] = []
     create_all_state(1, n, k, [], result)
@@ -53,7 +55,7 @@ def create_all_state(
         total_list.append(current_list[:])
         return
 
-    for i in range(increment, total_number - level + 2):
+    for i in range(increment, total_number + 1):
         current_list.append(i)
         create_all_state(i + 1, total_number, level - 1, current_list, total_list)
         current_list.pop()
