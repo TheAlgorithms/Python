@@ -9,9 +9,9 @@
 """
 """
 
-The N Queens puzzle is a classic problem in computer science and mathematics. 
-It involves placing N chess queens on an N×N chessboard so that no two queens threaten each other. 
-The challenge comes from the way queens move in chess: they can move any number of squares vertically, horizontally, or diagonally. 
+The N Queens puzzle is a classic problem in computer science and mathematics.
+It involves placing N chess queens on an N×N chessboard so that no two queens threaten each other.
+The challenge comes from the way queens move in chess: they can move any number of squares vertically, horizontally, or diagonally.
 Therefore, the solution to the puzzle requires that no two queens share the same row, column, or diagonal.
 
 """
@@ -27,16 +27,16 @@ def is_safe(board, row, col):
         if board[i][j] == 1:
             return False
 
-
     for i, j in zip(range(row, len(board)), range(col, -1, -1)):
         if board[i][j] == 1:
             return False
 
     return True
 
+
 def solve(board, col, solutions):
     if col >= len(board):
-        solutions.append([row[:] for row in board]) 
+        solutions.append([row[:] for row in board])
         return True
 
     res = False
@@ -44,13 +44,15 @@ def solve(board, col, solutions):
         if is_safe(board, i, col):
             board[i][col] = 1
             res = solve(board, col + 1, solutions) or res
-            board[i][col] = 0  
+            board[i][col] = 0
 
     return res
+
 
 def printboard(board):
     for row in board:
         print(" ".join("Q" if cell == 1 else "." for cell in row))
+
 
 # Main code
 n = 8
@@ -63,4 +65,3 @@ for sol in solutions:
     print()
 
 print("The total number of solutions are:", len(solutions))
-
