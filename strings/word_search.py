@@ -10,7 +10,7 @@
 # Example 2:
 # Input: board = [["a","b"],["c","d"]], words = ["abcb"]
 # Output: []
- 
+
 # Constraints:
 # m == board.length
 # n == board[i].length
@@ -25,15 +25,17 @@
 
 from typing import List
 
+
 class TrieNode:
     def __init__(self):
         self.children = {}
         self.word = None
 
+
 class Trie:
     def __init__(self):
         self.root = TrieNode()
-    
+
     def insert(self, word):
         node = self.root
         for char in word:
@@ -42,55 +44,61 @@ class Trie:
             node = node.children[char]
         node.word = word
 
+
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         def dfs(node, i, j):
             char = board[i][j]
             curr_node = node.children.get(char)
-            
+
             if not curr_node:
                 return
-            
+
             if curr_node.word:
                 result.append(curr_node.word)
                 curr_node.word = None  # Avoid duplicates
-            
+
             board[i][j] = "#"  # Mark the cell as visited
-            
+
             # Explore adjacent cells
             directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
             for di, dj in directions:
                 ni, nj = i + di, j + dj
                 if 0 <= ni < m and 0 <= nj < n and board[ni][nj] != "#":
                     dfs(curr_node, ni, nj)
-            
+
             board[i][j] = char  # Restore the cell
-    
+
         trie = Trie()
         for word in words:
             trie.insert(word)
-        
+
         result = []
         m, n = len(board), len(board[0])
-        
+
         for i in range(m):
             for j in range(n):
                 dfs(trie.root, i, j)
-        
+
         return result
+
 
 # Example usage:
 solution = Solution()
-board1 = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]]
-words1 = ["oath","pea","eat","rain"]
+board1 = [
+    ["o", "a", "a", "n"],
+    ["e", "t", "a", "e"],
+    ["i", "h", "k", "r"],
+    ["i", "f", "l", "v"],
+]
+words1 = ["oath", "pea", "eat", "rain"]
 print(solution.findWords(board1, words1))  # Output: ["eat", "oath"]
 
-board2 = [["a","b"],["c","d"]]
+board2 = [["a", "b"], ["c", "d"]]
 words2 = ["abcb"]
 print(solution.findWords(board2, words2))  # Output: []
 
 # Explaination
-
 
 
 # ### Trie (Tree-like data structure):
@@ -119,7 +127,6 @@ print(solution.findWords(board2, words2))  # Output: []
 
 # 5. **Return the List of Found Words:**
 #    - Provide the list of words found on the board.
-
 
 
 # This algorithm efficiently searches for words on the board using a Trie and DFS, making it a good solution for the problem.
