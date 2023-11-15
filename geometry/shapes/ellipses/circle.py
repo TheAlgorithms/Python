@@ -33,23 +33,23 @@ class Circle(ClosedShape):
     TypeError: num_cuts must be a numeric value.
     """
 
-    def __init__(self, radius):
+    def __init__(self, radius: float) -> None:
         self.radius = radius
         self.origin = 0
 
-    def get_diameter(self):
+    def get_diameter(self) -> float:
         return self.radius * 2
 
-    def perimeter(self):
+    def perimeter(self) -> float:
         return 2 * math.pi * self.radius
 
-    def area(self):
+    def area(self) -> float:
         return math.pi * (self.radius**2)
 
-    def is_similar(self, compared_shape):
+    def is_similar(self, compared_shape: ClosedShape) -> bool:
         raise NotImplementedError("Not Implemented")
 
-    def split(self):
+    def split(self) -> float:
         raise NotImplementedError("Not Implemented")
 
     def max_parts(self, num_cuts: float) -> float:

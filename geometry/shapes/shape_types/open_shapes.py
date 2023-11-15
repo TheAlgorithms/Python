@@ -11,9 +11,9 @@ class OpenShape(Shape, ABC):
     """
 
     @abstractmethod
-    def is_similar(self, compared_shape):
+    def is_similar(self, compared_shape: Shape) -> bool:
         pass
 
     @abstractmethod
-    def split(self):
+    def split(self) -> float:
         pass

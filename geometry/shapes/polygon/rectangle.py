@@ -22,21 +22,21 @@ class Rectangle(Polygon):
     NotImplementedError: Not Implemented
     """
 
-    def __init__(self, short_side_length, long_side_length):
+    def __init__(self, short_side_length: float, long_side_length: float) -> None:
         super().__init__()
         self.short_side = Side([], Angle(90), short_side_length)
         self.long_side = Side([], Angle(90), long_side_length)
         super().add_side(self.short_side)
         super().add_side(self.long_side)
 
-    def perimeter(self):
+    def perimeter(self) -> float:
         return (self.short_side.length + self.long_side.length) * 2
 
-    def area(self):
+    def area(self) -> float:
         return self.short_side.length * self.long_side.length
 
-    def is_similar(self, compared_shape):
+    def is_similar(self, compared_shape: Polygon) -> bool:
         raise NotImplementedError("Not Implemented")
 
-    def split(self):
+    def split(self) -> float:
         raise NotImplementedError("Not Implemented")

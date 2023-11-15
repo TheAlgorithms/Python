@@ -1,6 +1,9 @@
 from geometry.shapes.shape_types.closed_shapes import ClosedShape
 from geometry.shapes.shape_types.intersecting_self_shapes import IntersectSelfShape
 from geometry.shapes.side import Side
+from typing import TypeVar
+
+PolygonType = TypeVar("PolygonType", bound="Polygon")
 
 
 class Polygon(ClosedShape, IntersectSelfShape):
@@ -43,26 +46,26 @@ class Polygon(ClosedShape, IntersectSelfShape):
 
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.sides: list[Side] = []
 
-    def get_side(self, index):
+    def get_side(self, index: int) -> Side:
         return self.sides[index]
 
-    def set_side(self, index, side):
+    def set_side(self, index: int, side: Side) -> None:
         self.sides[index] = side
 
-    def add_side(self, side):
+    def add_side(self, side: Side) -> None:
         self.sides.append(side)
 
-    def area(self):
+    def area(self) -> float:
         pass
 
-    def is_similar(self, compared_shape):
+    def is_similar(self, compared_shape: PolygonType) -> bool:
         pass
 
-    def perimeter(self):
+    def perimeter(self) -> float:
         pass
 
-    def split(self):
+    def split(self) -> float:
         pass

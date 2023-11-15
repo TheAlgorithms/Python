@@ -20,18 +20,18 @@ class Ellipse(ClosedShape):
     NotImplementedError: Not Implemented
     """
 
-    def __init__(self, major_radius, minor_radius):
+    def __init__(self, major_radius: float, minor_radius: float) -> None:
         self.major_radius: float = major_radius
         self.minor_radius: float = minor_radius
 
-    def perimeter(self):
+    def perimeter(self) -> float:
         return math.pi * (self.major_radius + self.minor_radius)
 
-    def area(self):
+    def area(self) -> float:
         return math.pi * self.major_radius * self.minor_radius
 
-    def is_similar(self, compared_shape):
+    def is_similar(self, compared_shape: ClosedShape) -> bool:
         raise NotImplementedError("Not Implemented")
 
-    def split(self):
+    def split(self) -> float:
         raise NotImplementedError("Not Implemented")

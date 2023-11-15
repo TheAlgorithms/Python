@@ -11,17 +11,17 @@ class ClosedShape(Shape, ABC):
     """
 
     @abstractmethod
-    def perimeter(self):
+    def perimeter(self) -> float:
         pass
 
     @abstractmethod
-    def area(self):
+    def area(self) -> float:
         pass
 
     @abstractmethod
-    def is_similar(self, compared_shape):
+    def is_similar(self, compared_shape: Shape) -> bool:
         pass
 
     @abstractmethod
-    def split(self):
+    def split(self) -> float:
         pass

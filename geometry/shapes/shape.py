@@ -1,4 +1,7 @@
 from abc import ABC, abstractmethod
+from typing import TypeVar
+
+ShapeType = TypeVar("ShapeType", bound="Shape")
 
 
 class Shape(ABC):
@@ -9,18 +12,23 @@ class Shape(ABC):
     """
 
     @abstractmethod
-    def is_similar(self, compared_shape):
+    def is_similar(self, compared_shape: ShapeType) -> bool:
         """
         a method for comparing with another shape,
         which also implements this interface
         """
 
     @abstractmethod
-    def split(self):
+    def split(self) -> float:
         """
         a method for splitting a shape
         into a certain quantity of pieces,
-        following a specific algorithm
+        following a specific algorithm which returns
+        the amount of pieces after splitting the shape
+
+        note: in the future, a separate class might be created,
+        which will represent a certain part of a shape, because of that
+        the return type of this method might change
         """
 
     """

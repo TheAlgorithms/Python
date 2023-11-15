@@ -19,17 +19,17 @@ class Square(Rectangle):
     NotImplementedError: Not Implemented
     """
 
-    def __init__(self, side_length):
+    def __init__(self, side_length: float) -> None:
         super().__init__(side_length, side_length)
 
-    def perimeter(self):
+    def perimeter(self) -> float:
         return super().perimeter()
 
-    def area(self):
+    def area(self) -> float:
         return super().area()
 
-    def is_similar(self, compared_shape):
+    def is_similar(self, compared_shape: Rectangle) -> bool:
         raise NotImplementedError("Not Implemented")
 
-    def split(self):
+    def split(self) -> float:
         raise NotImplementedError("Not Implemented")
