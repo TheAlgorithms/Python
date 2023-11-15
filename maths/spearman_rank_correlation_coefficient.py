@@ -1,7 +1,6 @@
 from typing import List
 
-
-def assign_ranks(data: List[float]) -> List[int]:
+def assign_ranks(data: list[float]) -> list[int]:
     """
     Assigns ranks to elements in the array.
 
@@ -24,7 +23,7 @@ def assign_ranks(data: List[float]) -> List[int]:
     return ranks
 
 
-def calculate_spearman_rank_correlation(x: List[float], y: List[float]) -> float:
+def calculate_spearman_rank_correlation(x: list[float], y: list[float]) -> float:
     """
     Calculates Spearman's rank correlation coefficient.
 
@@ -57,7 +56,7 @@ def calculate_spearman_rank_correlation(x: List[float], y: List[float]) -> float
     d = [rx - ry for rx, ry in zip(rank_x, rank_y)]
 
     # Calculate the sum of squared differences
-    d_squared = sum(di**2 for di in d)
+    d_squared = sum(di ** 2 for di in d)
 
     # Calculate the Spearman's rank correlation coefficient
     rho = 1 - (6 * d_squared) / (n * (n**2 - 1))
