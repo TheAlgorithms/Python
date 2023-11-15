@@ -21,9 +21,7 @@ def assign_ranks(data: list[float]) -> list[int]:
     return ranks
 
 
-def calculate_spearman_rank_correlation(
-    variable_1: list[float], variable_2: list[float]
-) -> float:
+def calculate_spearman_rank_correlation(variable_1: list[float], variable_2: list[float]) -> float:
     """
     Calculates Spearman's rank correlation coefficient.
 
@@ -44,7 +42,7 @@ def calculate_spearman_rank_correlation(
     1.0
 
     >>> x = [1, 2, 3, 4, 5]
-    >>> y = [5, 1, 2, 9, 5]
+    >>> y = [5, 1, 2, 6, 5]
     >>> calculate_spearman_rank_correlation(x, y)
     0.6
     """
@@ -56,7 +54,7 @@ def calculate_spearman_rank_correlation(
     d = [rx - ry for rx, ry in zip(rank_var1, rank_var2)]
 
     # Calculate the sum of squared differences
-    d_squared = sum(di**2 for di in d)
+    d_squared = sum(di ** 2 for di in d)
 
     # Calculate the Spearman's rank correlation coefficient
     rho = 1 - (6 * d_squared) / (n * (n**2 - 1))
@@ -81,6 +79,6 @@ if __name__ == "__main__":
     print(f"Spearman's rank correlation coefficient (Example 2): {rho2}")
 
     x3 = [1, 2, 3, 4, 5]
-    y3 = [5, 1, 2, 9, 5]
+    y3 = [5, 1, 2, 6, 5]
     rho3 = calculate_spearman_rank_correlation(x3, y3)
     print(f"Spearman's rank correlation coefficient (Example 3): {rho3}")
