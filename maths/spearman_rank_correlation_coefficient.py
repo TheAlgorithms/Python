@@ -44,7 +44,7 @@ def calculate_spearman_rank_correlation(
     1.0
 
     >>> x = [1, 2, 3, 4, 5]
-    >>> y = [5, 1, 2, 6, 5]
+    >>> y = [5, 1, 2, 9, 5]
     >>> calculate_spearman_rank_correlation(x, y)
     0.6
     """
@@ -81,6 +81,6 @@ if __name__ == "__main__":
     print(f"Spearman's rank correlation coefficient (Example 2): {rho2}")
 
     x3 = [1, 2, 3, 4, 5]
-    y3 = [5, 1, 2, 6, 5]
+    y3 = [5, 1, 2, 9, 5]
     rho3 = calculate_spearman_rank_correlation(x3, y3)
     print(f"Spearman's rank correlation coefficient (Example 3): {rho3}")
