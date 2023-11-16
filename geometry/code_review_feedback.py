@@ -26,6 +26,7 @@ class Angle:
         ...
     TypeError: degrees must be a numeric value between 0 and 360.
     """
+
     degrees: float = 90
 
     def __post_init__(self) -> None:
@@ -48,6 +49,7 @@ class Side:
     >>> Side(5, Angle(45.6), Side(1, Angle(2)))  # doctest: +ELLIPSIS
     Side(length=5, angle=Angle(degrees=45.6), next_side=Side(length=1, angle=Angle(d...
     """
+
     length: float
     angle: Angle = field(default_factory=Angle)
     next_side: Side | None = None
@@ -73,6 +75,7 @@ class Ellipse:
     >>> Ellipse(5, 10) == Ellipse(5, 10)
     True
     """
+
     major_radius: float
     minor_radius: float
 
@@ -93,7 +96,6 @@ class Ellipse:
         return math.pi * (self.major_radius + self.minor_radius)
 
 
-
 class Circle(Ellipse):
     """
     A geometric Circle on a 2D surface
@@ -109,6 +111,7 @@ class Circle(Ellipse):
     >>> Circle(5).perimeter
     31.41592653589793
     """
+
     def __init__(self, radius: float) -> None:
         super().__init__(radius, radius)
         self.radius = radius
@@ -151,6 +154,7 @@ class Circle(Ellipse):
             raise TypeError("num_cuts must be a positive numeric value.")
         return (num_cuts + 2 + num_cuts**2) * 0.5
 
+
 @dataclass
 class Polygon:
     """
@@ -159,6 +163,7 @@ class Polygon:
     >>> Polygon()
     Polygon(sides=[])
     """
+
     sides: list[Side] = field(default_factory=list)
 
     def add_side(self, side: Side) -> Self:
@@ -192,6 +197,7 @@ class Polygon:
         self.sides[index] = side
         return self
 
+
 class Rectangle(Polygon):
     """
     A geometric rectangle on a 2D surface.
@@ -202,6 +208,7 @@ class Rectangle(Polygon):
     >>> rectangle_one.area()
     50
     """
+
     def __init__(self, short_side_length: float, long_side_length: float) -> None:
         super().__init__()
         self.short_side_length = short_side_length
@@ -224,6 +231,7 @@ class Rectangle(Polygon):
 
     def area(self):
         return self.short_side.length * self.long_side.length
+
 
 '''
 @dataclass
