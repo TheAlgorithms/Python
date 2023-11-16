@@ -1,5 +1,6 @@
+from collections.abc import Callable
+
 from numpy.random import rand, randint
-from typing import Callable, Any
 
 """
 This program performs genetic evolution on a list of bits.
@@ -88,6 +89,6 @@ score = -output[1]
 # Score should be equal to bit_count
 if score == bit_count:
     print("\n1s have been maximised.")
-    print("{} Score: {}".format(best, score))
+    print(f"{best} Score: {score}")
 else:
     print("Genetic algorithm has failed. Try playing around with the input values.")
