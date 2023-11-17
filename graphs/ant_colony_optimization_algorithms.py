@@ -85,9 +85,9 @@ def pheromone_update(
     pheromone_evaporation: float,
     ants_route: list[list[int]],
     q: float,  # Pheromone system parameters Q，which is a constant
-    best_path: list,
+    best_path: list[int],
     best_distance: float,
-) -> tuple[list[list[float]], list, float]:
+) -> tuple[list[list[float]], list[int], float]:
     """
     Update pheromones on the route and update the best route
     >>> pheromone = [[1.0,1.0],[1.0,1.0]]
