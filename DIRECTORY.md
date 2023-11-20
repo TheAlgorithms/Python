@@ -1310,7 +1310,6 @@
   * [Fetch Well Rx Price](web_programming/fetch_well_rx_price.py)
   * [Get Amazon Product Data](web_programming/get_amazon_product_data.py)
   * [Get Imdb Top 250 Movies Csv](web_programming/get_imdb_top_250_movies_csv.py)
-  * [Get Imdbtop](web_programming/get_imdbtop.py)
   * [Get Ip Geolocation](web_programming/get_ip_geolocation.py)
   * [Get Top Billionaires](web_programming/get_top_billionaires.py)
   * [Get Top Hn Posts](web_programming/get_top_hn_posts.py)
