@@ -82,5 +82,4 @@ class MaximalBipartiteMatching:
         return matching_count
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
