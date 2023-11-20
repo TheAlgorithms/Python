@@ -1,3 +1,5 @@
+from typing import List
+
 class MaximalBipartiteMatching:
     """
     This class implements finding maximal Bipartite matching using DFS.
@@ -42,19 +44,20 @@ class MaximalBipartiteMatching:
     >>> matching_4.find_maximal_matching()
     3
     """
-    def __init__(self, graph):
+    def __init__(self, graph: List[List[int]]) -> None:
         # The given bipartite graph
         self.graph = graph
         self.num_applicants = len(graph)
-        self.num_jobs = len(graph[0])     
-    def _dfs(self, applicant, job_match, seen):
+        self.num_jobs = len(graph[0])
+
+    def _dfs(self, applicant: int, job_match: List[int], seen: List[bool]) -> bool:
         """
         Depth-First Search to find maximal matching for an applicant.
 
         Args:
-        - applicant: The current applicant under consideration.
-        - job_match: The array indicating job assignments.
-        - seen: Array to track job availability.
+        - applicant (int): The current applicant under consideration.
+        - job_match (List[int]): The array indicating job assignments.
+        - seen (List[bool]): Array to track job availability.
 
         Returns:
         - Boolean: True if a matching for the applicant is possible.
@@ -66,7 +69,8 @@ class MaximalBipartiteMatching:
                     job_match[job] = applicant
                     return True
         return False
-    def find_maximal_matching(self):
+
+    def find_maximal_matching(self) -> int:
         """
         Finds the maximal number of applicants matched to jobs.
 
@@ -80,6 +84,7 @@ class MaximalBipartiteMatching:
             if self._dfs(applicant, job_match, seen_jobs):
                 matching_count += 1
         return matching_count
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
