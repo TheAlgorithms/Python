@@ -42,6 +42,7 @@ class MaximalBipartiteMatching:
     >>> matching_4.find_maximal_matching()
     3
     """
+
     def __init__(self, graph: list) -> None:
         # The given bipartite graph
         self.graph = graph
@@ -83,6 +84,8 @@ class MaximalBipartiteMatching:
                 matching_count += 1
         return matching_count
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
