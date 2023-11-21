@@ -1,32 +1,43 @@
 def edit_distance(source: str, target: str) -> int:
     """
-    Edit distance algorithm is a string metric, i.e., it is a way of quantifying how
-    dissimilar two strings are to one another. It is measured by counting the minimum
-    number of operations required to transform one string into another.
-
-    This implementation assumes that the cost of operations (insertion, deletion and
-    substitution) is always 1
+    Calculate the edit distance between two strings using dynamic programming.
+    Edit distance is the minimum number of operations (insertions, deletions, or
+    substitutions) required to transform one string into another.
 
     Args:
-    source: the initial string with respect to which we are calculating the edit
-        distance for the target
-    target: the target string, formed after performing n operations on the source string
+    source (str): The original string.
+    target (str): The string to transform into.
 
+    Returns:
+    int: The minimum number of operations required.
+
+    Examples:
     >>> edit_distance("GATTIC", "GALTIC")
     1
+    >>> edit_distance("ATCGCTG", "TAGCTAA")
+    4
     """
-    if len(source) == 0:
-        return len(target)
-    elif len(target) == 0:
-        return len(source)
 
-    delta = int(source[-1] != target[-1])  # Substitution
-    return min(
-        edit_distance(source[:-1], target[:-1]) + delta,
-        edit_distance(source, target[:-1]) + 1,
-        edit_distance(source[:-1], target) + 1,
-    )
+    dp = [[0 for _ in range(len(target) + 1)] for _ in range(len(source) + 1)]
+
+    # Populate the matrix
+    for i in range(len(source) + 1):
+        for j in range(len(target) + 1):
+            if i == 0:
+                dp[i][j] = j
+            elif j == 0:
+                dp[i][j] = i
+            elif source[i - 1] == target[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]
+            else:
+                dp[i][j] = 1 + min(
+                    dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]  # Remove  # Insert
+                )  # Replace
+
+    return dp[len(source)][len(target)]
 
 
 if __name__ == "__main__":
-    print(edit_distance("ATCGCTG", "TAGCTAA"))  # Answer is 4
+    print(edit_distance("GATTIC", "GALTIC"))  # Output: 1
+    print(edit_distance("ATCGCTG", "TAGCTAA"))  # Output: 4
+
