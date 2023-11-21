@@ -40,4 +40,3 @@ def edit_distance(source: str, target: str) -> int:
 if __name__ == "__main__":
     print(edit_distance("GATTIC", "GALTIC"))  # Output: 1
     print(edit_distance("ATCGCTG", "TAGCTAA"))  # Output: 4
-
