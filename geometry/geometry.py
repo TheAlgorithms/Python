@@ -1,9 +1,8 @@
 from __future__ import annotations
 import math
 from dataclasses import dataclass, field
-from typing_extensions import Self
-
-NoneType = type(None)
+from types import NoneType
+from typing import Self
 
 # Building block classes
 
