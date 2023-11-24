@@ -15,17 +15,25 @@ def edit_distance(source: str, target: str) -> int:
     >>> edit_distance("GATTIC", "GALTIC")
     1
     """
-    if len(source) == 0:
-        return len(target)
-    elif len(target) == 0:
-        return len(source)
+    m, n = len(source), len(target)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
 
-    delta = int(source[-1] != target[-1])  # Substitution
-    return min(
-        edit_distance(source[:-1], target[:-1]) + delta,
-        edit_distance(source, target[:-1]) + 1,
-        edit_distance(source[:-1], target) + 1,
-    )
+    for i in range(m + 1):
+        for j in range(n + 1):
+            if i == 0:
+                dp[i][j] = j
+            elif j == 0:
+                dp[i][j] = i
+            elif source[i - 1] == target[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]
+            else:
+                dp[i][j] = 1 + min(
+                    dp[i - 1][j],  # Deletion
+                    dp[i][j - 1],  # Insertion
+                    dp[i - 1][j - 1],  # Substitution
+                )
+
+    return dp[m][n]
 
 
 if __name__ == "__main__":
