@@ -215,7 +215,7 @@ class Rectangle(Polygon):
         self.long_side_length = long_side_length
         self.post_init()
 
-    def post_init(self):
+    def post_init(self) -> None:
         """
         >>> Rectangle(5, 10)  # doctest: +NORMALIZE_WHITESPACE
         Rectangle(sides=[Side(length=5, angle=Angle(degrees=90), next_side=None),
@@ -226,10 +226,10 @@ class Rectangle(Polygon):
         super().add_side(self.short_side)
         super().add_side(self.long_side)
 
-    def perimeter(self):
+    def perimeter(self) -> float:
         return (self.short_side.length + self.long_side.length) * 2
 
-    def area(self):
+    def area(self) -> float:
         return self.short_side.length * self.long_side.length
 
 
@@ -245,13 +245,13 @@ class Square(Rectangle):
     25
     """
 
-    def __init__(self, side_length):
+    def __init__(self, side_length) -> None:
         super().__init__(side_length, side_length)
 
-    def perimeter(self):
+    def perimeter(self) -> float:
         return super().perimeter()
 
-    def area(self):
+    def area(self) -> float:
         return super().area()
 
 
