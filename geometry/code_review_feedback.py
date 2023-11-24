@@ -5,7 +5,6 @@ from dataclasses import dataclass, field
 from types import NoneType
 from typing import Self
 
-
 # Building block classes
 
 
