@@ -40,7 +40,7 @@ class Side:
     A side of a two dimensional Shape such as Polygon, etc.
     adjacent_sides: a list of sides which are adjacent to the current side
     angle: the angle in degrees between each adjacent side
-    length: the length of the current side in lightyears
+    length: the length of the current side in meters
 
     >>> Side(5)
     Side(length=5, angle=Angle(degrees=90), next_side=None)
