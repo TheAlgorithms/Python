@@ -245,7 +245,7 @@ class Square(Rectangle):
     25
     """
 
-    def __init__(self, side_length) -> None:
+    def __init__(self, side_length: float) -> None:
         super().__init__(side_length, side_length)
 
     def perimeter(self) -> float:
