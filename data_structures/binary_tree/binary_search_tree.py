@@ -210,11 +210,11 @@ class BinarySearchTree:
         {'40': (None, 50)}
         >>> tree.search(50)
         50
-        >>> bst.search(5) is None  # element not present
+        >>> tree.search(5) is None  # element not present
         True
-        >>> bst.search(0) is None  # element not present
+        >>> tree.search(0) is None  # element not present
         True
-        >>> bst.search(-5) is None  # element not present
+        >>> tree.search(-5) is None  # element not present
         True
         >>> BinarySearchTree().search(10)
         Traceback (most recent call last):
