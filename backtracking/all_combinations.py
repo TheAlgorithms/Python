@@ -26,9 +26,11 @@ def generate_all_combinations(n: int, k: int) -> list[list[int]]:
     >>> generate_all_combinations(n=10, k=-1)
     Traceback (most recent call last):
         ...
-    RecursionError: maximum recursion depth exceeded
+    ValueError: k must not be negative
     >>> generate_all_combinations(n=-1, k=10)
-    []
+    Traceback (most recent call last):
+        ...
+    ValueError: n must not be negative
     >>> generate_all_combinations(n=5, k=4)
     [[1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 4, 5], [1, 3, 4, 5], [2, 3, 4, 5]]
     >>> from itertools import combinations
@@ -36,6 +38,10 @@ def generate_all_combinations(n: int, k: int) -> list[list[int]]:
     ...     for n in range(1, 6) for k in range(1, 6))
     True
     """
+    if k < 0:
+        raise ValueError("k must not be negative")
+    if n < 0:
+        raise ValueError("n must not be negative")
 
     result: list[list[int]] = []
     create_all_state(1, n, k, [], result)
