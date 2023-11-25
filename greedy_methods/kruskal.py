@@ -120,4 +120,4 @@ if __name__ == "__main__":
     mst = kruskal(graph)
     print(
         "Minimum Spanning Tree:", [(edge.start, edge.end, edge.weight) for edge in mst]
-    ) # Minimum Spanning Tree: [('A', 'B', 1), ('A', 'D', 2), ('B', 'C', 3)]
+    )  # Minimum Spanning Tree: [('A', 'B', 1), ('A', 'D', 2), ('B', 'C', 3)]
