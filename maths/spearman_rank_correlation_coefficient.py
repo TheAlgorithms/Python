@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 
 
-def assign_ranks(data: list[float]) -> list[int]:
+def assign_ranks(data: Sequence[float]) -> list[int]:
     """
     Assigns ranks to elements in the array.
 
