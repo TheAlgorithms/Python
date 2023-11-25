@@ -15,15 +15,16 @@ import copy
 import random
 
 cities = {
-        0: [0, 0],
-        1: [0, 5],
-        2: [3, 8],
-        3: [8, 10],
-        4: [12, 8],
-        5: [12, 4],
-        6: [8, 0],
-        7: [6, 2],
+    0: [0, 0],
+    1: [0, 5],
+    2: [3, 8],
+    3: [8, 10],
+    4: [12, 8],
+    5: [12, 4],
+    6: [8, 0],
+    7: [6, 2],
 }
+
 
 def main(
     cities: dict[int, list[int]],
@@ -122,7 +123,7 @@ def pheromone_update(
 ) -> tuple[list[list[float]], list[int], float]:
     """
     Update pheromones on the route and update the best route
-    >>> 
+    >>>
     >>> pheromone_update(pheromone=[[1.0, 1.0], [1.0, 1.0]],
     ...                  cities={0: [0,0], 1: [2,2]}, pheromone_evaporation=0.7,
     ...                  ants_route=[[0, 1, 0]], q=10, best_path=[],
@@ -211,8 +212,15 @@ def city_select(
 
 
 if __name__ == "__main__":
-    best_path, best_distance = main(cities=cities, ants_num=10, iterations_num=20,
-    pheromone_evaporation=0.7, alpha=1.0, beta=5.0, q=10)
+    best_path, best_distance = main(
+        cities=cities,
+        ants_num=10,
+        iterations_num=20,
+        pheromone_evaporation=0.7,
+        alpha=1.0,
+        beta=5.0,
+        q=10,
+    )
 
     print(f"{best_path = }")
     print(f"{best_distance = }")
