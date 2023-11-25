@@ -1,3 +1,6 @@
+from collections.abc import Sequence
+
+
 def assign_ranks(data: list[float]) -> list[int]:
     """
     Assigns ranks to elements in the array.
@@ -22,7 +25,7 @@ def assign_ranks(data: list[float]) -> list[int]:
 
 
 def calculate_spearman_rank_correlation(
-    variable_1: list[float], variable_2: list[float]
+    variable_1: Sequence[float], variable_2: Sequence[float]
 ) -> float:
     """
     Calculates Spearman's rank correlation coefficient.
@@ -70,17 +73,8 @@ if __name__ == "__main__":
     doctest.testmod()
 
     # Example usage:
-    x1 = [1, 2, 3, 4, 5]
-    y1 = [2, 4, 6, 8, 10]
-    rho1 = calculate_spearman_rank_correlation(x1, y1)
-    print(f"Spearman's rank correlation coefficient (Example 1): {rho1}")
+    print(f"{calculate_spearman_rank_correlation([1, 2, 3, 4, 5], [2, 4, 6, 8, 10]) = }")
 
-    x2 = [1, 2, 3, 4, 5]
-    y2 = [5, 4, 3, 2, 1]
-    rho2 = calculate_spearman_rank_correlation(x2, y2)
-    print(f"Spearman's rank correlation coefficient (Example 2): {rho2}")
+    print(f"{calculate_spearman_rank_correlation([1, 2, 3, 4, 5], [5, 4, 3, 2, 1]) = }")
 
-    x3 = [1, 2, 3, 4, 5]
-    y3 = [5, 1, 2, 9, 5]
-    rho3 = calculate_spearman_rank_correlation(x3, y3)
-    print(f"Spearman's rank correlation coefficient (Example 3): {rho3}")
+    print(f"{calculate_spearman_rank_correlation([1, 2, 3, 4, 5], [5, 1, 2, 9, 5]) = }")
