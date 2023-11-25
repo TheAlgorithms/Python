@@ -31,10 +31,6 @@ def generate_all_combinations(n: int, k: int) -> list[list[int]]:
     Traceback (most recent call last):
         ...
     ValueError: n must not be negative
-    >>> generate_all_combinations(n=0, k=1)
-    Traceback (most recent call last):
-        ...
-    ValueError: k must be less than or equal to n
     >>> generate_all_combinations(n=5, k=4)
     [[1, 2, 3, 4], [1, 2, 3, 5], [1, 2, 4, 5], [1, 3, 4, 5], [2, 3, 4, 5]]
     >>> from itertools import combinations
@@ -46,8 +42,6 @@ def generate_all_combinations(n: int, k: int) -> list[list[int]]:
         raise ValueError("k must not be negative")
     if n < 0:
         raise ValueError("n must not be negative")
-    if k > n:
-        raise ValueError("k must be less than or equal to n")
 
     result: list[list[int]] = []
     create_all_state(1, n, k, [], result)
