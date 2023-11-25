@@ -73,7 +73,9 @@ if __name__ == "__main__":
     doctest.testmod()
 
     # Example usage:
-    print(f"{calculate_spearman_rank_correlation([1, 2, 3, 4, 5], [2, 4, 6, 8, 10]) = }")
+    print(
+        f"{calculate_spearman_rank_correlation([1, 2, 3, 4, 5], [2, 4, 6, 8, 10]) = }"
+    )
 
     print(f"{calculate_spearman_rank_correlation([1, 2, 3, 4, 5], [5, 4, 3, 2, 1]) = }")
 
