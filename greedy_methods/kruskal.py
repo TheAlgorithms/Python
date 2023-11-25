@@ -1,6 +1,7 @@
 """
 https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
 """
+
 import doctest
 from collections.abc import Iterable
 from dataclasses import dataclass
@@ -37,6 +38,16 @@ class DisjointSet:
     Methods:
         find(item): Finds the representative of the set containing 'item'.
         union(set1, set2): Merges the sets containing 'set1' and 'set2'.
+
+    >>> ds = DisjointSet(["A", "B", "C"])
+    >>> ds.find("A")
+    'A'
+    >>> ds.union("A", "B")
+    >>> ds.find("B")
+    'A'
+    >>> ds.union("B", "C")
+    >>> ds.find("C")
+    'A'
     """
 
     def __init__(self, vertices: Iterable[str]) -> None:
@@ -68,8 +79,8 @@ def kruskal(graph: list[Edge]) -> list[Edge]:
     Implements Kruskal's algorithm to find the minimum spanning tree of a graph.
 
     Kruskal's algorithm is a greedy algorithm that finds a minimum spanning tree for
-    a connected, weighted graph. It sorts all edges of the graph by weight and selects
-    them in ascending order, ensuring no cycles are formed.
+    a connected, weighted graph. It sorts the graph's edges by weight and selects them
+    in ascending order, ensuring no cycles are formed.
 
     Args:
         graph (list[Edge]): A list of edges representing the graph.
@@ -82,14 +93,14 @@ def kruskal(graph: list[Edge]) -> list[Edge]:
     ...     Edge("A", "D", 2), Edge("D", "C", 5)
     ... ]
     >>> mst = kruskal(graph)
-    >>> [(e.start, e.end, e.weight) for e in mst]
+    >>> [(edge.start, edge.end, edge.weight) for edge in mst]
     [('A', 'B', 1), ('A', 'D', 2), ('B', 'C', 3)]
     """
     vertices: set[str] = {vertex for edge in graph for vertex in [edge.start, edge.end]}
     disjoint_set = DisjointSet(vertices)
     mst: list[Edge] = []
 
-    for edge in sorted(graph, key=lambda e: e.weight):
+    for edge in sorted(graph, key=lambda edge: edge.weight):
         if disjoint_set.find(edge.start) != disjoint_set.find(edge.end):
             mst.append(edge)
             disjoint_set.union(edge.start, edge.end)
@@ -108,5 +119,5 @@ if __name__ == "__main__":
     ]
     mst = kruskal(graph)
     print(
-        "Minimum Spanning Tree:", [(e.start, e.end, e.weight) for e in mst]
-    )  # Answer Minimum Spanning Tree: [('A', 'B', 1), ('A', 'D', 2), ('B', 'C', 3)]
+        "Minimum Spanning Tree:", [(edge.start, edge.end, edge.weight) for edge in mst]
+    ) # Minimum Spanning Tree: [('A', 'B', 1), ('A', 'D', 2), ('B', 'C', 3)]
