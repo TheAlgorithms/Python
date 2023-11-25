@@ -199,26 +199,26 @@ class BinarySearchTree:
 
     def search(self, value) -> Node | None:
         """
-        >>> bst = BinarySearchTree().insert(10,20,30,40,50)
-        >>> bst.search(10)
+        >>> tree = BinarySearchTree().insert(10, 20, 30, 40, 50)
+        >>> tree.search(10)
         {'10': (None, {'20': (None, {'30': (None, {'40': (None, 50)})})})}
-        >>> bst.search(20)
+        >>> tree.search(20)
         {'20': (None, {'30': (None, {'40': (None, 50)})})}
-        >>> bst.search(30)
+        >>> tree.search(30)
         {'30': (None, {'40': (None, 50)})}
-        >>> bst.search(40)
+        >>> tree.search(40)
         {'40': (None, 50)}
-        >>> bst.search(50)
+        >>> tree.search(50)
         50
-        >>> bst.search(0) # element not present
-
-        >>> bst.search(-5 ) # element not present
-
-        >>> bst.search(5) # element not present
-
-        >>> bst= BinarySearchTree().search(10)
+        >>> bst.search(5) is None  # element not present
+        True
+        >>> bst.search(0) is None  # element not present
+        True
+        >>> bst.search(-5) is None  # element not present
+        True
+        >>> BinarySearchTree().search(10)
         Traceback (most recent call last):
-        ...
+            ...
         IndexError: Warning: Tree is empty! please use another.
         """
 
@@ -235,13 +235,13 @@ class BinarySearchTree:
         """
         We go deep on the right branch
 
-        >>> BinarySearchTree().insert(10,20,30,40,50).get_max()
+        >>> BinarySearchTree().insert(10, 20, 30, 40, 50).get_max()
         50
-        >>> BinarySearchTree().insert(-5,-1,0,-0.3,-4.5).get_max()
-        {'0': (-0.3, None)}
-        >>> BinarySearchTree().insert(1,78.3,30,74.0,1).get_max()
+        >>> BinarySearchTree().insert(-5, -1, 0.1, -0.3, -4.5).get_max()
+        {'0.1': (-0.3, None)}
+        >>> BinarySearchTree().insert(1, 78.3, 30, 74.0, 1).get_max()
         {'78.3': ({'30': (1, 74.0)}, None)}
-        >>> BinarySearchTree().insert(1,783,30,740,1).get_max()
+        >>> BinarySearchTree().insert(1, 783, 30, 740, 1).get_max()
         {'783': ({'30': (1, 740)}, None)}
         """
         if node is None:
@@ -258,13 +258,13 @@ class BinarySearchTree:
         """
         We go deep on the left branch
 
-        >>> BinarySearchTree().insert(10,20,30,40,50).get_min()
+        >>> BinarySearchTree().insert(10, 20, 30, 40, 50).get_min()
         {'10': (None, {'20': (None, {'30': (None, {'40': (None, 50)})})})}
-        >>> BinarySearchTree().insert(-5,-1,0,-0.3,-4.5).get_min()
+        >>> BinarySearchTree().insert(-5, -1, 0, -0.3, -4.5).get_min()
         {'-5': (None, {'-1': (-4.5, {'0': (-0.3, None)})})}
-        >>> BinarySearchTree().insert(1,78.3,30,74.0,1).get_min()
+        >>> BinarySearchTree().insert(1, 78.3, 30, 74.0, 1).get_min()
         {'1': (None, {'78.3': ({'30': (1, 74.0)}, None)})}
-        >>> BinarySearchTree().insert(1,783,30,740,1).get_min()
+        >>> BinarySearchTree().insert(1, 783, 30, 740, 1).get_min()
         {'1': (None, {'783': ({'30': (1, 740)}, None)})}
         """
         if node is None:
