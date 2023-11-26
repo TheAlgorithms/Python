@@ -55,4 +55,4 @@ if __name__ == "__main__":
     doctest.testmod()
     example1 = [[4, 10, 15, 24, 26], [0, 9, 12, 20], [5, 18, 22, 30]]
     output1 = smallest_range(example1)
-    print("Smallest Range:", output1)  # Output: [20, 24]
+    print("smallest range:", output1)  # Output: [20, 24]
