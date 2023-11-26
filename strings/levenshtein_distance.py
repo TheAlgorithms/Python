@@ -67,7 +67,7 @@ def levenshtein_distance_optimized(first_word: str, second_word: str) -> int:
     Compute the Levenshtein distance between two words (strings).
 
     The function is optimized for efficiency by modifying rows in place.
-    
+
     :param first_word: the first word to measure the difference.
     :param second_word: the second word to measure the difference.
     :return: the Levenshtein distance between the two words.
