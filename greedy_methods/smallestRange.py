@@ -5,10 +5,11 @@ import doctest
 import heapq
 import sys
 
+
 def smallest_range(nums: list[list[int]]) -> list[int]:
     """
     Find the smallest range from each list in nums.
-    
+
     Uses min heap for efficiency. The range includes at least one number from each list.
 
     Args:
@@ -49,8 +50,9 @@ def smallest_range(nums: list[list[int]]) -> list[int]:
 
     return smallest_range
 
+
 if __name__ == "__main__":
     doctest.testmod()
-    example1 = [[4,10,15,24,26], [0,9,12,20], [5,18,22,30]]
+    example1 = [[4, 10, 15, 24, 26], [0, 9, 12, 20], [5, 18, 22, 30]]
     output1 = smallest_range(example1)
     print("Smallest Range:", output1)  # Output: [20, 24]
