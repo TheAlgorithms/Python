@@ -148,14 +148,16 @@ if __name__ == "__main__":
         levenshtein_first_word, levenshtein_second_word
     )
     print(
-        f"Levenshtein distance between {levenshtein_first_word} and {levenshtein_second_word} is {levenshtein_result}"
+        f"Levenshtein distance between {levenshtein_first_word} and "
+        f"{levenshtein_second_word} is {levenshtein_result}"
     )
 
     levenshtein_optimized_result = levenshtein_distance_optimized(
         levenshtein_first_word, levenshtein_second_word
     )
     print(
-        f"Levenshtein distance (optimized) between {levenshtein_first_word} and {levenshtein_second_word} is {levenshtein_optimized_result}"
+        f"Levenshtein distance (optimized) between {levenshtein_first_word} and "
+        f"{levenshtein_second_word} is {levenshtein_optimized_result}"
     )
 
     # Benchmark the Levenshtein distance functions
