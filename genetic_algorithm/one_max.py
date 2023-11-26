@@ -214,7 +214,14 @@ def one_max(
 
 bit_count = 16
 mutation_rate = 1.0 / float(bit_count)
-output = one_max(goal=goal, bit_count=bit_count, iterations=10, pop_size=1_000, crossover_rate=0.98, mutation_rate=mutation_rate)
+output = one_max(
+    goal=goal,
+    bit_count=bit_count,
+    iterations=10,
+    pop_size=1_000,
+    crossover_rate=0.98,
+    mutation_rate=mutation_rate,
+)
 best = output[0]
 score = -output[1]
 # Score should be equal to bit_count
