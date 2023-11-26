@@ -1,5 +1,6 @@
 import timeit
 
+
 ####################################
 # Levenshtein Distance Function
 ####################################
@@ -57,6 +58,7 @@ def levenshtein_distance(first_word: str, second_word: str) -> int:
     # Returns the last element (distance)
     return previous_row[-1]
 
+
 ####################################
 # Optimized Levenshtein Distance Function
 ####################################
@@ -110,6 +112,7 @@ def levenshtein_distance_optimized(first_word: str, second_word: str) -> int:
 
     return previous_row[-1]
 
+
 ####################################
 # Benchmarking Function
 ####################################
@@ -127,21 +130,36 @@ def benchmark_levenshtein_distance(name: str, func) -> None:
     result = timeit.timeit(stmt=stmt, setup=setup, number=number)
     print(f"{name:<35} finished {number:,} runs in {result:.5f} seconds")
 
+
 ####################################
 # Main Execution
 ####################################
 if __name__ == "__main__":
     # Get user input for words
-    levenshtein_first_word = input("Enter the first word for Levenshtein distance:\n").strip()
-    levenshtein_second_word = input("Enter the second word for Levenshtein distance:\n").strip()
+    levenshtein_first_word = input(
+        "Enter the first word for Levenshtein distance:\n"
+    ).strip()
+    levenshtein_second_word = input(
+        "Enter the second word for Levenshtein distance:\n"
+    ).strip()
 
     # Calculate and print Levenshtein distances
-    levenshtein_result = levenshtein_distance(levenshtein_first_word, levenshtein_second_word)
-    print(f"Levenshtein distance between {levenshtein_first_word} and {levenshtein_second_word} is {levenshtein_result}")
+    levenshtein_result = levenshtein_distance(
+        levenshtein_first_word, levenshtein_second_word
+    )
+    print(
+        f"Levenshtein distance between {levenshtein_first_word} and {levenshtein_second_word} is {levenshtein_result}"
+    )
 
-    levenshtein_optimized_result = levenshtein_distance_optimized(levenshtein_first_word, levenshtein_second_word)
-    print(f"Levenshtein distance (optimized) between {levenshtein_first_word} and {levenshtein_second_word} is {levenshtein_optimized_result}")
+    levenshtein_optimized_result = levenshtein_distance_optimized(
+        levenshtein_first_word, levenshtein_second_word
+    )
+    print(
+        f"Levenshtein distance (optimized) between {levenshtein_first_word} and {levenshtein_second_word} is {levenshtein_optimized_result}"
+    )
 
     # Benchmark the Levenshtein distance functions
     benchmark_levenshtein_distance("Levenshtein Distance", levenshtein_distance)
-    benchmark_levenshtein_distance("Optimized Levenshtein", levenshtein_distance_optimized)
+    benchmark_levenshtein_distance(
+        "Optimized Levenshtein", levenshtein_distance_optimized
+    )
