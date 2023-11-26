@@ -33,11 +33,11 @@ def goal(individual: list[int]) -> int:
     return -sum(individual)
 
 
-def selection(population: list, scores: list[int], k: int) -> bool:
+def selection(population: list, scores: list[int], num: int) -> list:
     """
     Select individuals from the population based on tournament selection.
 
-    Tournament selection involves randomly selecting k individuals from the
+    Tournament selection involves randomly selecting num individuals from the
     population and choosing the one with the highest fitness score.
 
     Parameters:
@@ -46,7 +46,7 @@ def selection(population: list, scores: list[int], k: int) -> bool:
     - k: The number of individuals to select in each tournament.
 
     Returns:
-    - The truth value of the selected individual from the tournament.
+    - The selected individual from the tournament.
 
     Examples:
     >>> population = [[1, 0, 1, 1, 0], [0, 1, 0, 0, 1], [1, 1, 1, 0, 1]]
@@ -65,7 +65,7 @@ def selection(population: list, scores: list[int], k: int) -> bool:
     False
     """
     select = randint(len(population))
-    for i in randint(0, len(population), k - 1):
+    for i in randint(0, len(population), num - 1):
         if scores[i] < scores[select]:
             select = i
     return population[select]
