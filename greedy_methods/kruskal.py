@@ -17,6 +17,7 @@ class Edge:
         end (str): The ending vertex of the edge.
         weight (int): The weight of the edge.
     """
+
     start: str
     end: str
     weight: int
@@ -80,7 +81,7 @@ def kruskal(graph: list[Edge]) -> list[Edge]:
     Kruskal's algorithm is a greedy algorithm that finds a minimum spanning tree for
     a connected, weighted graph. It sorts the graph's edges by weight and selects them
     in ascending order, ensuring no cycles are formed.
-    
+
     :param graph: a list of edges representing the graph.
     :return: a list of edges representing the minimum spanning tree of the graph.
 
