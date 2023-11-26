@@ -1,6 +1,7 @@
 import doctest
 import heapq
 
+
 def smallest_range(nums):
     """
     Finds the smallest range that includes at least one number from each of the k lists.
@@ -24,7 +25,7 @@ def smallest_range(nums):
 
     # Create a min heap to store the first element from each list
     min_heap = []
-    current_max = float('-inf')
+    current_max = float("-inf")
 
     # Initialize the heap with the first element from each list
     for i, list_ in enumerate(nums):
@@ -32,7 +33,7 @@ def smallest_range(nums):
         current_max = max(current_max, list_[0])
 
     # Initialize the smallest range as the largest possible
-    smallest_range = [float('-inf'), float('inf')]
+    smallest_range = [float("-inf"), float("inf")]
 
     while min_heap:
         current_min, list_index, element_index = heapq.heappop(min_heap)
@@ -52,8 +53,9 @@ def smallest_range(nums):
 
     return smallest_range
 
+
 if __name__ == "__main__":
     doctest.testmod()
-    example1 = [[4,10,15,24,26], [0,9,12,20], [5,18,22,30]]
+    example1 = [[4, 10, 15, 24, 26], [0, 9, 12, 20], [5, 18, 22, 30]]
     output1 = smallest_range(example1)
     print("Smallest Range:", output1)  # Smallest Range: [20, 24]
