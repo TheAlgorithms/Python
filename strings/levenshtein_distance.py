@@ -7,14 +7,9 @@ import timeit
 def levenshtein_distance(first_word: str, second_word: str) -> int:
     """
     Implementation of the Levenshtein distance in Python.
-
-    Parameters:
-    - first_word (str): The first word to measure the difference.
-    - second_word (str): The second word to measure the difference.
-
-    Returns:
-    int: The Levenshtein distance between the two words.
-
+    :param first_word: the first word to measure the difference.
+    :param second_word: the second word to measure the difference.
+    :return: the levenshtein distance between the two words.
     Examples:
     >>> levenshtein_distance("planet", "planetary")
     3
@@ -65,13 +60,10 @@ def levenshtein_distance(first_word: str, second_word: str) -> int:
 def levenshtein_distance_optimized(first_word: str, second_word: str) -> int:
     """
     Compute the Levenshtein distance between two words (strings).
-
     The function is optimized for efficiency by modifying rows in place.
-
     :param first_word: the first word to measure the difference.
     :param second_word: the second word to measure the difference.
     :return: the Levenshtein distance between the two words.
-
     Examples:
     >>> levenshtein_distance_optimized("planet", "planetary")
     3
@@ -109,17 +101,14 @@ def levenshtein_distance_optimized(first_word: str, second_word: str) -> int:
 
     return previous_row[-1]
 
-
 ####################################
 # Benchmarking Function
 ####################################
 def benchmark_levenshtein_distance(name: str, func) -> None:
     """
     Benchmark the Levenshtein distance function.
-
-    Parameters:
-    - name (str): The name of the function being benchmarked.
-    - func: The function to be benchmarked.
+    :param str: The name of the function being benchmarked.
+    :param func: The function to be benchmarked. 
     """
     stmt = f"{func.__name__}('sitting', 'kitten')"
     setup = f"from __main__ import {func.__name__}"
