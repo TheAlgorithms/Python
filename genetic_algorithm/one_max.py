@@ -17,10 +17,10 @@ def goal(individual: list[int]) -> int:
     score is the negation of the sum of the bits.
 
     Parameters:
-    - individual (list[int]): A list representing an individual in the population.
+    - individual: A list representing an individual in the population.
 
     Returns:
-    - int: The fitness score for the individual.
+    - The fitness score for the individual.
 
     Examples:
     >>> goal([1, 1, 1, 1, 1, 1, 1, 1])
@@ -33,7 +33,7 @@ def goal(individual: list[int]) -> int:
     return -sum(individual)
 
 
-def selection(population: list, scores: list[int], k: int) -> list:
+def selection(population: list, scores: list[int], k: int) -> bool:
     """
     Select individuals from the population based on tournament selection.
 
@@ -41,12 +41,12 @@ def selection(population: list, scores: list[int], k: int) -> list:
     population and choosing the one with the highest fitness score.
 
     Parameters:
-    - population (list): The list of individuals in the population.
-    - scores (list[int]): The corresponding fitness scores for each individual.
-    - k (int): The number of individuals to select in each tournament.
+    - population: The list of individuals in the population.
+    - scores: The corresponding fitness scores for each individual.
+    - k: The number of individuals to select in each tournament.
 
     Returns:
-    - list: The selected individual from the tournament.
+    - The truth value of the selected individual from the tournament.
 
     Examples:
     >>> population = [[1, 0, 1, 1, 0], [0, 1, 0, 0, 1], [1, 1, 1, 0, 1]]
@@ -61,8 +61,8 @@ def selection(population: list, scores: list[int], k: int) -> list:
 
     >>> population = [[1, 1, 0, 1, 0], [0, 0, 1, 1, 1], [1, 0, 0, 0, 1]]
     >>> scores = [-2, -3, -1]
-    >>> selection(population, scores, 1) in population
-    True
+    >>> selection(population, scores, 1) not in population
+    False
     """
     select = randint(len(population))
     for i in randint(0, len(population), k - 1):
@@ -80,12 +80,12 @@ def crossover(parent1: list, parent2: list, crossover_rate: float) -> tuple[list
     beyond that point are swapped between the parents to create two children.
 
     Parameters:
-    - parent1 (list): The first parent bitstring.
-    - parent2 (list): The second parent bitstring.
-    - crossover_rate (float): The probability of crossover between parents.
+    - parent1: The first parent bitstring.
+    - parent2): The second parent bitstring.
+    - crossover_rate: The probability of crossover between parents.
 
     Returns:
-    - tuple[list, list]: Two children resulting from the crossover.
+    - Two children resulting from the crossover.
 
     Examples:
     >>> parent1 = [1, 1, 1, 1, 1, 0]
@@ -120,8 +120,8 @@ def mutate(bitstring: list, mutation_rate: float) -> None:
     Mutates the bitstring based on the given mutation rate.
 
     Parameters:
-    - bitstring (list): The binary string to be mutated.
-    - mutation_rate (float): The probability of mutation for each bit in the bitstring.
+    - bitstring: The binary string to be mutated.
+    - mutation_rate: The probability of mutation for each bit in the bitstring.
 
     Examples:
     >>> bitstring = [1, 0, 1, 0, 1, 0]
@@ -152,15 +152,15 @@ def one_max(
     The goal is to transform a binary string to have all 1s.
 
     Parameters:
-    - goal (Callable[[list[int]], int]): The goal function to be maximized.
-    - bit_count (int): The length of the binary strings.
-    - iterations (int): The number of generations to run the genetic algorithm.
-    - pop_size (int): The size of the population in each generation.
-    - crossover_rate (float): The probability of crossover between individuals.
-    - mutation_rate (float): The probability of mutation for each bit in an individual.
+    - goal: The goal function to be maximized.
+    - bit_count: The length of the binary strings.
+    - iterations: The number of generations to run the genetic algorithm.
+    - pop_size: The size of the population in each generation.
+    - crossover_rate: The probability of crossover between individuals.
+    - mutation_rate: The probability of mutation for each bit in an individual.
 
     Returns:
-    - list[int]: The best individual and its score after the evolution process.
+    - The best individual and its score after the evolution process.
 
     Examples:
     >>> import pytest
@@ -212,16 +212,12 @@ def one_max(
     return [best, best_score]
 
 
+iterations = 10
+pop_size = 1000
+crossover_rate = 0.98
 bit_count = 16
 mutation_rate = 1.0 / float(bit_count)
-output = one_max(
-    goal=goal,
-    bit_count=bit_count,
-    iterations=10,
-    pop_size=1_000,
-    crossover_rate=0.98,
-    mutation_rate=mutation_rate,
-)
+output = one_max(goal, bit_count, iterations, pop_size, crossover_rate, mutation_rate)
 best = output[0]
 score = -output[1]
 # Score should be equal to bit_count
