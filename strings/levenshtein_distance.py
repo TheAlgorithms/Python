@@ -113,12 +113,8 @@ def benchmark_levenshtein_distance(func: Callable) -> None:
 
 if __name__ == "__main__":
     # Get user input for words
-    first_word = input(
-        "Enter the first word for Levenshtein distance:\n"
-    ).strip()
-    second_word = input(
-        "Enter the second word for Levenshtein distance:\n"
-    ).strip()
+    first_word = input("Enter the first word for Levenshtein distance:\n").strip()
+    second_word = input("Enter the second word for Levenshtein distance:\n").strip()
 
     # Calculate and print Levenshtein distances
     print(f"{levenshtein_distance(first_word, second_word) = }")
