@@ -1,9 +1,6 @@
-import timeit
+from collections.abc import Callable
 
 
-####################################
-# Levenshtein Distance Function
-####################################
 def levenshtein_distance(first_word: str, second_word: str) -> int:
     """
     Implementation of the Levenshtein distance in Python.
@@ -54,9 +51,6 @@ def levenshtein_distance(first_word: str, second_word: str) -> int:
     return previous_row[-1]
 
 
-####################################
-# Optimized Levenshtein Distance Function
-####################################
 def levenshtein_distance_optimized(first_word: str, second_word: str) -> int:
     """
     Compute the Levenshtein distance between two words (strings).
@@ -102,53 +96,34 @@ def levenshtein_distance_optimized(first_word: str, second_word: str) -> int:
     return previous_row[-1]
 
 
-####################################
-# Benchmarking Function
-####################################
-def benchmark_levenshtein_distance(name: str, func) -> None:
+def benchmark_levenshtein_distance(func: Callable) -> None:
     """
     Benchmark the Levenshtein distance function.
     :param str: The name of the function being benchmarked.
     :param func: The function to be benchmarked.
     """
+    from timeit import timeit
+
     stmt = f"{func.__name__}('sitting', 'kitten')"
     setup = f"from __main__ import {func.__name__}"
-    number = 1000
-    result = timeit.timeit(stmt=stmt, setup=setup, number=number)
-    print(f"{name:<35} finished {number:,} runs in {result:.5f} seconds")
+    number = 25_000
+    result = timeit(stmt=stmt, setup=setup, number=number)
+    print(f"{func.__name__:<30} finished {number:,} runs in {result:.5f} seconds")
 
 
-####################################
-# Main Execution
-####################################
 if __name__ == "__main__":
     # Get user input for words
-    levenshtein_first_word = input(
+    first_word = input(
         "Enter the first word for Levenshtein distance:\n"
     ).strip()
-    levenshtein_second_word = input(
+    second_word = input(
         "Enter the second word for Levenshtein distance:\n"
     ).strip()
 
     # Calculate and print Levenshtein distances
-    levenshtein_result = levenshtein_distance(
-        levenshtein_first_word, levenshtein_second_word
-    )
-    print(
-        f"Levenshtein distance between {levenshtein_first_word} and "
-        f"{levenshtein_second_word} is {levenshtein_result}"
-    )
-
-    levenshtein_optimized_result = levenshtein_distance_optimized(
-        levenshtein_first_word, levenshtein_second_word
-    )
-    print(
-        f"Levenshtein distance (optimized) between {levenshtein_first_word} and "
-        f"{levenshtein_second_word} is {levenshtein_optimized_result}"
-    )
+    print(f"{levenshtein_distance(first_word, second_word) = }")
+    print(f"{levenshtein_distance_optimized(first_word, second_word) = }")
 
     # Benchmark the Levenshtein distance functions
-    benchmark_levenshtein_distance("Levenshtein Distance", levenshtein_distance)
-    benchmark_levenshtein_distance(
-        "Optimized Levenshtein", levenshtein_distance_optimized
-    )
+    benchmark_levenshtein_distance(levenshtein_distance)
+    benchmark_levenshtein_distance(levenshtein_distance_optimized)
