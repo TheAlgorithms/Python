@@ -101,6 +101,7 @@ def levenshtein_distance_optimized(first_word: str, second_word: str) -> int:
 
     return previous_row[-1]
 
+
 ####################################
 # Benchmarking Function
 ####################################
@@ -108,7 +109,7 @@ def benchmark_levenshtein_distance(name: str, func) -> None:
     """
     Benchmark the Levenshtein distance function.
     :param str: The name of the function being benchmarked.
-    :param func: The function to be benchmarked. 
+    :param func: The function to be benchmarked.
     """
     stmt = f"{func.__name__}('sitting', 'kitten')"
     setup = f"from __main__ import {func.__name__}"
