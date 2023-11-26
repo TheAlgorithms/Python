@@ -8,14 +8,17 @@ import heapq
 
 def smallest_range(nums):
     """
-    Finds the smallest range that includes at least one number from each of the k lists.
+    Finds the smallest range that includes at least one number 
+    from each of the k lists.
 
     The function uses a min heap to efficiently find the smallest range.
-    Each time, it pops the smallest element from the heap and adds the next element
-    from the same list to maintain the invariant of having one element from each list in the heap.
+    Each time, it pops the smallest element from the 
+    heap and adds the next element from the same list to 
+    maintain the invariant of having one element from each list in the heap.
 
     Args:
-        nums (list of list of int): A list of k lists of sorted integers in non-decreasing order.
+        nums (list of list of int): A list of k lists of sorted integers 
+        in non-decreasing order.
 
     Returns:
         list: A list containing two integers representing the smallest range.
