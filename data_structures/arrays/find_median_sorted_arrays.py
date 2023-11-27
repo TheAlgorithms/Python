@@ -66,6 +66,7 @@ def find_median_sorted_arrays(nums1: list[int], nums2: list[int]) -> float:
     # If the loop exits without returning, the input arrays are not valid
     raise ValueError("Input arrays are not valid")
 
+
 # Example
 if __name__ == "__main__":
     nums1 = [1, 3]
