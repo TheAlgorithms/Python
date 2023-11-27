@@ -1,3 +1,7 @@
+"""
+https://atharayil.medium.com/median-of-two-sorted-arrays-day-36-python-fcbd2dbbb668
+"""
+
 def find_median_sorted_arrays(nums1: list[int], nums2: list[int]) -> float:
     """
     Finds the median of two sorted arrays.
