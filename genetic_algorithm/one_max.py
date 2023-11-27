@@ -163,7 +163,6 @@ def one_max(
     - The best individual and its score after the evolution process.
 
     Examples:
-    >>> import pytest
     >>> from io import StringIO
     >>> import sys
     >>> goal = lambda individual: -sum(individual)
