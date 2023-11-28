@@ -46,10 +46,13 @@ def find_min(numbers: list[int]) -> int:
     """
     numbers = [x for x in numbers if isinstance(x, (int, float))]
 
+    if not numbers:
+        return 0
+
     n = len(numbers)
     s = sum(numbers)
 
-    dp = [[False for x in range(s + 1)] for y in range(n + 1)]
+    dp = [[False for _ in range(s + 1)] for _ in range(n + 1)]
 
     for i in range(n + 1):
         dp[i][0] = True
@@ -71,9 +74,7 @@ def find_min(numbers: list[int]) -> int:
 
     return diff
 
-
 if __name__ == "__main__":
     from doctest import testmod
 
-    print(find_min([1, 2, 4, "a", "c", "1"]))
     testmod()
