@@ -8,7 +8,7 @@ from string import ascii_lowercase, digits
 import cv2
 import numpy as np
 
-# Parrameters
+# Parameters
 OUTPUT_SIZE = (720, 1280)  # Height, Width
 SCALE_RANGE = (0.4, 0.6)  # if height or width lower than this scale, drop it.
 FILTER_TINY_SCALE = 1 / 100

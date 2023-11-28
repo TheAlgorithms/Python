@@ -242,12 +242,20 @@ class Deque:
         Removes the last element of the deque and returns it.
         Time complexity: O(1)
         @returns topop.val: the value of the node to pop.
-        >>> our_deque = Deque([1, 2, 3, 15182])
-        >>> our_popped = our_deque.pop()
-        >>> our_popped
+        >>> our_deque1 = Deque([1])
+        >>> our_popped1 = our_deque1.pop()
+        >>> our_popped1
+        1
+        >>> our_deque1
+        []
+
+        >>> our_deque2 = Deque([1, 2, 3, 15182])
+        >>> our_popped2 = our_deque2.pop()
+        >>> our_popped2
         15182
-        >>> our_deque
+        >>> our_deque2
         [1, 2, 3]
+
         >>> from collections import deque
         >>> deque_collections = deque([1, 2, 3, 15182])
         >>> collections_popped = deque_collections.pop()
@@ -255,18 +263,24 @@ class Deque:
         15182
         >>> deque_collections
         deque([1, 2, 3])
-        >>> list(our_deque) == list(deque_collections)
+        >>> list(our_deque2) == list(deque_collections)
         True
-        >>> our_popped == collections_popped
+        >>> our_popped2 == collections_popped
         True
         """
         # make sure the deque has elements to pop
         assert not self.is_empty(), "Deque is empty."
 
         topop = self._back
-        self._back = self._back.prev_node  # set new back
-        # drop the last node - python will deallocate memory automatically
-        self._back.next_node = None
+        # if only one element in the queue: point the front and back to None
+        # else remove one element from back
+        if self._front == self._back:
+            self._front = None
+            self._back = None
+        else:
+            self._back = self._back.prev_node  # set new back
+            # drop the last node, python will deallocate memory automatically
+            self._back.next_node = None
 
         self._len -= 1
 
@@ -277,11 +291,17 @@ class Deque:
         Removes the first element of the deque and returns it.
         Time complexity: O(1)
         @returns topop.val: the value of the node to pop.
-        >>> our_deque = Deque([15182, 1, 2, 3])
-        >>> our_popped = our_deque.popleft()
-        >>> our_popped
+        >>> our_deque1 = Deque([1])
+        >>> our_popped1 = our_deque1.pop()
+        >>> our_popped1
+        1
+        >>> our_deque1
+        []
+        >>> our_deque2 = Deque([15182, 1, 2, 3])
+        >>> our_popped2 = our_deque2.popleft()
+        >>> our_popped2
         15182
-        >>> our_deque
+        >>> our_deque2
         [1, 2, 3]
         >>> from collections import deque
         >>> deque_collections = deque([15182, 1, 2, 3])
@@ -290,17 +310,23 @@ class Deque:
         15182
         >>> deque_collections
         deque([1, 2, 3])
-        >>> list(our_deque) == list(deque_collections)
+        >>> list(our_deque2) == list(deque_collections)
         True
-        >>> our_popped == collections_popped
+        >>> our_popped2 == collections_popped
         True
         """
         # make sure the deque has elements to pop
         assert not self.is_empty(), "Deque is empty."
 
         topop = self._front
-        self._front = self._front.next_node  # set new front and drop the first node
-        self._front.prev_node = None
+        # if only one element in the queue: point the front and back to None
+        # else remove one element from front
+        if self._front == self._back:
+            self._front = None
+            self._back = None
+        else:
+            self._front = self._front.next_node  # set new front and drop the first node
+            self._front.prev_node = None
 
         self._len -= 1
 
@@ -432,3 +458,5 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+    dq = Deque([3])
+    dq.pop()

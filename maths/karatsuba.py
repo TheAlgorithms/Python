@@ -1,7 +1,7 @@
 """ Multiply two numbers using Karatsuba algorithm """
 
 
-def karatsuba(a, b):
+def karatsuba(a: int, b: int) -> int:
     """
     >>> karatsuba(15463, 23489) == 15463 * 23489
     True

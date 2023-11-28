@@ -6,8 +6,8 @@ from . import transposition_cipher as trans_cipher
 
 
 def main() -> None:
-    input_file = "Prehistoric Men.txt"
-    output_file = "Output.txt"
+    input_file = "./prehistoric_men.txt"
+    output_file = "./Output.txt"
     key = int(input("Enter key: "))
     mode = input("Encrypt/Decrypt [e/d]: ")
 
