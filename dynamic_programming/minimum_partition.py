@@ -44,6 +44,8 @@ def find_min(numbers: list[int]) -> int:
         ...
     IndexError: list assignment index out of range
     """
+    numbers = [x for x in numbers if isinstance(x, (int, float))]
+
     n = len(numbers)
     s = sum(numbers)
 
@@ -70,7 +72,8 @@ def find_min(numbers: list[int]) -> int:
     return diff
 
 
+
 if __name__ == "__main__":
     from doctest import testmod
-
+    print(find_min([1, 2, 4, 'a', 'c', '1']))
     testmod()
