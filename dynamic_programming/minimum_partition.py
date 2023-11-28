@@ -74,6 +74,7 @@ def find_min(numbers: list[int]) -> int:
 
     return diff
 
+
 if __name__ == "__main__":
     from doctest import testmod
 
