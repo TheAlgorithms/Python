@@ -1,6 +1,6 @@
-def first_missing_positive(nums: list[int]) -> int:
+def first_missing_positive(nums) -> int:
     """
-    Given an unsorted integer array nums, returns the smallest missing positive integer.
+    Given an unsorted float array nums, returns the smallest missing positive integer.
 
     The algorithm must run in O(n) time and use O(1) auxiliary space.
 
@@ -9,7 +9,7 @@ def first_missing_positive(nums: list[int]) -> int:
     - Iterate through the array to find the first position where nums[i] != i + 1,
       indicating the missing positive integer.
 
-    :param nums: The input unsorted integer array.
+    :param nums: The input unsorted float array.
     :return: The smallest missing positive integer.
 
     Examples:
@@ -21,7 +21,36 @@ def first_missing_positive(nums: list[int]) -> int:
 
     >>> first_missing_positive([7, 8, 9, 11, 12])
     1
+
+    >>> first_missing_positive([])
+    1
+
+    >>> first_missing_positive([0])
+    1
+
+    >>> first_missing_positive([1])
+    2
+
+    >>> first_missing_positive([1.5, -2.3, 3.0, 2.7])
+    1
+
+    >>> first_missing_positive([-1, -2, -3])
+    1
+
+    >>> first_missing_positive([1.5, -2.3, 3.0, 2.7])
+    1
+
+    >>> first_missing_positive("ABC")
+    Traceback (most recent call last):
+    ...
+    TypeError: Input must be a list of numbers
     """
+    if not isinstance(nums, list):
+        raise TypeError("Input must be a list of numbers")
+
+    # Filter out non-positive numbers and fractional parts
+    nums = [int(x) for x in nums if x > 0 and x == int(x)]
+
     n = len(nums)
 
     # Move each number to its correct position
@@ -42,19 +71,4 @@ def first_missing_positive(nums: list[int]) -> int:
 if __name__ == "__main__":
     import doctest
 
-    # Add more tests if needed
-    nums1 = [1, 2, 0]
-    print(first_missing_positive(nums1))  # Output: 3
-
-    nums2 = [3, 4, -1, 1]
-    print(first_missing_positive(nums2))  # Output: 2
-
-    nums3 = [7, 8, 9, 11, 12]
-    print(first_missing_positive(nums3))  # Output: 1
-
-    # Additional test
-    nums4 = [2, 5, -10, 8, 4, 6, 1, 9]
-    print(first_missing_positive(nums4))  # Output: 3
-
-    # Run the doctests
     doctest.testmod()
