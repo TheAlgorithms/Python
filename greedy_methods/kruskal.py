@@ -39,7 +39,7 @@ class DisjointSet:
         union(set1, set2): Merges the sets containing 'set1' and 'set2'.
 
     >>> disjoint_set = DisjointSet([])
-    >>> disjoint_set.find("A") 
+    >>> disjoint_set.find("A")
     ''
     >>> disjoint_set = DisjointSet([1, 2, 3])
     >>> disjoint_set.find("D")  # "D" is not in the set
