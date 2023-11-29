@@ -1,6 +1,6 @@
 def first_missing_positive(nums: list[int]) -> int:
     """
-    Given an unsorted float array nums, returns the smallest missing positive integer.
+    Given an unsorted integer array nums, returns the smallest missing positive integer.
 
     The algorithm must run in O(n) time and use O(1) auxiliary space.
 
