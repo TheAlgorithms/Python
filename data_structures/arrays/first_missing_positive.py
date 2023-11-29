@@ -31,7 +31,7 @@ def first_missing_positive(nums: list[int]) -> int:
     >>> first_missing_positive([1])
     2
 
-    >>> first_missing_positive([1.5, -2.3, 3.0, 2.7])
+    >>> first_missing_positive([0.9, 1.5, -2.3, 3.0, 2.7])
     1
 
     >>> first_missing_positive([-1, -2, -3])
