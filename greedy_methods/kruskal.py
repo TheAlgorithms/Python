@@ -2,7 +2,6 @@
 https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
 """
 
-import doctest
 from collections.abc import Iterable
 from dataclasses import dataclass
 
@@ -13,9 +12,9 @@ class Edge:
     Represents an edge in a graph.
 
     Attributes:
-        start (str): The starting vertex of the edge.
-        end (str): The ending vertex of the edge.
-        weight (int): The weight of the edge.
+        start  : The starting vertex of the edge.
+        end    : The ending vertex of the edge.
+        weight : The weight of the edge.
     """
 
     start: str
@@ -39,6 +38,24 @@ class DisjointSet:
         find(item): Finds the representative of the set containing 'item'.
         union(set1, set2): Merges the sets containing 'set1' and 'set2'.
 
+    >>> disjoint_set = DisjointSet([])
+    >>> disjoint_set.find("A") 
+    ''
+    >>> disjoint_set = DisjointSet([1, 2, 3])
+    >>> disjoint_set.find("D")  # "D" is not in the set
+    Traceback (most recent call last):
+        ...
+    KeyError: "Item 'D' not found in the disjoint set"
+    >>> disjoint_set = DisjointSet([1, 2, 3])
+    >>> disjoint_set.find(1)
+    1
+    >>> disjoint_set.find(2)
+    2
+    >>> disjoint_set.find(3)
+    3
+    >>> disjoint_set.union(1, 2)
+    >>> disjoint_set.find(2)
+    1
     >>> ds = DisjointSet(["A", "B", "C"])
     >>> ds.find("A")
     'A'
@@ -57,6 +74,11 @@ class DisjointSet:
 
     def find(self, item: str) -> str:
         """Finds the representative of the set containing 'item'."""
+        if not self.parent:  # Check if the set is empty
+            return ""
+        if item not in self.parent:  # Check if the item is not in the set
+            error_message = "Item '" + str(item) + "' not found in the disjoint set"
+            raise KeyError(error_message)
         if self.parent[item] != item:
             self.parent[item] = self.find(self.parent[item])  # Path compression
         return self.parent[item]
@@ -89,23 +111,25 @@ def kruskal(graph: list[Edge]) -> list[Edge]:
     ...     Edge("A", "B", 1), Edge("B", "C", 3), Edge("A", "C", 4),
     ...     Edge("A", "D", 2), Edge("D", "C", 5)
     ... ]
-    >>> mst = kruskal(graph)
-    >>> [(edge.start, edge.end, edge.weight) for edge in mst]
+    >>> minimum_spanning_tree = kruskal(graph)
+    >>> [(edge.start, edge.end, edge.weight) for edge in minimum_spanning_tree]
     [('A', 'B', 1), ('A', 'D', 2), ('B', 'C', 3)]
     """
-    vertices: set[str] = {vertex for edge in graph for vertex in [edge.start, edge.end]}
+    vertices: set[str] = {vertex for edge in graph for vertex in (edge.start, edge.end)}
     disjoint_set = DisjointSet(vertices)
-    mst: list[Edge] = []
+    minimum_spanning_tree: list[Edge] = []
 
     for edge in sorted(graph, key=lambda edge: edge.weight):
         if disjoint_set.find(edge.start) != disjoint_set.find(edge.end):
-            mst.append(edge)
+            minimum_spanning_tree.append(edge)
             disjoint_set.union(edge.start, edge.end)
 
-    return mst
+    return minimum_spanning_tree
 
 
 if __name__ == "__main__":
+    import doctest
+
     doctest.testmod()
     graph = [
         Edge("A", "B", 1),
@@ -114,7 +138,8 @@ if __name__ == "__main__":
         Edge("A", "D", 2),
         Edge("D", "C", 5),
     ]
-    mst = kruskal(graph)
+    minimum_spanning_tree = kruskal(graph)
     print(
-        "Minimum Spanning Tree:", [(edge.start, edge.end, edge.weight) for edge in mst]
+        "Minimum Spanning Tree:",
+        [(edge.start, edge.end, edge.weight) for edge in minimum_spanning_tree],
     )  # Minimum Spanning Tree: [('A', 'B', 1), ('A', 'D', 2), ('B', 'C', 3)]
