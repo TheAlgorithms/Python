@@ -9,7 +9,7 @@ def first_missing_positive(nums: list[int]) -> int:
     - Iterate through the array to find the first position where nums[i] != i + 1,
       indicating the missing positive integer.
 
-    :param nums: The input unsorted float array.
+    :param nums: The input unsorted integer array.
     :return: The smallest missing positive integer.
 
     Examples:
