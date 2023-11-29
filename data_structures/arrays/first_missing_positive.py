@@ -1,4 +1,4 @@
-def first_missing_positive(nums) -> int:
+def first_missing_positive(nums: list[float]) -> int:
     """
     Given an unsorted float array nums, returns the smallest missing positive integer.
 
