@@ -1,6 +1,6 @@
 """
  smallest_range function takes a list of sorted integer lists and
- finds the smallest range that includes at least one number from each list, 
+ finds the smallest range that includes at least one number from each list,
  using a min heap for efficiency.
 """
 
