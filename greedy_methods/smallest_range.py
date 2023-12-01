@@ -17,13 +17,25 @@ def smallest_range(nums: list[list[int]]) -> list[int]:
         nums: List of k sorted integer lists.
 
     Returns:
-        Smallest range as a two-element list.
+        list: Smallest range as a two-element list.
 
     Examples:
     >>> smallest_range([[4, 10, 15, 24, 26], [0, 9, 12, 20], [5, 18, 22, 30]])
     [20, 24]
     >>> smallest_range([[1, 2, 3], [1, 2, 3], [1, 2, 3]])
     [1, 1]
+    >>> smallest_range(((1, 2, 3), (1, 2, 3), (1, 2, 3)))
+    [1, 1]
+    >>> smallest_range(((-3, -2, -1), (0, 0, 0), (1, 2, 3)))
+    [-1, 1]
+    >>> smallest_range([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    [3, 7]
+    >>> smallest_range([[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+    [0, 0]
+    >>> smallest_range([[], [], []])
+    Traceback (most recent call last):
+        ...
+    IndexError: list index out of range
     """
 
     min_heap: list[tuple[int, int, int]] = []
