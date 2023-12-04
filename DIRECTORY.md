@@ -507,6 +507,7 @@
   * [Minimum Coin Change](greedy_methods/minimum_coin_change.py)
   * [Minimum Waiting Time](greedy_methods/minimum_waiting_time.py)
   * [Optimal Merge Pattern](greedy_methods/optimal_merge_pattern.py)
+  * [Smallest Range](greedy_methods/smallest_range.py)
 
 ## Hashes
   * [Adler32](hashes/adler32.py)
