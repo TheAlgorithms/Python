@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 
 from numpy import array, linalg
 
-# Define a Point on a 2D normalized orthoganal euclidian grid
+# Define a Point on a 2D normalized orthogonal euclidean grid
 # https://mathworld.wolfram.com/Circumcenter.html
 # https://mathworld.wolfram.com/Incenter.html
 # https://mathworld.wolfram.com/Orthocenter.html
@@ -15,7 +15,7 @@ from numpy import array, linalg
 class Point:
     """
     A point defined by 2 floats representing a length on a normalized
-    orthoganal coordinate system
+    orthogonal coordinate system
     default coordinate is the origin
 
     >>> Point(-1.0, 0.0)
@@ -36,7 +36,7 @@ class Point:
 @dataclass
 class Triangle:
     """
-    A 3 point Triangle on a 2D normalized orthoganal euclidian grid
+    A 3 point Triangle on a 2D normalized orthogonal euclidean grid
 
     >>> p1 = Point(-1.0,0.0)
     >>> p2 = Point(1.0,0.0)
@@ -60,10 +60,10 @@ class Triangle:
             or not isinstance(self.v2, Point)
             or not isinstance(self.v3, Point)
         ):
-            raise TypeError("All 3 arguements should be Point Objects")
+            raise TypeError("All 3 arguments should be Point Objects")
         # Check for 3 unique points
         if self.v1 in (self.v2, self.v3):
-            raise TypeError("All 3 arguements should be unique")
+            raise TypeError("All 3 arguments should be unique")
         # Check for linearity
         if self.v1.x == self.v2.x:
             if self.v3.y == self.v2.y:
