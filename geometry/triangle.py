@@ -42,7 +42,6 @@ class Triangle:
     >>> p2 = Point(1.0,0.0)
     >>> p3 = Point(0.0,1.0)
     >>> Triangle(p1, p2, p3)
-
     Triangle(v1=Point(x=-1.0, y=0.0), v2=Point(x=1.0, y=0.0), v3=Point(x=0.0, y=1.0),
         circum=Point(x=0.0, y=0.0), incen=Point(x=0.0, y=0.0),
         ortho=Point(x=0.0, y=0.0))
