@@ -4,6 +4,9 @@ from numpy import array, linalg
 from dataclasses import dataclass, field
 
 # Define a Point on a 2D normalized orthoganal euclidian grid
+# https://mathworld.wolfram.com/Circumcenter.html
+# https://mathworld.wolfram.com/Incenter.html
+# https://mathworld.wolfram.com/Orthocenter.html
 
 
 @dataclass
