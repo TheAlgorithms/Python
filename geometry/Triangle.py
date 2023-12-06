@@ -1,7 +1,9 @@
 from __future__ import annotations
+
 import math
-from numpy import array, linalg
 from dataclasses import dataclass, field
+
+from numpy import array, linalg
 
 # Define a Point on a 2D normalized orthoganal euclidian grid
 # https://mathworld.wolfram.com/Circumcenter.html
@@ -60,7 +62,7 @@ class Triangle:
         ):
             raise TypeError("All 3 arguements should be Point Objects")
         # Check for 3 unique points
-        if self.v1 == self.v2 or self.v1 == self.v3 or self.v2 == self.v3:
+        if self.v1 in (self.v2, self.v3):
             raise TypeError("All 3 arguements should be unique")
         # Check for linearity
         if self.v1.x == self.v2.x:
