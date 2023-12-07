@@ -16,6 +16,8 @@ How many fractions lie between 1/3 and 1/2 in the sorted set
 of reduced proper fractions for d ≤ 12,000?
 """
 from math import gcd
+
+
 def solution(limit: int = 12_000) -> int:
     """
     Returns the number of fractions lying between 1/3 and 1/2
@@ -46,6 +48,7 @@ def solution(limit: int = 12_000) -> int:
         count += phi[d] // 2 - phi[(d + 2) // 3]
 
     return count
+
 
 if __name__ == "__main__":
     print(f"{solution() = }")
