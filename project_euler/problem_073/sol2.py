@@ -28,11 +28,11 @@ def solution(limit: int = 12_000) -> int:
     - int: Number of fractions between 1/3 and 1/2.
 
     Example:
-    >>> count_fractions(4)
+    >>> solution(4)
     0
-    >>> count_fractions(5)
+    >>> solution(5)
     1
-    >>> count_fractions(8)
+    >>> solution(8)
     3
     """
     phi = [i for i in range(limit + 1)]
