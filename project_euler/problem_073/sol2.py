@@ -18,21 +18,16 @@ of reduced proper fractions for d ≤ 12,000?
 
 
 def solution(limit: int = 12_000) -> int:
-    """
-    Returns the number of fractions lying between 1/3 and 1/2
-    in the sorted set of reduced proper fractions for d ≤ limit.
+   """
+    Returns number of fractions lie between 1/3 and 1/2 in the sorted set
+    of reduced proper fractions for d ≤ max_d
 
-    Args:
-    - limit (int): The maximum denominator value.
-
-    Returns:
-    - int: Number of fractions between 1/3 and 1/2.
-
-    Example:
     >>> solution(4)
     0
+
     >>> solution(5)
     1
+
     >>> solution(8)
     3
     """
