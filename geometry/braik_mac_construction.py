@@ -55,7 +55,7 @@ class BraikMac:
     Point(x=2.0, y=3.0), Point(x=1.0, y=10.0), Point(x=6.0, y=7.0)])
     """
 
-    p_list: list[float] = field(default_factory=list)
+    p_list: list[Point] = field(default_factory=list)
 
     def __post_init__(self) -> None:
         n = 0
