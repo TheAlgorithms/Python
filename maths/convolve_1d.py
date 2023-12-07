@@ -16,9 +16,9 @@ class Signal:
     """
     A discrete representation of a signal as a n-dimensional vector
 
-    >>>Signal([1,2,3,4,5])
+    >>> Signal([1,2,3,4,5])
     Signal(signal=[1,2,3,4,5],n=5)
-    >>>Signal([1.0,3.0,2.0,-1.0])
+    >>> Signal([1.0,3.0,2.0,-1.0])
     Signal(signal=[1.0,3.0,2.0,-1.0],n=4)
     """
 
@@ -38,9 +38,9 @@ class DiscreteConvolve1D:
     """
     1D discrete convolution between two linear signals
 
-    >>>s1 = Signal([1,2,3,4,5])
-    >>>s2 = Signal([1,-1,2,-3])
-    >>>DiscreteConvolve1D(s1,s2)
+    >>> s1 = Signal([1,2,3,4,5])
+    >>> s2 = Signal([1,-1,2,-3])
+    >>> DiscreteConvolve1D(s1,s2)
     DiscreteConvolve1D(kern=Signal( # doctest: +NORMALIZE_WHITESPACE
     signal=[1, 2, 3, 4, 5], n=5), sig=Signal(signal=[1, -1, 2, -3], n=4))
     """
