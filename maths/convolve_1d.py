@@ -51,9 +51,9 @@ class DiscreteConvolve1D:
     @property
     def convolve_1d(self) -> Signal:
         conv = Signal()
-        for i in range(0, self.sig.n):
+        for i in range(self.sig.n):
             conv.signal.append(0)
-            for j in range(0, self.kern.n):
+            for j in range(self.kern.n):
                 if (
                     i + j - floor(self.kern.n / 2) < 0
                     or i + j - floor(self.kern.n / 2) >= self.sig.n
