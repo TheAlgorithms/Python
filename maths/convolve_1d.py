@@ -17,9 +17,9 @@ class Signal:
     A discrete representation of a signal as a n-dimensional vector
 
     >>>Signal([1,2,3,4,5])
-    Signal([1,2,3,4,5])
+    Signal(signal=[1,2,3,4,5],n=5)
     >>>Signal([1.0,3.0,2.0,-1.0])
-    Signal([1.0,3.0,2.0,-1.0])
+    Signal(signal=[1.0,3.0,2.0,-1.0],n=4)
     """
 
     signal: list[float] = field(default_factory=list)
