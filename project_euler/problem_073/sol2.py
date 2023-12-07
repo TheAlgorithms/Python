@@ -26,8 +26,9 @@ except Exception as e:
 from numba import njit
 from math import gcd
 
+
 @njit
-def solution(limit: int=12_000) -> int:
+def solution(limit: int = 12_000) -> int:
     """
     Returns the number of fractions lying between 1/3 and 1/2
     in the sorted set of reduced proper fractions for d ≤ limit.
