@@ -10,6 +10,7 @@ from math import floor
     https://en.wikipedia.org/wiki/Convolution
 """
 
+
 @dataclass
 class Signal:
     """
@@ -26,10 +27,11 @@ class Signal:
 
     def __post_init__(self) -> None:
         for i in self.signal:
-            if not isinstance(i, (float,int)):
+            if not isinstance(i, (float, int)):
                 raise TypeError("vector must be a list of numeric values.")
             else:
                 self.n += 1
+
 
 @dataclass
 class DiscreteConvolve1D:
@@ -49,14 +51,16 @@ class DiscreteConvolve1D:
     @property
     def convolve_1d(self) -> Signal:
         conv = Signal()
-        for i in range(self.sig.n):
+        for i in range(0, self.sig.n):
             conv.signal.append(0)
-            for j in range(self.kern.n):
-                if i + j - floor(self.kern.n/2) < 0 or \
-                    i + j - floor(self.kern.n/2) >= self.sig.n:
+            for j in range(0, self.kern.n):
+                if (
+                    i + j - floor(self.kern.n / 2) < 0
+                    or i + j - floor(self.kern.n / 2) >= self.sig.n
+                ):
                     sig_val = 0
                 else:
-                    sig_val = self.sig.signal[i + j - floor(self.kern.n/2)]
-                conv.signal[i] += self.kern.signal[j]*sig_val
+                    sig_val = self.sig.signal[i + j - floor(self.kern.n / 2)]
+                conv.signal[i] += self.kern.signal[j] * sig_val
             conv.n += 1
         return conv
