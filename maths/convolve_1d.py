@@ -23,7 +23,7 @@ class Signal:
     """
 
     signal: list[float] = field(default_factory=list)
-    n : int = 0
+    n: int = 0
 
     def __post_init__(self) -> None:
         for i in self.signal:
