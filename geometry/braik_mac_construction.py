@@ -149,6 +149,5 @@ class BraikMac:
 
         f = -linalg.det(const_matrix)
 
-        s = (f'0 = {a:+.2} X**2 {b:+.2} XY {c:+.2} Y**2 {d:+.2} X'
-        f' {e:+.2} Y {f:+.2}')
+        s = f"0 = {a:+.2} X**2 {b:+.2} XY {c:+.2} Y**2 {d:+.2} X {e:+.2} Y {f:+.2}"
         print(s)
