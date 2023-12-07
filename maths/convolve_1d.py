@@ -56,9 +56,9 @@ class DiscreteConvolve1D:
                     i + j - floor(self.kern.n / 2) < 0
                     or i + j - floor(self.kern.n / 2) >= self.sig.n
                 ):
-                    sig_val = 0
+                    sig_val = 0.0
                 else:
-                    sig_val = self.sig.signal[i + j - floor(self.kern.n / 2)]
+                    sig_val = float(self.sig.signal[i + j - floor(self.kern.n / 2)])
                 conv.signal[i] += self.kern.signal[j] * sig_val
             conv.n += 1
         return conv
