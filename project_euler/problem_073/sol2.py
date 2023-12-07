@@ -15,7 +15,14 @@ It can be seen that there are 3 fractions between 1/3 and 1/2.
 How many fractions lie between 1/3 and 1/2 in the sorted set
 of reduced proper fractions for d ≤ 12,000?
 """
+import subprocess
 
+# Attempt to install 'numba' using pip
+try:
+    subprocess.run(["pip", "install", "numba"])
+    print("Numba installed successfully!")
+except Exception as e:
+    print(f"Error installing numba: {e}")
 from numba import njit
 from math import gcd
 
