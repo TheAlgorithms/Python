@@ -9,6 +9,7 @@ from numpy import array, linalg
 # 5 Points define a conic section on a 2D normal
 # orthogonal plane using this technique
 
+
 @dataclass
 class Point:
     """
@@ -29,6 +30,7 @@ class Point:
             raise TypeError("x must be an int or float numeric value")
         if not isinstance(self.y, (int, float)):
             raise TypeError("y must be an int or float numeric value")
+
 
 @dataclass
 class BraikMac:
@@ -53,7 +55,7 @@ class BraikMac:
     Point(x=2.0, y=3.0), Point(x=1.0, y=10.0), Point(x=6.0, y=7.0)])
     """
 
-    p_list : list[float] = field(default_factory=list)
+    p_list: list[float] = field(default_factory=list)
 
     def __post_init__(self) -> None:
         n = 0
@@ -61,7 +63,7 @@ class BraikMac:
             if not isinstance(p, Point):
                 raise TypeError("Array must be point objects.")
             n += 1
-        if n != 5 :
+        if n != 5:
             raise TypeError("Array must be 5 point objects.")
 
     @property
@@ -79,11 +81,11 @@ class BraikMac:
 
         x2_matrix = array(
             [
-                [x1*y1, y1**2, x1, y1, 1],
-                [x2*y2, y2**2, x2, y2, 1],
-                [x3*y3, y3**2, x3, y3, 1],
-                [x4*y4, y4**2, x4, y4, 1],
-                [x5*y5, y5**2, x5, y5, 1],
+                [x1 * y1, y1**2, x1, y1, 1],
+                [x2 * y2, y2**2, x2, y2, 1],
+                [x3 * y3, y3**2, x3, y3, 1],
+                [x4 * y4, y4**2, x4, y4, 1],
+                [x5 * y5, y5**2, x5, y5, 1],
             ]
         )
 
@@ -103,11 +105,11 @@ class BraikMac:
 
         y2_matrix = array(
             [
-                [x1**2, x1*y1, x1, y1, 1],
-                [x2**2, x2*y2, x2, y2, 1],
-                [x3**2, x3*y3, x3, y3, 1],
-                [x4**2, x4*y4, x4, y4, 1],
-                [x5**2, x5*y5, x5, y5, 1],
+                [x1**2, x1 * y1, x1, y1, 1],
+                [x2**2, x2 * y2, x2, y2, 1],
+                [x3**2, x3 * y3, x3, y3, 1],
+                [x4**2, x4 * y4, x4, y4, 1],
+                [x5**2, x5 * y5, x5, y5, 1],
             ]
         )
 
@@ -115,11 +117,11 @@ class BraikMac:
 
         x_matrix = array(
             [
-                [x1**2, x1*y1, y1**2, y1, 1],
-                [x2**2, x2*y2, y2**2, y2, 1],
-                [x3**2, x3*y3, y3**2, y3, 1],
-                [x4**2, x4*y4, y4**2, y4, 1],
-                [x5**2, x5*y5, y5**2, y5, 1],
+                [x1**2, x1 * y1, y1**2, y1, 1],
+                [x2**2, x2 * y2, y2**2, y2, 1],
+                [x3**2, x3 * y3, y3**2, y3, 1],
+                [x4**2, x4 * y4, y4**2, y4, 1],
+                [x5**2, x5 * y5, y5**2, y5, 1],
             ]
         )
 
@@ -127,11 +129,11 @@ class BraikMac:
 
         y_matrix = array(
             [
-                [x1**2, x1*y1, y1**2, x1, 1],
-                [x2**2, x2*y2, y2**2, x2, 1],
-                [x3**2, x3*y3, y3**2, x3, 1],
-                [x4**2, x4*y4, y4**2, x4, 1],
-                [x5**2, x5*y5, y5**2, x5, 1],
+                [x1**2, x1 * y1, y1**2, x1, 1],
+                [x2**2, x2 * y2, y2**2, x2, 1],
+                [x3**2, x3 * y3, y3**2, x3, 1],
+                [x4**2, x4 * y4, y4**2, x4, 1],
+                [x5**2, x5 * y5, y5**2, x5, 1],
             ]
         )
 
@@ -139,16 +141,15 @@ class BraikMac:
 
         const_matrix = array(
             [
-                [x1**2, x1*y1, y1**2, x1, y1],
-                [x2**2, x2*y2, y2**2, x2, y2],
-                [x3**2, x3*y3, y3**2, x3, y3],
-                [x4**2, x4*y4, y4**2, x4, y4],
-                [x5**2, x5*y5, y5**2, x5, y5],
+                [x1**2, x1 * y1, y1**2, x1, y1],
+                [x2**2, x2 * y2, y2**2, x2, y2],
+                [x3**2, x3 * y3, y3**2, x3, y3],
+                [x4**2, x4 * y4, y4**2, x4, y4],
+                [x5**2, x5 * y5, y5**2, x5, y5],
             ]
         )
 
         f = -linalg.det(const_matrix)
 
-        s = (f'0 = {a:+.2} X**2 {b:+.2} XY {c:+.2} Y**2 {d:+.2} X'
-        f' {e:+.2} Y {f:+.2}')
+        s = f"0 = {a:+.2} X**2 {b:+.2} XY {c:+.2} Y**2 {d:+.2} X" f" {e:+.2} Y {f:+.2}"
         print(s)
