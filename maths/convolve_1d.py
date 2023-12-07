@@ -39,7 +39,7 @@ class DiscreteConvolve1D:
     >>> s1 = Signal([1,2,3,4,5])
     >>> s2 = Signal([1,-1,2,-3])
     >>> DiscreteConvolve1D(s1,s2) # doctest: +NORMALIZE_WHITESPACE
-    DiscreteConvolve1D(kern=Signal(signal=[1, 2, 3, 4, 5], n=5), 
+    DiscreteConvolve1D(kern=Signal(signal=[1, 2, 3, 4, 5], n=5),
     sig=Signal(signal=[1, -1, 2, -3], n=4))
     """
 
