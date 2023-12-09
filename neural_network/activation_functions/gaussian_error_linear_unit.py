@@ -6,9 +6,8 @@ For more detailed information, you can refer to the following link:
 https://en.wikipedia.org/wiki/Rectifier_(neural_networks)#Gaussian-error_linear_unit_(GELU)
 """
 
-from scipy.special import erf
 import numpy as np
-
+from scipy.special import erf
 
 def gaussian_error_linear_unit(vector: np.ndarray) -> np.ndarray:
     """
@@ -27,8 +26,7 @@ def gaussian_error_linear_unit(vector: np.ndarray) -> np.ndarray:
 
 
     """
-    cdf = 0.5 * (1.0 + erf(vector / np.sqrt(2.0)))
-    return np.where(vector > 0, vector, (vector * cdf))
+    return np.where(vector > 0, vector, (vector * 0.5 * (1.0 + erf(vector / np.sqrt(2.0)))))
 
 
 if __name__ == "__main__":
