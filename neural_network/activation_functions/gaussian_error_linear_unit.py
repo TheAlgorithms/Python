@@ -1,7 +1,7 @@
 """
 Gaussian Error Linear Unit (GELU)
 
-Use Case: GELU allows small negative values when the input is less than zero, providing a richer gradient for backpropagation
+Use Case: GELU permits negative inputs for enhanced backprop gradients.
 For more detailed information, you can refer to the following link:
 https://en.wikipedia.org/wiki/Rectifier_(neural_networks)#Gaussian-error_linear_unit_(GELU)
 """
