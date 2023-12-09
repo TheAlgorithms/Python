@@ -9,6 +9,7 @@ https://en.wikipedia.org/wiki/Rectifier_(neural_networks)#Gaussian-error_linear_
 import numpy as np
 from scipy.special import erf
 
+
 def gaussian_error_linear_unit(vector: np.ndarray) -> np.ndarray:
     """
          Implements the GELU activation function.
@@ -26,7 +27,9 @@ def gaussian_error_linear_unit(vector: np.ndarray) -> np.ndarray:
 
 
     """
-    return np.where(vector > 0, vector, (vector * 0.5 * (1.0 + erf(vector / np.sqrt(2.0)))))
+    return np.where(
+        vector > 0, vector, (vector * 0.5 * (1.0 + erf(vector / np.sqrt(2.0))))
+    )
 
 
 if __name__ == "__main__":
