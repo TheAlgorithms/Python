@@ -428,12 +428,16 @@
   * [Haversine Distance](geodesy/haversine_distance.py)
   * [Lamberts Ellipsoidal Distance](geodesy/lamberts_ellipsoidal_distance.py)
 
+## Geometry
+  * [Geometry](geometry/geometry.py)
+
 ## Graphics
   * [Bezier Curve](graphics/bezier_curve.py)
   * [Vector3 For 2D Rendering](graphics/vector3_for_2d_rendering.py)
 
 ## Graphs
   * [A Star](graphs/a_star.py)
+  * [Ant Colony Optimization Algorithms](graphs/ant_colony_optimization_algorithms.py)
   * [Articulation Points](graphs/articulation_points.py)
   * [Basic Graphs](graphs/basic_graphs.py)
   * [Bellman Ford](graphs/bellman_ford.py)
@@ -503,6 +507,7 @@
   * [Minimum Coin Change](greedy_methods/minimum_coin_change.py)
   * [Minimum Waiting Time](greedy_methods/minimum_waiting_time.py)
   * [Optimal Merge Pattern](greedy_methods/optimal_merge_pattern.py)
+  * [Smallest Range](greedy_methods/smallest_range.py)
 
 ## Hashes
   * [Adler32](hashes/adler32.py)
@@ -718,6 +723,7 @@
   * [Sock Merchant](maths/sock_merchant.py)
   * [Softmax](maths/softmax.py)
   * [Solovay Strassen Primality Test](maths/solovay_strassen_primality_test.py)
+  * [Spearman Rank Correlation Coefficient](maths/spearman_rank_correlation_coefficient.py)
   * Special Numbers
     * [Armstrong Numbers](maths/special_numbers/armstrong_numbers.py)
     * [Automorphic Number](maths/special_numbers/automorphic_number.py)
@@ -1310,7 +1316,6 @@
   * [Fetch Well Rx Price](web_programming/fetch_well_rx_price.py)
   * [Get Amazon Product Data](web_programming/get_amazon_product_data.py)
   * [Get Imdb Top 250 Movies Csv](web_programming/get_imdb_top_250_movies_csv.py)
-  * [Get Imdbtop](web_programming/get_imdbtop.py)
   * [Get Ip Geolocation](web_programming/get_ip_geolocation.py)
   * [Get Top Billionaires](web_programming/get_top_billionaires.py)
   * [Get Top Hn Posts](web_programming/get_top_hn_posts.py)

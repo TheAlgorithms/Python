@@ -53,7 +53,37 @@ class Heap(Generic[T]):
         return str(self.h)
 
     def parent_index(self, child_idx: int) -> int | None:
-        """return the parent index of given child"""
+        """
+        returns the parent index based on the given child index
+
+        >>> h = Heap()
+        >>> h.build_max_heap([103, 9, 1, 7, 11, 15, 25, 201, 209, 107, 5])
+        >>> h
+        [209, 201, 25, 103, 107, 15, 1, 9, 7, 11, 5]
+
+        >>> h.parent_index(-1)  # returns none if index is <=0
+
+        >>> h.parent_index(0)   # returns none if index is <=0
+
+        >>> h.parent_index(1)
+        0
+        >>> h.parent_index(2)
+        0
+        >>> h.parent_index(3)
+        1
+        >>> h.parent_index(4)
+        1
+        >>> h.parent_index(5)
+        2
+        >>> h.parent_index(10.5)
+        4.0
+        >>> h.parent_index(209.0)
+        104.0
+        >>> h.parent_index("Test")
+        Traceback (most recent call last):
+        ...
+        TypeError: '>' not supported between instances of 'str' and 'int'
+        """
         if child_idx > 0:
             return (child_idx - 1) // 2
         return None

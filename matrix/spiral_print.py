@@ -116,7 +116,7 @@ def spiral_traversal(matrix: list[list]) -> list[int]:
     [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7] + spiral_traversal([])
     """
     if matrix:
-        return list(matrix.pop(0)) + spiral_traversal(list(zip(*matrix))[::-1])
+        return list(matrix.pop(0)) + spiral_traversal(list(zip(*matrix))[::-1])  # type: ignore
     else:
         return []
 
