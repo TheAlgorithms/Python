@@ -1,4 +1,4 @@
-"""Queue represented by a pseudo stack (represented by a list with pop and append)"""
+https://github.com/Tamaloco81/Python/blob/codespace-ubiquitous-doodle-r4grqv665rx63x7vx/data_structures%2Fqueue%2Fqueue_on_pseudo_stack.py"""Queue represented by a pseudo stack (represented by a list with pop and append)"""
 from typing import Any
 
 
