@@ -9,6 +9,7 @@ from dataclasses import dataclass, field
 # points or a singular point
 # https://mathworld.wolfram.com/PolarCoordinates.html
 
+
 @dataclass
 class Point:
     """
