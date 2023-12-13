@@ -1,15 +1,15 @@
 from __future__ import annotations
+
 import math
 from dataclasses import dataclass, field
-from numpy import array, linalg
 
 # polar_coordinates
 # convert from normal, orthogonal coordinates
-# to polar coordinates.  Can be a list of 
+# to polar coordinates.  Can be a list of
 # points or a singular point
 # https://mathworld.wolfram.com/PolarCoordinates.html
 
-@dataclass 
+@dataclass
 class Point:
     """
     A point on an orthogonal unit cartesian plane
@@ -50,7 +50,7 @@ class ConvertPolar:
     @property
     def convert_points(self) -> None:
         for i in self.points:
-            r = math.sqrt(self.x**2 + self.y**2)
-            theta = math.arctan2(self.y / self.x)
+            r = math.sqrt(i.x**2 + i.y**2)
+            theta = math.arctan2(i.y / i.x)
             s = f"r = {r:.2}, theta = {theta:.2}"
             print(s)
