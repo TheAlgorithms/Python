@@ -15,7 +15,7 @@ class Point:
     """
     A point on an orthogonal unit cartesian plane
 
-    >>>Point(2.0,4.0)
+    >>> Point(2.0,4.0)
     Point(x=2.0, y=4.0)
     """
 
@@ -34,10 +34,10 @@ class ConvertPolar:
     """
     Basic conversion of a list of points to polar (r,theta) coordinates
 
-    >>>p1 = Point(2.0,4.0)
-    >>>p2 = Point(1.0,-2.0)
-    >>>p3 = Point(-1.0,1.0)
-    >>>ConvertPolar([p1,p2,p3])
+    >>> p1 = Point(2.0,4.0)
+    >>> p2 = Point(1.0,-2.0)
+    >>> p3 = Point(-1.0,1.0)
+    >>> ConvertPolar([p1,p2,p3])
     ConvertPolar(points=[Point(x=2.0, y=4.0), # doctest: +NORMALIZE_WHITESPACE
     Point(x=1.0, y=-2.0), Point(x=-1.0, y=1.0)])
     """
@@ -53,6 +53,6 @@ class ConvertPolar:
     def convert_points(self) -> None:
         for i in self.points:
             r = math.sqrt(i.x**2 + i.y**2)
-            theta = math.atan2(i.y / i.x)
+            theta = math.atan2(i.y, i.x)
             s = f"r = {r:.2}, theta = {theta:.2}"
             print(s)
