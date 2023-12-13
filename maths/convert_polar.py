@@ -41,7 +41,7 @@ class ConvertPolar:
     Point(x=1.0, y=-2.0), Point(x=-1.0, y=1.0)])
     """
 
-    points: list[Point] = field(default_factory=Point)
+    points: list[Point] = field(default_factory=list)
 
     def __post_init__(self) -> None:
         for i in self.points:
@@ -52,6 +52,6 @@ class ConvertPolar:
     def convert_points(self) -> None:
         for i in self.points:
             r = math.sqrt(i.x**2 + i.y**2)
-            theta = math.arctan2(i.y / i.x)
+            theta = math.atan2(i.y / i.x)
             s = f"r = {r:.2}, theta = {theta:.2}"
             print(s)
