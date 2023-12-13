@@ -27,6 +27,7 @@ class Point:
         if not isinstance(self.y, (float, int)):
             raise TypeError("y must be a numeric values.")
 
+
 @dataclass
 class ConvertPolar:
     """
