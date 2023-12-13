@@ -37,8 +37,8 @@ class ConvertPolar:
     >>> p1 = Point(2.0,4.0)
     >>> p2 = Point(1.0,-2.0)
     >>> p3 = Point(-1.0,1.0)
-    >>> ConvertPolar([p1,p2,p3])
-    ConvertPolar(points=[Point(x=2.0, y=4.0), # doctest: +NORMALIZE_WHITESPACE
+    >>> ConvertPolar([p1,p2,p3]) # doctest: +NORMALIZE_WHITESPACE
+    ConvertPolar(points=[Point(x=2.0, y=4.0),
     Point(x=1.0, y=-2.0), Point(x=-1.0, y=1.0)])
     """
 
