@@ -5,11 +5,12 @@ from numpy import array, linalg
 
 # polar_coordinates
 # convert from normal, orthogonal coordinates
-# to polar coordinates.  Can be a list of 
+# to polar coordinates.  Can be a list of
 # points or a singular point
 # https://mathworld.wolfram.com/PolarCoordinates.html
 
-@dataclass 
+
+@dataclass
 class Point:
     """
     A point on an orthogonal unit cartesian plane
@@ -26,6 +27,7 @@ class Point:
             raise TypeError("x must be a numeric values.")
         if not isinstance(self.y, (float, int)):
             raise TypeError("y must be a numeric values.")
+
 
 @dataclass
 class ConvertPolar:
