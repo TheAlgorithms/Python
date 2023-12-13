@@ -1,5 +1,4 @@
 def decimal_to_negative_binary(number: int) -> int:
-
     """
     a conversion algorithm from decimal
     to negative binary base
