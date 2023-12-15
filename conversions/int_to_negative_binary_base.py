@@ -17,14 +17,14 @@ def decimal_to_negative_binary(number: int) -> int:
     """
 
     if number == 0:
-        return "0"
-    result = ""
+        return 0
+    result_str = ""
     while number != 0:
         number, remainder = divmod(number, -2)
         if remainder < 0:
             number, remainder = number + 1, remainder + 2
-        result = str(remainder) + result
-    return int(result)
+        result_str = str(remainder) + result_str
+    return int(result_str)
 
 
 if __name__ == "__main__":

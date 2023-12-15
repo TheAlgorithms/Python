@@ -15,8 +15,8 @@ def negative_binary_to_int(negative_binary: int) -> int:
     >>> negative_binary_to_int(110)
     2
     """
-    negative_binary = str(negative_binary)
-    r = negative_binary[::-1]
+    negative_binary_str = str(negative_binary)
+    r = negative_binary_str[::-1]
     res = [int(r[c]) * (-2) ** c for c in range(len(r))]
     return sum(res)
 
