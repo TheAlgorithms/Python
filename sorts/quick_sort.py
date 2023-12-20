@@ -37,7 +37,7 @@ def quick_sort(collection: list) -> list:
     lesser = [item for item in collection if item <= pivot]
     greater = [item for item in collection if item > pivot]
 
-    # Recursively apply quick_sort to the lesser and greater groups, and combine with the pivot
+    # Recursively sort the lesser and greater groups, and combine with the pivot
     return [*quick_sort(lesser), pivot, *quick_sort(greater)]
 
 
