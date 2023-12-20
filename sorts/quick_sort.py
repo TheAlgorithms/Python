@@ -13,10 +13,10 @@ from random import randrange
 
 
 def quick_sort(collection: list) -> list:
-    """A pure Python implementation of quick sort algorithm
+    """A pure Python implementation of quicksort algorithm.
 
     :param collection: a mutable collection of comparable items
-    :return: the same collection ordered by ascending
+    :return: the same collection ordered in ascending order
 
     Examples:
     >>> quick_sort([0, 5, 3, 2, 2])
@@ -26,23 +26,26 @@ def quick_sort(collection: list) -> list:
     >>> quick_sort([-2, 5, 0, -45])
     [-45, -2, 0, 5]
     """
+    # Base case: if the collection has 0 or 1 elements, it is already sorted
     if len(collection) < 2:
         return collection
-    pivot_index = randrange(len(collection))  # Use random element as pivot
-    pivot = collection[pivot_index]
-    greater: list[int] = []  # All elements greater than pivot
-    lesser: list[int] = []  # All elements less than or equal to pivot
 
-    for element in collection[:pivot_index]:
-        (greater if element > pivot else lesser).append(element)
+    # Randomly select a pivot index and remove the pivot element from the collection
+    pivot_index = randrange(len(collection))
+    pivot = collection.pop(pivot_index)
 
-    for element in collection[pivot_index + 1 :]:
-        (greater if element > pivot else lesser).append(element)
+    # Partition the remaining elements into two groups: lesser or equal, and greater
+    lesser = [item for item in collection if item <= pivot]
+    greater = [item for item in collection if item > pivot]
 
+    # Recursively sort the lesser and greater groups, and combine with the pivot
     return [*quick_sort(lesser), pivot, *quick_sort(greater)]
 
 
 if __name__ == "__main__":
+    # Get user input and convert it into a list of integers
     user_input = input("Enter numbers separated by a comma:\n").strip()
     unsorted = [int(item) for item in user_input.split(",")]
+
+    # Print the result of sorting the user-provided list
     print(quick_sort(unsorted))
