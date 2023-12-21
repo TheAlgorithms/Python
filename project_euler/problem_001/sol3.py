@@ -19,7 +19,7 @@ def solution(n: int = 1000) -> int:
     >>> solution(3)
     0
     >>> solution(4)
-    3
+    3   ## this is might be good
     >>> solution(10)
     23
     >>> solution(600)
