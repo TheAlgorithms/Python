@@ -230,12 +230,11 @@ class Heap(Generic[T]):
             idx = (idx - 1) // 2
 
     def heap_sort(self) -> None:
-        size = self.heap_size
-        for j in range(size - 1, 0, -1):
-            self.h[0], self.h[j] = self.h[j], self.h[0]
-            self.heap_size -= 1
-            self.max_heapify(0)
-        self.heap_size = size
+    for j in range(self.heap_size - 1, 0, -1):
+        self.h[0], self.h[j] = self.h[j], self.h[0]
+        self.max_heapify(0)
+    self.heap_size = len(self.h)
+
 
 
 if __name__ == "__main__":
