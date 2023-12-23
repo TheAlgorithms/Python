@@ -101,7 +101,10 @@ def update_image_and_anno(
             for bbox in img_annos:
                 x_center_new = 1 - bbox[1]
                 new_annos.append([bbox[0], x_center_new, bbox[2], bbox[3], bbox[4]])
-        elif flip_type == 0:
+        else:
+            """
+            This else code will catch the flip_type that equal to 0
+            """
             new_img = cv2.flip(img, flip_type)
             for bbox in img_annos:
                 y_center_new = 1 - bbox[2]
