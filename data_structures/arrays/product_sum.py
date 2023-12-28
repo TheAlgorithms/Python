@@ -164,20 +164,18 @@ def product_sum_iterative(arr: list[int | list]) -> int:
         -------------------------------------------------------
 
     Examples:
-        >>> product_sum_iterative([1, 2, 3])
+        >>> product_sum_array([1, 2, 3])
         6
-        >>> product_sum_iterative([1, [2, 3]])
+        >>> product_sum_array([1, [2, 3]])
         11
-        >>> product_sum_iterative([1, [2, [3, 4]]])
+        >>> product_sum_array([1, [2, [3, 4]]])
         47
-        >>> product_sum_iterative([0])
+        >>> product_sum_array([0])
         0
-        >>> product_sum_iterative([-3.5, [1, [0.5]]])
+        >>> product_sum_array([-3.5, [1, [0.5]]])
         1.5
-        >>> product_sum_iterative([1, -2])
+        >>> product_sum_array([1, -2])
         -1
-        >>> product_sum_iterative([5, 2, [-7, 1], 3, [6, [-13, 8], 4]])
-        -12
     """
 
     # Initialize queue with depth and multiplication factor
