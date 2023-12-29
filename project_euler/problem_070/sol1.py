@@ -61,27 +61,6 @@ def np_calculate_prime_numbers(max_number: int) -> list[int]:
     return primes.tolist()
 
 
-def slow_get_totients(max_one: int) -> list[int]:
-    """
-    Calculates a list of totients from 0 to max_one exclusive, using the
-    definition of Euler's product formula.
-
-    >>> slow_get_totients(5)
-    [0, 1, 1, 2, 2]
-
-    >>> slow_get_totients(10)
-    [0, 1, 1, 2, 2, 4, 2, 6, 4, 6]
-    """
-    totients = np.arange(max_one)
-
-    for i in range(2, max_one):
-        if totients[i] == i:
-            x = np.arange(i, max_one, i)  # array of indexes to select
-            totients[x] -= totients[x] // i
-
-    return totients.tolist()
-
-
 def np_get_totients(limit) -> list[int]:
     """
     Calculates a list of totients from 0 to max_one exclusive, using the
@@ -119,21 +98,6 @@ def has_same_digits(num1: int, num2: int) -> bool:
     return sorted(str(num1)) == sorted(str(num2))
 
 
-def slow_solution(max_n: int = 10000000) -> int:
-    """
-    Finds the value of n from 1 to max such that n/φ(n) produces a minimum.
-
-    >>> slow_solution(100)
-    21
-
-    >>> slow_solution(10000)
-    4435
-    """
-    totients = slow_get_totients(max_n + 1)
-
-    return common_solution(totients, max_n)
-
-
 def solution(max_n: int = 10000000) -> int:
     """
     Finds the value of n from 1 to max such that n/φ(n) produces a minimum.
@@ -146,19 +110,6 @@ def solution(max_n: int = 10000000) -> int:
     """
     totients = np_get_totients(max_n + 1)
 
-    return common_solution(totients, max_n)
-
-
-def common_solution(totients: list[int], max_n: int = 10000000) -> int:
-    """
-    Finds the value of n from 1 to max such that n/φ(n) produces a minimum.
-
-    >>> common_solution(get_totients(101), 100)
-    21
-
-    >>> common_solution(get_totients(10001), 10000)
-    4435
-    """
     min_numerator = 1  # i
     min_denominator = 0  # φ(i)
 
@@ -172,25 +123,5 @@ def common_solution(totients: list[int], max_n: int = 10000000) -> int:
     return min_numerator
 
 
-def benchmark() -> None:
-    """
-    Benchmark
-    """
-    # Running performance benchmarks...
-    # Solution    : 49.389978999999585
-    # Py Solution : 56.19136740000067
-    # Slicing Sol : 70.83823779999875
-    # Slow Sol    : 118.29514729999937
-
-    from timeit import timeit
-
-    print("Running performance benchmarks...")
-
-    print(f"Solution    : {timeit('solution()', globals=globals(), number=10)}")
-    print(f"Slow Sol    : {timeit('slow_solution()', globals=globals(), number=10)}")
-
-
 if __name__ == "__main__":
     print(f"Solution    : {solution()}")
-    print(f"Slow Sol    : {slow_solution()}")
-    benchmark()
