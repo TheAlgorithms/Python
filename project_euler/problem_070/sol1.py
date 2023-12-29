@@ -35,34 +35,6 @@ from math import isqrt
 import numpy as np
 
 
-def calculate_prime_numbers(max_number: int) -> list[int]:
-    """
-    Returns prime numbers below max_number.
-    See: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
-
-    >>> calculate_prime_numbers(10)
-    [2, 3, 5, 7]
-    >>> calculate_prime_numbers(2)
-    []
-    """
-    if max_number <= 2:
-        return []
-
-    # List containing a bool value for every odd number below max_number/2
-    is_prime = [True] * (max_number // 2)
-
-    for i in range(3, isqrt(max_number - 1) + 1, 2):
-        if is_prime[i // 2]:
-            # Mark all multiple of i as not prime using list slicing
-            is_prime[i**2 // 2 :: i] = [False] * (
-                # Same as: (max_number - (i**2)) // (2 * i) + 1
-                # but faster than len(is_prime[i**2 // 2 :: i])
-                len(range(i**2 // 2, max_number // 2, i))
-            )
-
-    return [2] + [2 * i + 1 for i in range(1, max_number // 2) if is_prime[i]]
-
-
 def np_calculate_prime_numbers(max_number: int) -> list[int]:
     """
     Returns prime numbers below max_number.
@@ -106,46 +78,6 @@ def slow_get_totients(max_one: int) -> list[int]:
         if totients[i] == i:
             x = np.arange(i, max_one, i)  # array of indexes to select
             totients[x] -= totients[x] // i
-
-    return totients.tolist()
-
-
-def slicing_get_totients(max_one: int) -> list[int]:
-    """
-    Calculates a list of totients from 0 to max_one exclusive, using the
-    definition of Euler's product formula.
-
-    >>> slicing_get_totients(5)
-    [0, 1, 1, 2, 2]
-
-    >>> slicing_get_totients(10)
-    [0, 1, 1, 2, 2, 4, 2, 6, 4, 6]
-    """
-    totients = np.arange(max_one)
-
-    for i in range(2, max_one):
-        if totients[i] == i:
-            totients[i::i] -= totients[i::i] // i
-
-    return totients.tolist()
-
-
-def get_totients(limit) -> list[int]:
-    """
-    Calculates a list of totients from 0 to max_one exclusive, using the
-    definition of Euler's product formula.
-
-    >>> get_totients(5)
-    [0, 1, 1, 2, 2]
-
-    >>> get_totients(10)
-    [0, 1, 1, 2, 2, 4, 2, 6, 4, 6]
-    """
-    totients = np.arange(limit)
-    primes = calculate_prime_numbers(limit)
-
-    for i in primes:
-        totients[i::i] -= totients[i::i] // i
 
     return totients.tolist()
 
@@ -198,36 +130,6 @@ def slow_solution(max_n: int = 10000000) -> int:
     4435
     """
     totients = slow_get_totients(max_n + 1)
-
-    return common_solution(totients, max_n)
-
-
-def slicing_solution(max_n: int = 10000000) -> int:
-    """
-    Finds the value of n from 1 to max such that n/φ(n) produces a minimum.
-
-    >>> slicing_solution(100)
-    21
-
-    >>> slicing_solution(10000)
-    4435
-    """
-    totients = slicing_get_totients(max_n + 1)
-
-    return common_solution(totients, max_n)
-
-
-def py_solution(max_n: int = 10000000) -> int:
-    """
-    Finds the value of n from 1 to max such that n/φ(n) produces a minimum.
-
-    >>> py_solution(100)
-    21
-
-    >>> py_solution(10000)
-    4435
-    """
-    totients = get_totients(max_n + 1)
 
     return common_solution(totients, max_n)
 
@@ -285,14 +187,10 @@ def benchmark() -> None:
     print("Running performance benchmarks...")
 
     print(f"Solution    : {timeit('solution()', globals=globals(), number=10)}")
-    print(f"Py Solution : {timeit('py_solution()', globals=globals(), number=10)}")
-    print(f"Slicing Sol : {timeit('slicing_solution()', globals=globals(), number=10)}")
     print(f"Slow Sol    : {timeit('slow_solution()', globals=globals(), number=10)}")
 
 
 if __name__ == "__main__":
     print(f"Solution    : {solution()}")
-    print(f"Py Solution : {py_solution()}")
-    print(f"Slicing Sol : {slicing_solution()}")
     print(f"Slow Sol    : {slow_solution()}")
     benchmark()
