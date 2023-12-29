@@ -7,7 +7,7 @@
 
 # Order is important. The last matching pattern has the most precedence.
 
-/.*  @cclauss @dhruvmanila
+/.*  @cclauss
 
 # /arithmetic_analysis/
 

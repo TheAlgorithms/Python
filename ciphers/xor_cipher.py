@@ -35,6 +35,22 @@ class XORCipher:
         output: encrypted string 'content' as a list of chars
         if key not passed the method uses the key by the constructor.
         otherwise key = 1
+
+        Empty list
+        >>> XORCipher().encrypt("", 5)
+        []
+
+        One key
+        >>> XORCipher().encrypt("hallo welt", 1)
+        ['i', '`', 'm', 'm', 'n', '!', 'v', 'd', 'm', 'u']
+
+        Normal key
+        >>> XORCipher().encrypt("HALLO WELT", 32)
+        ['h', 'a', 'l', 'l', 'o', '\\x00', 'w', 'e', 'l', 't']
+
+        Key greater than 255
+        >>> XORCipher().encrypt("hallo welt", 256)
+        ['h', 'a', 'l', 'l', 'o', ' ', 'w', 'e', 'l', 't']
         """
 
         # precondition
@@ -44,7 +60,7 @@ class XORCipher:
         key = key or self.__key or 1
 
         # make sure key is an appropriate size
-        key %= 255
+        key %= 256
 
         return [chr(ord(ch) ^ key) for ch in content]
 
@@ -54,16 +70,32 @@ class XORCipher:
         output: decrypted string 'content' as a list of chars
         if key not passed the method uses the key by the constructor.
         otherwise key = 1
+
+        Empty list
+        >>> XORCipher().decrypt("", 5)
+        []
+
+        One key
+        >>> XORCipher().decrypt("hallo welt", 1)
+        ['i', '`', 'm', 'm', 'n', '!', 'v', 'd', 'm', 'u']
+
+        Normal key
+        >>> XORCipher().decrypt("HALLO WELT", 32)
+        ['h', 'a', 'l', 'l', 'o', '\\x00', 'w', 'e', 'l', 't']
+
+        Key greater than 255
+        >>> XORCipher().decrypt("hallo welt", 256)
+        ['h', 'a', 'l', 'l', 'o', ' ', 'w', 'e', 'l', 't']
         """
 
         # precondition
         assert isinstance(key, int)
-        assert isinstance(content, list)
+        assert isinstance(content, str)
 
         key = key or self.__key or 1
 
         # make sure key is an appropriate size
-        key %= 255
+        key %= 256
 
         return [chr(ord(ch) ^ key) for ch in content]
 
@@ -73,6 +105,22 @@ class XORCipher:
         output: encrypted string 'content'
         if key not passed the method uses the key by the constructor.
         otherwise key = 1
+
+        Empty list
+        >>> XORCipher().encrypt_string("", 5)
+        ''
+
+        One key
+        >>> XORCipher().encrypt_string("hallo welt", 1)
+        'i`mmn!vdmu'
+
+        Normal key
+        >>> XORCipher().encrypt_string("HALLO WELT", 32)
+        'hallo\\x00welt'
+
+        Key greater than 255
+        >>> XORCipher().encrypt_string("hallo welt", 256)
+        'hallo welt'
         """
 
         # precondition
@@ -81,9 +129,8 @@ class XORCipher:
 
         key = key or self.__key or 1
 
-        # make sure key can be any size
-        while key > 255:
-            key -= 255
+        # make sure key is an appropriate size
+        key %= 256
 
         # This will be returned
         ans = ""
@@ -99,6 +146,22 @@ class XORCipher:
         output: decrypted string 'content'
         if key not passed the method uses the key by the constructor.
         otherwise key = 1
+
+        Empty list
+        >>> XORCipher().decrypt_string("", 5)
+        ''
+
+        One key
+        >>> XORCipher().decrypt_string("hallo welt", 1)
+        'i`mmn!vdmu'
+
+        Normal key
+        >>> XORCipher().decrypt_string("HALLO WELT", 32)
+        'hallo\\x00welt'
+
+        Key greater than 255
+        >>> XORCipher().decrypt_string("hallo welt", 256)
+        'hallo welt'
         """
 
         # precondition
@@ -107,9 +170,8 @@ class XORCipher:
 
         key = key or self.__key or 1
 
-        # make sure key can be any size
-        while key > 255:
-            key -= 255
+        # make sure key is an appropriate size
+        key %= 256
 
         # This will be returned
         ans = ""
@@ -131,6 +193,9 @@ class XORCipher:
         # precondition
         assert isinstance(file, str)
         assert isinstance(key, int)
+
+        # make sure key is an appropriate size
+        key %= 256
 
         try:
             with open(file) as fin, open("encrypt.out", "w+") as fout:
@@ -156,6 +221,9 @@ class XORCipher:
         assert isinstance(file, str)
         assert isinstance(key, int)
 
+        # make sure key is an appropriate size
+        key %= 256
+
         try:
             with open(file) as fin, open("decrypt.out", "w+") as fout:
                 # actual encrypt-process
@@ -167,6 +235,11 @@ class XORCipher:
 
         return True
 
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
 
 # Tests
 # crypt = XORCipher()
