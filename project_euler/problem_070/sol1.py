@@ -30,35 +30,9 @@ https://en.wikipedia.org/wiki/Euler%27s_totient_function#Euler%27s_product_formu
 """
 from __future__ import annotations
 
-from math import isqrt
-
 import numpy as np
 
-
-def np_calculate_prime_numbers(max_number: int) -> list[int]:
-    """
-    Returns prime numbers below max_number.
-    See: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
-
-    >>> np_calculate_prime_numbers(10)
-    [2, 3, 5, 7]
-    >>> np_calculate_prime_numbers(2)
-    []
-    """
-    if max_number <= 2:
-        return []
-
-    # List containing a bool value for every odd number below max_number/2
-    is_prime = np.ones(max_number // 2, dtype=bool)
-
-    for i in range(3, isqrt(max_number - 1) + 1, 2):
-        if is_prime[i // 2]:
-            # Mark all multiple of i as not prime using list slicing
-            is_prime[i**2 // 2 :: i] = False
-
-    primes = np.where(is_prime)[0] * 2 + 1
-    primes[0] = 2
-    return primes.tolist()
+from maths.prime_sieve_eratosthenes import np_prime_sieve_eratosthenes
 
 
 def np_get_totients(limit) -> list[int]:
@@ -73,7 +47,7 @@ def np_get_totients(limit) -> list[int]:
     [0, 1, 1, 2, 2, 4, 2, 6, 4, 6]
     """
     totients = np.arange(limit)
-    primes = np_calculate_prime_numbers(limit)
+    primes = np_prime_sieve_eratosthenes(limit)
 
     for i in primes:
         totients[i::i] -= totients[i::i] // i
