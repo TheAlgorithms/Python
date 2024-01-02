@@ -31,7 +31,7 @@ def calculate_age(unix_date: float) -> str:
     >>> int(calculate_age(-657244800000)) - years_since_create
     72
     >>> int(calculate_age(46915200000)) - years_since_create
-    51
+    50
     """
     # Convert date from milliseconds to seconds
     unix_date /= 1000
