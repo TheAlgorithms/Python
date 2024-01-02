@@ -1,0 +1,1 @@
+<p align="center"><a href="https://github.com/TheAlgorithms/Python/blob/master/CONTRIBUTING.md">Contribution</a> | <a href="https://gitter.im/TheAlgorithms">join at Gitter!</a></p>
