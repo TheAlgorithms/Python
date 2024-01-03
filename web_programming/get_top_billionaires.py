@@ -3,7 +3,7 @@ CAUTION: You may get a json.decoding error.
 This works for some of us but fails for others.
 """
 
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, datetime
 
 import requests
 from rich import box
