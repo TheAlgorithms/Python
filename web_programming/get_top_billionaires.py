@@ -40,9 +40,9 @@ def calculate_age(unix_timestamp: float) -> str:
     # Calculate the age
     current_date = datetime.now(tz=UTC)
     age = (
-            current_date.year -
-            birth_date.year -
-            ((current_date.month, current_date.day) < (birth_date.month, birth_date.day))
+        current_date.year
+        - birth_date.year
+        - ((current_date.month, current_date.day) < (birth_date.month, birth_date.day))
     )
     return str(age)
 
