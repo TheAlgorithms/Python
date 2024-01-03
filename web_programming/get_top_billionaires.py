@@ -34,7 +34,6 @@ def calculate_age(unix_timestamp: float) -> str:
     >>> 2024 - int(calculate_age(2209202284))
     2040
     """
-    # Convert date from milliseconds to seconds
     birth_date = datetime.fromtimestamp(unix_timestamp, tz=UTC)
 
     # Calculate the age
