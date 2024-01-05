@@ -18,7 +18,7 @@ Constraints:
 def move_disk(n, source_rod, destination_rod):
     """
     Helper function to print a single move.
-    
+
     >>> move_disk(1, 'A', 'B')
     Move disk 1 from A to B
     """
@@ -61,7 +61,7 @@ def tower_of_hanoi(n, source_rod, destination_rod, auxiliary_rod):
 
 
 def main():
-    tower_of_hanoi(3, 'A', 'C', 'B')
+    tower_of_hanoi(3, "A", "C", "B")
 
 
 if __name__ == "__main__":
