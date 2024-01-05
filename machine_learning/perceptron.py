@@ -53,8 +53,7 @@ class Perceptron:
 
             for idx, x_i in enumerate(X):
                 # calculate dot product WX
-                y_hat = self.activation_function(
-                    np.dot(x_i, self.theta) + self.bias)
+                y_hat = self.activation_function(np.dot(x_i, self.theta) + self.bias)
 
                 # calculating error
                 error = y[idx] - y_hat
@@ -72,8 +71,7 @@ class Perceptron:
 
         # calculate dot product WX
         for x_i in X:
-            y_pred.append(self.activation_function(
-                np.dot(x_i, self.theta) + self.bias))
+            y_pred.append(self.activation_function(np.dot(x_i, self.theta) + self.bias))
 
         return y_pred
 
@@ -83,8 +81,7 @@ def main():
     iris = datasets.load_iris()
 
     # creating iris Pandas DF
-    iris_df = pd.DataFrame(
-        data=iris.data, columns=iris.feature_names).iloc[:, 2:]
+    iris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names).iloc[:, 2:]
     iris_df["target"] = iris.target
 
     # keep only 0/1 classes records
