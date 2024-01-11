@@ -45,10 +45,7 @@ def calculate_age(unix_date: float) -> str:
         ).date()
     else:
         birthdate = datetime.fromtimestamp(unix_date, tz=UTC).date()
-    return str(
-        TODAY.year
-        - birthdate.year
-    )
+    return str(TODAY.year - birthdate.year)
 
 
 def get_forbes_real_time_billionaires() -> list[dict[str, str]]:
