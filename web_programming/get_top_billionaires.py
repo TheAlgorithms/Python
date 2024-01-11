@@ -48,7 +48,6 @@ def calculate_age(unix_date: float) -> str:
     return str(
         TODAY.year
         - birthdate.year
-        - ((TODAY.month, TODAY.day) < (birthdate.month, birthdate.day))
     )
 
 
