@@ -3,7 +3,7 @@ CAUTION: You may get a json.decoding error.
 This works for some of us but fails for others.
 """
 
-from datetime import date, datetime
+from datetime import date, datetime, UTC
 
 import requests
 from rich import box
@@ -43,8 +43,8 @@ def years_old(birth_timestamp: int, today: date | None = None) -> int:
     ... )
     True
     """
-    today = today or date.today()
-    birth_date = date.fromtimestamp(birth_timestamp)
+    today = today or TODAY.date()
+    birth_date = datetime.fromtimestamp(birth_timestamp, tz=UTC).date()
     return (today.year - birth_date.year) - (
         (today.month, today.day) < (birth_date.month, birth_date.day)
     )
