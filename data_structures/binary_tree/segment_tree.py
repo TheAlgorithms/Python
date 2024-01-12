@@ -5,7 +5,9 @@ class SegmentTree:
     def __init__(self, a):
         self.A = a
         self.N = len(self.A)
-        self.st = [0] * (4 * self.N)  # approximate the overall size of segment tree with array N
+        self.st = [0] * (
+            4 * self.N
+        )  # approximate the overall size of segment tree with array N
         if self.N:
             self.build(1, 0, self.N - 1)
 
