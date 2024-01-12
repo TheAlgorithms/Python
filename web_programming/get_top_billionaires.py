@@ -11,7 +11,7 @@ from rich import console as rich_console
 from rich import table as rich_table
 
 LIMIT = 10
-TODAY = datetime.utcnow()
+TODAY = datetime.now(tz=UTC)
 API_URL = (
     "https://www.forbes.com/forbesapi/person/rtb/0/position/true.json"
     "?fields=personName,gender,source,countryOfCitizenship,birthDate,finalWorth"
