@@ -3,7 +3,7 @@ CAUTION: You may get a json.decoding error.
 This works for some of us but fails for others.
 """
 
-from datetime import date, datetime, UTC
+from datetime import UTC, date, datetime
 
 import requests
 from rich import box
@@ -50,7 +50,7 @@ def years_old(birth_timestamp: int, today: date | None = None) -> int:
     )
 
 
-def get_forbes_real_time_billionaires() -> list[dict[str, str]]:
+def get_forbes_real_time_billionaires() -> list[dict[str, int | str]]:
     """
     Get the top 10 real-time billionaires using Forbes API.
 
@@ -71,7 +71,7 @@ def get_forbes_real_time_billionaires() -> list[dict[str, str]]:
     ]
 
 
-def display_billionaires(forbes_billionaires: list[dict[str, str]]) -> None:
+def display_billionaires(forbes_billionaires: list[dict[str, int | str]]) -> None:
     """
     Display Forbes real-time billionaires in a rich table.
 
