@@ -64,4 +64,8 @@ repos:
     rev: 'v3.1.0'
     hooks:
       - id: prettier
-        types: [toml, yaml]
+        types_or: [toml, yaml]
+        exclude: |
+            (?x)^(
+                .github/workflows/*.yml
+            )$
