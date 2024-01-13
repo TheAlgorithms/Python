@@ -13,7 +13,7 @@ repos:
   - repo: https://github.com/MarcoGorelli/auto-walrus
     rev: v0.2.2
     hooks:
-    -   id: auto-walrus
+      - id: auto-walrus
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.1.11
@@ -59,3 +59,9 @@ repos:
           - --install-types # See mirrors-mypy README.md
           - --non-interactive
         additional_dependencies: [types-requests]
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: "v3.1.0"
+    hooks:
+      - id: prettier
+        types_or: [toml, yaml]
