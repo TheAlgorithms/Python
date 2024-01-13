@@ -67,5 +67,5 @@ repos:
         types_or: [toml, yaml]
         exclude: |
             (?x)^(
-                .github/workflows/*.yml
+                \.github/workflows/(build|directory_writer|ruff).yml
             )$
