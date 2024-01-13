@@ -25,10 +25,10 @@ jobs:
       - name: Run tests
         # TODO: #8818 Re-enable quantum tests
         run: pytest
-            --ignore=quantum/q_fourier_transform.py
-            --ignore=project_euler/
-            --ignore=scripts/validate_solutions.py
-            --cov-report=term-missing:skip-covered
-            --cov=. .
+          --ignore=quantum/q_fourier_transform.py
+          --ignore=project_euler/
+          --ignore=scripts/validate_solutions.py
+          --cov-report=term-missing:skip-covered
+          --cov=. .
       - if: ${{ success() }}
         run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md

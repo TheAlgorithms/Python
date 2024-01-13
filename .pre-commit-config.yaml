@@ -65,7 +65,3 @@ repos:
     hooks:
       - id: prettier
         types_or: [toml, yaml]
-        exclude: |
-          (?x)^(
-              \.github/workflows/(build|directory_writer|project_euler|ruff).yml
-          )$
