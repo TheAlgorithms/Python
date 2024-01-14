@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class CustomXGBoostClassifier:
     def __init__(self, n_estimators=100, learning_rate=0.1, max_depth=3):
         self.n_estimators = n_estimators
@@ -28,6 +29,7 @@ class CustomXGBoostClassifier:
             result += self.learning_rate * tree.predict(X)
 
         return np.where(result >= 0, 1, 0)
+
 
 # Example Usage:
 # clf = CustomXGBoostClassifier()
