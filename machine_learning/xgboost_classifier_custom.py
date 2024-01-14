@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class CustomXGBoostClassifier:
     def __init__(self, n_estimators=100, learning_rate=0.1, max_depth=3):
         self.n_estimators = n_estimators
@@ -15,7 +16,9 @@ class CustomXGBoostClassifier:
 
         for _ in range(self.n_estimators):
             residual = y - predictions
-            tree = DecisionTree(max_depth=self.max_depth)  # Assuming CustomDecisionTree is implemented
+            tree = DecisionTree(
+                max_depth=self.max_depth
+            )  # Assuming CustomDecisionTree is implemented
             tree.fit(x, residual)
             tree_predictions = tree.predict(x)
             predictions += self.learning_rate * tree_predictions
@@ -28,6 +31,7 @@ class CustomXGBoostClassifier:
             result += self.learning_rate * tree.predict(x)
 
         return np.where(result >= 0, 1, 0)
+
 
 # Example Usage:
 # clf = CustomXGBoostClassifier()
