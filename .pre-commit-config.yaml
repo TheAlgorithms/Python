@@ -20,7 +20,8 @@ repos:
     hooks:
       - id: ruff
 
-  - repo: https://github.com/psf/black
+  # Using this mirror lets us use mypyc-compiled black, which is about 2x faster
+  - repo: https://github.com/psf/black-pre-commit-mirror
     rev: 23.12.1
     hooks:
       - id: black
