@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class CustomXGBoostClassifier:
     def __init__(self, n_estimators=100, learning_rate=0.1, max_depth=3):
         self.n_estimators = n_estimators
@@ -8,28 +7,27 @@ class CustomXGBoostClassifier:
         self.max_depth = max_depth
         self.trees = []
 
-    def fit(self, X, y):
-        n_samples, n_features = X.shape
+    def fit(self, x, y):
+        n_samples, n_features = x.shape
         y = np.where(y == 0, -1, 1)  # Convert 0/1 labels to -1/1
 
         predictions = np.zeros(n_samples)
 
         for _ in range(self.n_estimators):
             residual = y - predictions
-            tree = DecisionTree(max_depth=self.max_depth)
-            tree.fit(X, residual)
-            tree_predictions = tree.predict(X)
+            tree = DecisionTree(max_depth=self.max_depth)  # Assuming CustomDecisionTree is implemented
+            tree.fit(x, residual)
+            tree_predictions = tree.predict(x)
             predictions += self.learning_rate * tree_predictions
             self.trees.append(tree)
 
-    def predict(self, X):
-        result = np.zeros(X.shape[0])
+    def predict(self, x):
+        result = np.zeros(x.shape[0])
 
         for tree in self.trees:
-            result += self.learning_rate * tree.predict(X)
+            result += self.learning_rate * tree.predict(x)
 
         return np.where(result >= 0, 1, 0)
-
 
 # Example Usage:
 # clf = CustomXGBoostClassifier()
