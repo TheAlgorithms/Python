@@ -26,11 +26,11 @@ def years_old(unix_timestamp: float) -> str:
         Age as string
 
     >>> from datetime import datetime, UTC
-    >>> 2024 - int(calculate_age(946684800))
+    >>> 2024 - int(years_old(946684800))
     2000
-    >>> 2024 - int(calculate_age(-2145703316))
+    >>> 2024 - int(years_old(-2145703316))
     1902
-    >>> 2024 - int(calculate_age(2209202284))
+    >>> 2024 - int(years_old(2209202284))
     2040
     """
     birth_date = datetime.fromtimestamp(unix_timestamp, tz=UTC)
