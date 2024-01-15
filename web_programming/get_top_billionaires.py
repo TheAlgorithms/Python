@@ -3,7 +3,7 @@ CAUTION: You may get a json.decoding error.
 This works for some of us but fails for others.
 """
 
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 
 import requests
 from rich import box
@@ -19,30 +19,35 @@ API_URL = (
 )
 
 
-def years_old(unix_timestamp: float) -> str:
-    """Calculates age from given unix time format.
+def years_old(birth_timestamp: int, today: date | None = None) -> int:
+    """
+    Calculate the age in years based on the given birth date.  Only the year, month,
+    and day are used in the calculation.  The time of day is ignored.
+
+    Args:
+        birth_timestamp: The date of birth.
+        today: (useful for writing tests) or if None then datetime.date.today().
 
     Returns:
-        Age as string
+        int: The age in years.
 
-    >>> from datetime import datetime, UTC
-    >>> 2024 - int(years_old(946684800))
-    2000
-    >>> 2024 - int(years_old(-2145703316))
-    1902
-    >>> 2024 - int(years_old(2209202284))
-    2040
+    Examples:
+    >>> today = date(2024, 1, 12)
+    >>> years_old(birth_timestamp=datetime(1959, 11, 20).timestamp(), today=today)
+    64
+    >>> years_old(birth_timestamp=datetime(1970, 2, 13).timestamp(), today=today)
+    53
+    >>> all(
+    ...     years_old(datetime(today.year - i, 1, 12).timestamp(), today=today) == i
+    ...     for i in range(1, 111)
+    ... )
+    True
     """
-    birth_date = datetime.fromtimestamp(unix_timestamp, tz=UTC)
-
-    # Calculate the age
-    current_date = datetime.now(tz=UTC)
-    age = (
-        current_date.year
-        - birth_date.year
-        - ((current_date.month, current_date.day) < (birth_date.month, birth_date.day))
+    today = today or TODAY.date()
+    birth_date = datetime.fromtimestamp(birth_timestamp, tz=UTC).date()
+    return (today.year - birth_date.year) - (
+        (today.month, today.day) < (birth_date.month, birth_date.day)
     )
-    return str(age)
 
 
 def get_forbes_real_time_billionaires() -> list[dict[str, int | str]]:
