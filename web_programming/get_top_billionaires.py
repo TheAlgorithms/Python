@@ -11,8 +11,7 @@ from rich import console as rich_console
 from rich import table as rich_table
 
 LIMIT = 10
-TODAY = datetime.now()
-
+TODAY = datetime.now(tz=UTC)
 API_URL = (
     "https://www.forbes.com/forbesapi/person/rtb/0/position/true.json"
     "?fields=personName,gender,source,countryOfCitizenship,birthDate,finalWorth"
@@ -20,7 +19,7 @@ API_URL = (
 )
 
 
-def calculate_age(unix_timestamp: float) -> str:
+def years_old(unix_timestamp: float) -> str:
     """Calculates age from given unix time format.
 
     Returns:
@@ -46,8 +45,9 @@ def calculate_age(unix_timestamp: float) -> str:
     return str(age)
 
 
-def get_forbes_real_time_billionaires() -> list[dict[str, str]]:
-    """Get top 10 realtime billionaires using forbes API.
+def get_forbes_real_time_billionaires() -> list[dict[str, int | str]]:
+    """
+    Get the top 10 real-time billionaires using Forbes API.
 
     Returns:
         List of top 10 realtime billionaires data.
@@ -60,21 +60,22 @@ def get_forbes_real_time_billionaires() -> list[dict[str, str]]:
             "Country": person["countryOfCitizenship"],
             "Gender": person["gender"],
             "Worth ($)": f"{person['finalWorth'] / 1000:.1f} Billion",
-            "Age": calculate_age(person["birthDate"]),
+            "Age": years_old(person["birthDate"]),
         }
         for person in response_json["personList"]["personsLists"]
     ]
 
 
-def display_billionaires(forbes_billionaires: list[dict[str, str]]) -> None:
-    """Display Forbes real time billionaires in a rich table.
+def display_billionaires(forbes_billionaires: list[dict[str, int | str]]) -> None:
+    """
+    Display Forbes real-time billionaires in a rich table.
 
     Args:
-        forbes_billionaires (list): Forbes top 10 real time billionaires
+        forbes_billionaires (list): Forbes top 10 real-time billionaires
     """
 
     table = rich_table.Table(
-        title=f"Forbes Top {LIMIT} Real Time Billionaires at {TODAY:%Y-%m-%d %H:%M}",
+        title=f"Forbes Top {LIMIT} Real-Time Billionaires at {TODAY:%Y-%m-%d %H:%M}",
         style="green",
         highlight=True,
         box=box.SQUARE,

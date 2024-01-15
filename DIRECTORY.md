@@ -631,7 +631,6 @@
   * [Floor](maths/floor.py)
   * [Gamma](maths/gamma.py)
   * [Gaussian](maths/gaussian.py)
-  * [Gaussian Error Linear Unit](maths/gaussian_error_linear_unit.py)
   * [Gcd Of N Numbers](maths/gcd_of_n_numbers.py)
   * [Germain Primes](maths/germain_primes.py)
   * [Greatest Common Divisor](maths/greatest_common_divisor.py)
@@ -791,6 +790,7 @@
   * Activation Functions
     * [Binary Step](neural_network/activation_functions/binary_step.py)
     * [Exponential Linear Unit](neural_network/activation_functions/exponential_linear_unit.py)
+    * [Gaussian Error Linear Unit](neural_network/activation_functions/gaussian_error_linear_unit.py)
     * [Leaky Rectified Linear Unit](neural_network/activation_functions/leaky_rectified_linear_unit.py)
     * [Mish](neural_network/activation_functions/mish.py)
     * [Rectified Linear Unit](neural_network/activation_functions/rectified_linear_unit.py)
