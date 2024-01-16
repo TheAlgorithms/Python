@@ -19,12 +19,7 @@ repos:
     rev: v0.1.11
     hooks:
       - id: ruff
-
-  # Using this mirror lets us use mypyc-compiled black, which is about 2x faster
-  - repo: https://github.com/psf/black-pre-commit-mirror
-    rev: 23.12.1
-    hooks:
-      - id: black
+      - id: ruff-format
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.2.6
