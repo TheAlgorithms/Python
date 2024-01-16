@@ -19,11 +19,7 @@ repos:
     rev: v0.1.13
     hooks:
       - id: ruff
-
-  - repo: https://github.com/psf/black
-    rev: 23.12.1
-    hooks:
-      - id: black
+      - id: ruff-format
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.2.6
