@@ -1,9 +1,10 @@
 import math
 
+
 class TanhActivation:
     """
     Hyperbolic Tangent Activation Function
-    
+
     This class provides an implementation of the hyperbolic tangent activation function.
 
     Attributes:
