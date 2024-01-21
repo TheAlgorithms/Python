@@ -119,4 +119,4 @@ def huffman(file_path: str) -> None:
 
 if __name__ == "__main__":
     # pass the file path to the huffman function
-    huffman(sys.argv[1])
+    huffman(sys.argv[0])
