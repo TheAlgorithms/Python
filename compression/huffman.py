@@ -95,10 +95,10 @@ def huffman(file_path: str) -> None:
     >>> print(open(file_path, 'r').read()) # showing user content of file
     This is the text contained in the file
     >>> huffman(file_path)
-    Huffman Coding  of file_to_read.txt: 
+    Huffman Coding  of file_to_read.txt:
     00110 1101 011 0010 111 011 0010 111 100 1101 101 111 100 101 00111 \
     100 111 01000 01001 000 100 01010 011 000 101 01011 111 011 000 111 \
-    100 1101 101 111 11000 011 11001 101 
+    100 1101 101 111 11000 011 11001 101
     None
 
     """
