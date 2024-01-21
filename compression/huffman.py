@@ -24,6 +24,13 @@ def parse_file(file_path: str) -> list[Letter]:
     """
     Read the file and build a dict of all letters and their
     frequencies, then convert the dict into a list of Letters.
+
+    >>> file_path = 'file_to_read.txt'
+    >>> print(open(file_path, 'r').read()) # showing user content of file
+    This is the text contained in the file
+    >>> parse_file(file_path)
+    [T:1, x:1, c:1, o:1, a:1, d:1, f:1, l:1, s:2, h:3, n:3, i:5, t:5, e:5,  :7]
+
     """
     chars: dict[str, int] = {}
     with open(file_path) as f:
@@ -39,6 +46,12 @@ def build_tree(letters: list[Letter]) -> Letter | TreeNode:
     """
     Run through the list of Letters and build the min heap
     for the Huffman Tree.
+
+    >>> result_from_parse_file_func
+    [T:1, x:1, c:1, o:1, a:1, d:1, f:1, l:1, s:2, h:3, n:3, i:5, t:5, e:5,  :7]
+    >>> build_tree(result_from_parse_file_func)
+    <__main__.TreeNode object at 0x7fb08adff810>
+
     """
     response: list[Letter | TreeNode] = letters  # type: ignore
     while len(response) > 1:
@@ -55,6 +68,12 @@ def traverse_tree(root: Letter | TreeNode, bitstring: str) -> list[Letter]:
     """
     Recursively traverse the Huffman Tree to set each
     Letter's bitstring dictionary, and return the list of Letters
+
+    >>> result_from_build_tree_func
+    <__main__.TreeNode object at 0x7fb08adff810>
+    >>> traverse_tree(result_from_build_tree_func, "")
+    [n:3, s:2, T:1, x:1, c:1, o:1, a:1, d:1, i:5, t:5, e:5, f:1, l:1, h:3,  :7]
+
     """
     if isinstance(root, Letter):
         root.bitstring[root.letter] = bitstring
@@ -71,6 +90,17 @@ def huffman(file_path: str) -> None:
     Parse the file, build the tree, then run through the file
     again, using the letters dictionary to find and print out the
     bitstring for each letter.
+
+    >>> file_path = 'file_to_read.txt'
+    >>> print(open(file_path, 'r').read()) # showing user content of file
+    This is the text contained in the file
+    >>> huffman(file_path)
+    Huffman Coding  of file_to_read.txt: 
+    00110 1101 011 0010 111 011 0010 111 100 1101 101 111 100 101 00111 \
+    100 111 01000 01001 000 100 01010 011 000 101 01011 111 011 000 111 \
+    100 1101 101 111 11000 011 11001 101 
+    None
+
     """
     letters_list = parse_file(file_path)
     root = build_tree(letters_list)
