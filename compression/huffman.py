@@ -26,7 +26,7 @@ def parse_file(file_path: str) -> list[Letter]:
     frequencies, then convert the dict into a list of Letters.
 
     >>> file_path = 'file_to_read.txt'
-    >>> print(open(file_path, 'r').read()) # showing user content of file
+    >>> print(open(file_path, 'r').read()) # showing content of file
     This is the text contained in the file
     >>> parse_file(file_path)
     [T:1, x:1, c:1, o:1, a:1, d:1, f:1, l:1, s:2, h:3, n:3, i:5, t:5, e:5,  :7]
@@ -92,7 +92,7 @@ def huffman(file_path: str) -> None:
     bitstring for each letter.
 
     >>> file_path = 'file_to_read.txt'
-    >>> print(open(file_path, 'r').read()) # showing user content of file
+    >>> print(open(file_path, 'r').read()) # showing content of file
     This is the text contained in the file
     >>> huffman(file_path)
     Huffman Coding  of file_to_read.txt:
