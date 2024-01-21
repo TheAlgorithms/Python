@@ -25,11 +25,11 @@ def parse_file(file_path: str) -> list[Letter]:
     Read the file and build a dict of all letters and their
     frequencies, then convert the dict into a list of Letters.
 
-    >>> file_path = 'file_to_read.txt'
-    >>> print(open(file_path, 'r').read()) # showing content of file
-    This is the text contained in the file
-    >>> parse_file(file_path)
-    [T:1, x:1, c:1, o:1, a:1, d:1, f:1, l:1, s:2, h:3, n:3, i:5, t:5, e:5,  :7]
+    # >>> file_path = 'file_to_read.txt'
+    # >>> print(open(file_path, 'r').read()) # showing content of file
+    # This is the text contained in the file
+    # >>> parse_file(file_path)
+    # [T:1, x:1, c:1, o:1, a:1, d:1, f:1, l:1, s:2, h:3, n:3, i:5, t:5, e:5,  :7]
 
     """
     chars: dict[str, int] = {}
@@ -97,9 +97,6 @@ def huffman(file_path: str) -> None:
     # >>> file_path = 'file_to_read.txt'
     # >>> print(open(file_path, 'r').read())
     # This is the text contained in the file
-
-    ### huffman algorithm returns dynamic encoding depending on how
-    ### the 0s and 1s are assigned
 
     # >>> huffman(file_path)
     # Huffman Coding  of file_to_read.txt:
