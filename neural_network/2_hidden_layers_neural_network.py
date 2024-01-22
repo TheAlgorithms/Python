@@ -264,7 +264,7 @@ def example() -> int:
     True
     """
     # Input values.
-    test_input = numpy.array(
+    train_input = numpy.array(
         (
             [0, 0, 0],
             [0, 0, 1],
@@ -283,7 +283,7 @@ def example() -> int:
 
     # Calling neural network class.
     neural_network = TwoHiddenLayerNeuralNetwork(
-        input_array=test_input, output_array=output
+        input_array=train_input, output_array=output
     )
 
     # Calling training function.
