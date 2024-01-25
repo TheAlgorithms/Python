@@ -573,6 +573,85 @@ def perplexity_loss(
     return np.mean(perp_losses)
 
 
+def contrastive_loss(inputs: np.ndarray, target: np.ndarray, m: float) -> float:
+    """
+    Contrastive loss is used to bring similar samples together and dissimilar samples
+    apart.It assigns higher loss if similar pair of samples are further apart and
+    dissimilar pair of samples are closer in vector space.
+
+    Formula:
+        contrastive loss = (1 - Y) (Σ(xi - xj)^2) + Y * max(0, m - Σ(xi - xk)^2)
+
+    Where,
+    Y: target; (0 = input pair similar, 1 = input pair dissimilar)
+    (xi, xj): similar input pairs
+    (xi, xk): dissimilar input pairs
+    m: hyperparameter representing lower bound (minimum) distance between dissimilar
+       input pairs.
+
+    Reference: https://www.baeldung.com/cs/contrastive-learning
+
+    Args:
+        inputs: Input vectors pairs; shape = (batch_size, 2, n)
+        target: Represents whether input pairs are similar (0: similar, 1: dissimilar);
+                shape = (batch_size)
+        m: Number representing lower bound of distance between dissimilar input pairs
+
+    Returns:
+        Contrastive loss
+
+    Examples:
+
+    >>> inputs = np.array([
+    ...        [[0.06796051, 0.86319405, 0.83875762, 0.4246106 , 0.4142061 ],
+    ...        [0.1648123 , 0.23396954, 0.26760326, 0.90300768, 0.82789254]],
+    ...        [[0.73989664, 0.929347  , 0.37955765, 0.17692685, 0.09868801],
+    ...        [0.23727054, 0.41889803, 0.44162983, 0.9783071 , 0.06199906]]
+    ...        ])
+    >>> target = np.array([0, 1])
+    >>> contrastive_loss(inputs, target, m = 10)
+    9.986418202141381
+    >>> inputs = np.array([
+    ...        [[0.06796051, 0.86319405, 0.83875762, 0.4246106 , 0.4142061 ],
+    ...        [0.1648123 , 0.23396954, 0.26760326, 0.90300768, 0.82789254]],
+    ...        [[0.73989664, 0.929347  , 0.37955765, 0.17692685, 0.09868801],
+    ...        [0.23727054, 0.41889803, 0.44162983, 0.9783071 , 0.06199906]]
+    ...        ])
+    >>> target = np.array([0, 5])
+    >>> contrastive_loss(inputs, target, m = 10)
+    Traceback (most recent call last):
+    ...
+    ValueError: target values must be either 0 or 1.
+    >>> inputs = np.array([
+    ...        [[0.06796051, 0.86319405, 0.83875762, 0.4246106 , 0.4142061 ],
+    ...        [0.23727054, 0.41889803, 0.44162983, 0.9783071 , 0.06199906],
+    ...        [0.1648123 , 0.23396954, 0.26760326, 0.90300768, 0.82789254]],
+    ...        [[0.73989664, 0.929347  , 0.37955765, 0.17692685, 0.09868801],
+    ...        [0.23727054, 0.41889803, 0.44162983, 0.9783071 , 0.06199906],
+    ...        [0.69836355, 0.13875306, 0.7171909 , 0.25053484, 0.54151793]]
+    ...        ])
+    >>> target = np.array([0, 1])
+    >>> contrastive_loss(inputs, target, m = 10)
+    Traceback (most recent call last):
+    ...
+    ValueError: inputs shape must be equal to (batch_size, 2, n)
+    """
+
+    if inputs.shape[0] != target.shape[0]:
+        raise ValueError("batch size of inputs and target parameter must be equal.")
+
+    if inputs.shape[1] != 2:
+        raise ValueError("inputs shape must be equal to (batch_size, 2, n)")
+
+    if ((target != 1) & (target != 0)).any():
+        raise ValueError("target values must be either 0 or 1.")
+
+    euclidean_dist = np.linalg.norm(np.subtract.reduce(inputs, axis=1), axis=1)
+    error_similar = np.sum(euclidean_dist[~target.astype("bool")])
+    error_dissimilar = np.sum(np.maximum(0, m - euclidean_dist[target.astype("bool")]))
+    return error_similar + error_dissimilar
+
+
 if __name__ == "__main__":
     import doctest
 
