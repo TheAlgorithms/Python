@@ -2,10 +2,25 @@
 This is a pure Python implementation of the radix sort algorithm
 
 Source: https://en.wikipedia.org/wiki/Radix_sort
+Source of flatten_extend(): How to Flatten a List of Lists in Python
+https://realpython.com/python-flatten-list/#considering-performance-while-flattening-your-lists
 """
 from __future__ import annotations
 
 RADIX = 10
+
+
+def flatten_extend(list_of_lists: list[list]) -> list[int]:
+    """
+    Example:
+    >>> buckets = [[10, 0], [11], [62, 322, 2], [13], [], [25], [26], [17], [118], [99]]
+    >>> flatten_extend(buckets)
+    [10, 0, 11, 62, 322, 2, 13, 25, 26, 17, 118, 99]
+    """
+    flat_list = []
+    for l in list_of_lists:
+        flat_list.extend(l)
+    return flat_list
 
 
 def radix_sort(list_of_ints: list[int]) -> list[int]:
@@ -30,12 +45,8 @@ def radix_sort(list_of_ints: list[int]) -> list[int]:
         for i in list_of_ints:
             tmp = int((i / placement) % RADIX)
             buckets[tmp].append(i)
-        # put each buckets' contents into list_of_ints
-        a = 0
-        for b in range(RADIX):
-            for i in buckets[b]:
-                list_of_ints[a] = i
-                a += 1
+        # Flatten each buckets' contents back into list_of_ints
+        list_of_ints = flatten_extend(buckets)
         # move to next
         placement *= RADIX
     return list_of_ints
