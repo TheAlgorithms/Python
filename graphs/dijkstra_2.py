@@ -19,6 +19,16 @@ def min_dist(mdist, vset, v):
 
 
 def dijkstra(graph, v, src):
+    """
+    >>> dijkstra([0, 0, 7, 0], [3, 0, 0, 4.3], [0, 0, 0, 5.6], [0, 8, 0, 0],4,1)
+    Vertex Distance
+    0 	 3
+    1 	 0
+    2 	 10
+    >>> dijkstra([0, 4], [3, 0], 2, 1)
+    Vertex Distance
+    0 	 3
+    """
     mdist = [float("inf") for _ in range(v)]
     vset = [False for _ in range(v)]
     mdist[src] = 0.0
