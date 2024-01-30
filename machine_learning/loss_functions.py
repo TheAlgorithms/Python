@@ -573,6 +573,62 @@ def perplexity_loss(
     return np.mean(perp_losses)
 
 
+def smooth_l1_loss(y_true: np.ndarray, y_pred: np.ndarray, beta: float = 1.0) -> float:
+    """
+    Calculate the Smooth L1 Loss between y_true and y_pred.
+
+    The Smooth L1 Loss is less sensitive to outliers than the L2 Loss and is often used
+    in regression problems, such as object detection.
+
+    Smooth L1 Loss =
+        0.5 * (x - y)^2 / beta, if |x - y| < beta
+        |x - y| - 0.5 * beta, otherwise
+
+    Reference:
+    https://pytorch.org/docs/stable/generated/torch.nn.SmoothL1Loss.html
+
+    Args:
+        y_true: Array of true values.
+        y_pred: Array of predicted values.
+        beta: Specifies the threshold at which to change between L1 and L2 loss.
+
+    Returns:
+        The calculated Smooth L1 Loss between y_true and y_pred.
+
+    Raises:
+        ValueError: If the length of the two arrays is not the same.
+
+    >>> y_true = np.array([3, 5, 2, 7])
+    >>> y_pred = np.array([2.9, 4.8, 2.1, 7.2])
+    >>> smooth_l1_loss(y_true, y_pred, 1.0)
+    0.012500000000000022
+
+    >>> y_true = np.array([2, 4, 6])
+    >>> y_pred = np.array([1, 5, 7])
+    >>> smooth_l1_loss(y_true, y_pred, 1.0)
+    0.5
+
+    >>> y_true = np.array([1, 3, 5, 7])
+    >>> y_pred = np.array([1, 3, 5, 7])
+    >>> smooth_l1_loss(y_true, y_pred, 1.0)
+    0.0
+
+    >>> y_true = np.array([1, 3, 5])
+    >>> y_pred = np.array([1, 3, 5, 7])
+    >>> smooth_l1_loss(y_true, y_pred, 1.0)
+    Traceback (most recent call last):
+    ...
+    ValueError: The length of the two arrays should be the same.
+    """
+
+    if len(y_true) != len(y_pred):
+        raise ValueError("The length of the two arrays should be the same.")
+
+    diff = np.abs(y_true - y_pred)
+    loss = np.where(diff < beta, 0.5 * diff**2 / beta, diff - 0.5 * beta)
+    return np.mean(loss)
+
+
 if __name__ == "__main__":
     import doctest
 
