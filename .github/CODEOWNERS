@@ -21,15 +21,15 @@
 
 # /cellular_automata/
 
-/ciphers/  @cclauss
+# /ciphers/
 
 # /compression/
 
 # /computer_vision/
 
-/conversions/  @cclauss
+# /conversions/
 
-/data_structures/  @cclauss
+# /data_structures/
 
 # /digital_image_processing/
 
@@ -67,7 +67,7 @@
 
 # /neural_network/
 
-/other/  @cclauss
+# /other/
 
 # /project_euler/
 
@@ -81,7 +81,7 @@
 
 # /sorts/
 
-/strings/  @cclauss
+# /strings/
 
 # /traversals/
 
