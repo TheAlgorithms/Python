@@ -140,19 +140,21 @@ class Circle(Ellipse):
         >>> circle.max_parts(54)
         1486.0
         >>> circle.max_parts(22.5)
-        265.375
+        Traceback (most recent call last):
+            ...
+        TypeError: num_cuts must be a whole number.
         >>> circle.max_parts(-222)
         Traceback (most recent call last):
             ...
-        TypeError: num_cuts must be a positive numeric value.
+        TypeError: num_cuts must be a whole number.
         >>> circle.max_parts("-222")
         Traceback (most recent call last):
             ...
-        TypeError: num_cuts must be a positive numeric value.
+        TypeError: num_cuts must be a whole number.
         """
-        if not isinstance(num_cuts, (int, float)) or num_cuts < 0:
-            raise TypeError("num_cuts must be a positive numeric value.")
-        return (num_cuts + 2 + num_cuts**2) * 0.5
+        if not isinstance(num_cuts, int) or num_cuts < 0:
+            raise TypeError("num_cuts must be a whole number.")
+        return (n ** 2 + n) // 2 + 1
 
 
 @dataclass
