@@ -154,7 +154,7 @@ class Circle(Ellipse):
         """
         if not isinstance(num_cuts, int) or num_cuts < 0:
             raise TypeError("num_cuts must be a whole number.")
-        return (num_cuts ** 2 + num_cuts) // 2 + 1
+        return (num_cuts**2 + num_cuts) // 2 + 1
 
 
 @dataclass
