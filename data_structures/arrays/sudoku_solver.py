@@ -3,8 +3,6 @@ Please do not modify this file!  It is published at https://norvig.com/sudoku.ht
 only minimal changes to work with modern versions of Python.  If you have improvements,
 please make them in a separate file.
 """
-import functools
-import operator
 import random
 import time
 
@@ -24,9 +22,7 @@ unitlist = (
     + [cross(rs, cs) for rs in ("ABC", "DEF", "GHI") for cs in ("123", "456", "789")]
 )
 units = {s: [u for u in unitlist if s in u] for s in squares}
-peers: dict[str, set[str]] = {
-    s: set(functools.reduce(operator.iadd, units[s], [])) - {s} for s in squares
-}
+peers = {s: set(sum(units[s], [])) - {s} for s in squares}  # noqa: RUF017
 
 
 def test():
