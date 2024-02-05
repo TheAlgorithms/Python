@@ -237,7 +237,7 @@ def report_generator(
             [
                 ("sum", "sum"),
                 ("mean_with_zeros", lambda x: np.mean(np.nan_to_num(x))),
-                ("mean_without_zeros", lambda x: x.replace(0, np.NaN).mean()),
+                ("mean_without_zeros", lambda x: x.replace(0, np.nan).mean()),
                 (
                     "mean_25-75",
                     lambda x: np.mean(

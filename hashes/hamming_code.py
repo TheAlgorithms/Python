@@ -123,8 +123,7 @@ def emitter_converter(size_par, data):
         # Bit counter one for a given parity
         cont_bo = 0
         # counter to control the loop reading
-        cont_loop = 0
-        for x in data_ord:
+        for cont_loop, x in enumerate(data_ord):
             if x is not None:
                 try:
                     aux = (bin_pos[cont_loop])[-1 * (bp)]
@@ -132,7 +131,6 @@ def emitter_converter(size_par, data):
                     aux = "0"
                 if aux == "1" and x == "1":
                     cont_bo += 1
-            cont_loop += 1
         parity.append(cont_bo % 2)
 
         qtd_bp += 1
@@ -164,10 +162,10 @@ def receptor_converter(size_par, data):
     parity_received = []
     data_output = []
 
-    for x in range(1, len(data) + 1):
+    for i, item in enumerate(data, 1):
         # Performs a template of bit positions - who should be given,
         #  and who should be parity
-        if qtd_bp < size_par and (np.log(x) / np.log(2)).is_integer():
+        if qtd_bp < size_par and (np.log(i) / np.log(2)).is_integer():
             data_out_gab.append("P")
             qtd_bp = qtd_bp + 1
         else:
@@ -175,10 +173,9 @@ def receptor_converter(size_par, data):
 
         # Sorts the data to the new output size
         if data_out_gab[-1] == "D":
-            data_output.append(data[cont_data])
+            data_output.append(item)
         else:
-            parity_received.append(data[cont_data])
-        cont_data += 1
+            parity_received.append(item)
 
     # -----------calculates the parity with the data
     data_out = []
@@ -215,9 +212,7 @@ def receptor_converter(size_par, data):
     for bp in range(1, size_par + 1):
         # Bit counter one for a certain parity
         cont_bo = 0
-        # Counter to control loop reading
-        cont_loop = 0
-        for x in data_ord:
+        for cont_loop, x in enumerate(data_ord):
             if x is not None:
                 try:
                     aux = (bin_pos[cont_loop])[-1 * (bp)]
@@ -225,7 +220,6 @@ def receptor_converter(size_par, data):
                     aux = "0"
                 if aux == "1" and x == "1":
                     cont_bo += 1
-            cont_loop += 1
         parity.append(str(cont_bo % 2))
 
         qtd_bp += 1

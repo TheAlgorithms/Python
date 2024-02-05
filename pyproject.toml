@@ -1,5 +1,5 @@
 [tool.ruff]
-ignore = [    # `ruff rule S101` for a description of that rule
+lint.ignore = [    # `ruff rule S101` for a description of that rule
   "ARG001",   # Unused function argument `amount` -- FIX ME?
   "B904",     # Within an `except` clause, raise exceptions with `raise ... from err` -- FIX ME
   "B905",     # `zip()` without an explicit `strict=` parameter -- FIX ME
@@ -31,7 +31,7 @@ ignore = [    # `ruff rule S101` for a description of that rule
   "SLF001",   # Private member accessed: `_Iterator` -- FIX ME
   "UP038",    # Use `X | Y` in `{}` call instead of `(X, Y)` -- DO NOT FIX
 ]
-select = [  # https://beta.ruff.rs/docs/rules
+lint.select = [  # https://beta.ruff.rs/docs/rules
   "A",      # flake8-builtins
   "ARG",    # flake8-unused-arguments
   "ASYNC",  # flake8-async
@@ -84,13 +84,13 @@ select = [  # https://beta.ruff.rs/docs/rules
   # "TCH",  # flake8-type-checking
   # "TRY",  # tryceratops
 ]
-show-source = true
-target-version = "py311"
+output-format = "full"
+target-version = "py312"
 
-[tool.ruff.mccabe]   # DO NOT INCREASE THIS VALUE
+[tool.ruff.lint.mccabe]   # DO NOT INCREASE THIS VALUE
 max-complexity = 17  # default: 10
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "arithmetic_analysis/newton_raphson.py" = ["PGH001"]
 "audio_filters/show_response.py" = ["ARG002"]
 "data_structures/binary_tree/binary_search_tree_recursive.py" = ["BLE001"]
@@ -110,7 +110,7 @@ max-complexity = 17  # default: 10
 "project_euler/problem_099/sol1.py" = ["SIM115"]
 "sorts/external_sort.py" = ["SIM115"]
 
-[tool.ruff.pylint]   # DO NOT INCREASE THESE VALUES
+[tool.ruff.lint.pylint]   # DO NOT INCREASE THESE VALUES
 allow-magic-value-types = ["float", "int", "str"]
 max-args = 10        # default: 5
 max-branches = 20    # default: 12
