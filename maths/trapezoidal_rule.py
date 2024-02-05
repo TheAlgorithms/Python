@@ -65,7 +65,7 @@ def make_points(a, b, h):
 
 def f(y, x):  # enter your function here
     """
-    Returns the value of a lambda functin y at x
+    Returns the value of a lambda functiοn y at x
     >>> f(lambda x: x**2,2)
     4
     >>> f(lambda x: x**2,-1)
