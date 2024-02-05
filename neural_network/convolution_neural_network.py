@@ -41,11 +41,11 @@ class CNN:
         self.rate_weight = rate_w
         self.rate_thre = rate_t
         self.w_conv1 = [
-            np.mat(-1 * np.random.rand(self.conv1[0], self.conv1[0]) + 0.5)
+            np.asmatrix(-1 * np.random.rand(self.conv1[0], self.conv1[0]) + 0.5)
             for i in range(self.conv1[1])
         ]
-        self.wkj = np.mat(-1 * np.random.rand(self.num_bp3, self.num_bp2) + 0.5)
-        self.vji = np.mat(-1 * np.random.rand(self.num_bp2, self.num_bp1) + 0.5)
+        self.wkj = np.asmatrix(-1 * np.random.rand(self.num_bp3, self.num_bp2) + 0.5)
+        self.vji = np.asmatrix(-1 * np.random.rand(self.num_bp2, self.num_bp1) + 0.5)
         self.thre_conv1 = -2 * np.random.rand(self.conv1[1]) + 1
         self.thre_bp2 = -2 * np.random.rand(self.num_bp2) + 1
         self.thre_bp3 = -2 * np.random.rand(self.num_bp3) + 1

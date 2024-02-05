@@ -589,7 +589,7 @@ def plot_partition_boundary(
     ax.contour(
         xrange,
         yrange,
-        np.mat(grid).T,
+        np.asmatrix(grid).T,
         levels=(-1, 0, 1),
         linestyles=("--", "-", "--"),
         linewidths=(1, 1, 1),
