@@ -72,8 +72,10 @@ if __name__ == "__main__":
     edges = {}
     # Iterate over each vertex to get its connected edges
     for vertex in vertices:
-        edges_input = input(f"Please enter the edges connected to vertex \"{vertex}\" "
-                    "separated by commas (leave empty to finish): ").strip()
+        edges_input = input(
+            f'Please enter the edges connected to vertex "{vertex}" '
+            "separated by commas (leave empty to finish): "
+        ).strip()
         edges[vertex] = [
             edge.strip() for edge in edges_input.split(",") if edge.strip()
         ]
