@@ -1,7 +1,7 @@
 """Topological Sort."""
 
 # Test cases:
-    
+
 #     a
 #    / \
 #   b  c
@@ -16,7 +16,7 @@ edges: dict[str, list[str]] = {
 }
 vertices: list[str] = ["a", "b", "c", "d", "e"]
 
-    
+
 #            a
 #          / | \
 #         b  c  f
@@ -100,22 +100,24 @@ vertices: list[str] = ["a", "b", "c", "d", "e", "f", "g"]
 #      n
 #
 #
-edges: dict[str, list[str]] = {
-    "a": ["b", "c"],
-    "b": ["d", "e"],
-    "c": ["f", "g"],
-    "d": ["h", "i"],
-    "e": ["j"],
-    "f": [],
-    "g": ["k"],
-    "h": ["l"],
-    "i": ["m"],
-    "j": [],
-    "k": [],
-    "l": ["n"],
-    "m": [],
-    "n": [],
-},
+edges: dict[str, list[str]] = (
+    {
+        "a": ["b", "c"],
+        "b": ["d", "e"],
+        "c": ["f", "g"],
+        "d": ["h", "i"],
+        "e": ["j"],
+        "f": [],
+        "g": ["k"],
+        "h": ["l"],
+        "i": ["m"],
+        "j": [],
+        "k": [],
+        "l": ["n"],
+        "m": [],
+        "n": [],
+    },
+)
 vertices: list[str] = ["a", "b", "c", "d", "e", "f", "g"]
 
 #                        a
@@ -232,10 +234,13 @@ edges: dict[str, list[str]] = {
 }
 vertices: list[str] = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"]
 
-def topological_sort_util(start: str, edges: dict[str, list[str]], visited: list[str], sort: list[str]) -> list[str]:
+
+def topological_sort_util(
+    start: str, edges: dict[str, list[str]], visited: list[str], sort: list[str]
+) -> list[str]:
     """"""
     """
-    Examples: 
+    Examples:
     >>> topological_sort(['a', 'b', 'c', 'd'], {"a": ["b", "c"], "b": ["d"], "c": [], "d": []})
     ['d', 'c', 'b', 'a']
     >>> topological_sort(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'], {"a": ["b"], "b": ["c"], "c": ["d"], "d": ["e"], "e": ["f"], "f": ["g"], "g": ["h"], "h": []})
@@ -245,7 +250,7 @@ def topological_sort_util(start: str, edges: dict[str, list[str]], visited: list
     >>> topological_sort([], {})
     ['']
     """
-    
+
     current = start
     # add current to visited
     visited.append(current)
@@ -264,6 +269,7 @@ def topological_sort_util(start: str, edges: dict[str, list[str]], visited: list
     # return sort
     return sort
 
+
 def topological_sort(vertices: list[str], edges: dict[str, list[str]]) -> list[str]:
     sort = []
     visited = []
@@ -272,15 +278,20 @@ def topological_sort(vertices: list[str], edges: dict[str, list[str]]) -> list[s
             sort = topological_sort_util(vertex, edges, visited, sort)
     return sort
 
+
 if __name__ == "__main__":
     # Get vertices from the user
     vertices_input = input("Please enter the vertices separated by commas: ").strip()
-    vertices = [vertex.strip() for vertex in vertices_input.split(',')]
+    vertices = [vertex.strip() for vertex in vertices_input.split(",")]
     # Initialize an empty dictionary for edges
     edges = {}
     # Iterate over each vertex to get its connected edges
     for vertex in vertices:
-        edges_input = input(f"Please enter the edges connected to vertex \"{vertex}\" separated by commas (leave empty to finish): ").strip()
-        edges[vertex] = [edge.strip() for edge in edges_input.split(',') if edge.strip()]
+        edges_input = input(
+            f'Please enter the edges connected to vertex "{vertex}" separated by commas (leave empty to finish): '
+        ).strip()
+        edges[vertex] = [
+            edge.strip() for edge in edges_input.split(",") if edge.strip()
+        ]
     sort = topological_sort(vertices, edges)
     print(sort)
