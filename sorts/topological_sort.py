@@ -22,14 +22,14 @@ def topological_sort_util(
 ) -> list[str]:
     """"""
     """
-    Examples: 
-    >>> topological_sort(['a', 'b', 'c', 'd'], {"a": ["b", "c"], "b": ["d"], 
+    Examples:
+    >>> topological_sort(['a', 'b', 'c', 'd'], {"a": ["b", "c"], "b": ["d"],
     "c": [], "d": []})
     ['d', 'c', 'b', 'a']
-    >>> topological_sort(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'], {"a": ["b"], 
+    >>> topological_sort(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'], {"a": ["b"],
     "b": ["c"], "c": ["d"], "d": ["e"], "e": ["f"], "f": ["g"], "g": ["h"], "h": []})
     ['h', 'g', 'f', 'e', 'd', 'c', 'b', 'a']
-    >>> topological_sort(['a', 'b', 'c', 'd', 'e', 'f', 'g'], {"a": ["b", "c"], 
+    >>> topological_sort(['a', 'b', 'c', 'd', 'e', 'f', 'g'], {"a": ["b", "c"],
     "b": ["d", "e"], "c": ["f", "g"], "d": [], "f": [], "h": []})
     ['d', 'f', 'e', 'g', 'c', 'b', 'a']
     >>> topological_sort([], {})
