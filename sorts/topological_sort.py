@@ -1,7 +1,7 @@
 """Topological Sort."""
 
 # Test cases:
-    
+
 #     a
 #    / \
 #   b  c
@@ -16,7 +16,10 @@ edges: dict[str, list[str]] = {
 }
 vertices: list[str] = ["a", "b", "c", "d", "e"]
 
-def topological_sort_util(start: str, edges: dict[str, list[str]], visited: list[str], sort: list[str]) -> list[str]:
+
+def topological_sort_util(
+    start: str, edges: dict[str, list[str]], visited: list[str], sort: list[str]
+) -> list[str]:
     """"""
     """
     Examples: 
@@ -32,7 +35,7 @@ def topological_sort_util(start: str, edges: dict[str, list[str]], visited: list
     >>> topological_sort([], {})
     ['']
     """
-    
+
     current = start
     # add current to visited
     visited.append(current)
@@ -51,6 +54,7 @@ def topological_sort_util(start: str, edges: dict[str, list[str]], visited: list
     # return sort
     return sort
 
+
 def topological_sort(vertices: list[str], edges: dict[str, list[str]]) -> list[str]:
     sort = []
     visited = []
@@ -59,15 +63,20 @@ def topological_sort(vertices: list[str], edges: dict[str, list[str]]) -> list[s
             sort = topological_sort_util(vertex, edges, visited, sort)
     return sort
 
+
 if __name__ == "__main__":
     # Get vertices from the user
     vertices_input = input("Please enter the vertices separated by commas: ").strip()
-    vertices = [vertex.strip() for vertex in vertices_input.split(',')]
+    vertices = [vertex.strip() for vertex in vertices_input.split(",")]
     # Initialize an empty dictionary for edges
     edges = {}
     # Iterate over each vertex to get its connected edges
     for vertex in vertices:
-        edges_input = input(f"Please enter the edges connected to vertex \"{vertex}\" separated by commas (leave empty to finish): ").strip()
-        edges[vertex] = [edge.strip() for edge in edges_input.split(',') if edge.strip()]
+        edges_input = input(
+            f'Please enter the edges connected to vertex "{vertex}" separated by commas (leave empty to finish): '
+        ).strip()
+        edges[vertex] = [
+            edge.strip() for edge in edges_input.split(",") if edge.strip()
+        ]
     sort = topological_sort(vertices, edges)
     print(sort)
