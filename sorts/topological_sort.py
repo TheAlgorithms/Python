@@ -1,6 +1,6 @@
 """Topological Sort."""
 
-test_cases: list[dict[str, list]] = [
+test_cases: list[dict[str, str]] = [
     {
         #     a
         #    / \
