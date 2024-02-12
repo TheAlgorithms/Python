@@ -13,7 +13,9 @@ testCases = [
             "c": [],
             "d": [],
             "e": [],
-    }, "vertices": ["a", "b", "c", "d", "e"]},
+        },
+        "vertices": ["a", "b", "c", "d", "e"],
+    },
     {
         #            a
         #          / | \
@@ -32,7 +34,9 @@ testCases = [
             "g": ["i"],
             "h": [],
             "i": [],
-    }, "vertices": ["a", "b", "c", "d", "e", "f", "g", "h", "i"]},
+        },
+        "vertices": ["a", "b", "c", "d", "e", "f", "g", "h", "i"],
+    },
     {
         #                        a
         #                      /   \
@@ -57,20 +61,21 @@ testCases = [
             "e": [],
             "f": [],
             "g": ["h"],
-	        "h": ["i"],
+            "h": ["i"],
             "i": ["j"],
             "j": ["k"],
-	        "k": [],
-    }, "vertices": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"]},
+            "k": [],
+        },
+        "vertices": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k"],
+    },
     {
         #
         #                  a
-        #                /   \     
+        #                /   \
         #              b      c
         #             / \    / \
         #            d   e  f   g
-        "edges": 
-        {
+        "edges": {
             "a": ["b", "c"],
             "b": ["d", "e"],
             "c": ["f", "g"],
@@ -78,11 +83,13 @@ testCases = [
             "e": [],
             "f": [],
             "g": [],
-    }, "vertices": ["a", "b", "c", "d", "e", "f", "g"]},
+        },
+        "vertices": ["a", "b", "c", "d", "e", "f", "g"],
+    },
     {
         #
         #                  a
-        #                /   \     
+        #                /   \
         #              b      c
         #             / \    / \
         #            d   e  f   g
@@ -92,8 +99,8 @@ testCases = [
         #        l       m
         #       /
         #      n
-        #     
-        #  
+        #
+        #
         "edges": {
             "a": ["b", "c"],
             "b": ["d", "e"],
@@ -109,13 +116,15 @@ testCases = [
             "l": ["n"],
             "m": [],
             "n": [],
-        }, "vertices": ["a", "b", "c", "d", "e", "f", "g"]},
-        {
+        },
+        "vertices": ["a", "b", "c", "d", "e", "f", "g"],
+    },
+    {
         #                        a
-        #                      /   
-        #                     b     
-        #                    /    
-        #                   c     
+        #                      /
+        #                     b
+        #                    /
+        #                   c
         #                  /
         #                 d
         #                /
@@ -134,21 +143,22 @@ testCases = [
             "e": ["f"],
             "f": ["g"],
             "g": ["h"],
-	        "h": [],
-    }, "vertices": ["a", "b", "c", "d", "e", "f", "g", "h"]},
+            "h": [],
+        },
+        "vertices": ["a", "b", "c", "d", "e", "f", "g", "h"],
+    },
     {
         #            a
         #          / | \
         #         b  c  d
         #        /       \
-        #       e         f       
+        #       e         f
         #      /           \
         #     g             h
         #    /               \
         #   i                 j
         #  /                   \
         # k                     l
-              
         "edges": {
             "a": ["b", "c", "d"],
             "b": ["e"],
@@ -162,7 +172,9 @@ testCases = [
             "j": ["l"],
             "k": [],
             "l": [],
-    }, "vertices": ["a", "b", "c", "d", "e", "f", "g", "h", "i"]},
+        },
+        "vertices": ["a", "b", "c", "d", "e", "f", "g", "h", "i"],
+    },
     {
         #     a
         #    / \
@@ -175,7 +187,9 @@ testCases = [
             "c": ["e"],
             "d": [],
             "e": [],
-    }, "vertices": ["a", "b", "c", "d", "e"]},
+        },
+        "vertices": ["a", "b", "c", "d", "e"],
+    },
     {
         #   a     h
         #  / \     \
@@ -185,17 +199,19 @@ testCases = [
         # |   |
         # g   f
         "edges": {
-        "a": ["b", "c"],
-        "b": ["d"],
-        "c": ["e", "f"],
-        "d": ["g"],
-        "e": [],
-        "f": [],
-        "g": [],
-        "h": ["i"],
-        "i": ["j"],
-        "j": [],
-    }, "vertices": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]},
+            "a": ["b", "c"],
+            "b": ["d"],
+            "c": ["e", "f"],
+            "d": ["g"],
+            "e": [],
+            "f": [],
+            "g": [],
+            "h": ["i"],
+            "i": ["j"],
+            "j": [],
+        },
+        "vertices": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"],
+    },
     {
         #   a     h     k
         #  / \     \     \
@@ -205,22 +221,24 @@ testCases = [
         # |   |
         # g   f
         "edges": {
-        "a": ["b", "c"],
-        "b": ["d"],
-        "c": ["e"],
-        "d": ["g"],
-        "e": ["f"],
-        "f": [],
-        "g": [],
-        "h": ["i"],
-        "i": ["j"],
-        "j": [],
-        "k": ["l"],
-        "l": ["m"],
-        "m": [],
-    }, "vertices": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"]},
-
+            "a": ["b", "c"],
+            "b": ["d"],
+            "c": ["e"],
+            "d": ["g"],
+            "e": ["f"],
+            "f": [],
+            "g": [],
+            "h": ["i"],
+            "i": ["j"],
+            "j": [],
+            "k": ["l"],
+            "l": ["m"],
+            "m": [],
+        },
+        "vertices": ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"],
+    },
 ]
+
 
 def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[str]:
     """Perform topological sort on a directed acyclic graph."""
@@ -244,9 +262,9 @@ def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[st
 
 
 if __name__ == "__main__":
-    for idx, testCase in enumerate(testCases, start = 1):
+    for idx, testCase in enumerate(testCases, start=1):
         print(f"Test Case {idx}:")
         edges = testCase["edges"]
         vertices = testCase["vertices"]
         sort = topological_sort("a", [], [])
-        print(sort);
+        print(sort)
