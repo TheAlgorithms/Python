@@ -1,7 +1,7 @@
 """Topological Sort."""
-from typing import Any, Dict, List
+from typing import any, dict, list
 
-test_cases: List[Dict[str, Any]] = [
+test_cases: list[dict[str, any]] = [
     {
         #     a
         #    / \
