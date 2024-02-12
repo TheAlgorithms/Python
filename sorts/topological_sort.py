@@ -1,5 +1,6 @@
 """Topological Sort."""
-from typing import Any as any 
+from typing import Any as any
+
 test_cases: list[dict[str, any]] = [
     {
         #     a
