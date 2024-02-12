@@ -262,11 +262,7 @@ def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[st
 
 
 if __name__ == "__main__":
-<<<<<<< HEAD
-    for idx, test_case in enumerate(test_cases, start = 1):
-=======
-    for idx, testCase in enumerate(testCases, start=1):
->>>>>>> fe22fb2d4ad41b6c2ab7c7053bb6072b17ea0405
+    for idx, testCase in enumerate(testCases, start = 1):
         print(f"Test Case {idx}:")
         edges = test_case["edges"]
         vertices = test_case["vertices"]
