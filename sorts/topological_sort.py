@@ -56,8 +56,8 @@ def topological_sort_util(
 
 
 def topological_sort(vertices: list[str], edges: dict[str, list[str]]) -> list[str]:
-    sort = []
-    visited = []
+    sort: list[str] = []
+    visited: list[str] = []
     for vertex in vertices:
         if vertex not in visited:
             sort = topological_sort_util(vertex, edges, visited, sort)
@@ -72,9 +72,8 @@ if __name__ == "__main__":
     edges = {}
     # Iterate over each vertex to get its connected edges
     for vertex in vertices:
-        edges_input = input(
-            f'Please enter the edges connected to vertex "{vertex}" separated by commas (leave empty to finish): '
-        ).strip()
+        edges_input = input(f"Please enter the edges connected to vertex \"{vertex}\" "
+                    "separated by commas (leave empty to finish): ").strip()
         edges[vertex] = [
             edge.strip() for edge in edges_input.split(",") if edge.strip()
         ]
