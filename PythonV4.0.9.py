@@ -30,6 +30,7 @@ def merge_sort(arr):
 
     return arr
 
+
 arr = [64, 34, 25, 12, 22, 11, 90]
 sorted_arr = merge_sort(arr)
 print("sort:")
