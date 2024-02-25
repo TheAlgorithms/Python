@@ -466,7 +466,7 @@ def test_cancel_data():
     data = pd.read_csv(
         "cancel_data.csv",
         header=None,
-        dtype={0: str}  # Assuming the first column contains string data
+        dtype={0: str},  # Assuming the first column contains string data
     )
 
     # 1: pre-processing data
