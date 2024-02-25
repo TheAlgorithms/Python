@@ -82,6 +82,7 @@ def fib_iterative(n: int) -> list[int]:
         fib.append(fib[-1] + fib[-2])
     return fib
 
+
 def fib_recursive_term(i: int) -> int:
     """
     Calculates the i-th (0-indexed) Fibonacci number using recursion
@@ -103,6 +104,7 @@ def fib_recursive_term(i: int) -> int:
     if i < 2:
         return i
     return fib_recursive_term(i - 1) + fib_recursive_term(i - 2)
+
 
 def fib_recursive(n: int) -> list[int]:
     """
