@@ -35,8 +35,8 @@ def binary_and(a: int, b: int) -> str:
     if a < 0 or b < 0:
         raise ValueError("the value of both inputs must be positive")
 
-    a_binary = format(a, 'b')
-    b_binary = format(b, 'b')
+    a_binary = format(a, "b")
+    b_binary = format(b, "b")
 
     max_len = max(len(a_binary), len(b_binary))
 
