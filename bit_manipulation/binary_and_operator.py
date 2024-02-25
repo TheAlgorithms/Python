@@ -26,7 +26,7 @@ def binary_and(a: int, b: int) -> str:
     >>> binary_and(0, 1.1)
     Traceback (most recent call last):
         ...
-    TypeError: 'float' object cannot be interpreted as an integer
+    ValueError: Unknown format code 'b' for object of type 'float'
     >>> binary_and("0", "1")
     Traceback (most recent call last):
         ...
