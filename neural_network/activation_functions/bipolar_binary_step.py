@@ -10,6 +10,7 @@ https://en.wikipedia.org/wiki/Activation_function
 
 import numpy as np
 
+
 def bipolar_binary_step(vector: np.ndarray) -> np.ndarray:
     """
     Implements the binary step function
