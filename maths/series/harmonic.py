@@ -45,7 +45,7 @@ def is_harmonic_series(series: list) -> bool:
         return True
     rec_series = []
     series_len = len(series)
-    for i in range(0, series_len):
+    for i in range(series_len):
         if series[i] == 0:
             raise ValueError("Input series cannot have 0 as an element")
         rec_series.append(1 / series[i])

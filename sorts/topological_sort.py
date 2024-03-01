@@ -5,11 +5,17 @@
 #   b  c
 #  / \
 # d  e
-edges = {"a": ["c", "b"], "b": ["d", "e"], "c": [], "d": [], "e": []}
-vertices = ["a", "b", "c", "d", "e"]
+edges: dict[str, list[str]] = {
+    "a": ["c", "b"],
+    "b": ["d", "e"],
+    "c": [],
+    "d": [],
+    "e": [],
+}
+vertices: list[str] = ["a", "b", "c", "d", "e"]
 
 
-def topological_sort(start, visited, sort):
+def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[str]:
     """Perform topological sort on a directed acyclic graph."""
     current = start
     # add current to visited

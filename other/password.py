@@ -63,11 +63,12 @@ def random_characters(chars_incl, i):
     pass  # Put your code here...
 
 
-# This Will Check Whether A Given Password Is Strong Or Not
-# It Follows The Rule that Length Of Password Should Be At Least 8 Characters
-# And At Least 1 Lower, 1 Upper, 1 Number And 1 Special Character
 def is_strong_password(password: str, min_length: int = 8) -> bool:
     """
+    This will check whether a given password is strong or not. The password must be at
+    least as long as the provided minimum length, and it must contain at least 1
+    lowercase letter, 1 uppercase letter, 1 number and 1 special character.
+
     >>> is_strong_password('Hwea7$2!')
     True
     >>> is_strong_password('Sh0r1')
@@ -81,7 +82,6 @@ def is_strong_password(password: str, min_length: int = 8) -> bool:
     """
 
     if len(password) < min_length:
-        # Your Password must be at least 8 characters long
         return False
 
     upper = any(char in ascii_uppercase for char in password)
@@ -90,8 +90,6 @@ def is_strong_password(password: str, min_length: int = 8) -> bool:
     spec_char = any(char in punctuation for char in password)
 
     return upper and lower and num and spec_char
-    # Passwords should contain UPPERCASE, lowerase
-    # numbers, and special characters
 
 
 def main():
@@ -104,7 +102,7 @@ def main():
         "Alternative Password generated:",
         alternative_password_generator(chars_incl, length),
     )
-    print("[If you are thinking of using this passsword, You better save it.]")
+    print("[If you are thinking of using this password, You better save it.]")
 
 
 if __name__ == "__main__":

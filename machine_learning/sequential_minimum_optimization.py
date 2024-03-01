@@ -454,7 +454,7 @@ def test_cancel_data():
     print("Hello!\nStart test svm by smo algorithm!")
     # 0: download dataset and load into pandas' dataframe
     if not os.path.exists(r"cancel_data.csv"):
-        request = urllib.request.Request(
+        request = urllib.request.Request(  # noqa: S310
             CANCER_DATASET_URL,
             headers={"User-Agent": "Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)"},
         )
@@ -589,7 +589,7 @@ def plot_partition_boundary(
     ax.contour(
         xrange,
         yrange,
-        np.mat(grid).T,
+        np.asmatrix(grid).T,
         levels=(-1, 0, 1),
         linestyles=("--", "-", "--"),
         linewidths=(1, 1, 1),

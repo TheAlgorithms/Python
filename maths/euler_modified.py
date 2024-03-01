@@ -5,7 +5,7 @@ import numpy as np
 
 def euler_modified(
     ode_func: Callable, y0: float, x0: float, step_size: float, x_end: float
-) -> np.array:
+) -> np.ndarray:
     """
     Calculate solution at each step to an ODE using Euler's Modified Method
     The Euler Method is straightforward to implement, but can't give accurate solutions.

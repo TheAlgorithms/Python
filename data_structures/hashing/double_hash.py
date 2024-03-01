@@ -35,6 +35,33 @@ class DoubleHash(HashTable):
         return (increment * self.__hash_function_2(key, data)) % self.size_table
 
     def _collision_resolution(self, key, data=None):
+        """
+        Examples:
+
+        1. Try to add three data elements when the size is three
+        >>> dh = DoubleHash(3)
+        >>> dh.insert_data(10)
+        >>> dh.insert_data(20)
+        >>> dh.insert_data(30)
+        >>> dh.keys()
+        {1: 10, 2: 20, 0: 30}
+
+        2. Try to add three data elements when the size is two
+        >>> dh = DoubleHash(2)
+        >>> dh.insert_data(10)
+        >>> dh.insert_data(20)
+        >>> dh.insert_data(30)
+        >>> dh.keys()
+        {10: 10, 9: 20, 8: 30}
+
+        3. Try to add three data elements when the size is four
+        >>> dh = DoubleHash(4)
+        >>> dh.insert_data(10)
+        >>> dh.insert_data(20)
+        >>> dh.insert_data(30)
+        >>> dh.keys()
+        {9: 20, 10: 10, 8: 30}
+        """
         i = 1
         new_key = self.hash_function(data)
 
@@ -50,3 +77,9 @@ class DoubleHash(HashTable):
                 i += 1
 
         return new_key
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

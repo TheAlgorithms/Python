@@ -7,7 +7,7 @@
 
 # Order is important. The last matching pattern has the most precedence.
 
-/.*  @cclauss @dhruvmanila
+/.*  @cclauss
 
 # /arithmetic_analysis/
 
@@ -21,15 +21,15 @@
 
 # /cellular_automata/
 
-# /ciphers/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
+# /ciphers/
 
 # /compression/
 
 # /computer_vision/
 
-# /conversions/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
+# /conversions/
 
-# /data_structures/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
+# /data_structures/
 
 # /digital_image_processing/
 
@@ -67,9 +67,9 @@
 
 # /neural_network/
 
-# /other/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
+# /other/
 
-/project_euler/  @dhruvmanila
+# /project_euler/
 
 # /quantum/
 
@@ -81,7 +81,7 @@
 
 # /sorts/
 
-# /strings/  @cclauss  # TODO: Uncomment this line after Hacktoberfest
+# /strings/
 
 # /traversals/
 

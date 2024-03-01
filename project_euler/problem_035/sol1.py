@@ -11,18 +11,18 @@ There are thirteen such primes below 100: 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73
 How many circular primes are there below one million?
 
 To solve this problem in an efficient manner, we will first mark all the primes
-below 1 million using the Seive of Eratosthenes.  Then, out of all these primes,
-we will rule out the numbers which contain an even digit.  After this we will
+below 1 million using the Sieve of Eratosthenes. Then, out of all these primes,
+we will rule out the numbers which contain an even digit. After this we will
 generate each circular combination of the number and check if all are prime.
 """
 from __future__ import annotations
 
-seive = [True] * 1000001
+sieve = [True] * 1000001
 i = 2
 while i * i <= 1000000:
-    if seive[i]:
+    if sieve[i]:
         for j in range(i * i, 1000001, i):
-            seive[j] = False
+            sieve[j] = False
     i += 1
 
 
@@ -36,7 +36,7 @@ def is_prime(n: int) -> bool:
     >>> is_prime(25363)
     False
     """
-    return seive[n]
+    return sieve[n]
 
 
 def contains_an_even_digit(n: int) -> bool:

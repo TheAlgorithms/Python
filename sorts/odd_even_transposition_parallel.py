@@ -13,7 +13,8 @@ synchronization could be used.
 from multiprocessing import Lock, Pipe, Process
 
 # lock used to ensure that two processes do not access a pipe at the same time
-process_lock = Lock()
+# NOTE This breaks testing on build runner. May work better locally
+# process_lock = Lock()
 
 """
 The function run by the processes that sorts the list
@@ -28,12 +29,12 @@ resultPipe = the pipe used to send results back to main
 
 
 def oe_process(position, value, l_send, r_send, lr_cv, rr_cv, result_pipe):
-    global process_lock
+    process_lock = Lock()
 
     # we perform n swaps since after n swaps we know we are sorted
     # we *could* stop early if we are sorted already, but it takes as long to
     # find out we are sorted as it does to sort the list with this algorithm
-    for i in range(0, 10):
+    for i in range(10):
         if (i + position) % 2 == 0 and r_send is not None:
             # send your value to your right neighbor
             process_lock.acquire()
@@ -72,6 +73,26 @@ arr = the list to be sorted
 
 
 def odd_even_transposition(arr):
+    """
+    >>> odd_even_transposition(list(range(10)[::-1])) == sorted(list(range(10)[::-1]))
+    True
+    >>> odd_even_transposition(["a", "x", "c"]) == sorted(["x", "a", "c"])
+    True
+    >>> odd_even_transposition([1.9, 42.0, 2.8]) == sorted([1.9, 42.0, 2.8])
+    True
+    >>> odd_even_transposition([False, True, False]) == sorted([False, False, True])
+    True
+    >>> odd_even_transposition([1, 32.0, 9]) == sorted([False, False, True])
+    False
+    >>> odd_even_transposition([1, 32.0, 9]) == sorted([1.0, 32, 9.0])
+    True
+    >>> unsorted_list = [-442, -98, -554, 266, -491, 985, -53, -529, 82, -429]
+    >>> odd_even_transposition(unsorted_list) == sorted(unsorted_list)
+    True
+    >>> unsorted_list = [-442, -98, -554, 266, -491, 985, -53, -529, 82, -429]
+    >>> odd_even_transposition(unsorted_list) == sorted(unsorted_list + [1])
+    False
+    """
     process_array_ = []
     result_pipe = []
     # initialize the list of pipes where the values will be retrieved
@@ -123,7 +144,7 @@ def odd_even_transposition(arr):
         p.start()
 
     # wait for the processes to end and write their values to the list
-    for p in range(0, len(result_pipe)):
+    for p in range(len(result_pipe)):
         arr[p] = result_pipe[p][0].recv()
         process_array_[p].join()
     return arr

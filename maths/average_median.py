@@ -19,7 +19,9 @@ def median(nums: list) -> int | float:
     Returns:
         Median.
     """
-    sorted_list = sorted(nums)
+    # The sorted function returns list[SupportsRichComparisonT@sorted]
+    # which does not support `+`
+    sorted_list: list[int] = sorted(nums)
     length = len(sorted_list)
     mid_index = length >> 1
     return (

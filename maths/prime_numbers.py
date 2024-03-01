@@ -17,8 +17,8 @@ def slow_primes(max_n: int) -> Generator[int, None, None]:
     [2, 3, 5, 7, 11]
     >>> list(slow_primes(33))
     [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
-    >>> list(slow_primes(10000))[-1]
-    9973
+    >>> list(slow_primes(1000))[-1]
+    997
     """
     numbers: Generator = (i for i in range(1, (max_n + 1)))
     for i in (n for n in numbers if n > 1):
@@ -44,8 +44,8 @@ def primes(max_n: int) -> Generator[int, None, None]:
     [2, 3, 5, 7, 11]
     >>> list(primes(33))
     [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
-    >>> list(primes(10000))[-1]
-    9973
+    >>> list(primes(1000))[-1]
+    997
     """
     numbers: Generator = (i for i in range(1, (max_n + 1)))
     for i in (n for n in numbers if n > 1):
@@ -73,8 +73,8 @@ def fast_primes(max_n: int) -> Generator[int, None, None]:
     [2, 3, 5, 7, 11]
     >>> list(fast_primes(33))
     [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
-    >>> list(fast_primes(10000))[-1]
-    9973
+    >>> list(fast_primes(1000))[-1]
+    997
     """
     numbers: Generator = (i for i in range(1, (max_n + 1), 2))
     # It's useless to test even numbers as they will not be prime

@@ -165,9 +165,7 @@ class BodySystem:
 
                     # Calculation of the distance using Pythagoras's theorem
                     # Extra factor due to the softening technique
-                    distance = (dif_x**2 + dif_y**2 + self.softening_factor) ** (
-                        1 / 2
-                    )
+                    distance = (dif_x**2 + dif_y**2 + self.softening_factor) ** (1 / 2)
 
                     # Newton's law of universal gravitation.
                     force_x += (
@@ -226,7 +224,7 @@ def plot(
     No doctest provided since this function does not have a return value.
     """
     fig = plt.figure()
-    fig.canvas.set_window_title(title)
+    fig.canvas.manager.set_window_title(title)
     ax = plt.axes(
         xlim=(x_start, x_end), ylim=(y_start, y_end)
     )  # Set section to be plotted

@@ -12,12 +12,12 @@ https://en.wikipedia.org/wiki/Activation_function
 import numpy as np
 
 
-def tangent_hyperbolic(vector: np.array) -> np.array:
+def tangent_hyperbolic(vector: np.ndarray) -> np.ndarray:
     """
         Implements the tanh function
 
         Parameters:
-            vector: np.array
+            vector: np.ndarray
 
         Returns:
             tanh (np.array): The input numpy array after applying tanh.

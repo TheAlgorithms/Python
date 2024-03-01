@@ -54,7 +54,7 @@ def spiral_print_clockwise(a: list[list[int]]) -> None:
             return
 
         # horizotal printing increasing
-        for i in range(0, mat_col):
+        for i in range(mat_col):
             print(a[0][i])
         # vertical printing down
         for i in range(1, mat_row):
@@ -116,7 +116,7 @@ def spiral_traversal(matrix: list[list]) -> list[int]:
     [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7] + spiral_traversal([])
     """
     if matrix:
-        return list(matrix.pop(0)) + spiral_traversal(list(zip(*matrix))[::-1])
+        return list(matrix.pop(0)) + spiral_traversal(list(zip(*matrix))[::-1])  # type: ignore
     else:
         return []
 

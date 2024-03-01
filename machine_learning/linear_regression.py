@@ -78,7 +78,7 @@ def run_linear_regression(data_x, data_y):
 
     theta = np.zeros((1, no_features))
 
-    for i in range(0, iterations):
+    for i in range(iterations):
         theta = run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta)
         error = sum_of_square_error(data_x, data_y, len_data, theta)
         print(f"At Iteration {i + 1} - Error is {error:.5f}")
@@ -107,7 +107,7 @@ def main():
     theta = run_linear_regression(data_x, data_y)
     len_result = theta.shape[1]
     print("Resultant Feature vector : ")
-    for i in range(0, len_result):
+    for i in range(len_result):
         print(f"{theta[0, i]:.5f}")
 
 

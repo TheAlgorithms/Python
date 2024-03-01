@@ -1,6 +1,8 @@
 import random
 import sys
 
+from maths.greatest_common_divisor import gcd_by_iterative
+
 from . import cryptomath_module as cryptomath
 
 SYMBOLS = (
@@ -26,7 +28,7 @@ def check_keys(key_a: int, key_b: int, mode: str) -> None:
             "Key A must be greater than 0 and key B must "
             f"be between 0 and {len(SYMBOLS) - 1}."
         )
-    if cryptomath.gcd(key_a, len(SYMBOLS)) != 1:
+    if gcd_by_iterative(key_a, len(SYMBOLS)) != 1:
         sys.exit(
             f"Key A {key_a} and the symbol set size {len(SYMBOLS)} "
             "are not relatively prime. Choose a different key."
@@ -76,7 +78,7 @@ def get_random_key() -> int:
     while True:
         key_b = random.randint(2, len(SYMBOLS))
         key_b = random.randint(2, len(SYMBOLS))
-        if cryptomath.gcd(key_b, len(SYMBOLS)) == 1 and key_b % len(SYMBOLS) != 0:
+        if gcd_by_iterative(key_b, len(SYMBOLS)) == 1 and key_b % len(SYMBOLS) != 0:
             return key_b * len(SYMBOLS) + key_b
 
 

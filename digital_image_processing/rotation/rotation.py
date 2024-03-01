@@ -10,12 +10,12 @@ def get_rotation(
 ) -> np.ndarray:
     """
     Get image rotation
-    :param img: np.array
+    :param img: np.ndarray
     :param pt1: 3x2 list
     :param pt2: 3x2 list
     :param rows: columns image shape
     :param cols: rows image shape
-    :return: np.array
+    :return: np.ndarray
     """
     matrix = cv2.getAffineTransform(pt1, pt2)
     return cv2.warpAffine(img, matrix, (rows, cols))

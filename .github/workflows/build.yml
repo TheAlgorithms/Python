@@ -9,11 +9,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
-          python-version: 3.11
-      - uses: actions/cache@v3
+          python-version: 3.12
+          allow-prereleases: true
+      - uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
@@ -24,10 +25,10 @@ jobs:
       - name: Run tests
         # TODO: #8818 Re-enable quantum tests
         run: pytest
-            --ignore=quantum/q_fourier_transform.py
-            --ignore=project_euler/
-            --ignore=scripts/validate_solutions.py
-            --cov-report=term-missing:skip-covered
-            --cov=. .
+          --ignore=quantum/q_fourier_transform.py
+          --ignore=project_euler/
+          --ignore=scripts/validate_solutions.py
+          --cov-report=term-missing:skip-covered
+          --cov=. .
       - if: ${{ success() }}
         run: scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md

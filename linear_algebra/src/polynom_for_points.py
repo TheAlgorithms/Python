@@ -43,62 +43,43 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
 
     x = len(coordinates)
 
-    count_of_line = 0
-    matrix: list[list[float]] = []
     # put the x and x to the power values in a matrix
-    while count_of_line < x:
-        count_in_line = 0
-        a = coordinates[count_of_line][0]
-        count_line: list[float] = []
-        while count_in_line < x:
-            count_line.append(a ** (x - (count_in_line + 1)))
-            count_in_line += 1
-        matrix.append(count_line)
-        count_of_line += 1
+    matrix: list[list[float]] = [
+        [
+            coordinates[count_of_line][0] ** (x - (count_in_line + 1))
+            for count_in_line in range(x)
+        ]
+        for count_of_line in range(x)
+    ]
 
-    count_of_line = 0
     # put the y values into a vector
-    vector: list[float] = []
-    while count_of_line < x:
-        vector.append(coordinates[count_of_line][1])
-        count_of_line += 1
+    vector: list[float] = [coordinates[count_of_line][1] for count_of_line in range(x)]
 
-    count = 0
-
-    while count < x:
-        zahlen = 0
-        while zahlen < x:
-            if count == zahlen:
-                zahlen += 1
-            if zahlen == x:
-                break
-            bruch = matrix[zahlen][count] / matrix[count][count]
+    for count in range(x):
+        for number in range(x):
+            if count == number:
+                continue
+            fraction = matrix[number][count] / matrix[count][count]
             for counting_columns, item in enumerate(matrix[count]):
                 # manipulating all the values in the matrix
-                matrix[zahlen][counting_columns] -= item * bruch
+                matrix[number][counting_columns] -= item * fraction
             # manipulating the values in the vector
-            vector[zahlen] -= vector[count] * bruch
-            zahlen += 1
-        count += 1
+            vector[number] -= vector[count] * fraction
 
-    count = 0
     # make solutions
-    solution: list[str] = []
-    while count < x:
-        solution.append(str(vector[count] / matrix[count][count]))
-        count += 1
+    solution: list[str] = [
+        str(vector[count] / matrix[count][count]) for count in range(x)
+    ]
 
-    count = 0
     solved = "f(x)="
 
-    while count < x:
+    for count in range(x):
         remove_e: list[str] = solution[count].split("E")
         if len(remove_e) > 1:
             solution[count] = f"{remove_e[0]}*10^{remove_e[1]}"
         solved += f"x^{x - (count + 1)}*{solution[count]}"
         if count + 1 != x:
             solved += "+"
-        count += 1
 
     return solved
 

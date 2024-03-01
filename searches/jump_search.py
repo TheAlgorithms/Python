@@ -4,14 +4,28 @@ This algorithm iterates through a sorted collection with a step of n^(1/2),
 until the element compared is bigger than the one searched.
 It will then perform a linear search until it matches the wanted number.
 If not found, it returns -1.
+
+https://en.wikipedia.org/wiki/Jump_search
 """
 
 import math
+from collections.abc import Sequence
+from typing import Any, Protocol, TypeVar
 
 
-def jump_search(arr: list, x: int) -> int:
+class Comparable(Protocol):
+    def __lt__(self, other: Any, /) -> bool:
+        ...
+
+
+T = TypeVar("T", bound=Comparable)
+
+
+def jump_search(arr: Sequence[T], item: T) -> int:
     """
-    Pure Python implementation of the jump search algorithm.
+    Python implementation of the jump search algorithm.
+    Return the index if the `item` is found, otherwise return -1.
+
     Examples:
     >>> jump_search([0, 1, 2, 3, 4, 5], 3)
     3
@@ -21,31 +35,36 @@ def jump_search(arr: list, x: int) -> int:
     -1
     >>> jump_search([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610], 55)
     10
+    >>> jump_search(["aa", "bb", "cc", "dd", "ee", "ff"], "ee")
+    4
     """
 
-    n = len(arr)
-    step = int(math.floor(math.sqrt(n)))
+    arr_size = len(arr)
+    block_size = int(math.sqrt(arr_size))
+
     prev = 0
-    while arr[min(step, n) - 1] < x:
+    step = block_size
+    while arr[min(step, arr_size) - 1] < item:
         prev = step
-        step += int(math.floor(math.sqrt(n)))
-        if prev >= n:
+        step += block_size
+        if prev >= arr_size:
             return -1
 
-    while arr[prev] < x:
-        prev = prev + 1
-        if prev == min(step, n):
+    while arr[prev] < item:
+        prev += 1
+        if prev == min(step, arr_size):
             return -1
-    if arr[prev] == x:
+    if arr[prev] == item:
         return prev
     return -1
 
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
-    arr = [int(item) for item in user_input.split(",")]
+    array = [int(item) for item in user_input.split(",")]
     x = int(input("Enter the number to be searched:\n"))
-    res = jump_search(arr, x)
+
+    res = jump_search(array, x)
     if res == -1:
         print("Number not found!")
     else:
