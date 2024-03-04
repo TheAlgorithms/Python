@@ -1,58 +1,51 @@
-"""
-This is a pure Python implementation of the heap sort algorithm.
-
-For doctests run following command:
-python -m doctest -v heap_sort.py
-or
-python3 -m doctest -v heap_sort.py
-
-For manual testing run:
-python heap_sort.py
-"""
-
-
-def heapify(unsorted, index, heap_size):
+def heapify(arr, index, heap_size):
+    """
+    Heapify subtree rooted at given index.
+    :param arr: List[int] The input list
+    :param index: int The index of the root of the subtree
+    :param heap_size: int The size of the heap
+    :return: None
+    """
     largest = index
     left_index = 2 * index + 1
     right_index = 2 * index + 2
-    if left_index < heap_size and unsorted[left_index] > unsorted[largest]:
+
+    if left_index < heap_size and arr[left_index] > arr[largest]:
         largest = left_index
 
-    if right_index < heap_size and unsorted[right_index] > unsorted[largest]:
+    if right_index < heap_size and arr[right_index] > arr[largest]:
         largest = right_index
 
     if largest != index:
-        unsorted[largest], unsorted[index] = unsorted[index], unsorted[largest]
-        heapify(unsorted, largest, heap_size)
+        arr[largest], arr[index] = arr[index], arr[largest]
+        heapify(arr, largest, heap_size)
 
 
-def heap_sort(unsorted):
+def heap_sort(arr):
     """
-    Pure implementation of the heap sort algorithm in Python
-    :param collection: some mutable ordered collection with heterogeneous
-    comparable items inside
-    :return: the same collection ordered by ascending
-
-    Examples:
-    >>> heap_sort([0, 5, 3, 2, 2])
-    [0, 2, 2, 3, 5]
-
-    >>> heap_sort([])
-    []
-
-    >>> heap_sort([-2, -5, -45])
-    [-45, -5, -2]
+    Perform heap sort on the given array.
+    :param arr: List[int] The input list
+    :return: List[int] Sorted list
     """
-    n = len(unsorted)
+    n = len(arr)
+
+    # Build max heap
     for i in range(n // 2 - 1, -1, -1):
-        heapify(unsorted, i, n)
+        heapify(arr, i, n)
+
+    # Extract elements one by one
     for i in range(n - 1, 0, -1):
-        unsorted[0], unsorted[i] = unsorted[i], unsorted[0]
-        heapify(unsorted, 0, i)
-    return unsorted
+        arr[0], arr[i] = arr[i], arr[0]
+        heapify(arr, 0, i)
+
+    return arr
 
 
 if __name__ == "__main__":
-    user_input = input("Enter numbers separated by a comma:\n").strip()
-    unsorted = [int(item) for item in user_input.split(",")]
-    print(heap_sort(unsorted))
+    try:
+        user_input = input("Enter numbers separated by a comma:\n").strip()
+        unsorted = [int(item) for item in user_input.split(",")]
+        sorted_arr = heap_sort(unsorted)
+        print("Sorted array:", sorted_arr)
+    except ValueError:
+        print("Invalid input. Please enter integers separated by commas.")
