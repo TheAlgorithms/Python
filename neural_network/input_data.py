@@ -29,7 +29,8 @@ from tensorflow.python.platform import gfile
 from tensorflow.python.util.deprecation import deprecated
 
 _Datasets = typing.NamedTuple(
-    "_Datasets", [("train", _DataSet), ("validation", _DataSet), ("test", _DataSet)])
+    "_Datasets", [("train", _DataSet), ("validation", _DataSet), ("test", _DataSet)]
+)
 
 # CVDF mirror of http://yann.lecun.com/exdb/mnist/
 DEFAULT_SOURCE_URL = "https://storage.googleapis.com/cvdf-datasets/mnist/"
