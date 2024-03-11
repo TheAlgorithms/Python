@@ -21,6 +21,7 @@ This module and all its submodules are deprecated.
 import collections
 import gzip
 import os
+import typing
 import urllib
 
 import numpy
@@ -28,7 +29,7 @@ from tensorflow.python.framework import dtypes, random_seed
 from tensorflow.python.platform import gfile
 from tensorflow.python.util.deprecation import deprecated
 
-_Datasets = collections.namedtuple("_Datasets", ["train", "validation", "test"])
+_Datasets = typing.NamedTuple("_Datasets", ["train", "validation", "test"])
 
 # CVDF mirror of http://yann.lecun.com/exdb/mnist/
 DEFAULT_SOURCE_URL = "https://storage.googleapis.com/cvdf-datasets/mnist/"
