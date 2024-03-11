@@ -18,7 +18,6 @@ This module and all its submodules are deprecated.
 """
 
 
-import collections
 import gzip
 import os
 import typing
