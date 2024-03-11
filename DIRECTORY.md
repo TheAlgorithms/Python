@@ -572,6 +572,8 @@
     * [Local Weighted Learning](machine_learning/local_weighted_learning/local_weighted_learning.py)
   * [Logistic Regression](machine_learning/logistic_regression.py)
   * [Loss Functions](machine_learning/loss_functions.py)
+  * Lstm
+    * [Lstm Prediction](machine_learning/lstm/lstm_prediction.py)
   * [Mfcc](machine_learning/mfcc.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
   * [Polynomial Regression](machine_learning/polynomial_regression.py)
