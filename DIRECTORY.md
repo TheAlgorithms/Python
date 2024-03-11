@@ -134,6 +134,7 @@
   * [Run Length Encoding](compression/run_length_encoding.py)
 
 ## Computer Vision
+  * [Cnn Classification](computer_vision/cnn_classification.py)
   * [Flip Augmentation](computer_vision/flip_augmentation.py)
   * [Haralick Descriptors](computer_vision/haralick_descriptors.py)
   * [Harris Corner](computer_vision/harris_corner.py)
