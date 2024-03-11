@@ -25,7 +25,7 @@ class DoubleLinkedListNode(Generic[T, U]):
 
     def __repr__(self) -> str:
         return f"Node: key: {self.key}, val: {self.val}, freq: {lf.freq}, "
-            "has next: {self.next is not None}, has prev: {self.prev is not None}"
+        "has next: {self.next is not None}, has prev: {self.prev is not None}"
 
 
 class DoubleLinkedList(Generic[T, U]):
