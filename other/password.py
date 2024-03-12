@@ -51,16 +51,19 @@ def random(chars_incl: str, i: int) -> str:
     return "".join(secrets.choice(chars_incl) for _ in range(i))
 
 
-def random_number(chars_incl, i):
-    pass  # Put your code here...
+# Put your code here...
+# def random_number(chars_incl, i):
+#     pass
 
 
-def random_letters(chars_incl, i):
-    pass  # Put your code here...
+# Put your code here...
+# def random_letters(chars_incl, i):
+#     pass
 
 
-def random_characters(chars_incl, i):
-    pass  # Put your code here...
+# Put your code here...
+# def random_characters(chars_incl, i):
+#     pass
 
 
 def is_strong_password(password: str, min_length: int = 8) -> bool:
