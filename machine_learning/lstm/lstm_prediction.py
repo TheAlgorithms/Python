@@ -1,9 +1,10 @@
 """
-    Create a Long Short Term Memory (LSTM) network model
-    An LSTM is a type of Recurrent Neural Network (RNN) as discussed at:
-    * https://colah.github.io/posts/2015-08-Understanding-LSTMs
-    * https://en.wikipedia.org/wiki/Long_short-term_memory
+Create a Long Short Term Memory (LSTM) network model
+An LSTM is a type of Recurrent Neural Network (RNN) as discussed at:
+* https://colah.github.io/posts/2015-08-Understanding-LSTMs
+* https://en.wikipedia.org/wiki/Long_short-term_memory
 """
+
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler

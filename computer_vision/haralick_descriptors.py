@@ -2,6 +2,7 @@
 https://en.wikipedia.org/wiki/Image_texture
 https://en.wikipedia.org/wiki/Co-occurrence_matrix#Application_to_image_analysis
 """
+
 import imageio.v2 as imageio
 import numpy as np
 

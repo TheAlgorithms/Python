@@ -10,6 +10,7 @@ without needing to store any additional data except the position of the first
 original character. The BWT is thus a "free" method of improving the efficiency
 of text compression algorithms, costing only some extra computation.
 """
+
 from __future__ import annotations
 
 from typing import TypedDict

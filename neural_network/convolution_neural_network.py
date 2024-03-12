@@ -1,18 +1,19 @@
 """
-     - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
-    Name - - CNN - Convolution Neural Network For Photo Recognizing
-    Goal - - Recognize Handing Writing Word Photo
-    Detail: Total 5 layers neural network
-            * Convolution layer
-            * Pooling layer
-            * Input layer layer of BP
-            * Hidden layer of BP
-            * Output layer of BP
-    Author: Stephen Lee
-    Github: 245885195@qq.com
-    Date: 2017.9.20
-    - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
+ - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
+Name - - CNN - Convolution Neural Network For Photo Recognizing
+Goal - - Recognize Handing Writing Word Photo
+Detail: Total 5 layers neural network
+        * Convolution layer
+        * Pooling layer
+        * Input layer layer of BP
+        * Hidden layer of BP
+        * Output layer of BP
+Author: Stephen Lee
+Github: 245885195@qq.com
+Date: 2017.9.20
+- - - - - -- - - - - - - - - - - - - - - - - - - - - - -
 """
+
 import pickle
 
 import numpy as np

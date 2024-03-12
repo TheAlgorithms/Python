@@ -37,6 +37,7 @@ a has 3 digits, etc...
 =>  100 <= a < 334, candidate = a * 10^6 + 2a * 10^3 + 3a
                               = 1002003 * a
 """
+
 from __future__ import annotations
 
 

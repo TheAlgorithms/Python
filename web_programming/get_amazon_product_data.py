@@ -4,7 +4,6 @@ and fetch from Amazon information about products of this name or category.  The 
 information will include title, URL, price, ratings, and the discount available.
 """
 
-
 from itertools import zip_longest
 
 import requests

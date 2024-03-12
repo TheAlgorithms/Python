@@ -17,7 +17,6 @@
 This module and all its submodules are deprecated.
 """
 
-
 import gzip
 import os
 import typing

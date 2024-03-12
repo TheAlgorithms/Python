@@ -30,7 +30,6 @@ Reference:
     https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-98-14.pdf
 """
 
-
 import os
 import sys
 import urllib.request

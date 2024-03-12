@@ -8,6 +8,7 @@ conjunctive normal form, i.e, for solving the Conjunctive Normal Form SATisfiabi
 
 For more information about the algorithm: https://en.wikipedia.org/wiki/DPLL_algorithm
 """
+
 from __future__ import annotations
 
 import random

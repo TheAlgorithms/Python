@@ -4,6 +4,7 @@
 Implementation of entropy of information
 https://en.wikipedia.org/wiki/Entropy_(information_theory)
 """
+
 from __future__ import annotations
 
 import math

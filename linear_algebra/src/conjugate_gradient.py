@@ -3,6 +3,7 @@ Resources:
 - https://en.wikipedia.org/wiki/Conjugate_gradient_method
 - https://en.wikipedia.org/wiki/Definite_symmetric_matrix
 """
+
 from typing import Any
 
 import numpy as np

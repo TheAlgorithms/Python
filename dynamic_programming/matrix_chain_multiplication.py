@@ -38,6 +38,7 @@ Example input:
 arr = [40, 20, 30, 10, 30]
 output: 26000
 """
+
 from collections.abc import Iterator
 from contextlib import contextmanager
 from functools import cache

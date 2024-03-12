@@ -8,7 +8,6 @@ Fb = ρ * V * g
 https://en.wikipedia.org/wiki/Archimedes%27_principle
 """
 
-
 # Acceleration Constant on Earth (unit m/s^2)
 g = 9.80665  # Also available in scipy.constants.g
 

@@ -5,6 +5,7 @@ For example:
     for i in allocation_list:
         requests.get(url,headers={'Range':f'bytes={i}'})
 """
+
 from __future__ import annotations
 
 
