@@ -96,7 +96,6 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    n = 3
     target = 5
     array = [1, 2, 5]
-    print(combination_sum_iv(n, array, target))
+    print(combination_sum_iv(array, target))
