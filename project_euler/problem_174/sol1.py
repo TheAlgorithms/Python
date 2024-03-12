@@ -26,6 +26,8 @@ def solution(t_limit: int = 1000000, n_limit: int = 10) -> int:
     Return the sum of N(n) for 1 <= n <= n_limit.
 
     >>> solution(1000,5)
+    222
+    >>> solution(1000,10)
     249
     >>> solution(10000,10)
     2383
