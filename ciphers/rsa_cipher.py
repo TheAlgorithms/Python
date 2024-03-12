@@ -102,8 +102,7 @@ def read_from_file_and_decrypt(message_filename: str, key_filename: str) -> str:
         sys.exit(
             f"ERROR: Block size is {block_size * 8} bits and key size is {key_size} "
             "bits. The RSA cipher requires the block size to be equal to or greater "
-            "than the key size. Did you specify the correct key file and encrypted "
-            "file?"
+            "than the key size. Were the correct key file and encrypted file specified?"
         )
 
     encrypted_blocks = []
