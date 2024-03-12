@@ -3,7 +3,7 @@ import shutil
 import requests
 
 
-def get_apod_data(api_key: str, download: bool = False, path: str = ".") -> dict:
+def get_apod_data(api_key: str) -> dict:
     """
     Get the APOD(Astronomical Picture of the day) data
     Get your API Key from: https://api.nasa.gov/
