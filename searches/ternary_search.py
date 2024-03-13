@@ -6,6 +6,7 @@ This is a type of divide and conquer algorithm which divides the search space in
 Time Complexity  : O(log3 N)
 Space Complexity : O(1)
 """
+
 from __future__ import annotations
 
 # This is the precision for this function which can be altered.

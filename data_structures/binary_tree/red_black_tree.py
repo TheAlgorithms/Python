@@ -2,6 +2,7 @@
 psf/black : true
 ruff : passed
 """
+
 from __future__ import annotations
 
 from collections.abc import Iterator

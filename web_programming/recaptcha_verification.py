@@ -31,6 +31,7 @@ SecretKey should be kept in your site's  back end
 Below a Django function for the views.py file contains a login form for demonstrating
 recaptcha verification.
 """
+
 import requests
 
 try:

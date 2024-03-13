@@ -1,6 +1,7 @@
 """
 Scraping jobs given job title and location from indeed website
 """
+
 from __future__ import annotations
 
 from collections.abc import Generator

@@ -12,6 +12,7 @@ reason, A* is known as an algorithm with brains.
 
 https://en.wikipedia.org/wiki/A*_search_algorithm
 """
+
 import numpy as np
 
 

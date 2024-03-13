@@ -5,6 +5,7 @@ finite sequence.
 For more details visit
 wikipedia/Fischer-Yates-Shuffle.
 """
+
 import random
 from typing import Any
 

@@ -11,7 +11,6 @@ goes to infinity).
 (See also http://www.shodor.org/refdesk/Resources/Algorithms/EulersMethod/ )
 """
 
-
 from __future__ import annotations
 
 import random

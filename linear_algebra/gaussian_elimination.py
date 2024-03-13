@@ -3,7 +3,6 @@ Gaussian elimination method for solving a system of linear equations.
 Gaussian elimination - https://en.wikipedia.org/wiki/Gaussian_elimination
 """
 
-
 import numpy as np
 from numpy import float64
 from numpy.typing import NDArray

@@ -1,6 +1,7 @@
 """
 Get CO2 emission data from the UK CarbonIntensity API
 """
+
 from datetime import date
 
 import requests

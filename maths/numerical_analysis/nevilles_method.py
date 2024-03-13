@@ -1,11 +1,11 @@
 """
-    Python program to show how to interpolate and evaluate a polynomial
-    using Neville's method.
-    Neville’s method evaluates a polynomial that passes through a
-    given set of x and y points for a particular x value (x0) using the
-    Newton polynomial form.
-    Reference:
-        https://rpubs.com/aaronsc32/nevilles-method-polynomial-interpolation
+Python program to show how to interpolate and evaluate a polynomial
+using Neville's method.
+Neville’s method evaluates a polynomial that passes through a
+given set of x and y points for a particular x value (x0) using the
+Newton polynomial form.
+Reference:
+    https://rpubs.com/aaronsc32/nevilles-method-polynomial-interpolation
 """
 
 

@@ -9,6 +9,7 @@ WIKI: https://athena.ecs.csus.edu/~mei/associationcw/FpGrowth.html
 
 Examples: https://www.javatpoint.com/fp-growth-algorithm-in-data-mining
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field

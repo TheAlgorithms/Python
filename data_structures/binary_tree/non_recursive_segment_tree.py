@@ -35,6 +35,7 @@ https://www.geeksforgeeks.org/segment-tree-efficient-implementation/
 >>> st.query(0, 2)
 [1, 2, 3]
 """
+
 from __future__ import annotations
 
 from collections.abc import Callable

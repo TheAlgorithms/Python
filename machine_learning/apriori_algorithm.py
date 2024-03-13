@@ -10,6 +10,7 @@ indicating that customers who purchased A and B are more likely to also purchase
 WIKI: https://en.wikipedia.org/wiki/Apriori_algorithm
 Examples: https://www.kaggle.com/code/earthian/apriori-association-rules-mining
 """
+
 from itertools import combinations
 
 

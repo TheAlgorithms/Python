@@ -6,6 +6,7 @@ Reference: https://en.wikipedia.org/wiki/Automatic_differentiation
 Author: Poojan Smart
 Email: smrtpoojan@gmail.com
 """
+
 from __future__ import annotations
 
 from collections import defaultdict

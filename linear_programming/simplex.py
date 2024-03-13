@@ -12,6 +12,7 @@ Resources:
 https://en.wikipedia.org/wiki/Simplex_algorithm
 https://tinyurl.com/simplex4beginners
 """
+
 from typing import Any
 
 import numpy as np

@@ -1,6 +1,7 @@
 """
 Jacobi Iteration Method - https://en.wikipedia.org/wiki/Jacobi_method
 """
+
 from __future__ import annotations
 
 import numpy as np

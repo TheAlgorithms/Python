@@ -24,6 +24,7 @@ R = (Σ(mi * ri) / Σ(mi))
 
 Reference: https://en.wikipedia.org/wiki/Center_of_mass
 """
+
 from collections import namedtuple
 
 Particle = namedtuple("Particle", "x y z mass")  # noqa: PYI024

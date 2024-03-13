@@ -7,6 +7,7 @@ python -m unittest binary_search_tree_recursive.py
 To run an example:
 python binary_search_tree_recursive.py
 """
+
 from __future__ import annotations
 
 import unittest
