@@ -1,4 +1,3 @@
-import doctest
 from math import gcd
 
 
@@ -6,7 +5,7 @@ def proper_fractions(denominator: int) -> list[str]:
     """
     this algorithm returns a list of proper fractions, in the
     range between 0 and 1, which can be formed with the given denominator
-    proper fractions: https://en.wikipedia.org/wiki/Fraction#:~:text=Proper%20and%20improper,and%203/3.
+    https://en.wikipedia.org/wiki/Fraction#Proper_and_improper_fractions
 
     >>> proper_fractions(10)
     ['1/10', '3/10', '7/10', '9/10']
@@ -25,7 +24,7 @@ def proper_fractions(denominator: int) -> list[str]:
     if denominator < 0:
         raise ValueError("The Denominator Cannot be less than 0")
     elif isinstance(denominator, float):
-        raise ValueError("The Denominator has to be an integer")
+        raise ValueError("The Denominator must be an integer")
     return [
         f"{numerator}/{denominator}"
         for numerator in range(1, denominator)
