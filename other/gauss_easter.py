@@ -11,16 +11,16 @@ def gauss_easter(year: int) -> datetime:
     Calculation Gregorian easter date for given year
 
     >>> gauss_easter(2007)
-    datetime.datetime(2007, 4, 8, 0, 0)
+    datetime.datetime(2007, 4, 8, 0, 0, tzinfo=UTC)
 
     >>> gauss_easter(2008)
-    datetime.datetime(2008, 3, 23, 0, 0)
+    datetime.datetime(2008, 3, 23, 0, 0, tzinfo=UTC)
 
     >>> gauss_easter(2020)
-    datetime.datetime(2020, 4, 12, 0, 0)
+    datetime.datetime(2020, 4, 12, 0, 0, tzinfo=UTC)
 
     >>> gauss_easter(2021)
-    datetime.datetime(2021, 4, 4, 0, 0)
+    datetime.datetime(2021, 4, 4, 0, 0, tzinfo=UTC)
     """
     metonic_cycle = year % 19
     julian_leap_year = year % 4
