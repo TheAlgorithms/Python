@@ -1,5 +1,5 @@
-from math import gcd
 import doctest
+from math import gcd
 
 
 def proper_fractions(denominator: int) -> list[str]:
