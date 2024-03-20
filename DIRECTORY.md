@@ -419,6 +419,7 @@
   * [Koch Snowflake](fractals/koch_snowflake.py)
   * [Mandelbrot](fractals/mandelbrot.py)
   * [Sierpinski Triangle](fractals/sierpinski_triangle.py)
+  * [Vicsek](fractals/vicsek.py)
 
 ## Fuzzy Logic
   * [Fuzzy Operations](fuzzy_logic/fuzzy_operations.py)
@@ -678,6 +679,7 @@
     * [Newton Forward Interpolation](maths/numerical_analysis/newton_forward_interpolation.py)
     * [Newton Raphson](maths/numerical_analysis/newton_raphson.py)
     * [Numerical Integration](maths/numerical_analysis/numerical_integration.py)
+    * [Proper Fractions](maths/numerical_analysis/proper_fractions.py)
     * [Runge Kutta](maths/numerical_analysis/runge_kutta.py)
     * [Runge Kutta Fehlberg 45](maths/numerical_analysis/runge_kutta_fehlberg_45.py)
     * [Runge Kutta Gills](maths/numerical_analysis/runge_kutta_gills.py)
