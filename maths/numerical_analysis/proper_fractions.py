@@ -13,12 +13,14 @@ def proper_fractions(denominator: int) -> list[str]:
     ['1/5', '2/5', '3/5', '4/5']
     >>> proper_fractions(-15)
     Traceback (most recent call last):
+        ...
     ValueError: The Denominator Cannot be less than 0
     >>> proper_fractions(0)
     []
     >>> proper_fractions(1.2)
     Traceback (most recent call last):
-    ValueError: The Denominator has to be an integer
+        ...
+    ValueError: The Denominator must be an integer
     """
 
     if denominator < 0:
