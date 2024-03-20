@@ -33,4 +33,6 @@ def proper_fractions(denominator: int) -> list[str]:
 
 
 if __name__ == "__main__":
-    doctest.testmod()
+    from doctest import testmod
+
+    testmod()
