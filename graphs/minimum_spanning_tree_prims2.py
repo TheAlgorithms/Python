@@ -6,6 +6,7 @@ edges in the tree is minimized. The algorithm operates by building this tree one
 at a time, from an arbitrary starting vertex, at each step adding the cheapest possible
 connection from the tree to another vertex.
 """
+
 from __future__ import annotations
 
 from sys import maxsize

@@ -17,6 +17,7 @@ with your token::
 #!/usr/bin/env bash
 export USER_TOKEN=""
 """
+
 from __future__ import annotations
 
 import os

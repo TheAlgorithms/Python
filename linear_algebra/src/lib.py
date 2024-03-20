@@ -18,6 +18,7 @@ Overview:
 - function square_zero_matrix(N)
 - function random_matrix(W, H, a, b)
 """
+
 from __future__ import annotations
 
 import math
@@ -96,12 +97,10 @@ class Vector:
             raise Exception("must have the same size")
 
     @overload
-    def __mul__(self, other: float) -> Vector:
-        ...
+    def __mul__(self, other: float) -> Vector: ...
 
     @overload
-    def __mul__(self, other: Vector) -> float:
-        ...
+    def __mul__(self, other: Vector) -> float: ...
 
     def __mul__(self, other: float | Vector) -> float | Vector:
         """
@@ -200,7 +199,8 @@ def unit_basis_vector(dimension: int, pos: int) -> Vector:
     at index 'pos' (indexing at 0)
     """
     # precondition
-    assert isinstance(dimension, int) and (isinstance(pos, int))
+    assert isinstance(dimension, int)
+    assert isinstance(pos, int)
     ans = [0] * dimension
     ans[pos] = 1
     return Vector(ans)
@@ -213,11 +213,9 @@ def axpy(scalar: float, x: Vector, y: Vector) -> Vector:
     computes the axpy operation
     """
     # precondition
-    assert (
-        isinstance(x, Vector)
-        and isinstance(y, Vector)
-        and (isinstance(scalar, (int, float)))
-    )
+    assert isinstance(x, Vector)
+    assert isinstance(y, Vector)
+    assert isinstance(scalar, (int, float))
     return x * scalar + y
 
 
@@ -310,12 +308,10 @@ class Matrix:
             raise Exception("matrices must have the same dimension!")
 
     @overload
-    def __mul__(self, other: float) -> Matrix:
-        ...
+    def __mul__(self, other: float) -> Matrix: ...
 
     @overload
-    def __mul__(self, other: Vector) -> Vector:
-        ...
+    def __mul__(self, other: Vector) -> Vector: ...
 
     def __mul__(self, other: float | Vector) -> Vector | Matrix:
         """

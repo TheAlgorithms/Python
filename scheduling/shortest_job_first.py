@@ -3,6 +3,7 @@ Shortest job remaining first
 Please note arrival time and burst
 Please use spaces to separate times entered.
 """
+
 from __future__ import annotations
 
 import pandas as pd

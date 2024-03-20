@@ -1,6 +1,6 @@
 """
-    One of the several implementations of Lempel–Ziv–Welch decompression algorithm
-    https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch
+One of the several implementations of Lempel–Ziv–Welch decompression algorithm
+https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch
 """
 
 import math

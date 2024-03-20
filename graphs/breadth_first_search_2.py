@@ -12,6 +12,7 @@ while Q is non-empty:
             mark w as explored
             add w to Q (at the end)
 """
+
 from __future__ import annotations
 
 from collections import deque

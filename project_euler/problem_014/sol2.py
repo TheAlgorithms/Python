@@ -25,6 +25,7 @@ that all starting numbers finish at 1.
 
 Which starting number, under one million, produces the longest chain?
 """
+
 from __future__ import annotations
 
 COLLATZ_SEQUENCE_LENGTHS = {1: 1}

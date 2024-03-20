@@ -2,6 +2,7 @@
 Based on "Skip Lists: A Probabilistic Alternative to Balanced Trees" by William Pugh
 https://epaperpress.com/sortsearch/download/skiplist.pdf
 """
+
 from __future__ import annotations
 
 from random import random

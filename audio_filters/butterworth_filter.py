@@ -11,7 +11,9 @@ Alternatively you can use scipy.signal.butter, which should yield the same resul
 
 
 def make_lowpass(
-    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)  # noqa: B008
+    frequency: int,
+    samplerate: int,
+    q_factor: float = 1 / sqrt(2),  # noqa: B008
 ) -> IIRFilter:
     """
     Creates a low-pass filter
@@ -39,7 +41,9 @@ def make_lowpass(
 
 
 def make_highpass(
-    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)  # noqa: B008
+    frequency: int,
+    samplerate: int,
+    q_factor: float = 1 / sqrt(2),  # noqa: B008
 ) -> IIRFilter:
     """
     Creates a high-pass filter
@@ -67,7 +71,9 @@ def make_highpass(
 
 
 def make_bandpass(
-    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)  # noqa: B008
+    frequency: int,
+    samplerate: int,
+    q_factor: float = 1 / sqrt(2),  # noqa: B008
 ) -> IIRFilter:
     """
     Creates a band-pass filter
@@ -96,7 +102,9 @@ def make_bandpass(
 
 
 def make_allpass(
-    frequency: int, samplerate: int, q_factor: float = 1 / sqrt(2)  # noqa: B008
+    frequency: int,
+    samplerate: int,
+    q_factor: float = 1 / sqrt(2),  # noqa: B008
 ) -> IIRFilter:
     """
     Creates an all-pass filter

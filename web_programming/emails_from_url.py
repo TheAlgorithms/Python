@@ -1,4 +1,5 @@
 """Get the site emails from URL."""
+
 from __future__ import annotations
 
 __author__ = "Muhammad Umer Farooq"

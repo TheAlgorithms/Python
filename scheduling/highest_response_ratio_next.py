@@ -4,6 +4,7 @@ It was developed as modification of shortest job next or shortest job first (SJN
 to mitigate the problem of process starvation.
 https://en.wikipedia.org/wiki/Highest_response_ratio_next
 """
+
 from statistics import mean
 
 import numpy as np

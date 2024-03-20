@@ -12,6 +12,7 @@ There are other several other algorithms for the convex hull problem
 which have not been implemented here, yet.
 
 """
+
 from __future__ import annotations
 
 from collections.abc import Iterable

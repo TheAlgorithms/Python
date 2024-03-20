@@ -1,6 +1,7 @@
 """
 PyTest's for Digital Image Processing
 """
+
 import numpy as np
 from cv2 import COLOR_BGR2GRAY, cvtColor, imread
 from numpy import array, uint8
@@ -73,7 +74,8 @@ def test_median_filter():
 
 def test_sobel_filter():
     grad, theta = sob.sobel_filter(gray)
-    assert grad.any() and theta.any()
+    assert grad.any()
+    assert theta.any()
 
 
 def test_sepia():

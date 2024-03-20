@@ -22,14 +22,40 @@ class RandomizedHeapNode(Generic[T]):
 
     @property
     def value(self) -> T:
-        """Return the value of the node."""
+        """
+        Return the value of the node.
+
+        >>> rhn = RandomizedHeapNode(10)
+        >>> rhn.value
+        10
+        >>> rhn = RandomizedHeapNode(-10)
+        >>> rhn.value
+        -10
+        """
         return self._value
 
     @staticmethod
     def merge(
         root1: RandomizedHeapNode[T] | None, root2: RandomizedHeapNode[T] | None
     ) -> RandomizedHeapNode[T] | None:
-        """Merge 2 nodes together."""
+        """
+        Merge 2 nodes together.
+
+        >>> rhn1 = RandomizedHeapNode(10)
+        >>> rhn2 = RandomizedHeapNode(20)
+        >>> RandomizedHeapNode.merge(rhn1, rhn2).value
+        10
+
+        >>> rhn1 = RandomizedHeapNode(20)
+        >>> rhn2 = RandomizedHeapNode(10)
+        >>> RandomizedHeapNode.merge(rhn1, rhn2).value
+        10
+
+        >>> rhn1 = RandomizedHeapNode(5)
+        >>> rhn2 = RandomizedHeapNode(0)
+        >>> RandomizedHeapNode.merge(rhn1, rhn2).value
+        0
+        """
         if not root1:
             return root2
 

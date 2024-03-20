@@ -2,6 +2,7 @@
 psf/black : true
 ruff : passed
 """
+
 from __future__ import annotations
 
 from collections.abc import Iterator
@@ -451,7 +452,7 @@ class RedBlackTree:
         """Returns true iff this node is the left child of its parent."""
         if self.parent is None:
             return False
-        return self.parent.left is self.parent.left is self
+        return self.parent.left is self
 
     def is_right(self) -> bool:
         """Returns true iff this node is the right child of its parent."""

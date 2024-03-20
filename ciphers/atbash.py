@@ -1,4 +1,5 @@
-""" https://en.wikipedia.org/wiki/Atbash """
+"""https://en.wikipedia.org/wiki/Atbash"""
+
 import string
 
 
