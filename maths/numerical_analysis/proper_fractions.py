@@ -31,7 +31,11 @@ def proper_fractions(denominator: int) -> list[str]:
 
     if denominator < 0:
         raise ValueError("The Denominator Cannot be less than 0")
-    return [f"{numerator}/{denominator}" for numerator in range(1, denominator) if gcd(numerator, denominator) == 1]
+    return [
+        f"{numerator}/{denominator}"
+        for numerator in range(1, denominator)
+        if gcd(numerator, denominator) == 1
+    ]
 
 
 if __name__ == "__main__":
