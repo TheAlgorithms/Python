@@ -3,7 +3,7 @@ https://en.wikipedia.org/wiki/Computus#Gauss'_Easter_algorithm
 """
 
 import math
-from datetime import datetime, timedelta, UTC
+from datetime import UTC, datetime, timedelta
 
 
 def gauss_easter(year: int) -> datetime:
