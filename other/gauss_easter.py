@@ -17,7 +17,7 @@ def gauss_easter(year: int) -> datetime:
     datetime.datetime(2008, 3, 23, 0, 0, tzinfo=datetime.timezone.utc)
 
     >>> gauss_easter(2020)
-    datetime.datetime(2020, 4, 12, 0, 0, tzinfo=datetime.imezone.utc)
+    datetime.datetime(2020, 4, 12, 0, 0, tzinfo=datetime.timezone.utc)
 
     >>> gauss_easter(2021)
     datetime.datetime(2021, 4, 4, 0, 0, tzinfo=datetime.timezone.utc)
