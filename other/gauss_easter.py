@@ -3,7 +3,7 @@ https://en.wikipedia.org/wiki/Computus#Gauss'_Easter_algorithm
 """
 
 import math
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, UTC
 
 
 def gauss_easter(year: int) -> datetime:
@@ -45,11 +45,11 @@ def gauss_easter(year: int) -> datetime:
     ) % 7
 
     if days_to_add == 29 and days_from_phm_to_sunday == 6:
-        return datetime(year, 4, 19)
+        return datetime(year, 4, 19, tzinfo=UTC)
     elif days_to_add == 28 and days_from_phm_to_sunday == 6:
-        return datetime(year, 4, 18)
+        return datetime(year, 4, 18, tzinfo=UTC)
     else:
-        return datetime(year, 3, 22) + timedelta(
+        return datetime(year, 3, 22, tzinfo=UTC) + timedelta(
             days=int(days_to_add + days_from_phm_to_sunday)
         )
 
