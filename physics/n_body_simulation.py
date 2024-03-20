@@ -239,7 +239,7 @@ def plot(
         ax.add_patch(patch)
 
     # Function called at each step of the animation
-    def update(frame: int) -> list[plt.Circle]:
+    def update(frame: int) -> list[plt.Circle]:  # noqa: ARG001
         update_step(body_system, DELTA_TIME, patches)
         return patches
 

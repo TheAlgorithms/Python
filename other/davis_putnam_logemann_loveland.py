@@ -227,7 +227,8 @@ def find_pure_symbols(
 
 
 def find_unit_clauses(
-    clauses: list[Clause], model: dict[str, bool | None]
+    clauses: list[Clause],
+    model: dict[str, bool | None],  # noqa: ARG001
 ) -> tuple[list[str], dict[str, bool | None]]:
     """
     Returns the unit symbols and their values to satisfy clause.

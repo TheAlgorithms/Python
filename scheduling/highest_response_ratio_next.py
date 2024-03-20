@@ -75,7 +75,10 @@ def calculate_turn_around_time(
 
 
 def calculate_waiting_time(
-    process_name: list, turn_around_time: list, burst_time: list, no_of_process: int
+    process_name: list,  # noqa: ARG001
+    turn_around_time: list,
+    burst_time: list,
+    no_of_process: int,
 ) -> list:
     """
     Calculate the waiting time of each processes.

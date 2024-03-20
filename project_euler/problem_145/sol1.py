@@ -110,7 +110,7 @@ def reversible_numbers(
     if (length - 1) % 4 == 0:
         return 0
 
-    return slow_reversible_numbers(length, 0, [0] * length, length)
+    return slow_reversible_numbers(remaining_length, remainder, digits, length)
 
 
 def solution(max_power: int = 9) -> int:
