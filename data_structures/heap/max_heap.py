@@ -40,11 +40,10 @@ class BinaryHeap:
         while self.__size >= 2 * i:
             if 2 * i + 1 > self.__size:
                 bigger_child = 2 * i
+            elif self.__heap[2 * i] > self.__heap[2 * i + 1]:
+                bigger_child = 2 * i
             else:
-                if self.__heap[2 * i] > self.__heap[2 * i + 1]:
-                    bigger_child = 2 * i
-                else:
-                    bigger_child = 2 * i + 1
+                bigger_child = 2 * i + 1
             temporary = self.__heap[i]
             if self.__heap[i] < self.__heap[bigger_child]:
                 self.__heap[i] = self.__heap[bigger_child]
