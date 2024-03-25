@@ -2,7 +2,6 @@
 lint.ignore = [    # `ruff rule S101` for a description of that rule
   "B904",     # Within an `except` clause, raise exceptions with `raise ... from err` -- FIX ME
   "B905",     # `zip()` without an explicit `strict=` parameter -- FIX ME
-  "DTZ001",   # The use of `datetime.datetime()` without `tzinfo` argument is not allowed -- FIX ME
   "DTZ005",   # The use of `datetime.datetime.now()` without `tzinfo` argument is not allowed -- FIX ME
   "E741",     # Ambiguous variable name 'l' -- FIX ME
   "EM101",    # Exception must not use a string literal, assign to variable first
