@@ -56,5 +56,5 @@ def gauss_easter(year: int) -> datetime:
 
 if __name__ == "__main__":
     for year in (1994, 2000, 2010, 2021, 2023):
-        tense = "will be" if year > datetime.now().year else "was"
+        tense = "will be" if year > datetime.now(tzinfo=UTC).year else "was"
         print(f"Easter in {year} {tense} {gauss_easter(year)}")
