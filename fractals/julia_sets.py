@@ -50,9 +50,7 @@ def eval_exponential(c_parameter: complex, z_values: np.ndarray) -> np.ndarray:
     return np.exp(z_values) + c_parameter
 
 
-def eval_quadratic_polynomial(
-    c_parameter: complex, z_values: np.ndarray
-) -> np.ndarray:
+def eval_quadratic_polynomial(c_parameter: complex, z_values: np.ndarray) -> np.ndarray:
     """
     >>> eval_quadratic_polynomial(0, 2)
     4

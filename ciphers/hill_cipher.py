@@ -158,9 +158,7 @@ class HillCipher:
                 break
 
         inv_key = (
-            det_inv
-            * np.linalg.det(self.encrypt_key)
-            * np.linalg.inv(self.encrypt_key)
+            det_inv * np.linalg.det(self.encrypt_key) * np.linalg.inv(self.encrypt_key)
         )
 
         return self.to_int(self.modulus(inv_key))

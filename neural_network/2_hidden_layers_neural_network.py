@@ -35,9 +35,7 @@ class TwoHiddenLayerNeuralNetwork:
         # Random initial values for the first hidden layer.
         # First hidden layer has 4 nodes.
         # Second hidden layer has 3 nodes.
-        self.first_hidden_layer_and_second_hidden_layer_weights = np.random.rand(
-            4, 3
-        )
+        self.first_hidden_layer_and_second_hidden_layer_weights = np.random.rand(4, 3)
 
         # Random initial values for the second hidden layer.
         # Second hidden layer has 3 nodes.
