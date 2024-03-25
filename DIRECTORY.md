@@ -351,7 +351,7 @@
   * [Longest Common Subsequence](dynamic_programming/longest_common_subsequence.py)
   * [Longest Common Substring](dynamic_programming/longest_common_substring.py)
   * [Longest Increasing Subsequence](dynamic_programming/longest_increasing_subsequence.py)
-  * [Longest Increasing Subsequence O(Nlogn)](dynamic_programming/longest_increasing_subsequence_o(nlogn).py)
+  * [Longest Increasing Subsequence O Nlogn](dynamic_programming/longest_increasing_subsequence_o_nlogn.py)
   * [Longest Palindromic Subsequence](dynamic_programming/longest_palindromic_subsequence.py)
   * [Matrix Chain Multiplication](dynamic_programming/matrix_chain_multiplication.py)
   * [Matrix Chain Order](dynamic_programming/matrix_chain_order.py)
@@ -465,7 +465,7 @@
   * [Dijkstra Alternate](graphs/dijkstra_alternate.py)
   * [Dijkstra Binary Grid](graphs/dijkstra_binary_grid.py)
   * [Dinic](graphs/dinic.py)
-  * [Directed And Undirected (Weighted) Graph](graphs/directed_and_undirected_(weighted)_graph.py)
+  * [Directed And Undirected Weighted Graph](graphs/directed_and_undirected_weighted_graph.py)
   * [Edmonds Karp Multiple Source And Sink](graphs/edmonds_karp_multiple_source_and_sink.py)
   * [Eulerian Path And Circuit For Undirected Graph](graphs/eulerian_path_and_circuit_for_undirected_graph.py)
   * [Even Tree](graphs/even_tree.py)
@@ -792,7 +792,6 @@
   * [Minimum Cut](networking_flow/minimum_cut.py)
 
 ## Neural Network
-  * [2 Hidden Layers Neural Network](neural_network/2_hidden_layers_neural_network.py)
   * Activation Functions
     * [Binary Step](neural_network/activation_functions/binary_step.py)
     * [Exponential Linear Unit](neural_network/activation_functions/exponential_linear_unit.py)
@@ -809,6 +808,7 @@
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
   * [Input Data](neural_network/input_data.py)
   * [Simple Neural Network](neural_network/simple_neural_network.py)
+  * [Two Hidden Layers Neural Network](neural_network/two_hidden_layers_neural_network.py)
 
 ## Other
   * [Activity Selection](other/activity_selection.py)
