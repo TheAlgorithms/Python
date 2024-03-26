@@ -1,3 +1,20 @@
+"""
+This is a pure Python implementation of the smoothSort algorithm
+Smooth Sort is an algorithm combine the concept of heap sort and the
+concept of merge sort It was designed by Edsger W. Dijkstra
+and later refined by Steven J. Ross.
+
+More info on: https://en.wikipedia.org/wiki/Smoothsort
+
+For doctests run following command:
+python -m doctest -v smooth_sort.py
+or
+python3 -m doctest -v smooth_sort.py
+For manual testing run:
+python bogo_sort.py
+"""
+
+
 def smooth_sort(unsorted):
     """
     Pure implementation of the smooth sort algorithm using Leonardo numbers in Python
@@ -85,11 +102,17 @@ def smooth_sort(unsorted):
 
 
 if __name__ == "__main__":
-    user_input = input(
-        "Enter numbers separated by a comma (or press Enter to exit):\n"
-    ).strip()
-    if not user_input:
-        print(smooth_sort([]))
-    else:
-        unsorted = [int(item) for item in user_input.split(",")]
-        print(smooth_sort(unsorted))
+    import doctest
+
+    doctest.testmod()
+    try:
+        user_input = input(
+            "Enter numbers separated by a comma (or press Enter to exit):\n"
+        ).strip()
+        if not user_input:
+            print(smooth_sort([]))
+        else:
+            unsorted = [int(item) for item in user_input.split(",")]
+            print(smooth_sort(unsorted))
+    except ValueError:
+        print("Invalid input. Please enter valid integers separated by commas.")
