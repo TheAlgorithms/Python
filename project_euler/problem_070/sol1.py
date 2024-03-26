@@ -26,31 +26,32 @@ use cross multiplication.
 
 References:
 Finding totients
-https://en.wikipedia.org/wiki/Euler's_totient_function#Euler's_product_formula
+https://en.wikipedia.org/wiki/Euler%27s_totient_function#Euler%27s_product_formula
 """
 
 from __future__ import annotations
 
 import numpy as np
 
+from maths.prime_sieve_eratosthenes import np_prime_sieve_eratosthenes
 
-def get_totients(max_one: int) -> list[int]:
+
+def np_get_totients(limit) -> list[int]:
     """
     Calculates a list of totients from 0 to max_one exclusive, using the
     definition of Euler's product formula.
 
-    >>> get_totients(5)
+    >>> np_get_totients(5)
     [0, 1, 1, 2, 2]
 
-    >>> get_totients(10)
+    >>> np_get_totients(10)
     [0, 1, 1, 2, 2, 4, 2, 6, 4, 6]
     """
-    totients = np.arange(max_one)
+    totients = np.arange(limit)
+    primes = np_prime_sieve_eratosthenes(limit)
 
-    for i in range(2, max_one):
-        if totients[i] == i:
-            x = np.arange(i, max_one, i)  # array of indexes to select
-            totients[x] -= totients[x] // i
+    for i in primes:
+        totients[i::i] -= totients[i::i] // i
 
     return totients.tolist()
 
@@ -82,10 +83,10 @@ def solution(max_n: int = 10000000) -> int:
     >>> solution(10000)
     4435
     """
+    totients = np_get_totients(max_n + 1)
 
     min_numerator = 1  # i
     min_denominator = 0  # φ(i)
-    totients = get_totients(max_n + 1)
 
     for i in range(2, max_n + 1):
         t = totients[i]
@@ -98,4 +99,4 @@ def solution(max_n: int = 10000000) -> int:
 
 
 if __name__ == "__main__":
-    print(f"{solution() = }")
+    print(f"Solution    : {solution()}")
