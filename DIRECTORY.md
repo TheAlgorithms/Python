@@ -1213,6 +1213,7 @@
   * [Dutch National Flag Sort](sorts/dutch_national_flag_sort.py)
   * [Exchange Sort](sorts/exchange_sort.py)
   * [External Sort](sorts/external_sort.py)
+  * [Flash Sort](sorts/flash_sort.py)
   * [Gnome Sort](sorts/gnome_sort.py)
   * [Heap Sort](sorts/heap_sort.py)
   * [Insertion Sort](sorts/insertion_sort.py)
