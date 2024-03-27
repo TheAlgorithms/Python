@@ -134,6 +134,7 @@
   * [Run Length Encoding](compression/run_length_encoding.py)
 
 ## Computer Vision
+  * [Cnn Classification](computer_vision/cnn_classification.py)
   * [Flip Augmentation](computer_vision/flip_augmentation.py)
   * [Haralick Descriptors](computer_vision/haralick_descriptors.py)
   * [Harris Corner](computer_vision/harris_corner.py)
@@ -344,6 +345,7 @@
   * [Floyd Warshall](dynamic_programming/floyd_warshall.py)
   * [Integer Partition](dynamic_programming/integer_partition.py)
   * [Iterating Through Submasks](dynamic_programming/iterating_through_submasks.py)
+  * [K Means Clustering Tensorflow](dynamic_programming/k_means_clustering_tensorflow.py)
   * [Knapsack](dynamic_programming/knapsack.py)
   * [Largest Divisible Subset](dynamic_programming/largest_divisible_subset.py)
   * [Longest Common Subsequence](dynamic_programming/longest_common_subsequence.py)
@@ -417,6 +419,7 @@
   * [Koch Snowflake](fractals/koch_snowflake.py)
   * [Mandelbrot](fractals/mandelbrot.py)
   * [Sierpinski Triangle](fractals/sierpinski_triangle.py)
+  * [Vicsek](fractals/vicsek.py)
 
 ## Fuzzy Logic
   * [Fuzzy Operations](fuzzy_logic/fuzzy_operations.py)
@@ -571,6 +574,8 @@
     * [Local Weighted Learning](machine_learning/local_weighted_learning/local_weighted_learning.py)
   * [Logistic Regression](machine_learning/logistic_regression.py)
   * [Loss Functions](machine_learning/loss_functions.py)
+  * Lstm
+    * [Lstm Prediction](machine_learning/lstm/lstm_prediction.py)
   * [Mfcc](machine_learning/mfcc.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
   * [Polynomial Regression](machine_learning/polynomial_regression.py)
@@ -674,6 +679,7 @@
     * [Newton Forward Interpolation](maths/numerical_analysis/newton_forward_interpolation.py)
     * [Newton Raphson](maths/numerical_analysis/newton_raphson.py)
     * [Numerical Integration](maths/numerical_analysis/numerical_integration.py)
+    * [Proper Fractions](maths/numerical_analysis/proper_fractions.py)
     * [Runge Kutta](maths/numerical_analysis/runge_kutta.py)
     * [Runge Kutta Fehlberg 45](maths/numerical_analysis/runge_kutta_fehlberg_45.py)
     * [Runge Kutta Gills](maths/numerical_analysis/runge_kutta_gills.py)
@@ -801,6 +807,7 @@
     * [Swish](neural_network/activation_functions/swish.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
+  * [Input Data](neural_network/input_data.py)
   * [Simple Neural Network](neural_network/simple_neural_network.py)
 
 ## Other

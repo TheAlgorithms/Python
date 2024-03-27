@@ -26,6 +26,8 @@ def solution(t_limit: int = 1000000, n_limit: int = 10) -> int:
     Return the sum of N(n) for 1 <= n <= n_limit.
 
     >>> solution(1000,5)
+    222
+    >>> solution(1000,10)
     249
     >>> solution(10000,10)
     2383
@@ -45,7 +47,7 @@ def solution(t_limit: int = 1000000, n_limit: int = 10) -> int:
         for hole_width in range(hole_width_lower_bound, outer_width - 1, 2):
             count[outer_width * outer_width - hole_width * hole_width] += 1
 
-    return sum(1 for n in count.values() if 1 <= n <= 10)
+    return sum(1 for n in count.values() if 1 <= n <= n_limit)
 
 
 if __name__ == "__main__":

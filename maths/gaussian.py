@@ -1,6 +1,7 @@
 """
 Reference: https://en.wikipedia.org/wiki/Gaussian_function
 """
+
 from numpy import exp, pi, sqrt
 
 

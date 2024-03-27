@@ -10,6 +10,7 @@ comparisons.
 They are synchronized with locks and message passing but other forms of
 synchronization could be used.
 """
+
 from multiprocessing import Lock, Pipe, Process
 
 # lock used to ensure that two processes do not access a pipe at the same time

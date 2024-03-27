@@ -27,6 +27,7 @@ Solution:
     We use Prim's algorithm to find a Minimum Spanning Tree.
     Reference: https://en.wikipedia.org/wiki/Prim%27s_algorithm
 """
+
 from __future__ import annotations
 
 import os

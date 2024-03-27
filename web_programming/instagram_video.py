@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import UTC, datetime
 
 import requests
 
@@ -11,7 +11,7 @@ def download_video(url: str) -> bytes:
 
 if __name__ == "__main__":
     url = input("Enter Video/IGTV url: ").strip()
-    file_name = f"{datetime.now():%Y-%m-%d_%H:%M:%S}.mp4"
+    file_name = f"{datetime.now(tz=UTC).astimezone():%Y-%m-%d_%H:%M:%S}.mp4"
     with open(file_name, "wb") as fp:
         fp.write(download_video(url))
     print(f"Done. Video saved to disk as {file_name}.")

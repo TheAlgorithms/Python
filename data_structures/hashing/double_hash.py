@@ -11,6 +11,7 @@ Where hash1() and hash2() are hash functions and TABLE_SIZE is size of hash tabl
 
 Reference: https://en.wikipedia.org/wiki/Double_hashing
 """
+
 from .hash_table import HashTable
 from .number_theory.prime_numbers import is_prime, next_prime
 

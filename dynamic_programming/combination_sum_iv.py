@@ -22,12 +22,12 @@ of chosen elements is “tar”. For every element, we have two choices
 """
 
 
-def combination_sum_iv(n: int, array: list[int], target: int) -> int:
+def combination_sum_iv(array: list[int], target: int) -> int:
     """
     Function checks the all possible combinations, and returns the count
     of possible combination in exponential Time Complexity.
 
-    >>> combination_sum_iv(3, [1,2,5], 5)
+    >>> combination_sum_iv([1,2,5], 5)
     9
     """
 
@@ -41,13 +41,13 @@ def combination_sum_iv(n: int, array: list[int], target: int) -> int:
     return count_of_possible_combinations(target)
 
 
-def combination_sum_iv_dp_array(n: int, array: list[int], target: int) -> int:
+def combination_sum_iv_dp_array(array: list[int], target: int) -> int:
     """
     Function checks the all possible combinations, and returns the count
     of possible combination in O(N^2) Time Complexity as we are using Dynamic
     programming array here.
 
-    >>> combination_sum_iv_dp_array(3, [1,2,5], 5)
+    >>> combination_sum_iv_dp_array([1,2,5], 5)
     9
     """
 
@@ -96,7 +96,6 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    n = 3
     target = 5
     array = [1, 2, 5]
-    print(combination_sum_iv(n, array, target))
+    print(combination_sum_iv(array, target))

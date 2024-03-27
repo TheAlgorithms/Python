@@ -4,44 +4,44 @@
 # Black: True
 
 """
-    * This code implement the Hamming code:
-        https://en.wikipedia.org/wiki/Hamming_code - In telecommunication,
-    Hamming codes are a family of linear error-correcting codes. Hamming
-    codes can detect up to two-bit errors or correct one-bit errors
-    without detection of uncorrected errors. By contrast, the simple
-    parity code cannot correct errors, and can detect only an odd number
-    of bits in error. Hamming codes are perfect codes, that is, they
-    achieve the highest possible rate for codes with their block length
-    and minimum distance of three.
+* This code implement the Hamming code:
+    https://en.wikipedia.org/wiki/Hamming_code - In telecommunication,
+Hamming codes are a family of linear error-correcting codes. Hamming
+codes can detect up to two-bit errors or correct one-bit errors
+without detection of uncorrected errors. By contrast, the simple
+parity code cannot correct errors, and can detect only an odd number
+of bits in error. Hamming codes are perfect codes, that is, they
+achieve the highest possible rate for codes with their block length
+and minimum distance of three.
 
-    * the implemented code consists of:
-        * a function responsible for encoding the message (emitterConverter)
-            * return the encoded message
-        * a function responsible for decoding the message (receptorConverter)
-            * return the decoded message and a ack of data integrity
+* the implemented code consists of:
+    * a function responsible for encoding the message (emitterConverter)
+        * return the encoded message
+    * a function responsible for decoding the message (receptorConverter)
+        * return the decoded message and a ack of data integrity
 
-    * how to use:
-            to be used you must declare how many parity bits (sizePari)
-        you want to include in the message.
-            it is desired (for test purposes) to select a bit to be set
-        as an error. This serves to check whether the code is working correctly.
-            Lastly, the variable of the message/word that must be desired to be
-        encoded (text).
+* how to use:
+        to be used you must declare how many parity bits (sizePari)
+    you want to include in the message.
+        it is desired (for test purposes) to select a bit to be set
+    as an error. This serves to check whether the code is working correctly.
+        Lastly, the variable of the message/word that must be desired to be
+    encoded (text).
 
-    * how this work:
-            declaration of variables (sizePari, be, text)
+* how this work:
+        declaration of variables (sizePari, be, text)
 
-            converts the message/word (text) to binary using the
-        text_to_bits function
-            encodes the message using the rules of hamming encoding
-            decodes the message using the rules of hamming encoding
-            print the original message, the encoded message and the
-        decoded message
+        converts the message/word (text) to binary using the
+    text_to_bits function
+        encodes the message using the rules of hamming encoding
+        decodes the message using the rules of hamming encoding
+        print the original message, the encoded message and the
+    decoded message
 
-            forces an error in the coded text variable
-            decodes the message that was forced the error
-            print the original message, the encoded message, the bit changed
-        message and the decoded message
+        forces an error in the coded text variable
+        decodes the message that was forced the error
+        print the original message, the encoded message, the bit changed
+    message and the decoded message
 """
 
 # Imports

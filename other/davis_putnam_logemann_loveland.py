@@ -8,6 +8,7 @@ conjunctive normal form, i.e, for solving the Conjunctive Normal Form SATisfiabi
 
 For more information about the algorithm: https://en.wikipedia.org/wiki/DPLL_algorithm
 """
+
 from __future__ import annotations
 
 import random
@@ -226,7 +227,8 @@ def find_pure_symbols(
 
 
 def find_unit_clauses(
-    clauses: list[Clause], model: dict[str, bool | None]
+    clauses: list[Clause],
+    model: dict[str, bool | None],  # noqa: ARG001
 ) -> tuple[list[str], dict[str, bool | None]]:
     """
     Returns the unit symbols and their values to satisfy clause.

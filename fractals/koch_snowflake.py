@@ -20,7 +20,6 @@ Requirements (pip):
     - numpy
 """
 
-
 from __future__ import annotations
 
 import matplotlib.pyplot as plt  # type: ignore

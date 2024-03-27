@@ -10,7 +10,6 @@ Reference: shorturl.at/exHM7
 
 # Author: Swayam Singh (https://github.com/practice404)
 
-
 from queue import PriorityQueue
 from typing import Any
 

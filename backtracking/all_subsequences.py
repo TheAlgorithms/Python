@@ -5,6 +5,7 @@ of the given sequence. We use backtracking to solve this problem.
 Time complexity: O(2^n),
 where n denotes the length of the given sequence.
 """
+
 from __future__ import annotations
 
 from typing import Any
