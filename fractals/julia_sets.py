@@ -25,8 +25,8 @@ import warnings
 from collections.abc import Callable
 from typing import Any
 
-import numpy
-from matplotlib import pyplot
+import matplotlib.pyplot as plt
+import numpy as np
 
 c_cauliflower = 0.25 + 0.0j
 c_polynomial_1 = -0.4 + 0.6j
@@ -37,22 +37,20 @@ window_size = 2.0
 nb_pixels = 666
 
 
-def eval_exponential(c_parameter: complex, z_values: numpy.ndarray) -> numpy.ndarray:
+def eval_exponential(c_parameter: complex, z_values: np.ndarray) -> np.ndarray:
     """
     Evaluate $e^z + c$.
     >>> eval_exponential(0, 0)
     1.0
-    >>> abs(eval_exponential(1, numpy.pi*1.j)) < 1e-15
+    >>> abs(eval_exponential(1, np.pi*1.j)) < 1e-15
     True
     >>> abs(eval_exponential(1.j, 0)-1-1.j) < 1e-15
     True
     """
-    return numpy.exp(z_values) + c_parameter
+    return np.exp(z_values) + c_parameter
 
 
-def eval_quadratic_polynomial(
-    c_parameter: complex, z_values: numpy.ndarray
-) -> numpy.ndarray:
+def eval_quadratic_polynomial(c_parameter: complex, z_values: np.ndarray) -> np.ndarray:
     """
     >>> eval_quadratic_polynomial(0, 2)
     4
@@ -66,7 +64,7 @@ def eval_quadratic_polynomial(
     return z_values * z_values + c_parameter
 
 
-def prepare_grid(window_size: float, nb_pixels: int) -> numpy.ndarray:
+def prepare_grid(window_size: float, nb_pixels: int) -> np.ndarray:
     """
     Create a grid of complex values of size nb_pixels*nb_pixels with real and
      imaginary parts ranging from -window_size to window_size (inclusive).
@@ -77,20 +75,20 @@ def prepare_grid(window_size: float, nb_pixels: int) -> numpy.ndarray:
            [ 0.-1.j,  0.+0.j,  0.+1.j],
            [ 1.-1.j,  1.+0.j,  1.+1.j]])
     """
-    x = numpy.linspace(-window_size, window_size, nb_pixels)
+    x = np.linspace(-window_size, window_size, nb_pixels)
     x = x.reshape((nb_pixels, 1))
-    y = numpy.linspace(-window_size, window_size, nb_pixels)
+    y = np.linspace(-window_size, window_size, nb_pixels)
     y = y.reshape((1, nb_pixels))
     return x + 1.0j * y
 
 
 def iterate_function(
-    eval_function: Callable[[Any, numpy.ndarray], numpy.ndarray],
+    eval_function: Callable[[Any, np.ndarray], np.ndarray],
     function_params: Any,
     nb_iterations: int,
-    z_0: numpy.ndarray,
+    z_0: np.ndarray,
     infinity: float | None = None,
-) -> numpy.ndarray:
+) -> np.ndarray:
     """
     Iterate the function "eval_function" exactly nb_iterations times.
     The first argument of the function is a parameter which is contained in
@@ -98,22 +96,22 @@ def iterate_function(
     values to iterate from.
     This function returns the final iterates.
 
-    >>> iterate_function(eval_quadratic_polynomial, 0, 3, numpy.array([0,1,2])).shape
+    >>> iterate_function(eval_quadratic_polynomial, 0, 3, np.array([0,1,2])).shape
     (3,)
-    >>> numpy.round(iterate_function(eval_quadratic_polynomial,
+    >>> np.round(iterate_function(eval_quadratic_polynomial,
     ... 0,
     ... 3,
-    ... numpy.array([0,1,2]))[0])
+    ... np.array([0,1,2]))[0])
     0j
-    >>> numpy.round(iterate_function(eval_quadratic_polynomial,
+    >>> np.round(iterate_function(eval_quadratic_polynomial,
     ... 0,
     ... 3,
-    ... numpy.array([0,1,2]))[1])
+    ... np.array([0,1,2]))[1])
     (1+0j)
-    >>> numpy.round(iterate_function(eval_quadratic_polynomial,
+    >>> np.round(iterate_function(eval_quadratic_polynomial,
     ... 0,
     ... 3,
-    ... numpy.array([0,1,2]))[2])
+    ... np.array([0,1,2]))[2])
     (256+0j)
     """
 
@@ -121,8 +119,8 @@ def iterate_function(
     for _ in range(nb_iterations):
         z_n = eval_function(function_params, z_n)
         if infinity is not None:
-            numpy.nan_to_num(z_n, copy=False, nan=infinity)
-            z_n[abs(z_n) == numpy.inf] = infinity
+            np.nan_to_num(z_n, copy=False, nan=infinity)
+            z_n[abs(z_n) == np.inf] = infinity
     return z_n
 
 
@@ -130,21 +128,21 @@ def show_results(
     function_label: str,
     function_params: Any,
     escape_radius: float,
-    z_final: numpy.ndarray,
+    z_final: np.ndarray,
 ) -> None:
     """
     Plots of whether the absolute value of z_final is greater than
     the value of escape_radius. Adds the function_label and function_params to
     the title.
 
-    >>> show_results('80', 0, 1, numpy.array([[0,1,.5],[.4,2,1.1],[.2,1,1.3]]))
+    >>> show_results('80', 0, 1, np.array([[0,1,.5],[.4,2,1.1],[.2,1,1.3]]))
     """
 
     abs_z_final = (abs(z_final)).transpose()
     abs_z_final[:, :] = abs_z_final[::-1, :]
-    pyplot.matshow(abs_z_final < escape_radius)
-    pyplot.title(f"Julia set of ${function_label}$, $c={function_params}$")
-    pyplot.show()
+    plt.matshow(abs_z_final < escape_radius)
+    plt.title(f"Julia set of ${function_label}$, $c={function_params}$")
+    plt.show()
 
 
 def ignore_overflow_warnings() -> None:

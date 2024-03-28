@@ -22,25 +22,25 @@ Requirements (pip):
 
 from __future__ import annotations
 
-import matplotlib.pyplot as plt  # type: ignore
-import numpy
+import matplotlib.pyplot as plt
+import numpy as np
 
 # initial triangle of Koch snowflake
-VECTOR_1 = numpy.array([0, 0])
-VECTOR_2 = numpy.array([0.5, 0.8660254])
-VECTOR_3 = numpy.array([1, 0])
+VECTOR_1 = np.array([0, 0])
+VECTOR_2 = np.array([0.5, 0.8660254])
+VECTOR_3 = np.array([1, 0])
 INITIAL_VECTORS = [VECTOR_1, VECTOR_2, VECTOR_3, VECTOR_1]
 
 # uncomment for simple Koch curve instead of Koch snowflake
 # INITIAL_VECTORS = [VECTOR_1, VECTOR_3]
 
 
-def iterate(initial_vectors: list[numpy.ndarray], steps: int) -> list[numpy.ndarray]:
+def iterate(initial_vectors: list[np.ndarray], steps: int) -> list[np.ndarray]:
     """
     Go through the number of iterations determined by the argument "steps".
     Be careful with high values (above 5) since the time to calculate increases
     exponentially.
-    >>> iterate([numpy.array([0, 0]), numpy.array([1, 0])], 1)
+    >>> iterate([np.array([0, 0]), np.array([1, 0])], 1)
     [array([0, 0]), array([0.33333333, 0.        ]), array([0.5       , \
 0.28867513]), array([0.66666667, 0.        ]), array([1, 0])]
     """
@@ -50,13 +50,13 @@ def iterate(initial_vectors: list[numpy.ndarray], steps: int) -> list[numpy.ndar
     return vectors
 
 
-def iteration_step(vectors: list[numpy.ndarray]) -> list[numpy.ndarray]:
+def iteration_step(vectors: list[np.ndarray]) -> list[np.ndarray]:
     """
     Loops through each pair of adjacent vectors. Each line between two adjacent
     vectors is divided into 4 segments by adding 3 additional vectors in-between
     the original two vectors. The vector in the middle is constructed through a
     60 degree rotation so it is bent outwards.
-    >>> iteration_step([numpy.array([0, 0]), numpy.array([1, 0])])
+    >>> iteration_step([np.array([0, 0]), np.array([1, 0])])
     [array([0, 0]), array([0.33333333, 0.        ]), array([0.5       , \
 0.28867513]), array([0.66666667, 0.        ]), array([1, 0])]
     """
@@ -74,22 +74,22 @@ def iteration_step(vectors: list[numpy.ndarray]) -> list[numpy.ndarray]:
     return new_vectors
 
 
-def rotate(vector: numpy.ndarray, angle_in_degrees: float) -> numpy.ndarray:
+def rotate(vector: np.ndarray, angle_in_degrees: float) -> np.ndarray:
     """
     Standard rotation of a 2D vector with a rotation matrix
     (see https://en.wikipedia.org/wiki/Rotation_matrix )
-    >>> rotate(numpy.array([1, 0]), 60)
+    >>> rotate(np.array([1, 0]), 60)
     array([0.5      , 0.8660254])
-    >>> rotate(numpy.array([1, 0]), 90)
+    >>> rotate(np.array([1, 0]), 90)
     array([6.123234e-17, 1.000000e+00])
     """
-    theta = numpy.radians(angle_in_degrees)
-    c, s = numpy.cos(theta), numpy.sin(theta)
-    rotation_matrix = numpy.array(((c, -s), (s, c)))
-    return numpy.dot(rotation_matrix, vector)
+    theta = np.radians(angle_in_degrees)
+    c, s = np.cos(theta), np.sin(theta)
+    rotation_matrix = np.array(((c, -s), (s, c)))
+    return np.dot(rotation_matrix, vector)
 
 
-def plot(vectors: list[numpy.ndarray]) -> None:
+def plot(vectors: list[np.ndarray]) -> None:
     """
     Utility function to plot the vectors using matplotlib.pyplot
     No doctest was implemented since this function does not have a return value

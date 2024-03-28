@@ -78,7 +78,7 @@ class BezierCurve:
             step_size: defines the step(s) at which to evaluate the Bezier curve.
             The smaller the step size, the finer the curve produced.
         """
-        from matplotlib import pyplot as plt  # type: ignore
+        from matplotlib import pyplot as plt
 
         to_plot_x: list[float] = []  # x coordinates of points to plot
         to_plot_y: list[float] = []  # y coordinates of points to plot
