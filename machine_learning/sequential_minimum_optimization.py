@@ -289,12 +289,13 @@ class SmoSVM:
             if cmd is None:
                 return
 
-        for i2 in np.roll(self.unbound, np.random.choice(self.length)):
+        rng = np.random.default_rng()
+        for i2 in np.roll(self.unbound, rng.choice(self.length)):
             cmd = yield i1, i2
             if cmd is None:
                 return
 
-        for i2 in np.roll(self._all_samples, np.random.choice(self.length)):
+        for i2 in np.roll(self._all_samples, rng.choice(self.length)):
             cmd = yield i1, i2
             if cmd is None:
                 return

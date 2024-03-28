@@ -187,7 +187,8 @@ def main():
     tree = DecisionTree(depth=10, min_leaf_size=10)
     tree.train(x, y)
 
-    test_cases = (np.random.rand(10) * 2) - 1
+    rng = np.random.default_rng()
+    test_cases = (rng.random(10) * 2) - 1
     predictions = np.array([tree.predict(x) for x in test_cases])
     avg_error = np.mean((predictions - test_cases) ** 2)
 

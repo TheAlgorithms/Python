@@ -28,19 +28,20 @@ class TwoHiddenLayerNeuralNetwork:
         # Random initial weights are assigned.
         # self.input_array.shape[1] is used to represent number of nodes in input layer.
         # First hidden layer consists of 4 nodes.
-        self.input_layer_and_first_hidden_layer_weights = np.random.rand(
-            self.input_array.shape[1], 4
+        rng = np.random.default_rng()
+        self.input_layer_and_first_hidden_layer_weights = rng.random(
+            (self.input_array.shape[1], 4)
         )
 
         # Random initial values for the first hidden layer.
         # First hidden layer has 4 nodes.
         # Second hidden layer has 3 nodes.
-        self.first_hidden_layer_and_second_hidden_layer_weights = np.random.rand(4, 3)
+        self.first_hidden_layer_and_second_hidden_layer_weights = rng.random((4, 3))
 
         # Random initial values for the second hidden layer.
         # Second hidden layer has 3 nodes.
         # Output layer has 1 node.
-        self.second_hidden_layer_and_output_layer_weights = np.random.rand(3, 1)
+        self.second_hidden_layer_and_output_layer_weights = rng.random((3, 1))
 
         # Real output values provided.
         self.output_array = output_array
