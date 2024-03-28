@@ -83,6 +83,29 @@ def fib_iterative(n: int) -> list[int]:
     return fib
 
 
+def fib_recursive_term(i: int) -> int:
+    """
+    Calculates the i-th (0-indexed) Fibonacci number using recursion
+    >>> fib_recursive_term(0)
+    0
+    >>> fib_recursive_term(1)
+    1
+    >>> fib_recursive_term(5)
+    5
+    >>> fib_recursive_term(10)
+    55
+    >>> fib_recursive_term(-1)
+    Traceback (most recent call last):
+        ...
+    Exception: n is negative
+    """
+    if i < 0:
+        raise ValueError("n is negative")
+    if i < 2:
+        return i
+    return fib_recursive_term(i - 1) + fib_recursive_term(i - 2)
+
+
 def fib_recursive(n: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using recursion
@@ -99,28 +122,6 @@ def fib_recursive(n: int) -> list[int]:
         ...
     ValueError: n is negative
     """
-
-    def fib_recursive_term(i: int) -> int:
-        """
-        Calculates the i-th (0-indexed) Fibonacci number using recursion
-        >>> fib_recursive_term(0)
-        0
-        >>> fib_recursive_term(1)
-        1
-        >>> fib_recursive_term(5)
-        5
-        >>> fib_recursive_term(10)
-        55
-        >>> fib_recursive_term(-1)
-        Traceback (most recent call last):
-            ...
-        Exception: n is negative
-        """
-        if i < 0:
-            raise ValueError("n is negative")
-        if i < 2:
-            return i
-        return fib_recursive_term(i - 1) + fib_recursive_term(i - 2)
 
     if n < 0:
         raise ValueError("n is negative")
