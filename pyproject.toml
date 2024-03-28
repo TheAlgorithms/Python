@@ -2,18 +2,14 @@
 lint.ignore = [    # `ruff rule S101` for a description of that rule
   "B904",     # Within an `except` clause, raise exceptions with `raise ... from err` -- FIX ME
   "B905",     # `zip()` without an explicit `strict=` parameter -- FIX ME
-  "DTZ005",   # The use of `datetime.datetime.now()` without `tzinfo` argument is not allowed -- FIX ME
   "E741",     # Ambiguous variable name 'l' -- FIX ME
   "EM101",    # Exception must not use a string literal, assign to variable first
   "EXE001",   # Shebang is present but file is not executable" -- FIX ME
   "G004",     # Logging statement uses f-string
   "INP001",   # File `x/y/z.py` is part of an implicit namespace package. Add an `__init__.py`. -- FIX ME
-  "N999",     # Invalid module name -- FIX ME
   "NPY002",   # Replace legacy `np.random.choice` call with `np.random.Generator` -- FIX ME
   "PGH003",   # Use specific rule codes when ignoring type issues -- FIX ME
   "PLC1901",  # `{}` can be simplified to `{}` as an empty string is falsey
-  "PLR5501",  # Consider using `elif` instead of `else` -- FIX ME
-  "PLW0120",  # `else` clause on loop without a `break` statement -- FIX ME
   "PLW060",   # Using global for `{name}` but no assignment is done -- DO NOT FIX
   "PLW2901",  # PLW2901: Redefined loop variable -- FIX ME
   "PT011",    # `pytest.raises(Exception)` is too broad, set the `match` parameter or use a more specific exception

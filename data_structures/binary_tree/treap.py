@@ -43,22 +43,21 @@ def split(root: Node | None, value: int) -> tuple[Node | None, Node | None]:
         return None, None
     elif root.value is None:
         return None, None
+    elif value < root.value:
+        """
+        Right tree's root will be current node.
+        Now we split(with the same value) current node's left son
+        Left tree: left part of that split
+        Right tree's left son: right part of that split
+        """
+        left, root.left = split(root.left, value)
+        return left, root
     else:
-        if value < root.value:
-            """
-            Right tree's root will be current node.
-            Now we split(with the same value) current node's left son
-            Left tree: left part of that split
-            Right tree's left son: right part of that split
-            """
-            left, root.left = split(root.left, value)
-            return left, root
-        else:
-            """
-            Just symmetric to previous case
-            """
-            root.right, right = split(root.right, value)
-            return root, right
+        """
+        Just symmetric to previous case
+        """
+        root.right, right = split(root.right, value)
+        return root, right
 
 
 def merge(left: Node | None, right: Node | None) -> Node | None:
