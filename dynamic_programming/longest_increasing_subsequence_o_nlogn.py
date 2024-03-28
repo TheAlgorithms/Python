@@ -7,13 +7,13 @@
 from __future__ import annotations
 
 
-def ceil_index(v, l, r, key):  # noqa: E741
+def ceil_index(v, l, r, key):
     while r - l > 1:
         m = (l + r) // 2
         if v[m] >= key:
             r = m
         else:
-            l = m  # noqa: E741
+            l = m
     return r
 
 

@@ -35,7 +35,7 @@ class SegmentTree:
         """
         return idx * 2 + 1
 
-    def build(self, idx, l, r):  # noqa: E741
+    def build(self, idx, l, r):
         if l == r:
             self.st[idx] = self.A[l]
         else:
@@ -56,7 +56,7 @@ class SegmentTree:
         """
         return self.update_recursive(1, 0, self.N - 1, a - 1, b - 1, val)
 
-    def update_recursive(self, idx, l, r, a, b, val):  # noqa: E741
+    def update_recursive(self, idx, l, r, a, b, val):
         """
         update(1, 1, N, a, b, v) for update val v to [a,b]
         """
@@ -83,7 +83,7 @@ class SegmentTree:
         """
         return self.query_recursive(1, 0, self.N - 1, a - 1, b - 1)
 
-    def query_recursive(self, idx, l, r, a, b):  # noqa: E741
+    def query_recursive(self, idx, l, r, a, b):
         """
         query(1, 1, N, a, b) for query max of [a,b]
         """

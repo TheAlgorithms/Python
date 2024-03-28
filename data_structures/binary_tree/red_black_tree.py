@@ -152,7 +152,7 @@ class RedBlackTree:
                     self.grandparent.color = 1
                     self.grandparent._insert_repair()
 
-    def remove(self, label: int) -> RedBlackTree:  # noqa: PLR0912
+    def remove(self, label: int) -> RedBlackTree:
         """Remove label from this tree."""
         if self.label == label:
             if self.left and self.right:
