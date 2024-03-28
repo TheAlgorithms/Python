@@ -113,11 +113,10 @@ def data_safety_checker(list_vote: list, actual_result: float) -> bool:
     for i in list_vote:
         if i > actual_result:
             safe = not_safe + 1
+        elif abs(abs(i) - abs(actual_result)) <= 0.1:
+            safe += 1
         else:
-            if abs(abs(i) - abs(actual_result)) <= 0.1:
-                safe += 1
-            else:
-                not_safe += 1
+            not_safe += 1
     return safe > not_safe
 
 

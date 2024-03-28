@@ -18,11 +18,10 @@ class Heap:
         else:
             if 2 * start + 2 >= size:
                 smallest_child = 2 * start + 1
+            elif heap[2 * start + 1] < heap[2 * start + 2]:
+                smallest_child = 2 * start + 1
             else:
-                if heap[2 * start + 1] < heap[2 * start + 2]:
-                    smallest_child = 2 * start + 1
-                else:
-                    smallest_child = 2 * start + 2
+                smallest_child = 2 * start + 2
             if heap[smallest_child] < heap[start]:
                 temp, temp1 = heap[smallest_child], positions[smallest_child]
                 heap[smallest_child], positions[smallest_child] = (

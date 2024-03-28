@@ -107,12 +107,11 @@ class RedBlackTree:
             else:
                 self.left = RedBlackTree(label, 1, self)
                 self.left._insert_repair()
+        elif self.right:
+            self.right.insert(label)
         else:
-            if self.right:
-                self.right.insert(label)
-            else:
-                self.right = RedBlackTree(label, 1, self)
-                self.right._insert_repair()
+            self.right = RedBlackTree(label, 1, self)
+            self.right._insert_repair()
         return self.parent or self
 
     def _insert_repair(self) -> None:
@@ -178,36 +177,34 @@ class RedBlackTree:
                             self.parent.left = None
                         else:
                             self.parent.right = None
-                else:
-                    # The node is black
-                    if child is None:
-                        # This node and its child are black
-                        if self.parent is None:
-                            # The tree is now empty
-                            return RedBlackTree(None)
-                        else:
-                            self._remove_repair()
-                            if self.is_left():
-                                self.parent.left = None
-                            else:
-                                self.parent.right = None
-                            self.parent = None
+                # The node is black
+                elif child is None:
+                    # This node and its child are black
+                    if self.parent is None:
+                        # The tree is now empty
+                        return RedBlackTree(None)
                     else:
-                        # This node is black and its child is red
-                        # Move the child node here and make it black
-                        self.label = child.label
-                        self.left = child.left
-                        self.right = child.right
-                        if self.left:
-                            self.left.parent = self
-                        if self.right:
-                            self.right.parent = self
+                        self._remove_repair()
+                        if self.is_left():
+                            self.parent.left = None
+                        else:
+                            self.parent.right = None
+                        self.parent = None
+                else:
+                    # This node is black and its child is red
+                    # Move the child node here and make it black
+                    self.label = child.label
+                    self.left = child.left
+                    self.right = child.right
+                    if self.left:
+                        self.left.parent = self
+                    if self.right:
+                        self.right.parent = self
         elif self.label is not None and self.label > label:
             if self.left:
                 self.left.remove(label)
-        else:
-            if self.right:
-                self.right.remove(label)
+        elif self.right:
+            self.right.remove(label)
         return self.parent or self
 
     def _remove_repair(self) -> None:
@@ -369,11 +366,10 @@ class RedBlackTree:
                 return None
             else:
                 return self.right.search(label)
+        elif self.left is None:
+            return None
         else:
-            if self.left is None:
-                return None
-            else:
-                return self.left.search(label)
+            return self.left.search(label)
 
     def floor(self, label: int) -> int | None:
         """Returns the largest element in this tree which is at most label.

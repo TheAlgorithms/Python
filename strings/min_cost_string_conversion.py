@@ -60,19 +60,18 @@ def compute_transform_tables(
 def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
     if i == 0 and j == 0:
         return []
+    elif ops[i][j][0] in {"C", "R"}:
+        seq = assemble_transformation(ops, i - 1, j - 1)
+        seq.append(ops[i][j])
+        return seq
+    elif ops[i][j][0] == "D":
+        seq = assemble_transformation(ops, i - 1, j)
+        seq.append(ops[i][j])
+        return seq
     else:
-        if ops[i][j][0] in {"C", "R"}:
-            seq = assemble_transformation(ops, i - 1, j - 1)
-            seq.append(ops[i][j])
-            return seq
-        elif ops[i][j][0] == "D":
-            seq = assemble_transformation(ops, i - 1, j)
-            seq.append(ops[i][j])
-            return seq
-        else:
-            seq = assemble_transformation(ops, i, j - 1)
-            seq.append(ops[i][j])
-            return seq
+        seq = assemble_transformation(ops, i, j - 1)
+        seq.append(ops[i][j])
+        return seq
 
 
 if __name__ == "__main__":

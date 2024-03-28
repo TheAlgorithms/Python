@@ -20,11 +20,10 @@ def res(x, y):
     if 0 not in (x, y):
         # We use the relation x^y = y*log10(x), where 10 is the base.
         return y * math.log10(x)
-    else:
-        if x == 0:  # 0 raised to any number is 0
-            return 0
-        elif y == 0:
-            return 1  # any number raised to 0 is 1
+    elif x == 0:  # 0 raised to any number is 0
+        return 0
+    elif y == 0:
+        return 1  # any number raised to 0 is 1
     raise AssertionError("This should never happen")
 
 
