@@ -97,6 +97,8 @@ def level_order(root: Node | None) -> Generator[int, None, None]:
     """
     Returns a list of nodes value from a whole binary tree in Level Order Traverse.
     Level Order traverse: Visit nodes of the tree level-by-level.
+    >>> list(level_order(make_tree()))
+    [1, 2, 3, 4, 5]
     """
 
     if root is None:
@@ -120,6 +122,10 @@ def get_nodes_from_left_to_right(
     """
     Returns a list of nodes value from a particular level:
     Left to right direction of the binary tree.
+    >>> list(get_nodes_from_left_to_right(make_tree(), 1))
+    [1]
+    >>> list(get_nodes_from_left_to_right(make_tree(), 2))
+    [2, 3]
     """
 
     def populate_output(root: Node | None, level: int) -> Generator[int, None, None]:
@@ -140,10 +146,14 @@ def get_nodes_from_right_to_left(
     """
     Returns a list of nodes value from a particular level:
     Right to left direction of the binary tree.
+    >>> list(get_nodes_from_right_to_left(make_tree(), 1))
+    [1]
+    >>> list(get_nodes_from_right_to_left(make_tree(), 2))
+    [3, 2]
     """
 
     def populate_output(root: Node | None, level: int) -> Generator[int, None, None]:
-        if root is None:
+        if not root:
             return
         if level == 1:
             yield root.data
@@ -158,6 +168,8 @@ def zigzag(root: Node | None) -> Generator[int, None, None]:
     """
     ZigZag traverse:
     Returns a list of nodes value from left to right and right to left, alternatively.
+    >>> list(zigzag(make_tree()))
+    [1, 3, 2, 4, 5]
     """
     if root is None:
         return
