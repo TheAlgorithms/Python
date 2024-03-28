@@ -8,11 +8,9 @@ lint.ignore = [    # `ruff rule S101` for a description of that rule
   "G004",     # Logging statement uses f-string
   "ICN001",   # `matplotlib.pyplot` should be imported as `plt` -- FIX ME
   "INP001",   # File `x/y/z.py` is part of an implicit namespace package. Add an `__init__.py`. -- FIX ME
-  "N999",     # Invalid module name -- FIX ME
   "NPY002",   # Replace legacy `np.random.choice` call with `np.random.Generator` -- FIX ME
   "PGH003",   # Use specific rule codes when ignoring type issues -- FIX ME
   "PLC1901",  # `{}` can be simplified to `{}` as an empty string is falsey
-  "PLR5501",  # Consider using `elif` instead of `else` -- FIX ME
   "PLW060",   # Using global for `{name}` but no assignment is done -- DO NOT FIX
   "PLW2901",  # PLW2901: Redefined loop variable -- FIX ME
   "PT011",    # `pytest.raises(Exception)` is too broad, set the `match` parameter or use a more specific exception

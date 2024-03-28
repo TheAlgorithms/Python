@@ -185,12 +185,11 @@ class BinarySearchTree:
                         break
                     else:
                         parent_node = parent_node.left
+                elif parent_node.right is None:
+                    parent_node.right = new_node
+                    break
                 else:
-                    if parent_node.right is None:
-                        parent_node.right = new_node
-                        break
-                    else:
-                        parent_node = parent_node.right
+                    parent_node = parent_node.right
             new_node.parent = parent_node
 
     def insert(self, *values) -> Self:

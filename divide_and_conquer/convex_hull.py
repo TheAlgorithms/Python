@@ -274,14 +274,13 @@ def convex_hull_bf(points: list[Point]) -> list[Point]:
                         points_left_of_ij = True
                     elif det_k < 0:
                         points_right_of_ij = True
-                    else:
-                        # point[i], point[j], point[k] all lie on a straight line
-                        # if point[k] is to the left of point[i] or it's to the
-                        # right of point[j], then point[i], point[j] cannot be
-                        # part of the convex hull of A
-                        if points[k] < points[i] or points[k] > points[j]:
-                            ij_part_of_convex_hull = False
-                            break
+                    # point[i], point[j], point[k] all lie on a straight line
+                    # if point[k] is to the left of point[i] or it's to the
+                    # right of point[j], then point[i], point[j] cannot be
+                    # part of the convex hull of A
+                    elif points[k] < points[i] or points[k] > points[j]:
+                        ij_part_of_convex_hull = False
+                        break
 
                 if points_left_of_ij and points_right_of_ij:
                     ij_part_of_convex_hull = False
