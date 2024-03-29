@@ -1,4 +1,5 @@
 beautifulsoup4
+DrissionPage ; python_version > '4.0.4.12'
 fake_useragent
 imageio
 keras ; python_version < '3.12'
@@ -22,4 +23,3 @@ tweepy
 # yulewalker  # uncomment once audio_filters/equal_loudness_filter.py is fixed
 typing_extensions
 xgboost
-DrissionPage ; python_version > '4.0.4.12'

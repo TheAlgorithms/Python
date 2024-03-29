@@ -82,9 +82,10 @@ def get_app_info(
                     }
 
     else:
-        return {'error': 'Login failed'}
+        return {"error": "Login failed"}
 
     return dic
+
 
 if __name__ == "__main__":
     page = ChromiumPage()
