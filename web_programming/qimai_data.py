@@ -28,8 +28,9 @@ def login(page: ChromiumPage, username: str, password: str) -> bool:
         return True
 
 
-def get_app_info(page: ChromiumPage,
-                 username: str, password: str, typename: str) -> dict:
+def get_app_info(
+    page: ChromiumPage, username: str, password: str, typename: str
+) -> dict:
     # Clear the cache to avoid the login failure
     page.clear_cache(cookies=True)
     if login(page, username, password):
