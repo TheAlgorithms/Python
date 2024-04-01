@@ -85,8 +85,7 @@ def validate(n: int) -> bool:
     >>> validate(3797)
     True
     """
-    if len(str(n)) > 3:
-        if not is_prime(int(str(n)[-3:])) or not is_prime(int(str(n)[:3])):
+    if len(str(n)) > 3 and (not is_prime(int(str(n)[-3:])) or not is_prime(int(str(n)[:3]))):
             return False
     return True
 
