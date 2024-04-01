@@ -81,7 +81,9 @@ class Graph:
         while len(subgraph.vertices) < len(self.vertices):
             min_weight = max(self.edges.values()) + 1
             for edge, weight in self.edges.items():
-                if (edge[0] in subgraph.vertices) ^ (edge[1] in subgraph.vertices) and weight < min_weight:
+                if (edge[0] in subgraph.vertices) ^ (
+                    edge[1] in subgraph.vertices
+                ) and weight < min_weight:
                     min_edge = edge
                     min_weight = weight
 

@@ -37,7 +37,11 @@ def calculate_waitingtime(
     # Process until all processes are completed
     while complete != no_of_processes:
         for j in range(no_of_processes):
-            if arrival_time[j] <= increment_time and remaining_time[j] > 0 and remaining_time[j] < minm:
+            if (
+                arrival_time[j] <= increment_time
+                and remaining_time[j] > 0
+                and remaining_time[j] < minm
+            ):
                 minm = remaining_time[j]
                 short = j
                 check = True

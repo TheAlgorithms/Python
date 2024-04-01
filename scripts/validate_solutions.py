@@ -72,7 +72,11 @@ def added_solution_file_path() -> list[pathlib.Path]:
 
 def collect_solution_file_paths() -> list[pathlib.Path]:
     # Return only if there are any, otherwise default to all solutions
-    if os.environ.get("CI") and os.environ.get("GITHUB_EVENT_NAME") == "pull_request" and (filepaths := added_solution_file_path()):
+    if (
+        os.environ.get("CI")
+        and os.environ.get("GITHUB_EVENT_NAME") == "pull_request"
+        and (filepaths := added_solution_file_path())
+    ):
         return filepaths
     return all_solution_file_paths()
 

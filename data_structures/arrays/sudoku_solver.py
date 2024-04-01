@@ -94,7 +94,7 @@ def eliminate(values, s, d):
             return False  ## Contradiction: no place for this value
         # d can only be in one place in unit; assign it there
         elif len(dplaces) == 1 and not assign(values, dplaces[0], d):
-                return False
+            return False
     return values
 
 
