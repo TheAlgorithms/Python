@@ -15,7 +15,6 @@ lint.ignore = [    # `ruff rule S101` for a description of that rule
   "PT011",    # `pytest.raises(Exception)` is too broad, set the `match` parameter or use a more specific exception
   "PT018",    # Assertion should be broken down into multiple parts
   "RUF00",    # Ambiguous unicode character and other rules
-  "RUF100",   # Unused `noqa` directive -- FIX ME
   "S101",     # Use of `assert` detected -- DO NOT FIX
   "S105",     # Possible hardcoded password: 'password'
   "S113",     # Probable use of requests call without timeout -- FIX ME
