@@ -61,7 +61,8 @@ def _create_spd_matrix(dimension: int) -> Any:
     >>> _is_matrix_spd(spd_matrix)
     True
     """
-    random_matrix = np.random.randn(dimension, dimension)
+    rng = np.random.default_rng()
+    random_matrix = rng.normal(size=(dimension, dimension))
     spd_matrix = np.dot(random_matrix, random_matrix.T)
     assert _is_matrix_spd(spd_matrix)
     return spd_matrix
@@ -157,7 +158,8 @@ def test_conjugate_gradient() -> None:
     # Create linear system with SPD matrix and known solution x_true.
     dimension = 3
     spd_matrix = _create_spd_matrix(dimension)
-    x_true = np.random.randn(dimension, 1)
+    rng = np.random.default_rng()
+    x_true = rng.normal(size=(dimension, 1))
     b = np.dot(spd_matrix, x_true)
 
     # Numpy solution.
