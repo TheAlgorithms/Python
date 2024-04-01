@@ -15,7 +15,7 @@ requests
 rich
 # scikit-fuzzy  # uncomment once fuzzy_logic/fuzzy_operations.py is fixed
 scikit-learn
-statsmodels==0.15.0
+# statsmodels  # uncomment once machine_learning/forecasting/run.py is fixed
 sympy
 tensorflow
 tweepy
