@@ -1,4 +1,3 @@
-#!/bin/python3
 # Doomsday algorithm info: https://en.wikipedia.org/wiki/Doomsday_rule
 
 DOOMSDAY_LEAP = [4, 1, 7, 4, 2, 6, 4, 1, 5, 3, 7, 5]

@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """Provide the functionality to manipulate a single bit."""
 
 

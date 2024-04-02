@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 Pure Python implementations of binary search algorithms
 

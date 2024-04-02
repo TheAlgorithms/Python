@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Double hashing is a collision resolving technique in Open Addressed Hash tables.
 Double hashing uses the idea of applying a second hash function to key when a collision

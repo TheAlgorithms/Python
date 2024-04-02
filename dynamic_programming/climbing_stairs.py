@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-
-
 def climb_stairs(number_of_steps: int) -> int:
     """
     LeetCdoe No.70: Climbing Stairs

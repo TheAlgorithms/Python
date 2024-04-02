@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 """Author: OMKAR PATHAK"""
 
 

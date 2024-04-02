@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 # Logistic Regression from scratch
 
 # In[62]:

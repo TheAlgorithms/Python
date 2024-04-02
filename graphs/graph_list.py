@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 # Author: OMKAR PATHAK, Nwachukwu Chidiebere
 
 # Use a Python dictionary to construct the graph.

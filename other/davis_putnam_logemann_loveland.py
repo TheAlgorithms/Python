@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 Davis–Putnam–Logemann–Loveland (DPLL) algorithm is a complete, backtracking-based
 search algorithm for deciding the satisfiability of propositional logic formulae in

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import requests
 
 giphy_api_key = "YOUR API KEY"

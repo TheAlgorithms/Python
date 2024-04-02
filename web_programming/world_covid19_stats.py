@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 Provide the current worldwide COVID-19 statistics.
 This data is being scrapped from 'https://www.worldometers.info/coronavirus/'.

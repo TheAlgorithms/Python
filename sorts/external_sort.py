@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 #
 # Sort large text files in a minimum amount of memory
 #

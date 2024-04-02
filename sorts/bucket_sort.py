@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Illustrate how to implement bucket sort algorithm.
 

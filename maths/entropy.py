@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 Implementation of entropy of information
 https://en.wikipedia.org/wiki/Entropy_(information_theory)

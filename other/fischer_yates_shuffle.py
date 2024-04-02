@@ -1,4 +1,3 @@
-#!/usr/bin/python
 """
 The Fisher–Yates shuffle is an algorithm for generating a random permutation of a
 finite sequence.

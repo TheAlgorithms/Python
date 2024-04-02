@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 # This Python program implements an optimal binary search tree (abbreviated BST)
 # building dynamic programming algorithm that delivers O(n^2) performance.
 #

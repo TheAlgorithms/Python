@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 A Polybius Square is a table that allows someone to translate letters into numbers.
 

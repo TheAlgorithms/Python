@@ -1,4 +1,3 @@
-#!/usr/local/bin/python3
 """
 Problem Description: Given two binary tree, return the merged tree.
 The rule for merging is that if two nodes overlap, then put the value sum of

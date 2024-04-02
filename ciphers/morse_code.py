@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 Python program to translate to and from Morse code.
 

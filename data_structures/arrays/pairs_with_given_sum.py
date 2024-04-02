@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 Given an array of integers and an integer req_sum, find the number of pairs of array
 elements whose sum is equal to req_sum.

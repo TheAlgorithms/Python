@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 """
 
 A Framework of Back Propagation Neural Network（BP） model

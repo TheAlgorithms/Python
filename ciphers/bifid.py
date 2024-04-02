@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 The Bifid Cipher uses a Polybius Square to encipher a message in a way that
 makes it fairly difficult to decipher without knowing the secret.
