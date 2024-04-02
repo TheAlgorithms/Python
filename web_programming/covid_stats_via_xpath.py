@@ -7,7 +7,7 @@ more convenient to use in Python web projects (e.g. Django or Flask-based)
 from typing import NamedTuple
 
 import requests
-from lxml import html  # type: ignore
+from lxml import html
 
 
 class CovidData(NamedTuple):

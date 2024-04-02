@@ -96,8 +96,8 @@ def analyze_text(text: str) -> tuple[dict, dict]:
     The first dictionary stores the frequency of single character strings.
     The second dictionary stores the frequency of two character strings.
     """
-    single_char_strings = Counter()  # type: ignore
-    two_char_strings = Counter()  # type: ignore
+    single_char_strings = Counter()
+    two_char_strings = Counter()
     single_char_strings[text[-1]] += 1
 
     # first case when we have space at start.
