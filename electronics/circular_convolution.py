@@ -37,8 +37,7 @@ class CircularConvolution:
         using matrix method
 
         Usage:
-        >>> import circular_convolution as cc
-        >>> convolution = cc.CircularConvolution()
+        >>> convolution = CircularConvolution()
         >>> convolution.circular_convolution()
         [10, 10, 6, 14]
 
