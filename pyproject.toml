@@ -6,7 +6,6 @@ lint.ignore = [    # `ruff rule S101` for a description of that rule
   "EM101",    # Exception must not use a string literal, assign to variable first
   "EXE001",   # Shebang is present but file is not executable" -- FIX ME
   "G004",     # Logging statement uses f-string
-  "INP001",   # File `x/y/z.py` is part of an implicit namespace package. Add an `__init__.py`. -- FIX ME
   "PGH003",   # Use specific rule codes when ignoring type issues -- FIX ME
   "PLC1901",  # `{}` can be simplified to `{}` as an empty string is falsey
   "PLW060",   # Using global for `{name}` but no assignment is done -- DO NOT FIX
