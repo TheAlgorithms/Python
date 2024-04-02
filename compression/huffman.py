@@ -40,7 +40,7 @@ def build_tree(letters: list[Letter]) -> Letter | TreeNode:
     Run through the list of Letters and build the min heap
     for the Huffman Tree.
     """
-    response: list[Letter | TreeNode] = letters.copy()
+    response: list[Letter | TreeNode] = list(letters)
     while len(response) > 1:
         left = response.pop(0)
         right = response.pop(0)
