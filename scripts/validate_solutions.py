@@ -21,8 +21,8 @@ with open(PROJECT_EULER_ANSWERS_PATH) as file_handle:
 def convert_path_to_module(file_path: pathlib.Path) -> ModuleType:
     """Converts a file path to a Python module"""
     spec = importlib.util.spec_from_file_location(file_path.name, str(file_path))
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
+    module = importlib.util.module_from_spec(spec)  # type: ignore[arg-type]
+    spec.loader.exec_module(module)  # type: ignore[union-attr]
     return module
 
 
