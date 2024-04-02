@@ -15,7 +15,6 @@ lint.ignore = [    # `ruff rule S101` for a description of that rule
   "PT018",    # Assertion should be broken down into multiple parts
   "RUF00",    # Ambiguous unicode character and other rules
   "S101",     # Use of `assert` detected -- DO NOT FIX
-  "S105",     # Possible hardcoded password: 'password'
   "S113",     # Probable use of requests call without timeout -- FIX ME
   "S311",     # Standard pseudo-random generators are not suitable for cryptographic purposes -- FIX ME
   "SLF001",   # Private member accessed: `_Iterator` -- FIX ME

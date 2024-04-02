@@ -42,8 +42,8 @@ except ImportError:
 
 
 def login_using_recaptcha(request):
-    # Enter your recaptcha secret key here
-    secret_key = "secretKey"
+    # Enter your recaptcha secret key here, e.g. "secretKey"
+    secret_key = ""
     url = "https://www.google.com/recaptcha/api/siteverify"
 
     # when method is not POST, direct user to login page
