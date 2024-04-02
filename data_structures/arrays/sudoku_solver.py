@@ -92,10 +92,9 @@ def eliminate(values, s, d):
         dplaces = [s for s in u if d in values[s]]
         if len(dplaces) == 0:
             return False  ## Contradiction: no place for this value
-        elif len(dplaces) == 1:
-            # d can only be in one place in unit; assign it there
-            if not assign(values, dplaces[0], d):
-                return False
+        # d can only be in one place in unit; assign it there
+        elif len(dplaces) == 1 and not assign(values, dplaces[0], d):
+            return False
     return values
 
 

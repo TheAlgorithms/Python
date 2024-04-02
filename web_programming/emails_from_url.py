@@ -30,12 +30,15 @@ class Parser(HTMLParser):
         if tag == "a":
             # Check the list of defined attributes.
             for name, value in attrs:
-                # If href is defined, and not empty nor # print it.
-                if name == "href" and value != "#" and value != "":
-                    # If not already in urls.
-                    if value not in self.urls:
-                        url = parse.urljoin(self.domain, value)
-                        self.urls.append(url)
+                # If href is defined, not empty nor # print it and not already in urls.
+                if (
+                    name == "href"
+                    and value != "#"
+                    and value != ""
+                    and value not in self.urls
+                ):
+                    url = parse.urljoin(self.domain, value)
+                    self.urls.append(url)
 
 
 # Get main domain name (example.com)

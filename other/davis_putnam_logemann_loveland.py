@@ -64,10 +64,9 @@ class Clause:
                 value = model[symbol]
             else:
                 continue
-            if value is not None:
-                # Complement assignment if literal is in complemented form
-                if literal.endswith("'"):
-                    value = not value
+            # Complement assignment if literal is in complemented form
+            if value is not None and literal.endswith("'"):
+                value = not value
             self.literals[literal] = value
 
     def evaluate(self, model: dict[str, bool | None]) -> bool | None:
