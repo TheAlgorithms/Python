@@ -6,7 +6,6 @@ lint.ignore = [    # `ruff rule S101` for a description of that rule
   "EM101",    # Exception must not use a string literal, assign to variable first
   "EXE001",   # Shebang is present but file is not executable" -- FIX ME
   "G004",     # Logging statement uses f-string
-  "PGH003",   # Use specific rule codes when ignoring type issues -- FIX ME
   "PLC1901",  # `{}` can be simplified to `{}` as an empty string is falsey
   "PLW060",   # Using global for `{name}` but no assignment is done -- DO NOT FIX
   "PLW2901",  # PLW2901: Redefined loop variable -- FIX ME

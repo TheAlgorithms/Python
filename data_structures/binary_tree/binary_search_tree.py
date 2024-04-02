@@ -294,9 +294,9 @@ class BinarySearchTree:
             predecessor = self.get_max(
                 node.left
             )  # Gets the max value of the left branch
-            self.remove(predecessor.value)  # type: ignore
+            self.remove(predecessor.value)  # type: ignore[union-attr]
             node.value = (
-                predecessor.value  # type: ignore
+                predecessor.value  # type: ignore[union-attr]
             )  # Assigns the value to the node to delete and keep tree structure
 
     def preorder_traverse(self, node: Node | None) -> Iterable:

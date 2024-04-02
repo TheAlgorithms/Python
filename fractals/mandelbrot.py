@@ -17,7 +17,7 @@ the boundary of the Mandelbrot set a fractal curve.
 
 import colorsys
 
-from PIL import Image  # type: ignore
+from PIL import Image
 
 
 def get_distance(x: float, y: float, max_step: int) -> float:
