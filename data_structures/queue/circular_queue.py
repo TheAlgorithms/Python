@@ -47,7 +47,8 @@ class CircularQueue:
 
     def enqueue(self, data):
         """
-        This function insert an element at the end of the queue using self.rear value as an index
+        This function inserts an element at the end of the queue using self.rear value
+        as an index.
         >>> cq = CircularQueue(5)
         >>> cq.enqueue("A")  # doctest: +ELLIPSIS
         <data_structures.queue.circular_queue.CircularQueue object at ...
