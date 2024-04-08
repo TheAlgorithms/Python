@@ -4,7 +4,7 @@ lint.ignore = [    # `ruff rule S101` for a description of that rule
   "B905",     # `zip()` without an explicit `strict=` parameter -- FIX ME
   "E741",     # Ambiguous variable name 'l' -- FIX ME
   "EM101",    # Exception must not use a string literal, assign to variable first
-  "EXE001",   # Shebang is present but file is not executable" -- FIX ME
+  "EXE001",   # Shebang is present but file is not executable -- DO NOT FIX
   "G004",     # Logging statement uses f-string
   "PLC1901",  # `{}` can be simplified to `{}` as an empty string is falsey
   "PLW060",   # Using global for `{name}` but no assignment is done -- DO NOT FIX
