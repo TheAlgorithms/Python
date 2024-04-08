@@ -5,7 +5,7 @@ https://en.wikipedia.org/wiki/Bead_sort
 
 
 def bead_sort(sequence: list) -> list:
-    """
+    """test
     >>> bead_sort([6, 11, 12, 4, 1, 5])
     [1, 4, 5, 6, 11, 12]
 
