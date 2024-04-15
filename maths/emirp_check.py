@@ -57,11 +57,8 @@ def is_prime(number: int) -> bool:
     elif number < 2 or (number % 2 == 0):
         return False
 
-    # Check divisibility from 3 to sqrt(number)
-    for i in range(3, int(number**0.5) + 1, 2):
-        if number % i == 0:
-            return False
-    return True
+    # Return True if number is not divisible by any odd number up to its square root
+    return all(number % i != 0 for i in range(3, int(number**0.5) + 1, 2))
 
 
 def emirp_check(number: int) -> bool:
