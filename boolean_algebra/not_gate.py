@@ -21,7 +21,7 @@ def not_gate(input_1: int) -> int:
     0
     """
 
-    return 1 if input_1 == 0 else 0
+    return int(input_1 == 0)
 
 
 if __name__ == "__main__":
