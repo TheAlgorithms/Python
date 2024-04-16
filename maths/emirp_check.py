@@ -99,6 +99,14 @@ def emirp_check(number: int) -> bool:
         Traceback (most recent call last):
             ...
         ValueError: Input must be a positive integer.
+        >>> emirp_check(17)
+        True
+        >>> emirp_check(31)
+        True
+        >>> emirp_check(79)
+        True
+        >>> emirp_check(101)
+        False
     """
     if not isinstance(number, int) or number <= 0:
         raise ValueError("Input must be a positive integer.")
