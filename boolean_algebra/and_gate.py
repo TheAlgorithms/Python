@@ -29,7 +29,7 @@ def and_gate(input_1: int, input_2: int) -> int:
     >>> and_gate(1, 1)
     1
     """
-    return int(input_1 and input_2)
+    return int((input_1, input_2).count(1) == 2)
 
 
 if __name__ == "__main__":
