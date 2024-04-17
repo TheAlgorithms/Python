@@ -1,22 +1,10 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
-import json
-
 import requests
-from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
-headers = {"UserAgent": UserAgent().random}
-
-
-def extract_user_profile(script) -> dict:
-    """
-    May raise json.decoder.JSONDecodeError
-    """
-    data = script.contents[0]
-    info = json.loads(data[data.find('{"config"') : -1])
-    return info["entry_data"]["ProfilePage"][0]["graphql"]["user"]
+headers = {"UserAgent": UserAgent().random, "X-Ig-App-Id": "936619743392459"}
 
 
 class InstagramUser:
@@ -32,19 +20,15 @@ class InstagramUser:
     """
 
     def __init__(self, username):
-        self.url = f"https://www.instagram.com/{username}/"
+        self.url = f"https://www.instagram.com/api/v1/users/web_profile_info/?username={username}"
         self.user_data = self.get_json()
 
     def get_json(self) -> dict:
         """
         Return a dict of user information
         """
-        html = requests.get(self.url, headers=headers).text
-        scripts = BeautifulSoup(html, "html.parser").find_all("script")
-        try:
-            return extract_user_profile(scripts[4])
-        except (json.decoder.JSONDecodeError, KeyError):
-            return extract_user_profile(scripts[3])
+        data = requests.get(self.url, headers=headers).json()
+        return data["data"]["user"]
 
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}('{self.username}')"
@@ -113,12 +97,12 @@ def test_instagram_user(username: str = "github") -> None:
     if username != "github":
         return
     assert instagram_user.fullname == "GitHub"
-    assert instagram_user.biography == "Built for developers."
+    assert "The AI-powered developer platform to build" in instagram_user.biography
     assert instagram_user.number_of_posts > 150
     assert instagram_user.number_of_followers > 120000
     assert instagram_user.number_of_followings > 15
-    assert instagram_user.email == "support@github.com"
-    assert instagram_user.website == "https://github.com/readme"
+    assert instagram_user.email is None
+    assert instagram_user.website == "http://sprout.link/github/"
     assert instagram_user.profile_picture_url.startswith("https://instagram.")
     assert instagram_user.is_verified is True
     assert instagram_user.is_private is False
