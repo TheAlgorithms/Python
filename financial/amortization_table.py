@@ -9,6 +9,7 @@ Wikipedia Reference: https://www.investopedia.com/terms/a/amortization.asp
 
 import pandas as pd
 
+
 def payment(principal: float, interest_rate: float, payments: int) -> float:
     """
     Calculate the monthly payment for a loan.
@@ -75,18 +76,18 @@ def amortization_table(principal: float, interest_rate: float, years: int) -> pd
     payments = years * 12
     interest_rate /= 12
     payment_amount = payment(principal, interest_rate, payments)
-    df = pd.DataFrame(index=range(0, payments + 1), columns=["Payment", "Principal", "Interest", "Remaining"], dtype="float", data=0)
+    amor_table = pd.DataFrame(index=range(0, payments + 1), columns=["Payment", "Principal", "Interest", "Remaining"], dtype="float", data=0)
 
-    df["Payment"][1:] = payment_amount
-    df["Remaining"][0] = principal
+    amor_table["Payment"][1:] = payment_amount
+    amor_table["Remaining"][0] = principal
     for i in range(1, payments + 1):
-        df["Interest"][i] = df["Remaining"][i - 1] * interest_rate
-        df["Principal"][i] = df["Payment"][i] - df["Interest"][i]
-        df["Remaining"][i] = df["Remaining"][i - 1] - df["Principal"][i]
-    df = df.round(2)
-    df = df.abs()
+        amor_table["Interest"][i] = amor_table["Remaining"][i - 1] * interest_rate
+        amor_table["Principal"][i] = amor_table["Payment"][i] - amor_table["Interest"][i]
+        amor_table["Remaining"][i] = amor_table["Remaining"][i - 1] - amor_table["Principal"][i]
+    amor_table = amor_table.round(2)
+    amor_table = amor_table.abs()
 
-    return df
+    return amor_table
 
 
 
