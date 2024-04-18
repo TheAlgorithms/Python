@@ -9,6 +9,7 @@ Wikipedia Reference: https://www.investopedia.com/terms/a/amortization.asp
 
 import pandas as pd
 
+
 def payment(principal: float, interest_rate: float, payments: int) -> float:
     """
     Calculate the monthly payment for a loan.
@@ -36,7 +37,10 @@ def payment(principal: float, interest_rate: float, payments: int) -> float:
 
     return payment
 
-def amortization_table(principal: float, interest_rate: float, years: int) -> pd.DataFrame:
+
+def amortization_table(
+    principal: float, interest_rate: float, years: int
+) -> pd.DataFrame:
     """
     Create an amortization table for a loan.
 
@@ -75,7 +79,12 @@ def amortization_table(principal: float, interest_rate: float, years: int) -> pd
     payments = years * 12
     interest_rate /= 12
     payment_amount = payment(principal, interest_rate, payments)
-    df = pd.DataFrame(index=range(0, payments + 1), columns=["Payment", "Principal", "Interest", "Remaining"], dtype="float", data=0)
+    df = pd.DataFrame(
+        index=range(0, payments + 1),
+        columns=["Payment", "Principal", "Interest", "Remaining"],
+        dtype="float",
+        data=0,
+    )
 
     df["Payment"][1:] = payment_amount
     df["Remaining"][0] = principal
@@ -87,7 +96,6 @@ def amortization_table(principal: float, interest_rate: float, years: int) -> pd
     df = df.abs()
 
     return df
-
 
 
 if __name__ == "__main__":
