@@ -28,12 +28,12 @@ def jaro_winkler(str1: str, str2: str) -> float:
     def get_matched_characters(_str1: str, _str2: str) -> str:
         matched = []
         limit = min(len(_str1), len(_str2)) // 2
-        for i, l in enumerate(_str1):
+        for i, char in enumerate(_str1):
             left = int(max(0, i - limit))
             right = int(min(i + limit + 1, len(_str2)))
-            if l in _str2[left:right]:
-                matched.append(l)
-                _str2 = f"{_str2[0:_str2.index(l)]} {_str2[_str2.index(l) + 1:]}"
+            if char in _str2[left:right]:
+                matched.append(char)
+                _str2 = f"{_str2[0:_str2.index(char)]} {_str2[_str2.index(char) + 1:]}"
 
         return "".join(matched)
 

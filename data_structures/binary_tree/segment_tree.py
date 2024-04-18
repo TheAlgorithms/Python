@@ -35,13 +35,13 @@ class SegmentTree:
         """
         return idx * 2 + 1
 
-    def build(self, idx, l, r):
-        if l == r:
-            self.st[idx] = self.A[l]
+    def build(self, idx, left, right):
+        if left == right:
+            self.st[idx] = self.A[left]
         else:
-            mid = (l + r) // 2
-            self.build(self.left(idx), l, mid)
-            self.build(self.right(idx), mid + 1, r)
+            mid = (left + right) // 2
+            self.build(self.left(idx), left, mid)
+            self.build(self.right(idx), mid + 1, right)
             self.st[idx] = max(self.st[self.left(idx)], self.st[self.right(idx)])
 
     def update(self, a, b, val):
@@ -56,18 +56,18 @@ class SegmentTree:
         """
         return self.update_recursive(1, 0, self.N - 1, a - 1, b - 1, val)
 
-    def update_recursive(self, idx, l, r, a, b, val):
+    def update_recursive(self, idx, left, right, a, b, val):
         """
         update(1, 1, N, a, b, v) for update val v to [a,b]
         """
-        if r < a or l > b:
+        if right < a or left > b:
             return True
-        if l == r:
+        if left == right:
             self.st[idx] = val
             return True
-        mid = (l + r) // 2
-        self.update_recursive(self.left(idx), l, mid, a, b, val)
-        self.update_recursive(self.right(idx), mid + 1, r, a, b, val)
+        mid = (left + right) // 2
+        self.update_recursive(self.left(idx), left, mid, a, b, val)
+        self.update_recursive(self.right(idx), mid + 1, right, a, b, val)
         self.st[idx] = max(self.st[self.left(idx)], self.st[self.right(idx)])
         return True
 
@@ -83,17 +83,17 @@ class SegmentTree:
         """
         return self.query_recursive(1, 0, self.N - 1, a - 1, b - 1)
 
-    def query_recursive(self, idx, l, r, a, b):
+    def query_recursive(self, idx, left, right, a, b):
         """
         query(1, 1, N, a, b) for query max of [a,b]
         """
-        if r < a or l > b:
+        if right < a or left > b:
             return -math.inf
-        if l >= a and r <= b:
+        if left >= a and right <= b:
             return self.st[idx]
-        mid = (l + r) // 2
-        q1 = self.query_recursive(self.left(idx), l, mid, a, b)
-        q2 = self.query_recursive(self.right(idx), mid + 1, r, a, b)
+        mid = (left + right) // 2
+        q1 = self.query_recursive(self.left(idx), left, mid, a, b)
+        q2 = self.query_recursive(self.right(idx), mid + 1, right, a, b)
         return max(q1, q2)
 
     def show_data(self):

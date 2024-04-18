@@ -309,9 +309,9 @@ class SmoSVM:
         # calculate L and H  which bound the new alpha2
         s = y1 * y2
         if s == -1:
-            l, h = max(0.0, a2 - a1), min(self._c, self._c + a2 - a1)
+            l, h = max(0.0, a2 - a1), min(self._c, self._c + a2 - a1)  # noqa: E741
         else:
-            l, h = max(0.0, a2 + a1 - self._c), min(self._c, a2 + a1)
+            l, h = max(0.0, a2 + a1 - self._c), min(self._c, a2 + a1)  # noqa: E741
         if l == h:
             return None, None
 
