@@ -1,3 +1,12 @@
+"""
+Program creates an amortization table for a loan, given
+- Principal borrowed
+- Rate of interest per annum
+- Years to repay the loan
+
+Wikipedia Reference: https://www.investopedia.com/terms/a/amortization.asp
+"""
+
 import pandas as pd
 
 def payment(principal: float, interest_rate: float, payments: int) -> float:
