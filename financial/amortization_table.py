@@ -79,14 +79,23 @@ def amortization_table(
     payments = years * 12
     interest_rate /= 12
     payment_amount = payment(principal, interest_rate, payments)
-    df = pd.DataFrame(index=range(0, payments + 1), columns=["Payment", "Principal", "Interest", "Remaining"], dtype="float", data=0)
+    df = pd.DataFrame(
+        index=range(0, payments + 1),
+        columns=["Payment", "Principal", "Interest", "Remaining"],
+        dtype="float",
+        data=0,
+    )
 
     amor_table["Payment"][1:] = payment_amount
     amor_table["Remaining"][0] = principal
     for i in range(1, payments + 1):
         amor_table["Interest"][i] = amor_table["Remaining"][i - 1] * interest_rate
-        amor_table["Principal"][i] = amor_table["Payment"][i] - amor_table["Interest"][i]
-        amor_table["Remaining"][i] = amor_table["Remaining"][i - 1] - amor_table["Principal"][i]
+        amor_table["Principal"][i] = (
+            amor_table["Payment"][i] - amor_table["Interest"][i]
+        )
+        amor_table["Remaining"][i] = (
+            amor_table["Remaining"][i - 1] - amor_table["Principal"][i]
+        )
     amor_table = amor_table.round(2)
     amor_table = amor_table.abs()
 
