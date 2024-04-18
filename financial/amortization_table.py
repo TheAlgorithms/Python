@@ -80,7 +80,7 @@ def amortization_table(
     interest_rate /= 12
     payment_amount = payment(principal, interest_rate, payments)
     amor_table = pd.DataFrame(
-        index=range(0, payments + 1),
+        index=range(payments + 1),
         columns=["Payment", "Principal", "Interest", "Remaining"],
         dtype="float",
         data=0,
