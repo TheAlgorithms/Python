@@ -85,8 +85,12 @@ def amortization_table(
     amor_table["Remaining"][0] = principal
     for i in range(1, payments + 1):
         amor_table["Interest"][i] = amor_table["Remaining"][i - 1] * interest_rate
-        amor_table["Principal"][i] = amor_table["Payment"][i] - amor_table["Interest"][i]
-        amor_table["Remaining"][i] = amor_table["Remaining"][i - 1] - amor_table["Principal"][i]
+        amor_table["Principal"][i] = (
+            amor_table["Payment"][i] - amor_table["Interest"][i]
+        )
+        amor_table["Remaining"][i] = (
+            amor_table["Remaining"][i - 1] - amor_table["Principal"][i]
+        )
     amor_table = amor_table.round(2)
     amor_table = amor_table.abs()
 
