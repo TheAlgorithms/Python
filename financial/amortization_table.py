@@ -37,7 +37,10 @@ def payment(principal: float, interest_rate: float, payments: int) -> float:
 
     return payment
 
-def amortization_table(principal: float, interest_rate: float, years: int) -> pd.DataFrame:
+
+def amortization_table(
+    principal: float, interest_rate: float, years: int
+) -> pd.DataFrame:
     """
     Create an amortization table for a loan.
 
@@ -76,7 +79,7 @@ def amortization_table(principal: float, interest_rate: float, years: int) -> pd
     payments = years * 12
     interest_rate /= 12
     payment_amount = payment(principal, interest_rate, payments)
-    amor_table = pd.DataFrame(index=range(0, payments + 1), columns=["Payment", "Principal", "Interest", "Remaining"], dtype="float", data=0)
+    df = pd.DataFrame(index=range(0, payments + 1), columns=["Payment", "Principal", "Interest", "Remaining"], dtype="float", data=0)
 
     amor_table["Payment"][1:] = payment_amount
     amor_table["Remaining"][0] = principal
@@ -88,7 +91,6 @@ def amortization_table(principal: float, interest_rate: float, years: int) -> pd
     amor_table = amor_table.abs()
 
     return amor_table
-
 
 
 if __name__ == "__main__":
