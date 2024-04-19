@@ -6,6 +6,7 @@ Author: kpuyam
 
 import random
 from collections.abc import Callable
+from typing import Sequence
 
 # Define the parameters for the genetic algorithm
 N_POPULATION = 100
@@ -60,8 +61,8 @@ def select(
 
 def optimize(
     func: Callable,
-    param_ranges: list[tuple[float, float]],
-) -> tuple[list[float], float]:
+    param_ranges: Sequence[tuple[float, float]],
+) -> tuple[Sequence[float], float]:
     """Optimize the given function using a genetic algorithm."""
     # Initialize the population
     population = [
