@@ -9,9 +9,9 @@ def palindromic_string(input_string: str) -> str:
 
     1. first this convert input_string("xyx") into new_string("x|y|x") where odd
         positions are actual input characters.
-    2. for each character in new_string it find corresponding length and store the
-        length and l,r to store previously calculated info.(please look the explanation
-        for details)
+    2. for each character in new_string it find corresponding length and
+        store the length and left,right to store previously calculated info.
+        (please look the explanation for details)
 
     3. return corresponding output_string by removing all "|"
     """
@@ -29,7 +29,7 @@ def palindromic_string(input_string: str) -> str:
 
     # we will store the starting and ending of previous furthest ending palindromic
     # substring
-    l, r = 0, 0
+    left, right = 0, 0
 
     # length[i] shows the length of palindromic substring with center i
     length = [1 for i in range(len(new_input_string))]
@@ -37,7 +37,7 @@ def palindromic_string(input_string: str) -> str:
     # for each character in new_string find corresponding palindromic string
     start = 0
     for j in range(len(new_input_string)):
-        k = 1 if j > r else min(length[l + r - j] // 2, r - j + 1)
+        k = 1 if j > right else min(length[left + right - j] // 2, right - j + 1)
         while (
             j - k >= 0
             and j + k < len(new_input_string)
@@ -47,11 +47,11 @@ def palindromic_string(input_string: str) -> str:
 
         length[j] = 2 * k - 1
 
-        # does this string is ending after the previously explored end (that is r) ?
-        # if yes the update the new r to the last index of this
-        if j + k - 1 > r:
-            l = j - k + 1
-            r = j + k - 1
+        # does this string is ending after the previously explored end (that is right) ?
+        # if yes the update the new right to the last index of this
+        if j + k - 1 > right:
+            left = j - k + 1
+            right = j + k - 1
 
         # update max_length and start position
         if max_length < length[j]:
@@ -78,8 +78,9 @@ if __name__ == "__main__":
 consider the string for which we are calculating the longest palindromic substring is
 shown above where ... are some characters in between and right now we are calculating
 the length of palindromic substring with center at a5 with following conditions :
-i) we have stored the length of palindromic substring which has center at a3 (starts at
-    l ends at r) and it is the furthest ending till now, and it has ending after a6
+i) we have stored the length of palindromic substring which has center at a3
+    (starts at left ends at right) and it is the furthest ending till now,
+    and it has ending after a6
 ii) a2 and a4 are equally distant from a3 so char(a2) == char(a4)
 iii) a0 and a6 are equally distant from a3 so char(a0) == char(a6)
 iv) a1 is corresponding equal character of a5 in palindrome with center a3 (remember
@@ -98,11 +99,11 @@ so we can say that palindrome at center a5 is at least as long as palindrome at 
 a1 but this only holds if a0 and a6 are inside the limits of palindrome centered at a3
 so finally ..
 
-len_of_palindrome__at(a5) = min(len_of_palindrome_at(a1), r-a5)
-where a3 lies from l to r and we have to keep updating that
+len_of_palindrome__at(a5) = min(len_of_palindrome_at(a1), right-a5)
+where a3 lies from left to right and we have to keep updating that
 
-and if the a5 lies outside of l,r boundary we calculate length of palindrome with
-bruteforce and update l,r.
+and if the a5 lies outside of left,right boundary we calculate length of palindrome with
+bruteforce and update left,right.
 
 it gives the linear time complexity just like z-function
 """

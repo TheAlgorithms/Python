@@ -7,14 +7,14 @@
 from __future__ import annotations
 
 
-def ceil_index(v, l, r, key):
-    while r - l > 1:
-        m = (l + r) // 2
-        if v[m] >= key:
-            r = m
+def ceil_index(v, left, right, key):
+    while right - left > 1:
+        middle = (left + right) // 2
+        if v[middle] >= key:
+            right = middle
         else:
-            l = m
-    return r
+            left = middle
+    return right
 
 
 def longest_increasing_subsequence_length(v: list[int]) -> int:

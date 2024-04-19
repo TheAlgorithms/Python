@@ -1,6 +1,6 @@
 # Finding Articulation Points in Undirected Graph
-def compute_ap(l):
-    n = len(l)
+def compute_ap(graph):
+    n = len(graph)
     out_edge_count = 0
     low = [0] * n
     visited = [False] * n
@@ -12,7 +12,7 @@ def compute_ap(l):
         visited[at] = True
         low[at] = at
 
-        for to in l[at]:
+        for to in graph[at]:
             if to == parent:
                 pass
             elif not visited[to]:
@@ -41,7 +41,7 @@ def compute_ap(l):
 
 
 # Adjacency list of graph
-data = {
+graph = {
     0: [1, 2],
     1: [0, 2],
     2: [0, 1, 3, 5],
@@ -52,4 +52,4 @@ data = {
     7: [6, 8],
     8: [5, 7],
 }
-compute_ap(data)
+compute_ap(graph)
