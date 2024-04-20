@@ -66,7 +66,7 @@ def select(
 ) -> list[str]:
     """
     Select the second parent and generate new population
-    
+
     >>> import random
     >>> random.seed(42)
     >>> parent_1 = ("123456", 8.0)
