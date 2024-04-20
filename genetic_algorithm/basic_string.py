@@ -71,7 +71,7 @@ def select(
     >>> parent_1 = ("123456", 8.0)
     >>> population_score = [("abcdef", 4.0), ("ghijkl", 5.0), ("mnopqr", 7.0)]
     >>> genes = list("ABCDEF")
-    >>> child_n = int(min(parent_1[1]) + 1, 10))
+    >>> child_n = int(min(parent_1[1] + 1, 10))
     >>> population = []
     >>> for _ in range(child_n):
     ...     parent_2 = population_score[random.randrange(len(population_score))][0]
