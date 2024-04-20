@@ -33,7 +33,12 @@ def evaluate(item: str, main_target: str) -> tuple[str, float]:
 
 
 def crossover(parent_1: str, parent_2: str) -> tuple[str, str]:
-    """Slice and combine two string at a random point."""
+    """
+    Slice and combine two strings at a random point.
+    >>> random.seed(42)
+    >>> crossover("123456", "abcdef")
+    ('12345f', 'abcde6')
+    """
     random_slice = random.randint(0, len(parent_1) - 1)
     child_1 = parent_1[:random_slice] + parent_2[random_slice:]
     child_2 = parent_2[:random_slice] + parent_1[random_slice:]
@@ -41,7 +46,12 @@ def crossover(parent_1: str, parent_2: str) -> tuple[str, str]:
 
 
 def mutate(child: str, genes: list[str]) -> str:
-    """Mutate a random gene of a child with another one from the list."""
+    """
+    Mutate a random gene of a child with another one from the list.
+    >>> random.seed(123)
+    >>> mutate("123456", list("ABCDEF"))
+    '12345A'
+    """
     child_list = list(child)
     if random.uniform(0, 1) < MUTATION_PROBABILITY:
         child_list[random.randint(0, len(child)) - 1] = random.choice(genes)
@@ -54,7 +64,22 @@ def select(
     population_score: list[tuple[str, float]],
     genes: list[str],
 ) -> list[str]:
-    """Select the second parent and generate new population"""
+    """
+    Select the second parent and generate new population
+
+    >>> random.seed(42)
+    >>> parent_1 = ("123456", 8.0)
+    >>> population_score = [("abcdef", 4.0), ("ghijkl", 5.0), ("mnopqr", 7.0)]
+    >>> genes = list("ABCDEF")
+    >>> child_n = int(min(parent_1[1] + 1, 10))
+    >>> population = []
+    >>> for _ in range(child_n):
+    ...     parent_2 = population_score[random.randrange(len(population_score))][0]
+    ...     child_1, child_2 = crossover(parent_1[0], parent_2)
+    ...     population.extend((mutate(child_1, genes), mutate(child_2, genes)))
+    >>> len(population) == (int(parent_1[1]) + 1) * 2
+    True
+    """
     pop = []
     # Generate more children proportionally to the fitness score.
     child_n = int(parent_1[1] * 100) + 1
