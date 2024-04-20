@@ -67,20 +67,17 @@ def select(
     """
     Select the second parent and generate new population
 
-    >>> import random
     >>> random.seed(42)
     >>> parent_1 = ("123456", 8.0)
     >>> population_score = [("abcdef", 4.0), ("ghijkl", 5.0), ("mnopqr", 7.0)]
     >>> genes = list("ABCDEF")
-    >>> pop = []
-    >>> child_n = int(parent_1[1]) + 1
-    >>> child_n = 10 if child_n >= 10 else child_n
+    >>> child_n = int(min(parent_1[1]) + 1, 10))
+    >>> population = []
     >>> for _ in range(child_n):
-    ...     parent_2 = population_score[random.randint(0, len(population_score) - 1)][0]
+    ...     parent_2 = population_score[random.randrange(len(population_score))][0]
     ...     child_1, child_2 = crossover(parent_1[0], parent_2)
-    ...     pop.append(mutate(child_1, genes))
-    ...     pop.append(mutate(child_2, genes))
-    >>> len(pop) == (int(parent_1[1]) + 1) * 2
+    ...     population.extend((mutate(child_1, genes), mutate(child_2, genes)))
+    >>> len(population) == (int(parent_1[1]) + 1) * 2
     True
     """
     pop = []
