@@ -150,7 +150,7 @@ class FuzzySet:
         FuzzySet(name='a U b', left_boundary=0.1, peak=0.6, right_boundary=0.35)
         """
         return FuzzySet(
-            f"{self.name} ∪ {other.name}",
+            f"{self.name} U {other.name}",
             min(self.left_boundary, other.left_boundary),
             max(self.right_boundary, other.right_boundary),
             (self.peak + other.peak) / 2,
