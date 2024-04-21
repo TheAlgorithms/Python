@@ -18,7 +18,9 @@ class CovidData(NamedTuple):
 
 def covid_stats(url: str = "https://www.worldometers.info/coronavirus/") -> CovidData:
     xpath_str = '//div[@class = "maincounter-number"]/span/text()'
-    return CovidData(*html.fromstring(requests.get(url).content).xpath(xpath_str))
+    return CovidData(
+        *html.fromstring(requests.get(url, timeout=10).content).xpath(xpath_str)
+    )
 
 
 fmt = """Total COVID-19 cases in the world: {}
