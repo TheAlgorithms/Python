@@ -82,7 +82,9 @@ def search_anime_episode_list(episode_endpoint: str) -> list:
 
     request_url = f"{BASE_URL}{episode_endpoint}"
 
-    response = requests.get(url=request_url, headers={"UserAgent": UserAgent().chrome}, timeout=10)
+    response = requests.get(
+        url=request_url, headers={"UserAgent": UserAgent().chrome}, timeout=10
+    )
     response.raise_for_status()
 
     soup = BeautifulSoup(response.text, "html.parser")
