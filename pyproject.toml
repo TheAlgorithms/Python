@@ -14,7 +14,6 @@ lint.ignore = [    # `ruff rule S101` for a description of that rule
   "RUF002",   # Docstring contains ambiguous {}. Did you mean {}?
   "RUF003",   # Comment contains ambiguous {}. Did you mean {}?
   "S101",     # Use of `assert` detected -- DO NOT FIX
-  "S113",     # Probable use of requests call without timeout -- FIX ME
   "S311",     # Standard pseudo-random generators are not suitable for cryptographic purposes -- FIX ME
   "SLF001",   # Private member accessed: `_Iterator` -- FIX ME
   "UP038",    # Use `X | Y` in `{}` call instead of `(X, Y)` -- DO NOT FIX

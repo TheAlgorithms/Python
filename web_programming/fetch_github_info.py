@@ -42,7 +42,7 @@ def fetch_github_info(auth_token: str) -> dict[Any, Any]:
         "Authorization": f"token {auth_token}",
         "Accept": "application/vnd.github.v3+json",
     }
-    return requests.get(AUTHENTICATED_USER_ENDPOINT, headers=headers).json()
+    return requests.get(AUTHENTICATED_USER_ENDPOINT, headers=headers, timeout=10).json()
 
 
 if __name__ == "__main__":  # pragma: no cover
