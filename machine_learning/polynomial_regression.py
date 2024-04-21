@@ -11,7 +11,7 @@ for polynomial regression:
 
 β = (XᵀX)⁻¹Xᵀy = X⁺y
 
-where X is the design matrix, y is the response vector, and X⁺ denotes the Moore–Penrose
+where X is the design matrix, y is the response vector, and X⁺ denotes the Moore-Penrose
 pseudoinverse of X. In the case of polynomial regression, the design matrix is
 
     |1  x₁  x₁² ⋯ x₁ᵐ|
@@ -106,7 +106,7 @@ class PolynomialRegression:
 
         β = (XᵀX)⁻¹Xᵀy = X⁺y
 
-        where X⁺ denotes the Moore–Penrose pseudoinverse of the design matrix X. This
+        where X⁺ denotes the Moore-Penrose pseudoinverse of the design matrix X. This
         function computes X⁺ using singular value decomposition (SVD).
 
         References:
