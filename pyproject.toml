@@ -86,7 +86,6 @@ max-complexity = 17  # default: 10
 "graphs/minimum_spanning_tree_prims.py" = ["SIM114"]
 "hashes/enigma_machine.py" = ["BLE001"]
 "machine_learning/decision_tree.py" = ["SIM114"]
-"machine_learning/linear_discriminant_analysis.py" = ["ARG005"]
 "machine_learning/sequential_minimum_optimization.py" = ["SIM115"]
 "matrix/sherman_morrison.py" = ["SIM103", "SIM114"]
 "other/l*u_cache.py" = ["RUF012"]
