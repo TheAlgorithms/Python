@@ -5,7 +5,7 @@ def palindromic_string(input_string: str) -> str:
     >>> palindromic_string('ababa')
     'ababa'
 
-    Manacher’s algorithm which finds Longest palindromic Substring in linear time.
+    Manacher's algorithm which finds Longest palindromic Substring in linear time.
 
     1. first this convert input_string("xyx") into new_string("x|y|x") where odd
         positions are actual input characters.

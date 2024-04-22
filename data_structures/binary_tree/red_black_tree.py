@@ -17,7 +17,7 @@ class RedBlackTree:
     and slower for reading in the average case, though, because they're
     both balanced binary search trees, both will get the same asymptotic
     performance.
-    To read more about them, https://en.wikipedia.org/wiki/Red–black_tree
+    To read more about them, https://en.wikipedia.org/wiki/Red-black_tree
     Unless otherwise specified, all asymptotic runtimes are specified in
     terms of the size of the tree.
     """

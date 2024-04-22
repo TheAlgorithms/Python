@@ -10,6 +10,7 @@ lint.ignore = [    # `ruff rule S101` for a description of that rule
   "PLW2901",  # PLW2901: Redefined loop variable -- FIX ME
   "PT011",    # `pytest.raises(Exception)` is too broad, set the `match` parameter or use a more specific exception
   "PT018",    # Assertion should be broken down into multiple parts
+  "RUF001",   # String contains ambiguous {}. Did you mean {}?
   "RUF002",   # Docstring contains ambiguous {}. Did you mean {}?
   "RUF003",   # Comment contains ambiguous {}. Did you mean {}?
   "S101",     # Use of `assert` detected -- DO NOT FIX
