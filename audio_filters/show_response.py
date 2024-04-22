@@ -8,7 +8,7 @@ import numpy as np
 
 
 class FilterType(Protocol):
-    def process(self, sample: float) -> float:
+    def process(self, sample: float) -> float:  # noqa: ARG002
         """
         Calculate y[n]
 

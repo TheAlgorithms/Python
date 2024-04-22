@@ -173,7 +173,7 @@ class HashTable:
         self.values[key] = data
         self._keys[key] = data
 
-    def _collision_resolution(self, key, data=None):
+    def _collision_resolution(self, key):
         """
         This method is a type of open addressing which is used for handling collision.
 
@@ -266,7 +266,7 @@ class HashTable:
             pass
 
         else:
-            collision_resolution = self._collision_resolution(key, data)
+            collision_resolution = self._collision_resolution(key)
             if collision_resolution is not None:
                 self._set_value(collision_resolution, data)
             else:
