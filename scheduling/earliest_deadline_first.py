@@ -9,9 +9,7 @@ from __future__ import annotations
 
 
 def calculate_waiting_times(
-    arrival_times: list[int],
-    burst_times: list[int],
-    deadlines: list[int]
+    arrival_times: list[int], burst_times: list[int], deadlines: list[int]
 ) -> list[int]:
     """
     Calculate the waiting times of processes using EDF algorithm.
@@ -24,7 +22,7 @@ def calculate_waiting_times(
     current_time = 0
     process_executed = 0
     while process_executed < n:
-        min_deadline = float('inf')
+        min_deadline = float("inf")
         selected_process = -1
         for i in range(n):
             if (
@@ -32,8 +30,8 @@ def calculate_waiting_times(
                 and remaining_times[i] > 0
                 and deadlines[i] < min_deadline
             ):
-                    min_deadline = deadlines[i]
-                    selected_process = i
+                min_deadline = deadlines[i]
+                selected_process = i
 
         if selected_process == -1:
             current_time += 1
@@ -46,15 +44,16 @@ def calculate_waiting_times(
 
     return waiting_times
 
+
 def calculate_turnaround_times(
-    burst_times: list[int],
-    waiting_times: list[int]
+    burst_times: list[int], waiting_times: list[int]
 ) -> list[int]:
     """
     Calculate the turnaround times of processes.
     Return: List of turnaround times for each process.
     """
     return [burst_times[i] + waiting_times[i] for i in range(len(burst_times))]
+
 
 def calculate_average_turnaround_time(turnaround_times: list[int]) -> float:
     """
@@ -63,12 +62,14 @@ def calculate_average_turnaround_time(turnaround_times: list[int]) -> float:
     """
     return sum(turnaround_times) / len(turnaround_times)
 
+
 def calculate_average_waiting_time(waiting_times: list[int]) -> float:
     """
     Calculate the average waiting time.
     Return: The average waiting time.
     """
     return sum(waiting_times) / len(waiting_times)
+
 
 if __name__ == "__main__":
     arrival_times = [0, 1, 2]
