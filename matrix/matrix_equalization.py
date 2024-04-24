@@ -8,6 +8,8 @@ def array_equalization(vector: list[int], k: int) -> int:
     to a common value, by making the minimal number of
     "updates" under the constraint of a step size (k)
 
+    details: https://www.geeksforgeeks.org/equalize-array-using-array-elements/
+
     >>> array_equalization([1, 1, 6, 2, 4, 6, 5, 1, 7, 2, 2, 1, 7, 2, 2], 4)
     4
     >>> array_equalization([22, 81, 88, 71, 22, 81, 632, 81, 81, 22, 92], 2)
