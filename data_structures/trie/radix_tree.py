@@ -6,6 +6,7 @@ trie (prefix tree) in whicheach node that is the only child is merged
 with its parent [https://en.wikipedia.org/wiki/Radix_tree]
 """
 
+
 class RadixNode:
     def __init__(self, prefix: str = "", is_leaf: bool = False) -> None:
         # Mapping from the first character of the prefix of the node
@@ -218,11 +219,11 @@ class TestRadixNode(unittest.TestCase):
         assert root.find("bananas")
 
     def test_trie_2(self) -> None:
-        '''
+        """
         now add a new test case which inserts
         foobbb, fooaaa, foo in the given order and checks
         for different assertions
-        '''
+        """
         words = "foobbb fooaaa foo".split()
         root = RadixNode()
         root.insert_many(words)
