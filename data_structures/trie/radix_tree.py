@@ -198,7 +198,7 @@ class RadixNode:
             value.print_tree(height + 1)
 
 
-## write unit test for the code using unittest library with 
+## write unit test for the code using unittest library with
 ## logic similar to test_trie() function
 ## and call it from main()
 
