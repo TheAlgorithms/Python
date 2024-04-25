@@ -218,11 +218,11 @@ class TestRadixNode(unittest.TestCase):
         assert root.find("bananas")
 
     def test_trie_2(self) -> None:
-        '''
+        """
         now add a new test case which inserts
         foobbb, fooaaa, foo in the given order and checks
         for different assertions
-        '''
+        """
         words = "foobbb fooaaa foo".split()
         root = RadixNode()
         root.insert_many(words)
