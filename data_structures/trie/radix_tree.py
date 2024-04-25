@@ -3,7 +3,9 @@ A Radix Tree is a data structure that represents a space-optimized
 trie (prefix tree) in whicheach node that is the only child is merged
 with its parent [https://en.wikipedia.org/wiki/Radix_tree]
 """
+
 import unittest
+
 
 class RadixNode:
     def __init__(self, prefix: str = "", is_leaf: bool = False) -> None:
@@ -195,8 +197,10 @@ class RadixNode:
         for value in self.nodes.values():
             value.print_tree(height + 1)
 
+
 ## write unit test for the code using unittest library with logic similar to test_trie() function
 ## and call it from main()
+
 
 class TestRadixNode(unittest.TestCase):
     def test_trie(self) -> None:
@@ -212,13 +216,12 @@ class TestRadixNode(unittest.TestCase):
         root.delete("banana")
         self.assertFalse(root.find("banana"))
         self.assertTrue(root.find("bananas"))
-    
 
     def test_trie_2(self) -> None:
-        '''
-        now add a new test case which inserts 
+        """
+        now add a new test case which inserts
         foobbb, fooaaa, foo in the given order and checks for different assertions
-        ''' 
+        """
         words = "foobbb fooaaa foo".split()
         root = RadixNode()
         root.insert_many(words)
@@ -228,6 +231,7 @@ class TestRadixNode(unittest.TestCase):
         self.assertFalse(root.find("foo"))
         self.assertTrue(root.find("foobbb"))
         self.assertTrue(root.find("fooaaa"))
+
 
 if __name__ == "__main__":
     unittest.main()
