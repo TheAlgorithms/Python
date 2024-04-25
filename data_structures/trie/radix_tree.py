@@ -3,7 +3,7 @@ A Radix Tree is a data structure that represents a space-optimized
 trie (prefix tree) in whicheach node that is the only child is merged
 with its parent [https://en.wikipedia.org/wiki/Radix_tree]
 """
-
+import unittest
 
 class RadixNode:
     def __init__(self, prefix: str = "", is_leaf: bool = False) -> None:
@@ -62,6 +62,11 @@ class RadixNode:
         -- A   (leaf)
         --- A   (leaf)
         """
+        ## Handle the Case where word is empty by using an if branch
+        if word == "":
+            self.is_leaf = True
+            return
+
         # Case 1: If the word is the prefix of the node
         # Solution: We set the current node as leaf
         if self.prefix == word and not self.is_leaf:
@@ -190,40 +195,39 @@ class RadixNode:
         for value in self.nodes.values():
             value.print_tree(height + 1)
 
+## write unit test for the code using unittest library with logic similar to test_trie() function
+## and call it from main()
 
-def test_trie() -> bool:
-    words = "banana bananas bandana band apple all beast".split()
-    root = RadixNode()
-    root.insert_many(words)
+class TestRadixNode(unittest.TestCase):
+    def test_trie(self) -> None:
+        words = "banana bananas bandana band apple all beast".split()
+        root = RadixNode()
+        root.insert_many(words)
 
-    assert all(root.find(word) for word in words)
-    assert not root.find("bandanas")
-    assert not root.find("apps")
-    root.delete("all")
-    assert not root.find("all")
-    root.delete("banana")
-    assert not root.find("banana")
-    assert root.find("bananas")
+        self.assertTrue(all(root.find(word) for word in words))
+        self.assertFalse(root.find("bandanas"))
+        self.assertFalse(root.find("apps"))
+        root.delete("all")
+        self.assertFalse(root.find("all"))
+        root.delete("banana")
+        self.assertFalse(root.find("banana"))
+        self.assertTrue(root.find("bananas"))
+    
 
-    return True
+    def test_trie_2(self) -> None:
+        '''
+        now add a new test case which inserts 
+        foobbb, fooaaa, foo in the given order and checks for different assertions
+        ''' 
+        words = "foobbb fooaaa foo".split()
+        root = RadixNode()
+        root.insert_many(words)
 
-
-def pytests() -> None:
-    assert test_trie()
-
-
-def main() -> None:
-    """
-    >>> pytests()
-    """
-    root = RadixNode()
-    words = "banana bananas bandanas bandana band apple all beast".split()
-    root.insert_many(words)
-
-    print("Words:", words)
-    print("Tree:")
-    root.print_tree()
-
+        self.assertTrue(all(root.find(word) for word in words))
+        root.delete("foo")
+        self.assertFalse(root.find("foo"))
+        self.assertTrue(root.find("foobbb"))
+        self.assertTrue(root.find("fooaaa"))
 
 if __name__ == "__main__":
-    main()
+    unittest.main()
