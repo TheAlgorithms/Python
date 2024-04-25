@@ -6,6 +6,7 @@ trie (prefix tree) in whicheach node that is the only child is merged
 with its parent [https://en.wikipedia.org/wiki/Radix_tree]
 """
 
+
 class RadixNode:
     def __init__(self, prefix: str = "", is_leaf: bool = False) -> None:
         # Mapping from the first character of the prefix of the node
