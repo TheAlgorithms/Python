@@ -256,7 +256,7 @@ def valid_input(
     input_type: Callable[[object], num],  # Usually float or int
     input_msg: str,
     err_msg: str,
-    condition: Callable[[num], bool] = lambda x: True,
+    condition: Callable[[num], bool] = lambda _: True,
     default: str | None = None,
 ) -> num:
     """

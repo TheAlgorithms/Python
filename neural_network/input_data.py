@@ -156,7 +156,8 @@ class _DataSet:
         self._rng = np.random.default_rng(seed1 if seed is None else seed2)
         dtype = dtypes.as_dtype(dtype).base_dtype
         if dtype not in (dtypes.uint8, dtypes.float32):
-            raise TypeError("Invalid image dtype %r, expected uint8 or float32" % dtype)
+            msg = f"Invalid image dtype {dtype!r}, expected uint8 or float32"
+            raise TypeError(msg)
         if fake_data:
             self._num_examples = 10000
             self.one_hot = one_hot
