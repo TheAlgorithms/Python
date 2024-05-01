@@ -95,13 +95,12 @@ class SegmentTree:
         q1 = self.query_recursive(self.left(idx), left, mid, a, b)
         q2 = self.query_recursive(self.right(idx), mid + 1, right, a, b)
         return max(q1, q2)
-        
+
     def show_data(self):
         show_list = []
-        for i in range(1, self.N + 1):  
+        for i in range(1, self.N + 1):
             show_list += [self.query(i, i)]
         print(show_list)
-
 
 
 if __name__ == "__main__":
