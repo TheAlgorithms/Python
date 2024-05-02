@@ -11,11 +11,11 @@ They are synchronized with locks and message passing but other forms of
 synchronization could be used.
 """
 
-from multiprocessing import Lock, Pipe, Process, set_start_method
+import multiprocessing as mp
 
 # lock used to ensure that two processes do not access a pipe at the same time
 # NOTE This breaks testing on build runner. May work better locally
-# process_lock = Lock()
+# process_lock = mp.Lock()
 
 """
 The function run by the processes that sorts the list
@@ -29,8 +29,17 @@ resultPipe = the pipe used to send results back to main
 """
 
 
-def oe_process(position, value, l_send, r_send, lr_cv, rr_cv, result_pipe):
-    process_lock = Lock()
+def oe_process(
+    position,
+    value,
+    l_send,
+    r_send,
+    lr_cv,
+    rr_cv,
+    result_pipe,
+    multiprocessing_context,
+):
+    process_lock = multiprocessing_context.Lock()
 
     # we perform n swaps since after n swaps we know we are sorted
     # we *could* stop early if we are sorted already, but it takes as long to
@@ -71,8 +80,6 @@ arr = the list to be sorted
 
 def odd_even_transposition(arr):
     """
-    >>> from multiprocessing import set_start_method
-    >>> set_start_method("spawn")
     >>> odd_even_transposition(list(range(10)[::-1])) == sorted(list(range(10)[::-1]))
     True
     >>> odd_even_transposition(["a", "x", "c"]) == sorted(["x", "a", "c"])
@@ -92,39 +99,60 @@ def odd_even_transposition(arr):
     >>> odd_even_transposition(unsorted_list) == sorted(unsorted_list + [1])
     False
     """
+    # spawn method is considered safer than fork
+    multiprocessing_context = mp.get_context("spawn")
+
     process_array_ = []
     result_pipe = []
     # initialize the list of pipes where the values will be retrieved
     for _ in arr:
-        result_pipe.append(Pipe())
+        result_pipe.append(multiprocessing_context.Pipe())
     # creates the processes
     # the first and last process only have one neighbor so they are made outside
     # of the loop
-    temp_rs = Pipe()
-    temp_rr = Pipe()
+    temp_rs = multiprocessing_context.Pipe()
+    temp_rr = multiprocessing_context.Pipe()
     process_array_.append(
-        Process(
+        multiprocessing_context.Process(
             target=oe_process,
-            args=(0, arr[0], None, temp_rs, None, temp_rr, result_pipe[0]),
+            args=(
+                0,
+                arr[0],
+                None,
+                temp_rs,
+                None,
+                temp_rr,
+                result_pipe[0],
+                multiprocessing_context,
+            ),
         )
     )
     temp_lr = temp_rs
     temp_ls = temp_rr
 
     for i in range(1, len(arr) - 1):
-        temp_rs = Pipe()
-        temp_rr = Pipe()
+        temp_rs = multiprocessing_context.Pipe()
+        temp_rr = multiprocessing_context.Pipe()
         process_array_.append(
-            Process(
+            multiprocessing_context.Process(
                 target=oe_process,
-                args=(i, arr[i], temp_ls, temp_rs, temp_lr, temp_rr, result_pipe[i]),
+                args=(
+                    i,
+                    arr[i],
+                    temp_ls,
+                    temp_rs,
+                    temp_lr,
+                    temp_rr,
+                    result_pipe[i],
+                    multiprocessing_context,
+                ),
             )
         )
         temp_lr = temp_rs
         temp_ls = temp_rr
 
     process_array_.append(
-        Process(
+        multiprocessing_context.Process(
             target=oe_process,
             args=(
                 len(arr) - 1,
@@ -134,6 +162,7 @@ def odd_even_transposition(arr):
                 temp_lr,
                 None,
                 result_pipe[len(arr) - 1],
+                multiprocessing_context,
             ),
         )
     )
@@ -151,8 +180,6 @@ def odd_even_transposition(arr):
 
 # creates a reverse sorted list and sorts it
 def main():
-    set_start_method("spawn")  # spawn method is considered safer than fork
-
     arr = list(range(10, 0, -1))
     print("Initial List")
     print(*arr)
