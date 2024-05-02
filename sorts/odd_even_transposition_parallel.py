@@ -11,7 +11,7 @@ They are synchronized with locks and message passing but other forms of
 synchronization could be used.
 """
 
-from multiprocessing import Lock, Pipe, Process
+from multiprocessing import Lock, Pipe, Process, set_start_method
 
 # lock used to ensure that two processes do not access a pipe at the same time
 # NOTE This breaks testing on build runner. May work better locally
@@ -153,6 +153,8 @@ def odd_even_transposition(arr):
 
 # creates a reverse sorted list and sorts it
 def main():
+    set_start_method("spawn")  # spawn method is considered safer than fork
+
     arr = list(range(10, 0, -1))
     print("Initial List")
     print(*arr)
