@@ -75,6 +75,8 @@ arr = the list to be sorted
 
 def odd_even_transposition(arr):
     """
+    >>> from multiprocessing import set_start_method
+    >>> set_start_method("spawn")
     >>> odd_even_transposition(list(range(10)[::-1])) == sorted(list(range(10)[::-1]))
     True
     >>> odd_even_transposition(["a", "x", "c"]) == sorted(["x", "a", "c"])
