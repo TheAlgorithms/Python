@@ -38,27 +38,23 @@ def oe_process(position, value, l_send, r_send, lr_cv, rr_cv, result_pipe):
     for i in range(10):
         if (i + position) % 2 == 0 and r_send is not None:
             # send your value to your right neighbor
-            process_lock.acquire()
-            r_send[1].send(value)
-            process_lock.release()
+            with process_lock:
+                r_send[1].send(value)
 
             # receive your right neighbor's value
-            process_lock.acquire()
-            temp = rr_cv[0].recv()
-            process_lock.release()
+            with process_lock:
+                temp = rr_cv[0].recv()
 
             # take the lower value since you are on the left
             value = min(value, temp)
         elif (i + position) % 2 != 0 and l_send is not None:
             # send your value to your left neighbor
-            process_lock.acquire()
-            l_send[1].send(value)
-            process_lock.release()
+            with process_lock:
+                l_send[1].send(value)
 
             # receive your left neighbor's value
-            process_lock.acquire()
-            temp = lr_cv[0].recv()
-            process_lock.release()
+            with process_lock:
+                temp = lr_cv[0].recv()
 
             # take the higher value since you are on the right
             value = max(value, temp)
