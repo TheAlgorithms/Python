@@ -32,40 +32,28 @@ def solve_linear_system(matrix: np.ndarray) -> np.ndarray:
     >>> solution = solve_linear_system(np.column_stack((A, B)))
     >>> np.allclose(solution, np.array([2., 3., -1.]))
     True
-    >>> solve_linear_system(np.array([[0, 0], [0, 0]],  dtype=float))
-    array([nan, nan])
+    >>> solve_linear_system(np.array([[0, 0, 0], [0, 0, 0]],  dtype=float))
+    Traceback (most recent call last):
+        ...
+    ValueError: Matrix is not correct
     """
     ab = np.copy(matrix)
     num_of_rows = ab.shape[0]
     num_of_columns = ab.shape[1] - 1
     x_lst: list[float] = []
 
-    # Lead element search
-    for column_num in range(num_of_rows):
-        for i in range(column_num, num_of_columns):
-            if abs(ab[i][column_num]) > abs(ab[column_num][column_num]):
-                ab[[column_num, i]] = ab[[i, column_num]]
-                if ab[column_num, column_num] == 0.0:
-                    raise ValueError("Matrix is not correct")
-            else:
-                pass
-        if column_num != 0:
-            for i in range(column_num, num_of_rows):
-                ab[i, :] -= (
-                    ab[i, column_num - 1]
-                    / ab[column_num - 1, column_num - 1]
-                    * ab[column_num - 1, :]
-                )
+    assert num_of_rows == num_of_columns
 
-    # Upper triangular matrix
     for column_num in range(num_of_rows):
+        # Lead element search
         for i in range(column_num, num_of_columns):
             if abs(ab[i][column_num]) > abs(ab[column_num][column_num]):
                 ab[[column_num, i]] = ab[[i, column_num]]
-                if ab[column_num, column_num] == 0.0:
-                    raise ValueError("Matrix is not correct")
-            else:
-                pass
+
+        # Upper triangular matrix
+        if ab[column_num, column_num] == 0.0:
+            raise ValueError("Matrix is not correct")
+
         if column_num != 0:
             for i in range(column_num, num_of_rows):
                 ab[i, :] -= (
