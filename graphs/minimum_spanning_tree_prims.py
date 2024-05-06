@@ -16,9 +16,7 @@ class Heap:
         if start > size // 2 - 1:
             return
         else:
-            if 2 * start + 2 >= size:
-                smallest_child = 2 * start + 1
-            elif heap[2 * start + 1] < heap[2 * start + 2]:
+            if 2 * start + 2 >= size or heap[2 * start + 1] < heap[2 * start + 2]:
                 smallest_child = 2 * start + 1
             else:
                 smallest_child = 2 * start + 2

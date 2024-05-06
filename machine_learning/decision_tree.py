@@ -105,9 +105,7 @@ class DecisionTree:
         the predictor
         """
         for i in range(len(x)):
-            if len(x[:i]) < self.min_leaf_size:
-                continue
-            elif len(x[i:]) < self.min_leaf_size:
+            if len(x[:i]) < self.min_leaf_size or len(x[i:]) < self.min_leaf_size:
                 continue
             else:
                 error_left = self.mean_squared_error(x[:i], np.mean(y[:i]))
