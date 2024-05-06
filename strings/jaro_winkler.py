@@ -3,7 +3,7 @@
 
 def jaro_winkler(str1: str, str2: str) -> float:
     """
-    Jaro–Winkler distance is a string metric measuring an edit distance between two
+    Jaro-Winkler distance is a string metric measuring an edit distance between two
     sequences.
     Output value is between 0.0 and 1.0.
 

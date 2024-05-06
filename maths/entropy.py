@@ -21,10 +21,10 @@ def calculate_prob(text: str) -> None:
     :return: Prints
     1) Entropy of information based on 1 alphabet
     2) Entropy of information based on couples of 2 alphabet
-    3) print Entropy of H(X n∣Xn−1)
+    3) print Entropy of H(X n|Xn-1)
 
     Text from random books. Also, random quotes.
-    >>> text = ("Behind Winston’s back the voice "
+    >>> text = ("Behind Winston's back the voice "
     ...         "from the telescreen was still "
     ...         "babbling and the overfulfilment")
     >>> calculate_prob(text)
