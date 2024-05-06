@@ -76,11 +76,8 @@ max-complexity = 17  # default: 10
 
 [tool.ruff.lint.per-file-ignores]
 "arithmetic_analysis/newton_raphson.py" = ["PGH001"]
-"audio_filters/show_response.py" = ["ARG002"]
 "data_structures/binary_tree/binary_search_tree_recursive.py" = ["BLE001"]
 "data_structures/binary_tree/treap.py" = ["SIM114"]
-"data_structures/hashing/hash_table.py" = ["ARG002"]
-"data_structures/hashing/quadratic_probing.py" = ["ARG002"]
 "data_structures/hashing/tests/test_hash_map.py" = ["BLE001"]
 "data_structures/heap/max_heap.py" = ["SIM114"]
 "graphs/minimum_spanning_tree_prims.py" = ["SIM114"]
