@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from typing import Generic, TypeVar
+from typing import ClassVar, Generic, TypeVar
 
 T = TypeVar("T")
 U = TypeVar("U")
@@ -210,7 +210,7 @@ class LRUCache(Generic[T, U]):
     """
 
     # class variable to map the decorator functions to their respective instance
-    decorator_function_to_instance_map: dict[Callable[[T], U], LRUCache[T, U]] = {}
+    decorator_function_to_instance_map: ClassVar[dict[Callable[[T], U], LRUCache[T, U]]] = {}
 
     def __init__(self, capacity: int):
         self.list: DoubleLinkedList[T, U] = DoubleLinkedList()
