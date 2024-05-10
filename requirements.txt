@@ -1,6 +1,6 @@
 beautifulsoup4
 fake_useragent
-imageio
+imageio ; python_version < '3.13'
 keras ; python_version < '3.12'
 lxml ; python_version < '3.13'
 matplotlib
