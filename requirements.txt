@@ -21,4 +21,4 @@ tensorflow ; python_version < '3.13'
 tweepy
 # yulewalker  # uncomment once audio_filters/equal_loudness_filter.py is fixed
 typing_extensions
-xgboost
+xgboost ; python_version < '3.13'
