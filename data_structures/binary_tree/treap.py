@@ -39,9 +39,7 @@ def split(root: Node | None, value: int) -> tuple[Node | None, Node | None]:
     Left tree contains all values less than split value.
     Right tree contains all values greater or equal, than split value
     """
-    if root is None:  # None tree is split into 2 Nones
-        return None, None
-    elif root.value is None:
+    if root is None or root.value is None:  # None tree is split into 2 Nones
         return None, None
     elif value < root.value:
         """

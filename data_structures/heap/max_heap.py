@@ -38,7 +38,7 @@ class BinaryHeap:
     def __swap_down(self, i: int) -> None:
         """Swap the element down"""
         while self.__size >= 2 * i:
-            if 2 * i + 1 > self.__size:
+            if 2 * i + 1 > self.__size:  # noqa: SIM114
                 bigger_child = 2 * i
             elif self.__heap[2 * i] > self.__heap[2 * i + 1]:
                 bigger_child = 2 * i

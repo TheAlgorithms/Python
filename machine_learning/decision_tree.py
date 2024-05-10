@@ -105,7 +105,7 @@ class DecisionTree:
         the predictor
         """
         for i in range(len(x)):
-            if len(x[:i]) < self.min_leaf_size:
+            if len(x[:i]) < self.min_leaf_size:  # noqa: SIM114
                 continue
             elif len(x[i:]) < self.min_leaf_size:
                 continue
