@@ -7,7 +7,7 @@ matplotlib
 numpy
 opencv-python
 pandas
-pillow
+pillow ; python_version < '3.13'
 # projectq  # uncomment once quantum/quantum_random.py is fixed
 qiskit ; python_version < '3.12'
 qiskit-aer ; python_version < '3.12'
