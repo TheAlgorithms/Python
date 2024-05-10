@@ -197,7 +197,9 @@ class LFUCache(Generic[T, U]):
     """
 
     # class variable to map the decorator functions to their respective instance
-    decorator_function_to_instance_map: ClassVar[dict[Callable[[T], U], LFUCache[T, U]]] = {}
+    decorator_function_to_instance_map: ClassVar[
+        dict[Callable[[T], U], LFUCache[T, U]]
+    ] = {}
 
     def __init__(self, capacity: int):
         self.list: DoubleLinkedList[T, U] = DoubleLinkedList()
