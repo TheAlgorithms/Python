@@ -1,8 +1,11 @@
 from math import comb
 from math import factorial
 
-def validate_elements_count(total_elements_count: int, selected_elements_count: int) -> None:
-    """ Validate that the number of elements are positive and the total is greater than or equal to selected. """
+
+def validate_elements_count(
+    total_elements_count: int, selected_elements_count: int
+) -> None:
+    """Validate that the number of elements are positive and the total is greater than or equal to selected."""
     if total_elements_count < selected_elements_count or selected_elements_count < 0:
         raise ValueError(
             "Please enter positive integers for total_elements_count and selected_elements_count "
@@ -10,7 +13,9 @@ def validate_elements_count(total_elements_count: int, selected_elements_count: 
         )
 
 
-def combinations_iterative(total_elements_count: int, selected_elements_count: int) -> int:
+def combinations_iterative(
+    total_elements_count: int, selected_elements_count: int
+) -> int:
     """
     Returns the number of combinations that can be made from a total set of elements.
 
@@ -33,12 +38,14 @@ def combinations_iterative(total_elements_count: int, selected_elements_count: i
     validate_elements_count(total_elements_count, selected_elements_count)
     combinations_count = 1
     for i in range(selected_elements_count):
-        combinations_count *= (total_elements_count - i)
-        combinations_count //= (i + 1)
+        combinations_count *= total_elements_count - i
+        combinations_count //= i + 1
     return combinations_count
 
 
-def multiset_combinations(total_elements_count: int, selected_elements_count: int) -> int:
+def multiset_combinations(
+    total_elements_count: int, selected_elements_count: int
+) -> int:
     """
     Returns the number of combinations from a multiset of elements.
 
@@ -59,10 +66,14 @@ def multiset_combinations(total_elements_count: int, selected_elements_count: in
     ValueError: n must be a non-negative integer
     """
     validate_elements_count(total_elements_count, selected_elements_count)
-    return comb(total_elements_count + selected_elements_count - 1, selected_elements_count)
+    return comb(
+        total_elements_count + selected_elements_count - 1, selected_elements_count
+    )
 
 
-def combinations_formula(total_elements_count: int, selected_elements_count: int) -> int:
+def combinations_formula(
+    total_elements_count: int, selected_elements_count: int
+) -> int:
     """
     Calculate combinations using the formula for n choose k.
 
@@ -85,12 +96,14 @@ def combinations_formula(total_elements_count: int, selected_elements_count: int
     validate_elements_count(total_elements_count, selected_elements_count)
     remaining_elements_count = total_elements_count - selected_elements_count
     return int(
-        factorial(total_elements_count) /
-        (factorial(selected_elements_count) * factorial(remaining_elements_count))
+        factorial(total_elements_count)
+        / (factorial(selected_elements_count) * factorial(remaining_elements_count))
     )
 
 
-def combinations_with_repetitions(total_elements_count: int, selected_elements_count: int) -> int:
+def combinations_with_repetitions(
+    total_elements_count: int, selected_elements_count: int
+) -> int:
     """
     Calculate combinations with repetitions allowed.
 
@@ -114,8 +127,8 @@ def combinations_with_repetitions(total_elements_count: int, selected_elements_c
     if total_elements_count + selected_elements_count == 0:
         return 1
     return int(
-        factorial(total_elements_count + selected_elements_count - 1) /
-        (factorial(selected_elements_count) * factorial(total_elements_count - 1))
+        factorial(total_elements_count + selected_elements_count - 1)
+        / (factorial(selected_elements_count) * factorial(total_elements_count - 1))
     )
 
 
@@ -165,7 +178,7 @@ def possible_selections(total_elements_count: int, selected_elements_count: int)
     ValueError: Please enter positive integers for total_elements_count and selected_elements_count where total_elements_count >= selected_elements_count
     """
     validate_elements_count(total_elements_count, selected_elements_count)
-    return int(total_elements_count ** selected_elements_count)
+    return int(total_elements_count**selected_elements_count)
 
 
 if __name__ == "__main__":
