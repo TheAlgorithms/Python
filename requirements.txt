@@ -15,7 +15,7 @@ requests
 rich
 # scikit-fuzzy  # uncomment once fuzzy_logic/fuzzy_operations.py is fixed
 scikit-learn ; python_version < '3.13'
-statsmodels
+statsmodels ; python_version < '3.13'
 sympy
 tensorflow
 tweepy
