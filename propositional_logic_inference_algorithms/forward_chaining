@@ -1,5 +1,12 @@
 import re
+'''
+The forward-chaining algorithm PL-FC-ENTAILS? (KB, q) determines if a single proposition
+symbol q—the query—is entailed by a knowledge base of definite clauses. It begins from
+known facts (positive literals) in the knowledge base. 
 
+Refrence: https://dl.ebooksworld.ir/books/Artificial.Intelligence.A.Modern.Approach.4th.Edition.Peter.Norvig.%20Stuart.Russell.Pearson.9780134610993.EBooksWorld.ir.pdf
+
+'''
 
 def find_symbols_in_kb(knowledge_base: list[str]) -> dict:
     '''
@@ -24,7 +31,7 @@ def number_of_symbols_in_premise(knowledge_base: list[str]) -> dict:
     '''
     Count the number of prposiotion symbols in each premise of KB clause
     :param knowledge_base: a list of string of definite clauses
-    :returns: a dictionary with key as the premise of KB clause and vlaue of count of symbols in the premise
+    :returns: a dictionary with key as the premise of KB clause and value of count of symbols in the premise
     '''
 
     count = {}
@@ -59,7 +66,7 @@ def get_known_facts(knowledge_base: list[str]) -> list[str]:
 def forward_chaining(knowledge_base: list[str], query:str) -> bool:
     ''' Forward chaining on Knowledge Base(KB) of definite clauses
     :param knowledge_base: a list of string of definite clauses
-    :param query: a single proposition sysmbol that you are checking if it is entailed by the  KB
+    :param query: a single proposition symbol that you are checking if it is entailed by the  KB
     :returns: If the query entailed by the KB or not?
     >>> forward_chaining([ "P => Q", "L & M => P", "B&L=> M", "A&P=>L", "A&B=>L", "A", "B" ], "Q")
     True
@@ -90,19 +97,19 @@ def forward_chaining(knowledge_base: list[str], query:str) -> bool:
 
 
 
-KB = [
-        "P => Q",
-        "L & M => P",
+KB = [ 
+        "P => Q", 
+        "L & M => P", 
         "B&L=> M",
-        "A&P=>L",
-        "A&B=>L",
-        "A",
+        "A&P=>L", 
+        "A&B=>L", 
+        "A", 
         "B" ]
 
 '''
 1)- KB must be written in horn form.
-2)- It must be written as an implcaion whoose
-its premise(head) must be conjuction of positive literals and its conclusion(body)
+2)- It must be written as an implcaion whose 
+its premise(head) must be conjunction of positive literals and its conclusion(body)
 3)- It must contains facts about the world which are written as a single proposition symbol
 '''
 
@@ -114,10 +121,10 @@ Query is a signe proposition symbol that you check if it is entailed by the KB
 
 if __name__ == "__main__":
 
-
+    
     import doctest
 
     doctest.testmod(verbose=True)
-
+   
     result = forward_chaining(KB, QUERY)
     print(result)
