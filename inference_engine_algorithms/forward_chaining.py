@@ -12,7 +12,7 @@ import re
 
 def find_symbols_in_kb(knowledge_base: list[str]) -> dict:
     '''
-    Find all unique symbols in the Knowledge_base
+    Find all unique symbols in the Knowledge_base.
     :param knowledge_base: a list of string of definite clauses
     :returns: a dictionary with symbols as the keys their values are False
     '''
@@ -31,9 +31,9 @@ def find_symbols_in_kb(knowledge_base: list[str]) -> dict:
 def number_of_symbols_in_premise(knowledge_base: list[str]) -> dict:
 
     '''
-    Count the number of prposiotion symbols in each premise of KB clause
+    Count the number of prposiotion symbols in each premise of KB clause.
     :param knowledge_base: a list of string of definite clauses
-    :returns: a dictionary with key as the premise of KB clause and value of count of symbols in the premise
+    :returns: a dict with keys as the premise and value is count of symbols in premise
     '''
 
     count = {}
@@ -49,7 +49,7 @@ def number_of_symbols_in_premise(knowledge_base: list[str]) -> dict:
 
 def get_known_facts(knowledge_base: list[str]) -> list[str]:
     '''
-    Get the known facts in KB
+    Get the known facts in KB.
     :param knowledge_base: a list of string of definite clauses
     :returns: list of facts
 
@@ -66,13 +66,17 @@ def get_known_facts(knowledge_base: list[str]) -> list[str]:
 
 
 def forward_chaining(knowledge_base: list[str], query:str) -> bool:
-    ''' Forward chaining on Knowledge Base(KB) of definite clauses
+    ''' Forward chaining on Knowledge Base(KB) of definite clauses.
     :param knowledge_base: a list of string of definite clauses
-    :param query: a single proposition symbol that you are checking if it is entailed by the  KB
+    :param query: a single proposition symbol 
     :returns: If the query entailed by the KB or not?
-    >>> forward_chaining([ "P => Q", "L & M => P", "B&L=> M", "A&P=>L", "A&B=>L", "A", "B" ], "Q")
+    >>> input_kb = [ "P => Q", "L & M => P", 
+    ... "B&L=> M", "A&P=>L", "A&B=>L", "A", "B" ]
+    >>> forward_chaining(input_kb, "Q")
     True
-    >>> forward_chaining([ "P => Q", "L & M => P", "B&L=> M", "A&P=>L", "A&B=>L", "A", "B" ], "C")
+    >>> input_kb = [ "P => Q", "L & M => P", 
+    ... "B&L=> M", "A&P=>L", "A&B=>L", "A", "B" ]
+    >>> forward_chaining(input_kb, "C")
     False
 
     '''
@@ -110,15 +114,14 @@ KB = [
 
 '''
 1)- KB must be written in horn form.
-2)- It must be written as an implcaion whose 
 2)- It must be written as an implcaion whose
-its premise(head) must be conjunction of positive literals and its conclusion(body)
-3)- It must contains facts about the world which are written as a single proposition symbol
+its premise(head) must be conjunction of positive literals and its conclusion(body).
+3)- Contains facts about the world as single proposition symbol.
 '''
 QUERY = "Q"
 
 '''
-Query is a signe proposition symbol that you check if it is entailed by the KB
+Query is a signe proposition symbol that you check if it is entailed by the KB.
 
 '''
 
