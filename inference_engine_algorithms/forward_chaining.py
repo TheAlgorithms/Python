@@ -29,7 +29,6 @@ def find_symbols_in_kb(knowledge_base: list[str]) -> dict:
 
 
 def number_of_symbols_in_premise(knowledge_base: list[str]) -> dict:
-
     """
     Count the number of prposiotion symbols in each premise of KB clause.
     :param knowledge_base: a list of string of definite clauses
@@ -65,13 +64,13 @@ def get_known_facts(knowledge_base: list[str]) -> list[str]:
 def forward_chaining(knowledge_base: list[str], query: str) -> bool:
     """Forward chaining on Knowledge Base(KB) of definite clauses
     :param knowledge_base: a list of string of definite clauses
-    :param query: a single proposition symbol 
+    :param query: a single proposition symbol
     :returns: If the query entailed by the KB or not?
-    >>> input_kb = [ "P => Q", "L & M => P", 
+    >>> input_kb = [ "P => Q", "L & M => P",
     ... "B&L=> M", "A&P=>L", "A&B=>L", "A", "B" ]
     >>> forward_chaining(input_kb, "Q")
     True
-    >>> input_kb = [ "P => Q", "L & M => P", 
+    >>> input_kb = [ "P => Q", "L & M => P",
     ... "B&L=> M", "A&P=>L", "A&B=>L", "A", "B" ]
     >>> forward_chaining(input_kb, "C")
     False
