@@ -69,7 +69,7 @@ def forward_chianing(knowledge_base: list[str], query:str) -> bool:
 
 
 if __name__ == "__main__":
-    
+
     kb = ["p => q", "q => r", "r => p", "s => t", "u => v", "v => w", "w => u", "a", "b", "c" , "w" , "u&q=>r", "q"]
 
     result = forward_chianing(kb, "p")
