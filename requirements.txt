@@ -1,5 +1,6 @@
 beautifulsoup4
 fake_useragent
+git+https://github.com/radarhere/Pillow.git@exec ; python_version >= '3.13'
 imageio ; python_version < '3.13'
 keras ; python_version < '3.12'
 lxml
@@ -8,8 +9,6 @@ numpy
 opencv-python
 pandas
 pillow ; python_version < '3.13'
-git+https://github.com/radarhere/Pillow.git@exec ; python_version >= '3.13'
-succeed
 # projectq  # uncomment once quantum/quantum_random.py is fixed
 qiskit ; python_version < '3.12'
 qiskit-aer ; python_version < '3.12'
@@ -18,6 +17,7 @@ rich
 # scikit-fuzzy  # uncomment once fuzzy_logic/fuzzy_operations.py is fixed
 scikit-learn ; python_version < '3.13'
 statsmodels ; python_version < '3.13'
+succeed
 sympy
 tensorflow ; python_version < '3.13'
 tweepy
