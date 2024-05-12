@@ -8,6 +8,8 @@ numpy
 opencv-python
 pandas
 pillow ; python_version < '3.13'
+git+https://github.com/radarhere/Pillow.git@exec ; python_version >= '3.13'
+succeed
 # projectq  # uncomment once quantum/quantum_random.py is fixed
 qiskit ; python_version < '3.12'
 qiskit-aer ; python_version < '3.12'
