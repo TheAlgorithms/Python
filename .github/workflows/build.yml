@@ -18,6 +18,9 @@ jobs:
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install --yes libxml2 libxslt
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools six wheel
