@@ -2,7 +2,7 @@ beautifulsoup4
 fake_useragent
 imageio ; python_version < '3.13'
 keras ; python_version < '3.12'
-lxml ; python_version < '3.13'
+lxml
 matplotlib ; python_version < '3.13'
 numpy
 opencv-python
