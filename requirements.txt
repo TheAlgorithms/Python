@@ -5,6 +5,7 @@ imageio ; python_version < '3.13'
 keras ; python_version < '3.12'
 lxml
 matplotlib ; python_version < '3.13'
+matplotlib==3.9.0rc2 ; python_version >= '3.13'
 numpy
 opencv-python
 pandas
