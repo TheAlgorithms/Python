@@ -20,7 +20,7 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
       - run: |
           sudo apt-get update -qq
-          sudo apt-get install --yes libxml2 libxslt
+          sudo apt-get install --yes libxml2 libxslt1-dev libxslt1.1 xsltproc
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools six wheel
