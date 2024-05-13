@@ -1,7 +1,7 @@
 beautifulsoup4
 fake_useragent
 git+https://github.com/radarhere/Pillow.git@exec ; python_version >= '3.13'
-imageio # ; python_version < '3.13'
+imageio
 keras ; python_version < '3.12'
 lxml
 matplotlib
@@ -15,8 +15,8 @@ qiskit-aer ; python_version < '3.12'
 requests
 rich
 # scikit-fuzzy  # uncomment once fuzzy_logic/fuzzy_operations.py is fixed
-scikit-learn # ; python_version < '3.13'
-statsmodels # ; python_version < '3.13'
+scikit-learn
+statsmodels
 sympy
 tensorflow ; python_version < '3.13'
 tweepy
