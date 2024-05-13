@@ -22,7 +22,7 @@ jobs:
       # https://lxml.de/installation.html#requirements
       - run: |
           sudo apt-get update -qq
-          sudo apt-get install --yes libopenblas-dev libxml2 libxslt1-dev libxslt1.1 xsltproc
+          sudo apt-get install --yes libhdf5 libopenblas-dev libxml2 libxslt1-dev libxslt1.1 xsltproc
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools six wheel
