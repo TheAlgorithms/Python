@@ -2,7 +2,7 @@ beautifulsoup4
 fake_useragent
 git+https://github.com/radarhere/Pillow.git@exec ; python_version >= '3.13'
 imageio
-keras ; python_version < '3.12'
+keras
 lxml
 matplotlib
 numpy
