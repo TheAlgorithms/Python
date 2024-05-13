@@ -18,6 +18,8 @@ jobs:
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+      # https://github.com/scipy/scipy/issues/16308#issuecomment-1140477372
+      # https://lxml.de/installation.html#requirements
       - run: |
           sudo apt-get update -qq
           sudo apt-get install --yes libopenblas-dev libxml2 libxslt1-dev libxslt1.1 xsltproc
