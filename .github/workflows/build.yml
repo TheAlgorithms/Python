@@ -22,7 +22,11 @@ jobs:
       # https://lxml.de/installation.html#requirements
       - run: |
           sudo apt-get update -qq
-          sudo apt-get install --yes libhdf5-dev libopenblas-dev libxml2 libxslt1-dev libxslt1.1 xsltproc
+          # libgmp-dev for qiskit
+          # libhdf5-dev for keras
+          # libopenblas-dev for scipy
+          # libxml2 for lxml
+          sudo apt-get install --yes libgmp-dev libhdf5-dev libopenblas-dev libxml2 libxslt1-dev libxslt1.1 xsltproc
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools six wheel
