@@ -1,5 +1,6 @@
 beautifulsoup4
 fake_useragent
+git+https://github.com/cclauss/tweepy.git@patch-1 ; python_version >= '3.13'
 git+https://github.com/radarhere/Pillow.git@exec ; python_version >= '3.13'
 imageio
 keras
@@ -19,7 +20,7 @@ scikit-learn
 statsmodels
 sympy
 tensorflow ; python_version < '3.13'
-tweepy
+tweepy ; python_version < '3.13'
 # yulewalker  # uncomment once audio_filters/equal_loudness_filter.py is fixed
 typing_extensions
 xgboost
