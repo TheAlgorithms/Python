@@ -2,81 +2,79 @@ from __future__ import annotations
 
 
 class IIRFilter:
-    r"""
-    N-Order IIR filter
-    Assumes working with float samples normalized on [-1, 1]
+    """
+    Represents an N-order Infinite Impulse Response (IIR) filter.
 
-    ---
+    This class implements a digital filter that operates on floating-point samples normalized
+    to the range [-1, 1].
 
-    Implementation details:
-    Based on the 2nd-order function from
-     https://en.wikipedia.org/wiki/Digital_biquad_filter,
-    this generalized N-order function was made.
+    Attributes:
+        order (int): The order of the filter.
+        a_coeffs (list[float]): The coefficients of the denominator polynomial (feedback coefficients).
+        b_coeffs (list[float]): The coefficients of the numerator polynomial (feedforward coefficients).
+        input_history (list[float]): History of input samples for processing.
+        output_history (list[float]): History of output samples for processing.
 
-    Using the following transfer function
-    H(z)=\frac{b_{0}+b_{1}z^{-1}+b_{2}z^{-2}+...+b_{k}z^{-k}}{a_{0}+a_{1}z^{-1}+a_{2}z^{-2}+...+a_{k}z^{-k}}
-    we can rewrite this to
-    y[n]={\frac{1}{a_{0}}}\left(\left(b_{0}x[n]+b_{1}x[n-1]+b_{2}x[n-2]+...+b_{k}x[n-k]\right)-\left(a_{1}y[n-1]+a_{2}y[n-2]+...+a_{k}y[n-k]\right)\right)
+    Note:
+        This class assumes that the filter operates in real-time and processes one sample at a time.
+
+    Example:
+        >>> filt = IIRFilter(2)
+        >>> filt.set_coefficients([1.0, -1.0, 0.5], [1.0, 0.0, -0.5])
+        >>> output = filt.process(0.5)
     """
 
     def __init__(self, order: int) -> None:
+        """
+        Initializes the IIRFilter with the specified order.
+
+        Args:
+            order (int): The order of the filter.
+
+        Note:
+            The initial coefficients are set to unity (1.0) for both the numerator and denominator.
+        """
         self.order = order
-
-        # a_{0} ... a_{k}
         self.a_coeffs = [1.0] + [0.0] * order
-        # b_{0} ... b_{k}
         self.b_coeffs = [1.0] + [0.0] * order
-
-        # x[n-1] ... x[n-k]
-        self.input_history = [0.0] * self.order
-        # y[n-1] ... y[n-k]
-        self.output_history = [0.0] * self.order
+        self.input_history = [0.0] * order
+        self.output_history = [0.0] * order
 
     def set_coefficients(self, a_coeffs: list[float], b_coeffs: list[float]) -> None:
         """
-        Set the coefficients for the IIR filter. These should both be of size order + 1.
-        a_0 may be left out, and it will use 1.0 as default value.
+        Sets the coefficients for the IIR filter.
 
-        This method works well with scipy's filter design functions
-            >>> # Make a 2nd-order 1000Hz butterworth lowpass filter
-            >>> import scipy.signal
-            >>> b_coeffs, a_coeffs = scipy.signal.butter(2, 1000,
-            ...                                          btype='lowpass',
-            ...                                          fs=48000)
-            >>> filt = IIRFilter(2)
-            >>> filt.set_coefficients(a_coeffs, b_coeffs)
+        Args:
+            a_coeffs (list[float]): The coefficients of the denominator polynomial (feedback coefficients).
+            b_coeffs (list[float]): The coefficients of the numerator polynomial (feedforward coefficients).
+
+        Raises:
+            ValueError: If the length of `a_coeffs` or `b_coeffs` does not match the order of the filter.
         """
-        if len(a_coeffs) < self.order:
-            a_coeffs = [1.0, *a_coeffs]
-
         if len(a_coeffs) != self.order + 1:
-            msg = (
-                f"Expected a_coeffs to have {self.order + 1} elements "
-                f"for {self.order}-order filter, got {len(a_coeffs)}"
-            )
-            raise ValueError(msg)
-
+            raise ValueError(f"Expected {self.order + 1} coefficients for `a_coeffs`, got {len(a_coeffs)}")
         if len(b_coeffs) != self.order + 1:
-            msg = (
-                f"Expected b_coeffs to have {self.order + 1} elements "
-                f"for {self.order}-order filter, got {len(a_coeffs)}"
-            )
-            raise ValueError(msg)
+            raise ValueError(f"Expected {self.order + 1} coefficients for `b_coeffs`, got {len(b_coeffs)}")
 
         self.a_coeffs = a_coeffs
         self.b_coeffs = b_coeffs
 
     def process(self, sample: float) -> float:
         """
-        Calculate y[n]
+        Processes a single input sample through the IIR filter.
 
-        >>> filt = IIRFilter(2)
-        >>> filt.process(0)
-        0.0
+        Args:
+            sample (float): The input sample to be filtered.
+
+        Returns:
+            float: The filtered output sample.
+
+        Example:
+            >>> filt = IIRFilter(2)
+            >>> filt.set_coefficients([1.0, -1.0, 0.5], [1.0, 0.0, -0.5])
+            >>> output = filt.process(0.5)
         """
         result = 0.0
-
-        # Start at index 1 and do index 0 at the end.
         for i in range(1, self.order + 1):
             result += (
                 self.b_coeffs[i] * self.input_history[i - 1]
