@@ -52,9 +52,17 @@ class IIRFilter:
             ValueError: If the length of `a_coeffs` or `b_coeffs` does not match the order of the filter.
         """
         if len(a_coeffs) != self.order + 1:
-            raise ValueError("Expected {} coefficients for `a_coeffs`, got {}".format(self.order + 1, len(a_coeffs)))
+            raise ValueError(
+                "Expected {} coefficients for `a_coeffs`, got {}".format(
+                    self.order + 1, len(a_coeffs)
+                )
+            )
         if len(b_coeffs) != self.order + 1:
-            raise ValueError("Expected {} coefficients for `b_coeffs`, got {}".format(self.order + 1, len(b_coeffs)))
+            raise ValueError(
+                "Expected {} coefficients for `b_coeffs`, got {}".format(
+                    self.order + 1, len(b_coeffs)
+                )
+            )
 
         self.a_coeffs = a_coeffs
         self.b_coeffs = b_coeffs
