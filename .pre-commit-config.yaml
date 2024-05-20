@@ -29,7 +29,7 @@ repos:
           - tomli
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: "2.0.4"
+    rev: "2.1.1"
     hooks:
       - id: pyproject-fmt
 
@@ -42,7 +42,7 @@ repos:
         pass_filenames: false
 
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.17
+    rev: v0.18
     hooks:
       - id: validate-pyproject
 
