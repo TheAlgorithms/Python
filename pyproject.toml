@@ -1,21 +1,9 @@
 [tool.ruff]
-lint.ignore = [ # `ruff rule S101` for a description of that rule
-  "B904",    # Within an `except` clause, raise exceptions with `raise ... from err` -- FIX ME
-  "B905",    # `zip()` without an explicit `strict=` parameter -- FIX ME
-  "EM101",   # Exception must not use a string literal, assign to variable first
-  "EXE001",  # Shebang is present but file is not executable -- DO NOT FIX
-  "G004",    # Logging statement uses f-string
-  "PLC1901", # `{}` can be simplified to `{}` as an empty string is falsey
-  "PLW060",  # Using global for `{name}` but no assignment is done -- DO NOT FIX
-  "PLW2901", # PLW2901: Redefined loop variable -- FIX ME
-  "PT011",   # `pytest.raises(Exception)` is too broad, set the `match` parameter or use a more specific exception
-  "PT018",   # Assertion should be broken down into multiple parts
-  "S101",    # Use of `assert` detected -- DO NOT FIX
-  "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes -- FIX ME
-  "SLF001",  # Private member accessed: `_Iterator` -- FIX ME
-  "UP038",   # Use `X | Y` in `{}` call instead of `(X, Y)` -- DO NOT FIX
-]
-lint.select = [ # https://beta.ruff.rs/docs/rules
+target-version = "py312"
+
+output-format = "full"
+lint.select = [
+  # https://beta.ruff.rs/docs/rules
   "A",     # flake8-builtins
   "ARG",   # flake8-unused-arguments
   "ASYNC", # flake8-async
@@ -68,54 +56,63 @@ lint.select = [ # https://beta.ruff.rs/docs/rules
   # "TCH",  # flake8-type-checking
   # "TRY",  # tryceratops
 ]
-output-format = "full"
-target-version = "py312"
-
-[tool.ruff.lint.mccabe] # DO NOT INCREASE THIS VALUE
-max-complexity = 17 # default: 10
-
-[tool.ruff.lint.per-file-ignores]
-"arithmetic_analysis/newton_raphson.py" = [
+lint.per-file-ignores."arithmetic_analysis/newton_raphson.py" = [
   "PGH001",
 ]
-"data_structures/binary_tree/binary_search_tree_recursive.py" = [
+lint.per-file-ignores."data_structures/binary_tree/binary_search_tree_recursive.py" = [
   "BLE001",
 ]
-"data_structures/hashing/tests/test_hash_map.py" = [
+lint.per-file-ignores."data_structures/hashing/tests/test_hash_map.py" = [
   "BLE001",
 ]
-"hashes/enigma_machine.py" = [
+lint.per-file-ignores."hashes/enigma_machine.py" = [
   "BLE001",
 ]
-"machine_learning/sequential_minimum_optimization.py" = [
+lint.per-file-ignores."machine_learning/sequential_minimum_optimization.py" = [
   "SIM115",
 ]
-"matrix/sherman_morrison.py" = [
+lint.per-file-ignores."matrix/sherman_morrison.py" = [
   "SIM103",
 ]
-"other/l*u_cache.py" = [
+lint.per-file-ignores."other/l*u_cache.py" = [
   "RUF012",
 ]
-"physics/newtons_second_law_of_motion.py" = [
+lint.per-file-ignores."physics/newtons_second_law_of_motion.py" = [
   "BLE001",
 ]
-"project_euler/problem_099/sol1.py" = [
+lint.per-file-ignores."project_euler/problem_099/sol1.py" = [
   "SIM115",
 ]
-"sorts/external_sort.py" = [
+lint.per-file-ignores."sorts/external_sort.py" = [
   "SIM115",
 ]
-
-[tool.ruff.lint.pylint] # DO NOT INCREASE THESE VALUES
-allow-magic-value-types = [
+lint.mccabe.max-complexity = 17 # default: 10
+lint.pylint.allow-magic-value-types = [
   "float",
   "int",
   "str",
 ]
-max-args = 10 # default: 5
-max-branches = 20 # default: 12
-max-returns = 8 # default: 6
-max-statements = 88 # default: 50
+lint.pylint.max-args = 10 # default: 5
+lint.pylint.max-branches = 20 # default: 12
+lint.pylint.max-returns = 8 # default: 6
+lint.pylint.max-statements = 88 # default: 50
+lint.ignore = [
+  # `ruff rule S101` for a description of that rule
+  "B904",    # Within an `except` clause, raise exceptions with `raise ... from err` -- FIX ME
+  "B905",    # `zip()` without an explicit `strict=` parameter -- FIX ME
+  "EM101",   # Exception must not use a string literal, assign to variable first
+  "EXE001",  # Shebang is present but file is not executable -- DO NOT FIX
+  "G004",    # Logging statement uses f-string
+  "PLC1901", # `{}` can be simplified to `{}` as an empty string is falsey
+  "PLW060",  # Using global for `{name}` but no assignment is done -- DO NOT FIX
+  "PLW2901", # PLW2901: Redefined loop variable -- FIX ME
+  "PT011",   # `pytest.raises(Exception)` is too broad, set the `match` parameter or use a more specific exception
+  "PT018",   # Assertion should be broken down into multiple parts
+  "S101",    # Use of `assert` detected -- DO NOT FIX
+  "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes -- FIX ME
+  "SLF001",  # Private member accessed: `_Iterator` -- FIX ME
+  "UP038",   # Use `X | Y` in `{}` call instead of `(X, Y)` -- DO NOT FIX
+]
 
 [tool.codespell]
 ignore-words-list = "3rt,ans,bitap,crate,damon,fo,followings,hist,iff,kwanza,manuel,mater,secant,som,sur,tim,toi,zar"
