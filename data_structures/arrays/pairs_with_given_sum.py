@@ -21,17 +21,20 @@ def pairs_with_sum(arr: list, req_sum: int) -> int:
     4
     """
     return len([1 for a, b in combinations(arr, 2) if a + b == req_sum])
+
+
 # Without using the  itertools Package we can do it too
-def no_of_pairs(arr: list,req_sum: int)->int:
+def no_of_pairs(arr: list, req_sum: int) -> int:
     # this is a non optimised code and easy to understand as i am a beginner in coding
-    # the code above is the best one to use as this function uses nested loops which is 
+    # the code above is the best one to use as this function uses nested loops which is
     # very much slower in execution
-    count_total=0
+    count_total = 0
     for i in range(len(arr)):
-        for j in range(i+1,len(arr)):
-            if (arr[i]+arr[j])==req_sum:
-                count_total+=1
+        for j in range(i + 1, len(arr)):
+            if (arr[i] + arr[j]) == req_sum:
+                count_total += 1
     return count_total
+
 
 if __name__ == "__main__":
     from doctest import testmod
