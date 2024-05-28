@@ -42,8 +42,8 @@ value is 3 (0b11) with a bit length of 2.
 - OR that into the working 0b10111000, that is, ( 0b10111000 | 0b101 )
   -> 0b10111101.
   
-To remove the center two bits of 0b101101 -> 0b1001, the proces is mostly
-the same, but ...
+To remove the center two bits of 0b101101 -> 0b1001, the process is mostly
+the same.
 
 - The initial right shift is index(2) + bit_length(2), taking out the two
   middle bits and producing 0b10.
@@ -194,9 +194,9 @@ def multibit_insert(bint: int, index: int, bit_len: int, value: int) -> int:
     57
     >>> multibit_insert(22, 0, 1, 1)
     45
-    >>> multibit_set(22, 2, 1, 0)
-    18
-    >>> multibit_set(22, 2, 1, 3) is None
+    >>> multibit_insert(22, 2, 1, 0)
+    42
+    >>> multibit_insert(22, 2, 1, 3) is None
     True
     """
 
