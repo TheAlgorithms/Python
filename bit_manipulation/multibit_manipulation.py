@@ -1,7 +1,7 @@
 """Bit integer manipulation, both single bit and multi-bit list-like
    slicing functions ( get, set, insert, remove ) implemented with
    builtin bitwise operations.
-   
+
 See:
 https://high-python-ext-3-algorithms.readthedocs.io/ko/latest/chapter5.html#insert-bit
 https://en.wikipedia.org/wiki/Bit_manipulation#Bit_manipulation_operations
@@ -11,22 +11,22 @@ All parameters must be must be int >= 0, referred to as a 'bit integer'.
 
  bint:int
    The bit integer to be accessed or returned as modified.
-   
+
  index:int
    The offset into the bit position from right,
-	 0b010111 -> list [1,1,1,0,1,0]. big-endian -> little-endian
+         0b010111 -> list [1,1,1,0,1,0]. big-endian -> little-endian
    For inserts, index is the position to the right of index,
-	 index 0 -> right of rightmost bit.
+         index 0 -> right of rightmost bit.
    For gets, sets and removes, it is the position of the bit itself.
-   
+
  value:int
    Either [0,1] for single bit, or bit mask, bit_length(value) <= bitlen.
-	  
+
  bitlen:int
    The effective mask length, spec. leading zeros
-	 ( bitlen 4 value 1 -> 0001 )
-	 
-The bitwise expressions may look convoluted, but basically, there are 
+         ( bitlen 4 value 1 -> 0001 )
+
+The bitwise expressions may look convoluted, but basically, there are
 just three parts: left-hand side, value, right-hand side.
 
 For example, say you want to insert two ones in the middle of 0b101101,
@@ -41,7 +41,7 @@ value is 3 (0b11) with a bit length of 2.
   ( 0b101101 & 0b111 ) -> 0b101.
 - OR that into the working 0b10111000, that is, ( 0b10111000 | 0b101 )
   -> 0b10111101.
-  
+
 To remove the center two bits of 0b101101 -> 0b1001, the process is mostly
 the same.
 
@@ -50,16 +50,16 @@ the same.
 - The left shift of index produces 0b1000.
 - The original bint is ANDed with bitmask 0b11 producing 0b01 which is
   ORed with 0b1000 yielding the target 0b1001.
-    
-It's not so bad once you get the hang of it. 
-  
+
+It's not so bad once you get the hang of it.
+
 Various bit insert/remove solutions exist using bin() string functions
 and slicing, but this bitwise implementation is significantly faster
 (about 3x) on Python for big ints (2^100).
- 
-See https://github.com/billbreit/BitWiseApps/blob/main/dev/time_ops.py  
- 
- """
+
+See https://github.com/billbreit/BitWiseApps/blob/main/dev/time_ops.py
+
+"""
 
 bit_length = int.bit_length
 
@@ -230,7 +230,6 @@ def multibit_remove(bint: int, index: int, bit_len: int) -> int:
 
 
 if __name__ == "__main__":
-
     import doctest
 
     doctest.testmod()
