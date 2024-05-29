@@ -2,6 +2,7 @@
    slicing functions ( get, set, insert, remove ) implemented with
    builtin bitwise operations.
 
+Struggling with GitHub commits ...
 See:
 https://high-python-ext-3-algorithms.readthedocs.io/ko/latest/chapter5.html#insert-bit
 https://en.wikipedia.org/wiki/Bit_manipulation#Bit_manipulation_operations
