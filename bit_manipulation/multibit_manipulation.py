@@ -14,9 +14,9 @@ All parameters must be must be int >= 0, referred to as a 'bit integer'.
 
  index:int
    The offset into the bit position from right,
-	 0b010111 -> list [1,1,1,0,1,0]. big-endian -> little-endian
+         0b010111 -> list [1,1,1,0,1,0]. big-endian -> little-endian
    For inserts, index is the position to the right of index,
-	 index 0 -> right of rightmost bit.
+         index 0 -> right of rightmost bit.
    For gets, sets and removes, it is the position of the bit itself.
 
  value:int
@@ -24,7 +24,7 @@ All parameters must be must be int >= 0, referred to as a 'bit integer'.
 
  bitlen:int
    The effective mask length, spec. leading zeros
-	 ( bitlen 4 value 1 -> 0001 )
+         ( bitlen 4 value 1 -> 0001 )
 
 The bitwise expressions may look convoluted, but basically, there are
 just three parts: left-hand side, value, right-hand side.
@@ -230,7 +230,6 @@ def multibit_remove(bint: int, index: int, bit_len: int) -> int:
 
 
 if __name__ == "__main__":
-
     import doctest
 
     doctest.testmod()
