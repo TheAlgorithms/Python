@@ -69,7 +69,7 @@ bit_length = int.bit_length
    Anything like int(None) is going to cause a loud error. """
 
 
-def bit_get(bint: int, index: int) -> int:
+def bit_get(bint: int, index: int) -> int | None:
     """Get value of bit at index in bint.
 
     >>> bit_get(15, 0)
@@ -87,7 +87,7 @@ def bit_get(bint: int, index: int) -> int:
     return multibit_get(bint, index, 1)
 
 
-def bit_set(bint: int, index: int, value: int = 1) -> int:
+def bit_set(bint: int, index: int, value: int = 1) -> int | None:
     """Set bit at index to value 1 or 0, like set() or unset().
 
     >>> bit_set(15, 0, 0)
@@ -106,7 +106,7 @@ def bit_set(bint: int, index: int, value: int = 1) -> int:
     return multibit_set(bint, index, 1, value)
 
 
-def bit_insert(bint: int, index: int, value: int = 1) -> int:
+def bit_insert(bint: int, index: int, value: int = 1) -> int | None:
     """Insert bit value before index.
 
     >>> bit_insert(15, 0, 0)
@@ -125,7 +125,7 @@ def bit_insert(bint: int, index: int, value: int = 1) -> int:
     return multibit_insert(bint, index, 1, value)
 
 
-def bit_remove(bint: int, index: int) -> int:
+def bit_remove(bint: int, index: int) -> int | None:
     """Remove the bit at index from bint.
 
     >>> bit_remove(15, 0)
@@ -141,7 +141,7 @@ def bit_remove(bint: int, index: int) -> int:
     return multibit_remove(bint, index, 1)
 
 
-def multibit_get(bint: int, index: int, bit_len: int) -> int:
+def multibit_get(bint: int, index: int, bit_len: int) -> int | None:
     """Get bit_len number of bits starting from index.
        819 = 1100110011.
 
@@ -161,7 +161,7 @@ def multibit_get(bint: int, index: int, bit_len: int) -> int:
     return (bint >> index) & ((1 << bit_len) - 1)
 
 
-def multibit_set(bint: int, index: int, bit_len: int, value: int) -> int:
+def multibit_set(bint: int, index: int, bit_len: int, value: int) -> int | None:
     """Overlay bint at index with value for bit_len bits.
 
     >>> multibit_set(0, 1, 1, 0)
@@ -186,7 +186,7 @@ def multibit_set(bint: int, index: int, bit_len: int, value: int) -> int:
     )
 
 
-def multibit_insert(bint: int, index: int, bit_len: int, value: int) -> int:
+def multibit_insert(bint: int, index: int, bit_len: int, value: int) -> int | None:
     """Insert before index-th slot
 
     >>> multibit_insert(0, 1, 1, 1)
@@ -209,7 +209,7 @@ def multibit_insert(bint: int, index: int, bit_len: int, value: int) -> int:
     return ((((bint >> index) << bit_len) | value) << index) | bint & ((1 << index) - 1)
 
 
-def multibit_remove(bint: int, index: int, bit_len: int) -> int:
+def multibit_remove(bint: int, index: int, bit_len: int) -> int | None:
     """Remove bits in bint from index to index+bit_len.
 
     >>> multibit_remove(3, 1, 1)
@@ -231,6 +231,7 @@ def multibit_remove(bint: int, index: int, bit_len: int) -> int:
 
 
 if __name__ == "__main__":
+
     import doctest
 
     doctest.testmod()
