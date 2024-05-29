@@ -231,7 +231,6 @@ def multibit_remove(bint: int, index: int, bit_len: int) -> int:
 
 
 if __name__ == "__main__":
-
     import doctest
 
     doctest.testmod()
