@@ -69,7 +69,7 @@ bit_length = int.bit_length
    Anything like int(None) is going to cause a loud error. """
 
 
-def bit_get(bint: int, index: int) -> int | None:
+def bit_get(bint: int, index: int) -> int:
     """Get value of bit at index in bint.
 
     >>> bit_get(15, 0)
@@ -78,16 +78,20 @@ def bit_get(bint: int, index: int) -> int | None:
     0
     >>> bit_get(0, 4)
     0
-    >>> bit_get(-1, 2) is None
-    True
-    >>> bit_get(0, -1) is None
-    True
+    >>> bit_get(-1, 2)
+    Traceback (most recent call last):
+        ...
+    ValueError: All input values must be positive integers.
+    >>> bit_get(0, -1)
+    Traceback (most recent call last):
+        ...
+    ValueError: All input values must be positive integers.
     """
 
     return multibit_get(bint, index, 1)
 
 
-def bit_set(bint: int, index: int, value: int = 1) -> int | None:
+def bit_set(bint: int, index: int, value: int = 1) -> int:
     """Set bit at index to value 1 or 0, like set() or unset().
 
     >>> bit_set(15, 0, 0)
@@ -96,17 +100,19 @@ def bit_set(bint: int, index: int, value: int = 1) -> int | None:
     31
     >>> bit_set(31, 6, 0)
     31
-    >>> bit_set(31, 6, 3) is None
-    True
+    >>> bit_set(31, 6, 3)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input value must be 1 or 0.
     """
 
     if value not in [0, 1]:
-        return None  # error
+        raise ValueError("Input value must be 1 or 0.")
 
     return multibit_set(bint, index, 1, value)
 
 
-def bit_insert(bint: int, index: int, value: int = 1) -> int | None:
+def bit_insert(bint: int, index: int, value: int = 1) -> int:
     """Insert bit value before index.
 
     >>> bit_insert(15, 0, 0)
@@ -120,12 +126,12 @@ def bit_insert(bint: int, index: int, value: int = 1) -> int | None:
     """
 
     if value not in [0, 1]:
-        return None  # error
+        raise ValueError("Input value must be 1 or 0.")
 
     return multibit_insert(bint, index, 1, value)
 
 
-def bit_remove(bint: int, index: int) -> int | None:
+def bit_remove(bint: int, index: int) -> int:
     """Remove the bit at index from bint.
 
     >>> bit_remove(15, 0)
@@ -141,7 +147,7 @@ def bit_remove(bint: int, index: int) -> int | None:
     return multibit_remove(bint, index, 1)
 
 
-def multibit_get(bint: int, index: int, bit_len: int) -> int | None:
+def multibit_get(bint: int, index: int, bit_len: int) -> int:
     """Get bit_len number of bits starting from index.
        819 = 1100110011.
 
@@ -156,12 +162,12 @@ def multibit_get(bint: int, index: int, bit_len: int) -> int | None:
     """
 
     if bint < 0 or index < 0 or bit_len < 0:
-        return None  # error
+        raise ValueError("All input values must be positive integers.")
 
     return (bint >> index) & ((1 << bit_len) - 1)
 
 
-def multibit_set(bint: int, index: int, bit_len: int, value: int) -> int | None:
+def multibit_set(bint: int, index: int, bit_len: int, value: int) -> int:
     """Overlay bint at index with value for bit_len bits.
 
     >>> multibit_set(0, 1, 1, 0)
@@ -173,20 +179,24 @@ def multibit_set(bint: int, index: int, bit_len: int, value: int) -> int | None:
     >>> multibit_set(22, 2, 1, 0)
     18
     >>> multibit_set(22, 2, 1, 3) is None
-    True
+    Traceback (most recent call last):
+        ...
+    ValueError: Bit length of value can not be greater than specified bit length.
     """
 
     if bint < 0 or index < 0 or bit_len < 0 or value < 0:
-        return None  # error
+        raise ValueError("All input values must be positive integers.")
     if bit_length(value) > bit_len:
-        return None
+        raise ValueError(
+            "Bit length of value can not be greater than specified bit length."
+        )
 
     return ((((bint >> (index + bit_len)) << bit_len) | value) << index) | (
         bint & (1 << index) - 1
     )
 
 
-def multibit_insert(bint: int, index: int, bit_len: int, value: int) -> int | None:
+def multibit_insert(bint: int, index: int, bit_len: int, value: int) -> int:
     """Insert before index-th slot
 
     >>> multibit_insert(0, 1, 1, 1)
@@ -197,19 +207,23 @@ def multibit_insert(bint: int, index: int, bit_len: int, value: int) -> int | No
     45
     >>> multibit_insert(22, 2, 1, 0)
     42
-    >>> multibit_insert(22, 2, 1, 3) is None
-    True
+    >>> multibit_insert(22, 2, 1, 3)
+    Traceback (most recent call last):
+        ...
+    ValueError: Bit length of value can not be greater than specified bit length.
     """
 
     if bint < 0 or index < 0 or bit_len < 0 or value < 0:
-        return None  # error
+        raise ValueError("All input values must be positive integers.")
     if bit_length(value) > bit_len:
-        return None
+        raise ValueError(
+            "Bit length of value can not be greater than specified bit length."
+        )
 
     return ((((bint >> index) << bit_len) | value) << index) | bint & ((1 << index) - 1)
 
 
-def multibit_remove(bint: int, index: int, bit_len: int) -> int | None:
+def multibit_remove(bint: int, index: int, bit_len: int) -> int:
     """Remove bits in bint from index to index+bit_len.
 
     >>> multibit_remove(3, 1, 1)
@@ -225,7 +239,7 @@ def multibit_remove(bint: int, index: int, bit_len: int) -> int | None:
     """
 
     if bint < 0 or index < 0 or bit_len < 0:
-        return None  # error
+        raise ValueError("All input values must be positive integers.")
 
     return ((bint >> index + bit_len) << index) | bint & ((1 << index) - 1)
 
