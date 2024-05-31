@@ -31,7 +31,7 @@ The bitwise expressions may look convoluted, but basically, there are
 just three parts: left-hand side, value, right-hand side.
 
 For example, say you want to insert two ones in the middle of 0b101101,
-that is ->  0b10111101.  Index is 2 ( 0 ,1, 2 from the right ) and the
+that is ->  0b10111101. Index is 3 ( 0 ,1, 2, 3 from the right ) and the
 value is 3 (0b11) with a bit length of 2.
 
 - Shift >> index right to produce 0b101
@@ -44,15 +44,21 @@ value is 3 (0b11) with a bit length of 2.
   -> 0b10111101.
 
 To remove the center two bits of 0b101101 -> 0b1001, the process is mostly
-the same.
+the same.  Index is 2 for the remove operation on the right-center bit
+rather than 3 for inserting, because we are referring to the bit itself
+rather the position to the right of the bit index.
 
-- The initial right shift is index(2) + bit_length(2), taking out the two
+- The initial right shift is index (2 ) + bit_length(2), taking out the two
   middle bits and producing 0b10.
 - The left shift of index produces 0b1000.
 - The original bint is ANDed with bitmask 0b11 producing 0b01 which is
   ORed with 0b1000 yielding the target 0b1001.
 
-It's not so bad once you get the hang of it.
+It's not so bad once you get the hang of it, although it can still be a
+bear to debug.  In the insert example above, the result of inserting 0b11
+in the center ( index=3 ) or to the right ( index=2 ) produces the same
+correct result despite the misspecification. These algorithms are very 
+fast but can be touchy at times.
 
 Various bit insert/remove solutions exist using bin() string functions
 and slicing, but this bitwise implementation is significantly faster
@@ -63,10 +69,6 @@ See https://github.com/billbreit/BitWiseApps/blob/main/dev/time_ops.py
 """
 
 bit_length = int.bit_length
-
-"""The only consistent error checking is for bint < 0 or index < 0 etc.,
-   and for bit_length(value) > bit_len, which can cause silent errors.
-   Anything like int(None) is going to cause a loud error. """
 
 
 def bit_get(bint: int, index: int) -> int:
@@ -197,7 +199,7 @@ def multibit_set(bint: int, index: int, bit_len: int, value: int) -> int:
 
 
 def multibit_insert(bint: int, index: int, bit_len: int, value: int) -> int:
-    """Insert before index-th slot
+    """Insert value before index-th slot
 
     >>> multibit_insert(0, 1, 1, 1)
     2
@@ -245,6 +247,7 @@ def multibit_remove(bint: int, index: int, bit_len: int) -> int:
 
 
 if __name__ == "__main__":
+
     import doctest
 
     doctest.testmod()
