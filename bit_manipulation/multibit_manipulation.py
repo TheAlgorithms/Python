@@ -57,7 +57,7 @@ rather the position to the right of the bit index.
 It's not so bad once you get the hang of it, although it can still be a
 bear to debug.  In the insert example above, the result of inserting 0b11
 in the center ( index=3 ) or to the right ( index=2 ) produces the same
-correct result despite the misspecification. These algorithms are very 
+correct result despite the misspecification. These algorithms are very
 fast but can be touchy at times.
 
 Various bit insert/remove solutions exist using bin() string functions
