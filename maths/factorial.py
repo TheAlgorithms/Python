@@ -2,6 +2,8 @@
 Factorial of a positive integer -- https://en.wikipedia.org/wiki/Factorial
 """
 
+from functools import reduce
+
 
 def factorial(number: int) -> int:
     """
@@ -29,9 +31,8 @@ def factorial(number: int) -> int:
         raise ValueError("factorial() only accepts integral values")
     if number < 0:
         raise ValueError("factorial() not defined for negative values")
-    value = 1
-    for i in range(1, number + 1):
-        value *= i
+    if number in {0, 1}: return 1
+    value = reduce(lambda x , y: x * y, range(1, number + 1))
     return value
 
 
