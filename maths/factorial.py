@@ -31,8 +31,7 @@ def factorial(number: int) -> int:
         raise ValueError("factorial() only accepts integral values")
     if number < 0:
         raise ValueError("factorial() not defined for negative values")
-    if number in {0, 1}: return 1
-    value = reduce(lambda x , y: x * y, range(1, number + 1))
+    value = 1 if number in {0, 1} else reduce(lambda x , y: x * y, range(1, number + 1))
     return value
 
 
