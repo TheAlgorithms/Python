@@ -83,11 +83,11 @@ def bit_get(bint: int, index: int) -> int:
     >>> bit_get(-1, 2)
     Traceback (most recent call last):
         ...
-    ValueError: multi_get -> All input values must be positive integers.
+    ValueError: All input values must be positive integers.
     >>> bit_get(0, -1)
     Traceback (most recent call last):
         ...
-    ValueError: multi_get -> All input values must be positive integers.
+    ValueError: All input values must be positive integers.
     """
 
     return multibit_get(bint, index, 1)
@@ -105,7 +105,7 @@ def bit_set(bint: int, index: int, value: int = 1) -> int:
     >>> bit_set(31, 6, 3)
     Traceback (most recent call last):
         ...
-    ValueError: bit_set -> Input value must be 1 or 0.
+    ValueError: Input value must be 1 or 0.
     """
 
     if value not in [0, 1]:
@@ -180,16 +180,15 @@ def multibit_set(bint: int, index: int, bit_len: int, value: int) -> int:
     23
     >>> multibit_set(22, 2, 1, 0)
     18
-    >>> multibit_set(22, 2, 1, 3) is None
+    >>> multibit_set(22, 2, 1, 3)
     Traceback (most recent call last):
         ...
-    ValueError: multi_set -> Bit length of value can not be greater than specified bit length.
+    ValueError: Bit length of value can not be greater than specified bit length.
     """
 
     if bint < 0 or index < 0 or bit_len < 0 or value < 0:
         raise ValueError("All input values must be positive integers.")
     if bit_length(value) > bit_len:
-		msg =
         raise ValueError(
             "Bit length of value can not be greater than specified bit length."
         )
@@ -215,7 +214,7 @@ def multibit_insert(bint: int, index: int, bit_len: int, value: int) -> int:
     >>> multibit_insert(22, 2, 1, 3)
     Traceback (most recent call last):
         ...
-    ValueError: multi_insert -> Bit length of value can not be greater than specified bit length.
+    ValueError: Bit length of value can not be greater than specified bit length.
     """
 
     if bint < 0 or index < 0 or bit_len < 0 or value < 0:
