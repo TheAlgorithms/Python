@@ -29,7 +29,7 @@ def power(a: int, b: int) -> float:
     """
     :param a: The base (integer).
     :param b: The exponent (integer).
-    :retuen: The result of a^b, as a float for negative exponents.
+    :return: The result of a^b, as a float for negative exponents.
 
     >>> power(4,6)
     4096
