@@ -189,7 +189,7 @@ def multibit_set(bint: int, index: int, bit_len: int, value: int) -> int:
     if bint < 0 or index < 0 or bit_len < 0 or value < 0:
         raise ValueError("All input values must be positive integers.")
     if bit_length(value) > bit_len:
-		msg = 
+		msg =
         raise ValueError(
             "Bit length of value can not be greater than specified bit length."
         )
