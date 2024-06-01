@@ -3,10 +3,13 @@ from __future__ import annotations
 import collections
 import pprint
 from pathlib import Path
+from typing import List
 
 
 def signature(word: str) -> str:
-    """Return a word sorted
+    """
+    Return a word sorted by its letters.
+    
     >>> signature("test")
     'estt'
     >>> signature("this is a test")
@@ -17,8 +20,10 @@ def signature(word: str) -> str:
     return "".join(sorted(word))
 
 
-def anagram(my_word: str) -> list[str]:
-    """Return every anagram of the given word
+def anagram(my_word: str) -> List[str]:
+    """
+    Return every anagram of the given word.
+    
     >>> anagram('test')
     ['sett', 'stet', 'test']
     >>> anagram('this is a test')
@@ -26,7 +31,7 @@ def anagram(my_word: str) -> list[str]:
     >>> anagram('final')
     ['final']
     """
-    return word_by_signature[signature(my_word)]
+    return word_by_signature.get(signature(my_word), [])
 
 
 data: str = Path(__file__).parent.joinpath("words.txt").read_text(encoding="utf-8")
@@ -39,6 +44,6 @@ for word in word_list:
 if __name__ == "__main__":
     all_anagrams = {word: anagram(word) for word in word_list if len(anagram(word)) > 1}
 
-    with open("anagrams.txt", "w") as file:
-        file.write("all_anagrams = \n ")
+    with open("anagrams.txt", "w", encoding="utf-8") as file:
+        file.write("all_anagrams = \n")
         file.write(pprint.pformat(all_anagrams))
