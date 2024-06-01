@@ -57,7 +57,7 @@ rather the position to the right of the bit index.
 Bit manipulation operations can be tricky to debug.  In the insert example
 above, the result of inserting 0b11 in the center ( index=3 ) or to the
 right ( index=2 ) produces the same correct result despite the unintended
-misspecification.  Why is it worling sometimes and not others ?  Frequently,
+misspecification.  Why is it working sometimes and not others ?  Frequently,
 it's the result of inserting at the wrong index, for the hundredth time !
 
 Various bit insert/remove solutions exist using bin() string functions
