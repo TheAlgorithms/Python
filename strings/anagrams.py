@@ -9,7 +9,7 @@ from typing import List
 def signature(word: str) -> str:
     """
     Return a word sorted by its letters.
-    
+
     >>> signature("test")
     'estt'
     >>> signature("this is a test")
@@ -23,7 +23,7 @@ def signature(word: str) -> str:
 def anagram(my_word: str) -> List[str]:
     """
     Return every anagram of the given word.
-    
+
     >>> anagram('test')
     ['sett', 'stet', 'test']
     >>> anagram('this is a test')
