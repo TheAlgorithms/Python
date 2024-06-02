@@ -1,77 +1,49 @@
 [tool.ruff]
-ignore = [    # `ruff rule S101` for a description of that rule
-  "ARG001",   # Unused function argument `amount` -- FIX ME?
-  "B904",     # Within an `except` clause, raise exceptions with `raise ... from err` -- FIX ME
-  "B905",     # `zip()` without an explicit `strict=` parameter -- FIX ME
-  "DTZ001",   # The use of `datetime.datetime()` without `tzinfo` argument is not allowed -- FIX ME
-  "DTZ005",   # The use of `datetime.datetime.now()` without `tzinfo` argument is not allowed -- FIX ME
-  "E741",     # Ambiguous variable name 'l' -- FIX ME
-  "EM101",    # Exception must not use a string literal, assign to variable first
-  "EXE001",   # Shebang is present but file is not executable" -- FIX ME
-  "G004",     # Logging statement uses f-string
-  "ICN001",   # `matplotlib.pyplot` should be imported as `plt` -- FIX ME
-  "INP001",   # File `x/y/z.py` is part of an implicit namespace package. Add an `__init__.py`. -- FIX ME
-  "N999",     # Invalid module name -- FIX ME
-  "NPY002",   # Replace legacy `np.random.choice` call with `np.random.Generator` -- FIX ME
-  "PGH003",   # Use specific rule codes when ignoring type issues -- FIX ME
-  "PLC1901",  # `{}` can be simplified to `{}` as an empty string is falsey
-  "PLR5501",  # Consider using `elif` instead of `else` -- FIX ME
-  "PLW0120",  # `else` clause on loop without a `break` statement -- FIX ME
-  "PLW060",   # Using global for `{name}` but no assignment is done -- DO NOT FIX
-  "PLW2901",  # PLW2901: Redefined loop variable -- FIX ME
-  "PT011",    # `pytest.raises(Exception)` is too broad, set the `match` parameter or use a more specific exception
-  "PT018",    # Assertion should be broken down into multiple parts
-  "RUF00",    # Ambiguous unicode character and other rules
-  "RUF100",   # Unused `noqa` directive -- FIX ME
-  "S101",     # Use of `assert` detected -- DO NOT FIX
-  "S105",     # Possible hardcoded password: 'password'
-  "S113",     # Probable use of requests call without timeout -- FIX ME
-  "S311",     # Standard pseudo-random generators are not suitable for cryptographic purposes -- FIX ME
-  "SIM102",   # Use a single `if` statement instead of nested `if` statements -- FIX ME
-  "SLF001",   # Private member accessed: `_Iterator` -- FIX ME
-  "UP038",    # Use `X | Y` in `{}` call instead of `(X, Y)` -- DO NOT FIX
-]
-select = [  # https://beta.ruff.rs/docs/rules
-  "A",      # flake8-builtins
-  "ARG",    # flake8-unused-arguments
-  "ASYNC",  # flake8-async
-  "B",      # flake8-bugbear
-  "BLE",    # flake8-blind-except
-  "C4",     # flake8-comprehensions
-  "C90",    # McCabe cyclomatic complexity
-  "DJ",     # flake8-django
-  "DTZ",    # flake8-datetimez
-  "E",      # pycodestyle
-  "EM",     # flake8-errmsg
-  "EXE",    # flake8-executable
-  "F",      # Pyflakes
-  "FA",     # flake8-future-annotations
-  "FLY",    # flynt
-  "G",      # flake8-logging-format
-  "I",      # isort
-  "ICN",    # flake8-import-conventions
-  "INP",    # flake8-no-pep420
-  "INT",    # flake8-gettext
-  "ISC",  # flake8-implicit-str-concat
-  "N",      # pep8-naming
-  "NPY",    # NumPy-specific rules
-  "PD",   # pandas-vet
-  "PGH",    # pygrep-hooks
-  "PIE",    # flake8-pie
-  "PL",     # Pylint
-  "PT",   # flake8-pytest-style
-  "PYI",    # flake8-pyi
-  "RSE",    # flake8-raise
-  "RUF",    # Ruff-specific rules
-  "S",      # flake8-bandit
-  "SIM",    # flake8-simplify
-  "SLF",    # flake8-self
-  "T10",    # flake8-debugger
-  "TD",     # flake8-todos
-  "TID",    # flake8-tidy-imports
-  "UP",     # pyupgrade
-  "W",      # pycodestyle
-  "YTT",    # flake8-2020
+target-version = "py312"
+
+output-format = "full"
+lint.select = [
+  # https://beta.ruff.rs/docs/rules
+  "A",     # flake8-builtins
+  "ARG",   # flake8-unused-arguments
+  "ASYNC", # flake8-async
+  "B",     # flake8-bugbear
+  "BLE",   # flake8-blind-except
+  "C4",    # flake8-comprehensions
+  "C90",   # McCabe cyclomatic complexity
+  "DJ",    # flake8-django
+  "DTZ",   # flake8-datetimez
+  "E",     # pycodestyle
+  "EM",    # flake8-errmsg
+  "EXE",   # flake8-executable
+  "F",     # Pyflakes
+  "FA",    # flake8-future-annotations
+  "FLY",   # flynt
+  "G",     # flake8-logging-format
+  "I",     # isort
+  "ICN",   # flake8-import-conventions
+  "INP",   # flake8-no-pep420
+  "INT",   # flake8-gettext
+  "ISC",   # flake8-implicit-str-concat
+  "N",     # pep8-naming
+  "NPY",   # NumPy-specific rules
+  "PD",    # pandas-vet
+  "PGH",   # pygrep-hooks
+  "PIE",   # flake8-pie
+  "PL",    # Pylint
+  "PT",    # flake8-pytest-style
+  "PYI",   # flake8-pyi
+  "RSE",   # flake8-raise
+  "RUF",   # Ruff-specific rules
+  "S",     # flake8-bandit
+  "SIM",   # flake8-simplify
+  "SLF",   # flake8-self
+  "T10",   # flake8-debugger
+  "TD",    # flake8-todos
+  "TID",   # flake8-tidy-imports
+  "UP",    # pyupgrade
+  "W",     # pycodestyle
+  "YTT",   # flake8-2020
   # "ANN",  # flake8-annotations  # FIX ME?
   # "COM",  # flake8-commas
   # "D",    # pydocstyle -- FIX ME?
@@ -84,38 +56,64 @@ select = [  # https://beta.ruff.rs/docs/rules
   # "TCH",  # flake8-type-checking
   # "TRY",  # tryceratops
 ]
-show-source = true
-target-version = "py311"
+lint.ignore = [
+  # `ruff rule S101` for a description of that rule
+  "B904",    # Within an `except` clause, raise exceptions with `raise ... from err` -- FIX ME
+  "B905",    # `zip()` without an explicit `strict=` parameter -- FIX ME
+  "EM101",   # Exception must not use a string literal, assign to variable first
+  "EXE001",  # Shebang is present but file is not executable -- DO NOT FIX
+  "G004",    # Logging statement uses f-string
+  "PLC1901", # `{}` can be simplified to `{}` as an empty string is falsey
+  "PLW060",  # Using global for `{name}` but no assignment is done -- DO NOT FIX
+  "PLW2901", # PLW2901: Redefined loop variable -- FIX ME
+  "PT011",   # `pytest.raises(Exception)` is too broad, set the `match` parameter or use a more specific exception
+  "PT018",   # Assertion should be broken down into multiple parts
+  "S101",    # Use of `assert` detected -- DO NOT FIX
+  "S311",    # Standard pseudo-random generators are not suitable for cryptographic purposes -- FIX ME
+  "SLF001",  # Private member accessed: `_Iterator` -- FIX ME
+  "UP038",   # Use `X | Y` in `{}` call instead of `(X, Y)` -- DO NOT FIX
+]
 
-[tool.ruff.mccabe]   # DO NOT INCREASE THIS VALUE
-max-complexity = 17  # default: 10
-
-[tool.ruff.per-file-ignores]
-"arithmetic_analysis/newton_raphson.py" = ["PGH001"]
-"audio_filters/show_response.py" = ["ARG002"]
-"data_structures/binary_tree/binary_search_tree_recursive.py" = ["BLE001"]
-"data_structures/binary_tree/treap.py" = ["SIM114"]
-"data_structures/hashing/hash_table.py" = ["ARG002"]
-"data_structures/hashing/quadratic_probing.py" = ["ARG002"]
-"data_structures/hashing/tests/test_hash_map.py" = ["BLE001"]
-"data_structures/heap/max_heap.py" = ["SIM114"]
-"graphs/minimum_spanning_tree_prims.py" = ["SIM114"]
-"hashes/enigma_machine.py" = ["BLE001"]
-"machine_learning/decision_tree.py" = ["SIM114"]
-"machine_learning/linear_discriminant_analysis.py" = ["ARG005"]
-"machine_learning/sequential_minimum_optimization.py" = ["SIM115"]
-"matrix/sherman_morrison.py" = ["SIM103", "SIM114"]
-"other/l*u_cache.py" = ["RUF012"]
-"physics/newtons_second_law_of_motion.py" = ["BLE001"]
-"project_euler/problem_099/sol1.py" = ["SIM115"]
-"sorts/external_sort.py" = ["SIM115"]
-
-[tool.ruff.pylint]   # DO NOT INCREASE THESE VALUES
-allow-magic-value-types = ["float", "int", "str"]
-max-args = 10        # default: 5
-max-branches = 20    # default: 12
-max-returns = 8      # default: 6
-max-statements = 88  # default: 50
+lint.per-file-ignores."arithmetic_analysis/newton_raphson.py" = [
+  "PGH001",
+]
+lint.per-file-ignores."data_structures/binary_tree/binary_search_tree_recursive.py" = [
+  "BLE001",
+]
+lint.per-file-ignores."data_structures/hashing/tests/test_hash_map.py" = [
+  "BLE001",
+]
+lint.per-file-ignores."hashes/enigma_machine.py" = [
+  "BLE001",
+]
+lint.per-file-ignores."machine_learning/sequential_minimum_optimization.py" = [
+  "SIM115",
+]
+lint.per-file-ignores."matrix/sherman_morrison.py" = [
+  "SIM103",
+]
+lint.per-file-ignores."other/l*u_cache.py" = [
+  "RUF012",
+]
+lint.per-file-ignores."physics/newtons_second_law_of_motion.py" = [
+  "BLE001",
+]
+lint.per-file-ignores."project_euler/problem_099/sol1.py" = [
+  "SIM115",
+]
+lint.per-file-ignores."sorts/external_sort.py" = [
+  "SIM115",
+]
+lint.mccabe.max-complexity = 17 # default: 10
+lint.pylint.allow-magic-value-types = [
+  "float",
+  "int",
+  "str",
+]
+lint.pylint.max-args = 10 # default: 5
+lint.pylint.max-branches = 20 # default: 12
+lint.pylint.max-returns = 8 # default: 6
+lint.pylint.max-statements = 88 # default: 50
 
 [tool.codespell]
 ignore-words-list = "3rt,ans,bitap,crate,damon,fo,followings,hist,iff,kwanza,manuel,mater,secant,som,sur,tim,toi,zar"
@@ -123,17 +121,17 @@ skip = "./.*,*.json,ciphers/prehistoric_men.txt,project_euler/problem_022/p022_n
 
 [tool.pytest.ini_options]
 markers = [
-    "mat_ops: mark a test as utilizing matrix operations.",
+  "mat_ops: mark a test as utilizing matrix operations.",
 ]
 addopts = [
-    "--durations=10",
-    "--doctest-modules",
-    "--showlocals",
+  "--durations=10",
+  "--doctest-modules",
+  "--showlocals",
 ]
 
 [tool.coverage.report]
 omit = [
   ".env/*",
-  "project_euler/*"
+  "project_euler/*",
 ]
 sort = "Cover"

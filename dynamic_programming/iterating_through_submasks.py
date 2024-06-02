@@ -5,6 +5,7 @@ You are given a bitmask m and you want to efficiently iterate through all of
 its submasks. The mask s is submask of m if only bits that were included in
 bitmask are set
 """
+
 from __future__ import annotations
 
 

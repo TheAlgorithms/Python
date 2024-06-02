@@ -2,6 +2,7 @@
 Conway's Game of Life implemented in Python.
 https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 """
+
 from __future__ import annotations
 
 from PIL import Image

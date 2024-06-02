@@ -9,6 +9,7 @@ element of the vector mostly -1 between 1.
 Script inspired from its corresponding Wikipedia article
 https://en.wikipedia.org/wiki/Activation_function
 """
+
 import numpy as np
 
 

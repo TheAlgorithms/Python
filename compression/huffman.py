@@ -40,7 +40,7 @@ def build_tree(letters: list[Letter]) -> Letter | TreeNode:
     Run through the list of Letters and build the min heap
     for the Huffman Tree.
     """
-    response: list[Letter | TreeNode] = letters  # type: ignore
+    response: list[Letter | TreeNode] = list(letters)
     while len(response) > 1:
         left = response.pop(0)
         right = response.pop(0)
@@ -59,7 +59,7 @@ def traverse_tree(root: Letter | TreeNode, bitstring: str) -> list[Letter]:
     if isinstance(root, Letter):
         root.bitstring[root.letter] = bitstring
         return [root]
-    treenode: TreeNode = root  # type: ignore
+    treenode: TreeNode = root
     letters = []
     letters += traverse_tree(treenode.left, bitstring + "0")
     letters += traverse_tree(treenode.right, bitstring + "1")

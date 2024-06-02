@@ -1,6 +1,6 @@
 """
-    One of the several implementations of Lempel–Ziv–Welch decompression algorithm
-    https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch
+One of the several implementations of Lempel-Ziv-Welch decompression algorithm
+https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch
 """
 
 import math
@@ -26,7 +26,7 @@ def read_file_binary(file_path: str) -> str:
 
 def decompress_data(data_bits: str) -> str:
     """
-    Decompresses given data_bits using Lempel–Ziv–Welch compression algorithm
+    Decompresses given data_bits using Lempel-Ziv-Welch compression algorithm
     and returns the result as a string
     """
     lexicon = {"0": "0", "1": "1"}

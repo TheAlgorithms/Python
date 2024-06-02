@@ -134,6 +134,7 @@
   * [Run Length Encoding](compression/run_length_encoding.py)
 
 ## Computer Vision
+  * [Cnn Classification](computer_vision/cnn_classification.py)
   * [Flip Augmentation](computer_vision/flip_augmentation.py)
   * [Haralick Descriptors](computer_vision/haralick_descriptors.py)
   * [Harris Corner](computer_vision/harris_corner.py)
@@ -344,12 +345,13 @@
   * [Floyd Warshall](dynamic_programming/floyd_warshall.py)
   * [Integer Partition](dynamic_programming/integer_partition.py)
   * [Iterating Through Submasks](dynamic_programming/iterating_through_submasks.py)
+  * [K Means Clustering Tensorflow](dynamic_programming/k_means_clustering_tensorflow.py)
   * [Knapsack](dynamic_programming/knapsack.py)
   * [Largest Divisible Subset](dynamic_programming/largest_divisible_subset.py)
   * [Longest Common Subsequence](dynamic_programming/longest_common_subsequence.py)
   * [Longest Common Substring](dynamic_programming/longest_common_substring.py)
   * [Longest Increasing Subsequence](dynamic_programming/longest_increasing_subsequence.py)
-  * [Longest Increasing Subsequence O(Nlogn)](dynamic_programming/longest_increasing_subsequence_o(nlogn).py)
+  * [Longest Increasing Subsequence O Nlogn](dynamic_programming/longest_increasing_subsequence_o_nlogn.py)
   * [Longest Palindromic Subsequence](dynamic_programming/longest_palindromic_subsequence.py)
   * [Matrix Chain Multiplication](dynamic_programming/matrix_chain_multiplication.py)
   * [Matrix Chain Order](dynamic_programming/matrix_chain_order.py)
@@ -417,6 +419,7 @@
   * [Koch Snowflake](fractals/koch_snowflake.py)
   * [Mandelbrot](fractals/mandelbrot.py)
   * [Sierpinski Triangle](fractals/sierpinski_triangle.py)
+  * [Vicsek](fractals/vicsek.py)
 
 ## Fuzzy Logic
   * [Fuzzy Operations](fuzzy_logic/fuzzy_operations.py)
@@ -462,7 +465,7 @@
   * [Dijkstra Alternate](graphs/dijkstra_alternate.py)
   * [Dijkstra Binary Grid](graphs/dijkstra_binary_grid.py)
   * [Dinic](graphs/dinic.py)
-  * [Directed And Undirected (Weighted) Graph](graphs/directed_and_undirected_(weighted)_graph.py)
+  * [Directed And Undirected Weighted Graph](graphs/directed_and_undirected_weighted_graph.py)
   * [Edmonds Karp Multiple Source And Sink](graphs/edmonds_karp_multiple_source_and_sink.py)
   * [Eulerian Path And Circuit For Undirected Graph](graphs/eulerian_path_and_circuit_for_undirected_graph.py)
   * [Even Tree](graphs/even_tree.py)
@@ -571,6 +574,8 @@
     * [Local Weighted Learning](machine_learning/local_weighted_learning/local_weighted_learning.py)
   * [Logistic Regression](machine_learning/logistic_regression.py)
   * [Loss Functions](machine_learning/loss_functions.py)
+  * Lstm
+    * [Lstm Prediction](machine_learning/lstm/lstm_prediction.py)
   * [Mfcc](machine_learning/mfcc.py)
   * [Multilayer Perceptron Classifier](machine_learning/multilayer_perceptron_classifier.py)
   * [Polynomial Regression](machine_learning/polynomial_regression.py)
@@ -631,7 +636,6 @@
   * [Floor](maths/floor.py)
   * [Gamma](maths/gamma.py)
   * [Gaussian](maths/gaussian.py)
-  * [Gaussian Error Linear Unit](maths/gaussian_error_linear_unit.py)
   * [Gcd Of N Numbers](maths/gcd_of_n_numbers.py)
   * [Germain Primes](maths/germain_primes.py)
   * [Greatest Common Divisor](maths/greatest_common_divisor.py)
@@ -657,7 +661,6 @@
   * [Manhattan Distance](maths/manhattan_distance.py)
   * [Matrix Exponentiation](maths/matrix_exponentiation.py)
   * [Max Sum Sliding Window](maths/max_sum_sliding_window.py)
-  * [Median Of Two Arrays](maths/median_of_two_arrays.py)
   * [Minkowski Distance](maths/minkowski_distance.py)
   * [Mobius Function](maths/mobius_function.py)
   * [Modular Division](maths/modular_division.py)
@@ -675,6 +678,7 @@
     * [Newton Forward Interpolation](maths/numerical_analysis/newton_forward_interpolation.py)
     * [Newton Raphson](maths/numerical_analysis/newton_raphson.py)
     * [Numerical Integration](maths/numerical_analysis/numerical_integration.py)
+    * [Proper Fractions](maths/numerical_analysis/proper_fractions.py)
     * [Runge Kutta](maths/numerical_analysis/runge_kutta.py)
     * [Runge Kutta Fehlberg 45](maths/numerical_analysis/runge_kutta_fehlberg_45.py)
     * [Runge Kutta Gills](maths/numerical_analysis/runge_kutta_gills.py)
@@ -768,6 +772,7 @@
   * [Inverse Of Matrix](matrix/inverse_of_matrix.py)
   * [Largest Square Area In Matrix](matrix/largest_square_area_in_matrix.py)
   * [Matrix Class](matrix/matrix_class.py)
+  * [Matrix Equalization](matrix/matrix_equalization.py)
   * [Matrix Multiplication Recursion](matrix/matrix_multiplication_recursion.py)
   * [Matrix Operation](matrix/matrix_operation.py)
   * [Max Area Of Island](matrix/max_area_of_island.py)
@@ -787,10 +792,10 @@
   * [Minimum Cut](networking_flow/minimum_cut.py)
 
 ## Neural Network
-  * [2 Hidden Layers Neural Network](neural_network/2_hidden_layers_neural_network.py)
   * Activation Functions
     * [Binary Step](neural_network/activation_functions/binary_step.py)
     * [Exponential Linear Unit](neural_network/activation_functions/exponential_linear_unit.py)
+    * [Gaussian Error Linear Unit](neural_network/activation_functions/gaussian_error_linear_unit.py)
     * [Leaky Rectified Linear Unit](neural_network/activation_functions/leaky_rectified_linear_unit.py)
     * [Mish](neural_network/activation_functions/mish.py)
     * [Rectified Linear Unit](neural_network/activation_functions/rectified_linear_unit.py)
@@ -801,7 +806,9 @@
     * [Swish](neural_network/activation_functions/swish.py)
   * [Back Propagation Neural Network](neural_network/back_propagation_neural_network.py)
   * [Convolution Neural Network](neural_network/convolution_neural_network.py)
+  * [Input Data](neural_network/input_data.py)
   * [Simple Neural Network](neural_network/simple_neural_network.py)
+  * [Two Hidden Layers Neural Network](neural_network/two_hidden_layers_neural_network.py)
 
 ## Other
   * [Activity Selection](other/activity_selection.py)

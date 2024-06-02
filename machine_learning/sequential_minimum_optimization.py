@@ -30,7 +30,6 @@ Reference:
     https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-98-14.pdf
 """
 
-
 import os
 import sys
 import urllib.request
@@ -290,12 +289,13 @@ class SmoSVM:
             if cmd is None:
                 return
 
-        for i2 in np.roll(self.unbound, np.random.choice(self.length)):
+        rng = np.random.default_rng()
+        for i2 in np.roll(self.unbound, rng.choice(self.length)):
             cmd = yield i1, i2
             if cmd is None:
                 return
 
-        for i2 in np.roll(self._all_samples, np.random.choice(self.length)):
+        for i2 in np.roll(self._all_samples, rng.choice(self.length)):
             cmd = yield i1, i2
             if cmd is None:
                 return
@@ -309,9 +309,9 @@ class SmoSVM:
         # calculate L and H  which bound the new alpha2
         s = y1 * y2
         if s == -1:
-            l, h = max(0.0, a2 - a1), min(self._c, self._c + a2 - a1)
+            l, h = max(0.0, a2 - a1), min(self._c, self._c + a2 - a1)  # noqa: E741
         else:
-            l, h = max(0.0, a2 + a1 - self._c), min(self._c, a2 + a1)
+            l, h = max(0.0, a2 + a1 - self._c), min(self._c, a2 + a1)  # noqa: E741
         if l == h:
             return None, None
 
@@ -589,7 +589,7 @@ def plot_partition_boundary(
     ax.contour(
         xrange,
         yrange,
-        np.mat(grid).T,
+        np.asmatrix(grid).T,
         levels=(-1, 0, 1),
         linestyles=("--", "-", "--"),
         linewidths=(1, 1, 1),

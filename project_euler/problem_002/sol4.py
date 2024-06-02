@@ -14,6 +14,7 @@ four million, find the sum of the even-valued terms.
 References:
     - https://en.wikipedia.org/wiki/Fibonacci_number
 """
+
 import math
 from decimal import Decimal, getcontext
 

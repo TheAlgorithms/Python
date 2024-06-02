@@ -148,6 +148,108 @@ def categorical_cross_entropy(
     return -np.sum(y_true * np.log(y_pred))
 
 
+def categorical_focal_cross_entropy(
+    y_true: np.ndarray,
+    y_pred: np.ndarray,
+    alpha: np.ndarray = None,
+    gamma: float = 2.0,
+    epsilon: float = 1e-15,
+) -> float:
+    """
+    Calculate the mean categorical focal cross-entropy (CFCE) loss between true
+    labels and predicted probabilities for multi-class classification.
+
+    CFCE loss is a generalization of binary focal cross-entropy for multi-class
+    classification. It addresses class imbalance by focusing on hard examples.
+
+    CFCE = -Σ alpha * (1 - y_pred)**gamma * y_true * log(y_pred)
+
+    Reference: [Lin et al., 2018](https://arxiv.org/pdf/1708.02002.pdf)
+
+    Parameters:
+    - y_true: True labels in one-hot encoded form.
+    - y_pred: Predicted probabilities for each class.
+    - alpha: Array of weighting factors for each class.
+    - gamma: Focusing parameter for modulating the loss (default: 2.0).
+    - epsilon: Small constant to avoid numerical instability.
+
+    Returns:
+    - The mean categorical focal cross-entropy loss.
+
+    >>> true_labels = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+    >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1], [0.0, 0.1, 0.9]])
+    >>> alpha = np.array([0.6, 0.2, 0.7])
+    >>> categorical_focal_cross_entropy(true_labels, pred_probs, alpha)
+    0.0025966118981496423
+
+    >>> true_labels = np.array([[0, 1, 0], [0, 0, 1]])
+    >>> pred_probs = np.array([[0.05, 0.95, 0], [0.1, 0.8, 0.1]])
+    >>> alpha = np.array([0.25, 0.25, 0.25])
+    >>> categorical_focal_cross_entropy(true_labels, pred_probs, alpha)
+    0.23315276982014324
+
+    >>> true_labels = np.array([[1, 0], [0, 1]])
+    >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
+    >>> categorical_cross_entropy(true_labels, pred_probs)
+    Traceback (most recent call last):
+        ...
+    ValueError: Input arrays must have the same shape.
+
+    >>> true_labels = np.array([[2, 0, 1], [1, 0, 0]])
+    >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
+    >>> categorical_focal_cross_entropy(true_labels, pred_probs)
+    Traceback (most recent call last):
+        ...
+    ValueError: y_true must be one-hot encoded.
+
+    >>> true_labels = np.array([[1, 0, 1], [1, 0, 0]])
+    >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
+    >>> categorical_focal_cross_entropy(true_labels, pred_probs)
+    Traceback (most recent call last):
+        ...
+    ValueError: y_true must be one-hot encoded.
+
+    >>> true_labels = np.array([[1, 0, 0], [0, 1, 0]])
+    >>> pred_probs = np.array([[0.9, 0.1, 0.1], [0.2, 0.7, 0.1]])
+    >>> categorical_focal_cross_entropy(true_labels, pred_probs)
+    Traceback (most recent call last):
+        ...
+    ValueError: Predicted probabilities must sum to approximately 1.
+
+    >>> true_labels = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+    >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1], [0.0, 0.1, 0.9]])
+    >>> alpha = np.array([0.6, 0.2])
+    >>> categorical_focal_cross_entropy(true_labels, pred_probs, alpha)
+    Traceback (most recent call last):
+        ...
+    ValueError: Length of alpha must match the number of classes.
+    """
+    if y_true.shape != y_pred.shape:
+        raise ValueError("Shape of y_true and y_pred must be the same.")
+
+    if alpha is None:
+        alpha = np.ones(y_true.shape[1])
+
+    if np.any((y_true != 0) & (y_true != 1)) or np.any(y_true.sum(axis=1) != 1):
+        raise ValueError("y_true must be one-hot encoded.")
+
+    if len(alpha) != y_true.shape[1]:
+        raise ValueError("Length of alpha must match the number of classes.")
+
+    if not np.all(np.isclose(np.sum(y_pred, axis=1), 1, rtol=epsilon, atol=epsilon)):
+        raise ValueError("Predicted probabilities must sum to approximately 1.")
+
+    # Clip predicted probabilities to avoid log(0)
+    y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
+
+    # Calculate loss for each class and sum across classes
+    cfce_loss = -np.sum(
+        alpha * np.power(1 - y_pred, gamma) * y_true * np.log(y_pred), axis=1
+    )
+
+    return np.mean(cfce_loss)
+
+
 def hinge_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
     Calculate the mean hinge loss for between true labels and predicted probabilities
@@ -469,6 +571,62 @@ def perplexity_loss(
     perp_losses = np.exp(np.negative(np.mean(np.log(true_class_pred), axis=1)))
 
     return np.mean(perp_losses)
+
+
+def smooth_l1_loss(y_true: np.ndarray, y_pred: np.ndarray, beta: float = 1.0) -> float:
+    """
+    Calculate the Smooth L1 Loss between y_true and y_pred.
+
+    The Smooth L1 Loss is less sensitive to outliers than the L2 Loss and is often used
+    in regression problems, such as object detection.
+
+    Smooth L1 Loss =
+        0.5 * (x - y)^2 / beta, if |x - y| < beta
+        |x - y| - 0.5 * beta, otherwise
+
+    Reference:
+    https://pytorch.org/docs/stable/generated/torch.nn.SmoothL1Loss.html
+
+    Args:
+        y_true: Array of true values.
+        y_pred: Array of predicted values.
+        beta: Specifies the threshold at which to change between L1 and L2 loss.
+
+    Returns:
+        The calculated Smooth L1 Loss between y_true and y_pred.
+
+    Raises:
+        ValueError: If the length of the two arrays is not the same.
+
+    >>> y_true = np.array([3, 5, 2, 7])
+    >>> y_pred = np.array([2.9, 4.8, 2.1, 7.2])
+    >>> smooth_l1_loss(y_true, y_pred, 1.0)
+    0.012500000000000022
+
+    >>> y_true = np.array([2, 4, 6])
+    >>> y_pred = np.array([1, 5, 7])
+    >>> smooth_l1_loss(y_true, y_pred, 1.0)
+    0.5
+
+    >>> y_true = np.array([1, 3, 5, 7])
+    >>> y_pred = np.array([1, 3, 5, 7])
+    >>> smooth_l1_loss(y_true, y_pred, 1.0)
+    0.0
+
+    >>> y_true = np.array([1, 3, 5])
+    >>> y_pred = np.array([1, 3, 5, 7])
+    >>> smooth_l1_loss(y_true, y_pred, 1.0)
+    Traceback (most recent call last):
+    ...
+    ValueError: The length of the two arrays should be the same.
+    """
+
+    if len(y_true) != len(y_pred):
+        raise ValueError("The length of the two arrays should be the same.")
+
+    diff = np.abs(y_true - y_pred)
+    loss = np.where(diff < beta, 0.5 * diff**2 / beta, diff - 0.5 * beta)
+    return np.mean(loss)
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 """
-Lower–upper (LU) decomposition factors a matrix as a product of a lower
+Lower-upper (LU) decomposition factors a matrix as a product of a lower
 triangular matrix and an upper triangular matrix. A square matrix has an LU
 decomposition under the following conditions:
     - If the matrix is invertible, then it has an LU decomposition if and only
@@ -15,6 +15,7 @@ matrix and raise an error if no such decomposition exists.
 
 Reference: https://en.wikipedia.org/wiki/LU_decomposition
 """
+
 from __future__ import annotations
 
 import numpy as np

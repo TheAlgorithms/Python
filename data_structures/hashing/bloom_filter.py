@@ -58,6 +58,7 @@ The probability decreases with the number of bits in the bitarray.
 >>> bloom.bitstring
 '01100101'
 """
+
 from hashlib import md5, sha256
 
 HASH_FUNCTIONS = (sha256, md5)

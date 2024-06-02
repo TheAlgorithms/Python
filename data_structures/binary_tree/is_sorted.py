@@ -13,6 +13,7 @@ If n is the number of nodes in the tree then:
 Runtime: O(n)
 Space: O(1)
 """
+
 from __future__ import annotations
 
 from collections.abc import Iterator

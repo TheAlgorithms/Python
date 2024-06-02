@@ -9,14 +9,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.x
       - name: Write DIRECTORY.md
         run: |
           scripts/build_directory_md.py 2>&1 | tee DIRECTORY.md
-          git config --global user.name github-actions
-          git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com'
+          git config --global user.name "$GITHUB_ACTOR"
+          git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
       - name: Update DIRECTORY.md
         run: |
