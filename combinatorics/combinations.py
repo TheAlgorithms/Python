@@ -1,14 +1,21 @@
-from math import comb
-from math import factorial
+from math import comb, factorial
 
 
 def validate_elements_count(
     total_elements_count: int, selected_elements_count: int
 ) -> None:
-    """Validate that the number of elements are positive and the total is greater than or equal to selected."""
+    """
+    Validate that the number of elements are positive and 
+    the total is greater than or equal to selected.
+    Examples:
+    >>> validate_elements_count(6, 3)
+    >>> validate_elements_count(10, 5)
+
+    """
     if total_elements_count < selected_elements_count or selected_elements_count < 0:
         raise ValueError(
-            "Please enter positive integers for total_elements_count and selected_elements_count "
+            "Please enter positive integers for total_elements_count"
+            "and selected_elements_count "
             "where total_elements_count >= selected_elements_count"
         )
 
@@ -17,7 +24,8 @@ def combinations_iterative(
     total_elements_count: int, selected_elements_count: int
 ) -> int:
     """
-    Returns the number of combinations that can be made from a total set of elements.
+    Returns the number of combinations that can be made 
+    from a total set of elements.
 
     Examples:
     >>> combinations_iterative(10, 5)
@@ -33,7 +41,9 @@ def combinations_iterative(
     >>> combinations_iterative(-4, -5)
     Traceback (most recent call last):
     ...
-    ValueError: Please enter positive integers for total_elements_count and selected_elements_count where total_elements_count >= selected_elements_count
+    ValueError: Please enter positive integers for total_elements_count 
+    and selected_elements_count where 
+    total_elements_count >= selected_elements_count
     """
     validate_elements_count(total_elements_count, selected_elements_count)
     combinations_count = 1
@@ -91,7 +101,9 @@ def combinations_formula(
     >>> combinations_formula(-4, -5)
     Traceback (most recent call last):
     ...
-    ValueError: Please enter positive integers for total_elements_count and selected_elements_count where total_elements_count >= selected_elements_count
+    ValueError: Please enter positive integers for 
+    total_elements_count and selected_elements_count 
+    where total_elements_count >= selected_elements_count
     """
     validate_elements_count(total_elements_count, selected_elements_count)
     remaining_elements_count = total_elements_count - selected_elements_count
@@ -121,7 +133,9 @@ def combinations_with_repetitions(
     >>> combinations_with_repetitions(-4, -5)
     Traceback (most recent call last):
     ...
-    ValueError: Please enter positive integers for total_elements_count and selected_elements_count where total_elements_count >= selected_elements_count
+    ValueError: Please enter positive integers for 
+    total_elements_count and selected_elements_count 
+    where total_elements_count >= selected_elements_count
     """
     validate_elements_count(total_elements_count, selected_elements_count)
     if total_elements_count + selected_elements_count == 0:
@@ -134,7 +148,8 @@ def combinations_with_repetitions(
 
 def permutations(total_elements_count: int, selected_elements_count: int) -> int:
     """
-    Calculate the number of permutations of selecting k elements from n elements.
+    Calculate the number of permutations of selecting k elements 
+    from n elements.
 
     Examples:
     >>> permutations(10, 5)
@@ -150,7 +165,9 @@ def permutations(total_elements_count: int, selected_elements_count: int) -> int
     >>> permutations(-4, -5)
     Traceback (most recent call last):
     ...
-    ValueError: Please enter positive integers for total_elements_count and selected_elements_count where total_elements_count >= selected_elements_count
+    ValueError: Please enter positive integers for 
+    total_elements_count and selected_elements_count 
+    where total_elements_count >= selected_elements_count
     """
     validate_elements_count(total_elements_count, selected_elements_count)
     remaining_elements_count = total_elements_count - selected_elements_count
@@ -159,7 +176,8 @@ def permutations(total_elements_count: int, selected_elements_count: int) -> int
 
 def possible_selections(total_elements_count: int, selected_elements_count: int) -> int:
     """
-    Calculate the number of possible selections of k items from n available items, with replacement.
+    Calculate the number of possible selections of k items 
+    from n available items, with replacement.
 
     Examples:
     >>> possible_selections(10, 5)
@@ -175,7 +193,9 @@ def possible_selections(total_elements_count: int, selected_elements_count: int)
     >>> possible_selections(-4, -5)
     Traceback (most recent call last):
     ...
-    ValueError: Please enter positive integers for total_elements_count and selected_elements_count where total_elements_count >= selected_elements_count
+    ValueError: Please enter positive integers for 
+    total_elements_count and selected_elements_count 
+    where total_elements_count >= selected_elements_count
     """
     validate_elements_count(total_elements_count, selected_elements_count)
     return int(total_elements_count**selected_elements_count)

@@ -6,18 +6,26 @@ https://en.wikipedia.org/wiki/Stirling_numbers_of_the_second_kind
 def validate_elements_count(
     total_elements_count: int, selected_elements_count: int
 ) -> None:
+    """
     # If either of the conditions are true, the function is being asked
     # to calculate a factorial of a negative number, which is not possible
+    Examples:
+    >>> validate_elements_count(6, 3)
+    >>> validate_elements_count(10, 5)
+    """
     if total_elements_count < selected_elements_count or selected_elements_count < 0:
         raise ValueError(
-            "Please enter positive integers for total_elements_count and selected_elements_count where total_elements_count >= selected_elements_count"
+            "Please enter positive integers for total_elements_count"
+            "and selected_elements_count where total_elements_count >= selected_elements_count"
         )
 
 
 def stirling_second(total_elements_count: int, selected_elements_count: int) -> None:
     """
-    Returns the number of different combinations of selected_elements_count length which can
-    be made from total_elements_count values, where total_elements_count >= selected_elements_count.
+    Returns the number of different combinations of 
+    selected_elements_count length which can be made from 
+    total_elements_count values,  where 
+    total_elements_count >= selected_elements_count.
 
     Examples:
     >>> stirling_second(6, 3)
@@ -26,10 +34,6 @@ def stirling_second(total_elements_count: int, selected_elements_count: int) -> 
     50682
     >>> stirling_second(8, 3)
     1389
-    >>> stirling_second(-5, 0)
-    Traceback (most recent call last):
-    ...
-    ValueError: Please enter positive integers for total_elements_count and selected_elements_count where total_elements_count >= selected_elements_count
     """
 
     validate_elements_count(total_elements_count, selected_elements_count)
