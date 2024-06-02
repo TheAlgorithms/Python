@@ -22,9 +22,9 @@ def validate_elements_count(
 
 def stirling_second(total_elements_count: int, selected_elements_count: int) -> None:
     """
-    Returns the number of different combinations of 
-    selected_elements_count length which can be made from 
-    total_elements_count values,  where 
+    Returns the number of different combinations of
+    selected_elements_count length which can be made from
+    total_elements_count values,  where
     total_elements_count >= selected_elements_count.
 
     Examples:

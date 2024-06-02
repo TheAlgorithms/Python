@@ -7,8 +7,8 @@ https://en.wikipedia.org/wiki/Derangement
 
 def derangement(elements_count: int) -> int:
     """
-    Returns the number of different combinations of selected_elements_count 
-    length which can be made from total_elements_count values, 
+    Returns the number of different combinations of selected_elements_count
+    length which can be made from total_elements_count values,
     where total_elements_count >= selected_elements_count.
 
     Examples:
