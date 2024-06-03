@@ -17,26 +17,30 @@
 This module and all its submodules are deprecated.
 """
 
-
-import collections
 import gzip
 import os
+import typing
 import urllib
 
-import numpy
+import numpy as np
 from tensorflow.python.framework import dtypes, random_seed
 from tensorflow.python.platform import gfile
 from tensorflow.python.util.deprecation import deprecated
 
-_Datasets = collections.namedtuple("_Datasets", ["train", "validation", "test"])
+
+class _Datasets(typing.NamedTuple):
+    train: "_DataSet"
+    validation: "_DataSet"
+    test: "_DataSet"
+
 
 # CVDF mirror of http://yann.lecun.com/exdb/mnist/
 DEFAULT_SOURCE_URL = "https://storage.googleapis.com/cvdf-datasets/mnist/"
 
 
 def _read32(bytestream):
-    dt = numpy.dtype(numpy.uint32).newbyteorder(">")
-    return numpy.frombuffer(bytestream.read(4), dtype=dt)[0]
+    dt = np.dtype(np.uint32).newbyteorder(">")
+    return np.frombuffer(bytestream.read(4), dtype=dt)[0]
 
 
 @deprecated(None, "Please use tf.data to implement this functionality.")
@@ -64,7 +68,7 @@ def _extract_images(f):
         rows = _read32(bytestream)
         cols = _read32(bytestream)
         buf = bytestream.read(rows * cols * num_images)
-        data = numpy.frombuffer(buf, dtype=numpy.uint8)
+        data = np.frombuffer(buf, dtype=np.uint8)
         data = data.reshape(num_images, rows, cols, 1)
         return data
 
@@ -73,8 +77,8 @@ def _extract_images(f):
 def _dense_to_one_hot(labels_dense, num_classes):
     """Convert class labels from scalars to one-hot vectors."""
     num_labels = labels_dense.shape[0]
-    index_offset = numpy.arange(num_labels) * num_classes
-    labels_one_hot = numpy.zeros((num_labels, num_classes))
+    index_offset = np.arange(num_labels) * num_classes
+    labels_one_hot = np.zeros((num_labels, num_classes))
     labels_one_hot.flat[index_offset + labels_dense.ravel()] = 1
     return labels_one_hot
 
@@ -103,7 +107,7 @@ def _extract_labels(f, one_hot=False, num_classes=10):
             )
         num_items = _read32(bytestream)
         buf = bytestream.read(num_items)
-        labels = numpy.frombuffer(buf, dtype=numpy.uint8)
+        labels = np.frombuffer(buf, dtype=np.uint8)
         if one_hot:
             return _dense_to_one_hot(labels, num_classes)
         return labels
@@ -149,10 +153,11 @@ class _DataSet:
         """
         seed1, seed2 = random_seed.get_seed(seed)
         # If op level seed is not set, use whatever graph level seed is returned
-        numpy.random.seed(seed1 if seed is None else seed2)
+        self._rng = np.random.default_rng(seed1 if seed is None else seed2)
         dtype = dtypes.as_dtype(dtype).base_dtype
         if dtype not in (dtypes.uint8, dtypes.float32):
-            raise TypeError("Invalid image dtype %r, expected uint8 or float32" % dtype)
+            msg = f"Invalid image dtype {dtype!r}, expected uint8 or float32"
+            raise TypeError(msg)
         if fake_data:
             self._num_examples = 10000
             self.one_hot = one_hot
@@ -171,8 +176,8 @@ class _DataSet:
                 )
             if dtype == dtypes.float32:
                 # Convert from [0, 255] -> [0.0, 1.0].
-                images = images.astype(numpy.float32)
-                images = numpy.multiply(images, 1.0 / 255.0)
+                images = images.astype(np.float32)
+                images = np.multiply(images, 1.0 / 255.0)
         self._images = images
         self._labels = labels
         self._epochs_completed = 0
@@ -206,8 +211,8 @@ class _DataSet:
         start = self._index_in_epoch
         # Shuffle for the first epoch
         if self._epochs_completed == 0 and start == 0 and shuffle:
-            perm0 = numpy.arange(self._num_examples)
-            numpy.random.shuffle(perm0)
+            perm0 = np.arange(self._num_examples)
+            self._rng.shuffle(perm0)
             self._images = self.images[perm0]
             self._labels = self.labels[perm0]
         # Go to the next epoch
@@ -220,8 +225,8 @@ class _DataSet:
             labels_rest_part = self._labels[start : self._num_examples]
             # Shuffle the data
             if shuffle:
-                perm = numpy.arange(self._num_examples)
-                numpy.random.shuffle(perm)
+                perm = np.arange(self._num_examples)
+                self._rng.shuffle(perm)
                 self._images = self.images[perm]
                 self._labels = self.labels[perm]
             # Start next epoch
@@ -231,8 +236,8 @@ class _DataSet:
             images_new_part = self._images[start:end]
             labels_new_part = self._labels[start:end]
             return (
-                numpy.concatenate((images_rest_part, images_new_part), axis=0),
-                numpy.concatenate((labels_rest_part, labels_new_part), axis=0),
+                np.concatenate((images_rest_part, images_new_part), axis=0),
+                np.concatenate((labels_rest_part, labels_new_part), axis=0),
             )
         else:
             self._index_in_epoch += batch_size

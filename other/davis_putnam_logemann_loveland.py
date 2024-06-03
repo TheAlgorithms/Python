@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 
 """
-Davis–Putnam–Logemann–Loveland (DPLL) algorithm is a complete, backtracking-based
+Davis-Putnam-Logemann-Loveland (DPLL) algorithm is a complete, backtracking-based
 search algorithm for deciding the satisfiability of propositional logic formulae in
 conjunctive normal form, i.e, for solving the Conjunctive Normal Form SATisfiability
 (CNF-SAT) problem.
 
 For more information about the algorithm: https://en.wikipedia.org/wiki/DPLL_algorithm
 """
+
 from __future__ import annotations
 
 import random
@@ -63,10 +64,9 @@ class Clause:
                 value = model[symbol]
             else:
                 continue
-            if value is not None:
-                # Complement assignment if literal is in complemented form
-                if literal.endswith("'"):
-                    value = not value
+            # Complement assignment if literal is in complemented form
+            if value is not None and literal.endswith("'"):
+                value = not value
             self.literals[literal] = value
 
     def evaluate(self, model: dict[str, bool | None]) -> bool | None:
@@ -226,7 +226,8 @@ def find_pure_symbols(
 
 
 def find_unit_clauses(
-    clauses: list[Clause], model: dict[str, bool | None]
+    clauses: list[Clause],
+    model: dict[str, bool | None],  # noqa: ARG001
 ) -> tuple[list[str], dict[str, bool | None]]:
     """
     Returns the unit symbols and their values to satisfy clause.

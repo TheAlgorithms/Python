@@ -1,6 +1,7 @@
 """
 Checks if a system of forces is in static equilibrium.
 """
+
 from __future__ import annotations
 
 from numpy import array, cos, cross, float64, radians, sin

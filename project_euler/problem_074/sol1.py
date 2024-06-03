@@ -27,7 +27,6 @@ How many chains, with a starting number below one million, contain exactly sixty
 non-repeating terms?
 """
 
-
 DIGIT_FACTORIALS = {
     "0": 1,
     "1": 1,

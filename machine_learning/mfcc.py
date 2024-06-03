@@ -57,7 +57,6 @@ References:
 Author: Amir Lavasani
 """
 
-
 import logging
 
 import numpy as np

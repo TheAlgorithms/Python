@@ -176,7 +176,7 @@ def convert_currency(
     params = locals()
     # from is a reserved keyword
     params["from"] = params.pop("from_")
-    res = requests.get(URL_BASE, params=params).json()
+    res = requests.get(URL_BASE, params=params, timeout=10).json()
     return str(res["amount"]) if res["error"] == 0 else res["error_message"]
 
 

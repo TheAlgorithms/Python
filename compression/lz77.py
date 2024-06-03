@@ -28,7 +28,6 @@ Sources:
 en.wikipedia.org/wiki/LZ77_and_LZ78
 """
 
-
 from dataclasses import dataclass
 
 __version__ = "0.1"

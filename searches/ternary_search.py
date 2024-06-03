@@ -6,6 +6,7 @@ This is a type of divide and conquer algorithm which divides the search space in
 Time Complexity  : O(log3 N)
 Space Complexity : O(1)
 """
+
 from __future__ import annotations
 
 # This is the precision for this function which can be altered.
@@ -105,8 +106,7 @@ def ite_ternary_search(array: list[int], target: int) -> int:
         else:
             left = one_third + 1
             right = two_third - 1
-    else:
-        return -1
+    return -1
 
 
 def rec_ternary_search(left: int, right: int, array: list[int], target: int) -> int:

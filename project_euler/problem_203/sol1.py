@@ -27,6 +27,7 @@ Pascal's triangle.
 References:
 - https://en.wikipedia.org/wiki/Pascal%27s_triangle
 """
+
 from __future__ import annotations
 
 

@@ -1,6 +1,7 @@
-""" A naive recursive implementation of 0-1 Knapsack Problem
-    https://en.wikipedia.org/wiki/Knapsack_problem
+"""A naive recursive implementation of 0-1 Knapsack Problem
+https://en.wikipedia.org/wiki/Knapsack_problem
 """
+
 from __future__ import annotations
 
 

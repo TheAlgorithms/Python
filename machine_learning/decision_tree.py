@@ -3,6 +3,7 @@ Implementation of a basic regression decision tree.
 Input data set: The input data set must be 1-dimensional with continuous labels.
 Output: The decision tree maps a real number input to a real number output.
 """
+
 import numpy as np
 
 
@@ -104,7 +105,7 @@ class DecisionTree:
         the predictor
         """
         for i in range(len(x)):
-            if len(x[:i]) < self.min_leaf_size:
+            if len(x[:i]) < self.min_leaf_size:  # noqa: SIM114
                 continue
             elif len(x[i:]) < self.min_leaf_size:
                 continue
@@ -186,7 +187,8 @@ def main():
     tree = DecisionTree(depth=10, min_leaf_size=10)
     tree.train(x, y)
 
-    test_cases = (np.random.rand(10) * 2) - 1
+    rng = np.random.default_rng()
+    test_cases = (rng.random(10) * 2) - 1
     predictions = np.array([tree.predict(x) for x in test_cases])
     avg_error = np.mean((predictions - test_cases) ** 2)
 

@@ -7,6 +7,7 @@ Source: on page 3 of https://crypto.stanford.edu/~dabo/papers/RSA-survey.pdf
 More readable source: https://www.di-mgt.com.au/rsa_factorize_n.html
 large number can take minutes to factor, therefore are not included in doctest.
 """
+
 from __future__ import annotations
 
 import math

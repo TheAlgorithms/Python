@@ -1,5 +1,5 @@
 """
-Given a function on floating number f(x) and two floating numbers ‘a’ and ‘b’ such that
+Given a function on floating number f(x) and two floating numbers `a` and `b` such that
 f(a) * f(b) < 0 and f(x) is continuous in [a, b].
 Here f(x) represents algebraic or transcendental equation.
 Find root of function in interval [a, b] (Or find a value of x such that f(x) is 0)

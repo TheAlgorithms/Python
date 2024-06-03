@@ -16,6 +16,7 @@ if __name__ == "__main__":
     res = requests.get(
         url,
         headers={"User-Agent": str(UserAgent().random)},
+        timeout=10,
     )
 
     try:

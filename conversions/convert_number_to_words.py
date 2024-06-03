@@ -41,7 +41,7 @@ class NumberingSystem(Enum):
         >>> NumberingSystem.max_value("indian") == 10**19 - 1
         True
         """
-        match (system_enum := cls[system.upper()]):
+        match system_enum := cls[system.upper()]:
             case cls.SHORT:
                 max_exp = system_enum.value[0][0] + 3
             case cls.LONG:

@@ -39,7 +39,7 @@ class InstagramUser:
         """
         Return a dict of user information
         """
-        html = requests.get(self.url, headers=headers).text
+        html = requests.get(self.url, headers=headers, timeout=10).text
         scripts = BeautifulSoup(html, "html.parser").find_all("script")
         try:
             return extract_user_profile(scripts[4])

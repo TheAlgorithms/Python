@@ -1,6 +1,7 @@
 """
 @author: MatteoRaso
 """
+
 from collections.abc import Callable
 from math import pi, sqrt
 from random import uniform

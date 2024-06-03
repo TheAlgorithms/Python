@@ -8,6 +8,7 @@ Armstrong numbers are also called Narcissistic numbers and Pluperfect numbers.
 
 On-Line Encyclopedia of Integer Sequences entry: https://oeis.org/A005188
 """
+
 PASSING = (1, 153, 370, 371, 1634, 24678051, 115132219018763992565095597973971522401)
 FAILING: tuple = (-153, -1, 0, 1.2, 200, "A", [], {}, None)
 

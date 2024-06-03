@@ -7,6 +7,7 @@ We try to set the weight of these features, over many iterations, so that they b
 fit our dataset. In this particular code, I had used a CSGO dataset (ADR vs
 Rating). We try to best fit a line through dataset and estimate the parameters.
 """
+
 import numpy as np
 import requests
 
@@ -18,7 +19,8 @@ def collect_dataset():
     """
     response = requests.get(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
-        "master/Week1/ADRvsRating.csv"
+        "master/Week1/ADRvsRating.csv",
+        timeout=10,
     )
     lines = response.text.splitlines()
     data = []
