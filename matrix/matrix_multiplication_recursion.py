@@ -7,6 +7,7 @@
 Perform matrix multiplication using a recursive algorithm.
 https://en.wikipedia.org/wiki/Matrix_multiplication
 """
+
 # type Matrix = list[list[int]]  # psf/black currenttly fails on this line
 Matrix = list[list[int]]
 

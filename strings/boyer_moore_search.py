@@ -17,6 +17,7 @@ Time Complexity : O(n/m)
     n=length of main string
     m=length of pattern string
 """
+
 from __future__ import annotations
 
 

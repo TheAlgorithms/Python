@@ -1,6 +1,6 @@
 """
-    One of the several implementations of Lempel–Ziv–Welch compression algorithm
-    https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch
+One of the several implementations of Lempel-Ziv-Welch compression algorithm
+https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch
 """
 
 import math
@@ -43,7 +43,7 @@ def add_key_to_lexicon(
 
 def compress_data(data_bits: str) -> str:
     """
-    Compresses given data_bits using Lempel–Ziv–Welch compression algorithm
+    Compresses given data_bits using Lempel-Ziv-Welch compression algorithm
     and returns the result as a string
     """
     lexicon = {"0": "0", "1": "1"}

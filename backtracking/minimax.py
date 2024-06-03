@@ -7,6 +7,7 @@ if move is of maximizer return true else false
 leaves of game tree is stored in scores[]
 height is maximum height of Game tree
 """
+
 from __future__ import annotations
 
 import math
