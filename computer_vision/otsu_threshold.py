@@ -6,6 +6,7 @@ Otsu thresholding algorithm for image processing
 https://en.wikipedia.org/wiki/Otsu%27s_method
 """
 
+
 def otsu_threshold(image: Image) -> Image:
     """
     image: is a grayscale PIL image object
@@ -40,7 +41,11 @@ def otsu_threshold(image: Image) -> Image:
         mean_background = sum_foreground / weight_background
         mean_foreground = (sum_total - sum_foreground) / weight_foreground
 
-        between_class_variance = weight_background * weight_foreground * (mean_background - mean_foreground) ** 2
+        between_class_variance = (
+            weight_background
+            * weight_foreground
+            * (mean_background - mean_foreground) ** 2
+        )
 
         if between_class_variance > current_max:
             current_max = between_class_variance
@@ -52,6 +57,7 @@ def otsu_threshold(image: Image) -> Image:
 
     # Convert numpy array back to PIL image
     return Image.fromarray(binary_image)
+
 
 if __name__ == "__main__":
     image = otsu_threshold(Image.open("path_to_image").convert("L"))
