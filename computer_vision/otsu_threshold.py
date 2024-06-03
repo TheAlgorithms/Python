@@ -3,6 +3,7 @@ import numpy as np
 
 """
 Otsu thresholding algorithm for image processing
+https://en.wikipedia.org/wiki/Otsu%27s_method
 """
 
 def otsu_threshold(image: Image) -> Image:
