@@ -661,7 +661,6 @@
   * [Manhattan Distance](maths/manhattan_distance.py)
   * [Matrix Exponentiation](maths/matrix_exponentiation.py)
   * [Max Sum Sliding Window](maths/max_sum_sliding_window.py)
-  * [Median Of Two Arrays](maths/median_of_two_arrays.py)
   * [Minkowski Distance](maths/minkowski_distance.py)
   * [Mobius Function](maths/mobius_function.py)
   * [Modular Division](maths/modular_division.py)
