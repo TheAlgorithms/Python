@@ -471,8 +471,7 @@ def perplexity_loss(
     return np.mean(perp_losses)
 
 
-# Kullback-Leibler divergence loss
-def kl_divergence_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
     Calculate the Kullback-Leibler divergence (KL divergence) loss between true labels
     and predicted probabilities.
@@ -490,11 +489,11 @@ def kl_divergence_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
     >>> true_labels = np.array([0.2, 0.3, 0.5])
     >>> predicted_probs = np.array([0.3, 0.3, 0.4])
-    >>> kl_divergence_loss(true_labels, predicted_probs)
+    >>> kullback_leibler_divergence(true_labels, predicted_probs)
     0.030478754035472025
     >>> true_labels = np.array([0.2, 0.3, 0.5])
     >>> predicted_probs = np.array([0.3, 0.3, 0.4, 0.5])
-    >>> kl_divergence_loss(true_labels, predicted_probs)
+    >>> kullback_leibler_divergence(true_labels, predicted_probs)
     Traceback (most recent call last):
         ...
     ValueError: Input arrays must have the same length.
