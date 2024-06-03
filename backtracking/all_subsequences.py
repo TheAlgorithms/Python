@@ -22,7 +22,7 @@ def create_state_space_tree(
     We know that each state has exactly two children.
     It terminates when it reaches the end of the given sequence.
 
-        :param sequence: The input sequence for which subsequences are generated.
+    :param sequence: The input sequence for which subsequences are generated.
     :param current_subsequence: The current subsequence being built.
     :param index: The current index in the sequence.
 
