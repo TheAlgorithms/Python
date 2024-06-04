@@ -2,6 +2,7 @@
 
 from bisect import bisect_left, bisect_right
 
+
 def bisect_left_custom(sorted_collection, item, lo=0, hi=None):
     """
     Custom implementation of bisect_left.
@@ -16,6 +17,7 @@ def bisect_left_custom(sorted_collection, item, lo=0, hi=None):
         else:
             hi = mid
     return lo
+
 
 def bisect_right_custom(sorted_collection, item, lo=0, hi=None):
     """
@@ -32,17 +34,20 @@ def bisect_right_custom(sorted_collection, item, lo=0, hi=None):
             hi = mid
     return lo
 
+
 def insort_left_custom(sorted_collection, item, lo=0, hi=None):
     """
     Inserts item into sorted_collection in sorted order (using bisect_left_custom).
     """
     sorted_collection.insert(bisect_left_custom(sorted_collection, item, lo, hi), item)
 
+
 def insort_right_custom(sorted_collection, item, lo=0, hi=None):
     """
     Inserts item into sorted_collection in sorted order (using bisect_right_custom).
     """
     sorted_collection.insert(bisect_right_custom(sorted_collection, item, lo, hi), item)
+
 
 def binary_search(sorted_collection, item):
     """
@@ -60,6 +65,7 @@ def binary_search(sorted_collection, item):
             hi = mid - 1
     return -1
 
+
 def binary_search_std_lib(sorted_collection, item):
     """
     Binary search using Python's standard library bisect module.
@@ -68,6 +74,7 @@ def binary_search_std_lib(sorted_collection, item):
     if index != len(sorted_collection) and sorted_collection[index] == item:
         return index
     return -1
+
 
 def binary_search_by_recursion(sorted_collection, item, lo=0, hi=None):
     """
@@ -85,6 +92,7 @@ def binary_search_by_recursion(sorted_collection, item, lo=0, hi=None):
     else:
         return binary_search_by_recursion(sorted_collection, item, mid + 1, hi)
 
+
 def exponential_search(sorted_collection, item):
     """
     Exponential search implementation.
@@ -95,7 +103,10 @@ def exponential_search(sorted_collection, item):
     bound = 1
     while bound < len(sorted_collection) and sorted_collection[bound] < item:
         bound *= 2
-    return binary_search_by_recursion(sorted_collection, item, bound // 2, min(bound, len(sorted_collection) - 1))
+    return binary_search_by_recursion(
+        sorted_collection, item, bound // 2, min(bound, len(sorted_collection) - 1)
+    )
+
 
 if __name__ == "__main__":
     import doctest
@@ -105,7 +116,12 @@ if __name__ == "__main__":
     doctest.testmod()
 
     # List of search functions to benchmark
-    searches = [binary_search_std_lib, binary_search, exponential_search, binary_search_by_recursion]
+    searches = [
+        binary_search_std_lib,
+        binary_search,
+        exponential_search,
+        binary_search_by_recursion,
+    ]
 
     # Test and print results of searching for 10 in a sample list
     for search in searches:
@@ -115,7 +131,12 @@ if __name__ == "__main__":
     setup = "collection = list(range(1000))"
     # Benchmark each search function
     for search in searches:
-        time = timeit.timeit(f"{search.__name__}(collection, 500)", setup=setup, number=5000, globals=globals())
+        time = timeit.timeit(
+            f"{search.__name__}(collection, 500)",
+            setup=setup,
+            number=5000,
+            globals=globals(),
+        )
         print(f"{search.__name__:>26}: {time:.6f}")
 
     # Interactive part: user inputs a list and a target number
