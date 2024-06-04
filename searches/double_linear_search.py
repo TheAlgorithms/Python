@@ -21,6 +21,11 @@ def double_linear_search(array: list[int], search_item: int) -> int:
     """
     # define the start and end index of the given array
     start_ind, end_ind = 0, len(array) - 1
+
+    # Early termination check
+    if search_item < array[start_ind] or search_item > array[end_ind]:
+        return -1
+
     while start_ind <= end_ind:
         if array[start_ind] == search_item:
             return start_ind
@@ -29,6 +34,7 @@ def double_linear_search(array: list[int], search_item: int) -> int:
         else:
             start_ind += 1
             end_ind -= 1
+
     # returns -1 if search_item is not found in array
     return -1
 
