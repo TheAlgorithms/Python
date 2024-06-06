@@ -215,7 +215,7 @@ class PriorityQueue:
         [(5, 'A'), (15, 'B')]
         """
         idx = self.pos[tup[1]]
-        # assuming the new_d is atmost old_d
+        # assuming the new_d is at most old_d
         self.array[idx] = (new_d, tup[1])
         while idx > 0 and self.array[self.par(idx)][0] > self.array[idx][0]:
             self.swap(idx, self.par(idx))

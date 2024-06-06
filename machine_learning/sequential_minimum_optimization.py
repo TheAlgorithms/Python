@@ -463,7 +463,11 @@ def test_cancel_data():
         with open(r"cancel_data.csv", "w") as f:
             f.write(content)
 
-    data = pd.read_csv(r"cancel_data.csv", header=None)
+    data = pd.read_csv(
+        "cancel_data.csv",
+        header=None,
+        dtype={0: str},  # Assuming the first column contains string data
+    )
 
     # 1: pre-processing data
     del data[data.columns.tolist()[0]]
