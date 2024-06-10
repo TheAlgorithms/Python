@@ -3,6 +3,7 @@ Tree_sort algorithm.
 
 Build a Binary Search Tree and then iterate thru it to get a sorted list.
 """
+
 from __future__ import annotations
 
 from collections.abc import Iterator

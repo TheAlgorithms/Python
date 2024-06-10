@@ -42,7 +42,7 @@ def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> list | None:
             return None
 
         request_url = BASE_URL.format(drug_name, zip_code)
-        response = get(request_url)
+        response = get(request_url, timeout=10)
 
         # Is the response ok?
         response.raise_for_status()

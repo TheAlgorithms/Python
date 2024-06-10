@@ -270,24 +270,23 @@ def multi_a_star(start: TPos, goal: TPos, n_heuristic: int):
                         back_pointer,
                     )
                     close_list_inad.append(get_s)
+            elif g_function[goal] <= open_list[0].minkey():
+                if g_function[goal] < float("inf"):
+                    do_something(back_pointer, goal, start)
             else:
-                if g_function[goal] <= open_list[0].minkey():
-                    if g_function[goal] < float("inf"):
-                        do_something(back_pointer, goal, start)
-                else:
-                    get_s = open_list[0].top_show()
-                    visited.add(get_s)
-                    expand_state(
-                        get_s,
-                        0,
-                        visited,
-                        g_function,
-                        close_list_anchor,
-                        close_list_inad,
-                        open_list,
-                        back_pointer,
-                    )
-                    close_list_anchor.append(get_s)
+                get_s = open_list[0].top_show()
+                visited.add(get_s)
+                expand_state(
+                    get_s,
+                    0,
+                    visited,
+                    g_function,
+                    close_list_anchor,
+                    close_list_inad,
+                    open_list,
+                    back_pointer,
+                )
+                close_list_anchor.append(get_s)
     print("No path found to goal")
     print()
     for i in range(n - 1, -1, -1):

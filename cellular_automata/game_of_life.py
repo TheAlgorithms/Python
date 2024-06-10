@@ -26,7 +26,8 @@ Game-Of-Life Rules:
  4.
  Any dead cell with exactly three live neighbours be-
  comes a live cell, as if by reproduction.
- """
+"""
+
 import random
 import sys
 
@@ -100,9 +101,8 @@ def __judge_point(pt: bool, neighbours: list[list[bool]]) -> bool:
             state = True
         elif alive > 3:
             state = False
-    else:
-        if alive == 3:
-            state = True
+    elif alive == 3:
+        state = True
 
     return state
 

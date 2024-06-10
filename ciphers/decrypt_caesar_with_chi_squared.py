@@ -206,20 +206,19 @@ def decrypt_caesar_with_chi_squared(
 
                     # Add the margin of error to the total chi squared statistic
                     chi_squared_statistic += chi_letter_value
-            else:
-                if letter.lower() in frequencies:
-                    # Get the amount of times the letter occurs in the message
-                    occurrences = decrypted_with_shift.count(letter)
+            elif letter.lower() in frequencies:
+                # Get the amount of times the letter occurs in the message
+                occurrences = decrypted_with_shift.count(letter)
 
-                    # Get the excepcted amount of times the letter should appear based
-                    # on letter frequencies
-                    expected = frequencies[letter] * occurrences
+                # Get the excepcted amount of times the letter should appear based
+                # on letter frequencies
+                expected = frequencies[letter] * occurrences
 
-                    # Complete the chi squared statistic formula
-                    chi_letter_value = ((occurrences - expected) ** 2) / expected
+                # Complete the chi squared statistic formula
+                chi_letter_value = ((occurrences - expected) ** 2) / expected
 
-                    # Add the margin of error to the total chi squared statistic
-                    chi_squared_statistic += chi_letter_value
+                # Add the margin of error to the total chi squared statistic
+                chi_squared_statistic += chi_letter_value
 
         # Add the data to the chi_squared_statistic_values dictionary
         chi_squared_statistic_values[shift] = (
