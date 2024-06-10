@@ -31,7 +31,7 @@ def collect_dataset():
     return dataset
 
 
-def run_linear_regression_ols(data_x, data_y):
+def ols_linear_regression(data_x: np.ndarray, data_y: np.ndarray) -> np.ndarray:
     """Implement Linear regression using OLS over the dataset
     :param data_x : contains our dataset
     :param data_y : contains the output (result vector)
