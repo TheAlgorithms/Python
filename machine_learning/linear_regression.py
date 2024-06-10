@@ -41,7 +41,7 @@ def ols_linear_regression(data_x: np.ndarray, data_y: np.ndarray) -> np.ndarray:
     data_x = np.c_[np.ones(data_x.shape[0]), data_x].astype(float)
 
     # Use NumPy's built-in function to solve the linear regression problem
-    theta = np.linalg.inv(data_x.T.dot(data_x)).dot(data_x.T).dot(data_y)
+    theta = np.linalg.inv(data_x.T @ data_x) @ data_x.T @ data_y
 
     return theta
 
