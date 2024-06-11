@@ -26,7 +26,7 @@ def rainfall_intensity(
     Calculate the intensity of a rainfall event for a given duration and return period.
     It's based on the Sherman intensity-duration-frequency curve:
 
-    I = K * T^a / (D + b)^c
+    I = k * T^a / (D + b)^c
 
     where:
         I = Intensity of the rainfall event [mm/h]
