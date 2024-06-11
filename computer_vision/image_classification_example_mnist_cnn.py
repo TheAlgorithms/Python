@@ -10,6 +10,8 @@ The code is improved from:
 @author: Dipu Kabir
 """
 
+! pip install torch
+
 import torch
 import torchvision
 import torch.nn as nn
