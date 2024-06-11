@@ -4,15 +4,16 @@ This Script contains the default EMNIST code for comparison.
 Execution Details are available here:
 https://www.kaggle.com/code/dipuk0506/mnist-cnn
 
-The code is modified from:
+The code is improved from:
     nextjournal.com/gkoehler/pytorch-mnist
 
 @author: Dipu Kabir
 """
 
-import torch, torchvision
+import torch
+import torchvision
 import torch.nn as nn
-import torch.nn.functional as F
+import torch.nn.functional as functional
 import torch.optim as optim
 
 n_epochs = 8
@@ -86,13 +87,13 @@ class Net(nn.Module):
         self.fc2 = nn.Linear(50, 10)
 
     def forward(self, x):
-        x = F.relu(F.max_pool2d(self.conv1(x), 2))
-        x = F.relu(F.max_pool2d(self.conv2_drop(self.conv2(x)), 2))
+        x = functional.relu(functional.max_pool2d(self.conv1(x), 2))
+        x = functional.relu(functional.max_pool2d(self.conv2_drop(self.conv2(x)), 2))
         x = x.view(-1, 320)
-        x = F.relu(self.fc1(x))
-        x = F.dropout(x, training=self.training)
+        x = functional.relu(self.fc1(x))
+        x = functional.dropout(x, training=self.training)
         x = self.fc2(x)
-        return F.log_softmax(x)
+        return functional.log_softmax(x)
 
 
 network = Net()
@@ -110,7 +111,7 @@ def train(epoch):
     for batch_idx, (data, target) in enumerate(train_loader):
         optimizer.zero_grad()
         output = network(data)
-        loss = F.nll_loss(output, target)
+        loss = functional.nll_loss(output, target)
         loss.backward()
         optimizer.step()
         if batch_idx % log_interval == 0:
@@ -136,7 +137,7 @@ def test():
     with torch.no_grad():
         for data, target in test_loader:
             output = network(data)
-            test_loss += F.nll_loss(output, target, size_average=False).item()
+            test_loss += functional.nll_loss(output, target, size_average=False).item()
             pred = output.data.max(1, keepdim=True)[1]
             correct += pred.eq(target.data.view_as(pred)).sum()
     test_loss /= len(test_loader.dataset)
