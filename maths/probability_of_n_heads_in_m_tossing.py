@@ -1,4 +1,6 @@
 """
+The probability of getting exactly n heads in m tossing.
+
 Algorithm Explanation:
 If you toss 0 time -> 0 head
 Distribution [1] -> Meaning: 1 in the 0-index
@@ -26,7 +28,7 @@ Foundations and Future Directions
 Journal: ACM Computing Surveys (CSUR)
 """
 
-import numpy
+import numpy as np
 
 
 def probability_of_n_heads_in_m_tossing(head_count: int, toss_count: int) -> int:
@@ -63,10 +65,12 @@ def probability_of_n_heads_in_m_tossing(head_count: int, toss_count: int) -> int
     if head_count > toss_count:
         raise ValueError("Head count should be smaller than toss count")
 
-    value = numpy.ones(1)
-
-    for iter1 in range(toss_count):
-        value = numpy.append(value, [0], axis=0) + numpy.append([0], value, axis=0)
+    value = np.ones(1)
+      
+    iter1 = 0
+    while iter1 < toss_count :
+        value = np.append(value, [0], axis=0) + np.append([0], value, axis=0)
         value = value / 2
+        iter1 = iter1 +1
 
     return value[head_count]
