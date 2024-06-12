@@ -66,11 +66,11 @@ def probability_of_n_heads_in_m_tossing(head_count: int, toss_count: int) -> int
         raise ValueError("Head count should be smaller than toss count")
 
     value = np.ones(1)
-      
+
     iter1 = 0
-    while iter1 < toss_count :
+    while iter1 < toss_count:
         value = np.append(value, [0], axis=0) + np.append([0], value, axis=0)
         value = value / 2
-        iter1 = iter1 +1
+        iter1 = iter1 + 1
 
     return value[head_count]
