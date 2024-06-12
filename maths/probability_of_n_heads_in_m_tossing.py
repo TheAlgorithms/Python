@@ -64,6 +64,8 @@ def probability_of_n_heads_in_m_tossing(head_count: int, toss_count: int) -> int
         raise ValueError("The function only accepts positive values")
     if head_count > toss_count:
         raise ValueError("Head count should be smaller than toss count")
+    if toss_count > 100:
+        raise ValueError("Limited to 100 tossing to avoid memory issues")
 
     value = np.ones(1)
 
