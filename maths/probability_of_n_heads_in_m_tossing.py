@@ -1,4 +1,3 @@
-
 """
 Algorithm Explanation:
 If you toss 0 time -> 0 head
@@ -8,27 +7,27 @@ If you toss 1 time -> 0 or 1 head
 Distribution [0.5 0.5] -> Meaning: 0.5 in both indexes
 
 If you toss 2 times -> 0 to 2 heads
-Distribution [0.25 0.5 0.25] -> 
-Meaning:  probability of n heads from the distribution 
+Distribution [0.25 0.5 0.25] ->
+Meaning:  probability of n heads from the distribution
 {HH, HT, TH, TT}
 
 If you toss 3 times -> 0 to 3 heads
-Distribution [0.125 0.375 0.375 0.125] -> 
-Meaning:  probability of n heads from the distribution 
+Distribution [0.125 0.375 0.375 0.125] ->
+Meaning:  probability of n heads from the distribution
 {HHH, HHT, HTH, HTT, THH, THT, TTH, TTT}
 
 Therefore,
-Probability_distribution(N+1) = 
+Probability_distribution(N+1) =
       [Probability_distribution(N) 0]/2 + [0 Probability_distribution(N)]/2
 
 I used that method in my paper
-Titled: Uncertainty-aware Decisions in Cloud Computing: 
+Titled: Uncertainty-aware Decisions in Cloud Computing:
 Foundations and Future Directions
 Journal: ACM Computing Surveys (CSUR)
 """
 
-
 import numpy
+
 
 def probability_of_n_heads_in_m_tossing(head_count: int, toss_count: int) -> int:
     """
@@ -68,6 +67,6 @@ def probability_of_n_heads_in_m_tossing(head_count: int, toss_count: int) -> int
 
     for iter1 in range(toss_count):
         value = numpy.append(value, [0], axis=0) + numpy.append([0], value, axis=0)
-        value = value/2
+        value = value / 2
 
     return value[head_count]
