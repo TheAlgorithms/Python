@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def probability_of_n_heads_in_m_tossing(head_count: int, toss_count: int) -> int:
+def probability_of_n_heads_in_m_tossing(head_count: int, toss_count: int) -> float:
     """
     The probability of getting exactly n heads in m tossing.
 
