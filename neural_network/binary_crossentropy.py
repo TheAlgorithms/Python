@@ -27,9 +27,9 @@ def binary_cross_entropy(y_true: np.ndarray, y_pred: np.ndarray) -> float:
         >>> binary_cross_entropy(np.array([1, 0, 1]), np.array([0.9, 0.2, 0.8]))
         0.18388253942874858
 
-        
+
     """
-    log_loss = - np.mean(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))
+    log_loss = -np.mean(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))
     return log_loss
 
 
