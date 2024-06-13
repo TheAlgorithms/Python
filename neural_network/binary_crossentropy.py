@@ -21,7 +21,7 @@ def binary_cross_entropy(y_true: np.ndarray, y_pred: np.ndarray) -> float:
              return:
              float: the output value of binary crossentropy
 
-             Mathematically, BCE= −(1/N) * Sum(y_i * log(p_i) + (1-y_i)log(1-p_i))
+             Mathematically, BCE = -(1/N) * Sum(y_i * log(p_i) + (1 - y_i) * log(1 - p_i))
 
         Examples:
         >>> binary_cross_entropy(np.array([1, 0, 1]), np.array([0.9, 0.2, 0.8]))
