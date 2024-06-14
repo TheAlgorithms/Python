@@ -38,7 +38,7 @@ def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> list:
      https://www.thoughtco.com/
      probabilities-of-rolling-two-dice-3126559
 
-     That phenomenon is the same as the convolution. However, the 
+     That phenomenon is the same as the convolution. However, the
      index position is different. Therefore, we adjust the index.
 
      NB: a) We are assuming a fair dice
