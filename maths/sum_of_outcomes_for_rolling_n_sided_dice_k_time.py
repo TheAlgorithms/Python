@@ -1,3 +1,4 @@
+
 import numpy as np
 
 def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> list:
@@ -88,8 +89,7 @@ def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> list:
     if  k_time < 1:
         raise ValueError("Roll count should be more than 0")
     if k_time > 100 or n_side > 100:
-        raise ValueError("Limited to 100 sides or rolling to
-        avoid memory issues")
+        raise ValueError("Limited to 100 sides or rolling to avoid memory issues")
 
     probability_distribution = 1
     distribution_step = np.ones(n_side)/n_side
