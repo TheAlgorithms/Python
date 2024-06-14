@@ -115,6 +115,62 @@ def avgpooling(arr: np.ndarray, size: int, stride: int) -> np.ndarray:
     return updated_arr
 
 
+# Minpooling Function
+def minpooling(arr: np.ndarray, size: int, stride: int) -> np.ndarray:
+    """
+    This function is used to perform minpooling on the input array of 2D matrix(image)
+    Args:
+        arr: numpy array
+        size: size of pooling matrix
+        stride: the number of pixels shifts over the input matrix
+    Returns:
+        numpy array of minpooled matrix
+    Sample Input Output:
+    >>> minpooling([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]], 2, 2)
+    array([[ 1.,  3.],
+           [ 9., 11.]])
+    >>> minpooling([[147, 180, 122],[241, 76, 32],[126, 13, 157]], 2, 1)
+    array([[76., 32.],
+           [13., 13.]])
+    """
+    arr = np.array(arr)
+    if arr.shape[0] != arr.shape[1]:
+        raise ValueError("The input array is not a square matrix")
+    i = 0
+    j = 0
+    mat_i = 0
+    mat_j = 0
+
+    # compute the shape of the output matrix
+    minpool_shape = (arr.shape[0] - size) // stride + 1
+    # initialize the output matrix with zeros of shape minpool_shape
+    updated_arr = np.zeros((minpool_shape, minpool_shape))
+
+    while i < arr.shape[0]:
+        if i + size > arr.shape[0]:
+            # if the end of the matrix is reached, break
+            break
+        while j < arr.shape[1]:
+            # if the end of the matrix is reached, break
+            if j + size > arr.shape[1]:
+                break
+            # compute the minimum of the pooling matrix
+            updated_arr[mat_i][mat_j] = np.min(arr[i : i + size, j : j + size])
+            # shift the pooling matrix by stride of column pixels
+            j += stride
+            mat_j += 1
+
+        # shift the pooling matrix by stride of row pixels
+        i += stride
+        mat_i += 1
+
+        # reset the column index to 0
+        j = 0
+        mat_j = 0
+
+    return updated_arr
+
+
 # Main Function
 if __name__ == "__main__":
     from doctest import testmod
@@ -133,3 +189,8 @@ if __name__ == "__main__":
     # Ensure that the image is a square matrix
 
     Image.fromarray(avgpooling(np.array(image), size=3, stride=2)).show()
+
+    # Converting the image to numpy array and minpooling, displaying the result
+    # Ensure that the image is a square matrix
+
+    Image.fromarray(minpooling(np.array(image), size=3, stride=2)).show()
