@@ -3,8 +3,7 @@ import numpy as np
 
 def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> list:
     """
-    Outcomes for rolling an N-sided dice K times.
-
+    Sum of outcomes for rolling an N-sided dice K times.
     This function returns a list. The first element is an array.
     That array contains indexes.
     The second element is another array.
@@ -12,7 +11,6 @@ def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> list:
     as the sum of obtained side values.
 
      Algorithm Explanation:
-
      1. Explanation of range:
      When we are rolling a six-sided dice the range becomes
      1 to 6.
@@ -37,11 +35,11 @@ def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> list:
      3 for two outcomes (1,2) and (2,1).
 
      Link:
-     https://www.thoughtco.com/probabilities-of-rolling-two-dice-3126559
+     https://www.thoughtco.com/
+     probabilities-of-rolling-two-dice-3126559
 
-     That phenomenon is the same as the convolution. However, the index
-     position is different. Therefore, we adjust the index.
-
+     That phenomenon is the same as the convolution. However, the 
+     index position is different. Therefore, we adjust the index.
 
      NB: a) We are assuming a fair dice
      b) Bernoulli's theory works with getting the probability of
@@ -57,7 +55,6 @@ def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> list:
      link: https://dl.acm.org/doi/abs/10.1145/3447583
      The PDF version of the paper is available on Google Scholar.
 
-
      >>> import numpy as np
      >>> outcome_of_rolling_n_sided_dice_k_time(.2,.5)
      Traceback (most recent call last):
@@ -71,7 +68,6 @@ def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> list:
      Traceback (most recent call last):
          ...
      ValueError: Roll count should be more than 0
-
      >>> outcome_of_rolling_n_sided_dice_k_time(4,2)
      [range(2, 9),
       array([0.0625, 0.125 , 0.1875, 0.25  , 0.1875, 0.125 , 0.0625])]
@@ -116,13 +112,9 @@ def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> list:
 
 """
 # Extra code for the verification
-
 index_dist = outcome_of_rolling_n_sided_dice_k_time(6, 5)
-
 print("Indexes:",index_dist[0])
 print("Distribution:",index_dist[1], "Their summation:",np.sum(index_dist[1]))
-
 import matplotlib.pyplot as plt
 plt.bar(index_dist[0], index_dist[1])
-
 """
