@@ -7,7 +7,8 @@ def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> list:
    This function returns a list. The first element is an array. 
    That array contains indexes.
    The second element is another array. 
-   That array contains probabilities for each index value.
+   That array contains probabilities for getting each index values
+   as the sum of obtained side values.
 
     Algorithm Explanation:
     
@@ -47,8 +48,6 @@ def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> list:
     with the sum. The same sum can come in many combinations.
     Finding all of those combinations and applying Bernoulli 
     is more computationally extensive.
-    c) The algorithm can be used in playing games where the sum of 
-    multiple dice throwing is needed.
     
     I used that method in my paper to draw the distribution
     Titled: Uncertainty-aware Decisions in Cloud Computing:
@@ -75,12 +74,12 @@ def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> list:
     >>> outcome_of_rolling_n_sided_dice_k_time(4,2)
     [range(2, 9), 
      array([0.0625, 0.125 , 0.1875, 0.25  , 0.1875, 0.125 , 0.0625])]
-    >>> outcome_of_rolling_n_sided_dice_k_time(6,2)
+    >>> probability_of_n_heads_in_m_tossing(6,2)
     [range(2, 13),
      array([0.02777778, 0.05555556, 0.08333333, 0.11111111, 0.13888889,
             0.16666667, 0.13888889, 0.11111111, 0.08333333, 0.05555556,
             0.02777778])]
-    >>> outcome_of_rolling_n_sided_dice_k_time(6,3)
+    >>> probability_of_n_heads_in_m_tossing(2,3)
     [range(3, 19),
      array([0.00462963, 0.01388889, 0.02777778, 0.0462963 , 0.06944444,
             0.09722222, 0.11574074, 0.125     , 0.125     , 0.11574074,
