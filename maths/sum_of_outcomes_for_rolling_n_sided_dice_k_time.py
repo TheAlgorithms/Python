@@ -3,87 +3,87 @@ import numpy as np
 
 def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> list:
     """
-    The sum of outcomes for rolling an N-sided dice K times.
+     The sum of outcomes for rolling an N-sided dice K times.
 
-    This function returns a list. The last two elements are the
-    range of probability distribution.
-    The range is: 'k_time' to 'k_time*n_side'
+     This function returns a list. The last two elements are the 
+     range of probability distribution.
+     The range is: 'k_time' to 'k_time*n_side'
 
-    Other elements contain probabilities for getting a summation
-    from 'k_time' to 'k_time*n_side'.
+     Other elements contain probabilities for getting a summation 
+     from 'k_time' to 'k_time*n_side'.
 
-    Algorithm Explanation:
+     Algorithm Explanation:
 
-    1. Explanation of range:
-    When we are rolling a six-sided dice the range becomes
-    1 to 6.
-    While rolling 5 times range becomes 5 to 30.
-    The sum outcomes become 5 when all rolling finds 1.
-    30 happens when all rolling finds 6.
-    1 is the minimum and 6 is the maximum of side values
-    for a 6 sided dice. Therefore, the range is 5 to 30.
-    Therefore, the range is k to n*k.
+     1. Explanation of range:
+     When we are rolling a six-sided dice the range becomes
+     1 to 6.
+     While rolling 5 times range becomes 5 to 30.
+     The sum outcomes become 5 when all rolling finds 1.
+     30 happens when all rolling finds 6.
+     1 is the minimum and 6 is the maximum of side values
+     for a 6 sided dice. Therefore, the range is 5 to 30.
+     Therefore, the range is k to n*k.
 
-    2. Explanation of probability distribution:
-    Say we are rolling a six-sided dice 2 times.
-    for 0 roll, the outcome is 0 with probability 1.
-    For the first roll, the outcome is 1 to 6 equally distributed.
+     2. Explanation of probability distribution:
+     Say we are rolling a six-sided dice 2 times.
+     for 0 roll, the outcome is 0 with probability 1.
+     For the first roll, the outcome is 1 to 6 equally distributed.
 
-    For the second roll, each previous outcome (1-6) will face
-    an addition from the second rolling (1-6).
-    If the first outcome is (known) 3, then the probability of
-    getting each of 4 to 9 will be 1/6.
+     For the second roll, each previous outcome (1-6) will face
+     an addition from the second rolling (1-6).
+     If the first outcome is (known) 3, then the probability of
+     getting each of 4 to 9 will be 1/6.
 
-    While rolling 2 dice simultaneously,
-    the sum becomes 2 for two 1 outcomes. But the sum becomes
-    3 for two different outcome combinations (1,2) and (2,1).
-    The probability of getting 2 is 1/6.
-    The probability of getting 3 is 2/6
+     While rolling 2 dice simultaneously,
+     the sum becomes 2 for two 1 outcomes. But the sum becomes
+     3 for two different outcome combinations (1,2) and (2,1).
+     The probability of getting 2 is 1/6.
+     The probability of getting 3 is 2/6
 
-    Link to rolling two 6-sided dice combinations:
-    https://www.thoughtco.com/
-    probabilities-of-rolling-two-dice-3126559
-    That phenomenon is the same as the convolution.
+     Link to rolling two 6-sided dice combinations:
+     https://www.thoughtco.com/
+     probabilities-of-rolling-two-dice-3126559
+     That phenomenon is the same as the convolution. 
 
-    The algorithm can be used in playing games or solving
-    problems where the sum of multiple dice throwing is needed.
-
-
-    NB: a) We are assuming a fair dice
-    b) Bernoulli's theory works with getting the probability of
-    exactly 3 sixes while rolling 5 times. It does not work directly
-    with the sum. The same sum can come in many combinations.
-    Finding all of those combinations and applying Bernoulli
-    is more computationally extensive.
-
-    I used that method in my paper to draw the distribution
-    Titled: Uncertainty-aware Decisions in Cloud Computing:
-    Foundations and Future Directions
-    Journal: ACM Computing Surveys (CSUR)
-    link: https://dl.acm.org/doi/abs/10.1145/3447583
-    The PDF version of the paper is available on Google Scholar.
+     The algorithm can be used in playing games or solving 
+     problems where the sum of multiple dice throwing is needed.
 
 
-    >>> import numpy as np
-    >>> outcome_of_rolling_n_sided_dice_k_time(.2,.5)
-    Traceback (most recent call last):
-        ...
-    ValueError: The function only accepts integer values
-    >>> outcome_of_rolling_n_sided_dice_k_time(-1,5)
-    Traceback (most recent call last):
-        ...
-    ValueError: Side count should be more than 1
-    >>> outcome_of_rolling_n_sided_dice_k_time(3,-2)
-    Traceback (most recent call last):
-        ...
-    ValueError: Roll count should be more than 0
+     NB: a) We are assuming a fair dice
+     b) Bernoulli's theory works with getting the probability of
+     exactly 3 sixes while rolling 5 times. It does not work directly
+     with the sum. The same sum can come in many combinations.
+     Finding all of those combinations and applying Bernoulli
+     is more computationally extensive.
+     
+     I used that method in my paper to draw the distribution
+     Titled: Uncertainty-aware Decisions in Cloud Computing:
+     Foundations and Future Directions
+     Journal: ACM Computing Surveys (CSUR)
+     link: https://dl.acm.org/doi/abs/10.1145/3447583
+     The PDF version of the paper is available on Google Scholar.
 
-    >>> outcome_of_rolling_n_sided_dice_k_time(2,2)
-    [0.25, 0.5, 0.25, 2, 4]
-    >>> outcome_of_rolling_n_sided_dice_k_time(2,4)
-    [0.0625, 0.25, 0.375, 0.25, 0.0625, 4, 8]
-    >>> outcome_of_rolling_n_sided_dice_k_time(4,2)
-    [0.0625, 0.125, 0.1875, 0.25, 0.1875, 0.125, 0.0625, 2, 8]
+
+     >>> import numpy as np
+     >>> outcome_of_rolling_n_sided_dice_k_time(.2,.5)
+     Traceback (most recent call last):
+         ...
+     ValueError: The function only accepts integer values
+     >>> outcome_of_rolling_n_sided_dice_k_time(-1,5)
+     Traceback (most recent call last):
+         ...
+     ValueError: Side count should be more than 1
+     >>> outcome_of_rolling_n_sided_dice_k_time(3,-2)
+     Traceback (most recent call last):
+         ...
+     ValueError: Roll count should be more than 0
+
+     >>> outcome_of_rolling_n_sided_dice_k_time(2,2)
+     [0.25, 0.5, 0.25, 2, 4]
+     >>> outcome_of_rolling_n_sided_dice_k_time(2,4)
+     [0.0625, 0.25, 0.375, 0.25, 0.0625, 4, 8]
+     >>> outcome_of_rolling_n_sided_dice_k_time(4,2)
+     [0.0625, 0.125, 0.1875, 0.25, 0.1875, 0.125, 0.0625, 2, 8]
 
     """
 
@@ -103,12 +103,12 @@ def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> list:
     while iter1 < k_time:
         prob_dist = np.convolve(prob_dist, dist_step)
         iter1 = iter1 + 1
+        
+    prob_list = list(prob_dist)
+    prob_list.append(k_time)
+    prob_list.append(k_time*n_side)
 
-    prob_dist = list(prob_dist)
-    prob_dist.append(k_time)
-    prob_dist.append(k_time * n_side)
-
-    return list(prob_dist)
+    return prob_list
 
 
 """
