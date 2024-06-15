@@ -1,23 +1,24 @@
 import numpy as np
 
 
-def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> tuple:
+def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> list:
     """
-    Sum of outcomes for rolling an N-sided dice K times.
+     The sum of outcomes for rolling an N-sided dice K times.
 
-    This function returns a list. The first element is an array.
-    That array contains indexes.
-    The second element is another array.
-    That array contains probabilities for getting each index values
-    as the sum of obtained side values.
+     This function returns a list. The last two elements are the 
+     range of probability distribution.
+     The range is: 'k_time' to 'k_time*n_side'
+
+     Other elements contain probabilities for getting a summation 
+     from 'k_time' to 'k_time*n_side'.
 
      Algorithm Explanation:
 
      1. Explanation of range:
      When we are rolling a six-sided dice the range becomes
      1 to 6.
-     While rolling 5 times range becomes 2 to 12.
-     The sum outcomes becomes 5 when all rolling finds 1.
+     While rolling 5 times range becomes 5 to 30.
+     The sum outcomes become 5 when all rolling finds 1.
      30 happens when all rolling finds 6.
      1 is the minimum and 6 is the maximum of side values
      for a 6 sided dice. Therefore, the range is 5 to 30.
@@ -33,14 +34,20 @@ def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> tuple:
      If the first outcome is (known) 3, then the probability of
      getting each of 4 to 9 will be 1/6.
 
-     The sum becomes 2 for two 1 outcomes. But the sum becomes
-     3 for two outcomes (1,2) and (2,1).
+     While rolling 2 dice simultaneously,
+     the sum becomes 2 for two 1 outcomes. But the sum becomes
+     3 for two different outcome combinations (1,2) and (2,1).
+     The probability of getting 2 is 1/6.
+     The probability of getting 3 is 2/6
 
-     Link:
+     Link to rolling two 6-sided dice combinations:
      https://www.thoughtco.com/
      probabilities-of-rolling-two-dice-3126559
-     That phenomenon is the same as the convolution. However, the
-     index position is different. Therefore, we adjust the index.
+     That phenomenon is the same as the convolution. 
+
+     The algorithm can be used in playing games or solving 
+     problems where the sum of multiple dice throwing is needed.
+
 
      NB: a) We are assuming a fair dice
      b) Bernoulli's theory works with getting the probability of
@@ -48,9 +55,7 @@ def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> tuple:
      with the sum. The same sum can come in many combinations.
      Finding all of those combinations and applying Bernoulli
      is more computationally extensive.
-     c) The algorithm can be used in playing games where the sum of
-     multiple dice throwing is needed.
-
+     
      I used that method in my paper to draw the distribution
      Titled: Uncertainty-aware Decisions in Cloud Computing:
      Foundations and Future Directions
@@ -74,9 +79,11 @@ def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> tuple:
      ValueError: Roll count should be more than 0
 
      >>> outcome_of_rolling_n_sided_dice_k_time(2,2)
-     ([2, 3, 4], [0.25, 0.5, 0.25])
+     [0.25, 0.5, 0.25, 2, 4]
      >>> outcome_of_rolling_n_sided_dice_k_time(2,4)
-     ([4, 5, 6, 7, 8], [0.0625, 0.25, 0.375, 0.25, 0.0625])
+     [0.0625, 0.25, 0.375, 0.25, 0.0625, 4, 8]
+     >>> outcome_of_rolling_n_sided_dice_k_time(4,2)
+     [0.0625, 0.125, 0.1875, 0.25, 0.1875, 0.125, 0.0625, 2, 8]
 
     """
 
@@ -90,26 +97,34 @@ def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> tuple:
         raise ValueError("Limited to 100 sides or rolling to avoid memory issues")
 
     prob_dist = 1
-    dist_step = np.ones(n_side) / n_side
+    dist_step = np.ones(n_side, dtype=float) / n_side
 
     iter1 = 0
     while iter1 < k_time:
         prob_dist = np.convolve(prob_dist, dist_step)
         iter1 = iter1 + 1
+        
+    prob_dist = list(prob_dist)
+    prob_dist.append(k_time)
+    prob_dist.append(k_time*n_side)
 
-    index = list(range(k_time, k_time * n_side + 1))
-    return index, list(prob_dist)
+    return list(prob_dist)
 
 
 """
 # Extra code for the verification
 
-index_dist = outcome_of_rolling_n_sided_dice_k_time(6, 5)
+dist_index = outcome_of_rolling_n_sided_dice_k_time(6, 3)
 
-print("Indexes:",index_dist[0])
-print("Distribution:",index_dist[1], "Their summation:",np.sum(index_dist[1]))
+the_range = range(dist_index[-2], dist_index[-1]+1)
+probabilities =  dist_index[:-2]
+print("Indexes:",the_range)
+
+print("Distribution:",probabilities,"Summation:",np.sum(probabilities))
 
 import matplotlib.pyplot as plt
-plt.bar(index_dist[0], index_dist[1])
+plt.bar(the_range, probabilities)
+plt.xlabel("Summation of Outcomes")
+plt.ylabel("Probabilities")
 
 """
