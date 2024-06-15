@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> list:
+def outcome_of_rolling_n_sided_dice_k_time(n_side: int, k_time: int) -> tuple:
     """
     Sum of outcomes for rolling an N-sided dice K times.
 
