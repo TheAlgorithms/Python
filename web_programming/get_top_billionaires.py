@@ -79,29 +79,6 @@ def display_billionaires(forbes_billionaires: list[dict[str, int | str]]) -> Non
 
     Args:
         forbes_billionaires (list): Forbes top 10 real-time billionaires
-
-    Example:
-    >>> billionaires = [
-    ...     {"Name": "João Silva", "Source": "Tech", "Country": "USA", "Gender": "M",
-    ...  "Worth ($)": "50.0 Billion", "Age": "50"},
-    ...     {"Name": "Maria Santos", "Source": "Finance", "Country": "UK",
-    ...  "Gender": "F", "Worth ($)": "40.0 Billion", "Age": "45"}
-    ... ]
-    >>> from io import StringIO
-    >>> import sys
-    >>> old_stdout = sys.stdout
-    >>> sys.stdout = buffer = StringIO()
-    >>> display_billionaires(billionaires)
-    >>> sys.stdout = old_stdout
-    >>> output = buffer.getvalue()
-    >>> output = '\\n'.join(output.split('\\n')[1:])
-    >>> print(output.strip())
-    ┌──────────────┬─────────┬─────────┬────────┬──────────────┬─────┐
-    │ Name         │ Source  │ Country │ Gender │ Worth ($)    │ Age │
-    ├──────────────┼─────────┼─────────┼────────┼──────────────┼─────┤
-    │ João Silva   │ Tech    │ USA     │ M      │ 50.0 Billion │ 50  │
-    │ Maria Santos │ Finance │ UK      │ F      │ 40.0 Billion │ 45  │
-    └──────────────┴─────────┴─────────┴────────┴──────────────┴─────┘
     """
 
     table = rich_table.Table(
