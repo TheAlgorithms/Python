@@ -4,7 +4,7 @@ This works for some of us but fails for others.
 """
 
 import doctest
-from datetime import date, datetime, timedelta, timezone
+from datetime import UTC, date, datetime
 
 import requests
 from rich import box
@@ -12,8 +12,6 @@ from rich import console as rich_console
 from rich import table as rich_table
 
 LIMIT = 10
-UTC_OFFSET = timedelta(hours=0)
-UTC = timezone(UTC_OFFSET)
 TODAY = datetime.now(tz=UTC)
 API_URL = (
     "https://www.forbes.com/forbesapi/person/rtb/0/position/true.json"
@@ -98,5 +96,7 @@ def display_billionaires(forbes_billionaires: list[dict[str, int | str]]) -> Non
 
 
 if __name__ == "__main__":
-    doctest.testmod()
+    from doctest import testmod
+    
+    testmod()
     display_billionaires(get_forbes_real_time_billionaires())
