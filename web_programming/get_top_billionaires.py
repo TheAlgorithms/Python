@@ -3,7 +3,6 @@ CAUTION: You may get a json.decoding error.
 This works for some of us but fails for others.
 """
 
-import doctest
 from datetime import UTC, date, datetime
 
 import requests
