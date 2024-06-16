@@ -3,15 +3,17 @@ CAUTION: You may get a json.decoding error.
 This works for some of us but fails for others.
 """
 
-from datetime import UTC, date, datetime
+import doctest
+from datetime import date, datetime
 
 import requests
+from pytz import utc
 from rich import box
 from rich import console as rich_console
 from rich import table as rich_table
 
 LIMIT = 10
-TODAY = datetime.now(tz=UTC)
+TODAY = datetime.now(tz=utc)
 API_URL = (
     "https://www.forbes.com/forbesapi/person/rtb/0/position/true.json"
     "?fields=personName,gender,source,countryOfCitizenship,birthDate,finalWorth"
@@ -44,7 +46,7 @@ def years_old(birth_timestamp: int, today: date | None = None) -> int:
     True
     """
     today = today or TODAY.date()
-    birth_date = datetime.fromtimestamp(birth_timestamp, tz=UTC).date()
+    birth_date = datetime.fromtimestamp(birth_timestamp, tz=utc).date()
     return (today.year - birth_date.year) - (
         (today.month, today.day) < (birth_date.month, birth_date.day)
     )
@@ -65,7 +67,7 @@ def get_forbes_real_time_billionaires() -> list[dict[str, int | str]]:
             "Country": person["countryOfCitizenship"],
             "Gender": person["gender"],
             "Worth ($)": f"{person['finalWorth'] / 1000:.1f} Billion",
-            "Age": years_old(person["birthDate"]),
+            "Age": str(years_old(person["birthDate"] / 1000)),
         }
         for person in response_json["personList"]["personsLists"]
     ]
@@ -77,6 +79,29 @@ def display_billionaires(forbes_billionaires: list[dict[str, int | str]]) -> Non
 
     Args:
         forbes_billionaires (list): Forbes top 10 real-time billionaires
+
+    Example:
+    >>> billionaires = [
+    ...     {"Name": "João Silva", "Source": "Tech", "Country": "USA", "Gender": "M",
+    ...  "Worth ($)": "50.0 Billion", "Age": "50"},
+    ...     {"Name": "Maria Santos", "Source": "Finance", "Country": "UK",
+    ...  "Gender": "F", "Worth ($)": "40.0 Billion", "Age": "45"}
+    ... ]
+    >>> from io import StringIO
+    >>> import sys
+    >>> old_stdout = sys.stdout
+    >>> sys.stdout = buffer = StringIO()
+    >>> display_billionaires(billionaires)
+    >>> sys.stdout = old_stdout
+    >>> output = buffer.getvalue()
+    >>> output = '\\n'.join(output.split('\\n')[1:])
+    >>> print(output.strip())
+    ┌──────────────┬─────────┬─────────┬────────┬──────────────┬─────┐
+    │ Name         │ Source  │ Country │ Gender │ Worth ($)    │ Age │
+    ├──────────────┼─────────┼─────────┼────────┼──────────────┼─────┤
+    │ João Silva   │ Tech    │ USA     │ M      │ 50.0 Billion │ 50  │
+    │ Maria Santos │ Finance │ UK      │ F      │ 40.0 Billion │ 45  │
+    └──────────────┴─────────┴─────────┴────────┴──────────────┴─────┘
     """
 
     table = rich_table.Table(
@@ -95,4 +120,5 @@ def display_billionaires(forbes_billionaires: list[dict[str, int | str]]) -> Non
 
 
 if __name__ == "__main__":
+    doctest.testmod()
     display_billionaires(get_forbes_real_time_billionaires())
