@@ -97,6 +97,6 @@ def display_billionaires(forbes_billionaires: list[dict[str, int | str]]) -> Non
 
 if __name__ == "__main__":
     from doctest import testmod
-    
+
     testmod()
     display_billionaires(get_forbes_real_time_billionaires())
