@@ -863,6 +863,7 @@
   * [Newtons Second Law Of Motion](physics/newtons_second_law_of_motion.py)
   * [Photoelectric Effect](physics/photoelectric_effect.py)
   * [Potential Energy](physics/potential_energy.py)
+  * [Rainfall Intensity](physics/rainfall_intensity.py)
   * [Reynolds Number](physics/reynolds_number.py)
   * [Rms Speed Of Molecule](physics/rms_speed_of_molecule.py)
   * [Shear Stress](physics/shear_stress.py)
