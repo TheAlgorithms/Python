@@ -4,7 +4,7 @@ This works for some of us but fails for others.
 """
 
 import doctest
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 
 import requests
 from rich import box
@@ -12,7 +12,9 @@ from rich import console as rich_console
 from rich import table as rich_table
 
 LIMIT = 10
-TODAY = datetime.now(tz=timezone.utc)  # noqa: UP017
+UTC_OFFSET = timedelta(hours=0)
+UTC = timezone(UTC_OFFSET)
+TODAY = datetime.now(tz=UTC)
 API_URL = (
     "https://www.forbes.com/forbesapi/person/rtb/0/position/true.json"
     "?fields=personName,gender,source,countryOfCitizenship,birthDate,finalWorth"
@@ -45,7 +47,7 @@ def years_old(birth_timestamp: int, today: date | None = None) -> int:
     True
     """
     today = today or TODAY.date()
-    birth_date = datetime.fromtimestamp(birth_timestamp, tz=timezone.utc).date()  # noqa: UP017
+    birth_date = datetime.fromtimestamp(birth_timestamp, tz=UTC).date()
     return (today.year - birth_date.year) - (
         (today.month, today.day) < (birth_date.month, birth_date.day)
     )
