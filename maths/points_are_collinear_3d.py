@@ -76,9 +76,9 @@ def get_3d_vectors_cross(ab: Vector3d, ac: Vector3d) -> Vector3d:
 
 def is_zero_vector(vector: Vector3d, accuracy: int) -> bool:
     """
-    Check if vector is equal to (0, 0, 0) of not.
+    Check if vector is equal to (0, 0, 0) or not.
 
-    Sine the algorithm is very accurate, we will never get a zero vector,
+    Since the algorithm is very accurate, we will never get a zero vector,
     so we need to round the vector axis,
     because we want a result that is either True or False.
     In other applications, we can return a float that represents the collinearity ratio.
