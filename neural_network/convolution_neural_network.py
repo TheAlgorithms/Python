@@ -1,7 +1,7 @@
 """
  - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
 Name - - CNN - Convolution Neural Network For Photo Recognizing
-Goal - - Recognize Handing Writing Word Photo
+Goal - - Recognize Handwriting Word Photo
 Detail: Total 5 layers neural network
         * Convolution layer
         * Pooling layer
@@ -304,7 +304,7 @@ class CNN:
             plt.grid(True, alpha=0.5)
             plt.show()
 
-        print("------------------Training Complished---------------------")
+        print("------------------Training Complete---------------------")
         print((" - - Training epoch: ", rp, f"     - - Mse: {mse:.6f}"))
         if draw_e:
             draw_error()
@@ -353,5 +353,5 @@ class CNN:
 
 if __name__ == "__main__":
     """
-    I will put the example on other file
+    I will put the example in another file
     """
