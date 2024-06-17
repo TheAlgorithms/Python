@@ -99,7 +99,7 @@ def are_collinear(a: Point3d, b: Point3d, c: Point3d, accuracy: int = 10) -> boo
 
     1- Create tow vectors AB and AC.
     2- Get the cross vector of the tow vectors.
-    3- Calcolate the length of the cross vector.
+    3- Calculate the length of the cross vector.
     4- If the length is zero then the points are collinear, else they are not.
 
     The use of the accuracy parameter is explained in is_zero_vector docstring.
