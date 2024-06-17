@@ -97,8 +97,8 @@ def are_collinear(a: Point3d, b: Point3d, c: Point3d, accuracy: int = 10) -> boo
     """
     Check if three points are collinear or not.
 
-    1- Create tow vectors AB and AC.
-    2- Get the cross vector of the tow vectors.
+    1- Create two vectors AB and AC.
+    2- Get the cross vector of the two vectors.
     3- Calculate the length of the cross vector.
     4- If the length is zero then the points are collinear, else they are not.
 

@@ -135,7 +135,7 @@ class CNN:
             )
             data_featuremap.append(featuremap)
 
-        # expanding the data slice to One dimension
+        # expanding the data slice to one dimension
         focus1_list = []
         for each_focus in data_focus:
             focus1_list.extend(self.Expand_Mat(each_focus))
