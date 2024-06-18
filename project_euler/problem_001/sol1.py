@@ -1,6 +1,5 @@
 """
-Project Euler Problem 1: https://projecteuler.net/problem=1
-
+Project Euler Problem 1: https://projecteuler.net/problem=
 Multiples of 3 and 5
 
 If we list all the natural numbers below 10 that are multiples of 3 or 5,
