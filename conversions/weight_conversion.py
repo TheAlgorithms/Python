@@ -316,6 +316,4 @@ pound, stone, ounce, carrat, atomic-mass-unit
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod(verbose=True)
-    print("------------------------------------------------")
-    print(f"1 Kilo é igual a {weight_conversion('kilogram', 'gram', 1)} gramas")
+    doctest.testmod()
