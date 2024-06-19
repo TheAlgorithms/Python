@@ -8,6 +8,7 @@ An algorithm that calculates the present value of a stream of yearly cash flows 
 Note: This algorithm assumes that cash flows are paid at the end of the specified year
 """
 
+#adding a comment
 
 def present_value(discount_rate: float, cash_flows: list[float]) -> float:
     """
