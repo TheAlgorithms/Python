@@ -12,12 +12,21 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.12
+          python-version: 3.13
           allow-prereleases: true
       - uses: actions/cache@v4
         with:
           path: ~/.cache/pip
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+      # https://github.com/scipy/scipy/issues/16308#issuecomment-1140477372
+      # https://lxml.de/installation.html#requirements
+      - run: |
+          sudo apt-get update -qq
+          # libgmp-dev for qiskit
+          # libhdf5-dev for keras
+          # libopenblas-dev for scipy
+          # libxml2 for lxml
+          sudo apt-get install --yes libgmp-dev libhdf5-dev libopenblas-dev libxml2 libxslt1-dev libxslt1.1 xsltproc
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools six wheel
