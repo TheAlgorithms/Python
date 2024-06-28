@@ -1,7 +1,6 @@
 beautifulsoup4
 fake_useragent
 git+https://github.com/cclauss/tweepy.git@patch-1 ; python_version >= '3.13'
-git+https://github.com/python-pillow/Pillow.git ; python_version >= '3.13'
 imageio
 keras
 lxml
@@ -9,7 +8,7 @@ matplotlib
 numpy
 opencv-python
 pandas
-pillow ; python_version < '3.13'
+pillow
 # projectq  # uncomment once quantum/quantum_random.py is fixed
 qiskit ; python_version < '3.12'
 qiskit-aer ; python_version < '3.12'
