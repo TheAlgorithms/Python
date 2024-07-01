@@ -133,18 +133,18 @@ def dijk(g, s):
         if len(known) == len(g) - 1:
             break
         mini = 100000
-        for i in dist:
-            if i not in known and dist[i] < mini:
-                mini = dist[i]
-                u = i
+        for key, value in dist:
+            if key not in known and value < mini:
+                mini = value
+                u = key
         known.add(u)
         for v in g[u]:
             if v[0] not in known and dist[u] + v[1] < dist.get(v[0], 100000):
                 dist[v[0]] = dist[u] + v[1]
                 path[v[0]] = u
-    for i in dist:
-        if i != s:
-            print(dist[i])
+    for key, value in dist.items():
+        if key != s:
+            print(value)
 
 
 """
@@ -255,10 +255,10 @@ def prim(g, s):
         if len(known) == len(g) - 1:
             break
         mini = 100000
-        for i in dist:
-            if i not in known and dist[i] < mini:
-                mini = dist[i]
-                u = i
+        for key, value in dist.items():
+            if key not in known and value < mini:
+                mini = value
+                u = key
         known.add(u)
         for v in g[u]:
             if v[0] not in known and v[1] < dist.get(v[0], 100000):

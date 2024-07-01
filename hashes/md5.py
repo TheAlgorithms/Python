@@ -131,7 +131,7 @@ def preprocess(message: bytes) -> bytes:
     return bit_string
 
 
-def get_block_words(bit_string: bytes) -> Generator[list[int], None, None]:
+def get_block_words(bit_string: bytes) -> Generator[list[int]]:
     """
     Splits bit string into blocks of 512 chars and yields each block as a list
     of 32-bit words
