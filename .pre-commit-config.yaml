@@ -51,6 +51,7 @@ repos:
     hooks:
       - id: mypy
         args:
+          - --explicit-package-bases
           - --ignore-missing-imports
           - --install-types # See mirrors-mypy README.md
           - --non-interactive

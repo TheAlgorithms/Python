@@ -1,8 +1,3 @@
-"""
-psf/black : true
-ruff : passed
-"""
-
 from __future__ import annotations
 
 from collections.abc import Iterator
@@ -321,9 +316,7 @@ class RedBlackTree:
             return False
         if self.left and not self.left.check_coloring():
             return False
-        if self.right and not self.right.check_coloring():
-            return False
-        return True
+        return not (self.right and not self.right.check_coloring())
 
     def black_height(self) -> int | None:
         """Returns the number of black nodes from this node to the
@@ -561,9 +554,7 @@ def test_rotations() -> bool:
     right_rot.right.right = RedBlackTree(10, parent=right_rot.right)
     right_rot.right.right.left = RedBlackTree(5, parent=right_rot.right.right)
     right_rot.right.right.right = RedBlackTree(20, parent=right_rot.right.right)
-    if tree != right_rot:
-        return False
-    return True
+    return tree == right_rot
 
 
 def test_insertion_speed() -> bool:
@@ -606,13 +597,11 @@ def test_insert_and_search() -> bool:
     tree.insert(12)
     tree.insert(10)
     tree.insert(11)
-    if 5 in tree or -6 in tree or -10 in tree or 13 in tree:
+    if any(i in tree for i in (5, -6, -10, 13)):
         # Found something not in there
         return False
-    if not (11 in tree and 12 in tree and -8 in tree and 0 in tree):
-        # Didn't find something in there
-        return False
-    return True
+    # Find all these things in there
+    return all(i in tree for i in (11, 12, -8, 0))
 
 
 def test_insert_delete() -> bool:
@@ -634,9 +623,7 @@ def test_insert_delete() -> bool:
     tree = tree.remove(9)
     if not tree.check_color_properties():
         return False
-    if list(tree.inorder_traverse()) != [-8, 0, 4, 8, 10, 11, 12]:
-        return False
-    return True
+    return list(tree.inorder_traverse()) == [-8, 0, 4, 8, 10, 11, 12]
 
 
 def test_floor_ceil() -> bool:
@@ -664,9 +651,7 @@ def test_min_max() -> bool:
     tree.insert(24)
     tree.insert(20)
     tree.insert(22)
-    if tree.get_max() != 22 or tree.get_min() != -16:
-        return False
-    return True
+    return not (tree.get_max() != 22 or tree.get_min() != -16)
 
 
 def test_tree_traversal() -> bool:
@@ -682,9 +667,7 @@ def test_tree_traversal() -> bool:
         return False
     if list(tree.preorder_traverse()) != [0, -16, 16, 8, 22, 20, 24]:
         return False
-    if list(tree.postorder_traverse()) != [-16, 8, 20, 24, 22, 16, 0]:
-        return False
-    return True
+    return list(tree.postorder_traverse()) == [-16, 8, 20, 24, 22, 16, 0]
 
 
 def test_tree_chaining() -> bool:
@@ -695,9 +678,7 @@ def test_tree_chaining() -> bool:
         return False
     if list(tree.preorder_traverse()) != [0, -16, 16, 8, 22, 20, 24]:
         return False
-    if list(tree.postorder_traverse()) != [-16, 8, 20, 24, 22, 16, 0]:
-        return False
-    return True
+    return list(tree.postorder_traverse()) == [-16, 8, 20, 24, 22, 16, 0]
 
 
 def print_results(msg: str, passes: bool) -> None:
