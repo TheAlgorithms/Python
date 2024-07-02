@@ -4,7 +4,7 @@ def count_vowels(s: str) -> int:
 
     :param s: Input string to count vowels in.
     :return: Number of vowels in the input string.
-    
+
     Examples:
     >>> count_vowels("hello world")
     3
@@ -30,4 +30,5 @@ def count_vowels(s: str) -> int:
 
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
