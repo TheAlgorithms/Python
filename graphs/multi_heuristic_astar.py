@@ -123,9 +123,7 @@ def do_something(back_pointer, goal, start):
 def valid(p: TPos):
     if p[0] < 0 or p[0] > n - 1:
         return False
-    if p[1] < 0 or p[1] > n - 1:
-        return False
-    return True
+    return not (p[1] < 0 or p[1] > n - 1)
 
 
 def expand_state(
