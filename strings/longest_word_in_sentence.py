@@ -23,8 +23,6 @@ def longest_word(sentence: str) -> str:
     words = sentence.split()
     return max(words, key=len) if words else ""
 
-
 if __name__ == "__main__":
     from doctest import testmod
-
     testmod()
