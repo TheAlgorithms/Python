@@ -7,7 +7,7 @@ def diophantine(a: int, b: int, c: int) -> tuple[float, float]:
     """
     Diophantine Equation : Given integers a,b,c ( at least one of a and b != 0), the
     diophantine equation a*x + b*y = c has a solution (where x and y are integers)
-    iff greatest_common_divisor(a,b) divides c.
+    if greatest_common_divisor(a,b) divides c.
 
     GCD ( Greatest Common Divisor ) or HCF ( Highest Common Factor )
 
