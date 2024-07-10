@@ -1,4 +1,3 @@
-
 import numpy as np
 from cv2 import COLOR_BGR2GRAY, cvtColor, imread
 from numpy import array, uint8
@@ -20,7 +19,6 @@ from digital_image_processing.resize import resize as rs
 
 # Sample image path for testing
 IMG_PATH = r"C:/Users/USER/Python/digital_image_processing/image_data/lena_small.jpg"
-
 
 
 @pytest.fixture
@@ -110,4 +108,3 @@ def test_local_binary_pattern():
             lbp_image[i][j] = lbp.local_binary_value(img, i, j)
 
     assert lbp_image.any()
-
