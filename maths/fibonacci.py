@@ -129,6 +129,7 @@ def fib_recursive(n: int) -> list[int]:
         memo[i] = fib_recursive_term(i)
     return memo
 
+
 def fib_recursive_cached(n: int) -> list[int]:
     """
     Calculates the first n (0-indexed) Fibonacci numbers using recursion
