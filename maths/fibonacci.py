@@ -117,15 +117,17 @@ def fib_recursive(n: int) -> list[int]:
         Exception: n is negative
         """
         if i < 0:
-            raise ValueError("n is negative")
+            raise Exception("n is negative")
         if i < 2:
             return i
         return fib_recursive_term(i - 1) + fib_recursive_term(i - 2)
 
     if n < 0:
-        raise ValueError("n is negative")
-    return [fib_recursive_term(i) for i in range(n + 1)]
-
+        raise Exception("n is negative")
+    memo = [0] * (n + 1)
+    for i in range(2, n + 1):
+        memo[i] = fib_recursive_term(i)
+    return memo
 
 def fib_recursive_cached(n: int) -> list[int]:
     """
