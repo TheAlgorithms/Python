@@ -101,30 +101,33 @@ def fib_recursive(n: int) -> list[int]:
     """
 
     def fib_recursive_term(i: int) -> int:
-        """
-        Calculates the i-th (0-indexed) Fibonacci number using recursion
-        >>> fib_recursive_term(0)
-        0
-        >>> fib_recursive_term(1)
-        1
-        >>> fib_recursive_term(5)
-        5
-        >>> fib_recursive_term(10)
-        55
-        >>> fib_recursive_term(-1)
-        Traceback (most recent call last):
-            ...
-        Exception: n is negative
-        """
-        if i < 0:
-            raise ValueError("n is negative")
-        if i < 2:
-            return i
-        return fib_recursive_term(i - 1) + fib_recursive_term(i - 2)
+    """
+    Calculates the i-th (0-indexed) Fibonacci number using recursion
+    >>> fib_recursive_term(0)
+    0
+    >>> fib_recursive_term(1)
+    1
+    >>> fib_recursive_term(5)
+    5
+    >>> fib_recursive_term(10)
+    55
+    >>> fib_recursive_term(-1)
+    Traceback (most recent call last):
+        ...
+    Exception: n is negative
+    """
+    if i < 0:
+        raise Exception("n is negative")
+    if i < 2:
+        return i
+    return fib_recursive_term(i - 1) + fib_recursive_term(i - 2)
 
-    if n < 0:
-        raise ValueError("n is negative")
-    return [fib_recursive_term(i) for i in range(n + 1)]
+if n < 0:
+    raise Exception("n is negative")
+memo = [0] * (n + 1)
+for i in range(2, n + 1):
+    memo[i] = fib_recursive_term(i)
+return memo
 
 
 def fib_recursive_cached(n: int) -> list[int]:
