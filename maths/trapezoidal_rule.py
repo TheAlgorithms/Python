@@ -2,10 +2,6 @@
 Numerical integration or quadrature for a smooth function f with known values at x_i
 
 This method is the classical approach of summing 'Equally Spaced Abscissas'
-
-method 1:
-"extended trapezoidal rule"
-
 """
 
 from collections.abc import Callable, Iterator
@@ -45,16 +41,13 @@ def trapezoidal_rule(
     TypeError: unsupported operand type(s) for -: 'str' and 'str'
 
     Parameters:
+    - f (Callable[[float], float]): The function to be integrated.
     - boundary (list of float): A two-element list specifying the lower and upper bounds
      of the integration interval.
     - steps (int): The number of steps (trapezoids) to divide the interval into.
-    - f (Callable[[float], float]): The function to be integrated.
 
     Returns:
     - float: The estimated value of the integral over the specified interval.
-
-    Note:
-    The function `f` to be integrated must be defined outside this function.
     """
     h = (boundary[1] - boundary[0]) / steps
     a = boundary[0]
