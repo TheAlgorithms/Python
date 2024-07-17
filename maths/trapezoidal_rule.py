@@ -10,8 +10,48 @@ method 1:
 
 
 def method_1(boundary, steps):
-    # "extended trapezoidal rule"
-    # int(f) = dx/2 * (f1 + 2f2 + ... + fn)
+    """
+    "extended trapezoidal rule"
+    int(f) = dx/2 * (f1 + 2f2 + ... + fn)
+
+    >>> def f(x): return x ** 2
+    >>> abs(method_1([0, 1], 10) - 0.335) < 1e-9
+    True
+
+    >>> def f(x): return 1
+    >>> abs(method_1([0, 10], 100) - 333.35) < 1e-9
+    True
+
+    >>> def f(x): return x
+    >>> method_1([0, 1], 1)
+    0.5
+
+    >>> def f(x): return x ** 2
+    >>> method_1([], 10)  # Empty boundary list
+    Traceback (most recent call last):
+        ...
+    IndexError: list index out of range
+
+    >>> method_1([0, 1], 0)  # Steps as zero
+    Traceback (most recent call last):
+        ...
+    ZeroDivisionError: division by zero
+    >>> method_1(['0', '1'], 10)  # Boundary values as strings
+    Traceback (most recent call last):
+        ...
+    TypeError: unsupported operand type(s) for -: 'str' and 'str'
+
+    Parameters:
+    - boundary (list of float): A two-element list specifying the lower and upper bounds
+     of the integration interval.
+    - steps (int): The number of steps (trapezoids) to divide the interval into.
+
+    Returns:
+    - float: The estimated value of the integral over the specified interval.
+
+    Note:
+    The function `f` to be integrated must be defined outside this function.
+    """
     h = (boundary[1] - boundary[0]) / steps
     a = boundary[0]
     b = boundary[1]
@@ -26,25 +66,44 @@ def method_1(boundary, steps):
 
 
 def make_points(a, b, h):
+    """
+    Generate points within the interval (a, b) with a step size of h.
+
+    The generator function yields a sequence of points starting from `a + h` to `b - h`.
+    It is used to generate the x-values at which the function `f` will be evaluated,
+    for the purpose of numerical integration using methods like the trapezoidal rule.
+
+    Parameters:
+    - a (float): The lower bound of the interval.
+    - b (float): The upper bound of the interval.
+    - h (float): The step size between each point in the interval.
+
+    Yields:
+    - float: The next point in the sequence within the interval (a, b).
+
+    Examples:
+    >>> list(make_points(0, 10, 2))
+    [2, 4, 6]
+    >>> list(make_points(1, 5, 1))
+    [2, 3]
+    >>> list(make_points(-2, 2, 1))
+    [-1, 0]
+    """
     x = a + h
     while x < (b - h):
         yield x
         x = x + h
 
 
-def f(x):  # enter your function here
+def f(x):
+    """
+    Replace this function with any specific function you need to integrate.
+    """
     y = (x - 0) * (x - 0)
     return y
 
 
-def main():
-    a = 0.0  # Lower bound of integration
-    b = 1.0  # Upper bound of integration
-    steps = 10.0  # define number of steps or resolution
-    boundary = [a, b]  # define boundary of integration
-    y = method_1(boundary, steps)
-    print(f"y = {y}")
-
-
 if __name__ == "__main__":
-    main()
+    import doctest
+
+    doctest.testmod()
