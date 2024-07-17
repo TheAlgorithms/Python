@@ -8,37 +8,36 @@ method 1:
 
 """
 
-from collections.abc import Iterator
+from collections.abc import Callable, Iterator
 
 
-def method_1(boundary: list[float], steps: int) -> float:
+def method_1(f: Callable[[float], float], boundary: list[float], steps: int) -> float:
     """
     "extended trapezoidal rule"
     int(f) = dx/2 * (f1 + 2f2 + ... + fn)
 
-    >>> def f(x): return x ** 2
-    >>> abs(method_1([0, 1], 10) - 0.335) < 1e-9
+    >>> def func(x): return x ** 2
+    >>> abs(method_1(func, [0, 1], 10) - 0.335) < 1e-9
     True
 
-    >>> def f(x): return 1
-    >>> abs(method_1([0, 10], 100) - 333.35) < 1e-9
+    >>> def func(x): return 1
+    >>> abs(method_1(func, [0, 10], 100) - 10.0) < 1e-9
     True
 
-    >>> def f(x): return x
-    >>> method_1([0, 1], 1)
+    >>> def func(x): return x
+    >>> method_1(func, [0, 1], 1)
     0.5
 
-    >>> def f(x): return x ** 2
-    >>> method_1([], 10)  # Empty boundary list
+    >>> method_1(func, [], 10)  # Empty boundary list
     Traceback (most recent call last):
         ...
     IndexError: list index out of range
 
-    >>> method_1([0, 1], 0)  # Steps as zero
+    >>> method_1(func, [0, 1], 0)  # Steps as zero
     Traceback (most recent call last):
         ...
     ZeroDivisionError: division by zero
-    >>> method_1(['0', '1'], 10)  # Boundary values as strings
+    >>> method_1(func, ['0', '1'], 10)  # Boundary values as strings
     Traceback (most recent call last):
         ...
     TypeError: unsupported operand type(s) for -: 'str' and 'str'
@@ -47,6 +46,7 @@ def method_1(boundary: list[float], steps: int) -> float:
     - boundary (list of float): A two-element list specifying the lower and upper bounds
      of the integration interval.
     - steps (int): The number of steps (trapezoids) to divide the interval into.
+    - f (Callable[[float], float]): The function to be integrated.
 
     Returns:
     - float: The estimated value of the integral over the specified interval.
@@ -94,14 +94,6 @@ def make_points(a: float, b: float, h: float) -> Iterator[float]:
     while x < (b - h):
         yield x
         x = x + h
-
-
-def f(x: float) -> float:
-    """
-    Replace this function with any specific function you need to integrate.
-    """
-    y = (x - 0) * (x - 0)
-    return y
 
 
 if __name__ == "__main__":
