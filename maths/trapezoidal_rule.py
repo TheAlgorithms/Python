@@ -1,7 +1,7 @@
 """
 Numerical integration or quadrature for a smooth function f with known values at x_i
 
-This method is the classical approach of suming 'Equally Spaced Abscissas'
+This method is the classical approach of summing 'Equally Spaced Abscissas'
 
 method 1:
 "extended trapezoidal rule"
@@ -11,33 +11,35 @@ method 1:
 from collections.abc import Callable, Iterator
 
 
-def method_1(f: Callable[[float], float], boundary: list[float], steps: int) -> float:
+def trapezoidal_rule(
+    f: Callable[[float], float], boundary: list[float], steps: int
+) -> float:
     """
     "extended trapezoidal rule"
     int(f) = dx/2 * (f1 + 2f2 + ... + fn)
 
     >>> def func(x): return x ** 2
-    >>> abs(method_1(func, [0, 1], 10) - 0.335) < 1e-9
+    >>> abs(trapezoidal_rule(func, [0, 1], 10) - 0.335) < 1e-9
     True
 
     >>> def func(x): return 1
-    >>> abs(method_1(func, [0, 10], 100) - 10.0) < 1e-9
+    >>> abs(trapezoidal_rule(func, [0, 10], 100) - 10.0) < 1e-9
     True
 
     >>> def func(x): return x
-    >>> method_1(func, [0, 1], 1)
+    >>> trapezoidal_rule(func, [0, 1], 1)
     0.5
 
-    >>> method_1(func, [], 10)  # Empty boundary list
+    >>> trapezoidal_rule(func, [], 10)  # Empty boundary list
     Traceback (most recent call last):
         ...
     IndexError: list index out of range
 
-    >>> method_1(func, [0, 1], 0)  # Steps as zero
+    >>> trapezoidal_rule(func, [0, 1], 0)  # Steps as zero
     Traceback (most recent call last):
         ...
     ZeroDivisionError: division by zero
-    >>> method_1(func, ['0', '1'], 10)  # Boundary values as strings
+    >>> trapezoidal_rule(func, ['0', '1'], 10)  # Boundary values as strings
     Traceback (most recent call last):
         ...
     TypeError: unsupported operand type(s) for -: 'str' and 'str'
