@@ -8,8 +8,10 @@ method 1:
 
 """
 
+from collections.abc import Iterator
 
-def method_1(boundary, steps):
+
+def method_1(boundary: list[float], steps: int) -> float:
     """
     "extended trapezoidal rule"
     int(f) = dx/2 * (f1 + 2f2 + ... + fn)
@@ -59,13 +61,12 @@ def method_1(boundary, steps):
     y = 0.0
     y += (h / 2.0) * f(a)
     for i in x_i:
-        # print(i)
         y += h * f(i)
     y += (h / 2.0) * f(b)
     return y
 
 
-def make_points(a, b, h):
+def make_points(a: float, b: float, h: float) -> Iterator[float]:
     """
     Generate points within the interval (a, b) with a step size of h.
 
@@ -95,7 +96,7 @@ def make_points(a, b, h):
         x = x + h
 
 
-def f(x):
+def f(x: float) -> float:
     """
     Replace this function with any specific function you need to integrate.
     """
