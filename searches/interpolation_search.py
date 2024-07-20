@@ -8,8 +8,8 @@ def interpolation_search(sorted_collection: list[int], item: int) -> int | None:
     Searches for an item in a sorted collection by interpolation search algorithm.
 
     Args:
-        sorted_collection: An ascending sorted collection of comparable items.
-        item : The item value to search for.
+        sorted_collection: sorted list of integers
+        item: item value to search
 
     Returns:
         int: The index of the found item, or None if the item is not found.
