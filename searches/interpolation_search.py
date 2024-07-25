@@ -47,8 +47,7 @@ def interpolation_search(sorted_collection: list[int], item: int) -> int | None:
         if sorted_collection[left] == sorted_collection[right]:
             if sorted_collection[left] == item:
                 return left
-            else:
-                return None
+            return None
 
         point = left + ((item - sorted_collection[left]) * (right - left)) // (
             sorted_collection[right] - sorted_collection[left]
@@ -61,7 +60,7 @@ def interpolation_search(sorted_collection: list[int], item: int) -> int | None:
         current_item = sorted_collection[point]
         if current_item == item:
             return point
-        elif point < left:
+        if point < left:
             right = left
             left = point
         elif point > right:
@@ -109,8 +108,7 @@ def interpolation_search_by_recursion(
     if sorted_collection[left] == sorted_collection[right]:
         if sorted_collection[left] == item:
             return left
-        else:
-            return None
+        return None
 
     point = left + ((item - sorted_collection[left]) * (right - left)) // (
         sorted_collection[right] - sorted_collection[left]
@@ -122,22 +120,18 @@ def interpolation_search_by_recursion(
 
     if sorted_collection[point] == item:
         return point
-    elif point < left:
+    if point < left:
         return interpolation_search_by_recursion(sorted_collection, item, point, left)
-    elif point > right:
+    if point > right:
         return interpolation_search_by_recursion(sorted_collection, item, right, left)
-    elif sorted_collection[point] > item:
+    if sorted_collection[point] > item:
         return interpolation_search_by_recursion(
             sorted_collection, item, left, point - 1
         )
-    else:
-        return interpolation_search_by_recursion(
-            sorted_collection, item, point + 1, right
-        )
+    return interpolation_search_by_recursion(sorted_collection, item, point + 1, right)
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    x = 10
