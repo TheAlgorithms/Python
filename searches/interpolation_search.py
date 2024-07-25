@@ -18,19 +18,19 @@ def interpolation_search(sorted_collection: list[int], item: int) -> int | None:
     1
     >>> interpolation_search([1, 2, 3, 4, 5], 4)
     3
-    >>> interpolation_search([1, 2, 3, 4, 5], 6)
-    >>> interpolation_search([], 1)
+    >>> interpolation_search([1, 2, 3, 4, 5], 6) is None
+    >>> interpolation_search([], 1) is None
     >>> interpolation_search([100], 100)
     0
-    >>> interpolation_search([1, 2, 3, 4, 5], 0)
-    >>> interpolation_search([1, 2, 3, 4, 5], 7)
+    >>> interpolation_search([1, 2, 3, 4, 5], 0) is None
+    >>> interpolation_search([1, 2, 3, 4, 5], 7) is None
     >>> interpolation_search([1, 2, 3, 4, 5], 2)
     1
-    >>> interpolation_search([1, 2, 3, 4, 5], 0)
-    >>> interpolation_search([1, 2, 3, 4, 5], 7)
+    >>> interpolation_search([1, 2, 3, 4, 5], 0) is None
+    >>> interpolation_search([1, 2, 3, 4, 5], 7) is None
     >>> interpolation_search([1, 2, 3, 4, 5], 2)
     1
-    >>> interpolation_search([5, 5, 5, 5, 5], 3)
+    >>> interpolation_search([5, 5, 5, 5, 5], 3) is None
     """
     left = 0
     right = len(sorted_collection) - 1
