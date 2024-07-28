@@ -36,23 +36,23 @@ class InteriorPointMethod:
 
     def _is_valid_input(self) -> bool:
         """
-        Validate the input for the linear programming problem.
+                Validate the input for the linear programming problem.
 
-        Returns:
-            bool: True if input is valid, False otherwise.
+                Returns:
+                    bool: True if input is valid, False otherwise.
 
-        >>> objective_coefficients = np.array([1, 2])
-        >>> constraint_matrix = np.array([[1, 1], [1, -1]])
-        >>> constraint_bounds = np.array([2, 0])
-        >>> ipm = InteriorPointMethod(objective_coefficients, constraint_matrix,
-constraint_bounds)
-        >>> ipm._is_valid_input()
-        True
-        >>> constraint_bounds = np.array([2, 0, 1])
-        >>> ipm = InteriorPointMethod(objective_coefficients, constraint_matrix,
-constraint_bounds)
-        >>> ipm._is_valid_input()
-        False
+                >>> objective_coefficients = np.array([1, 2])
+                >>> constraint_matrix = np.array([[1, 1], [1, -1]])
+                >>> constraint_bounds = np.array([2, 0])
+                >>> ipm = InteriorPointMethod(objective_coefficients, constraint_matrix,
+        constraint_bounds)
+                >>> ipm._is_valid_input()
+                True
+                >>> constraint_bounds = np.array([2, 0, 1])
+                >>> ipm = InteriorPointMethod(objective_coefficients, constraint_matrix,
+        constraint_bounds)
+                >>> ipm._is_valid_input()
+                False
         """
         return (
             self.constraint_matrix.shape[0] == self.constraint_bounds.shape[0]
@@ -61,23 +61,23 @@ constraint_bounds)
 
     def _convert_to_standard_form(self) -> tuple[np.ndarray, np.ndarray]:
         """
-        Convert constraints to standard form by adding slack variables.
+                Convert constraints to standard form by adding slack variables.
 
-        Returns:
-            tuple: A tuple of the standard form constraint matrix and objective
-coefficients.
+                Returns:
+                    tuple: A tuple of the standard form constraint matrix and objective
+        coefficients.
 
-        >>> objective_coefficients = np.array([1, 2])
-        >>> constraint_matrix = np.array([[1, 1], [1, -1]])
-        >>> constraint_bounds = np.array([2, 0])
-        >>> ipm = InteriorPointMethod(objective_coefficients, constraint_matrix,
-constraint_bounds)
-        >>> a_standard, c_standard = ipm._convert_to_standard_form()
-        >>> a_standard
-        array([[ 1.,  1.,  1.,  0.],
-               [ 1., -1.,  0.,  1.]])
-        >>> c_standard
-        array([1., 2., 0., 0.])
+                >>> objective_coefficients = np.array([1, 2])
+                >>> constraint_matrix = np.array([[1, 1], [1, -1]])
+                >>> constraint_bounds = np.array([2, 0])
+                >>> ipm = InteriorPointMethod(objective_coefficients, constraint_matrix,
+        constraint_bounds)
+                >>> a_standard, c_standard = ipm._convert_to_standard_form()
+                >>> a_standard
+                array([[ 1.,  1.,  1.,  0.],
+                       [ 1., -1.,  0.,  1.]])
+                >>> c_standard
+                array([1., 2., 0., 0.])
         """
         (m, n) = self.constraint_matrix.shape
         slack = np.eye(m)
@@ -87,19 +87,19 @@ constraint_bounds)
 
     def solve(self) -> tuple[np.ndarray, float]:
         """
-        Solve problem with Primal-Dual Interior-Point Method.
+                Solve problem with Primal-Dual Interior-Point Method.
 
-        Returns:
-            tuple: A tuple with optimal solution and the optimal value.
+                Returns:
+                    tuple: A tuple with optimal solution and the optimal value.
 
-        >>> objective_coefficients = np.array([1, 2])
-        >>> constraint_matrix = np.array([[1, 1], [1, -1]])
-        >>> constraint_bounds = np.array([2, 0])
-        >>> ipm = InteriorPointMethod(objective_coefficients, constraint_matrix,
-constraint_bounds)
-        >>> solution, value = ipm.solve()
-        >>> np.isclose(value, np.dot(objective_coefficients, solution))
-        True
+                >>> objective_coefficients = np.array([1, 2])
+                >>> constraint_matrix = np.array([[1, 1], [1, -1]])
+                >>> constraint_bounds = np.array([2, 0])
+                >>> ipm = InteriorPointMethod(objective_coefficients, constraint_matrix,
+        constraint_bounds)
+                >>> solution, value = ipm.solve()
+                >>> np.isclose(value, np.dot(objective_coefficients, solution))
+                True
         """
         a, c = self._convert_to_standard_form()
         m, n = a.shape
