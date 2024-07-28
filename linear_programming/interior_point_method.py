@@ -23,7 +23,14 @@ class InteriorPointMethod:
         max_iter (int): Maximum number of iterations.
     """
 
-    def __init__(self, c: np.ndarray, A: np.ndarray, b: np.ndarray, tol: float = 1e-8, max_iter: int = 100) -> None:
+    def __init__(
+        self,
+        c: np.ndarray,
+        A: np.ndarray,
+        b: np.ndarray,
+        tol: float = 1e-8,
+        max_iter: int = 100,
+    ) -> None:
         self.c = c
         self.A = A
         self.b = b
@@ -35,7 +42,9 @@ class InteriorPointMethod:
 
     def _is_valid_input(self) -> bool:
         """Validate the input for the linear programming problem."""
-        return (self.A.shape[0] == self.b.shape[0]) and (self.A.shape[1] == self.c.shape[0])
+        return (self.A.shape[0] == self.b.shape[0]) and (
+            self.A.shape[1] == self.c.shape[0]
+        )
 
     def _convert_to_standard_form(self):
         """Convert constraints to standard form by adding slack and surplus variables."""
@@ -67,17 +76,23 @@ class InteriorPointMethod:
             r2 = A.T @ y + s - c
             r3 = x * s
 
-            if np.linalg.norm(r1) < self.tol and np.linalg.norm(r2) < self.tol and np.linalg.norm(r3) < self.tol:
+            if (
+                np.linalg.norm(r1) < self.tol
+                and np.linalg.norm(r2) < self.tol
+                and np.linalg.norm(r3) < self.tol
+            ):
                 break
 
             mu = np.dot(x, s) / n
 
             # Form the KKT matrix
-            KKT = np.block([
-                [np.zeros((n, n)), A.T, np.eye(n)],
-                [A, np.zeros((m, m)), np.zeros((m, n))],
-                [S, np.zeros((n, m)), X]
-            ])
+            KKT = np.block(
+                [
+                    [np.zeros((n, n)), A.T, np.eye(n)],
+                    [A, np.zeros((m, m)), np.zeros((m, n))],
+                    [S, np.zeros((n, m)), X],
+                ]
+            )
 
             # Right-hand side
             r = np.hstack([-r2, -r1, -r3 + mu * np.ones(n)])
@@ -86,8 +101,8 @@ class InteriorPointMethod:
             delta = np.linalg.solve(KKT, r)
 
             dx = delta[:n]
-            dy = delta[n:n + m]
-            ds = delta[n + m:]
+            dy = delta[n : n + m]
+            ds = delta[n + m :]
 
             # Step size
             alpha_primal = min(1, 0.99 * min(-x[dx < 0] / dx[dx < 0], default=1))
