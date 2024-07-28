@@ -11,7 +11,7 @@ import numpy as np
 
 class InteriorPointMethod:
     """
-    Operate on linear programming problems using the Primal-Dual Interior-Point Method.
+    Operate on linear programming problems using the Interior-Point Method.
 
     Attributes:
         objective_coefficients (np.ndarray): Coefficient matrix for the objective
@@ -57,11 +57,10 @@ variables."""
 
     def solve(self) -> tuple[np.ndarray, float]:
         """
-        Solve the linear programming problem using the Primal-Dual Interior-Point
-Method.
+        Solve problem with Primal-Dual Interior-Point Method.
 
         Returns:
-            tuple: A tuple containing the optimal solution and the optimal value.
+        tuple: A tuple with optimal soln and the optimal value.
         """
         a, c = self._convert_to_standard_form()
         m, n = a.shape
