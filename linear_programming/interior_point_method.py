@@ -9,6 +9,7 @@ https://en.wikipedia.org/wiki/Interior-point_method
 
 import numpy as np
 
+
 class InteriorPointMethod:
     """
     Operate on linear programming problems using the Primal-Dual Interior-Point Method.
@@ -21,7 +22,14 @@ class InteriorPointMethod:
         max_iter (int): Maximum number of iterations.
     """
 
-    def __init__(self, c: np.ndarray, a: np.ndarray, b: np.ndarray, tol: float = 1e-8, max_iter: int = 100) -> None:
+    def __init__(
+        self,
+        c: np.ndarray,
+        a: np.ndarray,
+        b: np.ndarray,
+        tol: float = 1e-8,
+        max_iter: int = 100,
+    ) -> None:
         self.c = c
         self.a = a
         self.b = b
@@ -33,7 +41,9 @@ class InteriorPointMethod:
 
     def _is_valid_input(self) -> bool:
         """Validate the input for the linear programming problem."""
-        return (self.a.shape[0] == self.b.shape[0]) and (self.a.shape[1] == self.c.shape[0])
+        return (self.a.shape[0] == self.b.shape[0]) and (
+            self.a.shape[1] == self.c.shape[0]
+        )
 
     def _convert_to_standard_form(self):
         """Convert constraints to standard form by adding slack and surplus variables."""
@@ -65,17 +75,23 @@ class InteriorPointMethod:
             r2 = a.T @ y + s - c
             r3 = x * s
 
-            if np.linalg.norm(r1) < self.tol and np.linalg.norm(r2) < self.tol and np.linalg.norm(r3) < self.tol:
+            if (
+                np.linalg.norm(r1) < self.tol
+                and np.linalg.norm(r2) < self.tol
+                and np.linalg.norm(r3) < self.tol
+            ):
                 break
 
             mu = np.dot(x, s) / n
 
             # Form the KKT matrix
-            kkt = np.block([
-                [np.zeros((n, n)), a.T, np.eye(n)],
-                [a, np.zeros((m, m)), np.zeros((m, n))],
-                [s_diag, np.zeros((n, m)), x_diag]
-            ])
+            kkt = np.block(
+                [
+                    [np.zeros((n, n)), a.T, np.eye(n)],
+                    [a, np.zeros((m, m)), np.zeros((m, n))],
+                    [s_diag, np.zeros((n, m)), x_diag],
+                ]
+            )
 
             # Right-hand side
             r = np.hstack([-r2, -r1, -r3 + mu * np.ones(n)])
@@ -84,8 +100,8 @@ class InteriorPointMethod:
             delta = np.linalg.solve(kkt, r)
 
             dx = delta[:n]
-            dy = delta[n:n+m]
-            ds = delta[n+m:]
+            dy = delta[n : n + m]
+            ds = delta[n + m :]
 
             # Step size
             alpha_primal = min(1, 0.99 * min(-x[dx < 0] / dx[dx < 0], default=1))
