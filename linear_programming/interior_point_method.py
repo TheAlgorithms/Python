@@ -14,7 +14,8 @@ class InteriorPointMethod:
     Operate on linear programming problems using the Primal-Dual Interior-Point Method.
 
     Attributes:
-        objective_coefficients (np.ndarray): Coefficient matrix for the objective function.
+        objective_coefficients (np.ndarray): Coefficient matrix for the objective
+function.
         constraint_matrix (np.ndarray): Constraint matrix.
         constraint_bounds (np.ndarray): Constraint bounds.
         tol (float): Tolerance for stopping criterion.
@@ -46,7 +47,8 @@ class InteriorPointMethod:
         )
 
     def _convert_to_standard_form(self) -> tuple[np.ndarray, np.ndarray]:
-        """Convert constraints to standard form by adding slack and surplus variables."""
+        """Convert constraints to standard form by adding slack and surplus
+variables."""
         (m, n) = self.constraint_matrix.shape
         slack_surplus = np.eye(m)
         a_standard = np.hstack([self.constraint_matrix, slack_surplus])
@@ -55,7 +57,8 @@ class InteriorPointMethod:
 
     def solve(self) -> tuple[np.ndarray, float]:
         """
-        Solve the linear programming problem using the Primal-Dual Interior-Point Method.
+        Solve the linear programming problem using the Primal-Dual Interior-Point
+Method.
 
         Returns:
             tuple: A tuple containing the optimal solution and the optimal value.
