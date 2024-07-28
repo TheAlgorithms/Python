@@ -22,8 +22,12 @@ class InteriorPointMethod:
     """
 
     def __init__(
-        self, objective_coefficients: np.ndarray, constraint_matrix: np.ndarray,
-        constraint_bounds: np.ndarray, tol: float = 1e-8, max_iter: int = 100
+        self,
+        objective_coefficients: np.ndarray,
+        constraint_matrix: np.ndarray,
+        constraint_bounds: np.ndarray,
+        tol: float = 1e-8,
+        max_iter: int = 100,
     ) -> None:
         self.objective_coefficients = objective_coefficients
         self.constraint_matrix = constraint_matrix
@@ -37,8 +41,8 @@ class InteriorPointMethod:
     def _is_valid_input(self) -> bool:
         """Validate the input for the linear programming problem."""
         return (
-            self.constraint_matrix.shape[0] == self.constraint_bounds.shape[0] and
-            self.constraint_matrix.shape[1] == self.objective_coefficients.shape[0]
+            self.constraint_matrix.shape[0] == self.constraint_bounds.shape[0]
+            and self.constraint_matrix.shape[1] == self.objective_coefficients.shape[0]
         )
 
     def _convert_to_standard_form(self) -> tuple[np.ndarray, np.ndarray]:
@@ -72,19 +76,22 @@ class InteriorPointMethod:
             r3 = x * s
 
             if (
-                np.linalg.norm(r1) < self.tol and np.linalg.norm(r2) < self.tol and
-                np.linalg.norm(r3) < self.tol
+                np.linalg.norm(r1) < self.tol
+                and np.linalg.norm(r2) < self.tol
+                and np.linalg.norm(r3) < self.tol
             ):
                 break
 
             mu = np.dot(x, s) / n
 
             # Form the KKT matrix
-            kkt = np.block([
-                [np.zeros((n, n)), a.T, np.eye(n)],
-                [a, np.zeros((m, m)), np.zeros((m, n))],
-                [s_diag, np.zeros((n, m)), x_diag]
-            ])
+            kkt = np.block(
+                [
+                    [np.zeros((n, n)), a.T, np.eye(n)],
+                    [a, np.zeros((m, m)), np.zeros((m, n))],
+                    [s_diag, np.zeros((n, m)), x_diag],
+                ]
+            )
 
             # Right-hand side
             r = np.hstack([-r2, -r1, -r3 + mu * np.ones(n)])
@@ -93,16 +100,12 @@ class InteriorPointMethod:
             delta = np.linalg.solve(kkt, r)
 
             dx = delta[:n]
-            dy = delta[n:n + m]
-            ds = delta[n + m:]
+            dy = delta[n : n + m]
+            ds = delta[n + m :]
 
             # Step size
-            alpha_primal = min(
-                1, 0.99 * min(-x[dx < 0] / dx[dx < 0], default=1)
-            )
-            alpha_dual = min(
-                1, 0.99 * min(-s[ds < 0] / ds[ds < 0], default=1)
-            )
+            alpha_primal = min(1, 0.99 * min(-x[dx < 0] / dx[dx < 0], default=1))
+            alpha_dual = min(1, 0.99 * min(-s[ds < 0] / ds[ds < 0], default=1))
 
             # Update variables
             x += alpha_primal * dx
@@ -118,7 +121,9 @@ if __name__ == "__main__":
     constraint_matrix = np.array([[1, 1], [1, -1]])
     constraint_bounds = np.array([2, 0])
 
-    ipm = InteriorPointMethod(objective_coefficients, constraint_matrix, constraint_bounds)
+    ipm = InteriorPointMethod(
+        objective_coefficients, constraint_matrix, constraint_bounds
+    )
     solution, value = ipm.solve()
     print("Optimal solution:", solution)
     print("Optimal value:", value)
