@@ -28,7 +28,8 @@ def mirror_binary_tree(tree: dict, root: int = 1) -> dict:
     if not tree:
         raise ValueError("Binary tree cannot be empty")
     if root not in tree:
-        raise ValueError(f"Root {root} is not present in the binary tree")
+        error_message = f"Root {root} is not present in the binary tree"
+        raise ValueError(error_message)
 
     mirrored_tree = dict(tree)
     mirror_subtree(mirrored_tree, root)
