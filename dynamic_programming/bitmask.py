@@ -10,6 +10,7 @@ Find the total number of ways in which the tasks can be distributed.
 
 from collections import defaultdict
 
+
 class AssignmentUsingBitmask:
     def __init__(self, task_performed, total):
         """
@@ -17,7 +18,7 @@ class AssignmentUsingBitmask:
 
         :param task_performed: A list of lists where each sublist contains the tasks that a person can perform.
         :param total: Total number of tasks.
-        
+
         >>> a = AssignmentUsingBitmask([[1, 3, 4], [1, 2, 5], [3, 4]], 5)
         >>> a.total_tasks
         5
@@ -28,7 +29,9 @@ class AssignmentUsingBitmask:
 
         # DP table will have a dimension of (2^M) x (N+1)
         # initially all values are set to -1
-        self.dp = [[-1 for _ in range(total + 1)] for _ in range(2 ** len(task_performed))]
+        self.dp = [
+            [-1 for _ in range(total + 1)] for _ in range(2 ** len(task_performed))
+        ]
 
         self.task = defaultdict(list)  # stores the list of persons for each task
 
@@ -42,7 +45,7 @@ class AssignmentUsingBitmask:
         :param mask: Current mask representing which persons have been assigned tasks.
         :param task_no: The current task number being considered.
         :return: The number of ways to assign tasks starting from the current state.
-        
+
         >>> a = AssignmentUsingBitmask([[1, 3, 4], [1, 2, 5], [3, 4]], 5)
         >>> a.count_ways_until(0, 1)
         0
@@ -85,7 +88,7 @@ class AssignmentUsingBitmask:
 
         :param task_performed: A list of lists where each sublist contains the tasks that a person can perform.
         :return: The total number of ways to distribute tasks.
-        
+
         >>> a = AssignmentUsingBitmask([[1, 3, 4], [1, 2, 5], [3, 4]], 5)
         >>> a.count_no_of_ways([[1, 3, 4], [1, 2, 5], [3, 4]])
         10
@@ -97,6 +100,7 @@ class AssignmentUsingBitmask:
 
         # Call the function to fill the DP table, final answer is stored in dp[0][1]
         return self.count_ways_until(0, 1)
+
 
 if __name__ == "__main__":
     total_tasks = 5  # Total number of tasks (the value of N)
