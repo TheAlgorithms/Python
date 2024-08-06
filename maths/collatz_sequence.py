@@ -53,6 +53,8 @@ def collatz_sequence(n: int) -> Generator[int, None, None]:
             n //= 2
         else:
             n = 3 * n + 1
+            yield n
+            n //= 2
         yield n
 
 
