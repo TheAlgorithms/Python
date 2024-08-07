@@ -6,7 +6,6 @@ Leetcode link: https://leetcode.com/problems/valid-number/description/
 """
 
 from enum import Enum
-from typing import Dict
 
 
 class CharType(Enum):
@@ -27,7 +26,7 @@ class State(Enum):
     EXP_NUMBER = "EXP_NUMBER"
 
 
-state_machine: Dict[State, Dict[CharType, State]] = {
+state_machine: dict[State, dict[CharType, State]] = {
     State.INITIAL: {
         CharType.NUMERIC: State.WHOLE,
         CharType.SIGN: State.SIGNED,
