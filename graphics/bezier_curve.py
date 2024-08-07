@@ -2,7 +2,7 @@
 # https://www.tutorialspoint.com/computer_graphics/computer_graphics_curves.htm
 from __future__ import annotations
 
-from scipy.special import comb  # type: ignore
+from scipy.special import comb
 
 
 class BezierCurve:

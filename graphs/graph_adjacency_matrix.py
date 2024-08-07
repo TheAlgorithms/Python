@@ -156,9 +156,11 @@ class GraphAdjacencyMatrix(Generic[T]):
         self.vertex_to_index.pop(vertex)
 
         # decrement indices for vertices shifted by the deleted vertex in the adj matrix
-        for vertex in self.vertex_to_index:
-            if self.vertex_to_index[vertex] >= start_index:
-                self.vertex_to_index[vertex] = self.vertex_to_index[vertex] - 1
+        for inner_vertex in self.vertex_to_index:
+            if self.vertex_to_index[inner_vertex] >= start_index:
+                self.vertex_to_index[inner_vertex] = (
+                    self.vertex_to_index[inner_vertex] - 1
+                )
 
     def contains_vertex(self, vertex: T) -> bool:
         """

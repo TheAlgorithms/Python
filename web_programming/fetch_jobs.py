@@ -13,7 +13,9 @@ url = "https://www.indeed.co.in/jobs?q=mobile+app+development&l="
 
 
 def fetch_jobs(location: str = "mumbai") -> Generator[tuple[str, str], None, None]:
-    soup = BeautifulSoup(requests.get(url + location).content, "html.parser")
+    soup = BeautifulSoup(
+        requests.get(url + location, timeout=10).content, "html.parser"
+    )
     # This attribute finds out all the specifics listed in a job
     for job in soup.find_all("div", attrs={"data-tn-component": "organicJob"}):
         job_title = job.find("a", attrs={"data-tn-element": "jobTitle"}).text.strip()

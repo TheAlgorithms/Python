@@ -18,7 +18,7 @@ Approach:
 The basic idea is to go over recursively to find the way such that the sum
 of chosen elements is “tar”. For every element, we have two choices
     1. Include the element in our set of chosen elements.
-    2. Don’t include the element in our set of chosen elements.
+    2. Don't include the element in our set of chosen elements.
 """
 
 

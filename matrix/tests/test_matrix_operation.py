@@ -12,7 +12,7 @@ import logging
 import sys
 
 import numpy as np
-import pytest  # type: ignore
+import pytest
 
 # Custom/local libraries
 from matrix import matrix_operation as matop
