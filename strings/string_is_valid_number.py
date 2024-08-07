@@ -6,44 +6,78 @@ Input: s = -90E3
 Output: True
 Leetcode link: https://leetcode.com/problems/valid-number/description/
 """
+from enum import Enum
+from typing import Dict
+
+class CharType(Enum):
+    NUMERIC = 'NUMERIC'
+    SIGN = 'SIGN'
+    EXPONENT = 'EXPONENT'
+    DECIMAL = 'DECIMAL'
+
+class State(Enum):
+    INITIAL = 'INITIAL'
+    SIGNED = 'SIGNED'
+    WHOLE = 'WHOLE'
+    FRACTIONAL = 'FRACTIONAL'
+    FRACTION = 'FRACTION'
+    EXPONENTIAL = 'EXPONENTIAL'
+    EXP_SIGN = 'EXP_SIGN'
+    EXP_NUMBER = 'EXP_NUMBER'
+
+state_machine : Dict[State, Dict[CharType, State]] = {
+    State.INITIAL: {CharType.NUMERIC: State.WHOLE, CharType.SIGN: State.SIGNED, CharType.DECIMAL: State.FRACTIONAL},
+    State.SIGNED: {CharType.NUMERIC: State.WHOLE, CharType.DECIMAL: State.FRACTIONAL},
+    State.WHOLE: {CharType.NUMERIC: State.WHOLE, CharType.DECIMAL: State.FRACTION, CharType.EXPONENT: State.EXPONENTIAL},
+    State.FRACTIONAL: {CharType.NUMERIC: State.FRACTION},
+    State.FRACTION: {CharType.NUMERIC: State.FRACTION, CharType.EXPONENT: State.EXPONENTIAL},
+    State.EXPONENTIAL: {CharType.NUMERIC: State.EXP_NUMBER, CharType.SIGN: State.EXP_SIGN},
+    State.EXP_SIGN: {CharType.NUMERIC: State.EXP_NUMBER},
+    State.EXP_NUMBER: {CharType.NUMERIC: State.EXP_NUMBER},
+}
 
 
-def classify_char(char):
+def classify_char(char: str) -> CharType | None:
     """
     Classifies a character into one of the following categories:
 
-    - 'numeric': if the character is a digit (0-9)
-    - 'ign': if the character is a plus sign (+) or a minus sign (-)
-    - 'exponent': if the character is an 'e' or 'E' (used in exponential notation)
-    - 'decimal': if the character is a decimal point (.)
-    - None: if the character does not fit into any of the above categories
+    - 'CharType.NUMERIC': if the character is a digit (0-9)
+    - 'CharType.SIGN': if the character is a plus sign (+) or a minus sign (-)
+    - 'CharType.EXPONENT': if the character is an 'e' or 'E' (used in exponential notation)
+    - 'CharType.DECIMAL': if the character is a decimal point (.)
+    - None: if the character does not fit into any of the above categories or size of char is not 1
 
     Parameters:
     char (str): The character to be classified
 
     Returns:
-    str: The classification of the character
+    CharType: The classification of the character
 
     >>> classify_char('2')
-    'numeric'
+    <CharType.NUMERIC: 'NUMERIC'>
     >>> classify_char('-')
-    'sign'
+    <CharType.SIGN: 'SIGN'>
     >>> classify_char('e')
-    'exponent'
+    <CharType.EXPONENT: 'EXPONENT'>
     >>> classify_char('.')
-    'decimal'
-    >>> classify_char('r')
+    <CharType.DECIMAL: 'DECIMAL'>
+    >>> classify_char('')
+    
+    >>> classify_char('0')
+    <CharType.NUMERIC: 'NUMERIC'>
+    >>> classify_char('01')
 
     """
-
+    if len(char) != 1:
+        return None
     if char.isdigit():
-        return "numeric"
+        return CharType.NUMERIC
     if char in "+-":
-        return "sign"
+        return CharType.SIGN
     if char in "eE":
-        return "exponent"
+        return CharType.EXPONENT
     if char == ".":
-        return "decimal"
+        return CharType.DECIMAL
     return None
 
 
@@ -105,19 +139,8 @@ def is_valid_number(s: str) -> bool:
     False
     """
 
-    state_machine = {
-        "initial": {"numeric": "whole", "sign": "signed", "decimal": "fractional"},
-        "signed": {"numeric": "whole", "decimal": "fractional"},
-        "whole": {"numeric": "whole", "decimal": "Fraction", "exponent": "exponential"},
-        "fractional": {"numeric": "Fraction"},
-        "Fraction": {"numeric": "Fraction", "exponent": "exponential"},
-        "exponential": {"numeric": "Exp_number", "sign": "Exp_sign"},
-        "Exp_sign": {"numeric": "Exp_number"},
-        "Exp_number": {"numeric": "Exp_number"},
-    }
-
-    valid_final_states = {"whole", "Fraction", "Exp_number"}
-    current_state = "initial"
+    valid_final_states = {State.WHOLE, State.FRACTION, State.EXP_NUMBER}
+    current_state = State.INITIAL
 
     for char in s:
         char_type = classify_char(char)
