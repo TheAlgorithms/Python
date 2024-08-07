@@ -4,32 +4,50 @@ Topic: Deterministic Finite Automaton (DFA)
 Given a string s, return whether s is a valid number or not
 Leetcode link: https://leetcode.com/problems/valid-number/description/
 """
+
 from enum import Enum
 from typing import Dict
 
+
 class CharType(Enum):
-    NUMERIC = 'NUMERIC'
-    SIGN = 'SIGN'
-    EXPONENT = 'EXPONENT'
-    DECIMAL = 'DECIMAL'
+    NUMERIC = "NUMERIC"
+    SIGN = "SIGN"
+    EXPONENT = "EXPONENT"
+    DECIMAL = "DECIMAL"
+
 
 class State(Enum):
-    INITIAL = 'INITIAL'
-    SIGNED = 'SIGNED'
-    WHOLE = 'WHOLE'
-    FRACTIONAL = 'FRACTIONAL'
-    FRACTION = 'FRACTION'
-    EXPONENTIAL = 'EXPONENTIAL'
-    EXP_SIGN = 'EXP_SIGN'
-    EXP_NUMBER = 'EXP_NUMBER'
+    INITIAL = "INITIAL"
+    SIGNED = "SIGNED"
+    WHOLE = "WHOLE"
+    FRACTIONAL = "FRACTIONAL"
+    FRACTION = "FRACTION"
+    EXPONENTIAL = "EXPONENTIAL"
+    EXP_SIGN = "EXP_SIGN"
+    EXP_NUMBER = "EXP_NUMBER"
 
-state_machine : Dict[State, Dict[CharType, State]] = {
-    State.INITIAL: {CharType.NUMERIC: State.WHOLE, CharType.SIGN: State.SIGNED, CharType.DECIMAL: State.FRACTIONAL},
+
+state_machine: Dict[State, Dict[CharType, State]] = {
+    State.INITIAL: {
+        CharType.NUMERIC: State.WHOLE,
+        CharType.SIGN: State.SIGNED,
+        CharType.DECIMAL: State.FRACTIONAL,
+    },
     State.SIGNED: {CharType.NUMERIC: State.WHOLE, CharType.DECIMAL: State.FRACTIONAL},
-    State.WHOLE: {CharType.NUMERIC: State.WHOLE, CharType.DECIMAL: State.FRACTION, CharType.EXPONENT: State.EXPONENTIAL},
+    State.WHOLE: {
+        CharType.NUMERIC: State.WHOLE,
+        CharType.DECIMAL: State.FRACTION,
+        CharType.EXPONENT: State.EXPONENTIAL,
+    },
     State.FRACTIONAL: {CharType.NUMERIC: State.FRACTION},
-    State.FRACTION: {CharType.NUMERIC: State.FRACTION, CharType.EXPONENT: State.EXPONENTIAL},
-    State.EXPONENTIAL: {CharType.NUMERIC: State.EXP_NUMBER, CharType.SIGN: State.EXP_SIGN},
+    State.FRACTION: {
+        CharType.NUMERIC: State.FRACTION,
+        CharType.EXPONENT: State.EXPONENTIAL,
+    },
+    State.EXPONENTIAL: {
+        CharType.NUMERIC: State.EXP_NUMBER,
+        CharType.SIGN: State.EXP_SIGN,
+    },
     State.EXP_SIGN: {CharType.NUMERIC: State.EXP_NUMBER},
     State.EXP_NUMBER: {CharType.NUMERIC: State.EXP_NUMBER},
 }
