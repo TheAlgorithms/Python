@@ -196,7 +196,7 @@ def classify_char(char: str) -> CharType | None:
     return None
 
 
-def is_valid_number(s: str) -> bool:
+def is_valid_number(number_string: str) -> bool:
     """
     This function checks if the input string represents a valid number.
 
@@ -257,7 +257,7 @@ def is_valid_number(s: str) -> bool:
     valid_final_states = {State.WHOLE, State.FRACTION, State.EXP_NUMBER}
     current_state = State.INITIAL
 
-    for char in s:
+    for char in number_string:
         char_type = classify_char(char)
         if char_type is None or char_type not in state_machine[current_state]:
             return False
