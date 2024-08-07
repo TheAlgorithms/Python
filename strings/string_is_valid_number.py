@@ -8,7 +8,6 @@ Leetcode link: https://leetcode.com/problems/valid-number/description/
 """
 
 from enum import Enum
-from typing import Dict
 
 
 class CharType(Enum):
@@ -29,7 +28,7 @@ class State(Enum):
     EXP_NUMBER = "EXP_NUMBER"
 
 
-state_machine: Dict[State, Dict[CharType, State]] = {
+state_machine: dict[State, dict[CharType, State]] = {
     State.INITIAL: {
         CharType.NUMERIC: State.WHOLE,
         CharType.SIGN: State.SIGNED,
@@ -155,9 +154,11 @@ def classify_char(char: str) -> CharType | None:
 
     - 'CharType.NUMERIC': if the character is a digit (0-9)
     - 'CharType.SIGN': if the character is a plus sign (+) or a minus sign (-)
-    - 'CharType.EXPONENT': if the character is an 'e' or 'E' (used in exponential notation)
+    - 'CharType.EXPONENT': if the character is an 'e' or 'E'
+        (used in exponential notation)
     - 'CharType.DECIMAL': if the character is a decimal point (.)
-    - None: if the character does not fit into any of the above categories or size of char is not 1
+    - None: if the character does not fit into any of the above categories
+    - None: if size of char is not 1
 
     Parameters:
     char (str): The character to be classified
