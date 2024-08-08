@@ -74,12 +74,6 @@ lint.ignore = [
   "UP038",   # Use `X | Y` in `{}` call instead of `(X, Y)` -- DO NOT FIX
 ]
 
-lint.per-file-ignores."arithmetic_analysis/newton_raphson.py" = [
-  "PGH001",
-]
-lint.per-file-ignores."data_structures/binary_tree/binary_search_tree_recursive.py" = [
-  "BLE001",
-]
 lint.per-file-ignores."data_structures/hashing/tests/test_hash_map.py" = [
   "BLE001",
 ]

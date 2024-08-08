@@ -31,12 +31,7 @@ class Parser(HTMLParser):
             # Check the list of defined attributes.
             for name, value in attrs:
                 # If href is defined, not empty nor # print it and not already in urls.
-                if (
-                    name == "href"
-                    and value != "#"
-                    and value != ""
-                    and value not in self.urls
-                ):
+                if name == "href" and value not in (*self.urls, "", "#"):
                     url = parse.urljoin(self.domain, value)
                     self.urls.append(url)
 
