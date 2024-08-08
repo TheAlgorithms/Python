@@ -86,6 +86,7 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     print(
         f"Total count for quantum fourier transform state is: \
