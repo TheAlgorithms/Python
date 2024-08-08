@@ -2,8 +2,6 @@
 Solution By: Reniz Shah
 Topic: Deterministic Finite Automaton (DFA)
 Given a string s, return whether s is a valid number or not
-Input: s = -90E3
-Output: True
 Leetcode link: https://leetcode.com/problems/valid-number/description/
 """
 
@@ -29,100 +27,6 @@ class State(Enum):
 
 
 state_machine: dict[State, dict[CharType, State]] = {
-    State.INITIAL: {
-        CharType.NUMERIC: State.WHOLE,
-        CharType.SIGN: State.SIGNED,
-        CharType.DECIMAL: State.FRACTIONAL,
-    },
-    State.SIGNED: {CharType.NUMERIC: State.WHOLE, CharType.DECIMAL: State.FRACTIONAL},
-    State.WHOLE: {
-        CharType.NUMERIC: State.WHOLE,
-        CharType.DECIMAL: State.FRACTION,
-        CharType.EXPONENT: State.EXPONENTIAL,
-    },
-    State.FRACTIONAL: {CharType.NUMERIC: State.FRACTION},
-    State.FRACTION: {
-        CharType.NUMERIC: State.FRACTION,
-        CharType.EXPONENT: State.EXPONENTIAL,
-    },
-    State.EXPONENTIAL: {
-        CharType.NUMERIC: State.EXP_NUMBER,
-        CharType.SIGN: State.EXP_SIGN,
-    },
-    State.EXP_SIGN: {CharType.NUMERIC: State.EXP_NUMBER},
-    State.EXP_NUMBER: {CharType.NUMERIC: State.EXP_NUMBER},
-}
-
-from enum import Enum
-from typing import Dict
-
-
-class CharType(Enum):
-    NUMERIC = "NUMERIC"
-    SIGN = "SIGN"
-    EXPONENT = "EXPONENT"
-    DECIMAL = "DECIMAL"
-
-
-class State(Enum):
-    INITIAL = "INITIAL"
-    SIGNED = "SIGNED"
-    WHOLE = "WHOLE"
-    FRACTIONAL = "FRACTIONAL"
-    FRACTION = "FRACTION"
-    EXPONENTIAL = "EXPONENTIAL"
-    EXP_SIGN = "EXP_SIGN"
-    EXP_NUMBER = "EXP_NUMBER"
-
-
-state_machine: Dict[State, Dict[CharType, State]] = {
-    State.INITIAL: {
-        CharType.NUMERIC: State.WHOLE,
-        CharType.SIGN: State.SIGNED,
-        CharType.DECIMAL: State.FRACTIONAL,
-    },
-    State.SIGNED: {CharType.NUMERIC: State.WHOLE, CharType.DECIMAL: State.FRACTIONAL},
-    State.WHOLE: {
-        CharType.NUMERIC: State.WHOLE,
-        CharType.DECIMAL: State.FRACTION,
-        CharType.EXPONENT: State.EXPONENTIAL,
-    },
-    State.FRACTIONAL: {CharType.NUMERIC: State.FRACTION},
-    State.FRACTION: {
-        CharType.NUMERIC: State.FRACTION,
-        CharType.EXPONENT: State.EXPONENTIAL,
-    },
-    State.EXPONENTIAL: {
-        CharType.NUMERIC: State.EXP_NUMBER,
-        CharType.SIGN: State.EXP_SIGN,
-    },
-    State.EXP_SIGN: {CharType.NUMERIC: State.EXP_NUMBER},
-    State.EXP_NUMBER: {CharType.NUMERIC: State.EXP_NUMBER},
-}
-
-from enum import Enum
-from typing import Dict
-
-
-class CharType(Enum):
-    NUMERIC = "NUMERIC"
-    SIGN = "SIGN"
-    EXPONENT = "EXPONENT"
-    DECIMAL = "DECIMAL"
-
-
-class State(Enum):
-    INITIAL = "INITIAL"
-    SIGNED = "SIGNED"
-    WHOLE = "WHOLE"
-    FRACTIONAL = "FRACTIONAL"
-    FRACTION = "FRACTION"
-    EXPONENTIAL = "EXPONENTIAL"
-    EXP_SIGN = "EXP_SIGN"
-    EXP_NUMBER = "EXP_NUMBER"
-
-
-state_machine: Dict[State, Dict[CharType, State]] = {
     State.INITIAL: {
         CharType.NUMERIC: State.WHOLE,
         CharType.SIGN: State.SIGNED,
@@ -179,9 +83,6 @@ def classify_char(char: str) -> CharType | None:
     >>> classify_char('0')
     <CharType.NUMERIC: 'NUMERIC'>
     >>> classify_char('01')
-    'decimal'
-    >>> classify_char('r')
-
     """
     if len(char) != 1:
         return None
@@ -199,15 +100,12 @@ def classify_char(char: str) -> CharType | None:
 def is_valid_number(number_string: str) -> bool:
     """
     This function checks if the input string represents a valid number.
-
     It uses a finite state machine to parse the input string,
     transitioning between states based on the character type.
     The function returns True if the input string represents a valid number,
     and False otherwise.
-
     A valid number is defined as a string that can be parsed into an
     integer, decimal, or exponent.
-
     >>> is_valid_number("2")
     True
     >>> is_valid_number("0089")
