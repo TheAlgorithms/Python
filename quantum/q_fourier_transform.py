@@ -1,5 +1,4 @@
 import math
-
 import numpy as np
 import qiskit
 from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
