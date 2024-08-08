@@ -1,7 +1,9 @@
 import math
+
 import numpy as np
 import qiskit
 from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
+
 
 def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts.Counts:
     """
@@ -22,7 +24,8 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
         {'00': 2500, '01': 2500, '10': 2500, '11': 2500}
 
         >>> quantum_fourier_transform(3)  # returns a result close to this due to randomness
-        {'000': 1250, '001': 1250, '010': 1250, '011': 1250, '100': 1250, '101': 1250, '110': 1250, '111': 1250}
+        {'000': 1250, '001': 1250, '010': 1250, '011': 1250, '100': 1250, '101': 1250,
+         '110': 1250, '111': 1250}
 
         >>> quantum_fourier_transform(1)
         {'0': 5000, '1': 5000}
