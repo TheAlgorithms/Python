@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-import sys
 import doctest
-from typing import Optional, TYPE_CHECKING
+import sys
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from _typeshed import SupportsWrite
@@ -59,8 +59,8 @@ def parse_file(file_path: str) -> list[Letter]:
     [T:1, h:1, a:1, e:1, i:2, t:2, s:3,  :3, .:3]
     """
     chars: dict[str, Letter] = {}
-    with open(file_path, "r", encoding="utf8") as input_file:
-        while char:=input_file.read(1):
+    with open(file_path) as input_file:
+        while char := input_file.read(1):
             if char not in chars:
                 chars[char] = Letter(char, 1)
             else:
@@ -159,16 +159,20 @@ def huffman_string(string: str, *, sep: str = " ") -> str:
     return sep.join(letter_bitstrings[char] for char in string)
 
 
-def huffman(file_path: str, *, sep: str = " ", output_file: 'Optional[SupportsWrite[str]]' = None) -> None:
+def huffman(
+    file_path: str, *, sep: str = " ", output_file: SupportsWrite[str] | None = None
+) -> None:
     """
     Parse the file, Huffman Code it and print the result
     to the given output_file, with each bitstring
     separated by sep parameter
-    >>> huffman("text_data/text_original.txt")
+    >>> huffman("text_data/text_original.txt", sep="_")
     Huffman Coding of text_data/text_original.txt:
-    1000 1001 010 110 111 010 110 111 1010 111 011 1011 110 011 00 00 00 
-    >>> with open("text_data/text_huffman.txt", "w", encoding="utf8") as output_file_in1: huffman("text_data/text_original.txt", sep="", output_file=output_file_in1)
-    >>> with open("text_data/text_huffman.txt", "r", encoding="utf8") as output_file_out1: print(output_file_out1.read())
+    1000_1001_010_110_111_010_110_111_1010_111_011_1011_110_011_00_00_00_
+    >>> with open("text_data/text_huffman.txt", "w") as output_file_in1:
+    ...     huffman("text_data/text_original.txt", sep="", output_file=output_file_in1)
+    >>> with open("text_data/text_huffman.txt") as output_file_out1:
+    ...     print(output_file_out1.read())
     Huffman Coding of text_data/text_original.txt:
     1000100101011011101011011110101110111011110011000000
     <BLANKLINE>
@@ -179,8 +183,8 @@ def huffman(file_path: str, *, sep: str = " ", output_file: 'Optional[SupportsWr
         k: v for letter in traverse_tree(root) for k, v in letter.bitstring.items()
     }
     print(f"Huffman Coding of {file_path}:", file=output_file)
-    with open(file_path, "r", encoding="utf8") as input_file:
-        while char:=input_file.read(1):
+    with open(file_path) as input_file:
+        while char := input_file.read(1):
             print(letter_bitstrings[char], end=sep, file=output_file)
     print(file=output_file)
 
