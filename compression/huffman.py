@@ -53,7 +53,8 @@ def parse_string(string: str) -> list[Letter]:
 def parse_file(file_path: str) -> list[Letter]:
     """
     Read file and return a list of Letter objects storing frequency
-    >>> test_file_path_in1 = "text_data/text_original.txt"
+    >>> PREFIX = _get_test_data_path_prefix()
+    >>> test_file_path_in1 = f"{PREFIX}text_data/text_original.txt"
     >>> out1 = parse_file(test_file_path_in1)
     >>> out1
     [T:1, h:1, a:1, e:1, i:2, t:2, s:3,  :3, .:3]
@@ -111,6 +112,7 @@ def traverse_tree(root: Letter | TreeNode, bitstring: str = "") -> list[Letter]:
     """
     Recursively traverse the Huffman Tree to set each
     Letter's bitstring dictionary, and return the list of Letters
+    >>> PREFIX = _get_test_data_path_prefix()
     >>> root_in1 = build_tree(parse_string("goose"))
     >>> out1 = traverse_tree(root_in1, "")
     >>> out1
@@ -123,7 +125,7 @@ def traverse_tree(root: Letter | TreeNode, bitstring: str = "") -> list[Letter]:
     '10'
     >>> out1[3].bitstring['o']
     '11'
-    >>> root_in2 = build_tree(parse_file("text_data/text_original.txt"))
+    >>> root_in2 = build_tree(parse_file(f"{PREFIX}text_data/text_original.txt"))
     >>> out2 = traverse_tree(root_in2)
     >>> out2
     [.:3, i:2, t:2, T:1, h:1, a:1, e:1, s:3,  :3]
@@ -166,12 +168,14 @@ def huffman(
     Parse the file, Huffman Code it and print the result
     to the given output_file, with each bitstring
     separated by sep parameter
-    >>> huffman("text_data/text_original.txt", sep="_")
+    >>> PREFIX = _get_test_data_path_prefix()
+    >>> huffman(f"{PREFIX}text_data/text_original.txt", sep="_")
     Huffman Coding of text_data/text_original.txt:
     1000_1001_010_110_111_010_110_111_1010_111_011_1011_110_011_00_00_00_
-    >>> with open("text_data/text_huffman.txt", "w") as output_file_in1:
-    ...     huffman("text_data/text_original.txt", sep="", output_file=output_file_in1)
-    >>> with open("text_data/text_huffman.txt") as output_file_out1:
+    >>> with open(f"{PREFIX}text_data/text_huffman.txt", "w") as output_file_in1:
+    ...     huffman(f"{PREFIX}text_data/text_original.txt", sep="",
+    ...             output_file=output_file_in1)
+    >>> with open(f"{PREFIX}text_data/text_huffman.txt") as output_file_out1:
     ...     print(output_file_out1.read())
     Huffman Coding of text_data/text_original.txt:
     1000100101011011101011011110101110111011110011000000
@@ -189,9 +193,23 @@ def huffman(
     print(file=output_file)
 
 
+def _get_test_data_path_prefix():
+    try:
+        with open("compression/text_data/text_original.txt"):
+            pass
+        return "copmression/"
+    except FileNotFoundError:
+        try:
+            with open("text_data/text_original.txt"):
+                pass
+            return ""
+        except FileNotFoundError:
+            raise FileNotFoundError("Could not locate testing data")
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        # if no file path given, test the module
+        # if no file path given, test module
         doctest.testmod()
     else:
         # pass the file path to the huffman function
