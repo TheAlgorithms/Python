@@ -142,7 +142,7 @@ def traverse_tree(root: Letter | TreeNode, bitstring: str = "") -> list[Letter]:
     return letters
 
 
-def huffman_string(string: str, *, sep=" ") -> str:
+def huffman_string(string: str, *, sep: str = " ") -> str:
     """
     Return huffman coded string, with
     each bitstring separated by sep parameter
@@ -159,7 +159,7 @@ def huffman_string(string: str, *, sep=" ") -> str:
     return sep.join(letter_bitstrings[char] for char in string)
 
 
-def huffman(file_path: str, *, sep=" ", output_file: 'Optional[SupportsWrite[str]]' = None) -> None:
+def huffman(file_path: str, *, sep: str = " ", output_file: 'Optional[SupportsWrite[str]]' = None) -> None:
     """
     Parse the file, Huffman Code it and print the result
     to the given output_file, with each bitstring
