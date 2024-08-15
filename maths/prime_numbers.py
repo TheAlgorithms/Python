@@ -97,9 +97,9 @@ def benchmark():
     from timeit import timeit
 
     setup = "from __main__ import slow_primes, primes, fast_primes"
-    print(timeit("slow_primes(1_000_000_000_000)", setup=setup, number=1_000_000))
-    print(timeit("primes(1_000_000_000_000)", setup=setup, number=1_000_000))
-    print(timeit("fast_primes(1_000_000_000_000)", setup=setup, number=1_000_000))
+    print(timeit("list(slow_primes(1_000))", setup=setup, number=1_000))
+    print(timeit("list(primes(1_000))", setup=setup, number=1_000))
+    print(timeit("list(fast_primes(1_000))", setup=setup, number=1_000))
 
 
 if __name__ == "__main__":

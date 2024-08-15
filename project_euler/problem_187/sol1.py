@@ -13,6 +13,8 @@ not necessarily distinct, prime factors?
 
 from math import isqrt
 
+from maths.prime_sieve_eratosthenes import np_prime_sieve_eratosthenes
+
 
 def slow_calculate_prime_numbers(max_number: int) -> list[int]:
     """
@@ -38,15 +40,15 @@ def slow_calculate_prime_numbers(max_number: int) -> list[int]:
     return [i for i in range(2, max_number) if is_prime[i]]
 
 
-def calculate_prime_numbers(max_number: int) -> list[int]:
+def py_calculate_prime_numbers(max_number: int) -> list[int]:
     """
     Returns prime numbers below max_number.
     See: https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
-    >>> calculate_prime_numbers(10)
+    >>> py_calculate_prime_numbers(10)
     [2, 3, 5, 7]
 
-    >>> calculate_prime_numbers(2)
+    >>> py_calculate_prime_numbers(2)
     []
     """
 
@@ -100,7 +102,7 @@ def while_solution(max_number: int = 10**8) -> int:
     10
     """
 
-    prime_numbers = calculate_prime_numbers(max_number // 2)
+    prime_numbers = py_calculate_prime_numbers(max_number // 2)
 
     semiprimes_count = 0
     left = 0
@@ -114,6 +116,31 @@ def while_solution(max_number: int = 10**8) -> int:
     return semiprimes_count
 
 
+def for_solution(max_number: int = 10**8) -> int:
+    """
+    Returns the number of composite integers below max_number have precisely two,
+    not necessarily distinct, prime factors.
+
+    >>> for_solution(30)
+    10
+    """
+
+    prime_numbers = py_calculate_prime_numbers(max_number // 2)
+
+    semiprimes_count = 0
+    right = len(prime_numbers) - 1
+    for left in range(len(prime_numbers)):
+        if left > right:
+            break
+        for r in range(right, left - 2, -1):
+            if prime_numbers[left] * prime_numbers[r] < max_number:
+                break
+        right = r
+        semiprimes_count += right - left + 1
+
+    return semiprimes_count
+
+
 def solution(max_number: int = 10**8) -> int:
     """
     Returns the number of composite integers below max_number have precisely two,
@@ -123,7 +150,7 @@ def solution(max_number: int = 10**8) -> int:
     10
     """
 
-    prime_numbers = calculate_prime_numbers(max_number // 2)
+    prime_numbers = np_prime_sieve_eratosthenes((max_number - 1) // 2)
 
     semiprimes_count = 0
     right = len(prime_numbers) - 1
@@ -146,7 +173,8 @@ def benchmark() -> None:
     # Running performance benchmarks...
     # slow_solution : 108.50874730000032
     # while_sol     : 28.09581200000048
-    # solution      : 25.063097400000515
+    # for_sol       : 25.063097400000515
+    # solution      : 5.219610300000568
 
     from timeit import timeit
 
@@ -154,6 +182,7 @@ def benchmark() -> None:
 
     print(f"slow_solution : {timeit('slow_solution()', globals=globals(), number=10)}")
     print(f"while_sol     : {timeit('while_solution()', globals=globals(), number=10)}")
+    print(f"for_sol       : {timeit('for_solution()', globals=globals(), number=10)}")
     print(f"solution      : {timeit('solution()', globals=globals(), number=10)}")
 
 
