@@ -18,124 +18,215 @@ import sys
 sys.set_int_max_str_digits(0)
 
 
-def check(number: int) -> bool:
+def is_pandigital_both(number: int) -> bool:
     """
-    Takes a number and checks if it is pandigital both from start and end
+    Checks if the first 9 and last 9 digits of a number are `1-9 pandigital`.
 
+    Returns:
+        bool - True if the first 9 and last 9 digits contain all the digits 1 to 9,
+              False otherwise
 
-    >>> check(123456789987654321)
+    >>> is_pandigital_both(123456789987654321)
     True
 
-    >>> check(120000987654321)
+    >>> is_pandigital_both(120000987654321)
     False
 
-    >>> check(1234567895765677987654321)
+    >>> is_pandigital_both(1234567895765677987654321)
     True
-
     """
 
-    check_last = [0] * 11
-    check_front = [0] * 11
+    return is_pandigital_end(number) and is_pandigital_start(number)
 
-    # mark last 9 numbers
+
+def is_pandigital_end(number: int) -> bool:
+    """
+    Checks if the last 9 digits of a number are `1-9 pandigital`.
+
+    Returns:
+        bool - True if the last 9 digits contain all the digits 1 to 9, False otherwise
+
+    >>> is_pandigital_end(123456789987654321)
+    True
+
+    >>> is_pandigital_end(120000987654321)
+    True
+
+    >>> is_pandigital_end(12345678957656779870004321)
+    False
+    """
+    digit_count = [True] + [False] * 9
+
+    # Count the occurrences of each digit[0-9]
     for _ in range(9):
-        check_last[int(number % 10)] = 1
-        number = number // 10
-    # flag
-    f = True
+        number, mod = divmod(number, 10)
+        if digit_count[mod]:
+            return False
+        digit_count[mod] = True
 
-    # check last 9 numbers for pandigitality
+    # Return False if any digit is missing
+    return all(digit_count[1:])
 
-    for x in range(9):
-        if not check_last[x + 1]:
-            f = False
-    if not f:
-        return f
 
-    # mark first 9 numbers
+def is_pandigital_start(number: int) -> bool:
+    """
+    Checks if the first 9 digits of a number are `1-9 pandigital`.
+
+    Returns:
+        bool - True if the first 9 digits contain all the digits 1 to 9, False otherwise
+
+    >>> is_pandigital_start(123456789987654321)
+    True
+
+    >>> is_pandigital_start(120000987654321)
+    False
+
+    >>> is_pandigital_start(1234567895765677987654321)
+    True
+    """
+
     number = int(str(number)[:9])
-
-    for _ in range(9):
-        check_front[int(number % 10)] = 1
-        number = number // 10
-
-    # check first 9 numbers for pandigitality
-
-    for x in range(9):
-        if not check_front[x + 1]:
-            f = False
-    return f
+    return is_pandigital_end(number)
 
 
-def check1(number: int) -> bool:
+def slow_solution(a: int = 1, b: int = 1, ck: int = 3, max_k: int = 10_00_000) -> int:
     """
-    Takes a number and checks if it is pandigital from END
+    Returns index `k` of the least Fibonacci number `F(k)` that is `1-9 pandigital`
+    from both sides. Here `ck <= k < max_k`.
 
-    >>> check1(123456789987654321)
-    True
+    Parameters:
+        a: int - First fibonacci number `F(k)-2`
+        b: int - Second fibonacci number `F(k)-1`
+        ck: int - Initial index `k` of the Fibonacci number `F(k)`
+        max_k: int - Maximum index `k` of the Fibonacci number `F(k)`
 
-    >>> check1(120000987654321)
-    True
+    Returns:
+        int - index `k` of the least `1-9 pandigital` Fibonacci number `F(k)`
 
-    >>> check1(12345678957656779870004321)
-    False
-
+    >>> slow_solution()
+    329468
     """
 
-    check_last = [0] * 11
+    # Equivalent to 10**9, for getting no higher then 9 digit numbers
+    billion = 1_000_000_000
 
-    # mark last 9 numbers
-    for _ in range(9):
-        check_last[int(number % 10)] = 1
-        number = number // 10
-    # flag
-    f = True
+    # Fibonacci numbers
+    fk_2 = a  # fk - 2
+    fk_1 = b  # fk - 1
+    # fk      # fk_1 + fk_2
 
-    # check last 9 numbers for pandigitality
+    # Fibonacci numbers mod billion
+    mk_2 = a % billion  # (fk - 2) % billion
+    mk_1 = b % billion  # (fk - 1) % billion
+    # mk                # (fk    ) % billion
 
-    for x in range(9):
-        if not check_last[x + 1]:
-            f = False
-    return f
+    end_pandigital = [0] * max_k
+
+    # Check fibonacci numbers % 10**9
+    for k in range(ck, max_k):
+        mk = (mk_2 + mk_1) % billion
+        mk_2 = mk_1
+        mk_1 = mk
+
+        if is_pandigital_end(mk):
+            end_pandigital[k] = 1
+
+    # Check fibonacci numbers
+    for k in range(ck, max_k):
+        fk = fk_2 + fk_1
+        fk_2 = fk_1
+        fk_1 = fk
+
+        # perform check only if k is in end_pandigital
+        if end_pandigital[k] and is_pandigital_both(fk):
+            return k
+
+    # Not found
+    return -1
 
 
-def solution() -> int:
+def solution(a: int = 1, b: int = 1, ck: int = 3, max_k: int = 10_00_000) -> int:
     """
-    Outputs the answer is the least Fibonacci number pandigital from both sides.
+    Returns index `k` of the least Fibonacci number `F(k)` that is `1-9 pandigital`
+    from both sides. Here `ck <= k < max_k`.
+
+    Parameters:
+        a: int - First fibonacci number `F(k)-2`
+        b: int - Second fibonacci number `F(k)-1`
+        ck: int - Initial index `k` of the Fibonacci number `F(k)`
+        max_k: int - Maximum index `k` of the Fibonacci number `F(k)`
+
+    Returns:
+        int - index `k` of the least `1-9 pandigital` Fibonacci number `F(k)`
+
     >>> solution()
     329468
     """
 
-    a = 1
-    b = 1
-    c = 2
-    # temporary Fibonacci numbers
+    # Equivalent to 10**9, for getting no higher then 9 digit numbers
+    billion = 1_000_000_000
 
-    a1 = 1
-    b1 = 1
-    c1 = 2
-    # temporary Fibonacci numbers mod 1e9
+    # For reserving 9 digits (and a few more digits for carry) from the start
+    billion_plus = billion * 1_000_000
 
-    # mod m=1e9, done for fast optimisation
-    tocheck = [0] * 1000000
-    m = 1000000000
+    # Fibonacci numbers
+    fk_2 = a  # fk - 2
+    fk_1 = b  # fk - 1
+    # fk      # fk_1 + fk_2
 
-    for x in range(1000000):
-        c1 = (a1 + b1) % m
-        a1 = b1 % m
-        b1 = c1 % m
-        if check1(b1):
-            tocheck[x + 3] = 1
+    # Fibonacci numbers mod billion
+    mk_2 = a % billion  # (fk - 2) % billion
+    mk_1 = b % billion  # (fk - 1) % billion
+    # mk                # (fk    ) % billion
 
-    for x in range(1000000):
-        c = a + b
-        a = b
-        b = c
-        # perform check only if in tocheck
-        if tocheck[x + 3] and check(b):
-            return x + 3  # first 2 already done
+    end_pandigital = [0] * max_k
+
+    # Check fibonacci numbers % 10**9
+    for k in range(ck, max_k):
+        mk = (mk_2 + mk_1) % billion
+        mk_2 = mk_1
+        mk_1 = mk
+
+        if is_pandigital_end(mk):
+            end_pandigital[k] = 1
+
+    # Check fibonacci numbers
+    for k in range(ck, max_k):
+        fk = fk_2 + fk_1
+        fk_2 = fk_1
+        fk_1 = fk
+
+        # We don't care about the digits after the 9'th one
+        # But still we need to keep some digits after after the 9'th
+        # Because of carry
+        if fk_2 > billion_plus:
+            fk_1 //= 10
+            fk_2 //= 10
+
+        # perform check only if k is in end_pandigital
+        if end_pandigital[k] and is_pandigital_start(fk):
+            return k
+
+    # Not found
     return -1
+
+
+def benchmark() -> None:
+    """
+    Benchmark
+    """
+    # Running performance benchmarks...
+    # Solution : 8.59146850000252   to  9.774559199999203
+    # Slow Sol : 57.75938980000137  to  61.15365279999969
+
+    from timeit import timeit
+
+    print("Running performance benchmarks...")
+
+    print(f"Solution : {timeit('solution()', globals=globals(), number=10)}")
+    print(f"Slow Sol : {timeit('slow_solution()', globals=globals(), number=10)}")
 
 
 if __name__ == "__main__":
     print(f"{solution() = }")
+    benchmark()
