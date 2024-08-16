@@ -1,3 +1,3 @@
 create table activity(
-    
+
 )
