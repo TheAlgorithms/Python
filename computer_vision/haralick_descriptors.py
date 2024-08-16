@@ -141,7 +141,7 @@ def transform(
 
     center_x, center_y = (x // 2 for x in kernel.shape)
 
-    # Use padded image when applying convolotion
+    # Use padded image when applying convolution
     # to not go out of bounds of the original the image
     transformed = np.zeros(image.shape, dtype=np.uint8)
     padded = np.pad(image, 1, "constant", constant_values=constant)
