@@ -1,6 +1,6 @@
 def max_sum_subarray(arr, k):
     """
-    Finds the maximum sum of a subarray of length k within the given array.
+    Finds the maximum sum of a subarray of length k within the given array.[https://www.geeksforgeeks.org/window-sliding-technique/]
 
     Args:
     arr (list): The input array.

@@ -1,6 +1,7 @@
 def min_subarray_len(target, nums):
     """
-    Finds the minimal length of a contiguous subarray of which the sum is at least the target.
+    Finds the minimal length of a contiguous subarray of which the sum is at least the target.[https://www.geeksforgeeks.org/window-sliding-technique/]
+
 
     Args:
     target (int): The target sum.

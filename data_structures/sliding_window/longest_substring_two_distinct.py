@@ -1,6 +1,7 @@
 def length_of_longest_substring_two_distinct(s):
     """
-    Finds the length of the longest substring with at most two distinct characters.
+    Finds the length of the longest substring with at most two distinct characters.[https://www.geeksforgeeks.org/window-sliding-technique/]
+
 
     Args:
     s (str): The input string.
