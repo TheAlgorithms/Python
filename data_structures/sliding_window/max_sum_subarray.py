@@ -23,18 +23,20 @@ def max_sum_subarray(arr, k):
     if n < k or k <= 0:
         print("Invalid input: k is larger than the array size or non-positive")
         return None
-    
+
     # Calculate the sum of the first window of size k
     window_sum = sum(arr[:k])
     max_sum = window_sum
-    
+
     # Slide the window from start to end of the array
     for i in range(n - k):
         window_sum = window_sum - arr[i] + arr[i + k]
         max_sum = max(max_sum, window_sum)
-    
+
     return max_sum
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
