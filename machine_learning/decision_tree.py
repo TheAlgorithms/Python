@@ -40,7 +40,7 @@ class DecisionTree:
         if labels.ndim != 1:
             print("Error: Input labels must be one dimensional")
 
-        return np.mean((labels - prediction) ** 2)
+        return np.mean((labels - prediction) ** 2).item()
 
     def train(self, x, y):
         """

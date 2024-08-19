@@ -19,7 +19,7 @@ def root_mean_square_error(original: np.ndarray, reference: np.ndarray) -> float
         >>> root_mean_square_error(np.array([1, 2, 3]), np.array([6, 4, 2]))
         3.1622776601683795
     """
-    return np.sqrt(((original - reference) ** 2).mean())
+    return float(np.sqrt(((original - reference) ** 2).mean()))
 
 
 def normalize_image(
@@ -298,16 +298,18 @@ def haralick_descriptors(matrix: np.ndarray) -> list[float]:
 
     # Sum values for descriptors ranging from the first one to the last,
     # as all are their respective origin matrix and not the resulting value yet.
-    return [
-        maximum_prob,
-        correlation.sum(),
-        energy.sum(),
-        contrast.sum(),
-        dissimilarity.sum(),
-        inverse_difference.sum(),
-        homogeneity.sum(),
-        entropy.sum(),
-    ]
+    return np.array(
+        [
+            maximum_prob,
+            correlation.sum(),
+            energy.sum(),
+            contrast.sum(),
+            dissimilarity.sum(),
+            inverse_difference.sum(),
+            homogeneity.sum(),
+            entropy.sum(),
+        ]
+    ).tolist()
 
 
 def get_descriptors(
@@ -335,7 +337,7 @@ def get_descriptors(
     return np.concatenate(descriptors, axis=None)
 
 
-def euclidean(point_1: np.ndarray, point_2: np.ndarray) -> np.float32:
+def euclidean(point_1: np.ndarray, point_2: np.ndarray) -> float:
     """
     Simple method for calculating the euclidean distance between two points,
     with type np.ndarray.
@@ -346,7 +348,7 @@ def euclidean(point_1: np.ndarray, point_2: np.ndarray) -> np.float32:
         >>> euclidean(a, b)
         3.3166247903554
     """
-    return np.sqrt(np.sum(np.square(point_1 - point_2)))
+    return float(np.sqrt(np.sum(np.square(point_1 - point_2))))
 
 
 def get_distances(descriptors: np.ndarray, base: int) -> list[tuple[int, float]]:

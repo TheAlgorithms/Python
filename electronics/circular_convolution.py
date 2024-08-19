@@ -91,7 +91,7 @@ class CircularConvolution:
         final_signal = np.matmul(np.transpose(matrix), np.transpose(self.first_signal))
 
         # rounding-off to two decimal places
-        return [round(i, 2) for i in final_signal]
+        return np.array([round(i, 2) for i in final_signal]).tolist()
 
 
 if __name__ == "__main__":

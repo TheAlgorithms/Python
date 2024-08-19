@@ -144,7 +144,7 @@ class Tableau:
         # Arg of minimum quotient excluding the nan values. n_stages is added
         # to compensate for earlier exclusion of objective columns
         row_idx = np.nanargmin(quotients) + self.n_stages
-        return row_idx, col_idx
+        return row_idx.item(), col_idx.item()
 
     def pivot(self, row_idx: int, col_idx: int) -> np.ndarray:
         """Pivots on value on the intersection of pivot row and column.
@@ -315,7 +315,7 @@ class Tableau:
         {'P': 5.0, 'x1': 1.0, 'x2': 1.0}
         """
         # P = RHS of final tableau
-        output_dict = {"P": abs(self.tableau[0, -1])}
+        output_dict = {"P": float(abs(self.tableau[0, -1]))}
 
         for i in range(self.n_vars):
             # Gives indices of nonzero entries in the ith column
@@ -329,7 +329,7 @@ class Tableau:
             # If there is only one nonzero value in column, which is one
             if n_nonzero == 1 and nonzero_val == 1:
                 rhs_val = self.tableau[nonzero_rowidx, -1]
-                output_dict[self.col_titles[i]] = rhs_val
+                output_dict[self.col_titles[i]] = float(rhs_val)
         return output_dict
 
 

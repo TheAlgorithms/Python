@@ -36,7 +36,7 @@ def binary_cross_entropy(
 
     y_pred = np.clip(y_pred, epsilon, 1 - epsilon)  # Clip predictions to avoid log(0)
     bce_loss = -(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))
-    return np.mean(bce_loss)
+    return float(np.mean(bce_loss))
 
 
 def binary_focal_cross_entropy(
@@ -87,7 +87,7 @@ def binary_focal_cross_entropy(
         + (1 - alpha) * y_pred**gamma * (1 - y_true) * np.log(1 - y_pred)
     )
 
-    return np.mean(bcfe_loss)
+    return float(np.mean(bcfe_loss))
 
 
 def categorical_cross_entropy(
@@ -145,7 +145,7 @@ def categorical_cross_entropy(
         raise ValueError("Predicted probabilities must sum to approximately 1.")
 
     y_pred = np.clip(y_pred, epsilon, 1)  # Clip predictions to avoid log(0)
-    return -np.sum(y_true * np.log(y_pred))
+    return float(-np.sum(y_true * np.log(y_pred)))
 
 
 def categorical_focal_cross_entropy(
@@ -247,7 +247,7 @@ def categorical_focal_cross_entropy(
         alpha * np.power(1 - y_pred, gamma) * y_true * np.log(y_pred), axis=1
     )
 
-    return np.mean(cfce_loss)
+    return float(np.mean(cfce_loss))
 
 
 def hinge_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -287,7 +287,7 @@ def hinge_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
         raise ValueError("y_true can have values -1 or 1 only.")
 
     hinge_losses = np.maximum(0, 1.0 - (y_true * y_pred))
-    return np.mean(hinge_losses)
+    return float(np.mean(hinge_losses))
 
 
 def huber_loss(y_true: np.ndarray, y_pred: np.ndarray, delta: float) -> float:
@@ -309,11 +309,11 @@ def huber_loss(y_true: np.ndarray, y_pred: np.ndarray, delta: float) -> float:
 
     >>> true_values = np.array([0.9, 10.0, 2.0, 1.0, 5.2])
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
-    >>> np.isclose(huber_loss(true_values, predicted_values, 1.0), 2.102)
+    >>> np.isclose(huber_loss(true_values, predicted_values, 1.0), 2.102).item()
     True
     >>> true_labels = np.array([11.0, 21.0, 3.32, 4.0, 5.0])
     >>> predicted_probs = np.array([8.3, 20.8, 2.9, 11.2, 5.0])
-    >>> np.isclose(huber_loss(true_labels, predicted_probs, 1.0), 1.80164)
+    >>> np.isclose(huber_loss(true_labels, predicted_probs, 1.0), 1.80164).item()
     True
     >>> true_labels = np.array([11.0, 21.0, 3.32, 4.0])
     >>> predicted_probs = np.array([8.3, 20.8, 2.9, 11.2, 5.0])
@@ -347,7 +347,7 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
     >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
-    >>> np.isclose(mean_squared_error(true_values, predicted_values), 0.028)
+    >>> np.isclose(mean_squared_error(true_values, predicted_values), 0.028).item()
     True
     >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
@@ -381,11 +381,11 @@ def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
     >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
-    >>> np.isclose(mean_absolute_error(true_values, predicted_values), 0.16)
+    >>> np.isclose(mean_absolute_error(true_values, predicted_values), 0.16).item()
     True
     >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
-    >>> np.isclose(mean_absolute_error(true_values, predicted_values), 2.16)
+    >>> np.isclose(mean_absolute_error(true_values, predicted_values), 2.16).item()
     False
     >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_probs = np.array([0.3, 0.8, 0.9, 5.2])
@@ -433,7 +433,7 @@ def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
         raise ValueError("Input arrays must have the same length.")
 
     squared_logarithmic_errors = (np.log1p(y_true) - np.log1p(y_pred)) ** 2
-    return np.mean(squared_logarithmic_errors)
+    return float(np.mean(squared_logarithmic_errors))
 
 
 def mean_absolute_percentage_error(
@@ -478,7 +478,7 @@ def mean_absolute_percentage_error(
     y_true = np.where(y_true == 0, epsilon, y_true)
     absolute_percentage_diff = np.abs((y_true - y_pred) / y_true)
 
-    return np.mean(absolute_percentage_diff)
+    return float(np.mean(absolute_percentage_diff))
 
 
 def perplexity_loss(
@@ -570,7 +570,7 @@ def perplexity_loss(
     # Calculating perplexity for each sentence
     perp_losses = np.exp(np.negative(np.mean(np.log(true_class_pred), axis=1)))
 
-    return np.mean(perp_losses)
+    return float(np.mean(perp_losses))
 
 
 def smooth_l1_loss(y_true: np.ndarray, y_pred: np.ndarray, beta: float = 1.0) -> float:
@@ -626,7 +626,7 @@ def smooth_l1_loss(y_true: np.ndarray, y_pred: np.ndarray, beta: float = 1.0) ->
 
     diff = np.abs(y_true - y_pred)
     loss = np.where(diff < beta, 0.5 * diff**2 / beta, diff - 0.5 * beta)
-    return np.mean(loss)
+    return float(np.mean(loss))
 
 
 def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -660,7 +660,7 @@ def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float
         raise ValueError("Input arrays must have the same length.")
 
     kl_loss = y_true * np.log(y_true / y_pred)
-    return np.sum(kl_loss)
+    return float(np.sum(kl_loss))
 
 
 if __name__ == "__main__":

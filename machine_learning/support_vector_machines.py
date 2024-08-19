@@ -3,7 +3,7 @@ from numpy import ndarray
 from scipy.optimize import Bounds, LinearConstraint, minimize
 
 
-def norm_squared(vector: ndarray) -> float:
+def norm_squared(vector: ndarray) -> float | int:
     """
     Return the squared second norm of vector
     norm_squared(v) = sum(x * x for x in v)
@@ -21,7 +21,7 @@ def norm_squared(vector: ndarray) -> float:
     >>> norm_squared([0, 0])
     0
     """
-    return np.dot(vector, vector)
+    return (np.dot(vector, vector)).item()
 
 
 class SVC:

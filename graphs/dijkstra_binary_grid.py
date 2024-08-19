@@ -69,7 +69,7 @@ def dijkstra(
                 x, y = predecessors[x, y]
             path.append(source)  # add the source manually
             path.reverse()
-            return matrix[destination], path
+            return float(matrix[destination]), path
 
         for i in range(len(dx)):
             nx, ny = x + dx[i], y + dy[i]
@@ -80,7 +80,7 @@ def dijkstra(
                     matrix[nx, ny] = dist + 1
                     predecessors[nx, ny] = (x, y)
 
-    return np.inf, []
+    return float(np.inf), []
 
 
 if __name__ == "__main__":

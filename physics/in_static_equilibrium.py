@@ -47,7 +47,7 @@ def in_static_equilibrium(
                         ....]
     >>> force = array([[1, 1], [-1, 2]])
     >>> location = array([[1, 0], [10, 0]])
-    >>> in_static_equilibrium(force, location)
+    >>> bool(in_static_equilibrium(force, location))
     False
     """
     # summation of moments is zero

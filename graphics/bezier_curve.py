@@ -44,7 +44,7 @@ class BezierCurve:
             )
         # the basis must sum up to 1 for it to produce a valid Bezier curve.
         assert round(sum(output_values), 5) == 1
-        return output_values
+        return [float(i) for i in output_values]
 
     def bezier_curve_function(self, t: float) -> tuple[float, float]:
         """

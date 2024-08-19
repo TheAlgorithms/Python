@@ -20,7 +20,7 @@ def wrapper(y):
     >>> wrapper(Y)
     [0, 0, 1]
     """
-    return list(y)
+    return (y).tolist()
 
 
 if __name__ == "__main__":

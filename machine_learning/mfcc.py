@@ -162,9 +162,9 @@ def normalize(audio: np.ndarray) -> np.ndarray:
     Examples:
     >>> audio = np.array([1, 2, 3, 4, 5])
     >>> normalized_audio = normalize(audio)
-    >>> np.max(normalized_audio)
+    >>> float(np.max(normalized_audio))
     1.0
-    >>> np.min(normalized_audio)
+    >>> float(np.min(normalized_audio))
     0.2
     """
     # Divide the entire audio signal by the maximum absolute value
@@ -285,7 +285,7 @@ def freq_to_mel(freq: float) -> float:
     999.99
     """
     # Use the formula to convert frequency to the mel scale
-    return 2595.0 * np.log10(1.0 + freq / 700.0)
+    return float(2595.0 * np.log10(1.0 + freq / 700.0))
 
 
 def mel_to_freq(mels: float) -> float:
@@ -321,7 +321,7 @@ def mel_spaced_filterbank(
         Mel-spaced filter bank.
 
     Examples:
-    >>> round(mel_spaced_filterbank(8000, 10, 1024)[0][1], 10)
+    >>> round(float(mel_spaced_filterbank(8000, 10, 1024)[0][1]), 10)
     0.0004603981
     """
     freq_min = 0
@@ -438,7 +438,7 @@ def discrete_cosine_transform(dct_filter_num: int, filter_num: int) -> np.ndarra
         The DCT basis matrix.
 
     Examples:
-    >>> round(discrete_cosine_transform(3, 5)[0][0], 5)
+    >>> round(float(discrete_cosine_transform(3, 5)[0][0]), 5)
     0.44721
     """
     basis = np.empty((dct_filter_num, filter_num))

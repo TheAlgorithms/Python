@@ -273,7 +273,7 @@ class BinomialHeap:
             # Update min_node
             self.min_node = None
 
-            return min_value
+            return int(min_value)
         # No right subtree corner case
         # The structure of the tree implies that this should be the bottom root
         # and there is at least one other root
@@ -292,7 +292,7 @@ class BinomialHeap:
                 if i.val < self.min_node.val:
                     self.min_node = i
                 i = i.parent
-            return min_value
+            return int(min_value)
         # General case
         # Find the BinomialHeap of the right subtree of min_node
         bottom_of_new = self.min_node.right
@@ -312,7 +312,7 @@ class BinomialHeap:
             self.bottom_root = bottom_of_new
             self.min_node = min_of_new
             # print("Single root, multiple nodes case")
-            return min_value
+            return int(min_value)
         # Remaining cases
         # Construct heap of right subtree
         new_heap = BinomialHeap(
@@ -354,7 +354,7 @@ class BinomialHeap:
         # Merge heaps
         self.merge_heaps(new_heap)
 
-        return min_value
+        return int(min_value)
 
     def pre_order(self):
         """
