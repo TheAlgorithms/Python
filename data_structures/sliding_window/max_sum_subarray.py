@@ -1,4 +1,7 @@
-def max_sum_subarray(arr, k):
+from typing import List
+
+
+def max_sum_subarray(array: List[int], subarray_length: int) -> int:
     """
     Finds the maximum sum of a subarray of length k within the given array.[https://www.geeksforgeeks.org/window-sliding-technique/]
 

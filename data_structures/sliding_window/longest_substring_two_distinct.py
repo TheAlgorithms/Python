@@ -1,4 +1,4 @@
-def length_of_longest_substring_two_distinct(s):
+def length_of_longest_substring_two_distinct(string: str) -> int:
     """
     Finds the length of the longest substring with at most two distinct characters.[https://www.geeksforgeeks.org/window-sliding-technique/]
 

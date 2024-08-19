@@ -1,4 +1,7 @@
-def min_subarray_len(target, nums):
+from typing import List
+
+
+def min_subarray_len(target_sum: int, numbers: List[int]) -> int:
     """
     Finds the minimal length of a contiguous subarray of which the sum is at least the target.[https://www.geeksforgeeks.org/window-sliding-technique/]
 
