@@ -4,7 +4,7 @@ imageio
 keras ; python_version < '3.12'
 lxml
 matplotlib
-numpy
+numpy>=2.1.0
 opencv-python
 pandas
 pillow
@@ -15,7 +15,7 @@ requests
 rich
 # scikit-fuzzy  # uncomment once fuzzy_logic/fuzzy_operations.py is fixed
 scikit-learn
-statsmodels
+statsmodels>=0.14.2
 sympy
 tensorflow
 tweepy
