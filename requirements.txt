@@ -6,7 +6,7 @@ lxml
 matplotlib
 numpy>=2.1.0
 opencv-python
-pandas
+pandas>=2.2.2
 pillow
 # projectq  # uncomment once quantum/quantum_random.py is fixed
 qiskit ; python_version < '3.12'
