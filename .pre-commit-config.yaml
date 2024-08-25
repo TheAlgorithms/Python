@@ -16,20 +16,20 @@ repos:
       - id: auto-walrus
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.4.2
+    rev: v0.5.7
     hooks:
       - id: ruff
       - id: ruff-format
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.6
+    rev: v2.3.0
     hooks:
       - id: codespell
         additional_dependencies:
           - tomli
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: "1.8.0"
+    rev: "2.2.1"
     hooks:
       - id: pyproject-fmt
 
@@ -42,15 +42,16 @@ repos:
         pass_filenames: false
 
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.16
+    rev: v0.18
     hooks:
       - id: validate-pyproject
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.10.0
+    rev: v1.11.1
     hooks:
       - id: mypy
         args:
+          - --explicit-package-bases
           - --ignore-missing-imports
           - --install-types # See mirrors-mypy README.md
           - --non-interactive

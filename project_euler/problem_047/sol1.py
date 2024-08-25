@@ -58,7 +58,7 @@ def upf_len(num: int) -> int:
 
 def equality(iterable: list) -> bool:
     """
-    Check equality of ALL elements in an interable.
+    Check equality of ALL elements in an iterable
     >>> equality([1, 2, 3, 4])
     False
     >>> equality([2, 2, 2, 2])
