@@ -45,15 +45,13 @@ def solution():
         for i in range(20):
             for j in range(17):
                 temp = grid[i][j] * grid[i][j + 1] * grid[i][j + 2] * grid[i][j + 3]
-                if temp > maximum:
-                    maximum = temp
+                maximum = max(maximum, temp)
 
         # down
         for i in range(17):
             for j in range(20):
                 temp = grid[i][j] * grid[i + 1][j] * grid[i + 2][j] * grid[i + 3][j]
-                if temp > maximum:
-                    maximum = temp
+                maximum = max(maximum, temp)
 
         # diagonal 1
         for i in range(17):
@@ -64,8 +62,7 @@ def solution():
                     * grid[i + 2][j + 2]
                     * grid[i + 3][j + 3]
                 )
-                if temp > maximum:
-                    maximum = temp
+                maximum = max(maximum, temp)
 
         # diagonal 2
         for i in range(17):
@@ -76,8 +73,7 @@ def solution():
                     * grid[i + 2][j - 2]
                     * grid[i + 3][j - 3]
                 )
-                if temp > maximum:
-                    maximum = temp
+                maximum = max(maximum, temp)
         return maximum
 
 
