@@ -65,7 +65,7 @@ def get_forbes_real_time_billionaires() -> list[dict[str, int | str]]:
             "Country": person["countryOfCitizenship"],
             "Gender": person["gender"],
             "Worth ($)": f"{person['finalWorth'] / 1000:.1f} Billion",
-            "Age": years_old(person["birthDate"]),
+            "Age": str(years_old(person["birthDate"] / 1000)),
         }
         for person in response_json["personList"]["personsLists"]
     ]
@@ -95,4 +95,7 @@ def display_billionaires(forbes_billionaires: list[dict[str, int | str]]) -> Non
 
 
 if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
     display_billionaires(get_forbes_real_time_billionaires())
