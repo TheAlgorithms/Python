@@ -34,6 +34,9 @@ def simple_moving_average(
     if window_size < 1:
         raise ValueError("Window size must be a positive integer")
 
+    if window_size > len(data):
+        raise ValueError("Window size must be smaller than the total length of the time series")
+
     sma: list[float | None] = []
 
     for i in range(len(data)):
