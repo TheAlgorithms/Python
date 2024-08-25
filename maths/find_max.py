@@ -20,7 +20,8 @@ def find_max_iterative(nums: list[int | float]) -> int | float:
         raise ValueError("find_max_iterative() arg is an empty sequence")
     max_num = nums[0]
     for x in nums:
-        max_num = max(max_num, x)
+        if x > max_num:  # noqa: PLR1730
+            max_num = x
     return max_num
 
 
