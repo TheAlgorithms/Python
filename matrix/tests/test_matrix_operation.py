@@ -31,7 +31,7 @@ stream_handler = logging.StreamHandler(sys.stdout)
 logger.addHandler(stream_handler)
 
 
-@pytest.mark.mat_ops()
+@pytest.mark.mat_ops
 @pytest.mark.parametrize(
     ("mat1", "mat2"), [(mat_a, mat_b), (mat_c, mat_d), (mat_d, mat_e), (mat_f, mat_h)]
 )
@@ -51,7 +51,7 @@ def test_addition(mat1, mat2):
             matop.add(mat1, mat2)
 
 
-@pytest.mark.mat_ops()
+@pytest.mark.mat_ops
 @pytest.mark.parametrize(
     ("mat1", "mat2"), [(mat_a, mat_b), (mat_c, mat_d), (mat_d, mat_e), (mat_f, mat_h)]
 )
@@ -71,7 +71,7 @@ def test_subtraction(mat1, mat2):
             assert matop.subtract(mat1, mat2)
 
 
-@pytest.mark.mat_ops()
+@pytest.mark.mat_ops
 @pytest.mark.parametrize(
     ("mat1", "mat2"), [(mat_a, mat_b), (mat_c, mat_d), (mat_d, mat_e), (mat_f, mat_h)]
 )
@@ -93,21 +93,21 @@ def test_multiplication(mat1, mat2):
             assert matop.subtract(mat1, mat2)
 
 
-@pytest.mark.mat_ops()
+@pytest.mark.mat_ops
 def test_scalar_multiply():
     act = (3.5 * np.array(mat_a)).tolist()
     theo = matop.scalar_multiply(mat_a, 3.5)
     assert theo == act
 
 
-@pytest.mark.mat_ops()
+@pytest.mark.mat_ops
 def test_identity():
     act = (np.identity(5)).tolist()
     theo = matop.identity(5)
     assert theo == act
 
 
-@pytest.mark.mat_ops()
+@pytest.mark.mat_ops
 @pytest.mark.parametrize("mat", [mat_a, mat_b, mat_c, mat_d, mat_e, mat_f])
 def test_transpose(mat):
     if (np.array(mat)).shape < (2, 2):
