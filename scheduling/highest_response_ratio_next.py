@@ -46,8 +46,7 @@ def calculate_turn_around_time(
         i = 0
         while finished_process[i] == 1:
             i += 1
-        if current_time < arrival_time[i]:
-            current_time = arrival_time[i]
+        current_time = max(current_time, arrival_time[i])
 
         response_ratio = 0
         # Index showing the location of the process being performed

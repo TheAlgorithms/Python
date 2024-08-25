@@ -31,8 +31,7 @@ def binomial_coefficient(n: int, k: int) -> int:
     """
     result = 1  # To kept the Calculated Value
     # Since C(n, k) = C(n, n-k)
-    if k > (n - k):
-        k = n - k
+    k = min(k, n - k)
     # Calculate C(n,k)
     for i in range(k):
         result *= n - i
