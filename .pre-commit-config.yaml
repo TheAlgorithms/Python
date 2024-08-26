@@ -42,12 +42,12 @@ repos:
         pass_filenames: false
 
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.18
+    rev: v0.19
     hooks:
       - id: validate-pyproject
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.11.1
+    rev: v1.11.2
     hooks:
       - id: mypy
         args:
