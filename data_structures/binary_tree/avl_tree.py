@@ -223,7 +223,9 @@ def del_node(root: MyNode, data: Any) -> MyNode | None:
     right_child = root.get_right()
 
     if get_height(right_child) - get_height(left_child) == 2:
-        if right_child and get_height(right_child.get_right()) > get_height(right_child.get_left()):
+        if right_child and get_height(right_child.get_right()) > get_height(
+            right_child.get_left()
+        ):
             root = left_rotation(root)
         else:
             if right_child and right_child.get_left():
@@ -231,7 +233,9 @@ def del_node(root: MyNode, data: Any) -> MyNode | None:
             else:
                 print("Skipping RL rotation as conditions are not met")
     elif get_height(left_child) - get_height(right_child) == 2:
-        if left_child and get_height(left_child.get_left()) > get_height(left_child.get_right()):
+        if left_child and get_height(left_child.get_left()) > get_height(
+            left_child.get_right()
+        ):
             root = right_rotation(root)
         else:
             if left_child and left_child.get_right():
@@ -239,7 +243,9 @@ def del_node(root: MyNode, data: Any) -> MyNode | None:
             else:
                 print("Skipping LR rotation as conditions are not met")
 
-    root.set_height(my_max(get_height(root.get_left()), get_height(root.get_right())) + 1)
+    root.set_height(
+        my_max(get_height(root.get_left()), get_height(root.get_right())) + 1
+    )
     return root
 
 
