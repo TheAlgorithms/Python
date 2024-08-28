@@ -1,8 +1,8 @@
 from data_structures.kd_tree.kd_node import KDNode
 
+
 def nearest_neighbour_search(
-        root: KDNode | None,
-        query_point: list[float]
+    root: KDNode | None, query_point: list[float]
 ) -> tuple[list[float] | None, float, int]:
     """
     Performs a nearest neighbor search in a KD-Tree for a given query point.
@@ -21,10 +21,7 @@ def nearest_neighbour_search(
     nearest_dist: float = float("inf")
     nodes_visited: int = 0
 
-    def search(
-            node: KDNode | None,
-            depth: int = 0
-    ) -> None:
+    def search(node: KDNode | None, depth: int = 0) -> None:
         """
         Recursively searches for the nearest neighbor in the KD-Tree.
 

@@ -4,6 +4,7 @@ from data_structures.kd_tree.nearest_neighbour_search import nearest_neighbour_s
 from data_structures.kd_tree.kd_node import KDNode
 from data_structures.kd_tree.example.hypercube_points import hypercube_points
 
+
 def test_build_kdtree():
     """
     Test that KD-Tree is built correctly.
@@ -22,6 +23,7 @@ def test_build_kdtree():
 
     # Check that the tree is balanced to some extent (simplistic check)
     assert isinstance(kdtree, KDNode)
+
 
 def test_nearest_neighbour_search():
     """
@@ -49,6 +51,7 @@ def test_nearest_neighbour_search():
     # Check that nodes visited is a non-negative integer
     assert nodes_visited >= 0
 
+
 def test_edge_cases():
     """
     Test edge cases such as an empty KD-Tree.
@@ -65,6 +68,8 @@ def test_edge_cases():
     assert nearest_dist == float("inf")
     assert nodes_visited == 0
 
+
 if __name__ == "__main__":
     import pytest
+
     pytest.main()

@@ -1,8 +1,7 @@
 from data_structures.kd_tree.kd_node import KDNode
 
-def build_kdtree(
-        points: list[list[float]], depth: int = 0
-) -> KDNode | None:
+
+def build_kdtree(points: list[list[float]], depth: int = 0) -> KDNode | None:
     """
     Builds a KD-Tree from a list of points.
 
@@ -25,7 +24,7 @@ def build_kdtree(
 
     # Create node and construct subtrees
     left_points = points[:median_idx]
-    right_points = points[median_idx + 1:]
+    right_points = points[median_idx + 1 :]
 
     return KDNode(
         point=points[median_idx],
