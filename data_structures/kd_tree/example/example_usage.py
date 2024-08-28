@@ -32,5 +32,6 @@ def main() -> None:
     print(f"Distance: {nearest_dist:.4f}")
     print(f"Nodes visited: {nodes_visited}")
 
+
 if __name__ == "__main__":
     main()

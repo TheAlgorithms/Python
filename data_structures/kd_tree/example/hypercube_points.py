@@ -1,6 +1,9 @@
 import numpy as np
 
-def hypercube_points(num_points: int, hypercube_size: float, num_dimensions: int) -> np.ndarray:
+
+def hypercube_points(
+    num_points: int, hypercube_size: float, num_dimensions: int
+) -> np.ndarray:
     """
     Generates random points uniformly distributed within an n-dimensional hypercube.
 

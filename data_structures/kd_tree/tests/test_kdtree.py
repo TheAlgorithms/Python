@@ -5,8 +5,8 @@ from data_structures.kd_tree.nearest_neighbour_search import nearest_neighbour_s
 from data_structures.kd_tree.kd_node import KDNode
 from data_structures.kd_tree.example.hypercube_points import hypercube_points
 
-class TestKDTree(unittest.TestCase):
 
+class TestKDTree(unittest.TestCase):
     def setUp(self):
         """
         Set up test data.
@@ -14,7 +14,9 @@ class TestKDTree(unittest.TestCase):
         self.num_points = 10
         self.cube_size = 10.0
         self.num_dimensions = 2
-        self.points = hypercube_points(self.num_points, self.cube_size, self.num_dimensions)
+        self.points = hypercube_points(
+            self.num_points, self.cube_size, self.num_dimensions
+        )
         self.kdtree = build_kdtree(self.points.tolist())
 
     def test_build_kdtree(self):
@@ -66,5 +68,6 @@ class TestKDTree(unittest.TestCase):
         self.assertEqual(nearest_dist, float("inf"))
         self.assertEqual(nodes_visited, 0)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
