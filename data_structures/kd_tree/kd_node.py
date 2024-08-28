@@ -1,6 +1,5 @@
 from typing import Optional
 
-
 class KDNode:
     """
     Represents a node in a KD-Tree.

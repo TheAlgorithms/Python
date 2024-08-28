@@ -1,34 +1,36 @@
-from typing import Optional
 from data_structures.kd_tree.kd_node import KDNode
 
-
 def nearest_neighbour_search(
-    root: Optional[KDNode], query_point: list[float]
-) -> tuple[Optional[list[float]], float, int]:
+        root: KDNode | None,
+        query_point: list[float]
+) -> tuple[list[float] | None, float, int]:
     """
     Performs a nearest neighbor search in a KD-Tree for a given query point.
 
     Args:
-        root (Optional[KDNode]): The root node of the KD-Tree.
+        root (KDNode | None): The root node of the KD-Tree.
         query_point (list[float]): The point for which the nearest neighbor is being searched.
 
     Returns:
-        tuple[Optional[list[float]], float, int]:
-            - The nearest point found in the KD-Tree to the query point.
+        tuple[list[float] | None, float, int]:
+            - The nearest point found in the KD-Tree to the query point, or None if no point is found.
             - The squared distance to the nearest point.
             - The number of nodes visited during the search.
     """
-    nearest_point: Optional[list[float]] = None
+    nearest_point: list[float] | None = None
     nearest_dist: float = float("inf")
     nodes_visited: int = 0
 
-    def search(node: Optional[KDNode], depth: int = 0) -> None:
+    def search(
+            node: KDNode | None,
+            depth: int = 0
+    ) -> None:
         """
-        Recursively searches the KD-Tree for the nearest neighbor.
+        Recursively searches for the nearest neighbor in the KD-Tree.
 
         Args:
-            node (Optional[KDNode]): The current node in the KD-Tree.
-            depth (int): The current depth in the tree.
+            node (KDNode | None): The current node in the KD-Tree.
+            depth (int): The current depth in the KD-Tree.
         """
         nonlocal nearest_point, nearest_dist, nodes_visited
         if node is None:
