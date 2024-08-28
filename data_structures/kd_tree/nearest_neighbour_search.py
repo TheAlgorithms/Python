@@ -1,9 +1,25 @@
-def nearest_neighbour_search(root, query_point):
-    nearest_point = None
-    nearest_dist = float("inf")
-    nodes_visited = 0
+from typing import Optional, List, Tuple
+from .kd_node import KDNode
 
-    def search(node, depth=0):
+def nearest_neighbour_search(root: Optional[KDNode], query_point: List[float]) -> Tuple[Optional[List[float]], float, int]:
+    """
+    Performs a nearest neighbor search in a KD-Tree for a given query point.
+
+    Args:
+        root (Optional[KDNode]): The root node of the KD-Tree.
+        query_point (List[float]): The point for which the nearest neighbor is being searched.
+
+    Returns:
+        Tuple[Optional[List[float]], float, int]:
+            - The nearest point found in the KD-Tree to the query point.
+            - The squared distance to the nearest point.
+            - The number of nodes visited during the search.
+    """
+    nearest_point: Optional[List[float]] = None
+    nearest_dist: float = float("inf")
+    nodes_visited: int = 0
+
+    def search(node: Optional[KDNode], depth: int = 0) -> None:
         nonlocal nearest_point, nearest_dist, nodes_visited
         if node is None:
             return
@@ -12,7 +28,7 @@ def nearest_neighbour_search(root, query_point):
 
         # Calculate the current distance (squared distance)
         current_point = node.point
-        current_dist = sum((qp - cp) ** 2 for qp, cp in zip(query_point, current_point))
+        current_dist = sum((query_coord - point_coord) ** 2 for query_coord, point_coord in zip(query_point, current_point))
 
         # Update nearest point if the current node is closer
         if nearest_point is None or current_dist < nearest_dist:
