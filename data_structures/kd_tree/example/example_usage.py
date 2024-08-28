@@ -4,6 +4,7 @@ from hypercube_points import hypercube_points
 from data_structures.kd_tree.build_kdtree import build_kdtree
 from data_structures.kd_tree.nearest_neighbour_search import nearest_neighbour_search
 
+
 def main() -> None:
     """
     Demonstrates the use of KD-Tree by building it from random points
@@ -31,6 +32,7 @@ def main() -> None:
     print(f"Nearest point: {nearest_point}")
     print(f"Distance: {nearest_dist:.4f}")
     print(f"Nodes visited: {nodes_visited}")
+
 
 if __name__ == "__main__":
     main()
