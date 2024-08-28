@@ -44,7 +44,7 @@ def similarity_search(
     dataset: np.ndarray,
     value_array: np.ndarray,
     distance_func: DistanceFunction = euclidean,
-    k: int = 1
+    k: int = 1,
 ) -> List[List[Union[List[float], float]]]:
     """
     :param dataset: Set containing the vectors. Should be ndarray.
@@ -143,10 +143,7 @@ def similarity_search(
     for value in value_array:
         distances = [distance_func(value, data_point) for data_point in dataset]
         nearest_indices = np.argsort(distances)[:k]
-        answer.append([
-            [dataset[i].tolist(), distances[i]]
-            for i in nearest_indices
-        ])
+        answer.append([[dataset[i].tolist(), distances[i]] for i in nearest_indices])
 
     return answer[0] if len(answer) == 1 else answer
 
