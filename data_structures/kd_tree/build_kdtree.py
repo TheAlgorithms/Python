@@ -1,17 +1,16 @@
-from typing import List, Optional
+from typing import Optional
 from .kd_node import KDNode
 
-
-def build_kdtree(points: List[List[float]], depth: int = 0) -> Optional[KDNode]:
+def build_kdtree(points: list[list[float]], depth: int = 0) -> Optional[KDNode]:
     """
-    Builds a KD-Tree from a set of k-dimensional points.
+    Builds a KD-Tree from a list of points.
 
     Args:
-        points (List[List[float]]): A list of k-dimensional points (each point is a list of floats).
-        depth (int): The current depth in the tree. Used to determine the splitting axis. Defaults to 0.
+        points (list[list[float]]): The list of points to build the KD-Tree from.
+        depth (int): The current depth in the tree (used to determine axis for splitting).
 
     Returns:
-        Optional[KDNode]: The root of the KD-Tree or None if the input list is empty.
+        Optional[KDNode]: The root node of the KD-Tree.
     """
     if not points:
         return None
@@ -27,5 +26,5 @@ def build_kdtree(points: List[List[float]], depth: int = 0) -> Optional[KDNode]:
     return KDNode(
         point=points[median_idx],
         left=build_kdtree(points[:median_idx], depth + 1),
-        right=build_kdtree(points[median_idx + 1 :], depth + 1),
+        right=build_kdtree(points[median_idx + 1:], depth + 1),
     )
