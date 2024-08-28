@@ -1,5 +1,6 @@
 from typing import List, Optional
 
+
 class KDNode:
     """
     Represents a node in a KD-Tree.
@@ -10,7 +11,12 @@ class KDNode:
         right (Optional[KDNode]): The right subtree of this node.
     """
 
-    def __init__(self, point: List[float], left: Optional['KDNode'] = None, right: Optional['KDNode'] = None) -> None:
+    def __init__(
+        self,
+        point: List[float],
+        left: Optional["KDNode"] = None,
+        right: Optional["KDNode"] = None,
+    ) -> None:
         """
         Initializes a KDNode with a point and optional left and right children.
 

@@ -1,7 +1,10 @@
 from typing import Optional, List, Tuple
 from .kd_node import KDNode
 
-def nearest_neighbour_search(root: Optional[KDNode], query_point: List[float]) -> Tuple[Optional[List[float]], float, int]:
+
+def nearest_neighbour_search(
+    root: Optional[KDNode], query_point: List[float]
+) -> Tuple[Optional[List[float]], float, int]:
     """
     Performs a nearest neighbor search in a KD-Tree for a given query point.
 
@@ -28,7 +31,10 @@ def nearest_neighbour_search(root: Optional[KDNode], query_point: List[float]) -
 
         # Calculate the current distance (squared distance)
         current_point = node.point
-        current_dist = sum((query_coord - point_coord) ** 2 for query_coord, point_coord in zip(query_point, current_point))
+        current_dist = sum(
+            (query_coord - point_coord) ** 2
+            for query_coord, point_coord in zip(query_point, current_point)
+        )
 
         # Update nearest point if the current node is closer
         if nearest_point is None or current_dist < nearest_dist:
