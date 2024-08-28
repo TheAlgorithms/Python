@@ -6,14 +6,20 @@ In this algorithm, it calculates distance with euclidean distance and
 returns a list containing two data for each vector:
     1. the nearest vector
     2. distance between the vector and the nearest vector (float)
+
+This implementation also includes cosine similarity as an alternative measure.
 """
 
 from __future__ import annotations
 
 import math
+from typing import Callable, List, Tuple, Union
 
 import numpy as np
 from numpy.linalg import norm
+
+VectorType = Union[List[float], np.ndarray]
+DistanceFunction = Callable[[np.ndarray, np.ndarray], float]
 
 
 def euclidean(input_a: np.ndarray, input_b: np.ndarray) -> float:
@@ -31,18 +37,23 @@ def euclidean(input_a: np.ndarray, input_b: np.ndarray) -> float:
     >>> euclidean(np.array([0, 0, 0]), np.array([0, 0, 1]))
     1.0
     """
-    return math.sqrt(sum(pow(a - b, 2) for a, b in zip(input_a, input_b)))
+    return np.sqrt(np.sum((input_a - input_b) ** 2))
 
 
 def similarity_search(
-    dataset: np.ndarray, value_array: np.ndarray
-) -> list[list[list[float] | float]]:
+    dataset: np.ndarray,
+    value_array: np.ndarray,
+    distance_func: DistanceFunction = euclidean,
+    k: int = 1,
+) -> List[List[Union[List[float], float]]]:
     """
     :param dataset: Set containing the vectors. Should be ndarray.
     :param value_array: vector/vectors we want to know the nearest vector from dataset.
+    :param distance_func: Distance function to use (default: euclidean).
+    :param k: Number of nearest neighbors to return (default: 1).
     :return: Result will be a list containing
-            1. the nearest vector
-            2. distance from the vector
+            1. the nearest vector(s)
+            2. distance(s) from the vector(s)
 
     >>> dataset = np.array([[0], [1], [2]])
     >>> value_array = np.array([[0]])
@@ -63,6 +74,11 @@ def similarity_search(
     >>> value_array = np.array([[0, 0, 0], [0, 0, 1]])
     >>> similarity_search(dataset, value_array)
     [[[0, 0, 0], 0.0], [[0, 0, 0], 1.0]]
+
+    >>> dataset = np.array([[0, 0], [1, 1], [2, 2]])
+    >>> value_array = np.array([[0, 1]])
+    >>> similarity_search(dataset, value_array, k=2)
+    [[[0, 0], 1.0], [[1, 1], 1.0]]
 
     These are the errors that might occur:
 
@@ -125,19 +141,11 @@ def similarity_search(
     answer = []
 
     for value in value_array:
-        dist = euclidean(value, dataset[0])
-        vector = dataset[0].tolist()
+        distances = [distance_func(value, data_point) for data_point in dataset]
+        nearest_indices = np.argsort(distances)[:k]
+        answer.append([[dataset[i].tolist(), distances[i]] for i in nearest_indices])
 
-        for dataset_value in dataset[1:]:
-            temp_dist = euclidean(value, dataset_value)
-
-            if dist > temp_dist:
-                dist = temp_dist
-                vector = dataset_value.tolist()
-
-        answer.append([vector, dist])
-
-    return answer
+    return answer[0] if len(answer) == 1 else answer
 
 
 def cosine_similarity(input_a: np.ndarray, input_b: np.ndarray) -> float:
@@ -154,6 +162,21 @@ def cosine_similarity(input_a: np.ndarray, input_b: np.ndarray) -> float:
     0.9615239476408232
     """
     return np.dot(input_a, input_b) / (norm(input_a) * norm(input_b))
+
+
+def cosine_distance(input_a: np.ndarray, input_b: np.ndarray) -> float:
+    """
+    Calculates cosine distance between two data.
+    :param input_a: ndarray of first vector.
+    :param input_b: ndarray of second vector.
+    :return: Cosine distance of input_a and input_b.
+
+    >>> cosine_distance(np.array([1]), np.array([1]))
+    0.0
+    >>> round(cosine_distance(np.array([1, 2]), np.array([6, 32])), 7)
+    0.0384761
+    """
+    return 1 - cosine_similarity(input_a, input_b)
 
 
 if __name__ == "__main__":
