@@ -1,5 +1,6 @@
 from .kd_node import KDNode
 
+
 def build_kdtree(points, depth=0):
     if not points:
         return None
@@ -13,7 +14,7 @@ def build_kdtree(points, depth=0):
 
     # Create node and construct subtrees
     return KDNode(
-        point = points[median_idx],
-        left = build_kdtree(points[:median_idx], depth + 1),
-        right = build_kdtree(points[median_idx + 1:], depth + 1)
+        point=points[median_idx],
+        left=build_kdtree(points[:median_idx], depth + 1),
+        right=build_kdtree(points[median_idx + 1 :], depth + 1),
     )

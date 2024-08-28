@@ -14,7 +14,9 @@ hypercube_kdtree = build_kdtree(points.tolist())
 
 query_point = np.random.rand(num_dimensions).tolist()
 
-nearest_point, nearest_dist, nodes_visited = nearest_neighbour_search(hypercube_kdtree, query_point)
+nearest_point, nearest_dist, nodes_visited = nearest_neighbour_search(
+    hypercube_kdtree, query_point
+)
 
 print(f"Query point: {query_point}")
 print(f"Nearest point: {nearest_point}")

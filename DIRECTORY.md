@@ -287,7 +287,7 @@
     * [Trie](data_structures/trie/trie.py)
   * KD Tree
     * [KD Tree Node](data_structures/kd_tree/kd_node.py)
-    * [Build KD Tree](data_structures/kd_tree/build_kdtree.py) 
+    * [Build KD Tree](data_structures/kd_tree/build_kdtree.py)
     * [Nearest Neighbour Search](data_structures/kd_tree/nearest_neighbour_search.py)
     * [Hypercibe Points](data_structures/kd_tree/example/hypercube_points.py)
     * [Example Usage](data_structures/kd_tree/example/example_usage.py)

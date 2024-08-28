@@ -1,6 +1,6 @@
 def nearest_neighbour_search(root, query_point):
     nearest_point = None
-    nearest_dist = float('inf')
+    nearest_dist = float("inf")
     nodes_visited = 0
 
     def search(node, depth=0):
