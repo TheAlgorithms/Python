@@ -12,7 +12,8 @@ num_dimensions = 10
 points = hypercube_points(num_points, cube_size, num_dimensions)
 hypercube_kdtree = build_kdtree(points.tolist())
 
-query_point = np.random.rand(num_dimensions).tolist()
+rng = np.random.default_rng()
+query_point = rng.random(num_dimensions).tolist()
 
 nearest_point, nearest_dist, nodes_visited = nearest_neighbour_search(
     hypercube_kdtree, query_point
