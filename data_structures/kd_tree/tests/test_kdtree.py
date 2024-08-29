@@ -1,4 +1,5 @@
 import numpy as np
+
 from data_structures.kd_tree.build_kdtree import build_kdtree
 from data_structures.kd_tree.example.hypercube_points import hypercube_points
 from data_structures.kd_tree.kd_node import KDNode
