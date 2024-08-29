@@ -9,11 +9,13 @@ def nearest_neighbour_search(
 
     Args:
         root (KDNode | None): The root node of the KD-Tree.
-        query_point (list[float]): The point for which the nearest neighbor is being searched.
+        query_point (list[float]): The point for which the nearest neighbor
+                                    is being searched.
 
     Returns:
         tuple[list[float] | None, float, int]:
-            - The nearest point found in the KD-Tree to the query point, or None if no point is found.
+            - The nearest point found in the KD-Tree to the query point,
+              or None if no point is found.
             - The squared distance to the nearest point.
             - The number of nodes visited during the search.
     """

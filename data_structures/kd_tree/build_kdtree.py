@@ -7,10 +7,12 @@ def build_kdtree(points: list[list[float]], depth: int = 0) -> KDNode | None:
 
     Args:
         points (list[list[float]]): The list of points to build the KD-Tree from.
-        depth (int): The current depth in the tree (used to determine axis for splitting).
+        depth (int): The current depth in the tree
+                     (used to determine axis for splitting).
 
     Returns:
-        KDNode | None: The root node of the KD-Tree, or None if no points are provided.
+        KDNode | None: The root node of the KD-Tree,
+                       or None if no points are provided.
     """
     if not points:
         return None
