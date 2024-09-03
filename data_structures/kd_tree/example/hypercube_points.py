@@ -13,7 +13,7 @@ def hypercube_points(
         num_dimensions: Number of dimensions of the hypercube.
 
     Returns:
-        np.ndarray: An array of shape (num_points, num_dimensions)
+        An array of shape (num_points, num_dimensions)
                     with generated points.
     """
     rng = np.random.default_rng()
