@@ -17,20 +17,26 @@ def collect_dataset():
     The dataset contains ADR vs Rating of a Player
     :return : dataset obtained from the link, as matrix
     """
-    response = requests.get(
+    try:response = requests.get(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
         "master/Week1/ADRvsRating.csv",
         timeout=10,
-    )
-    lines = response.text.splitlines()
-    data = []
-    for item in lines:
-        item = item.split(",")
-        data.append(item)
-    data.pop(0)  # This is for removing the labels from the list
-    dataset = np.matrix(data)
-    return dataset
-
+        )
+            lines = response.text.splitlines()
+        data = []
+        for item in lines:
+            item = item.split(",")
+            data.append(item)
+        data.pop(0)  # This is for removing the labels from the list
+        dataset = np.matrix(data)
+        return dataset
+        
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching the dataset: {e}")
+        return None
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return None
 
 def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
     """Run steep gradient descent and updates the Feature vector accordingly_
@@ -112,6 +118,10 @@ def main():
     for i in range(len_result):
         print(f"{theta[0, i]:.5f}")
 
-
+import doctest
 if __name__ == "__main__":
     main()
+    doctest.testmod()
+
+
+    
