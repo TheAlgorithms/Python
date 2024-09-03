@@ -2,6 +2,7 @@ import spacy
 import logging
 import numpy as np
 
+
 class Cosine_Similarity:
     """
     Cosine Similarity Algorithm
@@ -15,13 +16,13 @@ class Cosine_Similarity:
     - spacy: A Natural Language Processing library for Python, used here for Tokenization and Vectorization.
     - numpy: A Library for Numerical Operations in Python, used for Mathematical Computations.
     """
-    
+
     def __init__(self) -> None:
         """
         Initializes the Cosine Similarity class by loading the SpaCy model.
         """
-        self.nlp = spacy.load('en_core_web_md')
-    
+        self.nlp = spacy.load("en_core_web_md")
+
     def Tokenize(self, text: str) -> list:
         """
         Tokenizes the input text into a list of lowercased tokens.
@@ -39,7 +40,7 @@ class Cosine_Similarity:
         except Exception as e:
             logging.error("An error occurred during Tokenization: ", exc_info=e)
             raise e
-        
+
     def Vectorize(self, tokens: list) -> list:
         """
         Converts tokens into their corresponding vector representations.
@@ -51,12 +52,16 @@ class Cosine_Similarity:
         - list: A list of vectors corresponding to the tokens.
         """
         try:
-            vectors = [self.nlp(token).vector for token in tokens if self.nlp(token).vector.any()]
+            vectors = [
+                self.nlp(token).vector
+                for token in tokens
+                if self.nlp(token).vector.any()
+            ]
             return vectors
         except Exception as e:
             logging.error("An error occurred during Vectorization: ", exc_info=e)
             raise e
-        
+
     def Mean_Vector(self, vectors: list) -> np.ndarray:
         """
         Computes the mean vector of a list of vectors.
@@ -72,9 +77,11 @@ class Cosine_Similarity:
                 return np.zeros(self.nlp.vocab.vectors_length)
             return np.mean(vectors, axis=0)
         except Exception as e:
-            logging.error("An error occurred while computing the Mean Vector: ", exc_info=e)
+            logging.error(
+                "An error occurred while computing the Mean Vector: ", exc_info=e
+            )
             raise e
-        
+
     def Dot_Product(self, vector1: np.ndarray, vector2: np.ndarray) -> float:
         """
         Computes the dot product between two vectors.
@@ -89,9 +96,11 @@ class Cosine_Similarity:
         try:
             return np.dot(vector1, vector2)
         except Exception as e:
-            logging.error("An error occurred during the dot Product Calculation: ", exc_info=e)
+            logging.error(
+                "An error occurred during the dot Product Calculation: ", exc_info=e
+            )
             raise e
-        
+
     def Magnitude(self, vector: np.ndarray) -> float:
         """
         Computes the magnitude (norm) of a vector.
@@ -103,11 +112,13 @@ class Cosine_Similarity:
         - float: The magnitude of the vector.
         """
         try:
-            return np.sqrt(np.sum(vector ** 2))
+            return np.sqrt(np.sum(vector**2))
         except Exception as e:
-            logging.error("An error occurred while computing the Magnitude: ", exc_info=e)
+            logging.error(
+                "An error occurred while computing the Magnitude: ", exc_info=e
+            )
             raise e
-        
+
     def Cosine_Similarity(self, vector1: np.ndarray, vector2: np.ndarray) -> float:
         """
         Computes the cosine similarity between two vectors.
@@ -126,9 +137,11 @@ class Cosine_Similarity:
                 return 0.0
             return dot / (magnitude1 * magnitude2)
         except Exception as e:
-            logging.error("An error occurred during Cosine Similarity Calculation: ", exc_info=e)
+            logging.error(
+                "An error occurred during Cosine Similarity Calculation: ", exc_info=e
+            )
             raise e
-        
+
     def Cosine_Similarity_Percentage(self, text1: str, text2: str) -> float:
         """
         Computes the cosine similarity percentage between two texts.
@@ -143,19 +156,23 @@ class Cosine_Similarity:
         try:
             tokens1 = self.Tokenize(text1)
             tokens2 = self.Tokenize(text2)
-            
+
             vectors1 = self.Vectorize(tokens1)
             vectors2 = self.Vectorize(tokens2)
-            
+
             mean_vec1 = self.Mean_Vector(vectors1)
             mean_vec2 = self.Mean_Vector(vectors2)
- 
+
             similarity = self.Cosine_Similarity(mean_vec1, mean_vec2)
             return similarity * 100
         except Exception as e:
-            logging.error("An error occurred while computing the Cosine Similarity Percentage: ", exc_info=e)
+            logging.error(
+                "An error occurred while computing the Cosine Similarity Percentage: ",
+                exc_info=e,
+            )
             raise e
-        
+
+
 if __name__ == "__main__":
     """
     Main function to Test the Cosine Similarity between two Texts.
