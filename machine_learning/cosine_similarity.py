@@ -2,6 +2,7 @@ import logging
 import numpy as np
 import spacy
 
+
 class CosineSimilarity:
     """
     Cosine Similarity Algorithm
@@ -179,5 +180,7 @@ if __name__ == "__main__":
     text1 = "The biggest Infrastructure in the World is Burj Khalifa"
     text2 = "The name of the talllest Tower in the world is Burj Khalifa"
 
-    similarity_percentage = CosineSimilarity().cosine_similarity_percentage(text1, text2)
+    similarity_percentage = CosineSimilarity().cosine_similarity_percentage(
+        text1, text2
+    )
     print(f"Cosine Similarity: {similarity_percentage:.2f}%")
