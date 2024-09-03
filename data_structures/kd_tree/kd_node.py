@@ -14,7 +14,7 @@ class KDNode:
     def __init__(
         self,
         point: list[float],
-        left:  KDNode | None = None,
+        left: KDNode | None = None,
         right: KDNode | None = None,
     ) -> None:
         """
