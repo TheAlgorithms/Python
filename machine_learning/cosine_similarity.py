@@ -1,25 +1,31 @@
 import logging
+
 import numpy as np
 import spacy
 
+"""
+Cosine Similarity Algorithm
+
+Use Case:
+- The Cosine Similarity Algorithm measures the Cosine of the Angle between two
+Non-Zero Vectors in a Multi-Dimensional Space.
+- It is used to determine how similar two texts are based on their Vector
+representations.
+- The similarity score ranges from -1 (Completely Dissimilar) to 1 (Completely Similar),
+with 0 indicating no Similarity.
+
+Dependencies:
+- spacy: A Natural Language Processing library for Python, used here for Tokenization
+and Vectorization.
+- numpy: A Library for Numerical Operations in Python, used for Mathematical
+Computations.
+"""
+
 
 class CosineSimilarity:
-    """
-    Cosine Similarity Algorithm
-
-    Use Case:
-    - The Cosine Similarity Algorithm measures the Cosine of the Angle between two Non-Zero Vectors in a Multi-Dimensional Space.
-    - It is used to determine how similar two texts are based on their Vector representations.
-    - The similarity score ranges from -1 (Completely Dissimilar) to 1 (Completely Similar), with 0 indicating no Similarity.
-
-    Dependencies:
-    - spacy: A Natural Language Processing library for Python, used here for Tokenization and Vectorization.
-    - numpy: A Library for Numerical Operations in Python, used for Mathematical Computations.
-    """
-
     def __init__(self) -> None:
         """
-        Initializes the Cosine Similarity class by loading the SpaCy model.
+        Initializes the Cosine Similarity class by loading the SpaCy Model.
         """
         self.nlp = spacy.load("en_core_web_md")
 
@@ -132,7 +138,7 @@ class CosineSimilarity:
         """
         try:
             dot = self.dot_product(vector1, vector2)
-            magnitude1, magnitude2 = self.magnitude(vector1), self.magnitude(vector2)
+            magnitude1, magnitude2 = (self.magnitude(vector1), self.magnitude(vector2))
             if magnitude1 == 0 or magnitude2 == 0:
                 return 0.0
             return dot / (magnitude1 * magnitude2)
