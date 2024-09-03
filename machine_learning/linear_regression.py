@@ -19,9 +19,9 @@ def collect_dataset():
     """
     try:
         response = requests.get(
-        "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
-        "master/Week1/ADRvsRating.csv",
-        timeout=10,
+            "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
+            "master/Week1/ADRvsRating.csv",
+            timeout=10,
         )
         lines = response.text.splitlines()
         data = []
@@ -38,6 +38,7 @@ def collect_dataset():
     except Exception as e:
         print(f"Unexpected error: {e}")
         return None
+
 
 def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
     """Run steep gradient descent and updates the Feature vector accordingly_
@@ -119,10 +120,9 @@ def main():
     for i in range(len_result):
         print(f"{theta[0, i]:.5f}")
 
+
 import doctest
+
 if __name__ == "__main__":
     main()
     doctest.testmod()
-
-
-
