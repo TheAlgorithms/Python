@@ -28,8 +28,8 @@ def nearest_neighbour_search(
         Recursively searches for the nearest neighbor in the KD-Tree.
 
         Args:
-            node (KDNode | None): The current node in the KD-Tree.
-            depth (int): The current depth in the KD-Tree.
+            node: The current node in the KD-Tree.
+            depth: The current depth in the KD-Tree.
         """
         nonlocal nearest_point, nearest_dist, nodes_visited
         if node is None:
