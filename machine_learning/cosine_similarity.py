@@ -3,7 +3,7 @@ import logging
 import numpy as np
 
 
-class Cosine_Similarity:
+class cosine_similarity:
     """
     Cosine Similarity Algorithm
 
@@ -23,7 +23,7 @@ class Cosine_Similarity:
         """
         self.nlp = spacy.load("en_core_web_md")
 
-    def Tokenize(self, text: str) -> list:
+    def tokenize(self, text: str) -> list:
         """
         Tokenizes the input text into a list of lowercased tokens.
 
@@ -41,7 +41,7 @@ class Cosine_Similarity:
             logging.error("An error occurred during Tokenization: ", exc_info=e)
             raise e
 
-    def Vectorize(self, tokens: list) -> list:
+    def vectorize(self, tokens: list) -> list:
         """
         Converts tokens into their corresponding vector representations.
 
@@ -62,7 +62,7 @@ class Cosine_Similarity:
             logging.error("An error occurred during Vectorization: ", exc_info=e)
             raise e
 
-    def Mean_Vector(self, vectors: list) -> np.ndarray:
+    def mean_vector(self, vectors: list) -> np.ndarray:
         """
         Computes the mean vector of a list of vectors.
 
@@ -82,7 +82,7 @@ class Cosine_Similarity:
             )
             raise e
 
-    def Dot_Product(self, vector1: np.ndarray, vector2: np.ndarray) -> float:
+    def dot_product(self, vector1: np.ndarray, vector2: np.ndarray) -> float:
         """
         Computes the dot product between two vectors.
 
@@ -101,7 +101,7 @@ class Cosine_Similarity:
             )
             raise e
 
-    def Magnitude(self, vector: np.ndarray) -> float:
+    def magnitude(self, vector: np.ndarray) -> float:
         """
         Computes the magnitude (norm) of a vector.
 
@@ -119,7 +119,7 @@ class Cosine_Similarity:
             )
             raise e
 
-    def Cosine_Similarity(self, vector1: np.ndarray, vector2: np.ndarray) -> float:
+    def cosine_similarity(self, vector1: np.ndarray, vector2: np.ndarray) -> float:
         """
         Computes the cosine similarity between two vectors.
 
@@ -131,8 +131,8 @@ class Cosine_Similarity:
         - float: The cosine similarity between the two vectors.
         """
         try:
-            dot = self.Dot_Product(vector1, vector2)
-            magnitude1, magnitude2 = self.Magnitude(vector1), self.Magnitude(vector2)
+            dot = self.dot_product(vector1, vector2)
+            magnitude1, magnitude2 = self.magnitude(vector1), self.magnitude(vector2)
             if magnitude1 == 0 or magnitude2 == 0:
                 return 0.0
             return dot / (magnitude1 * magnitude2)
@@ -142,7 +142,7 @@ class Cosine_Similarity:
             )
             raise e
 
-    def Cosine_Similarity_Percentage(self, text1: str, text2: str) -> float:
+    def cosine_similarity_percentage(self, text1: str, text2: str) -> float:
         """
         Computes the cosine similarity percentage between two texts.
 
@@ -154,16 +154,16 @@ class Cosine_Similarity:
         - float: The cosine similarity percentage between the two texts.
         """
         try:
-            tokens1 = self.Tokenize(text1)
-            tokens2 = self.Tokenize(text2)
+            tokens1 = self.tokenize(text1)
+            tokens2 = self.tokenize(text2)
 
-            vectors1 = self.Vectorize(tokens1)
-            vectors2 = self.Vectorize(tokens2)
+            vectors1 = self.vectorize(tokens1)
+            vectors2 = self.vectorize(tokens2)
 
-            mean_vec1 = self.Mean_Vector(vectors1)
-            mean_vec2 = self.Mean_Vector(vectors2)
+            mean_vec1 = self.mean_vector(vectors1)
+            mean_vec2 = self.mean_vector(vectors2)
 
-            similarity = self.Cosine_Similarity(mean_vec1, mean_vec2)
+            similarity = self.cosine_similarity(mean_vec1, mean_vec2)
             return similarity * 100
         except Exception as e:
             logging.error(
@@ -179,8 +179,6 @@ if __name__ == "__main__":
     """
     text1 = "The biggest Infrastructure in the World is Burj Khalifa"
     text2 = "The name of the talllest Tower in the world is Burj Khalifa"
-
-    similarity_percentage = Cosine_Similarity().Cosine_Similarity_Percentage(
-        text1, text2
-    )
+    
+    similarity_percentage = cosine_similarity().cosine_similarity_percentage(text1, text2)
     print(f"Cosine Similarity: {similarity_percentage:.2f}%")
