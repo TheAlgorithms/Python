@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 
 from data_structures.kd_tree.build_kdtree import build_kdtree
 from data_structures.kd_tree.example.hypercube_points import hypercube_points
@@ -6,24 +7,42 @@ from data_structures.kd_tree.kd_node import KDNode
 from data_structures.kd_tree.nearest_neighbour_search import nearest_neighbour_search
 
 
-def test_build_kdtree():
+@pytest.mark.parametrize(
+    "num_points, cube_size, num_dimensions, depth, expected_result",
+    [
+        (0, 10.0, 2, 0, None),      # Empty points list
+        (10, 10.0, 2, 2, KDNode),   # Depth = 2, 2D points
+        (10, 10.0, 3, -2, KDNode),  # Depth = -2, 3D points
+    ],
+)
+def test_build_kdtree(num_points, cube_size, num_dimensions, depth, expected_result):
     """
     Test that KD-Tree is built correctly.
+
+    Cases:
+        - Empty points list.
+        - Positive depth value.
+        - Negative depth value.
     """
-    num_points = 10
-    cube_size = 10.0
-    num_dimensions = 2
-    points = hypercube_points(num_points, cube_size, num_dimensions)
-    kdtree = build_kdtree(points.tolist())
+    points = hypercube_points(num_points, cube_size, num_dimensions).tolist() \
+        if num_points > 0 \
+        else []
 
-    # Check if root is not None
-    assert kdtree is not None
+    kdtree = build_kdtree(points, depth = depth)
 
-    # Check if root has correct dimensions
-    assert len(kdtree.point) == num_dimensions
+    if expected_result is None:
+        # Empty points list case
+        assert kdtree is None, f"Expected None for empty points list, got {kdtree}"
+    else:
+        # Check if root node is not None
+        assert kdtree is not None, "Expected a KDNode, got None"
 
-    # Check that the tree is balanced to some extent (simplistic check)
-    assert isinstance(kdtree, KDNode)
+        # Check if root has correct dimensions
+        assert len(kdtree.point) == num_dimensions, \
+            f"Expected point dimension {num_dimensions}, got {len(kdtree.point)}"
+
+        # Check that the tree is balanced to some extent (simplistic check)
+        assert isinstance(kdtree, KDNode), f"Expected KDNode instance, got {type(kdtree)}"
 
 
 def test_nearest_neighbour_search():
