@@ -8,7 +8,7 @@ from data_structures.kd_tree.nearest_neighbour_search import nearest_neighbour_s
 
 
 @pytest.mark.parametrize(
-    "num_points, cube_size, num_dimensions, depth, expected_result",
+    ("num_points", "cube_size", "num_dimensions", "depth", "expected_result"),
     [
         (0, 10.0, 2, 0, None),  # Empty points list
         (10, 10.0, 2, 2, KDNode),  # Depth = 2, 2D points
