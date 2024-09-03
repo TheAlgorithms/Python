@@ -8,7 +8,7 @@ from data_structures.kd_tree.nearest_neighbour_search import nearest_neighbour_s
 
 
 @pytest.mark.parametrize(
-    "num_points, cube_size, num_dimensions, depth, expected_result",
+    ("num_points", "cube_size", "num_dimensions", "depth", "expected_result"),
     [
         (0, 10.0, 2, 0, None),      # Empty points list
         (10, 10.0, 2, 2, KDNode),   # Depth = 2, 2D points
@@ -42,7 +42,8 @@ def test_build_kdtree(num_points, cube_size, num_dimensions, depth, expected_res
             f"Expected point dimension {num_dimensions}, got {len(kdtree.point)}"
 
         # Check that the tree is balanced to some extent (simplistic check)
-        assert isinstance(kdtree, KDNode), f"Expected KDNode instance, got {type(kdtree)}"
+        assert isinstance(kdtree, KDNode), \
+            f"Expected KDNode instance, got {type(kdtree)}"
 
 
 def test_nearest_neighbour_search():
