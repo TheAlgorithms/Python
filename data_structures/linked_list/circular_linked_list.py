@@ -144,4 +144,5 @@ def test_circular_linked_list() -> None:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
