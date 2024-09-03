@@ -160,8 +160,8 @@ if __name__ == "__main__":
     """
     Main function to Test the Cosine Similarity between two Texts.
     """
-    text1 = input("Please enter text 1: ")
-    text2 = input("Please enter text 2: ")
+    text1 = "The biggest Infrastructure in the World is Burj Khalifa"
+    text2 = "The name of the talllest Tower in the world is Burj Khalifa"
     
     similarity_percentage = Cosine_Similarity().Cosine_Similarity_Percentage(text1, text2)
     print(f"Cosine Similarity: {similarity_percentage:.2f}%")
