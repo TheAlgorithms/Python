@@ -17,12 +17,13 @@ def collect_dataset():
     The dataset contains ADR vs Rating of a Player
     :return : dataset obtained from the link, as matrix
     """
-    try:response = requests.get(
+    try:
+        response = requests.get(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
         "master/Week1/ADRvsRating.csv",
         timeout=10,
         )
-            lines = response.text.splitlines()
+        lines = response.text.splitlines()
         data = []
         for item in lines:
             item = item.split(",")
@@ -30,7 +31,7 @@ def collect_dataset():
         data.pop(0)  # This is for removing the labels from the list
         dataset = np.matrix(data)
         return dataset
-        
+
     except requests.exceptions.RequestException as e:
         print(f"Error fetching the dataset: {e}")
         return None
