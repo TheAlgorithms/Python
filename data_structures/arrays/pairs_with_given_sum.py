@@ -7,12 +7,11 @@ elements whose sum is equal to req_sum.
 https://practice.geeksforgeeks.org/problems/count-pairs-with-given-sum5022/0
 """
 
-from itertools import combinations
 
-
-def pairs_with_sum(arr: list, req_sum: int) -> int:
+def pairs_with_sum(arr: list[int], req_sum: int) -> int:
     """
-    Return the no. of pairs with sum "sum"
+    Return the number of pairs with sum equal to req_sum.
+
     >>> pairs_with_sum([1, 5, 7, 1], 6)
     2
     >>> pairs_with_sum([1, 1, 1, 1, 1, 1, 1, 1], 2)
@@ -20,7 +19,20 @@ def pairs_with_sum(arr: list, req_sum: int) -> int:
     >>> pairs_with_sum([1, 7, 6, 2, 5, 4, 3, 1, 9, 8], 7)
     4
     """
-    return len([1 for a, b in combinations(arr, 2) if a + b == req_sum])
+    count = 0
+    seen = {}
+
+    for num in arr:
+        complement = req_sum - num
+        if complement in seen:
+            count += seen[complement]
+
+        if num in seen:
+            seen[num] += 1
+        else:
+            seen[num] = 1
+
+    return count
 
 
 if __name__ == "__main__":
