@@ -30,7 +30,7 @@ def collect_dataset():
         data.pop(0)  # This is for removing the labels from the list
         dataset = np.matrix(data)
         return dataset
-        
+
     except requests.exceptions.RequestException as e:
         print(f"Error fetching the dataset: {e}")
         return None
@@ -124,4 +124,4 @@ if __name__ == "__main__":
     doctest.testmod()
 
 
-    
+
