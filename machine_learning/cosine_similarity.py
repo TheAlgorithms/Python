@@ -29,6 +29,16 @@ class CosineSimilarity:
         """
         self.nlp = spacy.load("en_core_web_md")
 
+    def model_download(self):
+        """
+        Downloads the SpaCy Model if it has not been downloaded before.
+        """
+        try:
+            spacy.cli.download("en_core_web_md")
+        except Exception as e:
+            logging.error("An Error Occured: ", exc_info=e)
+            raise e
+
     def tokenize(self, text: str) -> list:
         """
         Tokenizes the input text into a list of lowercased tokens.
@@ -160,6 +170,8 @@ class CosineSimilarity:
         - float: The cosine similarity percentage between the two texts.
         """
         try:
+            self.model_download() # Comment if Installed
+
             tokens1 = self.tokenize(text1)
             tokens2 = self.tokenize(text2)
 
@@ -186,6 +198,7 @@ if __name__ == "__main__":
     text1 = "The biggest Infrastructure in the World is Burj Khalifa"
     text2 = "The name of the talllest Tower in the world is Burj Khalifa"
 
+    spacy.cli.download("en_core_web_md")
     similarity_percentage = CosineSimilarity().cosine_similarity_percentage(
         text1, text2
     )
