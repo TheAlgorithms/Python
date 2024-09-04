@@ -170,7 +170,7 @@ class CosineSimilarity:
         - float: The cosine similarity percentage between the two texts.
         """
         try:
-            self.model_download() # Comment if Installed
+            self.model_download()  # Comment if Installed
 
             tokens1 = self.tokenize(text1)
             tokens2 = self.tokenize(text2)
