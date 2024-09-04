@@ -36,7 +36,7 @@ class CosineSimilarity:
         try:
             spacy.cli.download("en_core_web_md")
         except Exception as e:
-            logging.error("An Error Occured: ", exc_info=e)
+            logging.error("An Error Occurred: ", exc_info=e)
             raise e
 
     def tokenize(self, text: str) -> list:
