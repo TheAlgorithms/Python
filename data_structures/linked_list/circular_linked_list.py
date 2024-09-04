@@ -18,7 +18,7 @@ class CircularLinkedList:
     def __iter__(self) -> Iterator[Any]:
         node = self.head
         if node is None:
-            return  # No nodes to iterate over
+            return
         while True:
             yield node.data
             node = node.next_node
@@ -44,7 +44,7 @@ class CircularLinkedList:
         if self.head is None:
             # List is empty, so new node is both head and tail, pointing to itself
             new_node.next_node = new_node
-            self.tail = self.head = new_node
+            self.head = self.tail = new_node
         elif index == 0:  # Insert at head
             new_node.next_node = self.head
             self.tail.next_node = new_node
@@ -55,7 +55,7 @@ class CircularLinkedList:
                 temp = temp.next_node
             new_node.next_node = temp.next_node
             temp.next_node = new_node
-            if index == len(self) - 1:  # Insert at the tail
+            if temp == self.tail:  # Insert at the tail
                 self.tail = new_node
 
     def delete_front(self) -> Any:
