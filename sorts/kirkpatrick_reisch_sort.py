@@ -11,6 +11,10 @@ Time Complexity:
 - Best case: O(n * sqrt(n))
 
 Space Complexity: O(n)
+
+Explanation Links:
+https://en.wikipedia.org/wiki/Kirkpatrick%E2%80%93Reisch_sort
+https://sortingsearching.com/2020/06/06/kirkpatrick-reisch.html
 """
 
 
