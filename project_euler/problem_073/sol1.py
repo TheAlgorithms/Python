@@ -18,6 +18,27 @@ of reduced proper fractions for d ≤ 12,000?
 
 from math import gcd
 
+def slow_solution(max_d: int = 12_000) -> int:
+    """
+    Returns number of fractions lie between 1/3 and 1/2 in the sorted set
+    of reduced proper fractions for d ≤ max_d
+
+    >>> slow_solution(4)
+    0
+
+    >>> slow_solution(5)
+    1
+
+    >>> slow_solution(8)
+    3
+    """
+
+    fractions_number = 0
+    for d in range(max_d + 1):
+        for n in range(d // 3 + 1, (d + 1) // 2):
+            if gcd(n, d) == 1:
+                fractions_number += 1
+    return fractions_number
 
 def solution(max_d: int = 12_000) -> int:
     """
@@ -36,9 +57,18 @@ def solution(max_d: int = 12_000) -> int:
 
     fractions_number = 0
     for d in range(max_d + 1):
-        for n in range(d // 3 + 1, (d + 1) // 2):
-            if gcd(n, d) == 1:
-                fractions_number += 1
+        if d % 2 == 0:
+            if (d // 3 + 1) % 2 == 0:
+                n_start = d // 3 + 2
+            else:
+                n_start = d // 3 + 1
+            for n in range(n_start, (d + 1) // 2, 2):
+                if gcd(n, d) == 1:
+                    fractions_number += 1
+        else:
+            for n in range(d // 3 + 1, (d + 1) // 2):
+                if gcd(n, d) == 1:
+                    fractions_number += 1
     return fractions_number
 
 
