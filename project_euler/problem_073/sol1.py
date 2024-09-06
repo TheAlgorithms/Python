@@ -71,6 +71,21 @@ def solution(max_d: int = 12_000) -> int:
                     fractions_number += 1
     return fractions_number
 
+def benchmark() -> None:
+    """
+    Benchmarks
+    """
+    # Running performance benchmarks...
+    # slow_solution : 21.02750190000006
+    # solution      : 15.79036830000041
+
+    from timeit import timeit
+
+    print("Running performance benchmarks...")
+
+    print(f"slow_solution : {timeit('slow_solution()', globals=globals(), number=10)}")
+    print(f"solution      : {timeit('solution()', globals=globals(), number=10)}")
 
 if __name__ == "__main__":
     print(f"{solution() = }")
+    benchmark()
