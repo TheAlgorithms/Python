@@ -1,19 +1,45 @@
 import heapq
 import random
-"""
-    KKirkpatrick-Reisch sorting algorithm.
-    Divides input into sqrt(n) blocks, sorts each, then merges using a min-heap.
-    
-    Time Complexity:
-    - Average case: O(n * sqrt(n))
-    - Worst case: O(n * sqrt(n))
-    - Best case: O(n * sqrt(n))
 
-    Space Complexity: O(n)
-    
 """
+Kirkpatrick-Reisch sorting algorithm.
+Divides input into sqrt(n) blocks, sorts each, then merges using a min-heap.
+
+Time Complexity:
+- Average case: O(n * sqrt(n))
+- Worst case: O(n * sqrt(n))
+- Best case: O(n * sqrt(n))
+
+Space Complexity: O(n)
+"""
+
 
 def kirkpatrick_reisch_sort(arr):
+    """
+    Implements the Kirkpatrick-Reisch sorting algorithm.
+
+    Args:
+    arr (list): The input list to be sorted.
+
+    Returns:
+    list: A new list containing the sorted elements.
+
+    Examples:
+    >>> kirkpatrick_reisch_sort([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5])
+    [1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]
+
+    >>> kirkpatrick_reisch_sort([])
+    []
+
+    >>> kirkpatrick_reisch_sort([1])
+    [1]
+
+    >>> kirkpatrick_reisch_sort([5, 4, 3, 2, 1])
+    [1, 2, 3, 4, 5]
+
+    >>> kirkpatrick_reisch_sort([-1, -3, 5, 0, 2])
+    [-3, -1, 0, 2, 5]
+    """
     n = len(arr)
     if n <= 1:
         return arr
