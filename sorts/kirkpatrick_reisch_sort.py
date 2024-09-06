@@ -49,8 +49,8 @@ def kirkpatrick_reisch_sort(arr):
         return arr
 
     # Step 1: Divide the input into sqrt(n) blocks
-    block_size = int(n ** 0.5)
-    blocks = [arr[i:i + block_size] for i in range(0, n, block_size)]
+    block_size = int(n**0.5)
+    blocks = [arr[i : i + block_size] for i in range(0, n, block_size)]
 
     # Step 2: Sort each block
     for block in blocks:
@@ -73,7 +73,7 @@ def kirkpatrick_reisch_sort(arr):
     return sorted_arr
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Generate a random list of integers
     arr = [random.randint(1, 1000) for _ in range(100)]
 
@@ -82,4 +82,4 @@ if __name__ == '__main__':
     print("Sorted Array:", sorted_arr)
 
     # Verify the result
-    assert (sorted_arr == sorted(arr))
+    assert sorted_arr == sorted(arr)
