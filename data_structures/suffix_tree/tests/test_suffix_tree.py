@@ -1,5 +1,5 @@
 import unittest
-from data_structures.suffix_tree.build_suffix_tree import SuffixTree
+from data_structures.suffix_tree.suffix_tree import SuffixTree
 
 
 class TestSuffixTree(unittest.TestCase):
