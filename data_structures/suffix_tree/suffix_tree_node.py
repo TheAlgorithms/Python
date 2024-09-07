@@ -3,12 +3,12 @@ from typing import Dict, Optional
 
 class SuffixTreeNode:
     def __init__(
-            self,
-            children: Optional[Dict[str, 'SuffixTreeNode']] = None,
-            is_end_of_string: bool = False,
-            start: Optional[int] = None,
-            end: Optional[int] = None,
-            suffix_link: Optional['SuffixTreeNode'] = None,
+        self,
+        children: Optional[Dict[str, "SuffixTreeNode"]] = None,
+        is_end_of_string: bool = False,
+        start: Optional[int] = None,
+        end: Optional[int] = None,
+        suffix_link: Optional["SuffixTreeNode"] = None,
     ) -> None:
         """
         Initializes a suffix tree node.
