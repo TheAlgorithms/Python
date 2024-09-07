@@ -4,7 +4,7 @@ from __future__ import annotations
 class SuffixTreeNode:
     def __init__(
         self,
-        children: dict[str, SuffixTreeNode] = None,
+        children: dict[str, SuffixTreeNode] | None = None,
         is_end_of_string: bool = False,
         start: int | None = None,
         end: int | None = None,
