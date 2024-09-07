@@ -293,7 +293,7 @@
     * [Example Usage](data_structures/kd_tree/example/example_usage.py)
   * Suffix Tree
     * [Suffix Tree Node](data_structures/suffix_tree/suffix_tree_node.py)
-    * [Build Suffix Tree](data_structures/suffix_tree/build_suffix_tree.py)
+    * [Suffix Tree](data_structures/suffix_tree/suffix_tree.py)
     * [Example Usage](data_structures/suffix_tree/example/example_usage.py)
 
 ## Digital Image Processing
