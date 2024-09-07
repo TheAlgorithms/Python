@@ -289,7 +289,7 @@
     * [KD Tree Node](data_structures/kd_tree/kd_node.py)
     * [Build KD Tree](data_structures/kd_tree/build_kdtree.py)
     * [Nearest Neighbour Search](data_structures/kd_tree/nearest_neighbour_search.py)
-    * [Hypercube Points](data_structures/kd_tree/example/hypercube_points.py)
+    * [Hypercibe Points](data_structures/kd_tree/example/hypercube_points.py)
     * [Example Usage](data_structures/kd_tree/example/example_usage.py)
   * Suffix Tree
     * [Suffix Tree Node](data_structures/suffix_tree/suffix_tree_node.py)
