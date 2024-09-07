@@ -1,25 +1,25 @@
-from __future__ import annotations
+from typing import Dict, Optional
 
 
 class SuffixTreeNode:
     def __init__(
-        self,
-        children: dict[str, SuffixTreeNode] = None,
-        is_end_of_string: bool = False,
-        start: int | None = None,
-        end: int | None = None,
-        suffix_link: SuffixTreeNode | None = None,
+            self,
+            children: Optional[Dict[str, 'SuffixTreeNode']] = None,
+            is_end_of_string: bool = False,
+            start: Optional[int] = None,
+            end: Optional[int] = None,
+            suffix_link: Optional['SuffixTreeNode'] = None,
     ) -> None:
         """
         Initializes a suffix tree node.
 
         Parameters:
-            children (dict[str, SuffixTreeNode] | None): The children of this node.
+            children (Optional[Dict[str, SuffixTreeNode]]): The children of this node.
             is_end_of_string (bool): Indicates if this node represents
                                      the end of a string.
-            start (int | None): The start index of the suffix in the text.
-            end (int | None): The end index of the suffix in the text.
-            suffix_link (SuffixTreeNode | None): Link to another suffix tree node.
+            start (Optional[int]): The start index of the suffix in the text.
+            end (Optional[int]): The end index of the suffix in the text.
+            suffix_link (Optional[SuffixTreeNode]): Link to another suffix tree node.
         """
         self.children = children or {}
         self.is_end_of_string = is_end_of_string
