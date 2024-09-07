@@ -16,7 +16,7 @@ repos:
       - id: auto-walrus
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.2
+    rev: v0.6.3
     hooks:
       - id: ruff
       - id: ruff-format
