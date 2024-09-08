@@ -1,0 +1,37 @@
+def longest_palindrome(s: str) -> str:
+    if s == s[::-1] or len(s) == 1:
+        return s
+    else:
+        res = [s[i:j] for i in range(len(s)) for j in range(i + 1, len(s) + 1)]
+        output = ""
+        for k in res:
+            if k == k[::-1]:
+                if len(k) > len(output) or (len(k) == len(output) and res.index(k) < res.index(output)):
+                    output = k
+        return output
+
+
+# test cases with longer strings containing multiple palindromes
+test_data = {
+    "abacdfgdcaba": "abacdcbadca",  # Multiple palindromes, longest is "abacdcbadca"
+    "abcdcbacdcba": "abcdcbacdcba",  # The entire string is a palindrome
+    "aabbcbbaaaab": "aabbcbbaaaab",  # The entire string is a palindrome
+    "racecarlevelcivic": "racecar",   # "racecar" is the longest palindrome
+    "madamimadam": "madamimadam",     # The entire string is a palindrome
+    "abccbaabcdcb": "abccba",         # "abccba" is the longest palindrome
+    "noonracecar": "racecar",          # "racecar" is the longest palindrome
+    "aabbcccbbbaa": "bbb",            # "bbb" is the longest palindrome
+    "detartrated": "detartrated",     # The entire string is a palindrome
+    "civicradarlevel": "civic"         # "civic" is the longest palindrome
+}
+
+
+# Main code block
+if __name__ == "__main__":
+    for key, value in test_data.items():
+        result = longest_palindrome(key)
+        print(f"{key:<35} -> Longest Palindrome: {result}")
+        assert result == value, f"Test failed for {key}. Expected {value}, but got {result}"
+
+    # If all tests pass
+    print("All tests passed!")
