@@ -16,7 +16,7 @@ repos:
       - id: auto-walrus
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.3
+    rev: v0.6.4
     hooks:
       - id: ruff
       - id: ruff-format
@@ -29,7 +29,7 @@ repos:
           - tomli
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: "2.2.1"
+    rev: "2.2.3"
     hooks:
       - id: pyproject-fmt
 
