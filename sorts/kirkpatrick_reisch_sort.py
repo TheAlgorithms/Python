@@ -1,6 +1,5 @@
 import heapq
 import random
-from typing import List, Any
 
 """
 Kirkpatrick-Reisch sorting algorithm.
