@@ -16,6 +16,6 @@ def hypercube_points(
         An array of shape (num_points, num_dimensions)
                     with generated points.
     """
-    rng = np.random.default_rng()
+    rng = np.random.default_rng(5)
     shape = (num_points, num_dimensions)
     return hypercube_size * rng.random(shape)
