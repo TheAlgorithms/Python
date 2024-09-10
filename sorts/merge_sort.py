@@ -1,16 +1,18 @@
 """
-    For doctests, run the following command:
-    python -m doctest -v merge_sort.py
-    or
-    python3 -m doctest -v merge_sort.py
+For doctests, run the following command:
+python -m doctest -v merge_sort.py
+or
+python3 -m doctest -v merge_sort.py
 
-    For manual testing, run:
-    python merge_sort.py
+For manual testing, run:
+python merge_sort.py
 """
+
 from __future__ import annotations
 import itertools
 import doctest
 import sys
+
 
 def binary_search_insertion(sorted_list: list[int], item: int) -> list[int]:
     """
@@ -34,6 +36,7 @@ def binary_search_insertion(sorted_list: list[int], item: int) -> list[int]:
     sorted_list.insert(left, item)
     return sorted_list
 
+
 def merge(left: list[list[int]], right: list[list[int]]) -> list[list[int]]:
     """
     Merges two sorted lists into a single sorted list.
@@ -49,6 +52,7 @@ def merge(left: list[list[int]], right: list[list[int]]) -> list[list[int]]:
             result.append(right.pop(0))
     return result + left + right
 
+
 def sortlist_2d(list_2d: list[list[int]]) -> list[list[int]]:
     """
     Sorts a 2D list based on the first element of each sublist.
@@ -61,6 +65,7 @@ def sortlist_2d(list_2d: list[list[int]]) -> list[list[int]]:
         return list_2d
     middle = length // 2
     return merge(sortlist_2d(list_2d[:middle]), sortlist_2d(list_2d[middle:]))
+
 
 def merge_insertion_sort(collection: list[int]) -> list[int]:
     """Pure implementation of merge-insertion sort algorithm in Python
@@ -119,6 +124,7 @@ def merge_insertion_sort(collection: list[int]) -> list[int]:
 
     return result
 
+
 def merge_iter(input_list: list[int], low: int, mid: int, high: int) -> list[int]:
     """
     Sorts the left-half and right-half individually then merges them into a result.
@@ -129,8 +135,8 @@ def merge_iter(input_list: list[int], low: int, mid: int, high: int) -> list[int
     :param high: Ending index of the segment.
     :return: Merged sorted list.
     """
-    left = input_list[low:mid + 1]
-    right = input_list[mid + 1:high + 1]
+    left = input_list[low : mid + 1]
+    right = input_list[mid + 1 : high + 1]
     result = []
 
     i = j = 0
@@ -144,9 +150,10 @@ def merge_iter(input_list: list[int], low: int, mid: int, high: int) -> list[int
 
     result.extend(left[i:])
     result.extend(right[j:])
-    
-    input_list[low:high + 1] = result
+
+    input_list[low : high + 1] = result
     return input_list
+
 
 def iter_merge_sort(input_list: list[int]) -> list[int]:
     """
@@ -198,6 +205,7 @@ def iter_merge_sort(input_list: list[int]) -> list[int]:
 
     return input_list
 
+
 def merge_sort(collection: list[int]) -> list[int]:
     """
     Sorts a list using the merge sort algorithm.
@@ -214,6 +222,7 @@ def merge_sort(collection: list[int]) -> list[int]:
     >>> merge_sort([-2, -5, -45])
     [-45, -5, -2]
     """
+
     def merge(left: list[int], right: list[int]) -> list[int]:
         """
         Merge two sorted lists into a single sorted list.
@@ -234,26 +243,32 @@ def merge_sort(collection: list[int]) -> list[int]:
     mid_index = len(collection) // 2
     return merge(merge_sort(collection[:mid_index]), merge_sort(collection[mid_index:]))
 
-if __name__ == "__main__":
 
-    if not hasattr(sys, 'gettrace') or sys.gettrace() is None:
+if __name__ == "__main__":
+    if not hasattr(sys, "gettrace") or sys.gettrace() is None:
         doctest.testmod()  # Only run tests if not debugging
 
     try:
         user_input = input("Enter numbers separated by a comma:\n").strip()
         unsorted = [int(item) for item in user_input.split(",")]
-        
+
         sorted_list_merge_sort = merge_sort(unsorted)
-        sorted_list_iter_merge_sort = iter_merge_sort(unsorted.copy())  # Use copy to avoid sorting the same list twice
+        sorted_list_iter_merge_sort = iter_merge_sort(
+            unsorted.copy()
+        )  # Use copy to avoid sorting the same list twice
         sorted_list_merge_insertion_sort = merge_insertion_sort(unsorted.copy())
 
         print(f"Unsorted list: {unsorted}")
         print(f"Sorted list using merge_sort: {sorted_list_merge_sort}")
         print(f"Sorted list using iter_merge_sort: {sorted_list_iter_merge_sort}")
-        print(f"Sorted list using merge_insertion_sort: {sorted_list_merge_insertion_sort}")
+        print(
+            f"Sorted list using merge_insertion_sort: {sorted_list_merge_insertion_sort}"
+        )
 
         print("Merge Sort Result:", *sorted_list_merge_sort, sep=",")
         print("Iterative Merge Sort Result:", *sorted_list_iter_merge_sort, sep=",")
-        print("Merge Insertion Sort Result:", *sorted_list_merge_insertion_sort, sep=",")
+        print(
+            "Merge Insertion Sort Result:", *sorted_list_merge_insertion_sort, sep=","
+        )
     except ValueError:
         print("Invalid input. Please enter valid integers separated by commas.")
