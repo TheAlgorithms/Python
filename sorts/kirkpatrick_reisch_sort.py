@@ -1,6 +1,6 @@
 import heapq
 import random
-from typing import List
+from typing import List, Any
 
 """
 Kirkpatrick-Reisch sorting algorithm.
@@ -19,7 +19,7 @@ https://sortingsearching.com/2020/06/06/kirkpatrick-reisch.html
 """
 
 
-def kirkpatrick_reisch_sort(arr) -> List[int]:
+def kirkpatrick_reisch_sort(arr: List[Any]) -> List[Any]:
     """
     Implements the Kirkpatrick-Reisch sorting algorithm.
 
