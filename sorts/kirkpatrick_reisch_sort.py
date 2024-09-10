@@ -19,7 +19,7 @@ https://sortingsearching.com/2020/06/06/kirkpatrick-reisch.html
 """
 
 
-def kirkpatrick_reisch_sort(arr: List[Any]) -> List[Any]:
+def kirkpatrick_reisch_sort(arr: list[int]) -> list[int]:
     """
     Implements the Kirkpatrick-Reisch sorting algorithm.
 
