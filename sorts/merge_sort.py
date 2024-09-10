@@ -17,6 +17,7 @@ Example:
 
 from typing import List
 
+
 def merge_sort(arr: List[int]) -> List[int]:
     """
     Perform merge sort on a list of integers.
@@ -62,6 +63,7 @@ def merge_sort(arr: List[int]) -> List[int]:
 
     return arr
 
+
 def iterative_merge_sort(arr: List[int]) -> List[int]:
     """
     Perform iterative merge sort on a list of integers.
@@ -83,13 +85,14 @@ def iterative_merge_sort(arr: List[int]) -> List[int]:
     n = len(arr)
     while width < n:
         for i in range(0, n, 2 * width):
-            left = arr[i:i + width]
-            right = arr[i + width:i + 2 * width]
+            left = arr[i : i + width]
+            right = arr[i + width : i + 2 * width]
             merged = merge(left, right)
-            arr[i:i + len(merged)] = merged
+            arr[i : i + len(merged)] = merged
         width *= 2
 
     return arr
+
 
 def merge(left: List[int], right: List[int]) -> List[int]:
     """
@@ -122,6 +125,7 @@ def merge(left: List[int], right: List[int]) -> List[int]:
 
     return merged
 
+
 def merge_insertion_sort(arr: List[int]) -> List[int]:
     """
     Perform merge insertion sort on a list of integers.
@@ -148,6 +152,8 @@ def merge_insertion_sort(arr: List[int]) -> List[int]:
 
     return merge(left, right)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
