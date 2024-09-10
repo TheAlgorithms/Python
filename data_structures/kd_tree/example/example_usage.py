@@ -19,7 +19,7 @@ def main() -> None:
     hypercube_kdtree = build_kdtree(points.tolist())
 
     # Generate a random query point within the same space
-    rng = np.random.default_rng()
+    rng = np.random.default_rng(5)
     query_point: list[float] = rng.random(num_dimensions).tolist()
 
     # Perform nearest neighbor search
