@@ -26,18 +26,13 @@ class CosineSimilarity:
     def __init__(self) -> None:
         """
         Initializes the Cosine Similarity class by loading the SpaCy Model.
+
+        Example:
+        >>> cs = CosineSimilarity()
+        >>> isinstance(cs.nlp, spacy.lang.en.English)
+        True
         """
         self.nlp = spacy.load("en_core_web_md")
-
-    def model_download(self):
-        """
-        Downloads the SpaCy Model if it has not been downloaded before.
-        """
-        try:
-            spacy.cli.download("en_core_web_md")
-        except Exception as e:
-            logging.error("An Error Occurred: ", exc_info=e)
-            raise e
 
     def tokenize(self, text: str) -> list:
         """
@@ -48,6 +43,11 @@ class CosineSimilarity:
 
         Returns:
         - list: A list of lowercased tokens.
+
+        Example:
+        >>> cs = CosineSimilarity()
+        >>> cs.tokenize("Hello World!")
+        ['hello', 'world']
         """
         try:
             doc = self.nlp(text)
@@ -66,6 +66,12 @@ class CosineSimilarity:
 
         Returns:
         - list: A list of vectors corresponding to the tokens.
+
+        Example:
+        >>> cs = CosineSimilarity()
+        >>> tokens = ['hello', 'world']
+        >>> len(cs.vectorize(tokens)) > 0
+        True
         """
         try:
             vectors = [
@@ -87,15 +93,21 @@ class CosineSimilarity:
 
         Returns:
         - np.ndarray: The mean vector.
+
+        Example:
+        >>> cs = CosineSimilarity()
+        >>> vectors = [np.array([1, 2, 3]), np.array([4, 5, 6])]
+        >>> np.allclose(cs.mean_vector(vectors), np.array([2.5, 3.5, 4.5]))
+        True
         """
         try:
             if not vectors:
                 return np.zeros(self.nlp.vocab.vectors_length)
             return np.mean(vectors, axis=0)
         except Exception as e:
-            logging.error(
-                "An error occurred while computing the Mean Vector: ", exc_info=e
-            )
+            logging.error("An error occurred while computing the Mean Vector: ",
+                          exc_info=e
+                          )
             raise e
 
     def dot_product(self, vector1: np.ndarray, vector2: np.ndarray) -> float:
@@ -108,13 +120,20 @@ class CosineSimilarity:
 
         Returns:
         - float: The dot product of the two vectors.
+
+        Example:
+        >>> cs = CosineSimilarity()
+        >>> v1 = np.array([1, 2, 3])
+        >>> v2 = np.array([4, 5, 6])
+        >>> cs.dot_product(v1, v2)
+        32
         """
         try:
             return np.dot(vector1, vector2)
         except Exception as e:
-            logging.error(
-                "An error occurred during the dot Product Calculation: ", exc_info=e
-            )
+            logging.error("An error occurred during the dot Product Calculation: ",
+                          exc_info=e
+                          )
             raise e
 
     def magnitude(self, vector: np.ndarray) -> float:
@@ -126,13 +145,19 @@ class CosineSimilarity:
 
         Returns:
         - float: The magnitude of the vector.
+
+        Example:
+        >>> cs = CosineSimilarity()
+        >>> v = np.array([1, 2, 2])
+        >>> cs.magnitude(v)
+        3.0
         """
         try:
             return np.sqrt(np.sum(vector**2))
         except Exception as e:
-            logging.error(
-                "An error occurred while computing the Magnitude: ", exc_info=e
-            )
+            logging.error("An error occurred while computing the Magnitude: ",
+                          exc_info=e
+                          )
             raise e
 
     def cosine_similarity(self, vector1: np.ndarray, vector2: np.ndarray) -> float:
@@ -145,6 +170,13 @@ class CosineSimilarity:
 
         Returns:
         - float: The cosine similarity between the two vectors.
+
+        Example:
+        >>> cs = CosineSimilarity()
+        >>> v1 = np.array([1, 2, 3])
+        >>> v2 = np.array([1, 2, 3])
+        >>> cs.cosine_similarity(v1, v2)
+        1.0
         """
         try:
             dot = self.dot_product(vector1, vector2)
@@ -153,9 +185,9 @@ class CosineSimilarity:
                 return 0.0
             return dot / (magnitude1 * magnitude2)
         except Exception as e:
-            logging.error(
-                "An error occurred during Cosine Similarity Calculation: ", exc_info=e
-            )
+            logging.error("An error occurred during Cosine Similarity Calculation: ",
+                          exc_info=e
+                          )
             raise e
 
     def cosine_similarity_percentage(self, text1: str, text2: str) -> float:
@@ -168,9 +200,16 @@ class CosineSimilarity:
 
         Returns:
         - float: The cosine similarity percentage between the two texts.
+
+        Example:
+        >>> cs = CosineSimilarity()
+        >>> text1 = "The biggest Infrastructure in the World is Burj Khalifa"
+        >>> text2 = "The name of the tallest Tower in the world is Burj Khalifa"
+        >>> cs.cosine_similarity_percentage(text1, text2) > 0
+        True
         """
         try:
-            self.model_download()  # Comment if Installed
+            # spacy.cli.download("en_core_web_md") # Comment if Installed
 
             tokens1 = self.tokenize(text1)
             tokens2 = self.tokenize(text2)
@@ -184,10 +223,10 @@ class CosineSimilarity:
             similarity = self.cosine_similarity(mean_vec1, mean_vec2)
             return similarity * 100
         except Exception as e:
-            logging.error(
-                "An error occurred while computing the Cosine Similarity Percentage: ",
-                exc_info=e,
-            )
+            logging.error("""An error occurred while computing the Cosine Similarity
+                          Percentage: """,
+                          exc_info=e
+                          )
             raise e
 
 
@@ -196,10 +235,11 @@ if __name__ == "__main__":
     Main function to Test the Cosine Similarity between two Texts.
     """
     text1 = "The biggest Infrastructure in the World is Burj Khalifa"
-    text2 = "The name of the talllest Tower in the world is Burj Khalifa"
+    text2 = "The name of the tallest Tower in the world is Burj Khalifa"
 
     spacy.cli.download("en_core_web_md")
     similarity_percentage = CosineSimilarity().cosine_similarity_percentage(
-        text1, text2
+        text1,
+        text2
     )
     print(f"Cosine Similarity: {similarity_percentage:.2f}%")
