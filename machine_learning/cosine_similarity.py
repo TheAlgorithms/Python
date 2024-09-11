@@ -4,7 +4,7 @@ import numpy as np
 import spacy
 
 """
-Cosine Similarity Algorithm
+Cosine Similarity Algorithm - Natural Language Processing (NLP) Algorithm
 
 Use Case:
 - The Cosine Similarity Algorithm measures the Cosine of the Angle between two
