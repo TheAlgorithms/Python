@@ -28,6 +28,7 @@ class CosineSimilarity:
         Initializes the Cosine Similarity class by loading the SpaCy Model.
 
         Example:
+        >>> spacy.cli.download("en_core_web_md")
         >>> cs = CosineSimilarity()
         >>> isinstance(cs.nlp, spacy.lang.en.English)
         True
@@ -45,6 +46,7 @@ class CosineSimilarity:
         - list: A list of lowercased tokens.
 
         Example:
+        >>> spacy.cli.download("en_core_web_md")
         >>> cs = CosineSimilarity()
         >>> cs.tokenize("Hello World!")
         ['hello', 'world']
@@ -68,6 +70,7 @@ class CosineSimilarity:
         - list: A list of vectors corresponding to the tokens.
 
         Example:
+        >>> spacy.cli.download("en_core_web_md")
         >>> cs = CosineSimilarity()
         >>> tokens = ['hello', 'world']
         >>> len(cs.vectorize(tokens)) > 0
@@ -95,6 +98,7 @@ class CosineSimilarity:
         - np.ndarray: The mean vector.
 
         Example:
+        >>> spacy.cli.download("en_core_web_md")
         >>> cs = CosineSimilarity()
         >>> vectors = [np.array([1, 2, 3]), np.array([4, 5, 6])]
         >>> np.allclose(cs.mean_vector(vectors), np.array([2.5, 3.5, 4.5]))
@@ -122,6 +126,7 @@ class CosineSimilarity:
         - float: The dot product of the two vectors.
 
         Example:
+        >>> spacy.cli.download("en_core_web_md")
         >>> cs = CosineSimilarity()
         >>> v1 = np.array([1, 2, 3])
         >>> v2 = np.array([4, 5, 6])
@@ -147,6 +152,7 @@ class CosineSimilarity:
         - float: The magnitude of the vector.
 
         Example:
+        >>> spacy.cli.download("en_core_web_md")
         >>> cs = CosineSimilarity()
         >>> v = np.array([1, 2, 2])
         >>> cs.magnitude(v)
@@ -172,6 +178,7 @@ class CosineSimilarity:
         - float: The cosine similarity between the two vectors.
 
         Example:
+        >>> spacy.cli.download("en_core_web_md")
         >>> cs = CosineSimilarity()
         >>> v1 = np.array([1, 2, 3])
         >>> v2 = np.array([1, 2, 3])
