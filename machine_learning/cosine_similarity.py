@@ -21,7 +21,8 @@ and Vectorization.
 Computations.
 """
 
-nlp = spacy.load('en_core_web_md')
+nlp = spacy.load("en_core_web_md")
+
 
 class CosineSimilarity:
     def __init__(self) -> None:
@@ -235,4 +236,5 @@ if __name__ == "__main__":
     Main function to Test the Cosine Similarity between two Texts.
     """
     import doctest
+
     doctest.testmod()  # Run the Doctests
