@@ -22,8 +22,9 @@ and Vectorization.
 - numpy: A Library for Numerical Operations in Python, used for Mathematical
 Computations.
 """
-spacy.cli.download("en_core_web_md") # Comment if Installed
+spacy.cli.download("en_core_web_md")  # Comment if Installed
 nlp = spacy.load("en_core_web_md")
+
 
 class CosineSimilarity:
     def __init__(self) -> None:
