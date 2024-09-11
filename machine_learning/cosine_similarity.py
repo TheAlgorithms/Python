@@ -21,6 +21,7 @@ and Vectorization.
 Computations.
 """
 
+nlp = spacy.load('en_core_web_md')
 
 class CosineSimilarity:
     def __init__(self) -> None:
@@ -32,8 +33,7 @@ class CosineSimilarity:
         >>> isinstance(cs.nlp, spacy.lang.en.English)
         True
         """
-        spacy.cli.download("en_core_web_md")
-        self.nlp = spacy.load("en_core_web_md")
+        self.nlp = nlp
 
     def tokenize(self, text: str) -> list:
         """
@@ -234,11 +234,5 @@ if __name__ == "__main__":
     """
     Main function to Test the Cosine Similarity between two Texts.
     """
-    text1 = "The biggest Infrastructure in the World is Burj Khalifa"
-    text2 = "The name of the tallest Tower in the world is Burj Khalifa"
-
-    spacy.cli.download("en_core_web_md")  # Comment if Installed
-    similarity_percentage = CosineSimilarity().cosine_similarity_percentage(
-        text1, text2
-    )
-    print(f"Cosine Similarity: {similarity_percentage:.2f}%")
+    import doctest
+    doctest.testmod()  # Run the Doctests
