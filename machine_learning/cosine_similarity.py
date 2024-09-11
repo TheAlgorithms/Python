@@ -202,6 +202,7 @@ class CosineSimilarity:
         - float: The cosine similarity percentage between the two texts.
 
         Example:
+        >>> spacy.cli.download("en_core_web_md")
         >>> cs = CosineSimilarity()
         >>> text1 = "The biggest Infrastructure in the World is Burj Khalifa"
         >>> text2 = "The name of the tallest Tower in the world is Burj Khalifa"
