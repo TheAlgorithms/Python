@@ -240,7 +240,7 @@ if __name__ == "__main__":
     text1 = "The biggest Infrastructure in the World is Burj Khalifa"
     text2 = "The name of the tallest Tower in the world is Burj Khalifa"
 
-    spacy.cli.download("en_core_web_md") # Comment if Installed
+    spacy.cli.download("en_core_web_md")  # Comment if Installed
     similarity_percentage = CosineSimilarity().cosine_similarity_percentage(
         text1, text2
     )
