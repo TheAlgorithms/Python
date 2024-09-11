@@ -11,6 +11,8 @@ and information retrieval.
 Dependencies:
     - Python Standard Library's logging module for error handling.
 """
+
+
 class JaccardSimilarity:
     def __init__(self) -> None:
         """
@@ -53,6 +55,7 @@ class JaccardSimilarity:
         except Exception as e:
             logging.error("An Error Occurred: ", exc_info=e)
             raise e
+
 
 if __name__ == "__main__":
     """
