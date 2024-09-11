@@ -1,3 +1,5 @@
+import timeit
+
 def longest_palindrome(s: str) -> str:
     if s == s[::-1] or len(s) == 1:
         return s
@@ -11,27 +13,52 @@ def longest_palindrome(s: str) -> str:
         return output
 
 
-# test cases with longer strings containing multiple palindromes
+# Test cases with longer strings containing multiple palindromes
 test_data = {
-    "abacdfgdcaba": "abacdcbadca",  # Multiple palindromes, longest is "abacdcbadca"
-    "abcdcbacdcba": "abcdcbacdcba",  # The entire string is a palindrome
-    "aabbcbbaaaab": "aabbcbbaaaab",  # The entire string is a palindrome
-    "racecarlevelcivic": "racecar",   # "racecar" is the longest palindrome
-    "madamimadam": "madamimadam",     # The entire string is a palindrome
-    "abccbaabcdcb": "abccba",         # "abccba" is the longest palindrome
-    "noonracecar": "racecar",          # "racecar" is the longest palindrome
-    "aabbcccbbbaa": "bbb",            # "bbb" is the longest palindrome
-    "detartrated": "detartrated",     # The entire string is a palindrome
-    "civicradarlevel": "civic"         # "civic" is the longest palindrome
+    "abacdfgdcaba": "aba",
+    "abcdcbacdcba": "abcdcba",
+    "aabbcbbaaaab": "aabbcbbaa",
+    "racecarlevelcivic": "racecar",
+    "madamimadam": "madamimadam",
+    "abccbaabcdcb": "abccba",
+    "noonracecar": "racecar",
+    "aabbcccbbbaa": "bbcccbb",
+    "detartrated": "detartrated",
+    "civicradarlevel": "civic",
+
+    # Additional complex cases
+    "babad": "bab",
+    "cbbd": "bb",
+    "forgeeksskeegfor": "geeksskeeg",
+    "abacabadabacaba": "abacabadabacaba",
+    "a": "a",
+    "bb": "bb",
+    "pqrzzzzzyxwvutsrqponmlkjihgfedcba": "zzzzz",
+    "abcdefg": "a",
+    "noonracecarlevel": "racecar",
+    "abcdedcbaefg": "abcdedcba",
+    "abacabad": "abacaba",
+    "aaaaaaa": "aaaaaaa",
+
+    # Additional large test cases
+    "a" * 1000: "a" * 1000,
 }
 
 
-# Main code block
-if __name__ == "__main__":
+def benchmark():
     for key, value in test_data.items():
+        start_time = timeit.default_timer()
         result = longest_palindrome(key)
-        print(f"{key:<35} -> Longest Palindrome: {result}")
+        end_time = timeit.default_timer()
+        elapsed_time = end_time - start_time
+        
+        print(f"{key[:30]:<35} -> Longest Palindrome: {result} (Time: {elapsed_time:.6f} seconds)")
         assert result == value, f"Test failed for {key}. Expected {value}, but got {result}"
 
     # If all tests pass
     print("All tests passed!")
+
+
+# Main code block
+if __name__ == "__main__":
+    benchmark()
