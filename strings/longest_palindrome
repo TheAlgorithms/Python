@@ -51,7 +51,7 @@ def benchmark():
         result = longest_palindrome(key)
         end_time = timeit.default_timer()
         elapsed_time = end_time - start_time
-        
+
         print(f"{key[:30]:<35} -> Longest Palindrome: {result} (Time: {elapsed_time:.6f} seconds)")
         assert result == value, f"Test failed for {key}. Expected {value}, but got {result}"
 
