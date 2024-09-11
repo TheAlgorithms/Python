@@ -32,11 +32,7 @@ class CosineSimilarity:
         >>> isinstance(cs.nlp, spacy.lang.en.English)
         True
         """
-        try:
-            self.nlp = spacy.load("en_core_web_md")
-        except OSError:
-            self.download_module()
-            self.nlp = spacy.load("en_core_web_md")
+        self.nlp = spacy.load("en_core_web_md")
 
     def tokenize(self, text: str) -> list:
         """
