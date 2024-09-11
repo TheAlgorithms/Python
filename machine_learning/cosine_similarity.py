@@ -2,6 +2,8 @@ import logging
 
 import numpy as np
 import spacy
+import spacy.cli
+import spacy.cli.download
 
 """
 Cosine Similarity Algorithm - Natural Language Processing (NLP) Algorithm
@@ -20,9 +22,8 @@ and Vectorization.
 - numpy: A Library for Numerical Operations in Python, used for Mathematical
 Computations.
 """
-
+spacy.cli.download("en_core_web_md") # Comment if Installed
 nlp = spacy.load("en_core_web_md")
-
 
 class CosineSimilarity:
     def __init__(self) -> None:
