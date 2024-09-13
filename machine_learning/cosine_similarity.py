@@ -164,7 +164,7 @@ class CosineSimilarity:
             )
             raise e
 
-    def cosine_similarity(self, vector1: np.ndarray, vector2: np.ndarray) -> float:
+    def cosine_text_similarity(self, vector1: np.ndarray, vector2: np.ndarray) -> float:
         """
         Computes the cosine similarity between two vectors.
 
@@ -179,7 +179,7 @@ class CosineSimilarity:
         >>> cs = CosineSimilarity()
         >>> v1 = np.array([1, 2, 3])
         >>> v2 = np.array([1, 2, 3])
-        >>> cs.cosine_similarity(v1, v2)
+        >>> cs.cosine_text_similarity(v1, v2)
         1.0
         """
         try:
@@ -194,7 +194,7 @@ class CosineSimilarity:
             )
             raise e
 
-    def cosine_similarity_percentage(self, text1: str, text2: str) -> float:
+    def cosine_text_similarity_percentage(self, text1: str, text2: str) -> float:
         """
         Computes the cosine similarity percentage between two texts.
 
@@ -209,7 +209,7 @@ class CosineSimilarity:
         >>> cs = CosineSimilarity()
         >>> text1 = "The biggest Infrastructure in the World is Burj Khalifa"
         >>> text2 = "The name of the tallest Tower in the world is Burj Khalifa"
-        >>> cs.cosine_similarity_percentage(text1, text2) > 0
+        >>> cs.cosine_text_similarity_percentage(text1, text2) > 0
         True
         """
         try:
@@ -222,7 +222,7 @@ class CosineSimilarity:
             mean_vec1 = self.mean_vector(vectors1)
             mean_vec2 = self.mean_vector(vectors2)
 
-            similarity = self.cosine_similarity(mean_vec1, mean_vec2)
+            similarity = self.cosine_text_similarity(mean_vec1, mean_vec2)
             return similarity * 100
         except Exception as e:
             logging.error(
