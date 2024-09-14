@@ -43,3 +43,6 @@ So this is all about introduction to blockchain technology. To learn more about 
 * <https://en.wikipedia.org/wiki/Chinese_remainder_theorem>
 * <https://en.wikipedia.org/wiki/Diophantine_equation>
 * <https://www.geeksforgeeks.org/modular-division/>
+
+## about blockchain_main file:
+This python file contains the code for basic implementaion of blockchain in python with proof of work algorithm. 
