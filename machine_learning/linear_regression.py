@@ -54,7 +54,6 @@ def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
         return theta
 
 
-
 def sum_of_square_error(data_x, data_y, len_data, theta):
     """Return sum of square error for error calculation
     :param data_x    : contains our dataset
@@ -95,7 +94,6 @@ def run_linear_regression(data_x, data_y):
     return theta
 
 
-
 def mean_absolute_error(predicted_y, original_y):
     """Return sum of square error for error calculation
     :param predicted_y   : contains the output of prediction (result vector)
@@ -129,7 +127,6 @@ def main():
             print(f"{theta[0, i]:.5f}")
     except (IndexError, TypeError) as e:
         print(f"Error in main execution: {e}")
-
 
 
 if __name__ == "__main__":
