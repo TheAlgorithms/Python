@@ -73,7 +73,6 @@ def sum_of_square_error(data_x, data_y, len_data, theta):
         return float("inf")
 
 
-
 def run_linear_regression(data_x, data_y):
     """Implement Linear regression over the dataset
     :param data_x  : contains our dataset
@@ -109,7 +108,6 @@ def mean_absolute_error(predicted_y, original_y):
     except (TypeError, ZeroDivisionError) as e:
         print(f"Error in calculating mean absolute error: {e}")
         return float("inf")
-
 
 
 def main():
