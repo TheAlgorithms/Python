@@ -69,7 +69,7 @@ def sum_of_square_error(data_x, data_y, len_data, theta):
         return error
     except Exception as e:
         print(f"Error in calculating sum of square error: {e}")
-        return float('inf')  # Return infinity in case of an error
+        return float("inf")  # Return infinity in case of an error
 
 
 def run_linear_regression(data_x, data_y):
@@ -105,7 +105,7 @@ def mean_absolute_error(predicted_y, original_y):
         return total / len(original_y)
     except Exception as e:
         print(f"Error in calculating mean absolute error: {e}")
-        return float('inf')
+        return float("inf")
 
 
 def main():
