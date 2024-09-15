@@ -49,9 +49,10 @@ def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
         sum_grad = np.dot(prod, data_x)
         theta = theta - (alpha / len_data) * sum_grad
         return theta
-    except Exception as e:
+    except (TypeError, ValueError) as e:
         print(f"Error in gradient descent: {e}")
-        return theta  # Return current theta even if an error occurs
+        return theta
+
 
 
 def sum_of_square_error(data_x, data_y, len_data, theta):
@@ -67,9 +68,10 @@ def sum_of_square_error(data_x, data_y, len_data, theta):
         sum_elem = np.sum(np.square(prod))
         error = sum_elem / (2 * len_data)
         return error
-    except Exception as e:
+    except (TypeError, ValueError) as e:
         print(f"Error in calculating sum of square error: {e}")
-        return float('inf')  # Return infinity in case of an error
+        return float("inf")
+
 
 
 def run_linear_regression(data_x, data_y):
@@ -89,9 +91,10 @@ def run_linear_regression(data_x, data_y):
             theta = run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta)
             error = sum_of_square_error(data_x, data_y, len_data, theta)
             print(f"At Iteration {i + 1} - Error is {error:.5f}")
-    except Exception as e:
+    except (OverflowError, ValueError) as e:
         print(f"Error during linear regression: {e}")
     return theta
+
 
 
 def mean_absolute_error(predicted_y, original_y):
@@ -103,9 +106,10 @@ def mean_absolute_error(predicted_y, original_y):
     try:
         total = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
         return total / len(original_y)
-    except Exception as e:
+    except (TypeError, ZeroDivisionError) as e:
         print(f"Error in calculating mean absolute error: {e}")
-        return float('inf')
+        return float("inf")
+
 
 
 def main():
@@ -125,8 +129,9 @@ def main():
         print("Resultant Feature vector : ")
         for i in range(len_result):
             print(f"{theta[0, i]:.5f}")
-    except Exception as e:
+    except (IndexError, TypeError) as e:
         print(f"Error in main execution: {e}")
+
 
 
 if __name__ == "__main__":
