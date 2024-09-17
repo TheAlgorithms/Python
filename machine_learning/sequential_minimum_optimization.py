@@ -55,6 +55,26 @@ class SmoSVM:
         tolerance=0.001,
         auto_norm=True,
     ):
+        """
+        Initialize SmoSVM with given parameters.
+
+        Args:
+            train (np.ndarray): Training data where the first column is the tags and the rest are the features.
+            kernel_func (Kernel): Kernel function to use.
+            alpha_list (np.ndarray, optional): Initial alpha values. Defaults to None.
+            cost (float, optional): Cost parameter C. Defaults to 0.4.
+            b (float, optional): Bias term. Defaults to 0.0.
+            tolerance (float, optional): Tolerance for the optimization. Defaults to 0.001.
+            auto_norm (bool, optional): Whether to normalize the data. Defaults to True.
+
+        >>> from machine_learning.sequential_minimum_optimization import SmoSVM, Kernel
+        >>> kernel = Kernel(kernel='linear')
+        >>> train = np.array([[1, 2, 3], [-1, -2, -3]])
+        >>> svm = SmoSVM(train, kernel)
+        >>> svm.tags
+        array([1, -1])
+        """
+
         self._init = True
         self._auto_norm = auto_norm
         self._c = np.float64(cost)
