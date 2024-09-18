@@ -72,7 +72,7 @@ class SmoSVM:
         >>> train = np.array([[1, 2, 3], [-1, -2, -3]])
         >>> svm = SmoSVM(train, kernel)
         >>> svm.tags
-        array([1, -1])
+        array([ 1, -1])
         """
 
         self._init = True
@@ -395,17 +395,31 @@ class SmoSVM:
     # Normalize data using min-max method
     def _norm(self, data):
         if self._init:
-            self._min = np.min(data, axis=0)
-            self._max = np.max(data, axis=0)
+            self._min = np.min(data, axis=0) # [0, -2, 2] [1, 1, 0]
+            self._max = np.max(data, axis=0) # [1, -1, 3] [1, 1, 1]
             self._init = False
             return (data - self._min) / (self._max - self._min)
         else:
             return (data - self._min) / (self._max - self._min)
 
     def _is_unbound(self, index):
+        """
+        >>> from machine_learning.sequential_minimum_optimization import SmoSVM, Kernel
+        >>> kernel = Kernel(kernel='linear')
+        >>> svm = SmoSVM(np.array([[1, 2, 3], [-1, -2, -3]]), kernel)
+        >>> svm._is_unbound(1)
+        False
+        """
         return bool(0.0 < self.alphas[index] < self._c)
 
     def _is_support(self, index):
+        """
+        >>> from machine_learning.sequential_minimum_optimization import SmoSVM, Kernel
+        >>> kernel = Kernel(kernel='linear')
+        >>> svm = SmoSVM(np.array([[1, 2, 3], [-1, -2, -3]]), kernel)
+        >>> svm._is_support(1)
+        False
+        """
         return bool(self.alphas[index] > 0)
 
     @property
