@@ -1,9 +1,10 @@
 """
 Convolutional Neural Network (CNN) for MNIST Classification
 
-Goal: This script builds a deep CNN to classify the MNIST dataset using TensorFlow and Keras. It leverages
-    convolutional layers for feature extraction and pooling layers for down-sampling, followed by fully connected layers
-    for classification.
+Goal: This script builds a deep CNN to classify the MNIST dataset using
+    TensorFlow and Keras. It leverages convolutional layers for feature
+    extraction and pooling layers for down-sampling, followed by fully
+    connected layers for classification.
 
 Objectives:
 - Load and preprocess MNIST data (reshape for CNN input).
@@ -12,7 +13,7 @@ Objectives:
 
 """
 
-import tensorflow as tf
+# import tensorflow as tf
 from tensorflow.keras import layers, models
 from tensorflow.keras.datasets import mnist
 from tensorflow.keras.utils import to_categorical
@@ -56,7 +57,8 @@ model.add(layers.Dropout(0.5))
 model.add(layers.Dense(10, activation="softmax"))
 
 # Compile the model
-model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
+model.compile(optimizer="adam", loss="categorical_crossentropy",
+              metrics=["accuracy"])
 
 # Display the model summary
 model.summary()
