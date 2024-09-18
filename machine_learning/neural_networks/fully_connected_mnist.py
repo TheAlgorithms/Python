@@ -15,10 +15,13 @@ Objectives:
 
 """
 
+# Standard library imports
+# (None in this case)
+
+# Third-party imports
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras import layers, models
-
 
 # Load the MNIST dataset from Keras
 mnist = tf.keras.datasets.mnist
