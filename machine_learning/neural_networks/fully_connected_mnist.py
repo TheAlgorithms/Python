@@ -56,8 +56,7 @@ model.add(layers.Dense(10, activation="softmax"))
 
 # Compile the model
 model.compile(
-    optimizer="adam", loss="sparse_categorical_crossentropy",
-    metrics=["accuracy"]
+    optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"]
 )
 
 # Train the model on the MNIST training data

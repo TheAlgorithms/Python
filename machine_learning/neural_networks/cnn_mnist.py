@@ -57,8 +57,7 @@ model.add(layers.Dropout(0.5))
 model.add(layers.Dense(10, activation="softmax"))
 
 # Compile the model
-model.compile(optimizer="adam", loss="categorical_crossentropy",
-              metrics=["accuracy"])
+model.compile(optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"])
 
 # Display the model summary
 model.summary()
