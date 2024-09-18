@@ -395,8 +395,8 @@ class SmoSVM:
     # Normalize data using min-max method
     def _norm(self, data):
         if self._init:
-            self._min = np.min(data, axis=0) # [0, -2, 2] [1, 1, 0]
-            self._max = np.max(data, axis=0) # [1, -1, 3] [1, 1, 1]
+            self._min = np.min(data, axis=0)
+            self._max = np.max(data, axis=0)
             self._init = False
             return (data - self._min) / (self._max - self._min)
         else:
@@ -436,6 +436,12 @@ class SmoSVM:
 
 
 class Kernel:
+    """
+    >>> from machine_learning.sequential_minimum_optimization import Kernel
+    >>> kernel = Kernel(kernel='linear')
+    >>> kernel._kernel_name
+    'linear'
+    """
     def __init__(self, kernel, degree=1.0, coef0=0.0, gamma=1.0):
         self.degree = np.float64(degree)
         self.coef0 = np.float64(coef0)
