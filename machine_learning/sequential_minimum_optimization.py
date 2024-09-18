@@ -59,12 +59,12 @@ class SmoSVM:
         Initialize SmoSVM with given parameters.
 
         Args:
-            train (np.ndarray): Training data where the first column is the tags and the rest are the features.
+            train (np.ndarray): Training data: first column: tags, rest: features.
             kernel_func (Kernel): Kernel function to use.
             alpha_list (np.ndarray, optional): Initial alpha values. Defaults to None.
             cost (float, optional): Cost parameter C. Defaults to 0.4.
             b (float, optional): Bias term. Defaults to 0.0.
-            tolerance (float, optional): Tolerance for the optimization. Defaults to 0.001.
+            tolerance (float, optional): Tolerance for optimization. Defaults to 0.001.
             auto_norm (bool, optional): Whether to normalize the data. Defaults to True.
 
         >>> from machine_learning.sequential_minimum_optimization import SmoSVM, Kernel
