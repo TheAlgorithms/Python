@@ -1,25 +1,20 @@
 """
 Fully Connected Neural Network for MNIST Classification
 
-Goal: This script implements a fully connected feed-forward neural network
-    using TensorFlow and Keras to classify the MNIST dataset (28x28 grayscale
-    images of handwritten digits from 0 to 9).
-    The network has two hidden layers with ReLU activations and dropout
-    for regularization.
+Goal: This script implements a fully connected feed-forward neural network using TensorFlow and Keras to classify the
+    MNIST dataset (28x28 grayscale images of handwritten digits from 0 to 9). The network has two hidden layers with ReLU
+    activations and dropout for regularization.
 
 Objectives:
 - Normalize and preprocess MNIST data.
 - Build a basic neural network with dense layers.
-- Train the model, evaluate its accuracy and loss at each epoch,
-  and predict sample outputs.
-
+- Train the model, evaluate its accuracy and loss at each epoch, and predict sample outputs.
 """
 
 
-import numpy as np
 import tensorflow as tf
 from tensorflow.keras import layers, models
-
+import numpy as np
 
 # Load the MNIST dataset from Keras
 mnist = tf.keras.datasets.mnist
@@ -62,8 +57,7 @@ test_loss, test_acc = model.evaluate(X_test, y_test, verbose=2)
 print(f'\nTest accuracy: {test_acc}')
 
 # Make a prediction on a random test image
-rng = np.random.default_rng()
-random_index = rng.integers(0, len(X_test))
+random_index = np.random.randint(0, len(X_test))
 random_image = np.expand_dims(X_test[random_index], axis=0)
 prediction = model.predict(random_image)
 predicted_digit = np.argmax(prediction)
