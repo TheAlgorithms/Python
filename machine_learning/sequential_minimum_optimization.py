@@ -471,6 +471,13 @@ class Kernel:
         return np.inner(v1, v2) + self.coef0
 
     def _rbf(self, v1, v2):
+        """
+        >>> from machine_learning.sequential_minimum_optimization import Kernel
+        >>> kernel = Kernel(kernel='linear')
+        >>> result = kernel._rbf(np.array([1, 2]), np.array([2, 3]))
+        >>> round(result, 3)
+        0.135
+        """
         return np.exp(-1 * (self.gamma * np.linalg.norm(v1 - v2) ** 2))
 
     def _check(self):
