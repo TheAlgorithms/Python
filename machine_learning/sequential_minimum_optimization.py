@@ -413,6 +413,13 @@ class SmoSVM:
         return bool(0.0 < self.alphas[index] < self._c)
 
     def _is_support(self, index):
+        """
+        >>> from machine_learning.sequential_minimum_optimization import SmoSVM, Kernel
+        >>> kernel = Kernel(kernel='linear')
+        >>> svm = SmoSVM(np.array([[1, 2, 3], [-1, -2, -3]]), kernel)
+        >>> svm._is_support(1)
+        False
+        """
         return bool(self.alphas[index] > 0)
 
     @property
