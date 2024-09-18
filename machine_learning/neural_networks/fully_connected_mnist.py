@@ -25,10 +25,10 @@ from tensorflow.keras import layers, models
 
 # Load the MNIST dataset from Keras
 mnist = tf.keras.datasets.mnist
-(X_train, y_train), (X_test, y_test) = mnist.load_data()
+(x_train, y_train), (x_test, y_test) = mnist.load_data()
 
 # Normalize the images from 0-255 to 0-1 by dividing by 255
-X_train, X_test = X_train / 255.0, X_test / 255.0
+x_train, x_test = x_train / 255.0, x_test / 255.0
 
 # Print TensorFlow and Keras information
 print(f"TensorFlow Version: {tf.__version__}")
@@ -60,16 +60,16 @@ model.compile(
 )
 
 # Train the model on the MNIST training data
-model.fit(X_train, y_train, epochs=5, batch_size=32)
+model.fit(x_train, y_train, epochs=5, batch_size=32)
 
 # Evaluate the model on the test set
-test_loss, test_acc = model.evaluate(X_test, y_test, verbose=2)
+test_loss, test_acc = model.evaluate(x_test, y_test, verbose=2)
 print(f"\nTest accuracy: {test_acc}")
 
 # Make a prediction on a random test image
 rng = np.random.default_rng()
-random_index = rng.integers(0, len(X_test))
-random_image = np.expand_dims(X_test[random_index], axis=0)
+random_index = rng.integers(0, len(x_test))
+random_image = np.expand_dims(x_test[random_index], axis=0)
 prediction = model.predict(random_image)
 predicted_digit = np.argmax(prediction)
 
