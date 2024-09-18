@@ -442,6 +442,7 @@ class Kernel:
     >>> kernel._kernel_name
     'linear'
     """
+
     def __init__(self, kernel, degree=1.0, coef0=0.0, gamma=1.0):
         self.degree = np.float64(degree)
         self.coef0 = np.float64(coef0)
