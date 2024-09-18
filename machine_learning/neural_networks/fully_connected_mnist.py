@@ -64,4 +64,3 @@ predicted_digit = np.argmax(prediction)
 
 # Print the predicted result and actual label
 print(f'Predicted digit: {predicted_digit}, Actual digit: {y_test[random_index]}')
-
