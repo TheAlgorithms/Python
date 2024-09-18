@@ -1,3 +1,17 @@
+"""
+Fully Connected Neural Network for MNIST Classification
+
+Goal: This script implements a fully connected feed-forward neural network using TensorFlow and Keras to classify the
+    MNIST dataset (28x28 grayscale images of handwritten digits from 0 to 9). The network has two hidden layers with ReLU
+    activations and dropout for regularization.
+
+Objectives:
+- Normalize and preprocess MNIST data.
+- Build a basic neural network with dense layers.
+- Train the model, evaluate its accuracy and loss at each epoch, and predict sample outputs.
+"""
+
+
 import tensorflow as tf
 from tensorflow.keras import layers, models
 import numpy as np
