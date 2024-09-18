@@ -451,6 +451,13 @@ class Kernel:
         self._check()
 
     def _polynomial(self, v1, v2):
+        """
+        >>> from machine_learning.sequential_minimum_optimization import Kernel
+        >>> kernel = Kernel(kernel='linear')
+        >>> result = kernel._polynomial(np.array([1, 2]), np.array([2, 3]))
+        >>> int(result) == 8
+        True
+        """
         return (self.gamma * np.inner(v1, v2) + self.coef0) ** self.degree
 
     def _linear(self, v1, v2):
