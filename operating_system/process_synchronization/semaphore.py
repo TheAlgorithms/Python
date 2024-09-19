@@ -1,4 +1,3 @@
-from random import random
 from threading import Event, Thread, current_thread
 from time import sleep
 
@@ -57,6 +56,11 @@ class ThreadManager:
     Thread 1 is working with the resource.
     Thread-2 (thread_task) has acquired a resource.
     Thread 2 is working with the resource.
+    >>> sleep(4)
+    Thread 1 has finished and is releasing the resource.
+    A resource has been released.
+    Thread 2 has finished and is releasing the resource.
+    A resource has been released.
     """
 
     def __init__(self, semaphore: CustomSemaphore, thread_count: int) -> None:
@@ -74,7 +78,7 @@ class ThreadManager:
         thread_name = current_thread().name
         self.semaphore.acquire(event, thread_name)
         print(f"Thread {thread_id} is working with the resource.")
-        sleep(2 + random())  # Simulate some work
+        sleep(2)  # Simulate some work
         print(f"Thread {thread_id} has finished and is releasing the resource.")
         self.semaphore.release()
 
