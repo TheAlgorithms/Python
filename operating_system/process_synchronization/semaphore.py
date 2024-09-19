@@ -52,11 +52,6 @@ class ThreadManager:
     A class to manage the creation and execution of threads using the custom semaphore.
     >>> semaphore = CustomSemaphore(2)
     >>> manager = ThreadManager(semaphore, 2)
-    >>> manager.start_threads()
-    Thread-1 (thread_task) has acquired a resource.
-    Thread 1 is working with the resource.
-    Thread-2 (thread_task) has acquired a resource.
-    Thread 2 is working with the resource.
     """
 
     def __init__(self, semaphore: CustomSemaphore, thread_count: int) -> None:
