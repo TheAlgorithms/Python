@@ -70,3 +70,4 @@ history = model.fit(
 # Evaluate the model on test data
 test_loss, test_acc = model.evaluate(x_test, y_test, verbose=2)
 print(f"\nTest accuracy: {test_acc}")
+
