@@ -5,7 +5,7 @@ from time import sleep
 
 class CustomSemaphore:
     """
-    Semaphore class to control the access to a shared resources.
+    Semaphore class to control the access to shared resources.
 
     >>> semaphore = CustomSemaphore(2)
     >>> semaphore.permits
@@ -21,14 +21,12 @@ class CustomSemaphore:
     A resource has been released.
     """
 
-    def __init__(self, permits):
-        self.permits = permits
-        self.waiting_queue = []
-        self.event_queue = []
+    def __init__(self, permits: int) -> None:
+        self.permits: int = permits
+        self.waiting_queue: list[str] = []
+        self.event_queue: list[Event] = []
 
-    def acquire(self, event, thread_name):
-        # Acquires a resource for a thread. If no resources are available,
-        # the thread waits.
+    def acquire(self, event: Event, thread_name: str) -> None:
         self.permits -= 1
         if self.permits < 0:
             self.event_queue.append(event)
@@ -38,10 +36,9 @@ class CustomSemaphore:
         else:
             print(f"{thread_name} has acquired a resource.")
 
-    def release(self):
-        # Releases a resource and signals a waiting thread, if any
+    def release(self) -> None:
         self.permits += 1
-        if self.permits <= 0:
+        if self.permits <= 0 and self.waiting_queue:
             event = self.event_queue.pop(0)
             self.waiting_queue.pop(0)
             event.set()  # Release the waiting thread
@@ -62,32 +59,17 @@ class ThreadManager:
     Thread 2 is working with the resource.
     """
 
-    def __init__(self, semaphore, thread_count):
-        """
-        Initializes the thread manager.
+    def __init__(self, semaphore: CustomSemaphore, thread_count: int) -> None:
+        self.semaphore: CustomSemaphore = semaphore
+        self.thread_count: int = thread_count
 
-        Args:
-            semaphore (CustomSemaphore): The semaphore object to control access.
-            thread_count (int): The number of threads to create.
-        """
-        self.semaphore = semaphore
-        self.thread_count = thread_count
-
-    def start_threads(self):
-        """
-        Starts the specified number of threads.
-        """
+    def start_threads(self) -> None:
         for i in range(self.thread_count):
             thread = Thread(target=self.thread_task, args=(i + 1,))
             thread.start()
 
-    def thread_task(self, thread_id):
-        """
-        Task executed by each thread: acquiring, using, and releasing the resource.
-
-        Args:
-            thread_id (int): The ID of the thread.
-        """
+    def thread_task(self, thread_id: int) -> None:
+        # Task executed by each thread
         event = Event()
         thread_name = current_thread().name
         self.semaphore.acquire(event, thread_name)
