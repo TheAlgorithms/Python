@@ -42,7 +42,7 @@ def max_sum_subarray(arr: list[int], k: int) -> int:
     if len(arr) < k:
         raise ValueError("Array length must be at least as large as the window size.")
 
-    max_sum = float('-inf')
+    max_sum = float("-inf")
     window_sum = sum(arr[:k])
     max_sum = max(max_sum, window_sum)
 
