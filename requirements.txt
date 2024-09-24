@@ -15,6 +15,7 @@ requests
 rich
 # scikit-fuzzy  # uncomment once fuzzy_logic/fuzzy_operations.py is fixed
 scikit-learn
+spacy>=3.7.6
 statsmodels
 sympy
 tensorflow
