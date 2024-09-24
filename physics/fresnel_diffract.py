@@ -28,7 +28,12 @@ import numpy as np
 from scipy.fft import fft, fft2, fftshift, ifft, ifft2, ifftshift
 
 
-def fresnel_diffract(wavefunc0, pixel_size, wavelength, prop_dist):
+def fresnel_diffract(
+    wavefunc_0: np.ndarray,
+    pixel_size: float,
+    wavelength: float,
+    prop_dist: float
+    ) -> np.ndarray:
     """
     Fresnel Diffraction of 1D or 2D Wave Fields.
 
@@ -38,6 +43,7 @@ def fresnel_diffract(wavefunc0, pixel_size, wavelength, prop_dist):
 
     Args:
         wavefunc0 (np.ndarray): The initial wave field at the unpropagated plane.
+        pixel_size (float): The physical size of a pixel (or data point) at the
         pixel_size (float): The physical size of a pixel (or data point) at the
         unpropagated plane.
         wavelength (float): The wavelength of the wave field.
@@ -50,16 +56,22 @@ def fresnel_diffract(wavefunc0, pixel_size, wavelength, prop_dist):
         np.ndarray: The wave field at the propagated plane.
     """
 
-    if len(wavefunc0.shape) == 1:
-        return _fresnel_diffract_1d(wavefunc0, pixel_size, wavelength, prop_dist)
-    elif len(wavefunc0.shape) == 2:
-        return _fresnel_diffract_2d(wavefunc0, pixel_size, wavelength, prop_dist)
+    if len(wavefunc_0.shape) == 1:
+        return _fresnel_diffract_1d(
+            wavefunc_0, pixel_size, wavelength, prop_dist)
+    elif len(wavefunc_0.shape) == 2:
+        return _fresnel_diffract_2d(
+            wavefunc_0, pixel_size, wavelength, prop_dist)
     else:
-        err_shape = wavefunc0.shape
-        raise ValueError(f"Expected a 1D or 2D wavefield, but got {err_shape}")
+        error_message = f"Expected a 1D or 2D wavefield, but got {wavefunc_0.shape}"
+        raise ValueError(error_message)
 
-
-def _fresnel_diffract_2d(wavefunc0, pixel_size, wavelength, prop_dist):
+def _fresnel_diffract_2d(
+    wavefunc_0: np.ndarray,
+    pixel_size: float,
+    wavelength: float,
+    prop_dist: float
+    ) -> np.ndarray:
     """
     Fresnel Diffraction of 2D Wave Fields.
 
@@ -67,7 +79,7 @@ def _fresnel_diffract_2d(wavefunc0, pixel_size, wavelength, prop_dist):
     fresnel diffraction of 2D wave fields specifically.
 
     Args:
-        wavefunc0 (np.ndarray): The initial 2D wave field at the unpropagated plane.
+        wavefunc_0 (np.ndarray): The initial 2D wave field at the unpropagated plane.
         pixel_size (float): The physical size of a pixel (or data point) at the
         unpropagated plane.
         wavelength (float): The wavelength of the wave field.
@@ -76,7 +88,7 @@ def _fresnel_diffract_2d(wavefunc0, pixel_size, wavelength, prop_dist):
     Returns:
         np.ndarray: The 2D wave field at the propagated plane.
     """
-    pixel_num, _ = wavefunc0.shape
+    pixel_num, _ = wavefunc_0.shape
     side_length = pixel_num * pixel_size
 
     # Coordinates in Fourier space are proportionate to 1 / pixel_size
@@ -89,14 +101,18 @@ def _fresnel_diffract_2d(wavefunc0, pixel_size, wavelength, prop_dist):
     transferf = fftshift(transferf)
 
     # Fourier space wave function at the unpropagated plane
-    f_wavefunc0 = fft2(fftshift(wavefunc0))
+    f_wavefunc_0 = fft2(fftshift(wavefunc_0))
     # Wave function at the propagated, or 'z' plane
-    wavefuncz = ifftshift(ifft2(transferf * f_wavefunc0))
+    wavefuncz = ifftshift(ifft2(transferf * f_wavefunc_0))
 
     return wavefuncz
 
-
-def _fresnel_diffract_1d(wavefunc_0, pixel_size, wavelength, prop_dist):
+def _fresnel_diffract_1d(
+    wavefunc_0: np.ndarray,
+    pixel_size: float,
+    wavelength: float,
+    prop_dist: float
+    ) -> np.ndarray:
     """
     Fresnel Diffraction of 1D Wave Fields.
 
