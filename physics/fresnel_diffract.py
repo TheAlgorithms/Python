@@ -2,20 +2,20 @@
 Title: Fresnel Diffraction for Coherent and Monochromatic
         Wave Fields
 
-Fresnel Diffraction describes the behavior of a wave field as it 
-moves through free space or interacts with an object under the 
-small angle approximation. It is particularly useful for near 
+Fresnel Diffraction describes the behavior of a wave field as it
+moves through free space or interacts with an object under the
+small angle approximation. It is particularly useful for near
 field diffraction.
 
 The following algorithm is an adaptation of the 'transfer function'
-based approach contained in the reference. It is critically 
+based approach contained in the reference. It is critically
 sampled when:
 pixel_size = wavelength * prop_dist / side_length
 
 Or equivalently:
 pixel_size = sqrt(wavelength * prop_dist / pixel_num)
 
-Under and oversampling occur when the left-hand side is less 
+Under and oversampling occur when the left-hand side is less
 than or greater than the right-hand side, respectively.
 
 This code is adapted and modified from:
@@ -27,13 +27,14 @@ import numpy as np
 from scipy.fft import fft, fft2, fftshift, ifft, ifft2, ifftshift
 
 
+
 def fresnel_diffract(wavefunc0, pixel_size, wavelength, prop_dist):
     """
     Fresnel Diffraction of 1D or 2D Wave Fields.
-    
-    This function calculates the Fresnel diffraction of a 
-    given wave field, suitable for near field diffraction. The 
-    wave field is assumed to be coherent and monochromatic. 
+
+    This function calculates the Fresnel diffraction of a
+    given wave field, suitable for near field diffraction. The
+    wave field is assumed to be coherent and monochromatic.
 
     Args:
         wavefunc0 (np.ndarray): The initial wave field at the unpropagated plane.
@@ -46,7 +47,7 @@ def fresnel_diffract(wavefunc0, pixel_size, wavelength, prop_dist):
         ValueError: If the input wave field is not 1D or 2D.
 
     Returns:
-        np.ndarray: The wave field at the propagated plane. 
+        np.ndarray: The wave field at the propagated plane.
     """
 
     if len(wavefunc0.shape) == 1:
@@ -63,8 +64,8 @@ def fresnel_diffract(wavefunc0, pixel_size, wavelength, prop_dist):
 def _fresnel_diffract_2d(wavefunc0, pixel_size, wavelength, prop_dist):
     """
     Fresnel Diffraction of 2D Wave Fields.
-    
-    This private function is called by 'fresnel_diffract' to handle the 
+
+    This private function is called by 'fresnel_diffract' to handle the
     fresnel diffraction of 2D wave fields specifically.
 
     Args:
@@ -75,7 +76,7 @@ def _fresnel_diffract_2d(wavefunc0, pixel_size, wavelength, prop_dist):
         prop_dist (float): The desired propagation distance.
 
     Returns:
-        np.ndarray: The 2D wave field at the propagated plane. 
+        np.ndarray: The 2D wave field at the propagated plane.
     """
     pixel_num, _ = wavefunc0.shape
     side_length = pixel_num * pixel_size
@@ -101,8 +102,8 @@ def _fresnel_diffract_2d(wavefunc0, pixel_size, wavelength, prop_dist):
 def _fresnel_diffract_1d(wavefunc_0, pixel_size, wavelength, prop_dist):
     """
     Fresnel Diffraction of 1D Wave Fields.
-    
-    This private function is called by 'fresnel_diffract' to handle the 
+
+    This private function is called by 'fresnel_diffract' to handle the
     fresnel diffraction of 1D wave fields specifically.
 
     Args:
@@ -113,7 +114,7 @@ def _fresnel_diffract_1d(wavefunc_0, pixel_size, wavelength, prop_dist):
         prop_dist (float): The desired propagation distance.
 
     Returns:
-        np.ndarray: The 1D wave field at the propagated plane. 
+        np.ndarray: The 1D wave field at the propagated plane.
     """
     pixel_num = len(wavefunc_0)
     side_length = pixel_num * pixel_size
