@@ -29,11 +29,8 @@ from scipy.fft import fft, fft2, fftshift, ifft, ifft2, ifftshift
 
 
 def fresnel_diffract(
-    wavefunc_0: np.ndarray,
-    pixel_size: float,
-    wavelength: float,
-    prop_dist: float
-    ) -> np.ndarray:
+    wavefunc_0: np.ndarray, pixel_size: float, wavelength: float, prop_dist: float
+) -> np.ndarray:
     """
     Fresnel Diffraction of 1D or 2D Wave Fields.
 
@@ -57,21 +54,17 @@ def fresnel_diffract(
     """
 
     if len(wavefunc_0.shape) == 1:
-        return _fresnel_diffract_1d(
-            wavefunc_0, pixel_size, wavelength, prop_dist)
+        return _fresnel_diffract_1d(wavefunc_0, pixel_size, wavelength, prop_dist)
     elif len(wavefunc_0.shape) == 2:
-        return _fresnel_diffract_2d(
-            wavefunc_0, pixel_size, wavelength, prop_dist)
+        return _fresnel_diffract_2d(wavefunc_0, pixel_size, wavelength, prop_dist)
     else:
         error_message = f"Expected a 1D or 2D wavefield, but got {wavefunc_0.shape}"
         raise ValueError(error_message)
 
+
 def _fresnel_diffract_2d(
-    wavefunc_0: np.ndarray,
-    pixel_size: float,
-    wavelength: float,
-    prop_dist: float
-    ) -> np.ndarray:
+    wavefunc_0: np.ndarray, pixel_size: float, wavelength: float, prop_dist: float
+) -> np.ndarray:
     """
     Fresnel Diffraction of 2D Wave Fields.
 
@@ -107,12 +100,10 @@ def _fresnel_diffract_2d(
 
     return wavefuncz
 
+
 def _fresnel_diffract_1d(
-    wavefunc_0: np.ndarray,
-    pixel_size: float,
-    wavelength: float,
-    prop_dist: float
-    ) -> np.ndarray:
+    wavefunc_0: np.ndarray, pixel_size: float, wavelength: float, prop_dist: float
+) -> np.ndarray:
     """
     Fresnel Diffraction of 1D Wave Fields.
 
