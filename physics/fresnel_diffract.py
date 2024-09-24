@@ -21,11 +21,11 @@ than or greater than the right-hand side, respectively.
 This code is adapted and modified from:
 Computational Fourier Optics: A MATLAB Tutorial by David Voelz
 """
+
 from math import pi
 
 import numpy as np
 from scipy.fft import fft, fft2, fftshift, ifft, ifft2, ifftshift
-
 
 
 def fresnel_diffract(wavefunc0, pixel_size, wavelength, prop_dist):
@@ -38,7 +38,7 @@ def fresnel_diffract(wavefunc0, pixel_size, wavelength, prop_dist):
 
     Args:
         wavefunc0 (np.ndarray): The initial wave field at the unpropagated plane.
-        pixel_size (float): The physical size of a pixel (or data point) at the 
+        pixel_size (float): The physical size of a pixel (or data point) at the
         unpropagated plane.
         wavelength (float): The wavelength of the wave field.
         prop_dist (float): The desired propagation distance.
@@ -51,15 +51,13 @@ def fresnel_diffract(wavefunc0, pixel_size, wavelength, prop_dist):
     """
 
     if len(wavefunc0.shape) == 1:
-        return _fresnel_diffract_1d(
-            wavefunc0, pixel_size, wavelength, prop_dist)
+        return _fresnel_diffract_1d(wavefunc0, pixel_size, wavelength, prop_dist)
     elif len(wavefunc0.shape) == 2:
-        return _fresnel_diffract_2d(
-            wavefunc0, pixel_size, wavelength, prop_dist)
+        return _fresnel_diffract_2d(wavefunc0, pixel_size, wavelength, prop_dist)
     else:
         err_shape = wavefunc0.shape
-        raise ValueError(
-            f'Expected a 1D or 2D wavefield, but got {err_shape}')
+        raise ValueError(f"Expected a 1D or 2D wavefield, but got {err_shape}")
+
 
 def _fresnel_diffract_2d(wavefunc0, pixel_size, wavelength, prop_dist):
     """
@@ -70,7 +68,7 @@ def _fresnel_diffract_2d(wavefunc0, pixel_size, wavelength, prop_dist):
 
     Args:
         wavefunc0 (np.ndarray): The initial 2D wave field at the unpropagated plane.
-        pixel_size (float): The physical size of a pixel (or data point) at the 
+        pixel_size (float): The physical size of a pixel (or data point) at the
         unpropagated plane.
         wavelength (float): The wavelength of the wave field.
         prop_dist (float): The desired propagation distance.
@@ -82,14 +80,12 @@ def _fresnel_diffract_2d(wavefunc0, pixel_size, wavelength, prop_dist):
     side_length = pixel_num * pixel_size
 
     # Coordinates in Fourier space are proportionate to 1 / pixel_size
-    f_x = np.arange(
-        -1 / (2 * pixel_size), 1 / ( 2 * pixel_size), 1 / side_length
-    )
+    f_x = np.arange(-1 / (2 * pixel_size), 1 / (2 * pixel_size), 1 / side_length)
 
     f_x2d, f_y2d = np.meshgrid(f_x, f_x)
 
     # Transfer function which models diffraction
-    transferf = np.exp(-1j*np.pi*wavelength*prop_dist*(f_x2d**2 + f_y2d**2))
+    transferf = np.exp(-1j * np.pi * wavelength * prop_dist * (f_x2d**2 + f_y2d**2))
     transferf = fftshift(transferf)
 
     # Fourier space wave function at the unpropagated plane
@@ -98,6 +94,7 @@ def _fresnel_diffract_2d(wavefunc0, pixel_size, wavelength, prop_dist):
     wavefuncz = ifftshift(ifft2(transferf * f_wavefunc0))
 
     return wavefuncz
+
 
 def _fresnel_diffract_1d(wavefunc_0, pixel_size, wavelength, prop_dist):
     """
@@ -108,7 +105,7 @@ def _fresnel_diffract_1d(wavefunc_0, pixel_size, wavelength, prop_dist):
 
     Args:
         wavefunc0 (np.ndarray): The initial 1D wave field at the unpropagated plane.
-        pixel_size (float): The physical size of a pixel (or data point) at the 
+        pixel_size (float): The physical size of a pixel (or data point) at the
         unpropagated plane.
         wavelength (float): The wavelength of the wave field.
         prop_dist (float): The desired propagation distance.
@@ -118,9 +115,7 @@ def _fresnel_diffract_1d(wavefunc_0, pixel_size, wavelength, prop_dist):
     """
     pixel_num = len(wavefunc_0)
     side_length = pixel_num * pixel_size
-    fx = np.arange(
-        -1 / (2 * pixel_size), 1 / (2 * pixel_size), 1 / side_length
-    )
+    fx = np.arange(-1 / (2 * pixel_size), 1 / (2 * pixel_size), 1 / side_length)
     transferf = np.exp(-1j * pi * wavelength * prop_dist * (fx**2))
     transferf = fftshift(transferf)
 
