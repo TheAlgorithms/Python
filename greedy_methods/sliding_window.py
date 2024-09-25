@@ -23,7 +23,6 @@ def sliding_window(input_string: str) -> int:
     >>> sliding_window("abccba")
     3
     """
-    # Type annotation for char_index_map: keys are single characters (str), values are indices (int)
     char_index_map: dict[str, int] = {}
     left = 0
     max_len = 0
@@ -38,7 +37,6 @@ def sliding_window(input_string: str) -> int:
         # Calculate the current length of the window
         max_len = max(max_len, right - left + 1)
     return max_len
-
 
 if __name__ == "__main__":
     import doctest
