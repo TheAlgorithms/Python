@@ -38,6 +38,7 @@ def sliding_window(input_string: str) -> int:
         max_len = max(max_len, right - left + 1)
     return max_len
 
+
 if __name__ == "__main__":
     import doctest
 
