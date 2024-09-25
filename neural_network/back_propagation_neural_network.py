@@ -2,10 +2,10 @@
 
 """
 
-A Framework of Back Propagation Neural Network（BP） model
+A Framework of Back Propagation Neural Network (BP) model
 
 Easy to use:
-    * add many layers as you want ！！！
+    * add many layers as you want ! ! !
     * clearly see how the loss decreasing
 Easy to expand:
     * more activation functions

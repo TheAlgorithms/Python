@@ -20,13 +20,13 @@ def current_weather(location: str) -> list[dict]:
     if OPENWEATHERMAP_API_KEY:
         params_openweathermap = {"q": location, "appid": OPENWEATHERMAP_API_KEY}
         response_openweathermap = requests.get(
-            OPENWEATHERMAP_URL_BASE, params=params_openweathermap
+            OPENWEATHERMAP_URL_BASE, params=params_openweathermap, timeout=10
         )
         weather_data.append({"OpenWeatherMap": response_openweathermap.json()})
     if WEATHERSTACK_API_KEY:
         params_weatherstack = {"query": location, "access_key": WEATHERSTACK_API_KEY}
         response_weatherstack = requests.get(
-            WEATHERSTACK_URL_BASE, params=params_weatherstack
+            WEATHERSTACK_URL_BASE, params=params_weatherstack, timeout=10
         )
         weather_data.append({"Weatherstack": response_weatherstack.json()})
     if not weather_data:

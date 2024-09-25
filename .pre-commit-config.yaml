@@ -11,25 +11,25 @@ repos:
       - id: requirements-txt-fixer
 
   - repo: https://github.com/MarcoGorelli/auto-walrus
-    rev: v0.2.2
+    rev: 0.3.4
     hooks:
       - id: auto-walrus
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.3.5
+    rev: v0.6.7
     hooks:
       - id: ruff
       - id: ruff-format
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.6
+    rev: v2.3.0
     hooks:
       - id: codespell
         additional_dependencies:
           - tomli
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: "1.7.0"
+    rev: "2.2.4"
     hooks:
       - id: pyproject-fmt
 
@@ -42,15 +42,16 @@ repos:
         pass_filenames: false
 
   - repo: https://github.com/abravalheri/validate-pyproject
-    rev: v0.16
+    rev: v0.19
     hooks:
       - id: validate-pyproject
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.9.0
+    rev: v1.11.2
     hooks:
       - id: mypy
         args:
+          - --explicit-package-bases
           - --ignore-missing-imports
           - --install-types # See mirrors-mypy README.md
           - --non-interactive

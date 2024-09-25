@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Davis–Putnam–Logemann–Loveland (DPLL) algorithm is a complete, backtracking-based
+Davis-Putnam-Logemann-Loveland (DPLL) algorithm is a complete, backtracking-based
 search algorithm for deciding the satisfiability of propositional logic formulae in
 conjunctive normal form, i.e, for solving the Conjunctive Normal Form SATisfiability
 (CNF-SAT) problem.

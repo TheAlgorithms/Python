@@ -76,9 +76,9 @@ def get_3d_vectors_cross(ab: Vector3d, ac: Vector3d) -> Vector3d:
 
 def is_zero_vector(vector: Vector3d, accuracy: int) -> bool:
     """
-    Check if vector is equal to (0, 0, 0) of not.
+    Check if vector is equal to (0, 0, 0) or not.
 
-    Sine the algorithm is very accurate, we will never get a zero vector,
+    Since the algorithm is very accurate, we will never get a zero vector,
     so we need to round the vector axis,
     because we want a result that is either True or False.
     In other applications, we can return a float that represents the collinearity ratio.
@@ -97,9 +97,9 @@ def are_collinear(a: Point3d, b: Point3d, c: Point3d, accuracy: int = 10) -> boo
     """
     Check if three points are collinear or not.
 
-    1- Create tow vectors AB and AC.
-    2- Get the cross vector of the tow vectors.
-    3- Calcolate the length of the cross vector.
+    1- Create two vectors AB and AC.
+    2- Get the cross vector of the two vectors.
+    3- Calculate the length of the cross vector.
     4- If the length is zero then the points are collinear, else they are not.
 
     The use of the accuracy parameter is explained in is_zero_vector docstring.

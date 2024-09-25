@@ -1,7 +1,7 @@
 """
 https://cp-algorithms.com/string/prefix-function.html
 
-Prefix function Knuth–Morris–Pratt algorithm
+Prefix function Knuth-Morris-Pratt algorithm
 
 Different algorithm than Knuth-Morris-Pratt pattern finding
 

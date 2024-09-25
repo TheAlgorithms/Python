@@ -66,14 +66,14 @@ class MinHeap:
     # this is min-heapify method
     def sift_down(self, idx, array):
         while True:
-            l = self.get_left_child_idx(idx)
-            r = self.get_right_child_idx(idx)
+            left = self.get_left_child_idx(idx)
+            right = self.get_right_child_idx(idx)
 
             smallest = idx
-            if l < len(array) and array[l] < array[idx]:
-                smallest = l
-            if r < len(array) and array[r] < array[smallest]:
-                smallest = r
+            if left < len(array) and array[left] < array[idx]:
+                smallest = left
+            if right < len(array) and array[right] < array[smallest]:
+                smallest = right
 
             if smallest != idx:
                 array[idx], array[smallest] = array[smallest], array[idx]

@@ -243,6 +243,15 @@
     * [Min Heap](data_structures/heap/min_heap.py)
     * [Randomized Heap](data_structures/heap/randomized_heap.py)
     * [Skew Heap](data_structures/heap/skew_heap.py)
+  * Kd Tree
+    * [Build Kdtree](data_structures/kd_tree/build_kdtree.py)
+    * Example
+      * [Example Usage](data_structures/kd_tree/example/example_usage.py)
+      * [Hypercube Points](data_structures/kd_tree/example/hypercube_points.py)
+    * [Kd Node](data_structures/kd_tree/kd_node.py)
+    * [Nearest Neighbour Search](data_structures/kd_tree/nearest_neighbour_search.py)
+    * Tests
+      * [Test Kdtree](data_structures/kd_tree/tests/test_kdtree.py)
   * Linked List
     * [Circular Linked List](data_structures/linked_list/circular_linked_list.py)
     * [Deque Doubly](data_structures/linked_list/deque_doubly.py)
@@ -540,8 +549,7 @@
   * [Lu Decomposition](linear_algebra/lu_decomposition.py)
   * Src
     * [Conjugate Gradient](linear_algebra/src/conjugate_gradient.py)
-    * Gaussian Elimination Pivoting
-      * [Gaussian Elimination Pivoting](linear_algebra/src/gaussian_elimination_pivoting/gaussian_elimination_pivoting.py)
+    * [Gaussian Elimination Pivoting](linear_algebra/src/gaussian_elimination_pivoting.py)
     * [Lib](linear_algebra/src/lib.py)
     * [Polynom For Points](linear_algebra/src/polynom_for_points.py)
     * [Power Iteration](linear_algebra/src/power_iteration.py)
@@ -661,7 +669,6 @@
   * [Manhattan Distance](maths/manhattan_distance.py)
   * [Matrix Exponentiation](maths/matrix_exponentiation.py)
   * [Max Sum Sliding Window](maths/max_sum_sliding_window.py)
-  * [Median Of Two Arrays](maths/median_of_two_arrays.py)
   * [Minkowski Distance](maths/minkowski_distance.py)
   * [Mobius Function](maths/mobius_function.py)
   * [Modular Division](maths/modular_division.py)
@@ -773,6 +780,7 @@
   * [Inverse Of Matrix](matrix/inverse_of_matrix.py)
   * [Largest Square Area In Matrix](matrix/largest_square_area_in_matrix.py)
   * [Matrix Class](matrix/matrix_class.py)
+  * [Matrix Equalization](matrix/matrix_equalization.py)
   * [Matrix Multiplication Recursion](matrix/matrix_multiplication_recursion.py)
   * [Matrix Operation](matrix/matrix_operation.py)
   * [Max Area Of Island](matrix/max_area_of_island.py)
@@ -863,6 +871,7 @@
   * [Newtons Second Law Of Motion](physics/newtons_second_law_of_motion.py)
   * [Photoelectric Effect](physics/photoelectric_effect.py)
   * [Potential Energy](physics/potential_energy.py)
+  * [Rainfall Intensity](physics/rainfall_intensity.py)
   * [Reynolds Number](physics/reynolds_number.py)
   * [Rms Speed Of Molecule](physics/rms_speed_of_molecule.py)
   * [Shear Stress](physics/shear_stress.py)
@@ -1259,6 +1268,7 @@
   * [Can String Be Rearranged As Palindrome](strings/can_string_be_rearranged_as_palindrome.py)
   * [Capitalize](strings/capitalize.py)
   * [Check Anagrams](strings/check_anagrams.py)
+  * [Count Vowels](strings/count_vowels.py)
   * [Credit Card Validator](strings/credit_card_validator.py)
   * [Damerau Levenshtein Distance](strings/damerau_levenshtein_distance.py)
   * [Detecting English Programmatically](strings/detecting_english_programmatically.py)

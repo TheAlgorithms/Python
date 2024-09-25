@@ -31,12 +31,7 @@ class Parser(HTMLParser):
             # Check the list of defined attributes.
             for name, value in attrs:
                 # If href is defined, not empty nor # print it and not already in urls.
-                if (
-                    name == "href"
-                    and value != "#"
-                    and value != ""
-                    and value not in self.urls
-                ):
+                if name == "href" and value not in (*self.urls, "", "#"):
                     url = parse.urljoin(self.domain, value)
                     self.urls.append(url)
 
@@ -77,7 +72,7 @@ def emails_from_url(url: str = "https://github.com") -> list[str]:
 
     try:
         # Open URL
-        r = requests.get(url)
+        r = requests.get(url, timeout=10)
 
         # pass the raw HTML to the parser to get links
         parser.feed(r.text)
@@ -88,7 +83,7 @@ def emails_from_url(url: str = "https://github.com") -> list[str]:
             # open URL.
             # read = requests.get(link)
             try:
-                read = requests.get(link)
+                read = requests.get(link, timeout=10)
                 # Get the valid email.
                 emails = re.findall("[a-zA-Z0-9]+@" + domain, read.text)
                 # If not in list then append it.

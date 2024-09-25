@@ -150,7 +150,7 @@ def solve_all(grids, name="", showif=0.0):
             display(grid_values(grid))
             if values:
                 display(values)
-            print("(%.5f seconds)\n" % t)
+            print(f"({t:.5f} seconds)\n")
         return (t, solved(values))
 
     times, results = zip(*[time_solve(grid) for grid in grids])
@@ -217,4 +217,4 @@ if __name__ == "__main__":
         start = time.monotonic()
         solve(puzzle)
         t = time.monotonic() - start
-        print("Solved: %.5f sec" % t)
+        print(f"Solved: {t:.5f} sec")
