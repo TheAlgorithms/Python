@@ -66,6 +66,7 @@ def fresnel_diffract(
         Traceback (most recent call last):
             ...
         ValueError: Expected a 1D or 2D wavefield, but got (4, 4, 4)
+
         # Test that conservation of energy is obeyed
         >>> import numpy as np
         >>> wf0 = np.ones(64)
@@ -77,6 +78,7 @@ def fresnel_diffract(
         >>> wfz = fresnel_diffract(wf0, 1, 1, 1)
         >>> np.isclose(np.sum(abs(wf0)**2), np.sum(abs(wfz)**2))
         True
+
         # Test that propagation distance of 0 returns the contact image
         >>> import numpy as np
         >>> x = np.linspace(-32, 32, 1)
@@ -123,6 +125,7 @@ def _fresnel_diffract_2d(
         >>> wfz = _fresnel_diffract_2d(wf0, 1, 1, 1)
         >>> np.isclose(np.sum(abs(wf0)**2), np.sum(abs(wfz)**2))
         True
+
         # Test that propagation distance of 0 returns the contact image
         >>> import numpy as np
         >>> x = np.linspace(-32, 32, 1)
@@ -175,12 +178,14 @@ def _fresnel_diffract_1d(
         >>> res = _fresnel_diffract_1d(np.ones(64), 1, 1, 1)
         >>> res.shape
         (64,)
+
         # Conservation of energy
         >>> import numpy as np
         >>> wf0 = np.ones(64)
         >>> wfz = _fresnel_diffract_1d(wf0, 1, 1, 1)
         >>> np.isclose(np.sum(abs(wf0)**2), np.sum(abs(wfz)**2))
         True
+
         # Test that propagation distance of 0 returns the contact image
         >>> import numpy as np
         >>> x = np.linspace(-32, 32, 1)
