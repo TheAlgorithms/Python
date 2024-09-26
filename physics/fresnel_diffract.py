@@ -112,6 +112,7 @@ def _fresnel_diffract_2d(
     Returns:
         np.ndarray: The 2D wave field at the propagated plane.
 
+
     Examples:
         >>> import numpy as np
         >>> res = _fresnel_diffract_2d(np.ones((64, 64)), 1, 1, 1)
@@ -167,6 +168,7 @@ def _fresnel_diffract_1d(
 
     Returns:
         np.ndarray: The 1D wave field at the propagated plane.
+
 
     Examples:
         >>> import numpy as np
