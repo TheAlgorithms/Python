@@ -291,6 +291,13 @@
     * [Stack With Doubly Linked List](data_structures/stacks/stack_with_doubly_linked_list.py)
     * [Stack With Singly Linked List](data_structures/stacks/stack_with_singly_linked_list.py)
     * [Stock Span Problem](data_structures/stacks/stock_span_problem.py)
+  * Suffix Tree
+    * Example
+      * [Example Usage](data_structures/suffix_tree/example/example_usage.py)
+    * [Suffix Tree](data_structures/suffix_tree/suffix_tree.py)
+    * [Suffix Tree Node](data_structures/suffix_tree/suffix_tree_node.py)
+    * Tests
+      * [Test Suffix Tree](data_structures/suffix_tree/tests/test_suffix_tree.py)
   * Trie
     * [Radix Tree](data_structures/trie/radix_tree.py)
     * [Trie](data_structures/trie/trie.py)
