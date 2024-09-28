@@ -1,3 +1,9 @@
+#  Created by: Ramy-Badr-Ahmed (https://github.com/Ramy-Badr-Ahmed) in Pull Request: #11554
+#  https://github.com/TheAlgorithms/Python/pull/11554
+#
+#  Please mention me (@Ramy-Badr-Ahmed) in any issue or pull request addressing bugs/corrections to this file.
+#  Thank you!
+
 import unittest
 
 from data_structures.suffix_tree.suffix_tree import SuffixTree
