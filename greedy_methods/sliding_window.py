@@ -2,7 +2,7 @@ def sliding_window(input_string: str) -> int:
     """
     This function takes a string and returns the length of the longest substring
     without repeating characters using the sliding window algorithm.
-    
+
     It runs in O(n) time, where n is the length of the string. The sliding window
     approach ensures that each character is processed at most twice.
 
@@ -14,7 +14,7 @@ def sliding_window(input_string: str) -> int:
 
     Raises:
         TypeError: If the input is not a string.
-    
+
     Examples:
     >>> sliding_window("abcabcbb")
     3
@@ -57,6 +57,8 @@ def sliding_window(input_string: str) -> int:
         max_len = max(max_len, current_len)
     return max_len
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
