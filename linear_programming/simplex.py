@@ -107,8 +107,8 @@ class Tableau:
 
     def find_pivot(self) -> tuple[Any, Any]:
         """Finds the pivot row and column.
-        >>> Tableau(np.array([[-2,1,0,0,0], [3,1,1,0,6], [1,2,0,1,7.]]),
-        ... 2, 0).find_pivot()
+        >>> tuple(int(x) for x in Tableau(np.array([[-2,1,0,0,0], [3,1,1,0,6],
+        ... [1,2,0,1,7.]]), 2, 0).find_pivot())
         (1, 0)
         """
         objective = self.objectives[-1]
@@ -215,8 +215,8 @@ class Tableau:
         Max:  x1 +  x2
         ST:   x1 + 3x2 <= 4
              3x1 +  x2 <= 4
-        >>> Tableau(np.array([[-1,-1,0,0,0],[1,3,1,0,4],[3,1,0,1,4.]]),
-        ... 2, 0).run_simplex()
+        >>> {key: float(value) for key, value in Tableau(np.array([[-1,-1,0,0,0],
+        ... [1,3,1,0,4],[3,1,0,1,4.]]), 2, 0).run_simplex().items()}
         {'P': 2.0, 'x1': 1.0, 'x2': 1.0}
 
         # Standard linear program with 3 variables:
@@ -224,21 +224,21 @@ class Tableau:
         ST:  2x1 +  x2 +  x3 ≤ 2
               x1 + 2x2 + 3x3 ≤ 5
              2x1 + 2x2 +  x3 ≤ 6
-        >>> Tableau(np.array([
+        >>> {key: float(value) for key, value in Tableau(np.array([
         ... [-3,-1,-3,0,0,0,0],
         ... [2,1,1,1,0,0,2],
         ... [1,2,3,0,1,0,5],
         ... [2,2,1,0,0,1,6.]
-        ... ]),3,0).run_simplex() # doctest: +ELLIPSIS
+        ... ]),3,0).run_simplex().items()} # doctest: +ELLIPSIS
         {'P': 5.4, 'x1': 0.199..., 'x3': 1.6}
 
 
         # Optimal tableau input:
-        >>> Tableau(np.array([
+        >>> {key: float(value) for key, value in Tableau(np.array([
         ... [0, 0, 0.25, 0.25, 2],
         ... [0, 1, 0.375, -0.125, 1],
         ... [1, 0, -0.125, 0.375, 1]
-        ... ]), 2, 0).run_simplex()
+        ... ]), 2, 0).run_simplex().items()}
         {'P': 2.0, 'x1': 1.0, 'x2': 1.0}
 
         # Non-standard: >= constraints
@@ -246,25 +246,25 @@ class Tableau:
         ST:   x1 +  x2 +  x3 <= 40
              2x1 +  x2 -  x3 >= 10
                  -  x2 +  x3 >= 10
-        >>> Tableau(np.array([
+        >>> {key: float(value) for key, value in Tableau(np.array([
         ... [2, 0, 0, 0, -1, -1, 0, 0, 20],
         ... [-2, -3, -1, 0, 0, 0, 0, 0, 0],
         ... [1, 1, 1, 1, 0, 0, 0, 0, 40],
         ... [2, 1, -1, 0, -1, 0, 1, 0, 10],
         ... [0, -1, 1, 0, 0, -1, 0, 1, 10.]
-        ... ]), 3, 2).run_simplex()
+        ... ]), 3, 2).run_simplex().items()}
         {'P': 70.0, 'x1': 10.0, 'x2': 10.0, 'x3': 20.0}
 
         # Non standard: minimisation and equalities
         Min: x1 +  x2
         ST: 2x1 +  x2 = 12
             6x1 + 5x2 = 40
-        >>> Tableau(np.array([
+        >>> {key: float(value) for key, value in Tableau(np.array([
         ... [8, 6, 0, 0, 52],
         ... [1, 1, 0, 0, 0],
         ... [2, 1, 1, 0, 12],
         ... [6, 5, 0, 1, 40.],
-        ... ]), 2, 2).run_simplex()
+        ... ]), 2, 2).run_simplex().items()}
         {'P': 7.0, 'x1': 5.0, 'x2': 2.0}
 
 
@@ -275,7 +275,7 @@ class Tableau:
              2x1 + 4x2 <= 48
               x1 +  x2 >= 10
              x1        >= 2
-        >>> Tableau(np.array([
+        >>> {key: float(value) for key, value in Tableau(np.array([
         ... [2, 1, 0, 0, 0, -1, -1, 0, 0, 12.0],
         ... [-8, -6, 0, 0, 0, 0, 0, 0, 0, 0.0],
         ... [1, 3, 1, 0, 0, 0, 0, 0, 0, 33.0],
@@ -283,7 +283,7 @@ class Tableau:
         ... [2, 4, 0, 0, 1, 0, 0, 0, 0, 48.0],
         ... [1, 1, 0, 0, 0, -1, 0, 1, 0, 10.0],
         ... [1, 0, 0, 0, 0, 0, -1, 0, 1, 2.0]
-        ... ]), 2, 2).run_simplex() # doctest: +ELLIPSIS
+        ... ]), 2, 2).run_simplex().items()} # doctest: +ELLIPSIS
         {'P': 132.0, 'x1': 12.000... 'x2': 5.999...}
         """
         # Stop simplex algorithm from cycling.
@@ -307,11 +307,11 @@ class Tableau:
     def interpret_tableau(self) -> dict[str, float]:
         """Given the final tableau, add the corresponding values of the basic
         decision variables to the `output_dict`
-        >>> Tableau(np.array([
+        >>> {key: float(value) for key, value in Tableau(np.array([
         ... [0,0,0.875,0.375,5],
         ... [0,1,0.375,-0.125,1],
         ... [1,0,-0.125,0.375,1]
-        ... ]),2, 0).interpret_tableau()
+        ... ]),2, 0).interpret_tableau().items()}
         {'P': 5.0, 'x1': 1.0, 'x2': 1.0}
         """
         # P = RHS of final tableau

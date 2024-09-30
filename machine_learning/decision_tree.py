@@ -26,15 +26,15 @@ class DecisionTree:
         >>> tester = DecisionTree()
         >>> test_labels = np.array([1,2,3,4,5,6,7,8,9,10])
         >>> test_prediction = float(6)
-        >>> tester.mean_squared_error(test_labels, test_prediction) == (
+        >>> bool(tester.mean_squared_error(test_labels, test_prediction) == (
         ...     TestDecisionTree.helper_mean_squared_error_test(test_labels,
-        ...         test_prediction))
+        ...         test_prediction)))
         True
         >>> test_labels = np.array([1,2,3])
         >>> test_prediction = float(2)
-        >>> tester.mean_squared_error(test_labels, test_prediction) == (
+        >>> bool(tester.mean_squared_error(test_labels, test_prediction) == (
         ...     TestDecisionTree.helper_mean_squared_error_test(test_labels,
-        ...         test_prediction))
+        ...         test_prediction)))
         True
         """
         if labels.ndim != 1:

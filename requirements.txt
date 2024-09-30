@@ -1,7 +1,7 @@
 beautifulsoup4
 fake_useragent
 imageio
-keras ; python_version < '3.12'
+keras
 lxml
 matplotlib
 numpy
@@ -17,7 +17,7 @@ rich
 scikit-learn
 statsmodels
 sympy
-tensorflow
+tensorflow ; python_version < '3.13'
 tweepy
 # yulewalker  # uncomment once audio_filters/equal_loudness_filter.py is fixed
 typing_extensions

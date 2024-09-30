@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.12
+          python-version: 3.13
           allow-prereleases: true
       - uses: actions/cache@v4
         with:
@@ -26,6 +26,10 @@ jobs:
         # TODO: #8818 Re-enable quantum tests
         run: pytest
           --ignore=quantum/q_fourier_transform.py
+          --ignore=computer_vision/cnn_classification.py
+          --ignore=dynamic_programming/k_means_clustering_tensorflow.py
+          --ignore=machine_learning/lstm/lstm_prediction.py
+          --ignore=neural_network/input_data.py
           --ignore=project_euler/
           --ignore=scripts/validate_solutions.py
           --cov-report=term-missing:skip-covered

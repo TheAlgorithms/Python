@@ -1343,7 +1343,6 @@
   * [Get Ip Geolocation](web_programming/get_ip_geolocation.py)
   * [Get Top Billionaires](web_programming/get_top_billionaires.py)
   * [Get Top Hn Posts](web_programming/get_top_hn_posts.py)
-  * [Get User Tweets](web_programming/get_user_tweets.py)
   * [Giphy](web_programming/giphy.py)
   * [Instagram Crawler](web_programming/instagram_crawler.py)
   * [Instagram Pic](web_programming/instagram_pic.py)
