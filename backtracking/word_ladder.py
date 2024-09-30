@@ -54,8 +54,8 @@ def word_ladder_backtrack(begin_word: str, end_word: str,
 
         # Try all possible single-letter transformations
         for i in range(len(current_word)):
-            for c in "abcdefghijklmnopqrstuvwxyz":
-                transformed_word = current_word[:i] + c + current_word[i + 1:]
+            for c in "abcdefghijklmnopqrstuvwxyz":  # Try changing each letter
+                transformed_word = current_word[:i] + c + current_word[i + 1 :]
 
                 # If the transformed word is valid and has not been visited
                 if transformed_word in word_set:
