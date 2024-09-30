@@ -63,7 +63,7 @@ def word_ladder(begin_word: str, end_word: str, word_list: list[str]) -> list[st
         # Generate all possible transformations of the current_word
         for i in range(len(current_word)):
             for c in "abcdefghijklmnopqrstuvwxyz":  # Try changing each letter
-                transformed_word = current_word[:i] + c + current_word[i + 1:]
+                transformed_word = current_word[:i] + c + current_word[i + 1 :]
 
                 # valid transformation: If the transformed word is in the word set
                 if transformed_word in word_set:
