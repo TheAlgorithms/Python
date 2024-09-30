@@ -40,11 +40,11 @@ nb_pixels = 666
 def eval_exponential(c_parameter: complex, z_values: np.ndarray) -> np.ndarray:
     """
     Evaluate $e^z + c$.
-    >>> eval_exponential(0, 0)
+    >>> float(eval_exponential(0, 0))
     1.0
-    >>> abs(eval_exponential(1, np.pi*1.j)) < 1e-15
+    >>> bool(abs(eval_exponential(1, np.pi*1.j)) < 1e-15)
     True
-    >>> abs(eval_exponential(1.j, 0)-1-1.j) < 1e-15
+    >>> bool(abs(eval_exponential(1.j, 0)-1-1.j) < 1e-15)
     True
     """
     return np.exp(z_values) + c_parameter
@@ -98,20 +98,20 @@ def iterate_function(
 
     >>> iterate_function(eval_quadratic_polynomial, 0, 3, np.array([0,1,2])).shape
     (3,)
-    >>> np.round(iterate_function(eval_quadratic_polynomial,
+    >>> complex(np.round(iterate_function(eval_quadratic_polynomial,
     ... 0,
     ... 3,
-    ... np.array([0,1,2]))[0])
+    ... np.array([0,1,2]))[0]))
     0j
-    >>> np.round(iterate_function(eval_quadratic_polynomial,
+    >>> complex(np.round(iterate_function(eval_quadratic_polynomial,
     ... 0,
     ... 3,
-    ... np.array([0,1,2]))[1])
+    ... np.array([0,1,2]))[1]))
     (1+0j)
-    >>> np.round(iterate_function(eval_quadratic_polynomial,
+    >>> complex(np.round(iterate_function(eval_quadratic_polynomial,
     ... 0,
     ... 3,
-    ... np.array([0,1,2]))[2])
+    ... np.array([0,1,2]))[2]))
     (256+0j)
     """
 
