@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # List all open pull requests
-prs=$(gh pr list --state open --json number,title,labels --limit 200)
+prs=$(gh pr list --state open --json number,title,labels --limit 500)
 
 # Loop through each pull request
 echo "$prs" | jq -c '.[]' | while read -r pr; do
