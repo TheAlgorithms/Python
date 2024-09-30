@@ -16,7 +16,7 @@ echo "$prs" | jq -c '.[]' | while read -r pr; do
   # If there are failing tests, close the pull request
   if [[ -n "$tests_are_failing" ]]; then
     echo "Closing PR #$pr_number $pr_title due to tests_are_failing label"
-    gh pr close "$pr_number" --comment "Closing tests_are_failing PRs to prepare for Hacktoberfest 2024"
+    gh pr close "$pr_number" --comment "Closing tests_are_failing PRs to prepare for Hacktoberfest"
     sleep 2
   fi
 done

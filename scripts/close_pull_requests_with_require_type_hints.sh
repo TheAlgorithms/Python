@@ -16,6 +16,6 @@ echo "$prs" | jq -c '.[]' | while read -r pr; do
   # If require_type_hints, close the pull request
   if [[ -n "$require_type_hints" ]]; then
     echo "Closing PR #$pr_number $pr_title due to require_type_hints label"
-    gh pr close "$pr_number" --comment "Closing require_type_hints PRs to prepare for Hacktoberfest 2024"
+    gh pr close "$pr_number" --comment "Closing require_type_hints PRs to prepare for Hacktoberfest"
   fi
 done

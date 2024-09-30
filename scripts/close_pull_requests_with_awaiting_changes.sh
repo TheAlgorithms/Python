@@ -16,7 +16,7 @@ echo "$prs" | jq -c '.[]' | while read -r pr; do
   # If awaiting_changes, close the pull request
   if [[ -n "$awaiting_changes" ]]; then
     echo "Closing PR #$pr_number $pr_title due to awaiting_changes label"
-    gh pr close "$pr_number" --comment "Closing awaiting_changes PRs to prepare for Hacktoberfest 2024"
+    gh pr close "$pr_number" --comment "Closing awaiting_changes PRs to prepare for Hacktoberfest"
     sleep 2
   fi
 done

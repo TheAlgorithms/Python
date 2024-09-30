@@ -16,6 +16,6 @@ echo "$prs" | jq -c '.[]' | while read -r pr; do
   # If there are require_descriptive_names, close the pull request
   if [[ -n "$require_descriptive_names" ]]; then
     echo "Closing PR #$pr_number $pr_title due to require_descriptive_names label"
-    gh pr close "$pr_number" --comment "Closing require_descriptive_names PRs to prepare for Hacktoberfest 2024"
+    gh pr close "$pr_number" --comment "Closing require_descriptive_names PRs to prepare for Hacktoberfest"
   fi
 done
