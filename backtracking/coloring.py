@@ -1,6 +1,6 @@
 """
-Graph Coloring (also called the "m coloring problem") is the problem of 
-assigning at most 'm' colors to the vertices of a graph such that 
+Graph Coloring (also called the "m coloring problem") is the problem of
+assigning at most 'm' colors to the vertices of a graph such that
 no two adjacent vertices share the same color.
 
 Wikipedia: https://en.wikipedia.org/wiki/Graph_coloring
@@ -119,7 +119,7 @@ def util_color(
 
 def color(graph: list[list[int]], max_colors: int) -> list[int]:
     """
-    Attempts to color the graph with at most max_colors colors such that no two adjacent 
+    Attempts to color the graph with at most max_colors colors such that no two adjacent
     vertices have the same color. If it is possible, returns the list of color assignments;
     otherwise, returns an empty list.
 
