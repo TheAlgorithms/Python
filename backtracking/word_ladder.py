@@ -10,8 +10,9 @@ Wikipedia: https://en.wikipedia.org/wiki/Word_ladder
 """
 
 
-def word_ladder_backtrack(begin_word: str, end_word: str,
-                          word_list: list[str]) -> list[str]:
+def word_ladder_backtrack(
+    begin_word: str, end_word: str, word_list: list[str]
+) -> list[str]:
     """
     Solve the Word Ladder problem using Backtracking and return
     the list of transformations from begin_word to end_word.
@@ -62,8 +63,7 @@ def word_ladder_backtrack(begin_word: str, end_word: str,
                     # Remove it from the set to avoid revisiting
                     word_set.remove(transformed_word)
                     # Recur with the new word added to the path
-                    result = backtrack(
-                        transformed_word, [*path, transformed_word])
+                    result = backtrack(transformed_word, [*path, transformed_word])
                     if result:  # If we found a valid result, return it
                         return result
                     # Add it back to the set after exploring this path (backtrack)
