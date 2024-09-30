@@ -1,6 +1,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 
+
 class DenseLayer:
     def __init__(self, units: int, activation=None, learning_rate: float = 0.3):
         self.units = units
@@ -31,6 +32,7 @@ class DenseLayer:
         else:
             return 1
 
+
 class BPNN:
     def __init__(self):
         self.layers = []
@@ -54,7 +56,9 @@ class BPNN:
             print("weight.shape ", layer.weight.shape)
             print("bias.shape ", layer.bias.shape)
 
-    def train(self, xdata: np.ndarray, ydata: np.ndarray, train_round: int, accuracy: float):
+    def train(
+        self, xdata: np.ndarray, ydata: np.ndarray, train_round: int, accuracy: float
+    ):
         self.train_round = train_round
         self.accuracy = accuracy
 
@@ -100,7 +104,8 @@ class BPNN:
         plt.xlabel("step")
         plt.ylabel("loss")
         plt.show()
-        plt.pause(0.1 )
+        plt.pause(0.1)
+
 
 def example():
     rng = np.random.default_rng()
@@ -125,6 +130,7 @@ def example():
     model.build()
     model.summary()
     model.train(xdata=x, ydata=y, train_round=100, accuracy=0.01)
+
 
 if __name__ == "__main__":
     example()
