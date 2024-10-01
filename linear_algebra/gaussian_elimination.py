@@ -51,7 +51,7 @@ def gaussian_elimination(
     Arguments:
         coefficients: Matrix of coefficients
         vector: Vector representing the right-hand side of the system
-    
+
     Returns:
         Solution vector.
 
