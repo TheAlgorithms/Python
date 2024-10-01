@@ -2,21 +2,20 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-# This is a sorted linked list class that creates 
+# This is a sorted linked list class that creates
 # a sorted linked list of integer datatype
 
 
 @dataclass
 class Node:
-
     def __init__(self, data: int) -> None:
         """Constructor of Node class
 
         Args:
             data (int): Data of node
-            
+
         Doctests
-        
+
         >>> Node(20)
         Node(20)
         >>> Node(27)
