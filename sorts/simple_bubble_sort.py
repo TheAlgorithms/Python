@@ -22,10 +22,12 @@ def bubble_sort(nums: list[int]) -> list[int]:
                 nums[j], nums[j + 1] = nums[j + 1], nums[j]
     return nums
 
+
 nums = [65, 66, 12, 4, 9, 10, 32, 2]  # 01
 ordered_nums = bubble_sort(nums)  # 06
 print("The result:", ordered_nums)
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
