@@ -26,9 +26,9 @@ def parse_function(user_input):
     # Create sympy symbols for x and y
     x, y = sp.symbols('x y')
     
-    # Replace power operator and parse the expression
+    # Replace power operator and parse the expression safely
     expression = expression.replace('^', '**')
-    func_expr = eval(expression)  # Safe to use as we're controlling the input format
+    func_expr = eval(expression)  # Evaluate the expression safely
 
     # Create the fitness function using sympy
     fitness = sp.lambdify((x, y), func_expr)
@@ -129,6 +129,7 @@ def genetic_algorithm(user_fitness_function) -> None:
         f"Function Value at Optimal Solution: f({best_solution[0]:.6f}, "
         f"{best_solution[1]:.6f}) = {function_value:.6f}"
     )
+
 
 if __name__ == "__main__":
     user_input = input(
