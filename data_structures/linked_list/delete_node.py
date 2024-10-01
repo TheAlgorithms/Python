@@ -18,7 +18,7 @@ class Node:
 
     def delete(self) -> None:
         """
-        Deletes the current node from the linked list by 
+        Deletes the current node from the linked list by
         copying the data from the next node
         and bypassing the next node.
 
