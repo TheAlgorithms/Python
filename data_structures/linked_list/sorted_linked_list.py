@@ -2,26 +2,27 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-# This is a sorted linked list class that creates a sorted linked list of integer datatype
+# This is a sorted linked list class that creates 
+# a sorted linked list of integer datatype
 
 
 @dataclass
 class Node:
-    """
-    Create and initialize Node class instance.
-    >>> Node(20)
-    Node(20)
-    >>> Node(27)
-    Node(27)
-    >>> Node(None)
-    Node(None)
-    """
 
     def __init__(self, data: int) -> None:
-        """COnstructor of Node class
+        """Constructor of Node class
 
         Args:
             data (int): Data of node
+            
+        Doctests
+        
+        >>> Node(20)
+        Node(20)
+        >>> Node(27)
+        Node(27)
+        >>> Node(None)
+        Node(None)
         """
         self.data: int = data
         self.next_node: Node | None = None
@@ -340,7 +341,7 @@ class SortedLinkedList:
 
 
 if __name__ == "__main__":
-    linked_list = SortedLinedList()
+    linked_list = SortedLinkedList()
     while True:
         print("Enter")
         print("1.  Insert")
