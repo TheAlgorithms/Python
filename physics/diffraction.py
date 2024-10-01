@@ -1,5 +1,5 @@
 import math
-def check_min_intensity(slit_width:int=1,diff_angle:int=0, wavelength:int=100)->bool:
+def check_min_intensity(slit_width:float=1.0,diff_angle:float=0.0, wavelength:float=100.0)->bool:
     """
     Checks for the condition of minimum intensity in a diffraction pattern.
 
@@ -20,7 +20,7 @@ def check_min_intensity(slit_width:int=1,diff_angle:int=0, wavelength:int=100)->
     n_val = round(slit_width*(diff_angle)/wavelength,5)
     r_val = (n_val-math.floor(n_val)==0)
     return r_val
-def check_max_intensity(slit_width:int =1,diff_angle:int =0,wavelength:int =100)->bool:
+def check_max_intensity(slit_width:float =1.0,diff_angle:float =0.0,wavelength:float =100.0)->bool:
     """
     Checks for the condition of maximum intensity in a diffraction pattern.
     
@@ -41,7 +41,7 @@ def check_max_intensity(slit_width:int =1,diff_angle:int =0,wavelength:int =100)
     n_val = round(((2*slit_width*diff_angle)-wavelength)/(2*wavelength),4)
     r_val = (n_val-math.floor(n_val)==0)
     return r_val
-def intensity_single_slit(slit_width:int =1,diff_angle:int =0,wavelength:int =100)->int:
+def intensity_single_slit(slit_width:float =1.0,diff_angle:float =0.0,wavelength:float =100.0)->float:
     """
     Computes the intensity for a single slit diffraction pattern.
     
@@ -59,7 +59,7 @@ def intensity_single_slit(slit_width:int =1,diff_angle:int =0,wavelength:int =10
     beta = math.pi*slit_width*(math.sin(diff_angle)/wavelength)
     i_coeff = (math.sin(beta)/beta)**2
     return f"{i_coeff} I0"
-def intensity_double_slit(path_diff:int=0,intensity_max:int="I0")->int:
+def intensity_double_slit(path_diff:int=0,intensity_max:str|float="I0")->str:
     """
     Computes the intensity for a double slit diffraction pattern.
     
@@ -77,7 +77,7 @@ def intensity_double_slit(path_diff:int=0,intensity_max:int="I0")->int:
     >>> intensity_double_slit(0)
     '4.0 I0'
     """
-    r_val = 4*intensity_max*(math.cos(path_diff/2))**2 if (type(intensity_max) is int) else f"{4*(math.cos(path_diff/2)**2)} I0"
+    r_val = str(4*intensity_max*(math.cos(path_diff/2))**2) if (type(intensity_max) is float or type(intensity_max) is int) else f"{4*(math.cos(path_diff/2)**2)} I0"
     return r_val
 if(__name__=="__main__"):
     import doctest
