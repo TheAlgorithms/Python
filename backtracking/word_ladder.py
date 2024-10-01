@@ -12,7 +12,9 @@ Wikipedia: https://en.wikipedia.org/wiki/Word_ladder
 import string
 
 
-def backtrack(current_word: str, path: list[str], end_word: str, word_set: set[str]) -> list[str]:
+def backtrack(
+    current_word: str, path: list[str], end_word: str, word_set: set[str]
+) -> list[str]:
     """
     Helper function to perform backtracking to find the transformation
     from the current_word to the end_word.
