@@ -1,4 +1,3 @@
-# XGBoost Classifier Example
 import numpy as np
 from sklearn.datasets import load_iris
 from sklearn.metrics import accuracy_score
@@ -11,63 +10,74 @@ class SimpleXGBoost:
         self.learning_rate = learning_rate
         self.max_depth = max_depth
         self.trees = []
+        self.classes = None
 
     def _negative_gradient(self, y_true, y_pred):
-        """Compute the negative gradient (residuals) for classification (log-odds)."""
-        return y_true - y_pred
+        """Compute the negative gradient for multi-class classification."""
+        return y_true - self._sigmoid(y_pred)
+
+    def _sigmoid(self, x):
+        """Apply sigmoid function."""
+        return 1 / (1 + np.exp(-x))
 
     def _update_predictions(self, predictions, residuals):
         """Update the predictions using the residuals and learning rate."""
         return predictions + self.learning_rate * residuals
 
     def fit(self, x, y):
-        """Fit the model using gradient boosting."""
-        # Initialize predictions as the average of the target (for binary classification)
-        predictions = np.full(y.shape, np.mean(y))
+        """Fit the model using gradient boosting for multi-class classification."""
+        self.classes = np.unique(y)
+        n_classes = len(self.classes)
         
-        for _ in range(self.n_estimators):
-            # Compute residuals (negative gradient)
-            residuals = self._negative_gradient(y, predictions)
+        # One-vs-all approach
+        self.trees = [[] for _ in range(n_classes)]
+        
+        # Convert y to one-hot encoding
+        y_one_hot = np.eye(n_classes)[y]
+        
+        for class_idx in range(n_classes):
+            predictions = np.zeros(x.shape[0])
             
-            # Fit a weak learner (decision tree) to the residuals
-            tree = DecisionTreeClassifier(max_depth=self.max_depth)
-            tree.fit(x, residuals)
-            
-            # Update the predictions
-            predictions = self._update_predictions(predictions, tree.predict(x))
-            
-            # Store the tree
-            self.trees.append(tree)
+            for _ in range(self.n_estimators):
+                # Compute residuals (negative gradient)
+                residuals = self._negative_gradient(y_one_hot[:, class_idx], predictions)
+                
+                # Fit a weak learner (decision tree) to the residuals
+                tree = DecisionTreeClassifier(max_depth=self.max_depth)
+                tree.fit(x, residuals)
+                
+                # Update the predictions
+                predictions = self._update_predictions(predictions, tree.predict(x))
+                
+                # Store the tree
+                self.trees[class_idx].append(tree)
 
     def predict(self, x):
-        """Make predictions by summing the weak learners' outputs."""
-        predictions = np.zeros(x.shape[0])
+        """Make predictions for multi-class classification."""
+        n_classes = len(self.classes)
+        class_scores = np.zeros((x.shape[0], n_classes))
         
-        for tree in self.trees:
-            predictions += self.learning_rate * tree.predict(x)
+        for class_idx in range(n_classes):
+            predictions = np.zeros(x.shape[0])
+            for tree in self.trees[class_idx]:
+                predictions += self.learning_rate * tree.predict(x)
+            class_scores[:, class_idx] = predictions
         
-        # Convert the predictions to binary (0 or 1) for classification
-        return np.round(predictions).astype(int)
-
+        # Return the class with the highest score
+        return self.classes[np.argmax(class_scores, axis=1)]
 
 def data_handling(data: dict) -> tuple:
-    # Split dataset into features and target.  Data is features.
     """
-    >>> data_handling((
-    ...  {'data':'[ 5.1 3.5 1.4 0.2 ]'
-    ...  ,'target':([0])}))
-    ('[ 5.1 3.5 1.4 0.2 ]', [0])
+    Split dataset into features and target.
+    
+    >>> data_handling({'data': np.array([[5.1, 3.5, 1.4, 0.2]]), 'target': np.array([0])})
+    (array([[5.1, 3.5, 1.4, 0.2]]), array([0]))
     """
     return (data["data"], data["target"])
 
-
 def main() -> None:
     """
-    The URL for this algorithm
-    https://xgboost.readthedocs.io/en/stable/
-    Iris dataset is used to demonstrate the algorithm.
-
-    Expected accuracy: 0.9666666666666666
+    XGBoost Classifier Example using the Iris dataset.
     """
     # Load Iris dataset
     iris = load_iris()
@@ -81,9 +91,7 @@ def main() -> None:
     # Accuracy printing
     print(f"Accuracy: {accuracy_score(y_test, predictions)}")
 
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod(verbose=True)
     main()

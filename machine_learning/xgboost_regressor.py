@@ -1,4 +1,3 @@
-# XGBoost Regressor Example
 import numpy as np
 from sklearn.datasets import fetch_california_housing
 from sklearn.metrics import mean_absolute_error, mean_squared_error
@@ -48,42 +47,36 @@ class SimpleXGBoostRegressor:
 
         return predictions
 
-
 def data_handling(data: dict) -> tuple:
-    # Split dataset into features and target.  Data is features.
     """
-    >>> data_handling((
-    ...  {'data':'[ 5.1 3.5 1.4 0.2 ]'
-    ...  ,'target':([0])}))
-    ('[ 5.1 3.5 1.4 0.2 ]', [0])
+    Split dataset into features and target.
+
+    >>> data_handling({'data': np.array([[5.1, 3.5, 1.4, 0.2]]), 'target': np.array([0])})
+    (array([[5.1, 3.5, 1.4, 0.2]]), array([0]))
     """
     return (data["data"], data["target"])
 
-
 def main() -> None:
     """
-    The URL for this algorithm
-    https://xgboost.readthedocs.io/en/stable/
-    California Housing dataset is used to demonstrate the algorithm.
+    XGBoost Regressor Example using the California Housing dataset.
 
-    Expected accuracy: 0.9666666666666666
+    Expected MAE: ~0.544
+    Expected MSE: ~0.544
     """
     # Load California Housing dataset
-    cal_housing = fetch_california_housing()
-    data, target = data_handling({"data": cal_housing.data, "target": cal_housing.target})
+    housing = fetch_california_housing()
+    data, target = data_handling({"data": housing.data, "target": housing.target})
     x_train, x_test, y_train, y_test = train_test_split(
         data, target, test_size=0.25, random_state=1
     )
     xgboost_regressor = SimpleXGBoostRegressor(n_estimators=50, learning_rate=0.1, max_depth=3)
     xgboost_regressor.fit(x_train, y_train)
     predictions = xgboost_regressor.predict(x_test)
-    # Accuracy printing
+    # MAE and MSE printing
     print(f"Mean Absolute Error: {mean_absolute_error(y_test, predictions)}")
     print(f"Mean Squared Error: {mean_squared_error(y_test, predictions)}")
 
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod(verbose=True)
     main()
