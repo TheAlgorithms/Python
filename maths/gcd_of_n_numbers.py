@@ -1,7 +1,6 @@
 """
 Gcd of N Numbers
 Reference: https://en.wikipedia.org/wiki/Greatest_common_divisor
-Reference for tail recursion: https://www.geeksforgeeks.org/tail-recursion/
 """
 
 from collections import Counter
@@ -106,59 +105,5 @@ def get_greatest_common_divisor(*numbers: int) -> int:
     return mult
 
 
-def gcd_tail_recursive(a: int, b: int) -> int:
-    """
-    Calculate the Greatest Common Divisor (GCD) using a tail-recursive approach.
-
-    This function uses the tail-recursive form of
-    the Euclidean algorithm to calculate
-    the GCD of two integers `a` and `b`. The GCD
-    is the largest integer that divides both
-    `a` and `b` without leaving a remainder.
-
-    Tail recursion is a form of recursion where the
-    recursive call is the last operation
-    in the function. In languages that
-    support tail call optimization, this allows the
-    function to be optimized by reusing the current
-    function's stack frame for the
-    next call. Python, however, does not support tail
-    call optimization, but using this
-    style can still help structure the
-    recursion for better clarity.
-
-    Args:
-        a (int): The first integer.
-        b (int): The second integer.
-
-    Returns:
-        int: The greatest common divisor of `a` and `b`.
-
-    Raises:
-        ValueError: If both `a` and `b` are zero, as the GCD is not defined for this case.
-
-    Example:
-        >>> gcd_tail_recursive(24, 40)
-        8
-        >>> gcd_tail_recursive(11, 37)
-        1
-        >>> gcd_tail_recursive(0, 5)
-        5
-        >>> gcd_tail_recursive(5, 0)
-        5
-        >>> gcd_tail_recursive(0, 0)
-        ValueError: GCD is not defined for both a and b being zero.
-
-    Notes:
-        - gcd(a, 0) = abs(a)
-        - gcd(0, b) = abs(b)
-        - gcd(0, 0) is undefined.
-    """
-    if b == 0:
-        return abs(a)
-    return gcd_tail_recursive(b, a % b)
-
-
 if __name__ == "__main__":
     print(get_greatest_common_divisor(18, 45))  # 9
-    print(gcd_tail_recursive(23, 37))  # 1
