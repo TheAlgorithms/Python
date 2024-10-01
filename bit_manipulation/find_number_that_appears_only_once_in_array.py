@@ -1,7 +1,7 @@
-def find_single_number(nums):
+def find_single_number(nums: List[int]) -> int:
     """
     LeetCode 136: Single Number
-    https://leetcode.com/problems/single-number/description/
+    https://leetcode.com/problems/single-number/
 
     >>> find_single_number([1, 4, 1, 7, 9, 2, 9, 7, 2])
     4
