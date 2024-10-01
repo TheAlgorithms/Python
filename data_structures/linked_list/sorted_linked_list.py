@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from collections.abc import Iterator
 from dataclasses import dataclass
 
 """
@@ -17,7 +16,7 @@ class Node:
     def __repr__(self):
         return f"Node({self.data}, {self.next_node})"
     
-class SortedLinedList:
+class SortedLinkedList:
     def __init__(self):
         self.numNodes : int = 0
         self.head: Node | None = None
@@ -191,7 +190,7 @@ class SortedLinedList:
     
 
 if __name__ == "__main__":
-    linkedList=SortedLinedList()
+    linked_list=SortedLinkedList()
     while True:
         print("Enter")
         print("1.  Insert")
@@ -202,15 +201,15 @@ if __name__ == "__main__":
         
         if choice == '1':
             data = int(input("Enter a number: "))
-            linkedList.insert(data)
+            linked_list.insert(data)
         elif choice == '2':
-            linkedList.display()
+            linked_list.display()
         elif choice == '3':
             data = int(input("Enter the data to delete: "))
-            if linkedList.delete(data):
-                print("Node with data {} deleted successfully".format(data))
+            if linked_list.delete(data):
+                print(f"Node with data {data} deleted successfully")
             else:
-                print("Node with data {} not found in the list".format(data))
+                print(f"Node with data {data} not found in the list")
         elif choice == '4':
             break
         else:
