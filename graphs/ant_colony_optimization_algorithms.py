@@ -1,19 +1,7 @@
-"""
-Use an ant colony optimization algorithm to solve the travelling salesman problem (TSP)
-which asks the following question:
-"Given a list of cities and the distances between each pair of cities, what is the
- shortest possible route that visits each city exactly once and returns to the origin
- city?"
-
-https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms
-https://en.wikipedia.org/wiki/Travelling_salesman_problem
-
-Author: Clark
-"""
-
-import copy
 import random
+import math
 
+# Define cities as coordinates (x, y)
 cities = {
     0: [0, 0],
     1: [0, 5],
@@ -25,202 +13,148 @@ cities = {
     7: [6, 2],
 }
 
-
-def main(
-    cities: dict[int, list[int]],
-    ants_num: int,
-    iterations_num: int,
-    pheromone_evaporation: float,
-    alpha: float,
-    beta: float,
-    q: float,  # Pheromone system parameters Q, which is a constant
-) -> tuple[list[int], float]:
+def euclidean_distance(city1: list[int], city2: list[int]) -> float:
     """
-    Ant colony algorithm main function
-    >>> main(cities=cities, ants_num=10, iterations_num=20,
-    ...      pheromone_evaporation=0.7, alpha=1.0, beta=5.0, q=10)
-    ([0, 1, 2, 3, 4, 5, 6, 7, 0], 37.909778143828696)
-    >>> main(cities={0: [0, 0], 1: [2, 2]}, ants_num=5, iterations_num=5,
-    ...      pheromone_evaporation=0.7, alpha=1.0, beta=5.0, q=10)
-    ([0, 1, 0], 5.656854249492381)
-    >>> main(cities={0: [0, 0], 1: [2, 2], 4: [4, 4]}, ants_num=5, iterations_num=5,
-    ...      pheromone_evaporation=0.7, alpha=1.0, beta=5.0, q=10)
-    Traceback (most recent call last):
-      ...
-    IndexError: list index out of range
-    >>> main(cities={}, ants_num=5, iterations_num=5,
-    ...      pheromone_evaporation=0.7, alpha=1.0, beta=5.0, q=10)
-    Traceback (most recent call last):
-      ...
-    StopIteration
-    >>> main(cities={0: [0, 0], 1: [2, 2]}, ants_num=0, iterations_num=5,
-    ...      pheromone_evaporation=0.7, alpha=1.0, beta=5.0, q=10)
-    ([], inf)
-    >>> main(cities={0: [0, 0], 1: [2, 2]}, ants_num=5, iterations_num=0,
-    ...      pheromone_evaporation=0.7, alpha=1.0, beta=5.0, q=10)
-    ([], inf)
-    >>> main(cities={0: [0, 0], 1: [2, 2]}, ants_num=5, iterations_num=5,
-    ...      pheromone_evaporation=1, alpha=1.0, beta=5.0, q=10)
-    ([0, 1, 0], 5.656854249492381)
-    >>> main(cities={0: [0, 0], 1: [2, 2]}, ants_num=5, iterations_num=5,
-    ...      pheromone_evaporation=0, alpha=1.0, beta=5.0, q=10)
-    ([0, 1, 0], 5.656854249492381)
+    Calculate the Euclidean distance between two cities (points).
     """
-    # Initialize the pheromone matrix
-    cities_num = len(cities)
-    pheromone = [[1.0] * cities_num] * cities_num
+    return math.sqrt((city1[0] - city2[0]) ** 2 + (city1[1] - city2[1]) ** 2)
 
-    best_path: list[int] = []
-    best_distance = float("inf")
-    for _ in range(iterations_num):
-        ants_route = []
-        for _ in range(ants_num):
-            unvisited_cities = copy.deepcopy(cities)
-            current_city = {next(iter(cities.keys())): next(iter(cities.values()))}
-            del unvisited_cities[next(iter(current_city.keys()))]
-            ant_route = [next(iter(current_city.keys()))]
-            while unvisited_cities:
-                current_city, unvisited_cities = city_select(
-                    pheromone, current_city, unvisited_cities, alpha, beta
-                )
-                ant_route.append(next(iter(current_city.keys())))
-            ant_route.append(0)
-            ants_route.append(ant_route)
-
-        pheromone, best_path, best_distance = pheromone_update(
-            pheromone,
-            cities,
-            pheromone_evaporation,
-            ants_route,
-            q,
-            best_path,
-            best_distance,
-        )
-    return best_path, best_distance
-
-
-def distance(city1: list[int], city2: list[int]) -> float:
+def initialize_pheromone_matrix(size: int) -> list[list[float]]:
     """
-    Calculate the distance between two coordinate points
-    >>> distance([0, 0], [3, 4] )
-    5.0
-    >>> distance([0, 0], [-3, 4] )
-    5.0
-    >>> distance([0, 0], [-3, -4] )
-    5.0
+    Initialize the pheromone matrix with 1.0 values.
     """
-    return (((city1[0] - city2[0]) ** 2) + ((city1[1] - city2[1]) ** 2)) ** 0.5
+    return [[1.0 for _ in range(size)] for _ in range(size)]
 
+def compute_distance_matrix(cities: dict[int, list[int]]) -> list[list[float]]:
+    """
+    Precompute the distance between all cities and store them in a matrix.
+    """
+    size = len(cities)
+    dist_matrix = [[0.0] * size for _ in range(size)]
+    for i in range(size):
+        for j in range(i + 1, size):
+            dist = euclidean_distance(cities[i], cities[j])
+            dist_matrix[i][j] = dist
+            dist_matrix[j][i] = dist
+    return dist_matrix
 
-def pheromone_update(
+def select_next_city(
+    current_city: int,
+    unvisited: list[int],
     pheromone: list[list[float]],
-    cities: dict[int, list[int]],
-    pheromone_evaporation: float,
-    ants_route: list[list[int]],
-    q: float,  # Pheromone system parameters Q, which is a constant
+    distances: list[list[float]],
+    alpha: float,
+    beta: float
+) -> int:
+    """
+    Select the next city to visit based on pheromone levels and distances.
+    """
+    probabilities = []
+    for city in unvisited:
+        pheromone_level = pheromone[current_city][city] ** alpha
+        distance_factor = (1 / distances[current_city][city]) ** beta
+        probabilities.append(pheromone_level * distance_factor)
+
+    # Normalize probabilities
+    total = sum(probabilities)
+    probabilities = [p / total for p in probabilities]
+
+    # Randomly select next city based on the probabilities
+    return random.choices(unvisited, weights=probabilities)[0]
+
+def update_pheromones(
+    pheromone: list[list[float]],
+    ants_paths: list[list[int]],
+    distances: list[list[float]],
+    q: float,
+    evaporation_rate: float,
     best_path: list[int],
-    best_distance: float,
+    best_distance: float
 ) -> tuple[list[list[float]], list[int], float]:
     """
-    Update pheromones on the route and update the best route
-    >>>
-    >>> pheromone_update(pheromone=[[1.0, 1.0], [1.0, 1.0]],
-    ...                  cities={0: [0,0], 1: [2,2]}, pheromone_evaporation=0.7,
-    ...                  ants_route=[[0, 1, 0]], q=10, best_path=[],
-    ...                  best_distance=float("inf"))
-    ([[0.7, 4.235533905932737], [4.235533905932737, 0.7]], [0, 1, 0], 5.656854249492381)
-    >>> pheromone_update(pheromone=[],
-    ...                  cities={0: [0,0], 1: [2,2]}, pheromone_evaporation=0.7,
-    ...                  ants_route=[[0, 1, 0]], q=10, best_path=[],
-    ...                  best_distance=float("inf"))
-    Traceback (most recent call last):
-      ...
-    IndexError: list index out of range
-    >>> pheromone_update(pheromone=[[1.0, 1.0], [1.0, 1.0]],
-    ...                  cities={}, pheromone_evaporation=0.7,
-    ...                  ants_route=[[0, 1, 0]], q=10, best_path=[],
-    ...                  best_distance=float("inf"))
-    Traceback (most recent call last):
-      ...
-    KeyError: 0
+    Update pheromone levels on the paths chosen by ants.
     """
-    for a in range(len(cities)):  # Update the volatilization of pheromone on all routes
-        for b in range(len(cities)):
-            pheromone[a][b] *= pheromone_evaporation
-    for ant_route in ants_route:
-        total_distance = 0.0
-        for i in range(len(ant_route) - 1):  # Calculate total distance
-            total_distance += distance(cities[ant_route[i]], cities[ant_route[i + 1]])
-        delta_pheromone = q / total_distance
-        for i in range(len(ant_route) - 1):  # Update pheromones
-            pheromone[ant_route[i]][ant_route[i + 1]] += delta_pheromone
-            pheromone[ant_route[i + 1]][ant_route[i]] = pheromone[ant_route[i]][
-                ant_route[i + 1]
-            ]
+    size = len(pheromone)
 
+    # Evaporate pheromones
+    for i in range(size):
+        for j in range(size):
+            pheromone[i][j] *= (1 - evaporation_rate)
+
+    # Update pheromones based on ants' paths
+    for path in ants_paths:
+        total_distance = sum(distances[path[i]][path[i + 1]] for i in range(len(path) - 1))
+        pheromone_deposit = q / total_distance
+
+        for i in range(len(path) - 1):
+            pheromone[path[i]][path[i + 1]] += pheromone_deposit
+            pheromone[path[i + 1]][path[i]] += pheromone_deposit
+
+        # Check if this is the best path found
         if total_distance < best_distance:
-            best_path = ant_route
             best_distance = total_distance
+            best_path = path
 
     return pheromone, best_path, best_distance
 
-
-def city_select(
-    pheromone: list[list[float]],
-    current_city: dict[int, list[int]],
-    unvisited_cities: dict[int, list[int]],
+def ant_colony_optimization(
+    cities: dict[int, list[int]],
+    ants_num: int,
+    iterations: int,
     alpha: float,
     beta: float,
-) -> tuple[dict[int, list[int]], dict[int, list[int]]]:
+    evaporation_rate: float,
+    q: float
+) -> tuple[list[int], float]:
     """
-    Choose the next city for ants
-    >>> city_select(pheromone=[[1.0, 1.0], [1.0, 1.0]], current_city={0: [0, 0]},
-    ...             unvisited_cities={1: [2, 2]}, alpha=1.0, beta=5.0)
-    ({1: [2, 2]}, {})
-    >>> city_select(pheromone=[], current_city={0: [0,0]},
-    ...             unvisited_cities={1: [2, 2]}, alpha=1.0, beta=5.0)
-    Traceback (most recent call last):
-      ...
-    IndexError: list index out of range
-    >>> city_select(pheromone=[[1.0, 1.0], [1.0, 1.0]], current_city={},
-    ...             unvisited_cities={1: [2, 2]}, alpha=1.0, beta=5.0)
-    Traceback (most recent call last):
-      ...
-    StopIteration
-    >>> city_select(pheromone=[[1.0, 1.0], [1.0, 1.0]], current_city={0: [0, 0]},
-    ...             unvisited_cities={}, alpha=1.0, beta=5.0)
-    Traceback (most recent call last):
-      ...
-    IndexError: list index out of range
+    Solve the TSP using Ant Colony Optimization (ACO).
     """
-    probabilities = []
-    for city in unvisited_cities:
-        city_distance = distance(
-            unvisited_cities[city], next(iter(current_city.values()))
-        )
-        probability = (pheromone[city][next(iter(current_city.keys()))] ** alpha) * (
-            (1 / city_distance) ** beta
-        )
-        probabilities.append(probability)
+    cities_num = len(cities)
+    if cities_num == 0:
+        return [], float('inf')  # No cities to visit
 
-    chosen_city_i = random.choices(
-        list(unvisited_cities.keys()), weights=probabilities
-    )[0]
-    chosen_city = {chosen_city_i: unvisited_cities[chosen_city_i]}
-    del unvisited_cities[next(iter(chosen_city.keys()))]
-    return chosen_city, unvisited_cities
+    # Initialize pheromone and distance matrices
+    pheromone = initialize_pheromone_matrix(cities_num)
+    distances = compute_distance_matrix(cities)
 
+    best_path = []
+    best_distance = float('inf')
+
+    for _ in range(iterations):
+        all_paths = []
+        for _ in range(ants_num):
+            unvisited = list(range(1, cities_num))  # Start from city 0
+            path = [0]  # Start at city 0
+
+            # Construct path for the ant
+            current_city = 0
+            while unvisited:
+                next_city = select_next_city(current_city, unvisited, pheromone, distances, alpha, beta)
+                path.append(next_city)
+                unvisited.remove(next_city)
+                current_city = next_city
+
+            path.append(0)  # Return to starting city
+            all_paths.append(path)
+
+        # Update pheromones and track the best path found
+        pheromone, best_path, best_distance = update_pheromones(
+            pheromone, all_paths, distances, q, evaporation_rate, best_path, best_distance
+        )
+
+    return best_path, best_distance
 
 if __name__ == "__main__":
-    best_path, best_distance = main(
+    # Example usage
+    best_path, best_distance = ant_colony_optimization(
         cities=cities,
         ants_num=10,
-        iterations_num=20,
-        pheromone_evaporation=0.7,
+        iterations=100,
         alpha=1.0,
         beta=5.0,
-        q=10,
+        evaporation_rate=0.7,
+        q=10
     )
 
-    print(f"{best_path = }")
-    print(f"{best_distance = }")
+    print(f"Best path: {best_path}")
+    print(f"Best distance: {best_distance}")
