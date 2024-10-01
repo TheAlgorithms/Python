@@ -4,6 +4,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 
+
 class SimpleXGBoost:
     def __init__(self, n_estimators=100, learning_rate=0.1, max_depth=3):
         self.n_estimators = n_estimators
@@ -28,27 +29,29 @@ class SimpleXGBoost:
         """Fit the model using gradient boosting for multi-class classification."""
         self.classes = np.unique(y)
         n_classes = len(self.classes)
-        
+
         # One-vs-all approach
         self.trees = [[] for _ in range(n_classes)]
-        
+
         # Convert y to one-hot encoding
         y_one_hot = np.eye(n_classes)[y]
-        
+
         for class_idx in range(n_classes):
             predictions = np.zeros(x.shape[0])
-            
+
             for _ in range(self.n_estimators):
                 # Compute residuals (negative gradient)
-                residuals = self._negative_gradient(y_one_hot[:, class_idx], predictions)
-                
+                residuals = self._negative_gradient(
+                    y_one_hot[:, class_idx], predictions
+                )
+
                 # Fit a weak learner (decision tree) to the residuals
                 tree = DecisionTreeClassifier(max_depth=self.max_depth)
                 tree.fit(x, residuals)
-                
+
                 # Update the predictions
                 predictions = self._update_predictions(predictions, tree.predict(x))
-                
+
                 # Store the tree
                 self.trees[class_idx].append(tree)
 
@@ -56,24 +59,26 @@ class SimpleXGBoost:
         """Make predictions for multi-class classification."""
         n_classes = len(self.classes)
         class_scores = np.zeros((x.shape[0], n_classes))
-        
+
         for class_idx in range(n_classes):
             predictions = np.zeros(x.shape[0])
             for tree in self.trees[class_idx]:
                 predictions += self.learning_rate * tree.predict(x)
             class_scores[:, class_idx] = predictions
-        
+
         # Return the class with the highest score
         return self.classes[np.argmax(class_scores, axis=1)]
+
 
 def data_handling(data: dict) -> tuple:
     """
     Split dataset into features and target.
-    
+
     >>> data_handling({'data': np.array([[5.1, 3.5, 1.4, 0.2]]), 'target': np.array([0])})
     (array([[5.1, 3.5, 1.4, 0.2]]), array([0]))
     """
     return (data["data"], data["target"])
+
 
 def main() -> None:
     """
@@ -91,7 +96,9 @@ def main() -> None:
     # Accuracy printing
     print(f"Accuracy: {accuracy_score(y_test, predictions)}")
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)
     main()

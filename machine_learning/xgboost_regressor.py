@@ -4,6 +4,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
 
+
 class SimpleXGBoostRegressor:
     def __init__(self, n_estimators=100, learning_rate=0.1, max_depth=3):
         self.n_estimators = n_estimators
@@ -47,6 +48,7 @@ class SimpleXGBoostRegressor:
 
         return predictions
 
+
 def data_handling(data: dict) -> tuple:
     """
     Split dataset into features and target.
@@ -55,6 +57,7 @@ def data_handling(data: dict) -> tuple:
     (array([[5.1, 3.5, 1.4, 0.2]]), array([0]))
     """
     return (data["data"], data["target"])
+
 
 def main() -> None:
     """
@@ -69,14 +72,18 @@ def main() -> None:
     x_train, x_test, y_train, y_test = train_test_split(
         data, target, test_size=0.25, random_state=1
     )
-    xgboost_regressor = SimpleXGBoostRegressor(n_estimators=50, learning_rate=0.1, max_depth=3)
+    xgboost_regressor = SimpleXGBoostRegressor(
+        n_estimators=50, learning_rate=0.1, max_depth=3
+    )
     xgboost_regressor.fit(x_train, y_train)
     predictions = xgboost_regressor.predict(x_test)
     # MAE and MSE printing
     print(f"Mean Absolute Error: {mean_absolute_error(y_test, predictions)}")
     print(f"Mean Squared Error: {mean_squared_error(y_test, predictions)}")
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)
     main()
