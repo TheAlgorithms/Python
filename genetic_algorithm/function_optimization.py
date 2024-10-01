@@ -24,7 +24,7 @@ def parse_function(user_input):
         raise ValueError("Invalid function format. Please use 'f(x, y) = ...'.")
 
     # Replace variable names and power operator
-    expression = expression.replace('^', '**').replace('x', 'x[0]').replace('y', 'x[1]')
+    expression = expression.replace("^", "**").replace("x", "x[0]").replace("y", "x[1]")
 
     # Create the fitness function
     def fitness(x):
@@ -90,7 +90,7 @@ def genetic_algorithm(user_fitness_function) -> None:
 
         # Selection
         selected_parents = population[rng.choice(population_size, population_size)]
-        
+
         # Crossover
         offspring = []
         for i in range(0, population_size - 1, 2):  # Ensure even number of parents
