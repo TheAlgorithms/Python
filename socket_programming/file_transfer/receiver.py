@@ -1,7 +1,6 @@
 import socket
 
-
-def start_ftp_server(host, port):
+def start_ftp_server(host, port) -> None:
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind((host, port))
     server_socket.listen(1)
