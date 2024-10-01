@@ -47,19 +47,23 @@ n is even.
 
 
 class Solution:
-    def can_arrange(self, arr: list[int], k: int) -> bool:
+    def can_arrange(self, arr: list[int], input_num: int) -> bool:
         """
         Function to check if array pairs are divisible by k
         :param arr: List of integers
         :param k: Integer
         :return: Boolean
+
+        Example:
+        can_arrange([1, 2, 3, 4, 5, 10, 6, 7, 8, 9], 5)
+        Output: True
         """
-        sol_arr = [0 for i in range(k)]
+        sol_arr = [0 for i in range(input_num)]
         for i in arr:
-            sol_arr[i % k] += 1
+            sol_arr[i % input_num] += 1
         if sol_arr[0] % 2 != 0:
             return False
-        i, j = 1, k - 1
+        i, j = 1, input_num - 1
         while j > i:
             if sol_arr[i] == sol_arr[j]:
                 j -= 1
@@ -72,6 +76,6 @@ class Solution:
 # Driver code
 if __name__ == "__main__":
     arr = [1, 2, 3, 4, 5, 10, 6, 7, 8, 9]
-    k = 5
+    input_num = 5
     s = Solution()
-    print(s.can_arrange(arr, k))  # Output: True
+    print(s.can_arrange(arr, input_num))  # Output: True
