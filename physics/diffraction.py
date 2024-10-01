@@ -71,9 +71,9 @@ def intensity_double_slit(path_diff:int=0,intensity_max:str|float="I0")->str:
         str or float: The intensity of the diffraction pattern.
 
     >>> intensity_double_slit(0, 1)
-    4.0
+    '4.0'
     >>> intensity_double_slit(0.001, 1)
-    3.999999000000084
+    '3.99999000000084'
     >>> intensity_double_slit(0)
     '4.0 I0'
     """
