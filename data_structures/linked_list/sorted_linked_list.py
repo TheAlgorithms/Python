@@ -25,7 +25,7 @@ class Node:
         Node(None)
         """
         self.data: int = data
-        self.next_node: Node | None = None
+        self.next_node: Node = None
 
     def __repr__(self) -> str:
         """
@@ -51,8 +51,8 @@ class SortedLinkedList:
         True
         """
         self.numNodes: int = 0
-        self.head: Node | None = None
-        self.tail: Node | None = None
+        self.head: Node = None
+        self.tail: Node = None
 
     def __repr__(self) -> str:
         """
