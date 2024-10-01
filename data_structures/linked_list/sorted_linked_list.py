@@ -46,7 +46,7 @@ class SortedLinkedList:
         >>> linked_list.head is None
         True
         """
-        self.numNodes: int = 0
+        self.num_nodes: int = 0
         self.head: Node | None = None
         self.tail: Node | None = None
 
@@ -100,7 +100,7 @@ class SortedLinkedList:
                 temp_node.next_node = new_node
                 if new_node.next_node is None:
                     self.tail = new_node
-        self.numNodes += 1
+        self.num_nodes += 1
 
     def display(self) -> None:
         """
@@ -165,7 +165,7 @@ class SortedLinkedList:
                         self.tail = temp_node
                     return True
                 temp_node = temp_node.next_node
-
+        self.num_nodes-=1
         return False
 
     def search(self, data: int) -> bool:
@@ -241,7 +241,7 @@ class SortedLinkedList:
         >>> linkedList.length()
         2
         """
-        return self.numNodes
+        return self.num_nodes
 
     def min_value(self) -> int | None:
         """This function will return minimum value
