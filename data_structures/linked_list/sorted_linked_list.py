@@ -365,4 +365,4 @@ if __name__ == "__main__":
         elif choice == "4":
             break
         else:
-            print("Wrong input"
+            print("Wrong input")
