@@ -175,4 +175,4 @@ def color(graph: list[list[int]], max_colors: int) -> list[int]:
     if util_color(graph, max_colors, colored_vertices, 0):
         return colored_vertices  # The successful color assignment
 
-    return []  # Return an empty list if no valid coloring is possible
+    return []  # No valid coloring is possible
