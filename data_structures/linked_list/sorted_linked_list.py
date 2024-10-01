@@ -65,7 +65,7 @@ class SortedLinkedList:
         'SortedLinkedList(2, 12, 21, 23, 72)'
         """
         nodes = []
-        temp = self.head
+        temp: Optional[Node] = self.head
         while temp:
             nodes.append(str(temp.data))
             temp = temp.next_node
@@ -95,7 +95,7 @@ class SortedLinkedList:
             new_node.next_node = self.head
             self.head = new_node
         else:
-            temp_node = self.head
+            temp_node: Optional[Node] = self.head
             while temp_node.next_node and temp_node.next_node.data < data:
                 temp_node = temp_node.next_node
             new_node.next_node = temp_node.next_node
@@ -117,7 +117,7 @@ class SortedLinkedList:
         >>> linkedList.display()
         32 45 57
         """
-        temp = self.head
+        temp: Optional[Node] = self.head
         while temp:
             print(temp.data, end=" ")
             temp = temp.next_node
@@ -158,7 +158,7 @@ class SortedLinkedList:
                 self.tail = None
             return True
 
-        temp_node = self.head
+        temp_node: Optional[Node] = self.head
         while temp_node.next_node:
             if temp_node.next_node.data == data:
                 temp_node.next_node = temp_node.next_node.next_node
@@ -189,7 +189,7 @@ class SortedLinkedList:
         >>> linkedList.search(90)
         False
         """
-        temp = self.head
+        temp: Optional[Node] = self.head
         while temp:
             if temp.data == data:
                 return True
@@ -302,7 +302,7 @@ class SortedLinkedList:
         32 45 57
         """
 
-        temp = self.head
+        temp: Optional[Node] = self.head
         while temp and temp.next_node:
             if temp.data == temp.next_node.data:
                 temp.next_node = temp.next_node.next_node
@@ -336,7 +336,7 @@ class SortedLinkedList:
             self.tail = other_list.tail
             return
         else:
-            temp=other_list.head
+            temp: Optional[Node]=other_list.head
             while temp:
                 self.insert(temp.data)
                 temp = temp.next_node
