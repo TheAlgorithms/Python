@@ -45,7 +45,7 @@ class SortedLinkedList:
     def __init__(self) -> None:
         """
         Create and initialize LinkedList class instance.
-        >>> linked_list = LinkedList()
+        >>> linked_list = SortedLinkedList()
         >>> linked_list.head is None
         True
         """
@@ -226,7 +226,7 @@ class SortedLinkedList:
 
         Doctests
 
-        >>> linkedList=SortedLinkedListtt()
+        >>> linkedList=SortedLinkedList()
         >>> linkedList.length()
         0
         >>> linkedList.insert(32)
