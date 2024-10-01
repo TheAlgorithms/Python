@@ -1,6 +1,6 @@
 import math
 
-def check_min_intensity(slit_width = 1,diff_angle=0, wavelength=100):
+def check_min_intensity(slit_width:int = 1,diff_angle:int =0, wavelength:int =100)->bool:
     """
     Checks for the condition of minimum intensity in a diffraction pattern.
     
@@ -22,7 +22,7 @@ def check_min_intensity(slit_width = 1,diff_angle=0, wavelength=100):
     r_val = (n_val-math.floor(n_val)==0)
     return r_val
 
-def check_max_intensity(slit_width=1,diff_angle=0,wavelength=100):
+def check_max_intensity(slit_width:int =1,diff_angle:int =0,wavelength:int =100)->bool:
     """
     Checks for the condition of maximum intensity in a diffraction pattern.
     
@@ -44,7 +44,7 @@ def check_max_intensity(slit_width=1,diff_angle=0,wavelength=100):
     r_val = (n_val-math.floor(n_val)==0)
     return r_val
 
-def intensity_single_slit(slit_width=1,diff_angle=0,wavelength=100):
+def intensity_single_slit(slit_width:int =1,diff_angle:int =0,wavelength:int =100)->int:
     """
     Computes the intensity for a single slit diffraction pattern.
     
@@ -63,7 +63,7 @@ def intensity_single_slit(slit_width=1,diff_angle=0,wavelength=100):
     i_coeff = (math.sin(beta)/beta)**2
     return f"{i_coeff} I0"
 
-def intensity_double_slit(path_diff=0,intensity_max="I0"):
+def intensity_double_slit(path_diff:int=0,intensity_max:int="I0")->int:
     """
     Computes the intensity for a double slit diffraction pattern.
     
