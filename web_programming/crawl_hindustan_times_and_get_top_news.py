@@ -18,7 +18,6 @@ from bs4 import BeautifulSoup
 
 
 def fetch_ht_news() -> dict:
-
     header = {
         "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
         "Sec-GPC": "1",
