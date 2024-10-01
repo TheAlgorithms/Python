@@ -209,7 +209,7 @@ if __name__ == "__main__":
             if linked_list.delete(data):
                 print(f"Node with data {data} deleted successfully")
             else:
-                print("Node with data {} not found in the list".format(data))
+                print(f"Node with data {data} not found in the list")
         elif choice == "4":
             break
         else:
