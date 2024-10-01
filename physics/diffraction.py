@@ -41,7 +41,7 @@ def check_max_intensity(slit_width:float =1.0,diff_angle:float =0.0,wavelength:f
     n_val = round(((2*slit_width*diff_angle)-wavelength)/(2*wavelength),4)
     r_val = (n_val-math.floor(n_val)==0)
     return r_val
-def intensity_single_slit(slit_width:float =1.0,diff_angle:float =0.0,wavelength:float =100.0)->float:
+def intensity_single_slit(slit_width:float =1.0,diff_angle:float =0.0,wavelength:float =100.0)->str:
     """
     Computes the intensity for a single slit diffraction pattern.
     
@@ -73,7 +73,7 @@ def intensity_double_slit(path_diff:int=0,intensity_max:str|float="I0")->str:
     >>> intensity_double_slit(0, 1)
     '4.0'
     >>> intensity_double_slit(0.001, 1)
-    '3.99999000000084'
+    '3.999999000000084'
     >>> intensity_double_slit(0)
     '4.0 I0'
     """
