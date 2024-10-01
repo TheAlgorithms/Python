@@ -76,7 +76,9 @@ def main() -> None:
     x_train, x_test, y_train, y_test = train_test_split(
         data, target, test_size=0.25, random_state=1
     )
-    xgboost_regressor = SimpleXGBoostRegressor(n_estimators=50, learning_rate=0.1, max_depth=3)
+    xgboost_regressor = SimpleXGBoostRegressor(
+        n_estimators=50, learning_rate=0.1, max_depth=3
+    )
     xgboost_regressor.fit(x_train, y_train)
     predictions = xgboost_regressor.predict(x_test)
     # Error printing
