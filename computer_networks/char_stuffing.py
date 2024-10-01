@@ -2,7 +2,7 @@ FLAG = "~"
 ESC = "#"
 
 
-def char_stuffing(s: str) -> str:
+def char_stuffing(string: str) -> str:
     """
     Return the char stuffed message
     >>> char_stuffing("abc")
@@ -11,7 +11,7 @@ def char_stuffing(s: str) -> str:
     "a##b##c"
     """
     arr = list()
-    for i in s:
+    for i in string:
         arr.append(i)
     for i in range(len(arr)):
         if arr[i] == FLAG and not (i == 0 or i == len(arr) - 1):
@@ -21,5 +21,5 @@ def char_stuffing(s: str) -> str:
     return "".join(arr)
 
 
-s = "~abc#~cde~ab~"
-print(char_stuffing(s))
+string = "~abc#~cde~ab~"
+print(char_stuffing(string))
