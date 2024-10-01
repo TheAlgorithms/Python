@@ -1,7 +1,6 @@
 import numpy as np
 import sympy as sp
 
-
 def parse_function(user_input):
     """
     Convert user input from f(x, y) = x^2 + y^2 to a valid Python function.
@@ -25,17 +24,18 @@ def parse_function(user_input):
         raise ValueError("Invalid function format. Please use 'f(x, y) = ...'.")
 
     # Create sympy symbols for x and y
-    x, y = sp.symbols("x y")
-
+    x, y = sp.symbols('x y')
+    
     # Replace power operator and parse the expression safely
-    expression = expression.replace("^", "**")
-    func_expr = eval(expression)  # Evaluate the expression safely
+    expression = expression.replace('^', '**')
+    
+    # Use sympy to parse the expression
+    func_expr = sp.sympify(expression)
 
     # Create the fitness function using sympy
     fitness = sp.lambdify((x, y), func_expr)
 
     return fitness
-
 
 def genetic_algorithm(user_fitness_function) -> None:
     """
@@ -95,7 +95,7 @@ def genetic_algorithm(user_fitness_function) -> None:
 
         # Selection
         selected_parents = population[rng.choice(population_size, population_size)]
-
+        
         # Crossover
         offspring = []
         for i in range(0, population_size - 1, 2):  # Ensure even number of parents
