@@ -10,21 +10,21 @@ creates a sorted linked list of integer datatype
 
 @dataclass
 class Node:
-    def __init__(self, data):
+    def __init__(self, data) -> None:
         self.data: int = data
         self.next_node: Node | None = None
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Node({self.data}, {self.next_node})"
 
 
 class SortedLinkedList:
-    def __init__(self):
+    def __init__(self) -> None:
         self.numNodes: int = 0
         self.head: Node | None = None
         self.tail: Node | None = None
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         nodes = []
         temp = self.head
         while temp:
@@ -32,7 +32,7 @@ class SortedLinkedList:
             temp = temp.next_node
         return f"SortedLinkedList({', '.join(nodes)})"
 
-    def insert(self, data: int):
+    def insert(self, data: int) -> None:
         """This Function inserts node in it's sorted position
         This function can be re written for any data type but
         the comparator her must have to be changed
@@ -57,7 +57,7 @@ class SortedLinkedList:
                 self.tail = new_node
         self.numNodes += 1
 
-    def display(self):
+    def display(self) -> None:
         """This function displays whole list"""
         temp = self.head
         while temp:
@@ -153,7 +153,7 @@ class SortedLinkedList:
             return None
         return self.tail.data
 
-    def remove_duplicates(self):
+    def remove_duplicates(self) -> None:
         """This Function will remove the duplicates from the list"""
         temp = self.head
         while temp and temp.next_node:
@@ -162,7 +162,7 @@ class SortedLinkedList:
             else:
                 temp = temp.next_node
 
-    def reverse(self):
+    def reverse(self) -> None:
         """This function will reveres the list"""
         prev = None
         current = self.head
@@ -173,7 +173,7 @@ class SortedLinkedList:
             current = next_node
         self.head, self.tail = self.tail, self.head
 
-    def merge(self, other_list: SortedLinkedList):
+    def merge(self, other_list: SortedLinkedList) -> None:
         """This Function will merge the input list with current list
 
         Args:
