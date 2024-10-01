@@ -1,16 +1,30 @@
 """
-Calculates the Fibonacci sequence using iteration, recursion, memoization,
-and a simplified form of Binet's formula
+Calculates the Fibonacci sequence using iteration, recursion, memoization, 
+matrix exponentiation, and a simplified form of Binet's formula.
 
-NOTE 1: the iterative, recursive, memoization functions are more accurate than
-the Binet's formula function because the Binet formula function  uses floats
+The following methods are implemented:
+1. Iteration (with and without `yield`)
+2. Recursion
+3. Recursion with memoization (caching)
+4. Matrix exponentiation (fastest for large inputs)
+5. Binet's formula (less accurate due to floating-point precision)
 
-NOTE 2: the Binet's formula function is much more limited in the size of inputs
-that it can handle due to the size limitations of Python floats
+NOTE 1: The iterative, recursive, memoization, and matrix exponentiation functions
+are more accurate than Binet's formula because the Binet function uses floating-point
+arithmetic, which may introduce precision errors for large inputs.
 
-See benchmark numbers in __main__ for performance comparisons/
-https://en.wikipedia.org/wiki/Fibonacci_number for more information
+NOTE 2: The Binet's formula function is more limited in the size of inputs it can handle 
+due to the limitations of Python floats. It diverges from accurate results for n ≥ 71 
+and does not accept inputs n ≥ 1475 due to overflow issues.
+
+NOTE 3: Matrix exponentiation is the fastest method for large inputs, running in O(log n) 
+time, making it suitable for very large Fibonacci numbers.
+
+See benchmark numbers in __main__ for performance comparisons.
+For more information on Fibonacci numbers, see:
+https://en.wikipedia.org/wiki/Fibonacci_number
 """
+
 
 import functools
 from collections.abc import Iterator
@@ -230,6 +244,76 @@ def fib_binet(n: int) -> list[int]:
     return [round(phi**i / sqrt_5) for i in range(n + 1)]
 
 
+
+def fib_matrix(n: int) -> int:
+
+
+    """
+    Computes the nth Fibonacci number using matrix exponentiation.
+
+    This method utilizes the property of Fibonacci numbers that can be expressed
+    in terms of matrix multiplication:
+    
+    F(n) = [[1, 1], [1, 0]]^n-1 * [[F(1)], [F(0)]]
+    
+    The matrix exponentiation approach allows the Fibonacci number to be computed 
+    in O(log n) time, which is more efficient for large values of `n` compared 
+    to traditional iterative or recursive methods.
+
+    Args:
+        n (int): The position of the Fibonacci number to compute. Must be a 
+        non-negative integer.
+    
+    Returns:
+        int: The nth Fibonacci number.
+    
+    Raises:
+        ValueError: If `n` is negative.
+
+    Example:
+        >>> fib_matrix(10)
+        55
+
+        >>> fib_matrix(50)
+        12586269025
+    
+    Performance:
+        This method is optimal for large values of `n` and runs in O(log n) time 
+        due to the efficient matrix exponentiation algorithm.
+    
+    Note:
+        - This method is suitable for very large inputs, as Python's integers 
+        support arbitrary precision.
+        - The matrix exponentiation approach is one of the fastest ways to compute 
+        Fibonacci numbers for large `n`.
+    """
+
+
+    def matrix_mult(A, B):
+        return [[A[0][0] * B[0][0] + A[0][1] * B[1][0],
+                 A[0][0] * B[0][1] + A[0][1] * B[1][1]],
+                [A[1][0] * B[0][0] + A[1][1] * B[1][0],
+                 A[1][0] * B[0][1] + A[1][1] * B[1][1]]]
+
+    def matrix_pow(M, power):
+        result = [[1, 0], [0, 1]]  # Identity matrix
+        base = M # Base matrix
+        while power:
+            if power % 2 == 1:
+                result = matrix_mult(result, base) # Multiply the result by the base matrix
+            base = matrix_mult(base, base) # Square the base matrix
+            power //= 2
+        return result
+
+    if n < 0:
+        raise ValueError("n is negative") # Fibonacci numbers are only defined for non-negative integers
+    if n == 0:
+        return 0
+    M = [[1, 1], [1, 0]] # Fibonacci matrix
+    result = matrix_pow(M, n - 1)
+    return result[0][0]  # The first element of the matrix is the nth Fibonacci number
+
+
 if __name__ == "__main__":
     from doctest import testmod
 
@@ -242,3 +326,15 @@ if __name__ == "__main__":
     time_func(fib_memoization, num)  # 0.0100 ms
     time_func(fib_recursive_cached, num)  # 0.0153 ms
     time_func(fib_recursive, num)  # 257.0910 ms
+    ime_func(fib_matrix, num)
+
+
+    # Time on an Lenovo ideapad 5 ryzen 7
+    num=30
+    time_func(fib_iterative_yield, num)  # 0.0000 ms
+    time_func(fib_iterative, num)  # 0.0000 ms
+    time_func(fib_binet, num)  # 0.3500 ms
+    time_func(fib_memoization, num)  # 0.0000 ms
+    time_func(fib_recursive_cached, num)  # 0.0000 ms
+    time_func(fib_recursive, num)  # 1.0939 s
+    time_func(fib_matrix, num)  # 0.0000 ms
