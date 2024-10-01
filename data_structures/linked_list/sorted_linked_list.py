@@ -17,7 +17,12 @@ class Node:
     Node(None)
     """
 
-    def __init__(self, data) -> None:
+    def __init__(self, data: int) -> None:
+        """COnstructor of Node class
+
+        Args:
+            data (int): Data of node
+        """
         self.data: int = data
         self.next_node: Node | None = None
 
