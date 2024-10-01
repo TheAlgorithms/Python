@@ -336,7 +336,7 @@ class SortedLinkedList:
             self.tail = other_list.tail
             return
         else:
-            temp=other_list.head
+            temp = other_list.head
             while temp:
                 self.insert(temp.data)
                 temp = temp.next_node
