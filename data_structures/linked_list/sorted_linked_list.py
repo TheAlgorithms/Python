@@ -165,7 +165,7 @@ class SortedLinkedList:
                         self.tail = temp_node
                     return True
                 temp_node = temp_node.next_node
-        self.num_nodes-=1
+        self.num_nodes -= 1
         return False
 
     def search(self, data: int) -> bool:
