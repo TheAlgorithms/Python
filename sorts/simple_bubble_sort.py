@@ -1,5 +1,6 @@
 from typing import List
 
+
 def bubble_sort(nums: List[int]) -> List[int]:
     """
     param nums: the array of integers(int) because this application does not use decimal numbers, but if needed, use float type.
@@ -19,6 +20,7 @@ def bubble_sort(nums: List[int]) -> List[int]:
             if nums[j] > nums[j + 1]:  # 05
                 nums[j], nums[j + 1] = nums[j + 1], nums[j]
     return nums
+
 
 nums = [65, 66, 12, 4, 9, 10, 32, 2]  # 01
 ordered_nums = bubble_sort(nums)  # 06
