@@ -1,10 +1,10 @@
-'''
+"""
 check-if-array-pairs-are-divisible-by-k
 
 Problem statement:
 Given an array of integers arr of even length n and an integer k.
 
-We want to divide the array into exactly n / 2 pairs such that the sum of each pair is divisible by k.
+Divide the array into n / 2 pairs such that the sum of each pair is divisible by k.
 
 Return true If you can find a way to do that or false otherwise.
 
@@ -22,8 +22,8 @@ Example 3:
 
 Input: arr = [1,2,3,4,5,6], k = 10
 Output: false
-Explanation: You can try all possible pairs to see that there is no way to divide arr into 3 pairs each with sum divisible by 10.
- 
+Explanation: You can try all possible pairs.
+See that there is no way to divide arr into 3 pairs each with sum divisible by 10.
 
 Constraints:
 
@@ -32,7 +32,7 @@ arr.length == n
 n is even.
 -109 <= arr[i] <= 109
 1 <= k <= 105
-'''
+"""
 
 # Time complexity: O(n)
 # Space complexity: O(k)
@@ -45,27 +45,27 @@ n is even.
 # 5. If not, return False.
 # 6. If all the conditions are satisfied, return True.
 
-from typing import List
 
 class Solution:
-    def canArrange(self, arr: List[int], k: int) -> bool:
-        sol_arr = [0 for i in range(0,k)]
+    def can_arrange(self, arr: list[int], k: int) -> bool:
+        sol_arr = [0 for i in range(k)]
         for i in arr:
-            sol_arr[i%k]+=1
-        if sol_arr[0]%2!=0:
+            sol_arr[i % k] += 1
+        if sol_arr[0] % 2 != 0:
             return False
-        i, j = 1, k-1
-        while(j>i):
-            if sol_arr[i]==sol_arr[j]:
-                j-=1
-                i+=1
+        i, j = 1, k - 1
+        while j > i:
+            if sol_arr[i] == sol_arr[j]:
+                j -= 1
+                i += 1
             else:
                 return False
         return True
 
+
 # Driver code
-if __name__ == '__main__':
-    arr = [1,2,3,4,5,10,6,7,8,9]
+if __name__ == "__main__":
+    arr = [1, 2, 3, 4, 5, 10, 6, 7, 8, 9]
     k = 5
     s = Solution()
-    print(s.canArrange(arr, k)) # Output: True
+    print(s.can_arrange(arr, k))  # Output: True
