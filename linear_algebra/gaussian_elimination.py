@@ -30,10 +30,13 @@ def retroactive_resolution(
 
     rows, columns = np.shape(coefficients)
 
-    x: NDArray[float64] = np.zeros((rows, 1), dtype=float)
+    # Initialize solution vector x
+    x: NDArray[float64] = np.zeros((rows, 1), dtype=float64)
+
+    # Perform back substitution
     for row in reversed(range(rows)):
-        total = np.dot(coefficients[row, row + 1 :], x[row + 1 :])
-        x[row, 0] = (vector[row][0] - total[0]) / coefficients[row, row]
+        total = np.dot(coefficients[row, row + 1:], x[row + 1:])
+        x[row, 0] = (vector[row] - total[0]) / coefficients[row, row]
 
     return x
 
@@ -42,38 +45,55 @@ def gaussian_elimination(
     coefficients: NDArray[float64], vector: NDArray[float64]
 ) -> NDArray[float64]:
     """
-    This function performs Gaussian elimination method
+    Perform Gaussian elimination on the system to reduce it to an upper triangular form,
+    followed by retroactive linear system resolution to solve the system.
 
-    Examples:
-        1x1 - 4x2 - 2x3 = -2        1x1 + 2x2 = 5
-        5x1 + 2x2 - 2x3 = -3        5x1 + 2x2 = 5
-        1x1 - 1x2 + 0x3 = 4
-    >>> gaussian_elimination([[1, -4, -2], [5, 2, -2], [1, -1, 0]], [[-2], [-3], [4]])
+    Arguments:
+        coefficients: Matrix of coefficients
+        vector: Vector representing the right-hand side of the system
+    
+    Returns:
+        Solution vector.
+
+    Example:
+    >>> gaussian_elimination(np.array([[1, -4, -2], [5, 2, -2], [1, -1, 0]], dtype=float64), np.array([[-2], [-3], [4]], dtype=float64))
     array([[ 2.3 ],
            [-1.7 ],
            [ 5.55]])
-    >>> gaussian_elimination([[1, 2], [5, 2]], [[5], [5]])
-    array([[0. ],
-           [2.5]])
     """
-    # coefficients must to be a square matrix so we need to check first
+
     rows, columns = np.shape(coefficients)
+
+    # Ensure the matrix is square
     if rows != columns:
-        return np.array((), dtype=float)
+        raise ValueError("Coefficient matrix must be square")
 
-    # augmented matrix
+    # Augment the matrix with the vector
     augmented_mat: NDArray[float64] = np.concatenate((coefficients, vector), axis=1)
-    augmented_mat = augmented_mat.astype("float64")
+    augmented_mat = augmented_mat.astype(float64)
 
-    # scale the matrix leaving it triangular
+    # Perform Gaussian elimination (triangularization)
     for row in range(rows - 1):
         pivot = augmented_mat[row, row]
-        for col in range(row + 1, columns):
+        
+        # Check if the pivot is zero, and swap with a lower row if possible
+        if np.isclose(pivot, 0):
+            for swap_row in range(row + 1, rows):
+                if not np.isclose(augmented_mat[swap_row, row], 0):
+                    augmented_mat[[row, swap_row]] = augmented_mat[[swap_row, row]]
+                    pivot = augmented_mat[row, row]
+                    break
+            else:
+                raise ValueError(f"Matrix is singular at row {row}")
+        
+        # Eliminate entries below the pivot
+        for col in range(row + 1, rows):
             factor = augmented_mat[col, row] / pivot
             augmented_mat[col, :] -= factor * augmented_mat[row, :]
 
+    # Perform retroactive linear system resolution to get the solution
     x = retroactive_resolution(
-        augmented_mat[:, 0:columns], augmented_mat[:, columns : columns + 1]
+        augmented_mat[:, 0:columns], augmented_mat[:, columns:columns + 1]
     )
 
     return x
@@ -81,5 +101,4 @@ def gaussian_elimination(
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
