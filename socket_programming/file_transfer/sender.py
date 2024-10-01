@@ -1,7 +1,6 @@
 import socket
 
-
-def send_file_to_server(host, port, file_path):
+def send_file_to_server(host, port, file_path) -> None:
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect((host, port))
 
