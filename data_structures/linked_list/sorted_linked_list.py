@@ -331,12 +331,15 @@ class SortedLinkedList:
         """
         if other_list.head is None:
             return
-        if self.head is None:
+        elif self.head is None:
             self.head = other_list.head
             self.tail = other_list.tail
             return
-        self.tail.next_node = other_list.head
-        self.tail = other_list.tail
+        else:
+            temp=otherother_list.head
+            while temp:
+                self.insert(temp.data)
+                temp=temp.next_node
 
 
 if __name__ == "__main__":
