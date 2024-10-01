@@ -1,5 +1,5 @@
-FLAG = '~'
-ESC = '#'
+FLAG = "~"
+ESC = "#"
 
 
 def char_stuffing(s: str) -> str:
@@ -16,7 +16,7 @@ def char_stuffing(s: str) -> str:
             arr[i] = ESC + arr[i]
         elif arr[i] == ESC:
             arr[i] += ESC
-    return ''.join(arr)
+    return "".join(arr)
 
 
 s = "~abc#~cde~ab~"
