@@ -336,10 +336,10 @@ class SortedLinkedList:
             self.tail = other_list.tail
             return
         else:
-            temp=otherother_list.head
+            temp = otherother_list.head
             while temp:
                 self.insert(temp.data)
-                temp=temp.next_node
+                temp = temp.next_node
 
 
 if __name__ == "__main__":
