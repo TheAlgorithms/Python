@@ -93,7 +93,7 @@ class SortedLinkedList:
             self.head = new_node
         else:
             temp_node: Node | None = self.head
-            if temp:
+            if temp_node:
                 while temp_node.next_node and temp_node.next_node.data < data:
                     temp_node = temp_node.next_node
                 new_node.next_node = temp_node.next_node
@@ -365,4 +365,4 @@ if __name__ == "__main__":
         elif choice == "4":
             break
         else:
-            print("Wrong input")
+            print("Wrong input"
