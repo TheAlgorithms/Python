@@ -1,5 +1,5 @@
 import numpy as np
-
+import sympy as sp
 
 def parse_function(user_input):
     """
@@ -23,15 +23,17 @@ def parse_function(user_input):
     else:
         raise ValueError("Invalid function format. Please use 'f(x, y) = ...'.")
 
-    # Replace variable names and power operator
-    expression = expression.replace("^", "**").replace("x", "x[0]").replace("y", "x[1]")
+    # Create sympy symbols for x and y
+    x, y = sp.symbols('x y')
+    
+    # Replace power operator and parse the expression
+    expression = expression.replace('^', '**')
+    func_expr = eval(expression)  # Safe to use as we're controlling the input format
 
-    # Create the fitness function
-    def fitness(x):
-        return eval(expression)
+    # Create the fitness function using sympy
+    fitness = sp.lambdify((x, y), func_expr)
 
     return fitness
-
 
 def genetic_algorithm(user_fitness_function) -> None:
     """
@@ -63,7 +65,8 @@ def genetic_algorithm(user_fitness_function) -> None:
         fitness_values = []
 
         for individual in population:
-            fitness_value = user_fitness_function(individual)
+            # Call the fitness function with individual x and y
+            fitness_value = user_fitness_function(individual[0], individual[1])
 
             if fitness_value is None or not isinstance(fitness_value, (int, float)):
                 print(
@@ -90,7 +93,7 @@ def genetic_algorithm(user_fitness_function) -> None:
 
         # Selection
         selected_parents = population[rng.choice(population_size, population_size)]
-
+        
         # Crossover
         offspring = []
         for i in range(0, population_size - 1, 2):  # Ensure even number of parents
@@ -126,7 +129,6 @@ def genetic_algorithm(user_fitness_function) -> None:
         f"Function Value at Optimal Solution: f({best_solution[0]:.6f}, "
         f"{best_solution[1]:.6f}) = {function_value:.6f}"
     )
-
 
 if __name__ == "__main__":
     user_input = input(
