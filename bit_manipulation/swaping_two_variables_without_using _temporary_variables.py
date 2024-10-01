@@ -4,11 +4,11 @@ def xor_swap(a: int, b: int) -> (int, int):
     without using a temporary variable.
 
     This algorithm utilizes the properties
-    of the bitwise XOR operation to swap the values 
+    of the bitwise XOR operation to swap the values
     of two integers `a` and `b` without
-    the use of a temporary variable. XOR swap is a 
+    the use of a temporary variable. XOR swap is a
     rarely used trick but showcases the power
-    of bit manipulation for efficient operations 
+    of bit manipulation for efficient operations
     at the hardware level.
 
     The steps involved are:
@@ -17,7 +17,7 @@ def xor_swap(a: int, b: int) -> (int, int):
     3. `a = a ^ b` (Now `a` holds the original value of `b`)
 
     Although this technique can swap variables
-    without extra space, it is generally not 
+    without extra space, it is generally not
     recommended in production code because it is
     less readable than using a temporary variable.
 
@@ -41,7 +41,7 @@ def xor_swap(a: int, b: int) -> (int, int):
 
     Notes:
         - Swapping using XOR can lead to confusion and
-        should generally be avoided in 
+        should generally be avoided in
         favor of more readable methods.
         - This algorithm does not work if both `a` and `b`
         refer to the same variable.
@@ -50,7 +50,7 @@ def xor_swap(a: int, b: int) -> (int, int):
     if a == b:
         print("Both values are the same; no swap needed.")
         return a, b
-    
+
     # print(f"Original a = {a}, b = {b}")
     a = a ^ b  # Step 1
     b = a ^ b  # Step 2: Now b is the original value of a
@@ -61,8 +61,8 @@ def xor_swap(a: int, b: int) -> (int, int):
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
-    print(xor_swap(5, 10)) # (10, 5)
-    print(xor_swap(0, 100)) # (100, 0)
+    print(xor_swap(5, 10))  # (10, 5)
+    print(xor_swap(0, 100))  # (100, 0)
     print(xor_swap(-3, 9))  # (9, -3)
-    
