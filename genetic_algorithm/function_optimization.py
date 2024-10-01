@@ -124,8 +124,8 @@ if __name__ == "__main__":
     except NameError as e:
         print(f"Error: {e}")
 
-    if 'fitness' in globals():
-        if 'fitness' in globals():
-            genetic_algorithm(globals()['fitness'])
+    if "fitness" in globals():
+        if "fitness" in globals():
+            genetic_algorithm(globals()["fitness"])
         else:
             print("No valid fitness function provided.")
