@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Optional
+
+
 # This is a sorted linked list class that creates
 # a sorted linked list of integer datatype
 
