@@ -2,7 +2,7 @@ import math
 def check_min_intensity(slit_width:int=1,diff_angle:int=0, wavelength:int=100)->bool:
     """
     Checks for the condition of minimum intensity in a diffraction pattern.
-    
+
     Args:
         slit_width (float): The width of the slit in millimeters.
         diff_angle (float): The diffraction angle in radians.
@@ -82,4 +82,4 @@ def intensity_double_slit(path_diff:int=0,intensity_max:int="I0")->int:
 if(__name__=="__main__"):
     import doctest
     doctest.testmod()
-
+    #pass
