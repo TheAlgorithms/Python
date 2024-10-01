@@ -62,7 +62,7 @@ class SortedLinkedList:
         >>> linkedList.insert(23)
         >>> linkedList.insert(72)
         >>> linkedList.__repr__()
-        SortedLinkedList(2, 12, 21, 23, 72)
+        'SortedLinkedList(2, 12, 21, 23, 72)'
         """
         nodes = []
         temp = self.head
@@ -81,9 +81,9 @@ class SortedLinkedList:
 
         Doctests
         >>> linked_list = SortedLinkedList()
-        >>> linked_list.insert_tail(32)
-        >>> linked_list.insert_tail(57)
-        >>> linked_list.insert_tail(45)
+        >>> linked_list.insert(32)
+        >>> linked_list.insert(57)
+        >>> linked_list.insert(45)
         >>> linked_list
         SortedLinkedList(32, 45, 57)
         """
