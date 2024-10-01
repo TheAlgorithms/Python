@@ -34,7 +34,7 @@ def parse_function(user_input):
     return function_code
 
 
-def genetic_algorithm(user_fitness_function):
+def genetic_algorithm(user_fitness_function) -> None:
     """
     Execute the genetic algorithm to optimize the user-defined fitness function.
     
