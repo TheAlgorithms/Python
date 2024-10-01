@@ -1,5 +1,5 @@
-FLAG = "~"
-ESC = "#"
+FLAG = '~'
+ESC = '#'
 
 
 def char_stuffing(string: str) -> str:
@@ -11,15 +11,17 @@ def char_stuffing(string: str) -> str:
     "a##b##c"
     """
     arr = []
-    for i in string:
-        arr.append(i)
+    # Create a list of characters from the string
+    for character in string:
+        arr.append(character)
     for i in range(len(arr)):
+        # If we encounter the FLAG and it's not the first or last character
         if arr[i] == FLAG and not (i == 0 or i == len(arr) - 1):
-            arr[i] = ESC + arr[i]
+            arr[i] = ESC + arr[i]  # Prepend ESC to FLAG
         elif arr[i] == ESC:
-            arr[i] += ESC
-    return "".join(arr)
+            arr[i] += ESC  # Duplicate ESC
+    return ''.join(arr)  # Join the list of characters back into a string
 
 
-string = "~abc#~cde~ab~"
+string = '~abc#~cde~ab~'
 print(char_stuffing(string))
