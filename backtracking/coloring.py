@@ -173,6 +173,6 @@ def color(graph: list[list[int]], max_colors: int) -> list[int]:
 
     # Use the utility function to try and color the graph starting from vertex 0
     if util_color(graph, max_colors, colored_vertices, 0):
-        return colored_vertices  # Return the successful color assignment
+        return colored_vertices  # The successful color assignment
 
     return []  # Return an empty list if no valid coloring is possible
