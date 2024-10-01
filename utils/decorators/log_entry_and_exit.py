@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 def log_entry_and_exit(func):
-    '''Log starting time and finish time of funciton'''
+    """Log starting time and finish time of funciton"""
 
     # Setiing local timezone
     local_tz = tzlocal.get_localzone()
@@ -15,15 +15,16 @@ def log_entry_and_exit(func):
     )
 
     @wraps(func)
-    def wrapper(*args,**kwargs):
+    def wrapper(*args, **kwargs):
         start_time = datetime.now(tz=local_tz)
         logging.info(f"Function '{func.__name__}' started at {start_time}")
-        return_value = func(*args,*kwargs)
+        return_value = func(*args, *kwargs)
         end_time = datetime.now(tz=local_tz)
         logging.info(f"Function '{func.__name__}' ended at {end_time}")
         return return_value
 
     return wrapper
+
 
 """
 Example usage:
@@ -35,5 +36,6 @@ Example usage:
 def my_func(name):
     print(f"My name is {name}")
 
-#Fucntion call
+
+# Fucntion call
 my_func("John Doe")
