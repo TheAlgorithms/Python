@@ -19,5 +19,5 @@ def char_stuffing(s: str) -> str:
     return ''.join(arr)
 
 
-s = '~abc#~cde~ab~'
+s = "~abc#~cde~ab~"
 print(char_stuffing(s))
