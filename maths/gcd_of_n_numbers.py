@@ -105,6 +105,7 @@ def get_greatest_common_divisor(*numbers: int) -> int:
         mult *= m
     return mult
 
+
 def gcd_tail_recursive(a: int, b: int) -> int:
     """
     Calculate the Greatest Common Divisor (GCD) using a tail-recursive approach.
@@ -156,6 +157,7 @@ def gcd_tail_recursive(a: int, b: int) -> int:
     if b == 0:
         return abs(a)
     return gcd_tail_recursive(b, a % b)
+
 
 if __name__ == "__main__":
     print(get_greatest_common_divisor(18, 45))  # 9
