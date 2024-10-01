@@ -1,3 +1,4 @@
+# program check whether string is anagram or not
 from __future__ import annotations
 
 import collections
