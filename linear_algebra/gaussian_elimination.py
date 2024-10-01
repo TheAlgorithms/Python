@@ -35,7 +35,7 @@ def retroactive_resolution(
 
     # Perform back substitution
     for row in reversed(range(rows)):
-        total = np.dot(coefficients[row, row + 1:], x[row + 1:])
+        total = np.dot(coefficients[row, row + 1 :], x[row + 1 :])
         x[row, 0] = (vector[row] - total[0]) / coefficients[row, row]
 
     return x
@@ -75,7 +75,7 @@ def gaussian_elimination(
     # Perform Gaussian elimination (triangularization)
     for row in range(rows - 1):
         pivot = augmented_mat[row, row]
-        
+
         # Check if the pivot is zero, and swap with a lower row if possible
         if np.isclose(pivot, 0):
             for swap_row in range(row + 1, rows):
@@ -85,7 +85,7 @@ def gaussian_elimination(
                     break
             else:
                 raise ValueError(f"Matrix is singular at row {row}")
-        
+
         # Eliminate entries below the pivot
         for col in range(row + 1, rows):
             factor = augmented_mat[col, row] / pivot
@@ -93,7 +93,7 @@ def gaussian_elimination(
 
     # Perform retroactive linear system resolution to get the solution
     x = retroactive_resolution(
-        augmented_mat[:, 0:columns], augmented_mat[:, columns:columns + 1]
+        augmented_mat[:, 0:columns], augmented_mat[:, columns : columns + 1]
     )
 
     return x
@@ -101,4 +101,5 @@ def gaussian_elimination(
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
