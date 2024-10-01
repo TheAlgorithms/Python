@@ -1,18 +1,19 @@
 import numpy as np
 
+
 def parse_function(user_input):
     """
     Convert user input from f(x, y) = ... to a valid Python function.
-    
+
     Parameters:
         user_input (str): A string representing the user-defined fitness function.
-        
+
     Returns:
         str: A string of valid Python code for the fitness function.
-        
+
     Raises:
         ValueError: If the input format is invalid.
-    
+
     Examples:
     >>> parse_function("f(x, y) = x^2 + y^2")
     'def fitness(x):\\n    return x[0]**2 + x[1]**2\\n'
@@ -27,23 +28,23 @@ def parse_function(user_input):
         expression = expression.strip()
     else:
         raise ValueError("Invalid function format. Please use 'f(x, y) = ...'.")
-    
+
     function_code = f"def fitness(x):\n"
     function_code += f"    return {expression.replace('^', '**').replace('x', 'x[0]').replace('y', 'x[1]')}\n"
-    
+
     return function_code
 
 
 def genetic_algorithm(user_fitness_function):
     """
     Execute the genetic algorithm to optimize the user-defined fitness function.
-    
+
     Parameters:
         user_fitness_function (function): The fitness function to be optimized.
-        
+
     Returns:
         None
-    
+
     Example:
     >>> def example_fitness_function(x):
     ...     return x[0]**2 + x[1]**2
@@ -65,10 +66,14 @@ def genetic_algorithm(user_fitness_function):
             fitness_value = user_fitness_function(individual)
 
             if fitness_value is None:
-                print(f"Warning: Fitness function returned None for individual {individual}.")
+                print(
+                    f"Warning: Fitness function returned None for individual {individual}."
+                )
                 fitness_value = np.inf
             else:
-                print(f"Evaluating individual {individual}, Fitness: {fitness_value:.6f}")
+                print(
+                    f"Evaluating individual {individual}, Fitness: {fitness_value:.6f}"
+                )
 
             fitness_values.append(fitness_value)
 
@@ -81,7 +86,9 @@ def genetic_algorithm(user_fitness_function):
 
         print(f"Generation {generation + 1}, Best Fitness: {best_fitness:.6f}")
 
-        selected_parents = population[np.random.choice(population_size, population_size)]
+        selected_parents = population[
+            np.random.choice(population_size, population_size)
+        ]
 
         offspring = []
         for i in range(0, population_size, 2):
@@ -93,7 +100,9 @@ def genetic_algorithm(user_fitness_function):
             offspring.append(child2)
 
         offspring = np.array(offspring)
-        mutation_mask = np.random.rand(population_size, chromosome_length) < mutation_rate
+        mutation_mask = (
+            np.random.rand(population_size, chromosome_length) < mutation_rate
+        )
         offspring[mutation_mask] = np.random.rand(np.sum(mutation_mask))
 
         population = offspring
@@ -101,13 +110,20 @@ def genetic_algorithm(user_fitness_function):
     print("\n--- Optimization Results ---")
     print(f"User-defined function: f(x, y) = {user_input.split('=')[1].strip()}")
     print(f"Best Fitness Value (Minimum): {best_fitness:.6f}")
-    print(f"Optimal Solution Found: x = {best_solution[0]:.6f}, y = {best_solution[1]:.6f}")
+    print(
+        f"Optimal Solution Found: x = {best_solution[0]:.6f}, y = {best_solution[1]:.6f}"
+    )
 
     function_value = best_fitness
-    print(f"Function Value at Optimal Solution: f({best_solution[0]:.6f}, {best_solution[1]:.6f}) = {function_value:.6f}")
+    print(
+        f"Function Value at Optimal Solution: f({best_solution[0]:.6f}, {best_solution[1]:.6f}) = {function_value:.6f}"
+    )
+
 
 if __name__ == "__main__":
-    user_input = input("Please enter your fitness function in the format 'f(x, y) = ...':\n")
+    user_input = input(
+        "Please enter your fitness function in the format 'f(x, y) = ...':\n"
+    )
 
     try:
         fitness_function_code = parse_function(user_input)
@@ -117,7 +133,7 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"Error executing function: {e}")
 
-    if 'fitness' in globals():
+    if "fitness" in globals():
         genetic_algorithm(fitness)
     else:
         print("No valid fitness function provided.")
