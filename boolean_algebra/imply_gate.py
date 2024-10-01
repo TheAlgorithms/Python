@@ -1,39 +1,34 @@
-"""
-An IMPLY Gate is a logic gate in boolean algebra which results to 1 if
-either input 1 is 0, or if input 1 is 1, then the output is 1 only if input 2 is 1.
-It is true if input 1 implies input 2.
+const { existsSync, readFileSync } = require('fs');
+const { resolve } = require('path');
+const dotenv = require('dotenv');
 
-Following is the truth table of an IMPLY Gate:
-    ------------------------------
-    | Input 1 | Input 2 | Output |
-    ------------------------------
-    |    0    |    0    |    1   |
-    |    0    |    1    |    1   |
-    |    1    |    0    |    0   |
-    |    1    |    1    |    1   |
-    ------------------------------
+// Load environment variables from .env file if it exists
+const envPath = resolve(__dirname, '..', '.env');
+if (existsSync(envPath)) dotenv.config({ path: envPath });
+else console.warn(".env file not found. Using shell environment variables.");
 
-Refer - https://en.wikipedia.org/wiki/IMPLY_gate
-"""
+// Destructure environment variables with default values
+const { 
+  NODE_ENV = 'production', 
+  DEPLOYMENT_ENV = 'production', 
+  MEMORY_LIMIT = '600M', 
+  INSTANCE_COUNT = 'max' 
+} = process.env;
 
+// Handle module resolution issue for LoopBack if path exists
+const loopbackModuleResolutionHack = resolve(__dirname, '../node_modules/.pnpm/node_modules');
+if (!existsSync(loopbackModuleResolutionHack)) 
+  console.error("LoopBack module path not found. Ensure dependencies are installed.");
 
-def imply_gate(input_1: int, input_2: int) -> int:
-    """
-    Calculate IMPLY of the input values
-
-    >>> imply_gate(0, 0)
-    1
-    >>> imply_gate(0, 1)
-    1
-    >>> imply_gate(1, 0)
-    0
-    >>> imply_gate(1, 1)
-    1
-    """
-    return int(input_1 == 0 or input_2 == 1)
-
-
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
+module.exports = {
+  apps: [{
+    script: './lib/production-start.js',
+    cwd: __dirname,
+    env: { ...process.env, NODE_PATH: loopbackModuleResolutionHack },
+    max_memory_restart: MEMORY_LIMIT,
+    instances: INSTANCE_COUNT,
+    exec_mode: 'cluster',
+    name: DEPLOYMENT_ENV === 'staging' ? 'dev' : 'org',
+    watch: false
+  }]
+};
