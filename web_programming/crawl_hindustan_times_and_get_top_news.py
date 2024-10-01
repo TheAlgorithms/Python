@@ -1,5 +1,5 @@
 """
-Fetch all the top headlines from Hindustan Times News website with title, link to the news article 
+Fetch all the top headlines from Hindustan Times News website with title, link to the news article
 and cover image link.
 
 The following format is used while displaying the data
@@ -18,7 +18,6 @@ from bs4 import BeautifulSoup
 
 
 def fetch_ht_news():
-
     header = {
         "Accept": "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8",
         "Sec-GPC": "1",
