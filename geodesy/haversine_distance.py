@@ -11,6 +11,7 @@ def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> fl
         lat1, lon1: Latitude and longitude of point 1 in decimal degrees.
         lat2, lon2: Latitude and longitude of point 2 in decimal degrees.
 
+
     Returns:
         Distance between the two points in meters.
 
@@ -22,7 +23,7 @@ def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> fl
     '254,033 meters'
     """
 
-    R = 6378137  # earth radius (meters)
+    radius = 6378137  # earth radius (meters)
 
     lat1_rad = radians(lat1)
     lat2_rad = radians(lat2)
@@ -37,7 +38,7 @@ def haversine_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> fl
     c = 2 * asin(sqrt(a))
 
     # Great-Circle Distance
-    return R * c
+    return radius * c
 
 
 if __name__ == "__main__":
