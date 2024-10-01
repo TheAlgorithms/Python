@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 def world_covid19_stats(
     url: str = "https://www.worldometers.info/coronavirus/",
 ) -> dict:
@@ -21,7 +22,9 @@ def world_covid19_stats(
     """
     response = requests.get(url, timeout=10)
     if response.status_code != 200:
-        error_message = f"Failed to fetch data from {url}, status code: {response.status_code}"
+        error_message = (
+            f"Failed to fetch data from {url}, status code: {response.status_code}"
+        )
         raise Exception(error_message)
 
     soup = BeautifulSoup(response.text, "html.parser")
@@ -44,6 +47,7 @@ def world_covid19_stats(
         raise ValueError("The number of keys and values extracted does not match.")
 
     return dict(zip(keys, values))
+
 
 if __name__ == "__main__":
     print("\033[1m COVID-19 Status of the World \033[0m\n")
