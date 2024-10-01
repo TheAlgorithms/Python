@@ -1,10 +1,11 @@
-from typing import List
-
-
-def bubble_sort(nums: List[int]) -> List[int]:
+def bubble_sort(nums: list[int]) -> list[int]:
     """
     param nums: the array of integers(int) because this application does not use decimal numbers, but if needed, use float type.
-    :return: the same nums List ordered by ascending
+    :return: the same nums list ordered by ascending
+
+    Examples:
+    >>> bubble_sort([8, 2, 4, 5, 7, 0])
+    [0, 2, 4, 5, 7, 8]
 
     step 01: create the nums array
     step 02: collect the dimension of array
@@ -21,7 +22,10 @@ def bubble_sort(nums: List[int]) -> List[int]:
                 nums[j], nums[j + 1] = nums[j + 1], nums[j]
     return nums
 
-
 nums = [65, 66, 12, 4, 9, 10, 32, 2]  # 01
 ordered_nums = bubble_sort(nums)  # 06
 print("The result:", ordered_nums)
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
