@@ -1,7 +1,4 @@
-
 import math
-
-
 
 def check_min_intensity(slit_width = 1,diff_angle=0, wavelength=100):
     """
@@ -22,7 +19,7 @@ def check_min_intensity(slit_width = 1,diff_angle=0, wavelength=100):
     """
     wavelength *= 10**-6
     n_val = round(slit_width*(diff_angle)/wavelength,5)
-    r_val = True if (n_val-math.floor(n_val)==0) else False
+    r_val = (n_val-math.floor(n_val)==0)
     return r_val
 
 def check_max_intensity(slit_width=1,diff_angle=0,wavelength=100):
@@ -44,7 +41,7 @@ def check_max_intensity(slit_width=1,diff_angle=0,wavelength=100):
     """
     wavelength *=10**-6
     n_val = round(((2*slit_width*diff_angle)-wavelength)/(2*wavelength),4)
-    r_val = True if (n_val-math.floor(n_val)==0) else False
+    r_val = (n_val-math.floor(n_val)==0)
     return r_val
 
 def intensity_single_slit(slit_width=1,diff_angle=0,wavelength=100):
@@ -64,7 +61,7 @@ def intensity_single_slit(slit_width=1,diff_angle=0,wavelength=100):
     """
     beta = math.pi*slit_width*(math.sin(diff_angle)/wavelength)
     i_coeff = (math.sin(beta)/beta)**2
-    return "{coeff} I0".format(coeff=i_coeff)
+    return f"{i_coeff} I0"
 
 def intensity_double_slit(path_diff=0,intensity_max="I0"):
     """
@@ -84,7 +81,7 @@ def intensity_double_slit(path_diff=0,intensity_max="I0"):
     >>> intensity_double_slit(0)
     '4.0 I0'
     """
-    r_val = 4*intensity_max*(math.cos(path_diff/2))**2 if (type(intensity_max)==type(0)) else "{coeff} I0".format(coeff=(4*(math.cos(path_diff/2)**2)))
+    r_val = 4*intensity_max*(math.cos(path_diff/2))**2 if (type(intensity_max) is int) else f"{4*(math.cos(path_diff/2)**2)} I0"
     return r_val
 
 if(__name__=="__main__"):
