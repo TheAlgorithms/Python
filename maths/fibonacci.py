@@ -233,6 +233,8 @@ def fib_binet(n: int) -> list[int]:
 
 
 def fib_matrix(n: int) -> int:
+    # https://www.nayuki.io/page/fast-fibonacci-algorithms#:~:text=
+    # Summary:%20The%20two%20fast%20Fibonacci%20algorithms%20are%20matrix
     def matrix_mult(a, b):
         return [[a[0][0] * b[0][0] + a[0][1] * b[1][0],
                  a[0][0] * b[0][1] + a[0][1] * b[1][1]],
