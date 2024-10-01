@@ -116,7 +116,7 @@ class SortedLinkedList:
         >>> linkedList.insert(57)
         >>> linkedList.insert(45)
         >>> linkedList.display()
-        32 45 57 
+        32 45 57
         """
         temp: Optional[Node] = self.head
         while temp:
@@ -144,11 +144,11 @@ class SortedLinkedList:
         >>> linkedList.insert(57)
         >>> linkedList.insert(45)
         >>> linkedList.display()
-        32 45 57 
+        32 45 57
         >>> linkedList.delete(45)
         True
         >>> linkedList.display()
-        32 57 
+        32 57
         """
         if self.head is None:
             return False
@@ -296,10 +296,10 @@ class SortedLinkedList:
         >>> linkedList.insert(45)
         >>> linkedList.insert(45)
         >>> linkedList.display()
-        32 45 45 57 
+        32 45 45 57
         >>> linkedList.remove_duplicates()
         >>> linkedList.display()
-        32 45 57 
+        32 45 57
         """
 
         temp: Optional[Node] = self.head
@@ -327,7 +327,7 @@ class SortedLinkedList:
         >>> linkedList2.insert(95)
         >>> linkedList.merge(linkedList2)
         >>> linkedList.display()
-        23 32 45 47 57 95 
+        23 32 45 47 57 95
         """
         if other_list.head is None:
             return
