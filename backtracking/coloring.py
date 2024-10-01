@@ -21,7 +21,7 @@ def valid_coloring(
     If all neighbours validate the constraint return True
 
     Parameters:
-    neighbours (list[int]): The list representing which vertices
+    neighbours: The list representing which vertices
                             are adjacent to the current vertex.
                             1 indicates an edge between the current vertex
                             and the neighbour.
