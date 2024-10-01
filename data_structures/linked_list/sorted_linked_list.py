@@ -113,7 +113,7 @@ class SortedLinkedList:
         >>> linkedList.insert(57)
         >>> linkedList.insert(45)
         >>> linkedList.display()
-        32 45 57 
+        32 45 57
         """
         temp: Node | None = self.head
         while temp:
@@ -141,11 +141,11 @@ class SortedLinkedList:
         >>> linkedList.insert(57)
         >>> linkedList.insert(45)
         >>> linkedList.display()
-        32 45 57 
+        32 45 57
         >>> linkedList.delete(45)
         True
         >>> linkedList.display()
-        32 57 
+        32 57
         """
         if self.head is None:
             return False
@@ -166,7 +166,7 @@ class SortedLinkedList:
                     self.num_nodes -= 1
                     return True
                 temp_node = temp_node.next_node
-        
+
         return False
 
     def search(self, data: int) -> bool:
@@ -295,10 +295,10 @@ class SortedLinkedList:
         >>> linkedList.insert(45)
         >>> linkedList.insert(45)
         >>> linkedList.display()
-        32 45 45 57 
+        32 45 45 57
         >>> linkedList.remove_duplicates()
         >>> linkedList.display()
-        32 45 57 
+        32 45 57
         """
 
         temp: Node | None = self.head
