@@ -6,9 +6,9 @@ def char_stuffing(string: str) -> str:
     """
     Return the char stuffed message
     >>> char_stuffing("abc")
-    "abc"
+    abc'
     >>> char_stuffing("a#b#c")
-    "a##b##c"
+    'a##b##c'
     """
     arr = []
     # Create a list of characters from the string
