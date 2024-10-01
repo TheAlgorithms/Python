@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from typing import Optional
 from dataclasses import dataclass
 
 # This is a sorted linked list class that creates
