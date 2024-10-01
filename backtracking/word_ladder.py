@@ -9,7 +9,6 @@ from the start word to the end word.
 Wikipedia: https://en.wikipedia.org/wiki/Word_ladder
 """
 
-
 import string
 
 
@@ -50,12 +49,13 @@ def backtrack(current_word, path, end_word, word_set):
     # Try all possible single-letter transformations
     for i in range(len(current_word)):
         for c in string.ascii_lowercase:  # Try changing each letter
-            transformed_word = current_word[:i] + c + current_word[i + 1:]
+            transformed_word = current_word[:i] + c + current_word[i + 1 :]
             if transformed_word in word_set:
                 word_set.remove(transformed_word)
                 # Recur with the new word added to the path
                 result = backtrack(
-                    transformed_word, [*path, transformed_word], end_word, word_set)
+                    transformed_word, [*path, transformed_word], end_word, word_set
+                )
                 if result:  # valid transformation found
                     return result
                 word_set.add(transformed_word)  # backtrack
@@ -63,8 +63,7 @@ def backtrack(current_word, path, end_word, word_set):
     return []  # No valid transformation found
 
 
-def word_ladder(begin_word: str, end_word: str,
-                word_set: set[str]) -> list[str]:
+def word_ladder(begin_word: str, end_word: str, word_set: set[str]) -> list[str]:
     """
     Solve the Word Ladder problem using Backtracking and return
     the list of transformations from begin_word to end_word.
