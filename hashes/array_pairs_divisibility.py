@@ -48,6 +48,12 @@ n is even.
 
 class Solution:
     def can_arrange(self, arr: list[int], k: int) -> bool:
+        """
+        Function to check if array pairs are divisible by k
+        :param arr: List of integers
+        :param k: Integer
+        :return: Boolean
+        """
         sol_arr = [0 for i in range(k)]
         for i in arr:
             sol_arr[i % k] += 1
