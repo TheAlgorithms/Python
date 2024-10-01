@@ -109,15 +109,22 @@ def gcd_tail_recursive(a: int, b: int) -> int:
     """
     Calculate the Greatest Common Divisor (GCD) using a tail-recursive approach.
 
-    This function uses the tail-recursive form of the Euclidean algorithm to calculate
-    the GCD of two integers `a` and `b`. The GCD is the largest integer that divides both
+    This function uses the tail-recursive form of
+    the Euclidean algorithm to calculate
+    the GCD of two integers `a` and `b`. The GCD
+    is the largest integer that divides both
     `a` and `b` without leaving a remainder.
 
-    Tail recursion is a form of recursion where the recursive call is the last operation
-    in the function. In languages that support tail call optimization, this allows the
-    function to be optimized by reusing the current function's stack frame for the
-    next call. Python, however, does not support tail call optimization, but using this
-    style can still help structure the recursion for better clarity.
+    Tail recursion is a form of recursion where the
+    recursive call is the last operation
+    in the function. In languages that
+    support tail call optimization, this allows the
+    function to be optimized by reusing the current
+    function's stack frame for the
+    next call. Python, however, does not support tail
+    call optimization, but using this
+    style can still help structure the
+    recursion for better clarity.
 
     Args:
         a (int): The first integer.
