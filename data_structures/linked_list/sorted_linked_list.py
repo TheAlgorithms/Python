@@ -18,7 +18,7 @@ class Node:
         return f"Node({self.data}, {self.next_node})"
 
 
-class SortedLinedList:
+class SortedLinkedList:
     def __init__(self):
         self.numNodes: int = 0
         self.head: Node | None = None
@@ -130,7 +130,7 @@ class SortedLinedList:
         Returns:
             int: The length of linked list
         """
-        return numNodes
+        return self.numNodes
 
     def min_value(self) -> int | None:
         """This function will return minimum value
@@ -190,7 +190,7 @@ class SortedLinedList:
 
 
 if __name__ == "__main__":
-    linkedList = SortedLinedList()
+    linked_list = SortedLinedList()
     while True:
         print("Enter")
         print("1.  Insert")
@@ -201,9 +201,9 @@ if __name__ == "__main__":
 
         if choice == "1":
             data = int(input("Enter a number: "))
-            linkedList.insert(data)
+            linked_list.insert(data)
         elif choice == "2":
-            linkedList.display()
+            linked_list.display()
         elif choice == "3":
             data = int(input("Enter the data to delete: "))
             if linked_list.delete(data):
