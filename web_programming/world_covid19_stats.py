@@ -1,3 +1,6 @@
+import requests
+from bs4 import BeautifulSoup
+
 def world_covid19_stats(
     url: str = "https://www.worldometers.info/coronavirus/",
 ) -> dict:
@@ -18,9 +21,8 @@ def world_covid19_stats(
     """
     response = requests.get(url, timeout=10)
     if response.status_code != 200:
-        raise Exception(
-            f"Failed to fetch data from {url}, status code: {response.status_code}"
-        )
+        error_message = f"Failed to fetch data from {url}, status code: {response.status_code}"
+        raise Exception(error_message)
 
     soup = BeautifulSoup(response.text, "html.parser")
     keys = [h1.get_text(strip=True) for h1 in soup.find_all("h1")]
@@ -41,4 +43,12 @@ def world_covid19_stats(
     if len(keys) != len(values):
         raise ValueError("The number of keys and values extracted does not match.")
 
-    return {key: value for key, value in zip(keys, values)}
+    return dict(zip(keys, values))
+
+if __name__ == "__main__":
+    print("\033[1m COVID-19 Status of the World \033[0m\n")
+    try:
+        stats = world_covid19_stats()
+        print("\n".join(f"{key}\n{value}" for key, value in stats.items()))
+    except Exception as e:
+        print(f"Error fetching COVID-19 stats: {e}")
