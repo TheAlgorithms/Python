@@ -22,16 +22,16 @@ def valid_coloring(
 
     Parameters:
     neighbours: The list representing which vertices
-                            are adjacent to the current vertex.
-                            1 indicates an edge between the current vertex
-                            and the neighbour.
-    colored_vertices (list[int]): List of current color assignments for all vertices
-                                  (-1 means uncolored).
-    color (int): The color we are trying to assign to the current vertex.
+                are adjacent to the current vertex.
+                1 indicates an edge between the current vertex
+                and the neighbour.
+    colored_vertices: List of current color assignments for all vertices
+                      (-1 means uncolored).
+    color: The color we are trying to assign to the current vertex.
 
     Returns:
-    bool: True if the vertex can be safely colored with the given color,
-          otherwise False.
+    True if the vertex can be safely colored with the given color,
+    otherwise False.
 
     Examples:
     >>> neighbours = [0, 1, 0, 1, 0]
@@ -76,17 +76,17 @@ def util_color(
             2.5. Uncolor given vertex
 
     Parameters:
-    graph (list of list of int): Adjacency matrix representing the graph.
-                                 graph[i][j] is 1 if there is an edge
-                                 between vertex i and j.
-    max_colors (int): Maximum number of colors allowed (m in the m-coloring problem).
-    colored_vertices (list of int): Current color assignments for each vertex.
-                                    -1 indicates that the vertex has not been colored
-                                    yet.
-    index (int): The current vertex index being processed.
+    graph: Adjacency matrix representing the graph.
+           graph[i][j] is 1 if there is an edge
+           between vertex i and j.
+    max_colors: Maximum number of colors allowed (m in the m-coloring problem).
+    colored_vertices: Current color assignments for each vertex.
+                      -1 indicates that the vertex has not been colored
+                      yet.
+    index: The current vertex index being processed.
 
     Returns:
-    bool: True if the graph can be colored using at most max_colors, otherwise False.
+    True if the graph can be colored using at most max_colors, otherwise False.
 
     Examples:
     >>> graph = [[0, 1, 0, 0, 0],
@@ -131,14 +131,14 @@ def color(graph: list[list[int]], max_colors: int) -> list[int]:
     otherwise, returns an empty list.
 
     Parameters:
-    graph (list of list of int): Adjacency matrix representing the graph.
-    max_colors (int): Maximum number of colors allowed.
+    graph: Adjacency matrix representing the graph.
+    max_colors: Maximum number of colors allowed.
 
     Returns:
-    list of int: List of color assignments if the graph can be colored using max_colors.
-                 Each index in the list represents the color assigned
-                 to the corresponding vertex.
-                 If coloring is not possible, returns an empty list.
+    List of color assignments if the graph can be colored using max_colors.
+    Each index in the list represents the color assigned
+    to the corresponding vertex.
+    If coloring is not possible, returns an empty list.
 
     Examples:
     >>> graph = [[0, 1, 0, 0, 0],
