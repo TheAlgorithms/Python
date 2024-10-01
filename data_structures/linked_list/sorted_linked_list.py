@@ -2,29 +2,62 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-"""
-This is a sorted linked list class that
-creates a sorted linked list of integer datatype
-"""
+# This is a sorted linked list class that creates a sorted linked list of integer datatype
 
 
 @dataclass
 class Node:
+    """
+    Create and initialize Node class instance.
+    >>> Node(20)
+    Node(20)
+    >>> Node(27)
+    Node(27)
+    >>> Node(None)
+    Node(None)
+    """
     def __init__(self, data) -> None:
         self.data: int = data
         self.next_node: Node | None = None
 
     def __repr__(self) -> str:
-        return f"Node({self.data}, {self.next_node})"
+        """
+        Get the string representation of this node.
+        >>> Node(10).__repr__()
+        'Node(10)'
+        >>> repr(Node(10))
+        'Node(10)'
+        >>> str(Node(10))
+        'Node(10)'
+        >>> Node(10)
+        Node(10)
+        """
+        return f"Node({self.data})"
 
 
 class SortedLinkedList:
     def __init__(self) -> None:
+        """
+        Create and initialize LinkedList class instance.
+        >>> linked_list = LinkedList()
+        >>> linked_list.head is None
+        True
+        """
         self.numNodes: int = 0
         self.head: Node | None = None
         self.tail: Node | None = None
 
     def __repr__(self) -> str:
+        """
+        >>> linkedList=SortedLinedList()
+        >>> linkedList.insert(2)
+        >>> linkedList.insert(12)
+        >>> linkedList.insert(21)
+        >>> linkedList.insert(23)
+        >>> linkedList.insert(72)
+        >>> linkedList.__repr__()
+        SortedLinkedList(2, 12, 21, 23, 72)
+        """
         nodes = []
         temp = self.head
         while temp:
@@ -39,6 +72,14 @@ class SortedLinkedList:
 
         Args:
             data (int): the data of linked list
+            
+        Doctests
+        >>> linked_list = SortedLinkedList()
+        >>> linked_list.insert_tail(32)
+        >>> linked_list.insert_tail(57)
+        >>> linked_list.insert_tail(45)
+        >>> linked_list
+        SortedLinkedList(32, 45, 57)
         """
         new_node = Node(data)
         if self.head is None:
@@ -58,7 +99,18 @@ class SortedLinkedList:
         self.numNodes += 1
 
     def display(self) -> None:
-        """This function displays whole list"""
+        """
+        This function displays whole list
+        
+        
+        Doctests
+        >>> linkedList=SortedLinedList()
+        >>> linkedList.insert(32)
+        >>> linkedList.insert(57)
+        >>> linkedList.insert(45)
+        >>> linkedList.display()
+        32 45 57
+        """
         temp = self.head
         while temp:
             print(temp.data, end=" ")
@@ -77,6 +129,19 @@ class SortedLinkedList:
 
         Returns:
             bool: status whether the node got deleted or not
+        
+        Doctests
+        
+        >>> linkedList=SortedLinedList()
+        >>> linkedList.insert(32)
+        >>> linkedList.insert(57)
+        >>> linkedList.insert(45)
+        >>> linkedList.display()
+        32 45 57
+        >>> linkedList.delete(45)
+        True
+        >>> linkedList.display()
+        32 57
         """
         if self.head is None:
             return False
@@ -107,6 +172,16 @@ class SortedLinkedList:
 
         Returns:
             bool: flag indicating whether data exists or not
+        
+        Doctests
+        >>> linkedList=SortedLinedList()
+        >>> linkedList.insert(32)
+        >>> linkedList.insert(57)
+        >>> linkedList.insert(45)
+        >>> linkedList.search(45)
+        True
+        >>> linkedList.search(90)
+        False
         """
         temp = self.head
         while temp:
@@ -120,7 +195,20 @@ class SortedLinkedList:
 
         Returns:
             bool: flag indicating whether list is empty or not
+        
+        Doctests
+        
+        >>> linkedList=SortedLinedList()
+        >>> linkedList.is_empty()
+        True 
+        >>> linkedList.insert(32)
+        >>> linkedList.insert(57)
+        >>> linkedList.insert(45)
+        >>> linkedList.search(45)
+        >>> linkedList.is_empty()
+        False
         """
+        
         return self.head is None
 
     def length(self) -> int:
@@ -129,6 +217,25 @@ class SortedLinkedList:
 
         Returns:
             int: The length of linked list
+            
+        Doctests
+        
+        >>> linkedList=SortedLinedList()
+        >>> linkedList.length()
+        0
+        >>> linkedList.insert(32)
+        >>> linkedList.length()
+        1
+        >>> linkedList.insert(57)
+        >>> linkedList.length()
+        2
+        >>> linkedList.insert(45)
+        >>> linkedList.length()
+        3
+        >>> linkedList.delete(45)
+        True
+        >>> linkedList.length()
+        2
         """
         return self.numNodes
 
@@ -137,6 +244,15 @@ class SortedLinkedList:
 
         Returns:
             int | None: min value or None if list is empty
+            
+        Doctests
+        
+        >>> linkedList=SortedLinedList()
+        >>> linkedList.insert(32)
+        >>> linkedList.insert(57)
+        >>> linkedList.insert(45)
+        >>> linkedList.min_value()
+        32
         """
         if self.head is None:
             return None
@@ -148,13 +264,38 @@ class SortedLinkedList:
 
         Returns:
             int | None: max value or None if list is empty
+        
+        Doctests
+        
+        >>> linkedList=SortedLinedList()
+        >>> linkedList.insert(32)
+        >>> linkedList.insert(57)
+        >>> linkedList.insert(45)
+        >>> linkedList.max_value()
+        57
         """
         if self.tail is None:
             return None
         return self.tail.data
 
     def remove_duplicates(self) -> None:
-        """This Function will remove the duplicates from the list"""
+        """
+        This Function will remove the duplicates from the list
+        
+        Doctests
+        
+        >>> linkedList=SortedLinedList()
+        >>> linkedList.insert(32)
+        >>> linkedList.insert(57)
+        >>> linkedList.insert(45)
+        >>> linkedList.insert(45)
+        >>> linkedList.display()
+        32 45 45 57
+        >>> linkedList.remove_duplicates()
+        >>> linkedList.display()
+        32 45 57
+        """
+        
         temp = self.head
         while temp and temp.next_node:
             if temp.data == temp.next_node.data:
@@ -162,22 +303,25 @@ class SortedLinkedList:
             else:
                 temp = temp.next_node
 
-    def reverse(self) -> None:
-        """This function will reveres the list"""
-        prev = None
-        current = self.head
-        while current:
-            next_node = current.next_node
-            current.next_node = prev
-            prev = current
-            current = next_node
-        self.head, self.tail = self.tail, self.head
-
     def merge(self, other_list: SortedLinkedList) -> None:
         """This Function will merge the input list with current list
 
         Args:
             other_list (SortedLinkedList): The list to be merged
+        
+        Doctests
+        
+        >>> linkedList=SortedLinedList()
+        >>> linkedList.insert(32)
+        >>> linkedList.insert(57)
+        >>> linkedList.insert(45)
+        >>> linkedList2=SortedLinedList()
+        >>> linkedList2.insert(23)
+        >>> linkedList2.insert(47)
+        >>> linkedList2.insert(95)
+        >>> linkedList.merge(linkedList2)
+        >>> linkedList.display()
+        23 32 45 47 57 95
         """
         if other_list.head is None:
             return
