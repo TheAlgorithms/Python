@@ -1,26 +1,31 @@
-#!/usr/bin/env python3
-
-"""
-Provide the current worldwide COVID-19 statistics.
-This data is being scrapped from 'https://www.worldometers.info/coronavirus/'.
-"""
-
-import requests
-from bs4 import BeautifulSoup
-
-
-def world_covid19_stats(url: str = "https://www.worldometers.info/coronavirus") -> dict:
+def world_covid19_stats(url: str = "https://www.worldometers.info/coronavirus/") -> dict:
     """
-    Return a dict of current worldwide COVID-19 statistics
+    Return a dict of current worldwide COVID-19 statistics.
+    
+    Example:
+        >>> stats = world_covid19_stats()
+        >>> isinstance(stats, dict)
+        True
+        >>> len(stats) > 0  # Check that we got some statistics
+        True
+        >>> 'Total Cases' in stats.keys()  # Ensure 'Total Cases' is one of the keys
+        True
+
+    Raises:
+        Exception: If the request fails or the number of keys and values does not match.
     """
-    soup = BeautifulSoup(requests.get(url, timeout=10).text, "html.parser")
-    keys = soup.findAll("h1")
-    values = soup.findAll("div", {"class": "maincounter-number"})
-    keys += soup.findAll("span", {"class": "panel-title"})
-    values += soup.findAll("div", {"class": "number-table-main"})
-    return {key.text.strip(): value.text.strip() for key, value in zip(keys, values)}
+    response = requests.get(url, timeout=10)
+    if response.status_code != 200:
+        raise Exception(f"Failed to fetch data from {url}, status code: {response.status_code}")
 
+    soup = BeautifulSoup(response.text, "html.parser")
+    keys = [h1.get_text(strip=True) for h1 in soup.find_all("h1")]
+    values = [div.get_text(strip=True) for div in soup.find_all("div", class_="maincounter-number")]
 
-if __name__ == "__main__":
-    print("\033[1m COVID-19 Status of the World \033[0m\n")
-    print("\n".join(f"{key}\n{value}" for key, value in world_covid19_stats().items()))
+    keys += [span.get_text(strip=True) for span in soup.find_all("span", class_="panel-title")]
+    values += [div.get_text(strip=True) for div in soup.find_all("div", class_="number-table-main")]
+
+    if len(keys) != len(values):
+        raise ValueError("The number of keys and values extracted does not match.")
+
+    return {key: value for key, value in zip(keys, values)}
