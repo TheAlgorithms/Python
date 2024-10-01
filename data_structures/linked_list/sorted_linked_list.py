@@ -93,12 +93,13 @@ class SortedLinkedList:
             self.head = new_node
         else:
             temp_node: Node | None = self.head
-            while temp_node.next_node and temp_node.next_node.data < data:
-                temp_node = temp_node.next_node
-            new_node.next_node = temp_node.next_node
-            temp_node.next_node = new_node
-            if new_node.next_node is None:
-                self.tail = new_node
+            if temp:
+                while temp_node.next_node and temp_node.next_node.data < data:
+                    temp_node = temp_node.next_node
+                new_node.next_node = temp_node.next_node
+                temp_node.next_node = new_node
+                if new_node.next_node is None:
+                    self.tail = new_node
         self.numNodes += 1
 
     def display(self) -> None:
@@ -156,13 +157,14 @@ class SortedLinkedList:
             return True
 
         temp_node: Node | None = self.head
-        while temp_node.next_node:
-            if temp_node.next_node.data == data:
-                temp_node.next_node = temp_node.next_node.next_node
-                if temp_node.next_node is None:
-                    self.tail = temp_node
-                return True
-            temp_node = temp_node.next_node
+        if temp_node:
+            while temp_node.next_node:
+                if temp_node.next_node.data == data:
+                    temp_node.next_node = temp_node.next_node.next_node
+                    if temp_node.next_node is None:
+                        self.tail = temp_node
+                    return True
+                temp_node = temp_node.next_node
 
         return False
 
