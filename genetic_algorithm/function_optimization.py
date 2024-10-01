@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def parse_function(user_input):
     """
     Convert user input from f(x, y) = x^2 + y^2 to a valid Python function.
@@ -15,7 +16,7 @@ def parse_function(user_input):
         'def fitness(x):\\n    return x[0]**2 + x[1]**2'
     """
     user_input = user_input.strip()
-    
+
     if "=" in user_input:
         _, expression = user_input.split("=", 1)
         expression = expression.strip()
@@ -24,8 +25,9 @@ def parse_function(user_input):
 
     function_code = "def fitness(x):\n"
     function_code += f"    return {expression.replace('^', '**').replace('x', 'x[0]').replace('y', 'x[1]')}\n"
-    
+
     return function_code
+
 
 def genetic_algorithm(user_fitness_function) -> None:
     """
@@ -33,7 +35,7 @@ def genetic_algorithm(user_fitness_function) -> None:
 
     Parameters:
         user_fitness_function (function): The fitness function to be optimized.
-        
+
     Returns:
         None
 
@@ -59,10 +61,14 @@ def genetic_algorithm(user_fitness_function) -> None:
             fitness_value = user_fitness_function(individual)
 
             if fitness_value is None:
-                print(f"Warning: Fitness function returned None for individual {individual}.")
+                print(
+                    f"Warning: Fitness function returned None for individual {individual}."
+                )
                 fitness_value = np.inf
             else:
-                print(f"Evaluating individual {individual}, Fitness: {fitness_value:.6f}")
+                print(
+                    f"Evaluating individual {individual}, Fitness: {fitness_value:.6f}"
+                )
 
             fitness_values.append(fitness_value)
 
@@ -95,13 +101,20 @@ def genetic_algorithm(user_fitness_function) -> None:
     print("\n--- Optimization Results ---")
     print(f"User-defined function: f(x, y) = {user_input.split('=')[1].strip()}")
     print(f"Best Fitness Value (Minimum): {best_fitness:.6f}")
-    print(f"Optimal Solution Found: x = {best_solution[0]:.6f}, y = {best_solution[1]:.6f}")
+    print(
+        f"Optimal Solution Found: x = {best_solution[0]:.6f}, y = {best_solution[1]:.6f}"
+    )
 
     function_value = best_fitness
-    print(f"Function Value at Optimal Solution: f({best_solution[0]:.6f}, {best_solution[1]:.6f}) = {function_value:.6f}")
+    print(
+        f"Function Value at Optimal Solution: f({best_solution[0]:.6f}, {best_solution[1]:.6f}) = {function_value:.6f}"
+    )
+
 
 if __name__ == "__main__":
-    user_input = input("Please enter your fitness function in the format 'f(x, y) = ...':\n")
+    user_input = input(
+        "Please enter your fitness function in the format 'f(x, y) = ...':\n"
+    )
 
     try:
         fitness_function_code = parse_function(user_input)
@@ -111,7 +124,7 @@ if __name__ == "__main__":
     except NameError as e:
         print(f"Error: {e}")
 
-    if 'fitness' in globals():
+    if "fitness" in globals():
         genetic_algorithm(fitness)
     else:
         print("No valid fitness function provided.")
