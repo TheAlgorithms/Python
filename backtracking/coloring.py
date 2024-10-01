@@ -125,7 +125,7 @@ def util_color(
 
 def color(graph: list[list[int]], max_colors: int) -> list[int]:
     """
-    Attempts to color the graph with at most max_colors colors such that no two adjacent
+    Attempt to color the graph with at most max_colors colors such that no two adjacent
     vertices have the same color.
     If it is possible, returns the list of color assignments;
     otherwise, returns an empty list.
