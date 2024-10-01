@@ -1,7 +1,8 @@
-import logging
-import tzlocal
-from functools import wraps
 from datetime import datetime
+from functools import wraps
+import logging
+
+import tzlocal
 
 
 def log_entry_and_exit(func):
