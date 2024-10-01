@@ -7,6 +7,8 @@ the Binet's formula function because the Binet formula function  uses floats
 
 NOTE 2: the Binet's formula function is much more limited in the size of inputs
 that it can handle due to the size limitations of Python floats
+NOTE 3: the matrix function is the fastest and most memory efficient for large n
+
 
 See benchmark numbers in __main__ for performance comparisons/
 https://en.wikipedia.org/wiki/Fibonacci_number for more information
@@ -230,6 +232,32 @@ def fib_binet(n: int) -> list[int]:
     return [round(phi**i / sqrt_5) for i in range(n + 1)]
 
 
+def fib_matrix(n: int) -> int:
+    def matrix_mult(a, b):
+        return [[a[0][0] * b[0][0] + a[0][1] * b[1][0],
+                 a[0][0] * b[0][1] + a[0][1] * b[1][1]],
+                [a[1][0] * b[0][0] + a[1][1] * b[1][0],
+                 a[1][0] * b[0][1] + a[1][1] * b[1][1]]]
+
+    def matrix_pow(m, power):
+        result = [[1, 0], [0, 1]]  # Identity matrix
+        base = m
+        while power:
+            if power % 2 == 1:
+                result = matrix_mult(result, base)
+            base = matrix_mult(base, base)
+            power //= 2
+        return result
+
+    if n < 0:
+        raise ValueError("n is negative")
+    if n == 0:
+        return 0
+    m = [[1, 1], [1, 0]]
+    result = matrix_pow(m, n - 1)
+    return result[0][0]
+
+
 if __name__ == "__main__":
     from doctest import testmod
 
@@ -242,3 +270,4 @@ if __name__ == "__main__":
     time_func(fib_memoization, num)  # 0.0100 ms
     time_func(fib_recursive_cached, num)  # 0.0153 ms
     time_func(fib_recursive, num)  # 257.0910 ms
+    time_func(fib_matrix, num)  # 0.0000 ms
