@@ -12,10 +12,10 @@ from bs4 import BeautifulSoup
 def world_covid19_stats(url: str = "https://www.worldometers.info/coronavirus") -> dict:
     """
     Return a dictionary of current worldwide COVID-19 statistics.
-    
-    The function scrapes COVID-19 statistics from the Worldometer website. 
+
+    The function scrapes COVID-19 statistics from the Worldometer website.
     It returns key metrics such as total cases, deaths, and recoveries.
-    
+
     :param url: URL of the website to scrape data from (default is Worldometer COVID-19 page).
     :return: A dictionary containing the key COVID-19 statistics.
     :raises: Exception if there is an issue with the request or scraping.
@@ -33,8 +33,10 @@ def world_covid19_stats(url: str = "https://www.worldometers.info/coronavirus") 
         values += soup.findAll("div", {"class": "number-table-main"})
 
         # Create and return a dictionary of COVID-19 statistics
-        return {key.text.strip(): value.text.strip() for key, value in zip(keys, values)}
-    
+        return {
+            key.text.strip(): value.text.strip() for key, value in zip(keys, values)
+        }
+
     except requests.RequestException as e:
         print(f"Error fetching data from {url}: {e}")
         return {}
@@ -45,7 +47,7 @@ def world_covid19_stats(url: str = "https://www.worldometers.info/coronavirus") 
 
 if __name__ == "__main__":
     print("\033[1m COVID-19 Status of the World \033[0m\n")
-    
+
     stats = world_covid19_stats()
 
     # If stats is empty, inform the user that something went wrong
