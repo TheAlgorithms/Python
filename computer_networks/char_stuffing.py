@@ -10,7 +10,7 @@ def char_stuffing(string: str) -> str:
     >>> char_stuffing("a#b#c")
     "a##b##c"
     """
-    arr = list()
+    arr = []
     for i in string:
         arr.append(i)
     for i in range(len(arr)):
