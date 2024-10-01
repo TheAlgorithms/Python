@@ -55,8 +55,11 @@ class Solution:
         :return: Boolean
 
         Example:
-        can_arrange([1, 2, 3, 4, 5, 10, 6, 7, 8, 9], 5)
-        Output: True
+        >>> obj = Solution()
+        >>> obj.can_arrange([1, 2, 3, 4, 5, 10, 6, 7, 8, 9], 5)
+        True
+        >>> obj.can_arrange([1, 2, 3, 4, 5, 6], 7)
+        True
         """
         sol_arr = [0 for i in range(input_num)]
         for i in arr:
