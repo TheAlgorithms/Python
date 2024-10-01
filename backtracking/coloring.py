@@ -11,7 +11,7 @@ def valid_coloring(
     neighbours: list[int], colored_vertices: list[int], color: int
 ) -> bool:
     """
-    This function checks if a given vertex can be assigned the specified color
+    Check if a given vertex can be assigned the specified color
     without violating the graph coloring constraints (i.e., no two adjacent vertices
     have the same color).
 
