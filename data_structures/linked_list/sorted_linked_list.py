@@ -55,7 +55,7 @@ class SortedLinkedList:
 
     def __repr__(self) -> str:
         """
-        >>> linkedList=SortedLinedList()
+        >>> linkedList=SortedLinkedList()
         >>> linkedList.insert(2)
         >>> linkedList.insert(12)
         >>> linkedList.insert(21)
@@ -110,7 +110,7 @@ class SortedLinkedList:
 
 
         Doctests
-        >>> linkedList=SortedLinedList()
+        >>> linkedList=SortedLinkedList()
         >>> linkedList.insert(32)
         >>> linkedList.insert(57)
         >>> linkedList.insert(45)
@@ -138,7 +138,7 @@ class SortedLinkedList:
 
         Doctests
 
-        >>> linkedList=SortedLinedList()
+        >>> linkedList=SortedLinkedList()
         >>> linkedList.insert(32)
         >>> linkedList.insert(57)
         >>> linkedList.insert(45)
@@ -180,7 +180,7 @@ class SortedLinkedList:
             bool: flag indicating whether data exists or not
 
         Doctests
-        >>> linkedList=SortedLinedList()
+        >>> linkedList=SortedLinkedList()
         >>> linkedList.insert(32)
         >>> linkedList.insert(57)
         >>> linkedList.insert(45)
@@ -204,7 +204,7 @@ class SortedLinkedList:
 
         Doctests
 
-        >>> linkedList=SortedLinedList()
+        >>> linkedList=SortedLinkedList()
         >>> linkedList.is_empty()
         True
         >>> linkedList.insert(32)
@@ -226,7 +226,7 @@ class SortedLinkedList:
 
         Doctests
 
-        >>> linkedList=SortedLinedList()
+        >>> linkedList=SortedLinkedListtt()
         >>> linkedList.length()
         0
         >>> linkedList.insert(32)
@@ -253,7 +253,7 @@ class SortedLinkedList:
 
         Doctests
 
-        >>> linkedList=SortedLinedList()
+        >>> linkedList=SortedLinkedListt()
         >>> linkedList.insert(32)
         >>> linkedList.insert(57)
         >>> linkedList.insert(45)
@@ -273,7 +273,7 @@ class SortedLinkedList:
 
         Doctests
 
-        >>> linkedList=SortedLinedList()
+        >>> linkedList=SortedLinkedList()
         >>> linkedList.insert(32)
         >>> linkedList.insert(57)
         >>> linkedList.insert(45)
@@ -290,7 +290,7 @@ class SortedLinkedList:
 
         Doctests
 
-        >>> linkedList=SortedLinedList()
+        >>> linkedList=SortedLinkedList()
         >>> linkedList.insert(32)
         >>> linkedList.insert(57)
         >>> linkedList.insert(45)
@@ -317,11 +317,11 @@ class SortedLinkedList:
 
         Doctests
 
-        >>> linkedList=SortedLinedList()
+        >>> linkedList=SortedLinkedListt()
         >>> linkedList.insert(32)
         >>> linkedList.insert(57)
         >>> linkedList.insert(45)
-        >>> linkedList2=SortedLinedList()
+        >>> linkedList2=SortedLinkedList()
         >>> linkedList2.insert(23)
         >>> linkedList2.insert(47)
         >>> linkedList2.insert(95)
