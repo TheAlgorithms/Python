@@ -1,5 +1,5 @@
-FLAG = '~'
-ESC = '#'
+FLAG = "~"
+ESC = "#"
 
 
 def char_stuffing(string: str) -> str:
@@ -20,8 +20,8 @@ def char_stuffing(string: str) -> str:
             arr[i] = ESC + arr[i]  # Prepend ESC to FLAG
         elif arr[i] == ESC:
             arr[i] += ESC  # Duplicate ESC
-    return ''.join(arr)  # Join the list of characters back into a string
+    return "".join(arr)  # Join the list of characters back into a string
 
 
-string = '~abc#~cde~ab~'
+string = "~abc#~cde~ab~"
 print(char_stuffing(string))
