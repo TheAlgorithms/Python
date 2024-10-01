@@ -9,11 +9,11 @@ def parse_function(user_input):
         user_input (str): The user-defined fitness function in string format.
 
     Returns:
-        str: The function code as a string.
+        function: A callable fitness function.
 
     Examples:
         >>> parse_function("f(x, y) = x^2 + y^2")
-        'def fitness(x):\\n    return x[0]**2 + x[1]**2'
+        <function fitness at 0x...>
     """
     user_input = user_input.strip()
 
@@ -23,10 +23,14 @@ def parse_function(user_input):
     else:
         raise ValueError("Invalid function format. Please use 'f(x, y) = ...'.")
 
-    function_code = "def fitness(x):\n"
-    function_code += f"    return {expression.replace('^', '**').replace('x', 'x[0]').replace('y', 'x[1]')}\n"
+    # Replace variable names and power operator
+    expression = expression.replace('^', '**').replace('x', 'x[0]').replace('y', 'x[1]')
 
-    return function_code
+    # Create the fitness function
+    def fitness(x):
+        return eval(expression)
+
+    return fitness
 
 
 def genetic_algorithm(user_fitness_function) -> None:
@@ -52,6 +56,7 @@ def genetic_algorithm(user_fitness_function) -> None:
     best_fitness = np.inf
     best_solution = None
 
+    # Initialize the population
     population = rng.random((population_size, chromosome_length))
 
     for generation in range(num_generations):
@@ -60,9 +65,10 @@ def genetic_algorithm(user_fitness_function) -> None:
         for individual in population:
             fitness_value = user_fitness_function(individual)
 
-            if fitness_value is None:
+            if fitness_value is None or not isinstance(fitness_value, (int, float)):
                 print(
-                    f"Warning: Fitness function returned None for individual {individual}."
+                    f"Warning: Fitness function returned an invalid value "
+                    f"for individual {individual}."
                 )
                 fitness_value = np.inf
             else:
@@ -74,6 +80,7 @@ def genetic_algorithm(user_fitness_function) -> None:
 
         fitness_values = np.array(fitness_values)
 
+        # Update the best solution
         best_idx = np.argmin(fitness_values)
         if fitness_values[best_idx] < best_fitness:
             best_fitness = fitness_values[best_idx]
@@ -81,10 +88,12 @@ def genetic_algorithm(user_fitness_function) -> None:
 
         print(f"Generation {generation + 1}, Best Fitness: {best_fitness:.6f}")
 
+        # Selection
         selected_parents = population[rng.choice(population_size, population_size)]
-
+        
+        # Crossover
         offspring = []
-        for i in range(0, population_size, 2):
+        for i in range(0, population_size - 1, 2):  # Ensure even number of parents
             parent1, parent2 = selected_parents[i], selected_parents[i + 1]
             cross_point = rng.integers(1, chromosome_length)
             child1 = np.concatenate((parent1[:cross_point], parent2[cross_point:]))
@@ -92,8 +101,14 @@ def genetic_algorithm(user_fitness_function) -> None:
             offspring.append(child1)
             offspring.append(child2)
 
+        # Handle odd population size if necessary
+        if population_size % 2 == 1:
+            offspring.append(selected_parents[-1])  # Include last parent if odd
+
         offspring = np.array(offspring)
-        mutation_mask = rng.random((population_size, chromosome_length)) < mutation_rate
+
+        # Mutation
+        mutation_mask = rng.random(offspring.shape) < mutation_rate
         offspring[mutation_mask] = rng.random(np.sum(mutation_mask))
 
         population = offspring
@@ -102,12 +117,14 @@ def genetic_algorithm(user_fitness_function) -> None:
     print(f"User-defined function: f(x, y) = {user_input.split('=')[1].strip()}")
     print(f"Best Fitness Value (Minimum): {best_fitness:.6f}")
     print(
-        f"Optimal Solution Found: x = {best_solution[0]:.6f}, y = {best_solution[1]:.6f}"
+        f"Optimal Solution Found: x = {best_solution[0]:.6f}, "
+        f"y = {best_solution[1]:.6f}"
     )
 
     function_value = best_fitness
     print(
-        f"Function Value at Optimal Solution: f({best_solution[0]:.6f}, {best_solution[1]:.6f}) = {function_value:.6f}"
+        f"Function Value at Optimal Solution: f({best_solution[0]:.6f}, "
+        f"{best_solution[1]:.6f}) = {function_value:.6f}"
     )
 
 
@@ -117,15 +134,9 @@ if __name__ == "__main__":
     )
 
     try:
-        fitness_function_code = parse_function(user_input)
-        exec(fitness_function_code, globals())
+        fitness_function = parse_function(user_input)
+        genetic_algorithm(fitness_function)
     except (SyntaxError, ValueError) as e:
         print(f"Error: {e}")
     except NameError as e:
         print(f"Error: {e}")
-
-    if "fitness" in globals():
-        if "fitness" in globals():
-            genetic_algorithm(globals()["fitness"])
-        else:
-            print("No valid fitness function provided.")
