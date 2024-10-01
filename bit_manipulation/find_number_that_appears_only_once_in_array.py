@@ -1,5 +1,5 @@
 def find_single_number(nums):
-    '''
+    """
     LeetCode 136: Single Number
     https://leetcode.com/problems/single-number/description/
 
@@ -9,14 +9,16 @@ def find_single_number(nums):
     3
     >>> find_single_number([4, 1, 2, 1, 2])
     4
-    '''
+    """
     single_num = 0
-    
+
     for i in nums:
-        single_num = single_num ^ i;
-    
+        single_num = single_num ^ i
+
     return single_num
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
