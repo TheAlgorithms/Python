@@ -18,7 +18,7 @@ def world_covid19_stats(url: str = "https://www.worldometers.info/coronavirus") 
 
     Args:
         url (str): The URL to fetch the COVID-19 data from.
-    
+
     Returns:
         dict: A dictionary of worldwide COVID-19 statistics where the keys are
         the names of the statistics (e.g., 'Total Cases') and the values are the
@@ -34,7 +34,7 @@ def world_covid19_stats(url: str = "https://www.worldometers.info/coronavirus") 
         True
         >>> len(stats) > 0
         True
-    
+
     Raises:
         requests.RequestException: If there is an issue with the network request.
     """
