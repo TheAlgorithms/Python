@@ -4,7 +4,7 @@ imageio
 keras
 lxml
 matplotlib
-numpy==2.1.1
+numpy>=2.1.1
 opencv-python
 pandas
 pillow
