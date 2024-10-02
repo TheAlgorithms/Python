@@ -146,7 +146,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
   ```
 
 
-  Run all tests and see the covrage of the code by following command
+  Run all tests and see the coverage of the code by following command
   ```bash
   pytest \
           --ignore=quantum/q_fourier_transform.py \
