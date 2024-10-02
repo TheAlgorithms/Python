@@ -199,3 +199,15 @@ if __name__ == "__main__":
             episode_url, download_url = get_anime_episode(chosen_episode["url"])
             print(f"\nTo watch, ctrl+click on {episode_url}.")
             print(f"To download, ctrl+click on {download_url}.")
+            
+            # Add an option to download or not
+            download_choice = input("\nDo you want to download this episode? (yes/no): ").strip().lower()
+            if download_choice in ["yes", "y"]:
+                output_filename = f"{chosen_anime['title']} - {chosen_episode['title']}.mp4"  # Change extension as needed
+                download_video(download_url, output_filename)
+                print(f"{chosen_episode['title']} has been downloaded as {output_filename}.")
+            else:
+                print("Download skipped.")
+
+            #if error download please install ffmeg
+            #brew install ffmpeg for mac
