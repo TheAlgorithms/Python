@@ -309,8 +309,6 @@ def fib_matrix_np(n: int) -> int:
     return result[0, 0]
 
 
-
-
 if __name__ == "__main__":
     from doctest import testmod
 
