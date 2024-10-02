@@ -5,6 +5,8 @@ from dataclasses import dataclass
 
 @dataclass
 class Node:
+    """THis class represents  a node in the linked list."""
+
     def __init__(self, data: int) -> None:
         """Constructor of Node class
 
@@ -39,6 +41,8 @@ class Node:
 
 
 class SortedLinkedList:
+    """This class  represents a sorted linked list."""
+
     def __init__(self) -> None:
         """
         Create and initialize LinkedList class instance.
@@ -59,14 +63,14 @@ class SortedLinkedList:
         >>> linkedList.insert(23)
         >>> linkedList.insert(72)
         >>> linkedList.__repr__()
-        'SortedLinkedList(2, 12, 21, 23, 72)'
+        2, 12, 21, 23, 72
         """
         nodes = []
         temp: Node | None = self.head
         while temp:
             nodes.append(str(temp.data))
             temp = temp.next_node
-        return f"SortedLinkedList({', '.join(nodes)})"
+        return f"{', '.join(nodes)}"
 
     def insert(self, data: int) -> None:
         """This Function inserts node in it's sorted position
@@ -82,7 +86,7 @@ class SortedLinkedList:
         >>> linked_list.insert(57)
         >>> linked_list.insert(45)
         >>> linked_list
-        SortedLinkedList(32, 45, 57)
+        32, 45, 57
         """
         new_node = Node(data)
         if self.head is None:
@@ -106,20 +110,17 @@ class SortedLinkedList:
         """
         This function displays whole list
 
-
         Doctests
+        
+
         >>> linkedList=SortedLinkedList()
         >>> linkedList.insert(32)
         >>> linkedList.insert(57)
         >>> linkedList.insert(45)
         >>> linkedList.display()
-        32 45 57
+        32, 45, 57
         """
-        temp: Node | None = self.head
-        while temp:
-            print(temp.data, end=" ")
-            temp = temp.next_node
-        print()
+        print(repr(self))
 
     def delete(self, data: int) -> bool:
         """This Function deletes first appearance of node with
@@ -141,11 +142,11 @@ class SortedLinkedList:
         >>> linkedList.insert(57)
         >>> linkedList.insert(45)
         >>> linkedList.display()
-        32 45 57
+        32, 45, 57
         >>> linkedList.delete(45)
         True
         >>> linkedList.display()
-        32 57
+        32, 57
         """
         if self.head is None:
             return False
@@ -295,10 +296,10 @@ class SortedLinkedList:
         >>> linkedList.insert(45)
         >>> linkedList.insert(45)
         >>> linkedList.display()
-        32 45 45 57
+        32, 45, 45, 57
         >>> linkedList.remove_duplicates()
         >>> linkedList.display()
-        32 45 57
+        32, 45, 57
         """
 
         temp: Node | None = self.head
@@ -326,7 +327,7 @@ class SortedLinkedList:
         >>> linkedList2.insert(95)
         >>> linkedList.merge(linkedList2)
         >>> linkedList.display()
-        23 32 45 47 57 95
+        23, 32, 45, 47, 57, 95
         """
         if other_list.head is None:
             return
@@ -353,16 +354,16 @@ if __name__ == "__main__":
         choice = input("Enter your choice: ")
 
         if choice == "1":
-            data = int(input("Enter a number: "))
-            linked_list.insert(data)
+            nodeData = int(input("Enter a number: "))
+            linked_list.insert(nodeData)
         elif choice == "2":
             linked_list.display()
         elif choice == "3":
-            data = int(input("Enter the data to delete: "))
-            if linked_list.delete(data):
-                print(f"Node with data {data} deleted successfully")
+            nodeData = int(input("Enter the data to delete: "))
+            if linked_list.delete(nodeData):
+                print(f"Node with data {nodeData} deleted successfully")
             else:
-                print(f"Node with data {data} not found in the list")
+                print(f"Node with data {nodeData} not found in the list")
         elif choice == "4":
             break
         else:
