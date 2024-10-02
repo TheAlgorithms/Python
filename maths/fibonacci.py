@@ -20,6 +20,7 @@ from math import sqrt
 from time import time
 
 import numpy as np
+from numpy import ndarray
 
 
 def time_func(func, *args, **kwargs):
@@ -247,8 +248,7 @@ def matrix_mult_np(a, b):
     """
     return np.dot(a, b)
 
-
-def matrix_pow_np(m: int, power: int) -> int:
+def matrix_pow_np(m: ndarray, power: int) -> ndarray:
     """
     Raises a matrix to the power of 'power' using binary exponentiation.
 
@@ -259,12 +259,12 @@ def matrix_pow_np(m: int, power: int) -> int:
     Returns:
         The matrix raised to the power.
     """
-    result = np.identity(2, dtype=int)  # Identity matrix
+    result = np.array([[1, 0], [0, 1]], dtype=int)  # Identity matrix
     base = m
     while power:
         if power % 2 == 1:
-            result = matrix_mult_np(result, base)
-        base = matrix_mult_np(base, base)
+            result = np.dot(result, base)
+        base = np.dot(base, base)
         power //= 2
     return result
 
