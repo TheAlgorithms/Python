@@ -1,10 +1,10 @@
 """
 A pure implementation of Dutch national flag (DNF) sort algorithm in Python.
-Originally designed by Edsger Dijkstra, it optimally sorts a sequence of three unique values 
+Originally designed by Edsger Dijkstra, it optimally sorts a sequence of three unique values
 (e.g., 0, 1, 2) with [0 <= a[i] <= 2] in O(n) complexity in a single pass.
 
-The task is to randomly arrange balls of white, red, and blue so that balls of the same color 
-are grouped together. DNF sorts a sequence of 0, 1, and 2's in linear time without consuming 
+The task is to randomly arrange balls of white, red, and blue so that balls of the same color
+are grouped together. DNF sorts a sequence of 0, 1, and 2's in linear time without consuming
 extra space. The algorithm works only on sequences with three unique elements.
 
 1) Time complexity is O(n).
@@ -20,9 +20,9 @@ python dnf_sort.py
 """
 
 # Python program to sort a sequence containing only 0, 1, and 2 in a single pass.
-RED = 0    # The first color (red).
+RED = 0  # The first color (red).
 WHITE = 1  # The second color (white).
-BLUE = 2   # The third color (blue).
+BLUE = 2  # The third color (blue).
 ALLOWED_VALUES = (RED, WHITE, BLUE)
 
 
@@ -75,13 +75,16 @@ def dutch_national_flag_sort(sequence: list) -> list:
             sequence[mid], sequence[high] = sequence[high], sequence[mid]
             high -= 1
         else:
-            raise ValueError(f"The elements inside the sequence must contain only {ALLOWED_VALUES} values")
-    
+            raise ValueError(
+                f"The elements inside the sequence must contain only {ALLOWED_VALUES} values"
+            )
+
     return sequence
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     # User input for manual testing
