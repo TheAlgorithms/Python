@@ -5,9 +5,11 @@ from fake_useragent import UserAgent
 
 import re
 
+
 def is_safe_filename(filename: str) -> bool:
     # A simple regex to check if the filename is safe (no special characters)
-    return re.match(r'^[\w\-. ]+$', filename) is not None
+    return re.match(r"^[\w\-. ]+$", filename) is not None
+
 
 def download_video(download_url: str, output_filename: str):
     """Download video using ffmpeg."""
@@ -16,6 +18,7 @@ def download_video(download_url: str, output_filename: str):
 
     command = ["ffmpeg", "-i", download_url, output_filename]
     subprocess.run(command, check=True)
+
 
 BASE_URL = "https://ww1.gogoanime2.org"
 
@@ -167,6 +170,7 @@ def get_anime_episode(episode_endpoint: str) -> list:
     download_url = episode_url.replace("/embed/", "/playlist/") + ".m3u8"
 
     return [f"{BASE_URL}{episode_url}", f"{BASE_URL}{download_url}"]
+
 
 if __name__ == "__main__":
     anime_name = input("Enter anime name: ").strip()
