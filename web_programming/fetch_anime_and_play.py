@@ -1,3 +1,4 @@
+import subprocess
 import requests
 from bs4 import BeautifulSoup, NavigableString, Tag
 from fake_useragent import UserAgent
@@ -153,6 +154,10 @@ def get_anime_episode(episode_endpoint: str) -> list:
 
     return [f"{BASE_URL}{episode_url}", f"{BASE_URL}{download_url}"]
 
+def download_video(download_url: str, output_filename: str):
+    """Download video using ffmpeg."""
+    command = ['ffmpeg', '-i', download_url, output_filename]
+    subprocess.run(command, check=True)
 
 if __name__ == "__main__":
     anime_name = input("Enter anime name: ").strip()
@@ -173,16 +178,28 @@ if __name__ == "__main__":
 
         episode_list = search_anime_episode_list(chosen_anime["url"])
         if len(episode_list) == 0:
-            print("No episode found for this anime")
+            print("No episodes found for this anime")
         else:
             print(f"Found {len(episode_list)} results: ")
             for i, episode in enumerate(episode_list):
-                print(f"{i+1}. {episode['title']}")
+                print(f"{i + 1}. {episode['title']}")
 
-            episode_choice = int(input("\nChoose an episode by serial no: ").strip())
+            episode_choice = int(input("\nChoose an episode by serial number: ").strip())
             chosen_episode = episode_list[episode_choice - 1]
             print(f"You chose {chosen_episode['title']}. Searching...")
 
             episode_url, download_url = get_anime_episode(chosen_episode["url"])
             print(f"\nTo watch, ctrl+click on {episode_url}.")
-            print(f"To download, ctrl+click on {download_url}.")
+        
+
+            # Add an option to download or not
+            download_choice = input("\nDo you want to download this episode? (yes/no): ").strip().lower()
+            if download_choice in ["yes", "y"]:
+                output_filename = f"{chosen_anime['title']} - {chosen_episode['title']}.mp4"  # Change extension as needed
+                download_video(download_url, output_filename)
+                print(f"{chosen_episode['title']} has been downloaded as {output_filename}.")
+            else:
+                print("Download skipped.")
+
+            #if error download please install ffmeg
+            #brew install ffmpeg for mac
