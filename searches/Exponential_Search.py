@@ -1,5 +1,6 @@
 from typing import List
 
+
 def binary_search(arr: List[int], left: int, right: int, target: int) -> int:
     """
     Perform binary search on a sorted array.
