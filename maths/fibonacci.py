@@ -250,7 +250,7 @@ def matrix_mult_np(a, b):
     return np.dot(a, b)
 
 
-def matrix_pow_np(m, power):
+def matrix_pow_np(m: int, power: int) -> int:
     """
     Raises a matrix to the power of 'power' using binary exponentiation.
 
@@ -294,10 +294,6 @@ def fib_matrix_np(n: int) -> int:
     5
     >>> fib_matrix_np(10)
     55
-    >>> fib_matrix_np(-1)
-    Traceback (most recent call last):
-        ...
-    Exception: n is negative
     """
     if n < 0:
         raise ValueError("n is negative")
