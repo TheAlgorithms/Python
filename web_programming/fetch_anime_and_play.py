@@ -5,6 +5,7 @@ from fake_useragent import UserAgent
 
 BASE_URL = "https://ww1.gogoanime2.org"
 
+
 def search_scraper(anime_name: str) -> list:
     """[summary]
 
