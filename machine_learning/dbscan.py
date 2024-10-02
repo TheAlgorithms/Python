@@ -124,7 +124,7 @@ class DbScan:
         else:
             data = pd.DataFrame(list(self.file))
         e = self.radius
-        dict1 = {}
+        dict1: dict[int, list[int]] = {}
         for i in range(len(data)):
             for j in range(len(data)):
                 dist = math.sqrt(
