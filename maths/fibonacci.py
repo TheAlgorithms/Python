@@ -18,6 +18,7 @@ import functools
 from collections.abc import Iterator
 from math import sqrt
 from time import time
+import numpy as np
 
 
 def time_func(func, *args, **kwargs):
@@ -232,38 +233,77 @@ def fib_binet(n: int) -> list[int]:
     return [round(phi**i / sqrt_5) for i in range(n + 1)]
 
 
-def fib_matrix(n: int) -> int:
-    # https://www.nayuki.io/page/fast-fibonacci-algorithms#:~:text=
-    # Summary:%20The%20two%20fast%20Fibonacci%20algorithms%20are%20matrix
-    def matrix_mult(a, b):
-        return [
-            [
-                a[0][0] * b[0][0] + a[0][1] * b[1][0],
-                a[0][0] * b[0][1] + a[0][1] * b[1][1],
-            ],
-            [
-                a[1][0] * b[0][0] + a[1][1] * b[1][0],
-                a[1][0] * b[0][1] + a[1][1] * b[1][1],
-            ],
-        ]
+def matrix_mult_np(a, b):
+    """
+    Multiplies two matrices using numpy's dot product.
 
-    def matrix_pow(m, power):
-        result = [[1, 0], [0, 1]]  # Identity matrix
-        base = m
-        while power:
-            if power % 2 == 1:
-                result = matrix_mult(result, base)
-            base = matrix_mult(base, base)
-            power //= 2
-        return result
+    Args:
+        a: First matrix as a numpy array
+        b: Second matrix as a numpy array
 
+    Returns:
+        The product of matrices a and b.
+    """
+    return np.dot(a, b)
+
+
+def matrix_pow_np(m, power):
+    """
+    Raises a matrix to the power of 'power' using binary exponentiation.
+
+    Args:
+        m: Matrix as a numpy array.
+        power: The power to which the matrix is to be raised.
+
+    Returns:
+        The matrix raised to the power.
+    """
+    result = np.identity(2, dtype=int)  # Identity matrix
+    base = m
+    while power:
+        if power % 2 == 1:
+            result = matrix_mult_np(result, base)
+        base = matrix_mult_np(base, base)
+        power //= 2
+    return result
+
+
+def fib_matrix_np(n: int) -> int:
+    """
+    Calculates the n-th Fibonacci number using matrix exponentiation.
+    https://www.nayuki.io/page/fast-fibonacci-algorithms#:~:text=
+    Summary:%20The%20two%20fast%20Fibonacci%20algorithms%20are%20matrix
+
+    Args:
+        n: Fibonacci sequence index
+
+    Returns:
+        The n-th Fibonacci number.
+
+    Raises:
+        ValueError: If n is negative.
+
+    >>> fib_matrix_np(0)
+    0
+    >>> fib_matrix_np(1)
+    1
+    >>> fib_matrix_np(10)
+    55
+    >>> fib_matrix_np(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: n is negative
+    """
     if n < 0:
         raise ValueError("n is negative")
     if n == 0:
         return 0
-    m = [[1, 1], [1, 0]]
-    result = matrix_pow(m, n - 1)
-    return result[0][0]
+
+    m = np.array([[1, 1], [1, 0]], dtype=int)
+    result = matrix_pow_np(m, n - 1)
+    return result[0, 0]
+
+
 
 
 if __name__ == "__main__":
@@ -278,4 +318,4 @@ if __name__ == "__main__":
     time_func(fib_memoization, num)  # 0.0100 ms
     time_func(fib_recursive_cached, num)  # 0.0153 ms
     time_func(fib_recursive, num)  # 257.0910 ms
-    time_func(fib_matrix, num)  # 0.0000 ms
+    time_func(fib_matrix_np, num)  # 0.0000 ms
