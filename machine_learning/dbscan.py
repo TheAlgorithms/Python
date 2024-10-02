@@ -6,7 +6,7 @@ LinkedIn : https://www.linkedin.com/in/gowtham-kamalasekar/
 """
 
 import math
-from typing import dict, list
+from typing import Dict, List
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -39,20 +39,7 @@ class DbScan:
         self,
         minpts: int,
         radius: int,
-        file: str = (
-            {"x": 3, "y": 7},
-            {"x": 4, "y": 6},
-            {"x": 5, "y": 5},
-            {"x": 6, "y": 4},
-            {"x": 7, "y": 3},
-            {"x": 6, "y": 2},
-            {"x": 7, "y": 2},
-            {"x": 8, "y": 4},
-            {"x": 3, "y": 3},
-            {"x": 2, "y": 6},
-            {"x": 3, "y": 5},
-            {"x": 2, "y": 4},
-        ),
+        file: str = "None",
     ) -> None:
         """
         Constructor
@@ -85,10 +72,27 @@ class DbScan:
         """
         self.minpts = minpts
         self.radius = radius
-        self.file = file
+        self.file = (
+            file
+            if file != "None"
+            else (
+                {"x": 3, "y": 7},
+                {"x": 4, "y": 6},
+                {"x": 5, "y": 5},
+                {"x": 6, "y": 4},
+                {"x": 7, "y": 3},
+                {"x": 6, "y": 2},
+                {"x": 7, "y": 2},
+                {"x": 8, "y": 4},
+                {"x": 3, "y": 3},
+                {"x": 2, "y": 6},
+                {"x": 3, "y": 5},
+                {"x": 2, "y": 4},
+            )
+        )
         self.dict1 = self.perform_dbscan()
 
-    def perform_dbscan(self) -> dict[int, list[int]]:
+    def perform_dbscan(self) -> Dict[int, List[int]]:
         """
         Args:
         -----------
