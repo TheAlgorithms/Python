@@ -1,4 +1,4 @@
-def lexicalOrder(n: int) -> str:
+def lexical_order(n: int) -> str:
 
     ans = []
     stack = [1]
@@ -18,4 +18,4 @@ def lexicalOrder(n: int) -> str:
 
 if __name__ == "__main__":
 
-    print(f"Numbers from 1 to 25 in lexical order: {lexicalOrder(25)}")
+    print(f"Numbers from 1 to 25 in lexical order: {lexical_order(25)}")
