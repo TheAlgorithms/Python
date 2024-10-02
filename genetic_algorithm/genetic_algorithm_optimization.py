@@ -1,148 +1,113 @@
 import numpy as np
-import sympy as sp
 
+class GeneticAlgorithmOptimizer:
+    def __init__(self, func, bounds, population_size=100, generations=500, crossover_prob=0.9, mutation_prob=0.01):
+        """
+        Initialize the Genetic Algorithm optimizer.
 
-def parse_function(user_input: str) -> callable:
-    """
-    Convert user input from f(x, y) = x^2 + y^2 to a valid Python function.
+        :param func: The function to optimize.
+        :param bounds: List of tuples defining the lower and upper bounds for each variable.
+        :param population_size: Number of individuals in the population.
+        :param generations: Number of generations to evolve.
+        :param crossover_prob: Probability of crossover.
+        :param mutation_prob: Probability of mutation.
+        """
+        self.func = func
+        self.bounds = np.array(bounds)
+        self.population_size = population_size
+        self.generations = generations
+        self.crossover_prob = crossover_prob
+        self.mutation_prob = mutation_prob
+        self.num_variables = len(bounds)
 
-    Parameters:
-        user_input (str): The user-defined fitness function in string format.
+    def initialize_population(self):
+        """
+        Initialize a population of random solutions within the bounds.
+        """
+        return np.random.uniform(low=self.bounds[:, 0], high=self.bounds[:, 1], size=(self.population_size, self.num_variables))
 
-    Returns:
-        callable: A callable fitness function.
+    def fitness(self, individual):
+        """
+        Evaluate the fitness of an individual.
+        In minimization problems, we aim to minimize the function value.
+        """
+        return self.func(*individual)
 
-    Examples:
-        >>> parse_function("f(x, y) = x^2 + y^2")
-        <function fitness at 0x...>
-    """
-    user_input = user_input.strip()
+    def select_parents(self, population, fitness_scores):
+        """
+        Select parents using tournament selection.
+        """
+        selected_indices = np.random.choice(range(self.population_size), size=2, replace=False)
+        return population[selected_indices[np.argmin(fitness_scores[selected_indices])]]
 
-    if "=" in user_input:
-        _, expression = user_input.split("=", 1)
-        expression = expression.strip()
-    else:
-        raise ValueError("Invalid function format. Please use 'f(x, y) = ...'.")
+    def crossover(self, parent1, parent2):
+        """
+        Perform one-point crossover to create offspring.
+        Skip crossover for single-variable functions.
+        """
+        if self.num_variables == 1:
+            return parent1, parent2  # No crossover needed for single-variable functions
+        
+        if np.random.rand() < self.crossover_prob:
+            point = np.random.randint(1, self.num_variables)  # Updated to handle the edge case
+            child1 = np.concatenate((parent1[:point], parent2[point:]))
+            child2 = np.concatenate((parent2[:point], parent1[point:]))
+            return child1, child2
+        return parent1, parent2
 
-    # Create sympy symbols for x and y
-    x, y = sp.symbols("x y")
+    def mutate(self, individual):
+        """
+        Apply mutation to an individual with a given mutation probability.
+        """
+        if np.random.rand() < self.mutation_prob:
+            index = np.random.randint(0, self.num_variables)
+            individual[index] = np.random.uniform(self.bounds[index, 0], self.bounds[index, 1])
+        return individual
 
-    # Replace power operator and parse the expression safely
-    expression = expression.replace("^", "**")
+    def evolve(self):
+        """
+        Run the genetic algorithm for a number of generations.
+        """
+        population = self.initialize_population()
+        best_solution = None
+        best_fitness = float('inf')
 
-    # Use sympy to parse the expression
-    func_expr = sp.sympify(expression)
+        for gen in range(self.generations):
+            fitness_scores = np.array([self.fitness(individual) for individual in population])
 
-    # Create the fitness function using sympy
-    fitness = sp.lambdify((x, y), func_expr)
+            new_population = []
+            for _ in range(self.population_size // 2):
+                parent1 = self.select_parents(population, fitness_scores)
+                parent2 = self.select_parents(population, fitness_scores)
+                child1, child2 = self.crossover(parent1, parent2)
+                child1 = self.mutate(child1)
+                child2 = self.mutate(child2)
+                new_population.extend([child1, child2])
 
-    return fitness
+            population = np.array(new_population)
 
+            # Track the best solution
+            min_fitness_index = np.argmin(fitness_scores)
+            if fitness_scores[min_fitness_index] < best_fitness:
+                best_fitness = fitness_scores[min_fitness_index]
+                best_solution = population[min_fitness_index]
 
-def genetic_algorithm(user_fitness_function: callable) -> None:
-    """
-    Execute the genetic algorithm to optimize the user-defined fitness function.
+            print(f"Generation {gen + 1}, Best Fitness: {best_fitness}")
 
-    Parameters:
-        user_fitness_function (callable): The fitness function to be optimized.
-
-    Returns:
-        None
-
-    Example:
-        >>> def user_fitness_function(x, y):
-        ...     return x**2 + y**2
-        >>> genetic_algorithm(user_fitness_function)  # This will print outputs
-    """
-    rng = np.random.default_rng()  # New random number generator
-    population_size = 100
-    num_generations = 500
-    mutation_rate = 0.01
-    chromosome_length = 2
-    best_fitness = np.inf
-    best_solution = None
-
-    # Initialize the population
-    population = rng.random((population_size, chromosome_length))
-
-    for generation in range(num_generations):
-        fitness_values = []
-
-        for individual in population:
-            # Call the fitness function with individual x and y
-            fitness_value = user_fitness_function(individual[0], individual[1])
-
-            if fitness_value is None or not isinstance(fitness_value, (int, float)):
-                print(
-                    f"Warning: Fitness function returned an invalid value "
-                    f"for individual {individual}."
-                )
-                fitness_value = np.inf
-            else:
-                print(
-                    f"Evaluating individual {individual}, Fitness: {fitness_value:.6f}"
-                )
-
-            fitness_values.append(fitness_value)
-
-        fitness_values = np.array(fitness_values)
-
-        # Update the best solution
-        best_idx = np.argmin(fitness_values)
-        if fitness_values[best_idx] < best_fitness:
-            best_fitness = fitness_values[best_idx]
-            best_solution = population[best_idx]
-
-        print(f"Generation {generation + 1}, Best Fitness: {best_fitness:.6f}")
-
-        # Selection
-        selected_parents = population[rng.choice(population_size, population_size)]
-
-        # Crossover
-        offspring = []
-        for i in range(0, population_size - 1, 2):  # Ensure even number of parents
-            parent1, parent2 = selected_parents[i], selected_parents[i + 1]
-            cross_point = rng.integers(1, chromosome_length)
-            child1 = np.concatenate((parent1[:cross_point], parent2[cross_point:]))
-            child2 = np.concatenate((parent2[:cross_point], parent1[cross_point:]))
-            offspring.append(child1)
-            offspring.append(child2)
-
-        # Handle odd population size if necessary
-        if population_size % 2 == 1:
-            offspring.append(selected_parents[-1])  # Include last parent if odd
-
-        offspring = np.array(offspring)
-
-        # Mutation
-        mutation_mask = rng.random(offspring.shape) < mutation_rate
-        offspring[mutation_mask] = rng.random(np.sum(mutation_mask))
-
-        population = offspring
-
-    print("\n--- Optimization Results ---")
-    print(f"Best Fitness Value (Minimum): {best_fitness:.6f}")
-    print(
-        f"Optimal Solution Found: x = {best_solution[0]:.6f}, "
-        f"y = {best_solution[1]:.6f}"
-    )
-
-    function_value = best_fitness
-    print(
-        f"Function Value at Optimal Solution: f({best_solution[0]:.6f}, "
-        f"{best_solution[1]:.6f}) = {function_value:.6f}"
-    )
+        return best_solution, best_fitness
 
 
 if __name__ == "__main__":
-    user_input = input(
-        "Please enter your fitness function in the format 'f(x, y) = ...':\n"
-    )
+    # Define the function to optimize
+    def func(x, y):
+        return x**2 + y**2  # Example: Minimizing x^2 + y^2
 
-    try:
-        fitness_function = parse_function(user_input)
-        genetic_algorithm(fitness_function)
-    except (SyntaxError, ValueError) as e:
-        print(f"Error: {e}")
-    except NameError as e:
-        print(f"Error: {e}")
+    # Define the bounds for each variable
+    bounds = [(-10, 10), (-10, 10)]
+
+    # Initialize and run the optimizer
+    optimizer = GeneticAlgorithmOptimizer(func=func, bounds=bounds)
+    best_solution, best_fitness = optimizer.evolve()
+
+    print("Best Solution:", best_solution)
+    print("Best Fitness:", best_fitness)
