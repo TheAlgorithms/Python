@@ -1,14 +1,13 @@
-import cv2
-import mediapipe as mp
-import pyautogui
 import math
 import time
+import pyautogui
+import mediapipe as mp
+import cv2
 
 CAMERA_ID = 0
 FLIP_IMAGE = True
 VOLUME_CHANGE_COOLDOWN = 0.5
 VOLUME_CHANGE_THRESHOLD = 50
-
 
 def main():
     cap = cv2.VideoCapture(CAMERA_ID)
@@ -21,7 +20,7 @@ def main():
         min_detection_confidence=0.5,
         min_tracking_confidence=0.5,
     )
-    mpDraw = mp.solutions.drawing_utils
+    mp_draw = mp.solutions.drawing_utils
     last_volume_change_time = 0
     distance = 0
     while True:
@@ -35,7 +34,7 @@ def main():
         results = hands.process(image_rgb)
         if results.multi_hand_landmarks:
             for hand_landmarks in results.multi_hand_landmarks:
-                mpDraw.draw_landmarks(
+                mp_draw.draw_landmarks(
                     image, hand_landmarks, mp.solutions.hands.HAND_CONNECTIONS
                 )
                 thumb_tip = hand_landmarks.landmark[4]
@@ -81,7 +80,6 @@ def main():
     cap.release()
     cv2.destroyAllWindows()
     print("Program ended")
-
 
 if __name__ == "__main__":
     main()
