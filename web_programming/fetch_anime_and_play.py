@@ -155,6 +155,7 @@ def get_anime_episode(episode_endpoint: str) -> list:
 
     return [f"{BASE_URL}{episode_url}", f"{BASE_URL}{download_url}"]
 
+
 def download_video(download_url: str, output_filename: str):
     """Download video using ffmpeg."""
     # Validate the URL
@@ -168,6 +169,7 @@ def download_video(download_url: str, output_filename: str):
         subprocess.run(command, check=True)
     except subprocess.CalledProcessError as e:
         print(f"An error occurred while trying to download the video: {e}")
+
 
 if __name__ == "__main__":
     anime_name = input("Enter anime name: ").strip()
