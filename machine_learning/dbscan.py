@@ -7,12 +7,6 @@ LinkedIn : https://www.linkedin.com/in/gowtham-kamalasekar/
 
 
 class DbScan:
-    import math
-
-    import matplotlib.pyplot as plt
-    import pandas as pd
-    from typing import dict, list
-
     """
     DBSCAN Algorithm :
     Density-Based Spatial Clustering Of Applications With Noise
@@ -34,7 +28,13 @@ class DbScan:
     obj.print_dbscan()
     obj.plot_dbscan()
     """
+    
+    import math
 
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    from typing import dict, list
+    
     def __init__(
         self,
         minpts: int,
@@ -217,8 +217,7 @@ class DbScan:
         plt.legend(["Core", "Noise"])
         plt.show()
         print("Plotted Successfully")
-
-
+        
 if __name__ == "__main__":
     import doctest
 
