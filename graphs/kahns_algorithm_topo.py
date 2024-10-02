@@ -1,5 +1,4 @@
-def topological_sort(graph: dict[int, list[int]]
-                     ) -> list[int] | None:
+def topological_sort(graph: dict[int, list[int]]) -> list[int] | None:
     """
     Perform topological sorting of a Directed Acyclic Graph (DAG)
     using Kahn's Algorithm via Breadth-First Search (BFS).
@@ -61,4 +60,5 @@ def topological_sort(graph: dict[int, list[int]]
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
