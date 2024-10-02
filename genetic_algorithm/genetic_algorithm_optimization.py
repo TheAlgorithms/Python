@@ -13,6 +13,7 @@ SEARCH_SPACE = (-10, 10)  # Search space for the variables
 # Random number generator
 rng = np.random.default_rng()
 
+
 class GeneticAlgorithm:
     def __init__(
         self,
@@ -72,7 +73,9 @@ class GeneticAlgorithm:
     def evaluate_population(self):
         # Multithreaded evaluation of population fitness
         with ThreadPoolExecutor() as executor:
-            return list(executor.map(lambda ind: (ind, self.fitness(ind)), self.population))
+            return list(
+                executor.map(lambda ind: (ind, self.fitness(ind)), self.population)
+            )
 
     def evolve(self):
         for generation in range(self.generations):
@@ -95,7 +98,7 @@ class GeneticAlgorithm:
                 next_generation.append(self.mutate(child2))
 
             # Ensure population size remains the same
-            self.population = next_generation[:self.population_size]
+            self.population = next_generation[: self.population_size]
 
             if generation % 10 == 0:
                 print(f"Generation {generation}: Best Fitness = {best_fitness}")
@@ -119,7 +122,7 @@ ga = GeneticAlgorithm(
     generations=N_GENERATIONS,
     mutation_prob=MUTATION_PROBABILITY,
     crossover_rate=CROSSOVER_RATE,
-    maximize=False  # Minimize the function
+    maximize=False,  # Minimize the function
 )
 
 best_solution = ga.evolve()
