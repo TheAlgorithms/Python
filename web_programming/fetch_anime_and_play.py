@@ -6,8 +6,10 @@ import re
 
 BASE_URL = "https://ww1.gogoanime2.org"
 
+
 def is_safe_filename(filename: str) -> bool:
-    return re.match(r'^[\w\-. ]+$', filename) is not None
+    return re.match(r"^[\w\-. ]+$", filename) is not None
+
 
 def search_scraper(anime_name: str) -> list:
     """[summary]
@@ -163,6 +165,7 @@ def download_video(download_url: str, output_filename: str):
         raise ValueError("Unsafe output filename provided.")
     command = ["ffmpeg", "-i", download_url, output_filename]
     subprocess.run(command, check=True)
+
 
 if __name__ == "__main__":
     anime_name = input("Enter anime name: ").strip()
