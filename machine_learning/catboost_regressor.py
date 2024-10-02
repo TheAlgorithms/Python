@@ -27,9 +27,7 @@ def catboost(
     array([1.1139996])
     """
     # Create and fit the CatBoost Regressor
-    catboost_model = CatBoostRegressor(
-        verbose=0, random_seed=42, loss_function="RMSE"
-    )
+    catboost_model = CatBoostRegressor(verbose=0, random_seed=42, loss_function="RMSE")
     catboost_model.fit(features, target)
     # Predict target for test data
     predictions = catboost_model.predict(test_features)
