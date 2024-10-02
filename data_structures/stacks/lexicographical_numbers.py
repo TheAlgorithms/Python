@@ -19,17 +19,17 @@ def lexical_order(max_number: int) -> str:
         num = stack.pop()
         if num > max_number:
             continue
-        
+
         ans.append(str(num))
-        if (num % 10) != 9:  
+        if (num % 10) != 9:
             stack.append(num + 1)
 
         stack.append(num * 10)
 
     return " ".join(ans)
 
+
 if __name__ == "__main__":
-    
     from doctest import testmod
 
     testmod()
