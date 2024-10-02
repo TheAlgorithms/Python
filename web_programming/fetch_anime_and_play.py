@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 
 
 from fake_useragent import UserAgent
+import subprocess
 
 BASE_URL = "https://ww1.gogoanime2.org"
 
