@@ -202,7 +202,9 @@ if __name__ == "__main__":
                 .lower()
             )
             if download_choice in ["yes", "y"]:
-                output_filename = f"{chosen_episode['title']}.mp4"  # Change extension as needed
+                output_filename = (
+                    f"{chosen_episode['title']}.mp4"  # Change extension as needed
+                )
                 download_video(download_url, output_filename)
                 print(
                     f"{chosen_episode['title']} has been downloaded as {output_filename}."
