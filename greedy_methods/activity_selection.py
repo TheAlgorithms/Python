@@ -37,7 +37,7 @@ def activity_selection(activities: list[tuple[int, int]]) -> list[tuple[int, int
     """
 
     # Step 1: Sort the activities by their end time
-    sorted_activities = sorted(activities, key=lambda x: x[1])
+    sorted_activities = sorted(activities, key=lambda activity: activity[1])
 
     # Step 2: Select the first activity (the one that finishes the earliest)
     # as the initial activity
