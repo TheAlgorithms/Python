@@ -7,13 +7,13 @@ Wikipedia: https://en.wikipedia.org/wiki/Word_break_problem
 """
 
 
-def backtrack(s: str, word_dict: set[str], start: int) -> bool:
+def backtrack(input_string: str, word_dict: set[str], start: int) -> bool:
     """
     Helper function that uses backtracking to determine if a valid
     word segmentation is possible starting from index 'start'.
 
     Parameters:
-    s (str): The input string.
+    input_string (str): The input string to be segmented.
     word_dict (set[str]): A set of valid dictionary words.
     start (int): The starting index of the substring to be checked.
 
@@ -32,24 +32,24 @@ def backtrack(s: str, word_dict: set[str], start: int) -> bool:
     """
 
     # Base case: if the starting index has reached the end of the string
-    if start == len(s):
+    if start == len(input_string):
         return True
 
     # Try every possible substring from 'start' to 'end'
-    for end in range(start + 1, len(s) + 1):
-        if s[start:end] in word_dict and backtrack(s, word_dict, end):
+    for end in range(start + 1, len(input_string) + 1):
+        if input_string[start:end] in word_dict and backtrack(input_string, word_dict, end):
             return True
 
     return False
 
 
-def word_break(s: str, word_dict: set[str]) -> bool:
+def word_break(input_string: str, word_dict: set[str]) -> bool:
     """
     Determines if the input string can be segmented into a sequence of
-    one or more dictionary words using backtracking.
+    valid dictionary words using backtracking.
 
     Parameters:
-    s (str): The input string to segment.
+    input_string (str): The input string to segment.
     word_dict (set[str]): The set of valid words.
 
     Returns:
@@ -66,4 +66,4 @@ def word_break(s: str, word_dict: set[str]) -> bool:
     False
     """
 
-    return backtrack(s, word_dict, 0)
+    return backtrack(input_string, word_dict, 0)
