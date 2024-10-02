@@ -111,7 +111,7 @@ class SortedLinkedList:
         This function displays whole list
 
         Doctests
-        
+
 
         >>> linkedList=SortedLinkedList()
         >>> linkedList.insert(32)
