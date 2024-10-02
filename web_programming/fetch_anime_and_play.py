@@ -1,4 +1,5 @@
 import subprocess
+
 import requests
 from bs4 import BeautifulSoup, NavigableString, Tag
 from fake_useragent import UserAgent
@@ -154,12 +155,12 @@ def get_anime_episode(episode_endpoint: str) -> list:
 
     return [f"{BASE_URL}{episode_url}", f"{BASE_URL}{download_url}"]
 
-
 def download_video(download_url: str, output_filename: str):
     """Download video using ffmpeg."""
+    if not download_url.startswith("http"):
+        raise ValueError("Invalid download URL")
     command = ["ffmpeg", "-i", download_url, output_filename]
     subprocess.run(command, check=True)
-
 
 if __name__ == "__main__":
     anime_name = input("Enter anime name: ").strip()
@@ -206,6 +207,7 @@ if __name__ == "__main__":
                 print(
                     f"{chosen_episode['title']} has been downloaded as {output_filename}."
                 )
+                
             else:
                 print("Download skipped.")
 
