@@ -1,6 +1,7 @@
 # Python program to perform Exponential Search
 from bisect import bisect_left
 
+
 # Binary search function
 def binary_search(arr, left, right, target):
     while left <= right:
@@ -12,6 +13,7 @@ def binary_search(arr, left, right, target):
         else:
             right = mid - 1
     return -1
+
 
 # Exponential search function
 def exponential_search(arr, target):
@@ -28,6 +30,7 @@ def exponential_search(arr, target):
 
     # Perform binary search within the found range
     return binary_search(arr, i // 2, min(i, n - 1), target)
+
 
 # Example usage
 if __name__ == "__main__":
