@@ -2,7 +2,7 @@ import numpy as np
 import sympy as sp
 
 
-def parse_function(user_input):
+def parse_function(user_input: str) -> callable:
     """
     Convert user input from f(x, y) = x^2 + y^2 to a valid Python function.
 
@@ -10,7 +10,7 @@ def parse_function(user_input):
         user_input (str): The user-defined fitness function in string format.
 
     Returns:
-        function: A callable fitness function.
+        callable: A callable fitness function.
 
     Examples:
         >>> parse_function("f(x, y) = x^2 + y^2")
@@ -39,19 +39,19 @@ def parse_function(user_input):
     return fitness
 
 
-def genetic_algorithm(user_fitness_function) -> None:
+def genetic_algorithm(user_fitness_function: callable) -> None:
     """
     Execute the genetic algorithm to optimize the user-defined fitness function.
 
     Parameters:
-        user_fitness_function (function): The fitness function to be optimized.
+        user_fitness_function (callable): The fitness function to be optimized.
 
     Returns:
         None
 
     Example:
-        >>> def user_fitness_function(x):
-        ...     return x[0]**2 + x[1]**2
+        >>> def user_fitness_function(x, y):
+        ...     return x**2 + y**2
         >>> genetic_algorithm(user_fitness_function)  # This will print outputs
     """
     rng = np.random.default_rng()  # New random number generator
@@ -121,7 +121,6 @@ def genetic_algorithm(user_fitness_function) -> None:
         population = offspring
 
     print("\n--- Optimization Results ---")
-    print(f"User-defined function: f(x, y) = {user_input.split('=')[1].strip()}")
     print(f"Best Fitness Value (Minimum): {best_fitness:.6f}")
     print(
         f"Optimal Solution Found: x = {best_solution[0]:.6f}, "
