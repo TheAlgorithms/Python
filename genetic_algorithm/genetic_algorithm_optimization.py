@@ -1,5 +1,6 @@
-import random
 import numpy as np
+import random
+from concurrent.futures import ThreadPoolExecutor
 
 # Parameters
 N_POPULATION = 100  # Population size
@@ -9,8 +10,9 @@ MUTATION_PROBABILITY = 0.1  # Mutation probability
 CROSSOVER_RATE = 0.8  # Probability of crossover
 SEARCH_SPACE = (-10, 10)  # Search space for the variables
 
+# Random number generator
+rng = np.random.default_rng()
 
-# Genetic Algorithm for Function Optimization
 class GeneticAlgorithm:
     def __init__(
         self,
@@ -35,11 +37,9 @@ class GeneticAlgorithm:
         self.population = self.initialize_population()
 
     def initialize_population(self):
-        # Generate random initial population within the search space
+        # Generate random initial population within the search space using the generator
         return [
-            np.random.uniform(
-                low=self.bounds[i][0], high=self.bounds[i][1], size=self.dim
-            )
+            rng.uniform(low=self.bounds[i][0], high=self.bounds[i][1], size=self.dim)
             for i in range(self.population_size)
         ]
 
@@ -48,14 +48,10 @@ class GeneticAlgorithm:
         value = self.function(*individual)
         return value if self.maximize else -value  # If minimizing, invert the fitness
 
-    def select_parents(self):
-        # Rank individuals based on fitness and select top individuals for mating
-        scores = [
-            (individual, self.fitness(individual)) for individual in self.population
-        ]
-        scores.sort(key=lambda x: x[1], reverse=True)
-        selected = [ind for ind, _ in scores[:N_SELECTED]]
-        return selected
+    def select_parents(self, population_score):
+        # Select top N_SELECTED parents based on fitness
+        population_score.sort(key=lambda x: x[1], reverse=True)
+        return [ind for ind, _ in population_score[:N_SELECTED]]
 
     def crossover(self, parent1, parent2):
         # Perform uniform crossover
@@ -67,16 +63,28 @@ class GeneticAlgorithm:
         return parent1, parent2
 
     def mutate(self, individual):
-        # Apply mutation to an individual with some probability
+        # Apply mutation to an individual using the new random generator
         for i in range(self.dim):
             if random.random() < self.mutation_prob:
-                individual[i] = np.random.uniform(self.bounds[i][0], self.bounds[i][1])
+                individual[i] = rng.uniform(self.bounds[i][0], self.bounds[i][1])
         return individual
+
+    def evaluate_population(self):
+        # Multithreaded evaluation of population fitness
+        with ThreadPoolExecutor() as executor:
+            return list(executor.map(lambda ind: (ind, self.fitness(ind)), self.population))
 
     def evolve(self):
         for generation in range(self.generations):
-            # Select parents based on fitness
-            parents = self.select_parents()
+            # Evaluate population fitness (multithreaded)
+            population_score = self.evaluate_population()
+
+            # Check the best individual
+            best_individual = max(population_score, key=lambda x: x[1])[0]
+            best_fitness = self.fitness(best_individual)
+
+            # Select parents for next generation
+            parents = self.select_parents(population_score)
             next_generation = []
 
             # Generate offspring using crossover and mutation
@@ -87,30 +95,23 @@ class GeneticAlgorithm:
                 next_generation.append(self.mutate(child2))
 
             # Ensure population size remains the same
-            self.population = next_generation[: self.population_size]
-
-            # Track the best solution so far
-            best_individual = max(self.population, key=self.fitness)
-            best_fitness = self.fitness(best_individual)
+            self.population = next_generation[:self.population_size]
 
             if generation % 10 == 0:
-                print(
-                    f"Generation {generation}: Best Fitness = {best_fitness}, Best Individual = {best_individual}"
-                )
+                print(f"Generation {generation}: Best Fitness = {best_fitness}")
 
-        # Return the best individual found
-        return max(self.population, key=self.fitness)
+        return best_individual
 
 
-# Define a sample function to optimize (e.g., minimize the sum of squares)
+# Example target function for optimization
 def target_function(x, y):
-    return x**2 + y**2  # Example: simple parabolic surface (minimization)
+    return x**2 + y**2  # Simple parabolic surface (minimization)
 
 
 # Set bounds for the variables (x, y)
 bounds = [(-10, 10), (-10, 10)]  # Both x and y range from -10 to 10
 
-# Instantiate the genetic algorithm
+# Instantiate and run the genetic algorithm
 ga = GeneticAlgorithm(
     function=target_function,
     bounds=bounds,
@@ -118,11 +119,9 @@ ga = GeneticAlgorithm(
     generations=N_GENERATIONS,
     mutation_prob=MUTATION_PROBABILITY,
     crossover_rate=CROSSOVER_RATE,
-    maximize=False,  # Set to False for minimization
+    maximize=False  # Minimize the function
 )
 
-# Run the genetic algorithm and find the optimal solution
 best_solution = ga.evolve()
-
 print(f"Best solution found: {best_solution}")
 print(f"Best fitness (minimum value of function): {target_function(*best_solution)}")
