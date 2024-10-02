@@ -18,7 +18,10 @@ import functools
 from collections.abc import Iterator
 from math import sqrt
 from time import time
+
 import numpy as np
+
+
 
 
 def time_func(func, *args, **kwargs):
@@ -287,12 +290,14 @@ def fib_matrix_np(n: int) -> int:
     0
     >>> fib_matrix_np(1)
     1
+    >>> fib_matrix_np(5)
+    5
     >>> fib_matrix_np(10)
     55
     >>> fib_matrix_np(-1)
     Traceback (most recent call last):
         ...
-    ValueError: n is negative
+    Exception: n is negative
     """
     if n < 0:
         raise ValueError("n is negative")
