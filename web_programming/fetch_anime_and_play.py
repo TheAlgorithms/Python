@@ -154,9 +154,10 @@ def get_anime_episode(episode_endpoint: str) -> list:
 
     return [f"{BASE_URL}{episode_url}", f"{BASE_URL}{download_url}"]
 
+
 def download_video(download_url: str, output_filename: str) -> None:
     """Download video using ffmpeg."""
-    command = ['ffmpeg', '-i', download_url, output_filename]
+    command = ["ffmpeg", "-i", download_url, output_filename]
     try:
         subprocess.run(command, check=True)
     except FileNotFoundError:
@@ -164,6 +165,7 @@ def download_video(download_url: str, output_filename: str) -> None:
         print("Error: ffmpeg is not installed.")
         print("Please install ffmpeg using the following command:")
         print("brew install ffmpeg")  # This is the command for macOS
+
 
 if __name__ == "__main__":
     anime_name = input("Enter anime name: ").strip()
@@ -198,13 +200,19 @@ if __name__ == "__main__":
             print(f"\nTo watch, ctrl+click on {episode_url}.")
 
             # Add an option to download or not
-            download_choice = input("\nDo you want to download this episode? (yes/no): ").strip().lower()
+            download_choice = (
+                input("\nDo you want to download this episode? (yes/no): ")
+                .strip()
+                .lower()
+            )
             if download_choice in ["yes", "y"]:
                 output_filename = f"{chosen_anime['title']} - {chosen_episode['title']}.mp4"  # Change extension as needed
                 download_video(download_url, output_filename)
-                print(f"{chosen_episode['title']} has been downloaded as {output_filename}.")
+                print(
+                    f"{chosen_episode['title']} has been downloaded as {output_filename}."
+                )
             else:
                 print("Download skipped.")
 
-            #if error download please install ffmeg
-            #brew install ffmpeg for mac
+            # if error download please install ffmeg
+            # brew install ffmpeg for mac
