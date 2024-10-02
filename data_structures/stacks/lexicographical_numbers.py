@@ -1,0 +1,35 @@
+def lexicalOrder(n: int) -> str:
+    """
+    Generate numbers in lexical order from 1 to n and return them as a space-separated string.
+
+    >>> lexicalOrder(13)
+    '1 10 11 12 13 2 3 4 5 6 7 8 9'
+    >>> lexicalOrder(1)
+    '1'
+    >>> lexicalOrder(20)
+    '1 10 11 12 13 14 15 16 17 18 19 2 20 3 4 5 6 7 8 9'
+    >>> lexicalOrder(25)
+    '1 10 11 12 13 14 15 16 17 18 19 2 20 21 22 23 24 25 3 4 5 6 7 8 9'
+    """
+    ans = []
+    stack = [1]
+
+    while stack:
+        num = stack.pop()
+        if num > n:
+            continue
+        
+        ans.append(str(num))
+        if (num % 10) != 9:  
+            stack.append(num + 1)
+
+        stack.append(num * 10)
+
+    return " ".join(ans)
+
+if __name__ == "__main__":
+    
+    from doctest import testmod
+
+    testmod()
+    print(f"Numbers from 1 to 25 in lexical order: {lexicalOrder(25)}")
