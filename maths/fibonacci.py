@@ -22,8 +22,6 @@ from time import time
 import numpy as np
 
 
-
-
 def time_func(func, *args, **kwargs):
     """
     Times the execution of a function with parameters
