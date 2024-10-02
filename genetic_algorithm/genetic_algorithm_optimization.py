@@ -50,9 +50,9 @@ def genetic_algorithm(user_fitness_function) -> None:
         None
 
     Example:
-        >>> def example_fitness_function(x):
+        >>> def user_fitness_function(x):
         ...     return x[0]**2 + x[1]**2
-        >>> genetic_algorithm(example_fitness_function)  # This will print outputs
+        >>> genetic_algorithm(user_fitness_function)  # This will print outputs
     """
     rng = np.random.default_rng()  # New random number generator
     population_size = 100
