@@ -1,7 +1,16 @@
 import numpy as np
 
+
 class GeneticAlgorithmOptimizer:
-    def __init__(self, func, bounds, population_size=100, generations=500, crossover_prob=0.9, mutation_prob=0.01):
+    def __init__(
+        self,
+        func,
+        bounds,
+        population_size=100,
+        generations=500,
+        crossover_prob=0.9,
+        mutation_prob=0.01,
+    ):
         """
         Initialize the Genetic Algorithm optimizer.
 
@@ -24,7 +33,11 @@ class GeneticAlgorithmOptimizer:
         """
         Initialize a population of random solutions within the bounds.
         """
-        return np.random.uniform(low=self.bounds[:, 0], high=self.bounds[:, 1], size=(self.population_size, self.num_variables))
+        return np.random.uniform(
+            low=self.bounds[:, 0],
+            high=self.bounds[:, 1],
+            size=(self.population_size, self.num_variables),
+        )
 
     def fitness(self, individual):
         """
@@ -37,7 +50,9 @@ class GeneticAlgorithmOptimizer:
         """
         Select parents using tournament selection.
         """
-        selected_indices = np.random.choice(range(self.population_size), size=2, replace=False)
+        selected_indices = np.random.choice(
+            range(self.population_size), size=2, replace=False
+        )
         return population[selected_indices[np.argmin(fitness_scores[selected_indices])]]
 
     def crossover(self, parent1, parent2):
@@ -47,9 +62,11 @@ class GeneticAlgorithmOptimizer:
         """
         if self.num_variables == 1:
             return parent1, parent2  # No crossover needed for single-variable functions
-        
+
         if np.random.rand() < self.crossover_prob:
-            point = np.random.randint(1, self.num_variables)  # Updated to handle the edge case
+            point = np.random.randint(
+                1, self.num_variables
+            )  # Updated to handle the edge case
             child1 = np.concatenate((parent1[:point], parent2[point:]))
             child2 = np.concatenate((parent2[:point], parent1[point:]))
             return child1, child2
@@ -61,7 +78,9 @@ class GeneticAlgorithmOptimizer:
         """
         if np.random.rand() < self.mutation_prob:
             index = np.random.randint(0, self.num_variables)
-            individual[index] = np.random.uniform(self.bounds[index, 0], self.bounds[index, 1])
+            individual[index] = np.random.uniform(
+                self.bounds[index, 0], self.bounds[index, 1]
+            )
         return individual
 
     def evolve(self):
@@ -70,10 +89,12 @@ class GeneticAlgorithmOptimizer:
         """
         population = self.initialize_population()
         best_solution = None
-        best_fitness = float('inf')
+        best_fitness = float("inf")
 
         for gen in range(self.generations):
-            fitness_scores = np.array([self.fitness(individual) for individual in population])
+            fitness_scores = np.array(
+                [self.fitness(individual) for individual in population]
+            )
 
             new_population = []
             for _ in range(self.population_size // 2):
