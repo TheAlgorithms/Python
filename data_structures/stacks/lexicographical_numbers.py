@@ -1,6 +1,6 @@
 def lexical_order(max_number: int) -> str:
     """
-    Generate numbers in lexical order from 1 to max_number and return them as a space-separated string.
+    Generate numbers in lexical order from 1 to max_number.
 
     >>> lexical_order(13)
     '1 10 11 12 13 2 3 4 5 6 7 8 9'
