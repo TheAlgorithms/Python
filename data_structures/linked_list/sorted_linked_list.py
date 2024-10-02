@@ -354,16 +354,16 @@ if __name__ == "__main__":
         choice = input("Enter your choice: ")
 
         if choice == "1":
-            nodeData = int(input("Enter a number: "))
-            linked_list.insert(nodeData)
+            node_data = int(input("Enter a number: "))
+            linked_list.insert(node_data)
         elif choice == "2":
             linked_list.display()
         elif choice == "3":
-            nodeData = int(input("Enter the data to delete: "))
-            if linked_list.delete(nodeData):
-                print(f"Node with data {nodeData} deleted successfully")
+            node_data = int(input("Enter the data to delete: "))
+            if linked_list.delete(node_data):
+                print(f"Node with data {node_data} deleted successfully")
             else:
-                print(f"Node with data {nodeData} not found in the list")
+                print(f"Node with data {node_data} not found in the list")
         elif choice == "4":
             break
         else:
