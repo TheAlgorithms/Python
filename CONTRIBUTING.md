@@ -145,6 +145,21 @@ We want your work to be readable by others; therefore, we encourage you to note 
   python3 -m doctest -v my_submission.py
   ```
 
+
+  Run all tests and see the covrage of the code by following command
+  ```bash
+  pytest \
+          --ignore=quantum/q_fourier_transform.py \
+          --ignore=computer_vision/cnn_classification.py \
+          --ignore=dynamic_programming/k_means_clustering_tensorflow.py \
+          --ignore=machine_learning/lstm/lstm_prediction.py \
+          --ignore=neural_network/input_data.py \
+          --ignore=project_euler/ \
+          --ignore=scripts/validate_solutions.py \
+          --cov-report=term-missing:skip-covered \
+          --cov=. .
+  ```
+
   The use of the Python built-in `input()` function is __not__ encouraged:
 
   ```python
