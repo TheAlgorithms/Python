@@ -248,6 +248,7 @@ def matrix_mult_np(a, b):
     """
     return np.dot(a, b)
 
+
 def matrix_pow_np(m: ndarray, power: int) -> ndarray:
     """
     Raises a matrix to the power of 'power' using binary exponentiation.
