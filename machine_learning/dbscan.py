@@ -1,19 +1,18 @@
-"""
+'''
 
 Author : Gowtham Kamalasekar
 LinkedIn : https://www.linkedin.com/in/gowtham-kamalasekar/
 
-"""
-
-import math
-
-import matplotlib.pyplot as plt
-import pandas as pd
-from typing import dict, list
-
+'''
 
 class DbScan:
-    """
+    import math
+
+    import matplotlib.pyplot as plt
+    import pandas as pd
+    from typing import dict, list
+    
+    '''
     DBSCAN Algorithm :
     Density-Based Spatial Clustering Of Applications With Noise
     Refer this website for more details : https://en.wikipedia.org/wiki/DBSCAN
@@ -33,28 +32,14 @@ class DbScan:
     obj = dbscan.DbScan(minpts, radius, file)
     obj.print_dbscan()
     obj.plot_dbscan()
-    """
-
-    def __init__(
-        self,
-        minpts: int,
-        radius: int,
-        file: str = (
-            {"x": 3, "y": 7},
-            {"x": 4, "y": 6},
-            {"x": 5, "y": 5},
-            {"x": 6, "y": 4},
-            {"x": 7, "y": 3},
-            {"x": 6, "y": 2},
-            {"x": 7, "y": 2},
-            {"x": 8, "y": 4},
-            {"x": 3, "y": 3},
-            {"x": 2, "y": 6},
-            {"x": 3, "y": 5},
-            {"x": 2, "y": 4},
-        ),
-    ) -> None:
-        """
+    '''
+    def __init__(self, minpts : int, radius : int, file : str =
+                 ({'x': 3, 'y': 7}, {'x': 4, 'y': 6}, {'x': 5, 'y': 5},
+                  {'x': 6, 'y': 4},{'x': 7, 'y': 3}, {'x': 6, 'y': 2},
+                  {'x': 7, 'y': 2}, {'x': 8, 'y': 4},{'x': 3, 'y': 3},
+                  {'x': 2, 'y': 6}, {'x': 3, 'y': 5}, {'x': 2, 'y': 4})
+                 ) -> None:
+        '''
         Constructor
 
         Args:
@@ -82,14 +67,13 @@ class DbScan:
             6 | 4
             7 | 3
             -----
-        """
+        '''
         self.minpts = minpts
         self.radius = radius
         self.file = file
         self.dict1 = self.perform_dbscan()
-
     def perform_dbscan(self) -> dict[int, list[int]]:
-        """
+        '''
         Args:
         -----------
             None
@@ -115,30 +99,25 @@ class DbScan:
         11 [2, 10, 11, 12]
         12 [9, 11, 12]
 
-        """
+        '''
         if type(self.file) is str:
-            data = pd.read_csv(self.file)
+            data = pd.read_csv(self.file) 
         else:
             data = pd.DataFrame(list(self.file))
         e = self.radius
         dict1 = {}
         for i in range(len(data)):
             for j in range(len(data)):
-                dist = math.sqrt(
-                    pow(data["x"][j] - data["x"][i], 2)
-                    + pow(data["y"][j] - data["y"][i], 2)
-                )
+                dist = math.sqrt(pow(data['x'][j] - data['x'][i],2)
+                                 + pow(data['y'][j] - data['y'][i],2))
                 if dist < e:
-                    if i + 1 in dict1:
-                        dict1[i + 1].append(j + 1)
+                    if i+1 in dict1:
+                        dict1[i+1].append(j+1)
                     else:
-                        dict1[i + 1] = [
-                            j + 1,
-                        ]
+                        dict1[i+1] = [j+1,]
         return dict1
-
     def print_dbscan(self) -> None:
-        """
+        '''
         Outputs:
         --------
         Prints each point and if it is a core or a noise (w/ border)
@@ -156,25 +135,24 @@ class DbScan:
         10   [1, 10, 11] ---> Noise ---> Border
         11   [2, 10, 11, 12] ---> Core
         12   [9, 11, 12] ---> Noise ---> Border
-        """
+        '''
         for i in self.dict1:
-            print(i, " ", self.dict1[i], end=" ---> ")
+            print(i," ",self.dict1[i], end=' ---> ')
             if len(self.dict1[i]) >= self.minpts:
                 print("Core")
             else:
                 for j in self.dict1:
                     if (
-                        i != j
-                        and len(self.dict1[j]) >= self.minpts
+                        i != j 
+                        and len(self.dict1[j]) >= self.minpts 
                         and i in self.dict1[j]
                     ):
                         print("Noise ---> Border")
                         break
                 else:
                     print("Noise")
-
     def plot_dbscan(self) -> None:
-        """
+        '''
         Output:
         -------
         A matplotlib plot that show points as core and noise along
@@ -182,44 +160,31 @@ class DbScan:
 
         >>> DbScan(4,1.9).plot_dbscan()
         Plotted Successfully
-        """
+        '''
         if type(self.file) is str:
-            data = pd.read_csv(self.file)
+            data = pd.read_csv(self.file) 
         else:
             data = pd.DataFrame(list(self.file))
         e = self.radius
         for i in self.dict1:
             if len(self.dict1[i]) >= self.minpts:
-                plt.scatter(data["x"][i - 1], data["y"][i - 1], color="red")
-                circle = plt.Circle(
-                    (data["x"][i - 1], data["y"][i - 1]), e, color="blue", fill=False
-                )
+                plt.scatter(data['x'][i-1], data['y'][i-1], color='red')
+                circle = plt.Circle((data['x'][i-1], data['y'][i-1]),
+                                    e, color='blue', fill=False)
                 plt.gca().add_artist(circle)
-                plt.text(
-                    data["x"][i - 1],
-                    data["y"][i - 1],
-                    "P" + str(i),
-                    ha="center",
-                    va="bottom",
-                )
+                plt.text(data['x'][i-1], data['y'][i-1],
+                         'P'+str(i), ha='center', va='bottom')
             else:
-                plt.scatter(data["x"][i - 1], data["y"][i - 1], color="green")
-                plt.text(
-                    data["x"][i - 1],
-                    data["y"][i - 1],
-                    "P" + str(i),
-                    ha="center",
-                    va="bottom",
-                )
-        plt.xlabel("X")
-        plt.ylabel("Y")
-        plt.title("DBSCAN Clustering")
-        plt.legend(["Core", "Noise"])
+                plt.scatter(data['x'][i-1], data['y'][i-1], color='green')
+                plt.text(data['x'][i-1], data['y'][i-1],
+                         'P'+str(i), ha='center', va='bottom')
+        plt.xlabel('X')
+        plt.ylabel('Y')
+        plt.title('DBSCAN Clustering')
+        plt.legend(['Core','Noise'])
         plt.show()
         print("Plotted Successfully")
 
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
