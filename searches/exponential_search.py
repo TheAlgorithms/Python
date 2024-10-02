@@ -99,6 +99,7 @@ def exponential_search(sorted_collection: list[int], item: int) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     # Manual testing
