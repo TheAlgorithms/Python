@@ -58,6 +58,7 @@ class Graph:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     # Example usage
@@ -74,5 +75,5 @@ if __name__ == "__main__":
     graph.add_edge(4, 2, 4)
     graph.add_edge(4, 3, 9)
     graph.floyd_warshall()
-    print(graph.show_min(1, 4))  
-    print(graph.show_min(0, 3))  
+    print(graph.show_min(1, 4))
+    print(graph.show_min(0, 3))
