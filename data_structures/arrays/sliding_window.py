@@ -27,7 +27,11 @@ def sum(array:list ,size:int ,k:int) -> int:
     Returns:
         int : sum of the minimum and maximum elements of all sub-arrays of size-k
     """
-    
+    """
+        Examples:
+        >>> sum([2, 5, -1, 7, -3, -1, -2], 7 ,4)
+        18
+    """
     # create first window of size k
     start ,end = 0 ,k-1
     result = 0
@@ -43,7 +47,5 @@ def sum(array:list ,size:int ,k:int) -> int:
     return result
 
 if __name__ == '__main__':
-    array = [2, 5, -1, 7, -3, -1, -2]
-    K = 4
-    size = 7
-    print(sum(array,size,K))
+    import doctest
+    doctest.testmod()
