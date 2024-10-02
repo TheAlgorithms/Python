@@ -6,8 +6,11 @@ from sklearn.preprocessing import MinMaxScaler
 
 
 def generate_data(n_samples=100, n_features=2, n_clusters=2):
-    data, labels = make_blobs(n_samples=n_samples, centers=n_clusters, n_features=n_features, random_state=42)
+    data, labels = make_blobs(
+        n_samples=n_samples, centers=n_clusters, n_features=n_features, random_state=42
+    )
     return MinMaxScaler().fit_transform(data), labels
+
 
 def quantum_distance(point1, point2):
     """
@@ -46,6 +49,7 @@ def initialize_centroids(data: np.ndarray, k: int) -> np.ndarray:
     """
     return data[np.random.choice(len(data), k, replace=False)]
 
+
 def assign_clusters(data, centroids):
     clusters = [[] for _ in range(len(centroids))]
     for point in data:
@@ -55,8 +59,10 @@ def assign_clusters(data, centroids):
         clusters[closest].append(point)
     return clusters
 
+
 def recompute_centroids(clusters):
     return np.array([np.mean(cluster, axis=0) for cluster in clusters if cluster])
+
 
 def quantum_kmeans(data, k, max_iters=10):
     centroids = initialize_centroids(data, k)
