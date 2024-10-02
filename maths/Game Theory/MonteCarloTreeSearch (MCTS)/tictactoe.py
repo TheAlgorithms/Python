@@ -25,6 +25,7 @@ from monte_carlo_tree_search import MCTS, Node
 
 _TTTB = namedtuple("TicTacToeBoard", "tup turn winner terminal")
 
+
 # Inheriting from a namedtuple is convenient because it makes the class
 # immutable and predefines __init__, __repr__, __hash__, __eq__, and others
 class TicTacToeBoard(_TTTB, Node):
