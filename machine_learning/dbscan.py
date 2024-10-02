@@ -6,10 +6,10 @@ LinkedIn : https://www.linkedin.com/in/gowtham-kamalasekar/
 """
 
 import math
+from typing import dict, list
 
 import matplotlib.pyplot as plt
 import pandas as pd
-from typing import dict, list
 
 
 class DbScan:
