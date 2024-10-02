@@ -37,7 +37,9 @@ def backtrack(input_string: str, word_dict: set[str], start: int) -> bool:
 
     # Try every possible substring from 'start' to 'end'
     for end in range(start + 1, len(input_string) + 1):
-        if input_string[start:end] in word_dict and backtrack(input_string, word_dict, end):
+        if input_string[start:end] in word_dict and backtrack(
+            input_string, word_dict, end
+        ):
             return True
 
     return False
