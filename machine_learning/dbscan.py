@@ -6,7 +6,6 @@ LinkedIn : https://www.linkedin.com/in/gowtham-kamalasekar/
 """
 
 import math
-from typing import Dict, List
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -92,7 +91,7 @@ class DbScan:
         )
         self.dict1 = self.perform_dbscan()
 
-    def perform_dbscan(self) -> Dict[int, List[int]]:
+    def perform_dbscan(self) -> dict[int, list[int]]:
         """
         Args:
         -----------
