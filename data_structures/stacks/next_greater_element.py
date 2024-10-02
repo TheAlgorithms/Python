@@ -40,7 +40,7 @@ def next_greatest_element_slow(arr: list[float]) -> list[float]:
 def next_greatest_element_fast(arr: list[float]) -> list[float]:
     """
     Find the Next Greatest Element (NGE) for each element in the array
-    using a more readable approach This implementation utilizes
+    using a more readable approach. This implementation utilizes
     enumerate() for the outer loop and slicing for the inner loop.
 
     While this improves readability over next_greatest_element_slow(),
@@ -54,8 +54,6 @@ def next_greatest_element_fast(arr: list[float]) -> list[float]:
         greater element is found, -1 is placed in the result.
 
     Example:
-
-    for in a slice of arr for the inner loop.
     >>> next_greatest_element_fast(arr) == expect
     True
     """
