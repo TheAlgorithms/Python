@@ -1,5 +1,6 @@
-from bs4 import BeautifulSoup, NavigableString, Tag
 import requests
+from bs4 import BeautifulSoup, NavigableString, Tag
+
 import subprocess
 from fake_useragent import UserAgent
 
