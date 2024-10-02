@@ -9,6 +9,7 @@ FLIP_IMAGE = True
 VOLUME_CHANGE_COOLDOWN = 0.5
 VOLUME_CHANGE_THRESHOLD = 50
 
+
 def main() -> None:
     """Main function to control hand gestures for volume control."""
     cap = cv2.VideoCapture(CAMERA_ID)
@@ -81,6 +82,7 @@ def main() -> None:
     cap.release()
     cv2.destroyAllWindows()
     print("Program ended")
+
 
 if __name__ == "__main__":
     main()
