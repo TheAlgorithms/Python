@@ -2,12 +2,10 @@ def topological_sort(graph: dict[int, list[int]]
                      ) -> list[int] | None:
     """
     Perform topological sorting of a Directed Acyclic Graph (DAG)
-    using Kahn's Algorithm.
+    using Kahn's Algorithm via Breadth-First Search (BFS).
 
     Topological sorting is a linear ordering of vertices in a graph such that for
     every directed edge u → v, vertex u comes before vertex v in the ordering.
-    This function uses Kahn's algorithm to achieve this
-    via Breadth-First Search (BFS).
 
     Parameters:
     graph: Adjacency list representing the directed graph where keys are
