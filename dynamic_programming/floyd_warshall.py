@@ -13,7 +13,7 @@ class Graph:
 
     def add_edge(self, u, v, w):
         """
-        Adds a directed edge from node u 
+        Adds a directed edge from node u
         to node v with weight w.
 
         >>> g = Graph(3)
@@ -25,7 +25,7 @@ class Graph:
 
     def floyd_warshall(self):
         """
-        Computes the shortest paths between all pairs of 
+        Computes the shortest paths between all pairs of
         nodes using the Floyd-Warshall algorithm.
 
         >>> g = Graph(3)
@@ -60,6 +60,7 @@ class Graph:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     # Example usage
@@ -76,5 +77,9 @@ if __name__ == "__main__":
     graph.add_edge(4, 2, 4)
     graph.add_edge(4, 3, 9)
     graph.floyd_warshall()
-    print(graph.show_min(1, 4))  # Should output the minimum distance from node 1 to node 4
-    print(graph.show_min(0, 3))  # Should output the minimum distance from node 0 to node 3
+    print(
+        graph.show_min(1, 4)
+    )  # Should output the minimum distance from node 1 to node 4
+    print(
+        graph.show_min(0, 3)
+    )  # Should output the minimum distance from node 0 to node 3
