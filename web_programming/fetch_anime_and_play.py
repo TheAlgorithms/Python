@@ -154,10 +154,12 @@ def get_anime_episode(episode_endpoint: str) -> list:
 
     return [f"{BASE_URL}{episode_url}", f"{BASE_URL}{download_url}"]
 
+
 def download_video(download_url: str, output_filename: str):
     """Download video using ffmpeg."""
-    command = ['ffmpeg', '-i', download_url, output_filename]
+    command = ["ffmpeg", "-i", download_url, output_filename]
     subprocess.run(command, check=True)
+
 
 if __name__ == "__main__":
     anime_name = input("Enter anime name: ").strip()
