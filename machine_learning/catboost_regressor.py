@@ -1,9 +1,9 @@
 # Catboost Regressor Example
 import numpy as np
+from catboost import CatBoostRegressor
 from sklearn.datasets import fetch_california_housing
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split
-from catboost import CatBoostRegressor
 
 
 def data_handling(data: dict) -> tuple:

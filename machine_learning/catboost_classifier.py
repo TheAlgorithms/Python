@@ -1,10 +1,10 @@
 # Catboost Classifier Example
 import numpy as np
+from catboost import CatBoostClassifier
 from matplotlib import pyplot as plt
 from sklearn.datasets import load_iris
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.model_selection import train_test_split
-from catboost import CatBoostClassifier
 
 
 def data_handling(data: dict) -> tuple:
