@@ -1,6 +1,6 @@
-def lexical_order(n: int) -> str:
+def lexical_order(max_number: int) -> str:
     """
-    Generate numbers in lexical order from 1 to n and return them as a space-separated string.
+    Generate numbers in lexical order from 1 to max_number and return them as a space-separated string.
 
     >>> lexical_order(13)
     '1 10 11 12 13 2 3 4 5 6 7 8 9'
@@ -17,7 +17,7 @@ def lexical_order(n: int) -> str:
 
     while stack:
         num = stack.pop()
-        if num > n:
+        if num > max_number:
             continue
         
         ans.append(str(num))
