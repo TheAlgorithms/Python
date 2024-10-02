@@ -292,6 +292,10 @@ def fib_matrix_np(n: int) -> int:
     5
     >>> fib_matrix_np(10)
     55
+    >>> fib_matrix_np(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: n is negative
     """
     if n < 0:
         raise ValueError("n is negative")
@@ -300,7 +304,7 @@ def fib_matrix_np(n: int) -> int:
 
     m = np.array([[1, 1], [1, 0]], dtype=int)
     result = matrix_pow_np(m, n - 1)
-    return result[0, 0]
+    return int(result[0, 0])
 
 
 if __name__ == "__main__":
