@@ -73,7 +73,7 @@ class BinomialHeap:
     30
 
     Deleting - delete() test
-    >>> [first_heap.delete_min() for _ in range(20)]
+    >>> [int(first_heap.delete_min()) for _ in range(20)]
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
     Create a new Heap
@@ -118,7 +118,7 @@ class BinomialHeap:
     values in merged heap; (merge is inplace)
     >>> results = []
     >>> while not first_heap.is_empty():
-    ...     results.append(first_heap.delete_min())
+    ...     results.append(int(first_heap.delete_min()))
     >>> results
     [17, 20, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31, 34]
     """
@@ -354,7 +354,7 @@ class BinomialHeap:
         # Merge heaps
         self.merge_heaps(new_heap)
 
-        return min_value
+        return int(min_value)
 
     def pre_order(self):
         """

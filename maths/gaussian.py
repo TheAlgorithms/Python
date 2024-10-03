@@ -5,18 +5,18 @@ Reference: https://en.wikipedia.org/wiki/Gaussian_function
 from numpy import exp, pi, sqrt
 
 
-def gaussian(x, mu: float = 0.0, sigma: float = 1.0) -> int:
+def gaussian(x, mu: float = 0.0, sigma: float = 1.0) -> float:
     """
-    >>> gaussian(1)
+    >>> float(gaussian(1))
     0.24197072451914337
 
-    >>> gaussian(24)
+    >>> float(gaussian(24))
     3.342714441794458e-126
 
-    >>> gaussian(1, 4, 2)
+    >>> float(gaussian(1, 4, 2))
     0.06475879783294587
 
-    >>> gaussian(1, 5, 3)
+    >>> float(gaussian(1, 5, 3))
     0.05467002489199788
 
     Supports NumPy Arrays
@@ -29,7 +29,7 @@ def gaussian(x, mu: float = 0.0, sigma: float = 1.0) -> int:
            5.05227108e-15, 1.02797736e-18, 7.69459863e-23, 2.11881925e-27,
            2.14638374e-32, 7.99882776e-38, 1.09660656e-43])
 
-    >>> gaussian(15)
+    >>> float(gaussian(15))
     5.530709549844416e-50
 
     >>> gaussian([1,2, 'string'])
@@ -47,10 +47,10 @@ def gaussian(x, mu: float = 0.0, sigma: float = 1.0) -> int:
         ...
     OverflowError: (34, 'Result too large')
 
-    >>> gaussian(10**-326)
+    >>> float(gaussian(10**-326))
     0.3989422804014327
 
-    >>> gaussian(2523, mu=234234, sigma=3425)
+    >>> float(gaussian(2523, mu=234234, sigma=3425))
     0.0
     """
     return 1 / sqrt(2 * pi * sigma**2) * exp(-((x - mu) ** 2) / (2 * sigma**2))

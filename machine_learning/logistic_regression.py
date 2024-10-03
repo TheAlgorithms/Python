@@ -45,7 +45,7 @@ def sigmoid_function(z: float | np.ndarray) -> float | np.ndarray:
     @returns: returns value in the range 0 to 1
 
     Examples:
-    >>> sigmoid_function(4)
+    >>> float(sigmoid_function(4))
     0.9820137900379085
     >>> sigmoid_function(np.array([-3, 3]))
     array([0.04742587, 0.95257413])
@@ -100,7 +100,7 @@ def cost_function(h: np.ndarray, y: np.ndarray) -> float:
     References:
        - https://en.wikipedia.org/wiki/Logistic_regression
     """
-    return (-y * np.log(h) - (1 - y) * np.log(1 - h)).mean()
+    return float((-y * np.log(h) - (1 - y) * np.log(1 - h)).mean())
 
 
 def log_likelihood(x, y, weights):

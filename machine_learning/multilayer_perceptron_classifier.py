@@ -17,7 +17,7 @@ Y = clf.predict(test)
 
 def wrapper(y):
     """
-    >>> wrapper(Y)
+    >>> [int(x) for x in wrapper(Y)]
     [0, 0, 1]
     """
     return list(y)
