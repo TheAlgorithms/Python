@@ -20,7 +20,7 @@ class Node:
         self.next: Node | None = None
 
 
-def get_middle(head: Node | None) -> Node | None:
+def get_middle(head: Node) -> Node:
     """
     Find the middle node of the linked list using the slow and fast pointer technique.
 
