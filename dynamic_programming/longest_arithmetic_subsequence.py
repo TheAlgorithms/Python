@@ -48,7 +48,7 @@ def longest_arithmetic_subsequence(nums: list[int]) -> int:
     if len(nums) == 1:
         return 1
 
-    dp = [{} for _ in range(len(nums))]
+    ddp: list[dict[int, int]] = [{} for _ in range(len(nums))]
     max_length = 2
 
     for i in range(len(nums)):
