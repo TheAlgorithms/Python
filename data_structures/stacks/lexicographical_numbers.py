@@ -1,4 +1,4 @@
-from typing import Iterator
+from collections.abc import Iterator
 
 def lexical_order(max_number: int) -> Iterator[str]:
     """
