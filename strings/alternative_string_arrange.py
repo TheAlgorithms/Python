@@ -1,9 +1,15 @@
 def alternative_string_arrange(first_str: str, second_str: str) -> str:
     """
     Return the alternative arrangements of the two strings.
-    :param first_str:
-    :param second_str:
-    :return: String
+    
+    This function alternates characters from two input strings. If one string 
+    is longer, the remaining characters will be appended to the end of the 
+    resulting string.
+    
+    :param first_str: The first string to arrange.
+    :param second_str: The second string to arrange.
+    :return: A new string with alternating characters from the input strings.
+
     >>> alternative_string_arrange("ABCD", "XY")
     'AXBYCD'
     >>> alternative_string_arrange("XY", "ABCD")
@@ -13,18 +19,16 @@ def alternative_string_arrange(first_str: str, second_str: str) -> str:
     >>> alternative_string_arrange("ABC", "")
     'ABC'
     """
-    first_str_length: int = len(first_str)
-    second_str_length: int = len(second_str)
-    abs_length: int = (
-        first_str_length if first_str_length > second_str_length else second_str_length
-    )
-    output_list: list = []
-    for char_count in range(abs_length):
-        if char_count < first_str_length:
-            output_list.append(first_str[char_count])
-        if char_count < second_str_length:
-            output_list.append(second_str[char_count])
-    return "".join(output_list)
+    max_length: int = max(len(first_str), len(second_str))
+    result_chars: list = []
+    
+    for i in range(max_length):
+        if i < len(first_str):
+            result_chars.append(first_str[i])
+        if i < len(second_str):
+            result_chars.append(second_str[i])
+    
+    return ''.join(result_chars)
 
 
 if __name__ == "__main__":
