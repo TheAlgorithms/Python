@@ -1,4 +1,6 @@
-def string_replace(text: str, input_string: str, replace_with_string: str, occurrence: int) -> str:
+def string_replace(
+    text: str, input_string: str, replace_with_string: str, occurrence: int
+) -> str:
     """
     The replace() method replaces a specified string with another specified string.
     The occurence parameter can be skipped in order to consider all text.
@@ -18,4 +20,5 @@ def string_replace(text: str, input_string: str, replace_with_string: str, occur
 
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
