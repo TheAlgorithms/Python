@@ -54,8 +54,8 @@
   * [Swap All Odd And Even Bits](bit_manipulation/swap_all_odd_and_even_bits.py)
 
 ## Blockchain
-  * [Powalgorithm](blockchain/PoWAlgorithm.py)
   * [Diophantine Equation](blockchain/diophantine_equation.py)
+  * [Pow Algorithm](blockchain/pow_algorithm.py)
 
 ## Boolean Algebra
   * [And Gate](boolean_algebra/and_gate.py)
