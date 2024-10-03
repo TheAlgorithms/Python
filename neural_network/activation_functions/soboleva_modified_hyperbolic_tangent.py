@@ -8,7 +8,6 @@ More details about the activation function can be found on:
 https://en.wikipedia.org/wiki/Soboleva_modified_hyperbolic_tangent
 """
 
-
 import numpy as np
 
 

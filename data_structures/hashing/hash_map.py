@@ -7,6 +7,7 @@ Another hash map implementation, with a good explanation.
 Modern Dictionaries by Raymond Hettinger
 https://www.youtube.com/watch?v=p33CVV29OG8
 """
+
 from collections.abc import Iterator, MutableMapping
 from dataclasses import dataclass
 from typing import Generic, TypeVar
@@ -54,6 +55,14 @@ class HashMap(MutableMapping[KEY, VAL]):
         Get next index.
 
         Implements linear open addressing.
+        >>> HashMap(5)._get_next_ind(3)
+        4
+        >>> HashMap(5)._get_next_ind(5)
+        1
+        >>> HashMap(5)._get_next_ind(6)
+        2
+        >>> HashMap(5)._get_next_ind(9)
+        0
         """
         return (ind + 1) % len(self._buckets)
 
@@ -82,6 +91,14 @@ class HashMap(MutableMapping[KEY, VAL]):
         Return true if we have reached safe capacity.
 
         So we need to increase the number of buckets to avoid collisions.
+
+        >>> hm = HashMap(2)
+        >>> hm._add_item(1, 10)
+        >>> hm._add_item(2, 20)
+        >>> hm._is_full()
+        True
+        >>> HashMap(2)._is_full()
+        False
         """
         limit = len(self._buckets) * self._capacity_factor
         return len(self) >= int(limit)
@@ -114,17 +131,104 @@ class HashMap(MutableMapping[KEY, VAL]):
             ind = self._get_next_ind(ind)
 
     def _add_item(self, key: KEY, val: VAL) -> None:
+        """
+        Try to add 3 elements when the size is 5
+        >>> hm = HashMap(5)
+        >>> hm._add_item(1, 10)
+        >>> hm._add_item(2, 20)
+        >>> hm._add_item(3, 30)
+        >>> hm
+        HashMap(1: 10, 2: 20, 3: 30)
+
+        Try to add 3 elements when the size is 5
+        >>> hm = HashMap(5)
+        >>> hm._add_item(-5, 10)
+        >>> hm._add_item(6, 30)
+        >>> hm._add_item(-7, 20)
+        >>> hm
+        HashMap(-5: 10, 6: 30, -7: 20)
+
+        Try to add 3 elements when size is 1
+        >>> hm = HashMap(1)
+        >>> hm._add_item(10, 13.2)
+        >>> hm._add_item(6, 5.26)
+        >>> hm._add_item(7, 5.155)
+        >>> hm
+        HashMap(10: 13.2)
+
+        Trying to add an element with a key that is a floating point value
+        >>> hm = HashMap(5)
+        >>> hm._add_item(1.5, 10)
+        >>> hm
+        HashMap(1.5: 10)
+
+        5. Trying to add an item with the same key
+        >>> hm = HashMap(5)
+        >>> hm._add_item(1, 10)
+        >>> hm._add_item(1, 20)
+        >>> hm
+        HashMap(1: 20)
+        """
         for ind in self._iterate_buckets(key):
             if self._try_set(ind, key, val):
                 break
 
     def __setitem__(self, key: KEY, val: VAL) -> None:
+        """
+        1. Changing value of item whose key is present
+        >>> hm = HashMap(5)
+        >>> hm._add_item(1, 10)
+        >>> hm.__setitem__(1, 20)
+        >>> hm
+        HashMap(1: 20)
+
+        2. Changing value of item whose key is not present
+        >>> hm = HashMap(5)
+        >>> hm._add_item(1, 10)
+        >>> hm.__setitem__(0, 20)
+        >>> hm
+        HashMap(0: 20, 1: 10)
+
+        3. Changing the value of the same item multiple times
+        >>> hm = HashMap(5)
+        >>> hm._add_item(1, 10)
+        >>> hm.__setitem__(1, 20)
+        >>> hm.__setitem__(1, 30)
+        >>> hm
+        HashMap(1: 30)
+        """
         if self._is_full():
             self._size_up()
 
         self._add_item(key, val)
 
     def __delitem__(self, key: KEY) -> None:
+        """
+        >>> hm = HashMap(5)
+        >>> hm._add_item(1, 10)
+        >>> hm._add_item(2, 20)
+        >>> hm._add_item(3, 30)
+        >>> hm.__delitem__(3)
+        >>> hm
+        HashMap(1: 10, 2: 20)
+        >>> hm = HashMap(5)
+        >>> hm._add_item(-5, 10)
+        >>> hm._add_item(6, 30)
+        >>> hm._add_item(-7, 20)
+        >>> hm.__delitem__(-5)
+        >>> hm
+        HashMap(6: 30, -7: 20)
+
+        # Trying to remove a non-existing item
+        >>> hm = HashMap(5)
+        >>> hm._add_item(1, 10)
+        >>> hm._add_item(2, 20)
+        >>> hm._add_item(3, 30)
+        >>> hm.__delitem__(4)
+        Traceback (most recent call last):
+        ...
+        KeyError: 4
+        """
         for ind in self._iterate_buckets(key):
             item = self._buckets[ind]
             if item is None:
@@ -139,6 +243,25 @@ class HashMap(MutableMapping[KEY, VAL]):
             self._size_down()
 
     def __getitem__(self, key: KEY) -> VAL:
+        """
+        Returns the item at the given key
+
+        >>> hm = HashMap(5)
+        >>> hm._add_item(1, 10)
+        >>> hm.__getitem__(1)
+        10
+
+        >>> hm = HashMap(5)
+        >>> hm._add_item(10, -10)
+        >>> hm._add_item(20, -20)
+        >>> hm.__getitem__(20)
+        -20
+
+        >>> hm = HashMap(5)
+        >>> hm._add_item(-1, 10)
+        >>> hm.__getitem__(-1)
+        10
+        """
         for ind in self._iterate_buckets(key):
             item = self._buckets[ind]
             if item is None:
@@ -150,13 +273,33 @@ class HashMap(MutableMapping[KEY, VAL]):
         raise KeyError(key)
 
     def __len__(self) -> int:
+        """
+        Returns the number of items present in hashmap
+
+        >>> hm = HashMap(5)
+        >>> hm._add_item(1, 10)
+        >>> hm._add_item(2, 20)
+        >>> hm._add_item(3, 30)
+        >>> hm.__len__()
+        3
+
+        >>> hm = HashMap(5)
+        >>> hm.__len__()
+        0
+        """
         return self._len
 
     def __iter__(self) -> Iterator[KEY]:
         yield from (item.key for item in self._buckets if item)
 
     def __repr__(self) -> str:
-        val_string = " ,".join(
+        val_string = ", ".join(
             f"{item.key}: {item.val}" for item in self._buckets if item
         )
         return f"HashMap({val_string})"
+
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()

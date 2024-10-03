@@ -2,7 +2,7 @@
 # https://www.tutorialspoint.com/computer_graphics/computer_graphics_curves.htm
 from __future__ import annotations
 
-from scipy.special import comb  # type: ignore
+from scipy.special import comb
 
 
 class BezierCurve:
@@ -30,9 +30,9 @@ class BezierCurve:
         returns the x, y values of basis function at time t
 
         >>> curve = BezierCurve([(1,1), (1,2)])
-        >>> curve.basis_function(0)
+        >>> [float(x) for x in curve.basis_function(0)]
         [1.0, 0.0]
-        >>> curve.basis_function(1)
+        >>> [float(x) for x in curve.basis_function(1)]
         [0.0, 1.0]
         """
         assert 0 <= t <= 1, "Time t must be between 0 and 1."
@@ -55,9 +55,9 @@ class BezierCurve:
             The last point in the curve is when t = 1.
 
         >>> curve = BezierCurve([(1,1), (1,2)])
-        >>> curve.bezier_curve_function(0)
+        >>> tuple(float(x) for x in curve.bezier_curve_function(0))
         (1.0, 1.0)
-        >>> curve.bezier_curve_function(1)
+        >>> tuple(float(x) for x in curve.bezier_curve_function(1))
         (1.0, 2.0)
         """
 
@@ -78,7 +78,7 @@ class BezierCurve:
             step_size: defines the step(s) at which to evaluate the Bezier curve.
             The smaller the step size, the finer the curve produced.
         """
-        from matplotlib import pyplot as plt  # type: ignore
+        from matplotlib import pyplot as plt
 
         to_plot_x: list[float] = []  # x coordinates of points to plot
         to_plot_y: list[float] = []  # y coordinates of points to plot

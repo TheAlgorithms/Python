@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 def get_imdb_top_250_movies(url: str = "") -> dict[str, float]:
     url = url or "https://www.imdb.com/chart/top/?ref_=nv_mv_250"
-    soup = BeautifulSoup(requests.get(url).text, "html.parser")
+    soup = BeautifulSoup(requests.get(url, timeout=10).text, "html.parser")
     titles = soup.find_all("td", attrs="titleColumn")
     ratings = soup.find_all("td", class_="ratingColumn imdbRating")
     return {

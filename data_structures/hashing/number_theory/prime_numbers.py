@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-    module to operations with prime numbers
+module to operations with prime numbers
 """
 
 import math
