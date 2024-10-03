@@ -47,6 +47,8 @@ def get_middle(head: Node | None) -> Node | None:
     slow: Node | None = head
     fast: Node | None = head
     while fast is not None and fast.next is not None:
+        if slow is None:  # This should never happen, but it satisfies the type checker
+            return None
         slow = slow.next
         fast = fast.next.next
 
