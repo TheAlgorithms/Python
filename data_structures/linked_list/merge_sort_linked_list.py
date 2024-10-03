@@ -15,7 +15,7 @@ class Node:
     1 2 3 4
     """
 
-    def __init__(self, data: int):
+    def __init__(self, data: int) -> None:
         self.data = data
         self.next: Node | None = None
 
