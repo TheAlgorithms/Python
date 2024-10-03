@@ -21,14 +21,12 @@ def topological_sort(graph: dict[int, list[int]]) -> list[int] | None:
 
     >>> graph_with_cycle = {0: [1], 1: [2], 2: [0]}
     >>> topological_sort(graph_with_cycle)
-    Cycle exists
     """
 
-    # Initialize indegree array
     indegree = [0] * len(graph)
     queue = []
-    topo = []  # topological order of vertices
-    cnt = 0  # no. of vertices processed
+    topo_order = []
+    processed_vertices_count = 0
 
     # Calculate the indegree of each vertex
     for values in graph.values():
@@ -43,8 +41,8 @@ def topological_sort(graph: dict[int, list[int]]) -> list[int] | None:
     # Perform BFS
     while queue:
         vertex = queue.pop(0)
-        cnt += 1
-        topo.append(vertex)
+        processed_vertices_count += 1
+        topo_order.append(vertex)
 
         # Traverse neighbors
         for neighbor in graph[vertex]:
@@ -52,10 +50,9 @@ def topological_sort(graph: dict[int, list[int]]) -> list[int] | None:
             if indegree[neighbor] == 0:
                 queue.append(neighbor)
 
-    if cnt != len(graph):
-        print("Cycle exists")
-        return None  # no topological ordering exists
-    return topo  # valid topological ordering
+    if processed_vertices_count != len(graph):
+        return None  # no topological ordering exists due to cycle
+    return topo_order  # valid topological ordering
 
 
 if __name__ == "__main__":
