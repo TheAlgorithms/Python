@@ -35,10 +35,12 @@ def get_middle(head: Node | None) -> Node | None:
     if head is None or head.next is None:
         return None
 
-    slow: Node = head
+    slow: Node | None = head
     fast: Node | None = head.next
 
     while fast is not None and fast.next is not None:
+        if slow is None:
+            return None
         slow = slow.next
         fast = fast.next.next
 
