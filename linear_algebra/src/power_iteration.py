@@ -2,6 +2,7 @@ import numpy as np
 from typing import Tuple, Union
 import numpy.typing as npt
 
+
 def power_iteration(
     input_matrix: npt.NDArray[Union[np.float64, np.complex128]],
     vector: npt.NDArray[Union[np.float64, np.complex128]],
@@ -42,12 +43,16 @@ def power_iteration(
     # Ensure proper dimensionality.
     assert N == np.shape(vector)[0], "Vector must be compatible with matrix dimensions."
     # Ensure inputs are either both complex or both real
-    assert np.iscomplexobj(input_matrix) == np.iscomplexobj(vector), "Both inputs must be either real or complex."
-    
+    assert np.iscomplexobj(input_matrix) == np.iscomplexobj(
+        vector
+    ), "Both inputs must be either real or complex."
+
     is_complex = np.iscomplexobj(input_matrix)
     if is_complex:
         # Ensure complex input_matrix is Hermitian (A == A*)
-        assert np.array_equal(input_matrix, input_matrix.conj().T), "Input matrix must be Hermitian if complex."
+        assert np.array_equal(
+            input_matrix, input_matrix.conj().T
+        ), "Input matrix must be Hermitian if complex."
 
     convergence = False
     lambda_previous = 0.0
