@@ -1,13 +1,13 @@
 def generate_seating_arrangement(n):
     """
     Generates the nth binary sequence where no two '1's are adjacent.
-    
+
     Args:
         n (int): The position of the sequence to retrieve.
-    
+
     Returns:
         str: The nth valid binary sequence.
-    
+
     Examples:
         >>> generate_seating_arrangement(4)
         '101'
@@ -40,7 +40,9 @@ def generate_seating_arrangement(n):
             a1 += 1
     return k1[n]
 
+
 # Doctest
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
