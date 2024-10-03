@@ -1,19 +1,17 @@
 import base64
-from Crypto.Cipher import AES 
+from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 
 
-
-'''
-AES (Advanced Encryption Standard) is a symmetric encryption algorithm used 
-    for secure data encryption. AES-128 uses a 128-bit key to encrypt and decrypt 
-    data blocks of 128 bits. This implementation uses Cipher Block Chaining (CBC) mode 
+"""
+AES (Advanced Encryption Standard) is a symmetric encryption algorithm used
+    for secure data encryption. AES-128 uses a 128-bit key to encrypt and decrypt
+    data blocks of 128 bits. This implementation uses Cipher Block Chaining (CBC) mode
     with PKCS7 padding for encrypting messages.
 
-    For more details, visit: 
+    For more details, visit:
     https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
-'''
-
+"""
 
 
 def aes_encrypt(plaintext: str, key: str) -> str:
