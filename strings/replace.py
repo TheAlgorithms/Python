@@ -1,4 +1,6 @@
-def string_replace(text: str, input_string: str, replace_with_string: str, occurrence: int) -> str:
+def string_replace(
+    text: str, input_string: str, replace_with_string: str, occurrence: int
+) -> str:
     """
     https://docs.python.org/3/library/stdtypes.html#str.replace
     The replace() method replaces a specified string with another specified string.
@@ -19,4 +21,5 @@ def string_replace(text: str, input_string: str, replace_with_string: str, occur
 
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
