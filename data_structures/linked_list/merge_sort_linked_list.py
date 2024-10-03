@@ -156,9 +156,9 @@ def merge_sort_linked_list(head: Node | None) -> Node | None:
     next_to_middle = middle.next
     middle.next = None  # Split the list into two parts
 
-    left = merge_sort_linked_list(head)  # Sort the left half
-    right = merge_sort_linked_list(next_to_middle)  # Sort the right half
-    sorted_list = merge(left, right)  # Merge the sorted halves
+    left = merge_sort_linked_list(head)  # Sort left half
+    right = merge_sort_linked_list(next_to_middle)  # Sort right half
+    sorted_list = merge(left, right)  # Merge sorted halves
     return sorted_list
 
 
