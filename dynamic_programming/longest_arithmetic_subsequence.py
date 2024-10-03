@@ -7,6 +7,7 @@ Note that:
 - A sequence seq is arithmetic if seq[i + 1] - seq[i] are all the same value (for 0 <= i < seq.length - 1).
 """
 
+
 def longest_arithmetic_subsequence(nums: list[int]) -> int:
     """
     Finds the length of the longest arithmetic subsequence in a given array of integers.
@@ -38,7 +39,7 @@ def longest_arithmetic_subsequence(nums: list[int]) -> int:
     """
     if nums is None:
         raise ValueError("Input array cannot be None")
-    
+
     if len(nums) == 0:
         return 0
 
@@ -59,6 +60,7 @@ def longest_arithmetic_subsequence(nums: list[int]) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     # sample test case
     nums = [3, 6, 9, 12]
