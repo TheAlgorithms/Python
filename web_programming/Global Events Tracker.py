@@ -4,7 +4,9 @@ import requests
 app = Flask(__name__)
 
 # Public APIs for real-time global data (you can replace or add more as needed)
-COVID_API_URL = "https://disease.sh/v3/covid-19/countries"  # Get COVID-19 stats by country
+COVID_API_URL = (
+    "https://disease.sh/v3/covid-19/countries"  # Get COVID-19 stats by country
+)
 NEWS_API_URL = "https://gnews.io/api/v4/top-headlines?token=YOUR_API_KEY&lang=en"  # Replace with your API key
 
 # Base HTML template
@@ -96,11 +98,13 @@ NEWS_TEMPLATE = """
 {% endblock %}
 """
 
-@app.route('/')
+
+@app.route("/")
 def index():
     return render_template_string(BASE_TEMPLATE + INDEX_TEMPLATE)
 
-@app.route('/covid-stats')
+
+@app.route("/covid-stats")
 def covid_stats():
     # Fetch COVID-19 stats from the public API
     try:
@@ -109,20 +113,24 @@ def covid_stats():
     except requests.exceptions.RequestException as e:
         covid_data = []
         print(f"Error fetching COVID data: {e}")
-    
+
     return render_template_string(BASE_TEMPLATE + COVID_TEMPLATE, covid_data=covid_data)
 
-@app.route('/news')
+
+@app.route("/news")
 def global_news():
     # Fetch global news using GNews API
     try:
         response = requests.get(NEWS_API_URL)
-        news_data = response.json().get('articles', []) if response.status_code == 200 else []
+        news_data = (
+            response.json().get("articles", []) if response.status_code == 200 else []
+        )
     except requests.exceptions.RequestException as e:
         news_data = []
         print(f"Error fetching news data: {e}")
-    
+
     return render_template_string(BASE_TEMPLATE + NEWS_TEMPLATE, news_data=news_data)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app.run(debug=True)
