@@ -20,7 +20,7 @@ class Node:
         self.next: Node | None = None
 
 
-def get_middle(head: Node) -> Node:
+def get_middle(head: Node | None) -> Node | None:
     """
     Find the middle node of the linked list using the slow and fast pointer technique.
 
@@ -28,17 +28,20 @@ def get_middle(head: Node) -> Node:
         head: The head node of the linked list.
 
     Returns:
-        The middle node of the linked list.
+        The middle node of the linked list, or None if the list is empty.
 
     Example:
     >>> head = Node(1)
     >>> head.next = Node(2)
     >>> head.next.next = Node(3)
-    >>> get_middle(head).data
+    >>> middle = get_middle(head)
+    >>> middle.data if middle else None
     2
+    >>> get_middle(None) is None
+    True
     """
 
-    if head is None:
+    if head is None or head.next is None:
         return head
 
     slow = head  # one node at a time
@@ -153,6 +156,8 @@ def merge_sort_linked_list(head: Node | None) -> Node | None:
 
     # Split the linked list into two halves
     middle = get_middle(head)
+    if middle is None:
+        return head
     next_to_middle = middle.next
     middle.next = None  # Split the list into two parts
 
