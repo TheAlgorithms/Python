@@ -1,4 +1,5 @@
 from typing import List
+
 """
 Longest Arithmetic Subsequence Problem: Given an array nums of integers, return the length of the longest arithmetic subsequence in nums.
 
@@ -7,6 +8,7 @@ Note that:
   without changing the order of the remaining elements.
 - A sequence seq is arithmetic if seq[i + 1] - seq[i] are all the same value (for 0 <= i < seq.length - 1).
 """
+
 
 def longest_arithmetic_subsequence(nums: List[int]) -> int:
     """
@@ -39,7 +41,7 @@ def longest_arithmetic_subsequence(nums: List[int]) -> int:
     """
     if nums is None:
         raise ValueError("Input array cannot be None")
-    
+
     if len(nums) <= 1:
         return len(nums)
 
@@ -57,6 +59,7 @@ def longest_arithmetic_subsequence(nums: List[int]) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     # sample test case
     nums = [3, 6, 9, 12]
