@@ -1,9 +1,8 @@
-def string_replace(
-    text: str, input_string: str, replace_with_string: str, occurrence: int
-) -> str:
+def string_replace(text: str, input_string: str, replace_with_string: str, occurrence: int) -> str:
     """
+    https://docs.python.org/3/library/stdtypes.html#str.replace
     The replace() method replaces a specified string with another specified string.
-    The occurence parameter can be skipped in order to consider all text.
+    The occurrence parameter can be skipped in order to consider all text.
     Note: input and replace_with strings are case-sensitive.
     >>> text = "One Two Two Three Four Five"
     >>> string_val = string_replace(text, "Two", "Seven", 1)
@@ -20,5 +19,4 @@ def string_replace(
 
 if __name__ == "__main__":
     from doctest import testmod
-
     testmod()
