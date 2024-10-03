@@ -1,7 +1,7 @@
-from typing import List
+from typing import list
 
 
-def find_diagonal_order(mat: List[List[int]]) -> List[int]:
+def find_diagonal_order(mat: list[list[int]]) -> list[int]:
     """
     Returns the elements of the matrix in diagonal order.
 
