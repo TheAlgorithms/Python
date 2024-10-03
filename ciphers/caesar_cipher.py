@@ -188,7 +188,9 @@ def brute_force(input_string: str, alphabet: str | None = None) -> dict[int, str
     >>> brute_force("jFyuMy xIH'N vLONy zILwy Gy!")[20]
     "Please don't brute force me!"
 
-    >>> brute_force("sample text")  # the function expects a string as the first argument
+    >>> brute_force(1)
+    Traceback (most recent call last):
+    TypeError: 'int' object is not iterable
     """
     # Set default alphabet to lower and upper case english chars
     alpha = alphabet or ascii_letters
