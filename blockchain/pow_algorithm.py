@@ -2,26 +2,14 @@
 # Title: Proof of Work Algorithm for Blockchain
 
 ## Algorithm Statement:
-The algorithm implements the Proof of Work (PoW) consensus mechanism used in blockchain to validate blocks. PoW is used to ensure that participants (miners) must perform a computational task to create a valid block and add it to the blockchain. The difficulty of the task is defined by the number of leading zeros required in the hash of the block.
-
-## Approach:
-1. Each block contains a list of transactions, a previous block's hash, a timestamp, and a nonce (random value).
-2. The block is hashed using the SHA-256 cryptographic hash function.
-3. The miner's goal is to find a nonce such that the resulting hash has a certain number of leading zeros, which defines the difficulty level.
-4. The difficulty is adjustable. The more leading zeros required, the harder it is to find a valid nonce.
-5. This process is repeated until a valid hash is found, which demonstrates that computational work has been done (Proof of Work).
-
-## Steps:
-1. Create a `Block` class to hold block details (transactions, previous hash, timestamp, and nonce).
-2. Implement a `Blockchain` class that adds new blocks to the chain by solving the PoW problem.
-3. Implement the hashing function using SHA-256.
-4. Adjust the difficulty by varying the number of leading zeros required in the hash.
-5. Use test cases to validate the PoW algorithm.
+The algorithm implements the Proof of Work (PoW) consensus mechanism used in 
+blockchain to validate blocks. PoW ensures participants (miners) perform a 
+computational task to create a valid block and add it to the blockchain. The 
+difficulty is defined by the number of leading zeros required in the block hash.
 """
 
 import hashlib
 import time
-
 
 class Block:
     def __init__(self, index, previous_hash, transactions, timestamp, difficulty):
@@ -39,23 +27,24 @@ class Block:
         Combines index, previous hash, transactions, timestamp, and nonce into a string,
         which is then hashed using SHA-256.
         """
-        block_string = f"{self.index}{self.previous_hash}{self.transactions}{self.timestamp}{self.nonce}"
+        block_string = (
+            f"{self.index}{self.previous_hash}{self.transactions}{self.timestamp}"
+            f"{self.nonce}"
+        )
         return hashlib.sha256(block_string.encode()).hexdigest()
 
     def mine_block(self):
         """
         Performs Proof of Work by adjusting the nonce until a valid hash is found.
-        A valid hash has the required number of leading zeros based on the difficulty level.
+        A valid hash has the required number of leading zeros based on the difficulty 
+        level.
         """
-        target = (
-            "0" * self.difficulty
-        )  # Target hash should start with 'difficulty' number of zeros
-        while self.hash[: self.difficulty] != target:
+        target = '0' * self.difficulty  # Target hash should start with 'difficulty' zeros
+        while self.hash[:self.difficulty] != target:
             self.nonce += 1
             self.hash = self.compute_hash()
 
         print(f"Block mined with nonce {self.nonce}, hash: {self.hash}")
-
 
 class Blockchain:
     def __init__(self, difficulty):
@@ -76,20 +65,15 @@ class Blockchain:
         Adds a new block to the blockchain after performing Proof of Work.
         """
         previous_block = self.chain[-1]
-        new_block = Block(
-            len(self.chain),
-            previous_block.hash,
-            transactions,
-            time.time(),
-            self.difficulty,
-        )
+        new_block = Block(len(self.chain), previous_block.hash, transactions, time.time(), 
+                          self.difficulty)
         new_block.mine_block()
         self.chain.append(new_block)
 
     def is_chain_valid(self):
         """
-        Verifies the integrity of the blockchain by ensuring each block's previous hash matches
-        and that all blocks meet the Proof of Work requirement.
+        Verifies the integrity of the blockchain by ensuring each block's previous 
+        hash matches and that all blocks meet the Proof of Work requirement.
         """
         for i in range(1, len(self.chain)):
             current_block = self.chain[i]
@@ -105,9 +89,7 @@ class Blockchain:
 
         return True
 
-
 # Test cases
-
 
 def test_blockchain():
     """
@@ -121,18 +103,13 @@ def test_blockchain():
     blockchain.add_block("Transaction 2: Bob pays Charlie 3 BTC")
 
     # Verify the integrity of the blockchain
-    assert blockchain.is_chain_valid() == True, "Blockchain should be valid"
+    assert blockchain.is_chain_valid(), "Blockchain should be valid"
 
     # Tamper with the blockchain and check validation
-    blockchain.chain[
-        1
-    ].transactions = "Transaction 1: Alice pays Bob 50 BTC"  # Tampering the transaction
-    assert (
-        blockchain.is_chain_valid() == False
-    ), "Blockchain should be invalid due to tampering"
+    blockchain.chain[1].transactions = "Transaction 1: Alice pays Bob 50 BTC"  # Tampering
+    assert not blockchain.is_chain_valid(), "Blockchain should be invalid due to tampering"
 
     print("All test cases passed.")
-
 
 if __name__ == "__main__":
     test_blockchain()
