@@ -13,10 +13,10 @@ def next_greatest_element_slow(arr: list[float]) -> list[float]:
     of O(n^2), where n is the size of the array.
 
     Args:
-        arr (list[float]): List of numbers for which the NGE is calculated.
+        arr: List of numbers for which the NGE is calculated.
 
     Returns:
-        list[float]: List containing the next greatest elements. If no
+        List containing the next greatest elements. If no
         greater element is found, -1 is placed in the result.
 
     Example:
@@ -47,10 +47,10 @@ def next_greatest_element_fast(arr: list[float]) -> list[float]:
     it still has a time complexity of O(n^2).
 
     Args:
-        arr (list[float]): List of numbers for which the NGE is calculated.
+        arr: List of numbers for which the NGE is calculated.
 
     Returns:
-        list[float]: List containing the next greatest elements. If no
+        List containing the next greatest elements. If no
         greater element is found, -1 is placed in the result.
 
     Example:
@@ -80,10 +80,10 @@ def next_greatest_element(arr: list[float]) -> list[float]:
     greatest element for each element.
 
     Args:
-        arr (list[float]): List of numbers for which the NGE is calculated.
+        arr: List of numbers for which the NGE is calculated.
 
     Returns:
-        list[float]: List containing the next greatest elements. If no
+        List containing the next greatest elements. If no
         greater element is found, -1 is placed in the result.
 
     Example:
