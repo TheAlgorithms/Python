@@ -6,7 +6,7 @@ to the standard sigmoid function, particularly useful in scenarios where speed i
 critical, such as in deep learning models.
 
 For more detailed information, you can refer to the following link:
-https://en.wikipedia.org/wiki/Rectifier_(neural_networks)#Hard_Sigmoid
+https://en.wikipedia.org/wiki/Hard_sigmoid
 """
 
 import numpy as np
