@@ -13,17 +13,20 @@ cities = {
     7: [6, 2],
 }
 
+
 def euclidean_distance(city1: list[int], city2: list[int]) -> float:
     """
     Calculate the Euclidean distance between two cities (points).
     """
     return math.sqrt((city1[0] - city2[0]) ** 2 + (city1[1] - city2[1]) ** 2)
 
+
 def initialize_pheromone_matrix(size: int) -> list[list[float]]:
     """
     Initialize the pheromone matrix with 1.0 values.
     """
     return [[1.0 for _ in range(size)] for _ in range(size)]
+
 
 def compute_distance_matrix(cities: dict[int, list[int]]) -> list[list[float]]:
     """
@@ -38,13 +41,14 @@ def compute_distance_matrix(cities: dict[int, list[int]]) -> list[list[float]]:
             dist_matrix[j][i] = dist
     return dist_matrix
 
+
 def select_next_city(
     current_city: int,
     unvisited: list[int],
     pheromone: list[list[float]],
     distances: list[list[float]],
     alpha: float,
-    beta: float
+    beta: float,
 ) -> int:
     """
     Select the next city to visit based on pheromone levels and distances.
@@ -62,6 +66,7 @@ def select_next_city(
     # Randomly select next city based on the probabilities
     return random.choices(unvisited, weights=probabilities)[0]
 
+
 def update_pheromones(
     pheromone: list[list[float]],
     ants_paths: list[list[int]],
@@ -69,7 +74,7 @@ def update_pheromones(
     q: float,
     evaporation_rate: float,
     best_path: list[int],
-    best_distance: float
+    best_distance: float,
 ) -> tuple[list[list[float]], list[int], float]:
     """
     Update pheromone levels on the paths chosen by ants.
@@ -79,11 +84,13 @@ def update_pheromones(
     # Evaporate pheromones
     for i in range(size):
         for j in range(size):
-            pheromone[i][j] *= (1 - evaporation_rate)
+            pheromone[i][j] *= 1 - evaporation_rate
 
     # Update pheromones based on ants' paths
     for path in ants_paths:
-        total_distance = sum(distances[path[i]][path[i + 1]] for i in range(len(path) - 1))
+        total_distance = sum(
+            distances[path[i]][path[i + 1]] for i in range(len(path) - 1)
+        )
         pheromone_deposit = q / total_distance
 
         for i in range(len(path) - 1):
@@ -97,6 +104,7 @@ def update_pheromones(
 
     return pheromone, best_path, best_distance
 
+
 def ant_colony_optimization(
     cities: dict[int, list[int]],
     ants_num: int,
@@ -104,21 +112,21 @@ def ant_colony_optimization(
     alpha: float,
     beta: float,
     evaporation_rate: float,
-    q: float
+    q: float,
 ) -> tuple[list[int], float]:
     """
     Solve the TSP using Ant Colony Optimization (ACO).
     """
     cities_num = len(cities)
     if cities_num == 0:
-        return [], float('inf')  # No cities to visit
+        return [], float("inf")  # No cities to visit
 
     # Initialize pheromone and distance matrices
     pheromone = initialize_pheromone_matrix(cities_num)
     distances = compute_distance_matrix(cities)
 
     best_path = []
-    best_distance = float('inf')
+    best_distance = float("inf")
 
     for _ in range(iterations):
         all_paths = []
@@ -129,7 +137,9 @@ def ant_colony_optimization(
             # Construct path for the ant
             current_city = 0
             while unvisited:
-                next_city = select_next_city(current_city, unvisited, pheromone, distances, alpha, beta)
+                next_city = select_next_city(
+                    current_city, unvisited, pheromone, distances, alpha, beta
+                )
                 path.append(next_city)
                 unvisited.remove(next_city)
                 current_city = next_city
@@ -139,10 +149,17 @@ def ant_colony_optimization(
 
         # Update pheromones and track the best path found
         pheromone, best_path, best_distance = update_pheromones(
-            pheromone, all_paths, distances, q, evaporation_rate, best_path, best_distance
+            pheromone,
+            all_paths,
+            distances,
+            q,
+            evaporation_rate,
+            best_path,
+            best_distance,
         )
 
     return best_path, best_distance
+
 
 if __name__ == "__main__":
     # Example usage
@@ -153,7 +170,7 @@ if __name__ == "__main__":
         alpha=1.0,
         beta=5.0,
         evaporation_rate=0.7,
-        q=10
+        q=10,
     )
 
     print(f"Best path: {best_path}")

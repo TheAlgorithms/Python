@@ -2,13 +2,16 @@ from __future__ import annotations
 from collections import deque
 from typing import List, Dict
 
+
 class State:
     """Represents a state in the Aho-Corasick automaton."""
+
     def __init__(self, value: str):
         self.value = value
         self.next_states: List[int] = []
         self.fail_state: int = 0
         self.output: List[str] = []
+
 
 class Automaton:
     def __init__(self, keywords: List[str]):
@@ -44,25 +47,35 @@ class Automaton:
         for node in self.adlist[0].next_states:
             q.append(node)
             self.adlist[node].fail_state = 0
-        
+
         while q:
             r = q.popleft()
             for child in self.adlist[r].next_states:
                 q.append(child)
                 state = self.adlist[r].fail_state
-                while (self.find_state_by_character(state, self.adlist[child].value) is None and state != 0):
+                while (
+                    self.find_state_by_character(state, self.adlist[child].value)
+                    is None
+                    and state != 0
+                ):
                     state = self.adlist[state].fail_state
-                
-                fail_state = self.find_state_by_character(state, self.adlist[child].value)
-                self.adlist[child].fail_state = fail_state if fail_state is not None else 0
-                self.adlist[child].output.extend(self.adlist[self.adlist[child].fail_state].output)
+
+                fail_state = self.find_state_by_character(
+                    state, self.adlist[child].value
+                )
+                self.adlist[child].fail_state = (
+                    fail_state if fail_state is not None else 0
+                )
+                self.adlist[child].output.extend(
+                    self.adlist[self.adlist[child].fail_state].output
+                )
 
     def search_in(self, string: str) -> Dict[str, List[int]]:
         """
         Search for keywords in the given string.
 
         Returns a dictionary with keywords and the list of their occurrences.
-        
+
         Example:
         >>> A = Automaton(["what", "hat", "ver", "er"])
         >>> A.search_in("whatever, err ... , wherever")
@@ -70,11 +83,14 @@ class Automaton:
         """
         result: Dict[str, List[int]] = {}
         current_state = 0
-        
+
         for i in range(len(string)):
-            while self.find_state_by_character(current_state, string[i]) is None and current_state != 0:
+            while (
+                self.find_state_by_character(current_state, string[i]) is None
+                and current_state != 0
+            ):
                 current_state = self.adlist[current_state].fail_state
-            
+
             next_state = self.find_state_by_character(current_state, string[i])
             if next_state is None:
                 current_state = 0
@@ -84,10 +100,11 @@ class Automaton:
                     if key not in result:
                         result[key] = []
                     result[key].append(i - len(key) + 1)
-        
+
         return result
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
