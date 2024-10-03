@@ -10,7 +10,7 @@ def main():
     """
     Gaussian Naive Bayes Example using sklearn function.
     Iris type dataset is used to demonstrate algorithm.
-    
+
     Algorithm:
     1. Load Dataset: Import the Iris dataset.
     2. Data Preprocessing: Split dataset into features (X) and labels (y).
