@@ -8,6 +8,7 @@ numpy
 opencv-python
 pandas
 pillow
+pycryptodome
 # projectq  # uncomment once quantum/quantum_random.py is fixed
 qiskit ; python_version < '3.12'
 qiskit-aer ; python_version < '3.12'
@@ -22,5 +23,4 @@ tweepy
 # yulewalker  # uncomment once audio_filters/equal_loudness_filter.py is fixed
 typing_extensions
 xgboost
-pycryptodome
 
