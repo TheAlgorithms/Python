@@ -21,7 +21,6 @@ def compute_transform_tables(
     destination_seq = list(destination_string)
     len_source_seq = len(source_seq)
     len_destination_seq = len(destination_seq)
-
     costs = [
         [0 for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
     ]
@@ -31,28 +30,28 @@ def compute_transform_tables(
 
     for i in range(1, len_source_seq + 1):
         costs[i][0] = i * delete_cost
-        ops[i][0] = f"D{source_seq[i - 1]:c}"
+        ops[i][0] = f"D{source_seq[i - 1]}"
 
     for i in range(1, len_destination_seq + 1):
         costs[0][i] = i * insert_cost
-        ops[0][i] = f"I{destination_seq[i - 1]:c}"
+        ops[0][i] = f"I{destination_seq[i - 1]}"
 
     for i in range(1, len_source_seq + 1):
         for j in range(1, len_destination_seq + 1):
             if source_seq[i - 1] == destination_seq[j - 1]:
                 costs[i][j] = costs[i - 1][j - 1] + copy_cost
-                ops[i][j] = f"C{source_seq[i - 1]:c}"
+                ops[i][j] = f"C{source_seq[i - 1]}"
             else:
                 costs[i][j] = costs[i - 1][j - 1] + replace_cost
-                ops[i][j] = f"R{source_seq[i - 1]:c}" + str(destination_seq[j - 1])
+                ops[i][j] = f"R{source_seq[i - 1]}" + str(destination_seq[j - 1])
 
             if costs[i - 1][j] + delete_cost < costs[i][j]:
                 costs[i][j] = costs[i - 1][j] + delete_cost
-                ops[i][j] = f"D{source_seq[i - 1]:c}"
+                ops[i][j] = f"D{source_seq[i - 1]}"
 
             if costs[i][j - 1] + insert_cost < costs[i][j]:
                 costs[i][j] = costs[i][j - 1] + insert_cost
-                ops[i][j] = f"I{destination_seq[j - 1]:c}"
+                ops[i][j] = f"I{destination_seq[j - 1]}"
 
     return costs, ops
 
