@@ -235,18 +235,6 @@ def fib_binet(n: int) -> list[int]:
     return [round(phi**i / sqrt_5) for i in range(n + 1)]
 
 
-def matrix_mult_np(a, b):
-    """
-    Multiplies two matrices using numpy's dot product.
-
-    Args:
-        a: First matrix as a numpy array
-        b: Second matrix as a numpy array
-
-    Returns:
-        The product of matrices a and b.
-    """
-    return np.dot(a, b)
 
 
 def matrix_pow_np(m: ndarray, power: int) -> ndarray:
