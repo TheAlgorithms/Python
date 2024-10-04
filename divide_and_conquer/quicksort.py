@@ -1,5 +1,7 @@
 def quicksort(arr: list) -> list:
     """Quicksort function implementation in Python.
+
+    https://en.wikipedia.org/wiki/Quicksort
     
     >>> quicksort([])
     []
