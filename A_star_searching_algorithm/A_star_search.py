@@ -209,8 +209,8 @@ def main() -> None:
     Examples:
         >>> main()
         The destination cell is found
-        The Path is 
-        -> (8, 0) -> (7, 1) -> (6, 0) -> (5, 1) -> (4, 0) -> (3, 1) -> (2, 0) -> (1, 1) -> (0, 0) 
+        The Path is
+        -> (8, 0) -> (7, 1) -> (6, 0) -> (5, 1) -> (4, 0) -> (3, 1) -> (2, 0) -> (1, 1) -> (0, 0)
     """
     # Define the grid (1 for unblocked, 0 for blocked)
     grid = [
@@ -234,4 +234,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
