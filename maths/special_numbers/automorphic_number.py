@@ -2,10 +2,6 @@ def is_automorphic_number(number: int, verbose: bool = False) -> bool:
     """
     This function checks if a given number is an automorphic number.
 
-    Args:
-    number (int): The number to check.
-    verbose (bool): If True, prints the square of the number and the comparison result. Defaults to False.
-
     Returns:
     bool: True if the number is automorphic, False otherwise.
 
