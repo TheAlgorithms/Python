@@ -22,7 +22,7 @@ def binary_cross_entropy(
 
     >>> true_labels = np.array([0, 1, 1, 0, 1])
     >>> predicted_probs = np.array([0.2, 0.7, 0.9, 0.3, 0.8])
-    >>> binary_cross_entropy(true_labels, predicted_probs)
+    >>> float(binary_cross_entropy(true_labels, predicted_probs))
     0.2529995012327421
     >>> true_labels = np.array([0, 1, 1, 0, 1])
     >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
@@ -68,7 +68,7 @@ def binary_focal_cross_entropy(
 
     >>> true_labels = np.array([0, 1, 1, 0, 1])
     >>> predicted_probs = np.array([0.2, 0.7, 0.9, 0.3, 0.8])
-    >>> binary_focal_cross_entropy(true_labels, predicted_probs)
+    >>> float(binary_focal_cross_entropy(true_labels, predicted_probs))
     0.008257977659239775
     >>> true_labels = np.array([0, 1, 1, 0, 1])
     >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
@@ -108,7 +108,7 @@ def categorical_cross_entropy(
 
     >>> true_labels = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
     >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1], [0.0, 0.1, 0.9]])
-    >>> categorical_cross_entropy(true_labels, pred_probs)
+    >>> float(categorical_cross_entropy(true_labels, pred_probs))
     0.567395975254385
     >>> true_labels = np.array([[1, 0], [0, 1]])
     >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
@@ -179,13 +179,13 @@ def categorical_focal_cross_entropy(
     >>> true_labels = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
     >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1], [0.0, 0.1, 0.9]])
     >>> alpha = np.array([0.6, 0.2, 0.7])
-    >>> categorical_focal_cross_entropy(true_labels, pred_probs, alpha)
+    >>> float(categorical_focal_cross_entropy(true_labels, pred_probs, alpha))
     0.0025966118981496423
 
     >>> true_labels = np.array([[0, 1, 0], [0, 0, 1]])
     >>> pred_probs = np.array([[0.05, 0.95, 0], [0.1, 0.8, 0.1]])
     >>> alpha = np.array([0.25, 0.25, 0.25])
-    >>> categorical_focal_cross_entropy(true_labels, pred_probs, alpha)
+    >>> float(categorical_focal_cross_entropy(true_labels, pred_probs, alpha))
     0.23315276982014324
 
     >>> true_labels = np.array([[1, 0], [0, 1]])
@@ -265,7 +265,7 @@ def hinge_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
     >>> true_labels = np.array([-1, 1, 1, -1, 1])
     >>> pred = np.array([-4, -0.3, 0.7, 5, 10])
-    >>> hinge_loss(true_labels, pred)
+    >>> float(hinge_loss(true_labels, pred))
     1.52
     >>> true_labels = np.array([-1, 1, 1, -1, 1, 1])
     >>> pred = np.array([-4, -0.3, 0.7, 5, 10])
@@ -309,11 +309,11 @@ def huber_loss(y_true: np.ndarray, y_pred: np.ndarray, delta: float) -> float:
 
     >>> true_values = np.array([0.9, 10.0, 2.0, 1.0, 5.2])
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
-    >>> np.isclose(huber_loss(true_values, predicted_values, 1.0), 2.102)
+    >>> bool(np.isclose(huber_loss(true_values, predicted_values, 1.0), 2.102))
     True
     >>> true_labels = np.array([11.0, 21.0, 3.32, 4.0, 5.0])
     >>> predicted_probs = np.array([8.3, 20.8, 2.9, 11.2, 5.0])
-    >>> np.isclose(huber_loss(true_labels, predicted_probs, 1.0), 1.80164)
+    >>> bool(np.isclose(huber_loss(true_labels, predicted_probs, 1.0), 1.80164))
     True
     >>> true_labels = np.array([11.0, 21.0, 3.32, 4.0])
     >>> predicted_probs = np.array([8.3, 20.8, 2.9, 11.2, 5.0])
@@ -347,7 +347,7 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
     >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
-    >>> np.isclose(mean_squared_error(true_values, predicted_values), 0.028)
+    >>> bool(np.isclose(mean_squared_error(true_values, predicted_values), 0.028))
     True
     >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
@@ -381,11 +381,11 @@ def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
     >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
-    >>> np.isclose(mean_absolute_error(true_values, predicted_values), 0.16)
+    >>> bool(np.isclose(mean_absolute_error(true_values, predicted_values), 0.16))
     True
     >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
-    >>> np.isclose(mean_absolute_error(true_values, predicted_values), 2.16)
+    >>> bool(np.isclose(mean_absolute_error(true_values, predicted_values), 2.16))
     False
     >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_probs = np.array([0.3, 0.8, 0.9, 5.2])
@@ -420,7 +420,7 @@ def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
 
     >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
-    >>> mean_squared_logarithmic_error(true_values, predicted_values)
+    >>> float(mean_squared_logarithmic_error(true_values, predicted_values))
     0.0030860877925181344
     >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
@@ -459,17 +459,17 @@ def mean_absolute_percentage_error(
     Examples:
     >>> y_true = np.array([10, 20, 30, 40])
     >>> y_pred = np.array([12, 18, 33, 45])
-    >>> mean_absolute_percentage_error(y_true, y_pred)
+    >>> float(mean_absolute_percentage_error(y_true, y_pred))
     0.13125
 
     >>> y_true = np.array([1, 2, 3, 4])
     >>> y_pred = np.array([2, 3, 4, 5])
-    >>> mean_absolute_percentage_error(y_true, y_pred)
+    >>> float(mean_absolute_percentage_error(y_true, y_pred))
     0.5208333333333333
 
     >>> y_true = np.array([34, 37, 44, 47, 48, 48, 46, 43, 32, 27, 26, 24])
     >>> y_pred = np.array([37, 40, 46, 44, 46, 50, 45, 44, 34, 30, 22, 23])
-    >>> mean_absolute_percentage_error(y_true, y_pred)
+    >>> float(mean_absolute_percentage_error(y_true, y_pred))
     0.064671076436071
     """
     if len(y_true) != len(y_pred):
@@ -511,7 +511,7 @@ def perplexity_loss(
     ...      [[0.03, 0.26, 0.21, 0.18, 0.30],
     ...       [0.28, 0.10, 0.33, 0.15, 0.12]]]
     ... )
-    >>> perplexity_loss(y_true, y_pred)
+    >>> float(perplexity_loss(y_true, y_pred))
     5.0247347775367945
     >>> y_true = np.array([[1, 4], [2, 3]])
     >>> y_pred = np.array(
@@ -600,17 +600,17 @@ def smooth_l1_loss(y_true: np.ndarray, y_pred: np.ndarray, beta: float = 1.0) ->
 
     >>> y_true = np.array([3, 5, 2, 7])
     >>> y_pred = np.array([2.9, 4.8, 2.1, 7.2])
-    >>> smooth_l1_loss(y_true, y_pred, 1.0)
+    >>> float(smooth_l1_loss(y_true, y_pred, 1.0))
     0.012500000000000022
 
     >>> y_true = np.array([2, 4, 6])
     >>> y_pred = np.array([1, 5, 7])
-    >>> smooth_l1_loss(y_true, y_pred, 1.0)
+    >>> float(smooth_l1_loss(y_true, y_pred, 1.0))
     0.5
 
     >>> y_true = np.array([1, 3, 5, 7])
     >>> y_pred = np.array([1, 3, 5, 7])
-    >>> smooth_l1_loss(y_true, y_pred, 1.0)
+    >>> float(smooth_l1_loss(y_true, y_pred, 1.0))
     0.0
 
     >>> y_true = np.array([1, 3, 5])
@@ -647,7 +647,7 @@ def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float
 
     >>> true_labels = np.array([0.2, 0.3, 0.5])
     >>> predicted_probs = np.array([0.3, 0.3, 0.4])
-    >>> kullback_leibler_divergence(true_labels, predicted_probs)
+    >>> float(kullback_leibler_divergence(true_labels, predicted_probs))
     0.030478754035472025
     >>> true_labels = np.array([0.2, 0.3, 0.5])
     >>> predicted_probs = np.array([0.3, 0.3, 0.4, 0.5])
