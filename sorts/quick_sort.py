@@ -27,7 +27,7 @@ def quick_sort(collection: list) -> list:
     Space Complexity:
     Best Case: O(log n) for In-place implementation
     Worst Case: O(n)
-    
+
     Examples:
     >>> quick_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
@@ -45,9 +45,9 @@ def quick_sort(collection: list) -> list:
     pivot = collection.pop(pivot_index)
 
     # Initialise empty lists to store the elements
-    
+
     lesser = []  # Stores elements less than or equal to the pivot
-    greater = [] # Stores elements greater than the pivot
+    greater = []  # Stores elements greater than the pivot
 
     # Loop through the collections and partition
     for item in collection:
@@ -55,7 +55,7 @@ def quick_sort(collection: list) -> list:
             lesser.append(item)
         else:
             greater.append(item)
-    
+
     # Recursively sort the lesser and greater groups, and combine with the pivot
     return [*quick_sort(lesser), pivot, *quick_sort(greater)]
 
