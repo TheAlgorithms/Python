@@ -64,9 +64,21 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    # Sample test case
-    nums = [3, 6, 9, 12]
-    expected_length = 4
 
-    result = longest_arithmetic_subsequence(nums)
-    print("Length of longest arithmetic subsequence:", result)
+    # test cases
+    test_cases = [
+        ([3, 6, 9, 12], 4),  
+        ([3, 6, 9, 12, 15], 5),
+        ([1, 7, 10, 13, 14, 19], 4),
+        ([1, 2, 3, 4], 4),
+        ([], 0),
+        ([10], 1),
+        ([9, 4, 7, 2, 10], 3),
+        ([1, 2, 2, 2, 2, 5], 4),
+    ]
+
+    for nums, expected_length in test_cases:
+        result = longest_arithmetic_subsequence(nums)
+        print(f"Test case {nums}: Expected {expected_length}, Got {result}")
+        assert result == expected_length, f"Test failed for input {nums}"
+
