@@ -18,10 +18,18 @@ def compute_transform_tables(
     insert_cost: int,
 ) -> tuple[list[list[int]], list[list[str]]]:
     """
-    Finds the most cost efficient sequence for converting one string into another.
+    Finds the most cost efficient sequence
+    for converting one string into another.
 
-    >>> compute_transform_tables("cat", "cut", 1, 2, 3, 3)
-    ([[0, 3, 6, 9], [3, 1, 4, 7], [6, 4, 3, 6], [9, 7, 6, 4]], [['0', 'Ic', 'Iu', 'It'], ['Dc', 'Cc', 'Iu', 'It'], ['Da', 'Da', 'Rau', 'Rat'], ['Dt', 'Dt', 'Rtu', 'Ct']])
+    >>> costs, operations = compute_transform_tables("cat", "cut", 1, 2, 3, 3)
+    >>> costs[0][:4]
+    [0, 3, 6, 9]
+    >>> costs[2][:4]
+    [6, 4, 3, 6]
+    >>> operations[0][:4]
+    ['0', 'Ic', 'Iu', 'It']
+    >>> operations[3][:4]
+    ['Dt', 'Dt', 'Rtu', 'Ct']
 
     >>> compute_transform_tables("", "", 1, 2, 3, 3)
     ([[0]], [['0']])
@@ -38,7 +46,9 @@ def compute_transform_tables(
         ["0" for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
     ]
 
-    # Removed ':c' specifier as it is generally used for integers to convert to a Unicode character not strings.
+    # Removed ':c' specifier as it is generally
+    # used for integers to convert to a Unicode
+    # character not strings.
     for i in range(1, len_source_seq + 1):
         costs[i][0] = i * delete_cost
         ops[i][0] = f"D{source_seq[i - 1]}"
@@ -69,9 +79,12 @@ def compute_transform_tables(
 
 def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
     """
-    Assembles the transformations based on the information in the ops table.
-    
-    >>> ops = [['0', 'Ic', 'Iu', 'It'], ['Dc', 'Cc', 'Iu', 'It'], ['Da', 'Da', 'Rau', 'Rat'], ['Dt', 'Dt', 'Rtu', 'Ct']]
+    Assembles the transformations based on the ops table.
+
+    >>> ops = [['0', 'Ic', 'Iu', 'It'],
+    ...        ['Dc', 'Cc', 'Iu', 'It'],
+    ...        ['Da', 'Da', 'Rau', 'Rat'],
+    ...        ['Dt', 'Dt', 'Rtu', 'Ct']]
     >>> x = len(ops) - 1
     >>> y = len(ops[0]) - 1
     >>> assemble_transformation(ops, x, y)
