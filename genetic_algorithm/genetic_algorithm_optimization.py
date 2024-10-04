@@ -11,7 +11,6 @@ class GeneticAlgorithmOptimizer:
         crossover_prob=0.9,
         mutation_prob=0.01,
     ):
-
         self.func = func
         self.bounds = np.array(bounds)
         self.population_size = population_size
