@@ -269,7 +269,7 @@ def matrix_pow_np(m: ndarray, power: int) -> ndarray:
     """
     result = np.array([[1, 0], [0, 1]], dtype=int)  # Identity Matrix
     base = m
-    if(power < 0):  # Negative power is not allowed
+    if power < 0:  # Negative power is not allowed
         raise ValueError("power is negative")
     while power:
         if power % 2 == 1:
