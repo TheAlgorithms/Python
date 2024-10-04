@@ -15,7 +15,8 @@ class GeneticAlgorithmOptimizer:
         Initialize the Genetic Algorithm optimizer.
 
         :param func: The function to optimize.
-        :param bounds: List of tuples defining the lower and upper bounds for each variable.
+        :param bounds: List of tuples defining the lower and upper bounds
+                       for each variable.
         :param population_size: Number of individuals in the population.
         :param generations: Number of generations to evolve.
         :param crossover_prob: Probability of crossover.
