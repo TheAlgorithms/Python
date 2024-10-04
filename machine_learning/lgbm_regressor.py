@@ -17,8 +17,9 @@ def data_handling(data: dict) -> tuple:
     return (data["data"], data["target"])
 
 
-def lgbm_regressor(features: np.ndarray, target: np.ndarray,
-                   test_features: np.ndarray) -> np.ndarray:
+def lgbm_regressor(
+    features: np.ndarray, target: np.ndarray, test_features: np.ndarray
+) -> np.ndarray:
     """
     >>> lgbm_regressor(np.array([[0.12, 0.02, 0.01, 0.25, 0.09]]),
     ... np.array([1]), np.array([[0.11, 0.03, 0.02, 0.28, 0.08]]))
@@ -39,7 +40,7 @@ def main() -> None:
     Bank Marketing Dataset is used to demonstrate the algorithm.
     """
     # Load Bank Marketing dataset
-    bank_data = fetch_openml(name='bank-marketing', version=1, as_frame=False)
+    bank_data = fetch_openml(name="bank-marketing", version=1, as_frame=False)
     data, target = data_handling(bank_data)
     x_train, x_test, y_train, y_test = train_test_split(
         data, target, test_size=0.25, random_state=1
