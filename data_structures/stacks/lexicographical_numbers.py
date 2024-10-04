@@ -24,7 +24,7 @@ def lexical_order(max_number: int) -> Iterator[int]:
         if num > max_number:
             continue
 
-        yield (num)
+        yield num
         if (num % 10) != 9:
             stack.append(num + 1)
 
