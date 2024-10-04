@@ -1195,6 +1195,7 @@
   * [Non Preemptive Shortest Job First](scheduling/non_preemptive_shortest_job_first.py)
   * [Round Robin](scheduling/round_robin.py)
   * [Shortest Job First](scheduling/shortest_job_first.py)
+  * [Weighted Interval Scheduling](scheduling/weighted_interval_scheduling.py)
 
 ## Searches
   * [Binary Search](searches/binary_search.py)
