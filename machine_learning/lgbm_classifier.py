@@ -34,19 +34,19 @@ def lgbm_classifier(features: np.ndarray, target: np.ndarray) -> LGBMClassifier:
 def main() -> None:
     """
     Main function to demonstrate LGBM classification on the Iris dataset.
-    
+
     URL for LightGBM documentation:
     https://lightgbm.readthedocs.io/en/latest/
     """
     # Load the Iris dataset
     iris = load_iris()
     features, targets = data_handling(iris)
-    
+
     # Split the dataset into training and testing sets
     x_train, x_test, y_train, y_test = train_test_split(
         features, targets, test_size=0.25, random_state=42
     )
-    
+
     # Class names for display
     names = iris["target_names"]
 
@@ -68,5 +68,6 @@ def main() -> None:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)
     main()
