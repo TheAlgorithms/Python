@@ -46,9 +46,6 @@ def compute_transform_tables(
         ["0" for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
     ]
 
-    # Removed ':c' specifier as it is generally
-    # used for integers to convert to a Unicode
-    # character not strings.
     for i in range(1, len_source_seq + 1):
         costs[i][0] = i * delete_cost
         ops[i][0] = f"D{source_seq[i - 1]}"
