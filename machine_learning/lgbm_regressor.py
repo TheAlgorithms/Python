@@ -17,10 +17,10 @@ def data_handling(data: dict) -> tuple:
     return (data["data"], data["target"])
 
 
-def lgbm_regressor(features: np.ndarray, target: np.ndarray, 
+def lgbm_regressor(features: np.ndarray, target: np.ndarray,
                    test_features: np.ndarray) -> np.ndarray:
     """
-    >>> lgbm_regressor(np.array([[0.12, 0.02, 0.01, 0.25, 0.09]]), 
+    >>> lgbm_regressor(np.array([[0.12, 0.02, 0.01, 0.25, 0.09]]),
     ... np.array([1]), np.array([[0.11, 0.03, 0.02, 0.28, 0.08]]))
     array([[0.98]], dtype=float32)
     """
