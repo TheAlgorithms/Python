@@ -153,8 +153,8 @@ def trace_path(cell_details: List[List[Cell]], dest: Tuple[int, int]) -> None:
         >>> cell_details[1][1].parent_i = 0
         >>> cell_details[1][1].parent_j = 0
         >>> trace_path(cell_details, (1, 1))
-        The Path is 
-        -> (0, 0) -> (1, 1) 
+        The Path is
+        -> (0, 0) -> (1, 1)
     """
     print("The Path is ")
     path = []
@@ -186,7 +186,9 @@ def trace_path(cell_details: List[List[Cell]], dest: Tuple[int, int]) -> None:
 # Implement the A* search algorithm
 
 
-def a_star_search(grid: List[List[int]], src: Tuple[int, int], dest: Tuple[int, int]) -> None:
+def a_star_search(
+    grid: List[List[int]], src: Tuple[int, int], dest: Tuple[int, int]
+) -> None:
     """
     Perform the A* search to find the shortest path from source to destination.
 
@@ -206,8 +208,8 @@ def a_star_search(grid: List[List[int]], src: Tuple[int, int], dest: Tuple[int, 
         ... ]
         >>> a_star_search(grid, (0, 0), (2, 2))
         The destination cell is found
-        The Path is 
-        -> (0, 0) -> (1, 1) -> (2, 2) 
+        The Path is
+        -> (0, 0) -> (1, 1) -> (2, 2)
         >>> a_star_search(grid, (0, 0), (1, 1))
         Source or the destination is blocked
     """
@@ -315,7 +317,7 @@ def a_star_search(grid: List[List[int]], src: Tuple[int, int], dest: Tuple[int, 
         print("Failed to find the destination cell")
 
 
-# Driver Code    
+# Driver Code
 
 if __name__ == "__main__":
     """
@@ -349,4 +351,3 @@ if __name__ == "__main__":
 
     # Run the A* search algorithm
     a_star_search(grid, src, dest)
-
