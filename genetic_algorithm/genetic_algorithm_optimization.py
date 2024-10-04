@@ -27,7 +27,6 @@ class GeneticAlgorithm:
         crossover_rate,
         maximize=True,
     ):
-
         self.function = function  # Target function to optimize
         self.bounds = bounds  # Search space bounds (for each variable)
         self.population_size = population_size
@@ -47,18 +46,15 @@ class GeneticAlgorithm:
             for i in range(self.population_size)
         ]
 
-
     def fitness(self, individual):
         # Calculate the fitness value (function value)
         value = self.function(*individual)
         return value if self.maximize else -value  # If minimizing, invert the fitness
 
-
     def select_parents(self, population_score):
         # Select top N_SELECTED parents based on fitness
         population_score.sort(key=lambda x: x[1], reverse=True)
         return [ind for ind, _ in population_score[:N_SELECTED]]
-
 
     def crossover(self, parent1, parent2):
         # Perform uniform crossover
@@ -69,7 +65,6 @@ class GeneticAlgorithm:
             return child1, child2
         return parent1, parent2
 
-
     def mutate(self, individual):
         # Apply mutation to an individual using the new random generator
         for i in range(self.dim):
@@ -77,14 +72,12 @@ class GeneticAlgorithm:
                 individual[i] = rng.uniform(self.bounds[i][0], self.bounds[i][1])
         return individual
 
-
     def evaluate_population(self):
         # Multithreaded evaluation of population fitness
         with ThreadPoolExecutor() as executor:
             return list(
                 executor.map(lambda ind: (ind, self.fitness(ind)), self.population)
             )
-
 
     def evolve(self):
         for generation in range(self.generations):
