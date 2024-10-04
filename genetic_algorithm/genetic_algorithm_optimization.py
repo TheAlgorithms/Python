@@ -11,17 +11,7 @@ class GeneticAlgorithmOptimizer:
         crossover_prob=0.9,
         mutation_prob=0.01,
     ):
-        """
-        Initialize the Genetic Algorithm optimizer.
 
-        :param func: The function to optimize.
-        :param bounds: List of tuples defining the lower and upper bounds
-                       for each variable.
-        :param population_size: Number of individuals in the population.
-        :param generations: Number of generations to evolve.
-        :param crossover_prob: Probability of crossover.
-        :param mutation_prob: Probability of mutation.
-        """
         self.func = func
         self.bounds = np.array(bounds)
         self.population_size = population_size
