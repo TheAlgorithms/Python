@@ -1,11 +1,10 @@
 """
-Implementation of gradient descent algorithm for minimizing cost of a linear hypothesis
-function.
+Doğrusal bir hipotez fonksiyonunun maliyetini en aza indirmek için gradyan iniş algoritmasının uygulanması.
 """
 
 import numpy as np
 
-# List of input, output pairs
+# Girdi, çıktı çiftlerinin listesi
 train_data = (
     ((5, 2, 3), 15),
     ((6, 5, 9), 25),
@@ -21,9 +20,9 @@ LEARNING_RATE = 0.009
 
 def _error(example_no, data_set="train"):
     """
-    :param data_set: train data or test data
-    :param example_no: example number whose error has to be checked
-    :return: error in example pointed by example number.
+    :param data_set: eğitim verisi veya test verisi
+    :param example_no: hatası kontrol edilecek örnek numarası
+    :return: belirtilen örnekteki hata.
     """
     return calculate_hypothesis_value(example_no, data_set) - output(
         example_no, data_set
@@ -32,12 +31,12 @@ def _error(example_no, data_set="train"):
 
 def _hypothesis_value(data_input_tuple):
     """
-    Calculates hypothesis function value for a given input
-    :param data_input_tuple: Input tuple of a particular example
-    :return: Value of hypothesis function at that point.
-    Note that there is an 'biased input' whose value is fixed as 1.
-    It is not explicitly mentioned in input data.. But, ML hypothesis functions use it.
-    So, we have to take care of it separately. Line 36 takes care of it.
+    Belirli bir girdi için hipotez fonksiyon değeri hesaplar
+    :param data_input_tuple: Belirli bir örneğin girdi demeti
+    :return: O noktadaki hipotez fonksiyonunun değeri.
+    Not: Sabit bir değere sahip 'bias' girdi vardır.
+    Girdi verilerinde açıkça belirtilmemiştir. Ancak, ML hipotez fonksiyonları bunu kullanır.
+    Bu nedenle, bunu ayrı olarak ele almalıyız. 36. satır bunu ele alır.
     """
     hyp_val = 0
     for i in range(len(parameter_vector) - 1):
@@ -48,9 +47,9 @@ def _hypothesis_value(data_input_tuple):
 
 def output(example_no, data_set):
     """
-    :param data_set: test data or train data
-    :param example_no: example whose output is to be fetched
-    :return: output for that example
+    :param data_set: test verisi veya eğitim verisi
+    :param example_no: çıktısı alınacak örnek
+    :return: o örnek için çıktı
     """
     if data_set == "train":
         return train_data[example_no][1]
@@ -61,10 +60,10 @@ def output(example_no, data_set):
 
 def calculate_hypothesis_value(example_no, data_set):
     """
-    Calculates hypothesis value for a given example
-    :param data_set: test data or train_data
-    :param example_no: example whose hypothesis value is to be calculated
-    :return: hypothesis value for that example
+    Belirli bir örnek için hipotez değeri hesaplar
+    :param data_set: test verisi veya eğitim verisi
+    :param example_no: hipotez değeri hesaplanacak örnek
+    :return: o örnek için hipotez değeri
     """
     if data_set == "train":
         return _hypothesis_value(train_data[example_no][0])
@@ -75,12 +74,11 @@ def calculate_hypothesis_value(example_no, data_set):
 
 def summation_of_cost_derivative(index, end=m):
     """
-    Calculates the sum of cost function derivative
-    :param index: index wrt derivative is being calculated
-    :param end: value where summation ends, default is m, number of examples
-    :return: Returns the summation of cost derivative
-    Note: If index is -1, this means we are calculating summation wrt to biased
-        parameter.
+    Maliyet fonksiyonu türevinin toplamını hesaplar
+    :param index: türevine göre hesaplanan indeks
+    :param end: toplamın bittiği değer, varsayılan m, örnek sayısı
+    :return: Maliyet türevinin toplamını döndürür
+    Not: Eğer indeks -1 ise, bu, bias parametresine göre toplamın hesaplandığı anlamına gelir.
     """
     summation_value = 0
     for i in range(end):
@@ -93,10 +91,9 @@ def summation_of_cost_derivative(index, end=m):
 
 def get_cost_derivative(index):
     """
-    :param index: index of the parameter vector wrt to derivative is to be calculated
-    :return: derivative wrt to that index
-    Note: If index is -1, this means we are calculating summation wrt to biased
-        parameter.
+    :param index: türevine göre hesaplanacak parametre vektörünün indeksi
+    :return: o indekse göre türev
+    Not: Eğer indeks -1 ise, bu, bias parametresine göre toplamın hesaplandığı anlamına gelir.
     """
     cost_derivative_value = summation_of_cost_derivative(index, m) / m
     return cost_derivative_value
@@ -104,7 +101,7 @@ def get_cost_derivative(index):
 
 def run_gradient_descent():
     global parameter_vector
-    # Tune these values to set a tolerance value for predicted output
+    # Tahmin edilen çıktı için bir tolerans değeri ayarlamak için bu değerleri ayarlayın
     absolute_error_limit = 0.000002
     relative_error_limit = 0
     j = 0
@@ -124,16 +121,16 @@ def run_gradient_descent():
         ):
             break
         parameter_vector = temp_parameter_vector
-    print(("Number of iterations:", j))
+    print(("İterasyon sayısı:", j))
 
 
 def test_gradient_descent():
     for i in range(len(test_data)):
-        print(("Actual output value:", output(i, "test")))
-        print(("Hypothesis output:", calculate_hypothesis_value(i, "test")))
+        print(("Gerçek çıktı değeri:", output(i, "test")))
+        print(("Hipotez çıktısı:", calculate_hypothesis_value(i, "test")))
 
 
 if __name__ == "__main__":
     run_gradient_descent()
-    print("\nTesting gradient descent for a linear hypothesis function.\n")
+    print("\nDoğrusal bir hipotez fonksiyonu için gradyan iniş test ediliyor.\n")
     test_gradient_descent()

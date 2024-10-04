@@ -19,14 +19,14 @@ def get_subreddit_data(
     subreddit: str, limit: int = 1, age: str = "new", wanted_data: list | None = None
 ) -> dict:
     """
-    subreddit : Subreddit to query
-    limit : Number of posts to fetch
+    subreddit : Sorgulanacak Subreddit
+    limit : Alınacak gönderi sayısı
     age : ["new", "top", "hot"]
-    wanted_data : Get only the required data in the list
+    wanted_data : Listede yalnızca gerekli verileri alın
     """
     wanted_data = wanted_data or []
     if invalid_search_terms := ", ".join(sorted(set(wanted_data) - valid_terms)):
-        msg = f"Invalid search term: {invalid_search_terms}"
+        msg = f"Geçersiz arama terimi: {invalid_search_terms}"
         raise ValueError(msg)
     response = requests.get(
         f"https://reddit.com/r/{subreddit}/{age}.json?limit={limit}",
@@ -49,5 +49,5 @@ def get_subreddit_data(
 
 
 if __name__ == "__main__":
-    # If you get Error 429, that means you are rate limited.Try after some time
+    # Eğer 429 Hatası alırsanız, bu rate limitine takıldığınız anlamına gelir. Bir süre sonra tekrar deneyin.
     print(get_subreddit_data("learnpython", wanted_data=["title", "url", "selftext"]))

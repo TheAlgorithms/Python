@@ -1,40 +1,40 @@
 import requests
 
 
-# Function to get geolocation data for an IP address
+# Bir IP adresi için coğrafi konum verilerini almak için fonksiyon
 def get_ip_geolocation(ip_address: str) -> str:
     try:
-        # Construct the URL for the IP geolocation API
+        # IP coğrafi konum API'si için URL'yi oluştur
         url = f"https://ipinfo.io/{ip_address}/json"
 
-        # Send a GET request to the API
+        # API'ye GET isteği gönder
         response = requests.get(url, timeout=10)
 
-        # Check if the HTTP request was successful
+        # HTTP isteğinin başarılı olup olmadığını kontrol et
         response.raise_for_status()
 
-        # Parse the response as JSON
+        # Yanıtı JSON olarak ayrıştır
         data = response.json()
 
-        # Check if city, region, and country information is available
+        # Şehir, bölge ve ülke bilgisi mevcut mu kontrol et
         if "city" in data and "region" in data and "country" in data:
-            location = f"Location: {data['city']}, {data['region']}, {data['country']}"
+            location = f"Konum: {data['city']}, {data['region']}, {data['country']}"
         else:
-            location = "Location data not found."
+            location = "Konum verisi bulunamadı."
 
         return location
     except requests.exceptions.RequestException as e:
-        # Handle network-related exceptions
-        return f"Request error: {e}"
+        # Ağ ile ilgili istisnaları ele al
+        return f"İstek hatası: {e}"
     except ValueError as e:
-        # Handle JSON parsing errors
-        return f"JSON parsing error: {e}"
+        # JSON ayrıştırma hatalarını ele al
+        return f"JSON ayrıştırma hatası: {e}"
 
 
 if __name__ == "__main__":
-    # Prompt the user to enter an IP address
-    ip_address = input("Enter an IP address: ")
+    # Kullanıcıdan bir IP adresi girmesini iste
+    ip_address = input("Bir IP adresi girin: ")
 
-    # Get the geolocation data and print it
+    # Coğrafi konum verilerini al ve yazdır
     location = get_ip_geolocation(ip_address)
     print(location)

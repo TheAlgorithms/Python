@@ -1,13 +1,13 @@
-"""Get the site emails from URL."""
+"""URL'den site e-postalarını alın."""
 
 from __future__ import annotations
 
-__author__ = "Muhammad Umer Farooq"
+__author__ = "K. Umut Araz"
 __license__ = "MIT"
 __version__ = "1.0.0"
-__maintainer__ = "Muhammad Umer Farooq"
-__email__ = "contact@muhammadumerfarooq.me"
-__status__ = "Alpha"
+__maintainer__ = "K. Umut Araz"
+__email__ = "umutaraz349@gmail.com"
+__status__ = "Sigma"
 
 import re
 from html.parser import HTMLParser
@@ -24,37 +24,37 @@ class Parser(HTMLParser):
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         """
-        This function parse html to take takes url from tags
+        Bu fonksiyon, etiketlerden URL'leri almak için HTML'yi ayrıştırır.
         """
-        # Only parse the 'anchor' tag.
+        # Sadece 'anchor' etiketini ayrıştır.
         if tag == "a":
-            # Check the list of defined attributes.
+            # Tanımlanmış özniteliklerin listesini kontrol et.
             for name, value in attrs:
-                # If href is defined, not empty nor # print it and not already in urls.
+                # Eğer href tanımlanmışsa, boş değilse ve # değilse ve zaten URL'lerde yoksa.
                 if name == "href" and value not in (*self.urls, "", "#"):
                     url = parse.urljoin(self.domain, value)
                     self.urls.append(url)
 
 
-# Get main domain name (example.com)
+# Ana domain adını al (example.com)
 def get_domain_name(url: str) -> str:
     """
-    This function get the main domain name
+    Bu fonksiyon ana domain adını alır
 
     >>> get_domain_name("https://a.b.c.d/e/f?g=h,i=j#k")
     'c.d'
-    >>> get_domain_name("Not a URL!")
+    >>> get_domain_name("URL değil!")
     ''
     """
     return ".".join(get_sub_domain_name(url).split(".")[-2:])
 
 
-# Get sub domain name (sub.example.com)
+# Alt domain adını al (sub.example.com)
 def get_sub_domain_name(url: str) -> str:
     """
     >>> get_sub_domain_name("https://a.b.c.d/e/f?g=h,i=j#k")
     'a.b.c.d'
-    >>> get_sub_domain_name("Not a URL!")
+    >>> get_sub_domain_name("URL değil!")
     ''
     """
     return parse.urlparse(url).netloc
@@ -62,31 +62,30 @@ def get_sub_domain_name(url: str) -> str:
 
 def emails_from_url(url: str = "https://github.com") -> list[str]:
     """
-    This function takes url and return all valid urls
+    Bu fonksiyon URL alır ve tüm geçerli e-postaları döndürür
     """
-    # Get the base domain from the url
+    # URL'den ana domaini al
     domain = get_domain_name(url)
 
-    # Initialize the parser
+    # Ayrıştırıcıyı başlat
     parser = Parser(domain)
 
     try:
-        # Open URL
+        # URL'yi aç
         r = requests.get(url, timeout=10)
 
-        # pass the raw HTML to the parser to get links
+        # Ham HTML'yi ayrıştırıcıya geçirerek bağlantıları al
         parser.feed(r.text)
 
-        # Get links and loop through
+        # Bağlantıları al ve döngüye gir
         valid_emails = set()
         for link in parser.urls:
-            # open URL.
-            # read = requests.get(link)
+            # URL'yi aç.
             try:
                 read = requests.get(link, timeout=10)
-                # Get the valid email.
+                # Geçerli e-postayı al.
                 emails = re.findall("[a-zA-Z0-9]+@" + domain, read.text)
-                # If not in list then append it.
+                # Listede yoksa ekle.
                 for email in emails:
                     valid_emails.add(email)
             except ValueError:
@@ -94,11 +93,11 @@ def emails_from_url(url: str = "https://github.com") -> list[str]:
     except ValueError:
         raise SystemExit(1)
 
-    # Finally return a sorted list of email addresses with no duplicates.
+    # Son olarak, yinelenen olmadan e-posta adreslerinin sıralanmış bir listesini döndür.
     return sorted(valid_emails)
 
 
 if __name__ == "__main__":
     emails = emails_from_url("https://github.com")
-    print(f"{len(emails)} emails found:")
+    print(f"{len(emails)} e-posta bulundu:")
     print("\n".join(sorted(emails)))

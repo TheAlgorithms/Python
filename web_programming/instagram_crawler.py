@@ -7,12 +7,12 @@ import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
 
-headers = {"UserAgent": UserAgent().random}
+headers = {"User-Agent": UserAgent().random}
 
 
 def extract_user_profile(script) -> dict:
     """
-    May raise json.decoder.JSONDecodeError
+    JSONDecodeError hatası verebilir
     """
     data = script.contents[0]
     info = json.loads(data[data.find('{"config"') : -1])
@@ -21,9 +21,9 @@ def extract_user_profile(script) -> dict:
 
 class InstagramUser:
     """
-    Class Instagram crawl instagram user information
+    Instagram kullanıcı bilgilerini çekmek için sınıf
 
-    Usage: (doctest failing on GitHub Actions)
+    Kullanım: (doctest GitHub Actions'da başarısız oluyor)
     # >>> instagram_user = InstagramUser("github")
     # >>> instagram_user.is_verified
     True
@@ -31,13 +31,13 @@ class InstagramUser:
     'Built for developers.'
     """
 
-    def __init__(self, username):
+    def __init__(self, username: str):
         self.url = f"https://www.instagram.com/{username}/"
         self.user_data = self.get_json()
 
     def get_json(self) -> dict:
         """
-        Return a dict of user information
+        Kullanıcı bilgilerini içeren bir sözlük döndür
         """
         html = requests.get(self.url, headers=headers, timeout=10).text
         scripts = BeautifulSoup(html, "html.parser").find_all("script")
@@ -50,7 +50,7 @@ class InstagramUser:
         return f"{self.__class__.__name__}('{self.username}')"
 
     def __str__(self) -> str:
-        return f"{self.fullname} ({self.username}) is {self.biography}"
+        return f"{self.fullname} ({self.username}) - {self.biography}"
 
     @property
     def username(self) -> str:
@@ -66,11 +66,11 @@ class InstagramUser:
 
     @property
     def email(self) -> str:
-        return self.user_data["business_email"]
+        return self.user_data.get("business_email", "Email bulunamadı")
 
     @property
     def website(self) -> str:
-        return self.user_data["external_url"]
+        return self.user_data.get("external_url", "Website bulunamadı")
 
     @property
     def number_of_followers(self) -> int:
@@ -99,13 +99,13 @@ class InstagramUser:
 
 def test_instagram_user(username: str = "github") -> None:
     """
-    A self running doctest
+    Kendi kendine çalışan bir doctest
     >>> test_instagram_user()
     """
     import os
 
     if os.environ.get("CI"):
-        return  # test failing on GitHub Actions
+        return  # test GitHub Actions'da başarısız oluyor
     instagram_user = InstagramUser(username)
     assert instagram_user.user_data
     assert isinstance(instagram_user.user_data, dict)

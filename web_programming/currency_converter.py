@@ -1,16 +1,14 @@
 """
-This is used to convert the currency using the Amdoren Currency API
+Bu, Amdoren Currency API kullanarak para birimini dönüştürmek için kullanılır
 https://www.amdoren.com
 """
 
 import os
-
 import requests
 
 URL_BASE = "https://www.amdoren.com/api/currency.php"
 
-
-# Currency and their description
+# Para birimleri ve açıklamaları
 list_of_currencies = """
 AED	United Arab Emirates Dirham
 AFN	Afghan Afghani
@@ -167,18 +165,21 @@ ZAR	South African Rand
 ZMW	Zambian Kwacha
 """
 
-
 def convert_currency(
     from_: str = "USD", to: str = "INR", amount: float = 1.0, api_key: str = ""
 ) -> str:
     """https://www.amdoren.com/currency-api/"""
-    # Instead of manually generating parameters
+    # Parametreleri manuel olarak oluşturmak yerine
     params = locals()
-    # from is a reserved keyword
+    # from anahtar kelime olduğu için
     params["from"] = params.pop("from_")
-    res = requests.get(URL_BASE, params=params, timeout=10).json()
-    return str(res["amount"]) if res["error"] == 0 else res["error_message"]
-
+    try:
+        res = requests.get(URL_BASE, params=params, timeout=10)
+        res.raise_for_status()
+        data = res.json()
+        return str(data["amount"]) if data["error"] == 0 else data["error_message"]
+    except requests.RequestException as e:
+        return f"Veri alınırken hata oluştu: {e}"
 
 if __name__ == "__main__":
     TESTING = os.getenv("CI", "")
@@ -186,14 +187,11 @@ if __name__ == "__main__":
 
     if not API_KEY and not TESTING:
         raise KeyError(
-            "API key must be provided in the 'AMDOREN_API_KEY' environment variable."
+            "API anahtarı 'AMDOREN_API_KEY' ortam değişkeninde sağlanmalıdır."
         )
 
-    print(
-        convert_currency(
-            input("Enter from currency: ").strip(),
-            input("Enter to currency: ").strip(),
-            float(input("Enter the amount: ").strip()),
-            API_KEY,
-        )
-    )
+    from_currency = input("Dönüştürülecek para birimini girin: ").strip()
+    to_currency = input("Hedef para birimini girin: ").strip()
+    amount = float(input("Miktarı girin: ").strip())
+
+    print(convert_currency(from_currency, to_currency, amount, API_KEY))

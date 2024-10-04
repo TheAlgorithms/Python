@@ -6,12 +6,12 @@
 
 # In[63]:
 
-# importing all the required libraries
+# gerekli tüm kütüphaneleri içe aktarma
 
 """
-Implementing logistic regression for classification problem
-Helpful resources:
-Coursera ML course
+Sınıflandırma problemi için lojistik regresyonun uygulanması
+Yararlı kaynaklar:
+Coursera ML kursu
 https://medium.com/@martinpella/logistic-regression-from-scratch-in-python-124c5636b8ac
 """
 
@@ -24,27 +24,26 @@ from sklearn import datasets
 
 # In[67]:
 
-# sigmoid function or logistic function is used as a hypothesis function in
-# classification problems
+# sınıflandırma problemlerinde hipotez fonksiyonu olarak kullanılan sigmoid fonksiyonu veya lojistik fonksiyon
 
 
 def sigmoid_function(z: float | np.ndarray) -> float | np.ndarray:
     """
-    Also known as Logistic Function.
+    Lojistik Fonksiyon olarak da bilinir.
 
                 1
     f(x) =   -------
               1 + e⁻ˣ
 
-    The sigmoid function approaches a value of 1 as its input 'x' becomes
-    increasing positive. Opposite for negative values.
+    Sigmoid fonksiyonu, girişi 'x' pozitif arttıkça 1 değerine yaklaşır.
+    Negatif değerler için tersi geçerlidir.
 
-    Reference: https://en.wikipedia.org/wiki/Sigmoid_function
+    Referans: https://en.wikipedia.org/wiki/Sigmoid_function
 
-    @param z:  input to the function
-    @returns: returns value in the range 0 to 1
+    @param z:  fonksiyona giriş
+    @returns: 0 ile 1 arasında bir değer döner
 
-    Examples:
+    Örnekler:
     >>> float(sigmoid_function(4))
     0.9820137900379085
     >>> sigmoid_function(np.array([-3, 3]))
@@ -65,25 +64,23 @@ def sigmoid_function(z: float | np.ndarray) -> float | np.ndarray:
 
 def cost_function(h: np.ndarray, y: np.ndarray) -> float:
     """
-    Cost function quantifies the error between predicted and expected values.
-    The cost function used in Logistic Regression is called Log Loss
-    or Cross Entropy Function.
+    Maliyet fonksiyonu, tahmin edilen ve beklenen değerler arasındaki hatayı ölçer.
+    Lojistik Regresyonda kullanılan maliyet fonksiyonuna Log Loss veya Cross Entropy Fonksiyonu denir.
 
     J(θ) = (1/m) * Σ [ -y * log(hθ(x)) - (1 - y) * log(1 - hθ(x)) ]
 
-    Where:
-       - J(θ) is the cost that we want to minimize during training
-       - m is the number of training examples
-       - Σ represents the summation over all training examples
-       - y is the actual binary label (0 or 1) for a given example
-       - hθ(x) is the predicted probability that x belongs to the positive class
+    Burada:
+       - J(θ) eğitim sırasında minimize etmek istediğimiz maliyettir
+       - m eğitim örneklerinin sayısıdır
+       - Σ tüm eğitim örnekleri üzerindeki toplamı temsil eder
+       - y belirli bir örnek için gerçek ikili etikettir (0 veya 1)
+       - hθ(x) x'in pozitif sınıfa ait olma olasılığıdır
 
-    @param h: the output of sigmoid function. It is the estimated probability
-    that the input example 'x' belongs to the positive class
+    @param h: sigmoid fonksiyonunun çıktısı. Bu, giriş örneği 'x'in pozitif sınıfa ait olma olasılığıdır
 
-    @param y: the actual binary label associated with input example 'x'
+    @param y: giriş örneği 'x' ile ilişkili gerçek ikili etiket
 
-    Examples:
+    Örnekler:
     >>> estimations = sigmoid_function(np.array([0.3, -4.3, 8.1]))
     >>> cost_function(h=estimations,y=np.array([1, 0, 1]))
     0.18937868932131605
@@ -97,7 +94,7 @@ def cost_function(h: np.ndarray, y: np.ndarray) -> float:
     >>> cost_function(h=estimations,y=np.array([1]))
     0.6931471805599453
 
-    References:
+    Referanslar:
        - https://en.wikipedia.org/wiki/Logistic_regression
     """
     return float((-y * np.log(h) - (1 - y) * np.log(1 - h)).mean())
@@ -108,7 +105,7 @@ def log_likelihood(x, y, weights):
     return np.sum(y * scores - np.log(1 + np.exp(scores)))
 
 
-# here alpha is the learning rate, X is the feature matrix,y is the target matrix
+# burada alpha öğrenme oranıdır, X özellik matrisidir, y hedef matristir
 def logistic_reg(alpha, x, y, max_iterations=70000):
     theta = np.zeros(x.shape[1])
 
@@ -116,12 +113,12 @@ def logistic_reg(alpha, x, y, max_iterations=70000):
         z = np.dot(x, theta)
         h = sigmoid_function(z)
         gradient = np.dot(x.T, h - y) / y.size
-        theta = theta - alpha * gradient  # updating the weights
+        theta = theta - alpha * gradient  # ağırlıkları güncelleme
         z = np.dot(x, theta)
         h = sigmoid_function(z)
         j = cost_function(h, y)
         if iterations % 100 == 0:
-            print(f"loss: {j} \t")  # printing the loss after every 100 iterations
+            print(f"kayıp: {j} \t")  # her 100 iterasyonda bir kaybı yazdırma
     return theta
 
 
@@ -138,12 +135,12 @@ if __name__ == "__main__":
 
     alpha = 0.1
     theta = logistic_reg(alpha, x, y, max_iterations=70000)
-    print("theta: ", theta)  # printing the theta i.e our weights vector
+    print("theta: ", theta)  # theta yani ağırlık vektörümüzü yazdırma
 
     def predict_prob(x):
         return sigmoid_function(
             np.dot(x, theta)
-        )  # predicting the value of probability from the logistic regression algorithm
+        )  # lojistik regresyon algoritmasından olasılık değerini tahmin etme
 
     plt.figure(figsize=(10, 6))
     plt.scatter(x[y == 0][:, 0], x[y == 0][:, 1], color="b", label="0")

@@ -1,6 +1,6 @@
 """
-Get the citation from google scholar
-using title and year of publication, and volume and pages of journal.
+Başlık ve yayın yılı ile derginin cilt ve sayfalarını kullanarak
+Google Scholar'dan atıf sayısını alın.
 """
 
 import requests
@@ -9,13 +9,24 @@ from bs4 import BeautifulSoup
 
 def get_citation(base_url: str, params: dict) -> str:
     """
-    Return the citation number.
+    Atıf sayısını döndürür.
     """
-    soup = BeautifulSoup(
-        requests.get(base_url, params=params, timeout=10).content, "html.parser"
-    )
+    try:
+        response = requests.get(base_url, params=params, timeout=10)
+        response.raise_for_status()
+    except requests.RequestException as e:
+        print(f"Veri alınırken hata oluştu: {e}")
+        return "Veri alınamadı"
+
+    soup = BeautifulSoup(response.content, "html.parser")
     div = soup.find("div", attrs={"class": "gs_ri"})
+    if not div:
+        return "Atıf bulunamadı"
+    
     anchors = div.find("div", attrs={"class": "gs_fl"}).find_all("a")
+    if len(anchors) < 3:
+        return "Atıf bilgisi eksik"
+    
     return anchors[2].get_text()
 
 

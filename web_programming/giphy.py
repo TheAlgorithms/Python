@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
 import requests
 
-giphy_api_key = "YOUR API KEY"
-# Can be fetched from https://developers.giphy.com/dashboard/
 
-
-def get_gifs(query: str, api_key: str = giphy_api_key) -> list:
+def get_gifs(query: str, api_key: str) -> list[str]:
     """
-    Get a list of URLs of GIFs based on a given query..
+    Verilen bir sorguya dayalı olarak GIF URL'lerinin bir listesini alın.
     """
     formatted_query = "+".join(query.split())
     url = f"https://api.giphy.com/v1/gifs/search?q={formatted_query}&api_key={api_key}"
-    gifs = requests.get(url, timeout=10).json()["data"]
-    return [gif["url"] for gif in gifs]
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        gifs = response.json()["data"]
+        return [gif["url"] for gif in gifs]
+    except requests.exceptions.RequestException as e:
+        return [f"İstek hatası: {e}"]
+    except ValueError as e:
+        return [f"JSON ayrıştırma hatası: {e}"]
 
 
 if __name__ == "__main__":
-    print("\n".join(get_gifs("space ship")))
+    giphy_api_key = input("Giphy API anahtarınızı girin: ")
+    query = input("Aramak istediğiniz GIF sorgusunu girin: ")
+    print("\n".join(get_gifs(query, giphy_api_key)))

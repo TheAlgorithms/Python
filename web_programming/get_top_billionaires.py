@@ -1,6 +1,6 @@
 """
-CAUTION: You may get a json.decoding error.
-This works for some of us but fails for others.
+DİKKAT: json.decoding hatası alabilirsiniz.
+Bu bazıları için çalışıyor ancak diğerleri için başarısız oluyor.
 """
 
 from datetime import UTC, date, datetime
@@ -21,17 +21,17 @@ API_URL = (
 
 def years_old(birth_timestamp: int, today: date | None = None) -> int:
     """
-    Calculate the age in years based on the given birth date.  Only the year, month,
-    and day are used in the calculation.  The time of day is ignored.
+    Verilen doğum tarihine göre yaşı yıl olarak hesaplayın. Hesaplamada yalnızca yıl, ay
+    ve gün kullanılır. Günün saati göz ardı edilir.
 
     Args:
-        birth_timestamp: The date of birth.
-        today: (useful for writing tests) or if None then datetime.date.today().
+        birth_timestamp: Doğum tarihi.
+        today: (test yazmak için kullanışlı) veya None ise datetime.date.today().
 
     Returns:
-        int: The age in years.
+        int: Yaş (yıl olarak).
 
-    Examples:
+    Örnekler:
     >>> today = date(2024, 1, 12)
     >>> years_old(birth_timestamp=datetime(1959, 11, 20).timestamp(), today=today)
     64
@@ -52,20 +52,20 @@ def years_old(birth_timestamp: int, today: date | None = None) -> int:
 
 def get_forbes_real_time_billionaires() -> list[dict[str, int | str]]:
     """
-    Get the top 10 real-time billionaires using Forbes API.
+    Forbes API kullanarak en zengin 10 kişiyi alın.
 
     Returns:
-        List of top 10 realtime billionaires data.
+        En zengin 10 kişinin verilerini içeren liste.
     """
     response_json = requests.get(API_URL, timeout=10).json()
     return [
         {
-            "Name": person["personName"],
-            "Source": person["source"],
-            "Country": person["countryOfCitizenship"],
-            "Gender": person["gender"],
-            "Worth ($)": f"{person['finalWorth'] / 1000:.1f} Billion",
-            "Age": str(years_old(person["birthDate"] / 1000)),
+            "İsim": person["personName"],
+            "Kaynak": person["source"],
+            "Ülke": person["countryOfCitizenship"],
+            "Cinsiyet": person["gender"],
+            "Servet ($)": f"{person['finalWorth'] / 1000:.1f} Milyar",
+            "Yaş": str(years_old(person["birthDate"] / 1000)),
         }
         for person in response_json["personList"]["personsLists"]
     ]
@@ -73,14 +73,14 @@ def get_forbes_real_time_billionaires() -> list[dict[str, int | str]]:
 
 def display_billionaires(forbes_billionaires: list[dict[str, int | str]]) -> None:
     """
-    Display Forbes real-time billionaires in a rich table.
+    Forbes en zengin kişileri zengin bir tablo olarak gösterin.
 
     Args:
-        forbes_billionaires (list): Forbes top 10 real-time billionaires
+        forbes_billionaires (list): Forbes en zengin 10 kişi
     """
 
     table = rich_table.Table(
-        title=f"Forbes Top {LIMIT} Real-Time Billionaires at {TODAY:%Y-%m-%d %H:%M}",
+        title=f"Forbes En Zengin {LIMIT} Kişi {TODAY:%Y-%m-%d %H:%M} itibariyle",
         style="green",
         highlight=True,
         box=box.SQUARE,

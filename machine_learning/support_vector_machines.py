@@ -5,14 +5,14 @@ from scipy.optimize import Bounds, LinearConstraint, minimize
 
 def norm_squared(vector: ndarray) -> float:
     """
-    Return the squared second norm of vector
+    Vektörün kare normunu döndürür
     norm_squared(v) = sum(x * x for x in v)
 
     Args:
-        vector (ndarray): input vector
+        vector (ndarray): giriş vektörü
 
     Returns:
-        float: squared second norm of vector
+        float: vektörün kare normu
 
     >>> int(norm_squared([1, 2]))
     5
@@ -26,29 +26,29 @@ def norm_squared(vector: ndarray) -> float:
 
 class SVC:
     """
-    Support Vector Classifier
+    Destek Vektör Sınıflandırıcısı
 
     Args:
-        kernel (str): kernel to use. Default: linear
-            Possible choices:
+        kernel (str): kullanılacak kernel. Varsayılan: linear
+            Olası seçenekler:
                 - linear
-        regularization: constraint for soft margin (data not linearly separable)
-            Default: unbound
+        regularization: yumuşak marj için kısıtlama (veriler doğrusal olarak ayrılabilir değil)
+            Varsayılan: sınırsız
 
     >>> SVC(kernel="asdf")
     Traceback (most recent call last):
         ...
-    ValueError: Unknown kernel: asdf
+    ValueError: Bilinmeyen kernel: asdf
 
     >>> SVC(kernel="rbf")
     Traceback (most recent call last):
         ...
-    ValueError: rbf kernel requires gamma
+    ValueError: rbf kernel gamma gerektirir
 
     >>> SVC(kernel="rbf", gamma=-1)
     Traceback (most recent call last):
         ...
-    ValueError: gamma must be > 0
+    ValueError: gamma > 0 olmalı
     """
 
     def __init__(
@@ -64,78 +64,77 @@ class SVC:
             self.kernel = self.__linear
         elif kernel == "rbf":
             if self.gamma == 0:
-                raise ValueError("rbf kernel requires gamma")
+                raise ValueError("rbf kernel gamma gerektirir")
             if not isinstance(self.gamma, (float, int)):
-                raise ValueError("gamma must be float or int")
+                raise ValueError("gamma float veya int olmalı")
             if not self.gamma > 0:
-                raise ValueError("gamma must be > 0")
+                raise ValueError("gamma > 0 olmalı")
             self.kernel = self.__rbf
-            # in the future, there could be a default value like in sklearn
+            # gelecekte, sklearn'de olduğu gibi varsayılan bir değer olabilir
             # sklear: def_gamma = 1/(n_features * X.var()) (wiki)
-            # previously it was 1/(n_features)
+            # önceden 1/(n_features) idi
         else:
-            msg = f"Unknown kernel: {kernel}"
+            msg = f"Bilinmeyen kernel: {kernel}"
             raise ValueError(msg)
 
-    # kernels
+    # kernel fonksiyonları
     def __linear(self, vector1: ndarray, vector2: ndarray) -> float:
-        """Linear kernel (as if no kernel used at all)"""
+        """Doğrusal kernel (sanki hiç kernel kullanılmamış gibi)"""
         return np.dot(vector1, vector2)
 
     def __rbf(self, vector1: ndarray, vector2: ndarray) -> float:
         """
-        RBF: Radial Basis Function Kernel
+        RBF: Radyal Taban Fonksiyonu Kernel
 
-        Note: for more information see:
+        Not: daha fazla bilgi için bakınız:
             https://en.wikipedia.org/wiki/Radial_basis_function_kernel
 
         Args:
-            vector1 (ndarray): first vector
-            vector2 (ndarray): second vector)
+            vector1 (ndarray): birinci vektör
+            vector2 (ndarray): ikinci vektör
 
         Returns:
             float: exp(-(gamma * norm_squared(vector1 - vector2)))
         """
         return np.exp(-(self.gamma * norm_squared(vector1 - vector2)))
 
-    def fit(self, observations: list[ndarray], classes: ndarray) -> None:
+    def fit(self, gözlemler: list[ndarray], sınıflar: ndarray) -> None:
         """
-        Fits the SVC with a set of observations.
+        SVC'yi bir dizi gözlemle uyarlar.
 
         Args:
-            observations (list[ndarray]): list of observations
-            classes (ndarray): classification of each observation (in {1, -1})
+            gözlemler (list[ndarray]): gözlem listesi
+            sınıflar (ndarray): her gözlemin sınıflandırılması (in {1, -1})
         """
 
-        self.observations = observations
-        self.classes = classes
+        self.gözlemler = gözlemler
+        self.sınıflar = sınıflar
 
-        # using Wolfe's Dual to calculate w.
+        # Wolfe'nin Dual'ini kullanarak w'yi hesaplama.
         # Primal problem: minimize 1/2*norm_squared(w)
-        #   constraint: yn(w . xn + b) >= 1
+        #   kısıtlama: yn(w . xn + b) >= 1
         #
-        # With l a vector
+        # l bir vektör ile
         # Dual problem: maximize sum_n(ln) -
         #       1/2 * sum_n(sum_m(ln*lm*yn*ym*xn . xm))
-        #   constraint: self.C >= ln >= 0
-        #           and sum_n(ln*yn) = 0
-        # Then we get w using w = sum_n(ln*yn*xn)
-        # At the end we can get b ~= mean(yn - w . xn)
+        #   kısıtlama: self.C >= ln >= 0
+        #           ve sum_n(ln*yn) = 0
+        # Sonra w'yi w = sum_n(ln*yn*xn) kullanarak elde ederiz
+        # Sonunda b ~= mean(yn - w . xn) elde edebiliriz
         #
-        # Since we use kernels, we only need l_star to calculate b
-        # and to classify observations
+        # Kernel kullandığımız için, b'yi hesaplamak ve gözlemleri sınıflandırmak için sadece l_star'a ihtiyacımız var
 
-        (n,) = np.shape(classes)
+        (n,) = np.shape(sınıflar)
 
-        def to_minimize(candidate: ndarray) -> float:
+        def minimize_edilecek(candidate: ndarray) -> float:
             """
-            Opposite of the function to maximize
+            Maksimize edilecek fonksiyonun tersi
 
             Args:
-                candidate (ndarray): candidate array to test
+                candidate (ndarray): test edilecek aday dizi
 
             Return:
-                float: Wolfe's Dual result to minimize
+                float: Wolfe'nin Dual sonucunu minimize etmek için
             """
             s = 0
             (n,) = np.shape(candidate)
@@ -144,38 +143,38 @@ class SVC:
                     s += (
                         candidate[i]
                         * candidate[j]
-                        * classes[i]
-                        * classes[j]
-                        * self.kernel(observations[i], observations[j])
+                        * sınıflar[i]
+                        * sınıflar[j]
+                        * self.kernel(gözlemler[i], gözlemler[j])
                     )
             return 1 / 2 * s - sum(candidate)
 
-        ly_contraint = LinearConstraint(classes, 0, 0)
-        l_bounds = Bounds(0, self.regularization)
+        ly_kısıtlama = LinearConstraint(sınıflar, 0, 0)
+        l_sınırlar = Bounds(0, self.regularization)
 
         l_star = minimize(
-            to_minimize, np.ones(n), bounds=l_bounds, constraints=[ly_contraint]
+            minimize_edilecek, np.ones(n), bounds=l_sınırlar, constraints=[ly_kısıtlama]
         ).x
         self.optimum = l_star
 
-        # calculating mean offset of separation plane to points
+        # ayırma düzleminin noktalara olan ortalama offsetini hesaplama
         s = 0
         for i in range(n):
             for j in range(n):
-                s += classes[i] - classes[i] * self.optimum[i] * self.kernel(
-                    observations[i], observations[j]
+                s += sınıflar[i] - sınıflar[i] * self.optimum[i] * self.kernel(
+                    gözlemler[i], gözlemler[j]
                 )
         self.offset = s / n
 
-    def predict(self, observation: ndarray) -> int:
+    def predict(self, gözlem: ndarray) -> int:
         """
-        Get the expected class of an observation
+        Bir gözlemin beklenen sınıfını al
 
         Args:
-            observation (Vector): observation
+            gözlem (Vector): gözlem
 
         Returns:
-            int {1, -1}: expected class
+            int {1, -1}: beklenen sınıf
 
         >>> xs = [
         ...     np.asarray([0, 1]), np.asarray([0, 2]),
@@ -193,9 +192,9 @@ class SVC:
         """
         s = sum(
             self.optimum[n]
-            * self.classes[n]
-            * self.kernel(self.observations[n], observation)
-            for n in range(len(self.classes))
+            * self.sınıflar[n]
+            * self.kernel(self.gözlemler[n], gözlem)
+            for n in range(len(self.sınıflar))
         )
         return 1 if s + self.offset >= 0 else -1
 

@@ -1,15 +1,14 @@
 """
-k-Nearest Neighbours (kNN) is a simple non-parametric supervised learning
-algorithm used for classification. Given some labelled training data, a given
-point is classified using its k nearest neighbours according to some distance
-metric. The most commonly occurring label among the neighbours becomes the label
-of the given point. In effect, the label of the given point is decided by a
-majority vote.
+k-Nearest Neighbours (kNN) sınıflandırma için kullanılan basit, parametrik olmayan bir
+denetimli öğrenme algoritmasıdır. Etiketlenmiş bazı eğitim verileri verildiğinde, belirli
+bir nokta, belirli bir mesafe metriğine göre en yakın k komşusu kullanılarak sınıflandırılır.
+Komşular arasında en sık görülen etiket, verilen noktanın etiketi olur. Etkili bir şekilde,
+verilen noktanın etiketi çoğunluk oyu ile belirlenir.
 
-This implementation uses the commonly used Euclidean distance metric, but other
-distance metrics can also be used.
+Bu uygulama yaygın olarak kullanılan Öklid mesafe metriğini kullanır, ancak diğer mesafe
+metrikleri de kullanılabilir.
 
-Reference: https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm
+Referans: https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm
 """
 
 from collections import Counter
@@ -23,20 +22,20 @@ from sklearn.model_selection import train_test_split
 class KNN:
     def __init__(
         self,
-        train_data: np.ndarray[float],
-        train_target: np.ndarray[int],
+        train_data: np.ndarray,
+        train_target: np.ndarray,
         class_labels: list[str],
     ) -> None:
         """
-        Create a kNN classifier using the given training data and class labels
+        Verilen eğitim verileri ve sınıf etiketlerini kullanarak bir kNN sınıflandırıcı oluştur
         """
-        self.data = zip(train_data, train_target)
+        self.data = list(zip(train_data, train_target))
         self.labels = class_labels
 
     @staticmethod
-    def _euclidean_distance(a: np.ndarray[float], b: np.ndarray[float]) -> float:
+    def _euclidean_distance(a: np.ndarray, b: np.ndarray) -> float:
         """
-        Calculate the Euclidean distance between two points
+        İki nokta arasındaki Öklid mesafesini hesapla
         >>> KNN._euclidean_distance(np.array([0, 0]), np.array([3, 4]))
         5.0
         >>> KNN._euclidean_distance(np.array([1, 2, 3]), np.array([1, 8, 11]))
@@ -44,9 +43,9 @@ class KNN:
         """
         return float(np.linalg.norm(a - b))
 
-    def classify(self, pred_point: np.ndarray[float], k: int = 5) -> str:
+    def classify(self, pred_point: np.ndarray, k: int = 5) -> str:
         """
-        Classify a given point using the kNN algorithm
+        kNN algoritmasını kullanarak belirli bir noktayı sınıflandır
         >>> train_X = np.array(
         ...     [[0, 0], [1, 0], [0, 1], [0.5, 0.5], [3, 3], [2, 3], [3, 2]]
         ... )
@@ -57,16 +56,16 @@ class KNN:
         >>> knn.classify(point)
         'A'
         """
-        # Distances of all points from the point to be classified
+        # Sınıflandırılacak noktadan tüm noktalara olan mesafeler
         distances = (
             (self._euclidean_distance(data_point[0], pred_point), data_point[1])
             for data_point in self.data
         )
 
-        # Choosing k points with the shortest distances
+        # En kısa mesafeye sahip k noktayı seçme
         votes = (i[1] for i in nsmallest(k, distances))
 
-        # Most commonly occurring class is the one into which the point is classified
+        # En sık görülen sınıf, noktanın sınıflandırıldığı sınıf olur
         result = Counter(votes).most_common(1)[0][0]
         return self.labels[result]
 

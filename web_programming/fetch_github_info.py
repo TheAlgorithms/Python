@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
 """
-Created by sarathkaul on 14/11/19
-Updated by lawric1 on 24/11/20
+sarathkaul tarafından 14/11/19 tarihinde oluşturuldu
+lawric1 tarafından 24/11/20 tarihinde güncellendi
 
-Authentication will be made via access token.
-To generate your personal access token visit https://github.com/settings/tokens.
+Kimlik doğrulama erişim belirteci ile yapılacaktır.
+Kişisel erişim belirtecinizi oluşturmak için https://github.com/settings/tokens adresini ziyaret edin.
 
-NOTE:
-Never hardcode any credential information in the code. Always use an environment
-file to store the private information and use the `os` module to get the information
-during runtime.
+NOT:
+Kodda asla herhangi bir kimlik bilgisi sabit kodlanmamalıdır. Özel bilgileri saklamak için her zaman bir ortam
+dosyası kullanın ve çalışma zamanında bilgileri almak için `os` modülünü kullanın.
 
-Create a ".env" file in the root directory and write these two lines in that file
-with your token::
+Kök dizinde bir ".env" dosyası oluşturun ve belirtecinizle birlikte bu iki satırı o dosyaya yazın::
 
 #!/usr/bin/env bash
 export USER_TOKEN=""
@@ -36,7 +34,7 @@ USER_TOKEN = os.environ.get("USER_TOKEN", "")
 
 def fetch_github_info(auth_token: str) -> dict[Any, Any]:
     """
-    Fetch GitHub info of a user using the requests module
+    requests modülünü kullanarak bir kullanıcının GitHub bilgilerini getirir
     """
     headers = {
         "Authorization": f"token {auth_token}",
@@ -50,4 +48,4 @@ if __name__ == "__main__":  # pragma: no cover
         for key, value in fetch_github_info(USER_TOKEN).items():
             print(f"{key}: {value}")
     else:
-        raise ValueError("'USER_TOKEN' field cannot be empty.")
+        raise ValueError("'USER_TOKEN' alanı boş olamaz.")

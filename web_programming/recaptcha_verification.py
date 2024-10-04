@@ -1,16 +1,17 @@
 """
-Recaptcha is a free captcha service offered by Google in order to secure websites and
-forms.  At https://www.google.com/recaptcha/admin/create you can create new recaptcha
-keys and see the keys that your have already created.
-* Keep in mind that recaptcha doesn't work with localhost
-When you create a recaptcha key, your will get two separate keys: ClientKey & SecretKey.
-ClientKey should be kept in your site's front end
-SecretKey should be kept in your site's  back end
+Recaptcha, Google tarafından sunulan ücretsiz bir captcha hizmetidir ve web sitelerini
+ve formları güvence altına almak için kullanılır. https://www.google.com/recaptcha/admin/create
+adresinden yeni recaptcha anahtarları oluşturabilir ve daha önce oluşturduğunuz anahtarları
+görebilirsiniz.
+* Unutmayın ki recaptcha localhost ile çalışmaz.
+Bir recaptcha anahtarı oluşturduğunuzda, iki ayrı anahtar alacaksınız: ClientKey ve SecretKey.
+ClientKey sitenizin ön yüzünde tutulmalıdır.
+SecretKey sitenizin arka yüzünde tutulmalıdır.
 
-# An example HTML login form with recaptcha tag is shown below
+# Aşağıda recaptcha etiketi içeren bir HTML giriş formu örneği gösterilmiştir
 
     <form action="" method="post">
-        <h2 class="text-center">Log in</h2>
+        <h2 class="text-center">Giriş Yap</h2>
         {% csrf_token %}
         <div class="form-group">
             <input type="text" name="username" required="required">
@@ -19,17 +20,17 @@ SecretKey should be kept in your site's  back end
             <input type="password" name="password" required="required">
         </div>
         <div class="form-group">
-            <button type="submit">Log in</button>
+            <button type="submit">Giriş Yap</button>
         </div>
-        <!-- Below is the recaptcha tag of html -->
+        <!-- Aşağıda HTML'nin recaptcha etiketi bulunmaktadır -->
         <div class="g-recaptcha" data-sitekey="ClientKey"></div>
     </form>
 
-    <!-- Below is the recaptcha script to be kept inside html tag -->
+    <!-- Aşağıda HTML etiketi içine yerleştirilmesi gereken recaptcha scripti bulunmaktadır -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-Below a Django function for the views.py file contains a login form for demonstrating
-recaptcha verification.
+Aşağıda, recaptcha doğrulamasını göstermek için views.py dosyasında bir giriş formu içeren
+bir Django fonksiyonu bulunmaktadır.
 """
 
 import requests
@@ -42,26 +43,26 @@ except ImportError:
 
 
 def login_using_recaptcha(request):
-    # Enter your recaptcha secret key here
+    # Recaptcha gizli anahtarınızı buraya girin
     secret_key = "secretKey"  # noqa: S105
     url = "https://www.google.com/recaptcha/api/siteverify"
 
-    # when method is not POST, direct user to login page
+    # method POST değilse, kullanıcıyı giriş sayfasına yönlendir
     if request.method != "POST":
         return render(request, "login.html")
 
-    # from the frontend, get username, password, and client_key
+    # ön yüzden kullanıcı adı, şifre ve client_key al
     username = request.POST.get("username")
     password = request.POST.get("password")
     client_key = request.POST.get("g-recaptcha-response")
 
-    # post recaptcha response to Google's recaptcha api
+    # recaptcha yanıtını Google's recaptcha api'sine gönder
     response = requests.post(
         url, data={"secret": secret_key, "response": client_key}, timeout=10
     )
-    # if the recaptcha api verified our keys
+    # recaptcha api anahtarlarımızı doğruladıysa
     if response.json().get("success", False):
-        # authenticate the user
+        # kullanıcıyı doğrula
         user_in_database = authenticate(request, username=username, password=password)
         if user_in_database:
             login(request, user_in_database)

@@ -1,5 +1,5 @@
 """
-Scraping jobs given job title and location from indeed website
+Verilen iş unvanı ve konuma göre Indeed web sitesinden iş ilanlarını kazıma
 """
 
 from __future__ import annotations
@@ -16,7 +16,7 @@ def fetch_jobs(location: str = "mumbai") -> Generator[tuple[str, str], None, Non
     soup = BeautifulSoup(
         requests.get(url + location, timeout=10).content, "html.parser"
     )
-    # This attribute finds out all the specifics listed in a job
+    # Bu özellik, bir işte listelenen tüm ayrıntıları bulur
     for job in soup.find_all("div", attrs={"data-tn-component": "organicJob"}):
         job_title = job.find("a", attrs={"data-tn-element": "jobTitle"}).text.strip()
         company_name = job.find("span", {"class": "company"}).text.strip()
@@ -25,4 +25,4 @@ def fetch_jobs(location: str = "mumbai") -> Generator[tuple[str, str], None, Non
 
 if __name__ == "__main__":
     for i, job in enumerate(fetch_jobs("Bangalore"), 1):
-        print(f"Job {i:>2} is {job[0]} at {job[1]}")
+        print(f"İş {i:>2} : {job[0]} şirketinde {job[1]}")

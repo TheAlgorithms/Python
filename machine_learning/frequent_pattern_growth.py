@@ -1,13 +1,13 @@
 """
-The Frequent Pattern Growth algorithm (FP-Growth) is a widely used data mining
-technique for discovering frequent itemsets in large transaction databases.
+Sık Kullanılan Örüntü Büyüme algoritması (FP-Growth), büyük işlem veritabanlarında
+sık kullanılan öğe kümelerini keşfetmek için yaygın olarak kullanılan bir veri madenciliği
+tekniğidir.
 
-It overcomes some of the limitations of traditional methods such as Apriori by
-efficiently constructing the FP-Tree
+Apriori gibi geleneksel yöntemlerin bazı sınırlamalarını aşarak FP-Tree'yi verimli bir şekilde oluşturur.
 
 WIKI: https://athena.ecs.csus.edu/~mei/associationcw/FpGrowth.html
 
-Examples: https://www.javatpoint.com/fp-growth-algorithm-in-data-mining
+Örnekler: https://www.javatpoint.com/fp-growth-algorithm-in-data-mining
 """
 
 from __future__ import annotations
@@ -16,335 +16,334 @@ from dataclasses import dataclass, field
 
 
 @dataclass
-class TreeNode:
+class AgacDugumu:
     """
-    A node in a Frequent Pattern tree.
+    Sık Kullanılan Örüntü ağacında bir düğüm.
 
     Args:
-        name: The name of this node.
-        num_occur: The number of occurrences of the node.
-        parent_node: The parent node.
+        isim: Bu düğümün adı.
+        sayi: Düğümün oluşum sayısı.
+        ebeveyn_dugum: Ebeveyn düğüm.
 
-    Example:
-    >>> parent = TreeNode("Parent", 1, None)
-    >>> child = TreeNode("Child", 2, parent)
-    >>> child.name
-    'Child'
-    >>> child.count
+    Örnek:
+    >>> ebeveyn = AgacDugumu("Ebeveyn", 1, None)
+    >>> cocuk = AgacDugumu("Cocuk", 2, ebeveyn)
+    >>> cocuk.isim
+    'Cocuk'
+    >>> cocuk.sayi
     2
     """
 
-    name: str
-    count: int
-    parent: TreeNode | None = None
-    children: dict[str, TreeNode] = field(default_factory=dict)
-    node_link: TreeNode | None = None
+    isim: str
+    sayi: int
+    ebeveyn: AgacDugumu | None = None
+    cocuklar: dict[str, AgacDugumu] = field(default_factory=dict)
+    dugum_baglantisi: AgacDugumu | None = None
 
     def __repr__(self) -> str:
-        return f"TreeNode({self.name!r}, {self.count!r}, {self.parent!r})"
+        return f"AgacDugumu({self.isim!r}, {self.sayi!r}, {self.ebeveyn!r})"
 
-    def inc(self, num_occur: int) -> None:
-        self.count += num_occur
+    def arttir(self, sayi: int) -> None:
+        self.sayi += sayi
 
-    def disp(self, ind: int = 1) -> None:
-        print(f"{'  ' * ind} {self.name}  {self.count}")
-        for child in self.children.values():
-            child.disp(ind + 1)
+    def goster(self, ind: int = 1) -> None:
+        print(f"{'  ' * ind} {self.isim}  {self.sayi}")
+        for cocuk in self.cocuklar.values():
+            cocuk.goster(ind + 1)
 
 
-def create_tree(data_set: list, min_sup: int = 1) -> tuple[TreeNode, dict]:
+def agac_olustur(veri_seti: list, min_destek: int = 1) -> tuple[AgacDugumu, dict]:
     """
-    Create Frequent Pattern tree
+    Sık Kullanılan Örüntü ağacı oluştur
 
     Args:
-        data_set: A list of transactions, where each transaction is a list of items.
-        min_sup: The minimum support threshold.
-        Items with support less than this will be pruned. Default is 1.
+        veri_seti: Her işlem bir öğe listesi olan işlemler listesi.
+        min_destek: Minimum destek eşiği.
+        Desteği bu değerden az olan öğeler budanacaktır. Varsayılan 1'dir.
 
     Returns:
-        The root of the FP-Tree.
-        header_table: The header table dictionary with item information.
+        FP-Tree'nin kökü.
+        başlık_tablosu: Öğeler hakkında bilgi içeren başlık tablosu sözlüğü.
 
-    Example:
-    >>> data_set = [
+    Örnek:
+    >>> veri_seti = [
     ...    ['A', 'B', 'C'],
     ...    ['A', 'C'],
     ...    ['A', 'B', 'E'],
     ...    ['A', 'B', 'C', 'E'],
     ...    ['B', 'E']
     ... ]
-    >>> min_sup = 2
-    >>> fp_tree, header_table = create_tree(data_set, min_sup)
-    >>> fp_tree
-    TreeNode('Null Set', 1, None)
-    >>> len(header_table)
+    >>> min_destek = 2
+    >>> fp_agaci, baslik_tablosu = agac_olustur(veri_seti, min_destek)
+    >>> fp_agaci
+    AgacDugumu('Null Set', 1, None)
+    >>> len(baslik_tablosu)
     4
-    >>> header_table["A"]
-    [[4, None], TreeNode('A', 4, TreeNode('Null Set', 1, None))]
-    >>> header_table["E"][1]  # doctest: +NORMALIZE_WHITESPACE
-    TreeNode('E', 1, TreeNode('B', 3, TreeNode('A', 4, TreeNode('Null Set', 1, None))))
-    >>> sorted(header_table)
+    >>> baslik_tablosu["A"]
+    [[4, None], AgacDugumu('A', 4, AgacDugumu('Null Set', 1, None))]
+    >>> baslik_tablosu["E"][1]  # doctest: +NORMALIZE_WHITESPACE
+    AgacDugumu('E', 1, AgacDugumu('B', 3, AgacDugumu('A', 4, AgacDugumu('Null Set', 1, None))))
+    >>> sorted(baslik_tablosu)
     ['A', 'B', 'C', 'E']
-    >>> fp_tree.name
+    >>> fp_agaci.isim
     'Null Set'
-    >>> sorted(fp_tree.children)
+    >>> sorted(fp_agaci.cocuklar)
     ['A', 'B']
-    >>> fp_tree.children['A'].name
+    >>> fp_agaci.cocuklar['A'].isim
     'A'
-    >>> sorted(fp_tree.children['A'].children)
+    >>> sorted(fp_agaci.cocuklar['A'].cocuklar)
     ['B', 'C']
     """
-    header_table: dict = {}
-    for trans in data_set:
-        for item in trans:
-            header_table[item] = header_table.get(item, [0, None])
-            header_table[item][0] += 1
+    baslik_tablosu: dict = {}
+    for islem in veri_seti:
+        for oge in islem:
+            baslik_tablosu[oge] = baslik_tablosu.get(oge, [0, None])
+            baslik_tablosu[oge][0] += 1
 
-    for k in list(header_table):
-        if header_table[k][0] < min_sup:
-            del header_table[k]
+    for k in list(baslik_tablosu):
+        if baslik_tablosu[k][0] < min_destek:
+            del baslik_tablosu[k]
 
-    if not (freq_item_set := set(header_table)):
-        return TreeNode("Null Set", 1, None), {}
+    if not (sik_oge_kumesi := set(baslik_tablosu)):
+        return AgacDugumu("Null Set", 1, None), {}
 
-    for k in header_table:
-        header_table[k] = [header_table[k], None]
+    for k in baslik_tablosu:
+        baslik_tablosu[k] = [baslik_tablosu[k], None]
 
-    fp_tree = TreeNode("Null Set", 1, None)  # Parent is None for the root node
-    for tran_set in data_set:
-        local_d = {
-            item: header_table[item][0] for item in tran_set if item in freq_item_set
+    fp_agaci = AgacDugumu("Null Set", 1, None)  # Kök düğüm için ebeveyn None
+    for islem_kumesi in veri_seti:
+        yerel_d = {
+            oge: baslik_tablosu[oge][0] for oge in islem_kumesi if oge in sik_oge_kumesi
         }
-        if local_d:
-            sorted_items = sorted(
-                local_d.items(), key=lambda item_info: item_info[1], reverse=True
+        if yerel_d:
+            sirali_ogeler = sorted(
+                yerel_d.items(), key=lambda oge_bilgi: oge_bilgi[1], reverse=True
             )
-            ordered_items = [item[0] for item in sorted_items]
-            update_tree(ordered_items, fp_tree, header_table, 1)
+            sirali_ogeler = [oge[0] for oge in sirali_ogeler]
+            agaci_guncelle(sirali_ogeler, fp_agaci, baslik_tablosu, 1)
 
-    return fp_tree, header_table
+    return fp_agaci, baslik_tablosu
 
 
-def update_tree(items: list, in_tree: TreeNode, header_table: dict, count: int) -> None:
+def agaci_guncelle(ogeler: list, ic_agac: AgacDugumu, baslik_tablosu: dict, sayi: int) -> None:
     """
-    Update the FP-Tree with a transaction.
+    FP-Tree'yi bir işlemle güncelle.
 
     Args:
-        items: List of items in the transaction.
-        in_tree: The current node in the FP-Tree.
-        header_table: The header table dictionary with item information.
-        count: The count of the transaction.
+        ogeler: İşlemdeki öğeler listesi.
+        ic_agac: FP-Tree'deki mevcut düğüm.
+        baslik_tablosu: Öğeler hakkında bilgi içeren başlık tablosu sözlüğü.
+        sayi: İşlemin sayısı.
 
-    Example:
-    >>> data_set = [
+    Örnek:
+    >>> veri_seti = [
     ...    ['A', 'B', 'C'],
     ...    ['A', 'C'],
     ...    ['A', 'B', 'E'],
     ...    ['A', 'B', 'C', 'E'],
     ...    ['B', 'E']
     ... ]
-    >>> min_sup = 2
-    >>> fp_tree, header_table = create_tree(data_set, min_sup)
-    >>> fp_tree
-    TreeNode('Null Set', 1, None)
-    >>> transaction = ['A', 'B', 'E']
-    >>> update_tree(transaction, fp_tree, header_table, 1)
-    >>> fp_tree
-    TreeNode('Null Set', 1, None)
-    >>> fp_tree.children['A'].children['B'].children['E'].children
+    >>> min_destek = 2
+    >>> fp_agaci, baslik_tablosu = agac_olustur(veri_seti, min_destek)
+    >>> fp_agaci
+    AgacDugumu('Null Set', 1, None)
+    >>> islem = ['A', 'B', 'E']
+    >>> agaci_guncelle(islem, fp_agaci, baslik_tablosu, 1)
+    >>> fp_agaci
+    AgacDugumu('Null Set', 1, None)
+    >>> fp_agaci.cocuklar['A'].cocuklar['B'].cocuklar['E'].cocuklar
     {}
-    >>> fp_tree.children['A'].children['B'].children['E'].count
+    >>> fp_agaci.cocuklar['A'].cocuklar['B'].cocuklar['E'].sayi
     2
-    >>> header_table['E'][1].name
+    >>> baslik_tablosu['E'][1].isim
     'E'
     """
-    if items[0] in in_tree.children:
-        in_tree.children[items[0]].inc(count)
+    if ogeler[0] in ic_agac.cocuklar:
+        ic_agac.cocuklar[ogeler[0]].arttir(sayi)
     else:
-        in_tree.children[items[0]] = TreeNode(items[0], count, in_tree)
-        if header_table[items[0]][1] is None:
-            header_table[items[0]][1] = in_tree.children[items[0]]
+        ic_agac.cocuklar[ogeler[0]] = AgacDugumu(ogeler[0], sayi, ic_agac)
+        if baslik_tablosu[ogeler[0]][1] is None:
+            baslik_tablosu[ogeler[0]][1] = ic_agac.cocuklar[ogeler[0]]
         else:
-            update_header(header_table[items[0]][1], in_tree.children[items[0]])
-    if len(items) > 1:
-        update_tree(items[1:], in_tree.children[items[0]], header_table, count)
+            basligi_guncelle(baslik_tablosu[ogeler[0]][1], ic_agac.cocuklar[ogeler[0]])
+    if len(ogeler) > 1:
+        agaci_guncelle(ogeler[1:], ic_agac.cocuklar[ogeler[0]], baslik_tablosu, sayi)
 
 
-def update_header(node_to_test: TreeNode, target_node: TreeNode) -> TreeNode:
+def basligi_guncelle(test_edilecek_dugum: AgacDugumu, hedef_dugum: AgacDugumu) -> AgacDugumu:
     """
-    Update the header table with a node link.
+    Başlık tablosunu bir düğüm bağlantısıyla güncelle.
 
     Args:
-        node_to_test: The node to be updated in the header table.
-        target_node: The node to link to.
+        test_edilecek_dugum: Başlık tablosunda güncellenecek düğüm.
+        hedef_dugum: Bağlanacak düğüm.
 
-    Example:
-    >>> data_set = [
+    Örnek:
+    >>> veri_seti = [
     ...    ['A', 'B', 'C'],
     ...    ['A', 'C'],
     ...    ['A', 'B', 'E'],
     ...    ['A', 'B', 'C', 'E'],
     ...    ['B', 'E']
     ... ]
-    >>> min_sup = 2
-    >>> fp_tree, header_table = create_tree(data_set, min_sup)
-    >>> fp_tree
-    TreeNode('Null Set', 1, None)
-    >>> node1 = TreeNode("A", 3, None)
-    >>> node2 = TreeNode("B", 4, None)
-    >>> node1
-    TreeNode('A', 3, None)
-    >>> node1 = update_header(node1, node2)
-    >>> node1
-    TreeNode('A', 3, None)
-    >>> node1.node_link
-    TreeNode('B', 4, None)
-    >>> node2.node_link is None
+    >>> min_destek = 2
+    >>> fp_agaci, baslik_tablosu = agac_olustur(veri_seti, min_destek)
+    >>> fp_agaci
+    AgacDugumu('Null Set', 1, None)
+    >>> dugum1 = AgacDugumu("A", 3, None)
+    >>> dugum2 = AgacDugumu("B", 4, None)
+    >>> dugum1
+    AgacDugumu('A', 3, None)
+    >>> dugum1 = basligi_guncelle(dugum1, dugum2)
+    >>> dugum1
+    AgacDugumu('A', 3, None)
+    >>> dugum1.dugum_baglantisi
+    AgacDugumu('B', 4, None)
+    >>> dugum2.dugum_baglantisi is None
     True
     """
-    while node_to_test.node_link is not None:
-        node_to_test = node_to_test.node_link
-    if node_to_test.node_link is None:
-        node_to_test.node_link = target_node
-    # Return the updated node
-    return node_to_test
+    while test_edilecek_dugum.dugum_baglantisi is not None:
+        test_edilecek_dugum = test_edilecek_dugum.dugum_baglantisi
+    if test_edilecek_dugum.dugum_baglantisi is None:
+        test_edilecek_dugum.dugum_baglantisi = hedef_dugum
+    # Güncellenmiş düğümü döndür
+    return test_edilecek_dugum
 
 
-def ascend_tree(leaf_node: TreeNode, prefix_path: list[str]) -> None:
+def agaci_yuksel(yaprak_dugum: AgacDugumu, on_ek_yolu: list[str]) -> None:
     """
-    Ascend the FP-Tree from a leaf node to its root, adding item names to the prefix
-    path.
+    Bir yaprak düğümden köküne kadar FP-Tree'yi yükselt, öğe adlarını ön ek yoluna ekle.
 
     Args:
-        leaf_node: The leaf node to start ascending from.
-        prefix_path: A list to store the item as they are ascended.
+        yaprak_dugum: Yükselmeye başlanacak yaprak düğüm.
+        on_ek_yolu: Öğelerin yükselirken saklanacağı liste.
 
-    Example:
-    >>> data_set = [
+    Örnek:
+    >>> veri_seti = [
     ...    ['A', 'B', 'C'],
     ...    ['A', 'C'],
     ...    ['A', 'B', 'E'],
     ...    ['A', 'B', 'C', 'E'],
     ...    ['B', 'E']
     ... ]
-    >>> min_sup = 2
-    >>> fp_tree, header_table = create_tree(data_set, min_sup)
+    >>> min_destek = 2
+    >>> fp_agaci, baslik_tablosu = agac_olustur(veri_seti, min_destek)
 
-    >>> path = []
-    >>> ascend_tree(fp_tree.children['A'], path)
-    >>> path # ascending from a leaf node 'A'
+    >>> yol = []
+    >>> agaci_yuksel(fp_agaci.cocuklar['A'], yol)
+    >>> yol # bir yaprak düğüm 'A' dan yükseliyor
     ['A']
     """
-    if leaf_node.parent is not None:
-        prefix_path.append(leaf_node.name)
-        ascend_tree(leaf_node.parent, prefix_path)
+    if yaprak_dugum.ebeveyn is not None:
+        on_ek_yolu.append(yaprak_dugum.isim)
+        agaci_yuksel(yaprak_dugum.ebeveyn, on_ek_yolu)
 
 
-def find_prefix_path(base_pat: frozenset, tree_node: TreeNode | None) -> dict:  # noqa: ARG001
+def on_ek_yolu_bul(temel_oge: frozenset, agac_dugumu: AgacDugumu | None) -> dict:  # noqa: ARG001
     """
-    Find the conditional pattern base for a given base pattern.
+    Belirli bir temel öğe için koşullu örüntü tabanını bulun.
 
     Args:
-        base_pat: The base pattern for which to find the conditional pattern base.
-        tree_node: The node in the FP-Tree.
+        temel_oge: Koşullu örüntü tabanı bulunacak temel öğe.
+        agac_dugumu: FP-Tree'deki düğüm.
 
-    Example:
-    >>> data_set = [
+    Örnek:
+    >>> veri_seti = [
     ...    ['A', 'B', 'C'],
     ...    ['A', 'C'],
     ...    ['A', 'B', 'E'],
     ...    ['A', 'B', 'C', 'E'],
     ...    ['B', 'E']
     ... ]
-    >>> min_sup = 2
-    >>> fp_tree, header_table = create_tree(data_set, min_sup)
-    >>> fp_tree
-    TreeNode('Null Set', 1, None)
-    >>> len(header_table)
+    >>> min_destek = 2
+    >>> fp_agaci, baslik_tablosu = agac_olustur(veri_seti, min_destek)
+    >>> fp_agaci
+    AgacDugumu('Null Set', 1, None)
+    >>> len(baslik_tablosu)
     4
-    >>> base_pattern = frozenset(['A'])
-    >>> sorted(find_prefix_path(base_pattern, fp_tree.children['A']))
+    >>> temel_oge = frozenset(['A'])
+    >>> sorted(on_ek_yolu_bul(temel_oge, fp_agaci.cocuklar['A']))
     []
     """
-    cond_pats: dict = {}
-    while tree_node is not None:
-        prefix_path: list = []
-        ascend_tree(tree_node, prefix_path)
-        if len(prefix_path) > 1:
-            cond_pats[frozenset(prefix_path[1:])] = tree_node.count
-        tree_node = tree_node.node_link
-    return cond_pats
+    kosullu_ogeler: dict = {}
+    while agac_dugumu is not None:
+        on_ek_yolu: list = []
+        agaci_yuksel(agac_dugumu, on_ek_yolu)
+        if len(on_ek_yolu) > 1:
+            kosullu_ogeler[frozenset(on_ek_yolu[1:])] = agac_dugumu.sayi
+        agac_dugumu = agac_dugumu.dugum_baglantisi
+    return kosullu_ogeler
 
 
-def mine_tree(
-    in_tree: TreeNode,  # noqa: ARG001
-    header_table: dict,
-    min_sup: int,
-    pre_fix: set,
-    freq_item_list: list,
+def agaci_madencilik(
+    ic_agac: AgacDugumu,  # noqa: ARG001
+    baslik_tablosu: dict,
+    min_destek: int,
+    on_ek: set,
+    sik_oge_listesi: list,
 ) -> None:
     """
-    Mine the FP-Tree recursively to discover frequent itemsets.
+    Sık kullanılan öğe kümelerini keşfetmek için FP-Tree'yi özyinelemeli olarak madencilik yapın.
 
     Args:
-        in_tree: The FP-Tree to mine.
-        header_table: The header table dictionary with item information.
-        min_sup: The minimum support threshold.
-        pre_fix: A set of items as a prefix for the itemsets being mined.
-        freq_item_list: A list to store the frequent itemsets.
+        ic_agac: Madencilik yapılacak FP-Tree.
+        baslik_tablosu: Öğeler hakkında bilgi içeren başlık tablosu sözlüğü.
+        min_destek: Minimum destek eşiği.
+        on_ek: Madencilik yapılan öğe kümeleri için bir ön ek öğe kümesi.
+        sik_oge_listesi: Sık kullanılan öğe kümelerini saklamak için bir liste.
 
-    Example:
-    >>> data_set = [
+    Örnek:
+    >>> veri_seti = [
     ...    ['A', 'B', 'C'],
     ...    ['A', 'C'],
     ...    ['A', 'B', 'E'],
     ...    ['A', 'B', 'C', 'E'],
     ...    ['B', 'E']
     ... ]
-    >>> min_sup = 2
-    >>> fp_tree, header_table = create_tree(data_set, min_sup)
-    >>> fp_tree
-    TreeNode('Null Set', 1, None)
-    >>> frequent_itemsets = []
-    >>> mine_tree(fp_tree, header_table, min_sup, set([]), frequent_itemsets)
-    >>> expe_itm = [{'C'}, {'C', 'A'}, {'E'}, {'A', 'E'}, {'E', 'B'}, {'A'}, {'B'}]
-    >>> all(expected in frequent_itemsets for expected in expe_itm)
+    >>> min_destek = 2
+    >>> fp_agaci, baslik_tablosu = agac_olustur(veri_seti, min_destek)
+    >>> fp_agaci
+    AgacDugumu('Null Set', 1, None)
+    >>> sik_oge_kumeleri = []
+    >>> agaci_madencilik(fp_agaci, baslik_tablosu, min_destek, set([]), sik_oge_kumeleri)
+    >>> beklenen_ogeler = [{'C'}, {'C', 'A'}, {'E'}, {'A', 'E'}, {'E', 'B'}, {'A'}, {'B'}]
+    >>> all(expected in sik_oge_kumeleri for expected in beklenen_ogeler)
     True
     """
-    sorted_items = sorted(header_table.items(), key=lambda item_info: item_info[1][0])
-    big_l = [item[0] for item in sorted_items]
-    for base_pat in big_l:
-        new_freq_set = pre_fix.copy()
-        new_freq_set.add(base_pat)
-        freq_item_list.append(new_freq_set)
-        cond_patt_bases = find_prefix_path(base_pat, header_table[base_pat][1])
-        my_cond_tree, my_head = create_tree(list(cond_patt_bases), min_sup)
-        if my_head is not None:
-            # Pass header_table[base_pat][1] as node_to_test to update_header
-            header_table[base_pat][1] = update_header(
-                header_table[base_pat][1], my_cond_tree
+    sirali_ogeler = sorted(baslik_tablosu.items(), key=lambda oge_bilgi: oge_bilgi[1][0])
+    buyuk_l = [oge[0] for oge in sirali_ogeler]
+    for temel_oge in buyuk_l:
+        yeni_sik_kume = on_ek.copy()
+        yeni_sik_kume.add(temel_oge)
+        sik_oge_listesi.append(yeni_sik_kume)
+        kosullu_oge_tabanlari = on_ek_yolu_bul(temel_oge, baslik_tablosu[temel_oge][1])
+        kosullu_agac, kosullu_baslik = agac_olustur(list(kosullu_oge_tabanlari), min_destek)
+        if kosullu_baslik is not None:
+            # Başlık tablosundaki temel öğeyi güncelle
+            baslik_tablosu[temel_oge][1] = basligi_guncelle(
+                baslik_tablosu[temel_oge][1], kosullu_agac
             )
-            mine_tree(my_cond_tree, my_head, min_sup, new_freq_set, freq_item_list)
+            agaci_madencilik(kosullu_agac, kosullu_baslik, min_destek, yeni_sik_kume, sik_oge_listesi)
 
 
 if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    data_set: list[frozenset] = [
-        frozenset(["bread", "milk", "cheese"]),
-        frozenset(["bread", "milk"]),
-        frozenset(["bread", "diapers"]),
-        frozenset(["bread", "milk", "diapers"]),
-        frozenset(["milk", "diapers"]),
-        frozenset(["milk", "cheese"]),
-        frozenset(["diapers", "cheese"]),
-        frozenset(["bread", "milk", "cheese", "diapers"]),
+    veri_seti: list[frozenset] = [
+        frozenset(["ekmek", "sut", "peynir"]),
+        frozenset(["ekmek", "sut"]),
+        frozenset(["ekmek", "bebek_bezi"]),
+        frozenset(["ekmek", "sut", "bebek_bezi"]),
+        frozenset(["sut", "bebek_bezi"]),
+        frozenset(["sut", "peynir"]),
+        frozenset(["bebek_bezi", "peynir"]),
+        frozenset(["ekmek", "sut", "peynir", "bebek_bezi"]),
     ]
-    print(f"{len(data_set) = }")
-    fp_tree, header_table = create_tree(data_set, min_sup=3)
-    print(f"{fp_tree = }")
-    print(f"{len(header_table) = }")
-    freq_items: list = []
-    mine_tree(fp_tree, header_table, 3, set(), freq_items)
-    print(f"{freq_items = }")
+    print(f"{len(veri_seti) = }")
+    fp_agaci, baslik_tablosu = agac_olustur(veri_seti, min_destek=3)
+    print(f"{fp_agaci = }")
+    print(f"{len(baslik_tablosu) = }")
+    sik_ogeler: list = []
+    agaci_madencilik(fp_agaci, baslik_tablosu, 3, set(), sik_ogeler)
+    print(f"{sik_ogeler = }")

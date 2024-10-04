@@ -1,24 +1,24 @@
 import numpy as np
 
-""" Here I implemented the scoring functions.
-    MAE, MSE, RMSE, RMSLE are included.
+""" Burada puanlama fonksiyonlarını uyguladım.
+    MAE, MSE, RMSE, RMSLE dahildir.
 
-    Those are used for calculating differences between
-    predicted values and actual values.
+    Bunlar, tahmin edilen değerler ile gerçek değerler arasındaki
+    farkları hesaplamak için kullanılır.
 
-    Metrics are slightly differentiated. Sometimes squared, rooted,
-    even log is used.
+    Metrikler biraz farklılık gösterir. Bazen kare, kök,
+    hatta logaritma kullanılır.
 
-    Using log and roots can be perceived as tools for penalizing big
-    errors. However, using appropriate metrics depends on the situations,
-    and types of data
+    Logaritma ve kök kullanmak büyük hataları cezalandırma
+    araçları olarak algılanabilir. Ancak, uygun metriklerin kullanımı
+    duruma ve veri türlerine bağlıdır.
 """
 
 
-# Mean Absolute Error
+# Ortalama Mutlak Hata
 def mae(predict, actual):
     """
-    Examples(rounded for precision):
+    Örnekler (hassasiyet için yuvarlanmış):
     >>> actual = [1,2,3];predict = [1,4,3]
     >>> float(np.around(mae(predict,actual),decimals = 2))
     0.67
@@ -36,10 +36,10 @@ def mae(predict, actual):
     return score
 
 
-# Mean Squared Error
+# Ortalama Kare Hata
 def mse(predict, actual):
     """
-    Examples(rounded for precision):
+    Örnekler (hassasiyet için yuvarlanmış):
     >>> actual = [1,2,3];predict = [1,4,3]
     >>> float(np.around(mse(predict,actual),decimals = 2))
     1.33
@@ -58,10 +58,10 @@ def mse(predict, actual):
     return score
 
 
-# Root Mean Squared Error
+# Kök Ortalama Kare Hata
 def rmse(predict, actual):
     """
-    Examples(rounded for precision):
+    Örnekler (hassasiyet için yuvarlanmış):
     >>> actual = [1,2,3];predict = [1,4,3]
     >>> float(np.around(rmse(predict,actual),decimals = 2))
     1.15
@@ -80,10 +80,10 @@ def rmse(predict, actual):
     return score
 
 
-# Root Mean Square Logarithmic Error
+# Kök Ortalama Kare Logaritmik Hata
 def rmsle(predict, actual):
     """
-    Examples(rounded for precision):
+    Örnekler (hassasiyet için yuvarlanmış):
     >>> float(np.around(rmsle(predict=[10, 2, 30], actual=[10, 10, 30]), decimals=2))
     0.75
 
@@ -105,20 +105,20 @@ def rmsle(predict, actual):
     return score
 
 
-# Mean Bias Deviation
+# Ortalama Sapma Hatası
 def mbd(predict, actual):
     """
-    This value is Negative, if the model underpredicts,
-    positive, if it overpredicts.
+    Bu değer negatifse, model düşük tahmin yapar,
+    pozitifse, aşırı tahmin yapar.
 
-    Example(rounded for precision):
+    Örnek (hassasiyet için yuvarlanmış):
 
-    Here the model overpredicts
+    Burada model aşırı tahmin yapar
     >>> actual = [1,2,3];predict = [2,3,4]
     >>> float(np.around(mbd(predict,actual),decimals = 2))
     50.0
 
-    Here the model underpredicts
+    Burada model düşük tahmin yapar
     >>> actual = [1,2,3];predict = [0,1,1]
     >>> float(np.around(mbd(predict,actual),decimals = 2))
     -66.67

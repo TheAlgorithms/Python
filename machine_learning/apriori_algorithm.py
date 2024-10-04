@@ -1,22 +1,21 @@
 """
-Apriori Algorithm is a Association rule mining technique, also known as market basket
-analysis, aims to discover interesting relationships or associations among a set of
-items in a transactional or relational database.
+Apriori Algoritması, pazar sepeti analizi olarak da bilinen bir Birliktelik kuralı madenciliği tekniğidir ve
+bir işlem veya ilişkisel veritabanındaki bir dizi öğe arasında ilginç ilişkiler veya birliktelikler keşfetmeyi amaçlar.
 
-For example, Apriori Algorithm states: "If a customer buys item A and item B, then they
-are likely to buy item C."  This rule suggests a relationship between items A, B, and C,
-indicating that customers who purchased A and B are more likely to also purchase item C.
+Örneğin, Apriori Algoritması şunu belirtir: "Bir müşteri A ve B ürünlerini satın alırsa, muhtemelen C ürününü de satın alır."
+Bu kural, A, B ve C ürünleri arasında bir ilişki önerir ve A ve B'yi satın alan müşterilerin C ürününü de satın alma olasılığının yüksek olduğunu gösterir.
 
 WIKI: https://en.wikipedia.org/wiki/Apriori_algorithm
-Examples: https://www.kaggle.com/code/earthian/apriori-association-rules-mining
+Örnekler: https://www.kaggle.com/code/earthian/apriori-association-rules-mining
 """
 
 from itertools import combinations
+from typing import List, Tuple
 
 
-def load_data() -> list[list[str]]:
+def load_data() -> List[List[str]]:
     """
-    Returns a sample transaction dataset.
+    Örnek bir işlem veri seti döndürür.
 
     >>> load_data()
     [['milk'], ['milk', 'butter'], ['milk', 'bread'], ['milk', 'bread', 'chips']]
@@ -24,15 +23,14 @@ def load_data() -> list[list[str]]:
     return [["milk"], ["milk", "butter"], ["milk", "bread"], ["milk", "bread", "chips"]]
 
 
-def prune(itemset: list, candidates: list, length: int) -> list:
+def prune(itemset: List[str], candidates: List[List[str]], length: int) -> List[List[str]]:
     """
-    Prune candidate itemsets that are not frequent.
-    The goal of pruning is to filter out candidate itemsets that are not frequent.  This
-    is done by checking if all the (k-1) subsets of a candidate itemset are present in
-    the frequent itemsets of the previous iteration (valid subsequences of the frequent
-    itemsets from the previous iteration).
+    Sık olmayan aday öğe kümelerini budar.
+    Budamanın amacı, sık olmayan aday öğe kümelerini filtrelemektir. Bu, bir aday öğe kümesinin tüm (k-1) alt kümelerinin
+    önceki iterasyonun sık öğe kümelerinde (önceki iterasyonun sık öğe kümelerinin geçerli alt dizileri) bulunup bulunmadığını
+    kontrol ederek yapılır.
 
-    Prunes candidate itemsets that are not frequent.
+    Sık olmayan aday öğe kümelerini budar.
 
     >>> itemset = ['X', 'Y', 'Z']
     >>> candidates = [['X', 'Y'], ['X', 'Z'], ['Y', 'Z']]
@@ -40,7 +38,7 @@ def prune(itemset: list, candidates: list, length: int) -> list:
     [['X', 'Y'], ['X', 'Z'], ['Y', 'Z']]
 
     >>> itemset = ['1', '2', '3', '4']
-    >>> candidates = ['1', '2', '4']
+    >>> candidates = [['1', '2'], ['1', '4'], ['2', '4']]
     >>> prune(itemset, candidates, 3)
     []
     """
@@ -56,13 +54,13 @@ def prune(itemset: list, candidates: list, length: int) -> list:
     return pruned
 
 
-def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], int]]:
+def apriori(data: List[List[str]], min_support: int) -> List[Tuple[List[str], int]]:
     """
-    Returns a list of frequent itemsets and their support counts.
+    Sık öğe kümelerini ve destek sayılarını döndürür.
 
     >>> data = [['A', 'B', 'C'], ['A', 'B'], ['A', 'C'], ['A', 'D'], ['B', 'C']]
     >>> apriori(data, 2)
-    [(['A', 'B'], 1), (['A', 'C'], 2), (['B', 'C'], 2)]
+    [(['A', 'B'], 2), (['A', 'C'], 2), (['B', 'C'], 2)]
 
     >>> data = [['1', '2', '3'], ['1', '2'], ['1', '3'], ['1', '4'], ['2', '3']]
     >>> apriori(data, 3)
@@ -73,17 +71,17 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
     length = 1
 
     while itemset:
-        # Count itemset support
+        # Öğe kümesi desteğini say
         counts = [0] * len(itemset)
         for transaction in data:
             for j, candidate in enumerate(itemset):
                 if all(item in transaction for item in candidate):
                     counts[j] += 1
 
-        # Prune infrequent itemsets
+        # Sık olmayan öğe kümelerini buda
         itemset = [item for i, item in enumerate(itemset) if counts[i] >= min_support]
 
-        # Append frequent itemsets (as a list to maintain order)
+        # Sık öğe kümelerini ekle (sıralamayı korumak için liste olarak)
         for i, item in enumerate(itemset):
             frequent_itemsets.append((sorted(item), counts[i]))
 
@@ -95,19 +93,19 @@ def apriori(data: list[list[str]], min_support: int) -> list[tuple[list[str], in
 
 if __name__ == "__main__":
     """
-    Apriori algorithm for finding frequent itemsets.
+    Sık öğe kümelerini bulmak için Apriori algoritması.
 
     Args:
-        data: A list of transactions, where each transaction is a list of items.
-        min_support: The minimum support threshold for frequent itemsets.
+        data: Her işlemin bir öğe listesi olduğu bir işlem listesi.
+        min_support: Sık öğe kümeleri için minimum destek eşiği.
 
     Returns:
-        A list of frequent itemsets along with their support counts.
+        Sık öğe kümeleri ve destek sayıları ile birlikte bir liste.
     """
     import doctest
 
     doctest.testmod()
 
-    # user-defined threshold or minimum support level
+    # kullanıcı tanımlı eşik veya minimum destek seviyesi
     frequent_itemsets = apriori(data=load_data(), min_support=2)
     print("\n".join(f"{itemset}: {support}" for itemset, support in frequent_itemsets))

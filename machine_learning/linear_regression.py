@@ -1,117 +1,115 @@
 """
-Linear regression is the most basic type of regression commonly used for
-predictive analysis. The idea is pretty simple: we have a dataset and we have
-features associated with it. Features should be chosen very cautiously
-as they determine how much our model will be able to make future predictions.
-We try to set the weight of these features, over many iterations, so that they best
-fit our dataset. In this particular code, I had used a CSGO dataset (ADR vs
-Rating). We try to best fit a line through dataset and estimate the parameters.
+Doğrusal regresyon, genellikle öngörücü analiz için kullanılan en temel regresyon türüdür.
+Fikir oldukça basittir: bir veri setimiz var ve bununla ilişkili özelliklerimiz var.
+Özellikler çok dikkatli seçilmelidir çünkü modelimizin gelecekteki tahminleri ne kadar iyi yapabileceğini belirler.
+Bu özelliklerin ağırlıklarını, birçok iterasyon boyunca, veri setimize en iyi uyacak şekilde ayarlamaya çalışırız.
+Bu özel kodda, bir CSGO veri seti (ADR vs Rating) kullandım. Veri seti üzerinden en iyi uyumu sağlayacak bir çizgi çizmeye ve parametreleri tahmin etmeye çalışıyoruz.
 """
 
 import numpy as np
 import requests
 
 
-def collect_dataset():
-    """Collect dataset of CSGO
-    The dataset contains ADR vs Rating of a Player
-    :return : dataset obtained from the link, as matrix
+def veri_seti_topla():
+    """CSGO veri setini topla
+    Veri seti, bir oyuncunun ADR'si ile Rating'ini içerir
+    :return : bağlantıdan elde edilen veri seti, matris olarak
     """
     response = requests.get(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/"
         "master/Week1/ADRvsRating.csv",
         timeout=10,
     )
-    lines = response.text.splitlines()
-    data = []
-    for item in lines:
-        item = item.split(",")
-        data.append(item)
-    data.pop(0)  # This is for removing the labels from the list
-    dataset = np.matrix(data)
-    return dataset
+    satırlar = response.text.splitlines()
+    veri = []
+    for öğe in satırlar:
+        öğe = öğe.split(",")
+        veri.append(öğe)
+    veri.pop(0)  # Bu, listeden etiketleri kaldırmak içindir
+    veri_seti = np.matrix(veri)
+    return veri_seti
 
 
-def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta):
-    """Run steep gradient descent and updates the Feature vector accordingly_
-    :param data_x   : contains the dataset
-    :param data_y   : contains the output associated with each data-entry
-    :param len_data : length of the data_
-    :param alpha    : Learning rate of the model
-    :param theta    : Feature vector (weight's for our model)
-    ;param return    : Updated Feature's, using
-                       curr_features - alpha_ * gradient(w.r.t. feature)
+def dik_yokuş_çıkışını_çalıştır(veri_x, veri_y, veri_uzunluğu, alfa, theta):
+    """Dik yokuş çıkışını çalıştır ve Özellik vektörünü buna göre güncelle
+    :param veri_x   : veri setini içerir
+    :param veri_y   : her veri girişiyle ilişkili çıktıyı içerir
+    :param veri_uzunluğu : verinin uzunluğu
+    :param alfa    : Modelin öğrenme oranı
+    :param theta    : Özellik vektörü (modelimizin ağırlıkları)
+    ;param return    : Güncellenmiş Özellikler, kullanarak
+                       mevcut_özellikler - alfa_ * gradyan(özelliğe göre)
     """
-    n = len_data
+    n = veri_uzunluğu
 
-    prod = np.dot(theta, data_x.transpose())
-    prod -= data_y.transpose()
-    sum_grad = np.dot(prod, data_x)
-    theta = theta - (alpha / n) * sum_grad
+    çarpım = np.dot(theta, veri_x.transpose())
+    çarpım -= veri_y.transpose()
+    toplam_gradyan = np.dot(çarpım, veri_x)
+    theta = theta - (alfa / n) * toplam_gradyan
     return theta
 
 
-def sum_of_square_error(data_x, data_y, len_data, theta):
-    """Return sum of square error for error calculation
-    :param data_x    : contains our dataset
-    :param data_y    : contains the output (result vector)
-    :param len_data  : len of the dataset
-    :param theta     : contains the feature vector
-    :return          : sum of square error computed from given feature's
+def kare_hata_toplamı(veri_x, veri_y, veri_uzunluğu, theta):
+    """Hata hesaplaması için kare hata toplamını döndür
+    :param veri_x    : veri setimizi içerir
+    :param veri_y    : çıktıyı içerir (sonuç vektörü)
+    :param veri_uzunluğu  : veri setinin uzunluğu
+    :param theta     : özellik vektörünü içerir
+    :return          : verilen özelliklerden hesaplanan kare hata toplamı
     """
-    prod = np.dot(theta, data_x.transpose())
-    prod -= data_y.transpose()
-    sum_elem = np.sum(np.square(prod))
-    error = sum_elem / (2 * len_data)
-    return error
+    çarpım = np.dot(theta, veri_x.transpose())
+    çarpım -= veri_y.transpose()
+    toplam_öğe = np.sum(np.square(çarpım))
+    hata = toplam_öğe / (2 * veri_uzunluğu)
+    return hata
 
 
-def run_linear_regression(data_x, data_y):
-    """Implement Linear regression over the dataset
-    :param data_x  : contains our dataset
-    :param data_y  : contains the output (result vector)
-    :return        : feature for line of best fit (Feature vector)
+def doğrusal_regresyon_çalıştır(veri_x, veri_y):
+    """Veri seti üzerinde Doğrusal regresyon uygula
+    :param veri_x  : veri setimizi içerir
+    :param veri_y  : çıktıyı içerir (sonuç vektörü)
+    :return        : en iyi uyum çizgisi için özellik (Özellik vektörü)
     """
-    iterations = 100000
-    alpha = 0.0001550
+    iterasyonlar = 100000
+    alfa = 0.0001550
 
-    no_features = data_x.shape[1]
-    len_data = data_x.shape[0] - 1
+    özellik_sayısı = veri_x.shape[1]
+    veri_uzunluğu = veri_x.shape[0] - 1
 
-    theta = np.zeros((1, no_features))
+    theta = np.zeros((1, özellik_sayısı))
 
-    for i in range(iterations):
-        theta = run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta)
-        error = sum_of_square_error(data_x, data_y, len_data, theta)
-        print(f"At Iteration {i + 1} - Error is {error:.5f}")
+    for i in range(iterasyonlar):
+        theta = dik_yokuş_çıkışını_çalıştır(veri_x, veri_y, veri_uzunluğu, alfa, theta)
+        hata = kare_hata_toplamı(veri_x, veri_y, veri_uzunluğu, theta)
+        print(f"İterasyon {i + 1} - Hata {hata:.5f}")
 
     return theta
 
 
-def mean_absolute_error(predicted_y, original_y):
-    """Return sum of square error for error calculation
-    :param predicted_y   : contains the output of prediction (result vector)
-    :param original_y    : contains values of expected outcome
-    :return          : mean absolute error computed from given feature's
+def ortalama_mutlak_hata(tahmin_edilen_y, orijinal_y):
+    """Hata hesaplaması için kare hata toplamını döndür
+    :param tahmin_edilen_y   : tahminin çıktısını içerir (sonuç vektörü)
+    :param orijinal_y    : beklenen sonuç değerlerini içerir
+    :return          : verilen özelliklerden hesaplanan ortalama mutlak hata
     """
-    total = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
-    return total / len(original_y)
+    toplam = sum(abs(y - tahmin_edilen_y[i]) for i, y in enumerate(orijinal_y))
+    return toplam / len(orijinal_y)
 
 
-def main():
-    """Driver function"""
-    data = collect_dataset()
+def ana():
+    """Sürücü fonksiyonu"""
+    veri = veri_seti_topla()
 
-    len_data = data.shape[0]
-    data_x = np.c_[np.ones(len_data), data[:, :-1]].astype(float)
-    data_y = data[:, -1].astype(float)
+    veri_uzunluğu = veri.shape[0]
+    veri_x = np.c_[np.ones(veri_uzunluğu), veri[:, :-1]].astype(float)
+    veri_y = veri[:, -1].astype(float)
 
-    theta = run_linear_regression(data_x, data_y)
-    len_result = theta.shape[1]
-    print("Resultant Feature vector : ")
-    for i in range(len_result):
+    theta = doğrusal_regresyon_çalıştır(veri_x, veri_y)
+    sonuç_uzunluğu = theta.shape[1]
+    print("Sonuç Özellik vektörü : ")
+    for i in range(sonuç_uzunluğu):
         print(f"{theta[0, i]:.5f}")
 
 
 if __name__ == "__main__":
-    main()
+    ana()

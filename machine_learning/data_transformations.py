@@ -1,67 +1,67 @@
 """
-Normalization.
+Normalizasyon.
 
 Wikipedia: https://en.wikipedia.org/wiki/Normalization
-Normalization is the process of converting numerical data to a standard range of values.
-This range is typically between [0, 1] or [-1, 1]. The equation for normalization is
-x_norm = (x - x_min)/(x_max - x_min) where x_norm is the normalized value, x is the
-value, x_min is the minimum value within the column or list of data, and x_max is the
-maximum value within the column or list of data. Normalization is used to speed up the
-training of data and put all of the data on a similar scale. This is useful because
-variance in the range of values of a dataset can heavily impact optimization
-(particularly Gradient Descent).
+Normalizasyon, sayısal verilerin standart bir değer aralığına dönüştürülmesi işlemidir.
+Bu aralık tipik olarak [0, 1] veya [-1, 1] arasındadır. Normalizasyon denklemi
+x_norm = (x - x_min)/(x_max - x_min) şeklindedir. Burada x_norm normalize edilmiş değer,
+x orijinal değer, x_min sütun veya veri listesindeki minimum değer ve x_max sütun veya
+veri listesindeki maksimum değerdir. Normalizasyon, verilerin eğitimini hızlandırmak ve
+tüm verileri benzer bir ölçeğe getirmek için kullanılır. Bu, özellikle Gradient Descent
+optimizasyonunda, veri kümesindeki değer aralığındaki varyansın optimizasyonu büyük
+ölçüde etkileyebileceği için faydalıdır.
 
-Standardization Wikipedia: https://en.wikipedia.org/wiki/Standardization
-Standardization is the process of converting numerical data to a normally distributed
-range of values. This range will have a mean of 0 and standard deviation of 1. This is
-also known as z-score normalization. The equation for standardization is
-x_std = (x - mu)/(sigma) where mu is the mean of the column or list of values and sigma
-is the standard deviation of the column or list of values.
+Standardizasyon Wikipedia: https://en.wikipedia.org/wiki/Standardization
+Standardizasyon, sayısal verilerin normal dağılımlı bir değer aralığına dönüştürülmesi
+işlemidir. Bu aralık, ortalaması 0 ve standart sapması 1 olan bir aralık olacaktır. Bu
+aynı zamanda z-puan normalizasyonu olarak da bilinir. Standardizasyon denklemi
+x_std = (x - mu)/(sigma) şeklindedir. Burada mu sütun veya değer listesinin ortalaması
+ve sigma sütun veya değer listesinin standart sapmasıdır.
 
-Choosing between Normalization & Standardization is more of an art of a science, but it
-is often recommended to run experiments with both to see which performs better.
-Additionally, a few rules of thumb are:
-    1. gaussian (normal) distributions work better with standardization
-    2. non-gaussian (non-normal) distributions work better with normalization
-    3. If a column or list of values has extreme values / outliers, use standardization
+Normalizasyon ve Standardizasyon arasında seçim yapmak daha çok bir sanat gibidir, ancak
+hangisinin daha iyi performans gösterdiğini görmek için her ikisiyle de deneyler yapmak
+genellikle önerilir. Ayrıca, birkaç genel kural şunlardır:
+    1. Gauss (normal) dağılımlar standardizasyon ile daha iyi çalışır
+    2. Gauss olmayan (normal olmayan) dağılımlar normalizasyon ile daha iyi çalışır
+    3. Bir sütun veya değer listesi aşırı değerlere / aykırı değerlere sahipse, standardizasyon kullanın
 """
 
 from statistics import mean, stdev
 
 
-def normalization(data: list, ndigits: int = 3) -> list:
+def normalizasyon(veri: list, ondalik_basamak: int = 3) -> list:
     """
-    Return a normalized list of values.
+    Normalize edilmiş bir değer listesi döndürür.
 
-    @params: data, a list of values to normalize
-    @returns: a list of normalized values (rounded to ndigits decimal places)
-    @examples:
-    >>> normalization([2, 7, 10, 20, 30, 50])
+    @parametreler: veri, normalize edilecek değerler listesi
+    @döndürür: normalize edilmiş değerler listesi (ondalik_basamak kadar yuvarlanmış)
+    @örnekler:
+    >>> normalizasyon([2, 7, 10, 20, 30, 50])
     [0.0, 0.104, 0.167, 0.375, 0.583, 1.0]
-    >>> normalization([5, 10, 15, 20, 25])
+    >>> normalizasyon([5, 10, 15, 20, 25])
     [0.0, 0.25, 0.5, 0.75, 1.0]
     """
-    # variables for calculation
-    x_min = min(data)
-    x_max = max(data)
-    # normalize data
-    return [round((x - x_min) / (x_max - x_min), ndigits) for x in data]
+    # hesaplama için değişkenler
+    x_min = min(veri)
+    x_max = max(veri)
+    # veriyi normalize et
+    return [round((x - x_min) / (x_max - x_min), ondalik_basamak) for x in veri]
 
 
-def standardization(data: list, ndigits: int = 3) -> list:
+def standardizasyon(veri: list, ondalik_basamak: int = 3) -> list:
     """
-    Return a standardized list of values.
+    Standardize edilmiş bir değer listesi döndürür.
 
-    @params: data, a list of values to standardize
-    @returns: a list of standardized values (rounded to ndigits decimal places)
-    @examples:
-    >>> standardization([2, 7, 10, 20, 30, 50])
+    @parametreler: veri, standardize edilecek değerler listesi
+    @döndürür: standardize edilmiş değerler listesi (ondalik_basamak kadar yuvarlanmış)
+    @örnekler:
+    >>> standardizasyon([2, 7, 10, 20, 30, 50])
     [-0.999, -0.719, -0.551, 0.009, 0.57, 1.69]
-    >>> standardization([5, 10, 15, 20, 25])
+    >>> standardizasyon([5, 10, 15, 20, 25])
     [-1.265, -0.632, 0.0, 0.632, 1.265]
     """
-    # variables for calculation
-    mu = mean(data)
-    sigma = stdev(data)
-    # standardize data
-    return [round((x - mu) / (sigma), ndigits) for x in data]
+    # hesaplama için değişkenler
+    mu = mean(veri)
+    sigma = stdev(veri)
+    # veriyi standardize et
+    return [round((x - mu) / (sigma), ondalik_basamak) for x in veri]

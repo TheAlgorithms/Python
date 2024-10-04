@@ -1,11 +1,11 @@
 #  Copyright (c) 2023 Diego Gasco (diego.gasco99@gmail.com), Diegomangasco on GitHub
 
 """
-Requirements:
-  - numpy version 1.21
-  - scipy version 1.3.3
-Notes:
-  - Each column of the features matrix corresponds to a class item
+Gereksinimler:
+  - numpy sürüm 1.21
+  - scipy sürüm 1.3.3
+Notlar:
+  - Özellikler matrisinin her sütunu bir sınıf öğesine karşılık gelir
 """
 
 import logging
@@ -17,179 +17,179 @@ from scipy.linalg import eigh
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 
 
-def column_reshape(input_array: np.ndarray) -> np.ndarray:
-    """Function to reshape a row Numpy array into a column Numpy array
-    >>> input_array = np.array([1, 2, 3])
-    >>> column_reshape(input_array)
+def sütun_yeniden_şekillendir(girdi_dizisi: np.ndarray) -> np.ndarray:
+    """Bir satır Numpy dizisini bir sütun Numpy dizisine yeniden şekillendirme işlevi
+    >>> girdi_dizisi = np.array([1, 2, 3])
+    >>> sütun_yeniden_şekillendir(girdi_dizisi)
     array([[1],
            [2],
            [3]])
     """
 
-    return input_array.reshape((input_array.size, 1))
+    return girdi_dizisi.reshape((girdi_dizisi.size, 1))
 
 
-def covariance_within_classes(
-    features: np.ndarray, labels: np.ndarray, classes: int
+def sınıf_içi_kovaryans(
+    özellikler: np.ndarray, etiketler: np.ndarray, sınıflar: int
 ) -> np.ndarray:
-    """Function to compute the covariance matrix inside each class.
-    >>> features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-    >>> labels = np.array([0, 1, 0])
-    >>> covariance_within_classes(features, labels, 2)
+    """Her sınıf içindeki kovaryans matrisini hesaplama işlevi.
+    >>> özellikler = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    >>> etiketler = np.array([0, 1, 0])
+    >>> sınıf_içi_kovaryans(özellikler, etiketler, 2)
     array([[0.66666667, 0.66666667, 0.66666667],
            [0.66666667, 0.66666667, 0.66666667],
            [0.66666667, 0.66666667, 0.66666667]])
     """
 
-    covariance_sum = np.nan
-    for i in range(classes):
-        data = features[:, labels == i]
-        data_mean = data.mean(1)
-        # Centralize the data of class i
-        centered_data = data - column_reshape(data_mean)
+    kovaryans_toplamı = np.nan
+    for i in range(sınıflar):
+        veri = özellikler[:, etiketler == i]
+        veri_ort = veri.mean(1)
+        # Sınıf i verilerini merkezileştir
+        merkezileştirilmiş_veri = veri - sütun_yeniden_şekillendir(veri_ort)
         if i > 0:
-            # If covariance_sum is not None
-            covariance_sum += np.dot(centered_data, centered_data.T)
+            # Eğer kovaryans_toplamı None değilse
+            kovaryans_toplamı += np.dot(merkezileştirilmiş_veri, merkezileştirilmiş_veri.T)
         else:
-            # If covariance_sum is np.nan (i.e. first loop)
-            covariance_sum = np.dot(centered_data, centered_data.T)
+            # Eğer kovaryans_toplamı np.nan ise (yani ilk döngü)
+            kovaryans_toplamı = np.dot(merkezileştirilmiş_veri, merkezileştirilmiş_veri.T)
 
-    return covariance_sum / features.shape[1]
+    return kovaryans_toplamı / özellikler.shape[1]
 
 
-def covariance_between_classes(
-    features: np.ndarray, labels: np.ndarray, classes: int
+def sınıflar_arası_kovaryans(
+    özellikler: np.ndarray, etiketler: np.ndarray, sınıflar: int
 ) -> np.ndarray:
-    """Function to compute the covariance matrix between multiple classes
-    >>> features = np.array([[9, 2, 3], [4, 3, 6], [1, 8, 9]])
-    >>> labels = np.array([0, 1, 0])
-    >>> covariance_between_classes(features, labels, 2)
+    """Birden fazla sınıf arasındaki kovaryans matrisini hesaplama işlevi
+    >>> özellikler = np.array([[9, 2, 3], [4, 3, 6], [1, 8, 9]])
+    >>> etiketler = np.array([0, 1, 0])
+    >>> sınıflar_arası_kovaryans(özellikler, etiketler, 2)
     array([[ 3.55555556,  1.77777778, -2.66666667],
            [ 1.77777778,  0.88888889, -1.33333333],
            [-2.66666667, -1.33333333,  2.        ]])
     """
 
-    general_data_mean = features.mean(1)
-    covariance_sum = np.nan
-    for i in range(classes):
-        data = features[:, labels == i]
-        device_data = data.shape[1]
-        data_mean = data.mean(1)
+    genel_veri_ort = özellikler.mean(1)
+    kovaryans_toplamı = np.nan
+    for i in range(sınıflar):
+        veri = özellikler[:, etiketler == i]
+        cihaz_verisi = veri.shape[1]
+        veri_ort = veri.mean(1)
         if i > 0:
-            # If covariance_sum is not None
-            covariance_sum += device_data * np.dot(
-                column_reshape(data_mean) - column_reshape(general_data_mean),
-                (column_reshape(data_mean) - column_reshape(general_data_mean)).T,
+            # Eğer kovaryans_toplamı None değilse
+            kovaryans_toplamı += cihaz_verisi * np.dot(
+                sütun_yeniden_şekillendir(veri_ort) - sütun_yeniden_şekillendir(genel_veri_ort),
+                (sütun_yeniden_şekillendir(veri_ort) - sütun_yeniden_şekillendir(genel_veri_ort)).T,
             )
         else:
-            # If covariance_sum is np.nan (i.e. first loop)
-            covariance_sum = device_data * np.dot(
-                column_reshape(data_mean) - column_reshape(general_data_mean),
-                (column_reshape(data_mean) - column_reshape(general_data_mean)).T,
+            # Eğer kovaryans_toplamı np.nan ise (yani ilk döngü)
+            kovaryans_toplamı = cihaz_verisi * np.dot(
+                sütun_yeniden_şekillendir(veri_ort) - sütun_yeniden_şekillendir(genel_veri_ort),
+                (sütun_yeniden_şekillendir(veri_ort) - sütun_yeniden_şekillendir(genel_veri_ort)).T,
             )
 
-    return covariance_sum / features.shape[1]
+    return kovaryans_toplamı / özellikler.shape[1]
 
 
-def principal_component_analysis(features: np.ndarray, dimensions: int) -> np.ndarray:
+def ana_bileşen_analizi(özellikler: np.ndarray, boyutlar: int) -> np.ndarray:
     """
-    Principal Component Analysis.
+    Ana Bileşen Analizi.
 
-    For more details, see: https://en.wikipedia.org/wiki/Principal_component_analysis.
-    Parameters:
-        * features: the features extracted from the dataset
-        * dimensions: to filter the projected data for the desired dimension
+    Daha fazla ayrıntı için bkz: https://en.wikipedia.org/wiki/Principal_component_analysis.
+    Parametreler:
+        * özellikler: veri setinden çıkarılan özellikler
+        * boyutlar: istenen boyut için projeksiyon verilerini filtrelemek
 
-    >>> test_principal_component_analysis()
+    >>> test_ana_bileşen_analizi()
     """
 
-    # Check if the features have been loaded
-    if features.any():
-        data_mean = features.mean(1)
-        # Center the dataset
-        centered_data = features - np.reshape(data_mean, (data_mean.size, 1))
-        covariance_matrix = np.dot(centered_data, centered_data.T) / features.shape[1]
-        _, eigenvectors = np.linalg.eigh(covariance_matrix)
-        # Take all the columns in the reverse order (-1), and then takes only the first
-        filtered_eigenvectors = eigenvectors[:, ::-1][:, 0:dimensions]
-        # Project the database on the new space
-        projected_data = np.dot(filtered_eigenvectors.T, features)
-        logging.info("Principal Component Analysis computed")
+    # Özelliklerin yüklendiğini kontrol et
+    if özellikler.any():
+        veri_ort = özellikler.mean(1)
+        # Veri setini merkezileştir
+        merkezileştirilmiş_veri = özellikler - np.reshape(veri_ort, (veri_ort.size, 1))
+        kovaryans_matrisi = np.dot(merkezileştirilmiş_veri, merkezileştirilmiş_veri.T) / özellikler.shape[1]
+        _, özvektörler = np.linalg.eigh(kovaryans_matrisi)
+        # Tüm sütunları ters sırayla al (-1) ve ardından sadece ilk sütunları al
+        filtrelenmiş_özvektörler = özvektörler[:, ::-1][:, 0:boyutlar]
+        # Veritabanını yeni uzaya projekte et
+        projekte_veri = np.dot(filtrelenmiş_özvektörler.T, özellikler)
+        logging.info("Ana Bileşen Analizi hesaplandı")
 
-        return projected_data
+        return projekte_veri
     else:
         logging.basicConfig(level=logging.ERROR, format="%(message)s", force=True)
-        logging.error("Dataset empty")
+        logging.error("Veri seti boş")
         raise AssertionError
 
 
-def linear_discriminant_analysis(
-    features: np.ndarray, labels: np.ndarray, classes: int, dimensions: int
+def doğrusal_ayrımcı_analiz(
+    özellikler: np.ndarray, etiketler: np.ndarray, sınıflar: int, boyutlar: int
 ) -> np.ndarray:
     """
-    Linear Discriminant Analysis.
+    Doğrusal Ayrımcı Analiz.
 
-    For more details, see: https://en.wikipedia.org/wiki/Linear_discriminant_analysis.
-    Parameters:
-        * features: the features extracted from the dataset
-        * labels: the class labels of the features
-        * classes: the number of classes present in the dataset
-        * dimensions: to filter the projected data for the desired dimension
+    Daha fazla ayrıntı için bkz: https://en.wikipedia.org/wiki/Linear_discriminant_analysis.
+    Parametreler:
+        * özellikler: veri setinden çıkarılan özellikler
+        * etiketler: özelliklerin sınıf etiketleri
+        * sınıflar: veri setinde bulunan sınıf sayısı
+        * boyutlar: istenen boyut için projeksiyon verilerini filtrelemek
 
-    >>> test_linear_discriminant_analysis()
+    >>> test_doğrusal_ayrımcı_analiz()
     """
 
-    # Check if the dimension desired is less than the number of classes
-    assert classes > dimensions
+    # İstenen boyutun sınıf sayısından az olduğunu kontrol et
+    assert sınıflar > boyutlar
 
-    # Check if features have been already loaded
-    if features.any:
-        _, eigenvectors = eigh(
-            covariance_between_classes(features, labels, classes),
-            covariance_within_classes(features, labels, classes),
+    # Özelliklerin yüklendiğini kontrol et
+    if özellikler.any:
+        _, özvektörler = eigh(
+            sınıflar_arası_kovaryans(özellikler, etiketler, sınıflar),
+            sınıf_içi_kovaryans(özellikler, etiketler, sınıflar),
         )
-        filtered_eigenvectors = eigenvectors[:, ::-1][:, :dimensions]
-        svd_matrix, _, _ = np.linalg.svd(filtered_eigenvectors)
-        filtered_svd_matrix = svd_matrix[:, 0:dimensions]
-        projected_data = np.dot(filtered_svd_matrix.T, features)
-        logging.info("Linear Discriminant Analysis computed")
+        filtrelenmiş_özvektörler = özvektörler[:, ::-1][:, :boyutlar]
+        svd_matrisi, _, _ = np.linalg.svd(filtrelenmiş_özvektörler)
+        filtrelenmiş_svd_matrisi = svd_matrisi[:, 0:boyutlar]
+        projekte_veri = np.dot(filtrelenmiş_svd_matrisi.T, özellikler)
+        logging.info("Doğrusal Ayrımcı Analiz hesaplandı")
 
-        return projected_data
+        return projekte_veri
     else:
         logging.basicConfig(level=logging.ERROR, format="%(message)s", force=True)
-        logging.error("Dataset empty")
+        logging.error("Veri seti boş")
         raise AssertionError
 
 
-def test_linear_discriminant_analysis() -> None:
-    # Create dummy dataset with 2 classes and 3 features
-    features = np.array([[1, 2, 3, 4, 5], [2, 3, 4, 5, 6], [3, 4, 5, 6, 7]])
-    labels = np.array([0, 0, 0, 1, 1])
-    classes = 2
-    dimensions = 2
+def test_doğrusal_ayrımcı_analiz() -> None:
+    # 2 sınıf ve 3 özellik içeren sahte veri seti oluştur
+    özellikler = np.array([[1, 2, 3, 4, 5], [2, 3, 4, 5, 6], [3, 4, 5, 6, 7]])
+    etiketler = np.array([0, 0, 0, 1, 1])
+    sınıflar = 2
+    boyutlar = 2
 
-    # Assert that the function raises an AssertionError if dimensions > classes
-    with pytest.raises(AssertionError) as error_info:  # noqa: PT012
-        projected_data = linear_discriminant_analysis(
-            features, labels, classes, dimensions
+    # Fonksiyonun boyutlar > sınıflar olduğunda AssertionError verdiğini doğrula
+    with pytest.raises(AssertionError) as hata_bilgisi:  # noqa: PT012
+        projekte_veri = doğrusal_ayrımcı_analiz(
+            özellikler, etiketler, sınıflar, boyutlar
         )
-        if isinstance(projected_data, np.ndarray):
+        if isinstance(projekte_veri, np.ndarray):
             raise AssertionError(
-                "Did not raise AssertionError for dimensions > classes"
+                "boyutlar > sınıflar için AssertionError yükseltilmedi"
             )
-        assert error_info.type is AssertionError
+        assert hata_bilgisi.type is AssertionError
 
 
-def test_principal_component_analysis() -> None:
-    features = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
-    dimensions = 2
-    expected_output = np.array([[6.92820323, 8.66025404, 10.39230485], [3.0, 3.0, 3.0]])
+def test_ana_bileşen_analizi() -> None:
+    özellikler = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+    boyutlar = 2
+    beklenen_çıktı = np.array([[6.92820323, 8.66025404, 10.39230485], [3.0, 3.0, 3.0]])
 
-    with pytest.raises(AssertionError) as error_info:  # noqa: PT012
-        output = principal_component_analysis(features, dimensions)
-        if not np.allclose(expected_output, output):
+    with pytest.raises(AssertionError) as hata_bilgisi:  # noqa: PT012
+        çıktı = ana_bileşen_analizi(özellikler, boyutlar)
+        if not np.allclose(beklenen_çıktı, çıktı):
             raise AssertionError
-        assert error_info.type is AssertionError
+        assert hata_bilgisi.type is AssertionError
 
 
 if __name__ == "__main__":

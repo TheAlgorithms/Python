@@ -1,29 +1,34 @@
 """
-This is to show simple COVID19 info fetching from worldometers site using lxml
-* The main motivation to use lxml in place of bs4 is that it is faster and therefore
-more convenient to use in Python web projects (e.g. Django or Flask-based)
+Bu, worldometers sitesinden basit COVID19 bilgilerini lxml kullanarak almayı gösterir.
+* bs4 yerine lxml kullanmanın ana motivasyonu, daha hızlı olması ve bu nedenle
+Python web projelerinde (örneğin, Django veya Flask tabanlı) kullanmanın daha uygun olmasıdır.
 """
 
 from typing import NamedTuple
-
 import requests
 from lxml import html
 
 
 class CovidData(NamedTuple):
-    cases: int
-    deaths: int
-    recovered: int
+    vakalar: int
+    ölümler: int
+    iyileşenler: int
 
 
-def covid_stats(url: str = "https://www.worldometers.info/coronavirus/") -> CovidData:
+def covid_istatistikleri(url: str = "https://www.worldometers.info/coronavirus/") -> CovidData:
     xpath_str = '//div[@class = "maincounter-number"]/span/text()'
-    return CovidData(
-        *html.fromstring(requests.get(url, timeout=10).content).xpath(xpath_str)
-    )
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        veri = html.fromstring(response.content).xpath(xpath_str)
+        return CovidData(*map(int, veri))
+    except requests.RequestException as e:
+        print(f"Veri alınırken hata oluştu: {e}")
+        return CovidData(0, 0, 0)
 
 
-fmt = """Total COVID-19 cases in the world: {}
-Total deaths due to COVID-19 in the world: {}
-Total COVID-19 patients recovered in the world: {}"""
-print(fmt.format(*covid_stats()))
+fmt = """Dünyadaki toplam COVID-19 vakaları: {}
+COVID-19 nedeniyle dünyadaki toplam ölümler: {}
+Dünyadaki toplam iyileşen COVID-19 hastaları: {}"""
+print(fmt.format(*covid_istatistikleri()))
+

@@ -1,7 +1,7 @@
 """
 
-Scrape the price and pharmacy name for a prescription drug from rx site
-after providing the drug name and zipcode.
+Bir reçeteli ilacın fiyatını ve eczane adını rx sitesinden
+ilaç adı ve posta kodu sağladıktan sonra kazıyın.
 
 """
 
@@ -14,19 +14,19 @@ BASE_URL = "https://www.wellrx.com/prescriptions/{0}/{1}/?freshSearch=true"
 
 
 def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> list | None:
-    """[summary]
+    """[özet]
 
-    This function will take input of drug name and zipcode,
-    then request to the BASE_URL site.
-    Get the page data and scrape it to the generate the
-    list of lowest prices for the prescription drug.
+    Bu fonksiyon ilaç adı ve posta kodu girdisini alacak,
+    ardından BASE_URL sitesine istek gönderecek.
+    Sayfa verilerini al ve kazıyarak
+    reçeteli ilaç için en düşük fiyatların listesini oluşturun.
 
     Args:
-        drug_name (str): [Drug name]
-        zip_code(str): [Zip code]
+        drug_name (str): [İlaç adı]
+        zip_code(str): [Posta kodu]
 
     Returns:
-        list: [List of pharmacy name and price]
+        list: [Eczane adı ve fiyat listesi]
 
     >>> fetch_pharmacy_and_price_list(None, None)
 
@@ -37,31 +37,31 @@ def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> list | None:
     """
 
     try:
-        # Has user provided both inputs?
+        # Kullanıcı her iki girdiyi de sağladı mı?
         if not drug_name or not zip_code:
             return None
 
         request_url = BASE_URL.format(drug_name, zip_code)
         response = get(request_url, timeout=10)
 
-        # Is the response ok?
+        # Yanıt tamam mı?
         response.raise_for_status()
 
-        # Scrape the data using bs4
+        # Verileri bs4 kullanarak kazıyın
         soup = BeautifulSoup(response.text, "html.parser")
 
-        # This list will store the name and price.
+        # Bu liste adı ve fiyatı saklayacak.
         pharmacy_price_list = []
 
-        # Fetch all the grids that contains the items.
+        # Öğeleri içeren tüm ızgaraları alın.
         grid_list = soup.find_all("div", {"class": "grid-x pharmCard"})
         if grid_list and len(grid_list) > 0:
             for grid in grid_list:
-                # Get the pharmacy price.
+                # Eczane fiyatını alın.
                 pharmacy_name = grid.find("p", {"class": "list-title"}).text
 
-                # Get price of the drug.
-                price = grid.find("span", {"p", "price price-large"}).text
+                # İlacın fiyatını alın.
+                price = grid.find("span", {"class": "price price-large"}).text
 
                 pharmacy_price_list.append(
                     {
@@ -77,20 +77,20 @@ def fetch_pharmacy_and_price_list(drug_name: str, zip_code: str) -> list | None:
 
 
 if __name__ == "__main__":
-    # Enter a drug name and a zip code
-    drug_name = input("Enter drug name: ").strip()
-    zip_code = input("Enter zip code: ").strip()
+    # Bir ilaç adı ve posta kodu girin
+    drug_name = input("İlaç adı girin: ").strip()
+    zip_code = input("Posta kodu girin: ").strip()
 
     pharmacy_price_list: list | None = fetch_pharmacy_and_price_list(
         drug_name, zip_code
     )
 
     if pharmacy_price_list:
-        print(f"\nSearch results for {drug_name} at location {zip_code}:")
+        print(f"\n{zip_code} konumunda {drug_name} için arama sonuçları:")
         for pharmacy_price in pharmacy_price_list:
             name = pharmacy_price["pharmacy_name"]
             price = pharmacy_price["price"]
 
-            print(f"Pharmacy: {name} Price: {price}")
+            print(f"Eczane: {name} Fiyat: {price}")
     else:
-        print(f"No results found for {drug_name}")
+        print(f"{drug_name} için sonuç bulunamadı")

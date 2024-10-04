@@ -1,4 +1,4 @@
-# XGBoost Classifier Example
+# XGBoost Sınıflandırıcı Örneği
 import numpy as np
 from matplotlib import pyplot as plt
 from sklearn.datasets import load_iris
@@ -7,23 +7,23 @@ from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 
 
-def data_handling(data: dict) -> tuple:
-    # Split dataset into features and target
-    # data is features
+def veri_isleme(veri: dict) -> tuple:
+    # Veri setini özellikler ve hedef olarak ayır
+    # veri, özelliklerdir
     """
-    >>> data_handling(({'data':'[5.1, 3.5, 1.4, 0.2]','target':([0])}))
+    >>> veri_isleme(({'data':'[5.1, 3.5, 1.4, 0.2]','target':([0])}))
     ('[5.1, 3.5, 1.4, 0.2]', [0])
-    >>> data_handling(
+    >>> veri_isleme(
     ...     {'data': '[4.9, 3.0, 1.4, 0.2], [4.7, 3.2, 1.3, 0.2]', 'target': ([0, 0])}
     ... )
     ('[4.9, 3.0, 1.4, 0.2], [4.7, 3.2, 1.3, 0.2]', [0, 0])
     """
-    return (data["data"], data["target"])
+    return (veri["data"], veri["target"])
 
 
-def xgboost(features: np.ndarray, target: np.ndarray) -> XGBClassifier:
+def xgboost_siniflandirici(ozellikler: np.ndarray, hedef: np.ndarray) -> XGBClassifier:
     """
-    # THIS TEST IS BROKEN!! >>> xgboost(np.array([[5.1, 3.6, 1.4, 0.2]]), np.array([0]))
+    # BU TEST BOZUK!! >>> xgboost_siniflandirici(np.array([[5.1, 3.6, 1.4, 0.2]]), np.array([0]))
     XGBClassifier(base_score=0.5, booster='gbtree', callbacks=None,
                   colsample_bylevel=1, colsample_bynode=1, colsample_bytree=1,
                   early_stopping_rounds=None, enable_categorical=False,
@@ -35,42 +35,42 @@ def xgboost(features: np.ndarray, target: np.ndarray) -> XGBClassifier:
                   n_jobs=0, num_parallel_tree=1, predictor='auto', random_state=0,
                   reg_alpha=0, reg_lambda=1, ...)
     """
-    classifier = XGBClassifier()
-    classifier.fit(features, target)
-    return classifier
+    siniflandirici = XGBClassifier()
+    siniflandirici.fit(ozellikler, hedef)
+    return siniflandirici
 
 
-def main() -> None:
+def ana() -> None:
     """
-    >>> main()
+    >>> ana()
 
-    Url for the algorithm:
+    Algoritma için URL:
     https://xgboost.readthedocs.io/en/stable/
-    Iris type dataset is used to demonstrate algorithm.
+    Algoritmayı göstermek için Iris tipi veri seti kullanılmıştır.
     """
 
-    # Load Iris dataset
+    # Iris veri setini yükle
     iris = load_iris()
-    features, targets = data_handling(iris)
-    x_train, x_test, y_train, y_test = train_test_split(
-        features, targets, test_size=0.25
+    ozellikler, hedefler = veri_isleme(iris)
+    x_egitim, x_test, y_egitim, y_test = train_test_split(
+        ozellikler, hedefler, test_size=0.25
     )
 
-    names = iris["target_names"]
+    isimler = iris["target_names"]
 
-    # Create an XGBoost Classifier from the training data
-    xgboost_classifier = xgboost(x_train, y_train)
+    # Eğitim verilerinden bir XGBoost Sınıflandırıcı oluştur
+    xgboost_siniflandirici = xgboost_siniflandirici(x_egitim, y_egitim)
 
-    # Display the confusion matrix of the classifier with both training and test sets
+    # Sınıflandırıcının hem eğitim hem de test setleri ile karışıklık matrisini göster
     ConfusionMatrixDisplay.from_estimator(
-        xgboost_classifier,
+        xgboost_siniflandirici,
         x_test,
         y_test,
-        display_labels=names,
+        display_labels=isimler,
         cmap="Blues",
         normalize="true",
     )
-    plt.title("Normalized Confusion Matrix - IRIS Dataset")
+    plt.title("Normalize Edilmiş Karışıklık Matrisi - IRIS Veri Seti")
     plt.show()
 
 
@@ -78,4 +78,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod(verbose=True)
-    main()
+    ana()

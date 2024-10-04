@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 def get_imdb_top_250_movies(url: str = "") -> dict[str, float]:
     url = url or "https://www.imdb.com/chart/top/?ref_=nv_mv_250"
     soup = BeautifulSoup(requests.get(url, timeout=10).text, "html.parser")
-    titles = soup.find_all("td", attrs="titleColumn")
+    titles = soup.find_all("td", class_="titleColumn")
     ratings = soup.find_all("td", class_="ratingColumn imdbRating")
     return {
         title.a.text: float(rating.strong.text)
@@ -21,7 +21,7 @@ def write_movies(filename: str = "IMDb_Top_250_Movies.csv") -> None:
     movies = get_imdb_top_250_movies()
     with open(filename, "w", newline="") as out_file:
         writer = csv.writer(out_file)
-        writer.writerow(["Movie title", "IMDb rating"])
+        writer.writerow(["Film Başlığı", "IMDb Puanı"])
         for title, rating in movies.items():
             writer.writerow([title, rating])
 

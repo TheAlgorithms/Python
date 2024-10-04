@@ -2,24 +2,24 @@ import bs4
 import requests
 
 
-def get_movie_data_from_soup(soup: bs4.element.ResultSet) -> dict[str, str]:
+def get_movie_data_from_soup(soup: bs4.element.Tag) -> dict[str, str]:
     return {
-        "name": soup.h3.a.text,
-        "genre": soup.find("span", class_="genre").text.strip(),
-        "rating": soup.strong.text,
-        "page_link": f"https://www.imdb.com{soup.a.get('href')}",
+        "isim": soup.h3.a.text,
+        "tur": soup.find("span", class_="genre").text.strip(),
+        "puan": soup.strong.text,
+        "sayfa_baglantisi": f"https://www.imdb.com{soup.a.get('href')}",
     }
 
 
 def get_imdb_top_movies(num_movies: int = 5) -> tuple:
-    """Get the top num_movies most highly rated movies from IMDB and
-    return a tuple of dicts describing each movie's name, genre, rating, and URL.
+    """IMDB'den en yüksek puanlı num_movies filmini al ve
+    her filmin ismi, türü, puanı ve URL'sini içeren bir tuple döndür.
 
     Args:
-        num_movies: The number of movies to get. Defaults to 5.
+        num_movies: Alınacak film sayısı. Varsayılan 5'tir.
 
     Returns:
-        A list of tuples containing information about the top n movies.
+        En iyi n film hakkında bilgi içeren bir tuple listesi.
 
     >>> len(get_imdb_top_movies(5))
     5
@@ -45,9 +45,9 @@ def get_imdb_top_movies(num_movies: int = 5) -> tuple:
 if __name__ == "__main__":
     import json
 
-    num_movies = int(input("How many movies would you like to see? "))
+    num_movies = int(input("Kaç film görmek istersiniz? "))
     print(
         ", ".join(
-            json.dumps(movie, indent=4) for movie in get_imdb_top_movies(num_movies)
+            json.dumps(movie, indent=4, ensure_ascii=False) for movie in get_imdb_top_movies(num_movies)
         )
     )

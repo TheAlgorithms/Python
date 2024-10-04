@@ -8,43 +8,43 @@ BASE_URL = "https://ww1.gogoanime2.org"
 def search_scraper(anime_name: str) -> list:
     """[summary]
 
-    Take an url and
-    return list of anime after scraping the site.
+    Bir URL al ve
+    siteyi kazıdıktan sonra anime listesini döndür.
 
     >>> type(search_scraper("demon_slayer"))
     <class 'list'>
 
     Args:
-        anime_name (str): [Name of anime]
+        anime_name (str): [Anime adı]
 
     Raises:
-        e: [Raises exception on failure]
+        e: [Başarısızlık durumunda istisna fırlatır]
 
     Returns:
-        [list]: [List of animes]
+        [list]: [Anime listesi]
     """
 
-    # concat the name to form the search url.
+    # Arama URL'sini oluşturmak için adı birleştir.
     search_url = f"{BASE_URL}/search/{anime_name}"
 
     response = requests.get(
-        search_url, headers={"UserAgent": UserAgent().chrome}, timeout=10
-    )  # request the url.
+        search_url, headers={"User-Agent": UserAgent().chrome}, timeout=10
+    )  # URL'yi iste.
 
-    # Is the response ok?
+    # Yanıt iyi mi?
     response.raise_for_status()
 
-    # parse with soup.
+    # Soup ile ayrıştır.
     soup = BeautifulSoup(response.text, "html.parser")
 
-    # get list of anime
+    # Anime listesini al
     anime_ul = soup.find("ul", {"class": "items"})
     if anime_ul is None or isinstance(anime_ul, NavigableString):
-        msg = f"Could not find and anime with name {anime_name}"
+        msg = f"{anime_name} adında bir anime bulunamadı"
         raise ValueError(msg)
     anime_li = anime_ul.children
 
-    # for each anime, insert to list. the name and url.
+    # Her anime için listeye ekle. Adı ve URL'si.
     anime_list = []
     for anime in anime_li:
         if isinstance(anime, Tag):
@@ -63,36 +63,35 @@ def search_scraper(anime_name: str) -> list:
 def search_anime_episode_list(episode_endpoint: str) -> list:
     """[summary]
 
-    Take an url and
-    return list of episodes after scraping the site
-    for an url.
+    Bir URL al ve
+    siteyi kazıdıktan sonra bölüm listesini döndür.
 
     >>> type(search_anime_episode_list("/anime/kimetsu-no-yaiba"))
     <class 'list'>
 
     Args:
-        episode_endpoint (str): [Endpoint of episode]
+        episode_endpoint (str): [Bölümün son noktası]
 
     Raises:
-        e: [description]
+        e: [Açıklama]
 
     Returns:
-        [list]: [List of episodes]
+        [list]: [Bölüm listesi]
     """
 
     request_url = f"{BASE_URL}{episode_endpoint}"
 
     response = requests.get(
-        url=request_url, headers={"UserAgent": UserAgent().chrome}, timeout=10
+        url=request_url, headers={"User-Agent": UserAgent().chrome}, timeout=10
     )
     response.raise_for_status()
 
     soup = BeautifulSoup(response.text, "html.parser")
 
-    # With this id. get the episode list.
+    # Bu kimlikle bölüm listesini al.
     episode_page_ul = soup.find("ul", {"id": "episode_related"})
     if episode_page_ul is None or isinstance(episode_page_ul, NavigableString):
-        msg = f"Could not find any anime eposiodes with name {anime_name}"
+        msg = f"{episode_endpoint} adında bir anime bölümü bulunamadı"
         raise ValueError(msg)
     episode_page_li = episode_page_ul.children
 
@@ -116,19 +115,19 @@ def search_anime_episode_list(episode_endpoint: str) -> list:
 def get_anime_episode(episode_endpoint: str) -> list:
     """[summary]
 
-    Get click url and download url from episode url
+    Bölüm URL'sinden tıklama URL'si ve indirme URL'si al
 
     >>> type(get_anime_episode("/watch/kimetsu-no-yaiba/1"))
     <class 'list'>
 
     Args:
-        episode_endpoint (str): [Endpoint of episode]
+        episode_endpoint (str): [Bölümün son noktası]
 
     Raises:
-        e: [description]
+        e: [Açıklama]
 
     Returns:
-        [list]: [List of download and watch url]
+        [list]: [İndirme ve izleme URL'si listesi]
     """
 
     episode_page_url = f"{BASE_URL}{episode_endpoint}"
@@ -142,12 +141,12 @@ def get_anime_episode(episode_endpoint: str) -> list:
 
     url = soup.find("iframe", {"id": "playerframe"})
     if url is None or isinstance(url, NavigableString):
-        msg = f"Could not find url and download url from {episode_endpoint}"
+        msg = f"{episode_endpoint} adresinden URL ve indirme URL'si bulunamadı"
         raise RuntimeError(msg)
 
     episode_url = url["src"]
     if not isinstance(episode_url, str):
-        msg = f"Could not find url and download url from {episode_endpoint}"
+        msg = f"{episode_endpoint} adresinden URL ve indirme URL'si bulunamadı"
         raise RuntimeError(msg)
     download_url = episode_url.replace("/embed/", "/playlist/") + ".m3u8"
 
@@ -155,34 +154,34 @@ def get_anime_episode(episode_endpoint: str) -> list:
 
 
 if __name__ == "__main__":
-    anime_name = input("Enter anime name: ").strip()
+    anime_name = input("Anime adını girin: ").strip()
     anime_list = search_scraper(anime_name)
     print("\n")
 
     if len(anime_list) == 0:
-        print("No anime found with this name")
+        print("Bu adla bir anime bulunamadı")
     else:
-        print(f"Found {len(anime_list)} results: ")
+        print(f"{len(anime_list)} sonuç bulundu: ")
         for i, anime in enumerate(anime_list):
             anime_title = anime["title"]
             print(f"{i+1}. {anime_title}")
 
-        anime_choice = int(input("\nPlease choose from the following list: ").strip())
+        anime_choice = int(input("\nLütfen aşağıdaki listeden birini seçin: ").strip())
         chosen_anime = anime_list[anime_choice - 1]
-        print(f"You chose {chosen_anime['title']}. Searching for episodes...")
+        print(f"{chosen_anime['title']} seçtiniz. Bölümler aranıyor...")
 
         episode_list = search_anime_episode_list(chosen_anime["url"])
         if len(episode_list) == 0:
-            print("No episode found for this anime")
+            print("Bu anime için bölüm bulunamadı")
         else:
-            print(f"Found {len(episode_list)} results: ")
+            print(f"{len(episode_list)} sonuç bulundu: ")
             for i, episode in enumerate(episode_list):
                 print(f"{i+1}. {episode['title']}")
 
-            episode_choice = int(input("\nChoose an episode by serial no: ").strip())
+            episode_choice = int(input("\nBir bölüm seçin: ").strip())
             chosen_episode = episode_list[episode_choice - 1]
-            print(f"You chose {chosen_episode['title']}. Searching...")
+            print(f"{chosen_episode['title']} seçtiniz. Aranıyor...")
 
             episode_url, download_url = get_anime_episode(chosen_episode["url"])
-            print(f"\nTo watch, ctrl+click on {episode_url}.")
-            print(f"To download, ctrl+click on {download_url}.")
+            print(f"\nİzlemek için, {episode_url} adresine ctrl+click yapın.")
+            print(f"İndirmek için, {download_url} adresine ctrl+click yapın.")

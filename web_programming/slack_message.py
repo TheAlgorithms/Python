@@ -1,22 +1,22 @@
-# Created by sarathkaul on 12/11/19
+# 12/11/19 tarihinde sarathkaul tarafından oluşturuldu
 
 import requests
 
 
-def send_slack_message(message_body: str, slack_url: str) -> None:
-    headers = {"Content-Type": "application/json"}
-    response = requests.post(
-        slack_url, json={"text": message_body}, headers=headers, timeout=10
+def slack_mesaj_gonder(mesaj_govdesi: str, slack_url: str) -> None:
+    basliklar = {"Content-Type": "application/json"}
+    yanit = requests.post(
+        slack_url, json={"text": mesaj_govdesi}, headers=basliklar, timeout=10
     )
-    if response.status_code != 200:
-        msg = (
-            "Request to slack returned an error "
-            f"{response.status_code}, the response is:\n{response.text}"
+    if yanit.status_code != 200:
+        mesaj = (
+            "Slack'e istek gönderilirken bir hata oluştu "
+            f"{yanit.status_code}, yanıt:\n{yanit.text}"
         )
-        raise ValueError(msg)
+        raise ValueError(mesaj)
 
 
 if __name__ == "__main__":
-    # Set the slack url to the one provided by Slack when you create the webhook at
+    # Web kancası oluşturduğunuzda Slack tarafından sağlanan URL'yi ayarlayın
     # https://my.slack.com/services/new/incoming-webhook/
-    send_slack_message("<YOUR MESSAGE BODY>", "<SLACK CHANNEL URL>")
+    slack_mesaj_gonder("<MESAJ GÖVDESİ>", "<SLACK KANAL URL'Sİ>")

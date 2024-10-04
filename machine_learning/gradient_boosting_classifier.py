@@ -8,16 +8,16 @@ from sklearn.tree import DecisionTreeRegressor
 class GradientBoostingClassifier:
     def __init__(self, n_estimators: int = 100, learning_rate: float = 0.1) -> None:
         """
-        Initialize a GradientBoostingClassifier.
+        GradientBoostingClassifier'ı başlat.
 
-        Parameters:
-        - n_estimators (int): The number of weak learners to train.
-        - learning_rate (float): The learning rate for updating the model.
+        Parametreler:
+        - n_estimators (int): Eğitilecek zayıf öğrenicilerin sayısı.
+        - learning_rate (float): Modeli güncellemek için öğrenme oranı.
 
-        Attributes:
-        - n_estimators (int): The number of weak learners.
-        - learning_rate (float): The learning rate.
-        - models (list): A list to store the trained weak learners.
+        Özellikler:
+        - n_estimators (int): Zayıf öğrenicilerin sayısı.
+        - learning_rate (float): Öğrenme oranı.
+        - models (list): Eğitilmiş zayıf öğrenicileri saklamak için bir liste.
         """
         self.n_estimators = n_estimators
         self.learning_rate = learning_rate
@@ -25,14 +25,14 @@ class GradientBoostingClassifier:
 
     def fit(self, features: np.ndarray, target: np.ndarray) -> None:
         """
-        Fit the GradientBoostingClassifier to the training data.
+        GradientBoostingClassifier'ı eğitim verilerine uydur.
 
-        Parameters:
-        - features (np.ndarray): The training features.
-        - target (np.ndarray): The target values.
+        Parametreler:
+        - features (np.ndarray): Eğitim özellikleri.
+        - target (np.ndarray): Hedef değerler.
 
-        Returns:
-        None
+        Dönüş:
+        Yok
 
         >>> import numpy as np
         >>> from sklearn.datasets import load_iris
@@ -40,28 +40,28 @@ class GradientBoostingClassifier:
         >>> iris = load_iris()
         >>> X, y = iris.data, iris.target
         >>> clf.fit(X, y)
-        >>> # Check if the model is trained
+        >>> # Modelin eğitilip eğitilmediğini kontrol et
         >>> len(clf.models) == 100
         True
         """
         for _ in range(self.n_estimators):
-            # Calculate the pseudo-residuals
+            # Pseudo-residuals hesapla
             residuals = -self.gradient(target, self.predict(features))
-            # Fit a weak learner (e.g., decision tree) to the residuals
+            # Pseudo-residuals'e zayıf bir öğrenici (örneğin, karar ağacı) uydur
             model = DecisionTreeRegressor(max_depth=1)
             model.fit(features, residuals)
-            # Update the model by adding the weak learner with a learning rate
+            # Öğrenme oranı ile zayıf öğreniciyi ekleyerek modeli güncelle
             self.models.append((model, self.learning_rate))
 
     def predict(self, features: np.ndarray) -> np.ndarray:
         """
-        Make predictions on input data.
+        Girdi verileri üzerinde tahminler yap.
 
-        Parameters:
-        - features (np.ndarray): The input data for making predictions.
+        Parametreler:
+        - features (np.ndarray): Tahmin yapmak için girdi verileri.
 
-        Returns:
-        - np.ndarray: An array of binary predictions (-1 or 1).
+        Dönüş:
+        - np.ndarray: İkili tahminlerin bir dizisi (-1 veya 1).
 
         >>> import numpy as np
         >>> from sklearn.datasets import load_iris
@@ -70,33 +70,33 @@ class GradientBoostingClassifier:
         >>> X, y = iris.data, iris.target
         >>> clf.fit(X, y)
         >>> y_pred = clf.predict(X)
-        >>> # Check if the predictions have the correct shape
+        >>> # Tahminlerin doğru şekle sahip olup olmadığını kontrol et
         >>> y_pred.shape == y.shape
         True
         """
-        # Initialize predictions with zeros
+        # Tahminleri sıfırlarla başlat
         predictions = np.zeros(features.shape[0])
         for model, learning_rate in self.models:
             predictions += learning_rate * model.predict(features)
-        return np.sign(predictions)  # Convert to binary predictions (-1 or 1)
+        return np.sign(predictions)  # İkili tahminlere dönüştür (-1 veya 1)
 
     def gradient(self, target: np.ndarray, y_pred: np.ndarray) -> np.ndarray:
         """
-        Calculate the negative gradient (pseudo-residuals) for logistic loss.
+        Lojistik kayıp için negatif gradyanı (pseudo-residuals) hesapla.
 
-        Parameters:
-        - target (np.ndarray): The target values.
-        - y_pred (np.ndarray): The predicted values.
+        Parametreler:
+        - target (np.ndarray): Hedef değerler.
+        - y_pred (np.ndarray): Tahmin edilen değerler.
 
-        Returns:
-        - np.ndarray: An array of pseudo-residuals.
+        Dönüş:
+        - np.ndarray: Pseudo-residuals'lerin bir dizisi.
 
         >>> import numpy as np
         >>> clf = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1)
         >>> target = np.array([0, 1, 0, 1])
         >>> y_pred = np.array([0.2, 0.8, 0.3, 0.7])
         >>> residuals = clf.gradient(target, y_pred)
-        >>> # Check if residuals have the correct shape
+        >>> # Pseudo-residuals'lerin doğru şekle sahip olup olmadığını kontrol et
         >>> residuals.shape == target.shape
         True
         """

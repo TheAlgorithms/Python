@@ -1,16 +1,11 @@
 """
-The A* algorithm combines features of uniform-cost search and pure heuristic search to
-efficiently compute optimal solutions.
+A* algoritması, optimal çözümleri verimli bir şekilde hesaplamak için uniform-cost arama ve saf heuristic arama özelliklerini birleştirir.
 
-The A* algorithm is a best-first search algorithm in which the cost associated with a
-node is f(n) = g(n) + h(n), where g(n) is the cost of the path from the initial state to
-node n and h(n) is the heuristic estimate or the cost or a path from node n to a goal.
+A* algoritması, bir düğümle ilişkili maliyetin f(n) = g(n) + h(n) olduğu en iyi ilk arama algoritmasıdır. Burada g(n), başlangıç durumundan düğüm n'ye kadar olan yolun maliyeti ve h(n), düğüm n'den bir hedefe kadar olan yolun heuristic tahminidir.
 
-The A* algorithm introduces a heuristic into a regular graph-searching algorithm,
-essentially planning ahead at each step so a more optimal decision is made. For this
-reason, A* is known as an algorithm with brains.
+A* algoritması, düzenli bir grafik arama algoritmasına bir heuristic ekler, esasen her adımda daha optimal bir karar verilmesi için önceden plan yapar. Bu nedenle, A* beyinli bir algoritma olarak bilinir.
 
-https://en.wikipedia.org/wiki/A*_search_algorithm
+https://tr.wikipedia.org/wiki/A*_arama_algoritması
 """
 
 import numpy as np
@@ -18,10 +13,10 @@ import numpy as np
 
 class Cell:
     """
-    Class cell represents a cell in the world which have the properties:
-    position: represented by tuple of x and y coordinates initially set to (0,0).
-    parent: Contains the parent cell object visited before we arrived at this cell.
-    g, h, f: Parameters used when calling our heuristic function.
+    Cell sınıfı, dünyadaki bir hücreyi temsil eder ve şu özelliklere sahiptir:
+    position: Başlangıçta (0,0) olarak ayarlanan x ve y koordinatlarından oluşan bir demet.
+    parent: Bu hücreye gelmeden önce ziyaret edilen parent hücre nesnesini içerir.
+    g, h, f: Heuristic fonksiyonu çağrıldığında kullanılan parametreler.
     """
 
     def __init__(self):
@@ -30,11 +25,6 @@ class Cell:
         self.g = 0
         self.h = 0
         self.f = 0
-
-    """
-    Overrides equals method because otherwise cell assign will give
-    wrong results.
-    """
 
     def __eq__(self, cell):
         return self.position == cell.position
@@ -45,9 +35,8 @@ class Cell:
 
 class Gridworld:
     """
-    Gridworld class represents the  external world here a grid M*M
-    matrix.
-    world_size: create a numpy array with the given world_size default is 5.
+    Gridworld sınıfı, burada bir M*M matrisi olan dış dünyayı temsil eder.
+    world_size: Varsayılan olarak 5 olan world_size ile bir numpy array oluşturur.
     """
 
     def __init__(self, world_size=(5, 5)):
@@ -60,9 +49,9 @@ class Gridworld:
 
     def get_neighbours(self, cell):
         """
-        Return the neighbours of cell
+        Hücrenin komşularını döndürür
         """
-        neughbour_cord = [
+        neighbour_cord = [
             (-1, -1),
             (-1, 0),
             (-1, 1),
@@ -75,7 +64,7 @@ class Gridworld:
         current_x = cell.position[0]
         current_y = cell.position[1]
         neighbours = []
-        for n in neughbour_cord:
+        for n in neighbour_cord:
             x = current_x + n[0]
             y = current_y + n[1]
             if 0 <= x < self.world_x_limit and 0 <= y < self.world_y_limit:
@@ -88,10 +77,10 @@ class Gridworld:
 
 def astar(world, start, goal):
     """
-    Implementation of a start algorithm.
-    world : Object of the world object.
-    start : Object of the cell as  start position.
-    stop  : Object of the cell as goal position.
+    A* algoritmasının uygulanması.
+    world : Dünya nesnesinin bir örneği.
+    start : Başlangıç pozisyonu olarak hücre nesnesi.
+    goal  : Hedef pozisyonu olarak hücre nesnesi.
 
     >>> p = Gridworld()
     >>> start = Cell()
@@ -112,18 +101,16 @@ def astar(world, start, goal):
         if current == goal:
             break
         for n in world.get_neighbours(current):
-            for c in _closed:
-                if c == n:
-                    continue
+            if n in _closed:
+                continue
             n.g = current.g + 1
             x1, y1 = n.position
             x2, y2 = goal.position
             n.h = (y2 - y1) ** 2 + (x2 - x1) ** 2
             n.f = n.h + n.g
 
-            for c in _open:
-                if c == n and c.f < n.f:
-                    continue
+            if any(c == n and c.f < n.f for c in _open):
+                continue
             _open.append(n)
     path = []
     while current.parent is not None:
@@ -135,14 +122,14 @@ def astar(world, start, goal):
 
 if __name__ == "__main__":
     world = Gridworld()
-    # Start position and goal
+    # Başlangıç pozisyonu ve hedef
     start = Cell()
     start.position = (0, 0)
     goal = Cell()
     goal.position = (4, 4)
-    print(f"path from {start.position} to {goal.position}")
+    print(f"{start.position} konumundan {goal.position} konumuna yol")
     s = astar(world, start, goal)
-    #   Just for visual reasons.
+    # Görsel nedenlerle.
     for i in s:
         world.w[i] = 1
     print(world.w)

@@ -1,44 +1,36 @@
 """
 Linear Discriminant Analysis
 
-
-
-Assumptions About Data :
-    1. The input variables has a gaussian distribution.
-    2. The variance calculated for each input variables by class grouping is the
-       same.
+Assumptions About Data:
+    1. The input variables have a Gaussian distribution.
+    2. The variance calculated for each input variable by class grouping is the same.
     3. The mix of classes in your training set is representative of the problem.
 
-
-Learning The Model :
-    The LDA model requires the estimation of statistics from the training data :
+Learning The Model:
+    The LDA model requires the estimation of statistics from the training data:
         1. Mean of each input value for each class.
-        2. Probability of an instance belong to each class.
-        3. Covariance for the input data for each class
+        2. Probability of an instance belonging to each class.
+        3. Covariance for the input data for each class.
 
-    Calculate the class means :
-        mean(x) = 1/n ( for i = 1 to i = n --> sum(xi))
+    Calculate the class means:
+        mean(x) = 1/n * sum(xi) for i = 1 to n
 
-    Calculate the class probabilities :
+    Calculate the class probabilities:
         P(y = 0) = count(y = 0) / (count(y = 0) + count(y = 1))
         P(y = 1) = count(y = 1) / (count(y = 0) + count(y = 1))
 
-    Calculate the variance :
-        We can calculate the variance for dataset in two steps :
-            1. Calculate the squared difference for each input variable from the
-               group mean.
+    Calculate the variance:
+        We can calculate the variance for the dataset in two steps:
+            1. Calculate the squared difference for each input variable from the group mean.
             2. Calculate the mean of the squared difference.
             ------------------------------------------------
             Squared_Difference = (x - mean(k)) ** 2
-            Variance = (1 / (count(x) - count(classes))) *
-                (for i = 1 to i = n --> sum(Squared_Difference(xi)))
+            Variance = (1 / (count(x) - count(classes))) * sum(Squared_Difference(xi)) for i = 1 to n
 
-Making Predictions :
-    discriminant(x) = x * (mean / variance) -
-        ((mean ** 2) / (2 * variance)) + Ln(probability)
+Making Predictions:
+    discriminant(x) = x * (mean / variance) - ((mean ** 2) / (2 * variance)) + ln(probability)
     ---------------------------------------------------------------------------
-    After calculating the discriminant value for each class, the class with the
-    largest discriminant value is taken as the prediction.
+    After calculating the discriminant value for each class, the class with the largest discriminant value is taken as the prediction.
 
 Author: @EverLookNeverSee
 """
@@ -50,15 +42,14 @@ from random import gauss, seed
 from typing import TypeVar
 
 
-# Make a training dataset drawn from a gaussian distribution
+# Make a training dataset drawn from a Gaussian distribution
 def gaussian_distribution(mean: float, std_dev: float, instance_count: int) -> list:
     """
-    Generate gaussian distribution instances based-on given mean and standard deviation
-    :param mean: mean value of class
-    :param std_dev: value of standard deviation entered by usr or default value of it
-    :param instance_count: instance number of class
-    :return: a list containing generated values based-on given mean, std_dev and
-        instance_count
+    Generate Gaussian distribution instances based on given mean and standard deviation.
+    :param mean: Mean value of class.
+    :param std_dev: Value of standard deviation entered by user or default value of it.
+    :param instance_count: Number of instances in class.
+    :return: A list containing generated values based on given mean, std_dev, and instance_count.
 
     >>> gaussian_distribution(5.0, 1.0, 20) # doctest: +NORMALIZE_WHITESPACE
     [6.288184753155463, 6.4494456086997705, 5.066335808938262, 4.235456349028368,
@@ -71,13 +62,13 @@ def gaussian_distribution(mean: float, std_dev: float, instance_count: int) -> l
     return [gauss(mean, std_dev) for _ in range(instance_count)]
 
 
-# Make corresponding Y flags to detecting classes
+# Make corresponding Y flags to detect classes
 def y_generator(class_count: int, instance_count: list) -> list:
     """
-    Generate y values for corresponding classes
-    :param class_count: Number of classes(data groupings) in dataset
-    :param instance_count: number of instances in class
-    :return: corresponding values for data groupings in dataset
+    Generate y values for corresponding classes.
+    :param class_count: Number of classes (data groupings) in dataset.
+    :param instance_count: Number of instances in class.
+    :return: Corresponding values for data groupings in dataset.
 
     >>> y_generator(1, [10])
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -87,51 +78,50 @@ def y_generator(class_count: int, instance_count: list) -> list:
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
      2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
     """
-
     return [k for k in range(class_count) for _ in range(instance_count[k])]
 
 
 # Calculate the class means
 def calculate_mean(instance_count: int, items: list) -> float:
     """
-    Calculate given class mean
-    :param instance_count: Number of instances in class
-    :param items: items that related to specific class(data grouping)
-    :return: calculated actual mean of considered class
+    Calculate given class mean.
+    :param instance_count: Number of instances in class.
+    :param items: Items that are related to a specific class (data grouping).
+    :return: Calculated actual mean of the considered class.
 
     >>> items = gaussian_distribution(5.0, 1.0, 20)
     >>> calculate_mean(len(items), items)
     5.011267842911003
     """
-    # the sum of all items divided by number of instances
+    # The sum of all items divided by the number of instances
     return sum(items) / instance_count
 
 
 # Calculate the class probabilities
 def calculate_probabilities(instance_count: int, total_count: int) -> float:
     """
-    Calculate the probability that a given instance will belong to which class
-    :param instance_count: number of instances in class
-    :param total_count: the number of all instances
-    :return: value of probability for considered class
+    Calculate the probability that a given instance will belong to which class.
+    :param instance_count: Number of instances in class.
+    :param total_count: The number of all instances.
+    :return: Value of probability for the considered class.
 
     >>> calculate_probabilities(20, 60)
     0.3333333333333333
     >>> calculate_probabilities(30, 100)
     0.3
     """
-    # number of instances in specific class divided by number of all instances
+    # Number of instances in a specific class divided by the number of all instances
     return instance_count / total_count
 
 
 # Calculate the variance
 def calculate_variance(items: list, means: list, total_count: int) -> float:
     """
-    Calculate the variance
-    :param items: a list containing all items(gaussian distribution of all classes)
-    :param means: a list containing real mean values of each class
-    :param total_count: the number of all instances
-    :return: calculated variance for considered dataset
+    Calculate the variance.
+    :param items: A list containing all items (Gaussian distribution of all classes).
+    :param means: A list containing real mean values of each class.
+    :param total_count: The number of all instances.
+    :return: Calculated variance for the considered dataset.
 
     >>> items = gaussian_distribution(5.0, 1.0, 20)
     >>> means = [5.011267842911003]
@@ -140,14 +130,14 @@ def calculate_variance(items: list, means: list, total_count: int) -> float:
     0.9618530973487491
     """
     squared_diff = []  # An empty list to store all squared differences
-    # iterate over number of elements in items
+    # Iterate over the number of elements in items
     for i in range(len(items)):
-        # for loop iterates over number of elements in inner layer of items
+        # For loop iterates over the number of elements in the inner layer of items
         for j in range(len(items[i])):
-            # appending squared differences to 'squared_diff' list
+            # Appending squared differences to 'squared_diff' list
             squared_diff.append((items[i][j] - means[i]) ** 2)
 
-    # one divided by (the number of all instances - number of classes) multiplied by
+    # One divided by (the number of all instances - number of classes) multiplied by
     # sum of all squared differences
     n_classes = len(means)  # Number of classes in dataset
     return 1 / (total_count - n_classes) * sum(squared_diff)
@@ -157,12 +147,12 @@ def calculate_variance(items: list, means: list, total_count: int) -> float:
 def predict_y_values(
     x_items: list, means: list, variance: float, probabilities: list
 ) -> list:
-    """This function predicts new indexes(groups for our data)
-    :param x_items: a list containing all items(gaussian distribution of all classes)
-    :param means: a list containing real mean values of each class
-    :param variance: calculated value of variance by calculate_variance function
-    :param probabilities: a list containing all probabilities of classes
-    :return: a list containing predicted Y values
+    """This function predicts new indexes (groups for our data).
+    :param x_items: A list containing all items (Gaussian distribution of all classes).
+    :param means: A list containing real mean values of each class.
+    :param variance: Calculated value of variance by calculate_variance function.
+    :param probabilities: A list containing all probabilities of classes.
+    :return: A list containing predicted Y values.
 
     >>> x_items = [[6.288184753155463, 6.4494456086997705, 5.066335808938262,
     ...                4.235456349028368, 3.9078267848958586, 5.031334516831717,
@@ -191,27 +181,26 @@ def predict_y_values(
     >>> predict_y_values(x_items, means, variance,
     ...                  probabilities)  # doctest: +NORMALIZE_WHITESPACE
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
     2, 2, 2, 2, 2, 2, 2, 2, 2]
 
     """
-    # An empty list to store generated discriminant values of all items in dataset for
-    # each class
+    # An empty list to store generated discriminant values of all items in dataset for each class
     results = []
-    # for loop iterates over number of elements in list
+    # For loop iterates over the number of elements in the list
     for i in range(len(x_items)):
-        # for loop iterates over number of inner items of each element
+        # For loop iterates over the number of inner items of each element
         for j in range(len(x_items[i])):
-            temp = []  # to store all discriminant values of each item as a list
-            # for loop iterates over number of classes we have in our dataset
+            temp = []  # To store all discriminant values of each item as a list
+            # For loop iterates over the number of classes we have in our dataset
             for k in range(len(x_items)):
-                # appending values of discriminants for each class to 'temp' list
+                # Appending values of discriminants for each class to 'temp' list
                 temp.append(
                     x_items[i][j] * (means[k] / variance)
                     - (means[k] ** 2 / (2 * variance))
                     + log(probabilities[k])
                 )
-            # appending discriminant values of each item to 'results' list
+            # Appending discriminant values of each item to 'results' list
             results.append(temp)
 
     return [result.index(max(result)) for result in results]
@@ -220,12 +209,10 @@ def predict_y_values(
 # Calculating Accuracy
 def accuracy(actual_y: list, predicted_y: list) -> float:
     """
-    Calculate the value of accuracy based-on predictions
-    :param actual_y:a list containing initial Y values generated by 'y_generator'
-        function
-    :param predicted_y: a list containing predicted Y values generated by
-        'predict_y_values' function
-    :return: percentage of accuracy
+    Calculate the value of accuracy based on predictions.
+    :param actual_y: A list containing initial Y values generated by 'y_generator' function.
+    :param predicted_y: A list containing predicted Y values generated by 'predict_y_values' function.
+    :return: Percentage of accuracy.
 
     >>> actual_y = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
     ... 1, 1 ,1 ,1 ,1 ,1 ,1]
@@ -241,11 +228,10 @@ def accuracy(actual_y: list, predicted_y: list) -> float:
     >>> accuracy(actual_y, predicted_y)
     100.0
     """
-    # iterate over one element of each list at a time (zip mode)
-    # prediction is correct if actual Y value equals to predicted Y value
+    # Iterate over one element of each list at a time (zip mode)
+    # Prediction is correct if actual Y value equals predicted Y value
     correct = sum(1 for i, j in zip(actual_y, predicted_y) if i == j)
-    # percentage of accuracy equals to number of correct predictions divided by number
-    # of all data and multiplied by 100
+    # Percentage of accuracy equals the number of correct predictions divided by the number of all data and multiplied by 100
     return (correct / len(actual_y)) * 100
 
 
@@ -260,14 +246,14 @@ def valid_input(
     default: str | None = None,
 ) -> num:
     """
-    Ask for user value and validate that it fulfill a condition.
+    Ask for user value and validate that it fulfills a condition.
 
-    :input_type: user input expected type of value
-    :input_msg: message to show user in the screen
-    :err_msg: message to show in the screen in case of error
-    :condition: function that represents the condition that user input is valid.
-    :default: Default value in case the user does not type anything
-    :return: user's input
+    :input_type: User input expected type of value.
+    :input_msg: Message to show user on the screen.
+    :err_msg: Message to show on the screen in case of error.
+    :condition: Function that represents the condition that user input is valid.
+    :default: Default value in case the user does not type anything.
+    :return: User's input.
     """
     while True:
         try:
@@ -285,13 +271,13 @@ def valid_input(
 
 # Main Function
 def main():
-    """This function starts execution phase"""
+    """This function starts the execution phase."""
     while True:
         print(" Linear Discriminant Analysis ".center(50, "*"))
         print("*" * 50, "\n")
-        print("First of all we should specify the number of classes that")
-        print("we want to generate as training dataset")
-        # Trying to get number of classes
+        print("First of all, we should specify the number of classes that")
+        print("we want to generate as a training dataset.")
+        # Trying to get the number of classes
         n_classes = valid_input(
             input_type=int,
             condition=lambda x: x > 0,
@@ -315,14 +301,13 @@ def main():
 
         print("-" * 100)
 
-        # Trying to get number of instances in classes and theirs means to generate
-        # dataset
-        counts = []  # An empty list to store instance counts of classes in dataset
+        # Trying to get the number of instances in classes and their means to generate the dataset
+        counts = []  # An empty list to store instance counts of classes in the dataset
         for i in range(n_classes):
             user_count = valid_input(
                 input_type=int,
                 condition=lambda x: x > 0,
-                input_msg=(f"Enter The number of instances for class_{i+1}: "),
+                input_msg=(f"Enter the number of instances for class_{i+1}: "),
                 err_msg="Number of instances should be positive!",
             )
             counts.append(user_count)
@@ -340,17 +325,17 @@ def main():
         print("-" * 100)
 
         print("Standard deviation: ", std_dev)
-        # print out the number of instances in classes in separated line
+        # Print out the number of instances in classes in a separated line
         for i, count in enumerate(counts, 1):
             print(f"Number of instances in class_{i} is: {count}")
         print("-" * 100)
 
-        # print out mean values of classes separated line
+        # Print out mean values of classes in a separated line
         for i, user_mean in enumerate(user_means, 1):
             print(f"Mean of class_{i} is: {user_mean}")
         print("-" * 100)
 
-        # Generating training dataset drawn from gaussian distribution
+        # Generating training dataset drawn from Gaussian distribution
         x = [
             gaussian_distribution(user_means[j], std_dev, counts[j])
             for j in range(n_classes)
@@ -358,17 +343,16 @@ def main():
         print("Generated Normal Distribution: \n", x)
         print("-" * 100)
 
-        # Generating Ys to detecting corresponding classes
+        # Generating Ys to detect corresponding classes
         y = y_generator(n_classes, counts)
         print("Generated Corresponding Ys: \n", y)
         print("-" * 100)
 
         # Calculating the value of actual mean for each class
         actual_means = [calculate_mean(counts[k], x[k]) for k in range(n_classes)]
-        # for loop iterates over number of elements in 'actual_means' list and print
-        # out them in separated line
+        # For loop iterates over the number of elements in 'actual_means' list and prints out them in a separated line
         for i, actual_mean in enumerate(actual_means, 1):
-            print(f"Actual(Real) mean of class_{i} is: {actual_mean}")
+            print(f"Actual (Real) mean of class_{i} is: {actual_mean}")
         print("-" * 100)
 
         # Calculating the value of probabilities for each class
@@ -376,8 +360,7 @@ def main():
             calculate_probabilities(counts[i], sum(counts)) for i in range(n_classes)
         ]
 
-        # for loop iterates over number of elements in 'probabilities' list and print
-        # out them in separated line
+        # For loop iterates over the number of elements in 'probabilities' list and prints out them in a separated line
         for i, probability in enumerate(probabilities, 1):
             print(f"Probability of class_{i} is: {probability}")
         print("-" * 100)
@@ -388,7 +371,7 @@ def main():
         print("-" * 100)
 
         # Predicting Y values
-        # storing predicted Y values in 'pre_indexes' variable
+        # Storing predicted Y values in 'pre_indexes' variable
         pre_indexes = predict_y_values(x, actual_means, variance, probabilities)
         print("-" * 100)
 

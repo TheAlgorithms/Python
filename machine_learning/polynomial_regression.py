@@ -1,33 +1,26 @@
 """
-Polynomial regression is a type of regression analysis that models the relationship
-between a predictor x and the response y as an mth-degree polynomial:
+Polinomsal regresyon, bir tahmin edici x ile yanıt y arasındaki ilişkiyi m. dereceden bir polinom olarak modelleyen bir regresyon analiz türüdür:
 
 y = β₀ + β₁x + β₂x² + ... + βₘxᵐ + ε
 
-By treating x, x², ..., xᵐ as distinct variables, we see that polynomial regression is a
-special case of multiple linear regression. Therefore, we can use ordinary least squares
-(OLS) estimation to estimate the vector of model parameters β = (β₀, β₁, β₂, ..., βₘ)
-for polynomial regression:
+x, x², ..., xᵐ'i ayrı değişkenler olarak ele alarak, polinomsal regresyonun çoklu doğrusal regresyonun özel bir durumu olduğunu görebiliriz. Bu nedenle, polinomsal regresyon için model parametreleri vektörünü β = (β₀, β₁, β₂, ..., βₘ) tahmin etmek için sıradan en küçük kareler (OLS) tahminini kullanabiliriz:
 
 β = (XᵀX)⁻¹Xᵀy = X⁺y
 
-where X is the design matrix, y is the response vector, and X⁺ denotes the Moore-Penrose
-pseudoinverse of X. In the case of polynomial regression, the design matrix is
+burada X tasarım matrisi, y yanıt vektörü ve X⁺ X'in Moore-Penrose pseudoinversini gösterir. Polinomsal regresyon durumunda, tasarım matrisi şu şekildedir:
 
     |1  x₁  x₁² ⋯ x₁ᵐ|
 X = |1  x₂  x₂² ⋯ x₂ᵐ|
     |⋮  ⋮   ⋮   ⋱ ⋮  |
     |1  xₙ  xₙ² ⋯  xₙᵐ|
 
-In OLS estimation, inverting XᵀX to compute X⁺ can be very numerically unstable. This
-implementation sidesteps this need to invert XᵀX by computing X⁺ using singular value
-decomposition (SVD):
+OLS tahmininde, XᵀX'i ters çevirerek X⁺'yı hesaplamak çok sayısal olarak kararsız olabilir. Bu uygulama, X⁺'yı tekil değer ayrışımı (SVD) kullanarak hesaplayarak XᵀX'i ters çevirme ihtiyacını atlar:
 
 β = VΣ⁺Uᵀy
 
-where UΣVᵀ is an SVD of X.
+burada UΣVᵀ, X'in bir SVD'sidir.
 
-References:
+Referanslar:
     - https://en.wikipedia.org/wiki/Polynomial_regression
     - https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse
     - https://en.wikipedia.org/wiki/Numerical_methods_for_linear_least_squares
@@ -54,21 +47,18 @@ class PolynomialRegression:
     @staticmethod
     def _design_matrix(data: np.ndarray, degree: int) -> np.ndarray:
         """
-        Constructs a polynomial regression design matrix for the given input data. For
-        input data x = (x₁, x₂, ..., xₙ) and polynomial degree m, the design matrix is
-        the Vandermonde matrix
+        Verilen giriş verileri için bir polinomsal regresyon tasarım matrisi oluşturur. Giriş verileri x = (x₁, x₂, ..., xₙ) ve polinomsal derece m için, tasarım matrisi Vandermonde matrisidir
 
             |1  x₁  x₁² ⋯ x₁ᵐ|
         X = |1  x₂  x₂² ⋯ x₂ᵐ|
             |⋮  ⋮   ⋮   ⋱ ⋮  |
             |1  xₙ  xₙ² ⋯  xₙᵐ|
 
-        Reference: https://en.wikipedia.org/wiki/Vandermonde_matrix
+        Referans: https://en.wikipedia.org/wiki/Vandermonde_matrix
 
-        @param data:    the input predictor values x, either for model fitting or for
-                        prediction
-        @param degree:  the polynomial degree m
-        @returns:       the Vandermonde matrix X (see above)
+        @param data:    model uyumu veya tahmin için giriş tahmin edici değerleri x
+        @param degree:  polinomsal derece m
+        @returns:       Vandermonde matrisi X (yukarıya bakın)
         @raises ValueError: if input data is not N x 1
 
         >>> x = np.array([0, 1, 2])
@@ -101,21 +91,19 @@ class PolynomialRegression:
 
     def fit(self, x_train: np.ndarray, y_train: np.ndarray) -> None:
         """
-        Computes the polynomial regression model parameters using ordinary least squares
-        (OLS) estimation:
+        Polinomsal regresyon model parametrelerini sıradan en küçük kareler (OLS) tahmini kullanarak hesaplar:
 
         β = (XᵀX)⁻¹Xᵀy = X⁺y
 
-        where X⁺ denotes the Moore-Penrose pseudoinverse of the design matrix X. This
-        function computes X⁺ using singular value decomposition (SVD).
+        burada X⁺ tasarım matrisinin Moore-Penrose pseudoinversini gösterir. Bu fonksiyon X⁺'yı tekil değer ayrışımı (SVD) kullanarak hesaplar.
 
-        References:
+        Referanslar:
             - https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse
             - https://en.wikipedia.org/wiki/Singular_value_decomposition
             - https://en.wikipedia.org/wiki/Multicollinearity
 
-        @param x_train: the predictor values x for model fitting
-        @param y_train: the response values y for model fitting
+        @param x_train: model uyumu için tahmin edici değerler x
+        @param y_train: model uyumu için yanıt değerleri y
         @raises ArithmeticError:    if X isn't full rank, then XᵀX is singular and β
                                     doesn't exist
 
@@ -131,7 +119,7 @@ class PolynomialRegression:
         ...
         ArithmeticError: Design matrix is not full rank, can't compute coefficients
 
-        Make sure errors don't grow too large:
+        Hataların çok büyük olmadığından emin olun:
         >>> coefs = np.array([-250, 50, -2, 36, 20, -12, 10, 2, -1, -15, 1])
         >>> y = PolynomialRegression._design_matrix(x, len(coefs) - 1) @ coefs
         >>> poly_reg = PolynomialRegression(degree=len(coefs) - 1)
@@ -151,11 +139,11 @@ class PolynomialRegression:
 
     def predict(self, data: np.ndarray) -> np.ndarray:
         """
-        Computes the predicted response values y for the given input data by
-        constructing the design matrix X and evaluating y = Xβ.
+        Verilen giriş verileri için tahmin edilen yanıt değerlerini y hesaplar
+        tasarım matrisi X'i oluşturarak ve y = Xβ'yi değerlendirerek.
 
-        @param data:    the predictor values x for prediction
-        @returns:       the predicted response values y = Xβ
+        @param data:    tahmin için tahmin edici değerler x
+        @returns:       tahmin edilen yanıt değerleri y = Xβ
         @raises ArithmeticError:    if this function is called before the model
                                     parameters are fit
 
@@ -182,8 +170,7 @@ class PolynomialRegression:
 
 def main() -> None:
     """
-    Fit a polynomial regression model to predict fuel efficiency using seaborn's mpg
-    dataset
+    Seaborn'un mpg veri setini kullanarak yakıt verimliliğini tahmin etmek için bir polinomsal regresyon modeli oluşturun
 
     >>> pass    # Placeholder, function is only for demo purposes
     """
@@ -199,9 +186,9 @@ def main() -> None:
 
     plt.scatter(mpg_data.weight, mpg_data.mpg, color="gray", alpha=0.5)
     plt.plot(weight_sorted, predictions, color="red", linewidth=3)
-    plt.title("Predicting Fuel Efficiency Using Polynomial Regression")
-    plt.xlabel("Weight (lbs)")
-    plt.ylabel("Fuel Efficiency (mpg)")
+    plt.title("Polinomsal Regresyon Kullanarak Yakıt Verimliliğini Tahmin Etme")
+    plt.xlabel("Ağırlık (lbs)")
+    plt.ylabel("Yakıt Verimliliği (mpg)")
     plt.show()
 
 

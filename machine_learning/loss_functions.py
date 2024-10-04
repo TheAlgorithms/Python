@@ -5,20 +5,19 @@ def binary_cross_entropy(
     y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-15
 ) -> float:
     """
-    Calculate the mean binary cross-entropy (BCE) loss between true labels and predicted
-    probabilities.
+    Gerçek etiketler ve tahmin edilen olasılıklar arasındaki ortalama ikili çapraz entropi (BCE) kaybını hesaplayın.
 
-    BCE loss quantifies dissimilarity between true labels (0 or 1) and predicted
-    probabilities. It's widely used in binary classification tasks.
+    BCE kaybı, gerçek etiketler (0 veya 1) ve tahmin edilen olasılıklar arasındaki farklılığı ölçer.
+    İkili sınıflandırma görevlerinde yaygın olarak kullanılır.
 
     BCE = -Σ(y_true * ln(y_pred) + (1 - y_true) * ln(1 - y_pred))
 
-    Reference: https://en.wikipedia.org/wiki/Cross_entropy
+    Referans: https://en.wikipedia.org/wiki/Cross_entropy
 
-    Parameters:
-    - y_true: True binary labels (0 or 1)
-    - y_pred: Predicted probabilities for class 1
-    - epsilon: Small constant to avoid numerical instability
+    Parametreler:
+    - y_true: Gerçek ikili etiketler (0 veya 1)
+    - y_pred: Sınıf 1 için tahmin edilen olasılıklar
+    - epsilon: Sayısal kararsızlığı önlemek için küçük bir sabit
 
     >>> true_labels = np.array([0, 1, 1, 0, 1])
     >>> predicted_probs = np.array([0.2, 0.7, 0.9, 0.3, 0.8])
@@ -29,12 +28,12 @@ def binary_cross_entropy(
     >>> binary_cross_entropy(true_labels, predicted_probs)
     Traceback (most recent call last):
         ...
-    ValueError: Input arrays must have the same length.
+    ValueError: Giriş dizilerinin aynı uzunlukta olması gerekir.
     """
     if len(y_true) != len(y_pred):
-        raise ValueError("Input arrays must have the same length.")
+        raise ValueError("Giriş dizilerinin aynı uzunlukta olması gerekir.")
 
-    y_pred = np.clip(y_pred, epsilon, 1 - epsilon)  # Clip predictions to avoid log(0)
+    y_pred = np.clip(y_pred, epsilon, 1 - epsilon)  # Tahminleri log(0)'dan kaçınmak için kırpın
     bce_loss = -(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))
     return np.mean(bce_loss)
 
@@ -47,24 +46,22 @@ def binary_focal_cross_entropy(
     epsilon: float = 1e-15,
 ) -> float:
     """
-    Calculate the mean binary focal cross-entropy (BFCE) loss between true labels
-    and predicted probabilities.
+    Gerçek etiketler ve tahmin edilen olasılıklar arasındaki ortalama ikili odak çapraz entropi (BFCE) kaybını hesaplayın.
 
-    BFCE loss quantifies dissimilarity between true labels (0 or 1) and predicted
-    probabilities. It's a variation of binary cross-entropy that addresses class
-    imbalance by focusing on hard examples.
+    BFCE kaybı, gerçek etiketler (0 veya 1) ve tahmin edilen olasılıklar arasındaki farklılığı ölçer.
+    Sınıf dengesizliğini ele alarak zor örneklere odaklanan ikili çapraz entropinin bir varyasyonudur.
 
     BCFE = -Σ(alpha * (1 - y_pred)**gamma * y_true * log(y_pred)
                 + (1 - alpha) * y_pred**gamma * (1 - y_true) * log(1 - y_pred))
 
-    Reference: [Lin et al., 2018](https://arxiv.org/pdf/1708.02002.pdf)
+    Referans: [Lin et al., 2018](https://arxiv.org/pdf/1708.02002.pdf)
 
-    Parameters:
-    - y_true: True binary labels (0 or 1).
-    - y_pred: Predicted probabilities for class 1.
-    - gamma: Focusing parameter for modulating the loss (default: 2.0).
-    - alpha: Weighting factor for class 1 (default: 0.25).
-    - epsilon: Small constant to avoid numerical instability.
+    Parametreler:
+    - y_true: Gerçek ikili etiketler (0 veya 1).
+    - y_pred: Sınıf 1 için tahmin edilen olasılıklar.
+    - gamma: Kayıp modülasyon parametresi (varsayılan: 2.0).
+    - alpha: Sınıf 1 için ağırlık faktörü (varsayılan: 0.25).
+    - epsilon: Sayısal kararsızlığı önlemek için küçük bir sabit.
 
     >>> true_labels = np.array([0, 1, 1, 0, 1])
     >>> predicted_probs = np.array([0.2, 0.7, 0.9, 0.3, 0.8])
@@ -75,11 +72,11 @@ def binary_focal_cross_entropy(
     >>> binary_focal_cross_entropy(true_labels, predicted_probs)
     Traceback (most recent call last):
         ...
-    ValueError: Input arrays must have the same length.
+    ValueError: Giriş dizilerinin aynı uzunlukta olması gerekir.
     """
     if len(y_true) != len(y_pred):
-        raise ValueError("Input arrays must have the same length.")
-    # Clip predicted probabilities to avoid log(0)
+        raise ValueError("Giriş dizilerinin aynı uzunlukta olması gerekir.")
+    # Tahmin edilen olasılıkları log(0)'dan kaçınmak için kırpın
     y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
 
     bcfe_loss = -(
@@ -94,17 +91,16 @@ def categorical_cross_entropy(
     y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-15
 ) -> float:
     """
-    Calculate categorical cross-entropy (CCE) loss between true class labels and
-    predicted class probabilities.
+    Gerçek sınıf etiketleri ve tahmin edilen sınıf olasılıkları arasındaki kategorik çapraz entropi (CCE) kaybını hesaplayın.
 
     CCE = -Σ(y_true * ln(y_pred))
 
-    Reference: https://en.wikipedia.org/wiki/Cross_entropy
+    Referans: https://en.wikipedia.org/wiki/Cross_entropy
 
-    Parameters:
-    - y_true: True class labels (one-hot encoded)
-    - y_pred: Predicted class probabilities
-    - epsilon: Small constant to avoid numerical instability
+    Parametreler:
+    - y_true: Gerçek sınıf etiketleri (one-hot kodlanmış)
+    - y_pred: Tahmin edilen sınıf olasılıkları
+    - epsilon: Sayısal kararsızlığı önlemek için küçük bir sabit
 
     >>> true_labels = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
     >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1], [0.0, 0.1, 0.9]])
@@ -115,36 +111,36 @@ def categorical_cross_entropy(
     >>> categorical_cross_entropy(true_labels, pred_probs)
     Traceback (most recent call last):
         ...
-    ValueError: Input arrays must have the same shape.
+    ValueError: Giriş dizilerinin aynı şekle sahip olması gerekir.
     >>> true_labels = np.array([[2, 0, 1], [1, 0, 0]])
     >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
     >>> categorical_cross_entropy(true_labels, pred_probs)
     Traceback (most recent call last):
         ...
-    ValueError: y_true must be one-hot encoded.
+    ValueError: y_true one-hot kodlanmış olmalıdır.
     >>> true_labels = np.array([[1, 0, 1], [1, 0, 0]])
     >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
     >>> categorical_cross_entropy(true_labels, pred_probs)
     Traceback (most recent call last):
         ...
-    ValueError: y_true must be one-hot encoded.
+    ValueError: y_true one-hot kodlanmış olmalıdır.
     >>> true_labels = np.array([[1, 0, 0], [0, 1, 0]])
     >>> pred_probs = np.array([[0.9, 0.1, 0.1], [0.2, 0.7, 0.1]])
     >>> categorical_cross_entropy(true_labels, pred_probs)
     Traceback (most recent call last):
         ...
-    ValueError: Predicted probabilities must sum to approximately 1.
+    ValueError: Tahmin edilen olasılıklar yaklaşık olarak 1'e eşit olmalıdır.
     """
     if y_true.shape != y_pred.shape:
-        raise ValueError("Input arrays must have the same shape.")
+        raise ValueError("Giriş dizilerinin aynı şekle sahip olması gerekir.")
 
-    if np.any((y_true != 0) & (y_true != 1)) or np.any(y_true.sum(axis=1) != 1):
-        raise ValueError("y_true must be one-hot encoded.")
+    if np.any((y_true != 0) & (y_true != 1)) :
+        raise ValueError("y_true one-hot kodlanmış olmalıdır.")
 
     if not np.all(np.isclose(np.sum(y_pred, axis=1), 1, rtol=epsilon, atol=epsilon)):
-        raise ValueError("Predicted probabilities must sum to approximately 1.")
+        raise ValueError("Tahmin edilen olasılıklar yaklaşık olarak 1'e eşit olmalıdır.")
 
-    y_pred = np.clip(y_pred, epsilon, 1)  # Clip predictions to avoid log(0)
+    y_pred = np.clip(y_pred, epsilon, 1)  # Tahminleri log(0)'dan kaçınmak için kırpın
     return -np.sum(y_true * np.log(y_pred))
 
 
@@ -156,25 +152,24 @@ def categorical_focal_cross_entropy(
     epsilon: float = 1e-15,
 ) -> float:
     """
-    Calculate the mean categorical focal cross-entropy (CFCE) loss between true
-    labels and predicted probabilities for multi-class classification.
+    Gerçek etiketler ve çok sınıflı sınıflandırma için tahmin edilen olasılıklar arasındaki ortalama kategorik odak çapraz entropi (CFCE) kaybını hesaplayın.
 
-    CFCE loss is a generalization of binary focal cross-entropy for multi-class
-    classification. It addresses class imbalance by focusing on hard examples.
+    CFCE kaybı, çok sınıflı sınıflandırma için ikili odak çapraz entropinin bir genellemesidir.
+    Sınıf dengesizliğini ele alarak zor örneklere odaklanır.
 
     CFCE = -Σ alpha * (1 - y_pred)**gamma * y_true * log(y_pred)
 
-    Reference: [Lin et al., 2018](https://arxiv.org/pdf/1708.02002.pdf)
+    Referans: [Lin et al., 2018](https://arxiv.org/pdf/1708.02002.pdf)
 
-    Parameters:
-    - y_true: True labels in one-hot encoded form.
-    - y_pred: Predicted probabilities for each class.
-    - alpha: Array of weighting factors for each class.
-    - gamma: Focusing parameter for modulating the loss (default: 2.0).
-    - epsilon: Small constant to avoid numerical instability.
+    Parametreler:
+    - y_true: One-hot kodlanmış formda gerçek etiketler.
+    - y_pred: Her sınıf için tahmin edilen olasılıklar.
+    - alpha: Her sınıf için ağırlık faktörleri dizisi.
+    - gamma: Kayıp modülasyon parametresi (varsayılan: 2.0).
+    - epsilon: Sayısal kararsızlığı önlemek için küçük bir sabit.
 
-    Returns:
-    - The mean categorical focal cross-entropy loss.
+    Döndürür:
+    - Ortalama kategorik odak çapraz entropi kaybı.
 
     >>> true_labels = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
     >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1], [0.0, 0.1, 0.9]])
@@ -193,28 +188,28 @@ def categorical_focal_cross_entropy(
     >>> categorical_cross_entropy(true_labels, pred_probs)
     Traceback (most recent call last):
         ...
-    ValueError: Input arrays must have the same shape.
+    ValueError: Giriş dizilerinin aynı şekle sahip olması gerekir.
 
     >>> true_labels = np.array([[2, 0, 1], [1, 0, 0]])
     >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
     >>> categorical_focal_cross_entropy(true_labels, pred_probs)
     Traceback (most recent call last):
         ...
-    ValueError: y_true must be one-hot encoded.
+    ValueError: y_true one-hot kodlanmış olmalıdır.
 
     >>> true_labels = np.array([[1, 0, 1], [1, 0, 0]])
     >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
     >>> categorical_focal_cross_entropy(true_labels, pred_probs)
     Traceback (most recent call last):
         ...
-    ValueError: y_true must be one-hot encoded.
+    ValueError: y_true one-hot kodlanmış olmalıdır.
 
     >>> true_labels = np.array([[1, 0, 0], [0, 1, 0]])
     >>> pred_probs = np.array([[0.9, 0.1, 0.1], [0.2, 0.7, 0.1]])
     >>> categorical_focal_cross_entropy(true_labels, pred_probs)
     Traceback (most recent call last):
         ...
-    ValueError: Predicted probabilities must sum to approximately 1.
+    ValueError: Tahmin edilen olasılıklar yaklaşık olarak 1'e eşit olmalıdır.
 
     >>> true_labels = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
     >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1], [0.0, 0.1, 0.9]])
@@ -222,27 +217,27 @@ def categorical_focal_cross_entropy(
     >>> categorical_focal_cross_entropy(true_labels, pred_probs, alpha)
     Traceback (most recent call last):
         ...
-    ValueError: Length of alpha must match the number of classes.
+    ValueError: alpha'nın uzunluğu sınıf sayısıyla eşleşmelidir.
     """
     if y_true.shape != y_pred.shape:
-        raise ValueError("Shape of y_true and y_pred must be the same.")
+        raise ValueError("y_true ve y_pred aynı şekle sahip olmalıdır.")
 
     if alpha is None:
         alpha = np.ones(y_true.shape[1])
 
-    if np.any((y_true != 0) & (y_true != 1)) or np.any(y_true.sum(axis=1) != 1):
-        raise ValueError("y_true must be one-hot encoded.")
+    if np.any((y_true != 0) & (y_true != 1)) :
+        raise ValueError("y_true one-hot kodlanmış olmalıdır.")
 
     if len(alpha) != y_true.shape[1]:
-        raise ValueError("Length of alpha must match the number of classes.")
+        raise ValueError("alpha'nın uzunluğu sınıf sayısıyla eşleşmelidir.")
 
     if not np.all(np.isclose(np.sum(y_pred, axis=1), 1, rtol=epsilon, atol=epsilon)):
-        raise ValueError("Predicted probabilities must sum to approximately 1.")
+        raise ValueError("Tahmin edilen olasılıklar yaklaşık olarak 1'e eşit olmalıdır.")
 
-    # Clip predicted probabilities to avoid log(0)
+    # Tahmin edilen olasılıkları log(0)'dan kaçınmak için kırpın
     y_pred = np.clip(y_pred, epsilon, 1 - epsilon)
 
-    # Calculate loss for each class and sum across classes
+    # Her sınıf için kaybı hesaplayın ve sınıflar arasında toplayın
     cfce_loss = -np.sum(
         alpha * np.power(1 - y_pred, gamma) * y_true * np.log(y_pred), axis=1
     )
@@ -252,16 +247,16 @@ def categorical_focal_cross_entropy(
 
 def hinge_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
-    Calculate the mean hinge loss for between true labels and predicted probabilities
-    for training support vector machines (SVMs).
+    Gerçek etiketler ve tahmin edilen olasılıklar arasındaki ortalama hinge kaybını hesaplayın
+    destek vektör makineleri (SVM'ler) için.
 
-    Hinge loss = max(0, 1 - true * pred)
+    Hinge kaybı = max(0, 1 - true * pred)
 
-    Reference: https://en.wikipedia.org/wiki/Hinge_loss
+    Referans: https://en.wikipedia.org/wiki/Hinge_loss
 
-    Args:
-    - y_true: actual values (ground truth) encoded as -1 or 1
-    - y_pred: predicted values
+    Argümanlar:
+    - y_true: -1 veya 1 olarak kodlanmış gerçek değerler (gerçek değerler)
+    - y_pred: tahmin edilen değerler
 
     >>> true_labels = np.array([-1, 1, 1, -1, 1])
     >>> pred = np.array([-4, -0.3, 0.7, 5, 10])
@@ -272,19 +267,19 @@ def hinge_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     >>> hinge_loss(true_labels, pred)
     Traceback (most recent call last):
     ...
-    ValueError: Length of predicted and actual array must be same.
+    ValueError: Tahmin edilen ve gerçek dizilerin uzunluğu aynı olmalıdır.
     >>> true_labels = np.array([-1, 1, 10, -1, 1])
     >>> pred = np.array([-4, -0.3, 0.7, 5, 10])
     >>> hinge_loss(true_labels, pred)
     Traceback (most recent call last):
     ...
-    ValueError: y_true can have values -1 or 1 only.
+    ValueError: y_true yalnızca -1 veya 1 değerlerine sahip olabilir.
     """
     if len(y_true) != len(y_pred):
-        raise ValueError("Length of predicted and actual array must be same.")
+        raise ValueError("Tahmin edilen ve gerçek dizilerin uzunluğu aynı olmalıdır.")
 
     if np.any((y_true != -1) & (y_true != 1)):
-        raise ValueError("y_true can have values -1 or 1 only.")
+        raise ValueError("y_true yalnızca -1 veya 1 değerlerine sahip olabilir.")
 
     hinge_losses = np.maximum(0, 1.0 - (y_true * y_pred))
     return np.mean(hinge_losses)
@@ -292,20 +287,20 @@ def hinge_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
 def huber_loss(y_true: np.ndarray, y_pred: np.ndarray, delta: float) -> float:
     """
-    Calculate the mean Huber loss between the given ground truth and predicted values.
+    Verilen gerçek değerler ve tahmin edilen değerler arasındaki ortalama Huber kaybını hesaplayın.
 
-    The Huber loss describes the penalty incurred by an estimation procedure, and it
-    serves as a measure of accuracy for regression models.
+    Huber kaybı, bir tahmin prosedürü tarafından alınan cezayı tanımlar ve
+    regresyon modelleri için bir doğruluk ölçüsü olarak hizmet eder.
 
-    Huber loss =
-        0.5 * (y_true - y_pred)^2                   if |y_true - y_pred| <= delta
-        delta * |y_true - y_pred| - 0.5 * delta^2   otherwise
+    Huber kaybı =
+        0.5 * (y_true - y_pred)^2                   eğer |y_true - y_pred| <= delta
+        delta * |y_true - y_pred| - 0.5 * delta^2   aksi takdirde
 
-    Reference: https://en.wikipedia.org/wiki/Huber_loss
+    Referans: https://en.wikipedia.org/wiki/Huber_loss
 
-    Parameters:
-    - y_true: The true values (ground truth)
-    - y_pred: The predicted values
+    Parametreler:
+    - y_true: Gerçek değerler (gerçek değerler)
+    - y_pred: Tahmin edilen değerler
 
     >>> true_values = np.array([0.9, 10.0, 2.0, 1.0, 5.2])
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
@@ -320,10 +315,10 @@ def huber_loss(y_true: np.ndarray, y_pred: np.ndarray, delta: float) -> float:
     >>> huber_loss(true_labels, predicted_probs, 1.0)
     Traceback (most recent call last):
     ...
-    ValueError: Input arrays must have the same length.
+    ValueError: Giriş dizilerinin aynı uzunlukta olması gerekir.
     """
     if len(y_true) != len(y_pred):
-        raise ValueError("Input arrays must have the same length.")
+        raise ValueError("Giriş dizilerinin aynı uzunlukta olması gerekir.")
 
     huber_mse = 0.5 * (y_true - y_pred) ** 2
     huber_mae = delta * (np.abs(y_true - y_pred) - 0.5 * delta)
@@ -332,18 +327,18 @@ def huber_loss(y_true: np.ndarray, y_pred: np.ndarray, delta: float) -> float:
 
 def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
-    Calculate the mean squared error (MSE) between ground truth and predicted values.
+    Gerçek değerler ve tahmin edilen değerler arasındaki ortalama kare hata (MSE) kaybını hesaplayın.
 
-    MSE measures the squared difference between true values and predicted values, and it
-    serves as a measure of accuracy for regression models.
+    MSE, gerçek değerler ve tahmin edilen değerler arasındaki kare farkı ölçer ve
+    regresyon modelleri için bir doğruluk ölçüsü olarak hizmet eder.
 
     MSE = (1/n) * Σ(y_true - y_pred)^2
 
-    Reference: https://en.wikipedia.org/wiki/Mean_squared_error
+    Referans: https://en.wikipedia.org/wiki/Mean_squared_error
 
-    Parameters:
-    - y_true: The true values (ground truth)
-    - y_pred: The predicted values
+    Parametreler:
+    - y_true: Gerçek değerler (gerçek değerler)
+    - y_pred: Tahmin edilen değerler
 
     >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
@@ -354,10 +349,10 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     >>> mean_squared_error(true_labels, predicted_probs)
     Traceback (most recent call last):
     ...
-    ValueError: Input arrays must have the same length.
+    ValueError: Giriş dizilerinin aynı uzunlukta olması gerekir.
     """
     if len(y_true) != len(y_pred):
-        raise ValueError("Input arrays must have the same length.")
+        raise ValueError("Giriş dizilerinin aynı uzunlukta olması gerekir.")
 
     squared_errors = (y_true - y_pred) ** 2
     return np.mean(squared_errors)
@@ -365,19 +360,18 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
 
 def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
-    Calculates the Mean Absolute Error (MAE) between ground truth (observed)
-        and predicted values.
+    Gerçek (gözlemlenen) ve tahmin edilen değerler arasındaki Ortalama Mutlak Hata (MAE) kaybını hesaplayın.
 
-    MAE measures the absolute difference between true values and predicted values.
+    MAE, gerçek değerler ve tahmin edilen değerler arasındaki mutlak farkı ölçer.
 
-    Equation:
+    Denklem:
     MAE = (1/n) * Σ(abs(y_true - y_pred))
 
-    Reference: https://en.wikipedia.org/wiki/Mean_absolute_error
+    Referans: https://en.wikipedia.org/wiki/Mean_absolute_error
 
-    Parameters:
-    - y_true: The true values (ground truth)
-    - y_pred: The predicted values
+    Parametreler:
+    - y_true: Gerçek değerler (gerçek değerler)
+    - y_pred: Tahmin edilen değerler
 
     >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
@@ -392,31 +386,29 @@ def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     >>> mean_absolute_error(true_labels, predicted_probs)
     Traceback (most recent call last):
     ...
-    ValueError: Input arrays must have the same length.
+    ValueError: Giriş dizilerinin aynı uzunlukta olması gerekir.
     """
     if len(y_true) != len(y_pred):
-        raise ValueError("Input arrays must have the same length.")
+        raise ValueError("Giriş dizilerinin aynı uzunlukta olması gerekir.")
 
     return np.mean(abs(y_true - y_pred))
 
 
 def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
-    Calculate the mean squared logarithmic error (MSLE) between ground truth and
-    predicted values.
+    Gerçek değerler ve tahmin edilen değerler arasındaki ortalama kare logaritmik hata (MSLE) kaybını hesaplayın.
 
-    MSLE measures the squared logarithmic difference between true values and predicted
-    values for regression models. It's particularly useful for dealing with skewed or
-    large-value data, and it's often used when the relative differences between
-    predicted and true values are more important than absolute differences.
+    MSLE, gerçek değerler ve tahmin edilen değerler arasındaki kare logaritmik farkı ölçer
+    regresyon modelleri için. Özellikle çarpık veya büyük değerli verilerle başa çıkmak için kullanışlıdır ve
+    tahmin edilen ve gerçek değerler arasındaki göreceli farklılıkların mutlak farklılıklardan daha önemli olduğu durumlarda kullanılır.
 
     MSLE = (1/n) * Σ(log(1 + y_true) - log(1 + y_pred))^2
 
-    Reference: https://insideaiml.com/blog/MeanSquared-Logarithmic-Error-Loss-1035
+    Referans: https://insideaiml.com/blog/MeanSquared-Logarithmic-Error-Loss-1035
 
-    Parameters:
-    - y_true: The true values (ground truth)
-    - y_pred: The predicted values
+    Parametreler:
+    - y_true: Gerçek değerler (gerçek değerler)
+    - y_pred: Tahmin edilen değerler
 
     >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
     >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
@@ -427,10 +419,10 @@ def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
     >>> mean_squared_logarithmic_error(true_labels, predicted_probs)
     Traceback (most recent call last):
     ...
-    ValueError: Input arrays must have the same length.
+    ValueError: Giriş dizilerinin aynı uzunlukta olması gerekir.
     """
     if len(y_true) != len(y_pred):
-        raise ValueError("Input arrays must have the same length.")
+        raise ValueError("Giriş dizilerinin aynı uzunlukta olması gerekir.")
 
     squared_logarithmic_errors = (np.log1p(y_true) - np.log1p(y_pred)) ** 2
     return np.mean(squared_logarithmic_errors)
@@ -440,23 +432,23 @@ def mean_absolute_percentage_error(
     y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-15
 ) -> float:
     """
-    Calculate the Mean Absolute Percentage Error between y_true and y_pred.
+    y_true ve y_pred arasındaki Ortalama Mutlak Yüzde Hatasını hesaplayın.
 
-    Mean Absolute Percentage Error calculates the average of the absolute
-    percentage differences between the predicted and true values.
+    Ortalama Mutlak Yüzde Hatası, tahmin edilen ve gerçek değerler arasındaki mutlak
+    yüzde farklarının ortalamasını hesaplar.
 
-    Formula = (Σ|y_true[i]-Y_pred[i]/y_true[i]|)/n
+    Formül = (Σ|y_true[i]-Y_pred[i]/y_true[i]|)/n
 
-    Source: https://stephenallwright.com/good-mape-score/
+    Kaynak: https://stephenallwright.com/good-mape-score/
 
-    Parameters:
-    y_true (np.ndarray): Numpy array containing true/target values.
-    y_pred (np.ndarray): Numpy array containing predicted values.
+    Parametreler:
+    y_true (np.ndarray): Gerçek/hedef değerleri içeren Numpy dizisi.
+    y_pred (np.ndarray): Tahmin edilen değerleri içeren Numpy dizisi.
 
-    Returns:
-    float: The Mean Absolute Percentage error between y_true and y_pred.
+    Döndürür:
+    float: y_true ve y_pred arasındaki Ortalama Mutlak Yüzde hatası.
 
-    Examples:
+    Örnekler:
     >>> y_true = np.array([10, 20, 30, 40])
     >>> y_pred = np.array([12, 18, 33, 45])
     >>> float(mean_absolute_percentage_error(y_true, y_pred))
@@ -473,7 +465,7 @@ def mean_absolute_percentage_error(
     0.064671076436071
     """
     if len(y_true) != len(y_pred):
-        raise ValueError("The length of the two arrays should be the same.")
+        raise ValueError("İki dizinin uzunluğu aynı olmalıdır.")
 
     y_true = np.where(y_true == 0, epsilon, y_true)
     absolute_percentage_diff = np.abs((y_true - y_pred) / y_true)
@@ -485,24 +477,23 @@ def perplexity_loss(
     y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-7
 ) -> float:
     """
-    Calculate the perplexity for the y_true and y_pred.
+    y_true ve y_pred için karmaşıklığı hesaplayın.
 
-    Compute the Perplexity which useful in predicting language model
-    accuracy in Natural Language Processing (NLP.)
-    Perplexity is measure of how certain the model in its predictions.
+    Doğal Dil İşleme (NLP) alanında dil modeli doğruluğunu tahmin etmek için karmaşıklığı hesaplayın.
+    Karmaşıklık, modelin tahminlerindeki belirsizliğin bir ölçüsüdür.
 
-    Perplexity Loss = exp(-1/N (Σ ln(p(x)))
+    Karmaşıklık Kaybı = exp(-1/N (Σ ln(p(x)))
 
-    Reference:
+    Referans:
     https://en.wikipedia.org/wiki/Perplexity
 
-    Args:
-        y_true: Actual label encoded sentences of shape (batch_size, sentence_length)
-        y_pred: Predicted sentences of shape (batch_size, sentence_length, vocab_size)
-        epsilon: Small floating point number to avoid getting inf for log(0)
+    Argümanlar:
+        y_true: Gerçek etiket kodlanmış cümleler (batch_size, cümle uzunluğu) şeklinde
+        y_pred: Tahmin edilen cümleler (batch_size, cümle uzunluğu, vocab_size) şeklinde
+        epsilon: log(0) için inf almaktan kaçınmak için küçük bir kayan nokta sayısı
 
-    Returns:
-        Perplexity loss between y_true and y_pred.
+    Döndürür:
+        y_true ve y_pred arasındaki karmaşıklık kaybı.
 
     >>> y_true = np.array([[1, 4], [2, 3]])
     >>> y_pred = np.array(
@@ -525,7 +516,7 @@ def perplexity_loss(
     >>> perplexity_loss(y_true, y_pred)
     Traceback (most recent call last):
     ...
-    ValueError: Sentence length of y_true and y_pred must be equal.
+    ValueError: y_true ve y_pred cümle uzunlukları eşit olmalıdır.
     >>> y_true = np.array([[1, 4], [2, 11]])
     >>> y_pred = np.array(
     ...    [[[0.28, 0.19, 0.21 , 0.15, 0.15],
@@ -536,7 +527,7 @@ def perplexity_loss(
     >>> perplexity_loss(y_true, y_pred)
     Traceback (most recent call last):
     ...
-    ValueError: Label value must not be greater than vocabulary size.
+    ValueError: Etiket değeri, kelime dağarcığı boyutundan büyük olmamalıdır.
     >>> y_true = np.array([[1, 4]])
     >>> y_pred = np.array(
     ...    [[[0.28, 0.19, 0.21 , 0.15, 0.15],
@@ -547,27 +538,27 @@ def perplexity_loss(
     >>> perplexity_loss(y_true, y_pred)
     Traceback (most recent call last):
     ...
-    ValueError: Batch size of y_true and y_pred must be equal.
+    ValueError: y_true ve y_pred batch boyutları eşit olmalıdır.
     """
 
     vocab_size = y_pred.shape[2]
 
     if y_true.shape[0] != y_pred.shape[0]:
-        raise ValueError("Batch size of y_true and y_pred must be equal.")
+        raise ValueError("y_true ve y_pred batch boyutları eşit olmalıdır.")
     if y_true.shape[1] != y_pred.shape[1]:
-        raise ValueError("Sentence length of y_true and y_pred must be equal.")
+        raise ValueError("y_true ve y_pred cümle uzunlukları eşit olmalıdır.")
     if np.max(y_true) > vocab_size:
-        raise ValueError("Label value must not be greater than vocabulary size.")
+        raise ValueError("Etiket değeri, kelime dağarcığı boyutundan büyük olmamalıdır.")
 
-    # Matrix to select prediction value only for true class
+    # Yalnızca gerçek sınıf için tahmin değerini seçmek için matris
     filter_matrix = np.array(
         [[list(np.eye(vocab_size)[word]) for word in sentence] for sentence in y_true]
     )
 
-    # Getting the matrix containing prediction for only true class
+    # Yalnızca gerçek sınıf için tahmin içeren matrisi alın
     true_class_pred = np.sum(y_pred * filter_matrix, axis=2).clip(epsilon, 1)
 
-    # Calculating perplexity for each sentence
+    # Her cümle için karmaşıklığı hesaplayın
     perp_losses = np.exp(np.negative(np.mean(np.log(true_class_pred), axis=1)))
 
     return np.mean(perp_losses)
@@ -575,28 +566,28 @@ def perplexity_loss(
 
 def smooth_l1_loss(y_true: np.ndarray, y_pred: np.ndarray, beta: float = 1.0) -> float:
     """
-    Calculate the Smooth L1 Loss between y_true and y_pred.
+    y_true ve y_pred arasındaki Smooth L1 Loss'u hesaplayın.
 
-    The Smooth L1 Loss is less sensitive to outliers than the L2 Loss and is often used
-    in regression problems, such as object detection.
+    Smooth L1 Loss, L2 Loss'a göre aykırı değerlere daha az duyarlıdır ve genellikle
+    nesne algılama gibi regresyon problemlerinde kullanılır.
 
     Smooth L1 Loss =
-        0.5 * (x - y)^2 / beta, if |x - y| < beta
-        |x - y| - 0.5 * beta, otherwise
+        0.5 * (x - y)^2 / beta, eğer |x - y| < beta
+        |x - y| - 0.5 * beta, aksi takdirde
 
-    Reference:
+    Referans:
     https://pytorch.org/docs/stable/generated/torch.nn.SmoothL1Loss.html
 
-    Args:
-        y_true: Array of true values.
-        y_pred: Array of predicted values.
-        beta: Specifies the threshold at which to change between L1 and L2 loss.
+    Argümanlar:
+        y_true: Gerçek değerler dizisi.
+        y_pred: Tahmin edilen değerler dizisi.
+        beta: L1 ve L2 kaybı arasında geçiş yapmak için eşiği belirtir.
 
-    Returns:
-        The calculated Smooth L1 Loss between y_true and y_pred.
+    Döndürür:
+        y_true ve y_pred arasındaki hesaplanan Smooth L1 Loss.
 
-    Raises:
-        ValueError: If the length of the two arrays is not the same.
+    Hatalar:
+        ValueError: İki dizinin uzunluğu aynı değilse.
 
     >>> y_true = np.array([3, 5, 2, 7])
     >>> y_pred = np.array([2.9, 4.8, 2.1, 7.2])
@@ -618,11 +609,11 @@ def smooth_l1_loss(y_true: np.ndarray, y_pred: np.ndarray, beta: float = 1.0) ->
     >>> smooth_l1_loss(y_true, y_pred, 1.0)
     Traceback (most recent call last):
     ...
-    ValueError: The length of the two arrays should be the same.
+    ValueError: İki dizinin uzunluğu aynı olmalıdır.
     """
 
     if len(y_true) != len(y_pred):
-        raise ValueError("The length of the two arrays should be the same.")
+        raise ValueError("İki dizinin uzunluğu aynı olmalıdır.")
 
     diff = np.abs(y_true - y_pred)
     loss = np.where(diff < beta, 0.5 * diff**2 / beta, diff - 0.5 * beta)
@@ -631,15 +622,18 @@ def smooth_l1_loss(y_true: np.ndarray, y_pred: np.ndarray, beta: float = 1.0) ->
 
 def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
-    Calculate the Kullback-Leibler divergence (KL divergence) loss between true labels
-    and predicted probabilities.
+    Gerçek etiketler ve tahmin edilen olasılıklar arasındaki Kullback-Leibler sapması (KL sapması) kaybını hesaplayın.
 
-    KL divergence loss quantifies dissimilarity between true labels and predicted
-    probabilities. It's often used in training generative models.
+    KL sapması kaybı, gerçek etiketler ve tahmin edilen olasılıklar arasındaki farklılığı ölçer.
+    Genellikle üretici modellerin eğitiminde kullanılır.
 
     KL = Σ(y_true * ln(y_true / y_pred))
 
-    Reference: https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence
+    Referans: https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence
+
+    Parametreler:
+    - y_true: Gerçek sınıf olasılıkları
+    - y_pred: Tahmin edilen sınıf olasılıkları
 
     Parameters:
     - y_true: True class probabilities

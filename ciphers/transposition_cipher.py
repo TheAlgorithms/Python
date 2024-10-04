@@ -2,25 +2,37 @@ import math
 
 """
 In cryptography, the TRANSPOSITION cipher is a method of encryption where the
-positions of plaintext are shifted a certain number(determined by the key) that
+positions of plaintext are shifted a certain number (determined by the key) that
 follows a regular system that results in the permuted text, known as the encrypted
 text. The type of transposition cipher demonstrated under is the ROUTE cipher.
 """
 
-
 def main() -> None:
-    message = input("Enter message: ")
-    key = int(input(f"Enter key [2-{len(message) - 1}]: "))
-    mode = input("Encryption/Decryption [e/d]: ")
+    message = input("Enter message: ").strip()
+    if not message:
+        print("Message cannot be empty.")
+        return
 
-    if mode.lower().startswith("e"):
+    try:
+        key = int(input(f"Enter key [2-{len(message) - 1}]: "))
+        if key < 2 or key >= len(message):
+            raise ValueError
+    except ValueError:
+        print("Invalid key. Please enter an integer within the specified range.")
+        return
+
+    mode = input("Encryption/Decryption [e/d]: ").strip().lower()
+    if mode not in ['e', 'd']:
+        print("Invalid mode. Please enter 'e' for encryption or 'd' for decryption.")
+        return
+
+    if mode == "e":
         text = encrypt_message(key, message)
-    elif mode.lower().startswith("d"):
+    else:
         text = decrypt_message(key, message)
 
     # Append pipe symbol (vertical bar) to identify spaces at the end.
     print(f"Output:\n{text + '|'}")
-
 
 def encrypt_message(key: int, message: str) -> str:
     """
@@ -34,7 +46,6 @@ def encrypt_message(key: int, message: str) -> str:
             cipher_text[col] += message[pointer]
             pointer += key
     return "".join(cipher_text)
-
 
 def decrypt_message(key: int, message: str) -> str:
     """
@@ -62,9 +73,7 @@ def decrypt_message(key: int, message: str) -> str:
 
     return "".join(plain_text)
 
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
     main()
