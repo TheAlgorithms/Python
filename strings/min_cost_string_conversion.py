@@ -79,9 +79,6 @@ def compute_transform_tables(
 
 def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
     """
-    Assembles the transformations based on the information in the ops table.
-
-    >>> ops = [['0', 'Ic', 'Iu', 'It'], ['Dc', 'Cc', 'Iu', 'It'], ['Da', 'Da', 'Rau', 'Rat'], ['Dt', 'Dt', 'Rtu', 'Ct']]
     Assembles the transformations based on the ops table.
 
     >>> ops = [['0', 'Ic', 'Iu', 'It'],
