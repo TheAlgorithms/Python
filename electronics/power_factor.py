@@ -17,7 +17,10 @@ def calculate_power_factor(real_power, apparent_power):
             raise ValueError("Apparent power cannot be zero.")
         return real_power / apparent_power
     except TypeError:
-        error_msg = "Invalid input types for real power or apparent power. Both must be numbers."
+        error_msg = (
+            "Invalid input types for real power or apparent power. "
+            "Both must be numbers."
+        )
         raise ValueError(error_msg)
 
 
@@ -30,10 +33,14 @@ def calculate_reactive_power(real_power, apparent_power):
             )
         return math.sqrt(apparent_power**2 - real_power**2)
     except TypeError:
-        error_msg = "Invalid input types for real power or apparent power. Both must be numbers."
+        error_msg = (
+            "Invalid input types for real power or apparent power. "
+            "Both must be numbers."
+        )
         raise ValueError(error_msg)
     except ValueError as ve:
-        raise ValueError(f"Calculation error: {ve}")
+        error_msg = f"Calculation error: {ve}"
+        raise ValueError(error_msg)
 
 
 def calculate_correction_capacitance(reactive_power, voltage, frequency=60):
@@ -41,16 +48,19 @@ def calculate_correction_capacitance(reactive_power, voltage, frequency=60):
     try:
         if voltage == 0:
             raise ValueError("Voltage cannot be zero.")
-        capacitance = (
-            (reactive_power * 1_000_000)
-            / (2 * math.pi * frequency * voltage**2)
+        capacitance = (reactive_power * 1_000_000) / (
+            2 * math.pi * frequency * voltage**2
         )
         return capacitance
     except TypeError:
-        error_msg = "Invalid input types for reactive power, voltage, or frequency. They must be numbers."
+        error_msg = (
+            "Invalid input types for reactive power, voltage, or "
+            "frequency. They must be numbers."
+        )
         raise ValueError(error_msg)
     except ValueError as ve:
-        raise ValueError(f"Calculation error: {ve}")
+        error_msg = f"Calculation error: {ve}"
+        raise ValueError(error_msg)
 
 
 def main():
