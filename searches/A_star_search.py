@@ -7,8 +7,8 @@ from typing import List, Tuple
 
 
 class Cell:
-    def __init__(self)->None:
-      # Parent cell's row index
+    def __init__(self) -> None:
+        # Parent cell's row index
         self.parent_i = 0
         # Parent cell's column index
         self.parent_j = 0
@@ -28,6 +28,24 @@ COL = 10
 
 
 def is_valid(row: int, col: int) -> bool:
+    """
+    Check if a cell is within the grid bounds.
+
+    Args:
+        row (int): The row index of the cell.
+        col (int): The column index of the cell.
+
+    Returns:
+        bool: True if the cell is within bounds, False otherwise.
+
+    Examples:
+        >>> is_valid(5, 3)
+        True
+        >>> is_valid(9, 5)
+        False
+        >>> is_valid(-1, 0)
+        False
+    """
     return (row >= 0) and (row < ROW) and (col >= 0) and (col < COL)
 
 
@@ -35,6 +53,30 @@ def is_valid(row: int, col: int) -> bool:
 
 
 def is_unblocked(grid: List[List[int]], row: int, col: int) -> bool:
+    """
+    Check if a cell is unblocked in the grid.
+
+    Args:
+        grid (List[List[int]]): The grid representing the map.
+        row (int): The row index of the cell.
+        col (int): The column index of the cell.
+
+    Returns:
+        bool: True if the cell is unblocked (1), False if blocked (0).
+
+    Examples:
+        >>> grid = [
+        ...     [1, 0, 1],
+        ...     [1, 1, 0],
+        ...     [0, 1, 1]
+        ... ]
+        >>> is_unblocked(grid, 0, 0)
+        True
+        >>> is_unblocked(grid, 0, 1)
+        False
+        >>> is_unblocked(grid, 2, 2)
+        True
+    """
     return grid[row][col] == 1
 
 
@@ -42,6 +84,23 @@ def is_unblocked(grid: List[List[int]], row: int, col: int) -> bool:
 
 
 def is_destination(row: int, col: int, dest: Tuple[int, int]) -> bool:
+    """
+    Check if a cell is the destination.
+
+    Args:
+        row (int): The row index of the cell.
+        col (int): The column index of the cell.
+        dest (Tuple[int, int]): The destination coordinates as (row, col).
+
+    Returns:
+        bool: True if the cell is the destination, False otherwise.
+
+    Examples:
+        >>> is_destination(3, 4, (3, 4))
+        True
+        >>> is_destination(2, 1, (3, 4))
+        False
+    """
     return row == dest[0] and col == dest[1]
 
 
@@ -49,6 +108,25 @@ def is_destination(row: int, col: int, dest: Tuple[int, int]) -> bool:
 
 
 def calculate_h_value(row: int, col: int, dest: Tuple[int, int]) -> float:
+    """
+    Calculate the heuristic value (Euclidean distance) from a cell to the destination.
+
+    Args:
+        row (int): The row index of the cell.
+        col (int): The column index of the cell.
+        dest (Tuple[int, int]): The destination coordinates as (row, col).
+
+    Returns:
+        float: The Euclidean distance from the current cell to the destination.
+
+    Examples:
+        >>> calculate_h_value(0, 0, (3, 4))
+        5.0
+        >>> calculate_h_value(2, 1, (2, 1))
+        0.0
+        >>> calculate_h_value(1, 1, (4, 5))
+        5.0
+    """
     return ((row - dest[0]) ** 2 + (col - dest[1]) ** 2) ** 0.5
 
 
@@ -56,6 +134,28 @@ def calculate_h_value(row: int, col: int, dest: Tuple[int, int]) -> float:
 
 
 def trace_path(cell_details: List[List[Cell]], dest: Tuple[int, int]) -> None:
+    """
+    Trace and print the path from the source to the destination.
+
+    Args:
+        cell_details (List[List[Cell]]): A 2D list containing details of each cell.
+        dest (Tuple[int, int]): The destination coordinates as (row, col).
+
+    Returns:
+        None
+
+    Examples:
+        >>> class Cell:
+        ...     def __init__(self):
+        ...         self.parent_i = 0
+        ...         self.parent_j = 0
+        >>> cell_details = [[Cell() for _ in range(2)] for _ in range(2)]
+        >>> cell_details[1][1].parent_i = 0
+        >>> cell_details[1][1].parent_j = 0
+        >>> trace_path(cell_details, (1, 1))
+        The Path is 
+        -> (0, 0) -> (1, 1) 
+    """
     print("The Path is ")
     path = []
     row = dest[0]
@@ -87,6 +187,30 @@ def trace_path(cell_details: List[List[Cell]], dest: Tuple[int, int]) -> None:
 
 
 def a_star_search(grid: List[List[int]], src: Tuple[int, int], dest: Tuple[int, int]) -> None:
+    """
+    Perform the A* search to find the shortest path from source to destination.
+
+    Args:
+        grid (List[List[int]]): The grid representing the map, where 1 is unblocked and 0 is blocked.
+        src (Tuple[int, int]): The source coordinates as (row, col).
+        dest (Tuple[int, int]): The destination coordinates as (row, col).
+
+    Returns:
+        None
+
+    Examples:
+        >>> grid = [
+        ...     [1, 1, 1],
+        ...     [1, 0, 1],
+        ...     [1, 1, 1]
+        ... ]
+        >>> a_star_search(grid, (0, 0), (2, 2))
+        The destination cell is found
+        The Path is 
+        -> (0, 0) -> (1, 1) -> (2, 2) 
+        >>> a_star_search(grid, (0, 0), (1, 1))
+        Source or the destination is blocked
+    """
     # Check if the source and destination are valid
     if not is_valid(src[0], src[1]) or not is_valid(dest[0], dest[1]):
         print("Source or destination is invalid")
@@ -203,8 +327,8 @@ if __name__ == "__main__":
     Examples:
         >>> main()
         The destination cell is found
-        The Path is 
-        -> (8, 0) -> (7, 1) -> (6, 0) -> (5, 1) -> (4, 0) -> (3, 1) -> (2, 0) -> (1, 1) -> (0, 0) 
+        The Path is
+        -> (8, 0) -> (7, 1) -> (6, 0) -> (5, 1) -> (4, 0) -> (3, 1) -> (2, 0) -> (1, 1) -> (0, 0)
     """
     # Define the grid (1 for unblocked, 0 for blocked)
     grid = [
