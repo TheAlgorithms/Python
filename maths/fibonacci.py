@@ -267,7 +267,7 @@ def matrix_pow_np(m: ndarray, power: int) -> ndarray:
         ...
     ValueError: power is negative
     """
-    result = np.array([[1, 0], [0, 1]], dtype=int)  # Identity matrix
+    result = np.array([[1, 0], [0, 1]], dtype=int)  # Identity Matrix
     base = m
     while power:
         if power % 2 == 1:
