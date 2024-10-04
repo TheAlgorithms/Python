@@ -1,12 +1,13 @@
 # Python program for A* Search Algorithm
 import math
 import heapq
+from typing import List, Tuple
 
 # Define the Cell class
 
 
 class Cell:
-    def __init__(self):
+    def __init__(self)->None:
       # Parent cell's row index
         self.parent_i = 0
     # Parent cell's column index
@@ -26,31 +27,31 @@ COL = 10
 # Check if a cell is valid (within the grid)
 
 
-def is_valid(row, col):
+def is_valid(row: int, col: int) -> bool:
     return (row >= 0) and (row < ROW) and (col >= 0) and (col < COL)
 
 # Check if a cell is unblocked
 
 
-def is_unblocked(grid, row, col):
+def is_unblocked(grid: List[List[int]], row: int, col: int) -> bool:
     return grid[row][col] == 1
 
 # Check if a cell is the destination
 
 
-def is_destination(row, col, dest):
+def is_destination(row: int, col: int, dest: Tuple[int, int]) -> bool:
     return row == dest[0] and col == dest[1]
 
 # Calculate the heuristic value of a cell (Euclidean distance to destination)
 
 
-def calculate_h_value(row, col, dest):
+def calculate_h_value(row: int, col: int, dest: Tuple[int, int]) -> float:
     return ((row - dest[0]) ** 2 + (col - dest[1]) ** 2) ** 0.5
 
 # Trace the path from source to destination
 
 
-def trace_path(cell_details, dest):
+def trace_path(cell_details: List[List[Cell]], dest: Tuple[int, int]) -> None:
     print("The Path is ")
     path = []
     row = dest[0]
@@ -77,7 +78,7 @@ def trace_path(cell_details, dest):
 # Implement the A* search algorithm
 
 
-def a_star_search(grid, src, dest):
+def a_star_search(grid: List[List[int]], src: Tuple[int, int], dest: Tuple[int, int]) -> None:
     # Check if the source and destination are valid
     if not is_valid(src[0], src[1]) or not is_valid(dest[0], dest[1]):
         print("Source or destination is invalid")
@@ -167,7 +168,19 @@ def a_star_search(grid, src, dest):
 # Driver Code
 
 
-def main():
+def main() -> None:
+    """
+    Run the A* search algorithm on a predefined grid.
+
+    Returns:
+        None
+
+    Examples:
+        >>> main()
+        The destination cell is found
+        The Path is 
+        -> (8, 0) -> (7, 1) -> (6, 0) -> (5, 1) -> (4, 0) -> (3, 1) -> (2, 0) -> (1, 1) -> (0, 0) 
+    """
     # Define the grid (1 for unblocked, 0 for blocked)
     grid = [
         [1, 0, 1, 1, 1, 1, 0, 1, 1, 1],
@@ -182,12 +195,12 @@ def main():
     ]
 
     # Define the source and destination
-    src = [8, 0]
-    dest = [0, 0]
+    src = (8, 0)
+    dest = (0, 0)
 
     # Run the A* search algorithm
     a_star_search(grid, src, dest)
 
-
 if __name__ == "__main__":
     main()
+
