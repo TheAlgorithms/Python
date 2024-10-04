@@ -7,8 +7,8 @@ from typing import List, Tuple
 
 
 class Cell:
-    def __init__(self)->None:
-      # Parent cell's row index
+    def __init__(self) -> None:
+        # Parent cell's row index
         self.parent_i = 0
         # Parent cell's column index
         self.parent_j = 0
@@ -86,7 +86,9 @@ def trace_path(cell_details: List[List[Cell]], dest: Tuple[int, int]) -> None:
 # Implement the A* search algorithm
 
 
-def a_star_search(grid: List[List[int]], src: Tuple[int, int], dest: Tuple[int, int]) -> None:
+def a_star_search(
+    grid: List[List[int]], src: Tuple[int, int], dest: Tuple[int, int]
+) -> None:
     # Check if the source and destination are valid
     if not is_valid(src[0], src[1]) or not is_valid(dest[0], dest[1]):
         print("Source or destination is invalid")
@@ -204,8 +206,8 @@ def main() -> None:
     Examples:
         >>> main()
         The destination cell is found
-        The Path is 
-        -> (8, 0) -> (7, 1) -> (6, 0) -> (5, 1) -> (4, 0) -> (3, 1) -> (2, 0) -> (1, 1) -> (0, 0) 
+        The Path is
+        -> (8, 0) -> (7, 1) -> (6, 0) -> (5, 1) -> (4, 0) -> (3, 1) -> (2, 0) -> (1, 1) -> (0, 0)
     """
     # Define the grid (1 for unblocked, 0 for blocked)
     grid = [
@@ -227,6 +229,6 @@ def main() -> None:
     # Run the A* search algorithm
     a_star_search(grid, src, dest)
 
+
 if __name__ == "__main__":
     main()
-
