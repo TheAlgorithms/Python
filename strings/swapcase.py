@@ -27,7 +27,8 @@ def swap_case(input_string) -> str:
     swapped_list = "".join(list_representation)
     return swapped_list
 
-#sample test case
+
+# sample test case
 input_string = "Hello"
 swapped_string = swap_case(input_string)
 print(swapped_string)
