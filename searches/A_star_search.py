@@ -191,10 +191,9 @@ def a_star_search(grid: List[List[int]], src: Tuple[int, int], dest: Tuple[int, 
         print("Failed to find the destination cell")
 
 
-# Driver Code
+# Driver Code    
 
-
-def main() -> None:
+if __name__ == "__main__":
     """
     Run the A* search algorithm on a predefined grid.
 
@@ -226,7 +225,4 @@ def main() -> None:
 
     # Run the A* search algorithm
     a_star_search(grid, src, dest)
-
-if __name__ == "__main__":
-    main()
 
