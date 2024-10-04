@@ -102,12 +102,12 @@ class DirectedGraph:
         stack = []
         visited = []
         if s == -2:
-            if self.graph.get(s,None):
-                pass # -2 is a node
+            if self.graph.get(s, None):
+                pass  # -2 is a node
             elif len(self.graph) > 0:
                 s = next(iter(self.graph))
             else:
-                return [] # Graph empty
+                return []  # Graph empty
         stack.append(s)
 
         # Run dfs
@@ -115,11 +115,11 @@ class DirectedGraph:
             s = stack.pop()
             visited.append(s)
             # If reached d, return
-            if s==d:
+            if s == d:
                 break
 
             # add not visited child nodes to stack
-            for _,ss in self.graph[s]:
+            for _, ss in self.graph[s]:
                 if visited.count(ss) < 1:
                     stack.append(ss)
         return visited
@@ -164,12 +164,12 @@ class DirectedGraph:
         d = deque()
         visited = []
         if s == -2:
-            if self.graph.get(s,None):
-                pass # -2 is a node
+            if self.graph.get(s, None):
+                pass  # -2 is a node
             elif len(self.graph) > 0:
                 s = next(iter(self.graph))
             else:
-                return [] # Graph empty
+                return []  # Graph empty
         d.append(s)
         visited.append(s)
         # Run bfs
@@ -413,12 +413,12 @@ class Graph:
         stack = []
         visited = []
         if s == -2:
-            if self.graph.get(s,None):
-                pass # -2 is a node
+            if self.graph.get(s, None):
+                pass  # -2 is a node
             elif len(self.graph) > 0:
                 s = next(iter(self.graph))
             else:
-                return [] # Graph empty
+                return []  # Graph empty
         stack.append(s)
 
         # Run dfs
@@ -429,11 +429,11 @@ class Graph:
             else:
                 visited.append(s)
             # If reached d, return
-            if s==d:
+            if s == d:
                 break
 
             # add not visited child nodes to stack
-            for _,ss in self.graph[s]:
+            for _, ss in self.graph[s]:
                 if visited.count(ss) < 1:
                     stack.append(ss)
         return visited
@@ -478,12 +478,12 @@ class Graph:
         d = deque()
         visited = []
         if s == -2:
-            if self.graph.get(s,None):
-                pass # -2 is a node
+            if self.graph.get(s, None):
+                pass  # -2 is a node
             elif len(self.graph) > 0:
                 s = next(iter(self.graph))
             else:
-                return [] # Graph empty
+                return []  # Graph empty
         d.append(s)
         visited.append(s)
         while d:
