@@ -29,11 +29,14 @@ class GeneticAlgorithmOptimizer:
         self.mutation_prob = mutation_prob
         self.num_variables = len(bounds)
 
+        # Initialize the random number generator
+        self.rng = np.random.default_rng()
+
     def initialize_population(self):
         """
         Initialize a population of random solutions within the bounds.
         """
-        return np.random.uniform(
+        return self.rng.uniform(
             low=self.bounds[:, 0],
             high=self.bounds[:, 1],
             size=(self.population_size, self.num_variables),
@@ -50,7 +53,7 @@ class GeneticAlgorithmOptimizer:
         """
         Select parents using tournament selection.
         """
-        selected_indices = np.random.choice(
+        selected_indices = self.rng.choice(
             range(self.population_size), size=2, replace=False
         )
         return population[selected_indices[np.argmin(fitness_scores[selected_indices])]]
@@ -63,10 +66,8 @@ class GeneticAlgorithmOptimizer:
         if self.num_variables == 1:
             return parent1, parent2  # No crossover needed for single-variable functions
 
-        if np.random.rand() < self.crossover_prob:
-            point = np.random.randint(
-                1, self.num_variables
-            )  # Updated to handle the edge case
+        if self.rng.random() < self.crossover_prob:
+            point = self.rng.integers(1, self.num_variables)  # Updated to handle edge case
             child1 = np.concatenate((parent1[:point], parent2[point:]))
             child2 = np.concatenate((parent2[:point], parent1[point:]))
             return child1, child2
@@ -76,9 +77,9 @@ class GeneticAlgorithmOptimizer:
         """
         Apply mutation to an individual with a given mutation probability.
         """
-        if np.random.rand() < self.mutation_prob:
-            index = np.random.randint(0, self.num_variables)
-            individual[index] = np.random.uniform(
+        if self.rng.random() < self.mutation_prob:
+            index = self.rng.integers(0, self.num_variables)
+            individual[index] = self.rng.uniform(
                 self.bounds[index, 0], self.bounds[index, 1]
             )
         return individual
