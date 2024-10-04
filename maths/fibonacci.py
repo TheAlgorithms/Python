@@ -235,8 +235,6 @@ def fib_binet(n: int) -> list[int]:
     return [round(phi**i / sqrt_5) for i in range(n + 1)]
 
 
-
-
 def matrix_pow_np(m: ndarray, power: int) -> ndarray:
     """
     Raises a matrix to the power of 'power' using binary exponentiation.
