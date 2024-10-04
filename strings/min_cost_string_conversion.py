@@ -17,6 +17,23 @@ def compute_transform_tables(
     delete_cost: int,
     insert_cost: int,
 ) -> tuple[list[list[int]], list[list[str]]]:
+    """
+    Finds the most cost efficient sequence
+    for converting one string into another.
+
+    >>> costs, operations = compute_transform_tables("cat", "cut", 1, 2, 3, 3)
+    >>> costs[0][:4]
+    [0, 3, 6, 9]
+    >>> costs[2][:4]
+    [6, 4, 3, 6]
+    >>> operations[0][:4]
+    ['0', 'Ic', 'Iu', 'It']
+    >>> operations[3][:4]
+    ['Dt', 'Dt', 'Rtu', 'Ct']
+
+    >>> compute_transform_tables("", "", 1, 2, 3, 3)
+    ([[0]], [['0']])
+    """
     source_seq = list(source_string)
     destination_seq = list(destination_string)
     len_source_seq = len(source_seq)
@@ -57,6 +74,24 @@ def compute_transform_tables(
 
 
 def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
+    """
+    Assembles the transformations based on the ops table.
+
+    >>> ops = [['0', 'Ic', 'Iu', 'It'],
+    ...        ['Dc', 'Cc', 'Iu', 'It'],
+    ...        ['Da', 'Da', 'Rau', 'Rat'],
+    ...        ['Dt', 'Dt', 'Rtu', 'Ct']]
+    >>> x = len(ops) - 1
+    >>> y = len(ops[0]) - 1
+    >>> assemble_transformation(ops, x, y)
+    ['Cc', 'Rau', 'Ct']
+
+    >>> ops1 = [['0']]
+    >>> x1 = len(ops1) - 1
+    >>> y1 = len(ops1[0]) - 1
+    >>> assemble_transformation(ops1, x1, y1)
+    []
+    """
     if i == 0 and j == 0:
         return []
     elif ops[i][j][0] in {"C", "R"}:
