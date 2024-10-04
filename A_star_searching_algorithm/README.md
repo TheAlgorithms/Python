@@ -255,8 +255,8 @@ if __name__ == "__main__":
 ***`output:`***
 ```bash
 The destination cell is found
-The Path is 
--> (8, 0) -> (7, 0) -> (6, 0) -> (5, 0) -> (4, 1) -> (3, 2) -> (2, 1) -> (1, 0) -> (0, 0) 
+The Path is
+-> (8, 0) -> (7, 0) -> (6, 0) -> (5, 0) -> (4, 1) -> (3, 2) -> (2, 1) -> (1, 0) -> (0, 0)
 ```
 
 - ***Time Complexity:*** O(E log V), where E is the number of edges and V is the number of vertices, due to the use of the priority queue.

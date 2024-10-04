@@ -7,16 +7,21 @@ from typing import List, Tuple
 
 
 class Cell:
+<<<<<<< HEAD
     def __init__(self)->None:
       # Parent cell's row index
+=======
+    def __init__(self):
+        # Parent cell's row index
+>>>>>>> 04d1c193f3be0847c2a2d643aff6107aa52146ff
         self.parent_i = 0
-    # Parent cell's column index
+        # Parent cell's column index
         self.parent_j = 0
- # Total cost of the cell (g + h)
-        self.f = float('inf')
-    # Cost from start to this cell
-        self.g = float('inf')
-    # Heuristic cost from this cell to destination
+        # Total cost of the cell (g + h)
+        self.f = float("inf")
+        # Cost from start to this cell
+        self.g = float("inf")
+        # Heuristic cost from this cell to destination
         self.h = 0
 
 
@@ -30,11 +35,13 @@ COL = 10
 def is_valid(row: int, col: int) -> bool:
     return (row >= 0) and (row < ROW) and (col >= 0) and (col < COL)
 
+
 # Check if a cell is unblocked
 
 
 def is_unblocked(grid: List[List[int]], row: int, col: int) -> bool:
     return grid[row][col] == 1
+
 
 # Check if a cell is the destination
 
@@ -42,11 +49,13 @@ def is_unblocked(grid: List[List[int]], row: int, col: int) -> bool:
 def is_destination(row: int, col: int, dest: Tuple[int, int]) -> bool:
     return row == dest[0] and col == dest[1]
 
+
 # Calculate the heuristic value of a cell (Euclidean distance to destination)
 
 
 def calculate_h_value(row: int, col: int, dest: Tuple[int, int]) -> float:
     return ((row - dest[0]) ** 2 + (col - dest[1]) ** 2) ** 0.5
+
 
 # Trace the path from source to destination
 
@@ -58,7 +67,10 @@ def trace_path(cell_details: List[List[Cell]], dest: Tuple[int, int]) -> None:
     col = dest[1]
 
     # Trace the path from destination to source using parent cells
-    while not (cell_details[row][col].parent_i == row and cell_details[row][col].parent_j == col):
+    while not (
+        cell_details[row][col].parent_i == row
+        and cell_details[row][col].parent_j == col
+    ):
         path.append((row, col))
         temp_row = cell_details[row][col].parent_i
         temp_col = cell_details[row][col].parent_j
@@ -75,6 +87,7 @@ def trace_path(cell_details: List[List[Cell]], dest: Tuple[int, int]) -> None:
         print("->", i, end=" ")
     print()
 
+
 # Implement the A* search algorithm
 
 
@@ -85,7 +98,9 @@ def a_star_search(grid: List[List[int]], src: Tuple[int, int], dest: Tuple[int, 
         return
 
     # Check if the source and destination are unblocked
-    if not is_unblocked(grid, src[0], src[1]) or not is_unblocked(grid, dest[0], dest[1]):
+    if not is_unblocked(grid, src[0], src[1]) or not is_unblocked(
+        grid, dest[0], dest[1]
+    ):
         print("Source or the destination is blocked")
         return
 
@@ -126,14 +141,26 @@ def a_star_search(grid: List[List[int]], src: Tuple[int, int], dest: Tuple[int, 
         closed_list[i][j] = True
 
         # For each direction, check the successors
-        directions = [(0, 1), (0, -1), (1, 0), (-1, 0),
-                      (1, 1), (1, -1), (-1, 1), (-1, -1)]
+        directions = [
+            (0, 1),
+            (0, -1),
+            (1, 0),
+            (-1, 0),
+            (1, 1),
+            (1, -1),
+            (-1, 1),
+            (-1, -1),
+        ]
         for dir in directions:
             new_i = i + dir[0]
             new_j = j + dir[1]
 
             # If the successor is valid, unblocked, and not visited
-            if is_valid(new_i, new_j) and is_unblocked(grid, new_i, new_j) and not closed_list[new_i][new_j]:
+            if (
+                is_valid(new_i, new_j)
+                and is_unblocked(grid, new_i, new_j)
+                and not closed_list[new_i][new_j]
+            ):
                 # If the successor is the destination
                 if is_destination(new_i, new_j, dest):
                     # Set the parent of the destination cell
@@ -151,7 +178,10 @@ def a_star_search(grid: List[List[int]], src: Tuple[int, int], dest: Tuple[int, 
                     f_new = g_new + h_new
 
                     # If the cell is not in the open list or the new f value is smaller
-                    if cell_details[new_i][new_j].f == float('inf') or cell_details[new_i][new_j].f > f_new:
+                    if (
+                        cell_details[new_i][new_j].f == float("inf")
+                        or cell_details[new_i][new_j].f > f_new
+                    ):
                         # Add the cell to the open list
                         heapq.heappush(open_list, (f_new, new_i, new_j))
                         # Update the cell details
@@ -164,6 +194,7 @@ def a_star_search(grid: List[List[int]], src: Tuple[int, int], dest: Tuple[int, 
     # If the destination is not found after visiting all cells
     if not found_dest:
         print("Failed to find the destination cell")
+
 
 # Driver Code
 
@@ -191,7 +222,7 @@ def main() -> None:
         [1, 0, 1, 1, 1, 1, 0, 1, 0, 0],
         [1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
         [1, 0, 1, 1, 1, 1, 0, 1, 1, 1],
-        [1, 1, 1, 0, 0, 0, 1, 0, 0, 1]
+        [1, 1, 1, 0, 0, 0, 1, 0, 0, 1],
     ]
 
     # Define the source and destination
