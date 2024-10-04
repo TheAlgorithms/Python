@@ -1,5 +1,6 @@
 from typing import List
 
+
 def calculate_rsi(prices: List[float], period: int = 14) -> List[float]:
     """
     Calculate the Relative Strength Index (RSI) for a given list of prices.
@@ -18,7 +19,7 @@ def calculate_rsi(prices: List[float], period: int = 14) -> List[float]:
         >>> rsi_values = calculate_rsi([44.0, 44.15, 44.09, 44.20, 44.30, 44.25, 44.40, 44.35, 44.50, 44.60, 44.55, 44.75, 44.80, 44.70, 44.85], 14)
         >>> print(rsi_values)  # doctest: +ELLIPSIS
         [78.91..., 80.99...]
-        
+
     Reference:
         https://en.wikipedia.org/wiki/Relative_strength_index
     """
@@ -71,6 +72,22 @@ def calculate_rsi(prices: List[float], period: int = 14) -> List[float]:
 
 
 if __name__ == "__main__":
-    prices = [44.0, 44.15, 44.09, 44.20, 44.30, 44.25, 44.40, 44.35, 44.50, 44.60, 44.55, 44.75, 44.80, 44.70, 44.85]
+    prices = [
+        44.0,
+        44.15,
+        44.09,
+        44.20,
+        44.30,
+        44.25,
+        44.40,
+        44.35,
+        44.50,
+        44.60,
+        44.55,
+        44.75,
+        44.80,
+        44.70,
+        44.85,
+    ]
     rsi = calculate_rsi(prices, 14)
     print("RSI Values:", rsi)
