@@ -1,5 +1,6 @@
 from typing import List
 
+
 def calculate_rsi(prices: List[float], period: int = 14) -> List[float]:
     """
     Calculate the Relative Strength Index (RSI) for a given list of prices.
@@ -33,7 +34,7 @@ def calculate_rsi(prices: List[float], period: int = 14) -> List[float]:
     # Calculate price changes between consecutive days
     for i in range(1, len(prices)):
         delta = prices[i] - prices[i - 1]
-        
+
         # Gain if delta is positive, otherwise it's a loss
         gains.append(max(0, delta))
         losses.append(max(0, -delta))
@@ -57,7 +58,7 @@ def calculate_rsi(prices: List[float], period: int = 14) -> List[float]:
     # Calculate the rest of the RSI values using smoothed moving averages
     for i in range(period, len(prices)):
         delta = prices[i] - prices[i - 1]
-        
+
         # Update gains and losses
         gain = max(0, delta)
         loss = max(0, -delta)
@@ -81,6 +82,22 @@ def calculate_rsi(prices: List[float], period: int = 14) -> List[float]:
 
 # Example usage:
 if __name__ == "__main__":
-    prices = [44.0, 44.15, 44.09, 44.20, 44.30, 44.25, 44.40, 44.35, 44.50, 44.60, 44.55, 44.75, 44.80, 44.70, 44.85]
+    prices = [
+        44.0,
+        44.15,
+        44.09,
+        44.20,
+        44.30,
+        44.25,
+        44.40,
+        44.35,
+        44.50,
+        44.60,
+        44.55,
+        44.75,
+        44.80,
+        44.70,
+        44.85,
+    ]
     rsi = calculate_rsi(prices, 14)
     print("RSI Values:", rsi)
