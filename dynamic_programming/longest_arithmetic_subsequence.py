@@ -67,7 +67,7 @@ if __name__ == "__main__":
 
     # test cases
     test_cases = [
-        ([3, 6, 9, 12], 4),  
+        ([3, 6, 9, 12], 4),
         ([3, 6, 9, 12, 15], 5),
         ([1, 7, 10, 13, 14, 19], 4),
         ([1, 2, 3, 4], 4),
@@ -81,4 +81,3 @@ if __name__ == "__main__":
         result = longest_arithmetic_subsequence(nums)
         print(f"Test case {nums}: Expected {expected_length}, Got {result}")
         assert result == expected_length, f"Test failed for input {nums}"
-
