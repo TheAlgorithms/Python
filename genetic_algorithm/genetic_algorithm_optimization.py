@@ -67,9 +67,7 @@ class GeneticAlgorithmOptimizer:
             return parent1, parent2  # No crossover needed for single-variable functions
 
         if self.rng.random() < self.crossover_prob:
-            point = self.rng.integers(
-                1, self.num_variables
-            )  # Updated to handle edge case
+            point = self.rng.integers(1, self.num_variables)
             child1 = np.concatenate((parent1[:point], parent2[point:]))
             child2 = np.concatenate((parent2[:point], parent1[point:]))
             return child1, child2
