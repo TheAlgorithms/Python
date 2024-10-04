@@ -24,8 +24,7 @@ def swap_case(input_string) -> str:
             list_representation[i] = chr(m4)
         else:
             pass
-    swapped_list = [ele for ele in list_representation]
-    swapped_list = "".join(swapped_list)
+    swapped_list = "".join(list_representation)
     return swapped_list
 
 
