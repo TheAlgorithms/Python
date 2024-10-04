@@ -1,10 +1,10 @@
 # LGBM Classifier Example using Bank Marketing Dataset
 import numpy as np
+from lightgbm import LGBMClassifier
 from matplotlib import pyplot as plt
 from sklearn.datasets import fetch_openml
 from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.model_selection import train_test_split
-from lightgbm import LGBMClassifier
 
 
 def data_handling(data: dict) -> tuple:
@@ -35,7 +35,7 @@ def main() -> None:
     Bank Marketing Dataset is used to demonstrate the algorithm.
     """
     # Load Bank Marketing dataset
-    bank_data = fetch_openml(name="bank-marketing", version=1, as_frame=False)
+    bank_data = fetch_openml(name='bank-marketing', version=1, as_frame=False)
     data, target = data_handling(bank_data)
     x_train, x_test, y_train, y_test = train_test_split(
         data, target, test_size=0.25, random_state=1
@@ -48,7 +48,7 @@ def main() -> None:
         lgbm_classifier_model,
         x_test,
         y_test,
-        display_labels=["No", "Yes"],
+        display_labels=['No', 'Yes'],
         cmap="Blues",
         normalize="true",
     )
