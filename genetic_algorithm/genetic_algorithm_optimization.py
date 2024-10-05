@@ -1,11 +1,12 @@
 from collections.abc import Callable  # Sorted import
 import numpy as np  # Sorted import
 
+
 class GeneticAlgorithmOptimizer:
     def __init__(
         self,
-        objective_function: Callable[..., float],  
-        variable_bounds: list[tuple[float, float]],  
+        objective_function: Callable[..., float],
+        variable_bounds: list[tuple[float, float]],
         population_size: int = 100,
         max_generations: int = 500,
         crossover_probability: float = 0.9,
@@ -58,8 +59,12 @@ class GeneticAlgorithmOptimizer:
 
         if self.rng.random() < self.crossover_probability:
             crossover_point = self.rng.integers(1, self.num_variables)
-            child1 = np.concatenate((parent1[:crossover_point], parent2[crossover_point:]))
-            child2 = np.concatenate((parent2[:crossover_point], parent1[crossover_point:]))
+            child1 = np.concatenate(
+                (parent1[:crossover_point], parent2[crossover_point:])
+            )
+            child2 = np.concatenate(
+                (parent2[:crossover_point], parent1[crossover_point:])
+            )
             return child1, child2
         return parent1, parent2
 
@@ -71,7 +76,7 @@ class GeneticAlgorithmOptimizer:
             mutation_index = self.rng.integers(0, self.num_variables)
             individual[mutation_index] = self.rng.uniform(
                 self.variable_bounds[mutation_index, 0],
-                self.variable_bounds[mutation_index, 1]
+                self.variable_bounds[mutation_index, 1],
             )
         return individual
 
@@ -105,11 +110,15 @@ class GeneticAlgorithmOptimizer:
                 best_fitness_value = fitness_values[min_fitness_index]
                 best_solution = population[min_fitness_index]
 
-            print(f"Generation {generation + 1}, Best Fitness Value: {best_fitness_value}")
+            print(
+                f"Generation {generation + 1}, Best Fitness Value: {best_fitness_value}"
+            )
 
         return best_solution, best_fitness_value
 
+
 if __name__ == "__main__":
+
     def objective_function(x: float, y: float) -> float:
         """
         Example objective function to minimize x^2 + y^2
@@ -119,8 +128,7 @@ if __name__ == "__main__":
     variable_bounds: list[tuple[float, float]] = [(-10, 10), (-10, 10)]
 
     optimizer = GeneticAlgorithmOptimizer(
-        objective_function=objective_function, 
-        variable_bounds=variable_bounds
+        objective_function=objective_function, variable_bounds=variable_bounds
     )
     best_solution, best_fitness_value = optimizer.optimize()
 
