@@ -13,7 +13,22 @@ class Pair:
     Structure to store both maximum and minimum elements
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
+        """
+        Initializes the Pair object with maximum and minimum elements
+
+        Args:
+            None
+
+        Returns:
+            None
+
+        >>> pair = Pair()
+        >>> pair.max
+        0
+        >>> pair.min
+        0
+        """
         self.max = 0
         self.min = 0
 
