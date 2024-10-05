@@ -1,18 +1,38 @@
 # Function to calculate determinant of a 2x2 matrix
-def determinant(a: float, b: float, c: float, d: float) -> float:
+def determinant(m00: float, m01: float, m10: float, m11: float) -> float:
     """
     Calculates the determinant of a 2x2 matrix:
 
-    | a  b |
-    | c  d |
+    | m00  m01 |
+    | m10  m11 |
 
     Args:
-        a, b, c, d (float): Elements of the 2x2 matrix.
+        m00 (float): Element in the first row, first column.
+        m01 (float): Element in the first row, second column.
+        m10 (float): Element in the second row, first column.
+        m11 (float): Element in the second row, second column.
 
     Returns:
         float: The determinant of the matrix.
+
+    Examples:
+        # Determinant of the identity matrix (should be 1)
+        >>> determinant(1, 0, 0, 1)
+        1
+
+        # Determinant of a matrix with two equal rows (should be 0)
+        >>> determinant(1, 2, 1, 2)
+        0
+
+        # Determinant of a matrix with a negative determinant
+        >>> determinant(1, 2, 3, 4)
+        -2
+
+        # Determinant of a matrix with larger numbers
+        >>> determinant(10, 20, 30, 40)
+        -200
     """
-    return a * d - c * b
+    return m00 * m11 - m10 * m01
 
 
 # Function to compute the line equation coefficients from two points
@@ -35,15 +55,15 @@ def line_coefficients(p1: list[float] | tuple, p2: list[float] | tuple) -> tuple
 
         # Horizontal line (y = constant)
         >>> line_coefficients([0, 1], [2, 1])
-        (0.0, -1, 1)
+        (0.0, -1, 1.0)
 
         # Diagonal line (positive slope)
         >>> line_coefficients([0, 0], [1, 1])
-        (1.0, -1, 0)
+        (1.0, -1, 0.0)
 
         # Diagonal line (negative slope)
         >>> line_coefficients([0, 1], [1, 0])
-        (-1.0, -1, 1)
+        (-1.0, -1, 1.0)
     """
 
     if p1[0] == p2[0]:  # Vertical line
@@ -70,11 +90,13 @@ def segment_intersection(
         v2 (List[float] | tuple): Second point of the first segment (x, y).
         v1_prime (List[float] | tuple): First point of the second segment (x, y).
         v2_prime (List[float] | tuple): Second point of the second segment (x, y).
-        as_segments (bool):  treat the inputs as line segments (True) or as infinite lines (False).
+        as_segments (bool):
+            treat the inputs as line segments (True)
+            or as infinite lines (False).
 
     Returns:
         List[float] | None:
-            Returns the intersection point [x, y] if the segments/lines intersect, otherwise None.
+            Returns the intersection point [x, y] if existent, otherwise None.
 
     References:
         Cramer's rule: https://en.wikipedia.org/wiki/Cramer%27s_rule
@@ -91,13 +113,13 @@ def segment_intersection(
         >>> segment_intersection([0, 0], [0, 1], [1, 0], [1, 1]) is None
         True
 
-        # Parallel infinite lines (ignoring segment boundaries)
-        >>> segment_intersection([0, 0], [1, 1], [2, 2], [3, 3], as_segments=False) is None
-        True
-
         # Intersecting infinite lines
         >>> segment_intersection([0, 0], [1, 1], [1, 0], [0, 1], as_segments=False)
         [0.5, 0.5]
+
+        # Parallel infinite lines (ignoring segment boundaries)
+        >>> segment_intersection([0, 0], [1, 1], [2, 2], [3, 3], False) is None
+        True
     """
 
     # Compute line coefficients for the two segments/lines
