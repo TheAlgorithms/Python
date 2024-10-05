@@ -1,6 +1,5 @@
 import numpy as np
 
-
 class GeneticAlgorithmOptimizer:
     def __init__(
         self,
@@ -25,6 +24,11 @@ class GeneticAlgorithmOptimizer:
     def initialize_population(self):
         """
         Initialize a population of random solutions within the bounds.
+
+        >>> optimizer = GeneticAlgorithmOptimizer(func=lambda x: x**2, bounds=[(-10, 10)])
+        >>> pop = optimizer.initialize_population()
+        >>> pop.shape == (optimizer.population_size, optimizer.num_variables)
+        True
         """
         return self.rng.uniform(
             low=self.bounds[:, 0],
@@ -36,12 +40,25 @@ class GeneticAlgorithmOptimizer:
         """
         Evaluate the fitness of an individual.
         In minimization problems, we aim to minimize the function value.
+
+        >>> optimizer = GeneticAlgorithmOptimizer(func=lambda x: x**2, bounds=[(-10, 10)])
+        >>> optimizer.fitness([2])
+        4
+        >>> optimizer.fitness([0])
+        0
         """
         return self.func(*individual)
 
     def select_parents(self, population, fitness_scores):
         """
         Select parents using tournament selection.
+
+        >>> optimizer = GeneticAlgorithmOptimizer(func=lambda x: x**2, bounds=[(-10, 10)])
+        >>> population = optimizer.initialize_population()
+        >>> fitness_scores = np.array([optimizer.fitness(ind) for ind in population])
+        >>> parent = optimizer.select_parents(population, fitness_scores)
+        >>> len(parent) == optimizer.num_variables
+        True
         """
         selected_indices = self.rng.choice(
             range(self.population_size), size=2, replace=False
@@ -50,8 +67,14 @@ class GeneticAlgorithmOptimizer:
 
     def crossover(self, parent1, parent2):
         """
-        Perform one-point crossover to create offspring.
-        Skip crossover for single-variable functions.
+        Perform one-point crossover to create offspring. Skip crossover for single-variable functions.
+
+        >>> optimizer = GeneticAlgorithmOptimizer(func=lambda x: x**2, bounds=[(-10, 10)])
+        >>> parent1 = [1]
+        >>> parent2 = [2]
+        >>> child1, child2 = optimizer.crossover(parent1, parent2)
+        >>> child1 == parent1 and child2 == parent2
+        True
         """
         if self.num_variables == 1:
             return parent1, parent2  # No crossover needed for single-variable functions
@@ -66,6 +89,12 @@ class GeneticAlgorithmOptimizer:
     def mutate(self, individual):
         """
         Apply mutation to an individual with a given mutation probability.
+
+        >>> optimizer = GeneticAlgorithmOptimizer(func=lambda x: x**2, bounds=[(-10, 10)])
+        >>> individual = [1]
+        >>> new_individual = optimizer.mutate(individual.copy())
+        >>> len(new_individual) == len(individual)
+        True
         """
         if self.rng.random() < self.mutation_prob:
             index = self.rng.integers(0, self.num_variables)
@@ -108,10 +137,19 @@ class GeneticAlgorithmOptimizer:
 
         return best_solution, best_fitness
 
-
 if __name__ == "__main__":
     # Define the function to optimize
     def func(x, y):
+        """
+        Example function to minimize x^2 + y^2
+
+        >>> func(0, 0)
+        0
+        >>> func(3, 4)
+        25
+        >>> func(-3, -4)
+        25
+        """
         return x**2 + y**2  # Example: Minimizing x^2 + y^2
 
     # Define the bounds for each variable
