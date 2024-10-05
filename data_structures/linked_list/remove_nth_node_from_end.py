@@ -21,7 +21,7 @@ def remove(head, n):
     return extra.next
 
 
-def print_list(head):
+def print_list(head: Node) -> None:
     curr = head
     while curr:
         print(curr.val, end=" ")
