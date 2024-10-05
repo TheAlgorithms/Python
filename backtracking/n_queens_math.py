@@ -81,6 +81,7 @@ from __future__ import annotations
 
 from typing import List
 
+
 def depth_first_search(
     possible_board: List[int],
     diagonal_right_collisions: List[int],
@@ -141,14 +142,19 @@ def depth_first_search(
         diagonal_right_collisions.append(row - col)
         diagonal_left_collisions.append(row + col)
 
-          # Recursive call with updated lists
-        depth_first_search(possible_board, diagonal_right_collisions, diagonal_left_collisions, boards, n)
+        # Recursive call with updated lists
+        depth_first_search(
+            possible_board,
+            diagonal_right_collisions,
+            diagonal_left_collisions,
+            boards,
+            n,
+        )
 
-          # Backtrack by removing the last added values after returning from recursion
+        # Backtrack by removing the last added values after returning from recursion
         possible_board.pop()
         diagonal_right_collisions.pop()
         diagonal_left_collisions.pop()
-
 
 
 def n_queens_solution(n: int) -> None:
