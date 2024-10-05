@@ -12,12 +12,9 @@ class TreeNode:
 
     Attributes:
     -----------
-    value : int
-        The value stored at the node.
-    left : TreeNode
-        Pointer to the left child node (default is None).
-    right : TreeNode
-        Pointer to the right child node (default is None).
+    value : The value stored at the node.
+    left :  Pointer to the left child node (default is None).
+    right : Pointer to the right child node (default is None).
     """
 
     def __init__(self, value: int) -> None:
@@ -29,15 +26,6 @@ class TreeNode:
 class BinaryTree:
     """
     Class representing a binary tree.
-
-    Methods:
-    --------
-    insert(value: int) -> None:
-        Insert a value into the binary tree following binary search tree (BST) rules.
-
-    morris_preorder_traversal() -> List[int]:
-        Perform preorder traversal and return list of node values.
-
 
     >>> bt = BinaryTree()
     >>> bt.insert(9)
@@ -63,8 +51,7 @@ class BinaryTree:
 
         Parameters:
         -----------
-        value : int
-            The value to be inserted into the binary tree.
+        value : The value to be inserted into the binary tree.
         """
         if self.root is None:
             self.root = TreeNode(value)
@@ -77,10 +64,8 @@ class BinaryTree:
 
         Parameters:
         -----------
-        node : TreeNode
-            The current node in the binary tree.
-        value : int
-            The value to be inserted.
+        node : The current node in the binary tree.
+        value : The value to be inserted.
         """
         if value < node.value:
             if node.left is None:
@@ -98,13 +83,11 @@ class BinaryTree:
 
         Parameters:
         -----------
-        node : TreeNode
-            A node in the binary tree.
+        node : A node in the binary tree.
 
         Returns:
         --------
-        TreeNode:
-            The predecessor of the node passed in the parameter
+        The predecessor of the node passed in the parameter
         """
         temp_node = node.left
         while temp_node and temp_node.right and temp_node.right != node:
@@ -137,8 +120,7 @@ class BinaryTree:
 
         Returns:
         --------
-        List[int]:
-            A list of integers representing the preorder traversal.
+        A list of integers representing the preorder traversal.
 
 
 
