@@ -18,7 +18,7 @@ def determinant(a: float, b: float, c: float, d: float) -> float:
 # Function to compute the line equation coefficients from two points
 def line_coefficients(p1: list[float] | tuple, p2: list[float] | tuple) -> tuple:
     """
-    Computes the coefficients A, B, C of the line equation Ax + By + C = 0
+    Computes the coefficients A, B, C of the line equation Ax + By + C = 0 
     from two points.
 
     Args:
@@ -27,7 +27,25 @@ def line_coefficients(p1: list[float] | tuple, p2: list[float] | tuple) -> tuple
 
     Returns:
         tuple: Coefficients (A, B, C) of the line equation.
+    
+    Examples:
+        # Vertical line (x = constant)
+        >>> line_coefficients([1, 0], [1, 2])
+        (1, 0, 1)
+
+        # Horizontal line (y = constant)
+        >>> line_coefficients([0, 1], [2, 1])
+        (0.0, -1, 1)
+
+        # Diagonal line (positive slope)
+        >>> line_coefficients([0, 0], [1, 1])
+        (1.0, -1, 0)
+
+        # Diagonal line (negative slope)
+        >>> line_coefficients([0, 1], [1, 0])
+        (-1.0, -1, 1)
     """
+    
     if p1[0] == p2[0]:  # Vertical line
         return 1, 0, p1[0]
     else:  # Non-vertical line
