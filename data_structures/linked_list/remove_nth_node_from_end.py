@@ -1,5 +1,4 @@
-class Node():
-
+class Node:
     def __init__(self, val):
         self.val = val
         self.next = None
@@ -21,11 +20,13 @@ def remove(head, n):
 
     return extra.next
 
+
 def print_list(head):
     curr = head
     while curr:
         print(curr.val, end=" ")
         curr = curr.next
+
 
 head = Node(1)
 head.next = Node(2)
