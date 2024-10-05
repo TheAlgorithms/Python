@@ -1,11 +1,12 @@
 import numpy as np
 from typing import Callable, List, Tuple
 
+
 class GeneticAlgorithmOptimizer:
     def __init__(
         self,
-        objective_function: Callable[..., float],  
-        variable_bounds: List[Tuple[float, float]],  
+        objective_function: Callable[..., float],
+        variable_bounds: List[Tuple[float, float]],
         population_size: int = 100,
         max_generations: int = 500,
         crossover_probability: float = 0.9,
@@ -27,7 +28,7 @@ class GeneticAlgorithmOptimizer:
         Generate a population of random solutions within the given variable bounds.
 
         >>> optimizer = GeneticAlgorithmOptimizer(
-        ...     objective_function=lambda x: x**2, 
+        ...     objective_function=lambda x: x**2,
         ...     variable_bounds=[(-10, 10)]
         ... )
         >>> population = optimizer.generate_initial_population()
@@ -45,7 +46,7 @@ class GeneticAlgorithmOptimizer:
         Evaluate the fitness of an individual by computing the value of the objective function.
 
         >>> optimizer = GeneticAlgorithmOptimizer(
-        ...     objective_function=lambda x: x**2, 
+        ...     objective_function=lambda x: x**2,
         ...     variable_bounds=[(-10, 10)]
         ... )
         >>> optimizer.evaluate_fitness([2])
@@ -62,7 +63,7 @@ class GeneticAlgorithmOptimizer:
         Select a parent using tournament selection based on fitness values.
 
         >>> optimizer = GeneticAlgorithmOptimizer(
-        ...     objective_function=lambda x: x**2, 
+        ...     objective_function=lambda x: x**2,
         ...     variable_bounds=[(-10, 10)]
         ... )
         >>> population = optimizer.generate_initial_population()
@@ -80,11 +81,11 @@ class GeneticAlgorithmOptimizer:
         self, parent1: np.ndarray, parent2: np.ndarray
     ) -> Tuple[np.ndarray, np.ndarray]:
         """
-        Perform one-point crossover between two parents to create offspring. 
+        Perform one-point crossover between two parents to create offspring.
         Skip crossover for single-variable functions.
 
         >>> optimizer = GeneticAlgorithmOptimizer(
-        ...     objective_function=lambda x: x**2, 
+        ...     objective_function=lambda x: x**2,
         ...     variable_bounds=[(-10, 10)]
         ... )
         >>> parent1 = [1]
@@ -98,8 +99,12 @@ class GeneticAlgorithmOptimizer:
 
         if self.rng.random() < self.crossover_probability:
             crossover_point = self.rng.integers(1, self.num_variables)
-            child1 = np.concatenate((parent1[:crossover_point], parent2[crossover_point:]))
-            child2 = np.concatenate((parent2[:crossover_point], parent1[crossover_point:]))
+            child1 = np.concatenate(
+                (parent1[:crossover_point], parent2[crossover_point:])
+            )
+            child2 = np.concatenate(
+                (parent2[:crossover_point], parent1[crossover_point:])
+            )
             return child1, child2
         return parent1, parent2
 
@@ -108,7 +113,7 @@ class GeneticAlgorithmOptimizer:
         Apply mutation to an individual based on the mutation probability.
 
         >>> optimizer = GeneticAlgorithmOptimizer(
-        ...     objective_function=lambda x: x**2, 
+        ...     objective_function=lambda x: x**2,
         ...     variable_bounds=[(-10, 10)]
         ... )
         >>> individual = [1]
@@ -119,8 +124,8 @@ class GeneticAlgorithmOptimizer:
         if self.rng.random() < self.mutation_probability:
             mutation_index = self.rng.integers(0, self.num_variables)
             individual[mutation_index] = self.rng.uniform(
-                self.variable_bounds[mutation_index, 0], 
-                self.variable_bounds[mutation_index, 1]
+                self.variable_bounds[mutation_index, 0],
+                self.variable_bounds[mutation_index, 1],
             )
         return individual
 
@@ -154,11 +159,15 @@ class GeneticAlgorithmOptimizer:
                 best_fitness_value = fitness_values[min_fitness_index]
                 best_solution = population[min_fitness_index]
 
-            print(f"Generation {generation + 1}, Best Fitness Value: {best_fitness_value}")
+            print(
+                f"Generation {generation + 1}, Best Fitness Value: {best_fitness_value}"
+            )
 
         return best_solution, best_fitness_value
 
+
 if __name__ == "__main__":
+
     def objective_function(x: float, y: float) -> float:
         """
         Example objective function to minimize x^2 + y^2
@@ -175,8 +184,7 @@ if __name__ == "__main__":
     variable_bounds: List[Tuple[float, float]] = [(-10, 10), (-10, 10)]
 
     optimizer = GeneticAlgorithmOptimizer(
-        objective_function=objective_function, 
-        variable_bounds=variable_bounds
+        objective_function=objective_function, variable_bounds=variable_bounds
     )
     best_solution, best_fitness_value = optimizer.optimize()
 
