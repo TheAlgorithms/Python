@@ -137,12 +137,12 @@ def depth_first_search(
 
         # If it is False we call dfs function again and we update the inputs
         # Add new values to the current lists
-         possible_board.append(col)
-         diagonal_right_collisions.append(row - col)
-         diagonal_left_collisions.append(row + col)
+        possible_board.append(col)
+        diagonal_right_collisions.append(row - col)
+        diagonal_left_collisions.append(row + col)
 
           # Recursive call with updated lists
-         depth_first_search(possible_board, diagonal_right_collisions, diagonal_left_collisions, boards, n)
+        depth_first_search(possible_board, diagonal_right_collisions, diagonal_left_collisions, boards, n)
 
           # Backtrack by removing the last added values after returning from recursion
         possible_board.pop()
