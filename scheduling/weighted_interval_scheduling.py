@@ -1,16 +1,20 @@
 # Implementation of Weighted Interval Scheduling algorithm
-# In this algorithm, we are given a list of jobs with start and end times, and each job has a specific weight.
+# In this algorithm, we are given a list of jobs with start and end times, 
+# and each job has a specific weight.
 # The goal is to find the maximum weight subset of non-overlapping jobs.
-# https://en.wikipedia.org/wiki/Interval_scheduling#:~:text=their%20finishing%20times.-,Weighted,-%5Bedit%5D
+# https://en.wikipedia.org/wiki/Interval_scheduling
 
 from __future__ import annotations
 
 
 def latest_non_conflict(jobs: list[tuple[int, int, int]], n: int) -> int:
     """
-    This function finds the latest job that does not conflict with the current job at index `n`.
-    The jobs are given as (start_time, end_time, weight), and the jobs should be sorted by end time.
-    It returns the index of the latest job that finishes before the current job starts.
+    This function finds the latest job that does not conflict with 
+    the current job at index `n`.
+    The jobs are given as (start_time, end_time, weight), and the 
+    jobs should be sorted by end time.
+    It returns the index of the latest job that finishes before the 
+    current job starts.
         Return: The index of the latest non-conflicting job.
     >>> latest_non_conflict([(1, 3, 50), (2, 5, 20), (4, 6, 30)], 2)
     0
@@ -25,9 +29,11 @@ def latest_non_conflict(jobs: list[tuple[int, int, int]], n: int) -> int:
 
 def find_max_weight(jobs: list[tuple[int, int, int]]) -> int:
     """
-    This function calculates the maximum weight of non-overlapping jobs using dynamic programming.
+    This function calculates the maximum weight of non-overlapping jobs 
+    using dynamic programming.
     Each job is represented by a tuple (start_time, end_time, weight).
-    The function builds a DP table where each entry `dp[i]` represents the maximum weight achievable
+    The function builds a DP table where each entry `dp[i]` represents 
+    the maximum weight achievable
     using jobs from index 0 to i.
         Return: The maximum achievable weight without overlapping jobs.
     >>> find_max_weight([(1, 3, 50), (2, 5, 20), (4, 6, 30)])
@@ -52,7 +58,8 @@ def find_max_weight(jobs: list[tuple[int, int, int]]) -> int:
         if latest_job != -1:
             include_weight += dp[latest_job]
 
-        # Exclude the current job, and take the maximum of including or excluding
+        # Exclude the current job, and take the maximum of including or 
+        # excluding
         dp[i] = max(include_weight, dp[i - 1])
 
     return dp[-1]  # The last entry contains the maximum weight
