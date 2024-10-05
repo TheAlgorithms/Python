@@ -53,7 +53,6 @@ def find_diagonal_order(mat: list[list[int]]) -> list[int]:
             row += 1
             col -= 1
 
-
     return result
 
 
