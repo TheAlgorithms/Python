@@ -22,6 +22,7 @@
   * [Rat In Maze](backtracking/rat_in_maze.py)
   * [Sudoku](backtracking/sudoku.py)
   * [Sum Of Subsets](backtracking/sum_of_subsets.py)
+  * [Word Break](backtracking/word_break.py)
   * [Word Ladder](backtracking/word_ladder.py)
   * [Word Search](backtracking/word_search.py)
 
@@ -1272,6 +1273,7 @@
   * [Barcode Validator](strings/barcode_validator.py)
   * [Bitap String Match](strings/bitap_string_match.py)
   * [Boyer Moore Search](strings/boyer_moore_search.py)
+  * [Bpe Tokenizer](strings/bpe_tokenizer.py)
   * [Camel Case To Snake Case](strings/camel_case_to_snake_case.py)
   * [Can String Be Rearranged As Palindrome](strings/can_string_be_rearranged_as_palindrome.py)
   * [Capitalize](strings/capitalize.py)
