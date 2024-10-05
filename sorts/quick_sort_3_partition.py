@@ -1,4 +1,27 @@
 def quick_sort_3partition(sorting: list, left: int, right: int) -> None:
+    """ "
+    Python implementation of quick sort algorithm with 3-way partition.
+    The idea of 3-way quick sort is based on "Dutch National Flag algorithm".
+
+    :param sorting: sort list
+    :param left: left endpoint of sorting
+    :param right: right endpoint of sorting
+    :return: None
+
+    Examples:
+    >>> array1 = [5, -1, -1, 5, 5, 24, 0]
+    >>> quick_sort_3partition(array1, 0, 6)
+    >>> array1
+    [-1, -1, 0, 5, 5, 5, 24]
+    >>> array2 = [9, 0, 2, 6]
+    >>> quick_sort_3partition(array2, 0, 3)
+    >>> array2
+    [0, 2, 6, 9]
+    >>> array3 = []
+    >>> quick_sort_3partition(array3, 0, 0)
+    >>> array3
+    []
+    """
     if right <= left:
         return
     a = i = left
