@@ -27,24 +27,26 @@ def swap_case(input_string: str) -> str:
     swapped_list = "".join(list_representation)
     return swapped_list
 
+
 def swap_case(input_string) -> None:
-    #This method will swap the cases of a given string
+    # This method will swap the cases of a given string
     # eg: input: s= "Hello" output: t="hELLO"
-    list_representation=list(input_string)
+    list_representation = list(input_string)
     for i in range(len(list_representation)):
-        if list_representation[i]>='A' and list_representation[i]<='Z':
-            m2=ord(list_representation[i])
-            m1=m2+32
-            list_representation[i]=chr(m1)
-        elif list_representation[i]>='a' and list_representation[i]<='z':
-            m3=ord(list_representation[i])
-            m4=m3-32
-            list_representation[i]=chr(m4)
+        if list_representation[i] >= "A" and list_representation[i] <= "Z":
+            m2 = ord(list_representation[i])
+            m1 = m2 + 32
+            list_representation[i] = chr(m1)
+        elif list_representation[i] >= "a" and list_representation[i] <= "z":
+            m3 = ord(list_representation[i])
+            m4 = m3 - 32
+            list_representation[i] = chr(m4)
         else:
             pass
-    swapped_list=[ele for ele in list_representation]
-    swapped_list="".join(swapped_list)
+    swapped_list = [ele for ele in list_representation]
+    swapped_list = "".join(swapped_list)
     return swapped_list
+
 
 if __name__ == "__main__":
     # sample test case
