@@ -1,6 +1,6 @@
 import string
 from math import log10
-
+# what is Log10 
 """
     tf-idf Wikipedia: https://en.wikipedia.org/wiki/Tf%E2%80%93idf
     tf-idf and other word frequency algorithms are often used
