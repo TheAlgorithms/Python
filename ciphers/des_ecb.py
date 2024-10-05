@@ -20,6 +20,7 @@ References:
 - Handbook of Applied Cryptography (Algorithm 7.82)
 - Handbook of Applied Cryptography (Algorithm 7.83)
 - Handbook of Applied Cryptography (Algorithm 9.29)
+- https://en.wikipedia.org/wiki/Data_Encryption_Standard
 """
 
 import random
@@ -129,7 +130,7 @@ PC2 = [14, 17, 11, 24, 1, 5,
 
 class Operations:
     @staticmethod
-    def string_to_bitset(string: str):
+    def string_to_bitset(string: str) -> list:
         """
         Converts a string into a list of binary digits (bitset).
 
@@ -150,9 +151,10 @@ class Operations:
         return list("".join(format(ord(char), "08b") for char in string))
 
     @staticmethod
-    def pad_right_to_multiple_of_n(bitset: list, n: int) -> list:
+    def pad_right_to_multiple_of_n(bitset: list, length: int) -> list:
         """
-        Pads the bitset with zeros on the right until its length is a multiple of n.
+        Pads the bitset with zeros on the right until
+        its length is a multiple of `length`.
 
         Args:
             bitset (list): A list of binary digits (as strings) to be padded.
@@ -168,14 +170,15 @@ class Operations:
             >>> len(Operations.pad_right_to_multiple_of_n(['0'] * 63, 64)) % 64
             0
         """
-        if len(bitset) % n != 0:
-            bitset += list("0" * (n - len(bitset) % n))
+        if len(bitset) % length != 0:
+            bitset += list("0" * (length - len(bitset) % length))
         return bitset
 
     @staticmethod
-    def pad_left_to_multiple_of_n(bitset: list, n: int) -> list:
+    def pad_left_to_multiple_of_n(bitset: list, length: int) -> list:
         """
-        Pads the bitset with zeros on the left until its length is a multiple of n.
+        Pads the bitset with zeros on the left until
+        its length is a multiple of length.
 
         Args:
             bitset (list): A list of binary digits (as strings) to be padded.
@@ -191,8 +194,8 @@ class Operations:
             >>> len(Operations.pad_left_to_multiple_of_n(['0'] * 63, 64)) % 64
             0
         """
-        if len(bitset) % n != 0:
-            bitset = list("0" * (n - len(bitset) % n)) + bitset
+        if len(bitset) % length != 0:
+            bitset = list("0" * (length - len(bitset) % length)) + bitset
         return bitset
 
     @staticmethod
@@ -294,9 +297,9 @@ class Operations:
         return [str(int(bitset1[i]) ^ int(bitset2[i])) for i in range(len(bitset1))]
 
     @staticmethod
-    def shift_left(bitset: list, n: int) -> list:
+    def shift_left(bitset: list, position: int) -> list:
         """
-        Performs a rotated left shift on a bitset by `n` positions.
+        Performs a rotated left shift on a bitset by `position` positions.
 
         Args:
             bitset (list): The bitset to be shifted.
@@ -313,8 +316,8 @@ class Operations:
             >>> Operations.shift_left(['0', '1', '1', '1'], 7)
             ['1', '0', '1', '1']
         """
-        n = n % len(bitset)
-        return bitset[n:] + bitset[:n]
+        position = position % len(bitset)
+        return bitset[position:] + bitset[:position]
 
     @staticmethod
     def permute(bitset: list, permutation: list) -> list:
