@@ -45,14 +45,14 @@ def find_diagonal_order(mat: list[list[int]]) -> list[int]:
             else:  # move up diagonally
                 row -= 1
                 col += 1
-        else:  # moving down
-            if row == m - 1:  # hit the bottom boundary
-                col += 1
-            elif col == 0:  # hit the left boundary
-                row += 1
-            else:  # move down diagonally
-                row += 1
-                col -= 1
+        elif row == m - 1:  # hit the bottom boundary
+            col += 1
+        elif col == 0:  # hit the left boundary
+            row += 1
+        elif col > 0 and row < m - 1:  # move down diagonally
+            row += 1
+            col -= 1
+
 
     return result
 
