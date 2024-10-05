@@ -6,9 +6,20 @@ expect = [-5, 0, 5, 5.1, 11, 13, 21, -1, 4, -1, -10, -5, -1, 0, -1]
 
 def next_greatest_element_slow(arr: list[float]) -> list[float]:
     """
-    Get the Next Greatest Element (NGE) for all elements in a list.
-    Maximum element present after the current one which is also greater than the
-    current one.
+    Get the Next Greatest Element (NGE) for each element in the array
+    by checking all subsequent elements to find the next greater one.
+
+    This is a brute-force implementation, and it has a time complexity
+    of O(n^2), where n is the size of the array.
+
+    Args:
+        arr: List of numbers for which the NGE is calculated.
+
+    Returns:
+        List containing the next greatest elements. If no
+        greater element is found, -1 is placed in the result.
+
+    Example:
     >>> next_greatest_element_slow(arr) == expect
     True
     """
@@ -28,9 +39,21 @@ def next_greatest_element_slow(arr: list[float]) -> list[float]:
 
 def next_greatest_element_fast(arr: list[float]) -> list[float]:
     """
-    Like next_greatest_element_slow() but changes the loops to use
-    enumerate() instead of range(len()) for the outer loop and
-    for in a slice of arr for the inner loop.
+    Find the Next Greatest Element (NGE) for each element in the array
+    using a more readable approach. This implementation utilizes
+    enumerate() for the outer loop and slicing for the inner loop.
+
+    While this improves readability over next_greatest_element_slow(),
+    it still has a time complexity of O(n^2).
+
+    Args:
+        arr: List of numbers for which the NGE is calculated.
+
+    Returns:
+        List containing the next greatest elements. If no
+        greater element is found, -1 is placed in the result.
+
+    Example:
     >>> next_greatest_element_fast(arr) == expect
     True
     """
@@ -47,14 +70,23 @@ def next_greatest_element_fast(arr: list[float]) -> list[float]:
 
 def next_greatest_element(arr: list[float]) -> list[float]:
     """
-    Get the Next Greatest Element (NGE) for all elements in a list.
-    Maximum element present after the current one which is also greater than the
-    current one.
+    Efficient solution to find the Next Greatest Element (NGE) for all elements
+    using a stack. The time complexity is reduced to O(n), making it suitable
+    for larger arrays.
 
-    A naive way to solve this is to take two loops and check for the next bigger
-    number but that will make the time complexity as O(n^2). The better way to solve
-    this would be to use a stack to keep track of maximum number giving a linear time
-    solution.
+    The stack keeps track of elements for which the next greater element hasn't
+    been found yet. By iterating through the array in reverse (from the last
+    element to the first), the stack is used to efficiently determine the next
+    greatest element for each element.
+
+    Args:
+        arr: List of numbers for which the NGE is calculated.
+
+    Returns:
+        List containing the next greatest elements. If no
+        greater element is found, -1 is placed in the result.
+
+    Example:
     >>> next_greatest_element(arr) == expect
     True
     """
