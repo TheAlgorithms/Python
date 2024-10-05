@@ -1,38 +1,36 @@
-"given a set of items, each with a weight and a value,
-"determine how to best fill a knapsack of capacity C such that the total value of the items in the knapsack is maximised."
+def fractional_knapsack(capacity, values, weights):
 
-class Item:
-    def __init__(self, value, weight):
-        self.value = value
-        self.weight = weight
-        self.cost_per_weight = value / weight  # Value per unit weight
-
-def fractional_knapsack(capacity, items):
-    # Sort items by cost per weight in descending order
-    items.sort(key=lambda item: item.cost_per_weight, reverse=True)
+    """
+    >>> capacity = 50
+    >>> values = [60, 100, 120]
+    >>> weight = [10, 20, 30]
+    >>> fractional_knapsack(capacity, values, weight)
+    240.0
+    """    
+    # Calculate value-to-weight ratio for each item
     
-    total_value = 0.0
-    for item in items:
-        if capacity == 0:  # No more capacity in the knapsack
+    items = [(values[i] / weights[i], values[i], weights[i]) for i in range(len(values))]
+    
+    # Sort items by their value-to-weight ratio in descending order
+    items.sort(key=lambda x: x[0], reverse=True)
+    
+    total_value = 0  # Total value of items taken
+    
+    for ratio, value, weight in items:
+        if capacity == 0:  # If the knapsack is full, break the loop
             break
-        if item.weight <= capacity:
+        
+        if weight <= capacity:
             # Take the whole item
-            capacity -= item.weight
-            total_value += item.value
+            total_value += value
+            capacity -= weight
         else:
-            # Take the fraction of the item
-            total_value += item.cost_per_weight * capacity
+            total_value += ratio * capacity  # Value of the fraction taken
             capacity = 0  # The knapsack is now full
     
     return total_value
 
+
 if __name__ == "__main__":
-    items = [
-        Item(<value>,<weight>),  #Value and weight inputs can be changed
-        Item(<value>,<weight>)
-    ]
-    
-    c = int(input("Capacity: "))
-    capacity = c
-    max_value = fractional_knapsack(capacity, items)
-    print(f"Maximum value : {max_value}")
+    import doctest
+    doctest.testmod()
