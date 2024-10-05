@@ -1,6 +1,7 @@
 import numpy as np
 from typing import Callable, List, Tuple
 
+
 class GeneticAlgorithmOptimizer:
     def __init__(
         self,
@@ -136,6 +137,7 @@ class GeneticAlgorithmOptimizer:
             print(f"Generation {generation + 1}, Best Fitness Value: {best_fitness_value}")
 
         return best_solution, best_fitness_value
+
 
 if __name__ == "__main__":
     # Define the function to optimize
