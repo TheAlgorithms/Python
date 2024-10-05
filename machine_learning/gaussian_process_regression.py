@@ -16,7 +16,7 @@ class GaussianProcessRegressor:
         self.y_train = None
         self.params = None
 
-    def rbf_kernel(self, X1, X2, l=1.0, sigma_f=1.0):
+    def rad_basf_kernel(self, X1, X2, l=1.0, sigma_f=1.0):
         """
         Radial Basis Function (RBF) kernel, also known as squared exponential kernel.
         
@@ -45,12 +45,12 @@ class GaussianProcessRegressor:
         float: Negative log likelihood
         """
         l, sigma_f = params
-        K = self.rbf_kernel(self.X_train, self.X_train, l, sigma_f) + self.noise**2 * np.eye(len(self.X_train))
+        K = self.rad_basf_kernel(self.X_train, self.X_train, l, sigma_f) + self.noise**2 * np.eye(len(self.X_train))
         return 0.5 * np.log(np.linalg.det(K)) + \
                0.5 * self.y_train.T.dot(np.linalg.inv(K).dot(self.y_train)) + \
                0.5 * len(self.X_train) * np.log(2*np.pi)
 
-    def fit(self, X, y):
+    def fit_function(self, X, y):
         """
         Fit the GPR model to the training data.
         
@@ -67,7 +67,7 @@ class GaussianProcessRegressor:
                        method='L-BFGS-B')
         self.params = res.x
 
-    def predict(self, X_test, return_std=False):
+    def predict_func(self, X_test, return_std=False):
         """
         Make predictions on test data.
         
@@ -81,9 +81,9 @@ class GaussianProcessRegressor:
         l, sigma_f = self.params
         
         # Compute relevant kernel matrices
-        K = self.rbf_kernel(self.X_train, self.X_train, l, sigma_f) + self.noise**2 * np.eye(len(self.X_train))
-        K_s = self.rbf_kernel(self.X_train, X_test, l, sigma_f)
-        K_ss = self.rbf_kernel(X_test, X_test, l, sigma_f) + 1e-8 * np.eye(len(X_test))
+        K = self.rad_basf_kernel(self.X_train, self.X_train, l, sigma_f) + self.noise**2 * np.eye(len(self.X_train))
+        K_s = self.rad_basf_kernel(self.X_train, X_test, l, sigma_f)
+        K_ss = self.rad_basf_kernel(X_test, X_test, l, sigma_f) + 1e-8 * np.eye(len(X_test))
 
         K_inv = np.linalg.inv(K)
         
@@ -103,14 +103,14 @@ if __name__ == "__main__":
 
     # Create and fit the model
     gpr = GaussianProcessRegressor()
-    gpr.fit(X, y)
+    gpr.fit_func(X, y)
 
     # Make predictions
     X_test = np.linspace(0, 10, 100).reshape(-1, 1)
-    mu_s, std_s = gpr.predict(X_test, return_std=True)
+    mu_s, std_s = gpr.predict_func(X_test, return_std=True)
 
-    print("Predicted mean:", mu_s)
-    print("Predicted standard deviation:", std_s)
+    print("Predicted mean output:", mu_s)
+    print("Predicted standard deviation output:", std_s)
 
     # Note: To visualize results, you would typically use matplotlib here
     # to plot the original data, predictions, and confidence intervals
