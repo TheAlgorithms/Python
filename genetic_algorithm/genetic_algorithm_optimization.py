@@ -1,136 +1,125 @@
-from collections.abc import Callable  # Sorted import
-import numpy as np  # Sorted import
+import numpy as np
 
 
 class GeneticAlgorithmOptimizer:
     def __init__(
         self,
-        objective_function: Callable[..., float],
-        variable_bounds: list[tuple[float, float]],
-        population_size: int = 100,
-        max_generations: int = 500,
-        crossover_probability: float = 0.9,
-        mutation_probability: float = 0.01,
-    ) -> None:
-        self.objective_function = objective_function
-        self.variable_bounds = np.array(variable_bounds)
+        func,
+        bounds,
+        population_size=100,
+        generations=500,
+        crossover_prob=0.9,
+        mutation_prob=0.01,
+    ):
+        self.func = func
+        self.bounds = np.array(bounds)
         self.population_size = population_size
-        self.max_generations = max_generations
-        self.crossover_probability = crossover_probability
-        self.mutation_probability = mutation_probability
-        self.num_variables = len(variable_bounds)
-        self.rng = np.random.default_rng()  # Initialize random generator
+        self.generations = generations
+        self.crossover_prob = crossover_prob
+        self.mutation_prob = mutation_prob
+        self.num_variables = len(bounds)
 
-    def generate_initial_population(self) -> np.ndarray:
+        # Initialize the random number generator
+        self.rng = np.random.default_rng()
+
+    def initialize_population(self):
         """
-        Generate a population of random solutions within the given variable bounds.
+        Initialize a population of random solutions within the bounds.
         """
         return self.rng.uniform(
-            low=self.variable_bounds[:, 0],
-            high=self.variable_bounds[:, 1],
+            low=self.bounds[:, 0],
+            high=self.bounds[:, 1],
             size=(self.population_size, self.num_variables),
         )
 
-    def evaluate_fitness(self, individual: list[float]) -> float:
+    def fitness(self, individual):
         """
-        Evaluate the fitness of an individual by computing the value of the objective function.
+        Evaluate the fitness of an individual.
+        In minimization problems, we aim to minimize the function value.
         """
-        return self.objective_function(*individual)
+        return self.func(*individual)
 
-    def select_parent(
-        self, population: np.ndarray, fitness_values: np.ndarray
-    ) -> np.ndarray:
+    def select_parents(self, population, fitness_scores):
         """
-        Select a parent using tournament selection based on fitness values.
+        Select parents using tournament selection.
         """
         selected_indices = self.rng.choice(
             range(self.population_size), size=2, replace=False
         )
-        return population[selected_indices[np.argmin(fitness_values[selected_indices])]]
+        return population[selected_indices[np.argmin(fitness_scores[selected_indices])]]
 
-    def perform_crossover(
-        self, parent1: np.ndarray, parent2: np.ndarray
-    ) -> tuple[np.ndarray, np.ndarray]:
+    def crossover(self, parent1, parent2):
         """
-        Perform one-point crossover between two parents to create offspring.
+        Perform one-point crossover to create offspring.
+        Skip crossover for single-variable functions.
         """
         if self.num_variables == 1:
-            return parent1, parent2
+            return parent1, parent2  # No crossover needed for single-variable functions
 
-        if self.rng.random() < self.crossover_probability:
-            crossover_point = self.rng.integers(1, self.num_variables)
-            child1 = np.concatenate(
-                (parent1[:crossover_point], parent2[crossover_point:])
-            )
-            child2 = np.concatenate(
-                (parent2[:crossover_point], parent1[crossover_point:])
-            )
+        if self.rng.random() < self.crossover_prob:
+            point = self.rng.integers(1, self.num_variables)
+            child1 = np.concatenate((parent1[:point], parent2[point:]))
+            child2 = np.concatenate((parent2[:point], parent1[point:]))
             return child1, child2
         return parent1, parent2
 
-    def apply_mutation(self, individual: np.ndarray) -> np.ndarray:
+    def mutate(self, individual):
         """
-        Apply mutation to an individual based on the mutation probability.
+        Apply mutation to an individual with a given mutation probability.
         """
-        if self.rng.random() < self.mutation_probability:
-            mutation_index = self.rng.integers(0, self.num_variables)
-            individual[mutation_index] = self.rng.uniform(
-                self.variable_bounds[mutation_index, 0],
-                self.variable_bounds[mutation_index, 1],
+        if self.rng.random() < self.mutation_prob:
+            index = self.rng.integers(0, self.num_variables)
+            individual[index] = self.rng.uniform(
+                self.bounds[index, 0], self.bounds[index, 1]
             )
         return individual
 
-    def optimize(self) -> tuple[np.ndarray, float]:
+    def evolve(self):
         """
-        Execute the genetic algorithm over a number of generations to find the optimal solution.
+        Run the genetic algorithm for a number of generations.
         """
-        population = self.generate_initial_population()
+        population = self.initialize_population()
         best_solution = None
-        best_fitness_value = float("inf")
+        best_fitness = float("inf")
 
-        for generation in range(self.max_generations):
-            fitness_values = np.array(
-                [self.evaluate_fitness(individual) for individual in population]
+        for gen in range(self.generations):
+            fitness_scores = np.array(
+                [self.fitness(individual) for individual in population]
             )
 
             new_population = []
             for _ in range(self.population_size // 2):
-                parent1 = self.select_parent(population, fitness_values)
-                parent2 = self.select_parent(population, fitness_values)
-                child1, child2 = self.perform_crossover(parent1, parent2)
-                child1 = self.apply_mutation(child1)
-                child2 = self.apply_mutation(child2)
+                parent1 = self.select_parents(population, fitness_scores)
+                parent2 = self.select_parents(population, fitness_scores)
+                child1, child2 = self.crossover(parent1, parent2)
+                child1 = self.mutate(child1)
+                child2 = self.mutate(child2)
                 new_population.extend([child1, child2])
 
             population = np.array(new_population)
 
             # Track the best solution
-            min_fitness_index = np.argmin(fitness_values)
-            if fitness_values[min_fitness_index] < best_fitness_value:
-                best_fitness_value = fitness_values[min_fitness_index]
+            min_fitness_index = np.argmin(fitness_scores)
+            if fitness_scores[min_fitness_index] < best_fitness:
+                best_fitness = fitness_scores[min_fitness_index]
                 best_solution = population[min_fitness_index]
 
-            print(
-                f"Generation {generation + 1}, Best Fitness Value: {best_fitness_value}"
-            )
+            print(f"Generation {gen + 1}, Best Fitness: {best_fitness}")
 
-        return best_solution, best_fitness_value
+        return best_solution, best_fitness
 
 
 if __name__ == "__main__":
+    # Define the function to optimize
+    def func(x, y):
+        return x**2 + y**2  # Example: Minimizing x^2 + y^2
 
-    def objective_function(x: float, y: float) -> float:
-        """
-        Example objective function to minimize x^2 + y^2
-        """
-        return x**2 + y**2
+    # Define the bounds for each variable
+    bounds = [(-10, 10), (-10, 10)]
 
-    variable_bounds: list[tuple[float, float]] = [(-10, 10), (-10, 10)]
-
-    optimizer = GeneticAlgorithmOptimizer(
-        objective_function=objective_function, variable_bounds=variable_bounds
-    )
-    best_solution, best_fitness_value = optimizer.optimize()
+    # Initialize and run the optimizer
+    optimizer = GeneticAlgorithmOptimizer(func=func, bounds=bounds)
+    best_solution, best_fitness = optimizer.evolve()
 
     print("Best Solution:", best_solution)
-    print("Best Fitness Value:", best_fitness_value)
+    print("Best Fitness:", best_fitness)
