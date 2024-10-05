@@ -1,8 +1,8 @@
 """
-Problem Statement: Given a binary perform an inorder traversal using Morris Inorder
-traversal algorithm. (Iterative version of Inorder traversal of tree)
+Problem Statement: Given a binary perform an postorder traversal using Morris Postorder
+traversal algorithm. (Iterative version of Postorder traversal of tree)
 
-https://www.geeksforgeeks.org/inorder-tree-traversal-without-recursion-and-without-stack/
+https://www.geeksforgeeks.org/morris-traversal-for-postorder/
 """
 
 
@@ -35,8 +35,8 @@ class BinaryTree:
     insert(value: int) -> None:
         Insert a value into the binary tree following binary search tree (BST) rules.
 
-    morris_inorder_traversal() -> List[int]:
-        Perform inorder traversal and return list of node values.
+    morris_postorder_traversal() -> List[int]:
+        Perform postorder traversal and return list of node values.
 
 
     >>> bt = BinaryTree()
@@ -49,8 +49,8 @@ class BinaryTree:
     >>> bt.insert(2)
     >>> bt.insert(5)
     >>> bt.insert(4)
-    >>> bt.morris_inorder_traversal()
-    [2, 3, 4, 5, 6, 7, 9, 10, 12]
+    >>> bt.morris_postorder_traversal()
+    [2, 4, 5, 3, 7, 6, 12, 10, 9]
 
     """
 
@@ -92,9 +92,9 @@ class BinaryTree:
         else:
             self._insert_recursive(node.right, value)
 
-    def _predecessor(self, node: TreeNode) -> TreeNode:
+    def _successor(self, node: TreeNode) -> TreeNode:
         """
-        Helper Function to return predecessor of the given node in a binary tree
+        Helper Function to return successor of the given node in a binary tree
 
         Parameters:
         -----------
@@ -104,62 +104,64 @@ class BinaryTree:
         Returns:
         --------
         TreeNode:
-            The predecessor of the node passed in the parameter
+            The successor of the node passed in the parameter
         """
-        temp_node = node.left
-        while temp_node and temp_node.right and temp_node.right != node:
-            temp_node = temp_node.right
-        assert temp_node is not None, "Predecessor should not be None"
+        temp_node = node.right
+        while temp_node and temp_node.left and temp_node.left != node:
+            temp_node = temp_node.left
+        assert temp_node is not None, "Successor should not be None"
         return temp_node
 
-    def morris_inorder_traversal(self) -> list[int]:
+    def morris_postorder_traversal(self) -> list[int]:
         """
-        Function for inorder traversal using morris inorder traversal.
+        Function for postorder traversal using morris postorder traversal.
 
         Algorithm :
         ------------
         First set current node as root node.
 
         while current node is not empty
-            If the current node has no left child.
-                print the current node.
-                point the current node to its right child
+            If the current node has no right child.
+                push the current node to temp.
+                point the current node to its left child
 
             else.
-                find predecssor node of the current node.
-                if predecessor has no right child,
-                    make the current node as the right child of the predecessor node.
-                    point current node to its left child.
+                find successor node of the current node.
+                if successor left child points to current node,
+                    remove the link of the left child of successor node.
+                    point the current node to its left child.
                 else,
-                    remove the link of the right child of predecessor node.
-                    print the current node
-                    point the current node to its right child.
+                    push the current node to temp.
+                    make the current node as the left child of the successor node.
+                    point current node to its right child.
+
+        Reverse the temp array to get postorder traversaol.
 
         Returns:
         --------
         List[int]:
-            A list of integers representing the inorder traversal.
+            A list of integers representing the postorder traversal.
 
 
 
         """
-        inorder_traversal = []
+        postorder_traversal = []
         current_node = self.root
 
         while current_node:
-            if current_node.left is None:
-                inorder_traversal.append(current_node.value)
-                current_node = current_node.right
+            if current_node.right is None:
+                postorder_traversal.append(current_node.value)
+                current_node = current_node.left
             else:
-                predecessor_node = self._predecessor(current_node)
-                if predecessor_node.right is None:
-                    predecessor_node.right = current_node
+                successor_node = self._successor(current_node)
+                if successor_node.left == current_node:
+                    successor_node.left = current_node
                     current_node = current_node.left
                 else:
-                    predecessor_node.right = None
-                    inorder_traversal.append(current_node.value)
+                    postorder_traversal.append(current_node.value)
+                    successor_node.left = current_node
                     current_node = current_node.right
-        return inorder_traversal
+        return postorder_traversal[::-1]
 
 
 if __name__ == "__main__":
