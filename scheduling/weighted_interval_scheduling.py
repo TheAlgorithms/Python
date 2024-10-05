@@ -44,7 +44,7 @@ def find_max_weight(jobs: list[tuple[int, int, int]]) -> int:
     200
     """
     # Sort jobs based on their end times
-    jobs.sort(key=lambda ele : ele[1])
+    jobs.sort(key=lambda ele: ele[1])
 
     # Initialize dp array to store the maximum weight up to each job
     length = len(jobs)
