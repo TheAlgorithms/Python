@@ -8,7 +8,7 @@ def stock_price(symbol: str = "AAPL") -> str:
         url, headers={"USER-AGENT": "Mozilla/5.0"}, timeout=10
     ).text
     soup = BeautifulSoup(yahoo_finance_source, "html.parser")
-    specific_fin_streamer_tag = soup.find("fin-streamer", {"data-test": "qsp-price"})
+    specific_fin_streamer_tag = soup.find("fin-streamer", {"data-testid": "qsp-price"})
 
     if specific_fin_streamer_tag:
         text = specific_fin_streamer_tag.get_text()
