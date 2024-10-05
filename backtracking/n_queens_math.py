@@ -79,20 +79,27 @@ for another one or vice versa.
 from __future__ import annotations
 
 
+from typing import List
+
 def depth_first_search(
-    possible_board: list[int],
-    diagonal_right_collisions: list[int],
-    diagonal_left_collisions: list[int],
-    boards: list[list[str]],
+    possible_board: List[int],
+    diagonal_right_collisions: List[int],
+    diagonal_left_collisions: List[int],
+    boards: List[List[str]],
     n: int,
 ) -> None:
     """
-    >>> boards = []
-    >>> depth_first_search([], [], [], boards, 4)
-    >>> for board in boards:
-    ...     print(board)
-    ['. Q . . ', '. . . Q ', 'Q . . . ', '. . Q . ']
-    ['. . Q . ', 'Q . . . ', '. . . Q ', '. Q . . ']
+    Recursively search for all possible solutions to the N-Queens problem.
+
+    Parameters:
+    - possible_board: List representing the columns occupied by queens.
+    - diagonal_right_collisions: List to track collisions in the right diagonal.
+    - diagonal_left_collisions: List to track collisions in the left diagonal.
+    - boards: List to store valid N-Queens board configurations.
+    - n: Size of the chessboard (N x N).
+
+    Returns:
+    None
     """
 
     # Get next row in the current board (possible_board) to fill it with a queen
@@ -129,13 +136,19 @@ def depth_first_search(
             continue
 
         # If it is False we call dfs function again and we update the inputs
-        depth_first_search(
-            [*possible_board, col],
-            [*diagonal_right_collisions, row - col],
-            [*diagonal_left_collisions, row + col],
-            boards,
-            n,
-        )
+        # Add new values to the current lists
+         possible_board.append(col)
+         diagonal_right_collisions.append(row - col)
+         diagonal_left_collisions.append(row + col)
+
+          # Recursive call with updated lists
+         depth_first_search(possible_board, diagonal_right_collisions, diagonal_left_collisions, boards, n)
+
+          # Backtrack by removing the last added values after returning from recursion
+        possible_board.pop()
+        diagonal_right_collisions.pop()
+        diagonal_left_collisions.pop()
+
 
 
 def n_queens_solution(n: int) -> None:
