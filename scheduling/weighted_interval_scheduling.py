@@ -7,10 +7,10 @@
 from __future__ import annotations
 
 
-def latest_non_conflict(jobs: list[tuple[int, int, int]], n: int) -> int:
+def latest_non_conflict(jobs: list[tuple[int, int, int]], indx: int) -> int:
     """
     This function finds the latest job that does not conflict with 
-    the current job at index `n`.
+    the current job at index `indx`.
     The jobs are given as (start_time, end_time, weight), and the 
     jobs should be sorted by end time.
     It returns the index of the latest job that finishes before the 
@@ -21,8 +21,8 @@ def latest_non_conflict(jobs: list[tuple[int, int, int]], n: int) -> int:
     >>> latest_non_conflict([(1, 3, 50), (3, 4, 60), (5, 9, 70)], 2)
     1
     """
-    for j in range(n - 1, -1, -1):
-        if jobs[j][1] <= jobs[n][0]:
+    for j in range(indx - 1, -1, -1):
+        if jobs[j][1] <= jobs[indx][0]:
             return j
     return -1
 
@@ -44,14 +44,14 @@ def find_max_weight(jobs: list[tuple[int, int, int]]) -> int:
     200
     """
     # Sort jobs based on their end times
-    jobs.sort(key=lambda x: x[1])
+    jobs.sort(key=lambda ele : ele[1])
 
     # Initialize dp array to store the maximum weight up to each job
-    n = len(jobs)
-    dp = [0] * n
+    length = len(jobs)
+    dp = [0] * length
     dp[0] = jobs[0][2]  # The weight of the first job is the initial value
 
-    for i in range(1, n):
+    for i in range(1, length):
         # Include the current job
         include_weight = jobs[i][2]
         latest_job = latest_non_conflict(jobs, i)
