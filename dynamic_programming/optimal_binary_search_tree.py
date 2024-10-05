@@ -115,9 +115,14 @@ def find_optimal_binary_search_tree(nodes):
             dp[i][j] = sys.maxsize  # set the value to "infinity"
             total[i][j] = total[i][j - 1] + freqs[j]
 
-            # Apply Knuth's optimization
-            # Loop without optimization: for r in range(i, j + 1):
-            for r in range(root[i][j - 1], root[i + 1][j] + 1):  # r is a temporal root
+            # Apply Knuth's optimization with boundary checking
+            r_start = max(i, root[i][j - 1] if j > i else i)
+            r_end = min(j, root[i + 1][j] if i < j else j)
+
+            if r_start > r_end:
+                r_start, r_end = i, j  # fall back to the full range
+
+            for r in range(r_start, r_end + 1):
                 left = dp[i][r - 1] if r != i else 0  # optimal cost for left subtree
                 right = dp[r + 1][j] if r != j else 0  # optimal cost for right subtree
                 cost = left + total[i][j] + right
