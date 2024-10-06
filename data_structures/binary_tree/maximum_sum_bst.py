@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from typing import Optional
-
-
+import sys
+INT_MIN = -sys.maxsize + 1
+INT_MAX = sys.maxsize - 1
 
 @dataclass
 class TreeNode:
@@ -40,16 +41,19 @@ def max_sum_bst(root: TreeNode) -> int:
     >>> print(max_sum_bst(t3))
     20
     """
-    ans = 0
+    ans: int = 0
 
     def solver(node: Optional[TreeNode]) -> tuple[bool, int, int, int]:
         """
         Returns the maximum sum by making recursive calls
+        >>> t1 = TreeNode(1)
+        >>> print(solver(t1))
+        1
         """
         nonlocal ans
 
         if not node:
-            return True, float("inf"), float("-inf"), 0  # Valid BST, min, max, sum
+            return True, INT_MAX, INT_MIN, 0  # Valid BST, min, max, sum
 
         is_left_valid, min_left, max_left, sum_left = solver(node.left)
         is_right_valid, min_right, max_right, sum_right = solver(node.right)
