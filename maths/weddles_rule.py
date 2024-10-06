@@ -122,7 +122,7 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    
+
     # func, a, b = get_inputs()
     # acc = 1
     # solution = None
