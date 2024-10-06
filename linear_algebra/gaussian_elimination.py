@@ -12,7 +12,6 @@ Returns:
     NDArray[float64]: The solution vector containing the values of the unknown variables.
 """
 
-
 import numpy as np
 from numpy import float64
 from numpy.typing import NDArray
