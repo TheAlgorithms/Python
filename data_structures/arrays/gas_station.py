@@ -1,16 +1,13 @@
 class Solution:
     def can_omplete_circuit(self, gas: list[int], cost: list[int]) -> int:
         """
-        Determines the starting gas station index from which you can complete the circuit,
-        or returns -1 if it's not possible.
-
+        Finds the starting station index to complete the circuit, 
+        or returns -1 if not possible.
         Args:
         gas (List[int]): List of gas available at each station.
         cost (List[int]): List of gas costs to travel to the next station.
-
         Returns:
         int: The index of the starting station, or -1 if no solution exists.
-
         Examples:
         >>> solution = Solution()
         >>> solution.can_omplete_circuit([1, 2, 3, 4, 5], [3, 4, 5, 1, 2])
