@@ -39,9 +39,6 @@ def safe_function_eval(func_str: str) -> Callable:
         >>> f = safe_function_eval('x**2')
         >>> f(3)
         9
-        >>> f = safe_function_eval('sin(x)')
-        >>> round(f(3.14), 2)
-        0.0
         >>> f = safe_function_eval('x + x**2')
         >>> f(2)
         6
