@@ -2,7 +2,7 @@ import numpy as np
 from sympy import lambdify, symbols, sympify
 
 
-def get_inputs():
+def get_inputs() -> tuple:
     """
     Get user input for the function, lower limit, and upper limit.
 
@@ -23,7 +23,7 @@ def get_inputs():
     return func, a, b
 
 
-def safe_function_eval(func_str):
+def safe_function_eval(func_str) -> float:
     """
     Safely evaluates the function by substituting x value using sympy.
 
@@ -41,7 +41,7 @@ def safe_function_eval(func_str):
     return lambda_func
 
 
-def compute_table(func, a, b, acc):
+def compute_table(func, a, b, acc) -> tuple:
     """
     Compute the table of function values based on the limits and accuracy.
 
@@ -71,7 +71,7 @@ def compute_table(func, a, b, acc):
     return table, h
 
 
-def apply_weights(table):
+def apply_weights(table) -> list:
     """
     Apply Simpson's rule weights to the values in the table.
 
@@ -98,7 +98,7 @@ def apply_weights(table):
     return add
 
 
-def compute_solution(add, table, h):
+def compute_solution(add, table, h) -> float:
     """
     Compute the final solution using the weighted values and table.
 
@@ -122,15 +122,15 @@ if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
+    
+    # func, a, b = get_inputs()
+    # acc = 1
+    # solution = None
 
-    func, a, b = get_inputs()
-    acc = 1
-    solution = None
+    # while acc <= 100_000:
+    #     table, h = compute_table(func, a, b, acc)
+    #     add = apply_weights(table)
+    #     solution = compute_solution(add, table, h)
+    #     acc *= 10
 
-    while acc <= 100_000:
-        table, h = compute_table(func, a, b, acc)
-        add = apply_weights(table)
-        solution = compute_solution(add, table, h)
-        acc *= 10
-
-    print(f"Solution: {solution}")
+    # print(f'Solution: {solution}')
