@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from typing import Optional, Tuple
+from typing import Optional
+
 
 @dataclass
 class TreeNode:
@@ -39,7 +40,7 @@ def max_sum_bst(root: TreeNode) -> int:
     """
     ans = 0
 
-    def solver(node: Optional[TreeNode]) -> Tuple[bool, int, int, int]:
+    def solver(node: Optional[TreeNode]) -> tuple[bool, int, int, int]:
         """
         Returns the maximum sum by making recursive calls
         """
