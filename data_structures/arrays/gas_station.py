@@ -29,3 +29,9 @@ cost = [3, 4, 5, 1, 2]
 
 solution = Solution()
 print(solution.can_complete_circuit(gas, cost))  # Output: 3
+
+# Example 2:
+gas = [2, 3, 4]
+cost = [3, 4, 3]
+
+print(solution.canCompleteCircuit(gas, cost))  # Output: -1
