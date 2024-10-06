@@ -4,8 +4,8 @@ class TreeNode:
         self.left = left
         self.right = right
 
-def maxSumBST(root: TreeNode) -> int:
 
+def maxSumBST(root: TreeNode) -> int:
     """
     The solution traverses a binary tree to find the maximum sum of
     keys in any subtree that is a Binary Search Tree (BST). It uses
@@ -39,10 +39,10 @@ def maxSumBST(root: TreeNode) -> int:
 
     def solver(node):
         nonlocal ans
-            
+
         if not node:
-            return True, float('inf'), float('-inf'), 0  # Valid BST, min, max, sum
-            
+            return True, float("inf"), float("-inf"), 0  # Valid BST, min, max, sum
+
         isLeftValid, min_left, max_left, sum_left = solver(node.left)
         isRightValid, min_right, max_right, sum_right = solver(node.right)
 
@@ -50,19 +50,14 @@ def maxSumBST(root: TreeNode) -> int:
             total_sum = sum_left + sum_right + node.val
             ans = max(ans, total_sum)
             return True, min(min_left, node.val), max(max_right, node.val), total_sum
-            
+
         return False, -1, -1, -1  # Not a valid BST
 
     solver(root)
     return ans
-    
+
+
 if __name__ == "__main__":
-
     import doctest
+
     doctest.testmod()
-
-
-
-
-
-
