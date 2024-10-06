@@ -1,7 +1,7 @@
 class Solution:
     def can_omplete_circuit(self, gas: list[int], cost: list[int]) -> int:
         """
-        Finds the starting station index to complete the circuit, 
+        Finds the starting station index to complete the circuit,
         or returns -1 if not possible.
         Args:
         gas (List[int]): List of gas available at each station.
