@@ -32,7 +32,7 @@ def safe_function_eval(func_str: str) -> float:
 
     Returns:
         float: The evaluated function result.
-        
+
     Examples:
         >>> f = safe_function_eval('x**2')
         >>> f(3)
