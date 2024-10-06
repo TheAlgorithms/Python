@@ -5,8 +5,8 @@ Retrieves minimum and maximum valued number from an array.
 There are two ways to retrieve value(s):
 
 1. Approach #01 -Linear Search.
-Initialize values of min and max as minimum and maximum of the first two elements respectively. 
-Starting from 3rd, compare each element with max and min, and change max and min accordingly. 
+Initialize values of min and max as minimum and maximum of the first two elements respectively.
+Starting from 3rd, compare each element with max and min, and change max and min accordingly.
 
 2. Approach #02 - First sort the array in ascending order.
 Once the array is sorted, the first element of the array will be the minimum element and the last element of the array will be the maximum element.
