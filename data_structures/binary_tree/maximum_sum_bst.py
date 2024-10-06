@@ -1,8 +1,10 @@
 from dataclasses import dataclass
 from typing import Optional
 import sys
+
 INT_MIN = -sys.maxsize + 1
 INT_MAX = sys.maxsize - 1
+
 
 @dataclass
 class TreeNode:
