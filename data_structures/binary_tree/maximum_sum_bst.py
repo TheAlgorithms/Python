@@ -1,14 +1,11 @@
-class TreeNode:
-    def __init__(
-        self,
-        val: int = 0,
-        left: "TreeNode" | None = None,
-        right: "TreeNode" | None = None,
-    ) -> None:
-        self.val = val
-        self.left = left
-        self.right = right
+from dataclasses import dataclass
+from typing import Optional, Tuple
 
+@dataclass
+class TreeNode:
+    val: int = 0
+    left: Optional['TreeNode'] = None
+    right: Optional['TreeNode'] = None
 
 def max_sum_bst(root: TreeNode) -> int:
     """
@@ -42,7 +39,7 @@ def max_sum_bst(root: TreeNode) -> int:
     """
     ans = 0
 
-    def solver(node) -> int:
+    def solver(node: Optional[TreeNode]) -> Tuple[bool, int, int, int]:
         """
         Returns the maximum sum by making recursive calls
         """
