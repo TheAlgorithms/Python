@@ -33,7 +33,7 @@ def safe_function_eval(func_str):
     Returns:
         float: The evaluated function result.
     """
-    x = symbols('x')
+    x = symbols("x")
     func_expr = sympify(func_str)
 
     # Convert the function to a callable lambda function
@@ -120,8 +120,9 @@ def compute_solution(add, table, h):
 
 if __name__ == "__main__":
     from doctest import testmod
+
     testmod()
-    
+
     func, a, b = get_inputs()
     acc = 1
     solution = None
@@ -132,4 +133,4 @@ if __name__ == "__main__":
         solution = compute_solution(add, table, h)
         acc *= 10
 
-    print(f'Solution: {solution}')
+    print(f"Solution: {solution}")
