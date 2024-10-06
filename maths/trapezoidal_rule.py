@@ -9,7 +9,7 @@ Method 1:
 """
 
 
-def method_1(boundary, steps):
+def trapezoidal_rule(boundary, steps):
     """
     This function implements the extended trapezoidal rule for numerical integration.
     The function f(x) is provided below.
