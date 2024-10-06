@@ -1,5 +1,5 @@
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None) -> None:
+    def __init__(self, val: int=0, left: TreeNode=None, right: TreeNode=None) -> None:
         self.val = val
         self.left = left
         self.right = right
@@ -38,6 +38,9 @@ def max_sum_bst(root: TreeNode) -> int:
     ans = 0
 
     def solver(node) -> int:
+        """
+        Returns the maximum sum by making recursive calls
+        """
         nonlocal ans
 
         if not node:
