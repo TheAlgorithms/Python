@@ -91,6 +91,14 @@ def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
     >>> y1 = len(ops1[0]) - 1
     >>> assemble_transformation(ops1, x1, y1)
     []
+
+    >>> ops2 = [['0', 'I1', 'I2', 'I3'],
+    ...         ['D1', 'C1', 'I2', 'I3'],
+    ...         ['D2', 'D2', 'R23', 'R23']]
+    >>> x2 = len(ops2) - 1
+    >>> y2 = len(ops2[0]) - 1
+    >>> assemble_transformation(ops2, x2, y2)
+    ['C1', 'I2', 'R23']
     """
     if i == 0 and j == 0:
         return []
