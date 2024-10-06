@@ -52,8 +52,9 @@ def safe_function_eval(func_str: str) -> Callable:
     return lambda_func
 
 
-def compute_table(func: Callable, lower_limit: float,
-                  upper_limit: float, acc: int) -> tuple[np.ndarray, float]:
+def compute_table(
+    func: Callable, lower_limit: float, upper_limit: float, acc: int
+) -> tuple[np.ndarray, float]:
     """
     Compute the table of function values based on the limits and accuracy.
 
