@@ -1,5 +1,6 @@
 from typing import list
 
+
 class Solution:
     def can_complete_circuit(self, gas: list[int], cost: list[int]) -> int:
         # Step 1: Initialize variables
@@ -9,13 +10,13 @@ class Solution:
         total_gas = 0
         current_gas = 0
         start_station = 0
-        
+
         # Step 2: Loop through each gas station
         for i in range(len(gas)):
             # Calculate the net gas gain/loss at the current station
             total_gas += gas[i] - cost[i]
             current_gas += gas[i] - cost[i]
-            
+
             # Step 3: If current_gas becomes negative, it means we cannot continue
             # the journey from the current start_station, so we update the start_station
             # to the next one and reset the current_gas to 0.
@@ -30,6 +31,7 @@ class Solution:
         else:
             # If total_gas is non-negative, return the start_station as the answer
             return start_station
+
 
 # Example usage with hints:
 
