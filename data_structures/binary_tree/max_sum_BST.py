@@ -39,30 +39,26 @@ def max_sum_bst(root: TreeNode) -> int:
 
     def solver(node) -> int:
         nonlocal ans
-            
+
         if not node:
             return True, float('inf'), float('-inf'), 0  # Valid BST, min, max, sum
             
         is_left_valid, min_left, max_left, sum_left = solver(node.left)
         is_right_valid, min_right, max_right, sum_right = solver(node.right)
 
+
         if is_left_valid and is_right_valid and max_left < node.val < min_right:
             total_sum = sum_left + sum_right + node.val
             ans = max(ans, total_sum)
             return True, min(min_left, node.val), max(max_right, node.val), total_sum
-            
+
         return False, -1, -1, -1  # Not a valid BST
 
     solver(root)
     return ans
-    
+
+
 if __name__ == "__main__":
-
     import doctest
+
     doctest.testmod()
-
-
-
-
-
-
