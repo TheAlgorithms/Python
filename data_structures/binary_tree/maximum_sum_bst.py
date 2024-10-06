@@ -3,8 +3,6 @@ from dataclasses import dataclass
 import sys
 
 
-
-
 INT_MIN = -sys.maxsize + 1
 INT_MAX = sys.maxsize - 1
 
