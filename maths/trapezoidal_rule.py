@@ -3,9 +3,6 @@ Numerical integration or quadrature for a smooth function f with known values at
 
 The trapezoidal rule is the classical approach of summing 'Equally Spaced Abscissas'
 
-Method 1:
-"Extended Trapezoidal Rule"
-
 """
 
 
