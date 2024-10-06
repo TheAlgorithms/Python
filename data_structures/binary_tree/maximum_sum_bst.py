@@ -1,6 +1,8 @@
+from dataclasses import dataclass
+
 import sys
 
-from dataclasses import dataclass
+
 
 
 INT_MIN = -sys.maxsize + 1
