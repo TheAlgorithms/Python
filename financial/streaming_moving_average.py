@@ -1,5 +1,10 @@
 """This module contains a class that
-calculates the moving average in real-time."""
+calculates the moving average in real-time.
+
+Reference
+---------
+https://en.wikipedia.org/wiki/Moving_average
+"""
 
 from collections import deque
 
