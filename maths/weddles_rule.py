@@ -146,4 +146,4 @@ if __name__ == "__main__":
         solution = compute_solution(add, table, h)
         acc *= 10
 
-    print(f'Solution: {solution}')
+    print(f"Solution: {solution}")
