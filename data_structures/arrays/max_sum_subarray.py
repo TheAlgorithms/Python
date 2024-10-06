@@ -16,6 +16,7 @@ Python doctests can be run with the following command:
 python -m doctest -v kadanes_algorithm.py
 """
 
+
 def kadanes_algorithm(arr: list[int]) -> int:
     """
     Finds the maximum sum of a contiguous subarray using Kadane's Algorithm.
@@ -48,7 +49,7 @@ def kadanes_algorithm(arr: list[int]) -> int:
     """
     if not arr:
         return 0
-    
+
     # Initialize the maximums
     max_current = max_global = arr[0]
 
@@ -57,7 +58,7 @@ def kadanes_algorithm(arr: list[int]) -> int:
         max_current = max(num, max_current + num)
         if max_current > max_global:
             max_global = max_current
-    
+
     return max_global
 
 
