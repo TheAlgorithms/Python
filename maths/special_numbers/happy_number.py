@@ -1,7 +1,7 @@
 def is_happy_number(number: int) -> bool:
     """
     A happy number is a number which eventually reaches 1 when replaced by the sum of
-    the square of each digit.
+    the squares of its digits.
 
     :param number: The number to check for happiness.
     :return: True if the number is a happy number, False otherwise.
@@ -17,23 +17,22 @@ def is_happy_number(number: int) -> bool:
     >>> is_happy_number(0)
     Traceback (most recent call last):
         ...
-    ValueError: number=0 must be a positive integer
+    ValueError: Input must be a positive integer, got 0.
     >>> is_happy_number(-19)
     Traceback (most recent call last):
         ...
-    ValueError: number=-19 must be a positive integer
+    ValueError: Input must be a positive integer, got -19.
     >>> is_happy_number(19.1)
     Traceback (most recent call last):
         ...
-    ValueError: number=19.1 must be a positive integer
+    ValueError: Input must be a positive integer, got 19.1.
     >>> is_happy_number("happy")
     Traceback (most recent call last):
         ...
-    ValueError: number='happy' must be a positive integer
+    ValueError: Input must be a positive integer, got 'happy'.
     """
     if not isinstance(number, int) or number <= 0:
-        msg = f"{number=} must be a positive integer"
-        raise ValueError(msg)
+        raise ValueError(f"Input must be a positive integer, got {number}.")
 
     seen = set()
     while number != 1 and number not in seen:
@@ -44,5 +43,4 @@ def is_happy_number(number: int) -> bool:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
