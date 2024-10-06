@@ -23,7 +23,7 @@ def get_inputs() -> tuple:
     return func, a, b
 
 
-def safe_function_eval(func_str) -> float:
+def safe_function_eval(func_str: str) -> float:
     """
     Safely evaluates the function by substituting x value using sympy.
 
@@ -32,6 +32,19 @@ def safe_function_eval(func_str) -> float:
 
     Returns:
         float: The evaluated function result.
+        
+    Examples:
+        >>> f = safe_function_eval('x**2')
+        >>> f(3)
+        9
+
+        >>> f = safe_function_eval('sin(x)')
+        >>> round(f(3.14), 2)
+        0.0
+
+        >>> f = safe_function_eval('x + x**2')
+        >>> f(2)
+        6
     """
     x = symbols("x")
     func_expr = sympify(func_str)
@@ -41,7 +54,7 @@ def safe_function_eval(func_str) -> float:
     return lambda_func
 
 
-def compute_table(func, a, b, acc) -> tuple:
+def compute_table(func: str, a: float, b: float, acc: int) -> tuple:
     """
     Compute the table of function values based on the limits and accuracy.
 
@@ -71,7 +84,7 @@ def compute_table(func, a, b, acc) -> tuple:
     return table, h
 
 
-def apply_weights(table) -> list:
+def apply_weights(table: list) -> list:
     """
     Apply Simpson's rule weights to the values in the table.
 
@@ -98,7 +111,7 @@ def apply_weights(table) -> list:
     return add
 
 
-def compute_solution(add, table, h) -> float:
+def compute_solution(add: list, table: list, h: float) -> float:
     """
     Compute the final solution using the weighted values and table.
 
