@@ -1,7 +1,17 @@
 """
 Gaussian elimination method for solving a system of linear equations.
 Gaussian elimination - https://en.wikipedia.org/wiki/Gaussian_elimination
+
+This function performs Gaussian elimination on the coefficient matrix to transform it into an upper triangular form.
+
+Parameters:
+    coefficients (NDArray[float64]): The square matrix representing the system's coefficients.
+    vector (NDArray[float64]): The vector of constants representing the right-hand side of the system of equations.
+
+Returns:
+    NDArray[float64]: The solution vector containing the values of the unknown variables.
 """
+
 
 import numpy as np
 from numpy import float64
@@ -65,12 +75,20 @@ def gaussian_elimination(
     augmented_mat: NDArray[float64] = np.concatenate((coefficients, vector), axis=1)
     augmented_mat = augmented_mat.astype("float64")
 
-    # scale the matrix leaving it triangular
+    # Gaussian elimination with partial pivoting to create an upper triangular matrix
     for row in range(rows - 1):
         pivot = augmented_mat[row, row]
-        for col in range(row + 1, columns):
-            factor = augmented_mat[col, row] / pivot
-            augmented_mat[col, :] -= factor * augmented_mat[row, :]
+
+        # Check for a zero pivot and perform partial pivoting if necessary
+        if pivot == 0:
+            for i in range(row + 1, rows):
+                if augmented_mat[i, row] != 0:
+                    # Swap rows to move non-zero pivot to the current row
+                    augmented_mat[[row, i]] = augmented_mat[[i, row]]
+                    pivot = augmented_mat[row, row]
+                    break
+            else:
+                raise ValueError("The matrix is singular and cannot be solved.")
 
     x = retroactive_resolution(
         augmented_mat[:, 0:columns], augmented_mat[:, columns : columns + 1]
