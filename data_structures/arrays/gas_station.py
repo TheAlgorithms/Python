@@ -3,7 +3,7 @@ class Solution:
         """
         Determines the starting gas station index from which you can complete the circuit,
         or returns -1 if it's not possible.
-        
+
         Args:
         gas (List[int]): List of gas available at each station.
         cost (List[int]): List of gas costs to travel to the next station.
@@ -23,11 +23,11 @@ class Solution:
         total_gas = 0
         current_gas = 0
         start_station = 0
-        
+
         for i in range(len(gas)):
             total_gas += gas[i] - cost[i]
             current_gas += gas[i] - cost[i]
-            
+
             if current_gas < 0:
                 start_station = i + 1
                 current_gas = 0
@@ -37,7 +37,9 @@ class Solution:
         else:
             return start_station
 
+
 # Example usage with doctests
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
