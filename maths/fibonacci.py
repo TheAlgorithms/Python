@@ -30,7 +30,7 @@ def time_func(func, *args, **kwargs):
     start = time()
     output = func(*args, **kwargs)
     duration = time() - start
-    
+
     # Adjust the output unit based on the time taken
     if duration >= 1:
         unit = "s"
@@ -41,10 +41,9 @@ def time_func(func, *args, **kwargs):
     else:
         unit = "µs"
         time_taken = duration * 1_000_000
-        
+
     print(f"{func.__name__} runtime: {time_taken:0.4f} {unit}")
     return output
-
 
 
 def fib_iterative_yield(n: int) -> Iterator[int]:
