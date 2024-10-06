@@ -35,7 +35,7 @@ def dijkstra(graph, v, src):
             ):
                 mdist[i] = mdist[u] + graph[u][i]
 
-    print_dist(mdist, i)
+    print_dist(mdist, v)
 
 
 if __name__ == "__main__":
