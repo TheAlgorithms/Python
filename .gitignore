@@ -108,3 +108,4 @@ venv.bak/
 .try
 .vscode/
 .vs/
+.devcontainer/devcontainer.json
