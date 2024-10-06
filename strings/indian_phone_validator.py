@@ -42,6 +42,6 @@ if __name__ == "__main__":
     Example:
         $ python indian_phone_validator.py
         True  # (if the phone number "+918827897895" is valid)
-    Note: Ensure that the `indian_phone_validator()` function is defined elsewhere in the code.
+    Note: Ensure that the `indian_phone_validator()` function is defined.
     """
     print(indian_phone_validator("+918827897895"))
