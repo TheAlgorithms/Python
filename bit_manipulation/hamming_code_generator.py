@@ -10,17 +10,18 @@ return: 16 bit binary hamming encoded number returned in string form
 
 from functools import reduce
 
+
 def hamming_15_11(number: str) -> str:
     """
-    Performs parity checks to assign values to the redundant bits, 
+    Performs parity checks to assign values to the redundant bits,
     in the 16 bit number
     returned, bits at index 0, 1, 2, 4, 8 are redundant bits used for checking
 
-    Hamming generated 16 bits generated from the 11 bit binary number can only detect 
-    and change a single bit change, but can only detect more than a 
+    Hamming generated 16 bits generated from the 11 bit binary number can only detect
+    and change a single bit change, but can only detect more than a
     single bit change
 
-    for more theoretical knowledege about Hamming codes, refer: 
+    for more theoretical knowledege about Hamming codes, refer:
     https://www.youtube.com/watch?v=X8jsijhllIA&t=143s
     by 3B1B YT channel
 
