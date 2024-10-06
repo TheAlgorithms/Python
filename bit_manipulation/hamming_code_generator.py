@@ -33,10 +33,10 @@ def hamming_15_11(number: str) -> str:
         digits = [0 if number[i] == '0' else 1 for i in range(len(number))]
         total_num_1 = sum(digits)
         hamming_digits = [0 for i in range(16)]
-        bit_1 = reduce(lambda x,y:x^y, [digits[1], digits[4], digits[8], digits[0], digits[3], digits[6], digits[10]])
-        bit_2 = reduce(lambda x,y:x^y, [digits[2], digits[5], digits[9], digits[0], digits[3], digits[6], digits[10]])
-        bit_3 = reduce(lambda x,y:x^y, [digits[1], digits[2], digits[3], digits[7], digits[8], digits[9], digits[10]])
-        bit_4 = reduce(lambda x,y:x^y, [digits[4], digits[5], digits[6], digits[7], digits[8], digits[9], digits[10]])
+        bit_1 = reduce(lambda temp_bit1,temp_bit2:temp_bit1^temp_bit2, [digits[1], digits[4], digits[8], digits[0], digits[3], digits[6], digits[10]])
+        bit_2 = reduce(lambda temp_bit1,temp_bit2:temp_bit1^temp_bit2, [digits[2], digits[5], digits[9], digits[0], digits[3], digits[6], digits[10]])
+        bit_3 = reduce(lambda temp_bit1,temp_bit2:temp_bit1^temp_bit2, [digits[1], digits[2], digits[3], digits[7], digits[8], digits[9], digits[10]])
+        bit_4 = reduce(lambda temp_bit1,temp_bit2:temp_bit1^temp_bit2, [digits[4], digits[5], digits[6], digits[7], digits[8], digits[9], digits[10]])
         bit_0 = int(total_num_1%2)^bit_1^bit_2^bit_3^bit_4
 
         redundant_bits = [bit_0, bit_1, bit_2, bit_3, bit_4]
