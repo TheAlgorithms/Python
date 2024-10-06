@@ -27,11 +27,11 @@ def indian_phone_validator(phone: str) -> bool:
 
 if __name__ == "__main__":
     """
-    Main entry point of the script. 
+    Main entry point of the script.
 
-    This block checks if the script is being run as the main module. If so, it calls 
-    the `indian_phone_validator` function with a sample phone number
-    and prints the result.
+    This block checks if the script is being run as the main module. If so, it calls
+    the `indian_phone_validator` function with a sample phone number and
+    prints the result.
 
     Functions:
         indian_phone_validator(phone: str) -> bool:
