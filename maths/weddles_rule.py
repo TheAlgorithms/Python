@@ -53,7 +53,7 @@ def safe_function_eval(func_str: str) -> float:
     return lambda_func
 
 
-def compute_table(func: str, lower_limit: float, upper_limit: float, acc: int) -> tuple:
+def compute_table(func: float, lower_limit: float, upper_limit: float, acc: int) -> tuple:
     """
     Compute the table of function values based on the limits and accuracy.
 
