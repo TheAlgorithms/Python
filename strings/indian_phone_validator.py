@@ -30,17 +30,18 @@ if __name__ == "__main__":
     Main entry point of the script. 
 
     This block checks if the script is being run as the main module. If so, it calls 
-    the `indian_phone_validator` function with a sample phone number and prints the result.
+    the `indian_phone_validator` function with a sample phone number
+    and prints the result.
 
     Functions:
         indian_phone_validator(phone: str) -> bool:
             Validates if the given phone number is a valid Indian phone number.
-            The function is expected to return `True` if the number is valid, otherwise `False`.
+            The function is expected to return `True` if the number is valid,
+            otherwise `False`.
 
     Example:
         $ python indian_phone_validator.py
         True  # (if the phone number "+918827897895" is valid)
-
     Note: Ensure that the `indian_phone_validator()` function is defined elsewhere in the code.
     """
     print(indian_phone_validator("+918827897895"))
