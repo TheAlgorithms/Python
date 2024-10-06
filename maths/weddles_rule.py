@@ -18,9 +18,9 @@ def get_inputs() -> tuple:
         ('1/(1+x**2)', 1.0, -1.0)
     """
     func = input("Enter function with variable as x: ")
-    a = float(input("Enter lower limit: "))
-    b = float(input("Enter upper limit: "))
-    return func, a, b
+    lower_limit = float(input("Enter lower limit: "))
+    upper_limit = float(input("Enter upper limit: "))
+    return func, lower_limit, upper_limit
 
 
 def safe_function_eval(func_str: str) -> float:
@@ -32,7 +32,6 @@ def safe_function_eval(func_str: str) -> float:
 
     Returns:
         float: The evaluated function result.
-
     Examples:
         >>> f = safe_function_eval('x**2')
         >>> f(3)
@@ -54,14 +53,14 @@ def safe_function_eval(func_str: str) -> float:
     return lambda_func
 
 
-def compute_table(func: str, a: float, b: float, acc: int) -> tuple:
+def compute_table(func: str, lower_limit: float, upper_limit: float, acc: int) -> tuple:
     """
     Compute the table of function values based on the limits and accuracy.
 
     Args:
         func (str): The mathematical function with the variable 'x' as a string.
-        a (float): The lower limit of the integral.
-        b (float): The upper limit of the integral.
+        lower_limit (float): The lower limit of the integral.
+        upper_limit (float): The upper limit of the integral.
         acc (int): The number of subdivisions for accuracy.
 
     Returns:
@@ -76,8 +75,8 @@ def compute_table(func: str, a: float, b: float, acc: int) -> tuple:
     """
     # Weddle's rule requires number of intervals as a multiple of 6 for accuracy
     n_points = acc * 6 + 1
-    h = (b - a) / (n_points - 1)
-    x_vals = np.linspace(a, b, n_points)
+    h = (upper_limit - lower_limit) / (n_points - 1)
+    x_vals = np.linspace(lower_limit, upper_limit, n_points)
 
     # Evaluate function values at all points
     table = func(x_vals)
@@ -111,14 +110,14 @@ def apply_weights(table: list) -> list:
     return add
 
 
-def compute_solution(add: list, table: list, h: float) -> float:
+def compute_solution(add: list, table: list, step_size: float) -> float:
     """
     Compute the final solution using the weighted values and table.
 
     Args:
         add (list): A list of weighted values from apply_weights.
         table (list): A list of function values.
-        h (float): The step size (h) calculated from the limits and accuracy.
+        step_size (float): The step size calculated from the limits and accuracy.
 
     Returns:
         float: The final computed integral solution.
@@ -128,7 +127,7 @@ def compute_solution(add: list, table: list, h: float) -> float:
         ... -0.866, -1.0], 0.5235983333333333)
         0.7853975
     """
-    return 0.3 * h * (sum(add) + table[0] + table[-1])
+    return 0.3 * step_size * (sum(add) + table[0] + table[-1])
 
 
 if __name__ == "__main__":
