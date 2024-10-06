@@ -76,8 +76,7 @@ def f(x):
     >>> f(0.5)
     0.25
     """
-    y = float((x - 0) * (x - 0))
-    return y
+    return x**2
 
 
 def main():
