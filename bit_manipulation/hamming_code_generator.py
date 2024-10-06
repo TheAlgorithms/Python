@@ -8,16 +8,20 @@ input: 11 bit binary number with type string
 return: 16 bit binary hamming encoded number returned in string form
 """
 
+from functools import reduce
 
 def hamming_15_11(number: str) -> str:
     """
-    Performs parity checks to assign values to the redundant bits, in the 16 bit number
+    Performs parity checks to assign values to the redundant bits, 
+    in the 16 bit number
     returned, bits at index 0, 1, 2, 4, 8 are redundant bits used for checking
 
-    Hamming generated 16 bits generated from the 11 bit binary number can only detect and change
-    a single bit change, but can only detect more than a single bit change
+    Hamming generated 16 bits generated from the 11 bit binary number can only detect 
+    and change a single bit change, but can only detect more than a 
+    single bit change
 
-    for more theoretical knowledege about Hamming codes, refer: https://www.youtube.com/watch?v=X8jsijhllIA&t=143s
+    for more theoretical knowledege about Hamming codes, refer: 
+    https://www.youtube.com/watch?v=X8jsijhllIA&t=143s
     by 3B1B YT channel
 
     >>> hamming_15_11("00110001110")
@@ -88,8 +92,9 @@ def hamming_15_11(number: str) -> str:
 
         j = -1
         r = 0
+        redundant_bit_locations = [0, 1, 2, 4, 8]
         for k in range(16):
-            if k == 0 or k == 1 or k == 2 or k == 4 or k == 8:
+            if k in redundant_bit_locations:
                 hamming_digits[k] = redundant_bits[r]
                 r += 1
             else:
@@ -103,7 +108,6 @@ def hamming_15_11(number: str) -> str:
 
 
 if __name__ == "__main__":
-    from functools import reduce
     import doctest
 
     doctest.testmod()
