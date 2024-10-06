@@ -4,11 +4,11 @@ from math import pi
 def arc_length(angle: int, diameter: int) -> float:
     """
     >>> arc_length(45, 5)
-    3.9269908169872414
+    1.9634954084936207
     >>> arc_length(120, 15)
-    31.415926535897928
+    15.707963267948964
     >>> arc_length(90, 10)
-    15.707963267948966
+    7.853981633974483
     """
     return pi * diameter * (angle / 360)
 
