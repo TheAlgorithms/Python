@@ -25,7 +25,7 @@ class GeneticAlgorithm:
         generations: int,
         mutation_prob: float,
         crossover_rate: float,
-        maximize: bool = True
+        maximize: bool = True,
     ) -> None:
         self.function = function  # Target function to optimize
         self.bounds = bounds  # Search space bounds (for each variable)
@@ -75,7 +75,9 @@ class GeneticAlgorithm:
         value = self.function(*individual)
         return value if self.maximize else -value  # If minimizing, invert the fitness
 
-    def select_parents(self, population_score: list[tuple[np.ndarray, float]]) -> list[np.ndarray]:
+    def select_parents(
+        self, population_score: list[tuple[np.ndarray, float]]
+    ) -> list[np.ndarray]:
         """
         Select top N_SELECTED parents based on fitness.
 
@@ -94,7 +96,9 @@ class GeneticAlgorithm:
         population_score.sort(key=lambda score_tuple: score_tuple[1], reverse=True)
         return [ind for ind, _ in population_score[:N_SELECTED]]
 
-    def crossover(self, parent1: np.ndarray, parent2: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    def crossover(
+        self, parent1: np.ndarray, parent2: np.ndarray
+    ) -> tuple[np.ndarray, np.ndarray]:
         """
         Perform uniform crossover between two parents to generate offspring.
 
@@ -157,7 +161,10 @@ class GeneticAlgorithm:
         """
         with ThreadPoolExecutor() as executor:
             return list(
-                executor.map(lambda individual: (individual, self.fitness(individual)), self.population)
+                executor.map(
+                    lambda individual: (individual, self.fitness(individual)),
+                    self.population,
+                )
             )
 
     def evolve(self) -> np.ndarray:
@@ -178,7 +185,9 @@ class GeneticAlgorithm:
             population_score = self.evaluate_population()
 
             # Check the best individual
-            best_individual = max(population_score, key=lambda score_tuple: score_tuple[1])[0]
+            best_individual = max(
+                population_score, key=lambda score_tuple: score_tuple[1]
+            )[0]
             best_fitness = self.fitness(best_individual)
 
             # Select parents for next generation
