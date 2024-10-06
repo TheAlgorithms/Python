@@ -15,16 +15,16 @@ def trapezoidal_rule(boundary, steps):
     :param steps: The number of steps (intervals) used in the approximation
     :return: The numerical approximation of the integral
 
-    >>> abs(method_1([0, 1], 10) - 0.33333) < 0.01
+    >>> abs(trapezoidal_rule([0, 1], 10) - 0.33333) < 0.01
     True
 
-    >>> abs(method_1([0, 1], 100) - 0.33333) < 0.01
+    >>> abs(trapezoidal_rule([0, 1], 100) - 0.33333) < 0.01
     True
 
-    >>> abs(method_1([0, 2], 1000) - 2.66667) < 0.01
+    >>> abs(trapezoidal_rule([0, 2], 1000) - 2.66667) < 0.01
     True
 
-    >>> abs(method_1([1, 2], 1000) - 2.33333) < 0.01
+    >>> abs(trapezoidal_rule([1, 2], 1000) - 2.33333) < 0.01
     True
     """
     h = (boundary[1] - boundary[0]) / steps
@@ -94,7 +94,7 @@ def main():
     b = 1.0
     steps = 10.0
     boundary = [a, b]
-    y = method_1(boundary, steps)
+    y = trapezoidal_rule(boundary, steps)
     print(f"y = {y}")
 
 
