@@ -25,7 +25,7 @@ class GeneticAlgorithm:
         generations: int,
         mutation_prob: float,
         crossover_rate: float,
-        maximize: bool = True,
+        maximize: bool = True
     ) -> None:
         self.function = function  # Target function to optimize
         self.bounds = bounds  # Search space bounds (for each variable)
@@ -75,9 +75,7 @@ class GeneticAlgorithm:
         value = self.function(*individual)
         return value if self.maximize else -value  # If minimizing, invert the fitness
 
-    def select_parents(
-        self, population_score: list[tuple[np.ndarray, float]]
-    ) -> list[np.ndarray]:
+    def select_parents(self, population_score: list[tuple[np.ndarray, float]]) -> list[np.ndarray]:
         """
         Select top N_SELECTED parents based on fitness.
 
@@ -93,12 +91,10 @@ class GeneticAlgorithm:
         >>> len(ga.select_parents(pop_score)) == N_SELECTED
         True
         """
-        population_score.sort(key=lambda x: x[1], reverse=True)
+        population_score.sort(key=lambda score_tuple: score_tuple[1], reverse=True)
         return [ind for ind, _ in population_score[:N_SELECTED]]
 
-    def crossover(
-        self, parent1: np.ndarray, parent2: np.ndarray
-    ) -> tuple[np.ndarray, np.ndarray]:
+    def crossover(self, parent1: np.ndarray, parent2: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
         """
         Perform uniform crossover between two parents to generate offspring.
 
@@ -131,6 +127,13 @@ class GeneticAlgorithm:
 
         Returns:
             np.ndarray: The mutated individual.
+
+        Example:
+        >>> ga = GeneticAlgorithm(lambda x, y: -(x**2 + y**2), [(-10, 10), (-10, 10)], 10, 100, 0.1, 0.8, True)
+        >>> ind = np.array([1.0, 2.0])
+        >>> mutated = ga.mutate(ind)
+        >>> len(mutated) == 2  # Ensure it still has the correct number of dimensions
+        True
         """
         for i in range(self.dim):
             if random.random() < self.mutation_prob:
@@ -143,10 +146,18 @@ class GeneticAlgorithm:
 
         Returns:
             list[tuple[np.ndarray, float]]: The population with their respective fitness values.
+
+        Example:
+        >>> ga = GeneticAlgorithm(lambda x, y: -(x**2 + y**2), [(-10, 10), (-10, 10)], 10, 100, 0.1, 0.8, True)
+        >>> eval_population = ga.evaluate_population()
+        >>> len(eval_population) == ga.population_size  # Ensure the population size is correct
+        True
+        >>> all(isinstance(ind, tuple) and isinstance(ind[1], float) for ind in eval_population)
+        True
         """
         with ThreadPoolExecutor() as executor:
             return list(
-                executor.map(lambda ind: (ind, self.fitness(ind)), self.population)
+                executor.map(lambda individual: (individual, self.fitness(individual)), self.population)
             )
 
     def evolve(self) -> np.ndarray:
@@ -155,13 +166,19 @@ class GeneticAlgorithm:
 
         Returns:
             np.ndarray: The best individual found during the evolution process.
+
+        Example:
+        >>> ga = GeneticAlgorithm(lambda x, y: -(x**2 + y**2), [(-10, 10), (-10, 10)], 10, 10, 0.1, 0.8, True)
+        >>> best_solution = ga.evolve()
+        >>> len(best_solution) == 2  # Ensure the best solution is a valid individual with correct dimensions
+        True
         """
         for generation in range(self.generations):
             # Evaluate population fitness (multithreaded)
             population_score = self.evaluate_population()
 
             # Check the best individual
-            best_individual = max(population_score, key=lambda x: x[1])[0]
+            best_individual = max(population_score, key=lambda score_tuple: score_tuple[1])[0]
             best_fitness = self.fitness(best_individual)
 
             # Select parents for next generation
