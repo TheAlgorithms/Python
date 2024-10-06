@@ -37,8 +37,9 @@ class StreamingMovingAverage:
     >>> mov_avg_calculator.update(10.)
     >>> mov_avg_calculator.update(12.)
     >>> mov_avg_calculator.update(2.)
+    >>> mov_avg_calculator.update(1.)
     >>> mov_avg_calculator.mov_avg
-    8.0
+    5.0
     >>> mov_avg_calculator = StreamingMovingAverage(5)
     >>> mov_avg_calculator.update(2.)
     >>> mov_avg_calculator.update(3.)
@@ -46,12 +47,11 @@ class StreamingMovingAverage:
     2.5
     """
 
-    def __init__(self, window_size: int):
+    def __init__(self, window_size: int) -> None:
         if window_size < 1:
             raise ValueError("Window size must be a positive integer")
         self.window_size = window_size
         self.window: deque[float] = deque(maxlen=window_size)
-        self.total: float = 0.0  # Placeholder for total sum.
         self._mov_avg: float = 0.0  # Placeholder for online moving average.
 
     def update(self, new_value: float) -> None:
@@ -70,8 +70,7 @@ class StreamingMovingAverage:
         if not isinstance(new_value, float):
             raise TypeError("Type of new_value must be either float.")
         self.window.append(new_value)
-        self.total += new_value
-        self._mov_avg = self.total / len(self.window)
+        self._mov_avg = sum(self.window) / len(self.window)
 
     @property
     def mov_avg(self) -> float:
