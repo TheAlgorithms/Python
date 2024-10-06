@@ -135,14 +135,15 @@ if __name__ == "__main__":
 
     testmod()
 
-    # func, a, b = get_inputs()
-    # acc = 1
-    # solution = None
+    func_str, a, b = get_inputs()
+    acc = 1
+    solution = None
 
-    # while acc <= 100_000:
-    #     table, h = compute_table(func, a, b, acc)
-    #     add = apply_weights(table)
-    #     solution = compute_solution(add, table, h)
-    #     acc *= 10
+    func = safe_function_eval(func_str)
+    while acc <= 100_000:
+        table, h = compute_table(func, a, b, acc)
+        add = apply_weights(table)
+        solution = compute_solution(add, table, h)
+        acc *= 10
 
-    # print(f'Solution: {solution}')
+    print(f'Solution: {solution}')
