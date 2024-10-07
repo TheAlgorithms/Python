@@ -21,7 +21,7 @@ from catboost import CatBoostRegressor
 def data_handling() -> tuple:
     """
     Loads and handles the California Housing dataset (replacement for deprecated Boston dataset).
-    
+
     Returns:
         tuple: A tuple of (features, target), where both are numpy arrays.
 
@@ -45,11 +45,11 @@ def data_handling() -> tuple:
 def catboost_regressor(features: np.ndarray, target: np.ndarray) -> CatBoostRegressor:
     """
     Trains a CatBoostRegressor using the provided features and target values.
-    
+
     Args:
         features (np.ndarray): The input features for the regression model.
         target (np.ndarray): The target values for the regression model.
-    
+
     Returns:
         CatBoostRegressor: A trained CatBoost regressor model.
 
@@ -67,7 +67,7 @@ def catboost_regressor(features: np.ndarray, target: np.ndarray) -> CatBoostRegr
 def main() -> None:
     """
     Main function to run the CatBoost Regressor example.
-    
+
     It loads the data, splits it into training and testing sets,
     trains the regressor on the training data, and evaluates its performance
     on the test data.
@@ -95,5 +95,6 @@ def main() -> None:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)
     main()
