@@ -3,6 +3,7 @@ class Node:
         self.data = data
         self.next = None
 
+
 class SortedLinkedList:
     def __init__(self):
         self.head = None
@@ -28,19 +29,20 @@ class SortedLinkedList:
             current = current.next
         print("None")
 
+
 # Create an instance of SortedLinkedList
 sll = SortedLinkedList()
 # Take input from the user
 while True:
     try:
         user_input = input("Enter a number (or 'q' to quit): ")
-        if user_input == 'q':
+        if user_input == "q":
             break
         else:
             num = int(user_input)
             sll.insert(num)
     except ValueError:
-        print("Please enter a valid number or 'q' to quit.")    
+        print("Please enter a valid number or 'q' to quit.")
 # Display the sorted linked list
 print("Sorted Linked List:")
 sll.display()
