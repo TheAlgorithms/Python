@@ -5,8 +5,7 @@ class SimpleANN:
     Simple Artificial Neural Network (ANN)
 
     - Feedforward Neural Network with 1 hidden layer and Sigmoid activation.
-    - Uses Gradient Descent for backpropagation and Mean Squared Error (MSE)
-      as the loss function.
+    - Uses Gradient Descent for backpropagation and Mean Squared Error (MSE) as the loss function.
     - Example demonstrates solving the XOR problem.
     """
 
@@ -19,14 +18,17 @@ class SimpleANN:
             hidden_size (int): Number of neurons in the hidden layer.
             output_size (int): Number of neurons in the output layer.
             learning_rate (float): Learning rate for gradient descent.
+
+        Example:
+        >>> ann = SimpleANN(2, 2, 1)
+        >>> isinstance(ann, SimpleANN)
+        True
         """
         rng = np.random.default_rng()
         self.weights_input_hidden = rng.standard_normal((input_size, hidden_size))
         self.weights_hidden_output = rng.standard_normal((hidden_size, output_size))
-
         self.bias_hidden = np.zeros((1, hidden_size))
         self.bias_output = np.zeros((1, output_size))
-
         self.learning_rate = learning_rate
 
     def sigmoid(self, value: np.ndarray) -> np.ndarray:
@@ -40,7 +42,6 @@ class SimpleANN:
             ndarray: Activated output using sigmoid function.
 
         Example:
-        >>> from __main__ import SimpleANN
         >>> ann = SimpleANN(2, 2, 1)
         >>> ann.sigmoid(np.array([0]))
         array([0.5])
@@ -58,7 +59,6 @@ class SimpleANN:
             ndarray: Derivative of the sigmoid function.
 
         Example:
-        >>> from __main__ import SimpleANN
         >>> ann = SimpleANN(2, 2, 1)
         >>> output = ann.sigmoid(np.array([0.5]))
         >>> ann.sigmoid_derivative(output)
@@ -77,7 +77,6 @@ class SimpleANN:
             ndarray: Output from the network after feedforward pass.
 
         Example:
-        >>> from __main__ import SimpleANN
         >>> ann = SimpleANN(2, 2, 1)
         >>> inputs = np.array([[0, 0], [1, 1]])
         >>> ann.feedforward(inputs).shape
@@ -99,7 +98,6 @@ class SimpleANN:
             outputs (ndarray): Output predicted by the network.
 
         Example:
-        >>> from __main__ import SimpleANN
         >>> ann = SimpleANN(2, 2, 1)
         >>> inputs = np.array([[0, 0], [1, 1]])
         >>> outputs = ann.feedforward(inputs)
@@ -127,7 +125,6 @@ class SimpleANN:
             epochs (int): Number of training iterations.
 
         Example:
-        >>> from __main__ import SimpleANN
         >>> ann = SimpleANN(2, 2, 1)
         >>> inputs = np.array([[0, 0], [1, 1]])
         >>> targets = np.array([[0], [1]])
@@ -151,7 +148,6 @@ class SimpleANN:
             ndarray: Predicted output from the network.
 
         Example:
-        >>> from __main__ import SimpleANN
         >>> ann = SimpleANN(2, 2, 1)
         >>> inputs = np.array([[0, 0], [1, 1]])
         >>> ann.predict(inputs).shape
