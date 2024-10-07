@@ -8,11 +8,11 @@ INT_MAX = sys.maxsize - 1
 @dataclass
 class TreeNode:
     val: int = 0
-    left: "TreeNode" | None = None
-    right: "TreeNode" | None = None
+    left: "TreeNode"  = None
+    right: "TreeNode" = None
 
 
-def max_sum_bst(root: "TreeNode" | None) -> int:
+def max_sum_bst(root: TreeNode) -> int:
     """
     The solution traverses a binary tree to find the maximum sum of
     keys in any subtree that is a Binary Search Tree (BST). It uses
@@ -45,7 +45,7 @@ def max_sum_bst(root: "TreeNode" | None) -> int:
     ans: int = 0
 
 
-    def solver(node: "TreeNode" | None) -> tuple[bool, int, int, int]:
+    def solver(node: TreeNode) -> tuple[bool, int, int, int]:
         """
         Returns the maximum sum by making recursive calls
         >>> t1 = TreeNode(1)
