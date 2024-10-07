@@ -84,7 +84,7 @@ def longest_common_subsequence(first_sequence: str, second_sequence: str):
     ----------
     first_sequence: str
         The first sequence (or string).
-
+        
     second_sequence: str
         The second sequence (or string).
 
@@ -107,12 +107,12 @@ def longest_common_subsequence(first_sequence: str, second_sequence: str):
     >>> longest_common_subsequence("abc", "abc")
     (3, 'abc')
     """
-    m, n = len(x), len(y)
+    m, n = len(first_sequence), len(second_sequence)
     dp = [[0] * (n + 1) for _ in range(m + 1)]
 
     for i in range(1, m + 1):
         for j in range(1, n + 1):
-            if x[i - 1] == y[j - 1]:
+            if first_sequence[i - 1] == second_sequence[j - 1]:
                 dp[i][j] = dp[i - 1][j - 1] + 1
             else:
                 dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
@@ -121,8 +121,8 @@ def longest_common_subsequence(first_sequence: str, second_sequence: str):
     i, j = m, n
     lcs = []
     while i > 0 and j > 0:
-        if x[i - 1] == y[j - 1]:
-            lcs.append(x[i - 1])
+        if first_sequence[i - 1] == second_sequence[j - 1]:
+            lcs.append(first_sequence[i - 1])
             i -= 1
             j -= 1
         elif dp[i - 1][j] > dp[i][j - 1]:
@@ -131,6 +131,7 @@ def longest_common_subsequence(first_sequence: str, second_sequence: str):
             j -= 1
 
     return dp[m][n], "".join(reversed(lcs))
+
 
 
 if __name__ == "__main__":
