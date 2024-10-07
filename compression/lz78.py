@@ -51,6 +51,14 @@ class LZ78Compressor:
           '[(0, a), (0, b), (1, b), (0, c), (2, a), (5, b), (1, a)]'
           >>> str(lz78_compressor.compress("aacaacabcabaaac"))
           '[(0, a), (1, c), (1, a), (0, c), (1, b), (4, a), (0, b), (3, a)]'
+          >>> lz78_compressor.compress("")
+          []
+          >>> lz78_compressor.compress([])
+          []
+          >>> lz78_compressor.compress({})
+          []
+          >>> len("ababc") >= len(compressor.compress("ababc"))
+          True
         """
 
         phrase_dict = {}
