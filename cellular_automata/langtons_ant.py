@@ -12,6 +12,7 @@ from matplotlib.animation import FuncAnimation
 
 WIDTH = 80
 HEIGHT = 80
+//hey buddy
 
 
 class LangtonsAnt:
