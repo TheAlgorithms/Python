@@ -19,6 +19,7 @@ def best_response_dynamics(payoff_matrix_a, payoff_matrix_b, iterations=10):
 
     return strategy_a, strategy_b
 
+
 # Example usage
 payoff_a = np.array([[3, 0], [5, 1]])
 payoff_b = np.array([[2, 4], [0, 2]])
