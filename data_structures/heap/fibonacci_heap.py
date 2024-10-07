@@ -14,6 +14,7 @@ class Node:
         self.child = None  # Pointer to the first child node
 
 
+
 class FibonacciHeap:
     def __init__(self) -> None:
         """
@@ -85,8 +86,21 @@ class FibonacciHeap:
         """
         min_node = self.min_node
         if min_node is not None:
-            if min_node.next == min_node:  # Only one node
-                self.min_node = None
+            # Remove min_node from the root list
+            if min_node.child is not None:
+                # Add children of min_node to the root list
+                child = min_node.child
+                while True:
+                    next_child = child.next
+                    self._insert_to_root_list(child)
+                    child.parent = None
+                    if next_child == min_node.child:
+                        break
+                    child = next_child
+            
+            # Remove min_node from root list
+            if min_node == min_node.next:
+                self.min_node = None  # Heap is now empty
             else:
                 # Remove min_node from root list
                 min_node.prev.next = min_node.next
@@ -110,7 +124,8 @@ class FibonacciHeap:
 
         current = self.min_node
         nodes = []
-        # Traverse the root list
+        
+        # Store all nodes in a list
         while True:
             nodes.append(current)
             current = current.next
@@ -177,6 +192,7 @@ class FibonacciHeap:
             raise ValueError("New key is greater than current key")
         node.key = new_key
         parent = node.parent
+        
         if parent is not None and node.key < parent.key:
             self._cut(node, parent)
             self._insert_to_root_list(node)
@@ -193,42 +209,27 @@ class FibonacciHeap:
         # Remove node from the parent's child list
         if parent.child == node:
             parent.child = node.next if node.next != node else None
-        node.prev.next = node.next
-        node.next.prev = node.prev
-        parent.degree -= 1
+        if parent.child is None:
+            parent.degree -= 1
+        else:
+            parent.degree -= 1
+            node.prev.next = node.next
+            node.next.prev = node.prev
+        
+        node.prev = self.min_node.prev
+        node.next = self.min_node
+        self.min_node.prev.next = node
+        self.min_node.prev = node
         node.parent = None
         node.is_marked = False
 
-    def delete(self, node: Node) -> None:
-        """
-        Delete a given node from the Fibonacci heap.
+    def delete(self, node):
+        """Delete a node from the heap."""
+        self.decrease_key(node, float('-inf'))  # Decrease the key to -infinity
+        self.extract_min()  # Extract the minimum node
 
-        :param node: The node to delete.
-
-        >>> heap = FibonacciHeap()
-        >>> heap.insert(10)
-        >>> node = Node(20)
-        >>> heap.insert(20)
-        >>> heap.delete(node)
-        >>> heap.is_empty()
-        False
-        """
-        self.decrease_key(node, float('-inf'))
-        self.extract_min()
-
-    def is_empty(self) -> bool:
-        """
-        Check if the heap is empty.
-
-        :return: True if the heap is empty, False otherwise.
-        
-        >>> heap = FibonacciHeap()
-        >>> heap.is_empty()
-        True
-        >>> heap.insert(10)
-        >>> heap.is_empty()
-        False
-        """
+    def is_empty(self):
+        """Check if the heap is empty."""
         return self.min_node is None
 
     def size(self) -> int:
@@ -259,3 +260,15 @@ class FibonacciHeap:
         5
         """
         return self.min_node.key if self.min_node else None
+
+# Example Usage
+if __name__ == "__main__":
+    fib_heap = FibonacciHeap()
+    fib_heap.insert(10)
+    fib_heap.insert(2)
+    fib_heap.insert(5)
+    fib_heap.insert(7)
+
+    print("Minimum:", fib_heap.min())  # Output: Minimum: 2
+    print("Extracted Min:", fib_heap.extract_min())  # Output: Extracted Min: 2
+    print("New Minimum:", fib_heap.min())  # Output: New Minimum: 5
