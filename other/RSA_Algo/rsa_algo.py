@@ -7,7 +7,7 @@ from typing import List, Tuple
 def generate_prime_candidate(length: int) -> int:
     """
     Generate a large prime number candidate.
-    
+
     >>> p = generate_prime_candidate(16)
     >>> isprime(p)
     True
@@ -17,10 +17,11 @@ def generate_prime_candidate(length: int) -> int:
         p = random.getrandbits(length)
     return p
 
+
 def generate_keys(keysize: int) -> Tuple[Tuple[int, int], Tuple[int, int]]:
     """
     Generate RSA keys.
-    
+
     >>> public, private = generate_keys(16)
     >>> len(bin(public)) - 2  # Check bit length of n
     32
@@ -32,7 +33,7 @@ def generate_keys(keysize: int) -> Tuple[Tuple[int, int], Tuple[int, int]]:
 
         p = generate_prime_candidate(keysize)
         q = generate_prime_candidate(keysize)
-        
+
         n = p * q
         phi = (p - 1) * (q - 1)
 
@@ -55,10 +56,11 @@ def generate_keys(keysize: int) -> Tuple[Tuple[int, int], Tuple[int, int]]:
         print(f"Arithmetic error generating keys: {ex}", file=sys.stderr)
         sys.exit(1)
 
+
 def gcd(a: int, b: int) -> int:
     """
     Compute the greatest common divisor of a and b.
-    
+
     >>> gcd(48, 18)
     6
     """
@@ -66,10 +68,11 @@ def gcd(a: int, b: int) -> int:
         a, b = b, a % b
     return a
 
+
 def encrypt(pk: Tuple[int, int], plaintext: str) -> List[int]:
     """
     Encrypt a message with a public key.
-    
+
     >>> public, private = generate_keys(16)
     >>> encrypted = encrypt(public, "test")
     >>> isinstance(encrypted, list)
@@ -89,10 +92,11 @@ def encrypt(pk: Tuple[int, int], plaintext: str) -> List[int]:
         print(f"Overflow error during encryption: {ex}", file=sys.stderr)
         return None
 
+
 def decrypt(pk: Tuple[int, int], ciphertext: List[int]) -> str:
     """
     Decrypt a message with a private key.
-    
+
     >>> public, private = generate_keys(16)
     >>> encrypted = encrypt(public, "test")
     >>> decrypted = decrypt(private, encrypted)
@@ -101,8 +105,8 @@ def decrypt(pk: Tuple[int, int], ciphertext: List[int]) -> str:
     """
     try:
         key, n = pk
-        plain = [chr((char ** key) % n) for char in ciphertext]
-        return ''.join(plain)
+        plain = [chr((char**key) % n) for char in ciphertext]
+        return "".join(plain)
     except TypeError as ex:
         print(f"Type error during decryption: {ex}", file=sys.stderr)
         return None
@@ -113,8 +117,10 @@ def decrypt(pk: Tuple[int, int], ciphertext: List[int]) -> str:
         print(f"Overflow error during decryption: {ex}", file=sys.stderr)
         return None
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     try:
