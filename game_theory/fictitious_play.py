@@ -1,3 +1,4 @@
+import numpy as np
 def fictitious_play(payoff_matrix_a, payoff_matrix_b, iterations=100):
     n = payoff_matrix_a.shape[0]
     m = payoff_matrix_a.shape[1]
