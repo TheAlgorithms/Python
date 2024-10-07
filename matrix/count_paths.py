@@ -19,18 +19,17 @@ In the example above, there are two distinct paths:
     0  1  *  *      0  1  *  *
 """
 
+intervals = [(4, 5), (0, 2), (2, 7), (1, 3), (0, 4)]
+intervals.sort(key=lambda x: x[1])
+count = 0
+end = 0
+answer = []
 
-intervals = [(4, 5), (0, 2), (2, 7), (1, 3), (0, 4)]  
-intervals.sort(key=lambda x: x[1])  
-count = 0 
-end = 0 
-answer = [] 
-  
-for interval in intervals:  
-    if(end <= interval[0]): 
-        end = interval[1] 
+for interval in intervals:
+    if end <= interval[0]:
+        end = interval[1]
         count += 1
-        answer.append(interval) 
+        answer.append(interval)
 
 if __name__ == "__main__":
     import doctest
