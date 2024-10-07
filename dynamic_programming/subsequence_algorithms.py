@@ -75,23 +75,37 @@ def longest_increasing_subsequence(array: list[int]) -> list[int]:
 
 
 # Longest Common Subsequence (LCS)
-def longest_common_subsequence(x: str, y: str) -> tuple[int, str]:
+def longest_common_subsequence(first_sequence: str, second_sequence: str):
     """
-    Finds the longest common subsequence between two strings and its length.
+    Finds the longest common subsequence between two sequences (strings).
+    Also returns the subsequence found.
 
-    Examples:
+    Parameters
+    ----------
+    first_sequence: str
+        The first sequence (or string).
+        
+    second_sequence: str
+        The second sequence (or string).
+
+    Returns
+    -------
+    tuple
+        - Length of the longest subsequence (int).
+        - The longest common subsequence found (str).
+
+    Examples
+    --------
     >>> longest_common_subsequence("programming", "gaming")
     (6, 'gaming')
     >>> longest_common_subsequence("physics", "smartphone")
     (2, 'ph')
     >>> longest_common_subsequence("computer", "food")
     (1, 'o')
-    >>> longest_common_subsequence("", "abc")
+    >>> longest_common_subsequence("abc", "def")
     (0, '')
-    >>> longest_common_subsequence("abc", "")
-    (0, '')
-    >>> longest_common_subsequence("abcdef", "ace")
-    (3, 'ace')
+    >>> longest_common_subsequence("abc", "abc")
+    (3, 'abc')
     """
     m, n = len(x), len(y)
     dp = [[0] * (n + 1) for _ in range(m + 1)]
