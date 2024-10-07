@@ -59,6 +59,7 @@ def longest_subsequence(array: list[int]) -> list[int]:  # This function is recu
     else:
         return longest_subseq
 
+
 # Longest Common Subsequence (LCS)
 def longest_common_subsequence(x: str, y: str):
     """
