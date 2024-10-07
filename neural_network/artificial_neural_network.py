@@ -4,6 +4,7 @@ Simple Artificial Neural Network (ANN)
 - Uses Gradient Descent for backpropagation and Mean Squared Error (MSE) as the loss function.
 - Example demonstrates solving the XOR problem.
 """
+
 import numpy as np
 
 
@@ -31,7 +32,9 @@ class ANN:
         self.hidden_output = self.sigmoid(self.hidden_input)
 
         # Output layer
-        self.final_input = np.dot(self.hidden_output, self.weights_hidden_output) + self.bias_output
+        self.final_input = (
+            np.dot(self.hidden_output, self.weights_hidden_output) + self.bias_output
+        )
         self.final_output = self.sigmoid(self.final_input)
 
         return self.final_output
@@ -45,10 +48,16 @@ class ANN:
         hidden_error = output_gradient.dot(self.weights_hidden_output.T)
         hidden_gradient = hidden_error * self.sigmoid_derivative(self.hidden_output)
         # Update weights and biases
-        self.weights_hidden_output += self.hidden_output.T.dot(output_gradient) * self.learning_rate
-        self.bias_output += np.sum(output_gradient, axis=0, keepdims=True) * self.learning_rate
+        self.weights_hidden_output += (
+            self.hidden_output.T.dot(output_gradient) * self.learning_rate
+        )
+        self.bias_output += (
+            np.sum(output_gradient, axis=0, keepdims=True) * self.learning_rate
+        )
         self.weights_input_hidden += X.T.dot(hidden_gradient) * self.learning_rate
-        self.bias_hidden += np.sum(hidden_gradient, axis=0, keepdims=True) * self.learning_rate
+        self.bias_hidden += (
+            np.sum(hidden_gradient, axis=0, keepdims=True) * self.learning_rate
+        )
 
     def train(self, X, y, epochs=10000):
         for epoch in range(epochs):
@@ -56,7 +65,7 @@ class ANN:
             self.backpropagation(X, y, output)
             if epoch % 1000 == 0:
                 loss = np.mean(np.square(y - output))
-                print(f'Epoch {epoch}, Loss: {loss}')
+                print(f"Epoch {epoch}, Loss: {loss}")
 
     def predict(self, X):
         return self.feedforward(X)
