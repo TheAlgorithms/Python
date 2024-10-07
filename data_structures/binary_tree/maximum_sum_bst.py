@@ -8,8 +8,8 @@ INT_MAX = sys.maxsize - 1
 @dataclass
 class TreeNode:
     val: int = 0
-    left: 'TreeNode' = None
-    right: 'TreeNode' = None
+    left: "TreeNode" = None
+    right: "TreeNode" = None
 
 
 def max_sum_bst(root: TreeNode ) -> int:
