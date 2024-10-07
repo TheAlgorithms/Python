@@ -1,2 +1,2 @@
-tasks:
+#sudo su tasks:
   - init: pip3 install -r ./requirements.txt
