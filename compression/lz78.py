@@ -12,7 +12,7 @@ __author__ = "Ahmed Tamer"
 @dataclass
 class Token:
     """
-    Dataclass representing pair called token consisting of the dictionary index 
+    Dataclass representing pair called token consisting of the dictionary index
     and a single character that follows the phrase in the dictionary.
     """
 
@@ -81,8 +81,8 @@ class LZ78Compressor:
 
         Tests:
           >>> lz78_compressor = LZ78Compressor()
-          >>> lz78_compressor.decompress([Token(0, 'c'), Token(0, 'a'), Token(0, 'b'), 
-          ... Token(0, 'r'), Token(2, 'c'), Token(2, 'd'), Token(2, 'b'), Token(4, 'a'), 
+          >>> lz78_compressor.decompress([Token(0, 'c'), Token(0, 'a'), Token(0, 'b'),
+          ... Token(0, 'r'), Token(2, 'c'), Token(2, 'd'), Token(2, 'b'), Token(4, 'a'),
           ... Token(4, 'r'), Token(2, 'r'), Token(8, 'd')])
           'cabracadabrarrarrad'
           >>> lz78_compressor.decompress([Token(0, 'a'), Token(0, 'b'), Token(1, 'b'),
