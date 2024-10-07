@@ -62,9 +62,9 @@ class LZ78Compressor:
             if phrase not in phrase_dict:
                 phrase_dict[phrase] = str(code)
                 if len(phrase) == 1:
-                    tokens.append(Token("0", phrase))
+                    tokens.append(Token(0, phrase))
                 else:
-                    tokens.append(Token(phrase_dict[phrase[:-1]], phrase[-1]))
+                    tokens.append(Token(int(phrase_dict[phrase[:-1]]), phrase[-1]))
                 code += 1
                 phrase = ""
         return tokens
@@ -89,7 +89,8 @@ class LZ78Compressor:
           ... Token(0, 'c'), Token(2, 'a'), Token(5, 'b'), Token(1, 'a')])
           'ababcbababaa'
           >>> lz78_compressor.decompress([Token(0, 'a'), Token(1, 'c'), Token(1, 'a'),
-          ... Token(0, 'c'), Token(1, 'b'), Token(4, 'a'), Token(0, 'b'), Token(3, 'a')])
+          ... Token(0, 'c'), Token(1, 'b'), Token(4, 'a'),
+          ... Token(0, 'b'), Token(3, 'a')])
           'aacaacabcabaaa'
         """
 
