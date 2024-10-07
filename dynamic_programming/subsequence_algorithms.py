@@ -8,19 +8,20 @@ This is a pure Python implementation of Dynamic Programming solutions to:
 1. LIS Problem: Given an array, find the longest increasing sub-array and return it.
 Example: [10, 22, 9, 33, 21, 50, 41, 60, 80] -> [10, 22, 33, 41, 60, 80]
 
-2. LCS Problem: Given two sequences, find the length and content of the longest 
-common subsequence that appears in both of them. A subsequence appears in the 
+2. LCS Problem: Given two sequences, find the length and content of the longest
+common subsequence that appears in both of them. A subsequence appears in the
 same relative order but not necessarily continuously.
 Example: "programming" and "gaming" -> "gaming"
 """
 
 from __future__ import annotations
 
+
 # Longest Increasing Subsequence (LIS)
 def longest_increasing_subsequence(array: list[int]) -> list[int]:
     """
     Finds the longest increasing subsequence in the array.
-    
+
     Examples:
     >>> longest_increasing_subsequence([10, 22, 9, 33, 21, 50, 41, 60, 80])
     [10, 22, 33, 41, 60, 80]
@@ -40,7 +41,7 @@ def longest_increasing_subsequence(array: list[int]) -> list[int]:
     n = len(array)
     dp = [1] * n
     prev = [-1] * n  # To reconstruct the subsequence
-    
+
     max_length = 1
     max_index = 0
 
@@ -61,7 +62,7 @@ def longest_increasing_subsequence(array: list[int]) -> list[int]:
         i = prev[i]
         if i == -1:
             break
-    
+
     return lis[::-1]
 
 
@@ -107,11 +108,12 @@ def longest_common_subsequence(x: str, y: str) -> tuple[int, str]:
         else:
             j -= 1
 
-    return dp[m][n], ''.join(reversed(lcs))
+    return dp[m][n], "".join(reversed(lcs))
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     # Example usage for LIS
