@@ -3,30 +3,36 @@ def points_to_polynomial(coordinates: list[list[int]]) -> str:
     coordinates is a two dimensional matrix: [[x, y], [x, y], ...]
     number of points you want to use
 
-    >>> print(points_to_polynomial([]))
+    >>> points_to_polynomial([])
     Traceback (most recent call last):
         ...
     ValueError: The program cannot work out a fitting polynomial.
-    >>> print(points_to_polynomial([[]]))
+    >>> points_to_polynomial([[]])
     Traceback (most recent call last):
         ...
     ValueError: The program cannot work out a fitting polynomial.
-    >>> print(points_to_polynomial([[1, 0], [2, 0], [3, 0]]))
-    f(x)=x^2*0.0+x^1*-0.0+x^0*0.0
-    >>> print(points_to_polynomial([[1, 1], [2, 1], [3, 1]]))
-    f(x)=x^2*0.0+x^1*-0.0+x^0*1.0
-    >>> print(points_to_polynomial([[1, 3], [2, 3], [3, 3]]))
-    f(x)=x^2*0.0+x^1*-0.0+x^0*3.0
-    >>> print(points_to_polynomial([[1, 1], [2, 2], [3, 3]]))
-    f(x)=x^2*0.0+x^1*1.0+x^0*0.0
-    >>> print(points_to_polynomial([[1, 1], [2, 4], [3, 9]]))
-    f(x)=x^2*1.0+x^1*-0.0+x^0*0.0
-    >>> print(points_to_polynomial([[1, 3], [2, 6], [3, 11]]))
-    f(x)=x^2*1.0+x^1*-0.0+x^0*2.0
-    >>> print(points_to_polynomial([[1, -3], [2, -6], [3, -11]]))
-    f(x)=x^2*-1.0+x^1*-0.0+x^0*-2.0
-    >>> print(points_to_polynomial([[1, 5], [2, 2], [3, 9]]))
-    f(x)=x^2*5.0+x^1*-18.0+x^0*18.0
+    >>> points_to_polynomial([[1, 0], [2, 0], [3, 0]])
+    'f(x)=x^2*0.0+x^1*-0.0+x^0*0.0'
+    >>> points_to_polynomial([[1, 1], [2, 1], [3, 1]])
+    'f(x)=x^2*0.0+x^1*-0.0+x^0*1.0'
+    >>> points_to_polynomial([[1, 3], [2, 3], [3, 3]])
+    'f(x)=x^2*0.0+x^1*-0.0+x^0*3.0'
+    >>> points_to_polynomial([[1, 1], [2, 2], [3, 3]])
+    'f(x)=x^2*0.0+x^1*1.0+x^0*0.0'
+    >>> points_to_polynomial([[1, 1], [2, 4], [3, 9]])
+    'f(x)=x^2*1.0+x^1*-0.0+x^0*0.0'
+    >>> points_to_polynomial([[1, 3], [2, 6], [3, 11]])
+    'f(x)=x^2*1.0+x^1*-0.0+x^0*2.0'
+    >>> points_to_polynomial([[1, -3], [2, -6], [3, -11]])
+    'f(x)=x^2*-1.0+x^1*-0.0+x^0*-2.0'
+    >>> points_to_polynomial([[1, 5], [2, 2], [3, 9]])
+    'f(x)=x^2*5.0+x^1*-18.0+x^0*18.0'
+    >>> points_to_polynomial([[1, 1], [1, 2], [1, 3]])
+    'x=1'
+    >>> points_to_polynomial([[1, 1], [2, 2], [2, 2]])
+    Traceback (most recent call last):
+        ...
+    ValueError: The program cannot work out a fitting polynomial.
     """
     if len(coordinates) == 0 or not all(len(pair) == 2 for pair in coordinates):
         raise ValueError("The program cannot work out a fitting polynomial.")
