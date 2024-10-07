@@ -6,7 +6,7 @@ def remove_duplicates(sentence: str) -> str:
     >>> remove_duplicates("Python   is      great and Java is also great")
     'Java Python also and great is'
     """
-    return " ".join(sorted(set(sentence.split())))
+    return " ".join(list(OrderedDict.fromkeys(sentence.split())))
 
 
 if __name__ == "__main__":
