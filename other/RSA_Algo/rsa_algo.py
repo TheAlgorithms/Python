@@ -1,6 +1,6 @@
 import random
-from sympy import isprime, mod_inverse
 import sys
+from sympy import isprime, mod_inverse
 
 def generate_prime_candidate(length):
     """
@@ -43,8 +43,14 @@ def generate_keys(keysize):
         d = mod_inverse(e, phi)
 
         return ((e, n), (d, n))
+    except ValueError as ex:
+        print(f"Value error generating keys: {ex}", file=sys.stderr)
+        sys.exit(1)
+    except TypeError as ex:
+        print(f"Type error generating keys: {ex}", file=sys.stderr)
+        sys.exit(1)
     except Exception as ex:
-        print(f"Error generating keys: {ex}", file=sys.stderr)
+        print(f"Unexpected error generating keys: {ex}", file=sys.stderr)
         sys.exit(1)
 
 def gcd(a, b):
@@ -71,8 +77,11 @@ def encrypt(pk, plaintext):
         key, n = pk
         cipher = [(ord(char) ** key) % n for char in plaintext]
         return cipher
+    except TypeError as ex:
+        print(f"Type error during encryption: {ex}", file=sys.stderr)
+        return None
     except Exception as ex:
-        print(f"Error during encryption: {ex}", file=sys.stderr)
+        print(f"Unexpected error during encryption: {ex}", file=sys.stderr)
         return None
 
 def decrypt(pk, ciphertext):
@@ -89,8 +98,11 @@ def decrypt(pk, ciphertext):
         key, n = pk
         plain = [chr((char ** key) % n) for char in ciphertext]
         return ''.join(plain)
+    except TypeError as ex:
+        print(f"Type error during decryption: {ex}", file=sys.stderr)
+        return None
     except Exception as ex:
-        print(f"Error during decryption: {ex}", file=sys.stderr)
+        print(f"Unexpected error during decryption: {ex}", file=sys.stderr)
         return None
 
 if __name__ == '__main__':
@@ -115,6 +127,12 @@ if __name__ == '__main__':
                 print("Decryption failed.", file=sys.stderr)
         else:
             print("Encryption failed.", file=sys.stderr)
+    except ValueError as ex:
+        print(f"Value error: {ex}", file=sys.stderr)
+        sys.exit(1)
+    except TypeError as ex:
+        print(f"Type error: {ex}", file=sys.stderr)
+        sys.exit(1)
     except Exception as ex:
-        print(f"An error occurred: {ex}", file=sys.stderr)
+        print(f"Unexpected error: {ex}", file=sys.stderr)
         sys.exit(1)
