@@ -115,5 +115,5 @@ if __name__ == "__main__":
     # Example
     text = "aacaacabcabaaa"
     tokens = lz78_compressor.compress(text)
-    decompressedtext = lz78_compressor.decompress(tokens)
-    assert decompressedtext == text, "Invalid result."
+    decompressed_text = lz78_compressor.decompress(tokens)
+    assert decompressed_text == text, "Invalid result."
