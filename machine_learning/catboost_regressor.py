@@ -12,7 +12,7 @@ Contributed by: @AHuzail
 """
 
 import numpy as np
-from sklearn.datasets import load_boston
+from sklearn.datasets import fetch_california_housing
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from catboost import CatBoostRegressor
@@ -20,35 +20,36 @@ from catboost import CatBoostRegressor
 
 def data_handling() -> tuple:
     """
-    Loads and handles the dataset, splitting it into features and targets.
-
-    The Boston dataset is used as a regression example.
-
+    Loads and handles the California Housing dataset (replacement for deprecated Boston dataset).
+    
     Returns:
         tuple: A tuple of (features, target), where both are numpy arrays.
 
     Example:
     >>> features, target = data_handling()
+    >>> isinstance(features, np.ndarray)
+    True
+    >>> isinstance(target, np.ndarray)
+    True
     >>> features.shape
-    (506, 13)
+    (20640, 8)
     >>> target.shape
-    (506,)
+    (20640,)
     """
-    # Load Boston dataset (note: this dataset may be deprecated, replace if needed)
-    boston = load_boston()
-    features = boston.data
-    target = boston.target
+    housing = fetch_california_housing()
+    features = housing.data
+    target = housing.target
     return features, target
 
 
 def catboost_regressor(features: np.ndarray, target: np.ndarray) -> CatBoostRegressor:
     """
     Trains a CatBoostRegressor using the provided features and target values.
-
+    
     Args:
         features (np.ndarray): The input features for the regression model.
         target (np.ndarray): The target values for the regression model.
-
+    
     Returns:
         CatBoostRegressor: A trained CatBoost regressor model.
 
@@ -66,10 +67,14 @@ def catboost_regressor(features: np.ndarray, target: np.ndarray) -> CatBoostRegr
 def main() -> None:
     """
     Main function to run the CatBoost Regressor example.
-
+    
     It loads the data, splits it into training and testing sets,
     trains the regressor on the training data, and evaluates its performance
     on the test data.
+
+    Example:
+    >>> main()
+    Mean Squared Error on Test Set:
     """
     # Load and split the dataset
     features, target = data_handling()
@@ -90,6 +95,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod(verbose=True)
     main()
