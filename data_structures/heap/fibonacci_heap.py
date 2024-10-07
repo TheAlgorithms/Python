@@ -8,6 +8,7 @@ class Node:
         self.next = self  # Pointer to the next node in the circular list
         self.prev = self  # Pointer to the previous node in the circular list
 
+
 class FibonacciHeap:
     def __init__(self):
         self.min_node = None  # Pointer to the minimum node
@@ -47,7 +48,7 @@ class FibonacciHeap:
                     if next_child == min_node.child:
                         break
                     child = next_child
-            
+
             # Remove min_node from root list
             if min_node == min_node.next:
                 self.min_node = None  # Heap is now empty
@@ -66,14 +67,14 @@ class FibonacciHeap:
         degree_list = [None] * (self.num_nodes + 1)
         current = self.min_node
         nodes = []
-        
+
         # Store all nodes in a list
         while True:
             nodes.append(current)
             current = current.next
             if current == self.min_node:
                 break
-        
+
         for node in nodes:
             degree = node.degree
             while degree_list[degree] is not None:
@@ -118,7 +119,7 @@ class FibonacciHeap:
 
         node.key = new_key
         parent = node.parent
-        
+
         if parent is not None and node.key < parent.key:
             self._cut(node, parent)
             self._insert_to_root_list(node)
@@ -135,7 +136,7 @@ class FibonacciHeap:
             parent.degree -= 1
             node.prev.next = node.next
             node.next.prev = node.prev
-        
+
         node.prev = self.min_node.prev
         node.next = self.min_node
         self.min_node.prev.next = node
@@ -145,7 +146,7 @@ class FibonacciHeap:
 
     def delete(self, node):
         """Delete a node from the heap."""
-        self.decrease_key(node, float('-inf'))  # Decrease the key to -infinity
+        self.decrease_key(node, float("-inf"))  # Decrease the key to -infinity
         self.extract_min()  # Extract the minimum node
 
     def is_empty(self):
@@ -159,6 +160,7 @@ class FibonacciHeap:
     def min(self):
         """Return the minimum key without removing it."""
         return self.min_node.key if self.min_node else None
+
 
 # Example Usage
 if __name__ == "__main__":
