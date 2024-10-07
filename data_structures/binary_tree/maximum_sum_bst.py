@@ -44,7 +44,6 @@ def max_sum_bst(root: TreeNode) -> int:
     """
     ans: int = 0
 
-
     def solver(node: TreeNode) -> tuple[bool, int, int, int]:
         """
         Returns the maximum sum by making recursive calls
@@ -55,7 +54,7 @@ def max_sum_bst(root: TreeNode) -> int:
         nonlocal ans
 
         if not node:
-            return True, INT_MAX, INT_MIN, 0 # Valid BST, min, max, sum
+            return True, INT_MAX, INT_MIN, 0  # Valid BST, min, max, sum
 
         is_left_valid, min_left, max_left, sum_left = solver(node.left)
         is_right_valid, min_right, max_right, sum_right = solver(node.right)
