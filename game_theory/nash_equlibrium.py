@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.optimize import linprog
 
+
 def find_nash_equilibrium(payoff_matrix_a, payoff_matrix_b):
     n = payoff_matrix_a.shape[0]
     m = payoff_matrix_a.shape[1]
@@ -22,6 +23,7 @@ def find_nash_equilibrium(payoff_matrix_a, payoff_matrix_b):
     p_b = result_b.x
 
     return p_a, p_b
+
 
 # Example usage
 payoff_a = np.array([[3, 0], [5, 1]])
