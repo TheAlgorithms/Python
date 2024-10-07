@@ -144,7 +144,7 @@ if __name__ == "__main__":
 
     # Example usage for LIS
     arr = [10, 22, 9, 33, 21, 50, 41, 60, 80]
-    lis = longest_increasing_subsequence(arr)
+    lis = longest_subsequence(arr)
     print(f"Longest Increasing Subsequence: {lis}")
 
     # Example usage for LCS
