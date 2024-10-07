@@ -6,6 +6,7 @@ with the exception that the key is numeric.
 
 https://www.dcode.fr/gronsfeld-cipher
 """
+
 from string import ascii_uppercase
 
 
