@@ -14,7 +14,7 @@ class TreeNode:
     right: TreeNode | None = None
 
 
-def max_sum_bst(root: TreeNode) -> int:
+def max_sum_bst(root: TreeNode | None) -> int:
     """
     The solution traverses a binary tree to find the maximum sum of
     keys in any subtree that is a Binary Search Tree (BST). It uses
