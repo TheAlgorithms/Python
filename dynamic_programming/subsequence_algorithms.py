@@ -75,8 +75,9 @@ def longest_increasing_subsequence(array: list[int]) -> list[int]:
 
 
 # Longest Common Subsequence (LCS)
-def longest_common_subsequence(first_sequence: str, second_sequence: str) -> tuple[int, str]:
-
+def longest_common_subsequence(
+    first_sequence: str, second_sequence: str
+) -> tuple[int, str]:
     """
     Finds the longest common subsequence between two sequences (strings).
     Also returns the subsequence found.
