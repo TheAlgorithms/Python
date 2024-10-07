@@ -84,7 +84,7 @@ def longest_common_subsequence(first_sequence: str, second_sequence: str):
     ----------
     first_sequence: str
         The first sequence (or string).
-        
+
     second_sequence: str
         The second sequence (or string).
 
