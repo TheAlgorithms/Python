@@ -6,7 +6,8 @@ class ANN:
     Simple Artificial Neural Network (ANN)
 
     - Feedforward Neural Network with 1 hidden layer and Sigmoid activation.
-    - Uses Gradient Descent for backpropagation and Mean Squared Error (MSE) as the loss function.
+    - Uses Gradient Descent for backpropagation and Mean Squared Error (MSE)
+    as the loss function.
     - Example demonstrates solving the XOR problem.
     """
 
@@ -57,7 +58,8 @@ class ANN:
         Derivative of the sigmoid function.
 
         Args:
-            sigmoid_output (ndarray): Output after applying the sigmoid function.
+            sigmoid_output (ndarray): Output after applying 
+            the sigmoid function.
 
         Returns:
             ndarray: Derivative of the sigmoid function.
@@ -71,6 +73,7 @@ class ANN:
         return sigmoid_output * (1 - sigmoid_output)
 
     def feedforward(self, inputs: np.ndarray) -> np.ndarray:
+        
         """
         Perform forward propagation through the network.
 
