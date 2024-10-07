@@ -58,7 +58,7 @@ class ANN:
         Derivative of the sigmoid function.
 
         Args:
-            sigmoid_output (ndarray): Output after applying 
+            sigmoid_output (ndarray): Output after applying
             the sigmoid function.
 
         Returns:
@@ -73,7 +73,6 @@ class ANN:
         return sigmoid_output * (1 - sigmoid_output)
 
     def feedforward(self, inputs: np.ndarray) -> np.ndarray:
-        
         """
         Perform forward propagation through the network.
 
