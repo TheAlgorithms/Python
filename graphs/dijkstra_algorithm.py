@@ -4,6 +4,22 @@
 
 import math
 import sys
+from dataclasses import dataclass, field
+
+
+@dataclass
+class Edge:
+    destination: int
+    weight: float
+
+
+@dataclass
+class Node:
+    node_id: int
+    distance: float = float("inf")  # Initialize with "infinity" distance
+    parent: int | None = None
+    edges: list[Edge] = field(default_factory=list)
+
 
 # For storing the vertex set to retrieve node with the lowest distance
 
