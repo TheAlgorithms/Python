@@ -20,9 +20,20 @@ from __future__ import annotations
 # Longest Increasing Subsequence (LIS)
 def longest_increasing_subsequence(array: list[int]) -> list[int]:
     """
-    Finds the longest increasing subsequence in the array.
+    Finds the longest increasing subsequence in the given array using dynamic programming.
+
+    Parameters:
+    ----------
+    array: list[int]
+        The input array of integers.
+
+    Returns:
+    -------
+    list[int]
+        The longest increasing subsequence (LIS) as a list.
 
     Examples:
+    --------
     >>> longest_increasing_subsequence([10, 22, 9, 33, 21, 50, 41, 60, 80])
     [10, 22, 33, 41, 60, 80]
     >>> longest_increasing_subsequence([4, 8, 7, 5, 1, 12, 2, 3, 9])
@@ -37,14 +48,14 @@ def longest_increasing_subsequence(array: list[int]) -> list[int]:
     if not array:
         return []
 
-    # dp[i] stores the length of the LIS ending at index i
     n = len(array)
-    dp = [1] * n
-    prev = [-1] * n  # To reconstruct the subsequence
+    dp = [1] * n  # dp[i] stores the length of the LIS ending at index i
+    prev = [-1] * n  # prev[i] stores the index of the previous element in the LIS
 
-    max_length = 1
-    max_index = 0
+    max_length = 1  # Length of the longest increasing subsequence found
+    max_index = 0  # Index of the last element of the longest increasing subsequence
 
+    # Compute lengths of LIS for all elements
     for i in range(1, n):
         for j in range(i):
             if array[i] > array[j] and dp[i] < dp[j] + 1:
@@ -56,14 +67,11 @@ def longest_increasing_subsequence(array: list[int]) -> list[int]:
 
     # Reconstructing the longest increasing subsequence
     lis = []
-    i = max_index
-    while i >= 0:
-        lis.append(array[i])
-        i = prev[i]
-        if i == -1:
-            break
+    while max_index != -1:
+        lis.append(array[max_index])
+        max_index = prev[max_index]
 
-    return lis[::-1]
+    return lis[::-1]  # The LIS is constructed in reverse order, so reverse it
 
 
 # Longest Common Subsequence (LCS)
