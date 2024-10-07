@@ -1,12 +1,3 @@
-"""
-Python implementation of the Gronsfeld cipher encryption
-
-The Gronsfeld cipher is similar to the Vigenere cipher,
-with the exception that the key is numeric.
-
-https://www.dcode.fr/gronsfeld-cipher
-"""
-
 from string import ascii_uppercase
 
 
@@ -16,8 +7,20 @@ def gronsfeld(text: str, key: str) -> str:
 
     >>> gronsfeld('hello', '412')
     'LFNPP'
+    >>> gronsfeld('hello', '123')
+    'IGOMQ'
     >>> gronsfeld('', '123')
     ''
+    >>> gronsfeld('yes, ¥€$ - _!@#%?', '0')
+    'YES, ¥€$ - _!@#%?'
+    >>> gronsfeld('yes, ¥€$ - _!@#%?', '01')
+    'YFS, ¥€$ - _!@#%?'
+    >>> gronsfeld('yes, ¥€$ - _!@#%?', '012')
+    'YFU, ¥€$ - _!@#%?'
+    >>> gronsfeld('yes, ¥€$ - _!@#%?', '')
+    Traceback (most recent call last):
+      ...
+    ZeroDivisionError: integer modulo by zero
     """
     ascii_len = len(ascii_uppercase)
     key_len = len(key)
@@ -26,7 +29,7 @@ def gronsfeld(text: str, key: str) -> str:
     upper_case_text = text.upper()
 
     for i, char in enumerate(upper_case_text):
-        if char in alphabets:
+        if char in ascii_uppercase:
             new_position = (ascii_uppercase.index(char) + keys[i % key_len]) % ascii_len
             shifted_letter = ascii_uppercase[new_position]
             encrypted_text += shifted_letter
@@ -37,8 +40,6 @@ def gronsfeld(text: str, key: str) -> str:
 
 
 if __name__ == "__main__":
-    import doctest
+    from doctest import modtest
 
-    doctest.testmod()
-    encrypted = gronsfeld("hello world", "123")
-    print(f"Encrypted text is {encrypted}")
+    modtest()
