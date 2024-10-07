@@ -8,10 +8,15 @@ def shapley_value(payoff_matrix):
                 continue
 
             S_without_i = S & ~(1 << i)
-            marginal_contribution = payoff_matrix[S][i] - (payoff_matrix[S_without_i][i] if S_without_i else 0)
-            shapley_values[i] += marginal_contribution / (len(bin(S)) - 2)  # Normalize by size of S
+            marginal_contribution = payoff_matrix[S][i] - (
+                payoff_matrix[S_without_i][i] if S_without_i else 0
+            )
+            shapley_values[i] += marginal_contribution / (
+                len(bin(S)) - 2
+            )  # Normalize by size of S
 
     return shapley_values
+
 
 # Example usage
 payoff_matrix = np.array([[1, 2], [3, 4]])
