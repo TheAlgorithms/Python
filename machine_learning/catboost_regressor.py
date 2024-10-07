@@ -59,9 +59,7 @@ def catboost_regressor(features: np.ndarray, target: np.ndarray) -> CatBoostRegr
     >>> isinstance(model, CatBoostRegressor)
     True
     """
-    regressor = CatBoostRegressor(
-        iterations=100, learning_rate=0.1, depth=6, verbose=0
-    )
+    regressor = CatBoostRegressor(iterations=100, learning_rate=0.1, depth=6, verbose=0)
     regressor.fit(features, target)
     return regressor
 
