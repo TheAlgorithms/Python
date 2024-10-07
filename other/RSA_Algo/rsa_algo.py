@@ -1,7 +1,8 @@
 import random
 import sys
 from sympy import isprime, mod_inverse
-from typing import Tuple, List
+from typing import List, Tuple
+
 
 def generate_prime_candidate(length: int) -> int:
     """
@@ -50,8 +51,8 @@ def generate_keys(keysize: int) -> Tuple[Tuple[int, int], Tuple[int, int]]:
     except TypeError as ex:
         print(f"Type error generating keys: {ex}", file=sys.stderr)
         sys.exit(1)
-    except Exception as ex:
-        print(f"Unexpected error generating keys: {ex}", file=sys.stderr)
+    except ArithmeticError as ex:
+        print(f"Arithmetic error generating keys: {ex}", file=sys.stderr)
         sys.exit(1)
 
 def gcd(a: int, b: int) -> int:
@@ -81,8 +82,11 @@ def encrypt(pk: Tuple[int, int], plaintext: str) -> List[int]:
     except TypeError as ex:
         print(f"Type error during encryption: {ex}", file=sys.stderr)
         return None
-    except Exception as ex:
-        print(f"Unexpected error during encryption: {ex}", file=sys.stderr)
+    except ValueError as ex:
+        print(f"Value error during encryption: {ex}", file=sys.stderr)
+        return None
+    except OverflowError as ex:
+        print(f"Overflow error during encryption: {ex}", file=sys.stderr)
         return None
 
 def decrypt(pk: Tuple[int, int], ciphertext: List[int]) -> str:
@@ -102,8 +106,11 @@ def decrypt(pk: Tuple[int, int], ciphertext: List[int]) -> str:
     except TypeError as ex:
         print(f"Type error during decryption: {ex}", file=sys.stderr)
         return None
-    except Exception as ex:
-        print(f"Unexpected error during decryption: {ex}", file=sys.stderr)
+    except ValueError as ex:
+        print(f"Value error during decryption: {ex}", file=sys.stderr)
+        return None
+    except OverflowError as ex:
+        print(f"Overflow error during decryption: {ex}", file=sys.stderr)
         return None
 
 if __name__ == '__main__':
@@ -134,6 +141,6 @@ if __name__ == '__main__':
     except TypeError as ex:
         print(f"Type error: {ex}", file=sys.stderr)
         sys.exit(1)
-    except Exception as ex:
-        print(f"Unexpected error: {ex}", file=sys.stderr)
+    except ArithmeticError as ex:
+        print(f"Arithmetic error: {ex}", file=sys.stderr)
         sys.exit(1)
