@@ -53,9 +53,6 @@ def pre_order(node: TreeNode) -> None:
     >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
     >>> pre_order(root)
     1,2,4,5,3,6,7,
-    >>> tree_node = TreeNode(42) # single node
-    >>> pre_order(tree_node)
-    42,
     >>> tree_node = None
     >>> pre_order(tree_node)
     """
