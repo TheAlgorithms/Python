@@ -1,5 +1,5 @@
 beautifulsoup4
-catboost
+catboost == 1.2
 fake_useragent
 imageio
 keras
