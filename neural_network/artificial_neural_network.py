@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class SimpleANN:
     """
     Simple Artificial Neural Network (ANN)
@@ -9,7 +10,13 @@ class SimpleANN:
     - Example demonstrates solving the XOR problem.
     """
 
-    def __init__(self, input_size: int, hidden_size: int, output_size: int, learning_rate: float = 0.1) -> None:
+    def __init__(
+        self,
+        input_size: int,
+        hidden_size: int,
+        output_size: int,
+        learning_rate: float = 0.1,
+    ) -> None:
         """
         Initialize the neural network with random weights and biases.
 
@@ -84,11 +91,15 @@ class SimpleANN:
         """
         self.hidden_input = np.dot(inputs, self.weights_input_hidden) + self.bias_hidden
         self.hidden_output = self.sigmoid(self.hidden_input)
-        self.final_input = np.dot(self.hidden_output, self.weights_hidden_output) + self.bias_output
+        self.final_input = (
+            np.dot(self.hidden_output, self.weights_hidden_output) + self.bias_output
+        )
         self.final_output = self.sigmoid(self.final_input)
         return self.final_output
 
-    def backpropagation(self, inputs: np.ndarray, targets: np.ndarray, outputs: np.ndarray) -> None:
+    def backpropagation(
+        self, inputs: np.ndarray, targets: np.ndarray, outputs: np.ndarray
+    ) -> None:
         """
         Perform backpropagation to adjust the weights and biases.
 
@@ -109,13 +120,21 @@ class SimpleANN:
         hidden_error = output_gradient.dot(self.weights_hidden_output.T)
         hidden_gradient = hidden_error * self.sigmoid_derivative(self.hidden_output)
 
-        self.weights_hidden_output += self.hidden_output.T.dot(output_gradient) * self.learning_rate
-        self.bias_output += np.sum(output_gradient, axis=0, keepdims=True) * self.learning_rate
+        self.weights_hidden_output += (
+            self.hidden_output.T.dot(output_gradient) * self.learning_rate
+        )
+        self.bias_output += (
+            np.sum(output_gradient, axis=0, keepdims=True) * self.learning_rate
+        )
 
         self.weights_input_hidden += inputs.T.dot(hidden_gradient) * self.learning_rate
-        self.bias_hidden += np.sum(hidden_gradient, axis=0, keepdims=True) * self.learning_rate
+        self.bias_hidden += (
+            np.sum(hidden_gradient, axis=0, keepdims=True) * self.learning_rate
+        )
 
-    def train(self, inputs: np.ndarray, targets: np.ndarray, epochs: int = 10000) -> None:
+    def train(
+        self, inputs: np.ndarray, targets: np.ndarray, epochs: int = 10000
+    ) -> None:
         """
         Train the neural network on the given input and target data.
 
@@ -135,7 +154,7 @@ class SimpleANN:
             self.backpropagation(inputs, targets, outputs)
             if epoch % 1000 == 0:
                 loss = np.mean(np.square(targets - outputs))
-                print(f'Epoch {epoch}, Loss: {loss}')
+                print(f"Epoch {epoch}, Loss: {loss}")
 
     def predict(self, inputs: np.ndarray) -> np.ndarray:
         """
