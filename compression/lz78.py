@@ -12,7 +12,8 @@ __author__ = "Ahmed Tamer"
 @dataclass
 class Token:
     """
-    Dataclass representing pair called token consisting of the dictionary index and a single character that follows the phrase in the dictionary.
+    Dataclass representing pair called token consisting of the dictionary index 
+    and a single character that follows the phrase in the dictionary.
     """
 
     index: int
@@ -80,14 +81,15 @@ class LZ78Compressor:
 
         Tests:
           >>> lz78_compressor = LZ78Compressor()
-          >>> lz78_compressor.decompress([Token(0, 'c'), Token(0, 'a'), Token(0, 'b'), Token(0, 'r'), Token(2, 'c'),
-          ... Token(2, 'd'), Token(2, 'b'), Token(4, 'a'), Token(4, 'r'), Token(2, 'r'), Token(8, 'd')])
+          >>> lz78_compressor.decompress([Token(0, 'c'), Token(0, 'a'), Token(0, 'b'), 
+          ... Token(0, 'r'), Token(2, 'c'), Token(2, 'd'), Token(2, 'b'), Token(4, 'a'), 
+          ... Token(4, 'r'), Token(2, 'r'), Token(8, 'd')])
           'cabracadabrarrarrad'
-          >>> lz78_compressor.decompress([Token(0, 'a'), Token(0, 'b'), Token(1, 'b'), Token(0, 'c'),
-          ... Token(2, 'a'), Token(5, 'b'), Token(1, 'a')])
+          >>> lz78_compressor.decompress([Token(0, 'a'), Token(0, 'b'), Token(1, 'b'),
+          ... Token(0, 'c'), Token(2, 'a'), Token(5, 'b'), Token(1, 'a')])
           'ababcbababaa'
-          >>> lz78_compressor.decompress([Token(0, 'a'), Token(1, 'c'), Token(1, 'a'), Token(0, 'c'),
-          ... Token(1, 'b'), Token(4, 'a'), Token(0, 'b'), Token(3, 'a')])
+          >>> lz78_compressor.decompress([Token(0, 'a'), Token(1, 'c'), Token(1, 'a'),
+          ... Token(0, 'c'), Token(1, 'b'), Token(4, 'a'), Token(0, 'b'), Token(3, 'a')])
           'aacaacabcabaaa'
         """
 
@@ -112,5 +114,5 @@ if __name__ == "__main__":
     # Example
     text = "aacaacabcabaaa"
     tokens = lz78_compressor.compress(text)
-    decompressedText = lz78_compressor.decompress(tokens)
-    assert decompressedText == text, "Invalid result."
+    decompressedtext = lz78_compressor.decompress(tokens)
+    assert decompressedtext == text, "Invalid result."
