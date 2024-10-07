@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def shapley_value(payoff_matrix):
     n = payoff_matrix.shape[0]  # Number of players
     shapley_values = np.zeros(n)  # Initialize Shapley values
@@ -13,13 +14,18 @@ def shapley_value(payoff_matrix):
 
             # Calculate the value of the subset S without player i
             s_without_i = s & ~(1 << i)  # Remove player i from the subset
-            marginal_contribution = payoff_matrix[s][i] - (payoff_matrix[s_without_i][i] if s_without_i else 0)
-            
+            marginal_contribution = payoff_matrix[s][i] - (
+                payoff_matrix[s_without_i][i] if s_without_i else 0
+            )
+
             # Count the size of the subset S
-            size_of_s = bin(s).count('1')  # Number of players in subset S
-            shapley_values[i] += marginal_contribution / (size_of_s * (n - size_of_s))  # Normalize by size of S
+            size_of_s = bin(s).count("1")  # Number of players in subset S
+            shapley_values[i] += marginal_contribution / (
+                size_of_s * (n - size_of_s)
+            )  # Normalize by size of S
 
     return shapley_values
+
 
 # Example usage
 payoff_matrix = np.array([[1, 2], [3, 4]])
