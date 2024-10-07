@@ -8,7 +8,7 @@ INT_MAX = sys.maxsize - 1
 @dataclass
 class TreeNode:
     val: int = 0
-    left: "TreeNode" | None  = None
+    left: "TreeNode" | None = None
     right: "TreeNode" | None = None
 
 
