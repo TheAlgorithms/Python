@@ -40,6 +40,6 @@ def gronsfeld(text: str, key: str) -> str:
 
 
 if __name__ == "__main__":
-    from doctest import modtest
+    from doctest import testmod
 
-    modtest()
+    testmod()
