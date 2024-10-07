@@ -18,121 +18,122 @@ from __future__ import annotations
 
 
 # Longest Increasing Subsequence (LIS)
-def longest_increasing_subsequence(array: list[int]) -> list[int]:
+def longest_subsequence(array: list[int]) -> list[int]:  # This function is recursive
     """
-    Finds the longest increasing subsequence in the given array using dynamic programming.
-
-    Parameters:
-    ----------
-    array: list[int]
-        The input array of integers.
-
-    Returns:
-    -------
-    list[int]
-        The longest increasing subsequence (LIS) as a list.
-
-    Examples:
-    --------
-    >>> longest_increasing_subsequence([10, 22, 9, 33, 21, 50, 41, 60, 80])
+    Some examples
+    >>> longest_subsequence([10, 22, 9, 33, 21, 50, 41, 60, 80])
     [10, 22, 33, 41, 60, 80]
-    >>> longest_increasing_subsequence([4, 8, 7, 5, 1, 12, 2, 3, 9])
+    >>> longest_subsequence([4, 8, 7, 5, 1, 12, 2, 3, 9])
     [1, 2, 3, 9]
-    >>> longest_increasing_subsequence([9, 8, 7, 6, 5, 7])
-    [5, 7]
-    >>> longest_increasing_subsequence([1, 1, 1])
-    [1]
-    >>> longest_increasing_subsequence([])
+    >>> longest_subsequence([9, 8, 7, 6, 5, 7])
+    [8]
+    >>> longest_subsequence([1, 1, 1])
+    [1, 1, 1]
+    >>> longest_subsequence([])
     []
     """
-    if not array:
-        return []
+    array_length = len(array)
+    # If the array contains only one element, we return it (it's the stop condition of
+    # recursion)
+    if array_length <= 1:
+        return array
+        # Else
+    pivot = array[0]
+    is_found = False
+    i = 1
+    longest_subseq: list[int] = []
+    while not is_found and i < array_length:
+        if array[i] < pivot:
+            is_found = True
+            temp_array = [element for element in array[i:] if element >= array[i]]
+            temp_array = longest_subsequence(temp_array)
+            if len(temp_array) > len(longest_subseq):
+                longest_subseq = temp_array
+        else:
+            i += 1
 
-    n = len(array)
-    dp = [1] * n  # dp[i] stores the length of the LIS ending at index i
-    prev = [-1] * n  # prev[i] stores the index of the previous element in the LIS
-
-    max_length = 1  # Length of the longest increasing subsequence found
-    max_index = 0  # Index of the last element of the longest increasing subsequence
-
-    # Compute lengths of LIS for all elements
-    for i in range(1, n):
-        for j in range(i):
-            if array[i] > array[j] and dp[i] < dp[j] + 1:
-                dp[i] = dp[j] + 1
-                prev[i] = j
-        if dp[i] > max_length:
-            max_length = dp[i]
-            max_index = i
-
-    # Reconstructing the longest increasing subsequence
-    lis = []
-    while max_index != -1:
-        lis.append(array[max_index])
-        max_index = prev[max_index]
-
-    return lis[::-1]  # The LIS is constructed in reverse order, so reverse it
-
+    temp_array = [element for element in array[1:] if element >= pivot]
+    temp_array = [pivot, *longest_subsequence(temp_array)]
+    if len(temp_array) > len(longest_subseq):
+        return temp_array
+    else:
+        return longest_subseq
 
 # Longest Common Subsequence (LCS)
-def longest_common_subsequence(
-    first_sequence: str, second_sequence: str
-) -> tuple[int, str]:
+def longest_common_subsequence(x: str, y: str):
     """
-    Finds the longest common subsequence between two sequences (strings).
-    Also returns the subsequence found.
+    Finds the longest common subsequence between two strings. Also returns the
+    The subsequence found
 
     Parameters
     ----------
-    first_sequence: str
-        The first sequence (or string).
 
-    second_sequence: str
-        The second sequence (or string).
+    x: str, one of the strings
+    y: str, the other string
 
     Returns
     -------
-    tuple
-        - Length of the longest subsequence (int).
-        - The longest common subsequence found (str).
+    L[m][n]: int, the length of the longest subsequence. Also equal to len(seq)
+    Seq: str, the subsequence found
 
-    Examples
-    --------
     >>> longest_common_subsequence("programming", "gaming")
     (6, 'gaming')
     >>> longest_common_subsequence("physics", "smartphone")
     (2, 'ph')
     >>> longest_common_subsequence("computer", "food")
     (1, 'o')
-    >>> longest_common_subsequence("abc", "def")
+    >>> longest_common_subsequence("", "abc")  # One string is empty
     (0, '')
-    >>> longest_common_subsequence("abc", "abc")
+    >>> longest_common_subsequence("abc", "")  # Other string is empty
+    (0, '')
+    >>> longest_common_subsequence("", "")  # Both strings are empty
+    (0, '')
+    >>> longest_common_subsequence("abc", "def")  # No common subsequence
+    (0, '')
+    >>> longest_common_subsequence("abc", "abc")  # Identical strings
     (3, 'abc')
+    >>> longest_common_subsequence("a", "a")  # Single character match
+    (1, 'a')
+    >>> longest_common_subsequence("a", "b")  # Single character no match
+    (0, '')
+    >>> longest_common_subsequence("abcdef", "ace")  # Interleaved subsequence
+    (3, 'ace')
+    >>> longest_common_subsequence("ABCD", "ACBD")  # No repeated characters
+    (3, 'ABD')
     """
-    m, n = len(first_sequence), len(second_sequence)
+    # find the length of strings
+
+    assert x is not None
+    assert y is not None
+
+    m = len(x)
+    n = len(y)
+
+    # declaring the array for storing the dp values
     dp = [[0] * (n + 1) for _ in range(m + 1)]
 
     for i in range(1, m + 1):
         for j in range(1, n + 1):
-            if first_sequence[i - 1] == second_sequence[j - 1]:
-                dp[i][j] = dp[i - 1][j - 1] + 1
-            else:
-                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+            match = 1 if x[i - 1] == y[j - 1] else 0
 
-    # Reconstructing the longest common subsequence
+            dp[i][j] = max(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1] + match)
+
+    seq = ""
     i, j = m, n
-    lcs = []
     while i > 0 and j > 0:
-        if first_sequence[i - 1] == second_sequence[j - 1]:
-            lcs.append(first_sequence[i - 1])
+        match = 1 if x[i - 1] == y[j - 1] else 0
+
+        if dp[i][j] == dp[i - 1][j - 1] + match:
+            if match == 1:
+                seq = x[i - 1] + seq
             i -= 1
             j -= 1
-        elif dp[i - 1][j] > dp[i][j - 1]:
+        elif dp[i][j] == dp[i - 1][j]:
             i -= 1
         else:
             j -= 1
 
-    return dp[m][n], "".join(reversed(lcs))
+    return dp[m][n], seq
 
 
 if __name__ == "__main__":
