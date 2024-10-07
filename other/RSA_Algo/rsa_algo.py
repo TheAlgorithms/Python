@@ -1,8 +1,9 @@
 import random
 import sys
 from sympy import isprime, mod_inverse
+from typing import Tuple, List
 
-def generate_prime_candidate(length):
+def generate_prime_candidate(length: int) -> int:
     """
     Generate a large prime number candidate.
     
@@ -15,7 +16,7 @@ def generate_prime_candidate(length):
         p = random.getrandbits(length)
     return p
 
-def generate_keys(keysize):
+def generate_keys(keysize: int) -> Tuple[Tuple[int, int], Tuple[int, int]]:
     """
     Generate RSA keys.
     
@@ -53,7 +54,7 @@ def generate_keys(keysize):
         print(f"Unexpected error generating keys: {ex}", file=sys.stderr)
         sys.exit(1)
 
-def gcd(a, b):
+def gcd(a: int, b: int) -> int:
     """
     Compute the greatest common divisor of a and b.
     
@@ -64,7 +65,7 @@ def gcd(a, b):
         a, b = b, a % b
     return a
 
-def encrypt(pk, plaintext):
+def encrypt(pk: Tuple[int, int], plaintext: str) -> List[int]:
     """
     Encrypt a message with a public key.
     
@@ -84,7 +85,7 @@ def encrypt(pk, plaintext):
         print(f"Unexpected error during encryption: {ex}", file=sys.stderr)
         return None
 
-def decrypt(pk, ciphertext):
+def decrypt(pk: Tuple[int, int], ciphertext: List[int]) -> str:
     """
     Decrypt a message with a private key.
     
