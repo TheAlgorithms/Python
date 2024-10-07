@@ -29,4 +29,9 @@ ftimes = input('Enter the finish times of the {} activities in order: '
 ftimes = [int(ft) for ft in ftimes]
  
 ans = interval_scheduling(stimes, ftimes)
-print('A maximum-size subset of activities that are mutually compatible is', ans)
+
+
+if __name__ == "__main__":
+    from doctest import testmod
+
+    testmod()
