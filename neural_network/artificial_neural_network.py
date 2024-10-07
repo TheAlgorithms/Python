@@ -1,23 +1,16 @@
 import numpy as np
 
-
-class ANN:
+class SimpleANN:
     """
     Simple Artificial Neural Network (ANN)
 
     - Feedforward Neural Network with 1 hidden layer and Sigmoid activation.
     - Uses Gradient Descent for backpropagation and Mean Squared Error (MSE)
-    as the loss function.
+      as the loss function.
     - Example demonstrates solving the XOR problem.
     """
 
-    def __init__(
-        self,
-        input_size: int,
-        hidden_size: int,
-        output_size: int,
-        learning_rate: float = 0.1,
-    ) -> None:
+    def __init__(self, input_size: int, hidden_size: int, output_size: int, learning_rate: float = 0.1) -> None:
         """
         Initialize the neural network with random weights and biases.
 
@@ -47,6 +40,7 @@ class ANN:
             ndarray: Activated output using sigmoid function.
 
         Example:
+        >>> from __main__ import SimpleANN
         >>> ann = SimpleANN(2, 2, 1)
         >>> ann.sigmoid(np.array([0]))
         array([0.5])
@@ -58,13 +52,13 @@ class ANN:
         Derivative of the sigmoid function.
 
         Args:
-            sigmoid_output (ndarray): Output after applying
-            the sigmoid function.
+            sigmoid_output (ndarray): Output after applying the sigmoid function.
 
         Returns:
             ndarray: Derivative of the sigmoid function.
 
         Example:
+        >>> from __main__ import SimpleANN
         >>> ann = SimpleANN(2, 2, 1)
         >>> output = ann.sigmoid(np.array([0.5]))
         >>> ann.sigmoid_derivative(output)
@@ -83,6 +77,7 @@ class ANN:
             ndarray: Output from the network after feedforward pass.
 
         Example:
+        >>> from __main__ import SimpleANN
         >>> ann = SimpleANN(2, 2, 1)
         >>> inputs = np.array([[0, 0], [1, 1]])
         >>> ann.feedforward(inputs).shape
@@ -90,15 +85,11 @@ class ANN:
         """
         self.hidden_input = np.dot(inputs, self.weights_input_hidden) + self.bias_hidden
         self.hidden_output = self.sigmoid(self.hidden_input)
-        self.final_input = (
-            np.dot(self.hidden_output, self.weights_hidden_output) + self.bias_output
-        )
+        self.final_input = np.dot(self.hidden_output, self.weights_hidden_output) + self.bias_output
         self.final_output = self.sigmoid(self.final_input)
         return self.final_output
 
-    def backpropagation(
-        self, inputs: np.ndarray, targets: np.ndarray, outputs: np.ndarray
-    ) -> None:
+    def backpropagation(self, inputs: np.ndarray, targets: np.ndarray, outputs: np.ndarray) -> None:
         """
         Perform backpropagation to adjust the weights and biases.
 
@@ -108,6 +99,7 @@ class ANN:
             outputs (ndarray): Output predicted by the network.
 
         Example:
+        >>> from __main__ import SimpleANN
         >>> ann = SimpleANN(2, 2, 1)
         >>> inputs = np.array([[0, 0], [1, 1]])
         >>> outputs = ann.feedforward(inputs)
@@ -119,21 +111,13 @@ class ANN:
         hidden_error = output_gradient.dot(self.weights_hidden_output.T)
         hidden_gradient = hidden_error * self.sigmoid_derivative(self.hidden_output)
 
-        self.weights_hidden_output += (
-            self.hidden_output.T.dot(output_gradient) * self.learning_rate
-        )
-        self.bias_output += (
-            np.sum(output_gradient, axis=0, keepdims=True) * self.learning_rate
-        )
+        self.weights_hidden_output += self.hidden_output.T.dot(output_gradient) * self.learning_rate
+        self.bias_output += np.sum(output_gradient, axis=0, keepdims=True) * self.learning_rate
 
         self.weights_input_hidden += inputs.T.dot(hidden_gradient) * self.learning_rate
-        self.bias_hidden += (
-            np.sum(hidden_gradient, axis=0, keepdims=True) * self.learning_rate
-        )
+        self.bias_hidden += np.sum(hidden_gradient, axis=0, keepdims=True) * self.learning_rate
 
-    def train(
-        self, inputs: np.ndarray, targets: np.ndarray, epochs: int = 10000
-    ) -> None:
+    def train(self, inputs: np.ndarray, targets: np.ndarray, epochs: int = 10000) -> None:
         """
         Train the neural network on the given input and target data.
 
@@ -143,6 +127,7 @@ class ANN:
             epochs (int): Number of training iterations.
 
         Example:
+        >>> from __main__ import SimpleANN
         >>> ann = SimpleANN(2, 2, 1)
         >>> inputs = np.array([[0, 0], [1, 1]])
         >>> targets = np.array([[0], [1]])
@@ -153,7 +138,7 @@ class ANN:
             self.backpropagation(inputs, targets, outputs)
             if epoch % 1000 == 0:
                 loss = np.mean(np.square(targets - outputs))
-                print(f"Epoch {epoch}, Loss: {loss}")
+                print(f'Epoch {epoch}, Loss: {loss}')
 
     def predict(self, inputs: np.ndarray) -> np.ndarray:
         """
@@ -166,25 +151,10 @@ class ANN:
             ndarray: Predicted output from the network.
 
         Example:
+        >>> from __main__ import SimpleANN
         >>> ann = SimpleANN(2, 2, 1)
         >>> inputs = np.array([[0, 0], [1, 1]])
         >>> ann.predict(inputs).shape
         (2, 1)
         """
         return self.feedforward(inputs)
-
-
-# Example usage
-if __name__ == "__main__":
-    # XOR dataset
-    X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
-    y = np.array([[0], [1], [1], [0]])
-
-    # Initialize and train the neural network
-    nn = ANN(input_size=2, hidden_size=2, output_size=1, learning_rate=0.1)
-    nn.train(X, y, epochs=10000)
-
-    # Predictions
-    predictions = nn.predict(X)
-    print("Predictions:")
-    print(predictions)
