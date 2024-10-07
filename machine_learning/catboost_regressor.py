@@ -23,7 +23,7 @@ def data_handling() -> tuple:
     Loads and handles the dataset, splitting it into features and targets.
 
     The Boston dataset is used as a regression example.
-    
+
     Returns:
         tuple: A tuple of (features, target), where both are numpy arrays.
 
@@ -90,5 +90,6 @@ def main() -> None:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)
     main()
