@@ -2,8 +2,8 @@
 CatBoost Regressor Example.
 
 This script demonstrates the usage of the CatBoost Regressor for a simple regression task.
-CatBoost is a powerful gradient boosting library that handles categorical features automatically
-and is highly efficient.
+CatBoost is a powerful gradient boosting library that handles categorical features
+automatically and is highly efficient.
 
 Make sure to install CatBoost using:
     pip install catboost
@@ -13,8 +13,8 @@ Contributed by: @AHuzail
 
 import numpy as np
 from sklearn.datasets import fetch_california_housing
-from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
+from sklearn.model_selection import train_test_split
 from catboost import CatBoostRegressor
 
 
@@ -59,7 +59,9 @@ def catboost_regressor(features: np.ndarray, target: np.ndarray) -> CatBoostRegr
     >>> isinstance(model, CatBoostRegressor)
     True
     """
-    regressor = CatBoostRegressor(iterations=100, learning_rate=0.1, depth=6, verbose=0)
+    regressor = CatBoostRegressor(
+        iterations=100, learning_rate=0.1, depth=6, verbose=0
+    )
     regressor.fit(features, target)
     return regressor
 
