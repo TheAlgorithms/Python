@@ -1,6 +1,5 @@
 import sys
 from dataclasses import dataclass
-from typing import Optional
 
 INT_MIN = -sys.maxsize + 1
 INT_MAX = sys.maxsize - 1
@@ -9,8 +8,8 @@ INT_MAX = sys.maxsize - 1
 @dataclass
 class TreeNode:
     val: int = 0
-    left: Optional["TreeNode"] = None
-    right: Optional["TreeNode"] = None
+    left: TreeNode | None = None
+    right: TreeNode | None = None
 
 
 def max_sum_bst(root: TreeNode) -> int:
