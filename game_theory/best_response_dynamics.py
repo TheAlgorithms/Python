@@ -1,4 +1,6 @@
 import numpy as np
+
+
 def best_response_dynamics(payoff_matrix_a, payoff_matrix_b, iterations=10):
     n = payoff_matrix_a.shape[0]
     m = payoff_matrix_a.shape[1]
