@@ -1,4 +1,4 @@
-""" 
+"""
 Author: Ayush Chakraborty
 Date: 6th October 2024
 
@@ -7,6 +7,7 @@ generate (15,11) hamming encoded bits gives 11 bit data
 input: 11 bit binary number with type string
 return: 16 bit binary hamming encoded number returned in string form
 """
+
 
 def hamming_15_11(number: str) -> str:
     """
@@ -18,7 +19,7 @@ def hamming_15_11(number: str) -> str:
     and change a single bit change, but can only detect more than a
     single bit change
 
-    for more theoretical knowledege about Hamming codes, refer: 
+    for more theoretical knowledege about Hamming codes, refer:
     https://www.youtube.com/watch?v=X8jsijhllIA&t=0s
     by 3B1B YT channel
 
@@ -38,7 +39,7 @@ def hamming_15_11(number: str) -> str:
     if len(number) == 11:
         digits = [0 if number[i] == "0" else 1 for i in range(len(number))]
         total_num_1 = sum(digits)
-        hamming_digits = [0]*16
+        hamming_digits = [0] * 16
 
         parity_positions = {
             1: [0, 1, 3, 4, 6, 8, 10],
@@ -47,19 +48,27 @@ def hamming_15_11(number: str) -> str:
             8: [4, 5, 6, 7, 8, 9, 10],
         }
 
-        redundant_bits = [0]*5
+        redundant_bits = [0] * 5
 
-        redundant_bits_index = 1 #starting from 1 as we need to find the 0th redundancy bit once
-        #all the other redundancy bits have been found
+        redundant_bits_index = (
+            1  # starting from 1 as we need to find the 0th redundancy bit once
+        )
+        # all the other redundancy bits have been found
         for i in parity_positions.values():
             parity = 0
             for idx in i:
                 parity ^= digits[idx]
             redundant_bits[redundant_bits_index] = parity
             redundant_bits_index += 1
- 
-        redundant_bits[0] = int(total_num_1 % 2) ^ redundant_bits[1] ^ redundant_bits[2] ^ redundant_bits[3] ^ redundant_bits[4]
-        #this is the 0th redundancy bit which takes into account the other 15 bits 
+
+        redundant_bits[0] = (
+            int(total_num_1 % 2)
+            ^ redundant_bits[1]
+            ^ redundant_bits[2]
+            ^ redundant_bits[3]
+            ^ redundant_bits[4]
+        )
+        # this is the 0th redundancy bit which takes into account the other 15 bits
 
         j = -1
         r = 0
@@ -72,11 +81,12 @@ def hamming_15_11(number: str) -> str:
                 j += 1
                 hamming_digits[k] = digits[j]
 
-        return ''.join([str(i) for i in hamming_digits]) 
+        return "".join([str(i) for i in hamming_digits])
 
-
-    if len(number) != 11 or not all(bit in '01' for bit in number):
-        raise ValueError("Input must be an 11-bit binary string containing only '0's and '1's.")
+    if len(number) != 11 or not all(bit in "01" for bit in number):
+        raise ValueError(
+            "Input must be an 11-bit binary string containing only '0's and '1's."
+        )
 
 
 if __name__ == "__main__":
