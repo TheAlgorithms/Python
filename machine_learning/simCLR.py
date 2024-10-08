@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 def data_handling(data: dict) -> tuple:
     """
     Handles the data by splitting features and targets.
-    
+
     >>> data_handling({'data': np.array([[0.1, 0.2], [0.3, 0.4]]), 'target': np.array([0, 1])})
     (array([[0.1, 0.2], [0.3, 0.4]]), array([0, 1]))
     """
@@ -28,7 +28,7 @@ def data_handling(data: dict) -> tuple:
 def simclr_model(input_shape=(32, 32, 3), projection_dim=64) -> Model:
     """
     Builds a SimCLR model based on ResNet50.
-    
+
     >>> simclr_model().summary()  # doctest: +ELLIPSIS
     Model: "model"
     _________________________________________________________________
@@ -36,7 +36,7 @@ def simclr_model(input_shape=(32, 32, 3), projection_dim=64) -> Model:
     """
     base_model = ResNet50(include_top=False, input_shape=input_shape, pooling="avg")
     base_model.trainable = True
-    
+
     inputs = layers.Input(shape=input_shape)
     x = base_model(inputs, training=True)
     x = layers.Dense(projection_dim, activation="relu")(x)
@@ -47,7 +47,7 @@ def simclr_model(input_shape=(32, 32, 3), projection_dim=64) -> Model:
 def contrastive_loss(projection_1, projection_2, temperature=0.1):
     """
     Contrastive loss function for self-supervised learning.
-    
+
     >>> contrastive_loss(np.array([0.1]), np.array([0.2]))
     0.0
     """
@@ -70,7 +70,7 @@ def main() -> None:
     le = LabelEncoder()
     y_train = le.fit_transform(y_train.flatten())
     y_test = le.transform(y_test.flatten())
-    
+
     # Split data into train and validation sets
     x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2)
 
@@ -110,5 +110,6 @@ def main() -> None:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod(verbose=True)
     main()
