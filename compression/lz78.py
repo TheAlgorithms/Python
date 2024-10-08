@@ -59,7 +59,7 @@ class LZ78Compressor:
           >>> lz78_compressor.compress({})
           Traceback (most recent call last):
           TypeError: Expected string.
-          >>> all(len(s) >= len(lz78_compressor.compress(x)) for s in (
+          >>> all(len(s) >= len(lz78_compressor.compress(s)) for s in (
           ...     "", "AA", "AB", "AAA", "ABC", "ABCDEFGH"))
           True
         """
