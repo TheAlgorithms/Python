@@ -14,13 +14,11 @@ train_data = (
     ((11, 12, 13), 41),
 )
 test_data = (((515, 22, 13), 555), ((61, 35, 49), 150))
-parameter_vector = [2, 4, 1, 5]
+parameter_vector = [0.0, 0.0, 0.0, 0.0]
+velocity = [0.0] * len(parameter_vector)
 m = len(train_data)
 LEARNING_RATE = 0.009
 MOMENTUM = 0.9
-
-# Initialize velocity (for momentum)
-velocity = [0] * len(parameter_vector)
 
 
 def _error(example_no, data_set="train") -> float:
@@ -45,7 +43,7 @@ def _hypothesis_value(data_input_tuple) -> float:
     Returns:
         float: The hypothesis value for the given input.
     """
-    hyp_val = 0
+    hyp_val = 0.0
     for i in range(len(parameter_vector) - 1):
         hyp_val += data_input_tuple[i] * parameter_vector[i + 1]
     hyp_val += parameter_vector[0]
@@ -66,7 +64,7 @@ def output(example_no, data_set) -> int:
         return train_data[example_no][1]
     elif data_set == "test":
         return test_data[example_no][1]
-    return None
+    return -1
 
 
 def calculate_hypothesis_value(example_no, data_set) -> float:
@@ -82,7 +80,7 @@ def calculate_hypothesis_value(example_no, data_set) -> float:
         return _hypothesis_value(train_data[example_no][0])
     elif data_set == "test":
         return _hypothesis_value(test_data[example_no][0])
-    return None
+    return -1
 
 
 def summation_of_cost_derivative(index, end=m) -> float:
@@ -95,7 +93,7 @@ def summation_of_cost_derivative(index, end=m) -> float:
     Returns:
         float: The summation of the cost derivatives for the given parameter.
     """
-    summation_value = 0
+    summation_value = 0.0
     for i in range(end):
         if index == -1:
             summation_value += _error(i)
@@ -124,9 +122,10 @@ def run_gradient_descent_with_momentum() -> None:
     absolute_error_limit = 0.000002
     relative_error_limit = 0
     iteration = 0
+
     while True:
         iteration += 1
-        temp_parameter_vector = [0] * len(parameter_vector)
+        temp_parameter_vector = [0.0] * len(parameter_vector)
         for i in range(len(parameter_vector)):
             cost_derivative = get_cost_derivative(i - 1)
             velocity[i] = MOMENTUM * velocity[i] + cost_derivative
