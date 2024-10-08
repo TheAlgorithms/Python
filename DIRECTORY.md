@@ -351,6 +351,9 @@
   * [Power](divide_and_conquer/power.py)
   * [Strassen Matrix Multiplication](divide_and_conquer/strassen_matrix_multiplication.py)
 
+## Docs
+  * [Conf](docs/conf.py)
+
 ## Dynamic Programming
   * [Abbreviation](dynamic_programming/abbreviation.py)
   * [All Construct](dynamic_programming/all_construct.py)
