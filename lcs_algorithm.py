@@ -39,6 +39,7 @@ def longest_common_subsequence(X, Y):
     # Return the LCS in the correct order
     return "".join(reversed(lcs))
 
+
 # Example usage:
 X = "AGGTAB"
 Y = "GXTXAYB"
