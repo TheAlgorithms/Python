@@ -1,5 +1,6 @@
 from string import ascii_uppercase
 
+
 def miznitskiy(text: str, key: str) -> str:
     """
     Encrypt plaintext with the Miznitskiy cipher
@@ -23,8 +24,8 @@ def miznitskiy(text: str, key: str) -> str:
     ascii_len = len(ascii_uppercase)
     key_len = len(key)
     encrypted_text = ""
-    keys = [ord(char) - ord('A') for char in key.upper()]
-    
+    keys = [ord(char) - ord("A") for char in key.upper()]
+
     if key_len == 0:
         raise ZeroDivisionError("integer modulo by zero")
 
