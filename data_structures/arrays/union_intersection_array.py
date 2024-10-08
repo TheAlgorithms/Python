@@ -18,6 +18,8 @@ Output: {1, 2, 3, 4}
 Explanation: 1, 2, 3, and 4 are the intersection(common elements) 
 of elements present in array a[] and array b[].
 
+https://www.geeksforgeeks.org/union-and-intersection-of-two-sorted-arrays-2/
+
 
 '''
 
