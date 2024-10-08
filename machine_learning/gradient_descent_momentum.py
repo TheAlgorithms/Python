@@ -23,7 +23,7 @@ MOMENTUM = 0.9
 velocity = [0] * len(parameter_vector)
 
 
-def _error(example_no, data_set="train"):
+def _error(example_no, data_set="train") -> float:
     """
     Calculate the error for a given example.
     Args:
@@ -37,7 +37,7 @@ def _error(example_no, data_set="train"):
     return hypo_value - output_value
 
 
-def _hypothesis_value(data_input_tuple):
+def _hypothesis_value(data_input_tuple) -> float:
     """
     Compute the hypothesis value (predicted output) for a given input tuple.
     Args:
@@ -52,7 +52,7 @@ def _hypothesis_value(data_input_tuple):
     return hyp_val
 
 
-def output(example_no, data_set):
+def output(example_no, data_set) -> int:
     """
     Retrieve the actual output (label) for a given example
     from the specified dataset.
@@ -69,7 +69,7 @@ def output(example_no, data_set):
     return None
 
 
-def calculate_hypothesis_value(example_no, data_set):
+def calculate_hypothesis_value(example_no, data_set) -> float:
     """
     Calculate the hypothesis value (predicted output) for a given example.
     Args:
@@ -85,7 +85,7 @@ def calculate_hypothesis_value(example_no, data_set):
     return None
 
 
-def summation_of_cost_derivative(index, end=m):
+def summation_of_cost_derivative(index, end=m) -> float:
     """
     Calculate the summation of the cost derivative for a given index.
     Args:
@@ -104,7 +104,7 @@ def summation_of_cost_derivative(index, end=m):
     return summation_value
 
 
-def get_cost_derivative(index):
+def get_cost_derivative(index) -> float:
     """
     Compute the cost derivative with respect to a parameter.
     Args:
@@ -115,7 +115,7 @@ def get_cost_derivative(index):
     return summation_of_cost_derivative(index, m) / m
 
 
-def run_gradient_descent_with_momentum():
+def run_gradient_descent_with_momentum() -> None:
     """
     Run gradient descent with momentum to minimize the cost function.
     This function updates the parameter vector using velocity and the learning rate.
@@ -143,7 +143,7 @@ def run_gradient_descent_with_momentum():
     print(f"Number of iterations: {iteration}")
 
 
-def test_gradient_descent():
+def test_gradient_descent() -> None:
     """
     Test the trained model on the test dataset and print actual vs predicted outputs.
     """
