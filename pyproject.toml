@@ -1,5 +1,22 @@
+[project]
+name = "thealgorithms-python"
+version = "0.0.1"
+description = "TheAlgorithms in Python"
+authors = [ { name = "TheAlgorithms Contributors" } ]
+requires-python = ">=3.13"
+classifiers = [
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.13",
+
+]
+optional-dependencies.docs = [
+  "myst-parser",
+  "sphinx-autoapi",
+  "sphinx-pyproject",
+]
+
 [tool.ruff]
-target-version = "py312"
+target-version = "py313"
 
 output-format = "full"
 lint.select = [
@@ -113,6 +130,9 @@ lint.pylint.max-statements = 88 # default: 50
 ignore-words-list = "3rt,ans,bitap,crate,damon,fo,followings,hist,iff,kwanza,manuel,mater,secant,som,sur,tim,toi,zar"
 skip = "./.*,*.json,ciphers/prehistoric_men.txt,project_euler/problem_022/p022_names.txt,pyproject.toml,strings/dictionary.txt,strings/words.txt"
 
+[tool.pyproject-fmt]
+max_supported_python = "3.13"
+
 [tool.pytest.ini_options]
 markers = [
   "mat_ops: mark a test as utilizing matrix operations.",
@@ -129,3 +149,87 @@ omit = [
   "project_euler/*",
 ]
 sort = "Cover"
+
+[tool.sphinx-pyproject]
+copyright = "2014, TheAlgorithms"
+autoapi_dirs = [
+  "audio_filters",
+  "backtracking",
+  "bit_manipulation",
+  "blockchain",
+  "boolean_algebra",
+  "cellular_automata",
+  "ciphers",
+  "compression",
+  "computer_vision",
+  "conversions",
+  "data_structures",
+  "digital_image_processing",
+  "divide_and_conquer",
+  "dynamic_programming",
+  "electronics",
+  "file_transfer",
+  "financial",
+  "fractals",
+  "fuzzy_logic",
+  "genetic_algorithm",
+  "geodesy",
+  "geometry",
+  "graphics",
+  "graphs",
+  "greedy_methods",
+  "hashes",
+  "knapsack",
+  "linear_algebra",
+  "linear_programming",
+  "machine_learning",
+  "maths",
+  "matrix",
+  "networking_flow",
+  "neural_network",
+  "other",
+  "physics",
+  "project_euler",
+  "quantum",
+  "scheduling",
+  "searches",
+  "sorts",
+  "strings",
+  "web_programming",
+]
+autoapi_member_order = "groupwise"
+# autoapi_python_use_implicit_namespaces = true
+exclude_patterns = [
+  ".*/*",
+  "docs/",
+]
+extensions = [
+  "autoapi.extension",
+  "myst_parser",
+]
+html_static_path = [ "_static" ]
+html_theme = "alabaster"
+myst_enable_extensions = [
+  "amsmath",
+  "attrs_inline",
+  "colon_fence",
+  "deflist",
+  "dollarmath",
+  "fieldlist",
+  "html_admonition",
+  "html_image",
+  # "linkify",
+  "replacements",
+  "smartquotes",
+  "strikethrough",
+  "substitution",
+  "tasklist",
+]
+myst_fence_as_directive = [
+  "include",
+]
+templates_path = [ "_templates" ]
+[tool.sphinx-pyproject.source_suffix]
+".rst" = "restructuredtext"
+# ".txt" = "markdown"
+".md" = "markdown"
