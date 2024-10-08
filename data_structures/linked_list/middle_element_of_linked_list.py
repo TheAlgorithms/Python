@@ -1,13 +1,17 @@
 from __future__ import annotations
 
+
 class Node:
     """Represents a node in the linked list."""
+
     def __init__(self, data: int) -> None:
         self.data = data
         self.next = None
 
+
 class LinkedList:
     """Represents a linked list."""
+
     def __init__(self) -> None:
         self.head = None
         self.size = 0  # Keep track of the list size
@@ -39,7 +43,8 @@ class LinkedList:
         while current:
             nodes.append(str(current.data))
             current = current.next
-        return ' -> '.join(nodes)
+        return " -> ".join(nodes)
+
 
 def find_middle_element(linked_list: LinkedList) -> int | None:
     """
@@ -63,6 +68,7 @@ def find_middle_element(linked_list: LinkedList) -> int | None:
         fast_pointer = fast_pointer.next.next
         slow_pointer = slow_pointer.next
     return slow_pointer.data
+
 
 if __name__ == "__main__":
     link = LinkedList()
