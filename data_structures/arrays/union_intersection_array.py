@@ -23,13 +23,6 @@ https://www.geeksforgeeks.org/union-and-intersection-of-two-sorted-arrays-2/
 
 '''
 
-#Taking input lists from user
-
-a=list(map(int,input('Enter elements of first list:').split()))
-b=list(map(int,input('Enter elements of second list:').split()))
-# Example Input
-#Enter elements of first list: 3 4 6 4  4 6 7 41
-#Enter elements of second list: 78 3 5 7 -1 9 2 -5
 
 
 
@@ -40,6 +33,32 @@ b=list(map(int,input('Enter elements of second list:').split()))
  to find intersection and assign it into a variable A
   in the form of lists.
 '''
+
+# Mocking input by predefined lists
+def mock_input():
+    a = [3, 4, 6, 4, 4, 6, 7, 41]
+    b = [78, 3, 5, 7, -1, 9, 2, -5]
+    return a, b
+
+# Function to calculate union and intersection
+def union_intersection(a, b):
+    # Calculating union and intersection
+    union = list(set(a) | set(b))
+    intersection = list(set(a) & set(b))
+
+    return union, intersection
+
+# Example of mocking input and running the code
+if __name__ == "__main__":
+    # Mocked input
+    a, b = mock_input()
+
+    # Calculate union and intersection
+    union, intersection = union_intersection(a, b)
+
+    print('Union of the arrays:', union)
+    print('Intersection of the arrays:', intersection)
+
 
 
 A=list(set(a)|set(b))
