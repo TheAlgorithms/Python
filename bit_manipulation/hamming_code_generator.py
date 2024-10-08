@@ -39,13 +39,12 @@ def hamming_15_11(number: str) -> str:
 
     """
     is_bin = True  # assuming it's binary initially
-    for i in number:  
-        if i not in ("0", "1"): 
+    for i in number:
+        if i not in ("0", "1"):
             is_bin = False
             break
 
     if len(number) == 11 and is_bin:
-    
         digits = [int(number[i]) for i in range(len(number))]
         
         total_ones = sum(digits)
@@ -60,11 +59,11 @@ def hamming_15_11(number: str) -> str:
 
         redundant_bits = [0] * 5
 
-        redundant_bits_index = 1 
+        redundant_bits_index = 1
         for positions in parity_positions.values():
             parity = 0
-            for idx in positions:  
-                parity ^= digits[idx] 
+            for idx in positions:
+                parity ^= digits[idx]
             redundant_bits[redundant_bits_index] = parity
             redundant_bits_index += 1
 
@@ -76,8 +75,8 @@ def hamming_15_11(number: str) -> str:
             ^ redundant_bits[4]
         )
 
-        j = -1  
-        r = 0  
+        j = -1
+        r = 0
         redundant_bit_locations = [0, 1, 2, 4, 8]
         for k in range(16):
             if k in redundant_bit_locations:
@@ -91,6 +90,7 @@ def hamming_15_11(number: str) -> str:
 
     if len(number) != 11 or not is_bin:
         return "Input must be an 11-bit binary string containing only '0's and '1's."
+
 
 if __name__ == "__main__":
     import doctest
