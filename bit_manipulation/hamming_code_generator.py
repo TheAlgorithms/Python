@@ -38,9 +38,9 @@ def hamming_15_11(number: str) -> str:
     "Input must be an 11-bit binary string containing only '0's and '1's."
 
     """
-    is_bin = True  #assuming its binary initially, will set it to false if found not later on
+    is_bin = True  #assuming its binary initially
     for i in number:
-        if (i != "0" and i != "1"):
+        if (i not in ("0", "1")):
             is_bin = False
             break
 
