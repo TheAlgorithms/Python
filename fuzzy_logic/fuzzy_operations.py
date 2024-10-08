@@ -138,23 +138,27 @@ class FuzzySet:
         msg = f"Invalid value {x} for fuzzy set {self}"
         raise ValueError(msg)
 
-    def union(self, other) -> FuzzySet:
-        """
-        Calculate the union of this fuzzy set with another fuzzy set.
-        Args:
-            other (FuzzySet): Another fuzzy set to union with.
-        Returns:
-            FuzzySet: A new fuzzy set representing the union.
-
-        >>> FuzzySet("a", 0.1, 0.2, 0.3).union(FuzzySet("b", 0.4, 0.5, 0.6))
-        FuzzySet(name='a U b', left_boundary=0.1, peak=0.6, right_boundary=0.35)
-        """
-        return FuzzySet(
-            f"{self.name} U {other.name}",
-            min(self.left_boundary, other.left_boundary),
-            max(self.right_boundary, other.right_boundary),
-            (self.peak + other.peak) / 2,
-        )
+   def union(self, other: FuzzySet) -> FuzzySet:
+    """
+    Calculate the union of this fuzzy set with another fuzzy set.
+    The union of two fuzzy sets is determined by taking the maximum
+    membership value at each point.
+    
+    Args:
+        other (FuzzySet): Another fuzzy set to union with.
+    
+    Returns:
+        FuzzySet: A new fuzzy set representing the union.
+    
+    >>> FuzzySet("a", 0.1, 0.2, 0.3).union(FuzzySet("b", 0.4, 0.5, 0.6))
+    FuzzySet(name='a U b', left_boundary=0.1, peak=0.5, right_boundary=0.6)
+    """
+    return FuzzySet(
+        f"{self.name} U {other.name}",
+        min(self.left_boundary, other.left_boundary),
+        max(self.peak, other.peak),
+        max(self.right_boundary, other.right_boundary)
+    )
 
     def plot(self):
         """
