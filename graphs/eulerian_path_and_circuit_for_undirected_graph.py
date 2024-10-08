@@ -21,7 +21,7 @@ def dfs(u, graph, visited_edge, path=None):
         >>> visited_edge = [[False] * 11 for _ in range(11)]
         >>> dfs(1, {1: [2, 3], 2: [1, 3], 3: [1, 2]}, visited_edge)
         [1, 2, 3, 1]
-        >>> dfs(5, {1: [2, 3, 4], 2: [1, 3], 3: [1, 2], 4: [1, 5], 5: [4]}, visited_edge)
+        >>> dfs(5, {1: [2, 3, 4], 2: [1, 3], 3: [1], 4: [1, 5], 5: [4]}, visited_edge)
         [5, 4, 1]
         >>> dfs(1, {1: [], 2: [], 3: [1, 2]}, visited_edge)
         [1]
@@ -52,9 +52,9 @@ def check_circuit_or_path(graph, max_node):
     Example:
         >>> check_circuit_or_path({1: [2, 3], 2: [1, 3], 3: [1, 2]}, 10)
         (1, -1)
-        >>> check_circuit_or_path({1: [2, 3, 4], 2: [1, 3], 3: [1, 2], 4: [1, 5], 5: [4]}, 10)
+        >>> check_circuit_or_path({1: [2, 3, 4], 2: [1, 3], 3: [1, 2], 4: [], 5: [4]}, 10)
         (2, 5)
-        >>> check_circuit_or_path({1: [2, 3, 1], 2: [2, 3, 4], 3: [1, 3], 4: [1], 5: []}, 10)
+        >>> check_circuit_or_path({1: [2, 3, 1], 2: [2], 3: [1, 3], 4: [1], 5: []}, 10)
         (3, 4)
         >>> check_circuit_or_path({1: [], 2: [], 3: [1, 2]}, 10)
         (1, -1)
