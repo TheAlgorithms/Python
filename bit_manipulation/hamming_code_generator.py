@@ -90,7 +90,7 @@ def hamming_15_11(number: str) -> str:
 
     elif len(number) != 11 or not is_bin:
         return "Input must be an 11-bit binary string containing only '0's and '1's."
-    
+
     else:
         return "Invalid input"
 
