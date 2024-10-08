@@ -140,7 +140,9 @@ def find_central_node(
     """
     valid_eccentricities = [e for e in eccentricities if e[1] != float("inf")]
     return min(
-        valid_eccentricities, key=lambda x: (x[1], x[0]), default=(-1, float("inf"))
+        valid_eccentricities,
+        key=lambda node_eccentricity: (node_eccentricity[1], node_eccentricity[0]),
+        default=(-1, float("inf")),
     )
 
 
@@ -156,7 +158,9 @@ def find_median_node(closenesses: list[tuple[int, float]]) -> tuple[int, float]:
     """
     valid_closenesses = [c for c in closenesses if c[1] != float("inf")]
     return max(
-        valid_closenesses, key=lambda x: (x[1], -x[0]), default=(-1, float("inf"))
+        valid_closenesses,
+        key=lambda node_closeness: (node_closeness[1], -node_closeness[0]),
+        default=(-1, float("inf")),
     )
 
 
@@ -211,7 +215,7 @@ def find_central_and_median_node(
 
 
 # Test cases included as doctests
-def test_single_node():
+def test_single_node() -> None:
     """
     Test a graph with a single node.
 
@@ -225,7 +229,7 @@ def test_single_node():
     """
 
 
-def test_two_nodes_positive_weight():
+def test_two_nodes_positive_weight() -> None:
     """
     Test a graph with two nodes connected by a positive weight.
 
@@ -239,7 +243,7 @@ def test_two_nodes_positive_weight():
     """
 
 
-def test_fully_connected_graph():
+def test_fully_connected_graph() -> None:
     """
     Test a fully connected graph.
 
@@ -257,7 +261,7 @@ def test_fully_connected_graph():
     """
 
 
-def test_directed_acyclic_graph():
+def test_directed_acyclic_graph() -> None:
     """
     Test a directed acyclic graph (DAG).
 
@@ -276,7 +280,7 @@ def test_directed_acyclic_graph():
     """
 
 
-def test_disconnected_graph():
+def test_disconnected_graph() -> None:
     """
     Test a disconnected graph with nodes that cannot reach each other.
 
@@ -294,7 +298,7 @@ def test_disconnected_graph():
     """
 
 
-def test_graph_with_zero_weight():
+def test_graph_with_zero_weight() -> None:
     """
     Test a graph with zero weight, which should raise a ValueError.
 
@@ -306,7 +310,7 @@ def test_graph_with_zero_weight():
     """
 
 
-def test_graph_with_negative_weight():
+def test_graph_with_negative_weight() -> None:
     """
     Test a graph with negative weight, which should raise a ValueError.
 
@@ -318,7 +322,7 @@ def test_graph_with_negative_weight():
     """
 
 
-def test_cyclic_graph():
+def test_cyclic_graph() -> None:
     """
     Test a cyclic graph where there is a cycle between nodes.
 
@@ -336,7 +340,7 @@ def test_cyclic_graph():
     """
 
 
-def test_sparse_graph():
+def test_sparse_graph() -> None:
     """
     Test a larger sparse graph.
 
@@ -356,7 +360,7 @@ def test_sparse_graph():
     """
 
 
-def test_large_fully_connected_graph():
+def test_large_fully_connected_graph() -> None:
     """
     Test a larger fully connected graph with random weights.
 
