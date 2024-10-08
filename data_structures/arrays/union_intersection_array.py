@@ -40,11 +40,13 @@ b = list(map(int, input("Enter elements of second list:").split()))
   in the form of lists.
 """
 
+
 # Mocking input by predefined lists
 def mock_input():
     a = [3, 4, 6, 4, 4, 6, 7, 41]
     b = [78, 3, 5, 7, -1, 9, 2, -5]
     return a, b
+
 
 # Function to calculate union and intersection
 def union_intersection(a, b):
@@ -54,6 +56,7 @@ def union_intersection(a, b):
 
     return union, intersection
 
+
 # Example of mocking input and running the code
 if __name__ == "__main__":
     # Mocked input
@@ -62,9 +65,8 @@ if __name__ == "__main__":
     # Calculate union and intersection
     union, intersection = union_intersection(a, b)
 
-    print('Union of the arrays:', union)
-    print('Intersection of the arrays:', intersection)
-
+    print("Union of the arrays:", union)
+    print("Intersection of the arrays:", intersection)
 
 
 A = list(set(a) | set(b))
