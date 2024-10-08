@@ -48,7 +48,7 @@ def hamming_15_11(number: str) -> str:
     
         digits = [int(number[i]) for i in range(len(number))]
         
-        total_num_1 = sum(digits)
+        total_ones = sum(digits)
         hamming_digits = [0] * 16
 
         parity_positions = {
@@ -69,7 +69,7 @@ def hamming_15_11(number: str) -> str:
             redundant_bits_index += 1
 
         redundant_bits[0] = (
-            total_num_1 % 2
+            total_ones % 2
             ^ redundant_bits[1]
             ^ redundant_bits[2]
             ^ redundant_bits[3]
@@ -89,7 +89,7 @@ def hamming_15_11(number: str) -> str:
 
         return "".join([str(i) for i in hamming_digits])
 
-    else:
+    if len(number) != 11 or not is_bin:
         return "Input must be an 11-bit binary string containing only '0's and '1's."
 
 if __name__ == "__main__":
