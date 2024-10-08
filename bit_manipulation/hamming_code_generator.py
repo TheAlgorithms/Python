@@ -86,6 +86,7 @@ def hamming_15_11(number: str) -> str:
     else:
         return "Input must be an 11-bit binary string containing only '0's and '1's."
 
+
 if __name__ == "__main__":
     import doctest
 
