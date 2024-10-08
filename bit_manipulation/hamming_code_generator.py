@@ -38,14 +38,16 @@ def hamming_15_11(number: str) -> str:
     "Input must be an 11-bit binary string containing only '0's and '1's."
 
     """
-    is_bin = True  # assuming its binary initially
-    for i in number:
-        if i not in ("0", "1"):
+    is_bin = True  # assuming it's binary initially
+    for i in number:  
+        if i not in ("0", "1"): 
             is_bin = False
             break
 
     if len(number) == 11 and is_bin:
-        digits = [int(number[i]) or i in range(len(number))]
+    
+        digits = [int(number[i]) for i in range(len(number))]
+        
         total_num_1 = sum(digits)
         hamming_digits = [0] * 16
 
@@ -58,28 +60,24 @@ def hamming_15_11(number: str) -> str:
 
         redundant_bits = [0] * 5
 
-        redundant_bits_index = (
-            1  # starting from 1 as we need to find the 0th redundancy bit once
-        )
-        # all the other redundancy bits have been found
-        for i in parity_positions.values():
+        redundant_bits_index = 1 
+        for positions in parity_positions.values():
             parity = 0
-            for idx in i:
-                parity ^= digits[idx]
+            for idx in positions:  
+                parity ^= digits[idx] 
             redundant_bits[redundant_bits_index] = parity
             redundant_bits_index += 1
 
         redundant_bits[0] = (
-            int(total_num_1 % 2)
+            total_num_1 % 2
             ^ redundant_bits[1]
             ^ redundant_bits[2]
             ^ redundant_bits[3]
             ^ redundant_bits[4]
         )
-        # this is the 0th redundancy bit which takes into account the other 15 bits
 
-        j = -1
-        r = 0
+        j = -1  
+        r = 0  
         redundant_bit_locations = [0, 1, 2, 4, 8]
         for k in range(16):
             if k in redundant_bit_locations:
@@ -93,7 +91,6 @@ def hamming_15_11(number: str) -> str:
 
     else:
         return "Input must be an 11-bit binary string containing only '0's and '1's."
-
 
 if __name__ == "__main__":
     import doctest
