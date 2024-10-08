@@ -2,19 +2,20 @@ import math
 import numpy as np
 from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
 
+
 def quantum_fourier_transform(number_of_qubits: int = 3) -> dict:
     """
-    Build and simulate the Quantum Fourier Transform (QFT) circuit 
+    Build and simulate the Quantum Fourier Transform (QFT) circuit
     for a given number of qubits using the Qiskit framework.
-    
+
     Args:
         number_of_qubits (int): The number of qubits for the QFT circuit.
 
     Returns:
         dict: A dictionary containing the counts of measurement results.
-        
+
     Raises:
-        ValueError: If the number of qubits is less than or equal to 0, 
+        ValueError: If the number of qubits is less than or equal to 0,
                     greater than 10, or not an integer.
         TypeError: If the input is not an integer.
     """
