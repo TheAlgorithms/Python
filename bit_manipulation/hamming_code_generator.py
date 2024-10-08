@@ -75,16 +75,17 @@ def hamming_15_11(number: str) -> str:
             ^ redundant_bits[4]
         )
 
-        j = -1
+        data_index = 0
         r = 0
         redundant_bit_locations = [0, 1, 2, 4, 8]
         for k in range(16):
             if k in redundant_bit_locations:
+                print(k)
                 hamming_digits[k] = redundant_bits[r]
                 r += 1
             else:
-                j += 1
-                hamming_digits[k] = digits[j]
+                hamming_digits[k] = digits[data_index]
+                data_index += 1
 
         return "".join([str(i) for i in hamming_digits])
 
