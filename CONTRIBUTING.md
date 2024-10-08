@@ -96,7 +96,7 @@ We want your work to be readable by others; therefore, we encourage you to note 
 
   ```bash
   python3 -m pip install ruff  # only required the first time
-  ruff .
+  ruff check
   ```
 
 - Original code submission require docstrings or comments to describe your work.
