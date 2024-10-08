@@ -34,9 +34,17 @@ def hamming_15_11(number: str) -> str:
     '0011001101100110'
     >>> hamming_15_11("10001000010")
     '0001100001000010'
+    >>> hamming_15_11("00010abcdef")
+    "Input must be an 11-bit binary string containing only '0's and '1's."
 
     """
-    if len(number) == 11:
+    is_bin = True  #assuming its binary initially, will set it to false if found not later on
+    for i in number:
+        if (i != "0" and i != "1"):
+            is_bin = False
+            break
+
+    if len(number) == 11 and is_bin:
         digits = [0 if number[i] == "0" else 1 for i in range(len(number))]
         total_num_1 = sum(digits)
         hamming_digits = [0] * 16
