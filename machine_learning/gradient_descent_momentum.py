@@ -1,6 +1,6 @@
 """
-Implementation of gradient descent algorithm using momentum for minimizing cost of a linear hypothesis
-function.
+Implementation of gradient descent algorithm using momentum
+for minimizing cost of a linear hypothesis function.
 """
 
 import numpy as np
@@ -25,23 +25,23 @@ velocity = [0] * len(parameter_vector)
 
 def _error(example_no, data_set="train"):
     """
-    Calculate the error (difference between predicted and actual output) for a given example.
+    Calculate the error for a given example.
     Args:
         example_no (int): Index of the example in the dataset.
         data_set (str): The dataset to use, either "train" or "test".
     Returns:
-        float: The difference between the predicted output and the actual output.
+        float: The difference between predicted output and actual output.
     """
-    return calculate_hypothesis_value(example_no, data_set) - output(
-        example_no, data_set
-    )
+    hypo_value = calculate_hypothesis_value(example_no, data_set)
+    output_value = output(example_no, data_set)
+    return hypo_value - output_value
 
 
 def _hypothesis_value(data_input_tuple):
     """
     Compute the hypothesis value (predicted output) for a given input tuple.
     Args:
-        data_input_tuple (tuple): The input tuple (features) for the example.
+        data_input_tuple: The input tuple (features) for the example.
     Returns:
         float: The hypothesis value for the given input.
     """
@@ -54,7 +54,8 @@ def _hypothesis_value(data_input_tuple):
 
 def output(example_no, data_set):
     """
-    Retrieve the actual output (label) for a given example from the specified dataset.
+    Retrieve the actual output (label) for a given example
+    from the specified dataset.
     Args:
         example_no (int): Index of the example in the dataset.
         data_set (str): The dataset to use, either "train" or "test".
@@ -89,7 +90,8 @@ def summation_of_cost_derivative(index, end=m):
     Calculate the summation of the cost derivative for a given index.
     Args:
         index (int): The index of the parameter for which the derivative is calculated.
-        end (int): The number of examples to consider (defaults to the size of the training set).
+        end (int): The number of examples to consider
+                    (defaults to the size of the training set).
     Returns:
         float: The summation of the cost derivatives for the given parameter.
     """
@@ -152,7 +154,5 @@ def test_gradient_descent():
 
 if __name__ == "__main__":
     run_gradient_descent_with_momentum()
-    print(
-        "\nTesting gradient descent with momentum for a linear hypothesis function.\n"
-    )
+    print("\nTesting gradient descent momentum for a linear hypothesis function.\n")
     test_gradient_descent()
