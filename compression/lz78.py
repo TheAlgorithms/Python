@@ -53,13 +53,18 @@ class LZ78Compressor:
           '[(0, a), (1, c), (1, a), (0, c), (1, b), (4, a), (0, b), (3, a)]'
           >>> str(lz78_compressor.compress(""))
           '[]'
-          >>> str(lz78_compressor.compress([]))
-          '[]'
-          >>> str(lz78_compressor.compress({}))
-          '[]'
+          >>> lz78_compressor.compress([])
+          Traceback (most recent call last):
+          TypeError: Expected string.
+          >>> lz78_compressor.compress({})
+          Traceback (most recent call last):
+          TypeError: Expected string.
           >>> len("ababc") >= len(lz78_compressor.compress("ababc"))
           True
         """
+
+        if not isinstance(text, str):
+            raise TypeError("Expected string.")
 
         phrase_dict = {}
         tokens = []
