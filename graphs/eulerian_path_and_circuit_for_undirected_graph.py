@@ -52,7 +52,7 @@ def check_circuit_or_path(graph, max_node):
     Example:
         >>> check_circuit_or_path({1: [2, 3], 2: [1, 3], 3: [1, 2]}, 10)
         (1, -1)
-        >>> check_circuit_or_path({1: [2, 3, 4], 2: [1, 3], 3: [1, 2], 4: [], 5: [4]}, 10)
+        >>> check_circuit_or_path({1: [2, 3, 4], 2: [], 3: [1, 2], 4: [], 5: [4]}, 10)
         (2, 5)
         >>> check_circuit_or_path({1: [2, 3, 1], 2: [2], 3: [1, 3], 4: [1], 5: []}, 10)
         (3, 4)
