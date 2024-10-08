@@ -46,7 +46,7 @@ def hamming_15_11(number: str) -> str:
 
     if len(number) == 11 and is_bin:
         digits = [int(number[i]) for i in range(len(number))]
-        
+
         total_ones = sum(digits)
         hamming_digits = [0] * 16
 
