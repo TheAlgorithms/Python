@@ -2,6 +2,7 @@
 Implementation of gradient descent algorithm using momentum for minimizing cost of a linear hypothesis
 function.
 """
+
 import numpy as np
 
 # List of input, output pairs
@@ -21,16 +22,19 @@ MOMENTUM = 0.9
 # Initialize velocity (for momentum)
 velocity = [0] * len(parameter_vector)
 
+
 def _error(example_no, data_set="train"):
     """
     Calculate the error (difference between predicted and actual output) for a given example.
     Args:
         example_no (int): Index of the example in the dataset.
-        data_set (str): The dataset to use, either "train" or "test". 
+        data_set (str): The dataset to use, either "train" or "test".
     Returns:
         float: The difference between the predicted output and the actual output.
     """
-    return calculate_hypothesis_value(example_no, data_set) - output(example_no, data_set)
+    return calculate_hypothesis_value(example_no, data_set) - output(
+        example_no, data_set
+    )
 
 
 def _hypothesis_value(data_input_tuple):
@@ -125,8 +129,13 @@ def run_gradient_descent_with_momentum():
             cost_derivative = get_cost_derivative(i - 1)
             velocity[i] = MOMENTUM * velocity[i] + cost_derivative
             temp_parameter_vector[i] = parameter_vector[i] - LEARNING_RATE * velocity[i]
-        
-        if np.allclose(parameter_vector, temp_parameter_vector, atol=absolute_error_limit, rtol=relative_error_limit):
+
+        if np.allclose(
+            parameter_vector,
+            temp_parameter_vector,
+            atol=absolute_error_limit,
+            rtol=relative_error_limit,
+        ):
             break
         parameter_vector = temp_parameter_vector
     print(f"Number of iterations: {iteration}")
@@ -140,7 +149,10 @@ def test_gradient_descent():
         print(f"Actual output value: {output(i, 'test')}")
         print(f"Hypothesis output: {calculate_hypothesis_value(i, 'test')}")
 
+
 if __name__ == "__main__":
     run_gradient_descent_with_momentum()
-    print("\nTesting gradient descent with momentum for a linear hypothesis function.\n")
+    print(
+        "\nTesting gradient descent with momentum for a linear hypothesis function.\n"
+    )
     test_gradient_descent()
