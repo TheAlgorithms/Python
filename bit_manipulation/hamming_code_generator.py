@@ -1,4 +1,4 @@
-""" "
+""" 
 Author: Ayush Chakraborty
 Date: 6th October 2024
 
@@ -7,8 +7,6 @@ generate (15,11) hamming encoded bits gives 11 bit data
 input: 11 bit binary number with type string
 return: 16 bit binary hamming encoded number returned in string form
 """
-
-from functools import reduce
 
 def hamming_15_11(number: str) -> str:
     """
@@ -21,8 +19,11 @@ def hamming_15_11(number: str) -> str:
     single bit change
 
     for more theoretical knowledege about Hamming codes, refer: 
-    https://www.youtube.com/watch?v=X8jsijhllIA&t=143s
+    https://www.youtube.com/watch?v=X8jsijhllIA&t=0s
     by 3B1B YT channel
+
+    Wikipedia:
+    https://en.wikipedia.org/wiki/Hamming_code
 
     >>> hamming_15_11("00110001110")
     '0010101110001110'
@@ -37,58 +38,28 @@ def hamming_15_11(number: str) -> str:
     if len(number) == 11:
         digits = [0 if number[i] == "0" else 1 for i in range(len(number))]
         total_num_1 = sum(digits)
-        hamming_digits = [0 for i in range(16)]
-        bit_1 = reduce(
-            lambda temp_bit1, temp_bit2: temp_bit1 ^ temp_bit2,
-            [
-                digits[1],
-                digits[4],
-                digits[8],
-                digits[0],
-                digits[3],
-                digits[6],
-                digits[10],
-            ],
-        )
-        bit_2 = reduce(
-            lambda temp_bit1, temp_bit2: temp_bit1 ^ temp_bit2,
-            [
-                digits[2],
-                digits[5],
-                digits[9],
-                digits[0],
-                digits[3],
-                digits[6],
-                digits[10],
-            ],
-        )
-        bit_3 = reduce(
-            lambda temp_bit1, temp_bit2: temp_bit1 ^ temp_bit2,
-            [
-                digits[1],
-                digits[2],
-                digits[3],
-                digits[7],
-                digits[8],
-                digits[9],
-                digits[10],
-            ],
-        )
-        bit_4 = reduce(
-            lambda temp_bit1, temp_bit2: temp_bit1 ^ temp_bit2,
-            [
-                digits[4],
-                digits[5],
-                digits[6],
-                digits[7],
-                digits[8],
-                digits[9],
-                digits[10],
-            ],
-        )
-        bit_0 = int(total_num_1 % 2) ^ bit_1 ^ bit_2 ^ bit_3 ^ bit_4
+        hamming_digits = [0]*16
 
-        redundant_bits = [bit_0, bit_1, bit_2, bit_3, bit_4]
+        parity_positions = {
+            1: [0, 1, 3, 4, 6, 8, 10],
+            2: [0, 2, 3, 5, 6, 9, 10],
+            4: [1, 2, 3, 7, 8, 9, 10],
+            8: [4, 5, 6, 7, 8, 9, 10],
+        }
+
+        redundant_bits = [0]*5
+
+        redundant_bits_index = 1 #starting from 1 as we need to find the 0th redundancy bit once
+        #all the other redundancy bits have been found
+        for i in parity_positions.values():
+            parity = 0
+            for idx in i:
+                parity ^= digits[idx]
+            redundant_bits[redundant_bits_index] = parity
+            redundant_bits_index += 1
+ 
+        redundant_bits[0] = int(total_num_1 % 2) ^ redundant_bits[1] ^ redundant_bits[2] ^ redundant_bits[3] ^ redundant_bits[4]
+        #this is the 0th redundancy bit which takes into account the other 15 bits 
 
         j = -1
         r = 0
@@ -101,10 +72,11 @@ def hamming_15_11(number: str) -> str:
                 j += 1
                 hamming_digits[k] = digits[j]
 
-        return "".join([str(i) for i in hamming_digits])
+        return ''.join([str(i) for i in hamming_digits]) 
 
-    else:
-        return "please provide a 11 bit binary number"
+
+    if len(number) != 11 or not all(bit in '01' for bit in number):
+        raise ValueError("Input must be an 11-bit binary string containing only '0's and '1's.")
 
 
 if __name__ == "__main__":
