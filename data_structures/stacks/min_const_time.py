@@ -51,7 +51,7 @@ def get_min() -> int:
     Return the minimum element of the main stack by 
     returning the top of the minimum stack
 
-    Returns the minium element (int)
+    Returns the minimum element (int)
 
     >>> push(10)
     >>> push(20)
