@@ -1,7 +1,11 @@
 from __future__ import annotations
 
 k_e = 8.99 * (10**9)  # N·m²/C², Coulomb's constant
-"""reference:https://phys.libretexts.org/Bookshelves/University_Physics/University_Physics_(OpenStax)/University_Physics_II_-_Thermodynamics_Electricity_and_Magnetism_(OpenStax)/07%3A_Electric_Potential/7.02%3A_Electric_Potential_Energy """
+# Reference:
+# https://phys.libretexts.org/Bookshelves/University_Physics/
+# University_Physics_(OpenStax)/University_Physics_II_-_Thermodynamics_
+# Electricity_and_Magnetism_(OpenStax)/07%3A_Electric_Potential/7.02%3A_
+# Electric_Potential_Energy
 
 
 def potential_energy_2_charges(
