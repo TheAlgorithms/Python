@@ -1,9 +1,8 @@
+"""Reference: https://en.wikipedia.org/wiki/Electric_potential_energy"""
+
 from __future__ import annotations
 
 k_e = 8.99 * (10**9)  # N·m²/C², Coulomb's constant
-
-"""Reference: https://en.wikipedia.org/wiki/Electric_potential_energy"""
-
 
 def potential_energy_2_charges(
     charge_1: float,
@@ -36,20 +35,19 @@ def potential_energy_2_charges(
     >>> potential_energy_2_charges(2e-6, 3e-6, -0.05)
     Traceback (most recent call last):
         ...
-    ValueError: Distance cannot be less than zero.
+    ValueError: Distance must be greater than zero.
     """
     if charge_1 == 0 or charge_2 == 0:
         return 0
-    elif distance == 0:
-        return float("inf")
-    elif distance < 0:
-        raise ValueError("Distance cannot be less than zero.")
-    else:
-        potential_energy = k_e * charge_1 * charge_2 / distance
-        return potential_energy
+    if distance <= 0:
+        if distance == 0:
+            return float("inf")
+        raise ValueError("Distance must be greater than zero.")
+    
+    potential_energy = k_e * charge_1 * charge_2 / distance
+    return round(potential_energy, 6)  # Round for precision
 
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
