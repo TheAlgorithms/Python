@@ -5,15 +5,17 @@ find the minimum value from the stack at O(1)
 Problem: https://leetcode.com/problems/min-stack/description/
 """
 
-stack = []
-min_stack = []
+stack: list[int] = []
+min_stack: list[int] = []
 
 
-def push(value: int):
+def push(value: int) -> None:
     """
     Push into the main stack and track the minimum.
     If the value to insert < minimum, then push to min stack
     Returns None
+
+    >>> 
     """
     if len(stack) == 0:
         min_stack.append(value)
@@ -25,13 +27,15 @@ def push(value: int):
     stack.append(value)
 
 
-def pop():
+def pop() -> None:
     """
     Pop from the stack. 
     If the popped value is the same as the min stack top,
     pop from the min stack as well
 
     Returns None
+
+    >>> 
     """
     if len(stack) == 0:
         print("Nothing on stack")
@@ -42,7 +46,7 @@ def pop():
         min_stack.pop()
 
 
-def get_min():
+def get_min() -> int:
     """
     Return the minimum element of the main stack by 
     returning the top of the minimum stack
