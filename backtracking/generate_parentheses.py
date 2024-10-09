@@ -64,7 +64,7 @@ def generate_parenthesis(n: int) -> list[str]:
     Example 2:
     >>> generate_parenthesis(1)
     ['()']
-    
+
     Example 3:
     >>> generate_parenthesis(0)
     ['']

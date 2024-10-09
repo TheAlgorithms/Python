@@ -66,7 +66,7 @@ def word_break(input_string: str, word_dict: set[str]) -> bool:
 
     >>> word_break("catsandog", {"cats", "dog", "sand", "and", "cat"})
     False
-    
+
     >>> word_break("applepenapple", {})
     False
     """
