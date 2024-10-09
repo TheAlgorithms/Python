@@ -7,10 +7,10 @@ def read_urls_from_csv(csv_file, column_name):
     try:
         # Read CSV file into a DataFrame
         image_data = pd.read_csv(csv_file)
-        
+
         # Extract URLs from specified column
         urls = image_data[column_name].tolist()
-        
+
         return urls
     except FileNotFoundError as e:
         print(f"File not found: {e}")
@@ -24,19 +24,19 @@ def download_image(url, folder):
         # Send a GET request to the URL with a timeout
         response = requests.get(url, stream=True, timeout=10)
         response.raise_for_status()
-        
+
         # Generate a unique filename using the URL
         filename = quote_plus(url)[:25]  # Limit filename length
         filename = f"{filename}.jpg"
-        
+
         # Create the output path
         output_path = os.path.join(folder, filename)
-        
+
         # Save the image to the specified folder
         with open(output_path, 'wb') as file:
             for chunk in response.iter_content(8192):
                 file.write(chunk)
-        
+
         print(f"Downloaded: {url} to {output_path}")
     except requests.exceptions.RequestException as e:
         print(f"Failed to download {url}: {e}")
