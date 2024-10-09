@@ -1,5 +1,7 @@
 """
-Given an set of numbers in a stack, find the minimum value from the stack at O(1) 
+Given an set of numbers in a stack, find the minimum value from the stack at O(1)
+
+Problem: https://leetcode.com/problems/min-stack/description/
 """
 
 stack = []
