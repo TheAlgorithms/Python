@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 """
-This program calculates the nth Fibonacci number in O(log(n)).
-It's possible to calculate F(1_000_000) in less than a second.
+Bu program O(log(n)) sürede n'inci Fibonacci sayısını hesaplar.
+F(1_000_000)'i bir saniyeden kısa sürede hesaplamak mümkündür.
 """
 
 from __future__ import annotations
@@ -12,16 +12,16 @@ import sys
 
 def fibonacci(n: int) -> int:
     """
-    return F(n)
+    F(n)'i döndürür
     >>> [fibonacci(i) for i in range(13)]
     [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]
     """
     if n < 0:
-        raise ValueError("Negative arguments are not supported")
+        raise ValueError("Negatif argümanlar desteklenmiyor")
     return _fib(n)[0]
 
 
-# returns (F(n), F(n-1))
+# (F(n), F(n-1)) döndürür
 def _fib(n: int) -> tuple[int, int]:
     if n == 0:  # (F(0), F(1))
         return (0, 1)
@@ -36,4 +36,4 @@ def _fib(n: int) -> tuple[int, int]:
 
 if __name__ == "__main__":
     n = int(sys.argv[1])
-    print(f"fibonacci({n}) is {fibonacci(n)}")
+    print(f"fibonacci({n}) şu: {fibonacci(n)}")

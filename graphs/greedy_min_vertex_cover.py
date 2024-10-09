@@ -1,7 +1,7 @@
 """
-* Author: Manuel Di Lullo (https://github.com/manueldilullo)
-* Description: Approximization algorithm for minimum vertex cover problem.
-               Greedy Approach. Uses graphs represented with an adjacency list
+* Yazar: Manuel Di Lullo (https://github.com/manueldilullo)
+* Açıklama: Minimum köşe örtüsü problemi için yaklaşık algoritma.
+            Açgözlü Yaklaşım. Komşuluk listesi ile temsil edilen grafikleri kullanır.
 URL: https://mathworld.wolfram.com/MinimumVertexCover.html
 URL: https://cs.stackexchange.com/questions/129017/greedy-algorithm-for-vertex-cover
 """
@@ -9,50 +9,49 @@ URL: https://cs.stackexchange.com/questions/129017/greedy-algorithm-for-vertex-c
 import heapq
 
 
-def greedy_min_vertex_cover(graph: dict) -> set[int]:
+def acgozlu_min_kose_ortusu(grafik: dict) -> set[int]:
     """
-    Greedy APX Algorithm for min Vertex Cover
-    @input: graph (graph stored in an adjacency list where each vertex
-            is represented with an integer)
-    @example:
-    >>> graph = {0: [1, 3], 1: [0, 3], 2: [0, 3, 4], 3: [0, 1, 2], 4: [2, 3]}
-    >>> greedy_min_vertex_cover(graph)
+    Minimum Köşe Örtüsü için Açgözlü Yaklaşım Algoritması
+    @girdi: grafik (her köşenin bir tamsayı ile temsil edildiği bir komşuluk listesinde saklanan grafik)
+    @örnek:
+    >>> grafik = {0: [1, 3], 1: [0, 3], 2: [0, 3, 4], 3: [0, 1, 2], 4: [2, 3]}
+    >>> acgozlu_min_kose_ortusu(grafik)
     {0, 1, 2, 4}
     """
-    # queue used to store nodes and their rank
-    queue: list[list] = []
+    # düğümleri ve sıralarını saklamak için kullanılan kuyruk
+    kuyruk: list[list] = []
 
-    # for each node and his adjacency list add them and the rank of the node to queue
-    # using heapq module the queue will be filled like a Priority Queue
-    # heapq works with a min priority queue, so I used -1*len(v) to build it
-    for key, value in graph.items():
+    # her düğüm ve onun komşuluk listesini kuyruk ve düğümün sırasına ekle
+    # heapq modülünü kullanarak kuyruk bir Öncelik Kuyruğu gibi doldurulacak
+    # heapq bir min öncelik kuyruğu ile çalışır, bu yüzden -1*len(v) kullandım
+    for anahtar, deger in grafik.items():
         # O(log(n))
-        heapq.heappush(queue, [-1 * len(value), (key, value)])
+        heapq.heappush(kuyruk, [-1 * len(deger), (anahtar, deger)])
 
-    # chosen_vertices = set of chosen vertices
-    chosen_vertices = set()
+    # secilen_koseler = seçilen köşelerin kümesi
+    secilen_koseler = set()
 
-    # while queue isn't empty and there are still edges
-    #   (queue[0][0] is the rank of the node with max rank)
-    while queue and queue[0][0] != 0:
-        # extract vertex with max rank from queue and add it to chosen_vertices
-        argmax = heapq.heappop(queue)[1][0]
-        chosen_vertices.add(argmax)
+    # kuyruk boş değilken ve hala kenarlar varken
+    #   (kuyruk[0][0] en yüksek sıraya sahip düğümün sırasıdır)
+    while kuyruk and kuyruk[0][0] != 0:
+        # en yüksek sıraya sahip düğümü kuyruktan çıkar ve secilen_koseler'e ekle
+        argmax = heapq.heappop(kuyruk)[1][0]
+        secilen_koseler.add(argmax)
 
-        # Remove all arcs adjacent to argmax
-        for elem in queue:
-            # if v haven't adjacent node, skip
-            if elem[0] == 0:
+        # argmax'e bitişik tüm yayları kaldır
+        for eleman in kuyruk:
+            # eğer v'nin bitişik düğümü yoksa, atla
+            if eleman[0] == 0:
                 continue
-            # if argmax is reachable from elem
-            # remove argmax from elem's adjacent list and update his rank
-            if argmax in elem[1][1]:
-                index = elem[1][1].index(argmax)
-                del elem[1][1][index]
-                elem[0] += 1
-        # re-order the queue
-        heapq.heapify(queue)
-    return chosen_vertices
+            # eğer argmax elemandan ulaşılabiliyorsa
+            # argmax'i elemanın bitişik listesinden kaldır ve sırasını güncelle
+            if argmax in eleman[1][1]:
+                index = eleman[1][1].index(argmax)
+                del eleman[1][1][index]
+                eleman[0] += 1
+        # kuyruğu yeniden sırala
+        heapq.heapify(kuyruk)
+    return secilen_koseler
 
 
 if __name__ == "__main__":
@@ -60,5 +59,5 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    graph = {0: [1, 3], 1: [0, 3], 2: [0, 3, 4], 3: [0, 1, 2], 4: [2, 3]}
-    print(f"Minimum vertex cover:\n{greedy_min_vertex_cover(graph)}")
+    grafik = {0: [1, 3], 1: [0, 3], 2: [0, 3, 4], 3: [0, 1, 2], 4: [2, 3]}
+    print(f"Minimum köşe örtüsü:\n{acgozlu_min_kose_ortusu(grafik)}")

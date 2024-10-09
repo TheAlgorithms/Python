@@ -1,6 +1,6 @@
 """
-Calculates the sum of two non-negative integers using bitwise operators
-Wikipedia explanation: https://en.wikipedia.org/wiki/Binary_number
+Bit düzeyinde operatörler kullanarak iki negatif olmayan tam sayının toplamını hesaplar
+Wikipedia açıklaması: https://en.wikipedia.org/wiki/Binary_number
 """
 
 
@@ -15,30 +15,30 @@ def bitwise_addition_recursive(number: int, other_number: int) -> int:
     >>> bitwise_addition_recursive(4.5, 9)
     Traceback (most recent call last):
         ...
-    TypeError: Both arguments MUST be integers!
+    TypeError: Her iki argüman da tam sayı olmalıdır!
     >>> bitwise_addition_recursive('4', 9)
     Traceback (most recent call last):
         ...
-    TypeError: Both arguments MUST be integers!
+    TypeError: Her iki argüman da tam sayı olmalıdır!
     >>> bitwise_addition_recursive('4.5', 9)
     Traceback (most recent call last):
         ...
-    TypeError: Both arguments MUST be integers!
+    TypeError: Her iki argüman da tam sayı olmalıdır!
     >>> bitwise_addition_recursive(-1, 9)
     Traceback (most recent call last):
         ...
-    ValueError: Both arguments MUST be non-negative!
+    ValueError: Her iki argüman da negatif olmamalıdır!
     >>> bitwise_addition_recursive(1, -9)
     Traceback (most recent call last):
         ...
-    ValueError: Both arguments MUST be non-negative!
+    ValueError: Her iki argüman da negatif olmamalıdır!
     """
 
     if not isinstance(number, int) or not isinstance(other_number, int):
-        raise TypeError("Both arguments MUST be integers!")
+        raise TypeError("Her iki argüman da tam sayı olmalıdır!")
 
     if number < 0 or other_number < 0:
-        raise ValueError("Both arguments MUST be non-negative!")
+        raise ValueError("Her iki argüman da negatif olmamalıdır!")
 
     bitwise_sum = number ^ other_number
     carry = number & other_number

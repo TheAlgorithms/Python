@@ -1,188 +1,172 @@
 """
-Question:
-Given a binary matrix mat of size n * m, find out the maximum size square
-sub-matrix with all 1s.
+Soru:
+Boyutu n * m olan bir ikili matris (mat) verildiğinde, tüm elemanları 1 olan en büyük kare alt matrisin boyutunu bulun.
 
 ---
-Example 1:
+Örnek 1:
 
-Input:
+Girdi:
 n = 2, m = 2
 mat = [[1, 1],
        [1, 1]]
 
-Output:
+       Organised By K. Umut Araz
+
+Çıktı:
 2
 
-Explanation: The maximum size of the square
-sub-matrix is 2. The matrix itself is the
-maximum sized sub-matrix in this case.
+Açıklama: Kare alt matrisin maksimum boyutu 2'dir. Bu durumda matrisin kendisi en büyük boyutlu alt matristir.
 ---
-Example 2
+Örnek 2:
 
-Input:
+Girdi:
 n = 2, m = 2
 mat = [[0, 0],
        [0, 0]]
-Output: 0
+Çıktı: 0
 
-Explanation: There is no 1 in the matrix.
+Açıklama: Matriste 1 yoktur.
 
+Yaklaşım:
+Orijinal matrisle aynı boyutlarda, tüm elemanları 0 olan başka bir matris (dp) başlatıyoruz.
 
-Approach:
-We initialize another matrix (dp) with the same dimensions
-as the original one initialized with all 0's.
+dp_array(i,j), orijinal matrisin (i,j) indeksine sahip hücresinin sağ alt köşesi olan en büyük karenin kenar uzunluğunu temsil eder.
 
-dp_array(i,j) represents the side length of the maximum square whose
-bottom right corner is the cell with index (i,j) in the original matrix.
+(0,0) indeksinden başlayarak, orijinal matriste bulunan her 1 için, mevcut elemanın değerini şu şekilde güncelliyoruz:
 
-Starting from index (0,0), for every 1 found in the original matrix,
-we update the value of the current element as
-
-dp_array(i,j)=dp_array(dp(i-1,j),dp_array(i-1,j-1),dp_array(i,j-1)) + 1.
+dp_array(i,j) = min(dp_array(i-1,j), dp_array(i-1,j-1), dp_array(i,j-1)) + 1.
 """
 
 
-def largest_square_area_in_matrix_top_down_approch(
-    rows: int, cols: int, mat: list[list[int]]
-) -> int:
+def en_buyuk_kare_alani_bul(rows: int, cols: int, mat: list[list[int]]) -> int:
     """
-    Function updates the largest_square_area[0], if recursive call found
-    square with maximum area.
+    Fonksiyon, maksimum alanı bulan kareyi bulursa largest_square_area[0]'ı günceller.
 
-    We aren't using dp_array here, so the time complexity would be exponential.
+    Burada dp_array kullanmıyoruz, bu nedenle zaman karmaşıklığı üssel olacaktır.
 
-    >>> largest_square_area_in_matrix_top_down_approch(2, 2, [[1,1], [1,1]])
+    >>> en_buyuk_kare_alani_bul(2, 2, [[1,1], [1,1]])
     2
-    >>> largest_square_area_in_matrix_top_down_approch(2, 2, [[0,0], [0,0]])
+    >>> en_buyuk_kare_alani_bul(2, 2, [[0,0], [0,0]])
     0
     """
 
-    def update_area_of_max_square(row: int, col: int) -> int:
-        # BASE CASE
+    def kare_alani_guncelle(row: int, col: int) -> int:
+        # TEMEL DURUM
         if row >= rows or col >= cols:
             return 0
 
-        right = update_area_of_max_square(row, col + 1)
-        diagonal = update_area_of_max_square(row + 1, col + 1)
-        down = update_area_of_max_square(row + 1, col)
+        sag = kare_alani_guncelle(row, col + 1)
+        diagonal = kare_alani_guncelle(row + 1, col + 1)
+        asagi = kare_alani_guncelle(row + 1, col)
 
         if mat[row][col]:
-            sub_problem_sol = 1 + min([right, diagonal, down])
-            largest_square_area[0] = max(largest_square_area[0], sub_problem_sol)
-            return sub_problem_sol
+            alt_problem_cozumu = 1 + min([sag, diagonal, asagi])
+            en_buyuk_kare_alani[0] = max(en_buyuk_kare_alani[0], alt_problem_cozumu)
+            return alt_problem_cozumu
         else:
             return 0
 
-    largest_square_area = [0]
-    update_area_of_max_square(0, 0)
-    return largest_square_area[0]
+    en_buyuk_kare_alani = [0]
+    kare_alani_guncelle(0, 0)
+    return en_buyuk_kare_alani[0]
 
 
-def largest_square_area_in_matrix_top_down_approch_with_dp(
-    rows: int, cols: int, mat: list[list[int]]
-) -> int:
+def en_buyuk_kare_alani_bul_dp_ile(rows: int, cols: int, mat: list[list[int]]) -> int:
     """
-    Function updates the largest_square_area[0], if recursive call found
-    square with maximum area.
+    Fonksiyon, maksimum alanı bulan kareyi bulursa largest_square_area[0]'ı günceller.
 
-    We are using dp_array here, so the time complexity would be O(N^2).
+    Burada dp_array kullanıyoruz, bu nedenle zaman karmaşıklığı O(N^2) olacaktır.
 
-    >>> largest_square_area_in_matrix_top_down_approch_with_dp(2, 2, [[1,1], [1,1]])
+    >>> en_buyuk_kare_alani_bul_dp_ile(2, 2, [[1,1], [1,1]])
     2
-    >>> largest_square_area_in_matrix_top_down_approch_with_dp(2, 2, [[0,0], [0,0]])
+    >>> en_buyuk_kare_alani_bul_dp_ile(2, 2, [[0,0], [0,0]])
     0
     """
 
-    def update_area_of_max_square_using_dp_array(
-        row: int, col: int, dp_array: list[list[int]]
-    ) -> int:
+    def kare_alani_guncelle_dp_ile(row: int, col: int, dp_array: list[list[int]]) -> int:
         if row >= rows or col >= cols:
             return 0
         if dp_array[row][col] != -1:
             return dp_array[row][col]
 
-        right = update_area_of_max_square_using_dp_array(row, col + 1, dp_array)
-        diagonal = update_area_of_max_square_using_dp_array(row + 1, col + 1, dp_array)
-        down = update_area_of_max_square_using_dp_array(row + 1, col, dp_array)
+        sag = kare_alani_guncelle_dp_ile(row, col + 1, dp_array)
+        diagonal = kare_alani_guncelle_dp_ile(row + 1, col + 1, dp_array)
+        asagi = kare_alani_guncelle_dp_ile(row + 1, col, dp_array)
 
         if mat[row][col]:
-            sub_problem_sol = 1 + min([right, diagonal, down])
-            largest_square_area[0] = max(largest_square_area[0], sub_problem_sol)
-            dp_array[row][col] = sub_problem_sol
-            return sub_problem_sol
+            alt_problem_cozumu = 1 + min([sag, diagonal, asagi])
+            en_buyuk_kare_alani[0] = max(en_buyuk_kare_alani[0], alt_problem_cozumu)
+            dp_array[row][col] = alt_problem_cozumu
+            return alt_problem_cozumu
         else:
             return 0
 
-    largest_square_area = [0]
+    en_buyuk_kare_alani = [0]
     dp_array = [[-1] * cols for _ in range(rows)]
-    update_area_of_max_square_using_dp_array(0, 0, dp_array)
+    kare_alani_guncelle_dp_ile(0, 0, dp_array)
 
-    return largest_square_area[0]
+    return en_buyuk_kare_alani[0]
 
 
-def largest_square_area_in_matrix_bottom_up(
-    rows: int, cols: int, mat: list[list[int]]
-) -> int:
+def en_buyuk_kare_alani_bul_asagidan_yukarı(rows: int, cols: int, mat: list[list[int]]) -> int:
     """
-    Function updates the largest_square_area, using bottom up approach.
+    Fonksiyon, en büyük kare alanını günceller, aşağıdan yukarı yaklaşım kullanarak.
 
-    >>> largest_square_area_in_matrix_bottom_up(2, 2, [[1,1], [1,1]])
+    >>> en_buyuk_kare_alani_bul_asagidan_yukarı(2, 2, [[1,1], [1,1]])
     2
-    >>> largest_square_area_in_matrix_bottom_up(2, 2, [[0,0], [0,0]])
+    >>> en_buyuk_kare_alani_bul_asagidan_yukarı(2, 2, [[0,0], [0,0]])
     0
-
     """
     dp_array = [[0] * (cols + 1) for _ in range(rows + 1)]
-    largest_square_area = 0
+    en_buyuk_kare_alani = 0
     for row in range(rows - 1, -1, -1):
         for col in range(cols - 1, -1, -1):
-            right = dp_array[row][col + 1]
+            sag = dp_array[row][col + 1]
             diagonal = dp_array[row + 1][col + 1]
-            bottom = dp_array[row + 1][col]
+            asagi = dp_array[row + 1][col]
 
             if mat[row][col] == 1:
-                dp_array[row][col] = 1 + min(right, diagonal, bottom)
-                largest_square_area = max(dp_array[row][col], largest_square_area)
+                dp_array[row][col] = 1 + min(sag, diagonal, asagi)
+                en_buyuk_kare_alani = max(dp_array[row][col], en_buyuk_kare_alani)
             else:
                 dp_array[row][col] = 0
 
-    return largest_square_area
+    return en_buyuk_kare_alani
 
 
-def largest_square_area_in_matrix_bottom_up_space_optimization(
+def en_buyuk_kare_alani_bul_asagidan_yukarı_alan_optimizasyonu(
     rows: int, cols: int, mat: list[list[int]]
 ) -> int:
     """
-    Function updates the largest_square_area, using bottom up
-    approach. with space optimization.
+    Fonksiyon, en büyük kare alanını günceller, aşağıdan yukarı
+    yaklaşım kullanarak. Alan optimizasyonu ile.
 
-    >>> largest_square_area_in_matrix_bottom_up_space_optimization(2, 2, [[1,1], [1,1]])
+    >>> en_buyuk_kare_alani_bul_asagidan_yukarı_alan_optimizasyonu(2, 2, [[1,1], [1,1]])
     2
-    >>> largest_square_area_in_matrix_bottom_up_space_optimization(2, 2, [[0,0], [0,0]])
+    >>> en_buyuk_kare_alani_bul_asagidan_yukarı_alan_optimizasyonu(2, 2, [[0,0], [0,0]])
     0
     """
-    current_row = [0] * (cols + 1)
-    next_row = [0] * (cols + 1)
-    largest_square_area = 0
+    mevcut_satir = [0] * (cols + 1)
+    sonraki_satir = [0] * (cols + 1)
+    en_buyuk_kare_alani = 0
     for row in range(rows - 1, -1, -1):
         for col in range(cols - 1, -1, -1):
-            right = current_row[col + 1]
-            diagonal = next_row[col + 1]
-            bottom = next_row[col]
+            sag = mevcut_satir[col + 1]
+            diagonal = sonraki_satir[col + 1]
+            asagi = sonraki_satir[col]
 
             if mat[row][col] == 1:
-                current_row[col] = 1 + min(right, diagonal, bottom)
-                largest_square_area = max(current_row[col], largest_square_area)
+                mevcut_satir[col] = 1 + min(sag, diagonal, asagi)
+                en_buyuk_kare_alani = max(mevcut_satir[col], en_buyuk_kare_alani)
             else:
-                current_row[col] = 0
-        next_row = current_row
+                mevcut_satir[col] = 0
+        sonraki_satir = mevcut_satir
 
-    return largest_square_area
+    return en_buyuk_kare_alani
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    print(largest_square_area_in_matrix_bottom_up(2, 2, [[1, 1], [1, 1]]))
+    print(en_buyuk_kare_alani_bul_asagidan_yukarı(2, 2, [[1, 1], [1, 1]]))

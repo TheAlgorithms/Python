@@ -1,102 +1,102 @@
 # floyd_warshall.py
 """
-The problem is to find the shortest distance between all pairs of vertices in a
-weighted directed graph that can have negative edge weights.
+Problem, negatif kenar ağırlıklarına sahip olabilen ağırlıklı yönlendirilmiş bir grafikteki
+tüm köşe çiftleri arasındaki en kısa mesafeyi bulmaktır.
 """
 
 
-def _print_dist(dist, v):
-    print("\nThe shortest path matrix using Floyd Warshall algorithm\n")
+def _mesafe_yazdir(mesafe, v):
+    print("\nFloyd Warshall algoritması kullanılarak en kısa yol matrisi\n")
     for i in range(v):
         for j in range(v):
-            if dist[i][j] != float("inf"):
-                print(int(dist[i][j]), end="\t")
+            if mesafe[i][j] != float("inf"):
+                print(int(mesafe[i][j]), end="\t")
             else:
                 print("INF", end="\t")
         print()
+        
+        # Produced by K. Umut Araz
 
 
-def floyd_warshall(graph, v):
+def floyd_warshall(grafik, v):
     """
-    :param graph: 2D array calculated from weight[edge[i, j]]
-    :type graph: List[List[float]]
-    :param v: number of vertices
+    :param grafik: Kenar ağırlıklarından hesaplanan 2D dizi
+    :type grafik: List[List[float]]
+    :param v: köşe sayısı
     :type v: int
-    :return: shortest distance between all vertex pairs
-    distance[u][v] will contain the shortest distance from vertex u to v.
+    :return: tüm köşe çiftleri arasındaki en kısa mesafe
+    mesafe[u][v], köşe u'dan v'ye en kısa mesafeyi içerir.
 
-    1. For all edges from v to n, distance[i][j] = weight(edge(i, j)).
-    3. The algorithm then performs distance[i][j] = min(distance[i][j], distance[i][k] +
-        distance[k][j]) for each possible pair i, j of vertices.
-    4. The above is repeated for each vertex k in the graph.
-    5. Whenever distance[i][j] is given a new minimum value, next vertex[i][j] is
-        updated to the next vertex[i][k].
+    1. Tüm kenarlar için v'den n'ye, mesafe[i][j] = ağırlık(kenar(i, j)).
+    3. Algoritma daha sonra her i, j köşe çifti için mesafe[i][j] = min(mesafe[i][j], mesafe[i][k] + mesafe[k][j]) işlemini gerçekleştirir.
+    4. Yukarıdaki işlem grafikteki her köşe k için tekrarlanır.
+    5. Ne zaman mesafe[i][j] yeni bir minimum değer alırsa, sonraki köşe[i][j], sonraki köşe[i][k] olarak güncellenir.
     """
 
-    dist = [[float("inf") for _ in range(v)] for _ in range(v)]
+    mesafe = [[float("inf") for _ in range(v)] for _ in range(v)]
 
     for i in range(v):
         for j in range(v):
-            dist[i][j] = graph[i][j]
+            mesafe[i][j] = grafik[i][j]
 
-            # check vertex k against all other vertices (i, j)
+    # köşe k'yı diğer tüm köşelerle (i, j) karşılaştır
     for k in range(v):
-        # looping through rows of graph array
+        # grafik dizisinin satırlarında dolaş
         for i in range(v):
-            # looping through columns of graph array
+            # grafik dizisinin sütunlarında dolaş
             for j in range(v):
                 if (
-                    dist[i][k] != float("inf")
-                    and dist[k][j] != float("inf")
-                    and dist[i][k] + dist[k][j] < dist[i][j]
+                    mesafe[i][k] != float("inf")
+                    and mesafe[k][j] != float("inf")
+                    and mesafe[i][k] + mesafe[k][j] < mesafe[i][j]
                 ):
-                    dist[i][j] = dist[i][k] + dist[k][j]
+                    mesafe[i][j] = mesafe[i][k] + mesafe[k][j]
 
-    _print_dist(dist, v)
-    return dist, v
+    _mesafe_yazdir(mesafe, v)
+    return mesafe, v
 
 
 if __name__ == "__main__":
-    v = int(input("Enter number of vertices: "))
-    e = int(input("Enter number of edges: "))
+    v = int(input("Köşe sayısını girin: "))
+    e = int(input("Kenar sayısını girin: "))
 
-    graph = [[float("inf") for i in range(v)] for j in range(v)]
+    grafik = [[float("inf") for i in range(v)] for j in range(v)]
 
     for i in range(v):
-        graph[i][i] = 0.0
+        grafik[i][i] = 0.0
 
-        # src and dst are indices that must be within the array size graph[e][v]
-        # failure to follow this will result in an error
+    # src ve dst, grafik[e][v] dizi boyutları içinde olmalıdır
+    # aksi takdirde hata oluşur
     for i in range(e):
-        print("\nEdge ", i + 1)
-        src = int(input("Enter source:"))
-        dst = int(input("Enter destination:"))
-        weight = float(input("Enter weight:"))
-        graph[src][dst] = weight
+        print("\nKenar ", i + 1)
+        src = int(input("Kaynak köşeyi girin:"))
+        dst = int(input("Hedef köşeyi girin:"))
+        ağırlık = float(input("Ağırlığı girin:"))
+        grafik[src][dst] = ağırlık
 
-    floyd_warshall(graph, v)
+    floyd_warshall(grafik, v)
 
-    # Example Input
-    # Enter number of vertices: 3
-    # Enter number of edges: 2
+    # Örnek Girdi
+    # Köşe sayısını girin: 3
+    # Kenar sayısını girin: 2
 
-    # # generated graph from vertex and edge inputs
+    # # köşe ve kenar girdilerinden oluşturulan grafik
     # [[inf, inf, inf], [inf, inf, inf], [inf, inf, inf]]
     # [[0.0, inf, inf], [inf, 0.0, inf], [inf, inf, 0.0]]
 
-    # specify source, destination and weight for edge #1
-    # Edge  1
-    # Enter source:1
-    # Enter destination:2
-    # Enter weight:2
+    # kenar #1 için kaynak, hedef ve ağırlık belirtin
+    # Kenar  1
+    # Kaynak köşeyi girin:1
+    # Hedef köşeyi girin:2
+    # Ağırlığı girin:2
 
-    # specify source, destination and weight for edge #2
-    # Edge  2
-    # Enter source:2
-    # Enter destination:1
-    # Enter weight:1
+    # kenar #2 için kaynak, hedef ve ağırlık belirtin
+    # Kenar  2
+    # Kaynak köşeyi girin:2
+    # Hedef köşeyi girin:1
+    # Ağırlığı girin:1
 
-    # # Expected Output from the vertice, edge and src, dst, weight inputs!!
+    # # köşe, kenar ve src, dst, ağırlık girdilerinden beklenen çıktı!!
     # 0		INF	INF
     # INF	0	2
     # INF	1	0

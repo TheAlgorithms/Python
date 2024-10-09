@@ -3,261 +3,259 @@ from __future__ import annotations
 from typing import Any
 
 
-class Matrix:
+class Matris:
     """
-    <class Matrix>
-    Matrix structure.
+    <class Matris>
+    Matris yapısı.
+    
+
+    Organizatör: K. Umut Araz
+
     """
 
-    def __init__(self, row: int, column: int, default_value: float = 0) -> None:
+    def __init__(self, satir: int, sutun: int, varsayılan_değer: float = 0) -> None:
         """
-        <method Matrix.__init__>
-        Initialize matrix with given size and default value.
-        Example:
-        >>> a = Matrix(2, 3, 1)
+        <method Matris.__init__>
+        Verilen boyut ve varsayılan değer ile matrisi başlat.
+        Örnek:
+        >>> a = Matris(2, 3, 1)
         >>> a
-        Matrix consist of 2 rows and 3 columns
+        2 satır ve 3 sütundan oluşan matris
         [1, 1, 1]
         [1, 1, 1]
         """
 
-        self.row, self.column = row, column
-        self.array = [[default_value for _ in range(column)] for _ in range(row)]
+        self.satir, self.sutun = satir, sutun
+        self.dizi = [[varsayılan_değer for _ in range(sutun)] for _ in range(satir)]
 
     def __str__(self) -> str:
         """
-        <method Matrix.__str__>
-        Return string representation of this matrix.
+        <method Matris.__str__>
+        Bu matrisin string temsilini döndür.
         """
 
-        # Prefix
-        s = f"Matrix consist of {self.row} rows and {self.column} columns\n"
+        # Ön ek
+        s = f"{self.satir} satır ve {self.sutun} sütundan oluşan matris\n"
 
-        # Make string identifier
-        max_element_length = 0
-        for row_vector in self.array:
-            for obj in row_vector:
-                max_element_length = max(max_element_length, len(str(obj)))
-        string_format_identifier = f"%{max_element_length}s"
+        # String format tanımlayıcı
+        max_eleman_uzunluğu = max(len(str(obj)) for satir_vektörü in self.dizi for obj in satir_vektörü)
+        string_format_tanımlayıcı = f"%{max_eleman_uzunluğu}s"
 
-        # Make string and return
-        def single_line(row_vector: list[float]) -> str:
-            nonlocal string_format_identifier
-            line = "["
-            line += ", ".join(string_format_identifier % (obj,) for obj in row_vector)
-            line += "]"
-            return line
+        # String oluştur ve döndür
+        def tek_satir(satir_vektörü: list[float]) -> str:
+            satir = "["
+            satir += ", ".join(string_format_tanımlayıcı % (obj,) for obj in satir_vektörü)
+            satir += "]"
+            return satir
 
-        s += "\n".join(single_line(row_vector) for row_vector in self.array)
+        s += "\n".join(tek_satir(satir_vektörü) for satir_vektörü in self.dizi)
         return s
 
     def __repr__(self) -> str:
         return str(self)
 
-    def validate_indices(self, loc: tuple[int, int]) -> bool:
+    def indeksleri_doğrula(self, konum: tuple[int, int]) -> bool:
         """
-        <method Matrix.validate_indicies>
-        Check if given indices are valid to pick element from matrix.
-        Example:
-        >>> a = Matrix(2, 6, 0)
-        >>> a.validate_indices((2, 7))
+        <method Matris.indeksleri_doğrula>
+        Verilen indekslerin matristen eleman almak için geçerli olup olmadığını kontrol et.
+        Örnek:
+        >>> a = Matris(2, 6, 0)
+        >>> a.indeksleri_doğrula((2, 7))
         False
-        >>> a.validate_indices((0, 0))
+        >>> a.indeksleri_doğrula((0, 0))
         True
         """
-        if not (isinstance(loc, (list, tuple)) and len(loc) == 2):  # noqa: SIM114
+        if not (isinstance(konum, (list, tuple)) and len(konum) == 2):  # noqa: SIM114
             return False
-        elif not (0 <= loc[0] < self.row and 0 <= loc[1] < self.column):
+        elif not (0 <= konum[0] < self.satir and 0 <= konum[1] < self.sutun):
             return False
-        else:
-            return True
+        return True
 
-    def __getitem__(self, loc: tuple[int, int]) -> Any:
+    def __getitem__(self, konum: tuple[int, int]) -> Any:
         """
-        <method Matrix.__getitem__>
-        Return array[row][column] where loc = (row, column).
-        Example:
-        >>> a = Matrix(3, 2, 7)
+        <method Matris.__getitem__>
+        loc = (satir, sütun) iken dizi[satir][sütun] döndür.
+        Örnek:
+        >>> a = Matris(3, 2, 7)
         >>> a[1, 0]
         7
         """
-        assert self.validate_indices(loc)
-        return self.array[loc[0]][loc[1]]
+        assert self.indeksleri_doğrula(konum)
+        return self.dizi[konum[0]][konum[1]]
 
-    def __setitem__(self, loc: tuple[int, int], value: float) -> None:
+    def __setitem__(self, konum: tuple[int, int], değer: float) -> None:
         """
-        <method Matrix.__setitem__>
-        Set array[row][column] = value where loc = (row, column).
-        Example:
-        >>> a = Matrix(2, 3, 1)
+        <method Matris.__setitem__>
+        loc = (satir, sütun) iken dizi[satir][sütun] = değer olarak ayarla.
+        Örnek:
+        >>> a = Matris(2, 3, 1)
         >>> a[1, 2] = 51
         >>> a
-        Matrix consist of 2 rows and 3 columns
+        2 satır ve 3 sütundan oluşan matris
         [ 1,  1,  1]
         [ 1,  1, 51]
         """
-        assert self.validate_indices(loc)
-        self.array[loc[0]][loc[1]] = value
+        assert self.indeksleri_doğrula(konum)
+        self.dizi[konum[0]][konum[1]] = değer
 
-    def __add__(self, another: Matrix) -> Matrix:
+    def __add__(self, başka: Matris) -> Matris:
         """
-        <method Matrix.__add__>
-        Return self + another.
-        Example:
-        >>> a = Matrix(2, 1, -4)
-        >>> b = Matrix(2, 1, 3)
-        >>> a+b
-        Matrix consist of 2 rows and 1 columns
+        <method Matris.__add__>
+        self + başka döndür.
+        Örnek:
+        >>> a = Matris(2, 1, -4)
+        >>> b = Matris(2, 1, 3)
+        >>> a + b
+        2 satır ve 1 sütundan oluşan matris
         [-1]
         [-1]
         """
 
-        # Validation
-        assert isinstance(another, Matrix)
-        assert self.row == another.row
-        assert self.column == another.column
+        # Doğrulama
+        assert isinstance(başka, Matris)
+        assert self.satir == başka.satir
+        assert self.sutun == başka.sutun
 
-        # Add
-        result = Matrix(self.row, self.column)
-        for r in range(self.row):
-            for c in range(self.column):
-                result[r, c] = self[r, c] + another[r, c]
-        return result
+        # Topla
+        sonuç = Matris(self.satir, self.sutun)
+        for r in range(self.satir):
+            for c in range(self.sutun):
+                sonuç[r, c] = self[r, c] + başka[r, c]
+        return sonuç
 
-    def __neg__(self) -> Matrix:
+    def __neg__(self) -> Matris:
         """
-        <method Matrix.__neg__>
-        Return -self.
-        Example:
-        >>> a = Matrix(2, 2, 3)
+        <method Matris.__neg__>
+        -self döndür.
+        Örnek:
+        >>> a = Matris(2, 2, 3)
         >>> a[0, 1] = a[1, 0] = -2
         >>> -a
-        Matrix consist of 2 rows and 2 columns
+        2 satır ve 2 sütundan oluşan matris
         [-3,  2]
         [ 2, -3]
         """
 
-        result = Matrix(self.row, self.column)
-        for r in range(self.row):
-            for c in range(self.column):
-                result[r, c] = -self[r, c]
-        return result
+        sonuç = Matris(self.satir, self.sutun)
+        for r in range(self.satir):
+            for c in range(self.sutun):
+                sonuç[r, c] = -self[r, c]
+        return sonuç
 
-    def __sub__(self, another: Matrix) -> Matrix:
-        return self + (-another)
+    def __sub__(self, başka: Matris) -> Matris:
+        return self + (-başka)
 
-    def __mul__(self, another: float | Matrix) -> Matrix:
+    def __mul__(self, başka: float | Matris) -> Matris:
         """
-        <method Matrix.__mul__>
-        Return self * another.
-        Example:
-        >>> a = Matrix(2, 3, 1)
-        >>> a[0,2] = a[1,2] = 3
+        <method Matris.__mul__>
+        self * başka döndür.
+        Örnek:
+        >>> a = Matris(2, 3, 1)
+        >>> a[0, 2] = a[1, 2] = 3
         >>> a * -2
-        Matrix consist of 2 rows and 3 columns
+        2 satır ve 3 sütundan oluşan matris
         [-2, -2, -6]
         [-2, -2, -6]
         """
 
-        if isinstance(another, (int, float)):  # Scalar multiplication
-            result = Matrix(self.row, self.column)
-            for r in range(self.row):
-                for c in range(self.column):
-                    result[r, c] = self[r, c] * another
-            return result
-        elif isinstance(another, Matrix):  # Matrix multiplication
-            assert self.column == another.row
-            result = Matrix(self.row, another.column)
-            for r in range(self.row):
-                for c in range(another.column):
-                    for i in range(self.column):
-                        result[r, c] += self[r, i] * another[i, c]
-            return result
+        if isinstance(başka, (int, float)):  # Skalar çarpma
+            sonuç = Matris(self.satir, self.sutun)
+            for r in range(self.satir):
+                for c in range(self.sutun):
+                    sonuç[r, c] = self[r, c] * başka
+            return sonuç
+        elif isinstance(başka, Matris):  # Matris çarpma
+            assert self.sutun == başka.satir
+            sonuç = Matris(self.satir, başka.sutun)
+            for r in range(self.satir):
+                for c in range(başka.sutun):
+                    for i in range(self.sutun):
+                        sonuç[r, c] += self[r, i] * başka[i, c]
+            return sonuç
         else:
-            msg = f"Unsupported type given for another ({type(another)})"
+            msg = f"Başka için desteklenmeyen tür verildi ({type(başka)})"
             raise TypeError(msg)
 
-    def transpose(self) -> Matrix:
+    def transpoze(self) -> Matris:
         """
-        <method Matrix.transpose>
-        Return self^T.
-        Example:
-        >>> a = Matrix(2, 3)
+        <method Matris.transpoze>
+        self^T döndür.
+        Örnek:
+        >>> a = Matris(2, 3)
         >>> for r in range(2):
         ...     for c in range(3):
-        ...             a[r,c] = r*c
+        ...             a[r, c] = r * c
         ...
-        >>> a.transpose()
-        Matrix consist of 3 rows and 2 columns
+        >>> a.transpoze()
+        3 satır ve 2 sütundan oluşan matris
         [0, 0]
         [0, 1]
         [0, 2]
         """
 
-        result = Matrix(self.column, self.row)
-        for r in range(self.row):
-            for c in range(self.column):
-                result[c, r] = self[r, c]
-        return result
+        sonuç = Matris(self.sutun, self.satir)
+        for r in range(self.satir):
+            for c in range(self.sutun):
+                sonuç[c, r] = self[r, c]
+        return sonuç
 
-    def sherman_morrison(self, u: Matrix, v: Matrix) -> Any:
+    def sherman_morrison(self, u: Matris, v: Matris) -> Any:
         """
-        <method Matrix.sherman_morrison>
-        Apply Sherman-Morrison formula in O(n^2).
-        To learn this formula, please look this:
+        <method Matris.sherman_morrison>
+        Sherman-Morrison formülünü O(n^2) zaman karmaşıklığı ile uygula.
+        Bu formülü öğrenmek için lütfen şu kaynağa bakın:
         https://en.wikipedia.org/wiki/Sherman%E2%80%93Morrison_formula
-        This method returns (A + uv^T)^(-1) where A^(-1) is self. Returns None if it's
-        impossible to calculate.
-        Warning: This method doesn't check if self is invertible.
-            Make sure self is invertible before execute this method.
-        Example:
-        >>> ainv = Matrix(3, 3, 0)
-        >>> for i in range(3): ainv[i,i] = 1
+        Bu yöntem (A + uv^T)^(-1) döndürür, burada A^(-1) kendisidir. Hesaplamak imkansızsa None döner.
+        Uyarı: Bu yöntem kendisinin tersinir olup olmadığını kontrol etmez.
+        Bu yöntemi çalıştırmadan önce kendisinin tersinir olduğundan emin olun.
+        Örnek:
+        >>> ainv = Matris(3, 3, 0)
+        >>> for i in range(3): ainv[i, i] = 1
         ...
-        >>> u = Matrix(3, 1, 0)
-        >>> u[0,0], u[1,0], u[2,0] = 1, 2, -3
-        >>> v = Matrix(3, 1, 0)
-        >>> v[0,0], v[1,0], v[2,0] = 4, -2, 5
+        >>> u = Matris(3, 1, 0)
+        >>> u[0, 0], u[1, 0], u[2, 0] = 1, 2, -3
+        >>> v = Matris(3, 1, 0)
+        >>> v[0, 0], v[1, 0], v[2, 0] = 4, -2, 5
         >>> ainv.sherman_morrison(u, v)
-        Matrix consist of 3 rows and 3 columns
+        3 satır ve 3 sütundan oluşan matris
         [  1.2857142857142856, -0.14285714285714285,   0.3571428571428571]
         [  0.5714285714285714,   0.7142857142857143,   0.7142857142857142]
         [ -0.8571428571428571,  0.42857142857142855,  -0.0714285714285714]
         """
 
-        # Size validation
-        assert isinstance(u, Matrix)
-        assert isinstance(v, Matrix)
-        assert self.row == self.column == u.row == v.row  # u, v should be column vector
-        assert u.column == v.column == 1  # u, v should be column vector
+        # Boyut doğrulaması
+        assert isinstance(u, Matris)
+        assert isinstance(v, Matris)
+        assert self.satir == self.sutun == u.satir == v.satir  # u, v sütun vektörü olmalı
+        assert u.sutun == v.sutun == 1  # u, v sütun vektörü olmalı
 
-        # Calculate
-        v_t = v.transpose()
-        numerator_factor = (v_t * self * u)[0, 0] + 1
-        if numerator_factor == 0:
-            return None  # It's not invertible
-        return self - ((self * u) * (v_t * self) * (1.0 / numerator_factor))
+        # Hesapla
+        v_t = v.transpoze()
+        payda_faktörü = (v_t * self * u)[0, 0] + 1
+        if payda_faktörü == 0:
+            return None  # Tersinir değil
+        return self - ((self * u) * (v_t * self) * (1.0 / payda_faktörü))
 
 
-# Testing
+# Test
 if __name__ == "__main__":
 
     def test1() -> None:
         # a^(-1)
-        ainv = Matrix(3, 3, 0)
+        ainv = Matris(3, 3, 0)
         for i in range(3):
             ainv[i, i] = 1
-        print(f"a^(-1) is {ainv}")
+        print(f"a^(-1) = {ainv}")
         # u, v
-        u = Matrix(3, 1, 0)
+        u = Matris(3, 1, 0)
         u[0, 0], u[1, 0], u[2, 0] = 1, 2, -3
-        v = Matrix(3, 1, 0)
+        v = Matris(3, 1, 0)
         v[0, 0], v[1, 0], v[2, 0] = 4, -2, 5
-        print(f"u is {u}")
-        print(f"v is {v}")
-        print(f"uv^T is {u * v.transpose()}")
+        print(f"u = {u}")
+        print(f"v = {v}")
+        print(f"uv^T = {u * v.transpoze()}")
         # Sherman Morrison
-        print(f"(a + uv^T)^(-1) is {ainv.sherman_morrison(u, v)}")
+        print(f"(a + uv^T)^(-1) = {ainv.sherman_morrison(u, v)}")
 
     def test2() -> None:
         import doctest

@@ -1,94 +1,82 @@
 """
-
-The nqueens problem is of placing N queens on a N * N
-chess board such that no queen can attack any other queens placed
-on that chess board.
-This means that one queen cannot have any other queen on its horizontal, vertical and
-diagonal lines.
-
+N vezir problemi, N * N boyutundaki bir satranç tahtasına N vezir yerleştirme problemidir.
+Bu, hiçbir vezirin yatay, dikey ve çapraz çizgilerde başka bir veziri tehdit etmemesi gerektiği anlamına gelir.
 """
 
 from __future__ import annotations
 
-solution = []
+çözüm = []
 
 
-def is_safe(board: list[list[int]], row: int, column: int) -> bool:
+def güvenli_mi(tahta: list[list[int]], satır: int, sütun: int) -> bool:
     """
-    This function returns a boolean value True if it is safe to place a queen there
-    considering the current state of the board.
+    Bu fonksiyon, tahtanın mevcut durumunu göz önünde bulundurarak oraya bir vezir yerleştirmenin güvenli olup olmadığını belirten bir boolean değer döndürür.
 
-    Parameters:
-    board (2D matrix): The chessboard
-    row, column: Coordinates of the cell on the board
+    Parametreler:
+    tahta (2D matris): Satranç tahtası
+    satır, sütun: Tahtadaki hücrenin koordinatları
 
-    Returns:
-    Boolean Value
+    Dönüş:
+    Boolean Değer
 
-    >>> is_safe([[0, 0, 0], [0, 0, 0], [0, 0, 0]], 1, 1)
+    >>> güvenli_mi([[0, 0, 0], [0, 0, 0], [0, 0, 0]], 1, 1)
     True
-    >>> is_safe([[1, 0, 0], [0, 0, 0], [0, 0, 0]], 1, 1)
+    >>> güvenli_mi([[1, 0, 0], [0, 0, 0], [0, 0, 0]], 1, 1)
     False
     """
 
-    n = len(board)  # Size of the board
+    n = len(tahta)  # Tahtanın boyutu
 
-    # Check if there is any queen in the same row, column,
-    # left upper diagonal, and right upper diagonal
+    # Aynı satır, sütun, sol üst çapraz ve sağ üst çaprazda vezir olup olmadığını kontrol et
     return (
-        all(board[i][j] != 1 for i, j in zip(range(row, -1, -1), range(column, n)))
+        all(tahta[i][j] != 1 for i, j in zip(range(satır, -1, -1), range(sütun, n)))
         and all(
-            board[i][j] != 1 for i, j in zip(range(row, -1, -1), range(column, -1, -1))
+            tahta[i][j] != 1 for i, j in zip(range(satır, -1, -1), range(sütun, -1, -1))
         )
-        and all(board[i][j] != 1 for i, j in zip(range(row, n), range(column, n)))
-        and all(board[i][j] != 1 for i, j in zip(range(row, n), range(column, -1, -1)))
+        and all(tahta[i][j] != 1 for i, j in zip(range(satır, n), range(sütun, n)))
+        and all(tahta[i][j] != 1 for i, j in zip(range(satır, n), range(sütun, -1, -1)))
     )
 
 
-def solve(board: list[list[int]], row: int) -> bool:
+def çöz(tahta: list[list[int]], satır: int) -> bool:
     """
-    This function creates a state space tree and calls the safe function until it
-    receives a False Boolean and terminates that branch and backtracks to the next
-    possible solution branch.
+    Bu fonksiyon bir durum uzayı ağacı oluşturur ve güvenli fonksiyonunu çağırır, False boolean değeri alana kadar devam eder ve o dalı sonlandırır, ardından bir sonraki olası çözüm dalına geri döner.
     """
-    if row >= len(board):
+    if satır >= len(tahta):
         """
-        If the row number exceeds N, we have a board with a successful combination
-        and that combination is appended to the solution list and the board is printed.
+        Satır numarası N'yi aşarsa, başarılı bir kombinasyona sahip bir tahtamız var demektir ve bu kombinasyon çözüm listesine eklenir ve tahta yazdırılır.
         """
-        solution.append(board)
-        printboard(board)
+        çözüm.append(tahta)
+        tahta_yazdır(tahta)
         print()
         return True
-    for i in range(len(board)):
+    for i in range(len(tahta)):
         """
-        For every row, it iterates through each column to check if it is feasible to
-        place a queen there.
-        If all the combinations for that particular branch are successful, the board is
-        reinitialized for the next possible combination.
+        Her satır için, bir vezir yerleştirmenin mümkün olup olmadığını kontrol etmek için her sütunu iter.
+        Bu dal için tüm kombinasyonlar başarılı olursa, tahta bir sonraki olası kombinasyon için yeniden başlatılır.
         """
-        if is_safe(board, row, i):
-            board[row][i] = 1
-            solve(board, row + 1)
-            board[row][i] = 0
+        if güvenli_mi(tahta, satır, i):
+            tahta[satır][i] = 1
+            çöz(tahta, satır + 1)
+            tahta[satır][i] = 0
     return False
 
 
-def printboard(board: list[list[int]]) -> None:
+def tahta_yazdır(tahta: list[list[int]]) -> None:
     """
-    Prints the boards that have a successful combination.
+    Başarılı bir kombinasyona sahip tahtaları yazdırır.
     """
-    for i in range(len(board)):
-        for j in range(len(board)):
-            if board[i][j] == 1:
-                print("Q", end=" ")  # Queen is present
+    for i in range(len(tahta)):
+        for j in range(len(tahta)):
+            if tahta[i][j] == 1:
+                print("V", end=" ")  # Vezir mevcut
             else:
-                print(".", end=" ")  # Empty cell
+                print(".", end=" ")  # Boş hücre
         print()
 
 
-# Number of queens (e.g., n=8 for an 8x8 board)
+# Vezir sayısı (örneğin, n=8 için 8x8 tahta)
 n = 8
-board = [[0 for i in range(n)] for j in range(n)]
-solve(board, 0)
-print("The total number of solutions are:", len(solution))
+tahta = [[0 for i in range(n)] for j in range(n)]
+çöz(tahta, 0)
+print("Toplam çözüm sayısı:", len(çözüm))

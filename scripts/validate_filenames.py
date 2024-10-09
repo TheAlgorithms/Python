@@ -6,31 +6,33 @@ try:
 except ImportError:
     from build_directory_md import good_file_paths  # type: ignore[no-redef]
 
-filepaths = list(good_file_paths())
-assert filepaths, "good_file_paths() failed!"
+# Organiser: K. Umut Araz
 
-upper_files = [file for file in filepaths if file != file.lower()]
-if upper_files:
-    print(f"{len(upper_files)} files contain uppercase characters:")
-    print("\n".join(upper_files) + "\n")
+dosya_yolları = list(good_file_paths())
+assert dosya_yolları, "good_file_paths() başarısız oldu!"
 
-space_files = [file for file in filepaths if " " in file]
-if space_files:
-    print(f"{len(space_files)} files contain space characters:")
-    print("\n".join(space_files) + "\n")
+büyük_harfli_dosyalar = [dosya for dosya in dosya_yolları if dosya != dosya.lower()]
+if büyük_harfli_dosyalar:
+    print(f"{len(büyük_harfli_dosyalar)} dosya büyük harf içeriyor:")
+    print("\n".join(büyük_harfli_dosyalar) + "\n")
 
-hyphen_files = [file for file in filepaths if "-" in file]
-if hyphen_files:
-    print(f"{len(hyphen_files)} files contain hyphen characters:")
-    print("\n".join(hyphen_files) + "\n")
+boşluklu_dosyalar = [dosya for dosya in dosya_yolları if " " in dosya]
+if boşluklu_dosyalar:
+    print(f"{len(boşluklu_dosyalar)} dosya boşluk karakteri içeriyor:")
+    print("\n".join(boşluklu_dosyalar) + "\n")
 
-nodir_files = [file for file in filepaths if os.sep not in file]
-if nodir_files:
-    print(f"{len(nodir_files)} files are not in a directory:")
-    print("\n".join(nodir_files) + "\n")
+tireli_dosyalar = [dosya for dosya in dosya_yolları if "-" in dosya]
+if tireli_dosyalar:
+    print(f"{len(tireli_dosyalar)} dosya tire karakteri içeriyor:")
+    print("\n".join(tireli_dosyalar) + "\n")
 
-bad_files = len(upper_files + space_files + hyphen_files + nodir_files)
-if bad_files:
+dizin_dışı_dosyalar = [dosya for dosya in dosya_yolları if os.sep not in dosya]
+if dizin_dışı_dosyalar:
+    print(f"{len(dizin_dışı_dosyalar)} dosya bir dizinde değil:")
+    print("\n".join(dizin_dışı_dosyalar) + "\n")
+
+kötü_dosya_sayısı = len(büyük_harfli_dosyalar + boşluklu_dosyalar + tireli_dosyalar + dizin_dışı_dosyalar)
+if kötü_dosya_sayısı:
     import sys
 
-    sys.exit(bad_files)
+    sys.exit(kötü_dosya_sayısı)

@@ -1,54 +1,55 @@
 from __future__ import annotations
 
+# Produced by: K. Umut Araz
 
-def dfs(u):
-    global graph, reversed_graph, scc, component, visit, stack
-    if visit[u]:
+def dfs(dugum):
+    global grafik, ters_grafik, scc, bileşen, ziyaret, yığın
+    if ziyaret[dugum]:
         return
-    visit[u] = True
-    for v in graph[u]:
-        dfs(v)
-    stack.append(u)
+    ziyaret[dugum] = True
+    for komsu in grafik[dugum]:
+        dfs(komsu)
+    yığın.append(dugum)
 
 
-def dfs2(u):
-    global graph, reversed_graph, scc, component, visit, stack
-    if visit[u]:
+def dfs2(dugum):
+    global grafik, ters_grafik, scc, bileşen, ziyaret, yığın
+    if ziyaret[dugum]:
         return
-    visit[u] = True
-    component.append(u)
-    for v in reversed_graph[u]:
-        dfs2(v)
+    ziyaret[dugum] = True
+    bileşen.append(dugum)
+    for komsu in ters_grafik[dugum]:
+        dfs2(komsu)
 
 
 def kosaraju():
-    global graph, reversed_graph, scc, component, visit, stack
-    for i in range(n):
+    global grafik, ters_grafik, scc, bileşen, ziyaret, yığın
+    for i in range(dugum_sayisi):
         dfs(i)
-    visit = [False] * n
-    for i in stack[::-1]:
-        if visit[i]:
+    ziyaret = [False] * dugum_sayisi
+    for i in yığın[::-1]:
+        if ziyaret[i]:
             continue
-        component = []
+        bileşen = []
         dfs2(i)
-        scc.append(component)
+        scc.append(bileşen)
     return scc
 
 
 if __name__ == "__main__":
-    # n - no of nodes, m - no of edges
-    n, m = list(map(int, input().strip().split()))
+    # dugum_sayisi - düğüm sayısı, kenar_sayisi - kenar sayısı
+    dugum_sayisi, kenar_sayisi = list(map(int, input().strip().split()))
 
-    graph: list[list[int]] = [[] for _ in range(n)]  # graph
-    reversed_graph: list[list[int]] = [[] for i in range(n)]  # reversed graph
-    # input graph data (edges)
-    for _ in range(m):
+    grafik: list[list[int]] = [[] for _ in range(dugum_sayisi)]  # grafik
+    ters_grafik: list[list[int]] = [[] for _ in range(dugum_sayisi)]  # ters grafik
+    # grafik verilerini (kenarlar) al
+    for _ in range(kenar_sayisi):
         u, v = list(map(int, input().strip().split()))
-        graph[u].append(v)
-        reversed_graph[v].append(u)
+        grafik[u].append(v)
+        ters_grafik[v].append(u)
 
-    stack: list[int] = []
-    visit: list[bool] = [False] * n
+    yığın: list[int] = []
+    ziyaret: list[bool] = [False] * dugum_sayisi
     scc: list[int] = []
-    component: list[int] = []
+    bileşen: list[int] = []
     print(kosaraju())

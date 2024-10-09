@@ -1,16 +1,16 @@
-# Author: M. Yathurshan
+# Yazar: M. Yathurshan
 # Black Formatter: True
+# Katkı: K. Umut Araz 
 
 """
-Implementation of SHA256 Hash function in a Python class and provides utilities
-to find hash of string or hash of text from a file.
+SHA256 Hash fonksiyonunun bir Python sınıfında uygulanması ve bir stringin veya bir dosyadan metnin hash'ini bulmak için yardımcı işlevler sağlar.
 
-Usage: python sha256.py --string "Hello World!!"
-       python sha256.py --file "hello_world.txt"
-       When run without any arguments,
-       it prints the hash of the string "Hello World!! Welcome to Cryptography"
+Kullanım: python sha256.py --string "Merhaba Dünya!!"
+       python sha256.py --file "merhaba_dunya.txt"
+       Herhangi bir argüman olmadan çalıştırıldığında,
+       "Merhaba Dünya!! Kriptografiye Hoş Geldiniz" stringinin hash'ini yazdırır.
 
-References:
+Referanslar:
 https://qvault.io/cryptography/how-sha-2-works-step-by-step-sha-256/
 https://en.wikipedia.org/wiki/SHA-2
 """
@@ -22,19 +22,19 @@ import unittest
 
 class SHA256:
     """
-    Class to contain the entire pipeline for SHA1 Hashing Algorithm
+    SHA1 Hashing Algoritması için tüm işlemleri içeren sınıf
 
     >>> SHA256(b'Python').hash
     '18885f27b5af9012df19e496460f9294d5ab76128824c6f993787004f6d9a7db'
 
-    >>> SHA256(b'hello world').hash
+    >>> SHA256(b'merhaba dünya').hash
     'b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9'
     """
 
     def __init__(self, data: bytes) -> None:
         self.data = data
 
-        # Initialize hash values
+        # Hash değerlerini başlat
         self.hashes = [
             0x6A09E667,
             0xBB67AE85,
@@ -46,7 +46,7 @@ class SHA256:
             0x5BE0CD19,
         ]
 
-        # Initialize round constants
+        # Tur sabitlerini başlat
         self.round_constants = [
             0x428A2F98,
             0x71374491,
@@ -124,23 +124,23 @@ class SHA256:
         return data + padding + big_endian_integer
 
     def final_hash(self) -> None:
-        # Convert into blocks of 64 bytes
+        # 64 baytlık bloklara dönüştür
         self.blocks = [
             self.preprocessed_data[x : x + 64]
             for x in range(0, len(self.preprocessed_data), 64)
         ]
 
         for block in self.blocks:
-            # Convert the given block into a list of 4 byte integers
+            # Verilen bloğu 4 baytlık tamsayılar listesine dönüştür
             words = list(struct.unpack(">16L", block))
-            # add 48 0-ed integers
+            # 48 tane 0 ekle
             words += [0] * 48
 
             a, b, c, d, e, f, g, h = self.hashes
 
             for index in range(64):
                 if index > 15:
-                    # modify the zero-ed indexes at the end of the array
+                    # Dizinin sonundaki sıfırlanmış indeksleri değiştir
                     s0 = (
                         self.ror(words[index - 15], 7)
                         ^ self.ror(words[index - 15], 18)
@@ -156,7 +156,7 @@ class SHA256:
                         words[index - 16] + s0 + words[index - 7] + s1
                     ) % 0x100000000
 
-                # Compression
+                # Sıkıştırma
                 s1 = self.ror(e, 6) ^ self.ror(e, 11) ^ self.ror(e, 25)
                 ch = (e & f) ^ ((~e & (0xFFFFFFFF)) & g)
                 temp1 = (
@@ -179,7 +179,7 @@ class SHA256:
 
             mutated_hash_values = [a, b, c, d, e, f, g, h]
 
-            # Modify final values
+            # Son değerleri değiştir
             self.hashes = [
                 ((element + mutated_hash_values[index]) % 0x100000000)
                 for index, element in enumerate(self.hashes)
@@ -189,14 +189,14 @@ class SHA256:
 
     def ror(self, value: int, rotations: int) -> int:
         """
-        Right rotate a given unsigned number by a certain amount of rotations
+        Belirli bir miktar döndürme ile verilen bir işaretsiz sayıyı sağa döndür
         """
         return 0xFFFFFFFF & (value << (32 - rotations)) | (value >> rotations)
 
 
 class SHA256HashTest(unittest.TestCase):
     """
-    Test class for the SHA256 class. Inherits the TestCase class from unittest
+    SHA256 sınıfı için test sınıfı. unittest'ten TestCase sınıfını miras alır
     """
 
     def test_match_hashes(self) -> None:
@@ -208,8 +208,8 @@ class SHA256HashTest(unittest.TestCase):
 
 def main() -> None:
     """
-    Provides option 'string' or 'file' to take input
-    and prints the calculated SHA-256 hash
+    Girdi almak için 'string' veya 'file' seçeneği sağlar
+    ve hesaplanan SHA-256 hash'ini yazdırır
     """
 
     # unittest.main()
@@ -223,18 +223,18 @@ def main() -> None:
         "-s",
         "--string",
         dest="input_string",
-        default="Hello World!! Welcome to Cryptography",
-        help="Hash the string",
+        default="Merhaba Dünya!! Kriptografiye Hoş Geldiniz",
+        help="Stringi hash'le",
     )
     parser.add_argument(
-        "-f", "--file", dest="input_file", help="Hash contents of a file"
+        "-f", "--file", dest="input_file", help="Bir dosyanın içeriğini hash'le"
     )
 
     args = parser.parse_args()
 
     input_string = args.input_string
 
-    # hash input should be a bytestring
+    # hash girişi bir bayt dizisi olmalı
     if args.input_file:
         with open(args.input_file, "rb") as f:
             hash_input = f.read()

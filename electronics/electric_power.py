@@ -4,51 +4,50 @@ from __future__ import annotations
 from typing import NamedTuple
 
 
-class Result(NamedTuple):
-    name: str
-    value: float
+class Sonuç(NamedTuple):
+    ad: str
+    değer: float
 
 
-def electric_power(voltage: float, current: float, power: float) -> tuple:
+def elektrik_gücü(gerilim: float, akım: float, güç: float) -> tuple:
     """
-    This function can calculate any one of the three (voltage, current, power),
-    fundamental value of electrical system.
-    examples are below:
-    >>> electric_power(voltage=0, current=2, power=5)
-    Result(name='voltage', value=2.5)
-    >>> electric_power(voltage=2, current=2, power=0)
-    Result(name='power', value=4.0)
-    >>> electric_power(voltage=-2, current=3, power=0)
-    Result(name='power', value=6.0)
-    >>> electric_power(voltage=2, current=4, power=2)
+    Bu fonksiyon elektrik sisteminin temel değeri olan üç şeyden birini (gerilim, akım, güç) hesaplayabilir.
+    örnekler aşağıdadır:
+    >>> elektrik_gücü(gerilim=0, akım=2, güç=5)
+    Sonuç(ad='gerilim', değer=2.5)
+    >>> elektrik_gücü(gerilim=2, akım=2, güç=0)
+    Sonuç(ad='güç', değer=4.0)
+    >>> elektrik_gücü(gerilim=-2, akım=3, güç=0)
+    Sonuç(ad='güç', değer=6.0)
+    >>> elektrik_gücü(gerilim=2, akım=4, güç=2)
     Traceback (most recent call last):
         ...
-    ValueError: Only one argument must be 0
-    >>> electric_power(voltage=0, current=0, power=2)
+    ValueError: Sadece bir argüman 0 olmalıdır
+    >>> elektrik_gücü(gerilim=0, akım=0, güç=2)
     Traceback (most recent call last):
         ...
-    ValueError: Only one argument must be 0
-    >>> electric_power(voltage=0, current=2, power=-4)
+    ValueError: Sadece bir argüman 0 olmalıdır
+    >>> elektrik_gücü(gerilim=0, akım=2, güç=-4)
     Traceback (most recent call last):
         ...
-    ValueError: Power cannot be negative in any electrical/electronics system
-    >>> electric_power(voltage=2.2, current=2.2, power=0)
-    Result(name='power', value=4.84)
+    ValueError: Güç herhangi bir elektrik/elektronik sistemde negatif olamaz
+    >>> elektrik_gücü(gerilim=2.2, akım=2.2, güç=0)
+    Sonuç(ad='güç', değer=4.84)
     """
-    if (voltage, current, power).count(0) != 1:
-        raise ValueError("Only one argument must be 0")
-    elif power < 0:
+    if (gerilim, akım, güç).count(0) != 1:
+        raise ValueError("Sadece bir argüman 0 olmalıdır")
+    elif güç < 0:
         raise ValueError(
-            "Power cannot be negative in any electrical/electronics system"
+            "Güç herhangi bir elektrik/elektronik sistemde negatif olamaz"
         )
-    elif voltage == 0:
-        return Result("voltage", power / current)
-    elif current == 0:
-        return Result("current", power / voltage)
-    elif power == 0:
-        return Result("power", float(round(abs(voltage * current), 2)))
+    elif gerilim == 0:
+        return Sonuç("gerilim", güç / akım)
+    elif akım == 0:
+        return Sonuç("akım", güç / gerilim)
+    elif güç == 0:
+        return Sonuç("güç", float(round(abs(gerilim * akım), 2)))
     else:
-        raise ValueError("Exactly one argument must be 0")
+        raise ValueError("Tam olarak bir argüman 0 olmalıdır")
 
 
 if __name__ == "__main__":

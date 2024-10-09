@@ -1,74 +1,74 @@
 #!/usr/bin/python
 
-"""Author: OMKAR PATHAK"""
+"""Yazar: OMKAR PATHAK"""
 
 from __future__ import annotations
 
 from queue import Queue
 
 
-class Graph:
+class Grafik:
     def __init__(self) -> None:
-        self.vertices: dict[int, list[int]] = {}
+        self.düğümler: dict[int, list[int]] = {}
 
-    def print_graph(self) -> None:
+    def grafik_yazdir(self) -> None:
         """
-        prints adjacency list representation of graaph
-        >>> g = Graph()
-        >>> g.print_graph()
-        >>> g.add_edge(0, 1)
-        >>> g.print_graph()
+        komşuluk listesi gösterimini yazdırır
+        >>> g = Grafik()
+        >>> g.grafik_yazdir()
+        >>> g.kenar_ekle(0, 1)
+        >>> g.grafik_yazdir()
         0  :  1
         """
-        for i in self.vertices:
-            print(i, " : ", " -> ".join([str(j) for j in self.vertices[i]]))
+        for i in self.düğümler:
+            print(i, " : ", " -> ".join([str(j) for j in self.düğümler[i]]))
 
-    def add_edge(self, from_vertex: int, to_vertex: int) -> None:
+    def kenar_ekle(self, başlangıç_düğüm: int, bitiş_düğüm: int) -> None:
         """
-        adding the edge between two vertices
-        >>> g = Graph()
-        >>> g.print_graph()
-        >>> g.add_edge(0, 1)
-        >>> g.print_graph()
+        iki düğüm arasına kenar ekler
+        >>> g = Grafik()
+        >>> g.grafik_yazdir()
+        >>> g.kenar_ekle(0, 1)
+        >>> g.grafik_yazdir()
         0  :  1
         """
-        if from_vertex in self.vertices:
-            self.vertices[from_vertex].append(to_vertex)
+        if başlangıç_düğüm in self.düğümler:
+            self.düğümler[başlangıç_düğüm].append(bitiş_düğüm)
         else:
-            self.vertices[from_vertex] = [to_vertex]
+            self.düğümler[başlangıç_düğüm] = [bitiş_düğüm]
 
-    def bfs(self, start_vertex: int) -> set[int]:
+    def bfs(self, başlangıç_düğüm: int) -> set[int]:
         """
-        >>> g = Graph()
-        >>> g.add_edge(0, 1)
-        >>> g.add_edge(0, 1)
-        >>> g.add_edge(0, 2)
-        >>> g.add_edge(1, 2)
-        >>> g.add_edge(2, 0)
-        >>> g.add_edge(2, 3)
-        >>> g.add_edge(3, 3)
+        >>> g = Grafik()
+        >>> g.kenar_ekle(0, 1)
+        >>> g.kenar_ekle(0, 1)
+        >>> g.kenar_ekle(0, 2)
+        >>> g.kenar_ekle(1, 2)
+        >>> g.kenar_ekle(2, 0)
+        >>> g.kenar_ekle(2, 3)
+        >>> g.kenar_ekle(3, 3)
         >>> sorted(g.bfs(2))
         [0, 1, 2, 3]
         """
-        # initialize set for storing already visited vertices
-        visited = set()
+        # ziyaret edilen düğümleri saklamak için bir set oluştur
+        ziyaret_edilen = set()
 
-        # create a first in first out queue to store all the vertices for BFS
-        queue: Queue = Queue()
+        # BFS için tüm düğümleri saklayacak bir FIFO kuyruğu oluştur
+        kuyruk: Queue = Queue()
 
-        # mark the source node as visited and enqueue it
-        visited.add(start_vertex)
-        queue.put(start_vertex)
+        # kaynak düğümü ziyaret edildi olarak işaretle ve kuyruğa ekle
+        ziyaret_edilen.add(başlangıç_düğüm)
+        kuyruk.put(başlangıç_düğüm)
 
-        while not queue.empty():
-            vertex = queue.get()
+        while not kuyruk.empty():
+            düğüm = kuyruk.get()
 
-            # loop through all adjacent vertex and enqueue it if not yet visited
-            for adjacent_vertex in self.vertices[vertex]:
-                if adjacent_vertex not in visited:
-                    queue.put(adjacent_vertex)
-                    visited.add(adjacent_vertex)
-        return visited
+            # tüm komşu düğümleri dolaş ve henüz ziyaret edilmediyse kuyruğa ekle
+            for komşu_düğüm in self.düğümler[düğüm]:
+                if komşu_düğüm not in ziyaret_edilen:
+                    kuyruk.put(komşu_düğüm)
+                    ziyaret_edilen.add(komşu_düğüm)
+        return ziyaret_edilen
 
 
 if __name__ == "__main__":
@@ -76,15 +76,15 @@ if __name__ == "__main__":
 
     testmod(verbose=True)
 
-    g = Graph()
-    g.add_edge(0, 1)
-    g.add_edge(0, 2)
-    g.add_edge(1, 2)
-    g.add_edge(2, 0)
-    g.add_edge(2, 3)
-    g.add_edge(3, 3)
+    g = Grafik()
+    g.kenar_ekle(0, 1)
+    g.kenar_ekle(0, 2)
+    g.kenar_ekle(1, 2)
+    g.kenar_ekle(2, 0)
+    g.kenar_ekle(2, 3)
+    g.kenar_ekle(3, 3)
 
-    g.print_graph()
+    g.grafik_yazdir()
     # 0  :  1 -> 2
     # 1  :  2
     # 2  :  0 -> 3

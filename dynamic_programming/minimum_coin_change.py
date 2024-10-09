@@ -1,8 +1,8 @@
 """
-You have m types of coins available in infinite quantities
-where the value of each coins is given in the array S=[S0,... Sm-1]
-Can you determine number of ways of making change for n units using
-the given types of coins?
+Elinizde sonsuz miktarda mevcut olan m tür madeni para var
+her bir madeni paranın değeri S=[S0,... Sm-1] dizisinde verilmiştir
+Verilen madeni para türlerini kullanarak n birimlik değişim yapmanın
+kaç yolu olduğunu belirleyebilir misiniz?
 https://www.hackerrank.com/challenges/coin-change/problem
 """
 
@@ -24,20 +24,19 @@ def dp_count(s, n):
     """
     if n < 0:
         return 0
-    # table[i] represents the number of ways to get to amount i
-    table = [0] * (n + 1)
+    # table[i] miktarına ulaşmanın yollarının sayısını temsil eder
+    tablo = [0] * (n + 1)
 
-    # There is exactly 1 way to get to zero(You pick no coins).
-    table[0] = 1
+    # Sıfıra ulaşmanın tam olarak 1 yolu vardır (Hiç madeni para seçmezsiniz).
+    tablo[0] = 1
 
-    # Pick all coins one by one and update table[] values
-    # after the index greater than or equal to the value of the
-    # picked coin
+    # Tüm madeni paraları tek tek seçin ve tablo[] değerlerini güncelleyin
+    # seçilen madeni paranın değerine eşit veya daha büyük olan indekslerden sonra
     for coin_val in s:
         for j in range(coin_val, n + 1):
-            table[j] += table[j - coin_val]
+            tablo[j] += tablo[j - coin_val]
 
-    return table[n]
+    return tablo[n]
 
 
 if __name__ == "__main__":

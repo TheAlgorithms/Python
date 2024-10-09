@@ -1,58 +1,60 @@
-def topological_sort(graph: dict[int, list[int]]) -> list[int] | None:
+def topolojik_sıralama(grafik: dict[int, list[int]]) -> list[int] | None:
     """
-    Perform topological sorting of a Directed Acyclic Graph (DAG)
-    using Kahn's Algorithm via Breadth-First Search (BFS).
+    Kahn'ın Algoritmasını kullanarak Yönlendirilmiş Asiklik Grafiğin (DAG)
+    topolojik sıralamasını gerçekleştirir.
 
-    Topological sorting is a linear ordering of vertices in a graph such that for
-    every directed edge u → v, vertex u comes before vertex v in the ordering.
+    Topolojik sıralama, bir grafikteki düğümlerin doğrusal bir sıralamasıdır,
+    öyle ki her yönlendirilmiş kenar u → v için, u düğümü v düğümünden önce gelir.
 
-    Parameters:
-    graph: Adjacency list representing the directed graph where keys are
-           vertices, and values are lists of adjacent vertices.
+    Parametreler:
+    grafik: Anahtarların düğümleri, değerlerin ise komşu düğümlerin listelerini
+            temsil ettiği yönlendirilmiş grafiğin komşuluk listesi.
 
-    Returns:
-    The topologically sorted order of vertices if the graph is a DAG.
-    Returns None if the graph contains a cycle.
+    Döndürür:
+    Eğer grafik bir DAG ise düğümlerin topolojik sıralamasını döndürür.
+    Eğer grafik bir döngü içeriyorsa None döner.
 
-    Example:
-    >>> graph = {0: [1, 2], 1: [3], 2: [3], 3: [4, 5], 4: [], 5: []}
-    >>> topological_sort(graph)
+    Örnek:
+    >>> grafik = {0: [1, 2], 1: [3], 2: [3], 3: [4, 5], 4: [], 5: []}
+    >>> topolojik_sıralama(grafik)
     [0, 1, 2, 3, 4, 5]
 
-    >>> graph_with_cycle = {0: [1], 1: [2], 2: [0]}
-    >>> topological_sort(graph_with_cycle)
+    >>> döngülü_grafik = {0: [1], 1: [2], 2: [0]}
+    >>> topolojik_sıralama(döngülü_grafik)
     """
 
-    indegree = [0] * len(graph)
-    queue = []
-    topo_order = []
-    processed_vertices_count = 0
+    #Produced By K. Umut Araz
 
-    # Calculate the indegree of each vertex
-    for values in graph.values():
-        for i in values:
-            indegree[i] += 1
+    giriş_derecesi = [0] * len(grafik)
+    kuyruk = []
+    topo_sıra = []
+    işlenen_düğüm_sayısı = 0
 
-    # Add all vertices with 0 indegree to the queue
-    for i in range(len(indegree)):
-        if indegree[i] == 0:
-            queue.append(i)
+    # Her düğümün giriş derecesini hesapla
+    for değerler in grafik.values():
+        for i in değerler:
+            giriş_derecesi[i] += 1
 
-    # Perform BFS
-    while queue:
-        vertex = queue.pop(0)
-        processed_vertices_count += 1
-        topo_order.append(vertex)
+    # Giriş derecesi 0 olan tüm düğümleri kuyruğa ekle
+    for i in range(len(giriş_derecesi)):
+        if giriş_derecesi[i] == 0:
+            kuyruk.append(i)
 
-        # Traverse neighbors
-        for neighbor in graph[vertex]:
-            indegree[neighbor] -= 1
-            if indegree[neighbor] == 0:
-                queue.append(neighbor)
+    # BFS gerçekleştir
+    while kuyruk:
+        düğüm = kuyruk.pop(0)
+        işlenen_düğüm_sayısı += 1
+        topo_sıra.append(düğüm)
 
-    if processed_vertices_count != len(graph):
-        return None  # no topological ordering exists due to cycle
-    return topo_order  # valid topological ordering
+        # Komşuları dolaş
+        for komşu in grafik[düğüm]:
+            giriş_derecesi[komşu] -= 1
+            if giriş_derecesi[komşu] == 0:
+                kuyruk.append(komşu)
+
+    if işlenen_düğüm_sayısı != len(grafik):
+        return None  # döngü nedeniyle geçerli bir topolojik sıralama yok
+    return topo_sıra  # geçerli topolojik sıralama
 
 
 if __name__ == "__main__":

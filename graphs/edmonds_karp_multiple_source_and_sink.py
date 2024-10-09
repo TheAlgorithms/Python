@@ -1,179 +1,178 @@
-class FlowNetwork:
-    def __init__(self, graph, sources, sinks):
-        self.source_index = None
-        self.sink_index = None
-        self.graph = graph
+class AkışAğı:
+    def __init__(self, grafik, kaynaklar, hedefler):
+        self.kaynak_indeksi = None
+        self.hedef_indeksi = None
+        self.grafik = grafik
 
-        self._normalize_graph(sources, sinks)
-        self.vertices_count = len(graph)
-        self.maximum_flow_algorithm = None
+        self._grafiği_normalize_et(kaynaklar, hedefler)
+        self.düğüm_sayısı = len(grafik)
+        self.maksimum_akış_algoritması = None
 
-    # make only one source and one sink
-    def _normalize_graph(self, sources, sinks):
-        if sources is int:
-            sources = [sources]
-        if sinks is int:
-            sinks = [sinks]
+    # sadece bir kaynak ve bir hedef yap
+    def _grafiği_normalize_et(self, kaynaklar, hedefler):
+        if isinstance(kaynaklar, int):
+            kaynaklar = [kaynaklar]
+        if isinstance(hedefler, int):
+            hedefler = [hedefler]
 
-        if len(sources) == 0 or len(sinks) == 0:
+        if len(kaynaklar) == 0 or len(hedefler) == 0:
             return
 
-        self.source_index = sources[0]
-        self.sink_index = sinks[0]
+        self.kaynak_indeksi = kaynaklar[0]
+        self.hedef_indeksi = hedefler[0]
 
-        # make fake vertex if there are more
-        # than one source or sink
-        if len(sources) > 1 or len(sinks) > 1:
-            max_input_flow = 0
-            for i in sources:
-                max_input_flow += sum(self.graph[i])
+        # birden fazla kaynak veya hedef varsa sahte düğüm oluştur
+        if len(kaynaklar) > 1 or len(hedefler) > 1:
+            maksimum_girdi_akışı = 0
+            for i in kaynaklar:
+                maksimum_girdi_akışı += sum(self.grafik[i])
 
-            size = len(self.graph) + 1
-            for room in self.graph:
-                room.insert(0, 0)
-            self.graph.insert(0, [0] * size)
-            for i in sources:
-                self.graph[0][i + 1] = max_input_flow
-            self.source_index = 0
+            boyut = len(self.grafik) + 1
+            for oda in self.grafik:
+                oda.insert(0, 0)
+            self.grafik.insert(0, [0] * boyut)
+            for i in kaynaklar:
+                self.grafik[0][i + 1] = maksimum_girdi_akışı
+            self.kaynak_indeksi = 0
 
-            size = len(self.graph) + 1
-            for room in self.graph:
-                room.append(0)
-            self.graph.append([0] * size)
-            for i in sinks:
-                self.graph[i + 1][size - 1] = max_input_flow
-            self.sink_index = size - 1
+            boyut = len(self.grafik) + 1
+            for oda in self.grafik:
+                oda.append(0)
+            self.grafik.append([0] * boyut)
+            for i in hedefler:
+                self.grafik[i + 1][boyut - 1] = maksimum_girdi_akışı
+            self.hedef_indeksi = boyut - 1
 
-    def find_maximum_flow(self):
-        if self.maximum_flow_algorithm is None:
-            raise Exception("You need to set maximum flow algorithm before.")
-        if self.source_index is None or self.sink_index is None:
+    def maksimum_akışı_bul(self):
+        if self.maksimum_akış_algoritması is None:
+            raise Exception("Önce maksimum akış algoritmasını ayarlamalısınız.")
+        if self.kaynak_indeksi is None or self.hedef_indeksi is None:
             return 0
 
-        self.maximum_flow_algorithm.execute()
-        return self.maximum_flow_algorithm.getMaximumFlow()
+        self.maksimum_akış_algoritması.çalıştır()
+        return self.maksimum_akış_algoritması.maksimum_akışı_al()
 
-    def set_maximum_flow_algorithm(self, algorithm):
-        self.maximum_flow_algorithm = algorithm(self)
+    def maksimum_akış_algoritmasını_ayarla(self, algoritma):
+        self.maksimum_akış_algoritması = algoritma(self)
 
 
-class FlowNetworkAlgorithmExecutor:
-    def __init__(self, flow_network):
-        self.flow_network = flow_network
-        self.verticies_count = flow_network.verticesCount
-        self.source_index = flow_network.sourceIndex
-        self.sink_index = flow_network.sinkIndex
-        # it's just a reference, so you shouldn't change
-        # it in your algorithms, use deep copy before doing that
-        self.graph = flow_network.graph
-        self.executed = False
+class AkışAğıAlgoritmaYürütücüsü:
+    def __init__(self, akış_ağı):
+        self.akış_ağı = akış_ağı
+        self.düğüm_sayısı = akış_ağı.düğüm_sayısı
+        self.kaynak_indeksi = akış_ağı.kaynak_indeksi
+        self.hedef_indeksi = akış_ağı.hedef_indeksi
+        # bu sadece bir referanstır, bu yüzden algoritmalarınızda değiştirmemelisiniz,
+        # bunu yapmadan önce derin kopya kullanın
+        self.grafik = akış_ağı.grafik
+        self.çalıştırıldı = False
 
-    def execute(self):
-        if not self.executed:
-            self._algorithm()
-            self.executed = True
+    def çalıştır(self):
+        if not self.çalıştırıldı:
+            self._algoritma()
+            self.çalıştırıldı = True
 
-    # You should override it
-    def _algorithm(self):
+    # Bunu geçersiz kılmalısınız
+    def _algoritma(self):
         pass
 
 
-class MaximumFlowAlgorithmExecutor(FlowNetworkAlgorithmExecutor):
-    def __init__(self, flow_network):
-        super().__init__(flow_network)
-        # use this to save your result
-        self.maximum_flow = -1
+class MaksimumAkışAlgoritmaYürütücüsü(AkışAğıAlgoritmaYürütücüsü):
+    def __init__(self, akış_ağı):
+        super().__init__(akış_ağı)
+        # sonucu kaydetmek için bunu kullanın
+        self.maksimum_akış = -1
 
-    def get_maximum_flow(self):
-        if not self.executed:
-            raise Exception("You should execute algorithm before using its result!")
+    def maksimum_akışı_al(self):
+        if not self.çalıştırıldı:
+            raise Exception("Algoritmayı çalıştırmadan önce sonucunu kullanmamalısınız!")
 
-        return self.maximum_flow
+        return self.maksimum_akış
 
 
-class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
-    def __init__(self, flow_network):
-        super().__init__(flow_network)
+class PushRelabelYürütücüsü(MaksimumAkışAlgoritmaYürütücüsü):
+    def __init__(self, akış_ağı):
+        super().__init__(akış_ağı)
 
-        self.preflow = [[0] * self.verticies_count for i in range(self.verticies_count)]
+        self.önakış = [[0] * self.düğüm_sayısı for i in range(self.düğüm_sayısı)]
 
-        self.heights = [0] * self.verticies_count
-        self.excesses = [0] * self.verticies_count
+        self.yükseklikler = [0] * self.düğüm_sayısı
+        self.artıklar = [0] * self.düğüm_sayısı
 
-    def _algorithm(self):
-        self.heights[self.source_index] = self.verticies_count
+    def _algoritma(self):
+        self.yükseklikler[self.kaynak_indeksi] = self.düğüm_sayısı
 
-        # push some substance to graph
-        for nextvertex_index, bandwidth in enumerate(self.graph[self.source_index]):
-            self.preflow[self.source_index][nextvertex_index] += bandwidth
-            self.preflow[nextvertex_index][self.source_index] -= bandwidth
-            self.excesses[nextvertex_index] += bandwidth
+        # grafiğe biraz madde it
+        for sonraki_düğüm_indeksi, bant_genişliği in enumerate(self.grafik[self.kaynak_indeksi]):
+            self.önakış[self.kaynak_indeksi][sonraki_düğüm_indeksi] += bant_genişliği
+            self.önakış[sonraki_düğüm_indeksi][self.kaynak_indeksi] -= bant_genişliği
+            self.artıklar[sonraki_düğüm_indeksi] += bant_genişliği
 
-        # Relabel-to-front selection rule
-        vertices_list = [
+        # Relabel-to-front seçim kuralı
+        düğüm_listesi = [
             i
-            for i in range(self.verticies_count)
-            if i not in {self.source_index, self.sink_index}
+            for i in range(self.düğüm_sayısı)
+            if i not in {self.kaynak_indeksi, self.hedef_indeksi}
         ]
 
-        # move through list
+        # liste boyunca hareket et
         i = 0
-        while i < len(vertices_list):
-            vertex_index = vertices_list[i]
-            previous_height = self.heights[vertex_index]
-            self.process_vertex(vertex_index)
-            if self.heights[vertex_index] > previous_height:
-                # if it was relabeled, swap elements
-                # and start from 0 index
-                vertices_list.insert(0, vertices_list.pop(i))
+        while i < len(düğüm_listesi):
+            düğüm_indeksi = düğüm_listesi[i]
+            önceki_yükseklik = self.yükseklikler[düğüm_indeksi]
+            self.düğümü_işle(düğüm_indeksi)
+            if self.yükseklikler[düğüm_indeksi] > önceki_yükseklik:
+                # eğer yeniden etiketlendiyse, elemanları değiştir
+                # ve 0 indeksinden başla
+                düğüm_listesi.insert(0, düğüm_listesi.pop(i))
                 i = 0
             else:
                 i += 1
 
-        self.maximum_flow = sum(self.preflow[self.source_index])
+        self.maksimum_akış = sum(self.önakış[self.kaynak_indeksi])
 
-    def process_vertex(self, vertex_index):
-        while self.excesses[vertex_index] > 0:
-            for neighbour_index in range(self.verticies_count):
-                # if it's neighbour and current vertex is higher
+    def düğümü_işle(self, düğüm_indeksi):
+        while self.artıklar[düğüm_indeksi] > 0:
+            for komşu_indeksi in range(self.düğüm_sayısı):
+                # eğer komşuysa ve mevcut düğüm daha yüksekse
                 if (
-                    self.graph[vertex_index][neighbour_index]
-                    - self.preflow[vertex_index][neighbour_index]
+                    self.grafik[düğüm_indeksi][komşu_indeksi]
+                    - self.önakış[düğüm_indeksi][komşu_indeksi]
                     > 0
-                    and self.heights[vertex_index] > self.heights[neighbour_index]
+                    and self.yükseklikler[düğüm_indeksi] > self.yükseklikler[komşu_indeksi]
                 ):
-                    self.push(vertex_index, neighbour_index)
+                    self.it(düğüm_indeksi, komşu_indeksi)
 
-            self.relabel(vertex_index)
+            self.yeniden_etiketle(düğüm_indeksi)
 
-    def push(self, from_index, to_index):
-        preflow_delta = min(
-            self.excesses[from_index],
-            self.graph[from_index][to_index] - self.preflow[from_index][to_index],
+    def it(self, kaynak_indeksi, hedef_indeksi):
+        önakış_delta = min(
+            self.artıklar[kaynak_indeksi],
+            self.grafik[kaynak_indeksi][hedef_indeksi] - self.önakış[kaynak_indeksi][hedef_indeksi]
         )
-        self.preflow[from_index][to_index] += preflow_delta
-        self.preflow[to_index][from_index] -= preflow_delta
-        self.excesses[from_index] -= preflow_delta
-        self.excesses[to_index] += preflow_delta
+        self.önakış[kaynak_indeksi][hedef_indeksi] += önakış_delta
+        self.önakış[hedef_indeksi][kaynak_indeksi] -= önakış_delta
+        self.artıklar[kaynak_indeksi] -= önakış_delta
+        self.artıklar[hedef_indeksi] += önakış_delta
 
-    def relabel(self, vertex_index):
-        min_height = None
-        for to_index in range(self.verticies_count):
+    def yeniden_etiketle(self, düğüm_indeksi):
+        min_yükseklik = None
+        for hedef_indeksi in range(self.düğüm_sayısı):
             if (
-                self.graph[vertex_index][to_index]
-                - self.preflow[vertex_index][to_index]
+                self.grafik[düğüm_indeksi][hedef_indeksi]
+                - self.önakış[düğüm_indeksi][hedef_indeksi]
                 > 0
-            ) and (min_height is None or self.heights[to_index] < min_height):
-                min_height = self.heights[to_index]
+            ) and (min_yükseklik is None or self.yükseklikler[hedef_indeksi] < min_yükseklik):
+                min_yükseklik = self.yükseklikler[hedef_indeksi]
 
-        if min_height is not None:
-            self.heights[vertex_index] = min_height + 1
+        if min_yükseklik is not None:
+            self.yükseklikler[düğüm_indeksi] = min_yükseklik + 1
 
 
 if __name__ == "__main__":
-    entrances = [0]
-    exits = [3]
-    # graph = [
+    girişler = [0]
+    çıkışlar = [3]
+    # grafik = [
     #     [0, 0, 4, 6, 0, 0],
     #     [0, 0, 5, 2, 0, 0],
     #     [0, 0, 0, 0, 4, 4],
@@ -181,13 +180,13 @@ if __name__ == "__main__":
     #     [0, 0, 0, 0, 0, 0],
     #     [0, 0, 0, 0, 0, 0],
     # ]
-    graph = [[0, 7, 0, 0], [0, 0, 6, 0], [0, 0, 0, 8], [9, 0, 0, 0]]
+    grafik = [[0, 7, 0, 0], [0, 0, 6, 0], [0, 0, 0, 8], [9, 0, 0, 0]]
 
-    # prepare our network
-    flow_network = FlowNetwork(graph, entrances, exits)
-    # set algorithm
-    flow_network.set_maximum_flow_algorithm(PushRelabelExecutor)
-    # and calculate
-    maximum_flow = flow_network.find_maximum_flow()
+    # ağımızı hazırlayalım
+    akış_ağı = AkışAğı(grafik, girişler, çıkışlar)
+    # algoritmayı ayarla
+    akış_ağı.maksimum_akış_algoritmasını_ayarla(PushRelabelYürütücüsü)
+    # ve hesapla
+    maksimum_akış = akış_ağı.maksimum_akışı_bul()
 
-    print(f"maximum flow is {maximum_flow}")
+    print(f"maksimum akış {maksimum_akış}")

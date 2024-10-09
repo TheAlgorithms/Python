@@ -1,15 +1,13 @@
 # https://en.wikipedia.org/wiki/Circular_convolution
 
 """
-Circular convolution, also known as cyclic convolution,
-is a special case of periodic convolution, which is the convolution of two
-periodic functions that have the same period. Periodic convolution arises,
-for example, in the context of the discrete-time Fourier transform (DTFT).
-In particular, the DTFT of the product of two discrete sequences is the periodic
-convolution of the DTFTs of the individual sequences. And each DTFT is a periodic
-summation of a continuous Fourier transform function.
+Dairesel konvolüsyon, döngüsel konvolüsyon olarak da bilinir,
+aynı döneme sahip iki periyodik fonksiyonun konvolüsyonunun özel bir durumudur. Periyodik konvolüsyon,
+örneğin, ayrık zamanlı Fourier dönüşümü (DTFT) bağlamında ortaya çıkar.
+Özellikle, iki ayrık dizinin çarpımının DTFT'si, bireysel dizilerin DTFT'lerinin periyodik konvolüsyonudur.
+Ve her DTFT, sürekli bir Fourier dönüşüm fonksiyonunun periyodik bir toplamıdır.
 
-Source: https://en.wikipedia.org/wiki/Circular_convolution
+Kaynak: https://en.wikipedia.org/wiki/Circular_convolution
 """
 
 import doctest
@@ -18,62 +16,62 @@ from collections import deque
 import numpy as np
 
 
-class CircularConvolution:
+class DaireselKonvolusyon:
     """
-    This class stores the first and second signal and performs the circular convolution
+    Bu sınıf birinci ve ikinci sinyali saklar ve dairesel konvolüsyonu gerçekleştirir
     """
 
     def __init__(self) -> None:
         """
-        First signal and second signal are stored as 1-D array
+        Birinci sinyal ve ikinci sinyal 1-D dizi olarak saklanır
         """
 
-        self.first_signal = [2, 1, 2, -1]
-        self.second_signal = [1, 2, 3, 4]
+        self.birinci_sinyal = [2, 1, 2, -1]
+        self.ikinci_sinyal = [1, 2, 3, 4]
 
-    def circular_convolution(self) -> list[float]:
+    def dairesel_konvolusyon(self) -> list[float]:
         """
-        This function performs the circular convolution of the first and second signal
-        using matrix method
+        Bu fonksiyon birinci ve ikinci sinyalin dairesel konvolüsyonunu
+        matris yöntemi kullanarak gerçekleştirir
 
-        Usage:
-        >>> convolution = CircularConvolution()
-        >>> convolution.circular_convolution()
+        Kullanım:
+        >>> konvolusyon = DaireselKonvolusyon()
+        >>> konvolusyon.dairesel_konvolusyon()
         [10.0, 10.0, 6.0, 14.0]
 
-        >>> convolution.first_signal = [0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6]
-        >>> convolution.second_signal = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5]
-        >>> convolution.circular_convolution()
+        >>> konvolusyon.birinci_sinyal = [0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6]
+        >>> konvolusyon.ikinci_sinyal = [0.1, 0.3, 0.5, 0.7, 0.9, 1.1, 1.3, 1.5]
+        >>> konvolusyon.dairesel_konvolusyon()
         [5.2, 6.0, 6.48, 6.64, 6.48, 6.0, 5.2, 4.08]
 
-        >>> convolution.first_signal = [-1, 1, 2, -2]
-        >>> convolution.second_signal = [0.5, 1, -1, 2, 0.75]
-        >>> convolution.circular_convolution()
+        >>> konvolusyon.birinci_sinyal = [-1, 1, 2, -2]
+        >>> konvolusyon.ikinci_sinyal = [0.5, 1, -1, 2, 0.75]
+        >>> konvolusyon.dairesel_konvolusyon()
         [6.25, -3.0, 1.5, -2.0, -2.75]
 
-        >>> convolution.first_signal = [1, -1, 2, 3, -1]
-        >>> convolution.second_signal = [1, 2, 3]
-        >>> convolution.circular_convolution()
+        >>> konvolusyon.birinci_sinyal = [1, -1, 2, 3, -1]
+        >>> konvolusyon.ikinci_sinyal = [1, 2, 3]
+        >>> konvolusyon.dairesel_konvolusyon()
         [8.0, -2.0, 3.0, 4.0, 11.0]
 
         """
 
-        length_first_signal = len(self.first_signal)
-        length_second_signal = len(self.second_signal)
+        birinci_sinyal_uzunluk = len(self.birinci_sinyal)
+        ikinci_sinyal_uzunluk = len(self.ikinci_sinyal)
 
-        max_length = max(length_first_signal, length_second_signal)
+        max_uzunluk = max(birinci_sinyal_uzunluk, ikinci_sinyal_uzunluk)
 
-        # create a zero matrix of max_length x max_length
-        matrix = [[0] * max_length for i in range(max_length)]
+        # max_uzunluk x max_uzunluk boyutunda sıfır matrisi oluştur
+        matris = [[0] * max_uzunluk for i in range(max_uzunluk)]
 
-        # fills the smaller signal with zeros to make both signals of same length
-        if length_first_signal < length_second_signal:
-            self.first_signal += [0] * (max_length - length_first_signal)
-        elif length_first_signal > length_second_signal:
-            self.second_signal += [0] * (max_length - length_second_signal)
+        # daha küçük sinyali sıfırlarla doldurarak her iki sinyali de aynı uzunlukta yapar
+        if birinci_sinyal_uzunluk < ikinci_sinyal_uzunluk:
+            self.birinci_sinyal += [0] * (max_uzunluk - birinci_sinyal_uzunluk)
+        elif birinci_sinyal_uzunluk > ikinci_sinyal_uzunluk:
+            self.ikinci_sinyal += [0] * (max_uzunluk - ikinci_sinyal_uzunluk)
 
         """
-        Fills the matrix in the following way assuming 'x' is the signal of length 4
+        Matris aşağıdaki şekilde doldurulur, 'x' sinyalinin uzunluğu 4 varsayılırsa
         [
             [x[0], x[3], x[2], x[1]],
             [x[1], x[0], x[3], x[2]],
@@ -81,17 +79,17 @@ class CircularConvolution:
             [x[3], x[2], x[1], x[0]]
         ]
         """
-        for i in range(max_length):
-            rotated_signal = deque(self.second_signal)
-            rotated_signal.rotate(i)
-            for j, item in enumerate(rotated_signal):
-                matrix[i][j] += item
+        for i in range(max_uzunluk):
+            döndürülmüş_sinyal = deque(self.ikinci_sinyal)
+            döndürülmüş_sinyal.rotate(i)
+            for j, eleman in enumerate(döndürülmüş_sinyal):
+                matris[i][j] += eleman
 
-        # multiply the matrix with the first signal
-        final_signal = np.matmul(np.transpose(matrix), np.transpose(self.first_signal))
+        # matrisi birinci sinyal ile çarp
+        son_sinyal = np.matmul(np.transpose(matris), np.transpose(self.birinci_sinyal))
 
-        # rounding-off to two decimal places
-        return [float(round(i, 2)) for i in final_signal]
+        # iki ondalık basamağa yuvarlama
+        return [float(round(i, 2)) for i in son_sinyal]
 
 
 if __name__ == "__main__":

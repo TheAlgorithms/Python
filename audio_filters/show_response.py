@@ -8,88 +8,88 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-class FilterType(Protocol):
+class FiltreTipi(Protocol):
     @abstractmethod
-    def process(self, sample: float) -> float:
+    def işlem(self, örnek: float) -> float:
         """
-        Calculate y[n]
+        y[n] hesapla
 
-        >>> issubclass(FilterType, Protocol)
+        >>> issubclass(FiltreTipi, Protocol)
         True
         """
 
 
-def get_bounds(
-    fft_results: np.ndarray, samplerate: int
+def sınırları_al(
+    fft_sonuçları: np.ndarray, örnekleme_hızı: int
 ) -> tuple[int | float, int | float]:
     """
-    Get bounds for printing fft results
+    fft sonuçlarını yazdırmak için sınırları al
 
     >>> import numpy
     >>> array = numpy.linspace(-20.0, 20.0, 1000)
-    >>> get_bounds(array, 1000)
+    >>> sınırları_al(array, 1000)
     (-20, 20)
     """
-    lowest = min([-20, np.min(fft_results[1 : samplerate // 2 - 1])])
-    highest = max([20, np.max(fft_results[1 : samplerate // 2 - 1])])
-    return lowest, highest
+    en_düşük = min([-20, np.min(fft_sonuçları[1 : örnekleme_hızı // 2 - 1])])
+    en_yüksek = max([20, np.max(fft_sonuçları[1 : örnekleme_hızı // 2 - 1])])
+    return en_düşük, en_yüksek
 
 
-def show_frequency_response(filter_type: FilterType, samplerate: int) -> None:
+def frekans_cevabını_göster(filtre_tipi: FiltreTipi, örnekleme_hızı: int) -> None:
     """
-    Show frequency response of a filter
+    Bir filtrenin frekans cevabını göster
 
     >>> from audio_filters.iir_filter import IIRFilter
     >>> filt = IIRFilter(4)
-    >>> show_frequency_response(filt, 48000)
+    >>> frekans_cevabını_göster(filt, 48000)
     """
 
-    size = 512
-    inputs = [1] + [0] * (size - 1)
-    outputs = [filter_type.process(item) for item in inputs]
+    boyut = 512
+    girişler = [1] + [0] * (boyut - 1)
+    çıkışlar = [filtre_tipi.işlem(madde) for madde in girişler]
 
-    filler = [0] * (samplerate - size)  # zero-padding
-    outputs += filler
-    fft_out = np.abs(np.fft.fft(outputs))
-    fft_db = 20 * np.log10(fft_out)
+    dolgu = [0] * (örnekleme_hızı - boyut)  # sıfır dolgusu
+    çıkışlar += dolgu
+    fft_çıkış = np.abs(np.fft.fft(çıkışlar))
+    fft_db = 20 * np.log10(fft_çıkış)
 
-    # Frequencies on log scale from 24 to nyquist frequency
-    plt.xlim(24, samplerate / 2 - 1)
-    plt.xlabel("Frequency (Hz)")
+    # 24'ten nyquist frekansına kadar log ölçeğinde frekanslar
+    plt.xlim(24, örnekleme_hızı / 2 - 1)
+    plt.xlabel("Frekans (Hz)")
     plt.xscale("log")
 
-    # Display within reasonable bounds
-    bounds = get_bounds(fft_db, samplerate)
-    plt.ylim(max([-80, bounds[0]]), min([80, bounds[1]]))
-    plt.ylabel("Gain (dB)")
+    # Makul sınırlar içinde göster
+    sınırlar = sınırları_al(fft_db, örnekleme_hızı)
+    plt.ylim(max([-80, sınırlar[0]]), min([80, sınırlar[1]]))
+    plt.ylabel("Kazanç (dB)")
 
     plt.plot(fft_db)
     plt.show()
 
 
-def show_phase_response(filter_type: FilterType, samplerate: int) -> None:
+def faz_cevabını_göster(filtre_tipi: FiltreTipi, örnekleme_hızı: int) -> None:
     """
-    Show phase response of a filter
+    Bir filtrenin faz cevabını göster
 
     >>> from audio_filters.iir_filter import IIRFilter
     >>> filt = IIRFilter(4)
-    >>> show_phase_response(filt, 48000)
+    >>> faz_cevabını_göster(filt, 48000)
     """
 
-    size = 512
-    inputs = [1] + [0] * (size - 1)
-    outputs = [filter_type.process(item) for item in inputs]
+    boyut = 512
+    girişler = [1] + [0] * (boyut - 1)
+    çıkışlar = [filtre_tipi.işlem(madde) for madde in girişler]
 
-    filler = [0] * (samplerate - size)  # zero-padding
-    outputs += filler
-    fft_out = np.angle(np.fft.fft(outputs))
+    dolgu = [0] * (örnekleme_hızı - boyut)  # sıfır dolgusu
+    çıkışlar += dolgu
+    fft_çıkış = np.angle(np.fft.fft(çıkışlar))
 
-    # Frequencies on log scale from 24 to nyquist frequency
-    plt.xlim(24, samplerate / 2 - 1)
-    plt.xlabel("Frequency (Hz)")
+    # 24'ten nyquist frekansına kadar log ölçeğinde frekanslar
+    plt.xlim(24, örnekleme_hızı / 2 - 1)
+    plt.xlabel("Frekans (Hz)")
     plt.xscale("log")
 
     plt.ylim(-2 * pi, 2 * pi)
-    plt.ylabel("Phase shift (Radians)")
-    plt.plot(np.unwrap(fft_out, -2 * pi))
+    plt.ylabel("Faz kayması (Radyan)")
+    plt.plot(np.unwrap(fft_çıkış, -2 * pi))
     plt.show()

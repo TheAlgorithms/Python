@@ -4,6 +4,8 @@ Doğrusal bir hipotez fonksiyonunun maliyetini en aza indirmek için gradyan ini
 
 import numpy as np
 
+# Oragnised to K. Umut Araz
+
 # Girdi, çıktı çiftlerinin listesi
 train_data = (
     ((5, 2, 3), 15),

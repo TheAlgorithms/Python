@@ -3,22 +3,21 @@ from collections import deque
 
 def tarjan(g: list[list[int]]) -> list[list[int]]:
     """
-    Tarjan's algo for finding strongly connected components in a directed graph
+    Tarjan'ın algoritması, yönlendirilmiş bir grafikte güçlü bağlı bileşenleri bulmak için kullanılır.
 
-    Uses two main attributes of each node to track reachability, the index of that node
-    within a component(index), and the lowest index reachable from that node(lowlink).
+    Produced By. K. Umut Araz
 
-    We then perform a dfs of the each component making sure to update these parameters
-    for each node and saving the nodes we visit on the way.
+    Her düğümün erişilebilirliğini izlemek için iki ana özelliği kullanır: bir bileşen içindeki düğümün indeksi (index)
+    ve o düğümden erişilebilen en düşük indeks (lowlink).
 
-    If ever we find that the lowest reachable node from a current node is equal to the
-    index of the current node then it must be the root of a strongly connected
-    component and so we save it and it's equireachable vertices as a strongly
-    connected component.
+    Daha sonra her bileşenin derinlemesine aramasını (DFS) yaparız, bu parametreleri her düğüm için güncelleyerek
+    ve ziyaret ettiğimiz düğümleri kaydederek.
 
-    Complexity: strong_connect() is called at most once for each node and has a
-    complexity of O(|E|) as it is DFS.
-    Therefore this has complexity O(|V| + |E|) for a graph G = (V, E)
+    Eğer bir düğümden erişilebilen en düşük düğümün indeksi, o düğümün indeksine eşitse, bu düğüm güçlü bağlı bir bileşenin
+    kökü olmalıdır ve bu nedenle onu ve eş erişilebilir düğümlerini güçlü bağlı bileşen olarak kaydederiz.
+
+    Karmaşıklık: strong_connect() her düğüm için en fazla bir kez çağrılır ve O(|E|) karmaşıklığına sahiptir çünkü bu bir DFS'dir.
+    Bu nedenle, bu algoritmanın karmaşıklığı bir grafik G = (V, E) için O(|V| + |E|) dir.
 
     >>> tarjan([[2, 3, 4], [2, 3, 4], [0, 1, 3], [0, 1, 2], [1]])
     [[4, 3, 1, 2, 0]]
@@ -38,46 +37,46 @@ def tarjan(g: list[list[int]]) -> list[list[int]]:
 
     n = len(g)
     stack: deque[int] = deque()
-    on_stack = [False for _ in range(n)]
-    index_of = [-1 for _ in range(n)]
-    lowlink_of = index_of[:]
+    yigin_ustunde = [False for _ in range(n)]
+    indeks = [-1 for _ in range(n)]
+    en_dusuk_indeks = indeks[:]
 
-    def strong_connect(v: int, index: int, components: list[list[int]]) -> int:
-        index_of[v] = index  # the number when this node is seen
-        lowlink_of[v] = index  # lowest rank node reachable from here
+    def strong_connect(v: int, index: int, bileşenler: list[list[int]]) -> int:
+        indeks[v] = index  # bu düğüm görüldüğünde numarası
+        en_dusuk_indeks[v] = index  # buradan erişilebilen en düşük sıralı düğüm
         index += 1
         stack.append(v)
-        on_stack[v] = True
+        yigin_ustunde[v] = True
 
         for w in g[v]:
-            if index_of[w] == -1:
-                index = strong_connect(w, index, components)
-                lowlink_of[v] = (
-                    lowlink_of[w] if lowlink_of[w] < lowlink_of[v] else lowlink_of[v]
+            if indeks[w] == -1:
+                index = strong_connect(w, index, bileşenler)
+                en_dusuk_indeks[v] = (
+                    en_dusuk_indeks[w] if en_dusuk_indeks[w] < en_dusuk_indeks[v] else en_dusuk_indeks[v]
                 )
-            elif on_stack[w]:
-                lowlink_of[v] = (
-                    lowlink_of[w] if lowlink_of[w] < lowlink_of[v] else lowlink_of[v]
+            elif yigin_ustunde[w]:
+                en_dusuk_indeks[v] = (
+                    en_dusuk_indeks[w] if en_dusuk_indeks[w] < en_dusuk_indeks[v] else en_dusuk_indeks[v]
                 )
 
-        if lowlink_of[v] == index_of[v]:
-            component = []
+        if en_dusuk_indeks[v] == indeks[v]:
+            bileşen = []
             w = stack.pop()
-            on_stack[w] = False
-            component.append(w)
+            yigin_ustunde[w] = False
+            bileşen.append(w)
             while w != v:
                 w = stack.pop()
-                on_stack[w] = False
-                component.append(w)
-            components.append(component)
+                yigin_ustunde[w] = False
+                bileşen.append(w)
+            bileşenler.append(bileşen)
         return index
 
-    components: list[list[int]] = []
+    bileşenler: list[list[int]] = []
     for v in range(n):
-        if index_of[v] == -1:
-            strong_connect(v, 0, components)
+        if indeks[v] == -1:
+            strong_connect(v, 0, bileşenler)
 
-    return components
+    return bileşenler
 
 
 def create_graph(n: int, edges: list[tuple[int, int]]) -> list[list[int]]:

@@ -1,351 +1,356 @@
 """
-Find the area of various geometric shapes
-Wikipedia reference: https://en.wikipedia.org/wiki/Area
+Çeşitli geometrik şekillerin alanını bulun
+Wikipedia referansı: https://en.wikipedia.org/wiki/Area
 """
+
+#Organised by K. Umut Araz
 
 from math import pi, sqrt, tan
 
 
-def surface_area_cube(side_length: float) -> float:
+def yüzey_alani_küp(kenar_uzunluğu: float) -> float:
     """
-    Calculate the Surface Area of a Cube.
+    Bir küpün yüzey alanını hesaplayın.
 
-    >>> surface_area_cube(1)
+    >>> yüzey_alani_küp(1)
     6
-    >>> surface_area_cube(1.6)
+    >>> yüzey_alani_küp(1.6)
     15.360000000000003
-    >>> surface_area_cube(0)
+    >>> yüzey_alani_küp(0)
     0
-    >>> surface_area_cube(3)
+    >>> yüzey_alani_küp(3)
     54
-    >>> surface_area_cube(-1)
+    >>> yüzey_alani_küp(-1)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_cube() only accepts non-negative values
+    ValueError: yüzey_alani_küp() sadece negatif olmayan değerleri kabul eder
     """
-    if side_length < 0:
-        raise ValueError("surface_area_cube() only accepts non-negative values")
-    return 6 * side_length**2
+    if kenar_uzunluğu < 0:
+        raise ValueError("yüzey_alani_küp() sadece negatif olmayan değerleri kabul eder")
+    return 6 * kenar_uzunluğu**2
 
 
-def surface_area_cuboid(length: float, breadth: float, height: float) -> float:
+def yüzey_alani_dikdörtgenler_prizmasi(uzunluk: float, genişlik: float, yükseklik: float) -> float:
     """
-    Calculate the Surface Area of a Cuboid.
+    Bir dikdörtgenler prizmasının yüzey alanını hesaplayın.
 
-    >>> surface_area_cuboid(1, 2, 3)
+    >>> yüzey_alani_dikdörtgenler_prizmasi(1, 2, 3)
     22
-    >>> surface_area_cuboid(0, 0, 0)
+    >>> yüzey_alani_dikdörtgenler_prizmasi(0, 0, 0)
     0
-    >>> surface_area_cuboid(1.6, 2.6, 3.6)
+    >>> yüzey_alani_dikdörtgenler_prizmasi(1.6, 2.6, 3.6)
     38.56
-    >>> surface_area_cuboid(-1, 2, 3)
+    >>> yüzey_alani_dikdörtgenler_prizmasi(-1, 2, 3)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_cuboid() only accepts non-negative values
-    >>> surface_area_cuboid(1, -2, 3)
+    ValueError: yüzey_alani_dikdörtgenler_prizmasi() sadece negatif olmayan değerleri kabul eder
+    >>> yüzey_alani_dikdörtgenler_prizmasi(1, -2, 3)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_cuboid() only accepts non-negative values
-    >>> surface_area_cuboid(1, 2, -3)
+    ValueError: yüzey_alani_dikdörtgenler_prizmasi() sadece negatif olmayan değerleri kabul eder
+    >>> yüzey_alani_dikdörtgenler_prizmasi(1, 2, -3)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_cuboid() only accepts non-negative values
+    ValueError: yüzey_alani_dikdörtgenler_prizmasi() sadece negatif olmayan değerleri kabul eder
     """
-    if length < 0 or breadth < 0 or height < 0:
-        raise ValueError("surface_area_cuboid() only accepts non-negative values")
-    return 2 * ((length * breadth) + (breadth * height) + (length * height))
+    if uzunluk < 0 or genişlik < 0 or yükseklik < 0:
+        raise ValueError("yüzey_alani_dikdörtgenler_prizmasi() sadece negatif olmayan değerleri kabul eder")
+    return 2 * ((uzunluk * genişlik) + (genişlik * yükseklik) + (uzunluk * yükseklik))
 
 
-def surface_area_sphere(radius: float) -> float:
+def yüzey_alani_küre(yarıçap: float) -> float:
     """
-    Calculate the Surface Area of a Sphere.
-    Wikipedia reference: https://en.wikipedia.org/wiki/Sphere
-    Formula: 4 * pi * r^2
+    Bir kürenin yüzey alanını hesaplayın.
+    Wikipedia referansı: https://en.wikipedia.org/wiki/Sphere
+    Formül: 4 * pi * r^2
 
-    >>> surface_area_sphere(5)
+    >>> yüzey_alani_küre(5)
     314.1592653589793
-    >>> surface_area_sphere(1)
+    >>> yüzey_alani_küre(1)
     12.566370614359172
-    >>> surface_area_sphere(1.6)
+    >>> yüzey_alani_küre(1.6)
     32.169908772759484
-    >>> surface_area_sphere(0)
+    >>> yüzey_alani_küre(0)
     0.0
-    >>> surface_area_sphere(-1)
+    >>> yüzey_alani_küre(-1)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_sphere() only accepts non-negative values
+    ValueError: yüzey_alani_küre() sadece negatif olmayan değerleri kabul eder
     """
-    if radius < 0:
-        raise ValueError("surface_area_sphere() only accepts non-negative values")
-    return 4 * pi * radius**2
+    if yarıçap < 0:
+        raise ValueError("yüzey_alani_küre() sadece negatif olmayan değerleri kabul eder")
+    return 4 * pi * yarıçap**2
 
 
-def surface_area_hemisphere(radius: float) -> float:
+def yüzey_alani_yarım_küre(yarıçap: float) -> float:
     """
-    Calculate the Surface Area of a Hemisphere.
-    Formula: 3 * pi * r^2
+    Bir yarım kürenin yüzey alanını hesaplayın.
+    Formül: 3 * pi * r^2
 
-    >>> surface_area_hemisphere(5)
+    >>> yüzey_alani_yarım_küre(5)
     235.61944901923448
-    >>> surface_area_hemisphere(1)
+    >>> yüzey_alani_yarım_küre(1)
     9.42477796076938
-    >>> surface_area_hemisphere(0)
+    >>> yüzey_alani_yarım_küre(0)
     0.0
-    >>> surface_area_hemisphere(1.1)
+    >>> yüzey_alani_yarım_küre(1.1)
     11.40398133253095
-    >>> surface_area_hemisphere(-1)
+    >>> yüzey_alani_yarım_küre(-1)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_hemisphere() only accepts non-negative values
+    ValueError: yüzey_alani_yarım_küre() sadece negatif olmayan değerleri kabul eder
     """
-    if radius < 0:
-        raise ValueError("surface_area_hemisphere() only accepts non-negative values")
-    return 3 * pi * radius**2
+    if yarıçap < 0:
+        raise ValueError("yüzey_alani_yarım_küre() sadece negatif olmayan değerleri kabul eder")
+    return 3 * pi * yarıçap**2
 
 
-def surface_area_cone(radius: float, height: float) -> float:
+def yüzey_alani_koni(yarıçap: float, yükseklik: float) -> float:
     """
-    Calculate the Surface Area of a Cone.
-    Wikipedia reference: https://en.wikipedia.org/wiki/Cone
-    Formula: pi * r * (r + (h ** 2 + r ** 2) ** 0.5)
+    Bir koninin yüzey alanını hesaplayın.
+    Wikipedia referansı: https://en.wikipedia.org/wiki/Cone
+    Formül: pi * r * (r + (h ** 2 + r ** 2) ** 0.5)
 
-    >>> surface_area_cone(10, 24)
+    >>> yüzey_alani_koni(10, 24)
     1130.9733552923256
-    >>> surface_area_cone(6, 8)
+    >>> yüzey_alani_koni(6, 8)
     301.59289474462014
-    >>> surface_area_cone(1.6, 2.6)
+    >>> yüzey_alani_koni(1.6, 2.6)
     23.387862992395807
-    >>> surface_area_cone(0, 0)
+    >>> yüzey_alani_koni(0, 0)
     0.0
-    >>> surface_area_cone(-1, -2)
+    >>> yüzey_alani_koni(-1, -2)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_cone() only accepts non-negative values
-    >>> surface_area_cone(1, -2)
+    ValueError: yüzey_alani_koni() sadece negatif olmayan değerleri kabul eder
+    >>> yüzey_alani_koni(1, -2)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_cone() only accepts non-negative values
-    >>> surface_area_cone(-1, 2)
+    ValueError: yüzey_alani_koni() sadece negatif olmayan değerleri kabul eder
+    >>> yüzey_alani_koni(-1, 2)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_cone() only accepts non-negative values
+    ValueError: yüzey_alani_koni() sadece negatif olmayan değerleri kabul eder
     """
-    if radius < 0 or height < 0:
-        raise ValueError("surface_area_cone() only accepts non-negative values")
-    return pi * radius * (radius + (height**2 + radius**2) ** 0.5)
+    if yarıçap < 0 or yükseklik < 0:
+        raise ValueError("yüzey_alani_koni() sadece negatif olmayan değerleri kabul eder")
+    return pi * yarıçap * (yarıçap + (yükseklik**2 + yarıçap**2) ** 0.5)
 
 
-def surface_area_conical_frustum(
-    radius_1: float, radius_2: float, height: float
+def yüzey_alani_konik_kesit(
+    yarıçap_1: float, yarıçap_2: float, yükseklik: float
 ) -> float:
     """
-    Calculate the Surface Area of a Conical Frustum.
+    Bir konik kesitin yüzey alanını hesaplayın.
 
-    >>> surface_area_conical_frustum(1, 2, 3)
+    >>> yüzey_alani_konik_kesit(1, 2, 3)
     45.511728065337266
-    >>> surface_area_conical_frustum(4, 5, 6)
+    >>> yüzey_alani_konik_kesit(4, 5, 6)
     300.7913575056268
-    >>> surface_area_conical_frustum(0, 0, 0)
+    >>> yüzey_alani_konik_kesit(0, 0, 0)
     0.0
-    >>> surface_area_conical_frustum(1.6, 2.6, 3.6)
+    >>> yüzey_alani_konik_kesit(1.6, 2.6, 3.6)
     78.57907060751548
-    >>> surface_area_conical_frustum(-1, 2, 3)
+    >>> yüzey_alani_konik_kesit(-1, 2, 3)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_conical_frustum() only accepts non-negative values
-    >>> surface_area_conical_frustum(1, -2, 3)
+    ValueError: yüzey_alani_konik_kesit() sadece negatif olmayan değerleri kabul eder
+    >>> yüzey_alani_konik_kesit(1, -2, 3)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_conical_frustum() only accepts non-negative values
-    >>> surface_area_conical_frustum(1, 2, -3)
+    ValueError: yüzey_alani_konik_kesit() sadece negatif olmayan değerleri kabul eder
+    >>> yüzey_alani_konik_kesit(1, 2, -3)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_conical_frustum() only accepts non-negative values
+    ValueError: yüzey_alani_konik_kesit() sadece negatif olmayan değerleri kabul eder
     """
-    if radius_1 < 0 or radius_2 < 0 or height < 0:
+    if yarıçap_1 < 0 or yarıçap_2 < 0 or yükseklik < 0:
         raise ValueError(
-            "surface_area_conical_frustum() only accepts non-negative values"
+            "yüzey_alani_konik_kesit() sadece negatif olmayan değerleri kabul eder"
         )
-    slant_height = (height**2 + (radius_1 - radius_2) ** 2) ** 0.5
-    return pi * ((slant_height * (radius_1 + radius_2)) + radius_1**2 + radius_2**2)
+    eğik_yükseklik = (yükseklik**2 + (yarıçap_1 - yarıçap_2) ** 2) ** 0.5
+    return pi * ((eğik_yükseklik * (yarıçap_1 + yarıçap_2)) + yarıçap_1**2 + yarıçap_2**2)
 
 
-def surface_area_cylinder(radius: float, height: float) -> float:
+def yüzey_alani_silindir(yarıçap: float, yükseklik: float) -> float:
     """
-    Calculate the Surface Area of a Cylinder.
-    Wikipedia reference: https://en.wikipedia.org/wiki/Cylinder
-    Formula: 2 * pi * r * (h + r)
+    Bir silindirin yüzey alanını hesaplayın.
+    Wikipedia referansı: https://en.wikipedia.org/wiki/Cylinder
+    Formül: 2 * pi * r * (h + r)
 
-    >>> surface_area_cylinder(7, 10)
+    >>> yüzey_alani_silindir(7, 10)
     747.6990515543707
-    >>> surface_area_cylinder(1.6, 2.6)
+    >>> yüzey_alani_silindir(1.6, 2.6)
     42.22300526424682
-    >>> surface_area_cylinder(0, 0)
+    >>> yüzey_alani_silindir(0, 0)
     0.0
-    >>> surface_area_cylinder(6, 8)
+    >>> yüzey_alani_silindir(6, 8)
     527.7875658030853
-    >>> surface_area_cylinder(-1, -2)
+    >>> yüzey_alani_silindir(-1, -2)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_cylinder() only accepts non-negative values
-    >>> surface_area_cylinder(1, -2)
+    ValueError: yüzey_alani_silindir() sadece negatif olmayan değerleri kabul eder
+    >>> yüzey_alani_silindir(1, -2)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_cylinder() only accepts non-negative values
-    >>> surface_area_cylinder(-1, 2)
+    ValueError: yüzey_alani_silindir() sadece negatif olmayan değerleri kabul eder
+    >>> yüzey_alani_silindir(-1, 2)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_cylinder() only accepts non-negative values
+    ValueError: yüzey_alani_silindir() sadece negatif olmayan değerleri kabul eder
     """
-    if radius < 0 or height < 0:
-        raise ValueError("surface_area_cylinder() only accepts non-negative values")
-    return 2 * pi * radius * (height + radius)
+    if yarıçap < 0 or yükseklik < 0:
+        raise ValueError("yüzey_alani_silindir() sadece negatif olmayan değerleri kabul eder")
+    return 2 * pi * yarıçap * (yükseklik + yarıçap)
 
 
-def surface_area_torus(torus_radius: float, tube_radius: float) -> float:
-    """Calculate the Area of a Torus.
-    Wikipedia reference: https://en.wikipedia.org/wiki/Torus
-    :return 4pi^2 * torus_radius * tube_radius
-    >>> surface_area_torus(1, 1)
+def yüzey_alani_torus(torus_yarıçapı: float, tüp_yarıçapı: float) -> float:
+    """Bir torusun yüzey alanını hesaplayın.
+    Wikipedia referansı: https://en.wikipedia.org/wiki/Torus
+    :return 4pi^2 * torus_yarıçapı * tüp_yarıçapı
+    >>> yüzey_alani_torus(1, 1)
     39.47841760435743
-    >>> surface_area_torus(4, 3)
+    >>> yüzey_alani_torus(4, 3)
     473.7410112522892
-    >>> surface_area_torus(3, 4)
+    >>> yüzey_alani_torus(3, 4)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_torus() does not support spindle or self intersecting tori
-    >>> surface_area_torus(1.6, 1.6)
+    ValueError: yüzey_alani_torus() iğne veya kendi kendine kesişen torusları desteklemez
+    >>> yüzey_alani_torus(1.6, 1.6)
     101.06474906715503
-    >>> surface_area_torus(0, 0)
+    >>> yüzey_alani_torus(0, 0)
     0.0
-    >>> surface_area_torus(-1, 1)
+    >>> yüzey_alani_torus(-1, 1)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_torus() only accepts non-negative values
-    >>> surface_area_torus(1, -1)
+    ValueError: yüzey_alani_torus() sadece negatif olmayan değerleri kabul eder
+    >>> yüzey_alani_torus(1, -1)
     Traceback (most recent call last):
         ...
-    ValueError: surface_area_torus() only accepts non-negative values
+    ValueError: yüzey_alani_torus() sadece negatif olmayan değerleri kabul eder
     """
-    if torus_radius < 0 or tube_radius < 0:
-        raise ValueError("surface_area_torus() only accepts non-negative values")
-    if torus_radius < tube_radius:
+    if torus_yarıçapı < 0 or tüp_yarıçapı < 0:
+        raise ValueError("yüzey_alani_torus() sadece negatif olmayan değerleri kabul eder")
+    if torus_yarıçapı < tüp_yarıçapı:
         raise ValueError(
-            "surface_area_torus() does not support spindle or self intersecting tori"
+            "yüzey_alani_torus() iğne veya kendi kendine kesişen torusları desteklemez"
         )
-    return 4 * pow(pi, 2) * torus_radius * tube_radius
+    return 4 * pow(pi, 2) * torus_yarıçapı * tüp_yarıçapı
 
 
-def area_rectangle(length: float, width: float) -> float:
+def alan_dikdörtgen(uzunluk: float, genişlik: float) -> float:
     """
-    Calculate the area of a rectangle.
+    Bir dikdörtgenin alanını hesaplayın.
 
-    >>> area_rectangle(10, 20)
+    >>> alan_dikdörtgen(10, 20)
     200
-    >>> area_rectangle(1.6, 2.6)
+    >>> alan_dikdörtgen(1.6, 2.6)
     4.16
-    >>> area_rectangle(0, 0)
+    >>> alan_dikdörtgen(0, 0)
     0
-    >>> area_rectangle(-1, -2)
+    >>> alan_dikdörtgen(-1, -2)
     Traceback (most recent call last):
         ...
-    ValueError: area_rectangle() only accepts non-negative values
-    >>> area_rectangle(1, -2)
+    ValueError: alan_dikdörtgen() sadece negatif olmayan değerleri kabul eder
+    >>> alan_dikdörtgen(1, -2)
     Traceback (most recent call last):
         ...
-    ValueError: area_rectangle() only accepts non-negative values
-    >>> area_rectangle(-1, 2)
+    ValueError: alan_dikdörtgen() sadece negatif olmayan değerleri kabul eder
+    >>> alan_dikdörtgen(-1, 2)
     Traceback (most recent call last):
         ...
-    ValueError: area_rectangle() only accepts non-negative values
+    ValueError: alan_dikdörtgen() sadece negatif olmayan değerleri kabul eder
     """
-    if length < 0 or width < 0:
-        raise ValueError("area_rectangle() only accepts non-negative values")
-    return length * width
+    if uzunluk < 0 or genişlik < 0:
+        raise ValueError("alan_dikdörtgen() sadece negatif olmayan değerleri kabul eder")
+    return uzunluk * genişlik
 
 
-def area_square(side_length: float) -> float:
+def alan_kare(kenar_uzunluğu: float) -> float:
     """
-    Calculate the area of a square.
+    Bir karenin alanını hesaplayın.
 
-    >>> area_square(10)
+    >>> alan_kare(10)
     100
-    >>> area_square(0)
+    >>> alan_kare(0)
     0
-    >>> area_square(1.6)
+    >>> alan_kare(1.6)
     2.5600000000000005
-    >>> area_square(-1)
+    >>> alan_kare(-1)
     Traceback (most recent call last):
         ...
-    ValueError: area_square() only accepts non-negative values
+    ValueError: alan_kare() sadece negatif olmayan değerleri kabul eder
     """
-    if side_length < 0:
-        raise ValueError("area_square() only accepts non-negative values")
-    return side_length**2
+    if kenar_uzunluğu < 0:
+        raise ValueError("alan_kare() sadece negatif olmayan değerleri kabul eder")
+    return kenar_uzunluğu**2
 
 
-def area_triangle(base: float, height: float) -> float:
+def alan_üçgen(tabani: float, yükseklik: float) -> float:
     """
-    Calculate the area of a triangle given the base and height.
+    Taban ve yükseklik verilen bir üçgenin alanını hesaplayın.
 
-    >>> area_triangle(10, 10)
+    >>> alan_üçgen(10, 10)
     50.0
-    >>> area_triangle(1.6, 2.6)
+    >>> alan_üçgen(1.6, 2.6)
     2.08
-    >>> area_triangle(0, 0)
+    >>> alan_üçgen(0, 0)
     0.0
-    >>> area_triangle(-1, -2)
+    >>> alan_üçgen(-1, -2)
     Traceback (most recent call last):
         ...
-    ValueError: area_triangle() only accepts non-negative values
-    >>> area_triangle(1, -2)
+    ValueError: alan_üçgen() sadece negatif olmayan değerleri kabul eder
+    >>> alan_üçgen(1, -2)
     Traceback (most recent call last):
         ...
-    ValueError: area_triangle() only accepts non-negative values
-    >>> area_triangle(-1, 2)
+    ValueError: alan_üçgen() sadece negatif olmayan değerleri kabul eder
+    >>> alan_üçgen(-1, 2)
     Traceback (most recent call last):
         ...
-    ValueError: area_triangle() only accepts non-negative values
+    ValueError: alan_üçgen() sadece negatif olmayan değerleri kabul eder
     """
-    if base < 0 or height < 0:
-        raise ValueError("area_triangle() only accepts non-negative values")
-    return (base * height) / 2
+    if tabani < 0 or yükseklik < 0:
+        raise ValueError("alan_üçgen() sadece negatif olmayan değerleri kabul eder")
+    return (tabani * yükseklik) / 2
 
 
-def area_triangle_three_sides(side1: float, side2: float, side3: float) -> float:
+def alan_üçgen_üç_kenar(kenar1: float, kenar2: float, kenar3: float) -> float:
     """
-    Calculate area of triangle when the length of 3 sides are known.
-    This function uses Heron's formula: https://en.wikipedia.org/wiki/Heron%27s_formula
+    Üç kenar uzunluğu bilinen bir üçgenin alanını hesaplayın.
+    Bu fonksiyon Heron formülünü kullanır: https://en.wikipedia.org/wiki/Heron%27s_formula
 
-    >>> area_triangle_three_sides(5, 12, 13)
+    >>> alan_üçgen_üç_kenar(5, 12, 13)
     30.0
-    >>> area_triangle_three_sides(10, 11, 12)
+    >>> alan_üçgen_üç_kenar(10, 11, 12)
     51.521233486786784
-    >>> area_triangle_three_sides(0, 0, 0)
+    >>> alan_üçgen_üç_kenar(0, 0, 0)
     0.0
-    >>> area_triangle_three_sides(1.6, 2.6, 3.6)
+    >>> alan_üçgen_üç_kenar(1.6, 2.6, 3.6)
     1.8703742940919619
-    >>> area_triangle_three_sides(-1, -2, -1)
+    >>> alan_üçgen_üç_kenar(-1, -2, -1)
     Traceback (most recent call last):
         ...
-    ValueError: area_triangle_three_sides() only accepts non-negative values
-    >>> area_triangle_three_sides(1, -2, 1)
+    ValueError: alan_üçgen_üç_kenar() sadece negatif olmayan değerleri kabul eder
+    >>> alan_üçgen_üç_kenar(1, -2, 1)
     Traceback (most recent call last):
         ...
-    ValueError: area_triangle_three_sides() only accepts non-negative values
-    >>> area_triangle_three_sides(2, 4, 7)
+    ValueError: alan_üçgen_üç_kenar() sadece negatif olmayan değerleri kabul eder
+    >>> alan_üçgen_üç_kenar(2, 4, 7)
     Traceback (most recent call last):
         ...
-    ValueError: Given three sides do not form a triangle
-    >>> area_triangle_three_sides(2, 7, 4)
+    ValueError: Verilen üç kenar bir üçgen oluşturmaz
+    >>> alan_üçgen_üç_kenar(2, 7, 4)
     Traceback (most recent call last):
         ...
-    ValueError: Given three sides do not form a triangle
-    >>> area_triangle_three_sides(7, 2, 4)
+    ValueError: Verilen üç kenar bir üçgen oluşturmaz
+    >>> alan_üçgen_üç_kenar(7, 2, 4)
     Traceback (most recent call last):
         ...
-    ValueError: Given three sides do not form a triangle
+    ValueError: Verilen üç kenar bir üçgen oluşturmaz
     """
+    if kenar1 < 0 or kenar2 < 0 or kenar3 < 0:
+    if kenar1 < 0 veya kenar2 < 0 veya kenar3 < 0:
+        raise ValueError("alan_üçgen_üç_kenar() sadece negatif olmayan değerleri kabul eder")
     if side1 < 0 or side2 < 0 or side3 < 0:
         raise ValueError("area_triangle_three_sides() only accepts non-negative values")
     elif side1 + side2 < side3 or side1 + side3 < side2 or side2 + side3 < side1:

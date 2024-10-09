@@ -1,58 +1,58 @@
-def match_word_pattern(pattern: str, input_string: str) -> bool:
+def kelime_deseni_eşleştir(desen: str, giriş_dizesi: str) -> bool:
     """
-    Determine if a given pattern matches a string using backtracking.
+    Geri izleme kullanarak verilen bir desenin bir dizeyle eşleşip eşleşmediğini belirleyin.
 
-    pattern: The pattern to match.
-    input_string: The string to match against the pattern.
-    return: True if the pattern matches the string, False otherwise.
+    desen: Eşleştirilecek desen.
+    giriş_dizesi: Desene karşı eşleştirilecek dize.
+    dönüş: Desen dizeyle eşleşirse True, aksi takdirde False döner.
 
-    >>> match_word_pattern("aba", "GraphTreesGraph")
+    >>> kelime_deseni_eşleştir("aba", "GraphTreesGraph")
     True
 
-    >>> match_word_pattern("xyx", "PythonRubyPython")
+    >>> kelime_deseni_eşleştir("xyx", "PythonRubyPython")
     True
 
-    >>> match_word_pattern("GG", "PythonJavaPython")
+    >>> kelime_deseni_eşleştir("GG", "PythonJavaPython")
     False
     """
 
-    def backtrack(pattern_index: int, str_index: int) -> bool:
+    def geri_izleme(desen_indeksi: int, dize_indeksi: int) -> bool:
         """
-        >>> backtrack(0, 0)
+        >>> geri_izleme(0, 0)
         True
 
-        >>> backtrack(0, 1)
+        >>> geri_izleme(0, 1)
         True
 
-        >>> backtrack(0, 4)
+        >>> geri_izleme(0, 4)
         False
         """
-        if pattern_index == len(pattern) and str_index == len(input_string):
+        if desen_indeksi == len(desen) and dize_indeksi == len(giriş_dizesi):
             return True
-        if pattern_index == len(pattern) or str_index == len(input_string):
+        if desen_indeksi == len(desen) or dize_indeksi == len(giriş_dizesi):
             return False
-        char = pattern[pattern_index]
-        if char in pattern_map:
-            mapped_str = pattern_map[char]
-            if input_string.startswith(mapped_str, str_index):
-                return backtrack(pattern_index + 1, str_index + len(mapped_str))
+        karakter = desen[desen_indeksi]
+        if karakter in desen_haritası:
+            eşleşen_dize = desen_haritası[karakter]
+            if giriş_dizesi.startswith(eşleşen_dize, dize_indeksi):
+                return geri_izleme(desen_indeksi + 1, dize_indeksi + len(eşleşen_dize))
             else:
                 return False
-        for end in range(str_index + 1, len(input_string) + 1):
-            substr = input_string[str_index:end]
-            if substr in str_map:
+        for son in range(dize_indeksi + 1, len(giriş_dizesi) + 1):
+            alt_dize = giriş_dizesi[dize_indeksi:son]
+            if alt_dize in dize_haritası:
                 continue
-            pattern_map[char] = substr
-            str_map[substr] = char
-            if backtrack(pattern_index + 1, end):
+            desen_haritası[karakter] = alt_dize
+            dize_haritası[alt_dize] = karakter
+            if geri_izleme(desen_indeksi + 1, son):
                 return True
-            del pattern_map[char]
-            del str_map[substr]
+            del desen_haritası[karakter]
+            del dize_haritası[alt_dize]
         return False
 
-    pattern_map: dict[str, str] = {}
-    str_map: dict[str, str] = {}
-    return backtrack(0, 0)
+    desen_haritası: dict[str, str] = {}
+    dize_haritası: dict[str, str] = {}
+    return geri_izleme(0, 0)
 
 
 if __name__ == "__main__":

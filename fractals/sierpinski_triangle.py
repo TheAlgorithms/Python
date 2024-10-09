@@ -1,86 +1,87 @@
 """
-Author Anurag Kumar | anuragkumarak95@gmail.com | git/anuragkumarak95
+Yazar Anurag Kumar | anuragkumarak95@gmail.com | git/anuragkumarak95
 
-Simple example of fractal generation using recursion.
+Özyineleme kullanarak fraktal oluşturmanın basit bir örneği.
 
-What is the Sierpiński Triangle?
-    The Sierpiński triangle (sometimes spelled Sierpinski), also called the
-Sierpiński gasket or Sierpiński sieve, is a fractal attractive fixed set with
-the overall shape of an equilateral triangle, subdivided recursively into
-smaller equilateral triangles. Originally constructed as a curve, this is one of
-the basic examples of self-similar sets—that is, it is a mathematically
-generated pattern that is reproducible at any magnification or reduction. It is
-named after the Polish mathematician Wacław Sierpiński, but appeared as a
-decorative pattern many centuries before the work of Sierpiński.
+Sierpiński Üçgeni nedir?
+    Sierpiński üçgeni (bazen Sierpinski olarak yazılır), Sierpiński contası veya
+Sierpiński eleği olarak da adlandırılır, eşkenar üçgen şeklinde olan ve
+özyinelemeli olarak daha küçük eşkenar üçgenlere bölünen bir fraktal çekici sabit
+kümeyle genel şekli olan bir fraktaldır. Başlangıçta bir eğri olarak oluşturulmuş,
+bu, kendine benzer kümelerin temel örneklerinden biridir - yani, herhangi bir
+büyütme veya küçültme oranında yeniden üretilebilen matematiksel olarak
+oluşturulmuş bir desendir. Polonyalı matematikçi Wacław Sierpiński'nin adını
+taşır, ancak Sierpiński'nin çalışmasından yüzyıllar önce dekoratif bir desen
+olarak ortaya çıkmıştır.
 
 
-Usage: python sierpinski_triangle.py <int:depth_for_fractal>
+Kullanım: python sierpinski_triangle.py <int:fraktal_derinliği>
 
-Credits:
-    The above description is taken from
+Krediler:
+    Yukarıdaki açıklama
     https://en.wikipedia.org/wiki/Sierpi%C5%84ski_triangle
-    This code was written by editing the code from
+    adresinden alınmıştır. Bu kod,
     https://www.riannetrujillo.com/blog/python-fractal/
+    adresindeki kod düzenlenerek yazılmıştır.
 """
 
 import sys
 import turtle
 
 
-def get_mid(p1: tuple[float, float], p2: tuple[float, float]) -> tuple[float, float]:
+def orta_nokta_bul(nokta1: tuple[float, float], nokta2: tuple[float, float]) -> tuple[float, float]:
     """
-    Find the midpoint of two points
+    İki noktanın orta noktasını bul
 
-    >>> get_mid((0, 0), (2, 2))
+    >>> orta_nokta_bul((0, 0), (2, 2))
     (1.0, 1.0)
-    >>> get_mid((-3, -3), (3, 3))
+    >>> orta_nokta_bul((-3, -3), (3, 3))
     (0.0, 0.0)
-    >>> get_mid((1, 0), (3, 2))
+    >>> orta_nokta_bul((1, 0), (3, 2))
     (2.0, 1.0)
-    >>> get_mid((0, 0), (1, 1))
+    >>> orta_nokta_bul((0, 0), (1, 1))
     (0.5, 0.5)
-    >>> get_mid((0, 0), (0, 0))
+    >>> orta_nokta_bul((0, 0), (0, 0))
     (0.0, 0.0)
     """
-    return (p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2
+    return (nokta1[0] + nokta2[0]) / 2, (nokta1[1] + nokta2[1]) / 2
 
 
-def triangle(
-    vertex1: tuple[float, float],
-    vertex2: tuple[float, float],
-    vertex3: tuple[float, float],
-    depth: int,
+def ucgen_ciz(
+    kose1: tuple[float, float],
+    kose2: tuple[float, float],
+    kose3: tuple[float, float],
+    derinlik: int,
 ) -> None:
     """
-    Recursively draw the Sierpinski triangle given the vertices of the triangle
-    and the recursion depth
+    Üçgenin köşeleri ve özyineleme derinliği verilerek Sierpinski üçgenini özyinelemeli olarak çiz
     """
-    my_pen.up()
-    my_pen.goto(vertex1[0], vertex1[1])
-    my_pen.down()
-    my_pen.goto(vertex2[0], vertex2[1])
-    my_pen.goto(vertex3[0], vertex3[1])
-    my_pen.goto(vertex1[0], vertex1[1])
+    kalem.up()
+    kalem.goto(kose1[0], kose1[1])
+    kalem.down()
+    kalem.goto(kose2[0], kose2[1])
+    kalem.goto(kose3[0], kose3[1])
+    kalem.goto(kose1[0], kose1[1])
 
-    if depth == 0:
+    if derinlik == 0:
         return
 
-    triangle(vertex1, get_mid(vertex1, vertex2), get_mid(vertex1, vertex3), depth - 1)
-    triangle(vertex2, get_mid(vertex1, vertex2), get_mid(vertex2, vertex3), depth - 1)
-    triangle(vertex3, get_mid(vertex3, vertex2), get_mid(vertex1, vertex3), depth - 1)
+    ucgen_ciz(kose1, orta_nokta_bul(kose1, kose2), orta_nokta_bul(kose1, kose3), derinlik - 1)
+    ucgen_ciz(kose2, orta_nokta_bul(kose1, kose2), orta_nokta_bul(kose2, kose3), derinlik - 1)
+    ucgen_ciz(kose3, orta_nokta_bul(kose3, kose2), orta_nokta_bul(kose1, kose3), derinlik - 1)
 
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         raise ValueError(
-            "Correct format for using this script: "
-            "python fractals.py <int:depth_for_fractal>"
+            "Bu betiği kullanmanın doğru formatı: "
+            "python fractals.py <int:fraktal_derinliği>"
         )
-    my_pen = turtle.Turtle()
-    my_pen.ht()
-    my_pen.speed(5)
-    my_pen.pencolor("red")
+    kalem = turtle.Turtle()
+    kalem.ht()
+    kalem.speed(5)
+    kalem.pencolor("kırmızı")
 
-    vertices = [(-175, -125), (0, 175), (175, -125)]  # vertices of triangle
-    triangle(vertices[0], vertices[1], vertices[2], int(sys.argv[1]))
+    koseler = [(-175, -125), (0, 175), (175, -125)]  # üçgenin köşeleri
+    ucgen_ciz(koseler[0], koseler[1], koseler[2], int(sys.argv[1]))
     turtle.Screen().exitonclick()

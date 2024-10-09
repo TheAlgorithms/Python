@@ -1,58 +1,57 @@
 """
-Program to list all the ways a target string can be
-constructed from the given list of substrings
+Bir hedef dizenin verilen alt dize listesinden
+nasıl oluşturulabileceğini listeleyen program
 """
 
 from __future__ import annotations
 
 
-def all_construct(target: str, word_bank: list[str] | None = None) -> list[list[str]]:
+def tum_yapilar(target: str, kelime_bankasi: list[str] | None = None) -> list[list[str]]:
     """
-        returns the list containing all the possible
-        combinations a string(target) can be constructed from
-        the given list of substrings(word_bank)
-    >>> all_construct("hello", ["he", "l", "o"])
+        Bir dizenin (hedef) verilen alt dize listesinden (kelime_bankasi)
+        nasıl oluşturulabileceğine dair tüm olası kombinasyonları içeren listeyi döndürür
+    >>> tum_yapilar("hello", ["he", "l", "o"])
     [['he', 'l', 'l', 'o']]
-    >>> all_construct("purple",["purp","p","ur","le","purpl"])
+    >>> tum_yapilar("purple",["purp","p","ur","le","purpl"])
     [['purp', 'le'], ['p', 'ur', 'p', 'le']]
     """
 
-    word_bank = word_bank or []
-    # create a table
-    table_size: int = len(target) + 1
+    kelime_bankasi = kelime_bankasi or []
+    # bir tablo oluştur
+    tablo_boyutu: int = len(target) + 1
 
-    table: list[list[list[str]]] = []
-    for _ in range(table_size):
-        table.append([])
-    # seed value
-    table[0] = [[]]  # because empty string has empty combination
+    tablo: list[list[list[str]]] = []
+    for _ in range(tablo_boyutu):
+        tablo.append([])
+    # başlangıç değeri
+    tablo[0] = [[]]  # çünkü boş dizenin boş kombinasyonu vardır
 
-    # iterate through the indices
-    for i in range(table_size):
-        # condition
-        if table[i] != []:
-            for word in word_bank:
-                # slice condition
-                if target[i : i + len(word)] == word:
-                    new_combinations: list[list[str]] = [
-                        [word, *way] for way in table[i]
+    # indeksler boyunca yinele
+    for i in range(tablo_boyutu):
+        # koşul
+        if tablo[i] != []:
+            for kelime in kelime_bankasi:
+                # dilim koşulu
+                if target[i : i + len(kelime)] == kelime:
+                    yeni_kombinasyonlar: list[list[str]] = [
+                        [kelime, *yol] for yol in tablo[i]
                     ]
-                    # adds the word to every combination the current position holds
-                    # now,push that combination to the table[i+len(word)]
-                    table[i + len(word)] += new_combinations
+                    # kelimeyi mevcut konumun tuttuğu her kombinasyona ekler
+                    # şimdi, bu kombinasyonu tablo[i+len(kelime)]'ye ekle
+                    tablo[i + len(kelime)] += yeni_kombinasyonlar
 
-    # combinations are in reverse order so reverse for better output
-    for combination in table[len(target)]:
-        combination.reverse()
+    # kombinasyonlar ters sıradadır, bu yüzden daha iyi çıktı için ters çevir
+    for kombinasyon in tablo[len(target)]:
+        kombinasyon.reverse()
 
-    return table[len(target)]
+    return tablo[len(target)]
 
 
 if __name__ == "__main__":
-    print(all_construct("jwajalapa", ["jwa", "j", "w", "a", "la", "lapa"]))
-    print(all_construct("rajamati", ["s", "raj", "amat", "raja", "ma", "i", "t"]))
+    print(tum_yapilar("jwajalapa", ["jwa", "j", "w", "a", "la", "lapa"]))
+    print(tum_yapilar("rajamati", ["s", "raj", "amat", "raja", "ma", "i", "t"]))
     print(
-        all_construct(
+        tum_yapilar(
             "hexagonosaurus",
             ["h", "ex", "hex", "ag", "ago", "ru", "auru", "rus", "go", "no", "o", "s"],
         )

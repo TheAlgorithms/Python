@@ -1,66 +1,66 @@
 """
-In the Combination Sum problem, we are given a list consisting of distinct integers.
-We need to find all the combinations whose sum equals to target given.
-We can use an element more than one.
+Kombinasyon Toplamı probleminde, birbirinden farklı tamsayılardan oluşan bir liste verilir.
+Hedef değere eşit olan tüm kombinasyonları bulmamız gerekiyor.
+Bir elemanı birden fazla kullanabiliriz.
 
-Time complexity(Average Case): O(n!)
+Zaman karmaşıklığı (Ortalama Durum): O(n!)
 
-Constraints:
-1 <= candidates.length <= 30
-2 <= candidates[i] <= 40
-All elements of candidates are distinct.
-1 <= target <= 40
+Kısıtlar:
+1 <= adaylar.length <= 30
+2 <= adaylar[i] <= 40
+Adayların tüm elemanları birbirinden farklıdır.
+1 <= hedef <= 40
 """
 
 
-def backtrack(
-    candidates: list, path: list, answer: list, target: int, previous_index: int
+def geri_izleme(
+    adaylar: list, yol: list, cevap: list, hedef: int, önceki_indeks: int
 ) -> None:
     """
-    A recursive function that searches for possible combinations. Backtracks in case
-    of a bigger current combination value than the target value.
+    Olası kombinasyonları arayan özyinelemeli bir fonksiyon. Hedef değerden büyük bir
+    mevcut kombinasyon değeri durumunda geri izler.
 
-    Parameters
+    Parametreler
     ----------
-    previous_index: Last index from the previous search
-    target: The value we need to obtain by summing our integers in the path list.
-    answer: A list of possible combinations
-    path: Current combination
-    candidates: A list of integers we can use.
+    önceki_indeks: Önceki aramadan son indeks
+    hedef: Yol listesindeki tamsayıları toplayarak elde etmemiz gereken değer.
+    cevap: Olası kombinasyonların listesi
+    yol: Mevcut kombinasyon
+    adaylar: Kullanabileceğimiz tamsayıların listesi.
     """
-    if target == 0:
-        answer.append(path.copy())
+    if hedef == 0:
+        cevap.append(yol.copy())
     else:
-        for index in range(previous_index, len(candidates)):
-            if target >= candidates[index]:
-                path.append(candidates[index])
-                backtrack(candidates, path, answer, target - candidates[index], index)
-                path.pop(len(path) - 1)
+        for indeks in range(önceki_indeks, len(adaylar)):
+            if hedef >= adaylar[indeks]:
+                yol.append(adaylar[indeks])
+                geri_izleme(adaylar, yol, cevap, hedef - adaylar[indeks], indeks)
+                yol.pop(len(yol) - 1)
 
 
-def combination_sum(candidates: list, target: int) -> list:
+def kombinasyon_toplamı(adaylar: list, hedef: int) -> list:
     """
-    >>> combination_sum([2, 3, 5], 8)
+    >>> kombinasyon_toplamı([2, 3, 5], 8)
     [[2, 2, 2, 2], [2, 3, 3], [3, 5]]
-    >>> combination_sum([2, 3, 6, 7], 7)
+    >>> kombinasyon_toplamı([2, 3, 6, 7], 7)
     [[2, 2, 3], [7]]
-    >>> combination_sum([-8, 2.3, 0], 1)
+    >>> kombinasyon_toplamı([-8, 2.3, 0], 1)
     Traceback (most recent call last):
         ...
     RecursionError: maximum recursion depth exceeded
     """
-    path = []  # type: list[int]
-    answer = []  # type: list[int]
-    backtrack(candidates, path, answer, target, 0)
-    return answer
+    yol = []  # type: list[int]
+    cevap = []  # type: list[int]
+    geri_izleme(adaylar, yol, cevap, hedef, 0)
+    return cevap
 
 
-def main() -> None:
-    print(combination_sum([-8, 2.3, 0], 1))
+def ana() -> None:
+    print(kombinasyon_toplamı([-8, 2.3, 0], 1))
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    main()
+    ana()

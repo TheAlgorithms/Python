@@ -1,363 +1,362 @@
-# An OOP approach to representing and manipulating matrices
+# Matrisleri temsil etmek ve manipüle etmek için OOP yaklaşımı
 
 from __future__ import annotations
 
 
-class Matrix:
+class Matris:
     """
-    Matrix object generated from a 2D array where each element is an array representing
-    a row.
-    Rows can contain type int or float.
-    Common operations and information available.
-    >>> rows = [
+    Organised By K. Umut Araz
+
+    
+    Her bir elemanı bir satırı temsil eden 2D bir diziden oluşturulan Matris nesnesi.
+    Satırlar int veya float türünde değerler içerebilir.
+    Yaygın işlemler ve bilgiler mevcuttur.
+    >>> satirlar = [
     ...     [1, 2, 3],
     ...     [4, 5, 6],
     ...     [7, 8, 9]
     ... ]
-    >>> matrix = Matrix(rows)
-    >>> print(matrix)
+    >>> matris = Matris(satirlar)
+    >>> print(matris)
     [[1. 2. 3.]
      [4. 5. 6.]
      [7. 8. 9.]]
 
-    Matrix rows and columns are available as 2D arrays
-    >>> matrix.rows
+    Matris satırları ve sütunları 2D diziler olarak mevcuttur.
+    >>> matris.satirlar
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    >>> matrix.columns()
+    >>> matris.sutunlar()
     [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
 
-    Order is returned as a tuple
-    >>> matrix.order
+    Boyut bir tuple olarak döner.
+    >>> matris.boyut
     (3, 3)
 
-    Squareness and invertability are represented as bool
-    >>> matrix.is_square
+    Karelik ve terslenebilirlik bool olarak temsil edilir.
+    >>> matris.kare_mi
     True
-    >>> matrix.is_invertable()
+    >>> matris.terslenebilir_mi()
     False
 
-    Identity, Minors, Cofactors and Adjugate are returned as Matrices.  Inverse can be
-    a Matrix or Nonetype
-    >>> print(matrix.identity())
+    Kimlik, Minörler, Cofaktörler ve Adjugate Matris olarak döner. Tersi
+    bir Matris veya NoneType olabilir.
+    >>> print(matris.kimlik())
     [[1. 0. 0.]
      [0. 1. 0.]
      [0. 0. 1.]]
-    >>> print(matrix.minors())
+    >>> print(matris.minorler())
     [[-3. -6. -3.]
      [-6. -12. -6.]
      [-3. -6. -3.]]
-    >>> print(matrix.cofactors())
+    >>> print(matris.cofaktörler())
     [[-3. 6. -3.]
      [6. -12. 6.]
      [-3. 6. -3.]]
-    >>>  # won't be apparent due to the nature of the cofactor matrix
-    >>> print(matrix.adjugate())
+    >>> print(matris.adjugate())
     [[-3. 6. -3.]
      [6. -12. 6.]
      [-3. 6. -3.]]
-    >>> matrix.inverse()
+    >>> matris.ters()
     Traceback (most recent call last):
         ...
-    TypeError: Only matrices with a non-zero determinant have an inverse
+    TypeError: Sadece sıfırdan farklı determinantı olan matrislerin tersi vardır.
 
-    Determinant is an int, float, or Nonetype
-    >>> matrix.determinant()
+    Determinant bir int, float veya NoneType'tır.
+    >>> matris.determinant()
     0
 
-    Negation, scalar multiplication, addition, subtraction, multiplication and
-    exponentiation are available and all return a Matrix
-    >>> print(-matrix)
+    Negasyon, skalar çarpma, toplama, çıkarma, çarpma ve
+    üstel işlemler mevcuttur ve hepsi bir Matris döner.
+    >>> print(-matris)
     [[-1. -2. -3.]
      [-4. -5. -6.]
      [-7. -8. -9.]]
-    >>> matrix2 = matrix * 3
-    >>> print(matrix2)
+    >>> matris2 = matris * 3
+    >>> print(matris2)
     [[3. 6. 9.]
      [12. 15. 18.]
      [21. 24. 27.]]
-    >>> print(matrix + matrix2)
+    >>> print(matris + matris2)
     [[4. 8. 12.]
      [16. 20. 24.]
      [28. 32. 36.]]
-    >>> print(matrix - matrix2)
+    >>> print(matris - matris2)
     [[-2. -4. -6.]
      [-8. -10. -12.]
      [-14. -16. -18.]]
-    >>> print(matrix ** 3)
+    >>> print(matris ** 3)
     [[468. 576. 684.]
      [1062. 1305. 1548.]
      [1656. 2034. 2412.]]
 
-    Matrices can also be modified
-    >>> matrix.add_row([10, 11, 12])
-    >>> print(matrix)
+    Matrisler de değiştirilebilir.
+    >>> matris.satir_ekle([10, 11, 12])
+    >>> print(matris)
     [[1. 2. 3.]
      [4. 5. 6.]
      [7. 8. 9.]
      [10. 11. 12.]]
-    >>> matrix2.add_column([8, 16, 32])
-    >>> print(matrix2)
+    >>> matris2.sutun_ekle([8, 16, 32])
+    >>> print(matris2)
     [[3. 6. 9. 8.]
      [12. 15. 18. 16.]
      [21. 24. 27. 32.]]
-    >>> print(matrix *  matrix2)
+    >>> print(matris *  matris2)
     [[90. 108. 126. 136.]
      [198. 243. 288. 304.]
      [306. 378. 450. 472.]
      [414. 513. 612. 640.]]
     """
 
-    def __init__(self, rows: list[list[int]]):
-        error = TypeError(
-            "Matrices must be formed from a list of zero or more lists containing at "
-            "least one and the same number of values, each of which must be of type "
-            "int or float."
+    def __init__(self, satirlar: list[list[int]]):
+        hata = TypeError(
+            "Matrisler, en az bir ve aynı sayıda değer içeren, sıfır veya daha fazla "
+            "liste içeren bir listeden oluşmalıdır. Her bir değer int veya float türünde olmalıdır."
         )
-        if len(rows) != 0:
-            cols = len(rows[0])
-            if cols == 0:
-                raise error
-            for row in rows:
-                if len(row) != cols:
-                    raise error
-                for value in row:
-                    if not isinstance(value, (int, float)):
-                        raise error
-            self.rows = rows
+        if len(satirlar) != 0:
+            sutunlar = len(satirlar[0])
+            if sutunlar == 0:
+                raise hata
+            for satir in satirlar:
+                if len(satir) != sutunlar:
+                    raise hata
+                for deger in satir:
+                    if not isinstance(deger, (int, float)):
+                        raise hata
+            self.satirlar = satirlar
         else:
-            self.rows = []
+            self.satirlar = []
 
-    # MATRIX INFORMATION
-    def columns(self) -> list[list[int]]:
-        return [[row[i] for row in self.rows] for i in range(len(self.rows[0]))]
-
-    @property
-    def num_rows(self) -> int:
-        return len(self.rows)
+    # MATRIS BİLGİLERİ
+    def sutunlar(self) -> list[list[int]]:
+        return [[satir[i] for satir in self.satirlar] for i in range(len(self.satirlar[0]))]
 
     @property
-    def num_columns(self) -> int:
-        return len(self.rows[0])
+    def satir_sayisi(self) -> int:
+        return len(self.satirlar)
 
     @property
-    def order(self) -> tuple[int, int]:
-        return self.num_rows, self.num_columns
+    def sutun_sayisi(self) -> int:
+        return len(self.satirlar[0])
 
     @property
-    def is_square(self) -> bool:
-        return self.order[0] == self.order[1]
+    def boyut(self) -> tuple[int, int]:
+        return self.satir_sayisi, self.sutun_sayisi
 
-    def identity(self) -> Matrix:
-        values = [
-            [0 if column_num != row_num else 1 for column_num in range(self.num_rows)]
-            for row_num in range(self.num_rows)
+    @property
+    def kare_mi(self) -> bool:
+        return self.boyut[0] == self.boyut[1]
+
+    def kimlik(self) -> Matris:
+        degerler = [
+            [0 if sutun_num != satir_num else 1 for sutun_num in range(self.satir_sayisi)]
+            for satir_num in range(self.satir_sayisi)
         ]
-        return Matrix(values)
+        return Matris(degerler)
 
     def determinant(self) -> int:
-        if not self.is_square:
+        if not self.kare_mi:
             return 0
-        if self.order == (0, 0):
+        if self.boyut == (0, 0):
             return 1
-        if self.order == (1, 1):
-            return int(self.rows[0][0])
-        if self.order == (2, 2):
+        if self.boyut == (1, 1):
+            return int(self.satirlar[0][0])
+        if self.boyut == (2, 2):
             return int(
-                (self.rows[0][0] * self.rows[1][1])
-                - (self.rows[0][1] * self.rows[1][0])
+                (self.satirlar[0][0] * self.satirlar[1][1])
+                - (self.satirlar[0][1] * self.satirlar[1][0])
             )
         else:
             return sum(
-                self.rows[0][column] * self.cofactors().rows[0][column]
-                for column in range(self.num_columns)
+                self.satirlar[0][sutun] * self.cofaktörler().satirlar[0][sutun]
+                for sutun in range(self.sutun_sayisi)
             )
 
-    def is_invertable(self) -> bool:
+    def terslenebilir_mi(self) -> bool:
         return bool(self.determinant())
 
-    def get_minor(self, row: int, column: int) -> int:
-        values = [
+    def minor_al(self, satir: int, sutun: int) -> int:
+        degerler = [
             [
-                self.rows[other_row][other_column]
-                for other_column in range(self.num_columns)
-                if other_column != column
+                self.satirlar[dig_satir][dig_sutun]
+                for dig_sutun in range(self.sutun_sayisi)
+                if dig_sutun != sutun
             ]
-            for other_row in range(self.num_rows)
-            if other_row != row
+            for dig_satir in range(self.satir_sayisi)
+            if dig_satir != satir
         ]
-        return Matrix(values).determinant()
+        return Matris(degerler).determinant()
 
-    def get_cofactor(self, row: int, column: int) -> int:
-        if (row + column) % 2 == 0:
-            return self.get_minor(row, column)
-        return -1 * self.get_minor(row, column)
+    def cofactor_al(self, satir: int, sutun: int) -> int:
+        if (satir + sutun) % 2 == 0:
+            return self.minor_al(satir, sutun)
+        return -1 * self.minor_al(satir, sutun)
 
-    def minors(self) -> Matrix:
-        return Matrix(
+    def minorler(self) -> Matris:
+        return Matris(
             [
-                [self.get_minor(row, column) for column in range(self.num_columns)]
-                for row in range(self.num_rows)
+                [self.minor_al(satir, sutun) for sutun in range(self.sutun_sayisi)]
+                for satir in range(self.satir_sayisi)
             ]
         )
 
-    def cofactors(self) -> Matrix:
-        return Matrix(
+    def cofactörler(self) -> Matris:
+        return Matris(
             [
                 [
-                    self.minors().rows[row][column]
-                    if (row + column) % 2 == 0
-                    else self.minors().rows[row][column] * -1
-                    for column in range(self.minors().num_columns)
+                    self.minorler().satirlar[satir][sutun]
+                    if (satir + sutun) % 2 == 0
+                    else self.minorler().satirlar[satir][sutun] * -1
+                    for sutun in range(self.minorler().sutun_sayisi)
                 ]
-                for row in range(self.minors().num_rows)
+                for satir in range(self.minorler().satir_sayisi)
             ]
         )
 
-    def adjugate(self) -> Matrix:
-        values = [
-            [self.cofactors().rows[column][row] for column in range(self.num_columns)]
-            for row in range(self.num_rows)
+    def adjugate(self) -> Matris:
+        degerler = [
+            [self.cofaktörler().satirlar[sutun][satir] for sutun in range(self.sutun_sayisi)]
+            for satir in range(self.satir_sayisi)
         ]
-        return Matrix(values)
+        return Matris(degerler)
 
-    def inverse(self) -> Matrix:
+    def ters(self) -> Matris:
         determinant = self.determinant()
         if not determinant:
-            raise TypeError("Only matrices with a non-zero determinant have an inverse")
+            raise TypeError("Sadece sıfırdan farklı determinantı olan matrislerin tersi vardır.")
         return self.adjugate() * (1 / determinant)
 
     def __repr__(self) -> str:
-        return str(self.rows)
+        return str(self.satirlar)
 
     def __str__(self) -> str:
-        if self.num_rows == 0:
+        if self.satir_sayisi == 0:
             return "[]"
-        if self.num_rows == 1:
-            return "[[" + ". ".join(str(self.rows[0])) + "]]"
+        if self.satir_sayisi == 1:
+            return "[[" + ". ".join(str(self.satirlar[0])) + "]]"
         return (
             "["
             + "\n ".join(
                 [
-                    "[" + ". ".join([str(value) for value in row]) + ".]"
-                    for row in self.rows
+                    "[" + ". ".join([str(deger) for deger in satir]) + ".]"
+                    for satir in self.satirlar
                 ]
             )
             + "]"
         )
 
-    # MATRIX MANIPULATION
-    def add_row(self, row: list[int], position: int | None = None) -> None:
-        type_error = TypeError("Row must be a list containing all ints and/or floats")
-        if not isinstance(row, list):
-            raise type_error
-        for value in row:
-            if not isinstance(value, (int, float)):
-                raise type_error
-        if len(row) != self.num_columns:
+    # MATRIS MANİPÜLASYONU
+    def satir_ekle(self, satir: list[int], konum: int | None = None) -> None:
+        tip_hatasi = TypeError("Satır, tüm int ve/veya float değerlerini içeren bir liste olmalıdır.")
+        if not isinstance(satir, list):
+            raise tip_hatasi
+        for deger in satir:
+            if not isinstance(deger, (int, float)):
+                raise tip_hatasi
+        if len(satir) != self.sutun_sayisi:
             raise ValueError(
-                "Row must be equal in length to the other rows in the matrix"
+                "Satır, matrisin diğer satırlarıyla aynı uzunlukta olmalıdır."
             )
-        if position is None:
-            self.rows.append(row)
+        if konum is None:
+            self.satirlar.append(satir)
         else:
-            self.rows = self.rows[0:position] + [row] + self.rows[position:]
+            self.satirlar = self.satirlar[0:konum] + [satir] + self.satirlar[konum:]
 
-    def add_column(self, column: list[int], position: int | None = None) -> None:
-        type_error = TypeError(
-            "Column must be a list containing all ints and/or floats"
+    def sutun_ekle(self, sutun: list[int], konum: int | None = None) -> None:
+        tip_hatasi = TypeError(
+            "Sütun, tüm int ve/veya float değerlerini içeren bir liste olmalıdır."
         )
-        if not isinstance(column, list):
-            raise type_error
-        for value in column:
-            if not isinstance(value, (int, float)):
-                raise type_error
-        if len(column) != self.num_rows:
+        if not isinstance(sutun, list):
+            raise tip_hatasi
+        for deger in sutun:
+            if not isinstance(deger, (int, float)):
+                raise tip_hatasi
+        if len(sutun) != self.satir_sayisi:
             raise ValueError(
-                "Column must be equal in length to the other columns in the matrix"
+                "Sütun, matrisin diğer sütunlarıyla aynı uzunlukta olmalıdır."
             )
-        if position is None:
-            self.rows = [self.rows[i] + [column[i]] for i in range(self.num_rows)]
+        if konum is None:
+            self.satirlar = [self.satirlar[i] + [sutun[i]] for i in range(self.satir_sayisi)]
         else:
-            self.rows = [
-                self.rows[i][0:position] + [column[i]] + self.rows[i][position:]
-                for i in range(self.num_rows)
+            self.satirlar = [
+                self.satirlar[i][0:konum] + [sutun[i]] + self.satirlar[i][konum:]
+                for i in range(self.satir_sayisi)
             ]
 
-    # MATRIX OPERATIONS
+    # MATRIS İŞLEMLERİ
     def __eq__(self, other: object) -> bool:
-        if not isinstance(other, Matrix):
+        if not isinstance(other, Matris):
             return NotImplemented
-        return self.rows == other.rows
+        return self.satirlar == other.satirlar
 
     def __ne__(self, other: object) -> bool:
         return not self == other
 
-    def __neg__(self) -> Matrix:
+    def __neg__(self) -> Matris:
         return self * -1
 
-    def __add__(self, other: Matrix) -> Matrix:
-        if self.order != other.order:
-            raise ValueError("Addition requires matrices of the same order")
-        return Matrix(
+    def __add__(self, other: Matris) -> Matris:
+        if self.boyut != other.boyut:
+            raise ValueError("Toplama, aynı boyuttaki matrisleri gerektirir.")
+        return Matris(
             [
-                [self.rows[i][j] + other.rows[i][j] for j in range(self.num_columns)]
-                for i in range(self.num_rows)
+                [self.satirlar[i][j] + other.satirlar[i][j] for j in range(self.sutun_sayisi)]
+                for i in range(self.satir_sayisi)
             ]
         )
 
-    def __sub__(self, other: Matrix) -> Matrix:
-        if self.order != other.order:
-            raise ValueError("Subtraction requires matrices of the same order")
-        return Matrix(
+    def __sub__(self, other: Matris) -> Matris:
+        if self.boyut != other.boyut:
+            raise ValueError("Çıkarma, aynı boyuttaki matrisleri gerektirir.")
+        return Matris(
             [
-                [self.rows[i][j] - other.rows[i][j] for j in range(self.num_columns)]
-                for i in range(self.num_rows)
+                [self.satirlar[i][j] - other.satirlar[i][j] for j in range(self.sutun_sayisi)]
+                for i in range(self.satir_sayisi)
             ]
         )
 
-    def __mul__(self, other: Matrix | float) -> Matrix:
+    def __mul__(self, other: Matris | float) -> Matris:
         if isinstance(other, (int, float)):
-            return Matrix(
-                [[int(element * other) for element in row] for row in self.rows]
+            return Matris(
+                [[int(eleman * other) for eleman in satir] for satir in self.satirlar]
             )
-        elif isinstance(other, Matrix):
-            if self.num_columns != other.num_rows:
+        elif isinstance(other, Matris):
+            if self.sutun_sayisi != other.satir_sayisi:
                 raise ValueError(
-                    "The number of columns in the first matrix must "
-                    "be equal to the number of rows in the second"
+                    "İlk matrisin sütun sayısı, ikinci matrisin satır sayısına eşit olmalıdır."
                 )
-            return Matrix(
+            return Matris(
                 [
-                    [Matrix.dot_product(row, column) for column in other.columns()]
-                    for row in self.rows
+                    [Matris.nokta_çarpımı(satir, sutun) for sutun in other.sutunlar()]
+                    for satir in self.satirlar
                 ]
             )
         else:
             raise TypeError(
-                "A Matrix can only be multiplied by an int, float, or another matrix"
+                "Bir Matris yalnızca bir int, float veya başka bir matris ile çarpılabilir."
             )
 
-    def __pow__(self, other: int) -> Matrix:
+    def __pow__(self, other: int) -> Matris:
         if not isinstance(other, int):
-            raise TypeError("A Matrix can only be raised to the power of an int")
-        if not self.is_square:
-            raise ValueError("Only square matrices can be raised to a power")
+            raise TypeError("Bir Matris yalnızca bir int kuvvetine yükseltilebilir.")
+        if not self.kare_mi:
+            raise ValueError("Yalnızca kare matrisler kuvvet alınabilir.")
         if other == 0:
-            return self.identity()
+            return self.kimlik()
         if other < 0:
-            if self.is_invertable():
-                return self.inverse() ** (-other)
+            if self.terslenebilir_mi():
+                return self.ters() ** (-other)
             raise ValueError(
-                "Only invertable matrices can be raised to a negative power"
+                "Yalnızca terslenebilir matrisler negatif kuvvet alınabilir."
             )
-        result = self
+        sonuc = self
         for _ in range(other - 1):
-            result *= self
-        return result
+            sonuc *= self
+        return sonuc
 
     @classmethod
-    def dot_product(cls, row: list[int], column: list[int]) -> int:
-        return sum(row[i] * column[i] for i in range(len(row)))
+    def nokta_çarpımı(cls, satir: list[int], sutun: list[int]) -> int:
+        return sum(satir[i] * sutun[i] for i in range(len(satir)))
 
 
 if __name__ == "__main__":

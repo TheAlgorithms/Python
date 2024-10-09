@@ -1,19 +1,19 @@
 """
-Given weights and values of n items, put these items in a knapsack of
-capacity W to get the maximum total value in the knapsack.
+n öğesinin ağırlıkları ve değerleri verildiğinde, bu öğeleri bir sırt çantasına
+yerleştirerek sırt çantasındaki toplam değeri en üst düzeye çıkarın.
 
-Note that only the integer weights 0-1 knapsack problem is solvable
-using dynamic programming.
+Not: Yalnızca tam sayı ağırlıkları 0-1 sırt çantası problemi dinamik programlama
+kullanılarak çözülebilir.
 """
 
 
 def mf_knapsack(i, wt, val, j):
     """
-    This code involves the concept of memory functions. Here we solve the subproblems
-    which are needed unlike the below example
-    F is a 2D array with -1s filled up
+    Bu kod, bellek fonksiyonları kavramını içerir. Burada, aşağıdaki örnekte
+    olduğu gibi gerekli alt problemleri çözüyoruz.
+    F, -1'lerle doldurulmuş 2D bir dizidir.
     """
-    global f  # a global dp table for knapsack
+    global f  # sırt çantası için global dp tablosu
     if f[i][j] < 0:
         if j < wt[i - 1]:
             val = mf_knapsack(i - 1, wt, val, j)
@@ -41,25 +41,23 @@ def knapsack(w, wt, val, n):
 
 def knapsack_with_example_solution(w: int, wt: list, val: list):
     """
-    Solves the integer weights knapsack problem returns one of
-    the several possible optimal subsets.
+    Tam sayı ağırlıkları sırt çantası problemini çözer ve
+    birkaç olası optimal alt kümeden birini döndürür.
 
-    Parameters
+    Parametreler
     ---------
 
-    W: int, the total maximum weight for the given knapsack problem.
-    wt: list, the vector of weights for all items where wt[i] is the weight
-    of the i-th item.
-    val: list, the vector of values for all items where val[i] is the value
-    of the i-th item
+    W: int, verilen sırt çantası probleminin toplam maksimum ağırlığı.
+    wt: list, tüm öğelerin ağırlık vektörü, burada wt[i], i. öğenin ağırlığıdır.
+    val: list, tüm öğelerin değer vektörü, burada val[i], i. öğenin değeridir.
 
-    Returns
+    Dönüş
     -------
-    optimal_val: float, the optimal value for the given knapsack problem
-    example_optional_set: set, the indices of one of the optimal subsets
-    which gave rise to the optimal value.
+    optimal_val: float, verilen sırt çantası problemi için optimal değer.
+    example_optional_set: set, optimal değere yol açan optimal alt kümelerden
+    birinin indeksleri.
 
-    Examples
+    Örnekler
     -------
     >>> knapsack_with_example_solution(10, [1, 3, 5, 2], [10, 20, 100, 22])
     (142, {2, 3, 4})
@@ -68,26 +66,26 @@ def knapsack_with_example_solution(w: int, wt: list, val: list):
     >>> knapsack_with_example_solution(6, [4, 3, 2, 3], [3, 2, 4])
     Traceback (most recent call last):
         ...
-    ValueError: The number of weights must be the same as the number of values.
-    But got 4 weights and 3 values
+    ValueError: Ağırlıkların sayısı değerlerin sayısıyla aynı olmalıdır.
+    Ancak 4 ağırlık ve 3 değer aldınız.
     """
     if not (isinstance(wt, (list, tuple)) and isinstance(val, (list, tuple))):
         raise ValueError(
-            "Both the weights and values vectors must be either lists or tuples"
+            "Hem ağırlıklar hem de değerler vektörleri ya listeler ya da demetler olmalıdır"
         )
 
     num_items = len(wt)
     if num_items != len(val):
         msg = (
-            "The number of weights must be the same as the number of values.\n"
-            f"But got {num_items} weights and {len(val)} values"
+            "Ağırlıkların sayısı değerlerin sayısıyla aynı olmalıdır.\n"
+            f"Ancak {num_items} ağırlık ve {len(val)} değer aldınız."
         )
         raise ValueError(msg)
     for i in range(num_items):
         if not isinstance(wt[i], int):
             msg = (
-                "All weights must be integers but got weight of "
-                f"type {type(wt[i])} at index {i}"
+                "Tüm ağırlıklar tam sayı olmalıdır ancak "
+                f"{i} indeksinde {type(wt[i])} türünde ağırlık aldınız."
             )
             raise TypeError(msg)
 
@@ -100,28 +98,28 @@ def knapsack_with_example_solution(w: int, wt: list, val: list):
 
 def _construct_solution(dp: list, wt: list, i: int, j: int, optimal_set: set):
     """
-    Recursively reconstructs one of the optimal subsets given
-    a filled DP table and the vector of weights
+    Doldurulmuş bir DP tablosu ve ağırlık vektörü verildiğinde
+    optimal alt kümelerden birini yeniden oluşturur.
 
-    Parameters
+    Parametreler
     ---------
 
-    dp: list of list, the table of a solved integer weight dynamic programming problem
+    dp: list of list, çözülmüş tam sayı ağırlıklı dinamik programlama probleminin tablosu.
 
-    wt: list or tuple, the vector of weights of the items
-    i: int, the index of the item under consideration
-    j: int, the current possible maximum weight
-    optimal_set: set, the optimal subset so far. This gets modified by the function.
+    wt: list or tuple, öğelerin ağırlık vektörü.
+    i: int, dikkate alınan öğenin indeksi.
+    j: int, mevcut olası maksimum ağırlık.
+    optimal_set: set, şimdiye kadar olan optimal alt küme. Bu fonksiyon tarafından değiştirilir.
 
-    Returns
+    Dönüş
     -------
-    None
+    Yok
 
     """
-    # for the current item i at a maximum weight j to be part of an optimal subset,
-    # the optimal value at (i, j) must be greater than the optimal value at (i-1, j).
-    # where i - 1 means considering only the previous items at the given maximum weight
-    if i > 0 and j > 0:
+    # i. öğe için maksimum ağırlık j'de optimal alt kümenin bir parçası olması için,
+    # (i, j) deki optimal değer (i-1, j) deki optimal değerden büyük olmalıdır.
+    # burada i - 1, verilen maksimum ağırlıkta yalnızca önceki öğeleri dikkate alır.
+    if i > 0 or j > 0:
         if dp[i - 1][j] == dp[i][j]:
             _construct_solution(dp, wt, i - 1, j, optimal_set)
         else:
@@ -131,7 +129,7 @@ def _construct_solution(dp: list, wt: list, i: int, j: int, optimal_set: set):
 
 if __name__ == "__main__":
     """
-    Adding test case for knapsack
+    Sırt çantası için test durumu ekleme
     """
     val = [3, 2, 4, 4]
     wt = [4, 3, 2, 3]
@@ -140,12 +138,12 @@ if __name__ == "__main__":
     f = [[0] * (w + 1)] + [[0] + [-1] * (w + 1) for _ in range(n + 1)]
     optimal_solution, _ = knapsack(w, wt, val, n)
     print(optimal_solution)
-    print(mf_knapsack(n, wt, val, w))  # switched the n and w
+    print(mf_knapsack(n, wt, val, w))  # n ve w değiştirildi
 
-    # testing the dynamic programming problem with example
-    # the optimal subset for the above example are items 3 and 4
+    # örnekle dinamik programlama problemini test etme
+    # yukarıdaki örnek için optimal alt kümeler 3 ve 4. öğelerdir
     optimal_solution, optimal_subset = knapsack_with_example_solution(w, wt, val)
     assert optimal_solution == 8
     assert optimal_subset == {3, 4}
-    print("optimal_value = ", optimal_solution)
-    print("An optimal subset corresponding to the optimal value", optimal_subset)
+    print("optimal_değer = ", optimal_solution)
+    print("Optimal değere karşılık gelen optimal alt kümelerden biri", optimal_subset)

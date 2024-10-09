@@ -1,66 +1,61 @@
 r"""
 Problem:
 
-The n queens problem is: placing N queens on a N * N chess board such that no queen
-can attack any other queens placed on that chess board.  This means that one queen
-cannot have any other queen on its horizontal, vertical and diagonal lines.
+N vezir problemi: N * N satranç tahtasına N vezir yerleştirmek, öyle ki hiçbir vezir
+diğer vezirleri yatay, dikey ve çapraz olarak tehdit edemez.
 
-Solution:
+Çözüm:
 
-To solve this problem we will use simple math. First we know the queen can move in all
-the possible ways, we can simplify it in this: vertical, horizontal, diagonal left and
- diagonal right.
+Bu problemi çözmek için basit matematik kullanacağız. İlk olarak, vezirin tüm olası
+yönlerde hareket edebileceğini biliyoruz: dikey, yatay, sol çapraz ve sağ çapraz.
 
-We can visualize it like this:
+Bunu şu şekilde görselleştirebiliriz:
 
-left diagonal = \
-right diagonal = /
+sol çapraz = \
+sağ çapraz = /
 
-On a chessboard vertical movement could be the rows and horizontal movement could be
-the columns.
+Satranç tahtasında dikey hareket satırlar, yatay hareket ise sütunlar olabilir.
 
-In programming we can use an array, and in this array each index could be the rows and
-each value in the array could be the column. For example:
+Programlamada bir dizi kullanabiliriz ve bu dizide her indeks satırları, her değer ise
+sütunları temsil edebilir. Örneğin:
 
-    . Q . .     We have this chessboard with one queen in each column and each queen
-    . . . Q     can't attack to each other.
-    Q . . .     The array for this example would look like this: [1, 3, 0, 2]
-    . . Q .
+    . V . .     Bu satranç tahtasında her sütunda bir vezir var ve her vezir
+    . . . V     birbirini tehdit edemez.
+    V . . .     Bu örneğin dizisi şu şekilde olur: [1, 3, 0, 2]
+    . . V .
 
-So if we use an array and we verify that each value in the array is different to each
-other we know that at least the queens can't attack each other in horizontal and
-vertical.
+Bu noktada, dizideki her değerin birbirinden farklı olduğunu doğrularsak, vezirlerin
+en azından yatay ve dikey olarak birbirini tehdit edemeyeceğini biliriz.
 
-At this point we have it halfway completed and we will treat the chessboard as a
-Cartesian plane.  Hereinafter we are going to remember basic math, so in the school we
-learned this formula:
+Bu noktada, satranç tahtasını bir Kartezyen düzlem olarak ele alacağız. Buradan sonra
+temel matematiği hatırlayacağız, okulda bu formülü öğrenmiştik:
 
-    Slope of a line:
+    Bir doğrunun eğimi:
 
            y2 - y1
      m = ----------
           x2 - x1
 
-This formula allow us to get the slope. For the angles 45º (right diagonal) and 135º
-(left diagonal) this formula gives us m = 1, and m = -1 respectively.
+Bu formül bize eğimi verir. 45º (sağ çapraz) ve 135º (sol çapraz) açıları için bu
+formül sırasıyla m = 1 ve m = -1 değerlerini verir.
 
-See::
+Bakınız::
 https://www.enotes.com/homework-help/write-equation-line-that-hits-origin-45-degree-1474860
 
-Then we have this other formula:
+Sonra bu diğer formüle sahibiz:
 
-Slope intercept:
+Eğim kesişimi:
 
 y = mx + b
 
-b is where the line crosses the Y axis (to get more information see:
-https://www.mathsisfun.com/y_intercept.html), if we change the formula to solve for b
-we would have:
+b, doğrunun Y eksenini kestiği yerdir (daha fazla bilgi için bakınız:
+https://www.mathsisfun.com/y_intercept.html), formülü b'yi çözmek için değiştirirsek
+şu şekilde olur:
 
 y - mx = b
 
-And since we already have the m values for the angles 45º and 135º, this formula would
-look like this:
+Ve 45º ve 135º açıları için m değerlerine zaten sahip olduğumuzdan, bu formül şu
+şekilde olur:
 
 45º: y - (1)x = b
 45º: y - x = b
@@ -68,91 +63,90 @@ look like this:
 135º: y - (-1)x = b
 135º: y + x = b
 
-y = row
-x = column
+y = satır
+x = sütun
 
-Applying these two formulas we can check if a queen in some position is being attacked
-for another one or vice versa.
+Bu iki formülü uygulayarak, bir pozisyondaki bir vezirin başka bir vezir tarafından
+tehdit edilip edilmediğini veya tam tersini kontrol edebiliriz.
 
 """
 
 from __future__ import annotations
 
 
-def depth_first_search(
-    possible_board: list[int],
-    diagonal_right_collisions: list[int],
-    diagonal_left_collisions: list[int],
-    boards: list[list[str]],
+def derinlik_öncelikli_arama(
+    olası_tahta: list[int],
+    sağ_çapraz_çakışmaları: list[int],
+    sol_çapraz_çakışmaları: list[int],
+    tahtalar: list[list[str]],
     n: int,
 ) -> None:
     """
-    >>> boards = []
-    >>> depth_first_search([], [], [], boards, 4)
-    >>> for board in boards:
-    ...     print(board)
-    ['. Q . . ', '. . . Q ', 'Q . . . ', '. . Q . ']
-    ['. . Q . ', 'Q . . . ', '. . . Q ', '. Q . . ']
+    >>> tahtalar = []
+    >>> derinlik_öncelikli_arama([], [], [], tahtalar, 4)
+    >>> for tahta in tahtalar:
+    ...     print(tahta)
+    ['. V . . ', '. . . V ', 'V . . . ', '. . V . ']
+    ['. . V . ', 'V . . . ', '. . . V ', '. V . . ']
     """
 
-    # Get next row in the current board (possible_board) to fill it with a queen
-    row = len(possible_board)
+    # Mevcut tahtadaki (olası_tahta) bir sonraki satırı bir vezirle doldurmak için alın
+    satır = len(olası_tahta)
 
-    # If row is equal to the size of the board it means there are a queen in each row in
-    # the current board (possible_board)
-    if row == n:
-        # We convert the variable possible_board that looks like this: [1, 3, 0, 2] to
-        # this: ['. Q . . ', '. . . Q ', 'Q . . . ', '. . Q . ']
-        boards.append([". " * i + "Q " + ". " * (n - 1 - i) for i in possible_board])
+    # Eğer satır, tahtanın boyutuna eşitse, bu mevcut tahtada (olası_tahta) her satırda
+    # bir vezir olduğu anlamına gelir
+    if satır == n:
+        # olası_tahta değişkenini şu şekilde dönüştürürüz: [1, 3, 0, 2] bu: ['. V . . ', '. . . V ', 'V . . . ', '. . V . ']
+        tahtalar.append([". " * i + "V " + ". " * (n - 1 - i) for i in olası_tahta])
         return
 
-    # We iterate each column in the row to find all possible results in each row
-    for col in range(n):
-        # We apply that we learned previously. First we check that in the current board
-        # (possible_board) there are not other same value because if there is it means
-        # that there are a collision in vertical. Then we apply the two formulas we
-        # learned before:
+    # Her satırda tüm olası sonuçları bulmak için her sütunu yineleyin
+    for sütun in range(n):
+        # Daha önce öğrendiklerimizi uygularız. İlk olarak, mevcut tahtada (olası_tahta)
+        # başka aynı değerin olmadığını kontrol ederiz, çünkü varsa bu, dikeyde bir
+        # çakışma olduğu anlamına gelir. Sonra daha önce öğrendiğimiz iki formülü
+        # uygularız:
         #
-        # 45º: y - x = b or 45: row - col = b
-        # 135º: y + x = b or row + col = b.
+        # 45º: y - x = b veya 45: satır - sütun = b
+        # 135º: y + x = b veya satır + sütun = b.
         #
-        # And we verify if the results of this two formulas not exist in their variables
-        # respectively.  (diagonal_right_collisions, diagonal_left_collisions)
+        # Ve bu iki formülün sonuçlarının kendi değişkenlerinde bulunmadığını doğrularız
+        # (sağ_çapraz_çakışmaları, sol_çapraz_çakışmaları)
         #
-        # If any or these are True it means there is a collision so we continue to the
-        # next value in the for loop.
+        # Eğer bunlardan herhangi biri True ise, bu bir çakışma olduğu anlamına gelir,
+        # bu yüzden for döngüsündeki bir sonraki değere geçeriz.
         if (
-            col in possible_board
-            or row - col in diagonal_right_collisions
-            or row + col in diagonal_left_collisions
+            sütun in olası_tahta
+            or satır - sütun in sağ_çapraz_çakışmaları
+            or satır + sütun in sol_çapraz_çakışmaları
         ):
             continue
 
-        # If it is False we call dfs function again and we update the inputs
-        depth_first_search(
-            [*possible_board, col],
-            [*diagonal_right_collisions, row - col],
-            [*diagonal_left_collisions, row + col],
-            boards,
+        # Eğer False ise, dfs fonksiyonunu tekrar çağırırız ve girdileri güncelleriz
+        derinlik_öncelikli_arama(
+            [*olası_tahta, sütun],
+            [*sağ_çapraz_çakışmaları, satır - sütun],
+            [*sol_çapraz_çakışmaları, satır + sütun],
+            tahtalar,
             n,
         )
 
 
-def n_queens_solution(n: int) -> None:
-    boards: list[list[str]] = []
-    depth_first_search([], [], [], boards, n)
+def n_vezir_çözümü(n: int) -> None:
+    tahtalar: list[list[str]] = []
+    derinlik_öncelikli_arama([], [], [], tahtalar, n)
 
-    # Print all the boards
-    for board in boards:
-        for column in board:
-            print(column)
+    # Tüm tahtaları yazdır
+    for tahta in tahtalar:
+        for sütun in tahta:
+            print(sütun)
         print("")
 
-    print(len(boards), "solutions were found.")
+    print(len(tahtalar), "çözüm bulundu.")
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    n_queens_solution(4)
+    n_vezir_çözümü(4)

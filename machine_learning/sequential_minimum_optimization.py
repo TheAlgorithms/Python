@@ -1,19 +1,19 @@
 """
-Sequential minimal optimization (SMO) for support vector machines (SVM)
+Destek vektör makineleri (SVM) için ardışık minimum optimizasyon (SMO)
 
-Sequential minimal optimization (SMO) is an algorithm for solving the quadratic
-programming (QP) problem that arises during the training of SVMs. It was invented by
-John Platt in 1998.
+Ardışık minimum optimizasyon (SMO), SVM'lerin eğitimi sırasında ortaya çıkan
+kuadratik programlama (QP) problemini çözmek için kullanılan bir algoritmadır.
+1998 yılında John Platt tarafından icat edilmiştir.
 
-Input:
-    0: type: numpy.ndarray.
-    1: first column of ndarray must be tags of samples, must be 1 or -1.
-    2: rows of ndarray represent samples.
+Girdi:
+    0: tür: numpy.ndarray.
+    1: ndarray'in ilk sütunu örneklerin etiketleri olmalıdır, 1 veya -1 olmalıdır.
+    2: ndarray'in satırları örnekleri temsil eder.
 
-Usage:
-    Command:
+Kullanım:
+    Komut:
         python3 sequential_minimum_optimization.py
-    Code:
+    Kod:
         from sequential_minimum_optimization import SmoSVM, Kernel
 
         kernel = Kernel(kernel='poly', degree=3., coef0=1., gamma=0.5)
@@ -23,10 +23,12 @@ Usage:
         SVM.fit()
         predict = SVM.predict(test_samples)
 
-Reference:
+Referans:
     https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/smo-book.pdf
     https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/tr-98-14.pdf
 """
+
+#Organised to K. Umut Araz
 
 import os
 import sys
@@ -74,20 +76,20 @@ class SmoSVM:
 
         self.choose_alpha = self._choose_alphas()
 
-    # Calculate alphas using SMO algorithm
+    # SMO algoritmasını kullanarak alphas hesapla
     def fit(self):
         k = self._k
         state = None
         while True:
-            # 1: Find alpha1, alpha2
+            # 1: alpha1, alpha2 bul
             try:
                 i1, i2 = self.choose_alpha.send(state)
                 state = None
             except StopIteration:
-                print("Optimization done!\nEvery sample satisfy the KKT condition!")
+                print("Optimizasyon tamamlandı!\nHer örnek KKT koşulunu sağlıyor!")
                 break
 
-            # 2: calculate new alpha2 and new alpha1
+            # 2: yeni alpha2 ve yeni alpha1 hesapla
             y1, y2 = self.tags[i1], self.tags[i2]
             a1, a2 = self.alphas[i1].copy(), self.alphas[i2].copy()
             e1, e2 = self._e(i1), self._e(i2)
@@ -98,7 +100,7 @@ class SmoSVM:
                 continue
             self.alphas[i1], self.alphas[i2] = a1_new, a2_new
 
-            # 3: update threshold(b)
+            # 3: eşik (b) güncelle
             b1_new = np.float64(
                 -e1
                 - y1 * k(i1, i1) * (a1_new - a1)
@@ -122,7 +124,7 @@ class SmoSVM:
             b_old = self._b
             self._b = b
 
-            # 4: update error, here we only calculate the error for non-bound samples
+            # 4: hata güncelle, burada sadece sınırda olmayan örnekler için hatayı hesaplıyoruz
             self._unbound = [i for i in self._all_samples if self._is_unbound(i)]
             for s in self.unbound:
                 if s in (i1, i2):
@@ -133,17 +135,17 @@ class SmoSVM:
                     + (self._b - b_old)
                 )
 
-            # if i1 or i2 is non-bound, update their error value to zero
+            # eğer i1 veya i2 sınırda değilse, hata değerlerini sıfıra güncelle
             if self._is_unbound(i1):
                 self._error[i1] = 0
             if self._is_unbound(i2):
                 self._error[i2] = 0
 
-    # Predict test samples
+    # Test örneklerini tahmin et
     def predict(self, test_samples, classify=True):
         if test_samples.shape[1] > self.samples.shape[1]:
             raise ValueError(
-                "Test samples' feature length does not equal to that of train samples"
+                "Test örneklerinin özellik uzunluğu eğitim örneklerinin özellik uzunluğuna eşit değil"
             )
 
         if self._auto_norm:
@@ -158,7 +160,7 @@ class SmoSVM:
                 results.append(result)
         return np.array(results)
 
-    # Check if alpha violates the KKT condition
+    # Alpha'nın KKT koşulunu ihlal edip etmediğini kontrol et
     def _check_obey_kkt(self, index):
         alphas = self.alphas
         tol = self._tol
@@ -167,32 +169,32 @@ class SmoSVM:
 
         return (r < -tol and alphas[index] < c) or (r > tol and alphas[index] > 0.0)
 
-    # Get value calculated from kernel function
+    # Çekirdek fonksiyonundan hesaplanan değeri al
     def _k(self, i1, i2):
-        # for test samples, use kernel function
+        # test örnekleri için, çekirdek fonksiyonunu kullan
         if isinstance(i2, np.ndarray):
             return self.Kernel(self.samples[i1], i2)
-        # for training samples, kernel values have been saved in matrix
+        # eğitim örnekleri için, çekirdek değerleri matriste kaydedilmiştir
         else:
             return self._K_matrix[i1, i2]
 
-    # Get error for sample
+    # Örnek için hatayı al
     def _e(self, index):
         """
-        Two cases:
-            1: Sample[index] is non-bound, fetch error from list: _error
-            2: sample[index] is bound, use predicted value minus true value: g(xi) - yi
+        İki durum:
+            1: Örnek[index] sınırda değilse, hatayı listeden al: _error
+            2: Örnek[index] sınırdaysa, tahmin edilen değerden gerçek değeri çıkar: g(xi) - yi
         """
-        # get from error data
+        # hata verisinden al
         if self._is_unbound(index):
             return self._error[index]
-        # get by g(xi) - yi
+        # g(xi) - yi ile al
         else:
             gx = np.dot(self.alphas * self.tags, self._K_matrix[:, index]) + self._b
             yi = self.tags[index]
             return gx - yi
 
-    # Calculate kernel matrix of all possible i1, i2, saving time
+    # Tüm olası i1, i2 için çekirdek matrisini hesapla, zaman kazandırır
     def _calculate_k_matrix(self):
         k_matrix = np.zeros([self.length, self.length])
         for i in self._all_samples:
@@ -202,7 +204,7 @@ class SmoSVM:
                 )
         return k_matrix
 
-    # Predict tag for test sample
+    # Test örneği için etiketi tahmin et
     def _predict(self, sample):
         k = self._k
         predicted_value = (
@@ -216,7 +218,7 @@ class SmoSVM:
         )
         return predicted_value
 
-    # Choose alpha1 and alpha2
+    # Alpha1 ve alpha2 seç
     def _choose_alphas(self):
         loci = yield from self._choose_a1()
         if not loci:
@@ -225,24 +227,22 @@ class SmoSVM:
 
     def _choose_a1(self):
         """
-        Choose first alpha
-        Steps:
-            1: First loop over all samples
-            2: Second loop over all non-bound samples until no non-bound samples violate
-               the KKT condition.
-            3: Repeat these two processes until no samples violate the KKT condition
-               after the first loop.
+        İlk alpha'yı seç
+        Adımlar:
+            1: İlk olarak tüm örnekler üzerinde döngü yap
+            2: İkinci olarak tüm sınırda olmayan örnekler üzerinde döngü yap, KKT koşulunu ihlal eden sınırda olmayan örnek kalmayana kadar.
+            3: Bu iki işlemi, ilk döngüden sonra KKT koşulunu ihlal eden örnek kalmayana kadar tekrarla.
         """
         while True:
             all_not_obey = True
-            # all sample
-            print("Scanning all samples!")
+            # tüm örnekler
+            print("Tüm örnekler taranıyor!")
             for i1 in [i for i in self._all_samples if self._check_obey_kkt(i)]:
                 all_not_obey = False
                 yield from self._choose_a2(i1)
 
-            # non-bound sample
-            print("Scanning non-bound samples!")
+            # sınırda olmayan örnekler
+            print("Sınırda olmayan örnekler taranıyor!")
             while True:
                 not_obey = True
                 for i1 in [
@@ -253,22 +253,20 @@ class SmoSVM:
                     not_obey = False
                     yield from self._choose_a2(i1)
                 if not_obey:
-                    print("All non-bound samples satisfy the KKT condition!")
+                    print("Tüm sınırda olmayan örnekler KKT koşulunu sağlıyor!")
                     break
             if all_not_obey:
-                print("All samples satisfy the KKT condition!")
+                print("Tüm örnekler KKT koşulunu sağlıyor!")
                 break
         return False
 
     def _choose_a2(self, i1):
         """
-        Choose the second alpha using a heuristic algorithm
-        Steps:
-            1: Choose alpha2 that maximizes the step size (|E1 - E2|).
-            2: Start in a random point, loop over all non-bound samples till alpha1 and
-               alpha2 are optimized.
-            3: Start in a random point, loop over all samples till alpha1 and alpha2 are
-               optimized.
+        Heuristik bir algoritma kullanarak ikinci alpha'yı seç
+        Adımlar:
+            1: Adım boyutunu maksimize eden alpha2'yi seç (|E1 - E2|).
+            2: Rastgele bir noktada başla, tüm sınırda olmayan örnekler üzerinde döngü yap, alpha1 ve alpha2 optimize edilene kadar.
+            3: Rastgele bir noktada başla, tüm örnekler üzerinde döngü yap, alpha1 ve alpha2 optimize edilene kadar.
         """
         self._unbound = [i for i in self._all_samples if self._is_unbound(i)]
 
@@ -298,13 +296,13 @@ class SmoSVM:
             if cmd is None:
                 return
 
-    # Get the new alpha2 and new alpha1
+    # Yeni alpha2 ve yeni alpha1'i al
     def _get_new_alpha(self, i1, i2, a1, a2, e1, e2, y1, y2):
         k = self._k
         if i1 == i2:
             return None, None
 
-        # calculate L and H which bound the new alpha2
+        # Yeni alpha2'yi sınırlayan L ve H'yi hesapla
         s = y1 * y2
         if s == -1:
             l, h = max(0.0, a2 - a1), min(self._c, self._c + a2 - a1)  # noqa: E741
@@ -313,15 +311,15 @@ class SmoSVM:
         if l == h:
             return None, None
 
-        # calculate eta
+        # eta'yı hesapla
         k11 = k(i1, i1)
         k22 = k(i2, i2)
         k12 = k(i1, i2)
 
-        # select the new alpha2 which could achieve the minimal objectives
+        # Minimal hedeflere ulaşabilecek yeni alpha2'yi seç
         if (eta := k11 + k22 - 2.0 * k12) > 0.0:
             a2_new_unc = a2 + (y2 * (e1 - e2)) / eta
-            # a2_new has a boundary
+            # a2_new'un bir sınırı var
             if a2_new_unc >= h:
                 a2_new = h
             elif a2_new_unc <= l:
@@ -333,7 +331,7 @@ class SmoSVM:
             l1 = a1 + s * (a2 - l)
             h1 = a1 + s * (a2 - h)
 
-            # Method 1
+            # Yöntem 1
             f1 = y1 * (e1 + b) - a1 * k(i1, i1) - s * a2 * k(i1, i2)
             f2 = y2 * (e2 + b) - a2 * k(i2, i2) - s * a1 * k(i1, i2)
             ol = (
@@ -351,8 +349,7 @@ class SmoSVM:
                 + s * h * h1 * k(i1, i2)
             )
             """
-            Method 2: Use objective function to check which alpha2_new could achieve the
-            minimal objectives
+            Yöntem 2: Hangi alpha2_new'un minimal hedeflere ulaşabileceğini kontrol etmek için hedef fonksiyonunu kullan
             """
             if ol < (oh - self._eps):
                 a2_new = l
@@ -361,7 +358,7 @@ class SmoSVM:
             else:
                 a2_new = a2
 
-        # a1_new has a boundary too
+        # a1_new'un da bir sınırı var
         a1_new = a1 + s * (a2 - a2_new)
         if a1_new < 0:
             a2_new += s * a1_new
@@ -372,7 +369,7 @@ class SmoSVM:
 
         return a1_new, a2_new
 
-    # Normalize data using min-max method
+    # Min-max yöntemi kullanarak veriyi normalize et
     def _norm(self, data):
         if self._init:
             self._min = np.min(data, axis=0)

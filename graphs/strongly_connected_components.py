@@ -1,90 +1,92 @@
 """
-https://en.wikipedia.org/wiki/Strongly_connected_component
+https://tr.wikipedia.org/wiki/Güçlü_bağlantılı_bileşen
 
-Finding strongly connected components in directed graph
+Yönlendirilmiş grafikte güçlü bağlantılı bileşenleri bulma
+
+Produced By K. Umut Araz
 
 """
 
-test_graph_1 = {0: [2, 3], 1: [0], 2: [1], 3: [4], 4: []}
+test_graf_1 = {0: [2, 3], 1: [0], 2: [1], 3: [4], 4: []}
 
-test_graph_2 = {0: [1, 2, 3], 1: [2], 2: [0], 3: [4], 4: [5], 5: [3]}
+test_graf_2 = {0: [1, 2, 3], 1: [2], 2: [0], 3: [4], 4: [5], 5: [3]}
 
 
-def topology_sort(
-    graph: dict[int, list[int]], vert: int, visited: list[bool]
+def topolojik_sıralama(
+    graf: dict[int, list[int]], düğüm: int, ziyaret_edildi: list[bool]
 ) -> list[int]:
     """
-    Use depth first search to sort graph
-    At this time graph is the same as input
-    >>> topology_sort(test_graph_1, 0, 5 * [False])
+    Derinlemesine arama kullanarak grafiği sırala
+    Bu aşamada graf giriş ile aynıdır
+    >>> topolojik_sıralama(test_graf_1, 0, 5 * [False])
     [1, 2, 4, 3, 0]
-    >>> topology_sort(test_graph_2, 0, 6 * [False])
+    >>> topolojik_sıralama(test_graf_2, 0, 6 * [False])
     [2, 1, 5, 4, 3, 0]
     """
 
-    visited[vert] = True
-    order = []
+    ziyaret_edildi[düğüm] = True
+    sıra = []
 
-    for neighbour in graph[vert]:
-        if not visited[neighbour]:
-            order += topology_sort(graph, neighbour, visited)
+    for komşu in graf[düğüm]:
+        if not ziyaret_edildi[komşu]:
+            sıra += topolojik_sıralama(graf, komşu, ziyaret_edildi)
 
-    order.append(vert)
+    sıra.append(düğüm)
 
-    return order
+    return sıra
 
 
-def find_components(
-    reversed_graph: dict[int, list[int]], vert: int, visited: list[bool]
+def bileşenleri_bul(
+    ters_graf: dict[int, list[int]], düğüm: int, ziyaret_edildi: list[bool]
 ) -> list[int]:
     """
-    Use depth first search to find strongly connected
-    vertices. Now graph is reversed
-    >>> find_components({0: [1], 1: [2], 2: [0]}, 0, 5 * [False])
+    Derinlemesine arama kullanarak güçlü bağlantılı
+    düğümleri bul. Şimdi graf ters çevrilmiştir
+    >>> bileşenleri_bul({0: [1], 1: [2], 2: [0]}, 0, 5 * [False])
     [0, 1, 2]
-    >>> find_components({0: [2], 1: [0], 2: [0, 1]}, 0, 6 * [False])
+    >>> bileşenleri_bul({0: [2], 1: [0], 2: [0, 1]}, 0, 6 * [False])
     [0, 2, 1]
     """
 
-    visited[vert] = True
-    component = [vert]
+    ziyaret_edildi[düğüm] = True
+    bileşen = [düğüm]
 
-    for neighbour in reversed_graph[vert]:
-        if not visited[neighbour]:
-            component += find_components(reversed_graph, neighbour, visited)
+    for komşu in ters_graf[düğüm]:
+        if not ziyaret_edildi[komşu]:
+            bileşen += bileşenleri_bul(ters_graf, komşu, ziyaret_edildi)
 
-    return component
+    return bileşen
 
 
-def strongly_connected_components(graph: dict[int, list[int]]) -> list[list[int]]:
+def güçlü_bağlantılı_bileşenler(graf: dict[int, list[int]]) -> list[list[int]]:
     """
-    This function takes graph as a parameter
-    and then returns the list of strongly connected components
-    >>> strongly_connected_components(test_graph_1)
+    Bu fonksiyon grafı parametre olarak alır
+    ve ardından güçlü bağlantılı bileşenlerin listesini döndürür
+    >>> güçlü_bağlantılı_bileşenler(test_graf_1)
     [[0, 1, 2], [3], [4]]
-    >>> strongly_connected_components(test_graph_2)
+    >>> güçlü_bağlantılı_bileşenler(test_graf_2)
     [[0, 2, 1], [3, 5, 4]]
     """
 
-    visited = len(graph) * [False]
-    reversed_graph: dict[int, list[int]] = {vert: [] for vert in range(len(graph))}
+    ziyaret_edildi = len(graf) * [False]
+    ters_graf: dict[int, list[int]] = {düğüm: [] for düğüm in range(len(graf))}
 
-    for vert, neighbours in graph.items():
-        for neighbour in neighbours:
-            reversed_graph[neighbour].append(vert)
+    for düğüm, komşular in graf.items():
+        for komşu in komşular:
+            ters_graf[komşu].append(düğüm)
 
-    order = []
-    for i, was_visited in enumerate(visited):
-        if not was_visited:
-            order += topology_sort(graph, i, visited)
+    sıra = []
+    for i, ziyaret in enumerate(ziyaret_edildi):
+        if not ziyaret:
+            sıra += topolojik_sıralama(graf, i, ziyaret_edildi)
 
-    components_list = []
-    visited = len(graph) * [False]
+    bileşenler_listesi = []
+    ziyaret_edildi = len(graf) * [False]
 
-    for i in range(len(graph)):
-        vert = order[len(graph) - i - 1]
-        if not visited[vert]:
-            component = find_components(reversed_graph, vert, visited)
-            components_list.append(component)
+    for i in range(len(graf)):
+        düğüm = sıra[len(graf) - i - 1]
+        if not ziyaret_edildi[düğüm]:
+            bileşen = bileşenleri_bul(ters_graf, düğüm, ziyaret_edildi)
+            bileşenler_listesi.append(bileşen)
 
-    return components_list
+    return bileşenler_listesi

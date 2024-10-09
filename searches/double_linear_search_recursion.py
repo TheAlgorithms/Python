@@ -1,32 +1,35 @@
-def search(list_data: list, key: int, left: int = 0, right: int = 0) -> int:
+def ara(liste: list, anahtar: int, sol: int = 0, sag: int = 0) -> int:
     """
-    Iterate through the array to find the index of key using recursion.
-    :param list_data: the list to be searched
-    :param key: the key to be searched
-    :param left: the index of first element
-    :param right: the index of last element
-    :return: the index of key value if found, -1 otherwise.
+    Diziyi kullanarak anahtarın indeksini bulmak için özyineleme ile arama yapar.
+    :param liste: aranacak liste
+    :param anahtar: aranacak anahtar
+    :param sol: ilk elemanın indeksi
+    :param sag: son elemanın indeksi
+    :return: anahtar değeri bulunursa indeksi, bulunamazsa -1.
 
-    >>> search(list(range(0, 11)), 5)
+    # Organiser: K. Umut Araz
+    
+
+    >>> ara(list(range(0, 11)), 5)
     5
-    >>> search([1, 2, 4, 5, 3], 4)
+    >>> ara([1, 2, 4, 5, 3], 4)
     2
-    >>> search([1, 2, 4, 5, 3], 6)
+    >>> ara([1, 2, 4, 5, 3], 6)
     -1
-    >>> search([5], 5)
+    >>> ara([5], 5)
     0
-    >>> search([], 1)
+    >>> ara([], 1)
     -1
     """
-    right = right or len(list_data) - 1
-    if left > right:
+    sag = sag or len(liste) - 1
+    if sol > sag:
         return -1
-    elif list_data[left] == key:
-        return left
-    elif list_data[right] == key:
-        return right
+    elif liste[sol] == anahtar:
+        return sol
+    elif liste[sag] == anahtar:
+        return sag
     else:
-        return search(list_data, key, left + 1, right - 1)
+        return ara(liste, anahtar, sol + 1, sag - 1)
 
 
 if __name__ == "__main__":

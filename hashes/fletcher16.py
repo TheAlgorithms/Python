@@ -1,18 +1,15 @@
 """
-The Fletcher checksum is an algorithm for computing a position-dependent
-checksum devised by John G. Fletcher (1934-2012) at Lawrence Livermore Labs
-in the late 1970s.[1] The objective of the Fletcher checksum was to
-provide error-detection properties approaching those of a cyclic
-redundancy check but with the lower computational effort associated
-with summation techniques.
+Fletcher checksum, 1970'lerin sonlarında Lawrence Livermore Labs'da John G. Fletcher (1934-2012) tarafından geliştirilen,
+konuma bağlı bir checksum hesaplama algoritmasıdır.[1] Fletcher checksum'un amacı, döngüsel artıklık kontrolüne yaklaşan
+hata tespit özellikleri sağlamak, ancak toplama teknikleriyle ilişkili daha düşük hesaplama çabasıyla bunu başarmaktır.
 
-Source: https://en.wikipedia.org/wiki/Fletcher%27s_checksum
+Kaynak: https://en.wikipedia.org/wiki/Fletcher%27s_checksum
 """
 
 
-def fletcher16(text: str) -> int:
+def fletcher16(metin: str) -> int:
     """
-    Loop through every character in the data and add to two sums.
+    Verideki her karakteri döngüyle gez ve iki toplamaya ekle.
 
     >>> fletcher16('hello world')
     6752
@@ -21,13 +18,13 @@ def fletcher16(text: str) -> int:
     >>> fletcher16('The quick brown fox jumps over the lazy dog.')
     5655
     """
-    data = bytes(text, "ascii")
-    sum1 = 0
-    sum2 = 0
-    for character in data:
-        sum1 = (sum1 + character) % 255
-        sum2 = (sum1 + sum2) % 255
-    return (sum2 << 8) | sum1
+    veri = bytes(metin, "ascii")
+    toplam1 = 0
+    toplam2 = 0
+    for karakter in veri:
+        toplam1 = (toplam1 + karakter) % 255
+        toplam2 = (toplam1 + toplam2) % 255
+    return (toplam2 << 8) | toplam1
 
 
 if __name__ == "__main__":

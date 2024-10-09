@@ -1,48 +1,47 @@
 """
-The Simple Moving Average (SMA) is a statistical calculation used to analyze data points
-by creating a constantly updated average price over a specific time period.
-In finance, SMA is often used in time series analysis to smooth out price data
-and identify trends.
+Basit Hareketli Ortalama (SMA), belirli bir zaman diliminde sürekli güncellenen
+ortalama fiyatı oluşturarak veri noktalarını analiz etmek için kullanılan istatistiksel bir hesaplamadır.
+Finansta, SMA genellikle fiyat verilerini düzleştirmek ve trendleri belirlemek için zaman serisi analizinde kullanılır.
 
-Reference: https://en.wikipedia.org/wiki/Moving_average
+Referans: https://en.wikipedia.org/wiki/Moving_average
 """
 
 from collections.abc import Sequence
 
 
-def simple_moving_average(
-    data: Sequence[float], window_size: int
+def basit_hareketli_ortalama(
+    veri: Sequence[float], pencere_boyutu: int
 ) -> list[float | None]:
     """
-    Calculate the simple moving average (SMA) for some given time series data.
+    Verilen zaman serisi verileri için basit hareketli ortalamayı (SMA) hesaplayın.
 
-    :param data: A list of numerical data points.
-    :param window_size: An integer representing the size of the SMA window.
-    :return: A list of SMA values with the same length as the input data.
+    :param veri: Sayısal veri noktalarının bir listesi.
+    :param pencere_boyutu: SMA penceresinin boyutunu temsil eden bir tamsayı.
+    :return: Girdi verileriyle aynı uzunlukta bir SMA değerleri listesi.
 
-    Examples:
-    >>> sma = simple_moving_average([10, 12, 15, 13, 14, 16, 18, 17, 19, 21], 3)
+    Örnekler:
+    >>> sma = basit_hareketli_ortalama([10, 12, 15, 13, 14, 16, 18, 17, 19, 21], 3)
     >>> [round(value, 2) if value is not None else None for value in sma]
     [None, None, 12.33, 13.33, 14.0, 14.33, 16.0, 17.0, 18.0, 19.0]
-    >>> simple_moving_average([10, 12, 15], 5)
+    >>> basit_hareketli_ortalama([10, 12, 15], 5)
     [None, None, None]
-    >>> simple_moving_average([10, 12, 15, 13, 14, 16, 18, 17, 19, 21], 0)
+    >>> basit_hareketli_ortalama([10, 12, 15, 13, 14, 16, 18, 17, 19, 21], 0)
     Traceback (most recent call last):
     ...
-    ValueError: Window size must be a positive integer
+    ValueError: Pencere boyutu pozitif bir tamsayı olmalıdır
     """
-    if window_size < 1:
-        raise ValueError("Window size must be a positive integer")
+    if pencere_boyutu < 1:
+        raise ValueError("Pencere boyutu pozitif bir tamsayı olmalıdır")
 
     sma: list[float | None] = []
 
-    for i in range(len(data)):
-        if i < window_size - 1:
-            sma.append(None)  # SMA not available for early data points
+    for i in range(len(veri)):
+        if i < pencere_boyutu - 1:
+            sma.append(None)  # Erken veri noktaları için SMA mevcut değil
         else:
-            window = data[i - window_size + 1 : i + 1]
-            sma_value = sum(window) / window_size
-            sma.append(sma_value)
+            pencere = veri[i - pencere_boyutu + 1 : i + 1]
+            sma_degeri = sum(pencere) / pencere_boyutu
+            sma.append(sma_degeri)
     return sma
 
 
@@ -51,19 +50,19 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    # Example data (replace with your own time series data)
-    data = [10, 12, 15, 13, 14, 16, 18, 17, 19, 21]
+    # Örnek veri (kendi zaman serisi verilerinizle değiştirin)
+    veri = [10, 12, 15, 13, 14, 16, 18, 17, 19, 21]
 
-    # Specify the window size for the SMA
-    window_size = 3
+    # SMA için pencere boyutunu belirtin
+    pencere_boyutu = 3
 
-    # Calculate the Simple Moving Average
-    sma_values = simple_moving_average(data, window_size)
+    # Basit Hareketli Ortalama'yı hesaplayın
+    sma_degerleri = basit_hareketli_ortalama(veri, pencere_boyutu)
 
-    # Print the SMA values
-    print("Simple Moving Average (SMA) Values:")
-    for i, value in enumerate(sma_values):
-        if value is not None:
-            print(f"Day {i + 1}: {value:.2f}")
+    # SMA değerlerini yazdırın
+    print("Basit Hareketli Ortalama (SMA) Değerleri:")
+    for i, deger in enumerate(sma_degerleri):
+        if deger is not None:
+            print(f"Gün {i + 1}: {deger:.2f}")
         else:
-            print(f"Day {i + 1}: Not enough data for SMA")
+            print(f"Gün {i + 1}: SMA için yeterli veri yok")

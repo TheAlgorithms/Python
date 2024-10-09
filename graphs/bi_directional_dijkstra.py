@@ -1,14 +1,13 @@
 """
-Bi-directional Dijkstra's algorithm.
+Çift yönlü Dijkstra algoritması.
 
-A bi-directional approach is an efficient and
-less time consuming optimization for Dijkstra's
-searching algorithm
+Çift yönlü bir yaklaşım, Dijkstra'nın arama algoritması için
+verimli ve daha az zaman alan bir optimizasyondur.
 
-Reference: shorturl.at/exHM7
+Referans: shorturl.at/exHM7
 """
 
-# Author: Swayam Singh (https://github.com/practice404)
+# Yazar: K. Umut Araz (https://github.com/arazumut)
 
 from queue import PriorityQueue
 from typing import Any
@@ -16,108 +15,108 @@ from typing import Any
 import numpy as np
 
 
-def pass_and_relaxation(
-    graph: dict,
+def geçiş_ve_gevşetme(
+    grafik: dict,
     v: str,
-    visited_forward: set,
-    visited_backward: set,
-    cst_fwd: dict,
-    cst_bwd: dict,
-    queue: PriorityQueue,
-    parent: dict,
-    shortest_distance: float,
+    ziyaret_edilen_ileri: set,
+    ziyaret_edilen_geri: set,
+    maliyet_ileri: dict,
+    maliyet_geri: dict,
+    kuyruk: PriorityQueue,
+    ebeveyn: dict,
+    en_kısa_mesafe: float,
 ) -> float:
-    for nxt, d in graph[v]:
-        if nxt in visited_forward:
+    for sonraki, d in grafik[v]:
+        if sonraki in ziyaret_edilen_ileri:
             continue
-        old_cost_f = cst_fwd.get(nxt, np.inf)
-        new_cost_f = cst_fwd[v] + d
-        if new_cost_f < old_cost_f:
-            queue.put((new_cost_f, nxt))
-            cst_fwd[nxt] = new_cost_f
-            parent[nxt] = v
+        eski_maliyet_ileri = maliyet_ileri.get(sonraki, np.inf)
+        yeni_maliyet_ileri = maliyet_ileri[v] + d
+        if yeni_maliyet_ileri < eski_maliyet_ileri:
+            kuyruk.put((yeni_maliyet_ileri, sonraki))
+            maliyet_ileri[sonraki] = yeni_maliyet_ileri
+            ebeveyn[sonraki] = v
         if (
-            nxt in visited_backward
-            and cst_fwd[v] + d + cst_bwd[nxt] < shortest_distance
+            sonraki in ziyaret_edilen_geri
+            and maliyet_ileri[v] + d + maliyet_geri[sonraki] < en_kısa_mesafe
         ):
-            shortest_distance = cst_fwd[v] + d + cst_bwd[nxt]
-    return shortest_distance
+            en_kısa_mesafe = maliyet_ileri[v] + d + maliyet_geri[sonraki]
+    return en_kısa_mesafe
 
 
-def bidirectional_dij(
-    source: str, destination: str, graph_forward: dict, graph_backward: dict
+def çift_yönlü_dijkstra(
+    kaynak: str, hedef: str, grafik_ileri: dict, grafik_geri: dict
 ) -> int:
     """
-    Bi-directional Dijkstra's algorithm.
+    Çift yönlü Dijkstra algoritması.
 
-    Returns:
-        shortest_path_distance (int): length of the shortest path.
+    Dönüş:
+        en_kısa_yol_uzunluğu (int): en kısa yolun uzunluğu.
 
-    Warnings:
-        If the destination is not reachable, function returns -1
+    Uyarılar:
+        Eğer hedefe ulaşılamazsa, fonksiyon -1 döner.
 
-    >>> bidirectional_dij("E", "F", graph_fwd, graph_bwd)
+    >>> çift_yönlü_dijkstra("E", "F", grafik_ileri, grafik_geri)
     3
     """
-    shortest_path_distance = -1
+    en_kısa_yol_uzunluğu = -1
 
-    visited_forward = set()
-    visited_backward = set()
-    cst_fwd = {source: 0}
-    cst_bwd = {destination: 0}
-    parent_forward = {source: None}
-    parent_backward = {destination: None}
-    queue_forward: PriorityQueue[Any] = PriorityQueue()
-    queue_backward: PriorityQueue[Any] = PriorityQueue()
+    ziyaret_edilen_ileri = set()
+    ziyaret_edilen_geri = set()
+    maliyet_ileri = {kaynak: 0}
+    maliyet_geri = {hedef: 0}
+    ebeveyn_ileri = {kaynak: None}
+    ebeveyn_geri = {hedef: None}
+    kuyruk_ileri: PriorityQueue[Any] = PriorityQueue()
+    kuyruk_geri: PriorityQueue[Any] = PriorityQueue()
 
-    shortest_distance = np.inf
+    en_kısa_mesafe = np.inf
 
-    queue_forward.put((0, source))
-    queue_backward.put((0, destination))
+    kuyruk_ileri.put((0, kaynak))
+    kuyruk_geri.put((0, hedef))
 
-    if source == destination:
+    if kaynak == hedef:
         return 0
 
-    while not queue_forward.empty() and not queue_backward.empty():
-        _, v_fwd = queue_forward.get()
-        visited_forward.add(v_fwd)
+    while not kuyruk_ileri.empty() and not kuyruk_geri.empty():
+        _, v_ileri = kuyruk_ileri.get()
+        ziyaret_edilen_ileri.add(v_ileri)
 
-        _, v_bwd = queue_backward.get()
-        visited_backward.add(v_bwd)
+        _, v_geri = kuyruk_geri.get()
+        ziyaret_edilen_geri.add(v_geri)
 
-        shortest_distance = pass_and_relaxation(
-            graph_forward,
-            v_fwd,
-            visited_forward,
-            visited_backward,
-            cst_fwd,
-            cst_bwd,
-            queue_forward,
-            parent_forward,
-            shortest_distance,
+        en_kısa_mesafe = geçiş_ve_gevşetme(
+            grafik_ileri,
+            v_ileri,
+            ziyaret_edilen_ileri,
+            ziyaret_edilen_geri,
+            maliyet_ileri,
+            maliyet_geri,
+            kuyruk_ileri,
+            ebeveyn_ileri,
+            en_kısa_mesafe,
         )
 
-        shortest_distance = pass_and_relaxation(
-            graph_backward,
-            v_bwd,
-            visited_backward,
-            visited_forward,
-            cst_bwd,
-            cst_fwd,
-            queue_backward,
-            parent_backward,
-            shortest_distance,
+        en_kısa_mesafe = geçiş_ve_gevşetme(
+            grafik_geri,
+            v_geri,
+            ziyaret_edilen_geri,
+            ziyaret_edilen_ileri,
+            maliyet_geri,
+            maliyet_ileri,
+            kuyruk_geri,
+            ebeveyn_geri,
+            en_kısa_mesafe,
         )
 
-        if cst_fwd[v_fwd] + cst_bwd[v_bwd] >= shortest_distance:
+        if maliyet_ileri[v_ileri] + maliyet_geri[v_geri] >= en_kısa_mesafe:
             break
 
-    if shortest_distance != np.inf:
-        shortest_path_distance = shortest_distance
-    return shortest_path_distance
+    if en_kısa_mesafe != np.inf:
+        en_kısa_yol_uzunluğu = en_kısa_mesafe
+    return en_kısa_yol_uzunluğu
 
 
-graph_fwd = {
+grafik_ileri = {
     "B": [["C", 1]],
     "C": [["D", 1]],
     "D": [["F", 1]],
@@ -125,7 +124,7 @@ graph_fwd = {
     "F": [],
     "G": [["F", 1]],
 }
-graph_bwd = {
+grafik_geri = {
     "B": [["E", 1]],
     "C": [["B", 1]],
     "D": [["C", 1]],

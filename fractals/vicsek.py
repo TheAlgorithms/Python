@@ -1,76 +1,74 @@
-"""Authors Bastien Capiaux & Mehdi Oudghiri
+"""Yazarlar Bastien Capiaux & Mehdi Oudghiri
 
-The Vicsek fractal algorithm is a recursive algorithm that creates a
-pattern known as the Vicsek fractal or the Vicsek square.
-It is based on the concept of self-similarity, where the pattern at each
-level of recursion resembles the overall pattern.
-The algorithm involves dividing a square into 9 equal smaller squares,
-removing the center square, and then repeating this process on the remaining 8 squares.
-This results in a pattern that exhibits self-similarity and has a
-square-shaped outline with smaller squares within it.
+Vicsek fraktal algoritması, Vicsek fraktalı veya Vicsek karesi olarak bilinen bir
+desen oluşturan özyinelemeli bir algoritmadır.
+Her özyineleme seviyesindeki desenin genel desene benzediği
+özyineleme kavramına dayanır.
+Algoritma, bir kareyi 9 eşit küçük kareye bölmeyi,
+merkez kareyi çıkarmayı ve ardından bu işlemi kalan 8 karede tekrarlamayı içerir.
+Bu, özyinelemeyi sergileyen ve içinde daha küçük kareler bulunan
+kare şeklinde bir dış hat deseni ile sonuçlanır.
 
-Source: https://en.wikipedia.org/wiki/Vicsek_fractal
+Kaynak: https://en.wikipedia.org/wiki/Vicsek_fractal
 """
 
 import turtle
 
 
-def draw_cross(x: float, y: float, length: float):
+def haç_çiz(x: float, y: float, uzunluk: float):
     """
-    Draw a cross at the specified position and with the specified length.
+    Belirtilen konumda ve belirtilen uzunlukta bir haç çiz.
     """
     turtle.up()
-    turtle.goto(x - length / 2, y - length / 6)
+    turtle.goto(x - uzunluk / 2, y - uzunluk / 6)
     turtle.down()
     turtle.seth(0)
     turtle.begin_fill()
     for _ in range(4):
-        turtle.fd(length / 3)
+        turtle.fd(uzunluk / 3)
         turtle.right(90)
-        turtle.fd(length / 3)
+        turtle.fd(uzunluk / 3)
         turtle.left(90)
-        turtle.fd(length / 3)
+        turtle.fd(uzunluk / 3)
         turtle.left(90)
     turtle.end_fill()
 
 
-def draw_fractal_recursive(x: float, y: float, length: float, depth: float):
+def fraktal_çiz_özyinelemeli(x: float, y: float, uzunluk: float, derinlik: float):
     """
-    Recursively draw the Vicsek fractal at the specified position, with the
-    specified length and depth.
+    Belirtilen konumda, belirtilen uzunluk ve derinlikte Vicsek fraktalını özyinelemeli olarak çiz.
     """
-    if depth == 0:
-        draw_cross(x, y, length)
+    if derinlik == 0:
+        haç_çiz(x, y, uzunluk)
         return
 
-    draw_fractal_recursive(x, y, length / 3, depth - 1)
-    draw_fractal_recursive(x + length / 3, y, length / 3, depth - 1)
-    draw_fractal_recursive(x - length / 3, y, length / 3, depth - 1)
-    draw_fractal_recursive(x, y + length / 3, length / 3, depth - 1)
-    draw_fractal_recursive(x, y - length / 3, length / 3, depth - 1)
+    fraktal_çiz_özyinelemeli(x, y, uzunluk / 3, derinlik - 1)
+    fraktal_çiz_özyinelemeli(x + uzunluk / 3, y, uzunluk / 3, derinlik - 1)
+    fraktal_çiz_özyinelemeli(x - uzunluk / 3, y, uzunluk / 3, derinlik - 1)
+    fraktal_çiz_özyinelemeli(x, y + uzunluk / 3, uzunluk / 3, derinlik - 1)
+    fraktal_çiz_özyinelemeli(x, y - uzunluk / 3, uzunluk / 3, derinlik - 1)
 
 
-def set_color(rgb: str):
+def renk_ayarla(rgb: str):
     turtle.color(rgb)
 
 
-def draw_vicsek_fractal(x: float, y: float, length: float, depth: float, color="blue"):
+def vicsek_fraktal_çiz(x: float, y: float, uzunluk: float, derinlik: float, renk="mavi"):
     """
-    Draw the Vicsek fractal at the specified position, with the specified
-    length and depth.
+    Belirtilen konumda, belirtilen uzunluk ve derinlikte Vicsek fraktalını çiz.
     """
     turtle.speed(0)
     turtle.hideturtle()
-    set_color(color)
-    draw_fractal_recursive(x, y, length, depth)
+    renk_ayarla(renk)
+    fraktal_çiz_özyinelemeli(x, y, uzunluk, derinlik)
     turtle.Screen().update()
 
 
-def main():
-    draw_vicsek_fractal(0, 0, 800, 4)
+def ana():
+    vicsek_fraktal_çiz(0, 0, 800, 4)
 
     turtle.done()
 
 
 if __name__ == "__main__":
-    main()
+    ana()

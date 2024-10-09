@@ -1,74 +1,74 @@
 """
 author: Aayush Soni
-Given n pairs of parentheses, write a function to generate all
-combinations of well-formed parentheses.
-Input: n = 2
-Output: ["(())","()()"]
+Verilen n çift parantez için, tüm iyi biçimlendirilmiş parantez kombinasyonlarını
+oluşturmak için bir fonksiyon yazın.
+Girdi: n = 2
+Çıktı: ["(())","()()"]
 Leetcode link: https://leetcode.com/problems/generate-parentheses/description/
 """
 
 
-def backtrack(
-    partial: str, open_count: int, close_count: int, n: int, result: list[str]
+def geri_izleme(
+    kısmi: str, açık_sayısı: int, kapalı_sayısı: int, n: int, sonuç: list[str]
 ) -> None:
     """
-    Generate valid combinations of balanced parentheses using recursion.
+    Özyineleme kullanarak dengeli parantezlerin geçerli kombinasyonlarını oluşturun.
 
-    :param partial: A string representing the current combination.
-    :param open_count: An integer representing the count of open parentheses.
-    :param close_count: An integer representing the count of close parentheses.
-    :param n: An integer representing the total number of pairs.
-    :param result: A list to store valid combinations.
-    :return: None
+    :param kısmi: Mevcut kombinasyonu temsil eden bir string.
+    :param açık_sayısı: Açık parantez sayısını temsil eden bir tamsayı.
+    :param kapalı_sayısı: Kapalı parantez sayısını temsil eden bir tamsayı.
+    :param n: Toplam çift sayısını temsil eden bir tamsayı.
+    :param sonuç: Geçerli kombinasyonları saklamak için bir liste.
+    :return: Yok
 
-    This function uses recursion to explore all possible combinations,
-    ensuring that at each step, the parentheses remain balanced.
+    Bu fonksiyon, her adımda parantezlerin dengeli kalmasını sağlayarak
+    tüm olası kombinasyonları keşfetmek için özyinelemeyi kullanır.
 
-    Example:
-    >>> result = []
-    >>> backtrack("", 0, 0, 2, result)
-    >>> result
+    Örnek:
+    >>> sonuç = []
+    >>> geri_izleme("", 0, 0, 2, sonuç)
+    >>> sonuç
     ['(())', '()()']
     """
-    if len(partial) == 2 * n:
-        # When the combination is complete, add it to the result.
-        result.append(partial)
+    if len(kısmi) == 2 * n:
+        # Kombinasyon tamamlandığında, sonucu ekleyin.
+        sonuç.append(kısmi)
         return
 
-    if open_count < n:
-        # If we can add an open parenthesis, do so, and recurse.
-        backtrack(partial + "(", open_count + 1, close_count, n, result)
+    if açık_sayısı < n:
+        # Eğer açık parantez ekleyebilirsek, ekleyin ve özyineleme yapın.
+        geri_izleme(kısmi + "(", açık_sayısı + 1, kapalı_sayısı, n, sonuç)
 
-    if close_count < open_count:
-        # If we can add a close parenthesis (it won't make the combination invalid),
-        # do so, and recurse.
-        backtrack(partial + ")", open_count, close_count + 1, n, result)
+    if kapalı_sayısı < açık_sayısı:
+        # Eğer kapalı parantez ekleyebilirsek (kombinasyonu geçersiz kılmayacaksa),
+        # ekleyin ve özyineleme yapın.
+        geri_izleme(kısmi + ")", açık_sayısı, kapalı_sayısı + 1, n, sonuç)
 
 
-def generate_parenthesis(n: int) -> list[str]:
+def parantez_oluştur(n: int) -> list[str]:
     """
-    Generate valid combinations of balanced parentheses for a given n.
+    Verilen n için dengeli parantezlerin geçerli kombinasyonlarını oluşturun.
 
-    :param n: An integer representing the number of pairs of parentheses.
-    :return: A list of strings with valid combinations.
+    :param n: Parantez çiftlerinin sayısını temsil eden bir tamsayı.
+    :return: Geçerli kombinasyonların bulunduğu bir string listesi.
 
-    This function uses a recursive approach to generate the combinations.
+    Bu fonksiyon, kombinasyonları oluşturmak için özyinelemeli bir yaklaşım kullanır.
 
-    Time Complexity: O(2^(2n)) - In the worst case, we have 2^(2n) combinations.
-    Space Complexity: O(n) - where 'n' is the number of pairs.
+    Zaman Karmaşıklığı: O(2^(2n)) - En kötü durumda, 2^(2n) kombinasyonumuz var.
+    Alan Karmaşıklığı: O(n) - 'n' çift sayısıdır.
 
-    Example 1:
-    >>> generate_parenthesis(3)
+    Örnek 1:
+    >>> parantez_oluştur(3)
     ['((()))', '(()())', '(())()', '()(())', '()()()']
 
-    Example 2:
-    >>> generate_parenthesis(1)
+    Örnek 2:
+    >>> parantez_oluştur(1)
     ['()']
     """
 
-    result: list[str] = []
-    backtrack("", 0, 0, n, result)
-    return result
+    sonuç: list[str] = []
+    geri_izleme("", 0, 0, n, sonuç)
+    return sonuç
 
 
 if __name__ == "__main__":

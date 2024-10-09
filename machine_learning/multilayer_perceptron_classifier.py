@@ -6,24 +6,24 @@ X = np.array([[0.0, 0.0], [1.0, 1.0], [1.0, 0.0], [0.0, 1.0]])
 y = np.array([0, 1, 0, 0])
 
 # MLPClassifier modelini tanımla
-clf = MLPClassifier(
+model = MLPClassifier(
     solver="lbfgs", alpha=1e-5, hidden_layer_sizes=(5, 2), random_state=1
 )
 
 # Modeli eğitim verileri ile eğit
-clf.fit(X, y)
+model.fit(X, y)
 
 # Test verilerini numpy array olarak tanımla
-test = np.array([[0.0, 0.0], [0.0, 1.0], [1.0, 1.0]])
-Y = clf.predict(test)
+test_verileri = np.array([[0.0, 0.0], [0.0, 1.0], [1.0, 1.0]])
+tahminler = model.predict(test_verileri)
 
 # Tahmin sonuçlarını listeye çeviren fonksiyon
-def wrapper(y):
+def tahminleri_listeye_cevir(tahminler):
     """
-    >>> [int(x) for x in wrapper(Y)]
+    >>> [int(x) for x in tahminleri_listeye_cevir(tahminler)]
     [0, 0, 1]
     """
-    return list(y)
+    return list(tahminler)
 
 # Ana program bloğu
 if __name__ == "__main__":

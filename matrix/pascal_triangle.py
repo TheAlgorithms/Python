@@ -3,6 +3,8 @@ This implementation demonstrates how to generate the elements of a Pascal's tria
 The element havingva row index of r and column index of c can be derivedvas follows:
 triangle[r][c] = triangle[r-1][c-1]+triangle[r-1][c]
 
+Organiser: K. Umut Araz
+
 A Pascal's triangle is a triangular array containing binomial coefficients.
 https://en.wikipedia.org/wiki/Pascal%27s_triangle
 """

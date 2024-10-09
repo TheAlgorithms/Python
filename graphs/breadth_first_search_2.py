@@ -1,16 +1,16 @@
 """
-https://en.wikipedia.org/wiki/Breadth-first_search
-pseudo-code:
-breadth_first_search(graph G, start vertex s):
-// all nodes initially unexplored
-mark s as explored
-let Q = queue data structure, initialized with s
-while Q is non-empty:
-    remove the first node of Q, call it v
-    for each edge(v, w):  // for w in graph[v]
-        if w unexplored:
-            mark w as explored
-            add w to Q (at the end)
+https://tr.wikipedia.org/wiki/Genişlik-öncelikli_arama
+pseudo-kod:
+genişlik_öncelikli_arama(graf G, başlangıç düğümü s):
+// tüm düğümler başlangıçta keşfedilmemiştir
+s'yi keşfedilmiş olarak işaretle
+Q adında bir kuyruk veri yapısı oluştur ve s ile başlat
+Q boş olmadığı sürece:
+    Q'nun ilk düğümünü çıkar, buna v diyelim
+    her bir kenar(v, w) için:  // w graf[v]'de
+        eğer w keşfedilmemişse:
+            w'yi keşfedilmiş olarak işaretle
+            w'yi Q'ya ekle (sonuna)
 """
 
 from __future__ import annotations
@@ -28,53 +28,54 @@ G = {
     "F": ["C", "E"],
 }
 
+#Produced by K. Umut Araz (https://github.com/arazumut)
 
-def breadth_first_search(graph: dict, start: str) -> list[str]:
+def genişlik_öncelikli_arama(graf: dict, başlangıç: str) -> list[str]:
     """
-    Implementation of breadth first search using queue.Queue.
+    queue.Queue kullanarak genişlik öncelikli arama uygulaması.
 
-    >>> ''.join(breadth_first_search(G, 'A'))
+    >>> ''.join(genişlik_öncelikli_arama(G, 'A'))
     'ABCDEF'
     """
-    explored = {start}
-    result = [start]
-    queue: Queue = Queue()
-    queue.put(start)
-    while not queue.empty():
-        v = queue.get()
-        for w in graph[v]:
-            if w not in explored:
-                explored.add(w)
-                result.append(w)
-                queue.put(w)
-    return result
+    keşfedilen = {başlangıç}
+    sonuç = [başlangıç]
+    kuyruk: Queue = Queue()
+    kuyruk.put(başlangıç)
+    while not kuyruk.empty():
+        v = kuyruk.get()
+        for w in graf[v]:
+            if w not in keşfedilen:
+                keşfedilen.add(w)
+                sonuç.append(w)
+                kuyruk.put(w)
+    return sonuç
 
 
-def breadth_first_search_with_deque(graph: dict, start: str) -> list[str]:
+def deque_ile_genişlik_öncelikli_arama(graf: dict, başlangıç: str) -> list[str]:
     """
-    Implementation of breadth first search using collection.queue.
+    collection.deque kullanarak genişlik öncelikli arama uygulaması.
 
-    >>> ''.join(breadth_first_search_with_deque(G, 'A'))
+    >>> ''.join(deque_ile_genişlik_öncelikli_arama(G, 'A'))
     'ABCDEF'
     """
-    visited = {start}
-    result = [start]
-    queue = deque([start])
-    while queue:
-        v = queue.popleft()
-        for child in graph[v]:
-            if child not in visited:
-                visited.add(child)
-                result.append(child)
-                queue.append(child)
-    return result
+    ziyaret_edilen = {başlangıç}
+    sonuç = [başlangıç]
+    kuyruk = deque([başlangıç])
+    while kuyruk:
+        v = kuyruk.popleft()
+        for çocuk in graf[v]:
+            if çocuk not in ziyaret_edilen:
+                ziyaret_edilen.add(çocuk)
+                sonuç.append(çocuk)
+                kuyruk.append(çocuk)
+    return sonuç
 
 
-def benchmark_function(name: str) -> None:
+def fonksiyon_benchmark(name: str) -> None:
     setup = f"from __main__ import G, {name}"
     number = 10000
     res = timeit(f"{name}(G, 'A')", setup=setup, number=number)
-    print(f"{name:<35} finished {number} runs in {res:.5f} seconds")
+    print(f"{name:<35} {number} çalıştırmada {res:.5f} saniyede tamamlandı")
 
 
 if __name__ == "__main__":
@@ -82,7 +83,7 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    benchmark_function("breadth_first_search")
-    benchmark_function("breadth_first_search_with_deque")
-    # breadth_first_search                finished 10000 runs in 0.20999 seconds
-    # breadth_first_search_with_deque     finished 10000 runs in 0.01421 seconds
+    fonksiyon_benchmark("genişlik_öncelikli_arama")
+    fonksiyon_benchmark("deque_ile_genişlik_öncelikli_arama")
+    # genişlik_öncelikli_arama                10000 çalıştırmada 0.20999 saniyede tamamlandı
+    # deque_ile_genişlik_öncelikli_arama     10000 çalıştırmada 0.01421 saniyede tamamlandı

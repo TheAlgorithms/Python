@@ -1,30 +1,30 @@
-# Finding longest distance in Directed Acyclic Graph using KahnsAlgorithm
-def longest_distance(graph):
-    indegree = [0] * len(graph)
-    queue = []
-    long_dist = [1] * len(graph)
+# Kahn Algoritması kullanarak Yönlendirilmiş Asiklik Grafikte en uzun mesafeyi bulma
+def en_uzun_mesafe(grafik):
+    giris_derecesi = [0] * len(grafik)
+    kuyruk = []
+    uzun_mesafe = [1] * len(grafik)
 
-    for values in graph.values():
-        for i in values:
-            indegree[i] += 1
+    for degerler in grafik.values():
+        for i in degerler:
+            giris_derecesi[i] += 1
 
-    for i in range(len(indegree)):
-        if indegree[i] == 0:
-            queue.append(i)
+    for i in range(len(giris_derecesi)):
+        if giris_derecesi[i] == 0:
+            kuyruk.append(i)
 
-    while queue:
-        vertex = queue.pop(0)
-        for x in graph[vertex]:
-            indegree[x] -= 1
+    while kuyruk:
+        dugum = kuyruk.pop(0)
+        for x in grafik[dugum]:
+            giris_derecesi[x] -= 1
 
-            long_dist[x] = max(long_dist[x], long_dist[vertex] + 1)
+            uzun_mesafe[x] = max(uzun_mesafe[x], uzun_mesafe[dugum] + 1)
 
-            if indegree[x] == 0:
-                queue.append(x)
+            if giris_derecesi[x] == 0:
+                kuyruk.append(x)
 
-    print(max(long_dist))
+    print(max(uzun_mesafe))
 
 
-# Adjacency list of Graph
-graph = {0: [2, 3, 4], 1: [2, 7], 2: [5], 3: [5, 7], 4: [7], 5: [6], 6: [7], 7: []}
-longest_distance(graph)
+# Grafiğin komşuluk listesi
+grafik = {0: [2, 3, 4], 1: [2, 7], 2: [5], 3: [5, 7], 4: [7], 5: [6], 6: [7], 7: []}
+en_uzun_mesafe(grafik)

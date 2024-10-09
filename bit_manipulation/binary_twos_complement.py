@@ -1,40 +1,40 @@
-# Information on 2's complement: https://en.wikipedia.org/wiki/Two%27s_complement
+# 2'nin tamamlayıcısı hakkında bilgi: https://en.wikipedia.org/wiki/Two%27s_complement
 
 
-def twos_complement(number: int) -> str:
+def ikinin_tamlayani(sayi: int) -> str:
     """
-    Take in a negative integer 'number'.
-    Return the two's complement representation of 'number'.
+    Negatif bir tamsayı 'sayi' alır.
+    'sayi'nin ikinin tamamlayanı gösterimini döndürür.
 
-    >>> twos_complement(0)
+    >>> ikinin_tamlayani(0)
     '0b0'
-    >>> twos_complement(-1)
+    >>> ikinin_tamlayani(-1)
     '0b11'
-    >>> twos_complement(-5)
+    >>> ikinin_tamlayani(-5)
     '0b1011'
-    >>> twos_complement(-17)
+    >>> ikinin_tamlayani(-17)
     '0b101111'
-    >>> twos_complement(-207)
+    >>> ikinin_tamlayani(-207)
     '0b100110001'
-    >>> twos_complement(1)
+    >>> ikinin_tamlayani(1)
     Traceback (most recent call last):
         ...
-    ValueError: input must be a negative integer
+    ValueError: giriş negatif bir tamsayı olmalıdır
     """
-    if number > 0:
-        raise ValueError("input must be a negative integer")
-    binary_number_length = len(bin(number)[3:])
-    twos_complement_number = bin(abs(number) - (1 << binary_number_length))[3:]
-    twos_complement_number = (
+    if sayi > 0:
+        raise ValueError("giriş negatif bir tamsayı olmalıdır")
+    ikilik_sayi_uzunlugu = len(bin(sayi)[3:])
+    ikinin_tamlayani_sayi = bin(abs(sayi) - (1 << ikilik_sayi_uzunlugu))[3:]
+    ikinin_tamlayani_sayi = (
         (
             "1"
-            + "0" * (binary_number_length - len(twos_complement_number))
-            + twos_complement_number
+            + "0" * (ikilik_sayi_uzunlugu - len(ikinin_tamlayani_sayi))
+            + ikinin_tamlayani_sayi
         )
-        if number < 0
+        if sayi < 0
         else "0"
     )
-    return "0b" + twos_complement_number
+    return "0b" + ikinin_tamlayani_sayi
 
 
 if __name__ == "__main__":

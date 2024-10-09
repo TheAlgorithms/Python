@@ -1,44 +1,43 @@
-"""A naive recursive implementation of 0-1 Knapsack Problem
+"""0-1 Sırt Çantası Probleminin basit bir özyinelemeli uygulaması
 https://en.wikipedia.org/wiki/Knapsack_problem
 """
 
 from __future__ import annotations
 
 
-def knapsack(capacity: int, weights: list[int], values: list[int], counter: int) -> int:
+def sirt_cantasi(kapasite: int, agirliklar: list[int], degerler: list[int], sayac: int) -> int:
     """
-    Returns the maximum value that can be put in a knapsack of a capacity cap,
-    whereby each weight w has a specific value val.
+    Belirli bir kapasiteye sahip bir sırt çantasına konulabilecek maksimum değeri döndürür,
+    burada her ağırlığın belirli bir değeri vardır.
 
-    >>> cap = 50
-    >>> val = [60, 100, 120]
-    >>> w = [10, 20, 30]
-    >>> c = len(val)
-    >>> knapsack(cap, w, val, c)
+    >>> kapasite = 50
+    >>> degerler = [60, 100, 120]
+    >>> agirliklar = [10, 20, 30]
+    >>> sayac = len(degerler)
+    >>> sirt_cantasi(kapasite, agirliklar, degerler, sayac)
     220
 
-    The result is 220 cause the values of 100 and 120 got the weight of 50
-    which is the limit of the capacity.
+    Sonuç 220'dir çünkü 100 ve 120 değerleri, kapasite sınırı olan 50 ağırlığına sahiptir.
     """
 
-    # Base Case
-    if counter == 0 or capacity == 0:
+    # Temel Durum
+    if sayac == 0 and kapasite == 0:
         return 0
 
-    # If weight of the nth item is more than Knapsack of capacity,
-    #   then this item cannot be included in the optimal solution,
-    # else return the maximum of two cases:
-    #   (1) nth item included
-    #   (2) not included
-    if weights[counter - 1] > capacity:
-        return knapsack(capacity, weights, values, counter - 1)
+    # Eğer n'inci öğenin ağırlığı sırt çantasının kapasitesinden fazlaysa,
+    #   bu öğe optimal çözüme dahil edilemez,
+    # aksi takdirde iki durumun maksimumunu döndür:
+    #   (1) n'inci öğe dahil
+    #   (2) dahil değil
+    if agirliklar[sayac - 1] > kapasite:
+        return sirt_cantasi(kapasite, agirliklar, degerler, sayac - 1)
     else:
-        left_capacity = capacity - weights[counter - 1]
-        new_value_included = values[counter - 1] + knapsack(
-            left_capacity, weights, values, counter - 1
+        kalan_kapasite = kapasite - agirliklar[sayac - 1]
+        yeni_deger_dahil = degerler[sayac - 1] + sirt_cantasi(
+            kalan_kapasite, agirliklar, degerler, sayac - 1
         )
-        without_new_value = knapsack(capacity, weights, values, counter - 1)
-        return max(new_value_included, without_new_value)
+        yeni_deger_haric = sirt_cantasi(kapasite, agirliklar, degerler, sayac - 1)
+        return max(yeni_deger_dahil, yeni_deger_haric)
 
 
 if __name__ == "__main__":

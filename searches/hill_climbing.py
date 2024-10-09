@@ -1,162 +1,163 @@
-# https://en.wikipedia.org/wiki/Hill_climbing
+# https://tr.wikipedia.org/wiki/Hill_climbing
 import math
 
+#Organiser: K. Umut Araz
 
-class SearchProblem:
+
+class AramaProblemi:
     """
-    An interface to define search problems.
-    The interface will be illustrated using the example of mathematical function.
+    Arama problemlerini tanımlamak için bir arayüz.
+    Arayüz, matematiksel bir fonksiyon örneği ile gösterilecektir.
     """
 
-    def __init__(self, x: int, y: int, step_size: int, function_to_optimize):
+    def __init__(self, x: int, y: int, adım_boyutu: int, optimize_edilecek_fonksiyon):
         """
-        The constructor of the search problem.
+        Arama probleminin yapıcı metodu.
 
-        x: the x coordinate of the current search state.
-        y: the y coordinate of the current search state.
-        step_size: size of the step to take when looking for neighbors.
-        function_to_optimize: a function to optimize having the signature f(x, y).
+        x: mevcut arama durumunun x koordinatı.
+        y: mevcut arama durumunun y koordinatı.
+        adım_boyutu: komşuları ararken atılacak adımın boyutu.
+        optimize_edilecek_fonksiyon: f(x, y) imzasına sahip bir fonksiyon.
         """
         self.x = x
         self.y = y
-        self.step_size = step_size
-        self.function = function_to_optimize
+        self.adım_boyutu = adım_boyutu
+        self.fonksiyon = optimize_edilecek_fonksiyon
 
-    def score(self) -> int:
+    def puan(self) -> int:
         """
-        Returns the output of the function called with current x and y coordinates.
-        >>> def test_function(x, y):
+        Mevcut x ve y koordinatları ile çağrılan fonksiyonun çıktısını döner.
+        >>> def test_fonksiyonu(x, y):
         ...     return x + y
-        >>> SearchProblem(0, 0, 1, test_function).score()  # 0 + 0 = 0
+        >>> AramaProblemi(0, 0, 1, test_fonksiyonu).puan()  # 0 + 0 = 0
         0
-        >>> SearchProblem(5, 7, 1, test_function).score()  # 5 + 7 = 12
+        >>> AramaProblemi(5, 7, 1, test_fonksiyonu).puan()  # 5 + 7 = 12
         12
         """
-        return self.function(self.x, self.y)
+        return self.fonksiyon(self.x, self.y)
 
-    def get_neighbors(self):
+    def komşuları_getir(self):
         """
-        Returns a list of coordinates of neighbors adjacent to the current coordinates.
+        Mevcut koordinatlara bitişik komşuların koordinatlarının listesini döner.
 
-        Neighbors:
+        Komşular:
         | 0 | 1 | 2 |
         | 3 | _ | 4 |
         | 5 | 6 | 7 |
         """
-        step_size = self.step_size
+        adım_boyutu = self.adım_boyutu
         return [
-            SearchProblem(x, y, step_size, self.function)
+            AramaProblemi(x, y, adım_boyutu, self.fonksiyon)
             for x, y in (
-                (self.x - step_size, self.y - step_size),
-                (self.x - step_size, self.y),
-                (self.x - step_size, self.y + step_size),
-                (self.x, self.y - step_size),
-                (self.x, self.y + step_size),
-                (self.x + step_size, self.y - step_size),
-                (self.x + step_size, self.y),
-                (self.x + step_size, self.y + step_size),
+                (self.x - adım_boyutu, self.y - adım_boyutu),
+                (self.x - adım_boyutu, self.y),
+                (self.x - adım_boyutu, self.y + adım_boyutu),
+                (self.x, self.y - adım_boyutu),
+                (self.x, self.y + adım_boyutu),
+                (self.x + adım_boyutu, self.y - adım_boyutu),
+                (self.x + adım_boyutu, self.y),
+                (self.x + adım_boyutu, self.y + adım_boyutu),
             )
         ]
 
     def __hash__(self):
         """
-        hash the string representation of the current search state.
+        Mevcut arama durumunun string temsilini hashler.
         """
         return hash(str(self))
 
     def __eq__(self, obj):
         """
-        Check if the 2 objects are equal.
+        İki nesnenin eşit olup olmadığını kontrol eder.
         """
-        if isinstance(obj, SearchProblem):
+        if isinstance(obj, AramaProblemi):
             return hash(str(self)) == hash(str(obj))
         return False
 
     def __str__(self):
         """
-        string representation of the current search state.
-        >>> str(SearchProblem(0, 0, 1, None))
+        Mevcut arama durumunun string temsilidir.
+        >>> str(AramaProblemi(0, 0, 1, None))
         'x: 0 y: 0'
-        >>> str(SearchProblem(2, 5, 1, None))
+        >>> str(AramaProblemi(2, 5, 1, None))
         'x: 2 y: 5'
         """
         return f"x: {self.x} y: {self.y}"
 
 
-def hill_climbing(
-    search_prob,
-    find_max: bool = True,
+def tepe_tırmanışı(
+    arama_prob,
+    maksimum_bul: bool = True,
     max_x: float = math.inf,
     min_x: float = -math.inf,
     max_y: float = math.inf,
     min_y: float = -math.inf,
-    visualization: bool = False,
+    görselleştirme: bool = False,
     max_iter: int = 10000,
-) -> SearchProblem:
+) -> AramaProblemi:
     """
-    Implementation of the hill climbling algorithm.
-    We start with a given state, find all its neighbors,
-    move towards the neighbor which provides the maximum (or minimum) change.
-    We keep doing this until we are at a state where we do not have any
-    neighbors which can improve the solution.
-        Args:
-            search_prob: The search state at the start.
-            find_max: If True, the algorithm should find the maximum else the minimum.
-            max_x, min_x, max_y, min_y: the maximum and minimum bounds of x and y.
-            visualization: If True, a matplotlib graph is displayed.
-            max_iter: number of times to run the iteration.
-        Returns a search state having the maximum (or minimum) score.
+    Tepe tırmanışı algoritmasının uygulanması.
+    Verilen bir durumla başlarız, tüm komşularını buluruz,
+    maksimum (veya minimum) değişimi sağlayan komşuya doğru hareket ederiz.
+    Çözümü iyileştirebilecek komşumuz kalmadığında dururuz.
+        Argümanlar:
+            arama_prob: Başlangıçtaki arama durumu.
+            maksimum_bul: Eğer True ise, algoritma maksimumu bulmalı, aksi takdirde minimumu.
+            max_x, min_x, max_y, min_y: x ve y'nin maksimum ve minimum sınırları.
+            görselleştirme: Eğer True ise, bir matplotlib grafiği gösterilir.
+            max_iter: yineleme sayısı.
+        Dönüş: maksimum (veya minimum) puana sahip bir arama durumu.
     """
-    current_state = search_prob
-    scores = []  # list to store the current score at each iteration
-    iterations = 0
-    solution_found = False
-    visited = set()
-    while not solution_found and iterations < max_iter:
-        visited.add(current_state)
-        iterations += 1
-        current_score = current_state.score()
-        scores.append(current_score)
-        neighbors = current_state.get_neighbors()
-        max_change = -math.inf
-        min_change = math.inf
-        next_state = None  # to hold the next best neighbor
-        for neighbor in neighbors:
-            if neighbor in visited:
-                continue  # do not want to visit the same state again
+    mevcut_durum = arama_prob
+    puanlar = []  # her yinelemedeki mevcut puanı saklamak için liste
+    yinelemeler = 0
+    çözüm_bulundu = False
+    ziyaret_edilen = set()
+    while not çözüm_bulundu and yinelemeler < max_iter:
+        ziyaret_edilen.add(mevcut_durum)
+        yinelemeler += 1
+        mevcut_puan = mevcut_durum.puan()
+        puanlar.append(mevcut_puan)
+        komşular = mevcut_durum.komşuları_getir()
+        max_değişim = -math.inf
+        min_değişim = math.inf
+        sonraki_durum = None  # bir sonraki en iyi komşuyu tutmak için
+        for komşu in komşular:
+            if komşu in ziyaret_edilen:
+                continue  # aynı durumu tekrar ziyaret etmek istemiyoruz
             if (
-                neighbor.x > max_x
-                or neighbor.x < min_x
-                or neighbor.y > max_y
-                or neighbor.y < min_y
+                komşu.x > max_x
+                or komşu.x < min_x
+                or komşu.y > max_y
+                or komşu.y < min_y
             ):
-                continue  # neighbor outside our bounds
-            change = neighbor.score() - current_score
-            if find_max:  # finding max
-                # going to direction with greatest ascent
-                if change > max_change and change > 0:
-                    max_change = change
-                    next_state = neighbor
-            elif change < min_change and change < 0:  # finding min
-                # to direction with greatest descent
-                min_change = change
-                next_state = neighbor
-        if next_state is not None:
-            # we found at least one neighbor which improved the current state
-            current_state = next_state
+                continue  # komşu sınırlarımızın dışında
+            değişim = komşu.puan() - mevcut_puan
+            if maksimum_bul:  # maksimum bulma
+                # en büyük yükseliş yönüne gitme
+                if değişim > max_değişim and değişim > 0:
+                    max_değişim = değişim
+                    sonraki_durum = komşu
+            elif değişim < min_değişim and değişim < 0:  # minimum bulma
+                # en büyük düşüş yönüne gitme
+                min_değişim = değişim
+                sonraki_durum = komşu
+        if sonraki_durum is not None:
+            # mevcut durumu iyileştiren en az bir komşu bulduk
+            mevcut_durum = sonraki_durum
         else:
-            # since we have no neighbor that improves the solution we stop the search
-            solution_found = True
+            # çözümü iyileştiren komşu kalmadığı için aramayı durduruyoruz
+            çözüm_bulundu = True
 
-    if visualization:
+    if görselleştirme:
         from matplotlib import pyplot as plt
 
-        plt.plot(range(iterations), scores)
-        plt.xlabel("Iterations")
-        plt.ylabel("Function values")
+        plt.plot(range(yinelemeler), puanlar)
+        plt.xlabel("Yinelemeler")
+        plt.ylabel("Fonksiyon değerleri")
         plt.show()
 
-    return current_state
+    return mevcut_durum
 
 
 if __name__ == "__main__":
@@ -167,30 +168,30 @@ if __name__ == "__main__":
     def test_f1(x, y):
         return (x**2) + (y**2)
 
-    # starting the problem with initial coordinates (3, 4)
-    prob = SearchProblem(x=3, y=4, step_size=1, function_to_optimize=test_f1)
-    local_min = hill_climbing(prob, find_max=False)
+    # Problemi başlangıç koordinatları (3, 4) ile başlatma
+    prob = AramaProblemi(x=3, y=4, adım_boyutu=1, optimize_edilecek_fonksiyon=test_f1)
+    yerel_min = tepe_tırmanışı(prob, maksimum_bul=False)
     print(
-        "The minimum score for f(x, y) = x^2 + y^2 found via hill climbing: "
-        f"{local_min.score()}"
+        "f(x, y) = x^2 + y^2 için tepe tırmanışı ile bulunan minimum puan: "
+        f"{yerel_min.puan()}"
     )
 
-    # starting the problem with initial coordinates (12, 47)
-    prob = SearchProblem(x=12, y=47, step_size=1, function_to_optimize=test_f1)
-    local_min = hill_climbing(
-        prob, find_max=False, max_x=100, min_x=5, max_y=50, min_y=-5, visualization=True
+    # Problemi başlangıç koordinatları (12, 47) ile başlatma
+    prob = AramaProblemi(x=12, y=47, adım_boyutu=1, optimize_edilecek_fonksiyon=test_f1)
+    yerel_min = tepe_tırmanışı(
+        prob, maksimum_bul=False, max_x=100, min_x=5, max_y=50, min_y=-5, görselleştirme=True
     )
     print(
-        "The minimum score for f(x, y) = x^2 + y^2 with the domain 100 > x > 5 "
-        f"and 50 > y > - 5 found via hill climbing: {local_min.score()}"
+        "f(x, y) = x^2 + y^2 için 100 > x > 5 ve 50 > y > -5 aralığında "
+        f"tepe tırmanışı ile bulunan minimum puan: {yerel_min.puan()}"
     )
 
     def test_f2(x, y):
         return (3 * x**2) - (6 * y)
 
-    prob = SearchProblem(x=3, y=4, step_size=1, function_to_optimize=test_f1)
-    local_min = hill_climbing(prob, find_max=True)
+    prob = AramaProblemi(x=3, y=4, adım_boyutu=1, optimize_edilecek_fonksiyon=test_f1)
+    yerel_min = tepe_tırmanışı(prob, maksimum_bul=True)
     print(
-        "The maximum score for f(x, y) = x^2 + y^2 found via hill climbing: "
-        f"{local_min.score()}"
+        "f(x, y) = x^2 + y^2 için tepe tırmanışı ile bulunan maksimum puan: "
+        f"{yerel_min.puan()}"
     )

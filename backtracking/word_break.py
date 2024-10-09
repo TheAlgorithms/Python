@@ -1,71 +1,71 @@
 """
-Word Break Problem is a well-known problem in computer science.
-Given a string and a dictionary of words, the task is to determine if
-the string can be segmented into a sequence of one or more dictionary words.
+Kelime Bölme Problemi, bilgisayar bilimlerinde iyi bilinen bir problemdir.
+Bir dize ve bir kelime sözlüğü verildiğinde, göreviniz dizenin bir veya daha fazla
+sözlük kelimesi dizisine bölünüp bölünemeyeceğini belirlemektir.
 
 Wikipedia: https://en.wikipedia.org/wiki/Word_break_problem
 """
 
 
-def backtrack(input_string: str, word_dict: set[str], start: int) -> bool:
+def geri_izleme(girdi_dizesi: str, kelime_sözlüğü: set[str], başlangıç: int) -> bool:
     """
-    Helper function that uses backtracking to determine if a valid
-    word segmentation is possible starting from index 'start'.
+    Belirli bir 'başlangıç' indeksinden başlayarak geçerli bir kelime segmentasyonu
+    mümkün olup olmadığını belirlemek için geri izleme kullanan yardımcı fonksiyon.
 
-    Parameters:
-    input_string (str): The input string to be segmented.
-    word_dict (set[str]): A set of valid dictionary words.
-    start (int): The starting index of the substring to be checked.
+    Parametreler:
+    girdi_dizesi (str): Segmentlenecek girdi dizesi.
+    kelime_sözlüğü (set[str]): Geçerli sözlük kelimelerinin kümesi.
+    başlangıç (int): Kontrol edilecek alt dizenin başlangıç indeksi.
 
-    Returns:
-    bool: True if a valid segmentation is possible, otherwise False.
+    Dönüş:
+    bool: Geçerli bir segmentasyon mümkünse True, aksi takdirde False.
 
-    Example:
-    >>> backtrack("leetcode", {"leet", "code"}, 0)
+    Örnek:
+    >>> geri_izleme("leetcode", {"leet", "code"}, 0)
     True
 
-    >>> backtrack("applepenapple", {"apple", "pen"}, 0)
+    >>> geri_izleme("applepenapple", {"apple", "pen"}, 0)
     True
 
-    >>> backtrack("catsandog", {"cats", "dog", "sand", "and", "cat"}, 0)
+    >>> geri_izleme("catsandog", {"cats", "dog", "sand", "and", "cat"}, 0)
     False
     """
 
-    # Base case: if the starting index has reached the end of the string
-    if start == len(input_string):
+    # Temel durum: başlangıç indeksi dizenin sonuna ulaştıysa
+    if başlangıç == len(girdi_dizesi):
         return True
 
-    # Try every possible substring from 'start' to 'end'
-    for end in range(start + 1, len(input_string) + 1):
-        if input_string[start:end] in word_dict and backtrack(
-            input_string, word_dict, end
+    # 'başlangıç' ile 'son' arasındaki her olası alt diziyi dene
+    for son in range(başlangıç + 1, len(girdi_dizesi) + 1):
+        if girdi_dizesi[başlangıç:son] in kelime_sözlüğü and geri_izleme(
+            girdi_dizesi, kelime_sözlüğü, son
         ):
             return True
 
     return False
 
 
-def word_break(input_string: str, word_dict: set[str]) -> bool:
+def kelime_bölme(girdi_dizesi: str, kelime_sözlüğü: set[str]) -> bool:
     """
-    Determines if the input string can be segmented into a sequence of
-    valid dictionary words using backtracking.
+    Girdi dizesinin geçerli sözlük kelimelerinin bir dizisine bölünüp bölünemeyeceğini
+    geri izleme kullanarak belirler.
 
-    Parameters:
-    input_string (str): The input string to segment.
-    word_dict (set[str]): The set of valid words.
+    Parametreler:
+    girdi_dizesi (str): Segmentlenecek girdi dizesi.
+    kelime_sözlüğü (set[str]): Geçerli kelimelerin kümesi.
 
-    Returns:
-    bool: True if the string can be segmented into valid words, otherwise False.
+    Dönüş:
+    bool: Dize geçerli kelimelere bölünebiliyorsa True, aksi takdirde False.
 
-    Example:
-    >>> word_break("leetcode", {"leet", "code"})
+    Örnek:
+    >>> kelime_bölme("leetcode", {"leet", "code"})
     True
 
-    >>> word_break("applepenapple", {"apple", "pen"})
+    >>> kelime_bölme("applepenapple", {"apple", "pen"})
     True
 
-    >>> word_break("catsandog", {"cats", "dog", "sand", "and", "cat"})
+    >>> kelime_bölme("catsandog", {"cats", "dog", "sand", "and", "cat"})
     False
     """
 
-    return backtrack(input_string, word_dict, 0)
+    return geri_izleme(girdi_dizesi, kelime_sözlüğü, 0)

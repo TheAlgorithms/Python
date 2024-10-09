@@ -1,4 +1,4 @@
-"""README, Author - Anurag Kumar(mailto:anuragkumarak95@gmail.com)
+"""README, Yazar - Anurag Kumar(mailto:anuragkumarak95@gmail.com)
 Gereksinimler:
   - sklearn
   - numpy
@@ -52,7 +52,6 @@ TAG = "K-MEANS-CLUST/ "
 
 def get_initial_centroids(data, k, seed=None):
     """Rastgele olarak k veri noktasını başlangıç merkezleri olarak seç"""
-    # tutarlı sonuçlar elde etmek için yararlı
     rng = np.random.default_rng(seed)
     n = data.shape[0]  # veri noktalarının sayısı
 
@@ -73,11 +72,9 @@ def centroid_pairwise_dist(x, centroids):
 
 def assign_clusters(data, centroids):
     # Her veri noktası ile merkezler kümesi arasındaki mesafeleri hesaplayın:
-    # Boşluğu doldurun (sadece RHS)
     distances_from_centroids = centroid_pairwise_dist(data, centroids)
 
     # Her veri noktası için küme atamalarını hesaplayın:
-    # Boşluğu doldurun (sadece RHS)
     cluster_assignment = np.argmin(distances_from_centroids, axis=1)
 
     return cluster_assignment
@@ -86,9 +83,9 @@ def assign_clusters(data, centroids):
 def revise_centroids(data, k, cluster_assignment):
     new_centroids = []
     for i in range(k):
-        # Küme i'ye ait tüm veri noktalarını seçin. Boşluğu doldurun (sadece RHS)
+        # Küme i'ye ait tüm veri noktalarını seçin.
         member_data_points = data[cluster_assignment == i]
-        # Veri noktalarının ortalamasını hesaplayın. Boşluğu doldurun (sadece RHS)
+        # Veri noktalarının ortalamasını hesaplayın.
         centroid = member_data_points.mean(axis=0)
         new_centroids.append(centroid)
     new_centroids = np.array(new_centroids)
@@ -99,11 +96,11 @@ def revise_centroids(data, k, cluster_assignment):
 def compute_heterogeneity(data, k, centroids, cluster_assignment):
     heterogeneity = 0.0
     for i in range(k):
-        # Küme i'ye ait tüm veri noktalarını seçin. Boşluğu doldurun (sadece RHS)
+        # Küme i'ye ait tüm veri noktalarını seçin.
         member_data_points = data[cluster_assignment == i, :]
 
         if member_data_points.shape[0] > 0:  # i. kümenin boş olup olmadığını kontrol edin
-            # Merkezden veri noktalarına olan mesafeleri hesaplayın (sadece RHS)
+            # Merkezden veri noktalarına olan mesafeleri hesaplayın
             distances = pairwise_distances(
                 member_data_points, [centroids[i]], metric="euclidean"
             )
@@ -162,7 +159,6 @@ def kmeans(
 
         # Heterojenlik yakınsama metriğini kaydedin
         if record_heterogeneity is not None:
-            # KODUNUZ BURAYA
             score = compute_heterogeneity(data, k, centroids, cluster_assignment)
             record_heterogeneity.append(score)
 
@@ -263,23 +259,20 @@ def report_generator(
         .rename(index=str, columns={"level_0": "Features", "level_1": "Type"})
     )  # sütunları yeniden adlandır
     # küme boyutunu hesapla (clientID'lerin sayısı)
-    # SettingWithCopyWarning'dan kaçının
     clustersize = report[
         (report["Features"] == "dummy") & (report["Type"] == "count")
     ].copy()
-    # oluşturulan tahmin edilen kümeyi rapor sütun adlarıyla eşleşecek şekilde yeniden adlandırın
     clustersize.Type = "ClusterSize"
     clustersize.Features = "# of Customers"
     # küme oranını hesaplama
     clusterproportion = pd.DataFrame(
         clustersize.iloc[:, 2:].to_numpy() / clustersize.iloc[:, 2:].to_numpy().sum()
     )
-    # oluşturulan tahmin edilen kümeyi rapor sütun adlarıyla eşleşecek şekilde yeniden adlandırın
     clusterproportion["Type"] = "% of Customers"
     clusterproportion["Features"] = "ClusterProportion"
     cols = clusterproportion.columns.tolist()
     cols = cols[-2:] + cols[:-2]
-    clusterproportion = clusterproportion[cols]  # sütunları raporla eşleşecek şekilde yeniden düzenleyin
+    clusterproportion = clusterproportion[cols]
     clusterproportion.columns = report.columns
     # nan değerlerinin sayısını içeren veri çerçevesi oluşturma
     a = pd.DataFrame(
@@ -290,15 +283,12 @@ def report_generator(
     )
     a["Features"] = 0
     a["Type"] = "# of nan"
-    # raporla eşleşecek şekilde değerleri doldurma
     a.Features = report[report["Type"] == "count"].Features.tolist()
     cols = a.columns.tolist()
     cols = cols[-2:] + cols[:-2]
-    a = a[cols]  # sütunları raporla eşleşecek şekilde yeniden düzenleyin
-    a.columns = report.columns  # sütunları raporla eşleşecek şekilde yeniden adlandırın
-    # küme boyutu dışında sayım değerlerini düşür
+    a = a[cols]
+    a.columns = report.columns
     report = report.drop(report[report.Type == "count"].index)
-    # raporu küme boyutu ve nan değerleri ile birleştirin
     report = pd.concat([report, a, clustersize, clusterproportion], axis=0)
     report["Mark"] = report["Features"].isin(clustering_variables)
     cols = report.columns.tolist()

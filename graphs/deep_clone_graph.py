@@ -2,74 +2,72 @@
 LeetCode 133. Clone Graph
 https://leetcode.com/problems/clone-graph/
 
-Given a reference of a node in a connected undirected graph.
+Bağlantılı, yönsüz bir grafikte bir düğüm referansı verildiğinde,
+grafın derin bir kopyasını (klonunu) döndürün.
 
-Return a deep copy (clone) of the graph.
-
-Each node in the graph contains a value (int) and a list (List[Node]) of its
-neighbors.
+Grafikteki her düğüm bir değer (int) ve komşularının bir listesini (List[Node]) içerir.
 """
 
 from dataclasses import dataclass
 
 
 @dataclass
-class Node:
-    value: int = 0
-    neighbors: list["Node"] | None = None
+class Düğüm:
+    değer: int = 0
+    komşular: list["Düğüm"] | None = None
 
     def __post_init__(self) -> None:
         """
-        >>> Node(3).neighbors
+        >>> Düğüm(3).komşular
         []
         """
-        self.neighbors = self.neighbors or []
+        self.komşular = self.komşular or []
 
     def __hash__(self) -> int:
         """
-        >>> hash(Node(3)) != 0
+        >>> hash(Düğüm(3)) != 0
         True
         """
         return id(self)
 
 
-def clone_graph(node: Node | None) -> Node | None:
+def graf_klonla(düğüm: Düğüm | None) -> Düğüm | None:
     """
-    This function returns a clone of a connected undirected graph.
-    >>> clone_graph(Node(1))
-    Node(value=1, neighbors=[])
-    >>> clone_graph(Node(1, [Node(2)]))
-    Node(value=1, neighbors=[Node(value=2, neighbors=[])])
-    >>> clone_graph(None) is None
+    Bu fonksiyon bağlantılı, yönsüz bir grafın klonunu döndürür.
+    >>> graf_klonla(Düğüm(1))
+    Düğüm(değer=1, komşular=[])
+    >>> graf_klonla(Düğüm(1, [Düğüm(2)]))
+    Düğüm(değer=1, komşular=[Düğüm(değer=2, komşular=[])])
+    >>> graf_klonla(None) is None
     True
     """
-    if not node:
+    if not düğüm:
         return None
 
-    originals_to_clones = {}  # map nodes to clones
+    orijinallerden_klonlara = {}  # düğümleri klonlara eşle
 
-    stack = [node]
+    yığın = [düğüm]
 
-    while stack:
-        original = stack.pop()
+    while yığın:
+        orijinal = yığın.pop()
 
-        if original in originals_to_clones:
+        if orijinal in orijinallerden_klonlara:
             continue
 
-        originals_to_clones[original] = Node(original.value)
+        orijinallerden_klonlara[orijinal] = Düğüm(orijinal.değer)
 
-        stack.extend(original.neighbors or [])
+        yığın.extend(orijinal.komşular or [])
 
-    for original, clone in originals_to_clones.items():
-        for neighbor in original.neighbors or []:
-            cloned_neighbor = originals_to_clones[neighbor]
+    for orijinal, klon in orijinallerden_klonlara.items():
+        for komşu in orijinal.komşular or []:
+            klonlanmış_komşu = orijinallerden_klonlara[komşu]
 
-            if not clone.neighbors:
-                clone.neighbors = []
+            if not klon.komşular:
+                klon.komşular = []
 
-            clone.neighbors.append(cloned_neighbor)
+            klon.komşular.append(klonlanmış_komşu)
 
-    return originals_to_clones[node]
+    return orijinallerden_klonlara[düğüm]
 
 
 if __name__ == "__main__":

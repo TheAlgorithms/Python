@@ -1,4 +1,4 @@
-"""Source: https://github.com/jason9075/opencv-mosaic-data-aug"""
+"""Kaynak: https://github.com/jason9075/opencv-mosaic-data-aug"""
 
 import glob
 import os
@@ -8,179 +8,179 @@ from string import ascii_lowercase, digits
 import cv2
 import numpy as np
 
-# Parameters
-OUTPUT_SIZE = (720, 1280)  # Height, Width
-SCALE_RANGE = (0.4, 0.6)  # if height or width lower than this scale, drop it.
-FILTER_TINY_SCALE = 1 / 100
-LABEL_DIR = ""
-IMG_DIR = ""
-OUTPUT_DIR = ""
-NUMBER_IMAGES = 250
+# Parametreler
+CIKTI_BOYUTU = (720, 1280)  # Yükseklik, Genişlik
+OLCEK_ARALIGI = (0.4, 0.6)  # Eğer yükseklik veya genişlik bu ölçekten düşükse, bırak.
+FILTRE_KUCUK_OLCEK = 1 / 100
+ETIKET_DIZINI = ""
+GORUNTU_DIZINI = ""
+CIKTI_DIZINI = ""
+GORUNTU_SAYISI = 250
 
 
-def main() -> None:
+def ana() -> None:
     """
-    Get images list and annotations list from input dir.
-    Update new images and annotations.
-    Save images and annotations in output dir.
+    Görüntü listesi ve açıklama listesini giriş dizininden alın.
+    Yeni görüntüleri ve açıklamaları güncelleyin.
+    Görüntüleri ve açıklamaları çıkış dizininde kaydedin.
     """
-    img_paths, annos = get_dataset(LABEL_DIR, IMG_DIR)
-    for index in range(NUMBER_IMAGES):
-        idxs = random.sample(range(len(annos)), 4)
-        new_image, new_annos, path = update_image_and_anno(
-            img_paths,
-            annos,
-            idxs,
-            OUTPUT_SIZE,
-            SCALE_RANGE,
-            filter_scale=FILTER_TINY_SCALE,
+    goruntu_yollari, aciklamalar = veri_setini_al(ETIKET_DIZINI, GORUNTU_DIZINI)
+    for indeks in range(GORUNTU_SAYISI):
+        indeksler = random.sample(range(len(aciklamalar)), 4)
+        yeni_goruntu, yeni_aciklamalar, yol = goruntu_ve_aciklamayi_guncelle(
+            goruntu_yollari,
+            aciklamalar,
+            indeksler,
+            CIKTI_BOYUTU,
+            OLCEK_ARALIGI,
+            filtre_olcegi=FILTRE_KUCUK_OLCEK,
         )
 
-        # Get random string code: '7b7ad245cdff75241935e4dd860f3bad'
-        letter_code = random_chars(32)
-        file_name = path.split(os.sep)[-1].rsplit(".", 1)[0]
-        file_root = f"{OUTPUT_DIR}/{file_name}_MOSAIC_{letter_code}"
-        cv2.imwrite(f"{file_root}.jpg", new_image, [cv2.IMWRITE_JPEG_QUALITY, 85])
-        print(f"Succeeded {index+1}/{NUMBER_IMAGES} with {file_name}")
-        annos_list = []
-        for anno in new_annos:
-            width = anno[3] - anno[1]
-            height = anno[4] - anno[2]
-            x_center = anno[1] + width / 2
-            y_center = anno[2] + height / 2
-            obj = f"{anno[0]} {x_center} {y_center} {width} {height}"
-            annos_list.append(obj)
-        with open(f"{file_root}.txt", "w") as outfile:
-            outfile.write("\n".join(line for line in annos_list))
+        # Rastgele karakter kodu al: '7b7ad245cdff75241935e4dd860f3bad'
+        karakter_kodu = rastgele_karakterler(32)
+        dosya_adi = yol.split(os.sep)[-1].rsplit(".", 1)[0]
+        dosya_kok = f"{CIKTI_DIZINI}/{dosya_adi}_MOZAİK_{karakter_kodu}"
+        cv2.imwrite(f"{dosya_kok}.jpg", yeni_goruntu, [cv2.IMWRITE_JPEG_QUALITY, 85])
+        print(f"Başarılı {indeks+1}/{GORUNTU_SAYISI} ile {dosya_adi}")
+        aciklama_listesi = []
+        for aciklama in yeni_aciklamalar:
+            genislik = aciklama[3] - aciklama[1]
+            yukseklik = aciklama[4] - aciklama[2]
+            x_merkezi = aciklama[1] + genislik / 2
+            y_merkezi = aciklama[2] + yukseklik / 2
+            nesne = f"{aciklama[0]} {x_merkezi} {y_merkezi} {genislik} {yukseklik}"
+            aciklama_listesi.append(nesne)
+        with open(f"{dosya_kok}.txt", "w") as cikti_dosyasi:
+            cikti_dosyasi.write("\n".join(satir for satir in aciklama_listesi))
 
 
-def get_dataset(label_dir: str, img_dir: str) -> tuple[list, list]:
+def veri_setini_al(etiket_dizini: str, goruntu_dizini: str) -> tuple[list, list]:
     """
-    - label_dir <type: str>: Path to label include annotation of images
-    - img_dir <type: str>: Path to folder contain images
-    Return <type: list>: List of images path and labels
+    - etiket_dizini <type: str>: Görüntülerin açıklamalarını içeren etiketlerin yolu
+    - goruntu_dizini <type: str>: Görüntüleri içeren klasörün yolu
+    Dönüş <type: list>: Görüntü yolları ve etiketlerin listesi
     """
-    img_paths = []
-    labels = []
-    for label_file in glob.glob(os.path.join(label_dir, "*.txt")):
-        label_name = label_file.split(os.sep)[-1].rsplit(".", 1)[0]
-        with open(label_file) as in_file:
-            obj_lists = in_file.readlines()
-        img_path = os.path.join(img_dir, f"{label_name}.jpg")
+    goruntu_yollari = []
+    etiketler = []
+    for etiket_dosyasi in glob.glob(os.path.join(etiket_dizini, "*.txt")):
+        etiket_adi = etiket_dosyasi.split(os.sep)[-1].rsplit(".", 1)[0]
+        with open(etiket_dosyasi) as giris_dosyasi:
+            nesne_listeleri = giris_dosyasi.readlines()
+        goruntu_yolu = os.path.join(goruntu_dizini, f"{etiket_adi}.jpg")
 
-        boxes = []
-        for obj_list in obj_lists:
-            obj = obj_list.rstrip("\n").split(" ")
-            xmin = float(obj[1]) - float(obj[3]) / 2
-            ymin = float(obj[2]) - float(obj[4]) / 2
-            xmax = float(obj[1]) + float(obj[3]) / 2
-            ymax = float(obj[2]) + float(obj[4]) / 2
+        kutular = []
+        for nesne_listesi in nesne_listeleri:
+            nesne = nesne_listesi.rstrip("\n").split(" ")
+            xmin = float(nesne[1]) - float(nesne[3]) / 2
+            ymin = float(nesne[2]) - float(nesne[4]) / 2
+            xmax = float(nesne[1]) + float(nesne[3]) / 2
+            ymax = float(nesne[2]) + float(nesne[4]) / 2
 
-            boxes.append([int(obj[0]), xmin, ymin, xmax, ymax])
-        if not boxes:
+            kutular.append([int(nesne[0]), xmin, ymin, xmax, ymax])
+        if not kutular:
             continue
-        img_paths.append(img_path)
-        labels.append(boxes)
-    return img_paths, labels
+        goruntu_yollari.append(goruntu_yolu)
+        etiketler.append(kutular)
+    return goruntu_yollari, etiketler
 
 
-def update_image_and_anno(
-    all_img_list: list,
-    all_annos: list,
-    idxs: list[int],
-    output_size: tuple[int, int],
-    scale_range: tuple[float, float],
-    filter_scale: float = 0.0,
+def goruntu_ve_aciklamayi_guncelle(
+    tum_goruntu_listesi: list,
+    tum_aciklamalar: list,
+    indeksler: list[int],
+    cikti_boyutu: tuple[int, int],
+    olcek_araligi: tuple[float, float],
+    filtre_olcegi: float = 0.0,
 ) -> tuple[list, list, str]:
     """
-    - all_img_list <type: list>: list of all images
-    - all_annos <type: list>: list of all annotations of specific image
-    - idxs <type: list>: index of image in list
-    - output_size <type: tuple>: size of output image (Height, Width)
-    - scale_range <type: tuple>: range of scale image
-    - filter_scale <type: float>: the condition of downscale image and bounding box
-    Return:
-        - output_img <type: narray>: image after resize
-        - new_anno <type: list>: list of new annotation after scale
-        - path[0] <type: string>: get the name of image file
+    - tum_goruntu_listesi <type: list>: tüm görüntülerin listesi
+    - tum_aciklamalar <type: list>: belirli bir görüntünün tüm açıklamalarının listesi
+    - indeksler <type: list>: listedeki görüntünün indeksi
+    - cikti_boyutu <type: tuple>: çıktı görüntüsünün boyutu (Yükseklik, Genişlik)
+    - olcek_araligi <type: tuple>: görüntü ölçek aralığı
+    - filtre_olcegi <type: float>: görüntü ve sınırlayıcı kutuyu küçültme koşulu
+    Dönüş:
+        - cikti_goruntu <type: narray>: yeniden boyutlandırıldıktan sonra görüntü
+        - yeni_aciklama <type: list>: ölçeklendirmeden sonra yeni açıklamaların listesi
+        - yol[0] <type: string>: görüntü dosyasının adını al
     """
-    output_img = np.zeros([output_size[0], output_size[1], 3], dtype=np.uint8)
-    scale_x = scale_range[0] + random.random() * (scale_range[1] - scale_range[0])
-    scale_y = scale_range[0] + random.random() * (scale_range[1] - scale_range[0])
-    divid_point_x = int(scale_x * output_size[1])
-    divid_point_y = int(scale_y * output_size[0])
+    cikti_goruntu = np.zeros([cikti_boyutu[0], cikti_boyutu[1], 3], dtype=np.uint8)
+    olcek_x = olcek_araligi[0] + random.random() * (olcek_araligi[1] - olcek_araligi[0])
+    olcek_y = olcek_araligi[0] + random.random() * (olcek_araligi[1] - olcek_araligi[0])
+    bolme_noktasi_x = int(olcek_x * cikti_boyutu[1])
+    bolme_noktasi_y = int(olcek_y * cikti_boyutu[0])
 
-    new_anno = []
-    path_list = []
-    for i, index in enumerate(idxs):
-        path = all_img_list[index]
-        path_list.append(path)
-        img_annos = all_annos[index]
-        img = cv2.imread(path)
-        if i == 0:  # top-left
-            img = cv2.resize(img, (divid_point_x, divid_point_y))
-            output_img[:divid_point_y, :divid_point_x, :] = img
-            for bbox in img_annos:
-                xmin = bbox[1] * scale_x
-                ymin = bbox[2] * scale_y
-                xmax = bbox[3] * scale_x
-                ymax = bbox[4] * scale_y
-                new_anno.append([bbox[0], xmin, ymin, xmax, ymax])
-        elif i == 1:  # top-right
-            img = cv2.resize(img, (output_size[1] - divid_point_x, divid_point_y))
-            output_img[:divid_point_y, divid_point_x : output_size[1], :] = img
-            for bbox in img_annos:
-                xmin = scale_x + bbox[1] * (1 - scale_x)
-                ymin = bbox[2] * scale_y
-                xmax = scale_x + bbox[3] * (1 - scale_x)
-                ymax = bbox[4] * scale_y
-                new_anno.append([bbox[0], xmin, ymin, xmax, ymax])
-        elif i == 2:  # bottom-left
-            img = cv2.resize(img, (divid_point_x, output_size[0] - divid_point_y))
-            output_img[divid_point_y : output_size[0], :divid_point_x, :] = img
-            for bbox in img_annos:
-                xmin = bbox[1] * scale_x
-                ymin = scale_y + bbox[2] * (1 - scale_y)
-                xmax = bbox[3] * scale_x
-                ymax = scale_y + bbox[4] * (1 - scale_y)
-                new_anno.append([bbox[0], xmin, ymin, xmax, ymax])
-        else:  # bottom-right
-            img = cv2.resize(
-                img, (output_size[1] - divid_point_x, output_size[0] - divid_point_y)
+    yeni_aciklama = []
+    yol_listesi = []
+    for i, indeks in enumerate(indeksler):
+        yol = tum_goruntu_listesi[indeks]
+        yol_listesi.append(yol)
+        goruntu_aciklamalari = tum_aciklamalar[indeks]
+        goruntu = cv2.imread(yol)
+        if i == 0:  # sol üst
+            goruntu = cv2.resize(goruntu, (bolme_noktasi_x, bolme_noktasi_y))
+            cikti_goruntu[:bolme_noktasi_y, :bolme_noktasi_x, :] = goruntu
+            for kutu in goruntu_aciklamalari:
+                xmin = kutu[1] * olcek_x
+                ymin = kutu[2] * olcek_y
+                xmax = kutu[3] * olcek_x
+                ymax = kutu[4] * olcek_y
+                yeni_aciklama.append([kutu[0], xmin, ymin, xmax, ymax])
+        elif i == 1:  # sağ üst
+            goruntu = cv2.resize(goruntu, (cikti_boyutu[1] - bolme_noktasi_x, bolme_noktasi_y))
+            cikti_goruntu[:bolme_noktasi_y, bolme_noktasi_x : cikti_boyutu[1], :] = goruntu
+            for kutu in goruntu_aciklamalari:
+                xmin = olcek_x + kutu[1] * (1 - olcek_x)
+                ymin = kutu[2] * olcek_y
+                xmax = olcek_x + kutu[3] * (1 - olcek_x)
+                ymax = kutu[4] * olcek_y
+                yeni_aciklama.append([kutu[0], xmin, ymin, xmax, ymax])
+        elif i == 2:  # sol alt
+            goruntu = cv2.resize(goruntu, (bolme_noktasi_x, cikti_boyutu[0] - bolme_noktasi_y))
+            cikti_goruntu[bolme_noktasi_y : cikti_boyutu[0], :bolme_noktasi_x, :] = goruntu
+            for kutu in goruntu_aciklamalari:
+                xmin = kutu[1] * olcek_x
+                ymin = olcek_y + kutu[2] * (1 - olcek_y)
+                xmax = kutu[3] * olcek_x
+                ymax = olcek_y + kutu[4] * (1 - olcek_y)
+                yeni_aciklama.append([kutu[0], xmin, ymin, xmax, ymax])
+        else:  # sağ alt
+            goruntu = cv2.resize(
+                goruntu, (cikti_boyutu[1] - bolme_noktasi_x, cikti_boyutu[0] - bolme_noktasi_y)
             )
-            output_img[
-                divid_point_y : output_size[0], divid_point_x : output_size[1], :
-            ] = img
-            for bbox in img_annos:
-                xmin = scale_x + bbox[1] * (1 - scale_x)
-                ymin = scale_y + bbox[2] * (1 - scale_y)
-                xmax = scale_x + bbox[3] * (1 - scale_x)
-                ymax = scale_y + bbox[4] * (1 - scale_y)
-                new_anno.append([bbox[0], xmin, ymin, xmax, ymax])
+            cikti_goruntu[
+                bolme_noktasi_y : cikti_boyutu[0], bolme_noktasi_x : cikti_boyutu[1], :
+            ] = goruntu
+            for kutu in goruntu_aciklamalari:
+                xmin = olcek_x + kutu[1] * (1 - olcek_x)
+                ymin = olcek_y + kutu[2] * (1 - olcek_y)
+                xmax = olcek_x + kutu[3] * (1 - olcek_x)
+                ymax = olcek_y + kutu[4] * (1 - olcek_y)
+                yeni_aciklama.append([kutu[0], xmin, ymin, xmax, ymax])
 
-    # Remove bounding box small than scale of filter
-    if filter_scale > 0:
-        new_anno = [
-            anno
-            for anno in new_anno
-            if filter_scale < (anno[3] - anno[1]) and filter_scale < (anno[4] - anno[2])
+    # Filtre ölçeğinden küçük sınırlayıcı kutuyu kaldır
+    if filtre_olcegi > 0:
+        yeni_aciklama = [
+            aciklama
+            for aciklama in yeni_aciklama
+            if filtre_olcegi < (aciklama[3] - aciklama[1]) and filtre_olcegi < (aciklama[4] - aciklama[2])
         ]
 
-    return output_img, new_anno, path_list[0]
+    return cikti_goruntu, yeni_aciklama, yol_listesi[0]
 
 
-def random_chars(number_char: int) -> str:
+def rastgele_karakterler(karakter_sayisi: int) -> str:
     """
-    Automatic generate random 32 characters.
-    Get random string code: '7b7ad245cdff75241935e4dd860f3bad'
-    >>> len(random_chars(32))
+    Otomatik olarak rastgele 32 karakter oluşturun.
+    Rastgele karakter kodu al: '7b7ad245cdff75241935e4dd860f3bad'
+    >>> len(rastgele_karakterler(32))
     32
     """
-    assert number_char > 1, "The number of character should greater than 1"
-    letter_code = ascii_lowercase + digits
-    return "".join(random.choice(letter_code) for _ in range(number_char))
+    assert karakter_sayisi > 1, "Karakter sayısı 1'den büyük olmalıdır"
+    karakter_kodu = ascii_lowercase + digits
+    return "".join(random.choice(karakter_kodu) for _ in range(karakter_sayisi))
 
 
 if __name__ == "__main__":
-    main()
-    print("DONE ✅")
+    ana()
+    print("TAMAMLANDI ✅")

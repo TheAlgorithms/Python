@@ -1,17 +1,17 @@
 """
-Author  : Alexander Pantyukhin
-Date    : October 14, 2022
-This is an implementation of the up-bottom approach to find edit distance.
-The implementation was tested on Leetcode: https://leetcode.com/problems/edit-distance/
+Yazar   : Alexander Pantyukhin
+Tarih   : 14 Ekim 2022
+Bu, düzenleme mesafesini bulmak için yukarıdan aşağıya yaklaşımın bir uygulamasıdır.
+Uygulama Leetcode'da test edildi: https://leetcode.com/problems/edit-distance/
 
-Levinstein distance
-Dynamic Programming: up -> down.
+Levinstein mesafesi
+Dinamik Programlama: yukarı -> aşağı.
 """
 
 import functools
 
 
-def min_distance_up_bottom(word1: str, word2: str) -> int:
+def min_distance_up_bottom(kelime1: str, kelime2: str) -> int:
     """
     >>> min_distance_up_bottom("intention", "execution")
     5
@@ -22,22 +22,22 @@ def min_distance_up_bottom(word1: str, word2: str) -> int:
     >>> min_distance_up_bottom("zooicoarchaeologist", "zoologist")
     10
     """
-    len_word1 = len(word1)
-    len_word2 = len(word2)
+    len_kelime1 = len(kelime1)
+    len_kelime2 = len(kelime2)
 
     @functools.cache
-    def min_distance(index1: int, index2: int) -> int:
-        # if first word index overflows - delete all from the second word
-        if index1 >= len_word1:
-            return len_word2 - index2
-        # if second word index overflows - delete all from the first word
-        if index2 >= len_word2:
-            return len_word1 - index1
-        diff = int(word1[index1] != word2[index2])  # current letters not identical
+    def min_distance(indeks1: int, indeks2: int) -> int:
+        # ilk kelime indeksi taşarsa - ikinci kelimeden hepsini sil
+        if indeks1 >= len_kelime1:
+            return len_kelime2 - indeks2
+        # ikinci kelime indeksi taşarsa - ilk kelimeden hepsini sil
+        if indeks2 >= len_kelime2:
+            return len_kelime1 - indeks1
+        fark = int(kelime1[indeks1] != kelime2[indeks2])  # mevcut harfler aynı değil
         return min(
-            1 + min_distance(index1 + 1, index2),
-            1 + min_distance(index1, index2 + 1),
-            diff + min_distance(index1 + 1, index2 + 1),
+            1 + min_distance(indeks1 + 1, indeks2),
+            1 + min_distance(indeks1, indeks2 + 1),
+            fark + min_distance(indeks1 + 1, indeks2 + 1),
         )
 
     return min_distance(0, 0)

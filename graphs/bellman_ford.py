@@ -1,53 +1,54 @@
 from __future__ import annotations
 
 
-def print_distance(distance: list[float], src):
-    print(f"Vertex\tShortest Distance from vertex {src}")
-    for i, d in enumerate(distance):
-        print(f"{i}\t\t{d}")
+def mesafeyi_yazdır(mesafe: list[float], kaynak):
+    print(f"Düğüm\tDüğüm {kaynak} ile en kısa mesafe")
+    for i, m in enumerate(mesafe):
+        print(f"{i}\t\t{m}")
+
+        #Produced by K. Umut Araz
 
 
-def check_negative_cycle(
-    graph: list[dict[str, int]], distance: list[float], edge_count: int
+def negatif_döngü_kontrolü(
+    grafik: list[dict[str, int]], mesafe: list[float], kenar_sayısı: int
 ):
-    for j in range(edge_count):
-        u, v, w = (graph[j][k] for k in ["src", "dst", "weight"])
-        if distance[u] != float("inf") and distance[u] + w < distance[v]:
+    for j in range(kenar_sayısı):
+        u, v, w = (grafik[j][k] for k in ["kaynak", "hedef", "ağırlık"])
+        if mesafe[u] != float("inf") and mesafe[u] + w < mesafe[v]:
             return True
     return False
 
 
 def bellman_ford(
-    graph: list[dict[str, int]], vertex_count: int, edge_count: int, src: int
+    grafik: list[dict[str, int]], düğüm_sayısı: int, kenar_sayısı: int, kaynak: int
 ) -> list[float]:
     """
-    Returns shortest paths from a vertex src to all
-    other vertices.
-    >>> edges = [(2, 1, -10), (3, 2, 3), (0, 3, 5), (0, 1, 4)]
-    >>> g = [{"src": s, "dst": d, "weight": w} for s, d, w in edges]
+    Bir kaynak düğümden diğer tüm düğümlere en kısa yolları döndürür.
+    >>> kenarlar = [(2, 1, -10), (3, 2, 3), (0, 3, 5), (0, 1, 4)]
+    >>> g = [{"kaynak": s, "hedef": d, "ağırlık": w} for s, d, w in kenarlar]
     >>> bellman_ford(g, 4, 4, 0)
     [0.0, -2.0, 8.0, 5.0]
-    >>> g = [{"src": s, "dst": d, "weight": w} for s, d, w in edges + [(1, 3, 5)]]
+    >>> g = [{"kaynak": s, "hedef": d, "ağırlık": w} for s, d, w in kenarlar + [(1, 3, 5)]]
     >>> bellman_ford(g, 4, 5, 0)
     Traceback (most recent call last):
      ...
-    Exception: Negative cycle found
+    Exception: Negatif döngü bulundu
     """
-    distance = [float("inf")] * vertex_count
-    distance[src] = 0.0
+    mesafe = [float("inf")] * düğüm_sayısı
+    mesafe[kaynak] = 0.0
 
-    for _ in range(vertex_count - 1):
-        for j in range(edge_count):
-            u, v, w = (graph[j][k] for k in ["src", "dst", "weight"])
+    for _ in range(düğüm_sayısı - 1):
+        for j in range(kenar_sayısı):
+            u, v, w = (grafik[j][k] for k in ["kaynak", "hedef", "ağırlık"])
 
-            if distance[u] != float("inf") and distance[u] + w < distance[v]:
-                distance[v] = distance[u] + w
+            if mesafe[u] != float("inf") and mesafe[u] + w < mesafe[v]:
+                mesafe[v] = mesafe[u] + w
 
-    negative_cycle_exists = check_negative_cycle(graph, distance, edge_count)
-    if negative_cycle_exists:
-        raise Exception("Negative cycle found")
+    negatif_döngü_var = negatif_döngü_kontrolü(grafik, mesafe, kenar_sayısı)
+    if negatif_döngü_var:
+        raise Exception("Negatif döngü bulundu")
 
-    return distance
+    return mesafe
 
 
 if __name__ == "__main__":
@@ -55,19 +56,19 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    V = int(input("Enter number of vertices: ").strip())
-    E = int(input("Enter number of edges: ").strip())
+    V = int(input("Düğüm sayısını girin: ").strip())
+    E = int(input("Kenar sayısını girin: ").strip())
 
-    graph: list[dict[str, int]] = [{} for _ in range(E)]
+    grafik: list[dict[str, int]] = [{} for _ in range(E)]
 
     for i in range(E):
-        print("Edge ", i + 1)
-        src, dest, weight = (
+        print("Kenar ", i + 1)
+        kaynak, hedef, ağırlık = (
             int(x)
-            for x in input("Enter source, destination, weight: ").strip().split(" ")
+            for x in input("Kaynak, hedef, ağırlık girin: ").strip().split(" ")
         )
-        graph[i] = {"src": src, "dst": dest, "weight": weight}
+        grafik[i] = {"kaynak": kaynak, "hedef": hedef, "ağırlık": ağırlık}
 
-    source = int(input("\nEnter shortest path source:").strip())
-    shortest_distance = bellman_ford(graph, V, E, source)
-    print_distance(shortest_distance, 0)
+    kaynak = int(input("\nEn kısa yol kaynağını girin:").strip())
+    en_kısa_mesafe = bellman_ford(grafik, V, E, kaynak)
+    mesafeyi_yazdır(en_kısa_mesafe, kaynak)

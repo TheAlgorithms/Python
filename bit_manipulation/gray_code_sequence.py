@@ -1,91 +1,86 @@
-def gray_code(bit_count: int) -> list:
+def gri_kod(bit_sayisi: int) -> list:
     """
-    Takes in an integer n and returns a n-bit
-    gray code sequence
-    An n-bit gray code sequence is a sequence of 2^n
-    integers where:
+    Bir tamsayı n alır ve n-bit gri kod dizisini döndürür.
+    Bir n-bit gri kod dizisi, 2^n tamsayıdan oluşan bir dizidir ve:
 
-    a) Every integer is between [0,2^n -1] inclusive
-    b) The sequence begins with 0
-    c) An integer appears at most one times in the sequence
-    d)The binary representation of every pair of integers differ
-       by exactly one bit
-    e) The binary representation of first and last bit also
-       differ by exactly one bit
+    a) Her tamsayı [0, 2^n -1] aralığındadır (dahil)
+    b) Dizi 0 ile başlar
+    c) Bir tamsayı dizide en fazla bir kez görünür
+    d) Her çift tamsayının ikili gösterimi tam olarak bir bit ile farklıdır
+    e) İlk ve son bitin ikili gösterimi de tam olarak bir bit ile farklıdır
 
-    >>> gray_code(2)
+    >>> gri_kod(2)
     [0, 1, 3, 2]
 
-    >>> gray_code(1)
+    >>> gri_kod(1)
     [0, 1]
 
-    >>> gray_code(3)
+    >>> gri_kod(3)
     [0, 1, 3, 2, 6, 7, 5, 4]
 
-    >>> gray_code(-1)
+    >>> gri_kod(-1)
     Traceback (most recent call last):
         ...
-    ValueError: The given input must be positive
+    ValueError: Verilen giriş pozitif olmalıdır
 
-    >>> gray_code(10.6)
+    >>> gri_kod(10.6)
     Traceback (most recent call last):
         ...
     TypeError: unsupported operand type(s) for <<: 'int' and 'float'
     """
 
-    # bit count represents no. of bits in the gray code
-    if bit_count < 0:
-        raise ValueError("The given input must be positive")
+    # bit_sayisi gri koddaki bit sayısını temsil eder
+    if bit_sayisi < 0:
+        raise ValueError("Verilen giriş pozitif olmalıdır")
 
-    # get the generated string sequence
-    sequence = gray_code_sequence_string(bit_count)
+    # oluşturulan dizi dizisini al
+    dizi = gri_kod_dizisi_string(bit_sayisi)
     #
-    # convert them to integers
-    for i in range(len(sequence)):
-        sequence[i] = int(sequence[i], 2)
+    # bunları tamsayıya dönüştür
+    for i in range(len(dizi)):
+        dizi[i] = int(dizi[i], 2)
 
-    return sequence
+    return dizi
 
 
-def gray_code_sequence_string(bit_count: int) -> list:
+def gri_kod_dizisi_string(bit_sayisi: int) -> list:
     """
-    Will output the n-bit grey sequence as a
-    string of bits
+    n-bit gri dizisini bit dizisi olarak çıktılar
 
-    >>> gray_code_sequence_string(2)
+    >>> gri_kod_dizisi_string(2)
     ['00', '01', '11', '10']
 
-    >>> gray_code_sequence_string(1)
+    >>> gri_kod_dizisi_string(1)
     ['0', '1']
     """
 
-    # The approach is a recursive one
-    # Base case achieved when either n = 0 or n=1
-    if bit_count == 0:
+    # Yaklaşım özyinelemeli bir yaklaşımdır
+    # Temel durum n = 0 veya n = 1 olduğunda elde edilir
+    if bit_sayisi == 0:
         return ["0"]
 
-    if bit_count == 1:
+    if bit_sayisi == 1:
         return ["0", "1"]
 
-    seq_len = 1 << bit_count  # defines the length of the sequence
-    # 1<< n is equivalent to 2^n
+    dizi_uzunlugu = 1 << bit_sayisi  # dizinin uzunluğunu tanımlar
+    # 1 << n, 2^n'ye eşdeğerdir
 
-    # recursive answer will generate answer for n-1 bits
-    smaller_sequence = gray_code_sequence_string(bit_count - 1)
+    # özyinelemeli cevap n-1 bit için cevap üretecektir
+    daha_kucuk_dizi = gri_kod_dizisi_string(bit_sayisi - 1)
 
-    sequence = []
+    dizi = []
 
-    # append 0 to first half of the smaller sequence generated
-    for i in range(seq_len // 2):
-        generated_no = "0" + smaller_sequence[i]
-        sequence.append(generated_no)
+    # oluşturulan daha küçük dizinin ilk yarısına 0 ekle
+    for i in range(dizi_uzunlugu // 2):
+        olusturulan_no = "0" + daha_kucuk_dizi[i]
+        dizi.append(olusturulan_no)
 
-    # append 1 to second half ... start from the end of the list
-    for i in reversed(range(seq_len // 2)):
-        generated_no = "1" + smaller_sequence[i]
-        sequence.append(generated_no)
+    # ikinci yarısına 1 ekle ... listenin sonundan başla
+    for i in reversed(range(dizi_uzunlugu // 2)):
+        olusturulan_no = "1" + daha_kucuk_dizi[i]
+        dizi.append(olusturulan_no)
 
-    return sequence
+    return dizi
 
 
 if __name__ == "__main__":

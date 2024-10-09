@@ -3,9 +3,9 @@
 
 def binary_and(a: int, b: int) -> str:
     """
-    Take in 2 integers, convert them to binary,
-    return a binary number that is the
-    result of a binary and operation on the integers provided.
+    İki tam sayı alır, bunları ikili sisteme çevirir,
+    sağlanan tam sayılar üzerinde ikili ve işlemi sonucunda
+    bir ikili sayı döner.
 
     >>> binary_and(25, 32)
     '0b000000'
@@ -22,18 +22,18 @@ def binary_and(a: int, b: int) -> str:
     >>> binary_and(0, -1)
     Traceback (most recent call last):
         ...
-    ValueError: the value of both inputs must be positive
+    ValueError: her iki girdinin değeri pozitif olmalıdır
     >>> binary_and(0, 1.1)
     Traceback (most recent call last):
         ...
-    ValueError: Unknown format code 'b' for object of type 'float'
+    ValueError: float türündeki nesne için 'b' format kodu bilinmiyor
     >>> binary_and("0", "1")
     Traceback (most recent call last):
         ...
-    TypeError: '<' not supported between instances of 'str' and 'int'
+    TypeError: 'str' ve 'int' örnekleri arasında '<' desteklenmiyor
     """
     if a < 0 or b < 0:
-        raise ValueError("the value of both inputs must be positive")
+        raise ValueError("her iki girdinin değeri pozitif olmalıdır")
 
     a_binary = format(a, "b")
     b_binary = format(b, "b")

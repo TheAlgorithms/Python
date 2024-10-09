@@ -1,44 +1,43 @@
-def aliquot_sum(input_num: int) -> int:
+def bolen_toplami(girdi_sayi: int) -> int:
     """
-    Finds the aliquot sum of an input integer, where the
-    aliquot sum of a number n is defined as the sum of all
-    natural numbers less than n that divide n evenly. For
-    example, the aliquot sum of 15 is 1 + 3 + 5 = 9. This is
-    a simple O(n) implementation.
-    @param input_num: a positive integer whose aliquot sum is to be found
-    @return: the aliquot sum of input_num, if input_num is positive.
-    Otherwise, raise a ValueError
-    Wikipedia Explanation: https://en.wikipedia.org/wiki/Aliquot_sum
+    Bir tam sayının bölen toplamını bulur. n sayısının bölen toplamı,
+    n'den küçük ve n'i tam bölen tüm doğal sayıların toplamı olarak tanımlanır.
+    Örneğin, 15'in bölen toplamı 1 + 3 + 5 = 9'dur. Bu basit bir O(n) uygulamasıdır.
+    @param girdi_sayi: bölen toplamı bulunacak pozitif bir tam sayı
+    @return: girdi_sayi'nın bölen toplamı, eğer girdi_sayi pozitifse.
+    Aksi takdirde, bir ValueError yükseltir.
+    Organised by K. Umut Araz
+    Wikipedia Açıklaması: https://en.wikipedia.org/wiki/Aliquot_sum
 
-    >>> aliquot_sum(15)
+    >>> bolen_toplami(15)
     9
-    >>> aliquot_sum(6)
+    >>> bolen_toplami(6)
     6
-    >>> aliquot_sum(-1)
+    >>> bolen_toplami(-1)
     Traceback (most recent call last):
       ...
-    ValueError: Input must be positive
-    >>> aliquot_sum(0)
+    ValueError: Girdi pozitif olmalıdır
+    >>> bolen_toplami(0)
     Traceback (most recent call last):
       ...
-    ValueError: Input must be positive
-    >>> aliquot_sum(1.6)
+    ValueError: Girdi pozitif olmalıdır
+    >>> bolen_toplami(1.6)
     Traceback (most recent call last):
       ...
-    ValueError: Input must be an integer
-    >>> aliquot_sum(12)
+    ValueError: Girdi bir tam sayı olmalıdır
+    >>> bolen_toplami(12)
     16
-    >>> aliquot_sum(1)
+    >>> bolen_toplami(1)
     0
-    >>> aliquot_sum(19)
+    >>> bolen_toplami(19)
     1
     """
-    if not isinstance(input_num, int):
-        raise ValueError("Input must be an integer")
-    if input_num <= 0:
-        raise ValueError("Input must be positive")
+    if not isinstance(girdi_sayi, int):
+        raise ValueError("Girdi bir tam sayı olmalıdır")
+    if girdi_sayi <= 0:
+        raise ValueError("Girdi pozitif olmalıdır")
     return sum(
-        divisor for divisor in range(1, input_num // 2 + 1) if input_num % divisor == 0
+        bolen for bolen in range(1, girdi_sayi // 2 + 1) if girdi_sayi % bolen == 0
     )
 
 

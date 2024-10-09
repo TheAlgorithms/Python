@@ -1,26 +1,28 @@
-def average_absolute_deviation(nums: list[int]) -> float:
+def ortalama_mutlak_sapma(sayılar: list[int]) -> float:
     """
-    Return the average absolute deviation of a list of numbers.
+    Bir sayı listesinin ortalama mutlak sapmasını döndürür.
     Wiki: https://en.wikipedia.org/wiki/Average_absolute_deviation
 
-    >>> average_absolute_deviation([0])
+    #Organised by K. Umut Araz
+
+    >>> ortalama_mutlak_sapma([0])
     0.0
-    >>> average_absolute_deviation([4, 1, 3, 2])
+    >>> ortalama_mutlak_sapma([4, 1, 3, 2])
     1.0
-    >>> average_absolute_deviation([2, 70, 6, 50, 20, 8, 4, 0])
+    >>> ortalama_mutlak_sapma([2, 70, 6, 50, 20, 8, 4, 0])
     20.0
-    >>> average_absolute_deviation([-20, 0, 30, 15])
+    >>> ortalama_mutlak_sapma([-20, 0, 30, 15])
     16.25
-    >>> average_absolute_deviation([])
+    >>> ortalama_mutlak_sapma([])
     Traceback (most recent call last):
         ...
-    ValueError: List is empty
+    ValueError: Liste boş
     """
-    if not nums:  # Makes sure that the list is not empty
-        raise ValueError("List is empty")
+    if not sayılar:  # Listenin boş olmadığından emin olun
+        raise ValueError("Liste boş")
 
-    average = sum(nums) / len(nums)  # Calculate the average
-    return sum(abs(x - average) for x in nums) / len(nums)
+    ortalama = sum(sayılar) / len(sayılar)  # Ortalama hesapla
+    return sum(abs(x - ortalama) for x in sayılar) / len(sayılar)
 
 
 if __name__ == "__main__":

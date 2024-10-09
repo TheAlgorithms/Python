@@ -1,12 +1,13 @@
 """
-Given an two dimensional binary matrix grid. An island is a group of 1's (representing
-land) connected 4-directionally (horizontal or vertical.) You may assume all four edges
-of the grid are surrounded by water.  The area of an island is the number of cells with
-a value 1 in the island. Return the maximum area of an island in a grid. If there is no
-island, return 0.
+İki boyutlu bir ikili matris verildiğinde, bir ada 1'lerin (karasal alanı temsil eden) 
+dört yönlü (yatay veya dikey) bağlı olduğu bir grup olarak tanımlanır. Matrisin dört kenarının 
+su ile çevrili olduğunu varsayabilirsiniz. Bir adanın alanı, adadaki 1 değerine sahip hücrelerin 
+sayısıdır. Bir matris içindeki en büyük adanın alanını döndürün. Eğer ada yoksa, 0 döndürün.
+
+Organiser: K. Umut Araz
 """
 
-matrix = [
+matris = [
     [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
     [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -18,73 +19,72 @@ matrix = [
 ]
 
 
-def is_safe(row: int, col: int, rows: int, cols: int) -> bool:
+def güvenli_mi(satır: int, sütun: int, satır_sayısı: int, sütun_sayısı: int) -> bool:
     """
-    Checking whether coordinate (row, col) is valid or not.
+    (satır, sütun) koordinatının geçerli olup olmadığını kontrol eder.
 
-    >>> is_safe(0, 0, 5, 5)
+    >>> güvenli_mi(0, 0, 5, 5)
     True
-    >>> is_safe(-1,-1, 5, 5)
+    >>> güvenli_mi(-1, -1, 5, 5)
     False
     """
-    return 0 <= row < rows and 0 <= col < cols
+    return 0 <= satır < satır_sayısı and 0 <= sütun < sütun_sayısı
 
 
-def depth_first_search(row: int, col: int, seen: set, mat: list[list[int]]) -> int:
+def derinlikten_ilk_arama(satır: int, sütun: int, görülen: set, mat: list[list[int]]) -> int:
     """
-    Returns the current area of the island
+    Adanın mevcut alanını döndürür.
 
-    >>> depth_first_search(0, 0, set(), matrix)
+    >>> derinlikten_ilk_arama(0, 0, set(), matris)
     0
     """
-    rows = len(mat)
-    cols = len(mat[0])
-    if is_safe(row, col, rows, cols) and (row, col) not in seen and mat[row][col] == 1:
-        seen.add((row, col))
+    satır_sayısı = len(mat)
+    sütun_sayısı = len(mat[0])
+    if güvenli_mi(satır, sütun, satır_sayısı, sütun_sayısı) and (satır, sütun) not in görülen and mat[satır][sütun] == 1:
+        görülen.add((satır, sütun))
         return (
             1
-            + depth_first_search(row + 1, col, seen, mat)
-            + depth_first_search(row - 1, col, seen, mat)
-            + depth_first_search(row, col + 1, seen, mat)
-            + depth_first_search(row, col - 1, seen, mat)
+            + derinlikten_ilk_arama(satır + 1, sütun, görülen, mat)
+            + derinlikten_ilk_arama(satır - 1, sütun, görülen, mat)
+            + derinlikten_ilk_arama(satır, sütun + 1, görülen, mat)
+            + derinlikten_ilk_arama(satır, sütun - 1, görülen, mat)
         )
     else:
         return 0
 
 
-def find_max_area(mat: list[list[int]]) -> int:
+def en_büyük_alani_bul(mat: list[list[int]]) -> int:
     """
-    Finds the area of all islands and returns the maximum area.
+    Tüm adaların alanını bulur ve en büyük alanı döndürür.
 
-    >>> find_max_area(matrix)
+    >>> en_büyük_alani_bul(matris)
     6
     """
-    seen: set = set()
+    görülen: set = set()
 
-    max_area = 0
-    for row, line in enumerate(mat):
-        for col, item in enumerate(line):
-            if item == 1 and (row, col) not in seen:
-                # Maximizing the area
-                max_area = max(max_area, depth_first_search(row, col, seen, mat))
-    return max_area
+    en_büyük_alani = 0
+    for satır, satır_dizisi in enumerate(mat):
+        for sütun, eleman in enumerate(satır_dizisi):
+            if eleman == 1 and (satır, sütun) not in görülen:
+                # Alanı maksimize etme
+                en_büyük_alani = max(en_büyük_alani, derinlikten_ilk_arama(satır, sütun, görülen, mat))
+    return en_büyük_alani
 
 
 if __name__ == "__main__":
     import doctest
 
-    print(find_max_area(matrix))  # Output -> 6
+    print(en_büyük_alani_bul(matris))  # Çıktı -> 6
 
     """
-    Explanation:
-    We are allowed to move in four directions (horizontal or vertical) so the possible
-    in a matrix if we are at x and y position the possible moving are
+    Açıklama:
+    Dört yönde (yatay veya dikey) hareket etmemize izin verildiği için, bir matris içinde 
+    x ve y pozisyonunda isek, olası hareketler şunlardır:
 
-    Directions are [(x, y+1), (x, y-1), (x+1, y), (x-1, y)] but we need to take care of
-    boundary cases as well which are x and y can not be smaller than 0 and greater than
-    the number of rows and columns respectively.
+    Yönler [(x, y+1), (x, y-1), (x+1, y), (x-1, y)] ancak sınır durumlarına da dikkat etmemiz 
+    gerekiyor; x ve y sıfırdan küçük olamaz ve sırasıyla satır ve sütun sayısından büyük olamaz.
 
-    Visualization
+    Görselleştirme
     mat = [
         [0,0,A,0,0,0,0,B,0,0,0,0,0],
         [0,0,0,0,0,0,0,B,B,B,0,0,0],
@@ -96,17 +96,15 @@ if __name__ == "__main__":
         [0,0,0,0,0,0,0,F,F,0,0,0,0]
     ]
 
-    For visualization, I have defined the connected island with letters
-    by observation, we can see that
-        A island is of area 1
-        B island is of area 4
-        C island is of area 4
-        D island is of area 5
-        E island is of area 6 and
-        F island is of area 5
+    Görselleştirme için, bağlı adayı harflerle tanımladım. Gözlemlerimize göre,
+        A adası 1 alanına sahiptir.
+        B adası 4 alanına sahiptir.
+        C adası 4 alanına sahiptir.
+        D adası 5 alanına sahiptir.
+        E adası 6 alanına sahiptir ve
+        F adası 5 alanına sahiptir.
 
-    it has 6 unique islands of mentioned areas
-    and the maximum of all of them is 6 so we return 6.
+    Belirtilen alanlara sahip 6 benzersiz ada vardır ve bunların en büyüğü 6'dır, bu yüzden 6 döndürüyoruz.
     """
 
     doctest.testmod()

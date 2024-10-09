@@ -5,65 +5,63 @@
 from __future__ import annotations
 
 
-def carrier_concentration(
-    electron_conc: float,
-    hole_conc: float,
-    intrinsic_conc: float,
+def tasiyici_konsantrasyonu(
+    elektron_kons: float,
+    delik_kons: float,
+    iç_kons: float,
 ) -> tuple:
     """
-    This function can calculate any one of the three -
-    1. Electron Concentration
-    2, Hole Concentration
-    3. Intrinsic Concentration
-    given the other two.
-    Examples -
-    >>> carrier_concentration(electron_conc=25, hole_conc=100, intrinsic_conc=0)
-    ('intrinsic_conc', 50.0)
-    >>> carrier_concentration(electron_conc=0, hole_conc=1600, intrinsic_conc=200)
-    ('electron_conc', 25.0)
-    >>> carrier_concentration(electron_conc=1000, hole_conc=0, intrinsic_conc=1200)
-    ('hole_conc', 1440.0)
-    >>> carrier_concentration(electron_conc=1000, hole_conc=400, intrinsic_conc=1200)
+    Bu fonksiyon üç değerden herhangi birini hesaplayabilir -
+    1. Elektron Konsantrasyonu
+    2. Delik Konsantrasyonu
+    3. İçsel Konsantrasyon
+    diğer ikisi verildiğinde.
+    Örnekler -
+    >>> tasiyici_konsantrasyonu(elektron_kons=25, delik_kons=100, iç_kons=0)
+    ('iç_kons', 50.0)
+    >>> tasiyici_konsantrasyonu(elektron_kons=0, delik_kons=1600, iç_kons=200)
+    ('elektron_kons', 25.0)
+    >>> tasiyici_konsantrasyonu(elektron_kons=1000, delik_kons=0, iç_kons=1200)
+    ('delik_kons', 1440.0)
+    >>> tasiyici_konsantrasyonu(elektron_kons=1000, delik_kons=400, iç_kons=1200)
     Traceback (most recent call last):
         ...
-    ValueError: You cannot supply more or less than 2 values
-    >>> carrier_concentration(electron_conc=-1000, hole_conc=0, intrinsic_conc=1200)
+    ValueError: 2 değerden fazla veya az değer veremezsiniz
+    >>> tasiyici_konsantrasyonu(elektron_kons=-1000, delik_kons=0, iç_kons=1200)
     Traceback (most recent call last):
         ...
-    ValueError: Electron concentration cannot be negative in a semiconductor
-    >>> carrier_concentration(electron_conc=0, hole_conc=-400, intrinsic_conc=1200)
+    ValueError: Bir yarı iletkende elektron konsantrasyonu negatif olamaz
+    >>> tasiyici_konsantrasyonu(elektron_kons=0, delik_kons=-400, iç_kons=1200)
     Traceback (most recent call last):
         ...
-    ValueError: Hole concentration cannot be negative in a semiconductor
-    >>> carrier_concentration(electron_conc=0, hole_conc=400, intrinsic_conc=-1200)
+    ValueError: Bir yarı iletkende delik konsantrasyonu negatif olamaz
+    >>> tasiyici_konsantrasyonu(elektron_kons=0, delik_kons=400, iç_kons=-1200)
     Traceback (most recent call last):
         ...
-    ValueError: Intrinsic concentration cannot be negative in a semiconductor
+    ValueError: Bir yarı iletkende içsel konsantrasyon negatif olamaz
     """
-    if (electron_conc, hole_conc, intrinsic_conc).count(0) != 1:
-        raise ValueError("You cannot supply more or less than 2 values")
-    elif electron_conc < 0:
-        raise ValueError("Electron concentration cannot be negative in a semiconductor")
-    elif hole_conc < 0:
-        raise ValueError("Hole concentration cannot be negative in a semiconductor")
-    elif intrinsic_conc < 0:
-        raise ValueError(
-            "Intrinsic concentration cannot be negative in a semiconductor"
-        )
-    elif electron_conc == 0:
+    if (elektron_kons, delik_kons, iç_kons).count(0) != 1:
+        raise ValueError("2 değerden fazla veya az değer veremezsiniz")
+    elif elektron_kons < 0:
+        raise ValueError("Bir yarı iletkende elektron konsantrasyonu negatif olamaz")
+    elif delik_kons < 0:
+        raise ValueError("Bir yarı iletkende delik konsantrasyonu negatif olamaz")
+    elif iç_kons < 0:
+        raise ValueError("Bir yarı iletkende içsel konsantrasyon negatif olamaz")
+    elif elektron_kons == 0:
         return (
-            "electron_conc",
-            intrinsic_conc**2 / hole_conc,
+            "elektron_kons",
+            iç_kons**2 / delik_kons,
         )
-    elif hole_conc == 0:
+    elif delik_kons == 0:
         return (
-            "hole_conc",
-            intrinsic_conc**2 / electron_conc,
+            "delik_kons",
+            iç_kons**2 / elektron_kons,
         )
-    elif intrinsic_conc == 0:
+    elif iç_kons == 0:
         return (
-            "intrinsic_conc",
-            (electron_conc * hole_conc) ** 0.5,
+            "iç_kons",
+            (elektron_kons * delik_kons) ** 0.5,
         )
     else:
         return (-1, -1)

@@ -1,95 +1,90 @@
 """
-Task:
-There are n gas stations along a circular route, where the amount of gas
-at the ith station is gas_quantities[i].
+Görev:
+Dairesel bir rota boyunca n tane benzin istasyonu vardır, burada i. istasyondaki benzin miktarı gas_quantities[i] olarak verilmiştir.
 
-You have a car with an unlimited gas tank and it costs costs[i] of gas
-to travel from the ith station to its next (i + 1)th station.
-You begin the journey with an empty tank at one of the gas stations.
+Sınırsız bir benzin deposuna sahip bir arabanız var ve i. istasyondan (i + 1). istasyona gitmek için costs[i] kadar benzin harcarsınız.
+Yolculuğa benzin istasyonlarından birinde boş bir depo ile başlarsınız.
 
-Given two integer arrays gas_quantities and costs, return the starting
-gas station's index if you can travel around the circuit once
-in the clockwise direction otherwise, return -1.
-If there exists a solution, it is guaranteed to be unique
+İki tamsayı dizisi gas_quantities ve costs verildiğinde, saat yönünde bir kez dolaşabiliyorsanız başlangıç benzin istasyonunun indeksini döndürün, aksi takdirde -1 döndürün.
+Bir çözüm varsa, bunun benzersiz olduğu garanti edilir.
 
-Reference: https://leetcode.com/problems/gas-station/description
+Referans: https://leetcode.com/problems/gas-station/description
 
-Implementation notes:
-First, check whether the total gas is enough to complete the journey. If not, return -1.
-However, if there is enough gas, it is guaranteed that there is a valid
-starting index to reach the end of the journey.
-Greedily calculate the net gain (gas_quantity - cost) at each station.
-If the net gain ever goes below 0 while iterating through the stations,
-start checking from the next station.
+Uygulama notları:
+Öncelikle, toplam benzinin yolculuğu tamamlamak için yeterli olup olmadığını kontrol edin. Değilse, -1 döndürün.
+Ancak, yeterli benzin varsa, yolculuğun sonuna ulaşmak için geçerli bir başlangıç indeksinin olduğu garanti edilir.
+Her istasyondaki net kazancı (benzin miktarı - maliyet) açgözlü bir şekilde hesaplayın.
+İstasyonları gezerken net kazanç 0'ın altına düşerse, bir sonraki istasyondan kontrol etmeye başlayın.
 
 """
 
 from dataclasses import dataclass
 
+# Produced By K. Umut Araz
+
 
 @dataclass
-class GasStation:
-    gas_quantity: int
-    cost: int
+class BenzinIstasyonu:
+    benzin_miktarı: int
+    maliyet: int
 
 
-def get_gas_stations(
-    gas_quantities: list[int], costs: list[int]
-) -> tuple[GasStation, ...]:
+def benzin_istasyonlarını_al(
+    benzin_miktarları: list[int], maliyetler: list[int]
+) -> tuple[BenzinIstasyonu, ...]:
     """
-    This function returns a tuple of gas stations.
+    Bu fonksiyon bir demet benzin istasyonu döndürür.
 
     Args:
-        gas_quantities: Amount of gas available at each station
-        costs: The cost of gas required to move from one station to the next
+        benzin_miktarları: Her istasyonda mevcut olan benzin miktarı
+        maliyetler: Bir istasyondan diğerine geçmek için gereken benzin maliyeti
 
     Returns:
-        A tuple of gas stations
+        Bir demet benzin istasyonu
 
-    >>> gas_stations = get_gas_stations([1, 2, 3, 4, 5], [3, 4, 5, 1, 2])
-    >>> len(gas_stations)
+    >>> benzin_istasyonları = benzin_istasyonlarını_al([1, 2, 3, 4, 5], [3, 4, 5, 1, 2])
+    >>> len(benzin_istasyonları)
     5
-    >>> gas_stations[0]
-    GasStation(gas_quantity=1, cost=3)
-    >>> gas_stations[-1]
-    GasStation(gas_quantity=5, cost=2)
+    >>> benzin_istasyonları[0]
+    BenzinIstasyonu(benzin_miktarı=1, maliyet=3)
+    >>> benzin_istasyonları[-1]
+    BenzinIstasyonu(benzin_miktarı=5, maliyet=2)
     """
     return tuple(
-        GasStation(quantity, cost) for quantity, cost in zip(gas_quantities, costs)
+        BenzinIstasyonu(miktar, maliyet) for miktar, maliyet in zip(benzin_miktarları, maliyetler)
     )
 
 
-def can_complete_journey(gas_stations: tuple[GasStation, ...]) -> int:
+def yolculuğu_tamamlayabilir_misin(benzin_istasyonları: tuple[BenzinIstasyonu, ...]) -> int:
     """
-    This function returns the index from which to start the journey
-    in order to reach the end.
+    Bu fonksiyon yolculuğu tamamlamak için başlanması gereken indeksi döndürür.
 
     Args:
-        gas_quantities [list]: Amount of gas available at each station
-        cost [list]: The cost of gas required to move from one station to the next
+        benzin_miktarları [list]: Her istasyonda mevcut olan benzin miktarı
+        maliyet [list]: Bir istasyondan diğerine geçmek için gereken benzin maliyeti
 
     Returns:
-        start [int]: start index needed to complete the journey
+        başlangıç [int]: yolculuğu tamamlamak için gereken başlangıç indeksi
 
-    Examples:
-    >>> can_complete_journey(get_gas_stations([1, 2, 3, 4, 5], [3, 4, 5, 1, 2]))
+    Örnekler:
+    >>> yolculuğu_tamamlayabilir_misin(benzin_istasyonlarını_al([1, 2, 3, 4, 5], [3, 4, 5, 1, 2]))
     3
-    >>> can_complete_journey(get_gas_stations([2, 3, 4], [3, 4, 3]))
+    >>> yolculuğu_tamamlayabilir_misin(benzin_istasyonlarını_al([2, 3, 4], [3, 4, 3]))
     -1
     """
-    total_gas = sum(gas_station.gas_quantity for gas_station in gas_stations)
-    total_cost = sum(gas_station.cost for gas_station in gas_stations)
-    if total_gas < total_cost:
+    toplam_benzin = sum(istasyon.benzin_miktarı for istasyon in benzin_istasyonları)
+    toplam_maliyet = sum(istasyon.maliyet for istasyon in benzin_istasyonları)
+    if toplam_benzin < toplam_maliyet:
         return -1
 
-    start = 0
+    başlangıç = 0
     net = 0
-    for i, gas_station in enumerate(gas_stations):
-        net += gas_station.gas_quantity - gas_station.cost
+    for i, istasyon in enumerate(benzin_istasyonları):
+        net += istasyon.benzin_miktarı - istasyon.maliyet
         if net < 0:
-            start = i + 1
+            başlangıç = i + 1
             net = 0
-    return start
+    return başlangıç
 
 
 if __name__ == "__main__":

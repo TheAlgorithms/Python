@@ -1,66 +1,66 @@
-# https://en.wikipedia.org/wiki/Electrical_reactance#Inductive_reactance
+# https://tr.wikipedia.org/wiki/Elektriksel_reaktans#Endüktif_reaktans
 from __future__ import annotations
 
 from math import pi
 
 
-def ind_reactance(
-    inductance: float, frequency: float, reactance: float
+def end_reaktans(
+    endüktans: float, frekans: float, reaktans: float
 ) -> dict[str, float]:
     """
-    Calculate inductive reactance, frequency or inductance from two given electrical
-    properties then return name/value pair of the zero value in a Python dict.
+    İki verilen elektriksel özelliktenden endüktif reaktans, frekans veya endüktansı hesaplayın
+    ve sıfır değeri bir Python sözlüğünde isim/değer çifti olarak döndürün.
 
-    Parameters
-    ----------
-    inductance : float with units in Henries
+    Parametreler
+    ------------
+    endüktans : Henriler biriminde float
 
-    frequency : float with units in Hertz
+    frekans : Hertz biriminde float
 
-    reactance : float with units in Ohms
+    reaktans : Ohm biriminde float
 
-    >>> ind_reactance(-35e-6, 1e3, 0)
+    >>> end_reaktans(-35e-6, 1e3, 0)
     Traceback (most recent call last):
         ...
-    ValueError: Inductance cannot be negative
+    ValueError: Endüktans negatif olamaz
 
-    >>> ind_reactance(35e-6, -1e3, 0)
+    >>> end_reaktans(35e-6, -1e3, 0)
     Traceback (most recent call last):
         ...
-    ValueError: Frequency cannot be negative
+    ValueError: Frekans negatif olamaz
 
-    >>> ind_reactance(35e-6, 0, -1)
+    >>> end_reaktans(35e-6, 0, -1)
     Traceback (most recent call last):
         ...
-    ValueError: Inductive reactance cannot be negative
+    ValueError: Endüktif reaktans negatif olamaz
 
-    >>> ind_reactance(0, 10e3, 50)
-    {'inductance': 0.0007957747154594767}
+    >>> end_reaktans(0, 10e3, 50)
+    {'endüktans': 0.0007957747154594767}
 
-    >>> ind_reactance(35e-3, 0, 50)
-    {'frequency': 227.36420441699332}
+    >>> end_reaktans(35e-3, 0, 50)
+    {'frekans': 227.36420441699332}
 
-    >>> ind_reactance(35e-6, 1e3, 0)
-    {'reactance': 0.2199114857512855}
+    >>> end_reaktans(35e-6, 1e3, 0)
+    {'reaktans': 0.2199114857512855}
 
     """
 
-    if (inductance, frequency, reactance).count(0) != 1:
-        raise ValueError("One and only one argument must be 0")
-    if inductance < 0:
-        raise ValueError("Inductance cannot be negative")
-    if frequency < 0:
-        raise ValueError("Frequency cannot be negative")
-    if reactance < 0:
-        raise ValueError("Inductive reactance cannot be negative")
-    if inductance == 0:
-        return {"inductance": reactance / (2 * pi * frequency)}
-    elif frequency == 0:
-        return {"frequency": reactance / (2 * pi * inductance)}
-    elif reactance == 0:
-        return {"reactance": 2 * pi * frequency * inductance}
+    if (endüktans, frekans, reaktans).count(0) != 1:
+        raise ValueError("Bir ve yalnızca bir argüman 0 olmalıdır")
+    if endüktans < 0:
+        raise ValueError("Endüktans negatif olamaz")
+    if frekans < 0:
+        raise ValueError("Frekans negatif olamaz")
+    if reaktans < 0:
+        raise ValueError("Endüktif reaktans negatif olamaz")
+    if endüktans == 0:
+        return {"endüktans": reaktans / (2 * pi * frekans)}
+    elif frekans == 0:
+        return {"frekans": reaktans / (2 * pi * endüktans)}
+    elif reaktans == 0:
+        return {"reaktans": 2 * pi * frekans * endüktans}
     else:
-        raise ValueError("Exactly one argument must be 0")
+        raise ValueError("Tam olarak bir argüman 0 olmalıdır")
 
 
 if __name__ == "__main__":

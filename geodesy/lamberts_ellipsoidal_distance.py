@@ -1,82 +1,82 @@
 from math import atan, cos, radians, sin, tan
 
-from .haversine_distance import haversine_distance
+from .haversine_distance import haversine_mesafesi
 
 AXIS_A = 6378137.0
 AXIS_B = 6356752.314245
-EQUATORIAL_RADIUS = 6378137
+EKVATOR_YARICAPI = 6378137
 
 
-def lamberts_ellipsoidal_distance(
-    lat1: float, lon1: float, lat2: float, lon2: float
+def lamberts_elipsoidal_mesafe(
+    enlem1: float, boylam1: float, enlem2: float, boylam2: float
 ) -> float:
     """
-    Calculate the shortest distance along the surface of an ellipsoid between
-    two points on the surface of earth given longitudes and latitudes
+    İki nokta arasındaki elipsoid yüzeyi boyunca en kısa mesafeyi hesapla,
+    verilen boylam ve enlemlerle
     https://en.wikipedia.org/wiki/Geographical_distance#Lambert's_formula_for_long_lines
 
-    NOTE: This algorithm uses geodesy/haversine_distance.py to compute central angle,
+    NOT: Bu algoritma merkezi açı hesaplamak için geodesy/haversine_distance.py kullanır,
         sigma
 
-    Representing the earth as an ellipsoid allows us to approximate distances between
-    points on the surface much better than a sphere. Ellipsoidal formulas treat the
-    Earth as an oblate ellipsoid which means accounting for the flattening that happens
-    at the North and South poles. Lambert's formulae provide accuracy on the order of
-    10 meteres over thousands of kilometeres. Other methods can provide
-    millimeter-level accuracy but this is a simpler method to calculate long range
-    distances without increasing computational intensity.
+    Dünyayı bir elipsoid olarak temsil etmek, yüzeydeki noktalar arasındaki mesafeleri
+    bir küreye göre çok daha iyi tahmin etmemizi sağlar. Elipsoidal formüller,
+    Dünya'yı kutuplarda yassılaşma olan bir basık elipsoid olarak ele alır. Lambert'in
+    formülleri, binlerce kilometre boyunca 10 metre mertebesinde doğruluk sağlar.
+    Diğer yöntemler milimetre seviyesinde doğruluk sağlayabilir, ancak bu yöntem,
+    uzun mesafeleri hesaplamak için daha basit ve hesaplama yoğunluğunu artırmadan
+    kullanılabilir.
 
-    Args:
-        lat1, lon1: latitude and longitude of coordinate 1
-        lat2, lon2: latitude and longitude of coordinate 2
-    Returns:
-        geographical distance between two points in metres
+    Argümanlar:
+        enlem1, boylam1: koordinat 1'in enlem ve boylamı
+        enlem2, boylam2: koordinat 2'nin enlem ve boylamı
+    Dönüş:
+        iki nokta arasındaki coğrafi mesafe (metre cinsinden)
 
     >>> from collections import namedtuple
-    >>> point_2d = namedtuple("point_2d", "lat lon")
-    >>> SAN_FRANCISCO = point_2d(37.774856, -122.424227)
-    >>> YOSEMITE = point_2d(37.864742, -119.537521)
-    >>> NEW_YORK = point_2d(40.713019, -74.012647)
-    >>> VENICE = point_2d(45.443012, 12.313071)
-    >>> f"{lamberts_ellipsoidal_distance(*SAN_FRANCISCO, *YOSEMITE):0,.0f} meters"
-    '254,351 meters'
-    >>> f"{lamberts_ellipsoidal_distance(*SAN_FRANCISCO, *NEW_YORK):0,.0f} meters"
-    '4,138,992 meters'
-    >>> f"{lamberts_ellipsoidal_distance(*SAN_FRANCISCO, *VENICE):0,.0f} meters"
-    '9,737,326 meters'
+    >>> nokta_2d = namedtuple("nokta_2d", "enlem boylam")
+    >>> SAN_FRANCISCO = nokta_2d(37.774856, -122.424227)
+    >>> YOSEMITE = nokta_2d(37.864742, -119.537521)
+    >>> NEW_YORK = nokta_2d(40.713019, -74.012647)
+    >>> VENEDİK = nokta_2d(45.443012, 12.313071)
+    >>> f"{lamberts_elipsoidal_mesafe(*SAN_FRANCISCO, *YOSEMITE):0,.0f} metre"
+    '254,351 metre'
+    >>> f"{lamberts_elipsoidal_mesafe(*SAN_FRANCISCO, *NEW_YORK):0,.0f} metre"
+    '4,138,992 metre'
+    >>> f"{lamberts_elipsoidal_mesafe(*SAN_FRANCISCO, *VENEDİK):0,.0f} metre"
+    '9,737,326 metre'
     """
 
-    # CONSTANTS per WGS84 https://en.wikipedia.org/wiki/World_Geodetic_System
-    # Distance in metres(m)
-    # Equation Parameters
+    # WGS84'e göre SABİTLER https://en.wikipedia.org/wiki/World_Geodetic_System
+    # Mesafe metre cinsinden (m)
+    # Denklem Parametreleri
     # https://en.wikipedia.org/wiki/Geographical_distance#Lambert's_formula_for_long_lines
-    flattening = (AXIS_A - AXIS_B) / AXIS_A
-    # Parametric latitudes
+    yassilik = (AXIS_A - AXIS_B) / AXIS_A
+    # Parametrik enlemler
     # https://en.wikipedia.org/wiki/Latitude#Parametric_(or_reduced)_latitude
-    b_lat1 = atan((1 - flattening) * tan(radians(lat1)))
-    b_lat2 = atan((1 - flattening) * tan(radians(lat2)))
+    b_enlem1 = atan((1 - yassilik) * tan(radians(enlem1)))
+    b_enlem2 = atan((1 - yassilik) * tan(radians(enlem2)))
 
-    # Compute central angle between two points
-    # using haversine theta. sigma =  haversine_distance / equatorial radius
-    sigma = haversine_distance(lat1, lon1, lat2, lon2) / EQUATORIAL_RADIUS
+    # İki nokta arasındaki merkezi açıyı hesapla
+    # haversine theta kullanarak. sigma = haversine_mesafesi / ekvator yarıçapı
+    sigma = haversine_mesafesi(enlem1, boylam1, enlem2, boylam2) / EKVATOR_YARICAPI
 
-    # Intermediate P and Q values
-    p_value = (b_lat1 + b_lat2) / 2
-    q_value = (b_lat2 - b_lat1) / 2
+    # Ara P ve Q değerleri
+    p_degeri = (b_enlem1 + b_enlem2) / 2
+    q_degeri = (b_enlem2 - b_enlem1) / 2
 
-    # Intermediate X value
+    # Ara X değeri
     # X = (sigma - sin(sigma)) * sin^2Pcos^2Q / cos^2(sigma/2)
-    x_numerator = (sin(p_value) ** 2) * (cos(q_value) ** 2)
-    x_demonimator = cos(sigma / 2) ** 2
-    x_value = (sigma - sin(sigma)) * (x_numerator / x_demonimator)
+    x_pay = (sin(p_degeri) ** 2) * (cos(q_degeri) ** 2)
+    x_payda = cos(sigma / 2) ** 2
+    x_degeri = (sigma - sin(sigma)) * (x_pay / x_payda)
 
-    # Intermediate Y value
+    # Ara Y değeri
     # Y = (sigma + sin(sigma)) * cos^2Psin^2Q / sin^2(sigma/2)
-    y_numerator = (cos(p_value) ** 2) * (sin(q_value) ** 2)
-    y_denominator = sin(sigma / 2) ** 2
-    y_value = (sigma + sin(sigma)) * (y_numerator / y_denominator)
+    y_pay = (cos(p_degeri) ** 2) * (sin(q_degeri) ** 2)
+    y_payda = sin(sigma / 2) ** 2
+    y_degeri = (sigma + sin(sigma)) * (y_pay / y_payda)
 
-    return EQUATORIAL_RADIUS * (sigma - ((flattening / 2) * (x_value + y_value)))
+    return EKVATOR_YARICAPI * (sigma - ((yassilik / 2) * (x_degeri + y_degeri)))
 
 
 if __name__ == "__main__":

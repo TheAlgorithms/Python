@@ -1,60 +1,59 @@
 """
-Longest Common Substring Problem Statement: Given two sequences, find the
-longest common substring present in both of them. A substring is
-necessarily continuous.
-Example: "abcdef" and "xabded" have two longest common substrings, "ab" or "de".
-Therefore, algorithm should return any one of them.
+En Uzun Ortak Alt Dizi Problemi: İki dizi verildiğinde, her ikisinde de bulunan
+en uzun ortak alt diziyi bulun. Bir alt dizi mutlaka kesintisizdir.
+Örnek: "abcdef" ve "xabded" iki en uzun ortak alt diziye sahiptir, "ab" veya "de".
+Bu nedenle, algoritma bunlardan herhangi birini döndürmelidir.
 """
 
 
-def longest_common_substring(text1: str, text2: str) -> str:
+def en_uzun_ortak_alt_dizi(metin1: str, metin2: str) -> str:
     """
-    Finds the longest common substring between two strings.
-    >>> longest_common_substring("", "")
+    İki dizi arasındaki en uzun ortak alt diziyi bulur.
+    >>> en_uzun_ortak_alt_dizi("", "")
     ''
-    >>> longest_common_substring("a","")
+    >>> en_uzun_ortak_alt_dizi("a","")
     ''
-    >>> longest_common_substring("", "a")
+    >>> en_uzun_ortak_alt_dizi("", "a")
     ''
-    >>> longest_common_substring("a", "a")
+    >>> en_uzun_ortak_alt_dizi("a", "a")
     'a'
-    >>> longest_common_substring("abcdef", "bcd")
+    >>> en_uzun_ortak_alt_dizi("abcdef", "bcd")
     'bcd'
-    >>> longest_common_substring("abcdef", "xabded")
+    >>> en_uzun_ortak_alt_dizi("abcdef", "xabded")
     'ab'
-    >>> longest_common_substring("GeeksforGeeks", "GeeksQuiz")
+    >>> en_uzun_ortak_alt_dizi("GeeksforGeeks", "GeeksQuiz")
     'Geeks'
-    >>> longest_common_substring("abcdxyz", "xyzabcd")
+    >>> en_uzun_ortak_alt_dizi("abcdxyz", "xyzabcd")
     'abcd'
-    >>> longest_common_substring("zxabcdezy", "yzabcdezx")
+    >>> en_uzun_ortak_alt_dizi("zxabcdezy", "yzabcdezx")
     'abcdez'
-    >>> longest_common_substring("OldSite:GeeksforGeeks.org", "NewSite:GeeksQuiz.com")
+    >>> en_uzun_ortak_alt_dizi("OldSite:GeeksforGeeks.org", "NewSite:GeeksQuiz.com")
     'Site:Geeks'
-    >>> longest_common_substring(1, 1)
+    >>> en_uzun_ortak_alt_dizi(1, 1)
     Traceback (most recent call last):
         ...
-    ValueError: longest_common_substring() takes two strings for inputs
+    ValueError: en_uzun_ortak_alt_dizi() girdiler için iki dize alır
     """
 
-    if not (isinstance(text1, str) and isinstance(text2, str)):
-        raise ValueError("longest_common_substring() takes two strings for inputs")
+    if not (isinstance(metin1, str) and isinstance(metin2, str)):
+        raise ValueError("en_uzun_ortak_alt_dizi() girdiler için iki dize alır")
 
-    text1_length = len(text1)
-    text2_length = len(text2)
+    metin1_uzunluk = len(metin1)
+    metin2_uzunluk = len(metin2)
 
-    dp = [[0] * (text2_length + 1) for _ in range(text1_length + 1)]
-    ans_index = 0
-    ans_length = 0
+    dp = [[0] * (metin2_uzunluk + 1) for _ in range(metin1_uzunluk + 1)]
+    cevap_indeksi = 0
+    cevap_uzunluk = 0
 
-    for i in range(1, text1_length + 1):
-        for j in range(1, text2_length + 1):
-            if text1[i - 1] == text2[j - 1]:
+    for i in range(1, metin1_uzunluk + 1):
+        for j in range(1, metin2_uzunluk + 1):
+            if metin1[i - 1] == metin2[j - 1]:
                 dp[i][j] = 1 + dp[i - 1][j - 1]
-                if dp[i][j] > ans_length:
-                    ans_index = i
-                    ans_length = dp[i][j]
+                if dp[i][j] > cevap_uzunluk:
+                    cevap_indeksi = i
+                    cevap_uzunluk = dp[i][j]
 
-    return text1[ans_index - ans_length : ans_index]
+    return metin1[cevap_indeksi - cevap_uzunluk : cevap_indeksi]
 
 
 if __name__ == "__main__":

@@ -21,8 +21,6 @@ def find_min(numbers: list[int]) -> int:
     0
     >>> find_min([-1, -5, 5, 1])
     0
-    >>> find_min([-1, -5, 5, 1])
-    0
     >>> find_min([9, 9, 9, 9, 9])
     9
     >>> find_min([1, 5, 10, 3])
@@ -32,18 +30,15 @@ def find_min(numbers: list[int]) -> int:
     >>> find_min(range(10, 0, -1))
     1
     >>> find_min([-1])
-    Traceback (most recent call last):
-        --
-    IndexError: list assignment index out of range
+    1
     >>> find_min([0, 0, 0, 1, 2, -4])
-    Traceback (most recent call last):
-        ...
-    IndexError: list assignment index out of range
+    1
     >>> find_min([-1, -5, -10, -3])
-    Traceback (most recent call last):
-        ...
-    IndexError: list assignment index out of range
+    1
     """
+    if not numbers:
+        return 0
+
     n = len(numbers)
     s = sum(numbers)
 

@@ -1,60 +1,62 @@
 """
-Pure Python implementation of a binary search algorithm.
+Doğrusal arama algoritmasının saf Python ile uygulanışı.
 
-For doctests run following command:
+Doküman testleri için aşağıdaki komutu çalıştırın:
 python3 -m doctest -v simple_binary_search.py
 
-For manual testing run:
+Organiser: K. Umut Araz
+
+Manuel test için çalıştırın:
 python3 simple_binary_search.py
 """
 
 from __future__ import annotations
 
 
-def binary_search(a_list: list[int], item: int) -> bool:
+def ikili_arama(dizi: list[int], hedef: int) -> bool:
     """
-    >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
-    >>> binary_search(test_list, 3)
+    >>> test_dizisi = [0, 1, 2, 8, 13, 17, 19, 32, 42]
+    >>> ikili_arama(test_dizisi, 3)
     False
-    >>> binary_search(test_list, 13)
+    >>> ikili_arama(test_dizisi, 13)
     True
-    >>> binary_search([4, 4, 5, 6, 7], 4)
+    >>> ikili_arama([4, 4, 5, 6, 7], 4)
     True
-    >>> binary_search([4, 4, 5, 6, 7], -10)
+    >>> ikili_arama([4, 4, 5, 6, 7], -10)
     False
-    >>> binary_search([-18, 2], -18)
+    >>> ikili_arama([-18, 2], -18)
     True
-    >>> binary_search([5], 5)
+    >>> ikili_arama([5], 5)
     True
-    >>> binary_search(['a', 'c', 'd'], 'c')
+    >>> ikili_arama(['a', 'c', 'd'], 'c')
     True
-    >>> binary_search(['a', 'c', 'd'], 'f')
+    >>> ikili_arama(['a', 'c', 'd'], 'f')
     False
-    >>> binary_search([], 1)
+    >>> ikili_arama([], 1)
     False
-    >>> binary_search([-.1, .1 , .8], .1)
+    >>> ikili_arama([-.1, .1 , .8], .1)
     True
-    >>> binary_search(range(-5000, 5000, 10), 80)
+    >>> ikili_arama(range(-5000, 5000, 10), 80)
     True
-    >>> binary_search(range(-5000, 5000, 10), 1255)
+    >>> ikili_arama(range(-5000, 5000, 10), 1255)
     False
-    >>> binary_search(range(0, 10000, 5), 2)
+    >>> ikili_arama(range(0, 10000, 5), 2)
     False
     """
-    if len(a_list) == 0:
+    if len(dizi) == 0:
         return False
-    midpoint = len(a_list) // 2
-    if a_list[midpoint] == item:
+    orta = len(dizi) // 2
+    if dizi[orta] == hedef:
         return True
-    if item < a_list[midpoint]:
-        return binary_search(a_list[:midpoint], item)
+    if hedef < dizi[orta]:
+        return ikili_arama(dizi[:orta], hedef)
     else:
-        return binary_search(a_list[midpoint + 1 :], item)
+        return ikili_arama(dizi[orta + 1:], hedef)
 
 
 if __name__ == "__main__":
-    user_input = input("Enter numbers separated by comma:\n").strip()
-    sequence = [int(item.strip()) for item in user_input.split(",")]
-    target = int(input("Enter the number to be found in the list:\n").strip())
-    not_str = "" if binary_search(sequence, target) else "not "
-    print(f"{target} was {not_str}found in {sequence}")
+    kullanici_girdisi = input("Virgülle ayrılmış sayıları girin:\n").strip()
+    dizi = [int(eleman.strip()) for eleman in kullanici_girdisi.split(",")]
+    hedef = int(input("Listede bulunması gereken sayıyı girin:\n").strip())
+    bulunma_durumu = "" if ikili_arama(dizi, hedef) else "bulunamadı "
+    print(f"{hedef} {bulunma_durumu} {dizi} içinde.")

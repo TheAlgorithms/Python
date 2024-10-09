@@ -1,13 +1,15 @@
 """
-This is pure Python implementation of fibonacci search.
+Bu, Fibonacci arama algoritmasının saf Python uygulamasıdır.
 
-Resources used:
+Kullanılan kaynaklar:
 https://en.wikipedia.org/wiki/Fibonacci_search_technique
 
-For doctests run following command:
+Doctest'leri çalıştırmak için aşağıdaki komutu kullanın:
 python3 -m doctest -v fibonacci_search.py
 
-For manual testing run:
+Organiser: K. Umut Araz
+
+Manuel test için çalıştırın:
 python3 fibonacci_search.py
 """
 
@@ -16,17 +18,17 @@ from functools import lru_cache
 
 @lru_cache
 def fibonacci(k: int) -> int:
-    """Finds fibonacci number in index k.
+    """K indeksindeki Fibonacci sayısını bulur.
 
-    Parameters
+    Parametreler
     ----------
     k :
-        Index of fibonacci.
+        Fibonacci indeksidir.
 
-    Returns
+    Dönüş
     -------
     int
-        Fibonacci number in position k.
+        k pozisyonundaki Fibonacci sayısı.
 
     >>> fibonacci(0)
     0
@@ -38,15 +40,15 @@ def fibonacci(k: int) -> int:
     610
     >>> fibonacci('a')
     Traceback (most recent call last):
-    TypeError: k must be an integer.
+    TypeError: k bir tamsayı olmalıdır.
     >>> fibonacci(-5)
     Traceback (most recent call last):
-    ValueError: k integer must be greater or equal to zero.
+    ValueError: k tamsayısı sıfır veya daha büyük olmalıdır.
     """
     if not isinstance(k, int):
-        raise TypeError("k must be an integer.")
+        raise TypeError("k bir tamsayı olmalıdır.")
     if k < 0:
-        raise ValueError("k integer must be greater or equal to zero.")
+        raise ValueError("k tamsayısı sıfır veya daha büyük olmalıdır.")
     if k == 0:
         return 0
     elif k == 1:
@@ -56,20 +58,20 @@ def fibonacci(k: int) -> int:
 
 
 def fibonacci_search(arr: list, val: int) -> int:
-    """A pure Python implementation of a fibonacci search algorithm.
+    """Fibonacci arama algoritmasının saf Python uygulamasıdır.
 
-    Parameters
+    Parametreler
     ----------
     arr
-        List of sorted elements.
+        Sıralı elemanlar listesi.
     val
-        Element to search in list.
+        Listede aranacak eleman.
 
-    Returns
+    Dönüş
     -------
     int
-        The index of the element in the array.
-        -1 if the element is not found.
+        Elemanın dizideki indeksi.
+        Eleman bulunamazsa -1 döner.
 
     >>> fibonacci_search([4, 5, 6, 7], 4)
     0
@@ -103,7 +105,7 @@ def fibonacci_search(arr: list, val: int) -> int:
     39
     """
     len_list = len(arr)
-    # Find m such that F_m >= n where F_i is the i_th fibonacci number.
+    # F_m >= n olacak şekilde m'yi bul.
     i = 0
     while True:
         if fibonacci(i) >= len_list:
@@ -114,7 +116,7 @@ def fibonacci_search(arr: list, val: int) -> int:
     while fibb_k > 0:
         index_k = min(
             offset + fibonacci(fibb_k - 1), len_list - 1
-        )  # Prevent out of range
+        )  # Dışarı çıkmayı önle
         item_k_1 = arr[index_k]
         if item_k_1 == val:
             return index_k

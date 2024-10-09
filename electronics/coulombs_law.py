@@ -2,81 +2,81 @@
 
 from __future__ import annotations
 
-COULOMBS_CONSTANT = 8.988e9  # units = N * m^s * C^-2
+COULOMBS_CONSTANT = 8.988e9  # birimler = N * m^2 * C^-2
 
 
-def couloumbs_law(
-    force: float, charge1: float, charge2: float, distance: float
+def coulombs_yasasi(
+    kuvvet: float, yük1: float, yük2: float, mesafe: float
 ) -> dict[str, float]:
     """
-    Apply Coulomb's Law on any three given values. These can be force, charge1,
-    charge2, or distance, and then in a Python dict return name/value pair of
-    the zero value.
+    Coulomb Yasası'nı verilen üç değere uygulayın. Bunlar kuvvet, yük1,
+    yük2 veya mesafe olabilir ve ardından bir Python sözlüğünde sıfır
+    değerin ad/değer çiftini döndürün.
 
-    Coulomb's Law states that the magnitude of the electrostatic force of
-    attraction or repulsion between two point charges is directly proportional
-    to the product of the magnitudes of charges and inversely proportional to
-    the square of the distance between them.
+    Coulomb Yasası, iki nokta yükü arasındaki elektrostatik çekim veya
+    itme kuvvetinin büyüklüğünün, yüklerin büyüklüklerinin çarpımı ile
+    doğru orantılı ve aralarındaki mesafenin karesi ile ters orantılı
+    olduğunu belirtir.
 
-    Reference
+    Referans
     ----------
     Coulomb (1785) "Premier mémoire sur l'électricité et le magnétisme,"
-    Histoire de l'Académie Royale des Sciences, pp. 569-577.
+    Histoire de l'Académie Royale des Sciences, ss. 569-577.
 
-    Parameters
+    Parametreler
     ----------
-    force : float with units in Newtons
+    kuvvet : Newton cinsinden birimlere sahip float
 
-    charge1 : float with units in Coulombs
+    yük1 : Coulomb cinsinden birimlere sahip float
 
-    charge2 : float with units in Coulombs
+    yük2 : Coulomb cinsinden birimlere sahip float
 
-    distance : float with units in meters
+    mesafe : metre cinsinden birimlere sahip float
 
-    Returns
+    Dönüş
     -------
-    result : dict name/value pair of the zero value
+    sonuç : sıfır değerin ad/değer çiftini içeren sözlük
 
-    >>> couloumbs_law(force=0, charge1=3, charge2=5, distance=2000)
-    {'force': 33705.0}
+    >>> coulombs_yasasi(kuvvet=0, yük1=3, yük2=5, mesafe=2000)
+    {'kuvvet': 33705.0}
 
-    >>> couloumbs_law(force=10, charge1=3, charge2=5, distance=0)
-    {'distance': 116112.01488218177}
+    >>> coulombs_yasasi(kuvvet=10, yük1=3, yük2=5, mesafe=0)
+    {'mesafe': 116112.01488218177}
 
-    >>> couloumbs_law(force=10, charge1=0, charge2=5, distance=2000)
-    {'charge1': 0.0008900756564307966}
+    >>> coulombs_yasasi(kuvvet=10, yük1=0, yük2=5, mesafe=2000)
+    {'yük1': 0.0008900756564307966}
 
-    >>> couloumbs_law(force=0, charge1=0, charge2=5, distance=2000)
+    >>> coulombs_yasasi(kuvvet=0, yük1=0, yük2=5, mesafe=2000)
     Traceback (most recent call last):
       ...
-    ValueError: One and only one argument must be 0
+    ValueError: Sadece bir argüman 0 olmalıdır
 
-    >>> couloumbs_law(force=0, charge1=3, charge2=5, distance=-2000)
+    >>> coulombs_yasasi(kuvvet=0, yük1=3, yük2=5, mesafe=-2000)
     Traceback (most recent call last):
       ...
-    ValueError: Distance cannot be negative
+    ValueError: Mesafe negatif olamaz
 
     """
 
-    charge_product = abs(charge1 * charge2)
+    yük_çarpımı = abs(yük1 * yük2)
 
-    if (force, charge1, charge2, distance).count(0) != 1:
-        raise ValueError("One and only one argument must be 0")
-    if distance < 0:
-        raise ValueError("Distance cannot be negative")
-    if force == 0:
-        force = COULOMBS_CONSTANT * charge_product / (distance**2)
-        return {"force": force}
-    elif charge1 == 0:
-        charge1 = abs(force) * (distance**2) / (COULOMBS_CONSTANT * charge2)
-        return {"charge1": charge1}
-    elif charge2 == 0:
-        charge2 = abs(force) * (distance**2) / (COULOMBS_CONSTANT * charge1)
-        return {"charge2": charge2}
-    elif distance == 0:
-        distance = (COULOMBS_CONSTANT * charge_product / abs(force)) ** 0.5
-        return {"distance": distance}
-    raise ValueError("Exactly one argument must be 0")
+    if (kuvvet, yük1, yük2, mesafe).count(0) != 1:
+        raise ValueError("Sadece bir argüman 0 olmalıdır")
+    if mesafe < 0:
+        raise ValueError("Mesafe negatif olamaz")
+    if kuvvet == 0:
+        kuvvet = COULOMBS_CONSTANT * yük_çarpımı / (mesafe**2)
+        return {"kuvvet": kuvvet}
+    elif yük1 == 0:
+        yük1 = abs(kuvvet) * (mesafe**2) / (COULOMBS_CONSTANT * yük2)
+        return {"yük1": yük1}
+    elif yük2 == 0:
+        yük2 = abs(kuvvet) * (mesafe**2) / (COULOMBS_CONSTANT * yük1)
+        return {"yük2": yük2}
+    elif mesafe == 0:
+        mesafe = (COULOMBS_CONSTANT * yük_çarpımı / abs(kuvvet)) ** 0.5
+        return {"mesafe": mesafe}
+    raise ValueError("Tam olarak bir argüman 0 olmalıdır")
 
 
 if __name__ == "__main__":

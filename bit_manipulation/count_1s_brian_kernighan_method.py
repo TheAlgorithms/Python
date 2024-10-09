@@ -1,43 +1,42 @@
-def get_1s_count(number: int) -> int:
+def birlerin_sayisini_al(sayi: int) -> int:
     """
-    Count the number of set bits in a 32 bit integer using Brian Kernighan's way.
+    Brian Kernighan yöntemi kullanarak 32 bitlik bir tam sayıda ayarlanmış bitlerin sayısını sayar.
     Ref - https://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetKernighan
-    >>> get_1s_count(25)
+    >>> birlerin_sayisini_al(25)
     3
-    >>> get_1s_count(37)
+    >>> birlerin_sayisini_al(37)
     3
-    >>> get_1s_count(21)
+    >>> birlerin_sayisini_al(21)
     3
-    >>> get_1s_count(58)
+    >>> birlerin_sayisini_al(58)
     4
-    >>> get_1s_count(0)
+    >>> birlerin_sayisini_al(0)
     0
-    >>> get_1s_count(256)
+    >>> birlerin_sayisini_al(256)
     1
-    >>> get_1s_count(-1)
+    >>> birlerin_sayisini_al(-1)
     Traceback (most recent call last):
         ...
-    ValueError: Input must be a non-negative integer
-    >>> get_1s_count(0.8)
+    ValueError: Girdi negatif olmayan bir tam sayı olmalıdır
+    >>> birlerin_sayisini_al(0.8)
     Traceback (most recent call last):
         ...
-    ValueError: Input must be a non-negative integer
-    >>> get_1s_count("25")
+    ValueError: Girdi negatif olmayan bir tam sayı olmalıdır
+    >>> birlerin_sayisini_al("25")
     Traceback (most recent call last):
         ...
-    ValueError: Input must be a non-negative integer
+    ValueError: Girdi negatif olmayan bir tam sayı olmalıdır
     """
-    if not isinstance(number, int) or number < 0:
-        raise ValueError("Input must be a non-negative integer")
+    if not isinstance(sayi, int) or sayi < 0:
+        raise ValueError("Girdi negatif olmayan bir tam sayı olmalıdır")
 
-    count = 0
-    while number:
-        # This way we arrive at next set bit (next 1) instead of looping
-        # through each bit and checking for 1s hence the
-        # loop won't run 32 times it will only run the number of `1` times
-        number &= number - 1
-        count += 1
-    return count
+    sayac = 0
+    while sayi:
+        # Bu yöntemle her bitin üzerinden geçmek yerine bir sonraki ayarlanmış biti (bir sonraki 1) buluruz
+        # bu nedenle döngü 32 kez çalışmaz, yalnızca `1` sayısı kadar çalışır
+        sayi &= sayi - 1
+        sayac += 1
+    return sayac
 
 
 if __name__ == "__main__":

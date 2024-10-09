@@ -1,78 +1,74 @@
 """
-Print all the Catalan numbers from 0 to n, n being the user input.
+0'dan n'ye kadar olan tüm Catalan sayılarını yazdırın, n kullanıcı girdisidir.
 
- * The Catalan numbers are a sequence of positive integers that
- * appear in many counting problems in combinatorics [1]. Such
- * problems include counting [2]:
- * - The number of Dyck words of length 2n
- * - The number well-formed expressions with n pairs of parentheses
- *   (e.g., `()()` is valid but `())(` is not)
- * - The number of different ways n + 1 factors can be completely
- *   parenthesized (e.g., for n = 2, C(n) = 2 and (ab)c and a(bc)
- *   are the two valid ways to parenthesize.
- * - The number of full binary trees with n + 1 leaves
+ * Catalan sayıları, kombinatorikte birçok sayma probleminde ortaya çıkan
+ * pozitif tam sayıların bir dizisidir [1]. Bu tür problemler şunları içerir [2]:
+ * - 2n uzunluğundaki Dyck kelimelerinin sayısı
+ * - n çift parantez ile iyi biçimlendirilmiş ifadelerin sayısı
+ *   (örneğin, `()()` geçerlidir ancak `())(` geçerli değildir)
+ * - n + 1 faktörün tamamen parantezlenebileceği farklı yolların sayısı
+ *   (örneğin, n = 2 için, C(n) = 2 ve (ab)c ve a(bc) parantezlemenin iki geçerli yoludur.
+ * - n + 1 yapraklı tam ikili ağaçların sayısı
 
- * A Catalan number satisfies the following recurrence relation
- * which we will use in this algorithm [1].
+ * Bir Catalan sayısı, bu algoritmada kullanacağımız aşağıdaki yinelemeli ilişkiyi sağlar [1].
  * C(0) = C(1) = 1
- * C(n) = sum(C(i).C(n-i-1)), from i = 0 to n-1
+ * C(n) = sum(C(i).C(n-i-1)), i = 0'dan n-1'e kadar
 
- * In addition, the n-th Catalan number can be calculated using
- * the closed form formula below [1]:
+ * Ayrıca, n'inci Catalan sayısı aşağıdaki kapalı formül kullanılarak hesaplanabilir [1]:
  * C(n) = (1 / (n + 1)) * (2n choose n)
 
- * Sources:
+ * Kaynaklar:
  *  [1] https://brilliant.org/wiki/catalan-numbers/
  *  [2] https://en.wikipedia.org/wiki/Catalan_number
 """
 
 
-def catalan_numbers(upper_limit: int) -> "list[int]":
+def catalan_sayilari(ust_sinir: int) -> "list[int]":
     """
-    Return a list of the Catalan number sequence from 0 through `upper_limit`.
+    0'dan `ust_sinir`a kadar olan Catalan sayı dizisini içeren bir liste döndürür.
 
-    >>> catalan_numbers(5)
+    >>> catalan_sayilari(5)
     [1, 1, 2, 5, 14, 42]
-    >>> catalan_numbers(2)
+    >>> catalan_sayilari(2)
     [1, 1, 2]
-    >>> catalan_numbers(-1)
+    >>> catalan_sayilari(-1)
     Traceback (most recent call last):
-    ValueError: Limit for the Catalan sequence must be ≥ 0
+    ValueError: Catalan dizisi için sınır ≥ 0 olmalıdır
     """
-    if upper_limit < 0:
-        raise ValueError("Limit for the Catalan sequence must be ≥ 0")
+    if ust_sinir < 0:
+        raise ValueError("Catalan dizisi için sınır ≥ 0 olmalıdır")
 
-    catalan_list = [0] * (upper_limit + 1)
+    catalan_listesi = [0] * (ust_sinir + 1)
 
-    # Base case: C(0) = C(1) = 1
-    catalan_list[0] = 1
-    if upper_limit > 0:
-        catalan_list[1] = 1
+    # Temel durum: C(0) = C(1) = 1
+    catalan_listesi[0] = 1
+    if ust_sinir > 0:
+        catalan_listesi[1] = 1
 
-    # Recurrence relation: C(i) = sum(C(j).C(i-j-1)), from j = 0 to i
-    for i in range(2, upper_limit + 1):
+    # Yinelemeli ilişki: C(i) = sum(C(j).C(i-j-1)), j = 0'dan i'ye kadar
+    for i in range(2, ust_sinir + 1):
         for j in range(i):
-            catalan_list[i] += catalan_list[j] * catalan_list[i - j - 1]
+            catalan_listesi[i] += catalan_listesi[j] * catalan_listesi[i - j - 1]
 
-    return catalan_list
+    return catalan_listesi
 
 
 if __name__ == "__main__":
-    print("\n********* Catalan Numbers Using Dynamic Programming ************\n")
-    print("\n*** Enter -1 at any time to quit ***")
-    print("\nEnter the upper limit (≥ 0) for the Catalan number sequence: ", end="")
+    print("\n********* Dinamik Programlama Kullanarak Catalan Sayıları ************\n")
+    print("\n*** Çıkmak için herhangi bir zamanda -1 girin ***")
+    print("\nCatalan sayı dizisi için üst sınırı girin (≥ 0): ", end="")
     try:
         while True:
             N = int(input().strip())
             if N < 0:
-                print("\n********* Goodbye!! ************")
+                print("\n********* Hoşçakalın!! ************")
                 break
             else:
-                print(f"The Catalan numbers from 0 through {N} are:")
-                print(catalan_numbers(N))
-                print("Try another upper limit for the sequence: ", end="")
+                print(f"0'dan {N}'ye kadar olan Catalan sayıları:")
+                print(catalan_sayilari(N))
+                print("Dizi için başka bir üst sınır deneyin: ", end="")
     except (NameError, ValueError):
-        print("\n********* Invalid input, goodbye! ************\n")
+        print("\n********* Geçersiz giriş, hoşçakalın! ************\n")
 
     import doctest
 

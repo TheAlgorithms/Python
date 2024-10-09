@@ -1,5 +1,5 @@
 """
-https://en.wikipedia.org/wiki/Bidirectional_search
+https://tr.wikipedia.org/wiki/Çift_yönlü_arama
 """
 
 from __future__ import annotations
@@ -7,12 +7,14 @@ from __future__ import annotations
 import time
 from math import sqrt
 
-# 1 for manhattan, 0 for euclidean
+# Yazar: K. Umut Araz (https://github.com/arazumut)
+
+# 1 için manhattan, 0 için öklid
 HEURISTIC = 0
 
 grid = [
     [0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0, 0],  # 0 are free path whereas 1's are obstacles
+    [0, 1, 0, 0, 0, 0, 0],  # 0 serbest yol, 1 engel
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 1, 0, 0, 0, 0],
     [1, 0, 1, 0, 0, 0, 0],
@@ -20,7 +22,7 @@ grid = [
     [0, 0, 0, 0, 1, 0, 0],
 ]
 
-delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # up, left, down, right
+delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # yukarı, sol, aşağı, sağ
 
 TPosition = tuple[int, int]
 
@@ -28,10 +30,10 @@ TPosition = tuple[int, int]
 class Node:
     """
     >>> k = Node(0, 0, 4, 3, 0, None)
-    >>> k.calculate_heuristic()
+    >>> k..heuristic_hesapla()
     5.0
     >>> n = Node(1, 4, 3, 4, 2, None)
-    >>> n.calculate_heuristic()
+    >>> n.heuristic_hesapla()
     2.0
     >>> l = [k, n]
     >>> n == l[0]
@@ -57,12 +59,12 @@ class Node:
         self.goal_y = goal_y
         self.g_cost = g_cost
         self.parent = parent
-        self.h_cost = self.calculate_heuristic()
+        self.h_cost = self.heuristic_hesapla()
         self.f_cost = self.g_cost + self.h_cost
 
-    def calculate_heuristic(self) -> float:
+    def heuristic_hesapla(self) -> float:
         """
-        Heuristic for the A*
+        A* için Heuristic
         """
         dy = self.pos_x - self.goal_x
         dx = self.pos_y - self.goal_y
@@ -84,9 +86,9 @@ class AStar:
     [(1, 0), (0, 1)]
     >>> (astar.start.pos_y + delta[2][0], astar.start.pos_x + delta[2][1])
     (1, 0)
-    >>> astar.retrace_path(astar.start)
+    >>> astar.yolu_geri_al(astar.start)
     [(0, 0)]
-    >>> astar.search()  # doctest: +NORMALIZE_WHITESPACE
+    >>> astar.ara()  # doctest: +NORMALIZE_WHITESPACE
     [(0, 0), (1, 0), (2, 0), (2, 1), (2, 2), (2, 3), (3, 3),
      (4, 3), (4, 4), (5, 4), (5, 5), (6, 5), (6, 6)]
     """
@@ -100,14 +102,14 @@ class AStar:
 
         self.reached = False
 
-    def search(self) -> list[TPosition]:
+    def ara(self) -> list[TPosition]:
         while self.open_nodes:
-            # Open Nodes are sorted using __lt__
+            # Açık Düğümler __lt__ kullanılarak sıralanır
             self.open_nodes.sort()
             current_node = self.open_nodes.pop(0)
 
             if current_node.pos == self.target.pos:
-                return self.retrace_path(current_node)
+                return self.yolu_geri_al(current_node)
 
             self.closed_nodes.append(current_node)
             successors = self.get_successors(current_node)
@@ -119,7 +121,7 @@ class AStar:
                 if child_node not in self.open_nodes:
                     self.open_nodes.append(child_node)
                 else:
-                    # retrieve the best current path
+                    # en iyi mevcut yolu al
                     better_node = self.open_nodes.pop(self.open_nodes.index(child_node))
 
                     if child_node.g_cost < better_node.g_cost:
@@ -131,7 +133,7 @@ class AStar:
 
     def get_successors(self, parent: Node) -> list[Node]:
         """
-        Returns a list of successors (both in the grid and free spaces)
+        Haleflerin listesini döndürür (hem gridde hem de serbest alanlarda)
         """
         successors = []
         for action in delta:
@@ -155,9 +157,9 @@ class AStar:
             )
         return successors
 
-    def retrace_path(self, node: Node | None) -> list[TPosition]:
+    def yolu_geri_al(self, node: Node | None) -> list[TPosition]:
         """
-        Retrace the path from parents to parents until start node
+        Başlangıç düğümüne kadar ebeveynlerden yolu geri al
         """
         current_node = node
         path = []
@@ -173,10 +175,10 @@ class BidirectionalAStar:
     >>> bd_astar = BidirectionalAStar((0, 0), (len(grid) - 1, len(grid[0]) - 1))
     >>> bd_astar.fwd_astar.start.pos == bd_astar.bwd_astar.target.pos
     True
-    >>> bd_astar.retrace_bidirectional_path(bd_astar.fwd_astar.start,
+    >>> bd_astar.çift_yönlü_yolu_geri_al(bd_astar.fwd_astar.start,
     ...                                     bd_astar.bwd_astar.start)
     [(0, 0)]
-    >>> bd_astar.search()  # doctest: +NORMALIZE_WHITESPACE
+    >>> bd_astar.ara()  # doctest: +NORMALIZE_WHITESPACE
     [(0, 0), (0, 1), (0, 2), (1, 2), (1, 3), (2, 3), (2, 4),
      (2, 5), (3, 5), (4, 5), (5, 5), (5, 6), (6, 6)]
     """
@@ -186,7 +188,7 @@ class BidirectionalAStar:
         self.bwd_astar = AStar(goal, start)
         self.reached = False
 
-    def search(self) -> list[TPosition]:
+    def ara(self) -> list[TPosition]:
         while self.fwd_astar.open_nodes or self.bwd_astar.open_nodes:
             self.fwd_astar.open_nodes.sort()
             self.bwd_astar.open_nodes.sort()
@@ -194,7 +196,7 @@ class BidirectionalAStar:
             current_bwd_node = self.bwd_astar.open_nodes.pop(0)
 
             if current_bwd_node.pos == current_fwd_node.pos:
-                return self.retrace_bidirectional_path(
+                return self.çift_yönlü_yolu_geri_al(
                     current_fwd_node, current_bwd_node
                 )
 
@@ -217,7 +219,7 @@ class BidirectionalAStar:
                     if child_node not in astar.open_nodes:
                         astar.open_nodes.append(child_node)
                     else:
-                        # retrieve the best current path
+                        # en iyi mevcut yolu al
                         better_node = astar.open_nodes.pop(
                             astar.open_nodes.index(child_node)
                         )
@@ -229,11 +231,11 @@ class BidirectionalAStar:
 
         return [self.fwd_astar.start.pos]
 
-    def retrace_bidirectional_path(
+    def çift_yönlü_yolu_geri_al(
         self, fwd_node: Node, bwd_node: Node
     ) -> list[TPosition]:
-        fwd_path = self.fwd_astar.retrace_path(fwd_node)
-        bwd_path = self.bwd_astar.retrace_path(bwd_node)
+        fwd_path = self.fwd_astar.yolu_geri_al(fwd_node)
+        bwd_path = self.bwd_astar.yolu_geri_al(bwd_node)
         bwd_path.pop()
         bwd_path.reverse()
         path = fwd_path + bwd_path
@@ -241,7 +243,7 @@ class BidirectionalAStar:
 
 
 if __name__ == "__main__":
-    # all coordinates are given in format [y,x]
+    # tüm koordinatlar [y,x] formatında verilir
     init = (0, 0)
     goal = (len(grid) - 1, len(grid[0]) - 1)
     for elem in grid:
@@ -249,11 +251,11 @@ if __name__ == "__main__":
 
     start_time = time.time()
     a_star = AStar(init, goal)
-    path = a_star.search()
+    path = a_star.ara()
     end_time = time.time() - start_time
-    print(f"AStar execution time = {end_time:f} seconds")
+    print(f"AStar çalışma süresi = {end_time:f} saniye")
 
     bd_start_time = time.time()
     bidir_astar = BidirectionalAStar(init, goal)
     bd_end_time = time.time() - bd_start_time
-    print(f"BidirectionalAStar execution time = {bd_end_time:f} seconds")
+    print(f"BidirectionalAStar çalışma süresi = {bd_end_time:f} saniye")

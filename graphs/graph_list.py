@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-# Author: OMKAR PATHAK, Nwachukwu Chidiebere
+# Yazar: OMKAR PATHAK, Nwachukwu Chidiebere
 
-# Use a Python dictionary to construct the graph.
+# Grafiği oluşturmak için bir Python sözlüğü kullanın.
 from __future__ import annotations
 
 from pprint import pformat
@@ -11,35 +11,35 @@ from typing import Generic, TypeVar
 T = TypeVar("T")
 
 
-class GraphAdjacencyList(Generic[T]):
+class KomşulukListesiGrafiği(Generic[T]):
     """
-    Adjacency List type Graph Data Structure that accounts for directed and undirected
-    Graphs.  Initialize graph object indicating whether it's directed or undirected.
+    Yönlendirilmiş ve yönlendirilmemiş grafikleri hesaba katan Komşuluk Listesi türü Grafik Veri Yapısı.
+    Grafiğin yönlendirilmiş mi yoksa yönlendirilmemiş mi olduğunu belirterek grafik nesnesini başlatın.
 
-    Directed graph example:
-    >>> d_graph = GraphAdjacencyList()
-    >>> print(d_graph)
+    Yönlendirilmiş grafik örneği:
+    >>> y_grafik = KomşulukListesiGrafiği()
+    >>> print(y_grafik)
     {}
-    >>> d_graph.add_edge(0, 1)
+    >>> y_grafik.kenar_ekle(0, 1)
     {0: [1], 1: []}
-    >>> d_graph.add_edge(1, 2).add_edge(1, 4).add_edge(1, 5)
+    >>> y_grafik.kenar_ekle(1, 2).kenar_ekle(1, 4).kenar_ekle(1, 5)
     {0: [1], 1: [2, 4, 5], 2: [], 4: [], 5: []}
-    >>> d_graph.add_edge(2, 0).add_edge(2, 6).add_edge(2, 7)
+    >>> y_grafik.kenar_ekle(2, 0).kenar_ekle(2, 6).kenar_ekle(2, 7)
     {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
-    >>> d_graph
+    >>> y_grafik
     {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
-    >>> print(repr(d_graph))
+    >>> print(repr(y_grafik))
     {0: [1], 1: [2, 4, 5], 2: [0, 6, 7], 4: [], 5: [], 6: [], 7: []}
 
-    Undirected graph example:
-    >>> u_graph = GraphAdjacencyList(directed=False)
-    >>> u_graph.add_edge(0, 1)
+    Yönlendirilmemiş grafik örneği:
+    >>> yn_grafik = KomşulukListesiGrafiği(yönlendirilmiş=False)
+    >>> yn_grafik.kenar_ekle(0, 1)
     {0: [1], 1: [0]}
-    >>> u_graph.add_edge(1, 2).add_edge(1, 4).add_edge(1, 5)
+    >>> yn_grafik.kenar_ekle(1, 2).kenar_ekle(1, 4).kenar_ekle(1, 5)
     {0: [1], 1: [0, 2, 4, 5], 2: [1], 4: [1], 5: [1]}
-    >>> u_graph.add_edge(2, 0).add_edge(2, 6).add_edge(2, 7)
+    >>> yn_grafik.kenar_ekle(2, 0).kenar_ekle(2, 6).kenar_ekle(2, 7)
     {0: [1, 2], 1: [0, 2, 4, 5], 2: [1, 0, 6, 7], 4: [1], 5: [1], 6: [2], 7: [2]}
-    >>> u_graph.add_edge(4, 5)
+    >>> yn_grafik.kenar_ekle(4, 5)
     {0: [1, 2],
      1: [0, 2, 4, 5],
      2: [1, 0, 6, 7],
@@ -47,7 +47,7 @@ class GraphAdjacencyList(Generic[T]):
      5: [1, 4],
      6: [2],
      7: [2]}
-    >>> print(u_graph)
+    >>> print(yn_grafik)
     {0: [1, 2],
      1: [0, 2, 4, 5],
      2: [1, 0, 6, 7],
@@ -55,7 +55,7 @@ class GraphAdjacencyList(Generic[T]):
      5: [1, 4],
      6: [2],
      7: [2]}
-    >>> print(repr(u_graph))
+    >>> print(repr(yn_grafik))
     {0: [1, 2],
      1: [0, 2, 4, 5],
      2: [1, 0, 6, 7],
@@ -63,88 +63,87 @@ class GraphAdjacencyList(Generic[T]):
      5: [1, 4],
      6: [2],
      7: [2]}
-     >>> char_graph = GraphAdjacencyList(directed=False)
-     >>> char_graph.add_edge('a', 'b')
+     >>> char_grafik = KomşulukListesiGrafiği(yönlendirilmiş=False)
+     >>> char_grafik.kenar_ekle('a', 'b')
      {'a': ['b'], 'b': ['a']}
-     >>> char_graph.add_edge('b', 'c').add_edge('b', 'e').add_edge('b', 'f')
+     >>> char_grafik.kenar_ekle('b', 'c').kenar_ekle('b', 'e').kenar_ekle('b', 'f')
      {'a': ['b'], 'b': ['a', 'c', 'e', 'f'], 'c': ['b'], 'e': ['b'], 'f': ['b']}
-     >>> char_graph
+     >>> char_grafik
      {'a': ['b'], 'b': ['a', 'c', 'e', 'f'], 'c': ['b'], 'e': ['b'], 'f': ['b']}
     """
 
-    def __init__(self, directed: bool = True) -> None:
+    def __init__(self, yönlendirilmiş: bool = True) -> None:
         """
-        Parameters:
-        directed: (bool) Indicates if graph is directed or undirected. Default is True.
-        """
-
-        self.adj_list: dict[T, list[T]] = {}  # dictionary of lists
-        self.directed = directed
-
-    def add_edge(
-        self, source_vertex: T, destination_vertex: T
-    ) -> GraphAdjacencyList[T]:
-        """
-        Connects vertices together. Creates and Edge from source vertex to destination
-        vertex.
-        Vertices will be created if not found in graph
+        Parametreler:
+        yönlendirilmiş: (bool) Grafiğin yönlendirilmiş mi yoksa yönlendirilmemiş mi olduğunu belirtir. Varsayılan True.
         """
 
-        if not self.directed:  # For undirected graphs
-            # if both source vertex and destination vertex are both present in the
-            # adjacency list, add destination vertex to source vertex list of adjacent
-            # vertices and add source vertex to destination vertex list of adjacent
-            # vertices.
-            if source_vertex in self.adj_list and destination_vertex in self.adj_list:
-                self.adj_list[source_vertex].append(destination_vertex)
-                self.adj_list[destination_vertex].append(source_vertex)
-            # if only source vertex is present in adjacency list, add destination vertex
-            # to source vertex list of adjacent vertices, then create a new vertex with
-            # destination vertex as key and assign a list containing the source vertex
-            # as it's first adjacent vertex.
-            elif source_vertex in self.adj_list:
-                self.adj_list[source_vertex].append(destination_vertex)
-                self.adj_list[destination_vertex] = [source_vertex]
-            # if only destination vertex is present in adjacency list, add source vertex
-            # to destination vertex list of adjacent vertices, then create a new vertex
-            # with source vertex as key and assign a list containing the source vertex
-            # as it's first adjacent vertex.
-            elif destination_vertex in self.adj_list:
-                self.adj_list[destination_vertex].append(source_vertex)
-                self.adj_list[source_vertex] = [destination_vertex]
-            # if both source vertex and destination vertex are not present in adjacency
-            # list, create a new vertex with source vertex as key and assign a list
-            # containing the destination vertex as it's first adjacent vertex also
-            # create a new vertex with destination vertex as key and assign a list
-            # containing the source vertex as it's first adjacent vertex.
+        self.komşuluk_listesi: dict[T, list[T]] = {}  # listeler sözlüğü
+        self.yönlendirilmiş = yönlendirilmiş
+
+    def kenar_ekle(
+        self, kaynak_düğüm: T, hedef_düğüm: T
+    ) -> KomşulukListesiGrafiği[T]:
+        """
+        Düğümleri birbirine bağlar. Kaynak düğümden hedef düğüme bir kenar oluşturur.
+        Grafikte bulunmayan düğümler oluşturulacaktır.
+        """
+
+        if not self.yönlendirilmiş:  # Yönlendirilmemiş grafikler için
+            # Hem kaynak düğüm hem de hedef düğüm komşuluk listesinde mevcutsa,
+            # kaynak düğümün komşu düğümler listesine hedef düğümü ekleyin ve
+            # hedef düğümün komşu düğümler listesine kaynak düğümü ekleyin.
+            if kaynak_düğüm in self.komşuluk_listesi and hedef_düğüm in self.komşuluk_listesi:
+                self.komşuluk_listesi[kaynak_düğüm].append(hedef_düğüm)
+                self.komşuluk_listesi[hedef_düğüm].append(kaynak_düğüm)
+            # Sadece kaynak düğüm komşuluk listesinde mevcutsa, kaynak düğümün
+            # komşu düğümler listesine hedef düğümü ekleyin, ardından hedef düğümü
+            # anahtar olarak kullanarak yeni bir düğüm oluşturun ve ilk komşu düğüm
+            # olarak kaynak düğümü içeren bir liste atayın.
+            elif kaynak_düğüm in self.komşuluk_listesi:
+                self.komşuluk_listesi[kaynak_düğüm].append(hedef_düğüm)
+                self.komşuluk_listesi[hedef_düğüm] = [kaynak_düğüm]
+            # Sadece hedef düğüm komşuluk listesinde mevcutsa, hedef düğümün
+            # komşu düğümler listesine kaynak düğümü ekleyin, ardından kaynak düğümü
+            # anahtar olarak kullanarak yeni bir düğüm oluşturun ve ilk komşu düğüm
+            # olarak hedef düğümü içeren bir liste atayın.
+            elif hedef_düğüm in self.komşuluk_listesi:
+                self.komşuluk_listesi[hedef_düğüm].append(kaynak_düğüm)
+                self.komşuluk_listesi[kaynak_düğüm] = [hedef_düğüm]
+            # Hem kaynak düğüm hem de hedef düğüm komşuluk listesinde mevcut değilse,
+            # kaynak düğümü anahtar olarak kullanarak yeni bir düğüm oluşturun ve
+            # ilk komşu düğüm olarak hedef düğümü içeren bir liste atayın. Ayrıca,
+            # hedef düğümü anahtar olarak kullanarak yeni bir düğüm oluşturun ve
+            # ilk komşu düğüm olarak kaynak düğümü içeren bir liste atayın.
             else:
-                self.adj_list[source_vertex] = [destination_vertex]
-                self.adj_list[destination_vertex] = [source_vertex]
-        # For directed graphs
-        # if both source vertex and destination vertex are present in adjacency
-        # list, add destination vertex to source vertex list of adjacent vertices.
-        elif source_vertex in self.adj_list and destination_vertex in self.adj_list:
-            self.adj_list[source_vertex].append(destination_vertex)
-        # if only source vertex is present in adjacency list, add destination
-        # vertex to source vertex list of adjacent vertices and create a new vertex
-        # with destination vertex as key, which has no adjacent vertex
-        elif source_vertex in self.adj_list:
-            self.adj_list[source_vertex].append(destination_vertex)
-            self.adj_list[destination_vertex] = []
-        # if only destination vertex is present in adjacency list, create a new
-        # vertex with source vertex as key and assign a list containing destination
-        # vertex as first adjacent vertex
-        elif destination_vertex in self.adj_list:
-            self.adj_list[source_vertex] = [destination_vertex]
-        # if both source vertex and destination vertex are not present in adjacency
-        # list, create a new vertex with source vertex as key and a list containing
-        # destination vertex as it's first adjacent vertex. Then create a new vertex
-        # with destination vertex as key, which has no adjacent vertex
+                self.komşuluk_listesi[kaynak_düğüm] = [hedef_düğüm]
+                self.komşuluk_listesi[hedef_düğüm] = [kaynak_düğüm]
+        # Yönlendirilmiş grafikler için
+        # Hem kaynak düğüm hem de hedef düğüm komşuluk listesinde mevcutsa,
+        # kaynak düğümün komşu düğümler listesine hedef düğümü ekleyin.
+        elif kaynak_düğüm in self.komşuluk_listesi and hedef_düğüm in self.komşuluk_listesi:
+            self.komşuluk_listesi[kaynak_düğüm].append(hedef_düğüm)
+        # Sadece kaynak düğüm komşuluk listesinde mevcutsa, kaynak düğümün
+        # komşu düğümler listesine hedef düğümü ekleyin ve hedef düğümü anahtar
+        # olarak kullanarak yeni bir düğüm oluşturun, bu düğümün komşu düğümü yoktur.
+        elif kaynak_düğüm in self.komşuluk_listesi:
+            self.komşuluk_listesi[kaynak_düğüm].append(hedef_düğüm)
+            self.komşuluk_listesi[hedef_düğüm] = []
+        # Sadece hedef düğüm komşuluk listesinde mevcutsa, kaynak düğümü anahtar
+        # olarak kullanarak yeni bir düğüm oluşturun ve ilk komşu düğüm olarak
+        # hedef düğümü içeren bir liste atayın.
+        elif hedef_düğüm in self.komşuluk_listesi:
+            self.komşuluk_listesi[kaynak_düğüm] = [hedef_düğüm]
+        # Hem kaynak düğüm hem de hedef düğüm komşuluk listesinde mevcut değilse,
+        # kaynak düğümü anahtar olarak kullanarak yeni bir düğüm oluşturun ve
+        # ilk komşu düğüm olarak hedef düğümü içeren bir liste atayın. Ayrıca,
+        # hedef düğümü anahtar olarak kullanarak yeni bir düğüm oluşturun, bu
+        # düğümün komşu düğümü yoktur.
         else:
-            self.adj_list[source_vertex] = [destination_vertex]
-            self.adj_list[destination_vertex] = []
+            self.komşuluk_listesi[kaynak_düğüm] = [hedef_düğüm]
+            self.komşuluk_listesi[hedef_düğüm] = []
 
         return self
 
     def __repr__(self) -> str:
-        return pformat(self.adj_list)
+        return pformat(self.komşuluk_listesi)

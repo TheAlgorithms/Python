@@ -1,84 +1,77 @@
 import heapq
 import sys
-
 import numpy as np
 
 TPos = tuple[int, int]
 
-
-class PriorityQueue:
+class OncelikKuyrugu:
     def __init__(self):
-        self.elements = []
-        self.set = set()
+        self.elemanlar = []
+        self.kume = set()
 
-    def minkey(self):
-        if not self.empty():
-            return self.elements[0][0]
+    def min_anahtar(self):
+        if not self.bos_mu():
+            return self.elemanlar[0][0]
         else:
             return float("inf")
 
-    def empty(self):
-        return len(self.elements) == 0
+    def bos_mu(self):
+        return len(self.elemanlar) == 0
 
-    def put(self, item, priority):
-        if item not in self.set:
-            heapq.heappush(self.elements, (priority, item))
-            self.set.add(item)
+    def ekle(self, eleman, oncelik):
+        if eleman not in self.kume:
+            heapq.heappush(self.elemanlar, (oncelik, eleman))
+            self.kume.add(eleman)
         else:
-            # update
-            # print("update", item)
+            # güncelle
             temp = []
-            (pri, x) = heapq.heappop(self.elements)
-            while x != item:
+            while self.elemanlar:
+                (pri, x) = heapq.heappop(self.elemanlar)
+                if x == eleman:
+                    break
                 temp.append((pri, x))
-                (pri, x) = heapq.heappop(self.elements)
-            temp.append((priority, item))
+            temp.append((oncelik, eleman))
             for pro, xxx in temp:
-                heapq.heappush(self.elements, (pro, xxx))
+                heapq.heappush(self.elemanlar, (pro, xxx))
 
-    def remove_element(self, item):
-        if item in self.set:
-            self.set.remove(item)
+    def eleman_sil(self, eleman):
+        if eleman in self.kume:
+            self.kume.remove(eleman)
             temp = []
-            (pro, x) = heapq.heappop(self.elements)
-            while x != item:
+            while self.elemanlar:
+                (pro, x) = heapq.heappop(self.elemanlar)
+                if x == eleman:
+                    break
                 temp.append((pro, x))
-                (pro, x) = heapq.heappop(self.elements)
             for prito, yyy in temp:
-                heapq.heappush(self.elements, (prito, yyy))
+                heapq.heappush(self.elemanlar, (prito, yyy))
 
-    def top_show(self):
-        return self.elements[0][1]
+    def en_ust_goster(self):
+        return self.elemanlar[0][1]
 
-    def get(self):
-        (priority, item) = heapq.heappop(self.elements)
-        self.set.remove(item)
-        return (priority, item)
+    def al(self):
+        (oncelik, eleman) = heapq.heappop(self.elemanlar)
+        self.kume.remove(eleman)
+        return (oncelik, eleman)
 
-
-def consistent_heuristic(p: TPos, goal: TPos):
-    # euclidean distance
+def tutarli_heuristik(p: TPos, hedef: TPos):
+    # öklid mesafesi
     a = np.array(p)
-    b = np.array(goal)
+    b = np.array(hedef)
     return np.linalg.norm(a - b)
 
+def heuristik_2(p: TPos, hedef: TPos):
+    # zaman değişkeni ile tam sayı bölme
+    return tutarli_heuristik(p, hedef) // t
 
-def heuristic_2(p: TPos, goal: TPos):
-    # integer division by time variable
-    return consistent_heuristic(p, goal) // t
+def heuristik_1(p: TPos, hedef: TPos):
+    # manhattan mesafesi
+    return abs(p[0] - hedef[0]) + abs(p[1] - hedef[1])
 
+def anahtar(baslangic: TPos, i: int, hedef: TPos, g_fonksiyonu: dict[TPos, float]):
+    return g_fonksiyonu[baslangic] + W1 * heuristikler[i](baslangic, hedef)
 
-def heuristic_1(p: TPos, goal: TPos):
-    # manhattan distance
-    return abs(p[0] - goal[0]) + abs(p[1] - goal[1])
-
-
-def key(start: TPos, i: int, goal: TPos, g_function: dict[TPos, float]):
-    ans = g_function[start] + W1 * heuristics[i](start, goal)
-    return ans
-
-
-def do_something(back_pointer, goal, start):
+def bir_sey_yap(geri_izleme, hedef, baslangic):
     grid = np.char.chararray((n, n))
     for i in range(n):
         for j in range(n):
@@ -86,115 +79,108 @@ def do_something(back_pointer, goal, start):
 
     for i in range(n):
         for j in range(n):
-            if (j, (n - 1) - i) in blocks:
+            if (j, (n - 1) - i) in bloklar:
                 grid[i][j] = "#"
 
     grid[0][(n - 1)] = "-"
-    x = back_pointer[goal]
-    while x != start:
+    x = geri_izleme[hedef]
+    while x != baslangic:
         (x_c, y_c) = x
-        # print(x)
         grid[(n - 1) - y_c][x_c] = "-"
-        x = back_pointer[x]
+        x = geri_izleme[x]
     grid[(n - 1)][0] = "-"
 
     for i in range(n):
         for j in range(n):
             if (i, j) == (0, n - 1):
                 print(grid[i][j], end=" ")
-                print("<-- End position", end=" ")
+                print("<-- Bitiş noktası", end=" ")
             else:
                 print(grid[i][j], end=" ")
         print()
     print("^")
-    print("Start position")
+    print("Başlangıç noktası")
     print()
-    print("# is an obstacle")
-    print("- is the path taken by algorithm")
-    print("PATH TAKEN BY THE ALGORITHM IS:-")
-    x = back_pointer[goal]
-    while x != start:
+    print("# bir engeldir")
+    print("- algoritmanın izlediği yoldur")
+    print("ALGORİTMANIN İZLEDİĞİ YOL:-")
+    x = geri_izleme[hedef]
+    while x != baslangic:
         print(x, end=" ")
-        x = back_pointer[x]
+        x = geri_izleme[x]
     print(x)
     sys.exit()
 
-
-def valid(p: TPos):
+def gecerli(p: TPos):
     if p[0] < 0 or p[0] > n - 1:
         return False
-    return not (p[1] < 0 or p[1] > n - 1)
+    return not [1] < 0 or p[1] > n - 1
 
-
-def expand_state(
+def durum_genislet(
     s,
     j,
-    visited,
-    g_function,
-    close_list_anchor,
-    close_list_inad,
-    open_list,
-    back_pointer,
+    ziyaret_edilenler,
+    g_fonksiyonu,
+    kapali_liste_ana,
+    kapali_liste_inad,
+    acik_liste,
+    geri_izleme,
 ):
-    for itera in range(n_heuristic):
-        open_list[itera].remove_element(s)
-    # print("s", s)
-    # print("j", j)
+    for itera in range(n_heuristik):
+        acik_liste[itera].eleman_sil(s)
+
     (x, y) = s
-    left = (x - 1, y)
-    right = (x + 1, y)
-    up = (x, y + 1)
-    down = (x, y - 1)
+    sol = (x - 1, y)
+    sag = (x + 1, y)
+    yukari = (x, y + 1)
+    asagi = (x, y - 1)
 
-    for neighbours in [left, right, up, down]:
-        if neighbours not in blocks:
-            if valid(neighbours) and neighbours not in visited:
-                # print("neighbour", neighbours)
-                visited.add(neighbours)
-                back_pointer[neighbours] = -1
-                g_function[neighbours] = float("inf")
+    for komsular in [sol, sag, yukari, asagi]:
+        if komsular not in bloklar:
+            if gecerli(komsular) and komsular not in ziyaret_edilenler:
+                ziyaret_edilenler.add(komsular)
+                geri_izleme[komsular] = -1
+                g_fonksiyonu[komsular] = float("inf")
 
-            if valid(neighbours) and g_function[neighbours] > g_function[s] + 1:
-                g_function[neighbours] = g_function[s] + 1
-                back_pointer[neighbours] = s
-                if neighbours not in close_list_anchor:
-                    open_list[0].put(neighbours, key(neighbours, 0, goal, g_function))
-                    if neighbours not in close_list_inad:
-                        for var in range(1, n_heuristic):
-                            if key(neighbours, var, goal, g_function) <= W2 * key(
-                                neighbours, 0, goal, g_function
+            if gecerli(komsular) and g_fonksiyonu[komsular] > g_fonksiyonu[s] + 1:
+                g_fonksiyonu[komsular] = g_fonksiyonu[s] + 1
+                geri_izleme[komsular] = s
+                if komsular not in kapali_liste_ana:
+                    acik_liste[0].ekle(komsular, anahtar(komsular, 0, hedef, g_fonksiyonu))
+                    if komsular not in kapali_liste_inad:
+                        for var in range(1, n_heuristik):
+                            if anahtar(komsular, var, hedef, g_fonksiyonu) <= W2 * anahtar(
+                                komsular, 0, hedef, g_fonksiyonu
                             ):
-                                open_list[j].put(
-                                    neighbours, key(neighbours, var, goal, g_function)
+                                acik_liste[j].ekle(
+                                    komsular, anahtar(komsular, var, hedef, g_fonksiyonu)
                                 )
 
-
-def make_common_ground():
-    some_list = []
+def ortak_zemin_olustur():
+    bazi_liste = []
     for x in range(1, 5):
         for y in range(1, 6):
-            some_list.append((x, y))
+            bazi_liste.append((x, y))
 
     for x in range(15, 20):
-        some_list.append((x, 17))
+        bazi_liste.append((x, 17))
 
     for x in range(10, 19):
         for y in range(1, 15):
-            some_list.append((x, y))
+            bazi_liste.append((x, y))
 
-    # L block
+    # L bloğu
     for x in range(1, 4):
         for y in range(12, 19):
-            some_list.append((x, y))
+            bazi_liste.append((x, y))
     for x in range(3, 13):
         for y in range(16, 19):
-            some_list.append((x, y))
-    return some_list
+            bazi_liste.append((x, y))
+    return bazi_liste
 
+heuristikler = {0: tutarli_heuristik, 1: heuristik_1, 2: heuristik_2}
 
-heuristics = {0: consistent_heuristic, 1: heuristic_1, 2: heuristic_2}
-
-blocks_blk = [
+bloklar_blk = [
     (0, 1),
     (1, 1),
     (2, 1),
@@ -216,82 +202,79 @@ blocks_blk = [
     (18, 1),
     (19, 1),
 ]
-blocks_all = make_common_ground()
+bloklar_hepsi = ortak_zemin_olustur()
 
-
-blocks = blocks_blk
-# hyper parameters
+bloklar = bloklar_blk
+# hiper parametreler
 W1 = 1
 W2 = 1
 n = 20
-n_heuristic = 3  # one consistent and two other inconsistent
+n_heuristik = 3  # bir tutarlı ve iki diğer tutarsız
 
-# start and end destination
-start = (0, 0)
-goal = (n - 1, n - 1)
+# başlangıç ve bitiş noktası
+baslangic = (0, 0)
+hedef = (n - 1, n - 1)
 
 t = 1
 
+def coklu_a_yildizi(baslangic: TPos, hedef: TPos, n_heuristik: int):
+    g_fonksiyonu = {baslangic: 0, hedef: float("inf")}
+    geri_izleme = {baslangic: -1, hedef: -1}
+    acik_liste = []
+    ziyaret_edilenler = set()
 
-def multi_a_star(start: TPos, goal: TPos, n_heuristic: int):
-    g_function = {start: 0, goal: float("inf")}
-    back_pointer = {start: -1, goal: -1}
-    open_list = []
-    visited = set()
+    for i in range(n_heuristik):
+        acik_liste.append(OncelikKuyrugu())
+        acik_liste[i].ekle(baslangic, anahtar(baslangic, i, hedef, g_fonksiyonu))
 
-    for i in range(n_heuristic):
-        open_list.append(PriorityQueue())
-        open_list[i].put(start, key(start, i, goal, g_function))
-
-    close_list_anchor: list[int] = []
-    close_list_inad: list[int] = []
-    while open_list[0].minkey() < float("inf"):
-        for i in range(1, n_heuristic):
-            # print(open_list[0].minkey(), open_list[i].minkey())
-            if open_list[i].minkey() <= W2 * open_list[0].minkey():
+    kapali_liste_ana: list[int] = []
+    kapali_liste_inad: list[int] = []
+    while acik_liste[0].min_anahtar() < float("inf"):
+        for i in range(1, n_heuristik):
+            if acik_liste[i].min_anahtar() <= W2 * acik_liste[0].min_anahtar():
                 global t
                 t += 1
-                if g_function[goal] <= open_list[i].minkey():
-                    if g_function[goal] < float("inf"):
-                        do_something(back_pointer, goal, start)
+                if g_fonksiyonu[hedef] <= acik_liste[i].min_anahtar():
+                    if g_fonksiyonu[hedef] < float("inf"):
+                        bir_sey_yap(geri_izleme, hedef, baslangic)
                 else:
-                    _, get_s = open_list[i].top_show()
-                    visited.add(get_s)
-                    expand_state(
+                    _, get_s = acik_liste[i].en_ust_goster()
+                    ziyaret_edilenler.add(get_s)
+                    durum_genislet(
                         get_s,
                         i,
-                        visited,
-                        g_function,
-                        close_list_anchor,
-                        close_list_inad,
-                        open_list,
-                        back_pointer,
+                        ziyaret_edilenler,
+                        g_fonksiyonu,
+                        kapali_liste_ana,
+                        kapali_liste_inad,
+                        acik_liste,
+                        geri_izleme,
                     )
-                    close_list_inad.append(get_s)
-            elif g_function[goal] <= open_list[0].minkey():
-                if g_function[goal] < float("inf"):
-                    do_something(back_pointer, goal, start)
+                    kapali_liste_inad.append(get_s)
+            elif g_fonksiyonu[hedef] <= acik_liste[0].min_anahtar():
+                if g_fonksiyonu[hedef] < float("inf"):
+                    bir_sey_yap(geri_izleme, hedef, baslangic)
             else:
-                get_s = open_list[0].top_show()
-                visited.add(get_s)
-                expand_state(
+                get_s = acik_liste[0].en_ust_goster()
+                ziyaret_edilenler.add(get_s)
+                durum_genislet(
                     get_s,
                     0,
-                    visited,
-                    g_function,
-                    close_list_anchor,
-                    close_list_inad,
-                    open_list,
-                    back_pointer,
+                    ziyaret_edilenler,
+                    g_fonksiyonu,
+                    kapali_liste_ana,
+                    kapali_liste_inad,
+                    acik_liste,
+                    geri_izleme,
                 )
-                close_list_anchor.append(get_s)
-    print("No path found to goal")
+                kapali_liste_ana.append(get_s)
+    print("Hedefe giden yol bulunamadı")
     print()
     for i in range(n - 1, -1, -1):
         for j in range(n):
-            if (j, i) in blocks:
+            if (j, i) in bloklar:
                 print("#", end=" ")
-            elif (j, i) in back_pointer:
+            elif (j, i) in geri_izleme:
                 if (j, i) == (n - 1, n - 1):
                     print("*", end=" ")
                 else:
@@ -299,14 +282,13 @@ def multi_a_star(start: TPos, goal: TPos, n_heuristic: int):
             else:
                 print("*", end=" ")
             if (j, i) == (n - 1, n - 1):
-                print("<-- End position", end=" ")
+                print("<-- Bitiş noktası", end=" ")
         print()
     print("^")
-    print("Start position")
+    print("Başlangıç noktası")
     print()
-    print("# is an obstacle")
-    print("- is the path taken by algorithm")
-
+    print("# bir engeldir")
+    print("- algoritmanın izlediği yoldur")
 
 if __name__ == "__main__":
-    multi_a_star(start, goal, n_heuristic)
+    coklu_a_yildizi(baslangic, hedef, n_heuristik)

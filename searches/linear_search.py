@@ -1,23 +1,24 @@
 """
-This is pure Python implementation of linear search algorithm
+Bu, doğrusal arama algoritmasının saf Python ile uygulanışıdır.
 
-For doctests run following command:
+Doküman testleri için aşağıdaki komutu çalıştırın:
 python3 -m doctest -v linear_search.py
 
-For manual testing run:
+Organiser: K. Umut Araz
+
+Manuel test için çalıştırın:
 python3 linear_search.py
 """
 
 
-def linear_search(sequence: list, target: int) -> int:
-    """A pure Python implementation of a linear search algorithm
+def linear_search(dizi: list, hedef: int) -> int:
+    """Doğrusal arama algoritmasının saf Python ile uygulanışı
 
-    :param sequence: a collection with comparable items (as sorted items not required
-        in Linear Search)
-    :param target: item value to search
-    :return: index of found item or -1 if item is not found
+    :param dizi: Karşılaştırılabilir öğeler içeren bir koleksiyon (Doğrusal Arama için sıralı öğeler gerekli değildir)
+    :param hedef: Aranacak öğe değeri
+    :return: Bulunan öğenin indeksi veya öğe bulunamazsa -1
 
-    Examples:
+    Örnekler:
     >>> linear_search([0, 5, 7, 10, 15], 0)
     0
     >>> linear_search([0, 5, 7, 10, 15], 15)
@@ -27,24 +28,23 @@ def linear_search(sequence: list, target: int) -> int:
     >>> linear_search([0, 5, 7, 10, 15], 6)
     -1
     """
-    for index, item in enumerate(sequence):
-        if item == target:
-            return index
+    for indeks, ogret in enumerate(dizi):
+        if ogret == hedef:
+            return indeks
     return -1
 
 
-def rec_linear_search(sequence: list, low: int, high: int, target: int) -> int:
+def rec_linear_search(dizi: list, alt: int, ust: int, hedef: int) -> int:
     """
-    A pure Python implementation of a recursive linear search algorithm
+    Doğrusal arama algoritmasının saf Python ile rekürsif uygulanışı
 
-    :param sequence: a collection with comparable items (as sorted items not required
-        in Linear Search)
-    :param low: Lower bound of the array
-    :param high: Higher bound of the array
-    :param target: The element to be found
-    :return: Index of the key or -1 if key not found
+    :param dizi: Karşılaştırılabilir öğeler içeren bir koleksiyon (Doğrusal Arama için sıralı öğeler gerekli değildir)
+    :param alt: Dizinin alt sınırı
+    :param ust: Dizinin üst sınırı
+    :param hedef: Bulunması gereken öğe
+    :return: Anahtarın indeksi veya anahtar bulunamazsa -1
 
-    Examples:
+    Örnekler:
     >>> rec_linear_search([0, 30, 500, 100, 700], 0, 4, 0)
     0
     >>> rec_linear_search([0, 30, 500, 100, 700], 0, 4, 700)
@@ -54,24 +54,24 @@ def rec_linear_search(sequence: list, low: int, high: int, target: int) -> int:
     >>> rec_linear_search([0, 30, 500, 100, 700], 0, 4, -6)
     -1
     """
-    if not (0 <= high < len(sequence) and 0 <= low < len(sequence)):
-        raise Exception("Invalid upper or lower bound!")
-    if high < low:
+    if not (0 <= ust < len(dizi) and 0 <= alt < len(dizi)):
+        raise Exception("Geçersiz üst veya alt sınır!")
+    if ust < alt:
         return -1
-    if sequence[low] == target:
-        return low
-    if sequence[high] == target:
-        return high
-    return rec_linear_search(sequence, low + 1, high - 1, target)
+    if dizi[alt] == hedef:
+        return alt
+    if dizi[ust] == hedef:
+        return ust
+    return rec_linear_search(dizi, alt + 1, ust - 1, hedef)
 
 
 if __name__ == "__main__":
-    user_input = input("Enter numbers separated by comma:\n").strip()
-    sequence = [int(item.strip()) for item in user_input.split(",")]
+    kullanici_girdisi = input("Virgülle ayrılmış sayıları girin:\n").strip()
+    dizi = [int(ogret.strip()) for ogret in kullanici_girdisi.split(",")]
 
-    target = int(input("Enter a single number to be found in the list:\n").strip())
-    result = linear_search(sequence, target)
-    if result != -1:
-        print(f"linear_search({sequence}, {target}) = {result}")
+    hedef = int(input("Listede bulunması gereken tek bir sayıyı girin:\n").strip())
+    sonuc = linear_search(dizi, hedef)
+    if sonuc != -1:
+        print(f"linear_search({dizi}, {hedef}) = {sonuc}")
     else:
-        print(f"{target} was not found in {sequence}")
+        print(f"{hedef} {dizi} içinde bulunamadı.")

@@ -1,58 +1,58 @@
-def print_dist(dist, v):
-    print("\nVertex Distance")
+def mesafeleri_yazdir(mesafeler, v):
+    print("\nDüğüm Mesafesi")
     for i in range(v):
-        if dist[i] != float("inf"):
-            print(i, "\t", int(dist[i]), end="\t")
+        if mesafeler[i] != float("inf"):
+            print(i, "\t", int(mesafeler[i]), end="\t")
         else:
-            print(i, "\t", "INF", end="\t")
+            print(i, "\t", "SONSUZ", end="\t")
         print()
 
 
-def min_dist(mdist, vset, v):
-    min_val = float("inf")
-    min_ind = -1
+def min_mesafe(mesafeler, ziyaret_edilen, v):
+    min_deger = float("inf")
+    min_indis = -1
     for i in range(v):
-        if (not vset[i]) and mdist[i] < min_val:
-            min_ind = i
-            min_val = mdist[i]
-    return min_ind
+        if (not ziyaret_edilen[i]) and mesafeler[i] < min_deger:
+            min_indis = i
+            min_deger = mesafeler[i]
+    return min_indis
 
 
-def dijkstra(graph, v, src):
-    mdist = [float("inf") for _ in range(v)]
-    vset = [False for _ in range(v)]
-    mdist[src] = 0.0
+def dijkstra(graf, v, kaynak):
+    mesafeler = [float("inf") for _ in range(v)]
+    ziyaret_edilen = [False for _ in range(v)]
+    mesafeler[kaynak] = 0.0
 
     for _ in range(v - 1):
-        u = min_dist(mdist, vset, v)
-        vset[u] = True
+        u = min_mesafe(mesafeler, ziyaret_edilen, v)
+        ziyaret_edilen[u] = True
 
         for i in range(v):
             if (
-                (not vset[i])
-                and graph[u][i] != float("inf")
-                and mdist[u] + graph[u][i] < mdist[i]
+                (not ziyaret_edilen[i])
+                and graf[u][i] != float("inf")
+                and mesafeler[u] + graf[u][i] < mesafeler[i]
             ):
-                mdist[i] = mdist[u] + graph[u][i]
+                mesafeler[i] = mesafeler[u] + graf[u][i]
 
-    print_dist(mdist, i)
+    mesafeleri_yazdir(mesafeler, v)
 
 
 if __name__ == "__main__":
-    V = int(input("Enter number of vertices: ").strip())
-    E = int(input("Enter number of edges: ").strip())
+    V = int(input("Düğüm sayısını girin: ").strip())
+    E = int(input("Kenar sayısını girin: ").strip())
 
-    graph = [[float("inf") for i in range(V)] for j in range(V)]
+    graf = [[float("inf") for i in range(V)] for j in range(V)]
 
     for i in range(V):
-        graph[i][i] = 0.0
+        graf[i][i] = 0.0
 
     for i in range(E):
-        print("\nEdge ", i + 1)
-        src = int(input("Enter source:").strip())
-        dst = int(input("Enter destination:").strip())
-        weight = float(input("Enter weight:").strip())
-        graph[src][dst] = weight
+        print("\nKenar ", i + 1)
+        kaynak = int(input("Kaynak düğümü girin:").strip())
+        hedef = int(input("Hedef düğümü girin:").strip())
+        agirlik = float(input("Ağırlığı girin:").strip())
+        graf[kaynak][hedef] = agirlik
 
-    gsrc = int(input("\nEnter shortest path source:").strip())
-    dijkstra(graph, V, gsrc)
+    kaynak_düğüm = int(input("\nEn kısa yolun kaynağını girin:").strip())
+    dijkstra(graf, V, kaynak_düğüm)

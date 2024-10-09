@@ -1,37 +1,39 @@
 from __future__ import annotations
 
-
-def double_linear_search(array: list[int], search_item: int) -> int:
+def cift_lineer_arama(dizi: list[int], aranan_eleman: int) -> int:
     """
-    Iterate through the array from both sides to find the index of search_item.
+    Dizi üzerinde her iki taraftan başlayarak aranan elemanın indeksini bulur.
 
-    :param array: the array to be searched
-    :param search_item: the item to be searched
-    :return the index of search_item, if search_item is in array, else -1
+    #Organiser: K. Umut Araz
 
-    Examples:
-    >>> double_linear_search([1, 5, 5, 10], 1)
+    :param dizi: Aranacak dizi
+    :param aranan_eleman: Aranacak eleman
+    :return: Eğer aranan eleman dizi içinde varsa indeksini, yoksa -1 döner
+
+    Örnekler:
+    >>> cift_lineer_arama([1, 5, 5, 10], 1)
     0
-    >>> double_linear_search([1, 5, 5, 10], 5)
+    >>> cift_lineer_arama([1, 5, 5, 10], 5)
     1
-    >>> double_linear_search([1, 5, 5, 10], 100)
+    >>> cift_lineer_arama([1, 5, 5, 10], 100)
     -1
-    >>> double_linear_search([1, 5, 5, 10], 10)
+    >>> cift_lineer_arama([1, 5, 5, 10], 10)
     3
     """
-    # define the start and end index of the given array
-    start_ind, end_ind = 0, len(array) - 1
-    while start_ind <= end_ind:
-        if array[start_ind] == search_item:
-            return start_ind
-        elif array[end_ind] == search_item:
-            return end_ind
-        else:
-            start_ind += 1
-            end_ind -= 1
-    # returns -1 if search_item is not found in array
+    # Dizinin başlangıç ve bitiş indekslerini tanımla
+    baslangic_indeksi, bitis_indeksi = 0, len(dizi) - 1
+    while baslangic_indeksi <= bitis_indeksi:
+        # Başlangıç indeksindeki elemanı kontrol et
+        if dizi[baslangic_indeksi] == aranan_eleman:
+            return baslangic_indeksi
+        # Bitiş indeksindeki elemanı kontrol et
+        elif dizi[bitis_indeksi] == aranan_eleman:
+            return bitis_indeksi
+        # İndeksleri güncelle
+        baslangic_indeksi += 1
+        bitis_indeksi -= 1
+    # Aranan eleman dizide bulunamazsa -1 döner
     return -1
 
-
 if __name__ == "__main__":
-    print(double_linear_search(list(range(100)), 40))
+    print(cift_lineer_arama(list(range(100)), 40))

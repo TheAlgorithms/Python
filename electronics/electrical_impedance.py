@@ -1,7 +1,6 @@
-"""Electrical impedance is the measure of the opposition that a
-circuit presents to a current when a voltage is applied.
-Impedance extends the concept of resistance to alternating current (AC) circuits.
-Source: https://en.wikipedia.org/wiki/Electrical_impedance
+"""Elektrik empedansı, bir devrenin bir voltaj uygulandığında bir akıma karşı
+gösterdiği direncin ölçüsüdür. Empedans, direnç kavramını alternatif akım (AC) devrelerine genişletir.
+Kaynak: https://en.wikipedia.org/wiki/Electrical_impedance
 """
 
 from __future__ import annotations
@@ -9,35 +8,34 @@ from __future__ import annotations
 from math import pow, sqrt
 
 
-def electrical_impedance(
-    resistance: float, reactance: float, impedance: float
+def elektrik_empedansi(
+    direnç: float, reaktans: float, empedans: float
 ) -> dict[str, float]:
     """
-    Apply Electrical Impedance formula, on any two given electrical values,
-    which can be resistance, reactance, and impedance, and then in a Python dict
-    return name/value pair of the zero value.
+    Elektrik Empedansı formülünü, direnç, reaktans ve empedans gibi verilen herhangi iki elektriksel değer üzerinde uygulayın
+    ve ardından sıfır değeri olan adı/değer çiftini bir Python sözlüğünde döndürün.
 
-    >>> electrical_impedance(3,4,0)
-    {'impedance': 5.0}
-    >>> electrical_impedance(0,4,5)
-    {'resistance': 3.0}
-    >>> electrical_impedance(3,0,5)
-    {'reactance': 4.0}
-    >>> electrical_impedance(3,4,5)
+    >>> elektrik_empedansi(3,4,0)
+    {'empedans': 5.0}
+    >>> elektrik_empedansi(0,4,5)
+    {'direnç': 3.0}
+    >>> elektrik_empedansi(3,0,5)
+    {'reaktans': 4.0}
+    >>> elektrik_empedansi(3,4,5)
     Traceback (most recent call last):
       ...
-    ValueError: One and only one argument must be 0
+    ValueError: Bir ve yalnızca bir argüman 0 olmalıdır
     """
-    if (resistance, reactance, impedance).count(0) != 1:
-        raise ValueError("One and only one argument must be 0")
-    if resistance == 0:
-        return {"resistance": sqrt(pow(impedance, 2) - pow(reactance, 2))}
-    elif reactance == 0:
-        return {"reactance": sqrt(pow(impedance, 2) - pow(resistance, 2))}
-    elif impedance == 0:
-        return {"impedance": sqrt(pow(resistance, 2) + pow(reactance, 2))}
+    if (direnç, reaktans, empedans).count(0) != 1:
+        raise ValueError("Bir ve yalnızca bir argüman 0 olmalıdır")
+    if direnç == 0:
+        return {"direnç": sqrt(pow(empedans, 2) - pow(reaktans, 2))}
+    elif reaktans == 0:
+        return {"reaktans": sqrt(pow(empedans, 2) - pow(direnç, 2))}
+    elif empedans == 0:
+        return {"empedans": sqrt(pow(direnç, 2) + pow(reaktans, 2))}
     else:
-        raise ValueError("Exactly one argument must be 0")
+        raise ValueError("Tam olarak bir argüman 0 olmalıdır")
 
 
 if __name__ == "__main__":

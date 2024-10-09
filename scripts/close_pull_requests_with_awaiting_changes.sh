@@ -1,22 +1,24 @@
 #!/bin/bash
 
-# List all open pull requests
+# Açık pull request'leri listele
 prs=$(gh pr list --state open --json number,title,labels --limit 500)
 
-# Loop through each pull request
+# Organiser: K. Umut Araz
+
+# Her bir pull request üzerinde döngü
 echo "$prs" | jq -c '.[]' | while read -r pr; do
-  pr_number=$(echo "$pr" | jq -r '.number')
-  pr_title=$(echo "$pr" | jq -r '.title')
-  pr_labels=$(echo "$pr" | jq -r '.labels')
+  pr_numara=$(echo "$pr" | jq -r '.number')
+  pr_baslik=$(echo "$pr" | jq -r '.title')
+  pr_etiketler=$(echo "$pr" | jq -r '.labels')
 
-  # Check if the "awaiting changes" label is present
-  awaiting_changes=$(echo "$pr_labels" | jq -r '.[] | select(.name == "awaiting changes")')
-  echo "Checking PR #$pr_number $pr_title ($awaiting_changes) ($pr_labels)"
+  # "awaiting changes" etiketinin mevcut olup olmadığını kontrol et
+  awaiting_changes=$(echo "$pr_etiketler" | jq -r '.[] | select(.name == "awaiting changes")')
+  echo "Kontrol ediliyor PR #$pr_numara $pr_baslik ($awaiting_changes) ($pr_etiketler)"
 
-  # If awaiting_changes, close the pull request
+  # Eğer awaiting_changes varsa, pull request'i kapat
   if [[ -n "$awaiting_changes" ]]; then
-    echo "Closing PR #$pr_number $pr_title due to awaiting_changes label"
-    gh pr close "$pr_number" --comment "Closing awaiting_changes PRs to prepare for Hacktoberfest"
+    echo "Kapatılıyor PR #$pr_numara $pr_baslik 'awaiting changes' etiketi nedeniyle"
+    gh pr close "$pr_numara" --comment "'awaiting changes' etiketine sahip PR'ler kapatılıyor, Hacktoberfest için hazırlanıyor"
     sleep 2
   fi
 done

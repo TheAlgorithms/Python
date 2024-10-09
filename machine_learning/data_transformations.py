@@ -33,9 +33,14 @@ def normalizasyon(veri: list, ondalik_basamak: int = 3) -> list:
     """
     Normalize edilmiş bir değer listesi döndürür.
 
-    @parametreler: veri, normalize edilecek değerler listesi
-    @döndürür: normalize edilmiş değerler listesi (ondalik_basamak kadar yuvarlanmış)
-    @örnekler:
+    Parametreler:
+    veri: normalize edilecek değerler listesi
+    ondalik_basamak: yuvarlama işlemi için ondalık basamak sayısı (varsayılan 3)
+
+    Döndürür:
+    Normalize edilmiş değerler listesi (ondalik_basamak kadar yuvarlanmış)
+
+    Örnekler:
     >>> normalizasyon([2, 7, 10, 20, 30, 50])
     [0.0, 0.104, 0.167, 0.375, 0.583, 1.0]
     >>> normalizasyon([5, 10, 15, 20, 25])
@@ -52,9 +57,14 @@ def standardizasyon(veri: list, ondalik_basamak: int = 3) -> list:
     """
     Standardize edilmiş bir değer listesi döndürür.
 
-    @parametreler: veri, standardize edilecek değerler listesi
-    @döndürür: standardize edilmiş değerler listesi (ondalik_basamak kadar yuvarlanmış)
-    @örnekler:
+    Parametreler:
+    veri: standardize edilecek değerler listesi
+    ondalik_basamak: yuvarlama işlemi için ondalık basamak sayısı (varsayılan 3)
+
+    Döndürür:
+    Standardize edilmiş değerler listesi (ondalik_basamak kadar yuvarlanmış)
+
+    Örnekler:
     >>> standardizasyon([2, 7, 10, 20, 30, 50])
     [-0.999, -0.719, -0.551, 0.009, 0.57, 1.69]
     >>> standardizasyon([5, 10, 15, 20, 25])

@@ -6,6 +6,8 @@ bir şekilde temsil etmek için ses ve konuşma işleme alanında yaygın olarak
 kullanılan bir algoritmadır. Özellikle konuşma tanıma ve konuşmacı tanıma gibi
 ses ve konuşma işleme görevlerinde popülerdir.
 
+Katkı: Produced by K. Umut Araz
+
 Mel Frekans Kepstral Katsayılarının Hesaplanması:
 1. Ön İşleme:
    - Bir ses sinyalini yükleyin ve değerlerin belirli bir aralıkta (örneğin,

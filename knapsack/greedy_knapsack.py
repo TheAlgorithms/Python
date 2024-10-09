@@ -1,98 +1,95 @@
-# To get an insight into Greedy Algorithm through the Knapsack problem
+# Sırt Çantası Problemi ile Açgözlü Algoritmaya bir bakış
 
+#Katkı: Produced By K. Umut Araz
 
 """
-A shopkeeper has bags of wheat that each have different weights and different profits.
-eg.
-profit 5 8 7 1 12 3 4
-weight 2 7 1 6  4 2 5
-max_weight 100
+Bir bakkalın her biri farklı ağırlıklara ve farklı karlara sahip buğday çuvalları vardır.
+ör.
+kar 5 8 7 1 12 3 4
+ağırlık 2 7 1 6  4 2 5
+maks_ağırlık 100
 
-Constraints:
-max_weight > 0
-profit[i] >= 0
-weight[i] >= 0
-Calculate the maximum profit that the shopkeeper can make given maxmum weight that can
-be carried.
+Kısıtlar:
+maks_ağırlık > 0
+kar[i] >= 0
+ağırlık[i] >= 0
+Taşınabilecek maksimum ağırlık verildiğinde bakkalın elde edebileceği maksimum karı hesaplayın.
 """
 
 
-def calc_profit(profit: list, weight: list, max_weight: int) -> int:
+def kar_hesapla(kar: list, ağırlık: list, maks_ağırlık: int) -> int:
     """
-    Function description is as follows-
-    :param profit: Take a list of profits
-    :param weight: Take a list of weight if bags corresponding to the profits
-    :param max_weight: Maximum weight that could be carried
-    :return: Maximum expected gain
+    Fonksiyon açıklaması aşağıdaki gibidir-
+    :param kar: Kar listesini alır
+    :param ağırlık: Karlarla ilişkili ağırlık listesini alır
+    :param maks_ağırlık: Taşınabilecek maksimum ağırlık
+    :return: Beklenen maksimum kazanç
 
-    >>> calc_profit([1, 2, 3], [3, 4, 5], 15)
+    >>> kar_hesapla([1, 2, 3], [3, 4, 5], 15)
     6
-    >>> calc_profit([10, 9 , 8], [3 ,4 , 5], 25)
+    >>> kar_hesapla([10, 9 , 8], [3 ,4 , 5], 25)
     27
     """
-    if len(profit) != len(weight):
-        raise ValueError("The length of profit and weight must be same.")
-    if max_weight <= 0:
-        raise ValueError("max_weight must greater than zero.")
-    if any(p < 0 for p in profit):
-        raise ValueError("Profit can not be negative.")
-    if any(w < 0 for w in weight):
-        raise ValueError("Weight can not be negative.")
+    if len(kar) != len(ağırlık):
+        raise ValueError("Kar ve ağırlık uzunlukları aynı olmalıdır.")
+    if maks_ağırlık <= 0:
+        raise ValueError("maks_ağırlık sıfırdan büyük olmalıdır.")
+    if any(p < 0 for p in kar):
+        raise ValueError("Kar negatif olamaz.")
+    if any(w < 0 for w in ağırlık):
+        raise ValueError("Ağırlık negatif olamaz.")
 
-    # List created to store profit gained for the 1kg in case of each weight
-    # respectively.  Calculate and append profit/weight for each element.
-    profit_by_weight = [p / w for p, w in zip(profit, weight)]
+    # Her bir ağırlık için 1 kg başına elde edilen karı depolamak için liste oluşturuldu
+    # Her eleman için kar/ağırlık hesaplayıp ekleyin.
+    kar_ağırlık_oranı = [p / w for p, w in zip(kar, ağırlık)]
 
-    # Creating a copy of the list and sorting profit/weight in ascending order
-    sorted_profit_by_weight = sorted(profit_by_weight)
+    # Listenin bir kopyasını oluşturup kar/ağırlık oranını artan sırayla sıralama
+    sıralı_kar_ağırlık_oranı = sorted(kar_ağırlık_oranı)
 
-    # declaring useful variables
-    length = len(sorted_profit_by_weight)
+    # Faydalı değişkenler tanımlanıyor
+    uzunluk = len(sıralı_kar_ağırlık_oranı)
     limit = 0
-    gain = 0
+    kazanç = 0
     i = 0
 
-    # loop till the total weight do not reach max limit e.g. 15 kg and till i<length
-    while limit <= max_weight and i < length:
-        # flag value for encountered greatest element in sorted_profit_by_weight
-        biggest_profit_by_weight = sorted_profit_by_weight[length - i - 1]
+    # Toplam ağırlık maks sınırına ulaşana kadar ve i<uzunluk olana kadar döngü
+    while limit <= maks_ağırlık and i < uzunluk:
+        # sıralı_kar_ağırlık_oranı içindeki en büyük eleman için bayrak değeri
+        en_büyük_kar_ağırlık_oranı = sıralı_kar_ağırlık_oranı[uzunluk - i - 1]
         """
-        Calculate the index of the biggest_profit_by_weight in profit_by_weight list.
-        This will give the index of the first encountered element which is same as of
-        biggest_profit_by_weight.  There may be one or more values same as that of
-        biggest_profit_by_weight but index always encounter the very first element
-        only.  To curb this alter the values in profit_by_weight once they are used
-        here it is done to -1 because neither profit nor weight can be in negative.
+        kar_ağırlık_oranı listesinde en_büyük_kar_ağırlık_oranı'nın indeksini hesaplayın.
+        Bu, en_büyük_kar_ağırlık_oranı ile aynı olan ilk karşılaşılan elemanın indeksini verir.
+        en_büyük_kar_ağırlık_oranı ile aynı olan bir veya daha fazla değer olabilir, ancak indeks
+        her zaman yalnızca ilk elemanı karşılar.  Bunu önlemek için kar_ağırlık_oranı'ndaki
+        değerleri kullandıktan sonra değiştirin, burada -1 olarak yapılır çünkü ne kar ne de
+        ağırlık negatif olamaz.
         """
-        index = profit_by_weight.index(biggest_profit_by_weight)
-        profit_by_weight[index] = -1
+        indeks = kar_ağırlık_oranı.index(en_büyük_kar_ağırlık_oranı)
+        kar_ağırlık_oranı[indeks] = -1
 
-        # check if the weight encountered is less than the total weight
-        # encountered before.
-        if max_weight - limit >= weight[index]:
-            limit += weight[index]
-            # Adding profit gained for the given weight 1 ===
-            # weight[index]/weight[index]
-            gain += 1 * profit[index]
+        # Karşılaşılan ağırlığın daha önce karşılaşılan toplam ağırlıktan az olup olmadığını kontrol edin.
+        if maks_ağırlık - limit >= ağırlık[indeks]:
+            limit += ağırlık[indeks]
+            # Verilen ağırlık için elde edilen karı ekleme 1 ===
+            # ağırlık[indeks]/ağırlık[indeks]
+            kazanç += 1 * kar[indeks]
         else:
-            # Since the weight encountered is greater than limit, therefore take the
-            # required number of remaining kgs and calculate profit for it.
-            # weight remaining / weight[index]
-            gain += (max_weight - limit) / weight[index] * profit[index]
+            # Karşılaşılan ağırlık limitten büyük olduğundan, kalan kg sayısını alın ve karı hesaplayın.
+            # kalan ağırlık / ağırlık[indeks]
+            kazanç += (maks_ağırlık - limit) / ağırlık[indeks] * kar[indeks]
             break
         i += 1
-    return gain
+    return kazanç
 
 
 if __name__ == "__main__":
     print(
-        "Input profits, weights, and then max_weight (all positive ints) separated by "
-        "spaces."
+        "Karları, ağırlıkları ve ardından boşluklarla ayrılmış maksimum ağırlığı (hepsi pozitif tamsayılar) girin."
     )
 
-    profit = [int(x) for x in input("Input profits separated by spaces: ").split()]
-    weight = [int(x) for x in input("Input weights separated by spaces: ").split()]
-    max_weight = int(input("Max weight allowed: "))
+    kar = [int(x) for x in input("Boşluklarla ayrılmış karları girin: ").split()]
+    ağırlık = [int(x) for x in input("Boşluklarla ayrılmış ağırlıkları girin: ").split()]
+    maks_ağırlık = int(input("İzin verilen maksimum ağırlık: "))
 
-    # Function Call
-    calc_profit(profit, weight, max_weight)
+    # Fonksiyon Çağrısı
+    kar_hesapla(kar, ağırlık, maks_ağırlık)

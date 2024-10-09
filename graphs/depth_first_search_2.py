@@ -1,112 +1,111 @@
 #!/usr/bin/python
 
-"""Author: OMKAR PATHAK"""
+"""Yazar: OMKAR PATHAK"""
 
 
-class Graph:
+class Graf:
     def __init__(self):
-        self.vertex = {}
+        self.düğüm = {}
 
-    # for printing the Graph vertices
-    def print_graph(self) -> None:
+    # Graf düğümlerini yazdırmak için
+    def graf_yazdir(self) -> None:
         """
-        Print the graph vertices.
+        Graf düğümlerini yazdır.
 
-        Example:
-        >>> g = Graph()
-        >>> g.add_edge(0, 1)
-        >>> g.add_edge(0, 2)
-        >>> g.add_edge(1, 2)
-        >>> g.add_edge(2, 0)
-        >>> g.add_edge(2, 3)
-        >>> g.add_edge(3, 3)
-        >>> g.print_graph()
+        Örnek:
+        >>> g = Graf()
+        >>> g.kenar_ekle(0, 1)
+        >>> g.kenar_ekle(0, 2)
+        >>> g.kenar_ekle(1, 2)
+        >>> g.kenar_ekle(2, 0)
+        >>> g.kenar_ekle(2, 3)
+        >>> g.kenar_ekle(3, 3)
+        >>> g.graf_yazdir()
         {0: [1, 2], 1: [2], 2: [0, 3], 3: [3]}
         0  ->  1 -> 2
         1  ->  2
         2  ->  0 -> 3
         3  ->  3
         """
-        print(self.vertex)
-        for i in self.vertex:
-            print(i, " -> ", " -> ".join([str(j) for j in self.vertex[i]]))
+        print(self.düğüm)
+        for i in self.düğüm:
+            print(i, " -> ", " -> ".join([str(j) for j in self.düğüm[i]]))
 
-    # for adding the edge between two vertices
-    def add_edge(self, from_vertex: int, to_vertex: int) -> None:
+    # İki düğüm arasına kenar eklemek için
+    def kenar_ekle(self, kaynak_düğüm: int, hedef_düğüm: int) -> None:
         """
-        Add an edge between two vertices.
+        İki düğüm arasına kenar ekle.
 
-        :param from_vertex: The source vertex.
-        :param to_vertex: The destination vertex.
+        :param kaynak_düğüm: Kaynak düğüm.
+        :param hedef_düğüm: Hedef düğüm.
 
-        Example:
-        >>> g = Graph()
-        >>> g.add_edge(0, 1)
-        >>> g.add_edge(0, 2)
-        >>> g.print_graph()
+        Örnek:
+        >>> g = Graf()
+        >>> g.kenar_ekle(0, 1)
+        >>> g.kenar_ekle(0, 2)
+        >>> g.graf_yazdir()
         {0: [1, 2]}
         0  ->  1 -> 2
         """
-        # check if vertex is already present,
-        if from_vertex in self.vertex:
-            self.vertex[from_vertex].append(to_vertex)
+        # düğüm zaten mevcutsa kontrol et,
+        if kaynak_düğüm in self.düğüm:
+            self.düğüm[kaynak_düğüm].append(hedef_düğüm)
         else:
-            # else make a new vertex
-            self.vertex[from_vertex] = [to_vertex]
+            # değilse yeni bir düğüm oluştur
+            self.düğüm[kaynak_düğüm] = [hedef_düğüm]
 
     def dfs(self) -> None:
         """
-        Perform depth-first search (DFS) traversal on the graph
-        and print the visited vertices.
+        Graf üzerinde derinlik öncelikli arama (DFS) yap ve ziyaret edilen düğümleri yazdır.
 
-        Example:
-        >>> g = Graph()
-        >>> g.add_edge(0, 1)
-        >>> g.add_edge(0, 2)
-        >>> g.add_edge(1, 2)
-        >>> g.add_edge(2, 0)
-        >>> g.add_edge(2, 3)
-        >>> g.add_edge(3, 3)
+        Örnek:
+        >>> g = Graf()
+        >>> g.kenar_ekle(0, 1)
+        >>> g.kenar_ekle(0, 2)
+        >>> g.kenar_ekle(1, 2)
+        >>> g.kenar_ekle(2, 0)
+        >>> g.kenar_ekle(2, 3)
+        >>> g.kenar_ekle(3, 3)
         >>> g.dfs()
         0 1 2 3
         """
-        # visited array for storing already visited nodes
-        visited = [False] * len(self.vertex)
+        # ziyaret edilen düğümleri saklamak için dizi
+        ziyaret_edildi = [False] * len(self.düğüm)
 
-        # call the recursive helper function
-        for i in range(len(self.vertex)):
-            if not visited[i]:
-                self.dfs_recursive(i, visited)
+        # özyinelemeli yardımcı fonksiyonu çağır
+        for i in range(len(self.düğüm)):
+            if not ziyaret_edildi[i]:
+                self.dfs_özyinelemeli(i, ziyaret_edildi)
 
-    def dfs_recursive(self, start_vertex: int, visited: list) -> None:
+    def dfs_özyinelemeli(self, başlangıç_düğüm: int, ziyaret_edildi: list) -> None:
         """
-        Perform a recursive depth-first search (DFS) traversal on the graph.
+        Graf üzerinde özyinelemeli derinlik öncelikli arama (DFS) yap.
 
-        :param start_vertex: The starting vertex for the traversal.
-        :param visited: A list to track visited vertices.
+        :param başlangıç_düğüm: Arama için başlangıç düğümü.
+        :param ziyaret_edildi: Ziyaret edilen düğümleri izlemek için liste.
 
-        Example:
-        >>> g = Graph()
-        >>> g.add_edge(0, 1)
-        >>> g.add_edge(0, 2)
-        >>> g.add_edge(1, 2)
-        >>> g.add_edge(2, 0)
-        >>> g.add_edge(2, 3)
-        >>> g.add_edge(3, 3)
-        >>> visited = [False] * len(g.vertex)
-        >>> g.dfs_recursive(0, visited)
+        Örnek:
+        >>> g = Graf()
+        >>> g.kenar_ekle(0, 1)
+        >>> g.kenar_ekle(0, 2)
+        >>> g.kenar_ekle(1, 2)
+        >>> g.kenar_ekle(2, 0)
+        >>> g.kenar_ekle(2, 3)
+        >>> g.kenar_ekle(3, 3)
+        >>> ziyaret_edildi = [False] * len(g.düğüm)
+        >>> g.dfs_özyinelemeli(0, ziyaret_edildi)
         0 1 2 3
         """
-        # mark start vertex as visited
-        visited[start_vertex] = True
+        # başlangıç düğümünü ziyaret edildi olarak işaretle
+        ziyaret_edildi[başlangıç_düğüm] = True
 
-        print(start_vertex, end="")
+        print(başlangıç_düğüm, end="")
 
-        # Recur for all the vertices that are adjacent to this node
-        for i in self.vertex:
-            if not visited[i]:
+        # Bu düğüme bitişik olan tüm düğümler için yinele
+        for i in self.düğüm[başlangıç_düğüm]:
+            if not ziyaret_edildi[i]:
                 print(" ", end="")
-                self.dfs_recursive(i, visited)
+                self.dfs_özyinelemeli(i, ziyaret_edildi)
 
 
 if __name__ == "__main__":
@@ -114,14 +113,14 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    g = Graph()
-    g.add_edge(0, 1)
-    g.add_edge(0, 2)
-    g.add_edge(1, 2)
-    g.add_edge(2, 0)
-    g.add_edge(2, 3)
-    g.add_edge(3, 3)
+    g = Graf()
+    g.kenar_ekle(0, 1)
+    g.kenar_ekle(0, 2)
+    g.kenar_ekle(1, 2)
+    g.kenar_ekle(2, 0)
+    g.kenar_ekle(2, 3)
+    g.kenar_ekle(3, 3)
 
-    g.print_graph()
+    g.graf_yazdir()
     print("DFS:")
     g.dfs()

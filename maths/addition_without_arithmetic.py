@@ -1,32 +1,33 @@
 """
-Illustrate how to add the integer without arithmetic operation
-Author: suraj Kumar
-Time Complexity: 1
+Aritmetik işlemler kullanmadan tam sayıların nasıl toplandığını gösterir
+Yazar: Suraj Kumar
+Organised by K. Umut Araz
+Zaman Karmaşıklığı: 1
 https://en.wikipedia.org/wiki/Bitwise_operation
 """
 
 
-def add(first: int, second: int) -> int:
+def topla(birinci: int, ikinci: int) -> int:
     """
-    Implementation of addition of integer
+    Tam sayıların toplama işleminin uygulanması
 
-    Examples:
-    >>> add(3, 5)
+    Örnekler:
+    >>> topla(3, 5)
     8
-    >>> add(13, 5)
+    >>> topla(13, 5)
     18
-    >>> add(-7, 2)
+    >>> topla(-7, 2)
     -5
-    >>> add(0, -7)
+    >>> topla(0, -7)
     -7
-    >>> add(-321, 0)
+    >>> topla(-321, 0)
     -321
     """
-    while second != 0:
-        c = first & second
-        first ^= second
-        second = c << 1
-    return first
+    while ikinci != 0:
+        c = birinci & ikinci
+        birinci ^= ikinci
+        ikinci = c << 1
+    return birinci
 
 
 if __name__ == "__main__":
@@ -34,6 +35,6 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    first = int(input("Enter the first number: ").strip())
-    second = int(input("Enter the second number: ").strip())
-    print(f"{add(first, second) = }")
+    birinci = int(input("Birinci sayıyı girin: ").strip())
+    ikinci = int(input("İkinci sayıyı girin: ").strip())
+    print(f"{topla(birinci, ikinci) = }")

@@ -3,39 +3,38 @@ pseudo-code
 
 DIJKSTRA(graph G, start vertex s, destination vertex d):
 
-//all nodes initially unexplored
+//tüm düğümler başlangıçta keşfedilmemiş
 
-1 -  let H = min heap data structure, initialized with 0 and s [here 0 indicates
-     the distance from start vertex s]
-2 -  while H is non-empty:
-3 -    remove the first node and cost of H, call it U and cost
-4 -    if U has been previously explored:
-5 -      go to the while loop, line 2 //Once a node is explored there is no need
-         to make it again
-6 -    mark U as explored
-7 -    if U is d:
-8 -      return cost // total cost from start to destination vertex
-9 -    for each edge(U, V): c=cost of edge(U,V) // for V in graph[U]
-10 -     if V explored:
-11 -       go to next V in line 9
-12 -     total_cost = cost + c
-13 -     add (total_cost,V) to H
+1 -  H = min yığın veri yapısı olarak başlat, 0 ve s ile başlat [burada 0,
+     başlangıç düğümü s'den olan mesafeyi gösterir]
+2 -  H boş olmadığı sürece:
+3 -    H'den ilk düğümü ve maliyeti çıkar, buna U ve maliyet de
+4 -    U daha önce keşfedildiyse:
+5 -      while döngüsüne, satır 2'ye git //Bir düğüm keşfedildikten sonra tekrar
+         işleme gerek yok
+6 -    U'yu keşfedildi olarak işaretle
+7 -    Eğer U, d ise:
+8 -      maliyeti döndür // başlangıç düğümünden hedef düğüme toplam maliyet
+9 -    her bir kenar(U, V) için: c=kenar(U,V) maliyeti // V, graph[U] içindeyse
+10 -     V keşfedildiyse:
+11 -       satır 9'daki bir sonraki V'ye git
+12 -     toplam_maliyet = maliyet + c
+13 -     (toplam_maliyet, V) H'ye ekle
 
-You can think at cost as a distance where Dijkstra finds the shortest distance
-between vertices s and v in a graph G. The use of a min heap as H guarantees
-that if a vertex has already been explored there will be no other path with
-shortest distance, that happens because heapq.heappop will always return the
-next vertex with the shortest distance, considering that the heap stores not
-only the distance between previous vertex and current vertex but the entire
-distance between each vertex that makes up the path from start vertex to target
-vertex.
+Maliyeti, Dijkstra'nın s ve v düğümleri arasındaki en kısa mesafeyi bulduğu bir
+mesafe olarak düşünebilirsiniz. H'nin min yığın olarak kullanılması, bir düğüm
+zaten keşfedildiyse başka bir kısa yolun olmayacağını garanti eder, çünkü
+heapq.heappop her zaman bir sonraki en kısa mesafeye sahip düğümü döndürecektir,
+bu da yığının sadece önceki düğüm ile mevcut düğüm arasındaki mesafeyi değil,
+başlangıç düğümünden hedef düğüme kadar olan tüm mesafeyi sakladığı anlamına
+gelir.
 """
 
 import heapq
 
 
-def dijkstra(graph, start, end):
-    """Return the cost of the shortest path between vertices start and end.
+def dijkstra(grafik, baslangic, hedef):
+    """Başlangıç ve hedef düğümleri arasındaki en kısa yolun maliyetini döndürür.
 
     >>> dijkstra(G, "E", "C")
     6
@@ -45,20 +44,20 @@ def dijkstra(graph, start, end):
     3
     """
 
-    heap = [(0, start)]  # cost from start node,end node
-    visited = set()
-    while heap:
-        (cost, u) = heapq.heappop(heap)
-        if u in visited:
+    yigin = [(0, baslangic)]  # başlangıç düğümünden maliyet, bitiş düğümü
+    ziyaret_edilen = set()
+    while yigin:
+        (maliyet, u) = heapq.heappop(yigin)
+        if u in ziyaret_edilen:
             continue
-        visited.add(u)
-        if u == end:
-            return cost
-        for v, c in graph[u]:
-            if v in visited:
+        ziyaret_edilen.add(u)
+        if u == hedef:
+            return maliyet
+        for v, c in grafik[u]:
+            if v in ziyaret_edilen:
                 continue
-            next_item = cost + c
-            heapq.heappush(heap, (next_item, v))
+            sonraki_maliyet = maliyet + c
+            heapq.heappush(yigin, (sonraki_maliyet, v))
     return -1
 
 
@@ -72,7 +71,7 @@ G = {
 }
 
 r"""
-Layout of G2:
+G2'nin düzeni:
 
 E -- 1 --> B -- 1 --> C -- 1 --> D -- 1 --> F
  \                                         /\
@@ -88,7 +87,7 @@ G2 = {
 }
 
 r"""
-Layout of G3:
+G3'ün düzeni:
 
 E -- 1 --> B -- 1 --> C -- 1 --> D -- 1 --> F
  \                                         /\
@@ -104,14 +103,14 @@ G3 = {
     "G": [["F", 1]],
 }
 
-short_distance = dijkstra(G, "E", "C")
-print(short_distance)  # E -- 3 --> F -- 3 --> C == 6
+kisa_mesafe = dijkstra(G, "E", "C")
+print(kisa_mesafe)  # E -- 3 --> F -- 3 --> C == 6
 
-short_distance = dijkstra(G2, "E", "F")
-print(short_distance)  # E -- 3 --> F == 3
+kisa_mesafe = dijkstra(G2, "E", "F")
+print(kisa_mesafe)  # E -- 3 --> F == 3
 
-short_distance = dijkstra(G3, "E", "F")
-print(short_distance)  # E -- 2 --> G -- 1 --> F == 3
+kisa_mesafe = dijkstra(G3, "E", "F")
+print(kisa_mesafe)  # E -- 2 --> G -- 1 --> F == 3
 
 if __name__ == "__main__":
     import doctest

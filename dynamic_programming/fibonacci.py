@@ -1,51 +1,50 @@
 """
-This is a pure Python implementation of Dynamic Programming solution to the fibonacci
-sequence problem.
+Bu, fibonacci dizisi problemine Dinamik Programlama çözümünün saf Python uygulamasıdır.
 """
 
 
 class Fibonacci:
     def __init__(self) -> None:
-        self.sequence = [0, 1]
+        self.dizi = [0, 1]
 
-    def get(self, index: int) -> list:
+    def al(self, indeks: int) -> list:
         """
-        Get the Fibonacci number of `index`. If the number does not exist,
-        calculate all missing numbers leading up to the number of `index`.
+        `indeks` numaralı Fibonacci sayısını alır. Eğer sayı mevcut değilse,
+        `indeks` numaralı sayıya kadar eksik olan tüm sayıları hesaplar.
 
-        >>> Fibonacci().get(10)
+        >>> Fibonacci().al(10)
         [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
-        >>> Fibonacci().get(5)
+        >>> Fibonacci().al(5)
         [0, 1, 1, 2, 3]
         """
-        if (difference := index - (len(self.sequence) - 2)) >= 1:
-            for _ in range(difference):
-                self.sequence.append(self.sequence[-1] + self.sequence[-2])
-        return self.sequence[:index]
+        if (fark := indeks - (len(self.dizi) - 2)) >= 1:
+            for _ in range(fark):
+                self.dizi.append(self.dizi[-1] + self.dizi[-2])
+        return self.dizi[:indeks]
 
 
-def main() -> None:
+def ana() -> None:
     print(
-        "Fibonacci Series Using Dynamic Programming\n",
-        "Enter the index of the Fibonacci number you want to calculate ",
-        "in the prompt below. (To exit enter exit or Ctrl-C)\n",
+        "Dinamik Programlama Kullanarak Fibonacci Serisi\n",
+        "Hesaplamak istediğiniz Fibonacci sayısının indeksini aşağıdaki isteme girin. ",
+        "(Çıkmak için 'exit' veya Ctrl-C tuşlayın)\n",
         sep="",
     )
     fibonacci = Fibonacci()
 
     while True:
-        prompt: str = input(">> ")
-        if prompt in {"exit", "quit"}:
+        istem: str = input(">> ")
+        if istem in {"exit", "quit"}:
             break
 
         try:
-            index: int = int(prompt)
+            indeks: int = int(istem)
         except ValueError:
-            print("Enter a number or 'exit'")
+            print("Bir sayı veya 'exit' girin")
             continue
 
-        print(fibonacci.get(index))
+        print(fibonacci.al(indeks))
 
 
 if __name__ == "__main__":
-    main()
+    ana()

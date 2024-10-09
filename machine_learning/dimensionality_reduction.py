@@ -6,6 +6,8 @@ Gereksinimler:
   - scipy sürüm 1.3.3
 Notlar:
   - Özellikler matrisinin her sütunu bir sınıf öğesine karşılık gelir
+
+  Katkı: K. Umut Araz
 """
 
 import logging

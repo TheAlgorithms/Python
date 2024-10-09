@@ -2,6 +2,8 @@
 Temel bir regresyon karar ağacının uygulanması.
 Girdi veri seti: Girdi veri seti sürekli etiketlere sahip tek boyutlu olmalıdır.
 Çıktı: Karar ağacı, gerçek bir sayı girdisini gerçek bir sayı çıktısına eşler.
+
+Katkı: K. Umut Araz
 """
 
 import numpy as np
@@ -18,10 +20,10 @@ class KararAgaci:
 
     def ortalama_kare_hatasi(self, etiketler, tahmin):
         """
-        ortalama_kare_hatasi:
+        Ortalama Kare Hatası:
         @param etiketler: tek boyutlu bir numpy dizisi
         @param tahmin: bir kayan nokta değeri
-        dönüş değeri: ortalama_kare_hatasi, tahminin etiketleri tahmin etmek için
+        dönüş değeri: ortalama kare hatası, tahminin etiketleri tahmin etmek için
             kullanılması durumunda hatayı hesaplar
         >>> tester = KararAgaci()
         >>> test_etiketler = np.array([1,2,3,4,5,6,7,8,9,10])
@@ -44,7 +46,7 @@ class KararAgaci:
 
     def egit(self, x, y):
         """
-        egit:
+        Egit:
         @param x: tek boyutlu bir numpy dizisi
         @param y: tek boyutlu bir numpy dizisi.
         y'nin içeriği, X değerlerine karşılık gelen etiketlerdir
@@ -98,8 +100,8 @@ class KararAgaci:
         min_hata = self.ortalama_kare_hatasi(x, np.mean(y)) * 2
 
         """
-        karar ağacı için tüm olası bölmeleri döngüye al. en iyi bölmeyi bul.
-        tüm dizi için hatadan daha az olan 2 * hata yoksa
+        Karar ağacı için tüm olası bölmeleri döngüye al. En iyi bölmeyi bul.
+        Tüm dizi için hatadan daha az olan 2 * hata yoksa
         o zaman veri seti bölünmez ve tüm dizi için ortalama
         tahmin olarak kullanılır
         """
@@ -138,7 +140,7 @@ class KararAgaci:
 
     def tahmin_et(self, x):
         """
-        tahmin_et:
+        Tahmin Et:
         @param x: etiketini tahmin etmek için bir kayan nokta değeri
         tahmin fonksiyonu, ağacın karar sınırına göre uygun alt ağaçların tahmin fonksiyonunu
         yineleyerek çağırarak çalışır
@@ -161,10 +163,10 @@ class TestKararAgaci:
     @staticmethod
     def helper_ortalama_kare_hatasi_test(etiketler, tahmin):
         """
-        helper_ortalama_kare_hatasi_test:
+        Helper Ortalama Kare Hatası Test:
         @param etiketler: tek boyutlu bir numpy dizisi
         @param tahmin: bir kayan nokta değeri
-        dönüş değeri: helper_ortalama_kare_hatasi_test, ortalama kare hatasını hesaplar
+        dönüş değeri: helper ortalama kare hatası test, ortalama kare hatasını hesaplar
         """
         kare_hata_toplam = float(0)
         for etiket in etiketler:

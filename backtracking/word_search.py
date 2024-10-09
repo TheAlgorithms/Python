@@ -1,62 +1,62 @@
 """
-Author  : Alexander Pantyukhin
-Date    : November 24, 2022
+Yazar  : Alexander Pantyukhin
+Tarih  : 24 Kasım 2022
 
-Task:
-Given an m x n grid of characters board and a string word,
-return true if word exists in the grid.
+Görev:
+m x n karakter ızgarası ve bir kelime verildiğinde,
+kelimenin ızgarada bulunup bulunmadığını döndürün.
 
-The word can be constructed from letters of sequentially adjacent cells,
-where adjacent cells are horizontally or vertically neighboring.
-The same letter cell may not be used more than once.
+Kelime, ardışık bitişik hücrelerin harflerinden oluşturulabilir,
+bitişik hücreler yatay veya dikey olarak komşu olan hücrelerdir.
+Aynı harf hücresi birden fazla kullanılamaz.
 
-Example:
+Örnek:
 
-Matrix:
+Matris:
 ---------
 |A|B|C|E|
 |S|F|C|S|
 |A|D|E|E|
 ---------
 
-Word:
+Kelime:
 "ABCCED"
 
-Result:
+Sonuç:
 True
 
-Implementation notes: Use backtracking approach.
-At each point, check all neighbors to try to find the next letter of the word.
+Uygulama notları: Geri izleme yaklaşımını kullanın.
+Her noktada, kelimenin bir sonraki harfini bulmaya çalışmak için tüm komşuları kontrol edin.
 
 leetcode: https://leetcode.com/problems/word-search/
 
 """
 
 
-def get_point_key(len_board: int, len_board_column: int, row: int, column: int) -> int:
+def nokta_anahtarını_al(len_board: int, len_board_column: int, row: int, column: int) -> int:
     """
-    Returns the hash key of matrix indexes.
+    Matris indekslerinin hash anahtarını döndürür.
 
-    >>> get_point_key(10, 20, 1, 0)
+    >>> nokta_anahtarını_al(10, 20, 1, 0)
     200
     """
 
     return len_board * len_board_column * row + column
 
 
-def exits_word(
+def kelime_var_mı(
     board: list[list[str]],
     word: str,
     row: int,
     column: int,
     word_index: int,
-    visited_points_set: set[int],
+    ziyaret_edilen_noktalar: set[int],
 ) -> bool:
     """
-    Return True if it's possible to search the word suffix
-    starting from the word_index.
+    Kelimenin son ekini aramanın mümkün olup olmadığını döndürür
+    word_index'ten başlayarak.
 
-    >>> exits_word([["A"]], "B", 0, 0, 0, set())
+    >>> kelime_var_mı([["A"]], "B", 0, 0, 0, set())
     False
     """
 
@@ -66,90 +66,90 @@ def exits_word(
     if word_index == len(word) - 1:
         return True
 
-    traverts_directions = [(0, 1), (0, -1), (-1, 0), (1, 0)]
+    yönler = [(0, 1), (0, -1), (-1, 0), (1, 0)]
     len_board = len(board)
     len_board_column = len(board[0])
-    for direction in traverts_directions:
+    for direction in yönler:
         next_i = row + direction[0]
         next_j = column + direction[1]
         if not (0 <= next_i < len_board and 0 <= next_j < len_board_column):
             continue
 
-        key = get_point_key(len_board, len_board_column, next_i, next_j)
-        if key in visited_points_set:
+        key = nokta_anahtarını_al(len_board, len_board_column, next_i, next_j)
+        if key in ziyaret_edilen_noktalar:
             continue
 
-        visited_points_set.add(key)
-        if exits_word(board, word, next_i, next_j, word_index + 1, visited_points_set):
+        ziyaret_edilen_noktalar.add(key)
+        if kelime_var_mı(board, word, next_i, next_j, word_index + 1, ziyaret_edilen_noktalar):
             return True
 
-        visited_points_set.remove(key)
+        ziyaret_edilen_noktalar.remove(key)
 
     return False
 
 
-def word_exists(board: list[list[str]], word: str) -> bool:
+def kelime_bulunur_mu(board: list[list[str]], word: str) -> bool:
     """
-    >>> word_exists([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED")
+    >>> kelime_bulunur_mu([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED")
     True
-    >>> word_exists([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "SEE")
+    >>> kelime_bulunur_mu([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "SEE")
     True
-    >>> word_exists([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCB")
+    >>> kelime_bulunur_mu([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCB")
     False
-    >>> word_exists([["A"]], "A")
+    >>> kelime_bulunur_mu([["A"]], "A")
     True
-    >>> word_exists([["B", "A", "A"], ["A", "A", "A"], ["A", "B", "A"]], "ABB")
+    >>> kelime_bulunur_mu([["B", "A", "A"], ["A", "A", "A"], ["A", "B", "A"]], "ABB")
     False
-    >>> word_exists([["A"]], 123)
+    >>> kelime_bulunur_mu([["A"]], 123)
     Traceback (most recent call last):
         ...
-    ValueError: The word parameter should be a string of length greater than 0.
-    >>> word_exists([["A"]], "")
+    ValueError: Kelime parametresi uzunluğu 0'dan büyük bir dize olmalıdır.
+    >>> kelime_bulunur_mu([["A"]], "")
     Traceback (most recent call last):
         ...
-    ValueError: The word parameter should be a string of length greater than 0.
-    >>> word_exists([[]], "AB")
+    ValueError: Kelime parametresi uzunluğu 0'dan büyük bir dize olmalıdır.
+    >>> kelime_bulunur_mu([[]], "AB")
     Traceback (most recent call last):
         ...
-    ValueError: The board should be a non empty matrix of single chars strings.
-    >>> word_exists([], "AB")
+    ValueError: Tahta tek karakterli dizelerden oluşan boş olmayan bir matris olmalıdır.
+    >>> kelime_bulunur_mu([], "AB")
     Traceback (most recent call last):
         ...
-    ValueError: The board should be a non empty matrix of single chars strings.
-    >>> word_exists([["A"], [21]], "AB")
+    ValueError: Tahta tek karakterli dizelerden oluşan boş olmayan bir matris olmalıdır.
+    >>> kelime_bulunur_mu([["A"], [21]], "AB")
     Traceback (most recent call last):
         ...
-    ValueError: The board should be a non empty matrix of single chars strings.
+    ValueError: Tahta tek karakterli dizelerden oluşan boş olmayan bir matris olmalıdır.
     """
 
-    # Validate board
-    board_error_message = (
-        "The board should be a non empty matrix of single chars strings."
+    # Tahtayı doğrula
+    tahta_hata_mesajı = (
+        "Tahta tek karakterli dizelerden oluşan boş olmayan bir matris olmalıdır."
     )
 
     len_board = len(board)
     if not isinstance(board, list) or len(board) == 0:
-        raise ValueError(board_error_message)
+        raise ValueError(tahta_hata_mesajı)
 
     for row in board:
         if not isinstance(row, list) or len(row) == 0:
-            raise ValueError(board_error_message)
+            raise ValueError(tahta_hata_mesajı)
 
         for item in row:
             if not isinstance(item, str) or len(item) != 1:
-                raise ValueError(board_error_message)
+                raise ValueError(tahta_hata_mesajı)
 
-    # Validate word
+    # Kelimeyi doğrula
     if not isinstance(word, str) or len(word) == 0:
         raise ValueError(
-            "The word parameter should be a string of length greater than 0."
+            "Kelime parametresi uzunluğu 0'dan büyük bir dize olmalıdır."
         )
 
     len_board_column = len(board[0])
     for i in range(len_board):
         for j in range(len_board_column):
-            if exits_word(
-                board, word, i, j, 0, {get_point_key(len_board, len_board_column, i, j)}
+            if kelime_var_mı(
+                board, word, i, j, 0, {nokta_anahtarını_al(len_board, len_board_column, i, j)}
             ):
                 return True
 

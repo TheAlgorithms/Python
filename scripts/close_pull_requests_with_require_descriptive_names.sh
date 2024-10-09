@@ -1,21 +1,23 @@
 #!/bin/bash
 
-# List all open pull requests
+# Organiser: K. Umut Araz
+
+# Açık pull request'leri listele
 prs=$(gh pr list --state open --json number,title,labels --limit 500)
 
-# Loop through each pull request
+# Her bir pull request üzerinde döngü
 echo "$prs" | jq -c '.[]' | while read -r pr; do
-  pr_number=$(echo "$pr" | jq -r '.number')
-  pr_title=$(echo "$pr" | jq -r '.title')
-  pr_labels=$(echo "$pr" | jq -r '.labels')
+  pr_numara=$(echo "$pr" | jq -r '.number')
+  pr_baslik=$(echo "$pr" | jq -r '.title')
+  pr_etiketler=$(echo "$pr" | jq -r '.labels')
 
-  # Check if the "require descriptive names" label is present
-  require_descriptive_names=$(echo "$pr_labels" | jq -r '.[] | select(.name == "require descriptive names")')
-  echo "Checking PR #$pr_number $pr_title ($require_descriptive_names) ($pr_labels)"
+  # "require descriptive names" etiketinin mevcut olup olmadığını kontrol et
+  tanimlayici_etiketler=$(echo "$pr_etiketler" | jq -r '.[] | select(.name == "require descriptive names")')
+  echo "Kontrol ediliyor PR #$pr_numara $pr_baslik ($tanimlayici_etiketler) ($pr_etiketler)"
 
-  # If there are require_descriptive_names, close the pull request
-  if [[ -n "$require_descriptive_names" ]]; then
-    echo "Closing PR #$pr_number $pr_title due to require_descriptive_names label"
-    gh pr close "$pr_number" --comment "Closing require_descriptive_names PRs to prepare for Hacktoberfest"
+  # Eğer tanimlayici_etiketler varsa, pull request'i kapat
+  if [[ -n "$tanimlayici_etiketler" ]]; then
+    echo "Kapatılıyor PR #$pr_numara $pr_baslik 'require descriptive names' etiketi nedeniyle"
+    gh pr close "$pr_numara" --comment "'Require descriptive names' etiketine sahip PR'lar Hacktoberfest için kapatılıyor"
   fi
 done

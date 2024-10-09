@@ -1,6 +1,6 @@
 """
-Finding the shortest path in 0-1-graph in O(E + V) which is faster than dijkstra.
-0-1-graph is the weighted graph with the weights equal to 0 or 1.
+0-1 grafında en kısa yolu O(E + V) süresinde bulma, bu dijkstra'dan daha hızlıdır.
+0-1 grafı, ağırlıkları 0 veya 1 olan ağırlıklı grafiktir.
 Link: https://codeforces.com/blog/entry/22276
 """
 
@@ -12,57 +12,57 @@ from dataclasses import dataclass
 
 
 @dataclass
-class Edge:
-    """Weighted directed graph edge."""
+class Kenar:
+    """Ağırlıklı yönlendirilmiş grafik kenarı."""
 
-    destination_vertex: int
-    weight: int
+    hedef_düğüm: int
+    ağırlık: int
 
 
-class AdjacencyList:
-    """Graph adjacency list."""
+class KomşulukListesi:
+    """Grafik komşuluk listesi."""
 
-    def __init__(self, size: int):
-        self._graph: list[list[Edge]] = [[] for _ in range(size)]
-        self._size = size
+    def __init__(self, boyut: int):
+        self._grafik: list[list[Kenar]] = [[] for _ in range(boyut)]
+        self._boyut = boyut
 
-    def __getitem__(self, vertex: int) -> Iterator[Edge]:
-        """Get all the vertices adjacent to the given one."""
-        return iter(self._graph[vertex])
+    def __getitem__(self, düğüm: int) -> Iterator[Kenar]:
+        """Verilen düğüme bitişik tüm düğümleri al."""
+        return iter(self._grafik[düğüm])
 
     @property
-    def size(self):
-        return self._size
+    def boyut(self):
+        return self._boyut
 
-    def add_edge(self, from_vertex: int, to_vertex: int, weight: int):
+    def kenar_ekle(self, başlangıç_düğüm: int, bitiş_düğüm: int, ağırlık: int):
         """
-        >>> g = AdjacencyList(2)
-        >>> g.add_edge(0, 1, 0)
-        >>> g.add_edge(1, 0, 1)
+        >>> g = KomşulukListesi(2)
+        >>> g.kenar_ekle(0, 1, 0)
+        >>> g.kenar_ekle(1, 0, 1)
         >>> list(g[0])
-        [Edge(destination_vertex=1, weight=0)]
+        [Kenar(hedef_düğüm=1, ağırlık=0)]
         >>> list(g[1])
-        [Edge(destination_vertex=0, weight=1)]
-        >>> g.add_edge(0, 1, 2)
+        [Kenar(hedef_düğüm=0, ağırlık=1)]
+        >>> g.kenar_ekle(0, 1, 2)
         Traceback (most recent call last):
             ...
-        ValueError: Edge weight must be either 0 or 1.
-        >>> g.add_edge(0, 2, 1)
+        ValueError: Kenar ağırlığı 0 veya 1 olmalıdır.
+        >>> g.kenar_ekle(0, 2, 1)
         Traceback (most recent call last):
             ...
-        ValueError: Vertex indexes must be in [0; size).
+        ValueError: Düğüm indeksleri [0; boyut) aralığında olmalıdır.
         """
-        if weight not in (0, 1):
-            raise ValueError("Edge weight must be either 0 or 1.")
+        if ağırlık not in (0, 1):
+            raise ValueError("Kenar ağırlığı 0 veya 1 olmalıdır.")
 
-        if to_vertex < 0 or to_vertex >= self.size:
-            raise ValueError("Vertex indexes must be in [0; size).")
+        if bitiş_düğüm < 0 or bitiş_düğüm >= self.boyut:
+            raise ValueError("Düğüm indeksleri [0; boyut) aralığında olmalıdır.")
 
-        self._graph[from_vertex].append(Edge(to_vertex, weight))
+        self._grafik[başlangıç_düğüm].append(Kenar(bitiş_düğüm, ağırlık))
 
-    def get_shortest_path(self, start_vertex: int, finish_vertex: int) -> int | None:
+    def en_kısa_yolu_al(self, başlangıç_düğüm: int, bitiş_düğüm: int) -> int | None:
         """
-        Return the shortest distance from start_vertex to finish_vertex in 0-1-graph.
+        0-1 grafında başlangıç_düğüm'den bitiş_düğüm'e en kısa mesafeyi döndürür.
               1                  1         1
          0--------->3        6--------7>------->8
          |          ^        ^        ^         |1
@@ -72,69 +72,69 @@ class AdjacencyList:
          v          |        |        |0
          1--------->2<-------4------->5
               0         1        1
-        >>> g = AdjacencyList(11)
-        >>> g.add_edge(0, 1, 0)
-        >>> g.add_edge(0, 3, 1)
-        >>> g.add_edge(1, 2, 0)
-        >>> g.add_edge(2, 3, 0)
-        >>> g.add_edge(4, 2, 1)
-        >>> g.add_edge(4, 5, 1)
-        >>> g.add_edge(4, 6, 1)
-        >>> g.add_edge(5, 9, 0)
-        >>> g.add_edge(6, 7, 1)
-        >>> g.add_edge(7, 8, 1)
-        >>> g.add_edge(8, 10, 1)
-        >>> g.add_edge(9, 7, 0)
-        >>> g.add_edge(9, 10, 1)
-        >>> g.add_edge(1, 2, 2)
+        >>> g = KomşulukListesi(11)
+        >>> g.kenar_ekle(0, 1, 0)
+        >>> g.kenar_ekle(0, 3, 1)
+        >>> g.kenar_ekle(1, 2, 0)
+        >>> g.kenar_ekle(2, 3, 0)
+        >>> g.kenar_ekle(4, 2, 1)
+        >>> g.kenar_ekle(4, 5, 1)
+        >>> g.kenar_ekle(4, 6, 1)
+        >>> g.kenar_ekle(5, 9, 0)
+        >>> g.kenar_ekle(6, 7, 1)
+        >>> g.kenar_ekle(7, 8, 1)
+        >>> g.kenar_ekle(8, 10, 1)
+        >>> g.kenar_ekle(9, 7, 0)
+        >>> g.kenar_ekle(9, 10, 1)
+        >>> g.kenar_ekle(1, 2, 2)
         Traceback (most recent call last):
             ...
-        ValueError: Edge weight must be either 0 or 1.
-        >>> g.get_shortest_path(0, 3)
+        ValueError: Kenar ağırlığı 0 veya 1 olmalıdır.
+        >>> g.en_kısa_yolu_al(0, 3)
         0
-        >>> g.get_shortest_path(0, 4)
+        >>> g.en_kısa_yolu_al(0, 4)
         Traceback (most recent call last):
             ...
-        ValueError: No path from start_vertex to finish_vertex.
-        >>> g.get_shortest_path(4, 10)
+        ValueError: Başlangıç_düğüm'den bitiş_düğüm'e yol yok.
+        >>> g.en_kısa_yolu_al(4, 10)
         2
-        >>> g.get_shortest_path(4, 8)
+        >>> g.en_kısa_yolu_al(4, 8)
         2
-        >>> g.get_shortest_path(0, 1)
+        >>> g.en_kısa_yolu_al(0, 1)
         0
-        >>> g.get_shortest_path(1, 0)
+        >>> g.en_kısa_yolu_al(1, 0)
         Traceback (most recent call last):
             ...
-        ValueError: No path from start_vertex to finish_vertex.
+        ValueError: Başlangıç_düğüm'den bitiş_düğüm'e yol yok.
         """
-        queue = deque([start_vertex])
-        distances: list[int | None] = [None] * self.size
-        distances[start_vertex] = 0
+        kuyruk = deque([başlangıç_düğüm])
+        mesafeler: list[int | None] = [None] * self.boyut
+        mesafeler[başlangıç_düğüm] = 0
 
-        while queue:
-            current_vertex = queue.popleft()
-            current_distance = distances[current_vertex]
-            if current_distance is None:
+        while kuyruk:
+            mevcut_düğüm = kuyruk.popleft()
+            mevcut_mesafe = mesafeler[mevcut_düğüm]
+            if mevcut_mesafe is None:
                 continue
 
-            for edge in self[current_vertex]:
-                new_distance = current_distance + edge.weight
-                dest_vertex_distance = distances[edge.destination_vertex]
+            for kenar in self[mevcut_düğüm]:
+                yeni_mesafe = mevcut_mesafe + kenar.ağırlık
+                hedef_düğüm_mesafesi = mesafeler[kenar.hedef_düğüm]
                 if (
-                    isinstance(dest_vertex_distance, int)
-                    and new_distance >= dest_vertex_distance
+                    isinstance(hedef_düğüm_mesafesi, int)
+                    and yeni_mesafe >= hedef_düğüm_mesafesi
                 ):
                     continue
-                distances[edge.destination_vertex] = new_distance
-                if edge.weight == 0:
-                    queue.appendleft(edge.destination_vertex)
+                mesafeler[kenar.hedef_düğüm] = yeni_mesafe
+                if kenar.ağırlık == 0:
+                    kuyruk.appendleft(kenar.hedef_düğüm)
                 else:
-                    queue.append(edge.destination_vertex)
+                    kuyruk.append(kenar.hedef_düğüm)
 
-        if distances[finish_vertex] is None:
-            raise ValueError("No path from start_vertex to finish_vertex.")
+        if mesafeler[bitiş_düğüm] is None:
+            raise ValueError("Başlangıç_düğüm'den bitiş_düğüm'e yol yok.")
 
-        return distances[finish_vertex]
+        return mesafeler[bitiş_düğüm]
 
 
 if __name__ == "__main__":

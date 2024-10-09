@@ -4,48 +4,48 @@ from collections import Counter
 from random import random
 
 
-class MarkovChainGraphUndirectedUnweighted:
+class MarkovZinciriGrafiğiYönsüzAğırlıksız:
     """
-    Undirected Unweighted Graph for running Markov Chain Algorithm
+    Markov Zinciri Algoritmasını çalıştırmak için Yönsüz Ağırlıksız Grafik
     """
 
     def __init__(self):
-        self.connections = {}
+        self.bağlantılar = {}
 
-    def add_node(self, node: str) -> None:
-        self.connections[node] = {}
+    def düğüm_ekle(self, düğüm: str) -> None:
+        self.bağlantılar[düğüm] = {}
 
-    def add_transition_probability(
-        self, node1: str, node2: str, probability: float
+    def geçiş_olasılığı_ekle(
+        self, düğüm1: str, düğüm2: str, olasılık: float
     ) -> None:
-        if node1 not in self.connections:
-            self.add_node(node1)
-        if node2 not in self.connections:
-            self.add_node(node2)
-        self.connections[node1][node2] = probability
+        if düğüm1 not in self.bağlantılar:
+            self.düğüm_ekle(düğüm1)
+        if düğüm2 not in self.bağlantılar:
+            self.düğüm_ekle(düğüm2)
+        self.bağlantılar[düğüm1][düğüm2] = olasılık
 
-    def get_nodes(self) -> list[str]:
-        return list(self.connections)
+    def düğümleri_al(self) -> list[str]:
+        return list(self.bağlantılar)
 
-    def transition(self, node: str) -> str:
-        current_probability = 0
-        random_value = random()
+    def geçiş(self, düğüm: str) -> str:
+        mevcut_olasılık = 0
+        rastgele_değer = random()
 
-        for dest in self.connections[node]:
-            current_probability += self.connections[node][dest]
-            if current_probability > random_value:
-                return dest
+        for hedef in self.bağlantılar[düğüm]:
+            mevcut_olasılık += self.bağlantılar[düğüm][hedef]
+            if mevcut_olasılık > rastgele_değer:
+                return hedef
         return ""
 
 
-def get_transitions(
-    start: str, transitions: list[tuple[str, str, float]], steps: int
+def geçişleri_al(
+    başlangıç: str, geçişler: list[tuple[str, str, float]], adımlar: int
 ) -> dict[str, int]:
     """
-    Running Markov Chain algorithm and calculating the number of times each node is
-    visited
+    Markov Zinciri algoritmasını çalıştırmak ve her düğümün kaç kez ziyaret edildiğini
+    hesaplamak
 
-    >>> transitions = [
+    >>> geçişler = [
     ... ('a', 'a', 0.9),
     ... ('a', 'b', 0.075),
     ... ('a', 'c', 0.025),
@@ -57,25 +57,25 @@ def get_transitions(
     ... ('c', 'c', 0.5)
     ... ]
 
-    >>> result = get_transitions('a', transitions, 5000)
+    >>> sonuç = geçişleri_al('a', geçişler, 5000)
 
-    >>> result['a'] > result['b'] > result['c']
+    >>> sonuç['a'] > sonuç['b'] > sonuç['c']
     True
     """
 
-    graph = MarkovChainGraphUndirectedUnweighted()
+    grafik = MarkovZinciriGrafiğiYönsüzAğırlıksız()
 
-    for node1, node2, probability in transitions:
-        graph.add_transition_probability(node1, node2, probability)
+    for düğüm1, düğüm2, olasılık in geçişler:
+        grafik.geçiş_olasılığı_ekle(düğüm1, düğüm2, olasılık)
 
-    visited = Counter(graph.get_nodes())
-    node = start
+    ziyaret_edilen = Counter(grafik.düğümleri_al())
+    düğüm = başlangıç
 
-    for _ in range(steps):
-        node = graph.transition(node)
-        visited[node] += 1
+    for _ in range(adımlar):
+        düğüm = grafik.geçiş(düğüm)
+        ziyaret_edilen[düğüm] += 1
 
-    return visited
+    return ziyaret_edilen
 
 
 if __name__ == "__main__":

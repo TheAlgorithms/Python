@@ -1,102 +1,102 @@
-"""example of simple chaos machine"""
+"""Basit bir kaos makinesi örneği"""
 
-# Chaos Machine (K, t, m)
+# Kaos Makinesi (K, t, m)
 K = [0.33, 0.44, 0.55, 0.44, 0.33]
 t = 3
 m = 5
 
-# Buffer Space (with Parameters Space)
-buffer_space: list[float] = []
-params_space: list[float] = []
+# Tampon Alanı (Parametreler Alanı ile)
+tampon_alani: list[float] = []
+parametreler_alani: list[float] = []
 
-# Machine Time
-machine_time = 0
-
-
-def push(seed):
-    global buffer_space, params_space, machine_time, K, m, t
-
-    # Choosing Dynamical Systems (All)
-    for key, value in enumerate(buffer_space):
-        # Evolution Parameter
-        e = float(seed / value)
-
-        # Control Theory: Orbit Change
-        value = (buffer_space[(key + 1) % m] + e) % 1
-
-        # Control Theory: Trajectory Change
-        r = (params_space[key] + e) % 1 + 3
-
-        # Modification (Transition Function) - Jumps
-        buffer_space[key] = round(float(r * value * (1 - value)), 10)
-        params_space[key] = r  # Saving to Parameters Space
-
-    # Logistic Map
-    assert max(buffer_space) < 1
-    assert max(params_space) < 4
-
-    # Machine Time
-    machine_time += 1
+# Makine Zamanı
+makine_zamani = 0
 
 
-def pull():
-    global buffer_space, params_space, machine_time, K, m, t
+def ekle(tohum):
+    global tampon_alani, parametreler_alani, makine_zamani, K, m, t
 
-    # PRNG (Xorshift by George Marsaglia)
+    # Dinamik Sistemlerin Seçilmesi (Hepsi)
+    for anahtar, deger in enumerate(tampon_alani):
+        # Evrim Parametresi
+        e = float(tohum / deger)
+
+        # Kontrol Teorisi: Yörünge Değişimi
+        deger = (tampon_alani[(anahtar + 1) % m] + e) % 1
+
+        # Kontrol Teorisi: Trajektori Değişimi
+        r = (parametreler_alani[anahtar] + e) % 1 + 3
+
+        # Modifikasyon (Geçiş Fonksiyonu) - Sıçramalar
+        tampon_alani[anahtar] = round(float(r * deger * (1 - deger)), 10)
+        parametreler_alani[anahtar] = r  # Parametreler Alanına Kaydetme
+
+    # Lojistik Harita
+    assert max(tampon_alani) < 1
+    assert max(parametreler_alani) < 4
+
+    # Makine Zamanı
+    makine_zamani += 1
+
+
+def cek():
+    global tampon_alani, parametreler_alani, makine_zamani, K, m, t
+
+    # PRNG (George Marsaglia tarafından Xorshift)
     def xorshift(x, y):
         x ^= y >> 13
         y ^= x << 17
         x ^= y >> 5
         return x
 
-    # Choosing Dynamical Systems (Increment)
-    key = machine_time % m
+    # Dinamik Sistemlerin Seçilmesi (Artış)
+    anahtar = makine_zamani % m
 
-    # Evolution (Time Length)
+    # Evrim (Zaman Uzunluğu)
     for _ in range(t):
-        # Variables (Position + Parameters)
-        r = params_space[key]
-        value = buffer_space[key]
+        # Değişkenler (Pozisyon + Parametreler)
+        r = parametreler_alani[anahtar]
+        deger = tampon_alani[anahtar]
 
-        # Modification (Transition Function) - Flow
-        buffer_space[key] = round(float(r * value * (1 - value)), 10)
-        params_space[key] = (machine_time * 0.01 + r * 1.01) % 1 + 3
+        # Modifikasyon (Geçiş Fonksiyonu) - Akış
+        tampon_alani[anahtar] = round(float(r * deger * (1 - deger)), 10)
+        parametreler_alani[anahtar] = (makine_zamani * 0.01 + r * 1.01) % 1 + 3
 
-    # Choosing Chaotic Data
-    x = int(buffer_space[(key + 2) % m] * (10**10))
-    y = int(buffer_space[(key - 2) % m] * (10**10))
+    # Kaotik Verilerin Seçilmesi
+    x = int(tampon_alani[(anahtar + 2) % m] * (10**10))
+    y = int(tampon_alani[(anahtar - 2) % m] * (10**10))
 
-    # Machine Time
-    machine_time += 1
+    # Makine Zamanı
+    makine_zamani += 1
 
     return xorshift(x, y) % 0xFFFFFFFF
 
 
-def reset():
-    global buffer_space, params_space, machine_time, K, m, t
+def sifirla():
+    global tampon_alani, parametreler_alani, makine_zamani, K, m, t
 
-    buffer_space = K
-    params_space = [0] * m
-    machine_time = 0
+    tampon_alani = K
+    parametreler_alani = [0] * m
+    makine_zamani = 0
 
 
 if __name__ == "__main__":
-    # Initialization
-    reset()
+    # Başlatma
+    sifirla()
 
-    # Pushing Data (Input)
+    # Veri Ekleme (Girdi)
     import random
 
-    message = random.sample(range(0xFFFFFFFF), 100)
-    for chunk in message:
-        push(chunk)
+    mesaj = random.sample(range(0xFFFFFFFF), 100)
+    for parca in mesaj:
+        ekle(parca)
 
-    # for controlling
-    inp = ""
+    # Kontrol için
+    giris = ""
 
-    # Pulling Data (Output)
-    while inp in ("e", "E"):
-        print(f"{format(pull(), '#04x')}")
-        print(buffer_space)
-        print(params_space)
-        inp = input("(e)exit? ").strip()
+    # Veri Çekme (Çıktı)
+    while giris not in ("e", "E"):
+        print(f"{format(cek(), '#04x')}")
+        print(tampon_alani)
+        print(parametreler_alani)
+        giris = input("(e)çıkış? ").strip()

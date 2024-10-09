@@ -1,93 +1,82 @@
-# source - The ARRL Handbook for Radio Communications
-# https://en.wikipedia.org/wiki/RL_circuit
+# kaynak - ARRL Radyo İletişim El Kitabı
+# https://tr.wikipedia.org/wiki/RL_devresi
 
 """
-Description
+Açıklama
 -----------
-Inductor is a passive electronic device which stores energy but unlike capacitor, it
-stores energy in its 'magnetic field' or 'magnetostatic field'.
+İndüktör, enerjiyi depolayan ancak kondansatörün aksine enerjiyi 'manyetik alanında' veya 'manyetostatik alanında' depolayan pasif bir elektronik cihazdır.
 
-When inductor is connected to 'DC' current source nothing happens it just works like a
-wire because it's real effect cannot be seen while 'DC' is connected, its not even
-going to store energy. Inductor stores energy only when it is working on 'AC' current.
+İndüktör 'DC' akım kaynağına bağlandığında hiçbir şey olmaz, sadece bir tel gibi çalışır çünkü gerçek etkisi 'DC' bağlıyken görülemez, enerji bile depolamaz. İndüktör sadece 'AC' akım üzerinde çalışırken enerji depolar.
 
-Connecting a inductor in series with a resistor(when R = 0) to a 'AC' potential source,
-from zero to a finite value causes a sudden voltage to induced in inductor which
-opposes the current. which results in initially slowly current rise. However it would
-cease if there is no further changes in current. With resistance zero current will never
-stop rising.
+Bir indüktörü bir dirençle (R = 0 olduğunda) seri olarak bir 'AC' potansiyel kaynağına bağlamak, sıfırdan sonlu bir değere kadar indüktörde ani bir voltajın indüklenmesine neden olur ve bu da akıma karşı çıkar. Bu, başlangıçta yavaş bir akım artışına neden olur. Ancak, akımda daha fazla değişiklik olmazsa bu durur. Direnç sıfır olduğunda akım asla durmaz.
 
-'Resistance(ohms) / Inductance(henrys)' is known as RL-timeconstant. It also represents
-as τ (tau). While the charging of a inductor with a resistor results in
-a exponential function.
+'Direnç(ohm) / İndüktans(henry)' RL zaman sabiti olarak bilinir. Ayrıca τ (tau) olarak da temsil edilir. Bir dirençle bir indüktörün şarj edilmesi, üstel bir fonksiyonla sonuçlanır.
 
-when inductor is connected across 'AC' potential source. It starts to store the energy
-in its 'magnetic field'.with the help 'RL-time-constant' we can find current at any time
-in inductor while it is charging.
+İndüktör 'AC' potansiyel kaynağına bağlandığında, enerjiyi 'manyetik alanında' depolamaya başlar. 'RL zaman sabiti' yardımıyla, indüktör şarj olurken herhangi bir zamanda indüktördeki akımı bulabiliriz.
 """
 
-from math import exp  # value of exp = 2.718281828459…
+from math import exp  # exp değeri = 2.718281828459…
 
 
-def charging_inductor(
-    source_voltage: float,  # source_voltage should be in volts.
-    resistance: float,  # resistance should be in ohms.
-    inductance: float,  # inductance should be in henrys.
-    time: float,  # time should in seconds.
+def sarj_induktoru(
+    kaynak_gerilimi: float,  # kaynak_gerilimi volt cinsinden olmalıdır.
+    direnç: float,  # direnç ohm cinsinden olmalıdır.
+    induktans: float,  # induktans henry cinsinden olmalıdır.
+    zaman: float,  # zaman saniye cinsinden olmalıdır.
 ) -> float:
     """
-    Find inductor current at any nth second after initiating its charging.
+    Şarj başlatıldıktan sonra herhangi bir n. saniyede indüktör akımını bulun.
 
-    Examples
+    Örnekler
     --------
-    >>> charging_inductor(source_voltage=5.8,resistance=1.5,inductance=2.3,time=2)
+    >>> sarj_induktoru(kaynak_gerilimi=5.8,direnç=1.5,induktans=2.3,zaman=2)
     2.817
 
-    >>> charging_inductor(source_voltage=8,resistance=5,inductance=3,time=2)
+    >>> sarj_induktoru(kaynak_gerilimi=8,direnç=5,induktans=3,zaman=2)
     1.543
 
-    >>> charging_inductor(source_voltage=8,resistance=5*pow(10,2),inductance=3,time=2)
+    >>> sarj_induktoru(kaynak_gerilimi=8,direnç=5*pow(10,2),induktans=3,zaman=2)
     0.016
 
-    >>> charging_inductor(source_voltage=-8,resistance=100,inductance=15,time=12)
+    >>> sarj_induktoru(kaynak_gerilimi=-8,direnç=100,induktans=15,zaman=12)
     Traceback (most recent call last):
         ...
-    ValueError: Source voltage must be positive.
+    ValueError: Kaynak gerilimi pozitif olmalıdır.
 
-    >>> charging_inductor(source_voltage=80,resistance=-15,inductance=100,time=5)
+    >>> sarj_induktoru(kaynak_gerilimi=80,direnç=-15,induktans=100,zaman=5)
     Traceback (most recent call last):
         ...
-    ValueError: Resistance must be positive.
+    ValueError: Direnç pozitif olmalıdır.
 
-    >>> charging_inductor(source_voltage=12,resistance=200,inductance=-20,time=5)
+    >>> sarj_induktoru(kaynak_gerilimi=12,direnç=200,induktans=-20,zaman=5)
     Traceback (most recent call last):
         ...
-    ValueError: Inductance must be positive.
+    ValueError: İndüktans pozitif olmalıdır.
 
-    >>> charging_inductor(source_voltage=0,resistance=200,inductance=20,time=5)
+    >>> sarj_induktoru(kaynak_gerilimi=0,direnç=200,induktans=20,zaman=5)
     Traceback (most recent call last):
         ...
-    ValueError: Source voltage must be positive.
+    ValueError: Kaynak gerilimi pozitif olmalıdır.
 
-    >>> charging_inductor(source_voltage=10,resistance=0,inductance=20,time=5)
+    >>> sarj_induktoru(kaynak_gerilimi=10,direnç=0,induktans=20,zaman=5)
     Traceback (most recent call last):
         ...
-    ValueError: Resistance must be positive.
+    ValueError: Direnç pozitif olmalıdır.
 
-    >>> charging_inductor(source_voltage=15, resistance=25, inductance=0, time=5)
+    >>> sarj_induktoru(kaynak_gerilimi=15, direnç=25, induktans=0, zaman=5)
     Traceback (most recent call last):
         ...
-    ValueError: Inductance must be positive.
+    ValueError: İndüktans pozitif olmalıdır.
     """
 
-    if source_voltage <= 0:
-        raise ValueError("Source voltage must be positive.")
-    if resistance <= 0:
-        raise ValueError("Resistance must be positive.")
-    if inductance <= 0:
-        raise ValueError("Inductance must be positive.")
+    if kaynak_gerilimi <= 0:
+        raise ValueError("Kaynak gerilimi pozitif olmalıdır.")
+    if direnç <= 0:
+        raise ValueError("Direnç pozitif olmalıdır.")
+    if induktans <= 0:
+        raise ValueError("İndüktans pozitif olmalıdır.")
     return round(
-        source_voltage / resistance * (1 - exp((-time * resistance) / inductance)), 3
+        kaynak_gerilimi / direnç * (1 - exp((-zaman * direnç) / induktans)), 3
     )
 
 

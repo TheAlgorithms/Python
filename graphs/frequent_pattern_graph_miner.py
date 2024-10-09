@@ -1,16 +1,16 @@
 """
-FP-GraphMiner - A Fast Frequent Pattern Mining Algorithm for Network Graphs
+FP-GraphMiner - Ağ Grafikleri için Hızlı Sık Kullanılan Desen Madenciliği Algoritması
 
-A novel Frequent Pattern Graph Mining algorithm, FP-GraphMiner, that compactly
-represents a set of network graphs as a Frequent Pattern Graph (or FP-Graph).
-This graph can be used to efficiently mine frequent subgraphs including maximal
-frequent subgraphs and maximum common subgraphs.
+FP-GraphMiner, bir dizi ağ grafiğini Sık Kullanılan Desen Grafiği (veya FP-Graph) olarak
+kompakt bir şekilde temsil eden yeni bir Sık Kullanılan Desen Grafiği Madenciliği algoritmasıdır.
+Bu grafik, maksimum sık kullanılan alt grafikleri ve maksimum ortak alt grafikleri de içeren
+sık kullanılan alt grafikleri verimli bir şekilde madencilik yapmak için kullanılabilir.
 
 URL: https://www.researchgate.net/publication/235255851
 """
 
 # fmt: off
-edge_array = [
+kenar_dizisi = [
     ['ab-e1', 'ac-e3', 'ad-e5', 'bc-e4', 'bd-e2', 'be-e6', 'bh-e12', 'cd-e2', 'ce-e4',
      'de-e1', 'df-e8', 'dg-e5', 'dh-e10', 'ef-e3', 'eg-e2', 'fg-e6', 'gh-e6', 'hi-e3'],
     ['ab-e1', 'ac-e3', 'ad-e5', 'bc-e4', 'bd-e2', 'be-e6', 'cd-e2', 'de-e1', 'df-e8',
@@ -23,211 +23,211 @@ edge_array = [
 ]
 # fmt: on
 
+# Produced By K. Umut Araz
 
-def get_distinct_edge(edge_array):
+
+def ayri_kenarlari_al(kenar_dizisi):
     """
-    Return Distinct edges from edge array of multiple graphs
-    >>> sorted(get_distinct_edge(edge_array))
+    Kenar dizisinden ayrık kenarları döndürür
+    >>> sorted(ayri_kenarlari_al(kenar_dizisi))
     ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
     """
-    distinct_edge = set()
-    for row in edge_array:
-        for item in row:
-            distinct_edge.add(item[0])
-    return list(distinct_edge)
+    ayri_kenar = set()
+    for satir in kenar_dizisi:
+        for eleman in satir:
+            ayri_kenar.add(eleman[0])
+    return list(ayri_kenar)
 
 
-def get_bitcode(edge_array, distinct_edge):
+def bit_kodu_al(kenar_dizisi, ayri_kenar):
     """
-    Return bitcode of distinct_edge
+    Ayrık kenarın bit kodunu döndürür
     """
-    bitcode = ["0"] * len(edge_array)
-    for i, row in enumerate(edge_array):
-        for item in row:
-            if distinct_edge in item[0]:
-                bitcode[i] = "1"
+    bit_kodu = ["0"] * len(kenar_dizisi)
+    for i, satir in enumerate(kenar_dizisi):
+        for eleman in satir:
+            if ayri_kenar in eleman[0]:
+                bit_kodu[i] = "1"
                 break
-    return "".join(bitcode)
+    return "".join(bit_kodu)
 
 
-def get_frequency_table(edge_array):
+def frekans_tablosu_al(kenar_dizisi):
     """
-    Returns Frequency Table
+    Frekans Tablosunu Döndürür
     """
-    distinct_edge = get_distinct_edge(edge_array)
-    frequency_table = {}
+    ayri_kenar = ayri_kenarlari_al(kenar_dizisi)
+    frekans_tablosu = {}
 
-    for item in distinct_edge:
-        bit = get_bitcode(edge_array, item)
-        # print('bit',bit)
-        # bt=''.join(bit)
+    for eleman in ayri_kenar:
+        bit = bit_kodu_al(kenar_dizisi, eleman)
         s = bit.count("1")
-        frequency_table[item] = [s, bit]
-    # Store [Distinct edge, WT(Bitcode), Bitcode] in descending order
-    sorted_frequency_table = [
+        frekans_tablosu[eleman] = [s, bit]
+    # [Ayrık kenar, WT(Bit kodu), Bit kodu] azalan sırayla sakla
+    sirali_frekans_tablosu = [
         [k, v[0], v[1]]
-        for k, v in sorted(frequency_table.items(), key=lambda v: v[1][0], reverse=True)
+        for k, v in sorted(frekans_tablosu.items(), key=lambda v: v[1][0], reverse=True)
     ]
-    return sorted_frequency_table
+    return sirali_frekans_tablosu
 
 
-def get_nodes(frequency_table):
+def dugumleri_al(frekans_tablosu):
     """
-    Returns nodes
-    format nodes={bitcode:edges that represent the bitcode}
-    >>> get_nodes([['ab', 5, '11111'], ['ac', 5, '11111'], ['df', 5, '11111'],
-    ...            ['bd', 5, '11111'], ['bc', 5, '11111']])
+    Düğümleri Döndürür
+    format düğümler={bit kodu: bit kodunu temsil eden kenarlar}
+    >>> dugumleri_al([['ab', 5, '11111'], ['ac', 5, '11111'], ['df', 5, '11111'],
+    ...               ['bd', 5, '11111'], ['bc', 5, '11111']])
     {'11111': ['ab', 'ac', 'df', 'bd', 'bc']}
     """
-    nodes = {}
-    for _, item in enumerate(frequency_table):
-        nodes.setdefault(item[2], []).append(item[0])
-    return nodes
+    dugumler = {}
+    for _, eleman in enumerate(frekans_tablosu):
+        dugumler.setdefault(eleman[2], []).append(eleman[0])
+    return dugumler
 
 
-def get_cluster(nodes):
+def kume_al(dugumler):
     """
-    Returns cluster
-    format cluster:{WT(bitcode):nodes with same WT}
+    Küme Döndürür
+    format kume:{WT(bit kodu): aynı WT'ye sahip düğümler}
     """
-    cluster = {}
-    for key, value in nodes.items():
-        cluster.setdefault(key.count("1"), {})[key] = value
-    return cluster
+    kume = {}
+    for anahtar, deger in dugumler.items():
+        kume.setdefault(anahtar.count("1"), {})[anahtar] = deger
+    return kume
 
 
-def get_support(cluster):
+def destek_al(kume):
     """
-    Returns support
-    >>> get_support({5: {'11111': ['ab', 'ac', 'df', 'bd', 'bc']},
-    ...              4: {'11101': ['ef', 'eg', 'de', 'fg'], '11011': ['cd']},
-    ...              3: {'11001': ['ad'], '10101': ['dg']},
-    ...              2: {'10010': ['dh', 'bh'], '11000': ['be'], '10100': ['gh'],
-    ...                  '10001': ['ce']},
-    ...              1: {'00100': ['fh', 'eh'], '10000': ['hi']}})
+    Destek Döndürür
+    >>> destek_al({5: {'11111': ['ab', 'ac', 'df', 'bd', 'bc']},
+    ...            4: {'11101': ['ef', 'eg', 'de', 'fg'], '11011': ['cd']},
+    ...            3: {'11001': ['ad'], '10101': ['dg']},
+    ...            2: {'10010': ['dh', 'bh'], '11000': ['be'], '10100': ['gh'],
+    ...                '10001': ['ce']},
+    ...            1: {'00100': ['fh', 'eh'], '10000': ['hi']}})
     [100.0, 80.0, 60.0, 40.0, 20.0]
     """
-    return [i * 100 / len(cluster) for i in cluster]
+    return [i * 100 / len(kume) for i in kume]
 
 
-def print_all() -> None:
-    print("\nNodes\n")
-    for key, value in nodes.items():
-        print(key, value)
-    print("\nSupport\n")
-    print(support)
-    print("\n Cluster \n")
-    for key, value in sorted(cluster.items(), reverse=True):
-        print(key, value)
-    print("\n Graph\n")
-    for key, value in graph.items():
-        print(key, value)
-    print("\n Edge List of Frequent subgraphs \n")
-    for edge_list in freq_subgraph_edge_list:
-        print(edge_list)
+def hepsini_yazdir() -> None:
+    print("\nDüğümler\n")
+    for anahtar, deger in dugumler.items():
+        print(anahtar, deger)
+    print("\nDestek\n")
+    print(destek)
+    print("\nKüme\n")
+    for anahtar, deger in sorted(kume.items(), reverse=True):
+        print(anahtar, deger)
+    print("\nGrafik\n")
+    for anahtar, deger in grafik.items():
+        print(anahtar, deger)
+    print("\nSık kullanılan alt grafiklerin Kenar Listesi\n")
+    for kenar_listesi in sik_alt_grafik_kenar_listesi:
+        print(kenar_listesi)
 
 
-def create_edge(nodes, graph, cluster, c1):
+def kenar_olustur(dugumler, grafik, kume, c1):
     """
-    create edge between the nodes
+    Düğümler arasında kenar oluştur
     """
-    for i in cluster[c1]:
-        count = 0
+    for i in kume[c1]:
+        sayac = 0
         c2 = c1 + 1
-        while c2 < max(cluster.keys()):
-            for j in cluster[c2]:
+        while c2 < max(kume.keys()):
+            for j in kume[c2]:
                 """
-                creates edge only if the condition satisfies
+                Koşul sağlandığında kenar oluşturur
                 """
                 if int(i, 2) & int(j, 2) == int(i, 2):
-                    if tuple(nodes[i]) in graph:
-                        graph[tuple(nodes[i])].append(nodes[j])
+                    if tuple(dugumler[i]) in grafik:
+                        grafik[tuple(dugumler[i])].append(dugumler[j])
                     else:
-                        graph[tuple(nodes[i])] = [nodes[j]]
-                    count += 1
-            if count == 0:
+                        grafik[tuple(dugumler[i])] = [dugumler[j]]
+                    sayac += 1
+            if sayac == 0:
                 c2 = c2 + 1
             else:
                 break
 
 
-def construct_graph(cluster, nodes):
-    x = cluster[max(cluster.keys())]
-    cluster[max(cluster.keys()) + 1] = "Header"
-    graph = {}
+def grafik_olustur(kume, dugumler):
+    x = kume[max(kume.keys())]
+    kume[max(kume.keys()) + 1] = "Başlık"
+    grafik = {}
     for i in x:
-        if (["Header"],) in graph:
-            graph[(["Header"],)].append(x[i])
+        if (["Başlık"],) in grafik:
+            grafik[(["Başlık"],)].append(x[i])
         else:
-            graph[(["Header"],)] = [x[i]]
+            grafik[(["Başlık"],)] = [x[i]]
     for i in x:
-        graph[(x[i],)] = [["Header"]]
+        grafik[(x[i],)] = [["Başlık"]]
     i = 1
-    while i < max(cluster) - 1:
-        create_edge(nodes, graph, cluster, i)
+    while i < max(kume) - 1:
+        kenar_olustur(dugumler, grafik, kume, i)
         i = i + 1
-    return graph
+    return grafik
 
 
-def my_dfs(graph, start, end, path=None):
+def dfs_yurut(grafik, baslangic, bitis, yol=None):
     """
-    find different DFS walk from given node to Header node
+    Verilen düğümden Başlık düğümüne farklı DFS yürüyüşlerini bul
     """
-    path = (path or []) + [start]
-    if start == end:
-        paths.append(path)
-    for node in graph[start]:
-        if tuple(node) not in path:
-            my_dfs(graph, tuple(node), end, path)
+    yol = (yol or []) + [baslangic]
+    if baslangic == bitis:
+        yollar.append(yol)
+    for dugum in grafik[baslangic]:
+        if tuple(dugum) not in yol:
+            dfs_yurut(grafik, tuple(dugum), bitis, yol)
 
 
-def find_freq_subgraph_given_support(s, cluster, graph):
+def destek_ile_sik_alt_grafik_bul(destek, kume, grafik):
     """
-    find edges of multiple frequent subgraphs
+    Birden fazla sık kullanılan alt grafiğin kenarlarını bul
     """
-    k = int(s / 100 * (len(cluster) - 1))
-    for i in cluster[k]:
-        my_dfs(graph, tuple(cluster[k][i]), (["Header"],))
+    k = int(destek / 100 * (len(kume) - 1))
+    for i in kume[k]:
+        dfs_yurut(grafik, tuple(kume[k][i]), (["Başlık"],))
 
 
-def freq_subgraphs_edge_list(paths):
+def sik_alt_grafik_kenar_listesi(yollar):
     """
-    returns Edge list for frequent subgraphs
+    Sık kullanılan alt grafikler için Kenar listesini döndürür
     """
-    freq_sub_el = []
-    for edges in paths:
-        el = []
-        for j in range(len(edges) - 1):
-            temp = list(edges[j])
+    sik_alt_kenar_listesi = []
+    for kenarlar in yollar:
+        kl = []
+        for j in range(len(kenarlar) - 1):
+            temp = list(kenarlar[j])
             for e in temp:
-                edge = (e[0], e[1])
-                el.append(edge)
-        freq_sub_el.append(el)
-    return freq_sub_el
+                kenar = (e[0], e[1])
+                kl.append(kenar)
+        sik_alt_kenar_listesi.append(kl)
+    return sik_alt_kenar_listesi
 
 
-def preprocess(edge_array):
+def on_islem(kenar_dizisi):
     """
-    Preprocess the edge array
-    >>> preprocess([['ab-e1', 'ac-e3', 'ad-e5', 'bc-e4', 'bd-e2', 'be-e6', 'bh-e12',
-    ...              'cd-e2', 'ce-e4', 'de-e1', 'df-e8', 'dg-e5', 'dh-e10', 'ef-e3',
-    ...              'eg-e2', 'fg-e6', 'gh-e6', 'hi-e3']])
+    Kenar dizisini ön işleme tabi tut
+    >>> on_islem([['ab-e1', 'ac-e3', 'ad-e5', 'bc-e4', 'bd-e2', 'be-e6', 'bh-e12',
+    ...            'cd-e2', 'ce-e4', 'de-e1', 'df-e8', 'dg-e5', 'dh-e10', 'ef-e3',
+    ...            'eg-e2', 'fg-e6', 'gh-e6', 'hi-e3']])
 
     """
-    for i in range(len(edge_array)):
-        for j in range(len(edge_array[i])):
-            t = edge_array[i][j].split("-")
-            edge_array[i][j] = t
+    for i in range(len(kenar_dizisi)):
+        for j in range(len(kenar_dizisi[i])):
+            t = kenar_dizisi[i][j].split("-")
+            kenar_dizisi[i][j] = t
 
 
 if __name__ == "__main__":
-    preprocess(edge_array)
-    frequency_table = get_frequency_table(edge_array)
-    nodes = get_nodes(frequency_table)
-    cluster = get_cluster(nodes)
-    support = get_support(cluster)
-    graph = construct_graph(cluster, nodes)
-    find_freq_subgraph_given_support(60, cluster, graph)
-    paths: list = []
-    freq_subgraph_edge_list = freq_subgraphs_edge_list(paths)
-    print_all()
+    on_islem(kenar_dizisi)
+    frekans_tablosu = frekans_tablosu_al(kenar_dizisi)
+    dugumler = dugumleri_al(frekans_tablosu)
+    kume = kume_al(dugumler)
+    destek = destek_al(kume)
+    grafik = grafik_olustur(kume, dugumler)
+    destek_ile_sik_alt_grafik_bul(60, kume, grafik)
+    yollar: list = []
+    sik_alt_grafik_kenar_listesi = sik_alt_grafik_kenar_listesi(yollar)
+    hepsini_yazdir()

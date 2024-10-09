@@ -1,5 +1,7 @@
 """
-Functions for 2D matrix operations
+İki boyutlu matris işlemleri için fonksiyonlar
+
+Organiser: K. Umut Araz
 """
 
 from __future__ import annotations
@@ -7,36 +9,36 @@ from __future__ import annotations
 from typing import Any
 
 
-def add(*matrix_s: list[list[int]]) -> list[list[int]]:
+def topla(*matrisler: list[list[int]]) -> list[list[int]]:
     """
-    >>> add([[1,2],[3,4]],[[2,3],[4,5]])
+    >>> topla([[1,2],[3,4]],[[2,3],[4,5]])
     [[3, 5], [7, 9]]
-    >>> add([[1.2,2.4],[3,4]],[[2,3],[4,5]])
+    >>> topla([[1.2,2.4],[3,4]],[[2,3],[4,5]])
     [[3.2, 5.4], [7, 9]]
-    >>> add([[1, 2], [4, 5]], [[3, 7], [3, 4]], [[3, 5], [5, 7]])
+    >>> topla([[1, 2], [4, 5]], [[3, 7], [3, 4]], [[3, 5], [5, 7]])
     [[7, 14], [12, 16]]
-    >>> add([3], [4, 5])
+    >>> topla([3], [4, 5])
     Traceback (most recent call last):
       ...
-    TypeError: Expected a matrix, got int/list instead
+    TypeError: Beklenen bir matris, int/list yerine geldi
     """
-    if all(_check_not_integer(m) for m in matrix_s):
-        for i in matrix_s[1:]:
-            _verify_matrix_sizes(matrix_s[0], i)
-        return [[sum(t) for t in zip(*m)] for m in zip(*matrix_s)]
-    raise TypeError("Expected a matrix, got int/list instead")
+    if all(_check_not_integer(m) for m in matrisler):
+        for i in matrisler[1:]:
+            _verify_matrix_sizes(matrisler[0], i)
+        return [[sum(t) for t in zip(*m)] for m in zip(*matrisler)]
+    raise TypeError("Beklenen bir matris, int/list yerine geldi")
 
 
-def subtract(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[int]]:
+def çıkar(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[int]]:
     """
-    >>> subtract([[1,2],[3,4]],[[2,3],[4,5]])
+    >>> çıkar([[1,2],[3,4]],[[2,3],[4,5]])
     [[-1, -1], [-1, -1]]
-    >>> subtract([[1,2.5],[3,4]],[[2,3],[4,5.5]])
+    >>> çıkar([[1,2.5],[3,4]],[[2,3],[4,5.5]])
     [[-1, -0.5], [-1, -1.5]]
-    >>> subtract([3], [4, 5])
+    >>> çıkar([3], [4, 5])
     Traceback (most recent call last):
       ...
-    TypeError: Expected a matrix, got int/list instead
+    TypeError: Beklenen bir matris, int/list yerine geldi
     """
     if (
         _check_not_integer(matrix_a)
@@ -44,26 +46,26 @@ def subtract(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[
         and _verify_matrix_sizes(matrix_a, matrix_b)
     ):
         return [[i - j for i, j in zip(*m)] for m in zip(matrix_a, matrix_b)]
-    raise TypeError("Expected a matrix, got int/list instead")
+    raise TypeError("Beklenen bir matris, int/list yerine geldi")
 
 
-def scalar_multiply(matrix: list[list[int]], n: float) -> list[list[float]]:
+def skalar_çarp(matrix: list[list[int]], n: float) -> list[list[float]]:
     """
-    >>> scalar_multiply([[1,2],[3,4]],5)
+    >>> skalar_çarp([[1,2],[3,4]],5)
     [[5, 10], [15, 20]]
-    >>> scalar_multiply([[1.4,2.3],[3,4]],5)
+    >>> skalar_çarp([[1.4,2.3],[3,4]],5)
     [[7.0, 11.5], [15, 20]]
     """
     return [[x * n for x in row] for row in matrix]
 
 
-def multiply(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[int]]:
+def çarp(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[int]]:
     """
-    >>> multiply([[1,2],[3,4]],[[5,5],[7,5]])
+    >>> çarp([[1,2],[3,4]],[[5,5],[7,5]])
     [[19, 15], [43, 35]]
-    >>> multiply([[1,2.5],[3,4.5]],[[5,5],[7,5]])
+    >>> çarp([[1,2.5],[3,4.5]],[[5,5],[7,5]])
     [[22.5, 17.5], [46.5, 37.5]]
-    >>> multiply([[1, 2, 3]], [[2], [3], [4]])
+    >>> çarp([[1, 2, 3]], [[2], [3], [4]])
     [[20]]
     """
     if _check_not_integer(matrix_a) and _check_not_integer(matrix_b):
@@ -71,8 +73,8 @@ def multiply(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[
 
     if cols[0] != rows[1]:
         msg = (
-            "Cannot multiply matrix of dimensions "
-            f"({rows[0]},{cols[0]}) and ({rows[1]},{cols[1]})"
+            "Bu boyutlardaki matrisleri çarpamazsınız "
+            f"({rows[0]},{cols[0]}) ve ({rows[1]},{cols[1]})"
         )
         raise ValueError(msg)
     return [
@@ -80,37 +82,37 @@ def multiply(matrix_a: list[list[int]], matrix_b: list[list[int]]) -> list[list[
     ]
 
 
-def identity(n: int) -> list[list[int]]:
+def birim(n: int) -> list[list[int]]:
     """
-    :param n: dimension for nxn matrix
+    :param n: nxn matrisin boyutu
     :type n: int
-    :return: Identity matrix of shape [n, n]
-    >>> identity(3)
+    :return: [n, n] şeklinde birim matris
+    >>> birim(3)
     [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
     """
     n = int(n)
     return [[int(row == column) for column in range(n)] for row in range(n)]
 
 
-def transpose(
+def transpoze(
     matrix: list[list[int]], return_map: bool = True
 ) -> list[list[int]] | map[list[int]]:
     """
-    >>> transpose([[1,2],[3,4]]) # doctest: +ELLIPSIS
+    >>> transpoze([[1,2],[3,4]]) # doctest: +ELLIPSIS
     <map object at ...
-    >>> transpose([[1,2],[3,4]], return_map=False)
+    >>> transpoze([[1,2],[3,4]], return_map=False)
     [[1, 3], [2, 4]]
-    >>> transpose([1, [2, 3]])
+    >>> transpoze([1, [2, 3]])
     Traceback (most recent call last):
       ...
-    TypeError: Expected a matrix, got int/list instead
+    TypeError: Beklenen bir matris, int/list yerine geldi
     """
     if _check_not_integer(matrix):
         if return_map:
             return map(list, zip(*matrix))
         else:
             return list(map(list, zip(*matrix)))
-    raise TypeError("Expected a matrix, got int/list instead")
+    raise TypeError("Beklenen bir matris, int/list yerine geldi")
 
 
 def minor(matrix: list[list[int]], row: int, column: int) -> list[list[int]]:
@@ -138,13 +140,12 @@ def determinant(matrix: list[list[int]]) -> Any:
     )
 
 
-def inverse(matrix: list[list[int]]) -> list[list[float]] | None:
+def ters(matrix: list[list[int]]) -> list[list[float]] | None:
     """
-    >>> inverse([[1, 2], [3, 4]])
+    >>> ters([[1, 2], [3, 4]])
     [[-2.0, 1.0], [1.5, -0.5]]
-    >>> inverse([[1, 1], [1, 1]])
+    >>> ters([[1, 1], [1, 1]])
     """
-    # https://stackoverflow.com/questions/20047519/python-doctests-test-for-none
     det = determinant(matrix)
     if det == 0:
         return None
@@ -158,8 +159,8 @@ def inverse(matrix: list[list[int]]) -> list[list[float]] | None:
         [x * (-1) ** (row + col) for col, x in enumerate(matrix_minor[row])]
         for row in range(len(matrix))
     ]
-    adjugate = list(transpose(cofactors))
-    return scalar_multiply(adjugate, 1 / det)
+    adjugate = list(transpoze(cofactors))
+    return skalar_çarp(adjugate, 1 / det)
 
 
 def _check_not_integer(matrix: list[list[int]]) -> bool:
@@ -176,7 +177,7 @@ def _verify_matrix_sizes(
     shape = _shape(matrix_a) + _shape(matrix_b)
     if shape[0] != shape[3] or shape[1] != shape[2]:
         msg = (
-            "operands could not be broadcast together with shape "
+            "İşlemler bu şekillerle birleştirilemez "
             f"({shape[0], shape[1]}), ({shape[2], shape[3]})"
         )
         raise ValueError(msg)
@@ -188,12 +189,12 @@ def main() -> None:
     matrix_b = [[3, 4], [7, 4]]
     matrix_c = [[11, 12, 13, 14], [21, 22, 23, 24], [31, 32, 33, 34], [41, 42, 43, 44]]
     matrix_d = [[3, 0, 2], [2, 0, -2], [0, 1, 1]]
-    print(f"Add Operation, {add(matrix_a, matrix_b) = } \n")
-    print(f"Multiply Operation, {multiply(matrix_a, matrix_b) = } \n")
-    print(f"Identity: {identity(5)}\n")
-    print(f"Minor of {matrix_c} = {minor(matrix_c, 1, 2)} \n")
-    print(f"Determinant of {matrix_b} = {determinant(matrix_b)} \n")
-    print(f"Inverse of {matrix_d} = {inverse(matrix_d)}\n")
+    print(f"Toplama İşlemi, {topla(matrix_a, matrix_b) = } \n")
+    print(f"Çarpma İşlemi, {çarp(matrix_a, matrix_b) = } \n")
+    print(f"Birim: {birim(5)}\n")
+    print(f"{matrix_c} matrisinin minoru = {minor(matrix_c, 1, 2)} \n")
+    print(f"{matrix_b} matrisinin determinantı = {determinant(matrix_b)} \n")
+    print(f"{matrix_d} matrisinin tersi = {ters(matrix_d)}\n")
 
 
 if __name__ == "__main__":

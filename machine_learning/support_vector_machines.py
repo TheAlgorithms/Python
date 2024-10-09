@@ -2,11 +2,13 @@ import numpy as np
 from numpy import ndarray
 from scipy.optimize import Bounds, LinearConstraint, minimize
 
+#Organised to K. Umut Araz
 
-def norm_squared(vector: ndarray) -> float:
+
+def kare_norm(vector: ndarray) -> float:
     """
     Vektörün kare normunu döndürür
-    norm_squared(v) = sum(x * x for x in v)
+    kare_norm(v) = sum(x * x for x in v)
 
     Args:
         vector (ndarray): giriş vektörü
@@ -14,17 +16,17 @@ def norm_squared(vector: ndarray) -> float:
     Returns:
         float: vektörün kare normu
 
-    >>> int(norm_squared([1, 2]))
+    >>> int(kare_norm([1, 2]))
     5
-    >>> int(norm_squared(np.asarray([1, 2])))
+    >>> int(kare_norm(np.asarray([1, 2])))
     5
-    >>> int(norm_squared([0, 0]))
+    >>> int(kare_norm([0, 0]))
     0
     """
     return np.dot(vector, vector)
 
 
-class SVC:
+class DestekVektorSiniflandirici:
     """
     Destek Vektör Sınıflandırıcısı
 
@@ -35,17 +37,17 @@ class SVC:
         regularization: yumuşak marj için kısıtlama (veriler doğrusal olarak ayrılabilir değil)
             Varsayılan: sınırsız
 
-    >>> SVC(kernel="asdf")
+    >>> DestekVektorSiniflandirici(kernel="asdf")
     Traceback (most recent call last):
         ...
     ValueError: Bilinmeyen kernel: asdf
 
-    >>> SVC(kernel="rbf")
+    >>> DestekVektorSiniflandirici(kernel="rbf")
     Traceback (most recent call last):
         ...
     ValueError: rbf kernel gamma gerektirir
 
-    >>> SVC(kernel="rbf", gamma=-1)
+    >>> DestekVektorSiniflandirici(kernel="rbf", gamma=-1)
     Traceback (most recent call last):
         ...
     ValueError: gamma > 0 olmalı
@@ -70,9 +72,6 @@ class SVC:
             if not self.gamma > 0:
                 raise ValueError("gamma > 0 olmalı")
             self.kernel = self.__rbf
-            # gelecekte, sklearn'de olduğu gibi varsayılan bir değer olabilir
-            # sklear: def_gamma = 1/(n_features * X.var()) (wiki)
-            # önceden 1/(n_features) idi
         else:
             msg = f"Bilinmeyen kernel: {kernel}"
             raise ValueError(msg)
@@ -94,13 +93,13 @@ class SVC:
             vector2 (ndarray): ikinci vektör
 
         Returns:
-            float: exp(-(gamma * norm_squared(vector1 - vector2)))
+            float: exp(-(gamma * kare_norm(vector1 - vector2)))
         """
-        return np.exp(-(self.gamma * norm_squared(vector1 - vector2)))
+        return np.exp(-(self.gamma * kare_norm(vector1 - vector2)))
 
-    def fit(self, gözlemler: list[ndarray], sınıflar: ndarray) -> None:
+    def uydur(self, gözlemler: list[ndarray], sınıflar: ndarray) -> None:
         """
-        SVC'yi bir dizi gözlemle uyarlar.
+        Destek Vektör Sınıflandırıcısını bir dizi gözlemle uyarlar.
 
         Args:
             gözlemler (list[ndarray]): gözlem listesi
@@ -166,12 +165,12 @@ class SVC:
                 )
         self.offset = s / n
 
-    def predict(self, gözlem: ndarray) -> int:
+    def tahmin(self, gözlem: ndarray) -> int:
         """
         Bir gözlemin beklenen sınıfını al
 
         Args:
-            gözlem (Vector): gözlem
+            gözlem (ndarray): gözlem
 
         Returns:
             int {1, -1}: beklenen sınıf
@@ -181,13 +180,13 @@ class SVC:
         ...     np.asarray([1, 1]), np.asarray([1, 2])
         ... ]
         >>> y = np.asarray([1, 1, -1, -1])
-        >>> s = SVC()
-        >>> s.fit(xs, y)
-        >>> s.predict(np.asarray([0, 1]))
+        >>> s = DestekVektorSiniflandirici()
+        >>> s.uydur(xs, y)
+        >>> s.tahmin(np.asarray([0, 1]))
         1
-        >>> s.predict(np.asarray([1, 1]))
+        >>> s.tahmin(np.asarray([1, 1]))
         -1
-        >>> s.predict(np.asarray([2, 2]))
+        >>> s.tahmin(np.asarray([2, 2]))
         -1
         """
         s = sum(

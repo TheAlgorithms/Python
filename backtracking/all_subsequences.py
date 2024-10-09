@@ -1,9 +1,9 @@
 """
-In this problem, we want to determine all possible subsequences
-of the given sequence. We use backtracking to solve this problem.
+Bu problemde, verilen dizinin tüm olası alt dizilerini belirlemek istiyoruz.
+Bu problemi çözmek için geri izleme (backtracking) kullanıyoruz.
 
-Time complexity: O(2^n),
-where n denotes the length of the given sequence.
+Zaman karmaşıklığı: O(2^n),
+burada n, verilen dizinin uzunluğunu belirtir.
 """
 
 from __future__ import annotations
@@ -11,26 +11,26 @@ from __future__ import annotations
 from typing import Any
 
 
-def generate_all_subsequences(sequence: list[Any]) -> None:
-    create_state_space_tree(sequence, [], 0)
+def tüm_alt_dizileri_oluştur(dizi: list[Any]) -> None:
+    durum_uzayı_ağacı_oluştur(dizi, [], 0)
 
 
-def create_state_space_tree(
-    sequence: list[Any], current_subsequence: list[Any], index: int
+def durum_uzayı_ağacı_oluştur(
+    dizi: list[Any], mevcut_alt_dizi: list[Any], indeks: int
 ) -> None:
     """
-    Creates a state space tree to iterate through each branch using DFS.
-    We know that each state has exactly two children.
-    It terminates when it reaches the end of the given sequence.
+    Her dalı DFS kullanarak yinelemek için bir durum uzayı ağacı oluşturur.
+    Her durumun tam olarak iki çocuğu olduğunu biliyoruz.
+    Verilen dizinin sonuna ulaştığında sona erer.
 
-    :param sequence: The input sequence for which subsequences are generated.
-    :param current_subsequence: The current subsequence being built.
-    :param index: The current index in the sequence.
+    :param dizi: Alt dizilerin oluşturulduğu giriş dizisi.
+    :param mevcut_alt_dizi: Oluşturulan mevcut alt dizi.
+    :param indeks: Dizideki mevcut indeks.
 
-    Example:
-    >>> sequence = [3, 2, 1]
-    >>> current_subsequence = []
-    >>> create_state_space_tree(sequence, current_subsequence, 0)
+    Örnek:
+    >>> dizi = [3, 2, 1]
+    >>> mevcut_alt_dizi = []
+    >>> durum_uzayı_ağacı_oluştur(dizi, mevcut_alt_dizi, 0)
     []
     [1]
     [2]
@@ -40,22 +40,22 @@ def create_state_space_tree(
     [3, 2]
     [3, 2, 1]
 
-    >>> sequence = ["A", "B"]
-    >>> current_subsequence = []
-    >>> create_state_space_tree(sequence, current_subsequence, 0)
+    >>> dizi = ["A", "B"]
+    >>> mevcut_alt_dizi = []
+    >>> durum_uzayı_ağacı_oluştur(dizi, mevcut_alt_dizi, 0)
     []
     ['B']
     ['A']
     ['A', 'B']
 
-    >>> sequence = []
-    >>> current_subsequence = []
-    >>> create_state_space_tree(sequence, current_subsequence, 0)
+    >>> dizi = []
+    >>> mevcut_alt_dizi = []
+    >>> durum_uzayı_ağacı_oluştur(dizi, mevcut_alt_dizi, 0)
     []
 
-    >>> sequence = [1, 2, 3, 4]
-    >>> current_subsequence = []
-    >>> create_state_space_tree(sequence, current_subsequence, 0)
+    >>> dizi = [1, 2, 3, 4]
+    >>> mevcut_alt_dizi = []
+    >>> durum_uzayı_ağacı_oluştur(dizi, mevcut_alt_dizi, 0)
     []
     [4]
     [3]
@@ -74,20 +74,20 @@ def create_state_space_tree(
     [1, 2, 3, 4]
     """
 
-    if index == len(sequence):
-        print(current_subsequence)
+    if indeks == len(dizi):
+        print(mevcut_alt_dizi)
         return
 
-    create_state_space_tree(sequence, current_subsequence, index + 1)
-    current_subsequence.append(sequence[index])
-    create_state_space_tree(sequence, current_subsequence, index + 1)
-    current_subsequence.pop()
+    durum_uzayı_ağacı_oluştur(dizi, mevcut_alt_dizi, indeks + 1)
+    mevcut_alt_dizi.append(dizi[indeks])
+    durum_uzayı_ağacı_oluştur(dizi, mevcut_alt_dizi, indeks + 1)
+    mevcut_alt_dizi.pop()
 
 
 if __name__ == "__main__":
-    seq: list[Any] = [1, 2, 3]
-    generate_all_subsequences(seq)
+    dizi: list[Any] = [1, 2, 3]
+    tüm_alt_dizileri_oluştur(dizi)
 
-    seq.clear()
-    seq.extend(["A", "B", "C"])
-    generate_all_subsequences(seq)
+    dizi.clear()
+    dizi.extend(["A", "B", "C"])
+    tüm_alt_dizileri_oluştur(dizi)

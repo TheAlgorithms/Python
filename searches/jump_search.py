@@ -1,9 +1,11 @@
 """
-Pure Python implementation of the jump search algorithm.
-This algorithm iterates through a sorted collection with a step of n^(1/2),
-until the element compared is bigger than the one searched.
-It will then perform a linear search until it matches the wanted number.
-If not found, it returns -1.
+Jump arama algoritmasının saf Python ile uygulanması.
+Bu algoritma, sıralı bir koleksiyonda n^(1/2) adım büyüklüğü ile iterasyon yapar,
+karşılaştırılan eleman aranan elemandan büyük olana kadar devam eder.
+Daha sonra, istenen sayıya ulaşana kadar doğrusal bir arama gerçekleştirir.
+Eğer bulunamazsa, -1 döner.
+
+Organiser: K. Umut Araz
 
 https://en.wikipedia.org/wiki/Jump_search
 """
@@ -13,19 +15,19 @@ from collections.abc import Sequence
 from typing import Any, Protocol, TypeVar
 
 
-class Comparable(Protocol):
+class Karşılaştırılabilir(Protocol):
     def __lt__(self, other: Any, /) -> bool: ...
 
 
-T = TypeVar("T", bound=Comparable)
+T = TypeVar("T", bound=Karşılaştırılabilir)
 
 
 def jump_search(arr: Sequence[T], item: T) -> int:
     """
-    Python implementation of the jump search algorithm.
-    Return the index if the `item` is found, otherwise return -1.
+    Jump arama algoritmasının Python ile uygulanması.
+    Eğer `item` bulunursa indeksini döner, aksi takdirde -1 döner.
 
-    Examples:
+    Örnekler:
     >>> jump_search([0, 1, 2, 3, 4, 5], 3)
     3
     >>> jump_search([-5, -2, -1], -1)
@@ -38,33 +40,33 @@ def jump_search(arr: Sequence[T], item: T) -> int:
     4
     """
 
-    arr_size = len(arr)
-    block_size = int(math.sqrt(arr_size))
+    arr_boyutu = len(arr)
+    blok_boyutu = int(math.sqrt(arr_boyutu))
 
-    prev = 0
-    step = block_size
-    while arr[min(step, arr_size) - 1] < item:
-        prev = step
-        step += block_size
-        if prev >= arr_size:
+    önceki = 0
+    adım = blok_boyutu
+    while arr[min(adım, arr_boyutu) - 1] < item:
+        önceki = adım
+        adım += blok_boyutu
+        if önceki >= arr_boyutu:
             return -1
 
-    while arr[prev] < item:
-        prev += 1
-        if prev == min(step, arr_size):
+    while arr[önceki] < item:
+        önceki += 1
+        if önceki == min(adım, arr_boyutu):
             return -1
-    if arr[prev] == item:
-        return prev
+    if arr[önceki] == item:
+        return önceki
     return -1
 
 
 if __name__ == "__main__":
-    user_input = input("Enter numbers separated by a comma:\n").strip()
-    array = [int(item) for item in user_input.split(",")]
-    x = int(input("Enter the number to be searched:\n"))
+    kullanıcı_girişi = input("Virgülle ayrılmış sayıları girin:\n").strip()
+    dizi = [int(item) for item in kullanıcı_girişi.split(",")]
+    x = int(input("Aranacak sayıyı girin:\n"))
 
-    res = jump_search(array, x)
-    if res == -1:
-        print("Number not found!")
+    sonuç = jump_search(dizi, x)
+    if sonuç == -1:
+        print("Sayı bulunamadı!")
     else:
-        print(f"Number {x} is at index {res}")
+        print(f"Sayı {x} indeksinde bulunuyor: {sonuç}")

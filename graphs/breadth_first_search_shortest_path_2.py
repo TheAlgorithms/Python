@@ -1,11 +1,11 @@
-"""Breadth-first search shortest path implementations.
+"""Genişlik-öncelikli arama ile en kısa yol bulma uygulamaları.
 doctest:
 python -m doctest -v bfs_shortest_path.py
-Manual test:
+Manuel test:
 python bfs_shortest_path.py
 """
 
-demo_graph = {
+demo_graf = {
     "A": ["B", "C", "E"],
     "B": ["A", "D", "E"],
     "C": ["A", "F", "G"],
@@ -15,97 +15,98 @@ demo_graph = {
     "G": ["C"],
 }
 
+#Produced by K. Umut Araz 
 
-def bfs_shortest_path(graph: dict, start, goal) -> list[str]:
-    """Find shortest path between `start` and `goal` nodes.
-    Args:
-        graph (dict): node/list of neighboring nodes key/value pairs.
-        start: start node.
-        goal: target node.
-    Returns:
-        Shortest path between `start` and `goal` nodes as a string of nodes.
-        'Not found' string if no path found.
-    Example:
-        >>> bfs_shortest_path(demo_graph, "G", "D")
+
+def genişlik_öncelikli_en_kısa_yol(graf: dict, başlangıç, hedef) -> list[str]:
+    """`başlangıç` ve `hedef` düğümleri arasındaki en kısa yolu bulur.
+    Argümanlar:
+        graf (dict): düğüm/komşu düğümler listesi anahtar/değer çiftleri.
+        başlangıç: başlangıç düğümü.
+        hedef: hedef düğüm.
+    Döndürür:
+        `başlangıç` ve `hedef` düğümleri arasındaki en kısa yolu düğüm listesi olarak döndürür.
+        Eğer yol bulunamazsa 'Not found' stringi döner.
+    Örnek:
+        >>> genişlik_öncelikli_en_kısa_yol(demo_graf, "G", "D")
         ['G', 'C', 'A', 'B', 'D']
-        >>> bfs_shortest_path(demo_graph, "G", "G")
+        >>> genişlik_öncelikli_en_kısa_yol(demo_graf, "G", "G")
         ['G']
-        >>> bfs_shortest_path(demo_graph, "G", "Unknown")
+        >>> genişlik_öncelikli_en_kısa_yol(demo_graf, "G", "Bilinmeyen")
         []
     """
-    # keep track of explored nodes
-    explored = set()
-    # keep track of all the paths to be checked
-    queue = [[start]]
+    # keşfedilen düğümleri takip et
+    keşfedilen = set()
+    # kontrol edilecek tüm yolları takip et
+    kuyruk = [[başlangıç]]
 
-    # return path if start is goal
-    if start == goal:
-        return [start]
+    # başlangıç hedefse yolu döndür
+    if başlangıç == hedef:
+        return [başlangıç]
 
-    # keeps looping until all possible paths have been checked
-    while queue:
-        # pop the first path from the queue
-        path = queue.pop(0)
-        # get the last node from the path
-        node = path[-1]
-        if node not in explored:
-            neighbours = graph[node]
-            # go through all neighbour nodes, construct a new path and
-            # push it into the queue
-            for neighbour in neighbours:
-                new_path = list(path)
-                new_path.append(neighbour)
-                queue.append(new_path)
-                # return path if neighbour is goal
-                if neighbour == goal:
-                    return new_path
+    # tüm olası yollar kontrol edilene kadar döngüye devam et
+    while kuyruk:
+        # kuyruğun ilk yolunu çıkar
+        yol = kuyruk.pop(0)
+        # yolun son düğümünü al
+        düğüm = yol[-1]
+        if düğüm not in keşfedilen:
+            komşular = graf[düğüm]
+            # tüm komşu düğümleri kontrol et, yeni bir yol oluştur ve kuyruğa ekle
+            for komşu in komşular:
+                yeni_yol = list(yol)
+                yeni_yol.append(komşu)
+                kuyruk.append(yeni_yol)
+                # komşu hedefse yolu döndür
+                if komşu == hedef:
+                    return yeni_yol
 
-            # mark node as explored
-            explored.add(node)
+            # düğümü keşfedilen olarak işaretle
+            keşfedilen.add(düğüm)
 
-    # in case there's no path between the 2 nodes
+    # iki düğüm arasında yol yoksa
     return []
 
 
-def bfs_shortest_path_distance(graph: dict, start, target) -> int:
-    """Find shortest path distance between `start` and `target` nodes.
-    Args:
-        graph: node/list of neighboring nodes key/value pairs.
-        start: node to start search from.
-        target: node to search for.
-    Returns:
-        Number of edges in shortest path between `start` and `target` nodes.
-        -1 if no path exists.
-    Example:
-        >>> bfs_shortest_path_distance(demo_graph, "G", "D")
+def genişlik_öncelikli_en_kısa_yol_mesafesi(graf: dict, başlangıç, hedef) -> int:
+    """`başlangıç` ve `hedef` düğümleri arasındaki en kısa yol mesafesini bulur.
+    Argümanlar:
+        graf: düğüm/komşu düğümler listesi anahtar/değer çiftleri.
+        başlangıç: aramaya başlanacak düğüm.
+        hedef: aranacak düğüm.
+    Döndürür:
+        `başlangıç` ve `hedef` düğümleri arasındaki en kısa yolun kenar sayısını döndürür.
+        Eğer yol yoksa -1 döner.
+    Örnek:
+        >>> genişlik_öncelikli_en_kısa_yol_mesafesi(demo_graf, "G", "D")
         4
-        >>> bfs_shortest_path_distance(demo_graph, "A", "A")
+        >>> genişlik_öncelikli_en_kısa_yol_mesafesi(demo_graf, "A", "A")
         0
-        >>> bfs_shortest_path_distance(demo_graph, "A", "Unknown")
+        >>> genişlik_öncelikli_en_kısa_yol_mesafesi(demo_graf, "A", "Bilinmeyen")
         -1
     """
-    if not graph or start not in graph or target not in graph:
+    if not graf or başlangıç not in graf or hedef not in graf:
         return -1
-    if start == target:
+    if başlangıç == hedef:
         return 0
-    queue = [start]
-    visited = set(start)
-    # Keep tab on distances from `start` node.
-    dist = {start: 0, target: -1}
-    while queue:
-        node = queue.pop(0)
-        if node == target:
-            dist[target] = (
-                dist[node] if dist[target] == -1 else min(dist[target], dist[node])
+    kuyruk = [başlangıç]
+    ziyaret_edilen = set(başlangıç)
+    # `başlangıç` düğümünden mesafeleri takip et
+    mesafe = {başlangıç: 0, hedef: -1}
+    while kuyruk:
+        düğüm = kuyruk.pop(0)
+        if düğüm == hedef:
+            mesafe[hedef] = (
+                mesafe[düğüm] if mesafe[hedef] == -1 else min(mesafe[hedef], mesafe[düğüm])
             )
-        for adjacent in graph[node]:
-            if adjacent not in visited:
-                visited.add(adjacent)
-                queue.append(adjacent)
-                dist[adjacent] = dist[node] + 1
-    return dist[target]
+        for komşu in graf[düğüm]:
+            if komşu not in ziyaret_edilen:
+                ziyaret_edilen.add(komşu)
+                kuyruk.append(komşu)
+                mesafe[komşu] = mesafe[düğüm] + 1
+    return mesafe[hedef]
 
 
 if __name__ == "__main__":
-    print(bfs_shortest_path(demo_graph, "G", "D"))  # returns ['G', 'C', 'A', 'B', 'D']
-    print(bfs_shortest_path_distance(demo_graph, "G", "D"))  # returns 4
+    print(genişlik_öncelikli_en_kısa_yol(demo_graf, "G", "D"))  # ['G', 'C', 'A', 'B', 'D'] döner
+    print(genişlik_öncelikli_en_kısa_yol_mesafesi(demo_graf, "G", "D"))  # 4 döner

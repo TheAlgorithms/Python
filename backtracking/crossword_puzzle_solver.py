@@ -1,131 +1,133 @@
 # https://www.geeksforgeeks.org/solve-crossword-puzzle/
 
 
-def is_valid(
-    puzzle: list[list[str]], word: str, row: int, col: int, vertical: bool
+def geçerli_mi(
+    bulmaca: list[list[str]], kelime: str, satır: int, sütun: int, dikey: bool
 ) -> bool:
     """
-    Check if a word can be placed at the given position.
+    Bir kelimenin verilen konuma yerleştirilip yerleştirilemeyeceğini kontrol edin.
 
-    >>> puzzle = [
+    >>> bulmaca = [
     ...     ['', '', '', ''],
     ...     ['', '', '', ''],
     ...     ['', '', '', ''],
     ...     ['', '', '', '']
     ... ]
-    >>> is_valid(puzzle, 'word', 0, 0, True)
+    >>> geçerli_mi(bulmaca, 'kelime', 0, 0, True)
     True
-    >>> puzzle = [
+    >>> bulmaca = [
     ...     ['', '', '', ''],
     ...     ['', '', '', ''],
     ...     ['', '', '', ''],
     ...     ['', '', '', '']
     ... ]
-    >>> is_valid(puzzle, 'word', 0, 0, False)
+    >>> geçerli_mi(bulmaca, 'kelime', 0, 0, False)
     True
     """
-    for i in range(len(word)):
-        if vertical:
-            if row + i >= len(puzzle) or puzzle[row + i][col] != "":
+    for i in range(len(kelime)):
+        if dikey:
+            if satır + i >= len(bulmaca) or bulmaca[satır + i][sütun] != "":
                 return False
-        elif col + i >= len(puzzle[0]) or puzzle[row][col + i] != "":
+        elif sütun + i >= len(bulmaca[0]) or bulmaca[satır][sütun + i] != "":
             return False
     return True
 
 
-def place_word(
-    puzzle: list[list[str]], word: str, row: int, col: int, vertical: bool
+def kelime_yerleştir(
+    bulmaca: list[list[str]], kelime: str, satır: int, sütun: int, dikey: bool
 ) -> None:
     """
-    Place a word at the given position.
+    Bir kelimeyi verilen konuma yerleştirin.
 
-    >>> puzzle = [
+    >>> bulmaca = [
     ...     ['', '', '', ''],
     ...     ['', '', '', ''],
     ...     ['', '', '', ''],
     ...     ['', '', '', '']
     ... ]
-    >>> place_word(puzzle, 'word', 0, 0, True)
-    >>> puzzle
-    [['w', '', '', ''], ['o', '', '', ''], ['r', '', '', ''], ['d', '', '', '']]
+    >>> kelime_yerleştir(bulmaca, 'kelime', 0, 0, True)
+    >>> bulmaca
+    [['k', '', '', ''], ['e', '', '', ''], ['l', '', '', ''], ['i', '', '', ''], ['m', '', '', ''], ['e', '', '', '']]
     """
-    for i, char in enumerate(word):
-        if vertical:
-            puzzle[row + i][col] = char
+    for i, harf in enumerate(kelime):
+        if dikey:
+            bulmaca[satır + i][sütun] = harf
         else:
-            puzzle[row][col + i] = char
+            bulmaca[satır][sütun + i] = harf
 
 
-def remove_word(
-    puzzle: list[list[str]], word: str, row: int, col: int, vertical: bool
+def kelime_kaldır(
+    bulmaca: list[list[str]], kelime: str, satır: int, sütun: int, dikey: bool
 ) -> None:
     """
-    Remove a word from the given position.
+    Bir kelimeyi verilen konumdan kaldırın.
 
-    >>> puzzle = [
-    ...     ['w', '', '', ''],
-    ...     ['o', '', '', ''],
-    ...     ['r', '', '', ''],
-    ...     ['d', '', '', '']
+    >>> bulmaca = [
+    ...     ['k', '', '', ''],
+    ...     ['e', '', '', ''],
+    ...     ['l', '', '', ''],
+    ...     ['i', '', '', ''],
+    ...     ['m', '', '', ''],
+    ...     ['e', '', '', '']
     ... ]
-    >>> remove_word(puzzle, 'word', 0, 0, True)
-    >>> puzzle
-    [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']]
+    >>> kelime_kaldır(bulmaca, 'kelime', 0, 0, True)
+    >>> bulmaca
+    [['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', ''], ['', '', '', '']]
     """
-    for i in range(len(word)):
-        if vertical:
-            puzzle[row + i][col] = ""
+    for i in range(len(kelime)):
+        if dikey:
+            bulmaca[satır + i][sütun] = ""
         else:
-            puzzle[row][col + i] = ""
+            bulmaca[satır][sütun + i] = ""
 
 
-def solve_crossword(puzzle: list[list[str]], words: list[str]) -> bool:
+def bulmaca_çöz(bulmaca: list[list[str]], kelimeler: list[str]) -> bool:
     """
-    Solve the crossword puzzle using backtracking.
+    Geri izleme kullanarak bulmacayı çözün.
 
-    >>> puzzle = [
+    >>> bulmaca = [
     ...     ['', '', '', ''],
     ...     ['', '', '', ''],
     ...     ['', '', '', ''],
     ...     ['', '', '', '']
     ... ]
 
-    >>> words = ['word', 'four', 'more', 'last']
-    >>> solve_crossword(puzzle, words)
+    >>> kelimeler = ['kelime', 'dört', 'daha', 'son']
+    >>> bulmaca_çöz(bulmaca, kelimeler)
     True
-    >>> puzzle = [
+    >>> bulmaca = [
     ...     ['', '', '', ''],
     ...     ['', '', '', ''],
     ...     ['', '', '', ''],
     ...     ['', '', '', '']
     ... ]
-    >>> words = ['word', 'four', 'more', 'paragraphs']
-    >>> solve_crossword(puzzle, words)
+    >>> kelimeler = ['kelime', 'dört', 'daha', 'paragraflar']
+    >>> bulmaca_çöz(bulmaca, kelimeler)
     False
     """
-    for row in range(len(puzzle)):
-        for col in range(len(puzzle[0])):
-            if puzzle[row][col] == "":
-                for word in words:
-                    for vertical in [True, False]:
-                        if is_valid(puzzle, word, row, col, vertical):
-                            place_word(puzzle, word, row, col, vertical)
-                            words.remove(word)
-                            if solve_crossword(puzzle, words):
+    for satır in range(len(bulmaca)):
+        for sütun in range(len(bulmaca[0])):
+            if bulmaca[satır][sütun] == "":
+                for kelime in kelimeler:
+                    for dikey in [True, False]:
+                        if geçerli_mi(bulmaca, kelime, satır, sütun, dikey):
+                            kelime_yerleştir(bulmaca, kelime, satır, sütun, dikey)
+                            kelimeler.remove(kelime)
+                            if bulmaca_çöz(bulmaca, kelimeler):
                                 return True
-                            words.append(word)
-                            remove_word(puzzle, word, row, col, vertical)
+                            kelimeler.append(kelime)
+                            kelime_kaldır(bulmaca, kelime, satır, sütun, dikey)
                 return False
     return True
 
 
 if __name__ == "__main__":
-    PUZZLE = [[""] * 3 for _ in range(3)]
-    WORDS = ["cat", "dog", "car"]
+    BULMACA = [[""] * 3 for _ in range(3)]
+    KELIMELER = ["kedi", "köpek", "araba"]
 
-    if solve_crossword(PUZZLE, WORDS):
-        print("Solution found:")
-        for row in PUZZLE:
-            print(" ".join(row))
+    if bulmaca_çöz(BULMACA, KELIMELER):
+        print("Çözüm bulundu:")
+        for satır in BULMACA:
+            print(" ".join(satır))
     else:
-        print("No solution found:")
+        print("Çözüm bulunamadı:")

@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def binary_cross_entropy(
+def ikili_çapraz_entropi(
     y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-15
 ) -> float:
     """
@@ -19,13 +19,13 @@ def binary_cross_entropy(
     - y_pred: Sınıf 1 için tahmin edilen olasılıklar
     - epsilon: Sayısal kararsızlığı önlemek için küçük bir sabit
 
-    >>> true_labels = np.array([0, 1, 1, 0, 1])
-    >>> predicted_probs = np.array([0.2, 0.7, 0.9, 0.3, 0.8])
-    >>> float(binary_cross_entropy(true_labels, predicted_probs))
+    >>> gerçek_etiketler = np.array([0, 1, 1, 0, 1])
+    >>> tahmin_olasılıkları = np.array([0.2, 0.7, 0.9, 0.3, 0.8])
+    >>> float(ikili_çapraz_entropi(gerçek_etiketler, tahmin_olasılıkları))
     0.2529995012327421
-    >>> true_labels = np.array([0, 1, 1, 0, 1])
-    >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
-    >>> binary_cross_entropy(true_labels, predicted_probs)
+    >>> gerçek_etiketler = np.array([0, 1, 1, 0, 1])
+    >>> tahmin_olasılıkları = np.array([0.3, 0.8, 0.9, 0.2])
+    >>> ikili_çapraz_entropi(gerçek_etiketler, tahmin_olasılıkları)
     Traceback (most recent call last):
         ...
     ValueError: Giriş dizilerinin aynı uzunlukta olması gerekir.
@@ -38,7 +38,7 @@ def binary_cross_entropy(
     return np.mean(bce_loss)
 
 
-def binary_focal_cross_entropy(
+def ikili_odak_çapraz_entropi(
     y_true: np.ndarray,
     y_pred: np.ndarray,
     gamma: float = 2.0,
@@ -63,13 +63,13 @@ def binary_focal_cross_entropy(
     - alpha: Sınıf 1 için ağırlık faktörü (varsayılan: 0.25).
     - epsilon: Sayısal kararsızlığı önlemek için küçük bir sabit.
 
-    >>> true_labels = np.array([0, 1, 1, 0, 1])
-    >>> predicted_probs = np.array([0.2, 0.7, 0.9, 0.3, 0.8])
-    >>> float(binary_focal_cross_entropy(true_labels, predicted_probs))
+    >>> gerçek_etiketler = np.array([0, 1, 1, 0, 1])
+    >>> tahmin_olasılıkları = np.array([0.2, 0.7, 0.9, 0.3, 0.8])
+    >>> float(ikili_odak_çapraz_entropi(gerçek_etiketler, tahmin_olasılıkları))
     0.008257977659239775
-    >>> true_labels = np.array([0, 1, 1, 0, 1])
-    >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
-    >>> binary_focal_cross_entropy(true_labels, predicted_probs)
+    >>> gerçek_etiketler = np.array([0, 1, 1, 0, 1])
+    >>> tahmin_olasılıkları = np.array([0.3, 0.8, 0.9, 0.2])
+    >>> ikili_odak_çapraz_entropi(gerçek_etiketler, tahmin_olasılıkları)
     Traceback (most recent call last):
         ...
     ValueError: Giriş dizilerinin aynı uzunlukta olması gerekir.
@@ -87,7 +87,7 @@ def binary_focal_cross_entropy(
     return np.mean(bcfe_loss)
 
 
-def categorical_cross_entropy(
+def kategorik_çapraz_entropi(
     y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-15
 ) -> float:
     """
@@ -102,31 +102,31 @@ def categorical_cross_entropy(
     - y_pred: Tahmin edilen sınıf olasılıkları
     - epsilon: Sayısal kararsızlığı önlemek için küçük bir sabit
 
-    >>> true_labels = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
-    >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1], [0.0, 0.1, 0.9]])
-    >>> float(categorical_cross_entropy(true_labels, pred_probs))
+    >>> gerçek_etiketler = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+    >>> tahmin_olasılıkları = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1], [0.0, 0.1, 0.9]])
+    >>> float(kategorik_çapraz_entropi(gerçek_etiketler, tahmin_olasılıkları))
     0.567395975254385
-    >>> true_labels = np.array([[1, 0], [0, 1]])
-    >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
-    >>> categorical_cross_entropy(true_labels, pred_probs)
+    >>> gerçek_etiketler = np.array([[1, 0], [0, 1]])
+    >>> tahmin_olasılıkları = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
+    >>> kategorik_çapraz_entropi(gerçek_etiketler, tahmin_olasılıkları)
     Traceback (most recent call last):
         ...
     ValueError: Giriş dizilerinin aynı şekle sahip olması gerekir.
-    >>> true_labels = np.array([[2, 0, 1], [1, 0, 0]])
-    >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
-    >>> categorical_cross_entropy(true_labels, pred_probs)
+    >>> gerçek_etiketler = np.array([[2, 0, 1], [1, 0, 0]])
+    >>> tahmin_olasılıkları = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
+    >>> kategorik_çapraz_entropi(gerçek_etiketler, tahmin_olasılıkları)
     Traceback (most recent call last):
         ...
     ValueError: y_true one-hot kodlanmış olmalıdır.
-    >>> true_labels = np.array([[1, 0, 1], [1, 0, 0]])
-    >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
-    >>> categorical_cross_entropy(true_labels, pred_probs)
+    >>> gerçek_etiketler = np.array([[1, 0, 1], [1, 0, 0]])
+    >>> tahmin_olasılıkları = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
+    >>> kategorik_çapraz_entropi(gerçek_etiketler, tahmin_olasılıkları)
     Traceback (most recent call last):
         ...
     ValueError: y_true one-hot kodlanmış olmalıdır.
-    >>> true_labels = np.array([[1, 0, 0], [0, 1, 0]])
-    >>> pred_probs = np.array([[0.9, 0.1, 0.1], [0.2, 0.7, 0.1]])
-    >>> categorical_cross_entropy(true_labels, pred_probs)
+    >>> gerçek_etiketler = np.array([[1, 0, 0], [0, 1, 0]])
+    >>> tahmin_olasılıkları = np.array([[0.9, 0.1, 0.1], [0.2, 0.7, 0.1]])
+    >>> kategorik_çapraz_entropi(gerçek_etiketler, tahmin_olasılıkları)
     Traceback (most recent call last):
         ...
     ValueError: Tahmin edilen olasılıklar yaklaşık olarak 1'e eşit olmalıdır.
@@ -144,7 +144,7 @@ def categorical_cross_entropy(
     return -np.sum(y_true * np.log(y_pred))
 
 
-def categorical_focal_cross_entropy(
+def kategorik_odak_çapraz_entropi(
     y_true: np.ndarray,
     y_pred: np.ndarray,
     alpha: np.ndarray = None,
@@ -171,50 +171,50 @@ def categorical_focal_cross_entropy(
     Döndürür:
     - Ortalama kategorik odak çapraz entropi kaybı.
 
-    >>> true_labels = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
-    >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1], [0.0, 0.1, 0.9]])
+    >>> gerçek_etiketler = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+    >>> tahmin_olasılıkları = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1], [0.0, 0.1, 0.9]])
     >>> alpha = np.array([0.6, 0.2, 0.7])
-    >>> float(categorical_focal_cross_entropy(true_labels, pred_probs, alpha))
+    >>> float(kategorik_odak_çapraz_entropi(gerçek_etiketler, tahmin_olasılıkları, alpha))
     0.0025966118981496423
 
-    >>> true_labels = np.array([[0, 1, 0], [0, 0, 1]])
-    >>> pred_probs = np.array([[0.05, 0.95, 0], [0.1, 0.8, 0.1]])
+    >>> gerçek_etiketler = np.array([[0, 1, 0], [0, 0, 1]])
+    >>> tahmin_olasılıkları = np.array([[0.05, 0.95, 0], [0.1, 0.8, 0.1]])
     >>> alpha = np.array([0.25, 0.25, 0.25])
-    >>> float(categorical_focal_cross_entropy(true_labels, pred_probs, alpha))
+    >>> float(kategorik_odak_çapraz_entropi(gerçek_etiketler, tahmin_olasılıkları, alpha))
     0.23315276982014324
 
-    >>> true_labels = np.array([[1, 0], [0, 1]])
-    >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
-    >>> categorical_cross_entropy(true_labels, pred_probs)
+    >>> gerçek_etiketler = np.array([[1, 0], [0, 1]])
+    >>> tahmin_olasılıkları = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
+    >>> kategorik_çapraz_entropi(gerçek_etiketler, tahmin_olasılıkları)
     Traceback (most recent call last):
         ...
     ValueError: Giriş dizilerinin aynı şekle sahip olması gerekir.
 
-    >>> true_labels = np.array([[2, 0, 1], [1, 0, 0]])
-    >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
-    >>> categorical_focal_cross_entropy(true_labels, pred_probs)
+    >>> gerçek_etiketler = np.array([[2, 0, 1], [1, 0, 0]])
+    >>> tahmin_olasılıkları = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
+    >>> kategorik_odak_çapraz_entropi(gerçek_etiketler, tahmin_olasılıkları)
     Traceback (most recent call last):
         ...
     ValueError: y_true one-hot kodlanmış olmalıdır.
 
-    >>> true_labels = np.array([[1, 0, 1], [1, 0, 0]])
-    >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
-    >>> categorical_focal_cross_entropy(true_labels, pred_probs)
+    >>> gerçek_etiketler = np.array([[1, 0, 1], [1, 0, 0]])
+    >>> tahmin_olasılıkları = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1]])
+    >>> kategorik_odak_çapraz_entropi(gerçek_etiketler, tahmin_olasılıkları)
     Traceback (most recent call last):
         ...
     ValueError: y_true one-hot kodlanmış olmalıdır.
 
-    >>> true_labels = np.array([[1, 0, 0], [0, 1, 0]])
-    >>> pred_probs = np.array([[0.9, 0.1, 0.1], [0.2, 0.7, 0.1]])
-    >>> categorical_focal_cross_entropy(true_labels, pred_probs)
+    >>> gerçek_etiketler = np.array([[1, 0, 0], [0, 1, 0]])
+    >>> tahmin_olasılıkları = np.array([[0.9, 0.1, 0.1], [0.2, 0.7, 0.1]])
+    >>> kategorik_odak_çapraz_entropi(gerçek_etiketler, tahmin_olasılıkları)
     Traceback (most recent call last):
         ...
     ValueError: Tahmin edilen olasılıklar yaklaşık olarak 1'e eşit olmalıdır.
 
-    >>> true_labels = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
-    >>> pred_probs = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1], [0.0, 0.1, 0.9]])
+    >>> gerçek_etiketler = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+    >>> tahmin_olasılıkları = np.array([[0.9, 0.1, 0.0], [0.2, 0.7, 0.1], [0.0, 0.1, 0.9]])
     >>> alpha = np.array([0.6, 0.2])
-    >>> categorical_focal_cross_entropy(true_labels, pred_probs, alpha)
+    >>> kategorik_odak_çapraz_entropi(gerçek_etiketler, tahmin_olasılıkları, alpha)
     Traceback (most recent call last):
         ...
     ValueError: alpha'nın uzunluğu sınıf sayısıyla eşleşmelidir.
@@ -245,12 +245,12 @@ def categorical_focal_cross_entropy(
     return np.mean(cfce_loss)
 
 
-def hinge_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+def menteşe_kaybı(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
-    Gerçek etiketler ve tahmin edilen olasılıklar arasındaki ortalama hinge kaybını hesaplayın
+    Gerçek etiketler ve tahmin edilen olasılıklar arasındaki ortalama menteşe kaybını hesaplayın
     destek vektör makineleri (SVM'ler) için.
 
-    Hinge kaybı = max(0, 1 - true * pred)
+    Menteşe kaybı = max(0, 1 - true * pred)
 
     Referans: https://en.wikipedia.org/wiki/Hinge_loss
 
@@ -258,19 +258,19 @@ def hinge_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     - y_true: -1 veya 1 olarak kodlanmış gerçek değerler (gerçek değerler)
     - y_pred: tahmin edilen değerler
 
-    >>> true_labels = np.array([-1, 1, 1, -1, 1])
-    >>> pred = np.array([-4, -0.3, 0.7, 5, 10])
-    >>> float(hinge_loss(true_labels, pred))
+    >>> gerçek_etiketler = np.array([-1, 1, 1, -1, 1])
+    >>> tahmin = np.array([-4, -0.3, 0.7, 5, 10])
+    >>> float(menteşe_kaybı(gerçek_etiketler, tahmin))
     1.52
-    >>> true_labels = np.array([-1, 1, 1, -1, 1, 1])
-    >>> pred = np.array([-4, -0.3, 0.7, 5, 10])
-    >>> hinge_loss(true_labels, pred)
+    >>> gerçek_etiketler = np.array([-1, 1, 1, -1, 1, 1])
+    >>> tahmin = np.array([-4, -0.3, 0.7, 5, 10])
+    >>> menteşe_kaybı(gerçek_etiketler, tahmin)
     Traceback (most recent call last):
     ...
     ValueError: Tahmin edilen ve gerçek dizilerin uzunluğu aynı olmalıdır.
-    >>> true_labels = np.array([-1, 1, 10, -1, 1])
-    >>> pred = np.array([-4, -0.3, 0.7, 5, 10])
-    >>> hinge_loss(true_labels, pred)
+    >>> gerçek_etiketler = np.array([-1, 1, 10, -1, 1])
+    >>> tahmin = np.array([-4, -0.3, 0.7, 5, 10])
+    >>> menteşe_kaybı(gerçek_etiketler, tahmin)
     Traceback (most recent call last):
     ...
     ValueError: y_true yalnızca -1 veya 1 değerlerine sahip olabilir.
@@ -281,11 +281,11 @@ def hinge_loss(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     if np.any((y_true != -1) & (y_true != 1)):
         raise ValueError("y_true yalnızca -1 veya 1 değerlerine sahip olabilir.")
 
-    hinge_losses = np.maximum(0, 1.0 - (y_true * y_pred))
-    return np.mean(hinge_losses)
+    menteşe_kayıpları = np.maximum(0, 1.0 - (y_true * y_pred))
+    return np.mean(menteşe_kayıpları)
 
 
-def huber_loss(y_true: np.ndarray, y_pred: np.ndarray, delta: float) -> float:
+def huber_kaybı(y_true: np.ndarray, y_pred: np.ndarray, delta: float) -> float:
     """
     Verilen gerçek değerler ve tahmin edilen değerler arasındaki ortalama Huber kaybını hesaplayın.
 
@@ -302,17 +302,17 @@ def huber_loss(y_true: np.ndarray, y_pred: np.ndarray, delta: float) -> float:
     - y_true: Gerçek değerler (gerçek değerler)
     - y_pred: Tahmin edilen değerler
 
-    >>> true_values = np.array([0.9, 10.0, 2.0, 1.0, 5.2])
-    >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
-    >>> bool(np.isclose(huber_loss(true_values, predicted_values, 1.0), 2.102))
+    >>> gerçek_değerler = np.array([0.9, 10.0, 2.0, 1.0, 5.2])
+    >>> tahmin_edilen_değerler = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
+    >>> bool(np.isclose(huber_kaybı(gerçek_değerler, tahmin_edilen_değerler, 1.0), 2.102))
     True
-    >>> true_labels = np.array([11.0, 21.0, 3.32, 4.0, 5.0])
-    >>> predicted_probs = np.array([8.3, 20.8, 2.9, 11.2, 5.0])
-    >>> bool(np.isclose(huber_loss(true_labels, predicted_probs, 1.0), 1.80164))
+    >>> gerçek_etiketler = np.array([11.0, 21.0, 3.32, 4.0, 5.0])
+    >>> tahmin_olasılıkları = np.array([8.3, 20.8, 2.9, 11.2, 5.0])
+    >>> bool(np.isclose(huber_kaybı(gerçek_etiketler, tahmin_olasılıkları, 1.0), 1.80164))
     True
-    >>> true_labels = np.array([11.0, 21.0, 3.32, 4.0])
-    >>> predicted_probs = np.array([8.3, 20.8, 2.9, 11.2, 5.0])
-    >>> huber_loss(true_labels, predicted_probs, 1.0)
+    >>> gerçek_etiketler = np.array([11.0, 21.0, 3.32, 4.0])
+    >>> tahmin_olasılıkları = np.array([8.3, 20.8, 2.9, 11.2, 5.0])
+    >>> huber_kaybı(gerçek_etiketler, tahmin_olasılıkları, 1.0)
     Traceback (most recent call last):
     ...
     ValueError: Giriş dizilerinin aynı uzunlukta olması gerekir.
@@ -325,7 +325,7 @@ def huber_loss(y_true: np.ndarray, y_pred: np.ndarray, delta: float) -> float:
     return np.where(np.abs(y_true - y_pred) <= delta, huber_mse, huber_mae).mean()
 
 
-def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+def ortalama_kare_hata(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
     Gerçek değerler ve tahmin edilen değerler arasındaki ortalama kare hata (MSE) kaybını hesaplayın.
 
@@ -340,13 +340,13 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     - y_true: Gerçek değerler (gerçek değerler)
     - y_pred: Tahmin edilen değerler
 
-    >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
-    >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
-    >>> bool(np.isclose(mean_squared_error(true_values, predicted_values), 0.028))
+    >>> gerçek_değerler = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> tahmin_edilen_değerler = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
+    >>> bool(np.isclose(ortalama_kare_hata(gerçek_değerler, tahmin_edilen_değerler), 0.028))
     True
-    >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
-    >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
-    >>> mean_squared_error(true_labels, predicted_probs)
+    >>> gerçek_etiketler = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> tahmin_olasılıkları = np.array([0.3, 0.8, 0.9, 0.2])
+    >>> ortalama_kare_hata(gerçek_etiketler, tahmin_olasılıkları)
     Traceback (most recent call last):
     ...
     ValueError: Giriş dizilerinin aynı uzunlukta olması gerekir.
@@ -354,11 +354,11 @@ def mean_squared_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     if len(y_true) != len(y_pred):
         raise ValueError("Giriş dizilerinin aynı uzunlukta olması gerekir.")
 
-    squared_errors = (y_true - y_pred) ** 2
-    return np.mean(squared_errors)
+    kare_hatalar = (y_true - y_pred) ** 2
+    return np.mean(kare_hatalar)
 
 
-def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+def ortalama_mutlak_hata(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
     Gerçek (gözlemlenen) ve tahmin edilen değerler arasındaki Ortalama Mutlak Hata (MAE) kaybını hesaplayın.
 
@@ -373,17 +373,17 @@ def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     - y_true: Gerçek değerler (gerçek değerler)
     - y_pred: Tahmin edilen değerler
 
-    >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
-    >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
-    >>> bool(np.isclose(mean_absolute_error(true_values, predicted_values), 0.16))
+    >>> gerçek_değerler = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> tahmin_edilen_değerler = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
+    >>> bool(np.isclose(ortalama_mutlak_hata(gerçek_değerler, tahmin_edilen_değerler), 0.16))
     True
-    >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
-    >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
-    >>> bool(np.isclose(mean_absolute_error(true_values, predicted_values), 2.16))
+    >>> gerçek_değerler = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> tahmin_edilen_değerler = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
+    >>> bool(np.isclose(ortalama_mutlak_hata(gerçek_değerler, tahmin_edilen_değerler), 2.16))
     False
-    >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
-    >>> predicted_probs = np.array([0.3, 0.8, 0.9, 5.2])
-    >>> mean_absolute_error(true_labels, predicted_probs)
+    >>> gerçek_etiketler = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> tahmin_olasılıkları = np.array([0.3, 0.8, 0.9, 5.2])
+    >>> ortalama_mutlak_hata(gerçek_etiketler, tahmin_olasılıkları)
     Traceback (most recent call last):
     ...
     ValueError: Giriş dizilerinin aynı uzunlukta olması gerekir.
@@ -394,7 +394,7 @@ def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     return np.mean(abs(y_true - y_pred))
 
 
-def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+def ortalama_kare_logaritmik_hata(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
     Gerçek değerler ve tahmin edilen değerler arasındaki ortalama kare logaritmik hata (MSLE) kaybını hesaplayın.
 
@@ -410,13 +410,13 @@ def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
     - y_true: Gerçek değerler (gerçek değerler)
     - y_pred: Tahmin edilen değerler
 
-    >>> true_values = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
-    >>> predicted_values = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
-    >>> float(mean_squared_logarithmic_error(true_values, predicted_values))
+    >>> gerçek_değerler = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> tahmin_edilen_değerler = np.array([0.8, 2.1, 2.9, 4.2, 5.2])
+    >>> float(ortalama_kare_logaritmik_hata(gerçek_değerler, tahmin_edilen_değerler))
     0.0030860877925181344
-    >>> true_labels = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
-    >>> predicted_probs = np.array([0.3, 0.8, 0.9, 0.2])
-    >>> mean_squared_logarithmic_error(true_labels, predicted_probs)
+    >>> gerçek_etiketler = np.array([1.0, 2.0, 3.0, 4.0, 5.0])
+    >>> tahmin_olasılıkları = np.array([0.3, 0.8, 0.9, 0.2])
+    >>> ortalama_kare_logaritmik_hata(gerçek_etiketler, tahmin_olasılıkları)
     Traceback (most recent call last):
     ...
     ValueError: Giriş dizilerinin aynı uzunlukta olması gerekir.
@@ -424,11 +424,11 @@ def mean_squared_logarithmic_error(y_true: np.ndarray, y_pred: np.ndarray) -> fl
     if len(y_true) != len(y_pred):
         raise ValueError("Giriş dizilerinin aynı uzunlukta olması gerekir.")
 
-    squared_logarithmic_errors = (np.log1p(y_true) - np.log1p(y_pred)) ** 2
-    return np.mean(squared_logarithmic_errors)
+    kare_logaritmik_hatalar = (np.log1p(y_true) - np.log1p(y_pred)) ** 2
+    return np.mean(kare_logaritmik_hatalar)
 
 
-def mean_absolute_percentage_error(
+def ortalama_mutlak_yüzde_hata(
     y_true: np.ndarray, y_pred: np.ndarray, epsilon: float = 1e-15
 ) -> float:
     """

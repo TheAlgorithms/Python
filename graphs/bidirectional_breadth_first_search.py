@@ -1,16 +1,18 @@
 """
-https://en.wikipedia.org/wiki/Bidirectional_search
+https://tr.wikipedia.org/wiki/Çift_yönlü_arama
 """
 
 from __future__ import annotations
 
 import time
 
+# Yazar: K. Umut Araz (https://github.com/arazumut)
+
 Path = list[tuple[int, int]]
 
 grid = [
     [0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 0, 0],  # 0 are free path whereas 1's are obstacles
+    [0, 1, 0, 0, 0, 0, 0],  # 0 serbest yol, 1 engel
     [0, 0, 0, 0, 0, 0, 0],
     [0, 0, 1, 0, 0, 0, 0],
     [1, 0, 1, 0, 0, 0, 0],
@@ -18,7 +20,7 @@ grid = [
     [0, 0, 0, 0, 1, 0, 0],
 ]
 
-delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # up, left, down, right
+delta = [[-1, 0], [0, -1], [1, 0], [0, 1]]  # yukarı, sol, aşağı, sağ
 
 
 class Node:
@@ -35,8 +37,8 @@ class Node:
 
 class BreadthFirstSearch:
     """
-    # Comment out slow pytests...
-    # 9.15s call     graphs/bidirectional_breadth_first_search.py:: \
+    # Yavaş pytests'leri yorum satırı yap...
+    # 9.15s çağrı     graphs/bidirectional_breadth_first_search.py:: \
     #                graphs.bidirectional_breadth_first_search.BreadthFirstSearch
     # >>> bfs = BreadthFirstSearch((0, 0), (len(grid) - 1, len(grid[0]) - 1))
     # >>> (bfs.start.pos_y + delta[3][0], bfs.start.pos_x + delta[3][1])
@@ -78,9 +80,9 @@ class BreadthFirstSearch:
 
     def get_successors(self, parent: Node) -> list[Node]:
         """
-        Returns a list of successors (both in the grid and free spaces)
+        Haleflerin listesini döndürür (hem gridde hem de serbest alanlarda)
         """
-        successors = []
+        halefler = []
         for action in delta:
             pos_x = parent.pos_x + action[1]
             pos_y = parent.pos_y + action[0]
@@ -90,14 +92,14 @@ class BreadthFirstSearch:
             if grid[pos_y][pos_x] != 0:
                 continue
 
-            successors.append(
+            halefler.append(
                 Node(pos_x, pos_y, self.target.pos_y, self.target.pos_x, parent)
             )
-        return successors
+        return halefler
 
     def retrace_path(self, node: Node | None) -> Path:
         """
-        Retrace the path from parents to parents until start node
+        Başlangıç düğümüne kadar ebeveynlerden yolu geri izler
         """
         current_node = node
         path = []
@@ -141,13 +143,13 @@ class BidirectionalBreadthFirstSearch:
             self.fwd_bfs.target = current_bwd_node
             self.bwd_bfs.target = current_fwd_node
 
-            successors = {
+            halefler = {
                 self.fwd_bfs: self.fwd_bfs.get_successors(current_fwd_node),
                 self.bwd_bfs: self.bwd_bfs.get_successors(current_bwd_node),
             }
 
             for bfs in [self.fwd_bfs, self.bwd_bfs]:
-                for node in successors[bfs]:
+                for node in halefler[bfs]:
                     bfs.node_queue.append(node)
 
         if not self.reached:
@@ -164,7 +166,7 @@ class BidirectionalBreadthFirstSearch:
 
 
 if __name__ == "__main__":
-    # all coordinates are given in format [y,x]
+    # tüm koordinatlar [y,x] formatında verilir
     import doctest
 
     doctest.testmod()
@@ -178,11 +180,11 @@ if __name__ == "__main__":
     path = bfs.search()
     bfs_time = time.time() - start_bfs_time
 
-    print("Unidirectional BFS computation time : ", bfs_time)
+    print("Tek yönlü BFS hesaplama süresi : ", bfs_time)
 
     start_bd_bfs_time = time.time()
     bd_bfs = BidirectionalBreadthFirstSearch(init, goal)
     bd_path = bd_bfs.search()
     bd_bfs_time = time.time() - start_bd_bfs_time
 
-    print("Bidirectional BFS computation time : ", bd_bfs_time)
+    print("Çift yönlü BFS hesaplama süresi : ", bd_bfs_time)

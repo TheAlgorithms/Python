@@ -1,39 +1,39 @@
 """
-In this problem, we want to determine all possible permutations
-of the given sequence. We use backtracking to solve this problem.
+Bu problemde, verilen dizinin tüm olası permütasyonlarını belirlemek istiyoruz.
+Bu problemi çözmek için geri izleme (backtracking) kullanıyoruz.
 
-Time complexity: O(n! * n),
-where n denotes the length of the given sequence.
+Zaman karmaşıklığı: O(n! * n),
+burada n, verilen dizinin uzunluğunu belirtir.
 """
 
 from __future__ import annotations
 
 
-def generate_all_permutations(sequence: list[int | str]) -> None:
-    create_state_space_tree(sequence, [], 0, [0 for i in range(len(sequence))])
+def tüm_permütasyonları_oluştur(dizi: list[int | str]) -> None:
+    durum_uzayı_ağacı_oluştur(dizi, [], 0, [0 for i in range(len(dizi))])
 
 
-def create_state_space_tree(
-    sequence: list[int | str],
-    current_sequence: list[int | str],
-    index: int,
-    index_used: list[int],
+def durum_uzayı_ağacı_oluştur(
+    dizi: list[int | str],
+    mevcut_dizi: list[int | str],
+    indeks: int,
+    indeks_kullanıldı: list[int],
 ) -> None:
     """
-    Creates a state space tree to iterate through each branch using DFS.
-    We know that each state has exactly len(sequence) - index children.
-    It terminates when it reaches the end of the given sequence.
+    Her dalı DFS kullanarak yinelemek için bir durum uzayı ağacı oluşturur.
+    Her durumun tam olarak len(dizi) - indeks çocuğu olduğunu biliyoruz.
+    Verilen dizinin sonuna ulaştığında sona erer.
 
-    :param sequence: The input sequence for which permutations are generated.
-    :param current_sequence: The current permutation being built.
-    :param index: The current index in the sequence.
-    :param index_used: list to track which elements are used in permutation.
+    :param dizi: Permütasyonların oluşturulduğu giriş dizisi.
+    :param mevcut_dizi: Oluşturulan mevcut permütasyon.
+    :param indeks: Dizideki mevcut indeks.
+    :param indeks_kullanıldı: Permütasyonda hangi elemanların kullanıldığını izlemek için liste.
 
-    Example 1:
-    >>> sequence = [1, 2, 3]
-    >>> current_sequence = []
-    >>> index_used = [False, False, False]
-    >>> create_state_space_tree(sequence, current_sequence, 0, index_used)
+    Örnek 1:
+    >>> dizi = [1, 2, 3]
+    >>> mevcut_dizi = []
+    >>> indeks_kullanıldı = [False, False, False]
+    >>> durum_uzayı_ağacı_oluştur(dizi, mevcut_dizi, 0, indeks_kullanıldı)
     [1, 2, 3]
     [1, 3, 2]
     [2, 1, 3]
@@ -41,11 +41,11 @@ def create_state_space_tree(
     [3, 1, 2]
     [3, 2, 1]
 
-    Example 2:
-    >>> sequence = ["A", "B", "C"]
-    >>> current_sequence = []
-    >>> index_used = [False, False, False]
-    >>> create_state_space_tree(sequence, current_sequence, 0, index_used)
+    Örnek 2:
+    >>> dizi = ["A", "B", "C"]
+    >>> mevcut_dizi = []
+    >>> indeks_kullanıldı = [False, False, False]
+    >>> durum_uzayı_ağacı_oluştur(dizi, mevcut_dizi, 0, indeks_kullanıldı)
     ['A', 'B', 'C']
     ['A', 'C', 'B']
     ['B', 'A', 'C']
@@ -53,36 +53,36 @@ def create_state_space_tree(
     ['C', 'A', 'B']
     ['C', 'B', 'A']
 
-    Example 3:
-    >>> sequence = [1]
-    >>> current_sequence = []
-    >>> index_used = [False]
-    >>> create_state_space_tree(sequence, current_sequence, 0, index_used)
+    Örnek 3:
+    >>> dizi = [1]
+    >>> mevcut_dizi = []
+    >>> indeks_kullanıldı = [False]
+    >>> durum_uzayı_ağacı_oluştur(dizi, mevcut_dizi, 0, indeks_kullanıldı)
     [1]
     """
 
-    if index == len(sequence):
-        print(current_sequence)
+    if indeks == len(dizi):
+        print(mevcut_dizi)
         return
 
-    for i in range(len(sequence)):
-        if not index_used[i]:
-            current_sequence.append(sequence[i])
-            index_used[i] = True
-            create_state_space_tree(sequence, current_sequence, index + 1, index_used)
-            current_sequence.pop()
-            index_used[i] = False
+    for i in range(len(dizi)):
+        if not indeks_kullanıldı[i]:
+            mevcut_dizi.append(dizi[i])
+            indeks_kullanıldı[i] = True
+            durum_uzayı_ağacı_oluştur(dizi, mevcut_dizi, indeks + 1, indeks_kullanıldı)
+            mevcut_dizi.pop()
+            indeks_kullanıldı[i] = False
 
 
 """
-remove the comment to take an input from the user
+Kullanıcıdan giriş almak için yorumu kaldırın
 
-print("Enter the elements")
-sequence = list(map(int, input().split()))
+print("Elemanları girin")
+dizi = list(map(int, input().split()))
 """
 
-sequence: list[int | str] = [3, 1, 2, 4]
-generate_all_permutations(sequence)
+dizi: list[int | str] = [3, 1, 2, 4]
+tüm_permütasyonları_oluştur(dizi)
 
-sequence_2: list[int | str] = ["A", "B", "C"]
-generate_all_permutations(sequence_2)
+dizi_2: list[int | str] = ["A", "B", "C"]
+tüm_permütasyonları_oluştur(dizi_2)

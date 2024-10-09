@@ -1,22 +1,24 @@
 #!/bin/bash
 
-# List all open pull requests
+# Organiser: K. Umut Araz
+
+# Açık pull request'leri listele
 prs=$(gh pr list --state open --json number,title,labels --limit 500)
 
-# Loop through each pull request
+# Her bir pull request üzerinde döngü
 echo "$prs" | jq -c '.[]' | while read -r pr; do
-  pr_number=$(echo "$pr" | jq -r '.number')
-  pr_title=$(echo "$pr" | jq -r '.title')
-  pr_labels=$(echo "$pr" | jq -r '.labels')
+  pr_numara=$(echo "$pr" | jq -r '.number')
+  pr_baslik=$(echo "$pr" | jq -r '.title')
+  pr_etiketler=$(echo "$pr" | jq -r '.labels')
 
-  # Check if the "tests are failing" label is present
-  tests_are_failing=$(echo "$pr_labels" | jq -r '.[] | select(.name == "tests are failing")')
-  echo "Checking PR #$pr_number $pr_title ($tests_are_failing) ($pr_labels)"
+  # "tests are failing" etiketinin mevcut olup olmadığını kontrol et
+  testler_basarisiz=$(echo "$pr_etiketler" | jq -r '.[] | select(.name == "tests are failing")')
+  echo "Kontrol ediliyor PR #$pr_numara: $pr_baslik ($testler_basarisiz) ($pr_etiketler)"
 
-  # If there are failing tests, close the pull request
-  if [[ -n "$tests_are_failing" ]]; then
-    echo "Closing PR #$pr_number $pr_title due to tests_are_failing label"
-    gh pr close "$pr_number" --comment "Closing tests_are_failing PRs to prepare for Hacktoberfest"
+  # Eğer testler başarısızsa, pull request'i kapat
+  if [[ -n "$testler_basarisiz" ]]; then    
+    echo "Kapatılıyor PR #$pr_numara: $pr_baslik 'tests are failing' etiketi nedeniyle"
+    gh pr close "$pr_numara" --comment "'tests are failing' etiketi nedeniyle kapatılıyor"
     sleep 2
   fi
 done

@@ -1,25 +1,34 @@
 from collections import deque
 
+"""
+MLFQ (Çok Seviyeli Geri Bildirim Kuyruğu)
+https://en.wikipedia.org/wiki/Multilevel_feedback_queue
+MLFQ, birden fazla kuyruk içerir ve her kuyruk farklı önceliklere sahiptir.
+
+Organizatör: K. Umut Araz
+Github: https://github.com/arazumut
+"""
+
+
 
 class Process:
     def __init__(self, process_name: str, arrival_time: int, burst_time: int) -> None:
-        self.process_name = process_name  # process name
-        self.arrival_time = arrival_time  # arrival time of the process
-        # completion time of finished process or last interrupted time
-        self.stop_time = arrival_time
-        self.burst_time = burst_time  # remaining burst time
-        self.waiting_time = 0  # total time of the process wait in ready queue
-        self.turnaround_time = 0  # time from arrival time to completion time
+        self.process_name = process_name  # Sürecin adı
+        self.arrival_time = arrival_time  # Sürecin varış zamanı
+        self.stop_time = arrival_time  # Sürecin tamamlanma zamanı veya son kesinti zamanı
+        self.burst_time = burst_time  # Kalan işlem süresi
+        self.waiting_time = 0  # Sürecin hazır kuyruğunda bekleme süresi
+        self.turnaround_time = 0  # Varış zamanından tamamlanma zamanına kadar geçen süre
 
 
 class MLFQ:
     """
-    MLFQ(Multi Level Feedback Queue)
+    MLFQ (Çok Seviyeli Geri Bildirim Kuyruğu)
     https://en.wikipedia.org/wiki/Multilevel_feedback_queue
-    MLFQ has a lot of queues that have different priority
-    In this MLFQ,
-    The first Queue(0) to last second Queue(N-2) of MLFQ have Round Robin Algorithm
-    The last Queue(N-1) has First Come, First Served Algorithm
+    MLFQ, farklı önceliklere sahip birçok kuyruk içerir.
+    Bu MLFQ'de,
+    İlk Kuyruk (0) ile son ikinci Kuyruk (N-2) arasında Yuvarlak Robin Algoritması uygulanır.
+    Son Kuyruk (N-1) ise İlk Gelen İlk Hizmet (FCFS) algoritmasını kullanır.
     """
 
     def __init__(
@@ -29,20 +38,15 @@ class MLFQ:
         queue: deque[Process],
         current_time: int,
     ) -> None:
-        # total number of mlfq's queues
-        self.number_of_queues = number_of_queues
-        # time slice of queues that round robin algorithm applied
-        self.time_slices = time_slices
-        # unfinished process is in this ready_queue
-        self.ready_queue = queue
-        # current time
-        self.current_time = current_time
-        # finished process is in this sequence queue
-        self.finish_queue: deque[Process] = deque()
+        self.number_of_queues = number_of_queues  # MLFQ'nin toplam kuyruk sayısı
+        self.time_slices = time_slices  # Yuvarlak Robin algoritmasının uygulandığı kuyrukların zaman dilimleri
+        self.ready_queue = queue  # Tamamlanmamış süreçlerin bulunduğu hazır kuyruk
+        self.current_time = current_time  # Mevcut zaman
+        self.finish_queue: deque[Process] = deque()  # Tamamlanan süreçlerin bulunduğu kuyruk
 
     def calculate_sequence_of_finish_queue(self) -> list[str]:
         """
-        This method returns the sequence of finished processes
+        Bu metod, tamamlanan süreçlerin sırasını döndürür.
         >>> P1 = Process("P1", 0, 53)
         >>> P2 = Process("P2", 0, 17)
         >>> P3 = Process("P3", 0, 68)
@@ -52,14 +56,11 @@ class MLFQ:
         >>> mlfq.calculate_sequence_of_finish_queue()
         ['P2', 'P4', 'P1', 'P3']
         """
-        sequence = []
-        for i in range(len(self.finish_queue)):
-            sequence.append(self.finish_queue[i].process_name)
-        return sequence
+        return [process.process_name for process in self.finish_queue]
 
     def calculate_waiting_time(self, queue: list[Process]) -> list[int]:
         """
-        This method calculates waiting time of processes
+        Bu metod, süreçlerin bekleme sürelerini hesaplar.
         >>> P1 = Process("P1", 0, 53)
         >>> P2 = Process("P2", 0, 17)
         >>> P3 = Process("P3", 0, 68)
@@ -69,14 +70,11 @@ class MLFQ:
         >>> mlfq.calculate_waiting_time([P1, P2, P3, P4])
         [83, 17, 94, 101]
         """
-        waiting_times = []
-        for i in range(len(queue)):
-            waiting_times.append(queue[i].waiting_time)
-        return waiting_times
+        return [process.waiting_time for process in queue]
 
     def calculate_turnaround_time(self, queue: list[Process]) -> list[int]:
         """
-        This method calculates turnaround time of processes
+        Bu metod, süreçlerin dönüş sürelerini hesaplar.
         >>> P1 = Process("P1", 0, 53)
         >>> P2 = Process("P2", 0, 17)
         >>> P3 = Process("P3", 0, 68)
@@ -86,33 +84,27 @@ class MLFQ:
         >>> mlfq.calculate_turnaround_time([P1, P2, P3, P4])
         [136, 34, 162, 125]
         """
-        turnaround_times = []
-        for i in range(len(queue)):
-            turnaround_times.append(queue[i].turnaround_time)
-        return turnaround_times
+        return [process.turnaround_time for process in queue]
 
     def calculate_completion_time(self, queue: list[Process]) -> list[int]:
         """
-        This method calculates completion time of processes
+        Bu metod, süreçlerin tamamlanma sürelerini hesaplar.
         >>> P1 = Process("P1", 0, 53)
         >>> P2 = Process("P2", 0, 17)
         >>> P3 = Process("P3", 0, 68)
         >>> P4 = Process("P4", 0, 24)
         >>> mlfq = MLFQ(3, [17, 25], deque([P1, P2, P3, P4]), 0)
         >>> _ = mlfq.multi_level_feedback_queue()
-        >>> mlfq.calculate_turnaround_time([P1, P2, P3, P4])
+        >>> mlfq.calculate_completion_time([P1, P2, P3, P4])
         [136, 34, 162, 125]
         """
-        completion_times = []
-        for i in range(len(queue)):
-            completion_times.append(queue[i].stop_time)
-        return completion_times
+        return [process.stop_time for process in queue]
 
     def calculate_remaining_burst_time_of_processes(
         self, queue: deque[Process]
     ) -> list[int]:
         """
-        This method calculate remaining burst time of processes
+        Bu metod, süreçlerin kalan işlem sürelerini hesaplar.
         >>> P1 = Process("P1", 0, 53)
         >>> P2 = Process("P2", 0, 17)
         >>> P3 = Process("P3", 0, 68)
@@ -129,11 +121,11 @@ class MLFQ:
         >>> mlfq.calculate_remaining_burst_time_of_processes(ready_queue)
         [11, 26]
         """
-        return [q.burst_time for q in queue]
+        return [process.burst_time for process in queue]
 
     def update_waiting_time(self, process: Process) -> int:
         """
-        This method updates waiting times of unfinished processes
+        Bu metod, tamamlanmamış süreçlerin bekleme sürelerini günceller.
         >>> P1 = Process("P1", 0, 53)
         >>> P2 = Process("P2", 0, 17)
         >>> P3 = Process("P3", 0, 68)
@@ -149,9 +141,9 @@ class MLFQ:
 
     def first_come_first_served(self, ready_queue: deque[Process]) -> deque[Process]:
         """
-        FCFS(First Come, First Served)
-        FCFS will be applied to MLFQ's last queue
-        A first came process will be finished at first
+        FCFS (İlk Gelen İlk Hizmet)
+        FCFS, MLFQ'nin son kuyruğuna uygulanacaktır.
+        İlk gelen süreç, ilk olarak tamamlanacaktır.
         >>> P1 = Process("P1", 0, 53)
         >>> P2 = Process("P2", 0, 17)
         >>> P3 = Process("P3", 0, 68)
@@ -161,39 +153,38 @@ class MLFQ:
         >>> mlfq.calculate_sequence_of_finish_queue()
         ['P1', 'P2', 'P3', 'P4']
         """
-        finished: deque[Process] = deque()  # sequence deque of finished process
-        while len(ready_queue) != 0:
-            cp = ready_queue.popleft()  # current process
+        finished: deque[Process] = deque()  # Tamamlanan süreçlerin sıralı kuyruğu
+        while ready_queue:
+            cp = ready_queue.popleft()  # Mevcut süreç
 
-            # if process's arrival time is later than current time, update current time
+            # Sürecin varış zamanı mevcut zamandan sonra ise, mevcut zamanı güncelle
             if self.current_time < cp.arrival_time:
-                self.current_time += cp.arrival_time
+                self.current_time = cp.arrival_time
 
-            # update waiting time of current process
+            # Mevcut sürecin bekleme zamanını güncelle
             self.update_waiting_time(cp)
-            # update current time
+            # Mevcut zamanı güncelle
             self.current_time += cp.burst_time
-            # finish the process and set the process's burst-time 0
+            # Süreci tamamla ve sürecin işlem süresini 0 olarak ayarla
             cp.burst_time = 0
-            # set the process's turnaround time because it is finished
+            # Sürecin dönüş zamanını ayarla çünkü tamamlandı
             cp.turnaround_time = self.current_time - cp.arrival_time
-            # set the completion time
+            # Tamamlanma zamanını ayarla
             cp.stop_time = self.current_time
-            # add the process to queue that has finished queue
+            # Süreci tamamlanan süreçler kuyruğuna ekle
             finished.append(cp)
 
-        self.finish_queue.extend(finished)  # add finished process to finish queue
-        # FCFS will finish all remaining processes
-        return finished
+        self.finish_queue.extend(finished)  # Tamamlanan süreçleri bitiş kuyruğuna ekle
+        return finished  # FCFS, tüm kalan süreçleri tamamlayacaktır
 
     def round_robin(
         self, ready_queue: deque[Process], time_slice: int
     ) -> tuple[deque[Process], deque[Process]]:
         """
-        RR(Round Robin)
-        RR will be applied to MLFQ's all queues except last queue
-        All processes can't use CPU for time more than time_slice
-        If the process consume CPU up to time_slice, it will go back to ready queue
+        RR (Yuvarlak Robin)
+        RR, MLFQ'nin son kuyruğu hariç tüm kuyruklarına uygulanacaktır.
+        Tüm süreçler, zaman diliminden daha fazla CPU kullanamaz.
+        Süreç zaman dilimini tüketirse, hazır kuyruğa geri dönecektir.
         >>> P1 = Process("P1", 0, 53)
         >>> P2 = Process("P2", 0, 17)
         >>> P3 = Process("P3", 0, 68)
@@ -203,46 +194,44 @@ class MLFQ:
         >>> mlfq.calculate_sequence_of_finish_queue()
         ['P2']
         """
-        finished: deque[Process] = deque()  # sequence deque of terminated process
-        # just for 1 cycle and unfinished processes will go back to queue
-        for _ in range(len(ready_queue)):
-            cp = ready_queue.popleft()  # current process
+        finished: deque[Process] = deque()  # Tamamlanan süreçlerin sıralı kuyruğu
+        for _ in range(len(ready_queue)):  # Sadece 1 döngü için ve tamamlanmamış süreçler kuyruğa geri dönecek
+            cp = ready_queue.popleft()  # Mevcut süreç
 
-            # if process's arrival time is later than current time, update current time
+            # Sürecin varış zamanı mevcut zamandan sonra ise, mevcut zamanı güncelle
             if self.current_time < cp.arrival_time:
-                self.current_time += cp.arrival_time
+                self.current_time = cp.arrival_time
 
-            # update waiting time of unfinished processes
+            # Tamamlanmamış süreçlerin bekleme zamanını güncelle
             self.update_waiting_time(cp)
-            # if the burst time of process is bigger than time-slice
+            # Sürecin işlem süresi zaman diliminden büyükse
             if cp.burst_time > time_slice:
-                # use CPU for only time-slice
+                # CPU'yu sadece zaman dilimi kadar kullan
                 self.current_time += time_slice
-                # update remaining burst time
+                # Kalan işlem süresini güncelle
                 cp.burst_time -= time_slice
-                # update end point time
+                # Bitiş zamanını güncelle
                 cp.stop_time = self.current_time
-                # locate the process behind the queue because it is not finished
+                # Süreci kuyruğun arkasına yerleştir çünkü tamamlanmadı
                 ready_queue.append(cp)
             else:
-                # use CPU for remaining burst time
+                # CPU'yu kalan işlem süresi kadar kullan
                 self.current_time += cp.burst_time
-                # set burst time 0 because the process is finished
+                # Sürecin işlem süresini 0 olarak ayarla çünkü tamamlandı
                 cp.burst_time = 0
-                # set the finish time
+                # Bitiş zamanını ayarla
                 cp.stop_time = self.current_time
-                # update the process' turnaround time because it is finished
+                # Sürecin dönüş zamanını güncelle çünkü tamamlandı
                 cp.turnaround_time = self.current_time - cp.arrival_time
-                # add the process to queue that has finished queue
+                # Süreci tamamlanan süreçler kuyruğuna ekle
                 finished.append(cp)
 
-        self.finish_queue.extend(finished)  # add finished process to finish queue
-        # return finished processes queue and remaining processes queue
-        return finished, ready_queue
+        self.finish_queue.extend(finished)  # Tamamlanan süreçleri bitiş kuyruğuna ekle
+        return finished, ready_queue  # Tamamlanan süreçler kuyruğunu ve kalan süreçler kuyruğunu döndür
 
     def multi_level_feedback_queue(self) -> deque[Process]:
         """
-        MLFQ(Multi Level Feedback Queue)
+        MLFQ (Çok Seviyeli Geri Bildirim Kuyruğu)
         >>> P1 = Process("P1", 0, 53)
         >>> P2 = Process("P2", 0, 17)
         >>> P3 = Process("P3", 0, 68)
@@ -253,12 +242,12 @@ class MLFQ:
         ['P2', 'P4', 'P1', 'P3']
         """
 
-        #  all queues except last one have round_robin algorithm
+        # Son kuyruk hariç tüm kuyruklar yuvarlak robin algoritmasını kullanır
         for i in range(self.number_of_queues - 1):
             finished, self.ready_queue = self.round_robin(
                 self.ready_queue, self.time_slices[i]
             )
-        #  the last queue has first_come_first_served algorithm
+        # Son kuyruk, ilk gelen ilk hizmet algoritmasını kullanır
         self.first_come_first_served(self.ready_queue)
 
         return self.finish_queue
@@ -280,33 +269,26 @@ if __name__ == "__main__":
 
     doctest.testmod(extraglobs={"queue": deque([P1, P2, P3, P4])})
 
-    P1 = Process("P1", 0, 53)
-    P2 = Process("P2", 0, 17)
-    P3 = Process("P3", 0, 68)
-    P4 = Process("P4", 0, 24)
-    number_of_queues = 3
-    time_slices = [17, 25]
-    queue = deque([P1, P2, P3, P4])
     mlfq = MLFQ(number_of_queues, time_slices, queue, 0)
     finish_queue = mlfq.multi_level_feedback_queue()
 
-    # print total waiting times of processes(P1, P2, P3, P4)
+    # Süreçlerin toplam bekleme sürelerini yazdır
     print(
-        f"waiting time:\
-        \t\t\t{MLFQ.calculate_waiting_time(mlfq, [P1, P2, P3, P4])}"
+        f"Bekleme süresi:\
+        \t\t\t{mlfq.calculate_waiting_time([P1, P2, P3, P4])}"
     )
-    # print completion times of processes(P1, P2, P3, P4)
+    # Süreçlerin tamamlanma sürelerini yazdır
     print(
-        f"completion time:\
-        \t\t{MLFQ.calculate_completion_time(mlfq, [P1, P2, P3, P4])}"
+        f"Tamamlanma süresi:\
+        \t\t{mlfq.calculate_completion_time([P1, P2, P3, P4])}"
     )
-    # print total turnaround times of processes(P1, P2, P3, P4)
+    # Süreçlerin toplam dönüş sürelerini yazdır
     print(
-        f"turnaround time:\
-        \t\t{MLFQ.calculate_turnaround_time(mlfq, [P1, P2, P3, P4])}"
+        f"Dönüş süresi:\
+        \t\t{mlfq.calculate_turnaround_time([P1, P2, P3, P4])}"
     )
-    # print sequence of finished processes
+    # Tamamlanan süreçlerin sırasını yazdır
     print(
-        f"sequence of finished processes:\
+        f"Tamamlanan süreçlerin sırası:\
         {mlfq.calculate_sequence_of_finish_queue()}"
     )

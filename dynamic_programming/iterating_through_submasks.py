@@ -1,59 +1,60 @@
 """
-Author : Syed Faizan (3rd Year Student IIIT Pune)
+Yazar : Syed Faizan (3. Sınıf Öğrencisi IIIT Pune)
 github : faizan2700
-You are given a bitmask m and you want to efficiently iterate through all of
-its submasks. The mask s is submask of m if only bits that were included in
-bitmask are set
+Size bir bitmask m verilir ve tüm alt maskelerini verimli bir şekilde
+dolaşmak istersiniz. s maskesi, yalnızca bitmask'te yer alan bitlerin
+ayarlanmış olması durumunda m'nin alt maskesidir.
 """
 
 from __future__ import annotations
 
 
-def list_of_submasks(mask: int) -> list[int]:
+def alt_maskelerin_listesi(mask: int) -> list[int]:
     """
-    Args:
-        mask : number which shows mask ( always integer > 0, zero does not have any
-            submasks )
+    Argümanlar:
+        mask : maskeyi gösteren sayı (her zaman 0'dan büyük tamsayı, sıfırın
+            alt maskesi yoktur)
 
-    Returns:
-        all_submasks : the list of submasks of mask (mask s is called submask of mask
-        m if only bits that were included in original mask are set
+    Dönüş:
+        tüm_alt_maskeler : maskenin alt maskelerinin listesi (s maskesi, yalnızca
+        orijinal maskede yer alan bitlerin ayarlanmış olması durumunda m maskesinin
+        alt maskesi olarak adlandırılır)
 
-    Raises:
-        AssertionError: mask not positive integer
+    Hatalar:
+        AssertionError: maske pozitif tamsayı değil
 
-    >>> list_of_submasks(15)
+    >>> alt_maskelerin_listesi(15)
     [15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
-    >>> list_of_submasks(13)
+    >>> alt_maskelerin_listesi(13)
     [13, 12, 9, 8, 5, 4, 1]
-    >>> list_of_submasks(-7)  # doctest: +ELLIPSIS
+    >>> alt_maskelerin_listesi(-7)  # doctest: +ELLIPSIS
     Traceback (most recent call last):
         ...
-    AssertionError: mask needs to be positive integer, your input -7
-    >>> list_of_submasks(0)  # doctest: +ELLIPSIS
+    AssertionError: mas maske pozitif tamsayı olmalı, girdiniz -7
+    >>> alt_maskelerin_listesi(0)  # doctest: +ELLIPSIS
     Traceback (most recent call last):
         ...
-    AssertionError: mask needs to be positive integer, your input 0
+    AssertionError: mas maske pozitif tamsayı olmalı, girdiniz 0
 
     """
 
     assert (
         isinstance(mask, int) and mask > 0
-    ), f"mask needs to be positive integer, your input {mask}"
+    ), f"maske pozitif tamsayı olmalı, girdiniz {mask}"
 
     """
-    first submask iterated will be mask itself then operation will be performed
-    to get other submasks till we reach empty submask that is zero ( zero is not
-    included in final submasks list )
+    ilk alt maske maskenin kendisi olacaktır, ardından diğer alt maskeleri
+    elde etmek için işlem yapılacaktır, sıfıra ulaşana kadar (sıfır nihai
+    alt maskeler listesine dahil edilmez)
     """
-    all_submasks = []
-    submask = mask
+    tüm_alt_maskeler = []
+    alt_maske = mask
 
-    while submask:
-        all_submasks.append(submask)
-        submask = (submask - 1) & mask
+    while alt_maske:
+        tüm_alt_maskeler.append(alt_maske)
+        alt_maske = (alt_maske - 1) & mask
 
-    return all_submasks
+    return tüm_alt_maskeler
 
 
 if __name__ == "__main__":

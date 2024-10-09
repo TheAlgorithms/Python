@@ -1,66 +1,62 @@
 """
-The sum-of-subsetsproblem states that a set of non-negative integers, and a
-value M, determine all possible subsets of the given set whose summation sum
-equal to given M.
+Alt kümelerin toplamı problemi, negatif olmayan tamsayılar kümesi ve bir M değeri verildiğinde,
+verilen kümenin toplamı verilen M'ye eşit olan tüm olası alt kümelerini belirler.
 
-Summation of the chosen numbers must be equal to given number M and one number
-can be used only once.
+Seçilen sayıların toplamı verilen M sayısına eşit olmalıdır ve bir sayı yalnızca bir kez kullanılabilir.
 """
 
 from __future__ import annotations
 
 
-def generate_sum_of_subsets_soln(nums: list[int], max_sum: int) -> list[list[int]]:
-    result: list[list[int]] = []
-    path: list[int] = []
-    num_index = 0
-    remaining_nums_sum = sum(nums)
-    create_state_space_tree(nums, max_sum, num_index, path, result, remaining_nums_sum)
-    return result
+def alt_kümelerin_toplamını_üret(nums: list[int], max_sum: int) -> list[list[int]]:
+    sonuç: list[list[int]] = []
+    yol: list[int] = []
+    sayı_indeksi = 0
+    kalan_sayılar_toplamı = sum(nums)
+    durum_uzayı_ağacı_oluştur(nums, max_sum, sayı_indeksi, yol, sonuç, kalan_sayılar_toplamı)
+    return sonuç
 
 
-def create_state_space_tree(
+def durum_uzayı_ağacı_oluştur(
     nums: list[int],
     max_sum: int,
-    num_index: int,
-    path: list[int],
-    result: list[list[int]],
-    remaining_nums_sum: int,
+    sayı_indeksi: int,
+    yol: list[int],
+    sonuç: list[list[int]],
+    kalan_sayılar_toplamı: int,
 ) -> None:
     """
-    Creates a state space tree to iterate through each branch using DFS.
-    It terminates the branching of a node when any of the two conditions
-    given below satisfy.
-    This algorithm follows depth-fist-search and backtracks when the node is not
-    branchable.
+    DFS kullanarak her dalı yinelemek için bir durum uzayı ağacı oluşturur.
+    Aşağıdaki iki koşuldan herhangi biri sağlandığında bir düğümün dallanmasını sonlandırır.
+    Bu algoritma derinlik öncelikli arama (DFS) izler ve düğüm dallanabilir olmadığında geri izler.
 
     """
-    if sum(path) > max_sum or (remaining_nums_sum + sum(path)) < max_sum:
+    if sum(yol) > max_sum or (kalan_sayılar_toplamı + sum(yol)) < max_sum:
         return
-    if sum(path) == max_sum:
-        result.append(path)
+    if sum(yol) == max_sum:
+        sonuç.append(yol)
         return
-    for index in range(num_index, len(nums)):
-        create_state_space_tree(
+    for index in range(sayı_indeksi, len(nums)):
+        durum_uzayı_ağacı_oluştur(
             nums,
             max_sum,
             index + 1,
-            [*path, nums[index]],
-            result,
-            remaining_nums_sum - nums[index],
+            [*yol, nums[index]],
+            sonuç,
+            kalan_sayılar_toplamı - nums[index],
         )
 
 
 """
-remove the comment to take an input from the user
+Kullanıcıdan girdi almak için yorumu kaldırın
 
-print("Enter the elements")
+print("Elemanları girin")
 nums = list(map(int, input().split()))
-print("Enter max_sum sum")
+print("Maksimum toplamı girin")
 max_sum = int(input())
 
 """
 nums = [3, 34, 4, 12, 5, 2]
 max_sum = 9
-result = generate_sum_of_subsets_soln(nums, max_sum)
-print(*result)
+sonuç = alt_kümelerin_toplamını_üret(nums, max_sum)
+print(*sonuç)

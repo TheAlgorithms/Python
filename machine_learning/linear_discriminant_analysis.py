@@ -1,38 +1,40 @@
 """
-Linear Discriminant Analysis
+Doğrusal Ayrım Analizi
 
-Assumptions About Data:
-    1. The input variables have a Gaussian distribution.
-    2. The variance calculated for each input variable by class grouping is the same.
-    3. The mix of classes in your training set is representative of the problem.
+Veri Hakkında Varsayımlar:
+    1. Girdi değişkenlerinin bir Gauss dağılımı vardır.
+    2. Sınıf gruplaması ile hesaplanan her girdi değişkeninin varyansı aynıdır.
+    3. Eğitim setinizdeki sınıf karışımı, problemin temsilcisidir.
 
-Learning The Model:
-    The LDA model requires the estimation of statistics from the training data:
-        1. Mean of each input value for each class.
-        2. Probability of an instance belonging to each class.
-        3. Covariance for the input data for each class.
+    Organised to K. Umut Araz
 
-    Calculate the class means:
+Modeli Öğrenme:
+    LDA modeli, eğitim verilerinden istatistiklerin tahmin edilmesini gerektirir:
+        1. Her sınıf için her girdi değerinin ortalaması.
+        2. Bir örneğin her sınıfa ait olma olasılığı.
+        3. Her sınıf için girdi verilerinin kovaryansı.
+
+    Sınıf ortalamalarını hesaplayın:
         mean(x) = 1/n * sum(xi) for i = 1 to n
 
-    Calculate the class probabilities:
+    Sınıf olasılıklarını hesaplayın:
         P(y = 0) = count(y = 0) / (count(y = 0) + count(y = 1))
         P(y = 1) = count(y = 1) / (count(y = 0) + count(y = 1))
 
-    Calculate the variance:
-        We can calculate the variance for the dataset in two steps:
-            1. Calculate the squared difference for each input variable from the group mean.
-            2. Calculate the mean of the squared difference.
+    Varyansı hesaplayın:
+        Varyansı iki adımda hesaplayabiliriz:
+            1. Her girdi değişkeni için grup ortalamasından kare farkı hesaplayın.
+            2. Kare farkın ortalamasını hesaplayın.
             ------------------------------------------------
-            Squared_Difference = (x - mean(k)) ** 2
-            Variance = (1 / (count(x) - count(classes))) * sum(Squared_Difference(xi)) for i = 1 to n
+            Kare_Fark = (x - mean(k)) ** 2
+            Varyans = (1 / (count(x) - count(classes))) * sum(Kare_Fark(xi)) for i = 1 to n
 
-Making Predictions:
-    discriminant(x) = x * (mean / variance) - ((mean ** 2) / (2 * variance)) + ln(probability)
+Tahmin Yapma:
+    diskriminant(x) = x * (mean / varyans) - ((mean ** 2) / (2 * varyans)) + ln(olasılık)
     ---------------------------------------------------------------------------
-    After calculating the discriminant value for each class, the class with the largest discriminant value is taken as the prediction.
+    Her sınıf için diskriminant değeri hesaplandıktan sonra, en büyük diskriminant değerine sahip sınıf tahmin olarak alınır.
 
-Author: @EverLookNeverSee
+Yazar: @EverLookNeverSee
 """
 
 from collections.abc import Callable
@@ -42,16 +44,16 @@ from random import gauss, seed
 from typing import TypeVar
 
 
-# Make a training dataset drawn from a Gaussian distribution
-def gaussian_distribution(mean: float, std_dev: float, instance_count: int) -> list:
+# Gauss dağılımından alınan bir eğitim veri seti oluşturun
+def gauss_dagilimi(mean: float, std_dev: float, ornek_sayisi: int) -> list:
     """
-    Generate Gaussian distribution instances based on given mean and standard deviation.
-    :param mean: Mean value of class.
-    :param std_dev: Value of standard deviation entered by user or default value of it.
-    :param instance_count: Number of instances in class.
-    :return: A list containing generated values based on given mean, std_dev, and instance_count.
+    Verilen ortalama ve standart sapmaya göre Gauss dağılımı örnekleri oluşturun.
+    :param mean: Sınıfın ortalama değeri.
+    :param std_dev: Kullanıcı tarafından girilen veya varsayılan standart sapma değeri.
+    :param ornek_sayisi: Sınıftaki örnek sayısı.
+    :return: Verilen ortalama, std_dev ve ornek_sayısına göre oluşturulan değerleri içeren bir liste.
 
-    >>> gaussian_distribution(5.0, 1.0, 20) # doctest: +NORMALIZE_WHITESPACE
+    >>> gauss_dagilimi(5.0, 1.0, 20) # doctest: +NORMALIZE_WHITESPACE
     [6.288184753155463, 6.4494456086997705, 5.066335808938262, 4.235456349028368,
      3.9078267848958586, 5.031334516831717, 3.977896829989127, 3.56317055489747,
       5.199311976483754, 5.133374604658605, 5.546468300338232, 4.086029056264687,
@@ -59,102 +61,102 @@ def gaussian_distribution(mean: float, std_dev: float, instance_count: int) -> l
         5.320711100998849, 7.3891120432406865, 5.202969177309964, 4.855297691835079]
     """
     seed(1)
-    return [gauss(mean, std_dev) for _ in range(instance_count)]
+    return [gauss(mean, std_dev) for _ in range(ornek_sayisi)]
 
 
-# Make corresponding Y flags to detect classes
-def y_generator(class_count: int, instance_count: list) -> list:
+# Sınıfları tespit etmek için karşılık gelen Y bayraklarını oluşturun
+def y_olusturucu(sinif_sayisi: int, ornek_sayisi: list) -> list:
     """
-    Generate y values for corresponding classes.
-    :param class_count: Number of classes (data groupings) in dataset.
-    :param instance_count: Number of instances in class.
-    :return: Corresponding values for data groupings in dataset.
+    Karşılık gelen sınıflar için y değerleri oluşturun.
+    :param sinif_sayisi: Veri setindeki sınıf (veri gruplaması) sayısı.
+    :param ornek_sayisi: Sınıftaki örnek sayısı.
+    :return: Veri setindeki veri gruplamaları için karşılık gelen değerler.
 
-    >>> y_generator(1, [10])
+    >>> y_olusturucu(1, [10])
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    >>> y_generator(2, [5, 10])
+    >>> y_olusturucu(2, [5, 10])
     [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-    >>> y_generator(4, [10, 5, 15, 20]) # doctest: +NORMALIZE_WHITESPACE
+    >>> y_olusturucu(4, [10, 5, 15, 20]) # doctest: +NORMALIZE_WHITESPACE
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
      2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
     """
-    return [k for k in range(class_count) for _ in range(instance_count[k])]
+    return [k for k in range(sinif_sayisi) for _ in range(ornek_sayisi[k])]
 
 
-# Calculate the class means
-def calculate_mean(instance_count: int, items: list) -> float:
+# Sınıf ortalamalarını hesaplayın
+def ortalama_hesapla(ornek_sayisi: int, elemanlar: list) -> float:
     """
-    Calculate given class mean.
-    :param instance_count: Number of instances in class.
-    :param items: Items that are related to a specific class (data grouping).
-    :return: Calculated actual mean of the considered class.
+    Verilen sınıf ortalamasını hesaplayın.
+    :param ornek_sayisi: Sınıftaki örnek sayısı.
+    :param elemanlar: Belirli bir sınıfla (veri gruplaması) ilgili öğeler.
+    :return: İlgili sınıfın hesaplanan gerçek ortalaması.
 
-    >>> items = gaussian_distribution(5.0, 1.0, 20)
-    >>> calculate_mean(len(items), items)
+    >>> elemanlar = gauss_dagilimi(5.0, 1.0, 20)
+    >>> ortalama_hesapla(len(elemanlar), elemanlar)
     5.011267842911003
     """
-    # The sum of all items divided by the number of instances
-    return sum(items) / instance_count
+    # Tüm elemanların toplamı, örnek sayısına bölünür
+    return sum(elemanlar) / ornek_sayisi
 
 
-# Calculate the class probabilities
-def calculate_probabilities(instance_count: int, total_count: int) -> float:
+# Sınıf olasılıklarını hesaplayın
+def olasilik_hesapla(ornek_sayisi: int, toplam_sayi: int) -> float:
     """
-    Calculate the probability that a given instance will belong to which class.
-    :param instance_count: Number of instances in class.
-    :param total_count: The number of all instances.
-    :return: Value of probability for the considered class.
+    Verilen bir örneğin hangi sınıfa ait olacağını hesaplayın.
+    :param ornek_sayisi: Sınıftaki örnek sayısı.
+    :param toplam_sayi: Tüm örneklerin sayısı.
+    :return: İlgili sınıf için olasılık değeri.
 
-    >>> calculate_probabilities(20, 60)
+    >>> olasilik_hesapla(20, 60)
     0.3333333333333333
-    >>> calculate_probabilities(30, 100)
+    >>> olasilik_hesapla(30, 100)
     0.3
     """
-    # Number of instances in a specific class divided by the number of all instances
-    return instance_count / total_count
+    # Belirli bir sınıftaki örnek sayısı, tüm örneklerin sayısına bölünür
+    return ornek_sayisi / toplam_sayi
 
 
-# Calculate the variance
-def calculate_variance(items: list, means: list, total_count: int) -> float:
+# Varyansı hesaplayın
+def varyans_hesapla(elemanlar: list, ortalamalar: list, toplam_sayi: int) -> float:
     """
-    Calculate the variance.
-    :param items: A list containing all items (Gaussian distribution of all classes).
-    :param means: A list containing real mean values of each class.
-    :param total_count: The number of all instances.
-    :return: Calculated variance for the considered dataset.
+    Varyansı hesaplayın.
+    :param elemanlar: Tüm elemanları içeren bir liste (tüm sınıfların Gauss dağılımı).
+    :param ortalamalar: Her sınıfın gerçek ortalama değerlerini içeren bir liste.
+    :param toplam_sayi: Tüm örneklerin sayısı.
+    :return: İlgili veri seti için hesaplanan varyans.
 
-    >>> items = gaussian_distribution(5.0, 1.0, 20)
-    >>> means = [5.011267842911003]
-    >>> total_count = 20
-    >>> calculate_variance([items], means, total_count)
+    >>> elemanlar = gauss_dagilimi(5.0, 1.0, 20)
+    >>> ortalamalar = [5.011267842911003]
+    >>> toplam_sayi = 20
+    >>> varyans_hesapla([elemanlar], ortalamalar, toplam_sayi)
     0.9618530973487491
     """
-    squared_diff = []  # An empty list to store all squared differences
-    # Iterate over the number of elements in items
-    for i in range(len(items)):
-        # For loop iterates over the number of elements in the inner layer of items
-        for j in range(len(items[i])):
-            # Appending squared differences to 'squared_diff' list
-            squared_diff.append((items[i][j] - means[i]) ** 2)
+    kare_fark = []  # Tüm kare farkları depolamak için boş bir liste
+    # Elemanların içindeki eleman sayısı kadar döngü
+    for i in range(len(elemanlar)):
+        # Elemanların iç katmanındaki eleman sayısı kadar döngü
+        for j in range(len(elemanlar[i])):
+            # 'kare_fark' listesine kare farkları ekleme
+            kare_fark.append((elemanlar[i][j] - ortalamalar[i]) ** 2)
 
-    # One divided by (the number of all instances - number of classes) multiplied by
-    # sum of all squared differences
-    n_classes = len(means)  # Number of classes in dataset
-    return 1 / (total_count - n_classes) * sum(squared_diff)
+    # Tüm örneklerin sayısının (sınıf sayısı - 1) eksi biri ile çarpılması ve
+    # tüm kare farklarının toplamı
+    sinif_sayisi = len(ortalamalar)  # Veri setindeki sınıf sayısı
+    return 1 / (toplam_sayi - sinif_sayisi) * sum(kare_fark)
 
 
-# Making predictions
-def predict_y_values(
-    x_items: list, means: list, variance: float, probabilities: list
+# Tahmin yapma
+def y_degerlerini_tahmin_et(
+    x_elemanlar: list, ortalamalar: list, varyans: float, olasiliklar: list
 ) -> list:
-    """This function predicts new indexes (groups for our data).
-    :param x_items: A list containing all items (Gaussian distribution of all classes).
-    :param means: A list containing real mean values of each class.
-    :param variance: Calculated value of variance by calculate_variance function.
-    :param probabilities: A list containing all probabilities of classes.
-    :return: A list containing predicted Y values.
+    """Bu fonksiyon yeni indeksleri (veri gruplarını) tahmin eder.
+    :param x_elemanlar: Tüm elemanları içeren bir liste (tüm sınıfların Gauss dağılımı).
+    :param ortalamalar: Her sınıfın gerçek ortalama değerlerini içeren bir liste.
+    :param varyans: varyans_hesapla fonksiyonu tarafından hesaplanan varyans değeri.
+    :param olasiliklar: Tüm sınıfların olasılıklarını içeren bir liste.
+    :return: Tahmin edilen Y değerlerini içeren bir liste.
 
-    >>> x_items = [[6.288184753155463, 6.4494456086997705, 5.066335808938262,
+    >>> x_elemanlar = [[6.288184753155463, 6.4494456086997705, 5.066335808938262,
     ...                4.235456349028368, 3.9078267848958586, 5.031334516831717,
     ...                3.977896829989127, 3.56317055489747, 5.199311976483754,
     ...                5.133374604658605, 5.546468300338232, 4.086029056264687,
@@ -175,213 +177,213 @@ def predict_y_values(
     ...                13.494170998739259, 15.537997178661033, 15.320711100998848,
     ...                17.389112043240686, 15.202969177309964, 14.85529769183508]]
 
-    >>> means = [5.011267842911003, 10.011267842911003, 15.011267842911002]
-    >>> variance = 0.9618530973487494
-    >>> probabilities = [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]
-    >>> predict_y_values(x_items, means, variance,
-    ...                  probabilities)  # doctest: +NORMALIZE_WHITESPACE
+    >>> ortalamalar = [5.011267842911003, 10.011267842911003, 15.011267842911002]
+    >>> varyans = 0.9618530973487494
+    >>> olasiliklar = [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]
+    >>> y_degerlerini_tahmin_et(x_elemanlar, ortalamalar, varyans,
+    ...                  olasiliklar)  # doctest: +NORMALIZE_WHITESPACE
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
     2, 2, 2, 2, 2, 2, 2, 2, 2]
 
     """
-    # An empty list to store generated discriminant values of all items in dataset for each class
-    results = []
-    # For loop iterates over the number of elements in the list
-    for i in range(len(x_items)):
-        # For loop iterates over the number of inner items of each element
-        for j in range(len(x_items[i])):
-            temp = []  # To store all discriminant values of each item as a list
-            # For loop iterates over the number of classes we have in our dataset
-            for k in range(len(x_items)):
-                # Appending values of discriminants for each class to 'temp' list
+    # Veri setindeki her sınıf için oluşturulan diskriminant değerlerini depolamak için boş bir liste
+    sonuc = []
+    # Listenin eleman sayısı kadar döngü
+    for i in range(len(x_elemanlar)):
+        # Her elemanın içindeki eleman sayısı kadar döngü
+        for j in range(len(x_elemanlar[i])):
+            temp = []  # Her elemanın diskriminant değerlerini liste olarak depolamak için
+            # Veri setimizdeki sınıf sayısı kadar döngü
+            for k in range(len(x_elemanlar)):
+                # Her sınıf için diskriminant değerlerini 'temp' listesine ekleme
                 temp.append(
-                    x_items[i][j] * (means[k] / variance)
-                    - (means[k] ** 2 / (2 * variance))
-                    + log(probabilities[k])
+                    x_elemanlar[i][j] * (ortalamalar[k] / varyans)
+                    - (ortalamalar[k] ** 2 / (2 * varyans))
+                    + log(olasiliklar[k])
                 )
-            # Appending discriminant values of each item to 'results' list
-            results.append(temp)
+            # Her elemanın diskriminant değerlerini 'sonuc' listesine ekleme
+            sonuc.append(temp)
 
-    return [result.index(max(result)) for result in results]
+    return [sonuc.index(max(sonuc)) for sonuc in sonuc]
 
 
-# Calculating Accuracy
-def accuracy(actual_y: list, predicted_y: list) -> float:
+# Doğruluk Hesaplama
+def dogruluk(gercek_y: list, tahmin_y: list) -> float:
     """
-    Calculate the value of accuracy based on predictions.
-    :param actual_y: A list containing initial Y values generated by 'y_generator' function.
-    :param predicted_y: A list containing predicted Y values generated by 'predict_y_values' function.
-    :return: Percentage of accuracy.
+    Tahminlere dayalı olarak doğruluk değerini hesaplayın.
+    :param gercek_y: 'y_olusturucu' fonksiyonu tarafından oluşturulan başlangıç Y değerlerini içeren bir liste.
+    :param tahmin_y: 'y_degerlerini_tahmin_et' fonksiyonu tarafından oluşturulan tahmin edilen Y değerlerini içeren bir liste.
+    :return: Doğruluk yüzdesi.
 
-    >>> actual_y = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
+    >>> gercek_y = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
     ... 1, 1 ,1 ,1 ,1 ,1 ,1]
-    >>> predicted_y = [0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0,
+    >>> tahmin_y = [0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0,
     ... 0, 0, 1, 1, 1, 0, 1, 1, 1]
-    >>> accuracy(actual_y, predicted_y)
+    >>> dogruluk(gercek_y, tahmin_y)
     50.0
 
-    >>> actual_y = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
+    >>> gercek_y = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
     ... 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
-    >>> predicted_y = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1,
+    >>> tahmin_y = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1,
     ... 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
-    >>> accuracy(actual_y, predicted_y)
+    >>> dogruluk(gercek_y, tahmin_y)
     100.0
     """
-    # Iterate over one element of each list at a time (zip mode)
-    # Prediction is correct if actual Y value equals predicted Y value
-    correct = sum(1 for i, j in zip(actual_y, predicted_y) if i == j)
-    # Percentage of accuracy equals the number of correct predictions divided by the number of all data and multiplied by 100
-    return (correct / len(actual_y)) * 100
+    # Her seferinde bir eleman üzerinde yineleme (zip modu)
+    # Tahmin doğruysa gerçek Y değeri tahmin edilen Y değerine eşittir
+    dogru = sum(1 for i, j in zip(gercek_y, tahmin_y) if i == j)
+    # Doğruluk yüzdesi, doğru tahminlerin sayısının tüm verilerin sayısına bölünmesi ve 100 ile çarpılmasıdır
+    return (dogru / len(gercek_y)) * 100
 
 
 num = TypeVar("num")
 
 
-def valid_input(
-    input_type: Callable[[object], num],  # Usually float or int
-    input_msg: str,
-    err_msg: str,
-    condition: Callable[[num], bool] = lambda _: True,
-    default: str | None = None,
+def gecerli_girdi(
+    girdi_turu: Callable[[object], num],  # Genellikle float veya int
+    girdi_mesaji: str,
+    hata_mesaji: str,
+    kosul: Callable[[num], bool] = lambda _: True,
+    varsayilan: str | None = None,
 ) -> num:
     """
-    Ask for user value and validate that it fulfills a condition.
+    Kullanıcı değerini isteyin ve bir koşulu yerine getirdiğini doğrulayın.
 
-    :input_type: User input expected type of value.
-    :input_msg: Message to show user on the screen.
-    :err_msg: Message to show on the screen in case of error.
-    :condition: Function that represents the condition that user input is valid.
-    :default: Default value in case the user does not type anything.
-    :return: User's input.
+    :girdi_turu: Kullanıcı girdisinin beklenen değer türü.
+    :girdi_mesaji: Kullanıcıya ekranda gösterilecek mesaj.
+    :hata_mesaji: Hata durumunda ekranda gösterilecek mesaj.
+    :kosul: Kullanıcı girdisinin geçerli olduğunu temsil eden fonksiyon.
+    :varsayilan: Kullanıcı hiçbir şey yazmazsa varsayılan değer.
+    :return: Kullanıcının girdisi.
     """
     while True:
         try:
-            user_input = input_type(input(input_msg).strip() or default)
-            if condition(user_input):
-                return user_input
+            kullanici_girdisi = girdi_turu(input(girdi_mesaji).strip() or varsayilan)
+            if kosul(kullanici_girdisi):
+                return kullanici_girdisi
             else:
-                print(f"{user_input}: {err_msg}")
+                print(f"{kullanici_girdisi}: {hata_mesaji}")
                 continue
         except ValueError:
             print(
-                f"{user_input}: Incorrect input type, expected {input_type.__name__!r}"
+                f"{kullanici_girdisi}: Yanlış girdi türü, beklenen {girdi_turu.__name__!r}"
             )
 
 
-# Main Function
+# Ana Fonksiyon
 def main():
-    """This function starts the execution phase."""
+    """Bu fonksiyon yürütme aşamasını başlatır."""
     while True:
-        print(" Linear Discriminant Analysis ".center(50, "*"))
+        print(" Doğrusal Ayrım Analizi ".center(50, "*"))
         print("*" * 50, "\n")
-        print("First of all, we should specify the number of classes that")
-        print("we want to generate as a training dataset.")
-        # Trying to get the number of classes
-        n_classes = valid_input(
-            input_type=int,
-            condition=lambda x: x > 0,
-            input_msg="Enter the number of classes (Data Groupings): ",
-            err_msg="Number of classes should be positive!",
+        print("Öncelikle, eğitim veri seti olarak oluşturmak istediğimiz")
+        print("sınıf sayısını belirtmeliyiz.")
+        # Sınıf sayısını almaya çalışmak
+        sinif_sayisi = gecerli_girdi(
+            girdi_turu=int,
+            kosul=lambda x: x > 0,
+            girdi_mesaji="Sınıf sayısını (Veri Gruplamaları) girin: ",
+            hata_mesaji="Sınıf sayısı pozitif olmalıdır!",
         )
 
         print("-" * 100)
 
-        # Trying to get the value of standard deviation
-        std_dev = valid_input(
-            input_type=float,
-            condition=lambda x: x >= 0,
-            input_msg=(
-                "Enter the value of standard deviation"
-                "(Default value is 1.0 for all classes): "
+        # Standart sapma değerini almaya çalışmak
+        std_dev = gecerli_girdi(
+            girdi_turu=float,
+            kosul=lambda x: x >= 0,
+            girdi_mesaji=(
+                "Standart sapma değerini girin"
+                "(Varsayılan değer tüm sınıflar için 1.0'dır): "
             ),
-            err_msg="Standard deviation should not be negative!",
-            default="1.0",
+            hata_mesaji="Standart sapma negatif olmamalıdır!",
+            varsayilan="1.0",
         )
 
         print("-" * 100)
 
-        # Trying to get the number of instances in classes and their means to generate the dataset
-        counts = []  # An empty list to store instance counts of classes in the dataset
-        for i in range(n_classes):
-            user_count = valid_input(
-                input_type=int,
-                condition=lambda x: x > 0,
-                input_msg=(f"Enter the number of instances for class_{i+1}: "),
-                err_msg="Number of instances should be positive!",
+        # Sınıflardaki örnek sayısını ve veri setini oluşturmak için ortalamalarını almaya çalışmak
+        sayilar = []  # Veri setindeki sınıfların örnek sayılarını depolamak için boş bir liste
+        for i in range(sinif_sayisi):
+            kullanici_sayisi = gecerli_girdi(
+                girdi_turu=int,
+                kosul=lambda x: x > 0,
+                girdi_mesaji=(f"class_{i+1} için örnek sayısını girin: "),
+                hata_mesaji="Örnek sayısı pozitif olmalıdır!",
             )
-            counts.append(user_count)
+            sayilar.append(kullanici_sayisi)
         print("-" * 100)
 
-        # An empty list to store values of user-entered means of classes
-        user_means = []
-        for a in range(n_classes):
-            user_mean = valid_input(
-                input_type=float,
-                input_msg=(f"Enter the value of mean for class_{a+1}: "),
-                err_msg="This is an invalid value.",
+        # Sınıfların kullanıcı tarafından girilen ortalama değerlerini depolamak için boş bir liste
+        kullanici_ortalamalari = []
+        for a in range(sinif_sayisi):
+            kullanici_ortalamasi = gecerli_girdi(
+                girdi_turu=float,
+                girdi_mesaji=(f"class_{a+1} için ortalama değerini girin: "),
+                hata_mesaji="Bu geçersiz bir değerdir.",
             )
-            user_means.append(user_mean)
+            kullanici_ortalamalari.append(kullanici_ortalamasi)
         print("-" * 100)
 
-        print("Standard deviation: ", std_dev)
-        # Print out the number of instances in classes in a separated line
-        for i, count in enumerate(counts, 1):
-            print(f"Number of instances in class_{i} is: {count}")
+        print("Standart sapma: ", std_dev)
+        # Sınıflardaki örnek sayılarını ayrı bir satırda yazdırın
+        for i, sayi in enumerate(sayilar, 1):
+            print(f"class_{i} içindeki örnek sayısı: {sayi}")
         print("-" * 100)
 
-        # Print out mean values of classes in a separated line
-        for i, user_mean in enumerate(user_means, 1):
-            print(f"Mean of class_{i} is: {user_mean}")
+        # Sınıfların ortalama değerlerini ayrı bir satırda yazdırın
+        for i, kullanici_ortalamasi in enumerate(kullanici_ortalamalari, 1):
+            print(f"class_{i} ortalaması: {kullanici_ortalamasi}")
         print("-" * 100)
 
-        # Generating training dataset drawn from Gaussian distribution
+        # Gauss dağılımından alınan eğitim veri seti oluşturma
         x = [
-            gaussian_distribution(user_means[j], std_dev, counts[j])
-            for j in range(n_classes)
+            gauss_dagilimi(kullanici_ortalamalari[j], std_dev, sayilar[j])
+            for j in range(sinif_sayisi)
         ]
-        print("Generated Normal Distribution: \n", x)
+        print("Oluşturulan Normal Dağılım: \n", x)
         print("-" * 100)
 
-        # Generating Ys to detect corresponding classes
-        y = y_generator(n_classes, counts)
-        print("Generated Corresponding Ys: \n", y)
+        # Karşılık gelen sınıfları tespit etmek için Y'leri oluşturma
+        y = y_olusturucu(sinif_sayisi, sayilar)
+        print("Oluşturulan Karşılık Gelen Y'ler: \n", y)
         print("-" * 100)
 
-        # Calculating the value of actual mean for each class
-        actual_means = [calculate_mean(counts[k], x[k]) for k in range(n_classes)]
-        # For loop iterates over the number of elements in 'actual_means' list and prints out them in a separated line
-        for i, actual_mean in enumerate(actual_means, 1):
-            print(f"Actual (Real) mean of class_{i} is: {actual_mean}")
+        # Her sınıf için gerçek ortalama değerini hesaplama
+        gercek_ortalamalar = [ortalama_hesapla(sayilar[k], x[k]) for k in range(sinif_sayisi)]
+        # 'gercek_ortalamalar' listesindeki eleman sayısı kadar döngü ve ayrı bir satırda yazdırma
+        for i, gercek_ortalama in enumerate(gercek_ortalamalar, 1):
+            print(f"class_{i} gerçek ortalaması: {gercek_ortalama}")
         print("-" * 100)
 
-        # Calculating the value of probabilities for each class
-        probabilities = [
-            calculate_probabilities(counts[i], sum(counts)) for i in range(n_classes)
+        # Her sınıf için olasılık değerini hesaplama
+        olasiliklar = [
+            olasilik_hesapla(sayilar[i], sum(sayilar)) for i in range(sinif_sayisi)
         ]
 
-        # For loop iterates over the number of elements in 'probabilities' list and prints out them in a separated line
-        for i, probability in enumerate(probabilities, 1):
-            print(f"Probability of class_{i} is: {probability}")
+        # 'olasiliklar' listesindeki eleman sayısı kadar döngü ve ayrı bir satırda yazdırma
+        for i, olasilik in enumerate(olasiliklar, 1):
+            print(f"class_{i} olasılığı: {olasilik}")
         print("-" * 100)
 
-        # Calculating the values of variance for each class
-        variance = calculate_variance(x, actual_means, sum(counts))
-        print("Variance: ", variance)
+        # Her sınıf için varyans değerini hesaplama
+        varyans = varyans_hesapla(x, gercek_ortalamalar, sum(sayilar))
+        print("Varyans: ", varyans)
         print("-" * 100)
 
-        # Predicting Y values
-        # Storing predicted Y values in 'pre_indexes' variable
-        pre_indexes = predict_y_values(x, actual_means, variance, probabilities)
+        # Y değerlerini tahmin etme
+        # Tahmin edilen Y değerlerini 'tahmin_indeksleri' değişkenine depolama
+        tahmin_indeksleri = y_degerlerini_tahmin_et(x, gercek_ortalamalar, varyans, olasiliklar)
         print("-" * 100)
 
-        # Calculating Accuracy of the model
-        print(f"Accuracy: {accuracy(y, pre_indexes)}")
+        # Modelin Doğruluğunu Hesaplama
+        print(f"Doğruluk: {dogruluk(y, tahmin_indeksleri)}")
         print("-" * 100)
-        print(" DONE ".center(100, "+"))
+        print(" TAMAMLANDI ".center(100, "+"))
 
-        if input("Press any key to restart or 'q' for quit: ").strip().lower() == "q":
-            print("\n" + "GoodBye!".center(100, "-") + "\n")
+        if input("Yeniden başlatmak için herhangi bir tuşa basın veya çıkmak için 'q' tuşuna basın: ").strip().lower() == "q":
+            print("\n" + "Hoşçakal!".center(100, "-") + "\n")
             break
         system("cls" if name == "nt" else "clear")  # noqa: S605
 

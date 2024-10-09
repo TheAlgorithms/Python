@@ -1,19 +1,17 @@
 #!/usr/bin/env python3
 """
-Author: Vikram Nithyanandam
+Yazar: Vikram Nithyanandam
 
-Description:
-The following implementation is a robust unweighted Graph data structure
-implemented using an adjacency list. This vertices and edges of this graph can be
-effectively initialized and modified while storing your chosen generic
-value in each vertex.
+Açıklama:
+Aşağıdaki uygulama, bir komşuluk listesi kullanılarak uygulanmış sağlam bir ağırlıksız Grafik veri yapısıdır.
+Bu grafiğin düğümleri ve kenarları, her düğümde seçtiğiniz genel değeri saklarken etkili bir şekilde başlatılabilir ve değiştirilebilir.
 
-Adjacency List: https://en.wikipedia.org/wiki/Adjacency_list
+Komşuluk Listesi: https://en.wikipedia.org/wiki/Adjacency_list
 
-Potential Future Ideas:
-- Add a flag to set edge weights on and set edge weights
-- Make edge weights and vertex values customizable to store whatever the client wants
-- Support multigraph functionality if the client wants it
+Gelecekteki Potansiyel Fikirler:
+- Kenar ağırlıklarını ayarlamak ve kenar ağırlıklarını belirlemek için bir bayrak ekleyin
+- Kenar ağırlıklarını ve düğüm değerlerini, müşterinin istediği herhangi bir şeyi saklayacak şekilde özelleştirilebilir hale getirin
+- Müşteri isterse çoklu grafik işlevselliğini destekleyin
 """
 
 from __future__ import annotations
@@ -28,366 +26,364 @@ import pytest
 T = TypeVar("T")
 
 
-class GraphAdjacencyList(Generic[T]):
+class KomşulukListesiGrafiği(Generic[T]):
     def __init__(
-        self, vertices: list[T], edges: list[list[T]], directed: bool = True
+        self, düğümler: list[T], kenarlar: list[list[T]], yönlü: bool = True
     ) -> None:
         """
-        Parameters:
-         - vertices: (list[T]) The list of vertex names the client wants to
-        pass in. Default is empty.
-        - edges: (list[list[T]]) The list of edges the client wants to
-        pass in. Each edge is a 2-element list. Default is empty.
-        - directed: (bool) Indicates if graph is directed or undirected.
-        Default is True.
+        Parametreler:
+         - düğümler: (list[T]) Müşterinin geçirmek istediği düğüm adlarının listesi. Varsayılan boş.
+         - kenarlar: (list[list[T]]) Müşterinin geçirmek istediği kenarların listesi. Her kenar 2 elemanlı bir listedir. Varsayılan boş.
+         - yönlü: (bool) Grafiğin yönlü veya yönsüz olduğunu belirtir. Varsayılan True.
         """
-        self.adj_list: dict[T, list[T]] = {}  # dictionary of lists of T
-        self.directed = directed
+        self.komşuluk_listesi: dict[T, list[T]] = {}  # T türünde listelerin sözlüğü
+        self.yönlü = yönlü
 
-        # Falsey checks
-        edges = edges or []
-        vertices = vertices or []
+        # Boşluk kontrolleri
+        kenarlar = kenarlar or []
+        düğümler = düğümler or []
 
-        for vertex in vertices:
-            self.add_vertex(vertex)
+        for düğüm in düğümler:
+            self.düğüm_ekle(düğüm)
 
-        for edge in edges:
-            if len(edge) != 2:
-                msg = f"Invalid input: {edge} is the wrong length."
+        for kenar in kenarlar:
+            if len(kenar) != 2:
+                msg = f"Geçersiz giriş: {kenar} yanlış uzunlukta."
                 raise ValueError(msg)
-            self.add_edge(edge[0], edge[1])
+            self.kenar_ekle(kenar[0], kenar[1])
 
-    def add_vertex(self, vertex: T) -> None:
+    def düğüm_ekle(self, düğüm: T) -> None:
         """
-        Adds a vertex to the graph. If the given vertex already exists,
-        a ValueError will be thrown.
+        Grafa bir düğüm ekler. Verilen düğüm zaten mevcutsa, bir ValueError fırlatılır.
         """
-        if self.contains_vertex(vertex):
-            msg = f"Incorrect input: {vertex} is already in the graph."
+        if self.düğüm_var_mı(düğüm):
+            msg = f"Yanlış giriş: {düğüm} zaten grafikte mevcut."
             raise ValueError(msg)
-        self.adj_list[vertex] = []
+        self.komşuluk_listesi[düğüm] = []
 
-    def add_edge(self, source_vertex: T, destination_vertex: T) -> None:
+    def kenar_ekle(self, kaynak_düğüm: T, hedef_düğüm: T) -> None:
         """
-        Creates an edge from source vertex to destination vertex. If any
-        given vertex doesn't exist or the edge already exists, a ValueError
-        will be thrown.
+        Kaynak düğümden hedef düğüme bir kenar oluşturur. Verilen herhangi bir düğüm mevcut değilse veya kenar zaten mevcutsa, bir ValueError fırlatılır.
         """
         if not (
-            self.contains_vertex(source_vertex)
-            and self.contains_vertex(destination_vertex)
+            self.düğüm_var_mı(kaynak_düğüm)
+            and self.düğüm_var_mı(hedef_düğüm)
         ):
             msg = (
-                f"Incorrect input: Either {source_vertex} or "
-                f"{destination_vertex} does not exist"
+                f"Yanlış giriş: {kaynak_düğüm} veya "
+                f"{hedef_düğüm} mevcut değil"
             )
             raise ValueError(msg)
-        if self.contains_edge(source_vertex, destination_vertex):
+        if self.kenar_var_mı(kaynak_düğüm, hedef_düğüm):
             msg = (
-                "Incorrect input: The edge already exists between "
-                f"{source_vertex} and {destination_vertex}"
+                "Yanlış giriş: "
+                f"{kaynak_düğüm} ve {hedef_düğüm} arasında kenar zaten mevcut"
             )
             raise ValueError(msg)
 
-        # add the destination vertex to the list associated with the source vertex
-        # and vice versa if not directed
-        self.adj_list[source_vertex].append(destination_vertex)
-        if not self.directed:
-            self.adj_list[destination_vertex].append(source_vertex)
+        # kaynak düğümle ilişkili listeye hedef düğümü ekleyin
+        # ve yönlü değilse tersi
+        self.komşuluk_listesi[kaynak_düğüm].append(hedef_düğüm)
+        if not self.yönlü:
+            self.komşuluk_listesi[hedef_düğüm].append(kaynak_düğüm)
 
-    def remove_vertex(self, vertex: T) -> None:
+    def düğüm_sil(self, düğüm: T) -> None:
         """
-        Removes the given vertex from the graph and deletes all incoming and
-        outgoing edges from the given vertex as well. If the given vertex
-        does not exist, a ValueError will be thrown.
+        Verilen düğümü grafikten kaldırır ve verilen düğümden gelen ve giden tüm kenarları siler. Verilen düğüm mevcut değilse, bir ValueError fırlatılır.
         """
-        if not self.contains_vertex(vertex):
-            msg = f"Incorrect input: {vertex} does not exist in this graph."
+        if not self.düğüm_var_mı(düğüm):
+            msg = f"Yanlış giriş: {düğüm} bu grafikte mevcut değil."
             raise ValueError(msg)
 
-        if not self.directed:
-            # If not directed, find all neighboring vertices and delete all references
-            # of edges connecting to the given vertex
-            for neighbor in self.adj_list[vertex]:
-                self.adj_list[neighbor].remove(vertex)
+        if not self.yönlü:
+            # Yönlü değilse, tüm komşu düğümleri bulun ve verilen düğüme bağlanan tüm kenarların referanslarını silin
+            for komşu in self.komşuluk_listesi[düğüm]:
+                self.komşuluk_listesi[komşu].remove(düğüm)
         else:
-            # If directed, search all neighbors of all vertices and delete all
-            # references of edges connecting to the given vertex
-            for edge_list in self.adj_list.values():
-                if vertex in edge_list:
-                    edge_list.remove(vertex)
+            # Yönlü ise, tüm düğümlerin tüm komşularını arayın ve verilen düğüme bağlanan tüm kenarların referanslarını silin
+            for kenar_listesi in self.komşuluk_listesi.values():
+                if düğüm in kenar_listesi:
+                    kenar_listesi.remove(düğüm)
 
-        # Finally, delete the given vertex and all of its outgoing edge references
-        self.adj_list.pop(vertex)
+        # Son olarak, verilen düğümü ve tüm giden kenar referanslarını silin
+        self.komşuluk_listesi.pop(düğüm)
 
-    def remove_edge(self, source_vertex: T, destination_vertex: T) -> None:
+    def kenar_sil(self, kaynak_düğüm: T, hedef_düğüm: T) -> None:
         """
-        Removes the edge between the two vertices. If any given vertex
-        doesn't exist or the edge does not exist, a ValueError will be thrown.
+        İki düğüm arasındaki kenarı kaldırır. Verilen herhangi bir düğüm mevcut değilse veya kenar mevcut değilse, bir ValueError fırlatılır.
         """
         if not (
-            self.contains_vertex(source_vertex)
-            and self.contains_vertex(destination_vertex)
+            self.düğüm_var_mı(kaynak_düğüm)
+            and self.düğüm_var_mı(hedef_düğüm)
         ):
             msg = (
-                f"Incorrect input: Either {source_vertex} or "
-                f"{destination_vertex} does not exist"
+                f"Yanlış giriş: {kaynak_düğüm} veya "
+                f"{hedef_düğüm} mevcut değil"
             )
             raise ValueError(msg)
-        if not self.contains_edge(source_vertex, destination_vertex):
+        if not self.kenar_var_mı(kaynak_düğüm, hedef_düğüm):
             msg = (
-                "Incorrect input: The edge does NOT exist between "
-                f"{source_vertex} and {destination_vertex}"
+                "Yanlış giriş: "
+                f"{kaynak_düğüm} ve {hedef_düğüm} arasında kenar mevcut değil"
             )
             raise ValueError(msg)
 
-        # remove the destination vertex from the list associated with the source
-        # vertex and vice versa if not directed
-        self.adj_list[source_vertex].remove(destination_vertex)
-        if not self.directed:
-            self.adj_list[destination_vertex].remove(source_vertex)
+        # kaynak düğümle ilişkili listeden hedef düğümü kaldırın
+        # ve yönlü değilse tersi
+        self.komşuluk_listesi[kaynak_düğüm].remove(hedef_düğüm)
+        if not self.yönlü:
+            self.komşuluk_listesi[hedef_düğüm].remove(kaynak_düğüm)
 
-    def contains_vertex(self, vertex: T) -> bool:
+    def düğüm_var_mı(self, düğüm: T) -> bool:
         """
-        Returns True if the graph contains the vertex, False otherwise.
+        Grafikte düğüm varsa True, yoksa False döner.
         """
-        return vertex in self.adj_list
+        return düğüm in self.komşuluk_listesi
 
-    def contains_edge(self, source_vertex: T, destination_vertex: T) -> bool:
+    def kenar_var_mı(self, kaynak_düğüm: T, hedef_düğüm: T) -> bool:
         """
-        Returns True if the graph contains the edge from the source_vertex to the
-        destination_vertex, False otherwise. If any given vertex doesn't exist, a
-        ValueError will be thrown.
+        Grafikte kaynak_düğümden hedef_düğüme kenar varsa True, yoksa False döner. Verilen herhangi bir düğüm mevcut değilse, bir ValueError fırlatılır.
         """
         if not (
-            self.contains_vertex(source_vertex)
-            and self.contains_vertex(destination_vertex)
+            self.düğüm_var_mı(kaynak_düğüm)
+            and self.düğüm_var_mı(hedef_düğüm)
         ):
             msg = (
-                f"Incorrect input: Either {source_vertex} "
-                f"or {destination_vertex} does not exist."
+                f"Yanlış giriş: {kaynak_düğüm} "
+                f"veya {hedef_düğüm} mevcut değil."
             )
             raise ValueError(msg)
 
-        return destination_vertex in self.adj_list[source_vertex]
+        return hedef_düğüm in self.komşuluk_listesi[kaynak_düğüm]
 
-    def clear_graph(self) -> None:
+    def grafiği_temizle(self) -> None:
         """
-        Clears all vertices and edges.
+        Tüm düğümleri ve kenarları temizler.
         """
-        self.adj_list = {}
+        self.komşuluk_listesi = {}
 
     def __repr__(self) -> str:
-        return pformat(self.adj_list)
+        return pformat(self.komşuluk_listesi)
 
 
-class TestGraphAdjacencyList(unittest.TestCase):
-    def __assert_graph_edge_exists_check(
+class TestKomşulukListesiGrafiği(unittest.TestCase):
+    def __kenar_var_mı_kontrol(
         self,
-        undirected_graph: GraphAdjacencyList,
-        directed_graph: GraphAdjacencyList,
-        edge: list[int],
+        yönsüz_grafik: KomşulukListesiGrafiği,
+        yönlü_grafik: KomşulukListesiGrafiği,
+        kenar: list[int],
     ) -> None:
-        assert undirected_graph.contains_edge(edge[0], edge[1])
-        assert undirected_graph.contains_edge(edge[1], edge[0])
-        assert directed_graph.contains_edge(edge[0], edge[1])
+        assert yönsüz_grafik.kenar_var_mı(kenar[0], kenar[1])
+        assert yönsüz_grafik.kenar_var_mı(kenar[1], kenar[0])
+        assert yönlü_grafik.kenar_var_mı(kenar[0], kenar[1])
 
-    def __assert_graph_edge_does_not_exist_check(
+    def __kenar_yok_kontrol(
         self,
-        undirected_graph: GraphAdjacencyList,
-        directed_graph: GraphAdjacencyList,
-        edge: list[int],
+        yönsüz_grafik: KomşulukListesiGrafiği,
+        yönlü_grafik: KomşulukListesiGrafiği,
+        kenar: list[int],
     ) -> None:
-        assert not undirected_graph.contains_edge(edge[0], edge[1])
-        assert not undirected_graph.contains_edge(edge[1], edge[0])
-        assert not directed_graph.contains_edge(edge[0], edge[1])
+        assert not yönsüz_grafik.kenar_var_mı(kenar[0], kenar[1])
+        assert not yönsüz_grafik.kenar_var_mı(kenar[1], kenar[0])
+        assert not yönlü_grafik.kenar_var_mı(kenar[0], kenar[1])
 
-    def __assert_graph_vertex_exists_check(
+    def __düğüm_var_mı_kontrol(
         self,
-        undirected_graph: GraphAdjacencyList,
-        directed_graph: GraphAdjacencyList,
-        vertex: int,
+        yönsüz_grafik: KomşulukListesiGrafiği,
+        yönlü_grafik: KomşulukListesiGrafiği,
+        düğüm: int,
     ) -> None:
-        assert undirected_graph.contains_vertex(vertex)
-        assert directed_graph.contains_vertex(vertex)
+        assert yönsüz_grafik.düğüm_var_mı(düğüm)
+        assert yönlü_grafik.düğüm_var_mı(düğüm)
 
-    def __assert_graph_vertex_does_not_exist_check(
+    def __düğüm_yok_kontrol(
         self,
-        undirected_graph: GraphAdjacencyList,
-        directed_graph: GraphAdjacencyList,
-        vertex: int,
+        yönsüz_grafik: KomşulukListesiGrafiği,
+        yönlü_grafik: KomşulukListesiGrafiği,
+        düğüm: int,
     ) -> None:
-        assert not undirected_graph.contains_vertex(vertex)
-        assert not directed_graph.contains_vertex(vertex)
+        assert not yönsüz_grafik.düğüm_var_mı(düğüm)
+        assert not yönlü_grafik.düğüm_var_mı(düğüm)
 
-    def __generate_random_edges(
-        self, vertices: list[int], edge_pick_count: int
+    def __rastgele_kenarlar_oluştur(
+        self, düğümler: list[int], kenar_sayısı: int
     ) -> list[list[int]]:
-        assert edge_pick_count <= len(vertices)
+        assert kenar_sayısı <= len(düğümler)
 
-        random_source_vertices: list[int] = random.sample(
-            vertices[0 : int(len(vertices) / 2)], edge_pick_count
+        rastgele_kaynak_düğümler: list[int] = random.sample(
+            düğümler[0 : int(len(düğümler) / 2)], kenar_sayısı
         )
-        random_destination_vertices: list[int] = random.sample(
-            vertices[int(len(vertices) / 2) :], edge_pick_count
+        rastgele_hedef_düğümler: list[int] = random.sample(
+            düğümler[int(len(düğümler) / 2) :], kenar_sayısı
         )
-        random_edges: list[list[int]] = []
+        rastgele_kenarlar: list[list[int]] = []
 
-        for source in random_source_vertices:
-            for dest in random_destination_vertices:
-                random_edges.append([source, dest])
+        for kaynak in rastgele_kaynak_düğümler:
+            for hedef in rastgele_hedef_düğümler:
+                rastgele_kenarlar.append([kaynak, hedef])
 
-        return random_edges
+        return rastgele_kenarlar
 
-    def __generate_graphs(
-        self, vertex_count: int, min_val: int, max_val: int, edge_pick_count: int
-    ) -> tuple[GraphAdjacencyList, GraphAdjacencyList, list[int], list[list[int]]]:
-        if max_val - min_val + 1 < vertex_count:
+    def __grafikler_oluştur(
+        self, düğüm_sayısı: int, min_değer: int, max_değer: int, kenar_sayısı: int
+    ) -> tuple[KomşulukListesiGrafiği, KomşulukListesiGrafiği, list[int], list[list[int]]]:
+        if max_değer - min_değer + 1 < düğüm_sayısı:
             raise ValueError(
-                "Will result in duplicate vertices. Either increase range "
-                "between min_val and max_val or decrease vertex count."
+                "Yinelenen düğümler oluşacak. Ya min_değer ve max_değer arasındaki aralığı artırın ya da düğüm sayısını azaltın."
             )
 
-        # generate graph input
-        random_vertices: list[int] = random.sample(
-            range(min_val, max_val + 1), vertex_count
+        # grafik girişi oluştur
+        rastgele_düğümler: list[int] = random.sample(
+            range(min_değer, max_değer + 1), düğüm_sayısı
         )
-        random_edges: list[list[int]] = self.__generate_random_edges(
-            random_vertices, edge_pick_count
-        )
-
-        # build graphs
-        undirected_graph = GraphAdjacencyList(
-            vertices=random_vertices, edges=random_edges, directed=False
-        )
-        directed_graph = GraphAdjacencyList(
-            vertices=random_vertices, edges=random_edges, directed=True
+        rastgele_kenarlar: list[list[int]] = self.__rastgele_kenarlar_oluştur(
+            rastgele_düğümler, kenar_sayısı
         )
 
-        return undirected_graph, directed_graph, random_vertices, random_edges
+        # grafikler oluştur
+        yönsüz_grafik = KomşulukListesiGrafiği(
+            düğümler=rastgele_düğümler, kenarlar=rastgele_kenarlar, yönlü=False
+        )
+        yönlü_grafik = KomşulukListesiGrafiği(
+            düğümler=rastgele_düğümler, kenarlar=rastgele_kenarlar, yönlü=True
+        )
 
-    def test_init_check(self) -> None:
+        return yönsüz_grafik, yönlü_grafik, rastgele_düğümler, rastgele_kenarlar
+
+    def test_başlangıç_kontrol(self) -> None:
         (
-            undirected_graph,
-            directed_graph,
-            random_vertices,
-            random_edges,
-        ) = self.__generate_graphs(20, 0, 100, 4)
+            yönsüz_grafik,
+            yönlü_grafik,
+            rastgele_düğümler,
+            rastgele_kenarlar,
+        ) = self.__grafikler_oluştur(20, 0, 100, 4)
 
-        # test graph initialization with vertices and edges
-        for num in random_vertices:
-            self.__assert_graph_vertex_exists_check(
-                undirected_graph, directed_graph, num
+        # düğümler ve kenarlarla grafik başlatma testi
+        for num in rastgele_düğümler:
+            self.__düğüm_var_mı_kontrol(
+                yönsüz_grafik, yönlü_grafik, num
             )
 
-        for edge in random_edges:
-            self.__assert_graph_edge_exists_check(
-                undirected_graph, directed_graph, edge
+        for kenar in rastgele_kenarlar:
+            self.__kenar_var_mı_kontrol(
+                yönsüz_grafik, yönlü_grafik, kenar
             )
-        assert not undirected_graph.directed
-        assert directed_graph.directed
+        assert not yönsüz_grafik.yönlü
+        assert yönlü_grafik.yönlü
 
-    def test_contains_vertex(self) -> None:
-        random_vertices: list[int] = random.sample(range(101), 20)
+    def test_düğüm_var_mı(self) -> None:
+        rastgele_düğümler: list[int] = random.sample(range(101), 20)
 
-        # Build graphs WITHOUT edges
-        undirected_graph = GraphAdjacencyList(
-            vertices=random_vertices, edges=[], directed=False
+        # Kenar OLMADAN grafikler oluştur
+        yönsüz_grafik = KomşulukListesiGrafiği(
+            düğümler=rastgele_düğümler, kenarlar=[], yönlü=False
         )
-        directed_graph = GraphAdjacencyList(
-            vertices=random_vertices, edges=[], directed=True
+        yönlü_grafik = KomşulukListesiGrafiği(
+            düğümler=rastgele_düğümler, kenarlar=[], yönlü=True
         )
 
-        # Test contains_vertex
+        # düğüm_var_mı test et
         for num in range(101):
-            assert (num in random_vertices) == undirected_graph.contains_vertex(num)
-            assert (num in random_vertices) == directed_graph.contains_vertex(num)
+            assert (num in rastgele_düğümler) == yönsüz_grafik.düğüm_var_mı(num)
+            assert (num in rastgele_düğümler) == yönlü_grafik.düğüm_var_mı(num)
 
-    def test_add_vertices(self) -> None:
-        random_vertices: list[int] = random.sample(range(101), 20)
+    def test_düğüm_ekle(self) -> None:
+        rastgele_düğümler: list[int] = random.sample(range(101), 20)
 
-        # build empty graphs
-        undirected_graph: GraphAdjacencyList = GraphAdjacencyList(
-            vertices=[], edges=[], directed=False
+        # boş grafikler oluştur
+        yönsüz_grafik: KomşulukListesiGrafiği = KomşulukListesiGrafiği(
+            düğümler=[], kenarlar=[], yönlü=False
         )
-        directed_graph: GraphAdjacencyList = GraphAdjacencyList(
-            vertices=[], edges=[], directed=True
-        )
-
-        # run add_vertex
-        for num in random_vertices:
-            undirected_graph.add_vertex(num)
-
-        for num in random_vertices:
-            directed_graph.add_vertex(num)
-
-        # test add_vertex worked
-        for num in random_vertices:
-            self.__assert_graph_vertex_exists_check(
-                undirected_graph, directed_graph, num
-            )
-
-    def test_remove_vertices(self) -> None:
-        random_vertices: list[int] = random.sample(range(101), 20)
-
-        # build graphs WITHOUT edges
-        undirected_graph = GraphAdjacencyList(
-            vertices=random_vertices, edges=[], directed=False
-        )
-        directed_graph = GraphAdjacencyList(
-            vertices=random_vertices, edges=[], directed=True
+        yönlü_grafik: KomşulukListesiGrafiği = KomşulukListesiGrafiği(
+            düğümler=[], kenarlar=[], yönlü=True
         )
 
-        # test remove_vertex worked
-        for num in random_vertices:
-            self.__assert_graph_vertex_exists_check(
-                undirected_graph, directed_graph, num
+        # düğüm_ekle çalıştır
+        for num in rastgele_düğümler:
+            yönsüz_grafik.düğüm_ekle(num)
+
+        for num in rastgele_düğümler:
+            yönlü_grafik.düğüm_ekle(num)
+
+        # düğüm_ekle çalıştı mı test et
+        for num in rastgele_düğümler:
+            self.__düğüm_var_mı_kontrol(
+                yönsüz_grafik, yönlü_grafik, num
             )
 
-            undirected_graph.remove_vertex(num)
-            directed_graph.remove_vertex(num)
+    def test_düğüm_sil(self) -> None:
+        rastgele_düğümler: list[int] = random.sample(range(101), 20)
 
-            self.__assert_graph_vertex_does_not_exist_check(
-                undirected_graph, directed_graph, num
-            )
-
-    def test_add_and_remove_vertices_repeatedly(self) -> None:
-        random_vertices1: list[int] = random.sample(range(51), 20)
-        random_vertices2: list[int] = random.sample(range(51, 101), 20)
-
-        # build graphs WITHOUT edges
-        undirected_graph = GraphAdjacencyList(
-            vertices=random_vertices1, edges=[], directed=False
+        # Kenar OLMADAN grafikler oluştur
+        yönsüz_grafik = KomşulukListesiGrafiği(
+            düğümler=rastgele_düğümler, kenarlar=[], yönlü=False
         )
-        directed_graph = GraphAdjacencyList(
-            vertices=random_vertices1, edges=[], directed=True
+        yönlü_grafik = KomşulukListesiGrafiği(
+            düğümler=rastgele_düğümler, kenarlar=[], yönlü=True
         )
 
-        # test adding and removing vertices
-        for i, _ in enumerate(random_vertices1):
-            undirected_graph.add_vertex(random_vertices2[i])
-            directed_graph.add_vertex(random_vertices2[i])
-
-            self.__assert_graph_vertex_exists_check(
-                undirected_graph, directed_graph, random_vertices2[i]
+        # düğüm_sil çalıştı mı test et
+        for num in rastgele_düğümler:
+            self.__düğüm_var_mı_kontrol(
+                yönsüz_grafik, yönlü_grafik, num
             )
 
-            undirected_graph.remove_vertex(random_vertices1[i])
-            directed_graph.remove_vertex(random_vertices1[i])
+            yönsüz_grafik.düğüm_sil(num)
+            yönlü_grafik.düğüm_sil(num)
 
-            self.__assert_graph_vertex_does_not_exist_check(
-                undirected_graph, directed_graph, random_vertices1[i]
+            self.__düğüm_yok_kontrol(
+                yönsüz_grafik, yönlü_grafik, num
             )
 
-        # remove all vertices
-        for i, _ in enumerate(random_vertices1):
-            undirected_graph.remove_vertex(random_vertices2[i])
-            directed_graph.remove_vertex(random_vertices2[i])
+    def test_düğüm_ekle_ve_sil_tekrar(self) -> None:
+        rastgele_düğümler1: list[int] = random.sample(range(51), 20)
+        rastgele_düğümler2: list[int] = random.sample(range(51, 101), 20)
 
-            self.__assert_graph_vertex_does_not_exist_check(
-                undirected_graph, directed_graph, random_vertices2[i]
+        # Kenar OLMADAN grafikler oluştur
+        yönsüz_grafik = KomşulukListesiGrafiği(
+            düğümler=rastgele_düğümler1, kenarlar=[], yönlü=False
+        )
+        yönlü_grafik = KomşulukListesiGrafiği(
+            düğümler=rastgele_düğümler1, kenarlar=[], yönlü=True
+        )
+
+        # düğüm ekleme ve silme testi
+        for i, _ in enumerate(rastgele_düğümler1):
+            yönsüz_grafik.düğüm_ekle(rastgele_düğümler2[i])
+            yönlü_grafik.düğüm_ekle(rastgele_düğümler2[i])
+
+            self.__düğüm_var_mı_kontrol(
+                yönsüz_grafik, yönlü_grafik, rastgele_düğümler2[i]
             )
 
+            yönsüz_grafik.düğüm_sil(rastgele_düğümler1[i])
+            yönlü_grafik.düğüm_sil(rastgele_düğümler1[i])
+
+            self.__düğüm_yok_kontrol(
+                yönsüz_grafik, yönlü_grafik, rastgele_düğümler1[i]
+            )
+
+        # tüm düğümleri sil
+        for i, _ in enumerate(rastgele_düğümler1):
+            yönsüz_grafik.düğüm_sil(rastgele_düğümler2[i])
+            yönlü_grafik.düğüm_sil(rastgele_düğümler2[i])
+
+            self.__düğüm_yok_kontrol(
+                yönsüz_grafik, yönlü_grafik, rastgele_düğümler2[i]
+            )
+
+    def test_kenar_var_mı(self) -> None:
+        # grafikler ve grafik girişi oluştur
+        düğüm_sayısı = 20
+        (
+            yönsüz_grafik,
+            yönlü_grafik,
+            rastgele_düğümler,
+            rastgele_kenarlar,
+        ) = self.__grafikler_oluştur(düğüm_sayısı, 0, 100, 4)
+
+        # test için tüm olası kenarları oluştur
+        tüm_olası_kenarlar: list[list[int]] = []
     def test_contains_edge(self) -> None:
         # generate graphs and graph input
         vertex_count = 20

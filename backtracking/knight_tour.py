@@ -1,18 +1,18 @@
-# Knight Tour Intro: https://www.youtube.com/watch?v=ab_dY3dZFHM
+# Knight Tour Tanıtımı: https://www.youtube.com/watch?v=ab_dY3dZFHM
 
 from __future__ import annotations
 
 
-def get_valid_pos(position: tuple[int, int], n: int) -> list[tuple[int, int]]:
+def geçerli_pozisyonlar(position: tuple[int, int], n: int) -> list[tuple[int, int]]:
     """
-    Find all the valid positions a knight can move to from the current position.
+    Mevcut pozisyondan bir atın hareket edebileceği tüm geçerli pozisyonları bulun.
 
-    >>> get_valid_pos((1, 3), 4)
+    >>> geçerli_pozisyonlar((1, 3), 4)
     [(2, 1), (0, 1), (3, 2)]
     """
 
     y, x = position
-    positions = [
+    pozisyonlar = [
         (y + 1, x + 2),
         (y - 1, x + 2),
         (y + 1, x - 2),
@@ -22,76 +22,76 @@ def get_valid_pos(position: tuple[int, int], n: int) -> list[tuple[int, int]]:
         (y - 2, x + 1),
         (y - 2, x - 1),
     ]
-    permissible_positions = []
+    geçerli_pozisyonlar = []
 
-    for inner_position in positions:
-        y_test, x_test = inner_position
+    for iç_pozisyon in pozisyonlar:
+        y_test, x_test = iç_pozisyon
         if 0 <= y_test < n and 0 <= x_test < n:
-            permissible_positions.append(inner_position)
+            geçerli_pozisyonlar.append(iç_pozisyon)
 
-    return permissible_positions
+    return geçerli_pozisyonlar
 
 
-def is_complete(board: list[list[int]]) -> bool:
+def tamamlandı_mı(tahta: list[list[int]]) -> bool:
     """
-    Check if the board (matrix) has been completely filled with non-zero values.
+    Tahtanın (matrisin) tamamen sıfır olmayan değerlerle doldurulup doldurulmadığını kontrol edin.
 
-    >>> is_complete([[1]])
+    >>> tamamlandı_mı([[1]])
     True
 
-    >>> is_complete([[1, 2], [3, 0]])
+    >>> tamamlandı_mı([[1, 2], [3, 0]])
     False
     """
 
-    return not any(elem == 0 for row in board for elem in row)
+    return not any(elem == 0 for row in tahta for elem in row)
 
 
-def open_knight_tour_helper(
-    board: list[list[int]], pos: tuple[int, int], curr: int
+def açık_at_turu_yardımcı(
+    tahta: list[list[int]], poz: tuple[int, int], mevcut: int
 ) -> bool:
     """
-    Helper function to solve knight tour problem.
+    At turu problemini çözmek için yardımcı fonksiyon.
     """
 
-    if is_complete(board):
+    if tamamlandı_mı(tahta):
         return True
 
-    for position in get_valid_pos(pos, len(board)):
-        y, x = position
+    for pozisyon in geçerli_pozisyonlar(poz, len(tahta)):
+        y, x = pozisyon
 
-        if board[y][x] == 0:
-            board[y][x] = curr + 1
-            if open_knight_tour_helper(board, position, curr + 1):
+        if tahta[y][x] == 0:
+            tahta[y][x] = mevcut + 1
+            if açık_at_turu_yardımcı(tahta, pozisyon, mevcut + 1):
                 return True
-            board[y][x] = 0
+            tahta[y][x] = 0
 
     return False
 
 
-def open_knight_tour(n: int) -> list[list[int]]:
+def açık_at_turu(n: int) -> list[list[int]]:
     """
-    Find the solution for the knight tour problem for a board of size n. Raises
-    ValueError if the tour cannot be performed for the given size.
+    n boyutundaki bir tahta için at turu probleminin çözümünü bulun. Verilen boyut için
+    tur yapılamazsa ValueError yükseltir.
 
-    >>> open_knight_tour(1)
+    >>> açık_at_turu(1)
     [[1]]
 
-    >>> open_knight_tour(2)
+    >>> açık_at_turu(2)
     Traceback (most recent call last):
         ...
-    ValueError: Open Knight Tour cannot be performed on a board of size 2
+    ValueError: Açık At Turu, 2 boyutundaki bir tahtada yapılamaz
     """
 
-    board = [[0 for i in range(n)] for j in range(n)]
+    tahta = [[0 for i in range(n)] for j in range(n)]
 
     for i in range(n):
         for j in range(n):
-            board[i][j] = 1
-            if open_knight_tour_helper(board, (i, j), 1):
-                return board
-            board[i][j] = 0
+            tahta[i][j] = 1
+            if açık_at_turu_yardımcı(tahta, (i, j), 1):
+                return tahta
+            tahta[i][j] = 0
 
-    msg = f"Open Knight Tour cannot be performed on a board of size {n}"
+    msg = f"Açık At Turu, {n} boyutundaki bir tahtada yapılamaz"
     raise ValueError(msg)
 
 

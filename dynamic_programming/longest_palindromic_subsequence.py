@@ -1,36 +1,36 @@
 """
-author: Sanket Kittad
-Given a string s, find the longest palindromic subsequence's length in s.
-Input: s = "bbbab"
-Output: 4
-Explanation: One possible longest palindromic subsequence is "bbbb".
-Leetcode link: https://leetcode.com/problems/longest-palindromic-subsequence/description/
+yazar: Sanket Kittad
+Bir s dizesi verildiğinde, s'deki en uzun palindromik alt dizinin uzunluğunu bulun.
+Girdi: s = "bbbab"
+Çıktı: 4
+Açıklama: Olası en uzun palindromik alt dizilerden biri "bbbb"dir.
+Leetcode bağlantısı: https://leetcode.com/problems/longest-palindromic-subsequence/description/
 """
 
 
-def longest_palindromic_subsequence(input_string: str) -> int:
+def en_uzun_palindromik_alt_dizi(girdi_dizesi: str) -> int:
     """
-    This function returns the longest palindromic subsequence in a string
-    >>> longest_palindromic_subsequence("bbbab")
+    Bu fonksiyon bir dizedeki en uzun palindromik alt diziyi döndürür
+    >>> en_uzun_palindromik_alt_dizi("bbbab")
     4
-    >>> longest_palindromic_subsequence("bbabcbcab")
+    >>> en_uzun_palindromik_alt_dizi("bbabcbcab")
     7
     """
-    n = len(input_string)
-    rev = input_string[::-1]
-    m = len(rev)
+    n = len(girdi_dizesi)
+    ters = girdi_dizesi[::-1]
+    m = len(ters)
     dp = [[-1] * (m + 1) for i in range(n + 1)]
     for i in range(n + 1):
         dp[i][0] = 0
     for i in range(m + 1):
         dp[0][i] = 0
 
-    # create and initialise dp array
+    # dp dizisini oluştur ve başlat
     for i in range(1, n + 1):
         for j in range(1, m + 1):
-            # If characters at i and j are the same
-            # include them in the palindromic subsequence
-            if input_string[i - 1] == rev[j - 1]:
+            # Eğer i ve j'deki karakterler aynıysa
+            # onları palindromik alt diziye dahil et
+            if girdi_dizesi[i - 1] == ters[j - 1]:
                 dp[i][j] = 1 + dp[i - 1][j - 1]
             else:
                 dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])

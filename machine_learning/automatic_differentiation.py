@@ -5,6 +5,7 @@ Referans: https://en.wikipedia.org/wiki/Automatic_differentiation
 
 Yazar: Poojan Smart
 Email: smrtpoojan@gmail.com
+Katkı: K. Umut Araz
 """
 
 from __future__ import annotations
@@ -18,7 +19,7 @@ import numpy as np
 from typing_extensions import Self  # noqa: UP035
 
 
-class OpType(Enum):
+class İşlemTürü(Enum):
     """
     Değişken üzerinde türev hesaplaması için desteklenen işlemler listesini temsil eder.
     """
@@ -54,7 +55,7 @@ class Değişken:
         # Değişkenin girdi olduğu işlemlere işaretçiler
         self.param_to: list[İşlem] = []
         # Değişkenin çıktısı olduğu işleme işaretçi
-        self.result_of: İşlem = İşlem(OpType.NOOP)
+        self.result_of: İşlem = İşlem(İşlemTürü.NOOP)
 
     def __repr__(self) -> str:
         return f"Değişken({self.değer})"
@@ -68,7 +69,7 @@ class Değişken:
         with Türevİzleyici() as izleyici:
             # izleyici etkinse, hesaplama grafiği güncellenecek
             if izleyici.etkin:
-                izleyici.ekle(OpType.TOPLA, params=[self, diğer], output=sonuç)
+                izleyici.ekle(İşlemTürü.TOPLA, params=[self, diğer], output=sonuç)
         return sonuç
 
     def __sub__(self, diğer: Değişken) -> Değişken:
@@ -77,7 +78,7 @@ class Değişken:
         with Türevİzleyici() as izleyici:
             # izleyici etkinse, hesaplama grafiği güncellenecek
             if izleyici.etkin:
-                izleyici.ekle(OpType.ÇIKAR, params=[self, diğer], output=sonuç)
+                izleyici.ekle(İşlemTürü.ÇIKAR, params=[self, diğer], output=sonuç)
         return sonuç
 
     def __mul__(self, diğer: Değişken) -> Değişken:
@@ -86,7 +87,7 @@ class Değişken:
         with Türevİzleyici() as izleyici:
             # izleyici etkinse, hesaplama grafiği güncellenecek
             if izleyici.etkin:
-                izleyici.ekle(OpType.ÇARP, params=[self, diğer], output=sonuç)
+                izleyici.ekle(İşlemTürü.ÇARP, params=[self, diğer], output=sonuç)
         return sonuç
 
     def __truediv__(self, diğer: Değişken) -> Değişken:
@@ -95,7 +96,7 @@ class Değişken:
         with Türevİzleyici() as izleyici:
             # izleyici etkinse, hesaplama grafiği güncellenecek
             if izleyici.etkin:
-                izleyici.ekle(OpType.BÖL, params=[self, diğer], output=sonuç)
+                izleyici.ekle(İşlemTürü.BÖL, params=[self, diğer], output=sonuç)
         return sonuç
 
     def __matmul__(self, diğer: Değişken) -> Değişken:
@@ -104,7 +105,7 @@ class Değişken:
         with Türevİzleyici() as izleyici:
             # izleyici etkinse, hesaplama grafiği güncellenecek
             if izleyici.etkin:
-                izleyici.ekle(OpType.MATMUL, params=[self, diğer], output=sonuç)
+                izleyici.ekle(İşlemTürü.MATMUL, params=[self, diğer], output=sonuç)
         return sonuç
 
     def __pow__(self, güç: int) -> Değişken:
@@ -114,7 +115,7 @@ class Değişken:
             # izleyici etkinse, hesaplama grafiği güncellenecek
             if izleyici.etkin:
                 izleyici.ekle(
-                    OpType.ÜS,
+                    İşlemTürü.ÜS,
                     params=[self],
                     output=sonuç,
                     other_params={"güç": güç},
@@ -137,7 +138,7 @@ class İşlem:
 
     def __init__(
         self,
-        op_type: OpType,
+        op_type: İşlemTürü,
         other_params: dict | None = None,
     ) -> None:
         self.op_type = op_type
@@ -150,7 +151,7 @@ class İşlem:
         self.output = output
 
     def __eq__(self, value) -> bool:
-        return self.op_type == value if isinstance(value, OpType) else False
+        return self.op_type == value if isinstance(value, İşlemTürü) else False
 
 
 class Türevİzleyici:
@@ -219,7 +220,7 @@ class Türevİzleyici:
 
     def ekle(
         self,
-        op_type: OpType,
+        op_type: İşlemTürü,
         params: list[Değişken],
         output: Değişken,
         other_params: dict | None = None,
@@ -269,7 +270,7 @@ class Türevİzleyici:
                 dparam_dhedef = dparam_doutput * kısmi_türev[işlem.output]
                 kısmi_türev[param] += dparam_dhedef
 
-                if param.result_of and param.result_of != OpType.NOOP:
+                if param.result_of and param.result_of != İşlemTürü.NOOP:
                     işlem_kuyruğu.append(param.result_of)
 
         return kısmi_türev.get(kaynak)
@@ -287,29 +288,29 @@ class Türevİzleyici:
         """
         params = işlem.params
 
-        if işlem == OpType.TOPLA:
+        if işlem == İşlemTürü.TOPLA:
             return np.ones_like(params[0].to_ndarray(), dtype=np.float64)
-        if işlem == OpType.ÇIKAR:
+        if işlem == İşlemTürü.ÇIKAR:
             if params[0] == param:
                 return np.ones_like(params[0].to_ndarray(), dtype=np.float64)
             return -np.ones_like(params[1].to_ndarray(), dtype=np.float64)
-        if işlem == OpType.ÇARP:
+        if işlem == İşlemTürü.ÇARP:
             return (
                 params[1].to_ndarray().T
                 if params[0] == param
                 else params[0].to_ndarray().T
             )
-        if işlem == OpType.BÖL:
+        if işlem == İşlemTürü.BÖL:
             if params[0] == param:
                 return 1 / params[1].to_ndarray()
             return -params[0].to_ndarray() / (params[1].to_ndarray() ** 2)
-        if işlem == OpType.MATMUL:
+        if işlem == İşlemTürü.MATMUL:
             return (
                 params[1].to_ndarray().T
                 if params[0] == param
                 else params[0].to_ndarray().T
             )
-        if işlem == OpType.ÜS:
+        if işlem == İşlemTürü.ÜS:
             güç = işlem.other_params["güç"]
             return güç * (params[0].to_ndarray() ** (güç - 1))
 

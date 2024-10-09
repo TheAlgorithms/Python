@@ -1,9 +1,9 @@
 """
-Author: https://github.com/bhushan-borole
+Produced By: K. Umut Araz github.com/arazumut
 """
 
 """
-The input graph for the algorithm is:
+Algoritma için giriş grafiği:
 
   A B C
 A 0 1 1
@@ -12,60 +12,60 @@ C 1 0 0
 
 """
 
-graph = [[0, 1, 1], [0, 0, 1], [1, 0, 0]]
+grafik = [[0, 1, 1], [0, 0, 1], [1, 0, 0]]
 
 
-class Node:
-    def __init__(self, name):
-        self.name = name
-        self.inbound = []
-        self.outbound = []
+class Düğüm:
+    def __init__(self, isim):
+        self.isim = isim
+        self.gelen = []
+        self.giden = []
 
-    def add_inbound(self, node):
-        self.inbound.append(node)
+    def gelen_ekle(self, düğüm):
+        self.gelen.append(düğüm)
 
-    def add_outbound(self, node):
-        self.outbound.append(node)
+    def giden_ekle(self, düğüm):
+        self.giden.append(düğüm)
 
     def __repr__(self):
-        return f"<node={self.name} inbound={self.inbound} outbound={self.outbound}>"
+        return f"<düğüm={self.isim} gelen={self.gelen} giden={self.giden}>"
 
 
-def page_rank(nodes, limit=3, d=0.85):
-    ranks = {}
-    for node in nodes:
-        ranks[node.name] = 1
+def sayfa_sıralaması(düğümler, limit=3, d=0.85):
+    sıralamalar = {}
+    for düğüm in düğümler:
+        sıralamalar[düğüm.isim] = 1
 
-    outbounds = {}
-    for node in nodes:
-        outbounds[node.name] = len(node.outbound)
+    gidenler = {}
+    for düğüm in düğümler:
+        gidenler[düğüm.isim] = len(düğüm.giden)
 
     for i in range(limit):
-        print(f"======= Iteration {i + 1} =======")
-        for _, node in enumerate(nodes):
-            ranks[node.name] = (1 - d) + d * sum(
-                ranks[ib] / outbounds[ib] for ib in node.inbound
+        print(f"======= {i + 1}. İterasyon =======")
+        for _, düğüm in enumerate(düğümler):
+            sıralamalar[düğüm.isim] = (1 - d) + d * sum(
+                sıralamalar[gelen] / gidenler[gelen] for gelen in düğüm.gelen
             )
-        print(ranks)
+        print(sıralamalar)
 
 
-def main():
-    names = list(input("Enter Names of the Nodes: ").split())
+def ana():
+    isimler = list(input("Düğümlerin İsimlerini Girin: ").split())
 
-    nodes = [Node(name) for name in names]
+    düğümler = [Düğüm(isim) for isim in isimler]
 
-    for ri, row in enumerate(graph):
-        for ci, col in enumerate(row):
-            if col == 1:
-                nodes[ci].add_inbound(names[ri])
-                nodes[ri].add_outbound(names[ci])
+    for ri, satır in enumerate(grafik):
+        for ci, sütun in enumerate(satır):
+            if sütun == 1:
+                düğümler[ci].gelen_ekle(isimler[ri])
+                düğümler[ri].giden_ekle(isimler[ci])
 
-    print("======= Nodes =======")
-    for node in nodes:
-        print(node)
+    print("======= Düğümler =======")
+    for düğüm in düğümler:
+        print(düğüm)
 
-    page_rank(nodes)
+    sayfa_sıralaması(düğümler)
 
 
 if __name__ == "__main__":
-    main()
+    ana()

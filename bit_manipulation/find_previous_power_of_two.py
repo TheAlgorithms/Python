@@ -1,27 +1,27 @@
-def find_previous_power_of_two(number: int) -> int:
+def bir_onceki_iki_ussu_bul(sayi: int) -> int:
     """
-    Find the largest power of two that is less than or equal to a given integer.
+    Verilen bir tam sayıdan küçük veya ona eşit en büyük iki üssünü bulun.
     https://stackoverflow.com/questions/1322510
 
-    >>> [find_previous_power_of_two(i) for i in range(18)]
+    >>> [bir_onceki_iki_ussu_bul(i) for i in range(18)]
     [0, 1, 2, 2, 4, 4, 4, 4, 8, 8, 8, 8, 8, 8, 8, 8, 16, 16]
-    >>> find_previous_power_of_two(-5)
+    >>> bir_onceki_iki_ussu_bul(-5)
     Traceback (most recent call last):
         ...
-    ValueError: Input must be a non-negative integer
-    >>> find_previous_power_of_two(10.5)
+    ValueError: Girdi negatif olmayan bir tam sayı olmalıdır
+    >>> bir_onceki_iki_ussu_bul(10.5)
     Traceback (most recent call last):
         ...
-    ValueError: Input must be a non-negative integer
+    ValueError: Girdi negatif olmayan bir tam sayı olmalıdır
     """
-    if not isinstance(number, int) or number < 0:
-        raise ValueError("Input must be a non-negative integer")
-    if number == 0:
+    if not isinstance(sayi, int) or sayi < 0:
+        raise ValueError("Girdi negatif olmayan bir tam sayı olmalıdır")
+    if sayi == 0:
         return 0
-    power = 1
-    while power <= number:
-        power <<= 1  # Equivalent to multiplying by 2
-    return power >> 1 if number > 1 else 1
+    us = 1
+    while us <= sayi:
+        us <<= 1  # 2 ile çarpmaya eşdeğer
+    return us >> 1 if sayi > 1 else 1
 
 
 if __name__ == "__main__":

@@ -1,15 +1,15 @@
-def min_path_sum(grid: list) -> int:
+def min_yol_toplamı(ızgara: list) -> int:
     """
-    Find the path from top left to bottom right of array of numbers
-    with the lowest possible sum and return the sum along this path.
-    >>> min_path_sum([
+    Bir dizi sayının sol üst köşesinden sağ alt köşesine kadar olan yolda
+    en düşük olası toplamı bul ve bu yoldaki toplamı döndür.
+    >>> min_yol_toplamı([
     ...     [1, 3, 1],
     ...     [1, 5, 1],
     ...     [4, 2, 1],
     ... ])
     7
 
-    >>> min_path_sum([
+    >>> min_yol_toplamı([
     ...     [1, 0, 5, 6, 7],
     ...     [8, 9, 0, 4, 2],
     ...     [4, 4, 4, 5, 1],
@@ -18,43 +18,47 @@ def min_path_sum(grid: list) -> int:
     ... ])
     20
 
-    >>> min_path_sum(None)
+
+
+    >>> min_yol_toplamı(None)
     Traceback (most recent call last):
         ...
-    TypeError: The grid does not contain the appropriate information
+    TypeError: Izgara uygun bilgileri içermiyor
 
-    >>> min_path_sum([[]])
+    >>> min_yol_toplamı([[]])
     Traceback (most recent call last):
         ...
-    TypeError: The grid does not contain the appropriate information
+    TypeError: Izgara uygun bilgileri içermiyor
     """
 
-    if not grid or not grid[0]:
-        raise TypeError("The grid does not contain the appropriate information")
+    if not ızgara or not ızgara[0]:
+        raise TypeError("Izgara uygun bilgileri içermiyor")
 
-    for cell_n in range(1, len(grid[0])):
-        grid[0][cell_n] += grid[0][cell_n - 1]
-    row_above = grid[0]
+    for hücre_n in range(1, len(ızgara[0])):
+        ızgara[0][hücre_n] += ızgara[0][hücre_n - 1]
+    üst_satır = ızgara[0]
 
-    for row_n in range(1, len(grid)):
-        current_row = grid[row_n]
-        grid[row_n] = fill_row(current_row, row_above)
-        row_above = grid[row_n]
+    for satır_n in range(1, len(ızgara)):
+        mevcut_satır = ızgara[satır_n]
+        ızgara[satır_n] = satırı_doldur(mevcut_satır, üst_satır)
+        üst_satır = ızgara[satır_n]
 
-    return grid[-1][-1]
+    return ızgara[-1][-1]
+
+#Produced By K. Umut Araz
 
 
-def fill_row(current_row: list, row_above: list) -> list:
+def satırı_doldur(mevcut_satır: list, üst_satır: list) -> list:
     """
-    >>> fill_row([2, 2, 2], [1, 2, 3])
+    >>> satırı_doldur([2, 2, 2], [1, 2, 3])
     [3, 4, 5]
     """
 
-    current_row[0] += row_above[0]
-    for cell_n in range(1, len(current_row)):
-        current_row[cell_n] += min(current_row[cell_n - 1], row_above[cell_n])
+    mevcut_satır[0] += üst_satır[0]
+    for hücre_n in range(1, len(mevcut_satır)):
+        mevcut_satır[hücre_n] += min(mevcut_satır[hücre_n - 1], üst_satır[hücre_n])
 
-    return current_row
+    return mevcut_satır
 
 
 if __name__ == "__main__":

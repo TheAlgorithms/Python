@@ -1,10 +1,9 @@
-"""Breath First Search (BFS) can be used when finding the shortest path
-from a given source node to a target node in an unweighted graph.
+"""Genişlik Öncelikli Arama (BFS), ağırlıksız bir grafikte verilen bir kaynak düğümden hedef düğüme en kısa yolu bulmak için kullanılabilir.
 """
 
 from __future__ import annotations
 
-graph = {
+graf = {
     "A": ["B", "C", "E"],
     "B": ["A", "D", "E"],
     "C": ["A", "F", "G"],
@@ -14,77 +13,78 @@ graph = {
     "G": ["C"],
 }
 
+#Produced by K. Umut Araz 
+class Graf:
+    def __init__(self, graf: dict[str, list[str]], kaynak_düğüm: str) -> None:
+        """
+        Graf, komşuluk listelerinin bir sözlüğü olarak uygulanmıştır. Ayrıca,
+        Kaynak düğüm başlatma sırasında tanımlanmalıdır.
+        """
+        self.graf = graf
+        # düğümü, genişlik öncelikli ağaçta ebeveynine eşler
+        self.ebeveyn: dict[str, str | None] = {}
+        self.kaynak_düğüm = kaynak_düğüm
 
-class Graph:
-    def __init__(self, graph: dict[str, list[str]], source_vertex: str) -> None:
+    def genişlik_öncelikli_arama(self) -> None:
         """
-        Graph is implemented as dictionary of adjacency lists. Also,
-        Source vertex have to be defined upon initialization.
-        """
-        self.graph = graph
-        # mapping node to its parent in resulting breadth first tree
-        self.parent: dict[str, str | None] = {}
-        self.source_vertex = source_vertex
-
-    def breath_first_search(self) -> None:
-        """
-        This function is a helper for running breath first search on this graph.
-        >>> g = Graph(graph, "G")
-        >>> g.breath_first_search()
-        >>> g.parent
+        Bu fonksiyon, bu graf üzerinde genişlik öncelikli arama çalıştırmak için bir yardımcıdır.
+        >>> g = Graf(graf, "G")
+        >>> g.genişlik_öncelikli_arama()
+        >>> g.ebeveyn
         {'G': None, 'C': 'G', 'A': 'C', 'F': 'C', 'B': 'A', 'E': 'A', 'D': 'B'}
         """
-        visited = {self.source_vertex}
-        self.parent[self.source_vertex] = None
-        queue = [self.source_vertex]  # first in first out queue
+        ziyaret_edilen = {self.kaynak_düğüm}
+        self.ebeveyn[self.kaynak_düğüm] = None
+        kuyruk = [self.kaynak_düğüm]  # ilk giren ilk çıkar kuyruğu
 
-        while queue:
-            vertex = queue.pop(0)
-            for adjacent_vertex in self.graph[vertex]:
-                if adjacent_vertex not in visited:
-                    visited.add(adjacent_vertex)
-                    self.parent[adjacent_vertex] = vertex
-                    queue.append(adjacent_vertex)
+        while kuyruk:
+            düğüm = kuyruk.pop(0)
+            for komşu_düğüm in self.graf[düğüm]:
+                if komşu_düğüm not in ziyaret_edilen:
+                    ziyaret_edilen.add(komşu_düğüm)
+                    self.ebeveyn[komşu_düğüm] = düğüm
+                    kuyruk.append(komşu_düğüm)
 
-    def shortest_path(self, target_vertex: str) -> str:
+    def en_kısa_yol(self, hedef_düğüm: str) -> str:
         """
-        This shortest path function returns a string, describing the result:
-        1.) No path is found. The string is a human readable message to indicate this.
-        2.) The shortest path is found. The string is in the form
-            `v1(->v2->v3->...->vn)`, where v1 is the source vertex and vn is the target
-            vertex, if it exists separately.
+        Bu en kısa yol fonksiyonu bir string döndürür ve sonucu açıklar:
+        1.) Yol bulunamazsa. String, bunu belirtmek için insan tarafından okunabilir bir mesajdır.
+        2.) En kısa yol bulunursa. String, `v1(->v2->v3->...->vn)` formundadır, burada v1 kaynak düğüm ve vn hedef düğümdür.
 
-        >>> g = Graph(graph, "G")
-        >>> g.breath_first_search()
+        >>> g = Graf(graf, "G")
+        >>> g.genişlik_öncelikli_arama()
 
-        Case 1 - No path is found.
-        >>> g.shortest_path("Foo")
+        Durum 1 - Yol bulunamaz.
+        >>> g.en_kısa_yol("Foo")
         Traceback (most recent call last):
             ...
-        ValueError: No path from vertex: G to vertex: Foo
+        ValueError: G düğümünden Foo düğümüne yol yok
 
-        Case 2 - The path is found.
-        >>> g.shortest_path("D")
+        Durum 2 - Yol bulunur.
+        >>> g.en_kısa_yol("D")
         'G->C->A->B->D'
-        >>> g.shortest_path("G")
+        >>> g.en_kısa_yol("G")
         'G'
         """
-        if target_vertex == self.source_vertex:
-            return self.source_vertex
+        if hedef_düğüm == self.kaynak_düğüm:
+            return self.kaynak_düğüm
 
-        target_vertex_parent = self.parent.get(target_vertex)
-        if target_vertex_parent is None:
+        hedef_düğüm_ebeveyni = self.ebeveyn.get(hedef_düğüm)
+        if hedef_düğüm_ebeveyni is None:
             msg = (
-                f"No path from vertex: {self.source_vertex} to vertex: {target_vertex}"
+                f"G düğümünden {hedef_düğüm} düğümüne yol yok"
             )
             raise ValueError(msg)
 
-        return self.shortest_path(target_vertex_parent) + f"->{target_vertex}"
+        return self.en_kısa_yol(hedef_düğüm_ebeveyni) + f"->{hedef_düğüm}"
 
 
 if __name__ == "__main__":
-    g = Graph(graph, "G")
-    g.breath_first_search()
-    print(g.shortest_path("D"))
-    print(g.shortest_path("G"))
-    print(g.shortest_path("Foo"))
+    g = Graf(graf, "G")
+    g.genişlik_öncelikli_arama()
+    print(g.en_kısa_yol("D"))
+    print(g.en_kısa_yol("G"))
+    try:
+        print(g.en_kısa_yol("Foo"))
+    except ValueError as e:
+        print(e)

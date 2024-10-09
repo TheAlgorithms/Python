@@ -1,34 +1,34 @@
-def is_even(number: int) -> bool:
+def cift_mi(sayi: int) -> bool:
     """
-    return true if the input integer is even
-    Explanation: Lets take a look at the following decimal to binary conversions
+    Girdi tamsayısı çift ise true döndürür
+    Açıklama: Aşağıdaki ondalık sayıdan ikiliye dönüşümlere bir göz atalım
     2 => 10
     14 => 1110
     100 => 1100100
     3 => 11
     13 => 1101
     101 => 1100101
-    from the above examples we can observe that
-    for all the odd integers there is always 1 set bit at the end
-    also, 1 in binary can be represented as 001, 00001, or 0000001
-    so for any odd integer n => n&1 is always equals 1 else the integer is even
+    yukarıdaki örneklerden şunu gözlemleyebiliriz
+    tüm tek tamsayılar için her zaman sonunda 1 ayarlanmış bit vardır
+    ayrıca, ikilik sistemde 1 şu şekilde temsil edilebilir: 001, 00001 veya 0000001
+    bu nedenle herhangi bir tek tamsayı n için => n&1 her zaman 1'e eşittir, aksi takdirde tamsayı çifttir
 
-    >>> is_even(1)
+    >>> cift_mi(1)
     False
-    >>> is_even(4)
+    >>> cift_mi(4)
     True
-    >>> is_even(9)
+    >>> cift_mi(9)
     False
-    >>> is_even(15)
+    >>> cift_mi(15)
     False
-    >>> is_even(40)
+    >>> cift_mi(40)
     True
-    >>> is_even(100)
+    >>> cift_mi(100)
     True
-    >>> is_even(101)
+    >>> cift_mi(101)
     False
     """
-    return number & 1 == 0
+    return sayi & 1 == 0
 
 
 if __name__ == "__main__":

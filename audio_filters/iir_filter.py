@@ -3,19 +3,18 @@ from __future__ import annotations
 
 class IIRFilter:
     r"""
-    N-Order IIR filter
-    Assumes working with float samples normalized on [-1, 1]
+    N-Order IIR filtre
+    [-1, 1] aralığında normalize edilmiş float örneklerle çalıştığı varsayılır.
 
     ---
 
-    Implementation details:
-    Based on the 2nd-order function from
-     https://en.wikipedia.org/wiki/Digital_biquad_filter,
-    this generalized N-order function was made.
+    Uygulama detayları:
+    https://en.wikipedia.org/wiki/Digital_biquad_filter adresindeki 2. dereceden fonksiyona dayalı olarak,
+    bu genelleştirilmiş N. dereceden fonksiyon oluşturulmuştur.
 
-    Using the following transfer function
+    Aşağıdaki transfer fonksiyonunu kullanarak
     H(z)=\frac{b_{0}+b_{1}z^{-1}+b_{2}z^{-2}+...+b_{k}z^{-k}}{a_{0}+a_{1}z^{-1}+a_{2}z^{-2}+...+a_{k}z^{-k}}
-    we can rewrite this to
+    bunu şu şekilde yeniden yazabiliriz
     y[n]={\frac{1}{a_{0}}}\left(\left(b_{0}x[n]+b_{1}x[n-1]+b_{2}x[n-2]+...+b_{k}x[n-k]\right)-\left(a_{1}y[n-1]+a_{2}y[n-2]+...+a_{k}y[n-k]\right)\right)
     """
 
@@ -23,72 +22,72 @@ class IIRFilter:
         self.order = order
 
         # a_{0} ... a_{k}
-        self.a_coeffs = [1.0] + [0.0] * order
+        self.a_koeff = [1.0] + [0.0] * order
         # b_{0} ... b_{k}
-        self.b_coeffs = [1.0] + [0.0] * order
+        self.b_koeff = [1.0] + [0.0] * order
 
         # x[n-1] ... x[n-k]
-        self.input_history = [0.0] * self.order
+        self.girdi_geçmişi = [0.0] * self.order
         # y[n-1] ... y[n-k]
-        self.output_history = [0.0] * self.order
+        self.çıktı_geçmişi = [0.0] * self.order
 
-    def set_coefficients(self, a_coeffs: list[float], b_coeffs: list[float]) -> None:
+    def koeff_ayarla(self, a_koeff: list[float], b_koeff: list[float]) -> None:
         """
-        Set the coefficients for the IIR filter. These should both be of size order + 1.
-        a_0 may be left out, and it will use 1.0 as default value.
+        IIR filtresi için katsayıları ayarlayın. Bunlar her ikisi de order + 1 boyutunda olmalıdır.
+        a_0 bırakılabilir ve varsayılan değer olarak 1.0 kullanılır.
 
-        This method works well with scipy's filter design functions
-            >>> # Make a 2nd-order 1000Hz butterworth lowpass filter
+        Bu yöntem scipy'nin filtre tasarım fonksiyonları ile iyi çalışır
+            >>> # 2. dereceden 1000Hz butterworth alçak geçiren filtre yapın
             >>> import scipy.signal
-            >>> b_coeffs, a_coeffs = scipy.signal.butter(2, 1000,
+            >>> b_koeff, a_koeff = scipy.signal.butter(2, 1000,
             ...                                          btype='lowpass',
             ...                                          fs=48000)
             >>> filt = IIRFilter(2)
-            >>> filt.set_coefficients(a_coeffs, b_coeffs)
+            >>> filt.koeff_ayarla(a_koeff, b_koeff)
         """
-        if len(a_coeffs) < self.order:
-            a_coeffs = [1.0, *a_coeffs]
+        if len(a_koeff) < self.order:
+            a_koeff = [1.0, *a_koeff]
 
-        if len(a_coeffs) != self.order + 1:
+        if len(a_koeff) != self.order + 1:
             msg = (
-                f"Expected a_coeffs to have {self.order + 1} elements "
-                f"for {self.order}-order filter, got {len(a_coeffs)}"
+                f"{self.order}-dereceden filtre için a_koeff'un {self.order + 1} elemanlı olması bekleniyordu, "
+                f"ancak {len(a_koeff)} eleman bulundu"
             )
             raise ValueError(msg)
 
-        if len(b_coeffs) != self.order + 1:
+        if len(b_koeff) != self.order + 1:
             msg = (
-                f"Expected b_coeffs to have {self.order + 1} elements "
-                f"for {self.order}-order filter, got {len(a_coeffs)}"
+                f"{self.order}-dereceden filtre için b_koeff'un {self.order + 1} elemanlı olması bekleniyordu, "
+                f"ancak {len(b_koeff)} eleman bulundu"
             )
             raise ValueError(msg)
 
-        self.a_coeffs = a_coeffs
-        self.b_coeffs = b_coeffs
+        self.a_koeff = a_koeff
+        self.b_koeff = b_koeff
 
-    def process(self, sample: float) -> float:
+    def işlem(self, örnek: float) -> float:
         """
-        Calculate y[n]
+        y[n] hesapla
 
         >>> filt = IIRFilter(2)
-        >>> filt.process(0)
+        >>> filt.işlem(0)
         0.0
         """
-        result = 0.0
+        sonuç = 0.0
 
-        # Start at index 1 and do index 0 at the end.
+        # 1. indexten başlayın ve 0. indexi en sonda yapın.
         for i in range(1, self.order + 1):
-            result += (
-                self.b_coeffs[i] * self.input_history[i - 1]
-                - self.a_coeffs[i] * self.output_history[i - 1]
+            sonuç += (
+                self.b_koeff[i] * self.girdi_geçmişi[i - 1]
+                - self.a_koeff[i] * self.çıktı_geçmişi[i - 1]
             )
 
-        result = (result + self.b_coeffs[0] * sample) / self.a_coeffs[0]
+        sonuç = (sonuç + self.b_koeff[0] * örnek) / self.a_koeff[0]
 
-        self.input_history[1:] = self.input_history[:-1]
-        self.output_history[1:] = self.output_history[:-1]
+        self.girdi_geçmişi[1:] = self.girdi_geçmişi[:-1]
+        self.çıktı_geçmişi[1:] = self.çıktı_geçmişi[:-1]
 
-        self.input_history[0] = sample
-        self.output_history[0] = result
+        self.girdi_geçmişi[0] = örnek
+        self.çıktı_geçmişi[0] = sonuç
 
-        return result
+        return sonuç

@@ -1,34 +1,33 @@
-# Youtube Explanation: https://www.youtube.com/watch?v=lBRtnuxg-gU
+# Youtube Açıklaması: https://www.youtube.com/watch?v=lBRtnuxg-gU
 
 from __future__ import annotations
 
 
-def minimum_cost_path(matrix: list[list[int]]) -> int:
+def minimum_maliyet_yolu(matris: list[list[int]]) -> int:
     """
-    Find the minimum cost traced by all possible paths from top left to bottom right in
-    a given matrix
+    Verilen bir matriste sol üstten sağ alta kadar olan tüm olası yolların izlediği minimum maliyeti bulun
 
-    >>> minimum_cost_path([[2, 1], [3, 1], [4, 2]])
+    >>> minimum_maliyet_yolu([[2, 1], [3, 1], [4, 2]])
     6
 
-    >>> minimum_cost_path([[2, 1, 4], [2, 1, 3], [3, 2, 1]])
+    >>> minimum_maliyet_yolu([[2, 1, 4], [2, 1, 3], [3, 2, 1]])
     7
     """
 
-    # preprocessing the first row
-    for i in range(1, len(matrix[0])):
-        matrix[0][i] += matrix[0][i - 1]
+    # ilk satırı ön işleme tabi tutma
+    for i in range(1, len(matris[0])):
+        matris[0][i] += matris[0][i - 1]
 
-    # preprocessing the first column
-    for i in range(1, len(matrix)):
-        matrix[i][0] += matrix[i - 1][0]
+    # ilk sütunu ön işleme tabi tutma
+    for i in range(1, len(matris)):
+        matris[i][0] += matris[i - 1][0]
 
-    # updating the path cost for current position
-    for i in range(1, len(matrix)):
-        for j in range(1, len(matrix[0])):
-            matrix[i][j] += min(matrix[i - 1][j], matrix[i][j - 1])
+    # mevcut pozisyon için yol maliyetini güncelleme
+    for i in range(1, len(matris)):
+        for j in range(1, len(matris[0])):
+            matris[i][j] += min(matris[i - 1][j], matris[i][j - 1])
 
-    return matrix[-1][-1]
+    return matris[-1][-1]
 
 
 if __name__ == "__main__":

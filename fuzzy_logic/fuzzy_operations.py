@@ -1,5 +1,5 @@
 """
-By @Shreya123714
+Produced by K. Umut Araz
 
 https://en.wikipedia.org/wiki/Fuzzy_set
 """
@@ -13,183 +13,182 @@ import numpy as np
 
 
 @dataclass
-class FuzzySet:
+class BulanıkKüme:
     """
-    A class for representing and manipulating triangular fuzzy sets.
-    Attributes:
-        name: The name or label of the fuzzy set.
-        left_boundary: The left boundary of the fuzzy set.
-        peak: The peak (central) value of the fuzzy set.
-        right_boundary: The right boundary of the fuzzy set.
-    Methods:
-        membership(x): Calculate the membership value of an input 'x' in the fuzzy set.
-        union(other): Calculate the union of this fuzzy set with another fuzzy set.
-        intersection(other): Calculate the intersection of this fuzzy set with another.
-        complement(): Calculate the complement (negation) of this fuzzy set.
-        plot(): Plot the membership function of the fuzzy set.
+    Üçgen bulanık kümeleri temsil etmek ve manipüle etmek için bir sınıf.
+    Nitelikler:
+        isim: Bulanık kümenin adı veya etiketi.
+        sol_sınır: Bulanık kümenin sol sınırı.
+        tepe: Bulanık kümenin tepe (merkez) değeri.
+        sağ_sınır: Bulanık kümenin sağ sınırı.
+    Metotlar:
+        üyelik(x): Bir girdinin 'x' bulanık kümedeki üyelik değerini hesapla.
+        birleşim(diger): Bu bulanık kümenin başka bir bulanık küme ile birleşimini hesapla.
+        kesişim(diger): Bu bulanık kümenin başka bir bulanık küme ile kesişimini hesapla.
+        tamamlayıcı(): Bu bulanık kümenin tamamlayıcısını (negasyonunu) hesapla.
+        çiz(): Bulanık kümenin üyelik fonksiyonunu çiz.
 
-    >>> sheru = FuzzySet("Sheru", 0.4, 1, 0.6)
+    >>> sheru = BulanıkKüme("Sheru", 0.4, 1, 0.6)
     >>> sheru
-    FuzzySet(name='Sheru', left_boundary=0.4, peak=1, right_boundary=0.6)
+    BulanıkKüme(isim='Sheru', sol_sınır=0.4, tepe=1, sağ_sınır=0.6)
     >>> str(sheru)
     'Sheru: [0.4, 1, 0.6]'
 
-    >>> siya = FuzzySet("Siya", 0.5, 1, 0.7)
+    >>> siya = BulanıkKüme("Siya", 0.5, 1, 0.7)
     >>> siya
-    FuzzySet(name='Siya', left_boundary=0.5, peak=1, right_boundary=0.7)
+    BulanıkKüme(isim='Siya', sol_sınır=0.5, tepe=1, sağ_sınır=0.7)
 
-    # Complement Operation
-    >>> sheru.complement()
-    FuzzySet(name='¬Sheru', left_boundary=0.4, peak=0.6, right_boundary=0)
-    >>> siya.complement()  # doctest: +NORMALIZE_WHITESPACE
-    FuzzySet(name='¬Siya', left_boundary=0.30000000000000004, peak=0.5,
-     right_boundary=0)
+    # Tamamlayıcı İşlemi
+    >>> sheru.tamamlayıcı()
+    BulanıkKüme(isim='¬Sheru', sol_sınır=0.4, tepe=0.6, sağ_sınır=0)
+    >>> siya.tamamlayıcı()  # doctest: +NORMALIZE_WHITESPACE
+    BulanıkKüme(isim='¬Siya', sol_sınır=0.30000000000000004, tepe=0.5,
+     sağ_sınır=0)
 
-    # Intersection Operation
-    >>> siya.intersection(sheru)
-    FuzzySet(name='Siya ∩ Sheru', left_boundary=0.5, peak=0.6, right_boundary=1.0)
+    # Kesişim İşlemi
+    >>> siya.kesişim(sheru)
+    BulanıkKüme(isim='Siya ∩ Sheru', sol_sınır=0.5, tepe=0.6, sağ_sınır=1.0)
 
-    # Membership Operation
-    >>> sheru.membership(0.5)
+    # Üyelik İşlemi
+    >>> sheru.üyelik(0.5)
     0.16666666666666663
-    >>> sheru.membership(0.6)
+    >>> sheru.üyelik(0.6)
     0.0
 
-    # Union Operations
-    >>> siya.union(sheru)
-    FuzzySet(name='Siya U Sheru', left_boundary=0.4, peak=0.7, right_boundary=1.0)
+    # Birleşim İşlemleri
+    >>> siya.birleşim(sheru)
+    BulanıkKüme(isim='Siya U Sheru', sol_sınır=0.4, tepe=0.7, sağ_sınır=1.0)
     """
 
-    name: str
-    left_boundary: float
-    peak: float
-    right_boundary: float
+    isim: str
+    sol_sınır: float
+    tepe: float
+    sağ_sınır: float
 
     def __str__(self) -> str:
         """
-        >>> FuzzySet("fuzzy_set", 0.1, 0.2, 0.3)
-        FuzzySet(name='fuzzy_set', left_boundary=0.1, peak=0.2, right_boundary=0.3)
+        >>> BulanıkKüme("bulanık_küme", 0.1, 0.2, 0.3)
+        BulanıkKüme(isim='bulanık_küme', sol_sınır=0.1, tepe=0.2, sağ_sınır=0.3)
         """
         return (
-            f"{self.name}: [{self.left_boundary}, {self.peak}, {self.right_boundary}]"
+            f"{self.isim}: [{self.sol_sınır}, {self.tepe}, {self.sağ_sınır}]"
         )
 
-    def complement(self) -> FuzzySet:
+    def tamamlayıcı(self) -> BulanıkKüme:
         """
-        Calculate the complement (negation) of this fuzzy set.
-        Returns:
-            FuzzySet: A new fuzzy set representing the complement.
+        Bu bulanık kümenin tamamlayıcısını (negasyonunu) hesapla.
+        Döndürür:
+            BulanıkKüme: Tamamlayıcıyı temsil eden yeni bir bulanık küme.
 
-        >>> FuzzySet("fuzzy_set", 0.1, 0.2, 0.3).complement()
-        FuzzySet(name='¬fuzzy_set', left_boundary=0.7, peak=0.9, right_boundary=0.8)
+        >>> BulanıkKüme("bulanık_küme", 0.1, 0.2, 0.3).tamamlayıcı()
+        BulanıkKüme(isim='¬bulanık_küme', sol_sınır=0.7, tepe=0.9, sağ_sınır=0.8)
         """
-        return FuzzySet(
-            f"¬{self.name}",
-            1 - self.right_boundary,
-            1 - self.left_boundary,
-            1 - self.peak,
+        return BulanıkKüme(
+            f"¬{self.isim}",
+            1 - self.sağ_sınır,
+            1 - self.sol_sınır,
+            1 - self.tepe,
         )
 
-    def intersection(self, other) -> FuzzySet:
+    def kesişim(self, diger) -> BulanıkKüme:
         """
-        Calculate the intersection of this fuzzy set
-        with another fuzzy set.
-        Args:
-            other: Another fuzzy set to intersect with.
-        Returns:
-            A new fuzzy set representing the intersection.
+        Bu bulanık kümenin başka bir bulanık küme ile kesişimini hesapla.
+        Argümanlar:
+            diger: Kesişim yapılacak başka bir bulanık küme.
+        Döndürür:
+            Kesişimi temsil eden yeni bir bulanık küme.
 
-        >>> FuzzySet("a", 0.1, 0.2, 0.3).intersection(FuzzySet("b", 0.4, 0.5, 0.6))
-        FuzzySet(name='a ∩ b', left_boundary=0.4, peak=0.3, right_boundary=0.35)
+        >>> BulanıkKüme("a", 0.1, 0.2, 0.3).kesişim(BulanıkKüme("b", 0.4, 0.5, 0.6))
+        BulanıkKüme(isim='a ∩ b', sol_sınır=0.4, tepe=0.3, sağ_sınır=0.35)
         """
-        return FuzzySet(
-            f"{self.name} ∩ {other.name}",
-            max(self.left_boundary, other.left_boundary),
-            min(self.right_boundary, other.right_boundary),
-            (self.peak + other.peak) / 2,
+        return BulanıkKüme(
+            f"{self.isim} ∩ {diger.isim}",
+            max(self.sol_sınır, diger.sol_sınır),
+            min(self.sağ_sınır, diger.sağ_sınır),
+            (self.tepe + diger.tepe) / 2,
         )
 
-    def membership(self, x: float) -> float:
+    def üyelik(self, x: float) -> float:
         """
-        Calculate the membership value of an input 'x' in the fuzzy set.
-        Returns:
-            The membership value of 'x' in the fuzzy set.
+        Bir girdinin 'x' bulanık kümedeki üyelik değerini hesapla.
+        Döndürür:
+            'x'in bulanık kümedeki üyelik değeri.
 
-        >>> a = FuzzySet("a", 0.1, 0.2, 0.3)
-        >>> a.membership(0.09)
+        >>> a = BulanıkKüme("a", 0.1, 0.2, 0.3)
+        >>> a.üyelik(0.09)
         0.0
-        >>> a.membership(0.1)
+        >>> a.üyelik(0.1)
         0.0
-        >>> a.membership(0.11)
+        >>> a.üyelik(0.11)
         0.09999999999999995
-        >>> a.membership(0.4)
+        >>> a.üyelik(0.4)
         0.0
-        >>> FuzzySet("A", 0, 0.5, 1).membership(0.1)
+        >>> BulanıkKüme("A", 0, 0.5, 1).üyelik(0.1)
         0.2
-        >>> FuzzySet("B", 0.2, 0.7, 1).membership(0.6)
+        >>> BulanıkKüme("B", 0.2, 0.7, 1).üyelik(0.6)
         0.8
         """
-        if x <= self.left_boundary or x >= self.right_boundary:
+        if x <= self.sol_sınır or x >= self.sağ_sınır:
             return 0.0
-        elif self.left_boundary < x <= self.peak:
-            return (x - self.left_boundary) / (self.peak - self.left_boundary)
-        elif self.peak < x < self.right_boundary:
-            return (self.right_boundary - x) / (self.right_boundary - self.peak)
-        msg = f"Invalid value {x} for fuzzy set {self}"
+        elif self.sol_sınır < x <= self.tepe:
+            return (x - self.sol_sınır) / (self.tepe - self.sol_sınır)
+        elif self.tepe < x < self.sağ_sınır:
+            return (self.sağ_sınır - x) / (self.sağ_sınır - self.tepe)
+        msg = f"Bulanık küme için geçersiz değer {x}: {self}"
         raise ValueError(msg)
 
-    def union(self, other) -> FuzzySet:
+    def birleşim(self, diger) -> BulanıkKüme:
         """
-        Calculate the union of this fuzzy set with another fuzzy set.
-        Args:
-            other (FuzzySet): Another fuzzy set to union with.
-        Returns:
-            FuzzySet: A new fuzzy set representing the union.
+        Bu bulanık kümenin başka bir bulanık küme ile birleşimini hesapla.
+        Argümanlar:
+            diger (BulanıkKüme): Birleşim yapılacak başka bir bulanık küme.
+        Döndürür:
+            Birleşimi temsil eden yeni bir bulanık küme.
 
-        >>> FuzzySet("a", 0.1, 0.2, 0.3).union(FuzzySet("b", 0.4, 0.5, 0.6))
-        FuzzySet(name='a U b', left_boundary=0.1, peak=0.6, right_boundary=0.35)
+        >>> BulanıkKüme("a", 0.1, 0.2, 0.3).birleşim(BulanıkKüme("b", 0.4, 0.5, 0.6))
+        BulanıkKüme(isim='a U b', sol_sınır=0.1, tepe=0.6, sağ_sınır=0.35)
         """
-        return FuzzySet(
-            f"{self.name} U {other.name}",
-            min(self.left_boundary, other.left_boundary),
-            max(self.right_boundary, other.right_boundary),
-            (self.peak + other.peak) / 2,
+        return BulanıkKüme(
+            f"{self.isim} U {diger.isim}",
+            min(self.sol_sınır, diger.sol_sınır),
+            max(self.sağ_sınır, diger.sağ_sınır),
+            (self.tepe + diger.tepe) / 2,
         )
 
-    def plot(self):
+    def çiz(self):
         """
-        Plot the membership function of the fuzzy set.
+        Bulanık kümenin üyelik fonksiyonunu çiz.
         """
         x = np.linspace(0, 1, 1000)
-        y = [self.membership(xi) for xi in x]
+        y = [self.üyelik(xi) for xi in x]
 
-        plt.plot(x, y, label=self.name)
+        plt.plot(x, y, label=self.isim)
 
 
 if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    a = FuzzySet("A", 0, 0.5, 1)
-    b = FuzzySet("B", 0.2, 0.7, 1)
+    a = BulanıkKüme("A", 0, 0.5, 1)
+    b = BulanıkKüme("B", 0.2, 0.7, 1)
 
-    a.plot()
-    b.plot()
+    a.çiz()
+    b.çiz()
 
     plt.xlabel("x")
-    plt.ylabel("Membership")
+    plt.ylabel("Üyelik")
     plt.legend()
     plt.show()
 
-    union_ab = a.union(b)
-    intersection_ab = a.intersection(b)
-    complement_a = a.complement()
+    birleşim_ab = a.birleşim(b)
+    kesişim_ab = a.kesişim(b)
+    tamamlayıcı_a = a.tamamlayıcı()
 
-    union_ab.plot()
-    intersection_ab.plot()
-    complement_a.plot()
+    birleşim_ab.çiz()
+    kesişim_ab.çiz()
+    tamamlayıcı_a.çiz()
 
     plt.xlabel("x")
-    plt.ylabel("Membership")
+    plt.ylabel("Üyelik")
     plt.legend()
     plt.show()

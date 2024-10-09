@@ -1,63 +1,63 @@
 """
-Calculate the exponential moving average (EMA) on the series of stock prices.
-Wikipedia Reference: https://en.wikipedia.org/wiki/Exponential_smoothing
+Hisse senedi fiyatları serisi üzerinde üssel hareketli ortalamayı (EMA) hesaplar.
+Wikipedia Referansı: https://en.wikipedia.org/wiki/Exponential_smoothing
 https://www.investopedia.com/terms/e/ema.asp#toc-what-is-an-exponential
 -moving-average-ema
 
-Exponential moving average is used in finance to analyze changes stock prices.
-EMA is used in conjunction with Simple moving average (SMA), EMA reacts to the
-changes in the value quicker than SMA, which is one of the advantages of using EMA.
+Üssel hareketli ortalama, finansal analizde hisse senedi fiyatlarındaki değişiklikleri
+analiz etmek için kullanılır. EMA, Basit hareketli ortalama (SMA) ile birlikte kullanılır,
+EMA, SMA'ya göre değerdeki değişikliklere daha hızlı tepki verir, bu da EMA kullanmanın
+avantajlarından biridir.
 """
 
 from collections.abc import Iterator
 
 
-def exponential_moving_average(
-    stock_prices: Iterator[float], window_size: int
+def ussel_hareketli_ortalama(
+    hisse_fiyatlari: Iterator[float], pencere_boyutu: int
 ) -> Iterator[float]:
     """
-    Yields exponential moving averages of the given stock prices.
-    >>> tuple(exponential_moving_average(iter([2, 5, 3, 8.2, 6, 9, 10]), 3))
+    Verilen hisse senedi fiyatlarının üssel hareketli ortalamalarını döndürür.
+    >>> tuple(ussel_hareketli_ortalama(iter([2, 5, 3, 8.2, 6, 9, 10]), 3))
     (2, 3.5, 3.25, 5.725, 5.8625, 7.43125, 8.715625)
 
-    :param stock_prices: A stream of stock prices
-    :param window_size: The number of stock prices that will trigger a new calculation
-                        of the exponential average (window_size > 0)
-    :return: Yields a sequence of exponential moving averages
+    :param hisse_fiyatlari: Hisse senedi fiyatlarının bir akışı
+    :param pencere_boyutu: Üssel ortalamanın yeni bir hesaplamasını tetikleyecek
+                           hisse senedi fiyatlarının sayısı (pencere_boyutu > 0)
+    :return: Üssel hareketli ortalamaların bir dizisini döndürür
 
-    Formula:
+    Formül:
 
     st = alpha * xt + (1 - alpha) * st_prev
 
-    Where,
-    st : Exponential moving average at timestamp t
-    xt : stock price in from the stock prices at timestamp t
-    st_prev : Exponential moving average at timestamp t-1
-    alpha : 2/(1 + window_size) - smoothing factor
+    Burada,
+    st : Zaman damgasında üssel hareketli ortalama t
+    xt : Zaman damgasında hisse senedi fiyatı t
+    st_prev : Zaman damgasında üssel hareketli ortalama t-1
+    alpha : 2/(1 + pencere_boyutu) - yumuşatma faktörü
 
-    Exponential moving average (EMA) is a rule of thumb technique for
-    smoothing time series data using an exponential window function.
+    Üssel hareketli ortalama (EMA), üssel pencere fonksiyonu kullanarak zaman serisi
+    verilerini yumuşatma için bir kuraldır.
     """
 
-    if window_size <= 0:
-        raise ValueError("window_size must be > 0")
+    if pencere_boyutu <= 0:
+        raise ValueError("pencere_boyutu > 0 olmalıdır")
 
-    # Calculating smoothing factor
-    alpha = 2 / (1 + window_size)
+    # Yumuşatma faktörünü hesaplama
+    alpha = 2 / (1 + pencere_boyutu)
 
-    # Exponential average at timestamp t
-    moving_average = 0.0
+    # Zaman damgasında üssel ortalama t
+    hareketli_ortalama = 0.0
 
-    for i, stock_price in enumerate(stock_prices):
-        if i <= window_size:
-            # Assigning simple moving average till the window_size for the first time
-            # is reached
-            moving_average = (moving_average + stock_price) * 0.5 if i else stock_price
+    for i, hisse_fiyati in enumerate(hisse_fiyatlari):
+        if i <= pencere_boyutu:
+            # İlk kez pencere_boyutuna ulaşılana kadar basit hareketli ortalama atama
+            hareketli_ortalama = (hareketli_ortalama + hisse_fiyati) * 0.5 if i else hisse_fiyati
         else:
-            # Calculating exponential moving average based on current timestamp data
-            # point and previous exponential average value
-            moving_average = (alpha * stock_price) + ((1 - alpha) * moving_average)
-        yield moving_average
+            # Mevcut zaman damgası verisine ve önceki üssel ortalama değerine göre
+            # üssel hareketli ortalamayı hesaplama
+            hareketli_ortalama = (alpha * hisse_fiyati) + ((1 - alpha) * hareketli_ortalama)
+        yield hareketli_ortalama
 
 
 if __name__ == "__main__":
@@ -65,9 +65,9 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    stock_prices = [2.0, 5, 3, 8.2, 6, 9, 10]
-    window_size = 3
-    result = tuple(exponential_moving_average(iter(stock_prices), window_size))
-    print(f"{stock_prices = }")
-    print(f"{window_size = }")
-    print(f"{result = }")
+    hisse_fiyatlari = [2.0, 5, 3, 8.2, 6, 9, 10]
+    pencere_boyutu = 3
+    sonuc = tuple(ussel_hareketli_ortalama(iter(hisse_fiyatlari), pencere_boyutu))
+    print(f"{hisse_fiyatlari = }")
+    print(f"{pencere_boyutu = }")
+    print(f"{sonuc = }")

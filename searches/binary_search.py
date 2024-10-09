@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 
 """
-Pure Python implementations of binary search algorithms
+Saf Python uygulamaları için ikili arama algoritmalarının saf Python uygulamaları
 
-For doctests run the following command:
+Doküman testleri için aşağıdaki komutu çalıştırın:
 python3 -m doctest -v binary_search.py
 
-For manual testing run:
+Manuel test için çalıştırın:
 python3 binary_search.py
+
+#Organiser: K. Umut Araz
 """
 
 from __future__ import annotations
@@ -15,41 +17,40 @@ from __future__ import annotations
 import bisect
 
 
-def bisect_left(
-    sorted_collection: list[int], item: int, lo: int = 0, hi: int = -1
+def bisect_sol(
+    sirali_koleksiyon: list[int], eleman: int, lo: int = 0, hi: int = -1
 ) -> int:
     """
-    Locates the first element in a sorted array that is larger or equal to a given
-    value.
+    Verilen bir değerden büyük veya eşit olan ilk elemanı bulur.
 
-    It has the same interface as
+    Aynı arayüze sahiptir
     https://docs.python.org/3/library/bisect.html#bisect.bisect_left .
 
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item to bisect
-    :param lo: lowest index to consider (as in sorted_collection[lo:hi])
-    :param hi: past the highest index to consider (as in sorted_collection[lo:hi])
-    :return: index i such that all values in sorted_collection[lo:i] are < item and all
-        values in sorted_collection[i:hi] are >= item.
+    :param sirali_koleksiyon: karşılaştırılabilir öğelere sahip bazı artan sıralı koleksiyon
+    :param eleman: bisect edilecek öğe
+    :param lo: dikkate alınacak en düşük indeks (sirali_koleksiyon[lo:hi] gibi)
+    :param hi: dikkate alınacak en yüksek indeksin ötesi (sirali_koleksiyon[lo:hi] gibi)
+    :return: sirali_koleksiyon[lo:i] içindeki tüm değerlerin < eleman olduğu ve
+        sirali_koleksiyon[i:hi] içindeki tüm değerlerin >= eleman olduğu i indeksi.
 
-    Examples:
-    >>> bisect_left([0, 5, 7, 10, 15], 0)
+    Örnekler:
+    >>> bisect_sol([0, 5, 7, 10, 15], 0)
     0
-    >>> bisect_left([0, 5, 7, 10, 15], 6)
+    >>> bisect_sol([0, 5, 7, 10, 15], 6)
     2
-    >>> bisect_left([0, 5, 7, 10, 15], 20)
+    >>> bisect_sol([0, 5, 7, 10, 15], 20)
     5
-    >>> bisect_left([0, 5, 7, 10, 15], 15, 1, 3)
+    >>> bisect_sol([0, 5, 7, 10, 15], 15, 1, 3)
     3
-    >>> bisect_left([0, 5, 7, 10, 15], 6, 2)
+    >>> bisect_sol([0, 5, 7, 10, 15], 6, 2)
     2
     """
     if hi < 0:
-        hi = len(sorted_collection)
+        hi = len(sirali_koleksiyon)
 
     while lo < hi:
         mid = lo + (hi - lo) // 2
-        if sorted_collection[mid] < item:
+        if sirali_koleksiyon[mid] < eleman:
             lo = mid + 1
         else:
             hi = mid
@@ -57,40 +58,40 @@ def bisect_left(
     return lo
 
 
-def bisect_right(
-    sorted_collection: list[int], item: int, lo: int = 0, hi: int = -1
+def bisect_sag(
+    sirali_koleksiyon: list[int], eleman: int, lo: int = 0, hi: int = -1
 ) -> int:
     """
-    Locates the first element in a sorted array that is larger than a given value.
+    Verilen bir değerden büyük olan ilk elemanı bulur.
 
-    It has the same interface as
+    Aynı arayüze sahiptir
     https://docs.python.org/3/library/bisect.html#bisect.bisect_right .
 
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item to bisect
-    :param lo: lowest index to consider (as in sorted_collection[lo:hi])
-    :param hi: past the highest index to consider (as in sorted_collection[lo:hi])
-    :return: index i such that all values in sorted_collection[lo:i] are <= item and
-        all values in sorted_collection[i:hi] are > item.
+    :param sirali_koleksiyon: karşılaştırılabilir öğelere sahip bazı artan sıralı koleksiyon
+    :param eleman: bisect edilecek öğe
+    :param lo: dikkate alınacak en düşük indeks (sirali_koleksiyon[lo:hi] gibi)
+    :param hi: dikkate alınacak en yüksek indeksin ötesi (sirali_koleksiyon[lo:hi] gibi)
+    :return: sirali_koleksiyon[lo:i] içindeki tüm değerlerin <= eleman olduğu ve
+        sirali_koleksiyon[i:hi] içindeki tüm değerlerin > eleman olduğu i indeksi.
 
-    Examples:
-    >>> bisect_right([0, 5, 7, 10, 15], 0)
+    Örnekler:
+    >>> bisect_sag([0, 5, 7, 10, 15], 0)
     1
-    >>> bisect_right([0, 5, 7, 10, 15], 15)
+    >>> bisect_sag([0, 5, 7, 10, 15], 15)
     5
-    >>> bisect_right([0, 5, 7, 10, 15], 6)
+    >>> bisect_sag([0, 5, 7, 10, 15], 6)
     2
-    >>> bisect_right([0, 5, 7, 10, 15], 15, 1, 3)
+    >>> bisect_sag([0, 5, 7, 10, 15], 15, 1, 3)
     3
-    >>> bisect_right([0, 5, 7, 10, 15], 6, 2)
+    >>> bisect_sag([0, 5, 7, 10, 15], 6, 2)
     2
     """
     if hi < 0:
-        hi = len(sorted_collection)
+        hi = len(sirali_koleksiyon)
 
     while lo < hi:
         mid = lo + (hi - lo) // 2
-        if sorted_collection[mid] <= item:
+        if sirali_koleksiyon[mid] <= eleman:
             lo = mid + 1
         else:
             hi = mid
@@ -98,235 +99,235 @@ def bisect_right(
     return lo
 
 
-def insort_left(
-    sorted_collection: list[int], item: int, lo: int = 0, hi: int = -1
+def ekle_sol(
+    sirali_koleksiyon: list[int], eleman: int, lo: int = 0, hi: int = -1
 ) -> None:
     """
-    Inserts a given value into a sorted array before other values with the same value.
+    Verilen bir değeri, aynı değere sahip diğer değerlerden önce sıralı bir diziye ekler.
 
-    It has the same interface as
+    Aynı arayüze sahiptir
     https://docs.python.org/3/library/bisect.html#bisect.insort_left .
 
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item to insert
-    :param lo: lowest index to consider (as in sorted_collection[lo:hi])
-    :param hi: past the highest index to consider (as in sorted_collection[lo:hi])
+    :param sirali_koleksiyon: karşılaştırılabilir öğelere sahip bazı artan sıralı koleksiyon
+    :param eleman: eklenecek öğe
+    :param lo: dikkate alınacak en düşük indeks (sirali_koleksiyon[lo:hi] gibi)
+    :param hi: dikkate alınacak en yüksek indeksin ötesi (sirali_koleksiyon[lo:hi] gibi)
 
-    Examples:
-    >>> sorted_collection = [0, 5, 7, 10, 15]
-    >>> insort_left(sorted_collection, 6)
-    >>> sorted_collection
+    Örnekler:
+    >>> sirali_koleksiyon = [0, 5, 7, 10, 15]
+    >>> ekle_sol(sirali_koleksiyon, 6)
+    >>> sirali_koleksiyon
     [0, 5, 6, 7, 10, 15]
-    >>> sorted_collection = [(0, 0), (5, 5), (7, 7), (10, 10), (15, 15)]
-    >>> item = (5, 5)
-    >>> insort_left(sorted_collection, item)
-    >>> sorted_collection
+    >>> sirali_koleksiyon = [(0, 0), (5, 5), (7, 7), (10, 10), (15, 15)]
+    >>> eleman = (5, 5)
+    >>> ekle_sol(sirali_koleksiyon, eleman)
+    >>> sirali_koleksiyon
     [(0, 0), (5, 5), (5, 5), (7, 7), (10, 10), (15, 15)]
-    >>> item is sorted_collection[1]
+    >>> eleman is sirali_koleksiyon[1]
     True
-    >>> item is sorted_collection[2]
+    >>> eleman is sirali_koleksiyon[2]
     False
-    >>> sorted_collection = [0, 5, 7, 10, 15]
-    >>> insort_left(sorted_collection, 20)
-    >>> sorted_collection
+    >>> sirali_koleksiyon = [0, 5, 7, 10, 15]
+    >>> ekle_sol(sirali_koleksiyon, 20)
+    >>> sirali_koleksiyon
     [0, 5, 7, 10, 15, 20]
-    >>> sorted_collection = [0, 5, 7, 10, 15]
-    >>> insort_left(sorted_collection, 15, 1, 3)
-    >>> sorted_collection
+    >>> sirali_koleksiyon = [0, 5, 7, 10, 15]
+    >>> ekle_sol(sirali_koleksiyon, 15, 1, 3)
+    >>> sirali_koleksiyon
     [0, 5, 7, 15, 10, 15]
     """
-    sorted_collection.insert(bisect_left(sorted_collection, item, lo, hi), item)
+    sirali_koleksiyon.insert(bisect_sol(sirali_koleksiyon, eleman, lo, hi), eleman)
 
 
-def insort_right(
-    sorted_collection: list[int], item: int, lo: int = 0, hi: int = -1
+def ekle_sag(
+    sirali_koleksiyon: list[int], eleman: int, lo: int = 0, hi: int = -1
 ) -> None:
     """
-    Inserts a given value into a sorted array after other values with the same value.
+    Verilen bir değeri, aynı değere sahip diğer değerlerden sonra sıralı bir diziye ekler.
 
-    It has the same interface as
+    Aynı arayüze sahiptir
     https://docs.python.org/3/library/bisect.html#bisect.insort_right .
 
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item to insert
-    :param lo: lowest index to consider (as in sorted_collection[lo:hi])
-    :param hi: past the highest index to consider (as in sorted_collection[lo:hi])
+    :param sirali_koleksiyon: karşılaştırılabilir öğelere sahip bazı artan sıralı koleksiyon
+    :param eleman: eklenecek öğe
+    :param lo: dikkate alınacak en düşük indeks (sirali_koleksiyon[lo:hi] gibi)
+    :param hi: dikkate alınacak en yüksek indeksin ötesi (sirali_koleksiyon[lo:hi] gibi)
 
-    Examples:
-    >>> sorted_collection = [0, 5, 7, 10, 15]
-    >>> insort_right(sorted_collection, 6)
-    >>> sorted_collection
+    Örnekler:
+    >>> sirali_koleksiyon = [0, 5, 7, 10, 15]
+    >>> ekle_sag(sirali_koleksiyon, 6)
+    >>> sirali_koleksiyon
     [0, 5, 6, 7, 10, 15]
-    >>> sorted_collection = [(0, 0), (5, 5), (7, 7), (10, 10), (15, 15)]
-    >>> item = (5, 5)
-    >>> insort_right(sorted_collection, item)
-    >>> sorted_collection
+    >>> sirali_koleksiyon = [(0, 0), (5, 5), (7, 7), (10, 10), (15, 15)]
+    >>> eleman = (5, 5)
+    >>> ekle_sag(sirali_koleksiyon, eleman)
+    >>> sirali_koleksiyon
     [(0, 0), (5, 5), (5, 5), (7, 7), (10, 10), (15, 15)]
-    >>> item is sorted_collection[1]
+    >>> eleman is sirali_koleksiyon[1]
     False
-    >>> item is sorted_collection[2]
+    >>> eleman is sirali_koleksiyon[2]
     True
-    >>> sorted_collection = [0, 5, 7, 10, 15]
-    >>> insort_right(sorted_collection, 20)
-    >>> sorted_collection
+    >>> sirali_koleksiyon = [0, 5, 7, 10, 15]
+    >>> ekle_sag(sirali_koleksiyon, 20)
+    >>> sirali_koleksiyon
     [0, 5, 7, 10, 15, 20]
-    >>> sorted_collection = [0, 5, 7, 10, 15]
-    >>> insort_right(sorted_collection, 15, 1, 3)
-    >>> sorted_collection
+    >>> sirali_koleksiyon = [0, 5, 7, 10, 15]
+    >>> ekle_sag(sirali_koleksiyon, 15, 1, 3)
+    >>> sirali_koleksiyon
     [0, 5, 7, 15, 10, 15]
     """
-    sorted_collection.insert(bisect_right(sorted_collection, item, lo, hi), item)
+    sirali_koleksiyon.insert(bisect_sag(sirali_koleksiyon, eleman, lo, hi), eleman)
 
 
-def binary_search(sorted_collection: list[int], item: int) -> int:
-    """Pure implementation of a binary search algorithm in Python
+def ikili_arama(sirali_koleksiyon: list[int], eleman: int) -> int:
+    """Python'da saf bir ikili arama algoritmasının saf uygulaması
 
-    Be careful collection must be ascending sorted otherwise, the result will be
-    unpredictable
+    Dikkat edin, koleksiyon artan sıralı olmalıdır, aksi takdirde sonuç
+    öngörülemez olacaktır.
 
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item value to search
-    :return: index of the found item or -1 if the item is not found
+    :param sirali_koleksiyon: karşılaştırılabilir öğelere sahip bazı artan sıralı koleksiyon
+    :param eleman: aranacak öğe değeri
+    :return: bulunan öğenin indeksi veya öğe bulunamazsa -1
 
-    Examples:
-    >>> binary_search([0, 5, 7, 10, 15], 0)
+    Örnekler:
+    >>> ikili_arama([0, 5, 7, 10, 15], 0)
     0
-    >>> binary_search([0, 5, 7, 10, 15], 15)
+    >>> ikili_arama([0, 5, 7, 10, 15], 15)
     4
-    >>> binary_search([0, 5, 7, 10, 15], 5)
+    >>> ikili_arama([0, 5, 7, 10, 15], 5)
     1
-    >>> binary_search([0, 5, 7, 10, 15], 6)
+    >>> ikili_arama([0, 5, 7, 10, 15], 6)
     -1
     """
-    if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("sorted_collection must be sorted in ascending order")
-    left = 0
-    right = len(sorted_collection) - 1
+    if list(sirali_koleksiyon) != sorted(sirali_koleksiyon):
+        raise ValueError("sirali_koleksiyon artan sırada olmalıdır")
+    sol = 0
+    sag = len(sirali_koleksiyon) - 1
 
-    while left <= right:
-        midpoint = left + (right - left) // 2
-        current_item = sorted_collection[midpoint]
-        if current_item == item:
-            return midpoint
-        elif item < current_item:
-            right = midpoint - 1
+    while sol <= sag:
+        orta = sol + (sag - sol) // 2
+        mevcut_eleman = sirali_koleksiyon[orta]
+        if mevcut_eleman == eleman:
+            return orta
+        elif eleman < mevcut_eleman:
+            sag = orta - 1
         else:
-            left = midpoint + 1
+            sol = orta + 1
     return -1
 
 
-def binary_search_std_lib(sorted_collection: list[int], item: int) -> int:
-    """Pure implementation of a binary search algorithm in Python using stdlib
+def ikili_arama_std_lib(sirali_koleksiyon: list[int], eleman: int) -> int:
+    """Python'da stdlib kullanarak saf bir ikili arama algoritmasının saf uygulaması
 
-    Be careful collection must be ascending sorted otherwise, the result will be
-    unpredictable
+    Dikkat edin, koleksiyon artan sıralı olmalıdır, aksi takdirde sonuç
+    öngörülemez olacaktır.
 
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item value to search
-    :return: index of the found item or -1 if the item is not found
+    :param sirali_koleksiyon: karşılaştırılabilir öğelere sahip bazı artan sıralı koleksiyon
+    :param eleman: aranacak öğe değeri
+    :return: bulunan öğenin indeksi veya öğe bulunamazsa -1
 
-    Examples:
-    >>> binary_search_std_lib([0, 5, 7, 10, 15], 0)
+    Örnekler:
+    >>> ikili_arama_std_lib([0, 5, 7, 10, 15], 0)
     0
-    >>> binary_search_std_lib([0, 5, 7, 10, 15], 15)
+    >>> ikili_arama_std_lib([0, 5, 7, 10, 15], 15)
     4
-    >>> binary_search_std_lib([0, 5, 7, 10, 15], 5)
+    >>> ikili_arama_std_lib([0, 5, 7, 10, 15], 5)
     1
-    >>> binary_search_std_lib([0, 5, 7, 10, 15], 6)
+    >>> ikili_arama_std_lib([0, 5, 7, 10, 15], 6)
     -1
     """
-    if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("sorted_collection must be sorted in ascending order")
-    index = bisect.bisect_left(sorted_collection, item)
-    if index != len(sorted_collection) and sorted_collection[index] == item:
-        return index
+    if list(sirali_koleksiyon) != sorted(sirali_koleksiyon):
+        raise ValueError("sirali_koleksiyon artan sırada olmalıdır")
+    indeks = bisect.bisect_sol(sirali_koleksiyon, eleman)
+    if indeks != len(sirali_koleksiyon) and sirali_koleksiyon[indeks] == eleman:
+        return indeks
     return -1
 
 
-def binary_search_by_recursion(
-    sorted_collection: list[int], item: int, left: int = 0, right: int = -1
+def ikili_arama_ile_rekursion(
+    sirali_koleksiyon: list[int], eleman: int, sol: int = 0, sag: int = -1
 ) -> int:
-    """Pure implementation of a binary search algorithm in Python by recursion
+    """Python'da saf bir ikili arama algoritmasının saf uygulaması, rekursif olarak
 
-    Be careful collection must be ascending sorted otherwise, the result will be
-    unpredictable
-    First recursion should be started with left=0 and right=(len(sorted_collection)-1)
+    Dikkat edin, koleksiyon artan sıralı olmalıdır, aksi takdirde sonuç
+    öngörülemez olacaktır.
+    İlk rekursiyon sol=0 ve sag=(len(sirali_koleksiyon)-1) ile başlatılmalıdır.
 
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item value to search
-    :return: index of the found item or -1 if the item is not found
+    :param sirali_koleksiyon: karşılaştırılabilir öğelere sahip bazı artan sıralı koleksiyon
+    :param eleman: aranacak öğe değeri
+    :return: bulunan öğenin indeksi veya öğe bulunamazsa -1
 
-    Examples:
-    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 0, 0, 4)
+    Örnekler:
+    >>> ikili_arama_ile_rekursion([0, 5, 7, 10, 15], 0, 0, 4)
     0
-    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 15, 0, 4)
+    >>> ikili_arama_ile_rekursion([0, 5, 7, 10, 15], 15, 0, 4)
     4
-    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 5, 0, 4)
+    >>> ikili_arama_ile_rekursion([0, 5, 7, 10, 15], 5, 0, 4)
     1
-    >>> binary_search_by_recursion([0, 5, 7, 10, 15], 6, 0, 4)
+    >>> ikili_arama_ile_rekursion([0, 5, 7, 10, 15], 6, 0, 4)
     -1
     """
-    if right < 0:
-        right = len(sorted_collection) - 1
-    if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("sorted_collection must be sorted in ascending order")
-    if right < left:
+    if sag < 0:
+        sag = len(sirali_koleksiyon) - 1
+    if list(sirali_koleksiyon) != sorted(sirali_koleksiyon):
+        raise ValueError("sirali_koleksiyon artan sırada olmalıdır")
+    if sag < sol:
         return -1
 
-    midpoint = left + (right - left) // 2
+    orta = sol + (sag - sol) // 2
 
-    if sorted_collection[midpoint] == item:
-        return midpoint
-    elif sorted_collection[midpoint] > item:
-        return binary_search_by_recursion(sorted_collection, item, left, midpoint - 1)
+    if sirali_koleksiyon[orta] == eleman:
+        return orta
+    elif sirali_koleksiyon[orta] > eleman:
+        return ikili_arama_ile_rekursion(sirali_koleksiyon, eleman, sol, orta - 1)
     else:
-        return binary_search_by_recursion(sorted_collection, item, midpoint + 1, right)
+        return ikili_arama_ile_rekursion(sirali_koleksiyon, eleman, orta + 1, sag)
 
 
-def exponential_search(sorted_collection: list[int], item: int) -> int:
-    """Pure implementation of an exponential search algorithm in Python
-    Resources used:
+def üssel_arama(sirali_koleksiyon: list[int], eleman: int) -> int:
+    """Python'da saf bir üssel arama algoritmasının saf uygulaması
+    Kullanılan kaynaklar:
     https://en.wikipedia.org/wiki/Exponential_search
 
-    Be careful collection must be ascending sorted otherwise, result will be
-    unpredictable
+    Dikkat edin, koleksiyon artan sıralı olmalıdır, aksi takdirde sonuç
+    öngörülemez olacaktır.
 
-    :param sorted_collection: some ascending sorted collection with comparable items
-    :param item: item value to search
-    :return: index of the found item or -1 if the item is not found
+    :param sirali_koleksiyon: karşılaştırılabilir öğelere sahip bazı artan sıralı koleksiyon
+    :param eleman: aranacak öğe değeri
+    :return: bulunan öğenin indeksi veya öğe bulunamazsa -1
 
-    the order of this algorithm is O(lg I) where I is index position of item if exist
+    Bu algoritmanın karmaşıklığı O(lg I) dir, burada I, öğenin mevcut olduğu indeks konumudur.
 
-    Examples:
-    >>> exponential_search([0, 5, 7, 10, 15], 0)
+    Örnekler:
+    >>> üssel_arama([0, 5, 7, 10, 15], 0)
     0
-    >>> exponential_search([0, 5, 7, 10, 15], 15)
+    >>> üssel_arama([0, 5, 7, 10, 15], 15)
     4
-    >>> exponential_search([0, 5, 7, 10, 15], 5)
+    >>> üssel_arama([0, 5, 7, 10, 15], 5)
     1
-    >>> exponential_search([0, 5, 7, 10, 15], 6)
+    >>> üssel_arama([0, 5, 7, 10, 15], 6)
     -1
     """
-    if list(sorted_collection) != sorted(sorted_collection):
-        raise ValueError("sorted_collection must be sorted in ascending order")
-    bound = 1
-    while bound < len(sorted_collection) and sorted_collection[bound] < item:
-        bound *= 2
-    left = bound // 2
-    right = min(bound, len(sorted_collection) - 1)
-    last_result = binary_search_by_recursion(
-        sorted_collection=sorted_collection, item=item, left=left, right=right
+    if list(sirali_koleksiyon) != sorted(sirali_koleksiyon):
+        raise ValueError("sirali_koleksiyon artan sırada olmalıdır")
+    sınır = 1
+    while sınır < len(sirali_koleksiyon) and sirali_koleksiyon[sınır] < eleman:
+        sınır *= 2
+    sol = sınır // 2
+    sag = min(sınır, len(sirali_koleksiyon) - 1)
+    son_sonuc = ikili_arama_ile_rekursion(
+        sirali_koleksiyon=sirali_koleksiyon, eleman=eleman, sol=sol, sag=sag
     )
-    if last_result is None:
+    if son_sonuc is None:
         return -1
-    return last_result
+    return son_sonuc
 
 
-searches = (  # Fastest to slowest...
-    binary_search_std_lib,
-    binary_search,
-    exponential_search,
-    binary_search_by_recursion,
+arama_yöntemleri = (  # En hızlıdan en yavaşa...
+    ikili_arama_std_lib,
+    ikili_arama,
+    üssel_arama,
+    ikili_arama_ile_rekursion,
 )
 
 
@@ -335,26 +336,26 @@ if __name__ == "__main__":
     import timeit
 
     doctest.testmod()
-    for search in searches:
-        name = f"{search.__name__:>26}"
-        print(f"{name}: {search([0, 5, 7, 10, 15], 10) = }")  # type: ignore[operator]
+    for arama in arama_yöntemleri:
+        isim = f"{arama.__name__:>26}"
+        print(f"{isim}: {arama([0, 5, 7, 10, 15], 10) = }")  # type: ignore[operator]
 
-    print("\nBenchmarks...")
-    setup = "collection = range(1000)"
-    for search in searches:
-        name = search.__name__
+    print("\nPerformans Testleri...")
+    ayar = "koleksiyon = range(1000)"
+    for arama in arama_yöntemleri:
+        isim = arama.__name__
         print(
-            f"{name:>26}:",
+            f"{isim:>26}:",
             timeit.timeit(
-                f"{name}(collection, 500)", setup=setup, number=5_000, globals=globals()
+                f"{isim}(koleksiyon, 500)", setup=ayar, number=5_000, globals=globals()
             ),
         )
 
-    user_input = input("\nEnter numbers separated by comma: ").strip()
-    collection = sorted(int(item) for item in user_input.split(","))
-    target = int(input("Enter a single number to be found in the list: "))
-    result = binary_search(sorted_collection=collection, item=target)
-    if result == -1:
-        print(f"{target} was not found in {collection}.")
+    kullanici_girdisi = input("\nVirgülle ayrılmış sayıları girin: ").strip()
+    koleksiyon = sorted(int(eleman) for eleman in kullanici_girdisi.split(","))
+    hedef = int(input("Listede bulunacak tek bir sayıyı girin: "))
+    sonuc = ikili_arama(sirali_koleksiyon=koleksiyon, eleman=hedef)
+    if sonuc == -1:
+        print(f"{hedef} {koleksiyon} içinde bulunamadı.")
     else:
-        print(f"{target} was found at position {result} of {collection}.")
+        print(f"{hedef} {koleksiyon} içinde {sonuc} konumunda bulundu.")

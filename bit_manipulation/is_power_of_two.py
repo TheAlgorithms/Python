@@ -1,54 +1,54 @@
 """
-Author  : Alexander Pantyukhin
-Date    : November 1, 2022
+Yazar  : Alexander Pantyukhin
+Tarih  : 1 Kasım 2022
 
-Task:
-Given a positive int number. Return True if this number is power of 2
-or False otherwise.
+Görev:
+Pozitif bir tamsayı verildiğinde, bu sayının 2'nin kuvveti olup olmadığını
+True veya False olarak döndürün.
 
-Implementation notes: Use bit manipulation.
-For example if the number is the power of two it's bits representation:
+Uygulama notları: Bit manipülasyonu kullanın.
+Örneğin, sayı 2'nin kuvveti ise bit gösterimi:
 n     = 0..100..00
 n - 1 = 0..011..11
 
-n & (n - 1) - no intersections = 0
+n & (n - 1) - kesişim yok = 0
 """
 
 
-def is_power_of_two(number: int) -> bool:
+def iki_ussu_mu(sayi: int) -> bool:
     """
-    Return True if this number is power of 2 or False otherwise.
+    Bu sayının 2'nin kuvveti olup olmadığını True veya False olarak döndürür.
 
-    >>> is_power_of_two(0)
-    True
-    >>> is_power_of_two(1)
-    True
-    >>> is_power_of_two(2)
-    True
-    >>> is_power_of_two(4)
-    True
-    >>> is_power_of_two(6)
+    >>> iki_ussu_mu(0)
     False
-    >>> is_power_of_two(8)
+    >>> iki_ussu_mu(1)
     True
-    >>> is_power_of_two(17)
+    >>> iki_ussu_mu(2)
+    True
+    >>> iki_ussu_mu(4)
+    True
+    >>> iki_ussu_mu(6)
     False
-    >>> is_power_of_two(-1)
+    >>> iki_ussu_mu(8)
+    True
+    >>> iki_ussu_mu(17)
+    False
+    >>> iki_ussu_mu(-1)
     Traceback (most recent call last):
         ...
-    ValueError: number must not be negative
-    >>> is_power_of_two(1.2)
+    ValueError: sayı negatif olmamalıdır
+    >>> iki_ussu_mu(1.2)
     Traceback (most recent call last):
         ...
     TypeError: unsupported operand type(s) for &: 'float' and 'float'
 
-    # Test all powers of 2 from 0 to 10,000
-    >>> all(is_power_of_two(int(2 ** i)) for i in range(10000))
+    # 0'dan 10,000'e kadar olan tüm 2'nin kuvvetlerini test edin
+    >>> all(iki_ussu_mu(int(2 ** i)) for i in range(10000))
     True
     """
-    if number < 0:
-        raise ValueError("number must not be negative")
-    return number & (number - 1) == 0
+    if sayi < 0:
+        raise ValueError("sayı negatif olmamalıdır")
+    return sayi & (sayi - 1) == 0 and sayi != 0
 
 
 if __name__ == "__main__":

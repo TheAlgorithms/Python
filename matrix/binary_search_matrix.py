@@ -1,50 +1,51 @@
-def binary_search(array: list, lower_bound: int, upper_bound: int, value: int) -> int:
+def ikili_arama(dizi: list, alt_sınır: int, üst_sınır: int, değer: int) -> int:
     """
-    This function carries out Binary search on a 1d array and
-    return -1 if it do not exist
-    array: A 1d sorted array
-    value : the value meant to be searched
-    >>> matrix = [1, 4, 7, 11, 15]
-    >>> binary_search(matrix, 0, len(matrix) - 1, 1)
+    Bu fonksiyon, 1 boyutlu bir dizide ikili arama yapar ve
+    değer mevcut değilse -1 döner.
+    dizi: Sıralı 1 boyutlu dizi
+    değer: Aranacak değer
+    >>> matris = [1, 4, 7, 11, 15]
+    >>> ikili_arama(matris, 0, len(matris) - 1, 1)
     0
-    >>> binary_search(matrix, 0, len(matrix) - 1, 23)
+    >>> ikili_arama(matris, 0, len(matris) - 1, 23)
     -1
     """
 
-    r = int((lower_bound + upper_bound) // 2)
-    if array[r] == value:
+    r = (alt_sınır + üst_sınır) // 2
+    if dizi[r] == değer:
         return r
-    if lower_bound >= upper_bound:
+    if alt_sınır >= üst_sınır:
         return -1
-    if array[r] < value:
-        return binary_search(array, r + 1, upper_bound, value)
+    if dizi[r] < değer:
+        return ikili_arama(dizi, r + 1, üst_sınır, değer)
     else:
-        return binary_search(array, lower_bound, r - 1, value)
+        return ikili_arama(dizi, alt_sınır, r - 1, değer)
 
 
-def mat_bin_search(value: int, matrix: list) -> list:
+def matris_ikili_arama(değer: int, matris: list) -> list:
     """
-    This function loops over a 2d matrix and calls binarySearch on
-    the selected 1d array and returns [-1, -1] is it do not exist
-    value : value meant to be searched
-    matrix = a sorted 2d matrix
-    >>> matrix = [[1, 4, 7, 11, 15],
+    Bu fonksiyon, 2 boyutlu bir matris üzerinde döngü yapar ve
+    seçilen 1 boyutlu dizi üzerinde ikili arama yapar.
+    Değer mevcut değilse [-1, -1] döner.
+    değer: Aranacak değer
+    matris: Sıralı 2 boyutlu matris
+    >>> matris = [[1, 4, 7, 11, 15],
     ...           [2, 5, 8, 12, 19],
     ...           [3, 6, 9, 16, 22],
     ...           [10, 13, 14, 17, 24],
     ...           [18, 21, 23, 26, 30]]
-    >>> target = 1
-    >>> mat_bin_search(target, matrix)
+    >>> hedef = 1
+    >>> matris_ikili_arama(hedef, matris)
     [0, 0]
-    >>> target = 34
-    >>> mat_bin_search(target, matrix)
+    >>> hedef = 34
+    >>> matris_ikili_arama(hedef, matris)
     [-1, -1]
     """
     index = 0
-    if matrix[index][0] == value:
+    if matris[index][0] == değer:
         return [index, 0]
-    while index < len(matrix) and matrix[index][0] < value:
-        r = binary_search(matrix[index], 0, len(matrix[index]) - 1, value)
+    while index < len(matris) and matris[index][0] < değer:
+        r = ikili_arama(matris[index], 0, len(matris[index]) - 1, değer)
         if r != -1:
             return [index, r]
         index += 1

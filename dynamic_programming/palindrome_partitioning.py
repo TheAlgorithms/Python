@@ -1,39 +1,38 @@
 """
-Given a string s, partition s such that every substring of the
-partition is a palindrome.
-Find the minimum cuts needed for a palindrome partitioning of s.
+Verilen bir s dizesi için, s'yi her alt dizisi bir palindrom olacak şekilde bölün.
+Bir palindrom bölümlendirmesi için gereken minimum kesim sayısını bulun.
 
-Time Complexity: O(n^2)
-Space Complexity: O(n^2)
-For other explanations refer to: https://www.youtube.com/watch?v=_H8V5hJUGd0
+Zaman Karmaşıklığı: O(n^2)
+Alan Karmaşıklığı: O(n^2)
+Diğer açıklamalar için: https://www.youtube.com/watch?v=_H8V5hJUGd0
 """
 
 
-def find_minimum_partitions(string: str) -> int:
+def minimum_bolum_sayisi(dize: str) -> int:
     """
-    Returns the minimum cuts needed for a palindrome partitioning of string
+    Bir dize için gereken minimum palindrom bölümlendirme kesim sayısını döndürür
 
-    >>> find_minimum_partitions("aab")
+    >>> minimum_bolum_sayisi("aab")
     1
-    >>> find_minimum_partitions("aaa")
+    >>> minimum_bolum_sayisi("aaa")
     0
-    >>> find_minimum_partitions("ababbbabbababa")
+    >>> minimum_bolum_sayisi("ababbbabbababa")
     3
     """
-    length = len(string)
-    cut = [0] * length
-    is_palindromic = [[False for i in range(length)] for j in range(length)]
-    for i, c in enumerate(string):
-        mincut = i
+    uzunluk = len(dize)
+    kesim = [0] * uzunluk
+    palindromik_mi = [[False for i in range(uzunluk)] for j in range(uzunluk)]
+    for i, c in enumerate(dize):
+        min_kesim = i
         for j in range(i + 1):
-            if c == string[j] and (i - j < 2 or is_palindromic[j + 1][i - 1]):
-                is_palindromic[j][i] = True
-                mincut = min(mincut, 0 if j == 0 else (cut[j - 1] + 1))
-        cut[i] = mincut
-    return cut[length - 1]
+            if c == dize[j] and (i - j < 2 or palindromik_mi[j + 1][i - 1]):
+                palindromik_mi[j][i] = True
+                min_kesim = min(min_kesim, 0 if j == 0 else (kesim[j - 1] + 1))
+        kesim[i] = min_kesim
+    return kesim[uzunluk - 1]
 
 
 if __name__ == "__main__":
-    s = input("Enter the string: ").strip()
-    ans = find_minimum_partitions(s)
-    print(f"Minimum number of partitions required for the '{s}' is {ans}")
+    s = input("Dizeyi girin: ").strip()
+    cevap = minimum_bolum_sayisi(s)
+    print(f"'{s}' için gereken minimum bölümlendirme sayısı {cevap}")

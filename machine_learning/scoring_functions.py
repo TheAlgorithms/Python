@@ -1,7 +1,7 @@
 import numpy as np
 
 """ Burada puanlama fonksiyonlarını uyguladım.
-    MAE, MSE, RMSE, RMSLE dahildir.
+    MAE, MSE, RMSE, RMSLE ve MBD dahildir.
 
     Bunlar, tahmin edilen değerler ile gerçek değerler arasındaki
     farkları hesaplamak için kullanılır.
@@ -12,101 +12,102 @@ import numpy as np
     Logaritma ve kök kullanmak büyük hataları cezalandırma
     araçları olarak algılanabilir. Ancak, uygun metriklerin kullanımı
     duruma ve veri türlerine bağlıdır.
+    Katkı: K. Umut Araz
 """
 
 
-# Ortalama Mutlak Hata
-def mae(predict, actual):
+# Ortalama Mutlak Hata (MAE)
+def ortalama_mutlak_hata(tahmin, gercek):
     """
     Örnekler (hassasiyet için yuvarlanmış):
-    >>> actual = [1,2,3];predict = [1,4,3]
-    >>> float(np.around(mae(predict,actual),decimals = 2))
+    >>> gercek = [1,2,3]; tahmin = [1,4,3]
+    >>> float(np.around(ortalama_mutlak_hata(tahmin, gercek), decimals=2))
     0.67
 
-    >>> actual = [1,1,1];predict = [1,1,1]
-    >>> float(mae(predict,actual))
+    >>> gercek = [1,1,1]; tahmin = [1,1,1]
+    >>> float(ortalama_mutlak_hata(tahmin, gercek))
     0.0
     """
-    predict = np.array(predict)
-    actual = np.array(actual)
+    tahmin = np.array(tahmin)
+    gercek = np.array(gercek)
 
-    difference = abs(predict - actual)
-    score = difference.mean()
+    fark = abs(tahmin - gercek)
+    skor = fark.mean()
 
-    return score
+    return skor
 
 
-# Ortalama Kare Hata
-def mse(predict, actual):
+# Ortalama Kare Hata (MSE)
+def ortalama_kare_hata(tahmin, gercek):
     """
     Örnekler (hassasiyet için yuvarlanmış):
-    >>> actual = [1,2,3];predict = [1,4,3]
-    >>> float(np.around(mse(predict,actual),decimals = 2))
+    >>> gercek = [1,2,3]; tahmin = [1,4,3]
+    >>> float(np.around(ortalama_kare_hata(tahmin, gercek), decimals=2))
     1.33
 
-    >>> actual = [1,1,1];predict = [1,1,1]
-    >>> float(mse(predict,actual))
+    >>> gercek = [1,1,1]; tahmin = [1,1,1]
+    >>> float(ortalama_kare_hata(tahmin, gercek))
     0.0
     """
-    predict = np.array(predict)
-    actual = np.array(actual)
+    tahmin = np.array(tahmin)
+    gercek = np.array(gercek)
 
-    difference = predict - actual
-    square_diff = np.square(difference)
+    fark = tahmin - gercek
+    kare_fark = np.square(fark)
 
-    score = square_diff.mean()
-    return score
+    skor = kare_fark.mean()
+    return skor
 
 
-# Kök Ortalama Kare Hata
-def rmse(predict, actual):
+# Kök Ortalama Kare Hata (RMSE)
+def kok_ortalama_kare_hata(tahmin, gercek):
     """
     Örnekler (hassasiyet için yuvarlanmış):
-    >>> actual = [1,2,3];predict = [1,4,3]
-    >>> float(np.around(rmse(predict,actual),decimals = 2))
+    >>> gercek = [1,2,3]; tahmin = [1,4,3]
+    >>> float(np.around(kok_ortalama_kare_hata(tahmin, gercek), decimals=2))
     1.15
 
-    >>> actual = [1,1,1];predict = [1,1,1]
-    >>> float(rmse(predict,actual))
+    >>> gercek = [1,1,1]; tahmin = [1,1,1]
+    >>> float(kok_ortalama_kare_hata(tahmin, gercek))
     0.0
     """
-    predict = np.array(predict)
-    actual = np.array(actual)
+    tahmin = np.array(tahmin)
+    gercek = np.array(gercek)
 
-    difference = predict - actual
-    square_diff = np.square(difference)
-    mean_square_diff = square_diff.mean()
-    score = np.sqrt(mean_square_diff)
-    return score
+    fark = tahmin - gercek
+    kare_fark = np.square(fark)
+    ortalama_kare_fark = kare_fark.mean()
+    skor = np.sqrt(ortalama_kare_fark)
+    return skor
 
 
-# Kök Ortalama Kare Logaritmik Hata
-def rmsle(predict, actual):
+# Kök Ortalama Kare Logaritmik Hata (RMSLE)
+def kok_ortalama_kare_logaritmik_hata(tahmin, gercek):
     """
     Örnekler (hassasiyet için yuvarlanmış):
-    >>> float(np.around(rmsle(predict=[10, 2, 30], actual=[10, 10, 30]), decimals=2))
+    >>> float(np.around(kok_ortalama_kare_logaritmik_hata(tahmin=[10, 2, 30], gercek=[10, 10, 30]), decimals=2))
     0.75
 
-    >>> float(rmsle(predict=[1, 1, 1], actual=[1, 1, 1]))
+    >>> float(kok_ortalama_kare_logaritmik_hata(tahmin=[1, 1, 1], gercek=[1, 1, 1]))
     0.0
     """
-    predict = np.array(predict)
-    actual = np.array(actual)
+    tahmin = np.array(tahmin)
+    gercek = np.array(gercek)
 
-    log_predict = np.log(predict + 1)
-    log_actual = np.log(actual + 1)
+    log_tahmin = np.log(tahmin + 1)
+    log_gercek = np.log(gercek + 1)
 
-    difference = log_predict - log_actual
-    square_diff = np.square(difference)
-    mean_square_diff = square_diff.mean()
+    fark = log_tahmin - log_gercek
+    kare_fark = np.square(fark)
+    ortalama_kare_fark = kare_fark.mean()
 
-    score = np.sqrt(mean_square_diff)
+    skor = np.sqrt(ortalama_kare_fark)
 
-    return score
+    return skor
 
 
-# Ortalama Sapma Hatası
-def mbd(predict, actual):
+# Ortalama Sapma Hatası (MBD)
+def ortalama_sapma_hatasi(tahmin, gercek):
     """
     Bu değer negatifse, model düşük tahmin yapar,
     pozitifse, aşırı tahmin yapar.
@@ -114,26 +115,25 @@ def mbd(predict, actual):
     Örnek (hassasiyet için yuvarlanmış):
 
     Burada model aşırı tahmin yapar
-    >>> actual = [1,2,3];predict = [2,3,4]
-    >>> float(np.around(mbd(predict,actual),decimals = 2))
+    >>> gercek = [1,2,3]; tahmin = [2,3,4]
+    >>> float(np.around(ortalama_sapma_hatasi(tahmin, gercek), decimals=2))
     50.0
 
     Burada model düşük tahmin yapar
-    >>> actual = [1,2,3];predict = [0,1,1]
-    >>> float(np.around(mbd(predict,actual),decimals = 2))
+    >>> gercek = [1,2,3]; tahmin = [0,1,1]
+    >>> float(np.around(ortalama_sapma_hatasi(tahmin, gercek), decimals=2))
     -66.67
     """
-    predict = np.array(predict)
-    actual = np.array(actual)
+    tahmin = np.array(tahmin)
+    gercek = np.array(gercek)
 
-    difference = predict - actual
-    numerator = np.sum(difference) / len(predict)
-    denumerator = np.sum(actual) / len(predict)
-    # print(numerator, denumerator)
-    score = float(numerator) / denumerator * 100
+    fark = tahmin - gercek
+    pay = np.sum(fark) / len(tahmin)
+    payda = np.sum(gercek) / len(tahmin)
+    skor = float(pay) / payda * 100
 
-    return score
+    return skor
 
 
-def manual_accuracy(predict, actual):
-    return np.mean(np.array(actual) == np.array(predict))
+def manuel_dogruluk(tahmin, gercek):
+    return np.mean(np.array(gercek) == np.array(tahmin))

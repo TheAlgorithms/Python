@@ -1,11 +1,11 @@
 """
-Minimax helps to achieve maximum score in a game by checking all possible moves
-depth is current depth in game tree.
+Minimax algoritması, bir oyunda maksimum skoru elde etmek için tüm olası hamleleri kontrol eder.
+depth, oyun ağacındaki mevcut derinliği belirtir.
 
-nodeIndex is index of current node in scores[].
-if move is of maximizer return true else false
-leaves of game tree is stored in scores[]
-height is maximum height of Game tree
+nodeIndex, scores[] içindeki mevcut düğümün indeksidir.
+Eğer hamle maksimize edici oyuncuya aitse true, değilse false döner.
+Oyun ağacının yaprakları scores[] içinde saklanır.
+height, oyun ağacının maksimum yüksekliğidir.
 """
 
 from __future__ import annotations
@@ -17,21 +17,19 @@ def minimax(
     depth: int, node_index: int, is_max: bool, scores: list[int], height: float
 ) -> int:
     """
-    This function implements the minimax algorithm, which helps achieve the optimal
-    score for a player in a two-player game by checking all possible moves.
-    If the player is the maximizer, then the score is maximized.
-    If the player is the minimizer, then the score is minimized.
+    Bu fonksiyon, iki oyunculu bir oyunda optimal skoru elde etmek için minimax algoritmasını uygular.
+    Eğer oyuncu maksimize edici ise, skor maksimize edilir.
+    Eğer oyuncu minimize edici ise, skor minimize edilir.
 
-    Parameters:
-    - depth: Current depth in the game tree.
-    - node_index: Index of the current node in the scores list.
-    - is_max: A boolean indicating whether the current move
-              is for the maximizer (True) or minimizer (False).
-    - scores: A list containing the scores of the leaves of the game tree.
-    - height: The maximum height of the game tree.
+    Parametreler:
+    - depth: Oyun ağacındaki mevcut derinlik.
+    - node_index: Scores listesindeki mevcut düğümün indeksi.
+    - is_max: Mevcut hamlenin maksimize edici oyuncuya (True) veya minimize edici oyuncuya (False) ait olduğunu belirten bir boolean.
+    - scores: Oyun ağacının yapraklarının skorlarını içeren bir liste.
+    - height: Oyun ağacının maksimum yüksekliği.
 
-    Returns:
-    - An integer representing the optimal score for the current player.
+    Dönüş:
+    - Mevcut oyuncu için optimal skoru temsil eden bir tamsayı.
 
     >>> import math
     >>> scores = [90, 23, 6, 33, 21, 65, 123, 34423]
@@ -41,11 +39,11 @@ def minimax(
     >>> minimax(-1, 0, True, scores, height)
     Traceback (most recent call last):
         ...
-    ValueError: Depth cannot be less than 0
+    ValueError: Derinlik 0'dan küçük olamaz
     >>> minimax(0, 0, True, [], 2)
     Traceback (most recent call last):
         ...
-    ValueError: Scores cannot be empty
+    ValueError: Skorlar boş olamaz
     >>> scores = [3, 5, 2, 9, 12, 5, 23, 23]
     >>> height = math.log(len(scores), 2)
     >>> minimax(0, 0, True, scores, height)
@@ -53,25 +51,23 @@ def minimax(
     """
 
     if depth < 0:
-        raise ValueError("Depth cannot be less than 0")
+        raise ValueError("Derinlik 0'dan küçük olamaz")
     if len(scores) == 0:
-        raise ValueError("Scores cannot be empty")
+        raise ValueError("Skorlar boş olamaz")
 
-    # Base case: If the current depth equals the height of the tree,
-    # return the score of the current node.
+    # Temel durum: Mevcut derinlik, ağacın yüksekliğine eşitse,
+    # mevcut düğümün skorunu döndür.
     if depth == height:
         return scores[node_index]
 
-    # If it's the maximizer's turn, choose the maximum score
-    # between the two possible moves.
+    # Eğer maksimize edici oyuncunun sırasıysa, iki olası hamle arasından maksimum skoru seç.
     if is_max:
         return max(
             minimax(depth + 1, node_index * 2, False, scores, height),
             minimax(depth + 1, node_index * 2 + 1, False, scores, height),
         )
 
-    # If it's the minimizer's turn, choose the minimum score
-    # between the two possible moves.
+    # Eğer minimize edici oyuncunun sırasıysa, iki olası hamle arasından minimum skoru seç.
     return min(
         minimax(depth + 1, node_index * 2, True, scores, height),
         minimax(depth + 1, node_index * 2 + 1, True, scores, height),
@@ -79,12 +75,12 @@ def minimax(
 
 
 def main() -> None:
-    # Sample scores and height calculation
+    # Örnek skorlar ve yükseklik hesaplaması
     scores = [90, 23, 6, 33, 21, 65, 123, 34423]
     height = math.log(len(scores), 2)
 
-    # Calculate and print the optimal value using the minimax algorithm
-    print("Optimal value : ", end="")
+    # Minimax algoritmasını kullanarak optimal değeri hesapla ve yazdır
+    print("Optimal değer : ", end="")
     print(minimax(0, 0, True, scores, height))
 
 

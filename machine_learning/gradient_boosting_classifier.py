@@ -4,6 +4,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeRegressor
 
+# Organise to K. Umut Araz
 
 class GradientBoostingClassifier:
     def __init__(self, n_estimators: int = 100, learning_rate: float = 0.1) -> None:
@@ -23,13 +24,13 @@ class GradientBoostingClassifier:
         self.learning_rate = learning_rate
         self.models: list[tuple[DecisionTreeRegressor, float]] = []
 
-    def fit(self, features: np.ndarray, target: np.ndarray) -> None:
+    def fit(self, ozellikler: np.ndarray, hedef: np.ndarray) -> None:
         """
         GradientBoostingClassifier'ı eğitim verilerine uydur.
 
         Parametreler:
-        - features (np.ndarray): Eğitim özellikleri.
-        - target (np.ndarray): Hedef değerler.
+        - ozellikler (np.ndarray): Eğitim özellikleri.
+        - hedef (np.ndarray): Hedef değerler.
 
         Dönüş:
         Yok
@@ -46,19 +47,19 @@ class GradientBoostingClassifier:
         """
         for _ in range(self.n_estimators):
             # Pseudo-residuals hesapla
-            residuals = -self.gradient(target, self.predict(features))
+            residuals = -self.gradient(hedef, self.predict(ozellikler))
             # Pseudo-residuals'e zayıf bir öğrenici (örneğin, karar ağacı) uydur
             model = DecisionTreeRegressor(max_depth=1)
-            model.fit(features, residuals)
+            model.fit(ozellikler, residuals)
             # Öğrenme oranı ile zayıf öğreniciyi ekleyerek modeli güncelle
             self.models.append((model, self.learning_rate))
 
-    def predict(self, features: np.ndarray) -> np.ndarray:
+    def predict(self, ozellikler: np.ndarray) -> np.ndarray:
         """
         Girdi verileri üzerinde tahminler yap.
 
         Parametreler:
-        - features (np.ndarray): Tahmin yapmak için girdi verileri.
+        - ozellikler (np.ndarray): Tahmin yapmak için girdi verileri.
 
         Dönüş:
         - np.ndarray: İkili tahminlerin bir dizisi (-1 veya 1).
@@ -75,17 +76,17 @@ class GradientBoostingClassifier:
         True
         """
         # Tahminleri sıfırlarla başlat
-        predictions = np.zeros(features.shape[0])
+        predictions = np.zeros(ozellikler.shape[0])
         for model, learning_rate in self.models:
-            predictions += learning_rate * model.predict(features)
+            predictions += learning_rate * model.predict(ozellikler)
         return np.sign(predictions)  # İkili tahminlere dönüştür (-1 veya 1)
 
-    def gradient(self, target: np.ndarray, y_pred: np.ndarray) -> np.ndarray:
+    def gradient(self, hedef: np.ndarray, y_pred: np.ndarray) -> np.ndarray:
         """
         Lojistik kayıp için negatif gradyanı (pseudo-residuals) hesapla.
 
         Parametreler:
-        - target (np.ndarray): Hedef değerler.
+        - hedef (np.ndarray): Hedef değerler.
         - y_pred (np.ndarray): Tahmin edilen değerler.
 
         Dönüş:
@@ -93,14 +94,14 @@ class GradientBoostingClassifier:
 
         >>> import numpy as np
         >>> clf = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1)
-        >>> target = np.array([0, 1, 0, 1])
+        >>> hedef = np.array([0, 1, 0, 1])
         >>> y_pred = np.array([0.2, 0.8, 0.3, 0.7])
-        >>> residuals = clf.gradient(target, y_pred)
+        >>> residuals = clf.gradient(hedef, y_pred)
         >>> # Pseudo-residuals'lerin doğru şekle sahip olup olmadığını kontrol et
-        >>> residuals.shape == target.shape
+        >>> residuals.shape == hedef.shape
         True
         """
-        return -target / (1 + np.exp(target * y_pred))
+        return -hedef / (1 + np.exp(hedef * y_pred))
 
 
 if __name__ == "__main__":
@@ -115,4 +116,4 @@ if __name__ == "__main__":
 
     y_pred = clf.predict(X_test)
     accuracy = accuracy_score(y_test, y_pred)
-    print(f"Accuracy: {accuracy:.2f}")
+    print(f"Doğruluk: {accuracy:.2f}")

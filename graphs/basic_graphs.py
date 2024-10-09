@@ -1,77 +1,73 @@
 from collections import deque
 
 
-def _input(message):
-    return input(message).strip().split(" ")
+def _input(mesaj):
+    return input(mesaj).strip().split(" ")
+
+# Produced by K. Umut Araz
 
 
-def initialize_unweighted_directed_graph(
-    node_count: int, edge_count: int
-) -> dict[int, list[int]]:
-    graph: dict[int, list[int]] = {}
-    for i in range(node_count):
-        graph[i + 1] = []
+def ağırlıksız_yönlü_grafiği_başlat(düğüm_sayısı: int, kenar_sayısı: int) -> dict[int, list[int]]:
+    grafik: dict[int, list[int]] = {}
+    for i in range(düğüm_sayısı):
+        grafik[i + 1] = []
 
-    for e in range(edge_count):
-        x, y = (int(i) for i in _input(f"Edge {e + 1}: <node1> <node2> "))
-        graph[x].append(y)
-    return graph
+    for e in range(kenar_sayısı):
+        x, y = (int(i) for i in _input(f"Kenar {e + 1}: <düğüm1> <düğüm2> "))
+        grafik[x].append(y)
+    return grafik
 
 
-def initialize_unweighted_undirected_graph(
-    node_count: int, edge_count: int
-) -> dict[int, list[int]]:
-    graph: dict[int, list[int]] = {}
-    for i in range(node_count):
-        graph[i + 1] = []
+def ağırlıksız_yönsüz_grafiği_başlat(düğüm_sayısı: int, kenar_sayısı: int) -> dict[int, list[int]]:
+    grafik: dict[int, list[int]] = {}
+    for i in range(düğüm_sayısı):
+        grafik[i + 1] = []
 
-    for e in range(edge_count):
-        x, y = (int(i) for i in _input(f"Edge {e + 1}: <node1> <node2> "))
-        graph[x].append(y)
-        graph[y].append(x)
-    return graph
+    for e in range(kenar_sayısı):
+        x, y = (int(i) for i in _input(f"Kenar {e + 1}: <düğüm1> <düğüm2> "))
+        grafik[x].append(y)
+        grafik[y].append(x)
+    return grafik
 
 
-def initialize_weighted_undirected_graph(
-    node_count: int, edge_count: int
-) -> dict[int, list[tuple[int, int]]]:
-    graph: dict[int, list[tuple[int, int]]] = {}
-    for i in range(node_count):
-        graph[i + 1] = []
+def ağırlıklı_yönsüz_grafiği_başlat(düğüm_sayısı: int, kenar_sayısı: int) -> dict[int, list[tuple[int, int]]]:
+    grafik: dict[int, list[tuple[int, int]]] = {}
+    for i in range(düğüm_sayısı):
+        grafik[i + 1] = []
 
-    for e in range(edge_count):
-        x, y, w = (int(i) for i in _input(f"Edge {e + 1}: <node1> <node2> <weight> "))
-        graph[x].append((y, w))
-        graph[y].append((x, w))
-    return graph
+    for e in range(kenar_sayısı):
+        x, y, w = (int(i) for i in _input(f"Kenar {e + 1}: <düğüm1> <düğüm2> <ağırlık> "))
+        grafik[x].append((y, w))
+        grafik[y].append((x, w))
+    return grafik
 
 
 if __name__ == "__main__":
-    n, m = (int(i) for i in _input("Number of nodes and edges: "))
+    n, m = (int(i) for i in _input("Düğüm ve kenar sayısı: "))
 
-    graph_choice = int(
+    grafik_seçimi = int(
         _input(
-            "Press 1 or 2 or 3 \n"
-            "1. Unweighted directed \n"
-            "2. Unweighted undirected \n"
-            "3. Weighted undirected \n"
+            "1 veya 2 veya 3'e basın \n"
+            "1. Ağırlıksız yönlü \n"
+            "2. Ağırlıksız yönsüz \n"
+            "3. Ağırlıklı yönsüz \n"
         )[0]
     )
 
     g = {
-        1: initialize_unweighted_directed_graph,
-        2: initialize_unweighted_undirected_graph,
-        3: initialize_weighted_undirected_graph,
-    }[graph_choice](n, m)
+        1: ağırlıksız_yönlü_grafiği_başlat,
+        2: ağırlıksız_yönsüz_grafiği_başlat,
+        3: ağırlıklı_yönsüz_grafiği_başlat,
+    }[grafik_seçimi](n, m)
 
 
 """
 --------------------------------------------------------------------------------
-    Depth First Search.
-        Args :  G - Dictionary of edges
-                s - Starting Node
-        Vars :  vis - Set of visited nodes
-                S - Traversal Stack
+    Derinlik Öncelikli Arama (DFS).
+        Args :  G - Kenarların Sözlüğü
+                s - Başlangıç Düğümü
+        Vars :  vis - Ziyaret edilen düğümlerin kümesi
+                S - Geçiş Yığını
 --------------------------------------------------------------------------------
 """
 
@@ -94,11 +90,11 @@ def dfs(g, s):
 
 """
 --------------------------------------------------------------------------------
-    Breadth First Search.
-        Args :  G - Dictionary of edges
-                s - Starting Node
-        Vars :  vis - Set of visited nodes
-                Q - Traversal Stack
+    Genişlik Öncelikli Arama (BFS).
+        Args :  G - Kenarların Sözlüğü
+                s - Başlangıç Düğümü
+        Vars :  vis - Ziyaret edilen düğümlerin kümesi
+                Q - Geçiş Kuyruğu
 --------------------------------------------------------------------------------
 """
 
@@ -117,17 +113,17 @@ def bfs(g, s):
 
 """
 --------------------------------------------------------------------------------
-    Dijkstra's shortest path Algorithm
-        Args :  G - Dictionary of edges
-                s - Starting Node
-        Vars :  dist - Dictionary storing shortest distance from s to every other node
-                known - Set of knows nodes
-                path - Preceding node in path
+    Dijkstra'nın en kısa yol algoritması
+        Args :  G - Kenarların Sözlüğü
+                s - Başlangıç Düğümü
+        Vars :  dist - s'den her düğüme en kısa mesafeyi saklayan sözlük
+                known - Bilinen düğümlerin kümesi
+                path - Yoldaki önceki düğüm
 --------------------------------------------------------------------------------
 """
 
 
-def dijk(g, s):
+def dijkstra(g, s):
     dist, known, path = {s: 0}, set(), {s: 0}
     while True:
         if len(known) == len(g) - 1:
@@ -149,16 +145,16 @@ def dijk(g, s):
 
 """
 --------------------------------------------------------------------------------
-    Topological Sort
+    Topolojik Sıralama
 --------------------------------------------------------------------------------
 """
 
 
-def topo(g, ind=None, q=None):
+def topolojik_sıralama(g, ind=None, q=None):
     if q is None:
         q = [1]
     if ind is None:
-        ind = [0] * (len(g) + 1)  # SInce oth Index is ignored
+        ind = [0] * (len(g) + 1)  # 0. İndeks göz ardı edilir
         for u in g:
             for v in g[u]:
                 ind[v] += 1
@@ -174,35 +170,35 @@ def topo(g, ind=None, q=None):
         ind[w] -= 1
         if ind[w] == 0:
             q.append(w)
-    topo(g, ind, q)
+    topolojik_sıralama(g, ind, q)
 
 
 """
 --------------------------------------------------------------------------------
-    Reading an Adjacency matrix
+    Komşuluk Matrisi Okuma
 --------------------------------------------------------------------------------
 """
 
 
-def adjm():
+def komşuluk_matrisi():
     r"""
-    Reading an Adjacency matrix
+    Komşuluk Matrisi Okuma
 
-    Parameters:
-        None
+    Parametreler:
+        Yok
 
-    Returns:
-        tuple: A tuple containing a list of edges and number of edges
+    Dönüş:
+        tuple: Kenarların listesi ve kenar sayısını içeren bir tuple
 
-    Example:
-    >>> # Simulate user input for 3 nodes
+    Örnek:
+    >>> # 3 düğüm için kullanıcı girdisini simüle et
     >>> input_data = "4\n0 1 0 1\n1 0 1 0\n0 1 0 1\n1 0 1 0\n"
     >>> import sys,io
     >>> original_input = sys.stdin
-    >>> sys.stdin = io.StringIO(input_data)  # Redirect stdin for testing
-    >>> adjm()
+    >>> sys.stdin = io.StringIO(input_data)  # Test için stdin'i yönlendir
+    >>> komşuluk_matrisi()
     ([(0, 1, 0, 1), (1, 0, 1, 0), (0, 1, 0, 1), (1, 0, 1, 0)], 4)
-    >>> sys.stdin = original_input  # Restore original stdin
+    >>> sys.stdin = original_input  # Orijinal stdin'i geri yükle
     """
     n = int(input().strip())
     a = []
@@ -213,18 +209,18 @@ def adjm():
 
 """
 --------------------------------------------------------------------------------
-    Floyd Warshall's algorithm
-        Args :  G - Dictionary of edges
-                s - Starting Node
-        Vars :  dist - Dictionary storing shortest distance from s to every other node
-                known - Set of knows nodes
-                path - Preceding node in path
+    Floyd Warshall algoritması
+        Args :  G - Kenarların Sözlüğü
+                s - Başlangıç Düğümü
+        Vars :  dist - s'den her düğüme en kısa mesafeyi saklayan sözlük
+                known - Bilinen düğümlerin kümesi
+                path - Yoldaki önceki düğüm
 
 --------------------------------------------------------------------------------
 """
 
 
-def floy(a_and_n):
+def floyd_warshall(a_and_n):
     (a, n) = a_and_n
     dist = list(a)
     path = [[0] * n for i in range(n)]
@@ -239,12 +235,12 @@ def floy(a_and_n):
 
 """
 --------------------------------------------------------------------------------
-    Prim's MST Algorithm
-        Args :  G - Dictionary of edges
-                s - Starting Node
-        Vars :  dist - Dictionary storing shortest distance from s to nearest node
-                known - Set of knows nodes
-                path - Preceding node in path
+    Prim'in Minimum Spanning Tree (MST) Algoritması
+        Args :  G - Kenarların Sözlüğü
+                s - Başlangıç Düğümü
+        Vars :  dist - s'den en yakın düğüme en kısa mesafeyi saklayan sözlük
+                known - Bilinen düğümlerin kümesi
+                path - Yoldaki önceki düğüm
 --------------------------------------------------------------------------------
 """
 
@@ -269,55 +265,55 @@ def prim(g, s):
 
 """
 --------------------------------------------------------------------------------
-    Accepting Edge list
-        Vars :  n - Number of nodes
-                m - Number of edges
-        Returns : l - Edge list
-                n - Number of Nodes
+    Kenar Listesi Kabul Etme
+        Vars :  n - Düğüm sayısı
+                m - Kenar sayısı
+        Dönüş : l - Kenar listesi
+                n - Düğüm sayısı
 --------------------------------------------------------------------------------
 """
 
 
-def edglist():
+def kenar_listesi():
     r"""
-    Get the edges and number of edges from the user
+    Kullanıcıdan kenarları ve kenar sayısını alın
 
-    Parameters:
-        None
+    Parametreler:
+        Yok
 
-    Returns:
-        tuple: A tuple containing a list of edges and number of edges
+    Dönüş:
+        tuple: Kenarların listesi ve kenar sayısını içeren bir tuple
 
-    Example:
-    >>> # Simulate user input for 3 edges and 4 vertices: (1, 2), (2, 3), (3, 4)
+    Örnek:
+    >>> # 3 kenar ve 4 düğüm için kullanıcı girdisini simüle et: (1, 2), (2, 3), (3, 4)
     >>> input_data = "4 3\n1 2\n2 3\n3 4\n"
     >>> import sys,io
     >>> original_input = sys.stdin
-    >>> sys.stdin = io.StringIO(input_data)  # Redirect stdin for testing
-    >>> edglist()
+    >>> sys.stdin = io.StringIO(input_data)  # Test için stdin'i yönlendir
+    >>> kenar_listesi()
     ([(1, 2), (2, 3), (3, 4)], 4)
-    >>> sys.stdin = original_input  # Restore original stdin
+    >>> sys.stdin = original_input  # Orijinal stdin'i geri yükle
     """
     n, m = tuple(map(int, input().split(" ")))
-    edges = []
+    kenarlar = []
     for _ in range(m):
-        edges.append(tuple(map(int, input().split(" "))))
-    return edges, n
+        kenarlar.append(tuple(map(int, input().split(" "))))
+    return kenarlar, n
 
 
 """
 --------------------------------------------------------------------------------
-    Kruskal's MST Algorithm
-        Args :  E - Edge list
-                n - Number of Nodes
-        Vars :  s - Set of all nodes as unique disjoint sets (initially)
+    Kruskal'ın Minimum Spanning Tree (MST) Algoritması
+        Args :  E - Kenar listesi
+                n - Düğüm sayısı
+        Vars :  s - Başlangıçta benzersiz ayrık kümeler olarak tüm düğümlerin kümesi
 --------------------------------------------------------------------------------
 """
 
 
-def krusk(e_and_n):
+def kruskal(e_and_n):
     """
-    Sort edges on the basis of distance
+    Kenarları mesafeye göre sırala
     """
     (e, n) = e_and_n
     e.sort(reverse=True, key=lambda x: x[2])
@@ -339,39 +335,39 @@ def krusk(e_and_n):
                 break
 
 
-def find_isolated_nodes(graph):
+def izole_düğümleri_bul(graf):
     """
-    Find the isolated node in the graph
+    Grafikteki izole düğümleri bulun
 
-    Parameters:
-    graph (dict): A dictionary representing a graph.
+    Parametreler:
+    graf (dict): Bir grafiği temsil eden sözlük.
 
-    Returns:
-    list: A list of isolated nodes.
+    Dönüş:
+    list: İzole düğümlerin listesi.
 
-    Examples:
-    >>> graph1 = {1: [2, 3], 2: [1, 3], 3: [1, 2], 4: []}
-    >>> find_isolated_nodes(graph1)
+    Örnekler:
+    >>> graf1 = {1: [2, 3], 2: [1, 3], 3: [1, 2], 4: []}
+    >>> izole_düğümleri_bul(graf1)
     [4]
 
-    >>> graph2 = {'A': ['B', 'C'], 'B': ['A'], 'C': ['A'], 'D': []}
-    >>> find_isolated_nodes(graph2)
+    >>> graf2 = {'A': ['B', 'C'], 'B': ['A'], 'C': ['A'], 'D': []}
+    >>> izole_düğümleri_bul(graf2)
     ['D']
 
-    >>> graph3 = {'X': [], 'Y': [], 'Z': []}
-    >>> find_isolated_nodes(graph3)
+    >>> graf3 = {'X': [], 'Y': [], 'Z': []}
+    >>> izole_düğümleri_bul(graf3)
     ['X', 'Y', 'Z']
 
-    >>> graph4 = {1: [2, 3], 2: [1, 3], 3: [1, 2]}
-    >>> find_isolated_nodes(graph4)
+    >>> graf4 = {1: [2, 3], 2: [1, 3], 3: [1, 2]}
+    >>> izole_düğümleri_bul(graf4)
     []
 
-    >>> graph5 = {}
-    >>> find_isolated_nodes(graph5)
+    >>> graf5 = {}
+    >>> izole_düğümleri_bul(graf5)
     []
     """
-    isolated = []
-    for node in graph:
-        if not graph[node]:
-            isolated.append(node)
-    return isolated
+    izole = []
+    for düğüm in graf:
+        if not graf[düğüm]:
+            izole.append(düğüm)
+    return izole

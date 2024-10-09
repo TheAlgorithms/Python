@@ -9,91 +9,92 @@ from types import ModuleType
 import pytest
 import requests
 
-PROJECT_EULER_DIR_PATH = pathlib.Path.cwd().joinpath("project_euler")
-PROJECT_EULER_ANSWERS_PATH = pathlib.Path.cwd().joinpath(
+# Organiser: K. Umut Araz
+
+PROJE_EULER_DIZIN_YOLU = pathlib.Path.cwd().joinpath("project_euler")
+PROJE_EULER_CEVAPLARI_YOLU = pathlib.Path.cwd().joinpath(
     "scripts", "project_euler_answers.json"
 )
 
-with open(PROJECT_EULER_ANSWERS_PATH) as file_handle:
-    PROBLEM_ANSWERS: dict[str, str] = json.load(file_handle)
+with open(PROJE_EULER_CEVAPLARI_YOLU) as dosya:
+    PROBLEM_CEVAPLARI: dict[str, str] = json.load(dosya)
 
 
-def convert_path_to_module(file_path: pathlib.Path) -> ModuleType:
-    """Converts a file path to a Python module"""
-    spec = importlib.util.spec_from_file_location(file_path.name, str(file_path))
-    module = importlib.util.module_from_spec(spec)  # type: ignore[arg-type]
-    spec.loader.exec_module(module)  # type: ignore[union-attr]
-    return module
+def dosya_yolunu_module_cevir(dosya_yolu: pathlib.Path) -> ModuleType:
+    """Bir dosya yolunu Python modülüne dönüştürür"""
+    spec = importlib.util.spec_from_file_location(dosya_yolu.name, str(dosya_yolu))
+    modül = importlib.util.module_from_spec(spec)  # type: ignore[arg-type]
+    spec.loader.exec_module(modül)  # type: ignore[union-attr]
+    return modül
 
 
-def all_solution_file_paths() -> list[pathlib.Path]:
-    """Collects all the solution file path in the Project Euler directory"""
-    solution_file_paths = []
-    for problem_dir_path in PROJECT_EULER_DIR_PATH.iterdir():
-        if problem_dir_path.is_file() or problem_dir_path.name.startswith("_"):
+def tum_cozum_dosya_yollari() -> list[pathlib.Path]:
+    """Project Euler dizinindeki tüm çözüm dosya yollarını toplar"""
+    cozum_dosya_yollari = []
+    for problem_dizin_yolu in PROJE_EULER_DIZIN_YOLU.iterdir():
+        if problem_dizin_yolu.is_file() or problem_dizin_yolu.name.startswith("_"):
             continue
-        for file_path in problem_dir_path.iterdir():
-            if file_path.suffix != ".py" or file_path.name.startswith(("_", "test")):
+        for dosya_yolu in problem_dizin_yolu.iterdir():
+            if dosya_yolu.suffix != ".py" or dosya_yolu.name.startswith(("_", "test")):
                 continue
-            solution_file_paths.append(file_path)
-    return solution_file_paths
+            cozum_dosya_yollari.append(dosya_yolu)
+    return cozum_dosya_yollari
 
 
-def get_files_url() -> str:
-    """Return the pull request number which triggered this action."""
-    with open(os.environ["GITHUB_EVENT_PATH"]) as file:
-        event = json.load(file)
-    return event["pull_request"]["url"] + "/files"
+def dosyalarin_urlsini_al() -> str:
+    """Bu eylemi tetikleyen pull request numarasını döndürür."""
+    with open(os.environ["GITHUB_EVENT_PATH"]) as dosya:
+        olay = json.load(dosya)
+    return olay["pull_request"]["url"] + "/files"
 
 
-def added_solution_file_path() -> list[pathlib.Path]:
-    """Collects only the solution file path which got added in the current
-    pull request.
+def eklenen_cozum_dosya_yolu() -> list[pathlib.Path]:
+    """Sadece mevcut pull request'te eklenen çözüm dosya yollarını toplar.
 
-    This will only be triggered if the script is ran from GitHub Actions.
+    Bu, yalnızca script GitHub Actions'tan çalıştırıldığında tetiklenecektir.
     """
-    solution_file_paths = []
+    cozum_dosya_yollari = []
     headers = {
         "Accept": "application/vnd.github.v3+json",
         "Authorization": "token " + os.environ["GITHUB_TOKEN"],
     }
-    files = requests.get(get_files_url(), headers=headers, timeout=10).json()
-    for file in files:
-        filepath = pathlib.Path.cwd().joinpath(file["filename"])
+    dosyalar = requests.get(dosyalarin_url'sini_al(), headers=headers, timeout=10).json()
+    for dosya in dosyalar:
+        dosya_yolu = pathlib.Path.cwd().joinpath(dosya["filename"])
         if (
-            filepath.suffix != ".py"
-            or filepath.name.startswith(("_", "test"))
-            or not filepath.name.startswith("sol")
+            dosya_yolu.suffix != ".py"
+            or dosya_yolu.name.startswith(("_", "test"))
+            or not dosya_yolu.name.startswith("sol")
         ):
             continue
-        solution_file_paths.append(filepath)
-    return solution_file_paths
+        cozum_dosya_yollari.append(dosya_yolu)
+    return cozum_dosya_yollari
 
 
-def collect_solution_file_paths() -> list[pathlib.Path]:
-    # Return only if there are any, otherwise default to all solutions
+def cozum_dosya_yollarini_topla() -> list[pathlib.Path]:
+    # Sadece varsa döndür, aksi takdirde tüm çözümleri varsayılan olarak döndür
     if (
         os.environ.get("CI")
         and os.environ.get("GITHUB_EVENT_NAME") == "pull_request"
-        and (filepaths := added_solution_file_path())
+        and (dosya_yolları := eklenen_cozum_dosya_yolu())
     ):
-        return filepaths
-    return all_solution_file_paths()
+        return dosya_yolları
+    return tum_cozum_dosya_yollari()
 
 
 @pytest.mark.parametrize(
-    "solution_path",
-    collect_solution_file_paths(),
-    ids=lambda path: f"{path.parent.name}/{path.name}",
+    "cozum_yolu",
+    cozum_dosya_yollarini_topla(),
+    ids=lambda yol: f"{yol.parent.name}/{yol.name}",
 )
-def test_project_euler(solution_path: pathlib.Path) -> None:
-    """Testing for all Project Euler solutions"""
-    # problem_[extract this part] and pad it with zeroes for width 3
-    problem_number: str = solution_path.parent.name[8:].zfill(3)
-    expected: str = PROBLEM_ANSWERS[problem_number]
-    solution_module = convert_path_to_module(solution_path)
-    answer = str(solution_module.solution())
-    answer = hashlib.sha256(answer.encode()).hexdigest()
+def test_proje_euler(cozum_yolu: pathlib.Path) -> None:
+    """Tüm Project Euler çözümlerini test etme"""
+    # problem_[bu kısmı çıkar] ve 3 genişlik için sıfırlarla doldur
+    problem_numarasi: str = cozum_yolu.parent.name[8:].zfill(3)
+    beklenen: str = PROBLEM_CEVAPLARI[problem_numarasi]
+    cozum_modülü = dosya_yolunu_module_cevir(cozum_yolu)
+    cevap = str(cozum_modülü.solution())
+    cevap = hashlib.sha256(cevap.encode()).hexdigest()
     assert (
-        answer == expected
-    ), f"Expected solution to {problem_number} to have hash {expected}, got {answer}"
+        cevap == beklenen
+    ), f"{problem_numarasi} için beklenen çözümün hash'inin {beklenen} olması gerekiyordu, ama {cevap} alındı"

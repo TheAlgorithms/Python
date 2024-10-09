@@ -1,30 +1,28 @@
 """
-Adler-32 is a checksum algorithm which was invented by Mark Adler in 1995.
-Compared to a cyclic redundancy check of the same length, it trades reliability for
-speed (preferring the latter).
-Adler-32 is more reliable than Fletcher-16, and slightly less reliable than
-Fletcher-32.[2]
+Adler-32, Mark Adler tarafından 1995 yılında icat edilen bir sağlama algoritmasıdır.
+Aynı uzunluktaki döngüsel artıklık kontrolüne kıyasla, güvenilirlikten ziyade hızı tercih eder.
+Adler-32, Fletcher-16'dan daha güvenilirdir ve Fletcher-32'den biraz daha az güvenilirdir.[2]
 
-source: https://en.wikipedia.org/wiki/Adler-32
+kaynak: https://en.wikipedia.org/wiki/Adler-32
 """
 
 MOD_ADLER = 65521
 
 
-def adler32(plain_text: str) -> int:
+def adler32(metin: str) -> int:
     """
-    Function implements adler-32 hash.
-    Iterates and evaluates a new value for each character
+    Adler-32 hash fonksiyonunu uygular.
+    Her karakter için yeni bir değer hesaplar ve iterasyon yapar
 
-    >>> adler32('Algorithms')
+    >>> adler32('Algoritmalar')
     363791387
 
-    >>> adler32('go adler em all')
+    >>> adler32('hepsini adlerle')
     708642122
     """
     a = 1
     b = 0
-    for plain_chr in plain_text:
-        a = (a + ord(plain_chr)) % MOD_ADLER
+    for karakter in metin:
+        a = (a + ord(karakter)) % MOD_ADLER
         b = (b + a) % MOD_ADLER
     return (b << 16) | a

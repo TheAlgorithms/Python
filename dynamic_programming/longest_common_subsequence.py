@@ -1,35 +1,33 @@
 """
-LCS Problem Statement: Given two sequences, find the length of longest subsequence
-present in both of them.  A subsequence is a sequence that appears in the same relative
-order, but not necessarily continuous.
-Example:"abc", "abg" are subsequences of "abcdefgh".
+LCS Problem Tanımı: İki dizi verildiğinde, her ikisinde de bulunan en uzun alt dizinin
+uzunluğunu bulun. Bir alt dizi, aynı göreceli sırada görünen, ancak mutlaka sürekli olmayan bir dizidir.
+Örnek: "abc", "abg" "abcdefgh" dizisinin alt dizileridir.
 """
 
 
-def longest_common_subsequence(x: str, y: str):
+def en_uzun_ortak_alt_dizi(x: str, y: str):
     """
-    Finds the longest common subsequence between two strings. Also returns the
-    The subsequence found
+    İki dizi arasındaki en uzun ortak alt diziyi bulur. Ayrıca bulunan alt diziyi de döndürür
 
-    Parameters
+    Parametreler
     ----------
 
-    x: str, one of the strings
-    y: str, the other string
+    x: str, dizilerden biri
+    y: str, diğer dizi
 
-    Returns
+    Dönüş
     -------
-    L[m][n]: int, the length of the longest subsequence. Also equal to len(seq)
-    Seq: str, the subsequence found
+    L[m][n]: int, en uzun alt dizinin uzunluğu. Ayrıca len(seq) ile eşittir
+    Seq: str, bulunan alt dizi
 
-    >>> longest_common_subsequence("programming", "gaming")
+    >>> en_uzun_ortak_alt_dizi("programming", "gaming")
     (6, 'gaming')
-    >>> longest_common_subsequence("physics", "smartphone")
+    >>> en_uzun_ortak_alt_dizi("physics", "smartphone")
     (2, 'ph')
-    >>> longest_common_subsequence("computer", "food")
+    >>> en_uzun_ortak_alt_dizi("computer", "food")
     (1, 'o')
     """
-    # find the length of strings
+    # dizilerin uzunluğunu bul
 
     assert x is not None
     assert y is not None
@@ -37,7 +35,7 @@ def longest_common_subsequence(x: str, y: str):
     m = len(x)
     n = len(y)
 
-    # declaring the array for storing the dp values
+    # dp değerlerini saklamak için dizi tanımlama
     dp = [[0] * (n + 1) for _ in range(m + 1)]
 
     for i in range(1, m + 1):
@@ -48,7 +46,7 @@ def longest_common_subsequence(x: str, y: str):
 
     seq = ""
     i, j = m, n
-    while i > 0 and j > 0:
+    while i > 0 or j > 0:
         match = 1 if x[i - 1] == y[j - 1] else 0
 
         if dp[i][j] == dp[i - 1][j - 1] + match:
@@ -67,11 +65,11 @@ def longest_common_subsequence(x: str, y: str):
 if __name__ == "__main__":
     a = "AGGTAB"
     b = "GXTXAYB"
-    expected_ln = 4
-    expected_subseq = "GTAB"
+    beklenen_uzunluk = 4
+    beklenen_alt_dizi = "GTAB"
 
-    ln, subseq = longest_common_subsequence(a, b)
-    print("len =", ln, ", sub-sequence =", subseq)
+    uzunluk, alt_dizi = en_uzun_ortak_alt_dizi(a, b)
+    print("uzunluk =", uzunluk, ", alt-dizi =", alt_dizi)
     import doctest
 
     doctest.testmod()

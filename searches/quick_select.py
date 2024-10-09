@@ -1,8 +1,8 @@
 """
-A Python implementation of the quick select algorithm, which is efficient for
-calculating the value that would appear in the index of a list if it would be
-sorted, even if it is not already sorted
+Hızlı seçim algoritmasının Python uygulaması. Bu algoritma, bir listenin sıralandığında hangi indekste hangi değerin bulunacağını hesaplamak için etkilidir, liste sıralı olmasa bile.
 https://en.wikipedia.org/wiki/Quickselect
+
+Organiser: K. Umut Araz
 """
 
 import random
@@ -10,24 +10,23 @@ import random
 
 def _partition(data: list, pivot) -> tuple:
     """
-    Three way partition the data into smaller, equal and greater lists,
-    in relationship to the pivot
-    :param data: The data to be sorted (a list)
-    :param pivot: The value to partition the data on
-    :return: Three list: smaller, equal and greater
+    Veriyi, pivot ile ilişkili olarak daha küçük, eşit ve daha büyük listelere üç yönlü olarak ayırır.
+    :param data: Sıralanacak veri (bir liste)
+    :param pivot: Veriyi ayırmak için kullanılan değer
+    :return: Üç liste: daha küçük, eşit ve daha büyük
     """
-    less, equal, greater = [], [], []
-    for element in data:
-        if element < pivot:
-            less.append(element)
-        elif element > pivot:
-            greater.append(element)
+    kucuk, esit, buyuk = [], [], []
+    for eleman in data:
+        if eleman < pivot:
+            kucuk.append(eleman)
+        elif eleman > pivot:
+            buyuk.append(eleman)
         else:
-            equal.append(element)
-    return less, equal, greater
+            esit.append(eleman)
+    return kucuk, esit, buyuk
 
 
-def quick_select(items: list, index: int):
+def quick_select(ogeler: list, indeks: int):
     """
     >>> quick_select([2, 4, 5, 7, 899, 54, 32], 5)
     54
@@ -38,25 +37,25 @@ def quick_select(items: list, index: int):
     >>> quick_select([3, 5, 7, 10, 2, 12], 3)
     7
     """
-    # index = len(items) // 2 when trying to find the median
-    #   (value of index when items is sorted)
+    # indeks = medyanı bulmaya çalışırken len(ogeler) // 2
+    #   (ogeler sıralandığında indeksin değeri)
 
-    # invalid input
-    if index >= len(items) or index < 0:
+    # geçersiz giriş
+    if indeks >= len(ogeler) or indeks < 0:
         return None
 
-    pivot = items[random.randint(0, len(items) - 1)]
-    count = 0
-    smaller, equal, larger = _partition(items, pivot)
-    count = len(equal)
-    m = len(smaller)
+    pivot = ogeler[random.randint(0, len(ogeler) - 1)]
+    sayac = 0
+    kucuk, esit, buyuk = _partition(ogeler, pivot)
+    sayac = len(esit)
+    m = len(kucuk)
 
-    # index is the pivot
-    if m <= index < m + count:
+    # indeks pivot
+    if m <= indeks < m + sayac:
         return pivot
-    # must be in smaller
-    elif m > index:
-        return quick_select(smaller, index)
-    # must be in larger
+    # daha küçükte olmalı
+    elif m > indeks:
+        return quick_select(kucuk, indeks)
+    # daha büyükte olmalı
     else:
-        return quick_select(larger, index - (m + count))
+        return quick_select(buyuk, indeks - (m + sayac))

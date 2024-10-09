@@ -4,10 +4,12 @@ https://en.wikipedia.org/wiki/Best-first_search#Greedy_BFS
 
 from __future__ import annotations
 
-Path = list[tuple[int, int]]
+#Produced by K. Umut Araz
 
-# 0's are free path whereas 1's are obstacles
-TEST_GRIDS = [
+Yol = list[tuple[int, int]]
+
+# 0'lar serbest yol, 1'ler engellerdir
+TEST_IZGARALARI = [
     [
         [0, 0, 0, 0, 0, 0, 0],
         [0, 1, 0, 0, 0, 0, 0],
@@ -34,16 +36,16 @@ TEST_GRIDS = [
     ],
 ]
 
-delta = ([-1, 0], [0, -1], [1, 0], [0, 1])  # up, left, down, right
+delta = ([-1, 0], [0, -1], [1, 0], [0, 1])  # yukarı, sol, aşağı, sağ
 
 
-class Node:
+class Düğüm:
     """
-    >>> k = Node(0, 0, 4, 5, 0, None)
-    >>> k.calculate_heuristic()
+    >>> k = Düğüm(0, 0, 4, 5, 0, None)
+    >>> k.heuristik_hesapla()
     9
-    >>> n = Node(1, 4, 3, 4, 2, None)
-    >>> n.calculate_heuristic()
+    >>> n = Düğüm(1, 4, 3, 4, 2, None)
+    >>> n.heuristik_hesapla()
     2
     >>> l = [k, n]
     >>> n == l[0]
@@ -57,143 +59,143 @@ class Node:
         self,
         pos_x: int,
         pos_y: int,
-        goal_x: int,
-        goal_y: int,
-        g_cost: float,
-        parent: Node | None,
+        hedef_x: int,
+        hedef_y: int,
+        g_maliyet: float,
+        ebeveyn: Düğüm | None,
     ):
         self.pos_x = pos_x
         self.pos_y = pos_y
         self.pos = (pos_y, pos_x)
-        self.goal_x = goal_x
-        self.goal_y = goal_y
-        self.g_cost = g_cost
-        self.parent = parent
-        self.f_cost = self.calculate_heuristic()
+        self.hedef_x = hedef_x
+        self.hedef_y = hedef_y
+        self.g_maliyet = g_maliyet
+        self.ebeveyn = ebeveyn
+        self.f_maliyet = self.heuristik_hesapla()
 
-    def calculate_heuristic(self) -> float:
+    def heuristik_hesapla(self) -> float:
         """
-        The heuristic here is the Manhattan Distance
-        Could elaborate to offer more than one choice
+        Buradaki heuristik Manhattan Mesafesidir
+        Daha fazla seçenek sunmak için genişletilebilir
         """
-        dx = abs(self.pos_x - self.goal_x)
-        dy = abs(self.pos_y - self.goal_y)
+        dx = abs(self.pos_x - self.hedef_x)
+        dy = abs(self.pos_y - self.hedef_y)
         return dx + dy
 
-    def __lt__(self, other) -> bool:
-        return self.f_cost < other.f_cost
+    def __lt__(self, diğer) -> bool:
+        return self.f_maliyet < diğer.f_maliyet
 
-    def __eq__(self, other) -> bool:
-        return self.pos == other.pos
+    def __eq__(self, diğer) -> bool:
+        return self.pos == diğer.pos
 
 
-class GreedyBestFirst:
+class AçgözlüEnİyiİlk:
     """
-    >>> grid = TEST_GRIDS[2]
-    >>> gbf = GreedyBestFirst(grid, (0, 0), (len(grid) - 1, len(grid[0]) - 1))
-    >>> [x.pos for x in gbf.get_successors(gbf.start)]
+    >>> ızgara = TEST_IZGARALARI[2]
+    >>> ae = AçgözlüEnİyiİlk(ızgara, (0, 0), (len(ızgara) - 1, len(ızgara[0]) - 1))
+    >>> [x.pos for x in ae.ardılları_al(ae.başlangıç)]
     [(1, 0), (0, 1)]
-    >>> (gbf.start.pos_y + delta[3][0], gbf.start.pos_x + delta[3][1])
+    >>> (ae.başlangıç.pos_y + delta[3][0], ae.başlangıç.pos_x + delta[3][1])
     (0, 1)
-    >>> (gbf.start.pos_y + delta[2][0], gbf.start.pos_x + delta[2][1])
+    >>> (ae.başlangıç.pos_y + delta[2][0], ae.başlangıç.pos_x + delta[2][1])
     (1, 0)
-    >>> gbf.retrace_path(gbf.start)
+    >>> ae.yolu_izle(ae.başlangıç)
     [(0, 0)]
-    >>> gbf.search()  # doctest: +NORMALIZE_WHITESPACE
+    >>> ae.ara()  # doctest: +NORMALIZE_WHITESPACE
     [(0, 0), (1, 0), (2, 0), (2, 1), (3, 1), (4, 1), (4, 2), (4, 3),
      (4, 4)]
     """
 
     def __init__(
-        self, grid: list[list[int]], start: tuple[int, int], goal: tuple[int, int]
+        self, ızgara: list[list[int]], başlangıç: tuple[int, int], hedef: tuple[int, int]
     ):
-        self.grid = grid
-        self.start = Node(start[1], start[0], goal[1], goal[0], 0, None)
-        self.target = Node(goal[1], goal[0], goal[1], goal[0], 99999, None)
+        self.ızgara = ızgara
+        self.başlangıç = Düğüm(başlangıç[1], başlangıç[0], hedef[1], hedef[0], 0, None)
+        self.hedef = Düğüm(hedef[1], hedef[0], hedef[1], hedef[0], 99999, None)
 
-        self.open_nodes = [self.start]
-        self.closed_nodes: list[Node] = []
+        self.açık_düğümler = [self.başlangıç]
+        self.kapalı_düğümler: list[Düğüm] = []
 
-        self.reached = False
+        self.ulaşıldı = False
 
-    def search(self) -> Path | None:
+    def ara(self) -> Yol | None:
         """
-        Search for the path,
-        if a path is not found, only the starting position is returned
+        Yolu ara,
+        eğer bir yol bulunamazsa, sadece başlangıç pozisyonu döndürülür
         """
-        while self.open_nodes:
-            # Open Nodes are sorted using __lt__
-            self.open_nodes.sort()
-            current_node = self.open_nodes.pop(0)
+        while self.açık_düğümler:
+            # Açık Düğümler __lt__ kullanılarak sıralanır
+            self.açık_düğümler.sort()
+            mevcut_düğüm = self.açık_düğümler.pop(0)
 
-            if current_node.pos == self.target.pos:
-                self.reached = True
-                return self.retrace_path(current_node)
+            if mevcut_düğüm.pos == self.hedef.pos:
+                self.ulaşıldı = True
+                return self.yolu_izle(mevcut_düğüm)
 
-            self.closed_nodes.append(current_node)
-            successors = self.get_successors(current_node)
+            self.kapalı_düğümler.append(mevcut_düğüm)
+            ardıllar = self.ardılları_al(mevcut_düğüm)
 
-            for child_node in successors:
-                if child_node in self.closed_nodes:
+            for çocuk_düğüm in ardıllar:
+                if çocuk_düğüm in self.kapalı_düğümler:
                     continue
 
-                if child_node not in self.open_nodes:
-                    self.open_nodes.append(child_node)
+                if çocuk_düğüm not in self.açık_düğümler:
+                    self.açık_düğümler.append(çocuk_düğüm)
 
-        if not self.reached:
-            return [self.start.pos]
+        if not self.ulaşıldı:
+            return [self.başlangıç.pos]
         return None
 
-    def get_successors(self, parent: Node) -> list[Node]:
+    def ardılları_al(self, ebeveyn: Düğüm) -> list[Düğüm]:
         """
-        Returns a list of successors (both in the grid and free spaces)
+        Ardılların listesini döndürür (hem ızgarada hem de serbest alanlarda)
         """
         return [
-            Node(
+            Düğüm(
                 pos_x,
                 pos_y,
-                self.target.pos_x,
-                self.target.pos_y,
-                parent.g_cost + 1,
-                parent,
+                self.hedef.pos_x,
+                self.hedef.pos_y,
+                ebeveyn.g_maliyet + 1,
+                ebeveyn,
             )
-            for action in delta
+            for eylem in delta
             if (
-                0 <= (pos_x := parent.pos_x + action[1]) < len(self.grid[0])
-                and 0 <= (pos_y := parent.pos_y + action[0]) < len(self.grid)
-                and self.grid[pos_y][pos_x] == 0
+                0 <= (pos_x := ebeveyn.pos_x + eylem[1]) < len(self.ızgara[0])
+                and 0 <= (pos_y := ebeveyn.pos_y + eylem[0]) < len(self.ızgara)
+                and self.ızgara[pos_y][pos_x] == 0
             )
         ]
 
-    def retrace_path(self, node: Node | None) -> Path:
+    def yolu_izle(self, düğüm: Düğüm | None) -> Yol:
         """
-        Retrace the path from parents to parents until start node
+        Başlangıç düğümüne kadar ebeveynlerden ebeveynlere yolu izler
         """
-        current_node = node
-        path = []
-        while current_node is not None:
-            path.append((current_node.pos_y, current_node.pos_x))
-            current_node = current_node.parent
-        path.reverse()
-        return path
+        mevcut_düğüm = düğüm
+        yol = []
+        while mevcut_düğüm is not None:
+            yol.append((mevcut_düğüm.pos_y, mevcut_düğüm.pos_x))
+            mevcut_düğüm = mevcut_düğüm.ebeveyn
+        yol.reverse()
+        return yol
 
 
 if __name__ == "__main__":
-    for idx, grid in enumerate(TEST_GRIDS):
-        print(f"==grid-{idx + 1}==")
+    for idx, ızgara in enumerate(TEST_IZGARALARI):
+        print(f"==ızgara-{idx + 1}==")
 
-        init = (0, 0)
-        goal = (len(grid) - 1, len(grid[0]) - 1)
-        for elem in grid:
-            print(elem)
+        başlangıç = (0, 0)
+        hedef = (len(ızgara) - 1, len(ızgara[0]) - 1)
+        for eleman in ızgara:
+            print(eleman)
 
         print("------")
 
-        greedy_bf = GreedyBestFirst(grid, init, goal)
-        path = greedy_bf.search()
-        if path:
-            for pos_x, pos_y in path:
-                grid[pos_x][pos_y] = 2
+        açgözlü_ei = AçgözlüEnİyiİlk(ızgara, başlangıç, hedef)
+        yol = açgözlü_ei.ara()
+        if yol:
+            for pos_x, pos_y in yol:
+                ızgara[pos_x][pos_y] = 2
 
-            for elem in grid:
-                print(elem)
+            for eleman in ızgara:
+                print(eleman)

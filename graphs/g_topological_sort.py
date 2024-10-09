@@ -1,47 +1,47 @@
-# Author: Phyllipe Bezerra (https://github.com/pmba)
+# Yazar: Phyllipe Bezerra (https://github.com/pmba)
 
-clothes = {
-    0: "underwear",
-    1: "pants",
-    2: "belt",
-    3: "suit",
-    4: "shoe",
-    5: "socks",
-    6: "shirt",
-    7: "tie",
-    8: "watch",
+kıyafetler = {
+    0: "iç çamaşırı",
+    1: "pantolon",
+    2: "kemer",
+    3: "takım elbise",
+    4: "ayakkabı",
+    5: "çorap",
+    6: "gömlek",
+    7: "kravat",
+    8: "saat",
 }
 
-graph = [[1, 4], [2, 4], [3], [], [], [4], [2, 7], [3], []]
+graf = [[1, 4], [2, 4], [3], [], [], [4], [2, 7], [3], []]
 
-visited = [0 for x in range(len(graph))]
-stack = []
-
-
-def print_stack(stack, clothes):
-    order = 1
-    while stack:
-        current_clothing = stack.pop()
-        print(order, clothes[current_clothing])
-        order += 1
+ziyaret_edildi = [0 for x in range(len(graf))]
+yığın = []
 
 
-def depth_first_search(u, visited, graph):
-    visited[u] = 1
-    for v in graph[u]:
-        if not visited[v]:
-            depth_first_search(v, visited, graph)
+def yığını_yazdır(yığın, kıyafetler):
+    sıra = 1
+    while yığın:
+        mevcut_kıyafet = yığın.pop()
+        print(sıra, kıyafetler[mevcut_kıyafet])
+        sıra += 1
 
-    stack.append(u)
+
+def derinlik_öncelikli_arama(u, ziyaret_edildi, graf):
+    ziyaret_edildi[u] = 1
+    for v in graf[u]:
+        if not ziyaret_edildi[v]:
+            derinlik_öncelikli_arama(v, ziyaret_edildi, graf)
+
+    yığın.append(u)
 
 
-def topological_sort(graph, visited):
-    for v in range(len(graph)):
-        if not visited[v]:
-            depth_first_search(v, visited, graph)
+def topolojik_sıralama(graf, ziyaret_edildi):
+    for v in range(len(graf)):
+        if not ziyaret_edildi[v]:
+            derinlik_öncelikli_arama(v, ziyaret_edildi, graf)
 
 
 if __name__ == "__main__":
-    topological_sort(graph, visited)
-    print(stack)
-    print_stack(stack, clothes)
+    topolojik_sıralama(graf, ziyaret_edildi)
+    print(yığın)
+    yığını_yazdır(yığın, kıyafetler)

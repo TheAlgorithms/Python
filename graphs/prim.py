@@ -1,133 +1,135 @@
-"""Prim's Algorithm.
+"""Prim'in Algoritması.
 
-Determines the minimum spanning tree(MST) of a graph using the Prim's Algorithm.
+Prim'in Algoritmasını kullanarak bir grafın minimum yayılma ağacını (MST) belirler.
 
-Details: https://en.wikipedia.org/wiki/Prim%27s_algorithm
+Detaylar: https://en.wikipedia.org/wiki/Prim%27s_algorithm
 """
+
+#Produced by: K. Umut Araz
 
 import heapq as hq
 import math
 from collections.abc import Iterator
 
 
-class Vertex:
-    """Class Vertex."""
+class Düğüm:
+    """Düğüm Sınıfı."""
 
     def __init__(self, id_):
         """
-        Arguments:
-            id - input an id to identify the vertex
-        Attributes:
-            neighbors - a list of the vertices it is linked to
-            edges     - a dict to store the edges's weight
+        Argümanlar:
+            id - düğümü tanımlamak için bir id girin
+        Özellikler:
+            komşular - bağlı olduğu düğümlerin bir listesi
+            kenarlar - kenarların ağırlığını saklamak için bir sözlük
         """
         self.id = str(id_)
-        self.key = None
+        self.anahtar = None
         self.pi = None
-        self.neighbors = []
-        self.edges = {}  # {vertex:distance}
+        self.komşular = []
+        self.kenarlar = {}  # {düğüm:mesafe}
 
-    def __lt__(self, other):
-        """Comparison rule to < operator."""
-        return self.key < other.key
+    def __lt__(self, diğer):
+        """< operatörü için karşılaştırma kuralı."""
+        return self.anahtar < diğer.anahtar
 
     def __repr__(self):
-        """Return the vertex id."""
+        """Düğüm id'sini döndür."""
         return self.id
 
-    def add_neighbor(self, vertex):
-        """Add a pointer to a vertex at neighbor's list."""
-        self.neighbors.append(vertex)
+    def komşu_ekle(self, düğüm):
+        """Komşular listesine bir düğüm ekle."""
+        self.komşular.append(düğüm)
 
-    def add_edge(self, vertex, weight):
-        """Destination vertex and weight."""
-        self.edges[vertex.id] = weight
-
-
-def connect(graph, a, b, edge):
-    # add the neighbors:
-    graph[a - 1].add_neighbor(graph[b - 1])
-    graph[b - 1].add_neighbor(graph[a - 1])
-    # add the edges:
-    graph[a - 1].add_edge(graph[b - 1], edge)
-    graph[b - 1].add_edge(graph[a - 1], edge)
+    def kenar_ekle(self, düğüm, ağırlık):
+        """Hedef düğüm ve ağırlık."""
+        self.kenarlar[düğüm.id] = ağırlık
 
 
-def prim(graph: list, root: Vertex) -> list:
-    """Prim's Algorithm.
+def bağla(graf, a, b, kenar):
+    # komşuları ekle:
+    graf[a - 1].komşu_ekle(graf[b - 1])
+    graf[b - 1].komşu_ekle(graf[a - 1])
+    # kenarları ekle:
+    graf[a - 1].kenar_ekle(graf[b - 1], kenar)
+    graf[b - 1].kenar_ekle(graf[a - 1], kenar)
 
-    Runtime:
-        O(mn) with `m` edges and `n` vertices
 
-    Return:
-        List with the edges of a Minimum Spanning Tree
+def prim(graf: list, kök: Düğüm) -> list:
+    """Prim'in Algoritması.
 
-    Usage:
-        prim(graph, graph[0])
+    Çalışma Zamanı:
+        O(mn) `m` kenar ve `n` düğüm ile
+
+    Döndür:
+        Minimum Yayılma Ağacının Kenarları ile Liste
+
+    Kullanım:
+        prim(graf, graf[0])
     """
     a = []
-    for u in graph:
-        u.key = math.inf
+    for u in graf:
+        u.anahtar = math.inf
         u.pi = None
-    root.key = 0
-    q = graph[:]
+    kök.anahtar = 0
+    q = graf[:]
     while q:
         u = min(q)
         q.remove(u)
-        for v in u.neighbors:
-            if (v in q) and (u.edges[v.id] < v.key):
+        for v in u.komşular:
+            if (v in q) and (u.kenarlar[v.id] < v.anahtar):
                 v.pi = u
-                v.key = u.edges[v.id]
-    for i in range(1, len(graph)):
-        a.append((int(graph[i].id) + 1, int(graph[i].pi.id) + 1))
+                v.anahtar = u.kenarlar[v.id]
+    for i in range(1, len(graf)):
+        a.append((int(graf[i].id) + 1, int(graf[i].pi.id) + 1))
     return a
 
 
-def prim_heap(graph: list, root: Vertex) -> Iterator[tuple]:
-    """Prim's Algorithm with min heap.
+def prim_heap(graf: list, kök: Düğüm) -> Iterator[tuple]:
+    """Min yığın ile Prim'in Algoritması.
 
-    Runtime:
-        O((m + n)log n) with `m` edges and `n` vertices
+    Çalışma Zamanı:
+        O((m + n)log n) `m` kenar ve `n` düğüm ile
 
-    Yield:
-        Edges of a Minimum Spanning Tree
+    Döndür:
+        Minimum Yayılma Ağacının Kenarları
 
-    Usage:
-        prim(graph, graph[0])
+    Kullanım:
+        prim(graf, graf[0])
     """
-    for u in graph:
-        u.key = math.inf
+    for u in graf:
+        u.anahtar = math.inf
         u.pi = None
-    root.key = 0
+    kök.anahtar = 0
 
-    h = list(graph)
+    h = list(graf)
     hq.heapify(h)
 
     while h:
         u = hq.heappop(h)
-        for v in u.neighbors:
-            if (v in h) and (u.edges[v.id] < v.key):
+        for v in u.komşular:
+            if (v in h) and (u.kenarlar[v.id] < v.anahtar):
                 v.pi = u
-                v.key = u.edges[v.id]
+                v.anahtar = u.kenarlar[v.id]
                 hq.heapify(h)
 
-    for i in range(1, len(graph)):
-        yield (int(graph[i].id) + 1, int(graph[i].pi.id) + 1)
+    for i in range(1, len(graf)):
+        yield (int(graf[i].id) + 1, int(graf[i].pi.id) + 1)
 
 
 def test_vector() -> None:
     """
-    # Creates a list to store x vertices.
+    # x düğümünü saklamak için bir liste oluşturur.
     >>> x = 5
-    >>> G = [Vertex(n) for n in range(x)]
+    >>> G = [Düğüm(n) for n in range(x)]
 
-    >>> connect(G, 1, 2, 15)
-    >>> connect(G, 1, 3, 12)
-    >>> connect(G, 2, 4, 13)
-    >>> connect(G, 2, 5, 5)
-    >>> connect(G, 3, 2, 6)
-    >>> connect(G, 3, 4, 6)
-    >>> connect(G, 0, 0, 0)  # Generate the minimum spanning tree:
+    >>> bağla(G, 1, 2, 15)
+    >>> bağla(G, 1, 3, 12)
+    >>> bağla(G, 2, 4, 13)
+    >>> bağla(G, 2, 5, 5)
+    >>> bağla(G, 3, 2, 6)
+    >>> bağla(G, 3, 4, 6)
+    >>> bağla(G, 0, 0, 0)  # Minimum yayılma ağacını oluştur:
     >>> G_heap = G[:]
     >>> MST = prim(G, G[0])
     >>> MST_heap = prim_heap(G, G[0])

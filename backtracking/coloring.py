@@ -1,113 +1,113 @@
 """
-Graph Coloring also called "m coloring problem"
-consists of coloring a given graph with at most m colors
-such that no adjacent vertices are assigned the same color
+Graf Boyama, "m boyama problemi" olarak da adlandırılır
+verilen bir grafiği en fazla m renk ile boyamaktan oluşur
+öyle ki bitişik düğümlere aynı renk atanmaz
 
 Wikipedia: https://en.wikipedia.org/wiki/Graph_coloring
 """
 
 
-def valid_coloring(
-    neighbours: list[int], colored_vertices: list[int], color: int
+def geçerli_boyama(
+    komşular: list[int], boyanmış_düğümler: list[int], renk: int
 ) -> bool:
     """
-    For each neighbour check if the coloring constraint is satisfied
-    If any of the neighbours fail the constraint return False
-    If all neighbours validate the constraint return True
+    Her komşu için boyama kısıtının sağlanıp sağlanmadığını kontrol edin
+    Eğer komşulardan herhangi biri kısıtı sağlamazsa False döndür
+    Eğer tüm komşular kısıtı sağlarsa True döndür
 
-    >>> neighbours = [0,1,0,1,0]
-    >>> colored_vertices = [0, 2, 1, 2, 0]
+    >>> komşular = [0,1,0,1,0]
+    >>> boyanmış_düğümler = [0, 2, 1, 2, 0]
 
-    >>> color = 1
-    >>> valid_coloring(neighbours, colored_vertices, color)
+    >>> renk = 1
+    >>> geçerli_boyama(komşular, boyanmış_düğümler, renk)
     True
 
-    >>> color = 2
-    >>> valid_coloring(neighbours, colored_vertices, color)
+    >>> renk = 2
+    >>> geçerli_boyama(komşular, boyanmış_düğümler, renk)
     False
     """
-    # Does any neighbour not satisfy the constraints
+    # Herhangi bir komşu kısıtları sağlamıyor mu
     return not any(
-        neighbour == 1 and colored_vertices[i] == color
-        for i, neighbour in enumerate(neighbours)
+        komşu == 1 and boyanmış_düğümler[i] == renk
+        for i, komşu in enumerate(komşular)
     )
 
 
-def util_color(
-    graph: list[list[int]], max_colors: int, colored_vertices: list[int], index: int
+def yardımcı_boya(
+    grafik: list[list[int]], max_renk: int, boyanmış_düğümler: list[int], indeks: int
 ) -> bool:
     """
-    Pseudo-Code
+    Pseudo-Kod
 
-    Base Case:
-    1. Check if coloring is complete
-        1.1 If complete return True (meaning that we successfully colored the graph)
+    Temel Durum:
+    1. Boyamanın tamamlanıp tamamlanmadığını kontrol edin
+        1.1 Eğer tamamlanmışsa True döndür (grafiği başarıyla boyadığımız anlamına gelir)
 
-    Recursive Step:
-    2. Iterates over each color:
-        Check if the current coloring is valid:
-            2.1. Color given vertex
-            2.2. Do recursive call, check if this coloring leads to a solution
-            2.4. if current coloring leads to a solution return
-            2.5. Uncolor given vertex
+    Özyinelemeli Adım:
+    2. Her renk için yineleyin:
+        Mevcut boyamanın geçerli olup olmadığını kontrol edin:
+            2.1. Verilen düğümü boyayın
+            2.2. Özyinelemeli çağrı yapın, bu boyamanın bir çözüme yol açıp açmadığını kontrol edin
+            2.4. Eğer mevcut boyama bir çözüme yol açarsa döndür
+            2.5. Verilen düğümü boyamayı geri alın
 
-    >>> graph = [[0, 1, 0, 0, 0],
-    ...          [1, 0, 1, 0, 1],
-    ...          [0, 1, 0, 1, 0],
-    ...          [0, 1, 1, 0, 0],
-    ...          [0, 1, 0, 0, 0]]
-    >>> max_colors = 3
-    >>> colored_vertices = [0, 1, 0, 0, 0]
-    >>> index = 3
+    >>> grafik = [[0, 1, 0, 0, 0],
+    ...           [1, 0, 1, 0, 1],
+    ...           [0, 1, 0, 1, 0],
+    ...           [0, 1, 1, 0, 0],
+    ...           [0, 1, 0, 0, 0]]
+    >>> max_renk = 3
+    >>> boyanmış_düğümler = [0, 1, 0, 0, 0]
+    >>> indeks = 3
 
-    >>> util_color(graph, max_colors, colored_vertices, index)
+    >>> yardımcı_boya(grafik, max_renk, boyanmış_düğümler, indeks)
     True
 
-    >>> max_colors = 2
-    >>> util_color(graph, max_colors, colored_vertices, index)
+    >>> max_renk = 2
+    >>> yardımcı_boya(grafik, max_renk, boyanmış_düğümler, indeks)
     False
     """
 
-    # Base Case
-    if index == len(graph):
+    # Temel Durum
+    if indeks == len(grafik):
         return True
 
-    # Recursive Step
-    for i in range(max_colors):
-        if valid_coloring(graph[index], colored_vertices, i):
-            # Color current vertex
-            colored_vertices[index] = i
-            # Validate coloring
-            if util_color(graph, max_colors, colored_vertices, index + 1):
+    # Özyinelemeli Adım
+    for i in range(max_renk):
+        if geçerli_boyama(grafik[indeks], boyanmış_düğümler, i):
+            # Mevcut düğümü boya
+            boyanmış_düğümler[indeks] = i
+            # Boyamayı doğrula
+            if yardımcı_boya(grafik, max_renk, boyanmış_düğümler, indeks + 1):
                 return True
-            # Backtrack
-            colored_vertices[index] = -1
+            # Geri izleme
+            boyanmış_düğümler[indeks] = -1
     return False
 
 
-def color(graph: list[list[int]], max_colors: int) -> list[int]:
+def boya(grafik: list[list[int]], max_renk: int) -> list[int]:
     """
-    Wrapper function to call subroutine called util_color
-    which will either return True or False.
-    If True is returned colored_vertices list is filled with correct colorings
+    yardımcı_boya adlı alt yordamı çağırmak için sarmalayıcı fonksiyon
+    bu ya True ya da False döndürecektir.
+    Eğer True dönerse boyanmış_düğümler listesi doğru boyamalarla doldurulur
 
-    >>> graph = [[0, 1, 0, 0, 0],
-    ...          [1, 0, 1, 0, 1],
-    ...          [0, 1, 0, 1, 0],
-    ...          [0, 1, 1, 0, 0],
-    ...          [0, 1, 0, 0, 0]]
+    >>> grafik = [[0, 1, 0, 0, 0],
+    ...           [1, 0, 1, 0, 1],
+    ...           [0, 1, 0, 1, 0],
+    ...           [0, 1, 1, 0, 0],
+    ...           [0, 1, 0, 0, 0]]
 
-    >>> max_colors = 3
-    >>> color(graph, max_colors)
+    >>> max_renk = 3
+    >>> boya(grafik, max_renk)
     [0, 1, 0, 2, 0]
 
-    >>> max_colors = 2
-    >>> color(graph, max_colors)
+    >>> max_renk = 2
+    >>> boya(grafik, max_renk)
     []
     """
-    colored_vertices = [-1] * len(graph)
+    boyanmış_düğümler = [-1] * len(grafik)
 
-    if util_color(graph, max_colors, colored_vertices, 0):
-        return colored_vertices
+    if yardımcı_boya(grafik, max_renk, boyanmış_düğümler, 0):
+        return boyanmış_düğümler
 
     return []

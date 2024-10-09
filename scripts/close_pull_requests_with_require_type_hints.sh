@@ -1,21 +1,23 @@
 #!/bin/bash
 
-# List all open pull requests
+# Açık pull request'leri listele
 prs=$(gh pr list --state open --json number,title,labels --limit 500)
 
-# Loop through each pull request
+# Organiser: K. Umut Araz
+
+# Her bir pull request üzerinde döngü
 echo "$prs" | jq -c '.[]' | while read -r pr; do
-  pr_number=$(echo "$pr" | jq -r '.number')
-  pr_title=$(echo "$pr" | jq -r '.title')
-  pr_labels=$(echo "$pr" | jq -r '.labels')
+  pr_numara=$(echo "$pr" | jq -r '.number')
+  pr_baslik=$(echo "$pr" | jq -r '.title')
+  pr_etiketler=$(echo "$pr" | jq -r '.labels')
 
-  # Check if the "require type hints" label is present
-  require_type_hints=$(echo "$pr_labels" | jq -r '.[] | select(.name == "require type hints")')
-  echo "Checking PR #$pr_number $pr_title ($require_type_hints) ($pr_labels)"
+  # "require type hints" etiketinin mevcut olup olmadığını kontrol et
+  tip_ipucu_gerekiyor=$(echo "$pr_etiketler" | jq -r '.[] | select(.name == "require type hints")')
+  echo "Kontrol ediliyor PR #$pr_numara: $pr_baslik ($tip_ipucu_gerekiyor) ($pr_etiketler)"
 
-  # If require_type_hints, close the pull request
-  if [[ -n "$require_type_hints" ]]; then
-    echo "Closing PR #$pr_number $pr_title due to require_type_hints label"
-    gh pr close "$pr_number" --comment "Closing require_type_hints PRs to prepare for Hacktoberfest"
+  # Eğer tip_ipucu_gerekiyor varsa, pull request'i kapat
+  if [[ -n "$tip_ipucu_gerekiyor" ]]; then
+    echo "Kapatılıyor PR #$pr_numara: $pr_baslik 'require type hints' etiketi nedeniyle"
+    gh pr close "$pr_numara" --comment "'Require type hints' etiketine sahip PR'lar Hacktoberfest için kapatılıyor"
   fi
 done

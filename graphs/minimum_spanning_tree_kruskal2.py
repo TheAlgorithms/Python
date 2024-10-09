@@ -4,118 +4,120 @@ from typing import Generic, TypeVar
 
 T = TypeVar("T")
 
-
-class DisjointSetTreeNode(Generic[T]):
-    # Disjoint Set Node to store the parent and rank
-    def __init__(self, data: T) -> None:
-        self.data = data
-        self.parent = self
-        self.rank = 0
+#Produced By K. Umut Araz
 
 
-class DisjointSetTree(Generic[T]):
-    # Disjoint Set DataStructure
+class AyrıkKümeAğaçDüğümü(Generic[T]):
+    # Ayrık Küme Düğümü, ebeveyn ve rütbeyi saklar
+    def __init__(self, veri: T) -> None:
+        self.veri = veri
+        self.ebeveyn = self
+        self.rütbe = 0
+
+
+class AyrıkKümeAğacı(Generic[T]):
+    # Ayrık Küme Veri Yapısı
     def __init__(self) -> None:
-        # map from node name to the node object
-        self.map: dict[T, DisjointSetTreeNode[T]] = {}
+        # düğüm adından düğüm nesnesine harita
+        self.harita: dict[T, AyrıkKümeAğaçDüğümü[T]] = {}
 
-    def make_set(self, data: T) -> None:
-        # create a new set with x as its member
-        self.map[data] = DisjointSetTreeNode(data)
+    def küme_oluştur(self, veri: T) -> None:
+        # x'i üye olarak içeren yeni bir küme oluştur
+        self.harita[veri] = AyrıkKümeAğaçDüğümü(veri)
 
-    def find_set(self, data: T) -> DisjointSetTreeNode[T]:
-        # find the set x belongs to (with path-compression)
-        elem_ref = self.map[data]
-        if elem_ref != elem_ref.parent:
-            elem_ref.parent = self.find_set(elem_ref.parent.data)
-        return elem_ref.parent
+    def küme_bul(self, veri: T) -> AyrıkKümeAğaçDüğümü[T]:
+        # x'in ait olduğu kümeyi bul (yol sıkıştırma ile)
+        eleman_ref = self.harita[veri]
+        if eleman_ref != eleman_ref.ebeveyn:
+            eleman_ref.ebeveyn = self.küme_bul(eleman_ref.ebeveyn.veri)
+        return eleman_ref.ebeveyn
 
-    def link(
-        self, node1: DisjointSetTreeNode[T], node2: DisjointSetTreeNode[T]
+    def bağla(
+        self, düğüm1: AyrıkKümeAğaçDüğümü[T], düğüm2: AyrıkKümeAğaçDüğümü[T]
     ) -> None:
-        # helper function for union operation
-        if node1.rank > node2.rank:
-            node2.parent = node1
+        # birleşim işlemi için yardımcı fonksiyon
+        if düğüm1.rütbe > düğüm2.rütbe:
+            düğüm2.ebeveyn = düğüm1
         else:
-            node1.parent = node2
-            if node1.rank == node2.rank:
-                node2.rank += 1
+            düğüm1.ebeveyn = düğüm2
+            if düğüm1.rütbe == düğüm2.rütbe:
+                düğüm2.rütbe += 1
 
-    def union(self, data1: T, data2: T) -> None:
-        # merge 2 disjoint sets
-        self.link(self.find_set(data1), self.find_set(data2))
+    def birleştir(self, veri1: T, veri2: T) -> None:
+        # 2 ayrık kümeyi birleştir
+        self.bağla(self.küme_bul(veri1), self.küme_bul(veri2))
 
 
-class GraphUndirectedWeighted(Generic[T]):
+class AğırlıklıYönsüzGrafik(Generic[T]):
     def __init__(self) -> None:
-        # connections: map from the node to the neighbouring nodes (with weights)
-        self.connections: dict[T, dict[T, int]] = {}
+        # bağlantılar: düğümden komşu düğümlere (ağırlıklarla birlikte) harita
+        self.bağlantılar: dict[T, dict[T, int]] = {}
 
-    def add_node(self, node: T) -> None:
-        # add a node ONLY if its not present in the graph
-        if node not in self.connections:
-            self.connections[node] = {}
+    def düğüm_ekle(self, düğüm: T) -> None:
+        # düğüm grafikte yoksa ekle
+        if düğüm not in self.bağlantılar:
+            self.bağlantılar[düğüm] = {}
 
-    def add_edge(self, node1: T, node2: T, weight: int) -> None:
-        # add an edge with the given weight
-        self.add_node(node1)
-        self.add_node(node2)
-        self.connections[node1][node2] = weight
-        self.connections[node2][node1] = weight
+    def kenar_ekle(self, düğüm1: T, düğüm2: T, ağırlık: int) -> None:
+        # verilen ağırlıkla bir kenar ekle
+        self.düğüm_ekle(düğüm1)
+        self.düğüm_ekle(düğüm2)
+        self.bağlantılar[düğüm1][düğüm2] = ağırlık
+        self.bağlantılar[düğüm2][düğüm1] = ağırlık
 
-    def kruskal(self) -> GraphUndirectedWeighted[T]:
-        # Kruskal's Algorithm to generate a Minimum Spanning Tree (MST) of a graph
+    def kruskal(self) -> AğırlıklıYönsüzGrafik[T]:
+        # Kruskal Algoritması ile Minimum Yayılım Ağacı (MST) oluşturma
         """
-        Details: https://en.wikipedia.org/wiki/Kruskal%27s_algorithm
+        Detaylar: https://tr.wikipedia.org/wiki/Kruskal_algoritmas%C4%B1
 
-        Example:
-        >>> g1 = GraphUndirectedWeighted[int]()
-        >>> g1.add_edge(1, 2, 1)
-        >>> g1.add_edge(2, 3, 2)
-        >>> g1.add_edge(3, 4, 1)
-        >>> g1.add_edge(3, 5, 100) # Removed in MST
-        >>> g1.add_edge(4, 5, 5)
-        >>> assert 5 in g1.connections[3]
+        Örnek:
+        >>> g1 = AğırlıklıYönsüzGrafik[int]()
+        >>> g1.kenar_ekle(1, 2, 1)
+        >>> g1.kenar_ekle(2, 3, 2)
+        >>> g1.kenar_ekle(3, 4, 1)
+        >>> g1.kenar_ekle(3, 5, 100) # MST'de kaldırıldı
+        >>> g1.kenar_ekle(4, 5, 5)
+        >>> assert 5 in g1.bağlantılar[3]
         >>> mst = g1.kruskal()
-        >>> assert 5 not in mst.connections[3]
+        >>> assert 5 not in mst.bağlantılar[3]
 
-        >>> g2 = GraphUndirectedWeighted[str]()
-        >>> g2.add_edge('A', 'B', 1)
-        >>> g2.add_edge('B', 'C', 2)
-        >>> g2.add_edge('C', 'D', 1)
-        >>> g2.add_edge('C', 'E', 100) # Removed in MST
-        >>> g2.add_edge('D', 'E', 5)
-        >>> assert 'E' in g2.connections["C"]
+        >>> g2 = AğırlıklıYönsüzGrafik[str]()
+        >>> g2.kenar_ekle('A', 'B', 1)
+        >>> g2.kenar_ekle('B', 'C', 2)
+        >>> g2.kenar_ekle('C', 'D', 1)
+        >>> g2.kenar_ekle('C', 'E', 100) # MST'de kaldırıldı
+        >>> g2.kenar_ekle('D', 'E', 5)
+        >>> assert 'E' in g2.bağlantılar["C"]
         >>> mst = g2.kruskal()
-        >>> assert 'E' not in mst.connections['C']
+        >>> assert 'E' not in mst.bağlantılar['C']
         """
 
-        # getting the edges in ascending order of weights
-        edges = []
-        seen = set()
-        for start in self.connections:
-            for end in self.connections[start]:
-                if (start, end) not in seen:
-                    seen.add((end, start))
-                    edges.append((start, end, self.connections[start][end]))
-        edges.sort(key=lambda x: x[2])
+        # kenarları ağırlıklarına göre artan sırayla alma
+        kenarlar = []
+        görülen = set()
+        for başlangıç in self.bağlantılar:
+            for bitiş in self.bağlantılar[başlangıç]:
+                if (başlangıç, bitiş) not in görülen:
+                    görülen.add((bitiş, başlangıç))
+                    kenarlar.append((başlangıç, bitiş, self.bağlantılar[başlangıç][bitiş]))
+        kenarlar.sort(key=lambda x: x[2])
 
-        # creating the disjoint set
-        disjoint_set = DisjointSetTree[T]()
-        for node in self.connections:
-            disjoint_set.make_set(node)
+        # ayrık küme oluşturma
+        ayrık_küme = AyrıkKümeAğacı[T]()
+        for düğüm in self.bağlantılar:
+            ayrık_küme.küme_oluştur(düğüm)
 
-        # MST generation
-        num_edges = 0
-        index = 0
-        graph = GraphUndirectedWeighted[T]()
-        while num_edges < len(self.connections) - 1:
-            u, v, w = edges[index]
-            index += 1
-            parent_u = disjoint_set.find_set(u)
-            parent_v = disjoint_set.find_set(v)
-            if parent_u != parent_v:
-                num_edges += 1
-                graph.add_edge(u, v, w)
-                disjoint_set.union(u, v)
-        return graph
+        # MST oluşturma
+        kenar_sayısı = 0
+        indeks = 0
+        grafik = AğırlıklıYönsüzGrafik[T]()
+        while kenar_sayısı < len(self.bağlantılar) - 1:
+            u, v, w = kenarlar[indeks]
+            indeks += 1
+            ebeveyn_u = ayrık_küme.küme_bul(u)
+            ebeveyn_v = ayrık_küme.küme_bul(v)
+            if ebeveyn_u != ebeveyn_v:
+                kenar_sayısı += 1
+                grafik.kenar_ekle(u, v, w)
+                ayrık_küme.birleştir(u, v)
+        return grafik

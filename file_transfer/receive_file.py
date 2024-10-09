@@ -7,20 +7,20 @@ def main():
     port = 12312
 
     sock.connect((host, port))
-    sock.send(b"Hello server!")
+    sock.send(b"Merhaba sunucu!")
 
-    with open("Received_file", "wb") as out_file:
-        print("File opened")
-        print("Receiving data...")
+    with open("Alinan_dosya", "wb") as out_file:
+        print("Dosya açıldı")
+        print("Veri alınıyor...")
         while True:
             data = sock.recv(1024)
             if not data:
                 break
             out_file.write(data)
 
-    print("Successfully received the file")
+    print("Dosya başarıyla alındı")
     sock.close()
-    print("Connection closed")
+    print("Bağlantı kapatıldı")
 
 
 if __name__ == "__main__":

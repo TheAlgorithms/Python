@@ -1,44 +1,44 @@
 # https://www.tutorialspoint.com/python3/bitwise_operators_example.htm
 
 
-def binary_or(a: int, b: int) -> str:
+def ikili_veya(a: int, b: int) -> str:
     """
-    Take in 2 integers, convert them to binary, and return a binary number that is the
-    result of a binary or operation on the integers provided.
+    İki tam sayı alır, bunları ikili sisteme çevirir ve sağlanan tam sayılar üzerinde
+    ikili veya işlemi sonucunda bir ikili sayı döner.
 
-    >>> binary_or(25, 32)
+    >>> ikili_veya(25, 32)
     '0b111001'
-    >>> binary_or(37, 50)
+    >>> ikili_veya(37, 50)
     '0b110111'
-    >>> binary_or(21, 30)
+    >>> ikili_veya(21, 30)
     '0b11111'
-    >>> binary_or(58, 73)
+    >>> ikili_veya(58, 73)
     '0b1111011'
-    >>> binary_or(0, 255)
+    >>> ikili_veya(0, 255)
     '0b11111111'
-    >>> binary_or(0, 256)
+    >>> ikili_veya(0, 256)
     '0b100000000'
-    >>> binary_or(0, -1)
+    >>> ikili_veya(0, -1)
     Traceback (most recent call last):
         ...
-    ValueError: the value of both inputs must be positive
-    >>> binary_or(0, 1.1)
+    ValueError: Her iki girdinin değeri pozitif olmalıdır
+    >>> ikili_veya(0, 1.1)
     Traceback (most recent call last):
         ...
-    TypeError: 'float' object cannot be interpreted as an integer
-    >>> binary_or("0", "1")
+    TypeError: 'float' türündeki nesne 'int' olarak yorumlanamaz
+    >>> ikili_veya("0", "1")
     Traceback (most recent call last):
         ...
-    TypeError: '<' not supported between instances of 'str' and 'int'
+    TypeError: 'str' ve 'int' örnekleri arasında '<' desteklenmiyor
     """
     if a < 0 or b < 0:
-        raise ValueError("the value of both inputs must be positive")
-    a_binary = str(bin(a))[2:]  # remove the leading "0b"
-    b_binary = str(bin(b))[2:]
-    max_len = max(len(a_binary), len(b_binary))
+        raise ValueError("Her iki girdinin değeri pozitif olmalıdır")
+    a_ikili = str(bin(a))[2:]  # baştaki "0b"yi kaldır
+    b_ikili = str(bin(b))[2:]
+    max_uzunluk = max(len(a_ikili), len(b_ikili))
     return "0b" + "".join(
         str(int("1" in (char_a, char_b)))
-        for char_a, char_b in zip(a_binary.zfill(max_len), b_binary.zfill(max_len))
+        for char_a, char_b in zip(a_ikili.zfill(max_uzunluk), b_ikili.zfill(max_uzunluk))
     )
 
 

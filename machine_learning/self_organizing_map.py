@@ -1,72 +1,74 @@
 """
-https://en.wikipedia.org/wiki/Self-organizing_map
+https://tr.wikipedia.org/wiki/Kendini_organize_eden_harita
 """
 
 import math
 
+# Organised to K. Umut Araz
 
-class SelfOrganizingMap:
-    def get_winner(self, weights: list[list[float]], sample: list[int]) -> int:
+
+class KendiniOrganizeEdenHarita:
+    def kazanan_vektoru_bul(self, agirliklar: list[list[float]], ornek: list[int]) -> int:
         """
-        Compute the winning vector by Euclidean distance
+        Öklidyen mesafesi ile kazanan vektörü hesapla
 
-        >>> SelfOrganizingMap().get_winner([[1, 2, 3], [4, 5, 6]], [1, 2, 3])
-        1
+        >>> KendiniOrganizeEdenHarita().kazanan_vektoru_bul([[1, 2, 3], [4, 5, 6]], [1, 2, 3])
+        0
         """
         d0 = 0.0
         d1 = 0.0
-        for i in range(len(sample)):
-            d0 += math.pow((sample[i] - weights[0][i]), 2)
-            d1 += math.pow((sample[i] - weights[1][i]), 2)
-        return 0 if d0 > d1 else 1
+        for i in range(len(ornek)):
+            d0 += math.pow((ornek[i] - agirliklar[0][i]), 2)
+            d1 += math.pow((ornek[i] - agirliklar[1][i]), 2)
+        return 0 if d0 < d1 else 1
 
-    def update(
-        self, weights: list[list[int | float]], sample: list[int], j: int, alpha: float
+    def guncelle(
+        self, agirliklar: list[list[int | float]], ornek: list[int], j: int, alfa: float
     ) -> list[list[int | float]]:
         """
-        Update the winning vector.
+        Kazanan vektörü güncelle.
 
-        >>> SelfOrganizingMap().update([[1, 2, 3], [4, 5, 6]], [1, 2, 3], 1, 0.1)
-        [[1, 2, 3], [3.7, 4.7, 6]]
+        >>> KendiniOrganizeEdenHarita().guncelle([[1, 2, 3], [4, 5, 6]], [1, 2, 3], 1, 0.1)
+        [[1, 2, 3], [3.7, 4.7, 5.7]]
         """
-        for i in range(len(weights[j])):
-            weights[j][i] += alpha * (sample[i] - weights[j][i])
-        return weights
+        for i in range(len(agirliklar[j])):
+            agirliklar[j][i] += alfa * (ornek[i] - agirliklar[j][i])
+        return agirliklar
 
 
-# Driver code
+# Ana kod
 def main() -> None:
-    # Training Examples ( m, n )
-    training_samples = [[1, 1, 0, 0], [0, 0, 0, 1], [1, 0, 0, 0], [0, 0, 1, 1]]
+    # Eğitim Örnekleri ( m, n )
+    egitim_ornekleri = [[1, 1, 0, 0], [0, 0, 0, 1], [1, 0, 0, 0], [0, 0, 1, 1]]
 
-    # weight initialization ( n, C )
-    weights = [[0.2, 0.6, 0.5, 0.9], [0.8, 0.4, 0.7, 0.3]]
+    # Ağırlıkların başlatılması ( n, C )
+    agirliklar = [[0.2, 0.6, 0.5, 0.9], [0.8, 0.4, 0.7, 0.3]]
 
-    # training
-    self_organizing_map = SelfOrganizingMap()
-    epochs = 3
-    alpha = 0.5
+    # Eğitim
+    kendini_organize_eden_harita = KendiniOrganizeEdenHarita()
+    epoch_sayisi = 3
+    alfa = 0.5
 
-    for _ in range(epochs):
-        for j in range(len(training_samples)):
-            # training sample
-            sample = training_samples[j]
+    for _ in range(epoch_sayisi):
+        for j in range(len(egitim_ornekleri)):
+            # Eğitim örneği
+            ornek = egitim_ornekleri[j]
 
-            # Compute the winning vector
-            winner = self_organizing_map.get_winner(weights, sample)
+            # Kazanan vektörü hesapla
+            kazanan = kendini_organize_eden_harita.kazanan_vektoru_bul(agirliklar, ornek)
 
-            # Update the winning vector
-            weights = self_organizing_map.update(weights, sample, winner, alpha)
+            # Kazanan vektörü güncelle
+            agirliklar = kendini_organize_eden_harita.guncelle(agirliklar, ornek, kazanan, alfa)
 
-    # classify test sample
-    sample = [0, 0, 0, 1]
-    winner = self_organizing_map.get_winner(weights, sample)
+    # Test örneğini sınıflandır
+    ornek = [0, 0, 0, 1]
+    kazanan = kendini_organize_eden_harita.kazanan_vektoru_bul(agirliklar, ornek)
 
-    # results
-    print(f"Clusters that the test sample belongs to : {winner}")
-    print(f"Weights that have been trained : {weights}")
+    # Sonuçlar
+    print(f"Test örneğinin ait olduğu küme : {kazanan}")
+    print(f"Eğitilmiş ağırlıklar : {agirliklar}")
 
 
-# running the main() function
+# main() fonksiyonunu çalıştırma
 if __name__ == "__main__":
     main()

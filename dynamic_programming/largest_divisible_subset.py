@@ -1,66 +1,65 @@
 from __future__ import annotations
 
 
-def largest_divisible_subset(items: list[int]) -> list[int]:
+def en_buyuk_bolen_alt_kume(elemanlar: list[int]) -> list[int]:
     """
-    Algorithm to find the biggest subset in the given array such that for any 2 elements
-    x and y in the subset, either x divides y or y divides x.
-    >>> largest_divisible_subset([1, 16, 7, 8, 4])
+    Verilen dizideki en büyük alt kümeyi bulma algoritması, öyle ki alt kümedeki herhangi iki eleman
+    x ve y için, ya x y'yi böler ya da y x'i böler.
+    >>> en_buyuk_bolen_alt_kume([1, 16, 7, 8, 4])
     [16, 8, 4, 1]
-    >>> largest_divisible_subset([1, 2, 3])
+    >>> en_buyuk_bolen_alt_kume([1, 2, 3])
     [2, 1]
-    >>> largest_divisible_subset([-1, -2, -3])
+    >>> en_buyuk_bolen_alt_kume([-1, -2, -3])
     [-3]
-    >>> largest_divisible_subset([1, 2, 4, 8])
+    >>> en_buyuk_bolen_alt_kume([1, 2, 4, 8])
     [8, 4, 2, 1]
-    >>> largest_divisible_subset((1, 2, 4, 8))
+    >>> en_buyuk_bolen_alt_kume((1, 2, 4, 8))
     [8, 4, 2, 1]
-    >>> largest_divisible_subset([1, 1, 1])
+    >>> en_buyuk_bolen_alt_kume([1, 1, 1])
     [1, 1, 1]
-    >>> largest_divisible_subset([0, 0, 0])
+    >>> en_buyuk_bolen_alt_kume([0, 0, 0])
     [0, 0, 0]
-    >>> largest_divisible_subset([-1, -1, -1])
+    >>> en_buyuk_bolen_alt_kume([-1, -1, -1])
     [-1, -1, -1]
-    >>> largest_divisible_subset([])
+    >>> en_buyuk_bolen_alt_kume([])
     []
     """
-    # Sort the array in ascending order as the sequence does not matter we only have to
-    # pick up a subset.
-    items = sorted(items)
+    # Diziyi artan sırayla sıralayın çünkü dizinin sırası önemli değil, sadece bir alt küme seçmemiz gerekiyor.
+    elemanlar = sorted(elemanlar)
 
-    number_of_items = len(items)
+    eleman_sayisi = len(elemanlar)
 
-    # Initialize memo with 1s and hash with increasing numbers
-    memo = [1] * number_of_items
-    hash_array = list(range(number_of_items))
+    # Memo'yu 1'lerle ve hash'i artan sayılarla başlatın
+    memo = [1] * eleman_sayisi
+    hash_dizisi = list(range(eleman_sayisi))
 
-    # Iterate through the array
-    for i, item in enumerate(items):
-        for prev_index in range(i):
-            if ((items[prev_index] != 0 and item % items[prev_index]) == 0) and (
-                (1 + memo[prev_index]) > memo[i]
+    # Dizi boyunca yineleyin
+    for i, eleman in enumerate(elemanlar):
+        for onceki_indeks in range(i):
+            if ((elemanlar[onceki_indeks] != 0 and eleman % elemanlar[onceki_indeks]) == 0) and (
+                (1 + memo[onceki_indeks]) > memo[i]
             ):
-                memo[i] = 1 + memo[prev_index]
-                hash_array[i] = prev_index
+                memo[i] = 1 + memo[onceki_indeks]
+                hash_dizisi[i] = onceki_indeks
 
-    ans = -1
-    last_index = -1
+    cevap = -1
+    son_indeks = -1
 
-    # Find the maximum length and its corresponding index
-    for i, memo_item in enumerate(memo):
-        if memo_item > ans:
-            ans = memo_item
-            last_index = i
+    # Maksimum uzunluğu ve karşılık gelen indeksini bulun
+    for i, memo_eleman in enumerate(memo):
+        if memo_eleman > cevap:
+            cevap = memo_eleman
+            son_indeks = i
 
-    # Reconstruct the divisible subset
-    if last_index == -1:
+    # Bölünebilir alt kümeyi yeniden oluşturun
+    if son_indeks == -1:
         return []
-    result = [items[last_index]]
-    while hash_array[last_index] != last_index:
-        last_index = hash_array[last_index]
-        result.append(items[last_index])
+    sonuc = [elemanlar[son_indeks]]
+    while hash_dizisi[son_indeks] != son_indeks:
+        son_indeks = hash_dizisi[son_indeks]
+        sonuc.append(elemanlar[son_indeks])
 
-    return result
+    return sonuc
 
 
 if __name__ == "__main__":
@@ -68,7 +67,7 @@ if __name__ == "__main__":
 
     testmod()
 
-    items = [1, 16, 7, 8, 4]
+    elemanlar = [1, 16, 7, 8, 4]
     print(
-        f"The longest divisible subset of {items} is {largest_divisible_subset(items)}."
+        f"{elemanlar} dizisinin en uzun bölünebilir alt kümesi {en_buyuk_bolen_alt_kume(elemanlar)}."
     )

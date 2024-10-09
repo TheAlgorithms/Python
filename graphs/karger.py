@@ -1,14 +1,16 @@
 """
-An implementation of Karger's Algorithm for partitioning a graph.
+Bir grafiği bölmek için Karger's Algoritmasının bir uygulaması.
 """
 
 from __future__ import annotations
 
 import random
 
-# Adjacency list representation of this graph:
+#Produced By K. Umut Araz
+
+# Bu grafiğin komşuluk listesi temsili:
 # https://en.wikipedia.org/wiki/File:Single_run_of_Karger%E2%80%99s_Mincut_algorithm.svg
-TEST_GRAPH = {
+TEST_GRAFİK = {
     "1": ["2", "3", "4", "5"],
     "2": ["1", "3", "4", "5"],
     "3": ["1", "2", "4", "5", "10"],
@@ -22,64 +24,62 @@ TEST_GRAPH = {
 }
 
 
-def partition_graph(graph: dict[str, list[str]]) -> set[tuple[str, str]]:
+def grafiği_böl(grafik: dict[str, list[str]]) -> set[tuple[str, str]]:
     """
-    Partitions a graph using Karger's Algorithm. Implemented from
-    pseudocode found here:
-    https://en.wikipedia.org/wiki/Karger%27s_algorithm.
-    This function involves random choices, meaning it will not give
-    consistent outputs.
+    Karger's Algoritmasını kullanarak bir grafiği böler. Pseudocode buradan
+    alınmıştır: https://en.wikipedia.org/wiki/Karger%27s_algorithm.
+    Bu fonksiyon rastgele seçimler içerir, bu nedenle tutarlı çıktılar vermez.
 
-    Args:
-        graph: A dictionary containing adacency lists for the graph.
-            Nodes must be strings.
+    Parametreler:
+        grafik: Grafiğin komşuluk listelerini içeren bir sözlük.
+            Düğümler string olmalıdır.
 
-    Returns:
-        The cutset of the cut found by Karger's Algorithm.
+    Döndürür:
+        Karger's Algoritması tarafından bulunan kesitin kesim kümesi.
 
-    >>> graph = {'0':['1'], '1':['0']}
-    >>> partition_graph(graph)
+    >>> grafik = {'0':['1'], '1':['0']}
+    >>> grafiği_böl(grafik)
     {('0', '1')}
     """
-    # Dict that maps contracted nodes to a list of all the nodes it "contains."
-    contracted_nodes = {node: {node} for node in graph}
+    # Küçültülen düğümleri, "içerdiği" tüm düğümlerin listesine eşleyen sözlük.
+    küçültülen_düğümler = {düğüm: {düğüm} for düğüm in grafik}
 
-    graph_copy = {node: graph[node][:] for node in graph}
+    grafik_kopyası = {düğüm: grafik[düğüm][:] for düğüm in grafik}
 
-    while len(graph_copy) > 2:
-        # Choose a random edge.
-        u = random.choice(list(graph_copy.keys()))
-        v = random.choice(graph_copy[u])
+    while len(grafik_kopyası) > 2:
+        # Rastgele bir kenar seç.
+        u = random.choice(list(grafik_kopyası.keys()))
+        v = random.choice(grafik_kopyası[u])
 
-        # Contract edge (u, v) to new node uv
+        # (u, v) kenarını yeni düğüm uv'ye küçült
         uv = u + v
-        uv_neighbors = list(set(graph_copy[u] + graph_copy[v]))
-        uv_neighbors.remove(u)
-        uv_neighbors.remove(v)
-        graph_copy[uv] = uv_neighbors
-        for neighbor in uv_neighbors:
-            graph_copy[neighbor].append(uv)
+        uv_komşuları = list(set(grafik_kopyası[u] + grafik_kopyası[v]))
+        uv_komşuları.remove(u)
+        uv_komşuları.remove(v)
+        grafik_kopyası[uv] = uv_komşuları
+        for komşu in uv_komşuları:
+            grafik_kopyası[komşu].append(uv)
 
-        contracted_nodes[uv] = set(contracted_nodes[u].union(contracted_nodes[v]))
+        küçültülen_düğümler[uv] = set(küçültülen_düğümler[u].union(küçültülen_düğümler[v]))
 
-        # Remove nodes u and v.
-        del graph_copy[u]
-        del graph_copy[v]
-        for neighbor in uv_neighbors:
-            if u in graph_copy[neighbor]:
-                graph_copy[neighbor].remove(u)
-            if v in graph_copy[neighbor]:
-                graph_copy[neighbor].remove(v)
+        # u ve v düğümlerini kaldır.
+        del grafik_kopyası[u]
+        del grafik_kopyası[v]
+        for komşu in uv_komşuları:
+            if u in grafik_kopyası[komşu]:
+                grafik_kopyası[komşu].remove(u)
+            if v in grafik_kopyası[komşu]:
+                grafik_kopyası[komşu].remove(v)
 
-    # Find cutset.
-    groups = [contracted_nodes[node] for node in graph_copy]
+    # Kesim kümesini bul.
+    gruplar = [küçültülen_düğümler[düğüm] for düğüm in grafik_kopyası]
     return {
-        (node, neighbor)
-        for node in groups[0]
-        for neighbor in graph[node]
-        if neighbor in groups[1]
+        (düğüm, komşu)
+        for düğüm in gruplar[0]
+        for komşu in grafik[düğüm]
+        if komşu in gruplar[1]
     }
 
 
 if __name__ == "__main__":
-    print(partition_graph(TEST_GRAPH))
+    print(grafiği_böl(TEST_GRAFİK))

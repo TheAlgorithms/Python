@@ -1,5 +1,7 @@
 """
-This is pure Python implementation of tree traversal algorithms
+Bu, ağaç gezinti algoritmalarının saf Python uygulamasıdır.
+
+Organiser: K. Umut Araz
 """
 
 from __future__ import annotations
@@ -7,299 +9,261 @@ from __future__ import annotations
 import queue
 
 
-class TreeNode:
-    def __init__(self, data):
-        self.data = data
-        self.right = None
-        self.left = None
+class AgacDugumu:
+    def __init__(self, veri):
+        self.veri = veri
+        self.sag = None
+        self.sol = None
 
 
-def build_tree() -> TreeNode:
-    print("\n********Press N to stop entering at any point of time********\n")
-    check = input("Enter the value of the root node: ").strip().lower()
+def agaci_olustur() -> AgacDugumu:
+    print("\n********Herhangi bir anda girişi durdurmak için N'ye basın********\n")
+    kontrol = input("Kök düğümün değerini girin: ").strip().lower()
     q: queue.Queue = queue.Queue()
-    tree_node = TreeNode(int(check))
-    q.put(tree_node)
+    agac_dugumu = AgacDugumu(int(kontrol))
+    q.put(agac_dugumu)
     while not q.empty():
-        node_found = q.get()
-        msg = f"Enter the left node of {node_found.data}: "
-        check = input(msg).strip().lower() or "n"
-        if check == "n":
-            return tree_node
-        left_node = TreeNode(int(check))
-        node_found.left = left_node
-        q.put(left_node)
-        msg = f"Enter the right node of {node_found.data}: "
-        check = input(msg).strip().lower() or "n"
-        if check == "n":
-            return tree_node
-        right_node = TreeNode(int(check))
-        node_found.right = right_node
-        q.put(right_node)
-    raise ValueError("Something went wrong")
+        bulunan_dugum = q.get()
+        mesaj = f"{bulunan_dugum.veri} düğümünün sol düğümünü girin: "
+        kontrol = input(mesaj).strip().lower() or "n"
+        if kontrol == "n":
+            return agac_dugumu
+        sol_dugum = AgacDugumu(int(kontrol))
+        bulunan_dugum.sol = sol_dugum
+        q.put(sol_dugum)
+        mesaj = f"{bulunan_dugum.veri} düğümünün sağ düğümünü girin: "
+        kontrol = input(mesaj).strip().lower() or "n"
+        if kontrol == "n":
+            return agac_dugumu
+        sag_dugum = AgacDugumu(int(kontrol))
+        bulunan_dugum.sag = sag_dugum
+        q.put(sag_dugum)
+    raise ValueError("Bir şeyler yanlış gitti")
 
 
-def pre_order(node: TreeNode) -> None:
+def oncelikli_gezinme(dugum: AgacDugumu) -> None:
     """
-    >>> root = TreeNode(1)
-    >>> tree_node2 = TreeNode(2)
-    >>> tree_node3 = TreeNode(3)
-    >>> tree_node4 = TreeNode(4)
-    >>> tree_node5 = TreeNode(5)
-    >>> tree_node6 = TreeNode(6)
-    >>> tree_node7 = TreeNode(7)
-    >>> root.left, root.right = tree_node2, tree_node3
-    >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
-    >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
-    >>> pre_order(root)
+    >>> kok = AgacDugumu(1)
+    >>> agac_dugumu2 = AgacDugumu(2)
+    >>> agac_dugumu3 = AgacDugumu(3)
+    >>> agac_dugumu4 = AgacDugumu(4)
+    >>> agac_dugumu5 = AgacDugumu(5)
+    >>> agac_dugumu6 = AgacDugumu(6)
+    >>> agac_dugumu7 = AgacDugumu(7)
+    >>> kok.sol, kok.sag = agac_dugumu2, agac_dugumu3
+    >>> agac_dugumu2.sol, agac_dugumu2.sag = agac_dugumu4 , agac_dugumu5
+    >>> agac_dugumu3.sol, agac_dugumu3.sag = agac_dugumu6 , agac_dugumu7
+    >>> oncelikli_gezinme(kok)
     1,2,4,5,3,6,7,
     """
-    if not isinstance(node, TreeNode) or not node:
+    if not isinstance(dugum, AgacDugumu) or not dugum:
         return
-    print(node.data, end=",")
-    pre_order(node.left)
-    pre_order(node.right)
+    print(dugum.veri, end=",")
+    oncelikli_gezinme(dugum.sol)
+    oncelikli_gezinme(dugum.sag)
 
 
-def in_order(node: TreeNode) -> None:
+def sirali_gezinme(dugum: AgacDugumu) -> None:
     """
-    >>> root = TreeNode(1)
-    >>> tree_node2 = TreeNode(2)
-    >>> tree_node3 = TreeNode(3)
-    >>> tree_node4 = TreeNode(4)
-    >>> tree_node5 = TreeNode(5)
-    >>> tree_node6 = TreeNode(6)
-    >>> tree_node7 = TreeNode(7)
-    >>> root.left, root.right = tree_node2, tree_node3
-    >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
-    >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
-    >>> in_order(root)
+    >>> kok = AgacDugumu(1)
+    >>> agac_dugumu2 = AgacDugumu(2)
+    >>> agac_dugumu3 = AgacDugumu(3)
+    >>> agac_dugumu4 = AgacDugumu(4)
+    >>> agac_dugumu5 = AgacDugumu(5)
+    >>> agac_dugumu6 = AgacDugumu(6)
+    >>> agac_dugumu7 = AgacDugumu(7)
+    >>> kok.sol, kok.sag = agac_dugumu2, agac_dugumu3
+    >>> agac_dugumu2.sol, agac_dugumu2.sag = agac_dugumu4 , agac_dugumu5
+    >>> agac_dugumu3.sol, agac_dugumu3.sag = agac_dugumu6 , agac_dugumu7
+    >>> sirali_gezinme(kok)
     4,2,5,1,6,3,7,
     """
-    if not isinstance(node, TreeNode) or not node:
+    if not isinstance(dugum, AgacDugumu) or not dugum:
         return
-    in_order(node.left)
-    print(node.data, end=",")
-    in_order(node.right)
+    sirali_gezinme(dugum.sol)
+    print(dugum.veri, end=",")
+    sirali_gezinme(dugum.sag)
 
 
-def post_order(node: TreeNode) -> None:
+def sonlu_gezinme(dugum: AgacDugumu) -> None:
     """
-    >>> root = TreeNode(1)
-    >>> tree_node2 = TreeNode(2)
-    >>> tree_node3 = TreeNode(3)
-    >>> tree_node4 = TreeNode(4)
-    >>> tree_node5 = TreeNode(5)
-    >>> tree_node6 = TreeNode(6)
-    >>> tree_node7 = TreeNode(7)
-    >>> root.left, root.right = tree_node2, tree_node3
-    >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
-    >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
-    >>> post_order(root)
+    >>> kok = AgacDugumu(1)
+    >>> agac_dugumu2 = AgacDugumu(2)
+    >>> agac_dugumu3 = AgacDugumu(3)
+    >>> agac_dugumu4 = AgacDugumu(4)
+    >>> agac_dugumu5 = AgacDugumu(5)
+    >>> agac_dugumu6 = AgacDugumu(6)
+    >>> agac_dugumu7 = AgacDugumu(7)
+    >>> kok.sol, kok.sag = agac_dugumu2, agac_dugumu3
+    >>> agac_dugumu2.sol, agac_dugumu2.sag = agac_dugumu4 , agac_dugumu5
+    >>> agac_dugumu3.sol, agac_dugumu3.sag = agac_dugumu6 , agac_dugumu7
+    >>> sonlu_gezinme(kok)
     4,5,2,6,7,3,1,
     """
-    if not isinstance(node, TreeNode) or not node:
+    if not isinstance(dugum, AgacDugumu) or not dugum:
         return
-    post_order(node.left)
-    post_order(node.right)
-    print(node.data, end=",")
+    sonlu_gezinme(dugum.sol)
+    sonlu_gezinme(dugum.sag)
+    print(dugum.veri, end=",")
 
 
-def level_order(node: TreeNode) -> None:
+def seviye_gezinme(dugum: AgacDugumu) -> None:
     """
-    >>> root = TreeNode(1)
-    >>> tree_node2 = TreeNode(2)
-    >>> tree_node3 = TreeNode(3)
-    >>> tree_node4 = TreeNode(4)
-    >>> tree_node5 = TreeNode(5)
-    >>> tree_node6 = TreeNode(6)
-    >>> tree_node7 = TreeNode(7)
-    >>> root.left, root.right = tree_node2, tree_node3
-    >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
-    >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
-    >>> level_order(root)
+    >>> kok = AgacDugumu(1)
+    >>> agac_dugumu2 = AgacDugumu(2)
+    >>> agac_dugumu3 = AgacDugumu(3)
+    >>> agac_dugumu4 = AgacDugumu(4)
+    >>> agac_dugumu5 = AgacDugumu(5)
+    >>> agac_dugumu6 = AgacDugumu(6)
+    >>> agac_dugumu7 = AgacDugumu(7)
+    >>> kok.sol, kok.sag = agac_dugumu2, agac_dugumu3
+    >>> agac_dugumu2.sol, agac_dugumu2.sag = agac_dugumu4 , agac_dugumu5
+    >>> agac_dugumu3.sol, agac_dugumu3.sag = agac_dugumu6 , agac_dugumu7
+    >>> seviye_gezinme(kok)
     1,2,3,4,5,6,7,
     """
-    if not isinstance(node, TreeNode) or not node:
+    if not isinstance(dugum, AgacDugumu) or not dugum:
         return
     q: queue.Queue = queue.Queue()
-    q.put(node)
+    q.put(dugum)
     while not q.empty():
-        node_dequeued = q.get()
-        print(node_dequeued.data, end=",")
-        if node_dequeued.left:
-            q.put(node_dequeued.left)
-        if node_dequeued.right:
-            q.put(node_dequeued.right)
+        cikan_dugum = q.get()
+        print(cikan_dugum.veri, end=",")
+        if cikan_dugum.sol:
+            q.put(cikan_dugum.sol)
+        if cikan_dugum.sag:
+            q.put(cikan_dugum.sag)
 
 
-def level_order_actual(node: TreeNode) -> None:
+def gercek_seviye_gezinme(dugum: AgacDugumu) -> None:
     """
-    >>> root = TreeNode(1)
-    >>> tree_node2 = TreeNode(2)
-    >>> tree_node3 = TreeNode(3)
-    >>> tree_node4 = TreeNode(4)
-    >>> tree_node5 = TreeNode(5)
-    >>> tree_node6 = TreeNode(6)
-    >>> tree_node7 = TreeNode(7)
-    >>> root.left, root.right = tree_node2, tree_node3
-    >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
-    >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
-    >>> level_order_actual(root)
+    >>> kok = AgacDugumu(1)
+    >>> agac_dugumu2 = AgacDugumu(2)
+    >>> agac_dugumu3 = AgacDugumu(3)
+    >>> agac_dugumu4 = AgacDugumu(4)
+    >>> agac_dugumu5 = AgacDugumu(5)
+    >>> agac_dugumu6 = AgacDugumu(6)
+    >>> agac_dugumu7 = AgacDugumu(7)
+    >>> kok.sol, kok.sag = agac_dugumu2, agac_dugumu3
+    >>> agac_dugumu2.sol, agac_dugumu2.sag = agac_dugumu4 , agac_dugumu5
+    >>> agac_dugumu3.sol, agac_dugumu3.sag = agac_dugumu6 , agac_dugumu7
+    >>> gercek_seviye_gezinme(kok)
     1,
     2,3,
     4,5,6,7,
     """
-    if not isinstance(node, TreeNode) or not node:
+    if not isinstance(dugum, AgacDugumu) or not dugum:
         return
     q: queue.Queue = queue.Queue()
-    q.put(node)
+    q.put(dugum)
     while not q.empty():
-        list_ = []
+        liste = []
         while not q.empty():
-            node_dequeued = q.get()
-            print(node_dequeued.data, end=",")
-            if node_dequeued.left:
-                list_.append(node_dequeued.left)
-            if node_dequeued.right:
-                list_.append(node_dequeued.right)
+            cikan_dugum = q.get()
+            print(cikan_dugum.veri, end=",")
+            if cikan_dugum.sol:
+                liste.append(cikan_dugum.sol)
+            if cikan_dugum.sag:
+                liste.append(cikan_dugum.sag)
         print()
-        for inner_node in list_:
-            q.put(inner_node)
+        for ic_dugum in liste:
+            q.put(ic_dugum)
 
 
-# iteration version
-def pre_order_iter(node: TreeNode) -> None:
+# yineleme versiyonu
+def oncelikli_gezinme_iter(dugum: AgacDugumu) -> None:
     """
-    >>> root = TreeNode(1)
-    >>> tree_node2 = TreeNode(2)
-    >>> tree_node3 = TreeNode(3)
-    >>> tree_node4 = TreeNode(4)
-    >>> tree_node5 = TreeNode(5)
-    >>> tree_node6 = TreeNode(6)
-    >>> tree_node7 = TreeNode(7)
-    >>> root.left, root.right = tree_node2, tree_node3
-    >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
-    >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
-    >>> pre_order_iter(root)
+    >>> kok = AgacDugumu(1)
+    >>> agac_dugumu2 = AgacDugumu(2)
+    >>> agac_dugumu3 = AgacDugumu(3)
+    >>> agac_dugumu4 = AgacDugumu(4)
+    >>> agac_dugumu5 = AgacDugumu(5)
+    >>> agac_dugumu6 = AgacDugumu(6)
+    >>> agac_dugumu7 = AgacDugumu(7)
+    >>> kok.sol, kok.sag = agac_dugumu2, agac_dugumu3
+    >>> agac_dugumu2.sol, agac_dugumu2.sag = agac_dugumu4 , agac_dugumu5
+    >>> agac_dugumu3.sol, agac_dugumu3.sag = agac_dugumu6 , agac_dugumu7
+    >>> oncelikli_gezinme_iter(kok)
     1,2,4,5,3,6,7,
     """
-    if not isinstance(node, TreeNode) or not node:
+    if not isinstance(dugum, AgacDugumu) or not dugum:
         return
-    stack: list[TreeNode] = []
-    n = node
-    while n or stack:
-        while n:  # start from root node, find its left child
-            print(n.data, end=",")
-            stack.append(n)
-            n = n.left
-        # end of while means current node doesn't have left child
-        n = stack.pop()
-        # start to traverse its right child
-        n = n.right
+    yigin: list[AgacDugumu] = []
+    n = dugum
+    while n or yigin:
+        while n:  # kök düğümden başlayarak sol çocuğu bul
+            print(n.veri, end=",")
+            yigin.append(n)
+            n = n.sol
+        # while döngüsünün sonu, mevcut düğümün sol çocuğu olmadığını gösterir
+        n = yigin.pop()
+        # sağ çocuğu gezmeye başla
+        n = n.sag
 
 
-def in_order_iter(node: TreeNode) -> None:
+def sirali_gezinme_iter(dugum: AgacDugumu) -> None:
     """
-    >>> root = TreeNode(1)
-    >>> tree_node2 = TreeNode(2)
-    >>> tree_node3 = TreeNode(3)
-    >>> tree_node4 = TreeNode(4)
-    >>> tree_node5 = TreeNode(5)
-    >>> tree_node6 = TreeNode(6)
-    >>> tree_node7 = TreeNode(7)
-    >>> root.left, root.right = tree_node2, tree_node3
-    >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
-    >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
-    >>> in_order_iter(root)
+    >>> kok = AgacDugumu(1)
+    >>> agac_dugumu2 = AgacDugumu(2)
+    >>> agac_dugumu3 = AgacDugumu(3)
+    >>> agac_dugumu4 = AgacDugumu(4)
+    >>> agac_dugumu5 = AgacDugumu(5)
+    >>> agac_dugumu6 = AgacDugumu(6)
+    >>> agac_dugumu7 = AgacDugumu(7)
+    >>> kok.sol, kok.sag = agac_dugumu2, agac_dugumu3
+    >>> agac_dugumu2.sol, agac_dugumu2.sag = agac_dugumu4 , agac_dugumu5
+    >>> agac_dugumu3.sol, agac_dugumu3.sag = agac_dugumu6 , agac_dugumu7
+    >>> sirali_gezinme_iter(kok)
     4,2,5,1,6,3,7,
     """
-    if not isinstance(node, TreeNode) or not node:
+    if not isinstance(dugum, AgacDugumu) or not dugum:
         return
-    stack: list[TreeNode] = []
-    n = node
-    while n or stack:
+    yigin: list[AgacDugumu] = []
+    n = dugum
+    while n or yigin:
         while n:
-            stack.append(n)
-            n = n.left
-        n = stack.pop()
-        print(n.data, end=",")
-        n = n.right
+            yigin.append(n)
+            n = n.sol
+        n = yigin.pop()
+        print(n.veri, end=",")
+        n = n.sag
 
 
-def post_order_iter(node: TreeNode) -> None:
+def sonlu_gezinme_iter(dugum: AgacDugumu) -> None:
     """
-    >>> root = TreeNode(1)
-    >>> tree_node2 = TreeNode(2)
-    >>> tree_node3 = TreeNode(3)
-    >>> tree_node4 = TreeNode(4)
-    >>> tree_node5 = TreeNode(5)
-    >>> tree_node6 = TreeNode(6)
-    >>> tree_node7 = TreeNode(7)
-    >>> root.left, root.right = tree_node2, tree_node3
-    >>> tree_node2.left, tree_node2.right = tree_node4 , tree_node5
-    >>> tree_node3.left, tree_node3.right = tree_node6 , tree_node7
-    >>> post_order_iter(root)
+    >>> kok = AgacDugumu(1)
+    >>> agac_dugumu2 = AgacDugumu(2)
+    >>> agac_dugumu3 = AgacDugumu(3)
+    >>> agac_dugumu4 = AgacDugumu(4)
+    >>> agac_dugumu5 = AgacDugumu(5)
+    >>> agac_dugumu6 = AgacDugumu(6)
+    >>> agac_dugumu7 = AgacDugumu(7)
+    >>> kok.sol, kok.sag = agac_dugumu2, agac_dugumu3
+    >>> agac_dugumu2.sol, agac_dugumu2.sag = agac_dugumu4 , agac_dugumu5
+    >>> agac_dugumu3.sol, agac_dugumu3.sag = agac_dugumu6 , agac_dugumu7
+    >>> sonlu_gezinme_iter(kok)
     4,5,2,6,7,3,1,
     """
-    if not isinstance(node, TreeNode) or not node:
+    if not isinstance(dugum, AgacDugumu) or not dugum:
         return
-    stack1, stack2 = [], []
-    n = node
-    stack1.append(n)
-    while stack1:  # to find the reversed order of post order, store it in stack2
-        n = stack1.pop()
-        if n.left:
-            stack1.append(n.left)
-        if n.right:
-            stack1.append(n.right)
-        stack2.append(n)
-    while stack2:  # pop up from stack2 will be the post order
-        print(stack2.pop().data, end=",")
+    yigin1, yigin2 = [], []
+    n = dugum
+    yigin1.append(n)
+    while yigin1:  # sonlu gezintinin ters sırasını bulmak için yigin2'ye kaydet
+        n = yigin1.pop()
+        if n.sol:
+            yigin1.append(n.sol)
+        if n.sag:
+            yigin1.append(n.sag)
+        yigin2.append(n)
+    while yigin2:  # yigin2'den çıkmak sonlu gezintiyi verecektir
+        print(yigin2.pop().veri, end=",")
 
 
-def prompt(s: str = "", width=50, char="*") -> str:
+def istem(s: str = "", genislik=50, karakter="*") -> str:
     if not s:
-        return "\n" + width * char
-    left, extra = divmod(width - len(s) - 2, 2)
-    return f"{left * char} {s} {(left + extra) * char}"
+        return "\n" + genislik * karakter
+    sol, fazlalik = divmod(genislik - len(s) - 2, 2)
+    return f"{sol * karakter} {s} {(sol + fazlalik) * karakter}"
 
 
-if __name__ == "__main__":
-    import doctest
-
-    doctest.testmod()
-    print(prompt("Binary Tree Traversals"))
-
-    node: TreeNode = build_tree()
-    print(prompt("Pre Order Traversal"))
-    pre_order(node)
-    print(prompt() + "\n")
-
-    print(prompt("In Order Traversal"))
-    in_order(node)
-    print(prompt() + "\n")
-
-    print(prompt("Post Order Traversal"))
-    post_order(node)
-    print(prompt() + "\n")
-
-    print(prompt("Level Order Traversal"))
-    level_order(node)
-    print(prompt() + "\n")
-
-    print(prompt("Actual Level Order Traversal"))
-    level_order_actual(node)
-    print("*" * 50 + "\n")
-
-    print(prompt("Pre Order Traversal - Iteration Version"))
-    pre_order_iter(node)
-    print(prompt() + "\n")
-
-    print(prompt("In Order Traversal - Iteration Version"))
-    in_order_iter(node)
-    print(prompt() + "\n")
-
-    print(prompt("Post Order Traversal - Iteration Version"))
-    post_order_iter(node)
-    print(prompt())

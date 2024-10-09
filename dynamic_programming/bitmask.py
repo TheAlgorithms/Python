@@ -1,89 +1,89 @@
 """
 
-This is a Python implementation for questions involving task assignments between people.
-Here Bitmasking and DP are used for solving this.
+Bu, görevlerin insanlar arasında atanmasını içeren sorular için bir Python uygulamasıdır.
+Bu sorunu çözmek için Bitmasking ve DP kullanılmıştır.
 
-Question :-
-We have N tasks and M people. Each person in M can do only certain of these tasks. Also
-a person can do only one task and a task is performed only by one person.
-Find the total no of ways in which the tasks can be distributed.
+Soru :-
+N görevimiz ve M kişimiz var. M'deki her kişi yalnızca bu görevlerden bazılarını yapabilir.
+Ayrıca bir kişi yalnızca bir görev yapabilir ve bir görev yalnızca bir kişi tarafından yapılır.
+Görevlerin dağıtılabileceği toplam yol sayısını bulun.
 """
 
 from collections import defaultdict
 
 
-class AssignmentUsingBitmask:
-    def __init__(self, task_performed, total):
-        self.total_tasks = total  # total no of tasks (N)
+class BitmaskKullanarakAtama:
+    def __init__(self, yapilan_gorevler, toplam):
+        self.toplam_gorevler = toplam  # toplam görev sayısı (N)
 
-        # DP table will have a dimension of (2^M)*N
-        # initially all values are set to -1
+        # DP tablosu (2^M)*N boyutunda olacak
+        # başlangıçta tüm değerler -1 olarak ayarlanır
         self.dp = [
-            [-1 for i in range(total + 1)] for j in range(2 ** len(task_performed))
+            [-1 for i in range(toplam + 1)] for j in range(2 ** len(yapilan_gorevler))
         ]
 
-        self.task = defaultdict(list)  # stores the list of persons for each task
+        self.gorev = defaultdict(list)  # her görev için kişilerin listesini saklar
 
-        # final_mask is used to check if all persons are included by setting all bits
-        # to 1
-        self.final_mask = (1 << len(task_performed)) - 1
+        # final_mask, tüm kişilerin dahil edilip edilmediğini kontrol etmek için
+        # tüm bitleri 1 olarak ayarlayarak kullanılır
+        self.final_mask = (1 << len(yapilan_gorevler)) - 1
 
-    def count_ways_until(self, mask, task_no):
-        # if mask == self.finalmask all persons are distributed tasks, return 1
+    def belirli_bir_zamana_kadar_yollari_say(self, mask, gorev_no):
+        # eğer mask == self.final_mask ise tüm kişilere görevler dağıtılmıştır, 1 döndür
         if mask == self.final_mask:
             return 1
 
-        # if not everyone gets the task and no more tasks are available, return 0
-        if task_no > self.total_tasks:
+        # eğer herkes görev almazsa ve daha fazla görev yoksa, 0 döndür
+        if gorev_no > self.toplam_gorevler:
             return 0
 
-        # if case already considered
-        if self.dp[mask][task_no] != -1:
-            return self.dp[mask][task_no]
+        # eğer durum zaten düşünülmüşse
+        if self.dp[mask][gorev_no] != -1:
+            return self.dp[mask][gorev_no]
 
-        # Number of ways when we don't this task in the arrangement
-        total_ways_util = self.count_ways_until(mask, task_no + 1)
+        # Bu görevi düzenlemeye dahil etmediğimizde yolların sayısı
+        toplam_yollar_util = self.belirli_bir_zamana_kadar_yollari_say(mask, gorev_no + 1)
 
-        # now assign the tasks one by one to all possible persons and recursively
-        # assign for the remaining tasks.
-        if task_no in self.task:
-            for p in self.task[task_no]:
-                # if p is already given a task
+        # şimdi görevleri tek tek tüm olası kişilere atayın ve kalan görevler için
+        # özyinelemeli olarak atayın.
+        if gorev_no in self.gorev:
+            for p in self.gorev[gorev_no]:
+                # eğer p zaten bir görev aldıysa
                 if mask & (1 << p):
                     continue
 
-                # assign this task to p and change the mask value. And recursively
-                # assign tasks with the new mask value.
-                total_ways_util += self.count_ways_until(mask | (1 << p), task_no + 1)
+                # bu görevi p'ye atayın ve mask değerini değiştirin. Ve yeni mask
+                # değeriyle özyinelemeli olarak görevleri atayın.
+                toplam_yollar_util += self.belirli_bir_zamana_kadar_yollari_say(mask | (1 << p), gorev_no + 1)
 
-        # save the value.
-        self.dp[mask][task_no] = total_ways_util
+        # değeri kaydet.
+        self.dp[mask][gorev_no] = toplam_yollar_util
 
-        return self.dp[mask][task_no]
+        return self.dp[mask][gorev_no]
 
-    def count_no_of_ways(self, task_performed):
-        # Store the list of persons for each task
-        for i in range(len(task_performed)):
-            for j in task_performed[i]:
-                self.task[j].append(i)
+    def toplam_yol_sayisini_bul(self, yapilan_gorevler):
+        # Her görev için kişilerin listesini saklayın
+        for i in range(len(yapilan_gorevler)):
+            for j in yapilan_gorevler[i]:
+                self.gorev[j].append(i)
 
-        # call the function to fill the DP table, final answer is stored in dp[0][1]
-        return self.count_ways_until(0, 1)
+        # DP tablosunu doldurmak için fonksiyonu çağırın, nihai cevap dp[0][1]'de saklanır
+        return self.belirli_bir_zamana_kadar_yollari_say(0, 1)
 
 
 if __name__ == "__main__":
-    total_tasks = 5  # total no of tasks (the value of N)
+    toplam_gorevler = 5  # toplam görev sayısı (N değeri)
 
-    # the list of tasks that can be done by M persons.
-    task_performed = [[1, 3, 4], [1, 2, 5], [3, 4]]
+    # M kişisi tarafından yapılabilecek görevlerin listesi.
+    yapilan_gorevler = [[1, 3, 4], [1, 2, 5], [3, 4]]
     print(
-        AssignmentUsingBitmask(task_performed, total_tasks).count_no_of_ways(
-            task_performed
+        BitmaskKullanarakAtama(yapilan_gorevler, toplam_gorevler).toplam_yol_sayisini_bul(
+            yapilan_gorevler
         )
     )
     """
-    For the particular example the tasks can be distributed as
+    Belirli bir örnek için görevler şu şekilde dağıtılabilir
     (1,2,3), (1,2,4), (1,5,3), (1,5,4), (3,1,4),
     (3,2,4), (3,5,4), (4,1,3), (4,2,3), (4,5,3)
-    total 10
+    toplam 10
     """

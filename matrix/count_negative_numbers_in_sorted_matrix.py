@@ -1,147 +1,147 @@
 """
-Given an matrix of numbers in which all rows and all columns are sorted in decreasing
-order, return the number of negative numbers in grid.
+Tüm satırları ve sütunları azalan sırada sıralanmış bir sayı matrisinde,
+matris içindeki negatif sayıların sayısını döndürür.
 
-Reference: https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix
+Referans: https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix
+
+Organised by K. Umut Araz
 """
 
 
-def generate_large_matrix() -> list[list[int]]:
+def büyük_matris_oluştur() -> list[list[int]]:
     """
-    >>> generate_large_matrix() # doctest: +ELLIPSIS
+    >>> büyük_matris_oluştur() # doctest: +ELLIPSIS
     [[1000, ..., -999], [999, ..., -1001], ..., [2, ..., -1998]]
     """
     return [list(range(1000 - i, -1000 - i, -1)) for i in range(1000)]
 
 
-grid = generate_large_matrix()
-test_grids = (
+matris = büyük_matris_oluştur()
+test_matrisler = (
     [[4, 3, 2, -1], [3, 2, 1, -1], [1, 1, -1, -2], [-1, -1, -2, -3]],
     [[3, 2], [1, 0]],
     [[7, 7, 6]],
     [[7, 7, 6], [-1, -2, -3]],
-    grid,
+    matris,
 )
 
 
-def validate_grid(grid: list[list[int]]) -> None:
+def matris_geçerliliğini_kontrol_et(matris: list[list[int]]) -> None:
     """
-    Validate that the rows and columns of the grid is sorted in decreasing order.
-    >>> for grid in test_grids:
-    ...     validate_grid(grid)
+    Matrisin satırlarının ve sütunlarının azalan sırada sıralandığını doğrular.
+    >>> for matris in test_matrisler:
+    ...     matris_geçerliliğini_kontrol_et(matris)
     """
-    assert all(row == sorted(row, reverse=True) for row in grid)
-    assert all(list(col) == sorted(col, reverse=True) for col in zip(*grid))
+    assert all(row == sorted(row, reverse=True) for row in matris)
+    assert all(list(col) == sorted(col, reverse=True) for col in zip(*matris))
 
 
-def find_negative_index(array: list[int]) -> int:
+def negatif_indeks_bul(array: list[int]) -> int:
     """
-    Find the smallest negative index
+    En küçük negatif indeksini bulur.
 
-    >>> find_negative_index([0,0,0,0])
+    >>> negatif_indeks_bul([0,0,0,0])
     4
-    >>> find_negative_index([4,3,2,-1])
+    >>> negatif_indeks_bul([4,3,2,-1])
     3
-    >>> find_negative_index([1,0,-1,-10])
+    >>> negatif_indeks_bul([1,0,-1,-10])
     2
-    >>> find_negative_index([0,0,0,-1])
+    >>> negatif_indeks_bul([0,0,0,-1])
     3
-    >>> find_negative_index([11,8,7,-3,-5,-9])
+    >>> negatif_indeks_bul([11,8,7,-3,-5,-9])
     3
-    >>> find_negative_index([-1,-1,-2,-3])
+    >>> negatif_indeks_bul([-1,-1,-2,-3])
     0
-    >>> find_negative_index([5,1,0])
+    >>> negatif_indeks_bul([5,1,0])
     3
-    >>> find_negative_index([-5,-5,-5])
+    >>> negatif_indeks_bul([-5,-5,-5])
     0
-    >>> find_negative_index([0])
+    >>> negatif_indeks_bul([0])
     1
-    >>> find_negative_index([])
+    >>> negatif_indeks_bul([])
     0
     """
-    left = 0
-    right = len(array) - 1
+    sol = 0
+    sag = len(array) - 1
 
-    # Edge cases such as no values or all numbers are negative.
+    # Değer yoksa veya tüm sayılar negatifse.
     if not array or array[0] < 0:
         return 0
 
-    while right + 1 > left:
-        mid = (left + right) // 2
-        num = array[mid]
+    while sag + 1 > sol:
+        orta = (sol + sag) // 2
+        num = array[orta]
 
-        # Num must be negative and the index must be greater than or equal to 0.
-        if num < 0 and array[mid - 1] >= 0:
-            return mid
+        # Num negatif olmalı ve indeks 0 veya daha büyük olmalı.
+        if num < 0 and array[orta - 1] >= 0:
+            return orta
 
         if num >= 0:
-            left = mid + 1
+            sol = orta + 1
         else:
-            right = mid - 1
-    # No negative numbers so return the last index of the array + 1 which is the length.
+            sag = orta - 1
+    # Negatif sayı yoksa, dizinin son indeksini +1 döndür, bu da uzunluktur.
     return len(array)
 
 
-def count_negatives_binary_search(grid: list[list[int]]) -> int:
+def negatif_sayıları_say_binary_search(matris: list[list[int]]) -> int:
     """
-    An O(m logn) solution that uses binary search in order to find the boundary between
-    positive and negative numbers
+    Pozitif ve negatif sayılar arasındaki sınırı bulmak için ikili arama kullanan O(m logn) çözümü.
 
-    >>> [count_negatives_binary_search(grid) for grid in test_grids]
+    >>> [negatif_sayıları_say_binary_search(matris) for matris in test_matrisler]
     [8, 0, 0, 3, 1498500]
     """
-    total = 0
-    bound = len(grid[0])
+    toplam = 0
+    sınır = len(matris[0])
 
-    for i in range(len(grid)):
-        bound = find_negative_index(grid[i][:bound])
-        total += bound
-    return (len(grid) * len(grid[0])) - total
+    for i in range(len(matris)):
+        sınır = negatif_indeks_bul(matris[i][:sınır])
+        toplam += sınır
+    return (len(matris) * len(matris[0])) - toplam
 
 
-def count_negatives_brute_force(grid: list[list[int]]) -> int:
+def negatif_sayıları_say_brute_force(matris: list[list[int]]) -> int:
     """
-    This solution is O(n^2) because it iterates through every column and row.
+    Bu çözüm O(n^2) çünkü her sütun ve satırda döngü yapar.
 
-    >>> [count_negatives_brute_force(grid) for grid in test_grids]
+    >>> [negatif_sayıları_say_brute_force(matris) for matris in test_matrisler]
     [8, 0, 0, 3, 1498500]
     """
-    return len([number for row in grid for number in row if number < 0])
+    return len([sayı for satır in matris for sayı in satır if sayı < 0])
 
 
-def count_negatives_brute_force_with_break(grid: list[list[int]]) -> int:
+def negatif_sayıları_say_brute_force_break_ile(matris: list[list[int]]) -> int:
     """
-    Similar to the brute force solution above but uses break in order to reduce the
-    number of iterations.
+    Yukarıdaki brute force çözümüne benzer ancak döngü sayısını azaltmak için break kullanır.
 
-    >>> [count_negatives_brute_force_with_break(grid) for grid in test_grids]
+    >>> [negatif_sayıları_say_brute_force_break_ile(matris) for matris in test_matrisler]
     [8, 0, 0, 3, 1498500]
     """
-    total = 0
-    for row in grid:
-        for i, number in enumerate(row):
-            if number < 0:
-                total += len(row) - i
+    toplam = 0
+    for satır in matris:
+        for i, sayı in enumerate(satır):
+            if sayı < 0:
+                toplam += len(satır) - i
                 break
-    return total
+    return toplam
 
 
 def benchmark() -> None:
-    """Benchmark our functions next to each other"""
+    """Fonksiyonlarımızı karşılaştırmalı olarak test eder"""
     from timeit import timeit
 
-    print("Running benchmarks")
+    print("Performans testleri çalışıyor")
     setup = (
-        "from __main__ import count_negatives_binary_search, "
-        "count_negatives_brute_force, count_negatives_brute_force_with_break, grid"
+        "from __main__ import negatif_sayıları_say_binary_search, "
+        "negatif_sayıları_say_brute_force, negatif_sayıları_say_brute_force_break_ile, matris"
     )
     for func in (
-        "count_negatives_binary_search",  # took 0.7727 seconds
-        "count_negatives_brute_force_with_break",  # took 4.6505 seconds
-        "count_negatives_brute_force",  # took 12.8160 seconds
+        "negatif_sayıları_say_binary_search",  # 0.7727 saniye sürdü
+        "negatif_sayıları_say_brute_force_break_ile",  # 4.6505 saniye sürdü
+        "negatif_sayıları_say_brute_force",  # 12.8160 saniye sürdü
     ):
-        time = timeit(f"{func}(grid=grid)", setup=setup, number=500)
-        print(f"{func}() took {time:0.4f} seconds")
+        zaman = timeit(f"{func}(matris=matris)", setup=setup, number=500)
+        print(f"{func}() {zaman:0.4f} saniye sürdü")
 
 
 if __name__ == "__main__":

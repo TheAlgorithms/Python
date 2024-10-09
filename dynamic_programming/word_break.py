@@ -1,108 +1,107 @@
 """
-Author  : Alexander Pantyukhin
-Date    : December 12, 2022
+Yazar  : Alexander Pantyukhin
+Tarih  : 12 Aralık 2022
 
-Task:
-Given a string and a list of words, return true if the string can be
-segmented into a space-separated sequence of one or more words.
+Görev:
+Bir dize ve bir kelime listesi verildiğinde, dize bir veya daha fazla kelimenin
+boşlukla ayrılmış bir dizisine bölünebiliyorsa true döndürün.
 
-Note that the same word may be reused
-multiple times in the segmentation.
+Aynı kelimenin segmentasyonda birden çok kez kullanılabileceğini unutmayın.
 
-Implementation notes: Trie + Dynamic programming up -> down.
-The Trie will be used to store the words. It will be useful for scanning
-available words for the current position in the string.
+Uygulama notları: Trie + Dinamik programlama yukarı -> aşağı.
+Trie, kelimeleri depolamak için kullanılacaktır. Dizideki mevcut pozisyon için
+kullanılabilir kelimeleri taramak için yararlı olacaktır.
 
 Leetcode:
 https://leetcode.com/problems/word-break/description/
 
-Runtime: O(n * n)
-Space: O(n)
+Çalışma zamanı: O(n * n)
+Alan: O(n)
 """
 
 import functools
 from typing import Any
 
 
-def word_break(string: str, words: list[str]) -> bool:
+def kelime_bol(dize: str, kelimeler: list[str]) -> bool:
     """
-    Return True if numbers have opposite signs False otherwise.
+    Dize bir veya daha fazla kelimenin boşlukla ayrılmış bir dizisine bölünebiliyorsa True döndürün.
 
-    >>> word_break("applepenapple", ["apple","pen"])
+    >>> kelime_bol("applepenapple", ["apple","pen"])
     True
-    >>> word_break("catsandog", ["cats","dog","sand","and","cat"])
+    >>> kelime_bol("catsandog", ["cats","dog","sand","and","cat"])
     False
-    >>> word_break("cars", ["car","ca","rs"])
+    >>> kelime_bol("cars", ["car","ca","rs"])
     True
-    >>> word_break('abc', [])
+    >>> kelime_bol('abc', [])
     False
-    >>> word_break(123, ['a'])
+    >>> kelime_bol(123, ['a'])
     Traceback (most recent call last):
         ...
-    ValueError: the string should be not empty string
-    >>> word_break('', ['a'])
+    ValueError: dize boş olmayan bir dize olmalıdır
+    >>> kelime_bol('', ['a'])
     Traceback (most recent call last):
         ...
-    ValueError: the string should be not empty string
-    >>> word_break('abc', [123])
+    ValueError: dize boş olmayan bir dize olmalıdır
+    >>> kelime_bol('abc', [123])
     Traceback (most recent call last):
         ...
-    ValueError: the words should be a list of non-empty strings
-    >>> word_break('abc', [''])
+    ValueError: kelimeler boş olmayan dizelerden oluşan bir liste olmalıdır
+    >>> kelime_bol('abc', [''])
     Traceback (most recent call last):
         ...
-    ValueError: the words should be a list of non-empty strings
+    ValueError: kelimeler boş olmayan dizelerden oluşan bir liste olmalıdır
     """
 
-    # Validation
-    if not isinstance(string, str) or len(string) == 0:
-        raise ValueError("the string should be not empty string")
+    # Doğrulama
+    if not isinstance(dize, str) or len(dize) == 0:
+        raise ValueError("dize boş olmayan bir dize olmalıdır")
 
-    if not isinstance(words, list) or not all(
-        isinstance(item, str) and len(item) > 0 for item in words
+    if not isinstance(kelimeler, list) or not all(
+        isinstance(item, str) and len(item) > 0 for item in kelimeler
     ):
-        raise ValueError("the words should be a list of non-empty strings")
+        raise ValueError("kelimeler boş olmayan dizelerden oluşan bir liste olmalıdır")
 
-    # Build trie
+    # Trie oluştur
     trie: dict[str, Any] = {}
-    word_keeper_key = "WORD_KEEPER"
+    kelime_tutucu_anahtar = "KELIME_TUTUCU"
 
-    for word in words:
-        trie_node = trie
-        for c in word:
-            if c not in trie_node:
-                trie_node[c] = {}
+    for kelime in kelimeler:
+        trie_dugumu = trie
+        for c in kelime:
+            if c not in trie_dugumu:
+                trie_dugumu[c] = {}
 
-            trie_node = trie_node[c]
+            trie_dugumu = trie_dugumu[c]
 
-        trie_node[word_keeper_key] = True
+        trie_dugumu[kelime_tutucu_anahtar] = True
 
-    len_string = len(string)
+    dize_uzunlugu = len(dize)
 
-    # Dynamic programming method
+    # Dinamik programlama yöntemi
     @functools.cache
-    def is_breakable(index: int) -> bool:
+    def bolunebilir_mi(indeks: int) -> bool:
         """
-        >>> string = 'a'
-        >>> is_breakable(1)
+        >>> dize = 'a'
+        >>> bolunebilir_mi(1)
         True
         """
-        if index == len_string:
+        if indeks == dize_uzunlugu:
             return True
 
-        trie_node = trie
-        for i in range(index, len_string):
-            trie_node = trie_node.get(string[i], None)
+        trie_dugumu = trie
+        for i in range(indeks, dize_uzunlugu):
+            trie_dugumu = trie_dugumu.get(dize[i], None)
 
-            if trie_node is None:
+            if trie_dugumu is None:
                 return False
 
-            if trie_node.get(word_keeper_key, False) and is_breakable(i + 1):
+            if trie_dugumu.get(kelime_tutucu_anahtar, False) and bolunabilir_mi(i + 1):
                 return True
 
         return False
 
-    return is_breakable(0)
+    return bolunabilir_mi(0)
 
 
 if __name__ == "__main__":

@@ -1,86 +1,83 @@
 from __future__ import annotations
 
 
-def solve_maze(
-    maze: list[list[int]],
-    source_row: int,
-    source_column: int,
-    destination_row: int,
-    destination_column: int,
+def labirenti_çöz(
+    labirent: list[list[int]],
+    başlangıç_satırı: int,
+    başlangıç_sütunu: int,
+    varış_satırı: int,
+    varış_sütunu: int,
 ) -> list[list[int]]:
     """
-    This method solves the "rat in maze" problem.
-    Parameters :
-        - maze: A two dimensional matrix of zeros and ones.
-        - source_row: The row index of the starting point.
-        - source_column: The column index of the starting point.
-        - destination_row: The row index of the destination point.
-        - destination_column: The column index of the destination point.
-    Returns:
-        - solution: A 2D matrix representing the solution path if it exists.
-    Raises:
-        - ValueError: If no solution exists or if the source or
-            destination coordinates are invalid.
-    Description:
-        This method navigates through a maze represented as an n by n matrix,
-        starting from a specified source cell and
-        aiming to reach a destination cell.
-        The maze consists of walls (1s) and open paths (0s).
-        By providing custom row and column values, the source and destination
-        cells can be adjusted.
-    >>> maze = [[0, 1, 0, 1, 1],
-    ...         [0, 0, 0, 0, 0],
-    ...         [1, 0, 1, 0, 1],
-    ...         [0, 0, 1, 0, 0],
-    ...         [1, 0, 0, 1, 0]]
-    >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)    # doctest: +NORMALIZE_WHITESPACE
+    Bu yöntem "labirentteki fare" problemini çözer.
+    Parametreler:
+        - labirent: Sıfır ve birlerden oluşan iki boyutlu matris.
+        - başlangıç_satırı: Başlangıç noktasının satır indeksi.
+        - başlangıç_sütunu: Başlangıç noktasının sütun indeksi.
+        - varış_satırı: Varış noktasının satır indeksi.
+        - varış_sütunu: Varış noktasının sütun indeksi.
+    Dönüş:
+        - çözüm: Eğer varsa çözüm yolunu temsil eden 2D matris.
+    Hatalar:
+        - ValueError: Eğer çözüm yoksa veya başlangıç ya da varış koordinatları geçersizse.
+    Açıklama:
+        Bu yöntem, n x n matris olarak temsil edilen bir labirentte gezinir,
+        belirli bir başlangıç hücresinden başlayarak bir varış hücresine ulaşmayı amaçlar.
+        Labirent duvarlardan (1'ler) ve açık yollardan (0'lar) oluşur.
+        Başlangıç ve varış hücreleri, özel satır ve sütun değerleri ile ayarlanabilir.
+    >>> labirent = [[0, 1, 0, 1, 1],
+    ...             [0, 0, 0, 0, 0],
+    ...             [1, 0, 1, 0, 1],
+    ...             [0, 0, 1, 0, 0],
+    ...             [1, 0, 0, 1, 0]]
+    >>> labirenti_çöz(labirent, 0, 0, len(labirent)-1, len(labirent)-1)    # doctest: +NORMALIZE_WHITESPACE
     [[0, 1, 1, 1, 1],
     [0, 0, 0, 0, 1],
     [1, 1, 1, 0, 1],
     [1, 1, 1, 0, 0],
     [1, 1, 1, 1, 0]]
 
-    Note:
-        In the output maze, the zeros (0s) represent one of the possible
-        paths from the source to the destination.
+    Not:
+        Çıktı labirentinde, sıfırlar (0'lar) başlangıçtan varışa kadar olan
+        olası yollardan birini temsil eder.
 
-    >>> maze = [[0, 1, 0, 1, 1],
-    ...         [0, 0, 0, 0, 0],
-    ...         [0, 0, 0, 0, 1],
-    ...         [0, 0, 0, 0, 0],
-    ...         [0, 0, 0, 0, 0]]
-    >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)    # doctest: +NORMALIZE_WHITESPACE
+    >>> labirent = [[0, 1, 0, 1, 1],
+    ...             [0, 0, 0, 0, 0],
+    ...             [0, 0, 0, 0, 1],
+    ...             [0, 0, 0, 0, 0],
+    ...             [0, 0, 0, 0, 0]]
+    >>> labirenti_çöz(labirent, 0, 0, len(labirent)-1, len(labirent)-1)    # doctest: +NORMALIZE_WHITESPACE
     [[0, 1, 1, 1, 1],
     [0, 1, 1, 1, 1],
     [0, 1, 1, 1, 1],
     [0, 1, 1, 1, 1],
     [0, 0, 0, 0, 0]]
 
-    >>> maze = [[0, 0, 0],
-    ...         [0, 1, 0],
-    ...         [1, 0, 0]]
-    >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)    # doctest: +NORMALIZE_WHITESPACE
+    >>> labirent = [[0, 0, 0],
+    ...             [0, 1, 0],
+    ...             [1, 0, 0]]
+    >>> labirenti_çöz(labirent, 0, 0, len(labirent)-1, len(labirent)-1)    # doctest: +NORMALIZE_WHITESPACE
     [[0, 0, 0],
     [1, 1, 0],
     [1, 1, 0]]
 
-    >>> maze = [[1, 0, 0],
-    ...         [0, 1, 0],
-    ...         [1, 0, 0]]
-    >>> solve_maze(maze,0,1,len(maze)-1,len(maze)-1)    # doctest: +NORMALIZE_WHITESPACE
+    >>> labirent = [[1, 0, 0],
+    ...             [0, 1, 0],
+    ...             [1, 0, 0]]
+    >>> labirenti_çöz(labirent, 0, 1, len(labirent)-1, len(labirent)-1)    # doctest: +NORMALIZE_WHITESPACE
     [[1, 0, 0],
     [1, 1, 0],
     [1, 1, 0]]
 
-    >>> maze = [[1, 1, 0, 0, 1, 0, 0, 1],
-    ...         [1, 0, 1, 0, 0, 1, 1, 1],
-    ...         [0, 1, 0, 1, 0, 0, 1, 0],
-    ...         [1, 1, 1, 0, 0, 1, 0, 1],
-    ...         [0, 1, 0, 0, 1, 0, 1, 1],
-    ...         [0, 0, 0, 1, 1, 1, 0, 1],
-    ...         [0, 1, 0, 1, 0, 1, 1, 1],
-    ...         [1, 1, 0, 0, 0, 0, 0, 1]]
-    >>> solve_maze(maze,0,2,len(maze)-1,2)  # doctest: +NORMALIZE_WHITESPACE
+    >>> labirent = [[1, 1, 0, 0, 1, 0, 0, 1],
+    ...             [1, 0, 1, 0, 0, 1, 1, 1],
+    ...             [0, 1, 0, 1, 0, 0, 1, 0],
+    ...             [1, 1, 1, 0, 0, 1, 0, 1],
+    ...             [0, 1, 0, 0, 1, 0, 1, 1],
+    ...             [0, 0, 0, 1, 1, 1, 0, 1],
+    ...             [0, 1, 0, 1, 0, 1, 1, 1],
+    ...             [1, 1, 0, 0, 0, 0, 0, 1]]
+    >>> labirenti_çöz(labirent, 0, 2, len(labirent)-1, 2)  # doctest: +NORMALIZE_WHITESPACE
     [[1, 1, 0, 0, 1, 1, 1, 1],
     [1, 1, 1, 0, 0, 1, 1, 1],
     [1, 1, 1, 1, 0, 1, 1, 1],
@@ -89,104 +86,103 @@ def solve_maze(
     [1, 1, 0, 1, 1, 1, 1, 1],
     [1, 1, 0, 1, 1, 1, 1, 1],
     [1, 1, 0, 1, 1, 1, 1, 1]]
-    >>> maze = [[1, 0, 0],
-    ...         [0, 1, 1],
-    ...         [1, 0, 1]]
-    >>> solve_maze(maze,0,1,len(maze)-1,len(maze)-1)
+    >>> labirent = [[1, 0, 0],
+    ...             [0, 1, 1],
+    ...             [1, 0, 1]]
+    >>> labirenti_çöz(labirent, 0, 1, len(labirent)-1, len(labirent)-1)
     Traceback (most recent call last):
         ...
-    ValueError: No solution exists!
+    ValueError: Çözüm yok!
 
-    >>> maze = [[0, 0],
-    ...         [1, 1]]
-    >>> solve_maze(maze,0,0,len(maze)-1,len(maze)-1)
+    >>> labirent = [[0, 0],
+    ...             [1, 1]]
+    >>> labirenti_çöz(labirent, 0, 0, len(labirent)-1, len(labirent)-1)
     Traceback (most recent call last):
         ...
-    ValueError: No solution exists!
+    ValueError: Çözüm yok!
 
-    >>> maze = [[0, 1],
-    ...         [1, 0]]
-    >>> solve_maze(maze,2,0,len(maze)-1,len(maze)-1)
+    >>> labirent = [[0, 1],
+    ...             [1, 0]]
+    >>> labirenti_çöz(labirent, 2, 0, len(labirent)-1, len(labirent)-1)
     Traceback (most recent call last):
         ...
-    ValueError: Invalid source or destination coordinates
+    ValueError: Geçersiz başlangıç veya varış koordinatları
 
-    >>> maze = [[1, 0, 0],
-    ...         [0, 1, 0],
-    ...         [1, 0, 0]]
-    >>> solve_maze(maze,0,1,len(maze),len(maze)-1)
+    >>> labirent = [[1, 0, 0],
+    ...             [0, 1, 0],
+    ...             [1, 0, 0]]
+    >>> labirenti_çöz(labirent, 0, 1, len(labirent), len(labirent)-1)
     Traceback (most recent call last):
         ...
-    ValueError: Invalid source or destination coordinates
+    ValueError: Geçersiz başlangıç veya varış koordinatları
     """
-    size = len(maze)
-    # Check if source and destination coordinates are Invalid.
-    if not (0 <= source_row <= size - 1 and 0 <= source_column <= size - 1) or (
-        not (0 <= destination_row <= size - 1 and 0 <= destination_column <= size - 1)
+    boyut = len(labirent)
+    # Başlangıç ve varış koordinatlarının geçersiz olup olmadığını kontrol et.
+    if not (0 <= başlangıç_satırı <= boyut - 1 and 0 <= başlangıç_sütunu <= boyut - 1) or (
+        not (0 <= varış_satırı <= boyut - 1 and 0 <= varış_sütunu <= boyut - 1)
     ):
-        raise ValueError("Invalid source or destination coordinates")
-    # We need to create solution object to save path.
-    solutions = [[1 for _ in range(size)] for _ in range(size)]
-    solved = run_maze(
-        maze, source_row, source_column, destination_row, destination_column, solutions
+        raise ValueError("Geçersiz başlangıç veya varış koordinatları")
+    # Çözüm yolunu kaydetmek için çözüm nesnesi oluşturmalıyız.
+    çözümler = [[1 for _ in range(boyut)] for _ in range(boyut)]
+    çözüldü = labirenti_çalıştır(
+        labirent, başlangıç_satırı, başlangıç_sütunu, varış_satırı, varış_sütunu, çözümler
     )
-    if solved:
-        return solutions
+    if çözüldü:
+        return çözümler
     else:
-        raise ValueError("No solution exists!")
+        raise ValueError("Çözüm yok!")
 
 
-def run_maze(
-    maze: list[list[int]],
+def labirenti_çalıştır(
+    labirent: list[list[int]],
     i: int,
     j: int,
-    destination_row: int,
-    destination_column: int,
-    solutions: list[list[int]],
+    varış_satırı: int,
+    varış_sütunu: int,
+    çözümler: list[list[int]],
 ) -> bool:
     """
-    This method is recursive starting from (i, j) and going in one of four directions:
-    up, down, left, right.
-    If a path is found to destination it returns True otherwise it returns False.
-    Parameters
-        maze: A two dimensional matrix of zeros and ones.
-        i, j : coordinates of matrix
-        solutions: A two dimensional matrix of solutions.
-    Returns:
-        Boolean if path is found True, Otherwise False.
+    Bu yöntem (i, j) noktasından başlayarak dört yönde (yukarı, aşağı, sol, sağ) rekürsif olarak ilerler.
+    Eğer varış noktasına bir yol bulunursa True, aksi takdirde False döner.
+    Parametreler:
+        labirent: Sıfır ve birlerden oluşan iki boyutlu matris.
+        i, j: Matrisin koordinatları.
+        çözümler: Çözümleri içeren iki boyutlu matris.
+    Dönüş:
+        Eğer yol bulunursa True, aksi takdirde False.
     """
-    size = len(maze)
-    # Final check point.
-    if i == destination_row and j == destination_column and maze[i][j] == 0:
-        solutions[i][j] = 0
+    boyut = len(labirent)
+    # Son kontrol noktası.
+    if i == varış_satırı - j == varış_sütunu - labirent[i][j] == 0:
+        çözümler[i][j] = 0
         return True
 
-    lower_flag = (not i < 0) and (not j < 0)  # Check lower bounds
-    upper_flag = (i < size) and (j < size)  # Check upper bounds
+    alt_sınır = (not i < 0) and (not j < 0)  # Alt sınırları kontrol et
+    üst_sınır = (i < boyut) and (j < boyut)  # Üst sınırları kontrol et
 
-    if lower_flag and upper_flag:
-        # check for already visited and block points.
-        block_flag = (solutions[i][j]) and (not maze[i][j])
-        if block_flag:
-            # check visited
-            solutions[i][j] = 0
+    if alt_sınır and üst_sınır:
+        # Zaten ziyaret edilmiş ve blok noktalarını kontrol et.
+        blok_durumu = (çözümler[i][j] == 1) and (labirent[i][j] == 0)
+        if blok_durumu:
+            # Ziyaret edildiğini kontrol et
+            çözümler[i][j] = 0
 
-            # check for directions
+            # Yönleri kontrol et
             if (
-                run_maze(maze, i + 1, j, destination_row, destination_column, solutions)
-                or run_maze(
-                    maze, i, j + 1, destination_row, destination_column, solutions
+                labirenti_çalıştır(labirent, i + 1, j, varış_satırı, varış_sütunu, çözümler)
+                or labirenti_çalıştır(
+                    labirent, i, j + 1, varış_satırı, varış_sütunu, çözümler
                 )
-                or run_maze(
-                    maze, i - 1, j, destination_row, destination_column, solutions
+                or labirenti_çalıştır(
+                    labirent, i - 1, j, varış_satırı, varış_sütunu, çözümler
                 )
-                or run_maze(
-                    maze, i, j - 1, destination_row, destination_column, solutions
+                or labirenti_çalıştır(
+                    labirent, i, j - 1, varış_satırı, varış_sütunu, çözümler
                 )
             ):
                 return True
 
-            solutions[i][j] = 1
+            çözümler[i][j] = 1
             return False
     return False
 

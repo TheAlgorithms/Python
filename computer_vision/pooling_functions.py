@@ -1,135 +1,135 @@
-# Source : https://computersciencewiki.org/index.php/Max-pooling_/_Pooling
-# Importing the libraries
+# Kaynak : https://computersciencewiki.org/index.php/Max-pooling_/_Pooling
+# Kütüphanelerin İçe Aktarılması
 import numpy as np
 from PIL import Image
 
 
-# Maxpooling Function
-def maxpooling(arr: np.ndarray, size: int, stride: int) -> np.ndarray:
+# Maksimum Havuzlama Fonksiyonu
+def maksimum_havuzlama(arr: np.ndarray, boyut: int, adim: int) -> np.ndarray:
     """
-    This function is used to perform maxpooling on the input array of 2D matrix(image)
-    Args:
-        arr: numpy array
-        size: size of pooling matrix
-        stride: the number of pixels shifts over the input matrix
-    Returns:
-        numpy array of maxpooled matrix
-    Sample Input Output:
-    >>> maxpooling([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]], 2, 2)
+    Bu fonksiyon, 2D matris (görüntü) giriş dizisi üzerinde maksimum havuzlama yapmak için kullanılır.
+    Argümanlar:
+        arr: numpy dizisi
+        boyut: havuzlama matrisinin boyutu
+        adim: giriş matrisi üzerinde kaydırılan piksel sayısı
+    Döndürür:
+        maksimum havuzlanmış matrisin numpy dizisi
+    Örnek Girdi Çıktı:
+    >>> maksimum_havuzlama([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]], 2, 2)
     array([[ 6.,  8.],
            [14., 16.]])
-    >>> maxpooling([[147, 180, 122],[241, 76, 32],[126, 13, 157]], 2, 1)
+    >>> maksimum_havuzlama([[147, 180, 122],[241, 76, 32],[126, 13, 157]], 2, 1)
     array([[241., 180.],
            [241., 157.]])
     """
     arr = np.array(arr)
     if arr.shape[0] != arr.shape[1]:
-        raise ValueError("The input array is not a square matrix")
+        raise ValueError("Giriş dizisi kare matris değil")
     i = 0
     j = 0
     mat_i = 0
     mat_j = 0
 
-    # compute the shape of the output matrix
-    maxpool_shape = (arr.shape[0] - size) // stride + 1
-    # initialize the output matrix with zeros of shape maxpool_shape
-    updated_arr = np.zeros((maxpool_shape, maxpool_shape))
+    # Çıktı matrisinin şeklini hesapla
+    maxpool_shape = (arr.shape[0] - boyut) // adim + 1
+    # maxpool_shape boyutunda sıfırlardan oluşan çıktı matrisini başlat
+    guncellenmis_arr = np.zeros((maxpool_shape, maxpool_shape))
 
     while i < arr.shape[0]:
-        if i + size > arr.shape[0]:
-            # if the end of the matrix is reached, break
+        if i + boyut > arr.shape[0]:
+            # Matrisin sonuna gelindiyse, döngüyü kır
             break
         while j < arr.shape[1]:
-            # if the end of the matrix is reached, break
-            if j + size > arr.shape[1]:
+            # Matrisin sonuna gelindiyse, döngüyü kır
+            if j + boyut > arr.shape[1]:
                 break
-            # compute the maximum of the pooling matrix
-            updated_arr[mat_i][mat_j] = np.max(arr[i : i + size, j : j + size])
-            # shift the pooling matrix by stride of column pixels
-            j += stride
+            # Havuzlama matrisinin maksimumunu hesapla
+            guncellenmis_arr[mat_i][mat_j] = np.max(arr[i : i + boyut, j : j + boyut])
+            # Havuzlama matrisini sütun pikselleri kadar kaydır
+            j += adim
             mat_j += 1
 
-        # shift the pooling matrix by stride of row pixels
-        i += stride
+        # Havuzlama matrisini satır pikselleri kadar kaydır
+        i += adim
         mat_i += 1
 
-        # reset the column index to 0
+        # Sütun indeksini 0'a sıfırla
         j = 0
         mat_j = 0
 
-    return updated_arr
+    return guncellenmis_arr
 
 
-# Averagepooling Function
-def avgpooling(arr: np.ndarray, size: int, stride: int) -> np.ndarray:
+# Ortalama Havuzlama Fonksiyonu
+def ortalama_havuzlama(arr: np.ndarray, boyut: int, adim: int) -> np.ndarray:
     """
-    This function is used to perform avgpooling on the input array of 2D matrix(image)
-    Args:
-        arr: numpy array
-        size: size of pooling matrix
-        stride: the number of pixels shifts over the input matrix
-    Returns:
-        numpy array of avgpooled matrix
-    Sample Input Output:
-    >>> avgpooling([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]], 2, 2)
+    Bu fonksiyon, 2D matris (görüntü) giriş dizisi üzerinde ortalama havuzlama yapmak için kullanılır.
+    Argümanlar:
+        arr: numpy dizisi
+        boyut: havuzlama matrisinin boyutu
+        adim: giriş matrisi üzerinde kaydırılan piksel sayısı
+    Döndürür:
+        ortalama havuzlanmış matrisin numpy dizisi
+    Örnek Girdi Çıktı:
+    >>> ortalama_havuzlama([[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]], 2, 2)
     array([[ 3.,  5.],
            [11., 13.]])
-    >>> avgpooling([[147, 180, 122],[241, 76, 32],[126, 13, 157]], 2, 1)
+    >>> ortalama_havuzlama([[147, 180, 122],[241, 76, 32],[126, 13, 157]], 2, 1)
     array([[161., 102.],
            [114.,  69.]])
     """
     arr = np.array(arr)
     if arr.shape[0] != arr.shape[1]:
-        raise ValueError("The input array is not a square matrix")
+        raise ValueError("Giriş dizisi kare matris değil")
     i = 0
     j = 0
     mat_i = 0
     mat_j = 0
 
-    # compute the shape of the output matrix
-    avgpool_shape = (arr.shape[0] - size) // stride + 1
-    # initialize the output matrix with zeros of shape avgpool_shape
-    updated_arr = np.zeros((avgpool_shape, avgpool_shape))
+    # Çıktı matrisinin şeklini hesapla
+    avgpool_shape = (arr.shape[0] - boyut) // adim + 1
+    # avgpool_shape boyutunda sıfırlardan oluşan çıktı matrisini başlat
+    guncellenmis_arr = np.zeros((avgpool_shape, avgpool_shape))
 
     while i < arr.shape[0]:
-        # if the end of the matrix is reached, break
-        if i + size > arr.shape[0]:
+        # Matrisin sonuna gelindiyse, döngüyü kır
+        if i + boyut > arr.shape[0]:
             break
         while j < arr.shape[1]:
-            # if the end of the matrix is reached, break
-            if j + size > arr.shape[1]:
+            # Matrisin sonuna gelindiyse, döngüyü kır
+            if j + boyut > arr.shape[1]:
                 break
-            # compute the average of the pooling matrix
-            updated_arr[mat_i][mat_j] = int(np.average(arr[i : i + size, j : j + size]))
-            # shift the pooling matrix by stride of column pixels
-            j += stride
+            # Havuzlama matrisinin ortalamasını hesapla
+            guncellenmis_arr[mat_i][mat_j] = int(np.average(arr[i : i + boyut, j : j + boyut]))
+            # Havuzlama matrisini sütun pikselleri kadar kaydır
+            j += adim
             mat_j += 1
 
-        # shift the pooling matrix by stride of row pixels
-        i += stride
+        # Havuzlama matrisini satır pikselleri kadar kaydır
+        i += adim
         mat_i += 1
-        # reset the column index to 0
+        # Sütun indeksini 0'a sıfırla
         j = 0
         mat_j = 0
 
-    return updated_arr
+    return guncellenmis_arr
 
 
-# Main Function
+# Ana Fonksiyon
 if __name__ == "__main__":
     from doctest import testmod
 
-    testmod(name="avgpooling", verbose=True)
+    testmod(name="ortalama_havuzlama", verbose=True)
 
-    # Loading the image
-    image = Image.open("path_to_image")
+    # Görüntüyü Yükleme
+    goruntu = Image.open("goruntu_yolu")
 
-    # Converting the image to numpy array and maxpooling, displaying the result
-    # Ensure that the image is a square matrix
+    # Görüntüyü numpy dizisine dönüştürme ve maksimum havuzlama, sonucu gösterme
+    # Görüntünün kare matris olduğundan emin olun
 
-    Image.fromarray(maxpooling(np.array(image), size=3, stride=2)).show()
+    Image.fromarray(maksimum_havuzlama(np.array(goruntu), boyut=3, adim=2)).show()
 
-    # Converting the image to numpy array and averagepooling, displaying the result
-    # Ensure that the image is a square matrix
+    # Görüntüyü numpy dizisine dönüştürme ve ortalama havuzlama, sonucu gösterme
+    # Görüntünün kare matris olduğundan emin olun
 
-    Image.fromarray(avgpooling(np.array(image), size=3, stride=2)).show()
+    Image.fromarray(ortalama_havuzlama(np.array(goruntu), boyut=3, adim=2)).show()

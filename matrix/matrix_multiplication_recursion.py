@@ -1,181 +1,181 @@
-# @Author  : ojas-wani
-# @File    : matrix_multiplication_recursion.py
-# @Date    : 10/06/2023
+# @Yazar  : ojas-wani
+#Organiser: K. Umut Araz
+# @Dosya   : matris_carpma_dongusal.py
+# @Tarih   : 10/06/2023
 
 
 """
-Perform matrix multiplication using a recursive algorithm.
+Matris çarpımını rekürsif bir algoritma kullanarak gerçekleştirin.
 https://en.wikipedia.org/wiki/Matrix_multiplication
 """
 
-# type Matrix = list[list[int]]  # psf/black currenttly fails on this line
 Matrix = list[list[int]]
 
-matrix_1_to_4 = [
+matris_1_4 = [
     [1, 2],
     [3, 4],
 ]
 
-matrix_5_to_8 = [
+matris_5_8 = [
     [5, 6],
     [7, 8],
 ]
 
-matrix_5_to_9_high = [
+matris_5_9_yüksek = [
     [5, 6],
     [7, 8],
     [9],
 ]
 
-matrix_5_to_9_wide = [
+matris_5_9_geniş = [
     [5, 6],
     [7, 8, 9],
 ]
 
-matrix_count_up = [
+matris_sayısı_artan = [
     [1, 2, 3, 4],
     [5, 6, 7, 8],
     [9, 10, 11, 12],
     [13, 14, 15, 16],
 ]
 
-matrix_unordered = [
+matris_düzensiz = [
     [5, 8, 1, 2],
     [6, 7, 3, 0],
     [4, 5, 9, 1],
     [2, 6, 10, 14],
 ]
-matrices = (
-    matrix_1_to_4,
-    matrix_5_to_8,
-    matrix_5_to_9_high,
-    matrix_5_to_9_wide,
-    matrix_count_up,
-    matrix_unordered,
+matrisler = (
+    matris_1_4,
+    matris_5_8,
+    matris_5_9_yüksek,
+    matris_5_9_geniş,
+    matris_sayısı_artan,
+    matris_düzensiz,
 )
 
 
-def is_square(matrix: Matrix) -> bool:
+def kare_mi(matris: Matrix) -> bool:
     """
-    >>> is_square([])
+    >>> kare_mi([])
     True
-    >>> is_square(matrix_1_to_4)
+    >>> kare_mi(matris_1_4)
     True
-    >>> is_square(matrix_5_to_9_high)
+    >>> kare_mi(matris_5_9_yüksek)
     False
     """
-    len_matrix = len(matrix)
-    return all(len(row) == len_matrix for row in matrix)
+    len_matris = len(matris)
+    return all(len(satir) == len_matris for satir in matris)
 
 
-def matrix_multiply(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
+def matris_carp(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
     """
-    >>> matrix_multiply(matrix_1_to_4, matrix_5_to_8)
+    >>> matris_carp(matris_1_4, matris_5_8)
     [[19, 22], [43, 50]]
     """
     return [
-        [sum(a * b for a, b in zip(row, col)) for col in zip(*matrix_b)]
-        for row in matrix_a
+        [sum(a * b for a, b in zip(satir, sutun)) for sutun in zip(*matrix_b)]
+        for satir in matrix_a
     ]
 
 
-def matrix_multiply_recursive(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
+def matris_carp_rekürsif(matrix_a: Matrix, matrix_b: Matrix) -> Matrix:
     """
-    :param matrix_a: A square Matrix.
-    :param matrix_b: Another square Matrix with the same dimensions as matrix_a.
-    :return: Result of matrix_a * matrix_b.
-    :raises ValueError: If the matrices cannot be multiplied.
+    :param matrix_a: Kare bir matris.
+    :param matrix_b: matrix_a ile aynı boyutlarda başka bir kare matris.
+    :return: matrix_a * matrix_b sonucunu döner.
+    :raises ValueError: Matrisler çarpılamıyorsa hata fırlatır.
 
-    >>> matrix_multiply_recursive([], [])
+    >>> matris_carp_rekürsif([], [])
     []
-    >>> matrix_multiply_recursive(matrix_1_to_4, matrix_5_to_8)
+    >>> matris_carp_rekürsif(matris_1_4, matris_5_8)
     [[19, 22], [43, 50]]
-    >>> matrix_multiply_recursive(matrix_count_up, matrix_unordered)
+    >>> matris_carp_rekürsif(matris_sayısı_artan, matris_düzensiz)
     [[37, 61, 74, 61], [105, 165, 166, 129], [173, 269, 258, 197], [241, 373, 350, 265]]
-    >>> matrix_multiply_recursive(matrix_1_to_4, matrix_5_to_9_wide)
+    >>> matris_carp_rekürsif(matris_1_4, matris_5_9_geniş)
     Traceback (most recent call last):
         ...
-    ValueError: Invalid matrix dimensions
-    >>> matrix_multiply_recursive(matrix_1_to_4, matrix_5_to_9_high)
+    ValueError: Geçersiz matris boyutları
+    >>> matris_carp_rekürsif(matris_1_4, matris_5_9_yüksek)
     Traceback (most recent call last):
         ...
-    ValueError: Invalid matrix dimensions
-    >>> matrix_multiply_recursive(matrix_1_to_4, matrix_count_up)
+    ValueError: Geçersiz matris boyutları
+    >>> matris_carp_rekürsif(matris_1_4, matris_sayısı_artan)
     Traceback (most recent call last):
         ...
-    ValueError: Invalid matrix dimensions
+    ValueError: Geçersiz matris boyutları
     """
     if not matrix_a or not matrix_b:
         return []
     if not all(
-        (len(matrix_a) == len(matrix_b), is_square(matrix_a), is_square(matrix_b))
+        (len(matrix_a) == len(matrix_b), kare_mi(matrix_a), kare_mi(matrix_b))
     ):
-        raise ValueError("Invalid matrix dimensions")
+        raise ValueError("Geçersiz matris boyutları")
 
-    # Initialize the result matrix with zeros
-    result = [[0] * len(matrix_b[0]) for _ in range(len(matrix_a))]
+    # Sonuç matrisini sıfırlarla başlat
+    sonuc = [[0] * len(matrix_b[0]) for _ in range(len(matrix_a))]
 
-    # Recursive multiplication of matrices
-    def multiply(
-        i_loop: int,
-        j_loop: int,
-        k_loop: int,
+    # Matrislerin rekürsif çarpımı
+    def carp(
+        i_dongusu: int,
+        j_dongusu: int,
+        k_dongusu: int,
         matrix_a: Matrix,
         matrix_b: Matrix,
-        result: Matrix,
+        sonuc: Matrix,
     ) -> None:
         """
-        :param matrix_a: A square Matrix.
-        :param matrix_b: Another square Matrix with the same dimensions as matrix_a.
-        :param result: Result matrix
-        :param i: Index used for iteration during multiplication.
-        :param j: Index used for iteration during multiplication.
-        :param k: Index used for iteration during multiplication.
-        >>> 0 > 1  # Doctests in inner functions are never run
+        :param matrix_a: Kare bir matris.
+        :param matrix_b: matrix_a ile aynı boyutlarda başka bir kare matris.
+        :param sonuc: Sonuç matris
+        :param i: Çarpım sırasında yineleme için kullanılan indeks.
+        :param j: Çarpım sırasında yineleme için kullanılan indeks.
+        :param k: Çarpım sırasında yineleme için kullanılan indeks.
+        >>> 0 > 1  # İç fonksiyonlardaki doctest'ler asla çalıştırılmaz
         True
         """
-        if i_loop >= len(matrix_a):
+        if i_dongusu >= len(matrix_a):
             return
-        if j_loop >= len(matrix_b[0]):
-            return multiply(i_loop + 1, 0, 0, matrix_a, matrix_b, result)
-        if k_loop >= len(matrix_b):
-            return multiply(i_loop, j_loop + 1, 0, matrix_a, matrix_b, result)
-        result[i_loop][j_loop] += matrix_a[i_loop][k_loop] * matrix_b[k_loop][j_loop]
-        return multiply(i_loop, j_loop, k_loop + 1, matrix_a, matrix_b, result)
+        if j_dongusu >= len(matrix_b[0]):
+            return carp(i_dongusu + 1, 0, 0, matrix_a, matrix_b, sonuc)
+        if k_dongusu >= len(matrix_b):
+            return carp(i_dongusu, j_dongusu + 1, 0, matrix_a, matrix_b, sonuc)
+        sonuc[i_dongusu][j_dongusu] += matrix_a[i_dongusu][k_dongusu] * matrix_b[k_dongusu][j_dongusu]
+        return carp(i_dongusu, j_dongusu, k_dongusu + 1, matrix_a, matrix_b, sonuc)
 
-    # Perform the recursive matrix multiplication
-    multiply(0, 0, 0, matrix_a, matrix_b, result)
-    return result
+    # Rekürsif matris çarpımını gerçekleştir
+    carp(0, 0, 0, matrix_a, matrix_b, sonuc)
+    return sonuc
 
 
 if __name__ == "__main__":
     from doctest import testmod
 
-    failure_count, test_count = testmod()
-    if not failure_count:
-        matrix_a = matrices[0]
-        for matrix_b in matrices[1:]:
-            print("Multiplying:")
-            for row in matrix_a:
-                print(row)
-            print("By:")
-            for row in matrix_b:
-                print(row)
-            print("Result:")
+    hata_sayısı, test_sayısı = testmod()
+    if not hata_sayısı:
+        matrix_a = matrisler[0]
+        for matrix_b in matrisler[1:]:
+            print("Çarpılıyor:")
+            for satir in matrix_a:
+                print(satir)
+            print("İle:")
+            for satir in matrix_b:
+                print(satir)
+            print("Sonuç:")
             try:
-                result = matrix_multiply_recursive(matrix_a, matrix_b)
-                for row in result:
-                    print(row)
-                assert result == matrix_multiply(matrix_a, matrix_b)
+                sonuc = matris_carp_rekürsif(matrix_a, matrix_b)
+                for satir in sonuc:
+                    print(satir)
+                assert sonuc == matris_carp(matrix_a, matrix_b)
             except ValueError as e:
                 print(f"{e!r}")
             print()
             matrix_a = matrix_b
 
-    print("Benchmark:")
+    print("Performans Testi:")
     from functools import partial
     from timeit import timeit
 
     mytimeit = partial(timeit, globals=globals(), number=100_000)
-    for func in ("matrix_multiply", "matrix_multiply_recursive"):
-        print(f"{func:>25}(): {mytimeit(f'{func}(matrix_count_up, matrix_unordered)')}")
+    for func in ("matris_carp", "matris_carp_rekürsif"):
+        print(f"{func:>25}(): {mytimeit(f'{func}(matris_sayısı_artan, matris_düzensiz)')}")

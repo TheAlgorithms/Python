@@ -1,88 +1,88 @@
 from timeit import timeit
 
 
-def get_set_bits_count_using_brian_kernighans_algorithm(number: int) -> int:
+def brian_kernighan_algoritmasi_ile_birlerin_sayisini_al(sayi: int) -> int:
     """
-    Count the number of set bits in a 32 bit integer
-    >>> get_set_bits_count_using_brian_kernighans_algorithm(25)
+    32 bitlik bir tam sayıda ayarlanmış bitlerin sayısını sayar
+    >>> brian_kernighan_algoritmasi_ile_birlerin_sayisini_al(25)
     3
-    >>> get_set_bits_count_using_brian_kernighans_algorithm(37)
+    >>> brian_kernighan_algoritmasi_ile_birlerin_sayisini_al(37)
     3
-    >>> get_set_bits_count_using_brian_kernighans_algorithm(21)
+    >>> brian_kernighan_algoritmasi_ile_birlerin_sayisini_al(21)
     3
-    >>> get_set_bits_count_using_brian_kernighans_algorithm(58)
+    >>> brian_kernighan_algoritmasi_ile_birlerin_sayisini_al(58)
     4
-    >>> get_set_bits_count_using_brian_kernighans_algorithm(0)
+    >>> brian_kernighan_algoritmasi_ile_birlerin_sayisini_al(0)
     0
-    >>> get_set_bits_count_using_brian_kernighans_algorithm(256)
+    >>> brian_kernighan_algoritmasi_ile_birlerin_sayisini_al(256)
     1
-    >>> get_set_bits_count_using_brian_kernighans_algorithm(-1)
+    >>> brian_kernighan_algoritmasi_ile_birlerin_sayisini_al(-1)
     Traceback (most recent call last):
         ...
-    ValueError: the value of input must not be negative
+    ValueError: Girdi negatif olmamalıdır
     """
-    if number < 0:
-        raise ValueError("the value of input must not be negative")
-    result = 0
-    while number:
-        number &= number - 1
-        result += 1
-    return result
+    if sayi < 0:
+        raise ValueError("Girdi negatif olmamalıdır")
+    sonuc = 0
+    while sayi:
+        sayi &= sayi - 1
+        sonuc += 1
+    return sonuc
 
 
-def get_set_bits_count_using_modulo_operator(number: int) -> int:
+def mod_operatoru_ile_birlerin_sayisini_al(sayi: int) -> int:
     """
-    Count the number of set bits in a 32 bit integer
-    >>> get_set_bits_count_using_modulo_operator(25)
+    32 bitlik bir tam sayıda ayarlanmış bitlerin sayısını sayar
+    >>> mod_operatoru_ile_birlerin_sayisini_al(25)
     3
-    >>> get_set_bits_count_using_modulo_operator(37)
+    >>> mod_operatoru_ile_birlerin_sayisini_al(37)
     3
-    >>> get_set_bits_count_using_modulo_operator(21)
+    >>> mod_operatoru_ile_birlerin_sayisini_al(21)
     3
-    >>> get_set_bits_count_using_modulo_operator(58)
+    >>> mod_operatoru_ile_birlerin_sayisini_al(58)
     4
-    >>> get_set_bits_count_using_modulo_operator(0)
+    >>> mod_operatoru_ile_birlerin_sayisini_al(0)
     0
-    >>> get_set_bits_count_using_modulo_operator(256)
+    >>> mod_operatoru_ile_birlerin_sayisini_al(256)
     1
-    >>> get_set_bits_count_using_modulo_operator(-1)
+    >>> mod_operatoru_ile_birlerin_sayisini_al(-1)
     Traceback (most recent call last):
         ...
-    ValueError: the value of input must not be negative
+    ValueError: Girdi negatif olmamalıdır
     """
-    if number < 0:
-        raise ValueError("the value of input must not be negative")
-    result = 0
-    while number:
-        if number % 2 == 1:
-            result += 1
-        number >>= 1
-    return result
+    if sayi < 0:
+        raise ValueError("Girdi negatif olmamalıdır")
+    sonuc = 0
+    while sayi:
+        if sayi % 2 == 1:
+            sonuc += 1
+        sayi >>= 1
+    return sonuc
 
 
 def benchmark() -> None:
     """
-    Benchmark code for comparing 2 functions, with different length int values.
-    Brian Kernighan's algorithm is consistently faster than using modulo_operator.
+    Farklı uzunlukta tam sayı değerleri ile 2 fonksiyonu karşılaştırmak için benchmark kodu.
+    Brian Kernighan'ın algoritması mod_operatoru kullanmaktan sürekli olarak daha hızlıdır.
     """
 
-    def do_benchmark(number: int) -> None:
+    def benchmark_yap(sayi: int) -> None:
         setup = "import __main__ as z"
-        print(f"Benchmark when {number = }:")
-        print(f"{get_set_bits_count_using_modulo_operator(number) = }")
-        timing = timeit(
-            f"z.get_set_bits_count_using_modulo_operator({number})", setup=setup
+        print(f"Benchmark {sayi = } olduğunda:")
+        print(f"{mod_operatoru_ile_birlerin_sayisini_al(sayi) = }")
+        zaman = timeit(
+            f"z.mod_operatoru_ile_birlerin_sayisini_al({sayi})", setup=setup
         )
-        print(f"timeit() runs in {timing} seconds")
-        print(f"{get_set_bits_count_using_brian_kernighans_algorithm(number) = }")
-        timing = timeit(
-            f"z.get_set_bits_count_using_brian_kernighans_algorithm({number})",
+        print(f"timeit() {zaman} saniyede çalışır")
+        print(f"{brian_kernighan_algoritmasi_ile_birlerin_sayisini_al(sayi) = }")
+        zaman = timeit(
+            f"z.brian_kernighan_algoritmasi_ile_birlerin_sayisini_al({sayi})",
             setup=setup,
         )
-        print(f"timeit() runs in {timing} seconds")
+        print(f"timeit() {zaman} saniyede çalışır")
 
-    for number in (25, 37, 58, 0):
-        do_benchmark(number)
+    for sayi in (25, 37, 58, 0):
+        benchmark_yap(sayi)
         print()
 
 

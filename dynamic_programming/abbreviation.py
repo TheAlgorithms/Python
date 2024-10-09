@@ -1,22 +1,21 @@
 """
 https://www.hackerrank.com/challenges/abbr/problem
-You can perform the following operation on some string, :
+Bir dize üzerinde aşağıdaki işlemleri gerçekleştirebilirsiniz:
 
-1. Capitalize zero or more of 's lowercase letters at some index i
-   (i.e., make them uppercase).
-2. Delete all of the remaining lowercase letters in .
+1. Bir dizenin küçük harflerinden sıfır veya daha fazlasını büyük harfe çevirebilirsiniz.
+2. Kalan tüm küçük harfleri silebilirsiniz.
 
-Example:
-a=daBcd and b="ABC"
-daBcd -> capitalize a and c(dABCd) -> remove d (ABC)
+Örnek:
+a=daBcd ve b="ABC"
+daBcd -> a ve c'yi büyük harfe çevir (dABCd) -> d'yi sil (ABC)
 """
 
 
-def abbr(a: str, b: str) -> bool:
+def kisaltma(a: str, b: str) -> bool:
     """
-    >>> abbr("daBcd", "ABC")
+    >>> kisaltma("daBcd", "ABC")
     True
-    >>> abbr("dBcd", "ABC")
+    >>> kisaltma("dBcd", "ABC")
     False
     """
     n = len(a)

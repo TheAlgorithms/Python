@@ -5,101 +5,99 @@ from __future__ import annotations
 from scipy.special import comb
 
 
-class BezierCurve:
+class BezierEğrisi:
     """
-    Bezier curve is a weighted sum of a set of control points.
-    Generate Bezier curves from a given set of control points.
-    This implementation works only for 2d coordinates in the xy plane.
+    Bezier eğrisi, bir dizi kontrol noktasının ağırlıklı toplamıdır.
+    Verilen bir dizi kontrol noktasından Bezier eğrileri oluştur.
+    Bu uygulama yalnızca xy düzlemindeki 2d koordinatlar için çalışır.
     """
 
-    def __init__(self, list_of_points: list[tuple[float, float]]):
+    def __init__(self, nokta_listesi: list[tuple[float, float]]):
         """
-        list_of_points: Control points in the xy plane on which to interpolate. These
-            points control the behavior (shape) of the Bezier curve.
+        nokta_listesi: Bezier eğrisinin davranışını (şeklini) kontrol eden xy düzlemindeki kontrol noktaları.
         """
-        self.list_of_points = list_of_points
-        # Degree determines the flexibility of the curve.
-        # Degree = 1 will produce a straight line.
-        self.degree = len(list_of_points) - 1
+        self.nokta_listesi = nokta_listesi
+        # Derece, eğrinin esnekliğini belirler.
+        # Derece = 1, düz bir çizgi oluşturur.
+        self.derece = len(nokta_listesi) - 1
 
-    def basis_function(self, t: float) -> list[float]:
+    def temel_fonksiyon(self, t: float) -> list[float]:
         """
-        The basis function determines the weight of each control point at time t.
-            t: time value between 0 and 1 inclusive at which to evaluate the basis of
-               the curve.
-        returns the x, y values of basis function at time t
+        Temel fonksiyon, her kontrol noktasının t anındaki ağırlığını belirler.
+            t: eğrinin temelini değerlendirmek için 0 ile 1 arasında (dahil) bir zaman değeri.
+        t anındaki temel fonksiyonun x, y değerlerini döndürür
 
-        >>> curve = BezierCurve([(1,1), (1,2)])
-        >>> [float(x) for x in curve.basis_function(0)]
+        >>> eğri = BezierEğrisi([(1,1), (1,2)])
+        >>> [float(x) for x in eğri.temel_fonksiyon(0)]
         [1.0, 0.0]
-        >>> [float(x) for x in curve.basis_function(1)]
+        >>> [float(x) for x in eğri.temel_fonksiyon(1)]
         [0.0, 1.0]
         """
-        assert 0 <= t <= 1, "Time t must be between 0 and 1."
-        output_values: list[float] = []
-        for i in range(len(self.list_of_points)):
-            # basis function for each i
-            output_values.append(
-                comb(self.degree, i) * ((1 - t) ** (self.degree - i)) * (t**i)
+        assert 0 <= t <= 1, "Zaman t, 0 ile 1 arasında olmalıdır."
+        çıktı_değerleri: list[float] = []
+        for i in range(len(self.nokta_listesi)):
+            # her i için temel fonksiyon
+            çıktı_değerleri.append(
+                comb(self.derece, i) * ((1 - t) ** (self.derece - i)) * (t**i)
             )
-        # the basis must sum up to 1 for it to produce a valid Bezier curve.
-        assert round(sum(output_values), 5) == 1
-        return output_values
+        # geçerli bir Bezier eğrisi üretmesi için temel toplamı 1 olmalıdır.
+        assert round(sum(çıktı_değerleri), 5) == 1
+        return çıktı_değerleri
 
-    def bezier_curve_function(self, t: float) -> tuple[float, float]:
+    def bezier_eğrisi_fonksiyonu(self, t: float) -> tuple[float, float]:
         """
-        The function to produce the values of the Bezier curve at time t.
-            t: the value of time t at which to evaluate the Bezier function
-        Returns the x, y coordinates of the Bezier curve at time t.
-            The first point in the curve is when t = 0.
-            The last point in the curve is when t = 1.
+        Bezier eğrisinin t anındaki değerlerini üretmek için fonksiyon.
+            t: Bezier fonksiyonunu değerlendirmek için t zaman değeri
+        Bezier eğrisinin t anındaki x, y koordinatlarını döndürür.
+            Eğrinin ilk noktası t = 0 olduğunda.
+            Eğrinin son noktası t = 1 olduğunda.
 
-        >>> curve = BezierCurve([(1,1), (1,2)])
-        >>> tuple(float(x) for x in curve.bezier_curve_function(0))
+        >>> eğri = BezierEğrisi([(1,1), (1,2)])
+        >>> tuple(float(x) for x in eğri.bezier_eğrisi_fonksiyonu(0))
         (1.0, 1.0)
-        >>> tuple(float(x) for x in curve.bezier_curve_function(1))
+        >>> tuple(float(x) for x in eğri.bezier_eğrisi_fonksiyonu(1))
         (1.0, 2.0)
         """
 
-        assert 0 <= t <= 1, "Time t must be between 0 and 1."
+        assert 0 <= t <= 1, "Zaman t, 0 ile 1 arasında olmalıdır."
 
-        basis_function = self.basis_function(t)
+        temel_fonksiyon = self.temel_fonksiyon(t)
         x = 0.0
         y = 0.0
-        for i in range(len(self.list_of_points)):
-            # For all points, sum up the product of i-th basis function and i-th point.
-            x += basis_function[i] * self.list_of_points[i][0]
-            y += basis_function[i] * self.list_of_points[i][1]
+        for i in range(len(self.nokta_listesi)):
+            # Tüm noktalar için, i'inci temel fonksiyon ve i'inci noktanın çarpımını topla.
+            x += temel_fonksiyon[i] * self.nokta_listesi[i][0]
+            y += temel_fonksiyon[i] * self.nokta_listesi[i][1]
         return (x, y)
 
-    def plot_curve(self, step_size: float = 0.01):
+    def eğriyi_çiz(self, adım_boyutu: float = 0.01):
         """
-        Plots the Bezier curve using matplotlib plotting capabilities.
-            step_size: defines the step(s) at which to evaluate the Bezier curve.
-            The smaller the step size, the finer the curve produced.
+        Matplotlib çizim yeteneklerini kullanarak Bezier eğrisini çizer.
+            adım_boyutu: Bezier eğrisini değerlendirmek için adım(lar)ı tanımlar.
+            Adım boyutu ne kadar küçük olursa, üretilen eğri o kadar ince olur.
         """
         from matplotlib import pyplot as plt
 
-        to_plot_x: list[float] = []  # x coordinates of points to plot
-        to_plot_y: list[float] = []  # y coordinates of points to plot
+        çizilecek_x: list[float] = []  # çizilecek noktaların x koordinatları
+        çizilecek_y: list[float] = []  # çizilecek noktaların y koordinatları
 
         t = 0.0
         while t <= 1:
-            value = self.bezier_curve_function(t)
-            to_plot_x.append(value[0])
-            to_plot_y.append(value[1])
-            t += step_size
+            değer = self.bezier_eğrisi_fonksiyonu(t)
+            çizilecek_x.append(değer[0])
+            çizilecek_y.append(değer[1])
+            t += adım_boyutu
 
-        x = [i[0] for i in self.list_of_points]
-        y = [i[1] for i in self.list_of_points]
+        x = [i[0] for i in self.nokta_listesi]
+        y = [i[1] for i in self.nokta_listesi]
 
         plt.plot(
-            to_plot_x,
-            to_plot_y,
+            çizilecek_x,
+            çizilecek_y,
             color="blue",
-            label="Curve of Degree " + str(self.degree),
+            label="Derece " + str(self.derece) + " Eğrisi",
         )
-        plt.scatter(x, y, color="red", label="Control Points")
+        plt.scatter(x, y, color="red", label="Kontrol Noktaları")
         plt.legend()
         plt.show()
 
@@ -109,6 +107,6 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    BezierCurve([(1, 2), (3, 5)]).plot_curve()  # degree 1
-    BezierCurve([(0, 0), (5, 5), (5, 0)]).plot_curve()  # degree 2
-    BezierCurve([(0, 0), (5, 5), (5, 0), (2.5, -2.5)]).plot_curve()  # degree 3
+    BezierEğrisi([(1, 2), (3, 5)]).eğriyi_çiz()  # derece 1
+    BezierEğrisi([(0, 0), (5, 5), (5, 0)]).eğriyi_çiz()  # derece 2
+    BezierEğrisi([(0, 0), (5, 5), (5, 0), (2.5, -2.5)]).eğriyi_çiz()  # derece 3

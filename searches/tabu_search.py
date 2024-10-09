@@ -1,28 +1,32 @@
 """
-This is pure Python implementation of Tabu search algorithm for a Travelling Salesman
-Problem, that the distances between the cities are symmetric (the distance between city
-'a' and city 'b' is the same between city 'b' and city 'a').
-The TSP can be represented into a graph. The cities are represented by nodes and the
-distance between them is represented by the weight of the ark between the nodes.
+Bu, Seyahat Satıcısı Problemi için Tabu arama algoritmasının saf Python uygulamasıdır. 
+Şehirler arasındaki mesafeler simetriktir (şehir 'a' ile şehir 'b' arasındaki mesafe, 
+şehir 'b' ile şehir 'a' arasındaki mesafeye eşittir). TSP, bir grafik olarak temsil edilebilir. 
+Şehirler düğümlerle, aralarındaki mesafe ise düğümler arasındaki kenarın ağırlığı ile temsil edilir.
 
-The .txt file with the graph has the form:
+Grafi içeren .txt dosyası şu formata sahiptir:
 
-node1 node2 distance_between_node1_and_node2
-node1 node3 distance_between_node1_and_node3
+Grafiği takma algoritması ile ilgili daha fazla bilgi için:
+https://en.wikipedia.org/wiki/Travelling_salesman_problem
+
+node1 node2 node1_ve_node2_arasındaki_mesafe
+node1 node3 node1_ve_node3_arasındaki_mesafe
 ...
 
-Be careful node1, node2 and the distance between them, must exist only once. This means
-in the .txt file should not exist:
-node1 node2 distance_between_node1_and_node2
-node2 node1 distance_between_node2_and_node1
+Organiser: K. Umut Araz
 
-For pytests run following command:
+Dikkat: node1, node2 ve aralarındaki mesafe yalnızca bir kez bulunmalıdır. Bu, .txt dosyasında 
+şunların bulunmaması gerektiği anlamına gelir:
+node1 node2 node1_ve_node2_arasındaki_mesafe
+node2 node1 node2_ve_node1_arasındaki_mesafe
+
+Pytest'leri çalıştırmak için aşağıdaki komutu kullanın:
 pytest
 
-For manual testing run:
-python tabu_search.py -f your_file_name.txt -number_of_iterations_of_tabu_search \
-    -s size_of_tabu_search
-e.g. python tabu_search.py -f tabudata2.txt -i 4 -s 3
+Manuel test için çalıştırın:
+python tabu_search.py -f dosya_adınız.txt -i tabu_arama_iterasyon_sayısı \
+    -s tabu_listesi_boyutu
+örneğin: python tabu_search.py -f tabudata2.txt -i 4 -s 3
 """
 
 import argparse
@@ -31,20 +35,19 @@ import copy
 
 def generate_neighbours(path):
     """
-    Pure implementation of generating a dictionary of neighbors and the cost with each
-    neighbor, given a path file that includes a graph.
+    Bir grafi içeren bir dosya yoluna göre komşuların ve her komşunun maliyetinin 
+    yer aldığı bir sözlük oluşturmanın saf uygulaması.
 
-    :param path: The path to the .txt file that includes the graph (e.g.tabudata2.txt)
-    :return dict_of_neighbours: Dictionary with key each node and value a list of lists
-        with the neighbors of the node and the cost (distance) for each neighbor.
-
-    Example of dict_of_neighbours:
+    :param path: Grafi içeren .txt dosyasının yolu (örneğin: tabudata2.txt)
+    :return dict_of_neighbours: Anahtar olarak her düğüm ve değer olarak düğümün 
+        komşuları ile her komşunun maliyetini (mesafe) içeren bir liste.
+    
+    dict_of_neighbours örneği:
     >>) dict_of_neighbours[a]
     [[b,20],[c,18],[d,22],[e,26]]
 
-    This indicates the neighbors of node (city) 'a', which has neighbor the node 'b'
-    with distance 20, the node 'c' with distance 18, the node 'd' with distance 22 and
-    the node 'e' with distance 26.
+    Bu, 'a' düğümünün (şehir) komşularını gösterir; 'b' düğümü 20 mesafesiyle, 
+    'c' düğümü 18 mesafesiyle, 'd' düğümü 22 mesafesiyle ve 'e' düğümü 26 mesafesiyle komşudur.
     """
 
     dict_of_neighbours = {}
@@ -73,19 +76,18 @@ def generate_neighbours(path):
 
 def generate_first_solution(path, dict_of_neighbours):
     """
-    Pure implementation of generating the first solution for the Tabu search to start,
-    with the redundant resolution strategy. That means that we start from the starting
-    node (e.g. node 'a'), then we go to the city nearest (lowest distance) to this node
-    (let's assume is node 'c'), then we go to the nearest city of the node 'c', etc.
-    till we have visited all cities and return to the starting node.
+    Tabu aramasına başlamak için ilk çözümü oluşturmanın saf uygulaması, 
+    gereksiz çözümleme stratejisi ile. Bu, başlangıç düğümünden (örneğin: 'a' düğümü) 
+    başlayarak, bu düğüme en yakın (en düşük mesafe) şehre (örneğin: 'c' düğümü) 
+    gitmek anlamına gelir. Ardından 'c' düğümünün en yakın şehrine, vb. 
+    giderek tüm şehirleri ziyaret edip başlangıç düğümüne geri döneriz.
 
-    :param path: The path to the .txt file that includes the graph (e.g.tabudata2.txt)
-    :param dict_of_neighbours: Dictionary with key each node and value a list of lists
-        with the neighbors of the node and the cost (distance) for each neighbor.
-    :return first_solution: The solution for the first iteration of Tabu search using
-        the redundant resolution strategy in a list.
-    :return distance_of_first_solution: The total distance that Travelling Salesman
-        will travel, if he follows the path in first_solution.
+    :param path: Grafi içeren .txt dosyasının yolu (örneğin: tabudata2.txt)
+    :param dict_of_neighbours: Anahtar olarak her düğüm ve değer olarak düğümün 
+        komşuları ile her komşunun maliyetini (mesafe) içeren bir liste.
+    :return first_solution: Tabu aramasının ilk iterasyonu için çözüm.
+    :return distance_of_first_solution: Seyahat Satıcısının, 
+        first_solution'daki yolu takip ettiğinde kat edeceği toplam mesafe.
     """
 
     with open(path) as f:
@@ -105,7 +107,7 @@ def generate_first_solution(path, dict_of_neighbours):
                 best_node = k[0]
 
         first_solution.append(visiting)
-        distance_of_first_solution = distance_of_first_solution + int(minim)
+        distance_of_first_solution += int(minim)
         visiting = best_node
 
     first_solution.append(end_node)
@@ -116,29 +118,26 @@ def generate_first_solution(path, dict_of_neighbours):
             break
         position += 1
 
-    distance_of_first_solution = (
-        distance_of_first_solution
-        + int(dict_of_neighbours[first_solution[-2]][position][1])
-        - 10000
+    distance_of_first_solution += (
+        int(dict_of_neighbours[first_solution[-2]][position][1]) - 10000
     )
     return first_solution, distance_of_first_solution
 
 
 def find_neighborhood(solution, dict_of_neighbours):
     """
-    Pure implementation of generating the neighborhood (sorted by total distance of
-    each solution from lowest to highest) of a solution with 1-1 exchange method, that
-    means we exchange each node in a solution with each other node and generating a
-    number of solution named neighborhood.
+    Bir çözümün komşuluğunu (her çözümün toplam mesafesine göre en düşükten en yükseğe 
+    sıralanmış) 1-1 değişim yöntemi ile oluşturmanın saf uygulaması. 
+    Bu, bir çözümdeki her düğümü diğer düğümlerle değiştirerek bir dizi çözüm 
+    oluşturmak anlamına gelir.
 
-    :param solution: The solution in which we want to find the neighborhood.
-    :param dict_of_neighbours: Dictionary with key each node and value a list of lists
-        with the neighbors of the node and the cost (distance) for each neighbor.
-    :return neighborhood_of_solution: A list that includes the solutions and the total
-        distance of each solution (in form of list) that are produced with 1-1 exchange
-        from the solution that the method took as an input
-
-    Example:
+    :param solution: Komşuluğunu bulmak istediğimiz çözüm.
+    :param dict_of_neighbours: Anahtar olarak her düğüm ve değer olarak düğümün 
+        komşuları ile her komşunun maliyetini (mesafe) içeren bir liste.
+    :return neighborhood_of_solution: 1-1 değişim ile üretilen çözümleri ve 
+        her çözümün toplam mesafesini içeren bir liste.
+    
+    Örnek:
     >>> find_neighborhood(['a', 'c', 'b', 'd', 'e', 'a'],
     ...                   {'a': [['b', '20'], ['c', '18'], ['d', '22'], ['e', '26']],
     ...                    'c': [['a', '18'], ['b', '10'], ['d', '23'], ['e', '24']],
@@ -173,7 +172,7 @@ def find_neighborhood(solution, dict_of_neighbours):
                 next_node = _tmp[_tmp.index(k) + 1]
                 for i in dict_of_neighbours[k]:
                     if i[0] == next_node:
-                        distance = distance + int(i[1])
+                        distance += int(i[1])
             _tmp.append(distance)
 
             if _tmp not in neighborhood_of_solution:
@@ -189,21 +188,18 @@ def tabu_search(
     first_solution, distance_of_first_solution, dict_of_neighbours, iters, size
 ):
     """
-    Pure implementation of Tabu search algorithm for a Travelling Salesman Problem in
-    Python.
+    Seyahat Satıcısı Problemi için Tabu arama algoritmasının saf uygulaması.
 
-    :param first_solution: The solution for the first iteration of Tabu search using
-        the redundant resolution strategy in a list.
-    :param distance_of_first_solution: The total distance that Travelling Salesman will
-        travel, if he follows the path in first_solution.
-    :param dict_of_neighbours: Dictionary with key each node and value a list of lists
-        with the neighbors of the node and the cost (distance) for each neighbor.
-    :param iters: The number of iterations that Tabu search will execute.
-    :param size: The size of Tabu List.
-    :return best_solution_ever: The solution with the lowest distance that occurred
-        during the execution of Tabu search.
-    :return best_cost: The total distance that Travelling Salesman will travel, if he
-        follows the path in best_solution ever.
+    :param first_solution: Tabu aramasının ilk iterasyonu için çözüm.
+    :param distance_of_first_solution: Seyahat Satıcısının, 
+        first_solution'daki yolu takip ettiğinde kat edeceği toplam mesafe.
+    :param dict_of_neighbours: Anahtar olarak her düğüm ve değer olarak düğümün 
+        komşuları ile her komşunun maliyetini (mesafe) içeren bir liste.
+    :param iters: Tabu aramasının gerçekleştireceği iterasyon sayısı.
+    :param size: Tabu Listesi boyutu.
+    :return best_solution_ever: Tabu araması sırasında elde edilen en düşük mesafeye 
+        sahip çözüm.
+    :return best_cost: En iyi çözümde Seyahat Satıcısının kat edeceği toplam mesafe.
     """
     count = 1
     solution = first_solution
@@ -225,7 +221,7 @@ def tabu_search(
                     first_exchange_node = best_solution[i]
                     second_exchange_node = solution[i]
                     break
-                i = i + 1
+                i += 1
 
             if [first_exchange_node, second_exchange_node] not in tabu_list and [
                 second_exchange_node,
@@ -239,13 +235,13 @@ def tabu_search(
                     best_cost = cost
                     best_solution_ever = solution
             else:
-                index_of_best_solution = index_of_best_solution + 1
+                index_of_best_solution += 1
                 best_solution = neighborhood[index_of_best_solution]
 
         if len(tabu_list) >= size:
             tabu_list.pop(0)
 
-        count = count + 1
+        count += 1
 
     return best_solution_ever, best_cost
 
@@ -265,28 +261,28 @@ def main(args=None):
         args.Size,
     )
 
-    print(f"Best solution: {best_sol}, with total distance: {best_cost}.")
+    print(f"En iyi çözüm: {best_sol}, toplam mesafe: {best_cost}.")
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Tabu Search")
+    parser = argparse.ArgumentParser(description="Tabu Arama")
     parser.add_argument(
         "-f",
         "--File",
         type=str,
-        help="Path to the file containing the data",
+        help="Veri içeren dosyanın yolu",
         required=True,
     )
     parser.add_argument(
         "-i",
         "--Iterations",
         type=int,
-        help="How many iterations the algorithm should perform",
+        help="Algoritmanın gerçekleştireceği iterasyon sayısı",
         required=True,
     )
     parser.add_argument(
-        "-s", "--Size", type=int, help="Size of the tabu list", required=True
+        "-s", "--Size", type=int, help="Tabu listesinin boyutu", required=True
     )
 
-    # Pass the arguments to main method
+    # Argümanları ana metoda geçirin
     main(parser.parse_args())

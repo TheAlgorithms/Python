@@ -1,11 +1,10 @@
 # https://en.wikipedia.org/wiki/LC_circuit
 
-"""An LC circuit, also called a resonant circuit, tank circuit, or tuned circuit,
-is an electric circuit consisting of an inductor, represented by the letter L,
-and a capacitor, represented by the letter C, connected together.
-The circuit can act as an electrical resonator, an electrical analogue of a
-tuning fork, storing energy oscillating at the circuit's resonant frequency.
-Source: https://en.wikipedia.org/wiki/LC_circuit
+"""Bir LC devresi, rezonans devresi, tank devresi veya ayarlı devre olarak da adlandırılır,
+bir indüktör (L harfi ile temsil edilir) ve bir kapasitörden (C harfi ile temsil edilir)
+oluşan bir elektrik devresidir. Devre, bir elektrik rezonatörü olarak işlev görebilir,
+bir akort çatalının elektriksel analoğu olarak, devrenin rezonans frekansında salınan enerjiyi depolar.
+Kaynak: https://en.wikipedia.org/wiki/LC_circuit
 """
 
 from __future__ import annotations
@@ -13,34 +12,34 @@ from __future__ import annotations
 from math import pi, sqrt
 
 
-def resonant_frequency(inductance: float, capacitance: float) -> tuple:
+def rezonans_frekansı(indüktans: float, kapasitans: float) -> tuple:
     """
-    This function can calculate the resonant frequency of LC circuit,
-    for the given value of inductance and capacitnace.
+    Bu fonksiyon, verilen indüktans ve kapasitans değerleri için LC devresinin
+    rezonans frekansını hesaplayabilir.
 
-    Examples are given below:
-    >>> resonant_frequency(inductance=10, capacitance=5)
-    ('Resonant frequency', 0.022507907903927652)
-    >>> resonant_frequency(inductance=0, capacitance=5)
+    Aşağıda örnekler verilmiştir:
+    >>> rezonans_frekansı(indüktans=10, kapasitans=5)
+    ('Rezonans frekansı', 0.022507907903927652)
+    >>> rezonans_frekansı(indüktans=0, kapasitans=5)
     Traceback (most recent call last):
       ...
-    ValueError: Inductance cannot be 0 or negative
-    >>> resonant_frequency(inductance=10, capacitance=0)
+    ValueError: İndüktans 0 veya negatif olamaz
+    >>> rezonans_frekansı(indüktans=10, kapasitans=0)
     Traceback (most recent call last):
       ...
-    ValueError: Capacitance cannot be 0 or negative
+    ValueError: Kapasitans 0 veya negatif olamaz
     """
 
-    if inductance <= 0:
-        raise ValueError("Inductance cannot be 0 or negative")
+    if indüktans <= 0:
+        raise ValueError("İndüktans 0 veya negatif olamaz")
 
-    elif capacitance <= 0:
-        raise ValueError("Capacitance cannot be 0 or negative")
+    elif kapasitans <= 0:
+        raise ValueError("Kapasitans 0 veya negatif olamaz")
 
     else:
         return (
-            "Resonant frequency",
-            float(1 / (2 * pi * (sqrt(inductance * capacitance)))),
+            "Rezonans frekansı",
+            float(1 / (2 * pi * (sqrt(indüktans * kapasitans)))),
         )
 
 

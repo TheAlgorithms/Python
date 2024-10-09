@@ -1,25 +1,25 @@
-def binary_coded_decimal(number: int) -> str:
+def ikili_kodlu_onluk(sayi: int) -> str:
     """
-    Find binary coded decimal (bcd) of integer base 10.
-    Each digit of the number is represented by a 4-bit binary.
-    Example:
-    >>> binary_coded_decimal(-2)
+    On tabanında bir tamsayının ikili kodlu onluk (bcd) değerini bulun.
+    Sayının her basamağı 4 bitlik ikili olarak temsil edilir.
+    Örnek:
+    >>> ikili_kodlu_onluk(-2)
     '0b0000'
-    >>> binary_coded_decimal(-1)
+    >>> ikili_kodlu_onluk(-1)
     '0b0000'
-    >>> binary_coded_decimal(0)
+    >>> ikili_kodlu_onluk(0)
     '0b0000'
-    >>> binary_coded_decimal(3)
+    >>> ikili_kodlu_onluk(3)
     '0b0011'
-    >>> binary_coded_decimal(2)
+    >>> ikili_kodlu_onluk(2)
     '0b0010'
-    >>> binary_coded_decimal(12)
+    >>> ikili_kodlu_onluk(12)
     '0b00010010'
-    >>> binary_coded_decimal(987)
+    >>> ikili_kodlu_onluk(987)
     '0b100110000111'
     """
     return "0b" + "".join(
-        str(bin(int(digit)))[2:].zfill(4) for digit in str(max(0, number))
+        str(bin(int(rakam)))[2:].zfill(4) for rakam in str(max(0, sayi))
     )
 
 

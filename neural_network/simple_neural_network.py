@@ -1,56 +1,58 @@
 """
-Forward propagation explanation:
+İleri yayılma açıklaması:
 https://towardsdatascience.com/forward-propagation-in-neural-networks-simplified-math-and-code-version-bbcfef6f9250
+
+
 """
 
 import math
 import random
 
 
-# Sigmoid
-def sigmoid_function(value: float, deriv: bool = False) -> float:
-    """Return the sigmoid function of a float.
+# Sigmoid fonksiyonu
+def sigmoid_fonksiyonu(değer: float, türev: bool = False) -> float:
+    """Bir float sayısının sigmoid fonksiyonunu döndürür.
 
-    >>> sigmoid_function(3.5)
+    >>> sigmoid_fonksiyonu(3.5)
     0.9706877692486436
-    >>> sigmoid_function(3.5, True)
+    >>> sigmoid_fonksiyonu(3.5, True)
     -8.75
     """
-    if deriv:
-        return value * (1 - value)
-    return 1 / (1 + math.exp(-value))
+    if türev:
+        return değer * (1 - değer)
+    return 1 / (1 + math.exp(-değer))
 
 
-# Initial Value
-INITIAL_VALUE = 0.02
+# Başlangıç Değeri
+BAŞLANGIÇ_DEĞERİ = 0.02
 
 
-def forward_propagation(expected: int, number_propagations: int) -> float:
-    """Return the value found after the forward propagation training.
+def ileri_yayılma(beklenen: int, yayılma_sayısı: int) -> float:
+    """İleri yayılma eğitimi sonrası bulunan değeri döndürür.
 
-    >>> res = forward_propagation(32, 450_000)  # Was 10_000_000
-    >>> res > 31 and res < 33
+    >>> sonuç = ileri_yayılma(32, 450_000)  # Önceki değer 10_000_000 idi
+    >>> sonuç > 31 and sonuç < 33
     True
 
-    >>> res = forward_propagation(32, 1000)
-    >>> res > 31 and res < 33
+    >>> sonuç = ileri_yayılma(32, 1000)
+    >>> sonuç > 31 and sonuç < 33
     False
     """
 
-    # Random weight
-    weight = float(2 * (random.randint(1, 100)) - 1)
+    # Rastgele ağırlık
+    ağırlık = float(2 * (random.randint(1, 100)) - 1)
 
-    for _ in range(number_propagations):
-        # Forward propagation
-        layer_1 = sigmoid_function(INITIAL_VALUE * weight)
-        # How much did we miss?
-        layer_1_error = (expected / 100) - layer_1
-        # Error delta
-        layer_1_delta = layer_1_error * sigmoid_function(layer_1, True)
-        # Update weight
-        weight += INITIAL_VALUE * layer_1_delta
+    for _ in range(yayılma_sayısı):
+        # İleri yayılma
+        katman_1 = sigmoid_fonksiyonu(BAŞLANGIÇ_DEĞERİ * ağırlık)
+        # Ne kadar hata yaptık?
+        katman_1_hata = (beklenen / 100) - katman_1
+        # Hata delta
+        katman_1_delta = katman_1_hata * sigmoid_fonksiyonu(katman_1, True)
+        # Ağırlığı güncelle
+        ağırlık += BAŞLANGIÇ_DEĞERİ * katman_1_delta
 
-    return layer_1 * 100
+    return katman_1 * 100
 
 
 if __name__ == "__main__":
@@ -58,6 +60,6 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    expected = int(input("Expected value: "))
-    number_propagations = int(input("Number of propagations: "))
-    print(forward_propagation(expected, number_propagations))
+    beklenen = int(input("Beklenen değer: "))
+    yayılma_sayısı = int(input("Yayılma sayısı: "))
+    print(ileri_yayılma(beklenen, yayılma_sayısı))

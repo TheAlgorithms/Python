@@ -1,83 +1,83 @@
-def get_reverse_bit_string(number: int) -> str:
+def ters_bit_dizisi_al(sayi: int) -> str:
     """
-    return the bit string of an integer
+    bir tamsayının bit dizisini döndür
 
-    >>> get_reverse_bit_string(9)
+    >>> ters_bit_dizisi_al(9)
     '10010000000000000000000000000000'
-    >>> get_reverse_bit_string(43)
+    >>> ters_bit_dizisi_al(43)
     '11010100000000000000000000000000'
-    >>> get_reverse_bit_string(2873)
+    >>> ters_bit_dizisi_al(2873)
     '10011100110100000000000000000000'
-    >>> get_reverse_bit_string("this is not a number")
+    >>> ters_bit_dizisi_al("bu bir sayı değil")
     Traceback (most recent call last):
         ...
-    TypeError: operation can not be conducted on a object of type str
+    TypeError: işlem str türünde bir nesne üzerinde yapılamaz
     """
-    if not isinstance(number, int):
+    if not isinstance(sayi, int):
         msg = (
-            "operation can not be conducted on a object of type "
-            f"{type(number).__name__}"
+            "işlem "
+            f"{type(sayi).__name__} türünde bir nesne üzerinde yapılamaz"
         )
         raise TypeError(msg)
-    bit_string = ""
+    bit_dizisi = ""
     for _ in range(32):
-        bit_string += str(number % 2)
-        number = number >> 1
-    return bit_string
+        bit_dizisi += str(sayi % 2)
+        sayi = sayi >> 1
+    return bit_dizisi
 
 
-def reverse_bit(number: int) -> str:
+def bit_ters_cevir(sayi: int) -> str:
     """
-    Take in an 32 bit integer, reverse its bits,
-    return a string of reverse bits
+    32 bitlik bir tamsayı al, bitlerini ters çevir,
+    ters bitlerin bir dizisini döndür
 
-    result of a reverse_bit and operation on the integer provided.
+    sağlanan tamsayı üzerinde bir bit_ters_cevir işleminin sonucu.
 
-    >>> reverse_bit(25)
+    >>> bit_ters_cevir(25)
     '00000000000000000000000000011001'
-    >>> reverse_bit(37)
+    >>> bit_ters_cevir(37)
     '00000000000000000000000000100101'
-    >>> reverse_bit(21)
+    >>> bit_ters_cevir(21)
     '00000000000000000000000000010101'
-    >>> reverse_bit(58)
+    >>> bit_ters_cevir(58)
     '00000000000000000000000000111010'
-    >>> reverse_bit(0)
+    >>> bit_ters_cevir(0)
     '00000000000000000000000000000000'
-    >>> reverse_bit(256)
+    >>> bit_ters_cevir(256)
     '00000000000000000000000100000000'
-    >>> reverse_bit(-1)
+    >>> bit_ters_cevir(-1)
     Traceback (most recent call last):
         ...
-    ValueError: the value of input must be positive
+    ValueError: giriş değeri pozitif olmalıdır
 
-    >>> reverse_bit(1.1)
+    >>> bit_ters_cevir(1.1)
     Traceback (most recent call last):
         ...
-    TypeError: Input value must be a 'int' type
+    TypeError: Giriş değeri 'int' türünde olmalıdır
 
-    >>> reverse_bit("0")
+    >>> bit_ters_cevir("0")
     Traceback (most recent call last):
         ...
-    TypeError: '<' not supported between instances of 'str' and 'int'
+    TypeError: '<' str ve int türleri arasında desteklenmiyor
     """
-    if number < 0:
-        raise ValueError("the value of input must be positive")
-    elif isinstance(number, float):
-        raise TypeError("Input value must be a 'int' type")
-    elif isinstance(number, str):
-        raise TypeError("'<' not supported between instances of 'str' and 'int'")
-    result = 0
-    # iterator over [1 to 32],since we are dealing with 32 bit integer
+    if sayi < 0:
+        raise ValueError("giriş değeri pozitif olmalıdır")
+    elif isinstance(sayi, float):
+        raise TypeError("Giriş değeri 'int' türünde olmalıdır")
+    elif isinstance(sayi, str):
+        raise TypeError("'<' str ve int türleri arasında desteklenmiyor")
+    sonuc = 0
+    # 32 bitlik tamsayı ile uğraştığımız için [1'den 32'ye] kadar yineleyici
     for _ in range(1, 33):
-        # left shift the bits by unity
-        result = result << 1
-        # get the end bit
-        end_bit = number % 2
-        # right shift the bits by unity
-        number = number >> 1
-        # add that bit to our ans
-        result = result | end_bit
-    return get_reverse_bit_string(result)
+        # bitleri bir birim sola kaydır
+        sonuc = sonuc << 1
+        # son biti al
+        son_bit = sayi % 2
+        # bitleri bir birim sağa kaydır
+        sayi = sayi >> 1
+        # bu biti cevaba ekle
+        sonuc = sonuc | son_bit
+    return ters_bit_dizisi_al(sonuc)
 
 
 if __name__ == "__main__":

@@ -1,208 +1,207 @@
 """
-Simple multithreaded algorithm to show how the 4 phases of a genetic algorithm works
-(Evaluation, Selection, Crossover and Mutation)
+Genetik algoritmanın 4 aşamasının nasıl çalıştığını göstermek için basit çok iş parçacıklı algoritma
+(Değerlendirme, Seçim, Çaprazlama ve Mutasyon)
 https://en.wikipedia.org/wiki/Genetic_algorithm
-Author: D4rkia
+
+Produced By K. Umut Araz
 """
 
 from __future__ import annotations
 
 import random
 
-# Maximum size of the population.  Bigger could be faster but is more memory expensive.
+# Popülasyonun maksimum boyutu. Daha büyük olabilir ancak daha fazla bellek gerektirir.
 N_POPULATION = 200
-# Number of elements selected in every generation of evolution. The selection takes
-# place from best to worst of that generation and must be smaller than N_POPULATION.
+# Her evrim neslinde seçilen eleman sayısı. Seçim, o neslin en iyisinden en kötüsüne doğru yapılır ve N_POPULATION'dan küçük olmalıdır.
 N_SELECTED = 50
-# Probability that an element of a generation can mutate, changing one of its genes.
-# This will guarantee that all genes will be used during evolution.
+# Bir neslin bir elemanının mutasyona uğrama olasılığı, genlerinden birini değiştirme olasılığı.
+# Bu, evrim sırasında tüm genlerin kullanılmasını garanti eder.
 MUTATION_PROBABILITY = 0.4
-# Just a seed to improve randomness required by the algorithm.
+# Algoritmanın gerektirdiği rastgeleliği artırmak için sadece bir tohum.
 random.seed(random.randint(0, 1000))
 
 
-def evaluate(item: str, main_target: str) -> tuple[str, float]:
+def değerlendir(eleman: str, ana_hedef: str) -> tuple[str, float]:
     """
-    Evaluate how similar the item is with the target by just
-    counting each char in the right position
-    >>> evaluate("Helxo Worlx", "Hello World")
+    Elemanın hedefle ne kadar benzer olduğunu, sadece doğru pozisyondaki her karakteri sayarak değerlendir
+    >>> değerlendir("Helxo Worlx", "Hello World")
     ('Helxo Worlx', 9.0)
     """
-    score = len([g for position, g in enumerate(item) if g == main_target[position]])
-    return (item, float(score))
+    puan = len([g for pozisyon, g in enumerate(eleman) if g == ana_hedef[pozisyon]])
+    return (eleman, float(puan))
 
 
-def crossover(parent_1: str, parent_2: str) -> tuple[str, str]:
+def çaprazla(ebeveyn_1: str, ebeveyn_2: str) -> tuple[str, str]:
     """
-    Slice and combine two strings at a random point.
+    İki dizeyi rastgele bir noktada dilimleyip birleştir.
     >>> random.seed(42)
-    >>> crossover("123456", "abcdef")
+    >>> çaprazla("123456", "abcdef")
     ('12345f', 'abcde6')
     """
-    random_slice = random.randint(0, len(parent_1) - 1)
-    child_1 = parent_1[:random_slice] + parent_2[random_slice:]
-    child_2 = parent_2[:random_slice] + parent_1[random_slice:]
-    return (child_1, child_2)
+    rastgele_dilim = random.randint(0, len(ebeveyn_1) - 1)
+    çocuk_1 = ebeveyn_1[:rastgele_dilim] + ebeveyn_2[rastgele_dilim:]
+    çocuk_2 = ebeveyn_2[:rastgele_dilim] + ebeveyn_1[rastgele_dilim:]
+    return (çocuk_1, çocuk_2)
 
 
-def mutate(child: str, genes: list[str]) -> str:
+def mutasyon(çocuk: str, genler: list[str]) -> str:
     """
-    Mutate a random gene of a child with another one from the list.
+    Bir çocuğun rastgele bir genini listedeki başka bir genle değiştir.
     >>> random.seed(123)
-    >>> mutate("123456", list("ABCDEF"))
+    >>> mutasyon("123456", list("ABCDEF"))
     '12345A'
     """
-    child_list = list(child)
+    çocuk_listesi = list(çocuk)
     if random.uniform(0, 1) < MUTATION_PROBABILITY:
-        child_list[random.randint(0, len(child)) - 1] = random.choice(genes)
-    return "".join(child_list)
+        çocuk_listesi[random.randint(0, len(çocuk)) - 1] = random.choice(genler)
+    return "".join(çocuk_listesi)
 
 
-# Select, crossover and mutate a new population.
-def select(
-    parent_1: tuple[str, float],
-    population_score: list[tuple[str, float]],
-    genes: list[str],
+# Yeni bir popülasyon seç, çaprazla ve mutasyona uğrat.
+def seç(
+    ebeveyn_1: tuple[str, float],
+    popülasyon_puanı: list[tuple[str, float]],
+    genler: list[str],
 ) -> list[str]:
     """
-    Select the second parent and generate new population
+    İkinci ebeveyni seç ve yeni popülasyon oluştur
 
     >>> random.seed(42)
-    >>> parent_1 = ("123456", 8.0)
-    >>> population_score = [("abcdef", 4.0), ("ghijkl", 5.0), ("mnopqr", 7.0)]
-    >>> genes = list("ABCDEF")
-    >>> child_n = int(min(parent_1[1] + 1, 10))
-    >>> population = []
-    >>> for _ in range(child_n):
-    ...     parent_2 = population_score[random.randrange(len(population_score))][0]
-    ...     child_1, child_2 = crossover(parent_1[0], parent_2)
-    ...     population.extend((mutate(child_1, genes), mutate(child_2, genes)))
-    >>> len(population) == (int(parent_1[1]) + 1) * 2
+    >>> ebeveyn_1 = ("123456", 8.0)
+    >>> popülasyon_puanı = [("abcdef", 4.0), ("ghijkl", 5.0), ("mnopqr", 7.0)]
+    >>> genler = list("ABCDEF")
+    >>> çocuk_sayısı = int(min(ebeveyn_1[1] + 1, 10))
+    >>> popülasyon = []
+    >>> for _ in range(çocuk_sayısı):
+    ...     ebeveyn_2 = popülasyon_puanı[random.randrange(len(popülasyon_puanı))][0]
+    ...     çocuk_1, çocuk_2 = çaprazla(ebeveyn_1[0], ebeveyn_2)
+    ...     popülasyon.extend((mutasyon(çocuk_1, genler), mutasyon(çocuk_2, genler)))
+    >>> len(popülasyon) == (int(ebeveyn_1[1]) + 1) * 2
     True
     """
     pop = []
-    # Generate more children proportionally to the fitness score.
-    child_n = int(parent_1[1] * 100) + 1
-    child_n = 10 if child_n >= 10 else child_n
-    for _ in range(child_n):
-        parent_2 = population_score[random.randint(0, N_SELECTED)][0]
+    # Uygunluk puanına orantılı olarak daha fazla çocuk üret.
+    çocuk_sayısı = int(ebeveyn_1[1] * 100) + 1
+    çocuk_sayısı = 10 if çocuk_sayısı >= 10 else çocuk_sayısı
+    for _ in range(çocuk_sayısı):
+        ebeveyn_2 = popülasyon_puanı[random.randint(0, N_SELECTED)][0]
 
-        child_1, child_2 = crossover(parent_1[0], parent_2)
-        # Append new string to the population list.
-        pop.append(mutate(child_1, genes))
-        pop.append(mutate(child_2, genes))
+        çocuk_1, çocuk_2 = çaprazla(ebeveyn_1[0], ebeveyn_2)
+        # Yeni dizeyi popülasyon listesine ekle.
+        pop.append(mutasyon(çocuk_1, genler))
+        pop.append(mutasyon(çocuk_2, genler))
     return pop
 
 
-def basic(target: str, genes: list[str], debug: bool = True) -> tuple[int, int, str]:
+def temel(hedef: str, genler: list[str], debug: bool = True) -> tuple[int, int, str]:
     """
-    Verify that the target contains no genes besides the ones inside genes variable.
+    Hedefin, genler değişkeninin içindeki genler dışında gen içermediğini doğrula.
 
     >>> from string import ascii_lowercase
-    >>> basic("doctest", ascii_lowercase, debug=False)[2]
+    >>> temel("doctest", ascii_lowercase, debug=False)[2]
     'doctest'
-    >>> genes = list(ascii_lowercase)
-    >>> genes.remove("e")
-    >>> basic("test", genes)
+    >>> genler = list(ascii_lowercase)
+    >>> genler.remove("e")
+    >>> temel("test", genler)
     Traceback (most recent call last):
         ...
     ValueError: ['e'] is not in genes list, evolution cannot converge
-    >>> genes.remove("s")
-    >>> basic("test", genes)
+    >>> genler.remove("s")
+    >>> temel("test", genler)
     Traceback (most recent call last):
         ...
     ValueError: ['e', 's'] is not in genes list, evolution cannot converge
-    >>> genes.remove("t")
-    >>> basic("test", genes)
+    >>> genler.remove("t")
+    >>> temel("test", genler)
     Traceback (most recent call last):
         ...
     ValueError: ['e', 's', 't'] is not in genes list, evolution cannot converge
     """
 
-    # Verify if N_POPULATION is bigger than N_SELECTED
+    # N_POPULATION'ın N_SELECTED'dan büyük olduğunu doğrula
     if N_POPULATION < N_SELECTED:
         msg = f"{N_POPULATION} must be bigger than {N_SELECTED}"
         raise ValueError(msg)
-    # Verify that the target contains no genes besides the ones inside genes variable.
-    not_in_genes_list = sorted({c for c in target if c not in genes})
-    if not_in_genes_list:
-        msg = f"{not_in_genes_list} is not in genes list, evolution cannot converge"
+    # Hedefin, genler değişkeninin içindeki genler dışında gen içermediğini doğrula.
+    gen_listesinde_olmayanlar = sorted({c for c in hedef if c not in genler})
+    if gen_listesinde_olmayanlar:
+        msg = f"{gen_listesinde_olmayanlar} is not in genes list, evolution cannot converge"
         raise ValueError(msg)
 
-    # Generate random starting population.
-    population = []
+    # Rastgele başlangıç popülasyonu oluştur.
+    popülasyon = []
     for _ in range(N_POPULATION):
-        population.append("".join([random.choice(genes) for i in range(len(target))]))
+        popülasyon.append("".join([random.choice(genler) for i in range(len(hedef))]))
 
-    # Just some logs to know what the algorithms is doing.
-    generation, total_population = 0, 0
+    # Algoritmanın ne yaptığını bilmek için sadece bazı günlükler.
+    nesil, toplam_popülasyon = 0, 0
 
-    # This loop will end when we find a perfect match for our target.
+    # Bu döngü, hedefimiz için mükemmel bir eşleşme bulduğumuzda sona erecek.
     while True:
-        generation += 1
-        total_population += len(population)
+        nesil += 1
+        toplam_popülasyon += len(popülasyon)
 
-        # Random population created. Now it's time to evaluate.
+        # Rastgele popülasyon oluşturuldu. Şimdi değerlendirme zamanı.
 
-        # Adding a bit of concurrency can make everything faster,
+        # Biraz eşzamanlılık eklemek her şeyi daha hızlı hale getirebilir,
         #
         # import concurrent.futures
-        # population_score: list[tuple[str, float]] = []
+        # popülasyon_puanı: list[tuple[str, float]] = []
         # with concurrent.futures.ThreadPoolExecutor(
         #                                   max_workers=NUM_WORKERS) as executor:
-        #     futures = {executor.submit(evaluate, item) for item in population}
+        #     futures = {executor.submit(değerlendir, eleman) for eleman in popülasyon}
         #     concurrent.futures.wait(futures)
-        #     population_score = [item.result() for item in futures]
+        #     popülasyon_puanı = [eleman.result() for eleman in futures]
         #
-        # but with a simple algorithm like this, it will probably be slower.
-        # We just need to call evaluate for every item inside the population.
-        population_score = [evaluate(item, target) for item in population]
+        # ancak bu kadar basit bir algoritma ile muhtemelen daha yavaş olacaktır.
+        # Sadece popülasyon içindeki her eleman için değerlendir'i çağırmamız gerekiyor.
+        popülasyon_puanı = [değerlendir(eleman, hedef) for eleman in popülasyon]
 
-        # Check if there is a matching evolution.
-        population_score = sorted(population_score, key=lambda x: x[1], reverse=True)
-        if population_score[0][0] == target:
-            return (generation, total_population, population_score[0][0])
+        # Eşleşen bir evrim olup olmadığını kontrol et.
+        popülasyon_puanı = sorted(popülasyon_puanı, key=lambda x: x[1], reverse=True)
+        if popülasyon_puanı[0][0] == hedef:
+            return (nesil, toplam_popülasyon, popülasyon_puanı[0][0])
 
-        # Print the best result every 10 generation.
-        # Just to know that the algorithm is working.
-        if debug and generation % 10 == 0:
+        # Her 10 nesilde bir en iyi sonucu yazdır.
+        # Algoritmanın çalıştığını bilmek için.
+        if debug and nesil % 10 == 0:
             print(
-                f"\nGeneration: {generation}"
-                f"\nTotal Population:{total_population}"
-                f"\nBest score: {population_score[0][1]}"
-                f"\nBest string: {population_score[0][0]}"
+                f"\nNesil: {nesil}"
+                f"\nToplam Popülasyon:{toplam_popülasyon}"
+                f"\nEn iyi puan: {popülasyon_puanı[0][1]}"
+                f"\nEn iyi dize: {popülasyon_puanı[0][0]}"
             )
 
-        # Flush the old population, keeping some of the best evolutions.
-        # Keeping this avoid regression of evolution.
-        population_best = population[: int(N_POPULATION / 3)]
-        population.clear()
-        population.extend(population_best)
-        # Normalize population score to be between 0 and 1.
-        population_score = [
-            (item, score / len(target)) for item, score in population_score
+        # Eski popülasyonu temizle, en iyi evrimlerden bazılarını sakla.
+        # Bu, evrimin gerilemesini önler.
+        en_iyi_popülasyon = popülasyon[: int(N_POPULATION / 3)]
+        popülasyon.clear()
+        popülasyon.extend(en_iyi_popülasyon)
+        # Popülasyon puanını 0 ile 1 arasında normalize et.
+        popülasyon_puanı = [
+            (eleman, puan / len(hedef)) for eleman, puan in popülasyon_puanı
         ]
 
-        # This is selection
+        # Bu seçimdir
         for i in range(N_SELECTED):
-            population.extend(select(population_score[int(i)], population_score, genes))
-            # Check if the population has already reached the maximum value and if so,
-            # break the cycle.  If this check is disabled, the algorithm will take
-            # forever to compute large strings, but will also calculate small strings in
-            # a far fewer generations.
-            if len(population) > N_POPULATION:
+            popülasyon.extend(seç(popülasyon_puanı[int(i)], popülasyon_puanı, genler))
+            # Popülasyonun maksimum değere ulaşıp ulaşmadığını kontrol et ve eğer öyleyse,
+            # döngüyü kır. Bu kontrol devre dışı bırakılırsa, algoritma
+            # büyük dizeleri hesaplamak sonsuza kadar sürecektir, ancak küçük dizeleri de
+            # çok daha az nesilde hesaplayacaktır.
+            if len(popülasyon) > N_POPULATION:
                 break
 
 
 if __name__ == "__main__":
-    target_str = (
-        "This is a genetic algorithm to evaluate, combine, evolve, and mutate a string!"
+    hedef_dize = (
+        "Bu, bir dizeyi değerlendirmek, birleştirmek, evrimleştirmek ve mutasyona uğratmak için bir genetik algoritmadır!"
     )
-    genes_list = list(
+    genler_listesi = list(
         " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklm"
         "nopqrstuvwxyz.,;!?+-*#@^'èéòà€ù=)(&%$£/\\"
     )
-    generation, population, target = basic(target_str, genes_list)
+    nesil, popülasyon, hedef = temel(hedef_dize, genler_listesi)
     print(
-        f"\nGeneration: {generation}\nTotal Population: {population}\nTarget: {target}"
+        f"\nNesil: {nesil}\nToplam Popülasyon: {popülasyon}\nHedef: {hedef}"
     )

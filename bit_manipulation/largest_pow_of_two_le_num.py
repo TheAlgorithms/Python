@@ -1,57 +1,57 @@
 """
-Author  : Naman Sharma
-Date    : October 2, 2023
+Yazar   : Naman Sharma
+Tarih   : 2 Ekim 2023
 
-Task:
-To Find the largest power of 2 less than or equal to a given number.
+Görev:
+Verilen bir sayıdan küçük veya ona eşit olan en büyük 2'nin kuvvetini bulun.
 
-Implementation notes: Use bit manipulation.
-We start from 1 & left shift the set bit to check if (res<<1)<=number.
-Each left bit shift represents a pow of 2.
+Uygulama notları: Bit manipülasyonu kullanın.
+1'den başlarız ve ayarlanmış biti sola kaydırarak (res<<1)<=sayi olup olmadığını kontrol ederiz.
+Her sol bit kaydırma bir 2'nin kuvvetini temsil eder.
 
-For example:
-number: 15
-res:    1   0b1
+Örneğin:
+sayi: 15
+sonuc: 1   0b1
         2   0b10
         4   0b100
         8   0b1000
-        16  0b10000 (Exit)
+        16  0b10000 (Çıkış)
 """
 
 
-def largest_pow_of_two_le_num(number: int) -> int:
+def en_buyuk_iki_ussu(sayi: int) -> int:
     """
-    Return the largest power of two less than or equal to a number.
+    Verilen bir sayıdan küçük veya ona eşit olan en büyük 2'nin kuvvetini döndürür.
 
-    >>> largest_pow_of_two_le_num(0)
+    >>> en_buyuk_iki_ussu(0)
     0
-    >>> largest_pow_of_two_le_num(1)
+    >>> en_buyuk_iki_ussu(1)
     1
-    >>> largest_pow_of_two_le_num(-1)
+    >>> en_buyuk_iki_ussu(-1)
     0
-    >>> largest_pow_of_two_le_num(3)
+    >>> en_buyuk_iki_ussu(3)
     2
-    >>> largest_pow_of_two_le_num(15)
+    >>> en_buyuk_iki_ussu(15)
     8
-    >>> largest_pow_of_two_le_num(99)
+    >>> en_buyuk_iki_ussu(99)
     64
-    >>> largest_pow_of_two_le_num(178)
+    >>> en_buyuk_iki_ussu(178)
     128
-    >>> largest_pow_of_two_le_num(999999)
+    >>> en_buyuk_iki_ussu(999999)
     524288
-    >>> largest_pow_of_two_le_num(99.9)
+    >>> en_buyuk_iki_ussu(99.9)
     Traceback (most recent call last):
         ...
-    TypeError: Input value must be a 'int' type
+    TypeError: Girdi değeri 'int' türünde olmalıdır
     """
-    if isinstance(number, float):
-        raise TypeError("Input value must be a 'int' type")
-    if number <= 0:
+    if isinstance(sayi, float):
+        raise TypeError("Girdi değeri 'int' türünde olmalıdır")
+    if sayi <= 0:
         return 0
-    res = 1
-    while (res << 1) <= number:
-        res <<= 1
-    return res
+    sonuc = 1
+    while (sonuc << 1) <= sayi:
+        sonuc <<= 1
+    return sonuc
 
 
 if __name__ == "__main__":

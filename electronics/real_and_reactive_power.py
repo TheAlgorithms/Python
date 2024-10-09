@@ -1,46 +1,46 @@
 import math
 
 
-def real_power(apparent_power: float, power_factor: float) -> float:
+def gerçek_güç(görünür_güç: float, güç_çarpanı: float) -> float:
     """
-    Calculate real power from apparent power and power factor.
+    Görünür güç ve güç çarpanından gerçek gücü hesaplayın.
 
-    Examples:
-    >>> real_power(100, 0.9)
+    Örnekler:
+    >>> gerçek_güç(100, 0.9)
     90.0
-    >>> real_power(0, 0.8)
+    >>> gerçek_güç(0, 0.8)
     0.0
-    >>> real_power(100, -0.9)
+    >>> gerçek_güç(100, -0.9)
     -90.0
     """
     if (
-        not isinstance(power_factor, (int, float))
-        or power_factor < -1
-        or power_factor > 1
+        not isinstance(güç_çarpanı, (int, float))
+        or güç_çarpanı < -1
+        or güç_çarpanı > 1
     ):
-        raise ValueError("power_factor must be a valid float value between -1 and 1.")
-    return apparent_power * power_factor
+        raise ValueError("güç_çarpanı -1 ile 1 arasında geçerli bir float değeri olmalıdır.")
+    return görünür_güç * güç_çarpanı
 
 
-def reactive_power(apparent_power: float, power_factor: float) -> float:
+def reaktif_güç(görünür_güç: float, güç_çarpanı: float) -> float:
     """
-    Calculate reactive power from apparent power and power factor.
+    Görünür güç ve güç çarpanından reaktif gücü hesaplayın.
 
-    Examples:
-    >>> reactive_power(100, 0.9)
+    Örnekler:
+    >>> reaktif_güç(100, 0.9)
     43.58898943540673
-    >>> reactive_power(0, 0.8)
+    >>> reaktif_güç(0, 0.8)
     0.0
-    >>> reactive_power(100, -0.9)
+    >>> reaktif_güç(100, -0.9)
     43.58898943540673
     """
     if (
-        not isinstance(power_factor, (int, float))
-        or power_factor < -1
-        or power_factor > 1
+        not isinstance(güç_çarpanı, (int, float))
+        or güç_çarpanı < -1
+        or güç_çarpanı > 1
     ):
-        raise ValueError("power_factor must be a valid float value between -1 and 1.")
-    return apparent_power * math.sqrt(1 - power_factor**2)
+        raise ValueError("güç_çarpanı -1 ile 1 arasında geçerli bir float değeri olmalıdır.")
+    return görünür_güç * math.sqrt(1 - güç_çarpanı**2)
 
 
 if __name__ == "__main__":

@@ -1,172 +1,169 @@
-"""Borůvka's algorithm.
+"""Borůvka algoritması.
 
-Determines the minimum spanning tree (MST) of a graph using the Borůvka's algorithm.
-Borůvka's algorithm is a greedy algorithm for finding a minimum spanning tree in a
-connected graph, or a minimum spanning forest if a graph that is not connected.
+Borůvka algoritması kullanarak bir grafın minimum yayılma ağacını (MST) belirler.
+Borůvka algoritması, bağlı bir grafın minimum yayılma ağacını veya bağlı olmayan bir
+grafın minimum yayılma ormanını bulmak için açgözlü bir algoritmadır.
 
-The time complexity of this algorithm is O(ELogV), where E represents the number
-of edges, while V represents the number of nodes.
-O(number_of_edges Log number_of_nodes)
+Bu algoritmanın zaman karmaşıklığı O(ELogV) olup, burada E kenar sayısını, V ise düğüm
+sayısını temsil eder. O(kenar_sayısı Log düğüm_sayısı)
 
-The space complexity of this algorithm is O(V + E), since we have to keep a couple
-of lists whose sizes are equal to the number of nodes, as well as keep all the
-edges of a graph inside of the data structure itself.
+Bu algoritmanın alan karmaşıklığı O(V + E) olup, düğüm sayısına eşit boyutta birkaç
+liste tutmamız gerektiği ve grafın tüm kenarlarını veri yapısının içinde tutmamız
+gerektiği için bu şekildedir.
 
-Borůvka's algorithm gives us pretty much the same result as other MST Algorithms -
-they all find the minimum spanning tree, and the time complexity is approximately
-the same.
+Borůvka algoritması, diğer MST algoritmalarıyla hemen hemen aynı sonucu verir -
+hepsi minimum yayılma ağacını bulur ve zaman karmaşıklığı yaklaşık olarak aynıdır.
 
-One advantage that Borůvka's algorithm has compared to the alternatives is that it
-doesn't need to presort the edges or maintain a priority queue in order to find the
-minimum spanning tree.
-Even though that doesn't help its complexity, since it still passes the edges logE
-times, it is a bit simpler to code.
+Borůvka algoritmasının alternatiflerine göre bir avantajı, minimum yayılma ağacını
+bulmak için kenarları önceden sıralaması veya bir öncelik kuyruğu tutması
+gerekmemesidir. Bu, karmaşıklığına yardımcı olmasa da, çünkü yine de kenarları logE
+kez geçer, kodlaması biraz daha basittir.
 
-Details: https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm
+Detaylar: https://en.wikipedia.org/wiki/Bor%C5%AFvka%27s_algorithm
 """
 
 from __future__ import annotations
 
 from typing import Any
 
+# Yazar: K. Umut Araz (https://github.com/arazumut)
 
-class Graph:
-    def __init__(self, num_of_nodes: int) -> None:
+
+class Grafik:
+    def __init__(self, düğüm_sayısı: int) -> None:
         """
-        Arguments:
-            num_of_nodes - the number of nodes in the graph
-        Attributes:
-            m_num_of_nodes - the number of nodes in the graph.
-            m_edges - the list of edges.
-            m_component - the dictionary which stores the index of the component which
-            a node belongs to.
+        Argümanlar:
+            düğüm_sayısı - grafikteki düğüm sayısı
+        Özellikler:
+            m_düğüm_sayısı - grafikteki düğüm sayısı.
+            m_kenarlar - kenarların listesi.
+            m_bileşen - bir düğümün ait olduğu bileşenin indeksini saklayan sözlük.
         """
 
-        self.m_num_of_nodes = num_of_nodes
-        self.m_edges: list[list[int]] = []
-        self.m_component: dict[int, int] = {}
+        self.m_düğüm_sayısı = düğüm_sayısı
+        self.m_kenarlar: list[list[int]] = []
+        self.m_bileşen: dict[int, int] = {}
 
-    def add_edge(self, u_node: int, v_node: int, weight: int) -> None:
-        """Adds an edge in the format [first, second, edge weight] to graph."""
+    def kenar_ekle(self, u_düğüm: int, v_düğüm: int, ağırlık: int) -> None:
+        """Grafiğe [ilk, ikinci, kenar ağırlığı] formatında bir kenar ekler."""
 
-        self.m_edges.append([u_node, v_node, weight])
+        self.m_kenarlar.append([u_düğüm, v_düğüm, ağırlık])
 
-    def find_component(self, u_node: int) -> int:
-        """Propagates a new component throughout a given component."""
+    def bileşen_bul(self, u_düğüm: int) -> int:
+        """Belirli bir bileşen boyunca yeni bir bileşen yayar."""
 
-        if self.m_component[u_node] == u_node:
-            return u_node
-        return self.find_component(self.m_component[u_node])
+        if self.m_bileşen[u_düğüm] == u_düğüm:
+            return u_düğüm
+        return self.bileşen_bul(self.m_bileşen[u_düğüm])
 
-    def set_component(self, u_node: int) -> None:
-        """Finds the component index of a given node"""
+    def bileşen_ayarla(self, u_düğüm: int) -> None:
+        """Belirli bir düğümün bileşen indeksini bulur"""
 
-        if self.m_component[u_node] != u_node:
-            for k in self.m_component:
-                self.m_component[k] = self.find_component(k)
+        if self.m_bileşen[u_düğüm] != u_düğüm:
+            for k in self.m_bileşen:
+                self.m_bileşen[k] = self.bileşen_bul(k)
 
-    def union(self, component_size: list[int], u_node: int, v_node: int) -> None:
-        """Union finds the roots of components for two nodes, compares the components
-        in terms of size, and attaches the smaller one to the larger one to form
-        single component"""
+    def birleştir(self, bileşen_boyutu: list[int], u_düğüm: int, v_düğüm: int) -> None:
+        """Birleştirme, iki düğüm için bileşenlerin köklerini bulur, bileşenleri
+        boyut açısından karşılaştırır ve daha küçük olanı daha büyük olana ekleyerek
+        tek bir bileşen oluşturur"""
 
-        if component_size[u_node] <= component_size[v_node]:
-            self.m_component[u_node] = v_node
-            component_size[v_node] += component_size[u_node]
-            self.set_component(u_node)
+        if bileşen_boyutu[u_düğüm] <= bileşen_boyutu[v_düğüm]:
+            self.m_bileşen[u_düğüm] = v_düğüm
+            bileşen_boyutu[v_düğüm] += bileşen_boyutu[u_düğüm]
+            self.bileşen_ayarla(u_düğüm)
 
-        elif component_size[u_node] >= component_size[v_node]:
-            self.m_component[v_node] = self.find_component(u_node)
-            component_size[u_node] += component_size[v_node]
-            self.set_component(v_node)
+        elif bileşen_boyutu[u_düğüm] >= bileşen_boyutu[v_düğüm]:
+            self.m_bileşen[v_düğüm] = self.bileşen_bul(u_düğüm)
+            bileşen_boyutu[u_düğüm] += bileşen_boyutu[v_düğüm]
+            self.bileşen_ayarla(v_düğüm)
 
     def boruvka(self) -> None:
-        """Performs Borůvka's algorithm to find MST."""
+        """MST'yi bulmak için Borůvka algoritmasını uygular."""
 
-        # Initialize additional lists required to algorithm.
-        component_size = []
-        mst_weight = 0
+        # Algoritma için gerekli ek listeleri başlat.
+        bileşen_boyutu = []
+        mst_ağırlığı = 0
 
-        minimum_weight_edge: list[Any] = [-1] * self.m_num_of_nodes
+        minimum_ağırlık_kenarı: list[Any] = [-1] * self.m_düğüm_sayısı
 
-        # A list of components (initialized to all of the nodes)
-        for node in range(self.m_num_of_nodes):
-            self.m_component.update({node: node})
-            component_size.append(1)
+        # Bileşenlerin listesi (tüm düğümlerle başlatılır)
+        for düğüm in range(self.m_düğüm_sayısı):
+            self.m_bileşen.update({düğüm: düğüm})
+            bileşen_boyutu.append(1)
 
-        num_of_components = self.m_num_of_nodes
+        bileşen_sayısı = self.m_düğüm_sayısı
 
-        while num_of_components > 1:
-            for edge in self.m_edges:
-                u, v, w = edge
+        while bileşen_sayısı > 1:
+            for kenar in self.m_kenarlar:
+                u, v, w = kenar
 
-                u_component = self.m_component[u]
-                v_component = self.m_component[v]
+                u_bileşen = self.m_bileşen[u]
+                v_bileşen = self.m_bileşen[v]
 
-                if u_component != v_component:
-                    """If the current minimum weight edge of component u doesn't
-                    exist (is -1), or if it's greater than the edge we're
-                    observing right now, we will assign the value of the edge
-                    we're observing to it.
+                if u_bileşen != v_bileşen:
+                    """Eğer u bileşeninin mevcut minimum ağırlık kenarı
+                    yoksa (yani -1 ise) veya şu anda gözlemlediğimiz
+                    kenardan daha büyükse, gözlemlediğimiz kenarın
+                    değerini ona atarız.
 
-                    If the current minimum weight edge of component v doesn't
-                    exist (is -1), or if it's greater than the edge we're
-                    observing right now, we will assign the value of the edge
-                    we're observing to it"""
-
-                    for component in (u_component, v_component):
+                    Eğer v bileşeninin mevcut minimum ağırlık kenarı
+                    yoksa (yani -1 ise) veya şu anda gözlemlediğimiz
+                    kenardan daha büyükse, gözlemlediğimiz kenarın
+                    değerini ona atarız."""
+                    for bileşen in (u_bileşen, v_bileşen):
                         if (
-                            minimum_weight_edge[component] == -1
-                            or minimum_weight_edge[component][2] > w
+                            minimum_ağırlık_kenarı[bileşen] == -1
+                            or minimum_ağırlık_kenarı[bileşen][2] > w
                         ):
-                            minimum_weight_edge[component] = [u, v, w]
+                            minimum_ağırlık_kenarı[bileşen] = [u, v, w]
 
-            for edge in minimum_weight_edge:
-                if isinstance(edge, list):
-                    u, v, w = edge
+            for kenar in minimum_ağırlık_kenarı:
+                if isinstance(kenar, list):
+                    u, v, w = kenar
 
-                    u_component = self.m_component[u]
-                    v_component = self.m_component[v]
+                    u_bileşen = self.m_bileşen[u]
+                    v_bileşen = self.m_bileşen[v]
 
-                    if u_component != v_component:
-                        mst_weight += w
-                        self.union(component_size, u_component, v_component)
-                        print(f"Added edge [{u} - {v}]\nAdded weight: {w}\n")
-                        num_of_components -= 1
+                    if u_bileşen != v_bileşen:
+                        mst_ağırlığı += w
+                        self.birleştir(bileşen_boyutu, u_bileşen, v_bileşen)
+                        print(f"Kenar eklendi [{u} - {v}]\nEklenen ağırlık: {w}\n")
+                        bileşen_sayısı -= 1
 
-            minimum_weight_edge = [-1] * self.m_num_of_nodes
-        print(f"The total weight of the minimal spanning tree is: {mst_weight}")
+            minimum_ağırlık_kenarı = [-1] * self.m_düğüm_sayısı
+        print(f"Minimum yayılma ağacının toplam ağırlığı: {mst_ağırlığı}")
 
 
 def test_vector() -> None:
     """
-    >>> g = Graph(8)
+    >>> g = Grafik(8)
     >>> for u_v_w in ((0, 1, 10), (0, 2, 6), (0, 3, 5), (1, 3, 15), (2, 3, 4),
     ...    (3, 4, 8), (4, 5, 10), (4, 6, 6), (4, 7, 5), (5, 7, 15), (6, 7, 4)):
-    ...        g.add_edge(*u_v_w)
+    ...        g.kenar_ekle(*u_v_w)
     >>> g.boruvka()
-    Added edge [0 - 3]
-    Added weight: 5
+    Kenar eklendi [0 - 3]
+    Eklenen ağırlık: 5
     <BLANKLINE>
-    Added edge [0 - 1]
-    Added weight: 10
+    Kenar eklendi [0 - 1]
+    Eklenen ağırlık: 10
     <BLANKLINE>
-    Added edge [2 - 3]
-    Added weight: 4
+    Kenar eklendi [2 - 3]
+    Eklenen ağırlık: 4
     <BLANKLINE>
-    Added edge [4 - 7]
-    Added weight: 5
+    Kenar eklendi [4 - 7]
+    Eklenen ağırlık: 5
     <BLANKLINE>
-    Added edge [4 - 5]
-    Added weight: 10
+    Kenar eklendi [4 - 5]
+    Eklenen ağırlık: 10
     <BLANKLINE>
-    Added edge [6 - 7]
-    Added weight: 4
+    Kenar eklendi [6 - 7]
+    Eklenen ağırlık: 4
     <BLANKLINE>
-    Added edge [3 - 4]
-    Added weight: 8
+    Kenar eklendi [3 - 4]
+    Eklenen ağırlık: 8
     <BLANKLINE>
-    The total weight of the minimal spanning tree is: 46
+    Minimum yayılma ağacının toplam ağırlığı: 46
     """
 
 

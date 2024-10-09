@@ -1,36 +1,36 @@
 """
-Author  : Alexander Pantyukhin
-Date    : November 30, 2022
+Yazar  : Alexander Pantyukhin
+Tarih  : 30 Kasım 2022
 
-Task:
-Given two int numbers. Return True these numbers have opposite signs
-or False otherwise.
+Görev:
+İki tamsayı verildiğinde. Bu sayıların zıt işaretlere sahip olup olmadığını True,
+aksi takdirde False döndürün.
 
-Implementation notes: Use bit manipulation.
-Use XOR for two numbers.
+Uygulama notları: Bit manipülasyonu kullanın.
+İki sayı için XOR kullanın.
 """
 
 
-def different_signs(num1: int, num2: int) -> bool:
+def zıt_işaretli_mi(sayi1: int, sayi2: int) -> bool:
     """
-    Return True if numbers have opposite signs False otherwise.
+    Sayıların zıt işaretlere sahip olup olmadığını True, aksi takdirde False döndürür.
 
-    >>> different_signs(1, -1)
+    >>> zıt_işaretli_mi(1, -1)
     True
-    >>> different_signs(1, 1)
+    >>> zıt_işaretli_mi(1, 1)
     False
-    >>> different_signs(1000000000000000000000000000, -1000000000000000000000000000)
+    >>> zıt_işaretli_mi(1000000000000000000000000000, -1000000000000000000000000000)
     True
-    >>> different_signs(-1000000000000000000000000000, 1000000000000000000000000000)
+    >>> zıt_işaretli_mi(-1000000000000000000000000000, 1000000000000000000000000000)
     True
-    >>> different_signs(50, 278)
+    >>> zıt_işaretli_mi(50, 278)
     False
-    >>> different_signs(0, 2)
+    >>> zıt_işaretli_mi(0, 2)
     False
-    >>> different_signs(2, 0)
+    >>> zıt_işaretli_mi(2, 0)
     False
     """
-    return num1 ^ num2 < 0
+    return sayi1 ^ sayi2 < 0
 
 
 if __name__ == "__main__":

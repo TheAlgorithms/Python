@@ -1,63 +1,62 @@
 """
-Given a list of tasks, each with a deadline and reward, calculate which tasks can be
-completed to yield the maximum reward.  Each task takes one unit of time to complete,
-and we can only work on one task at a time.  Once a task has passed its deadline, it
-can no longer be scheduled.
+Bir görev listesi verildiğinde, her birinin bir son tarihi ve ödülü vardır. Hangi görevlerin tamamlanabileceğini ve maksimum ödülü elde etmek için hangi görevlerin seçileceğini hesaplayın. Her görev bir birim zaman alır ve aynı anda yalnızca bir görev üzerinde çalışabiliriz. Bir görev son tarihini geçtiğinde, artık planlanamaz.
 
-Example :
+Örnek:
 tasks_info = [(4, 20), (1, 10), (1, 40), (1, 30)]
-max_tasks will return (2, [2, 0]) -
-Scheduling these tasks would result in a reward of 40 + 20
+max_tasks fonksiyonu (2, [2, 0]) döndürecektir -
+Bu görevlerin planlanması, 40 + 20 ödül elde edilmesini sağlar.
 
-This problem can be solved using the concept of "GREEDY ALGORITHM".
-Time Complexity - O(n log n)
+Bu problem "AÇGÖZLÜ ALGORİMA" kavramı kullanılarak çözülebilir.
+Zaman Karmaşıklığı - O(n log n)
 https://medium.com/@nihardudhat2000/job-sequencing-with-deadline-17ddbb5890b5
 """
+
+#Organised by K. Umut Araz
 
 from dataclasses import dataclass
 from operator import attrgetter
 
 
 @dataclass
-class Task:
-    task_id: int
-    deadline: int
-    reward: int
+class Gorev:
+    gorev_id: int
+    son_tarih: int
+    odul: int
 
 
-def max_tasks(tasks_info: list[tuple[int, int]]) -> list[int]:
+def maksimum_gorevler(gorev_bilgileri: list[tuple[int, int]]) -> list[int]:
     """
-    Create a list of Task objects that are sorted so the highest rewards come first.
-    Return a list of those task ids that can be completed before i becomes too high.
-    >>> max_tasks([(4, 20), (1, 10), (1, 40), (1, 30)])
+    En yüksek ödüllerin öncelikli olarak sıralandığı Gorev nesnelerinin bir listesini oluşturur.
+    i değeri çok yüksek olmadan tamamlanabilecek görevlerin id'lerini döndürür.
+    >>> maksimum_gorevler([(4, 20), (1, 10), (1, 40), (1, 30)])
     [2, 0]
-    >>> max_tasks([(1, 10), (2, 20), (3, 30), (2, 40)])
+    >>> maksimum_gorevler([(1, 10), (2, 20), (3, 30), (2, 40)])
     [3, 2]
-    >>> max_tasks([(9, 10)])
+    >>> maksimum_gorevler([(9, 10)])
     [0]
-    >>> max_tasks([(-9, 10)])
+    >>> maksimum_gorevler([(-9, 10)])
     []
-    >>> max_tasks([])
+    >>> maksimum_gorevler([])
     []
-    >>> max_tasks([(0, 10), (0, 20), (0, 30), (0, 40)])
+    >>> maksimum_gorevler([(0, 10), (0, 20), (0, 30), (0, 40)])
     []
-    >>> max_tasks([(-1, 10), (-2, 20), (-3, 30), (-4, 40)])
+    >>> maksimum_gorevler([(-1, 10), (-2, 20), (-3, 30), (-4, 40)])
     []
     """
-    tasks = sorted(
+    gorevler = sorted(
         (
-            Task(task_id, deadline, reward)
-            for task_id, (deadline, reward) in enumerate(tasks_info)
+            Gorev(gorev_id, son_tarih, odul)
+            for gorev_id, (son_tarih, odul) in enumerate(gorev_bilgileri)
         ),
-        key=attrgetter("reward"),
+        key=attrgetter("odul"),
         reverse=True,
     )
-    return [task.task_id for i, task in enumerate(tasks, start=1) if task.deadline >= i]
+    return [gorev.gorev_id for i, gorev in enumerate(gorevler, start=1) if gorev.son_tarih >= i]
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    print(f"{max_tasks([(4, 20), (1, 10), (1, 40), (1, 30)]) = }")
-    print(f"{max_tasks([(1, 10), (2, 20), (3, 30), (2, 40)]) = }")
+    print(f"{maksimum_gorevler([(4, 20), (1, 10), (1, 40), (1, 30)]) = }")
+    print(f"{maksimum_gorevler([(1, 10), (2, 20), (3, 30), (2, 40)]) = }")

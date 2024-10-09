@@ -1,42 +1,41 @@
 """
-Given a list of stock prices calculate the maximum profit that can be made from a
-single buy and sell of one share of stock.  We only allowed to complete one buy
-transaction and one sell transaction but must buy before we sell.
+Verilen bir hisse senedi fiyatları listesi ile, tek bir alım ve satım işlemiyle elde edilebilecek maksimum karı hesaplayın.
+Sadece bir alım ve bir satım işlemi yapmamıza izin verilir, ancak satmadan önce satın almalıyız.
 
-Example : prices = [7, 1, 5, 3, 6, 4]
-max_profit will return 5 - which is by buying at price 1 and selling at price 6.
+Örnek: fiyatlar = [7, 1, 5, 3, 6, 4]
+max_kar 5 dönecektir - bu, 1 fiyatından alıp 6 fiyatından satarak elde edilir.
 
-This problem can be solved using the concept of "GREEDY ALGORITHM".
+Produced By. K. Umut Araz
 
-We iterate over the price array once, keeping track of the lowest price point
-(buy) and the maximum profit we can get at each point.  The greedy choice at each point
-is to either buy at the current price if it's less than our current buying price, or
-sell at the current price if the profit is more than our current maximum profit.
+Bu problem "AÇGÖZLÜ ALGORİTMA" kavramı kullanılarak çözülebilir.
+
+Fiyat dizisini bir kez iterasyon yaparak, en düşük fiyat noktasını (alım) ve her noktada elde edebileceğimiz maksimum karı takip ederiz.
+Her noktadaki açgözlü seçim, mevcut alım fiyatımızdan daha düşükse mevcut fiyattan satın almak veya kar mevcut maksimum kardan fazlaysa mevcut fiyattan satmaktır.
 """
 
 
-def max_profit(prices: list[int]) -> int:
+def max_kar(fiyatlar: list[int]) -> int:
     """
-    >>> max_profit([7, 1, 5, 3, 6, 4])
+    >>> max_kar([7, 1, 5, 3, 6, 4])
     5
-    >>> max_profit([7, 6, 4, 3, 1])
+    >>> max_kar([7, 6, 4, 3, 1])
     0
     """
-    if not prices:
+    if not fiyatlar:
         return 0
 
-    min_price = prices[0]
-    max_profit: int = 0
+    min_fiyat = fiyatlar[0]
+    max_kar: int = 0
 
-    for price in prices:
-        min_price = min(price, min_price)
-        max_profit = max(price - min_price, max_profit)
+    for fiyat in fiyatlar:
+        min_fiyat = min(fiyat, min_fiyat)
+        max_kar = max(fiyat - min_fiyat, max_kar)
 
-    return max_profit
+    return max_kar
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    print(max_profit([7, 1, 5, 3, 6, 4]))
+    print(max_kar([7, 1, 5, 3, 6, 4]))

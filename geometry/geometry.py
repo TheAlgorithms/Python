@@ -5,254 +5,254 @@ from dataclasses import dataclass, field
 from types import NoneType
 from typing import Self
 
-# Building block classes
+# Produced By K. Umut Araz
+
+# Temel sınıflar
 
 
 @dataclass
-class Angle:
+class Açı:
     """
-    An Angle in degrees (unit of measurement)
+    Derece cinsinden bir açı (ölçü birimi)
 
-    >>> Angle()
-    Angle(degrees=90)
-    >>> Angle(45.5)
-    Angle(degrees=45.5)
-    >>> Angle(-1)
+    >>> Açı()
+    Açı(derece=90)
+    >>> Açı(45.5)
+    Açı(derece=45.5)
+    >>> Açı(-1)
     Traceback (most recent call last):
         ...
-    TypeError: degrees must be a numeric value between 0 and 360.
-    >>> Angle(361)
+    TypeError: derece 0 ile 360 arasında bir sayısal değer olmalıdır.
+    >>> Açı(361)
     Traceback (most recent call last):
         ...
-    TypeError: degrees must be a numeric value between 0 and 360.
+    TypeError: derece 0 ile 360 arasında bir sayısal değer olmalıdır.
     """
 
-    degrees: float = 90
+    derece: float = 90
 
     def __post_init__(self) -> None:
-        if not isinstance(self.degrees, (int, float)) or not 0 <= self.degrees <= 360:
-            raise TypeError("degrees must be a numeric value between 0 and 360.")
+        if not isinstance(self.derece, (int, float)) or not 0 <= self.derece <= 360:
+            raise TypeError("derece 0 ile 360 arasında bir sayısal değer olmalıdır.")
 
 
 @dataclass
-class Side:
+class Kenar:
     """
-    A side of a two dimensional Shape such as Polygon, etc.
-    adjacent_sides: a list of sides which are adjacent to the current side
-    angle: the angle in degrees between each adjacent side
-    length: the length of the current side in meters
+    İki boyutlu bir şeklin kenarı, örneğin çokgen vb.
+    bitişik_kenarlar: mevcut kenara bitişik olan kenarların listesi
+    açı: her bitişik kenar arasındaki açı derece cinsinden
+    uzunluk: mevcut kenarın uzunluğu metre cinsinden
 
-    >>> Side(5)
-    Side(length=5, angle=Angle(degrees=90), next_side=None)
-    >>> Side(5, Angle(45.6))
-    Side(length=5, angle=Angle(degrees=45.6), next_side=None)
-    >>> Side(5, Angle(45.6), Side(1, Angle(2)))  # doctest: +ELLIPSIS
-    Side(length=5, angle=Angle(degrees=45.6), next_side=Side(length=1, angle=Angle(d...
+    >>> Kenar(5)
+    Kenar(uzunluk=5, açı=Açı(derece=90), sonraki_kenar=None)
+    >>> Kenar(5, Açı(45.6))
+    Kenar(uzunluk=5, açı=Açı(derece=45.6), sonraki_kenar=None)
+    >>> Kenar(5, Açı(45.6), Kenar(1, Açı(2)))  # doctest: +ELLIPSIS
+    Kenar(uzunluk=5, açı=Açı(derece=45.6), sonraki_kenar=Kenar(uzunluk=1, açı=Açı(d...
     """
 
-    length: float
-    angle: Angle = field(default_factory=Angle)
-    next_side: Side | None = None
+    uzunluk: float
+    açı: Açı = field(default_factory=Açı)
+    sonraki_kenar: Kenar | None = None
 
     def __post_init__(self) -> None:
-        if not isinstance(self.length, (int, float)) or self.length <= 0:
-            raise TypeError("length must be a positive numeric value.")
-        if not isinstance(self.angle, Angle):
-            raise TypeError("angle must be an Angle object.")
-        if not isinstance(self.next_side, (Side, NoneType)):
-            raise TypeError("next_side must be a Side or None.")
+        if not isinstance(self.uzunluk, (int, float)) or self.uzunluk <= 0:
+            raise TypeError("uzunluk pozitif bir sayısal değer olmalıdır.")
+        if not isinstance(self.açı, Açı):
+            raise TypeError("açı bir Açı nesnesi olmalıdır.")
+        if not isinstance(self.sonraki_kenar, (Kenar, NoneType)):
+            raise TypeError("sonraki_kenar bir Kenar veya None olmalıdır.")
 
 
 @dataclass
-class Ellipse:
+class Elips:
     """
-    A geometric Ellipse on a 2D surface
+    2D yüzeyde geometrik bir elips
 
-    >>> Ellipse(5, 10)
-    Ellipse(major_radius=5, minor_radius=10)
-    >>> Ellipse(5, 10) is Ellipse(5, 10)
+    >>> Elips(5, 10)
+    Elips(büyük_yarıçap=5, küçük_yarıçap=10)
+    >>> Elips(5, 10) is Elips(5, 10)
     False
-    >>> Ellipse(5, 10) == Ellipse(5, 10)
+    >>> Elips(5, 10) == Elips(5, 10)
     True
     """
 
-    major_radius: float
-    minor_radius: float
+    büyük_yarıçap: float
+    küçük_yarıçap: float
 
     @property
-    def area(self) -> float:
+    def alan(self) -> float:
         """
-        >>> Ellipse(5, 10).area
+        >>> Elips(5, 10).alan
         157.07963267948966
         """
-        return math.pi * self.major_radius * self.minor_radius
+        return math.pi * self.büyük_yarıçap * self.küçük_yarıçap
 
     @property
-    def perimeter(self) -> float:
+    def çevre(self) -> float:
         """
-        >>> Ellipse(5, 10).perimeter
+        >>> Elips(5, 10).çevre
         47.12388980384689
         """
-        return math.pi * (self.major_radius + self.minor_radius)
+        return math.pi * (self.büyük_yarıçap + self.küçük_yarıçap)
 
 
-class Circle(Ellipse):
+class Daire(Elips):
     """
-    A geometric Circle on a 2D surface
+    2D yüzeyde geometrik bir daire
 
-    >>> Circle(5)
-    Circle(radius=5)
-    >>> Circle(5) is Circle(5)
+    >>> Daire(5)
+    Daire(yarıçap=5)
+    >>> Daire(5) is Daire(5)
     False
-    >>> Circle(5) == Circle(5)
+    >>> Daire(5) == Daire(5)
     True
-    >>> Circle(5).area
+    >>> Daire(5).alan
     78.53981633974483
-    >>> Circle(5).perimeter
+    >>> Daire(5).çevre
     31.41592653589793
     """
 
-    def __init__(self, radius: float) -> None:
-        super().__init__(radius, radius)
-        self.radius = radius
+    def __init__(self, yarıçap: float) -> None:
+        super().__init__(yarıçap, yarıçap)
+        self.yarıçap = yarıçap
 
     def __repr__(self) -> str:
-        return f"Circle(radius={self.radius})"
+        return f"Daire(yarıçap={self.yarıçap})"
 
     @property
-    def diameter(self) -> float:
+    def çap(self) -> float:
         """
-        >>> Circle(5).diameter
+        >>> Daire(5).çap
         10
         """
-        return self.radius * 2
+        return self.yarıçap * 2
 
-    def max_parts(self, num_cuts: float) -> float:
+    def max_parçalar(self, kesim_sayısı: float) -> float:
         """
-        Return the maximum number of parts that circle can be divided into if cut
-        'num_cuts' times.
+        Dairenin 'kesim_sayısı' kadar kesildiğinde maksimum kaç parçaya bölünebileceğini döndür.
 
-        >>> circle = Circle(5)
-        >>> circle.max_parts(0)
+        >>> daire = Daire(5)
+        >>> daire.max_parçalar(0)
         1.0
-        >>> circle.max_parts(7)
+        >>> daire.max_parçalar(7)
         29.0
-        >>> circle.max_parts(54)
+        >>> daire.max_parçalar(54)
         1486.0
-        >>> circle.max_parts(22.5)
+        >>> daire.max_parçalar(22.5)
         265.375
-        >>> circle.max_parts(-222)
+        >>> daire.max_parçalar(-222)
         Traceback (most recent call last):
             ...
-        TypeError: num_cuts must be a positive numeric value.
-        >>> circle.max_parts("-222")
+        TypeError: kesim_sayısı pozitif bir sayısal değer olmalıdır.
+        >>> daire.max_parçalar("-222")
         Traceback (most recent call last):
             ...
-        TypeError: num_cuts must be a positive numeric value.
+        TypeError: kesim_sayısı pozitif bir sayısal değer olmalıdır.
         """
-        if not isinstance(num_cuts, (int, float)) or num_cuts < 0:
-            raise TypeError("num_cuts must be a positive numeric value.")
-        return (num_cuts + 2 + num_cuts**2) * 0.5
+        if not isinstance(kesim_sayısı, (int, float)) or kesim_sayısı < 0:
+            raise TypeError("kesim_sayısı pozitif bir sayısal değer olmalıdır.")
+        return (kesim_sayısı + 2 + kesim_sayısı**2) * 0.5
 
 
 @dataclass
-class Polygon:
+class Çokgen:
     """
-    An abstract class which represents Polygon on a 2D surface.
+    2D yüzeyde bir çokgeni temsil eden soyut bir sınıf.
 
-    >>> Polygon()
-    Polygon(sides=[])
+    >>> Çokgen()
+    Çokgen(kenarlar=[])
     """
 
-    sides: list[Side] = field(default_factory=list)
+    kenarlar: list[Kenar] = field(default_factory=list)
 
-    def add_side(self, side: Side) -> Self:
+    def kenar_ekle(self, kenar: Kenar) -> Self:
         """
-        >>> Polygon().add_side(Side(5))
-        Polygon(sides=[Side(length=5, angle=Angle(degrees=90), next_side=None)])
+        >>> Çokgen().kenar_ekle(Kenar(5))
+        Çokgen(kenarlar=[Kenar(uzunluk=5, açı=Açı(derece=90), sonraki_kenar=None)])
         """
-        self.sides.append(side)
+        self.kenarlar.append(kenar)
         return self
 
-    def get_side(self, index: int) -> Side:
+    def kenar_al(self, index: int) -> Kenar:
         """
-        >>> Polygon().get_side(0)
+        >>> Çokgen().kenar_al(0)
         Traceback (most recent call last):
             ...
         IndexError: list index out of range
-        >>> Polygon().add_side(Side(5)).get_side(-1)
-        Side(length=5, angle=Angle(degrees=90), next_side=None)
+        >>> Çokgen().kenar_ekle(Kenar(5)).kenar_al(-1)
+        Kenar(uzunluk=5, açı=Açı(derece=90), sonraki_kenar=None)
         """
-        return self.sides[index]
+        return self.kenarlar[index]
 
-    def set_side(self, index: int, side: Side) -> Self:
+    def kenar_ayarla(self, index: int, kenar: Kenar) -> Self:
         """
-        >>> Polygon().set_side(0, Side(5))
+        >>> Çokgen().kenar_ayarla(0, Kenar(5))
         Traceback (most recent call last):
             ...
         IndexError: list assignment index out of range
-        >>> Polygon().add_side(Side(5)).set_side(0, Side(10))
-        Polygon(sides=[Side(length=10, angle=Angle(degrees=90), next_side=None)])
+        >>> Çokgen().kenar_ekle(Kenar(5)).kenar_ayarla(0, Kenar(10))
+        Çokgen(kenarlar=[Kenar(uzunluk=10, açı=Açı(derece=90), sonraki_kenar=None)])
         """
-        self.sides[index] = side
+        self.kenarlar[index] = kenar
         return self
 
 
-class Rectangle(Polygon):
+class Dikdörtgen(Çokgen):
     """
-    A geometric rectangle on a 2D surface.
+    2D yüzeyde geometrik bir dikdörtgen.
 
-    >>> rectangle_one = Rectangle(5, 10)
-    >>> rectangle_one.perimeter()
+    >>> dikdörtgen_bir = Dikdörtgen(5, 10)
+    >>> dikdörtgen_bir.çevre()
     30
-    >>> rectangle_one.area()
+    >>> dikdörtgen_bir.alan()
     50
     """
 
-    def __init__(self, short_side_length: float, long_side_length: float) -> None:
+    def __init__(self, kısa_kenar_uzunluğu: float, uzun_kenar_uzunluğu: float) -> None:
         super().__init__()
-        self.short_side_length = short_side_length
-        self.long_side_length = long_side_length
+        self.kısa_kenar_uzunluğu = kısa_kenar_uzunluğu
+        self.uzun_kenar_uzunluğu = uzun_kenar_uzunluğu
         self.post_init()
 
     def post_init(self) -> None:
         """
-        >>> Rectangle(5, 10)  # doctest: +NORMALIZE_WHITESPACE
-        Rectangle(sides=[Side(length=5, angle=Angle(degrees=90), next_side=None),
-        Side(length=10, angle=Angle(degrees=90), next_side=None)])
+        >>> Dikdörtgen(5, 10)  # doctest: +NORMALIZE_WHITESPACE
+        Dikdörtgen(kenarlar=[Kenar(uzunluk=5, açı=Açı(derece=90), sonraki_kenar=None),
+        Kenar(uzunluk=10, açı=Açı(derece=90), sonraki_kenar=None)])
         """
-        self.short_side = Side(self.short_side_length)
-        self.long_side = Side(self.long_side_length)
-        super().add_side(self.short_side)
-        super().add_side(self.long_side)
+        self.kısa_kenar = Kenar(self.kısa_kenar_uzunluğu)
+        self.uzun_kenar = Kenar(self.uzun_kenar_uzunluğu)
+        super().kenar_ekle(self.kısa_kenar)
+        super().kenar_ekle(self.uzun_kenar)
 
-    def perimeter(self) -> float:
-        return (self.short_side.length + self.long_side.length) * 2
+    def çevre(self) -> float:
+        return (self.kısa_kenar.uzunluk + self.uzun_kenar.uzunluk) * 2
 
-    def area(self) -> float:
-        return self.short_side.length * self.long_side.length
+    def alan(self) -> float:
+        return self.kısa_kenar.uzunluk * self.uzun_kenar.uzunluk
 
 
 @dataclass
-class Square(Rectangle):
+class Kare(Dikdörtgen):
     """
-    a structure which represents a
-    geometrical square on a 2D surface
-    >>> square_one = Square(5)
-    >>> square_one.perimeter()
+    2D yüzeyde geometrik bir kareyi temsil eden bir yapı
+    >>> kare_bir = Kare(5)
+    >>> kare_bir.çevre()
     20
-    >>> square_one.area()
+    >>> kare_bir.alan()
     25
     """
 
-    def __init__(self, side_length: float) -> None:
-        super().__init__(side_length, side_length)
+    def __init__(self, kenar_uzunluğu: float) -> None:
+        super().__init__(kenar_uzunluğu, kenar_uzunluğu)
 
-    def perimeter(self) -> float:
-        return super().perimeter()
+    def çevre(self) -> float:
+        return super().çevre()
 
-    def area(self) -> float:
-        return super().area()
+    def alan(self) -> float:
+        return super().alan()
 
 
 if __name__ == "__main__":

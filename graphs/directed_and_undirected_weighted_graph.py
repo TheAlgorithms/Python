@@ -3,487 +3,479 @@ from math import floor
 from random import random
 from time import time
 
-# the default weight is 1 if not assigned but all the implementation is weighted
+# varsayılan ağırlık atanmazsa 1'dir, ancak tüm uygulama ağırlıklıdır
 
 
-class DirectedGraph:
+class YonluGrafik:
     def __init__(self):
-        self.graph = {}
+        self.grafik = {}
 
-    # adding vertices and edges
-    # adding the weight is optional
-    # handles repetition
-    def add_pair(self, u, v, w=1):
-        if self.graph.get(u):
-            if self.graph[u].count([w, v]) == 0:
-                self.graph[u].append([w, v])
+    # düğümler ve kenarlar ekleme
+    # ağırlık eklemek isteğe bağlıdır
+    # tekrarları yönetir
+    def cift_ekle(self, u, v, w=1):
+        if self.grafik.get(u):
+            if self.grafik[u].count([w, v]) == 0:
+                self.grafik[u].append([w, v])
         else:
-            self.graph[u] = [[w, v]]
-        if not self.graph.get(v):
-            self.graph[v] = []
+            self.grafik[u] = [[w, v]]
+        if not self.grafik.get(v):
+            self.grafik[v] = []
 
-    def all_nodes(self):
-        return list(self.graph)
+    def tum_dugumler(self):
+        return list(self.grafik)
 
-    # handles if the input does not exist
-    def remove_pair(self, u, v):
-        if self.graph.get(u):
-            for _ in self.graph[u]:
+    # giriş yoksa yönetir
+    def cift_sil(self, u, v):
+        if self.grafik.get(u):
+            for _ in self.grafik[u]:
                 if _[1] == v:
-                    self.graph[u].remove(_)
+                    self.grafik[u].remove(_)
 
-    # if no destination is meant the default value is -1
+    # eğer hedef belirtilmemişse varsayılan değer -1'dir
     def dfs(self, s=-2, d=-1):
         if s == d:
             return []
-        stack = []
-        visited = []
+        yigin = []
+        ziyaret_edilen = []
         if s == -2:
-            s = next(iter(self.graph))
-        stack.append(s)
-        visited.append(s)
+            s = next(iter(self.grafik))
+        yigin.append(s)
+        ziyaret_edilen.append(s)
         ss = s
 
         while True:
-            # check if there is any non isolated nodes
-            if len(self.graph[s]) != 0:
+            # izole olmayan düğümler olup olmadığını kontrol et
+            if len(self.grafik[s]) != 0:
                 ss = s
-                for node in self.graph[s]:
-                    if visited.count(node[1]) < 1:
-                        if node[1] == d:
-                            visited.append(d)
-                            return visited
+                for dugum in self.grafik[s]:
+                    if ziyaret_edilen.count(dugum[1]) < 1:
+                        if dugum[1] == d:
+                            ziyaret_edilen.append(d)
+                            return ziyaret_edilen
                         else:
-                            stack.append(node[1])
-                            visited.append(node[1])
-                            ss = node[1]
+                            yigin.append(dugum[1])
+                            ziyaret_edilen.append(dugum[1])
+                            ss = dugum[1]
                             break
 
-            # check if all the children are visited
+            # tüm çocukların ziyaret edilip edilmediğini kontrol et
             if s == ss:
-                stack.pop()
-                if len(stack) != 0:
-                    s = stack[len(stack) - 1]
+                yigin.pop()
+                if len(yigin) != 0:
+                    s = yigin[len(yigin) - 1]
             else:
                 s = ss
 
-            # check if se have reached the starting point
-            if len(stack) == 0:
-                return visited
+            # başlangıç noktasına ulaşıp ulaşmadığımızı kontrol et
+            if len(yigin) == 0:
+                return ziyaret_edilen
 
-    # c is the count of nodes you want and if you leave it or pass -1 to the function
-    # the count will be random from 10 to 10000
-    def fill_graph_randomly(self, c=-1):
+    # c, istediğiniz düğüm sayısıdır ve eğer bırakır veya fonksiyona -1 geçirirseniz
+    # sayı rastgele 10 ile 10000 arasında olacaktır
+    def grafiği_rastgele_doldur(self, c=-1):
         if c == -1:
             c = floor(random() * 10000) + 10
         for i in range(c):
-            # every vertex has max 100 edges
+            # her düğümün maksimum 100 kenarı vardır
             for _ in range(floor(random() * 102) + 1):
                 n = floor(random() * c) + 1
                 if n != i:
-                    self.add_pair(i, n, 1)
+                    self.cift_ekle(i, n, 1)
 
     def bfs(self, s=-2):
         d = deque()
-        visited = []
+        ziyaret_edilen = []
         if s == -2:
-            s = next(iter(self.graph))
+            s = next(iter(self.grafik))
         d.append(s)
-        visited.append(s)
+        ziyaret_edilen.append(s)
         while d:
             s = d.popleft()
-            if len(self.graph[s]) != 0:
-                for node in self.graph[s]:
-                    if visited.count(node[1]) < 1:
-                        d.append(node[1])
-                        visited.append(node[1])
-        return visited
+            if len(self.grafik[s]) != 0:
+                for dugum in self.grafik[s]:
+                    if ziyaret_edilen.count(dugum[1]) < 1:
+                        d.append(dugum[1])
+                        ziyaret_edilen.append(dugum[1])
+        return ziyaret_edilen
 
-    def in_degree(self, u):
-        count = 0
-        for x in self.graph:
-            for y in self.graph[x]:
+    def giris_derecesi(self, u):
+        sayac = 0
+        for x in self.grafik:
+            for y in self.grafik[x]:
                 if y[1] == u:
-                    count += 1
-        return count
+                    sayac += 1
+        return sayac
 
-    def out_degree(self, u):
-        return len(self.graph[u])
+    def cikis_derecesi(self, u):
+        return len(self.grafik[u])
 
-    def topological_sort(self, s=-2):
-        stack = []
-        visited = []
+    def topolojik_siralama(self, s=-2):
+        yigin = []
+        ziyaret_edilen = []
         if s == -2:
-            s = next(iter(self.graph))
-        stack.append(s)
-        visited.append(s)
+            s = next(iter(self.grafik))
+        yigin.append(s)
+        ziyaret_edilen.append(s)
         ss = s
-        sorted_nodes = []
+        sirali_dugumler = []
 
         while True:
-            # check if there is any non isolated nodes
-            if len(self.graph[s]) != 0:
+            # izole olmayan düğümler olup olmadığını kontrol et
+            if len(self.grafik[s]) != 0:
                 ss = s
-                for node in self.graph[s]:
-                    if visited.count(node[1]) < 1:
-                        stack.append(node[1])
-                        visited.append(node[1])
-                        ss = node[1]
+                for dugum in self.grafik[s]:
+                    if ziyaret_edilen.count(dugum[1]) < 1:
+                        yigin.append(dugum[1])
+                        ziyaret_edilen.append(dugum[1])
+                        ss = dugum[1]
                         break
 
-            # check if all the children are visited
+            # tüm çocukların ziyaret edilip edilmediğini kontrol et
             if s == ss:
-                sorted_nodes.append(stack.pop())
-                if len(stack) != 0:
-                    s = stack[len(stack) - 1]
+                sirali_dugumler.append(yigin.pop())
+                if len(yigin) != 0:
+                    s = yigin[len(yigin) - 1]
             else:
                 s = ss
 
-            # check if se have reached the starting point
-            if len(stack) == 0:
-                return sorted_nodes
+            # başlangıç noktasına ulaşıp ulaşmadığımızı kontrol et
+            if len(yigin) == 0:
+                return sirali_dugumler
 
-    def cycle_nodes(self):
-        stack = []
-        visited = []
-        s = next(iter(self.graph))
-        stack.append(s)
-        visited.append(s)
-        parent = -2
-        indirect_parents = []
+    def dongu_dugumleri(self):
+        yigin = []
+        ziyaret_edilen = []
+        s = next(iter(self.grafik))
+        yigin.append(s)
+        ziyaret_edilen.append(s)
+        ebeveyn = -2
+        dolayli_ebeveynler = []
         ss = s
-        on_the_way_back = False
-        anticipating_nodes = set()
+        geri_donuste = False
+        beklenen_dugumler = set()
 
         while True:
-            # check if there is any non isolated nodes
-            if len(self.graph[s]) != 0:
+            # izole olmayan düğümler olup olmadığını kontrol et
+            if len(self.grafik[s]) != 0:
                 ss = s
-                for node in self.graph[s]:
+                for dugum in self.grafik[s]:
                     if (
-                        visited.count(node[1]) > 0
-                        and node[1] != parent
-                        and indirect_parents.count(node[1]) > 0
-                        and not on_the_way_back
+                        ziyaret_edilen.count(dugum[1]) > 0
+                        and dugum[1] != ebeveyn
+                        and dolayli_ebeveynler.count(dugum[1]) > 0
+                        and not geri_donuste
                     ):
-                        len_stack = len(stack) - 1
-                        while len_stack >= 0:
-                            if stack[len_stack] == node[1]:
-                                anticipating_nodes.add(node[1])
+                        yigin_uzunluk = len(yigin) - 1
+                        while yigin_uzunluk >= 0:
+                            if yigin[yigin_uzunluk] == dugum[1]:
+                                beklenen_dugumler.add(dugum[1])
                                 break
                             else:
-                                anticipating_nodes.add(stack[len_stack])
-                                len_stack -= 1
-                    if visited.count(node[1]) < 1:
-                        stack.append(node[1])
-                        visited.append(node[1])
-                        ss = node[1]
+                                beklenen_dugumler.add(yigin[yigin_uzunluk])
+                                yigin_uzunluk -= 1
+                    if ziyaret_edilen.count(dugum[1]) < 1:
+                        yigin.append(dugum[1])
+                        ziyaret_edilen.append(dugum[1])
+                        ss = dugum[1]
                         break
 
-            # check if all the children are visited
+            # tüm çocukların ziyaret edilip edilmediğini kontrol et
             if s == ss:
-                stack.pop()
-                on_the_way_back = True
-                if len(stack) != 0:
-                    s = stack[len(stack) - 1]
+                yigin.pop()
+                geri_donuste = True
+                if len(yigin) != 0:
+                    s = yigin[len(yigin) - 1]
             else:
-                on_the_way_back = False
-                indirect_parents.append(parent)
-                parent = s
+                geri_donuste = False
+                dolayli_ebeveynler.append(ebeveyn)
+                ebeveyn = s
                 s = ss
 
-            # check if se have reached the starting point
-            if len(stack) == 0:
-                return list(anticipating_nodes)
+            # başlangıç noktasına ulaşıp ulaşmadığımızı kontrol et
+            if len(yigin) == 0:
+                return list(beklenen_dugumler)
 
-    def has_cycle(self):
-        stack = []
-        visited = []
-        s = next(iter(self.graph))
-        stack.append(s)
-        visited.append(s)
-        parent = -2
-        indirect_parents = []
+    def dongu_var_mi(self):
+        yigin = []
+        ziyaret_edilen = []
+        s = next(iter(self.grafik))
+        yigin.append(s)
+        ziyaret_edilen.append(s)
+        ebeveyn = -2
+        dolayli_ebeveynler = []
         ss = s
-        on_the_way_back = False
-        anticipating_nodes = set()
+        geri_donuste = False
 
         while True:
-            # check if there is any non isolated nodes
-            if len(self.graph[s]) != 0:
+            # izole olmayan düğümler olup olmadığını kontrol et
+            if len(self.grafik[s]) != 0:
                 ss = s
-                for node in self.graph[s]:
+                for dugum in self.grafik[s]:
                     if (
-                        visited.count(node[1]) > 0
-                        and node[1] != parent
-                        and indirect_parents.count(node[1]) > 0
-                        and not on_the_way_back
+                        ziyaret_edilen.count(dugum[1]) > 0
+                        and dugum[1] != ebeveyn
+                        and dolayli_ebeveynler.count(dugum[1]) > 0
+                        and not geri_donuste
                     ):
-                        len_stack_minus_one = len(stack) - 1
-                        while len_stack_minus_one >= 0:
-                            if stack[len_stack_minus_one] == node[1]:
-                                anticipating_nodes.add(node[1])
-                                break
-                            else:
+                        yigin_uzunluk_eksi_bir = len(yigin) - 1
+                        while yigin_uzunluk_eksi_bir >= 0:
+                            if yigin[yigin_uzunluk_eksi_bir] == dugum[1]:
                                 return True
-                    if visited.count(node[1]) < 1:
-                        stack.append(node[1])
-                        visited.append(node[1])
-                        ss = node[1]
+                    if ziyaret_edilen.count(dugum[1]) < 1:
+                        yigin.append(dugum[1])
+                        ziyaret_edilen.append(dugum[1])
+                        ss = dugum[1]
                         break
 
-            # check if all the children are visited
+            # tüm çocukların ziyaret edilip edilmediğini kontrol et
             if s == ss:
-                stack.pop()
-                on_the_way_back = True
-                if len(stack) != 0:
-                    s = stack[len(stack) - 1]
+                yigin.pop()
+                geri_donuste = True
+                if len(yigin) != 0:
+                    s = yigin[len(yigin) - 1]
             else:
-                on_the_way_back = False
-                indirect_parents.append(parent)
-                parent = s
+                geri_donuste = False
+                dolayli_ebeveynler.append(ebeveyn)
+                ebeveyn = s
                 s = ss
 
-            # check if se have reached the starting point
-            if len(stack) == 0:
+            # başlangıç noktasına ulaşıp ulaşmadığımızı kontrol et
+            if len(yigin) == 0:
                 return False
 
-    def dfs_time(self, s=-2, e=-1):
-        begin = time()
+    def dfs_suresi(self, s=-2, e=-1):
+        baslangic = time()
         self.dfs(s, e)
-        end = time()
-        return end - begin
+        bitis = time()
+        return bitis - baslangic
 
-    def bfs_time(self, s=-2):
-        begin = time()
+    def bfs_suresi(self, s=-2):
+        baslangic = time()
         self.bfs(s)
-        end = time()
-        return end - begin
+        bitis = time()
+        return bitis - baslangic
 
 
-class Graph:
+class Grafik:
     def __init__(self):
-        self.graph = {}
+        self.grafik = {}
 
-    # adding vertices and edges
-    # adding the weight is optional
-    # handles repetition
-    def add_pair(self, u, v, w=1):
-        # check if the u exists
-        if self.graph.get(u):
-            # if there already is a edge
-            if self.graph[u].count([w, v]) == 0:
-                self.graph[u].append([w, v])
+    # düğümler ve kenarlar ekleme
+    # ağırlık eklemek isteğe bağlıdır
+    # tekrarları yönetir
+    def cift_ekle(self, u, v, w=1):
+        # u'nun var olup olmadığını kontrol et
+        if self.grafik.get(u):
+            # zaten bir kenar varsa
+            if self.grafik[u].count([w, v]) == 0:
+                self.grafik[u].append([w, v])
         else:
-            # if u does not exist
-            self.graph[u] = [[w, v]]
-        # add the other way
-        if self.graph.get(v):
-            # if there already is a edge
-            if self.graph[v].count([w, u]) == 0:
-                self.graph[v].append([w, u])
+            # u yoksa
+            self.grafik[u] = [[w, v]]
+        # diğer yolu ekle
+        if self.grafik.get(v):
+            # zaten bir kenar varsa
+            if self.grafik[v].count([w, u]) == 0:
+                self.grafik[v].append([w, u])
         else:
-            # if u does not exist
-            self.graph[v] = [[w, u]]
+            # u yoksa
+            self.grafik[v] = [[w, u]]
 
-    # handles if the input does not exist
-    def remove_pair(self, u, v):
-        if self.graph.get(u):
-            for _ in self.graph[u]:
+    # giriş yoksa yönetir
+    def cift_sil(self, u, v):
+        if self.grafik.get(u):
+            for _ in self.grafik[u]:
                 if _[1] == v:
-                    self.graph[u].remove(_)
-        # the other way round
-        if self.graph.get(v):
-            for _ in self.graph[v]:
+                    self.grafik[u].remove(_)
+        # diğer yolu da sil
+        if self.grafik.get(v):
+            for _ in self.grafik[v]:
                 if _[1] == u:
-                    self.graph[v].remove(_)
+                    self.grafik[v].remove(_)
 
-    # if no destination is meant the default value is -1
+    # eğer hedef belirtilmemişse varsayılan değer -1'dir
     def dfs(self, s=-2, d=-1):
         if s == d:
             return []
-        stack = []
-        visited = []
+        yigin = []
+        ziyaret_edilen = []
         if s == -2:
-            s = next(iter(self.graph))
-        stack.append(s)
-        visited.append(s)
+            s = next(iter(self.grafik))
+        yigin.append(s)
+        ziyaret_edilen.append(s)
         ss = s
 
         while True:
-            # check if there is any non isolated nodes
-            if len(self.graph[s]) != 0:
+            # izole olmayan düğümler olup olmadığını kontrol et
+            if len(self.grafik[s]) != 0:
                 ss = s
-                for node in self.graph[s]:
-                    if visited.count(node[1]) < 1:
-                        if node[1] == d:
-                            visited.append(d)
-                            return visited
+                for dugum in self.grafik[s]:
+                    if ziyaret_edilen.count(dugum[1]) < 1:
+                        if dugum[1] == d:
+                            ziyaret_edilen.append(d)
+                            return ziyaret_edilen
                         else:
-                            stack.append(node[1])
-                            visited.append(node[1])
-                            ss = node[1]
+                            yigin.append(dugum[1])
+                            ziyaret_edilen.append(dugum[1])
+                            ss = dugum[1]
                             break
 
-            # check if all the children are visited
+            # tüm çocukların ziyaret edilip edilmediğini kontrol et
             if s == ss:
-                stack.pop()
-                if len(stack) != 0:
-                    s = stack[len(stack) - 1]
+                yigin.pop()
+                if len(yigin) != 0:
+                    s = yigin[len(yigin) - 1]
             else:
                 s = ss
 
-            # check if se have reached the starting point
-            if len(stack) == 0:
-                return visited
+            # başlangıç noktasına ulaşıp ulaşmadığımızı kontrol et
+            if len(yigin) == 0:
+                return ziyaret_edilen
 
-    # c is the count of nodes you want and if you leave it or pass -1 to the function
-    # the count will be random from 10 to 10000
-    def fill_graph_randomly(self, c=-1):
+    # c, istediğiniz düğüm sayısıdır ve eğer bırakır veya fonksiyona -1 geçirirseniz
+    # sayı rastgele 10 ile 10000 arasında olacaktır
+    def grafiği_rastgele_doldur(self, c=-1):
         if c == -1:
             c = floor(random() * 10000) + 10
         for i in range(c):
-            # every vertex has max 100 edges
+            # her düğümün maksimum 100 kenarı vardır
             for _ in range(floor(random() * 102) + 1):
                 n = floor(random() * c) + 1
                 if n != i:
-                    self.add_pair(i, n, 1)
+                    self.cift_ekle(i, n, 1)
 
     def bfs(self, s=-2):
         d = deque()
-        visited = []
+        ziyaret_edilen = []
         if s == -2:
-            s = next(iter(self.graph))
+            s = next(iter(self.grafik))
         d.append(s)
-        visited.append(s)
+        ziyaret_edilen.append(s)
         while d:
             s = d.popleft()
-            if len(self.graph[s]) != 0:
-                for node in self.graph[s]:
-                    if visited.count(node[1]) < 1:
-                        d.append(node[1])
-                        visited.append(node[1])
-        return visited
+            if len(self.grafik[s]) != 0:
+                for dugum in self.grafik[s]:
+                    if ziyaret_edilen.count(dugum[1]) < 1:
+                        d.append(dugum[1])
+                        ziyaret_edilen.append(dugum[1])
+        return ziyaret_edilen
 
-    def degree(self, u):
-        return len(self.graph[u])
+    def derece(self, u):
+        return len(self.grafik[u])
 
-    def cycle_nodes(self):
-        stack = []
-        visited = []
-        s = next(iter(self.graph))
-        stack.append(s)
-        visited.append(s)
-        parent = -2
-        indirect_parents = []
+    def dongu_dugumleri(self):
+        yigin = []
+        ziyaret_edilen = []
+        s = next(iter(self.grafik))
+        yigin.append(s)
+        ziyaret_edilen.append(s)
+        ebeveyn = -2
+        dolayli_ebeveynler = []
         ss = s
-        on_the_way_back = False
-        anticipating_nodes = set()
+        geri_donuste = False
+        beklenen_dugumler = set()
 
         while True:
-            # check if there is any non isolated nodes
-            if len(self.graph[s]) != 0:
+            # izole olmayan düğümler olup olmadığını kontrol et
+            if len(self.grafik[s]) != 0:
                 ss = s
-                for node in self.graph[s]:
+                for dugum in self.grafik[s]:
                     if (
-                        visited.count(node[1]) > 0
-                        and node[1] != parent
-                        and indirect_parents.count(node[1]) > 0
-                        and not on_the_way_back
+                        ziyaret_edilen.count(dugum[1]) > 0
+                        and dugum[1] != ebeveyn
+                        and dolayli_ebeveynler.count(dugum[1]) > 0
+                        and not geri_donuste
                     ):
-                        len_stack = len(stack) - 1
-                        while len_stack >= 0:
-                            if stack[len_stack] == node[1]:
-                                anticipating_nodes.add(node[1])
+                        yigin_uzunluk = len(yigin) - 1
+                        while yigin_uzunluk >= 0:
+                            if yigin[yigin_uzunluk] == dugum[1]:
+                                beklenen_dugumler.add(dugum[1])
                                 break
                             else:
-                                anticipating_nodes.add(stack[len_stack])
-                                len_stack -= 1
-                    if visited.count(node[1]) < 1:
-                        stack.append(node[1])
-                        visited.append(node[1])
-                        ss = node[1]
+                                beklenen_dugumler.add(yigin[yigin_uzunluk])
+                                yigin_uzunluk -= 1
+                    if ziyaret_edilen.count(dugum[1]) < 1:
+                        yigin.append(dugum[1])
+                        ziyaret_edilen.append(dugum[1])
+                        ss = dugum[1]
                         break
 
-            # check if all the children are visited
+            # tüm çocukların ziyaret edilip edilmediğini kontrol et
             if s == ss:
-                stack.pop()
-                on_the_way_back = True
-                if len(stack) != 0:
-                    s = stack[len(stack) - 1]
+                yigin.pop()
+                geri_donuste = True
+                if len(yigin) != 0:
+                    s = yigin[len(yigin) - 1]
             else:
-                on_the_way_back = False
-                indirect_parents.append(parent)
-                parent = s
+                geri_donuste = False
+                dolayli_ebeveynler.append(ebeveyn)
+                ebeveyn = s
                 s = ss
 
-            # check if se have reached the starting point
-            if len(stack) == 0:
-                return list(anticipating_nodes)
+            # başlangıç noktasına ulaşıp ulaşmadığımızı kontrol et
+            if len(yigin) == 0:
+                return list(beklenen_dugumler)
 
-    def has_cycle(self):
-        stack = []
-        visited = []
-        s = next(iter(self.graph))
-        stack.append(s)
-        visited.append(s)
-        parent = -2
-        indirect_parents = []
+    def dongu_var_mi(self):
+        yigin = []
+        ziyaret_edilen = []
+        s = next(iter(self.grafik))
+        yigin.append(s)
+        ziyaret_edilen.append(s)
+        ebeveyn = -2
+        dolayli_ebeveynler = []
         ss = s
-        on_the_way_back = False
-        anticipating_nodes = set()
+        geri_donuste = False
 
         while True:
-            # check if there is any non isolated nodes
-            if len(self.graph[s]) != 0:
+            # izole olmayan düğümler olup olmadığını kontrol et
+            if len(self.grafik[s]) != 0:
                 ss = s
-                for node in self.graph[s]:
+                for dugum in self.grafik[s]:
                     if (
-                        visited.count(node[1]) > 0
-                        and node[1] != parent
-                        and indirect_parents.count(node[1]) > 0
-                        and not on_the_way_back
+                        ziyaret_edilen.count(dugum[1]) > 0
+                        and dugum[1] != ebeveyn
+                        and dolayli_ebeveynler.count(dugum[1]) > 0
+                        and not geri_donuste
                     ):
-                        len_stack_minus_one = len(stack) - 1
-                        while len_stack_minus_one >= 0:
-                            if stack[len_stack_minus_one] == node[1]:
-                                anticipating_nodes.add(node[1])
-                                break
-                            else:
+                        yigin_uzunluk_eksi_bir = len(yigin) - 1
+                        while yigin_uzunluk_eksi_bir >= 0:
+                            if yigin[yigin_uzunluk_eksi_bir] == dugum[1]:
                                 return True
-                    if visited.count(node[1]) < 1:
-                        stack.append(node[1])
-                        visited.append(node[1])
-                        ss = node[1]
+                    if ziyaret_edilen.count(dugum[1]) < 1:
+                        yigin.append(dugum[1])
+                        ziyaret_edilen.append(dugum[1])
+                        ss = dugum[1]
                         break
 
-            # check if all the children are visited
+            # tüm çocukların ziyaret edilip edilmediğini kontrol et
             if s == ss:
-                stack.pop()
-                on_the_way_back = True
-                if len(stack) != 0:
-                    s = stack[len(stack) - 1]
+                yigin.pop()
+                geri_donuste = True
+                if len(yigin) != 0:
+                    s = yigin[len(yigin) - 1]
             else:
-                on_the_way_back = False
-                indirect_parents.append(parent)
-                parent = s
+                geri_donuste = False
+                dolayli_ebeveynler.append(ebeveyn)
+                ebeveyn = s
                 s = ss
 
-            # check if se have reached the starting point
-            if len(stack) == 0:
+            # başlangıç noktasına ulaşıp ulaşmadığımızı kontrol et
+            if len(yigin) == 0:
                 return False
 
-    def all_nodes(self):
-        return list(self.graph)
+    def tum_dugumler(self):
+        return list(self.grafik)
 
-    def dfs_time(self, s=-2, e=-1):
-        begin = time()
+    def dfs_suresi(self, s=-2, e=-1):
+        baslangic = time()
         self.dfs(s, e)
-        end = time()
-        return end - begin
+        bitis = time()
+        return bitis - baslangic
 
-    def bfs_time(self, s=-2):
-        begin = time()
+    def bfs_suresi(self, s=-2):
+        baslangic = time()
         self.bfs(s)
-        end = time()
-        return end - begin
+        bitis = time()
+        return bitis - baslangic

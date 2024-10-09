@@ -1,208 +1,193 @@
 """
-This module provides two implementations for the rod-cutting problem:
-1. A naive recursive implementation which has an exponential runtime
-2. Two dynamic programming implementations which have quadratic runtime
+Bu modül, çubuk kesme problemi için iki farklı uygulama sağlar:
+1. Üstel çalışma zamanına sahip olan naif özyinelemeli bir uygulama
+2. Kare çalışma zamanına sahip iki dinamik programlama uygulaması
 
-The rod-cutting problem is the problem of finding the maximum possible revenue
-obtainable from a rod of length ``n`` given a list of prices for each integral piece
-of the rod. The maximum revenue can thus be obtained by cutting the rod and selling the
-pieces separately or not cutting it at all if the price of it is the maximum obtainable.
+Çubuk kesme problemi, her bir tam sayı uzunluğundaki çubuk parçaları için verilen fiyat listesine göre
+bir çubuktan elde edilebilecek maksimum geliri bulma problemidir. Maksimum gelir, çubuğu kesip parçaları
+ayrı ayrı satarak veya çubuğu hiç kesmeden elde edilebilir.
 
 """
 
 
-def naive_cut_rod_recursive(n: int, prices: list):
+def naif_cubuk_kesme_ozinelemeli(n: int, fiyatlar: list) -> int:
     """
-    Solves the rod-cutting problem via naively without using the benefit of dynamic
-    programming. The results is the same sub-problems are solved several times
-    leading to an exponential runtime
+    Dinamik programlamanın avantajını kullanmadan naif bir şekilde çubuk kesme problemini çözer.
+    Sonuç olarak, aynı alt problemler birden çok kez çözülür ve bu da üstel çalışma zamanına yol açar.
 
-    Runtime: O(2^n)
+    Çalışma Zamanı: O(2^n)
 
-    Arguments
+    Parametreler
     -------
-    n: int, the length of the rod
-    prices: list, the prices for each piece of rod. ``p[i-i]`` is the
-    price for a rod of length ``i``
+    n: int, çubuğun uzunluğu
+    fiyatlar: list, her bir çubuk parçasının fiyatları. ``fiyatlar[i-1]`` uzunluğu ``i`` olan bir çubuğun fiyatıdır
 
-    Returns
+    Dönüş
     -------
-    The maximum revenue obtainable for a rod of length n given the list of prices
-    for each piece.
+    Verilen fiyat listesine göre n uzunluğundaki bir çubuk için elde edilebilecek maksimum gelir
 
-    Examples
+    Örnekler
     --------
-    >>> naive_cut_rod_recursive(4, [1, 5, 8, 9])
+    >>> naif_cubuk_kesme_ozinelemeli(4, [1, 5, 8, 9])
     10
-    >>> naive_cut_rod_recursive(10, [1, 5, 8, 9, 10, 17, 17, 20, 24, 30])
+    >>> naif_cubuk_kesme_ozinelemeli(10, [1, 5, 8, 9, 10, 17, 17, 20, 24, 30])
     30
     """
 
-    _enforce_args(n, prices)
+    _argumanlari_kontrol_et(n, fiyatlar)
     if n == 0:
         return 0
-    max_revue = float("-inf")
+    max_gelir = float("-inf")
     for i in range(1, n + 1):
-        max_revue = max(
-            max_revue, prices[i - 1] + naive_cut_rod_recursive(n - i, prices)
+        max_gelir = max(
+            max_gelir, fiyatlar[i - 1] + naif_cubuk_kesme_ozinelemeli(n - i, fiyatlar)
         )
 
-    return max_revue
+    return max_gelir
 
 
-def top_down_cut_rod(n: int, prices: list):
+def yukaridan_asagiya_cubuk_kesme(n: int, fiyatlar: list) -> int:
     """
-    Constructs a top-down dynamic programming solution for the rod-cutting
-    problem via memoization. This function serves as a wrapper for
-    _top_down_cut_rod_recursive
+    Çubuk kesme problemi için memoization kullanarak yukarıdan aşağıya dinamik programlama çözümü oluşturur.
+    Bu fonksiyon, _yukaridan_asagiya_cubuk_kesme_ozinelemeli için bir sarmalayıcı olarak hizmet eder.
 
-    Runtime: O(n^2)
+    Çalışma Zamanı: O(n^2)
 
-    Arguments
+    Parametreler
     --------
-    n: int, the length of the rod
-    prices: list, the prices for each piece of rod. ``p[i-i]`` is the
-    price for a rod of length ``i``
+    n: int, çubuğun uzunluğu
+    fiyatlar: list, her bir çubuk parçasının fiyatları. ``fiyatlar[i-1]`` uzunluğu ``i`` olan bir çubuğun fiyatıdır
 
-    Note
+    Not
     ----
-    For convenience and because Python's lists using 0-indexing, length(max_rev) =
-    n + 1, to accommodate for the revenue obtainable from a rod of length 0.
+    Kolaylık sağlamak ve Python'un listelerinin 0-indeksli olmasından dolayı, max_gelir uzunluğu n + 1'dir,
+    0 uzunluğundaki bir çubuktan elde edilebilecek gelir için.
 
-    Returns
+    Dönüş
     -------
-    The maximum revenue obtainable for a rod of length n given the list of prices
-    for each piece.
+    Verilen fiyat listesine göre n uzunluğundaki bir çubuk için elde edilebilecek maksimum gelir
 
-    Examples
+    Örnekler
     -------
-    >>> top_down_cut_rod(4, [1, 5, 8, 9])
+    >>> yukaridan_asagiya_cubuk_kesme(4, [1, 5, 8, 9])
     10
-    >>> top_down_cut_rod(10, [1, 5, 8, 9, 10, 17, 17, 20, 24, 30])
+    >>> yukaridan_asagiya_cubuk_kesme(10, [1, 5, 8, 9, 10, 17, 17, 20, 24, 30])
     30
     """
-    _enforce_args(n, prices)
-    max_rev = [float("-inf") for _ in range(n + 1)]
-    return _top_down_cut_rod_recursive(n, prices, max_rev)
+    _argumanlari_kontrol_et(n, fiyatlar)
+    max_gelir = [float("-inf") for _ in range(n + 1)]
+    return _yukaridan_asagiya_cubuk_kesme_ozinelemeli(n, fiyatlar, max_gelir)
 
 
-def _top_down_cut_rod_recursive(n: int, prices: list, max_rev: list):
+def _yukaridan_asagiya_cubuk_kesme_ozinelemeli(n: int, fiyatlar: list, max_gelir: list) -> int:
     """
-    Constructs a top-down dynamic programming solution for the rod-cutting problem
-    via memoization.
+    Çubuk kesme problemi için memoization kullanarak yukarıdan aşağıya dinamik programlama çözümü oluşturur.
 
-    Runtime: O(n^2)
+    Çalışma Zamanı: O(n^2)
 
-    Arguments
+    Parametreler
     --------
-    n: int, the length of the rod
-    prices: list, the prices for each piece of rod. ``p[i-i]`` is the
-    price for a rod of length ``i``
-    max_rev: list, the computed maximum revenue for a piece of rod.
-    ``max_rev[i]`` is the maximum revenue obtainable for a rod of length ``i``
+    n: int, çubuğun uzunluğu
+    fiyatlar: list, her bir çubuk parçasının fiyatları. ``fiyatlar[i-1]`` uzunluğu ``i`` olan bir çubuğun fiyatıdır
+    max_gelir: list, hesaplanmış maksimum gelir. ``max_gelir[i]`` uzunluğu ``i`` olan bir çubuk için elde edilebilecek maksimum gelirdir
 
-    Returns
+    Dönüş
     -------
-    The maximum revenue obtainable for a rod of length n given the list of prices
-    for each piece.
+    Verilen fiyat listesine göre n uzunluğundaki bir çubuk için elde edilebilecek maksimum gelir
     """
-    if max_rev[n] >= 0:
-        return max_rev[n]
+    if max_gelir[n] >= 0:
+        return max_gelir[n]
     elif n == 0:
         return 0
     else:
-        max_revenue = float("-inf")
+        max_gelir_n = float("-inf")
         for i in range(1, n + 1):
-            max_revenue = max(
-                max_revenue,
-                prices[i - 1] + _top_down_cut_rod_recursive(n - i, prices, max_rev),
+            max_gelir_n = max(
+                max_gelir_n,
+                fiyatlar[i - 1] + _yukaridan_asagiya_cubuk_kesme_ozinelemeli(n - i, fiyatlar, max_gelir),
             )
 
-        max_rev[n] = max_revenue
+        max_gelir[n] = max_gelir_n
 
-    return max_rev[n]
+    return max_gelir[n]
 
 
-def bottom_up_cut_rod(n: int, prices: list):
+def asagidan_yukariya_cubuk_kesme(n: int, fiyatlar: list) -> int:
     """
-    Constructs a bottom-up dynamic programming solution for the rod-cutting problem
+    Çubuk kesme problemi için aşağıdan yukarıya dinamik programlama çözümü oluşturur
 
-    Runtime: O(n^2)
+    Çalışma Zamanı: O(n^2)
 
-    Arguments
+    Parametreler
     ----------
-    n: int, the maximum length of the rod.
-    prices: list, the prices for each piece of rod. ``p[i-i]`` is the
-    price for a rod of length ``i``
+    n: int, çubuğun maksimum uzunluğu
+    fiyatlar: list, her bir çubuk parçasının fiyatları. ``fiyatlar[i-1]`` uzunluğu ``i`` olan bir çubuğun fiyatıdır
 
-    Returns
+    Dönüş
     -------
-    The maximum revenue obtainable from cutting a rod of length n given
-    the prices for each piece of rod p.
+    Verilen fiyat listesine göre n uzunluğundaki bir çubuktan elde edilebilecek maksimum gelir
 
-    Examples
+    Örnekler
     -------
-    >>> bottom_up_cut_rod(4, [1, 5, 8, 9])
+    >>> asagidan_yukariya_cubuk_kesme(4, [1, 5, 8, 9])
     10
-    >>> bottom_up_cut_rod(10, [1, 5, 8, 9, 10, 17, 17, 20, 24, 30])
+    >>> asagidan_yukariya_cubuk_kesme(10, [1, 5, 8, 9, 10, 17, 17, 20, 24, 30])
     30
     """
-    _enforce_args(n, prices)
+    _argumanlari_kontrol_et(n, fiyatlar)
 
-    # length(max_rev) = n + 1, to accommodate for the revenue obtainable from a rod of
-    # length 0.
-    max_rev = [float("-inf") for _ in range(n + 1)]
-    max_rev[0] = 0
+    # max_gelir uzunluğu n + 1'dir, 0 uzunluğundaki bir çubuktan elde edilebilecek gelir için.
+    max_gelir = [float("-inf") for _ in range(n + 1)]
+    max_gelir[0] = 0
 
     for i in range(1, n + 1):
-        max_revenue_i = max_rev[i]
+        max_gelir_i = max_gelir[i]
         for j in range(1, i + 1):
-            max_revenue_i = max(max_revenue_i, prices[j - 1] + max_rev[i - j])
+            max_gelir_i = max(max_gelir_i, fiyatlar[j - 1] + max_gelir[i - j])
 
-        max_rev[i] = max_revenue_i
+        max_gelir[i] = max_gelir_i
 
-    return max_rev[n]
+    return max_gelir[n]
 
 
-def _enforce_args(n: int, prices: list):
+def _argumanlari_kontrol_et(n: int, fiyatlar: list):
     """
-    Basic checks on the arguments to the rod-cutting algorithms
+    Çubuk kesme algoritmaları için temel argüman kontrolleri
 
-    n: int, the length of the rod
-    prices: list, the price list for each piece of rod.
+    n: int, çubuğun uzunluğu
+    fiyatlar: list, her bir çubuk parçasının fiyat listesi.
 
-    Throws ValueError:
+    ValueError fırlatır:
 
-    if n is negative or there are fewer items in the price list than the length of
-    the rod
+    eğer n negatifse veya fiyat listesinde çubuk uzunluğundan daha az öğe varsa
     """
     if n < 0:
-        msg = f"n must be greater than or equal to 0. Got n = {n}"
+        msg = f"n 0 veya daha büyük olmalıdır. Verilen n = {n}"
         raise ValueError(msg)
 
-    if n > len(prices):
+    if n > len(fiyatlar):
         msg = (
-            "Each integral piece of rod must have a corresponding price. "
-            f"Got n = {n} but length of prices = {len(prices)}"
+            "Her bir tam sayı uzunluğundaki çubuk parçasının bir fiyatı olmalıdır. "
+            f"Verilen n = {n} ancak fiyatlar uzunluğu = {len(fiyatlar)}"
         )
         raise ValueError(msg)
 
 
 def main():
-    prices = [6, 10, 12, 15, 20, 23]
-    n = len(prices)
+    fiyatlar = [6, 10, 12, 15, 20, 23]
+    n = len(fiyatlar)
 
-    # the best revenue comes from cutting the rod into 6 pieces, each
-    # of length 1 resulting in a revenue of 6 * 6 = 36.
-    expected_max_revenue = 36
+    # En iyi gelir, çubuğu 6 parçaya kesmekten gelir, her biri
+    # 1 uzunluğunda olup 6 * 6 = 36 gelir sağlar.
+    beklenen_max_gelir = 36
 
-    max_rev_top_down = top_down_cut_rod(n, prices)
-    max_rev_bottom_up = bottom_up_cut_rod(n, prices)
-    max_rev_naive = naive_cut_rod_recursive(n, prices)
+    max_gelir_yukaridan_asagiya = yukaridan_asagiya_cubuk_kesme(n, fiyatlar)
+    max_gelir_asagidan_yukariya = asagidan_yukariya_cubuk_kesme(n, fiyatlar)
+    max_gelir_naif = naif_cubuk_kesme_ozinelemeli(n, fiyatlar)
 
-    assert expected_max_revenue == max_rev_top_down
-    assert max_rev_top_down == max_rev_bottom_up
-    assert max_rev_bottom_up == max_rev_naive
+    assert beklenen_max_gelir == max_gelir_yukaridan_asagiya
+    assert max_gelir_yukaridan_asagiya == max_gelir_asagidan_yukariya
+    assert max_gelir_asagidan_yukariya == max_gelir_naif
 
 
 if __name__ == "__main__":

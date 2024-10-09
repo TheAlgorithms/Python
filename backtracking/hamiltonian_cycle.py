@@ -1,121 +1,120 @@
 """
-A Hamiltonian cycle (Hamiltonian circuit) is a graph cycle
-through a graph that visits each node exactly once.
-Determining whether such paths and cycles exist in graphs
-is the 'Hamiltonian path problem', which is NP-complete.
+Hamiltonian döngüsü (Hamiltonian devresi), bir grafikte her düğümü
+tam olarak bir kez ziyaret eden bir grafik döngüsüdür.
+Bu tür yolların ve döngülerin grafikte var olup olmadığını belirlemek,
+NP-tam olan 'Hamiltonian yol problemi'dir.
 
 Wikipedia: https://en.wikipedia.org/wiki/Hamiltonian_path
 """
 
 
-def valid_connection(
-    graph: list[list[int]], next_ver: int, curr_ind: int, path: list[int]
+def geçerli_bağlantı(
+    grafik: list[list[int]], sonraki_düğüm: int, mevcut_indeks: int, yol: list[int]
 ) -> bool:
     """
-    Checks whether it is possible to add next into path by validating 2 statements
-    1. There should be path between current and next vertex
-    2. Next vertex should not be in path
-    If both validations succeed we return True, saying that it is possible to connect
-    this vertices, otherwise we return False
+    Sonraki düğümü yola eklemenin mümkün olup olmadığını kontrol eder
+    1. Mevcut ve sonraki düğüm arasında yol olmalıdır
+    2. Sonraki düğüm yol içinde olmamalıdır
+    Eğer her iki doğrulama da başarılı olursa, bu düğümleri bağlamanın mümkün olduğunu
+    belirten True döndürürüz, aksi takdirde False döndürürüz.
 
-    Case 1:Use exact graph as in main function, with initialized values
-    >>> graph = [[0, 1, 0, 1, 0],
-    ...          [1, 0, 1, 1, 1],
-    ...          [0, 1, 0, 0, 1],
-    ...          [1, 1, 0, 0, 1],
-    ...          [0, 1, 1, 1, 0]]
-    >>> path = [0, -1, -1, -1, -1, 0]
-    >>> curr_ind = 1
-    >>> next_ver = 1
-    >>> valid_connection(graph, next_ver, curr_ind, path)
+    Durum 1: Ana fonksiyondaki gibi tam grafiği kullanın, başlatılmış değerlerle
+    >>> grafik = [[0, 1, 0, 1, 0],
+    ...           [1, 0, 1, 1, 1],
+    ...           [0, 1, 0, 0, 1],
+    ...           [1, 1, 0, 0, 1],
+    ...           [0, 1, 1, 1, 0]]
+    >>> yol = [0, -1, -1, -1, -1, 0]
+    >>> mevcut_indeks = 1
+    >>> sonraki_düğüm = 1
+    >>> geçerli_bağlantı(grafik, sonraki_düğüm, mevcut_indeks, yol)
     True
 
-    Case 2: Same graph, but trying to connect to node that is already in path
-    >>> path = [0, 1, 2, 4, -1, 0]
-    >>> curr_ind = 4
-    >>> next_ver = 1
-    >>> valid_connection(graph, next_ver, curr_ind, path)
+    Durum 2: Aynı grafik, ancak yolda zaten bulunan bir düğüme bağlanmaya çalışılıyor
+    >>> yol = [0, 1, 2, 4, -1, 0]
+    >>> mevcut_indeks = 4
+    >>> sonraki_düğüm = 1
+    >>> geçerli_bağlantı(grafik, sonraki_düğüm, mevcut_indeks, yol)
     False
     """
 
-    # 1. Validate that path exists between current and next vertices
-    if graph[path[curr_ind - 1]][next_ver] == 0:
+    # 1. Mevcut ve sonraki düğümler arasında yol olup olmadığını doğrula
+    if grafik[yol[mevcut_indeks - 1]][sonraki_düğüm] == 0:
         return False
 
-    # 2. Validate that next vertex is not already in path
-    return not any(vertex == next_ver for vertex in path)
+    # 2. Sonraki düğümün yol içinde olup olmadığını doğrula
+    return not any(düğüm == sonraki_düğüm for düğüm in yol)
 
 
-def util_hamilton_cycle(graph: list[list[int]], path: list[int], curr_ind: int) -> bool:
+def yardımcı_hamilton_döngüsü(grafik: list[list[int]], yol: list[int], mevcut_indeks: int) -> bool:
     """
-    Pseudo-Code
-    Base Case:
-    1. Check if we visited all of vertices
-        1.1 If last visited vertex has path to starting vertex return True either
-            return False
-    Recursive Step:
-    2. Iterate over each vertex
-        Check if next vertex is valid for transiting from current vertex
-            2.1 Remember next vertex as next transition
-            2.2 Do recursive call and check if going to this vertex solves problem
-            2.3 If next vertex leads to solution return True
-            2.4 Else backtrack, delete remembered vertex
+    Pseudo-Kod
+    Temel Durum:
+    1. Tüm düğümleri ziyaret edip etmediğimizi kontrol edin
+        1.1 Eğer son ziyaret edilen düğüm başlangıç düğümüne yol içeriyorsa True döndür
+            aksi takdirde False döndür
+    Özyinelemeli Adım:
+    2. Her düğüm için yineleyin
+        Sonraki düğümün mevcut düğümden geçiş için geçerli olup olmadığını kontrol edin
+            2.1 Sonraki düğümü bir sonraki geçiş olarak hatırlayın
+            2.2 Özyinelemeli çağrı yapın ve bu düğüme gitmenin sorunu çözüp çözmediğini kontrol edin
+            2.3 Eğer sonraki düğüm çözüme yol açarsa True döndür
+            2.4 Aksi takdirde geri izleyin, hatırlanan düğümü silin
 
-    Case 1: Use exact graph as in main function, with initialized values
-    >>> graph = [[0, 1, 0, 1, 0],
-    ...          [1, 0, 1, 1, 1],
-    ...          [0, 1, 0, 0, 1],
-    ...          [1, 1, 0, 0, 1],
-    ...          [0, 1, 1, 1, 0]]
-    >>> path = [0, -1, -1, -1, -1, 0]
-    >>> curr_ind = 1
-    >>> util_hamilton_cycle(graph, path, curr_ind)
+    Durum 1: Ana fonksiyondaki gibi tam grafiği kullanın, başlatılmış değerlerle
+    >>> grafik = [[0, 1, 0, 1, 0],
+    ...           [1, 0, 1, 1, 1],
+    ...           [0, 1, 0, 0, 1],
+    ...           [1, 1, 0, 0, 1],
+    ...           [0, 1, 1, 1, 0]]
+    >>> yol = [0, -1, -1, -1, -1, 0]
+    >>> mevcut_indeks = 1
+    >>> yardımcı_hamilton_döngüsü(grafik, yol, mevcut_indeks)
     True
-    >>> path
+    >>> yol
     [0, 1, 2, 4, 3, 0]
 
-    Case 2: Use exact graph as in previous case, but in the properties taken from
-        middle of calculation
-    >>> graph = [[0, 1, 0, 1, 0],
-    ...          [1, 0, 1, 1, 1],
-    ...          [0, 1, 0, 0, 1],
-    ...          [1, 1, 0, 0, 1],
-    ...          [0, 1, 1, 1, 0]]
-    >>> path = [0, 1, 2, -1, -1, 0]
-    >>> curr_ind = 3
-    >>> util_hamilton_cycle(graph, path, curr_ind)
+    Durum 2: Önceki durumda olduğu gibi tam grafiği kullanın, ancak hesaplamanın ortasından alınan özelliklerle
+    >>> grafik = [[0, 1, 0, 1, 0],
+    ...           [1, 0, 1, 1, 1],
+    ...           [0, 1, 0, 0, 1],
+    ...           [1, 1, 0, 0, 1],
+    ...           [0, 1, 1, 1, 0]]
+    >>> yol = [0, 1, 2, -1, -1, 0]
+    >>> mevcut_indeks = 3
+    >>> yardımcı_hamilton_döngüsü(grafik, yol, mevcut_indeks)
     True
-    >>> path
+    >>> yol
     [0, 1, 2, 4, 3, 0]
     """
 
-    # Base Case
-    if curr_ind == len(graph):
-        # return whether path exists between current and starting vertices
-        return graph[path[curr_ind - 1]][path[0]] == 1
+    # Temel Durum
+    if mevcut_indeks == len(grafik):
+        # mevcut ve başlangıç düğümleri arasında yol olup olmadığını döndür
+        return grafik[yol[mevcut_indeks - 1]][yol[0]] == 1
 
-    # Recursive Step
-    for next_ver in range(len(graph)):
-        if valid_connection(graph, next_ver, curr_ind, path):
-            # Insert current vertex  into path as next transition
-            path[curr_ind] = next_ver
-            # Validate created path
-            if util_hamilton_cycle(graph, path, curr_ind + 1):
+    # Özyinelemeli Adım
+    for sonraki_düğüm in range(len(grafik)):
+        if geçerli_bağlantı(grafik, sonraki_düğüm, mevcut_indeks, yol):
+            # Mevcut düğümü bir sonraki geçiş olarak yola ekle
+            yol[mevcut_indeks] = sonraki_düğüm
+            # Oluşturulan yolu doğrula
+            if yardımcı_hamilton_döngüsü(grafik, yol, mevcut_indeks + 1):
                 return True
-            # Backtrack
-            path[curr_ind] = -1
+            # Geri izleme
+            yol[mevcut_indeks] = -1
     return False
 
 
-def hamilton_cycle(graph: list[list[int]], start_index: int = 0) -> list[int]:
+def hamilton_döngüsü(grafik: list[list[int]], başlangıç_indeksi: int = 0) -> list[int]:
     r"""
-    Wrapper function to call subroutine called util_hamilton_cycle,
-    which will either return array of vertices indicating hamiltonian cycle
-    or an empty list indicating that hamiltonian cycle was not found.
-    Case 1:
-    Following graph consists of 5 edges.
-    If we look closely, we can see that there are multiple Hamiltonian cycles.
-    For example one result is when we iterate like:
+    yardımcı_hamilton_döngüsü adlı alt yordamı çağırmak için sarmalayıcı fonksiyon,
+    bu ya Hamiltonian döngüsünü belirten düğümlerin dizisini ya da Hamiltonian döngüsünün
+    bulunmadığını belirten boş bir liste döndürecektir.
+    Durum 1:
+    Aşağıdaki grafik 5 kenardan oluşur.
+    Yakından bakarsak, birden fazla Hamiltonian döngüsü olduğunu görebiliriz.
+    Örneğin, bir sonuç şu şekilde yinelediğimizde elde edilir:
     (0)->(1)->(2)->(4)->(3)->(0)
 
     (0)---(1)---(2)
@@ -124,16 +123,16 @@ def hamilton_cycle(graph: list[list[int]], start_index: int = 0) -> list[int]:
      | /       \ |
      |/         \|
     (3)---------(4)
-    >>> graph = [[0, 1, 0, 1, 0],
-    ...          [1, 0, 1, 1, 1],
-    ...          [0, 1, 0, 0, 1],
-    ...          [1, 1, 0, 0, 1],
-    ...          [0, 1, 1, 1, 0]]
-    >>> hamilton_cycle(graph)
+    >>> grafik = [[0, 1, 0, 1, 0],
+    ...           [1, 0, 1, 1, 1],
+    ...           [0, 1, 0, 0, 1],
+    ...           [1, 1, 0, 0, 1],
+    ...           [0, 1, 1, 1, 0]]
+    >>> hamilton_döngüsü(grafik)
     [0, 1, 2, 4, 3, 0]
 
-    Case 2:
-    Same Graph as it was in Case 1, changed starting index from default to 3
+    Durum 2:
+    Durum 1'de olduğu gibi aynı grafik, başlangıç indeksini varsayılandan 3'e değiştirdik
 
     (0)---(1)---(2)
      |   /   \   |
@@ -141,17 +140,17 @@ def hamilton_cycle(graph: list[list[int]], start_index: int = 0) -> list[int]:
      | /       \ |
      |/         \|
     (3)---------(4)
-    >>> graph = [[0, 1, 0, 1, 0],
-    ...          [1, 0, 1, 1, 1],
-    ...          [0, 1, 0, 0, 1],
-    ...          [1, 1, 0, 0, 1],
-    ...          [0, 1, 1, 1, 0]]
-    >>> hamilton_cycle(graph, 3)
+    >>> grafik = [[0, 1, 0, 1, 0],
+    ...           [1, 0, 1, 1, 1],
+    ...           [0, 1, 0, 0, 1],
+    ...           [1, 1, 0, 0, 1],
+    ...           [0, 1, 1, 1, 0]]
+    >>> hamilton_döngüsü(grafik, 3)
     [3, 0, 1, 2, 4, 3]
 
-    Case 3:
-    Following Graph is exactly what it was before, but edge 3-4 is removed.
-    Result is that there is no Hamiltonian Cycle anymore.
+    Durum 3:
+    Aşağıdaki Grafik, daha önce olduğu gibi, ancak 3-4 kenarı kaldırıldı.
+    Sonuç olarak artık Hamiltonian Döngüsü yok.
 
     (0)---(1)---(2)
      |   /   \   |
@@ -159,18 +158,18 @@ def hamilton_cycle(graph: list[list[int]], start_index: int = 0) -> list[int]:
      | /       \ |
      |/         \|
     (3)         (4)
-    >>> graph = [[0, 1, 0, 1, 0],
-    ...          [1, 0, 1, 1, 1],
-    ...          [0, 1, 0, 0, 1],
-    ...          [1, 1, 0, 0, 0],
-    ...          [0, 1, 1, 0, 0]]
-    >>> hamilton_cycle(graph,4)
+    >>> grafik = [[0, 1, 0, 1, 0],
+    ...           [1, 0, 1, 1, 1],
+    ...           [0, 1, 0, 0, 1],
+    ...           [1, 1, 0, 0, 0],
+    ...           [0, 1, 1, 0, 0]]
+    >>> hamilton_döngüsü(grafik,4)
     []
     """
 
-    # Initialize path with -1, indicating that we have not visited them yet
-    path = [-1] * (len(graph) + 1)
-    # initialize start and end of path with starting index
-    path[0] = path[-1] = start_index
-    # evaluate and if we find answer return path either return empty array
-    return path if util_hamilton_cycle(graph, path, 1) else []
+    # Henüz ziyaret edilmediğini belirten -1 ile yolu başlat
+    yol = [-1] * (len(grafik) + 1)
+    # yolu başlangıç indeksi ile başlat ve bitir
+    yol[0] = yol[-1] = başlangıç_indeksi
+    # değerlendir ve eğer cevap bulursak yolu döndür, aksi takdirde boş dizi döndür
+    return yol if yardımcı_hamilton_döngüsü(grafik, yol, 1) else []

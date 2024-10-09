@@ -1,37 +1,37 @@
-def find_missing_number(nums: list[int]) -> int:
+def eksik_sayi_bul(nums: list[int]) -> int:
     """
-    Finds the missing number in a list of consecutive integers.
+    Ardışık tamsayılar listesindeki eksik sayıyı bulur.
 
     Args:
-        nums: A list of integers.
+        nums: Bir tamsayı listesi.
 
     Returns:
-        The missing number.
+        Eksik sayı.
 
-    Example:
-        >>> find_missing_number([0, 1, 3, 4])
+    Örnek:
+        >>> eksik_sayi_bul([0, 1, 3, 4])
         2
-        >>> find_missing_number([4, 3, 1, 0])
+        >>> eksik_sayi_bul([4, 3, 1, 0])
         2
-        >>> find_missing_number([-4, -3, -1, 0])
+        >>> eksik_sayi_bul([-4, -3, -1, 0])
         -2
-        >>> find_missing_number([-2, 2, 1, 3, 0])
+        >>> eksik_sayi_bul([-2, 2, 1, 3, 0])
         -1
-        >>> find_missing_number([1, 3, 4, 5, 6])
+        >>> eksik_sayi_bul([1, 3, 4, 5, 6])
         2
-        >>> find_missing_number([6, 5, 4, 2, 1])
+        >>> eksik_sayi_bul([6, 5, 4, 2, 1])
         3
-        >>> find_missing_number([6, 1, 5, 3, 4])
+        >>> eksik_sayi_bul([6, 1, 5, 3, 4])
         2
     """
-    low = min(nums)
-    high = max(nums)
-    missing_number = high
+    düşük = min(nums)
+    yüksek = max(nums)
+    eksik_sayi = yüksek
 
-    for i in range(low, high):
-        missing_number ^= i ^ nums[i - low]
+    for i in range(düşük, yüksek):
+        eksik_sayi ^= i ^ nums[i - düşük]
 
-    return missing_number
+    return eksik_sayi
 
 
 if __name__ == "__main__":

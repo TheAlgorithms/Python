@@ -1,25 +1,25 @@
 """
-YouTube Explanation: https://www.youtube.com/watch?v=f2xi3c1S95M
+YouTube Açıklaması: https://www.youtube.com/watch?v=f2xi3c1S95M
 
-Given an integer n, return the minimum steps from n to 1
+Verilen bir tamsayı n için, n'den 1'e minimum adım sayısını döndürün
 
-AVAILABLE STEPS:
-    * Decrement by 1
-    * if n is divisible by 2, divide by 2
-    * if n is divisible by 3, divide by 3
+MEVCUT ADIMLAR:
+    * 1 azalt
+    * n 2'ye bölünebiliyorsa, 2'ye böl
+    * n 3'e bölünebiliyorsa, 3'e böl
 
 
-Example 1: n = 10
+Örnek 1: n = 10
 10 -> 9 -> 3 -> 1
-Result: 3 steps
+Sonuç: 3 adım
 
-Example 2: n = 15
+Örnek 2: n = 15
 15 -> 5 -> 4 -> 2 -> 1
-Result: 4 steps
+Sonuç: 4 adım
 
-Example 3: n = 6
+Örnek 3: n = 6
 6 -> 2 -> 1
-Result: 2 step
+Sonuç: 2 adım
 """
 
 from __future__ import annotations
@@ -27,37 +27,37 @@ from __future__ import annotations
 __author__ = "Alexander Joslin"
 
 
-def min_steps_to_one(number: int) -> int:
+def bire_min_adim_sayisi(sayi: int) -> int:
     """
-    Minimum steps to 1 implemented using tabulation.
-    >>> min_steps_to_one(10)
+    Tablo kullanarak 1'e minimum adım sayısı.
+    >>> bire_min_adim_sayisi(10)
     3
-    >>> min_steps_to_one(15)
+    >>> bire_min_adim_sayisi(15)
     4
-    >>> min_steps_to_one(6)
+    >>> bire_min_adim_sayisi(6)
     2
 
-    :param number:
+    :param sayi:
     :return int:
     """
 
-    if number <= 0:
-        msg = f"n must be greater than 0. Got n = {number}"
+    if sayi <= 0:
+        msg = f"n 0'dan büyük olmalıdır. Verilen n = {sayi}"
         raise ValueError(msg)
 
-    table = [number + 1] * (number + 1)
+    tablo = [sayi + 1] * (sayi + 1)
 
-    # starting position
-    table[1] = 0
-    for i in range(1, number):
-        table[i + 1] = min(table[i + 1], table[i] + 1)
-        # check if out of bounds
-        if i * 2 <= number:
-            table[i * 2] = min(table[i * 2], table[i] + 1)
-        # check if out of bounds
-        if i * 3 <= number:
-            table[i * 3] = min(table[i * 3], table[i] + 1)
-    return table[number]
+    # başlangıç pozisyonu
+    tablo[1] = 0
+    for i in range(1, sayi):
+        tablo[i + 1] = min(tablo[i + 1], tablo[i] + 1)
+        # sınırları kontrol et
+        if i * 2 <= sayi:
+            tablo[i * 2] = min(tablo[i * 2], tablo[i] + 1)
+        # sınırları kontrol et
+        if i * 3 <= sayi:
+            tablo[i * 3] = min(tablo[i * 3], tablo[i] + 1)
+    return tablo[sayi]
 
 
 if __name__ == "__main__":

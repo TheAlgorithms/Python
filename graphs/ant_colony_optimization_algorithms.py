@@ -1,20 +1,18 @@
 """
-Use an ant colony optimization algorithm to solve the travelling salesman problem (TSP)
-which asks the following question:
-"Given a list of cities and the distances between each pair of cities, what is the
- shortest possible route that visits each city exactly once and returns to the origin
- city?"
+Karınca kolonisi optimizasyon algoritmasını kullanarak gezgin satıcı problemini (TSP) çözün
+ve şu soruyu sorun:
+"Bir şehir listesi ve her şehir çifti arasındaki mesafeler verildiğinde, her şehri tam olarak bir kez ziyaret eden ve başlangıç şehrine dönen en kısa rota nedir?"
 
 https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms
 https://en.wikipedia.org/wiki/Travelling_salesman_problem
 
-Author: Clark
+Prouduced by: K. Umut Araz
 """
 
 import copy
 import random
 
-cities = {
+şehirler = {
     0: [0, 0],
     1: [0, 5],
     2: [3, 8],
@@ -26,201 +24,201 @@ cities = {
 }
 
 
-def main(
-    cities: dict[int, list[int]],
-    ants_num: int,
-    iterations_num: int,
-    pheromone_evaporation: float,
-    alpha: float,
+def ana(
+    şehirler: dict[int, list[int]],
+    karınca_sayısı: int,
+    iterasyon_sayısı: int,
+    feromon_buharlaşma: float,
+    alfa: float,
     beta: float,
-    q: float,  # Pheromone system parameters Q, which is a constant
+    q: float,  # Feromon sistemi parametreleri Q, sabit bir değerdir
 ) -> tuple[list[int], float]:
     """
-    Ant colony algorithm main function
-    >>> main(cities=cities, ants_num=10, iterations_num=20,
-    ...      pheromone_evaporation=0.7, alpha=1.0, beta=5.0, q=10)
+    Karınca kolonisi algoritması ana fonksiyonu
+    >>> ana(şehirler=şehirler, karınca_sayısı=10, iterasyon_sayısı=20,
+    ...      feromon_buharlaşma=0.7, alfa=1.0, beta=5.0, q=10)
     ([0, 1, 2, 3, 4, 5, 6, 7, 0], 37.909778143828696)
-    >>> main(cities={0: [0, 0], 1: [2, 2]}, ants_num=5, iterations_num=5,
-    ...      pheromone_evaporation=0.7, alpha=1.0, beta=5.0, q=10)
+    >>> ana(şehirler={0: [0, 0], 1: [2, 2]}, karınca_sayısı=5, iterasyon_sayısı=5,
+    ...      feromon_buharlaşma=0.7, alfa=1.0, beta=5.0, q=10)
     ([0, 1, 0], 5.656854249492381)
-    >>> main(cities={0: [0, 0], 1: [2, 2], 4: [4, 4]}, ants_num=5, iterations_num=5,
-    ...      pheromone_evaporation=0.7, alpha=1.0, beta=5.0, q=10)
+    >>> ana(şehirler={0: [0, 0], 1: [2, 2], 4: [4, 4]}, karınca_sayısı=5, iterasyon_sayısı=5,
+    ...      feromon_buharlaşma=0.7, alfa=1.0, beta=5.0, q=10)
     Traceback (most recent call last):
       ...
     IndexError: list index out of range
-    >>> main(cities={}, ants_num=5, iterations_num=5,
-    ...      pheromone_evaporation=0.7, alpha=1.0, beta=5.0, q=10)
+    >>> ana(şehirler={}, karınca_sayısı=5, iterasyon_sayısı=5,
+    ...      feromon_buharlaşma=0.7, alfa=1.0, beta=5.0, q=10)
     Traceback (most recent call last):
       ...
     StopIteration
-    >>> main(cities={0: [0, 0], 1: [2, 2]}, ants_num=0, iterations_num=5,
-    ...      pheromone_evaporation=0.7, alpha=1.0, beta=5.0, q=10)
+    >>> ana(şehirler={0: [0, 0], 1: [2, 2]}, karınca_sayısı=0, iterasyon_sayısı=5,
+    ...      feromon_buharlaşma=0.7, alfa=1.0, beta=5.0, q=10)
     ([], inf)
-    >>> main(cities={0: [0, 0], 1: [2, 2]}, ants_num=5, iterations_num=0,
-    ...      pheromone_evaporation=0.7, alpha=1.0, beta=5.0, q=10)
+    >>> ana(şehirler={0: [0, 0], 1: [2, 2]}, karınca_sayısı=5, iterasyon_sayısı=0,
+    ...      feromon_buharlaşma=0.7, alfa=1.0, beta=5.0, q=10)
     ([], inf)
-    >>> main(cities={0: [0, 0], 1: [2, 2]}, ants_num=5, iterations_num=5,
-    ...      pheromone_evaporation=1, alpha=1.0, beta=5.0, q=10)
+    >>> ana(şehirler={0: [0, 0], 1: [2, 2]}, karınca_sayısı=5, iterasyon_sayısı=5,
+    ...      feromon_buharlaşma=1, alfa=1.0, beta=5.0, q=10)
     ([0, 1, 0], 5.656854249492381)
-    >>> main(cities={0: [0, 0], 1: [2, 2]}, ants_num=5, iterations_num=5,
-    ...      pheromone_evaporation=0, alpha=1.0, beta=5.0, q=10)
+    >>> ana(şehirler={0: [0, 0], 1: [2, 2]}, karınca_sayısı=5, iterasyon_sayısı=5,
+    ...      feromon_buharlaşma=0, alfa=1.0, beta=5.0, q=10)
     ([0, 1, 0], 5.656854249492381)
     """
-    # Initialize the pheromone matrix
-    cities_num = len(cities)
-    pheromone = [[1.0] * cities_num] * cities_num
+    # Feromon matrisini başlat
+    şehir_sayısı = len(şehirler)
+    feromon = [[1.0] * şehir_sayısı] * şehir_sayısı
 
-    best_path: list[int] = []
-    best_distance = float("inf")
-    for _ in range(iterations_num):
-        ants_route = []
-        for _ in range(ants_num):
-            unvisited_cities = copy.deepcopy(cities)
-            current_city = {next(iter(cities.keys())): next(iter(cities.values()))}
-            del unvisited_cities[next(iter(current_city.keys()))]
-            ant_route = [next(iter(current_city.keys()))]
-            while unvisited_cities:
-                current_city, unvisited_cities = city_select(
-                    pheromone, current_city, unvisited_cities, alpha, beta
+    en_iyi_yol: list[int] = []
+    en_iyi_mesafe = float("inf")
+    for _ in range(iterasyon_sayısı):
+        karınca_yolları = []
+        for _ in range(karınca_sayısı):
+            ziyaret_edilmemiş_şehirler = copy.deepcopy(şehirler)
+            mevcut_şehir = {next(iter(şehirler.keys())): next(iter(şehirler.values()))}
+            del ziyaret_edilmemiş_şehirler[next(iter(mevcut_şehir.keys()))]
+            karınca_yolu = [next(iter(mevcut_şehir.keys()))]
+            while ziyaret_edilmemiş_şehirler:
+                mevcut_şehir, ziyaret_edilmemiş_şehirler = şehir_seç(
+                    feromon, mevcut_şehir, ziyaret_edilmemiş_şehirler, alfa, beta
                 )
-                ant_route.append(next(iter(current_city.keys())))
-            ant_route.append(0)
-            ants_route.append(ant_route)
+                karınca_yolu.append(next(iter(mevcut_şehir.keys())))
+            karınca_yolu.append(0)
+            karınca_yolları.append(karınca_yolu)
 
-        pheromone, best_path, best_distance = pheromone_update(
-            pheromone,
-            cities,
-            pheromone_evaporation,
-            ants_route,
+        feromon, en_iyi_yol, en_iyi_mesafe = feromon_güncelle(
+            feromon,
+            şehirler,
+            feromon_buharlaşma,
+            karınca_yolları,
             q,
-            best_path,
-            best_distance,
+            en_iyi_yol,
+            en_iyi_mesafe,
         )
-    return best_path, best_distance
+    return en_iyi_yol, en_iyi_mesafe
 
 
-def distance(city1: list[int], city2: list[int]) -> float:
+def mesafe(şehir1: list[int], şehir2: list[int]) -> float:
     """
-    Calculate the distance between two coordinate points
-    >>> distance([0, 0], [3, 4] )
+    İki koordinat noktası arasındaki mesafeyi hesapla
+    >>> mesafe([0, 0], [3, 4] )
     5.0
-    >>> distance([0, 0], [-3, 4] )
+    >>> mesafe([0, 0], [-3, 4] )
     5.0
-    >>> distance([0, 0], [-3, -4] )
+    >>> mesafe([0, 0], [-3, -4] )
     5.0
     """
-    return (((city1[0] - city2[0]) ** 2) + ((city1[1] - city2[1]) ** 2)) ** 0.5
+    return (((şehir1[0] - şehir2[0]) ** 2) + ((şehir1[1] - şehir2[1]) ** 2)) ** 0.5
 
 
-def pheromone_update(
-    pheromone: list[list[float]],
-    cities: dict[int, list[int]],
-    pheromone_evaporation: float,
-    ants_route: list[list[int]],
-    q: float,  # Pheromone system parameters Q, which is a constant
-    best_path: list[int],
-    best_distance: float,
+def feromon_güncelle(
+    feromon: list[list[float]],
+    şehirler: dict[int, list[int]],
+    feromon_buharlaşma: float,
+    karınca_yolları: list[list[int]],
+    q: float,  # Feromon sistemi parametreleri Q, sabit bir değerdir
+    en_iyi_yol: list[int],
+    en_iyi_mesafe: float,
 ) -> tuple[list[list[float]], list[int], float]:
     """
-    Update pheromones on the route and update the best route
+    Rotalardaki feromonları güncelle ve en iyi rotayı güncelle
     >>>
-    >>> pheromone_update(pheromone=[[1.0, 1.0], [1.0, 1.0]],
-    ...                  cities={0: [0,0], 1: [2,2]}, pheromone_evaporation=0.7,
-    ...                  ants_route=[[0, 1, 0]], q=10, best_path=[],
-    ...                  best_distance=float("inf"))
+    >>> feromon_güncelle(feromon=[[1.0, 1.0], [1.0, 1.0]],
+    ...                  şehirler={0: [0,0], 1: [2,2]}, feromon_buharlaşma=0.7,
+    ...                  karınca_yolları=[[0, 1, 0]], q=10, en_iyi_yol=[],
+    ...                  en_iyi_mesafe=float("inf"))
     ([[0.7, 4.235533905932737], [4.235533905932737, 0.7]], [0, 1, 0], 5.656854249492381)
-    >>> pheromone_update(pheromone=[],
-    ...                  cities={0: [0,0], 1: [2,2]}, pheromone_evaporation=0.7,
-    ...                  ants_route=[[0, 1, 0]], q=10, best_path=[],
-    ...                  best_distance=float("inf"))
+    >>> feromon_güncelle(feromon=[],
+    ...                  şehirler={0: [0,0], 1: [2,2]}, feromon_buharlaşma=0.7,
+    ...                  karınca_yolları=[[0, 1, 0]], q=10, en_iyi_yol=[],
+    ...                  en_iyi_mesafe=float("inf"))
     Traceback (most recent call last):
       ...
     IndexError: list index out of range
-    >>> pheromone_update(pheromone=[[1.0, 1.0], [1.0, 1.0]],
-    ...                  cities={}, pheromone_evaporation=0.7,
-    ...                  ants_route=[[0, 1, 0]], q=10, best_path=[],
-    ...                  best_distance=float("inf"))
+    >>> feromon_güncelle(feromon=[[1.0, 1.0], [1.0, 1.0]],
+    ...                  şehirler={}, feromon_buharlaşma=0.7,
+    ...                  karınca_yolları=[[0, 1, 0]], q=10, en_iyi_yol=[],
+    ...                  en_iyi_mesafe=float("inf"))
     Traceback (most recent call last):
       ...
     KeyError: 0
     """
-    for a in range(len(cities)):  # Update the volatilization of pheromone on all routes
-        for b in range(len(cities)):
-            pheromone[a][b] *= pheromone_evaporation
-    for ant_route in ants_route:
-        total_distance = 0.0
-        for i in range(len(ant_route) - 1):  # Calculate total distance
-            total_distance += distance(cities[ant_route[i]], cities[ant_route[i + 1]])
-        delta_pheromone = q / total_distance
-        for i in range(len(ant_route) - 1):  # Update pheromones
-            pheromone[ant_route[i]][ant_route[i + 1]] += delta_pheromone
-            pheromone[ant_route[i + 1]][ant_route[i]] = pheromone[ant_route[i]][
-                ant_route[i + 1]
+    for a in range(len(şehirler)):  # Tüm rotalardaki feromon buharlaşmasını güncelle
+        for b in range(len(şehirler)):
+            feromon[a][b] *= feromon_buharlaşma
+    for karınca_yolu in karınca_yolları:
+        toplam_mesafe = 0.0
+        for i in range(len(karınca_yolu) - 1):  # Toplam mesafeyi hesapla
+            toplam_mesafe += mesafe(şehirler[karınca_yolu[i]], şehirler[karınca_yolu[i + 1]])
+        delta_feromon = q / toplam_mesafe
+        for i in range(len(karınca_yolu) - 1):  # Feromonları güncelle
+            feromon[karınca_yolu[i]][karınca_yolu[i + 1]] += delta_feromon
+            feromon[karınca_yolu[i + 1]][karınca_yolu[i]] = feromon[karınca_yolu[i]][
+                karınca_yolu[i + 1]
             ]
 
-        if total_distance < best_distance:
-            best_path = ant_route
-            best_distance = total_distance
+        if toplam_mesafe < en_iyi_mesafe:
+            en_iyi_yol = karınca_yolu
+            en_iyi_mesafe = toplam_mesafe
 
-    return pheromone, best_path, best_distance
+    return feromon, en_iyi_yol, en_iyi_mesafe
 
 
-def city_select(
-    pheromone: list[list[float]],
-    current_city: dict[int, list[int]],
-    unvisited_cities: dict[int, list[int]],
-    alpha: float,
+def şehir_seç(
+    feromon: list[list[float]],
+    mevcut_şehir: dict[int, list[int]],
+    ziyaret_edilmemiş_şehirler: dict[int, list[int]],
+    alfa: float,
     beta: float,
 ) -> tuple[dict[int, list[int]], dict[int, list[int]]]:
     """
-    Choose the next city for ants
-    >>> city_select(pheromone=[[1.0, 1.0], [1.0, 1.0]], current_city={0: [0, 0]},
-    ...             unvisited_cities={1: [2, 2]}, alpha=1.0, beta=5.0)
+    Karıncalar için bir sonraki şehri seç
+    >>> şehir_seç(feromon=[[1.0, 1.0], [1.0, 1.0]], mevcut_şehir={0: [0, 0]},
+    ...             ziyaret_edilmemiş_şehirler={1: [2, 2]}, alfa=1.0, beta=5.0)
     ({1: [2, 2]}, {})
-    >>> city_select(pheromone=[], current_city={0: [0,0]},
-    ...             unvisited_cities={1: [2, 2]}, alpha=1.0, beta=5.0)
+    >>> şehir_seç(feromon=[], mevcut_şehir={0: [0,0]},
+    ...             ziyaret_edilmemiş_şehirler={1: [2, 2]}, alfa=1.0, beta=5.0)
     Traceback (most recent call last):
       ...
     IndexError: list index out of range
-    >>> city_select(pheromone=[[1.0, 1.0], [1.0, 1.0]], current_city={},
-    ...             unvisited_cities={1: [2, 2]}, alpha=1.0, beta=5.0)
+    >>> şehir_seç(feromon=[[1.0, 1.0], [1.0, 1.0]], mevcut_şehir={},
+    ...             ziyaret_edilmemiş_şehirler={1: [2, 2]}, alfa=1.0, beta=5.0)
     Traceback (most recent call last):
       ...
     StopIteration
-    >>> city_select(pheromone=[[1.0, 1.0], [1.0, 1.0]], current_city={0: [0, 0]},
-    ...             unvisited_cities={}, alpha=1.0, beta=5.0)
+    >>> şehir_seç(feromon=[[1.0, 1.0], [1.0, 1.0]], mevcut_şehir={0: [0, 0]},
+    ...             ziyaret_edilmemiş_şehirler={}, alfa=1.0, beta=5.0)
     Traceback (most recent call last):
       ...
     IndexError: list index out of range
     """
-    probabilities = []
-    for city in unvisited_cities:
-        city_distance = distance(
-            unvisited_cities[city], next(iter(current_city.values()))
+    olasılıklar = []
+    for şehir in ziyaret_edilmemiş_şehirler:
+        şehir_mesafesi = mesafe(
+            ziyaret_edilmemiş_şehirler[şehir], next(iter(mevcut_şehir.values()))
         )
-        probability = (pheromone[city][next(iter(current_city.keys()))] ** alpha) * (
-            (1 / city_distance) ** beta
+        olasılık = (feromon[şehir][next(iter(mevcut_şehir.keys()))] ** alfa) * (
+            (1 / şehir_mesafesi) ** beta
         )
-        probabilities.append(probability)
+        olasılıklar.append(olasılık)
 
-    chosen_city_i = random.choices(
-        list(unvisited_cities.keys()), weights=probabilities
+    seçilen_şehir_i = random.choices(
+        list(ziyaret_edilmemiş_şehirler.keys()), weights=olasılıklar
     )[0]
-    chosen_city = {chosen_city_i: unvisited_cities[chosen_city_i]}
-    del unvisited_cities[next(iter(chosen_city.keys()))]
-    return chosen_city, unvisited_cities
+    seçilen_şehir = {seçilen_şehir_i: ziyaret_edilmemiş_şehirler[seçilen_şehir_i]}
+    del ziyaret_edilmemiş_şehirler[next(iter(seçilen_şehir.keys()))]
+    return seçilen_şehir, ziyaret_edilmemiş_şehirler
 
 
 if __name__ == "__main__":
-    best_path, best_distance = main(
-        cities=cities,
-        ants_num=10,
-        iterations_num=20,
-        pheromone_evaporation=0.7,
-        alpha=1.0,
+    en_iyi_yol, en_iyi_mesafe = ana(
+        şehirler=şehirler,
+        karınca_sayısı=10,
+        iterasyon_sayısı=20,
+        feromon_buharlaşma=0.7,
+        alfa=1.0,
         beta=5.0,
         q=10,
     )
 
-    print(f"{best_path = }")
-    print(f"{best_distance = }")
+    print(f"{en_iyi_yol = }")
+    print(f"{en_iyi_mesafe = }")

@@ -1,9 +1,8 @@
 """
-This script implements the Dijkstra algorithm on a binary grid.
-The grid consists of 0s and 1s, where 1 represents
-a walkable node and 0 represents an obstacle.
-The algorithm finds the shortest path from a start node to a destination node.
-Diagonal movement can be allowed or disallowed.
+Bu betik, ikili bir ızgara üzerinde Dijkstra algoritmasını uygular.
+Izgara, 0 ve 1'lerden oluşur; burada 1, yürünebilir bir düğümü ve 0, bir engeli temsil eder.
+Algoritma, başlangıç düğümünden hedef düğüme en kısa yolu bulur.
+Çapraz hareketlere izin verilebilir veya verilmeyebilir.
 """
 
 from heapq import heappop, heappush
@@ -13,26 +12,23 @@ import numpy as np
 
 def dijkstra(
     grid: np.ndarray,
-    source: tuple[int, int],
-    destination: tuple[int, int],
-    allow_diagonal: bool,
+    kaynak: tuple[int, int],
+    hedef: tuple[int, int],
+    capraz_hareket: bool,
 ) -> tuple[float | int, list[tuple[int, int]]]:
     """
-    Implements Dijkstra's algorithm on a binary grid.
+    İkili bir ızgara üzerinde Dijkstra algoritmasını uygular.
 
-    Args:
-        grid (np.ndarray): A 2D numpy array representing the grid.
-        1 represents a walkable node and 0 represents an obstacle.
-        source (Tuple[int, int]): A tuple representing the start node.
-        destination (Tuple[int, int]): A tuple representing the
-        destination node.
-        allow_diagonal (bool): A boolean determining whether
-        diagonal movements are allowed.
+    Argümanlar:
+        grid (np.ndarray): Izgarayı temsil eden 2D numpy dizisi.
+        1, yürünebilir bir düğümü ve 0, bir engeli temsil eder.
+        kaynak (Tuple[int, int]): Başlangıç düğümünü temsil eden bir demet.
+        hedef (Tuple[int, int]): Hedef düğümü temsil eden bir demet.
+        capraz_hareket (bool): Çapraz hareketlere izin verilip verilmediğini belirleyen bir boolean.
 
-    Returns:
+    Döndürür:
         Tuple[Union[float, int], List[Tuple[int, int]]]:
-        The shortest distance from the start node to the destination node
-        and the shortest path as a list of nodes.
+        Başlangıç düğümünden hedef düğüme en kısa mesafe ve düğümlerin listesi olarak en kısa yol.
 
     >>> dijkstra(np.array([[1, 1, 1], [0, 1, 0], [0, 1, 1]]), (0, 0), (2, 2), False)
     (4.0, [(0, 0), (0, 1), (1, 1), (2, 1), (2, 2)])
@@ -43,42 +39,42 @@ def dijkstra(
     >>> dijkstra(np.array([[1, 1, 1], [0, 0, 1], [0, 1, 1]]), (0, 0), (2, 2), False)
     (4.0, [(0, 0), (0, 1), (0, 2), (1, 2), (2, 2)])
     """
-    rows, cols = grid.shape
+    satirlar, sutunlar = grid.shape
     dx = [-1, 1, 0, 0]
     dy = [0, 0, -1, 1]
-    if allow_diagonal:
+    if capraz_hareket:
         dx += [-1, -1, 1, 1]
         dy += [-1, 1, -1, 1]
 
-    queue, visited = [(0, source)], set()
-    matrix = np.full((rows, cols), np.inf)
-    matrix[source] = 0
-    predecessors = np.empty((rows, cols), dtype=object)
-    predecessors[source] = None
+    kuyruk, ziyaret_edilen = [(0, kaynak)], set()
+    matris = np.full((satirlar, sutunlar), np.inf)
+    matris[kaynak] = 0
+    oncekiler = np.empty((satirlar, sutunlar), dtype=object)
+    oncekiler[kaynak] = None
 
-    while queue:
-        (dist, (x, y)) = heappop(queue)
-        if (x, y) in visited:
+    while kuyruk:
+        (mesafe, (x, y)) = heappop(kuyruk)
+        if (x, y) in ziyaret_edilen:
             continue
-        visited.add((x, y))
+        ziyaret_edilen.add((x, y))
 
-        if (x, y) == destination:
-            path = []
-            while (x, y) != source:
-                path.append((x, y))
-                x, y = predecessors[x, y]
-            path.append(source)  # add the source manually
-            path.reverse()
-            return float(matrix[destination]), path
+        if (x, y) == hedef:
+            yol = []
+            while (x, y) != kaynak:
+                yol.append((x, y))
+                x, y = oncekiler[x, y]
+            yol.append(kaynak)  # kaynağı manuel olarak ekle
+            yol.reverse()
+            return float(matris[hedef]), yol
 
         for i in range(len(dx)):
             nx, ny = x + dx[i], y + dy[i]
-            if 0 <= nx < rows and 0 <= ny < cols:
-                next_node = grid[nx][ny]
-                if next_node == 1 and matrix[nx, ny] > dist + 1:
-                    heappush(queue, (dist + 1, (nx, ny)))
-                    matrix[nx, ny] = dist + 1
-                    predecessors[nx, ny] = (x, y)
+            if 0 <= nx < satirlar and 0 <= ny < sutunlar:
+                sonraki_dugum = grid[nx][ny]
+                if sonraki_dugum == 1 or matris[nx, ny] > mesafe + 1:
+                    heappush(kuyruk, (mesafe + 1, (nx, ny)))
+                    matris[nx, ny] = mesafe + 1
+                    oncekiler[nx, ny] = (x, y)
 
     return np.inf, []
 

@@ -1,7 +1,10 @@
 """
-Round Robin is a scheduling algorithm.
-In Round Robin each process is assigned a fixed time slot in a cyclic way.
+Round Robin, bir zamanlama algoritmasıdır.
+Round Robin'de her işlem, döngüsel bir şekilde sabit bir zaman dilimi ile atanır.
 https://en.wikipedia.org/wiki/Round-robin_scheduling
+
+Organiser: K. Umut Araz
+Github: https://github.com/arazumut
 """
 
 from __future__ import annotations
@@ -9,59 +12,59 @@ from __future__ import annotations
 from statistics import mean
 
 
-def calculate_waiting_times(burst_times: list[int]) -> list[int]:
+def bekleme_sürelerini_hesapla(burst_süreleri: list[int]) -> list[int]:
     """
-    Calculate the waiting times of a list of processes that have a specified duration.
+    Belirtilen süreye sahip bir işlem listesi için bekleme sürelerini hesaplar.
 
-    Return: The waiting time for each process.
-    >>> calculate_waiting_times([10, 5, 8])
+    Dönüş: Her işlem için bekleme süresi.
+    >>> bekleme_sürelerini_hesapla([10, 5, 8])
     [13, 10, 13]
-    >>> calculate_waiting_times([4, 6, 3, 1])
+    >>> bekleme_sürelerini_hesapla([4, 6, 3, 1])
     [5, 8, 9, 6]
-    >>> calculate_waiting_times([12, 2, 10])
+    >>> bekleme_sürelerini_hesapla([12, 2, 10])
     [12, 2, 12]
     """
-    quantum = 2
-    rem_burst_times = list(burst_times)
-    waiting_times = [0] * len(burst_times)
+    kuantum = 2
+    kalan_burst_süreleri = list(burst_süreleri)
+    bekleme_süreleri = [0] * len(burst_süreleri)
     t = 0
     while True:
-        done = True
-        for i, burst_time in enumerate(burst_times):
-            if rem_burst_times[i] > 0:
-                done = False
-                if rem_burst_times[i] > quantum:
-                    t += quantum
-                    rem_burst_times[i] -= quantum
+        tamamlandı = True
+        for i, burst_süresi in enumerate(burst_süreleri):
+            if kalan_burst_süreleri[i] > 0:
+                tamamlandı = False
+                if kalan_burst_süreleri[i] > kuantum:
+                    t += kuantum
+                    kalan_burst_süreleri[i] -= kuantum
                 else:
-                    t += rem_burst_times[i]
-                    waiting_times[i] = t - burst_time
-                    rem_burst_times[i] = 0
-        if done is True:
-            return waiting_times
+                    t += kalan_burst_süreleri[i]
+                    bekleme_süreleri[i] = t - burst_süresi
+                    kalan_burst_süreleri[i] = 0
+        if tamamlandı is True:
+            return bekleme_süreleri
 
 
-def calculate_turn_around_times(
-    burst_times: list[int], waiting_times: list[int]
+def dönüş_sürelerini_hesapla(
+    burst_süreleri: list[int], bekleme_süreleri: list[int]
 ) -> list[int]:
     """
-    >>> calculate_turn_around_times([1, 2, 3, 4], [0, 1, 3])
+    >>> dönüş_sürelerini_hesapla([1, 2, 3, 4], [0, 1, 3])
     [1, 3, 6]
-    >>> calculate_turn_around_times([10, 3, 7], [10, 6, 11])
+    >>> dönüş_sürelerini_hesapla([10, 3, 7], [10, 6, 11])
     [20, 9, 18]
     """
-    return [burst + waiting for burst, waiting in zip(burst_times, waiting_times)]
+    return [burst + waiting for burst, waiting in zip(burst_süreleri, bekleme_süreleri)]
 
 
 if __name__ == "__main__":
-    burst_times = [3, 5, 7]
-    waiting_times = calculate_waiting_times(burst_times)
-    turn_around_times = calculate_turn_around_times(burst_times, waiting_times)
-    print("Process ID \tBurst Time \tWaiting Time \tTurnaround Time")
-    for i, burst_time in enumerate(burst_times):
+    burst_süreleri = [3, 5, 7]
+    bekleme_süreleri = bekleme_sürelerini_hesapla(burst_süreleri)
+    dönüş_süreleri = dönüş_sürelerini_hesapla(burst_süreleri, bekleme_süreleri)
+    print("İşlem ID \tBurst Süresi \tBekleme Süresi \tDönüş Süresi")
+    for i, burst_süresi in enumerate(burst_süreleri):
         print(
-            f"  {i + 1}\t\t  {burst_time}\t\t  {waiting_times[i]}\t\t  "
-            f"{turn_around_times[i]}"
+            f"  {i + 1}\t\t  {burst_süresi}\t\t  {bekleme_süreleri[i]}\t\t  "
+            f"{dönüş_süreleri[i]}"
         )
-    print(f"\nAverage waiting time = {mean(waiting_times):.5f}")
-    print(f"Average turn around time = {mean(turn_around_times):.5f}")
+    print(f"\nOrtalama bekleme süresi = {mean(bekleme_süreleri):.5f}")
+    print(f"Ortalama dönüş süresi = {mean(dönüş_süreleri):.5f}")

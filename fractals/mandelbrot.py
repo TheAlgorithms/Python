@@ -1,130 +1,127 @@
 """
-The Mandelbrot set is the set of complex numbers "c" for which the series
-"z_(n+1) = z_n * z_n + c" does not diverge, i.e. remains bounded. Thus, a
-complex number "c" is a member of the Mandelbrot set if, when starting with
-"z_0 = 0" and applying the iteration repeatedly, the absolute value of
-"z_n" remains bounded for all "n > 0". Complex numbers can be written as
-"a + b*i": "a" is the real component, usually drawn on the x-axis, and "b*i"
-is the imaginary component, usually drawn on the y-axis. Most visualizations
-of the Mandelbrot set use a color-coding to indicate after how many steps in
-the series the numbers outside the set diverge. Images of the Mandelbrot set
-exhibit an elaborate and infinitely complicated boundary that reveals
-progressively ever-finer recursive detail at increasing magnifications, making
-the boundary of the Mandelbrot set a fractal curve.
-(description adapted from https://en.wikipedia.org/wiki/Mandelbrot_set )
-(see also https://en.wikipedia.org/wiki/Plotting_algorithms_for_the_Mandelbrot_set )
+Mandelbrot kümesi, "z_(n+1) = z_n * z_n + c" serisinin
+dağılmadığı, yani sınırlı kaldığı karmaşık sayılar "c" kümesidir. Bu nedenle,
+"z_0 = 0" ile başlayıp iterasyonu tekrar tekrar uyguladığınızda, "z_n" nin
+mutlak değeri tüm "n > 0" için sınırlı kalırsa, bir karmaşık sayı "c" Mandelbrot
+kümesinin bir üyesidir. Karmaşık sayılar "a + b*i" olarak yazılabilir: "a" gerçek
+bileşendir ve genellikle x ekseninde çizilir, "b*i" ise sanal bileşendir ve genellikle
+y ekseninde çizilir. Mandelbrot kümesinin çoğu görselleştirmesi, kümenin dışındaki
+sayıların seride kaç adım sonra dağıldığını göstermek için bir renk kodlaması kullanır.
+Mandelbrot kümesinin görüntüleri, artan büyütmelerde giderek daha ince tekrarlayan
+detayları ortaya çıkaran karmaşık ve sonsuz derecede karmaşık bir sınır sergiler,
+bu da Mandelbrot kümesinin sınırını bir fraktal eğri yapar.
+(açıklama https://en.wikipedia.org/wiki/Mandelbrot_set adresinden uyarlanmıştır)
+(ayrıca bkz. https://en.wikipedia.org/wiki/Plotting_algorithms_for_the_Mandelbrot_set )
 """
 
 import colorsys
-
 from PIL import Image
 
 
-def get_distance(x: float, y: float, max_step: int) -> float:
+def uzaklik_hesapla(x: float, y: float, max_adim: int) -> float:
     """
-    Return the relative distance (= step/max_step) after which the complex number
-    constituted by this x-y-pair diverges. Members of the Mandelbrot set do not
-    diverge so their distance is 1.
+    Bu x-y çifti tarafından oluşturulan karmaşık sayının dağıldığı
+    göreceli mesafeyi (= adım/max_adim) döndürür. Mandelbrot kümesinin
+    üyeleri dağılmaz, bu nedenle mesafeleri 1'dir.
 
-    >>> get_distance(0, 0, 50)
+    >>> uzaklik_hesapla(0, 0, 50)
     1.0
-    >>> get_distance(0.5, 0.5, 50)
+    >>> uzaklik_hesapla(0.5, 0.5, 50)
     0.061224489795918366
-    >>> get_distance(2, 0, 50)
+    >>> uzaklik_hesapla(2, 0, 50)
     0.0
     """
     a = x
     b = y
-    for step in range(max_step):  # noqa: B007
-        a_new = a * a - b * b + x
+    for adim in range(max_adim):
+        a_yeni = a * a - b * b + x
         b = 2 * a * b + y
-        a = a_new
+        a = a_yeni
 
-        # divergence happens for all complex number with an absolute value
-        # greater than 4
+        # dağılım, mutlak değeri 4'ten büyük olan tüm karmaşık sayılar için gerçekleşir
         if a * a + b * b > 4:
             break
-    return step / (max_step - 1)
+    return adim / (max_adim - 1)
 
 
-def get_black_and_white_rgb(distance: float) -> tuple:
+def siyah_beyaz_rgb(uzaklik: float) -> tuple:
     """
-    Black&white color-coding that ignores the relative distance. The Mandelbrot
-    set is black, everything else is white.
+    Göreceli mesafeyi göz ardı eden siyah-beyaz renk kodlaması. Mandelbrot
+    kümesi siyahtır, diğer her şey beyazdır.
 
-    >>> get_black_and_white_rgb(0)
+    >>> siyah_beyaz_rgb(0)
     (255, 255, 255)
-    >>> get_black_and_white_rgb(0.5)
+    >>> siyah_beyaz_rgb(0.5)
     (255, 255, 255)
-    >>> get_black_and_white_rgb(1)
+    >>> siyah_beyaz_rgb(1)
     (0, 0, 0)
     """
-    if distance == 1:
+    if uzaklik == 1:
         return (0, 0, 0)
     else:
         return (255, 255, 255)
 
 
-def get_color_coded_rgb(distance: float) -> tuple:
+def renkli_rgb(uzaklik: float) -> tuple:
     """
-    Color-coding taking the relative distance into account. The Mandelbrot set
-    is black.
+    Göreceli mesafeyi dikkate alan renk kodlaması. Mandelbrot kümesi siyahtır.
 
-    >>> get_color_coded_rgb(0)
+    >>> renkli_rgb(0)
     (255, 0, 0)
-    >>> get_color_coded_rgb(0.5)
+    >>> renkli_rgb(0.5)
     (0, 255, 255)
-    >>> get_color_coded_rgb(1)
+    >>> renkli_rgb(1)
     (0, 0, 0)
     """
-    if distance == 1:
+    if uzaklik == 1:
         return (0, 0, 0)
     else:
-        return tuple(round(i * 255) for i in colorsys.hsv_to_rgb(distance, 1, 1))
+        return tuple(round(i * 255) for i in colorsys.hsv_to_rgb(uzaklik, 1, 1))
 
 
-def get_image(
-    image_width: int = 800,
-    image_height: int = 600,
-    figure_center_x: float = -0.6,
-    figure_center_y: float = 0,
-    figure_width: float = 3.2,
-    max_step: int = 50,
-    use_distance_color_coding: bool = True,
+def goruntu_olustur(
+    goruntu_genisligi: int = 800,
+    goruntu_yuksekligi: int = 600,
+    sekil_merkezi_x: float = -0.6,
+    sekil_merkezi_y: float = 0,
+    sekil_genisligi: float = 3.2,
+    max_adim: int = 50,
+    uzaklik_renk_kodlamasi: bool = True,
 ) -> Image.Image:
     """
-    Function to generate the image of the Mandelbrot set. Two types of coordinates
-    are used: image-coordinates that refer to the pixels and figure-coordinates
-    that refer to the complex numbers inside and outside the Mandelbrot set. The
-    figure-coordinates in the arguments of this function determine which section
-    of the Mandelbrot set is viewed. The main area of the Mandelbrot set is
-    roughly between "-1.5 < x < 0.5" and "-1 < y < 1" in the figure-coordinates.
+    Mandelbrot kümesinin görüntüsünü oluşturma fonksiyonu. İki tür koordinat
+    kullanılır: piksellere atıfta bulunan görüntü koordinatları ve Mandelbrot
+    kümesinin içindeki ve dışındaki karmaşık sayılara atıfta bulunan şekil
+    koordinatları. Bu fonksiyonun argümanlarındaki şekil koordinatları,
+    Mandelbrot kümesinin hangi bölümünün görüntülendiğini belirler. Mandelbrot
+    kümesinin ana alanı kabaca "-1.5 < x < 0.5" ve "-1 < y < 1" arasında
+    şekil koordinatlarında yer alır.
 
-    Commenting out tests that slow down pytest...
-    # 13.35s call     fractals/mandelbrot.py::mandelbrot.get_image
-    # >>> get_image().load()[0,0]
+    Yavaşlatan testleri yorum satırına al...
+    # 13.35s call     fractals/mandelbrot.py::mandelbrot.goruntu_olustur
+    # >>> goruntu_olustur().load()[0,0]
     (255, 0, 0)
-    # >>> get_image(use_distance_color_coding = False).load()[0,0]
+    # >>> goruntu_olustur(uzaklik_renk_kodlamasi = False).load()[0,0]
     (255, 255, 255)
     """
-    img = Image.new("RGB", (image_width, image_height))
-    pixels = img.load()
+    img = Image.new("RGB", (goruntu_genisligi, goruntu_yuksekligi))
+    pikseller = img.load()
 
-    # loop through the image-coordinates
-    for image_x in range(image_width):
-        for image_y in range(image_height):
-            # determine the figure-coordinates based on the image-coordinates
-            figure_height = figure_width / image_width * image_height
-            figure_x = figure_center_x + (image_x / image_width - 0.5) * figure_width
-            figure_y = figure_center_y + (image_y / image_height - 0.5) * figure_height
+    # görüntü koordinatları boyunca döngü
+    for goruntu_x in range(goruntu_genisligi):
+        for goruntu_y in range(goruntu_yuksekligi):
+            # görüntü koordinatlarına dayalı olarak şekil koordinatlarını belirle
+            sekil_yuksekligi = sekil_genisligi / goruntu_genisligi * goruntu_yuksekligi
+            sekil_x = sekil_merkezi_x + (goruntu_x / goruntu_genisligi - 0.5) * sekil_genisligi
+            sekil_y = sekil_merkezi_y + (goruntu_y / goruntu_yuksekligi - 0.5) * sekil_yuksekligi
 
-            distance = get_distance(figure_x, figure_y, max_step)
+            uzaklik = uzaklik_hesapla(sekil_x, sekil_y, max_adim)
 
-            # color the corresponding pixel based on the selected coloring-function
-            if use_distance_color_coding:
-                pixels[image_x, image_y] = get_color_coded_rgb(distance)
+            # seçilen renklendirme fonksiyonuna göre ilgili pikseli renklendir
+            if uzaklik_renk_kodlamasi:
+                pikseller[goruntu_x, goruntu_y] = renkli_rgb(uzaklik)
             else:
-                pixels[image_x, image_y] = get_black_and_white_rgb(distance)
+                pikseller[goruntu_x, goruntu_y] = siyah_beyaz_rgb(uzaklik)
 
     return img
 
@@ -134,17 +131,17 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    # colored version, full figure
-    img = get_image()
+    # renkli versiyon, tam şekil
+    img = goruntu_olustur()
 
-    # uncomment for colored version, different section, zoomed in
-    # img = get_image(figure_center_x = -0.6, figure_center_y = -0.4,
-    # figure_width = 0.8)
+    # farklı bölüm, yakınlaştırılmış renkli versiyon için yorumu kaldırın
+    # img = goruntu_olustur(sekil_merkezi_x = -0.6, sekil_merkezi_y = -0.4,
+    # sekil_genisligi = 0.8)
 
-    # uncomment for black and white version, full figure
-    # img = get_image(use_distance_color_coding = False)
+    # siyah beyaz versiyon, tam şekil için yorumu kaldırın
+    # img = goruntu_olustur(uzaklik_renk_kodlamasi = False)
 
-    # uncomment to save the image
+    # görüntüyü kaydetmek için yorumu kaldırın
     # img.save("mandelbrot.png")
 
     img.show()

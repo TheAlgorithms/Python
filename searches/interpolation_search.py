@@ -1,134 +1,136 @@
 """
-This is pure Python implementation of interpolation search algorithm
+Bu, interpolasyon arama algoritmasının saf Python uygulamasıdır.
+
+Organiser: K. Umut Araz
 """
 
 
-def interpolation_search(sorted_collection: list[int], item: int) -> int | None:
+def interpolasyon_arama(sıralı_koleksiyon: list[int], öğe: int) -> int | None:
     """
-    Searches for an item in a sorted collection by interpolation search algorithm.
+    Sıralı bir koleksiyonda interpolasyon arama algoritması ile bir öğeyi arar.
 
     Args:
-        sorted_collection: sorted list of integers
-        item: item value to search
+        sıralı_koleksiyon: sıralı tam sayılardan oluşan liste
+        öğe: aranacak öğe değeri
 
     Returns:
-        int: The index of the found item, or None if the item is not found.
-    Examples:
-    >>> interpolation_search([1, 2, 3, 4, 5], 2)
+        int: Bulunan öğenin indeksi, öğe bulunamazsa None.
+    Örnekler:
+    >>> interpolasyon_arama([1, 2, 3, 4, 5], 2)
     1
-    >>> interpolation_search([1, 2, 3, 4, 5], 4)
+    >>> interpolasyon_arama([1, 2, 3, 4, 5], 4)
     3
-    >>> interpolation_search([1, 2, 3, 4, 5], 6) is None
+    >>> interpolasyon_arama([1, 2, 3, 4, 5], 6) is None
     True
-    >>> interpolation_search([], 1) is None
+    >>> interpolasyon_arama([], 1) is None
     True
-    >>> interpolation_search([100], 100)
+    >>> interpolasyon_arama([100], 100)
     0
-    >>> interpolation_search([1, 2, 3, 4, 5], 0) is None
+    >>> interpolasyon_arama([1, 2, 3, 4, 5], 0) is None
     True
-    >>> interpolation_search([1, 2, 3, 4, 5], 7) is None
+    >>> interpolasyon_arama([1, 2, 3, 4, 5], 7) is None
     True
-    >>> interpolation_search([1, 2, 3, 4, 5], 2)
+    >>> interpolasyon_arama([1, 2, 3, 4, 5], 2)
     1
-    >>> interpolation_search([1, 2, 3, 4, 5], 0) is None
+    >>> interpolasyon_arama([1, 2, 3, 4, 5], 0) is None
     True
-    >>> interpolation_search([1, 2, 3, 4, 5], 7) is None
+    >>> interpolasyon_arama([1, 2, 3, 4, 5], 7) is None
     True
-    >>> interpolation_search([1, 2, 3, 4, 5], 2)
+    >>> interpolasyon_arama([1, 2, 3, 4, 5], 2)
     1
-    >>> interpolation_search([5, 5, 5, 5, 5], 3) is None
+    >>> interpolasyon_arama([5, 5, 5, 5, 5], 3) is None
     True
     """
-    left = 0
-    right = len(sorted_collection) - 1
+    sol = 0
+    sağ = len(sıralı_koleksiyon) - 1
 
-    while left <= right:
-        # avoid divided by 0 during interpolation
-        if sorted_collection[left] == sorted_collection[right]:
-            if sorted_collection[left] == item:
-                return left
+    while sol <= sağ:
+        # interpolasyon sırasında sıfıra bölmeyi önle
+        if sıralı_koleksiyon[sol] == sıralı_koleksiyon[sağ]:
+            if sıralı_koleksiyon[sol] == öğe:
+                return sol
             return None
 
-        point = left + ((item - sorted_collection[left]) * (right - left)) // (
-            sorted_collection[right] - sorted_collection[left]
+        nokta = sol + ((öğe - sıralı_koleksiyon[sol]) * (sağ - sol)) // (
+            sıralı_koleksiyon[sağ] - sıralı_koleksiyon[sol]
         )
 
-        # out of range check
-        if point < 0 or point >= len(sorted_collection):
+        # aralık dışı kontrolü
+        if nokta < 0 or nokta >= len(sıralı_koleksiyon):
             return None
 
-        current_item = sorted_collection[point]
-        if current_item == item:
-            return point
-        if point < left:
-            right = left
-            left = point
-        elif point > right:
-            left = right
-            right = point
-        elif item < current_item:
-            right = point - 1
+        mevcut_öğe = sıralı_koleksiyon[nokta]
+        if mevcut_öğe == öğe:
+            return nokta
+        if nokta < sol:
+            sağ = sol
+            sol = nokta
+        elif nokta > sağ:
+            sol = sağ
+            sağ = nokta
+        elif öğe < mevcut_öğe:
+            sağ = nokta - 1
         else:
-            left = point + 1
+            sol = nokta + 1
     return None
 
 
-def interpolation_search_by_recursion(
-    sorted_collection: list[int], item: int, left: int = 0, right: int | None = None
+def rekursif_interpolasyon_arama(
+    sıralı_koleksiyon: list[int], öğe: int, sol: int = 0, sağ: int | None = None
 ) -> int | None:
-    """Pure implementation of interpolation search algorithm in Python by recursion
-    Be careful collection must be ascending sorted, otherwise result will be
-    unpredictable
-    First recursion should be started with left=0 and right=(len(sorted_collection)-1)
+    """Python'da rekursyon ile interpolasyon arama algoritmasının saf uygulaması.
+    Koleksiyonun artan sıralı olması gerektiğine dikkat edin, aksi takdirde sonuç
+    öngörülemez olacaktır.
+    İlk rekursiyon sol=0 ve sağ=(len(sıralı_koleksiyon)-1) ile başlatılmalıdır.
 
     Args:
-        sorted_collection: some sorted collection with comparable items
-        item: item value to search
-        left: left index in collection
-        right: right index in collection
+        sıralı_koleksiyon: karşılaştırılabilir öğeler içeren sıralı bir koleksiyon
+        öğe: aranacak öğe değeri
+        sol: koleksiyondaki sol indeks
+        sağ: koleksiyondaki sağ indeks
 
     Returns:
-        index of item in collection or None if item is not present
+        koleksiyondaki öğenin indeksi veya öğe mevcut değilse None
 
-    Examples:
-    >>> interpolation_search_by_recursion([0, 5, 7, 10, 15], 0)
+    Örnekler:
+    >>> rekursif_interpolasyon_arama([0, 5, 7, 10, 15], 0)
     0
-    >>> interpolation_search_by_recursion([0, 5, 7, 10, 15], 15)
+    >>> rekursif_interpolasyon_arama([0, 5, 7, 10, 15], 15)
     4
-    >>> interpolation_search_by_recursion([0, 5, 7, 10, 15], 5)
+    >>> rekursif_interpolasyon_arama([0, 5, 7, 10, 15], 5)
     1
-    >>> interpolation_search_by_recursion([0, 5, 7, 10, 15], 100) is None
+    >>> rekursif_interpolasyon_arama([0, 5, 7, 10, 15], 100) is None
     True
-    >>> interpolation_search_by_recursion([5, 5, 5, 5, 5], 3) is None
+    >>> rekursif_interpolasyon_arama([5, 5, 5, 5, 5], 3) is None
     True
     """
-    if right is None:
-        right = len(sorted_collection) - 1
-    # avoid divided by 0 during interpolation
-    if sorted_collection[left] == sorted_collection[right]:
-        if sorted_collection[left] == item:
-            return left
+    if sağ is None:
+        sağ = len(sıralı_koleksiyon) - 1
+    # interpolasyon sırasında sıfıra bölmeyi önle
+    if sıralı_koleksiyon[sol] == sıralı_koleksiyon[sağ]:
+        if sıralı_koleksiyon[sol] == öğe:
+            return sol
         return None
 
-    point = left + ((item - sorted_collection[left]) * (right - left)) // (
-        sorted_collection[right] - sorted_collection[left]
+    nokta = sol + ((öğe - sıralı_koleksiyon[sol]) * (sağ - sol)) // (
+        sıralı_koleksiyon[sağ] - sıralı_koleksiyon[sol]
     )
 
-    # out of range check
-    if point < 0 or point >= len(sorted_collection):
+    # aralık dışı kontrolü
+    if nokta < 0 or nokta >= len(sıralı_koleksiyon):
         return None
 
-    if sorted_collection[point] == item:
-        return point
-    if point < left:
-        return interpolation_search_by_recursion(sorted_collection, item, point, left)
-    if point > right:
-        return interpolation_search_by_recursion(sorted_collection, item, right, left)
-    if sorted_collection[point] > item:
-        return interpolation_search_by_recursion(
-            sorted_collection, item, left, point - 1
+    if sıralı_koleksiyon[nokta] == öğe:
+        return nokta
+    if nokta < sol:
+        return rekursif_interpolasyon_arama(sıralı_koleksiyon, öğe, nokta, sol)
+    if nokta > sağ:
+        return rekursif_interpolasyon_arama(sıralı_koleksiyon, öğe, sağ, sol)
+    if sıralı_koleksiyon[nokta] > öğe:
+        return rekursif_interpolasyon_arama(
+            sıralı_koleksiyon, öğe, sol, nokta - 1
         )
-    return interpolation_search_by_recursion(sorted_collection, item, point + 1, right)
+    return rekursif_interpolasyon_arama(sıralı_koleksiyon, öğe, nokta + 1, sağ)
 
 
 if __name__ == "__main__":

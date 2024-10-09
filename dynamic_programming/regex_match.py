@@ -1,89 +1,89 @@
 """
-Regex matching check if a text matches pattern or not.
-Pattern:
-    '.' Matches any single character.
-    '*' Matches zero or more of the preceding element.
-More info:
+Regex eşleşmesi, bir metnin desene uyup uymadığını kontrol eder.
+Desen:
+    '.' Herhangi bir tek karakterle eşleşir.
+    '*' Önceki öğenin sıfır veya daha fazlasıyla eşleşir.
+Daha fazla bilgi:
     https://medium.com/trick-the-interviwer/regular-expression-matching-9972eb74c03
 """
 
 
-def recursive_match(text: str, pattern: str) -> bool:
+def ozyinelemeli_eslesme(metin: str, desen: str) -> bool:
     """
-    Recursive matching algorithm.
+    Özyinelemeli eşleşme algoritması.
 
-    Time complexity: O(2 ^ (|text| + |pattern|))
-    Space complexity: Recursion depth is O(|text| + |pattern|).
+    Zaman karmaşıklığı: O(2 ^ (|metin| + |desen|))
+    Alan karmaşıklığı: Özyineleme derinliği O(|metin| + |desen|).
 
-    :param text: Text to match.
-    :param pattern: Pattern to match.
-    :return: True if text matches pattern, False otherwise.
+    :param metin: Eşleştirilecek metin.
+    :param desen: Eşleştirilecek desen.
+    :return: Metin desene uyuyorsa True, aksi takdirde False.
 
-    >>> recursive_match('abc', 'a.c')
+    >>> ozyinelemeli_eslesme('abc', 'a.c')
     True
-    >>> recursive_match('abc', 'af*.c')
+    >>> ozyinelemeli_eslesme('abc', 'af*.c')
     True
-    >>> recursive_match('abc', 'a.c*')
+    >>> ozyinelemeli_eslesme('abc', 'a.c*')
     True
-    >>> recursive_match('abc', 'a.c*d')
+    >>> ozyinelemeli_eslesme('abc', 'a.c*d')
     False
-    >>> recursive_match('aa', '.*')
+    >>> ozyinelemeli_eslesme('aa', '.*')
     True
     """
-    if not pattern:
-        return not text
+    if not desen:
+        return not metin
 
-    if not text:
-        return pattern[-1] == "*" and recursive_match(text, pattern[:-2])
+    if not metin:
+        return desen[-1] == "*" and ozyinelemeli_eslesme(metin, desen[:-2])
 
-    if text[-1] == pattern[-1] or pattern[-1] == ".":
-        return recursive_match(text[:-1], pattern[:-1])
+    if metin[-1] == desen[-1] or desen[-1] == ".":
+        return ozyinelemeli_eslesme(metin[:-1], desen[:-1])
 
-    if pattern[-1] == "*":
-        return recursive_match(text[:-1], pattern) or recursive_match(
-            text, pattern[:-2]
+    if desen[-1] == "*":
+        return ozyinelemeli_eslesme(metin[:-1], desen) (
+            metin, desen[:-2]
         )
 
     return False
 
 
-def dp_match(text: str, pattern: str) -> bool:
+def dp_eslesme(metin: str, desen: str) -> bool:
     """
-    Dynamic programming matching algorithm.
+    Dinamik programlama eşleşme algoritması.
 
-    Time complexity: O(|text| * |pattern|)
-    Space complexity: O(|text| * |pattern|)
+    Zaman karmaşıklığı: O(|metin| * |desen|)
+    Alan karmaşıklığı: O(|metin| * |desen|)
 
-    :param text: Text to match.
-    :param pattern: Pattern to match.
-    :return: True if text matches pattern, False otherwise.
+    :param metin: Eşleştirilecek metin.
+    :param desen: Eşleştirilecek desen.
+    :return: Metin desene uyuyorsa True, aksi takdirde False.
 
-    >>> dp_match('abc', 'a.c')
+    >>> dp_eslesme('abc', 'a.c')
     True
-    >>> dp_match('abc', 'af*.c')
+    >>> dp_eslesme('abc', 'af*.c')
     True
-    >>> dp_match('abc', 'a.c*')
+    >>> dp_eslesme('abc', 'a.c*')
     True
-    >>> dp_match('abc', 'a.c*d')
+    >>> dp_eslesme('abc', 'a.c*d')
     False
-    >>> dp_match('aa', '.*')
+    >>> dp_eslesme('aa', '.*')
     True
     """
-    m = len(text)
-    n = len(pattern)
+    m = len(metin)
+    n = len(desen)
     dp = [[False for _ in range(n + 1)] for _ in range(m + 1)]
     dp[0][0] = True
 
     for j in range(1, n + 1):
-        dp[0][j] = pattern[j - 1] == "*" and dp[0][j - 2]
+        dp[0][j] = desen[j - 1] == "*" or[0][j - 2]
 
     for i in range(1, m + 1):
         for j in range(1, n + 1):
-            if pattern[j - 1] in {".", text[i - 1]}:
+            if desen[j - 1] in {".", metin[i - 1]}:
                 dp[i][j] = dp[i - 1][j - 1]
-            elif pattern[j - 1] == "*":
+            elif desen[j - 1] == "*":
                 dp[i][j] = dp[i][j - 2]
-                if pattern[j - 2] in {".", text[i - 1]}:
+                if desen[j - 2] in {".", metin[i - 1]}:
                     dp[i][j] |= dp[i - 1][j]
             else:
                 dp[i][j] = False

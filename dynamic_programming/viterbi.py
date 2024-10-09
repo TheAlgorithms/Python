@@ -2,398 +2,398 @@ from typing import Any
 
 
 def viterbi(
-    observations_space: list,
-    states_space: list,
-    initial_probabilities: dict,
-    transition_probabilities: dict,
-    emission_probabilities: dict,
+    gozlem_alani: list,
+    durum_alani: list,
+    baslangic_olasiliklari: dict,
+    gecis_olasiliklari: dict,
+    yayilim_olasiliklari: dict,
 ) -> list:
     """
-        Viterbi Algorithm, to find the most likely path of
-        states from the start and the expected output.
+        Viterbi Algoritması, başlangıçtan itibaren en olası durum yolunu
+        ve beklenen çıktıyı bulmak için.
         https://en.wikipedia.org/wiki/Viterbi_algorithm
-    sdafads
-        Wikipedia example
-        >>> observations = ["normal", "cold", "dizzy"]
-        >>> states = ["Healthy", "Fever"]
-        >>> start_p = {"Healthy": 0.6, "Fever": 0.4}
-        >>> trans_p = {
+
+        Wikipedia örneği
+        >>> gozlemler = ["normal", "cold", "dizzy"]
+        >>> durumlar = ["Healthy", "Fever"]
+        >>> baslangic_p = {"Healthy": 0.6, "Fever": 0.4}
+        >>> gecis_p = {
         ...     "Healthy": {"Healthy": 0.7, "Fever": 0.3},
         ...     "Fever": {"Healthy": 0.4, "Fever": 0.6},
         ... }
-        >>> emit_p = {
+        >>> yayilim_p = {
         ...     "Healthy": {"normal": 0.5, "cold": 0.4, "dizzy": 0.1},
         ...     "Fever": {"normal": 0.1, "cold": 0.3, "dizzy": 0.6},
         ... }
-        >>> viterbi(observations, states, start_p, trans_p, emit_p)
+        >>> viterbi(gozlemler, durumlar, baslangic_p, gecis_p, yayilim_p)
         ['Healthy', 'Healthy', 'Fever']
 
-        >>> viterbi((), states, start_p, trans_p, emit_p)
+        >>> viterbi((), durumlar, baslangic_p, gecis_p, yayilim_p)
         Traceback (most recent call last):
             ...
-        ValueError: There's an empty parameter
+        ValueError: Boş bir parametre var
 
-        >>> viterbi(observations, (), start_p, trans_p, emit_p)
+        >>> viterbi(gozlemler, (), baslangic_p, gecis_p, yayilim_p)
         Traceback (most recent call last):
             ...
-        ValueError: There's an empty parameter
+        ValueError: Boş bir parametre var
 
-        >>> viterbi(observations, states, {}, trans_p, emit_p)
+        >>> viterbi(gozlemler, durumlar, {}, gecis_p, yayilim_p)
         Traceback (most recent call last):
             ...
-        ValueError: There's an empty parameter
+        ValueError: Boş bir parametre var
 
-        >>> viterbi(observations, states, start_p, {}, emit_p)
+        >>> viterbi(gozlemler, durumlar, baslangic_p, {}, yayilim_p)
         Traceback (most recent call last):
             ...
-        ValueError: There's an empty parameter
+        ValueError: Boş bir parametre var
 
-        >>> viterbi(observations, states, start_p, trans_p, {})
+        >>> viterbi(gozlemler, durumlar, baslangic_p, gecis_p, {})
         Traceback (most recent call last):
             ...
-        ValueError: There's an empty parameter
+        ValueError: Boş bir parametre var
 
-        >>> viterbi("invalid", states, start_p, trans_p, emit_p)
+        >>> viterbi("gecersiz", durumlar, baslangic_p, gecis_p, yayilim_p)
         Traceback (most recent call last):
             ...
-        ValueError: observations_space must be a list
+        ValueError: gozlem_alani bir liste olmalı
 
-        >>> viterbi(["valid", 123], states, start_p, trans_p, emit_p)
+        >>> viterbi(["gecerli", 123], durumlar, baslangic_p, gecis_p, yayilim_p)
         Traceback (most recent call last):
             ...
-        ValueError: observations_space must be a list of strings
+        ValueError: gozlem_alani bir dizi stringlerden oluşmalı
 
-        >>> viterbi(observations, "invalid", start_p, trans_p, emit_p)
+        >>> viterbi(gozlemler, "gecersiz", baslangic_p, gecis_p, yayilim_p)
         Traceback (most recent call last):
             ...
-        ValueError: states_space must be a list
+        ValueError: durum_alani bir liste olmalı
 
-        >>> viterbi(observations, ["valid", 123], start_p, trans_p, emit_p)
+        >>> viterbi(gozlemler, ["gecerli", 123], baslangic_p, gecis_p, yayilim_p)
         Traceback (most recent call last):
             ...
-        ValueError: states_space must be a list of strings
+        ValueError: durum_alani bir dizi stringlerden oluşmalı
 
-        >>> viterbi(observations, states, "invalid", trans_p, emit_p)
+        >>> viterbi(gozlemler, durumlar, "gecersiz", gecis_p, yayilim_p)
         Traceback (most recent call last):
             ...
-        ValueError: initial_probabilities must be a dict
+        ValueError: baslangic_olasiliklari bir sözlük olmalı
 
-        >>> viterbi(observations, states, {2:2}, trans_p, emit_p)
+        >>> viterbi(gozlemler, durumlar, {2:2}, gecis_p, yayilim_p)
         Traceback (most recent call last):
             ...
-        ValueError: initial_probabilities all keys must be strings
+        ValueError: baslangic_olasiliklari tüm anahtarlar string olmalı
 
-        >>> viterbi(observations, states, {"a":2}, trans_p, emit_p)
+        >>> viterbi(gozlemler, durumlar, {"a":2}, gecis_p, yayilim_p)
         Traceback (most recent call last):
             ...
-        ValueError: initial_probabilities all values must be float
+        ValueError: baslangic_olasiliklari tüm değerler float olmalı
 
-        >>> viterbi(observations, states, start_p, "invalid", emit_p)
+        >>> viterbi(gozlemler, durumlar, baslangic_p, "gecersiz", yayilim_p)
         Traceback (most recent call last):
             ...
-        ValueError: transition_probabilities must be a dict
+        ValueError: gecis_olasiliklari bir sözlük olmalı
 
-        >>> viterbi(observations, states, start_p, {"a":2}, emit_p)
+        >>> viterbi(gozlemler, durumlar, baslangic_p, {"a":2}, yayilim_p)
         Traceback (most recent call last):
             ...
-        ValueError: transition_probabilities all values must be dict
+        ValueError: gecis_olasiliklari tüm değerler sözlük olmalı
 
-        >>> viterbi(observations, states, start_p, {2:{2:2}}, emit_p)
+        >>> viterbi(gozlemler, durumlar, baslangic_p, {2:{2:2}}, yayilim_p)
         Traceback (most recent call last):
             ...
-        ValueError: transition_probabilities all keys must be strings
+        ValueError: gecis_olasiliklari tüm anahtarlar string olmalı
 
-        >>> viterbi(observations, states, start_p, {"a":{2:2}}, emit_p)
+        >>> viterbi(gozlemler, durumlar, baslangic_p, {"a":{2:2}}, yayilim_p)
         Traceback (most recent call last):
             ...
-        ValueError: transition_probabilities all keys must be strings
+        ValueError: gecis_olasiliklari tüm anahtarlar string olmalı
 
-        >>> viterbi(observations, states, start_p, {"a":{"b":2}}, emit_p)
+        >>> viterbi(gozlemler, durumlar, baslangic_p, {"a":{"b":2}}, yayilim_p)
         Traceback (most recent call last):
             ...
-        ValueError: transition_probabilities nested dictionary all values must be float
+        ValueError: gecis_olasiliklari iç içe geçmiş sözlüklerin tüm değerleri float olmalı
 
-        >>> viterbi(observations, states, start_p, trans_p, "invalid")
+        >>> viterbi(gozlemler, durumlar, baslangic_p, gecis_p, "gecersiz")
         Traceback (most recent call last):
             ...
-        ValueError: emission_probabilities must be a dict
+        ValueError: yayilim_olasiliklari bir sözlük olmalı
 
-        >>> viterbi(observations, states, start_p, trans_p, None)
+        >>> viterbi(gozlemler, durumlar, baslangic_p, gecis_p, None)
         Traceback (most recent call last):
             ...
-        ValueError: There's an empty parameter
+        ValueError: Boş bir parametre var
 
     """
-    _validation(
-        observations_space,
-        states_space,
-        initial_probabilities,
-        transition_probabilities,
-        emission_probabilities,
+    _dogrulama(
+        gozlem_alani,
+        durum_alani,
+        baslangic_olasiliklari,
+        gecis_olasiliklari,
+        yayilim_olasiliklari,
     )
-    # Creates data structures and fill initial step
-    probabilities: dict = {}
-    pointers: dict = {}
-    for state in states_space:
-        observation = observations_space[0]
-        probabilities[(state, observation)] = (
-            initial_probabilities[state] * emission_probabilities[state][observation]
+    # Veri yapıları oluşturulur ve ilk adım doldurulur
+    olasiliklar: dict = {}
+    isaretciler: dict = {}
+    for durum in durum_alani:
+        gozlem = gozlem_alani[0]
+        olasiliklar[(durum, gozlem)] = (
+            baslangic_olasiliklari[durum] * yayilim_olasiliklari[durum][gozlem]
         )
-        pointers[(state, observation)] = None
+        isaretciler[(durum, gozlem)] = None
 
-    # Fills the data structure with the probabilities of
-    # different transitions and pointers to previous states
-    for o in range(1, len(observations_space)):
-        observation = observations_space[o]
-        prior_observation = observations_space[o - 1]
-        for state in states_space:
-            # Calculates the argmax for probability function
+    # Farklı geçişlerin olasılıkları ve önceki durumlara işaretçileri
+    # ile veri yapısı doldurulur
+    for o in range(1, len(gozlem_alani)):
+        gozlem = gozlem_alani[o]
+        onceki_gozlem = gozlem_alani[o - 1]
+        for durum in durum_alani:
+            # Olasılık fonksiyonu için argmax hesaplanır
             arg_max = ""
-            max_probability = -1
-            for k_state in states_space:
-                probability = (
-                    probabilities[(k_state, prior_observation)]
-                    * transition_probabilities[k_state][state]
-                    * emission_probabilities[state][observation]
+            max_olasilik = -1
+            for k_durum in durum_alani:
+                olasilik = (
+                    olasiliklar[(k_durum, onceki_gozlem)]
+                    * gecis_olasiliklari[k_durum][durum]
+                    * yayilim_olasiliklari[durum][gozlem]
                 )
-                if probability > max_probability:
-                    max_probability = probability
-                    arg_max = k_state
+                if olasilik > max_olasilik:
+                    max_olasilik = olasilik
+                    arg_max = k_durum
 
-            # Update probabilities and pointers dicts
-            probabilities[(state, observation)] = (
-                probabilities[(arg_max, prior_observation)]
-                * transition_probabilities[arg_max][state]
-                * emission_probabilities[state][observation]
+            # Olasılık ve işaretçi sözlükleri güncellenir
+            olasiliklar[(durum, gozlem)] = (
+                olasiliklar[(arg_max, onceki_gozlem)]
+                * gecis_olasiliklari[arg_max][durum]
+                * yayilim_olasiliklari[durum][gozlem]
             )
 
-            pointers[(state, observation)] = arg_max
+            isaretciler[(durum, gozlem)] = arg_max
 
-    # The final observation
-    final_observation = observations_space[len(observations_space) - 1]
+    # Son gözlem
+    son_gozlem = gozlem_alani[len(gozlem_alani) - 1]
 
-    # argmax for given final observation
+    # Verilen son gözlem için argmax
     arg_max = ""
-    max_probability = -1
-    for k_state in states_space:
-        probability = probabilities[(k_state, final_observation)]
-        if probability > max_probability:
-            max_probability = probability
-            arg_max = k_state
-    last_state = arg_max
+    max_olasilik = -1
+    for k_durum in durum_alani:
+        olasilik = olasiliklar[(k_durum, son_gozlem)]
+        if olasilik > max_olasilik:
+            max_olasilik = olasilik
+            arg_max = k_durum
+    son_durum = arg_max
 
-    # Process pointers backwards
-    previous = last_state
-    result = []
-    for o in range(len(observations_space) - 1, -1, -1):
-        result.append(previous)
-        previous = pointers[previous, observations_space[o]]
-    result.reverse()
+    # İşaretçiler geriye doğru işlenir
+    onceki = son_durum
+    sonuc = []
+    for o in range(len(gozlem_alani) - 1, -1, -1):
+        sonuc.append(onceki)
+        onceki = isaretciler[onceki, gozlem_alani[o]]
+    sonuc.reverse()
 
-    return result
+    return sonuc
 
 
-def _validation(
-    observations_space: Any,
-    states_space: Any,
-    initial_probabilities: Any,
-    transition_probabilities: Any,
-    emission_probabilities: Any,
+def _dogrulama(
+    gozlem_alani: Any,
+    durum_alani: Any,
+    baslangic_olasiliklari: Any,
+    gecis_olasiliklari: Any,
+    yayilim_olasiliklari: Any,
 ) -> None:
     """
-    >>> observations = ["normal", "cold", "dizzy"]
-    >>> states = ["Healthy", "Fever"]
-    >>> start_p = {"Healthy": 0.6, "Fever": 0.4}
-    >>> trans_p = {
+    >>> gozlemler = ["normal", "cold", "dizzy"]
+    >>> durumlar = ["Healthy", "Fever"]
+    >>> baslangic_p = {"Healthy": 0.6, "Fever": 0.4}
+    >>> gecis_p = {
     ...     "Healthy": {"Healthy": 0.7, "Fever": 0.3},
     ...     "Fever": {"Healthy": 0.4, "Fever": 0.6},
     ... }
-    >>> emit_p = {
+    >>> yayilim_p = {
     ...     "Healthy": {"normal": 0.5, "cold": 0.4, "dizzy": 0.1},
     ...     "Fever": {"normal": 0.1, "cold": 0.3, "dizzy": 0.6},
     ... }
-    >>> _validation(observations, states, start_p, trans_p, emit_p)
+    >>> _dogrulama(gozlemler, durumlar, baslangic_p, gecis_p, yayilim_p)
 
-    >>> _validation([], states, start_p, trans_p, emit_p)
+    >>> _dogrulama([], durumlar, baslangic_p, gecis_p, yayilim_p)
     Traceback (most recent call last):
             ...
-    ValueError: There's an empty parameter
+    ValueError: Boş bir parametre var
     """
-    _validate_not_empty(
-        observations_space,
-        states_space,
-        initial_probabilities,
-        transition_probabilities,
-        emission_probabilities,
+    _bos_olmayan_dogrulama(
+        gozlem_alani,
+        durum_alani,
+        baslangic_olasiliklari,
+        gecis_olasiliklari,
+        yayilim_olasiliklari,
     )
-    _validate_lists(observations_space, states_space)
-    _validate_dicts(
-        initial_probabilities, transition_probabilities, emission_probabilities
+    _listeleri_dogrula(gozlem_alani, durum_alani)
+    _sozlukleri_dogrula(
+        baslangic_olasiliklari, gecis_olasiliklari, yayilim_olasiliklari
     )
 
 
-def _validate_not_empty(
-    observations_space: Any,
-    states_space: Any,
-    initial_probabilities: Any,
-    transition_probabilities: Any,
-    emission_probabilities: Any,
+def _bos_olmayan_dogrulama(
+    gozlem_alani: Any,
+    durum_alani: Any,
+    baslangic_olasiliklari: Any,
+    gecis_olasiliklari: Any,
+    yayilim_olasiliklari: Any,
 ) -> None:
     """
-    >>> _validate_not_empty(["a"], ["b"], {"c":0.5},
+    >>> _bos_olmayan_dogrulama(["a"], ["b"], {"c":0.5},
     ... {"d": {"e": 0.6}}, {"f": {"g": 0.7}})
 
-    >>> _validate_not_empty(["a"], ["b"], {"c":0.5}, {}, {"f": {"g": 0.7}})
+    >>> _bos_olmayan_dogrulama(["a"], ["b"], {"c":0.5}, {}, {"f": {"g": 0.7}})
     Traceback (most recent call last):
             ...
-    ValueError: There's an empty parameter
-    >>> _validate_not_empty(["a"], ["b"], None, {"d": {"e": 0.6}}, {"f": {"g": 0.7}})
+    ValueError: Boş bir parametre var
+    >>> _bos_olmayan_dogrulama(["a"], ["b"], None, {"d": {"e": 0.6}}, {"f": {"g": 0.7}})
     Traceback (most recent call last):
             ...
-    ValueError: There's an empty parameter
+    ValueError: Boş bir parametre var
     """
     if not all(
         [
-            observations_space,
-            states_space,
-            initial_probabilities,
-            transition_probabilities,
-            emission_probabilities,
+            gozlem_alani,
+            durum_alani,
+            baslangic_olasiliklari,
+            gecis_olasiliklari,
+            yayilim_olasiliklari,
         ]
     ):
-        raise ValueError("There's an empty parameter")
+        raise ValueError("Boş bir parametre var")
 
 
-def _validate_lists(observations_space: Any, states_space: Any) -> None:
+def _listeleri_dogrula(gozlem_alani: Any, durum_alani: Any) -> None:
     """
-    >>> _validate_lists(["a"], ["b"])
+    >>> _listeleri_dogrula(["a"], ["b"])
 
-    >>> _validate_lists(1234, ["b"])
+    >>> _listeleri_dogrula(1234, ["b"])
     Traceback (most recent call last):
             ...
-    ValueError: observations_space must be a list
+    ValueError: gozlem_alani bir liste olmalı
 
-    >>> _validate_lists(["a"], [3])
+    >>> _listeleri_dogrula(["a"], [3])
     Traceback (most recent call last):
             ...
-    ValueError: states_space must be a list of strings
+    ValueError: durum_alani bir dizi stringlerden oluşmalı
     """
-    _validate_list(observations_space, "observations_space")
-    _validate_list(states_space, "states_space")
+    _listeyi_dogrula(gozlem_alani, "gozlem_alani")
+    _listeyi_dogrula(durum_alani, "durum_alani")
 
 
-def _validate_list(_object: Any, var_name: str) -> None:
+def _listeyi_dogrula(nesne: Any, degisken_adi: str) -> None:
     """
-    >>> _validate_list(["a"], "mock_name")
+    >>> _listeyi_dogrula(["a"], "ornek_adi")
 
-    >>> _validate_list("a", "mock_name")
+    >>> _listeyi_dogrula("a", "ornek_adi")
     Traceback (most recent call last):
             ...
-    ValueError: mock_name must be a list
-    >>> _validate_list([0.5], "mock_name")
+    ValueError: ornek_adi bir liste olmalı
+    >>> _listeyi_dogrula([0.5], "ornek_adi")
     Traceback (most recent call last):
             ...
-    ValueError: mock_name must be a list of strings
+    ValueError: ornek_adi bir dizi stringlerden oluşmalı
 
     """
-    if not isinstance(_object, list):
-        msg = f"{var_name} must be a list"
+    if not isinstance(nesne, list):
+        msg = f"{degisken_adi} bir liste olmalı"
         raise ValueError(msg)
     else:
-        for x in _object:
+        for x in nesne:
             if not isinstance(x, str):
-                msg = f"{var_name} must be a list of strings"
+                msg = f"{degisken_adi} bir dizi stringlerden oluşmalı"
                 raise ValueError(msg)
 
 
-def _validate_dicts(
-    initial_probabilities: Any,
-    transition_probabilities: Any,
-    emission_probabilities: Any,
+def _sozlukleri_dogrula(
+    baslangic_olasiliklari: Any,
+    gecis_olasiliklari: Any,
+    yayilim_olasiliklari: Any,
 ) -> None:
     """
-    >>> _validate_dicts({"c":0.5}, {"d": {"e": 0.6}}, {"f": {"g": 0.7}})
+    >>> _sozlukleri_dogrula({"c":0.5}, {"d": {"e": 0.6}}, {"f": {"g": 0.7}})
 
-    >>> _validate_dicts("invalid", {"d": {"e": 0.6}}, {"f": {"g": 0.7}})
+    >>> _sozlukleri_dogrula("gecersiz", {"d": {"e": 0.6}}, {"f": {"g": 0.7}})
     Traceback (most recent call last):
             ...
-    ValueError: initial_probabilities must be a dict
-    >>> _validate_dicts({"c":0.5}, {2: {"e": 0.6}}, {"f": {"g": 0.7}})
+    ValueError: baslangic_olasiliklari bir sözlük olmalı
+    >>> _sozlukleri_dogrula({"c":0.5}, {2: {"e": 0.6}}, {"f": {"g": 0.7}})
     Traceback (most recent call last):
             ...
-    ValueError: transition_probabilities all keys must be strings
-    >>> _validate_dicts({"c":0.5}, {"d": {"e": 0.6}}, {"f": {2: 0.7}})
+    ValueError: gecis_olasiliklari tüm anahtarlar string olmalı
+    >>> _sozlukleri_dogrula({"c":0.5}, {"d": {"e": 0.6}}, {"f": {2: 0.7}})
     Traceback (most recent call last):
             ...
-    ValueError: emission_probabilities all keys must be strings
-    >>> _validate_dicts({"c":0.5}, {"d": {"e": 0.6}}, {"f": {"g": "h"}})
+    ValueError: yayilim_olasiliklari tüm anahtarlar string olmalı
+    >>> _sozlukleri_dogrula({"c":0.5}, {"d": {"e": 0.6}}, {"f": {"g": "h"}})
     Traceback (most recent call last):
             ...
-    ValueError: emission_probabilities nested dictionary all values must be float
+    ValueError: yayilim_olasiliklari iç içe geçmiş sözlüklerin tüm değerleri float olmalı
     """
-    _validate_dict(initial_probabilities, "initial_probabilities", float)
-    _validate_nested_dict(transition_probabilities, "transition_probabilities")
-    _validate_nested_dict(emission_probabilities, "emission_probabilities")
+    _sozluk_dogrula(baslangic_olasiliklari, "baslangic_olasiliklari", float)
+    _ic_ice_sozluk_dogrula(gecis_olasiliklari, "gecis_olasiliklari")
+    _ic_ice_sozluk_dogrula(yayilim_olasiliklari, "yayilim_olasiliklari")
 
 
-def _validate_nested_dict(_object: Any, var_name: str) -> None:
+def _ic_ice_sozluk_dogrula(nesne: Any, degisken_adi: str) -> None:
     """
-    >>> _validate_nested_dict({"a":{"b": 0.5}}, "mock_name")
+    >>> _ic_ice_sozluk_dogrula({"a":{"b": 0.5}}, "ornek_adi")
 
-    >>> _validate_nested_dict("invalid", "mock_name")
+    >>> _ic_ice_sozluk_dogrula("gecersiz", "ornek_adi")
     Traceback (most recent call last):
             ...
-    ValueError: mock_name must be a dict
-    >>> _validate_nested_dict({"a": 8}, "mock_name")
+    ValueError: ornek_adi bir sözlük olmalı
+    >>> _ic_ice_sozluk_dogrula({"a": 8}, "ornek_adi")
     Traceback (most recent call last):
             ...
-    ValueError: mock_name all values must be dict
-    >>> _validate_nested_dict({"a":{2: 0.5}}, "mock_name")
+    ValueError: ornek_adi tüm değerler sözlük olmalı
+    >>> _ic_ice_sozluk_dogrula({"a":{2: 0.5}}, "ornek_adi")
     Traceback (most recent call last):
             ...
-    ValueError: mock_name all keys must be strings
-    >>> _validate_nested_dict({"a":{"b": 4}}, "mock_name")
+    ValueError: ornek_adi tüm anahtarlar string olmalı
+    >>> _ic_ice_sozluk_dogrula({"a":{"b": 4}}, "ornek_adi")
     Traceback (most recent call last):
             ...
-    ValueError: mock_name nested dictionary all values must be float
+    ValueError: ornek_adi iç içe geçmiş sözlüklerin tüm değerleri float olmalı
     """
-    _validate_dict(_object, var_name, dict)
-    for x in _object.values():
-        _validate_dict(x, var_name, float, True)
+    _sozluk_dogrula(nesne, degisken_adi, dict)
+    for x in nesne.values():
+        _sozluk_dogrula(x, degisken_adi, float, True)
 
 
-def _validate_dict(
-    _object: Any, var_name: str, value_type: type, nested: bool = False
+def _sozluk_dogrula(
+    nesne: Any, degisken_adi: str, deger_tipi: type, ic_ice: bool = False
 ) -> None:
     """
-    >>> _validate_dict({"b": 0.5}, "mock_name", float)
+    >>> _sozluk_dogrula({"b": 0.5}, "ornek_adi", float)
 
-    >>> _validate_dict("invalid", "mock_name", float)
+    >>> _sozluk_dogrula("gecersiz", "ornek_adi", float)
     Traceback (most recent call last):
             ...
-    ValueError: mock_name must be a dict
-    >>> _validate_dict({"a": 8}, "mock_name", dict)
+    ValueError: ornek_adi bir sözlük olmalı
+    >>> _sozluk_dogrula({"a": 8}, "ornek_adi", dict)
     Traceback (most recent call last):
             ...
-    ValueError: mock_name all values must be dict
-    >>> _validate_dict({2: 0.5}, "mock_name",float, True)
+    ValueError: ornek_adi tüm değerler sözlük olmalı
+    >>> _sozluk_dogrula({2: 0.5}, "ornek_adi",float, True)
     Traceback (most recent call last):
             ...
-    ValueError: mock_name all keys must be strings
-    >>> _validate_dict({"b": 4}, "mock_name", float,True)
+    ValueError: ornek_adi tüm anahtarlar string olmalı
+    >>> _sozluk_dogrula({"b": 4}, "ornek_adi", float,True)
     Traceback (most recent call last):
             ...
-    ValueError: mock_name nested dictionary all values must be float
+    ValueError: ornek_adi iç içe geçmiş sözlüklerin tüm değerleri float olmalı
     """
-    if not isinstance(_object, dict):
-        msg = f"{var_name} must be a dict"
+    if not isinstance(nesne, dict):
+        msg = f"{degisken_adi} bir sözlük olmalı"
         raise ValueError(msg)
-    if not all(isinstance(x, str) for x in _object):
-        msg = f"{var_name} all keys must be strings"
+    if not all(isinstance(x, str) for x in nesne):
+        msg = f"{degisken_adi} tüm anahtarlar string olmalı"
         raise ValueError(msg)
-    if not all(isinstance(x, value_type) for x in _object.values()):
-        nested_text = "nested dictionary " if nested else ""
-        msg = f"{var_name} {nested_text}all values must be {value_type.__name__}"
+    if not all(isinstance(x, deger_tipi) for x in nesne.values()):
+        ic_ice_metin = "iç içe geçmiş sözlüklerin " if ic_ice else ""
+        msg = f"{degisken_adi} {ic_ice_metin}tüm değerleri {deger_tipi.__name__} olmalı"
         raise ValueError(msg)
 
 

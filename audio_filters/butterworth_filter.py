@@ -3,30 +3,30 @@ from math import cos, sin, sqrt, tau
 from audio_filters.iir_filter import IIRFilter
 
 """
-Create 2nd-order IIR filters with Butterworth design.
+Butterworth tasarımı ile 2. dereceden IIR filtreler oluşturun.
 
-Code based on https://webaudio.github.io/Audio-EQ-Cookbook/audio-eq-cookbook.html
-Alternatively you can use scipy.signal.butter, which should yield the same results.
+Kod, https://webaudio.github.io/Audio-EQ-Cookbook/audio-eq-cookbook.html adresine dayanmaktadır.
+Alternatif olarak, aynı sonuçları vermesi gereken scipy.signal.butter'ı kullanabilirsiniz.
 """
 
 
-def make_lowpass(
-    frequency: int,
-    samplerate: int,
-    q_factor: float = 1 / sqrt(2),
+def alçak_geçiren_oluştur(
+    frekans: int,
+    örnekleme_hızı: int,
+    q_faktörü: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
-    Creates a low-pass filter
+    Alçak geçiren bir filtre oluşturur
 
-    >>> filter = make_lowpass(1000, 48000)
-    >>> filter.a_coeffs + filter.b_coeffs  # doctest: +NORMALIZE_WHITESPACE
+    >>> filtre = alçak_geçiren_oluştur(1000, 48000)
+    >>> filtre.a_koeff + filtre.b_koeff  # doctest: +NORMALIZE_WHITESPACE
     [1.0922959556412573, -1.9828897227476208, 0.9077040443587427, 0.004277569313094809,
      0.008555138626189618, 0.004277569313094809]
     """
-    w0 = tau * frequency / samplerate
+    w0 = tau * frekans / örnekleme_hızı
     _sin = sin(w0)
     _cos = cos(w0)
-    alpha = _sin / (2 * q_factor)
+    alpha = _sin / (2 * q_faktörü)
 
     b0 = (1 - _cos) / 2
     b1 = 1 - _cos
@@ -35,28 +35,28 @@ def make_lowpass(
     a1 = -2 * _cos
     a2 = 1 - alpha
 
-    filt = IIRFilter(2)
-    filt.set_coefficients([a0, a1, a2], [b0, b1, b0])
-    return filt
+    filtre = IIRFilter(2)
+    filtre.koeff_ayarla([a0, a1, a2], [b0, b1, b0])
+    return filtre
 
 
-def make_highpass(
-    frequency: int,
-    samplerate: int,
-    q_factor: float = 1 / sqrt(2),
+def yüksek_geçiren_oluştur(
+    frekans: int,
+    örnekleme_hızı: int,
+    q_faktörü: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
-    Creates a high-pass filter
+    Yüksek geçiren bir filtre oluşturur
 
-    >>> filter = make_highpass(1000, 48000)
-    >>> filter.a_coeffs + filter.b_coeffs  # doctest: +NORMALIZE_WHITESPACE
+    >>> filtre = yüksek_geçiren_oluştur(1000, 48000)
+    >>> filtre.a_koeff + filtre.b_koeff  # doctest: +NORMALIZE_WHITESPACE
     [1.0922959556412573, -1.9828897227476208, 0.9077040443587427, 0.9957224306869052,
      -1.9914448613738105, 0.9957224306869052]
     """
-    w0 = tau * frequency / samplerate
+    w0 = tau * frekans / örnekleme_hızı
     _sin = sin(w0)
     _cos = cos(w0)
-    alpha = _sin / (2 * q_factor)
+    alpha = _sin / (2 * q_faktörü)
 
     b0 = (1 + _cos) / 2
     b1 = -1 - _cos
@@ -65,28 +65,28 @@ def make_highpass(
     a1 = -2 * _cos
     a2 = 1 - alpha
 
-    filt = IIRFilter(2)
-    filt.set_coefficients([a0, a1, a2], [b0, b1, b0])
-    return filt
+    filtre = IIRFilter(2)
+    filtre.koeff_ayarla([a0, a1, a2], [b0, b1, b0])
+    return filtre
 
 
-def make_bandpass(
-    frequency: int,
-    samplerate: int,
-    q_factor: float = 1 / sqrt(2),
+def bant_geçiren_oluştur(
+    frekans: int,
+    örnekleme_hızı: int,
+    q_faktörü: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
-    Creates a band-pass filter
+    Bant geçiren bir filtre oluşturur
 
-    >>> filter = make_bandpass(1000, 48000)
-    >>> filter.a_coeffs + filter.b_coeffs  # doctest: +NORMALIZE_WHITESPACE
+    >>> filtre = bant_geçiren_oluştur(1000, 48000)
+    >>> filtre.a_koeff + filtre.b_koeff  # doctest: +NORMALIZE_WHITESPACE
     [1.0922959556412573, -1.9828897227476208, 0.9077040443587427, 0.06526309611002579,
      0, -0.06526309611002579]
     """
-    w0 = tau * frequency / samplerate
+    w0 = tau * frekans / örnekleme_hızı
     _sin = sin(w0)
     _cos = cos(w0)
-    alpha = _sin / (2 * q_factor)
+    alpha = _sin / (2 * q_faktörü)
 
     b0 = _sin / 2
     b1 = 0
@@ -96,139 +96,139 @@ def make_bandpass(
     a1 = -2 * _cos
     a2 = 1 - alpha
 
-    filt = IIRFilter(2)
-    filt.set_coefficients([a0, a1, a2], [b0, b1, b2])
-    return filt
+    filtre = IIRFilter(2)
+    filtre.koeff_ayarla([a0, a1, a2], [b0, b1, b2])
+    return filtre
 
 
-def make_allpass(
-    frequency: int,
-    samplerate: int,
-    q_factor: float = 1 / sqrt(2),
+def tüm_geçiren_oluştur(
+    frekans: int,
+    örnekleme_hızı: int,
+    q_faktörü: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
-    Creates an all-pass filter
+    Tüm geçiren bir filtre oluşturur
 
-    >>> filter = make_allpass(1000, 48000)
-    >>> filter.a_coeffs + filter.b_coeffs  # doctest: +NORMALIZE_WHITESPACE
+    >>> filtre = tüm_geçiren_oluştur(1000, 48000)
+    >>> filtre.a_koeff + filtre.b_koeff  # doctest: +NORMALIZE_WHITESPACE
     [1.0922959556412573, -1.9828897227476208, 0.9077040443587427, 0.9077040443587427,
      -1.9828897227476208, 1.0922959556412573]
     """
-    w0 = tau * frequency / samplerate
+    w0 = tau * frekans / örnekleme_hızı
     _sin = sin(w0)
     _cos = cos(w0)
-    alpha = _sin / (2 * q_factor)
+    alpha = _sin / (2 * q_faktörü)
 
     b0 = 1 - alpha
     b1 = -2 * _cos
     b2 = 1 + alpha
 
-    filt = IIRFilter(2)
-    filt.set_coefficients([b2, b1, b0], [b0, b1, b2])
-    return filt
+    filtre = IIRFilter(2)
+    filtre.koeff_ayarla([b2, b1, b0], [b0, b1, b2])
+    return filtre
 
 
-def make_peak(
-    frequency: int,
-    samplerate: int,
-    gain_db: float,
-    q_factor: float = 1 / sqrt(2),
+def tepe_oluştur(
+    frekans: int,
+    örnekleme_hızı: int,
+    kazanç_db: float,
+    q_faktörü: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
-    Creates a peak filter
+    Tepe bir filtre oluşturur
 
-    >>> filter = make_peak(1000, 48000, 6)
-    >>> filter.a_coeffs + filter.b_coeffs  # doctest: +NORMALIZE_WHITESPACE
+    >>> filtre = tepe_oluştur(1000, 48000, 6)
+    >>> filtre.a_koeff + filtre.b_koeff  # doctest: +NORMALIZE_WHITESPACE
     [1.0653405327119334, -1.9828897227476208, 0.9346594672880666, 1.1303715025601122,
      -1.9828897227476208, 0.8696284974398878]
     """
-    w0 = tau * frequency / samplerate
+    w0 = tau * frekans / örnekleme_hızı
     _sin = sin(w0)
     _cos = cos(w0)
-    alpha = _sin / (2 * q_factor)
-    big_a = 10 ** (gain_db / 40)
+    alpha = _sin / (2 * q_faktörü)
+    büyük_a = 10 ** (kazanç_db / 40)
 
-    b0 = 1 + alpha * big_a
+    b0 = 1 + alpha * büyük_a
     b1 = -2 * _cos
-    b2 = 1 - alpha * big_a
-    a0 = 1 + alpha / big_a
+    b2 = 1 - alpha * büyük_a
+    a0 = 1 + alpha / büyük_a
     a1 = -2 * _cos
-    a2 = 1 - alpha / big_a
+    a2 = 1 - alpha / büyük_a
 
-    filt = IIRFilter(2)
-    filt.set_coefficients([a0, a1, a2], [b0, b1, b2])
-    return filt
+    filtre = IIRFilter(2)
+    filtre.koeff_ayarla([a0, a1, a2], [b0, b1, b2])
+    return filtre
 
 
-def make_lowshelf(
-    frequency: int,
-    samplerate: int,
-    gain_db: float,
-    q_factor: float = 1 / sqrt(2),
+def alçak_raf_oluştur(
+    frekans: int,
+    örnekleme_hızı: int,
+    kazanç_db: float,
+    q_faktörü: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
-    Creates a low-shelf filter
+    Alçak raf bir filtre oluşturur
 
-    >>> filter = make_lowshelf(1000, 48000, 6)
-    >>> filter.a_coeffs + filter.b_coeffs  # doctest: +NORMALIZE_WHITESPACE
+    >>> filtre = alçak_raf_oluştur(1000, 48000, 6)
+    >>> filtre.a_koeff + filtre.b_koeff  # doctest: +NORMALIZE_WHITESPACE
     [3.0409336710888786, -5.608870992220748, 2.602157875636628, 3.139954022810743,
      -5.591841778072785, 2.5201667380627257]
     """
-    w0 = tau * frequency / samplerate
+    w0 = tau * frekans / örnekleme_hızı
     _sin = sin(w0)
     _cos = cos(w0)
-    alpha = _sin / (2 * q_factor)
-    big_a = 10 ** (gain_db / 40)
-    pmc = (big_a + 1) - (big_a - 1) * _cos
-    ppmc = (big_a + 1) + (big_a - 1) * _cos
-    mpc = (big_a - 1) - (big_a + 1) * _cos
-    pmpc = (big_a - 1) + (big_a + 1) * _cos
-    aa2 = 2 * sqrt(big_a) * alpha
+    alpha = _sin / (2 * q_faktörü)
+    büyük_a = 10 ** (kazanç_db / 40)
+    pmc = (büyük_a + 1) - (büyük_a - 1) * _cos
+    ppmc = (büyük_a + 1) + (büyük_a - 1) * _cos
+    mpc = (büyük_a - 1) - (büyük_a + 1) * _cos
+    pmpc = (büyük_a - 1) + (büyük_a + 1) * _cos
+    aa2 = 2 * sqrt(büyük_a) * alpha
 
-    b0 = big_a * (pmc + aa2)
-    b1 = 2 * big_a * mpc
-    b2 = big_a * (pmc - aa2)
+    b0 = büyük_a * (pmc + aa2)
+    b1 = 2 * büyük_a * mpc
+    b2 = büyük_a * (pmc - aa2)
     a0 = ppmc + aa2
     a1 = -2 * pmpc
     a2 = ppmc - aa2
 
-    filt = IIRFilter(2)
-    filt.set_coefficients([a0, a1, a2], [b0, b1, b2])
-    return filt
+    filtre = IIRFilter(2)
+    filtre.koeff_ayarla([a0, a1, a2], [b0, b1, b2])
+    return filtre
 
 
-def make_highshelf(
-    frequency: int,
-    samplerate: int,
-    gain_db: float,
-    q_factor: float = 1 / sqrt(2),
+def yüksek_raf_oluştur(
+    frekans: int,
+    örnekleme_hızı: int,
+    kazanç_db: float,
+    q_faktörü: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
-    Creates a high-shelf filter
+    Yüksek raf bir filtre oluşturur
 
-    >>> filter = make_highshelf(1000, 48000, 6)
-    >>> filter.a_coeffs + filter.b_coeffs  # doctest: +NORMALIZE_WHITESPACE
+    >>> filtre = yüksek_raf_oluştur(1000, 48000, 6)
+    >>> filtre.a_koeff + filtre.b_koeff  # doctest: +NORMALIZE_WHITESPACE
     [2.2229172136088806, -3.9587208137297303, 1.7841414181566304, 4.295432981120543,
      -7.922740859457287, 3.6756456963725253]
     """
-    w0 = tau * frequency / samplerate
+    w0 = tau * frekans / örnekleme_hızı
     _sin = sin(w0)
     _cos = cos(w0)
-    alpha = _sin / (2 * q_factor)
-    big_a = 10 ** (gain_db / 40)
-    pmc = (big_a + 1) - (big_a - 1) * _cos
-    ppmc = (big_a + 1) + (big_a - 1) * _cos
-    mpc = (big_a - 1) - (big_a + 1) * _cos
-    pmpc = (big_a - 1) + (big_a + 1) * _cos
-    aa2 = 2 * sqrt(big_a) * alpha
+    alpha = _sin / (2 * q_faktörü)
+    büyük_a = 10 ** (kazanç_db / 40)
+    pmc = (büyük_a + 1) - (büyük_a - 1) * _cos
+    ppmc = (büyük_a + 1) + (büyük_a - 1) * _cos
+    mpc = (büyük_a - 1) - (büyük_a + 1) * _cos
+    pmpc = (büyük_a - 1) + (büyük_a + 1) * _cos
+    aa2 = 2 * sqrt(büyük_a) * alpha
 
-    b0 = big_a * (ppmc + aa2)
-    b1 = -2 * big_a * pmpc
-    b2 = big_a * (ppmc - aa2)
+    b0 = büyük_a * (ppmc + aa2)
+    b1 = -2 * büyük_a * pmpc
+    b2 = büyük_a * (ppmc - aa2)
     a0 = pmc + aa2
     a1 = 2 * mpc
     a2 = pmc - aa2
 
-    filt = IIRFilter(2)
-    filt.set_coefficients([a0, a1, a2], [b0, b1, b2])
-    return filt
+    filtre = IIRFilter(2)
+    filtre.koeff_ayarla([a0, a1, a2], [b0, b1, b2])
+    return filtre

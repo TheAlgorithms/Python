@@ -1,32 +1,32 @@
 """
-The number of partitions of a number n into at least k parts equals the number of
-partitions into exactly k parts plus the number of partitions into at least k-1 parts.
-Subtracting 1 from each part of a partition of n into k parts gives a partition of n-k
-into k parts. These two facts together are used for this algorithm.
+Bir sayının en az k parçaya bölünme sayısı, tam olarak k parçaya bölünme sayısına
+ve en az k-1 parçaya bölünme sayısına eşittir. n'in k parçaya bölünmesinin her bir
+parçasından 1 çıkarılması, n-k'nın k parçaya bölünmesine yol açar. Bu iki gerçek
+birlikte bu algoritma için kullanılır.
 * https://en.wikipedia.org/wiki/Partition_(number_theory)
 * https://en.wikipedia.org/wiki/Partition_function_(number_theory)
 """
 
 
-def partition(m: int) -> int:
+def bolum(m: int) -> int:
     """
-    >>> partition(5)
+    >>> bolum(5)
     7
-    >>> partition(7)
+    >>> bolum(7)
     15
-    >>> partition(100)
+    >>> bolum(100)
     190569292
-    >>> partition(1_000)
+    >>> bolum(1_000)
     24061467864032622473692149727991
-    >>> partition(-7)
+    >>> bolum(-7)
     Traceback (most recent call last):
         ...
     IndexError: list index out of range
-    >>> partition(0)
+    >>> bolum(0)
     Traceback (most recent call last):
         ...
     IndexError: list assignment index out of range
-    >>> partition(7.8)
+    >>> bolum(7.8)
     Traceback (most recent call last):
         ...
     TypeError: 'float' object cannot be interpreted as an integer
@@ -49,13 +49,13 @@ if __name__ == "__main__":
 
     if len(sys.argv) == 1:
         try:
-            n = int(input("Enter a number: ").strip())
-            print(partition(n))
+            n = int(input("Bir sayı girin: ").strip())
+            print(bolum(n))
         except ValueError:
-            print("Please enter a number.")
+            print("Lütfen bir sayı girin.")
     else:
         try:
             n = int(sys.argv[1])
-            print(partition(n))
+            print(bolum(n))
         except ValueError:
-            print("Please pass a number.")
+            print("Lütfen bir sayı girin.")

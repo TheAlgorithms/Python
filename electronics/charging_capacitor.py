@@ -1,69 +1,68 @@
-# source - The ARRL Handbook for Radio Communications
+# kaynak - The ARRL Handbook for Radio Communications
 # https://en.wikipedia.org/wiki/RC_time_constant
 
 """
-Description
+Açıklama
 -----------
-When a capacitor is connected with a potential source (AC or DC). It starts to charge
-at a general speed but when a resistor is connected in the  circuit with in series to
-a capacitor then the capacitor charges slowly means it will take more time than usual.
-while the capacitor is being charged, the voltage is in exponential function with time.
+Bir kondansatör bir potansiyel kaynağına (AC veya DC) bağlandığında, genel bir hızla şarj olmaya başlar,
+ancak bir direnç bir kondansatörle seri olarak devreye bağlandığında, kondansatör yavaşça şarj olur,
+yani normalden daha fazla zaman alır. Kondansatör şarj olurken, voltaj zamanla üstel bir fonksiyondadır.
 
-'resistance(ohms) * capacitance(farads)' is called RC-timeconstant which may also be
-represented as τ (tau).  By using this RC-timeconstant we can find the voltage at any
-time 't' from the initiation of charging a capacitor with the help of the exponential
-function containing RC.  Both at charging and discharging of a capacitor.
+'direnç(ohm) * kapasitans(farad)' RC zaman sabiti olarak adlandırılır ve τ (tau) olarak da temsil edilebilir.
+Bu RC zaman sabitini kullanarak, bir kondansatörün şarj edilmesinin başlangıcından itibaren herhangi bir
+zaman 't' deki voltajı, RC içeren üstel fonksiyon yardımıyla bulabiliriz. Hem kondansatörün şarj edilmesinde
+hem de deşarj edilmesinde.
 """
 
-from math import exp  # value of exp = 2.718281828459…
+from math import exp  # exp değeri = 2.718281828459…
 
 
-def charging_capacitor(
-    source_voltage: float,  # voltage in volts.
-    resistance: float,  # resistance in ohms.
-    capacitance: float,  # capacitance in farads.
-    time_sec: float,  # time in seconds after charging initiation of capacitor.
+def sarj_kondansatoru(
+    kaynak_gerilimi: float,  # volt cinsinden gerilim.
+    direnç: float,  # ohm cinsinden direnç.
+    kapasitans: float,  # farad cinsinden kapasitans.
+    zaman_saniye: float,  # kondansatörün şarj edilmesinin başlatılmasından sonraki saniye cinsinden zaman.
 ) -> float:
     """
-    Find capacitor voltage at any nth second after initiating its charging.
+    Kondansatörün şarj edilmesinin başlatılmasından sonraki herhangi bir n. saniyedeki kondansatör voltajını bulun.
 
-    Examples
+    Örnekler
     --------
-    >>> charging_capacitor(source_voltage=.2,resistance=.9,capacitance=8.4,time_sec=.5)
+    >>> sarj_kondansatoru(kaynak_gerilimi=.2,direnç=.9,kapasitans=8.4,zaman_saniye=.5)
     0.013
 
-    >>> charging_capacitor(source_voltage=2.2,resistance=3.5,capacitance=2.4,time_sec=9)
+    >>> sarj_kondansatoru(kaynak_gerilimi=2.2,direnç=3.5,kapasitans=2.4,zaman_saniye=9)
     1.446
 
-    >>> charging_capacitor(source_voltage=15,resistance=200,capacitance=20,time_sec=2)
+    >>> sarj_kondansatoru(kaynak_gerilimi=15,direnç=200,kapasitans=20,zaman_saniye=2)
     0.007
 
-    >>> charging_capacitor(20, 2000, 30*pow(10,-5), 4)
+    >>> sarj_kondansatoru(20, 2000, 30*pow(10,-5), 4)
     19.975
 
-    >>> charging_capacitor(source_voltage=0,resistance=10.0,capacitance=.30,time_sec=3)
+    >>> sarj_kondansatoru(kaynak_gerilimi=0,direnç=10.0,kapasitans=.30,zaman_saniye=3)
     Traceback (most recent call last):
         ...
-    ValueError: Source voltage must be positive.
+    ValueError: Kaynak gerilimi pozitif olmalıdır.
 
-    >>> charging_capacitor(source_voltage=20,resistance=-2000,capacitance=30,time_sec=4)
+    >>> sarj_kondansatoru(kaynak_gerilimi=20,direnç=-2000,kapasitans=30,zaman_saniye=4)
     Traceback (most recent call last):
         ...
-    ValueError: Resistance must be positive.
+    ValueError: Direnç pozitif olmalıdır.
 
-    >>> charging_capacitor(source_voltage=30,resistance=1500,capacitance=0,time_sec=4)
+    >>> sarj_kondansatoru(kaynak_gerilimi=30,direnç=1500,kapasitans=0,zaman_saniye=4)
     Traceback (most recent call last):
         ...
-    ValueError: Capacitance must be positive.
+    ValueError: Kapasitans pozitif olmalıdır.
     """
 
-    if source_voltage <= 0:
-        raise ValueError("Source voltage must be positive.")
-    if resistance <= 0:
-        raise ValueError("Resistance must be positive.")
-    if capacitance <= 0:
-        raise ValueError("Capacitance must be positive.")
-    return round(source_voltage * (1 - exp(-time_sec / (resistance * capacitance))), 3)
+    if kaynak_gerilimi <= 0:
+        raise ValueError("Kaynak gerilimi pozitif olmalıdır.")
+    if direnç <= 0:
+        raise ValueError("Direnç pozitif olmalıdır.")
+    if kapasitans <= 0:
+        raise ValueError("Kapasitans pozitif olmalıdır.")
+    return round(kaynak_gerilimi * (1 - exp(-zaman_saniye / (direnç * kapasitans))), 3)
 
 
 if __name__ == "__main__":

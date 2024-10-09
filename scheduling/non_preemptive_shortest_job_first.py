@@ -1,8 +1,11 @@
 """
-Non-preemptive Shortest Job First
-Shortest execution time process is chosen for the next execution.
+Kesintisiz En Kısa İş Önceliği
+En kısa yürütme süresine sahip işlem bir sonraki yürütme için seçilir.
 https://www.guru99.com/shortest-job-first-sjf-scheduling.html
 https://en.wikipedia.org/wiki/Shortest_job_next
+
+Organiser: K. Umut Araz
+Github: https://github.com/arazumut
 """
 
 from __future__ import annotations
@@ -10,101 +13,100 @@ from __future__ import annotations
 from statistics import mean
 
 
-def calculate_waitingtime(
-    arrival_time: list[int], burst_time: list[int], no_of_processes: int
+def bekleme_süresi_hesapla(
+    varış_zamanı: list[int], patlama_süresi: list[int], işlem_sayısı: int
 ) -> list[int]:
     """
-    Calculate the waiting time of each processes
+    Her bir işlemin bekleme süresini hesaplar.
 
-    Return: The waiting time for each process.
-    >>> calculate_waitingtime([0,1,2], [10, 5, 8], 3)
+    Dönüş: Her işlem için bekleme süresi.
+    >>> bekleme_süresi_hesapla([0,1,2], [10, 5, 8], 3)
     [0, 9, 13]
-    >>> calculate_waitingtime([1,2,2,4], [4, 6, 3, 1], 4)
+    >>> bekleme_süresi_hesapla([1,2,2,4], [4, 6, 3, 1], 4)
     [0, 7, 4, 1]
-    >>> calculate_waitingtime([0,0,0], [12, 2, 10],3)
+    >>> bekleme_süresi_hesapla([0,0,0], [12, 2, 10],3)
     [12, 0, 2]
     """
 
-    waiting_time = [0] * no_of_processes
-    remaining_time = [0] * no_of_processes
+    bekleme_süresi = [0] * işlem_sayısı
+    kalan_süre = [0] * işlem_sayısı
 
-    # Initialize remaining_time to waiting_time.
+    # kalan_süre'yi bekleme_süresi ile başlat.
 
-    for i in range(no_of_processes):
-        remaining_time[i] = burst_time[i]
-    ready_process: list[int] = []
+    for i in range(işlem_sayısı):
+        kalan_süre[i] = patlama_süresi[i]
+    hazır_proses: list[int] = []
 
-    completed = 0
-    total_time = 0
+    tamamlanan = 0
+    toplam_zaman = 0
 
-    # When processes are not completed,
-    # A process whose arrival time has passed \
-    # and has remaining execution time is put into the ready_process.
-    # The shortest process in the ready_process, target_process is executed.
+    # İşlemler tamamlanmadığında,
+    # Varış zamanı geçmiş ve kalan yürütme süresi olan bir işlem hazır_proses'e eklenir.
+    # Hazır_proses içindeki en kısa işlem, hedef_proses olarak yürütülür.
 
-    while completed != no_of_processes:
-        ready_process = []
-        target_process = -1
+    while tamamlanan != işlem_sayısı:
+        hazır_proses = []
+        hedef_proses = -1
 
-        for i in range(no_of_processes):
-            if (arrival_time[i] <= total_time) and (remaining_time[i] > 0):
-                ready_process.append(i)
+        for i in range(işlem_sayısı):
+            if (varış_zamanı[i] <= toplam_zaman) and (kalan_süre[i] > 0):
+                hazır_proses.append(i)
 
-        if len(ready_process) > 0:
-            target_process = ready_process[0]
-            for i in ready_process:
-                if remaining_time[i] < remaining_time[target_process]:
-                    target_process = i
-            total_time += burst_time[target_process]
-            completed += 1
-            remaining_time[target_process] = 0
-            waiting_time[target_process] = (
-                total_time - arrival_time[target_process] - burst_time[target_process]
+        if len(hazır_proses) > 0:
+            hedef_proses = hazır_proses[0]
+            for i in hazır_proses:
+                if kalan_süre[i] < kalan_süre[hedef_proses]:
+                    hedef_proses = i
+            toplam_zaman += patlama_süresi[hedef_proses]
+            tamamlanan += 1
+            kalan_süre[hedef_proses] = 0
+            bekleme_süresi[hedef_proses] = (
+                toplam_zaman - varış_zamanı[hedef_proses] - patlama_süresi[hedef_proses]
             )
         else:
-            total_time += 1
+            toplam_zaman += 1
 
-    return waiting_time
+    return bekleme_süresi
 
 
-def calculate_turnaroundtime(
-    burst_time: list[int], no_of_processes: int, waiting_time: list[int]
+def dönüş_süresi_hesapla(
+    patlama_süresi: list[int], işlem_sayısı: int, bekleme_süresi: list[int]
 ) -> list[int]:
     """
-    Calculate the turnaround time of each process.
+    Her işlemin dönüş süresini hesaplar.
 
-    Return: The turnaround time for each process.
-    >>> calculate_turnaroundtime([0,1,2], 3, [0, 10, 15])
+    Dönüş: Her işlem için dönüş süresi.
+    >>> dönüş_süresi_hesapla([0,1,2], 3, [0, 10, 15])
     [0, 11, 17]
-    >>> calculate_turnaroundtime([1,2,2,4], 4, [1, 8, 5, 4])
+    >>> dönüş_süresi_hesapla([1,2,2,4], 4, [1, 8, 5, 4])
     [2, 10, 7, 8]
-    >>> calculate_turnaroundtime([0,0,0], 3, [12, 0, 2])
+    >>> dönüş_süresi_hesapla([0,0,0], 3, [12, 0, 2])
     [12, 0, 2]
     """
 
-    turn_around_time = [0] * no_of_processes
-    for i in range(no_of_processes):
-        turn_around_time[i] = burst_time[i] + waiting_time[i]
-    return turn_around_time
+    dönüş_süresi = [0] * işlem_sayısı
+    for i in range(işlem_sayısı):
+        dönüş_süresi[i] = patlama_süresi[i] + bekleme_süresi[i]
+    return dönüş_süresi
 
 
 if __name__ == "__main__":
-    print("[TEST CASE 01]")
+    print("[TEST DURUMU 01]")
 
-    no_of_processes = 4
-    burst_time = [2, 5, 3, 7]
-    arrival_time = [0, 0, 0, 0]
-    waiting_time = calculate_waitingtime(arrival_time, burst_time, no_of_processes)
-    turn_around_time = calculate_turnaroundtime(
-        burst_time, no_of_processes, waiting_time
+    işlem_sayısı = 4
+    patlama_süresi = [2, 5, 3, 7]
+    varış_zamanı = [0, 0, 0, 0]
+    bekleme_süresi = bekleme_süresi_hesapla(varış_zamanı, patlama_süresi, işlem_sayısı)
+    dönüş_süresi = dönüş_süresi_hesapla(
+        patlama_süresi, işlem_sayısı, bekleme_süresi
     )
 
-    # Printing the Result
-    print("PID\tBurst Time\tArrival Time\tWaiting Time\tTurnaround Time")
-    for i, process_id in enumerate(list(range(1, 5))):
+    # Sonuçları Yazdırma
+    print("PID\tPatlama Süresi\tVarış Zamanı\tBekleme Süresi\tDönüş Süresi")
+    for i, işlem_id in enumerate(list(range(1, 5))):
         print(
-            f"{process_id}\t{burst_time[i]}\t\t\t{arrival_time[i]}\t\t\t\t"
-            f"{waiting_time[i]}\t\t\t\t{turn_around_time[i]}"
+            f"{işlem_id}\t{patlama_süresi[i]}\t\t\t{varış_zamanı[i]}\t\t\t\t"
+            f"{bekleme_süresi[i]}\t\t\t\t{dönüş_süresi[i]}"
         )
-    print(f"\nAverage waiting time = {mean(waiting_time):.5f}")
-    print(f"Average turnaround time = {mean(turn_around_time):.5f}")
+    print(f"\nOrtalama bekleme süresi = {mean(bekleme_süresi):.5f}")
+    print(f"Ortalama dönüş süresi = {mean(dönüş_süresi):.5f}")

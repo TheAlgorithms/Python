@@ -1,72 +1,71 @@
 from __future__ import annotations
 
 """
-    Calculate the frequency and/or duty cycle of an astable 555 timer.
+    Kararsız 555 zamanlayıcısının frekansını ve/veya görev döngüsünü hesaplayın.
     * https://en.wikipedia.org/wiki/555_timer_IC#Astable
 
-    These functions take in the value of the external resistances (in ohms)
-    and capacitance (in Microfarad), and calculates the following:
+    Bu fonksiyonlar, harici dirençlerin (ohm cinsinden) ve kapasitansın (mikrofarad cinsinden) değerini alır ve aşağıdakileri hesaplar:
 
     -------------------------------------
-    | Freq = 1.44 /[( R1+ 2 x R2) x C1] |               ... in Hz
+    | Frekans = 1.44 /[( R1+ 2 x R2) x C1] |               ... Hz cinsinden
     -------------------------------------
-    where Freq is the frequency,
-          R1 is the first resistance in ohms,
-          R2 is the second resistance in ohms,
-          C1 is the capacitance in Microfarads.
+    burada Frekans frekansı,
+          R1 birinci direnç ohm cinsinden,
+          R2 ikinci direnç ohm cinsinden,
+          C1 kapasitans mikrofarad cinsindendir.
 
     ------------------------------------------------
-    | Duty Cycle = (R1 + R2) / (R1 + 2 x R2) x 100 |    ... in %
+    | Görev Döngüsü = (R1 + R2) / (R1 + 2 x R2) x 100 |    ... % cinsinden
     ------------------------------------------------
-    where R1 is the first resistance in ohms,
-          R2 is the second resistance in ohms.
+    burada R1 birinci direnç ohm cinsinden,
+          R2 ikinci direnç ohm cinsindendir.
 """
 
 
-def astable_frequency(
-    resistance_1: float, resistance_2: float, capacitance: float
+def kararsız_frekans(
+    direnç_1: float, direnç_2: float, kapasitans: float
 ) -> float:
     """
-    Usage examples:
-    >>> astable_frequency(resistance_1=45, resistance_2=45, capacitance=7)
+    Kullanım örnekleri:
+    >>> kararsız_frekans(direnç_1=45, direnç_2=45, kapasitans=7)
     1523.8095238095239
-    >>> astable_frequency(resistance_1=356, resistance_2=234, capacitance=976)
+    >>> kararsız_frekans(direnç_1=356, direnç_2=234, kapasitans=976)
     1.7905459175553078
-    >>> astable_frequency(resistance_1=2, resistance_2=-1, capacitance=2)
+    >>> kararsız_frekans(direnç_1=2, direnç_2=-1, kapasitans=2)
     Traceback (most recent call last):
         ...
-    ValueError: All values must be positive
-    >>> astable_frequency(resistance_1=45, resistance_2=45, capacitance=0)
+    ValueError: Tüm değerler pozitif olmalıdır
+    >>> kararsız_frekans(direnç_1=45, direnç_2=45, kapasitans=0)
     Traceback (most recent call last):
         ...
-    ValueError: All values must be positive
+    ValueError: Tüm değerler pozitif olmalıdır
     """
 
-    if resistance_1 <= 0 or resistance_2 <= 0 or capacitance <= 0:
-        raise ValueError("All values must be positive")
-    return (1.44 / ((resistance_1 + 2 * resistance_2) * capacitance)) * 10**6
+    if direnç_1 <= 0 or direnç_2 <= 0 or kapasitans <= 0:
+        raise ValueError("Tüm değerler pozitif olmalıdır")
+    return (1.44 / ((direnç_1 + 2 * direnç_2) * kapasitans)) * 10**6
 
 
-def astable_duty_cycle(resistance_1: float, resistance_2: float) -> float:
+def kararsız_görev_döngüsü(direnç_1: float, direnç_2: float) -> float:
     """
-    Usage examples:
-    >>> astable_duty_cycle(resistance_1=45, resistance_2=45)
+    Kullanım örnekleri:
+    >>> kararsız_görev_döngüsü(direnç_1=45, direnç_2=45)
     66.66666666666666
-    >>> astable_duty_cycle(resistance_1=356, resistance_2=234)
+    >>> kararsız_görev_döngüsü(direnç_1=356, direnç_2=234)
     71.60194174757282
-    >>> astable_duty_cycle(resistance_1=2, resistance_2=-1)
+    >>> kararsız_görev_döngüsü(direnç_1=2, direnç_2=-1)
     Traceback (most recent call last):
         ...
-    ValueError: All values must be positive
-    >>> astable_duty_cycle(resistance_1=0, resistance_2=0)
+    ValueError: Tüm değerler pozitif olmalıdır
+    >>> kararsız_görev_döngüsü(direnç_1=0, direnç_2=0)
     Traceback (most recent call last):
         ...
-    ValueError: All values must be positive
+    ValueError: Tüm değerler pozitif olmalıdır
     """
 
-    if resistance_1 <= 0 or resistance_2 <= 0:
-        raise ValueError("All values must be positive")
-    return (resistance_1 + resistance_2) / (resistance_1 + 2 * resistance_2) * 100
+    if direnç_1 <= 0 or direnç_2 <= 0:
+        raise ValueError("Tüm değerler pozitif olmalıdır")
+    return (direnç_1 + direnç_2) / (direnç_1 + 2 * direnç_2) * 100
 
 
 if __name__ == "__main__":

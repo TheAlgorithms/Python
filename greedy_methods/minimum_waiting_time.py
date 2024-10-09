@@ -1,45 +1,42 @@
 """
-Calculate the minimum waiting time using a greedy algorithm.
-reference: https://www.youtube.com/watch?v=Sf3eiO12eJs
+Açgözlü bir algoritma kullanarak minimum bekleme süresini hesaplayın.
+referans: https://www.youtube.com/watch?v=Sf3eiO12eJs
 
-For doctests run following command:
+Doctest'leri çalıştırmak için şu komutu kullanın:
 python -m doctest -v minimum_waiting_time.py
 
-The minimum_waiting_time function uses a greedy algorithm to calculate the minimum
-time for queries to complete. It sorts the list in non-decreasing order, calculates
-the waiting time for each query by multiplying its position in the list with the
-sum of all remaining query times, and returns the total waiting time. A doctest
-ensures that the function produces the correct output.
+Produced By K. Umut Araz
+
+minimum_waiting_time fonksiyonu, sorguların tamamlanması için minimum süreyi hesaplamak için açgözlü bir algoritma kullanır. Listeyi artmayan sırada sıralar, her sorgu için bekleme süresini, listedeki konumunu kalan tüm sorgu sürelerinin toplamı ile çarparak hesaplar ve toplam bekleme süresini döndürür. Bir doctest, fonksiyonun doğru çıktıyı ürettiğini garanti eder.
 """
 
 
-def minimum_waiting_time(queries: list[int]) -> int:
+def minimum_bekleme_suresi(sorgular: list[int]) -> int:
     """
-    This function takes a list of query times and returns the minimum waiting time
-    for all queries to be completed.
+    Bu fonksiyon bir sorgu süreleri listesini alır ve tüm sorguların tamamlanması için minimum bekleme süresini döndürür.
 
-    Args:
-        queries: A list of queries measured in picoseconds
+    Argümanlar:
+        sorgular: Pikosaniye cinsinden ölçülen sorguların bir listesi
 
-    Returns:
-        total_waiting_time: Minimum waiting time measured in picoseconds
+    Dönüş:
+        toplam_bekleme_suresi: Pikosaniye cinsinden ölçülen minimum bekleme süresi
 
-    Examples:
-    >>> minimum_waiting_time([3, 2, 1, 2, 6])
+    Örnekler:
+    >>> minimum_bekleme_suresi([3, 2, 1, 2, 6])
     17
-    >>> minimum_waiting_time([3, 2, 1])
+    >>> minimum_bekleme_suresi([3, 2, 1])
     4
-    >>> minimum_waiting_time([1, 2, 3, 4])
+    >>> minimum_bekleme_suresi([1, 2, 3, 4])
     10
-    >>> minimum_waiting_time([5, 5, 5, 5])
+    >>> minimum_bekleme_suresi([5, 5, 5, 5])
     30
-    >>> minimum_waiting_time([])
+    >>> minimum_bekleme_suresi([])
     0
     """
-    n = len(queries)
+    n = len(sorgular)
     if n in (0, 1):
         return 0
-    return sum(query * (n - i - 1) for i, query in enumerate(sorted(queries)))
+    return sum(sorgu * (n - i - 1) for i, sorgu in enumerate(sorted(sorgular)))
 
 
 if __name__ == "__main__":

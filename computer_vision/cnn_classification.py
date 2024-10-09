@@ -1,100 +1,97 @@
 """
-Convolutional Neural Network
+Evrişimli Sinir Ağı
 
-Objective : To train a CNN model detect if TB is present in Lung X-ray or not.
+Amaç : Bir CNN modeli eğiterek Akciğer Röntgeninde Tüberküloz olup olmadığını tespit etmek.
 
-Resources CNN Theory :
+Kaynaklar CNN Teorisi :
     https://en.wikipedia.org/wiki/Convolutional_neural_network
-Resources Tensorflow : https://www.tensorflow.org/tutorials/images/cnn
+Kaynaklar Tensorflow : https://www.tensorflow.org/tutorials/images/cnn
 
-Download dataset from :
+Veri setini indirin :
 https://lhncbc.nlm.nih.gov/LHC-publications/pubs/TuberculosisChestXrayImageDataSets.html
 
-1. Download the dataset folder and create two folder training set and test set
-in the parent dataset folder
-2. Move 30-40 image from both TB positive and TB Negative folder
-in the test set folder
-3. The labels of the images will be extracted from the folder name
-the image is present in.
+1. Veri seti klasörünü indirin ve ana veri seti klasöründe iki klasör oluşturun: eğitim seti ve test seti
+2. Hem TB pozitif hem de TB negatif klasörlerinden 30-40 görüntüyü test seti klasörüne taşıyın
+3. Görüntülerin etiketleri, görüntünün bulunduğu klasör adından çıkarılacaktır.
 
 """
 
-# Part 1 - Building the CNN
+# Bölüm 1 - CNN'i Oluşturma
 
 import numpy as np
 
-# Importing the Keras libraries and packages
+# Keras kütüphanelerini ve paketlerini içe aktarma
 import tensorflow as tf
 from keras import layers, models
 
 if __name__ == "__main__":
-    # Initialising the CNN
-    # (Sequential- Building the model layer by layer)
-    classifier = models.Sequential()
+    # CNN'i Başlatma
+    # (Sıralı- Modeli katman katman oluşturma)
+    sınıflandırıcı = models.Sequential()
 
-    # Step 1 - Convolution
-    # Here 64,64 is the length & breadth of dataset images and 3 is for the RGB channel
-    # (3,3) is the kernel size (filter matrix)
-    classifier.add(
+    # Adım 1 - Evrişim
+    # Burada 64,64 veri seti görüntülerinin uzunluğu ve genişliği ve 3 RGB kanalı içindir
+    # (3,3) çekirdek boyutudur (filtre matrisi)
+    sınıflandırıcı.add(
         layers.Conv2D(32, (3, 3), input_shape=(64, 64, 3), activation="relu")
     )
 
-    # Step 2 - Pooling
-    classifier.add(layers.MaxPooling2D(pool_size=(2, 2)))
+    # Adım 2 - Havuzlama
+    sınıflandırıcı.add(layers.MaxPooling2D(pool_size=(2, 2)))
 
-    # Adding a second convolutional layer
-    classifier.add(layers.Conv2D(32, (3, 3), activation="relu"))
-    classifier.add(layers.MaxPooling2D(pool_size=(2, 2)))
+    # İkinci bir evrişim katmanı ekleme
+    sınıflandırıcı.add(layers.Conv2D(32, (3, 3), activation="relu"))
+    sınıflandırıcı.add(layers.MaxPooling2D(pool_size=(2, 2)))
 
-    # Step 3 - Flattening
-    classifier.add(layers.Flatten())
+    # Adım 3 - Düzleştirme
+    sınıflandırıcı.add(layers.Flatten())
 
-    # Step 4 - Full connection
-    classifier.add(layers.Dense(units=128, activation="relu"))
-    classifier.add(layers.Dense(units=1, activation="sigmoid"))
+    # Adım 4 - Tam bağlantı
+    sınıflandırıcı.add(layers.Dense(units=128, activation="relu"))
+    sınıflandırıcı.add(layers.Dense(units=1, activation="sigmoid"))
 
-    # Compiling the CNN
-    classifier.compile(
+    # CNN'i Derleme
+    sınıflandırıcı.compile(
         optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"]
     )
 
-    # Part 2 - Fitting the CNN to the images
+    # Bölüm 2 - CNN'i görüntülere uydurma
 
-    # Load Trained model weights
+    # Eğitilmiş model ağırlıklarını yükle
 
     # from keras.models import load_model
     # regressor=load_model('cnn.h5')
 
-    train_datagen = tf.keras.preprocessing.image.ImageDataGenerator(
+    eğitim_veri_üretici = tf.keras.preprocessing.image.ImageDataGenerator(
         rescale=1.0 / 255, shear_range=0.2, zoom_range=0.2, horizontal_flip=True
     )
 
-    test_datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1.0 / 255)
+    test_veri_üretici = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1.0 / 255)
 
-    training_set = train_datagen.flow_from_directory(
+    eğitim_seti = eğitim_veri_üretici.flow_from_directory(
         "dataset/training_set", target_size=(64, 64), batch_size=32, class_mode="binary"
     )
 
-    test_set = test_datagen.flow_from_directory(
+    test_seti = test_veri_üretici.flow_from_directory(
         "dataset/test_set", target_size=(64, 64), batch_size=32, class_mode="binary"
     )
 
-    classifier.fit_generator(
-        training_set, steps_per_epoch=5, epochs=30, validation_data=test_set
+    sınıflandırıcı.fit_generator(
+        eğitim_seti, steps_per_epoch=5, epochs=30, validation_data=test_seti
     )
 
-    classifier.save("cnn.h5")
+    sınıflandırıcı.save("cnn.h5")
 
-    # Part 3 - Making new predictions
+    # Bölüm 3 - Yeni tahminler yapma
 
-    test_image = tf.keras.preprocessing.image.load_img(
+    test_görüntü = tf.keras.preprocessing.image.load_img(
         "dataset/single_prediction/image.png", target_size=(64, 64)
     )
-    test_image = tf.keras.preprocessing.image.img_to_array(test_image)
-    test_image = np.expand_dims(test_image, axis=0)
-    result = classifier.predict(test_image)
-    # training_set.class_indices
-    if result[0][0] == 0:
-        prediction = "Normal"
-    if result[0][0] == 1:
-        prediction = "Abnormality detected"
+    test_görüntü = tf.keras.preprocessing.image.img_to_array(test_görüntü)
+    test_görüntü = np.expand_dims(test_görüntü, axis=0)
+    sonuç = sınıflandırıcı.predict(test_görüntü)
+    # eğitim_seti.class_indices
+    if sonuç[0][0] == 0:
+        tahmin = "Normal"
+    if sonuç[0][0] == 1:
+        tahmin = "Anormallik tespit edildi"

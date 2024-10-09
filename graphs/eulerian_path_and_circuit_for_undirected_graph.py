@@ -1,55 +1,54 @@
-# Eulerian Path is a path in graph that visits every edge exactly once.
-# Eulerian Circuit is an Eulerian Path which starts and ends on the same
-# vertex.
-# time complexity is O(V+E)
-# space complexity is O(VE)
+# Euler Yolu, grafikte her kenarı tam olarak bir kez ziyaret eden bir yoldur.
+# Euler Çevrimi, aynı zamanda başladığı ve bittiği düğümde biten bir Euler Yolu'dur.
+# zaman karmaşıklığı O(V+E)
+# alan karmaşıklığı O(VE)
 
 
-# using dfs for finding eulerian path traversal
-def dfs(u, graph, visited_edge, path=None):
-    path = (path or []) + [u]
-    for v in graph[u]:
-        if visited_edge[u][v] is False:
-            visited_edge[u][v], visited_edge[v][u] = True, True
-            path = dfs(v, graph, visited_edge, path)
-    return path
+# euler yolu geçişini bulmak için dfs kullanımı
+def dfs(u, grafik, ziyaret_edilen_kenar, yol=None):
+    yol = (yol or []) + [u]
+    for v in grafik[u]:
+        if ziyaret_edilen_kenar[u][v] is False:
+            ziyaret_edilen_kenar[u][v], ziyaret_edilen_kenar[v][u] = True, True
+            yol = dfs(v, grafik, ziyaret_edilen_kenar, yol)
+    return yol
 
 
-# for checking in graph has euler path or circuit
-def check_circuit_or_path(graph, max_node):
-    odd_degree_nodes = 0
-    odd_node = -1
-    for i in range(max_node):
-        if i not in graph:
+# grafikte euler yolu veya çevrimi olup olmadığını kontrol etme
+def yol_veya_cevrim_kontrol(grafik, max_dugum):
+    tek_dereceli_dugumler = 0
+    tek_dugum = -1
+    for i in range(max_dugum):
+        if i not in grafik:
             continue
-        if len(graph[i]) % 2 == 1:
-            odd_degree_nodes += 1
-            odd_node = i
-    if odd_degree_nodes == 0:
-        return 1, odd_node
-    if odd_degree_nodes == 2:
-        return 2, odd_node
-    return 3, odd_node
+        if len(grafik[i]) % 2 == 1:
+            tek_dereceli_dugumler += 1
+            tek_dugum = i
+    if tek_dereceli_dugumler == 0:
+        return 1, tek_dugum
+    if tek_dereceli_dugumler == 2:
+        return 2, tek_dugum
+    return 3, tek_dugum
 
 
-def check_euler(graph, max_node):
-    visited_edge = [[False for _ in range(max_node + 1)] for _ in range(max_node + 1)]
-    check, odd_node = check_circuit_or_path(graph, max_node)
-    if check == 3:
-        print("graph is not Eulerian")
-        print("no path")
+def euler_kontrol(grafik, max_dugum):
+    ziyaret_edilen_kenar = [[False for _ in range(max_dugum + 1)] for _ in range(max_dugum + 1)]
+    kontrol, tek_dugum = yol_veya_cevrim_kontrol(grafik, max_dugum)
+    if kontrol == 3:
+        print("graf Eulerian değil")
+        print("yol yok")
         return
-    start_node = 1
-    if check == 2:
-        start_node = odd_node
-        print("graph has a Euler path")
-    if check == 1:
-        print("graph has a Euler cycle")
-    path = dfs(start_node, graph, visited_edge)
-    print(path)
+    baslangic_dugumu = 1
+    if kontrol == 2:
+        baslangic_dugumu = tek_dugum
+        print("graf Euler yolu içeriyor")
+    if kontrol == 1:
+        print("graf Euler çevrimi içeriyor")
+    yol = dfs(baslangic_dugumu, grafik, ziyaret_edilen_kenar)
+    print(yol)
 
 
-def main():
+def ana():
     g1 = {1: [2, 3, 4], 2: [1, 3], 3: [1, 2], 4: [1, 5], 5: [4]}
     g2 = {1: [2, 3, 4, 5], 2: [1, 3], 3: [1, 2], 4: [1, 5], 5: [1, 4]}
     g3 = {1: [2, 3, 4], 2: [1, 3, 4], 3: [1, 2], 4: [1, 2, 5], 5: [4]}
@@ -57,15 +56,15 @@ def main():
     g5 = {
         1: [],
         2: [],
-        # all degree is zero
+        # tüm dereceler sıfır
     }
-    max_node = 10
-    check_euler(g1, max_node)
-    check_euler(g2, max_node)
-    check_euler(g3, max_node)
-    check_euler(g4, max_node)
-    check_euler(g5, max_node)
+    max_dugum = 10
+    euler_kontrol(g1, max_dugum)
+    euler_kontrol(g2, max_dugum)
+    euler_kontrol(g3, max_dugum)
+    euler_kontrol(g4, max_dugum)
+    euler_kontrol(g5, max_dugum)
 
 
 if __name__ == "__main__":
-    main()
+    ana()

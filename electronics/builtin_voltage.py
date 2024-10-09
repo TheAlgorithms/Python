@@ -2,61 +2,61 @@ from math import log
 
 from scipy.constants import Boltzmann, physical_constants
 
-T = 300  # TEMPERATURE (unit = K)
+T = 300  # SICAKLIK (birim = K)
 
 
-def builtin_voltage(
-    donor_conc: float,  # donor concentration
-    acceptor_conc: float,  # acceptor concentration
-    intrinsic_conc: float,  # intrinsic concentration
+def yerlesik_gerilim(
+    bagislayici_kons: float,  # bağışlayıcı konsantrasyonu
+    alıcı_kons: float,  # alıcı konsantrasyonu
+    iç_kons: float,  # içsel konsantrasyon
 ) -> float:
     """
-    This function can calculate the Builtin Voltage of a pn junction diode.
-    This is calculated from the given three values.
-    Examples -
-    >>> builtin_voltage(donor_conc=1e17, acceptor_conc=1e17, intrinsic_conc=1e10)
+    Bu fonksiyon bir pn eklem diyotunun yerleşik gerilimini hesaplayabilir.
+    Bu, verilen üç değerden hesaplanır.
+    Örnekler -
+    >>> yerlesik_gerilim(bagislayici_kons=1e17, alıcı_kons=1e17, iç_kons=1e10)
     0.833370010652644
-    >>> builtin_voltage(donor_conc=0, acceptor_conc=1600, intrinsic_conc=200)
+    >>> yerlesik_gerilim(bagislayici_kons=0, alıcı_kons=1600, iç_kons=200)
     Traceback (most recent call last):
       ...
-    ValueError: Donor concentration should be positive
-    >>> builtin_voltage(donor_conc=1000, acceptor_conc=0, intrinsic_conc=1200)
+    ValueError: Bağışlayıcı konsantrasyonu pozitif olmalıdır
+    >>> yerlesik_gerilim(bagislayici_kons=1000, alıcı_kons=0, iç_kons=1200)
     Traceback (most recent call last):
       ...
-    ValueError: Acceptor concentration should be positive
-    >>> builtin_voltage(donor_conc=1000, acceptor_conc=1000, intrinsic_conc=0)
+    ValueError: Alıcı konsantrasyonu pozitif olmalıdır
+    >>> yerlesik_gerilim(bagislayici_kons=1000, alıcı_kons=1000, iç_kons=0)
     Traceback (most recent call last):
       ...
-    ValueError: Intrinsic concentration should be positive
-    >>> builtin_voltage(donor_conc=1000, acceptor_conc=3000, intrinsic_conc=2000)
+    ValueError: İçsel konsantrasyon pozitif olmalıdır
+    >>> yerlesik_gerilim(bagislayici_kons=1000, alıcı_kons=3000, iç_kons=2000)
     Traceback (most recent call last):
       ...
-    ValueError: Donor concentration should be greater than intrinsic concentration
-    >>> builtin_voltage(donor_conc=3000, acceptor_conc=1000, intrinsic_conc=2000)
+    ValueError: Bağışlayıcı konsantrasyonu içsel konsantrasyondan büyük olmalıdır
+    >>> yerlesik_gerilim(bagislayici_kons=3000, alıcı_kons=1000, iç_kons=2000)
     Traceback (most recent call last):
       ...
-    ValueError: Acceptor concentration should be greater than intrinsic concentration
+    ValueError: Alıcı konsantrasyonu içsel konsantrasyondan büyük olmalıdır
     """
 
-    if donor_conc <= 0:
-        raise ValueError("Donor concentration should be positive")
-    elif acceptor_conc <= 0:
-        raise ValueError("Acceptor concentration should be positive")
-    elif intrinsic_conc <= 0:
-        raise ValueError("Intrinsic concentration should be positive")
-    elif donor_conc <= intrinsic_conc:
+    if bagislayici_kons <= 0:
+        raise ValueError("Bağışlayıcı konsantrasyonu pozitif olmalıdır")
+    elif alıcı_kons <= 0:
+        raise ValueError("Alıcı konsantrasyonu pozitif olmalıdır")
+    elif iç_kons <= 0:
+        raise ValueError("İçsel konsantrasyon pozitif olmalıdır")
+    elif bagislayici_kons <= iç_kons:
         raise ValueError(
-            "Donor concentration should be greater than intrinsic concentration"
+            "Bağışlayıcı konsantrasyonu içsel konsantrasyondan büyük olmalıdır"
         )
-    elif acceptor_conc <= intrinsic_conc:
+    elif alıcı_kons <= iç_kons:
         raise ValueError(
-            "Acceptor concentration should be greater than intrinsic concentration"
+            "Alıcı konsantrasyonu içsel konsantrasyondan büyük olmalıdır"
         )
     else:
         return (
             Boltzmann
             * T
-            * log((donor_conc * acceptor_conc) / intrinsic_conc**2)
+            * log((bagislayici_kons * alıcı_kons) / iç_kons**2)
             / physical_constants["electron volt"][0]
         )
 

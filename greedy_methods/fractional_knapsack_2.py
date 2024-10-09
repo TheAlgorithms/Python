@@ -4,47 +4,49 @@
 
 from __future__ import annotations
 
+# Produced By K. Umut Araz
 
-def fractional_knapsack(
-    value: list[int], weight: list[int], capacity: int
+
+def kesirli_sırtçantası(
+    değer: list[int], ağırlık: list[int], kapasite: int
 ) -> tuple[float, list[float]]:
     """
-    >>> value = [1, 3, 5, 7, 9]
-    >>> weight = [0.9, 0.7, 0.5, 0.3, 0.1]
-    >>> fractional_knapsack(value, weight, 5)
+    >>> değer = [1, 3, 5, 7, 9]
+    >>> ağırlık = [0.9, 0.7, 0.5, 0.3, 0.1]
+    >>> kesirli_sırtçantası(değer, ağırlık, 5)
     (25, [1, 1, 1, 1, 1])
-    >>> fractional_knapsack(value, weight, 15)
+    >>> kesirli_sırtçantası(değer, ağırlık, 15)
     (25, [1, 1, 1, 1, 1])
-    >>> fractional_knapsack(value, weight, 25)
+    >>> kesirli_sırtçantası(değer, ağırlık, 25)
     (25, [1, 1, 1, 1, 1])
-    >>> fractional_knapsack(value, weight, 26)
+    >>> kesirli_sırtçantası(değer, ağırlık, 26)
     (25, [1, 1, 1, 1, 1])
-    >>> fractional_knapsack(value, weight, -1)
+    >>> kesirli_sırtçantası(değer, ağırlık, -1)
     (-90.0, [0, 0, 0, 0, -10.0])
-    >>> fractional_knapsack([1, 3, 5, 7], weight, 30)
+    >>> kesirli_sırtçantası([1, 3, 5, 7], ağırlık, 30)
     (16, [1, 1, 1, 1])
-    >>> fractional_knapsack(value, [0.9, 0.7, 0.5, 0.3, 0.1], 30)
+    >>> kesirli_sırtçantası(değer, [0.9, 0.7, 0.5, 0.3, 0.1], 30)
     (25, [1, 1, 1, 1, 1])
-    >>> fractional_knapsack([], [], 30)
+    >>> kesirli_sırtçantası([], [], 30)
     (0, [])
     """
-    index = list(range(len(value)))
-    ratio = [v / w for v, w in zip(value, weight)]
-    index.sort(key=lambda i: ratio[i], reverse=True)
+    indeks = list(range(len(değer)))
+    oran = [v / w for v, w in zip(değer, ağırlık)]
+    indeks.sort(key=lambda i: oran[i], reverse=True)
 
-    max_value: float = 0
-    fractions: list[float] = [0] * len(value)
-    for i in index:
-        if weight[i] <= capacity:
-            fractions[i] = 1
-            max_value += value[i]
-            capacity -= weight[i]
+    max_değer: float = 0
+    kesirler: list[float] = [0] * len(değer)
+    for i in indeks:
+        if ağırlık[i] <= kapasite:
+            kesirler[i] = 1
+            max_değer += değer[i]
+            kapasite -= ağırlık[i]
         else:
-            fractions[i] = capacity / weight[i]
-            max_value += value[i] * capacity / weight[i]
+            kesirler[i] = kapasite / ağırlık[i]
+            max_değer += değer[i] * kapasite / ağırlık[i]
             break
 
-    return max_value, fractions
+    return max_değer, kesirler
 
 
 if __name__ == "__main__":

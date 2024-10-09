@@ -3,92 +3,91 @@ INF = float("inf")
 
 class Dinic:
     def __init__(self, n):
-        self.lvl = [0] * n
+        self.seviye = [0] * n
         self.ptr = [0] * n
-        self.q = [0] * n
-        self.adj = [[] for _ in range(n)]
+        self.kuyruk = [0] * n
+        self.komsuluk_listesi = [[] for _ in range(n)]
 
     """
-    Here we will add our edges containing with the following parameters:
-    vertex closest to source, vertex closest to sink and flow capacity
-    through that edge ...
+    Burada kenarlarımızı şu parametrelerle ekleyeceğiz:
+    kaynağa en yakın düğüm, hedefe en yakın düğüm ve bu kenar üzerinden akış kapasitesi...
     """
 
-    def add_edge(self, a, b, c, rcap=0):
-        self.adj[a].append([b, len(self.adj[b]), c, 0])
-        self.adj[b].append([a, len(self.adj[a]) - 1, rcap, 0])
+    def kenar_ekle(self, a, b, c, rkap=0):
+        self.komsuluk_listesi[a].append([b, len(self.komsuluk_listesi[b]), c, 0])
+        self.komsuluk_listesi[b].append([a, len(self.komsuluk_listesi[a]) - 1, rkap, 0])
 
-    # This is a sample depth first search to be used at max_flow
-    def depth_first_search(self, vertex, sink, flow):
-        if vertex == sink or not flow:
-            return flow
+    # Bu, max_akışta kullanılacak örnek bir derinlik öncelikli aramadır
+    def derinlik_oncelikli_arama(self, dugum, hedef, akış):
+        if dugum == hedef or not akış:
+            return akış
 
-        for i in range(self.ptr[vertex], len(self.adj[vertex])):
-            e = self.adj[vertex][i]
-            if self.lvl[e[0]] == self.lvl[vertex] + 1:
-                p = self.depth_first_search(e[0], sink, min(flow, e[2] - e[3]))
+        for i in range(self.ptr[dugum], len(self.komsuluk_listesi[dugum])):
+            e = self.komsuluk_listesi[dugum][i]
+            if self.seviye[e[0]] == self.seviye[dugum] + 1:
+                p = self.derinlik_oncelikli_arama(e[0], hedef, min(akış, e[2] - e[3]))
                 if p:
-                    self.adj[vertex][i][3] += p
-                    self.adj[e[0]][e[1]][3] -= p
+                    self.komsuluk_listesi[dugum][i][3] += p
+                    self.komsuluk_listesi[e[0]][e[1]][3] -= p
                     return p
-            self.ptr[vertex] = self.ptr[vertex] + 1
+            self.ptr[dugum] = self.ptr[dugum] + 1
         return 0
 
-    # Here we calculate the flow that reaches the sink
-    def max_flow(self, source, sink):
-        flow, self.q[0] = 0, source
-        for l in range(31):  # l = 30 maybe faster for random data  # noqa: E741
+    # Burada hedefe ulaşan akışı hesaplıyoruz
+    def max_akış(self, kaynak, hedef):
+        akış, self.kuyruk[0] = 0, kaynak
+        for l in range(31):  # l = 30 rastgele veri için daha hızlı olabilir  # noqa: E741
             while True:
-                self.lvl, self.ptr = [0] * len(self.q), [0] * len(self.q)
-                qi, qe, self.lvl[source] = 0, 1, 1
-                while qi < qe and not self.lvl[sink]:
-                    v = self.q[qi]
+                self.seviye, self.ptr = [0] * len(self.kuyruk), [0] * len(self.kuyruk)
+                qi, qe, self.seviye[kaynak] = 0, 1, 1
+                while qi < qe and not self.seviye[hedef]:
+                    v = self.kuyruk[qi]
                     qi += 1
-                    for e in self.adj[v]:
-                        if not self.lvl[e[0]] and (e[2] - e[3]) >> (30 - l):
-                            self.q[qe] = e[0]
+                    for e in self.komsuluk_listesi[v]:
+                        if not self.seviye[e[0]] and (e[2] - e[3]) >> (30 - l):
+                            self.kuyruk[qe] = e[0]
                             qe += 1
-                            self.lvl[e[0]] = self.lvl[v] + 1
+                            self.seviye[e[0]] = self.seviye[v] + 1
 
-                p = self.depth_first_search(source, sink, INF)
+                p = self.derinlik_oncelikli_arama(kaynak, hedef, INF)
                 while p:
-                    flow += p
-                    p = self.depth_first_search(source, sink, INF)
+                    akış += p
+                    p = self.derinlik_oncelikli_arama(kaynak, hedef, INF)
 
-                if not self.lvl[sink]:
+                if not self.seviye[hedef]:
                     break
 
-        return flow
+        return akış
 
 
-# Example to use
+# Kullanım örneği
 
 """
-Will be a bipartite graph, than it has the vertices near the source(4)
-and the vertices near the sink(4)
+Bu bir iki parçalı grafik olacak, bu nedenle kaynağa yakın düğümler (4)
+ve hedefe yakın düğümler (4) vardır
 """
-# Here we make a graphs with 10 vertex(source and sink includes)
-graph = Dinic(10)
-source = 0
-sink = 9
+# Burada 10 düğümlü bir grafik oluşturuyoruz (kaynak ve hedef dahil)
+grafik = Dinic(10)
+kaynak = 0
+hedef = 9
 """
-Now we add the vertices next to the font in the font with 1 capacity in this edge
-(source -> source vertices)
+Şimdi kaynağa yakın düğümleri kenar kapasitesi 1 olan kaynak ile ekliyoruz
+(kaynak -> kaynak düğümleri)
 """
-for vertex in range(1, 5):
-    graph.add_edge(source, vertex, 1)
+for dugum in range(1, 5):
+    grafik.kenar_ekle(kaynak, dugum, 1)
 """
-We will do the same thing for the vertices near the sink, but from vertex to sink
-(sink vertices -> sink)
+Aynı şeyi hedefe yakın düğümler için de yapacağız, ancak düğümden hedefe
+(hedef düğümleri -> hedef)
 """
-for vertex in range(5, 9):
-    graph.add_edge(vertex, sink, 1)
+for dugum in range(5, 9):
+    grafik.kenar_ekle(dugum, hedef, 1)
 """
-Finally we add the verices near the sink to the vertices near the source.
-(source vertices -> sink vertices)
+Son olarak, hedefe yakın düğümleri kaynağa yakın düğümlere ekliyoruz.
+(kaynak düğümleri -> hedef düğümleri)
 """
-for vertex in range(1, 5):
-    graph.add_edge(vertex, vertex + 4, 1)
+for dugum in range(1, 5):
+    grafik.kenar_ekle(dugum, dugum + 4, 1)
 
-# Now we can know that is the maximum flow(source -> sink)
-print(graph.max_flow(source, sink))
+# Şimdi kaynak -> hedef arasındaki maksimum akışı öğrenebiliriz
+print(grafik.max_akış(kaynak, hedef))

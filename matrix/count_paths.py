@@ -1,17 +1,17 @@
 """
-Given a grid, where you start from the top left position [0, 0],
-you want to find how many paths you can take to get to the bottom right position.
+Bir ızgara verildiğinde, sol üst köşe [0, 0] pozisyonundan başlayarak,
+sağ alt köşe pozisyonuna ulaşmak için kaç farklı yol alabileceğinizi bulmak istiyorsunuz.
 
-start here  ->   0  0  0  0
-                 1  1  0  0
-                 0  0  0  1
-                 0  1  0  0  <- finish here
-how many 'distinct' paths can you take to get to the finish?
-Using a recursive depth-first search algorithm below, you are able to
-find the number of distinct unique paths (count).
+buradan başlayın  ->   0  0  0  0
+                      1  1  0  0
+                      0  0  0  1
+                      0  1  0  0  <- burada bitirin
+Tamamlanma noktasına ulaşmak için kaç 'farklı' yol alabilirsiniz?
+Aşağıdaki geri izleme derinlik öncelikli arama algoritmasını kullanarak,
+farklı benzersiz yolların sayısını (count) bulabilirsiniz.
 
-'*' will demonstrate a path
-In the example above, there are two distinct paths:
+'*' bir yolu gösterecektir.
+Yukarıdaki örnekte, iki farklı yol vardır:
 1.                2.
     *  *  *  0      *  *  *  *
     1  1  *  0      1  1  *  *
@@ -20,53 +20,53 @@ In the example above, there are two distinct paths:
 """
 
 
-def depth_first_search(grid: list[list[int]], row: int, col: int, visit: set) -> int:
+def derinlik_oncelikli_arama(izgara: list[list[int]], satir: int, sutun: int, ziyaret: set) -> int:
     """
-    Recursive Backtracking Depth First Search Algorithm
+    Geri İzleme Derinlik Öncelikli Arama Algoritması
 
-    Starting from top left of a matrix, count the number of
-    paths that can reach the bottom right of a matrix.
-    1 represents a block (inaccessible)
-    0 represents a valid space (accessible)
+    Bir matrisin sol üst köşesinden başlayarak, matrisin sağ alt köşesine ulaşabilecek
+    yolların sayısını sayın.
+    1, bir engeli (ulaşılamaz) temsil eder.
+    0, geçerli bir alanı (ulaşılabilir) temsil eder.
 
     0  0  0  0
     1  1  0  0
     0  0  0  1
     0  1  0  0
-    >>> grid = [[0, 0, 0, 0], [1, 1, 0, 0], [0, 0, 0, 1], [0, 1, 0, 0]]
-    >>> depth_first_search(grid, 0, 0, set())
+    >>> ızgara = [[0, 0, 0, 0], [1, 1, 0, 0], [0, 0, 0, 1], [0, 1, 0, 0]]
+    >>> derinlik_oncelikli_arama(ızgara, 0, 0, set())
     2
 
     0  0  0  0  0
     0  1  1  1  0
     0  1  1  1  0
     0  0  0  0  0
-    >>> grid = [[0, 0, 0, 0, 0], [0, 1, 1, 1, 0], [0, 1, 1, 1, 0], [0, 0, 0, 0, 0]]
-    >>> depth_first_search(grid, 0, 0, set())
+    >>> ızgara = [[0, 0, 0, 0, 0], [0, 1, 1, 1, 0], [0, 1, 1, 1, 0], [0, 0, 0, 0, 0]]
+    >>> derinlik_oncelikli_arama(ızgara, 0, 0, set())
     2
     """
-    row_length, col_length = len(grid), len(grid[0])
+    satir_uzunlugu, sutun_uzunlugu = len(ızgara), len(ızgara[0])
     if (
-        min(row, col) < 0
-        or row == row_length
-        or col == col_length
-        or (row, col) in visit
-        or grid[row][col] == 1
+        min(satir, sutun) < 0
+        or satir == satir_uzunlugu
+        or sutun == sutun_uzunlugu
+        or (satir, sutun) in ziyaret
+        or ızgara[satir][sutun] == 1
     ):
         return 0
-    if row == row_length - 1 and col == col_length - 1:
+    if satir == satir_uzunlugu - 1 and sutun == sutun_uzunlugu - 1:
         return 1
 
-    visit.add((row, col))
+    ziyaret.add((satir, sutun))
 
-    count = 0
-    count += depth_first_search(grid, row + 1, col, visit)
-    count += depth_first_search(grid, row - 1, col, visit)
-    count += depth_first_search(grid, row, col + 1, visit)
-    count += depth_first_search(grid, row, col - 1, visit)
+    say = 0
+    say += derinlik_oncelikli_arama(ızgara, satir + 1, sutun, ziyaret)
+    say += derinlik_oncelikli_arama(ızgara, satir - 1, sutun, ziyaret)
+    say += derinlik_oncelikli_arama(ızgara, satir, sutun + 1, ziyaret)
+    say += derinlik_oncelikli_arama(ızgara, satir, sutun - 1, ziyaret)
 
-    visit.remove((row, col))
-    return count
+    ziyaret.remove((satir, sutun))
+    return say
 
 
 if __name__ == "__main__":

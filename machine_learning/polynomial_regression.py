@@ -27,25 +27,27 @@ Referanslar:
     - https://en.wikipedia.org/wiki/Singular_value_decomposition
 """
 
+# Produced by K. Umut Araz
+
 import matplotlib.pyplot as plt
 import numpy as np
 
 
-class PolynomialRegression:
-    __slots__ = "degree", "params"
+class PolinomsalRegresyon:
+    __slots__ = "derece", "parametreler"
 
-    def __init__(self, degree: int) -> None:
+    def __init__(self, derece: int) -> None:
         """
-        @raises ValueError: if the polynomial degree is negative
+        @raises ValueError: Eğer polinom derecesi negatifse
         """
-        if degree < 0:
-            raise ValueError("Polynomial degree must be non-negative")
+        if derece < 0:
+            raise ValueError("Polinom derecesi negatif olamaz")
 
-        self.degree = degree
-        self.params = None
+        self.derece = derece
+        self.parametreler = None
 
     @staticmethod
-    def _design_matrix(data: np.ndarray, degree: int) -> np.ndarray:
+    def _tasarım_matrisi(veri: np.ndarray, derece: int) -> np.ndarray:
         """
         Verilen giriş verileri için bir polinomsal regresyon tasarım matrisi oluşturur. Giriş verileri x = (x₁, x₂, ..., xₙ) ve polinomsal derece m için, tasarım matrisi Vandermonde matrisidir
 
@@ -56,40 +58,40 @@ class PolynomialRegression:
 
         Referans: https://en.wikipedia.org/wiki/Vandermonde_matrix
 
-        @param data:    model uyumu veya tahmin için giriş tahmin edici değerleri x
-        @param degree:  polinomsal derece m
+        @param veri:    model uyumu veya tahmin için giriş tahmin edici değerleri x
+        @param derece:  polinomsal derece m
         @returns:       Vandermonde matrisi X (yukarıya bakın)
-        @raises ValueError: if input data is not N x 1
+        @raises ValueError: Eğer giriş verileri N x 1 boyutunda değilse
 
         >>> x = np.array([0, 1, 2])
-        >>> PolynomialRegression._design_matrix(x, degree=0)
+        >>> PolinomsalRegresyon._tasarım_matrisi(x, derece=0)
         array([[1],
                [1],
                [1]])
-        >>> PolynomialRegression._design_matrix(x, degree=1)
+        >>> PolinomsalRegresyon._tasarım_matrisi(x, derece=1)
         array([[1, 0],
                [1, 1],
                [1, 2]])
-        >>> PolynomialRegression._design_matrix(x, degree=2)
+        >>> PolinomsalRegresyon._tasarım_matrisi(x, derece=2)
         array([[1, 0, 0],
                [1, 1, 1],
                [1, 2, 4]])
-        >>> PolynomialRegression._design_matrix(x, degree=3)
+        >>> PolinomsalRegresyon._tasarım_matrisi(x, derece=3)
         array([[1, 0, 0, 0],
                [1, 1, 1, 1],
                [1, 2, 4, 8]])
-        >>> PolynomialRegression._design_matrix(np.array([[0, 0], [0 , 0]]), degree=3)
+        >>> PolinomsalRegresyon._tasarım_matrisi(np.array([[0, 0], [0 , 0]]), derece=3)
         Traceback (most recent call last):
         ...
-        ValueError: Data must have dimensions N x 1
+        ValueError: Veri N x 1 boyutunda olmalıdır
         """
-        rows, *remaining = data.shape
-        if remaining:
-            raise ValueError("Data must have dimensions N x 1")
+        satırlar, *kalan = veri.shape
+        if kalan:
+            raise ValueError("Veri N x 1 boyutunda olmalıdır")
 
-        return np.vander(data, N=degree + 1, increasing=True)
+        return np.vander(veri, N=derece + 1, increasing=True)
 
-    def fit(self, x_train: np.ndarray, y_train: np.ndarray) -> None:
+    def fit(self, x_egitim: np.ndarray, y_egitim: np.ndarray) -> None:
         """
         Polinomsal regresyon model parametrelerini sıradan en küçük kareler (OLS) tahmini kullanarak hesaplar:
 
@@ -102,54 +104,53 @@ class PolynomialRegression:
             - https://en.wikipedia.org/wiki/Singular_value_decomposition
             - https://en.wikipedia.org/wiki/Multicollinearity
 
-        @param x_train: model uyumu için tahmin edici değerler x
-        @param y_train: model uyumu için yanıt değerleri y
-        @raises ArithmeticError:    if X isn't full rank, then XᵀX is singular and β
-                                    doesn't exist
+        @param x_egitim: model uyumu için tahmin edici değerler x
+        @param y_egitim: model uyumu için yanıt değerleri y
+        @raises ArithmeticError:    Eğer X tam sıra değilse, XᵀX tekildir ve β
+                                    hesaplanamaz
 
         >>> x = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
         >>> y = x**3 - 2 * x**2 + 3 * x - 5
-        >>> poly_reg = PolynomialRegression(degree=3)
+        >>> poly_reg = PolinomsalRegresyon(derece=3)
         >>> poly_reg.fit(x, y)
-        >>> poly_reg.params
+        >>> poly_reg.parametreler
         array([-5.,  3., -2.,  1.])
-        >>> poly_reg = PolynomialRegression(degree=20)
+        >>> poly_reg = PolinomsalRegresyon(derece=20)
         >>> poly_reg.fit(x, y)
         Traceback (most recent call last):
         ...
-        ArithmeticError: Design matrix is not full rank, can't compute coefficients
+        ArithmeticError: Tasarım matrisi tam sıra değil, katsayılar hesaplanamaz
 
         Hataların çok büyük olmadığından emin olun:
-        >>> coefs = np.array([-250, 50, -2, 36, 20, -12, 10, 2, -1, -15, 1])
-        >>> y = PolynomialRegression._design_matrix(x, len(coefs) - 1) @ coefs
-        >>> poly_reg = PolynomialRegression(degree=len(coefs) - 1)
+        >>> katsayılar = np.array([-250, 50, -2, 36, 20, -12, 10, 2, -1, -15, 1])
+        >>> y = PolinomsalRegresyon._tasarım_matrisi(x, len(katsayılar) - 1) @ katsayılar
+        >>> poly_reg = PolinomsalRegresyon(derece=len(katsayılar) - 1)
         >>> poly_reg.fit(x, y)
-        >>> np.allclose(poly_reg.params, coefs, atol=10e-3)
+        >>> np.allclose(poly_reg.parametreler, katsayılar, atol=10e-3)
         True
         """
-        X = PolynomialRegression._design_matrix(x_train, self.degree)  # noqa: N806
-        _, cols = X.shape
-        if np.linalg.matrix_rank(X) < cols:
+        X = PolinomsalRegresyon._tasarım_matrisi(x_egitim, self.derece)  # noqa: N806
+        _, sütunlar = X.shape
+        if np.linalg.matrix_rank(X) < sütunlar:
             raise ArithmeticError(
-                "Design matrix is not full rank, can't compute coefficients"
+                "Tasarım matrisi tam sıra değil, katsayılar hesaplanamaz"
             )
 
-        # np.linalg.pinv() computes the Moore-Penrose pseudoinverse using SVD
-        self.params = np.linalg.pinv(X) @ y_train
+        # np.linalg.pinv() SVD kullanarak Moore-Penrose pseudoinversini hesaplar
+        self.parametreler = np.linalg.pinv(X) @ y_egitim
 
-    def predict(self, data: np.ndarray) -> np.ndarray:
+    def predict(self, veri: np.ndarray) -> np.ndarray:
         """
         Verilen giriş verileri için tahmin edilen yanıt değerlerini y hesaplar
         tasarım matrisi X'i oluşturarak ve y = Xβ'yi değerlendirerek.
 
-        @param data:    tahmin için tahmin edici değerler x
+        @param veri:    tahmin için tahmin edici değerler x
         @returns:       tahmin edilen yanıt değerleri y = Xβ
-        @raises ArithmeticError:    if this function is called before the model
-                                    parameters are fit
+        @raises ArithmeticError:    Eğer bu fonksiyon model parametreleri fit edilmeden önce çağrılırsa
 
         >>> x = np.array([0, 1, 2, 3, 4])
         >>> y = x**3 - 2 * x**2 + 3 * x - 5
-        >>> poly_reg = PolynomialRegression(degree=3)
+        >>> poly_reg = PolinomsalRegresyon(derece=3)
         >>> poly_reg.fit(x, y)
         >>> poly_reg.predict(np.array([-1]))
         array([-11.])
@@ -157,15 +158,15 @@ class PolynomialRegression:
         array([-27.])
         >>> poly_reg.predict(np.array([6]))
         array([157.])
-        >>> PolynomialRegression(degree=3).predict(x)
+        >>> PolinomsalRegresyon(derece=3).predict(x)
         Traceback (most recent call last):
         ...
-        ArithmeticError: Predictor hasn't been fit yet
+        ArithmeticError: Model parametreleri henüz fit edilmedi
         """
-        if self.params is None:
-            raise ArithmeticError("Predictor hasn't been fit yet")
+        if self.parametreler is None:
+            raise ArithmeticError("Model parametreleri henüz fit edilmedi")
 
-        return PolynomialRegression._design_matrix(data, self.degree) @ self.params
+        return PolinomsalRegresyon._tasarım_matrisi(veri, self.derece) @ self.parametreler
 
 
 def main() -> None:
@@ -176,16 +177,16 @@ def main() -> None:
     """
     import seaborn as sns
 
-    mpg_data = sns.load_dataset("mpg")
+    mpg_veri = sns.load_dataset("mpg")
 
-    poly_reg = PolynomialRegression(degree=2)
-    poly_reg.fit(mpg_data.weight, mpg_data.mpg)
+    poly_reg = PolinomsalRegresyon(derece=2)
+    poly_reg.fit(mpg_veri.weight, mpg_veri.mpg)
 
-    weight_sorted = np.sort(mpg_data.weight)
-    predictions = poly_reg.predict(weight_sorted)
+    ağırlık_sıralı = np.sort(mpg_veri.weight)
+    tahminler = poly_reg.predict(ağırlık_sıralı)
 
-    plt.scatter(mpg_data.weight, mpg_data.mpg, color="gray", alpha=0.5)
-    plt.plot(weight_sorted, predictions, color="red", linewidth=3)
+    plt.scatter(mpg_veri.weight, mpg_veri.mpg, color="gray", alpha=0.5)
+    plt.plot(ağırlık_sıralı, tahminler, color="red", linewidth=3)
     plt.title("Polinomsal Regresyon Kullanarak Yakıt Verimliliğini Tahmin Etme")
     plt.xlabel("Ağırlık (lbs)")
     plt.ylabel("Yakıt Verimliliği (mpg)")

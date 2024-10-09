@@ -8,7 +8,6 @@ from math import log10
     terim ağırlığı için tf-idf kullanır. Basit bir ifadeyle, tf-idf bir kelimenin
     bir belgede ne kadar önemli olduğunu yansıtmayı amaçlayan bir istatistiktir.
 
-
     Burada bilgi erişiminde yaygın olarak kullanılan birkaç kelime frekansı algoritmasını
     uyguladım: Terim Frekansı, Belge Frekansı ve TF-IDF (Terim-Frekansı*Ters-Belge-Frekansı)
     dahildir.
@@ -30,6 +29,8 @@ from math import log10
     bir belgede kaç kez geçtiğini, terimin kaç belgede geçtiğiyle karşılaştırır.
     Eğer df 0 ise, ZeroDivisionError hatası atılacaktır.
 """
+
+#Organised to K. Umut Araz
 
 
 def terim_frekansi(terim: str, belge: str) -> int:
@@ -72,14 +73,14 @@ the third document in the corpus.")
     return (len([belge for belge in belgeler if terim in belge]), len(belgeler))
 
 
-def ters_belge_frekansi(df: int, n: int, yumuşatma=False) -> float:
+def ters_belge_frekansi(df: int, n: int, yumusatma=False) -> float:
     """
     Bir kelimenin önemini belirten bir tamsayı döndürür.
     Bu önem ölçüsü log10(N/df) ile hesaplanır, burada N
     belge sayısı ve df Belge Frekansıdır.
     @parametreler: df, Belge Frekansı, N,
     belge kümesindeki belge sayısı ve
-    yumuşatma, True ise idf-yumuşatılmış döndür
+    yumusatma, True ise idf-yumusatılmış döndür
     @döndürür: log10(N/df) veya 1+log10(N/1+df)
     @örnekler:
     >>> ters_belge_frekansi(3, 0)
@@ -95,7 +96,7 @@ def ters_belge_frekansi(df: int, n: int, yumuşatma=False) -> float:
     >>> ters_belge_frekansi(0, 3, True)
     1.477
     """
-    if yumuşatma:
+    if yumusatma:
         if n == 0:
             raise ValueError("log10(0) tanımsız.")
         return round(1 + log10(n / (1 + df)), 3)
@@ -107,7 +108,7 @@ def ters_belge_frekansi(df: int, n: int, yumuşatma=False) -> float:
     return round(log10(n / df), 3)
 
 
-def tf_idf(tf: int, idf: int) -> float:
+def tf_idf(tf: int, idf: float) -> float:
     """
     Terim frekansı ve ters belge frekansı fonksiyonlarını birleştirerek
     bir terimin özgünlüğünü hesaplar. Bu 'özgünlük', terim frekansı ve

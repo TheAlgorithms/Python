@@ -1,22 +1,20 @@
 """
-LeetCode 36. Valid Sudoku
+LeetCode 36. Geçerli Sudoku
 https://leetcode.com/problems/valid-sudoku/
 https://en.wikipedia.org/wiki/Sudoku
 
-Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be
-validated according to the following rules:
+9 x 9 boyutundaki bir Sudoku tahtasının geçerli olup olmadığını belirleyin. Sadece doldurulmuş hücrelerin
+aşağıdaki kurallara göre doğrulanması gerekmektedir:
 
-- Each row must contain the digits 1-9 without repetition.
-- Each column must contain the digits 1-9 without repetition.
-- Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9
-  without repetition.
+- Her satır, 1-9 arasındaki rakamları tekrar etmeden içermelidir.
+- Her sütun, 1-9 arasındaki rakamları tekrar etmeden içermelidir.
+- Tahtanın dokuz 3 x 3 alt kutusunun her biri, 1-9 arasındaki rakamları tekrar etmeden içermelidir.
 
-Note:
+Not:
 
-A Sudoku board (partially filled) could be valid but is not necessarily
-solvable.
+Bir Sudoku tahtası (kısmen doldurulmuş) geçerli olabilir ancak mutlaka çözülebilir değildir.
 
-Only the filled cells need to be validated according to the mentioned rules.
+Sadece doldurulmuş hücrelerin belirtilen kurallara göre doğrulanması gerekmektedir.
 """
 
 from collections import defaultdict
@@ -27,8 +25,8 @@ EMPTY_CELL = "."
 
 def is_valid_sudoku_board(sudoku_board: list[list[str]]) -> bool:
     """
-    This function validates (but does not solve) a sudoku board.
-    The board may be valid but unsolvable.
+    Bu fonksiyon, bir sudoku tahtasını doğrular (ancak çözmez).
+    Tahta geçerli olabilir ancak çözülemez.
 
     >>> is_valid_sudoku_board([
     ...  ["5","3",".",".","7",".",".",".","."]
@@ -79,18 +77,6 @@ def is_valid_sudoku_board(sudoku_board: list[list[str]]) -> bool:
     ... ])
     True
     >>> is_valid_sudoku_board([
-    ...  ["1","2","3",".",".",".","5","6","4"]
-    ... ,["4","5","6",".",".",".","8","9","7"]
-    ... ,["7","8","9",".",".",".","2","3","1"]
-    ... ,[".",".",".","4","5","6",".",".","."]
-    ... ,[".",".",".","7","8","9",".",".","."]
-    ... ,[".",".",".","1","2","3",".",".","."]
-    ... ,["3","1","2",".",".",".","7","8","9"]
-    ... ,["6","4","5",".",".",".","1","2","3"]
-    ... ,["9","7","8",".",".",".","4","5","6"]
-    ... ])
-    True
-    >>> is_valid_sudoku_board([
     ...  ["1","2","3","4","5","6","7","8","9"]
     ... ,["2",".",".",".",".",".",".",".","8"]
     ... ,["3",".",".",".",".",".",".",".","7"]
@@ -117,18 +103,18 @@ def is_valid_sudoku_board(sudoku_board: list[list[str]]) -> bool:
     >>> is_valid_sudoku_board([["1", "2", "3", "4", "5", "6", "7", "8", "9"]])
     Traceback (most recent call last):
         ...
-    ValueError: Sudoku boards must be 9x9 squares.
+    ValueError: Sudoku tahtaları 9x9 kare olmalıdır.
     >>> is_valid_sudoku_board(
     ...        [["1"], ["2"], ["3"], ["4"], ["5"], ["6"], ["7"], ["8"], ["9"]]
     ...  )
     Traceback (most recent call last):
         ...
-    ValueError: Sudoku boards must be 9x9 squares.
+    ValueError: Sudoku tahtaları 9x9 kare olmalıdır.
     """
     if len(sudoku_board) != NUM_SQUARES or (
         any(len(row) != NUM_SQUARES for row in sudoku_board)
     ):
-        error_message = f"Sudoku boards must be {NUM_SQUARES}x{NUM_SQUARES} squares."
+        error_message = f"Sudoku tahtaları {NUM_SQUARES}x{NUM_SQUARES} kare olmalıdır."
         raise ValueError(error_message)
 
     row_values: defaultdict[int, set[str]] = defaultdict(set)

@@ -1,10 +1,7 @@
 """
-Prim's (also known as Jarník's) algorithm is a greedy algorithm that finds a minimum
-spanning tree for a weighted undirected graph. This means it finds a subset of the
-edges that forms a tree that includes every vertex, where the total weight of all the
-edges in the tree is minimized. The algorithm operates by building this tree one vertex
-at a time, from an arbitrary starting vertex, at each step adding the cheapest possible
-connection from the tree to another vertex.
+Prim'in (Jarník olarak da bilinir) algoritması, ağırlıklı yönsüz bir grafik için minimum yayılım ağacı bulan açgözlü bir algoritmadır.
+Bu, her düğümü içeren ve ağaçtaki tüm kenarların toplam ağırlığının en aza indirildiği bir alt küme bulduğu anlamına gelir. 
+Algoritma, bu ağacı her seferinde bir düğüm ekleyerek, rastgele bir başlangıç düğümünden başlayarak, her adımda ağaca başka bir düğümden en ucuz bağlantıyı ekleyerek çalışır.
 """
 
 from __future__ import annotations
@@ -14,256 +11,253 @@ from typing import Generic, TypeVar
 
 T = TypeVar("T")
 
+#Produced By K. Umut Araz
 
-def get_parent_position(position: int) -> int:
+
+def ebeveyn_pozisyonu_al(pozisyon: int) -> int:
     """
-    heap helper function get the position of the parent of the current node
+    Yığın yardımcı fonksiyonu, mevcut düğümün ebeveyninin pozisyonunu alır
 
-    >>> get_parent_position(1)
+    >>> ebeveyn_pozisyonu_al(1)
     0
-    >>> get_parent_position(2)
+    >>> ebeveyn_pozisyonu_al(2)
     0
     """
-    return (position - 1) // 2
+    return (pozisyon - 1) // 2
 
 
-def get_child_left_position(position: int) -> int:
+def sol_cocuk_pozisyonu_al(pozisyon: int) -> int:
     """
-    heap helper function get the position of the left child of the current node
+    Yığın yardımcı fonksiyonu, mevcut düğümün sol çocuğunun pozisyonunu alır
 
-    >>> get_child_left_position(0)
+    >>> sol_cocuk_pozisyonu_al(0)
     1
     """
-    return (2 * position) + 1
+    return (2 * pozisyon) + 1
 
 
-def get_child_right_position(position: int) -> int:
+def sag_cocuk_pozisyonu_al(pozisyon: int) -> int:
     """
-    heap helper function get the position of the right child of the current node
+    Yığın yardımcı fonksiyonu, mevcut düğümün sağ çocuğunun pozisyonunu alır
 
-    >>> get_child_right_position(0)
+    >>> sag_cocuk_pozisyonu_al(0)
     2
     """
-    return (2 * position) + 2
+    return (2 * pozisyon) + 2
 
 
-class MinPriorityQueue(Generic[T]):
+class MinOncelikKuyrugu(Generic[T]):
     """
-    Minimum Priority Queue Class
+    Minimum Öncelik Kuyruğu Sınıfı
 
-    Functions:
-    is_empty: function to check if the priority queue is empty
-    push: function to add an element with given priority to the queue
-    extract_min: function to remove and return the element with lowest weight (highest
-                 priority)
-    update_key: function to update the weight of the given key
-    _bubble_up: helper function to place a node at the proper position (upward
-                movement)
-    _bubble_down: helper function to place a node at the proper position (downward
-                movement)
-    _swap_nodes: helper function to swap the nodes at the given positions
+    Fonksiyonlar:
+    bos_mu: öncelik kuyruğunun boş olup olmadığını kontrol eden fonksiyon
+    ekle: kuyruğa verilen öncelikle bir eleman ekleyen fonksiyon
+    min_cikar: en düşük ağırlığa (en yüksek önceliğe) sahip elemanı çıkaran ve döndüren fonksiyon
+    anahtar_guncelle: verilen anahtarın ağırlığını güncelleyen fonksiyon
+    yukari_kaydir: bir düğümü uygun pozisyona yerleştiren yardımcı fonksiyon (yukarı hareket)
+    asagi_kaydir: bir düğümü uygun pozisyona yerleştiren yardımcı fonksiyon (aşağı hareket)
+    dugum_degistir: verilen pozisyonlardaki düğümleri değiştiren yardımcı fonksiyon
 
-    >>> queue = MinPriorityQueue()
+    >>> kuyruk = MinOncelikKuyrugu()
 
-    >>> queue.push(1, 1000)
-    >>> queue.push(2, 100)
-    >>> queue.push(3, 4000)
-    >>> queue.push(4, 3000)
+    >>> kuyruk.ekle(1, 1000)
+    >>> kuyruk.ekle(2, 100)
+    >>> kuyruk.ekle(3, 4000)
+    >>> kuyruk.ekle(4, 3000)
 
-    >>> queue.extract_min()
+    >>> kuyruk.min_cikar()
     2
 
-    >>> queue.update_key(4, 50)
+    >>> kuyruk.anahtar_guncelle(4, 50)
 
-    >>> queue.extract_min()
+    >>> kuyruk.min_cikar()
     4
-    >>> queue.extract_min()
+    >>> kuyruk.min_cikar()
     1
-    >>> queue.extract_min()
+    >>> kuyruk.min_cikar()
     3
     """
 
     def __init__(self) -> None:
-        self.heap: list[tuple[T, int]] = []
-        self.position_map: dict[T, int] = {}
-        self.elements: int = 0
+        self.yigin: list[tuple[T, int]] = []
+        self.pozisyon_haritasi: dict[T, int] = {}
+        self.eleman_sayisi: int = 0
 
     def __len__(self) -> int:
-        return self.elements
+        return self.eleman_sayisi
 
     def __repr__(self) -> str:
-        return str(self.heap)
+        return str(self.yigin)
 
-    def is_empty(self) -> bool:
-        # Check if the priority queue is empty
-        return self.elements == 0
+    def bos_mu(self) -> bool:
+        # Öncelik kuyruğunun boş olup olmadığını kontrol et
+        return self.eleman_sayisi == 0
 
-    def push(self, elem: T, weight: int) -> None:
-        # Add an element with given priority to the queue
-        self.heap.append((elem, weight))
-        self.position_map[elem] = self.elements
-        self.elements += 1
-        self._bubble_up(elem)
+    def ekle(self, eleman: T, agirlik: int) -> None:
+        # Kuyruğa verilen öncelikle bir eleman ekle
+        self.yigin.append((eleman, agirlik))
+        self.pozisyon_haritasi[eleman] = self.eleman_sayisi
+        self.eleman_sayisi += 1
+        self.yukari_kaydir(eleman)
 
-    def extract_min(self) -> T:
-        # Remove and return the element with lowest weight (highest priority)
-        if self.elements > 1:
-            self._swap_nodes(0, self.elements - 1)
-        elem, _ = self.heap.pop()
-        del self.position_map[elem]
-        self.elements -= 1
-        if self.elements > 0:
-            bubble_down_elem, _ = self.heap[0]
-            self._bubble_down(bubble_down_elem)
-        return elem
+    def min_cikar(self) -> T:
+        # En düşük ağırlığa (en yüksek önceliğe) sahip elemanı çıkar ve döndür
+        if self.eleman_sayisi > 1:
+            self.dugum_degistir(0, self.eleman_sayisi - 1)
+        eleman, _ = self.yigin.pop()
+        del self.pozisyon_haritasi[eleman]
+        self.eleman_sayisi -= 1
+        if self.eleman_sayisi > 0:
+            asagi_kaydir_eleman, _ = self.yigin[0]
+            self.asagi_kaydir(asagi_kaydir_eleman)
+        return eleman
 
-    def update_key(self, elem: T, weight: int) -> None:
-        # Update the weight of the given key
-        position = self.position_map[elem]
-        self.heap[position] = (elem, weight)
-        if position > 0:
-            parent_position = get_parent_position(position)
-            _, parent_weight = self.heap[parent_position]
-            if parent_weight > weight:
-                self._bubble_up(elem)
+    def anahtar_guncelle(self, eleman: T, agirlik: int) -> None:
+        # Verilen anahtarın ağırlığını güncelle
+        pozisyon = self.pozisyon_haritasi[eleman]
+        self.yigin[pozisyon] = (eleman, agirlik)
+        if pozisyon > 0:
+            ebeveyn_pozisyon = ebeveyn_pozisyonu_al(pozisyon)
+            _, ebeveyn_agirlik = self.yigin[ebeveyn_pozisyon]
+            if ebeveyn_agirlik > agirlik:
+                self.yukari_kaydir(eleman)
             else:
-                self._bubble_down(elem)
+                self.asagi_kaydir(eleman)
         else:
-            self._bubble_down(elem)
+            self.asagi_kaydir(eleman)
 
-    def _bubble_up(self, elem: T) -> None:
-        # Place a node at the proper position (upward movement) [to be used internally
-        # only]
-        curr_pos = self.position_map[elem]
-        if curr_pos == 0:
+    def yukari_kaydir(self, eleman: T) -> None:
+        # Bir düğümü uygun pozisyona yerleştir (yukarı hareket) [sadece dahili kullanım için]
+        mevcut_pozisyon = self.pozisyon_haritasi[eleman]
+        if mevcut_pozisyon == 0:
             return None
-        parent_position = get_parent_position(curr_pos)
-        _, weight = self.heap[curr_pos]
-        _, parent_weight = self.heap[parent_position]
-        if parent_weight > weight:
-            self._swap_nodes(parent_position, curr_pos)
-            return self._bubble_up(elem)
+        ebeveyn_pozisyon = ebeveyn_pozisyonu_al(mevcut_pozisyon)
+        _, agirlik = self.yigin[mevcut_pozisyon]
+        _, ebeveyn_agirlik = self.yigin[ebeveyn_pozisyon]
+        if ebeveyn_agirlik > agirlik:
+            self.dugum_degistir(ebeveyn_pozisyon, mevcut_pozisyon)
+            return self.yukari_kaydir(eleman)
         return None
 
-    def _bubble_down(self, elem: T) -> None:
-        # Place a node at the proper position (downward movement) [to be used
-        # internally only]
-        curr_pos = self.position_map[elem]
-        _, weight = self.heap[curr_pos]
-        child_left_position = get_child_left_position(curr_pos)
-        child_right_position = get_child_right_position(curr_pos)
-        if child_left_position < self.elements and child_right_position < self.elements:
-            _, child_left_weight = self.heap[child_left_position]
-            _, child_right_weight = self.heap[child_right_position]
-            if child_right_weight < child_left_weight and child_right_weight < weight:
-                self._swap_nodes(child_right_position, curr_pos)
-                return self._bubble_down(elem)
-        if child_left_position < self.elements:
-            _, child_left_weight = self.heap[child_left_position]
-            if child_left_weight < weight:
-                self._swap_nodes(child_left_position, curr_pos)
-                return self._bubble_down(elem)
+    def asagi_kaydir(self, eleman: T) -> None:
+        # Bir düğümü uygun pozisyona yerleştir (aşağı hareket) [sadece dahili kullanım için]
+        mevcut_pozisyon = self.pozisyon_haritasi[eleman]
+        _, agirlik = self.yigin[mevcut_pozisyon]
+        sol_cocuk_pozisyon = sol_cocuk_pozisyonu_al(mevcut_pozisyon)
+        sag_cocuk_pozisyon = sag_cocuk_pozisyonu_al(mevcut_pozisyon)
+        if sol_cocuk_pozisyon < self.eleman_sayisi and sag_cocuk_pozisyon < self.eleman_sayisi:
+            _, sol_cocuk_agirlik = self.yigin[sol_cocuk_pozisyon]
+            _, sag_cocuk_agirlik = self.yigin[sag_cocuk_pozisyon]
+            if sag_cocuk_agirlik < sol_cocuk_agirlik and sag_cocuk_agirlik < agirlik:
+                self.dugum_degistir(sag_cocuk_pozisyon, mevcut_pozisyon)
+                return self.asagi_kaydir(eleman)
+        if sol_cocuk_pozisyon < self.eleman_sayisi:
+            _, sol_cocuk_agirlik = self.yigin[sol_cocuk_pozisyon]
+            if sol_cocuk_agirlik < agirlik:
+                self.dugum_degistir(sol_cocuk_pozisyon, mevcut_pozisyon)
+                return self.asagi_kaydir(eleman)
         else:
             return None
-        if child_right_position < self.elements:
-            _, child_right_weight = self.heap[child_right_position]
-            if child_right_weight < weight:
-                self._swap_nodes(child_right_position, curr_pos)
-                return self._bubble_down(elem)
+        if sag_cocuk_pozisyon < self.eleman_sayisi:
+            _, sag_cocuk_agirlik = self.yigin[sag_cocuk_pozisyon]
+            if sag_cocuk_agirlik < agirlik:
+                self.dugum_degistir(sag_cocuk_pozisyon, mevcut_pozisyon)
+                return self.asagi_kaydir(eleman)
         return None
 
-    def _swap_nodes(self, node1_pos: int, node2_pos: int) -> None:
-        # Swap the nodes at the given positions
-        node1_elem = self.heap[node1_pos][0]
-        node2_elem = self.heap[node2_pos][0]
-        self.heap[node1_pos], self.heap[node2_pos] = (
-            self.heap[node2_pos],
-            self.heap[node1_pos],
+    def dugum_degistir(self, dugum1_pozisyon: int, dugum2_pozisyon: int) -> None:
+        # Verilen pozisyonlardaki düğümleri değiştir
+        dugum1_eleman = self.yigin[dugum1_pozisyon][0]
+        dugum2_eleman = self.yigin[dugum2_pozisyon][0]
+        self.yigin[dugum1_pozisyon], self.yigin[dugum2_pozisyon] = (
+            self.yigin[dugum2_pozisyon],
+            self.yigin[dugum1_pozisyon],
         )
-        self.position_map[node1_elem] = node2_pos
-        self.position_map[node2_elem] = node1_pos
+        self.pozisyon_haritasi[dugum1_eleman] = dugum2_pozisyon
+        self.pozisyon_haritasi[dugum2_eleman] = dugum1_pozisyon
 
 
-class GraphUndirectedWeighted(Generic[T]):
+class YonsuzAgirlikliGrafik(Generic[T]):
     """
-    Graph Undirected Weighted Class
+    Yönsüz Ağırlıklı Grafik Sınıfı
 
-    Functions:
-    add_node: function to add a node in the graph
-    add_edge: function to add an edge between 2 nodes in the graph
+    Fonksiyonlar:
+    dugum_ekle: grafiğe bir düğüm ekleyen fonksiyon
+    kenar_ekle: grafikte 2 düğüm arasında bir kenar ekleyen fonksiyon
     """
 
     def __init__(self) -> None:
-        self.connections: dict[T, dict[T, int]] = {}
-        self.nodes: int = 0
+        self.baglantilar: dict[T, dict[T, int]] = {}
+        self.dugum_sayisi: int = 0
 
     def __repr__(self) -> str:
-        return str(self.connections)
+        return str(self.baglantilar)
 
     def __len__(self) -> int:
-        return self.nodes
+        return self.dugum_sayisi
 
-    def add_node(self, node: T) -> None:
-        # Add a node in the graph if it is not in the graph
-        if node not in self.connections:
-            self.connections[node] = {}
-            self.nodes += 1
+    def dugum_ekle(self, dugum: T) -> None:
+        # Düğüm grafikte yoksa ekle
+        if dugum not in self.baglantilar:
+            self.baglantilar[dugum] = {}
+            self.dugum_sayisi += 1
 
-    def add_edge(self, node1: T, node2: T, weight: int) -> None:
-        # Add an edge between 2 nodes in the graph
-        self.add_node(node1)
-        self.add_node(node2)
-        self.connections[node1][node2] = weight
-        self.connections[node2][node1] = weight
+    def kenar_ekle(self, dugum1: T, dugum2: T, agirlik: int) -> None:
+        # Grafikte 2 düğüm arasında bir kenar ekle
+        self.dugum_ekle(dugum1)
+        self.dugum_ekle(dugum2)
+        self.baglantilar[dugum1][dugum2] = agirlik
+        self.baglantilar[dugum2][dugum1] = agirlik
 
 
-def prims_algo(
-    graph: GraphUndirectedWeighted[T],
+def prims_algoritmasi(
+    grafik: YonsuzAgirlikliGrafik[T],
 ) -> tuple[dict[T, int], dict[T, T | None]]:
     """
-    >>> graph = GraphUndirectedWeighted()
+    >>> grafik = YonsuzAgirlikliGrafik()
 
-    >>> graph.add_edge("a", "b", 3)
-    >>> graph.add_edge("b", "c", 10)
-    >>> graph.add_edge("c", "d", 5)
-    >>> graph.add_edge("a", "c", 15)
-    >>> graph.add_edge("b", "d", 100)
+    >>> grafik.kenar_ekle("a", "b", 3)
+    >>> grafik.kenar_ekle("b", "c", 10)
+    >>> grafik.kenar_ekle("c", "d", 5)
+    >>> grafik.kenar_ekle("a", "c", 15)
+    >>> grafik.kenar_ekle("b", "d", 100)
 
-    >>> dist, parent = prims_algo(graph)
+    >>> mesafe, ebeveyn = prims_algoritmasi(grafik)
 
-    >>> abs(dist["a"] - dist["b"])
+    >>> abs(mesafe["a"] - mesafe["b"])
     3
-    >>> abs(dist["d"] - dist["b"])
+    >>> abs(mesafe["d"] - mesafe["b"])
     15
-    >>> abs(dist["a"] - dist["c"])
+    >>> abs(mesafe["a"] - mesafe["c"])
     13
     """
-    # prim's algorithm for minimum spanning tree
-    dist: dict[T, int] = {node: maxsize for node in graph.connections}
-    parent: dict[T, T | None] = {node: None for node in graph.connections}
+    # Prim'in minimum yayılım ağacı algoritması
+    mesafe: dict[T, int] = {dugum: maxsize for dugum in grafik.baglantilar}
+    ebeveyn: dict[T, T | None] = {dugum: None for dugum in grafik.baglantilar}
 
-    priority_queue: MinPriorityQueue[T] = MinPriorityQueue()
-    for node, weight in dist.items():
-        priority_queue.push(node, weight)
+    oncelik_kuyrugu: MinOncelikKuyrugu[T] = MinOncelikKuyrugu()
+    for dugum, agirlik in mesafe.items():
+        oncelik_kuyrugu.ekle(dugum, agirlik)
 
-    if priority_queue.is_empty():
-        return dist, parent
+    if oncelik_kuyrugu.bos_mu():
+        return mesafe, ebeveyn
 
-    # initialization
-    node = priority_queue.extract_min()
-    dist[node] = 0
-    for neighbour in graph.connections[node]:
-        if dist[neighbour] > dist[node] + graph.connections[node][neighbour]:
-            dist[neighbour] = dist[node] + graph.connections[node][neighbour]
-            priority_queue.update_key(neighbour, dist[neighbour])
-            parent[neighbour] = node
+    # Başlangıç
+    dugum = oncelik_kuyrugu.min_cikar()
+    mesafe[dugum] = 0
+    for komsu in grafik.baglantilar[dugum]:
+        if mesafe[komsu] > mesafe[dugum] + grafik.baglantilar[dugum][komsu]:
+            mesafe[komsu] = mesafe[dugum] + grafik.baglantilar[dugum][komsu]
+            oncelik_kuyrugu.anahtar_guncelle(komsu, mesafe[komsu])
+            ebeveyn[komsu] = dugum
 
-    # running prim's algorithm
-    while not priority_queue.is_empty():
-        node = priority_queue.extract_min()
-        for neighbour in graph.connections[node]:
-            if dist[neighbour] > dist[node] + graph.connections[node][neighbour]:
-                dist[neighbour] = dist[node] + graph.connections[node][neighbour]
-                priority_queue.update_key(neighbour, dist[neighbour])
-                parent[neighbour] = node
-    return dist, parent
+    # Prim'in algoritmasını çalıştırma
+    while not oncelik_kuyrugu.bos_mu():
+        dugum = oncelik_kuyrugu.min_cikar()
+        for komsu in grafik.baglantilar[dugum]:
+            if mesafe[komsu] > mesafe[dugum] + grafik.baglantilar[dugum][komsu]:
+                mesafe[komsu] = mesafe[dugum] + grafik.baglantilar[dugum][komsu]
+                oncelik_kuyrugu.anahtar_guncelle(komsu, mesafe[komsu])
+                ebeveyn[komsu] = dugum
+    return mesafe, ebeveyn

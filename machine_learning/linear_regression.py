@@ -87,7 +87,7 @@ def doğrusal_regresyon_çalıştır(veri_x, veri_y):
 
 
 def ortalama_mutlak_hata(tahmin_edilen_y, orijinal_y):
-    """Hata hesaplaması için kare hata toplamını döndür
+    """Hata hesaplaması için ortalama mutlak hatayı döndür
     :param tahmin_edilen_y   : tahminin çıktısını içerir (sonuç vektörü)
     :param orijinal_y    : beklenen sonuç değerlerini içerir
     :return          : verilen özelliklerden hesaplanan ortalama mutlak hata
@@ -97,7 +97,7 @@ def ortalama_mutlak_hata(tahmin_edilen_y, orijinal_y):
 
 
 def ana():
-    """Sürücü fonksiyonu"""
+    """Ana fonksiyon"""
     veri = veri_seti_topla()
 
     veri_uzunluğu = veri.shape[0]

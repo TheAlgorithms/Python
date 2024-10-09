@@ -1,9 +1,9 @@
-def max_product_subarray(numbers: list[int]) -> int:
+def max_product_subarray(sayilar: list[int]) -> int:
     """
-    Returns the maximum product that can be obtained by multiplying a
-    contiguous subarray of the given integer list `nums`.
+    Verilen tamsayı listesinin `nums` bitişik alt dizisini çarparak elde edilebilecek
+    maksimum çarpımı döndürür.
 
-    Example:
+    Örnek:
     >>> max_product_subarray([2, 3, -2, 4])
     6
     >>> max_product_subarray((-2, 0, -1))
@@ -23,31 +23,31 @@ def max_product_subarray(numbers: list[int]) -> int:
     >>> max_product_subarray([2, 3, -2, 4.5, -1])
     Traceback (most recent call last):
         ...
-    ValueError: numbers must be an iterable of integers
+    ValueError: sayilar tamsayıların bir yinelemeli olmalıdır
     >>> max_product_subarray("ABC")
     Traceback (most recent call last):
         ...
-    ValueError: numbers must be an iterable of integers
+    ValueError: sayilar tamsayıların bir yinelemeli olmalıdır
     """
-    if not numbers:
+    if not sayilar:
         return 0
 
-    if not isinstance(numbers, (list, tuple)) or not all(
-        isinstance(number, int) for number in numbers
+    if not isinstance(sayilar, (list, tuple)) or not all(
+        isinstance(sayi, int) for sayi in sayilar
     ):
-        raise ValueError("numbers must be an iterable of integers")
+        raise ValueError("sayilar tamsayıların bir yinelemeli olmalıdır")
 
-    max_till_now = min_till_now = max_prod = numbers[0]
+    su_an_max = su_an_min = max_carpim = sayilar[0]
 
-    for i in range(1, len(numbers)):
-        # update the maximum and minimum subarray products
-        number = numbers[i]
-        if number < 0:
-            max_till_now, min_till_now = min_till_now, max_till_now
-        max_till_now = max(number, max_till_now * number)
-        min_till_now = min(number, min_till_now * number)
+    for i in range(1, len(sayilar)):
+        # maksimum ve minimum alt dizi çarpımlarını güncelle
+        sayi = sayilar[i]
+        if sayi < 0:
+            su_an_max, su_an_min = su_an_min, su_an_max
+        su_an_max = max(sayi, su_an_max * sayi)
+        su_an_min = min(sayi, su_an_min * sayi)
 
-        # update the maximum product found till now
-        max_prod = max(max_prod, max_till_now)
+        # şu ana kadar bulunan maksimum çarpımı güncelle
+        max_carpim = max(max_carpim, su_an_max)
 
-    return max_prod
+    return max_carpim

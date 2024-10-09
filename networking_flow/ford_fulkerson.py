@@ -1,13 +1,15 @@
 """
-Ford-Fulkerson Algorithm for Maximum Flow Problem
+Ford-Fulkerson Algoritması Maksimum Akış Problemi için
 * https://en.wikipedia.org/wiki/Ford%E2%80%93Fulkerson_algorithm
 
-Description:
-    (1) Start with initial flow as 0
-    (2) Choose the augmenting path from source to sink and add the path to flow
+Açıklama:
+    (1) Başlangıç akışını 0 olarak ayarlayın.
+    (2) Kaynaktan hedefe giden artırıcı yolu seçin ve bu yolu akışa ekleyin.
+
+    Yazar: K. Umut Araz
 """
 
-graph = [
+graf = [
     [0, 16, 13, 0, 0, 0],
     [0, 0, 10, 12, 0, 0],
     [0, 4, 0, 0, 14, 0],
@@ -17,59 +19,61 @@ graph = [
 ]
 
 
-def breadth_first_search(graph: list, source: int, sink: int, parents: list) -> bool:
+def genis_ilk_arama(graf: list, kaynak: int, hedef: int, ebeveynler: list) -> bool:
     """
-    This function returns True if there is a node that has not iterated.
+    Bu fonksiyon, henüz ziyaret edilmemiş bir düğüm varsa True döner.
 
-    Args:
-        graph: Adjacency matrix of graph
-        source: Source
-        sink: Sink
-        parents: Parent list
+    Argümanlar:
+        graf: Grafın komşuluk matrisini temsil eder.
+        kaynak: Başlangıç düğümü.
+        hedef: Hedef düğümü.
+        ebeveynler: Düğümlerin ebeveynlerini saklayan liste.
 
-    Returns:
-        True if there is a node that has not iterated.
+    Dönüş:
+        Eğer henüz ziyaret edilmemiş bir düğüm varsa True döner.
 
-    >>> breadth_first_search(graph, 0, 5, [-1, -1, -1, -1, -1, -1])
+    >>> genis_ilk_arama(graf, 0, 5, [-1, -1, -1, -1, -1, -1])
     True
-    >>> breadth_first_search(graph, 0, 6, [-1, -1, -1, -1, -1, -1])
+    >>> genis_ilk_arama(graf, 0, 6, [-1, -1, -1, -1, -1, -1])
     Traceback (most recent call last):
         ...
     IndexError: list index out of range
     """
-    visited = [False] * len(graph)  # Mark all nodes as not visited
-    queue = []  # breadth-first search queue
+    ziyaret_edilen = [False] * len(graf)  # Tüm düğümleri ziyaret edilmemiş olarak işaretle
+    kuyruk = []  # Genişlik öncelikli arama kuyruğu
 
-    # Source node
-    queue.append(source)
-    visited[source] = True
+    # Kaynak düğüm kuyruğa eklenir
+    kuyruk.append(kaynak)
+    ziyaret_edilen[kaynak] = True
 
-    while queue:
-        u = queue.pop(0)  # Pop the front node
-        # Traverse all adjacent nodes of u
-        for ind, node in enumerate(graph[u]):
-            if visited[ind] is False and node > 0:
-                queue.append(ind)
-                visited[ind] = True
-                parents[ind] = u
-    return visited[sink]
+    while kuyruk:
+        u = kuyruk.pop(0)  # Ön düğümü çıkar
+        # u'nun tüm komşu düğümlerini gez
+        for ind, node in enumerate(graf[u]):
+            if not ziyaret_edilen[ind] and node > 0:
+                kuyruk.append(ind)
+                ziyaret_edilen[ind] = True
+                ebeveynler[ind] = u
+    return ziyaret_edilen[hedef]
 
 
-def ford_fulkerson(graph: list, source: int, sink: int) -> int:
+def ford_fulkerson(graf: list, kaynak: int, hedef: int) -> int:
     """
-    This function returns the maximum flow from source to sink in the given graph.
+    Bu fonksiyon, verilen grafikte kaynak ile hedef arasındaki maksimum akışı döner.
 
-    CAUTION: This function changes the given graph.
+    DİKKAT: Bu fonksiyon verilen grafi değiştirir.
 
-    Args:
-        graph: Adjacency matrix of graph
-        source: Source
-        sink: Sink
+    Organiser: K. Umut Araz
 
-    Returns:
-        Maximum flow
+    Argümanlar:
+        graf: Grafın komşuluk matrisini temsil eder.
+        kaynak: Başlangıç düğümü.
+        hedef: Hedef düğümü.
 
-    >>> test_graph = [
+    Dönüş:
+        Maksimum akış miktarını döner.
+
+    >>> test_graf = [
     ...     [0, 16, 13, 0, 0, 0],
     ...     [0, 0, 10, 12, 0, 0],
     ...     [0, 4, 0, 0, 14, 0],
@@ -77,37 +81,37 @@ def ford_fulkerson(graph: list, source: int, sink: int) -> int:
     ...     [0, 0, 0, 7, 0, 4],
     ...     [0, 0, 0, 0, 0, 0],
     ... ]
-    >>> ford_fulkerson(test_graph, 0, 5)
+    >>> ford_fulkerson(test_graf, 0, 5)
     23
     """
-    # This array is filled by breadth-first search and to store path
-    parent = [-1] * (len(graph))
-    max_flow = 0
+    # Ebeveyn dizisi genişlik öncelikli arama ile doldurulur ve yolu saklar
+    ebeveyn = [-1] * len(graf)
+    maksimum_akış = 0
 
-    # While there is a path from source to sink
-    while breadth_first_search(graph, source, sink, parent):
-        path_flow = int(1e9)  # Infinite value
-        s = sink
+    # Kaynaktan hedefe bir yol olduğu sürece
+    while genis_ilk_arama(graf, kaynak, hedef, ebeveyn):
+        yol_akışı = float('inf')  # Sonsuz değer
+        s = hedef
 
-        while s != source:
-            # Find the minimum value in the selected path
-            path_flow = min(path_flow, graph[parent[s]][s])
-            s = parent[s]
+        while s != kaynak:
+            # Seçilen yoldaki minimum değeri bul
+            yol_akışı = min(yol_akışı, graf[ebeveyn[s]][s])
+            s = ebeveyn[s]
 
-        max_flow += path_flow
-        v = sink
+        maksimum_akış += yol_akışı
+        v = hedef
 
-        while v != source:
-            u = parent[v]
-            graph[u][v] -= path_flow
-            graph[v][u] += path_flow
-            v = parent[v]
+        while v != kaynak:
+            u = ebeveyn[v]
+            graf[u][v] -= yol_akışı
+            graf[v][u] += yol_akışı
+            v = ebeveyn[v]
 
-    return max_flow
+    return maksimum_akış
 
 
 if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    print(f"{ford_fulkerson(graph, source=0, sink=5) = }")
+    print(f"{ford_fulkerson(graf, kaynak=0, hedef=5) = }")

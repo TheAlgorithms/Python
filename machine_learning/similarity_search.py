@@ -7,6 +7,8 @@ Bu algoritmada, öklid mesafesi ile mesafeyi hesaplar ve her vektör için iki v
     2. vektör ile en yakın vektör arasındaki mesafe (float)
 """
 
+#Organised to K. Umut Araz
+
 from __future__ import annotations
 
 import math
@@ -15,7 +17,7 @@ import numpy as np
 from numpy.linalg import norm
 
 
-def oklid(input_a: np.ndarray, input_b: np.ndarray) -> float:
+def oklid_mesafesi(input_a: np.ndarray, input_b: np.ndarray) -> float:
     """
     İki veri arasındaki öklid mesafesini hesaplar.
     :param input_a: İlk vektörün ndarray'i.
@@ -23,11 +25,11 @@ def oklid(input_a: np.ndarray, input_b: np.ndarray) -> float:
     :return: input_a ve input_b'nin Öklid mesafesi. math.sqrt() kullanılarak,
              sonuç float olacaktır.
 
-    >>> oklid(np.array([0]), np.array([1]))
+    >>> oklid_mesafesi(np.array([0]), np.array([1]))
     1.0
-    >>> oklid(np.array([0, 1]), np.array([1, 1]))
+    >>> oklid_mesafesi(np.array([0, 1]), np.array([1, 1]))
     1.0
-    >>> oklid(np.array([0, 0, 0]), np.array([0, 0, 1]))
+    >>> oklid_mesafesi(np.array([0, 0, 0]), np.array([0, 0, 1]))
     1.0
     """
     return math.sqrt(sum(pow(a - b, 2) for a, b in zip(input_a, input_b)))
@@ -124,22 +126,22 @@ def benzerlik_arama(
     cevap = []
 
     for deger in deger_dizisi:
-        mesafe = oklid(deger, veri_seti[0])
-        vektor = veri_seti[0].tolist()
+        mesafe = oklid_mesafesi(deger, veri_seti[0])
+        en_yakin_vektor = veri_seti[0].tolist()
 
         for veri_seti_degeri in veri_seti[1:]:
-            gecici_mesafe = oklid(deger, veri_seti_degeri)
+            gecici_mesafe = oklid_mesafesi(deger, veri_seti_degeri)
 
             if mesafe > gecici_mesafe:
                 mesafe = gecici_mesafe
-                vektor = veri_seti_degeri.tolist()
+                en_yakin_vektor = veri_seti_degeri.tolist()
 
-        cevap.append([vektor, mesafe])
+        cevap.append([en_yakin_vektor, mesafe])
 
     return cevap
 
 
-def kosin_benzerligi(input_a: np.ndarray, input_b: np.ndarray) -> float:
+def kosinus_benzerligi(input_a: np.ndarray, input_b: np.ndarray) -> float:
     """
     İki veri arasındaki kosinüs benzerliğini hesaplar.
     :param input_a: İlk vektörün ndarray'i.
@@ -147,9 +149,9 @@ def kosin_benzerligi(input_a: np.ndarray, input_b: np.ndarray) -> float:
     :return: input_a ve input_b'nin Kosinüs benzerliği. math.sqrt() kullanılarak,
              sonuç float olacaktır.
 
-    >>> kosin_benzerligi(np.array([1]), np.array([1]))
+    >>> kosinus_benzerligi(np.array([1]), np.array([1]))
     1.0
-    >>> kosin_benzerligi(np.array([1, 2]), np.array([6, 32]))
+    >>> kosinus_benzerligi(np.array([1, 2]), np.array([6, 32]))
     0.9615239476408232
     """
     return float(np.dot(input_a, input_b) / (norm(input_a) * norm(input_b)))

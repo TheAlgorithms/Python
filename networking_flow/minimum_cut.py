@@ -1,6 +1,6 @@
-# Minimum cut on Ford_Fulkerson algorithm.
+# Ford-Fulkerson algoritmasında minimum kesim.
 
-test_graph = [
+test_graf = [
     [0, 16, 13, 0, 0, 0],
     [0, 0, 10, 12, 0, 0],
     [0, 4, 0, 0, 14, 0],
@@ -9,58 +9,58 @@ test_graph = [
     [0, 0, 0, 0, 0, 0],
 ]
 
+# Organiser: K. Umut Araz
 
-def bfs(graph, s, t, parent):
-    # Return True if there is node that has not iterated.
-    visited = [False] * len(graph)
-    queue = [s]
-    visited[s] = True
+def bfs(graf, kaynak, hedef, ebeveyn):
+    # Ziyaret edilmemiş bir düğüm varsa True döner.
+    ziyaret_edilen = [False] * len(graf)
+    kuyruk = [kaynak]
+    ziyaret_edilen[kaynak] = True
 
-    while queue:
-        u = queue.pop(0)
-        for ind in range(len(graph[u])):
-            if visited[ind] is False and graph[u][ind] > 0:
-                queue.append(ind)
-                visited[ind] = True
-                parent[ind] = u
+    while kuyruk:
+        u = kuyruk.pop(0)
+        for ind in range(len(graf[u])):
+            if not ziyaret_edilen[ind] and graf[u][ind] > 0:
+                kuyruk.append(ind)
+                ziyaret_edilen[ind] = True
+                ebeveyn[ind] = u
 
-    return visited[t]
+    return ziyaret_edilen[hedef]
 
-
-def mincut(graph, source, sink):
-    """This array is filled by BFS and to store path
-    >>> mincut(test_graph, source=0, sink=5)
+def min_kesim(graf, kaynak, hedef):
+    """Bu dizi BFS ile doldurulur ve yolu saklar.
+    >>> min_kesim(test_graf, kaynak=0, hedef=5)
     [(1, 3), (4, 3), (4, 5)]
     """
-    parent = [-1] * (len(graph))
-    max_flow = 0
-    res = []
-    temp = [i[:] for i in graph]  # Record original cut, copy.
-    while bfs(graph, source, sink, parent):
-        path_flow = float("Inf")
-        s = sink
+    ebeveyn = [-1] * len(graf)
+    maksimum_akış = 0
+    sonuç = []
+    geçici = [i[:] for i in graf]  # Orijinal kesimi kaydet, kopyala.
+    
+    while bfs(graf, kaynak, hedef, ebeveyn):
+        yol_akışı = float("Inf")
+        s = hedef
 
-        while s != source:
-            # Find the minimum value in select path
-            path_flow = min(path_flow, graph[parent[s]][s])
-            s = parent[s]
+        while s != kaynak:
+            # Seçilen yoldaki minimum değeri bul
+            yol_akışı = min(yol_akışı, graf[ebeveyn[s]][s])
+            s = ebeveyn[s]
 
-        max_flow += path_flow
-        v = sink
+        maksimum_akış += yol_akışı
+        v = hedef
 
-        while v != source:
-            u = parent[v]
-            graph[u][v] -= path_flow
-            graph[v][u] += path_flow
-            v = parent[v]
+        while v != kaynak:
+            u = ebeveyn[v]
+            graf[u][v] -= yol_akışı
+            graf[v][u] += yol_akışı
+            v = ebeveyn[v]
 
-    for i in range(len(graph)):
-        for j in range(len(graph[0])):
-            if graph[i][j] == 0 and temp[i][j] > 0:
-                res.append((i, j))
+    for i in range(len(graf)):
+        for j in range(len(graf[0])):
+            if graf[i][j] == 0 and geçici[i][j] > 0:
+                sonuç.append((i, j))
 
-    return res
-
+    return sonuç
 
 if __name__ == "__main__":
-    print(mincut(test_graph, source=0, sink=5))
+    print(min_kesim(test_graf, kaynak=0, hedef=5))

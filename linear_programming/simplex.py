@@ -1,16 +1,17 @@
 """
-Python implementation of the simplex algorithm for solving linear programs in
-tabular form with
-- `>=`, `<=`, and `=` constraints and
-- each variable `x1, x2, ...>= 0`.
+Tablo formunda doğrusal programları çözmek için simplex algoritmasının Python
+uygulaması
+- `>=`, `<=` ve `=` kısıtlamaları ve
+- her değişken `x1, x2, ...>= 0`.
 
-See https://gist.github.com/imengus/f9619a568f7da5bc74eaf20169a24d98 for how to
-convert linear programs to simplex tableaus, and the steps taken in the simplex
-algorithm.
+Doğrusal programları simplex tablolarına dönüştürme ve simplex algoritmasında
+atılan adımlar için https://gist.github.com/imengus/f9619a568f7da5bc74eaf20169a24d98
+adresine bakın.
 
-Resources:
-https://en.wikipedia.org/wiki/Simplex_algorithm
+Kaynaklar:
+https://tr.wikipedia.org/wiki/Simplex_algoritması
 https://tinyurl.com/simplex4beginners
+Katkı:K. Umut Araz
 """
 
 from typing import Any
@@ -18,264 +19,262 @@ from typing import Any
 import numpy as np
 
 
-class Tableau:
-    """Operate on simplex tableaus
+class Tablo:
+    """Simplex tabloları üzerinde işlem yapar
 
-    >>> Tableau(np.array([[-1,-1,0,0,1],[1,3,1,0,4],[3,1,0,1,4]]), 2, 2)
+    >>> Tablo(np.array([[-1,-1,0,0,1],[1,3,1,0,4],[3,1,0,1,4]]), 2, 2)
     Traceback (most recent call last):
     ...
-    TypeError: Tableau must have type float64
+    TypeError: Tablo float64 türünde olmalıdır
 
-    >>> Tableau(np.array([[-1,-1,0,0,-1],[1,3,1,0,4],[3,1,0,1,4.]]), 2, 2)
+    >>> Tablo(np.array([[-1,-1,0,0,-1],[1,3,1,0,4],[3,1,0,1,4.]]), 2, 2)
     Traceback (most recent call last):
     ...
-    ValueError: RHS must be > 0
+    ValueError: RHS > 0 olmalıdır
 
-    >>> Tableau(np.array([[-1,-1,0,0,1],[1,3,1,0,4],[3,1,0,1,4.]]), -2, 2)
+    >>> Tablo(np.array([[-1,-1,0,0,1],[1,3,1,0,4],[3,1,0,1,4.]]), -2, 2)
     Traceback (most recent call last):
     ...
-    ValueError: number of (artificial) variables must be a natural number
+    ValueError: (yapay) değişkenlerin sayısı doğal bir sayı olmalıdır
     """
 
-    # Max iteration number to prevent cycling
+    # Döngüden kaçınmak için maksimum iterasyon sayısı
     maxiter = 100
 
     def __init__(
-        self, tableau: np.ndarray, n_vars: int, n_artificial_vars: int
+        self, tablo: np.ndarray, n_vars: int, n_yapay_vars: int
     ) -> None:
-        if tableau.dtype != "float64":
-            raise TypeError("Tableau must have type float64")
+        if tablo.dtype != "float64":
+            raise TypeError("Tablo float64 türünde olmalıdır")
 
-        # Check if RHS is negative
-        if not (tableau[:, -1] >= 0).all():
-            raise ValueError("RHS must be > 0")
+        # RHS'nin negatif olup olmadığını kontrol et
+        if not (tablo[:, -1] >= 0).all():
+            raise ValueError("RHS > 0 olmalıdır")
 
-        if n_vars < 2 or n_artificial_vars < 0:
+        if n_vars < 2 or n_yapay_vars < 0:
             raise ValueError(
-                "number of (artificial) variables must be a natural number"
+                "(yapay) değişkenlerin sayısı doğal bir sayı olmalıdır"
             )
 
-        self.tableau = tableau
-        self.n_rows, n_cols = tableau.shape
+        self.tablo = tablo
+        self.n_satirlar, n_sutunlar = tablo.shape
 
-        # Number of decision variables x1, x2, x3...
-        self.n_vars, self.n_artificial_vars = n_vars, n_artificial_vars
+        # Karar değişkenlerinin sayısı x1, x2, x3...
+        self.n_vars, self.n_yapay_vars = n_vars, n_yapay_vars
 
-        # 2 if there are >= or == constraints (nonstandard), 1 otherwise (std)
-        self.n_stages = (self.n_artificial_vars > 0) + 1
+        # >= veya == kısıtlamaları varsa 2 (standart olmayan), aksi takdirde 1 (standart)
+        self.n_asamalar = (self.n_yapay_vars > 0) + 1
 
-        # Number of slack variables added to make inequalities into equalities
-        self.n_slack = n_cols - self.n_vars - self.n_artificial_vars - 1
+        # Eşitsizlikleri eşitliklere dönüştürmek için eklenen gevşeklik değişkenlerinin sayısı
+        self.n_gevseklik = n_sutunlar - self.n_vars - self.n_yapay_vars - 1
 
-        # Objectives for each stage
-        self.objectives = ["max"]
+        # Her aşama için hedefler
+        self.hedefler = ["max"]
 
-        # In two stage simplex, first minimise then maximise
-        if self.n_artificial_vars:
-            self.objectives.append("min")
+        # İki aşamalı simplex'te önce minimize et, sonra maksimize et
+        if self.n_yapay_vars:
+            self.hedefler.append("min")
 
-        self.col_titles = self.generate_col_titles()
+        self.sutun_basliklari = self.sutun_basliklari_olustur()
 
-        # Index of current pivot row and column
-        self.row_idx = None
-        self.col_idx = None
+        # Mevcut pivot satır ve sütununun indeksi
+        self.satir_idx = None
+        self.sutun_idx = None
 
-        # Does objective row only contain (non)-negative values?
-        self.stop_iter = False
+        # Hedef satır sadece (negatif olmayan) değerler içeriyor mu?
+        self.dur_iter = False
 
-    def generate_col_titles(self) -> list[str]:
-        """Generate column titles for tableau of specific dimensions
+    def sutun_basliklari_olustur(self) -> list[str]:
+        """Belirli boyutlardaki tablo için sütun başlıklarını oluşturur
 
-        >>> Tableau(np.array([[-1,-1,0,0,1],[1,3,1,0,4],[3,1,0,1,4.]]),
-        ... 2, 0).generate_col_titles()
+        >>> Tablo(np.array([[-1,-1,0,0,1],[1,3,1,0,4],[3,1,0,1,4.]]),
+        ... 2, 0).sutun_basliklari_olustur()
         ['x1', 'x2', 's1', 's2', 'RHS']
 
-        >>> Tableau(np.array([[-1,-1,0,0,1],[1,3,1,0,4],[3,1,0,1,4.]]),
-        ... 2, 2).generate_col_titles()
+        >>> Tablo(np.array([[-1,-1,0,0,1],[1,3,1,0,4],[3,1,0,1,4.]]),
+        ... 2, 2).sutun_basliklari_olustur()
         ['x1', 'x2', 'RHS']
         """
-        args = (self.n_vars, self.n_slack)
+        args = (self.n_vars, self.n_gevseklik)
 
-        # decision | slack
-        string_starts = ["x", "s"]
-        titles = []
+        # karar | gevseklik
+        string_baslangiclari = ["x", "s"]
+        basliklar = []
         for i in range(2):
             for j in range(args[i]):
-                titles.append(string_starts[i] + str(j + 1))
-        titles.append("RHS")
-        return titles
+                basliklar.append(string_baslangiclari[i] + str(j + 1))
+        basliklar.append("RHS")
+        return basliklar
 
-    def find_pivot(self) -> tuple[Any, Any]:
-        """Finds the pivot row and column.
-        >>> tuple(int(x) for x in Tableau(np.array([[-2,1,0,0,0], [3,1,1,0,6],
-        ... [1,2,0,1,7.]]), 2, 0).find_pivot())
+    def pivot_bul(self) -> tuple[Any, Any]:
+        """Pivot satır ve sütunu bulur.
+        >>> tuple(int(x) for x in Tablo(np.array([[-2,1,0,0,0], [3,1,1,0,6],
+        ... [1,2,0,1,7.]]), 2, 0).pivot_bul())
         (1, 0)
         """
-        objective = self.objectives[-1]
+        hedef = self.hedefler[-1]
 
-        # Find entries of highest magnitude in objective rows
-        sign = (objective == "min") - (objective == "max")
-        col_idx = np.argmax(sign * self.tableau[0, :-1])
+        # Hedef satırlardaki en yüksek büyüklükteki girişleri bulun
+        isaret = (hedef == "min") - (hedef == "max")
+        sutun_idx = np.argmax(isaret * self.tablo[0, :-1])
 
-        # Choice is only valid if below 0 for maximise, and above for minimise
-        if sign * self.tableau[0, col_idx] <= 0:
-            self.stop_iter = True
+        # Seçim yalnızca maksimize için 0'ın altında ve minimize için üstünde geçerlidir
+        if isaret * self.tablo[0, sutun_idx] <= 0:
+            self.dur_iter = True
             return 0, 0
 
-        # Pivot row is chosen as having the lowest quotient when elements of
-        # the pivot column divide the right-hand side
+        # Pivot satırı, pivot sütunundaki elemanların sağ tarafı böldüğünde
+        # en düşük bölümü olan olarak seçilir
 
-        # Slice excluding the objective rows
-        s = slice(self.n_stages, self.n_rows)
+        # Hedef satırları hariç tutarak dilimle
+        s = slice(self.n_asamalar, self.n_satirlar)
 
         # RHS
-        dividend = self.tableau[s, -1]
+        bolunen = self.tablo[s, -1]
 
-        # Elements of pivot column within slice
-        divisor = self.tableau[s, col_idx]
+        # Dilim içindeki pivot sütununun elemanları
+        bolen = self.tablo[s, sutun_idx]
 
-        # Array filled with nans
-        nans = np.full(self.n_rows - self.n_stages, np.nan)
+        # NaN'larla dolu dizi
+        nans = np.full(self.n_satirlar - self.n_asamalar, np.nan)
 
-        # If element in pivot column is greater than zero, return
-        # quotient or nan otherwise
-        quotients = np.divide(dividend, divisor, out=nans, where=divisor > 0)
+        # Pivot sütunundaki eleman sıfırdan büyükse, bölümü veya aksi takdirde nan'ı döndür
+        bolumler = np.divide(bolunen, bolen, out=nans, where=bolen > 0)
 
-        # Arg of minimum quotient excluding the nan values. n_stages is added
-        # to compensate for earlier exclusion of objective columns
-        row_idx = np.nanargmin(quotients) + self.n_stages
-        return row_idx, col_idx
+        # NaN değerleri hariç tutarak en düşük bölümün argümanı. n_asamalar,
+        # daha önce hedef sütunların hariç tutulmasını telafi etmek için eklenir
+        satir_idx = np.nanargmin(bolumler) + self.n_asamalar
+        return satir_idx, sutun_idx
 
-    def pivot(self, row_idx: int, col_idx: int) -> np.ndarray:
-        """Pivots on value on the intersection of pivot row and column.
+    def pivot(self, satir_idx: int, sutun_idx: int) -> np.ndarray:
+        """Pivot satır ve sütunun kesişimindeki değeri pivotlar.
 
-        >>> Tableau(np.array([[-2,-3,0,0,0],[1,3,1,0,4],[3,1,0,1,4.]]),
+        >>> Tablo(np.array([[-2,-3,0,0,0],[1,3,1,0,4],[3,1,0,1,4.]]),
         ... 2, 2).pivot(1, 0).tolist()
         ... # doctest: +NORMALIZE_WHITESPACE
         [[0.0, 3.0, 2.0, 0.0, 8.0],
         [1.0, 3.0, 1.0, 0.0, 4.0],
         [0.0, -8.0, -3.0, 1.0, -8.0]]
         """
-        # Avoid changes to original tableau
-        piv_row = self.tableau[row_idx].copy()
+        # Orijinal tabloya değişiklik yapmaktan kaçının
+        pivot_satir = self.tablo[satir_idx].copy()
 
-        piv_val = piv_row[col_idx]
+        pivot_deger = pivot_satir[sutun_idx]
 
-        # Entry becomes 1
-        piv_row *= 1 / piv_val
+        # Giriş 1 olur
+        pivot_satir *= 1 / pivot_deger
 
-        # Variable in pivot column becomes basic, ie the only non-zero entry
-        for idx, coeff in enumerate(self.tableau[:, col_idx]):
-            self.tableau[idx] += -coeff * piv_row
-        self.tableau[row_idx] = piv_row
-        return self.tableau
+        # Pivot sütunundaki değişken temel hale gelir, yani tek sıfır olmayan giriş
+        for idx, katsayi in enumerate(self.tablo[:, sutun_idx]):
+            self.tablo[idx] += -katsayi * pivot_satir
+        self.tablo[satir_idx] = pivot_satir
+        return self.tablo
 
-    def change_stage(self) -> np.ndarray:
-        """Exits first phase of the two-stage method by deleting artificial
-        rows and columns, or completes the algorithm if exiting the standard
-        case.
+    def asama_degistir(self) -> np.ndarray:
+        """İki aşamalı yöntemin ilk aşamasından çıkarak yapay satır ve sütunları
+        siler veya standart durumu tamamlayarak algoritmayı tamamlar.
 
-        >>> Tableau(np.array([
+        >>> Tablo(np.array([
         ... [3, 3, -1, -1, 0, 0, 4],
         ... [2, 1, 0, 0, 0, 0, 0.],
         ... [1, 2, -1, 0, 1, 0, 2],
         ... [2, 1, 0, -1, 0, 1, 2]
-        ... ]), 2, 2).change_stage().tolist()
+        ... ]), 2, 2).asama_degistir().tolist()
         ... # doctest: +NORMALIZE_WHITESPACE
         [[2.0, 1.0, 0.0, 0.0, 0.0],
         [1.0, 2.0, -1.0, 0.0, 2.0],
         [2.0, 1.0, 0.0, -1.0, 2.0]]
         """
-        # Objective of original objective row remains
-        self.objectives.pop()
+        # Orijinal hedef satırının hedefi kalır
+        self.hedefler.pop()
 
-        if not self.objectives:
-            return self.tableau
+        if not self.hedefler:
+            return self.tablo
 
-        # Slice containing ids for artificial columns
-        s = slice(-self.n_artificial_vars - 1, -1)
+        # Yapay sütunlar için kimlikleri içeren dilim
+        s = slice(-self.n_yapay_vars - 1, -1)
 
-        # Delete the artificial variable columns
-        self.tableau = np.delete(self.tableau, s, axis=1)
+        # Yapay değişken sütunlarını sil
+        self.tablo = np.delete(self.tablo, s, axis=1)
 
-        # Delete the objective row of the first stage
-        self.tableau = np.delete(self.tableau, 0, axis=0)
+        # İlk aşamanın hedef satırını sil
+        self.tablo = np.delete(self.tablo, 0, axis=0)
 
-        self.n_stages = 1
-        self.n_rows -= 1
-        self.n_artificial_vars = 0
-        self.stop_iter = False
-        return self.tableau
+        self.n_asamalar = 1
+        self.n_satirlar -= 1
+        self.n_yapay_vars = 0
+        self.dur_iter = False
+        return self.tablo
 
-    def run_simplex(self) -> dict[Any, Any]:
-        """Operate on tableau until objective function cannot be
-        improved further.
+    def simplex_calistir(self) -> dict[Any, Any]:
+        """Tablo üzerinde hedef fonksiyon daha fazla iyileştirilemeyecek
+        duruma gelene kadar işlem yapar.
 
-        # Standard linear program:
+        # Standart doğrusal program:
         Max:  x1 +  x2
         ST:   x1 + 3x2 <= 4
              3x1 +  x2 <= 4
-        >>> {key: float(value) for key, value in Tableau(np.array([[-1,-1,0,0,0],
-        ... [1,3,1,0,4],[3,1,0,1,4.]]), 2, 0).run_simplex().items()}
+        >>> {key: float(value) for key, value in Tablo(np.array([[-1,-1,0,0,0],
+        ... [1,3,1,0,4],[3,1,0,1,4.]]), 2, 0).simplex_calistir().items()}
         {'P': 2.0, 'x1': 1.0, 'x2': 1.0}
 
-        # Standard linear program with 3 variables:
+        # 3 değişkenli standart doğrusal program:
         Max: 3x1 +  x2 + 3x3
         ST:  2x1 +  x2 +  x3 ≤ 2
               x1 + 2x2 + 3x3 ≤ 5
              2x1 + 2x2 +  x3 ≤ 6
-        >>> {key: float(value) for key, value in Tableau(np.array([
+        >>> {key: float(value) for key, value in Tablo(np.array([
         ... [-3,-1,-3,0,0,0,0],
         ... [2,1,1,1,0,0,2],
         ... [1,2,3,0,1,0,5],
         ... [2,2,1,0,0,1,6.]
-        ... ]),3,0).run_simplex().items()} # doctest: +ELLIPSIS
+        ... ]),3,0).simplex_calistir().items()} # doctest: +ELLIPSIS
         {'P': 5.4, 'x1': 0.199..., 'x3': 1.6}
 
 
-        # Optimal tableau input:
-        >>> {key: float(value) for key, value in Tableau(np.array([
+        # Optimal tablo girişi:
+        >>> {key: float(value) for key, value in Tablo(np.array([
         ... [0, 0, 0.25, 0.25, 2],
         ... [0, 1, 0.375, -0.125, 1],
         ... [1, 0, -0.125, 0.375, 1]
-        ... ]), 2, 0).run_simplex().items()}
+        ... ]), 2, 0).simplex_calistir().items()}
         {'P': 2.0, 'x1': 1.0, 'x2': 1.0}
 
-        # Non-standard: >= constraints
+        # Standart olmayan: >= kısıtlamaları
         Max: 2x1 + 3x2 +  x3
         ST:   x1 +  x2 +  x3 <= 40
              2x1 +  x2 -  x3 >= 10
                  -  x2 +  x3 >= 10
-        >>> {key: float(value) for key, value in Tableau(np.array([
+        >>> {key: float(value) for key, value in Tablo(np.array([
         ... [2, 0, 0, 0, -1, -1, 0, 0, 20],
         ... [-2, -3, -1, 0, 0, 0, 0, 0, 0],
         ... [1, 1, 1, 1, 0, 0, 0, 0, 40],
         ... [2, 1, -1, 0, -1, 0, 1, 0, 10],
         ... [0, -1, 1, 0, 0, -1, 0, 1, 10.]
-        ... ]), 3, 2).run_simplex().items()}
+        ... ]), 3, 2).simplex_calistir().items()}
         {'P': 70.0, 'x1': 10.0, 'x2': 10.0, 'x3': 20.0}
 
-        # Non standard: minimisation and equalities
+        # Standart olmayan: minimizasyon ve eşitlikler
         Min: x1 +  x2
         ST: 2x1 +  x2 = 12
             6x1 + 5x2 = 40
-        >>> {key: float(value) for key, value in Tableau(np.array([
+        >>> {key: float(value) for key, value in Tablo(np.array([
         ... [8, 6, 0, 0, 52],
         ... [1, 1, 0, 0, 0],
         ... [2, 1, 1, 0, 12],
         ... [6, 5, 0, 1, 40.],
-        ... ]), 2, 2).run_simplex().items()}
+        ... ]), 2, 2).simplex_calistir().items()}
         {'P': 7.0, 'x1': 5.0, 'x2': 2.0}
 
 
-        # Pivot on slack variables
+        # Gevşeklik değişkenlerinde pivot
         Max: 8x1 + 6x2
         ST:   x1 + 3x2 <= 33
              4x1 + 2x2 <= 48
              2x1 + 4x2 <= 48
               x1 +  x2 >= 10
              x1        >= 2
-        >>> {key: float(value) for key, value in Tableau(np.array([
+        >>> {key: float(value) for key, value in Tablo(np.array([
         ... [2, 1, 0, 0, 0, -1, -1, 0, 0, 12.0],
         ... [-8, -6, 0, 0, 0, 0, 0, 0, 0, 0.0],
         ... [1, 3, 1, 0, 0, 0, 0, 0, 0, 33.0],
@@ -283,53 +282,53 @@ class Tableau:
         ... [2, 4, 0, 0, 1, 0, 0, 0, 0, 48.0],
         ... [1, 1, 0, 0, 0, -1, 0, 1, 0, 10.0],
         ... [1, 0, 0, 0, 0, 0, -1, 0, 1, 2.0]
-        ... ]), 2, 2).run_simplex().items()} # doctest: +ELLIPSIS
+        ... ]), 2, 2).simplex_calistir().items()} # doctest: +ELLIPSIS
         {'P': 132.0, 'x1': 12.000... 'x2': 5.999...}
         """
-        # Stop simplex algorithm from cycling.
-        for _ in range(Tableau.maxiter):
-            # Completion of each stage removes an objective. If both stages
-            # are complete, then no objectives are left
-            if not self.objectives:
-                # Find the values of each variable at optimal solution
-                return self.interpret_tableau()
+        # Simplex algoritmasının döngüden kaçınmasını durdurun.
+        for _ in range(Tablo.maxiter):
+            # Her aşamanın tamamlanması bir hedefi kaldırır. Eğer her iki aşama
+            # da tamamsa, artık hedef kalmaz
+            if not self.hedefler:
+                # Optimal çözümde her değişkenin değerlerini bulun
+                return self.tabloyu_yorumla()
 
-            row_idx, col_idx = self.find_pivot()
+            satir_idx, sutun_idx = self.pivot_bul()
 
-            # If there are no more negative values in objective row
-            if self.stop_iter:
-                # Delete artificial variable columns and rows. Update attributes
-                self.tableau = self.change_stage()
+            # Hedef satırda daha fazla negatif değer yoksa
+            if self.dur_iter:
+                # Yapay değişken sütunlarını ve satırlarını sil. Öznitelikleri güncelle
+                self.tablo = self.asama_degistir()
             else:
-                self.tableau = self.pivot(row_idx, col_idx)
+                self.tablo = self.pivot(satir_idx, sutun_idx)
         return {}
 
-    def interpret_tableau(self) -> dict[str, float]:
-        """Given the final tableau, add the corresponding values of the basic
-        decision variables to the `output_dict`
-        >>> {key: float(value) for key, value in Tableau(np.array([
+    def tabloyu_yorumla(self) -> dict[str, float]:
+        """Son tablo verildiğinde, temel karar değişkenlerinin
+        karşılık gelen değerlerini `output_dict`e ekleyin
+        >>> {key: float(value) for key, value in Tablo(np.array([
         ... [0,0,0.875,0.375,5],
         ... [0,1,0.375,-0.125,1],
         ... [1,0,-0.125,0.375,1]
-        ... ]),2, 0).interpret_tableau().items()}
+        ... ]),2, 0).tabloyu_yorumla().items()}
         {'P': 5.0, 'x1': 1.0, 'x2': 1.0}
         """
-        # P = RHS of final tableau
-        output_dict = {"P": abs(self.tableau[0, -1])}
+        # P = son tablonun RHS'si
+        output_dict = {"P": abs(self.tablo[0, -1])}
 
         for i in range(self.n_vars):
-            # Gives indices of nonzero entries in the ith column
-            nonzero = np.nonzero(self.tableau[:, i])
+            # i. sütundaki sıfır olmayan girişlerin dizinlerini verir
+            nonzero = np.nonzero(self.tablo[:, i])
             n_nonzero = len(nonzero[0])
 
-            # First entry in the nonzero indices
-            nonzero_rowidx = nonzero[0][0]
-            nonzero_val = self.tableau[nonzero_rowidx, i]
+            # Sıfır olmayan dizinlerdeki ilk giriş
+            nonzero_satiridx = nonzero[0][0]
+            nonzero_deger = self.tablo[nonzero_satiridx, i]
 
-            # If there is only one nonzero value in column, which is one
-            if n_nonzero == 1 and nonzero_val == 1:
-                rhs_val = self.tableau[nonzero_rowidx, -1]
-                output_dict[self.col_titles[i]] = rhs_val
+            # Sütunda yalnızca bir sıfır olmayan değer varsa, bu bir
+            if n_nonzero == 1 and nonzero_deger == 1:
+                rhs_deger = self.tablo[nonzero_satiridx, -1]
+                output_dict[self.sutun_basliklari[i]] = rhs_deger
         return output_dict
 
 

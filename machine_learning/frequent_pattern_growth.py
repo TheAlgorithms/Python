@@ -20,10 +20,10 @@ class AgacDugumu:
     """
     Sık Kullanılan Örüntü ağacında bir düğüm.
 
-    Args:
+    Parametreler:
         isim: Bu düğümün adı.
         sayi: Düğümün oluşum sayısı.
-        ebeveyn_dugum: Ebeveyn düğüm.
+        ebeveyn: Ebeveyn düğüm.
 
     Örnek:
     >>> ebeveyn = AgacDugumu("Ebeveyn", 1, None)
@@ -56,12 +56,12 @@ def agac_olustur(veri_seti: list, min_destek: int = 1) -> tuple[AgacDugumu, dict
     """
     Sık Kullanılan Örüntü ağacı oluştur
 
-    Args:
+    Parametreler:
         veri_seti: Her işlem bir öğe listesi olan işlemler listesi.
         min_destek: Minimum destek eşiği.
         Desteği bu değerden az olan öğeler budanacaktır. Varsayılan 1'dir.
 
-    Returns:
+    Döndürür:
         FP-Tree'nin kökü.
         başlık_tablosu: Öğeler hakkında bilgi içeren başlık tablosu sözlüğü.
 
@@ -129,7 +129,7 @@ def agaci_guncelle(ogeler: list, ic_agac: AgacDugumu, baslik_tablosu: dict, sayi
     """
     FP-Tree'yi bir işlemle güncelle.
 
-    Args:
+    Parametreler:
         ogeler: İşlemdeki öğeler listesi.
         ic_agac: FP-Tree'deki mevcut düğüm.
         baslik_tablosu: Öğeler hakkında bilgi içeren başlık tablosu sözlüğü.
@@ -174,7 +174,7 @@ def basligi_guncelle(test_edilecek_dugum: AgacDugumu, hedef_dugum: AgacDugumu) -
     """
     Başlık tablosunu bir düğüm bağlantısıyla güncelle.
 
-    Args:
+    Parametreler:
         test_edilecek_dugum: Başlık tablosunda güncellenecek düğüm.
         hedef_dugum: Bağlanacak düğüm.
 
@@ -214,7 +214,7 @@ def agaci_yuksel(yaprak_dugum: AgacDugumu, on_ek_yolu: list[str]) -> None:
     """
     Bir yaprak düğümden köküne kadar FP-Tree'yi yükselt, öğe adlarını ön ek yoluna ekle.
 
-    Args:
+    Parametreler:
         yaprak_dugum: Yükselmeye başlanacak yaprak düğüm.
         on_ek_yolu: Öğelerin yükselirken saklanacağı liste.
 
@@ -243,7 +243,7 @@ def on_ek_yolu_bul(temel_oge: frozenset, agac_dugumu: AgacDugumu | None) -> dict
     """
     Belirli bir temel öğe için koşullu örüntü tabanını bulun.
 
-    Args:
+    Parametreler:
         temel_oge: Koşullu örüntü tabanı bulunacak temel öğe.
         agac_dugumu: FP-Tree'deki düğüm.
 
@@ -285,7 +285,7 @@ def agaci_madencilik(
     """
     Sık kullanılan öğe kümelerini keşfetmek için FP-Tree'yi özyinelemeli olarak madencilik yapın.
 
-    Args:
+    Parametreler:
         ic_agac: Madencilik yapılacak FP-Tree.
         baslik_tablosu: Öğeler hakkında bilgi içeren başlık tablosu sözlüğü.
         min_destek: Minimum destek eşiği.

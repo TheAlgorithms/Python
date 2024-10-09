@@ -1,47 +1,49 @@
-# Finding Articulation Points in Undirected Graph
-def compute_ap(graph):
-    n = len(graph)
-    out_edge_count = 0
-    low = [0] * n
-    visited = [False] * n
-    is_art = [False] * n
+# Yönsüz Grafikte Eklem Noktalarını Bulma
+def eklem_noktalarını_hesapla(graf):
+    n = len(graf)
+    dış_kenar_sayısı = 0
+    düşük = [0] * n
+    ziyaret_edildi = [False] * n
+    eklem_mi = [False] * n
 
-    def dfs(root, at, parent, out_edge_count):
-        if parent == root:
-            out_edge_count += 1
-        visited[at] = True
-        low[at] = at
+    #Produced by K. Umut Araz
 
-        for to in graph[at]:
-            if to == parent:
+    def dfs(kök, şu_an, ebeveyn, dış_kenar_sayısı):
+        if ebeveyn == kök:
+            dış_kenar_sayısı += 1
+        ziyaret_edildi[şu_an] = True
+        düşük[şu_an] = şu_an
+
+        for hedef in graf[şu_an]:
+            if hedef == ebeveyn:
                 pass
-            elif not visited[to]:
-                out_edge_count = dfs(root, to, at, out_edge_count)
-                low[at] = min(low[at], low[to])
+            elif not ziyaret_edildi[hedef]:
+                dış_kenar_sayısı = dfs(kök, hedef, şu_an, dış_kenar_sayısı)
+                düşük[şu_an] = min(düşük[şu_an], düşük[hedef])
 
-                # AP found via bridge
-                if at < low[to]:
-                    is_art[at] = True
-                # AP found via cycle
-                if at == low[to]:
-                    is_art[at] = True
+                # Köprü ile eklem noktası bulundu
+                if şu_an < düşük[hedef]:
+                    eklem_mi[şu_an] = True
+                # Döngü ile eklem noktası bulundu
+                if şu_an == düşük[hedef]:
+                    eklem_mi[şu_an] = True
             else:
-                low[at] = min(low[at], to)
-        return out_edge_count
+                düşük[şu_an] = min(düşük[şu_an], hedef)
+        return dış_kenar_sayısı
 
     for i in range(n):
-        if not visited[i]:
-            out_edge_count = 0
-            out_edge_count = dfs(i, i, -1, out_edge_count)
-            is_art[i] = out_edge_count > 1
+        if not ziyaret_edildi[i]:
+            dış_kenar_sayısı = 0
+            dış_kenar_sayısı = dfs(i, i, -1, dış_kenar_sayısı)
+            eklem_mi[i] = dış_kenar_sayısı > 1
 
-    for x in range(len(is_art)):
-        if is_art[x] is True:
+    for x in range(len(eklem_mi)):
+        if eklem_mi[x] is True:
             print(x)
 
 
-# Adjacency list of graph
-graph = {
+# Grafın komşuluk listesi
+graf = {
     0: [1, 2],
     1: [0, 2],
     2: [0, 1, 3, 5],
@@ -52,4 +54,4 @@ graph = {
     7: [6, 8],
     8: [5, 7],
 }
-compute_ap(graph)
+eklem_noktalarını_hesapla(graf)

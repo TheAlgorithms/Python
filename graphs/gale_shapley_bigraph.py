@@ -1,49 +1,49 @@
 from __future__ import annotations
 
 
-def stable_matching(
-    donor_pref: list[list[int]], recipient_pref: list[list[int]]
+def kararlı_eslestirme(
+    bagisci_tercihleri: list[list[int]], alici_tercihleri: list[list[int]]
 ) -> list[int]:
     """
-    Finds the stable match in any bipartite graph, i.e a pairing where no 2 objects
-    prefer each other over their partner.  The function accepts the preferences of
-    oegan donors and recipients (where both are assigned numbers from 0 to n-1) and
-    returns a list where the index position corresponds to the donor and value at the
-    index is the organ recipient.
+    İki parçalı herhangi bir grafikte kararlı eşleşmeyi bulur, yani hiçbir 2 nesne
+    birbirini partnerine tercih etmez. Fonksiyon, organ bağışçılarının ve alıcılarının
+    tercihlerini (her ikisi de 0'dan n-1'e kadar numaralandırılmıştır) kabul eder ve
+    bağışçının indeks pozisyonuna karşılık gelen ve değeri organ alıcısı olan bir liste
+    döndürür.
 
-    To better understand the algorithm, see also:
+    Algoritmayı daha iyi anlamak için ayrıca bakınız:
     https://github.com/akashvshroff/Gale_Shapley_Stable_Matching (README).
     https://www.youtube.com/watch?v=Qcv1IqHWAzg&t=13s (Numberphile YouTube).
 
-    >>> donor_pref = [[0, 1, 3, 2], [0, 2, 3, 1], [1, 0, 2, 3], [0, 3, 1, 2]]
-    >>> recipient_pref = [[3, 1, 2, 0], [3, 1, 0, 2], [0, 3, 1, 2], [1, 0, 3, 2]]
-    >>> stable_matching(donor_pref, recipient_pref)
+    >>> bagisci_tercihleri = [[0, 1, 3, 2], [0, 2, 3, 1], [1, 0, 2, 3], [0, 3, 1, 2]]
+    >>> alici_tercihleri = [[3, 1, 2, 0], [3, 1, 0, 2], [0, 3, 1, 2], [1, 0, 3, 2]]
+    >>> kararlı_eslestirme(bagisci_tercihleri, alici_tercihleri)
     [1, 2, 3, 0]
     """
-    assert len(donor_pref) == len(recipient_pref)
+    assert len(bagisci_tercihleri) == len(alici_tercihleri)
 
-    n = len(donor_pref)
-    unmatched_donors = list(range(n))
-    donor_record = [-1] * n  # who the donor has donated to
-    rec_record = [-1] * n  # who the recipient has received from
-    num_donations = [0] * n
+    n = len(bagisci_tercihleri)
+    eslesmemis_bagiscilar = list(range(n))
+    bagisci_kaydi = [-1] * n  # bağışçının kime bağış yaptığı
+    alici_kaydi = [-1] * n  # alıcının kimden bağış aldığı
+    bagis_sayisi = [0] * n
 
-    while unmatched_donors:
-        donor = unmatched_donors[0]
-        donor_preference = donor_pref[donor]
-        recipient = donor_preference[num_donations[donor]]
-        num_donations[donor] += 1
-        rec_preference = recipient_pref[recipient]
-        prev_donor = rec_record[recipient]
+    while eslesmemis_bagiscilar:
+        bagisci = eslesmemis_bagiscilar[0]
+        bagisci_tercihi = bagisci_tercihleri[bagisci]
+        alici = bagisci_tercihi[bagis_sayisi[bagisci]]
+        bagis_sayisi[bagisci] += 1
+        alici_tercihi = alici_tercihleri[alici]
+        onceki_bagisci = alici_kaydi[alici]
 
-        if prev_donor != -1:
-            if rec_preference.index(prev_donor) > rec_preference.index(donor):
-                rec_record[recipient] = donor
-                donor_record[donor] = recipient
-                unmatched_donors.append(prev_donor)
-                unmatched_donors.remove(donor)
+        if onceki_bagisci != -1:
+            if alici_tercihi.index(onceki_bagisci) > alici_tercihi.index(bagisci):
+                alici_kaydi[alici] = bagisci
+                bagisci_kaydi[bagisci] = alici
+                eslesmemis_bagiscilar.append(onceki_bagisci)
+                eslesmemis_bagiscilar.remove(bagisci)
         else:
-            rec_record[recipient] = donor
-            donor_record[donor] = recipient
-            unmatched_donors.remove(donor)
-    return donor_record
+            alici_kaydi[alici] = bagisci
+            bagisci_kaydi[bagisci] = alici
+            eslesmemis_bagiscilar.remove(bagisci)
+    return bagisci_kaydi

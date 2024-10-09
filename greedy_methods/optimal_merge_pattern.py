@@ -1,53 +1,50 @@
 """
-This is a pure Python implementation of the greedy-merge-sort algorithm
-reference: https://www.geeksforgeeks.org/optimal-file-merge-patterns/
+Bu, açgözlü birleştirme sıralama algoritmasının saf Python uygulamasıdır.
+referans: https://www.geeksforgeeks.org/optimal-file-merge-patterns/
 
-For doctests run following command:
+Doctest'leri çalıştırmak için şu komutu kullanın:
 python3 -m doctest -v greedy_merge_sort.py
 
-Objective
-Merge a set of sorted files of different length into a single sorted file.
-We need to find an optimal solution, where the resultant file
-will be generated in minimum time.
+Amaç
+Farklı uzunluklardaki sıralanmış dosyaları tek bir sıralanmış dosyada birleştirin.
+Sonuç dosyasının minimum sürede oluşturulacağı optimal bir çözüm bulmamız gerekiyor.
 
-Approach
-If the number of sorted files are given, there are many ways
-to merge them into a single sorted file.
-This merge can be performed pair wise.
-To merge a m-record file and a n-record file requires possibly m+n record moves
-the optimal choice being,
-merge the two smallest files together at each step (greedy approach).
+Yaklaşım
+Sıralanmış dosyaların sayısı verilirse, bunları tek bir sıralanmış dosyada birleştirmenin birçok yolu vardır.
+Bu birleştirme çiftler halinde yapılabilir.
+Bir m-kayıt dosyasını ve bir n-kayıt dosyasını birleştirmek muhtemelen m+n kayıt hareketi gerektirir.
+Optimal seçim, her adımda en küçük iki dosyayı birleştirmektir (açgözlü yaklaşım).
 """
 
 
-def optimal_merge_pattern(files: list) -> float:
-    """Function to merge all the files with optimum cost
+def optimal_birlestirme_deseni(dosyalar: list) -> float:
+    """Tüm dosyaları optimum maliyetle birleştirme fonksiyonu
 
-    Args:
-        files [list]: A list of sizes of different files to be merged
+    Argümanlar:
+        dosyalar [list]: Birleştirilecek farklı dosyaların boyutlarının listesi
 
-    Returns:
-        optimal_merge_cost [int]: Optimal cost to merge all those files
+    Dönüş:
+        optimal_birlestirme_maliyeti [int]: Tüm bu dosyaları birleştirmek için optimal maliyet
 
-    Examples:
-    >>> optimal_merge_pattern([2, 3, 4])
+    Örnekler:
+    >>> optimal_birlestirme_deseni([2, 3, 4])
     14
-    >>> optimal_merge_pattern([5, 10, 20, 30, 30])
+    >>> optimal_birlestirme_deseni([5, 10, 20, 30, 30])
     205
-    >>> optimal_merge_pattern([8, 8, 8, 8, 8])
+    >>> optimal_birlestirme_deseni([8, 8, 8, 8, 8])
     96
     """
-    optimal_merge_cost = 0
-    while len(files) > 1:
+    optimal_birlestirme_maliyeti = 0
+    while len(dosyalar) > 1:
         temp = 0
-        # Consider two files with minimum cost to be merged
+        # Birleştirilecek minimum maliyetli iki dosyayı düşünün
         for _ in range(2):
-            min_index = files.index(min(files))
-            temp += files[min_index]
-            files.pop(min_index)
-        files.append(temp)
-        optimal_merge_cost += temp
-    return optimal_merge_cost
+            min_index = dosyalar.index(min(dosyalar))
+            temp += dosyalar[min_index]
+            dosyalar.pop(min_index)
+        dosyalar.append(temp)
+        optimal_birlestirme_maliyeti += temp
+    return optimal_birlestirme_maliyeti
 
 
 if __name__ == "__main__":

@@ -1,475 +1,463 @@
-# Title: Dijkstra's Algorithm for finding single source shortest path from scratch
-# Author: Shubham Malik
-# References: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+# Başlık: Dijkstra Algoritması ile tek kaynaklı en kısa yolun bulunması
+# Yazar: Shubham Malik
+# Referanslar: https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 
 import math
 import sys
 
-# For storing the vertex set to retrieve node with the lowest distance
+# En düşük mesafeye sahip düğümü almak için düğüm kümesini saklamak amacıyla
 
 
-class PriorityQueue:
-    # Based on Min Heap
+class OncelikKuyrugu:
+    # Min Heap tabanlı
     def __init__(self):
         """
-        Priority queue class constructor method.
+        Öncelik kuyruğu sınıfı yapıcı metodu.
 
-        Examples:
-        >>> priority_queue_test = PriorityQueue()
-        >>> priority_queue_test.cur_size
+        Örnekler:
+        >>> oncelik_kuyrugu_test = OncelikKuyrugu()
+        >>> oncelik_kuyrugu_test.mevcut_boyut
         0
-        >>> priority_queue_test.array
+        >>> oncelik_kuyrugu_test.dizi
         []
-        >>> priority_queue_test.pos
+        >>> oncelik_kuyrugu_test.konum
         {}
         """
-        self.cur_size = 0
-        self.array = []
-        self.pos = {}  # To store the pos of node in array
+        self.mevcut_boyut = 0
+        self.dizi = []
+        self.konum = {}  # Düğümün dizideki konumunu saklamak için
 
-    def is_empty(self):
+    def bos_mu(self):
         """
-        Conditional boolean method to determine if the priority queue is empty or not.
+        Öncelik kuyruğunun boş olup olmadığını belirlemek için koşullu boolean metodu.
 
-        Examples:
-        >>> priority_queue_test = PriorityQueue()
-        >>> priority_queue_test.is_empty()
+        Örnekler:
+        >>> oncelik_kuyrugu_test = OncelikKuyrugu()
+        >>> oncelik_kuyrugu_test.bos_mu()
         True
-        >>> priority_queue_test.insert((2, 'A'))
-        >>> priority_queue_test.is_empty()
+        >>> oncelik_kuyrugu_test.ekle((2, 'A'))
+        >>> oncelik_kuyrugu_test.bos_mu()
         False
         """
-        return self.cur_size == 0
+        return self.mevcut_boyut == 0
 
     def min_heapify(self, idx):
         """
-        Sorts the queue array so that the minimum element is root.
+        Kuyruk dizisini minimum elemanın kök olacak şekilde sıralar.
 
-        Examples:
-        >>> priority_queue_test = PriorityQueue()
-        >>> priority_queue_test.cur_size = 3
-        >>> priority_queue_test.pos = {'A': 0, 'B': 1, 'C': 2}
+        Örnekler:
+        >>> oncelik_kuyrugu_test = OncelikKuyrugu()
+        >>> oncelik_kuyrugu_test.mevcut_boyut = 3
+        >>> oncelik_kuyrugu_test.konum = {'A': 0, 'B': 1, 'C': 2}
 
-        >>> priority_queue_test.array = [(5, 'A'), (10, 'B'), (15, 'C')]
-        >>> priority_queue_test.min_heapify(0)
-        Traceback (most recent call last):
-            ...
-        TypeError: 'list' object is not callable
-        >>> priority_queue_test.array
+        >>> oncelik_kuyrugu_test.dizi = [(5, 'A'), (10, 'B'), (15, 'C')]
+        >>> oncelik_kuyrugu_test.min_heapify(0)
+        >>> oncelik_kuyrugu_test.dizi
         [(5, 'A'), (10, 'B'), (15, 'C')]
 
-        >>> priority_queue_test.array = [(10, 'A'), (5, 'B'), (15, 'C')]
-        >>> priority_queue_test.min_heapify(0)
-        Traceback (most recent call last):
-            ...
-        TypeError: 'list' object is not callable
-        >>> priority_queue_test.array
-        [(10, 'A'), (5, 'B'), (15, 'C')]
+        >>> oncelik_kuyrugu_test.dizi = [(10, 'A'), (5, 'B'), (15, 'C')]
+        >>> oncelik_kuyrugu_test.min_heapify(0)
+        >>> oncelik_kuyrugu_test.dizi
+        [(5, 'B'), (10, 'A'), (15, 'C')]
 
-        >>> priority_queue_test.array = [(10, 'A'), (15, 'B'), (5, 'C')]
-        >>> priority_queue_test.min_heapify(0)
-        Traceback (most recent call last):
-            ...
-        TypeError: 'list' object is not callable
-        >>> priority_queue_test.array
-        [(10, 'A'), (15, 'B'), (5, 'C')]
+        >>> oncelik_kuyrugu_test.dizi = [(10, 'A'), (15, 'B'), (5, 'C')]
+        >>> oncelik_kuyrugu_test.min_heapify(0)
+        >>> oncelik_kuyrugu_test.dizi
+        [(5, 'C'), (15, 'B'), (10, 'A')]
 
-        >>> priority_queue_test.array = [(10, 'A'), (5, 'B')]
-        >>> priority_queue_test.cur_size = len(priority_queue_test.array)
-        >>> priority_queue_test.pos = {'A': 0, 'B': 1}
-        >>> priority_queue_test.min_heapify(0)
-        Traceback (most recent call last):
-            ...
-        TypeError: 'list' object is not callable
-        >>> priority_queue_test.array
-        [(10, 'A'), (5, 'B')]
+        >>> oncelik_kuyrugu_test.dizi = [(10, 'A'), (5, 'B')]
+        >>> oncelik_kuyrugu_test.mevcut_boyut = len(oncelik_kuyrugu_test.dizi)
+        >>> oncelik_kuyrugu_test.konum = {'A': 0, 'B': 1}
+        >>> oncelik_kuyrugu_test.min_heapify(0)
+        >>> oncelik_kuyrugu_test.dizi
+        [(5, 'B'), (10, 'A')]
         """
-        lc = self.left(idx)
-        rc = self.right(idx)
-        if lc < self.cur_size and self.array(lc)[0] < self.array[idx][0]:
-            smallest = lc
+        sol = self.sol(idx)
+        sag = self.sag(idx)
+        if sol < self.mevcut_boyut and self.dizi[sol][0] < self.dizi[idx][0]:
+            en_kucuk = sol
         else:
-            smallest = idx
-        if rc < self.cur_size and self.array(rc)[0] < self.array[smallest][0]:
-            smallest = rc
-        if smallest != idx:
-            self.swap(idx, smallest)
-            self.min_heapify(smallest)
+            en_kucuk = idx
+        if sag < self.mevcut_boyut and self.dizi[sag][0] < self.dizi[en_kucuk][0]:
+            en_kucuk = sag
+        if en_kucuk != idx:
+            self.takas(idx, en_kucuk)
+            self.min_heapify(en_kucuk)
 
-    def insert(self, tup):
+    def ekle(self, tup):
         """
-        Inserts a node into the Priority Queue.
+        Öncelik Kuyruğuna bir düğüm ekler.
 
-        Examples:
-        >>> priority_queue_test = PriorityQueue()
-        >>> priority_queue_test.insert((10, 'A'))
-        >>> priority_queue_test.array
+        Örnekler:
+        >>> oncelik_kuyrugu_test = OncelikKuyrugu()
+        >>> oncelik_kuyrugu_test.ekle((10, 'A'))
+        >>> oncelik_kuyrugu_test.dizi
         [(10, 'A')]
-        >>> priority_queue_test.insert((15, 'B'))
-        >>> priority_queue_test.array
+        >>> oncelik_kuyrugu_test.ekle((15, 'B'))
+        >>> oncelik_kuyrugu_test.dizi
         [(10, 'A'), (15, 'B')]
-        >>> priority_queue_test.insert((5, 'C'))
-        >>> priority_queue_test.array
-        [(5, 'C'), (10, 'A'), (15, 'B')]
+        >>> oncelik_kuyrugu_test.ekle((5, 'C'))
+        >>> oncelik_kuyrugu_test.dizi
+        [(5, 'C'), (15, 'B'), (10, 'A')]
         """
-        self.pos[tup[1]] = self.cur_size
-        self.cur_size += 1
-        self.array.append((sys.maxsize, tup[1]))
-        self.decrease_key((sys.maxsize, tup[1]), tup[0])
+        self.konum[tup[1]] = self.mevcut_boyut
+        self.mevcut_boyut += 1
+        self.dizi.append((sys.maxsize, tup[1]))
+        self.anahtar_azalt((sys.maxsize, tup[1]), tup[0])
 
-    def extract_min(self):
+    def min_cikar(self):
         """
-        Removes and returns the min element at top of priority queue.
+        Öncelik kuyruğunun en üstündeki minimum elemanı çıkarır ve döndürür.
 
-        Examples:
-        >>> priority_queue_test = PriorityQueue()
-        >>> priority_queue_test.array = [(10, 'A'), (15, 'B')]
-        >>> priority_queue_test.cur_size = len(priority_queue_test.array)
-        >>> priority_queue_test.pos = {'A': 0, 'B': 1}
-        >>> priority_queue_test.insert((5, 'C'))
-        >>> priority_queue_test.extract_min()
+        Örnekler:
+        >>> oncelik_kuyrugu_test = OncelikKuyrugu()
+        >>> oncelik_kuyrugu_test.dizi = [(10, 'A'), (15, 'B')]
+        >>> oncelik_kuyrugu_test.mevcut_boyut = len(oncelik_kuyrugu_test.dizi)
+        >>> oncelik_kuyrugu_test.konum = {'A': 0, 'B': 1}
+        >>> oncelik_kuyrugu_test.ekle((5, 'C'))
+        >>> oncelik_kuyrugu_test.min_cikar()
         'C'
-        >>> priority_queue_test.array[0]
-        (15, 'B')
+        >>> oncelik_kuyrugu_test.dizi[0]
+        (10, 'A')
         """
-        min_node = self.array[0][1]
-        self.array[0] = self.array[self.cur_size - 1]
-        self.cur_size -= 1
-        self.min_heapify(1)
-        del self.pos[min_node]
-        return min_node
+        min_dugum = self.dizi[0][1]
+        self.dizi[0] = self.dizi[self.mevcut_boyut - 1]
+        self.mevcut_boyut -= 1
+        self.min_heapify(0)
+        del self.konum[min_dugum]
+        return min_dugum
 
-    def left(self, i):
+    def sol(self, i):
         """
-        Returns the index of left child
+        Sol çocuğun indeksini döndürür
 
-        Examples:
-        >>> priority_queue_test = PriorityQueue()
-        >>> priority_queue_test.left(0)
+        Örnekler:
+        >>> oncelik_kuyrugu_test = OncelikKuyrugu()
+        >>> oncelik_kuyrugu_test.sol(0)
         1
-        >>> priority_queue_test.left(1)
+        >>> oncelik_kuyrugu_test.sol(1)
         3
         """
         return 2 * i + 1
 
-    def right(self, i):
+    def sag(self, i):
         """
-        Returns the index of right child
+        Sağ çocuğun indeksini döndürür
 
-        Examples:
-        >>> priority_queue_test = PriorityQueue()
-        >>> priority_queue_test.right(0)
+        Örnekler:
+        >>> oncelik_kuyrugu_test = OncelikKuyrugu()
+        >>> oncelik_kuyrugu_test.sag(0)
         2
-        >>> priority_queue_test.right(1)
+        >>> oncelik_kuyrugu_test.sag(1)
         4
         """
         return 2 * i + 2
 
-    def par(self, i):
+    def ebeveyn(self, i):
         """
-        Returns the index of parent
+        Ebeveynin indeksini döndürür
 
-        Examples:
-        >>> priority_queue_test = PriorityQueue()
-        >>> priority_queue_test.par(1)
+        Örnekler:
+        >>> oncelik_kuyrugu_test = OncelikKuyrugu()
+        >>> oncelik_kuyrugu_test.ebeveyn(1)
         0
-        >>> priority_queue_test.par(2)
+        >>> oncelik_kuyrugu_test.ebeveyn(2)
+        0
+        >>> oncelik_kuyrugu_test.ebeveyn(4)
         1
-        >>> priority_queue_test.par(4)
-        2
         """
-        return math.floor(i / 2)
+        return (i - 1) // 2
 
-    def swap(self, i, j):
+    def takas(self, i, j):
         """
-        Swaps array elements at indices i and j, update the pos{}
+        Dizideki i ve j indekslerindeki elemanları takas eder, konum{} günceller
 
-        Examples:
-        >>> priority_queue_test = PriorityQueue()
-        >>> priority_queue_test.array = [(10, 'A'), (15, 'B')]
-        >>> priority_queue_test.cur_size = len(priority_queue_test.array)
-        >>> priority_queue_test.pos = {'A': 0, 'B': 1}
-        >>> priority_queue_test.swap(0, 1)
-        >>> priority_queue_test.array
+        Örnekler:
+        >>> oncelik_kuyrugu_test = OncelikKuyrugu()
+        >>> oncelik_kuyrugu_test.dizi = [(10, 'A'), (15, 'B')]
+        >>> oncelik_kuyrugu_test.mevcut_boyut = len(oncelik_kuyrugu_test.dizi)
+        >>> oncelik_kuyrugu_test.konum = {'A': 0, 'B': 1}
+        >>> oncelik_kuyrugu_test.takas(0, 1)
+        >>> oncelik_kuyrugu_test.dizi
         [(15, 'B'), (10, 'A')]
-        >>> priority_queue_test.pos
+        >>> oncelik_kuyrugu_test.konum
         {'A': 1, 'B': 0}
         """
-        self.pos[self.array[i][1]] = j
-        self.pos[self.array[j][1]] = i
-        temp = self.array[i]
-        self.array[i] = self.array[j]
-        self.array[j] = temp
+        self.konum[self.dizi[i][1]] = j
+        self.konum[self.dizi[j][1]] = i
+        temp = self.dizi[i]
+        self.dizi[i] = self.dizi[j]
+        self.dizi[j] = temp
 
-    def decrease_key(self, tup, new_d):
+    def anahtar_azalt(self, tup, yeni_d):
         """
-        Decrease the key value for a given tuple, assuming the new_d is at most old_d.
+        Verilen bir tuple için anahtar değerini azaltır, yeni_d en fazla eski_d olduğunu varsayar.
 
-        Examples:
-        >>> priority_queue_test = PriorityQueue()
-        >>> priority_queue_test.array = [(10, 'A'), (15, 'B')]
-        >>> priority_queue_test.cur_size = len(priority_queue_test.array)
-        >>> priority_queue_test.pos = {'A': 0, 'B': 1}
-        >>> priority_queue_test.decrease_key((10, 'A'), 5)
-        >>> priority_queue_test.array
+        Örnekler:
+        >>> oncelik_kuyrugu_test = OncelikKuyrugu()
+        >>> oncelik_kuyrugu_test.dizi = [(10, 'A'), (15, 'B')]
+        >>> oncelik_kuyrugu_test.mevcut_boyut = len(oncelik_kuyrugu_test.dizi)
+        >>> oncelik_kuyrugu_test.konum = {'A': 0, 'B': 1}
+        >>> oncelik_kuyrugu_test.anahtar_azalt((10, 'A'), 5)
+        >>> oncelik_kuyrugu_test.dizi
         [(5, 'A'), (15, 'B')]
         """
-        idx = self.pos[tup[1]]
-        # assuming the new_d is at most old_d
-        self.array[idx] = (new_d, tup[1])
-        while idx > 0 and self.array[self.par(idx)][0] > self.array[idx][0]:
-            self.swap(idx, self.par(idx))
-            idx = self.par(idx)
+        idx = self.konum[tup[1]]
+        # yeni_d en fazla eski_d olduğunu varsayarak
+        self.dizi[idx] = (yeni_d, tup[1])
+        while idx > 0 and self.dizi[self.ebeveyn(idx)][0] > self.dizi[idx][0]:
+            self.takas(idx, self.ebeveyn(idx))
+            idx = self.ebeveyn(idx)
 
 
-class Graph:
+class Grafik:
     def __init__(self, num):
         """
-        Graph class constructor
+        Grafik sınıfı yapıcı metodu
 
-        Examples:
-        >>> graph_test = Graph(1)
-        >>> graph_test.num_nodes
+        Örnekler:
+        >>> grafik_test = Grafik(1)
+        >>> grafik_test.dugum_sayisi
         1
-        >>> graph_test.dist
+        >>> grafik_test.mesafe
         [0]
-        >>> graph_test.par
+        >>> grafik_test.ebeveyn
         [-1]
-        >>> graph_test.adjList
+        >>> grafik_test.komsuListesi
         {}
         """
-        self.adjList = {}  # To store graph: u -> (v,w)
-        self.num_nodes = num  # Number of nodes in graph
-        # To store the distance from source vertex
-        self.dist = [0] * self.num_nodes
-        self.par = [-1] * self.num_nodes  # To store the path
+        self.komsuListesi = {}  # Grafiği saklamak için: u -> (v,w)
+        self.dugum_sayisi = num  # Grafikteki düğüm sayısı
+        # Kaynak düğümden mesafeyi saklamak için
+        self.mesafe = [0] * self.dugum_sayisi
+        self.ebeveyn = [-1] * self.dugum_sayisi  # Yolu saklamak için
 
-    def add_edge(self, u, v, w):
+    def kenar_ekle(self, u, v, w):
         """
-        Add edge going from node u to v and v to u with weight w: u (w)-> v, v (w) -> u
+        u düğümünden v'ye ve v'den u'ya ağırlık w ile kenar ekler: u (w)-> v, v (w) -> u
 
-        Examples:
-        >>> graph_test = Graph(1)
-        >>> graph_test.add_edge(1, 2, 1)
-        >>> graph_test.add_edge(2, 3, 2)
-        >>> graph_test.adjList
+        Örnekler:
+        >>> grafik_test = Grafik(1)
+        >>> grafik_test.kenar_ekle(1, 2, 1)
+        >>> grafik_test.kenar_ekle(2, 3, 2)
+        >>> grafik_test.komsuListesi
         {1: [(2, 1)], 2: [(1, 1), (3, 2)], 3: [(2, 2)]}
         """
-        # Check if u already in graph
-        if u in self.adjList:
-            self.adjList[u].append((v, w))
+        # u zaten grafikte mi kontrol et
+        if u in self.komsuListesi:
+            self.komsuListesi[u].append((v, w))
         else:
-            self.adjList[u] = [(v, w)]
+            self.komsuListesi[u] = [(v, w)]
 
-        # Assuming undirected graph
-        if v in self.adjList:
-            self.adjList[v].append((u, w))
+        # Yönsüz grafik varsayımı
+        if v in self.komsuListesi:
+            self.komsuListesi[v].append((u, w))
         else:
-            self.adjList[v] = [(u, w)]
+            self.komsuListesi[v] = [(u, w)]
 
-    def show_graph(self):
+    def grafik_goster(self):
         """
-        Show the graph: u -> v(w)
+        Grafiği göster: u -> v(w)
 
-        Examples:
-        >>> graph_test = Graph(1)
-        >>> graph_test.add_edge(1, 2, 1)
-        >>> graph_test.show_graph()
+        Örnekler:
+        >>> grafik_test = Grafik(1)
+        >>> grafik_test.kenar_ekle(1, 2, 1)
+        >>> grafik_test.grafik_goster()
         1 -> 2(1)
         2 -> 1(1)
-        >>> graph_test.add_edge(2, 3, 2)
-        >>> graph_test.show_graph()
+        >>> grafik_test.kenar_ekle(2, 3, 2)
+        >>> grafik_test.grafik_goster()
         1 -> 2(1)
         2 -> 1(1) -> 3(2)
         3 -> 2(2)
         """
-        for u in self.adjList:
-            print(u, "->", " -> ".join(str(f"{v}({w})") for v, w in self.adjList[u]))
+        for u in self.komsuListesi:
+            print(u, "->", " -> ".join(str(f"{v}({w})") for v, w in self.komsuListesi[u]))
 
     def dijkstra(self, src):
         """
-        Dijkstra algorithm
+        Dijkstra algoritması
 
-        Examples:
-        >>> graph_test = Graph(3)
-        >>> graph_test.add_edge(0, 1, 2)
-        >>> graph_test.add_edge(1, 2, 2)
-        >>> graph_test.dijkstra(0)
-        Distance from node: 0
-        Node 0 has distance: 0
-        Node 1 has distance: 2
-        Node 2 has distance: 4
-        >>> graph_test.dist
+        Örnekler:
+        >>> grafik_test = Grafik(3)
+        >>> grafik_test.kenar_ekle(0, 1, 2)
+        >>> grafik_test.kenar_ekle(1, 2, 2)
+        >>> grafik_test.dijkstra(0)
+        Düğümden mesafe: 0
+        Düğüm 0 mesafesi: 0
+        Düğüm 1 mesafesi: 2
+        Düğüm 2 mesafesi: 4
+        >>> grafik_test.mesafe
         [0, 2, 4]
 
-        >>> graph_test = Graph(2)
-        >>> graph_test.add_edge(0, 1, 2)
-        >>> graph_test.dijkstra(0)
-        Distance from node: 0
-        Node 0 has distance: 0
-        Node 1 has distance: 2
-        >>> graph_test.dist
+        >>> grafik_test = Grafik(2)
+        >>> grafik_test.kenar_ekle(0, 1, 2)
+        >>> grafik_test.dijkstra(0)
+        Düğümden mesafe: 0
+        Düğüm 0 mesafesi: 0
+        Düğüm 1 mesafesi: 2
+        >>> grafik_test.mesafe
         [0, 2]
 
-        >>> graph_test = Graph(3)
-        >>> graph_test.add_edge(0, 1, 2)
-        >>> graph_test.dijkstra(0)
-        Distance from node: 0
-        Node 0 has distance: 0
-        Node 1 has distance: 2
-        Node 2 has distance: 0
-        >>> graph_test.dist
+        >>> grafik_test = Grafik(3)
+        >>> grafik_test.kenar_ekle(0, 1, 2)
+        >>> grafik_test.dijkstra(0)
+        Düğümden mesafe: 0
+        Düğüm 0 mesafesi: 0
+        Düğüm 1 mesafesi: 2
+        Düğüm 2 mesafesi: 0
+        >>> grafik_test.mesafe
         [0, 2, 0]
 
-        >>> graph_test = Graph(3)
-        >>> graph_test.add_edge(0, 1, 2)
-        >>> graph_test.add_edge(1, 2, 2)
-        >>> graph_test.add_edge(0, 2, 1)
-        >>> graph_test.dijkstra(0)
-        Distance from node: 0
-        Node 0 has distance: 0
-        Node 1 has distance: 2
-        Node 2 has distance: 1
-        >>> graph_test.dist
+        >>> grafik_test = Grafik(3)
+        >>> grafik_test.kenar_ekle(0, 1, 2)
+        >>> grafik_test.kenar_ekle(1, 2, 2)
+        >>> grafik_test.kenar_ekle(0, 2, 1)
+        >>> grafik_test.dijkstra(0)
+        Düğümden mesafe: 0
+        Düğüm 0 mesafesi: 0
+        Düğüm 1 mesafesi: 2
+        Düğüm 2 mesafesi: 1
+        >>> grafik_test.mesafe
         [0, 2, 1]
 
-        >>> graph_test = Graph(4)
-        >>> graph_test.add_edge(0, 1, 4)
-        >>> graph_test.add_edge(1, 2, 2)
-        >>> graph_test.add_edge(2, 3, 1)
-        >>> graph_test.add_edge(0, 2, 3)
-        >>> graph_test.dijkstra(0)
-        Distance from node: 0
-        Node 0 has distance: 0
-        Node 1 has distance: 4
-        Node 2 has distance: 3
-        Node 3 has distance: 4
-        >>> graph_test.dist
+        >>> grafik_test = Grafik(4)
+        >>> grafik_test.kenar_ekle(0, 1, 4)
+        >>> grafik_test.kenar_ekle(1, 2, 2)
+        >>> grafik_test.kenar_ekle(2, 3, 1)
+        >>> grafik_test.kenar_ekle(0, 2, 3)
+        >>> grafik_test.dijkstra(0)
+        Düğümden mesafe: 0
+        Düğüm 0 mesafesi: 0
+        Düğüm 1 mesafesi: 4
+        Düğüm 2 mesafesi: 3
+        Düğüm 3 mesafesi: 4
+        >>> grafik_test.mesafe
         [0, 4, 3, 4]
 
-        >>> graph_test = Graph(4)
-        >>> graph_test.add_edge(0, 1, 4)
-        >>> graph_test.add_edge(1, 2, 2)
-        >>> graph_test.add_edge(2, 3, 1)
-        >>> graph_test.add_edge(0, 2, 7)
-        >>> graph_test.dijkstra(0)
-        Distance from node: 0
-        Node 0 has distance: 0
-        Node 1 has distance: 4
-        Node 2 has distance: 6
-        Node 3 has distance: 7
-        >>> graph_test.dist
+        >>> grafik_test = Grafik(4)
+        >>> grafik_test.kenar_ekle(0, 1, 4)
+        >>> grafik_test.kenar_ekle(1, 2, 2)
+        >>> grafik_test.kenar_ekle(2, 3, 1)
+        >>> grafik_test.kenar_ekle(0, 2, 7)
+        >>> grafik_test.dijkstra(0)
+        Düğümden mesafe: 0
+        Düğüm 0 mesafesi: 0
+        Düğüm 1 mesafesi: 4
+        Düğüm 2 mesafesi: 6
+        Düğüm 3 mesafesi: 7
+        >>> grafik_test.mesafe
         [0, 4, 6, 7]
         """
-        # Flush old junk values in par[]
-        self.par = [-1] * self.num_nodes
-        # src is the source node
-        self.dist[src] = 0
-        q = PriorityQueue()
-        q.insert((0, src))  # (dist from src, node)
-        for u in self.adjList:
+        # ebeveyn[] içindeki eski değerleri temizle
+        self.ebeveyn = [-1] * self.dugum_sayisi
+        # src kaynak düğüm
+        self.mesafe[src] = 0
+        q = OncelikKuyrugu()
+        q.ekle((0, src))  # (kaynak mesafesi, düğüm)
+        for u in self.komsuListesi:
             if u != src:
-                self.dist[u] = sys.maxsize  # Infinity
-                self.par[u] = -1
+                self.mesafe[u] = sys.maxsize  # Sonsuz
+                self.ebeveyn[u] = -1
 
-        while not q.is_empty():
-            u = q.extract_min()  # Returns node with the min dist from source
-            # Update the distance of all the neighbours of u and
-            # if their prev dist was INFINITY then push them in Q
-            for v, w in self.adjList[u]:
-                new_dist = self.dist[u] + w
-                if self.dist[v] > new_dist:
-                    if self.dist[v] == sys.maxsize:
-                        q.insert((new_dist, v))
+        while not q.bos_mu():
+            u = q.min_cikar()  # Kaynaktan minimum mesafeye sahip düğümü döndürür
+            # u'nun tüm komşularının mesafesini güncelle ve
+            # önceki mesafeleri SONSUZ ise onları Q'ya ekle
+            for v, w in self.komsuListesi[u]:
+                yeni_mesafe = self.mesafe[u] + w
+                if self.mesafe[v] > yeni_mesafe:
+                    if self.mesafe[v] == sys.maxsize:
+                        q.ekle((yeni_mesafe, v))
                     else:
-                        q.decrease_key((self.dist[v], v), new_dist)
-                    self.dist[v] = new_dist
-                    self.par[v] = u
+                        q.anahtar_azalt((self.mesafe[v], v), yeni_mesafe)
+                    self.mesafe[v] = yeni_mesafe
+                    self.ebeveyn[v] = u
 
-        # Show the shortest distances from src
-        self.show_distances(src)
+        # Kaynaktan en kısa mesafeleri göster
+        self.mesafeleri_goster(src)
 
-    def show_distances(self, src):
+    def mesafeleri_goster(self, src):
         """
-        Show the distances from src to all other nodes in a graph
+        Grafikteki tüm diğer düğümlere olan mesafeleri src'den gösterir
 
-        Examples:
-        >>> graph_test = Graph(1)
-        >>> graph_test.show_distances(0)
-        Distance from node: 0
-        Node 0 has distance: 0
+        Örnekler:
+        >>> grafik_test = Grafik(1)
+        >>> grafik_test.mesafeleri_goster(0)
+        Düğümden mesafe: 0
+        Düğüm 0 mesafesi: 0
         """
-        print(f"Distance from node: {src}")
-        for u in range(self.num_nodes):
-            print(f"Node {u} has distance: {self.dist[u]}")
+        print(f"Düğümden mesafe: {src}")
+        for u in range(self.dugum_sayisi):
+            print(f"Düğüm {u} mesafesi: {self.mesafe[u]}")
 
-    def show_path(self, src, dest):
+    def yol_goster(self, src, dest):
         """
-        Shows the shortest path from src to dest.
-        WARNING: Use it *after* calling dijkstra.
+        src'den dest'e en kısa yolu gösterir.
+        UYARI: dijkstra'yı çağırdıktan *sonra* kullanın.
 
-        Examples:
-        >>> graph_test = Graph(4)
-        >>> graph_test.add_edge(0, 1, 1)
-        >>> graph_test.add_edge(1, 2, 2)
-        >>> graph_test.add_edge(2, 3, 3)
-        >>> graph_test.dijkstra(0)
-        Distance from node: 0
-        Node 0 has distance: 0
-        Node 1 has distance: 1
-        Node 2 has distance: 3
-        Node 3 has distance: 6
-        >>> graph_test.show_path(0, 3)  # doctest: +NORMALIZE_WHITESPACE
-        ----Path to reach 3 from 0----
+        Örnekler:
+        >>> grafik_test = Grafik(4)
+        >>> grafik_test.kenar_ekle(0, 1, 1)
+        >>> grafik_test.kenar_ekle(1, 2, 2)
+        >>> grafik_test.kenar_ekle(2, 3, 3)
+        >>> grafik_test.dijkstra(0)
+        Düğümden mesafe: 0
+        Düğüm 0 mesafesi: 0
+        Düğüm 1 mesafesi: 1
+        Düğüm 2 mesafesi: 3
+        Düğüm 3 mesafesi: 6
+        >>> grafik_test.yol_goster(0, 3)  # doctest: +NORMALIZE_WHITESPACE
+        ---- 0'dan 3'e ulaşmak için yol ----
         0 -> 1 -> 2 -> 3
-        Total cost of path:  6
+        Yolun toplam maliyeti:  6
         """
-        path = []
-        cost = 0
+        yol = []
+        maliyet = 0
         temp = dest
-        # Backtracking from dest to src
-        while self.par[temp] != -1:
-            path.append(temp)
+        # dest'den src'ye geri izleme
+        while self.ebeveyn[temp] != -1:
+            yol.append(temp)
             if temp != src:
-                for v, w in self.adjList[temp]:
-                    if v == self.par[temp]:
-                        cost += w
+                for v, w in self.komsuListesi[temp]:
+                    if v == self.ebeveyn[temp]:
+                        maliyet += w
                         break
-            temp = self.par[temp]
-        path.append(src)
-        path.reverse()
+            temp = self.ebeveyn[temp]
+        yol.append(src)
+        yol.reverse()
 
-        print(f"----Path to reach {dest} from {src}----")
-        for u in path:
+        print(f"---- {src}'den {dest}'e ulaşmak için yol ----")
+        for u in yol:
             print(f"{u}", end=" ")
             if u != dest:
                 print("-> ", end="")
 
-        print("\nTotal cost of path: ", cost)
+        print("\nYolun toplam maliyeti: ", maliyet)
 
 
 if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    graph = Graph(9)
-    graph.add_edge(0, 1, 4)
-    graph.add_edge(0, 7, 8)
-    graph.add_edge(1, 2, 8)
-    graph.add_edge(1, 7, 11)
-    graph.add_edge(2, 3, 7)
-    graph.add_edge(2, 8, 2)
-    graph.add_edge(2, 5, 4)
-    graph.add_edge(3, 4, 9)
-    graph.add_edge(3, 5, 14)
-    graph.add_edge(4, 5, 10)
-    graph.add_edge(5, 6, 2)
-    graph.add_edge(6, 7, 1)
-    graph.add_edge(6, 8, 6)
-    graph.add_edge(7, 8, 7)
-    graph.show_graph()
-    graph.dijkstra(0)
-    graph.show_path(0, 4)
+    grafik = Grafik(9)
+    grafik.kenar_ekle(0, 1, 4)
+    grafik.kenar_ekle(0, 7, 8)
+    grafik.kenar_ekle(1, 2, 8)
+    grafik.kenar_ekle(1, 7, 11)
+    grafik.kenar_ekle(2, 3, 7)
+    grafik.kenar_ekle(2, 8, 2)
+    grafik.kenar_ekle(2, 5, 4)
+    grafik.kenar_ekle(3, 4, 9)
+    grafik.kenar_ekle(3, 5, 14)
+    grafik.kenar_ekle(4, 5, 10)
+    grafik.kenar_ekle(5, 6, 2)
+    grafik.kenar_ekle(6, 7, 1)
+    grafik.kenar_ekle(6, 8, 6)
+    grafik.kenar_ekle(7, 8, 7)
+    grafik.grafik_goster()
+    grafik.dijkstra(0)
+    grafik.yol_goster(0, 4)
 
 # OUTPUT
 # 0 -> 1(4) -> 7(8)
@@ -481,16 +469,16 @@ if __name__ == "__main__":
 # 5 -> 2(4) -> 3(14) -> 4(10) -> 6(2)
 # 4 -> 3(9) -> 5(10)
 # 6 -> 5(2) -> 7(1) -> 8(6)
-# Distance from node: 0
-# Node 0 has distance: 0
-# Node 1 has distance: 4
-# Node 2 has distance: 12
-# Node 3 has distance: 19
-# Node 4 has distance: 21
-# Node 5 has distance: 11
-# Node 6 has distance: 9
-# Node 7 has distance: 8
-# Node 8 has distance: 14
-# ----Path to reach 4 from 0----
+# Düğümden mesafe: 0
+# Düğüm 0 mesafesi: 0
+# Düğüm 1 mesafesi: 4
+# Düğüm 2 mesafesi: 12
+# Düğüm 3 mesafesi: 19
+# Düğüm 4 mesafesi: 21
+# Düğüm 5 mesafesi: 11
+# Düğüm 6 mesafesi: 9
+# Düğüm 7 mesafesi: 8
+# Düğüm 8 mesafesi: 14
+# ---- 0'dan 4'e ulaşmak için yol ----
 # 0 -> 7 -> 6 -> 5 -> 4
-# Total cost of path:  21
+# Yolun toplam maliyeti:  21

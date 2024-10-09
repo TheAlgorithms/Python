@@ -2,38 +2,38 @@
 from __future__ import annotations
 
 
-def ohms_law(voltage: float, current: float, resistance: float) -> dict[str, float]:
+def ohm_kanunu(gerilim: float, akım: float, direnç: float) -> dict[str, float]:
     """
-    Apply Ohm's Law, on any two given electrical values, which can be voltage, current,
-    and resistance, and then in a Python dict return name/value pair of the zero value.
+    Ohm Kanunu'nu, gerilim, akım ve direnç gibi verilen herhangi iki elektriksel değer üzerinde uygulayın
+    ve ardından sıfır değeri olan adı/değer çiftini bir Python sözlüğünde döndürün.
 
-    >>> ohms_law(voltage=10, resistance=5, current=0)
-    {'current': 2.0}
-    >>> ohms_law(voltage=0, current=0, resistance=10)
+    >>> ohm_kanunu(gerilim=10, direnç=5, akım=0)
+    {'akım': 2.0}
+    >>> ohm_kanunu(gerilim=0, akım=0, direnç=10)
     Traceback (most recent call last):
       ...
-    ValueError: One and only one argument must be 0
-    >>> ohms_law(voltage=0, current=1, resistance=-2)
+    ValueError: Bir ve yalnızca bir argüman 0 olmalıdır
+    >>> ohm_kanunu(gerilim=0, akım=1, direnç=-2)
     Traceback (most recent call last):
       ...
-    ValueError: Resistance cannot be negative
-    >>> ohms_law(resistance=0, voltage=-10, current=1)
-    {'resistance': -10.0}
-    >>> ohms_law(voltage=0, current=-1.5, resistance=2)
-    {'voltage': -3.0}
+    ValueError: Direnç negatif olamaz
+    >>> ohm_kanunu(direnç=0, gerilim=-10, akım=1)
+    {'direnç': -10.0}
+    >>> ohm_kanunu(gerilim=0, akım=-1.5, direnç=2)
+    {'gerilim': -3.0}
     """
-    if (voltage, current, resistance).count(0) != 1:
-        raise ValueError("One and only one argument must be 0")
-    if resistance < 0:
-        raise ValueError("Resistance cannot be negative")
-    if voltage == 0:
-        return {"voltage": float(current * resistance)}
-    elif current == 0:
-        return {"current": voltage / resistance}
-    elif resistance == 0:
-        return {"resistance": voltage / current}
+    if (gerilim, akım, direnç).count(0) != 1:
+        raise ValueError("Bir ve yalnızca bir argüman 0 olmalıdır")
+    if direnç < 0:
+        raise ValueError("Direnç negatif olamaz")
+    if gerilim == 0:
+        return {"gerilim": float(akım * direnç)}
+    elif akım == 0:
+        return {"akım": gerilim / direnç}
+    elif direnç == 0:
+        return {"direnç": gerilim / akım}
     else:
-        raise ValueError("Exactly one argument must be 0")
+        raise ValueError("Tam olarak bir argüman 0 olmalıdır")
 
 
 if __name__ == "__main__":

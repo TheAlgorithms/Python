@@ -1,57 +1,57 @@
 """
-Program to calculate the amortization amount per month, given
-- Principal borrowed
-- Rate of interest per annum
-- Years to repay the loan
+Aylık amortisman tutarını hesaplama programı, verilen
+- Alınan anapara
+- Yıllık faiz oranı
+- Krediyi geri ödemek için yıl sayısı
 
-Wikipedia Reference: https://en.wikipedia.org/wiki/Equated_monthly_installment
+Wikipedia Referansı: https://en.wikipedia.org/wiki/Equated_monthly_installment
 """
 
 
-def equated_monthly_installments(
-    principal: float, rate_per_annum: float, years_to_repay: int
+def esit_aylik_taksitler(
+    anapara: float, yillik_faiz_orani: float, geri_odeme_yili: int
 ) -> float:
     """
-    Formula for amortization amount per month:
+    Aylık amortisman tutarı formülü:
     A = p * r * (1 + r)^n / ((1 + r)^n - 1)
-    where p is the principal, r is the rate of interest per month
-    and n is the number of payments
+    burada p anapara, r aylık faiz oranı
+    ve n ödeme sayısıdır
 
-    >>> equated_monthly_installments(25000, 0.12, 3)
+    >>> esit_aylik_taksitler(25000, 0.12, 3)
     830.3577453212793
-    >>> equated_monthly_installments(25000, 0.12, 10)
+    >>> esit_aylik_taksitler(25000, 0.12, 10)
     358.67737100646826
-    >>> equated_monthly_installments(0, 0.12, 3)
+    >>> esit_aylik_taksitler(0, 0.12, 3)
     Traceback (most recent call last):
         ...
-    Exception: Principal borrowed must be > 0
-    >>> equated_monthly_installments(25000, -1, 3)
+    Exception: Alınan anapara > 0 olmalıdır
+    >>> esit_aylik_taksitler(25000, -1, 3)
     Traceback (most recent call last):
         ...
-    Exception: Rate of interest must be >= 0
-    >>> equated_monthly_installments(25000, 0.12, 0)
+    Exception: Faiz oranı >= 0 olmalıdır
+    >>> esit_aylik_taksitler(25000, 0.12, 0)
     Traceback (most recent call last):
         ...
-    Exception: Years to repay must be an integer > 0
+    Exception: Geri ödeme yılı 0'dan büyük bir tamsayı olmalıdır
     """
-    if principal <= 0:
-        raise Exception("Principal borrowed must be > 0")
-    if rate_per_annum < 0:
-        raise Exception("Rate of interest must be >= 0")
-    if years_to_repay <= 0 or not isinstance(years_to_repay, int):
-        raise Exception("Years to repay must be an integer > 0")
+    if anapara <= 0:
+        raise Exception("Alınan anapara > 0 olmalıdır")
+    if yillik_faiz_orani < 0:
+        raise Exception("Faiz oranı >= 0 olmalıdır")
+    if geri_odeme_yili <= 0 or not isinstance(geri_odeme_yili, int):
+        raise Exception("Geri ödeme yılı 0'dan büyük bir tamsayı olmalıdır")
 
-    # Yearly rate is divided by 12 to get monthly rate
-    rate_per_month = rate_per_annum / 12
+    # Yıllık faiz oranı aylık oranı elde etmek için 12'ye bölünür
+    aylik_faiz_orani = yillik_faiz_orani / 12
 
-    # Years to repay is multiplied by 12 to get number of payments as payment is monthly
-    number_of_payments = years_to_repay * 12
+    # Geri ödeme yılı, ödeme sayısını elde etmek için 12 ile çarpılır çünkü ödeme aylıktır
+    odeme_sayisi = geri_odeme_yili * 12
 
     return (
-        principal
-        * rate_per_month
-        * (1 + rate_per_month) ** number_of_payments
-        / ((1 + rate_per_month) ** number_of_payments - 1)
+        anapara
+        * aylik_faiz_orani
+        * (1 + aylik_faiz_orani) ** odeme_sayisi
+        / ((1 + aylik_faiz_orani) ** odeme_sayisi - 1)
     )
 
 

@@ -1,156 +1,154 @@
 """
-This is a type of divide and conquer algorithm which divides the search space into
-3 parts and finds the target value based on the property of the array or list
-(usually monotonic property).
+Bu, arama alanını 3 parçaya bölen ve hedef değeri dizinin veya listenin özelliğine (genellikle monoton özellik) dayanarak bulan bir böl ve fethet algoritması türüdür.
 
-Time Complexity  : O(log3 N)
-Space Complexity : O(1)
+Zaman Karmaşıklığı  : O(log3 N)
+Alan Karmaşıklığı   : O(1)
 """
 
 from __future__ import annotations
 
-# This is the precision for this function which can be altered.
-# It is recommended for users to keep this number greater than or equal to 10.
-precision = 10
+# Bu fonksiyon için hassasiyet ayarıdır ve değiştirilebilir.
+# Kullanıcıların bu sayıyı 10 veya daha büyük tutmaları önerilir.
+hassasiyet = 10
 
 
-# This is the linear search that will occur after the search space has become smaller.
+# Arama alanı küçüldükten sonra gerçekleştirilecek doğrusal arama.
 
 
-def lin_search(left: int, right: int, array: list[int], target: int) -> int:
-    """Perform linear search in list. Returns -1 if element is not found.
+def dogrusal_arama(sol: int, sag: int, dizi: list[int], hedef: int) -> int:
+    """Listede doğrusal arama yapar. Eleman bulunamazsa -1 döner.
 
-    Parameters
+    Parametreler
     ----------
-    left : int
-        left index bound.
-    right : int
-        right index bound.
-    array : List[int]
-        List of elements to be searched on
-    target : int
-        Element that is searched
+    sol : int
+        Sol indeks sınırı.
+    sag : int
+        Sağ indeks sınırı.
+    dizi : List[int]
+        Arama yapılacak elemanların listesi.
+    hedef : int
+        Aranan eleman.
 
-    Returns
+    Dönüş
     -------
     int
-        index of element that is looked for.
+        Aranan elemanın indeksi.
 
-    Examples
+    Örnekler
     --------
-    >>> lin_search(0, 4, [4, 5, 6, 7], 7)
+    >>> dogrusal_arama(0, 4, [4, 5, 6, 7], 7)
     3
-    >>> lin_search(0, 3, [4, 5, 6, 7], 7)
+    >>> dogrusal_arama(0, 3, [4, 5, 6, 7], 7)
     -1
-    >>> lin_search(0, 2, [-18, 2], -18)
+    >>> dogrusal_arama(0, 2, [-18, 2], -18)
     0
-    >>> lin_search(0, 1, [5], 5)
+    >>> dogrusal_arama(0, 1, [5], 5)
     0
-    >>> lin_search(0, 3, ['a', 'c', 'd'], 'c')
+    >>> dogrusal_arama(0, 3, ['a', 'c', 'd'], 'c')
     1
-    >>> lin_search(0, 3, [.1, .4 , -.1], .1)
+    >>> dogrusal_arama(0, 3, [.1, .4 , -.1], .1)
     0
-    >>> lin_search(0, 3, [.1, .4 , -.1], -.1)
+    >>> dogrusal_arama(0, 3, [.1, .4 , -.1], -.1)
     2
     """
-    for i in range(left, right):
-        if array[i] == target:
+    for i in range(sol, sag):
+        if dizi[i] == hedef:
             return i
     return -1
 
 
-def ite_ternary_search(array: list[int], target: int) -> int:
-    """Iterative method of the ternary search algorithm.
+def iteratif_ternary_arama(dizi: list[int], hedef: int) -> int:
+    """Ternary arama algoritmasının iteratif yöntemi.
     >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
-    >>> ite_ternary_search(test_list, 3)
+    >>> iteratif_ternary_arama(test_list, 3)
     -1
-    >>> ite_ternary_search(test_list, 13)
+    >>> iteratif_ternary_arama(test_list, 13)
     4
-    >>> ite_ternary_search([4, 5, 6, 7], 4)
+    >>> iteratif_ternary_arama([4, 5, 6, 7], 4)
     0
-    >>> ite_ternary_search([4, 5, 6, 7], -10)
+    >>> iteratif_ternary_arama([4, 5, 6, 7], -10)
     -1
-    >>> ite_ternary_search([-18, 2], -18)
+    >>> iteratif_ternary_arama([-18, 2], -18)
     0
-    >>> ite_ternary_search([5], 5)
+    >>> iteratif_ternary_arama([5], 5)
     0
-    >>> ite_ternary_search(['a', 'c', 'd'], 'c')
+    >>> iteratif_ternary_arama(['a', 'c', 'd'], 'c')
     1
-    >>> ite_ternary_search(['a', 'c', 'd'], 'f')
+    >>> iteratif_ternary_arama(['a', 'c', 'd'], 'f')
     -1
-    >>> ite_ternary_search([], 1)
+    >>> iteratif_ternary_arama([], 1)
     -1
-    >>> ite_ternary_search([.1, .4 , -.1], .1)
+    >>> iteratif_ternary_arama([.1, .4 , -.1], .1)
     0
     """
 
-    left = 0
-    right = len(array)
-    while left <= right:
-        if right - left < precision:
-            return lin_search(left, right, array, target)
+    sol = 0
+    sag = len(dizi)
+    while sol <= sag:
+        if sag - sol < hassasiyet:
+            return dogrusal_arama(sol, sag, dizi, hedef)
 
-        one_third = (left + right) // 3 + 1
-        two_third = 2 * (left + right) // 3 + 1
+        bir_uc = (sol + sag) // 3 + 1
+        iki_uc = 2 * (sol + sag) // 3 + 1
 
-        if array[one_third] == target:
-            return one_third
-        elif array[two_third] == target:
-            return two_third
+        if dizi[bir_uc] == hedef:
+            return bir_uc
+        elif dizi[iki_uc] == hedef:
+            return iki_uc
 
-        elif target < array[one_third]:
-            right = one_third - 1
-        elif array[two_third] < target:
-            left = two_third + 1
+        elif hedef < dizi[bir_uc]:
+            sag = bir_uc - 1
+        elif dizi[iki_uc] < hedef:
+            sol = iki_uc + 1
 
         else:
-            left = one_third + 1
-            right = two_third - 1
+            sol = bir_uc + 1
+            sag = iki_uc - 1
     return -1
 
 
-def rec_ternary_search(left: int, right: int, array: list[int], target: int) -> int:
-    """Recursive method of the ternary search algorithm.
+def rekursif_ternary_arama(sol: int, sag: int, dizi: list[int], hedef: int) -> int:
+    """Ternary arama algoritmasının rekursif yöntemi.
 
     >>> test_list = [0, 1, 2, 8, 13, 17, 19, 32, 42]
-    >>> rec_ternary_search(0, len(test_list), test_list, 3)
+    >>> rekursif_ternary_arama(0, len(test_list), test_list, 3)
     -1
-    >>> rec_ternary_search(4, len(test_list), test_list, 42)
+    >>> rekursif_ternary_arama(4, len(test_list), test_list, 42)
     8
-    >>> rec_ternary_search(0, 2, [4, 5, 6, 7], 4)
+    >>> rekursif_ternary_arama(0, 2, [4, 5, 6, 7], 4)
     0
-    >>> rec_ternary_search(0, 3, [4, 5, 6, 7], -10)
+    >>> rekursif_ternary_arama(0, 3, [4, 5, 6, 7], -10)
     -1
-    >>> rec_ternary_search(0, 1, [-18, 2], -18)
+    >>> rekursif_ternary_arama(0, 1, [-18, 2], -18)
     0
-    >>> rec_ternary_search(0, 1, [5], 5)
+    >>> rekursif_ternary_arama(0, 1, [5], 5)
     0
-    >>> rec_ternary_search(0, 2, ['a', 'c', 'd'], 'c')
+    >>> rekursif_ternary_arama(0, 2, ['a', 'c', 'd'], 'c')
     1
-    >>> rec_ternary_search(0, 2, ['a', 'c', 'd'], 'f')
+    >>> rekursif_ternary_arama(0, 2, ['a', 'c', 'd'], 'f')
     -1
-    >>> rec_ternary_search(0, 0, [], 1)
+    >>> rekursif_ternary_arama(0, 0, [], 1)
     -1
-    >>> rec_ternary_search(0, 3, [.1, .4 , -.1], .1)
+    >>> rekursif_ternary_arama(0, 3, [.1, .4 , -.1], .1)
     0
     """
-    if left < right:
-        if right - left < precision:
-            return lin_search(left, right, array, target)
-        one_third = (left + right) // 3 + 1
-        two_third = 2 * (left + right) // 3 + 1
+    if sol < sag:
+        if sag - sol < hassasiyet:
+            return dogrusal_arama(sol, sag, dizi, hedef)
+        bir_uc = (sol + sag) // 3 + 1
+        iki_uc = 2 * (sol + sag) // 3 + 1
 
-        if array[one_third] == target:
-            return one_third
-        elif array[two_third] == target:
-            return two_third
+        if dizi[bir_uc] == hedef:
+            return bir_uc
+        elif dizi[iki_uc] == hedef:
+            return iki_uc
 
-        elif target < array[one_third]:
-            return rec_ternary_search(left, one_third - 1, array, target)
-        elif array[two_third] < target:
-            return rec_ternary_search(two_third + 1, right, array, target)
+        elif hedef < dizi[bir_uc]:
+            return rekursif_ternary_arama(sol, bir_uc - 1, dizi, hedef)
+        elif dizi[iki_uc] < hedef:
+            return rekursif_ternary_arama(iki_uc + 1, sag, dizi, hedef)
         else:
-            return rec_ternary_search(one_third + 1, two_third - 1, array, target)
+            return rekursif_ternary_arama(bir_uc + 1, iki_uc - 1, dizi, hedef)
     else:
         return -1
 
@@ -160,14 +158,14 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    user_input = input("Enter numbers separated by comma:\n").strip()
-    collection = [int(item.strip()) for item in user_input.split(",")]
-    assert collection == sorted(collection), f"List must be ordered.\n{collection}."
-    target = int(input("Enter the number to be found in the list:\n").strip())
-    result1 = ite_ternary_search(collection, target)
-    result2 = rec_ternary_search(0, len(collection) - 1, collection, target)
-    if result2 != -1:
-        print(f"Iterative search: {target} found at positions: {result1}")
-        print(f"Recursive search: {target} found at positions: {result2}")
+    kullanici_girdisi = input("Virgülle ayrılmış sayıları girin:\n").strip()
+    koleksiyon = [int(item.strip()) for item in kullanici_girdisi.split(",")]
+    assert koleksiyon == sorted(koleksiyon), f"Liste sıralı olmalıdır.\n{koleksiyon}."
+    hedef = int(input("Listede bulunacak sayıyı girin:\n").strip())
+    sonuc1 = iteratif_ternary_arama(koleksiyon, hedef)
+    sonuc2 = rekursif_ternary_arama(0, len(koleksiyon) - 1, koleksiyon, hedef)
+    if sonuc2 != -1:
+        print(f"İteratif arama: {hedef} pozisyonlarda bulundu: {sonuc1}")
+        print(f"Rekürsif arama: {hedef} pozisyonlarda bulundu: {sonuc2}")
     else:
-        print("Not found")
+        print("Bulunamadı")

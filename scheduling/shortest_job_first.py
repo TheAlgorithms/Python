@@ -1,7 +1,10 @@
 """
-Shortest job remaining first
-Please note arrival time and burst
-Please use spaces to separate times entered.
+En kısa iş önceliği
+Lütfen varış zamanını ve işlem süresini not edin.
+Lütfen girilen zamanları ayırmak için boşluk kullanın.
+
+Organiser: K. Umut Araz
+Github: https://github.com/arazumut
 """
 
 from __future__ import annotations
@@ -9,145 +12,143 @@ from __future__ import annotations
 import pandas as pd
 
 
-def calculate_waitingtime(
-    arrival_time: list[int], burst_time: list[int], no_of_processes: int
+def bekleme_süresi_hesapla(
+    varış_zamanı: list[int], işlem_süresi: list[int], işlem_sayısı: int
 ) -> list[int]:
     """
-    Calculate the waiting time of each processes
-    Return: List of waiting times.
-    >>> calculate_waitingtime([1,2,3,4],[3,3,5,1],4)
+    Her bir işlemin bekleme süresini hesaplar.
+    Dönüş: Bekleme süreleri listesi.
+    >>> bekleme_süresi_hesapla([1,2,3,4],[3,3,5,1],4)
     [0, 3, 5, 0]
-    >>> calculate_waitingtime([1,2,3],[2,5,1],3)
+    >>> bekleme_süresi_hesapla([1,2,3],[2,5,1],3)
     [0, 2, 0]
-    >>> calculate_waitingtime([2,3],[5,1],2)
+    >>> bekleme_süresi_hesapla([2,3],[5,1],2)
     [1, 0]
     """
-    remaining_time = [0] * no_of_processes
-    waiting_time = [0] * no_of_processes
-    # Copy the burst time into remaining_time[]
-    for i in range(no_of_processes):
-        remaining_time[i] = burst_time[i]
+    kalan_süre = [0] * işlem_sayısı
+    bekleme_süresi = [0] * işlem_sayısı
+    # İşlem sürelerini kalan_süre[] dizisine kopyala
+    for i in range(işlem_sayısı):
+        kalan_süre[i] = işlem_süresi[i]
 
-    complete = 0
-    increment_time = 0
-    minm = 999999999
-    short = 0
-    check = False
+    tamamlanan = 0
+    zaman_artışı = 0
+    min_süre = float('inf')
+    kısa = 0
+    kontrol = False
 
-    # Process until all processes are completed
-    while complete != no_of_processes:
-        for j in range(no_of_processes):
+    # Tüm işlemler tamamlanana kadar devam et
+    while tamamlanan != işlem_sayısı:
+        for j in range(işlem_sayısı):
             if (
-                arrival_time[j] <= increment_time
-                and remaining_time[j] > 0
-                and remaining_time[j] < minm
+                varış_zamanı[j] <= zaman_artışı
+                and kalan_süre[j] > 0
+                and kalan_süre[j] < min_süre
             ):
-                minm = remaining_time[j]
-                short = j
-                check = True
+                min_süre = kalan_süre[j]
+                kısa = j
+                kontrol = True
 
-        if not check:
-            increment_time += 1
+        if not kontrol:
+            zaman_artışı += 1
             continue
-        remaining_time[short] -= 1
+        kalan_süre[kısa] -= 1
 
-        minm = remaining_time[short]
-        if minm == 0:
-            minm = 999999999
+        min_süre = kalan_süre[kısa]
+        if min_süre == 0:
+            min_süre = float('inf')
 
-        if remaining_time[short] == 0:
-            complete += 1
-            check = False
+        if kalan_süre[kısa] == 0:
+            tamamlanan += 1
+            kontrol = False
 
-            # Find finish time of current process
-            finish_time = increment_time + 1
+            # Mevcut işlemin bitiş zamanını bul
+            bitiş_zamanı = zaman_artışı + 1
 
-            # Calculate waiting time
-            finar = finish_time - arrival_time[short]
-            waiting_time[short] = finar - burst_time[short]
+            # Bekleme süresini hesapla
+            bekleme_süresi[kısa] = (bitiş_zamanı - varış_zamanı[kısa]) - işlem_süresi[kısa]
+            bekleme_süresi[kısa] = max(bekleme_süresi[kısa], 0)
 
-            waiting_time[short] = max(waiting_time[short], 0)
-
-        # Increment time
-        increment_time += 1
-    return waiting_time
+        # Zamanı artır
+        zaman_artışı += 1
+    return bekleme_süresi
 
 
-def calculate_turnaroundtime(
-    burst_time: list[int], no_of_processes: int, waiting_time: list[int]
+def dönüş_süresi_hesapla(
+    işlem_süresi: list[int], işlem_sayısı: int, bekleme_süresi: list[int]
 ) -> list[int]:
     """
-    Calculate the turn around time of each Processes
-    Return: list of turn around times.
-    >>> calculate_turnaroundtime([3,3,5,1], 4, [0,3,5,0])
+    Her bir işlemin dönüş süresini hesaplar.
+    Dönüş: Dönüş süreleri listesi.
+    >>> dönüş_süresi_hesapla([3,3,5,1], 4, [0,3,5,0])
     [3, 6, 10, 1]
-    >>> calculate_turnaroundtime([3,3], 2, [0,3])
+    >>> dönüş_süresi_hesapla([3,3], 2, [0,3])
     [3, 6]
-    >>> calculate_turnaroundtime([8,10,1], 3, [1,0,3])
+    >>> dönüş_süresi_hesapla([8,10,1], 3, [1,0,3])
     [9, 10, 4]
     """
-    turn_around_time = [0] * no_of_processes
-    for i in range(no_of_processes):
-        turn_around_time[i] = burst_time[i] + waiting_time[i]
-    return turn_around_time
+    dönüş_süresi = [0] * işlem_sayısı
+    for i in range(işlem_sayısı):
+        dönüş_süresi[i] = işlem_süresi[i] + bekleme_süresi[i]
+    return dönüş_süresi
 
 
-def calculate_average_times(
-    waiting_time: list[int], turn_around_time: list[int], no_of_processes: int
+def ortalama_süreleri_hesapla(
+    bekleme_süresi: list[int], dönüş_süresi: list[int], işlem_sayısı: int
 ) -> None:
     """
-    This function calculates the average of the waiting & turnaround times
-    Prints: Average Waiting time & Average Turn Around Time
-    >>> calculate_average_times([0,3,5,0],[3,6,10,1],4)
-    Average waiting time = 2.00000
-    Average turn around time = 5.0
-    >>> calculate_average_times([2,3],[3,6],2)
-    Average waiting time = 2.50000
-    Average turn around time = 4.5
-    >>> calculate_average_times([10,4,3],[2,7,6],3)
-    Average waiting time = 5.66667
-    Average turn around time = 5.0
+    Bekleme ve dönüş sürelerinin ortalamasını hesaplar.
+    Yazdırır: Ortalama Bekleme süresi ve Ortalama Dönüş Süresi
+    >>> ortalama_süreleri_hesapla([0,3,5,0],[3,6,10,1],4)
+    Ortalama bekleme süresi = 2.00000
+    Ortalama dönüş süresi = 5.0
+    >>> ortalama_süreleri_hesapla([2,3],[3,6],2)
+    Ortalama bekleme süresi = 2.50000
+    Ortalama dönüş süresi = 4.5
+    >>> ortalama_süreleri_hesapla([10,4,3],[2,7,6],3)
+    Ortalama bekleme süresi = 5.66667
+    Ortalama dönüş süresi = 5.0
     """
-    total_waiting_time = 0
-    total_turn_around_time = 0
-    for i in range(no_of_processes):
-        total_waiting_time = total_waiting_time + waiting_time[i]
-        total_turn_around_time = total_turn_around_time + turn_around_time[i]
-    print(f"Average waiting time = {total_waiting_time / no_of_processes:.5f}")
-    print("Average turn around time =", total_turn_around_time / no_of_processes)
+    toplam_bekleme_süresi = 0
+    toplam_dönüş_süresi = 0
+    for i in range(işlem_sayısı):
+        toplam_bekleme_süresi += bekleme_süresi[i]
+        toplam_dönüş_süresi += dönüş_süresi[i]
+    print(f"Ortalama bekleme süresi = {toplam_bekleme_süresi / işlem_sayısı:.5f}")
+    print("Ortalama dönüş süresi =", toplam_dönüş_süresi / işlem_sayısı)
 
 
 if __name__ == "__main__":
-    print("Enter how many process you want to analyze")
-    no_of_processes = int(input())
-    burst_time = [0] * no_of_processes
-    arrival_time = [0] * no_of_processes
-    processes = list(range(1, no_of_processes + 1))
+    print("Analiz etmek istediğiniz işlem sayısını girin")
+    işlem_sayısı = int(input())
+    işlem_süresi = [0] * işlem_sayısı
+    varış_zamanı = [0] * işlem_sayısı
+    işlemler = list(range(1, işlem_sayısı + 1))
 
-    for i in range(no_of_processes):
-        print("Enter the arrival time and burst time for process:--" + str(i + 1))
-        arrival_time[i], burst_time[i] = map(int, input().split())
+    for i in range(işlem_sayısı):
+        print(f"{i + 1}. işlem için varış zamanı ve işlem süresini girin:")
+        varış_zamanı[i], işlem_süresi[i] = map(int, input().split())
 
-    waiting_time = calculate_waitingtime(arrival_time, burst_time, no_of_processes)
+    bekleme_süresi = bekleme_süresi_hesapla(varış_zamanı, işlem_süresi, işlem_sayısı)
 
-    bt = burst_time
-    n = no_of_processes
-    wt = waiting_time
-    turn_around_time = calculate_turnaroundtime(bt, n, wt)
+    bt = işlem_süresi
+    n = işlem_sayısı
+    wt = bekleme_süresi
+    dönüş_süresi = dönüş_süresi_hesapla(bt, n, wt)
 
-    calculate_average_times(waiting_time, turn_around_time, no_of_processes)
+    ortalama_süreleri_hesapla(bekleme_süresi, dönüş_süresi, işlem_sayısı)
 
     fcfs = pd.DataFrame(
-        list(zip(processes, burst_time, arrival_time, waiting_time, turn_around_time)),
+        list(zip(işlemler, işlem_süresi, varış_zamanı, bekleme_süresi, dönüş_süresi)),
         columns=[
-            "Process",
-            "BurstTime",
-            "ArrivalTime",
-            "WaitingTime",
-            "TurnAroundTime",
+            "İşlem",
+            "İşlem Süresi",
+            "Varış Zamanı",
+            "Bekleme Süresi",
+            "Dönüş Süresi",
         ],
     )
 
-    # Printing the dataFrame
+    # DataFrame'i yazdırma
     pd.set_option("display.max_rows", fcfs.shape[0] + 1)
     print(fcfs)

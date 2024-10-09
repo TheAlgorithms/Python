@@ -1,50 +1,33 @@
 """
-Implementation of the SHA1 hash function and gives utilities to find hash of string or
-hash of text from a file. Also contains a Test class to verify that the generated hash
-matches what is returned by the hashlib library
+SHA1 hash fonksiyonunun implementasyonu ve bir stringin veya bir dosyadan metnin hash'ini bulmak için yardımcı araçlar sağlar. Ayrıca, oluşturulan hash'in hashlib kütüphanesi tarafından döndürülen hash ile eşleşip eşleşmediğini doğrulamak için bir Test sınıfı içerir.
 
-Usage: python sha1.py --string "Hello World!!"
+Kullanım: python sha1.py --string "Hello World!!"
        python sha1.py --file "hello_world.txt"
-       When run without any arguments, it prints the hash of the string "Hello World!!
-       Welcome to Cryptography"
+       Herhangi bir argüman olmadan çalıştırıldığında, "Hello World!! Welcome to Cryptography" stringinin hash'ini yazdırır.
 
-SHA1 hash or SHA1 sum of a string is a cryptographic function, which means it is easy
-to calculate forwards but extremely difficult to calculate backwards. What this means
-is you can easily calculate the hash of a string, but it is extremely difficult to know
-the original string if you have its hash. This property is useful for communicating
-securely, send encrypted messages and is very useful in payment systems, blockchain and
-cryptocurrency etc.
+SHA1 hash veya SHA1 sum bir kriptografik fonksiyondur, bu da ileriye doğru hesaplamanın kolay, geriye doğru hesaplamanın ise son derece zor olduğu anlamına gelir. Bu, bir stringin hash'ini kolayca hesaplayabileceğiniz, ancak hash'e sahipseniz orijinal stringi bilmenin son derece zor olduğu anlamına gelir. Bu özellik, güvenli iletişim kurmak, şifreli mesajlar göndermek ve ödeme sistemlerinde, blockchain ve kripto para birimlerinde çok kullanışlıdır.
 
-The algorithm as described in the reference:
-First we start with a message. The message is padded and the length of the message
-is added to the end. It is then split into blocks of 512 bits or 64 bytes. The blocks
-are then processed one at a time. Each block must be expanded and compressed.
-The value after each compression is added to a 160-bit buffer called the current hash
-state. After the last block is processed, the current hash state is returned as
-the final hash.
+Algoritma referansta açıklandığı gibi:
+Önce bir mesajla başlıyoruz. Mesaj doldurulur ve mesajın uzunluğu sona eklenir. Daha sonra 512 bit veya 64 byte'lık bloklara bölünür. Bloklar birer birer işlenir. Her blok genişletilmeli ve sıkıştırılmalıdır. Her sıkıştırmadan sonraki değer, geçerli hash durumu olarak adlandırılan 160 bitlik bir arabelleğe eklenir. Son blok işlendiğinde, geçerli hash durumu nihai hash olarak döndürülür.
 
-Reference: https://deadhacker.com/2006/02/21/sha-1-illustrated/
+Referans: https://deadhacker.com/2006/02/21/sha-1-illustrated/
 """
 
 import argparse
-import hashlib  # hashlib is only used inside the Test class
+import hashlib  # hashlib sadece Test sınıfı içinde kullanılır
 import struct
 
 
 class SHA1Hash:
     """
-    Class to contain the entire pipeline for SHA1 hashing algorithm
+    SHA1 hash algoritması için tüm işlemleri içeren sınıf
     >>> SHA1Hash(bytes('Allan', 'utf-8')).final_hash()
     '872af2d8ac3d8695387e7c804bf0e02c18df9e6e'
     """
 
     def __init__(self, data):
         """
-        Initiates the variables data and h. h is a list of 5 8-digit hexadecimal
-        numbers corresponding to
-        (1732584193, 4023233417, 2562383102, 271733878, 3285377520)
-        respectively. We will start with this as a message digest. 0x is how you write
-        hexadecimal numbers in Python
+        data ve h değişkenlerini başlatır. h, sırasıyla (1732584193, 4023233417, 2562383102, 271733878, 3285377520) sayılarına karşılık gelen 5 adet 8 basamaklı onaltılık sayıdan oluşan bir listedir. Bu, bir mesaj özeti olarak başlayacağımız değerdir. 0x, Python'da onaltılık sayı yazma şeklidir.
         """
         self.data = data
         self.h = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0]
@@ -52,7 +35,7 @@ class SHA1Hash:
     @staticmethod
     def rotate(n, b):
         """
-        Static method to be used inside other methods. Left rotates n by b.
+        Diğer metodlar içinde kullanılacak statik metod. n'i b kadar sola döndürür.
         >>> SHA1Hash('').rotate(12,2)
         48
         """
@@ -60,7 +43,7 @@ class SHA1Hash:
 
     def padding(self):
         """
-        Pads the input message with zeros so that padded_data has 64 bytes or 512 bits
+        Giriş mesajını sıfırlarla doldurur, böylece padded_data 64 byte veya 512 bit olur
         """
         padding = b"\x80" + b"\x00" * (63 - (len(self.data) + 8) % 64)
         padded_data = self.data + padding + struct.pack(">Q", 8 * len(self.data))
@@ -68,17 +51,15 @@ class SHA1Hash:
 
     def split_blocks(self):
         """
-        Returns a list of bytestrings each of length 64
+        Her biri 64 byte uzunluğunda olan byte string bloklarının bir listesini döndürür
         """
         return [
             self.padded_data[i : i + 64] for i in range(0, len(self.padded_data), 64)
         ]
 
-    # @staticmethod
     def expand_block(self, block):
         """
-        Takes a bytestring-block of length 64, unpacks it to a list of integers and
-        returns a list of 80 integers after some bit operations
+        64 byte uzunluğunda bir byte string bloğunu alır, bir tamsayı listesine açar ve bazı bit işlemlerinden sonra 80 tamsayıdan oluşan bir liste döndürür
         """
         w = list(struct.unpack(">16L", block)) + [0] * 64
         for i in range(16, 80):
@@ -87,13 +68,8 @@ class SHA1Hash:
 
     def final_hash(self):
         """
-        Calls all the other methods to process the input. Pads the data, then splits
-        into blocks and then does a series of operations for each block (including
-        expansion).
-        For each block, the variable h that was initialized is copied to a,b,c,d,e
-        and these 5 variables a,b,c,d,e undergo several changes. After all the blocks
-        are processed, these 5 variables are pairwise added to h ie a to h[0], b to h[1]
-        and so on. This h becomes our final hash which is returned.
+        Girişi işlemek için diğer metodları çağırır. Veriyi doldurur, ardından bloklara böler ve her blok için bir dizi işlem yapar (genişletme dahil).
+        Her blok için, başlatılan h değişkeni a, b, c, d, e'ye kopyalanır ve bu 5 değişken a, b, c, d, e çeşitli değişikliklere uğrar. Tüm bloklar işlendiğinde, bu 5 değişken h ile eşleştirilir, yani a h[0]'a, b h[1]'e ve bu şekilde devam eder. Bu h, nihai hash'imiz olur ve döndürülür.
         """
         self.padded_data = self.padding()
         self.blocks = self.split_blocks()
@@ -137,22 +113,20 @@ def test_sha1_hash():
 
 def main():
     """
-    Provides option 'string' or 'file' to take input and prints the calculated SHA1
-    hash. unittest.main() has been commented out because we probably don't want to run
-    the test each time.
+    Giriş almak için 'string' veya 'file' seçeneği sağlar ve hesaplanan SHA1 hash'ini yazdırır. unittest.main() her seferinde testi çalıştırmak istemeyebileceğimiz için yorum satırına alınmıştır.
     """
     # unittest.main()
-    parser = argparse.ArgumentParser(description="Process some strings or files")
+    parser = argparse.ArgumentParser(description="Bazı stringleri veya dosyaları işleyin")
     parser.add_argument(
         "--string",
         dest="input_string",
         default="Hello World!! Welcome to Cryptography",
-        help="Hash the string",
+        help="Stringi hash'le",
     )
-    parser.add_argument("--file", dest="input_file", help="Hash contents of a file")
+    parser.add_argument("--file", dest="input_file", help="Bir dosyanın içeriğini hash'le")
     args = parser.parse_args()
     input_string = args.input_string
-    # In any case hash input should be a bytestring
+    # Her durumda hash girişi bir byte string olmalıdır
     if args.input_file:
         with open(args.input_file, "rb") as f:
             hash_input = f.read()

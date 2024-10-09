@@ -6,24 +6,23 @@ from sklearn.metrics import ConfusionMatrixDisplay
 from sklearn.model_selection import train_test_split
 from xgboost import XGBClassifier
 
+#Organised to K. Umut Araz
+
 
 def veri_isleme(veri: dict) -> tuple:
     # Veri setini özellikler ve hedef olarak ayır
-    # veri, özelliklerdir
     """
-    >>> veri_isleme(({'data':'[5.1, 3.5, 1.4, 0.2]','target':([0])}))
-    ('[5.1, 3.5, 1.4, 0.2]', [0])
-    >>> veri_isleme(
-    ...     {'data': '[4.9, 3.0, 1.4, 0.2], [4.7, 3.2, 1.3, 0.2]', 'target': ([0, 0])}
-    ... )
-    ('[4.9, 3.0, 1.4, 0.2], [4.7, 3.2, 1.3, 0.2]', [0, 0])
+    >>> veri_isleme({'data': np.array([[5.1, 3.5, 1.4, 0.2]]), 'target': np.array([0])})
+    (array([[5.1, 3.5, 1.4, 0.2]]), array([0]))
+    >>> veri_isleme({'data': np.array([[4.9, 3.0, 1.4, 0.2], [4.7, 3.2, 1.3, 0.2]]), 'target': np.array([0, 0])})
+    (array([[4.9, 3.0, 1.4, 0.2], [4.7, 3.2, 1.3, 0.2]]), array([0, 0]))
     """
     return (veri["data"], veri["target"])
 
 
 def xgboost_siniflandirici(ozellikler: np.ndarray, hedef: np.ndarray) -> XGBClassifier:
     """
-    # BU TEST BOZUK!! >>> xgboost_siniflandirici(np.array([[5.1, 3.6, 1.4, 0.2]]), np.array([0]))
+    >>> xgboost_siniflandirici(np.array([[5.1, 3.6, 1.4, 0.2]]), np.array([0]))
     XGBClassifier(base_score=0.5, booster='gbtree', callbacks=None,
                   colsample_bylevel=1, colsample_bynode=1, colsample_bytree=1,
                   early_stopping_rounds=None, enable_categorical=False,
@@ -46,7 +45,7 @@ def ana() -> None:
 
     Algoritma için URL:
     https://xgboost.readthedocs.io/en/stable/
-    Algoritmayı göstermek için Iris tipi veri seti kullanılmıştır.
+    Algoritmayı göstermek için Iris veri seti kullanılmıştır.
     """
 
     # Iris veri setini yükle
@@ -59,11 +58,11 @@ def ana() -> None:
     isimler = iris["target_names"]
 
     # Eğitim verilerinden bir XGBoost Sınıflandırıcı oluştur
-    xgboost_siniflandirici = xgboost_siniflandirici(x_egitim, y_egitim)
+    siniflandirici = xgboost_siniflandirici(x_egitim, y_egitim)
 
     # Sınıflandırıcının hem eğitim hem de test setleri ile karışıklık matrisini göster
     ConfusionMatrixDisplay.from_estimator(
-        xgboost_siniflandirici,
+        siniflandirici,
         x_test,
         y_test,
         display_labels=isimler,

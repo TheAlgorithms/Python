@@ -1,4 +1,4 @@
-# Random Forest Classifier Example
+# Rastgele Orman Sınıflandırıcı Örneği
 from matplotlib import pyplot as plt
 from sklearn.datasets import load_iris
 from sklearn.ensemble import RandomForestClassifier
@@ -9,25 +9,25 @@ from sklearn.model_selection import train_test_split
 def main():
 
     """
-    Random Forest Classifier Example using sklearn function.
-    Iris type dataset is used to demonstrate algorithm.
+    sklearn fonksiyonunu kullanarak Rastgele Orman Sınıflandırıcı Örneği.
+    Algoritmayı göstermek için Iris tipi veri seti kullanılmıştır.
     """
 
-    # Load Iris dataset
+    # Iris veri setini yükle
     iris = load_iris()
 
-    # Split dataset into train and test data
-    x = iris["data"]  # features
+    # Veri setini eğitim ve test verisi olarak ayır
+    x = iris["data"]  # özellikler
     y = iris["target"]
     x_train, x_test, y_train, y_test = train_test_split(
         x, y, test_size=0.3, random_state=1
     )
 
-    # Random Forest Classifier
+    # Rastgele Orman Sınıflandırıcı
     rand_for = RandomForestClassifier(random_state=42, n_estimators=100)
     rand_for.fit(x_train, y_train)
 
-    # Display Confusion Matrix of Classifier
+    # Sınıflandırıcının Karışıklık Matrisi'ni Göster
     plot_confusion_matrix(
         rand_for,
         x_test,
@@ -36,7 +36,7 @@ def main():
         cmap="Blues",
         normalize="true",
     )
-    plt.title("Normalized Confusion Matrix - IRIS Dataset")
+    plt.title("Normalize Edilmiş Karışıklık Matrisi - IRIS Veri Seti")
     plt.show()
 
 

@@ -1,50 +1,50 @@
-# Reference: https://www.geeksforgeeks.org/position-of-rightmost-set-bit/
+# Referans: https://www.geeksforgeeks.org/position-of-rightmost-set-bit/
 
 
-def get_index_of_rightmost_set_bit(number: int) -> int:
+def en_sagdaki_ayarlanmis_bit_indeksi(sayi: int) -> int:
     """
-    Take in a positive integer 'number'.
-    Returns the zero-based index of first set bit in that 'number' from right.
-    Returns -1, If no set bit found.
+    Pozitif bir tamsayı 'sayi' alır.
+    Bu 'sayi'daki sağdan ilk ayarlanmış bitin sıfır tabanlı indeksini döndürür.
+    Ayarlanmış bit bulunamazsa -1 döndürür.
 
-    >>> get_index_of_rightmost_set_bit(0)
+    >>> en_sagdaki_ayarlanmis_bit_indeksi(0)
     -1
-    >>> get_index_of_rightmost_set_bit(5)
+    >>> en_sagdaki_ayarlanmis_bit_indeksi(5)
     0
-    >>> get_index_of_rightmost_set_bit(36)
+    >>> en_sagdaki_ayarlanmis_bit_indeksi(36)
     2
-    >>> get_index_of_rightmost_set_bit(8)
+    >>> en_sagdaki_ayarlanmis_bit_indeksi(8)
     3
-    >>> get_index_of_rightmost_set_bit(-18)
+    >>> en_sagdaki_ayarlanmis_bit_indeksi(-18)
     Traceback (most recent call last):
         ...
-    ValueError: Input must be a non-negative integer
-    >>> get_index_of_rightmost_set_bit('test')
+    ValueError: Girdi negatif olmayan bir tamsayı olmalıdır
+    >>> en_sagdaki_ayarlanmis_bit_indeksi('test')
     Traceback (most recent call last):
         ...
-    ValueError: Input must be a non-negative integer
-    >>> get_index_of_rightmost_set_bit(1.25)
+    ValueError: Girdi negatif olmayan bir tamsayı olmalıdır
+    >>> en_sagdaki_ayarlanmis_bit_indeksi(1.25)
     Traceback (most recent call last):
         ...
-    ValueError: Input must be a non-negative integer
+    ValueError: Girdi negatif olmayan bir tamsayı olmalıdır
     """
 
-    if not isinstance(number, int) or number < 0:
-        raise ValueError("Input must be a non-negative integer")
+    if not isinstance(sayi, int) or sayi < 0:
+        raise ValueError("Girdi negatif olmayan bir tamsayı olmalıdır")
 
-    intermediate = number & ~(number - 1)
-    index = 0
-    while intermediate:
-        intermediate >>= 1
-        index += 1
-    return index - 1
+    ara_deger = sayi & ~(sayi - 1)
+    indeks = 0
+    while ara_deger:
+        ara_deger >>= 1
+        indeks += 1
+    return indeks - 1
 
 
 if __name__ == "__main__":
     """
-    Finding the index of rightmost set bit has some very peculiar use-cases,
-    especially in finding missing or/and repeating numbers in a list of
-    positive integers.
+    En sağdaki ayarlanmış bitin indeksini bulmak, özellikle pozitif tamsayılar
+    listesindeki eksik veya/veya tekrarlayan sayıları bulmada çok özel kullanım
+    durumlarına sahiptir.
     """
     import doctest
 

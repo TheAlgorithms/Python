@@ -1,7 +1,8 @@
 def kruskal(
-    num_nodes: int, edges: list[tuple[int, int, int]]
+    düğüm_sayısı: int, kenarlar: list[tuple[int, int, int]]
 ) -> list[tuple[int, int, int]]:
     """
+    Kruskal algoritması ile minimum yayılım ağacı (MST) bulma
     >>> kruskal(4, [(0, 1, 3), (1, 2, 5), (2, 3, 1)])
     [(2, 3, 1), (0, 1, 3), (1, 2, 5)]
 
@@ -12,35 +13,38 @@ def kruskal(
     ... (2, 1, 1)])
     [(2, 3, 1), (0, 2, 1), (2, 1, 1)]
     """
-    edges = sorted(edges, key=lambda edge: edge[2])
+    kenarlar = sorted(kenarlar, key=lambda kenar: kenar[2])
 
-    parent = list(range(num_nodes))
+    ebeveyn = list(range(düğüm_sayısı))
 
-    def find_parent(i):
-        if i != parent[i]:
-            parent[i] = find_parent(parent[i])
-        return parent[i]
+    def ebeveyn_bul(i):
+        if i != ebeveyn[i]:
+            ebeveyn[i] = ebeveyn_bul(ebeveyn[i])
+        return ebeveyn[i]
 
-    minimum_spanning_tree_cost = 0
-    minimum_spanning_tree = []
+    minimum_yayılım_ağacı_maliyeti = 0
+    minimum_yayılım_ağacı = []
 
-    for edge in edges:
-        parent_a = find_parent(edge[0])
-        parent_b = find_parent(edge[1])
-        if parent_a != parent_b:
-            minimum_spanning_tree_cost += edge[2]
-            minimum_spanning_tree.append(edge)
-            parent[parent_a] = parent_b
+    for kenar in kenarlar:
+        ebeveyn_a = ebeveyn_bul(kenar[0])
+        ebeveyn_b = ebeveyn_bul(kenar[1])
+        if ebeveyn_a != ebeveyn_b:
+            minimum_yayılım_ağacı_maliyeti += kenar[2]
+            minimum_yayılım_ağacı.append(kenar)
+            ebeveyn[ebeveyn_a] = ebeveyn_b
 
-    return minimum_spanning_tree
+    return minimum_yayılım_ağacı
 
 
 if __name__ == "__main__":  # pragma: no cover
-    num_nodes, num_edges = list(map(int, input().strip().split()))
-    edges = []
+    düğüm_sayısı, kenar_sayısı = list(map(int, input().strip().split()))
+    kenarlar = []
 
-    for _ in range(num_edges):
-        node1, node2, cost = (int(x) for x in input().strip().split())
-        edges.append((node1, node2, cost))
+    for _ in range(kenar_sayısı):
+        düğüm1, düğüm2, maliyet = (int(x) for x in input().strip().split())
+        kenarlar.append((düğüm1, düğüm2, maliyet))
 
-    kruskal(num_nodes, edges)
+    mst = kruskal(düğüm_sayısı, kenarlar)
+    print("Minimum Yayılım Ağacı:")
+    for kenar in mst:
+        print(f"{kenar[0]} - {kenar[1]}: {kenar[2]}")

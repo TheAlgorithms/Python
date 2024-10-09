@@ -1,17 +1,21 @@
 from math import pi
 
+#Organised by K. Umut Araz
 
-def arc_length(angle: int, radius: int) -> float:
+def yay_uzunlugu(acı: int, yaricap: int) -> float:
     """
-    >>> arc_length(45, 5)
+    Bir çemberin yay uzunluğunu hesaplar.
+    
+    Örnekler:
+    >>> yay_uzunlugu(45, 5)
     3.9269908169872414
-    >>> arc_length(120, 15)
+    >>> yay_uzunlugu(120, 15)
     31.415926535897928
-    >>> arc_length(90, 10)
+    >>> yay_uzunlugu(90, 10)
     15.707963267948966
     """
-    return 2 * pi * radius * (angle / 360)
+    return 2 * pi * yaricap * (acı / 360)
 
 
 if __name__ == "__main__":
-    print(arc_length(90, 10))
+    print(yay_uzunlugu(90, 10))

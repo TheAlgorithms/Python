@@ -1,61 +1,57 @@
 # https://en.wikipedia.org/wiki/Fizz_buzz#Programming
 
 
-def fizz_buzz(number: int, iterations: int) -> str:
+def fizz_buzz(sayi: int, yineleme: int) -> str:
     """
-    Plays FizzBuzz.
-    Prints Fizz if number is a multiple of 3.
-    Prints Buzz if its a multiple of 5.
-    Prints FizzBuzz if its a multiple of both 3 and 5 or 15.
-    Else Prints The Number Itself.
+    FizzBuzz oynar.
+    Sayı 3'ün katıysa Fizz yazdırır.
+    5'in katıysa Buzz yazdırır.
+    Hem 3 hem de 5'in veya 15'in katıysa FizzBuzz yazdırır.
+    Aksi takdirde sayının kendisini yazdırır.
     >>> fizz_buzz(1,7)
     '1 2 Fizz 4 Buzz Fizz 7 '
     >>> fizz_buzz(1,0)
     Traceback (most recent call last):
       ...
-    ValueError: Iterations must be done more than 0 times to play FizzBuzz
+    ValueError: FizzBuzz oynamak için yineleme sayısı 0'dan büyük olmalıdır
     >>> fizz_buzz(-5,5)
     Traceback (most recent call last):
         ...
-    ValueError: starting number must be
-                             and integer and be more than 0
+    ValueError: başlangıç sayısı bir tamsayı olmalı ve 0'dan büyük olmalıdır
     >>> fizz_buzz(10,-5)
     Traceback (most recent call last):
         ...
-    ValueError: Iterations must be done more than 0 times to play FizzBuzz
+    ValueError: FizzBuzz oynamak için yineleme sayısı 0'dan büyük olmalıdır
     >>> fizz_buzz(1.5,5)
     Traceback (most recent call last):
         ...
-    ValueError: starting number must be
-                             and integer and be more than 0
+    ValueError: başlangıç sayısı bir tamsayı olmalı ve 0'dan büyük olmalıdır
     >>> fizz_buzz(1,5.5)
     Traceback (most recent call last):
         ...
-    ValueError: iterations must be defined as integers
+    ValueError: yineleme sayısı tamsayı olarak tanımlanmalıdır
     """
-    if not isinstance(iterations, int):
-        raise ValueError("iterations must be defined as integers")
-    if not isinstance(number, int) or not number >= 1:
+    if not isinstance(yineleme, int):
+        raise ValueError("yineleme sayısı tamsayı olarak tanımlanmalıdır")
+    if not isinstance(sayi, int) or not sayi >= 1:
         raise ValueError(
-            """starting number must be
-                         and integer and be more than 0"""
+            "başlangıç sayısı bir tamsayı olmalı ve 0'dan büyük olmalıdır"
         )
-    if not iterations >= 1:
-        raise ValueError("Iterations must be done more than 0 times to play FizzBuzz")
+    if not yineleme >= 1:
+        raise ValueError("FizzBuzz oynamak için yineleme sayısı 0'dan büyük olmalıdır")
 
-    out = ""
-    while number <= iterations:
-        if number % 3 == 0:
-            out += "Fizz"
-        if number % 5 == 0:
-            out += "Buzz"
-        if 0 not in (number % 3, number % 5):
-            out += str(number)
+    sonuc = ""
+    while sayi <= yineleme:
+        if sayi % 3 == 0:
+            sonuc += "Fizz"
+        if sayi % 5 == 0:
+            sonuc += "Buzz"
+        if 0 not in (sayi % 3, sayi % 5):
+            sonuc += str(sayi)
 
-        # print(out)
-        number += 1
-        out += " "
-    return out
+        sayi += 1
+        sonuc += " "
+    return sonuc
 
 
 if __name__ == "__main__":

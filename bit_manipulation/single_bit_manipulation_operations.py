@@ -1,97 +1,94 @@
 #!/usr/bin/env python3
 
-"""Provide the functionality to manipulate a single bit."""
+"""Tek bir biti manipüle etme işlevselliği sağlayın."""
 
 
-def set_bit(number: int, position: int) -> int:
+def bit_ayarla(sayi: int, konum: int) -> int:
     """
-    Set the bit at position to 1.
+    Konumdaki biti 1 olarak ayarla.
 
-    Details: perform bitwise or for given number and X.
-    Where X is a number with all the bits - zeroes and bit on given
-    position - one.
+    Detaylar: verilen sayı ve X için bit düzeyinde veya işlemi gerçekleştirin.
+    X, tüm bitleri sıfır olan ve verilen konumdaki biti bir olan bir sayıdır.
 
-    >>> set_bit(0b1101, 1) # 0b1111
+    >>> bit_ayarla(0b1101, 1) # 0b1111
     15
-    >>> set_bit(0b0, 5) # 0b100000
+    >>> bit_ayarla(0b0, 5) # 0b100000
     32
-    >>> set_bit(0b1111, 1) # 0b1111
+    >>> bit_ayarla(0b1111, 1) # 0b1111
     15
     """
-    return number | (1 << position)
+    return sayi | (1 << konum)
 
 
-def clear_bit(number: int, position: int) -> int:
+def bit_temizle(sayi: int, konum: int) -> int:
     """
-    Set the bit at position to 0.
+    Konumdaki biti 0 olarak ayarla.
 
-    Details: perform bitwise and for given number and X.
-    Where X is a number with all the bits - ones and bit on given
-    position - zero.
+    Detaylar: verilen sayı ve X için bit düzeyinde ve işlemi gerçekleştirin.
+    X, tüm bitleri bir olan ve verilen konumdaki biti sıfır olan bir sayıdır.
 
-    >>> clear_bit(0b10010, 1) # 0b10000
+    >>> bit_temizle(0b10010, 1) # 0b10000
     16
-    >>> clear_bit(0b0, 5) # 0b0
+    >>> bit_temizle(0b0, 5) # 0b0
     0
     """
-    return number & ~(1 << position)
+    return sayi & ~(1 << konum)
 
 
-def flip_bit(number: int, position: int) -> int:
+def bit_degistir(sayi: int, konum: int) -> int:
     """
-    Flip the bit at position.
+    Konumdaki biti değiştir.
 
-    Details: perform bitwise xor for given number and X.
-    Where X is a number with all the bits - zeroes and bit on given
-    position - one.
+    Detaylar: verilen sayı ve X için bit düzeyinde xor işlemi gerçekleştirin.
+    X, tüm bitleri sıfır olan ve verilen konumdaki biti bir olan bir sayıdır.
 
-    >>> flip_bit(0b101, 1) # 0b111
+    >>> bit_degistir(0b101, 1) # 0b111
     7
-    >>> flip_bit(0b101, 0) # 0b100
+    >>> bit_degistir(0b101, 0) # 0b100
     4
     """
-    return number ^ (1 << position)
+    return sayi ^ (1 << konum)
 
 
-def is_bit_set(number: int, position: int) -> bool:
+def bit_ayarlimi(sayi: int, konum: int) -> bool:
     """
-    Is the bit at position set?
+    Konumdaki bit ayarlı mı?
 
-    Details: Shift the bit at position to be the first (smallest) bit.
-    Then check if the first bit is set by anding the shifted number with 1.
+    Detaylar: Konumdaki biti en küçük bit olacak şekilde kaydırın.
+    Ardından kaydırılan sayıyı 1 ile anding yaparak ilk bitin ayarlı olup olmadığını kontrol edin.
 
-    >>> is_bit_set(0b1010, 0)
+    >>> bit_ayarlimi(0b1010, 0)
     False
-    >>> is_bit_set(0b1010, 1)
+    >>> bit_ayarlimi(0b1010, 1)
     True
-    >>> is_bit_set(0b1010, 2)
+    >>> bit_ayarlimi(0b1010, 2)
     False
-    >>> is_bit_set(0b1010, 3)
+    >>> bit_ayarlimi(0b1010, 3)
     True
-    >>> is_bit_set(0b0, 17)
+    >>> bit_ayarlimi(0b0, 17)
     False
     """
-    return ((number >> position) & 1) == 1
+    return ((sayi >> konum) & 1) == 1
 
 
-def get_bit(number: int, position: int) -> int:
+def bit_al(sayi: int, konum: int) -> int:
     """
-    Get the bit at the given position
+    Verilen konumdaki biti al
 
-    Details: perform bitwise and for the given number and X,
-    Where X is a number with all the bits - zeroes and bit on given position - one.
-    If the result is not equal to 0, then the bit on the given position is 1, else 0.
+    Detaylar: verilen sayı ve X için bit düzeyinde ve işlemi gerçekleştirin,
+    X, tüm bitleri sıfır olan ve verilen konumdaki biti bir olan bir sayıdır.
+    Sonuç sıfıra eşit değilse, verilen konumdaki bit 1'dir, aksi takdirde 0'dır.
 
-    >>> get_bit(0b1010, 0)
+    >>> bit_al(0b1010, 0)
     0
-    >>> get_bit(0b1010, 1)
+    >>> bit_al(0b1010, 1)
     1
-    >>> get_bit(0b1010, 2)
+    >>> bit_al(0b1010, 2)
     0
-    >>> get_bit(0b1010, 3)
+    >>> bit_al(0b1010, 3)
     1
     """
-    return int((number & (1 << position)) != 0)
+    return int((sayi & (1 << konum)) != 0)
 
 
 if __name__ == "__main__":

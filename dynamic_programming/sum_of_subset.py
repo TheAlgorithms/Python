@@ -1,32 +1,32 @@
-def is_sum_subset(arr: list[int], required_sum: int) -> bool:
+def alt_kume_toplami_var_mi(arr: list[int], gereken_toplam: int) -> bool:
     """
-    >>> is_sum_subset([2, 4, 6, 8], 5)
+    >>> alt_kume_toplami_var_mi([2, 4, 6, 8], 5)
     False
-    >>> is_sum_subset([2, 4, 6, 8], 14)
+    >>> alt_kume_toplami_var_mi([2, 4, 6, 8], 14)
     True
     """
-    # a subset value says 1 if that subset sum can be formed else 0
-    # initially no subsets can be formed hence False/0
-    arr_len = len(arr)
-    subset = [[False] * (required_sum + 1) for _ in range(arr_len + 1)]
+    # Bir alt küme değeri, o alt küme toplamı oluşturulabiliyorsa 1, aksi takdirde 0 der.
+    # Başlangıçta hiçbir alt küme oluşturulamaz, bu nedenle False/0
+    arr_uzunluk = len(arr)
+    alt_kume = [[False] * (gereken_toplam + 1) for _ in range(arr_uzunluk + 1)]
 
-    # for each arr value, a sum of zero(0) can be formed by not taking any element
-    # hence True/1
-    for i in range(arr_len + 1):
-        subset[i][0] = True
+    # Her arr değeri için, hiçbir eleman alınmadan sıfır(0) toplamı oluşturulabilir
+    # bu nedenle True/1
+    for i in range(arr_uzunluk + 1):
+        alt_kume[i][0] = True
 
-    # sum is not zero and set is empty then false
-    for i in range(1, required_sum + 1):
-        subset[0][i] = False
+    # Toplam sıfır değilse ve küme boşsa false
+    for i in range(1, gereken_toplam + 1):
+        alt_kume[0][i] = False
 
-    for i in range(1, arr_len + 1):
-        for j in range(1, required_sum + 1):
+    for i in range(1, arr_uzunluk + 1):
+        for j in range(1, gereken_toplam + 1):
             if arr[i - 1] > j:
-                subset[i][j] = subset[i - 1][j]
+                alt_kume[i][j] = alt_kume[i - 1][j]
             if arr[i - 1] <= j:
-                subset[i][j] = subset[i - 1][j] or subset[i - 1][j - arr[i - 1]]
+                alt_kume[i][j] = alt_kume[i - 1][j] or alt_kume[i - 1][j - arr[i - 1]]
 
-    return subset[arr_len][required_sum]
+    return alt_kume[arr_uzunluk][gereken_toplam]
 
 
 if __name__ == "__main__":

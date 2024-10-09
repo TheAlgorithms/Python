@@ -1,10 +1,9 @@
 """
-Word Ladder is a classic problem in computer science.
-The problem is to transform a start word into an end word
-by changing one letter at a time.
-Each intermediate word must be a valid word from a given list of words.
-The goal is to find a transformation sequence
-from the start word to the end word.
+Kelime Merdiveni, bilgisayar bilimlerinde klasik bir problemdir.
+Bu problemde, bir başlangıç kelimesini bir bitiş kelimesine
+her seferinde bir harf değiştirerek dönüştürmek amaçlanır.
+Her ara kelime, verilen bir kelime listesinden geçerli bir kelime olmalıdır.
+Amaç, başlangıç kelimesinden bitiş kelimesine bir dönüşüm dizisi bulmaktır.
 
 Wikipedia: https://en.wikipedia.org/wiki/Word_ladder
 """
@@ -12,89 +11,89 @@ Wikipedia: https://en.wikipedia.org/wiki/Word_ladder
 import string
 
 
-def backtrack(
-    current_word: str, path: list[str], end_word: str, word_set: set[str]
+def geri_izleme(
+    mevcut_kelime: str, yol: list[str], bitiş_kelime: str, kelime_kümesi: set[str]
 ) -> list[str]:
     """
-    Helper function to perform backtracking to find the transformation
-    from the current_word to the end_word.
+    Mevcut kelimeden bitiş kelimesine dönüşümü bulmak için geri izleme
+    gerçekleştiren yardımcı fonksiyon.
 
-    Parameters:
-    current_word (str): The current word in the transformation sequence.
-    path (list[str]): The list of transformations from begin_word to current_word.
-    end_word (str): The target word for transformation.
-    word_set (set[str]): The set of valid words for transformation.
+    Parametreler:
+    mevcut_kelime (str): Dönüşüm dizisindeki mevcut kelime.
+    yol (list[str]): Başlangıç kelimesinden mevcut kelimeye kadar olan dönüşümler listesi.
+    bitiş_kelime (str): Dönüşüm için hedef kelime.
+    kelime_kümesi (set[str]): Dönüşüm için geçerli kelimelerin kümesi.
 
-    Returns:
-    list[str]: The list of transformations from begin_word to end_word.
-               Returns an empty list if there is no valid
-                transformation from current_word to end_word.
+    Dönüş:
+    list[str]: Başlangıç kelimesinden bitiş kelimesine kadar olan dönüşümler listesi.
+               Eğer mevcut kelimeden bitiş kelimesine geçerli bir dönüşüm yoksa
+               boş bir liste döner.
 
-    Example:
-    >>> backtrack("hit", ["hit"], "cog", {"hot", "dot", "dog", "lot", "log", "cog"})
+    Örnek:
+    >>> geri_izleme("hit", ["hit"], "cog", {"hot", "dot", "dog", "lot", "log", "cog"})
     ['hit', 'hot', 'dot', 'lot', 'log', 'cog']
 
-    >>> backtrack("hit", ["hit"], "cog", {"hot", "dot", "dog", "lot", "log"})
+    >>> geri_izleme("hit", ["hit"], "cog", {"hot", "dot", "dog", "lot", "log"})
     []
 
-    >>> backtrack("lead", ["lead"], "gold", {"load", "goad", "gold", "lead", "lord"})
+    >>> geri_izleme("lead", ["lead"], "gold", {"load", "goad", "gold", "lead", "lord"})
     ['lead', 'lead', 'load', 'goad', 'gold']
 
-    >>> backtrack("game", ["game"], "code", {"came", "cage", "code", "cade", "gave"})
+    >>> geri_izleme("game", ["game"], "code", {"came", "cage", "code", "cade", "gave"})
     ['game', 'came', 'cade', 'code']
     """
 
-    # Base case: If the current word is the end word, return the path
-    if current_word == end_word:
-        return path
+    # Temel durum: Eğer mevcut kelime bitiş kelimesi ise, yolu döndür
+    if mevcut_kelime == bitiş_kelime:
+        return yol
 
-    # Try all possible single-letter transformations
-    for i in range(len(current_word)):
-        for c in string.ascii_lowercase:  # Try changing each letter
-            transformed_word = current_word[:i] + c + current_word[i + 1 :]
-            if transformed_word in word_set:
-                word_set.remove(transformed_word)
-                # Recur with the new word added to the path
-                result = backtrack(
-                    transformed_word, [*path, transformed_word], end_word, word_set
+    # Tüm olası tek harfli dönüşümleri dene
+    for i in range(len(mevcut_kelime)):
+        for c in string.ascii_lowercase:  # Her harfi değiştirmeyi dene
+            dönüştürülmüş_kelime = mevcut_kelime[:i] + c + mevcut_kelime[i + 1 :]
+            if dönüştürülmüş_kelime in kelime_kümesi:
+                kelime_kümesi.remove(dönüştürülmüş_kelime)
+                # Yeni kelimeyi yola ekleyerek rekürsif olarak çağır
+                sonuç = geri_izleme(
+                    dönüştürülmüş_kelime, [*yol, dönüştürülmüş_kelime], bitiş_kelime, kelime_kümesi
                 )
-                if result:  # valid transformation found
-                    return result
-                word_set.add(transformed_word)  # backtrack
+                if sonuç:  # geçerli dönüşüm bulundu
+                    return sonuç
+                kelime_kümesi.add(dönüştürülmüş_kelime)  # geri izleme
 
-    return []  # No valid transformation found
+    return []  # Geçerli dönüşüm bulunamadı
 
 
-def word_ladder(begin_word: str, end_word: str, word_set: set[str]) -> list[str]:
+def kelime_merdiveni(başlangıç_kelime: str, bitiş_kelime: str, kelime_kümesi: set[str]) -> list[str]:
     """
-    Solve the Word Ladder problem using Backtracking and return
-    the list of transformations from begin_word to end_word.
+    Kelime Merdiveni problemini Geri İzleme kullanarak çözer ve
+    başlangıç kelimesinden bitiş kelimesine kadar olan dönüşümler listesini döner.
 
-    Parameters:
-    begin_word (str): The word from which the transformation starts.
-    end_word (str): The target word for transformation.
-    word_list (list[str]): The list of valid words for transformation.
+    Parametreler:
+    başlangıç_kelime (str): Dönüşümün başladığı kelime.
+    bitiş_kelime (str): Dönüşüm için hedef kelime.
+    kelime_listesi (list[str]): Dönüşüm için geçerli kelimelerin listesi.
 
-    Returns:
-    list[str]: The list of transformations from begin_word to end_word.
-               Returns an empty list if there is no valid transformation.
+    Dönüş:
+    list[str]: Başlangıç kelimesinden bitiş kelimesine kadar olan dönüşümler listesi.
+               Eğer geçerli bir dönüşüm yoksa boş bir liste döner.
 
-    Example:
-    >>> word_ladder("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"])
+    Örnek:
+    >>> kelime_merdiveni("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"])
     ['hit', 'hot', 'dot', 'lot', 'log', 'cog']
 
-    >>> word_ladder("hit", "cog", ["hot", "dot", "dog", "lot", "log"])
+    >>> kelime_merdiveni("hit", "cog", ["hot", "dot", "dog", "lot", "log"])
     []
 
-    >>> word_ladder("lead", "gold", ["load", "goad", "gold", "lead", "lord"])
+    >>> kelime_merdiveni("lead", "gold", ["load", "goad", "gold", "lead", "lord"])
     ['lead', 'lead', 'load', 'goad', 'gold']
 
-    >>> word_ladder("game", "code", ["came", "cage", "code", "cade", "gave"])
+    >>> kelime_merdiveni("game", "code", ["came", "cage", "code", "cade", "gave"])
     ['game', 'came', 'cade', 'code']
     """
 
-    if end_word not in word_set:  # no valid transformation possible
+    if bitiş_kelime not in kelime_kümesi:  # geçerli dönüşüm mümkün değil
         return []
 
-    # Perform backtracking starting from the begin_word
-    return backtrack(begin_word, [begin_word], end_word, word_set)
+    # Başlangıç kelimesinden başlayarak geri izleme gerçekleştir
+    return geri_izleme(başlangıç_kelime, [başlangıç_kelime], bitiş_kelime, kelime_kümesi)

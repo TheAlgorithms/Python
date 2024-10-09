@@ -1,39 +1,39 @@
 #!/usr/bin/env python3
 
 
-def climb_stairs(number_of_steps: int) -> int:
+def merdiven_cikma(basamak_sayisi: int) -> int:
     """
-    LeetCdoe No.70: Climbing Stairs
-    Distinct ways to climb a number_of_steps staircase where each time you can either
-    climb 1 or 2 steps.
+    LeetCode No.70: Climbing Stairs
+    Her seferinde 1 veya 2 basamak çıkabileceğiniz bir merdivende basamak_sayisi kadar
+    basamağı çıkmanın farklı yolları.
 
     Args:
-        number_of_steps: number of steps on the staircase
+        basamak_sayisi: merdivendeki basamak sayısı
 
     Returns:
-        Distinct ways to climb a number_of_steps staircase
+        basamak_sayisi kadar basamağı çıkmanın farklı yolları
 
     Raises:
-        AssertionError: number_of_steps not positive integer
+        AssertionError: basamak_sayisi pozitif bir tam sayı değilse
 
-    >>> climb_stairs(3)
+    >>> merdiven_cikma(3)
     3
-    >>> climb_stairs(1)
+    >>> merdiven_cikma(1)
     1
-    >>> climb_stairs(-7)  # doctest: +ELLIPSIS
+    >>> merdiven_cikma(-7)  # doctest: +ELLIPSIS
     Traceback (most recent call last):
         ...
-    AssertionError: number_of_steps needs to be positive integer, your input -7
+    AssertionError: basamak_sayisi pozitif bir tam sayı olmalı, girdiniz -7
     """
     assert (
-        isinstance(number_of_steps, int) and number_of_steps > 0
-    ), f"number_of_steps needs to be positive integer, your input {number_of_steps}"
-    if number_of_steps == 1:
+        isinstance(basamak_sayisi, int) and basamak_sayisi > 0
+    ), f"basamak_sayisi pozitif bir tam sayı olmalı, girdiniz {basamak_sayisi}"
+    if basamak_sayisi == 1:
         return 1
-    previous, current = 1, 1
-    for _ in range(number_of_steps - 1):
-        current, previous = current + previous, current
-    return current
+    onceki, simdiki = 1, 1
+    for _ in range(basamak_sayisi - 1):
+        simdiki, onceki = simdiki + onceki, simdiki
+    return simdiki
 
 
 if __name__ == "__main__":

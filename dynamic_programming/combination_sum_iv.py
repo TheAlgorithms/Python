@@ -1,101 +1,101 @@
 """
-Question:
-You are given an array of distinct integers and you have to tell how many
-different ways of selecting the elements from the array are there such that
-the sum of chosen elements is equal to the target number tar.
+Soru:
+Size farklı tamsayılardan oluşan bir dizi veriliyor ve bu diziden elemanları
+seçmenin kaç farklı yolu olduğunu söylemeniz gerekiyor, öyle ki seçilen
+elemanların toplamı hedef sayı tar'a eşit olmalıdır.
 
-Example
+Örnek
 
-Input:
+Girdi:
 N = 3
-target = 5
-array = [1, 2, 5]
+hedef = 5
+dizi = [1, 2, 5]
 
-Output:
+Çıktı:
 9
 
-Approach:
-The basic idea is to go over recursively to find the way such that the sum
-of chosen elements is “tar”. For every element, we have two choices
-    1. Include the element in our set of chosen elements.
-    2. Don't include the element in our set of chosen elements.
+Yaklaşım:
+Temel fikir, seçilen elemanların toplamının “tar” olacak şekilde yolu
+bulmak için özyinelemeli olarak gitmektir. Her eleman için iki seçeneğimiz var:
+    1. Elemanı seçilen elemanlar kümesine dahil et.
+    2. Elemanı seçilen elemanlar kümesine dahil etme.
 """
 
 
-def combination_sum_iv(array: list[int], target: int) -> int:
+def kombinasyon_toplam_iv(dizi: list[int], hedef: int) -> int:
     """
-    Function checks the all possible combinations, and returns the count
-    of possible combination in exponential Time Complexity.
+    Fonksiyon tüm olası kombinasyonları kontrol eder ve üstel Zaman
+    Karmaşıklığında olası kombinasyonların sayısını döndürür.
 
-    >>> combination_sum_iv([1,2,5], 5)
+    >>> kombinasyon_toplam_iv([1,2,5], 5)
     9
     """
 
-    def count_of_possible_combinations(target: int) -> int:
-        if target < 0:
+    def olasi_kombinasyonlarin_sayisi(hedef: int) -> int:
+        if hedef < 0:
             return 0
-        if target == 0:
+        if hedef == 0:
             return 1
-        return sum(count_of_possible_combinations(target - item) for item in array)
+        return sum(olasi_kombinasyonlarin_sayisi(hedef - eleman) for eleman in dizi)
 
-    return count_of_possible_combinations(target)
+    return olasi_kombinasyonlarin_sayisi(hedef)
 
 
-def combination_sum_iv_dp_array(array: list[int], target: int) -> int:
+def kombinasyon_toplam_iv_dp_dizi(dizi: list[int], hedef: int) -> int:
     """
-    Function checks the all possible combinations, and returns the count
-    of possible combination in O(N^2) Time Complexity as we are using Dynamic
-    programming array here.
+    Fonksiyon tüm olası kombinasyonları kontrol eder ve O(N^2) Zaman
+    Karmaşıklığında olası kombinasyonların sayısını döndürür, çünkü burada
+    Dinamik programlama dizisi kullanıyoruz.
 
-    >>> combination_sum_iv_dp_array([1,2,5], 5)
+    >>> kombinasyon_toplam_iv_dp_dizi([1,2,5], 5)
     9
     """
 
-    def count_of_possible_combinations_with_dp_array(
-        target: int, dp_array: list[int]
+    def dp_dizi_ile_olasi_kombinasyonlarin_sayisi(
+        hedef: int, dp_dizi: list[int]
     ) -> int:
-        if target < 0:
+        if hedef < 0:
             return 0
-        if target == 0:
+        if hedef == 0:
             return 1
-        if dp_array[target] != -1:
-            return dp_array[target]
-        answer = sum(
-            count_of_possible_combinations_with_dp_array(target - item, dp_array)
-            for item in array
+        if dp_dizi[hedef] != -1:
+            return dp_dizi[hedef]
+        cevap = sum(
+            dp_dizi_ile_olasi_kombinasyonlarin_sayisi(hedef - eleman, dp_dizi)
+            for eleman in dizi
         )
-        dp_array[target] = answer
-        return answer
+        dp_dizi[hedef] = cevap
+        return cevap
 
-    dp_array = [-1] * (target + 1)
-    return count_of_possible_combinations_with_dp_array(target, dp_array)
+    dp_dizi = [-1] * (hedef + 1)
+    return dp_dizi_ile_olasi_kombinasyonlarin_sayisi(hedef, dp_dizi)
 
 
-def combination_sum_iv_bottom_up(n: int, array: list[int], target: int) -> int:
+def kombinasyon_toplam_iv_bottom_up(n: int, dizi: list[int], hedef: int) -> int:
     """
-    Function checks the all possible combinations with using bottom up approach,
-    and returns the count of possible combination in O(N^2) Time Complexity
-    as we are using Dynamic programming array here.
+    Fonksiyon alt-üst yaklaşımı kullanarak tüm olası kombinasyonları kontrol eder
+    ve Dinamik programlama dizisi kullandığımız için O(N^2) Zaman Karmaşıklığında
+    olası kombinasyonların sayısını döndürür.
 
-    >>> combination_sum_iv_bottom_up(3, [1,2,5], 5)
+    >>> kombinasyon_toplam_iv_bottom_up(3, [1,2,5], 5)
     9
     """
 
-    dp_array = [0] * (target + 1)
-    dp_array[0] = 1
+    dp_dizi = [0] * (hedef + 1)
+    dp_dizi[0] = 1
 
-    for i in range(1, target + 1):
+    for i in range(1, hedef + 1):
         for j in range(n):
-            if i - array[j] >= 0:
-                dp_array[i] += dp_array[i - array[j]]
+            if i - dizi[j] >= 0:
+                dp_dizi[i] += dp_dizi[i - dizi[j]]
 
-    return dp_array[target]
+    return dp_dizi[hedef]
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    target = 5
-    array = [1, 2, 5]
-    print(combination_sum_iv(array, target))
+    hedef = 5
+    dizi = [1, 2, 5]
+    print(kombinasyon_toplam_iv(dizi, hedef))

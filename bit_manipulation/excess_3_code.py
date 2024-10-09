@@ -1,23 +1,23 @@
-def excess_3_code(number: int) -> str:
+def eksik_3_kodu(sayi: int) -> str:
     """
-    Find excess-3 code of integer base 10.
-    Add 3 to all digits in a decimal number then convert to a binary-coded decimal.
+    On tabanında bir tam sayının eksik-3 kodunu bulun.
+    Ondalık bir sayının tüm basamaklarına 3 ekleyin, ardından ikili kodlanmış ondalık sayıya dönüştürün.
     https://en.wikipedia.org/wiki/Excess-3
 
-    >>> excess_3_code(0)
+    >>> eksik_3_kodu(0)
     '0b0011'
-    >>> excess_3_code(3)
+    >>> eksik_3_kodu(3)
     '0b0110'
-    >>> excess_3_code(2)
+    >>> eksik_3_kodu(2)
     '0b0101'
-    >>> excess_3_code(20)
+    >>> eksik_3_kodu(20)
     '0b01010011'
-    >>> excess_3_code(120)
+    >>> eksik_3_kodu(120)
     '0b010001010011'
     """
     num = ""
-    for digit in str(max(0, number)):
-        num += str(bin(int(digit) + 3))[2:].zfill(4)
+    for basamak in str(max(0, sayi)):
+        num += str(bin(int(basamak) + 3))[2:].zfill(4)
     return "0b" + num
 
 

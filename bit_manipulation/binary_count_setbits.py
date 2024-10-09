@@ -1,7 +1,7 @@
 def binary_count_setbits(a: int) -> int:
     """
-    Take in 1 integer, return a number that is
-    the number of 1's in binary representation of that number.
+    Bir tam sayı alır, bu sayının ikili gösterimindeki
+    1'lerin sayısını döner.
 
     >>> binary_count_setbits(25)
     3
@@ -18,20 +18,20 @@ def binary_count_setbits(a: int) -> int:
     >>> binary_count_setbits(-10)
     Traceback (most recent call last):
         ...
-    ValueError: Input value must be a positive integer
+    ValueError: Girdi değeri pozitif bir tam sayı olmalıdır
     >>> binary_count_setbits(0.8)
     Traceback (most recent call last):
         ...
-    TypeError: Input value must be a 'int' type
+    TypeError: Girdi değeri 'int' türünde olmalıdır
     >>> binary_count_setbits("0")
     Traceback (most recent call last):
         ...
-    TypeError: '<' not supported between instances of 'str' and 'int'
+    TypeError: '<' 'str' ve 'int' örnekleri arasında desteklenmiyor
     """
     if a < 0:
-        raise ValueError("Input value must be a positive integer")
+        raise ValueError("Girdi değeri pozitif bir tam sayı olmalıdır")
     elif isinstance(a, float):
-        raise TypeError("Input value must be a 'int' type")
+        raise TypeError("Girdi değeri 'int' türünde olmalıdır")
     return bin(a).count("1")
 
 

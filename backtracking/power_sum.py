@@ -1,88 +1,87 @@
 """
-Problem source: https://www.hackerrank.com/challenges/the-power-sum/problem
-Find the number of ways that a given integer X, can be expressed as the sum
-of the Nth powers of unique, natural numbers. For example, if X=13 and N=2.
-We have to find all combinations of unique squares adding up to 13.
-The only solution is 2^2+3^2. Constraints: 1<=X<=1000, 2<=N<=10.
+Problem kaynağı: https://www.hackerrank.com/challenges/the-power-sum/problem
+Verilen bir X tamsayısının, N'inci kuvvetlerinin toplamı olarak ifade edilebileceği
+yolların sayısını bulun. Örneğin, X=13 ve N=2 ise. 13'e kadar olan benzersiz karelerin
+tüm kombinasyonlarını bulmamız gerekiyor. Tek çözüm 2^2+3^2'dir. Kısıtlamalar: 1<=X<=1000, 2<=N<=10.
 """
 
 
-def backtrack(
-    needed_sum: int,
-    power: int,
-    current_number: int,
-    current_sum: int,
-    solutions_count: int,
+def geri_izleme(
+    gereken_toplam: int,
+    kuvvet: int,
+    mevcut_sayı: int,
+    mevcut_toplam: int,
+    çözüm_sayısı: int,
 ) -> tuple[int, int]:
     """
-    >>> backtrack(13, 2, 1, 0, 0)
+    >>> geri_izleme(13, 2, 1, 0, 0)
     (0, 1)
-    >>> backtrack(10, 2, 1, 0, 0)
+    >>> geri_izleme(10, 2, 1, 0, 0)
     (0, 1)
-    >>> backtrack(10, 3, 1, 0, 0)
+    >>> geri_izleme(10, 3, 1, 0, 0)
     (0, 0)
-    >>> backtrack(20, 2, 1, 0, 0)
+    >>> geri_izleme(20, 2, 1, 0, 0)
     (0, 1)
-    >>> backtrack(15, 10, 1, 0, 0)
+    >>> geri_izleme(15, 10, 1, 0, 0)
     (0, 0)
-    >>> backtrack(16, 2, 1, 0, 0)
+    >>> geri_izleme(16, 2, 1, 0, 0)
     (0, 1)
-    >>> backtrack(20, 1, 1, 0, 0)
+    >>> geri_izleme(20, 1, 1, 0, 0)
     (0, 64)
     """
-    if current_sum == needed_sum:
-        # If the sum of the powers is equal to needed_sum, then we have a solution.
-        solutions_count += 1
-        return current_sum, solutions_count
+    if mevcut_toplam == gereken_toplam:
+        # Eğer kuvvetlerin toplamı gereken_toplam'a eşitse, bir çözümümüz var demektir.
+        çözüm_sayısı += 1
+        return mevcut_toplam, çözüm_sayısı
 
-    i_to_n = current_number**power
-    if current_sum + i_to_n <= needed_sum:
-        # If the sum of the powers is less than needed_sum, then continue adding powers.
-        current_sum += i_to_n
-        current_sum, solutions_count = backtrack(
-            needed_sum, power, current_number + 1, current_sum, solutions_count
+    i_kuvvet = mevcut_sayı**kuvvet
+    if mevcut_toplam + i_kuvvet <= gereken_toplam:
+        # Eğer kuvvetlerin toplamı gereken_toplam'dan küçükse, kuvvetleri eklemeye devam edin.
+        mevcut_toplam += i_kuvvet
+        mevcut_toplam, çözüm_sayısı = geri_izleme(
+            gereken_toplam, kuvvet, mevcut_sayı + 1, mevcut_toplam, çözüm_sayısı
         )
-        current_sum -= i_to_n
-    if i_to_n < needed_sum:
-        # If the power of i is less than needed_sum, then try with the next power.
-        current_sum, solutions_count = backtrack(
-            needed_sum, power, current_number + 1, current_sum, solutions_count
+        mevcut_toplam -= i_kuvvet
+    if i_kuvvet < gereken_toplam:
+        # Eğer i'nin kuvveti gereken_toplam'dan küçükse, bir sonraki kuvvetle deneyin.
+        mevcut_toplam, çözüm_sayısı = geri_izleme(
+            gereken_toplam, kuvvet, mevcut_sayı + 1, mevcut_toplam, çözüm_sayısı
         )
-    return current_sum, solutions_count
+    return mevcut_toplam, çözüm_sayısı
 
 
-def solve(needed_sum: int, power: int) -> int:
+def çöz(gereken_toplam: int, kuvvet: int) -> int:
     """
-    >>> solve(13, 2)
+    >>> çöz(13, 2)
     1
-    >>> solve(10, 2)
+    >>> çöz(10, 2)
     1
-    >>> solve(10, 3)
+    >>> çöz(10, 3)
     0
-    >>> solve(20, 2)
+    >>> çöz(20, 2)
     1
-    >>> solve(15, 10)
+    >>> çöz(15, 10)
     0
-    >>> solve(16, 2)
+    >>> çöz(16, 2)
     1
-    >>> solve(20, 1)
+    >>> çöz(20, 1)
     Traceback (most recent call last):
         ...
-    ValueError: Invalid input
-    needed_sum must be between 1 and 1000, power between 2 and 10.
-    >>> solve(-10, 5)
+    ValueError: Geçersiz giriş
+    gereken_toplam 1 ile 1000 arasında, kuvvet 2 ile 10 arasında olmalıdır.
+    >>> çöz(-10, 5)
     Traceback (most recent call last):
         ...
-    ValueError: Invalid input
-    needed_sum must be between 1 and 1000, power between 2 and 10.
+    ValueError: Geçersiz giriş
+    gereken_toplam 1 ile 1000 arasında, kuvvet 2 ile 10 arasında olmalıdır.
     """
-    if not (1 <= needed_sum <= 1000 and 2 <= power <= 10):
+    if not (1 <= gereken_toplam <= 1000 and 2 <= kuvvet <= 10):
         raise ValueError(
-            "Invalid input\n"
-            "needed_sum must be between 1 and 1000, power between 2 and 10."
+            "Geçersiz giriş\n"
+            "gereken_toplam 1 ile 1000 arasında, kuvvet 2 ile 10 arasında olmalıdır."
         )
 
-    return backtrack(needed_sum, power, 1, 0, 0)[1]  # Return the solutions_count
+    return geri_izleme(gereken_toplam, kuvvet, 1, 0, 0)[1]  # Çözüm sayısını döndür
 
 
 if __name__ == "__main__":

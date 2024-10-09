@@ -2,70 +2,70 @@ import cv2
 import numpy as np
 
 """
-Harris Corner Detector
+Harris Köşe Dedektörü
 https://en.wikipedia.org/wiki/Harris_Corner_Detector
 """
 
 
-class HarrisCorner:
-    def __init__(self, k: float, window_size: int):
+class HarrisKose:
+    def __init__(self, k: float, pencere_boyutu: int):
         """
-        k : is an empirically determined constant in [0.04,0.06]
-        window_size : neighbourhoods considered
+        k : [0.04,0.06] aralığında deneysel olarak belirlenmiş bir sabittir
+        pencere_boyutu : dikkate alınan komşuluklar
         """
 
         if k in (0.04, 0.06):
             self.k = k
-            self.window_size = window_size
+            self.pencere_boyutu = pencere_boyutu
         else:
-            raise ValueError("invalid k value")
+            raise ValueError("geçersiz k değeri")
 
     def __str__(self) -> str:
         return str(self.k)
 
-    def detect(self, img_path: str) -> tuple[cv2.Mat, list[list[int]]]:
+    def tespit(self, img_yolu: str) -> tuple[cv2.Mat, list[list[int]]]:
         """
-        Returns the image with corners identified
-        img_path  : path of the image
-        output : list of the corner positions, image
+        Köşeleri belirlenmiş görüntüyü döndürür
+        img_yolu  : görüntünün yolu
+        çıktı : köşe pozisyonlarının listesi, görüntü
         """
 
-        img = cv2.imread(img_path, 0)
+        img = cv2.imread(img_yolu, 0)
         h, w = img.shape
-        corner_list: list[list[int]] = []
-        color_img = img.copy()
-        color_img = cv2.cvtColor(color_img, cv2.COLOR_GRAY2RGB)
+        kose_listesi: list[list[int]] = []
+        renkli_img = img.copy()
+        renkli_img = cv2.cvtColor(renkli_img, cv2.COLOR_GRAY2RGB)
         dy, dx = np.gradient(img)
         ixx = dx**2
         iyy = dy**2
         ixy = dx * dy
         k = 0.04
-        offset = self.window_size // 2
-        for y in range(offset, h - offset):
-            for x in range(offset, w - offset):
+        ofset = self.pencere_boyutu // 2
+        for y in range(ofset, h - ofset):
+            for x in range(ofset, w - ofset):
                 wxx = ixx[
-                    y - offset : y + offset + 1, x - offset : x + offset + 1
+                    y - ofset : y + ofset + 1, x - ofset : x + ofset + 1
                 ].sum()
                 wyy = iyy[
-                    y - offset : y + offset + 1, x - offset : x + offset + 1
+                    y - ofset : y + ofset + 1, x - ofset : x + ofset + 1
                 ].sum()
                 wxy = ixy[
-                    y - offset : y + offset + 1, x - offset : x + offset + 1
+                    y - ofset : y + ofset + 1, x - ofset : x + ofset + 1
                 ].sum()
 
                 det = (wxx * wyy) - (wxy**2)
-                trace = wxx + wyy
-                r = det - k * (trace**2)
-                # Can change the value
+                iz = wxx + wyy
+                r = det - k * (iz**2)
+                # Değeri değiştirebilirsiniz
                 if r > 0.5:
-                    corner_list.append([x, y, r])
-                    color_img.itemset((y, x, 0), 0)
-                    color_img.itemset((y, x, 1), 0)
-                    color_img.itemset((y, x, 2), 255)
-        return color_img, corner_list
+                    kose_listesi.append([x, y, r])
+                    renkli_img.itemset((y, x, 0), 0)
+                    renkli_img.itemset((y, x, 1), 0)
+                    renkli_img.itemset((y, x, 2), 255)
+        return renkli_img, kose_listesi
 
 
 if __name__ == "__main__":
-    edge_detect = HarrisCorner(0.04, 3)
-    color_img, _ = edge_detect.detect("path_to_image")
-    cv2.imwrite("detect.png", color_img)
+    kenar_tespit = HarrisKose(0.04, 3)
+    renkli_img, _ = kenar_tespit.tespit("gorsel_yolu")
+    cv2.imwrite("tespit.png", renkli_img)

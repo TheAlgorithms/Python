@@ -2,44 +2,44 @@ import math
 import sys
 
 
-def minimum_squares_to_represent_a_number(number: int) -> int:
+def bir_sayiyi_temsil_eden_minimum_kareler(sayi: int) -> int:
     """
-    Count the number of minimum squares to represent a number
-    >>> minimum_squares_to_represent_a_number(25)
+    Bir sayıyı temsil eden minimum kare sayısını say
+    >>> bir_sayiyi_temsil_eden_minimum_kareler(25)
     1
-    >>> minimum_squares_to_represent_a_number(37)
+    >>> bir_sayiyi_temsil_eden_minimum_kareler(37)
     2
-    >>> minimum_squares_to_represent_a_number(21)
+    >>> bir_sayiyi_temsil_eden_minimum_kareler(21)
     3
-    >>> minimum_squares_to_represent_a_number(58)
+    >>> bir_sayiyi_temsil_eden_minimum_kareler(58)
     2
-    >>> minimum_squares_to_represent_a_number(-1)
+    >>> bir_sayiyi_temsil_eden_minimum_kareler(-1)
     Traceback (most recent call last):
         ...
-    ValueError: the value of input must not be a negative number
-    >>> minimum_squares_to_represent_a_number(0)
+    ValueError: giriş değeri negatif bir sayı olmamalıdır
+    >>> bir_sayiyi_temsil_eden_minimum_kareler(0)
     1
-    >>> minimum_squares_to_represent_a_number(12.34)
+    >>> bir_sayiyi_temsil_eden_minimum_kareler(12.34)
     Traceback (most recent call last):
         ...
-    ValueError: the value of input must be a natural number
+    ValueError: giriş değeri doğal bir sayı olmalıdır
     """
-    if number != int(number):
-        raise ValueError("the value of input must be a natural number")
-    if number < 0:
-        raise ValueError("the value of input must not be a negative number")
-    if number == 0:
+    if sayi != int(sayi):
+        raise ValueError("giriş değeri doğal bir sayı olmalıdır")
+    if sayi < 0:
+        raise ValueError("giriş değeri negatif bir sayı olmamalıdır")
+    if sayi == 0:
         return 1
-    answers = [-1] * (number + 1)
-    answers[0] = 0
-    for i in range(1, number + 1):
-        answer = sys.maxsize
-        root = int(math.sqrt(i))
-        for j in range(1, root + 1):
-            current_answer = 1 + answers[i - (j**2)]
-            answer = min(answer, current_answer)
-        answers[i] = answer
-    return answers[number]
+    cevaplar = [-1] * (sayi + 1)
+    cevaplar[0] = 0
+    for i in range(1, sayi + 1):
+        cevap = sys.maxsize
+        kok = int(math.sqrt(i))
+        for j in range(1, kok + 1):
+            mevcut_cevap = 1 + cevaplar[i - (j**2)]
+            cevap = min(cevap, mevcut_cevap)
+        cevaplar[i] = cevap
+    return cevaplar[sayi]
 
 
 if __name__ == "__main__":
