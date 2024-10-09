@@ -1,5 +1,6 @@
 """
-Given an set of numbers in a stack, find the minimum value from the stack at O(1)
+Given an set of numbers in a stack, 
+find the minimum value from the stack at O(1)
 
 Problem: https://leetcode.com/problems/min-stack/description/
 """
@@ -26,7 +27,8 @@ def push(value: int):
 
 def pop():
     """
-    Pop from the stack. If the popped value is the same as the min stack top,
+    Pop from the stack. 
+    If the popped value is the same as the min stack top,
     pop from the min stack as well
 
     Returns None
@@ -42,7 +44,8 @@ def pop():
 
 def get_min():
     """
-    Return the minimum element of the main stack by returning the top of the minimum stack
+    Return the minimum element of the main stack by 
+    returning the top of the minimum stack
 
     Returns the minium element (int)
 
