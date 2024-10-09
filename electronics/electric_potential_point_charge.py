@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+""" https://en.wikipedia.org/wiki/Electric_potential"""
+
 def electric_potential_point_charge(charge: float, distance: float) -> float:
     """
     Calculate the electric potential at a point due to a point charge.
