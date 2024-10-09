@@ -29,6 +29,14 @@ def is_safe(board: list[list[int]], row: int, column: int) -> bool:
     True
     >>> is_safe([[1, 0, 0], [0, 0, 0], [0, 0, 0]], 1, 1)
     False
+    >>> is_safe([[1, 0, 0], [0, 0, 0], [0, 0, 0]], 1, 2)
+    True
+    >>> is_safe([[1, 0, 0], [0, 0, 0], [0, 0, 0]], 2, 1)
+    True
+    >>> is_safe([[0, 0, 0], [1, 0, 0], [0, 0, 0]], 0, 2)
+    True
+    >>> is_safe([[0, 0, 0], [1, 0, 0], [0, 0, 0]], 2, 2)
+    True
     """
 
     n = len(board)  # Size of the board
