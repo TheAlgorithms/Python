@@ -26,7 +26,7 @@ def potential_energy_2_charges(
 
     Examples:
     >>> potential_energy_2_charges(1e-6, 1e-6, 0.01)
-    899000.0
+    0.899
     >>> potential_energy_2_charges(2e-6, 3e-6, 0.05)
     1078800.0
     >>> potential_energy_2_charges(0, 3e-6, 0.05)
