@@ -1,10 +1,6 @@
 from __future__ import annotations
-
 """ https://en.wikipedia.org/wiki/Electric_potential"""
-
 COULOMB_CONSTANT = 8.99e9  # N·m²/C², Coulomb's constant
-
-
 def electric_potential_point_charge(charge: float, distance: float) -> float:
     """
     Calculate the electric potential at a point due to a point charge.
@@ -39,9 +35,7 @@ def electric_potential_point_charge(charge: float, distance: float) -> float:
         return float("inf")  # Potential is infinity when distance is zero
     elif charge == 0:
         return 0  # Zero potential for zero charge
-
     return (COULOMB_CONSTANT * charge) / distance
-
 
 if __name__ == "__main__":
     import doctest
