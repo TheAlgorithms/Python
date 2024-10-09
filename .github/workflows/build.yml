@@ -25,12 +25,13 @@ jobs:
       - name: Run tests
         # TODO: #8818 Re-enable quantum tests
         run: pytest
-          --ignore=quantum/q_fourier_transform.py
           --ignore=computer_vision/cnn_classification.py
+          --ignore=docs/conf.py
           --ignore=dynamic_programming/k_means_clustering_tensorflow.py
           --ignore=machine_learning/lstm/lstm_prediction.py
           --ignore=neural_network/input_data.py
           --ignore=project_euler/
+          --ignore=quantum/q_fourier_transform.py
           --ignore=scripts/validate_solutions.py
           --cov-report=term-missing:skip-covered
           --cov=. .
