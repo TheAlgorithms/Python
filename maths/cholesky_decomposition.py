@@ -66,7 +66,7 @@ def cholesky_decomposition(A: np.ndarray) -> np.ndarray:
 
 def solve_cholesky(L: np.ndarray, Y: np.ndarray) -> np.ndarray:
     """Given a Cholesky decomposition L L^T = A of a matrix A, solve the
-    system of equations A X = Y where B is either a matrix or a vector.
+    system of equations A X = Y where Y is either a matrix or a vector.
 
     >>> L = np.array([[2, 0], [3, 4]], dtype=float)
     >>> Y = np.array([[22, 54], [81, 193]], dtype=float)
