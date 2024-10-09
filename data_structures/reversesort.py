@@ -12,9 +12,10 @@ def reverse_selection_sort(arr):
         # If the minimum is not already at position i, reverse the subarray
         if min_index != i:
             # Reverse the subarray from position i to min_index
-            arr[i:min_index + 1] = reversed(arr[i:min_index + 1])
+            arr[i : min_index + 1] = reversed(arr[i : min_index + 1])
 
     return arr
+
 
 # Example usage:
 arr = [64, 25, 12, 22, 11]
