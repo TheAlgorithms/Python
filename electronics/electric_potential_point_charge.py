@@ -2,6 +2,7 @@ from __future__ import annotations
 
 COULOMB_CONSTANT = 8.99e9  # N·m²/C², Coulomb's constant
 
+
 def electric_potential_point_charge(charge: float, distance: float) -> float:
     """
     Calculate the electric potential at a point due to a point charge.
@@ -41,4 +42,5 @@ def electric_potential_point_charge(charge: float, distance: float) -> float:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
