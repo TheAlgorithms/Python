@@ -2,9 +2,9 @@
 Title: Bernoulli's Principle
 
 Description:
-This algorithm implements Bernoulli's Principle to calculate the unknown pressure 
-at a second point in a fluid system using the Bernoulli equation. Bernoulli's equation 
-states that for an incompressible, frictionless fluid, the total mechanical energy 
+This algorithm implements Bernoulli's Principle to calculate the unknown pressure
+at a second point in a fluid system using the Bernoulli equation. Bernoulli's equation
+states that for an incompressible, frictionless fluid, the total mechanical energy
 (remains constant) as the fluid flows.
 
 The equation used:
@@ -24,8 +24,15 @@ Example:
 100732.64
 """
 
-def bernoullis_principle(velocity1: float, pressure1: float, height1: float, 
-                         velocity2: float, height2: float, density: float = 1.225) -> float:
+
+def bernoullis_principle(
+    velocity1: float,
+    pressure1: float,
+    height1: float,
+    velocity2: float,
+    height2: float,
+    density: float = 1.225,
+) -> float:
     """
     Calculate the unknown pressure at a second point in a fluid system using Bernoulli's equation.
 
@@ -39,7 +46,7 @@ def bernoullis_principle(velocity1: float, pressure1: float, height1: float,
 
     Returns:
     float: Pressure at point 2 in Pascals
-    
+
     Example:
     >>> bernoullis_principle(density=1000, velocity=5, height=10, pressure=101325)
     144413.5
@@ -51,8 +58,13 @@ def bernoullis_principle(velocity1: float, pressure1: float, height1: float,
     g = 9.81  # gravitational constant in m/s^2
 
     # Bernoulli's equation to solve for pressure at point 2
-    pressure2 = (pressure1 + 0.5 * density * (velocity1 ** 2) + density * g * height1
-                 - 0.5 * density * (velocity2 ** 2) - density * g * height2)
+    pressure2 = (
+        pressure1
+        + 0.5 * density * (velocity1**2)
+        + density * g * height1
+        - 0.5 * density * (velocity2**2)
+        - density * g * height2
+    )
 
     return round(pressure2, 2)
 
@@ -61,6 +73,7 @@ def bernoullis_principle(velocity1: float, pressure1: float, height1: float,
 if __name__ == "__main__":
     # Example doctest
     import doctest
+
     doctest.testmod()
 
     # Manual test
