@@ -8,7 +8,7 @@ class BinaryTrie:
     def add(self, a):
         u = 0
         self.cc[u] += 1
-        for i in range(self.mb-1, -1, -1):
+        for i in range(self.mb - 1, -1, -1):
             d = a >> i & 1
             if self.to[d][u] == -1:
                 self.to[d][u] = len(self.cc)
@@ -19,29 +19,34 @@ class BinaryTrie:
             self.cc[u] += 1
 
     def remove(self, a):
-        if self.cc[0] == 0: return False
+        if self.cc[0] == 0:
+            return False
         uu = [0]
         u = 0
-        for i in range(self.mb-1, -1, -1):
+        for i in range(self.mb - 1, -1, -1):
             d = a >> i & 1
             u = self.to[d][u]
-            if u == -1 or self.cc[u] == 0: return False
+            if u == -1 or self.cc[u] == 0:
+                return False
             uu.append(u)
-        for u in uu: self.cc[u] -= 1
+        for u in uu:
+            self.cc[u] -= 1
         return True
 
     def cnt(self, a):
         u = 0
-        for i in range(self.mb-1, -1, -1):
+        for i in range(self.mb - 1, -1, -1):
             d = a >> i & 1
             u = self.to[d][u]
-            if u == -1 or self.cc[u] == 0: return 0
+            if u == -1 or self.cc[u] == 0:
+                return 0
         return self.cc[u]
 
     def min_xor(self, a):
-        if self.cc[0] == 0: return self.inf
+        if self.cc[0] == 0:
+            return self.inf
         u, res = 0, 0
-        for i in range(self.mb-1, -1, -1):
+        for i in range(self.mb - 1, -1, -1):
             d = a >> i & 1
             v = self.to[d][u]
             if v == -1 or self.cc[v] == 0:
@@ -52,9 +57,10 @@ class BinaryTrie:
         return res
 
     def max_xor(self, a):
-        if self.cc[0] == 0: return -self.inf
+        if self.cc[0] == 0:
+            return -self.inf
         u, res = 0, 0
-        for i in range(self.mb-1, -1, -1):
+        for i in range(self.mb - 1, -1, -1):
             d = a >> i & 1
             v = self.to[d ^ 1][u]
             if v == -1 or self.cc[v] == 0:
