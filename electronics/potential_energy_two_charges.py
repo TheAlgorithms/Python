@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 k_e = 8.99 * (10**9)  # N·m²/C², Coulomb's constant
+
 # Reference:
 # https://phys.libretexts.org/Bookshelves/University_Physics/
 # University_Physics_(OpenStax)/University_Physics_II_-_Thermodynamics_
@@ -56,3 +57,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
