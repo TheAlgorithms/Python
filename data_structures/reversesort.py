@@ -1,4 +1,33 @@
-def reverse_selection_sort(arr):
+from typing import List
+
+def reverse_selection_sort(arr: List[int]) -> List[int]:
+    """
+    Sorts an array using a modified selection sort algorithm where after finding 
+    the minimum element, a subarray is reversed instead of swapping.
+
+    Parameters:
+    arr (List[int]): The list of integers to sort.
+
+    Returns:
+    List[int]: The sorted list of integers.
+
+    Example:
+    >>> reverse_selection_sort([64, 25, 12, 22, 11])
+    [11, 12, 22, 25, 64]
+    
+    >>> reverse_selection_sort([5, 4, 3, 2, 1])
+    [1, 2, 3, 4, 5]
+    
+    >>> reverse_selection_sort([3, 1, 2])
+    [1, 2, 3]
+    
+    >>> reverse_selection_sort([10])
+    [10]
+    
+    >>> reverse_selection_sort([])
+    []
+    """
+
     n = len(arr)
 
     # Iterate over each position of the array
@@ -12,19 +41,10 @@ def reverse_selection_sort(arr):
         # If the minimum is not already at position i, reverse the subarray
         if min_index != i:
             # Reverse the subarray from position i to min_index
-            arr[i : min_index + 1] = reversed(arr[i : min_index + 1])
+            arr[i:min_index + 1] = reversed(arr[i:min_index + 1])
 
     return arr
 
-
-# Example usage:
-arr = [64, 25, 12, 22, 11]
-sorted_arr = reverse_selection_sort(arr)
-print("Sorted array:", sorted_arr)
-
-# Sorted array: [11, 12, 22, 25, 64]
-
-# Explanation:
-# Find the Minimum: For each position i in the array, find the minimum element in the unsorted portion.
-# Reverse Subarray: After finding the minimum element, reverse the subarray starting from i up to the position of the minimum element (min_index).
-# Repeat: This process repeats for each subsequent position, progressively sorting the array.
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
