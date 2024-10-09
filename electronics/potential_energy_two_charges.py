@@ -4,6 +4,7 @@ from __future__ import annotations
 
 k_e = 8.99 * (10**9)  # N·m²/C², Coulomb's constant
 
+
 def potential_energy_2_charges(
     charge_1: float,
     charge_2: float,
@@ -43,11 +44,12 @@ def potential_energy_2_charges(
         if distance == 0:
             return float("inf")
         raise ValueError("Distance must be greater than zero.")
-    
+
     potential_energy = k_e * charge_1 * charge_2 / distance
     return round(potential_energy, 6)  # Round for precision
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
