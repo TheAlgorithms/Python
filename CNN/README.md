@@ -18,7 +18,7 @@ pip install -r requirements.txt
 ## Introduction to CNNs
 A Convolutional Neural Network (CNN) is a type of deep learning model primarily used for analyzing visual data. CNNs are particularly effective in tasks such as image classification, object detection, and video analysis due to their ability to automatically detect and learn features from images.
 
-![CNN Overview](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Y4U3nqg6D7aK9ZQb4A1bZw.png)
+![CNN Overview]([https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Y4U3nqg6D7aK9ZQb4A1bZw.png](https://www.google.com/url?sa=i&url=https%3A%2F%2Ftowardsdatascience.com%2Fa-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53&psig=AOvVaw1YLBvQRiEDTpuYfWzoqBLN&ust=1728648182028000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKCezrjig4kDFQAAAAAdAAAAABAE))
 
 ## Key Components of CNNs
 1. **Convolutional Layers**:
