@@ -21,11 +21,6 @@ PyTorch internal function
 
 """
 
-
-
-
-%matplotlib inline
-
 import numpy as np
 import torch
 import matplotlib.pyplot as plt
