@@ -22,13 +22,13 @@ A Convolutional Neural Network (CNN) is a type of deep learning model primarily 
 ## Key Components of CNNs
 1. **Convolutional Layers**:
    - Apply filters to input images to extract features such as edges and textures while preserving spatial relationships between pixels.
-   
+
 2. **Activation Functions**:
    - Typically, the ReLU (Rectified Linear Unit) function is used to introduce non-linearity into the model.
 
 3. **Pooling Layers**:
    - Reduce the dimensionality of feature maps to decrease computational load while retaining essential information. Common types include Max Pooling and Average Pooling.
-  
+
 4. **Fully Connected Layers**:
    - Connect every neuron in one layer to every neuron in the next layer, typically used at the end of the network for classification tasks.
 
