@@ -1,8 +1,11 @@
 """
-This script demonstrates the implementation of the sum of squares of the first n natural numbers.
+This script demonstrates the implementation of the
+sum of squares of the first n natural numbers.
 
 The function takes an integer n as input and returns the sum of squares
-from 1 to n using the formula n(n + 1)(2n + 1) / 6. This formula computes the sum efficiently
+from 1 to n using the formula n(n + 1)(2n + 1) / 6.
+
+This formula computes the sum efficiently
 without the need for iteration.
 
 https://www.cuemath.com/algebra/sum-of-squares/
@@ -11,7 +14,7 @@ https://www.cuemath.com/algebra/sum-of-squares/
 
 def sum_of_squares(n: int) -> int:
     """
-    Implements the sum of squares formula for the first n natural numbers.
+    Implements the sum of squares formulafor the first n natural numbers.
 
     Parameters:
         n (int): A positive integer representing the limit of the series
