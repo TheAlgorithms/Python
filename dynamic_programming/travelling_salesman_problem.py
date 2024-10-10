@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 def tsp(distances: list[list[int]]) -> int:
     """
     Solves the Travelling Salesman Problem (TSP)
@@ -44,8 +45,11 @@ def tsp(distances: list[list[int]]) -> int:
                 min_cost = min(min_cost, new_cost)
         memo[city][mask] = min_cost  # Store result in the memoization table
         return min_cost
+
     return visit(0, 1)  # Start from city 0 with city 0 visited
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
