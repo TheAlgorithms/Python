@@ -12,12 +12,12 @@ https://www.cuemath.com/algebra/sum-of-squares/
 """
 
 
-def sum_of_squares(n: int) -> int:
+def sum_of_squares(num_of_terms: int) -> int:
     """
     Implements the sum of squares formulafor the first n natural numbers.
 
     Parameters:
-        n (int): A positive integer representing the limit of the series
+        num_of_terms (int): A positive integer representing the limit of the series
 
     Returns:
         sum_squares (int): The sum of squares of the first n natural numbers.
@@ -29,7 +29,7 @@ def sum_of_squares(n: int) -> int:
     >>> sum_of_squares(10)
     385
     """
-    return n * (n + 1) * (2 * n + 1) // 6
+    return num_of_terms * (num_of_terms + 1) * (2 * num_of_terms + 1) // 6
 
 
 if __name__ == "__main__":
