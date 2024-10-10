@@ -32,6 +32,7 @@ def tsp(distances: list[list[int]]) -> int:
     # Memoization table
     memo = [[-1] * (1 << n) for _ in range(n)]
     visited_all = (1 << n) - 1  # All cities visited mask
+
     def visit(city: int, mask: int) -> int:
         """Recursively calculates the minimum cost to visit all cities."""
         if mask == visited_all:
@@ -47,7 +48,10 @@ def tsp(distances: list[list[int]]) -> int:
                 min_cost = min(min_cost, new_cost)
         memo[city][mask] = int(min_cost)  # Store result as an integer
         return memo[city][mask]  # Return the cached result
+
     return visit(0, 1)  # Start from city 0 with city 0 visited
+
+
 if __name__ == "__main__":
     import doctest
 
