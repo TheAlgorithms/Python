@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 def tsp(distances: list[list[int]]) -> int:
     """
     Solves the Travelling Salesman Problem (TSP)
@@ -41,7 +42,7 @@ def tsp(distances: list[list[int]]) -> int:
             return distances[city][0]  # Return to the starting city
         if memo[city][mask] != -1:  # Return cached result if exists
             return memo[city][mask]
-        min_cost = float('inf')  # Use infinity for initial comparison
+        min_cost = float("inf")  # Use infinity for initial comparison
         for next_city in range(n):
             if not (mask & (1 << next_city)):  # If unvisited
                 new_cost = distances[city][next_city] + visit(
@@ -50,7 +51,11 @@ def tsp(distances: list[list[int]]) -> int:
                 min_cost = min(min_cost, new_cost)
         memo[city][mask] = int(min_cost)  # Store result as an integer
         return memo[city][mask]  # Return the cached result
+
     return visit(0, 1)  # Start from city 0 with city 0 visited
+
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
