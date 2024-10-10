@@ -1,5 +1,6 @@
 import random
 
+
 class Validator:
     def __init__(self, name: str, stake: int) -> None:
         """
@@ -11,6 +12,7 @@ class Validator:
         """
         self.name = name
         self.stake = stake
+
 
 def choose_validator(validators: list[Validator]) -> Validator:
     """
@@ -32,6 +34,7 @@ def choose_validator(validators: list[Validator]) -> Validator:
     """
     total_stake = sum(v.stake for v in validators)
     weighted_validators = [(v, v.stake / total_stake) for v in validators]
-    selected = random.choices([v[0] for v in weighted_validators],
-                              weights=[v[1] for v in weighted_validators])
+    selected = random.choices(
+        [v[0] for v in weighted_validators], weights=[v[1] for v in weighted_validators]
+    )
     return selected[0]
