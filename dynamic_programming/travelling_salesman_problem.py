@@ -46,10 +46,12 @@ def tsp(distances: list[list[int]]) -> int:
         if mask == VISITED_ALL:
             return distances[city][0]  # Return to the starting city
 
-        min_cost = float('inf')
+        min_cost = float("inf")
         for next_city in range(n):
             if not mask & (1 << next_city):  # If the next_city is not visited
-                new_cost = distances[city][next_city] + visit(next_city, mask | (1 << next_city))
+                new_cost = distances[city][next_city] + visit(
+                    next_city, mask | (1 << next_city)
+                )
                 min_cost = min(min_cost, new_cost)
         return min_cost
 
@@ -60,5 +62,9 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    print(f"{tsp([[0, 10, 15, 20], [10, 0, 35, 25], [15, 35, 0, 30], [20, 25, 30, 0]]) = }")
-    print(f"{tsp([[0, 29, 20, 21], [29, 0, 15, 17], [20, 15, 0, 28], [21, 17, 28, 0]]) = }")
+    print(
+        f"{tsp([[0, 10, 15, 20], [10, 0, 35, 25], [15, 35, 0, 30], [20, 25, 30, 0]]) = }"
+    )
+    print(
+        f"{tsp([[0, 29, 20, 21], [29, 0, 15, 17], [20, 15, 0, 28], [21, 17, 28, 0]]) = }"
+    )
