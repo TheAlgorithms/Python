@@ -27,7 +27,7 @@ def choose_validator(validators: list[Validator]) -> Validator:
         Validator: The selected validator based on weighted random selection.
 
     Example:
-        >>> validators = [Validator("Alice", 50), Validator("Bob", 30), Validator("Charlie", 20)]
+        >>> validators = [Validator("Alice", 50), Validator("Bob", 30)]
         >>> chosen = choose_validator(validators)
         >>> isinstance(chosen, Validator)
         True
