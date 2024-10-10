@@ -22,12 +22,12 @@ def proof_of_work(difficulty: int) -> int:
     """
     prefix = '0' * difficulty
     nonce = 0
-    start = time.time()
+    start = time.time()  # Timing starts
 
     while True:
         hash_result = hashlib.sha256(f"{nonce}".encode()).hexdigest()
         if hash_result.startswith(prefix):
-            end = time.time()
-            # Removed the print statement
+            end = time.time()  # Timing ends
+            print(f"Time taken: {end - start:.2f}s")  # Print time taken
             return nonce
         nonce += 1
