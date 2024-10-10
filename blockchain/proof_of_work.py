@@ -28,6 +28,5 @@ def proof_of_work(difficulty: int) -> int:
         hash_result = hashlib.sha256(f"{nonce}".encode()).hexdigest()
         if hash_result.startswith(prefix):
             end = time.time()  # Timing ends
-            print(f"Time taken: {end - start:.2f}s")  # Print time taken
             return nonce
         nonce += 1
