@@ -2,12 +2,13 @@
 
 from functools import lru_cache
 
+
 def tsp(distances: list[list[int]]) -> int:
     """
-    Solves the Travelling Salesman Problem (TSP) using 
+    Solves the Travelling Salesman Problem (TSP) using
     dynamic programming and bitmasking.
     Args:
-        distances: A 2D list where distances[i][j] represents the 
+        distances: A 2D list where distances[i][j] represents the
         distance between city i and city j.
     Returns:
         The minimum cost to complete the tour visiting all cities.
@@ -40,7 +41,11 @@ def tsp(distances: list[list[int]]) -> int:
                 )
                 min_cost = min(min_cost, new_cost)
         return min_cost
+
     return visit(0, 1)  # Start from city 0 with only city 0 visited
+
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
