@@ -34,7 +34,7 @@ def decrypt(message: str) -> None:
 
     alphabet = string.ascii_uppercase
     alphabet_len = len(alphabet)
-    
+
     for key in range(alphabet_len):
         translated = []
         for symbol in message:
@@ -50,7 +50,9 @@ def main() -> None:
     message = input("Encrypted message: ").upper()
     decrypt(message)
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     main()
