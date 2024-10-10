@@ -42,4 +42,5 @@ def tsp(distances: list[list[int]]) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
