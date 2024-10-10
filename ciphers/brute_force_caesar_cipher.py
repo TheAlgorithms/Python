@@ -50,9 +50,7 @@ def main() -> None:
     message = input("Encrypted message: ").upper()
     decrypt(message)
 
-
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
     main()
