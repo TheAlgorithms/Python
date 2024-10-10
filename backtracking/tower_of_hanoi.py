@@ -21,6 +21,7 @@ def tower_of_hanoi(n, source, destination, auxiliary):
     print(f"Move disk {n} from peg {source} to peg {destination}")
     tower_of_hanoi(n - 1, auxiliary, destination, source)
 
+
 # Example usage:
 n = 3  # Number of disks
 tower_of_hanoi(n, 1, 3, 2)
@@ -51,6 +52,6 @@ tower_of_hanoi(n, 1, 3, 2)
 # Move disk 3 from peg 1 to peg 3
 # Move disk 1 from peg 2 to peg 1
 # Move disk 2 from peg 2 to peg 3
-# Move disk 1 from peg 1 to peg   
+# Move disk 1 from peg 1 to peg
 #  3
 # This output demonstrates the correct sequence of moves to solve the Tower of Hanoi problem with 3 disks.
