@@ -89,7 +89,7 @@ Traceback (most recent call last):
 IndentationError: expected an indented block after function definition on line 1
 Use code with caution.
 
-Safety:  Implement safeguards to prevent Sentinel from taking harmful actions or being manipulated. 
+Safety:  Implement safeguards to prevent Sentinel from taking harmful actions or being manipulated.
 <div align="center">
 <!-- Title: -->
   <a href="https://github.com/TheAlgorithms/">
