@@ -37,7 +37,6 @@ def tsp(distances: list[list[int]]) -> int:
         """Recursively calculates the minimum cost to visit all cities."""
         if mask == visited_all:
             return distances[city][0]  # Return to the starting city
-
         if memo[city][mask] != -1:  # Return cached result if exists
             return memo[city][mask]
         min_cost = float("inf")  # Use infinity for initial comparison
@@ -49,14 +48,8 @@ def tsp(distances: list[list[int]]) -> int:
                 min_cost = min(min_cost, new_cost)
         memo[city][mask] = int(min_cost)  # Store result as an integer
         return memo[city][mask]  # Return the cached result
-
     return visit(0, 1)  # Start from city 0 with city 0 visited
-
 
 if __name__ == "__main__":
     import doctest
-
-    try:
-        doctest.testmod()
-    except Exception as e:
-        print(f"An error occurred during doctest: {e}")
+    doctest.testmod()
