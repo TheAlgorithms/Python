@@ -31,6 +31,10 @@ def decrypt(message: str) -> None:
     Decryption using Key #24: VOFGVWZ ROFXW
     Decryption using Key #25: UNEFUVY QNEWV
     """
+
+    alphabet = string.ascii_uppercase
+    alphabet_len = len(alphabet)
+    
     for key in range(alphabet_len):
         translated = []
         for symbol in message:
