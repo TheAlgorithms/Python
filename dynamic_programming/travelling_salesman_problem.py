@@ -37,7 +37,7 @@ def tsp(distances: list[list[int]]) -> int:
         if mask == visited_all:
             return distances[city][0]  # Return to start
 
-        min_cost = float('inf')
+        min_cost = float("inf")
         for next_city in range(n):
             if not mask & (1 << next_city):  # If next_city is unvisited
                 new_cost = distances[city][next_city] + visit(
@@ -51,4 +51,5 @@ def tsp(distances: list[list[int]]) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
