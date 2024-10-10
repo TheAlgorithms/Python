@@ -13,7 +13,7 @@ class Tableau:
         # Subtract multiples of the pivot row from all other rows
         for i in range(self.num_rows):
             if i != row:
-                self.tableau[i] -= (self.tableau[i, col] * self.tableau[row])
+                self.tableau[i] -= self.tableau[i, col] * self.tableau[row]
 
     def find_pivot_column(self):
         # The pivot column is the most negative value in the objective row
