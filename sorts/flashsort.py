@@ -1,10 +1,11 @@
 import random
 from typing import List
 
+
 def bogo_sort(collection: List[int]) -> List[int]:
     """Pure implementation of the bogosort algorithm in Python.
     Bogosort generates random permutations until it guesses the correct one.
-    
+
     More info on: https://en.wikipedia.org/wiki/Bogosort
     Args:
         collection (List[int]): A mutable ordered collection with comparable items.
@@ -25,7 +26,7 @@ def bogo_sort(collection: List[int]) -> List[int]:
     python -m doctest -v bogo_sort.py
     or
     python3 -m doctest -v bogo_sort.py
-    
+
     For manual testing, run:
     python bogo_sort.py
     """
@@ -39,6 +40,7 @@ def bogo_sort(collection: List[int]) -> List[int]:
     while not is_sorted(collection):
         random.shuffle(collection)
     return collection
+
 
 if __name__ == "__main__":
     user_input = input("Enter numbers separated by a comma:\n").strip()
