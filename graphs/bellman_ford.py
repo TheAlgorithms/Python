@@ -17,20 +17,29 @@ def print_distance_and_paths(distance: list[float], paths: list[list[int]], src:
         print(f"{vertex}\t\t{dist}\t\t\t\t{path_str}")
 
 
-def check_negative_cycle(graph: list[Edge], distance: list[float], predecessor: list[int]) -> bool:
+def check_negative_cycle(
+    graph: list[Edge], distance: list[float], predecessor: list[int]
+) -> bool:
     """
     Checks if there is a negative weight cycle reachable from the source vertex.
     If found, return True, indicating a negative cycle.
     """
     for edge in graph:
-        if distance[edge.src] != float("inf") and distance[edge.src] + edge.weight < distance[edge.dst]:
+        if (
+            distance[edge.src] != float("inf")
+            and distance[edge.src] + edge.weight < distance[edge.dst]
+        ):
             # Update predecessors to indicate a cycle for affected paths
-            predecessor[edge.dst] = -1  # Use -1 as a marker for negative cycle detection
+            predecessor[
+                edge.dst
+            ] = -1  # Use -1 as a marker for negative cycle detection
             return True
     return False
 
 
-def reconstruct_paths(predecessor: list[int], vertex_count: int, src: int) -> list[list[int]]:
+def reconstruct_paths(
+    predecessor: list[int], vertex_count: int, src: int
+) -> list[list[int]]:
     """
     Reconstructs the shortest paths from the source vertex to each vertex using the predecessor list.
     """
@@ -50,7 +59,9 @@ def reconstruct_paths(predecessor: list[int], vertex_count: int, src: int) -> li
     return paths
 
 
-def bellman_ford(graph: list[Edge], vertex_count: int, src: int) -> tuple[list[float], list[list[int]]]:
+def bellman_ford(
+    graph: list[Edge], vertex_count: int, src: int
+) -> tuple[list[float], list[list[int]]]:
     """
     Returns the shortest paths from a vertex src to all other vertices, including path reconstruction.
     """
@@ -61,7 +72,10 @@ def bellman_ford(graph: list[Edge], vertex_count: int, src: int) -> tuple[list[f
     # Step 1: Relax edges repeatedly
     for _ in range(vertex_count - 1):
         for edge in graph:
-            if distance[edge.src] != float("inf") and distance[edge.src] + edge.weight < distance[edge.dst]:
+            if (
+                distance[edge.src] != float("inf")
+                and distance[edge.src] + edge.weight < distance[edge.dst]
+            ):
                 distance[edge.dst] = distance[edge.src] + edge.weight
                 predecessor[edge.dst] = edge.src
 
@@ -88,7 +102,9 @@ if __name__ == "__main__":
 
         for i in range(E):
             print(f"Edge {i + 1}")
-            src, dest, weight = map(int, input("Enter source, destination, weight: ").strip().split())
+            src, dest, weight = map(
+                int, input("Enter source, destination, weight: ").strip().split()
+            )
             if src < 0 or src >= V or dest < 0 or dest >= V:
                 print(f"Invalid vertices: src and dest should be between 0 and {V - 1}")
                 continue
