@@ -48,8 +48,11 @@ def tsp(distances: list[list[int]]) -> int:
                 min_cost = min(min_cost, new_cost)
         memo[city][mask] = int(min_cost)  # Store result as an integer
         return memo[city][mask]  # Return the cached result
+
     return visit(0, 1)  # Start from city 0 with city 0 visited
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
