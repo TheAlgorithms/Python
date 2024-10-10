@@ -6,7 +6,7 @@ def proof_of_work(difficulty: int) -> int:
     """
     Simulates a Proof of Work mining process.
 
-    The miner must find a nonce such that the hash of the nonce starts 
+    The miner must find a nonce such that the hash of the nonce starts
     with a specific number of leading zeros (difficulty).
 
     Args:
@@ -20,7 +20,7 @@ def proof_of_work(difficulty: int) -> int:
         >>> isinstance(result, int)
         True
     """
-    prefix = '0' * difficulty
+    prefix = "0" * difficulty
     nonce = 0
     start = time.time()
 
