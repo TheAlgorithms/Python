@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 
+
 def tsp(distances: list[list[int]]) -> int:
     """
     Solves the Travelling Salesman Problem (TSP)
     using dynamic programming and bitmasking.
     Args:
-        distances: 2D list where distances[i][j] 
+        distances: 2D list where distances[i][j]
         is the distance between city i and city j.
     Returns:
         Minimum cost to complete the tour visiting all cities.
@@ -17,7 +18,7 @@ def tsp(distances: list[list[int]]) -> int:
     >>> tsp([[0, 29, 20, 21], [29, 0, 15, 17], [20, 15, 0, 28],
     [21, 17, 28, 0]])
     69
-    >>> tsp([[0, 10, -15, 20], [10, 0, 35, 25], [15, 35, 0, 30], [20, 25, 30, 0]])  
+    >>> tsp([[0, 10, -15, 20], [10, 0, 35, 25], [15, 35, 0, 30], [20, 25, 30, 0]])
     # doctest: +ELLIPSIS
     Traceback (most recent call last):
         ...
@@ -46,7 +47,11 @@ def tsp(distances: list[list[int]]) -> int:
                 min_cost = min(min_cost, new_cost)
         memo[city][mask] = min_cost  # Store result in the memoization table
         return min_cost
+
     return visit(0, 1)  # Start from city 0 with city 0 visited
+
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
