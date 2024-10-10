@@ -1,12 +1,13 @@
 """
 This script demonstrates the implementation of the sum of squares of the first n natural numbers.
 
-The function takes an integer n as input and returns the sum of squares 
+The function takes an integer n as input and returns the sum of squares
 from 1 to n using the formula n(n + 1)(2n + 1) / 6. This formula computes the sum efficiently
 without the need for iteration.
 
 https://www.cuemath.com/algebra/sum-of-squares/
 """
+
 
 def sum_of_squares(n: int) -> int:
     """
@@ -25,9 +26,10 @@ def sum_of_squares(n: int) -> int:
     >>> sum_of_squares(10)
     385
     """
-    return n * (n + 1) * (2*n + 1) // 6
+    return n * (n + 1) * (2 * n + 1) // 6
 
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
