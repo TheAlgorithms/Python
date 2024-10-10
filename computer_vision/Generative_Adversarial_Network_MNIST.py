@@ -1,3 +1,29 @@
+"""
+Generative Adversarial Network
+
+Objective : To train a GAN model to generate handwritten digits that can be transferred to other domains.
+
+Resources GAN Theory :
+    https://en.wikipedia.org/wiki/Generative_adversarial_network
+Resources PyTorch: https://pytorch.org/
+
+Download dataset from :
+PyTorch internal function
+
+1. Fetch the Dataset with PyTorch function.
+2. Create Dataloader.
+3. Create Discriminator and Generator.
+4. Set the hyperparameters and models.
+5. Set the loss functions.
+6. Create the training loop.
+7. Visualize the losses.
+8. Visualize the result from GAN.
+
+"""
+
+
+
+
 %matplotlib inline
 
 import numpy as np
