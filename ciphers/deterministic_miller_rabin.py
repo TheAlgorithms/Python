@@ -1,30 +1,31 @@
-"""Created by Nathan Damon, @bizzfitch on github
+"""Nathan Damon tarafından oluşturulmuştur, @bizzfitch github'da
 >>> test_miller_rabin()
+
+Organiser: K. Umut Araz
 """
 
 
 def miller_rabin(n: int, allow_probable: bool = False) -> bool:
-    """Deterministic Miller-Rabin algorithm for primes ~< 3.32e24.
+    """3.32e24'e kadar olan asal sayılar için deterministik Miller-Rabin algoritması.
 
-    Uses numerical analysis results to return whether or not the passed number
-    is prime. If the passed number is above the upper limit, and
-    allow_probable is True, then a return value of True indicates that n is
-    probably prime. This test does not allow False negatives- a return value
-    of False is ALWAYS composite.
+    Sayının asal olup olmadığını belirlemek için sayısal analiz sonuçlarını kullanır.
+    Eğer verilen sayı üst sınırı aşıyorsa ve allow_probable True ise, 
+    True döndürülmesi n'in muhtemelen asal olduğunu gösterir. Bu test, yanlış negatiflere izin vermez; 
+    False döndürülmesi her zaman bileşiktir.
 
-    Parameters
+    Parametreler
     ----------
     n : int
-        The integer to be tested. Since we usually care if a number is prime,
-        n < 2 returns False instead of raising a ValueError.
-    allow_probable: bool, default False
-        Whether or not to test n above the upper bound of the deterministic test.
+        Test edilecek tam sayı. Genellikle bir sayının asal olup olmadığını önemsediklerinden,
+        n < 2 olduğunda False döndürülür, ValueError yükseltilmez.
+    allow_probable: bool, varsayılan False
+        n'in deterministik testin üst sınırının üzerinde test edilip edilmeyeceği.
 
-    Raises
+    Yükseltir
     ------
     ValueError
 
-    Reference
+    Referans
     ---------
     https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test
     """
@@ -32,15 +33,15 @@ def miller_rabin(n: int, allow_probable: bool = False) -> bool:
         return True
     if not n % 2 or n < 2:
         return False
-    if n > 5 and n % 10 not in (1, 3, 7, 9):  # can quickly check last digit
+    if n > 5 and n % 10 not in (1, 3, 7, 9):  # son basamağı hızlıca kontrol et
         return False
     if n > 3_317_044_064_679_887_385_961_981 and not allow_probable:
         raise ValueError(
-            "Warning: upper bound of deterministic test is exceeded. "
-            "Pass allow_probable=True to allow probabilistic test. "
-            "A return value of True indicates a probable prime."
+            "Uyarı: deterministik testin üst sınırı aşıldı. "
+            "Probabilistik test için allow_probable=True geçin. "
+            "True döndürülmesi muhtemel asal olduğunu gösterir."
         )
-    # array bounds provided by analysis
+    # analiz tarafından sağlanan dizi sınırları
     bounds = [
         2_047,
         1_373_653,

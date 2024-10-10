@@ -2,75 +2,202 @@ from enum import Enum
 from typing import ClassVar, Literal
 
 
-class NumberingSystem(Enum):
-    SHORT = (
-        (15, "quadrillion"),
-        (12, "trillion"),
-        (9, "billion"),
-        (6, "million"),
-        (3, "thousand"),
-        (2, "hundred"),
+class SayıSistemi(Enum):
+    KISALTILMIŞ = (
+        (15, "katrilyon"),
+        (12, "trilyon"),
+        (9, "milyar"),
+        (6, "milyon"),
+        (3, "bin"),
+        (2, "yüz"),
     )
 
-    LONG = (
-        (15, "billiard"),
-        (9, "milliard"),
-        (6, "million"),
-        (3, "thousand"),
-        (2, "hundred"),
+    UZUN = (
+        (15, "bilyon"),
+        (9, "milyar"),
+        (6, "milyon"),
+        (3, "bin"),
+        (2, "yüz"),
     )
 
-    INDIAN = (
-        (14, "crore crore"),
-        (12, "lakh crore"),
-        (7, "crore"),
+    HİNDİSTAN = (
+        (14, "krorekro"),
+        (12, "lakh krore"),
+        (7, "krorek"),
         (5, "lakh"),
-        (3, "thousand"),
-        (2, "hundred"),
+        (3, "bin"),
+        (2, "yüz"),
     )
 
     @classmethod
-    def max_value(cls, system: str) -> int:
+    def max_değer(cls, sistem: str) -> int:
         """
-        Gets the max value supported by the given number system.
+        Verilen sayı sisteminin desteklediği maksimum değeri alır.
 
-        >>> NumberingSystem.max_value("short") == 10**18 - 1
+        >>> SayıSistemi.max_değer("kısaltılmış") == 10**18 - 1
         True
-        >>> NumberingSystem.max_value("long") == 10**21 - 1
+        >>> SayıSistemi.max_değer("uzun") == 10**21 - 1
         True
-        >>> NumberingSystem.max_value("indian") == 10**19 - 1
+        >>> SayıSistemi.max_değer("hindistan") == 10**19 - 1
         True
         """
-        match system_enum := cls[system.upper()]:
-            case cls.SHORT:
-                max_exp = system_enum.value[0][0] + 3
-            case cls.LONG:
-                max_exp = system_enum.value[0][0] + 6
-            case cls.INDIAN:
+        match sistem_enum := cls[sistem.upper()]:
+            case cls.KISALTILMIŞ:
+                max_exp = sistem_enum.value[0][0] + 3
+            case cls.UZUN:
+                max_exp = sistem_enum.value[0][0] + 6
+            case cls.HİNDİSTAN:
                 max_exp = 19
             case _:
-                raise ValueError("Invalid numbering system")
+                raise ValueError("Geçersiz sayı sistemi")
         return 10**max_exp - 1
 
 
-class NumberWords(Enum):
-    ONES: ClassVar[dict[int, str]] = {
+class SayıKelime(Enum):
+    BİRİLER: ClassVar[dict[int, str]] = {
         0: "",
-        1: "one",
-        2: "two",
-        3: "three",
-        4: "four",
-        5: "five",
-        6: "six",
-        7: "seven",
-        8: "eight",
-        9: "nine",
+        1: "bir",
+        2: "iki",
+        3: "üç",
+        4: "dört",
+        5: "beş",
+        6: "altı",
+        7: "yedi",
+        8: "sekiz",
+        9: "dokuz",
+    }
+
+    ONLAR: ClassVar[dict[int, str]] = {
+        0: "on",
+        1: "on bir",
+        2: "on iki",
+        3: "on üç",
+        4: "on dört",
+        5: "on beş",
+        6: "on altı",
+        7: "on yedi",
+        8: "on sekiz",
+        9: "on dokuz",
+    }
+
+    ONLUKLAR: ClassVar[dict[int, str]] = {
+        2: "yirmi",
+        3: "otuz",
+        4: "kırk",
+        5: "elli",
+        6: "altmış",
+        7: "yetmiş",
+        8: "seksen",
+        9: "doksan",
+    }
+
+
+def küçük_sayı_dönüştür(num: int) -> str:
+    """
+    Küçük, negatif olmayan tam sayıları (yani, 100'den küçük sayılar) kelimelere dönüştürür.
+
+    >>> küçük_sayı_dönüştür(0)
+    'sıfır'
+    >>> küçük_sayı_dönüştür(5)
+    'beş'
+    >>> küçük_sayı_dönüştür(10)
+    'on'
+    >>> küçük_sayı_dönüştür(15)
+    'on beş'
+    >>> küçük_sayı_dönüştür(20)
+    'yirmi'
+    >>> küçük_sayı_dönüştür(25)
+    'yirmi-beş'
+    >>> küçük_sayı_dönüştür(-1)
+    Traceback (most recent call last):
+    ...
+    ValueError: Bu fonksiyon yalnızca negatif olmayan tam sayıları kabul eder
+    >>> küçük_sayı_dönüştür(123)
+    Traceback (most recent call last):
+    ...
+    ValueError: Bu fonksiyon yalnızca 100'den küçük sayıları dönüştürür
+    """
+    if num < 0:
+        raise ValueError("Bu fonksiyon yalnızca negatif olmayan tam sayıları kabul eder")
+    if num >= 100:
+        raise ValueError("Bu fonksiyon yalnızca 100'den küçük sayıları dönüştürür")
+    onluklar, biriler = divmod(num, 10)
+    if onluklar == 0:
+        return SayıKelime.BİRİLER.value[biriler] or "sıfır"
+    if onluklar == 1:
+        return SayıKelime.ONLAR.value[biriler]
+    return (
+        SayıKelime.ONLUKLAR.value[onluklar]
+        + ("-" if SayıKelime.BİRİLER.value[biriler] else "")
+        + SayıKelime.BİRİLER.value[biriler]
+    )
+
+
+def sayıyı_dönüştür(
+    num: int, sistem: Literal["kısaltılmış", "uzun", "hindistan"] = "kısaltılmış"
+) -> str:
+    """
+    Bir tam sayıyı Türkçe kelimelere dönüştürür.
+
+    :param num: Dönüştürülecek tam sayı
+    :param sistem: Sayı sistemi (kısaltılmış, uzun veya hindistan)
+
+    >>> sayıyı_dönüştür(0)
+    'sıfır'
+    >>> sayıyı_dönüştür(1)
+    'bir'
+    >>> sayıyı_dönüştür(100)
+    'bir yüz'
+    >>> sayıyı_dönüştür(-100)
+    'eksi bir yüz'
+    >>> sayıyı_dönüştür(123_456_789_012_345) # doctest: +NORMALIZE_WHITESPACE
+    'bir yüz yirmi üç trilyon dört yüz elli altı milyar
+    yedi yüz seksen dokuz milyon on iki bin üç yüz kırk beş'
+    >>> sayıyı_dönüştür(123_456_789_012_345, "uzun") # doctest: +NORMALIZE_WHITESPACE
+    'bir yüz yirmi üç bin dört yüz elli altı bilyon
+    yedi yüz seksen dokuz milyon on iki bin üç yüz kırk beş'
+    >>> sayıyı_dönüştür(12_34_56_78_90_12_345, "hindistan") # doctest: +NORMALIZE_WHITESPACE
+    'bir krorekro yirmi üç lakh krore
+    kırk beş bin altı yüz yetmiş sekiz krore
+    doksan lakh on iki bin üç yüz kırk beş'
+    >>> sayıyı_dönüştür(10**18)
+    Traceback (most recent call last):
+    ...
+    ValueError: Girdi sayısı çok büyük
+    >>> sayıyı_dönüştür(10**21, "uzun")
+    Traceback (most recent call last):
+    ...
+    ValueError: Girdi sayısı çok büyük
+    >>> sayıyı_dönüştür(10**19, "hindistan")
+    Traceback (most recent call last):
+    ...
+    ValueError: Girdi sayısı çok büyük
+    """
+    kelime_grupları = []
+
+    if num < 0:
+        kelime_grupları.append("eksi")
+        num *= -1
+
+    if num > SayıSistemi.max_değer(sistem):
+        raise ValueError("Girdi sayısı çok büyük")
+
+    SAYILAR: ClassVar[dict[int, str]] = {
+        1: "bir",
+        2: "iki",
+        3: "üç",
+        4: "dört",
+        5: "beş",
+        6: "altı",
+        7: "yedi",
+        8: "sekiz",
+        9: "dokuz",
     }
 
     TEENS: ClassVar[dict[int, str]] = {
-        0: "ten",
-        1: "eleven",
-        2: "twelve",
+        0: "on",
+        1: "on bir",
+        2: "on iki",
         3: "thirteen",
         4: "fourteen",
         5: "fifteen",

@@ -1,65 +1,67 @@
 from __future__ import annotations
 
 
-def knuth_morris_pratt(text: str, pattern: str) -> int:
+def knuth_morris_pratt(metin: str, desen: str) -> int:
     """
-    The Knuth-Morris-Pratt Algorithm for finding a pattern within a piece of text
-    with complexity O(n + m)
+    Knuth-Morris-Pratt Algoritması, bir metin içinde bir deseni bulmak için
+    O(n + m) karmaşıklığı ile çalışır.
 
-    1) Preprocess pattern to identify any suffixes that are identical to prefixes
+    Organiser: K. Umut Araz
 
-        This tells us where to continue from if we get a mismatch between a character
-        in our pattern and the text.
+    1) Deseni ön işleme tabi tutarak, ön eklerle aynı olan son ekleri belirleyin.
 
-    2) Step through the text one character at a time and compare it to a character in
-        the pattern updating our location within the pattern if necessary
+        Bu, desen ile metin arasında bir karakter uyuşmazlığı olduğunda
+        nereden devam edeceğimizi gösterir.
+
+    2) Metin içinde bir karakteri sırayla kontrol edin ve gerekirse
+        desen içindeki konumumuzu güncelleyin.
 
     >>> kmp = "knuth_morris_pratt"
     >>> all(
     ...    knuth_morris_pratt(kmp, s) == kmp.find(s)
-    ...    for s in ("kn", "h_m", "rr", "tt", "not there")
+    ...    for s in ("kn", "h_m", "rr", "tt", "orada yok")
     ... )
     True
     """
 
-    # 1) Construct the failure array
-    failure = get_failure_array(pattern)
+    # 1) Hata dizisini oluştur
+    hata_dizisi = get_failure_array(desen)
 
-    # 2) Step through text searching for pattern
-    i, j = 0, 0  # index into text, pattern
-    while i < len(text):
-        if pattern[j] == text[i]:
-            if j == (len(pattern) - 1):
+    # 2) Metin içinde deseni aramak için ilerle
+    i, j = 0, 0  # metin ve desen için indeksler
+    while i < len(metin):
+        if desen[j] == metin[i]:
+            if j == (len(desen) - 1):
                 return i - j
             j += 1
 
-        # if this is a prefix in our pattern
-        # just go back far enough to continue
+        # Eğer bu, desenimizde bir ön ekse
+        # devam etmek için yeterince geri dön
         elif j > 0:
-            j = failure[j - 1]
+            j = hata_dizisi[j - 1]
             continue
         i += 1
     return -1
 
 
-def get_failure_array(pattern: str) -> list[int]:
+def get_failure_array(desen: str) -> list[int]:
     """
-    Calculates the new index we should go to if we fail a comparison
-    :param pattern:
+    Bir karşılaştırmayı başaramadığımızda gitmemiz gereken yeni indeksi hesaplar
+    :param desen:
     :return:
     """
-    failure = [0]
+    hata_dizisi = [0]
     i = 0
     j = 1
-    while j < len(pattern):
-        if pattern[i] == pattern[j]:
+    while j < len(desen):
+        if desen[i] == desen[j]:
             i += 1
         elif i > 0:
-            i = failure[i - 1]
+            i = hata_dizisi[i - 1]
             continue
         j += 1
-        failure.append(i)
-    return failure
+        hata_dizisi.append(i)
+    return hata_dizisi
 
 
 if __name__ == "__main__":
@@ -68,34 +70,34 @@ if __name__ == "__main__":
     doctest.testmod()
 
     # Test 1)
-    pattern = "abc1abc12"
-    text1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"
-    text2 = "alskfjaldsk23adsfabcabc"
-    assert knuth_morris_pratt(text1, pattern)
-    assert knuth_morris_pratt(text2, pattern)
+    desen = "abc1abc12"
+    metin1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"
+    metin2 = "alskfjaldsk23adsfabcabc"
+    assert knuth_morris_pratt(metin1, desen) != -1
+    assert knuth_morris_pratt(metin2, desen) != -1
 
     # Test 2)
-    pattern = "ABABX"
-    text = "ABABZABABYABABX"
-    assert knuth_morris_pratt(text, pattern)
+    desen = "ABABX"
+    metin = "ABABZABABYABABX"
+    assert knuth_morris_pratt(metin, desen) != -1
 
     # Test 3)
-    pattern = "AAAB"
-    text = "ABAAAAAB"
-    assert knuth_morris_pratt(text, pattern)
+    desen = "AAAB"
+    metin = "ABAAAAAB"
+    assert knuth_morris_pratt(metin, desen) != -1
 
     # Test 4)
-    pattern = "abcdabcy"
-    text = "abcxabcdabxabcdabcdabcy"
-    assert knuth_morris_pratt(text, pattern)
+    desen = "abcdabcy"
+    metin = "abcxabcdabxabcdabcdabcy"
+    assert knuth_morris_pratt(metin, desen) != -1
 
-    # Test 5) -> Doctests
+    # Test 5) -> Doctest
     kmp = "knuth_morris_pratt"
     assert all(
         knuth_morris_pratt(kmp, s) == kmp.find(s)
-        for s in ("kn", "h_m", "rr", "tt", "not there")
+        for s in ("kn", "h_m", "rr", "tt", "orada yok")
     )
 
     # Test 6)
-    pattern = "aabaabaaa"
-    assert get_failure_array(pattern) == [0, 1, 0, 1, 2, 3, 4, 5, 2]
+    desen = "aabaabaaa"
+    assert get_failure_array(desen) == [0, 1, 0, 1, 2, 3, 4, 5, 2]

@@ -1,23 +1,25 @@
 """
 https://cp-algorithms.com/string/prefix-function.html
 
-Prefix function Knuth-Morris-Pratt algorithm
+Organiser: K. Umut Araz
 
-Different algorithm than Knuth-Morris-Pratt pattern finding
+Önek fonksiyonu Knuth-Morris-Pratt algoritmasıdır.
 
-E.x. Finding longest prefix which is also suffix
+Knuth-Morris-Pratt desen bulma algoritmasından farklıdır.
 
-Time Complexity: O(n) - where n is the length of the string
+Örneğin: Hem önek hem de sonek olan en uzun kısmı bulma.
+
+Zaman Karmaşıklığı: O(n) - burada n, dizenin uzunluğudur.
 """
 
 
-def prefix_function(input_string: str) -> list:
+def prefix_function(girdi_dizesi: str) -> list:
     """
-    For the given string this function computes value for each index(i),
-    which represents the longest coincidence of prefix and suffix
-    for given substring (input_str[0...i])
+    Verilen dize için bu fonksiyon, her bir indeks (i) için,
+    verilen alt dize (girdi_dizesi[0...i]) için önek ve sonek
+    arasındaki en uzun örtüşmeyi temsil eden değeri hesaplar.
 
-    For the value of the first element the algorithm always returns 0
+    İlk elemanın değeri için algoritma her zaman 0 döner.
 
     >>> prefix_function("aabcdaabc")
     [0, 1, 0, 0, 0, 1, 2, 3, 4]
@@ -25,37 +27,37 @@ def prefix_function(input_string: str) -> list:
     [0, 0, 0, 1, 2, 3, 4, 0]
     """
 
-    # list for the result values
-    prefix_result = [0] * len(input_string)
+    # Sonuç değerleri için liste
+    onek_sonucu = [0] * len(girdi_dizesi)
 
-    for i in range(1, len(input_string)):
-        # use last results for better performance - dynamic programming
-        j = prefix_result[i - 1]
-        while j > 0 and input_string[i] != input_string[j]:
-            j = prefix_result[j - 1]
+    for i in range(1, len(girdi_dizesi)):
+        # Daha iyi performans için son sonuçları kullan - dinamik programlama
+        j = onek_sonucu[i - 1]
+        while j > 0 and girdi_dizesi[i] != girdi_dizesi[j]:
+            j = onek_sonucu[j - 1]
 
-        if input_string[i] == input_string[j]:
+        if girdi_dizesi[i] == girdi_dizesi[j]:
             j += 1
-        prefix_result[i] = j
+        onek_sonucu[i] = j
 
-    return prefix_result
+    return onek_sonucu
 
 
-def longest_prefix(input_str: str) -> int:
+def en_uzun_onek(girdi_dizesi: str) -> int:
     """
-    Prefix-function use case
-    Finding longest prefix which is suffix as well
+    Önek fonksiyonu kullanım durumu
+    Hem önek hem de sonek olan en uzun kısmı bulma.
 
-    >>> longest_prefix("aabcdaabc")
+    >>> en_uzun_onek("aabcdaabc")
     4
-    >>> longest_prefix("asdasdad")
+    >>> en_uzun_onek("asdasdad")
     4
-    >>> longest_prefix("abcab")
+    >>> en_uzun_onek("abcab")
     2
     """
 
-    # just returning maximum value of the array gives us answer
-    return max(prefix_function(input_str))
+    # Dizinin maksimum değerini döndürmek bize yanıtı verir
+    return max(prefix_function(girdi_dizesi))
 
 
 if __name__ == "__main__":

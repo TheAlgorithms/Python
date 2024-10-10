@@ -1,51 +1,52 @@
 """
 * Author: Bama Charan Chhandogi (https://github.com/BamaCharanChhandogi)
+* Organiser: K. Umut Araz
 * Description: Convert a Octal number to Binary.
 
-References for better understanding:
-https://en.wikipedia.org/wiki/Binary_number
-https://en.wikipedia.org/wiki/Octal
+Daha iyi anlamak için referanslar:
+https://tr.wikipedia.org/wiki/Binary_say%C4%B1
+https://tr.wikipedia.org/wiki/Sekizli_say%C4%B1
 """
 
 
-def octal_to_binary(octal_number: str) -> str:
+def sekizli_to_ikili(sekizli_sayi: str) -> str:
     """
-    Convert an Octal number to Binary.
+    Sekizli bir sayıyı İkili sayıya dönüştürür.
 
-    >>> octal_to_binary("17")
+    >>> sekizli_to_ikili("17")
     '001111'
-    >>> octal_to_binary("7")
+    >>> sekizli_to_ikili("7")
     '111'
-    >>> octal_to_binary("Av")
+    >>> sekizli_to_ikili("Av")
     Traceback (most recent call last):
         ...
-    ValueError: Non-octal value was passed to the function
-    >>> octal_to_binary("@#")
+    ValueError: Geçersiz sekizli değer fonksiyona gönderildi
+    >>> sekizli_to_ikili("@#")
     Traceback (most recent call last):
         ...
-    ValueError: Non-octal value was passed to the function
-    >>> octal_to_binary("")
+    ValueError: Geçersiz sekizli değer fonksiyona gönderildi
+    >>> sekizli_to_ikili("")
     Traceback (most recent call last):
         ...
-    ValueError: Empty string was passed to the function
+    ValueError: Fonksiyona boş bir dize gönderildi
     """
-    if not octal_number:
-        raise ValueError("Empty string was passed to the function")
+    if not sekizli_sayi:
+        raise ValueError("Fonksiyona boş bir dize gönderildi")
 
-    binary_number = ""
-    octal_digits = "01234567"
-    for digit in octal_number:
-        if digit not in octal_digits:
-            raise ValueError("Non-octal value was passed to the function")
+    ikili_sayi = ""
+    sekizli_haneler = "01234567"
+    for hane in sekizli_sayi:
+        if hane not in sekizli_haneler:
+            raise ValueError("Geçersiz sekizli değer fonksiyona gönderildi")
 
-        binary_digit = ""
-        value = int(digit)
+        ikili_hane = ""
+        deger = int(hane)
         for _ in range(3):
-            binary_digit = str(value % 2) + binary_digit
-            value //= 2
-        binary_number += binary_digit
+            ikili_hane = str(deger % 2) + ikili_hane
+            deger //= 2
+        ikili_sayi += ikili_hane
 
-    return binary_number
+    return ikili_sayi
 
 
 if __name__ == "__main__":

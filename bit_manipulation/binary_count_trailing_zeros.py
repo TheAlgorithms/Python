@@ -3,6 +3,8 @@ from math import log2
 
 def binary_count_trailing_zeros(a: int) -> int:
     """
+    Organiser: K. Umut Araz
+    
     Bir tam sayı alır, bu sayının ikili gösterimindeki
     sondaki sıfırların sayısını döner.
 

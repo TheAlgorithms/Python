@@ -1,16 +1,19 @@
-def upper(word: str) -> str:
+def buyuk_harf(word: str) -> str:
     """
-    Convert an entire string to ASCII uppercase letters by looking for lowercase ASCII
-    letters and subtracting 32 from their integer representation to get the uppercase
-    letter.
 
-    >>> upper("wow")
+    Organiser: K. Umut Araz
+
+    Bir dizeyi ASCII büyük harflerine dönüştürmek için, küçük ASCII
+    harflerini kontrol eder ve bunların tam sayı temsilinden 32 çıkararak
+    büyük harfleri elde eder.
+
+    >>> buyuk_harf("wow")
     'WOW'
-    >>> upper("Hello")
+    >>> buyuk_harf("Hello")
     'HELLO'
-    >>> upper("WHAT")
+    >>> buyuk_harf("WHAT")
     'WHAT'
-    >>> upper("wh[]32")
+    >>> buyuk_harf("wh[]32")
     'WH[]32'
     """
     return "".join(chr(ord(char) - 32) if "a" <= char <= "z" else char for char in word)

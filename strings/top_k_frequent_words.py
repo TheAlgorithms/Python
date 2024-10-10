@@ -1,16 +1,16 @@
 """
-Finds the top K most frequent words from the provided word list.
+Verilen kelime listesinden en sık geçen K kelimeyi bulur.
 
-This implementation aims to show how to solve the problem using the Heap class
-already present in this repository.
-Computing order statistics is, in fact, a typical usage of heaps.
+Organiser: K. Umut Araz
 
-This is mostly shown for educational purposes, since the problem can be solved
-in a few lines using collections.Counter from the Python standard library:
+Bu uygulama, bu repository'de mevcut olan Heap sınıfını kullanarak problemi nasıl çözeceğimizi göstermeyi amaçlamaktadır.
+Sıralama istatistiklerini hesaplamak, aslında, yığınların tipik bir kullanım şeklidir.
+
+Bu, esasen eğitim amaçlı gösterilmektedir, çünkü problem Python standart kütüphanesindeki collections.Counter kullanılarak birkaç satırda çözülebilir:
 
 from collections import Counter
-def top_k_frequent_words(words, k_value):
-    return [x[0] for x in Counter(words).most_common(k_value)]
+def en_sik_gecen_kelime(words, k_degeri):
+    return [x[0] for x in Counter(words).most_common(k_degeri)]
 """
 
 from collections import Counter
@@ -20,78 +20,78 @@ from data_structures.heap.heap import Heap
 
 
 @total_ordering
-class WordCount:
-    def __init__(self, word: str, count: int) -> None:
-        self.word = word
-        self.count = count
+class KelimeSayisi:
+    def __init__(self, kelime: str, sayi: int) -> None:
+        self.kelime = kelime
+        self.sayi = sayi
 
     def __eq__(self, other: object) -> bool:
         """
-        >>> WordCount('a', 1).__eq__(WordCount('b', 1))
+        >>> KelimeSayisi('a', 1).__eq__(KelimeSayisi('b', 1))
         True
-        >>> WordCount('a', 1).__eq__(WordCount('a', 1))
+        >>> KelimeSayisi('a', 1).__eq__(KelimeSayisi('a', 1))
         True
-        >>> WordCount('a', 1).__eq__(WordCount('a', 2))
+        >>> KelimeSayisi('a', 1).__eq__(KelimeSayisi('a', 2))
         False
-        >>> WordCount('a', 1).__eq__(WordCount('b', 2))
+        >>> KelimeSayisi('a', 1).__eq__(KelimeSayisi('b', 2))
         False
-        >>> WordCount('a', 1).__eq__(1)
+        >>> KelimeSayisi('a', 1).__eq__(1)
         NotImplemented
         """
-        if not isinstance(other, WordCount):
+        if not isinstance(other, KelimeSayisi):
             return NotImplemented
-        return self.count == other.count
+        return self.sayi == other.sayi
 
     def __lt__(self, other: object) -> bool:
         """
-        >>> WordCount('a', 1).__lt__(WordCount('b', 1))
+        >>> KelimeSayisi('a', 1).__lt__(KelimeSayisi('b', 1))
         False
-        >>> WordCount('a', 1).__lt__(WordCount('a', 1))
+        >>> KelimeSayisi('a', 1).__lt__(KelimeSayisi('a', 1))
         False
-        >>> WordCount('a', 1).__lt__(WordCount('a', 2))
+        >>> KelimeSayisi('a', 1).__lt__(KelimeSayisi('a', 2))
         True
-        >>> WordCount('a', 1).__lt__(WordCount('b', 2))
+        >>> KelimeSayisi('a', 1).__lt__(KelimeSayisi('b', 2))
         True
-        >>> WordCount('a', 2).__lt__(WordCount('a', 1))
+        >>> KelimeSayisi('a', 2).__lt__(KelimeSayisi('a', 1))
         False
-        >>> WordCount('a', 2).__lt__(WordCount('b', 1))
+        >>> KelimeSayisi('a', 2).__lt__(KelimeSayisi('b', 1))
         False
-        >>> WordCount('a', 1).__lt__(1)
+        >>> KelimeSayisi('a', 1).__lt__(1)
         NotImplemented
         """
-        if not isinstance(other, WordCount):
+        if not isinstance(other, KelimeSayisi):
             return NotImplemented
-        return self.count < other.count
+        return self.sayi < other.sayi
 
 
-def top_k_frequent_words(words: list[str], k_value: int) -> list[str]:
+def en_sik_gecen_kelimeler(kelimeler: list[str], k_degeri: int) -> list[str]:
     """
-    Returns the `k_value` most frequently occurring words,
-    in non-increasing order of occurrence.
-    In this context, a word is defined as an element in the provided list.
+    En sık geçen `k_degeri` kadar kelimeyi döndürür,
+    oluş sırasına göre azalan sırada.
+    Bu bağlamda, bir kelime, sağlanan listede bir eleman olarak tanımlanır.
 
-    In case `k_value` is greater than the number of distinct words, a value of k equal
-    to the number of distinct words will be considered, instead.
+    Eğer `k_degeri`, farklı kelimelerin sayısından büyükse, k değeri olarak
+    farklı kelimelerin sayısına eşit bir değer dikkate alınacaktır.
 
-    >>> top_k_frequent_words(['a', 'b', 'c', 'a', 'c', 'c'], 3)
+    >>> en_sik_gecen_kelimeler(['a', 'b', 'c', 'a', 'c', 'c'], 3)
     ['c', 'a', 'b']
-    >>> top_k_frequent_words(['a', 'b', 'c', 'a', 'c', 'c'], 2)
+    >>> en_sik_gecen_kelimeler(['a', 'b', 'c', 'a', 'c', 'c'], 2)
     ['c', 'a']
-    >>> top_k_frequent_words(['a', 'b', 'c', 'a', 'c', 'c'], 1)
+    >>> en_sik_gecen_kelimeler(['a', 'b', 'c', 'a', 'c', 'c'], 1)
     ['c']
-    >>> top_k_frequent_words(['a', 'b', 'c', 'a', 'c', 'c'], 0)
+    >>> en_sik_gecen_kelimeler(['a', 'b', 'c', 'a', 'c', 'c'], 0)
     []
-    >>> top_k_frequent_words([], 1)
+    >>> en_sik_gecen_kelimeler([], 1)
     []
-    >>> top_k_frequent_words(['a', 'a'], 2)
+    >>> en_sik_gecen_kelimeler(['a', 'a'], 2)
     ['a']
     """
-    heap: Heap[WordCount] = Heap()
-    count_by_word = Counter(words)
-    heap.build_max_heap(
-        [WordCount(word, count) for word, count in count_by_word.items()]
+    yigin: Heap[KelimeSayisi] = Heap()
+    kelime_sayilari = Counter(kelimeler)
+    yigin.build_max_heap(
+        [KelimeSayisi(kelime, sayi) for kelime, sayi in kelime_sayilari.items()]
     )
-    return [heap.extract_max().word for _ in range(min(k_value, len(count_by_word)))]
+    return [yigin.extract_max().kelime for _ in range(min(k_degeri, len(kelime_sayilari)))]
 
 
 if __name__ == "__main__":

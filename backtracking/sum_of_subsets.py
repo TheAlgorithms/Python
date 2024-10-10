@@ -3,6 +3,8 @@ Alt kümelerin toplamı problemi, negatif olmayan tamsayılar kümesi ve bir M d
 verilen kümenin toplamı verilen M'ye eşit olan tüm olası alt kümelerini belirler.
 
 Seçilen sayıların toplamı verilen M sayısına eşit olmalıdır ve bir sayı yalnızca bir kez kullanılabilir.
+
+Organiser: K. Umut Araz
 """
 
 from __future__ import annotations

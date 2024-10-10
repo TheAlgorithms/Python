@@ -1,88 +1,85 @@
-def text_justification(word: str, max_width: int) -> list:
-    """
-    Will format the string such that each line has exactly
-    (max_width) characters and is fully (left and right) justified,
-    and return the list of justified text.
-
-    example 1:
-    string = "This is an example of text justification."
-    max_width = 16
-
-    output = ['This    is    an',
-              'example  of text',
-              'justification.  ']
-
-    >>> text_justification("This is an example of text justification.", 16)
-    ['This    is    an', 'example  of text', 'justification.  ']
-
-    example 2:
-    string = "Two roads diverged in a yellow wood"
-    max_width = 16
-    output = ['Two        roads',
-              'diverged   in  a',
-              'yellow wood     ']
-
-    >>> text_justification("Two roads diverged in a yellow wood", 16)
-    ['Two        roads', 'diverged   in  a', 'yellow wood     ']
-
-    Time complexity: O(m*n)
-    Space complexity: O(m*n)
+def metin_hizalama(kelime: str, max_genislik: int) -> list:
     """
 
-    # Converting string into list of strings split by a space
-    words = word.split()
+    Organiser: K. Umut Araz
 
-    def justify(line: list, width: int, max_width: int) -> str:
-        overall_spaces_count = max_width - width
-        words_count = len(line)
-        if len(line) == 1:
-            # if there is only word in line
-            # just insert overall_spaces_count for the remainder of line
-            return line[0] + " " * overall_spaces_count
+    Verilen metni, her satırın tam olarak (max_genislik) karaktere sahip olacak şekilde
+    (sol ve sağ) hizalanmış olarak formatlar ve hizalanmış metin listesini döndürür.
+
+    Örnek 1:
+    metin = "Bu bir metin hizalama örneğidir."
+    max_genislik = 16
+
+    çıktı = ['Bu    bir    metin',
+             'hizalama örneğidir.']
+
+    >>> metin_hizalama("Bu bir metin hizalama örneğidir.", 16)
+    ['Bu    bir    metin', 'hizalama örneğidir.']
+
+    Örnek 2:
+    metin = "İki yol sarı bir ormanda ayrıldı"
+    max_genislik = 16
+    çıktı = ['İki        yol',
+             'sarı bir   ormanda',
+             'ayrıldı       ']
+
+    >>> metin_hizalama("İki yol sarı bir ormanda ayrıldı", 16)
+    ['İki        yol', 'sarı bir   ormanda', 'ayrıldı       ']
+
+    Zaman karmaşıklığı: O(m*n)
+    Alan karmaşıklığı: O(m*n)
+    """
+
+    # Metni boşluklara göre bölerek kelimeler listesine çevirme
+    kelimeler = kelime.split()
+
+    def hizala(satir: list, genislik: int, max_genislik: int) -> str:
+        toplam_bosluk_sayisi = max_genislik - genislik
+        kelime_sayisi = len(satir)
+        if len(satir) == 1:
+            # Eğer satırda sadece bir kelime varsa
+            # satırın geri kalanına toplam_bosluk_sayisi kadar boşluk ekle
+            return satir[0] + " " * toplam_bosluk_sayisi
         else:
-            spaces_to_insert_between_words = words_count - 1
-            # num_spaces_between_words_list[i] : tells you to insert
-            # num_spaces_between_words_list[i] spaces
-            # after word on line[i]
-            num_spaces_between_words_list = spaces_to_insert_between_words * [
-                overall_spaces_count // spaces_to_insert_between_words
+            bosluk_eklenecek_kelime_sayisi = kelime_sayisi - 1
+            # bosluk_sayisi_listesi[i] : satir[i] kelimesinden sonra
+            # bosluk_sayisi_listesi[i] kadar boşluk ekle
+            bosluk_sayisi_listesi = bosluk_eklenecek_kelime_sayisi * [
+                toplam_bosluk_sayisi // bosluk_eklenecek_kelime_sayisi
             ]
-            spaces_count_in_locations = (
-                overall_spaces_count % spaces_to_insert_between_words
+            bosluk_sayisi_yerleri = (
+                toplam_bosluk_sayisi % bosluk_eklenecek_kelime_sayisi
             )
-            # distribute spaces via round robin to the left words
-            for i in range(spaces_count_in_locations):
-                num_spaces_between_words_list[i] += 1
-            aligned_words_list = []
-            for i in range(spaces_to_insert_between_words):
-                # add the word
-                aligned_words_list.append(line[i])
-                # add the spaces to insert
-                aligned_words_list.append(num_spaces_between_words_list[i] * " ")
-            # just add the last word to the sentence
-            aligned_words_list.append(line[-1])
-            # join the aligned words list to form a justified line
-            return "".join(aligned_words_list)
+            # Boşlukları soldaki kelimelere dağıt
+            for i in range(bosluk_sayisi_yerleri):
+                bosluk_sayisi_listesi[i] += 1
+            hizalanmis_kelime_listesi = []
+            for i in range(bosluk_eklenecek_kelime_sayisi):
+                # Kelimeyi ekle
+                hizalanmis_kelime_listesi.append(satir[i])
+                # Eklenmesi gereken boşlukları ekle
+                hizalanmis_kelime_listesi.append(bosluk_sayisi_listesi[i] * " ")
+            # Son kelimeyi cümleye ekle
+            hizalanmis_kelime_listesi.append(satir[-1])
+            # Hizalanmış kelime listesini birleştirerek hizalanmış bir satır oluştur
+            return "".join(hizalanmis_kelime_listesi)
 
-    answer = []
-    line: list[str] = []
-    width = 0
-    for inner_word in words:
-        if width + len(inner_word) + len(line) <= max_width:
-            # keep adding words until we can fill out max_width
-            # width = sum of length of all words (without overall_spaces_count)
-            # len(inner_word) = length of current inner_word
-            # len(line) = number of overall_spaces_count to insert between words
-            line.append(inner_word)
-            width += len(inner_word)
+    cevap = []
+    satir: list[str] = []
+    genislik = 0
+    for ic_kelime in kelimeler:
+        if genislik + len(ic_kelime) + len(satir) <= max_genislik:
+            # max_genislik'i doldurana kadar kelimeleri eklemeye devam et
+            satir.append(ic_kelime)
+            genislik += len(ic_kelime)
         else:
-            # justify the line and add it to result
-            answer.append(justify(line, width, max_width))
-            # reset new line and new width
-            line, width = [inner_word], len(inner_word)
-    remaining_spaces = max_width - width - len(line)
-    answer.append(" ".join(line) + (remaining_spaces + 1) * " ")
-    return answer
+            # Satırı hizala ve sonucu ekle
+            cevap.append(hizala(satir, genislik, max_genislik))
+            # Yeni satır ve yeni genişliği sıfırla
+            satir, genislik = [ic_kelime], len(ic_kelime)
+    kalan_bosluklar = max_genislik - genislik - len(satir)
+    cevap.append(" ".join(satir) + (kalan_bosluklar + 1) * " ")
+    return cevap
 
 
 if __name__ == "__main__":

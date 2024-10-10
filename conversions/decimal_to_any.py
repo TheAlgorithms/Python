@@ -1,13 +1,15 @@
-"""Convert a positive Decimal Number to Any Other Representation"""
+"""Pozitif Bir Onluk Sayıyı Herhangi Bir Temele Dönüştür"""
 
 from string import ascii_uppercase
+
+#Organiser: K. Umut Araz
 
 ALPHABET_VALUES = {str(ord(c) - 55): c for c in ascii_uppercase}
 
 
 def decimal_to_any(num: int, base: int) -> str:
     """
-    Convert a positive integer to another base as str.
+    Pozitif bir tam sayıyı başka bir tabana str olarak dönüştür.
     >>> decimal_to_any(0, 2)
     '0'
     >>> decimal_to_any(5, 4)
@@ -26,49 +28,50 @@ def decimal_to_any(num: int, base: int) -> str:
     '10'
     >>> decimal_to_any(36, 36)
     '10'
-    >>> # negatives will error
+    >>> # negatif sayılar hata verecek
     >>> decimal_to_any(-45, 8)  # doctest: +ELLIPSIS
     Traceback (most recent call last):
         ...
-    ValueError: parameter must be positive int
-    >>> # floats will error
+    ValueError: parametre pozitif bir tam sayı olmalıdır
+    >>> # ondalıklı sayılar hata verecek
     >>> decimal_to_any(34.4, 6) # doctest: +ELLIPSIS
     Traceback (most recent call last):
         ...
-    TypeError: int() can't convert non-string with explicit base
-    >>> # a float base will error
+    TypeError: int() açık taban ile dönüştürülemez
+    >>> # ondalıklı bir taban hata verecek
     >>> decimal_to_any(5, 2.5) # doctest: +ELLIPSIS
     Traceback (most recent call last):
         ...
-    TypeError: 'float' object cannot be interpreted as an integer
-    >>> # a str base will error
+    TypeError: 'float' nesnesi bir tam sayı olarak yorumlanamaz
+    >>> # bir str taban hata verecek
     >>> decimal_to_any(10, '16') # doctest: +ELLIPSIS
     Traceback (most recent call last):
         ...
-    TypeError: 'str' object cannot be interpreted as an integer
-    >>> # a base less than 2 will error
+    TypeError: 'str' nesnesi bir tam sayı olarak yorumlanamaz
+    >>> # 2'den küçük bir taban hata verecek
     >>> decimal_to_any(7, 0) # doctest: +ELLIPSIS
     Traceback (most recent call last):
         ...
-    ValueError: base must be >= 2
-    >>> # a base greater than 36 will error
+    ValueError: taban 2 veya daha büyük olmalıdır
+    >>> # 36'dan büyük bir taban hata verecek
     >>> decimal_to_any(34, 37) # doctest: +ELLIPSIS
     Traceback (most recent call last):
         ...
-    ValueError: base must be <= 36
+    ValueError: taban 36 veya daha küçük olmalıdır
     """
     if isinstance(num, float):
-        raise TypeError("int() can't convert non-string with explicit base")
+        raise TypeError("int() açık taban ile dönüştürülemez")
     if num < 0:
-        raise ValueError("parameter must be positive int")
+        raise ValueError("parametre pozitif bir tam sayı olmalıdır")
     if isinstance(base, str):
-        raise TypeError("'str' object cannot be interpreted as an integer")
+        raise TypeError("'str' nesnesi bir tam sayı olarak yorumlanamaz")
     if isinstance(base, float):
-        raise TypeError("'float' object cannot be interpreted as an integer")
+        raise TypeError("'float' nesnesi bir tam sayı olarak yorumlanamaz")
     if base in (0, 1):
-        raise ValueError("base must be >= 2")
+        raise ValueError("taban 2 veya daha büyük olmalıdır")
     if base > 36:
-        raise ValueError("base must be <= 36")
+        raise ValueError("taban 36 veya daha küçük olmalıdır")
+    
     new_value = ""
     mod = 0
     div = 0

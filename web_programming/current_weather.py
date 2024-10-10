@@ -1,6 +1,8 @@
 import requests
 from pprint import pprint
 
+# Organiser: K. Umut Araz
+
 # API anahtarlarınızı buraya koyun
 OPENWEATHERMAP_API_KEY = ""
 WEATHERSTACK_API_KEY = ""

@@ -1,29 +1,29 @@
 import re
 
+# Organiser: K. Umut Araz
 
-def indian_phone_validator(phone: str) -> bool:
+def turkiye_telefon_numarasi_dogrulama(telefon: str) -> bool:
     """
-    Determine whether the string is a valid phone number or not
-    :param phone:
+    Verilen string'in geçerli bir Türkiye telefon numarası olup olmadığını belirler.
+    :param telefon: Kontrol edilecek telefon numarası
     :return: Boolean
-    >>> indian_phone_validator("+91123456789")
+    >>> turkiye_telefon_numarasi_dogrulama("+90123456789")
     False
-    >>> indian_phone_validator("+919876543210")
+    >>> turkiye_telefon_numarasi_dogrulama("+905555555555")
     True
-    >>> indian_phone_validator("01234567896")
+    >>> turkiye_telefon_numarasi_dogrulama("01234567896")
     False
-    >>> indian_phone_validator("919876543218")
+    >>> turkiye_telefon_numarasi_dogrulama("5555555555")
     True
-    >>> indian_phone_validator("+91-1234567899")
+    >>> turkiye_telefon_numarasi_dogrulama("+90-1234567890")
     False
-    >>> indian_phone_validator("+91-9876543218")
+    >>> turkiye_telefon_numarasi_dogrulama("+90-5555555555")
     True
     """
-    pat = re.compile(r"^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$")
-    if match := re.search(pat, phone):
-        return match.string == phone
+    pat = re.compile(r"^(\+90[\-\s]?)?[0]?(5\d{9})$")
+    if match := re.search(pat, telefon):
+        return match.string == telefon
     return False
 
-
 if __name__ == "__main__":
-    print(indian_phone_validator("+918827897895"))
+    print(turkiye_telefon_numarasi_dogrulama("+905555555555"))

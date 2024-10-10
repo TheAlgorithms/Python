@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import requests
 
+# Organiser: K. Umut Araz
 
 def get_gifs(query: str, api_key: str) -> list[str]:
     """

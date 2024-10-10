@@ -1,60 +1,55 @@
 from typing import Literal
 
-LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+HARFLER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
+# Organiser: K. Umut Araz
 
-def translate_message(
-    key: str, message: str, mode: Literal["encrypt", "decrypt"]
-) -> str:
+def mesaj_cevir(key: str, mesaj: str, mod: Literal["şifrele", "şifre çöz"]) -> str:
     """
-    >>> translate_message("QWERTYUIOPASDFGHJKLZXCVBNM","Hello World","encrypt")
+    >>> mesaj_cevir("QWERTYUIOPASDFGHJKLZXCVBNM", "Merhaba Dünya", "şifrele")
     'Pcssi Bidsm'
     """
-    chars_a = LETTERS if mode == "decrypt" else key
-    chars_b = key if mode == "decrypt" else LETTERS
-    translated = ""
-    # loop through each symbol in the message
-    for symbol in message:
-        if symbol.upper() in chars_a:
-            # encrypt/decrypt the symbol
-            sym_index = chars_a.find(symbol.upper())
-            if symbol.isupper():
-                translated += chars_b[sym_index].upper()
+    chars_a = HARFLER if mod == "şifre çöz" else key
+    chars_b = key if mod == "şifre çöz" else HARFLER
+    çevrilen = ""
+    # mesajdaki her sembolü döngü ile kontrol et
+    for sembol in mesaj:
+        if sembol.upper() in chars_a:
+            # sembolü şifrele/şifre çöz
+            sembol_indeksi = chars_a.find(sembol.upper())
+            if sembol.isupper():
+                çevrilen += chars_b[sembol_indeksi].upper()
             else:
-                translated += chars_b[sym_index].lower()
+                çevrilen += chars_b[sembol_indeksi].lower()
         else:
-            # symbol is not in LETTERS, just add it
-            translated += symbol
-    return translated
+            # sembol HARFLER içinde değil, olduğu gibi ekle
+            çevrilen += sembol
+    return çevrilen
 
-
-def encrypt_message(key: str, message: str) -> str:
+def sifrele_mesaj(key: str, mesaj: str) -> str:
     """
-    >>> encrypt_message("QWERTYUIOPASDFGHJKLZXCVBNM", "Hello World")
+    >>> sifrele_mesaj("QWERTYUIOPASDFGHJKLZXCVBNM", "Merhaba Dünya")
     'Pcssi Bidsm'
     """
-    return translate_message(key, message, "encrypt")
+    return mesaj_cevir(key, mesaj, "şifrele")
 
-
-def decrypt_message(key: str, message: str) -> str:
+def sifre_coz_mesaj(key: str, mesaj: str) -> str:
     """
-    >>> decrypt_message("QWERTYUIOPASDFGHJKLZXCVBNM", "Hello World")
+    >>> sifre_coz_mesaj("QWERTYUIOPASDFGHJKLZXCVBNM", "Merhaba Dünya")
     'Itssg Vgksr'
     """
-    return translate_message(key, message, "decrypt")
-
+    return mesaj_cevir(key, mesaj, "şifre çöz")
 
 def main() -> None:
-    message = "Hello World"
+    mesaj = "Merhaba Dünya"
     key = "QWERTYUIOPASDFGHJKLZXCVBNM"
-    mode = "decrypt"  # set to 'encrypt' or 'decrypt'
+    mod = "şifre çöz"  # 'şifrele' veya 'şifre çöz' olarak ayarlayın
 
-    if mode == "encrypt":
-        translated = encrypt_message(key, message)
-    elif mode == "decrypt":
-        translated = decrypt_message(key, message)
-    print(f"Using the key {key}, the {mode}ed message is: {translated}")
-
+    if mod == "şifrele":
+        çevrilen = sifrele_mesaj(key, mesaj)
+    elif mod == "şifre çöz":
+        çevrilen = sifre_coz_mesaj(key, mesaj)
+    print(f"Anahtar {key} kullanılarak, {mod} edilmiş mesaj: {çevrilen}")
 
 if __name__ == "__main__":
     import doctest

@@ -1,15 +1,17 @@
 """
-The trifid cipher uses a table to fractionate each plaintext letter into a trigram,
-mixes the constituents of the trigrams, and then applies the table in reverse to turn
-these mixed trigrams into ciphertext letters.
+Trifid şifreleme, her bir düz metin harfini bir trigram'a ayırmak için bir tablo kullanır,
+trigramların bileşenlerini karıştırır ve ardından bu karıştırılmış trigramları şifreli harflere
+dönüştürmek için tabloyu tersine uygular.
 
-https://en.wikipedia.org/wiki/Trifid_cipher
+#Organiser: K. Umut Araz
+
+https://tr.wikipedia.org/wiki/Trifid_cipher
 """
 
 from __future__ import annotations
 
 # fmt: off
-TEST_CHARACTER_TO_NUMBER = {
+TEST_HARF_TO_NUMARA = {
     "A": "111", "B": "112", "C": "113", "D": "121", "E": "122", "F": "123", "G": "131",
     "H": "132", "I": "133", "J": "211", "K": "212", "L": "213", "M": "221", "N": "222",
     "O": "223", "P": "231", "Q": "232", "R": "233", "S": "311", "T": "312", "U": "313",
@@ -17,194 +19,191 @@ TEST_CHARACTER_TO_NUMBER = {
 }
 # fmt: off
 
-TEST_NUMBER_TO_CHARACTER = {val: key for key, val in TEST_CHARACTER_TO_NUMBER.items()}
+TEST_NUMARA_TO_HARF = {val: key for key, val in TEST_HARF_TO_NUMARA.items()}
 
 
-def __encrypt_part(message_part: str, character_to_number: dict[str, str]) -> str:
+def __sifrele_bolumu(mesaj_bolumu: str, harf_to_numara: dict[str, str]) -> str:
     """
-    Arrange the triagram value of each letter of 'message_part' vertically and join
-    them horizontally.
+    'mesaj_bolumu' içindeki her harfin trigram değerini dikey olarak düzenler ve
+    yatay olarak birleştirir.
 
-    >>> __encrypt_part('ASK', TEST_CHARACTER_TO_NUMBER)
+    >>> __sifrele_bolumu('ASK', TEST_HARF_TO_NUMARA)
     '132111112'
     """
-    one, two, three = "", "", ""
-    for each in (character_to_number[character] for character in message_part):
-        one += each[0]
-        two += each[1]
-        three += each[2]
+    bir, iki, uc = "", "", ""
+    for her in (harf_to_numara[karakter] for karakter in mesaj_bolumu):
+        bir += her[0]
+        iki += her[1]
+        uc += her[2]
 
-    return one + two + three
+    return bir + iki + uc
 
 
-def __decrypt_part(
-    message_part: str, character_to_number: dict[str, str]
+def __coz_bolumu(
+    mesaj_bolumu: str, harf_to_numara: dict[str, str]
 ) -> tuple[str, str, str]:
     """
-    Convert each letter of the input string into their respective trigram values, join
-    them and split them into three equal groups of strings which are returned.
+    Giriş dizesindeki her harfi ilgili trigram değerlerine dönüştürür, bunları birleştirir
+    ve üç eşit grup dizeye ayırarak döndürür.
 
-    >>> __decrypt_part('ABCDE', TEST_CHARACTER_TO_NUMBER)
+    >>> __coz_bolumu('ABCDE', TEST_HARF_TO_NUMARA)
     ('11111', '21131', '21122')
     """
-    this_part = "".join(character_to_number[character] for character in message_part)
-    result = []
+    bu_bolum = "".join(harf_to_numara[karakter] for karakter in mesaj_bolumu)
+    sonuc = []
     tmp = ""
-    for digit in this_part:
-        tmp += digit
-        if len(tmp) == len(message_part):
-            result.append(tmp)
+    for rakam in bu_bolum:
+        tmp += rakam
+        if len(tmp) == len(mesaj_bolumu):
+            sonuc.append(tmp)
             tmp = ""
 
-    return result[0], result[1], result[2]
+    return sonuc[0], sonuc[1], sonuc[2]
 
 
-def __prepare(
-    message: str, alphabet: str
+def __hazirla(
+    mesaj: str, alfabe: str
 ) -> tuple[str, str, dict[str, str], dict[str, str]]:
     """
-    A helper function that generates the triagrams and assigns each letter of the
-    alphabet to its corresponding triagram and stores this in a dictionary
-    ("character_to_number" and "number_to_character") after confirming if the
-    alphabet's length is 27.
+    Trigramları oluşturan ve alfabenin her harfini karşılık gelen trigram ile eşleştirip
+    bunu bir sözlükte saklayan yardımcı bir fonksiyon ("harf_to_numara" ve "numara_to_harf")
+    alfabenin uzunluğunun 27 olup olmadığını kontrol ettikten sonra.
 
-    >>> test = __prepare('I aM a BOy','abCdeFghijkLmnopqrStuVwxYZ+')
+    >>> test = __hazirla('I aM a BOy','abCdeFghijkLmnopqrStuVwxYZ+')
     >>> expected = ('IAMABOY','ABCDEFGHIJKLMNOPQRSTUVWXYZ+',
-    ... TEST_CHARACTER_TO_NUMBER, TEST_NUMBER_TO_CHARACTER)
+    ... TEST_HARF_TO_NUMARA, TEST_NUMARA_TO_HARF)
     >>> test == expected
     True
 
-    Testing with incomplete alphabet
-    >>> __prepare('I aM a BOy','abCdeFghijkLmnopqrStuVw')
+    Eksik alfabe ile test
+    >>> __hazirla('I aM a BOy','abCdeFghijkLmnopqrStuVw')
     Traceback (most recent call last):
         ...
-    KeyError: 'Length of alphabet has to be 27.'
+    KeyError: 'Alfabenin uzunluğu 27 olmalıdır.'
 
-    Testing with extra long alphabets
-    >>> __prepare('I aM a BOy','abCdeFghijkLmnopqrStuVwxyzzwwtyyujjgfd')
+    Fazla uzun alfabeler ile test
+    >>> __hazirla('I aM a BOy','abCdeFghijkLmnopqrStuVwxyzzwwtyyujjgfd')
     Traceback (most recent call last):
         ...
-    KeyError: 'Length of alphabet has to be 27.'
+    KeyError: 'Alfabenin uzunluğu 27 olmalıdır.'
 
-    Testing with punctuations that are not in the given alphabet
-    >>> __prepare('am i a boy?','abCdeFghijkLmnopqrStuVwxYZ+')
+    Verilen alfabenin dışında kalan noktalama işaretleri ile test
+    >>> __hazirla('am i a boy?','abCdeFghijkLmnopqrStuVwxYZ+')
     Traceback (most recent call last):
         ...
-    ValueError: Each message character has to be included in alphabet!
+    ValueError: Her mesaj karakteri alfabenin içinde olmalıdır!
 
-    Testing with numbers
-    >>> __prepare(500,'abCdeFghijkLmnopqrStuVwxYZ+')
+    Sayılar ile test
+    >>> __hazirla(500,'abCdeFghijkLmnopqrStuVwxYZ+')
     Traceback (most recent call last):
         ...
-    AttributeError: 'int' object has no attribute 'replace'
+    AttributeError: 'int' nesnesinin 'replace' özelliği yok.
     """
-    # Validate message and alphabet, set to upper and remove spaces
-    alphabet = alphabet.replace(" ", "").upper()
-    message = message.replace(" ", "").upper()
+    # Mesaj ve alfabenin doğrulanması, büyük harfe çevirme ve boşlukları kaldırma
+    alfabe = alfabe.replace(" ", "").upper()
+    mesaj = mesaj.replace(" ", "").upper()
 
-    # Check length and characters
-    if len(alphabet) != 27:
-        raise KeyError("Length of alphabet has to be 27.")
-    if any(char not in alphabet for char in message):
-        raise ValueError("Each message character has to be included in alphabet!")
+    # Uzunluk ve karakter kontrolü
+    if len(alfabe) != 27:
+        raise KeyError("Alfabenin uzunluğu 27 olmalıdır.")
+    if any(karakter not in alfabe for karakter in mesaj):
+        raise ValueError("Her mesaj karakteri alfabenin içinde olmalıdır!")
 
-    # Generate dictionares
-    character_to_number = dict(zip(alphabet, TEST_CHARACTER_TO_NUMBER.values()))
-    number_to_character = {
-        number: letter for letter, number in character_to_number.items()
+    # Sözlükleri oluştur
+    harf_to_numara = dict(zip(alfabe, TEST_HARF_TO_NUMARA.values()))
+    numara_to_harf = {
+        numara: harf for harf, numara in harf_to_numara.items()
     }
 
-    return message, alphabet, character_to_number, number_to_character
+    return mesaj, alfabe, harf_to_numara, numara_to_harf
 
 
-def encrypt_message(
-    message: str, alphabet: str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.", period: int = 5
+def mesaj_sifrele(
+    mesaj: str, alfabe: str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.", periyot: int = 5
 ) -> str:
     """
-    encrypt_message
+    mesaj_sifrele
     ===============
 
-    Encrypts a message using the trifid_cipher. Any punctuatuions that
-    would be used should be added to the alphabet.
+    Trifid şifreleme kullanarak bir mesajı şifreler. Kullanılacak noktalama işaretleri
+    alfabenin içine eklenmelidir.
 
-    PARAMETERS
+    PARAMETRELER
     ----------
 
-    *   message: The message you want to encrypt.
-    *   alphabet (optional): The characters to be used for the cipher .
-    *   period (optional): The number of characters you want in a group whilst
-        encrypting.
+    *   mesaj: Şifrelemek istediğiniz mesaj.
+    *   alfabe (isteğe bağlı): Şifreleme için kullanılacak karakterler.
+    *   periyot (isteğe bağlı): Şifreleme sırasında grupta istediğiniz karakter sayısı.
 
-    >>> encrypt_message('I am a boy')
+    >>> mesaj_sifrele('I am a boy')
     'BCDGBQY'
 
-    >>> encrypt_message(' ')
+    >>> mesaj_sifrele(' ')
     ''
 
-    >>> encrypt_message('   aide toi le c  iel      ta id  era    ',
+    >>> mesaj_sifrele('   aide toi le c  iel      ta id  era    ',
     ... 'FELIXMARDSTBCGHJKNOPQUVWYZ+',5)
     'FMJFVOISSUFTFPUFEQQC'
 
     """
-    message, alphabet, character_to_number, number_to_character = __prepare(
-        message, alphabet
+    mesaj, alfabe, harf_to_numara, numara_to_harf = __hazirla(
+        mesaj, alfabe
     )
 
-    encrypted_numeric = ""
-    for i in range(0, len(message) + 1, period):
-        encrypted_numeric += __encrypt_part(
-            message[i : i + period], character_to_number
+    sifreli_numerik = ""
+    for i in range(0, len(mesaj) + 1, periyot):
+        sifreli_numerik += __sifrele_bolumu(
+            mesaj[i : i + periyot], harf_to_numara
         )
 
-    encrypted = ""
-    for i in range(0, len(encrypted_numeric), 3):
-        encrypted += number_to_character[encrypted_numeric[i : i + 3]]
-    return encrypted
+    sifreli = ""
+    for i in range(0, len(sifreli_numerik), 3):
+        sifreli += numara_to_harf[sifreli_numerik[i : i + 3]]
+    return sifreli
 
 
-def decrypt_message(
-    message: str, alphabet: str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.", period: int = 5
+def mesaj_coz(
+    mesaj: str, alfabe: str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ.", periyot: int = 5
 ) -> str:
     """
-    decrypt_message
+    mesaj_coz
     ===============
 
-    Decrypts a trifid_cipher encrypted message .
+    Trifid şifreleme ile şifrelenmiş bir mesajı çözer.
 
-    PARAMETERS
+    PARAMETRELER
     ----------
 
-    *   message: The message you want to decrypt .
-    *   alphabet (optional): The characters used for the cipher.
-    *   period (optional): The number of characters used in grouping when it
-        was encrypted.
+    *   mesaj: Çözmek istediğiniz mesaj.
+    *   alfabe (isteğe bağlı): Şifreleme için kullanılan karakterler.
+    *   periyot (isteğe bağlı): Şifrelenirken gruplama için kullanılan karakter sayısı.
 
-    >>> decrypt_message('BCDGBQY')
+    >>> mesaj_coz('BCDGBQY')
     'IAMABOY'
 
-    Decrypting with your own alphabet and period
-    >>> decrypt_message('FMJFVOISSUFTFPUFEQQC','FELIXMARDSTBCGHJKNOPQUVWYZ+',5)
+    Kendi alfabeniz ve periyodunuz ile çözme
+    >>> mesaj_coz('FMJFVOISSUFTFPUFEQQC','FELIXMARDSTBCGHJKNOPQUVWYZ+',5)
     'AIDETOILECIELTAIDERA'
     """
-    message, alphabet, character_to_number, number_to_character = __prepare(
-        message, alphabet
+    mesaj, alfabe, harf_to_numara, numara_to_harf = __hazirla(
+        mesaj, alfabe
     )
 
-    decrypted_numeric = []
-    for i in range(0, len(message), period):
-        a, b, c = __decrypt_part(message[i : i + period], character_to_number)
+    sifreli_numerik = []
+    for i in range(0, len(mesaj), periyot):
+        a, b, c = __coz_bolumu(mesaj[i : i + periyot], harf_to_numara)
 
         for j in range(len(a)):
-            decrypted_numeric.append(a[j] + b[j] + c[j])
+            sifreli_numerik.append(a[j] + b[j] + c[j])
 
-    return "".join(number_to_character[each] for each in decrypted_numeric)
+    return "".join(numara_to_harf[her] for her in sifreli_numerik)
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    msg = "DEFEND THE EAST WALL OF THE CASTLE."
-    encrypted = encrypt_message(msg, "EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
-    decrypted = decrypt_message(encrypted, "EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
-    print(f"Encrypted: {encrypted}\nDecrypted: {decrypted}")
+    msg = "KALENİN DOĞU DUVARINI SAVUN."
+    sifreli = mesaj_sifrele(msg, "EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
+    cozulmus = mesaj_coz(sifreli, "EPSDUCVWYM.ZLKXNBTFGORIJHAQ")
+    print(f"Şifreli: {sifreli}\nÇözülmüş: {cozulmus}")

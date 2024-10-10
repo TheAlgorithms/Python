@@ -3,6 +3,8 @@ Problem kaynağı: https://www.hackerrank.com/challenges/the-power-sum/problem
 Verilen bir X tamsayısının, N'inci kuvvetlerinin toplamı olarak ifade edilebileceği
 yolların sayısını bulun. Örneğin, X=13 ve N=2 ise. 13'e kadar olan benzersiz karelerin
 tüm kombinasyonlarını bulmamız gerekiyor. Tek çözüm 2^2+3^2'dir. Kısıtlamalar: 1<=X<=1000, 2<=N<=10.
+
+Organiser: K. Umut Araz
 """
 
 

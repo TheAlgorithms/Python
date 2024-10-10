@@ -1,6 +1,7 @@
 # Knight Tour Tanıtımı: https://www.youtube.com/watch?v=ab_dY3dZFHM
 
 from __future__ import annotations
+#Organiser: K. Umut Araz
 
 
 def geçerli_pozisyonlar(position: tuple[int, int], n: int) -> list[tuple[int, int]]:

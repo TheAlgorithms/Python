@@ -2,6 +2,8 @@
 Yazar  : Alexander Pantyukhin
 Tarih  : 30 Kasım 2022
 
+Organiser: K. Umut Araz
+
 Görev:
 İki tamsayı verildiğinde. Bu sayıların zıt işaretlere sahip olup olmadığını True,
 aksi takdirde False döndürün.

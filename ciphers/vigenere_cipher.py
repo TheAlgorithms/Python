@@ -1,65 +1,62 @@
-LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+HARFLER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
+# Organiser: K. Umut Araz
 
-def main() -> None:
-    message = input("Enter message: ")
-    key = input("Enter key [alphanumeric]: ")
-    mode = input("Encrypt/Decrypt [e/d]: ")
+def ana_fonksiyonu() -> None:
+    mesaj = input("Mesajı girin: ")
+    anahtar = input("Anahtarı girin [alfa sayısal]: ")
+    mod = input("Şifrele/Şifre Çöz [s/c]: ")
 
-    if mode.lower().startswith("e"):
-        mode = "encrypt"
-        translated = encrypt_message(key, message)
-    elif mode.lower().startswith("d"):
-        mode = "decrypt"
-        translated = decrypt_message(key, message)
+    if mod.lower().startswith("s"):
+        mod = "şifrele"
+        çevrilen = mesajı_şifrele(anahtar, mesaj)
+    elif mod.lower().startswith("c"):
+        mod = "şifre çöz"
+        çevrilen = mesajı_şifre_çöz(anahtar, mesaj)
 
-    print(f"\n{mode.title()}ed message:")
-    print(translated)
+    print(f"\n{mod.title()} edilmiş mesaj:")
+    print(çevrilen)
 
-
-def encrypt_message(key: str, message: str) -> str:
+def mesajı_şifrele(anahtar: str, mesaj: str) -> str:
     """
-    >>> encrypt_message('HDarji', 'This is Harshil Darji from Dharmaj.')
+    >>> mesajı_şifrele('HDarji', 'Bu Harshil Darji\'den Dharmaj\'a bir mesajdır.')
     'Akij ra Odrjqqs Gaisq muod Mphumrs.'
     """
-    return translate_message(key, message, "encrypt")
+    return mesajı_çevir(anahtar, mesaj, "şifrele")
 
-
-def decrypt_message(key: str, message: str) -> str:
+def mesajı_şifre_çöz(anahtar: str, mesaj: str) -> str:
     """
-    >>> decrypt_message('HDarji', 'Akij ra Odrjqqs Gaisq muod Mphumrs.')
-    'This is Harshil Darji from Dharmaj.'
+    >>> mesajı_şifre_çöz('HDarji', 'Akij ra Odrjqqs Gaisq muod Mphumrs.')
+    'Bu Harshil Darji\'den Dharmaj\'a bir mesajdır.'
     """
-    return translate_message(key, message, "decrypt")
+    return mesajı_çevir(anahtar, mesaj, "şifre çöz")
 
+def mesajı_çevir(anahtar: str, mesaj: str, mod: str) -> str:
+    çevrilen = []
+    anahtar_indeksi = 0
+    anahtar = anahtar.upper()
 
-def translate_message(key: str, message: str, mode: str) -> str:
-    translated = []
-    key_index = 0
-    key = key.upper()
-
-    for symbol in message:
-        num = LETTERS.find(symbol.upper())
+    for sembol in mesaj:
+        num = HARFLER.find(sembol.upper())
         if num != -1:
-            if mode == "encrypt":
-                num += LETTERS.find(key[key_index])
-            elif mode == "decrypt":
-                num -= LETTERS.find(key[key_index])
+            if mod == "şifrele":
+                num += HARFLER.find(anahtar[anahtar_indeksi])
+            elif mod == "şifre çöz":
+                num -= HARFLER.find(anahtar[anahtar_indeksi])
 
-            num %= len(LETTERS)
+            num %= len(HARFLER)
 
-            if symbol.isupper():
-                translated.append(LETTERS[num])
-            elif symbol.islower():
-                translated.append(LETTERS[num].lower())
+            if sembol.isupper():
+                çevrilen.append(HARFLER[num])
+            elif sembol.islower():
+                çevrilen.append(HARFLER[num].lower())
 
-            key_index += 1
-            if key_index == len(key):
-                key_index = 0
+            anahtar_indeksi += 1
+            if anahtar_indeksi == len(anahtar):
+                anahtar_indeksi = 0
         else:
-            translated.append(symbol)
-    return "".join(translated)
-
+            çevrilen.append(sembol)
+    return "".join(çevrilen)
 
 if __name__ == "__main__":
-    main()
+    ana_fonksiyonu()

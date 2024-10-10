@@ -2,62 +2,64 @@ import os
 import random
 import sys
 
-from maths.greatest_common_divisor import gcd_by_iterative
+from maths.büyük_ortak_bölgenin_hesabı import gcd_by_iterative
 
-from . import cryptomath_module, rabin_miller
+from . import matematik_modülü, rabin_miller
 
-
-def main() -> None:
-    print("Making key files...")
-    make_key_files("rsa", 1024)
-    print("Key files generation successful.")
+#Organiser: K. Umut Araz
 
 
-def generate_key(key_size: int) -> tuple[tuple[int, int], tuple[int, int]]:
+def ana_fonksiyon() -> None:
+    print("Anahtar dosyaları oluşturuluyor...")
+    anahtar_dosyalarını_oluştur("rsa", 1024)
+    print("Anahtar dosyaları başarıyla oluşturuldu.")
+
+
+def anahtar_oluştur(key_size: int) -> tuple[tuple[int, int], tuple[int, int]]:
     """
-    >>> random.seed(0) # for repeatability
-    >>> public_key, private_key = generate_key(8)
-    >>> public_key
+    >>> random.seed(0) # Tekrar edilebilirlik için
+    >>> genel_anahtar, özel_anahtar = anahtar_oluştur(8)
+    >>> genel_anahtar
     (26569, 239)
-    >>> private_key
+    >>> özel_anahtar
     (26569, 2855)
     """
-    p = rabin_miller.generate_large_prime(key_size)
-    q = rabin_miller.generate_large_prime(key_size)
+    p = rabin_miller.büyük_asal_oluştur(key_size)
+    q = rabin_miller.büyük_asal_oluştur(key_size)
     n = p * q
 
-    # Generate e that is relatively prime to (p - 1) * (q - 1)
+    # (p - 1) * (q - 1) ile relatif asal olan e'yi oluştur
     while True:
         e = random.randrange(2 ** (key_size - 1), 2 ** (key_size))
         if gcd_by_iterative(e, (p - 1) * (q - 1)) == 1:
             break
 
-    # Calculate d that is mod inverse of e
-    d = cryptomath_module.find_mod_inverse(e, (p - 1) * (q - 1))
+    # e'nin mod tersini hesapla
+    d = matematik_modülü.mod_tersi_bul(e, (p - 1) * (q - 1))
 
-    public_key = (n, e)
-    private_key = (n, d)
-    return (public_key, private_key)
+    genel_anahtar = (n, e)
+    özel_anahtar = (n, d)
+    return (genel_anahtar, özel_anahtar)
 
 
-def make_key_files(name: str, key_size: int) -> None:
-    if os.path.exists(f"{name}_pubkey.txt") or os.path.exists(f"{name}_privkey.txt"):
-        print("\nWARNING:")
+def anahtar_dosyalarını_oluştur(isim: str, key_size: int) -> None:
+    if os.path.exists(f"{isim}_pubkey.txt") or os.path.exists(f"{isim}_privkey.txt"):
+        print("\nUYARI:")
         print(
-            f'"{name}_pubkey.txt" or "{name}_privkey.txt" already exists. \n'
-            "Use a different name or delete these files and re-run this program."
+            f'"{isim}_pubkey.txt" veya "{isim}_privkey.txt" zaten mevcut. \n'
+            "Farklı bir isim kullanın veya bu dosyaları silip programı tekrar çalıştırın."
         )
         sys.exit()
 
-    public_key, private_key = generate_key(key_size)
-    print(f"\nWriting public key to file {name}_pubkey.txt...")
-    with open(f"{name}_pubkey.txt", "w") as out_file:
-        out_file.write(f"{key_size},{public_key[0]},{public_key[1]}")
+    genel_anahtar, özel_anahtar = anahtar_oluştur(key_size)
+    print(f"\nGenel anahtarı {isim}_pubkey.txt dosyasına yazılıyor...")
+    with open(f"{isim}_pubkey.txt", "w") as out_file:
+        out_file.write(f"{key_size},{genel_anahtar[0]},{genel_anahtar[1]}")
 
-    print(f"Writing private key to file {name}_privkey.txt...")
-    with open(f"{name}_privkey.txt", "w") as out_file:
-        out_file.write(f"{key_size},{private_key[0]},{private_key[1]}")
+    print(f"Özel anahtarı {isim}_privkey.txt dosyasına yazılıyor...")
+    with open(f"{isim}_privkey.txt", "w") as out_file:
+        out_file.write(f"{key_size},{özel_anahtar[0]},{özel_anahtar[1]}")
 
 
 if __name__ == "__main__":
-    main()
+    ana_fonksiyon()

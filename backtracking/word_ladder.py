@@ -6,6 +6,8 @@ Her ara kelime, verilen bir kelime listesinden geçerli bir kelime olmalıdır.
 Amaç, başlangıç kelimesinden bitiş kelimesine bir dönüşüm dizisi bulmaktır.
 
 Wikipedia: https://en.wikipedia.org/wiki/Word_ladder
+
+Organiser: K. Umut Araz
 """
 
 import string

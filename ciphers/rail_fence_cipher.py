@@ -1,99 +1,102 @@
-"""https://en.wikipedia.org/wiki/Rail_fence_cipher"""
+"""https://tr.wikipedia.org/wiki/Raylı_çit_şifreleme"""
+
+#Organiser: K. Umut Araz
 
 
-def encrypt(input_string: str, key: int) -> str:
+
+def sifrele(girdi: str, anahtar: int) -> str:
     """
-    Shuffles the character of a string by placing each of them
-    in a grid (the height is dependent on the key) in a zigzag
-    formation and reading it left to right.
+    Bir dizi karakteri, her birini bir ızgaraya yerleştirerek
+    (yükseklik anahtara bağlıdır) zigzag formasyonunda karıştırır
+    ve soldan sağa okur.
 
-    >>> encrypt("Hello World", 4)
-    'HWe olordll'
+    >>> sifrele("Merhaba Dünya", 4)
+    'Mra uahbDny'
 
-    >>> encrypt("This is a message", 0)
+    >>> sifrele("Bu bir mesajdır", 0)
     Traceback (most recent call last):
         ...
-    ValueError: Height of grid can't be 0 or negative
+    ValueError: Izgaranın yüksekliği 0 veya negatif olamaz
 
-    >>> encrypt(b"This is a byte string", 5)
+    >>> sifrele(b"Bu bir bayt dizisidir", 5)
     Traceback (most recent call last):
         ...
-    TypeError: sequence item 0: expected str instance, int found
+    TypeError: dizi öğesi 0: str örneği bekleniyordu, int bulundu
     """
-    temp_grid: list[list[str]] = [[] for _ in range(key)]
-    lowest = key - 1
+    temp_izgara: list[list[str]] = [[] for _ in range(anahtar)]
+    en_dusuk = anahtar - 1
 
-    if key <= 0:
-        raise ValueError("Height of grid can't be 0 or negative")
-    if key == 1 or len(input_string) <= key:
-        return input_string
+    if anahtar <= 0:
+        raise ValueError("Izgaranın yüksekliği 0 veya negatif olamaz")
+    if anahtar == 1 or len(girdi) <= anahtar:
+        return girdi
 
-    for position, character in enumerate(input_string):
-        num = position % (lowest * 2)  # puts it in bounds
-        num = min(num, lowest * 2 - num)  # creates zigzag pattern
-        temp_grid[num].append(character)
-    grid = ["".join(row) for row in temp_grid]
-    output_string = "".join(grid)
+    for konum, karakter in enumerate(girdi):
+        num = konum % (en_dusuk * 2)  # sınırları belirler
+        num = min(num, en_dusuk * 2 - num)  # zigzag deseni oluşturur
+        temp_izgara[num].append(karakter)
+    izgara = ["".join(satir) for satir in temp_izgara]
+    cikti = "".join(izgara)
 
-    return output_string
+    return cikti
 
 
-def decrypt(input_string: str, key: int) -> str:
+def cozul(girdi: str, anahtar: int) -> str:
     """
-    Generates a template based on the key and fills it in with
-    the characters of the input string and then reading it in
-    a zigzag formation.
+    Anahtara dayalı bir şablon oluşturur ve bunu
+    girdi dizisinin karakterleriyle doldurur ve ardından
+    zigzag formasyonunda okur.
 
-    >>> decrypt("HWe olordll", 4)
-    'Hello World'
+    >>> cozul("Mra uahbDny", 4)
+    'Merhaba Dünya'
 
-    >>> decrypt("This is a message", -10)
+    >>> cozul("Bu bir mesajdır", -10)
     Traceback (most recent call last):
         ...
-    ValueError: Height of grid can't be 0 or negative
+    ValueError: Izgaranın yüksekliği 0 veya negatif olamaz
 
-    >>> decrypt("My key is very big", 100)
-    'My key is very big'
+    >>> cozul("Anahtarım çok büyük", 100)
+    'Anahtarım çok büyük'
     """
-    grid = []
-    lowest = key - 1
+    izgara = []
+    en_dusuk = anahtar - 1
 
-    if key <= 0:
-        raise ValueError("Height of grid can't be 0 or negative")
-    if key == 1:
-        return input_string
+    if anahtar <= 0:
+        raise ValueError("Izgaranın yüksekliği 0 veya negatif olamaz")
+    if anahtar == 1:
+        return girdi
 
-    temp_grid: list[list[str]] = [[] for _ in range(key)]  # generates template
-    for position in range(len(input_string)):
-        num = position % (lowest * 2)  # puts it in bounds
-        num = min(num, lowest * 2 - num)  # creates zigzag pattern
-        temp_grid[num].append("*")
+    temp_izgara: list[list[str]] = [[] for _ in range(anahtar)]  # şablon oluşturur
+    for konum in range(len(girdi)):
+        num = konum % (en_dusuk * 2)  # sınırları belirler
+        num = min(num, en_dusuk * 2 - num)  # zigzag deseni oluşturur
+        temp_izgara[num].append("*")
 
-    counter = 0
-    for row in temp_grid:  # fills in the characters
-        splice = input_string[counter : counter + len(row)]
-        grid.append(list(splice))
-        counter += len(row)
+    sayac = 0
+    for satir in temp_izgara:  # karakterleri doldurur
+        parca = girdi[sayac : sayac + len(satir)]
+        izgara.append(list(parca))
+        sayac += len(satir)
 
-    output_string = ""  # reads as zigzag
-    for position in range(len(input_string)):
-        num = position % (lowest * 2)  # puts it in bounds
-        num = min(num, lowest * 2 - num)  # creates zigzag pattern
-        output_string += grid[num][0]
-        grid[num].pop(0)
-    return output_string
+    cikti = ""  # zigzag olarak okur
+    for konum in range(len(girdi)):
+        num = konum % (en_dusuk * 2)  # sınırları belirler
+        num = min(num, en_dusuk * 2 - num)  # zigzag deseni oluşturur
+        cikti += izgara[num][0]
+        izgara[num].pop(0)
+    return cikti
 
 
-def bruteforce(input_string: str) -> dict[int, str]:
-    """Uses decrypt function by guessing every key
+def brute_force(girdi: str) -> dict[int, str]:
+    """Her anahtarı tahmin ederek çözme fonksiyonunu kullanır
 
-    >>> bruteforce("HWe olordll")[4]
-    'Hello World'
+    >>> brute_force("Mra uahbDny")[4]
+    'Merhaba Dünya'
     """
-    results = {}
-    for key_guess in range(1, len(input_string)):  # tries every key
-        results[key_guess] = decrypt(input_string, key_guess)
-    return results
+    sonuclar = {}
+    for anahtar_tahmin in range(1, len(girdi)):  # her anahtarı dener
+        sonuclar[anahtar_tahmin] = cozul(girdi, anahtar_tahmin)
+    return sonuclar
 
 
 if __name__ == "__main__":

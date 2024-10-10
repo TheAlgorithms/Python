@@ -1,54 +1,57 @@
 import string
 
+"""
+Organiser: K. Umut Araz
+"""
 
-def decrypt(message: str) -> None:
+def şifreyi_çöz(message: str) -> None:
     """
-    >>> decrypt('TMDETUX PMDVU')
-    Decryption using Key #0: TMDETUX PMDVU
-    Decryption using Key #1: SLCDSTW OLCUT
-    Decryption using Key #2: RKBCRSV NKBTS
-    Decryption using Key #3: QJABQRU MJASR
-    Decryption using Key #4: PIZAPQT LIZRQ
-    Decryption using Key #5: OHYZOPS KHYQP
-    Decryption using Key #6: NGXYNOR JGXPO
-    Decryption using Key #7: MFWXMNQ IFWON
-    Decryption using Key #8: LEVWLMP HEVNM
-    Decryption using Key #9: KDUVKLO GDUML
-    Decryption using Key #10: JCTUJKN FCTLK
-    Decryption using Key #11: IBSTIJM EBSKJ
-    Decryption using Key #12: HARSHIL DARJI
-    Decryption using Key #13: GZQRGHK CZQIH
-    Decryption using Key #14: FYPQFGJ BYPHG
-    Decryption using Key #15: EXOPEFI AXOGF
-    Decryption using Key #16: DWNODEH ZWNFE
-    Decryption using Key #17: CVMNCDG YVMED
-    Decryption using Key #18: BULMBCF XULDC
-    Decryption using Key #19: ATKLABE WTKCB
-    Decryption using Key #20: ZSJKZAD VSJBA
-    Decryption using Key #21: YRIJYZC URIAZ
-    Decryption using Key #22: XQHIXYB TQHZY
-    Decryption using Key #23: WPGHWXA SPGYX
-    Decryption using Key #24: VOFGVWZ ROFXW
-    Decryption using Key #25: UNEFUVY QNEWV
+    >>> şifreyi_çöz('TMDETUX PMDVU')
+    Anahtar #0 ile Çözüm: TMDETUX PMDVU
+    Anahtar #1 ile Çözüm: SLCDSTW OLCUT
+    Anahtar #2 ile Çözüm: RKBCRSV NKBTS
+    Anahtar #3 ile Çözüm: QJABQRU MJASR
+    Anahtar #4 ile Çözüm: PIZAPQT LIZRQ
+    Anahtar #5 ile Çözüm: OHYZOPS KHYQP
+    Anahtar #6 ile Çözüm: NGXYNOR JGXPO
+    Anahtar #7 ile Çözüm: MFWXMNQ IFWON
+    Anahtar #8 ile Çözüm: LEVWLMP HEVNM
+    Anahtar #9 ile Çözüm: KDUVKLO GDUML
+    Anahtar #10 ile Çözüm: JCTUJKN FCTLK
+    Anahtar #11 ile Çözüm: IBSTIJM EBSKJ
+    Anahtar #12 ile Çözüm: HARSHIL DARJI
+    Anahtar #13 ile Çözüm: GZQRGHK CZQIH
+    Anahtar #14 ile Çözüm: FYPQFGJ BYPHG
+    Anahtar #15 ile Çözüm: EXOPEFI AXOGF
+    Anahtar #16 ile Çözüm: DWNODEH ZWNFE
+    Anahtar #17 ile Çözüm: CVMNCDG YVMED
+    Anahtar #18 ile Çözüm: BULMBCF XULDC
+    Anahtar #19 ile Çözüm: ATKLABE WTKCB
+    Anahtar #20 ile Çözüm: ZSJKZAD VSJBA
+    Anahtar #21 ile Çözüm: YRIJYZC URIAZ
+    Anahtar #22 ile Çözüm: XQHIXYB TQHZY
+    Anahtar #23 ile Çözüm: WPGHWXA SPGYX
+    Anahtar #24 ile Çözüm: VOFGVWZ ROFXW
+    Anahtar #25 ile Çözüm: UNEFUVY QNEWV
     """
-    for key in range(len(string.ascii_uppercase)):
-        translated = ""
-        for symbol in message:
-            if symbol in string.ascii_uppercase:
-                num = string.ascii_uppercase.find(symbol)
-                num = num - key
+    for anahtar in range(len(string.ascii_uppercase)):
+        çevrilen = ""
+        for sembol in message:
+            if sembol in string.ascii_uppercase:
+                num = string.ascii_uppercase.find(sembol)
+                num = num - anahtar
                 if num < 0:
                     num = num + len(string.ascii_uppercase)
-                translated = translated + string.ascii_uppercase[num]
+                çevrilen += string.ascii_uppercase[num]
             else:
-                translated = translated + symbol
-        print(f"Decryption using Key #{key}: {translated}")
+                çevrilen += sembol
+        print(f"Anahtar #{anahtar} ile Çözüm: {çevrilen}")
 
 
 def main() -> None:
-    message = input("Encrypted message: ")
+    message = input("Şifreli mesaj: ")
     message = message.upper()
-    decrypt(message)
+    şifreyi_çöz(message)
 
 
 if __name__ == "__main__":

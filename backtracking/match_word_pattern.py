@@ -2,6 +2,8 @@ def kelime_deseni_eşleştir(desen: str, giriş_dizesi: str) -> bool:
     """
     Geri izleme kullanarak verilen bir desenin bir dizeyle eşleşip eşleşmediğini belirleyin.
 
+    Organiser: K. Umut Araz
+
     desen: Eşleştirilecek desen.
     giriş_dizesi: Desene karşı eşleştirilecek dize.
     dönüş: Desen dizeyle eşleşirse True, aksi takdirde False döner.

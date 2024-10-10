@@ -1,49 +1,53 @@
-def snake_to_camel_case(input_str: str, use_pascal: bool = False) -> str:
+def snake_to_camel_case(girdi_str: str, pascal_kullan: bool = False) -> str:
     """
-    Transforms a snake_case given string to camelCase (or PascalCase if indicated)
-    (defaults to not use Pascal)
 
-    >>> snake_to_camel_case("some_random_string")
-    'someRandomString'
+    Organiser: K. Umut Araz
 
-    >>> snake_to_camel_case("some_random_string", use_pascal=True)
-    'SomeRandomString'
+    
+    Verilen bir snake_case dizesini camelCase (veya belirtilirse PascalCase) formatına dönüştürür.
+    (Varsayılan olarak Pascal kullanılmaz)
 
-    >>> snake_to_camel_case("some_random_string_with_numbers_123")
-    'someRandomStringWithNumbers123'
+    >>> snake_to_camel_case("baz_random_dize")
+    'bazRandomDize'
 
-    >>> snake_to_camel_case("some_random_string_with_numbers_123", use_pascal=True)
-    'SomeRandomStringWithNumbers123'
+    >>> snake_to_camel_case("baz_random_dize", pascal_kullan=True)
+    'BazRandomDize'
+
+    >>> snake_to_camel_case("baz_random_dize_ile_sayilar_123")
+    'bazRandomDizeIleSayilar123'
+
+    >>> snake_to_camel_case("baz_random_dize_ile_sayilar_123", pascal_kullan=True)
+    'BazRandomDizeIleSayilar123'
 
     >>> snake_to_camel_case(123)
     Traceback (most recent call last):
         ...
-    ValueError: Expected string as input, found <class 'int'>
+    ValueError: Girdi olarak string bekleniyor, bulunan <class 'int'>
 
-    >>> snake_to_camel_case("some_string", use_pascal="True")
+    >>> snake_to_camel_case("baz_dize", pascal_kullan="True")
     Traceback (most recent call last):
         ...
-    ValueError: Expected boolean as use_pascal parameter, found <class 'str'>
+    ValueError: pascal_kullan parametresi için boolean bekleniyor, bulunan <class 'str'>
     """
 
-    if not isinstance(input_str, str):
-        msg = f"Expected string as input, found {type(input_str)}"
+    if not isinstance(girdi_str, str):
+        msg = f"Girdi olarak string bekleniyor, bulunan {type(girdi_str)}"
         raise ValueError(msg)
-    if not isinstance(use_pascal, bool):
-        msg = f"Expected boolean as use_pascal parameter, found {type(use_pascal)}"
+    if not isinstance(pascal_kullan, bool):
+        msg = f"pascal_kullan parametresi için boolean bekleniyor, bulunan {type(pascal_kullan)}"
         raise ValueError(msg)
 
-    words = input_str.split("_")
+    kelimeler = girdi_str.split("_")
 
-    start_index = 0 if use_pascal else 1
+    baslangic_indeksi = 0 if pascal_kullan else 1
 
-    words_to_capitalize = words[start_index:]
+    buyuk_harfle_baslayacak_kelimeler = kelimeler[baslangic_indeksi:]
 
-    capitalized_words = [word[0].upper() + word[1:] for word in words_to_capitalize]
+    buyuk_harfli_kelimeler = [kelime[0].upper() + kelime[1:] for kelime in buyuk_harfle_baslayacak_kelimeler]
 
-    initial_word = "" if use_pascal else words[0]
+    ilk_kelime = "" if pascal_kullan else kelimeler[0]
 
-    return "".join([initial_word, *capitalized_words])
+    return "".join([ilk_kelime, *buyuk_harfli_kelimeler])
 
 
 if __name__ == "__main__":

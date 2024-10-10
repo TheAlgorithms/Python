@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
+# Organiser: K. Umut Araz
+
 # Burç yorumu almak için fonksiyon
 def horoscope(zodiac_sign: int, day: str) -> str:
     url = (

@@ -4,6 +4,8 @@ import requests
 
 _NEWS_API = "https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey="
 
+# Organiser: K. Umut Araz
+
 
 def fetch_bbc_news(bbc_news_api_key: str) -> list[dict]:
     """

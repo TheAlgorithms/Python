@@ -1,12 +1,15 @@
 """
-wiki: https://en.wikipedia.org/wiki/Heterogram_(literature)#Isograms
+
+# Organiser: K. Umut Araz   
+
+wiki: https://tr.wikipedia.org/wiki/Heterogram_(edebiyat)#Isogramlar
 """
 
 
-def is_isogram(string: str) -> bool:
+def is_isogram(kelime: str) -> bool:
     """
-    An isogram is a word in which no letter is repeated.
-    Examples of isograms are uncopyrightable and ambidextrously.
+    Isogram, içinde hiçbir harfin tekrar etmediği bir kelimedir.
+    Isogram örnekleri arasında "uncopyrightable" ve "ambidextrously" bulunmaktadır.
     >>> is_isogram('Uncopyrightable')
     True
     >>> is_isogram('allowance')
@@ -14,17 +17,17 @@ def is_isogram(string: str) -> bool:
     >>> is_isogram('copy1')
     Traceback (most recent call last):
      ...
-    ValueError: String must only contain alphabetic characters.
+    ValueError: Girdi yalnızca alfabetik karakterler içermelidir.
     """
-    if not all(x.isalpha() for x in string):
-        raise ValueError("String must only contain alphabetic characters.")
+    if not all(x.isalpha() for x in kelime):
+        raise ValueError("Girdi yalnızca alfabetik karakterler içermelidir.")
 
-    letters = sorted(string.lower())
-    return len(letters) == len(set(letters))
+    harfler = sorted(kelime.lower())
+    return len(harfler) == len(set(harfler))
 
 
 if __name__ == "__main__":
-    input_str = input("Enter a string ").strip()
+    girdi_str = input("Bir kelime girin: ").strip()
 
-    isogram = is_isogram(input_str)
-    print(f"{input_str} is {'an' if isogram else 'not an'} isogram.")
+    isogram = is_isogram(girdi_str)
+    print(f"{girdi_str} {'bir' if isogram else 'bir isogram değil'}.")

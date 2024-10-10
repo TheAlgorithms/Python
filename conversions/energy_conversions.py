@@ -1,31 +1,31 @@
 """
-Conversion of energy units.
+Enerji birimlerinin dönüştürülmesi.
 
-Available units: joule, kilojoule, megajoule, gigajoule,\
-      wattsecond, watthour, kilowatthour, newtonmeter, calorie_nutr,\
-          kilocalorie_nutr, electronvolt, britishthermalunit_it, footpound
+Mevcut birimler: joule, kilojoule, megajoule, gigajoule,\
+      watt-saniye, watt-saat, kilowatt-saat, newton-metre, kalori_nutr,\
+          kilokalori_nutr, elektronvolt, britanya termal birimi, ayak-pound
 
-USAGE :
--> Import this file into their respective project.
--> Use the function energy_conversion() for conversion of energy units.
--> Parameters :
-    -> from_type : From which type you want to convert
-    -> to_type : To which type you want to convert
-    -> value : the value which you want to convert
+KULLANIM:
+-> Bu dosyayı ilgili projeye dahil edin.
+-> Enerji birimlerini dönüştürmek için energy_conversion() fonksiyonunu kullanın.
+-> Parametreler:
+    -> from_type : Hangi türden dönüştürmek istediğiniz
+    -> to_type : Hangi türe dönüştürmek istediğiniz
+    -> value : Dönüştürmek istediğiniz değer
 
-REFERENCES :
--> Wikipedia reference: https://en.wikipedia.org/wiki/Units_of_energy
--> Wikipedia reference: https://en.wikipedia.org/wiki/Joule
--> Wikipedia reference: https://en.wikipedia.org/wiki/Kilowatt-hour
--> Wikipedia reference: https://en.wikipedia.org/wiki/Newton-metre
--> Wikipedia reference: https://en.wikipedia.org/wiki/Calorie
--> Wikipedia reference: https://en.wikipedia.org/wiki/Electronvolt
--> Wikipedia reference: https://en.wikipedia.org/wiki/British_thermal_unit
--> Wikipedia reference: https://en.wikipedia.org/wiki/Foot-pound_(energy)
--> Unit converter reference: https://www.unitconverters.net/energy-converter.html
+REFERANSLAR:
+-> Wikipedia referansı: https://en.wikipedia.org/wiki/Units_of_energy
+-> Wikipedia referansı: https://en.wikipedia.org/wiki/Joule
+-> Wikipedia referansı: https://en.wikipedia.org/wiki/Kilowatt-hour
+-> Wikipedia referansı: https://en.wikipedia.org/wiki/Newton-metre
+-> Wikipedia referansı: https://en.wikipedia.org/wiki/Calorie
+-> Wikipedia referansı: https://en.wikipedia.org/wiki/Electronvolt
+-> Wikipedia referansı: https://en.wikipedia.org/wiki/British_thermal_unit
+-> Wikipedia referansı: https://en.wikipedia.org/wiki/Foot-pound_(energy)
+-> Birim dönüştürücü referansı: https://www.unitconverters.net/energy-converter.html
 """
 
-ENERGY_CONVERSION: dict[str, float] = {
+ENERJI_DONUSTURMA: dict[str, float] = {
     "joule": 1.0,
     "kilojoule": 1_000,
     "megajoule": 1_000_000,
@@ -42,70 +42,70 @@ ENERGY_CONVERSION: dict[str, float] = {
 }
 
 
-def energy_conversion(from_type: str, to_type: str, value: float) -> float:
+def enerji_donustur(from_type: str, to_type: str, value: float) -> float:
     """
-    Conversion of energy units.
-    >>> energy_conversion("joule", "joule", 1)
+    Enerji birimlerinin dönüştürülmesi.
+    >>> enerji_donustur("joule", "joule", 1)
     1.0
-    >>> energy_conversion("joule", "kilojoule", 1)
+    >>> enerji_donustur("joule", "kilojoule", 1)
     0.001
-    >>> energy_conversion("joule", "megajoule", 1)
+    >>> enerji_donustur("joule", "megajoule", 1)
     1e-06
-    >>> energy_conversion("joule", "gigajoule", 1)
+    >>> enerji_donustur("joule", "gigajoule", 1)
     1e-09
-    >>> energy_conversion("joule", "wattsecond", 1)
+    >>> enerji_donustur("joule", "wattsecond", 1)
     1.0
-    >>> energy_conversion("joule", "watthour", 1)
+    >>> enerji_donustur("joule", "watthour", 1)
     0.0002777777777777778
-    >>> energy_conversion("joule", "kilowatthour", 1)
+    >>> enerji_donustur("joule", "kilowatthour", 1)
     2.7777777777777776e-07
-    >>> energy_conversion("joule", "newtonmeter", 1)
+    >>> enerji_donustur("joule", "newtonmeter", 1)
     1.0
-    >>> energy_conversion("joule", "calorie_nutr", 1)
+    >>> enerji_donustur("joule", "calorie_nutr", 1)
     0.00023884589662749592
-    >>> energy_conversion("joule", "kilocalorie_nutr", 1)
+    >>> enerji_donustur("joule", "kilocalorie_nutr", 1)
     2.388458966274959e-07
-    >>> energy_conversion("joule", "electronvolt", 1)
+    >>> enerji_donustur("joule", "electronvolt", 1)
     6.241509074460763e+18
-    >>> energy_conversion("joule", "britishthermalunit_it", 1)
+    >>> enerji_donustur("joule", "britishthermalunit_it", 1)
     0.0009478171226670134
-    >>> energy_conversion("joule", "footpound", 1)
+    >>> enerji_donustur("joule", "footpound", 1)
     0.7375621211696556
-    >>> energy_conversion("joule", "megajoule", 1000)
+    >>> enerji_donustur("joule", "megajoule", 1000)
     0.001
-    >>> energy_conversion("calorie_nutr", "kilocalorie_nutr", 1000)
+    >>> enerji_donustur("calorie_nutr", "kilocalorie_nutr", 1000)
     1.0
-    >>> energy_conversion("kilowatthour", "joule", 10)
+    >>> enerji_donustur("kilowatthour", "joule", 10)
     36000000.0
-    >>> energy_conversion("britishthermalunit_it", "footpound", 1)
+    >>> enerji_donustur("britishthermalunit_it", "footpound", 1)
     778.1692306784539
-    >>> energy_conversion("watthour", "joule", "a") # doctest: +ELLIPSIS
+    >>> enerji_donustur("watthour", "joule", "a") # doctest: +ELLIPSIS
     Traceback (most recent call last):
       ...
-    TypeError: unsupported operand type(s) for /: 'str' and 'float'
-    >>> energy_conversion("wrongunit", "joule", 1) # doctest: +ELLIPSIS
+    TypeError: desteklenmeyen operand türleri: 'str' ve 'float'
+    >>> enerji_donustur("wrongunit", "joule", 1) # doctest: +ELLIPSIS
     Traceback (most recent call last):
       ...
-    ValueError: Incorrect 'from_type' or 'to_type' value: 'wrongunit', 'joule'
-    Valid values are: joule, ... footpound
-    >>> energy_conversion("joule", "wrongunit", 1) # doctest: +ELLIPSIS
+    ValueError: Hatalı 'from_type' veya 'to_type' değeri: 'wrongunit', 'joule'
+    Geçerli değerler: joule, ... footpound
+    >>> enerji_donustur("joule", "wrongunit", 1) # doctest: +ELLIPSIS
     Traceback (most recent call last):
       ...
-    ValueError: Incorrect 'from_type' or 'to_type' value: 'joule', 'wrongunit'
-    Valid values are: joule, ... footpound
-    >>> energy_conversion("123", "abc", 1) # doctest: +ELLIPSIS
+    ValueError: Hatalı 'from_type' veya 'to_type' değeri: 'joule', 'wrongunit'
+    Geçerli değerler: joule, ... footpound
+    >>> enerji_donustur("123", "abc", 1) # doctest: +ELLIPSIS
     Traceback (most recent call last):
       ...
-    ValueError: Incorrect 'from_type' or 'to_type' value: '123', 'abc'
-    Valid values are: joule, ... footpound
+    ValueError: Hatalı 'from_type' veya 'to_type' değeri: '123', 'abc'
+    Geçerli değerler: joule, ... footpound
     """
-    if to_type not in ENERGY_CONVERSION or from_type not in ENERGY_CONVERSION:
+    if to_type not in ENERJI_DONUSTURMA or from_type not in ENERJI_DONUSTURMA:
         msg = (
-            f"Incorrect 'from_type' or 'to_type' value: {from_type!r}, {to_type!r}\n"
-            f"Valid values are: {', '.join(ENERGY_CONVERSION)}"
+            f"Hatalı 'from_type' veya 'to_type' değeri: {from_type!r}, {to_type!r}\n"
+            f"Geçerli değerler: {', '.join(ENERJI_DONUSTURMA)}"
         )
         raise ValueError(msg)
-    return value * ENERGY_CONVERSION[from_type] / ENERGY_CONVERSION[to_type]
+    return value * ENERJI_DONUSTURMA[from_type] / ENERJI_DONUSTURMA[to_type]
 
 
 if __name__ == "__main__":

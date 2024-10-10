@@ -1,5 +1,6 @@
 """
 author: Aayush Soni
+Organiser: K. Umut Araz
 Verilen n çift parantez için, tüm iyi biçimlendirilmiş parantez kombinasyonlarını
 oluşturmak için bir fonksiyon yazın.
 Girdi: n = 2

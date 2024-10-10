@@ -5,6 +5,8 @@ Horn-Schunck yöntemi, bir dizi görüntünün her bir pikseli için optik akı�
 Faydalı kaynaklar:
 Wikipedia: https://en.wikipedia.org/wiki/Horn%E2%80%93Schunck_method
 Makale: http://image.diku.dk/imagecanon/material/HornSchunckOptical_Flow.pdf
+
+Organiser: K. Umut Araz
 """
 
 from typing import SupportsIndex

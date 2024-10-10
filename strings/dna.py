@@ -3,8 +3,10 @@ import re
 
 def dna(dna: str) -> str:
     """
-    https://en.wikipedia.org/wiki/DNA
-    Returns the second side of a DNA strand
+    # Organiser: K. Umut Araz
+    
+    https://tr.wikipedia.org/wiki/DNA
+    Bir DNA ipliğinin karşı tarafını döndürür.
 
     >>> dna("GCTA")
     'CGAT'
@@ -15,11 +17,11 @@ def dna(dna: str) -> str:
     >>> dna("GFGG")
     Traceback (most recent call last):
         ...
-    ValueError: Invalid Strand
+    ValueError: Geçersiz İplik
     """
 
     if len(re.findall("[ATCG]", dna)) != len(dna):
-        raise ValueError("Invalid Strand")
+        raise ValueError("Geçersiz İplik")
 
     return dna.translate(dna.maketrans("ATCG", "TAGC"))
 
@@ -27,4 +29,4 @@ def dna(dna: str) -> str:
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()
+    testmod()

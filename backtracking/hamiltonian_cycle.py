@@ -3,6 +3,7 @@ Hamiltonian döngüsü (Hamiltonian devresi), bir grafikte her düğümü
 tam olarak bir kez ziyaret eden bir grafik döngüsüdür.
 Bu tür yolların ve döngülerin grafikte var olup olmadığını belirlemek,
 NP-tam olan 'Hamiltonian yol problemi'dir.
+Organiser: K. Umut Araz
 
 Wikipedia: https://en.wikipedia.org/wiki/Hamiltonian_path
 """

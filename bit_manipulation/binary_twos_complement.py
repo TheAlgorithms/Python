@@ -3,6 +3,9 @@
 
 def ikinin_tamlayani(sayi: int) -> str:
     """
+
+    Organiser: K. Umut Araz
+        
     Negatif bir tamsayı 'sayi' alır.
     'sayi'nin ikinin tamamlayanı gösterimini döndürür.
 

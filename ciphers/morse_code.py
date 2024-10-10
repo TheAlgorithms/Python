@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 
 """
-Python program to translate to and from Morse code.
+Morse koduna ve Morse kodundan çeviri yapan Python programı.
 
-https://en.wikipedia.org/wiki/Morse_code
+https://tr.wikipedia.org/wiki/Morse_kodu
+
+Organiser: K. Umut Araz
 """
 
 # fmt: off
-MORSE_CODE_DICT = {
+MORSE_KODU_SÖZLÜĞÜ = {
     "A": ".-", "B": "-...", "C": "-.-.", "D": "-..", "E": ".", "F": "..-.", "G": "--.",
     "H": "....", "I": "..", "J": ".---", "K": "-.-", "L": ".-..", "M": "--", "N": "-.",
     "O": "---", "P": ".--.", "Q": "--.-", "R": ".-.", "S": "...", "T": "-", "U": "..-",
@@ -17,41 +19,41 @@ MORSE_CODE_DICT = {
     ":": "---...", ",": "--..--", ".": ".-.-.-", "'": ".----.", '"': ".-..-.",
     "?": "..--..", "/": "-..-.", "=": "-...-", "+": ".-.-.", "-": "-....-",
     "(": "-.--.", ")": "-.--.-", "!": "-.-.--", " ": "/"
-}  # Exclamation mark is not in ITU-R recommendation
+}  # Ünlem işareti ITU-R önerisinde yoktur
 # fmt: on
-REVERSE_DICT = {value: key for key, value in MORSE_CODE_DICT.items()}
+TERS_SÖZLÜK = {değer: anahtar for anahtar, değer in MORSE_KODU_SÖZLÜĞÜ.items()}
 
 
-def encrypt(message: str) -> str:
+def şifrele(mesaj: str) -> str:
     """
-    >>> encrypt("Sos!")
+    >>> şifrele("Sos!")
     '... --- ... -.-.--'
-    >>> encrypt("SOS!") == encrypt("sos!")
+    >>> şifrele("SOS!") == şifrele("sos!")
     True
     """
-    return " ".join(MORSE_CODE_DICT[char] for char in message.upper())
+    return " ".join(MORSE_KODU_SÖZLÜĞÜ[char] for char in mesaj.upper())
 
 
-def decrypt(message: str) -> str:
+def şifre_çöz(mesaj: str) -> str:
     """
-    >>> decrypt('... --- ... -.-.--')
+    >>> şifre_çöz('... --- ... -.-.--')
     'SOS!'
     """
-    return "".join(REVERSE_DICT[char] for char in message.split())
+    return "".join(TERS_SÖZLÜK[char] for char in mesaj.split())
 
 
 def main() -> None:
     """
-    >>> s = "".join(MORSE_CODE_DICT)
-    >>> decrypt(encrypt(s)) == s
+    >>> s = "".join(MORSE_KODU_SÖZLÜĞÜ)
+    >>> şifre_çöz(şifrele(s)) == s
     True
     """
-    message = "Morse code here!"
-    print(message)
-    message = encrypt(message)
-    print(message)
-    message = decrypt(message)
-    print(message)
+    mesaj = "Morse kodu burada!"
+    print(mesaj)
+    mesaj = şifrele(mesaj)
+    print(mesaj)
+    mesaj = şifre_çöz(mesaj)
+    print(mesaj)
 
 
 if __name__ == "__main__":

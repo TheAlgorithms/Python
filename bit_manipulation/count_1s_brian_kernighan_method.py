@@ -1,5 +1,8 @@
 def birlerin_sayisini_al(sayi: int) -> int:
     """
+
+    Organiser: K. Umut Araz
+
     Brian Kernighan yöntemi kullanarak 32 bitlik bir tam sayıda ayarlanmış bitlerin sayısını sayar.
     Ref - https://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetKernighan
     >>> birlerin_sayisini_al(25)

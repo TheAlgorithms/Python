@@ -3,6 +3,9 @@
 
 def en_sagdaki_ayarlanmis_bit_indeksi(sayi: int) -> int:
     """
+
+    Organiser: K. Umut Araz
+    
     Pozitif bir tamsayı 'sayi' alır.
     Bu 'sayi'daki sağdan ilk ayarlanmış bitin sıfır tabanlı indeksini döndürür.
     Ayarlanmış bit bulunamazsa -1 döndürür.

@@ -5,6 +5,8 @@ Bir elemanı birden fazla kullanabiliriz.
 
 Zaman karmaşıklığı (Ortalama Durum): O(n!)
 
+Organiser: K. Umut Araz
+
 Kısıtlar:
 1 <= adaylar.length <= 30
 2 <= adaylar[i] <= 40

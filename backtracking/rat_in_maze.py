@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+#Organiser: K. Umut Araz
+
 
 def labirenti_çöz(
     labirent: list[list[int]],

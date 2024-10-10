@@ -3,6 +3,8 @@ import requests
 
 # Bir IP adresi için coğrafi konum verilerini almak için fonksiyon
 def get_ip_geolocation(ip_address: str) -> str:
+
+    # Organiser: K. Umut Araz
     try:
         # IP coğrafi konum API'si için URL'yi oluştur
         url = f"https://ipinfo.io/{ip_address}/json"

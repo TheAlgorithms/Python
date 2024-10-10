@@ -1,6 +1,8 @@
 """
 Bu dosya, kullanıcıdan bir ürün adı girdi olarak alacak ve Amazon'dan bu ad veya kategoriye ait ürünler hakkında bilgi getirecek bir fonksiyon sağlar.
 Ürün bilgileri başlık, URL, fiyat, derecelendirmeler ve mevcut indirimleri içerecektir.
+
+Organiser: K. Umut Araz
 """
 
 from itertools import zip_longest

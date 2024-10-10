@@ -1,52 +1,54 @@
 """
-wiki: https://en.wikipedia.org/wiki/Anagram
+wiki: https://tr.wikipedia.org/wiki/Anagram
+
+# Organiser: K. Umut Araz
 """
 
 from collections import defaultdict
 
 
-def check_anagrams(first_str: str, second_str: str) -> bool:
+def anagram_kontrolu(birinci_str: str, ikinci_str: str) -> bool:
     """
-    Two strings are anagrams if they are made up of the same letters but are
-    arranged differently (ignoring the case).
-    >>> check_anagrams('Silent', 'Listen')
+    İki dize, aynı harflerden oluşuyorsa ancak farklı şekilde düzenlenmişlerse
+    anagramdır (büyük/küçük harf duyarsız).
+    >>> anagram_kontrolu('Sessiz', 'Dinle')
     True
-    >>> check_anagrams('This is a string', 'Is this a string')
+    >>> anagram_kontrolu('Bu bir dize', 'Dize bir bu')
     True
-    >>> check_anagrams('This is    a      string', 'Is     this a string')
+    >>> anagram_kontrolu('Bu bir    dize', 'Dize bu bir')
     True
-    >>> check_anagrams('There', 'Their')
+    >>> anagram_kontrolu('Orada', 'Dora')
     False
     """
-    first_str = first_str.lower().strip()
-    second_str = second_str.lower().strip()
+    birinci_str = birinci_str.lower().strip()
+    ikinci_str = ikinci_str.lower().strip()
 
-    # Remove whitespace
-    first_str = first_str.replace(" ", "")
-    second_str = second_str.replace(" ", "")
+    # Boşlukları kaldır
+    birinci_str = birinci_str.replace(" ", "")
+    ikinci_str = ikinci_str.replace(" ", "")
 
-    # Strings of different lengths are not anagrams
-    if len(first_str) != len(second_str):
+    # Farklı uzunluktaki dizeler anagram değildir
+    if len(birinci_str) != len(ikinci_str):
         return False
 
-    # Default values for count should be 0
-    count: defaultdict[str, int] = defaultdict(int)
+    # Sayım için varsayılan değerler 0 olmalıdır
+    sayim: defaultdict[str, int] = defaultdict(int)
 
-    # For each character in input strings,
-    # increment count in the corresponding
-    for i in range(len(first_str)):
-        count[first_str[i]] += 1
-        count[second_str[i]] -= 1
+    # Girdi dizelerindeki her karakter için,
+    # karşılık gelen sayımı artır
+    for i in range(len(birinci_str)):
+        sayim[birinci_str[i]] += 1
+        sayim[ikinci_str[i]] -= 1
 
-    return all(_count == 0 for _count in count.values())
+    return all(_sayim == 0 for _sayim in sayim.values())
 
 
 if __name__ == "__main__":
     from doctest import testmod
 
     testmod()
-    input_a = input("Enter the first string ").strip()
-    input_b = input("Enter the second string ").strip()
+    girdi_a = input("Birinci dizeyi girin: ").strip()
+    girdi_b = input("İkinci dizeyi girin: ").strip()
 
-    status = check_anagrams(input_a, input_b)
-    print(f"{input_a} and {input_b} are {'' if status else 'not '}anagrams.")
+    durum = anagram_kontrolu(girdi_a, girdi_b)
+    print(f"{girdi_a} ve {girdi_b} {'anagramdır' if durum else 'anagram değildir'}.")

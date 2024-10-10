@@ -2,12 +2,14 @@
 Yazar   : Naman Sharma
 Tarih   : 2 Ekim 2023
 
+Organiser: K. Umut Araz 
+
 Görev:
 Verilen bir sayıdan küçük veya ona eşit olan en büyük 2'nin kuvvetini bulun.
 
 Uygulama notları: Bit manipülasyonu kullanın.
 1'den başlarız ve ayarlanmış biti sola kaydırarak (res<<1)<=sayi olup olmadığını kontrol ederiz.
-Her sol bit kaydırma bir 2'nin kuvvetini temsil eder.
+Her sol bit kaydırma bir 2'nin kuvvetini temsil eder. 
 
 Örneğin:
 sayi: 15

@@ -1,21 +1,18 @@
 B64_CHARSET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
-
 def base64_encode(data: bytes) -> bytes:
-    """Encodes data according to RFC4648.
+    """Verileri RFC4648'e göre kodlar.
 
-    The data is first transformed to binary and appended with binary digits so that its
-    length becomes a multiple of 6, then each 6 binary digits will match a character in
-    the B64_CHARSET string. The number of appended binary digits would later determine
-    how many "=" signs should be added, the padding.
-    For every 2 binary digits added, a "=" sign is added in the output.
-    We can add any binary digits to make it a multiple of 6, for instance, consider the
-    following example:
+    Organiser: K. Umut Araz
+
+    Veriler önce ikili forma dönüştürülür ve uzunluğu 6'nın katı olacak şekilde ikili rakamlarla tamamlanır. 
+    Daha sonra her 6 ikili rakam, B64_CHARSET dizisindeki bir karakterle eşleşir. 
+    Eklenen ikili rakamların sayısı, daha sonra kaç tane "=" işareti eklenmesi gerektiğini belirleyecektir.
+    Her 2 eklenen ikili rakam için, çıktıda bir "=" işareti eklenir.
+    6'nın katı olacak şekilde herhangi bir ikili rakam ekleyebiliriz; örneğin:
     "AA" -> 0010100100101001 -> 001010 010010 1001
-    As can be seen above, 2 more binary digits should be added, so there's 4
-    possibilities here: 00, 01, 10 or 11.
-    That being said, Base64 encoding can be used in Steganography to hide data in these
-    appended digits.
+    Yukarıda görüldüğü gibi, 2 ikili rakam daha eklenmelidir, bu durumda 4 olasılık vardır: 00, 01, 10 veya 11.
+    Bu bağlamda, Base64 kodlaması, bu eklenen rakamlarda verileri gizlemek için Steganografi'de kullanılabilir.
 
     >>> from base64 import b64encode
     >>> a = b"This pull request is part of Hacktoberfest20!"
@@ -30,11 +27,11 @@ def base64_encode(data: bytes) -> bytes:
     >>> base64_encode("abc")
     Traceback (most recent call last):
       ...
-    TypeError: a bytes-like object is required, not 'str'
+    TypeError: bytes benzeri bir nesne gereklidir, 'str' değil
     """
-    # Make sure the supplied data is a bytes-like object
+    # Sağlanan verinin bytes benzeri bir nesne olduğundan emin olun
     if not isinstance(data, bytes):
-        msg = f"a bytes-like object is required, not '{data.__class__.__name__}'"
+        msg = f"bytes benzeri bir nesne gereklidir, '{data.__class__.__name__}' değil"
         raise TypeError(msg)
 
     binary_stream = "".join(bin(byte)[2:].zfill(8) for byte in data)
@@ -42,33 +39,31 @@ def base64_encode(data: bytes) -> bytes:
     padding_needed = len(binary_stream) % 6 != 0
 
     if padding_needed:
-        # The padding that will be added later
+        # Daha sonra eklenecek olan padding
         padding = b"=" * ((6 - len(binary_stream) % 6) // 2)
 
-        # Append binary_stream with arbitrary binary digits (0's by default) to make its
-        # length a multiple of 6.
+        # binary_stream'e ikili rakamlar (varsayılan olarak 0) ekleyerek uzunluğunu
+        # 6'nın katı yapın.
         binary_stream += "0" * (6 - len(binary_stream) % 6)
     else:
         padding = b""
 
-    # Encode every 6 binary digits to their corresponding Base64 character
+    # Her 6 ikili rakamı karşılık gelen Base64 karakterine kodlayın
     return (
         "".join(
-            B64_CHARSET[int(binary_stream[index : index + 6], 2)]
+            B64_CHARSET[int(binary_stream[index: index + 6], 2)]
             for index in range(0, len(binary_stream), 6)
         ).encode()
         + padding
     )
 
-
 def base64_decode(encoded_data: str) -> bytes:
-    """Decodes data according to RFC4648.
+    """Verileri RFC4648'e göre çözer.
 
-    This does the reverse operation of base64_encode.
-    We first transform the encoded data back to a binary stream, take off the
-    previously appended binary digits according to the padding, at this point we
-    would have a binary stream whose length is multiple of 8, the last step is
-    to convert every 8 bits to a byte.
+    Bu, base64_encode işleminin tersini yapar.
+    Öncelikle kodlanmış veriyi tekrar bir ikili akıma dönüştürüyoruz, daha önce eklenen ikili rakamları
+    padding'e göre çıkarıyoruz, bu noktada uzunluğu 8'in katı olan bir ikili akıma sahip olacağız,
+    son adım her 8 biti bir byte'a dönüştürmektir.
 
     >>> from base64 import b64decode
     >>> a = "VGhpcyBwdWxsIHJlcXVlc3QgaXMgcGFydCBvZiBIYWNrdG9iZXJmZXN0MjAh"
@@ -83,41 +78,41 @@ def base64_decode(encoded_data: str) -> bytes:
     >>> base64_decode("abc")
     Traceback (most recent call last):
       ...
-    AssertionError: Incorrect padding
+    AssertionError: Hatalı padding
     """
-    # Make sure encoded_data is either a string or a bytes-like object
+    # encoded_data'nın ya bir string ya da bytes benzeri bir nesne olduğundan emin olun
     if not isinstance(encoded_data, bytes) and not isinstance(encoded_data, str):
         msg = (
-            "argument should be a bytes-like object or ASCII string, "
-            f"not '{encoded_data.__class__.__name__}'"
+            "argüman bir bytes benzeri nesne veya ASCII string olmalıdır, "
+            f"'{encoded_data.__class__.__name__}' değil"
         )
         raise TypeError(msg)
 
-    # In case encoded_data is a bytes-like object, make sure it contains only
-    # ASCII characters so we convert it to a string object
+    # Eğer encoded_data bir bytes benzeri nesne ise, yalnızca
+    # ASCII karakterler içerdiğinden emin olun, bu yüzden onu bir string nesnesine dönüştürüyoruz
     if isinstance(encoded_data, bytes):
         try:
             encoded_data = encoded_data.decode("utf-8")
         except UnicodeDecodeError:
-            raise ValueError("base64 encoded data should only contain ASCII characters")
+            raise ValueError("base64 kodlanmış veriler yalnızca ASCII karakterler içermelidir")
 
     padding = encoded_data.count("=")
 
-    # Check if the encoded string contains non base64 characters
+    # Kodlanmış stringin geçersiz base64 karakterler içerip içermediğini kontrol edin
     if padding:
         assert all(
             char in B64_CHARSET for char in encoded_data[:-padding]
-        ), "Invalid base64 character(s) found."
+        ), "Geçersiz base64 karakter(ler)i bulundu."
     else:
         assert all(
             char in B64_CHARSET for char in encoded_data
-        ), "Invalid base64 character(s) found."
+        ), "Geçersiz base64 karakter(ler)i bulundu."
 
-    # Check the padding
-    assert len(encoded_data) % 4 == 0 and padding < 3, "Incorrect padding"
+    # Padding'i kontrol et
+    assert len(encoded_data) % 4 == 0 and padding < 3, "Hatalı padding"
 
     if padding:
-        # Remove padding if there is one
+        # Eğer padding varsa, onu çıkar
         encoded_data = encoded_data[:-padding]
 
         binary_stream = "".join(
@@ -129,12 +124,11 @@ def base64_decode(encoded_data: str) -> bytes:
         )
 
     data = [
-        int(binary_stream[index : index + 8], 2)
+        int(binary_stream[index: index + 8], 2)
         for index in range(0, len(binary_stream), 8)
     ]
 
     return bytes(data)
-
 
 if __name__ == "__main__":
     import doctest

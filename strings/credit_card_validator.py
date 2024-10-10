@@ -1,5 +1,7 @@
 """
-Functions for testing the validity of credit card numbers.
+Kredi kartı numaralarının geçerliliğini test etmek için fonksiyonlar.
+
+# Organiser: K. Umut Araz
 
 https://en.wikipedia.org/wiki/Luhn_algorithm
 """
@@ -7,7 +9,7 @@ https://en.wikipedia.org/wiki/Luhn_algorithm
 
 def validate_initial_digits(credit_card_number: str) -> bool:
     """
-    Function to validate initial digits of a given credit card number.
+    Verilen kredi kartı numarasının ilk iki rakamını doğrulamak için fonksiyon.
     >>> valid = "4111111111111111 41111111111111 34 35 37 412345 523456 634567"
     >>> all(validate_initial_digits(cc) for cc in valid.split())
     True
@@ -20,7 +22,7 @@ def validate_initial_digits(credit_card_number: str) -> bool:
 
 def luhn_validation(credit_card_number: str) -> bool:
     """
-    Function to luhn algorithm validation for a given credit card number.
+    Verilen kredi kartı numarası için Luhn algoritması doğrulama fonksiyonu.
     >>> luhn_validation('4111111111111111')
     True
     >>> luhn_validation('36111111111111')
@@ -32,20 +34,19 @@ def luhn_validation(credit_card_number: str) -> bool:
     total = 0
     half_len = len(cc_number) - 2
     for i in range(half_len, -1, -2):
-        #  double the value of every second digit
+        # Her ikinci rakamın değerini iki katına çıkar
         digit = int(cc_number[i])
         digit *= 2
-        # If doubling of a number results in a two digit number
-        # i.e greater than 9(e.g., 6 x 2 = 12),
-        # then add the digits of the product (e.g., 12: 1 + 2 = 3, 15: 1 + 5 = 6),
-        # to get a single digit number.
+        # Bir sayının iki basamaklı bir sayıya dönüşmesi durumunda
+        # yani 9'dan büyükse (örneğin, 6 x 2 = 12),
+        # ürünün basamaklarını toplayarak (örneğin, 12: 1 + 2 = 3, 15: 1 + 5 = 6)
+        # tek basamaklı bir sayı elde et.
         if digit > 9:
-            digit %= 10
-            digit += 1
+            digit -= 9  # 9'dan büyükse, 9 çıkar
         cc_number = cc_number[:i] + str(digit) + cc_number[i + 1 :]
         total += digit
 
-    # Sum up the remaining digits
+    # Kalan rakamları topla
     for i in range(len(cc_number) - 1, -1, -2):
         total += int(cc_number[i])
 
@@ -54,44 +55,44 @@ def luhn_validation(credit_card_number: str) -> bool:
 
 def validate_credit_card_number(credit_card_number: str) -> bool:
     """
-    Function to validate the given credit card number.
+    Verilen kredi kartı numarasını doğrulamak için fonksiyon.
     >>> validate_credit_card_number('4111111111111111')
-    4111111111111111 is a valid credit card number.
+    4111111111111111 geçerli bir kredi kartı numarasıdır.
     True
     >>> validate_credit_card_number('helloworld$')
-    helloworld$ is an invalid credit card number because it has nonnumerical characters.
+    helloworld$ geçersiz bir kredi kartı numarasıdır çünkü sayısal karakterler içermiyor.
     False
     >>> validate_credit_card_number('32323')
-    32323 is an invalid credit card number because of its length.
+    32323 geçersiz bir kredi kartı numarasıdır çünkü uzunluğu uygun değil.
     False
     >>> validate_credit_card_number('32323323233232332323')
-    32323323233232332323 is an invalid credit card number because of its length.
+    32323323233232332323 geçersiz bir kredi kartı numarasıdır çünkü uzunluğu uygun değil.
     False
     >>> validate_credit_card_number('36111111111111')
-    36111111111111 is an invalid credit card number because of its first two digits.
+    36111111111111 geçersiz bir kredi kartı numarasıdır çünkü ilk iki rakamı uygun değil.
     False
     >>> validate_credit_card_number('41111111111111')
-    41111111111111 is an invalid credit card number because it fails the Luhn check.
+    41111111111111 geçersiz bir kredi kartı numarasıdır çünkü Luhn kontrolünü geçemiyor.
     False
     """
-    error_message = f"{credit_card_number} is an invalid credit card number because"
+    error_message = f"{credit_card_number} geçersiz bir kredi kartı numarasıdır çünkü"
     if not credit_card_number.isdigit():
-        print(f"{error_message} it has nonnumerical characters.")
+        print(f"{error_message} sayısal karakterler içermiyor.")
         return False
 
     if not 13 <= len(credit_card_number) <= 16:
-        print(f"{error_message} of its length.")
+        print(f"{error_message} uzunluğu uygun değil.")
         return False
 
     if not validate_initial_digits(credit_card_number):
-        print(f"{error_message} of its first two digits.")
+        print(f"{error_message} ilk iki rakamı uygun değil.")
         return False
 
     if not luhn_validation(credit_card_number):
-        print(f"{error_message} it fails the Luhn check.")
+        print(f"{error_message} Luhn kontrolünü geçemiyor.")
         return False
 
-    print(f"{credit_card_number} is a valid credit card number.")
+    print(f"{credit_card_number} geçerli bir kredi kartı numarasıdır.")
     return True
 
 

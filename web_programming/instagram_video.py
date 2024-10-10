@@ -3,6 +3,8 @@ from datetime import UTC, datetime
 import requests
 from bs4 import BeautifulSoup
 
+# Organiser: K. Umut Araz
+
 
 def download_video(url: str) -> bytes:
     """

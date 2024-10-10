@@ -1,36 +1,35 @@
 """
-Implementation of regular expression matching with support for '.' and '*'.
-'.' Matches any single character.
-'*' Matches zero or more of the preceding element.
-The matching should cover the entire input string (not partial).
+
+Organiser: K. Umut Araz
+
+Düzenli ifade eşleştirmesi uygulaması, '.' ve '*' desteği ile.
+'.' Herhangi bir tek karakterle eşleşir.
+'*' Önceki öğeden sıfır veya daha fazla eşleşir.
+Eşleşme, tüm giriş dizesini kapsamalıdır (kısmi değil).
 
 """
 
 
 def match_pattern(input_string: str, pattern: str) -> bool:
     """
-    uses bottom-up dynamic programming solution for matching the input
-    string with a given pattern.
+    Verilen bir deseni giriş dizesi ile eşleştirmek için aşağıdan yukarıya dinamik programlama çözümü kullanır.
 
-    Runtime: O(len(input_string)*len(pattern))
+    Zaman Karmaşıklığı: O(len(input_string)*len(pattern))
 
-    Arguments
+    Argümanlar
     --------
-    input_string: str, any string which should be compared with the pattern
-    pattern: str, the string that represents a pattern and may contain
-    '.' for single character matches and '*' for zero or more of preceding character
-    matches
+    input_string: str, desene karşılaştırılacak herhangi bir dize
+    pattern: str, bir deseni temsil eden ve '.' ile tek karakter eşleşmeleri ve '*' ile sıfır veya daha fazla önceki karakter eşleşmeleri içerebilen bir dize
 
-    Note
+    Not
     ----
-    the pattern cannot start with a '*',
-    because there should be at least one character before *
+    Desen '*' ile başlayamaz, çünkü '*' öncesinde en az bir karakter olmalıdır.
 
-    Returns
+    Dönüş
     -------
-    A Boolean denoting whether the given string follows the pattern
+    Verilen dize deseni takip ediyorsa bir Boolean değeri döner.
 
-    Examples
+    Örnekler
     -------
     >>> match_pattern("aab", "c*a*b")
     True
@@ -57,25 +56,23 @@ def match_pattern(input_string: str, pattern: str) -> bool:
     len_string = len(input_string) + 1
     len_pattern = len(pattern) + 1
 
-    # dp is a 2d matrix where dp[i][j] denotes whether prefix string of
-    # length i of input_string matches with prefix string of length j of
-    # given pattern.
-    # "dp" stands for dynamic programming.
+    # dp, dp[i][j]'nin input_string'in i uzunluğundaki ön ekinin
+    # verilen desenin j uzunluğundaki ön eki ile eşleşip eşleşmediğini belirttiği 2 boyutlu bir matristir.
+    # "dp" dinamik programlamayı temsil eder.
     dp = [[0 for i in range(len_pattern)] for j in range(len_string)]
 
-    # since string of zero length match pattern of zero length
+    # Sıfır uzunluğundaki dize, sıfır uzunluğundaki desenle eşleşir
     dp[0][0] = 1
 
-    # since pattern of zero length will never match with string of non-zero length
+    # Sıfır uzunluğundaki desen, sıfırdan uzun bir dize ile asla eşleşmeyecektir
     for i in range(1, len_string):
         dp[i][0] = 0
 
-    # since string of zero length will match with pattern where there
-    # is at least one * alternatively
+    # Sıfır uzunluğundaki dize, en az bir '*' içeren desenle eşleşir
     for j in range(1, len_pattern):
         dp[0][j] = dp[0][j - 2] if pattern[j - 1] == "*" else 0
 
-    # now using bottom-up approach to find for all remaining lengths
+    # Şimdi, tüm kalan uzunluklar için aşağıdan yukarıya yaklaşım kullanarak buluyoruz
     for i in range(1, len_string):
         for j in range(1, len_pattern):
             if input_string[i - 1] == pattern[j - 1] or pattern[j - 1] == ".":
@@ -98,15 +95,15 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    # inputing the strings
-    # input_string = input("input a string :")
-    # pattern = input("input a pattern :")
+    # Dize girişi
+    # input_string = input("Bir dize girin:")
+    # pattern = input("Bir desen girin:")
 
     input_string = "aab"
     pattern = "c*a*b"
 
-    # using function to check whether given string matches the given pattern
+    # Verilen dize ile verilen deseni kontrol etmek için fonksiyonu kullanma
     if match_pattern(input_string, pattern):
-        print(f"{input_string} matches the given pattern {pattern}")
+        print(f"{input_string} verilen desen {pattern} ile eşleşiyor.")
     else:
-        print(f"{input_string} does not match with the given pattern {pattern}")
+        print(f"{input_string} verilen desen {pattern} ile eşleşmiyor.")

@@ -1,4 +1,4 @@
-alphabet = {
+alfabe = {
     "A": ("ABCDEFGHIJKLM", "NOPQRSTUVWXYZ"),
     "B": ("ABCDEFGHIJKLM", "NOPQRSTUVWXYZ"),
     "C": ("ABCDEFGHIJKLM", "ZNOPQRSTUVWXY"),
@@ -28,76 +28,79 @@ alphabet = {
 }
 
 
-def generate_table(key: str) -> list[tuple[str, str]]:
+def tablo_olustur(anahtar: str) -> list[tuple[str, str]]:
     """
-    >>> generate_table('marvin')  # doctest: +NORMALIZE_WHITESPACE
+    >>> tablo_olustur('marvin')  # doctest: +NORMALIZE_WHITESPACE
     [('ABCDEFGHIJKLM', 'UVWXYZNOPQRST'), ('ABCDEFGHIJKLM', 'NOPQRSTUVWXYZ'),
      ('ABCDEFGHIJKLM', 'STUVWXYZNOPQR'), ('ABCDEFGHIJKLM', 'QRSTUVWXYZNOP'),
      ('ABCDEFGHIJKLM', 'WXYZNOPQRSTUV'), ('ABCDEFGHIJKLM', 'UVWXYZNOPQRST')]
     """
-    return [alphabet[char] for char in key.upper()]
+    return [alfabe[karakter] for karakter in anahtar.upper()]
 
 
-def encrypt(key: str, words: str) -> str:
+#Organiser: K. Umut Araz
+
+
+def sifrele(anahtar: str, kelimeler: str) -> str:
     """
-    >>> encrypt('marvin', 'jessica')
+    >>> sifrele('marvin', 'jessica')
     'QRACRWU'
     """
-    cipher = ""
-    count = 0
-    table = generate_table(key)
-    for char in words.upper():
-        cipher += get_opponent(table[count], char)
-        count = (count + 1) % len(table)
-    return cipher
+    sifre = ""
+    sayac = 0
+    tablo = tablo_olustur(anahtar)
+    for karakter in kelimeler.upper():
+        sifre += rakip(tablo[sayac], karakter)
+        sayac = (sayac + 1) % len(tablo)
+    return sifre
 
 
-def decrypt(key: str, words: str) -> str:
+def sifre_coz(anahtar: str, kelimeler: str) -> str:
     """
-    >>> decrypt('marvin', 'QRACRWU')
+    >>> sifre_coz('marvin', 'QRACRWU')
     'JESSICA'
     """
-    return encrypt(key, words)
+    return sifrele(anahtar, kelimeler)
 
 
-def get_position(table: tuple[str, str], char: str) -> tuple[int, int]:
+def konum_bul(tablo: tuple[str, str], karakter: str) -> tuple[int, int]:
     """
-    >>> get_position(generate_table('marvin')[0], 'M')
+    >>> konum_bul(tablo_olustur('marvin')[0], 'M')
     (0, 12)
     """
-    # `char` is either in the 0th row or the 1st row
-    row = 0 if char in table[0] else 1
-    col = table[row].index(char)
-    return row, col
+    # `karakter` ya 0. satırda ya da 1. satırda
+    satir = 0 if karakter in tablo[0] else 1
+    sutun = tablo[satir].index(karakter)
+    return satir, sutun
 
 
-def get_opponent(table: tuple[str, str], char: str) -> str:
+def rakip(tablo: tuple[str, str], karakter: str) -> str:
     """
-    >>> get_opponent(generate_table('marvin')[0], 'M')
+    >>> rakip(tablo_olustur('marvin')[0], 'M')
     'T'
     """
-    row, col = get_position(table, char.upper())
-    if row == 1:
-        return table[0][col]
+    satir, sutun = konum_bul(tablo, karakter.upper())
+    if satir == 1:
+        return tablo[0][sutun]
     else:
-        return table[1][col] if row == 0 else char
+        return tablo[1][sutun] if satir == 0 else karakter
 
 
 if __name__ == "__main__":
     import doctest
 
-    doctest.testmod()  # Fist ensure that all our tests are passing...
+    doctest.testmod()  # Öncelikle tüm testlerimizin geçerli olduğundan emin olalım...
     """
-    Demo:
+    Örnek:
 
-    Enter key: marvin
-    Enter text to encrypt: jessica
-    Encrypted: QRACRWU
-    Decrypted with key: JESSICA
+    Anahtar girin: marvin
+    Şifrelemek için metin girin: jessica
+    Şifreli: QRACRWU
+    Anahtar ile çözülen: JESSICA
     """
-    key = input("Enter key: ").strip()
-    text = input("Enter text to encrypt: ").strip()
-    cipher_text = encrypt(key, text)
+    anahtar = input("Anahtar girin: ").strip()
+    metin = input("Şifrelemek için metin girin: ").strip()
+    sifreli_metin = sifrele(anahtar, metin)
 
-    print(f"Encrypted: {cipher_text}")
-    print(f"Decrypted with key: {decrypt(key, cipher_text)}")
+    print(f"Şifreli: {sifreli_metin}")
+    print(f"Anahtar ile çözülen: {sifre_coz(anahtar, sifreli_metin)}")

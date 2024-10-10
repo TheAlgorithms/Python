@@ -1,76 +1,70 @@
-def oct_to_decimal(oct_string: str) -> int:
+def sekizli_to_ondalik(sekizli_dizi: str) -> int:
     """
-    Convert a octal value to its decimal equivalent
+    Sekizli bir değeri ondalık karşılığına dönüştürür.
 
-    >>> oct_to_decimal("")
+    Organiser: K. Umut Araz
+
+    >>> sekizli_to_ondalik("")
     Traceback (most recent call last):
         ...
-    ValueError: Empty string was passed to the function
-    >>> oct_to_decimal("-")
+    ValueError: Fonksiyona boş bir dize geçirildi
+    >>> sekizli_to_ondalik("-")
     Traceback (most recent call last):
         ...
-    ValueError: Non-octal value was passed to the function
-    >>> oct_to_decimal("e")
+    ValueError: Geçersiz sekizli değer fonksiyona gönderildi
+    >>> sekizli_to_ondalik("e")
     Traceback (most recent call last):
         ...
-    ValueError: Non-octal value was passed to the function
-    >>> oct_to_decimal("8")
+    ValueError: Geçersiz sekizli değer fonksiyona gönderildi
+    >>> sekizli_to_ondalik("8")
     Traceback (most recent call last):
         ...
-    ValueError: Non-octal value was passed to the function
-    >>> oct_to_decimal("-e")
+    ValueError: Geçersiz sekizli değer fonksiyona gönderildi
+    >>> sekizli_to_ondalik("-e")
     Traceback (most recent call last):
         ...
-    ValueError: Non-octal value was passed to the function
-    >>> oct_to_decimal("-8")
+    ValueError: Geçersiz sekizli değer fonksiyona gönderildi
+    >>> sekizli_to_ondalik("-8")
     Traceback (most recent call last):
         ...
-    ValueError: Non-octal value was passed to the function
-    >>> oct_to_decimal("1")
+    ValueError: Geçersiz sekizli değer fonksiyona gönderildi
+    >>> sekizli_to_ondalik("1")
     1
-    >>> oct_to_decimal("-1")
+    >>> sekizli_to_ondalik("-1")
     -1
-    >>> oct_to_decimal("12")
+    >>> sekizli_to_ondalik("12")
     10
-    >>> oct_to_decimal(" 12   ")
+    >>> sekizli_to_ondalik(" 12   ")
     10
-    >>> oct_to_decimal("-45")
+    >>> sekizli_to_ondalik("-45")
     -37
-    >>> oct_to_decimal("-")
-    Traceback (most recent call last):
-        ...
-    ValueError: Non-octal value was passed to the function
-    >>> oct_to_decimal("0")
+    >>> sekizli_to_ondalik("0")
     0
-    >>> oct_to_decimal("-4055")
+    >>> sekizli_to_ondalik("-4055")
     -2093
-    >>> oct_to_decimal("2-0Fm")
+    >>> sekizli_to_ondalik("2-0Fm")
     Traceback (most recent call last):
         ...
-    ValueError: Non-octal value was passed to the function
-    >>> oct_to_decimal("")
+    ValueError: Geçersiz sekizli değer fonksiyona gönderildi
+    >>> sekizli_to_ondalik("19")
     Traceback (most recent call last):
         ...
-    ValueError: Empty string was passed to the function
-    >>> oct_to_decimal("19")
-    Traceback (most recent call last):
-        ...
-    ValueError: Non-octal value was passed to the function
+    ValueError: Geçersiz sekizli değer fonksiyona gönderildi
     """
-    oct_string = str(oct_string).strip()
-    if not oct_string:
-        raise ValueError("Empty string was passed to the function")
-    is_negative = oct_string[0] == "-"
-    if is_negative:
-        oct_string = oct_string[1:]
-    if not oct_string.isdigit() or not all(0 <= int(char) <= 7 for char in oct_string):
-        raise ValueError("Non-octal value was passed to the function")
-    decimal_number = 0
-    for char in oct_string:
-        decimal_number = 8 * decimal_number + int(char)
-    if is_negative:
-        decimal_number = -decimal_number
-    return decimal_number
+    sekizli_dizi = str(sekizli_dizi).strip()
+    if not sekizli_dizi:
+        raise ValueError("Fonksiyona boş bir dize geçirildi")
+    negatif = sekizli_dizi[0] == "-"
+    if negatif:
+        sekizli_dizi = sekizli_dizi[1:]
+    if not sekizli_dizi.isdigit() or not all(0 <= int(char) <= 7 for char in sekizli_dizi):
+        raise ValueError("Geçersiz sekizli değer fonksiyona gönderildi")
+    ondalik_sayi = 0
+    for char in sekizli_dizi:
+        ondalik_sayi = 8 * ondalik_sayi + int(char)
+    if negatif:
+        ondalik_sayi = -ondalik_sayi
+    return ondalik_sayi
 
 
 if __name__ == "__main__":

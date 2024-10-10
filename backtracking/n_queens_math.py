@@ -1,6 +1,8 @@
 r"""
 Problem:
 
+Organiser: K. Umut Araz
+
 N vezir problemi: N * N satranç tahtasına N vezir yerleştirmek, öyle ki hiçbir vezir
 diğer vezirleri yatay, dikey ve çapraz olarak tehdit edemez.
 

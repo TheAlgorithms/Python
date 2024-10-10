@@ -3,6 +3,8 @@
 Bir reçeteli ilacın fiyatını ve eczane adını rx sitesinden
 ilaç adı ve posta kodu sağladıktan sonra kazıyın.
 
+Organiser: K. Umut Araz
+
 """
 
 from urllib.error import HTTPError

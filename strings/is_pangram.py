@@ -1,89 +1,92 @@
 """
-wiki: https://en.wikipedia.org/wiki/Pangram
+
+# Organiser: K. Umut Araz   
+
+wiki: https://tr.wikipedia.org/wiki/Pangram
 """
 
 
-def is_pangram(
-    input_str: str = "The quick brown fox jumps over the lazy dog",
+def pangram_mi(
+    girdi_str: str = "Hızlı kahverengi tilki tembel köpeğin üzerinden atlar.",
 ) -> bool:
     """
-    A Pangram String contains all the alphabets at least once.
-    >>> is_pangram("The quick brown fox jumps over the lazy dog")
+    Pangram, tüm alfabe harflerini en az bir kez içeren bir dizedir.
+    >>> pangram_mi("Hızlı kahverengi tilki tembel köpeğin üzerinden atlar.")
     True
-    >>> is_pangram("Waltz, bad nymph, for quick jigs vex.")
+    >>> pangram_mi("Waltz, kötü peri, hızlı dansları rahatsız eder.")
     True
-    >>> is_pangram("Jived fox nymph grabs quick waltz.")
+    >>> pangram_mi("Zıplayan tilki, hızlı waltzı kapar.")
     True
-    >>> is_pangram("My name is Unknown")
+    >>> pangram_mi("Adım bilinmiyor")
     False
-    >>> is_pangram("The quick brown fox jumps over the la_y dog")
+    >>> pangram_mi("Hızlı kahverengi tilki tembel köpeğin üzerinden atlar.")
     False
-    >>> is_pangram()
+    >>> pangram_mi()
     True
     """
-    # Declare frequency as a set to have unique occurrences of letters
-    frequency = set()
+    # Harflerin benzersiz tekrarlarını tutmak için bir küme tanımlıyoruz
+    frekans = set()
 
-    # Replace all the whitespace in our sentence
-    input_str = input_str.replace(" ", "")
-    for alpha in input_str:
-        if "a" <= alpha.lower() <= "z":
-            frequency.add(alpha.lower())
-    return len(frequency) == 26
+    # Girdi dizesindeki boşlukları kaldırıyoruz
+    girdi_str = girdi_str.replace(" ", "")
+    for harf in girdi_str:
+        if "a" <= harf.lower() <= "z":
+            frekans.add(harf.lower())
+    return len(frekans) == 26
 
 
-def is_pangram_faster(
-    input_str: str = "The quick brown fox jumps over the lazy dog",
+def pangram_mi_hizli(
+    girdi_str: str = "Hızlı kahverengi tilki tembel köpeğin üzerinden atlar.",
 ) -> bool:
     """
-    >>> is_pangram_faster("The quick brown fox jumps over the lazy dog")
+    >>> pangram_mi_hizli("Hızlı kahverengi tilki tembel köpeğin üzerinden atlar.")
     True
-    >>> is_pangram_faster("Waltz, bad nymph, for quick jigs vex.")
+    >>> pangram_mi_hizli("Waltz, kötü peri, hızlı dansları rahatsız eder.")
     True
-    >>> is_pangram_faster("Jived fox nymph grabs quick waltz.")
+    >>> pangram_mi_hizli("Zıplayan tilki, hızlı waltzı kapar.")
     True
-    >>> is_pangram_faster("The quick brown fox jumps over the la_y dog")
+    >>> pangram_mi_hizli("Hızlı kahverengi tilki tembel köpeğin üzerinden atlar.")
     False
-    >>> is_pangram_faster()
+    >>> pangram_mi_hizli()
     True
     """
-    flag = [False] * 26
-    for char in input_str:
-        if char.islower():
-            flag[ord(char) - 97] = True
-        elif char.isupper():
-            flag[ord(char) - 65] = True
-    return all(flag)
+    bayrak = [False] * 26
+    for karakter in girdi_str:
+        if karakter.islower():
+            bayrak[ord(karakter) - 97] = True
+        elif karakter.isupper():
+            bayrak[ord(karakter) - 65] = True
+    return all(bayrak)
 
 
-def is_pangram_fastest(
-    input_str: str = "The quick brown fox jumps over the lazy dog",
+def pangram_mi_en_hizli(
+    girdi_str: str = "Hızlı kahverengi tilki tembel köpeğin üzerinden atlar.",
 ) -> bool:
     """
-    >>> is_pangram_fastest("The quick brown fox jumps over the lazy dog")
+    >>> pangram_mi_en_hizli("Hızlı kahverengi tilki tembel köpeğin üzerinden atlar.")
     True
-    >>> is_pangram_fastest("Waltz, bad nymph, for quick jigs vex.")
+    >>> pangram_mi_en_hizli("Waltz, kötü peri, hızlı dansları rahatsız eder.")
     True
-    >>> is_pangram_fastest("Jived fox nymph grabs quick waltz.")
+    >>> pangram_mi_en_hizli("Zıplayan tilki, hızlı waltzı kapar.")
     True
-    >>> is_pangram_fastest("The quick brown fox jumps over the la_y dog")
+    >>> pangram_mi_en_hizli("Hızlı kahverengi tilki tembel köpeğin üzerinden atlar.")
     False
-    >>> is_pangram_fastest()
+    >>> pangram_mi_en_hizli()
     True
     """
-    return len({char for char in input_str.lower() if char.isalpha()}) == 26
+    return len({karakter for karakter in girdi_str.lower() if karakter.isalpha()}) == 26
 
 
 def benchmark() -> None:
     """
-    Benchmark code comparing different version.
+    Farklı versiyonları karşılaştıran benchmark kodu.
     """
     from timeit import timeit
 
-    setup = "from __main__ import is_pangram, is_pangram_faster, is_pangram_fastest"
-    print(timeit("is_pangram()", setup=setup))
-    print(timeit("is_pangram_faster()", setup=setup))
-    print(timeit("is_pangram_fastest()", setup=setup))
+    setup = "from __main__ import pangram_mi, pangram_mi_hizli, pangram_mi_en_hizli"
+    print(timeit("pangram_mi()", setup=setup))
+    print(timeit("pangram_mi_hizli()", setup=setup))
+    print(timeit("pangram_mi_en_hizli()", setup=setup))
     # 5.348480500048026, 2.6477354579837993, 1.8470395830227062
     # 5.036091582966037, 2.644472333951853,  1.8869528750656173
 

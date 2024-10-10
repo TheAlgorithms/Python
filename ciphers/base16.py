@@ -1,6 +1,8 @@
 def base16_encode(data: bytes) -> str:
     """
-    Encodes the given bytes into base16.
+    Verilen baytları base16 formatına kodlar.
+
+    Organiser: K. Umut Araz
 
     >>> base16_encode(b'Hello World!')
     '48656C6C6F20576F726C6421'
@@ -9,15 +11,15 @@ def base16_encode(data: bytes) -> str:
     >>> base16_encode(b'')
     ''
     """
-    # Turn the data into a list of integers (where each integer is a byte),
-    # Then turn each byte into its hexadecimal representation, make sure
-    # it is uppercase, and then join everything together and return it.
-    return "".join([hex(byte)[2:].zfill(2).upper() for byte in list(data)])
+    # Veriyi bir tam sayı listesine (her tam sayı bir bayt) dönüştür,
+    # Ardından her baytı onaltılık temsilini al, büyük harf yap ve
+    # hepsini birleştirip geri döndür.
+    return "".join([hex(byte)[2:].zfill(2).upper() for byte in data])
 
 
 def base16_decode(data: str) -> bytes:
     """
-    Decodes the given base16 encoded data into bytes.
+    Verilen base16 kodlu veriyi baytlara çözer.
 
     >>> base16_decode('48656C6C6F20576F726C6421')
     b'Hello World!'
@@ -28,35 +30,35 @@ def base16_decode(data: str) -> bytes:
     >>> base16_decode('486')
     Traceback (most recent call last):
       ...
-    ValueError: Base16 encoded data is invalid:
-    Data does not have an even number of hex digits.
+    ValueError: Base16 kodlu veri geçersiz:
+    Veri, çift sayıda onaltılık basamağa sahip değil.
     >>> base16_decode('48656c6c6f20576f726c6421')
     Traceback (most recent call last):
       ...
-    ValueError: Base16 encoded data is invalid:
-    Data is not uppercase hex or it contains invalid characters.
+    ValueError: Base16 kodlu veri geçersiz:
+    Veri büyük harf onaltılık değil veya geçersiz karakterler içeriyor.
     >>> base16_decode('This is not base64 encoded data.')
     Traceback (most recent call last):
       ...
-    ValueError: Base16 encoded data is invalid:
-    Data is not uppercase hex or it contains invalid characters.
+    ValueError: Base16 kodlu veri geçersiz:
+    Veri büyük harf onaltılık değil veya geçersiz karakterler içeriyor.
     """
-    # Check data validity, following RFC3548
+    # Veri geçerliliğini kontrol et, RFC3548'e göre
     # https://www.ietf.org/rfc/rfc3548.txt
     if (len(data) % 2) != 0:
         raise ValueError(
-            """Base16 encoded data is invalid:
-Data does not have an even number of hex digits."""
+            """Base16 kodlu veri geçersiz:
+Veri, çift sayıda onaltılık basamağa sahip değil."""
         )
-    # Check the character set - the standard base16 alphabet
-    # is uppercase according to RFC3548 section 6
+    # Karakter setini kontrol et - standart base16 alfabesi
+    # RFC3548 bölüm 6'ya göre büyük harf olmalıdır.
     if not set(data) <= set("0123456789ABCDEF"):
         raise ValueError(
-            """Base16 encoded data is invalid:
-Data is not uppercase hex or it contains invalid characters."""
+            """Base16 kodlu veri geçersiz:
+Veri büyük harf onaltılık değil veya geçersiz karakterler içeriyor."""
         )
-    # For every two hexadecimal digits (= a byte), turn it into an integer.
-    # Then, string the result together into bytes, and return it.
+    # Her iki onaltılık basamağı (= bir bayt) bir tam sayıya dönüştür.
+    # Ardından, sonucu baytlara birleştirip geri döndür.
     return bytes(int(data[i] + data[i + 1], 16) for i in range(0, len(data), 2))
 
 

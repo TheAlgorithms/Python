@@ -1,5 +1,7 @@
 """
 Verilen iş unvanı ve konuma göre Indeed web sitesinden iş ilanlarını kazıma
+
+Organiser: K. Umut Araz
 """
 
 from __future__ import annotations

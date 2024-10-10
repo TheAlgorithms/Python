@@ -1,51 +1,52 @@
 """
-Program to join a list of strings with a separator
+Bir ayırıcı ile bir dizi stringi birleştiren program
+
+Organiser: K. Umut Araz
 """
 
 
-def join(separator: str, separated: list[str]) -> str:
+def birlestir(ayirici: str, birlesecek: list[str]) -> str:
     """
-    Joins a list of strings using a separator
-    and returns the result.
+    Bir dizi stringi bir ayırıcı kullanarak birleştirir
+    ve sonucu döner.
 
-    :param separator: Separator to be used
-                for joining the strings.
-    :param separated: List of strings to be joined.
+    :param ayirici: Stringleri birleştirmek için kullanılacak ayırıcı.
+    :param birlesecek: Birleştirilecek stringlerin listesi.
 
-    :return: Joined string with the specified separator.
+    :return: Belirtilen ayırıcı ile birleştirilmiş string.
 
-    Examples:
+    Örnekler:
 
-    >>> join("", ["a", "b", "c", "d"])
+    >>> birlestir("", ["a", "b", "c", "d"])
     'abcd'
-    >>> join("#", ["a", "b", "c", "d"])
+    >>> birlestir("#", ["a", "b", "c", "d"])
     'a#b#c#d'
-    >>> join("#", "a")
+    >>> birlestir("#", ["a"])
     'a'
-    >>> join(" ", ["You", "are", "amazing!"])
-    'You are amazing!'
+    >>> birlestir(" ", ["Sen", "harikasın!"])
+    'Sen harikasın!'
 
-    This example should raise an
-    exception for non-string elements:
-    >>> join("#", ["a", "b", "c", 1])
+    Bu örnek, string olmayan elemanlar için bir
+    istisna fırlatmalıdır:
+    >>> birlestir("#", ["a", "b", "c", 1])
     Traceback (most recent call last):
         ...
-    Exception: join() accepts only strings
+    Exception: birlestir() yalnızca string kabul eder
 
-    Additional test case with a different separator:
-    >>> join("-", ["apple", "banana", "cherry"])
-    'apple-banana-cherry'
+    Farklı bir ayırıcı ile ek test durumu:
+    >>> birlestir("-", ["elma", "muz", "kiraz"])
+    'elma-muz-kiraz'
     """
 
-    joined = ""
-    for word_or_phrase in separated:
-        if not isinstance(word_or_phrase, str):
-            raise Exception("join() accepts only strings")
-        joined += word_or_phrase + separator
+    birlesmis = ""
+    for kelime_veya_ifade in birlesecek:
+        if not isinstance(kelime_veya_ifade, str):
+            raise Exception("birlestir() yalnızca string kabul eder")
+        birlesmis += kelime_veya_ifade + ayirici
 
-    # Remove the trailing separator
-    # by stripping it from the result
-    return joined.strip(separator)
+    # Sonundaki ayırıcıyı kaldır
+    # sonucu temizleyerek
+    return birlesmis.strip(ayirici)
 
 
 if __name__ == "__main__":

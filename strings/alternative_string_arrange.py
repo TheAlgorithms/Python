@@ -1,31 +1,33 @@
-def alternative_string_arrange(first_str: str, second_str: str) -> str:
+def alternatif_dizi_düzenle(birinci_str: str, ikinci_str: str) -> str:
     """
-    Return the alternative arrangements of the two strings.
-    :param first_str:
-    :param second_str:
+    İki stringin alternatif düzenlemelerini döndürür.
+
+    # Organiser: K. Umut Araz
+    
+    :param birinci_str: İlk string
+    :param ikinci_str: İkinci string
     :return: String
-    >>> alternative_string_arrange("ABCD", "XY")
+    >>> alternatif_dizi_düzenle("ABCD", "XY")
     'AXBYCD'
-    >>> alternative_string_arrange("XY", "ABCD")
+    >>> alternatif_dizi_düzenle("XY", "ABCD")
     'XAYBCD'
-    >>> alternative_string_arrange("AB", "XYZ")
+    >>> alternatif_dizi_düzenle("AB", "XYZ")
     'AXBYZ'
-    >>> alternative_string_arrange("ABC", "")
+    >>> alternatif_dizi_düzenle("ABC", "")
     'ABC'
     """
-    first_str_length: int = len(first_str)
-    second_str_length: int = len(second_str)
-    abs_length: int = (
-        first_str_length if first_str_length > second_str_length else second_str_length
-    )
-    output_list: list = []
-    for char_count in range(abs_length):
-        if char_count < first_str_length:
-            output_list.append(first_str[char_count])
-        if char_count < second_str_length:
-            output_list.append(second_str[char_count])
-    return "".join(output_list)
-
+    birinci_str_uzunluk: int = len(birinci_str)
+    ikinci_str_uzunluk: int = len(ikinci_str)
+    max_uzunluk: int = max(birinci_str_uzunluk, ikinci_str_uzunluk)
+    cikti_listesi: list = []
+    
+    for karakter_sayisi in range(max_uzunluk):
+        if karakter_sayisi < birinci_str_uzunluk:
+            cikti_listesi.append(birinci_str[karakter_sayisi])
+        if karakter_sayisi < ikinci_str_uzunluk:
+            cikti_listesi.append(ikinci_str[karakter_sayisi])
+    
+    return "".join(cikti_listesi)
 
 if __name__ == "__main__":
-    print(alternative_string_arrange("AB", "XYZ"), end=" ")
+    print(alternatif_dizi_düzenle("AB", "XYZ"), end=" ")

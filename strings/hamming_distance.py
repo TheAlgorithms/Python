@@ -1,37 +1,40 @@
-def hamming_distance(string1: str, string2: str) -> int:
-    """Calculate the Hamming distance between two equal length strings
-    In information theory, the Hamming distance between two strings of equal
-    length is the number of positions at which the corresponding symbols are
-    different. https://en.wikipedia.org/wiki/Hamming_distance
+def hamming_mesafesi(dizi1: str, dizi2: str) -> int:
+    """İki eşit uzunluktaki dizi arasındaki Hamming mesafesini hesaplar.
+
+    # Organiser: K. Umut Araz
+
+    Bilgi teorisinde, eşit uzunluktaki iki dizi arasındaki Hamming mesafesi,
+    karşılık gelen sembollerin farklı olduğu pozisyonların sayısıdır.
+    https://en.wikipedia.org/wiki/Hamming_distance
 
     Args:
-        string1 (str): Sequence 1
-        string2 (str): Sequence 2
+        dizi1 (str): Dizi 1
+        dizi2 (str): Dizi 2
 
     Returns:
-        int: Hamming distance
+        int: Hamming mesafesi
 
-    >>> hamming_distance("python", "python")
+    >>> hamming_mesafesi("python", "python")
     0
-    >>> hamming_distance("karolin", "kathrin")
+    >>> hamming_mesafesi("karolin", "kathrin")
     3
-    >>> hamming_distance("00000", "11111")
+    >>> hamming_mesafesi("00000", "11111")
     5
-    >>> hamming_distance("karolin", "kath")
+    >>> hamming_mesafesi("karolin", "kath")
     Traceback (most recent call last):
       ...
-    ValueError: String lengths must match!
+    ValueError: Dizilerin uzunlukları eşit olmalıdır!
     """
-    if len(string1) != len(string2):
-        raise ValueError("String lengths must match!")
+    if len(dizi1) != len(dizi2):
+        raise ValueError("Dizilerin uzunlukları eşit olmalıdır!")
 
-    count = 0
+    sayac = 0
 
-    for char1, char2 in zip(string1, string2):
-        if char1 != char2:
-            count += 1
+    for karakter1, karakter2 in zip(dizi1, dizi2):
+        if karakter1 != karakter2:
+            sayac += 1
 
-    return count
+    return sayac
 
 
 if __name__ == "__main__":

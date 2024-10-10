@@ -1,54 +1,53 @@
-def to_title_case(word: str) -> str:
+def baslik_haline_getir(kelime: str) -> str:
     """
-    Converts a string to capitalized case, preserving the input as is
 
-    >>> to_title_case("Aakash")
+    Organiser: K. Umut Araz
+
+    Bir stringi baş harfi büyük olacak şekilde dönüştürür, girişi olduğu gibi korur.
+
+    >>> baslik_haline_getir("Aakash")
     'Aakash'
 
-    >>> to_title_case("aakash")
+    >>> baslik_haline_getir("aakash")
     'Aakash'
 
-    >>> to_title_case("AAKASH")
+    >>> baslik_haline_getir("AAKASH")
     'Aakash'
 
-    >>> to_title_case("aAkAsH")
+    >>> baslik_haline_getir("aAkAsH")
     'Aakash'
     """
 
-    """
-    Convert the first character to uppercase if it's lowercase
-    """
-    if "a" <= word[0] <= "z":
-        word = chr(ord(word[0]) - 32) + word[1:]
+    # İlk karakter küçükse büyük harfe çevir
+    if "a" <= kelime[0] <= "z":
+        kelime = chr(ord(kelime[0]) - 32) + kelime[1:]
 
-    """
-    Convert the remaining characters to lowercase if they are uppercase
-    """
-    for i in range(1, len(word)):
-        if "A" <= word[i] <= "Z":
-            word = word[:i] + chr(ord(word[i]) + 32) + word[i + 1 :]
+    # Kalan karakterleri büyükse küçük harfe çevir
+    for i in range(1, len(kelime)):
+        if "A" <= kelime[i] <= "Z":
+            kelime = kelime[:i] + chr(ord(kelime[i]) + 32) + kelime[i + 1:]
 
-    return word
+    return kelime
 
 
-def sentence_to_title_case(input_str: str) -> str:
+def cümleyi_baslik_haline_getir(girdi_str: str) -> str:
     """
-    Converts a string to title case, preserving the input as is
+    Bir stringi başlık haline dönüştürür, girişi olduğu gibi korur.
 
-    >>> sentence_to_title_case("Aakash Giri")
+    >>> cümleyi_baslik_haline_getir("Aakash Giri")
     'Aakash Giri'
 
-    >>> sentence_to_title_case("aakash giri")
+    >>> cümleyi_baslik_haline_getir("aakash giri")
     'Aakash Giri'
 
-    >>> sentence_to_title_case("AAKASH GIRI")
+    >>> cümleyi_baslik_haline_getir("AAKASH GIRI")
     'Aakash Giri'
 
-    >>> sentence_to_title_case("aAkAsH gIrI")
+    >>> cümleyi_baslik_haline_getir("aAkAsH gIrI")
     'Aakash Giri'
     """
 
-    return " ".join(to_title_case(word) for word in input_str.split())
+    return " ".join(baslik_haline_getir(kelime) for kelime in girdi_str.split())
 
 
 if __name__ == "__main__":

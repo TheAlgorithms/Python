@@ -1,104 +1,104 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+"""
+Organiser: K. Umut Araz
+"""
 
-def decrypt_caesar_with_chi_squared(
-    ciphertext: str,
-    cipher_alphabet: list[str] | None = None,
-    frequencies_dict: dict[str, float] | None = None,
-    case_sensitive: bool = False,
+def sezar_sifresini_coz(
+    sifreli_metin: str,
+    sifre_alfabesi: list[str] | None = None,
+    frekans_sozlugu: dict[str, float] | None = None,
+    durum_duyarliligi: bool = False,
 ) -> tuple[int, float, str]:
     """
-    Basic Usage
-    ===========
-    Arguments:
-    * ciphertext (str): the text to decode (encoded with the caesar cipher)
+    Temel Kullanım
+    ==============
+    Argümanlar:
+    * sifreli_metin (str): çözülmesi gereken metin (sezar şifresi ile şifrelenmiş)
 
-    Optional Arguments:
-    * cipher_alphabet (list): the alphabet used for the cipher (each letter is
-      a string separated by commas)
-    * frequencies_dict (dict): a dictionary of word frequencies where keys are
-      the letters and values are a percentage representation of the frequency as
-      a decimal/float
-    * case_sensitive (bool): a boolean value: True if the case matters during
-      decryption, False if it doesn't
+    Opsiyonel Argümanlar:
+    * sifre_alfabesi (list): şifreleme için kullanılan alfabe (her harf bir
+      string olarak virgülle ayrılmış)
+    * frekans_sozlugu (dict): anahtarlar harfler ve değerler frekansın
+      ondalık/float olarak yüzdelik temsilidir
+    * durum_duyarliligi (bool): bir boolean değeri: eğer durum çözümleme sırasında
+      önemliyse True, değilse False
 
-    Returns:
-    * A tuple in the form of:
+    Döndürür:
+    * Aşağıdaki biçimde bir tuple:
       (
-        most_likely_cipher,
-        most_likely_cipher_chi_squared_value,
-        decoded_most_likely_cipher
+        en_olasi_sifre,
+        en_olasi_sifre_kare_degeri,
+        cozulmus_en_olasi_sifre
       )
 
-      where...
-      - most_likely_cipher is an integer representing the shift of the smallest
-        chi-squared statistic (most likely key)
-      - most_likely_cipher_chi_squared_value is a float representing the
-        chi-squared statistic of the most likely shift
-      - decoded_most_likely_cipher is a string with the decoded cipher
-        (decoded by the most_likely_cipher key)
+      burada...
+      - en_olasi_sifre, en küçük kare istatistiğine sahip kaydırmayı temsil eden
+        bir tam sayıdır (en olası anahtar)
+      - en_olasi_sifre_kare_degeri, en olası kaydırmanın kare istatistiğini
+        temsil eden bir float
+      - cozulmus_en_olasi_sifre, en_olasi_sifre anahtarı ile çözülen
+        şifrelenmiş metni içeren bir stringtir
 
 
-    The Chi-squared test
-    ====================
+    Kare İstatistiği Testi
+    =======================
 
-    The caesar cipher
-    -----------------
-    The caesar cipher is a very insecure encryption algorithm, however it has
-    been used since Julius Caesar. The cipher is a simple substitution cipher
-    where each character in the plain text is replaced by a character in the
-    alphabet a certain number of characters after the original character. The
-    number of characters away is called the shift or key. For example:
+    Sezar Şifresi
+    --------------
+    Sezar şifresi, çok güvenli olmayan bir şifreleme algoritmasıdır, ancak
+    Julius Caesar'dan beri kullanılmaktadır. Şifre, düz metindeki her karakterin
+    belirli bir sayıda karakter kaydırılarak alfabenin bir karakteri ile
+    değiştirildiği basit bir yer değiştirme şifresidir. Kaydırma veya anahtar
+    olarak adlandırılan bu karakter sayısıdır. Örneğin:
 
-    Plain text: hello
-    Key: 1
-    Cipher text: ifmmp
-    (each letter in hello has been shifted one to the right in the eng. alphabet)
+    Düz metin: merhaba
+    Anahtar: 1
+    Şifreli metin: nfsbcib
+    (merhaba'daki her harf, İngiliz alfabesinde bir sağa kaydırılmıştır)
 
-    As you can imagine, this doesn't provide lots of security. In fact
-    decrypting ciphertext by brute-force is extremely easy even by hand. However
-     one way to do that is the chi-squared test.
+    Bu durum, çok fazla güvenlik sağlamaz. Aslında, şifreli metni brute-force
+    ile çözmek oldukça kolaydır. Ancak bunu yapmanın bir yolu kare istatistiği
+    testidir.
 
-    The chi-squared test
-    -------------------
-    Each letter in the english alphabet has a frequency, or the amount of times
-    it shows up compared to other letters (usually expressed as a decimal
-    representing the percentage likelihood). The most common letter in the
-    english language is "e" with a frequency of 0.11162 or 11.162%. The test is
-    completed in the following fashion.
+    Kare İstatistiği Testi
+    -----------------------
+    İngiliz alfabesindeki her harfin bir frekansı vardır, yani diğer harflere
+    kıyasla ne kadar sıklıkla göründüğüdür (genellikle yüzdelik olasılığı
+    temsil eden bir ondalık olarak ifade edilir). İngilizce dilindeki en yaygın
+    harf "e"dir ve frekansı 0.11162 veya %11.162'dir. Test şu şekilde
+    gerçekleştirilir.
 
-    1. The ciphertext is decoded in a brute force way (every combination of the
-       26 possible combinations)
-    2. For every combination, for each letter in the combination, the average
-       amount of times the letter should appear the message is calculated by
-       multiplying the total number of characters by the frequency of the letter
+    1. Şifreli metin brute force yöntemiyle çözülür (26 olası kombinasyonun
+       her biri)
+    2. Her kombinasyon için, kombinasyondaki her harf için, harfin mesajda
+       ortalama kaç kez görünmesi gerektiği, toplam karakter sayısı ile
+       harfin frekansının çarpılmasıyla hesaplanır.
 
-       For example:
-       In a message of 100 characters, e should appear around 11.162 times.
+       Örneğin:
+       100 karakterlik bir mesajda, "e" yaklaşık 11.162 kez görünmelidir.
 
-     3. Then, to calculate the margin of error (the amount of times the letter
-        SHOULD appear with the amount of times the letter DOES appear), we use
-        the chi-squared test. The following formula is used:
+    3. Daha sonra, hata payını (harfin GEREKİYOR olması gereken sayısı ile
+       gerçekten görünen sayısı arasındaki farkı) hesaplamak için kare
+       istatistiği testini kullanırız. Aşağıdaki formül kullanılır:
 
-        Let:
-        - n be the number of times the letter actually appears
-        - p be the predicted value of the number of times the letter should
-          appear (see #2)
-        - let v be the chi-squared test result (referred to here as chi-squared
-          value/statistic)
+        n: harfin gerçekten kaç kez göründüğü
+        p: harfin görünmesi gereken tahmin edilen değeri (bkz. #2)
+        v: kare istatistiği test sonucu (burada kare istatistik değeri olarak
+        adlandırılır)
 
         (n - p)^2
         --------- = v
            p
 
-    4. Each chi squared value for each letter is then added up to the total.
-       The total is the chi-squared statistic for that encryption key.
-    5. The encryption key with the lowest chi-squared value is the most likely
-       to be the decoded answer.
+    4. Her harf için kare istatistik değeri toplanır. Toplam, o şifreleme anahtarı
+       için kare istatistiğidir.
+    5. En düşük kare istatistik değerine sahip şifreleme anahtarı, en olası
+       çözüm olacaktır.
 
-    Further Reading
-    ================
+    Daha Fazla Okuma
+    =================
 
     * http://practicalcryptography.com/cryptanalysis/text-characterisation/chi-squared-
         statistic/
@@ -106,30 +106,30 @@ def decrypt_caesar_with_chi_squared(
     * https://en.wikipedia.org/wiki/Chi-squared_test
     * https://en.m.wikipedia.org/wiki/Caesar_cipher
 
-    Doctests
-    ========
-    >>> decrypt_caesar_with_chi_squared(
+    Doctestler
+    ===========
+    >>> sezar_sifresini_coz(
     ...    'dof pz aol jhlzhy jpwoly zv wvwbshy? pa pz avv lhzf av jyhjr!'
     ... )  # doctest: +NORMALIZE_WHITESPACE
     (7, 3129.228005747531,
-     'why is the caesar cipher so popular? it is too easy to crack!')
+     'neden sezar şifresi bu kadar popüler? çözmesi çok kolay!')
 
-    >>> decrypt_caesar_with_chi_squared('crybd cdbsxq')
-    (10, 233.35343938980898, 'short string')
+    >>> sezar_sifresini_coz('crybd cdbsxq')
+    (10, 233.35343938980898, 'kısa dize')
 
-    >>> decrypt_caesar_with_chi_squared('Crybd Cdbsxq', case_sensitive=True)
-    (10, 233.35343938980898, 'Short String')
+    >>> sezar_sifresini_coz('Crybd Cdbsxq', durum_duyarliligi=True)
+    (10, 233.35343938980898, 'Kısa Dize')
 
-    >>> decrypt_caesar_with_chi_squared(12)
+    >>> sezar_sifresini_coz(12)
     Traceback (most recent call last):
-    AttributeError: 'int' object has no attribute 'lower'
+    AttributeError: 'int' nesnesinin 'lower' özelliği yok
     """
-    alphabet_letters = cipher_alphabet or [chr(i) for i in range(97, 123)]
+    alfabe_harfleri = sifre_alfabesi or [chr(i) for i in range(97, 123)]
 
-    # If the argument is None or the user provided an empty dictionary
-    if not frequencies_dict:
-        # Frequencies of letters in the english language (how much they show up)
-        frequencies = {
+    # Eğer argüman None ise veya kullanıcı boş bir sözlük sağladıysa
+    if not frekans_sozlugu:
+        # İngilizce dilindeki harflerin frekansları (ne kadar sıklıkla göründükleri)
+        frekanslar = {
             "a": 0.08497,
             "b": 0.01492,
             "c": 0.02202,
@@ -158,93 +158,90 @@ def decrypt_caesar_with_chi_squared(
             "z": 0.00077,
         }
     else:
-        # Custom frequencies dictionary
-        frequencies = frequencies_dict
+        # Özel frekans sözlüğü
+        frekanslar = frekans_sozlugu
 
-    if not case_sensitive:
-        ciphertext = ciphertext.lower()
+    if not durum_duyarliligi:
+        sifreli_metin = sifreli_metin.lower()
 
-    # Chi squared statistic values
-    chi_squared_statistic_values: dict[int, tuple[float, str]] = {}
+    # Kare istatistik değerleri
+    kare_istatistik_degerleri: dict[int, tuple[float, str]] = {}
 
-    # cycle through all of the shifts
-    for shift in range(len(alphabet_letters)):
-        decrypted_with_shift = ""
+    # Tüm kaydırmalar arasında döngü
+    for kaydirma in range(len(alfabe_harfleri)):
+        cozulmus_metin = ""
 
-        # decrypt the message with the shift
-        for letter in ciphertext:
+        # Mesajı kaydırma ile çöz
+        for harf in sifreli_metin:
             try:
-                # Try to index the letter in the alphabet
-                new_key = (alphabet_letters.index(letter.lower()) - shift) % len(
-                    alphabet_letters
+                # Harfi alfabede indekslemeyi dene
+                yeni_anahtar = (alfabe_harfleri.index(harf.lower()) - kaydirma) % len(
+                    alfabe_harfleri
                 )
-                decrypted_with_shift += (
-                    alphabet_letters[new_key].upper()
-                    if case_sensitive and letter.isupper()
-                    else alphabet_letters[new_key]
+                cozulmus_metin += (
+                    alfabe_harfleri[yeni_anahtar].upper()
+                    if durum_duyarliligi and harf.isupper()
+                    else alfabe_harfleri[yeni_anahtar]
                 )
             except ValueError:
-                # Append the character if it isn't in the alphabet
-                decrypted_with_shift += letter
+                # Harf alfabede değilse karakteri ekle
+                cozulmus_metin += harf
 
-        chi_squared_statistic = 0.0
+        kare_istatistik = 0.0
 
-        # Loop through each letter in the decoded message with the shift
-        for letter in decrypted_with_shift:
-            if case_sensitive:
-                letter = letter.lower()
-                if letter in frequencies:
-                    # Get the amount of times the letter occurs in the message
-                    occurrences = decrypted_with_shift.lower().count(letter)
+        # Çözülmüş mesajdaki her harf için döngü
+        for harf in cozulmus_metin:
+            if durum_duyarliligi:
+                harf = harf.lower()
+                if harf in frekanslar:
+                    # Mesajda harfin kaç kez geçtiğini al
+                    gecis_sayisi = cozulmus_metin.lower().count(harf)
 
-                    # Get the excepcted amount of times the letter should appear based
-                    # on letter frequencies
-                    expected = frequencies[letter] * occurrences
+                    # Harfin frekansına göre görünmesi gereken sayıyı al
+                    beklenen = frekanslar[harf] * gecis_sayisi
 
-                    # Complete the chi squared statistic formula
-                    chi_letter_value = ((occurrences - expected) ** 2) / expected
+                    # Kare istatistik formülünü tamamla
+                    kare_harf_degeri = ((gecis_sayisi - beklenen) ** 2) / beklenen
 
-                    # Add the margin of error to the total chi squared statistic
-                    chi_squared_statistic += chi_letter_value
-            elif letter.lower() in frequencies:
-                # Get the amount of times the letter occurs in the message
-                occurrences = decrypted_with_shift.count(letter)
+                    # Toplam kare istatistiğine hata payını ekle
+                    kare_istatistik += kare_harf_degeri
+            elif harf.lower() in frekanslar:
+                # Mesajda harfin kaç kez geçtiğini al
+                gecis_sayisi = cozulmus_metin.count(harf)
 
-                # Get the excepcted amount of times the letter should appear based
-                # on letter frequencies
-                expected = frequencies[letter] * occurrences
+                # Harfin frekansına göre görünmesi gereken sayıyı al
+                beklenen = frekanslar[harf] * gecis_sayisi
 
-                # Complete the chi squared statistic formula
-                chi_letter_value = ((occurrences - expected) ** 2) / expected
+                # Kare istatistik formülünü tamamla
+                kare_harf_degeri = ((gecis_sayisi - beklenen) ** 2) / beklenen
 
-                # Add the margin of error to the total chi squared statistic
-                chi_squared_statistic += chi_letter_value
+                # Toplam kare istatistiğine hata payını ekle
+                kare_istatistik += kare_harf_degeri
 
-        # Add the data to the chi_squared_statistic_values dictionary
-        chi_squared_statistic_values[shift] = (
-            chi_squared_statistic,
-            decrypted_with_shift,
+        # Verileri kare_istatistik_degerleri sözlüğüne ekle
+        kare_istatistik_degerleri[kaydirma] = (
+            kare_istatistik,
+            cozulmus_metin,
         )
 
-    # Get the most likely cipher by finding the cipher with the smallest chi squared
-    # statistic
-    def chi_squared_statistic_values_sorting_key(key: int) -> tuple[float, str]:
-        return chi_squared_statistic_values[key]
+    # En olası şifreyi bulmak için en küçük kare istatistiğine sahip şifreyi bul
+    def kare_istatistik_degerleri_siralama_anahtari(anahtar: int) -> tuple[float, str]:
+        return kare_istatistik_degerleri[anahtar]
 
-    most_likely_cipher: int = min(
-        chi_squared_statistic_values,
-        key=chi_squared_statistic_values_sorting_key,
+    en_olasi_sifre: int = min(
+        kare_istatistik_degerleri,
+        key=kare_istatistik_degerleri_siralama_anahtari,
     )
 
-    # Get all the data from the most likely cipher (key, decoded message)
+    # En olası şifreden (anahtar, çözülen mesaj) tüm verileri al
     (
-        most_likely_cipher_chi_squared_value,
-        decoded_most_likely_cipher,
-    ) = chi_squared_statistic_values[most_likely_cipher]
+        en_olasi_sifre_kare_degeri,
+        cozulmus_en_olasi_sifre,
+    ) = kare_istatistik_degerleri[en_olasi_sifre]
 
-    # Return the data on the most likely shift
+    # En olası kaydırma ile ilgili verileri döndür
     return (
-        most_likely_cipher,
-        most_likely_cipher_chi_squared_value,
-        decoded_most_likely_cipher,
+        en_olasi_sifre,
+        en_olasi_sifre_kare_degeri,
+        cozulmus_en_olasi_sifre,
     )

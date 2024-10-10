@@ -1,5 +1,7 @@
 # https://www.geeksforgeeks.org/solve-crossword-puzzle/
 
+#Organiser: K. Umut Araz
+
 
 def geçerli_mi(
     bulmaca: list[list[str]], kelime: str, satır: int, sütun: int, dikey: bool

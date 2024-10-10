@@ -1,5 +1,7 @@
 def cift_mi(sayi: int) -> bool:
     """
+    Organiser: K. Umut Araz
+    
     Girdi tamsayısı çift ise true döndürür
     Açıklama: Aşağıdaki ondalık sayıdan ikiliye dönüşümlere bir göz atalım
     2 => 10

@@ -3,6 +3,8 @@ Graf Boyama, "m boyama problemi" olarak da adlandırılır
 verilen bir grafiği en fazla m renk ile boyamaktan oluşur
 öyle ki bitişik düğümlere aynı renk atanmaz
 
+Organiser: K. Umut Araz
+
 Wikipedia: https://en.wikipedia.org/wiki/Graph_coloring
 """
 

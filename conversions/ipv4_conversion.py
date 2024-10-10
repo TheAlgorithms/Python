@@ -1,15 +1,17 @@
 # https://www.geeksforgeeks.org/convert-ip-address-to-integer-and-vice-versa/
 
-
 def ipv4_to_decimal(ipv4_address: str) -> int:
     """
-    Convert an IPv4 address to its decimal representation.
+
+    Organiser: K. Umut Araz
+
+    Bir IPv4 adresini ondalık temsil biçimine dönüştürür.
 
     Args:
-        ip_address: A string representing an IPv4 address (e.g., "192.168.0.1").
+        ipv4_address: Bir IPv4 adresini temsil eden bir dize (örneğin, "192.168.0.1").
 
     Returns:
-        int: The decimal representation of the IP address.
+        int: IP adresinin ondalık temsil biçimi.
 
     >>> ipv4_to_decimal("192.168.0.1")
     3232235521
@@ -18,28 +20,30 @@ def ipv4_to_decimal(ipv4_address: str) -> int:
     >>> ipv4_to_decimal("10.0.255")
     Traceback (most recent call last):
         ...
-    ValueError: Invalid IPv4 address format
+    ValueError: Geçersiz IPv4 adres formatı
     >>> ipv4_to_decimal("10.0.0.256")
     Traceback (most recent call last):
-        ...
-    ValueError: Invalid IPv4 octet 256
+        ...s
+    ValueError: Geçersiz IPv4 okteti 256
     """
 
-    octets = [int(octet) for octet in ipv4_address.split(".")]
-    if len(octets) != 4:
-        raise ValueError("Invalid IPv4 address format")
+    oktetler = [int(octet) for octet in ipv4_address.split(".")]
+    if len(oktetler) != 4:
+        raise ValueError("Geçersiz IPv4 adres formatı")
 
     decimal_ipv4 = 0
-    for octet in octets:
-        if not 0 <= octet <= 255:
-            raise ValueError(f"Invalid IPv4 octet {octet}")  # noqa: EM102
-        decimal_ipv4 = (decimal_ipv4 << 8) + int(octet)
+    for oktet in oktetler:
+        if not 0 <= oktet <= 255:
+            raise ValueError(f"Geçersiz IPv4 okteti {oktet}")  # noqa: EM102
+        decimal_ipv4 = (decimal_ipv4 << 8) + int(oktet)
 
     return decimal_ipv4
 
 
 def alt_ipv4_to_decimal(ipv4_address: str) -> int:
     """
+    Alternatif bir yöntemle IPv4 adresini ondalık sayıya dönüştürür.
+
     >>> alt_ipv4_to_decimal("192.168.0.1")
     3232235521
     >>> alt_ipv4_to_decimal("10.0.0.255")
@@ -50,13 +54,13 @@ def alt_ipv4_to_decimal(ipv4_address: str) -> int:
 
 def decimal_to_ipv4(decimal_ipv4: int) -> str:
     """
-    Convert a decimal representation of an IP address to its IPv4 format.
+    Bir IP adresinin ondalık temsilini IPv4 formatına dönüştürür.
 
     Args:
-        decimal_ipv4: An integer representing the decimal IP address.
+        decimal_ipv4: Ondalık IP adresini temsil eden bir tamsayı.
 
     Returns:
-        The IPv4 representation of the decimal IP address.
+        Ondalık IP adresinin IPv4 temsil biçimi.
 
     >>> decimal_to_ipv4(3232235521)
     '192.168.0.1'
@@ -65,18 +69,18 @@ def decimal_to_ipv4(decimal_ipv4: int) -> str:
     >>> decimal_to_ipv4(-1)
     Traceback (most recent call last):
         ...
-    ValueError: Invalid decimal IPv4 address
+    ValueError: Geçersiz ondalık IPv4 adresi
     """
 
     if not (0 <= decimal_ipv4 <= 4294967295):
-        raise ValueError("Invalid decimal IPv4 address")
+        raise ValueError("Geçersiz ondalık IPv4 adresi")
 
-    ip_parts = []
+    ip_bolumleri = []
     for _ in range(4):
-        ip_parts.append(str(decimal_ipv4 & 255))
+        ip_bolumleri.append(str(decimal_ipv4 & 255))
         decimal_ipv4 >>= 8
 
-    return ".".join(reversed(ip_parts))
+    return ".".join(reversed(ip_bolumleri))
 
 
 if __name__ == "__main__":

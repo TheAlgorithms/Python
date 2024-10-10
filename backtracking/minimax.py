@@ -2,6 +2,8 @@
 Minimax algoritması, bir oyunda maksimum skoru elde etmek için tüm olası hamleleri kontrol eder.
 depth, oyun ağacındaki mevcut derinliği belirtir.
 
+Organiser: K. Umut Araz
+
 nodeIndex, scores[] içindeki mevcut düğümün indeksidir.
 Eğer hamle maksimize edici oyuncuya aitse true, değilse false döner.
 Oyun ağacının yaprakları scores[] içinde saklanır.

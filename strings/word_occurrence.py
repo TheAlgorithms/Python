@@ -1,26 +1,27 @@
-# Created by sarathkaul on 17/11/19
-# Modified by Arkadip Bhattacharya(@darkmatter18) on 20/04/2020
+# Oluşturan: sarathkaul, 17/11/19
+# Düzenleyen: Arkadip Bhattacharya(@darkmatter18), 20/04/2020
+# Düzenleyen: K. Umut Araz, 10/10/2024
 from collections import defaultdict
 
 
-def word_occurrence(sentence: str) -> dict:
+def kelime_sayisi(cümle: str) -> dict:
     """
     >>> from collections import Counter
-    >>> SENTENCE = "a b A b c b d b d e f e g e h e i e j e 0"
-    >>> occurence_dict = word_occurrence(SENTENCE)
-    >>> all(occurence_dict[word] == count for word, count
-    ...     in Counter(SENTENCE.split()).items())
+    >>> CUMLE = "a b A b c b d b d e f e g e h e i e j e 0"
+    >>> kelime_dict = kelime_sayisi(CUMLE)
+    >>> all(kelime_dict[kelime] == sayi for kelime, sayi
+    ...     in Counter(CUMLE.split()).items())
     True
-    >>> dict(word_occurrence("Two  spaces"))
-    {'Two': 1, 'spaces': 1}
+    >>> dict(kelime_sayisi("İki  boşluk"))
+    {'İki': 1, 'boşluk': 1}
     """
-    occurrence: defaultdict[str, int] = defaultdict(int)
-    # Creating a dictionary containing count of each word
-    for word in sentence.split():
-        occurrence[word] += 1
-    return occurrence
+    kelime_sayisi: defaultdict[str, int] = defaultdict(int)
+    # Her kelimenin sayısını içeren bir sözlük oluşturma
+    for kelime in cümle.split():
+        kelime_sayisi[kelime] += 1
+    return kelime_sayisi
 
 
 if __name__ == "__main__":
-    for word, count in word_occurrence("INPUT STRING").items():
-        print(f"{word}: {count}")
+    for kelime, sayi in kelime_sayisi("GİRİŞ DİZİSİ").items():
+        print(f"{kelime}: {sayi}")

@@ -1,162 +1,163 @@
 """
-Algorithm for calculating the most cost-efficient sequence for converting one string
-into another.
-The only allowed operations are
---- Cost to copy a character is copy_cost
---- Cost to replace a character is replace_cost
---- Cost to delete a character is delete_cost
---- Cost to insert a character is insert_cost
+
+Organiser: K. Umut Araz
+
+Bir stringi başka bir stringe dönüştürmek için en maliyet etkin diziyi hesaplayan algoritma.
+İzin verilen tek işlemler şunlardır:
+--- Bir karakteri kopyalamanın maliyeti copy_cost
+--- Bir karakteri değiştirmenin maliyeti replace_cost
+--- Bir karakteri silmenin maliyeti delete_cost
+--- Bir karakter eklemenin maliyeti insert_cost
 """
 
 
-def compute_transform_tables(
-    source_string: str,
-    destination_string: str,
-    copy_cost: int,
-    replace_cost: int,
-    delete_cost: int,
-    insert_cost: int,
+def maliyet_hesapla(
+    kaynak_string: str,
+    hedef_string: str,
+    kopyalama_maliyeti: int,
+    degistirme_maliyeti: int,
+    silme_maliyeti: int,
+    ekleme_maliyeti: int,
 ) -> tuple[list[list[int]], list[list[str]]]:
     """
-    Finds the most cost efficient sequence
-    for converting one string into another.
+    Bir stringi başka bir stringe dönüştürmek için en maliyet etkin diziyi bulur.
 
-    >>> costs, operations = compute_transform_tables("cat", "cut", 1, 2, 3, 3)
-    >>> costs[0][:4]
+    >>> maliyetler, islemler = maliyet_hesapla("kedi", "kutu", 1, 2, 3, 3)
+    >>> maliyetler[0][:4]
     [0, 3, 6, 9]
-    >>> costs[2][:4]
+    >>> maliyetler[2][:4]
     [6, 4, 3, 6]
-    >>> operations[0][:4]
-    ['0', 'Ic', 'Iu', 'It']
-    >>> operations[3][:4]
-    ['Dt', 'Dt', 'Rtu', 'Ct']
+    >>> islemler[0][:4]
+    ['0', 'Ik', 'Iu', 'It']
+    >>> islemler[3][:4]
+    ['Ds', 'Ds', 'Rtu', 'Kt']
 
-    >>> compute_transform_tables("", "", 1, 2, 3, 3)
+    >>> maliyet_hesapla("", "", 1, 2, 3, 3)
     ([[0]], [['0']])
     """
-    source_seq = list(source_string)
-    destination_seq = list(destination_string)
-    len_source_seq = len(source_seq)
-    len_destination_seq = len(destination_seq)
-    costs = [
-        [0 for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
+    kaynak_dizi = list(kaynak_string)
+    hedef_dizi = list(hedef_string)
+    kaynak_uzunluk = len(kaynak_dizi)
+    hedef_uzunluk = len(hedef_dizi)
+    maliyetler = [
+        [0 for _ in range(hedef_uzunluk + 1)] for _ in range(kaynak_uzunluk + 1)
     ]
-    ops = [
-        ["0" for _ in range(len_destination_seq + 1)] for _ in range(len_source_seq + 1)
+    islemler = [
+        ["0" for _ in range(hedef_uzunluk + 1)] for _ in range(kaynak_uzunluk + 1)
     ]
 
-    for i in range(1, len_source_seq + 1):
-        costs[i][0] = i * delete_cost
-        ops[i][0] = f"D{source_seq[i - 1]}"
+    for i in range(1, kaynak_uzunluk + 1):
+        maliyetler[i][0] = i * silme_maliyeti
+        islemler[i][0] = f"D{kaynak_dizi[i - 1]}"
 
-    for i in range(1, len_destination_seq + 1):
-        costs[0][i] = i * insert_cost
-        ops[0][i] = f"I{destination_seq[i - 1]}"
+    for i in range(1, hedef_uzunluk + 1):
+        maliyetler[0][i] = i * ekleme_maliyeti
+        islemler[0][i] = f"I{hedef_dizi[i - 1]}"
 
-    for i in range(1, len_source_seq + 1):
-        for j in range(1, len_destination_seq + 1):
-            if source_seq[i - 1] == destination_seq[j - 1]:
-                costs[i][j] = costs[i - 1][j - 1] + copy_cost
-                ops[i][j] = f"C{source_seq[i - 1]}"
+    for i in range(1, kaynak_uzunluk + 1):
+        for j in range(1, hedef_uzunluk + 1):
+            if kaynak_dizi[i - 1] == hedef_dizi[j - 1]:
+                maliyetler[i][j] = maliyetler[i - 1][j - 1] + kopyalama_maliyeti
+                islemler[i][j] = f"C{kaynak_dizi[i - 1]}"
             else:
-                costs[i][j] = costs[i - 1][j - 1] + replace_cost
-                ops[i][j] = f"R{source_seq[i - 1]}" + str(destination_seq[j - 1])
+                maliyetler[i][j] = maliyetler[i - 1][j - 1] + degistirme_maliyeti
+                islemler[i][j] = f"R{kaynak_dizi[i - 1]}" + str(hedef_dizi[j - 1])
 
-            if costs[i - 1][j] + delete_cost < costs[i][j]:
-                costs[i][j] = costs[i - 1][j] + delete_cost
-                ops[i][j] = f"D{source_seq[i - 1]}"
+            if maliyetler[i - 1][j] + silme_maliyeti < maliyetler[i][j]:
+                maliyetler[i][j] = maliyetler[i - 1][j] + silme_maliyeti
+                islemler[i][j] = f"D{kaynak_dizi[i - 1]}"
 
-            if costs[i][j - 1] + insert_cost < costs[i][j]:
-                costs[i][j] = costs[i][j - 1] + insert_cost
-                ops[i][j] = f"I{destination_seq[j - 1]}"
+            if maliyetler[i][j - 1] + ekleme_maliyeti < maliyetler[i][j]:
+                maliyetler[i][j] = maliyetler[i][j - 1] + ekleme_maliyeti
+                islemler[i][j] = f"I{hedef_dizi[j - 1]}"
 
-    return costs, ops
+    return maliyetler, islemler
 
 
-def assemble_transformation(ops: list[list[str]], i: int, j: int) -> list[str]:
+def donusum_birleştir(ops: list[list[str]], i: int, j: int) -> list[str]:
     """
-    Assembles the transformations based on the ops table.
+    Ops tablosuna dayalı olarak dönüşümleri birleştirir.
 
-    >>> ops = [['0', 'Ic', 'Iu', 'It'],
-    ...        ['Dc', 'Cc', 'Iu', 'It'],
+    >>> ops = [['0', 'Ik', 'Iu', 'It'],
+    ...        ['Dk', 'Ck', 'Iu', 'It'],
     ...        ['Da', 'Da', 'Rau', 'Rat'],
-    ...        ['Dt', 'Dt', 'Rtu', 'Ct']]
+    ...        ['Ds', 'Ds', 'Rtu', 'Kt']]
     >>> x = len(ops) - 1
     >>> y = len(ops[0]) - 1
-    >>> assemble_transformation(ops, x, y)
-    ['Cc', 'Rau', 'Ct']
+    >>> donusum_birleştir(ops, x, y)
+    ['Ck', 'Rau', 'Kt']
 
     >>> ops1 = [['0']]
     >>> x1 = len(ops1) - 1
     >>> y1 = len(ops1[0]) - 1
-    >>> assemble_transformation(ops1, x1, y1)
+    >>> donusum_birleştir(ops1, x1, y1)
     []
     """
     if i == 0 and j == 0:
         return []
     elif ops[i][j][0] in {"C", "R"}:
-        seq = assemble_transformation(ops, i - 1, j - 1)
+        seq = donusum_birleştir(ops, i - 1, j - 1)
         seq.append(ops[i][j])
         return seq
     elif ops[i][j][0] == "D":
-        seq = assemble_transformation(ops, i - 1, j)
+        seq = donusum_birleştir(ops, i - 1, j)
         seq.append(ops[i][j])
         return seq
     else:
-        seq = assemble_transformation(ops, i, j - 1)
+        seq = donusum_birleştir(ops, i, j - 1)
         seq.append(ops[i][j])
         return seq
 
 
 if __name__ == "__main__":
-    _, operations = compute_transform_tables("Python", "Algorithms", -1, 1, 2, 2)
+    _, islemler = maliyet_hesapla("Python", "Algoritmalar", -1, 1, 2, 2)
 
-    m = len(operations)
-    n = len(operations[0])
-    sequence = assemble_transformation(operations, m - 1, n - 1)
+    m = len(islemler)
+    n = len(islemler[0])
+    dizi = donusum_birleştir(islemler, m - 1, n - 1)
 
     string = list("Python")
     i = 0
-    cost = 0
+    maliyet = 0
 
-    with open("min_cost.txt", "w") as file:
-        for op in sequence:
+    with open("min_maliyet.txt", "w") as dosya:
+        for op in dizi:
             print("".join(string))
 
             if op[0] == "C":
-                file.write("%-16s" % "Copy %c" % op[1])
-                file.write("\t\t\t" + "".join(string))
-                file.write("\r\n")
+                dosya.write("%-16s" % "Kopyala %c" % op[1])
+                dosya.write("\t\t\t" + "".join(string))
+                dosya.write("\r\n")
 
-                cost -= 1
+                maliyet -= 1
             elif op[0] == "R":
                 string[i] = op[2]
 
-                file.write("%-16s" % ("Replace %c" % op[1] + " with " + str(op[2])))
-                file.write("\t\t" + "".join(string))
-                file.write("\r\n")
+                dosya.write("%-16s" % ("Değiştir %c" % op[1] + " ile " + str(op[2])))
+                dosya.write("\t\t" + "".join(string))
+                dosya.write("\r\n")
 
-                cost += 1
+                maliyet += 1
             elif op[0] == "D":
                 string.pop(i)
 
-                file.write("%-16s" % "Delete %c" % op[1])
-                file.write("\t\t\t" + "".join(string))
-                file.write("\r\n")
+                dosya.write("%-16s" % "Sil %c" % op[1])
+                dosya.write("\t\t\t" + "".join(string))
+                dosya.write("\r\n")
 
-                cost += 2
+                maliyet += 2
             else:
                 string.insert(i, op[1])
 
-                file.write("%-16s" % "Insert %c" % op[1])
-                file.write("\t\t\t" + "".join(string))
-                file.write("\r\n")
+                dosya.write("%-16s" % "Ekle %c" % op[1])
+                dosya.write("\t\t\t" + "".join(string))
+                dosya.write("\r\n")
 
-                cost += 2
+                maliyet += 2
 
             i += 1
 
         print("".join(string))
-        print("Cost: ", cost)
+        print("Maliyet: ", maliyet)
 
-        file.write("\r\nMinimum cost: " + str(cost))
+        dosya.write("\r\nMinimum maliyet: " + str(maliyet))

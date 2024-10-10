@@ -4,6 +4,8 @@ Bir dize ve bir kelime sözlüğü verildiğinde, göreviniz dizenin bir veya da
 sözlük kelimesi dizisine bölünüp bölünemeyeceğini belirlemektir.
 
 Wikipedia: https://en.wikipedia.org/wiki/Word_break_problem
+
+Organiser: K. Umut Araz
 """
 
 

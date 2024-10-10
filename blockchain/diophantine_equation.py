@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from maths.greatest_common_divisor import greatest_common_divisor
 
+#Organiser: K. Umut Araz
+
 
 def diophantine(a: int, b: int, c: int) -> tuple[float, float]:
     """

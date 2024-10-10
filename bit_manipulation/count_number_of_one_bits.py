@@ -3,6 +3,10 @@ from timeit import timeit
 
 def brian_kernighan_algoritmasi_ile_birlerin_sayisini_al(sayi: int) -> int:
     """
+
+    Organiser: K. Umut Araz
+
+    
     32 bitlik bir tam sayıda ayarlanmış bitlerin sayısını sayar
     >>> brian_kernighan_algoritmasi_ile_birlerin_sayisini_al(25)
     3

@@ -1,88 +1,90 @@
 """
-Functions useful for doing molecular chemistry:
-* molarity_to_normality
-* moles_to_pressure
-* moles_to_volume
-* pressure_and_volume_to_temperature
+Moleküler kimya için yararlı fonksiyonlar:
+* molarite_normaliteye_dönüştür
+* mol sayısını basınca dönüştür
+* mol sayısını hacme dönüştür
+* basınç ve hacmi sıcaklığa dönüştür
+
+Organiser: K. Umut Araz
 """
 
 
-def molarity_to_normality(nfactor: int, moles: float, volume: float) -> float:
+def molarite_normaliteye_dönüştür(nfaktör: int, mol: float, hacim: float) -> float:
     """
-    Convert molarity to normality.
-      Volume is taken in litres.
+    Molariteyi normaliteye dönüştür.
+      Hacim litre cinsindendir.
 
-      Wikipedia reference: https://en.wikipedia.org/wiki/Equivalent_concentration
-      Wikipedia reference: https://en.wikipedia.org/wiki/Molar_concentration
+      Wikipedia referansı: https://en.wikipedia.org/wiki/Equivalent_concentration
+      Wikipedia referansı: https://en.wikipedia.org/wiki/Molar_concentration
 
-      >>> molarity_to_normality(2, 3.1, 0.31)
+      >>> molarite_normaliteye_dönüştür(2, 3.1, 0.31)
       20
-      >>> molarity_to_normality(4, 11.4, 5.7)
+      >>> molarite_normaliteye_dönüştür(4, 11.4, 5.7)
       8
     """
-    return round(float(moles / volume) * nfactor)
+    return round(float(mol / hacim) * nfaktör)
 
 
-def moles_to_pressure(volume: float, moles: float, temperature: float) -> float:
+def mol_sayısını_basınca_dönüştür(hacim: float, mol: float, sıcaklık: float) -> float:
     """
-    Convert moles to pressure.
-      Ideal gas laws are used.
-      Temperature is taken in kelvin.
-      Volume is taken in litres.
-      Pressure has atm as SI unit.
+    Mol sayısını basınca dönüştür.
+      Ideal gaz yasaları kullanılır.
+      Sıcaklık kelvin cinsindendir.
+      Hacim litre cinsindendir.
+      Basınç SI birimi olarak atm cinsindendir.
 
-      Wikipedia reference: https://en.wikipedia.org/wiki/Gas_laws
-      Wikipedia reference: https://en.wikipedia.org/wiki/Pressure
-      Wikipedia reference: https://en.wikipedia.org/wiki/Temperature
+      Wikipedia referansı: https://en.wikipedia.org/wiki/Gas_laws
+      Wikipedia referansı: https://en.wikipedia.org/wiki/Pressure
+      Wikipedia referansı: https://en.wikipedia.org/wiki/Temperature
 
-      >>> moles_to_pressure(0.82, 3, 300)
+      >>> mol_sayısını_basınca_dönüştür(0.82, 3, 300)
       90
-      >>> moles_to_pressure(8.2, 5, 200)
+      >>> mol_sayısını_basınca_dönüştür(8.2, 5, 200)
       10
     """
-    return round(float((moles * 0.0821 * temperature) / (volume)))
+    return round(float((mol * 0.0821 * sıcaklık) / (hacim)))
 
 
-def moles_to_volume(pressure: float, moles: float, temperature: float) -> float:
+def mol_sayısını_hacme_dönüştür(basınç: float, mol: float, sıcaklık: float) -> float:
     """
-    Convert moles to volume.
-      Ideal gas laws are used.
-      Temperature is taken in kelvin.
-      Volume is taken in litres.
-      Pressure has atm as SI unit.
+    Mol sayısını hacme dönüştür.
+      Ideal gaz yasaları kullanılır.
+      Sıcaklık kelvin cinsindendir.
+      Hacim litre cinsindendir.
+      Basınç SI birimi olarak atm cinsindendir.
 
-      Wikipedia reference: https://en.wikipedia.org/wiki/Gas_laws
-      Wikipedia reference: https://en.wikipedia.org/wiki/Pressure
-      Wikipedia reference: https://en.wikipedia.org/wiki/Temperature
+      Wikipedia referansı: https://en.wikipedia.org/wiki/Gas_laws
+      Wikipedia referansı: https://en.wikipedia.org/wiki/Pressure
+      Wikipedia referansı: https://en.wikipedia.org/wiki/Temperature
 
-      >>> moles_to_volume(0.82, 3, 300)
+      >>> mol_sayısını_hacme_dönüştür(0.82, 3, 300)
       90
-      >>> moles_to_volume(8.2, 5, 200)
+      >>> mol_sayısını_hacme_dönüştür(8.2, 5, 200)
       10
     """
-    return round(float((moles * 0.0821 * temperature) / (pressure)))
+    return round(float((mol * 0.0821 * sıcaklık) / (basınç)))
 
 
-def pressure_and_volume_to_temperature(
-    pressure: float, moles: float, volume: float
+def basınç_ve_hacmi_sıcaklığa_dönüştür(
+    basınç: float, mol: float, hacim: float
 ) -> float:
     """
-    Convert pressure and volume to temperature.
-      Ideal gas laws are used.
-      Temperature is taken in kelvin.
-      Volume is taken in litres.
-      Pressure has atm as SI unit.
+    Basınç ve hacmi sıcaklığa dönüştür.
+      Ideal gaz yasaları kullanılır.
+      Sıcaklık kelvin cinsindendir.
+      Hacim litre cinsindendir.
+      Basınç SI birimi olarak atm cinsindendir.
 
-      Wikipedia reference: https://en.wikipedia.org/wiki/Gas_laws
-      Wikipedia reference: https://en.wikipedia.org/wiki/Pressure
-      Wikipedia reference: https://en.wikipedia.org/wiki/Temperature
+      Wikipedia referansı: https://en.wikipedia.org/wiki/Gas_laws
+      Wikipedia referansı: https://en.wikipedia.org/wiki/Pressure
+      Wikipedia referansı: https://en.wikipedia.org/wiki/Temperature
 
-      >>> pressure_and_volume_to_temperature(0.82, 1, 2)
+      >>> basınç_ve_hacmi_sıcaklığa_dönüştür(0.82, 1, 2)
       20
-      >>> pressure_and_volume_to_temperature(8.2, 5, 3)
+      >>> basınç_ve_hacmi_sıcaklığa_dönüştür(8.2, 5, 3)
       60
     """
-    return round(float((pressure * volume) / (0.0821 * moles)))
+    return round(float((basınç * hacim) / (0.0821 * mol)))
 
 
 if __name__ == "__main__":

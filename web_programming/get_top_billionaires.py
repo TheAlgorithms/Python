@@ -1,6 +1,8 @@
 """
 DİKKAT: json.decoding hatası alabilirsiniz.
 Bu bazıları için çalışıyor ancak diğerleri için başarısız oluyor.
+
+# Organiser: K. Umut Araz
 """
 
 from datetime import UTC, date, datetime

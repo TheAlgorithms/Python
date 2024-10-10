@@ -1,6 +1,8 @@
 """
 Bu, Amdoren Currency API kullanarak para birimini dönüştürmek için kullanılır
 https://www.amdoren.com
+
+Organiser: K. Umut Araz
 """
 
 import os

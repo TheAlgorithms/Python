@@ -1,39 +1,38 @@
 """
-https://en.wikipedia.org/wiki/Autokey_cipher
-An autokey cipher (also known as the autoclave cipher) is a cipher that
-incorporates the message (the plaintext) into the key.
-The key is generated from the message in some automated fashion,
-sometimes by selecting certain letters from the text or, more commonly,
-by adding a short primer key to the front of the message.
+https://tr.wikipedia.org/wiki/Autokey_şifresi
+Autokey şifresi (aynı zamanda otoklav şifresi olarak da bilinir), mesajı (açık metni) anahtara dahil eden bir şifreleme yöntemidir.
+Anahtar, mesajdan otomatik bir şekilde üretilir; bazen metinden belirli harfler seçilerek veya daha yaygın olarak, kısa bir primer anahtarın mesajın önüne eklenmesiyle oluşturulur.
+
+Organiser: K. Umut Araz
 """
 
 
 def encrypt(plaintext: str, key: str) -> str:
     """
-    Encrypt a given plaintext (string) and key (string), returning the
-    encrypted ciphertext.
-    >>> encrypt("hello world", "coffee")
+    Verilen bir açık metni (string) ve anahtarı (string) şifreleyerek,
+    şifrelenmiş metni döndürür.
+    >>> encrypt("merhaba dünya", "kahve")
     'jsqqs avvwo'
-    >>> encrypt("coffee is good as python", "TheAlgorithms")
+    >>> encrypt("kahve iyi bir şeydir", "Algoritmalar")
     'vvjfpk wj ohvp su ddylsv'
-    >>> encrypt("coffee is good as python", 2)
+    >>> encrypt("kahve iyi bir şeydir", 2)
     Traceback (most recent call last):
         ...
-    TypeError: key must be a string
-    >>> encrypt("", "TheAlgorithms")
+    TypeError: anahtar bir string olmalıdır
+    >>> encrypt("", "Algoritmalar")
     Traceback (most recent call last):
         ...
-    ValueError: plaintext is empty
+    ValueError: açık metin boş
     """
     if not isinstance(plaintext, str):
-        raise TypeError("plaintext must be a string")
+        raise TypeError("açık metin bir string olmalıdır")
     if not isinstance(key, str):
-        raise TypeError("key must be a string")
+        raise TypeError("anahtar bir string olmalıdır")
 
     if not plaintext:
-        raise ValueError("plaintext is empty")
+        raise ValueError("açık metin boş")
     if not key:
-        raise ValueError("key is empty")
+        raise ValueError("anahtar boş")
 
     key += plaintext
     plaintext = plaintext.lower()
@@ -66,30 +65,30 @@ def encrypt(plaintext: str, key: str) -> str:
 
 def decrypt(ciphertext: str, key: str) -> str:
     """
-    Decrypt a given ciphertext (string) and key (string), returning the decrypted
-    ciphertext.
-    >>> decrypt("jsqqs avvwo", "coffee")
-    'hello world'
-    >>> decrypt("vvjfpk wj ohvp su ddylsv", "TheAlgorithms")
-    'coffee is good as python'
+    Verilen bir şifreli metni (string) ve anahtarı (string) çözerek,
+    çözümlenmiş metni döndürür.
+    >>> decrypt("jsqqs avvwo", "kahve")
+    'merhaba dünya'
+    >>> decrypt("vvjfpk wj ohvp su ddylsv", "Algoritmalar")
+    'kahve iyi bir şeydir'
     >>> decrypt("vvjfpk wj ohvp su ddylsv", "")
     Traceback (most recent call last):
         ...
-    ValueError: key is empty
-    >>> decrypt(527.26, "TheAlgorithms")
+    ValueError: anahtar boş
+    >>> decrypt(527.26, "Algoritmalar")
     Traceback (most recent call last):
         ...
-    TypeError: ciphertext must be a string
+    TypeError: şifreli metin bir string olmalıdır
     """
     if not isinstance(ciphertext, str):
-        raise TypeError("ciphertext must be a string")
+        raise TypeError("şifreli metin bir string olmalıdır")
     if not isinstance(key, str):
-        raise TypeError("key must be a string")
+        raise TypeError("anahtar bir string olmalıdır")
 
     if not ciphertext:
-        raise ValueError("ciphertext is empty")
+        raise ValueError("şifreli metin boş")
     if not key:
-        raise ValueError("key is empty")
+        raise ValueError("anahtar boş")
 
     key = key.lower()
     ciphertext_iterator = 0
@@ -119,13 +118,13 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    operation = int(input("Type 1 to encrypt or 2 to decrypt:"))
+    operation = int(input("Şifrelemek için 1, çözmek için 2 yazın:"))
     if operation == 1:
-        plaintext = input("Typeplaintext to be encrypted:\n")
-        key = input("Type the key:\n")
+        plaintext = input("Şifrelenecek açık metni yazın:\n")
+        key = input("Anahtarı yazın:\n")
         print(encrypt(plaintext, key))
     elif operation == 2:
-        ciphertext = input("Type the ciphertext to be decrypted:\n")
-        key = input("Type the key:\n")
+        ciphertext = input("Çözülecek şifreli metni yazın:\n")
+        key = input("Anahtarı yazın:\n")
         print(decrypt(ciphertext, key))
-    decrypt("jsqqs avvwo", "coffee")
+    decrypt("jsqqs avvwo", "kahve")

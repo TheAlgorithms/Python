@@ -1,6 +1,8 @@
 """
-One of the several implementations of Lempel-Ziv-Welch compression algorithm
+Lempel-Ziv-Welch sıkıştırma algoritmasının birkaç uygulamasından biri
 https://en.wikipedia.org/wiki/Lempel%E2%80%93Ziv%E2%80%93Welch
+
+Organiser: K. Umut Araz
 """
 
 import math
@@ -8,118 +10,117 @@ import os
 import sys
 
 
-def read_file_binary(file_path: str) -> str:
+def dosyayı_ikili_okuma(dosya_yolu: str) -> str:
     """
-    Reads given file as bytes and returns them as a long string
+    Verilen dosyayı bayt olarak okur ve uzun bir string olarak döner
     """
-    result = ""
+    sonuç = ""
     try:
-        with open(file_path, "rb") as binary_file:
-            data = binary_file.read()
-        for dat in data:
-            curr_byte = f"{dat:08b}"
-            result += curr_byte
-        return result
+        with open(dosya_yolu, "rb") as ikili_dosya:
+            veri = ikili_dosya.read()
+        for dat in veri:
+            mevcut_bayt = f"{dat:08b}"
+            sonuç += mevcut_bayt
+        return sonuç
     except OSError:
-        print("File not accessible")
+        print("Dosyaya erişilemiyor")
         sys.exit()
 
 
-def add_key_to_lexicon(
-    lexicon: dict[str, str], curr_string: str, index: int, last_match_id: str
+def sözlüğe_anahtar_ekle(
+    sözlük: dict[str, str], mevcut_string: str, indeks: int, son_eşleşme_id: str
 ) -> None:
     """
-    Adds new strings (curr_string + "0",  curr_string + "1") to the lexicon
+    Yeni stringler (mevcut_string + "0", mevcut_string + "1") sözlüğe ekler
     """
-    lexicon.pop(curr_string)
-    lexicon[curr_string + "0"] = last_match_id
+    sözlük.pop(mevcut_string)
+    sözlük[mevcut_string + "0"] = son_eşleşme_id
 
-    if math.log2(index).is_integer():
-        for curr_key in lexicon:
-            lexicon[curr_key] = "0" + lexicon[curr_key]
+    if math.log2(indeks).is_integer():
+        for mevcut_anahtar in sözlük:
+            sözlük[mevcut_anahtar] = "0" + sözlük[mevcut_anahtar]
 
-    lexicon[curr_string + "1"] = bin(index)[2:]
+    sözlük[mevcut_string + "1"] = bin(indeks)[2:]
 
 
-def compress_data(data_bits: str) -> str:
+def veriyi_sıkıştır(data_bits: str) -> str:
     """
-    Compresses given data_bits using Lempel-Ziv-Welch compression algorithm
-    and returns the result as a string
+    Verilen data_bits'i Lempel-Ziv-Welch sıkıştırma algoritması ile sıkıştırır
+    ve sonucu bir string olarak döner
     """
-    lexicon = {"0": "0", "1": "1"}
-    result, curr_string = "", ""
-    index = len(lexicon)
+    sözlük = {"0": "0", "1": "1"}
+    sonuç, mevcut_string = "", ""
+    indeks = len(sözlük)
 
     for i in range(len(data_bits)):
-        curr_string += data_bits[i]
-        if curr_string not in lexicon:
+        mevcut_string += data_bits[i]
+        if mevcut_string not in sözlük:
             continue
 
-        last_match_id = lexicon[curr_string]
-        result += last_match_id
-        add_key_to_lexicon(lexicon, curr_string, index, last_match_id)
-        index += 1
-        curr_string = ""
+        son_eşleşme_id = sözlük[mevcut_string]
+        sonuç += son_eşleşme_id
+        sözlüğe_anahtar_ekle(sözlük, mevcut_string, indeks, son_eşleşme_id)
+        indeks += 1
+        mevcut_string = ""
 
-    while curr_string != "" and curr_string not in lexicon:
-        curr_string += "0"
+    while mevcut_string != "" and mevcut_string not in sözlük:
+        mevcut_string += "0"
 
-    if curr_string != "":
-        last_match_id = lexicon[curr_string]
-        result += last_match_id
+    if mevcut_string != "":
+        son_eşleşme_id = sözlük[mevcut_string]
+        sonuç += son_eşleşme_id
 
-    return result
+    return sonuç
 
 
-def add_file_length(source_path: str, compressed: str) -> str:
+def dosya_uzunluğunu_ekle(kaynak_yolu: str, sıkıştırılmış: str) -> str:
     """
-    Adds given file's length in front (using Elias  gamma coding) of the compressed
-    string
+    Verilen dosyanın uzunluğunu (Elias gamma kodlaması kullanarak) sıkıştırılmış
+    stringin önüne ekler
     """
-    file_length = os.path.getsize(source_path)
-    file_length_binary = bin(file_length)[2:]
-    length_length = len(file_length_binary)
+    dosya_uzunluğu = os.path.getsize(kaynak_yolu)
+    dosya_uzunluğu_ikili = bin(dosya_uzunluğu)[2:]
+    uzunluk_uzunluğu = len(dosya_uzunluğu_ikili)
 
-    return "0" * (length_length - 1) + file_length_binary + compressed
+    return "0" * (uzunluk_uzunluğu - 1) + dosya_uzunluğu_ikili + sıkıştırılmış
 
 
-def write_file_binary(file_path: str, to_write: str) -> None:
+def dosyayı_ikili_yazma(dosya_yolu: str, yazılacak: str) -> None:
     """
-    Writes given to_write string (should only consist of 0's and 1's) as bytes in the
-    file
+    Verilen yazılacak stringi (sadece 0'lar ve 1'lerden oluşmalıdır) dosyaya bayt
+    olarak yazar
     """
-    byte_length = 8
+    bayt_uzunluğu = 8
     try:
-        with open(file_path, "wb") as opened_file:
-            result_byte_array = [
-                to_write[i : i + byte_length]
-                for i in range(0, len(to_write), byte_length)
+        with open(dosya_yolu, "wb") as açılan_dosya:
+            sonuç_bayt_dizisi = [
+                yazılacak[i : i + bayt_uzunluğu]
+                for i in range(0, len(yazılacak), bayt_uzunluğu)
             ]
 
-            if len(result_byte_array[-1]) % byte_length == 0:
-                result_byte_array.append("10000000")
+            if len(sonuç_bayt_dizisi[-1]) % bayt_uzunluğu == 0:
+                sonuç_bayt_dizisi.append("10000000")
             else:
-                result_byte_array[-1] += "1" + "0" * (
-                    byte_length - len(result_byte_array[-1]) - 1
+                sonuç_bayt_dizisi[-1] += "1" + "0" * (
+                    bayt_uzunluğu - len(sonuç_bayt_dizisi[-1]) - 1
                 )
 
-            for elem in result_byte_array:
-                opened_file.write(int(elem, 2).to_bytes(1, byteorder="big"))
+            for elem in sonuç_bayt_dizisi:
+                açılan_dosya.write(int(elem, 2).to_bytes(1, byteorder="big"))
     except OSError:
-        print("File not accessible")
+        print("Dosyaya erişilemiyor")
         sys.exit()
 
 
-def compress(source_path: str, destination_path: str) -> None:
+def sıkıştır(kaynak_yolu: str, hedef_yolu: str) -> None:
     """
-    Reads source file, compresses it and writes the compressed result in destination
-    file
+    Kaynak dosyayı okur, sıkıştırır ve sıkıştırılmış sonucu hedef dosyaya yazar
     """
-    data_bits = read_file_binary(source_path)
-    compressed = compress_data(data_bits)
-    compressed = add_file_length(source_path, compressed)
-    write_file_binary(destination_path, compressed)
+    veri_bitleri = dosyayı_ikili_okuma(kaynak_yolu)
+    sıkıştırılmış = veriyi_sıkıştır(veri_bitleri)
+    sıkıştırılmış = dosya_uzunluğunu_ekle(kaynak_yolu, sıkıştırılmış)
+    dosyayı_ikili_yazma(hedef_yolu, sıkıştırılmış)
 
 
 if __name__ == "__main__":
-    compress(sys.argv[1], sys.argv[2])
+    sıkıştır(sys.argv[1], sys.argv[2])

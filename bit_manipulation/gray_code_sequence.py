@@ -1,5 +1,8 @@
 def gri_kod(bit_sayisi: int) -> list:
     """
+
+    Organiser: K. Umut Araz
+
     Bir tamsayı n alır ve n-bit gri kod dizisini döndürür.
     Bir n-bit gri kod dizisi, 2^n tamsayıdan oluşan bir dizidir ve:
 

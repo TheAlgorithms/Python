@@ -4,178 +4,176 @@ import random
 import string
 
 
-class ShuffledShiftCipher:
+class KarışıkKaydırmaŞifreleme:
     """
-    This algorithm uses the Caesar Cipher algorithm but removes the option to
-    use brute force to decrypt the message.
+    Bu algoritma, Sezar Şifreleme algoritmasını kullanır ancak mesajı
+    çözmek için kaba kuvvet seçeneğini kaldırır.
 
-    The passcode is a random password from the selection buffer of
-    1. uppercase letters of the English alphabet
-    2. lowercase letters of the English alphabet
-    3. digits from 0 to 9
+    Orgahniser: K. Umut Araz
 
-    Using unique characters from the passcode, the normal list of characters,
-    that can be allowed in the plaintext, is pivoted and shuffled. Refer to docstring
-    of __make_key_list() to learn more about the shuffling.
+    Şifre, aşağıdaki seçim havuzundan rastgele bir şifre oluşturur:
+    1. İngiliz alfabesinin büyük harfleri
+    2. İngiliz alfabesinin küçük harfleri
+    3. 0'dan 9'a kadar olan rakamlar
 
-    Then, using the passcode, a number is calculated which is used to encrypt the
-    plaintext message with the normal shift cipher method, only in this case, the
-    reference, to look back at while decrypting, is shuffled.
+    Şifreden elde edilen benzersiz karakterler kullanılarak, düz metinde
+    izin verilen normal karakter listesi döndürülür ve karıştırılır. 
+    Karıştırma hakkında daha fazla bilgi için __make_key_list() 
+    fonksiyonunun açıklamasına bakın.
 
-    Each cipher object can possess an optional argument as passcode, without which a
-    new passcode is generated for that object automatically.
-    cip1 = ShuffledShiftCipher('d4usr9TWxw9wMD')
-    cip2 = ShuffledShiftCipher()
+    Ardından, şifre kullanılarak, düz metin mesajını şifrelemek için
+    kullanılan bir sayı hesaplanır. Bu durumda, çözümleme sırasında
+    geri dönmek için referans karıştırılmıştır.
+
+    Her şifreleme nesnesi, isteğe bağlı bir argüman olarak şifre alabilir; 
+    bu argüman olmadan, o nesne için otomatik olarak yeni bir şifre oluşturulur.
+    cip1 = KarışıkKaydırmaŞifreleme('d4usr9TWxw9wMD')
+    cip2 = KarışıkKaydırmaŞifreleme()
     """
 
-    def __init__(self, passcode: str | None = None) -> None:
+    def __init__(self, şifre: str | None = None) -> None:
         """
-        Initializes a cipher object with a passcode as it's entity
-        Note: No new passcode is generated if user provides a passcode
-        while creating the object
+        Şifre ile bir şifreleme nesnesi başlatır.
+        Not: Kullanıcı bir şifre sağlarsa, yeni bir şifre oluşturulmaz.
         """
-        self.__passcode = passcode or self.__passcode_creator()
-        self.__key_list = self.__make_key_list()
-        self.__shift_key = self.__make_shift_key()
+        self.__şifre = şifre or self.__şifre_oluşturucu()
+        self.__anahtar_listesi = self.__anahtar_listesi_oluştur()
+        self.__kaydırma_anahtarı = self.__kaydırma_anahtarı_oluştur()
 
     def __str__(self) -> str:
         """
-        :return: passcode of the cipher object
+        :return: şifreleme nesnesinin şifresi
         """
-        return "".join(self.__passcode)
+        return "".join(self.__şifre)
 
-    def __neg_pos(self, iterlist: list[int]) -> list[int]:
+    def __negatif_pozitif(self, iterlist: list[int]) -> list[int]:
         """
-        Mutates the list by changing the sign of each alternate element
+        Listenin her alternatif elemanının işaretini değiştirir.
 
-        :param iterlist: takes a list iterable
-        :return: the mutated list
-
+        :param iterlist: bir liste alır
+        :return: değiştirilmiş liste
         """
         for i in range(1, len(iterlist), 2):
             iterlist[i] *= -1
         return iterlist
 
-    def __passcode_creator(self) -> list[str]:
+    def __şifre_oluşturucu(self) -> list[str]:
         """
-        Creates a random password from the selection buffer of
-        1. uppercase letters of the English alphabet
-        2. lowercase letters of the English alphabet
-        3. digits from 0 to 9
+        Aşağıdaki seçim havuzundan rastgele bir şifre oluşturur:
+        1. İngiliz alfabesinin büyük harfleri
+        2. İngiliz alfabesinin küçük harfleri
+        3. 0'dan 9'a kadar olan rakamlar
 
         :rtype: list
-        :return: a password of a random length between 10 to 20
+        :return: 10 ile 20 arasında rastgele bir uzunlukta şifre
         """
-        choices = string.ascii_letters + string.digits
-        password = [random.choice(choices) for _ in range(random.randint(10, 20))]
-        return password
+        seçimler = string.ascii_letters + string.digits
+        şifre = [random.choice(seçimler) for _ in range(random.randint(10, 20))]
+        return şifre
 
-    def __make_key_list(self) -> list[str]:
+    def __anahtar_listesi_oluştur(self) -> list[str]:
         """
-        Shuffles the ordered character choices by pivoting at breakpoints
-        Breakpoints are the set of characters in the passcode
+        Karakter seçimlerini, kırılma noktalarında döndürerek karıştırır.
+        Kırılma noktaları, şifredeki karakterlerdir.
 
-        eg:
-            if, ABCDEFGHIJKLMNOPQRSTUVWXYZ are the possible characters
-            and CAMERA is the passcode
-            then, breakpoints = [A,C,E,M,R] # sorted set of characters from passcode
-            shuffled parts: [A,CB,ED,MLKJIHGF,RQPON,ZYXWVUTS]
-            shuffled __key_list : ACBEDMLKJIHGFRQPONZYXWVUTS
+        Örnek:
+            Eğer, ABCDEFGHIJKLMNOPQRSTUVWXYZ olası karakterlerse
+            ve CAMERA şifre ise
+            o zaman, kırılma noktaları = [A,C,E,M,R] # şifreden sıralı karakter seti
+            karıştırılmış parçalar: [A,CB,ED,MLKJIHGF,RQPON,ZYXWVUTS]
+            karıştırılmış __anahtar_listesi : ACBEDMLKJIHGFRQPONZYXWVUTS
 
-        Shuffling only 26 letters of the english alphabet can generate 26!
-        combinations for the shuffled list. In the program we consider, a set of
-        97 characters (including letters, digits, punctuation and whitespaces),
-        thereby creating a possibility of 97! combinations (which is a 152 digit number
-        in itself), thus diminishing the possibility of a brute force approach.
-        Moreover, shift keys even introduce a multiple of 26 for a brute force approach
-        for each of the already 97! combinations.
+        Sadece 26 İngilizce harfini karıştırmak, karıştırılmış liste için 26!
+        kombinasyon oluşturabilir. Programda, 97 karakter (harfler, rakamlar, 
+        noktalama işaretleri ve boşluklar dahil) seti dikkate alındığında, 
+        97! kombinasyon olasılığı oluşturur (bu kendisi 152 basamaklı bir sayı),
+        böylece kaba kuvvet yaklaşımının olasılığını azaltır.
+        Ayrıca, kaydırma anahtarları, her bir 97! kombinasyonu için 
+        kaba kuvvet yaklaşımına 26 katı ekler.
         """
-        # key_list_options contain nearly all printable except few elements from
-        # string.whitespace
-        key_list_options = (
+        # anahtar_listesi_seçenekleri, string.whitespace'tan birkaç eleman hariç
+        # neredeyse tüm yazdırılabilir karakterleri içerir
+        anahtar_listesi_seçenekleri = (
             string.ascii_letters + string.digits + string.punctuation + " \t\n"
         )
 
-        keys_l = []
+        anahtarlar = []
 
-        # creates points known as breakpoints to break the key_list_options at those
-        # points and pivot each substring
-        breakpoints = sorted(set(self.__passcode))
-        temp_list: list[str] = []
+        # anahtar_listesi_seçeneklerini kırılma noktalarında kırarak
+        # geçici alt dizileri döndürür
+        kırılma_noktaları = sorted(set(self.__şifre))
+        geçici_liste: list[str] = []
 
-        # algorithm for creating a new shuffled list, keys_l, out of key_list_options
-        for i in key_list_options:
-            temp_list.extend(i)
+        # anahtar_listesi_seçeneklerinden yeni karıştırılmış bir liste oluşturma algoritması
+        for i in anahtar_listesi_seçenekleri:
+            geçici_liste.extend(i)
 
-            # checking breakpoints at which to pivot temporary sublist and add it into
-            # keys_l
-            if i in breakpoints or i == key_list_options[-1]:
-                keys_l.extend(temp_list[::-1])
-                temp_list.clear()
+            # geçici alt diziyi döndürmek için kırılma noktalarını kontrol etme
+            if i in kırılma_noktaları or i == anahtar_listesi_seçenekleri[-1]:
+                anahtarlar.extend(geçici_liste[::-1])
+                geçici_liste.clear()
 
-        # returning a shuffled keys_l to prevent brute force guessing of shift key
-        return keys_l
+        # kaydırma anahtarının kaba kuvvet tahminini önlemek için karıştırılmış anahtarlar döndürülür
+        return anahtarlar
 
-    def __make_shift_key(self) -> int:
+    def __kaydırma_anahtarı_oluştur(self) -> int:
         """
-        sum() of the mutated list of ascii values of all characters where the
-        mutated list is the one returned by __neg_pos()
+        Tüm karakterlerin ascii değerlerinin değiştirilmiş listesinin toplamını döndürür.
+        Değiştirilmiş liste, __negatif_pozitif() tarafından döndürülen listedir.
         """
-        num = sum(self.__neg_pos([ord(x) for x in self.__passcode]))
-        return num if num > 0 else len(self.__passcode)
+        num = sum(self.__negatif_pozitif([ord(x) for x in self.__şifre]))
+        return num if num > 0 else len(self.__şifre)
 
-    def decrypt(self, encoded_message: str) -> str:
+    def çöz(self, şifreli_mesaj: str) -> str:
         """
-        Performs shifting of the encoded_message w.r.t. the shuffled __key_list
-        to create the decoded_message
+        Şifreli mesajın, karıştırılmış __anahtar_listesi'ne göre kaydırılmasını
+        gerçekleştirir ve çözülmüş mesajı oluşturur.
 
-        >>> ssc = ShuffledShiftCipher('4PYIXyqeQZr44')
-        >>> ssc.decrypt("d>**-1z6&'5z'5z:z+-='$'>=zp:>5:#z<'.&>#")
-        'Hello, this is a modified Caesar cipher'
-
+        >>> ssc = KarışıkKaydırmaŞifreleme('4PYIXyqeQZr44')
+        >>> ssc.çöz("d>**-1z6&'5z'5z:z+-='$'>=zp:>5:#z<'.&>#")
+        'Merhaba, bu değiştirilmiş Sezar şifresidir'
         """
-        decoded_message = ""
+        çözülmüş_mesaj = ""
 
-        # decoding shift like Caesar cipher algorithm implementing negative shift or
-        # reverse shift or left shift
-        for i in encoded_message:
-            position = self.__key_list.index(i)
-            decoded_message += self.__key_list[
-                (position - self.__shift_key) % -len(self.__key_list)
+        # Sezar şifreleme algoritması gibi negatif kaydırma uygulayarak
+        # çözme işlemi
+        for i in şifreli_mesaj:
+            konum = self.__anahtar_listesi.index(i)
+            çözülmüş_mesaj += self.__anahtar_listesi[
+                (konum - self.__kaydırma_anahtarı) % -len(self.__anahtar_listesi)
             ]
 
-        return decoded_message
+        return çözülmüş_mesaj
 
-    def encrypt(self, plaintext: str) -> str:
+    def şifrele(self, düz_metin: str) -> str:
         """
-        Performs shifting of the plaintext w.r.t. the shuffled __key_list
-        to create the encoded_message
+        Düz metnin, karıştırılmış __anahtar_listesi'ne göre kaydırılmasını
+        gerçekleştirir ve şifreli mesajı oluşturur.
 
-        >>> ssc = ShuffledShiftCipher('4PYIXyqeQZr44')
-        >>> ssc.encrypt('Hello, this is a modified Caesar cipher')
+        >>> ssc = KarışıkKaydırmaŞifreleme('4PYIXyqeQZr44')
+        >>> ssc.şifrele('Merhaba, bu değiştirilmiş Sezar şifresidir')
         "d>**-1z6&'5z'5z:z+-='$'>=zp:>5:#z<'.&>#"
-
         """
-        encoded_message = ""
+        şifreli_mesaj = ""
 
-        # encoding shift like Caesar cipher algorithm implementing positive shift or
-        # forward shift or right shift
-        for i in plaintext:
-            position = self.__key_list.index(i)
-            encoded_message += self.__key_list[
-                (position + self.__shift_key) % len(self.__key_list)
+        # Sezar şifreleme algoritması gibi pozitif kaydırma uygulayarak
+        # şifreleme işlemi
+        for i in düz_metin:
+            konum = self.__anahtar_listesi.index(i)
+            şifreli_mesaj += self.__anahtar_listesi[
+                (konum + self.__kaydırma_anahtarı) % len(self.__anahtar_listesi)
             ]
 
-        return encoded_message
+        return şifreli_mesaj
 
 
-def test_end_to_end(msg: str = "Hello, this is a modified Caesar cipher") -> str:
+def test_ucu_uca(msg: str = "Merhaba, bu değiştirilmiş Sezar şifresidir") -> str:
     """
-    >>> test_end_to_end()
-    'Hello, this is a modified Caesar cipher'
+    >>> test_ucu_uca()
+    'Merhaba, bu değiştirilmiş Sezar şifresidir'
     """
-    cip1 = ShuffledShiftCipher()
-    return cip1.decrypt(cip1.encrypt(msg))
+    cip1 = KarışıkKaydırmaŞifreleme()
+    return cip1.çöz(cip1.şifrele(msg))
 
 
 if __name__ == "__main__":

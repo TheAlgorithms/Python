@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 
 """
-The Bifid Cipher uses a Polybius Square to encipher a message in a way that
-makes it fairly difficult to decipher without knowing the secret.
+Bifid Şifresi, bir mesajı şifrelemek için Polybius Kare'sini kullanır ve
+bu şekilde sırrı bilmeden çözülmesini oldukça zor hale getirir.
 
 https://www.braingle.com/brainteasers/codes/bifid.php
+
+Organiser: K. Umut Araz
 """
 
 import numpy as np
 
-SQUARE = [
+KARE = [
     ["a", "b", "c", "d", "e"],
     ["f", "g", "h", "i", "k"],
     ["l", "m", "n", "o", "p"],
@@ -18,94 +20,92 @@ SQUARE = [
 ]
 
 
-class BifidCipher:
+class BifidSifresi:
     def __init__(self) -> None:
-        self.SQUARE = np.array(SQUARE)
+        self.KARE = np.array(KARE)
 
-    def letter_to_numbers(self, letter: str) -> np.ndarray:
+    def harf_to_sayilar(self, harf: str) -> np.ndarray:
         """
-        Return the pair of numbers that represents the given letter in the
-        polybius square
+        Verilen harfi polybius karesindeki sayılarla temsil eden çift sayıyı döndürür.
 
-        >>> np.array_equal(BifidCipher().letter_to_numbers('a'), [1,1])
+        >>> np.array_equal(BifidSifresi().harf_to_sayilar('a'), [1,1])
         True
 
-        >>> np.array_equal(BifidCipher().letter_to_numbers('u'), [4,5])
+        >>> np.array_equal(BifidSifresi().harf_to_sayilar('u'), [4,5])
         True
         """
-        index1, index2 = np.where(letter == self.SQUARE)
-        indexes = np.concatenate([index1 + 1, index2 + 1])
-        return indexes
+        index1, index2 = np.where(harf == self.KARE)
+        indeksler = np.concatenate([index1 + 1, index2 + 1])
+        return indeksler
 
-    def numbers_to_letter(self, index1: int, index2: int) -> str:
+    def sayilar_to_harf(self, index1: int, index2: int) -> str:
         """
-        Return the letter corresponding to the position [index1, index2] in
-        the polybius square
+        Polybius karesindeki [index1, index2] konumuna karşılık gelen harfi döndürür.
 
-        >>> BifidCipher().numbers_to_letter(4, 5) == "u"
+        >>> BifidSifresi().sayilar_to_harf(4, 5) == "u"
         True
 
-        >>> BifidCipher().numbers_to_letter(1, 1) == "a"
+        >>> BifidSifresi().sayilar_to_harf(1, 1) == "a"
         True
         """
-        letter = self.SQUARE[index1 - 1, index2 - 1]
-        return letter
+        harf = self.KARE[index1 - 1, index2 - 1]
+        return harf
 
-    def encode(self, message: str) -> str:
+    def kodla(self, mesaj: str) -> str:
         """
-        Return the encoded version of message according to the polybius cipher
+        Polybius şifresine göre mesajın şifrelenmiş versiyonunu döndürür.
 
-        >>> BifidCipher().encode('testmessage') == 'qtltbdxrxlk'
+        >>> BifidSifresi().kodla('testmessage') == 'qtltbdxrxlk'
         True
 
-        >>> BifidCipher().encode('Test Message') == 'qtltbdxrxlk'
+        >>> BifidSifresi().kodla('Test Message') == 'qtltbdxrxlk'
         True
 
-        >>> BifidCipher().encode('test j') == BifidCipher().encode('test i')
+        >>> BifidSifresi().kodla('test j') == BifidSifresi().kodla('test i')
         True
         """
-        message = message.lower()
-        message = message.replace(" ", "")
-        message = message.replace("j", "i")
+        mesaj = mesaj.lower()
+        mesaj = mesaj.replace(" ", "")
+        mesaj = mesaj.replace("j", "i")
 
-        first_step = np.empty((2, len(message)))
-        for letter_index in range(len(message)):
-            numbers = self.letter_to_numbers(message[letter_index])
+        ilk_adim = np.empty((2, len(mesaj)))
+        for harf_index in range(len(mesaj)):
+            sayilar = self.harf_to_sayilar(mesaj[harf_index])
 
-            first_step[0, letter_index] = numbers[0]
-            first_step[1, letter_index] = numbers[1]
+            ilk_adim[0, harf_index] = sayilar[0]
+            ilk_adim[1, harf_index] = sayilar[1]
 
-        second_step = first_step.reshape(2 * len(message))
-        encoded_message = ""
-        for numbers_index in range(len(message)):
-            index1 = int(second_step[numbers_index * 2])
-            index2 = int(second_step[(numbers_index * 2) + 1])
-            letter = self.numbers_to_letter(index1, index2)
-            encoded_message = encoded_message + letter
+        ikinci_adim = ilk_adim.reshape(2 * len(mesaj))
+        sifreli_metin = ""
+        for sayi_index in range(len(mesaj)):
+            index1 = int(ikinci_adim[sayi_index * 2])
+            index2 = int(ikinci_adim[(sayi_index * 2) + 1])
+            harf = self.sayilar_to_harf(index1, index2)
+            sifreli_metin += harf
 
-        return encoded_message
+        return sifreli_metin
 
-    def decode(self, message: str) -> str:
+    def cozul(self, mesaj: str) -> str:
         """
-        Return the decoded version of message according to the polybius cipher
+        Polybius şifresine göre mesajın çözülmüş versiyonunu döndürür.
 
-        >>> BifidCipher().decode('qtltbdxrxlk') == 'testmessage'
+        >>> BifidSifresi().cozul('qtltbdxrxlk') == 'testmessage'
         True
         """
-        message = message.lower()
-        message.replace(" ", "")
-        first_step = np.empty(2 * len(message))
-        for letter_index in range(len(message)):
-            numbers = self.letter_to_numbers(message[letter_index])
-            first_step[letter_index * 2] = numbers[0]
-            first_step[letter_index * 2 + 1] = numbers[1]
+        mesaj = mesaj.lower()
+        mesaj.replace(" ", "")
+        ilk_adim = np.empty(2 * len(mesaj))
+        for harf_index in range(len(mesaj)):
+            sayilar = self.harf_to_sayilar(mesaj[harf_index])
+            ilk_adim[harf_index * 2] = sayilar[0]
+            ilk_adim[harf_index * 2 + 1] = sayilar[1]
 
-        second_step = first_step.reshape((2, len(message)))
-        decoded_message = ""
-        for numbers_index in range(len(message)):
-            index1 = int(second_step[0, numbers_index])
-            index2 = int(second_step[1, numbers_index])
-            letter = self.numbers_to_letter(index1, index2)
-            decoded_message = decoded_message + letter
+        ikinci_adim = ilk_adim.reshape((2, len(mesaj)))
+        cozulmus_metin = ""
+        for sayi_index in range(len(mesaj)):
+            index1 = int(ikinci_adim[0, sayi_index])
+            index2 = int(ikinci_adim[1, sayi_index])
+            harf = self.sayilar_to_harf(index1, index2)
+            cozulmus_metin += harf
 
-        return decoded_message
+        return cozulmus_metin

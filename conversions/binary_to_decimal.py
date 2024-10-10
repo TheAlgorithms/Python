@@ -1,40 +1,42 @@
-def bin_to_decimal(bin_string: str) -> int:
+def ikili_to_onlu(ikili_dizi: str) -> int:
     """
-    Convert a binary value to its decimal equivalent
+    Organiser: K. Umut Araz
 
-    >>> bin_to_decimal("101")
+    İkili bir değeri ondalık karşılığına dönüştürür.
+
+    >>> ikili_to_onlu("101")
     5
-    >>> bin_to_decimal(" 1010   ")
+    >>> ikili_to_onlu(" 1010   ")
     10
-    >>> bin_to_decimal("-11101")
+    >>> ikili_to_onlu("-11101")
     -29
-    >>> bin_to_decimal("0")
+    >>> ikili_to_onlu("0")
     0
-    >>> bin_to_decimal("a")
+    >>> ikili_to_onlu("a")
     Traceback (most recent call last):
         ...
-    ValueError: Non-binary value was passed to the function
-    >>> bin_to_decimal("")
+    ValueError: Fonksiyona geçersiz bir ikili değer gönderildi
+    >>> ikili_to_onlu("")
     Traceback (most recent call last):
         ...
-    ValueError: Empty string was passed to the function
-    >>> bin_to_decimal("39")
+    ValueError: Fonksiyona boş bir dize gönderildi
+    >>> ikili_to_onlu("39")
     Traceback (most recent call last):
         ...
-    ValueError: Non-binary value was passed to the function
+    ValueError: Fonksiyona geçersiz bir ikili değer gönderildi
     """
-    bin_string = str(bin_string).strip()
-    if not bin_string:
-        raise ValueError("Empty string was passed to the function")
-    is_negative = bin_string[0] == "-"
-    if is_negative:
-        bin_string = bin_string[1:]
-    if not all(char in "01" for char in bin_string):
-        raise ValueError("Non-binary value was passed to the function")
-    decimal_number = 0
-    for char in bin_string:
-        decimal_number = 2 * decimal_number + int(char)
-    return -decimal_number if is_negative else decimal_number
+    ikili_dizi = str(ikili_dizi).strip()
+    if not ikili_dizi:
+        raise ValueError("Fonksiyona boş bir dize gönderildi")
+    negatif_mi = ikili_dizi[0] == "-"
+    if negatif_mi:
+        ikili_dizi = ikili_dizi[1:]
+    if not all(char in "01" for char in ikili_dizi):
+        raise ValueError("Fonksiyona geçersiz bir ikili değer gönderildi")
+    ondalik_sayi = 0
+    for char in ikili_dizi:
+        ondalik_sayi = 2 * ondalik_sayi + int(char)
+    return -ondalik_sayi if negatif_mi else ondalik_sayi
 
 
 if __name__ == "__main__":

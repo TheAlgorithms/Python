@@ -1,33 +1,35 @@
-def dencrypt(s: str, n: int = 13) -> str:
+def dencrypt(metin: str, n: int = 13) -> str:
     """
     https://en.wikipedia.org/wiki/ROT13
 
-    >>> msg = "My secret bank account number is 173-52946 so don't tell anyone!!"
-    >>> s = dencrypt(msg)
+    #Organiser: K. Umut Araz
+
+    >>> mesaj = "Gizli banka hesap numarası 173-52946, lütfen kimseye söyleme!!"
+    >>> s = dencrypt(mesaj)
     >>> s
-    "Zl frperg onax nppbhag ahzore vf 173-52946 fb qba'g gryy nalbar!!"
-    >>> dencrypt(s) == msg
+    "Tvzgy onxnu urcnv enzcne 173-52946, yvgu'v xzryr qvgr!!"
+    >>> dencrypt(s) == mesaj
     True
     """
-    out = ""
-    for c in s:
-        if "A" <= c <= "Z":
-            out += chr(ord("A") + (ord(c) - ord("A") + n) % 26)
-        elif "a" <= c <= "z":
-            out += chr(ord("a") + (ord(c) - ord("a") + n) % 26)
+    sonuc = ""
+    for karakter in metin:
+        if "A" <= karakter <= "Z":
+            sonuc += chr(ord("A") + (ord(karakter) - ord("A") + n) % 26)
+        elif "a" <= karakter <= "z":
+            sonuc += chr(ord("a") + (ord(karakter) - ord("a") + n) % 26)
         else:
-            out += c
-    return out
+            sonuc += karakter
+    return sonuc
 
 
 def main() -> None:
-    s0 = input("Enter message: ")
+    girdi = input("Mesajı girin: ")
 
-    s1 = dencrypt(s0, 13)
-    print("Encryption:", s1)
+    sifreli_metin = dencrypt(girdi, 13)
+    print("Şifreleme:", sifreli_metin)
 
-    s2 = dencrypt(s1, 13)
-    print("Decryption: ", s2)
+    cozulmus_metin = dencrypt(sifreli_metin, 13)
+    print("Şifre Çözme: ", cozulmus_metin)
 
 
 if __name__ == "__main__":

@@ -1,11 +1,11 @@
 def hex_to_bin(hex_num: str) -> int:
     """
-    Convert a hexadecimal value to its binary equivalent
+    Bir onaltılık değeri ikilik karşılığına dönüştür.
     #https://stackoverflow.com/questions/1425493/convert-hex-to-binary
-    Here, we have used the bitwise right shift operator: >>
-    Shifts the bits of the number to the right and fills 0 on voids left as a result.
-    Similar effect as of dividing the number with some power of two.
-    Example:
+    Burada bit kaydırma sağ operatörü kullanılmıştır: >>
+    Sayının bitlerini sağa kaydırır ve sonuçta boş kalan yerleri 0 ile doldurur.
+    Bu, sayıyı iki üzeri bir sayı ile bölmekle benzer bir etki yaratır.
+    Örnek:
     a = 10
     a >> 1 = 5
 
@@ -22,16 +22,16 @@ def hex_to_bin(hex_num: str) -> int:
     >>> hex_to_bin("F-f")
     Traceback (most recent call last):
         ...
-    ValueError: Invalid value was passed to the function
+    ValueError: Geçersiz bir değer fonksiyona geçirildi
     >>> hex_to_bin("")
     Traceback (most recent call last):
         ...
-    ValueError: No value was passed to the function
+    ValueError: Fonksiyona hiçbir değer geçirilmedi
     """
 
     hex_num = hex_num.strip()
     if not hex_num:
-        raise ValueError("No value was passed to the function")
+        raise ValueError("Fonksiyona hiçbir değer geçirilmedi")
 
     is_negative = hex_num[0] == "-"
     if is_negative:
@@ -40,7 +40,7 @@ def hex_to_bin(hex_num: str) -> int:
     try:
         int_num = int(hex_num, 16)
     except ValueError:
-        raise ValueError("Invalid value was passed to the function")
+        raise ValueError("Geçersiz bir değer fonksiyona geçirildi")
 
     bin_str = ""
     while int_num > 0:

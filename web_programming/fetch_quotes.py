@@ -2,6 +2,8 @@
 Bu dosya "ZenQuotes API"den alıntılar getirir.
 API anahtarı gerektirmez çünkü ücretsiz katmanı kullanır.
 
+Organiser: K. Umut Araz
+
 Daha fazla ayrıntı ve premium özellikler için ziyaret edin:
     https://zenquotes.io/
 """

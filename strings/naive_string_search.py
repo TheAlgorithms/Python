@@ -1,15 +1,17 @@
 """
-https://en.wikipedia.org/wiki/String-searching_algorithm#Na%C3%AFve_string_search
-this algorithm tries to find the pattern from every position of
-the mainString if pattern is found from position i it add it to
-the answer and does the same for position i+1
-Complexity : O(n*m)
-    n=length of main string
-    m=length of pattern string
+
+Organiser: K. Umut Araz 
+
+https://tr.wikipedia.org/wiki/Dizi_arama_algoritması#Na%C3%AFf_dizi_arama
+Bu algoritma, ana dizinin her pozisyonundan deseni bulmaya çalışır.
+Eğer desen, i pozisyonundan bulunursa, cevaba ekler ve i+1 pozisyonu için aynı işlemi yapar.
+Zaman karmaşıklığı: O(n*m)
+    n = ana dizinin uzunluğu
+    m = desenin uzunluğu
 """
 
 
-def naive_pattern_search(s: str, pattern: str) -> list:
+def naive_pattern_search(dizi: str, desen: str) -> list:
     """
     >>> naive_pattern_search("ABAAABCDBBABCDDEBCABC", "ABC")
     [4, 10, 18]
@@ -22,17 +24,17 @@ def naive_pattern_search(s: str, pattern: str) -> list:
     >>> naive_pattern_search("ABCDEGFTEST", "TEST")
     [7]
     """
-    pat_len = len(pattern)
-    position = []
-    for i in range(len(s) - pat_len + 1):
-        match_found = True
-        for j in range(pat_len):
-            if s[i + j] != pattern[j]:
-                match_found = False
+    desen_uzunlugu = len(desen)
+    pozisyonlar = []
+    for i in range(len(dizi) - desen_uzunlugu + 1):
+        eslesme_bulundu = True
+        for j in range(desen_uzunlugu):
+            if dizi[i + j] != desen[j]:
+                eslesme_bulundu = False
                 break
-        if match_found:
-            position.append(i)
-    return position
+        if eslesme_bulundu:
+            pozisyonlar.append(i)
+    return pozisyonlar
 
 
 if __name__ == "__main__":

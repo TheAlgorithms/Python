@@ -15,49 +15,51 @@ BITS_TO_HEX = {
     "1101": "d",
     "1110": "e",
     "1111": "f",
-}
+}   
 
 
-def bin_to_hexadecimal(binary_str: str) -> str:
+def ikili_to_onaltılık(ikili_str: str) -> str:
     """
-    Converting a binary string into hexadecimal using Grouping Method
+    Organiser: K. Umut Araz 
 
-    >>> bin_to_hexadecimal('101011111')
+    İkili bir dizeyi onaltılık sayıya dönüştürme (Gruplama Yöntemi kullanarak)
+
+    >>> ikili_to_onaltılık('101011111')
     '0x15f'
-    >>> bin_to_hexadecimal(' 1010   ')
+    >>> ikili_to_onaltılık(' 1010   ')
     '0x0a'
-    >>> bin_to_hexadecimal('-11101')
+    >>> ikili_to_onaltılık('-11101')
     '-0x1d'
-    >>> bin_to_hexadecimal('a')
+    >>> ikili_to_onaltılık('a')
     Traceback (most recent call last):
         ...
-    ValueError: Non-binary value was passed to the function
-    >>> bin_to_hexadecimal('')
+    ValueError: Geçersiz ikili değer fonksiyona gönderildi
+    >>> ikili_to_onaltılık('')
     Traceback (most recent call last):
         ...
-    ValueError: Empty string was passed to the function
+    ValueError: Boş dize fonksiyona gönderildi
     """
-    # Sanitising parameter
-    binary_str = str(binary_str).strip()
+    # Parametreyi temizleme
+    ikili_str = str(ikili_str).strip()
 
-    # Exceptions
-    if not binary_str:
-        raise ValueError("Empty string was passed to the function")
-    is_negative = binary_str[0] == "-"
-    binary_str = binary_str[1:] if is_negative else binary_str
-    if not all(char in "01" for char in binary_str):
-        raise ValueError("Non-binary value was passed to the function")
+    # İstisnalar
+    if not ikili_str:
+        raise ValueError("Boş dize fonksiyona gönderildi")
+    negatif_mi = ikili_str[0] == "-"
+    ikili_str = ikili_str[1:] if negatif_mi else ikili_str
+    if not all(char in "01" for char in ikili_str):
+        raise ValueError("Geçersiz ikili değer fonksiyona gönderildi")
 
-    binary_str = (
-        "0" * (4 * (divmod(len(binary_str), 4)[0] + 1) - len(binary_str)) + binary_str
+    ikili_str = (
+        "0" * (4 * (divmod(len(ikili_str), 4)[0] + 1) - len(ikili_str)) + ikili_str
     )
 
-    hexadecimal = []
-    for x in range(0, len(binary_str), 4):
-        hexadecimal.append(BITS_TO_HEX[binary_str[x : x + 4]])
-    hexadecimal_str = "0x" + "".join(hexadecimal)
+    onaltılık = []
+    for x in range(0, len(ikili_str), 4):
+        onaltılık.append(BITS_TO_HEX[ikili_str[x : x + 4]])
+    onaltılık_str = "0x" + "".join(onaltılık)
 
-    return "-" + hexadecimal_str if is_negative else hexadecimal_str
+    return "-" + onaltılık_str if negatif_mi else onaltılık_str
 
 
 if __name__ == "__main__":

@@ -1,70 +1,73 @@
-def palindromic_string(input_string: str) -> str:
+def palindromik_dizi(girdi_dizisi: str) -> str:
     """
-    >>> palindromic_string('abbbaba')
+
+    Organiser: K. Umut Araz
+
+    >>> palindromik_dizi('abbbaba')
     'abbba'
-    >>> palindromic_string('ababa')
+    >>> palindromik_dizi('ababa')
     'ababa'
 
-    Manacher's algorithm which finds Longest palindromic Substring in linear time.
+    Manacher algoritması, en uzun palindromik alt diziyi lineer zamanda bulur.
 
-    1. first this convert input_string("xyx") into new_string("x|y|x") where odd
-        positions are actual input characters.
-    2. for each character in new_string it find corresponding length and
-        store the length and left,right to store previously calculated info.
-        (please look the explanation for details)
+    1. İlk olarak girdi_dizisi("xyx") yeni_diziye("x|y|x") dönüştürülür; burada
+       tek pozisyonlar gerçek girdi karakterleridir.
+    2. Yeni dizideki her karakter için karşılık gelen uzunluğu bulur ve
+       uzunluğu saklar, ayrıca daha önce hesaplanan bilgileri saklamak için
+       sol ve sağ değerlerini günceller.
+       (detaylar için açıklamaya bakınız)
 
-    3. return corresponding output_string by removing all "|"
+    3. Tüm "|" karakterlerini kaldırarak karşılık gelen çıktı dizisini döndürür.
     """
-    max_length = 0
+    max_uzunluk = 0
 
-    # if input_string is "aba" than new_input_string become "a|b|a"
-    new_input_string = ""
-    output_string = ""
+    # Eğer girdi_dizisi "aba" ise yeni_dizi "a|b|a" olur
+    yeni_dizi = ""
+    cikti_dizisi = ""
 
-    # append each character + "|" in new_string for range(0, length-1)
-    for i in input_string[: len(input_string) - 1]:
-        new_input_string += i + "|"
-    # append last character
-    new_input_string += input_string[-1]
+    # yeni_diziye her karakteri + "|" ekle
+    for i in girdi_dizisi[: len(girdi_dizisi) - 1]:
+        yeni_dizi += i + "|"
+    # son karakteri ekle
+    yeni_dizi += girdi_dizisi[-1]
 
-    # we will store the starting and ending of previous furthest ending palindromic
-    # substring
-    left, right = 0, 0
+    # Önceki en uzak palindromik alt dizinin başlangıç ve bitişini saklayacağız
+    sol, sag = 0, 0
 
-    # length[i] shows the length of palindromic substring with center i
-    length = [1 for i in range(len(new_input_string))]
+    # length[i] i merkezli palindromik alt dizinin uzunluğunu gösterir
+    uzunluk = [1 for i in range(len(yeni_dizi))]
 
-    # for each character in new_string find corresponding palindromic string
-    start = 0
-    for j in range(len(new_input_string)):
-        k = 1 if j > right else min(length[left + right - j] // 2, right - j + 1)
+    # yeni_dizideki her karakter için karşılık gelen palindromik diziyi bul
+    baslangic = 0
+    for j in range(len(yeni_dizi)):
+        k = 1 if j > sag else min(uzunluk[sol + sag - j] // 2, sag - j + 1)
         while (
             j - k >= 0
-            and j + k < len(new_input_string)
-            and new_input_string[k + j] == new_input_string[j - k]
+            and j + k < len(yeni_dizi)
+            and yeni_dizi[k + j] == yeni_dizi[j - k]
         ):
             k += 1
 
-        length[j] = 2 * k - 1
+        uzunluk[j] = 2 * k - 1
 
-        # does this string is ending after the previously explored end (that is right) ?
-        # if yes the update the new right to the last index of this
-        if j + k - 1 > right:
-            left = j - k + 1
-            right = j + k - 1
+        # Bu dizinin daha önce keşfedilen sonun (yani sag) sonrasında mı bitiyor?
+        # Eğer evet ise, yeni sag'ı bu dizinin son indeksine güncelle
+        if j + k - 1 > sag:
+            sol = j - k + 1
+            sag = j + k - 1
 
-        # update max_length and start position
-        if max_length < length[j]:
-            max_length = length[j]
-            start = j
+        # max_uzunluk ve başlangıç pozisyonunu güncelle
+        if max_uzunluk < uzunluk[j]:
+            max_uzunluk = uzunluk[j]
+            baslangic = j
 
-    # create that string
-    s = new_input_string[start - max_length // 2 : start + max_length // 2 + 1]
+    # o diziyi oluştur
+    s = yeni_dizi[baslangic - max_uzunluk // 2 : baslangic + max_uzunluk // 2 + 1]
     for i in s:
         if i != "|":
-            output_string += i
+            cikti_dizisi += i
 
-    return output_string
+    return cikti_dizisi
 
 
 if __name__ == "__main__":
@@ -75,35 +78,26 @@ if __name__ == "__main__":
 """
 ...a0...a1...a2.....a3......a4...a5...a6....
 
-consider the string for which we are calculating the longest palindromic substring is
-shown above where ... are some characters in between and right now we are calculating
-the length of palindromic substring with center at a5 with following conditions :
-i) we have stored the length of palindromic substring which has center at a3
-    (starts at left ends at right) and it is the furthest ending till now,
-    and it has ending after a6
-ii) a2 and a4 are equally distant from a3 so char(a2) == char(a4)
-iii) a0 and a6 are equally distant from a3 so char(a0) == char(a6)
-iv) a1 is corresponding equal character of a5 in palindrome with center a3 (remember
-    that in below derivation of a4==a6)
+En uzun palindromik alt diziyi hesapladığımız dizi yukarıda gösterilmiştir; burada ... bazı karakterlerdir ve şu anda a5 merkezli palindromik alt dizinin uzunluğunu hesaplıyoruz. 
+i) a3 merkezli palindromik alt dizinin uzunluğunu sakladık (sol'dan başlar, sağ'da biter) ve bu, şimdiye kadar en uzak bitiştir ve a6'dan sonra bitmektedir.
+ii) a2 ve a4, a3'e eşit uzaklıktadır, bu nedenle char(a2) == char(a4)
+iii) a0 ve a6, a3'e eşit uzaklıktadır, bu nedenle char(a0) == char(a6)
+iv) a1, a3 merkezli palindromedeki a5'in karşılık gelen eşit karakteridir (a4==a6 türevinde hatırlayın)
 
-now for a5 we will calculate the length of palindromic substring with center as a5 but
-can we use previously calculated information in some way?
-Yes, look the above string we know that a5 is inside the palindrome with center a3 and
-previously we have calculated that
-a0==a2 (palindrome of center a1)
-a2==a4 (palindrome of center a3)
-a0==a6 (palindrome of center a3)
-so a4==a6
+Şimdi a5 için a5 merkezli palindromik alt dizinin uzunluğunu hesaplayacağız, ancak daha önce hesaplanan bilgileri bir şekilde kullanabilir miyiz?
+Evet, yukarıdaki dizide a5'in a3 merkezli palindromun içinde olduğunu biliyoruz ve daha önce hesapladık ki
+a0==a2 (a1 merkezli palindrom)
+a2==a4 (a3 merkezli palindrom)
+a0==a6 (a3 merkezli palindrom)
+bu nedenle a4==a6
 
-so we can say that palindrome at center a5 is at least as long as palindrome at center
-a1 but this only holds if a0 and a6 are inside the limits of palindrome centered at a3
-so finally ..
+Bu durumda, a5 merkezli palindromun en az a1 merkezli palindrom kadar uzun olduğunu söyleyebiliriz, ancak bu yalnızca a0 ve a6'nın a3 merkezli palindromun sınırları içinde olması durumunda geçerlidir.
+Sonuç olarak ..
 
-len_of_palindrome__at(a5) = min(len_of_palindrome_at(a1), right-a5)
-where a3 lies from left to right and we have to keep updating that
+len_of_palindrome__at(a5) = min(len_of_palindrome_at(a1), sag-a5)
+burada a3 sol'dan sağ'a uzanır ve bunu sürekli güncellememiz gerekir.
 
-and if the a5 lies outside of left,right boundary we calculate length of palindrome with
-bruteforce and update left,right.
+Eğer a5 sol ve sağ sınırın dışındaysa, palindromun uzunluğunu brute force ile hesaplarız ve sol, sağ'ı güncelleriz.
 
-it gives the linear time complexity just like z-function
+Bu, z-fonksiyonu gibi lineer zaman karmaşıklığı sağlar.
 """

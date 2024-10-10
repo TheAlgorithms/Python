@@ -6,9 +6,11 @@ from typing import Tuple
 from maths.greatest_common_divisor import gcd_by_iterative
 from . import cryptomath_module, rabin_miller
 
-def generate_rsa_keypair(key_size: int) -> Tuple[Tuple[int, int], Tuple[int, int]]:
-    p = rabin_miller.generate_large_prime(key_size)
-    q = rabin_miller.generate_large_prime(key_size)
+#Organiser: K. Umut Araz
+
+def rsa_anahtar_cifti_olustur(key_size: int) -> Tuple[Tuple[int, int], Tuple[int, int]]:
+    p = rabin_miller.büyük_asal_üret(key_size)
+    q = rabin_miller.büyük_asal_üret(key_size)
     n = p * q
 
     while True:
@@ -16,17 +18,17 @@ def generate_rsa_keypair(key_size: int) -> Tuple[Tuple[int, int], Tuple[int, int
         if gcd_by_iterative(e, (p - 1) * (q - 1)) == 1:
             break
 
-    d = cryptomath_module.find_mod_inverse(e, (p - 1) * (q - 1))
+    d = cryptomath_module.mod_tersini_bul(e, (p - 1) * (q - 1))
 
-    public_key = (n, e)
-    private_key = (n, d)
-    return public_key, private_key
+    açık_anahtar = (n, e)
+    özel_anahtar = (n, d)
+    return açık_anahtar, özel_anahtar
 
-def save_key_to_file(filename: str, key: Tuple[int, int], key_size: int) -> None:
-    with open(filename, "w") as file:
-        file.write(f"{key_size},{key[0]},{key[1]}")
+def anahtarı_dosyaya_kaydet(dosya_adı: str, anahtar: Tuple[int, int], anahtar_boyutu: int) -> None:
+    with open(dosya_adı, "w") as dosya:
+        dosya.write(f"{anahtar_boyutu},{anahtar[0]},{anahtar[1]}")
 
-def create_ssh_keypair(name: str, key_size: int) -> None:
+def ssh_anahtar_cifti_oluştur(name: str, key_size: int) -> None:
     if os.path.exists(f"{name}_rsa_pubkey.txt") or os.path.exists(f"{name}_rsa_privkey.txt"):
         print("\nUYARI:")
         print(
@@ -35,14 +37,14 @@ def create_ssh_keypair(name: str, key_size: int) -> None:
         )
         sys.exit()
 
-    public_key, private_key = generate_rsa_keypair(key_size)
+    açık_anahtar, özel_anahtar = rsa_anahtar_cifti_olustur(key_size)
     print(f"\nAçık anahtar {name}_rsa_pubkey.txt dosyasına yazılıyor...")
-    save_key_to_file(f"{name}_rsa_pubkey.txt", public_key, key_size)
+    anahtarı_dosyaya_kaydet(f"{name}_rsa_pubkey.txt", açık_anahtar, key_size)
 
     print(f"Özel anahtar {name}_rsa_privkey.txt dosyasına yazılıyor...")
-    save_key_to_file(f"{name}_rsa_privkey.txt", private_key, key_size)
+    anahtarı_dosyaya_kaydet(f"{name}_rsa_privkey.txt", özel_anahtar, key_size)
 
 if __name__ == "__main__":
     print("RSA SSH anahtar çifti oluşturuluyor...")
-    create_ssh_keypair("ssh", 1024)
+    ssh_anahtar_cifti_oluştur("ssh", 1024)
     print("Anahtar çifti oluşturma başarılı.")

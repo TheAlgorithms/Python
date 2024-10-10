@@ -6,6 +6,8 @@ lawric1 tarafından 24/11/20 tarihinde güncellendi
 Kimlik doğrulama erişim belirteci ile yapılacaktır.
 Kişisel erişim belirtecinizi oluşturmak için https://github.com/settings/tokens adresini ziyaret edin.
 
+Organiser: K. Umut Araz
+
 NOT:
 Kodda asla herhangi bir kimlik bilgisi sabit kodlanmamalıdır. Özel bilgileri saklamak için her zaman bir ortam
 dosyası kullanın ve çalışma zamanında bilgileri almak için `os` modülünü kullanın.

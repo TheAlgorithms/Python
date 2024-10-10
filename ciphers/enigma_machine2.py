@@ -1,18 +1,19 @@
 """
-Wikipedia: https://en.wikipedia.org/wiki/Enigma_machine
-Video explanation: https://youtu.be/QwQVMqfoB2E
-Also check out Numberphile's and Computerphile's videos on this topic
+Vikipedi: https://en.wikipedia.org/wiki/Enigma_machine
+Video açıklaması: https://youtu.be/QwQVMqfoB2E
+Bu konu hakkında Numberphile ve Computerphile'in videolarını da kontrol edin.
 
-This module contains function 'enigma' which emulates
-the famous Enigma machine from WWII.
-Module includes:
-- enigma function
-- showcase of function usage
-- 9 randomly generated rotors
-- reflector (aka static rotor)
-- original alphabet
+Bu modül, II. Dünya Savaşı'ndan ünlü Enigma makinesini taklit eden 'enigma' fonksiyonunu içerir.
+Modül şunları içerir:
+- enigma fonksiyonu
+- fonksiyon kullanımına dair örnekler
+- 9 rastgele üretilmiş rotor
+- reflektör (statik rotor olarak da bilinir)
+- orijinal alfabeyi
 
-Created by TrapinchO
+Yazar: TrapinchO
+
+Organiser: K. Umut Araz
 """
 
 from __future__ import annotations
@@ -20,17 +21,15 @@ from __future__ import annotations
 RotorPositionT = tuple[int, int, int]
 RotorSelectionT = tuple[str, str, str]
 
-
-# used alphabet --------------------------
-# from string.ascii_uppercase
+# Kullanılan alfabeyi tanımlama --------------------------
 abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-# -------------------------- default selection --------------------------
-# rotors --------------------------
+# -------------------------- Varsayılan seçim --------------------------
+# rotörler --------------------------
 rotor1 = "EGZWVONAHDCLFQMSIPJBYUKXTR"
 rotor2 = "FOBHMDKEXQNRAULPGSJVTYICZW"
 rotor3 = "ZJXESIUQLHAVRMDOYGTNFWPBKC"
-# reflector --------------------------
+# reflektör --------------------------
 reflector = {
     "A": "N",
     "N": "A",
@@ -60,7 +59,7 @@ reflector = {
     "Z": "M",
 }
 
-# -------------------------- extra rotors --------------------------
+# -------------------------- Ek rotörler --------------------------
 rotor4 = "RMDJXFUWGISLHVTCQNKYPBEZOA"
 rotor5 = "SGLCPQWZHKXAREONTFBVIYJUDM"
 rotor6 = "HVSICLTYKQUBXDWAJZOMFGPREN"
@@ -68,46 +67,44 @@ rotor7 = "RZWQHFMVDBKICJLNTUXAGYPSOE"
 rotor8 = "LFKIJODBEGAMQPXVUHYSTCZRWN"
 rotor9 = "KOAEGVDHXPQZMLFTYWJNBRCIUS"
 
-
 def _validator(
     rotpos: RotorPositionT, rotsel: RotorSelectionT, pb: str
 ) -> tuple[RotorPositionT, RotorSelectionT, dict[str, str]]:
     """
-    Checks if the values can be used for the 'enigma' function
+    'enigma' fonksiyonu için değerlerin kullanılabilirliğini kontrol eder.
 
     >>> _validator((1,1,1), (rotor1, rotor2, rotor3), 'POLAND')
     ((1, 1, 1), ('EGZWVONAHDCLFQMSIPJBYUKXTR', 'FOBHMDKEXQNRAULPGSJVTYICZW', \
 'ZJXESIUQLHAVRMDOYGTNFWPBKC'), \
 {'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'})
 
-    :param rotpos: rotor_positon
-    :param rotsel: rotor_selection
-    :param pb: plugb -> validated and transformed
+    :param rotpos: rotor pozisyonu
+    :param rotsel: rotor seçimi
+    :param pb: plugboard -> doğrulanmış ve dönüştürülmüş
     :return: (rotpos, rotsel, pb)
     """
-    # Checks if there are 3 unique rotors
+    # 3 benzersiz rotor olup olmadığını kontrol etme
 
     if (unique_rotsel := len(set(rotsel))) < 3:
-        msg = f"Please use 3 unique rotors (not {unique_rotsel})"
+        msg = f"Lütfen 3 benzersiz rotor kullanın (şu anda {unique_rotsel})"
         raise Exception(msg)
 
-    # Checks if rotor positions are valid
+    # Rotor pozisyonlarının geçerliliğini kontrol etme
     rotorpos1, rotorpos2, rotorpos3 = rotpos
     if not 0 < rotorpos1 <= len(abc):
-        msg = f"First rotor position is not within range of 1..26 ({rotorpos1}"
+        msg = f"Birinci rotor pozisyonu 1..26 aralığında değil ({rotorpos1})"
         raise ValueError(msg)
     if not 0 < rotorpos2 <= len(abc):
-        msg = f"Second rotor position is not within range of 1..26 ({rotorpos2})"
+        msg = f"İkinci rotor pozisyonu 1..26 aralığında değil ({rotorpos2})"
         raise ValueError(msg)
     if not 0 < rotorpos3 <= len(abc):
-        msg = f"Third rotor position is not within range of 1..26 ({rotorpos3})"
+        msg = f"Üçüncü rotor pozisyonu 1..26 aralığında değil ({rotorpos3})"
         raise ValueError(msg)
 
-    # Validates string and returns dict
+    # Dizeyi doğrular ve sözlük döndürür
     pbdict = _plugboard(pb)
 
     return rotpos, rotsel, pbdict
-
 
 def _plugboard(pbstring: str) -> dict[str, str]:
     """
@@ -118,48 +115,46 @@ def _plugboard(pbstring: str) -> dict[str, str]:
     >>> _plugboard('POLAND')
     {'P': 'O', 'O': 'P', 'L': 'A', 'A': 'L', 'N': 'D', 'D': 'N'}
 
-    In the code, 'pb' stands for 'plugboard'
+    Kodda 'pb', 'plugboard' anlamına gelir.
 
-    Pairs can be separated by spaces
-    :param pbstring: string containing plugboard setting for the Enigma machine
-    :return: dictionary containing converted pairs
+    Çiftler boşluklarla ayrılabilir.
+    :param pbstring: Enigma makinesi için plugboard ayarlarını içeren dize
+    :return: dönüştürülmüş çiftleri içeren sözlük
     """
 
-    # tests the input string if it
-    # a) is type string
-    # b) has even length (so pairs can be made)
+    # Giriş dizesinin
+    # a) dize türünde olup olmadığını
+    # b) çiftler oluşturulabilmesi için çift uzunlukta olup olmadığını kontrol etme
     if not isinstance(pbstring, str):
-        msg = f"Plugboard setting isn't type string ({type(pbstring)})"
+        msg = f"Plugboard ayarı dize türünde değil ({type(pbstring)})"
         raise TypeError(msg)
     elif len(pbstring) % 2 != 0:
-        msg = f"Odd number of symbols ({len(pbstring)})"
+        msg = f"Tek sayıda sembol var ({len(pbstring)})"
         raise Exception(msg)
     elif pbstring == "":
         return {}
 
-    pbstring.replace(" ", "")
+    pbstring = pbstring.replace(" ", "")
 
-    # Checks if all characters are unique
+    # Tüm karakterlerin benzersiz olup olmadığını kontrol etme
     tmppbl = set()
     for i in pbstring:
         if i not in abc:
-            msg = f"'{i}' not in list of symbols"
+            msg = f"'{i}' semboller listesinde yok"
             raise Exception(msg)
         elif i in tmppbl:
-            msg = f"Duplicate symbol ({i})"
+            msg = f"Tekrar eden sembol ({i})"
             raise Exception(msg)
         else:
             tmppbl.add(i)
-    del tmppbl
 
-    # Created the dictionary
+    # Sözlüğü oluşturma
     pb = {}
     for j in range(0, len(pbstring) - 1, 2):
         pb[pbstring[j]] = pbstring[j + 1]
         pb[pbstring[j + 1]] = pbstring[j]
 
     return pb
-
 
 def enigma(
     text: str,
@@ -168,37 +163,36 @@ def enigma(
     plugb: str = "",
 ) -> str:
     """
-    The only difference with real-world enigma is that I allowed string input.
-    All characters are converted to uppercase. (non-letter symbol are ignored)
-    How it works:
-    (for every letter in the message)
+    Gerçek dünyadaki enigma ile tek farkım, dize girişi kabul etmemdir.
+    Tüm karakterler büyük harfe dönüştürülür. (harf olmayan semboller göz ardı edilir)
+    Nasıl çalışır:
+    (mesajdaki her harf için)
 
-    - Input letter goes into the plugboard.
-    If it is connected to another one, switch it.
+    - Giriş harfi plugboard'a gider.
+    Eğer başka bir harfle bağlantılıysa, değiştirir.
 
-    - Letter goes through 3 rotors.
-    Each rotor can be represented as 2 sets of symbol, where one is shuffled.
-    Each symbol from the first set has corresponding symbol in
-    the second set and vice versa.
+    - Harf 3 rotordan geçer.
+    Her rotor, birinin karıştırıldığı 2 sembol seti olarak temsil edilebilir.
+    İlk setten her sembolün, ikinci setle karşılık gelen bir sembolü vardır ve tersine.
 
-    example:
-    | ABCDEFGHIJKLMNOPQRSTUVWXYZ | e.g. F=D and D=F
+    örnek:
+    | ABCDEFGHIJKLMNOPQRSTUVWXYZ | örn. F=D ve D=F
     | VKLEPDBGRNWTFCJOHQAMUZYIXS |
 
-    - Symbol then goes through reflector (static rotor).
-    There it is switched with paired symbol
-    The reflector can be represented as2 sets, each with half of the alphanet.
-    There are usually 10 pairs of letters.
+    - Sembol daha sonra reflektörden (statik rotor) geçer.
+    Orada, eşleşen sembolle değiştirilir.
+    Reflektör, alfanet'in yarısını içeren 2 set olarak temsil edilebilir.
+    Genellikle 10 harf çifti vardır.
 
-    Example:
-    | ABCDEFGHIJKLM | e.g. E is paired to X
-    | ZYXWVUTSRQPON | so when E goes in X goes out and vice versa
+    Örnek:
+    | ABCDEFGHIJKLM | örn. E, X ile eşleşir
+    | ZYXWVUTSRQPON | böylece E girdiğinde X çıkar ve tersine
 
-    - Letter then goes through the rotors again
+    - Harf daha sonra rotorlardan tekrar geçer.
 
-    - If the letter is connected to plugboard, it is switched.
+    - Eğer harf plugboard'a bağlıysa, değiştirilir.
 
-    - Return the letter
+    - Harfi döndür.
 
     >>> enigma('Hello World!', (1, 2, 1), plugb='pictures')
     'KORYH JUHHI!'
@@ -209,12 +203,11 @@ def enigma(
     >>> enigma('FPNCZ QWOBU', (1, 1, 1), plugb='pictures')
     'HELLO WORLD'
 
-
-    :param text: input message
-    :param rotor_position: tuple with 3 values in range 1..26
-    :param rotor_selection: tuple with 3 rotors ()
-    :param plugb: string containing plugboard configuration (default '')
-    :return: en/decrypted string
+    :param text: giriş mesajı
+    :param rotor_position: 1..26 aralığında 3 değer içeren demet
+    :param rotor_selection: 3 rotordan oluşan demet
+    :param plugb: plugboard yapılandırmasını içeren dize (varsayılan '')
+    :return: şifrelenmiş/şifresi çözülmüş dize
     """
 
     text = text.upper()
@@ -230,10 +223,10 @@ def enigma(
 
     result = []
 
-    # encryption/decryption process --------------------------
+    # şifreleme/şifre çözme süreci --------------------------
     for symbol in text:
         if symbol in abc:
-            # 1st plugboard --------------------------
+            # 1. plugboard --------------------------
             if symbol in plugboard:
                 symbol = plugboard[symbol]
 
@@ -249,21 +242,19 @@ def enigma(
             index = abc.index(symbol) + rotorpos3
             symbol = rotor3[index % len(abc)]
 
-            # reflector --------------------------
-            # this is the reason you don't need another machine to decipher
-
+            # reflektör --------------------------
             symbol = reflector[symbol]
 
-            # 2nd rotors
+            # 2. rotörler
             symbol = abc[rotor3.index(symbol) - rotorpos3]
             symbol = abc[rotor2.index(symbol) - rotorpos2]
             symbol = abc[rotor1.index(symbol) - rotorpos1]
 
-            # 2nd plugboard
+            # 2. plugboard
             if symbol in plugboard:
                 symbol = plugboard[symbol]
 
-            # moves/resets rotor positions
+            # rotor pozisyonlarını hareket ettirir/sıfırlar
             rotorpos1 += 1
             if rotorpos1 >= len(abc):
                 rotorpos1 = 0
@@ -274,22 +265,16 @@ def enigma(
             if rotorpos3 >= len(abc):
                 rotorpos3 = 0
 
-        # else:
-        #    pass
-        #    Error could be also raised
-        #    raise ValueError(
-        #       'Invalid symbol('+repr(symbol)+')')
         result.append(symbol)
 
     return "".join(result)
 
-
 if __name__ == "__main__":
-    message = "This is my Python script that emulates the Enigma machine from WWII."
+    message = "Bu, II. Dünya Savaşı'ndan Enigma makinesini taklit eden Python betiğim."
     rotor_pos = (1, 1, 1)
     pb = "pictures"
     rotor_sel = (rotor2, rotor4, rotor8)
     en = enigma(message, rotor_pos, rotor_sel, pb)
 
-    print("Encrypted message:", en)
-    print("Decrypted message:", enigma(en, rotor_pos, rotor_sel, pb))
+    print("Şifrelenmiş mesaj:", en)
+    print("Şifresi çözülmüş mesaj:", enigma(en, rotor_pos, rotor_sel, pb))

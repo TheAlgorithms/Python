@@ -1,11 +1,11 @@
 from string import ascii_uppercase
 
 
-def mixed_keyword(
-    keyword: str, plaintext: str, verbose: bool = False, alphabet: str = ascii_uppercase
+def karışık_anahtar(
+    anahtar: str, düz_metin: str, ayrıntılı: bool = False, alfabe: str = ascii_uppercase
 ) -> str:
     """
-    For keyword: hello
+    Anahtar: merhaba
 
     H E L O
     A B C D
@@ -14,62 +14,64 @@ def mixed_keyword(
     Q R S T
     U V W X
     Y Z
-    and map vertically
+    ve dikey olarak eşleştir
 
-    >>> mixed_keyword("college", "UNIVERSITY", True)  # doctest: +NORMALIZE_WHITESPACE
-    {'A': 'C', 'B': 'A', 'C': 'I', 'D': 'P', 'E': 'U', 'F': 'Z', 'G': 'O', 'H': 'B',
-     'I': 'J', 'J': 'Q', 'K': 'V', 'L': 'L', 'M': 'D', 'N': 'K', 'O': 'R', 'P': 'W',
-     'Q': 'E', 'R': 'F', 'S': 'M', 'T': 'S', 'U': 'X', 'V': 'G', 'W': 'H', 'X': 'N',
-     'Y': 'T', 'Z': 'Y'}
+    Organiser: K. Umut Araz
+
+    >>> karışık_anahtar("kolej", "ÜNİVERSİTE", True)  # doctest: +NORMALIZE_WHITESPACE
+    {'A': 'K', 'B': 'O', 'C': 'L', 'D': 'E', 'E': 'J', 'F': 'D', 'G': 'G', 'H': 'I',
+     'I': 'N', 'J': 'R', 'K': 'S', 'L': 'T', 'M': 'U', 'N': 'Y', 'O': 'Z', 'P': 'A',
+     'Q': 'B', 'R': 'C', 'S': 'F', 'T': 'H', 'U': 'M', 'V': 'P', 'W': 'Q', 'X': 'V',
+     'Y': 'W', 'Z': 'X'}
     'XKJGUFMJST'
 
-    >>> mixed_keyword("college", "UNIVERSITY", False)  # doctest: +NORMALIZE_WHITESPACE
+    >>> karışık_anahtar("kolej", "ÜNİVERSİTE", False)  # doctest: +NORMALIZE_WHITESPACE
     'XKJGUFMJST'
     """
-    keyword = keyword.upper()
-    plaintext = plaintext.upper()
-    alphabet_set = set(alphabet)
+    anahtar = anahtar.upper()
+    düz_metin = düz_metin.upper()
+    alfabe_set = set(alfabe)
 
-    # create a list of unique characters in the keyword - their order matters
-    # it determines how we will map plaintext characters to the ciphertext
-    unique_chars = []
-    for char in keyword:
-        if char in alphabet_set and char not in unique_chars:
-            unique_chars.append(char)
-    # the number of those unique characters will determine the number of rows
-    num_unique_chars_in_keyword = len(unique_chars)
+    # Anahtardaki benzersiz karakterlerin bir listesini oluştur - sıraları önemlidir
+    # Bu, düz metin karakterlerini şifreli metin karakterlerine nasıl eşleştireceğimizi belirler
+    benzersiz_karakterler = []
+    for char in anahtar:
+        if char in alfabe_set and char not in benzersiz_karakterler:
+            benzersiz_karakterler.append(char)
+    # Bu benzersiz karakterlerin sayısı, satır sayısını belirleyecektir
+    benzersiz_karakter_sayısı = len(benzersiz_karakterler)
 
-    # create a shifted version of the alphabet
-    shifted_alphabet = unique_chars + [
-        char for char in alphabet if char not in unique_chars
+    # Alfabenin kaydırılmış bir versiyonunu oluştur
+    kaydırılmış_alfabe = benzersiz_karakterler + [
+        char for char in alfabe if char not in benzersiz_karakterler
     ]
 
-    # create a modified alphabet by splitting the shifted alphabet into rows
-    modified_alphabet = [
-        shifted_alphabet[k : k + num_unique_chars_in_keyword]
-        for k in range(0, 26, num_unique_chars_in_keyword)
+    # Kaydırılmış alfabenin satırlara bölünmesiyle değiştirilmiş bir alfabe oluştur
+    değiştirilmiş_alfabe = [
+        kaydırılmış_alfabe[k : k + benzersiz_karakter_sayısı]
+        for k in range(0, 26, benzersiz_karakter_sayısı)
     ]
 
-    # map the alphabet characters to the modified alphabet characters
-    # going 'vertically' through the modified alphabet - consider columns first
-    mapping = {}
-    letter_index = 0
-    for column in range(num_unique_chars_in_keyword):
-        for row in modified_alphabet:
-            # if current row (the last one) is too short, break out of loop
-            if len(row) <= column:
+    # Alfabe karakterlerini değiştirilmiş alfabe karakterlerine eşle
+    # Değiştirilmiş alfabede 'dikey' olarak ilerleyerek - önce sütunları düşün
+    eşleme = {}
+    harf_indeksi = 0
+    for sütun in range(benzersiz_karakter_sayısı):
+        for satır in değiştirilmiş_alfabe:
+            # Eğer mevcut satır (sonuncusu) çok kısa ise döngüden çık
+            if len(satır) <= sütun:
                 break
 
-            # map current letter to letter in modified alphabet
-            mapping[alphabet[letter_index]] = row[column]
-            letter_index += 1
+            # Mevcut harfi değiştirilmiş alfabedeki harfe eşle
+            eşleme[alfabe[harf_indeksi]] = satır[sütun]
+            harf_indeksi += 1
 
-    if verbose:
-        print(mapping)
-    # create the encrypted text by mapping the plaintext to the modified alphabet
-    return "".join(mapping.get(char, char) for char in plaintext)
+    if ayrıntılı:
+        print(eşleme)
+    # Düz metni değiştirilmiş alfabeye eşleyerek şifreli metni oluştur
+    return "".join(eşleme.get(char, char) for char in düz_metin)
 
 
 if __name__ == "__main__":
-    # example use
-    print(mixed_keyword("college", "UNIVERSITY"))
+    # örnek kullanım
+    print(karışık_anahtar("kolej", "ÜNİVERSİTE"))

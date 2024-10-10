@@ -1,4 +1,8 @@
-# Algorithms to determine if a string is palindrome
+# Bir stringin palindrom olup olmadığını belirlemek için algoritmalar
+
+"""
+Organiser: K. Umut Araz
+"""
 
 from timeit import timeit
 
@@ -10,15 +14,15 @@ test_data = {
     "A": True,
     "BB": True,
     "ABC": False,
-    "amanaplanacanalpanama": True,  # "a man a plan a canal panama"
+    "amanaplanacanalpanama": True,  # "bir adam bir plan bir kanal panama"
 }
-# Ensure our test data is valid
+# Test verilerimizin geçerliliğini kontrol et
 assert all((key == key[::-1]) is value for key, value in test_data.items())
 
 
 def is_palindrome(s: str) -> bool:
     """
-    Return True if s is a palindrome otherwise return False.
+    Eğer s bir palindrom ise True, aksi takdirde False döner.
 
     >>> all(is_palindrome(key) is value for key, value in test_data.items())
     True
@@ -37,7 +41,7 @@ def is_palindrome(s: str) -> bool:
 
 def is_palindrome_traversal(s: str) -> bool:
     """
-    Return True if s is a palindrome otherwise return False.
+    Eğer s bir palindrom ise True, aksi takdirde False döner.
 
     >>> all(is_palindrome_traversal(key) is value for key, value in test_data.items())
     True
@@ -45,18 +49,14 @@ def is_palindrome_traversal(s: str) -> bool:
     end = len(s) // 2
     n = len(s)
 
-    # We need to traverse till half of the length of string
-    # as we can get access of the i'th last element from
-    # i'th index.
-    # eg: [0,1,2,3,4,5] => 4th index can be accessed
-    # with the help of 1st index (i==n-i-1)
-    # where n is length of string
+    # Stringin uzunluğunun yarısına kadar gezmemiz gerekiyor
+    # çünkü i'inci son elemanına i'inci indeks ile erişebiliriz.
     return all(s[i] == s[n - i - 1] for i in range(end))
 
 
 def is_palindrome_recursive(s: str) -> bool:
     """
-    Return True if s is a palindrome otherwise return False.
+    Eğer s bir palindrom ise True, aksi takdirde False döner.
 
     >>> all(is_palindrome_recursive(key) is value for key, value in test_data.items())
     True
@@ -71,7 +71,7 @@ def is_palindrome_recursive(s: str) -> bool:
 
 def is_palindrome_slice(s: str) -> bool:
     """
-    Return True if s is a palindrome otherwise return False.
+    Eğer s bir palindrom ise True, aksi takdirde False döner.
 
     >>> all(is_palindrome_slice(key) is value for key, value in test_data.items())
     True
@@ -84,7 +84,7 @@ def benchmark_function(name: str) -> None:
     setup = f"from __main__ import test_data, {name}"
     number = 500000
     result = timeit(stmt=stmt, setup=setup, number=number)
-    print(f"{name:<35} finished {number:,} runs in {result:.5f} seconds")
+    print(f"{name:<35} {number:,} çalışmada {result:.5f} saniyede tamamlandı")
 
 
 if __name__ == "__main__":
@@ -92,13 +92,13 @@ if __name__ == "__main__":
         assert is_palindrome(key) is is_palindrome_recursive(key)
         assert is_palindrome(key) is is_palindrome_slice(key)
         print(f"{key:21} {value}")
-    print("a man a plan a canal panama")
+    print("bir adam bir plan bir kanal panama")
 
-    # finished 500,000 runs in 0.46793 seconds
+    # 500,000 çalışmada 0.46793 saniyede tamamlandı
     benchmark_function("is_palindrome_slice")
-    # finished 500,000 runs in 0.85234 seconds
+    # 500,000 çalışmada 0.85234 saniyede tamamlandı
     benchmark_function("is_palindrome")
-    # finished 500,000 runs in 1.32028 seconds
+    # 500,000 çalışmada 1.32028 saniyede tamamlandı
     benchmark_function("is_palindrome_recursive")
-    # finished 500,000 runs in 2.08679 seconds
+    # 500,000 çalışmada 2.08679 saniyede tamamlandı
     benchmark_function("is_palindrome_traversal")

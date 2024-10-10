@@ -1,6 +1,8 @@
 """
 Bit düzeyinde operatörler kullanarak iki negatif olmayan tam sayının toplamını hesaplar
 Wikipedia açıklaması: https://en.wikipedia.org/wiki/Binary_number
+
+Organiser: K. Umut Araz
 """
 
 

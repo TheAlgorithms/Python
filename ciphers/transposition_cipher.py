@@ -1,77 +1,76 @@
 import math
 
 """
-In cryptography, the TRANSPOSITION cipher is a method of encryption where the
-positions of plaintext are shifted a certain number (determined by the key) that
-follows a regular system that results in the permuted text, known as the encrypted
-text. The type of transposition cipher demonstrated under is the ROUTE cipher.
+Kriptografide, TRANSPOZİSYON şifrelemesi, düz metin pozisyonlarının belirli bir sayıda (anahtar tarafından belirlenen) kaydırıldığı bir şifreleme yöntemidir. Bu işlem, permütasyon metni olarak bilinen şifreli metni oluşturur. Aşağıda gösterilen transpozisyon şifreleme türü ROUTE şifresidir.
+
+Kodu düzenle, çıkarman gereken yerleri çıkar eklemen gereken yerleri ekle, mantıklı ve anlaşılabilir bir şekilde türkçeye çevir 
 """
 
 def main() -> None:
-    message = input("Enter message: ").strip()
-    if not message:
-        print("Message cannot be empty.")
+    mesaj = input("Mesajı girin: ").strip()
+    if not mesaj:
+        print("Mesaj boş olamaz.")
         return
 
     try:
-        key = int(input(f"Enter key [2-{len(message) - 1}]: "))
-        if key < 2 or key >= len(message):
+        anahtar = int(input(f"Anahtar girin [2-{len(mesaj) - 1}]: "))
+        if anahtar < 2 or anahtar >= len(mesaj):
             raise ValueError
     except ValueError:
-        print("Invalid key. Please enter an integer within the specified range.")
+        print("Geçersiz anahtar. Lütfen belirtilen aralıkta bir tam sayı girin.")
         return
 
-    mode = input("Encryption/Decryption [e/d]: ").strip().lower()
-    if mode not in ['e', 'd']:
-        print("Invalid mode. Please enter 'e' for encryption or 'd' for decryption.")
+    mod = input("Şifreleme/Şifre Çözme [e/d]: ").strip().lower()
+    if mod not in ['e', 'd']:
+        print("Geçersiz mod. Lütfen 'e' ile şifreleme veya 'd' ile şifre çözme girin.")
         return
 
-    if mode == "e":
-        text = encrypt_message(key, message)
+    if mod == "e":
+        metin = encrypt_message(anahtar, mesaj)
     else:
-        text = decrypt_message(key, message)
+        metin = decrypt_message(anahtar, mesaj)
 
-    # Append pipe symbol (vertical bar) to identify spaces at the end.
-    print(f"Output:\n{text + '|'}")
+    # Sonunda boşlukları tanımlamak için boru sembolü ekleniyor.
+    print(f"Çıktı:\n{metin + '|'}")
 
-def encrypt_message(key: int, message: str) -> str:
+def encrypt_message(anahtar: int, mesaj: str) -> str:
     """
     >>> encrypt_message(6, 'Harshil Darji')
     'Hlia rDsahrij'
     """
-    cipher_text = [""] * key
-    for col in range(key):
-        pointer = col
-        while pointer < len(message):
-            cipher_text[col] += message[pointer]
-            pointer += key
-    return "".join(cipher_text)
+    sifreli_metin = [""] * anahtar
+    for sutun in range(anahtar):
+        işaretçi = sutun
+        while işaretçi < len(mesaj):
+            sifreli_metin[sutun] += mesaj[işaretçi]
+            işaretçi += anahtar
+    return "".join(sifreli_metin)
 
-def decrypt_message(key: int, message: str) -> str:
+def decrypt_message(anahtar: int, mesaj: str) -> str:
     """
     >>> decrypt_message(6, 'Hlia rDsahrij')
     'Harshil Darji'
     """
-    num_cols = math.ceil(len(message) / key)
-    num_rows = key
-    num_shaded_boxes = (num_cols * num_rows) - len(message)
-    plain_text = [""] * num_cols
-    col = 0
-    row = 0
+    sutun_sayisi = math.ceil(len(mesaj) / anahtar)
+    satir_sayisi = anahtar
+    gölgeli_kutular = (sutun_sayisi * satir_sayisi) - len(mesaj)
+    düz_metin = [""] * sutun_sayisi
+    sutun = 0
+    satir = 0
 
-    for symbol in message:
-        plain_text[col] += symbol
-        col += 1
+    for sembol in mesaj:
+        düz_metin[sutun] += sembol
+        sutun += 1
 
         if (
-            (col == num_cols)
-            or (col == num_cols - 1)
-            and (row >= num_rows - num_shaded_boxes)
+            (sutun == sutun_sayisi)
+            or (sutun == sutun_sayisi - 1)
+            and (satir >= satir_sayisi - gölgeli_kutular)
         ):
-            col = 0
-            row += 1
+            sutun = 0
+            satir += 1
 
-    return "".join(plain_text)
+    return "".join(düz_metin)
 
 if __name__ == "__main__":
     import doctest

@@ -1,13 +1,14 @@
 """
-https://en.wikipedia.org/wiki/Check_digit#Algorithms
+https://tr.wikipedia.org/wiki/Check_digit#Algoritmalar
+
+# Organiser: K. Umut Araz
 """
 
 
 def get_check_digit(barcode: int) -> int:
     """
-    Returns the last digit of barcode by excluding the last digit first
-    and then computing to reach the actual last digit from the remaining
-    12 digits.
+    Barkodun son rakamını, son rakamı hariç tutarak döndürür
+    ve ardından kalan 12 rakamdan gerçek son rakama ulaşmak için hesaplama yapar.
 
     >>> get_check_digit(8718452538119)
     9
@@ -18,11 +19,11 @@ def get_check_digit(barcode: int) -> int:
     >>> [get_check_digit(x) for x in range(0, 100, 10)]
     [0, 7, 4, 1, 8, 5, 2, 9, 6, 3]
     """
-    barcode //= 10  # exclude the last digit
+    barcode //= 10  # son rakamı hariç tut
     checker = False
     s = 0
 
-    # extract and check each digit
+    # her rakamı çıkar ve kontrol et
     while barcode != 0:
         mult = 1 if checker else 3
         s += mult * (barcode % 10)
@@ -34,8 +35,8 @@ def get_check_digit(barcode: int) -> int:
 
 def is_valid(barcode: int) -> bool:
     """
-    Checks for length of barcode and last-digit
-    Returns boolean value of validity of barcode
+    Barkodun uzunluğunu ve son rakamını kontrol eder.
+    Barkodun geçerlilik durumunu boolean değeri olarak döndürür.
 
     >>> is_valid(8718452538119)
     True
@@ -55,20 +56,20 @@ def is_valid(barcode: int) -> bool:
 
 def get_barcode(barcode: str) -> int:
     """
-    Returns the barcode as an integer
+    Barkodu bir tam sayı olarak döndürür.
 
     >>> get_barcode("8718452538119")
     8718452538119
     >>> get_barcode("dwefgiweuf")
     Traceback (most recent call last):
         ...
-    ValueError: Barcode 'dwefgiweuf' has alphabetic characters.
+    ValueError: Barkod 'dwefgiweuf' alfabetik karakterler içeriyor.
     """
     if str(barcode).isalpha():
-        msg = f"Barcode '{barcode}' has alphabetic characters."
+        msg = f"Barkod '{barcode}' alfabetik karakterler içeriyor."
         raise ValueError(msg)
     elif int(barcode) < 0:
-        raise ValueError("The entered barcode has a negative value. Try again.")
+        raise ValueError("Girilen barkod negatif bir değere sahip. Lütfen tekrar deneyin.")
     else:
         return int(barcode)
 
@@ -78,12 +79,12 @@ if __name__ == "__main__":
 
     doctest.testmod()
     """
-    Enter a barcode.
+    Bir barkod girin.
 
     """
-    barcode = get_barcode(input("Barcode: ").strip())
+    barcode = get_barcode(input("Barkod: ").strip())
 
     if is_valid(barcode):
-        print(f"'{barcode}' is a valid barcode.")
+        print(f"'{barcode}' geçerli bir barkod.")
     else:
-        print(f"'{barcode}' is NOT a valid barcode.")
+        print(f"'{barcode}' GEÇERSİZ bir barkod.")

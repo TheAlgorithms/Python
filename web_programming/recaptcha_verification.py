@@ -8,6 +8,8 @@ Bir recaptcha anahtarı oluşturduğunuzda, iki ayrı anahtar alacaksınız: Cli
 ClientKey sitenizin ön yüzünde tutulmalıdır.
 SecretKey sitenizin arka yüzünde tutulmalıdır.
 
+# Organiser: K. Umut Araz
+
 # Aşağıda recaptcha etiketi içeren bir HTML giriş formu örneği gösterilmiştir
 
     <form action="" method="post">

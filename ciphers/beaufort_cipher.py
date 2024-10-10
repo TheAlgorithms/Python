@@ -1,19 +1,21 @@
 """
 Author: Mohit Radadiya
+
+Organiser: K. Umut Araz
 """
 
 from string import ascii_uppercase
 
-dict1 = {char: i for i, char in enumerate(ascii_uppercase)}
-dict2 = dict(enumerate(ascii_uppercase))
+şifreleme_sözlüğü = {char: i for i, char in enumerate(ascii_uppercase)}
+çözme_sözlüğü = dict(enumerate(ascii_uppercase))
 
 
-# This function generates the key in
-# a cyclic manner until it's length isn't
-# equal to the length of original text
-def generate_key(message: str, key: str) -> str:
+# Bu fonksiyon, anahtarın uzunluğu
+# orijinal metnin uzunluğuna eşit olana kadar
+# döngüsel olarak anahtar üretir
+def anahtar_üret(message: str, key: str) -> str:
     """
-    >>> generate_key("THE GERMAN ATTACK","SECRET")
+    >>> anahtar_üret("THE GERMAN ATTACK","SECRET")
     'SECRETSECRETSECRE'
     """
     x = len(message)
@@ -28,51 +30,51 @@ def generate_key(message: str, key: str) -> str:
     return key
 
 
-# This function returns the encrypted text
-# generated with the help of the key
-def cipher_text(message: str, key_new: str) -> str:
+# Bu fonksiyon, anahtar yardımıyla
+# üretilen şifreli metni döndürür
+def şifreli_metin(message: str, key_new: str) -> str:
     """
-    >>> cipher_text("THE GERMAN ATTACK","SECRETSECRETSECRE")
+    >>> şifreli_metin("THE GERMAN ATTACK","SECRETSECRETSECRE")
     'BDC PAYUWL JPAIYI'
     """
-    cipher_text = ""
+    şifreli_metin = ""
     i = 0
     for letter in message:
         if letter == " ":
-            cipher_text += " "
+            şifreli_metin += " "
         else:
-            x = (dict1[letter] - dict1[key_new[i]]) % 26
+            x = (şifreleme_sözlüğü[letter] - şifreleme_sözlüğü[key_new[i]]) % 26
             i += 1
-            cipher_text += dict2[x]
-    return cipher_text
+            şifreli_metin += çözme_sözlüğü[x]
+    return şifreli_metin
 
 
-# This function decrypts the encrypted text
-# and returns the original text
-def original_text(cipher_text: str, key_new: str) -> str:
+# Bu fonksiyon, şifreli metni çözer
+# ve orijinal metni döndürür
+def orijinal_metin(cipher_text: str, key_new: str) -> str:
     """
-    >>> original_text("BDC PAYUWL JPAIYI","SECRETSECRETSECRE")
+    >>> orijinal_metin("BDC PAYUWL JPAIYI","SECRETSECRETSECRE")
     'THE GERMAN ATTACK'
     """
-    or_txt = ""
+    orijinal_txt = ""
     i = 0
     for letter in cipher_text:
         if letter == " ":
-            or_txt += " "
+            orijinal_txt += " "
         else:
-            x = (dict1[letter] + dict1[key_new[i]] + 26) % 26
+            x = (şifreleme_sözlüğü[letter] + şifreleme_sözlüğü[key_new[i]] + 26) % 26
             i += 1
-            or_txt += dict2[x]
-    return or_txt
+            orijinal_txt += çözme_sözlüğü[x]
+    return orijinal_txt
 
 
 def main() -> None:
     message = "THE GERMAN ATTACK"
     key = "SECRET"
-    key_new = generate_key(message, key)
-    s = cipher_text(message, key_new)
-    print(f"Encrypted Text = {s}")
-    print(f"Original Text = {original_text(s, key_new)}")
+    key_new = anahtar_üret(message, key)
+    s = şifreli_metin(message, key_new)
+    print(f"Şifreli Metin = {s}")
+    print(f"Orijinal Metin = {orijinal_metin(s, key_new)}")
 
 
 if __name__ == "__main__":

@@ -1,7 +1,9 @@
 """
-Base85 (Ascii85) encoding and decoding
+Base85 (Ascii85) kodlama ve çözme
 
 https://en.wikipedia.org/wiki/Ascii85
+
+Organiser: K. Umut Araz
 """
 
 

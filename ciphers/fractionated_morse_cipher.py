@@ -1,17 +1,19 @@
 """
-Python program for the Fractionated Morse Cipher.
+Kesirli Morse Şifrelemesi için Python programı.
 
-The Fractionated Morse cipher first converts the plaintext to Morse code,
-then enciphers fixed-size blocks of Morse code back to letters.
-This procedure means plaintext letters are mixed into the ciphertext letters,
-making it more secure than substitution ciphers.
+Kesirli Morse şifrelemesi, önce düz metni Morse koduna dönüştürür,
+sonra Morse kodunun sabit boyutlu bloklarını harflere şifreler.
+Bu işlem, düz metin harflerinin şifreli metin harfleriyle karışmasına neden olur,
+bu da onu yer değiştirme şifrelerinden daha güvenli hale getirir.
 
 http://practicalcryptography.com/ciphers/fractionated-morse-cipher/
+
+Organiser: K. Umut Araz
 """
 
 import string
 
-MORSE_CODE_DICT = {
+MORSE_KODU_SÖZLÜĞÜ = {
     "A": ".-",
     "B": "-...",
     "C": "-.-.",
@@ -41,8 +43,8 @@ MORSE_CODE_DICT = {
     " ": "",
 }
 
-# Define possible trigrams of Morse code
-MORSE_COMBINATIONS = [
+# Morse kodunun olası trigramlarını tanımla
+MORSE_KOMBİNASYONLARI = [
     "...",
     "..-",
     "..x",
@@ -72,97 +74,96 @@ MORSE_COMBINATIONS = [
     "xxx",
 ]
 
-# Create a reverse dictionary for Morse code
-REVERSE_DICT = {value: key for key, value in MORSE_CODE_DICT.items()}
+# Morse kodu için ters sözlük oluştur
+TERS_SÖZLÜK = {değer: anahtar for anahtar, değer in MORSE_KODU_SÖZLÜĞÜ.items()}
 
 
-def encode_to_morse(plaintext: str) -> str:
-    """Encode a plaintext message into Morse code.
+def morse_koduna_çevir(düz_metin: str) -> str:
+    """Düz metin mesajını Morse koduna çevir.
 
-    Args:
-        plaintext: The plaintext message to encode.
+    Argümanlar:
+        düz_metin: Çevrilecek düz metin mesajı.
 
-    Returns:
-        The Morse code representation of the plaintext message.
+    Döndürür:
+        Düz metin mesajının Morse kodu temsili.
 
-    Example:
-        >>> encode_to_morse("defend the east")
+    Örnek:
+        >>> morse_koduna_çevir("doğu savun")
         '-..x.x..-.x.x-.x-..xx-x....x.xx.x.-x...x-'
     """
-    return "x".join([MORSE_CODE_DICT.get(letter.upper(), "") for letter in plaintext])
+    return "x".join([MORSE_KODU_SÖZLÜĞÜ.get(harf.upper(), "") for harf in düz_metin])
 
 
-def encrypt_fractionated_morse(plaintext: str, key: str) -> str:
-    """Encrypt a plaintext message using Fractionated Morse Cipher.
+def kesirli_morse_şifrele(düz_metin: str, anahtar: str) -> str:
+    """Düz metin mesajını Kesirli Morse Şifrelemesi ile şifrele.
 
-    Args:
-        plaintext: The plaintext message to encrypt.
-        key: The encryption key.
+    Argümanlar:
+        düz_metin: Şifrelenecek düz metin mesajı.
+        anahtar: Şifreleme anahtarı.
 
-    Returns:
-        The encrypted ciphertext.
+    Döndürür:
+        Şifrelenmiş metin.
 
-    Example:
-        >>> encrypt_fractionated_morse("defend the east","Roundtable")
+    Örnek:
+        >>> kesirli_morse_şifrele("doğu savun","Yuvarlakmasa")
         'ESOAVVLJRSSTRX'
-
     """
-    morse_code = encode_to_morse(plaintext)
-    key = key.upper() + string.ascii_uppercase
-    key = "".join(sorted(set(key), key=key.find))
+    morse_kodu = morse_koduna_çevir(düz_metin)
+    anahtar = anahtar.upper() + string.ascii_uppercase
+    anahtar = "".join(sorted(set(anahtar), key=anahtar.find))
 
-    # Ensure morse_code length is a multiple of 3
-    padding_length = 3 - (len(morse_code) % 3)
-    morse_code += "x" * padding_length
+    # Morse kodu uzunluğunun 3'ün katı olmasını sağla
+    doldurma_uzunluğu = 3 - (len(morse_kodu) % 3)
+    morse_kodu += "x" * doldurma_uzunluğu
 
-    fractionated_morse_dict = {v: k for k, v in zip(key, MORSE_COMBINATIONS)}
-    fractionated_morse_dict["xxx"] = ""
-    encrypted_text = "".join(
+    kesirli_morse_sözlüğü = {değer: anahtar for anahtar, değer in zip(anahtar, MORSE_KOMBİNASYONLARI)}
+    kesirli_morse_sözlüğü["xxx"] = ""
+    şifrelenmiş_metin = "".join(
         [
-            fractionated_morse_dict[morse_code[i : i + 3]]
-            for i in range(0, len(morse_code), 3)
+            kesirli_morse_sözlüğü[morse_kodu[i : i + 3]]
+            for i in range(0, len(morse_kodu), 3)
         ]
     )
-    return encrypted_text
+    return şifrelenmiş_metin
 
 
-def decrypt_fractionated_morse(ciphertext: str, key: str) -> str:
-    """Decrypt a ciphertext message encrypted with Fractionated Morse Cipher.
+def kesirli_morse_şifre_çöz(ciphertext: str, anahtar: str) -> str:
+    """Kesirli Morse Şifrelemesi ile şifrelenmiş bir metni çöz.
 
-    Args:
-        ciphertext: The ciphertext message to decrypt.
-        key: The decryption key.
+    Argümanlar:
+        ciphertext: Çözülecek şifreli metin.
+        anahtar: Şifre çözme anahtarı.
 
-    Returns:
-        The decrypted plaintext message.
+    Döndürür:
+        Çözülmüş düz metin mesajı.
 
-    Example:
-        >>> decrypt_fractionated_morse("ESOAVVLJRSSTRX","Roundtable")
-        'DEFEND THE EAST'
+    Örnek:
+        >>> kesirli_morse_şifre_çöz("ESOAVVLJRSSTRX","Yuvarlakmasa")
+        'DOĞU SAVUN'
     """
-    key = key.upper() + string.ascii_uppercase
-    key = "".join(sorted(set(key), key=key.find))
+    anahtar = anahtar.upper() + string.ascii_uppercase
+    anahtar = "".join(sorted(set(anahtar), key=anahtar.find))
 
-    inverse_fractionated_morse_dict = dict(zip(key, MORSE_COMBINATIONS))
-    morse_code = "".join(
-        [inverse_fractionated_morse_dict.get(letter, "") for letter in ciphertext]
+    ters_kesirli_morse_sözlüğü = dict(zip(anahtar, MORSE_KOMBİNASYONLARI))
+    morse_kodu = "".join(
+        [ters_kesirli_morse_sözlüğü.get(harf, "") for harf in ciphertext]
     )
-    decrypted_text = "".join(
-        [REVERSE_DICT[code] for code in morse_code.split("x")]
+    çözülmüş_metin = "".join(
+        [TERS_SÖZLÜK[kod] for kod in morse_kodu.split("x")]
     ).strip()
-    return decrypted_text
+    return çözülmüş_metin
 
 
 if __name__ == "__main__":
     """
-    Example usage of Fractionated Morse Cipher.
+    Kesirli Morse Şifrelemesi'nin örnek kullanımı.
     """
-    plaintext = "defend the east"
-    print("Plain Text:", plaintext)
-    key = "ROUNDTABLE"
+    düz_metin = "doğu savun"
+    print("Düz Metin:", düz_metin)
+    anahtar = "YUVARLAKMASA"
 
-    ciphertext = encrypt_fractionated_morse(plaintext, key)
-    print("Encrypted:", ciphertext)
+    şifreli_metin = kesirli_morse_şifrele(düz_metin, anahtar)
+    print("Şifrelenmiş:", şifreli_metin)
 
-    decrypted_text = decrypt_fractionated_morse(ciphertext, key)
-    print("Decrypted:", decrypted_text)
+    çözülmüş_metin = kesirli_morse_şifre_çöz(şifreli_metin, anahtar)
+    print("Çözülmüş:", çözülmüş_metin)

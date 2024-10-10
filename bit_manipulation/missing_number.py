@@ -1,5 +1,8 @@
 def eksik_sayi_bul(nums: list[int]) -> int:
     """
+    Organiser: K. Umut Araz
+
+    
     Ardışık tamsayılar listesindeki eksik sayıyı bulur.
 
     Args:

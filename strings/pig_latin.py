@@ -1,44 +1,46 @@
-def pig_latin(word: str) -> str:
-    """Compute the piglatin of a given string.
+def pig_latin(kelime: str) -> str:
+    """Verilen bir kelimenin pig latin karşılığını hesaplar.
+
+    Organiser: K. Umut Araz
 
     https://en.wikipedia.org/wiki/Pig_Latin
 
-    Usage examples:
-    >>> pig_latin("pig")
-    'igpay'
+    Kullanım örnekleri:
+    >>> pig_latin("domuz")
+    'omuzday'
     >>> pig_latin("latin")
     'atinlay'
-    >>> pig_latin("banana")
-    'ananabay'
-    >>> pig_latin("friends")
-    'iendsfray'
-    >>> pig_latin("smile")
-    'ilesmay'
-    >>> pig_latin("string")
-    'ingstray'
-    >>> pig_latin("eat")
-    'eatway'
-    >>> pig_latin("omelet")
-    'omeletway'
-    >>> pig_latin("are")
-    'areway'
+    >>> pig_latin("muz")
+    'uzmay'
+    >>> pig_latin("arkadaşlar")
+    'arkadaşlarway'
+    >>> pig_latin("gülümse")
+    'ülümsegay'
+    >>> pig_latin("dize")
+    'izeday'
+    >>> pig_latin("yemek")
+    'emekyay'
+    >>> pig_latin("omlet")
+    'omletway'
+    >>> pig_latin("var")
+    'arvay'
     >>> pig_latin(" ")
     ''
     >>> pig_latin(None)
     ''
     """
-    if not (word or "").strip():
+    if not (kelime or "").strip():
         return ""
-    word = word.lower()
-    if word[0] in "aeiou":
-        return f"{word}way"
-    for i, char in enumerate(word):  # noqa: B007
-        if char in "aeiou":
+    kelime = kelime.lower()
+    if kelime[0] in "aeiou":
+        return f"{kelime}way"
+    for i, harf in enumerate(kelime):  # noqa: B007
+        if harf in "aeiou":
             break
-    return f"{word[i:]}{word[:i]}ay"
+    return f"{kelime[i:]}{kelime[:i]}ay"
 
 
 if __name__ == "__main__":
-    print(f"{pig_latin('friends') = }")
-    word = input("Enter a word: ")
-    print(f"{pig_latin(word) = }")
+    print(f"{pig_latin('arkadaşlar') = }")
+    kelime = input("Bir kelime girin: ")
+    print(f"{pig_latin(kelime) = }")

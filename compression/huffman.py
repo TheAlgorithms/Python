@@ -2,91 +2,91 @@ from __future__ import annotations
 
 import sys
 
+# Organiser: K. Umut Araz
 
-class Letter:
-    def __init__(self, letter: str, freq: int):
-        self.letter: str = letter
-        self.freq: int = freq
-        self.bitstring: dict[str, str] = {}
+
+class Harf:
+    def __init__(self, harf: str, frekans: int):
+        self.harf: str = harf
+        self.frekans: int = frekans
+        self.bit_dizisi: dict[str, str] = {}
 
     def __repr__(self) -> str:
-        return f"{self.letter}:{self.freq}"
+        return f"{self.harf}:{self.frekans}"
 
 
-class TreeNode:
-    def __init__(self, freq: int, left: Letter | TreeNode, right: Letter | TreeNode):
-        self.freq: int = freq
-        self.left: Letter | TreeNode = left
-        self.right: Letter | TreeNode = right
+class AgacDugumu:
+    def __init__(self, frekans: int, sol: Harf | AgacDugumu, sag: Harf | AgacDugumu):
+        self.frekans: int = frekans
+        self.sol: Harf | AgacDugumu = sol
+        self.sag: Harf | AgacDugumu = sag
 
 
-def parse_file(file_path: str) -> list[Letter]:
+def dosyayi_parcala(dosya_yolu: str) -> list[Harf]:
     """
-    Read the file and build a dict of all letters and their
-    frequencies, then convert the dict into a list of Letters.
+    Dosyayı oku ve tüm harflerin frekanslarını içeren bir sözlük oluştur,
+    ardından bu sözlüğü Harf listesine dönüştür.
     """
-    chars: dict[str, int] = {}
-    with open(file_path) as f:
+    karakterler: dict[str, int] = {}
+    with open(dosya_yolu) as f:
         while True:
             c = f.read(1)
             if not c:
                 break
-            chars[c] = chars[c] + 1 if c in chars else 1
-    return sorted((Letter(c, f) for c, f in chars.items()), key=lambda x: x.freq)
+            karakterler[c] = karakterler[c] + 1 if c in karakterler else 1
+    return sorted((Harf(c, f) for c, f in karakterler.items()), key=lambda x: x.frekans)
 
 
-def build_tree(letters: list[Letter]) -> Letter | TreeNode:
+def agaci_olustur(harfler: list[Harf]) -> Harf | AgacDugumu:
     """
-    Run through the list of Letters and build the min heap
-    for the Huffman Tree.
+    Harfler listesini kullanarak Huffman Ağacı için minimum yığın oluştur.
     """
-    response: list[Letter | TreeNode] = list(letters)
-    while len(response) > 1:
-        left = response.pop(0)
-        right = response.pop(0)
-        total_freq = left.freq + right.freq
-        node = TreeNode(total_freq, left, right)
-        response.append(node)
-        response.sort(key=lambda x: x.freq)
-    return response[0]
+    yanit: list[Harf | AgacDugumu] = list(harfler)
+    while len(yanit) > 1:
+        sol = yanit.pop(0)
+        sag = yanit.pop(0)
+        toplam_frekans = sol.frekans + sag.frekans
+        dugum = AgacDugumu(toplam_frekans, sol, sag)
+        yanit.append(dugum)
+        yanit.sort(key=lambda x: x.frekans)
+    return yanit[0]
 
 
-def traverse_tree(root: Letter | TreeNode, bitstring: str) -> list[Letter]:
+def agaci_gezin(root: Harf | AgacDugumu, bit_dizisi: str) -> list[Harf]:
     """
-    Recursively traverse the Huffman Tree to set each
-    Letter's bitstring dictionary, and return the list of Letters
+    Huffman Ağacını özyinelemeli olarak gezerek her Harf'in bit dizisi sözlüğünü ayarla
+    ve Harfler listesini döndür.
     """
-    if isinstance(root, Letter):
-        root.bitstring[root.letter] = bitstring
+    if isinstance(root, Harf):
+        root.bit_dizisi[root.harf] = bit_dizisi
         return [root]
-    treenode: TreeNode = root
-    letters = []
-    letters += traverse_tree(treenode.left, bitstring + "0")
-    letters += traverse_tree(treenode.right, bitstring + "1")
-    return letters
+    dugum: AgacDugumu = root
+    harfler = []
+    harfler += agaci_gezin(dugum.sol, bit_dizisi + "0")
+    harfler += agaci_gezin(dugum.sag, bit_dizisi + "1")
+    return harfler
 
 
-def huffman(file_path: str) -> None:
+def huffman(dosya_yolu: str) -> None:
     """
-    Parse the file, build the tree, then run through the file
-    again, using the letters dictionary to find and print out the
-    bitstring for each letter.
+    Dosyayı parçala, ağacı oluştur, ardından dosyayı tekrar gezerek
+    harfler sözlüğünü kullanarak her harf için bit dizisini bul ve yazdır.
     """
-    letters_list = parse_file(file_path)
-    root = build_tree(letters_list)
-    letters = {
-        k: v for letter in traverse_tree(root, "") for k, v in letter.bitstring.items()
+    harfler_listesi = dosyayi_parcala(dosya_yolu)
+    root = agaci_olustur(harfler_listesi)
+    harfler = {
+        k: v for harf in agaci_gezin(root, "") for k, v in harf.bit_dizisi.items()
     }
-    print(f"Huffman Coding  of {file_path}: ")
-    with open(file_path) as f:
+    print(f"{dosya_yolu} için Huffman Kodlaması: ")
+    with open(dosya_yolu) as f:
         while True:
             c = f.read(1)
             if not c:
                 break
-            print(letters[c], end=" ")
+            print(harfler[c], end=" ")
     print()
 
 
 if __name__ == "__main__":
-    # pass the file path to the huffman function
+    # huffman fonksiyonuna dosya yolunu geç
     huffman(sys.argv[1])

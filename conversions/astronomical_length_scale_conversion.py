@@ -1,26 +1,28 @@
 """
-Conversion of length units.
-Available Units:
+Uzunluk birimlerinin dönüştürülmesi.
+Mevcut Birimler:
 Metre, Kilometre, Megametre, Gigametre,
 Terametre, Petametre, Exametre, Zettametre, Yottametre
 
-USAGE :
--> Import this file into their respective project.
--> Use the function length_conversion() for conversion of length units.
--> Parameters :
-    -> value : The number of from units you want to convert
-    -> from_type : From which type you want to convert
-    -> to_type : To which type you want to convert
+Organiser: K. Umut Araz
 
-REFERENCES :
--> Wikipedia reference: https://en.wikipedia.org/wiki/Meter
--> Wikipedia reference: https://en.wikipedia.org/wiki/Kilometer
--> Wikipedia reference: https://en.wikipedia.org/wiki/Orders_of_magnitude_(length)
+KULLANIM :
+-> Bu dosyayı ilgili projeye dahil edin.
+-> Uzunluk birimlerinin dönüştürülmesi için length_conversion() fonksiyonunu kullanın.
+-> Parametreler :
+    -> value : Dönüştürmek istediğiniz birim sayısı
+    -> from_type : Hangi birimden dönüştürmek istediğiniz
+    -> to_type : Hangi birime dönüştürmek istediğiniz
+
+REFERANSLAR :
+-> Wikipedia referansı: https://en.wikipedia.org/wiki/Meter
+-> Wikipedia referansı: https://en.wikipedia.org/wiki/Kilometer
+-> Wikipedia referansı: https://en.wikipedia.org/wiki/Orders_of_magnitude_(length)
 """
 
-UNIT_SYMBOL = {
-    "meter": "m",
-    "kilometer": "km",
+BIRIM_SEMBOLU = {
+    "metre": "m",
+    "kilometre": "km",
     "megametre": "Mm",
     "gigametre": "Gm",
     "terametre": "Tm",
@@ -29,8 +31,8 @@ UNIT_SYMBOL = {
     "zettametre": "Zm",
     "yottametre": "Ym",
 }
-# Exponent of the factor(meter)
-METRIC_CONVERSION = {
+# Faktörün üssü (metre)
+METRIK_DONUSUM = {
     "m": 0,
     "km": 3,
     "Mm": 6,
@@ -43,53 +45,53 @@ METRIC_CONVERSION = {
 }
 
 
-def length_conversion(value: float, from_type: str, to_type: str) -> float:
+def uzunluk_donustur(value: float, from_type: str, to_type: str) -> float:
     """
-    Conversion between astronomical length units.
+    Astronomik uzunluk birimleri arasında dönüşüm.
 
-    >>> length_conversion(1, "meter", "kilometer")
+    >>> uzunluk_donustur(1, "metre", "kilometre")
     0.001
-    >>> length_conversion(1, "meter", "megametre")
+    >>> uzunluk_donustur(1, "metre", "megametre")
     1e-06
-    >>> length_conversion(1, "gigametre", "meter")
+    >>> uzunluk_donustur(1, "gigametre", "metre")
     1000000000
-    >>> length_conversion(1, "gigametre", "terametre")
+    >>> uzunluk_donustur(1, "gigametre", "terametre")
     0.001
-    >>> length_conversion(1, "petametre", "terametre")
+    >>> uzunluk_donustur(1, "petametre", "terametre")
     1000
-    >>> length_conversion(1, "petametre", "exametre")
+    >>> uzunluk_donustur(1, "petametre", "exametre")
     0.001
-    >>> length_conversion(1, "terametre", "zettametre")
+    >>> uzunluk_donustur(1, "terametre", "zettametre")
     1e-09
-    >>> length_conversion(1, "yottametre", "zettametre")
+    >>> uzunluk_donustur(1, "yottametre", "zettametre")
     1000
-    >>> length_conversion(4, "wrongUnit", "inch")
+    >>> uzunluk_donustur(4, "yanlisBirim", "inç")
     Traceback (most recent call last):
       ...
-    ValueError: Invalid 'from_type' value: 'wrongUnit'.
-    Conversion abbreviations are: m, km, Mm, Gm, Tm, Pm, Em, Zm, Ym
+    ValueError: Geçersiz 'from_type' değeri: 'yanlisBirim'.
+    Dönüşüm kısaltmaları: m, km, Mm, Gm, Tm, Pm, Em, Zm, Ym
     """
 
     from_sanitized = from_type.lower().strip("s")
     to_sanitized = to_type.lower().strip("s")
 
-    from_sanitized = UNIT_SYMBOL.get(from_sanitized, from_sanitized)
-    to_sanitized = UNIT_SYMBOL.get(to_sanitized, to_sanitized)
+    from_sanitized = BIRIM_SEMBOLU.get(from_sanitized, from_sanitized)
+    to_sanitized = BIRIM_SEMBOLU.get(to_sanitized, to_sanitized)
 
-    if from_sanitized not in METRIC_CONVERSION:
+    if from_sanitized not in METRIK_DONUSUM:
         msg = (
-            f"Invalid 'from_type' value: {from_type!r}.\n"
-            f"Conversion abbreviations are: {', '.join(METRIC_CONVERSION)}"
+            f"Geçersiz 'from_type' değeri: {from_type!r}.\n"
+            f"Dönüşüm kısaltmaları: {', '.join(METRIK_DONUSUM)}"
         )
         raise ValueError(msg)
-    if to_sanitized not in METRIC_CONVERSION:
+    if to_sanitized not in METRIK_DONUSUM:
         msg = (
-            f"Invalid 'to_type' value: {to_type!r}.\n"
-            f"Conversion abbreviations are: {', '.join(METRIC_CONVERSION)}"
+            f"Geçersiz 'to_type' değeri: {to_type!r}.\n"
+            f"Dönüşüm kısaltmaları: {', '.join(METRIK_DONUSUM)}"
         )
         raise ValueError(msg)
-    from_exponent = METRIC_CONVERSION[from_sanitized]
-    to_exponent = METRIC_CONVERSION[to_sanitized]
+    from_exponent = METRIK_DONUSUM[from_sanitized]
+    to_exponent = METRIK_DONUSUM[to_sanitized]
     exponent = 1
 
     if from_exponent > to_exponent:

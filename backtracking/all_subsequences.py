@@ -2,6 +2,8 @@
 Bu problemde, verilen dizinin tüm olası alt dizilerini belirlemek istiyoruz.
 Bu problemi çözmek için geri izleme (backtracking) kullanıyoruz.
 
+Organiser: K. Umut Araz
+
 Zaman karmaşıklığı: O(2^n),
 burada n, verilen dizinin uzunluğunu belirtir.
 """

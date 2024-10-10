@@ -3,9 +3,10 @@
 
 def jaro_winkler(str1: str, str2: str) -> float:
     """
-    Jaro-Winkler distance is a string metric measuring an edit distance between two
-    sequences.
-    Output value is between 0.0 and 1.0.
+    # Organiser: K. Umut Araz
+
+    Jaro-Winkler mesafesi, iki dizinin edit mesafesini ölçen bir dize metriğidir.
+    Çıktı değeri 0.0 ile 1.0 arasında değişir.
 
     >>> jaro_winkler("martha", "marhta")
     0.9611111111111111
@@ -37,12 +38,12 @@ def jaro_winkler(str1: str, str2: str) -> float:
 
         return "".join(matched)
 
-    # matching characters
+    # eşleşen karakterler
     matching_1 = get_matched_characters(str1, str2)
     matching_2 = get_matched_characters(str2, str1)
     match_count = len(matching_1)
 
-    # transposition
+    # transpozisyon
     transpositions = (
         len([(c1, c2) for c1, c2 in zip(matching_1, matching_2) if c1 != c2]) // 2
     )
@@ -60,7 +61,7 @@ def jaro_winkler(str1: str, str2: str) -> float:
             )
         )
 
-    # common prefix up to 4 characters
+    # en fazla 4 karakterlik ortak önek
     prefix_len = 0
     for c1, c2 in zip(str1[:4], str2[:4]):
         if c1 == c2:

@@ -1,9 +1,11 @@
-# Frequency Finder
+# Harf Sıklığı Bulucu
+
+# Organiser: K. Umut Araz
 
 import string
 
-# frequency taken from https://en.wikipedia.org/wiki/Letter_frequency
-english_letter_freq = {
+# sıklık bilgisi https://en.wikipedia.org/wiki/Letter_frequency adresinden alınmıştır
+ingilizce_harf_sikliklari = {
     "E": 12.70,
     "T": 9.06,
     "A": 8.17,
@@ -32,69 +34,69 @@ english_letter_freq = {
     "Z": 0.07,
 }
 ETAOIN = "ETAOINSHRDLCUMWFGYPBVKJXQZ"
-LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+HARFLER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
-def get_letter_count(message: str) -> dict[str, int]:
-    letter_count = {letter: 0 for letter in string.ascii_uppercase}
-    for letter in message.upper():
-        if letter in LETTERS:
-            letter_count[letter] += 1
+def harf_sayisi_bul(mesaj: str) -> dict[str, int]:
+    harf_sayisi = {harf: 0 for harf in string.ascii_uppercase}
+    for harf in mesaj.upper():
+        if harf in HARFLER:
+            harf_sayisi[harf] += 1
 
-    return letter_count
+    return harf_sayisi
 
 
-def get_item_at_index_zero(x: tuple) -> str:
+def indeks_sifir_ogesini_al(x: tuple) -> str:
     return x[0]
 
 
-def get_frequency_order(message: str) -> str:
+def harf_siklik_sirasi_bul(mesaj: str) -> str:
     """
-    Get the frequency order of the letters in the given string
-    >>> get_frequency_order('Hello World')
-    'LOWDRHEZQXJKVBPYGFMUCSNIAT'
-    >>> get_frequency_order('Hello@')
-    'LHOEZQXJKVBPYGFWMUCDRSNIAT'
-    >>> get_frequency_order('h')
+    Verilen stringdeki harflerin sıklık sırasını alır
+    >>> harf_siklik_sirasi_bul('Merhaba Dünya')
+    'MRBAHDUYENLGCİFOSKQTJXWZ'
+    >>> harf_siklik_sirasi_bul('Merhaba@')
+    'MRBAHDUYENLGCİFOSKQTJXWZ'
+    >>> harf_siklik_sirasi_bul('h')
     'HZQXJKVBPYGFWMUCLDRSNIOATE'
     """
-    letter_to_freq = get_letter_count(message)
-    freq_to_letter: dict[int, list[str]] = {
-        freq: [] for letter, freq in letter_to_freq.items()
+    harf_sayisi = harf_sayisi_bul(mesaj)
+    siklik_harf: dict[int, list[str]] = {
+        siklik: [] for harf, siklik in harf_sayisi.items()
     }
-    for letter in LETTERS:
-        freq_to_letter[letter_to_freq[letter]].append(letter)
+    for harf in HARFLER:
+        siklik_harf[harf_sayisi[harf]].append(harf)
 
-    freq_to_letter_str: dict[int, str] = {}
+    siklik_harf_str: dict[int, str] = {}
 
-    for freq in freq_to_letter:
-        freq_to_letter[freq].sort(key=ETAOIN.find, reverse=True)
-        freq_to_letter_str[freq] = "".join(freq_to_letter[freq])
+    for siklik in siklik_harf:
+        siklik_harf[siklik].sort(key=ETAOIN.find, reverse=True)
+        siklik_harf_str[siklik] = "".join(siklik_harf[siklik])
 
-    freq_pairs = list(freq_to_letter_str.items())
-    freq_pairs.sort(key=get_item_at_index_zero, reverse=True)
+    siklik_pareleri = list(siklik_harf_str.items())
+    siklik_pareleri.sort(key=indeks_sifir_ogesini_al, reverse=True)
 
-    freq_order: list[str] = [freq_pair[1] for freq_pair in freq_pairs]
+    siklik_sirasi: list[str] = [siklik_pare[1] for siklik_pare in siklik_pareleri]
 
-    return "".join(freq_order)
+    return "".join(siklik_sirasi)
 
 
-def english_freq_match_score(message: str) -> int:
+def ingilizce_siklik_eslesme_puani(mesaj: str) -> int:
     """
-    >>> english_freq_match_score('Hello World')
+    >>> ingilizce_siklik_eslesme_puani('Merhaba Dünya')
     1
     """
-    freq_order = get_frequency_order(message)
-    match_score = 0
-    for common_letter in ETAOIN[:6]:
-        if common_letter in freq_order[:6]:
-            match_score += 1
+    siklik_sirasi = harf_siklik_sirasi_bul(mesaj)
+    eslesme_puani = 0
+    for yaygin_harf in ETAOIN[:6]:
+        if yaygin_harf in siklik_sirasi[:6]:
+            eslesme_puani += 1
 
-    for uncommon_letter in ETAOIN[-6:]:
-        if uncommon_letter in freq_order[-6:]:
-            match_score += 1
+    for yaygin_olmayan_harf in ETAOIN[-6:]:
+        if yaygin_olmayan_harf in siklik_sirasi[-6:]:
+            eslesme_puani += 1
 
-    return match_score
+    return eslesme_puani
 
 
 if __name__ == "__main__":

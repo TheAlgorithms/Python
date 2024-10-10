@@ -1,12 +1,15 @@
-def reverse_words(input_str: str) -> str:
+def kelimeleri_ters_cevir(girdi_str: str) -> str:
+    
     """
-    Reverses words in a given string
-    >>> reverse_words("I love Python")
-    'Python love I'
-    >>> reverse_words("I     Love          Python")
-    'Python Love I'
+    Organiser: K. Umut Araz
+
+    Verilen bir stringdeki kelimeleri ters çevirir.
+    >>> kelimeleri_ters_cevir("Python'u seviyorum")
+    'seviyorum Python'u'
+    >>> kelimeleri_ters_cevir("Python     çok          güzel")
+    'güzel çok Python'
     """
-    return " ".join(input_str.split()[::-1])
+    return " ".join(girdi_str.split()[::-1])
 
 
 if __name__ == "__main__":

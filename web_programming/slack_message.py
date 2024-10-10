@@ -2,6 +2,8 @@
 
 import requests
 
+# Organiser: K. Umut Araz
+
 
 def slack_mesaj_gonder(mesaj_govdesi: str, slack_url: str) -> None:
     basliklar = {"Content-Type": "application/json"}

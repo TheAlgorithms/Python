@@ -1,20 +1,22 @@
 """
-https://en.wikipedia.org/wiki/N-gram
+https://tr.wikipedia.org/wiki/N-gram
+
+Organiser: K. Umut Araz
 """
 
 
-def create_ngram(sentence: str, ngram_size: int) -> list[str]:
+def ngram_olustur(cümle: str, ngram_boyutu: int) -> list[str]:
     """
-    Create ngrams from a sentence
+    Bir cümleden ngram'lar oluşturur
 
-    >>> create_ngram("I am a sentence", 2)
-    ['I ', ' a', 'am', 'm ', ' a', 'a ', ' s', 'se', 'en', 'nt', 'te', 'en', 'nc', 'ce']
-    >>> create_ngram("I am an NLPer", 2)
-    ['I ', ' a', 'am', 'm ', ' a', 'an', 'n ', ' N', 'NL', 'LP', 'Pe', 'er']
-    >>> create_ngram("This is short", 50)
+    >>> ngram_olustur("Ben bir cümle", 2)
+    ['Be', 'en', 'n ', ' b', 'bi', 'ir', 'r ', ' c', 'cü', 'üm', 'ml', 'le']
+    >>> ngram_olustur("Ben bir NLPer", 2)
+    ['Be', 'en', 'n ', ' b', 'bi', 'ir', 'r ', ' N', 'NL', 'LP', 'Pe', 'e', 'r']
+    >>> ngram_olustur("Bu kısa bir metin", 50)
     []
     """
-    return [sentence[i : i + ngram_size] for i in range(len(sentence) - ngram_size + 1)]
+    return [cümle[i : i + ngram_boyutu] for i in range(len(cümle) - ngram_boyutu + 1)]
 
 
 if __name__ == "__main__":

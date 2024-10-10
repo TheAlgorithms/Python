@@ -1,5 +1,5 @@
 """
-Convert International System of Units (SI) and Binary prefixes
+Uluslararası Ölçü Birimleri (SI) ve İkili ön ekleri dönüştürme
 """
 
 from __future__ import annotations
@@ -41,61 +41,61 @@ class BinaryUnit(Enum):
     kilo = 1
 
 
-def convert_si_prefix(
-    known_amount: float,
-    known_prefix: str | SIUnit,
-    unknown_prefix: str | SIUnit,
+def si_on_ek_dönüştür(
+    bilinen_miktar: float,
+    bilinen_on_ek: str | SIUnit,
+    bilinmeyen_on_ek: str | SIUnit,
 ) -> float:
     """
-    Wikipedia reference: https://en.wikipedia.org/wiki/Binary_prefix
-    Wikipedia reference: https://en.wikipedia.org/wiki/International_System_of_Units
-    >>> convert_si_prefix(1, SIUnit.giga, SIUnit.mega)
+    Wikipedia referansı: https://en.wikipedia.org/wiki/Binary_prefix
+    Wikipedia referansı: https://en.wikipedia.org/wiki/International_System_of_Units
+    >>> si_on_ek_dönüştür(1, SIUnit.giga, SIUnit.mega)
     1000
-    >>> convert_si_prefix(1, SIUnit.mega, SIUnit.giga)
+    >>> si_on_ek_dönüştür(1, SIUnit.mega, SIUnit.giga)
     0.001
-    >>> convert_si_prefix(1, SIUnit.kilo, SIUnit.kilo)
+    >>> si_on_ek_dönüştür(1, SIUnit.kilo, SIUnit.kilo)
     1
-    >>> convert_si_prefix(1, 'giga', 'mega')
+    >>> si_on_ek_dönüştür(1, 'giga', 'mega')
     1000
-    >>> convert_si_prefix(1, 'gIGa', 'mEGa')
+    >>> si_on_ek_dönüştür(1, 'gIGa', 'mEGa')
     1000
     """
-    if isinstance(known_prefix, str):
-        known_prefix = SIUnit[known_prefix.lower()]
-    if isinstance(unknown_prefix, str):
-        unknown_prefix = SIUnit[unknown_prefix.lower()]
-    unknown_amount: float = known_amount * (
-        10 ** (known_prefix.value - unknown_prefix.value)
+    if isinstance(bilinen_on_ek, str):
+        bilinen_on_ek = SIUnit[bilinen_on_ek.lower()]
+    if isinstance(bilinmeyen_on_ek, str):
+        bilinmeyen_on_ek = SIUnit[bilinmeyen_on_ek.lower()]
+    bilinmeyen_miktar: float = bilinen_miktar * (
+        10 ** (bilinen_on_ek.value - bilinmeyen_on_ek.value)
     )
-    return unknown_amount
+    return bilinmeyen_miktar
 
 
-def convert_binary_prefix(
-    known_amount: float,
-    known_prefix: str | BinaryUnit,
-    unknown_prefix: str | BinaryUnit,
+def ikili_on_ek_dönüştür(
+    bilinen_miktar: float,
+    bilinen_on_ek: str | BinaryUnit,
+    bilinmeyen_on_ek: str | BinaryUnit,
 ) -> float:
     """
-    Wikipedia reference: https://en.wikipedia.org/wiki/Metric_prefix
-    >>> convert_binary_prefix(1, BinaryUnit.giga, BinaryUnit.mega)
+    Wikipedia referansı: https://en.wikipedia.org/wiki/Metric_prefix
+    >>> ikili_on_ek_dönüştür(1, BinaryUnit.giga, BinaryUnit.mega)
     1024
-    >>> convert_binary_prefix(1, BinaryUnit.mega, BinaryUnit.giga)
+    >>> ikili_on_ek_dönüştür(1, BinaryUnit.mega, BinaryUnit.giga)
     0.0009765625
-    >>> convert_binary_prefix(1, BinaryUnit.kilo, BinaryUnit.kilo)
+    >>> ikili_on_ek_dönüştür(1, BinaryUnit.kilo, BinaryUnit.kilo)
     1
-    >>> convert_binary_prefix(1, 'giga', 'mega')
+    >>> ikili_on_ek_dönüştür(1, 'giga', 'mega')
     1024
-    >>> convert_binary_prefix(1, 'gIGa', 'mEGa')
+    >>> ikili_on_ek_dönüştür(1, 'gIGa', 'mEGa')
     1024
     """
-    if isinstance(known_prefix, str):
-        known_prefix = BinaryUnit[known_prefix.lower()]
-    if isinstance(unknown_prefix, str):
-        unknown_prefix = BinaryUnit[unknown_prefix.lower()]
-    unknown_amount: float = known_amount * (
-        2 ** ((known_prefix.value - unknown_prefix.value) * 10)
+    if isinstance(bilinen_on_ek, str):
+        bilinen_on_ek = BinaryUnit[bilinen_on_ek.lower()]
+    if isinstance(bilinmeyen_on_ek, str):
+        bilinmeyen_on_ek = BinaryUnit[bilinmeyen_on_ek.lower()]
+    bilinmeyen_miktar: float = bilinen_miktar * (
+        2 ** ((bilinen_on_ek.value - bilinmeyen_on_ek.value) * 10)
     )
-    return unknown_amount
+    return bilinmeyen_miktar
 
 
 if __name__ == "__main__":

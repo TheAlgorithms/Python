@@ -1,5 +1,9 @@
 def eksik_3_kodu(sayi: int) -> str:
     """
+
+    Organiser: K. Umut Araz
+    
+
     On tabanında bir tam sayının eksik-3 kodunu bulun.
     Ondalık bir sayının tüm basamaklarına 3 ekleyin, ardından ikili kodlanmış ondalık sayıya dönüştürün.
     https://en.wikipedia.org/wiki/Excess-3

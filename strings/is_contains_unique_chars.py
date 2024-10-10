@@ -1,25 +1,27 @@
-def is_contains_unique_chars(input_str: str) -> bool:
+def benzersiz_karakterler_var_mi(girdi_str: str) -> bool:
     """
-    Check if all characters in the string is unique or not.
-    >>> is_contains_unique_chars("I_love.py")
+
+    # Organiser: K. Umut Araz
+
+    Verilen stringdeki tüm karakterlerin benzersiz olup olmadığını kontrol eder.
+    >>> benzersiz_karakterler_var_mi("I_love.py")
     True
-    >>> is_contains_unique_chars("I don't love Python")
+    >>> benzersiz_karakterler_var_mi("I don't love Python")
     False
 
-    Time complexity: O(n)
-    Space complexity: O(1) 19320 bytes as we are having 144697 characters in unicode
+    Zaman karmaşıklığı: O(n)
+    Alan karmaşıklığı: O(1) Unicode'da 144697 karakter olduğu için 19320 byte
     """
 
-    # Each bit will represent each unicode character
-    # For example 65th bit representing 'A'
-    # https://stackoverflow.com/a/12811293
+    # Her bit, her unicode karakterini temsil eder
+    # Örneğin 65. bit 'A' karakterini temsil eder
     bitmap = 0
-    for ch in input_str:
+    for ch in girdi_str:
         ch_unicode = ord(ch)
-        ch_bit_index_on = pow(2, ch_unicode)
+        ch_bit_index_on = 1 << ch_unicode  # Bit'i açmak için 1'i sola kaydırıyoruz
 
-        # If we already turned on bit for current character's unicode
-        if bitmap >> ch_unicode & 1 == 1:
+        # Eğer mevcut karakterin unicode'u için bit zaten açıldıysa
+        if bitmap & ch_bit_index_on:
             return False
         bitmap |= ch_bit_index_on
     return True

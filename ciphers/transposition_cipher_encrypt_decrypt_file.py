@@ -5,54 +5,56 @@ import time
 from . import transposition_cipher as trans_cipher
 
 def main() -> None:
-    input_file = "./prehistoric_men.txt"
-    output_file = "./Output.txt"
+    girdi_dosyasi = "./prehistoric_men.txt"
+    cikti_dosyasi = "./Output.txt"
+
+    #Organiser: K. Umut Araz
     
     try:
-        key = int(input("Enter key (integer): "))
+        anahtar = int(input("Anahtar girin (tam sayı): "))
     except ValueError:
-        print("Invalid key. Please enter an integer.")
+        print("Geçersiz anahtar. Lütfen bir tam sayı girin.")
         sys.exit()
 
-    mode = input("Encrypt/Decrypt [e/d]: ").strip().lower()
-    if mode not in ['e', 'd']:
-        print("Invalid mode. Please enter 'e' for encrypt or 'd' for decrypt.")
+    mod = input("Şifrele/Şifre Çöz [e/d]: ").strip().lower()
+    if mod not in ['e', 'd']:
+        print("Geçersiz mod. Lütfen 'e' ile şifrele veya 'd' ile şifre çöz girin.")
         sys.exit()
 
-    if not os.path.exists(input_file):
-        print(f"File {input_file} does not exist. Quitting...")
+    if not os.path.exists(girdi_dosyasi):
+        print(f"{girdi_dosyasi} dosyası mevcut değil. Çıkılıyor...")
         sys.exit()
 
-    if os.path.exists(output_file):
-        response = input(f"Overwrite {output_file}? [y/n]: ").strip().lower()
-        if not response.startswith("y"):
-            print("Operation cancelled.")
+    if os.path.exists(cikti_dosyasi):
+        cevap = input(f"{cikti_dosyasi} dosyasını üzerine yazmak istiyor musunuz? [y/n]: ").strip().lower()
+        if not cevap.startswith("y"):
+            print("İşlem iptal edildi.")
             sys.exit()
 
-    start_time = time.time()
+    baslangic_zamani = time.time()
 
     try:
-        if mode == "e":
-            with open(input_file, 'r') as f:
-                content = f.read()
-            translated = trans_cipher.encrypt_message(key, content)
-        elif mode == "d":
-            with open(output_file, 'r') as f:
-                content = f.read()
-            translated = trans_cipher.decrypt_message(key, content)
+        if mod == "e":
+            with open(girdi_dosyasi, 'r') as f:
+                icerik = f.read()
+            cevrilen = trans_cipher.encrypt_message(anahtar, icerik)
+        elif mod == "d":
+            with open(cikti_dosyasi, 'r') as f:
+                icerik = f.read()
+            cevrilen = trans_cipher.decrypt_message(anahtar, icerik)
     except IOError as e:
-        print(f"Error reading file: {e}")
+        print(f"Dosya okuma hatası: {e}")
         sys.exit()
 
     try:
-        with open(output_file, "w") as output_obj:
-            output_obj.write(translated)
+        with open(cikti_dosyasi, "w") as cikti_obj:
+            cikti_obj.write(cevrilen)
     except IOError as e:
-        print(f"Error writing to file: {e}")
+        print(f"Dosyaya yazma hatası: {e}")
         sys.exit()
 
-    total_time = round(time.time() - start_time, 2)
-    print(f"Done in {total_time} seconds.")
+    toplam_zaman = round(time.time() - baslangic_zamani, 2)
+    print(f"Tamamlandı, süre: {toplam_zaman} saniye.")
 
 if __name__ == "__main__":
     main()

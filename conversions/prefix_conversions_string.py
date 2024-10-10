@@ -1,11 +1,13 @@
 """
-* Author: Manuel Di Lullo (https://github.com/manueldilullo)
-* Description: Convert a number to use the correct SI or Binary unit prefix.
+* Yazar: Manuel Di Lullo (https://github.com/manueldilullo)
+* Açıklama: Bir sayıyı doğru SI veya İkili birim ön eki ile dönüştürür.
 
-Inspired by prefix_conversion.py file in this repository by lance-pyles
+Organiser: K. Umut Araz
 
-URL: https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
-URL: https://en.wikipedia.org/wiki/Binary_prefix
+Bu dosya, bu depodaki lance-pyles tarafından yazılan prefix_conversion.py dosyasından esinlenmiştir.
+
+URL: https://tr.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+URL: https://tr.wikipedia.org/wiki/Binary_prefix
 """
 
 from __future__ import annotations
@@ -13,7 +15,7 @@ from __future__ import annotations
 from enum import Enum, unique
 from typing import TypeVar
 
-# Create a generic variable that can be 'Enum', or any subclass.
+# 'Enum' veya herhangi bir alt sınıf olabilen genel bir değişken oluştur.
 T = TypeVar("T", bound="Enum")
 
 
@@ -55,8 +57,7 @@ class SIUnit(Enum):
     @classmethod
     def get_positive(cls: type[T]) -> dict:
         """
-        Returns a dictionary with only the elements of this enum
-        that has a positive value
+        Bu enum'un yalnızca pozitif değere sahip elemanlarını içeren bir sözlük döndürür.
         >>> from itertools import islice
         >>> positive = SIUnit.get_positive()
         >>> inc = iter(positive.items())
@@ -70,9 +71,8 @@ class SIUnit(Enum):
     @classmethod
     def get_negative(cls: type[T]) -> dict:
         """
-        Returns a dictionary with only the elements of this enum
-        that has a negative value
-        @example
+        Bu enum'un yalnızca negatif değere sahip elemanlarını içeren bir sözlük döndürür.
+        @örnek
         >>> from itertools import islice
         >>> negative = SIUnit.get_negative()
         >>> inc = iter(negative.items())
@@ -86,9 +86,9 @@ class SIUnit(Enum):
 
 def add_si_prefix(value: float) -> str:
     """
-    Function that converts a number to his version with SI prefix
-    @input value (an integer)
-    @example:
+    Bir sayıyı SI ön eki ile dönüştüren fonksiyon.
+    @param value (bir float)
+    @örnek:
     >>> add_si_prefix(10000)
     '10.0 kilo'
     """
@@ -102,9 +102,9 @@ def add_si_prefix(value: float) -> str:
 
 def add_binary_prefix(value: float) -> str:
     """
-    Function that converts a number to his version with Binary prefix
-    @input value (an integer)
-    @example:
+    Bir sayıyı İkili ön eki ile dönüştüren fonksiyon.
+    @param value (bir float)
+    @örnek:
     >>> add_binary_prefix(65536)
     '64.0 kilo'
     """

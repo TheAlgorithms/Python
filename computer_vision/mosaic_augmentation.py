@@ -1,4 +1,7 @@
-"""Kaynak: https://github.com/jason9075/opencv-mosaic-data-aug"""
+"""Kaynak: https://github.com/jason9075/opencv-mosaic-data-aug
+
+Organiser: K. Umut Araz
+"""
 
 import glob
 import os

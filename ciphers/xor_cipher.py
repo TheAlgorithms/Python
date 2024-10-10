@@ -1,18 +1,20 @@
 """
-author: Christian Bender
-date: 21.12.2017
-class: XORCipher
+yazar: Christian Bender
 
-This class implements the XOR-cipher algorithm and provides
-some useful methods for encrypting and decrypting strings and
-files.
+Organiser: K. Umut Araz
+tarih: 21.12.2017
+sınıf: XORCipher
 
-Overview about methods
+Bu sınıf, XOR şifreleme algoritmasını uygular ve
+string ve dosyaları şifrelemek ve şifre çözmek için
+bazı kullanışlı yöntemler sağlar.
 
-- encrypt : list of char
-- decrypt : list of char
-- encrypt_string : str
-- decrypt_string : str
+Yöntemler hakkında genel bilgi
+
+- encrypt : karakter listesi
+- decrypt : karakter listesi
+- encrypt_string : string
+- decrypt_string : string
 - encrypt_file : boolean
 - decrypt_file : boolean
 """
@@ -20,216 +22,216 @@ Overview about methods
 from __future__ import annotations
 
 
+
+
 class XORCipher:
-    def __init__(self, key: int = 0):
+    def __init__(self, anahtar: int = 0):
         """
-        simple constructor that receives a key or uses
-        default key = 0
+        Anahtar alan basit bir yapıcıdır, bir anahtar alır veya
+        varsayılan anahtar = 0 kullanır.
         """
 
-        # private field
-        self.__key = key
+        # özel alan
+        self.__anahtar = anahtar
 
-    def encrypt(self, content: str, key: int) -> list[str]:
+    def encrypt(self, içerik: str, anahtar: int) -> list[str]:
         """
-        input: 'content' of type string and 'key' of type int
-        output: encrypted string 'content' as a list of chars
-        if key not passed the method uses the key by the constructor.
-        otherwise key = 1
+        girdi: 'içerik' string türünde ve 'anahtar' int türünde
+        çıktı: şifrelenmiş 'içerik' karakter listesi olarak
+        anahtar verilmezse, yöntem yapıcıda belirtilen anahtarı kullanır.
+        aksi takdirde anahtar = 1
 
-        Empty list
+        Boş liste
         >>> XORCipher().encrypt("", 5)
         []
 
-        One key
-        >>> XORCipher().encrypt("hallo welt", 1)
+        Bir anahtar
+        >>> XORCipher().encrypt("merhaba dünya", 1)
         ['i', '`', 'm', 'm', 'n', '!', 'v', 'd', 'm', 'u']
 
-        Normal key
-        >>> XORCipher().encrypt("HALLO WELT", 32)
-        ['h', 'a', 'l', 'l', 'o', '\\x00', 'w', 'e', 'l', 't']
+        Normal anahtar
+        >>> XORCipher().encrypt("MERHABA DÜNYA", 32)
+        ['m', 'e', 'r', 'h', 'a', '\\x00', 'd', 'ü', 'n', 'y', 'a']
 
-        Key greater than 255
-        >>> XORCipher().encrypt("hallo welt", 256)
-        ['h', 'a', 'l', 'l', 'o', ' ', 'w', 'e', 'l', 't']
+        Anahtar 255'ten büyük
+        >>> XORCipher().encrypt("merhaba dünya", 256)
+        ['m', 'e', 'r', 'h', 'a', ' ', 'd', 'ü', 'n', 'y', 'a']
         """
 
-        # precondition
-        assert isinstance(key, int)
-        assert isinstance(content, str)
+        # ön koşul
+        assert isinstance(anahtar, int)
+        assert isinstance(içerik, str)
 
-        key = key or self.__key or 1
+        anahtar = anahtar or self.__anahtar or 1
 
-        # make sure key is an appropriate size
-        key %= 256
+        # anahtarın uygun boyutta olduğundan emin ol
+        anahtar %= 256
 
-        return [chr(ord(ch) ^ key) for ch in content]
+        return [chr(ord(ch) ^ anahtar) for ch in içerik]
 
-    def decrypt(self, content: str, key: int) -> list[str]:
+    def decrypt(self, içerik: str, anahtar: int) -> list[str]:
         """
-        input: 'content' of type list and 'key' of type int
-        output: decrypted string 'content' as a list of chars
-        if key not passed the method uses the key by the constructor.
-        otherwise key = 1
+        girdi: 'içerik' string türünde ve 'anahtar' int türünde
+        çıktı: şifrelenmiş 'içerik' karakter listesi olarak
+        anahtar verilmezse, yöntem yapıcıda belirtilen anahtarı kullanır.
+        aksi takdirde anahtar = 1
 
-        Empty list
+        Boş liste
         >>> XORCipher().decrypt("", 5)
         []
 
-        One key
-        >>> XORCipher().decrypt("hallo welt", 1)
+        Bir anahtar
+        >>> XORCipher().decrypt("merhaba dünya", 1)
         ['i', '`', 'm', 'm', 'n', '!', 'v', 'd', 'm', 'u']
 
-        Normal key
-        >>> XORCipher().decrypt("HALLO WELT", 32)
-        ['h', 'a', 'l', 'l', 'o', '\\x00', 'w', 'e', 'l', 't']
+        Normal anahtar
+        >>> XORCipher().decrypt("MERHABA DÜNYA", 32)
+        ['m', 'e', 'r', 'h', 'a', '\\x00', 'd', 'ü', 'n', 'y', 'a']
 
-        Key greater than 255
-        >>> XORCipher().decrypt("hallo welt", 256)
-        ['h', 'a', 'l', 'l', 'o', ' ', 'w', 'e', 'l', 't']
+        Anahtar 255'ten büyük
+        >>> XORCipher().decrypt("merhaba dünya", 256)
+        ['m', 'e', 'r', 'h', 'a', ' ', 'd', 'ü', 'n', 'y', 'a']
         """
 
-        # precondition
-        assert isinstance(key, int)
-        assert isinstance(content, str)
+        # ön koşul
+        assert isinstance(anahtar, int)
+        assert isinstance(içerik, str)
 
-        key = key or self.__key or 1
+        anahtar = anahtar or self.__anahtar or 1
 
-        # make sure key is an appropriate size
-        key %= 256
+        # anahtarın uygun boyutta olduğundan emin ol
+        anahtar %= 256
 
-        return [chr(ord(ch) ^ key) for ch in content]
+        return [chr(ord(ch) ^ anahtar) for ch in içerik]
 
-    def encrypt_string(self, content: str, key: int = 0) -> str:
+    def encrypt_string(self, içerik: str, anahtar: int = 0) -> str:
         """
-        input: 'content' of type string and 'key' of type int
-        output: encrypted string 'content'
-        if key not passed the method uses the key by the constructor.
-        otherwise key = 1
+        girdi: 'içerik' string türünde ve 'anahtar' int türünde
+        çıktı: şifrelenmiş 'içerik' string olarak
+        anahtar verilmezse, yöntem yapıcıda belirtilen anahtarı kullanır.
+        aksi takdirde anahtar = 1
 
-        Empty list
+        Boş liste
         >>> XORCipher().encrypt_string("", 5)
         ''
 
-        One key
-        >>> XORCipher().encrypt_string("hallo welt", 1)
+        Bir anahtar
+        >>> XORCipher().encrypt_string("merhaba dünya", 1)
         'i`mmn!vdmu'
 
-        Normal key
-        >>> XORCipher().encrypt_string("HALLO WELT", 32)
-        'hallo\\x00welt'
+        Normal anahtar
+        >>> XORCipher().encrypt_string("MERHABA DÜNYA", 32)
+        'merhaba\\x00dünya'
 
-        Key greater than 255
-        >>> XORCipher().encrypt_string("hallo welt", 256)
-        'hallo welt'
+        Anahtar 255'ten büyük
+        >>> XORCipher().encrypt_string("merhaba dünya", 256)
+        'merhaba dünya'
         """
 
-        # precondition
-        assert isinstance(key, int)
-        assert isinstance(content, str)
+        # ön koşul
+        assert isinstance(anahtar, int)
+        assert isinstance(içerik, str)
 
-        key = key or self.__key or 1
+        anahtar = anahtar or self.__anahtar or 1
 
-        # make sure key is an appropriate size
-        key %= 256
+        # anahtarın uygun boyutta olduğundan emin ol
+        anahtar %= 256
 
-        # This will be returned
-        ans = ""
+        # Bu döndürülecek
+        sonuç = ""
 
-        for ch in content:
-            ans += chr(ord(ch) ^ key)
+        for ch in içerik:
+            sonuç += chr(ord(ch) ^ anahtar)
 
-        return ans
+        return sonuç
 
-    def decrypt_string(self, content: str, key: int = 0) -> str:
+    def decrypt_string(self, içerik: str, anahtar: int = 0) -> str:
         """
-        input: 'content' of type string and 'key' of type int
-        output: decrypted string 'content'
-        if key not passed the method uses the key by the constructor.
-        otherwise key = 1
+        girdi: 'içerik' string türünde ve 'anahtar' int türünde
+        çıktı: şifrelenmiş 'içerik' string olarak
+        anahtar verilmezse, yöntem yapıcıda belirtilen anahtarı kullanır.
+        aksi takdirde anahtar = 1
 
-        Empty list
+        Boş liste
         >>> XORCipher().decrypt_string("", 5)
         ''
 
-        One key
-        >>> XORCipher().decrypt_string("hallo welt", 1)
+        Bir anahtar
+        >>> XORCipher().decrypt_string("merhaba dünya", 1)
         'i`mmn!vdmu'
 
-        Normal key
-        >>> XORCipher().decrypt_string("HALLO WELT", 32)
-        'hallo\\x00welt'
+        Normal anahtar
+        >>> XORCipher().decrypt_string("MERHABA DÜNYA", 32)
+        'merhaba\\x00dünya'
 
-        Key greater than 255
-        >>> XORCipher().decrypt_string("hallo welt", 256)
-        'hallo welt'
+        Anahtar 255'ten büyük
+        >>> XORCipher().decrypt_string("merhaba dünya", 256)
+        'merhaba dünya'
         """
 
-        # precondition
-        assert isinstance(key, int)
-        assert isinstance(content, str)
+        # ön koşul
+        assert isinstance(anahtar, int)
+        assert isinstance(içerik, str)
 
-        key = key or self.__key or 1
+        anahtar = anahtar or self.__anahtar or 1
 
-        # make sure key is an appropriate size
-        key %= 256
+        # anahtarın uygun boyutta olduğundan emin ol
+        anahtar %= 256
 
-        # This will be returned
-        ans = ""
+        # Bu döndürülecek
+        sonuç = ""
 
-        for ch in content:
-            ans += chr(ord(ch) ^ key)
+        for ch in içerik:
+            sonuç += chr(ord(ch) ^ anahtar)
 
-        return ans
+        return sonuç
 
-    def encrypt_file(self, file: str, key: int = 0) -> bool:
+    def encrypt_file(self, dosya: str, anahtar: int = 0) -> bool:
         """
-        input: filename (str) and a key (int)
-        output: returns true if encrypt process was
-        successful otherwise false
-        if key not passed the method uses the key by the constructor.
-        otherwise key = 1
+        girdi: dosya adı (str) ve bir anahtar (int)
+        çıktı: şifreleme işlemi başarılıysa true, aksi takdirde false döner
+        anahtar verilmezse, yöntem yapıcıda belirtilen anahtarı kullanır.
+        aksi takdirde anahtar = 1
         """
 
-        # precondition
-        assert isinstance(file, str)
-        assert isinstance(key, int)
+        # ön koşul
+        assert isinstance(dosya, str)
+        assert isinstance(anahtar, int)
 
-        # make sure key is an appropriate size
-        key %= 256
+        # anahtarın uygun boyutta olduğundan emin ol
+        anahtar %= 256
 
         try:
-            with open(file) as fin, open("encrypt.out", "w+") as fout:
-                # actual encrypt-process
-                for line in fin:
-                    fout.write(self.encrypt_string(line, key))
+            with open(dosya) as fin, open("encrypt.out", "w+") as fout:
+                # gerçek şifreleme işlemi
+                for satır in fin:
+                    fout.write(self.encrypt_string(satır, anahtar))
 
         except OSError:
             return False
 
         return True
 
-    def decrypt_file(self, file: str, key: int) -> bool:
+    def decrypt_file(self, dosya: str, anahtar: int) -> bool:
         """
-        input: filename (str) and a key (int)
-        output: returns true if decrypt process was
-        successful otherwise false
-        if key not passed the method uses the key by the constructor.
-        otherwise key = 1
+        girdi: dosya adı (str) ve bir anahtar (int)
+        çıktı: şifre çözme işlemi başarılıysa true, aksi takdirde false döner
+        anahtar verilmezse, yöntem yapıcıda belirtilen anahtarı kullanır.
+        aksi takdirde anahtar = 1
         """
 
-        # precondition
-        assert isinstance(file, str)
-        assert isinstance(key, int)
+        # ön koşul
+        assert isinstance(dosya, str)
+        assert isinstance(anahtar, int)
 
-        # make sure key is an appropriate size
-        key %= 256
+        # anahtarın uygun boyutta olduğundan emin ol
+        anahtar %= 256
 
         try:
-            with open(file) as fin, open("decrypt.out", "w+") as fout:
-                # actual encrypt-process
-                for line in fin:
-                    fout.write(self.decrypt_string(line, key))
+            with open(dosya) as fin, open("decrypt.out", "w+") as fout:
+                # gerçek şifre çözme işlemi
+                for satır in fin:
+                    fout.write(self.decrypt_string(satır, anahtar))
 
         except OSError:
             return False
@@ -242,27 +244,27 @@ if __name__ == "__main__":
 
     testmod()
 
-# Tests
-# crypt = XORCipher()
-# key = 67
+# Testler
+# kript = XORCipher()
+# anahtar = 67
 
-# # test encrypt
-# print(crypt.encrypt("hallo welt",key))
-# # test decrypt
-# print(crypt.decrypt(crypt.encrypt("hallo welt",key), key))
+# # şifreleme testi
+# print(kript.encrypt("merhaba dünya", anahtar))
+# # şifre çözme testi
+# print(kript.decrypt(kript.encrypt("merhaba dünya", anahtar), anahtar))
 
-# # test encrypt_string
-# print(crypt.encrypt_string("hallo welt",key))
+# # encrypt_string testi
+# print(kript.encrypt_string("merhaba dünya", anahtar))
 
-# # test decrypt_string
-# print(crypt.decrypt_string(crypt.encrypt_string("hallo welt",key),key))
+# # decrypt_string testi
+# print(kript.decrypt_string(kript.encrypt_string("merhaba dünya", anahtar), anahtar))
 
-# if (crypt.encrypt_file("test.txt",key)):
-#       print("encrypt successful")
+# if (kript.encrypt_file("test.txt", anahtar)):
+#       print("şifreleme başarılı")
 # else:
-#       print("encrypt unsuccessful")
+#       print("şifreleme başarısız")
 
-# if (crypt.decrypt_file("encrypt.out",key)):
-#       print("decrypt successful")
+# if (kript.decrypt_file("encrypt.out", anahtar)):
+#       print("şifre çözme başarılı")
 # else:
-#       print("decrypt unsuccessful")
+#       print("şifre çözme başarısız")

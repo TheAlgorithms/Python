@@ -2,6 +2,8 @@
 An AND Gate is a logic gate in boolean algebra which results to 1 (True) if both the
 inputs are 1, and 0 (False) otherwise.
 
+Organiser: K. Umut Araz
+
 Following is the truth table of an AND Gate:
     ------------------------------
     | Input 1 | Input 2 | Output |

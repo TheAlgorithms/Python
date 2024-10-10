@@ -2,92 +2,94 @@ from __future__ import annotations
 
 from collections import deque
 
+# Organiser: K. Umut Araz
 
-class Automaton:
-    def __init__(self, keywords: list[str]):
-        self.adlist: list[dict] = []
-        self.adlist.append(
-            {"value": "", "next_states": [], "fail_state": 0, "output": []}
+
+class Otomaton:
+    def __init__(self, anahtar_kelimeler: list[str]):
+        self.ad_list: list[dict] = []
+        self.ad_list.append(
+            {"değer": "", "sonraki_durumlar": [], "başarısız_durum": 0, "çıktı": []}
         )
 
-        for keyword in keywords:
-            self.add_keyword(keyword)
-        self.set_fail_transitions()
+        for anahtar_kelime in anahtar_kelimeler:
+            self.anahtar_kelime_ekle(anahtar_kelime)
+        self.başarısız_geçişleri_belirle()
 
-    def find_next_state(self, current_state: int, char: str) -> int | None:
-        for state in self.adlist[current_state]["next_states"]:
-            if char == self.adlist[state]["value"]:
-                return state
+    def sonraki_durumu_bul(self, mevcut_durum: int, karakter: str) -> int | None:
+        for durum in self.ad_list[mevcut_durum]["sonraki_durumlar"]:
+            if karakter == self.ad_list[durum]["değer"]:
+                return durum
         return None
 
-    def add_keyword(self, keyword: str) -> None:
-        current_state = 0
-        for character in keyword:
-            next_state = self.find_next_state(current_state, character)
-            if next_state is None:
-                self.adlist.append(
+    def anahtar_kelime_ekle(self, anahtar_kelime: str) -> None:
+        mevcut_durum = 0
+        for karakter in anahtar_kelime:
+            sonraki_durum = self.sonraki_durumu_bul(mevcut_durum, karakter)
+            if sonraki_durum is None:
+                self.ad_list.append(
                     {
-                        "value": character,
-                        "next_states": [],
-                        "fail_state": 0,
-                        "output": [],
+                        "değer": karakter,
+                        "sonraki_durumlar": [],
+                        "başarısız_durum": 0,
+                        "çıktı": [],
                     }
                 )
-                self.adlist[current_state]["next_states"].append(len(self.adlist) - 1)
-                current_state = len(self.adlist) - 1
+                self.ad_list[mevcut_durum]["sonraki_durumlar"].append(len(self.ad_list) - 1)
+                mevcut_durum = len(self.ad_list) - 1
             else:
-                current_state = next_state
-        self.adlist[current_state]["output"].append(keyword)
+                mevcut_durum = sonraki_durum
+        self.ad_list[mevcut_durum]["çıktı"].append(anahtar_kelime)
 
-    def set_fail_transitions(self) -> None:
-        q: deque = deque()
-        for node in self.adlist[0]["next_states"]:
-            q.append(node)
-            self.adlist[node]["fail_state"] = 0
-        while q:
-            r = q.popleft()
-            for child in self.adlist[r]["next_states"]:
-                q.append(child)
-                state = self.adlist[r]["fail_state"]
+    def başarısız_geçişleri_belirle(self) -> None:
+        kuyruk: deque = deque()
+        for düğüm in self.ad_list[0]["sonraki_durumlar"]:
+            kuyruk.append(düğüm)
+            self.ad_list[düğüm]["başarısız_durum"] = 0
+        while kuyruk:
+            r = kuyruk.popleft()
+            for çocuk in self.ad_list[r]["sonraki_durumlar"]:
+                kuyruk.append(çocuk)
+                durum = self.ad_list[r]["başarısız_durum"]
                 while (
-                    self.find_next_state(state, self.adlist[child]["value"]) is None
-                    and state != 0
+                    self.sonraki_durumu_bul(durum, self.ad_list[çocuk]["değer"]) is None
+                    and durum != 0
                 ):
-                    state = self.adlist[state]["fail_state"]
-                self.adlist[child]["fail_state"] = self.find_next_state(
-                    state, self.adlist[child]["value"]
+                    durum = self.ad_list[durum]["başarısız_durum"]
+                self.ad_list[çocuk]["başarısız_durum"] = self.sonraki_durumu_bul(
+                    durum, self.ad_list[çocuk]["değer"]
                 )
-                if self.adlist[child]["fail_state"] is None:
-                    self.adlist[child]["fail_state"] = 0
-                self.adlist[child]["output"] = (
-                    self.adlist[child]["output"]
-                    + self.adlist[self.adlist[child]["fail_state"]]["output"]
+                if self.ad_list[çocuk]["başarısız_durum"] is None:
+                    self.ad_list[çocuk]["başarısız_durum"] = 0
+                self.ad_list[çocuk]["çıktı"] = (
+                    self.ad_list[çocuk]["çıktı"]
+                    + self.ad_list[self.ad_list[çocuk]["başarısız_durum"]]["çıktı"]
                 )
 
-    def search_in(self, string: str) -> dict[str, list[int]]:
+    def ara(self, metin: str) -> dict[str, list[int]]:
         """
-        >>> A = Automaton(["what", "hat", "ver", "er"])
-        >>> A.search_in("whatever, err ... , wherever")
-        {'what': [0], 'hat': [1], 'ver': [5, 25], 'er': [6, 10, 22, 26]}
+        >>> A = Otomaton(["ne", "şapka", "gör", "ör"])
+        >>> A.ara("ne şapka, örneğin ... , nerede")
+        {'ne': [0], 'şapka': [1], 'gör': [5, 25], 'ör': [6, 10, 22, 26]}
         """
-        result: dict = {}  # returns a dict with keywords and list of its occurrences
-        current_state = 0
-        for i in range(len(string)):
+        sonuç: dict = {}  # anahtar kelimeleri ve bunların geçişlerinin listesini döndürür
+        mevcut_durum = 0
+        for i in range(len(metin)):
             while (
-                self.find_next_state(current_state, string[i]) is None
-                and current_state != 0
+                self.sonraki_durumu_bul(mevcut_durum, metin[i]) is None
+                and mevcut_durum != 0
             ):
-                current_state = self.adlist[current_state]["fail_state"]
-            next_state = self.find_next_state(current_state, string[i])
-            if next_state is None:
-                current_state = 0
+                mevcut_durum = self.ad_list[mevcut_durum]["başarısız_durum"]
+            sonraki_durum = self.sonraki_durumu_bul(mevcut_durum, metin[i])
+            if sonraki_durum is None:
+                mevcut_durum = 0
             else:
-                current_state = next_state
-                for key in self.adlist[current_state]["output"]:
-                    if key not in result:
-                        result[key] = []
-                    result[key].append(i - len(key) + 1)
-        return result
+                mevcut_durum = sonraki_durum
+                for anahtar in self.ad_list[mevcut_durum]["çıktı"]:
+                    if anahtar not in sonuç:
+                        sonuç[anahtar] = []
+                    sonuç[anahtar].append(i - len(anahtar) + 1)
+        return sonuç
 
 
 if __name__ == "__main__":

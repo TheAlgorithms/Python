@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 
+# Organiser: K. Umut Araz
+
 import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent

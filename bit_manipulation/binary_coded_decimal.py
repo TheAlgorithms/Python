@@ -1,5 +1,8 @@
 def ikili_kodlu_onluk(sayi: int) -> str:
     """
+
+    Organiser: K. Umut Araz
+    
     On tabanında bir tamsayının ikili kodlu onluk (bcd) değerini bulun.
     Sayının her basamağı 4 bitlik ikili olarak temsil edilir.
     Örnek:

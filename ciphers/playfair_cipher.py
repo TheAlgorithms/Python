@@ -1,22 +1,22 @@
 """
-https://en.wikipedia.org/wiki/Playfair_cipher#Description
+https://tr.wikipedia.org/wiki/Playfair_cipher#Tanım
 
-The Playfair cipher was developed by Charles Wheatstone in 1854
-It's use was heavily promotedby Lord Playfair, hence its name
+Playfair şifrelemesi, 1854 yılında Charles Wheatstone tarafından geliştirilmiştir.
+Kullanımı Lord Playfair tarafından yoğun bir şekilde teşvik edilmiştir, bu nedenle ismi buradan gelmektedir.
 
-Some features of the Playfair cipher are:
+Playfair şifrelemesinin bazı özellikleri şunlardır:
 
-1) It was the first literal diagram substitution cipher
-2) It is a manual symmetric encryption technique
-3) It is a multiple letter encryption cipher
+Organiser: K. Umut Araz
 
-The implementation in the code below encodes alphabets only.
-It removes spaces, special characters and numbers from the
-code.
+1) İlk harf diagramı yerine geçen şifreleme yöntemidir.
+2) Manuel simetrik şifreleme tekniğidir.
+3) Çoklu harf şifreleme yöntemidir.
 
-Playfair is no longer used by military forces because of known
-insecurities and of the advent of automated encryption devices.
-This cipher is regarded as insecure since before World War I.
+Aşağıdaki kod, yalnızca alfabeleri şifreler.
+Boşlukları, özel karakterleri ve sayıları koddan çıkarır.
+
+Playfair, bilinen güvenlik açıkları ve otomatik şifreleme cihazlarının ortaya çıkması nedeniyle artık askeri güçler tarafından kullanılmamaktadır.
+Bu şifreleme yöntemi, Birinci Dünya Savaşı'ndan önce güvenli olmayan bir yöntem olarak kabul edilmektedir.
 """
 
 import itertools
@@ -35,8 +35,8 @@ def chunker(seq: Iterable[str], size: int) -> Generator[tuple[str, ...], None, N
 
 def prepare_input(dirty: str) -> str:
     """
-    Prepare the plaintext by up-casing it
-    and separating repeated letters with X's
+    Düz metni büyük harfe çevirir
+    ve tekrar eden harfleri X ile ayırır.
     """
 
     dirty = "".join([c.upper() for c in dirty if c in string.ascii_letters])
@@ -53,26 +53,26 @@ def prepare_input(dirty: str) -> str:
 
     clean += dirty[-1]
 
-    if len(clean) & 1:
+    if len(clean) % 2 != 0:
         clean += "X"
 
     return clean
 
 
 def generate_table(key: str) -> list[str]:
-    # I and J are used interchangeably to allow
-    # us to use a 5x5 table (25 letters)
+    # I ve J harfleri birbirinin yerine kullanılmaktadır
+    # böylece 5x5'lik bir tablo (25 harf) kullanabiliyoruz.
     alphabet = "ABCDEFGHIKLMNOPQRSTUVWXYZ"
-    # we're using a list instead of a '2d' array because it makes the math
-    # for setting up the table and doing the actual encoding/decoding simpler
+    # Tabloyu kurmak ve gerçek şifreleme/şifre çözme işlemlerini yapmak için
+    # '2d' dizi yerine bir liste kullanıyoruz, bu matematiği basitleştiriyor.
     table = []
 
-    # copy key chars into the table if they are in `alphabet` ignoring duplicates
+    # Anahtar karakterlerini tabloya kopyala, eğer `alphabet` içinde ve tekrar etmiyorsa ekle
     for char in key.upper():
         if char not in table and char in alphabet:
             table.append(char)
 
-    # fill the rest of the table in with the remaining alphabet chars
+    # Tabloyu kalan alfabe karakterleriyle doldur
     for char in alphabet:
         if char not in table:
             table.append(char)
@@ -82,18 +82,18 @@ def generate_table(key: str) -> list[str]:
 
 def encode(plaintext: str, key: str) -> str:
     """
-    Encode the given plaintext using the Playfair cipher.
-    Takes the plaintext and the key as input and returns the encoded string.
+    Verilen düz metni Playfair şifrelemesi ile şifreler.
+    Düz metni ve anahtarı girdi olarak alır ve şifrelenmiş dizeyi döner.
 
-    >>> encode("Hello", "MONARCHY")
+    >>> encode("Merhaba", "ANAHTAR")
     'CFSUPM'
-    >>> encode("attack on the left flank", "EMERGENCY")
+    >>> encode("sola saldır", "ACİL")
     'DQZSBYFSDZFMFNLOHFDRSG'
-    >>> encode("Sorry!", "SPECIAL")
+    >>> encode("Üzgünüm!", "ÖZEL")
     'AVXETX'
-    >>> encode("Number 1", "NUMBER")
+    >>> encode("Sayı 1", "SAYI")
     'UMBENF'
-    >>> encode("Photosynthesis!", "THE SUN")
+    >>> encode("Fotosentez!", "GÜNEŞ")
     'OEMHQHVCHESUKE'
     """
 
@@ -111,7 +111,7 @@ def encode(plaintext: str, key: str) -> str:
         elif col1 == col2:
             ciphertext += table[((row1 + 1) % 5) * 5 + col1]
             ciphertext += table[((row2 + 1) % 5) * 5 + col2]
-        else:  # rectangle
+        else:  # dikdörtgen
             ciphertext += table[row1 * 5 + col2]
             ciphertext += table[row2 * 5 + col1]
 
@@ -120,7 +120,7 @@ def encode(plaintext: str, key: str) -> str:
 
 def decode(ciphertext: str, key: str) -> str:
     """
-    Decode the input string using the provided key.
+    Verilen şifreli dizeyi sağlanan anahtar ile çözer.
 
     >>> decode("BMZFAZRZDH", "HAZARD")
     'FIREHAZARD'
@@ -143,7 +143,7 @@ def decode(ciphertext: str, key: str) -> str:
         elif col1 == col2:
             plaintext += table[((row1 - 1) % 5) * 5 + col1]
             plaintext += table[((row2 - 1) % 5) * 5 + col2]
-        else:  # rectangle
+        else:  # dikdörtgen
             plaintext += table[row1 * 5 + col2]
             plaintext += table[row2 * 5 + col1]
 
@@ -155,5 +155,5 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    print("Encoded:", encode("BYE AND THANKS", "GREETING"))
-    print("Decoded:", decode("CXRBANRLBALQ", "GREETING"))
+    print("Şifrelenmiş:", encode("HOŞÇAKAL VE TEŞEKKÜRLER", "SELAM"))
+    print("Şifre Çözülmüş:", decode("CXRBANRLBALQ", "SELAM"))

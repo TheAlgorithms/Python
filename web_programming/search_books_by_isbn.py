@@ -2,6 +2,8 @@
 Get book and author data from https://openlibrary.org
 
 ISBN: https://en.wikipedia.org/wiki/International_Standard_Book_Number
+
+# Organiser: K. Umut Araz
 """
 
 from json import JSONDecodeError  # Workaround for requests.exceptions.JSONDecodeError

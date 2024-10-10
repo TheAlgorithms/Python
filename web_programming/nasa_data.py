@@ -4,6 +4,9 @@ from datetime import UTC, datetime
 import requests
 
 
+# Organiser: K. Umut Araz
+
+
 def get_apod_data(api_key: str) -> dict:
     """
     APOD (Astronomical Picture of the Day) verilerini alır.

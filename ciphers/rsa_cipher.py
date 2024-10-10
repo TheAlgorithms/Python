@@ -6,144 +6,141 @@ from . import rsa_key_generator as rkg
 DEFAULT_BLOCK_SIZE = 128
 BYTE_SIZE = 256
 
+#Organiser: K. Umut Araz
 
-def get_blocks_from_text(
-    message: str, block_size: int = DEFAULT_BLOCK_SIZE
+def metni_bloklara_ayir(
+    mesaj: str, blok_boyutu: int = DEFAULT_BLOCK_SIZE
 ) -> list[int]:
-    message_bytes = message.encode("ascii")
+    mesaj_byteleri = mesaj.encode("ascii")
 
-    block_ints = []
-    for block_start in range(0, len(message_bytes), block_size):
-        block_int = 0
-        for i in range(block_start, min(block_start + block_size, len(message_bytes))):
-            block_int += message_bytes[i] * (BYTE_SIZE ** (i % block_size))
-        block_ints.append(block_int)
-    return block_ints
+    blok_tamsayilari = []
+    for blok_baslangici in range(0, len(mesaj_byteleri), blok_boyutu):
+        blok_tamsayisi = 0
+        for i in range(blok_baslangici, min(blok_baslangici + blok_boyutu, len(mesaj_byteleri))):
+            blok_tamsayisi += mesaj_byteleri[i] * (BYTE_SIZE ** (i % blok_boyutu))
+        blok_tamsayilari.append(blok_tamsayisi)
+    return blok_tamsayilari
 
 
-def get_text_from_blocks(
-    block_ints: list[int], message_length: int, block_size: int = DEFAULT_BLOCK_SIZE
+def bloklardan_metni_al(
+    blok_tamsayilari: list[int], mesaj_uzunlugu: int, blok_boyutu: int = DEFAULT_BLOCK_SIZE
 ) -> str:
-    message: list[str] = []
-    for block_int in block_ints:
-        block_message: list[str] = []
-        for i in range(block_size - 1, -1, -1):
-            if len(message) + i < message_length:
-                ascii_number = block_int // (BYTE_SIZE**i)
-                block_int = block_int % (BYTE_SIZE**i)
-                block_message.insert(0, chr(ascii_number))
-        message.extend(block_message)
-    return "".join(message)
+    mesaj: list[str] = []
+    for blok_tamsayisi in blok_tamsayilari:
+        blok_mesaji: list[str] = []
+        for i in range(blok_boyutu - 1, -1, -1):
+            if len(mesaj) + i < mesaj_uzunlugu:
+                ascii_numarasi = blok_tamsayisi // (BYTE_SIZE**i)
+                blok_tamsayisi = blok_tamsayisi % (BYTE_SIZE**i)
+                blok_mesaji.insert(0, chr(ascii_numarasi))
+        mesaj.extend(blok_mesaji)
+    return "".join(mesaj)
 
 
-def encrypt_message(
-    message: str, key: tuple[int, int], block_size: int = DEFAULT_BLOCK_SIZE
+def mesajı_şifrele(
+    mesaj: str, anahtar: tuple[int, int], blok_boyutu: int = DEFAULT_BLOCK_SIZE
 ) -> list[int]:
-    encrypted_blocks = []
-    n, e = key
+    şifreli_bloklar = []
+    n, e = anahtar
 
-    for block in get_blocks_from_text(message, block_size):
-        encrypted_blocks.append(pow(block, e, n))
-    return encrypted_blocks
+    for blok in metni_bloklara_ayir(mesaj, blok_boyutu):
+        şifreli_bloklar.append(pow(blok, e, n))
+    return şifreli_bloklar
 
 
-def decrypt_message(
-    encrypted_blocks: list[int],
-    message_length: int,
-    key: tuple[int, int],
-    block_size: int = DEFAULT_BLOCK_SIZE,
+def mesajı_şifrele_çöz(
+    şifreli_bloklar: list[int],
+    mesaj_uzunluğu: int,
+    anahtar: tuple[int, int],
+    blok_boyutu: int = DEFAULT_BLOCK_SIZE,
 ) -> str:
-    decrypted_blocks = []
-    n, d = key
-    for block in encrypted_blocks:
-        decrypted_blocks.append(pow(block, d, n))
-    return get_text_from_blocks(decrypted_blocks, message_length, block_size)
+    çözülmüş_bloklar = []
+    n, d = anahtar
+    for blok in şifreli_bloklar:
+        çözülmüş_bloklar.append(pow(blok, d, n))
+    return bloklardan_metni_al(çözülmüş_bloklar, mesaj_uzunluğu, blok_boyutu)
 
 
-def read_key_file(key_filename: str) -> tuple[int, int, int]:
-    with open(key_filename) as fo:
-        content = fo.read()
-    key_size, n, eor_d = content.split(",")
-    return (int(key_size), int(n), int(eor_d))
+def anahtar_dosyasını_oku(anahtar_dosya_adı: str) -> tuple[int, int, int]:
+    with open(anahtar_dosya_adı) as fo:
+        içerik = fo.read()
+    anahtar_boyutu, n, e_veya_d = içerik.split(",")
+    return (int(anahtar_boyutu), int(n), int(e_veya_d))
 
 
-def encrypt_and_write_to_file(
-    message_filename: str,
-    key_filename: str,
-    message: str,
-    block_size: int = DEFAULT_BLOCK_SIZE,
+def mesajı_şifrele_ve_dosyaya_yaz(
+    mesaj_dosya_adı: str,
+    anahtar_dosya_adı: str,
+    mesaj: str,
+    blok_boyutu: int = DEFAULT_BLOCK_SIZE,
 ) -> str:
-    key_size, n, e = read_key_file(key_filename)
-    if key_size < block_size * 8:
+    anahtar_boyutu, n, e = anahtar_dosyasını_oku(anahtar_dosya_adı)
+    if anahtar_boyutu < blok_boyutu * 8:
         sys.exit(
-            f"ERROR: Block size is {block_size * 8} bits and key size is {key_size} "
-            "bits. The RSA cipher requires the block size to be equal to or greater "
-            "than the key size. Either decrease the block size or use different keys."
+            f"HATA: Blok boyutu {blok_boyutu * 8} bit ve anahtar boyutu {anahtar_boyutu} "
+            "bit. RSA şifrelemesi, blok boyutunun anahtar boyutuna eşit veya daha büyük olmasını gerektirir. "
+            "Ya blok boyutunu azaltın ya da farklı anahtarlar kullanın."
         )
 
-    encrypted_blocks = [str(i) for i in encrypt_message(message, (n, e), block_size)]
+    şifreli_bloklar = [str(i) for i in mesajı_şifrele(mesaj, (n, e), blok_boyutu)]
 
-    encrypted_content = ",".join(encrypted_blocks)
-    encrypted_content = f"{len(message)}_{block_size}_{encrypted_content}"
-    with open(message_filename, "w") as fo:
-        fo.write(encrypted_content)
-    return encrypted_content
+    şifreli_içerik = ",".join(şifreli_bloklar)
+    şifreli_içerik = f"{len(mesaj)}_{blok_boyutu}_{şifreli_içerik}"
+    with open(mesaj_dosya_adı, "w") as fo:
+        fo.write(şifreli_içerik)
+    return şifreli_içerik
 
 
-def read_from_file_and_decrypt(message_filename: str, key_filename: str) -> str:
-    key_size, n, d = read_key_file(key_filename)
-    with open(message_filename) as fo:
-        content = fo.read()
-    message_length_str, block_size_str, encrypted_message = content.split("_")
-    message_length = int(message_length_str)
-    block_size = int(block_size_str)
+def dosyadan_oku_ve_şifreyi_çöz(mesaj_dosya_adı: str, anahtar_dosya_adı: str) -> str:
+    anahtar_boyutu, n, d = anahtar_dosyasını_oku(anahtar_dosya_adı)
+    with open(mesaj_dosya_adı) as fo:
+        içerik = fo.read()
+    mesaj_uzunluğu_str, blok_boyutu_str, şifreli_masaj = içerik.split("_")
+    mesaj_uzunluğu = int(mesaj_uzunluğu_str)
+    blok_boyutu = int(blok_boyutu_str)
 
-    if key_size < block_size * 8:
+    if anahtar_boyutu < blok_boyutu * 8:
         sys.exit(
-            f"ERROR: Block size is {block_size * 8} bits and key size is {key_size} "
-            "bits. The RSA cipher requires the block size to be equal to or greater "
-            "than the key size. Were the correct key file and encrypted file specified?"
+            f"HATA: Blok boyutu {blok_boyutu * 8} bit ve anahtar boyutu {anahtar_boyutu} "
+            "bit. RSA şifrelemesi, blok boyutunun anahtar boyutuna eşit veya daha büyük olmasını gerektirir. "
+            "Doğru anahtar dosyası ve şifreli dosya belirtildi mi?"
         )
 
-    encrypted_blocks = []
-    for block in encrypted_message.split(","):
-        encrypted_blocks.append(int(block))
+    şifreli_bloklar = [int(blok) for blok in şifreli_masaj.split(",")]
+    return mesajı_şifrele_çöz(şifreli_bloklar, mesaj_uzunluğu, (n, d), blok_boyutu)
 
-    return decrypt_message(encrypted_blocks, message_length, (n, d), block_size)
+def ana_fonksiyon() -> None:
+    dosya_adı = "şifreli_dosya.txt"
+    yanıt = input(r"Şifrele\Çöz [e\d]: ")
 
+    if yanıt.lower().startswith("e"):
+        mod = "şifrele"
+    elif yanıt.lower().startswith("d"):
+        mod = "çöz"
 
-def main() -> None:
-    filename = "encrypted_file.txt"
-    response = input(r"Encrypt\Decrypt [e\d]: ")
-
-    if response.lower().startswith("e"):
-        mode = "encrypt"
-    elif response.lower().startswith("d"):
-        mode = "decrypt"
-
-    if mode == "encrypt":
+    if mod == "şifrele":
         if not os.path.exists("rsa_pubkey.txt"):
             rkg.make_key_files("rsa", 1024)
 
-        message = input("\nEnter message: ")
-        pubkey_filename = "rsa_pubkey.txt"
-        print(f"Encrypting and writing to {filename}...")
-        encrypted_text = encrypt_and_write_to_file(filename, pubkey_filename, message)
+        mesaj = input("\nMesajı girin: ")
+        pubkey_dosya_adı = "rsa_pubkey.txt"
+        print(f"{dosya_adı} dosyasına şifreleme ve yazma işlemi yapılıyor...")
+        şifreli_metin = mesajı_şifrele_ve_dosyaya_yaz(dosya_adı, pubkey_dosya_adı, mesaj)
 
-        print("\nEncrypted text:")
-        print(encrypted_text)
+        print("\nŞifreli metin:")
+        print(şifreli_metin)
 
-    elif mode == "decrypt":
-        privkey_filename = "rsa_privkey.txt"
-        print(f"Reading from {filename} and decrypting...")
-        decrypted_text = read_from_file_and_decrypt(filename, privkey_filename)
-        print("writing decryption to rsa_decryption.txt...")
+    elif mod == "çöz":
+        privkey_dosya_adı = "rsa_privkey.txt"
+        print(f"{dosya_adı} dosyasından okuma ve şifre çözme işlemi yapılıyor...")
+        çözülmüş_metin = dosyadan_oku_ve_şifreyi_çöz(dosya_adı, privkey_dosya_adı)
+        print("Şifre çözümlemesini rsa_decryption.txt dosyasına yazma işlemi yapılıyor...")
         with open("rsa_decryption.txt", "w") as dec:
-            dec.write(decrypted_text)
+            dec.write(çözülmüş_metin)
 
-        print("\nDecryption:")
-        print(decrypted_text)
+        print("\nŞifre çözümü:")
+        print(çözülmüş_metin)
 
 
 if __name__ == "__main__":
-    main()
+    ana_fonksiyon()

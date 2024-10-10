@@ -1,25 +1,26 @@
 """
-Conversion of length units.
-Available Units:- Metre,Kilometre,Feet,Inch,Centimeter,Yard,Foot,Mile,Millimeter
+Uzunluk birimlerinin dönüştürülmesi.
+Mevcut Birimler: - Metre, Kilometre, Ayak, İnç, Santimetre, Yarda, Mil, Milimetre
 
-USAGE :
--> Import this file into their respective project.
--> Use the function length_conversion() for conversion of length units.
--> Parameters :
-    -> value : The number of from units you want to convert
-    -> from_type : From which type you want to convert
-    -> to_type : To which type you want to convert
+Organiser: K. Umut Araz
 
-REFERENCES :
--> Wikipedia reference: https://en.wikipedia.org/wiki/Meter
--> Wikipedia reference: https://en.wikipedia.org/wiki/Kilometer
--> Wikipedia reference: https://en.wikipedia.org/wiki/Feet
--> Wikipedia reference: https://en.wikipedia.org/wiki/Inch
--> Wikipedia reference: https://en.wikipedia.org/wiki/Centimeter
--> Wikipedia reference: https://en.wikipedia.org/wiki/Yard
--> Wikipedia reference: https://en.wikipedia.org/wiki/Foot
--> Wikipedia reference: https://en.wikipedia.org/wiki/Mile
--> Wikipedia reference: https://en.wikipedia.org/wiki/Millimeter
+KULLANIM:
+-> Bu dosyayı ilgili projeye dahil edin.
+-> Uzunluk birimlerinin dönüştürülmesi için length_conversion() fonksiyonunu kullanın.
+-> Parametreler:
+    -> value: Dönüştürmek istediğiniz birim sayısı
+    -> from_type: Hangi birimden dönüştürmek istediğiniz
+    -> to_type: Hangi birime dönüştürmek istediğiniz
+
+REFERANSLAR:
+-> Vikipedi referansı: https://tr.wikipedia.org/wiki/Metre
+-> Vikipedi referansı: https://tr.wikipedia.org/wiki/Kilometre
+-> Vikipedi referansı: https://tr.wikipedia.org/wiki/Ayak
+-> Vikipedi referansı: https://tr.wikipedia.org/wiki/İnç
+-> Vikipedi referansı: https://tr.wikipedia.org/wiki/Santimetre
+-> Vikipedi referansı: https://tr.wikipedia.org/wiki/Yarda
+-> Vikipedi referansı: https://tr.wikipedia.org/wiki/Mil
+-> Vikipedi referansı: https://tr.wikipedia.org/wiki/Milimetre
 """
 
 from typing import NamedTuple
@@ -30,20 +31,18 @@ class FromTo(NamedTuple):
     to_factor: float
 
 
-TYPE_CONVERSION = {
-    "millimeter": "mm",
-    "centimeter": "cm",
-    "meter": "m",
-    "kilometer": "km",
-    "inch": "in",
-    "inche": "in",  # Trailing 's' has been stripped off
-    "feet": "ft",
-    "foot": "ft",
-    "yard": "yd",
-    "mile": "mi",
+TIP_DONUSUMU = {
+    "milimetre": "mm",
+    "santimetre": "cm",
+    "metre": "m",
+    "kilometre": "km",
+    "inç": "in",
+    "ayak": "ft",
+    "yarda": "yd",
+    "mil": "mi",
 }
 
-METRIC_CONVERSION = {
+METRIK_DONUSUM = {
     "mm": FromTo(0.001, 1000),
     "cm": FromTo(0.01, 100),
     "m": FromTo(1, 1),
@@ -55,35 +54,35 @@ METRIC_CONVERSION = {
 }
 
 
-def length_conversion(value: float, from_type: str, to_type: str) -> float:
+def uzunluk_donustur(value: float, from_type: str, to_type: str) -> float:
     """
-    Conversion between length units.
+    Uzunluk birimleri arasında dönüşüm.
 
-    >>> length_conversion(4, "METER", "FEET")
+    >>> uzunluk_donustur(4, "METRE", "AYAK")
     13.12336
-    >>> length_conversion(4, "M", "FT")
+    >>> uzunluk_donustur(4, "M", "FT")
     13.12336
-    >>> length_conversion(1, "meter", "kilometer")
+    >>> uzunluk_donustur(1, "metre", "kilometre")
     0.001
-    >>> length_conversion(1, "kilometer", "inch")
+    >>> uzunluk_donustur(1, "kilometre", "inç")
     39370.1
-    >>> length_conversion(3, "kilometer", "mile")
+    >>> uzunluk_donustur(3, "kilometre", "mil")
     1.8641130000000001
-    >>> length_conversion(2, "feet", "meter")
+    >>> uzunluk_donustur(2, "ayak", "metre")
     0.6096
-    >>> length_conversion(4, "feet", "yard")
+    >>> uzunluk_donustur(4, "ayak", "yarda")
     1.333329312
-    >>> length_conversion(1, "inch", "meter")
+    >>> uzunluk_donustur(1, "inç", "metre")
     0.0254
-    >>> length_conversion(2, "inch", "mile")
+    >>> uzunluk_donustur(2, "inç", "mil")
     3.15656468e-05
-    >>> length_conversion(2, "centimeter", "millimeter")
+    >>> uzunluk_donustur(2, "santimetre", "milimetre")
     20.0
-    >>> length_conversion(2, "centimeter", "yard")
+    >>> uzunluk_donustur(2, "santimetre", "yarda")
     0.0218722
-    >>> length_conversion(4, "yard", "meter")
+    >>> uzunluk_donustur(4, "yarda", "metre")
     3.6576
-    >>> length_conversion(4, "yard", "kilometer")
+    >>> uzunluk_donustur(4, "yarda", "kilometre")
     0.0036576
     >>> length_conversion(3, "foot", "meter")
     0.9144000000000001

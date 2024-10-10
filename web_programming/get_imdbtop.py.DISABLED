@@ -1,6 +1,8 @@
 import bs4
 import requests
 
+# Organiser: K. Umut Araz
+
 
 def get_movie_data_from_soup(soup: bs4.element.Tag) -> dict[str, str]:
     return {

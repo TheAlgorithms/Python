@@ -1,6 +1,8 @@
 import csv
 import tweepy
 
+# Organiser: K. Umut Araz
+
 # Twitter API kimlik bilgileri
 consumer_key = "YOUR_CONSUMER_KEY"
 consumer_secret = "YOUR_CONSUMER_SECRET"

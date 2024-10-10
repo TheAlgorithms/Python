@@ -2,6 +2,8 @@
 Yazar  : Alexander Pantyukhin
 Tarih  : 1 Kasım 2022
 
+Organiser: K. Umut Araz
+
 Görev:
 Pozitif bir tamsayı verildiğinde, bu sayının 2'nin kuvveti olup olmadığını
 True veya False olarak döndürün.

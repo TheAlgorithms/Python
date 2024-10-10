@@ -2,8 +2,10 @@
 Bu problemde, 1'den n'ye kadar olan sayılardan k sayısının tüm olası kombinasyonlarını belirlemek istiyoruz.
 Bu problemi çözmek için geri izleme (backtracking) kullanıyoruz.
 
-Zaman karmaşıklığı: O(C(n,k)) yani O(n choose k) = O((n!/(k! * (n - k)!))),
 """
+#Organiser: K. Umut Araz
+
+
 
 from __future__ import annotations
 

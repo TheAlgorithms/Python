@@ -1,9 +1,13 @@
-from maths.greatest_common_divisor import gcd_by_iterative
+from maths.büyük_ortak_bölgenin_hesaplanması import gcd_by_iterative
+
+"""
+Organiser: K. Umut Araz
+"""
 
 
-def find_mod_inverse(a: int, m: int) -> int:
+def mod_tersi_bul(a: int, m: int) -> int:
     if gcd_by_iterative(a, m) != 1:
-        msg = f"mod inverse of {a!r} and {m!r} does not exist"
+        msg = f"{a!r} ve {m!r} için mod tersi mevcut değil"
         raise ValueError(msg)
     u1, u2, u3 = 1, 0, a
     v1, v2, v3 = 0, 1, m

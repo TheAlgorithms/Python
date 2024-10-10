@@ -1,11 +1,13 @@
 """
-An RSA prime factor algorithm.
+RSA asal çarpan algoritması.
 
-The program can efficiently factor RSA prime number given the private key d and
-public key e.
-Source: on page 3 of https://crypto.stanford.edu/~dabo/papers/RSA-survey.pdf
-More readable source: https://www.di-mgt.com.au/rsa_factorize_n.html
-large number can take minutes to factor, therefore are not included in doctest.
+Bu program, özel anahtar d ve
+genel anahtar e verildiğinde RSA asal sayısını verimli bir şekilde çarpanlarına ayırabilir.
+Kaynak: https://crypto.stanford.edu/~dabo/papers/RSA-survey.pdf sayfa 3
+Daha okunabilir kaynak: https://www.di-mgt.com.au/rsa_factorize_n.html
+Büyük sayılar çarpanlarına ayrılması için dakikalar alabilir, bu nedenle doctest'e dahil edilmemiştir.
+
+#Organiser: K. Umut Araz
 """
 
 from __future__ import annotations
@@ -14,22 +16,22 @@ import math
 import random
 
 
-def rsafactor(d: int, e: int, n: int) -> list[int]:
+def rsa_carpan(d: int, e: int, n: int) -> list[int]:
     """
-    This function returns the factors of N, where p*q=N
-      Return: [p, q]
+    Bu fonksiyon N'nin çarpanlarını döndürür, burada p*q=N
+      Dönüş: [p, q]
 
-    We call N the RSA modulus, e the encryption exponent, and d the decryption exponent.
-    The pair (N, e) is the public key. As its name suggests, it is public and is used to
-        encrypt messages.
-    The pair (N, d) is the secret key or private key and is known only to the recipient
-        of encrypted messages.
+    N'yi RSA modülü, e'yi şifreleme üssü ve d'yi şifre çözme üssü olarak adlandırıyoruz.
+    (N, e) çifti genel anahtardır. Adından da anlaşılacağı gibi, bu anahtar herkese açıktır ve
+        mesajları şifrelemek için kullanılır.
+    (N, d) çifti ise gizli anahtar veya özel anahtardır ve yalnızca
+        şifreli mesajların alıcısı tarafından bilinir.
 
-    >>> rsafactor(3, 16971, 25777)
+    >>> rsa_carpan(3, 16971, 25777)
     [149, 173]
-    >>> rsafactor(7331, 11, 27233)
+    >>> rsa_carpan(7331, 11, 27233)
     [113, 241]
-    >>> rsafactor(4021, 13, 17711)
+    >>> rsa_carpan(4021, 13, 17711)
     [89, 199]
     """
     k = d * e - 1
@@ -46,9 +48,9 @@ def rsafactor(d: int, e: int, n: int) -> list[int]:
                 if x > 1 and y > 1:
                     p = y
                     q = n // y
-                    break  # find the correct factors
+                    break  # doğru çarpanları bul
             else:
-                break  # t is not divisible by 2, break and choose another g
+                break  # t 2'ye tam bölünmüyorsa, başka bir g seç
     return sorted([p, q])
 
 

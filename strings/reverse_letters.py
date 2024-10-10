@@ -1,19 +1,22 @@
-def reverse_letters(sentence: str, length: int = 0) -> str:
+def ters_cevir(cümle: str, uzunluk: int = 0) -> str:
     """
-    Reverse all words that are longer than the given length of characters in a sentence.
-    If unspecified, length is taken as 0
+    Verilen karakter uzunluğundan daha uzun olan tüm kelimeleri ters çevirir.
 
-    >>> reverse_letters("Hey wollef sroirraw", 3)
+    Organiser: K. Umut Araz
+    
+    Uzunluk belirtilmezse, varsayılan olarak 0 alınır.
+
+    >>> ters_cevir("Hey wollef sroirraw", 3)
     'Hey fellow warriors'
-    >>> reverse_letters("nohtyP is nohtyP", 2)
+    >>> ters_cevir("nohtyP is nohtyP", 2)
     'Python is Python'
-    >>> reverse_letters("1 12 123 1234 54321 654321", 0)
+    >>> ters_cevir("1 12 123 1234 54321 654321", 0)
     '1 21 321 4321 12345 123456'
-    >>> reverse_letters("racecar")
+    >>> ters_cevir("racecar")
     'racecar'
     """
     return " ".join(
-        "".join(word[::-1]) if len(word) > length else word for word in sentence.split()
+        word[::-1] if len(word) > uzunluk else word for word in cümle.split()
     )
 
 
@@ -21,4 +24,4 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    print(reverse_letters("Hey wollef sroirraw"))
+    print(ters_cevir("Hey wollef sroirraw"))

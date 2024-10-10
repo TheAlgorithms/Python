@@ -1,125 +1,126 @@
 from collections.abc import Callable
 
 
-def levenshtein_distance(first_word: str, second_word: str) -> int:
+def levenshtein_distance(birinci_kelime: str, ikinci_kelime: str) -> int:
     """
-    Implementation of the Levenshtein distance in Python.
-    :param first_word: the first word to measure the difference.
-    :param second_word: the second word to measure the difference.
-    :return: the levenshtein distance between the two words.
-    Examples:
-    >>> levenshtein_distance("planet", "planetary")
+    Organiser: K. Umut Araz 
+    
+    Python'da Levenshtein mesafesinin uygulanması.
+    :param birinci_kelime: farkı ölçmek için birinci kelime.
+    :param ikinci_kelime: farkı ölçmek için ikinci kelime.
+    :return: iki kelime arasındaki Levenshtein mesafesi.
+    Örnekler:
+    >>> levenshtein_distance("gezegen", "gezegensel")
     3
     >>> levenshtein_distance("", "test")
     4
-    >>> levenshtein_distance("book", "back")
+    >>> levenshtein_distance("kitap", "arka")
     2
-    >>> levenshtein_distance("book", "book")
+    >>> levenshtein_distance("kitap", "kitap")
     0
     >>> levenshtein_distance("test", "")
     4
     >>> levenshtein_distance("", "")
     0
-    >>> levenshtein_distance("orchestration", "container")
+    >>> levenshtein_distance("orchestrasyon", "konteyner")
     10
     """
-    # The longer word should come first
-    if len(first_word) < len(second_word):
-        return levenshtein_distance(second_word, first_word)
+    # Daha uzun kelime önce gelmeli
+    if len(birinci_kelime) < len(ikinci_kelime):
+        return levenshtein_distance(ikinci_kelime, birinci_kelime)
 
-    if len(second_word) == 0:
-        return len(first_word)
+    if len(ikinci_kelime) == 0:
+        return len(birinci_kelime)
 
-    previous_row = list(range(len(second_word) + 1))
+    onceki_satir = list(range(len(ikinci_kelime) + 1))
 
-    for i, c1 in enumerate(first_word):
-        current_row = [i + 1]
+    for i, c1 in enumerate(birinci_kelime):
+        mevcut_satir = [i + 1]
 
-        for j, c2 in enumerate(second_word):
-            # Calculate insertions, deletions, and substitutions
-            insertions = previous_row[j + 1] + 1
-            deletions = current_row[j] + 1
-            substitutions = previous_row[j] + (c1 != c2)
+        for j, c2 in enumerate(ikinci_kelime):
+            # Ekleme, silme ve değiştirme işlemlerini hesapla
+            eklemeler = onceki_satir[j + 1] + 1
+            silmeler = mevcut_satir[j] + 1
+            degistirmeler = onceki_satir[j] + (c1 != c2)
 
-            # Get the minimum to append to the current row
-            current_row.append(min(insertions, deletions, substitutions))
+            # Mevcut satıra eklemek için minimumu al
+            mevcut_satir.append(min(eklemeler, silmeler, degistirmeler))
 
-        # Store the previous row
-        previous_row = current_row
+        # Önceki satırı sakla
+        onceki_satir = mevcut_satir
 
-    # Returns the last element (distance)
-    return previous_row[-1]
+    # Son elemanı (mesafe) döndür
+    return onceki_satir[-1]
 
 
-def levenshtein_distance_optimized(first_word: str, second_word: str) -> int:
+def levenshtein_distance_optimized(birinci_kelime: str, ikinci_kelime: str) -> int:
     """
-    Compute the Levenshtein distance between two words (strings).
-    The function is optimized for efficiency by modifying rows in place.
-    :param first_word: the first word to measure the difference.
-    :param second_word: the second word to measure the difference.
-    :return: the Levenshtein distance between the two words.
-    Examples:
-    >>> levenshtein_distance_optimized("planet", "planetary")
+    İki kelime (string) arasındaki Levenshtein mesafesini hesapla.
+    Fonksiyon, satırları yerinde değiştirerek verimlilik için optimize edilmiştir.
+    :param birinci_kelime: farkı ölçmek için birinci kelime.
+    :param ikinci_kelime: farkı ölçmek için ikinci kelime.
+    :return: iki kelime arasındaki Levenshtein mesafesi.
+    Örnekler:
+    >>> levenshtein_distance_optimized("gezegen", "gezegensel")
     3
     >>> levenshtein_distance_optimized("", "test")
     4
-    >>> levenshtein_distance_optimized("book", "back")
+    >>> levenshtein_distance_optimized("kitap", "arka")
     2
-    >>> levenshtein_distance_optimized("book", "book")
+    >>> levenshtein_distance_optimized("kitap", "kitap")
     0
     >>> levenshtein_distance_optimized("test", "")
     4
     >>> levenshtein_distance_optimized("", "")
     0
-    >>> levenshtein_distance_optimized("orchestration", "container")
+    >>> levenshtein_distance_optimized("orchestrasyon", "konteyner")
     10
     """
-    if len(first_word) < len(second_word):
-        return levenshtein_distance_optimized(second_word, first_word)
+    if len(birinci_kelime) < len(ikinci_kelime):
+        return levenshtein_distance_optimized(ikinci_kelime, birinci_kelime)
 
-    if len(second_word) == 0:
-        return len(first_word)
+    if len(ikinci_kelime) == 0:
+        return len(birinci_kelime)
 
-    previous_row = list(range(len(second_word) + 1))
+    onceki_satir = list(range(len(ikinci_kelime) + 1))
 
-    for i, c1 in enumerate(first_word):
-        current_row = [i + 1] + [0] * len(second_word)
+    for i, c1 in enumerate(birinci_kelime):
+        mevcut_satir = [i + 1] + [0] * len(ikinci_kelime)
 
-        for j, c2 in enumerate(second_word):
-            insertions = previous_row[j + 1] + 1
-            deletions = current_row[j] + 1
-            substitutions = previous_row[j] + (c1 != c2)
-            current_row[j + 1] = min(insertions, deletions, substitutions)
+        for j, c2 in enumerate(ikinci_kelime):
+            eklemeler = onceki_satir[j + 1] + 1
+            silmeler = mevcut_satir[j] + 1
+            degistirmeler = onceki_satir[j] + (c1 != c2)
+            mevcut_satir[j + 1] = min(eklemeler, silmeler, degistirmeler)
 
-        previous_row = current_row
+        onceki_satir = mevcut_satir
 
-    return previous_row[-1]
+    return onceki_satir[-1]
 
 
 def benchmark_levenshtein_distance(func: Callable) -> None:
     """
-    Benchmark the Levenshtein distance function.
-    :param str: The name of the function being benchmarked.
-    :param func: The function to be benchmarked.
+    Levenshtein mesafe fonksiyonunu test et.
+    :param func: Test edilecek fonksiyon.
     """
     from timeit import timeit
 
-    stmt = f"{func.__name__}('sitting', 'kitten')"
+    stmt = f"{func.__name__}('oturmak', 'kedi')"
     setup = f"from __main__ import {func.__name__}"
     number = 25_000
     result = timeit(stmt=stmt, setup=setup, number=number)
-    print(f"{func.__name__:<30} finished {number:,} runs in {result:.5f} seconds")
+    print(f"{func.__name__:<30} {number:,} kez çalıştı ve {result:.5f} saniyede tamamlandı")
 
 
 if __name__ == "__main__":
-    # Get user input for words
-    first_word = input("Enter the first word for Levenshtein distance:\n").strip()
-    second_word = input("Enter the second word for Levenshtein distance:\n").strip()
+    # Kullanıcıdan kelimeleri al
+    birinci_kelime = input("Levenshtein mesafesi için birinci kelimeyi girin:\n").strip()
+    ikinci_kelime = input("Levenshtein mesafesi için ikinci kelimeyi girin:\n").strip()
 
-    # Calculate and print Levenshtein distances
-    print(f"{levenshtein_distance(first_word, second_word) = }")
-    print(f"{levenshtein_distance_optimized(first_word, second_word) = }")
+    # Levenshtein mesafelerini hesapla ve yazdır
+    print(f"{levenshtein_distance(birinci_kelime, ikinci_kelime) = }")
+    print(f"{levenshtein_distance_optimized(birinci_kelime, ikinci_kelime) = }")
 
-    # Benchmark the Levenshtein distance functions
+    # Levenshtein mesafe fonksiyonlarını test et
     benchmark_levenshtein_distance(levenshtein_distance)
     benchmark_levenshtein_distance(levenshtein_distance_optimized)

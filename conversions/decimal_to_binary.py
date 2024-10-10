@@ -1,104 +1,107 @@
-"""Convert a Decimal Number to a Binary Number."""
+"""Ondalık Sayıyı İkilik Sayıya Dönüştür.
+
+Organiser: K. Umut Araz
+"""
 
 
-def decimal_to_binary_iterative(num: int) -> str:
+def ondalik_to_ikilik_iteratif(sayi: int) -> str:
     """
-    Convert an Integer Decimal Number to a Binary Number as str.
-    >>> decimal_to_binary_iterative(0)
+    Bir Tam Sayı Ondalık Sayıyı İkilik Sayıya str olarak dönüştür.
+    >>> ondalik_to_ikilik_iteratif(0)
     '0b0'
-    >>> decimal_to_binary_iterative(2)
+    >>> ondalik_to_ikilik_iteratif(2)
     '0b10'
-    >>> decimal_to_binary_iterative(7)
+    >>> ondalik_to_ikilik_iteratif(7)
     '0b111'
-    >>> decimal_to_binary_iterative(35)
+    >>> ondalik_to_ikilik_iteratif(35)
     '0b100011'
-    >>> # negatives work too
-    >>> decimal_to_binary_iterative(-2)
+    >>> # negatif sayılar da çalışır
+    >>> ondalik_to_ikilik_iteratif(-2)
     '-0b10'
-    >>> # other floats will error
-    >>> decimal_to_binary_iterative(16.16) # doctest: +ELLIPSIS
+    >>> # diğer float değerler hata verecek
+    >>> ondalik_to_ikilik_iteratif(16.16) # doctest: +ELLIPSIS
     Traceback (most recent call last):
         ...
-    TypeError: 'float' object cannot be interpreted as an integer
-    >>> # strings will error as well
-    >>> decimal_to_binary_iterative('0xfffff') # doctest: +ELLIPSIS
+    TypeError: 'float' nesnesi tam sayı olarak yorumlanamaz
+    >>> # string değerler de hata verecek
+    >>> ondalik_to_ikilik_iteratif('0xfffff') # doctest: +ELLIPSIS
     Traceback (most recent call last):
         ...
-    TypeError: 'str' object cannot be interpreted as an integer
+    TypeError: 'str' nesnesi tam sayı olarak yorumlanamaz
     """
 
-    if isinstance(num, float):
-        raise TypeError("'float' object cannot be interpreted as an integer")
-    if isinstance(num, str):
-        raise TypeError("'str' object cannot be interpreted as an integer")
+    if isinstance(sayi, float):
+        raise TypeError("'float' nesnesi tam sayı olarak yorumlanamaz")
+    if isinstance(sayi, str):
+        raise TypeError("'str' nesnesi tam sayı olarak yorumlanamaz")
 
-    if num == 0:
+    if sayi == 0:
         return "0b0"
 
-    negative = False
+    negatif = False
 
-    if num < 0:
-        negative = True
-        num = -num
+    if sayi < 0:
+        negatif = True
+        sayi = -sayi
 
-    binary: list[int] = []
-    while num > 0:
-        binary.insert(0, num % 2)
-        num >>= 1
+    ikilik: list[int] = []
+    while sayi > 0:
+        ikilik.insert(0, sayi % 2)
+        sayi >>= 1
 
-    if negative:
-        return "-0b" + "".join(str(e) for e in binary)
+    if negatif:
+        return "-0b" + "".join(str(e) for e in ikilik)
 
-    return "0b" + "".join(str(e) for e in binary)
+    return "0b" + "".join(str(e) for e in ikilik)
 
 
-def decimal_to_binary_recursive_helper(decimal: int) -> str:
+def ondalik_to_ikilik_recursive_helper(ondalik: int) -> str:
     """
-    Take a positive integer value and return its binary equivalent.
-    >>> decimal_to_binary_recursive_helper(1000)
+    Pozitif bir tam sayı alır ve ikilik karşılığını döner.
+    >>> ondalik_to_ikilik_recursive_helper(1000)
     '1111101000'
-    >>> decimal_to_binary_recursive_helper("72")
+    >>> ondalik_to_ikilik_recursive_helper("72")
     '1001000'
-    >>> decimal_to_binary_recursive_helper("number")
+    >>> ondalik_to_ikilik_recursive_helper("sayı")
     Traceback (most recent call last):
         ...
-    ValueError: invalid literal for int() with base 10: 'number'
+    ValueError: int() ile 10 tabanında geçersiz literal: 'sayı'
     """
-    decimal = int(decimal)
-    if decimal in (0, 1):  # Exit cases for the recursion
-        return str(decimal)
-    div, mod = divmod(decimal, 2)
-    return decimal_to_binary_recursive_helper(div) + str(mod)
+    ondalik = int(ondalik)
+    if ondalik in (0, 1):  # Rekürsiyon için çıkış durumları
+        return str(ondalik)
+    bolum, kalan = divmod(ondalik, 2)
+    return ondalik_to_ikilik_recursive_helper(bolum) + str(kalan)
 
 
-def decimal_to_binary_recursive(number: str) -> str:
+def ondalik_to_ikilik_recursive(sayi: str) -> str:
     """
-    Take an integer value and raise ValueError for wrong inputs,
-    call the function above and return the output with prefix "0b" & "-0b"
-    for positive and negative integers respectively.
-    >>> decimal_to_binary_recursive(0)
+    Bir tam sayı alır ve yanlış girişler için ValueError fırlatır,
+    yukarıdaki fonksiyonu çağırır ve çıktıyı "0b" ve "-0b" ön eki ile döner
+    pozitif ve negatif tam sayılar için sırasıyla.
+    >>> ondalik_to_ikilik_recursive(0)
     '0b0'
-    >>> decimal_to_binary_recursive(40)
+    >>> ondalik_to_ikilik_recursive(40)
     '0b101000'
-    >>> decimal_to_binary_recursive(-40)
+    >>> ondalik_to_ikilik_recursive(-40)
     '-0b101000'
-    >>> decimal_to_binary_recursive(40.8)
+    >>> ondalik_to_ikilik_recursive(40.8)
     Traceback (most recent call last):
         ...
-    ValueError: Input value is not an integer
-    >>> decimal_to_binary_recursive("forty")
+    ValueError: Giriş değeri bir tam sayı değil
+    >>> ondalik_to_ikilik_recursive("kırk")
     Traceback (most recent call last):
         ...
-    ValueError: Input value is not an integer
+    ValueError: Giriş değeri bir tam sayı değil
     """
-    number = str(number).strip()
-    if not number:
-        raise ValueError("No input value was provided")
-    negative = "-" if number.startswith("-") else ""
-    number = number.lstrip("-")
-    if not number.isnumeric():
-        raise ValueError("Input value is not an integer")
-    return f"{negative}0b{decimal_to_binary_recursive_helper(int(number))}"
+    sayi = str(sayi).strip()
+    if not sayi:
+        raise ValueError("Hiçbir giriş değeri sağlanmadı")
+    negatif = "-" if sayi.startswith("-") else ""
+    sayi = sayi.lstrip("-")
+    if not sayi.isnumeric():
+        raise ValueError("Giriş değeri bir tam sayı değil")
+    return f"{negatif}0b{ondalik_to_ikilik_recursive_helper(int(sayi))}"
 
 
 if __name__ == "__main__":
@@ -106,4 +109,4 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    print(decimal_to_binary_recursive(input("Input a decimal number: ")))
+    print(ondalik_to_ikilik_recursive(input("Bir ondalık sayı girin: ")))

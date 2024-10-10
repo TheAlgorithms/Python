@@ -1,22 +1,24 @@
-def lower(word: str) -> str:
+def kucuk_harf(word: str) -> str:
     """
-    Will convert the entire string to lowercase letters
+    Verilen stringi tamamen küçük harflere dönüştürür.
 
-    >>> lower("wow")
+    Organiser: K. Umut Araz
+
+    >>> kucuk_harf("wow")
     'wow'
-    >>> lower("HellZo")
+    >>> kucuk_harf("HellZo")
     'hellzo'
-    >>> lower("WHAT")
+    >>> kucuk_harf("WHAT")
     'what'
-    >>> lower("wh[]32")
+    >>> kucuk_harf("wh[]32")
     'wh[]32'
-    >>> lower("whAT")
+    >>> kucuk_harf("whAT")
     'what'
     """
 
-    # Converting to ASCII value, obtaining the integer representation
-    # and checking to see if the character is a capital letter.
-    # If it is a capital letter, it is shifted by 32, making it a lowercase letter.
+    # ASCII değerine dönüştürme, tam sayı temsilini elde etme
+    # ve karakterin büyük harf olup olmadığını kontrol etme.
+    # Eğer büyük harf ise, 32 eklenerek küçük harf haline getirilir.
     return "".join(chr(ord(char) + 32) if "A" <= char <= "Z" else char for char in word)
 
 

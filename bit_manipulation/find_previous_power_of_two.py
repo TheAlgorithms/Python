@@ -1,5 +1,8 @@
 def bir_onceki_iki_ussu_bul(sayi: int) -> int:
     """
+
+    Organiser: K. Umut Araz
+
     Verilen bir tam sayıdan küçük veya ona eşit en büyük iki üssünü bulun.
     https://stackoverflow.com/questions/1322510
 

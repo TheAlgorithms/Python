@@ -1,35 +1,25 @@
 """
 
-Hill Cipher:
-The 'HillCipher' class below implements the Hill Cipher algorithm which uses
-modern linear algebra techniques to encode and decode text using an encryption
-key matrix.
+Hill Şifrelemesi:
+Aşağıdaki 'HillCipher' sınıfı, metni şifrelemek ve çözmek için modern lineer cebir tekniklerini kullanan Hill Şifreleme algoritmasını uygular.
 
-Algorithm:
-Let the order of the encryption key be N (as it is a square matrix).
-Your text is divided into batches of length N and converted to numerical vectors
-by a simple mapping starting with A=0 and so on.
+Algoritma:
+Şifreleme anahtarının sırası N olsun (bir kare matris olarak).
+Metniniz N uzunluğunda parçalara ayrılır ve A=0 ile başlayan basit bir eşleme ile sayısal vektörlere dönüştürülür.
 
-The key is then multiplied with the newly created batch vector to obtain the
-encoded vector. After each multiplication modular 36 calculations are performed
-on the vectors so as to bring the numbers between 0 and 36 and then mapped with
-their corresponding alphanumerics.
+Anahtar, yeni oluşturulan parça vektörü ile çarpılır ve şifrelenmiş vektör elde edilir. Her çarpım sonrasında, vektörler üzerinde 36 modüler hesaplamalar yapılır, böylece sayılar 0 ile 36 arasında kalır ve ardından karşılık gelen alfanümerik karakterlerle eşlenir.
 
-While decrypting, the decrypting key is found which is the inverse of the
-encrypting key modular 36. The same process is repeated for decrypting to get
-the original message back.
+Şifre çözme sırasında, şifreleme anahtarının mod 36 tersini bulan çözme anahtarı bulunur. Orijinal mesajı geri almak için şifre çözme işlemi tekrarlanır.
 
-Constraints:
-The determinant of the encryption key matrix must be relatively prime w.r.t 36.
+Kısıtlamalar:
+Şifreleme anahtar matrisinin determinantı, 36 ile göreceli asal olmalıdır.
 
-Note:
-This implementation only considers alphanumerics in the text.  If the length of
-the text to be encrypted is not a multiple of the break key(the length of one
-batch of letters), the last character of the text is added to the text until the
-length of the text reaches a multiple of the break_key. So the text after
-decrypting might be a little different than the original text.
+Organiser: K. Umut Araz
 
-References:
+Not:
+Bu uygulama yalnızca metindeki alfanümerikleri dikkate alır. Şifrelenecek metnin uzunluğu, kırılma anahtarının (bir harf parçasının uzunluğu) katı değilse, metnin son karakteri, metnin uzunluğu kırılma anahtarının katı olana kadar metne eklenir. Bu nedenle, şifre çözüldükten sonra metin, orijinal metinden biraz farklı olabilir.
+
+Referanslar:
 https://apprendre-en-ligne.net/crypto/hill/Hillciph.pdf
 https://www.youtube.com/watch?v=kfmNeskzs2o
 https://www.youtube.com/watch?v=4RhLNDqcjpA
@@ -37,28 +27,25 @@ https://www.youtube.com/watch?v=4RhLNDqcjpA
 """
 
 import string
-
 import numpy as np
-
 from maths.greatest_common_divisor import greatest_common_divisor
 
 
 class HillCipher:
     key_string = string.ascii_uppercase + string.digits
-    # This cipher takes alphanumerics into account
-    # i.e. a total of 36 characters
+    # Bu şifre, alfanümerikleri dikkate alır
+    # yani toplamda 36 karakter
 
-    # take x and return x % len(key_string)
+    # x al ve x % len(key_string) döndür
     modulus = np.vectorize(lambda x: x % 36)
-
     to_int = np.vectorize(round)
 
     def __init__(self, encrypt_key: np.ndarray) -> None:
         """
-        encrypt_key is an NxN numpy array
+        encrypt_key bir NxN numpy dizisidir
         """
-        self.encrypt_key = self.modulus(encrypt_key)  # mod36 calc's on the encrypt key
-        self.check_determinant()  # validate the determinant of the encryption key
+        self.encrypt_key = self.modulus(encrypt_key)  # şifreleme anahtarında mod36 hesaplamaları
+        self.check_determinant()  # şifreleme anahtarının determinantını doğrula
         self.break_key = encrypt_key.shape[0]
 
     def replace_letters(self, letter: str) -> int:
@@ -94,8 +81,8 @@ class HillCipher:
         req_l = len(self.key_string)
         if greatest_common_divisor(det, len(self.key_string)) != 1:
             msg = (
-                f"determinant modular {req_l} of encryption key({det}) "
-                f"is not co prime w.r.t {req_l}.\nTry another key."
+                f"Şifreleme anahtarının determinantı ({det}) mod {req_l} "
+                f"{req_l} ile asal değildir.\nBaşka bir anahtar deneyin."
             )
             raise ValueError(msg)
 
@@ -130,9 +117,7 @@ class HillCipher:
             batch = text[i : i + self.break_key]
             vec = [self.replace_letters(char) for char in batch]
             batch_vec = np.array([vec]).T
-            batch_encrypted = self.modulus(self.encrypt_key.dot(batch_vec)).T.tolist()[
-                0
-            ]
+            batch_encrypted = self.modulus(self.encrypt_key.dot(batch_vec)).T.tolist()[0]
             encrypted_batch = "".join(
                 self.replace_digits(num) for num in batch_encrypted
             )
@@ -189,25 +174,25 @@ class HillCipher:
 
 
 def main() -> None:
-    n = int(input("Enter the order of the encryption key: "))
+    n = int(input("Şifreleme anahtarının sırasını girin: "))
     hill_matrix = []
 
-    print("Enter each row of the encryption key with space separated integers")
+    print("Şifreleme anahtarının her satırını boşlukla ayrılmış tam sayılarla girin")
     for _ in range(n):
         row = [int(x) for x in input().split()]
         hill_matrix.append(row)
 
     hc = HillCipher(np.array(hill_matrix))
 
-    print("Would you like to encrypt or decrypt some text? (1 or 2)")
-    option = input("\n1. Encrypt\n2. Decrypt\n")
+    print("Metni şifrelemek mi yoksa çözmek mi istersiniz? (1 veya 2)")
+    option = input("\n1. Şifrele\n2. Çöz\n")
     if option == "1":
-        text_e = input("What text would you like to encrypt?: ")
-        print("Your encrypted text is:")
+        text_e = input("Hangi metni şifrelemek istersiniz?: ")
+        print("Şifrelenmiş metniniz:")
         print(hc.encrypt(text_e))
     elif option == "2":
-        text_d = input("What text would you like to decrypt?: ")
-        print("Your decrypted text is:")
+        text_d = input("Hangi metni çözmek istersiniz?: ")
+        print("Çözülmüş metniniz:")
         print(hc.decrypt(text_d))
 
 

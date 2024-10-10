@@ -1,33 +1,35 @@
-def strip(user_string: str, characters: str = " \t\n\r") -> str:
+def kes(string: str, karakterler: str = " \t\n\r") -> str:
     """
-    Remove leading and trailing characters (whitespace by default) from a string.
+    Organiser: K. Umut Araz
+
+    Bir string'in başındaki ve sonundaki karakterleri (varsayılan olarak boşluk) kaldırır.
 
     Args:
-        user_string (str): The input string to be stripped.
-        characters (str, optional): Optional characters to be removed
-                (default is whitespace).
+        string (str): Kaldırılacak girdi string'i.
+        karakterler (str, optional): Kaldırılacak isteğe bağlı karakterler
+                (varsayılan boşluktur).
 
     Returns:
-        str: The stripped string.
+        str: Kaldırılmış string.
 
-    Examples:
-        >>> strip("   hello   ")
-        'hello'
-        >>> strip("...world...", ".")
-        'world'
-        >>> strip("123hello123", "123")
-        'hello'
-        >>> strip("")
+    Örnekler:
+        >>> kes("   merhaba   ")
+        'merhaba'
+        >>> kes("...dünya...", ".")
+        'dünya'
+        >>> kes("123merhaba123", "123")
+        'merhaba'
+        >>> kes("")
         ''
     """
 
-    start = 0
-    end = len(user_string)
+    baslangic = 0
+    son = len(string)
 
-    while start < end and user_string[start] in characters:
-        start += 1
+    while baslangic < son and string[baslangic] in karakterler:
+        baslangic += 1
 
-    while end > start and user_string[end - 1] in characters:
-        end -= 1
+    while son > baslangic and string[son - 1] in karakterler:
+        son -= 1
 
-    return user_string[start:end]
+    return string[baslangic:son]

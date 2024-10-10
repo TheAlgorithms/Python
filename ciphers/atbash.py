@@ -1,29 +1,31 @@
-"""https://en.wikipedia.org/wiki/Atbash"""
+"""https://tr.wikipedia.org/wiki/Atbash"""
 
 import string
 
 
-def atbash_slow(sequence: str) -> str:
+def atbash_yavaş(dizi: str) -> str:
     """
-    >>> atbash_slow("ABCDEFG")
+    >>> atbash_yavaş("ABCDEFG")
     'ZYXWVUT'
 
-    >>> atbash_slow("aW;;123BX")
+    Organiser: K. Umut Araz
+
+    >>> atbash_yavaş("aW;;123BX")
     'zD;;123YC'
     """
-    output = ""
-    for i in sequence:
-        extract = ord(i)
-        if 65 <= extract <= 90:
-            output += chr(155 - extract)
-        elif 97 <= extract <= 122:
-            output += chr(219 - extract)
+    çıktı = ""
+    for i in dizi:
+        ascii_değeri = ord(i)
+        if 65 <= ascii_değeri <= 90:  # Büyük harfler için
+            çıktı += chr(155 - ascii_değeri)
+        elif 97 <= ascii_değeri <= 122:  # Küçük harfler için
+            çıktı += chr(219 - ascii_değeri)
         else:
-            output += i
-    return output
+            çıktı += i  # Harf olmayan karakterler için
+    return çıktı
 
 
-def atbash(sequence: str) -> str:
+def atbash(dizi: str) -> str:
     """
     >>> atbash("ABCDEFG")
     'ZYXWVUT'
@@ -31,24 +33,24 @@ def atbash(sequence: str) -> str:
     >>> atbash("aW;;123BX")
     'zD;;123YC'
     """
-    letters = string.ascii_letters
-    letters_reversed = string.ascii_lowercase[::-1] + string.ascii_uppercase[::-1]
+    harfler = string.ascii_letters
+    ters_harfler = string.ascii_lowercase[::-1] + string.ascii_uppercase[::-1]
     return "".join(
-        letters_reversed[letters.index(c)] if c in letters else c for c in sequence
+        ters_harfler[harfler.index(c)] if c in harfler else c for c in dizi
     )
 
 
 def benchmark() -> None:
-    """Let's benchmark our functions side-by-side..."""
+    """Fonksiyonlarımızın performansını yan yana karşılaştıralım..."""
     from timeit import timeit
 
-    print("Running performance benchmarks...")
-    setup = "from string import printable ; from __main__ import atbash, atbash_slow"
-    print(f"> atbash_slow(): {timeit('atbash_slow(printable)', setup=setup)} seconds")
-    print(f">      atbash(): {timeit('atbash(printable)', setup=setup)} seconds")
+    print("Performans testleri çalıştırılıyor...")
+    setup = "from string import printable ; from __main__ import atbash, atbash_yavaş"
+    print(f"> atbash_yavaş(): {timeit('atbash_yavaş(printable)', setup=setup)} saniye")
+    print(f">      atbash(): {timeit('atbash(printable)', setup=setup)} saniye")
 
 
 if __name__ == "__main__":
-    for example in ("ABCDEFGH", "123GGjj", "testStringtest", "with space"):
-        print(f"{example} encrypted in atbash: {atbash(example)}")
+    for örnek in ("ABCDEFGH", "123GGjj", "testStringtest", "boşluk ile"):
+        print(f"{örnek} atbash ile şifrelenmiş: {atbash(örnek)}")
     benchmark()

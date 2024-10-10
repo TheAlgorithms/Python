@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import requests
 
+# Organiser: K. Umut Araz
+
 valid_terms = set(
     """approved_at_utc approved_by author_flair_background_color
 author_flair_css_class author_flair_richtext author_flair_template_id author_fullname

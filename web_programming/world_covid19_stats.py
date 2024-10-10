@@ -3,6 +3,8 @@
 """
 Dünya genelindeki güncel COVID-19 istatistiklerini sağlayın.
 Bu veriler 'https://www.worldometers.info/coronavirus/' adresinden alınmaktadır.
+
+# Organiser: K. Umut Araz
 """
 
 import requests

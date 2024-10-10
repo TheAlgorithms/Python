@@ -1,5 +1,7 @@
 def bitleri_goster(oncesi: int, sonrasi: int) -> str:
     """
+    Organiser: K. Umut Araz 
+    
     >>> print(bitleri_goster(0, 0xFFFF))
         0: 00000000
     65535: 1111111111111111

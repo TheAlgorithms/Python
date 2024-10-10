@@ -1,6 +1,8 @@
 """
 N vezir problemi, N * N boyutundaki bir satranç tahtasına N vezir yerleştirme problemidir.
 Bu, hiçbir vezirin yatay, dikey ve çapraz çizgilerde başka bir veziri tehdit etmemesi gerektiği anlamına gelir.
+
+Organiser: K. Umut Araz
 """
 
 from __future__ import annotations

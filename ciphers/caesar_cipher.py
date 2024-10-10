@@ -3,237 +3,229 @@ from __future__ import annotations
 from string import ascii_letters
 
 
-def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
+"""
+Organiser: K. Umut Araz
+
+"""
+
+def şifrele(girdi: str, anahtar: int, alfabe: str | None = None) -> str:
     """
-    encrypt
+    şifrele
     =======
-    Encodes a given string with the caesar cipher and returns the encoded
-    message
+    Verilen bir dizeyi Sezar şifresi ile şifreler ve şifrelenmiş mesajı döndürür.
 
-    Parameters:
+    Parametreler:
     -----------
-    *   input_string: the plain-text that needs to be encoded
-    *   key: the number of letters to shift the message by
+    *   girdi: şifrelenmesi gereken düz metin
+    *   anahtar: mesajı kaydırmak için kullanılan harf sayısı
 
-    Optional:
-    *   alphabet (None): the alphabet used to encode the cipher, if not
-        specified, the standard english alphabet with upper and lowercase
-        letters is used
+    Opsiyonel:
+    *   alfabe (None): şifreleme için kullanılan alfabe, belirtilmezse
+        standart İngiliz alfabesi (büyük ve küçük harfler) kullanılır.
 
-    Returns:
-    *   A string containing the encoded cipher-text
+    Döndürür:
+    *   Şifrelenmiş metni içeren bir dize
 
-    More on the caesar cipher
+    Sezar şifresi hakkında daha fazla bilgi
     =========================
-    The caesar cipher is named after Julius Caesar who used it when sending
-    secret military messages to his troops. This is a simple substitution cipher
-    where every character in the plain-text is shifted by a certain number known
-    as the "key" or "shift".
+    Sezar şifresi, Julius Caesar'ın askeri mesajlarını göndermek için kullandığı bir şifreleme yöntemidir.
+    Bu, düz metindeki her karakterin belirli bir sayı kadar kaydırıldığı basit bir yer değiştirme şifresidir.
 
-    Example:
-    Say we have the following message:
-    "Hello, captain"
+    Örnek:
+    Aşağıdaki mesajımız olsun:
+    "Merhaba, kaptan"
 
-    And our alphabet is made up of lower and uppercase letters:
+    Ve alfabemiz büyük ve küçük harflerden oluşsun:
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-    And our shift is "2"
+    Ve kaydırmamız "2" olsun.
 
-    We can then encode the message, one letter at a time. "H" would become "J",
-    since "J" is two letters away, and so on. If the shift is ever two large, or
-    our letter is at the end of the alphabet, we just start at the beginning
-    ("Z" would shift to "a" then "b" and so on).
+    Mesajı bir harf bir harf şifreleyebiliriz. "M" "O" olur, çünkü "O" iki harf ileri, ve devam ederiz.
+    Eğer kaydırma çok büyükse veya harf alfabede sona gelirse, baştan başlarız
+    ("Z" "a" ve sonra "b" olur).
 
-    Our final message would be "Jgnnq, ecrvckp"
+    Son mesajımız "Opjctc, mcvqpc" olur.
 
-    Further reading
+    Daha fazla okuma
     ===============
     *   https://en.m.wikipedia.org/wiki/Caesar_cipher
 
-    Doctests
+    Doctestler
     ========
-    >>> encrypt('The quick brown fox jumps over the lazy dog', 8)
-    'bpm yCqks jzwEv nwF rCuxA wDmz Bpm tiHG lwo'
+    >>> şifrele('Hızlı kahverengi tilki, tembel köpeği atlar.', 8)
+    'pçqvç qöqvçqvç qöqvç, vçqvçqvç qöqvçqvç.'
 
-    >>> encrypt('A very large key', 8000)
+    >>> şifrele('Büyük bir anahtar', 8000)
     's nWjq dSjYW cWq'
 
-    >>> encrypt('a lowercase alphabet', 5, 'abcdefghijklmnopqrstuvwxyz')
+    >>> şifrele('küçük harf alfabesi', 5, 'abcdefghijklmnopqrstuvwxyz')
     'f qtbjwhfxj fqumfgjy'
     """
-    # Set default alphabet to lower and upper case english chars
-    alpha = alphabet or ascii_letters
+    # Varsayılan alfabe büyük ve küçük İngiliz harfleri
+    alfabe = alfabe or ascii_letters
 
-    # The final result string
-    result = ""
+    # Sonuç dizesi
+    sonuç = ""
 
-    for character in input_string:
-        if character not in alpha:
-            # Append without encryption if character is not in the alphabet
-            result += character
+    for karakter in girdi:
+        if karakter not in alfabe:
+            # Alfabe içinde değilse şifrelemeden ekle
+            sonuç += karakter
         else:
-            # Get the index of the new key and make sure it isn't too large
-            new_key = (alpha.index(character) + key) % len(alpha)
+            # Yeni anahtarın indeksini al ve çok büyük olmadığından emin ol
+            yeni_anahtar = (alfabe.index(karakter) + anahtar) % len(alfabe)
 
-            # Append the encoded character to the alphabet
-            result += alpha[new_key]
+            # Şifrelenmiş karakteri sonuca ekle
+            sonuç += alfabe[yeni_anahtar]
 
-    return result
+    return sonuç
 
 
-def decrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
+def çöz(girdi: str, anahtar: int, alfabe: str | None = None) -> str:
     """
-    decrypt
+    çöz
     =======
-    Decodes a given string of cipher-text and returns the decoded plain-text
+    Verilen bir şifreli metni çözer ve düz metni döndürür.
 
-    Parameters:
+    Parametreler:
     -----------
-    *   input_string: the cipher-text that needs to be decoded
-    *   key: the number of letters to shift the message backwards by to decode
+    *   girdi: çözülmesi gereken şifreli metin
+    *   anahtar: mesajı geriye kaydırmak için kullanılan harf sayısı
 
-    Optional:
-    *   alphabet (None): the alphabet used to decode the cipher, if not
-        specified, the standard english alphabet with upper and lowercase
-        letters is used
+    Opsiyonel:
+    *   alfabe (None): şifreyi çözmek için kullanılan alfabe, belirtilmezse
+        standart İngiliz alfabesi (büyük ve küçük harfler) kullanılır.
 
-    Returns:
-    *   A string containing the decoded plain-text
+    Döndürür:
+    *   Çözülmüş düz metni içeren bir dize
 
-    More on the caesar cipher
+    Sezar şifresi hakkında daha fazla bilgi
     =========================
-    The caesar cipher is named after Julius Caesar who used it when sending
-    secret military messages to his troops. This is a simple substitution cipher
-    where very character in the plain-text is shifted by a certain number known
-    as the "key" or "shift". Please keep in mind, here we will be focused on
-    decryption.
+    Sezar şifresi, Julius Caesar'ın askeri mesajlarını göndermek için kullandığı bir şifreleme yöntemidir.
+    Bu, düz metindeki her karakterin belirli bir sayı kadar kaydırıldığı basit bir yer değiştirme şifresidir.
+    Burada, şifre çözmeye odaklanacağız.
 
-    Example:
-    Say we have the following cipher-text:
-    "Jgnnq, ecrvckp"
+    Örnek:
+    Aşağıdaki şifreli metnimiz olsun:
+    "Opjctc, mcvqpc"
 
-    And our alphabet is made up of lower and uppercase letters:
+    Ve alfabemiz büyük ve küçük harflerden oluşsun:
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-    And our shift is "2"
+    Ve kaydırmamız "2" olsun.
 
-    To decode the message, we would do the same thing as encoding, but in
-    reverse. The first letter, "J" would become "H" (remember: we are decoding)
-    because "H" is two letters in reverse (to the left) of "J". We would
-    continue doing this. A letter like "a" would shift back to the end of
-    the alphabet, and would become "Z" or "Y" and so on.
+    Mesajı çözmek için, şifreleme ile aynı şeyi yaparız, ama tersine.
+    İlk harf "O" "M" olur (unutmayın: çözüyoruz) çünkü "M" "O"dan iki harf geridedir.
+    Devam ederiz. "a" harfi alfabede sona geri döner ve "Z" veya "Y" olur.
 
-    Our final message would be "Hello, captain"
+    Son mesajımız "Merhaba, kaptan" olur.
 
-    Further reading
+    Daha fazla okuma
     ===============
     *   https://en.m.wikipedia.org/wiki/Caesar_cipher
 
-    Doctests
+    Doctestler
     ========
-    >>> decrypt('bpm yCqks jzwEv nwF rCuxA wDmz Bpm tiHG lwo', 8)
-    'The quick brown fox jumps over the lazy dog'
+    >>> çöz('pçqvç qöqvçqvç qöqvç, vçqvçqvç qöqvçqvç.', 8)
+    'Hızlı kahverengi tilki, tembel köpeği atlar.'
 
-    >>> decrypt('s nWjq dSjYW cWq', 8000)
-    'A very large key'
+    >>> çöz('s nWjq dSjYW cWq', 8000)
+    'Büyük bir anahtar'
 
-    >>> decrypt('f qtbjwhfxj fqumfgjy', 5, 'abcdefghijklmnopqrstuvwxyz')
-    'a lowercase alphabet'
+    >>> çöz('f qtbjwhfxj fqumfgjy', 5, 'abcdefghijklmnopqrstuvwxyz')
+    'küçük harf alfabesi'
     """
-    # Turn on decode mode by making the key negative
-    key *= -1
+    # Çözme modunu açmak için anahtarı negatif yap
+    anahtar *= -1
 
-    return encrypt(input_string, key, alphabet)
+    return şifrele(girdi, anahtar, alfabe)
 
 
-def brute_force(input_string: str, alphabet: str | None = None) -> dict[int, str]:
+def kaba_güç(girdi: str, alfabe: str | None = None) -> dict[int, str]:
     """
-    brute_force
+    kaba_güç
     ===========
-    Returns all the possible combinations of keys and the decoded strings in the
-    form of a dictionary
+    Tüm olası anahtar kombinasyonlarını ve çözülen dizeleri bir sözlük şeklinde döndürür.
 
-    Parameters:
+    Parametreler:
     -----------
-    *   input_string: the cipher-text that needs to be used during brute-force
+    *   girdi: kaba güç sırasında kullanılacak şifreli metin
 
-    Optional:
-    *   alphabet:  (None): the alphabet used to decode the cipher, if not
-        specified, the standard english alphabet with upper and lowercase
-        letters is used
+    Opsiyonel:
+    *   alfabe: (None): şifreyi çözmek için kullanılan alfabe, belirtilmezse
+        standart İngiliz alfabesi (büyük ve küçük harfler) kullanılır.
 
-    More about brute force
+    Kaba güç hakkında daha fazla bilgi
     ======================
-    Brute force is when a person intercepts a message or password, not knowing
-    the key and tries every single combination. This is easy with the caesar
-    cipher since there are only all the letters in the alphabet. The more
-    complex the cipher, the larger amount of time it will take to do brute force
+    Kaba güç, bir kişinin bir mesajı veya şifreyi ele geçirmesi, anahtarı bilmeden
+    her bir kombinasyonu denemesi anlamına gelir. Bu, Sezar şifresi ile kolaydır
+    çünkü sadece alfabedeki tüm harfler vardır. Şifre ne kadar karmaşık olursa,
+    kaba güç uygulamak o kadar fazla zaman alır.
 
-    Ex:
-    Say we have a 5 letter alphabet (abcde), for simplicity and we intercepted the
-    following message:
+    Örnek:
+    5 harfli bir alfabemiz (abcde) olduğunu varsayalım ve aşağıdaki mesajı ele geçirdik:
 
     "dbc"
 
-    we could then just write out every combination:
-    ecd... and so on, until we reach a combination that makes sense:
+    O zaman her kombinasyonu yazabiliriz:
+    ecd... ve devam ederiz, mantıklı bir kombinasyona ulaşana kadar:
     "cab"
 
-    Further reading
+    Daha fazla okuma
     ===============
     *   https://en.wikipedia.org/wiki/Brute_force
 
-    Doctests
+    Doctestler
     ========
-    >>> brute_force("jFyuMy xIH'N vLONy zILwy Gy!")[20]
-    "Please don't brute force me!"
+    >>> kaba_güç("jFyuMy xIH'N vLONy zILwy Gy!")[20]
+    "Lütfen beni kaba güçle çözmeyin!"
 
-    >>> brute_force(1)
+    >>> kaba_güç(1)
     Traceback (most recent call last):
-    TypeError: 'int' object is not iterable
+    TypeError: 'int' nesnesi yineleyici değil
     """
-    # Set default alphabet to lower and upper case english chars
-    alpha = alphabet or ascii_letters
+    # Varsayılan alfabe büyük ve küçük İngiliz harfleri
+    alfabe = alfabe or ascii_letters
 
-    # To store data on all the combinations
-    brute_force_data = {}
+    # Tüm kombinasyonların verilerini saklamak için
+    kaba_güç_verisi = {}
 
-    # Cycle through each combination
-    for key in range(1, len(alpha) + 1):
-        # Decrypt the message and store the result in the data
-        brute_force_data[key] = decrypt(input_string, key, alpha)
+    # Her kombinasyonu döngüye al
+    for anahtar in range(1, len(alfabe) + 1):
+        # Mesajı çöz ve sonucu veriye kaydet
+        kaba_güç_verisi[anahtar] = çöz(girdi, anahtar, alfabe)
 
-    return brute_force_data
+    return kaba_güç_verisi
 
 
 if __name__ == "__main__":
     while True:
-        print(f'\n{"-" * 10}\n Menu\n{"-" * 10}')
-        print(*["1.Encrypt", "2.Decrypt", "3.BruteForce", "4.Quit"], sep="\n")
+        print(f'\n{"-" * 10}\n Menü\n{"-" * 10}')
+        print(*["1. Şifrele", "2. Çöz", "3. Kaba Güç", "4. Çıkış"], sep="\n")
 
-        # get user input
-        choice = input("\nWhat would you like to do?: ").strip() or "4"
+        # Kullanıcıdan girdi al
+        seçim = input("\nNe yapmak istersiniz?: ").strip() or "4"
 
-        # run functions based on what the user chose
-        if choice not in ("1", "2", "3", "4"):
-            print("Invalid choice, please enter a valid choice")
-        elif choice == "1":
-            input_string = input("Please enter the string to be encrypted: ")
-            key = int(input("Please enter off-set: ").strip())
+        # Kullanıcının seçimine göre fonksiyonları çalıştır
+        if seçim not in ("1", "2", "3", "4"):
+            print("Geçersiz seçim, lütfen geçerli bir seçim yapın.")
+        elif seçim == "1":
+            girdi = input("Şifrelenecek dizeyi girin: ")
+            anahtar = int(input("Kaydırma değerini girin: ").strip())
 
-            print(encrypt(input_string, key))
-        elif choice == "2":
-            input_string = input("Please enter the string to be decrypted: ")
-            key = int(input("Please enter off-set: ").strip())
+            print(şifrele(girdi, anahtar))
+        elif seçim == "2":
+            girdi = input("Çözülecek dizeyi girin: ")
+            anahtar = int(input("Kaydırma değerini girin: ").strip())
 
-            print(decrypt(input_string, key))
-        elif choice == "3":
-            input_string = input("Please enter the string to be decrypted: ")
-            brute_force_data = brute_force(input_string)
+            print(çöz(girdi, anahtar))
+        elif seçim == "3":
+            girdi = input("Çözülecek dizeyi girin: ")
+            kaba_güç_verisi = kaba_güç(girdi)
 
-            for key, value in brute_force_data.items():
-                print(f"Key: {key} | Message: {value}")
+            for anahtar, değer in kaba_güç_verisi.items():
+                print(f"Anahtar: {anahtar} | Mesaj: {değer}")
 
-        elif choice == "4":
-            print("Goodbye.")
+        elif seçim == "4":
+            print("Hoşça kal.")
             break

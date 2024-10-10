@@ -1,66 +1,69 @@
 """
-This script is a implementation of the Damerau-Levenshtein distance algorithm.
 
-It's an algorithm that measures the edit distance between two string sequences
+# Organiser: K. Umut Araz
 
-More information about this algorithm can be found in this wikipedia article:
+Bu script, Damerau-Levenshtein mesafe algoritmasının bir uygulamasıdır.
+
+Bu algoritma, iki dize dizisi arasındaki düzenleme mesafesini ölçer.
+
+Bu algoritma hakkında daha fazla bilgiye şu Wikipedia makalesinden ulaşabilirsiniz:
 https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance
 """
 
 
-def damerau_levenshtein_distance(first_string: str, second_string: str) -> int:
+def damerau_levenshtein_distance(birinci_dize: str, ikinci_dize: str) -> int:
     """
-    Implements the Damerau-Levenshtein distance algorithm that measures
-    the edit distance between two strings.
+    Damerau-Levenshtein mesafe algoritmasını uygular ve iki dize arasındaki
+    düzenleme mesafesini ölçer.
 
-    Parameters:
-        first_string: The first string to compare
-        second_string: The second string to compare
+    Parametreler:
+        birinci_dize: Karşılaştırılacak ilk dize
+        ikinci_dize: Karşılaştırılacak ikinci dize
 
-    Returns:
-        distance: The edit distance between the first and second strings
+    Dönüş:
+        mesafe: İlk ve ikinci dizeler arasındaki düzenleme mesafesi
 
-    >>> damerau_levenshtein_distance("cat", "cut")
+    >>> damerau_levenshtein_distance("kedi", "kutu")
     1
-    >>> damerau_levenshtein_distance("kitten", "sitting")
+    >>> damerau_levenshtein_distance("yavru", "yürüyüş")
     3
-    >>> damerau_levenshtein_distance("hello", "world")
+    >>> damerau_levenshtein_distance("merhaba", "dünya")
     4
-    >>> damerau_levenshtein_distance("book", "back")
+    >>> damerau_levenshtein_distance("kitap", "kalem")
     2
-    >>> damerau_levenshtein_distance("container", "containment")
+    >>> damerau_levenshtein_distance("konteyner", "içerik")
     3
-    >>> damerau_levenshtein_distance("container", "containment")
+    >>> damerau_levenshtein_distance("konteyner", "kapsam")
     3
     """
-    # Create a dynamic programming matrix to store the distances
-    dp_matrix = [[0] * (len(second_string) + 1) for _ in range(len(first_string) + 1)]
+    # Mesafeleri saklamak için dinamik programlama matrisini oluştur
+    dp_matrix = [[0] * (len(ikinci_dize) + 1) for _ in range(len(birinci_dize) + 1)]
 
-    # Initialize the matrix
-    for i in range(len(first_string) + 1):
+    # Matrisi başlat
+    for i in range(len(birinci_dize) + 1):
         dp_matrix[i][0] = i
-    for j in range(len(second_string) + 1):
+    for j in range(len(ikinci_dize) + 1):
         dp_matrix[0][j] = j
 
-    # Fill the matrix
-    for i, first_char in enumerate(first_string, start=1):
-        for j, second_char in enumerate(second_string, start=1):
-            cost = int(first_char != second_char)
+    # Matrisi doldur
+    for i, birinci_karakter in enumerate(birinci_dize, start=1):
+        for j, ikinci_karakter in enumerate(ikinci_dize, start=1):
+            maliyet = int(birinci_karakter != ikinci_karakter)
 
             dp_matrix[i][j] = min(
-                dp_matrix[i - 1][j] + 1,  # Deletion
-                dp_matrix[i][j - 1] + 1,  # Insertion
-                dp_matrix[i - 1][j - 1] + cost,  # Substitution
+                dp_matrix[i - 1][j] + 1,  # Silme
+                dp_matrix[i][j - 1] + 1,  # Ekleme
+                dp_matrix[i - 1][j - 1] + maliyet,  # Yer değiştirme
             )
 
             if (
                 i > 1
                 and j > 1
-                and first_string[i - 1] == second_string[j - 2]
-                and first_string[i - 2] == second_string[j - 1]
+                and birinci_dize[i - 1] == ikinci_dize[j - 2]
+                and birinci_dize[i - 2] == ikinci_dize[j - 1]
             ):
-                # Transposition
-                dp_matrix[i][j] = min(dp_matrix[i][j], dp_matrix[i - 2][j - 2] + cost)
+                # Yer değiştirme
+                dp_matrix[i][j] = min(dp_matrix[i][j], dp_matrix[i - 2][j - 2] + maliyet)
 
     return dp_matrix[-1][-1]
 

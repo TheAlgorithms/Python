@@ -1,32 +1,31 @@
-def edit_distance(source: str, target: str) -> int:
+def edit_distance(kaynak: str, hedef: str) -> int:
     """
-    Edit distance algorithm is a string metric, i.e., it is a way of quantifying how
-    dissimilar two strings are to one another. It is measured by counting the minimum
-    number of operations required to transform one string into another.
+    # Organiser: K. Umut Araz
+    
+    Edit mesafesi algoritması, iki dize arasındaki benzerlik derecesini ölçen bir metriktir.
+    Bu, bir dizeyi diğerine dönüştürmek için gereken minimum işlem sayısını sayarak ölçülür.
 
-    This implementation assumes that the cost of operations (insertion, deletion and
-    substitution) is always 1
+    Bu uygulama, işlemlerin (ekleme, silme ve değiştirme) maliyetinin her zaman 1 olduğunu varsayar.
 
     Args:
-    source: the initial string with respect to which we are calculating the edit
-        distance for the target
-    target: the target string, formed after performing n operations on the source string
+    kaynak: edit mesafesini hesapladığımız başlangıç dizesi
+    hedef: kaynak dizesine n işlem uygulandıktan sonra oluşan hedef dizesi
 
     >>> edit_distance("GATTIC", "GALTIC")
     1
     """
-    if len(source) == 0:
-        return len(target)
-    elif len(target) == 0:
-        return len(source)
+    if len(kaynak) == 0:
+        return len(hedef)
+    elif len(hedef) == 0:
+        return len(kaynak)
 
-    delta = int(source[-1] != target[-1])  # Substitution
+    delta = int(kaynak[-1] != hedef[-1])  # Değiştirme
     return min(
-        edit_distance(source[:-1], target[:-1]) + delta,
-        edit_distance(source, target[:-1]) + 1,
-        edit_distance(source[:-1], target) + 1,
+        edit_distance(kaynak[:-1], hedef[:-1]) + delta,
+        edit_distance(kaynak, hedef[:-1]) + 1,
+        edit_distance(kaynak[:-1], hedef) + 1,
     )
 
 
 if __name__ == "__main__":
-    print(edit_distance("ATCGCTG", "TAGCTAA"))  # Answer is 4
+    print(edit_distance("ATCGCTG", "TAGCTAA"))  # Cevap 4

@@ -1,31 +1,33 @@
-def split(string: str, separator: str = " ") -> list:
+def ayır(string: str, ayırıcı: str = " ") -> list:
     """
-    Will split the string up into all the values separated by the separator
-    (defaults to spaces)
+    Organiser: K. Umut Araz
 
-    >>> split("apple#banana#cherry#orange",separator='#')
-    ['apple', 'banana', 'cherry', 'orange']
+    Verilen string'i ayırıcı ile ayrılmış tüm değerlere böler
+    (varsayılan olarak boşluk kullanılır)
 
-    >>> split("Hello there")
-    ['Hello', 'there']
+    >>> ayır("elma#muz#kiraz#portakal", ayırıcı='#')
+    ['elma', 'muz', 'kiraz', 'portakal']
 
-    >>> split("11/22/63",separator = '/')
+    >>> ayır("Merhaba orada")
+    ['Merhaba', 'orada']
+
+    >>> ayır("11/22/63", ayırıcı='/')
     ['11', '22', '63']
 
-    >>> split("12:43:39",separator = ":")
+    >>> ayır("12:43:39", ayırıcı=":")
     ['12', '43', '39']
     """
 
-    split_words = []
+    ayırılmış_kelimeler = []
 
-    last_index = 0
-    for index, char in enumerate(string):
-        if char == separator:
-            split_words.append(string[last_index:index])
-            last_index = index + 1
-        elif index + 1 == len(string):
-            split_words.append(string[last_index : index + 1])
-    return split_words
+    son_indeks = 0
+    for indeks, karakter in enumerate(string):
+        if karakter == ayırıcı:
+            ayırılmış_kelimeler.append(string[son_indeks:indeks])
+            son_indeks = indeks + 1
+        elif indeks + 1 == len(string):
+            ayırılmış_kelimeler.append(string[son_indeks : indeks + 1])
+    return ayırılmış_kelimeler
 
 
 if __name__ == "__main__":

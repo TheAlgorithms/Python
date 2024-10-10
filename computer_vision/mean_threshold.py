@@ -3,6 +3,8 @@ from PIL import Image
 """
 Görüntü işleme için ortalama eşikleme algoritması
 https://en.wikipedia.org/wiki/Thresholding_(image_processing)
+
+Organiser: K. Umut Araz
 """
 
 

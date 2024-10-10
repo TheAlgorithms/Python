@@ -1,90 +1,92 @@
-# Numbers of alphabet which we call base
-alphabet_size = 256
-# Modulus to hash a string
-modulus = 1000003
+# Alfabedeki karakter sayısı
+alfabe_boyutu = 256
+# Bir dizenin hash'ini almak için modül
+modül = 1000003
+
+#Organiser: K. Umut Araz
 
 
-def rabin_karp(pattern: str, text: str) -> bool:
+def rabin_karp(desen: str, metin: str) -> bool:
     """
-    The Rabin-Karp Algorithm for finding a pattern within a piece of text
-    with complexity O(nm), most efficient when it is used with multiple patterns
-    as it is able to check if any of a set of patterns match a section of text in o(1)
-    given the precomputed hashes.
+    Rabin-Karp Algoritması, bir metin içinde bir deseni bulmak için kullanılır.
+    Zaman karmaşıklığı O(nm) olup, birden fazla desenle kullanıldığında en verimli
+    hale gelir çünkü önceden hesaplanmış hash'ler ile metnin bir bölümünün
+    herhangi bir desenle eşleşip eşleşmediğini O(1) sürede kontrol edebilir.
 
-    This will be the simple version which only assumes one pattern is being searched
-    for but it's not hard to modify
+    Bu, yalnızca bir deseni aradığımız basit bir versiyonudur,
+    ancak çoklu desen aramak için kolayca değiştirilebilir.
 
-    1) Calculate pattern hash
+    1) Desenin hash'ini hesapla
 
-    2) Step through the text one character at a time passing a window with the same
-        length as the pattern
-        calculating the hash of the text within the window compare it with the hash
-        of the pattern. Only testing equality if the hashes match
+    2) Metin üzerinde, desene eşit uzunlukta bir pencere ile
+       bir karakter bir seferde geçerek ilerle
+       Pencere içindeki metnin hash'ini hesapla ve bunu desenin hash'i ile karşılaştır.
+       Sadece hash'ler eşleşirse eşitliği test et.
     """
-    p_len = len(pattern)
-    t_len = len(text)
-    if p_len > t_len:
+    desen_uzunluğu = len(desen)
+    metin_uzunluğu = len(metin)
+    if desen_uzunluğu > metin_uzunluğu:
         return False
 
-    p_hash = 0
-    text_hash = 0
-    modulus_power = 1
+    desen_hash = 0
+    metin_hash = 0
+    modül_gücü = 1
 
-    # Calculating the hash of pattern and substring of text
-    for i in range(p_len):
-        p_hash = (ord(pattern[i]) + p_hash * alphabet_size) % modulus
-        text_hash = (ord(text[i]) + text_hash * alphabet_size) % modulus
-        if i == p_len - 1:
+    # Desenin ve metin alt dizisinin hash'ini hesaplama
+    for i in range(desen_uzunluğu):
+        desen_hash = (ord(desen[i]) + desen_hash * alfabe_boyutu) % modül
+        metin_hash = (ord(metin[i]) + metin_hash * alfabe_boyutu) % modül
+        if i == desen_uzunluğu - 1:
             continue
-        modulus_power = (modulus_power * alphabet_size) % modulus
+        modül_gücü = (modül_gücü * alfabe_boyutu) % modül
 
-    for i in range(t_len - p_len + 1):
-        if text_hash == p_hash and text[i : i + p_len] == pattern:
+    for i in range(metin_uzunluğu - desen_uzunluğu + 1):
+        if metin_hash == desen_hash and metin[i : i + desen_uzunluğu] == desen:
             return True
-        if i == t_len - p_len:
+        if i == metin_uzunluğu - desen_uzunluğu:
             continue
-        # Calculate the https://en.wikipedia.org/wiki/Rolling_hash
-        text_hash = (
-            (text_hash - ord(text[i]) * modulus_power) * alphabet_size
-            + ord(text[i + p_len])
-        ) % modulus
+        # Rolling hash hesaplama
+        metin_hash = (
+            (metin_hash - ord(metin[i]) * modül_gücü) * alfabe_boyutu
+            + ord(metin[i + desen_uzunluğu])
+        ) % modül
     return False
 
 
 def test_rabin_karp() -> None:
     """
     >>> test_rabin_karp()
-    Success.
+    Başarılı.
     """
     # Test 1)
-    pattern = "abc1abc12"
-    text1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"
-    text2 = "alskfjaldsk23adsfabcabc"
-    assert rabin_karp(pattern, text1)
-    assert not rabin_karp(pattern, text2)
+    desen = "abc1abc12"
+    metin1 = "alskfjaldsabc1abc1abc12k23adsfabcabc"
+    metin2 = "alskfjaldsk23adsfabcabc"
+    assert rabin_karp(desen, metin1)
+    assert not rabin_karp(desen, metin2)
 
     # Test 2)
-    pattern = "ABABX"
-    text = "ABABZABABYABABX"
-    assert rabin_karp(pattern, text)
+    desen = "ABABX"
+    metin = "ABABZABABYABABX"
+    assert rabin_karp(desen, metin)
 
     # Test 3)
-    pattern = "AAAB"
-    text = "ABAAAAAB"
-    assert rabin_karp(pattern, text)
+    desen = "AAAB"
+    metin = "ABAAAAAB"
+    assert rabin_karp(desen, metin)
 
     # Test 4)
-    pattern = "abcdabcy"
-    text = "abcxabcdabxabcdabcdabcy"
-    assert rabin_karp(pattern, text)
+    desen = "abcdabcy"
+    metin = "abcxabcdabxabcdabcdabcy"
+    assert rabin_karp(desen, metin)
 
     # Test 5)
-    pattern = "Lü"
-    text = "Lüsai"
-    assert rabin_karp(pattern, text)
-    pattern = "Lue"
-    assert not rabin_karp(pattern, text)
-    print("Success.")
+    desen = "Lü"
+    metin = "Lüsai"
+    assert rabin_karp(desen, metin)
+    desen = "Lue"
+    assert not rabin_karp(desen, metin)
+    print("Başarılı.")
 
 
 if __name__ == "__main__":

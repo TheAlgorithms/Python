@@ -5,20 +5,23 @@ import pprint
 from pathlib import Path
 
 
-def signature(word: str) -> str:
-    """Return a word sorted
-    >>> signature("test")
+def imza(kelime: str) -> str:
+    """Sıralanmış bir kelime döndürür
+
+    # Organiser: K. Umut Araz
+    
+    >>> imza("test")
     'estt'
-    >>> signature("this is a test")
+    >>> imza("this is a test")
     '   aehiisssttt'
-    >>> signature("finaltest")
+    >>> imza("finaltest")
     'aefilnstt'
     """
-    return "".join(sorted(word))
+    return "".join(sorted(kelime))
 
 
-def anagram(my_word: str) -> list[str]:
-    """Return every anagram of the given word
+def anagram(kelimem: str) -> list[str]:
+    """Verilen kelimenin tüm anagramlarını döndürür
     >>> anagram('test')
     ['sett', 'stet', 'test']
     >>> anagram('this is a test')
@@ -26,19 +29,19 @@ def anagram(my_word: str) -> list[str]:
     >>> anagram('final')
     ['final']
     """
-    return word_by_signature[signature(my_word)]
+    return kelime_imzasi[imza(kelimem)]
 
 
-data: str = Path(__file__).parent.joinpath("words.txt").read_text(encoding="utf-8")
-word_list = sorted({word.strip().lower() for word in data.splitlines()})
+veri: str = Path(__file__).parent.joinpath("words.txt").read_text(encoding="utf-8")
+kelime_listesi = sorted({kelime.strip().lower() for kelime in veri.splitlines()})
 
-word_by_signature = collections.defaultdict(list)
-for word in word_list:
-    word_by_signature[signature(word)].append(word)
+kelime_imzasi = collections.defaultdict(list)
+for kelime in kelime_listesi:
+    kelime_imzasi[imza(kelime)].append(kelime)
 
 if __name__ == "__main__":
-    all_anagrams = {word: anagram(word) for word in word_list if len(anagram(word)) > 1}
+    tum_anagramlar = {kelime: anagram(kelime) for kelime in kelime_listesi if len(anagram(kelime)) > 1}
 
-    with open("anagrams.txt", "w") as file:
-        file.write("all_anagrams = \n ")
-        file.write(pprint.pformat(all_anagrams))
+    with open("anagrams.txt", "w") as dosya:
+        dosya.write("tum_anagramlar = \n ")
+        dosya.write(pprint.pformat(tum_anagramlar))

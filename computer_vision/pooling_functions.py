@@ -1,5 +1,7 @@
-# Kaynak : https://computersciencewiki.org/index.php/Max-pooling_/_Pooling
-# Kütüphanelerin İçe Aktarılması
+# Kaynak: https://computersciencewiki.org/index.php/Max-pooling_/_Pooling
+# Gerekli Kütüphanelerin İçe Aktarılması
+
+#Organiser: K. Umut Araz
 import numpy as np
 from PIL import Image
 
@@ -25,37 +27,16 @@ def maksimum_havuzlama(arr: np.ndarray, boyut: int, adim: int) -> np.ndarray:
     arr = np.array(arr)
     if arr.shape[0] != arr.shape[1]:
         raise ValueError("Giriş dizisi kare matris değil")
-    i = 0
-    j = 0
-    mat_i = 0
-    mat_j = 0
-
-    # Çıktı matrisinin şeklini hesapla
+    
+    # Çıktı matrisinin boyutunu hesapla
     maxpool_shape = (arr.shape[0] - boyut) // adim + 1
     # maxpool_shape boyutunda sıfırlardan oluşan çıktı matrisini başlat
     guncellenmis_arr = np.zeros((maxpool_shape, maxpool_shape))
 
-    while i < arr.shape[0]:
-        if i + boyut > arr.shape[0]:
-            # Matrisin sonuna gelindiyse, döngüyü kır
-            break
-        while j < arr.shape[1]:
-            # Matrisin sonuna gelindiyse, döngüyü kır
-            if j + boyut > arr.shape[1]:
-                break
+    for i in range(0, arr.shape[0] - boyut + 1, adim):
+        for j in range(0, arr.shape[1] - boyut + 1, adim):
             # Havuzlama matrisinin maksimumunu hesapla
-            guncellenmis_arr[mat_i][mat_j] = np.max(arr[i : i + boyut, j : j + boyut])
-            # Havuzlama matrisini sütun pikselleri kadar kaydır
-            j += adim
-            mat_j += 1
-
-        # Havuzlama matrisini satır pikselleri kadar kaydır
-        i += adim
-        mat_i += 1
-
-        # Sütun indeksini 0'a sıfırla
-        j = 0
-        mat_j = 0
+            guncellenmis_arr[i // adim][j // adim] = np.max(arr[i : i + boyut, j : j + boyut])
 
     return guncellenmis_arr
 
@@ -81,36 +62,16 @@ def ortalama_havuzlama(arr: np.ndarray, boyut: int, adim: int) -> np.ndarray:
     arr = np.array(arr)
     if arr.shape[0] != arr.shape[1]:
         raise ValueError("Giriş dizisi kare matris değil")
-    i = 0
-    j = 0
-    mat_i = 0
-    mat_j = 0
-
-    # Çıktı matrisinin şeklini hesapla
+    
+    # Çıktı matrisinin boyutunu hesapla
     avgpool_shape = (arr.shape[0] - boyut) // adim + 1
     # avgpool_shape boyutunda sıfırlardan oluşan çıktı matrisini başlat
     guncellenmis_arr = np.zeros((avgpool_shape, avgpool_shape))
 
-    while i < arr.shape[0]:
-        # Matrisin sonuna gelindiyse, döngüyü kır
-        if i + boyut > arr.shape[0]:
-            break
-        while j < arr.shape[1]:
-            # Matrisin sonuna gelindiyse, döngüyü kır
-            if j + boyut > arr.shape[1]:
-                break
+    for i in range(0, arr.shape[0] - boyut + 1, adim):
+        for j in range(0, arr.shape[1] - boyut + 1, adim):
             # Havuzlama matrisinin ortalamasını hesapla
-            guncellenmis_arr[mat_i][mat_j] = int(np.average(arr[i : i + boyut, j : j + boyut]))
-            # Havuzlama matrisini sütun pikselleri kadar kaydır
-            j += adim
-            mat_j += 1
-
-        # Havuzlama matrisini satır pikselleri kadar kaydır
-        i += adim
-        mat_i += 1
-        # Sütun indeksini 0'a sıfırla
-        j = 0
-        mat_j = 0
+            guncellenmis_arr[i // adim][j // adim] = np.mean(arr[i : i + boyut, j : j + boyut])
 
     return guncellenmis_arr
 
@@ -125,11 +86,7 @@ if __name__ == "__main__":
     goruntu = Image.open("goruntu_yolu")
 
     # Görüntüyü numpy dizisine dönüştürme ve maksimum havuzlama, sonucu gösterme
-    # Görüntünün kare matris olduğundan emin olun
-
     Image.fromarray(maksimum_havuzlama(np.array(goruntu), boyut=3, adim=2)).show()
 
     # Görüntüyü numpy dizisine dönüştürme ve ortalama havuzlama, sonucu gösterme
-    # Görüntünün kare matris olduğundan emin olun
-
     Image.fromarray(ortalama_havuzlama(np.array(goruntu), boyut=3, adim=2)).show()

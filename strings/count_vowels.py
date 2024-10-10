@@ -1,32 +1,35 @@
-def count_vowels(s: str) -> int:
+def ses_harflerini_say(s: str) -> int:
     """
-    Count the number of vowels in a given string.
 
-    :param s: Input string to count vowels in.
-    :return: Number of vowels in the input string.
+    # Organiser: K. Umut Araz
 
-    Examples:
-    >>> count_vowels("hello world")
-    3
-    >>> count_vowels("HELLO WORLD")
-    3
-    >>> count_vowels("123 hello world")
-    3
-    >>> count_vowels("")
+
+    Verilen bir stringdeki ses harflerinin sayısını hesaplar.
+
+    :param s: Ses harflerini saymak için giriş stringi.
+    :return: Giriş stringindeki ses harflerinin sayısı.
+
+    Örnekler:
+    >>> ses_harflerini_say("merhaba dünya")
+    6
+    >>> ses_harflerini_say("MERHABA DÜNYA")
+    6
+    >>> ses_harflerini_say("123 merhaba dünya")
+    6
+    >>> ses_harflerini_say("")
     0
-    >>> count_vowels("a quick brown fox")
-    5
-    >>> count_vowels("the quick BROWN fox")
-    5
-    >>> count_vowels("PYTHON")
+    >>> ses_harflerini_say("a hızlı kahverengi tilki")
+    8
+    >>> ses_harflerini_say("hızlı KAHVERENGİ tilki")
+    8
+    >>> ses_harflerini_say("PYTHON")
     1
     """
     if not isinstance(s, str):
-        raise ValueError("Input must be a string")
+        raise ValueError("Giriş bir string olmalıdır")
 
-    vowels = "aeiouAEIOU"
-    return sum(1 for char in s if char in vowels)
-
+    ses_harfleri = "aeiouAEIOUöüıİ"
+    return sum(1 for char in s if char in ses_harfleri)
 
 if __name__ == "__main__":
     from doctest import testmod

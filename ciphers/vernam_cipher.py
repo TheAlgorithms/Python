@@ -1,29 +1,31 @@
-def vernam_encrypt(plaintext: str, key: str) -> str:
+def vernam_sifrele(düz_metin: str, anahtar: str) -> str:
     """
-    >>> vernam_encrypt("HELLO","KEY")
-    'RIJVS'
-    """
-    ciphertext = ""
-    for i in range(len(plaintext)):
-        ct = ord(key[i % len(key)]) - 65 + ord(plaintext[i]) - 65
-        while ct > 25:
-            ct = ct - 26
-        ciphertext += chr(65 + ct)
-    return ciphertext
+    >>> vernam_sifrele("MERHABA","ANAHTAR")
 
 
-def vernam_decrypt(ciphertext: str, key: str) -> str:
+    'QFZKJQF'
+
+    #Organiser: K. Umut Araz
     """
-    >>> vernam_decrypt("RIJVS","KEY")
-    'HELLO'
+    sifreli_metin = ""
+    for i in range(len(düz_metin)):
+        ct = ord(anahtar[i % len(anahtar)]) - 65 + ord(düz_metin[i]) - 65
+        ct %= 26  # 26'dan büyükse döngüye sokmak için
+        sifreli_metin += chr(65 + ct)
+    return sifreli_metin
+
+
+def vernam_sifre_coz(sifreli_metin: str, anahtar: str) -> str:
     """
-    decrypted_text = ""
-    for i in range(len(ciphertext)):
-        ct = ord(ciphertext[i]) - ord(key[i % len(key)])
-        while ct < 0:
-            ct = 26 + ct
-        decrypted_text += chr(65 + ct)
-    return decrypted_text
+    >>> vernam_sifre_coz("QFZKJQF","ANAHTAR")
+    'MERHABA'
+    """
+    cozulmus_metin = ""
+    for i in range(len(sifreli_metin)):
+        ct = ord(sifreli_metin[i]) - ord(anahtar[i % len(anahtar)])
+        ct %= 26  # 0'dan küçükse döngüye sokmak için
+        cozulmus_metin += chr(65 + ct)
+    return cozulmus_metin
 
 
 if __name__ == "__main__":
@@ -31,12 +33,12 @@ if __name__ == "__main__":
 
     testmod()
 
-    # Example usage
-    plaintext = "HELLO"
-    key = "KEY"
-    encrypted_text = vernam_encrypt(plaintext, key)
-    decrypted_text = vernam_decrypt(encrypted_text, key)
+    # Örnek kullanım
+    düz_metin = "MERHABA"
+    anahtar = "ANAHTAR"
+    sifreli_metin = vernam_sifrele(düz_metin, anahtar)
+    cozulmus_metin = vernam_sifre_coz(sifreli_metin, anahtar)
     print("\n\n")
-    print("Plaintext:", plaintext)
-    print("Encrypted:", encrypted_text)
-    print("Decrypted:", decrypted_text)
+    print("Düz Metin:", düz_metin)
+    print("Şifreli Metin:", sifreli_metin)
+    print("Çözülmüş Metin:", cozulmus_metin)

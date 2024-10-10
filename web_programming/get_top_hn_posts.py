@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+# Organiser: K. Umut Araz
+
 import requests
 
 

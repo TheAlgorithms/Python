@@ -2,6 +2,8 @@ import webbrowser
 from sys import argv
 from urllib.parse import parse_qs, quote
 
+# Organiser: K. Umut Araz
+
 import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent

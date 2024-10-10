@@ -1,17 +1,12 @@
 """
-https://en.wikipedia.org/wiki/Burrows%E2%80%93Wheeler_transform
+https://tr.wikipedia.org/wiki/Burrows%E2%80%93Wheeler_dönüşümü
 
-The Burrows-Wheeler transform (BWT, also called block-sorting compression)
-rearranges a character string into runs of similar characters. This is useful
-for compression, since it tends to be easy to compress a string that has runs
-of repeated characters by techniques such as move-to-front transform and
-run-length encoding. More importantly, the transformation is reversible,
-without needing to store any additional data except the position of the first
-original character. The BWT is thus a "free" method of improving the efficiency
-of text compression algorithms, costing only some extra computation.
+Burrows-Wheeler dönüşümü (BWT, ayrıca blok-sıralama sıkıştırması olarak da bilinir), bir karakter dizisini benzer karakterlerin grupları halinde yeniden düzenler. Bu, sıkıştırma için faydalıdır çünkü tekrar eden karakterlerin gruplarını içeren bir diziyi sıkıştırmak, öncelikle öncelik sırasına göre yer değiştirme ve koşullu uzunluk kodlaması gibi tekniklerle kolaydır. Daha da önemlisi, dönüşüm tersine çevrilebilir; ilk orijinal karakterin konumu dışında ek veri saklamaya gerek yoktur. Bu nedenle BWT, metin sıkıştırma algoritmalarının verimliliğini artırmanın "ücretsiz" bir yöntemidir ve yalnızca biraz ek hesaplama gerektirir.
 """
 
 from __future__ import annotations
+
+# Organiser: K. Umut Araz
 
 from typing import TypedDict
 
@@ -21,77 +16,81 @@ class BWTTransformDict(TypedDict):
     idx_original_string: int
 
 
-def all_rotations(s: str) -> list[str]:
+def tum_dönüşümler(s: str) -> list[str]:
     """
-    :param s: The string that will be rotated len(s) times.
-    :return: A list with the rotations.
-    :raises TypeError: If s is not an instance of str.
-    Examples:
+    :param s: len(s) kez döndürülecek olan dize.
+    :return: Dönüşümlerin listesini döndürür.
+    :raises TypeError: Eğer s bir str örneği değilse.
+    Örnekler:
 
-    >>> all_rotations("^BANANA|") # doctest: +NORMALIZE_WHITESPACE
+    >>> tum_dönüşümler("^BANANA|") # doctest: +NORMALIZE_WHITESPACE
     ['^BANANA|', 'BANANA|^', 'ANANA|^B', 'NANA|^BA', 'ANA|^BAN', 'NA|^BANA',
     'A|^BANAN', '|^BANANA']
-    >>> all_rotations("a_asa_da_casa") # doctest: +NORMALIZE_WHITESPACE
+    >>> tum_dönüşümler("a_asa_da_casa") # doctest: +NORMALIZE_WHITESPACE
     ['a_asa_da_casa', '_asa_da_casaa', 'asa_da_casaa_', 'sa_da_casaa_a',
     'a_da_casaa_as', '_da_casaa_asa', 'da_casaa_asa_', 'a_casaa_asa_d',
     '_casaa_asa_da', 'casaa_asa_da_', 'asaa_asa_da_c', 'saa_asa_da_ca',
     'aa_asa_da_cas']
-    >>> all_rotations("panamabanana") # doctest: +NORMALIZE_WHITESPACE
+    >>> tum_dönüşümler("panamabanana") # doctest: +NORMALIZE_WHITESPACE
     ['panamabanana', 'anamabananap', 'namabananapa', 'amabananapan',
     'mabananapana', 'abananapanam', 'bananapanama', 'ananapanamab',
     'nanapanamaba', 'anapanamaban', 'napanamabana', 'apanamabanan']
-    >>> all_rotations(5)
+    >>> tum_dönüşümler(5)
     Traceback (most recent call last):
         ...
-    TypeError: The parameter s type must be str.
+    TypeError: Parametre s tipi str olmalıdır.
     """
     if not isinstance(s, str):
-        raise TypeError("The parameter s type must be str.")
+        raise TypeError("Parametre s tipi str olmalıdır.")
 
     return [s[i:] + s[:i] for i in range(len(s))]
 
 
-def bwt_transform(s: str) -> BWTTransformDict:
+def bwt_dönüşümü(s: str) -> BWTTransformDict:
     """
-    :param s: The string that will be used at bwt algorithm
-    :return: the string composed of the last char of each row of the ordered
-    rotations and the index of the original string at ordered rotations list
-    :raises TypeError: If the s parameter type is not str
-    :raises ValueError: If the s parameter is empty
-    Examples:
+    :param s: BWT algoritmasında kullanılacak dize
+    :return: Sıralı dönüşümlerin her satırının son karakterinden oluşan dize ve
+    orijinal dizenin sıralı dönüşümler listesindeki indeksi
+    :raises TypeError: Eğer s parametre tipi str değilse
+    :raises ValueError: Eğer s parametresi boşsa
+    Örnekler:
 
-    >>> bwt_transform("^BANANA")
+    >>> bwt_dönüşümü("^BANANA")
     {'bwt_string': 'BNN^AAA', 'idx_original_string': 6}
-    >>> bwt_transform("a_asa_da_casa")
+    >>> bwt_dönüşümü("a_asa_da_casa")
     {'bwt_string': 'aaaadss_c__aa', 'idx_original_string': 3}
-    >>> bwt_transform("panamabanana")
+    >>> bwt_dönüşümü("panamabanana")
     {'bwt_string': 'mnpbnnaaaaaa', 'idx_original_string': 11}
-    >>> bwt_transform(4)
+    >>> bwt_dönüşümü(4)
     Traceback (most recent call last):
         ...
-    TypeError: The parameter s type must be str.
-    >>> bwt_transform('')
+    TypeError: Parametre s tipi str olmalıdır.
+    >>> bwt_dönüşümü('')
     Traceback (most recent call last):
         ...
-    ValueError: The parameter s must not be empty.
+    ValueError: Parametre s boş olmamalıdır.
     """
     if not isinstance(s, str):
-        raise TypeError("The parameter s type must be str.")
+        raise TypeError("Parametre s tipi str olmalıdır.")
     if not s:
-        raise ValueError("The parameter s must not be empty.")
+        raise ValueError("Parametre s boş olmamalıdır.")
 
-    rotations = all_rotations(s)
-    rotations.sort()  # sort the list of rotations in alphabetically order
-    # make a string composed of the last char of each rotation
-    response: BWTTransformDict = {
-        "bwt_string": "".join([word[-1] for word in rotations]),
-        "idx_original_string": rotations.index(s),
+    dönüşümler = tum_dönüşümler(s)
+    dönüşümler.sort()  # Dönüşüm listesini alfabetik sıraya göre sırala
+    # Her dönüşümün son karakterinden oluşan bir dize oluştur
+    yanıt: BWTTransformDict = {
+        "bwt_string": "".join([kelime[-1] for kelime in dönüşümler]),
+        "idx_original_string": dönüşümler.index(s),
     }
-    return response
+    return yanıt
 
 
-def reverse_bwt(bwt_string: str, idx_original_string: int) -> str:
+def ters_bwt(bwt_string: str, idx_original_string: int) -> str:
     """
+    :param bwt_string: BWT algoritması çalıştırıldığında dönen dize
+    :param idx_original_string: bwt_string'in oluşturulmasında kullanılan
+    dizenin sıralı dönüşümler listesindeki 0 tabanlı indeksi
+    :return: BWT çalıştırıldığında bwt_string'i oluşturmak için kullanılan dize
     :param bwt_string: The string returned from bwt algorithm execution
     :param idx_original_string: A 0-based index of the string that was used to
     generate bwt_string at ordered rotations list

@@ -1,46 +1,48 @@
-def octal_to_hex(octal: str) -> str:
+def sekizli_to_onaltılık(sekizli: str) -> str:
     """
-    Convert an Octal number to Hexadecimal number.
-    For more information: https://en.wikipedia.org/wiki/Octal
+    Sekizli bir sayıyı onaltılık sayıya dönüştürür.
+    Daha fazla bilgi için: https://tr.wikipedia.org/wiki/Sekizli_say%C4%B1
 
-    >>> octal_to_hex("100")
+    Organiser: K. Umut Araz
+
+    >>> sekizli_to_onaltılık("100")
     '0x40'
-    >>> octal_to_hex("235")
+    >>> sekizli_to_onaltılık("235")
     '0x9D'
-    >>> octal_to_hex(17)
+    >>> sekizli_to_onaltılık(17)
     Traceback (most recent call last):
         ...
-    TypeError: Expected a string as input
-    >>> octal_to_hex("Av")
+    TypeError: Girdi olarak bir dize bekleniyor
+    >>> sekizli_to_onaltılık("Av")
     Traceback (most recent call last):
         ...
-    ValueError: Not a Valid Octal Number
-    >>> octal_to_hex("")
+    ValueError: Geçersiz sekizli sayı
+    >>> sekizli_to_onaltılık("")
     Traceback (most recent call last):
         ...
-    ValueError: Empty string was passed to the function
+    ValueError: Fonksiyona boş bir dize geçirildi
     """
 
-    if not isinstance(octal, str):
-        raise TypeError("Expected a string as input")
-    if octal.startswith("0o"):
-        octal = octal[2:]
-    if octal == "":
-        raise ValueError("Empty string was passed to the function")
-    if any(char not in "01234567" for char in octal):
-        raise ValueError("Not a Valid Octal Number")
+    if not isinstance(sekizli, str):
+        raise TypeError("Girdi olarak bir dize bekleniyor")
+    if sekizli.startswith("0o"):
+        sekizli = sekizli[2:]
+    if sekizli == "":
+        raise ValueError("Fonksiyona boş bir dize geçirildi")
+    if any(char not in "01234567" for char in sekizli):
+        raise ValueError("Geçersiz sekizli sayı")
 
-    decimal = 0
-    for char in octal:
-        decimal <<= 3
-        decimal |= int(char)
+    ondalık = 0
+    for char in sekizli:
+        ondalık <<= 3
+        ondalık |= int(char)
 
     hex_char = "0123456789ABCDEF"
 
     revhex = ""
-    while decimal:
-        revhex += hex_char[decimal & 15]
-        decimal >>= 4
+    while ondalık:
+        revhex += hex_char[ondalık & 15]
+        ondalık >>= 4
 
     return "0x" + revhex[::-1]
 
@@ -50,16 +52,16 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    nums = ["030", "100", "247", "235", "007"]
+    sayılar = ["030", "100", "247", "235", "007"]
 
-    ## Main Tests
+    ## Ana Testler
 
-    for num in nums:
-        hexadecimal = octal_to_hex(num)
-        expected = "0x" + hex(int(num, 8))[2:].upper()
+    for num in sayılar:
+        onaltılık = sekizli_to_onaltılık(num)
+        beklenen = "0x" + hex(int(num, 8))[2:].upper()
 
-        assert hexadecimal == expected
+        assert onaltılık == beklenen
 
-        print(f"Hex of '0o{num}' is: {hexadecimal}")
-        print(f"Expected was: {expected}")
+        print(f"'0o{num}' sayısının onaltılık karşılığı: {onaltılık}")
+        print(f"Beklenen değer: {beklenen}")
         print("---")

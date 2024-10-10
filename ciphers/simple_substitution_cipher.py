@@ -1,78 +1,73 @@
 import random
 import sys
 
-LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
+HARFLER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 def main() -> None:
-    message = input("Enter message: ")
-    key = "LFWOAYUISVKMNXPBDCRJTQEGHZ"
-    resp = input("Encrypt/Decrypt [e/d]: ")
+    mesaj = input("Mesajı girin: ")
+    anahtar = "LFWOAYUISVKMNXPBDCRJTQEGHZ"
+    yanit = input("Şifrele/Şifre Çöz [e/d]: ")
 
-    check_valid_key(key)
+    anahtari_gecerli_kontrol(anahtar)
 
-    if resp.lower().startswith("e"):
-        mode = "encrypt"
-        translated = encrypt_message(key, message)
-    elif resp.lower().startswith("d"):
-        mode = "decrypt"
-        translated = decrypt_message(key, message)
+    #Organiser: K. Umut Araz
 
-    print(f"\n{mode.title()}ion: \n{translated}")
+    if yanit.lower().startswith("e"):
+        mod = "şifrele"
+        cevrilen = mesajı_sifrele(anahtar, mesaj)
+    elif yanit.lower().startswith("d"):
+        mod = "şifre çöz"
+        cevrilen = mesajı_sifre_coz(anahtar, mesaj)
 
+    print(f"\n{mod.title()} işlemi: \n{cevrilen}")
 
-def check_valid_key(key: str) -> None:
-    key_list = list(key)
-    letters_list = list(LETTERS)
-    key_list.sort()
-    letters_list.sort()
+def anahtari_gecerli_kontrol(anahtar: str) -> None:
+    anahtar_listesi = list(anahtar)
+    harfler_listesi = list(HARFLER)
+    anahtar_listesi.sort()
+    harfler_listesi.sort()
 
-    if key_list != letters_list:
-        sys.exit("Error in the key or symbol set.")
+    if anahtar_listesi != harfler_listesi:
+        sys.exit("Anahtar veya sembol setinde hata var.")
 
-
-def encrypt_message(key: str, message: str) -> str:
+def mesajı_sifrele(anahtar: str, mesaj: str) -> str:
     """
-    >>> encrypt_message('LFWOAYUISVKMNXPBDCRJTQEGHZ', 'Harshil Darji')
+    >>> mesajı_sifrele('LFWOAYUISVKMNXPBDCRJTQEGHZ', 'Harshil Darji')
     'Ilcrism Olcvs'
     """
-    return translate_message(key, message, "encrypt")
+    return mesajı_cevir(anahtar, mesaj, "şifrele")
 
-
-def decrypt_message(key: str, message: str) -> str:
+def mesajı_sifre_coz(anahtar: str, mesaj: str) -> str:
     """
-    >>> decrypt_message('LFWOAYUISVKMNXPBDCRJTQEGHZ', 'Ilcrism Olcvs')
+    >>> mesajı_sifre_coz('LFWOAYUISVKMNXPBDCRJTQEGHZ', 'Ilcrism Olcvs')
     'Harshil Darji'
     """
-    return translate_message(key, message, "decrypt")
+    return mesajı_cevir(anahtar, mesaj, "şifre çöz")
 
+def mesajı_cevir(anahtar: str, mesaj: str, mod: str) -> str:
+    cevrilen = ""
+    karakterler_a = HARFLER
+    karakterler_b = anahtar
 
-def translate_message(key: str, message: str, mode: str) -> str:
-    translated = ""
-    chars_a = LETTERS
-    chars_b = key
+    if mod == "şifre çöz":
+        karakterler_a, karakterler_b = karakterler_b, karakterler_a
 
-    if mode == "decrypt":
-        chars_a, chars_b = chars_b, chars_a
-
-    for symbol in message:
-        if symbol.upper() in chars_a:
-            sym_index = chars_a.find(symbol.upper())
-            if symbol.isupper():
-                translated += chars_b[sym_index].upper()
+    for sembol in mesaj:
+        if sembol.upper() in karakterler_a:
+            sembol_indeksi = karakterler_a.find(sembol.upper())
+            if sembol.isupper():
+                cevrilen += karakterler_b[sembol_indeksi].upper()
             else:
-                translated += chars_b[sym_index].lower()
+                cevrilen += karakterler_b[sembol_indeksi].lower()
         else:
-            translated += symbol
+            cevrilen += sembol
 
-    return translated
+    return cevrilen
 
-
-def get_random_key() -> str:
-    key = list(LETTERS)
-    random.shuffle(key)
-    return "".join(key)
-
+def rastgele_anahtar_al() -> str:
+    anahtar = list(HARFLER)
+    random.shuffle(anahtar)
+    return "".join(anahtar)
 
 if __name__ == "__main__":
     main()

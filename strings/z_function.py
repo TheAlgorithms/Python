@@ -1,87 +1,88 @@
 """
 https://cp-algorithms.com/string/z-function.html
 
-Z-function or Z algorithm
+Z-fonksiyonu veya Z algoritması
 
-Efficient algorithm for pattern occurrence in a string
+Organiser: K. Umut Araz
 
-Time Complexity: O(n) - where n is the length of the string
+Bir dizide desenin bulunması için etkili bir algoritmadır.
+
+Zaman Karmaşıklığı: O(n) - burada n, dizenin uzunluğudur.
 
 """
 
 
-def z_function(input_str: str) -> list[int]:
+def z_fonksiyonu(girdi_str: str) -> list[int]:
     """
-    For the given string this function computes value for each index,
-    which represents the maximal length substring starting from the index
-    and is the same as the prefix of the same size
+    Verilen dize için bu fonksiyon, her indeks için değer hesaplar,
+    bu değer, indeksin başlangıcından itibaren en uzun alt dizeyi temsil eder
+    ve aynı boyuttaki ön ek ile aynıdır.
 
-    e.x.  for string 'abab' for second index value would be 2
+    Örneğin: 'abab' dizesi için ikinci indeksin değeri 2 olacaktır.
 
-    For the value of the first element the algorithm always returns 0
+    İlk elemanın değeri için algoritma her zaman 0 döner.
 
-    >>> z_function("abracadabra")
+    >>> z_fonksiyonu("abracadabra")
     [0, 0, 0, 1, 0, 1, 0, 4, 0, 0, 1]
-    >>> z_function("aaaa")
+    >>> z_fonksiyonu("aaaa")
     [0, 3, 2, 1]
-    >>> z_function("zxxzxxz")
+    >>> z_fonksiyonu("zxxzxxz")
     [0, 0, 0, 4, 0, 0, 1]
     """
-    z_result = [0 for i in range(len(input_str))]
+    z_sonucu = [0 for i in range(len(girdi_str))]
 
-    # initialize interval's left pointer and right pointer
-    left_pointer, right_pointer = 0, 0
+    # aralığın sol ve sağ işaretçilerini başlat
+    sol_isaretci, sag_isaretci = 0, 0
 
-    for i in range(1, len(input_str)):
-        # case when current index is inside the interval
-        if i <= right_pointer:
-            min_edge = min(right_pointer - i + 1, z_result[i - left_pointer])
-            z_result[i] = min_edge
+    for i in range(1, len(girdi_str)):
+        # mevcut indeks aralığın içindeyse
+        if i <= sag_isaretci:
+            min_kenar = min(sag_isaretci - i + 1, z_sonucu[i - sol_isaretci])
+            z_sonucu[i] = min_kenar
 
-        while go_next(i, z_result, input_str):
-            z_result[i] += 1
+        while bir_sonraki(i, z_sonucu, girdi_str):
+            z_sonucu[i] += 1
 
-        # if new index's result gives us more right interval,
-        # we've to update left_pointer and right_pointer
-        if i + z_result[i] - 1 > right_pointer:
-            left_pointer, right_pointer = i, i + z_result[i] - 1
+        # yeni indeksin sonucu daha fazla sağ aralık veriyorsa,
+        # sol_isaretci ve sag_isaretci'yi güncellememiz gerekiyor
+        if i + z_sonucu[i] - 1 > sag_isaretci:
+            sol_isaretci, sag_isaretci = i, i + z_sonucu[i] - 1
 
-    return z_result
+    return z_sonucu
 
 
-def go_next(i: int, z_result: list[int], s: str) -> bool:
+def bir_sonraki(i: int, z_sonucu: list[int], s: str) -> bool:
     """
-    Check if we have to move forward to the next characters or not
+    Bir sonraki karakterlere geçmemiz gerekip gerekmediğini kontrol et
     """
-    return i + z_result[i] < len(s) and s[z_result[i]] == s[i + z_result[i]]
+    return i + z_sonucu[i] < len(s) and s[z_sonucu[i]] == s[i + z_sonucu[i]]
 
 
-def find_pattern(pattern: str, input_str: str) -> int:
+def desen_bul(pattern: str, girdi_str: str) -> int:
     """
-    Example of using z-function for pattern occurrence
-    Given function returns the number of times 'pattern'
-    appears in 'input_str' as a substring
+    Z-fonksiyonunun desen bulunmasında kullanım örneği
+    Verilen fonksiyon, 'pattern'in
+    'girdi_str' içinde alt dize olarak kaç kez göründüğünü döner.
 
-    >>> find_pattern("abr", "abracadabra")
+    >>> desen_bul("abr", "abracadabra")
     2
-    >>> find_pattern("a", "aaaa")
+    >>> desen_bul("a", "aaaa")
     4
-    >>> find_pattern("xz", "zxxzxxz")
+    >>> desen_bul("xz", "zxxzxxz")
     2
     """
-    answer = 0
-    # concatenate 'pattern' and 'input_str' and call z_function
-    # with concatenated string
-    z_result = z_function(pattern + input_str)
+    cevap = 0
+    # 'pattern' ve 'girdi_str' dizelerini birleştir ve z_fonksiyonu'nu
+    # birleştirilmiş dize ile çağır
+    z_sonucu = z_fonksiyonu(pattern + girdi_str)
 
-    for val in z_result:
-        # if value is greater then length of the pattern string
-        # that means this index is starting position of substring
-        # which is equal to pattern string
+    for val in z_sonucu:
+        # değer, desen dizisinin uzunluğundan büyükse
+        # bu indeks, desen dizisi ile eşit olan alt dizenin başlangıç konumudur
         if val >= len(pattern):
-            answer += 1
+            cevap += 1
 
-    return answer
+    return cevap
 
 
 if __name__ == "__main__":

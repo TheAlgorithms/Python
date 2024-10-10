@@ -1,90 +1,92 @@
-def remove_duplicates(key: str) -> str:
+def tekrar_eden_harfleri_kaldir(key: str) -> str:
     """
-    Removes duplicate alphabetic characters in a keyword (letter is ignored after its
-        first appearance).
-    :param key: Keyword to use
-    :return: String with duplicates removed
-    >>> remove_duplicates('Hello World!!')
-    'Helo Wrd'
+    Anahtar kelimedeki tekrar eden alfabetik karakterleri kaldırır (bir harf ilk görünümünden sonra dikkate alınmaz).
+    :param key: Kullanılacak anahtar kelime
+    :return: Tekrar eden harfler kaldırılmış string
+    >>> tekrar_eden_harfleri_kaldir('Merhaba Dünya!!')
+
+    Organiser: K. Umut Araz
+
+    'Merhab Dny'
     """
 
-    key_no_dups = ""
+    key_tekrar_olmayan = ""
     for ch in key:
-        if ch == " " or ch not in key_no_dups and ch.isalpha():
-            key_no_dups += ch
-    return key_no_dups
+        if ch == " " or ch not in key_tekrar_olmayan and ch.isalpha():
+            key_tekrar_olmayan += ch
+    return key_tekrar_olmayan
 
 
-def create_cipher_map(key: str) -> dict[str, str]:
+def sifre_haritasi_olustur(key: str) -> dict[str, str]:
     """
-    Returns a cipher map given a keyword.
-    :param key: keyword to use
-    :return: dictionary cipher map
+    Verilen bir anahtar kelimeye göre bir şifre haritası döner.
+    :param key: Kullanılacak anahtar kelime
+    :return: Sözlük şeklinde şifre haritası
     """
-    # Create a list of the letters in the alphabet
-    alphabet = [chr(i + 65) for i in range(26)]
-    # Remove duplicate characters from key
-    key = remove_duplicates(key.upper())
+    # Alfabenin harflerinden oluşan bir liste oluştur
+    alfabeyi = [chr(i + 65) for i in range(26)]
+    # Anahtar kelimeden tekrar eden karakterleri kaldır
+    key = tekrar_eden_harfleri_kaldir(key.upper())
     offset = len(key)
-    # First fill cipher with key characters
-    cipher_alphabet = {alphabet[i]: char for i, char in enumerate(key)}
-    # Then map remaining characters in alphabet to
-    # the alphabet from the beginning
-    for i in range(len(cipher_alphabet), 26):
-        char = alphabet[i - offset]
-        # Ensure we are not mapping letters to letters previously mapped
+    # Öncelikle şifreyi anahtar karakterleri ile doldur
+    sifre_alfabesi = {alfabeyi[i]: char for i, char in enumerate(key)}
+    # Ardından, alfabenin geri kalan karakterlerini
+    # baştan itibaren harflerle eşleştir
+    for i in range(len(sifre_alfabesi), 26):
+        char = alfabeyi[i - offset]
+        # Daha önce eşleştirilmiş harfleri tekrar harflere eşleştirmediğimizden emin ol
         while char in key:
             offset -= 1
-            char = alphabet[i - offset]
-        cipher_alphabet[alphabet[i]] = char
-    return cipher_alphabet
+            char = alfabeyi[i - offset]
+        sifre_alfabesi[alfabeyi[i]] = char
+    return sifre_alfabesi
 
 
-def encipher(message: str, cipher_map: dict[str, str]) -> str:
+def sifrele(mesaj: str, sifre_haritasi: dict[str, str]) -> str:
     """
-    Enciphers a message given a cipher map.
-    :param message: Message to encipher
-    :param cipher_map: Cipher map
-    :return: enciphered string
-    >>> encipher('Hello World!!', create_cipher_map('Goodbye!!'))
+    Verilen bir şifre haritasına göre bir mesajı şifreler.
+    :param mesaj: Şifrelenecek mesaj
+    :param sifre_haritasi: Şifre haritası
+    :return: Şifrelenmiş string
+    >>> sifrele('Merhaba Dünya!!', sifre_haritasi_olustur('Elveda!!'))
     'CYJJM VMQJB!!'
     """
-    return "".join(cipher_map.get(ch, ch) for ch in message.upper())
+    return "".join(sifre_haritasi.get(ch, ch) for ch in mesaj.upper())
 
 
-def decipher(message: str, cipher_map: dict[str, str]) -> str:
+def cozul(mesaj: str, sifre_haritasi: dict[str, str]) -> str:
     """
-    Deciphers a message given a cipher map
-    :param message: Message to decipher
-    :param cipher_map: Dictionary mapping to use
-    :return: Deciphered string
-    >>> cipher_map = create_cipher_map('Goodbye!!')
-    >>> decipher(encipher('Hello World!!', cipher_map), cipher_map)
-    'HELLO WORLD!!'
+    Verilen bir şifre haritasına göre bir mesajı çözer.
+    :param mesaj: Çözülecek mesaj
+    :param sifre_haritasi: Kullanılacak sözlük haritası
+    :return: Çözülmüş string
+    >>> sifre_haritasi = sifre_haritasi_olustur('Elveda!!')
+    >>> cozul(sifrele('Merhaba Dünya!!', sifre_haritasi), sifre_haritasi)
+    'MERHABA DÜNYA!!'
     """
-    # Reverse our cipher mappings
-    rev_cipher_map = {v: k for k, v in cipher_map.items()}
-    return "".join(rev_cipher_map.get(ch, ch) for ch in message.upper())
+    # Şifre eşleştirmelerimizi tersine çevir
+    ters_sifre_haritasi = {v: k for k, v in sifre_haritasi.items()}
+    return "".join(ters_sifre_haritasi.get(ch, ch) for ch in mesaj.upper())
 
 
-def main() -> None:
+def ana() -> None:
     """
-    Handles I/O
+    Giriş/Çıkış işlemlerini yönetir
     :return: void
     """
-    message = input("Enter message to encode or decode: ").strip()
-    key = input("Enter keyword: ").strip()
-    option = input("Encipher or decipher? E/D:").strip()[0].lower()
+    mesaj = input("Şifrelemek veya çözmek için mesaj girin: ").strip()
+    key = input("Anahtar kelime girin: ").strip()
+    secenek = input("Şifrele veya çöz? Ş/C:").strip()[0].lower()
     try:
-        func = {"e": encipher, "d": decipher}[option]
+        func = {"ş": sifrele, "c": cozul}[secenek]
     except KeyError:
-        raise KeyError("invalid input option")
-    cipher_map = create_cipher_map(key)
-    print(func(message, cipher_map))
+        raise KeyError("Geçersiz giriş seçeneği")
+    sifre_haritasi = sifre_haritasi_olustur(key)
+    print(func(mesaj, sifre_haritasi))
 
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    main()
+    ana()

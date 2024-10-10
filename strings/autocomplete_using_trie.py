@@ -1,65 +1,63 @@
 from __future__ import annotations
 
-END = "#"
+# Organiser: K. Umut Araz
 
+
+SON = "#"
 
 class Trie:
     def __init__(self) -> None:
         self._trie: dict = {}
 
-    def insert_word(self, text: str) -> None:
+    def kelime_ekle(self, metin: str) -> None:
         trie = self._trie
-        for char in text:
-            if char not in trie:
-                trie[char] = {}
-            trie = trie[char]
-        trie[END] = True
+        for karakter in metin:
+            if karakter not in trie:
+                trie[karakter] = {}
+            trie = trie[karakter]
+        trie[SON] = True
 
-    def find_word(self, prefix: str) -> tuple | list:
+    def kelime_bul(self, ön_ek: str) -> tuple | list:
         trie = self._trie
-        for char in prefix:
-            if char in trie:
-                trie = trie[char]
+        for karakter in ön_ek:
+            if karakter in trie:
+                trie = trie[karakter]
             else:
                 return []
-        return self._elements(trie)
+        return self._elemanlar(trie)
 
-    def _elements(self, d: dict) -> tuple:
-        result = []
+    def _elemanlar(self, d: dict) -> tuple:
+        sonuç = []
         for c, v in d.items():
-            sub_result = [" "] if c == END else [(c + s) for s in self._elements(v)]
-            result.extend(sub_result)
-        return tuple(result)
-
+            alt_sonuç = [" "] if c == SON else [(c + s) for s in self._elemanlar(v)]
+            sonuç.extend(alt_sonuç)
+        return tuple(sonuç)
 
 trie = Trie()
-words = ("depart", "detergent", "daring", "dog", "deer", "deal")
-for word in words:
-    trie.insert_word(word)
+kelimeler = ("depart", "detergent", "daring", "dog", "deer", "deal")
+for kelime in kelimeler:
+    trie.kelime_ekle(kelime)
 
-
-def autocomplete_using_trie(string: str) -> tuple:
+def otomatik_tamamla(metin: str) -> tuple:
     """
     >>> trie = Trie()
-    >>> for word in words:
-    ...     trie.insert_word(word)
+    >>> for kelime in kelimeler:
+    ...     trie.kelime_ekle(kelime)
     ...
-    >>> matches = autocomplete_using_trie("de")
-    >>> "detergent " in matches
+    >>> eşleşmeler = otomatik_tamamla("de")
+    >>> "detergent " in eşleşmeler
     True
-    >>> "dog " in matches
+    >>> "dog " in eşleşmeler
     False
     """
-    suffixes = trie.find_word(string)
-    return tuple(string + word for word in suffixes)
+    ekler = trie.kelime_bul(metin)
+    return tuple(metin + kelime for kelime in ekler)
 
-
-def main() -> None:
-    print(autocomplete_using_trie("de"))
-
+def ana() -> None:
+    print(otomatik_tamamla("de"))
 
 if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    main()
+    ana()

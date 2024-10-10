@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import csv
 
+# Organiser: K. Umut Araz
+
 import requests
 from bs4 import BeautifulSoup
 

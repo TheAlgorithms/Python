@@ -1,5 +1,7 @@
 def en_yuksek_set_bit_pozisyonu(sayi: int) -> int:
     """
+    Organiser: K. Umut Araz
+    
     Bir sayının en yüksek set bitinin pozisyonunu döndürür.
     Ref - https://graphics.stanford.edu/~seander/bithacks.html#IntegerLogObvious
     >>> en_yuksek_set_bit_pozisyonu(25)

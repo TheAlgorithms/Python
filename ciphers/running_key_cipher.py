@@ -1,59 +1,61 @@
 """
-https://en.wikipedia.org/wiki/Running_key_cipher
+https://tr.wikipedia.org/wiki/Raylı_anahtar_şifreleme
+
+#Organiser: K. Umut Araz
 """
 
 
-def running_key_encrypt(key: str, plaintext: str) -> str:
+def rayli_anahtar_sifrele(anahtar: str, metin: str) -> str:
     """
-    Encrypts the plaintext using the Running Key Cipher.
+    Metni Raylı Anahtar Şifreleme yöntemiyle şifreler.
 
-    :param key: The running key (long piece of text).
-    :param plaintext: The plaintext to be encrypted.
-    :return: The ciphertext.
+    :param anahtar: Raylı anahtar (uzun bir metin parçası).
+    :param metin: Şifrelenecek metin.
+    :return: Şifreli metin.
     """
-    plaintext = plaintext.replace(" ", "").upper()
-    key = key.replace(" ", "").upper()
-    key_length = len(key)
-    ciphertext = []
+    metin = metin.replace(" ", "").upper()
+    anahtar = anahtar.replace(" ", "").upper()
+    anahtar_uzunlugu = len(anahtar)
+    sifreli_metin = []
     ord_a = ord("A")
 
-    for i, char in enumerate(plaintext):
-        p = ord(char) - ord_a
-        k = ord(key[i % key_length]) - ord_a
+    for i, karakter in enumerate(metin):
+        p = ord(karakter) - ord_a
+        k = ord(anahtar[i % anahtar_uzunlugu]) - ord_a
         c = (p + k) % 26
-        ciphertext.append(chr(c + ord_a))
+        sifreli_metin.append(chr(c + ord_a))
 
-    return "".join(ciphertext)
+    return "".join(sifreli_metin)
 
 
-def running_key_decrypt(key: str, ciphertext: str) -> str:
+def rayli_anahtar_coz(anahtar: str, sifreli_metin: str) -> str:
     """
-    Decrypts the ciphertext using the Running Key Cipher.
+    Şifreli metni Raylı Anahtar Şifreleme yöntemiyle çözer.
 
-    :param key: The running key (long piece of text).
-    :param ciphertext: The ciphertext to be decrypted.
-    :return: The plaintext.
+    :param anahtar: Raylı anahtar (uzun bir metin parçası).
+    :param sifreli_metin: Şifresi çözülecek metin.
+    :return: Çözülmüş metin.
     """
-    ciphertext = ciphertext.replace(" ", "").upper()
-    key = key.replace(" ", "").upper()
-    key_length = len(key)
-    plaintext = []
+    sifreli_metin = sifreli_metin.replace(" ", "").upper()
+    anahtar = anahtar.replace(" ", "").upper()
+    anahtar_uzunlugu = len(anahtar)
+    metin = []
     ord_a = ord("A")
 
-    for i, char in enumerate(ciphertext):
-        c = ord(char) - ord_a
-        k = ord(key[i % key_length]) - ord_a
+    for i, karakter in enumerate(sifreli_metin):
+        c = ord(karakter) - ord_a
+        k = ord(anahtar[i % anahtar_uzunlugu]) - ord_a
         p = (c - k) % 26
-        plaintext.append(chr(p + ord_a))
+        metin.append(chr(p + ord_a))
 
-    return "".join(plaintext)
+    return "".join(metin)
 
 
-def test_running_key_encrypt() -> None:
+def test_rayli_anahtar_sifrele() -> None:
     """
-    >>> key = "How does the duck know that? said Victor"
-    >>> ciphertext = running_key_encrypt(key, "DEFEND THIS")
-    >>> running_key_decrypt(key, ciphertext) == "DEFENDTHIS"
+    >>> anahtar = "Örnek anahtar metni"
+    >>> sifreli_metin = rayli_anahtar_sifrele(anahtar, "SAVUNUN")
+    >>> rayli_anahtar_coz(anahtar, sifreli_metin) == "SAVUNUN"
     True
     """
 
@@ -62,14 +64,14 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
-    test_running_key_encrypt()
+    test_rayli_anahtar_sifrele()
 
-    plaintext = input("Enter the plaintext: ").upper()
-    print(f"\n{plaintext = }")
+    metin = input("Metni girin: ").upper()
+    print(f"\n{metin = }")
 
-    key = "How does the duck know that? said Victor"
-    encrypted_text = running_key_encrypt(key, plaintext)
-    print(f"{encrypted_text = }")
+    anahtar = "Örnek anahtar metni"
+    sifreli_metin = rayli_anahtar_sifrele(anahtar, metin)
+    print(f"{sifreli_metin = }")
 
-    decrypted_text = running_key_decrypt(key, encrypted_text)
-    print(f"{decrypted_text = }")
+    cozulmus_metin = rayli_anahtar_coz(anahtar, sifreli_metin)
+    print(f"{cozulmus_metin = }")

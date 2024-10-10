@@ -3,6 +3,8 @@ from math import cos, sin, sqrt, tau
 from audio_filters.iir_filter import IIRFilter
 
 """
+Organiser: K. Umut Araz
+
 Butterworth tasarımı ile 2. dereceden IIR filtreler oluşturun.
 
 Kod, https://webaudio.github.io/Audio-EQ-Cookbook/audio-eq-cookbook.html adresine dayanmaktadır.
@@ -16,7 +18,7 @@ def alçak_geçiren_oluştur(
     q_faktörü: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
-    Alçak geçiren bir filtre oluşturur
+    Alçak geçiren bir filtre oluşturur.
 
     >>> filtre = alçak_geçiren_oluştur(1000, 48000)
     >>> filtre.a_koeff + filtre.b_koeff  # doctest: +NORMALIZE_WHITESPACE
@@ -46,7 +48,7 @@ def yüksek_geçiren_oluştur(
     q_faktörü: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
-    Yüksek geçiren bir filtre oluşturur
+    Yüksek geçiren bir filtre oluşturur.
 
     >>> filtre = yüksek_geçiren_oluştur(1000, 48000)
     >>> filtre.a_koeff + filtre.b_koeff  # doctest: +NORMALIZE_WHITESPACE
@@ -76,7 +78,7 @@ def bant_geçiren_oluştur(
     q_faktörü: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
-    Bant geçiren bir filtre oluşturur
+    Bant geçiren bir filtre oluşturur.
 
     >>> filtre = bant_geçiren_oluştur(1000, 48000)
     >>> filtre.a_koeff + filtre.b_koeff  # doctest: +NORMALIZE_WHITESPACE
@@ -107,7 +109,7 @@ def tüm_geçiren_oluştur(
     q_faktörü: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
-    Tüm geçiren bir filtre oluşturur
+    Tüm geçiren bir filtre oluşturur.
 
     >>> filtre = tüm_geçiren_oluştur(1000, 48000)
     >>> filtre.a_koeff + filtre.b_koeff  # doctest: +NORMALIZE_WHITESPACE
@@ -135,7 +137,7 @@ def tepe_oluştur(
     q_faktörü: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
-    Tepe bir filtre oluşturur
+    Tepe bir filtre oluşturur.
 
     >>> filtre = tepe_oluştur(1000, 48000, 6)
     >>> filtre.a_koeff + filtre.b_koeff  # doctest: +NORMALIZE_WHITESPACE
@@ -167,7 +169,7 @@ def alçak_raf_oluştur(
     q_faktörü: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
-    Alçak raf bir filtre oluşturur
+    Alçak raf bir filtre oluşturur.
 
     >>> filtre = alçak_raf_oluştur(1000, 48000, 6)
     >>> filtre.a_koeff + filtre.b_koeff  # doctest: +NORMALIZE_WHITESPACE
@@ -204,7 +206,7 @@ def yüksek_raf_oluştur(
     q_faktörü: float = 1 / sqrt(2),
 ) -> IIRFilter:
     """
-    Yüksek raf bir filtre oluşturur
+    Yüksek raf bir filtre oluşturur.
 
     >>> filtre = yüksek_raf_oluştur(1000, 48000, 6)
     >>> filtre.a_koeff + filtre.b_koeff  # doctest: +NORMALIZE_WHITESPACE

@@ -7,6 +7,8 @@ from fake_useragent import UserAgent
 headers = {"UserAgent": UserAgent().random}
 URL = "https://www.mywaifulist.moe/random"
 
+# Organiser: K. Umut Araz
+
 
 def save_image(image_url: str, image_title: str) -> None:
     """

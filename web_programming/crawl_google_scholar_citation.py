@@ -1,6 +1,8 @@
 """
 Başlık ve yayın yılı ile derginin cilt ve sayfalarını kullanarak
 Google Scholar'dan atıf sayısını alın.
+
+Organiser: K. Umut Araz
 """
 
 import requests

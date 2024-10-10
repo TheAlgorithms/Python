@@ -5,6 +5,9 @@
 
 def mantiksal_sola_kaydir(sayi: int, kaydirma_miktari: int) -> str:
     """
+
+    Organiser: K. Umut Araz
+
     2 pozitif tam sayı alır.
     'sayi', 'kaydirma_miktari' kadar mantıksal olarak sola kaydırılacak tam sayıdır.
     Yani (sayi << kaydirma_miktari)

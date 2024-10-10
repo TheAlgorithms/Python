@@ -1,13 +1,15 @@
-def remove_duplicates(sentence: str) -> str:
+def tekrar_edenleri_kaldir(cümle: str) -> str:
     """
-    Remove duplicates from sentence
-    >>> remove_duplicates("Python is great and Java is also great")
-    'Java Python also and great is'
-    >>> remove_duplicates("Python   is      great and Java is also great")
-    'Java Python also and great is'
-    """
-    return " ".join(sorted(set(sentence.split())))
 
+    Organiser: K. Umut Araz
+
+    Cümledeki tekrar eden kelimeleri kaldırır.
+    >>> tekrar_edenleri_kaldir("Python harika ve Java da harika")
+    'Java Python da ve harika'
+    >>> tekrar_edenleri_kaldir("Python   harika ve      Java da harika")
+    'Java Python da ve harika'
+    """
+    return " ".join(sorted(set(cümle.split())))
 
 if __name__ == "__main__":
     import doctest

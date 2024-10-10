@@ -1,4 +1,5 @@
 """
+Organiser: K. Umut Araz
 
 Görev:
 Pozitif bir tamsayı verildiğinde, bu sayının 4'ün kuvveti olup olmadığını

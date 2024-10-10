@@ -1,9 +1,11 @@
 """
-Program to encode and decode Baconian or Bacon's Cipher
-Wikipedia reference : https://en.wikipedia.org/wiki/Bacon%27s_cipher
+Baconian şifreleme ve çözme programı
+Vikipedi referansı: https://tr.wikipedia.org/wiki/Bacon%27s_cipher
+
+Organiser: K. Umut Araz
 """
 
-encode_dict = {
+şifreleme_sözlüğü = {
     "a": "AAAAA",
     "b": "AAAAB",
     "c": "AAABA",
@@ -33,55 +35,51 @@ encode_dict = {
     " ": " ",
 }
 
+çözme_sözlüğü = {değer: anahtar for anahtar, değer in şifreleme_sözlüğü.items()}
 
-decode_dict = {value: key for key, value in encode_dict.items()}
-
-
-def encode(word: str) -> str:
+def şifrele(kelime: str) -> str:
     """
-    Encodes to Baconian cipher
+    Baconian şifrelemesine çevirir.
 
-    >>> encode("hello")
+    >>> şifrele("merhaba")
     'AABBBAABAAABABAABABAABBAB'
-    >>> encode("hello world")
+    >>> şifrele("merhaba dünya")
     'AABBBAABAAABABAABABAABBAB BABAAABBABBAAAAABABAAAABB'
-    >>> encode("hello world!")
+    >>> şifrele("merhaba dünya!")
     Traceback (most recent call last):
         ...
-    Exception: encode() accepts only letters of the alphabet and spaces
+    Exception: şifrele() yalnızca alfabedeki harfleri ve boşlukları kabul eder
     """
-    encoded = ""
-    for letter in word.lower():
-        if letter.isalpha() or letter == " ":
-            encoded += encode_dict[letter]
+    şifrelenmiş = ""
+    for harf in kelime.lower():
+        if harf.isalpha() or harf == " ":
+            şifrelenmiş += şifreleme_sözlüğü[harf]
         else:
-            raise Exception("encode() accepts only letters of the alphabet and spaces")
-    return encoded
+            raise Exception("şifrele() yalnızca alfabedeki harfleri ve boşlukları kabul eder")
+    return şifrelenmiş
 
-
-def decode(coded: str) -> str:
+def çöz(coded: str) -> str:
     """
-    Decodes from Baconian cipher
+    Baconian şifresinden çözer.
 
-    >>> decode("AABBBAABAAABABAABABAABBAB BABAAABBABBAAAAABABAAAABB")
-    'hello world'
-    >>> decode("AABBBAABAAABABAABABAABBAB")
-    'hello'
-    >>> decode("AABBBAABAAABABAABABAABBAB BABAAABBABBAAAAABABAAAABB!")
+    >>> çöz("AABBBAABAAABABAABABAABBAB BABAAABBABBAAAAABABAAAABB")
+    'merhaba dünya'
+    >>> çöz("AABBBAABAAABABAABABAABBAB")
+    'merhaba'
+    >>> çöz("AABBBAABAAABABAABABAABBAB BABAAABBABBAAAAABABAAAABB!")
     Traceback (most recent call last):
         ...
-    Exception: decode() accepts only 'A', 'B' and spaces
+    Exception: çöz() yalnızca 'A', 'B' ve boşlukları kabul eder
     """
     if set(coded) - {"A", "B", " "} != set():
-        raise Exception("decode() accepts only 'A', 'B' and spaces")
-    decoded = ""
-    for word in coded.split():
-        while len(word) != 0:
-            decoded += decode_dict[word[:5]]
-            word = word[5:]
-        decoded += " "
-    return decoded.strip()
-
+        raise Exception("çöz() yalnızca 'A', 'B' ve boşlukları kabul eder")
+    çözülen = ""
+    for kelime in coded.split():
+        while len(kelime) != 0:
+            çözülen += çözme_sözlüğü[kelime[:5]]
+            kelime = kelime[5:]
+        çözülen += " "
+    return çözülen.strip()
 
 if __name__ == "__main__":
     from doctest import testmod

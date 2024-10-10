@@ -1,28 +1,27 @@
 """
-Build the quantum fourier transform (qft) for a desire
-number of quantum bits using Qiskit framework. This
-experiment run in IBM Q simulator with 10000 shots.
-This circuit can be use as a building block to design
-the Shor's algorithm in quantum computing. As well as,
-quantum phase estimation among others.
+Qiskit framework'ü kullanarak istenen sayıda kuantum bit için kuantum Fourier dönüşümünü (QFT) oluşturur. 
+Bu deney, IBM Q simülatöründe 10000 deneme ile çalıştırılır. 
+Bu devre, kuantum hesaplamada Shor algoritmasını tasarlamak için bir yapı taşı olarak kullanılabilir. 
+Ayrıca, kuantum faz tahmini gibi diğer uygulamalar için de kullanılabilir.
+
+Organiser: K. Umut Araz
 .
-References:
+Referanslar:
 https://en.wikipedia.org/wiki/Quantum_Fourier_transform
 https://qiskit.org/textbook/ch-algorithms/quantum-fourier-transform.html
 """
 
 import math
-
 import numpy as np
 import qiskit
 from qiskit import Aer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
 
 
-def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts.Counts:
+def kuantum_fourier_donustur(number_of_qubits: int = 3) -> qiskit.result.counts.Counts:
     """
-    # >>> quantum_fourier_transform(2)
+    # >>> kuantum_fourier_donustur(2)
     # {'00': 2500, '01': 2500, '11': 2500, '10': 2500}
-    # quantum circuit for number_of_qubits = 3:
+    # number_of_qubits = 3 için kuantum devresi:
                                                ┌───┐
     qr_0: ──────■──────────────────────■───────┤ H ├─X─
                 │                ┌───┐ │P(π/2) └───┘ │
@@ -32,65 +31,65 @@ def quantum_fourier_transform(number_of_qubits: int = 3) -> qiskit.result.counts
           └───┘
     cr: 3/═════════════════════════════════════════════
     Args:
-        n : number of qubits
+        n : kuantum bit sayısı
     Returns:
-        qiskit.result.counts.Counts: distribute counts.
+        qiskit.result.counts.Counts: dağıtılmış sayımlar.
 
-    >>> quantum_fourier_transform(2)
+    >>> kuantum_fourier_donustur(2)
     {'00': 2500, '01': 2500, '10': 2500, '11': 2500}
-    >>> quantum_fourier_transform(-1)
+    >>> kuantum_fourier_donustur(-1)
     Traceback (most recent call last):
         ...
-    ValueError: number of qubits must be > 0.
-    >>> quantum_fourier_transform('a')
+    ValueError: kuantum bit sayısı 0'dan büyük olmalıdır.
+    >>> kuantum_fourier_donustur('a')
     Traceback (most recent call last):
         ...
-    TypeError: number of qubits must be a integer.
-    >>> quantum_fourier_transform(100)
+    TypeError: kuantum bit sayısı bir tam sayı olmalıdır.
+    >>> kuantum_fourier_donustur(100)
     Traceback (most recent call last):
         ...
-    ValueError: number of qubits too large to simulate(>10).
-    >>> quantum_fourier_transform(0.5)
+    ValueError: kuantum bit sayısı simüle etmek için çok büyük(>10).
+    >>> kuantum_fourier_donustur(0.5)
     Traceback (most recent call last):
         ...
-    ValueError: number of qubits must be exact integer.
+    ValueError: kuantum bit sayısı tam sayı olmalıdır.
     """
     if isinstance(number_of_qubits, str):
-        raise TypeError("number of qubits must be a integer.")
+        raise TypeError("Kuantum bit sayısı bir tam sayı olmalıdır.")
     if number_of_qubits <= 0:
-        raise ValueError("number of qubits must be > 0.")
+        raise ValueError("Kuantum bit sayısı 0'dan büyük olmalıdır.")
     if math.floor(number_of_qubits) != number_of_qubits:
-        raise ValueError("number of qubits must be exact integer.")
+        raise ValueError("Kuantum bit sayısı tam sayı olmalıdır.")
     if number_of_qubits > 10:
-        raise ValueError("number of qubits too large to simulate(>10).")
+        raise ValueError("Kuantum bit sayısı simüle etmek için çok büyük(>10).")
 
     qr = QuantumRegister(number_of_qubits, "qr")
     cr = ClassicalRegister(number_of_qubits, "cr")
 
-    quantum_circuit = QuantumCircuit(qr, cr)
+    kuantum_devre = QuantumCircuit(qr, cr)
 
     counter = number_of_qubits
 
     for i in range(counter):
-        quantum_circuit.h(number_of_qubits - i - 1)
+        kuantum_devre.h(number_of_qubits - i - 1)
         counter -= 1
         for j in range(counter):
-            quantum_circuit.cp(np.pi / 2 ** (counter - j), j, counter)
+            kuantum_devre.cp(np.pi / 2 ** (counter - j), j, counter)
 
     for k in range(number_of_qubits // 2):
-        quantum_circuit.swap(k, number_of_qubits - k - 1)
+        kuantum_devre.swap(k, number_of_qubits - k - 1)
 
-    # measure all the qubits
-    quantum_circuit.measure(qr, cr)
-    # simulate with 10000 shots
+    # tüm kuantum bitlerini ölç
+    kuantum_devre.measure(qr, cr)
+    # 10000 deneme ile simüle et
     backend = Aer.get_backend("qasm_simulator")
-    job = execute(quantum_circuit, backend, shots=10000)
+    job = execute(kuantum_devre, backend, shots=10000)
 
-    return job.result().get_counts(quantum_circuit)
+    return job.result().get_counts(kuantum_devre)
 
 
 if __name__ == "__main__":
     print(
-        f"Total count for quantum fourier transform state is: \
-    {quantum_fourier_transform(3)}"
+        f"Kuantum Fourier dönüşüm durumu için toplam sayım: \
+    {kuantum_fourier_donustur(3)}"
     )

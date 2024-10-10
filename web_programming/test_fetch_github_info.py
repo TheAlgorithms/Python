@@ -2,6 +2,8 @@ import json
 
 import requests
 
+# Organiser: K. Umut Araz
+
 from .fetch_github_info import AUTHENTICATED_USER_ENDPOINT, fetch_github_info
 
 

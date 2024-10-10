@@ -1,9 +1,10 @@
-hex_table = {hex(i)[2:]: i for i in range(16)}  # Use [:2] to strip off the leading '0x'
+hex_tablo = {hex(i)[2:]: i for i in range(16)}  # '0x' kısmını çıkarmak için [:2] kullanılır
 
+#Organiser: K. Umut Araz
 
-def hex_to_decimal(hex_string: str) -> int:
+def hex_to_decimal(hex_dizisi: str) -> int:
     """
-    Convert a hexadecimal value to its decimal equivalent
+    Bir onaltılık değeri ondalık karşılığına dönüştürür.
     #https://www.programiz.com/python-programming/methods/built-in/hex
 
     >>> hex_to_decimal("a")
@@ -19,28 +20,28 @@ def hex_to_decimal(hex_string: str) -> int:
     >>> hex_to_decimal("F-f")
     Traceback (most recent call last):
         ...
-    ValueError: Non-hexadecimal value was passed to the function
+    ValueError: Geçersiz bir onaltılık değer fonksiyona geçirildi
     >>> hex_to_decimal("")
     Traceback (most recent call last):
         ...
-    ValueError: Empty string was passed to the function
+    ValueError: Fonksiyona boş bir dize geçirildi
     >>> hex_to_decimal("12m")
     Traceback (most recent call last):
         ...
-    ValueError: Non-hexadecimal value was passed to the function
+    ValueError: Geçersiz bir onaltılık değer fonksiyona geçirildi
     """
-    hex_string = hex_string.strip().lower()
-    if not hex_string:
-        raise ValueError("Empty string was passed to the function")
-    is_negative = hex_string[0] == "-"
-    if is_negative:
-        hex_string = hex_string[1:]
-    if not all(char in hex_table for char in hex_string):
-        raise ValueError("Non-hexadecimal value was passed to the function")
-    decimal_number = 0
-    for char in hex_string:
-        decimal_number = 16 * decimal_number + hex_table[char]
-    return -decimal_number if is_negative else decimal_number
+    hex_dizisi = hex_dizisi.strip().lower()
+    if not hex_dizisi:
+        raise ValueError("Fonksiyona boş bir dize geçirildi")
+    negatif = hex_dizisi[0] == "-"
+    if negatif:
+        hex_dizisi = hex_dizisi[1:]
+    if not all(char in hex_tablo for char in hex_dizisi):
+        raise ValueError("Geçersiz bir onaltılık değer fonksiyona geçirildi")
+    ondalik_sayi = 0
+    for char in hex_dizisi:
+        ondalik_sayi = 16 * ondalik_sayi + hex_tablo[char]
+    return -ondalik_sayi if negatif else ondalik_sayi
 
 
 if __name__ == "__main__":

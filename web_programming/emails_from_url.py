@@ -6,7 +6,7 @@ __author__ = "K. Umut Araz"
 __license__ = "MIT"
 __version__ = "1.0.0"
 __maintainer__ = "K. Umut Araz"
-__email__ = "umutaraz349@gmail.com"
+__email__ = "arazumut349@gmail.com"
 __status__ = "Sigma"
 
 import re

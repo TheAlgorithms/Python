@@ -1,5 +1,8 @@
 def ters_bit_dizisi_al(sayi: int) -> str:
     """
+
+    Organiser: K. Umut Araz
+    
     bir tamsayının bit dizisini döndür
 
     >>> ters_bit_dizisi_al(9)

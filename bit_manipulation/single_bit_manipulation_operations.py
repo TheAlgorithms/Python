@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
-"""Tek bir biti manipüle etme işlevselliği sağlayın."""
+"""Tek bir biti manipüle etme işlevselliği sağlayın.
+
+Organiser: K. Umut Araz
+"""
 
 
 def bit_ayarla(sayi: int, konum: int) -> int:

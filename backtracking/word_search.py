@@ -10,6 +10,8 @@ Kelime, ardışık bitişik hücrelerin harflerinden oluşturulabilir,
 bitişik hücreler yatay veya dikey olarak komşu olan hücrelerdir.
 Aynı harf hücresi birden fazla kullanılamaz.
 
+Organiser: K. Umut Araz
+
 Örnek:
 
 Matris:

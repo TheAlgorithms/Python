@@ -8,6 +8,8 @@ Bir hücrenin güvenli olup olmadığını kontrol ederiz ve fonksiyonu
 bir sonraki sütunda rekürsif olarak çağırırız, eğer True dönerse,
 bulmacayı çözmüşüz demektir. Aksi takdirde, geri izleriz ve o hücreye başka bir sayı
 yerleştiririz ve bu işlemi tekrar ederiz.
+
+Organiser: K. Umut Araz
 """
 
 from __future__ import annotations

@@ -4,6 +4,8 @@ import numpy as np
 """
 Harris Köşe Dedektörü
 https://en.wikipedia.org/wiki/Harris_Corner_Detector
+
+Organiser: K. Umut Araz
 """
 
 

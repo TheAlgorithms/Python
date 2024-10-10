@@ -3,6 +3,9 @@
 
 def ikili_xor(a: int, b: int) -> str:
     """
+
+    Organiser: K. Umut Araz
+
     İki tam sayı alır, bunları ikili sisteme çevirir ve sağlanan tam sayılar üzerinde
     ikili xor işlemi sonucunda bir ikili sayı döner.
 
