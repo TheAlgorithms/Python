@@ -84,7 +84,7 @@ class generator(nn.Module):
 
   def __init__(self, input_size, output_size,hidden_dim):
     super(generator, self).__init__()
-    
+
     # define all layers
     self.fc1 = nn.Linear(input_size,hidden_dim)
     self.fc2 = nn.Linear(hidden_dim,hidden_dim*2)
@@ -93,7 +93,7 @@ class generator(nn.Module):
     self.fc4 = nn.Linear(hidden_dim*4,output_size)
     #dropout layer
     self.dropout = nn.Dropout(0.2)
-      
+
 
   def forward(self, x):
     # pass x through all layers
@@ -171,14 +171,14 @@ fixed_z = torch.from_numpy(fixed_z).float().cuda()
 D.train()
 G.train()
 for epoch in range(num_epochs):
-    
+
     for batch_i, (real_images, _) in enumerate(train_loader):
-                
+
         batch_size = real_images.size(0)
-        
-        ## Important rescaling step ## 
+
+        ## Important rescaling step ##
         real_images = (real_images*2 - 1).cuda()  # rescale input images from [0,1) to [-1, 1)
-        
+
         # ============================================
         #            TRAIN THE DISCRIMINATOR
         # ============================================
@@ -190,39 +190,39 @@ for epoch in range(num_epochs):
         D_real = D(real_images)
         d_real_loss = real_loss(D_real,smooth=True)
         # 2. Train with fake images
-        
+
         # Generate fake images
         z = np.random.uniform(-1, 1, size=(batch_size, z_size))
         z = torch.from_numpy(z).float().cuda()
         fake_images = G(z)
-        
-        # Compute the discriminator losses on fake images        
+
+        # Compute the discriminator losses on fake images
         D_fake = D(fake_images)
         d_fake_loss = fake_loss(D_fake)
         # add up real and fake losses and perform backprop
         d_loss = d_real_loss + d_fake_loss
         d_loss.backward()
         d_optimizer.step()
-        
-        
+
+
         # =========================================
         #            TRAIN THE GENERATOR
         # =========================================
         g_optimizer.zero_grad()
         # 1. Train with fake images and flipped labels
-        
+
         # Generate fake images
         z = np.random.uniform(-1, 1, size=(batch_size, z_size))
         z = torch.from_numpy(z).float().cuda()
         fake_images = G(z)
-        # Compute the discriminator losses on fake images 
+        # Compute the discriminator losses on fake images
         # using flipped labels!
         D_fake = D(fake_images)
         # perform backprop
         g_loss = real_loss(D_fake)
         g_loss.backward()
         g_optimizer.step()
-        
+
 
         # Print some loss stats
         if batch_i % print_every == 0:
@@ -230,11 +230,11 @@ for epoch in range(num_epochs):
             print('Epoch [{:5d}/{:5d}] | d_loss: {:6.4f} | g_loss: {:6.4f}'.format(
                     epoch+1, num_epochs, d_loss.item(), g_loss.item()))
 
-    
+
     ## AFTER EACH EPOCH##
     # append discriminator loss and generator loss
     losses.append((d_loss.item(), g_loss.item()))
-    
+
     # generate and save sample, fake images
     G.eval() # eval mode for generating samples
     samples_z = G(fixed_z)
@@ -258,7 +258,7 @@ plt.show()
 
 #Viewing the results of the GAN
 def view_samples(epoch, samples):
-  
+
   fig, axes = plt.subplots(figsize=(7,7), nrows=4, ncols=4, sharey=True, sharex=True)
   fig.suptitle("Generated Digits")
   for ax, img in zip(axes.flatten(), samples[epoch]):
@@ -271,5 +271,4 @@ with open('train_samples.pkl', 'rb') as f:
   samples = pkl.load(f)
 
 view_samples(-1,samples)
-plt.show()  
-
+plt.show()
