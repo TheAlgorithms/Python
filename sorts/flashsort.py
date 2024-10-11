@@ -8,6 +8,7 @@ For manual testing run:
 python3 flashsort.py
 """
 
+
 def flash_sort(collection: list) -> list:
     """A pure Python implementation of the flash sort algorithm.
 
@@ -33,10 +34,10 @@ def flash_sort(collection: list) -> list:
     max_value = max(collection)
     min_value = min(collection)
 
-    m = int(n / 2) 
+    m = int(n / 2)
     L = [0] * m
     if max_value == min_value:
-        return collection  
+        return collection
 
     for value in collection:
         class_index = int(m * (value - min_value) / (max_value - min_value))
