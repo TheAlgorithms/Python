@@ -64,8 +64,10 @@ class MinMax:
         return self.minimax()
 
 if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+
     scores = [3, 5, 2, 9, 12, 5, 23, 23]
     game = MinMax(scores)
     optimal_value = game.find_optimal_value()
     print(f"The optimal value is: {optimal_value}")
-
