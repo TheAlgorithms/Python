@@ -3,6 +3,7 @@ Adaptive Merge Sort Algorithm
 @see https://www.tutorialspoint.com/adaptive-merging-and-sorting-in-data-structure
 """
 
+
 def adaptive_merge_sort(sequence: list) -> list:
     """
     Sorts a list using the Adaptive Merge Sort algorithm.
@@ -37,7 +38,7 @@ def adaptive_merge_sort_helper(array: list, aux: list, low: int, high: int):
     adaptive_merge_sort_helper(aux, array, mid + 1, high)
 
     if array[mid] <= array[mid + 1]:
-        array[low:high + 1] = aux[low:high + 1]
+        array[low : high + 1] = aux[low : high + 1]
         return
 
     merge(array, aux, low, mid, high)
