@@ -1,0 +1,109 @@
+NASA Exoplanet Query App Solution
+
+To address the requirements and constraints of the NASA Exoplanet Query app, I propose the following solution:
+
+Data Loading and Storage
+
+To efficiently load the exoplanet CSV data, we can use the following approach:
+
+Use a library like pandas in Python to read the CSV file into a DataFrame.
+Convert the DataFrame into a JSON object using a library like csv2json.
+Store the JSON object in a data structure like a dictionary or a hash table for fast lookups.
+Data Structure and Search Mechanism
+
+To minimize the time required to query the exoplanet data, we can use the following approach:
+
+Use a data structure like a hash table or a trie to store the exoplanet data.
+Implement a search mechanism that uses the hash table or trie to quickly find matching exoplanets based on the selected query values.
+User Interface and Query Panel
+
+To implement the user interface and query panel, we can use the following approach:
+
+Use a web framework like React or Angular to create a user-friendly interface.
+Create a query panel with dropdowns for year of discovery, discovery method, host name, and discovery facility.
+Add 'Clear' and 'Search' buttons to the query panel.
+Use JavaScript events to handle user input and search queries.
+Results Panel and Data Display
+
+To display the matching exoplanet data in a tabular format, we can use the following approach:
+
+Use a library like react-table or angular-material-table to create a table component.
+Display only the queriable fields in the table.
+Use JavaScript events to handle user input and update the table data.
+Bonus Features
+
+To implement the bonus features, we can use the following approach:
+
+Use a library like react-router or angular-router to create hyperlinks to NASA's Confirmed Planet Overview Page.
+Use JavaScript events to handle user input and open the hyperlinks in a new browser tab.
+Use a library like react-sortable-table or angular-sortable-table to add icons and sorting functionality to the table.
+
+
+
+example code
+
+
+
+# ExoplanetQueryApp.js
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+function ExoplanetQueryApp() {
+  const [exoplanetData, setExoplanetData] = useState([]);
+  const [queryValues, setQueryValues] = useState({
+    yearOfDiscovery: '',
+    discoveryMethod: '',
+    hostName: '',
+    discoveryFacility: '',
+  });
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    axios.get('https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI')
+      .then(response => {
+        setExoplanetData(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleSearch = () => {
+    const filteredData = exoplanetData.filter(exoplanet => {
+      return (
+        (queryValues.yearOfDiscovery === '' || exoplanet.yearOfDiscovery === queryValues.yearOfDiscovery) &&
+        (queryValues.discoveryMethod === '' || exoplanet.discoveryMethod === queryValues.discoveryMethod) &&
+        (queryValues.hostName === '' || exoplanet.hostName === queryValues.hostName) &&
+        (queryValues.discoveryFacility === '' || exoplanet.discoveryFacility === queryValues.discoveryFacility)
+      );
+    });
+    setSearchResults(filteredData);
+  };
+
+  const handleClear = () => {
+    setQueryValues({
+      yearOfDiscovery: '',
+      discoveryMethod: '',
+      hostName: '',
+      discoveryFacility: '',
+    });
+    setSearchResults([]);
+  };
+
+  return (
+    <div>
+      <h1>Exoplanet Query App</h1>
+      <form>
+        <label>Year of Discovery:</label>
+        <select value={queryValues.yearOfDiscovery} onChange={e => setQueryValues({ ...queryValues, yearOfDiscovery: e.target.value })}>
+          <option value="">Select a year</option>
+          {exoplanetData.map(exoplanet => (
+            <option key={exoplanet.yearOfDiscovery} value={exoplanet.yearOfDiscovery}>{exoplanet.yearOfDiscovery}</option>
+          ))}
+        </select>
+        <br />
+        <label>Discovery Method:</label>
+        <select value={queryValues.discoveryMethod} onChange={e => setQueryValues({ ...queryValues, discoveryMethod: e.target.value })}>
+          <option value="">Select a method</option>
+          {exoplanetData.map(exoplanet => (
+            <option key={exoplanet.discoveryMethod} value={exoplanet
