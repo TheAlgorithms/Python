@@ -1,117 +1,54 @@
-import math
+#!/usr/bin/env python
 
-def flash_sort(array: list[int]) -> list[int]:
-    """
-    Perform Flashsort on the given array.
+import argparse
+import os
+from typing import List
 
-    Flashsort is a distribution-based sorting algorithm. It divides the array
-    into buckets based on value ranges and sorts within each bucket.
+class FlashSorter:
+    def __init__(self, filename: str):
+        self.filename = filename
 
-    Args:
-        array (list[int]): List of integers to sort.
+    def sort(self) -> None:
+        # Main logic for flash sort goes here
+        pass
 
-    Returns:
-        list[int]: The sorted array.
+    def _flash_sort(self, data: List[int]) -> List[int]:
+        # Implement the flash sort algorithm
+        pass
 
-    Example:
-    >>> flash_sort([15, 13, 24, 7, 18, 3, 22, 9])
-    [3, 7, 9, 13, 15, 18, 22, 24]
-    >>> flash_sort([5, 1, 4, 2, 3])
-    [1, 2, 3, 4, 5]
-    """
-    n = len(array)
-    if n == 0:
-        return array
+    def _read_file(self) -> List[int]:
+        with open(self.filename, 'r') as file:
+            return [int(line.strip()) for line in file]
 
-    # Step 1: Find minimum and maximum values
-    min_value = min(array)
-    max_value = max(array)
+    def _write_file(self, data: List[int]) -> None:
+        with open(self.filename + ".out", 'w') as file:
+            for number in data:
+                file.write(f"{number}\n")
 
-    if min_value == max_value:
-        return array  # All values are the same
+def parse_memory(string: str) -> int:
+    if string[-1].lower() == "k":
+        return int(string[:-1]) * 1024
+    elif string[-1].lower() == "m":
+        return int(string[:-1]) * 1024 * 1024
+    elif string[-1].lower() == "g":
+        return int(string[:-1]) * 1024 * 1024 * 1024
+    else:
+        return int(string)
 
-    # Step 2: Divide array into m buckets
-    m = max(math.floor(0.45 * n), 1)
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-m", "--mem", help="amount of memory to use for sorting", default="100M"
+    )
+    parser.add_argument(
+        "filename", metavar="<filename>", nargs=1, help="name of file to sort"
+    )
+    args = parser.parse_args()
 
-    # Step 3: Count the number of elements in each bucket
-    def get_bucket_id(value: int) -> int:
-        """
-        Get the bucket index for the given value.
-
-        Args:
-            value (int): The value to assign a bucket to.
-
-        Returns:
-            int: The index of the bucket.
-        """
-        return (m * (value - min_value)) // (max_value - min_value + 1)
-
-    bucket_counts = [0] * m
-    for value in array:
-        bucket_counts[get_bucket_id(value)] += 1
-
-    # Step 4: Convert the count to prefix sum
-    for i in range(1, m):
-        bucket_counts[i] += bucket_counts[i - 1]
-
-    # Step 5: Rearrange the elements
-    def find_swap_index(bucket_id: int) -> int:
-        """
-        Find the first index of the element in the bucket.
-        """
-        for ind in range(bucket_counts[bucket_id - 1], bucket_counts[bucket_id]):
-            if get_bucket_id(array[ind]) != bucket_id:
-                break
-        return ind
-
-    def arrange_bucket(i1: int, i2: int, bucket_id: int) -> None:
-        """
-        Arrange elements into the specified bucket.
-        """
-        for i in range(i1, i2):
-            current_bucket_id = get_bucket_id(array[i])
-            while current_bucket_id != bucket_id:
-                swap_index = find_swap_index(current_bucket_id)
-                array[i], array[swap_index] = array[swap_index], array[i]
-                current_bucket_id = get_bucket_id(array[i])
-
-    for bucket_id in range(m - 1):
-        if bucket_id == 0:
-            arrange_bucket(0, bucket_counts[bucket_id], bucket_id)
-        else:
-            arrange_bucket(bucket_counts[bucket_id - 1], bucket_counts[bucket_id], bucket_id)
-
-    # Step 6: Sort each bucket using insertion sort
-    def insertion_sort(sub_array: list[int]) -> list[int]:
-        """
-        Sort the given array using insertion sort.
-
-        Args:
-            sub_array (list[int]): List of integers to sort.
-
-        Returns:
-            list[int]: Sorted array.
-        """
-        for i in range(1, len(sub_array)):
-            temp = sub_array[i]
-            j = i - 1
-            while j >= 0 and temp < sub_array[j]:
-                sub_array[j + 1] = sub_array[j]
-                j -= 1
-            sub_array[j + 1] = temp
-        return sub_array
-
-    for i in range(m):
-        if i == 0:
-            array[0:bucket_counts[i]] = insertion_sort(array[0:bucket_counts[i]])
-        else:
-            array[bucket_counts[i - 1]:bucket_counts[i]] = insertion_sort(
-                array[bucket_counts[i - 1]:bucket_counts[i]]
-            )
-
-    return array
-
+    sorter = FlashSorter(args.filename[0])
+    data = sorter._read_file()
+    sorted_data = sorter._flash_sort(data)
+    sorter._write_file(sorted_data)
 
 if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
+    main()
