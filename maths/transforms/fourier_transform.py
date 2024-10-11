@@ -1,6 +1,7 @@
 from typing import List, Union
 import numpy as np
 
+
 def fourier_transform(signal: list[int | float]) -> list[complex]:
     """
     Compute the discrete Fourier transform (DFT) of a signal.
@@ -27,6 +28,7 @@ def fourier_transform(signal: list[int | float]) -> list[complex]:
             summation += signal[t] * np.exp(angle)
         result.append(summation)
     return result
+
 
 if __name__ == "__main__":
     sample_signal = [1, 2, 3, 4]
