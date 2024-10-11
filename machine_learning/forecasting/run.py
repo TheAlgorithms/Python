@@ -1,18 +1,4 @@
-"""
-this is code for forecasting
-but I modified it and used it for safety checker of data
-for ex: you have an online shop and for some reason some data are
-missing (the amount of data that u expected are not supposed to be)
-        then we can use it
-*ps : 1. ofc we can use normal statistic method but in this case
-         the data is quite absurd and only a little^^
-      2. ofc u can use this and modified it for forecasting purpose
-         for the next 3 months sales or something,
-         u can just adjust it for ur own purpose
-"""
-
 from warnings import simplefilter
-
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import Normalizer
@@ -21,56 +7,58 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 
 def linear_regression_prediction(
-    train_dt: list, train_usr: list, train_mtch: list, test_dt: list, test_mtch: list
+    train_dt: list[float], train_usr: list[float], train_mtch: list[float],
+    test_dt: list[float], test_mtch: list[float]
 ) -> float:
     """
-    First method: linear regression
-    input : training data (date, total_user, total_event) in list of float
-    output : list of total user prediction in float
-    >>> n = linear_regression_prediction([2,3,4,5], [5,3,4,6], [3,1,2,4], [2,1], [2,2])
-    >>> bool(abs(n - 5.0) < 1e-6)  # Checking precision because of floating point errors
-    True
+    Perform linear regression to predict total users.
+    
+    Args:
+        train_dt: Training dates
+        train_usr: Total users for training data
+        train_mtch: Total matches for training data
+        test_dt: Testing dates
+        test_mtch: Total matches for testing data
+    
+    Returns:
+        Predicted total users for the test date.
     """
-    x = np.array([[1, item, train_mtch[i]] for i, item in enumerate(train_dt)])
+    x = np.array([[1, dt, mtch] for dt, mtch in zip(train_dt, train_mtch)])
     y = np.array(train_usr)
-    beta = np.dot(np.dot(np.linalg.inv(np.dot(x.transpose(), x)), x.transpose()), y)
-    return abs(beta[0] + test_dt[0] * beta[1] + test_mtch[0] + beta[2])
+    beta = np.linalg.inv(x.T @ x) @ (x.T @ y)  # More stable than manual dot products
+    return float(beta[0] + test_dt[0] * beta[1] + test_mtch[0] * beta[2])
 
 
-def sarimax_predictor(train_user: list, train_match: list, test_match: list) -> float:
+def sarimax_predictor(train_user: list[float], train_match: list[float], test_match: list[float]) -> float:
     """
-    second method: Sarimax
-    sarimax is a statistic method which using previous input
-    and learn its pattern to predict future data
-    input : training data (total_user, with exog data = total_event) in list of float
-    output : list of total user prediction in float
-    >>> sarimax_predictor([4,2,6,8], [3,1,2,4], [2])
-    6.6666671111109626
+    Use SARIMAX for predicting total users based on training data.
+    
+    Args:
+        train_user: Total users in training data
+        train_match: Total matches in training data
+        test_match: Total matches for testing data
+    
+    Returns:
+        Predicted total users for the test match.
     """
-    # Suppress the User Warning raised by SARIMAX due to insufficient observations
-    simplefilter("ignore", UserWarning)
-    order = (1, 2, 1)
-    seasonal_order = (1, 1, 1, 7)
-    model = SARIMAX(
-        train_user, exog=train_match, order=order, seasonal_order=seasonal_order
-    )
+    simplefilter("ignore", UserWarning)  # Suppress warnings from SARIMAX
+    model = SARIMAX(train_user, exog=train_match, order=(1, 2, 1), seasonal_order=(1, 1, 1, 7))
     model_fit = model.fit(disp=False, maxiter=600, method="nm")
-    result = model_fit.predict(1, len(test_match), exog=[test_match])
+    result = model_fit.predict(start=len(train_user), end=len(train_user), exog=[test_match])
     return float(result[0])
 
 
-def support_vector_regressor(x_train: list, x_test: list, train_user: list) -> float:
+def support_vector_regressor(x_train: np.ndarray, x_test: np.ndarray, train_user: list[float]) -> float:
     """
-    Third method: Support vector regressor
-    svr is quite the same with svm(support vector machine)
-    it uses the same principles as the SVM for classification,
-    with only a few minor differences and the only different is that
-    it suits better for regression purpose
-    input : training data (date, total_user, total_event) in list of float
-    where x = list of set (date and total event)
-    output : list of total user prediction in float
-    >>> support_vector_regressor([[5,2],[1,5],[6,2]], [[3,2]], [2,1,4])
-    1.634932078116079
+    Predict total users using Support Vector Regressor.
+    
+    Args:
+        x_train: Training features (dates and matches)
+        x_test: Testing features (dates and matches)
+        train_user: Total users for training data
+    
+    Returns:
+        Predicted total users for the test features.
     """
     regressor = SVR(kernel="rbf", C=1, gamma=0.1, epsilon=0.1)
     regressor.fit(x_train, train_user)
@@ -78,85 +66,74 @@ def support_vector_regressor(x_train: list, x_test: list, train_user: list) -> f
     return float(y_pred[0])
 
 
-def interquartile_range_checker(train_user: list) -> float:
+def interquartile_range_checker(train_user: list[float]) -> float:
     """
-    Optional method: interquatile range
-    input : list of total user in float
-    output : low limit of input in float
-    this method can be used to check whether some data is outlier or not
-    >>> interquartile_range_checker([1,2,3,4,5,6,7,8,9,10])
-    2.8
+    Calculate the low limit for detecting outliers using IQR.
+    
+    Args:
+        train_user: List of total users
+    
+    Returns:
+        Low limit for detecting outliers.
     """
-    train_user.sort()
+    train_user = np.array(train_user)
     q1 = np.percentile(train_user, 25)
     q3 = np.percentile(train_user, 75)
     iqr = q3 - q1
-    low_lim = q1 - (iqr * 0.1)
+    low_lim = q1 - (iqr * 1.5)  # Common multiplier for outlier detection
     return float(low_lim)
 
 
-def data_safety_checker(list_vote: list, actual_result: float) -> bool:
+def data_safety_checker(list_vote: list[float], actual_result: float) -> bool:
     """
-    Used to review all the votes (list result prediction)
-    and compare it to the actual result.
-    input : list of predictions
-    output : print whether it's safe or not
-    >>> data_safety_checker([2, 3, 4], 5.0)
-    False
+    Check if the predictions are safe based on actual results.
+    
+    Args:
+        list_vote: List of predictions
+        actual_result: Actual result to compare against
+    
+    Returns:
+        True if the data is considered safe; otherwise False.
     """
-    safe = 0
-    not_safe = 0
-
     if not isinstance(actual_result, float):
-        raise TypeError("Actual result should be float. Value passed is a list")
+        raise TypeError("Actual result should be a float.")
 
-    for i in list_vote:
-        if i > actual_result:
-            safe = not_safe + 1
-        elif abs(abs(i) - abs(actual_result)) <= 0.1:
-            safe += 1
-        else:
-            not_safe += 1
-    return safe > not_safe
+    safe_count = sum(
+        1 for prediction in list_vote if abs(prediction - actual_result) <= 0.1
+    )
+    not_safe_count = len(list_vote) - safe_count
+    
+    return safe_count > not_safe_count
 
 
 if __name__ == "__main__":
-    """
-    data column = total user in a day, how much online event held in one day,
-    what day is that(sunday-saturday)
-    """
+    # Load data from CSV file
     data_input_df = pd.read_csv("ex_data.csv")
 
-    # start normalization
+    # Start normalization
     normalize_df = Normalizer().fit_transform(data_input_df.values)
-    # split data
-    total_date = normalize_df[:, 2].tolist()
+    
+    # Split data
     total_user = normalize_df[:, 0].tolist()
     total_match = normalize_df[:, 1].tolist()
+    total_date = normalize_df[:, 2].tolist()
 
-    # for svr (input variable = total date and total match)
-    x = normalize_df[:, [1, 2]].tolist()
-    x_train = x[: len(x) - 1]
-    x_test = x[len(x) - 1 :]
+    # Prepare data for models
+    x = normalize_df[:, [1, 2]]  # Total matches and dates
+    x_train = x[:-1]
+    x_test = x[-1:]
 
-    # for linear regression & sarimax
-    train_date = total_date[: len(total_date) - 1]
-    train_user = total_user[: len(total_user) - 1]
-    train_match = total_match[: len(total_match) - 1]
+    train_user = total_user[:-1]
+    test_user = total_user[-1:]
 
-    test_date = total_date[len(total_date) - 1 :]
-    test_user = total_user[len(total_user) - 1 :]
-    test_match = total_match[len(total_match) - 1 :]
-
-    # voting system with forecasting
+    # Forecasting using multiple methods
     res_vote = [
-        linear_regression_prediction(
-            train_date, train_user, train_match, test_date, test_match
-        ),
-        sarimax_predictor(train_user, train_match, test_match),
+        linear_regression_prediction(train_date, train_user, train_match, total_date[-1:], total_match[-1:]),
+        sarimax_predictor(train_user, total_match[:-1], total_match[-1:]),
         support_vector_regressor(x_train, x_test, train_user),
     ]
 
-    # check the safety of today's data
-    not_str = "" if data_safety_checker(res_vote, test_user[0]) else "not "
-    print(f"Today's data is {not_str}safe.")
+    # Check the safety of today's data
+    is_safe = data_safety_checker(res_vote, test_user[0])
+    status = "" if is_safe else "not "
+    print(f"Today's data is {status}safe.")
