@@ -6,6 +6,7 @@ Reference: https://medium.com/@kaweendra/the-ultimate-sorting-algorithm-6513d696
 
 from typing import List
 
+
 def stalin_sort(sequence: List[int]) -> List[int]:
     """
     Sorts a list using the Stalin sort algorithm.
@@ -46,7 +47,7 @@ def stalin_sort(sequence: List[int]) -> List[int]:
         raise TypeError("Sequence must be a list of non-negative integers")
 
     if not sequence:
-        return [] 
+        return []
     result = [sequence[0]]
 
     for item in sequence[1:]:
@@ -57,7 +58,6 @@ def stalin_sort(sequence: List[int]) -> List[int]:
 
 
 if __name__ == "__main__":
-
     assert stalin_sort([5, 4, 3, 2, 1]) == [5]
     assert stalin_sort([7, 9, 4, 3, 5]) == [7, 9]
     assert stalin_sort([1, 2, 3, 4, 5]) == [1, 2, 3, 4, 5]
