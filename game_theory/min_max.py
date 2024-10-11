@@ -26,8 +26,12 @@ class MinMax:
         self.tree_depth = int(math.log2(len(scores)))
 
     def minimax(
+<<<<<<< HEAD
         self, current_depth: int = 0,
         node_index: int = 0, is_max_turn: bool = True
+=======
+        self, current_depth: int = 0, node_index: int = 0, is_max_turn: bool = True
+>>>>>>> 8497aa531c8636d5735e3df3d7583d9c05a323b5
     ) -> int:
         """
         Recursive implementation of the minimax algorithm.
@@ -50,16 +54,19 @@ class MinMax:
         if current_depth == self.tree_depth:
             return self.scores[node_index]
 
+<<<<<<< HEAD
         # Recursive case
+=======
+>>>>>>> 8497aa531c8636d5735e3df3d7583d9c05a323b5
         if is_max_turn:
             return max(
                 self.minimax(current_depth + 1, node_index * 2, False),
-                self.minimax(current_depth + 1, node_index * 2 + 1, False)
+                self.minimax(current_depth + 1, node_index * 2 + 1, False),
             )
         else:
             return min(
                 self.minimax(current_depth + 1, node_index * 2, True),
-                self.minimax(current_depth + 1, node_index * 2 + 1, True)
+                self.minimax(current_depth + 1, node_index * 2 + 1, True),
             )
 
     def find_optimal_value(self) -> int:
@@ -73,3 +80,16 @@ class MinMax:
         """
         return self.minimax()
 
+<<<<<<< HEAD
+=======
+
+if __name__ == "__main__":
+    import doctest
+
+    doctest.testmod()
+
+    scores = [3, 5, 2, 9, 12, 5, 23, 23]
+    game = MinMax(scores)
+    optimal_value = game.find_optimal_value()
+    print(f"The optimal value is: {optimal_value}")
+>>>>>>> 8497aa531c8636d5735e3df3d7583d9c05a323b5
