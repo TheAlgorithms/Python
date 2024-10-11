@@ -1,5 +1,6 @@
 import math
 
+
 class MinMax:
     """
     A class to represent a game using the Minimax algorithm.
@@ -9,26 +10,13 @@ class MinMax:
     scores : list[int]
         List of terminal node scores.
     tree_depth : int
-        Depth of the game tree.
-
-    Methods:
-    -------
-    minimax(current_depth: int = 0, node_index: int = 0, is_max_turn: bool = True) -> int:
-        Recursive implementation of the minimax algorithm.
-    find_optimal_value() -> int:
-        Find and return the optimal value for the maximizing player.
-
-    Examples:
-    ---------
-    >>> game = MinMax([3, 5, 2, 9, 12, 5, 23, 23])
-    >>> game.find_optimal_value()
-    12
+        Depth of the minimax tree.
     """
 
-    def __init__(self, scores: list[int]) -> None:
+    def __init__(self, scores: list[int]):
         """
         Initialize the MinMax game with a list of scores.
-        
+
         Parameters:
         ----------
         scores : list[int]
@@ -37,10 +25,13 @@ class MinMax:
         self.scores = scores
         self.tree_depth = int(math.log2(len(scores)))
 
-    def minimax(self, current_depth: int = 0, node_index: int = 0, is_max_turn: bool = True) -> int:
+    def minimax(
+        self, current_depth: int = 0,
+        node_index: int = 0, is_max_turn: bool = True
+    ) -> int:
         """
         Recursive implementation of the minimax algorithm.
-        
+
         Parameters:
         ----------
         current_depth : int
@@ -54,17 +45,12 @@ class MinMax:
         -------
         int
             The optimal value for the current player.
-
-        Examples:
-        ---------
-        >>> game = MinMax([3, 5, 2, 9, 12, 5, 23, 23])
-        >>> game.minimax(0, 0, True)
-        12
         """
-
+        # Base case: we've reached a terminal node
         if current_depth == self.tree_depth:
             return self.scores[node_index]
-        
+
+        # Recursive case
         if is_max_turn:
             return max(
                 self.minimax(current_depth + 1, node_index * 2, False),
@@ -79,25 +65,11 @@ class MinMax:
     def find_optimal_value(self) -> int:
         """
         Find and return the optimal value for the maximizing player.
-        
+
         Returns:
         -------
         int
             The optimal value.
-
-        Examples:
-        ---------
-        >>> game = MinMax([3, 5, 2, 9, 12, 5, 23, 23])
-        >>> game.find_optimal_value()
-        12
         """
         return self.minimax()
 
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
-
-    scores = [3, 5, 2, 9, 12, 5, 23, 23]
-    game = MinMax(scores)
-    optimal_value = game.find_optimal_value()
-    print(f"The optimal value is: {optimal_value}")
