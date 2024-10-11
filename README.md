@@ -58,6 +58,7 @@ See our [directory](DIRECTORY.md) for easier navigation and a better overview of
 
 
 Başlangıç
+
 Katkıda bulunmadan önce Katkı Rehberi sayfasını okuyun.
 
 Discord ve Gitter üzerindeyiz! Topluluk kanalları, sorularınızı sormak ve yardım almak için harika bir yoldur. Lütfen bize katılın!
@@ -71,3 +72,6 @@ Discord ve Gitter üzerindeyiz! Topluluk kanalları, sorularınızı sormak ve y
 
 Algoritmalar Listesi
 Proje hakkında daha kolay gezinmek ve daha iyi bir genel bakış için dizin sayfamıza göz atın.
+
+<br>
+Translater and organiser: K. Umut Araz
