@@ -1,5 +1,6 @@
 import math
 
+
 class MinMax:
     """
     A class to represent a game using the Minimax algorithm.
@@ -28,7 +29,7 @@ class MinMax:
     def __init__(self, scores: list[int]) -> None:
         """
         Initialize the MinMax game with a list of scores.
-        
+
         Parameters:
         ----------
         scores : list[int]
@@ -37,10 +38,12 @@ class MinMax:
         self.scores = scores
         self.tree_depth = int(math.log2(len(scores)))
 
-    def minimax(self, current_depth: int = 0, node_index: int = 0, is_max_turn: bool = True) -> int:
+    def minimax(
+        self, current_depth: int = 0, node_index: int = 0, is_max_turn: bool = True
+    ) -> int:
         """
         Recursive implementation of the minimax algorithm.
-        
+
         Parameters:
         ----------
         current_depth : int
@@ -64,22 +67,22 @@ class MinMax:
 
         if current_depth == self.tree_depth:
             return self.scores[node_index]
-        
+
         if is_max_turn:
             return max(
                 self.minimax(current_depth + 1, node_index * 2, False),
-                self.minimax(current_depth + 1, node_index * 2 + 1, False)
+                self.minimax(current_depth + 1, node_index * 2 + 1, False),
             )
         else:
             return min(
                 self.minimax(current_depth + 1, node_index * 2, True),
-                self.minimax(current_depth + 1, node_index * 2 + 1, True)
+                self.minimax(current_depth + 1, node_index * 2 + 1, True),
             )
 
     def find_optimal_value(self) -> int:
         """
         Find and return the optimal value for the maximizing player.
-        
+
         Returns:
         -------
         int
@@ -93,8 +96,10 @@ class MinMax:
         """
         return self.minimax()
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     scores = [3, 5, 2, 9, 12, 5, 23, 23]

@@ -1,6 +1,6 @@
 # Game Theory Algorithms
 
-This repository contains implementations of various algorithms related to game theory. 
+This repository contains implementations of various algorithms related to game theory.
 
 ## Algorithms
 
