@@ -1,6 +1,7 @@
 import math
 from typing import List
 
+
 class MinMax:
     """
     A class to represent a game using the Minimax algorithm.
@@ -38,7 +39,9 @@ class MinMax:
         self.scores = scores
         self.tree_depth = int(math.log2(len(scores)))
 
-    def minimax(self, current_depth: int = 0, node_index: int = 0, is_max_turn: bool = True) -> int:
+    def minimax(
+        self, current_depth: int = 0, node_index: int = 0, is_max_turn: bool = True
+    ) -> int:
         """
         Recursive implementation of the minimax algorithm.
 
@@ -69,12 +72,12 @@ class MinMax:
         if is_max_turn:
             return max(
                 self.minimax(current_depth + 1, node_index * 2, False),
-                self.minimax(current_depth + 1, node_index * 2 + 1, False)
+                self.minimax(current_depth + 1, node_index * 2 + 1, False),
             )
         else:
             return min(
                 self.minimax(current_depth + 1, node_index * 2, True),
-                self.minimax(current_depth + 1, node_index * 2 + 1, True)
+                self.minimax(current_depth + 1, node_index * 2 + 1, True),
             )
 
     def find_optimal_value(self) -> int:
@@ -94,12 +97,13 @@ class MinMax:
         """
         return self.minimax()
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     scores = [3, 5, 2, 9, 12, 5, 23, 23]
     game = MinMax(scores)
     optimal_value = game.find_optimal_value()
     print(f"The optimal value is: {optimal_value}")
-
