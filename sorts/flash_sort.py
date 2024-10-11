@@ -110,3 +110,8 @@ def flash_sort(array: list[int]) -> list[int]:
             )
 
     return array
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
