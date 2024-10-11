@@ -20,21 +20,20 @@ def flash_sort(array: list[int]) -> list[int]:
     [1, 2, 3, 4, 5]
     """
     n = len(array)
+    if n == 0:
+        return array
 
     # Step 1: Find minimum and maximum values
-    min_value, max_value = array[0], array[0]
-    for i in range(1, n):
-        if array[i] > max_value:
-            max_value = array[i]
-        if array[i] < min_value:
-            min_value = array[i]
+    min_value = min(array)
+    max_value = max(array)
+
     if min_value == max_value:
         return array  # All values are the same
 
     # Step 2: Divide array into m buckets
     m = max(math.floor(0.45 * n), 1)
 
-    # Step 3: Count the number of elements in each class
+    # Step 3: Count the number of elements in each bucket
     def get_bucket_id(value: int) -> int:
         """
         Get the bucket index for the given value.
@@ -44,12 +43,6 @@ def flash_sort(array: list[int]) -> list[int]:
 
         Returns:
             int: The index of the bucket.
-
-        Example:
-        >>> get_bucket_id(15)
-        2
-        >>> get_bucket_id(7)
-        0
         """
         return (m * (value - min_value)) // (max_value - min_value + 1)
 
@@ -65,17 +58,6 @@ def flash_sort(array: list[int]) -> list[int]:
     def find_swap_index(bucket_id: int) -> int:
         """
         Find the first index of the element in the bucket.
-
-        Args:
-            bucket_id (int): The ID of the bucket.
-
-        Returns:
-            int: The index of the first element in the bucket.
-
-        Example:
-        >>> array = [15, 13, 24, 7, 18, 3, 22, 9]
-        >>> find_swap_index(1)
-        1
         """
         for ind in range(bucket_counts[bucket_id - 1], bucket_counts[bucket_id]):
             if get_bucket_id(array[ind]) != bucket_id:
@@ -85,17 +67,6 @@ def flash_sort(array: list[int]) -> list[int]:
     def arrange_bucket(i1: int, i2: int, bucket_id: int) -> None:
         """
         Arrange elements into the specified bucket.
-
-        Args:
-            i1 (int): Start index.
-            i2 (int): End index.
-            bucket_id (int): The bucket id to arrange elements for.
-
-        Example:
-        >>> array = [15, 13, 24, 7, 18, 3, 22, 9]
-        >>> arrange_bucket(0, 4, 1)
-        >>> array
-        [3, 13, 15, 7, 18, 24, 22, 9]
         """
         for i in range(i1, i2):
             current_bucket_id = get_bucket_id(array[i])
@@ -120,10 +91,6 @@ def flash_sort(array: list[int]) -> list[int]:
 
         Returns:
             list[int]: Sorted array.
-
-        Example:
-        >>> insertion_sort([4, 3, 2, 1])
-        [1, 2, 3, 4]
         """
         for i in range(1, len(sub_array)):
             temp = sub_array[i]
@@ -138,6 +105,8 @@ def flash_sort(array: list[int]) -> list[int]:
         if i == 0:
             array[0:bucket_counts[i]] = insertion_sort(array[0:bucket_counts[i]])
         else:
-            array[bucket_counts[i - 1]:bucket_counts[i]] = insertion_sort(array[bucket_counts[i - 1]:bucket_counts[i]])
+            array[bucket_counts[i - 1]:bucket_counts[i]] = insertion_sort(
+                array[bucket_counts[i - 1]:bucket_counts[i]]
+            )
 
     return array
