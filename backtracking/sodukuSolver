@@ -62,10 +62,10 @@ class Solution(object):
                     rows[row] |= bit
                     cols[col] |= bit
                     boxes[(row // 3) * 3 + (col // 3)] |= bit
-                    
+
                     if solve():
                         return True
-                    
+
                     board[row][col] = '.'
                     rows[row] &= ~bit
                     cols[col] &= ~bit
