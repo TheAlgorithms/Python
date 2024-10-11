@@ -3,6 +3,8 @@ Stalin Sort algorithm: Removes elements that are out of order.
 Elements that are not greater than or equal to the previous element are discarded.
 Reference: https://medium.com/@kaweendra/the-ultimate-sorting-algorithm-6513d6968420
 """
+
+
 def stalin_sort(sequence: list[int]) -> list[int]:
     """
     Sorts a list using the Stalin sort algorithm.
@@ -44,4 +46,5 @@ def stalin_sort(sequence: list[int]) -> list[int]:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
