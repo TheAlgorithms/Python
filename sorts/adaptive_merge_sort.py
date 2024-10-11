@@ -24,7 +24,7 @@ def adaptive_merge_sort_helper(array: list, aux: list, low: int, high: int):
 
     if array[mid] <= array[mid + 1]:
         print(f"Skipping merge as array[{mid}] <= array[{mid + 1}]")
-        array[low:high + 1] = aux[low:high + 1]
+        array[low : high + 1] = aux[low : high + 1]
         return
 
     merge(array, aux, low, mid, high)
