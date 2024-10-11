@@ -26,6 +26,7 @@ def find_min_max(arr):
 
     return min_val, max_val
 
+
 # Example usage:
 arr = [3, 5, 1, 2, 4, 8]
 min_val, max_val = find_min_max(arr)
