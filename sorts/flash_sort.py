@@ -39,7 +39,6 @@ class FlashSort:
         >>> arr = [2, 2, 2]
         >>> sorter = FlashSort(arr, n_classes=2)
         >>> sorter.flash_sort()
-        >>> arr
         [2, 2, 2]
         """
         if self.n <= 1:
