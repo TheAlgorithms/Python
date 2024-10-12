@@ -54,7 +54,6 @@
   * [Swap All Odd And Even Bits](bit_manipulation/swap_all_odd_and_even_bits.py)
 
 ## Blockchain
-  * [Proof Of Work (Pow) Algorithm](blockchain/Proof%20of%20Work%20(PoW)%20algorithm.py)
   * [Diophantine Equation](blockchain/diophantine_equation.py)
 
 ## Boolean Algebra
@@ -1190,6 +1189,8 @@
     * [Sol1](project_euler/problem_686/sol1.py)
   * Problem 800
     * [Sol1](project_euler/problem_800/sol1.py)
+
+## [Proof Of Work](/proof_of_work.py)
 
 ## Quantum
   * [Q Fourier Transform](quantum/q_fourier_transform.py)
