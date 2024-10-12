@@ -10,7 +10,7 @@ python3 flash_sort.py
 """
 
 from __future__ import annotations
-from typing import Callable
+from collections.abc import Callable
 
 
 class FlashSort:
@@ -51,32 +51,32 @@ class FlashSort:
         if self.sort_key(min_val) == self.sort_key(max_val):
             return
 
-        L = [0] * self.n_classes
+        l = [0] * self.n_classes  # renamed L to l
         c1 = (self.n_classes - 1) / (self.sort_key(max_val) - self.sort_key(min_val))
 
         # Classification step
         for i in range(self.n):
             k = int(c1 * (self.sort_key(self.arr[i]) - self.sort_key(min_val)))
-            L[k] += 1
+            l[k] += 1
 
         # Cumulative step
         for i in range(1, self.n_classes):
-            L[i] += L[i - 1]
+            l[i] += l[i - 1]
 
         # Permutation step
         i, nmove, flash = 0, 0, self.arr[0]
         while nmove < self.n:
-            while i >= L[int(c1 * (self.sort_key(flash) - self.sort_key(min_val)))]:
+            while i >= l[int(c1 * (self.sort_key(flash) - self.sort_key(min_val)))]:
                 i += 1
                 flash = self.arr[i]
             k = int(c1 * (self.sort_key(flash) - self.sort_key(min_val)))
 
-            while i != L[k]:
+            while i != l[k]:
                 k = int(c1 * (self.sort_key(flash) - self.sort_key(min_val)))
-                hold = self.arr[L[k] - 1]
-                self.arr[L[k] - 1] = flash
+                hold = self.arr[l[k] - 1]
+                self.arr[l[k] - 1] = flash
                 flash = hold
-                L[k] -= 1
+                l[k] -= 1
                 nmove += 1
 
         # Final step: Insertion sort to finish
