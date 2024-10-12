@@ -1,6 +1,6 @@
 """
 Implementation of Flash Sort in Python
-Author: Yash Kiradoo
+Author: Aman Gupta
 
 For doctests, run the following command:
 python3 -m doctest -v flash_sort.py
@@ -51,32 +51,32 @@ class FlashSort:
         if self.sort_key(min_val) == self.sort_key(max_val):
             return
 
-        l = [0] * self.n_classes  # renamed L to l
+        count = [0] * self.n_classes  # Renamed variable `l` to `count`
         c1 = (self.n_classes - 1) / (self.sort_key(max_val) - self.sort_key(min_val))
 
         # Classification step
         for i in range(self.n):
             k = int(c1 * (self.sort_key(self.arr[i]) - self.sort_key(min_val)))
-            l[k] += 1
+            count[k] += 1
 
         # Cumulative step
         for i in range(1, self.n_classes):
-            l[i] += l[i - 1]
+            count[i] += count[i - 1]
 
         # Permutation step
         i, nmove, flash = 0, 0, self.arr[0]
         while nmove < self.n:
-            while i >= l[int(c1 * (self.sort_key(flash) - self.sort_key(min_val)))]:
+            while i >= count[int(c1 * (self.sort_key(flash) - self.sort_key(min_val)))]:
                 i += 1
                 flash = self.arr[i]
             k = int(c1 * (self.sort_key(flash) - self.sort_key(min_val)))
 
-            while i != l[k]:
+            while i != count[k]:
                 k = int(c1 * (self.sort_key(flash) - self.sort_key(min_val)))
-                hold = self.arr[l[k] - 1]
-                self.arr[l[k] - 1] = flash
+                hold = self.arr[count[k] - 1]
+                self.arr[count[k] - 1] = flash
                 flash = hold
-                l[k] -= 1
+                count[k] -= 1
                 nmove += 1
 
         # Final step: Insertion sort to finish
