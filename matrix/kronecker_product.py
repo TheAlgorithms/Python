@@ -33,8 +33,8 @@ def kronecker_product(
     >>> kronecker_product([[1, 2]], [[5, 6], [7, 8]])
     [[5, 6, 10, 12], [7, 8, 14, 16]]
 
-    >>> kronecker_product([[1, 2, 3], [4, 5, 6]], [[5, 6], [7, 8]])
-    [[5, 6, 10, 12, 15, 18], [7, 8, 14, 16, 21, 24], [20, 24, 25, 30, 30, 36], [28, 32, 35, 40, 42, 48]]
+    >>> kronecker_product([[1, 2], [4, 5]], [[5, 6], [7, 8]])
+    [[5, 6, 10, 12], [7, 8, 14, 16], [20, 24, 25, 30], [28, 32, 35, 40]]
 
     >>> kronecker_product([1, 2], [[5, 6], [7, 8]])
     Traceback (most recent call last):
@@ -64,7 +64,9 @@ def kronecker_product(
                 for c_index_b in range(cols_matrix_b):
                     result[r_index_a * rows_matrix_b + r_index_b][
                         c_index_a * cols_matrix_b + c_index_b
-                    ] = matrix_a[r_index_a][c_index_a] * matrix_b[r_index_b][c_index_b]
+                    ] = (
+                        matrix_a[r_index_a][c_index_a] * matrix_b[r_index_b][c_index_b]
+                    )
 
     return result
 
