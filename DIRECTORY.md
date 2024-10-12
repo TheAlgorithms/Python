@@ -1190,8 +1190,6 @@
   * Problem 800
     * [Sol1](project_euler/problem_800/sol1.py)
 
-## [Proof Of Work](/proof_of_work.py)
-
 ## Quantum
   * [Q Fourier Transform](quantum/q_fourier_transform.py)
 
