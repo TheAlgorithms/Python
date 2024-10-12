@@ -12,7 +12,8 @@ def preprocess_text_and_pattern(text: str, pattern: str) -> tuple[list[int], lis
     Returns:
         A tuple containing:
             - A list of integers representing the text characters.
-            - A list of integers representing the pattern characters, with 0 for wildcards.
+            - A list of integers representing the pattern characters,
+            with 0 for wildcards.
     """
 
     unique_chars = set(text + pattern)
@@ -52,7 +53,7 @@ def compute_a_fft(text_int: list[int], pattern_int: list[int]) -> np.ndarray:
         pattern_int: The integer representation of the pattern.
 
     Returns:
-        The A array.
+        The a array.
     """
 
     n = len(text_int)
@@ -75,7 +76,7 @@ def compute_a_fft(text_int: list[int], pattern_int: list[int]) -> np.ndarray:
     # Calculate a[i] using the convolution results
     a = sum1[:n - m + 1] - 2 * sum2[:n - m + 1] + sum3[:n - m + 1]
     # Calculate A[i] using the convolution results
-    A = sum1[: n - m + 1] - 2 * sum2[: n - m + 1] + sum3[: n - m + 1]
+    a = sum1[: n - m + 1] - 2 * sum2[: n - m + 1] + sum3[: n - m + 1]
 
     return a
 
