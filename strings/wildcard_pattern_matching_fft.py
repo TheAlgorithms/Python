@@ -26,25 +26,22 @@ def preprocess_text_and_pattern(text: str, pattern: str) -> tuple[list[int], lis
 
     return text_int, pattern_int
 
-def fft_convolution(a: list[int], b: list[int]) -> np.ndarray:
+def fft_convolution(first_seq: list[int], second_seq: list[int]) -> np.ndarray:
     """Performs convolution using the Fast Fourier Transform (FFT).
 
     Args:
-        a: The first sequence.
+        first_seq: The first sequence.
         b: The second sequence.
 
     Returns:
         The convolution of the two sequences.
     """
-    n = len(a) + len(b) - 1
-    a_fft = fft(a, n)
-    b_fft = fft(b, n)
-    return np.real(ifft(a_fft * b_fft))
+    n = len(first_seq) + len(second_seq) - 1
+    first_seq_fft = fft(first_seq, n)
+    second_seq_fft = fft(second_seq, n)
+    return np.real(ifft(first_seq_fft * second_seq_fft))
 
-    n = len(input_seq_a) + len(input_seq_b) - 1
-    A = fft(input_seq_a, n)
-    B = fft(input_seq_b, n)
-    return np.real(ifft(A * B))
+
 
 
 def compute_a_fft(text_int: list[int], pattern_int: list[int]) -> np.ndarray:
@@ -86,6 +83,13 @@ def compute_a_fft(text_int: list[int], pattern_int: list[int]) -> np.ndarray:
 # Main function to run the matching
 if __name__ == "__main__":
     # Example test case
+    import doctest
+    doctest.testmod()
+    # Get text and pattern as input from the user
+    # text = input("Enter the text: ")
+    # pattern = input("Enter the pattern (use '*' for wildcard): ")
+
+
     text = "abcabc"
     pattern = "abc*"
 
