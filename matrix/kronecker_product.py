@@ -64,9 +64,7 @@ def kronecker_product(
                 for c_index_b in range(cols_matrix_b):
                     result[r_index_a * rows_matrix_b + r_index_b][
                         c_index_a * cols_matrix_b + c_index_b
-                    ] = (
-                        matrix_a[r_index_a][c_index_a] * matrix_b[r_index_b][c_index_b]
-                    )
+                    ] = matrix_a[r_index_a][c_index_a] * matrix_b[r_index_b][c_index_b]
 
     return result
 
