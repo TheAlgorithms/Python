@@ -55,6 +55,7 @@
 
 ## Blockchain
   * [Diophantine Equation](blockchain/diophantine_equation.py)
+  * [Proof Of Work](blockchain/proof_of_work.py)
 
 ## Boolean Algebra
   * [And Gate](boolean_algebra/and_gate.py)
