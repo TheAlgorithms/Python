@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
 import hashlib
 
+
 class Block:
     def __init__(self, index: int, previous_hash: str, data: str, timestamp: str):
         self.index = index
@@ -13,5 +14,5 @@ class Block:
         pass
 
     @staticmethod
-    def create_genesis_block() -> 'Block':
+    def create_genesis_block() -> "Block":
         return Block(0, "0", "Genesis Block", datetime.now(timezone.utc).isoformat())
