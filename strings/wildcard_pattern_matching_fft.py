@@ -1,6 +1,7 @@
 import numpy as np
 from numpy.fft import fft, ifft
 
+
 def preprocess_text_and_pattern(text, pattern):
     """Preprocesses text and pattern for pattern matching.
 
@@ -15,13 +16,16 @@ def preprocess_text_and_pattern(text, pattern):
     """
 
     unique_chars = set(text + pattern)
-    char_to_int = {char: i + 1 for i, char in enumerate(unique_chars)}  # Unique non-zero integers
+    char_to_int = {
+        char: i + 1 for i, char in enumerate(unique_chars)
+    }  # Unique non-zero integers
 
     # Replace pattern '*' with 0, other characters with their unique integers
-    pattern_int = [char_to_int[char] if char != '*' else 0 for char in pattern]
+    pattern_int = [char_to_int[char] if char != "*" else 0 for char in pattern]
     text_int = [char_to_int[char] for char in text]
 
     return text_int, pattern_int
+
 
 def fft_convolution(a, b):
     """Performs convolution using the Fast Fourier Transform (FFT).
@@ -38,6 +42,7 @@ def fft_convolution(a, b):
     A = fft(a, n)
     B = fft(b, n)
     return np.real(ifft(A * B))
+
 
 def compute_A_fft(text_int, pattern_int):
     """Computes the A array for the pattern matching algorithm.
@@ -68,14 +73,15 @@ def compute_A_fft(text_int, pattern_int):
     sum3 = fft_convolution(p1[::-1], t3)
 
     # Calculate A[i] using the convolution results
-    A = sum1[:n - m + 1] - 2 * sum2[:n - m + 1] + sum3[:n - m + 1]
+    A = sum1[: n - m + 1] - 2 * sum2[: n - m + 1] + sum3[: n - m + 1]
 
     return A
 
+
 # Main function to run the matching
 if __name__ == "__main__":
-
     import doctest
+
     doctest.testmod()
     # Get text and pattern as input from the user
     # text = input("Enter the text: ")
@@ -84,13 +90,9 @@ if __name__ == "__main__":
     text = "abcabc"
     pattern = "abc*"
 
-
-
-
     text_int, pattern_int = preprocess_text_and_pattern(text, pattern)
     A = compute_A_fft(text_int, pattern_int)
 
     # Matches occur where A[i] == 0
     matches = [i for i in range(len(A)) if np.isclose(A[i], 0)]
     print("Pattern matches at indices:", matches)
-    
