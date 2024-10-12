@@ -2,6 +2,7 @@ import hashlib
 import time
 from datetime import datetime
 
+
 class Block:
     def __init__(self, index: int, previous_hash: str, data: str, timestamp: str):
         self.index = index
@@ -12,16 +13,22 @@ class Block:
         self.hash = self.calculate_hash()
 
     def calculate_hash(self) -> str:
-        value = (str(self.index) + str(self.previous_hash) + 
-                 str(self.data) + str(self.timestamp) + str(self.nonce))
-        return hashlib.sha256(value.encode('utf-8')).hexdigest()
+        value = (
+            str(self.index)
+            + str(self.previous_hash)
+            + str(self.data)
+            + str(self.timestamp)
+            + str(self.nonce)
+        )
+        return hashlib.sha256(value.encode("utf-8")).hexdigest()
 
     def mine_block(self, difficulty: int) -> None:
-        target = '0' * difficulty
+        target = "0" * difficulty
         while self.hash[:difficulty] != target:
             self.nonce += 1
             self.hash = self.calculate_hash()
         print(f"Block mined: {self.hash}")
+
 
 class Blockchain:
     def __init__(self):
@@ -38,6 +45,7 @@ class Blockchain:
         new_block.previous_hash = self.get_latest_block().hash
         new_block.mine_block(self.difficulty)
         self.chain.append(new_block)
+
 
 # Example usage
 blockchain = Blockchain()
