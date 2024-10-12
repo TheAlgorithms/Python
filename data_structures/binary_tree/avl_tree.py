@@ -199,10 +199,10 @@ def del_node(root: MyNode, data: Any) -> MyNode | None:
     if root is None:
         print("Nothing to delete")
         return None
-        
+
     left_child = root.get_left()
     right_child = root.get_right()
-    
+
     if root.get_data() == data:
         if left_child is not None and right_child is not None:
             temp_data = get_left_most(right_child)
@@ -226,10 +226,12 @@ def del_node(root: MyNode, data: Any) -> MyNode | None:
     else:
         root.set_right(del_node(right_child, data))
 
-    root.set_height(my_max(get_height(root.get_right()), get_height(root.get_left())) + 1)
-    
+    root.set_height(
+        my_max(get_height(root.get_right()), get_height(root.get_left())) + 1
+    )
+
     balance_factor = get_height(root.get_left()) - get_height(root.get_right())
-    
+
     if balance_factor == 2:
         assert right_child is not None
         if get_height(right_child.get_right()) > get_height(right_child.get_left()):
@@ -242,7 +244,7 @@ def del_node(root: MyNode, data: Any) -> MyNode | None:
             root = right_rotation(root)
         else:
             root = lr_rotation(root)
-            
+
     return root
 
 
