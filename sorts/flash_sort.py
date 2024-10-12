@@ -97,3 +97,4 @@ if __name__ == "__main__":
     sorter = FlashSort(unsorted, n_classes=5)
     sorter.flash_sort()
     print(unsorted)
+    
