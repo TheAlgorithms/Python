@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from collections.abc import Callable
 
 """
@@ -11,7 +12,6 @@ python3 -m doctest -v flash_sort.py
 For manual testing, run:
 python3 flash_sort.py
 """
-
 
 class FlashSort:
     def __init__(
