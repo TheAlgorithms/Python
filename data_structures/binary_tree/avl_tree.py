@@ -195,7 +195,6 @@ def get_left_most(root: MyNode) -> Any:
     return root.get_data()
 
 
-
 def del_node(root: MyNode, data: Any) -> MyNode | None:
     if root is None:
         print("Node is empty, nothing to delete")
@@ -229,7 +228,9 @@ def del_node(root: MyNode, data: Any) -> MyNode | None:
             root.set_right(del_node(right_child, data))
 
     # Update the height of the node
-    root.set_height(1 + my_max(get_height(root.get_left()), get_height(root.get_right())))
+    root.set_height(
+        1 + my_max(get_height(root.get_left()), get_height(root.get_right()))
+    )
 
     # Get the balance factor
     balance_factor = get_height(root.get_right()) - get_height(root.get_left())
