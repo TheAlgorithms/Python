@@ -1,7 +1,3 @@
-from __future__ import annotations
-
-from collections.abc import Callable
-
 """
 Implementation of Flash Sort in Python
 Author: Yash Kiradoo
@@ -12,6 +8,10 @@ python3 -m doctest -v flash_sort.py
 For manual testing, run:
 python3 flash_sort.py
 """
+
+from __future__ import annotations
+
+from collections.abc import Callable
 
 class FlashSort:
     def __init__(
