@@ -7,5 +7,6 @@ def egyptian_fraction(numerator, denominator):
         denominator *= x
     return fractions
 
+
 num, den = 6, 14
 print(f"Egyptian Fraction of {num}/{den}: {egyptian_fraction(num, den)}")
