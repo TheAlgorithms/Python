@@ -27,6 +27,7 @@ def preprocess_text_and_pattern(text: str, pattern: str) -> tuple[list[int], lis
 
     return text_int, pattern_int
 
+
 def fft_convolution(first_seq: list[int], second_seq: list[int]) -> np.ndarray:
     """Performs convolution using the Fast Fourier Transform (FFT).
 
@@ -41,8 +42,6 @@ def fft_convolution(first_seq: list[int], second_seq: list[int]) -> np.ndarray:
     first_seq_fft = fft(first_seq, n)
     second_seq_fft = fft(second_seq, n)
     return np.real(ifft(first_seq_fft * second_seq_fft))
-
-
 
 
 def compute_a_fft(text_int: list[int], pattern_int: list[int]) -> np.ndarray:
@@ -74,7 +73,7 @@ def compute_a_fft(text_int: list[int], pattern_int: list[int]) -> np.ndarray:
     sum3 = fft_convolution(p1[::-1], t3)
 
     # Calculate a[i] using the convolution results
-    a = sum1[:n - m + 1] - 2 * sum2[:n - m + 1] + sum3[:n - m + 1]
+    a = sum1[: n - m + 1] - 2 * sum2[: n - m + 1] + sum3[: n - m + 1]
     # Calculate A[i] using the convolution results
     a = sum1[: n - m + 1] - 2 * sum2[: n - m + 1] + sum3[: n - m + 1]
 
@@ -85,11 +84,11 @@ def compute_a_fft(text_int: list[int], pattern_int: list[int]) -> np.ndarray:
 if __name__ == "__main__":
     # Example test case
     import doctest
+
     doctest.testmod()
     # Get text and pattern as input from the user
     # text = input("Enter the text: ")
     # pattern = input("Enter the pattern (use '*' for wildcard): ")
-
 
     text = "abcabc"
     pattern = "abc*"
