@@ -195,9 +195,15 @@ def get_left_most(root: MyNode) -> Any:
     return root.get_data()
 
 
+
 def del_node(root: MyNode, data: Any) -> MyNode | None:
+    if root is None:
+        print("Node is empty, nothing to delete")
+        return None
+
     left_child = root.get_left()
     right_child = root.get_right()
+
     if root.get_data() == data:
         if left_child is not None and right_child is not None:
             temp_data = get_left_most(right_child)
@@ -209,32 +215,39 @@ def del_node(root: MyNode, data: Any) -> MyNode | None:
             root = right_child
         else:
             return None
-    elif root.get_data() > data:
+    elif data < root.get_data():
         if left_child is None:
-            print("No such data")
+            print(f"No such data ({data}) exists in the left subtree.")
             return root
         else:
             root.set_left(del_node(left_child, data))
-    # root.get_data() < data
-    elif right_child is None:
-        return root
     else:
-        root.set_right(del_node(right_child, data))
+        if right_child is None:
+            print(f"No such data ({data}) exists in the right subtree.")
+            return root
+        else:
+            root.set_right(del_node(right_child, data))
 
-    if get_height(right_child) - get_height(left_child) == 2:
+    # Update the height of the node
+    root.set_height(1 + my_max(get_height(root.get_left()), get_height(root.get_right())))
+
+    # Get the balance factor
+    balance_factor = get_height(root.get_right()) - get_height(root.get_left())
+
+    # Balance the tree
+    if balance_factor == 2:
         assert right_child is not None
         if get_height(right_child.get_right()) > get_height(right_child.get_left()):
             root = left_rotation(root)
         else:
             root = rl_rotation(root)
-    elif get_height(right_child) - get_height(left_child) == -2:
+    elif balance_factor == -2:
         assert left_child is not None
         if get_height(left_child.get_left()) > get_height(left_child.get_right()):
             root = right_rotation(root)
         else:
             root = lr_rotation(root)
-    height = my_max(get_height(root.get_right()), get_height(root.get_left())) + 1
-    root.set_height(height)
+
     return root
 
 
