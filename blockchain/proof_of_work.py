@@ -7,8 +7,11 @@ by finding a nonce that satisfies a given difficulty level.
 from datetime import datetime
 import hashlib
 
+
 class Block:
-    def __init__(self, index: int, previous_hash: str, data: str, timestamp: str) -> None:
+    def __init__(
+        self, index: int, previous_hash: str, data: str, timestamp: str
+    ) -> None:
         self.index = index
         self.previous_hash = previous_hash
         self.data = data
@@ -24,8 +27,14 @@ class Block:
         >>> block.calculate_hash()
         '...'  # Expected hash value here
         """
-        value = str(self.index) + self.previous_hash + str(self.data) + str(self.timestamp) + str(self.nonce)
-        return hashlib.sha256(value.encode('utf-8')).hexdigest()
+        value = (
+            str(self.index)
+            + self.previous_hash
+            + str(self.data)
+            + str(self.timestamp)
+            + str(self.nonce)
+        )
+        return hashlib.sha256(value.encode("utf-8")).hexdigest()
 
     def mine_block(self, difficulty: int) -> None:
         """
@@ -37,6 +46,7 @@ class Block:
         """
         # Implementation of mining logic
         print(f"Block mined: {self.hash}")
+
 
 class Blockchain:
     def __init__(self) -> None:
