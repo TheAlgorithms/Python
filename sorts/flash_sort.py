@@ -1,6 +1,6 @@
 """
 Implementation of Flash Sort in Python
-Author: Aman Gupta
+Author: Yash Kiradoo
 
 For doctests, run the following command:
 python3 -m doctest -v flash_sort.py
@@ -8,13 +8,18 @@ python3 -m doctest -v flash_sort.py
 For manual testing, run:
 python3 flash_sort.py
 """
+
 from __future__ import annotations
 from collections.abc import Callable
 
-class FlashSort:
-    def __init__(self, arr: list[int], n_classes: int, 
-        sort_key: Callable[[int], int] = lambda x: x):
 
+class FlashSort:
+    def __init__(
+        self,
+        arr: list[int],
+        n_classes: int,
+        sort_key: Callable[[int], int] = lambda item: item,
+    ) -> None:  # Added return type hint
         self.arr = arr
         self.n = len(arr)
         self.n_classes = n_classes
@@ -44,39 +49,58 @@ class FlashSort:
         if self.n <= 1:
             return
 
-        min_val = min(self.arr, key=self.sort_key)
-        max_val = max(self.arr, key=self.sort_key)
+        min_value = min(self.arr, key=self.sort_key)
+        max_value = max(self.arr, key=self.sort_key)
 
-        if self.sort_key(min_val) == self.sort_key(max_val):
+        if self.sort_key(min_value) == self.sort_key(max_value):
             return
 
-        count = [0] * self.n_classes  # Renamed variable `l` to `count`
-        c1 = (self.n_classes - 1) / (self.sort_key(max_val) - self.sort_key(min_val))
+        count_classes = [0] * self.n_classes  # Renamed variable `count` for clarity
+        classification_factor = (self.n_classes - 1) / (
+            self.sort_key(max_value) - self.sort_key(min_value)
+        )
 
         # Classification step
         for i in range(self.n):
-            k = int(c1 * (self.sort_key(self.arr[i]) - self.sort_key(min_val)))
-            count[k] += 1
+            class_index = int(
+                classification_factor
+                * (self.sort_key(self.arr[i]) - self.sort_key(min_value))
+            )
+            count_classes[class_index] += 1
 
         # Cumulative step
         for i in range(1, self.n_classes):
-            count[i] += count[i - 1]
+            count_classes[i] += count_classes[i - 1]
 
         # Permutation step
-        i, nmove, flash = 0, 0, self.arr[0]
-        while nmove < self.n:
-            while i >= count[int(c1 * (self.sort_key(flash) - self.sort_key(min_val)))]:
+        i, num_moves, flash_item = 0, 0, self.arr[0]
+        while num_moves < self.n:
+            while (
+                i
+                >= count_classes[
+                    int(
+                        classification_factor
+                        * (self.sort_key(flash_item) - self.sort_key(min_value))
+                    )
+                ]
+            ):
                 i += 1
-                flash = self.arr[i]
-            k = int(c1 * (self.sort_key(flash) - self.sort_key(min_val)))
+                flash_item = self.arr[i]
+            class_index = int(
+                classification_factor
+                * (self.sort_key(flash_item) - self.sort_key(min_value))
+            )
 
-            while i != count[k]:
-                k = int(c1 * (self.sort_key(flash) - self.sort_key(min_val)))
-                hold = self.arr[count[k] - 1]
-                self.arr[count[k] - 1] = flash
-                flash = hold
-                count[k] -= 1
-                nmove += 1
+            while i != count_classes[class_index]:
+                class_index = int(
+                    classification_factor
+                    * (self.sort_key(flash_item) - self.sort_key(min_value))
+                )
+                temp_item = self.arr[count_classes[class_index] - 1]
+                self.arr[count_classes[class_index] - 1] = flash_item
+                flash_item = temp_item
+                count_classes[class_index] -= 1
+                num_moves += 1
 
         # Final step: Insertion sort to finish
         for i in range(1, self.n):
