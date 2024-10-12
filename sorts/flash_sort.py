@@ -1,7 +1,4 @@
-# Ensures compatibility with future Python versions (optional)
 from __future__ import annotations
-
-# Import for function type hinting
 from collections.abc import Callable
 
 """
