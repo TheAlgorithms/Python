@@ -1,4 +1,4 @@
-#sudo su && 
+#sudo su &&
 
 import numpy as np
 import torch
@@ -71,13 +71,13 @@ class AGI:
         q_target = reward_tensor if done else reward_tensor + self.gamma * torch.max(next_q_values)
 
         loss = self.loss_fn(q_value, q_target)
-        
+
         self.optimizer.zero_grad()
         loss.backward()
-        
+
         # Gradient clipping for stability
         torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
-        
+
         self.optimizer.step()
 
         # Adjust learning rate and epsilon based on reward history
@@ -235,13 +235,13 @@ class AGI:
         q_target = reward_tensor if done else reward_tensor + self.gamma * torch.max(next_q_values)
 
         loss = self.loss_fn(q_value, q_target)
-        
+
         self.optimizer.zero_grad()
         loss.backward()
-        
+
         # Gradient clipping for stability
         torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
-        
+
         self.optimizer.step()
 
         # Adjust learning rate and epsilon based on reward history
@@ -352,7 +352,7 @@ import numpy as npimport torchimport torch.nn as nnimport torch.optim as optimim
         self.fc1 = nn.Linear(fmri_dim + eeg_dim + ppg_dim + emotion_dim, 256)
         self.fc2 = nn.Linear(256, 128)
         self.fc3 = nn.Linear(128, action_dim)
-        
+
         # Initial beliefs for Bayesian learning (means and variances)
         self.prior_mean = torch.zeros(action_dim)
         self.prior_variance = torch.ones(action_dim)
@@ -362,7 +362,7 @@ import numpy as npimport torchimport torch.nn as nnimport torch.optim as optimim
         x = torch.relu(self.fc1(x))
         x = torch.relu(self.fc2(x))
         return self.fc3(x)
-    
+
     def bayesian_update(self, action, reward):
         # Bayesian update for Q-values based on the reward observed for the chosen action
         likelihood_mean = reward
@@ -371,7 +371,7 @@ import numpy as npimport torchimport torch.nn as nnimport torch.optim as optimim
         # Update posterior mean and variance using Bayesian theorem
         posterior_variance = 1 / (1 / self.prior_variance[action] + 1 / likelihood_variance)
         posterior_mean = posterior_variance * (self.prior_mean[action] / self.prior_variance[action] + likelihood_mean / likelihood_variance)
-        
+
         self.prior_mean[action] = posterior_mean
         self.prior_variance[action] = posterior_variance# AGI Framework with Bayesian Updates, physiological data, emotion recognition, and self-altering codeclass AGI:
     def __init__(self, fmri_dim, eeg_dim, ppg_dim, emotion_dim, action_dim, learning_rate=0.001, gamma=0.99, epsilon=1.0, epsilon_decay=0.995):
@@ -421,13 +421,13 @@ import numpy as npimport torchimport torch.nn as nnimport torch.optim as optimim
         q_target = reward_tensor if done else reward_tensor + self.gamma * torch.max(next_q_values)
 
         loss = self.loss_fn(q_value, q_target)
-        
+
         self.optimizer.zero_grad()
         loss.backward()
-        
+
         # Gradient clipping for stability
         torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
-        
+
         self.optimizer.step()
 
         # Bayesian update on Q-values
@@ -496,7 +496,7 @@ import json
 import os
 from scipy.stats import norm
 
-# Neural network to handle physiological data (fMRI, EEG, PPG) and emotion 
+# Neural network to handle physiological data (fMRI, EEG, PPG) and emotion
 # recognition with Bayesian Updates
 class BayesianMultiSensorNetwork(nn.Module):
     def __init__(self, fmri_dim, eeg_dim, ppg_dim, emotion_dim, action_dim):
@@ -504,7 +504,7 @@ class BayesianMultiSensorNetwork(nn.Module):
         self.fc1 = nn.Linear(fmri_dim + eeg_dim + ppg_dim + emotion_dim, 256)
         self.fc2 = nn.Linear(256, 128)
         self.fc3 = nn.Linear(128, action_dim)
-        
+
         # Initial beliefs for Bayesian learning (means and variances)
         self.prior_mean = torch.zeros(action_dim)
         self.prior_variance = torch.ones(action_dim)
@@ -514,9 +514,9 @@ class BayesianMultiSensorNetwork(nn.Module):
         x = torch.relu(self.fc1(x))
         x = torch.relu(self.fc2(x))
         return self.fc3(x)
-    
+
     def bayesian_update(self, action, reward):
-        # Bayesian update for Q-values based on the reward observed 
+        # Bayesian update for Q-values based on the reward observed
         # for the chosen action
         likelihood_mean = reward
         likelihood_variance = 1  # Assume known variance (could also be learned)
@@ -524,18 +524,18 @@ class BayesianMultiSensorNetwork(nn.Module):
         # Update posterior mean and variance using Bayesian theorem
         posterior_variance = 1 / (1 / self.prior_variance[action] + 1 / likelihood_variance)
         posterior_mean = posterior_variance * (
-            self.prior_mean[action] / self.prior_variance[action] + 
+            self.prior_mean[action] / self.prior_variance[action] +
             likelihood_mean / likelihood_variance
         )
-        
+
         self.prior_mean[action] = posterior_mean
         self.prior_variance[action] = posterior_variance
 
-# AGI Framework with Bayesian Updates, physiological data, emotion 
+# AGI Framework with Bayesian Updates, physiological data, emotion
 # recognition, and self-altering code
 class AGI:
-    def __init__(self, fmri_dim, eeg_dim, ppg_dim, emotion_dim, action_dim, 
-                 learning_rate=0.001, gamma=0.99, epsilon=1.0, 
+    def __init__(self, fmri_dim, eeg_dim, ppg_dim, emotion_dim, action_dim,
+                 learning_rate=0.001, gamma=0.99, epsilon=1.0,
                  epsilon_decay=0.995):
         self.fmri_dim = fmri_dim
         self.eeg_dim = eeg_dim
@@ -565,7 +565,7 @@ class AGI:
             q_values = self.model(fmri_tensor, eeg_tensor, ppg_tensor, emotion_tensor)
             return torch.argmax(q_values).item()
 
-    def update(self, fmri_data, eeg_data, ppg_data, emotion_data, action, 
+    def update(self, fmri_data, eeg_data, ppg_data, emotion_data, action,
                reward, next_fmri, next_eeg, next_ppg, next_emotion, done):
         fmri_tensor = torch.FloatTensor(fmri_data).unsqueeze(0)
         eeg_tensor = torch.FloatTensor(eeg_data).unsqueeze(0)
@@ -588,13 +588,13 @@ class AGI:
         q_target = reward_tensor if done else reward_tensor + self.gamma * torch.max(next_q_values)
 
         loss = self.loss_fn(q_value, q_target)
-        
+
         self.optimizer.zero_grad()
         loss.backward()
-        
+
         # Gradient clipping for stability
         torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
-        
+
         self.optimizer.step()
 
         # Bayesian update on Q-values
@@ -635,7 +635,7 @@ class AGI:
             # Expand first layer (make sure input dimensions are correct)
             self.model.fc1 = nn.Linear(
                 self.fmri_dim + self.eeg_dim + self.ppg_dim + self.emotion_dim, 512
-            )  
+            )
 
 # Example usage (with simulated data)
 if __name__ == "__main__":
@@ -737,51 +737,51 @@ import os
 from scipy.stats import norm
 from collections import deque
 
-# Neural network to handle physiological data (fMRI, EEG, PPG), 
-# emotion recognition, and with Bayesian Updates and RNN for temporal 
+# Neural network to handle physiological data (fMRI, EEG, PPG),
+# emotion recognition, and with Bayesian Updates and RNN for temporal
 # dynamics
 class BayesianMultiSensorNetwork(nn.Module):
-    def __init__(self, fmri_dim, eeg_dim, ppg_dim, emotion_dim, 
+    def __init__(self, fmri_dim, eeg_dim, ppg_dim, emotion_dim,
                  action_dim, hidden_dim=64, num_layers=1):
         super(BayesianMultiSensorNetwork, self).__init__()
         self.hidden_dim = hidden_dim
         self.num_layers = num_layers
         self.rnn = nn.LSTM(
-            fmri_dim + eeg_dim + ppg_dim + emotion_dim, 
+            fmri_dim + eeg_dim + ppg_dim + emotion_dim,
             hidden_dim, num_layers, batch_first=True
         )
         self.fc1 = nn.Linear(hidden_dim, 128)
         self.fc2 = nn.Linear(128, action_dim)
-        
+
         # Initial beliefs for Bayesian learning (means and variances)
         self.prior_mean = torch.zeros(action_dim)
         self.prior_variance = torch.ones(action_dim)
 
     def forward(self, fmri_data, eeg_data, ppg_data, emotion_data):
         # Combine all input data
-        x = torch.cat((fmri_data, eeg_data, ppg_data, emotion_data), dim=2)  
-        
+        x = torch.cat((fmri_data, eeg_data, ppg_data, emotion_data), dim=2)
+
         # Initialize hidden state
         h0 = torch.zeros(self.num_layers, x.size(0), self.hidden_dim)
         c0 = torch.zeros(self.num_layers, x.size(0), self.hidden_dim)
-        
+
         # Pass through RNN
-        out, _ = self.rnn(x, (h0, c0))  
-        
+        out, _ = self.rnn(x, (h0, c0))
+
         # Use the last output from the RNN
         out = out[:, -1, :]
-        
+
         out = torch.relu(self.fc1(out))
         return self.fc2(out)
-    
+
     def bayesian_update(self, action, reward):
         # ... (same as before) ...
 
-# AGI Framework with Bayesian Updates, physiological data, emotion 
+# AGI Framework with Bayesian Updates, physiological data, emotion
 # recognition, and self-altering code
 class AGI:
-    def __init__(self, fmri_dim, eeg_dim, ppg_dim, emotion_dim, action_dim, 
-                 learning_rate=0.001, gamma=0.99, epsilon=1.0, 
+    def __init__(self, fmri_dim, eeg_dim, ppg_dim, emotion_dim, action_dim,
+                 learning_rate=0.001, gamma=0.99, epsilon=1.0,
                  epsilon_decay=0.995, memory_size=1000):
         # ... (same as before) ...
         self.memory = deque(maxlen=memory_size)
@@ -802,32 +802,32 @@ class AGI:
     def store_transition(self, state, action, reward, next_state, done):
         self.memory.append((state, action, reward, next_state, done))
 
-    def   
+    def  
  update(self):
         if len(self.memory) < self.batch_size:
             return
 
         batch = random.sample(self.memory, self.batch_size)
-        states, actions, rewards, next_states, dones = zip(*batch)   
+        states, actions, rewards, next_states, dones = zip(*batch)  
 
 
         # Convert batch elements to tensors
-        # ... (convert each element of states, actions, rewards, next_states, 
-        #       and dones to tensors similar to how it was done in the previous 
+        # ... (convert each element of states, actions, rewards, next_states,
+        #       and dones to tensors similar to how it was done in the previous
         #       update function, but now handling the batch dimension) ...
 
         q_values = self.model(*states)  # Unpack states tuple for the model
-        next_q_values = self.model(*next_states) 
+        next_q_values = self.model(*next_states)
 
         q_value = q_values[torch.arange(self.batch_size), actions]
         q_target = rewards + self.gamma * torch.max(next_q_values, dim=1)[0] * (1 - dones)
 
         loss = self.loss_fn(q_value, q_target)
 
-        # ... (rest of the update logic - optimizer step, Bayesian update, 
+        # ... (rest of the update logic - optimizer step, Bayesian update,
         #       adjust learning rate, self-altering code - remains similar) ...
 
-    # ... (adjust_learning_rate_and_epsilon and self_altering_code remain 
+    # ... (adjust_learning_rate_and_epsilon and self_altering_code remain
     #       similar) ...
 
 # Example usage (with simulated data)
@@ -835,7 +835,7 @@ if __name__ == "__main__":
     # ... (same as before) ...
 
     # Example training loop (using simulated data)
-    for episode in range(1000): 
+    for episode in range(1000):
         # ... (generate initial fmri_data, eeg_data, ppg_data, emotion_data) ...
         done = False
         total_reward = 0  # Track total reward for the episode
@@ -844,7 +844,7 @@ if __name__ == "__main__":
             # ... (get action using agi.choose_action) ...
 
             # Simulate environment interaction and get reward
-            # ... (generate next_fmri, next_eeg, next_ppg, next_emotion, 
+            # ... (generate next_fmri, next_eeg, next_ppg, next_emotion,
             #       reward, done) ...
 
             # Store the transition in memory
@@ -895,43 +895,43 @@ medium.com
 
 Python
 import numpy as npimport torchimport torch.nn as nnimport torch.optim as optimimport gymimport jsonimport osfrom scipy.stats import normfrom collections import deque# Neural network to handle physiological data (fMRI, EEG, PPG), # emotion recognition, and with Bayesian Updates and RNN for temporal # dynamicsclass BayesianMultiSensorNetwork(nn.Module):
-    def __init__(self, fmri_dim, eeg_dim, ppg_dim, emotion_dim, 
+    def __init__(self, fmri_dim, eeg_dim, ppg_dim, emotion_dim,
                  action_dim, hidden_dim=64, num_layers=1):
         super(BayesianMultiSensorNetwork, self).__init__()
         self.hidden_dim = hidden_dim
         self.num_layers = num_layers
         self.rnn = nn.LSTM(
-            fmri_dim + eeg_dim + ppg_dim + emotion_dim, 
+            fmri_dim + eeg_dim + ppg_dim + emotion_dim,
             hidden_dim, num_layers, batch_first=True
         )
         self.fc1 = nn.Linear(hidden_dim, 128)
         self.fc2 = nn.Linear(128, action_dim)
-        
+
         # Initial beliefs for Bayesian learning (means and variances)
         self.prior_mean = torch.zeros(action_dim)
         self.prior_variance = torch.ones(action_dim)
 
     def forward(self, fmri_data, eeg_data, ppg_data, emotion_data):
         # Combine all input data
-        x = torch.cat((fmri_data, eeg_data, ppg_data, emotion_data), dim=2)  
-        
+        x = torch.cat((fmri_data, eeg_data, ppg_data, emotion_data), dim=2)
+
         # Initialize hidden state
         h0 = torch.zeros(self.num_layers, x.size(0), self.hidden_dim)
         c0 = torch.zeros(self.num_layers, x.size(0), self.hidden_dim)
-        
+
         # Pass through RNN
-        out, _ = self.rnn(x, (h0, c0))  
-        
+        out, _ = self.rnn(x, (h0, c0))
+
         # Use the last output from the RNN
         out = out[:, -1, :]
-        
+
         out = torch.relu(self.fc1(out))
         return self.fc2(out)
-    
+
     def bayesian_update(self, action, reward):
         # ... (same as before) ...# AGI Framework with Bayesian Updates, physiological data, emotion # recognition, and self-altering codeclass AGI:
-    def __init__(self, fmri_dim, eeg_dim, ppg_dim, emotion_dim, action_dim, 
-                 learning_rate=0.001, gamma=0.99, epsilon=1.0, 
+    def __init__(self, fmri_dim, eeg_dim, ppg_dim, emotion_dim, action_dim,
+                 learning_rate=0.001, gamma=0.99, epsilon=1.0,
                  epsilon_decay=0.995, memory_size=1000):
         # ... (same as before) ...
         self.memory = deque(maxlen=memory_size)
@@ -952,39 +952,39 @@ import numpy as npimport torchimport torch.nn as nnimport torch.optim as optimim
     def store_transition(self, state, action, reward, next_state, done):
         self.memory.append((state, action, reward, next_state, done))
 
-    def   
+    def  
 
  update(self):
         if len(self.memory) < self.batch_size:
             return
 
         batch = random.sample(self.memory, self.batch_size)
-        states, actions, rewards, next_states, dones = zip(*batch)   
+        states, actions, rewards, next_states, dones = zip(*batch)  
 
 
 
         # Convert batch elements to tensors
-        # ... (convert each element of states, actions, rewards, next_states, 
-        #       and dones to tensors similar to how it was done in the previous 
+        # ... (convert each element of states, actions, rewards, next_states,
+        #       and dones to tensors similar to how it was done in the previous
         #       update function, but now handling the batch dimension) ...
 
         q_values = self.model(*states)  # Unpack states tuple for the model
-        next_q_values = self.model(*next_states) 
+        next_q_values = self.model(*next_states)
 
         q_value = q_values[torch.arange(self.batch_size), actions]
         q_target = rewards + self.gamma * torch.max(next_q_values, dim=1)[0] * (1 - dones)
 
         loss = self.loss_fn(q_value, q_target)
 
-        # ... (rest of the update logic - optimizer step, Bayesian update, 
+        # ... (rest of the update logic - optimizer step, Bayesian update,
         #       adjust learning rate, self-altering code - remains similar) ...
 
-    # ... (adjust_learning_rate_and_epsilon and self_altering_code remain 
+    # ... (adjust_learning_rate_and_epsilon and self_altering_code remain
     #       similar) ...# Example usage (with simulated data)if __name__ == "__main__":
     # ... (same as before) ...
 
     # Example training loop (using simulated data)
-    for episode in range(1000): 
+    for episode in range(1000):
         # ... (generate initial fmri_data, eeg_data, ppg_data, emotion_data) ...
         done = False
         total_reward = 0  # Track total reward for the episode
@@ -993,7 +993,7 @@ import numpy as npimport torchimport torch.nn as nnimport torch.optim as optimim
             # ... (get action using agi.choose_action) ...
 
             # Simulate environment interaction and get reward
-            # ... (generate next_fmri, next_eeg, next_ppg, next_emotion, 
+            # ... (generate next_fmri, next_eeg, next_ppg, next_emotion,
             #       reward, done) ...
 
             # Store the transition in memory
@@ -1017,7 +1017,7 @@ import numpy as npimport torchimport torch.nn as nnimport torch.optim as optimim
 
 
 
- Code Output 
+ Code Output
 Traceback (most recent call last):
   File "<string>", line 53
     class AGI:
@@ -1048,48 +1048,48 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import random
-from collections import   
+from collections import  
  deque
 
-# Neural network to handle physiological data (fMRI, EEG, PPG), 
-# emotion recognition, and with Bayesian Updates and RNN for temporal 
+# Neural network to handle physiological data (fMRI, EEG, PPG),
+# emotion recognition, and with Bayesian Updates and RNN for temporal
 # dynamics
 class BayesianMultiSensorNetwork(nn.Module):
-    def __init__(self, fmri_dim, eeg_dim, ppg_dim, emotion_dim, 
+    def __init__(self, fmri_dim, eeg_dim, ppg_dim, emotion_dim,
                  action_dim, hidden_dim=64, num_layers=1):
         super(BayesianMultiSensorNetwork, self).__init__()
         self.hidden_dim = hidden_dim
         self.num_layers = num_layers
         self.rnn = nn.LSTM(
-            fmri_dim + eeg_dim + ppg_dim + emotion_dim, 
+            fmri_dim + eeg_dim + ppg_dim + emotion_dim,
             hidden_dim, num_layers, batch_first=True
         )
         self.fc1 = nn.Linear(hidden_dim, 128)
         self.fc2 = nn.Linear(128, action_dim)
-        
+
         # Initial beliefs for Bayesian learning (means and variances)
         self.prior_mean = torch.zeros(action_dim)
         self.prior_variance = torch.ones(action_dim)
 
     def forward(self, fmri_data, eeg_data, ppg_data, emotion_data):
         # Combine all input data
-        x = torch.cat((fmri_data, eeg_data, ppg_data, emotion_data), dim=2)  
-        
+        x = torch.cat((fmri_data, eeg_data, ppg_data, emotion_data), dim=2)
+
         # Initialize hidden state
         h0 = torch.zeros(self.num_layers, x.size(0), self.hidden_dim)
         c0 = torch.zeros(self.num_layers, x.size(0), self.hidden_dim)
-        
+
         # Pass through RNN
-        out, _ = self.rnn(x, (h0, c0))  
-        
+        out, _ = self.rnn(x, (h0, c0))
+
         # Use the last output from the RNN
         out = out[:, -1, :]
-        
+
         out = torch.relu(self.fc1(out))
         return self.fc2(out)
-    
+
     def bayesian_update(self, action, reward):
-        # Bayesian update for Q-values based on the reward observed 
+        # Bayesian update for Q-values based on the reward observed
         # for the chosen action
         likelihood_mean = reward
         likelihood_variance = 1  # Assume known variance (could also be learned)
@@ -1097,18 +1097,18 @@ class BayesianMultiSensorNetwork(nn.Module):
         # Update posterior mean and variance using Bayesian theorem
         posterior_variance = 1 / (1 / self.prior_variance[action] + 1 / likelihood_variance)
         posterior_mean = posterior_variance * (
-            self.prior_mean[action] / self.prior_variance[action] + 
+            self.prior_mean[action] / self.prior_variance[action] +
             likelihood_mean / likelihood_variance
         )
-        
+
         self.prior_mean[action] = posterior_mean
         self.prior_variance[action] = posterior_variance
 
-# AGI Framework with Bayesian Updates, physiological data, emotion 
+# AGI Framework with Bayesian Updates, physiological data, emotion
 # recognition, and self-altering code
 class AGI:
-    def __init__(self, fmri_dim, eeg_dim, ppg_dim, emotion_dim, action_dim, 
-                 learning_rate=0.001, gamma=0.99, epsilon=1.0, 
+    def __init__(self, fmri_dim, eeg_dim, ppg_dim, emotion_dim, action_dim,
+                 learning_rate=0.001, gamma=0.99, epsilon=1.0,
                  epsilon_decay=0.995, memory_size=1000):
         self.fmri_dim = fmri_dim
         self.eeg_dim = eeg_dim
@@ -1143,13 +1143,13 @@ class AGI:
     def store_transition(self, state, action, reward, next_state, done):
         self.memory.append((state, action, reward, next_state, done))
 
-    def   
+    def  
  update(self):
         if len(self.memory) < self.batch_size:
             return
 
         batch = random.sample(self.memory, self.batch_size)
-        states, actions, rewards, next_states, dones = zip(*batch)   
+        states, actions, rewards, next_states, dones = zip(*batch)  
 
 
         # Convert batch elements to tensors
@@ -1173,13 +1173,13 @@ class AGI:
         q_target = rewards + self.gamma * torch.max(next_q_values, dim=1)[0] * (1 - dones)
 
         loss = self.loss_fn(q_value, q_target)
-        
+
         self.optimizer.zero_grad()
         loss.backward()
-        
+
         # Gradient clipping for stability
         torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
-        
+
         self.optimizer.step()
 
         # Bayesian update on Q-values (using the first action and reward in the batch as an example)
@@ -1202,7 +1202,7 @@ class AGI:
         if avg_reward < 50:
             self.learning_rate *= 0.9
             for param_group in self.optimizer.param_groups:
-                
+
 Use code with caution.
 
 
