@@ -16,6 +16,7 @@ Examples:
 [98, 34, -1, -2, -42]
 """
 
+
 def reverse_selection_sort(collection: list) -> list:
     """
     A pure implementation of reverse selection sort algorithm in Python.
@@ -32,7 +33,7 @@ def reverse_selection_sort(collection: list) -> list:
                 max_idx = j
 
         # Reverse the subarray from the current position to the end
-        collection[i:max_idx+1] = reversed(collection[i:max_idx+1])
+        collection[i : max_idx + 1] = reversed(collection[i : max_idx + 1])
 
     return collection
 
