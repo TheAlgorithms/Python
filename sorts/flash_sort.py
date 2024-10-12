@@ -1,54 +1,100 @@
-#!/usr/bin/env python
+"""
+Implementation of Flash Sort in Python
+Author: Yash Kiradoo
 
-import argparse
-import os
-from typing import List
+For doctests, run the following command:
+python3 -m doctest -v flash_sort.py
 
-class FlashSorter:
-    def __init__(self, filename: str):
-        self.filename = filename
+For manual testing, run:
+python3 flash_sort.py
+"""
 
-    def sort(self) -> None:
-        # Main logic for flash sort goes here
-        pass
+from __future__ import annotations
+from typing import Callable
 
-    def _flash_sort(self, data: List[int]) -> List[int]:
-        # Implement the flash sort algorithm
-        pass
 
-    def _read_file(self) -> List[int]:
-        with open(self.filename, 'r') as file:
-            return [int(line.strip()) for line in file]
+class FlashSort:
+    def __init__(self, arr: list[int], n_classes: int, sort_key: Callable[[int], int] = lambda x: x):
+        self.arr = arr
+        self.n = len(arr)
+        self.n_classes = n_classes
+        self.sort_key = sort_key
 
-    def _write_file(self, data: List[int]) -> None:
-        with open(self.filename + ".out", 'w') as file:
-            for number in data:
-                file.write(f"{number}\n")
+    def flash_sort(self) -> None:
+        """
+        Performs flash sort on the array in-place.
 
-def parse_memory(string: str) -> int:
-    if string[-1].lower() == "k":
-        return int(string[:-1]) * 1024
-    elif string[-1].lower() == "m":
-        return int(string[:-1]) * 1024 * 1024
-    elif string[-1].lower() == "g":
-        return int(string[:-1]) * 1024 * 1024 * 1024
-    else:
-        return int(string)
+        >>> arr = [5, 3, 8, 6, 2, 7, 4, 1]
+        >>> sorter = FlashSort(arr, n_classes=5)
+        >>> sorter.flash_sort()
+        >>> arr
+        [1, 2, 3, 4, 5, 6, 7, 8]
 
-def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "-m", "--mem", help="amount of memory to use for sorting", default="100M"
-    )
-    parser.add_argument(
-        "filename", metavar="<filename>", nargs=1, help="name of file to sort"
-    )
-    args = parser.parse_args()
+        >>> arr = [1]
+        >>> sorter = FlashSort(arr, n_classes=1)
+        >>> sorter.flash_sort()
+        >>> arr
+        [1]
 
-    sorter = FlashSorter(args.filename[0])
-    data = sorter._read_file()
-    sorted_data = sorter._flash_sort(data)
-    sorter._write_file(sorted_data)
+        >>> arr = [2, 2, 2]
+        >>> sorter = FlashSort(arr, n_classes=2)
+        >>> sorter.flash_sort()
+        >>> arr
+        [2, 2, 2]
+        """
+        if self.n <= 1:
+            return
+
+        min_val = min(self.arr, key=self.sort_key)
+        max_val = max(self.arr, key=self.sort_key)
+
+        if self.sort_key(min_val) == self.sort_key(max_val):
+            return
+
+        L = [0] * self.n_classes
+        c1 = (self.n_classes - 1) / (self.sort_key(max_val) - self.sort_key(min_val))
+
+        # Classification step
+        for i in range(self.n):
+            k = int(c1 * (self.sort_key(self.arr[i]) - self.sort_key(min_val)))
+            L[k] += 1
+
+        # Cumulative step
+        for i in range(1, self.n_classes):
+            L[i] += L[i - 1]
+
+        # Permutation step
+        i, nmove, flash = 0, 0, self.arr[0]
+        while nmove < self.n:
+            while i >= L[int(c1 * (self.sort_key(flash) - self.sort_key(min_val)))]:
+                i += 1
+                flash = self.arr[i]
+            k = int(c1 * (self.sort_key(flash) - self.sort_key(min_val)))
+
+            while i != L[k]:
+                k = int(c1 * (self.sort_key(flash) - self.sort_key(min_val)))
+                hold = self.arr[L[k] - 1]
+                self.arr[L[k] - 1] = flash
+                flash = hold
+                L[k] -= 1
+                nmove += 1
+
+        # Final step: Insertion sort to finish
+        for i in range(1, self.n):
+            key_item = self.arr[i]
+            j = i - 1
+            while j >= 0 and self.arr[j] > key_item:
+                self.arr[j + 1] = self.arr[j]
+                j -= 1
+            self.arr[j + 1] = key_item
+
 
 if __name__ == "__main__":
-    main()
+    user_input = input("Enter numbers separated by a comma:\n").strip()
+    if user_input == "":
+        unsorted = []
+    else:
+        unsorted = [int(item.strip()) for item in user_input.split(",")]
+    sorter = FlashSort(unsorted, n_classes=5)
+    sorter.flash_sort()
+    print(unsorted)
