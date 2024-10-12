@@ -1,6 +1,7 @@
 import numpy as np
 from numpy.fft import fft, ifft
 
+
 def preprocess_text_and_pattern(text: str, pattern: str) -> tuple[list[int], list[int]]:
     """Preprocesses text and pattern for pattern matching.
 
@@ -13,11 +14,14 @@ def preprocess_text_and_pattern(text: str, pattern: str) -> tuple[list[int], lis
             - A list of integers representing the text characters.
             - A list of integers representing the pattern characters, with 0 for wildcards.
     """
+
     unique_chars = set(text + pattern)
-    char_to_int = {char: i + 1 for i, char in enumerate(unique_chars)}  # Unique non-zero integers
+    char_to_int = {
+        char: i + 1 for i, char in enumerate(unique_chars)
+    }  # Unique non-zero integers
 
     # Replace pattern '*' with 0, other characters with their unique integers
-    pattern_int = [char_to_int[char] if char != '*' else 0 for char in pattern]
+    pattern_int = [char_to_int[char] if char != "*" else 0 for char in pattern]
     text_int = [char_to_int[char] for char in text]
 
     return text_int, pattern_int
@@ -37,6 +41,12 @@ def fft_convolution(a: list[int], b: list[int]) -> np.ndarray:
     b_fft = fft(b, n)
     return np.real(ifft(a_fft * b_fft))
 
+    n = len(input_seq_a) + len(input_seq_b) - 1
+    A = fft(input_seq_a, n)
+    B = fft(input_seq_b, n)
+    return np.real(ifft(A * B))
+
+
 def compute_a_fft(text_int: list[int], pattern_int: list[int]) -> np.ndarray:
     """Computes the A array for the pattern matching algorithm.
 
@@ -47,6 +57,7 @@ def compute_a_fft(text_int: list[int], pattern_int: list[int]) -> np.ndarray:
     Returns:
         The A array.
     """
+
     n = len(text_int)
     m = len(pattern_int)
 
@@ -66,8 +77,11 @@ def compute_a_fft(text_int: list[int], pattern_int: list[int]) -> np.ndarray:
 
     # Calculate a[i] using the convolution results
     a = sum1[:n - m + 1] - 2 * sum2[:n - m + 1] + sum3[:n - m + 1]
+    # Calculate A[i] using the convolution results
+    A = sum1[: n - m + 1] - 2 * sum2[: n - m + 1] + sum3[: n - m + 1]
 
     return a
+
 
 # Main function to run the matching
 if __name__ == "__main__":
