@@ -12,9 +12,10 @@ python3 flash_sort.py
 from __future__ import annotations
 from collections.abc import Callable
 
-
 class FlashSort:
-    def __init__(self, arr: list[int], n_classes: int, sort_key: Callable[[int], int] = lambda x: x):
+    def __init__(self, arr: list[int], n_classes: int, 
+        sort_key: Callable[[int], int] = lambda x: x):
+
         self.arr = arr
         self.n = len(arr)
         self.n_classes = n_classes
@@ -97,4 +98,3 @@ if __name__ == "__main__":
     sorter = FlashSort(unsorted, n_classes=5)
     sorter.flash_sort()
     print(unsorted)
-    
