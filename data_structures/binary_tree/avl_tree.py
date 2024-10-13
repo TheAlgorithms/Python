@@ -227,8 +227,8 @@ def del_node(root: MyNode | None, data: Any) -> MyNode | None:
         right_child = root.get_right()
         assert right_child is not None
         temp = get_min_value_node(right_child)
-
-        root.set_data(temp.get_data())
+        if temp is not None:
+            root.set_data(temp.get_data())
         root.set_right(del_node(root.get_right(), temp.get_data()))
 
     root.set_height(
