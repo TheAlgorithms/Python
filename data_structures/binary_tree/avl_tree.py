@@ -194,59 +194,62 @@ def get_left_most(root: MyNode) -> Any:
         root = left_child
     return root.get_data()
 
+# Function to get balance factor
+def get_balance(node: MyNode) -> int:
+    if node is None:
+        return 0
+    return get_height(node.get_left()) - get_height(node.get_right())
+
+def get_min_value_node(node: MyNode) -> MyNode:
+    current = node
+    while current.get_left() is not None:
+        current = current.get_left()
+    return current
 
 def del_node(root: MyNode, data: Any) -> MyNode | None:
     if root is None:
         print("Nothing to delete")
         return None
-
-    left_child = root.get_left()
-    right_child = root.get_right()
-
-    if root.get_data() == data:
-        if left_child is not None and right_child is not None:
-            temp_data = get_left_most(right_child)
-            root.set_data(temp_data)
-            root.set_right(del_node(right_child, temp_data))
-        elif left_child is not None:
-            root = left_child
-        elif right_child is not None:
-            root = right_child
-        else:
-            return None
-    elif root.get_data() > data:
-        if left_child is None:
-            print("No such data")
-            return root
-        else:
-            root.set_left(del_node(left_child, data))
-    # root.get_data() < data
-    elif right_child is None:
-        return root
+ 
+    if root.get_data() > data:
+        root.set_left(del_node(root.get_left(), data))
+    elif root.get_data() < data:
+        root.set_right(del_node(root.get_right(), data))
     else:
-        root.set_right(del_node(right_child, data))
-
-    root.set_height(
-        my_max(get_height(root.get_right()), get_height(root.get_left())) + 1
-    )
-
-    balance_factor = get_height(root.get_left()) - get_height(root.get_right())
-
-    if balance_factor == 2:
-        assert right_child is not None
-        if get_height(right_child.get_right()) > get_height(right_child.get_left()):
-            root = left_rotation(root)
+        # Node to delete found
+        if root.get_left() is None:
+            return root.get_right()
+        elif root.get_right() is None:
+            return root.get_left()
         else:
-            root = rl_rotation(root)
-    elif balance_factor == -2:
-        assert left_child is not None
-        if get_height(left_child.get_left()) > get_height(left_child.get_right()):
-            root = right_rotation(root)
-        else:
-            root = lr_rotation(root)
+            # Node with two children
+            temp = get_min_value_node(root.get_right())
+            root.set_data(temp.get_data())
+            root.set_right(del_node(root.get_right(), temp.get_data()))
+
+    root.set_height(1 + my_max(get_height(root.get_left()), get_height(root.get_right())))
+
+    balance = get_balance(root)
+
+    # Left Left
+    if balance > 1 and get_balance(root.get_left()) >= 0:
+        return right_rotation(root)
+
+    # Left Right
+    if balance > 1 and get_balance(root.get_left()) < 0:
+        root.set_left(left_rotation(root.get_left()))
+        return right_rotation(root)
+
+    # Right Right
+    if balance < -1 and get_balance(root.get_right()) <= 0:
+        return left_rotation(root)
+
+    # Right Left
+    if balance < -1 and get_balance(root.get_right()) > 0:
+        root.set_right(right_rotation(root.get_right()))
+        return left_rotation(root)
 
     return root
-
 
 class AVLtree:
     """
