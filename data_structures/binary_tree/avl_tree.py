@@ -201,14 +201,13 @@ def get_balance(node: MyNode | None) -> int:
     return get_height(node.get_left()) - get_height(node.get_right())
 
 
-def get_min_value_node(node: MyNode) -> MyNode:
+def get_min_value_node(node: MyNode | None) -> MyNode | None:
     if node is None:
         return None
     current_node = node
     while current_node.get_left() is not None:
         current_node = current_node.get_left()
     return current_node
-
 
 def del_node(root: MyNode | None, data: Any) -> MyNode | None:
     if root is None:
