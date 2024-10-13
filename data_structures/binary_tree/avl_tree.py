@@ -219,39 +219,46 @@ def del_node(root: MyNode | None, data: Any) -> MyNode | None:
         root.set_left(del_node(root.get_left(), data))
     elif root.get_data() < data:
         root.set_right(del_node(root.get_right(), data))
-    elif root.get_left() is None:
-        return root.get_right()
-    elif root.get_right() is None:
-        return root.get_left()
     else:
-        # Node with two children
+        if root.get_left() is None:
+            return root.get_right()
+        elif root.get_right() is None:
+            return root.get_left()
+
         temp = get_min_value_node(root.get_right())
+        assert temp is not None
         root.set_data(temp.get_data())
         root.set_right(del_node(root.get_right(), temp.get_data()))
 
-    root.set_height(
-        1 + my_max(get_height(root.get_left()), get_height(root.get_right()))
-    )
+    root.set_height(1 + my_max(get_height(root.get_left()), get_height(root.get_right())))
 
     balance = get_balance(root)
 
-    # Left Left Case
-    if balance > 1 and get_balance(root.get_left()) >= 0:
-        return right_rotation(root)
+    if balance > 1:
+        left_child = root.get_left()
+        assert left_child is not None
+        if get_balance(left_child) >= 0:
+            return right_rotation(root)
 
-    # Left Right Case
-    if balance > 1 and get_balance(root.get_left()) < 0:
-        root.set_left(left_rotation(root.get_left()))
-        return right_rotation(root)
+    if balance > 1:
+        left_child = root.get_left()
+        assert left_child is not None
+        if get_balance(left_child) < 0:
+            root.set_left(left_rotation(left_child))
+            return right_rotation(root)
 
-    # Right Right Case
-    if balance < -1 and get_balance(root.get_right()) <= 0:
-        return left_rotation(root)
+    if balance < -1:
+        right_child = root.get_right()
+        assert right_child is not None
+        if get_balance(right_child) <= 0:
+            return left_rotation(root)
 
-    # Right Left Case
-    if balance < -1 and get_balance(root.get_right()) > 0:
-        root.set_right(right_rotation(root.get_right()))
-        return left_rotation(root)
+    if balance < -1:
+        right_child = root.get_right()
+        assert right_child is not None
+        if get_balance(right_child) > 0:
+            root.set_right(right_rotation(right_child))
+            return left_rotation(root)
 
     return root
 
