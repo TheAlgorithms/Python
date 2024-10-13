@@ -230,7 +230,9 @@ def del_node(root: MyNode | None, data: Any) -> MyNode | None:
         root.set_data(temp.get_data())
         root.set_right(del_node(root.get_right(), temp.get_data()))
 
-    root.set_height(1 + my_max(get_height(root.get_left()), get_height(root.get_right())))
+    root.set_height(
+        1 + my_max(get_height(root.get_left()), get_height(root.get_right()))
+    )
 
     balance = get_balance(root)
 
