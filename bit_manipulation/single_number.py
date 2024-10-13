@@ -25,6 +25,6 @@ def single_number(nums: list[int]) -> int:
 if __name__ == "__main__":
     # Test cases
     print(single_number([4, 1, 2, 1, 2]))  # Output: 4
-    print(single_number([2, 2, 1]))         # Output: 1
-    print(single_number([1]))                # Output: 1
-    print(single_number([5, 3, 5, 7, 3]))   # Output: 7
+    print(single_number([2, 2, 1]))  # Output: 1
+    print(single_number([1]))  # Output: 1
+    print(single_number([5, 3, 5, 7, 3]))  # Output: 7
