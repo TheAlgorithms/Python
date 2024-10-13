@@ -64,9 +64,9 @@ def solution(n: int = 1000) -> int:
     for b in range(n // 2 - 1, n // 3, -2):
         for a in range(b - 1, 0, -2):
             c = n - b - a
-            if b > c: # constraint a < b < c should be satisfied
+            if b > c:  # constraint a < b < c should be satisfied
                 continue
-            if a**2 + b**2 == c**2: # is it a pythagorean triplet
+            if a**2 + b**2 == c**2:  # is it a pythagorean triplet
                 return a * b * c
 
 
