@@ -24,6 +24,14 @@ def encrypt(plaintext: str, key: str) -> str:
     Traceback (most recent call last):
         ...
     ValueError: plaintext is empty
+    >>> encrypt("coffee is good as python", "")
+    Traceback (most recent call last):
+        ...
+    ValueError: key is empty
+    >>> encrypt(527.26, "TheAlgorithms")
+    Traceback (most recent call last):
+        ...
+    TypeError: plaintext must be a string
     """
     if not isinstance(plaintext, str):
         raise TypeError("plaintext must be a string")
@@ -80,6 +88,14 @@ def decrypt(ciphertext: str, key: str) -> str:
     Traceback (most recent call last):
         ...
     TypeError: ciphertext must be a string
+    >>> decrypt("", "TheAlgorithms")
+    Traceback (most recent call last):
+        ...
+    ValueError: ciphertext is empty
+    >>> decrypt("vvjfpk wj ohvp su ddylsv", 2)
+    Traceback (most recent call last):
+        ...
+    TypeError: key must be a string
     """
     if not isinstance(ciphertext, str):
         raise TypeError("ciphertext must be a string")
