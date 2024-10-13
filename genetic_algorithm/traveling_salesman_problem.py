@@ -51,6 +51,12 @@ def fitness(mem, dist_mat):
 
     Returns:
     float: The fitness of the tour, which is 1 / total distance of the tour.
+
+    Example:
+    >>> dist_mat = np.array([[0, 2, 9], [2, 0, 3], [9, 3, 0]])
+    >>> mem = [0, 1, 2]
+    >>> round(fitness(mem, dist_mat), 3)
+    0.091
     """
     dist = 0
     for i in range(len(mem)):
@@ -72,6 +78,13 @@ def binary_tournament_selection(popln, dist_mat):
 
     Returns:
     tuple: Two selected parent tours from the population.
+
+    Example:
+    >>> dist_mat = np.array([[0, 2, 9], [2, 0, 3], [9, 3, 0]])
+    >>> popln = [[0, 1, 2], [1, 0, 2], [2, 0, 1]]
+    >>> p1, p2 = binary_tournament_selection(popln, dist_mat)
+    >>> p1 in popln and p2 in popln
+    True
     """
     select = []
     while len(select) != 2:
@@ -97,6 +110,16 @@ def order_crossover(p1, p2, crossover_prob):
 
     Returns:
     tuple: Two offspring tours resulting from the crossover.
+
+    Example:
+    >>> random.seed(42)
+    >>> p1 = [0, 1, 2, 3]
+    >>> p2 = [3, 2, 1, 0]
+    >>> child1, child2 = order_crossover(p1, p2, 1.0)
+    >>> child1
+    [0, 2, 1, 3]
+    >>> child2
+    [3, 1, 2, 0]
     """
     if random.random() < crossover_prob:  # Perform crossover with given probability
         c1 = [-1] * len(p1)
@@ -133,6 +156,12 @@ def swap_mutation(child, mutation_prob, num_cities):
 
     Returns:
     list: The mutated child solution.
+
+    Example:
+    >>> random.seed(42)
+    >>> child = [0, 1, 2, 3]
+    >>> swap_mutation(child, 1.0, 4)
+    [0, 3, 2, 1]
     """
     if random.random() < mutation_prob:  # Perform mutation with given probability
         i, j = random.sample(range(num_cities), 2)  # Randomly select two cities to swap
@@ -153,6 +182,12 @@ def two_opt_local_search(child, dist_mat):
 
     Returns:
     list: The optimized solution after applying 2-opt.
+
+    Example:
+    >>> dist_mat = np.array([[0, 2, 9], [2, 0, 3], [9, 3, 0]])
+    >>> child = [0, 1, 2]
+    >>> two_opt_local_search(child, dist_mat)
+    [0, 1, 2]
     """
     while True:
         improvement = 0
@@ -174,10 +209,9 @@ def two_opt_local_search(child, dist_mat):
 
 
 # Run the genetic algorithm:
-def main():
+if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: traveling_salesman_problem.py <name/path of .tsp file>")
-        return 1
+        sys.exit("Usage: traveling_salesman_problem.py <name/path of .tsp file>")
 
     no_improvement = 0
 
@@ -195,7 +229,7 @@ def main():
             )
 
     # Generate initial population (first city is taken to be depot by default):
-    popln = []
+    popln: list = []
     while len(popln) < TOTAL_POPULATION:
         sol_dist = 0
         individual = list(range(n_cities))
@@ -252,8 +286,3 @@ def main():
     fsol = [x + 1 for x in sol]
     print("Final Solution:", fsol)
     print("Final Fitness:", 1 / sol_dist)
-    return 0
-
-
-if __name__ == "__main__":
-    main()
