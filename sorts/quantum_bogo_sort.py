@@ -22,7 +22,9 @@ def quantum_bogo_sort(arr: list[int]) -> list[int]:
     >>> quantum_bogo_sort([])
     []
     """
-    return sorted(arr)  # Sorting is assumed to be done instantly via quantum superposition
+    return sorted(
+        arr
+    )  # Sorting is assumed to be done instantly via quantum superposition
 
 
 if __name__ == "__main__":
