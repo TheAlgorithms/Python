@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import math
 import random
-from typing import Any, Optional
+from typing import Any
 
 
 class MyQueue:
@@ -195,17 +195,19 @@ def get_left_most(root: MyNode) -> Any:
     return root.get_data()
 
 
-def get_balance(node: MyNode) -> int:
+def get_balance(node: MyNode | None) -> int:
     if node is None:
         return 0
     return get_height(node.get_left()) - get_height(node.get_right())
 
 
-def get_min_value_node(node: MyNode) -> MyNode:
-    current = node
-    while current.get_left() is not None:
-        current = current.get_left()
-    return current
+def get_min_value_node(node: MyNode | None) -> MyNode | None:
+     if node is None:
+        return None
+    current_node = node
+    while current_node.get_left() is not None:
+        current_node = current_node.get_left()
+    return current_node
 
 
 def del_node(root: MyNode | None, data: Any) -> MyNode | None:
