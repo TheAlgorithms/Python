@@ -272,7 +272,7 @@ if __name__ == "__main__":
             popln[worst_fit] = child2
 
         # Sort population based on fitnesses (first member will be the solution):
-        popln.sort(key=lambda x: fitness(x, dist_mat), reverse=True)
+        popln.sort(key=lambda member: fitness(member, dist_mat), reverse=True)
 
         # Checking for improvements in solution:
         if sol_dist == fitness(popln[0], dist_mat):
