@@ -1,9 +1,10 @@
 def find_parent(parent, node):
     if parent[node] == node:
         return node
-    
+
     parent[node] = find_parent(parent, parent[node])
     return parent[node]
+
 
 def union_set(u, v, parent, rank):
     u = find_parent(parent, u)
@@ -16,10 +17,12 @@ def union_set(u, v, parent, rank):
         if rank[u] == rank[v]:
             rank[u] += 1
 
+
 def make_set(n):
     parent = list(range(n))
     rank = [0] * n
     return parent, rank
+
 
 def minimum_spanning_tree(edges, n):
     parent, rank = make_set(n)
@@ -37,6 +40,7 @@ def minimum_spanning_tree(edges, n):
 
     return min_wt
 
+
 def main():
     n = int(input("Enter the number of nodes: "))
     m = int(input("Enter the number of edges: "))
@@ -49,6 +53,7 @@ def main():
     min_weight = minimum_spanning_tree(edges, n)
 
     print(f"Weight of Kruskal's MST : {min_weight}")
+
 
 if __name__ == "__main__":
     main()
