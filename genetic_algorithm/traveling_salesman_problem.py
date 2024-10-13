@@ -19,7 +19,7 @@ PROB_MUTATION, PROB_CROSSOVER = 0.1, 0.9  # Mutation Probability, Crossover Prob
 TOTAL_GENERATIONS = 100
 
 
-def readinp(filename):
+def readinp(filename: str) -> tsplib95.models.Problem:
     """
     Loads the Traveling Salesman Problem (TSP) from the provided file using
     the tsplib95 package. This file should follow the .tsp format and contain
@@ -39,7 +39,7 @@ def readinp(filename):
     return problem
 
 
-def fitness(mem, dist_mat):
+def fitness(mem: list[int], dist_mat: np.ndarray) -> float:
     """
     Calculates the fitness of a given solution (tour). The fitness is the
     inverse of the total distance of the tour. A shorter distance results in
@@ -66,7 +66,9 @@ def fitness(mem, dist_mat):
     return fitness
 
 
-def binary_tournament_selection(popln, dist_mat):
+def binary_tournament_selection(
+    popln: list[list[int]], dist_mat: np.ndarray
+) -> tuple[list[int], list[int]]:
     """
     Selects two parents from the population using binary tournament selection.
     Two individuals are randomly chosen, and the one with higher fitness is
@@ -86,7 +88,7 @@ def binary_tournament_selection(popln, dist_mat):
     >>> p1 in popln and p2 in popln
     True
     """
-    select = []
+    select: list[list[int]] = []
     while len(select) != 2:
         i, j = random.sample(range(len(popln)), 2)  # Randomly select two individuals
         if fitness(popln[i], dist_mat) > fitness(popln[j], dist_mat):
@@ -96,7 +98,9 @@ def binary_tournament_selection(popln, dist_mat):
     return select[0], select[1]
 
 
-def order_crossover(p1, p2, crossover_prob):
+def order_crossover(
+    p1: list[int], p2: list[int], crossover_prob: float
+) -> tuple[list[int], list[int]]:
     """
     Applies order crossover (OX) between two parent solutions with a certain
     probability. The OX method ensures that the relative order of the cities
@@ -122,8 +126,8 @@ def order_crossover(p1, p2, crossover_prob):
     [3, 1, 2, 0]
     """
     if random.random() < crossover_prob:  # Perform crossover with given probability
-        c1 = [-1] * len(p1)
-        c2 = [-1] * len(p2)
+        c1: list[int] = [-1] * len(p1)
+        c2: list[int] = [-1] * len(p2)
         start = random.randint(0, len(p1) - 1)
         end = random.randint(start + 1, len(p1))
         c1[start:end] = p1[start:end]  # Copy a segment from parent 1 to child 1
@@ -144,7 +148,7 @@ def order_crossover(p1, p2, crossover_prob):
     return p1, p2  # No crossover, return the parents unchanged
 
 
-def swap_mutation(child, mutation_prob, num_cities):
+def swap_mutation(child: list[int], mutation_prob: float, num_cities: int) -> list[int]:
     """
     Applies swap mutation to a child solution with a given probability.
     Two random cities in the tour are swapped to introduce variability.
@@ -169,7 +173,7 @@ def swap_mutation(child, mutation_prob, num_cities):
     return child
 
 
-def two_opt_local_search(child, dist_mat):
+def two_opt_local_search(child: list[int], dist_mat: np.ndarray) -> list[int]:
     """
     Applies the 2-opt local search algorithm to improve a solution (tour).
     It repeatedly checks for pairs of edges in the tour and swaps them if
@@ -231,7 +235,7 @@ if __name__ == "__main__":
     # Generate initial population (first city is taken to be depot by default):
     popln: list = []
     while len(popln) < TOTAL_POPULATION:
-        sol_dist = 0
+        sol_dist = 0.0
         individual = list(range(n_cities))
         subindiv = individual[1:]
         random.shuffle(subindiv)
