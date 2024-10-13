@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import math
 import random
-from typing import Any
+from typing import Any, Optional
 
 
 class MyQueue:
@@ -208,7 +208,7 @@ def get_min_value_node(node: MyNode) -> MyNode:
     return current
 
 
-def del_node(root: MyNode, data: Any) -> MyNode | None:
+def del_node(root: Optional[MyNode], data: Any) -> Optional[MyNode]:
     if root is None:
         print("Nothing to delete")
         return None
