@@ -200,17 +200,19 @@ def get_balance(node: MyNode) -> int:
         return 0
     return get_height(node.get_left()) - get_height(node.get_right())
 
+
 def get_min_value_node(node: MyNode) -> MyNode:
     current = node
     while current.get_left() is not None:
         current = current.get_left()
     return current
 
+
 def del_node(root: MyNode, data: Any) -> MyNode | None:
     if root is None:
         print("Nothing to delete")
         return None
- 
+
     if root.get_data() > data:
         root.set_left(del_node(root.get_left(), data))
     elif root.get_data() < data:
@@ -225,7 +227,9 @@ def del_node(root: MyNode, data: Any) -> MyNode | None:
         root.set_data(temp.get_data())
         root.set_right(del_node(root.get_right(), temp.get_data()))
 
-    root.set_height(1 + my_max(get_height(root.get_left()), get_height(root.get_right())))
+    root.set_height(
+        1 + my_max(get_height(root.get_left()), get_height(root.get_right()))
+    )
 
     balance = get_balance(root)
 
