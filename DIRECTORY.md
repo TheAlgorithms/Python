@@ -106,6 +106,7 @@
   * [Mono Alphabetic Ciphers](ciphers/mono_alphabetic_ciphers.py)
   * [Morse Code](ciphers/morse_code.py)
   * [Onepad Cipher](ciphers/onepad_cipher.py)
+  * [Paillier Cryptosystem](ciphers/paillier_cryptosystem.py)
   * [Permutation Cipher](ciphers/permutation_cipher.py)
   * [Playfair Cipher](ciphers/playfair_cipher.py)
   * [Polybius](ciphers/polybius.py)
