@@ -34,6 +34,29 @@ def readinp(filename: str) -> tsplib95.models.Problem:
     Returns:
     problem (tsplib95.models.Problem): The TSP problem object containing
     nodes and distances.
+
+    Example:
+    >>> import tsplib95
+    >>> tsp_data = '''
+    ... NAME: sample
+    ... TYPE: TSP
+    ... DIMENSION: 4
+    ... EDGE_WEIGHT_TYPE: EUC_2D
+    ... NODE_COORD_SECTION
+    ... 1 0 0
+    ... 2 1 0
+    ... 3 0 1
+    ... 4 1 1
+    ... EOF
+    ... '''
+    >>> tsp_filename = "sample.tsp"
+    >>> with open(tsp_filename, "w") as f:
+    ...     f.write(tsp_data)
+    >>> prob = readinp('sample.tsp')
+    >>> len(list(prob.get_nodes())) > 0
+    True
+    >>> isinstance(prob, tsplib95.models.StandardProblem)
+    True
     """
     problem = tsplib95.load(filename)
     return problem
