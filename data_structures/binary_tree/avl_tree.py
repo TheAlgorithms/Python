@@ -195,12 +195,10 @@ def get_left_most(root: MyNode) -> Any:
     return root.get_data()
 
 
-# Function to get balance factor
 def get_balance(node: MyNode) -> int:
     if node is None:
         return 0
     return get_height(node.get_left()) - get_height(node.get_right())
-
 
 def get_min_value_node(node: MyNode) -> MyNode:
     current = node
@@ -208,48 +206,43 @@ def get_min_value_node(node: MyNode) -> MyNode:
         current = current.get_left()
     return current
 
-
 def del_node(root: MyNode, data: Any) -> MyNode | None:
     if root is None:
         print("Nothing to delete")
         return None
-
+ 
     if root.get_data() > data:
         root.set_left(del_node(root.get_left(), data))
     elif root.get_data() < data:
         root.set_right(del_node(root.get_right(), data))
+    elif root.get_left() is None:
+        return root.get_right()
+    elif root.get_right() is None:
+        return root.get_left()
     else:
-        # Node to delete found
-        if root.get_left() is None:
-            return root.get_right()
-        elif root.get_right() is None:
-            return root.get_left()
-        else:
-            # Node with two children
-            temp = get_min_value_node(root.get_right())
-            root.set_data(temp.get_data())
-            root.set_right(del_node(root.get_right(), temp.get_data()))
+        # Node with two children
+        temp = get_min_value_node(root.get_right())
+        root.set_data(temp.get_data())
+        root.set_right(del_node(root.get_right(), temp.get_data()))
 
-    root.set_height(
-        1 + my_max(get_height(root.get_left()), get_height(root.get_right()))
-    )
+    root.set_height(1 + my_max(get_height(root.get_left()), get_height(root.get_right())))
 
     balance = get_balance(root)
 
-    # Left Left
+    # Left Left Case
     if balance > 1 and get_balance(root.get_left()) >= 0:
         return right_rotation(root)
 
-    # Left Right
+    # Left Right Case
     if balance > 1 and get_balance(root.get_left()) < 0:
         root.set_left(left_rotation(root.get_left()))
         return right_rotation(root)
 
-    # Right Right
+    # Right Right Case
     if balance < -1 and get_balance(root.get_right()) <= 0:
         return left_rotation(root)
 
-    # Right Left
+    # Right Left Case
     if balance < -1 and get_balance(root.get_right()) > 0:
         root.set_right(right_rotation(root.get_right()))
         return left_rotation(root)
