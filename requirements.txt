@@ -19,6 +19,7 @@ sphinx_pyproject
 statsmodels
 sympy
 tensorflow ; python_version < '3.13'
+tsplib95
 tweepy
 # yulewalker  # uncomment once audio_filters/equal_loudness_filter.py is fixed
 typing_extensions
