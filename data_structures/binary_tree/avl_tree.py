@@ -209,6 +209,7 @@ def get_min_value_node(node: MyNode | None) -> MyNode | None:
         current_node = current_node.get_left()
     return current_node
 
+
 def del_node(root: MyNode | None, data: Any) -> MyNode | None:
     if root is None:
         print("Nothing to delete")
