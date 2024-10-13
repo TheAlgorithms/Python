@@ -202,7 +202,7 @@ def get_balance(node: MyNode | None) -> int:
 
 
 def get_min_value_node(node: MyNode | None) -> MyNode | None:
-     if node is None:
+    if node is None:
         return None
     current_node = node
     while current_node.get_left() is not None:
