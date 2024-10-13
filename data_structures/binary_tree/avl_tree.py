@@ -225,8 +225,10 @@ def del_node(root: MyNode | None, data: Any) -> MyNode | None:
         elif root.get_right() is None:
             return root.get_left()
 
-        temp = get_min_value_node(root.get_right())
-        assert temp is not None
+        right_child = root.get_right()
+        assert right_child is not None  # Ensure root.get_right() is not None
+        temp = get_min_value_node(right_child)
+        assert temp is not None  # Ensure get_min_value_node doesn't return None
         root.set_data(temp.get_data())
         root.set_right(del_node(root.get_right(), temp.get_data()))
 
