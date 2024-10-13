@@ -12,7 +12,6 @@ MUTATION_PROBABILITY = 0.1  # Mutation probability
 CROSSOVER_RATE = 0.8  # Probability of crossover
 SEARCH_SPACE = (-10, 10)  # Search space for the variables
 
-
 # Random number generator
 rng = np.random.default_rng()
 
@@ -41,12 +40,7 @@ class GeneticAlgorithm:
         self.population = self.initialize_population()
 
     def initialize_population(self) -> list[np.ndarray]:
-        """
-        Initialize the population with random individuals within the search space.
-
-        Returns:
-            list[np.ndarray]: A list of individuals represented as numpy arrays.
-        """
+        """Initialize the population with random individuals within the search space."""
         return [
             rng.uniform(
                 low=[self.bounds[j][0] for j in range(self.dim)],
@@ -56,18 +50,14 @@ class GeneticAlgorithm:
         ]
 
     def fitness(self, individual: np.ndarray) -> float:
-        """
-        Calculate the fitness value (function value) for an individual.
-        """
+        """Calculate the fitness value (function value) for an individual."""
         value = float(self.function(*individual))  # Ensure fitness is a float
         return value if self.maximize else -value  # If minimizing, invert the fitness
 
     def select_parents(
         self, population_score: list[tuple[np.ndarray, float]]
     ) -> list[np.ndarray]:
-        """
-        Select top N_SELECTED parents based on fitness.
-        """
+        """Select top N_SELECTED parents based on fitness."""
         population_score.sort(key=lambda score_tuple: score_tuple[1], reverse=True)
         selected_count = min(N_SELECTED, len(population_score))
         return [ind for ind, _ in population_score[:selected_count]]
@@ -87,10 +77,10 @@ class GeneticAlgorithm:
 
         Example:
         >>> ga = GeneticAlgorithm(
-            lambda x, y: -(x**2 + y**2),
-            [(-10, 10), (-10, 10)],
-            10, 100, 0.1, 0.8, True
-        )
+        ...     lambda x, y: -(x**2 + y**2),
+        ...     [(-10, 10), (-10, 10)],
+        ...     10, 100, 0.1, 0.8, True
+        ... )
         >>> parent1, parent2 = np.array([1, 2]), np.array([3, 4])
         >>> len(ga.crossover(parent1, parent2)) == 2
         True
@@ -114,10 +104,10 @@ class GeneticAlgorithm:
 
         Example:
         >>> ga = GeneticAlgorithm(
-            lambda x, y: -(x**2 + y**2),
-            [(-10, 10), (-10, 10)],
-            10, 100, 0.1, 0.8, True
-        )
+        ...     lambda x, y: -(x**2 + y**2),
+        ...     [(-10, 10), (-10, 10)],
+        ...     10, 100, 0.1, 0.8, True
+        ... )
         >>> ind = np.array([1.0, 2.0])
         >>> mutated = ga.mutate(ind)
         >>> len(mutated) == 2  # Ensure it still has the correct number of dimensions
@@ -133,22 +123,22 @@ class GeneticAlgorithm:
         Evaluate the fitness of the entire population in parallel.
 
         Returns:
-            list[tuple[np.ndarray, float]]:  # Trailing whitespace here
+            list[tuple[np.ndarray, float]]:
                 The population with their respective fitness values.
 
         Example:
         >>> ga = GeneticAlgorithm(
-            lambda x, y: -(x**2 + y**2),
-            [(-10, 10), (-10, 10)],
-            10, 100, 0.1, 0.8, True
-        )
+        ...     lambda x, y: -(x**2 + y**2),
+        ...     [(-10, 10), (-10, 10)],
+        ...     10, 100, 0.1, 0.8, True
+        ... )
         >>> eval_population = ga.evaluate_population()
         >>> len(eval_population) == ga.population_size  # Ensure population size
         True
         >>> all(
-            isinstance(ind, tuple) and isinstance(ind[1], float)
-            for ind in eval_population
-        )
+        ...     isinstance(ind, tuple) and isinstance(ind[1], float)
+        ...     for ind in eval_population
+        ... )
         True
         """
         with ThreadPoolExecutor() as executor:
@@ -220,7 +210,6 @@ def target_function(var_x: float, var_y: float) -> float:
 # Set bounds for the variables (var_x, var_y)
 bounds = [(-10, 10), (-10, 10)]  # Both var_x and var_y range from -10 to 10
 
-
 # Instantiate and run the genetic algorithm
 ga = GeneticAlgorithm(
     function=target_function,
@@ -231,7 +220,6 @@ ga = GeneticAlgorithm(
     crossover_rate=CROSSOVER_RATE,
     maximize=False,  # Minimize the function
 )
-
 
 best_solution = ga.evolve()
 print(f"Best solution found: {best_solution}")
