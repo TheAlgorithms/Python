@@ -48,19 +48,14 @@ if __name__ == "__main__":
 def count_zeros_and_ones(binary_number):
     # Convert the binary number to a string if it's not already
     binary_str = str(binary_number)
-
-    count_zeros = binary_str.count("0")
-    count_ones = binary_str.count("1")
-
+    
+    count_zeros = binary_str.count('0')
+    count_ones = binary_str.count('1')
+    
     return count_zeros, count_ones
 
+# Example usage
+binary_number = 1011001
+zeros, ones = count_zeros_and_ones(binary_number)
+print(f"Number of 0s: {zeros}, Number of 1s: {ones}")
 
-# Get user input
-binary_number = input("Enter a binary number: ")
-
-# Validate input
-if all(bit in "01" for bit in binary_number):
-    zeros, ones = count_zeros_and_ones(binary_number)
-    print(f"Number of 0s: {zeros}, Number of 1s: {ones}")
-else:
-    print("Invalid input! Please enter a valid binary number.")
