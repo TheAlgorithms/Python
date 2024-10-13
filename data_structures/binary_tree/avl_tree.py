@@ -201,7 +201,7 @@ def get_balance(node: MyNode | None) -> int:
     return get_height(node.get_left()) - get_height(node.get_right())
 
 
-def get_min_value_node(node: MyNode | None) -> MyNode | None:
+def get_min_value_node(node: MyNode) -> MyNode:
     if node is None:
         return None
     current_node = node
