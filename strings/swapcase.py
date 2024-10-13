@@ -8,8 +8,8 @@ WATER
 """
 
 
-def swap_case(input_string: str)-> str:
-    """ This Method will swap the case of a given string
+def swap_case(input_string: str) -> str:
+    """This Method will swap the case of a given string
     eg: input: input_string="book" output: swapped_string="BOOK"
     """
     list_representation = list(input_string)
