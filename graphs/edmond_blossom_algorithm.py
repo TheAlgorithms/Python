@@ -2,8 +2,8 @@ from collections import deque, defaultdict
 
 UNMATCHED = -1  # Constant to represent unmatched vertices
 
-class EdmondsBlossomAlgorithm:
 
+class EdmondsBlossomAlgorithm:
     @staticmethod
     def maximum_matching(edges, vertex_count):
         """
@@ -22,25 +22,37 @@ class EdmondsBlossomAlgorithm:
             graph[v].append(u)
 
         # Initialize matching array and other auxiliary structures
-        match = [UNMATCHED] * vertex_count  # Stores matches for each vertex, initially unmatched
-        parent = [UNMATCHED] * vertex_count  # Tracks the parent of each vertex in the augmenting path
-        base = list(range(vertex_count))  # Base of each vertex (initially the vertex itself)
+        match = [
+            UNMATCHED
+        ] * vertex_count  # Stores matches for each vertex, initially unmatched
+        parent = [
+            UNMATCHED
+        ] * vertex_count  # Tracks the parent of each vertex in the augmenting path
+        base = list(
+            range(vertex_count)
+        )  # Base of each vertex (initially the vertex itself)
         in_blossom = [False] * vertex_count  # Marks if a vertex is part of a blossom
-        in_queue = [False] * vertex_count  # Marks if a vertex is already in the BFS queue
+        in_queue = [
+            False
+        ] * vertex_count  # Marks if a vertex is already in the BFS queue
 
         # Iterate over each vertex to start the matching process
         for u in range(vertex_count):
             if match[u] == UNMATCHED:  # Proceed only if the vertex is unmatched
                 # Reset auxiliary data structures for BFS
                 parent = [UNMATCHED] * vertex_count
-                base = list(range(vertex_count))  # Each vertex is its own base initially
+                base = list(
+                    range(vertex_count)
+                )  # Each vertex is its own base initially
                 in_blossom = [False] * vertex_count
                 in_queue = [False] * vertex_count
 
                 queue = deque([u])  # Initialize BFS queue
                 in_queue[u] = True  # Mark u as in the queue
 
-                augmenting_path_found = False  # Flag to track if an augmenting path is found
+                augmenting_path_found = (
+                    False  # Flag to track if an augmenting path is found
+                )
 
                 # BFS to find augmenting paths
                 while queue and not augmenting_path_found:
@@ -60,7 +72,9 @@ class EdmondsBlossomAlgorithm:
                             if match[y] == UNMATCHED:
                                 parent[y] = current
                                 augmenting_path_found = True
-                                EdmondsBlossomAlgorithm.update_matching(match, parent, y)  # Augment the path
+                                EdmondsBlossomAlgorithm.update_matching(
+                                    match, parent, y
+                                )  # Augment the path
                                 break
 
                             # Case 2: y is matched, add y's match to the queue
@@ -72,10 +86,16 @@ class EdmondsBlossomAlgorithm:
                                 in_queue[z] = True
                         else:
                             # Case 3: A cycle (blossom) is detected
-                            base_u = EdmondsBlossomAlgorithm.find_base(base, parent, current, y)
+                            base_u = EdmondsBlossomAlgorithm.find_base(
+                                base, parent, current, y
+                            )
                             if base_u != UNMATCHED:
-                                aux_data = BlossomAuxData(queue, parent, base, in_blossom, match, in_queue)
-                                EdmondsBlossomAlgorithm.contract_blossom(BlossomData(aux_data, current, y, base_u))
+                                aux_data = BlossomAuxData(
+                                    queue, parent, base, in_blossom, match, in_queue
+                                )
+                                EdmondsBlossomAlgorithm.contract_blossom(
+                                    BlossomData(aux_data, current, y, base_u)
+                                )
 
         # Collect the final matching result
         matching_result = []
@@ -139,13 +159,21 @@ class EdmondsBlossomAlgorithm:
         :param blossom_data: An object containing the necessary data to perform the contraction.
         """
         # Mark all vertices in the blossom
-        for x in range(blossom_data.u, blossom_data.aux_data.base[blossom_data.u] != blossom_data.lca, blossom_data.aux_data.parent[blossom_data.aux_data.match[x]]):
+        for x in range(
+            blossom_data.u,
+            blossom_data.aux_data.base[blossom_data.u] != blossom_data.lca,
+            blossom_data.aux_data.parent[blossom_data.aux_data.match[x]],
+        ):
             base_x = blossom_data.aux_data.base[x]
             match_base_x = blossom_data.aux_data.base[blossom_data.aux_data.match[x]]
             blossom_data.aux_data.in_blossom[base_x] = True
             blossom_data.aux_data.in_blossom[match_base_x] = True
 
-        for x in range(blossom_data.v, blossom_data.aux_data.base[blossom_data.v] != blossom_data.lca, blossom_data.aux_data.parent[blossom_data.aux_data.match[x]]):
+        for x in range(
+            blossom_data.v,
+            blossom_data.aux_data.base[blossom_data.v] != blossom_data.lca,
+            blossom_data.aux_data.parent[blossom_data.aux_data.match[x]],
+        ):
             base_x = blossom_data.aux_data.base[x]
             match_base_x = blossom_data.aux_data.base[blossom_data.aux_data.match[x]]
             blossom_data.aux_data.in_blossom[base_x] = True
@@ -164,6 +192,7 @@ class BlossomAuxData:
     """
     A helper class to encapsulate auxiliary data used during blossom contraction.
     """
+
     def __init__(self, queue, parent, base, in_blossom, match, in_queue):
         self.queue = queue  # The BFS queue used for traversal
         self.parent = parent  # The parent array for each vertex
@@ -177,6 +206,7 @@ class BlossomData:
     """
     A helper class to store parameters necessary for blossom contraction.
     """
+
     def __init__(self, aux_data, u, v, lca):
         self.aux_data = aux_data  # The auxiliary data object
         self.u = u  # One vertex in the current edge
