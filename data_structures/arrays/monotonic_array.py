@@ -33,4 +33,5 @@ if __name__ == "__main__":
     print(is_monotonic([1, 3, 2]))  # Output: False
 
     import doctest
+
     doctest.testmod()
