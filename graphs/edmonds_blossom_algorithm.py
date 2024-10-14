@@ -113,9 +113,9 @@ class EdmondsBlossomAlgorithm:
                                 parent[y] = current  # Update the parent
                                 augmenting_path_found = True
                                 # Augment along this path
-                                EdmondsBlossomAlgorithm.update_matching(match,
-                                                                        parent,
-                                                                        y)
+                                EdmondsBlossomAlgorithm.update_matching(
+                                    match, parent, y
+                                )
                                 break
 
                             # Case 2: y is matched;
@@ -129,14 +129,25 @@ class EdmondsBlossomAlgorithm:
                         else:
                             # Case 3: Both current and y have a parent;
                             # check for a cycle/blossom
-                            base_u = EdmondsBlossomAlgorithm.find_base(base, parent,
-                                                                       current, y)
+                            base_u = EdmondsBlossomAlgorithm.find_base(
+                                base, parent, current, y
+                            )
                             if base_u != EdmondsBlossomAlgorithm.UNMATCHED:
-                                EdmondsBlossomAlgorithm.contract_blossom(BlossomData(
-                                    BlossomAuxData(queue, parent,
-                                                   base, in_blossom,
-                                                   match, in_queue),
-                                    current, y, base_u))
+                                EdmondsBlossomAlgorithm.contract_blossom(
+                                    BlossomData(
+                                        BlossomAuxData(
+                                            queue,
+                                            parent,
+                                            base,
+                                            in_blossom,
+                                            match,
+                                            in_queue,
+                                        ),
+                                        current,
+                                        y,
+                                        base_u,
+                                    )
+                                )
 
         # Create result list of matched pairs
         matching_result: list[list[int]] = []
