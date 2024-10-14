@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 def partition(array: list, low: int, high: int) -> int:
     """Helper function for quicksort to partition the array.
 
@@ -21,9 +22,10 @@ def partition(array: list, low: int, high: int) -> int:
         if array[j] <= pivot:
             i += 1
             array[i], array[j] = array[j], array[i]
-    
+
     array[i + 1], array[high] = array[high], array[i + 1]
     return i + 1
+
 
 def quicksort(array: list, low: int = 0, high: int | None = None) -> list:
     """Returns a sorted list using the quicksort algorithm.
@@ -55,14 +57,16 @@ def quicksort(array: list, low: int = 0, high: int | None = None) -> list:
     """
     if high is None:
         high = len(array) - 1
-    
+
     if low < high:
         pivot_index = partition(array, low, high)
         quicksort(array, low, pivot_index - 1)
         quicksort(array, pivot_index + 1, high)
-    
+
     return array
+
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
