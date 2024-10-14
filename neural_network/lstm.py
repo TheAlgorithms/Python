@@ -1,3 +1,15 @@
+"""
+Name - - LSTM - Long Short-Term Memory Network For Sequence Prediction
+Goal - - Predict sequences of data
+Detail: Total 3 layers neural network
+* Input layer
+* LSTM layer
+* Output layer
+Author: Shashank Tyagi
+Github: LEVII007
+Date: [Current Date]
+"""
+
 ##### Explanation #####
 # This script implements a Long Short-Term Memory (LSTM) network to learn and predict sequences of characters.
 # It uses numpy for numerical operations and tqdm for progress visualization.
@@ -22,14 +34,20 @@
 # The script initializes the LSTM network with specified hyperparameters and trains it on the input data.
 # Finally, it tests the trained network and prints the accuracy of the predictions.
 
-##### Data #####
-
 ##### Imports #####
 from tqdm import tqdm
 import numpy as np
 
 class LSTM:
-    def __init__(self, data, hidden_dim=25, epochs=1000, lr=0.05):
+    def __init__(self, data: str, hidden_dim: int = 25, epochs: int = 1000, lr: float = 0.05) -> None:
+        """
+        Initialize the LSTM network with the given data and hyperparameters.
+        
+        :param data: The input data as a string.
+        :param hidden_dim: The number of hidden units in the LSTM layer.
+        :param epochs: The number of training epochs.
+        :param lr: The learning rate.
+        """
         self.data = data.lower()
         self.hidden_dim = hidden_dim
         self.epochs = epochs
@@ -48,12 +66,21 @@ class LSTM:
         self.initialize_weights()
 
     ##### Helper Functions #####
-    def one_hot_encode(self, char):
+    def one_hot_encode(self, char: str) -> np.ndarray:
+        """
+        One-hot encode a character.
+        
+        :param char: The character to encode.
+        :return: A one-hot encoded vector.
+        """
         vector = np.zeros((self.char_size, 1))
         vector[self.char_to_idx[char]] = 1
         return vector
 
-    def initialize_weights(self):
+    def initialize_weights(self) -> None:
+        """
+        Initialize the weights and biases for the LSTM network.
+        """
         self.wf = self.init_weights(self.char_size + self.hidden_dim, self.hidden_dim)
         self.bf = np.zeros((self.hidden_dim, 1))
 
@@ -69,26 +96,56 @@ class LSTM:
         self.wy = self.init_weights(self.hidden_dim, self.char_size)
         self.by = np.zeros((self.char_size, 1))
 
-    def init_weights(self, input_dim, output_dim):
+    def init_weights(self, input_dim: int, output_dim: int) -> np.ndarray:
+        """
+        Initialize weights with random values.
+        
+        :param input_dim: The input dimension.
+        :param output_dim: The output dimension.
+        :return: A matrix of initialized weights.
+        """
         return np.random.uniform(-1, 1, (output_dim, input_dim)) * np.sqrt(6 / (input_dim + output_dim))
 
     ##### Activation Functions #####
-    def sigmoid(self, x, derivative=False):
+    def sigmoid(self, x: np.ndarray, derivative: bool = False) -> np.ndarray:
+        """
+        Sigmoid activation function.
+        
+        :param x: The input array.
+        :param derivative: Whether to compute the derivative.
+        :return: The sigmoid activation or its derivative.
+        """
         if derivative:
             return x * (1 - x)
         return 1 / (1 + np.exp(-x))
 
-    def tanh(self, x, derivative=False):
+    def tanh(self, x: np.ndarray, derivative: bool = False) -> np.ndarray:
+        """
+        Tanh activation function.
+        
+        :param x: The input array.
+        :param derivative: Whether to compute the derivative.
+        :return: The tanh activation or its derivative.
+        """
         if derivative:
             return 1 - x ** 2
         return np.tanh(x)
 
-    def softmax(self, x):
+    def softmax(self, x: np.ndarray) -> np.ndarray:
+        """
+        Softmax activation function.
+        
+        :param x: The input array.
+        :return: The softmax activation.
+        """
         exp_x = np.exp(x - np.max(x))
         return exp_x / exp_x.sum(axis=0)
 
     ##### LSTM Network Methods #####
-    def reset(self):
+    def reset(self) -> None:
+        """
+        Reset the LSTM network states.
+        """
         self.concat_inputs = {}
 
         self.hidden_states = {-1: np.zeros((self.hidden_dim, 1))}
@@ -101,7 +158,13 @@ class LSTM:
         self.input_gates = {}
         self.outputs = {}
 
-    def forward(self, inputs):
+    def forward(self, inputs: list) -> list:
+        """
+        Perform forward propagation through the LSTM network.
+        
+        :param inputs: The input data as a list of one-hot encoded vectors.
+        :return: The outputs of the network.
+        """
         self.reset()
 
         outputs = []
@@ -120,7 +183,13 @@ class LSTM:
 
         return outputs
 
-    def backward(self, errors, inputs):
+    def backward(self, errors: list, inputs: list) -> None:
+        """
+        Perform backpropagation through time to compute gradients and update weights.
+        
+        :param errors: The errors at each time step.
+        :param inputs: The input data as a list of one-hot encoded vectors.
+        """
         d_wf, d_bf = 0, 0
         d_wi, d_bi = 0, 0
         d_wc, d_bc = 0, 0
@@ -186,7 +255,10 @@ class LSTM:
         self.wy += d_wy * self.lr
         self.by += d_by * self.lr
 
-    def train(self):
+    def train(self) -> None:
+        """
+        Train the LSTM network on the input data.
+        """
         inputs = [self.one_hot_encode(char) for char in self.train_X]
 
         for _ in tqdm(range(self.epochs)):
@@ -199,7 +271,10 @@ class LSTM:
 
             self.backward(errors, self.concat_inputs)
     
-    def test(self):
+    def test(self) -> None:
+        """
+        Test the trained LSTM network on the input data and print the accuracy.
+        """
         accuracy = 0
         probabilities = self.forward([self.one_hot_encode(char) for char in self.train_X])
 
@@ -229,6 +304,14 @@ data = """Long Short-Term Memory (LSTM) networks are a type of recurrent neural 
 ##### Testing #####
 # lstm.test()
 
+if __name__ == "__main__":
+    # Initialize Network
+    # lstm = LSTM(data=data, hidden_dim=25, epochs=1000, lr=0.05)
 
+    ##### Training #####
+    # lstm.train()
+
+    ##### Testing #####
+    # lstm.test()
 
 # testing can be done by uncommenting the above lines of code.
