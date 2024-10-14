@@ -85,6 +85,8 @@ def bubble_sort_recursive(collection: list[Any]) -> list[Any]:
     [1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7]
     >>> bubble_sort_recursive([1, 3.3, 5, 7.7, 2, 4.4, 6])
     [1, 2, 3.3, 4.4, 5, 6, 7.7]
+    >>> bubble_sort_recursive(['a', 'Z','B', 'C', 'A', 'c'])
+    ['A', 'B', 'C', 'Z', 'a', 'c']
     >>> import random
     >>> collection_arg = random.sample(range(-50, 50), 100)
     >>> bubble_sort_recursive(collection_arg) == sorted(collection_arg)
