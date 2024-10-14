@@ -424,6 +424,9 @@
   * [Resonant Frequency](electronics/resonant_frequency.py)
   * [Wheatstone Bridge](electronics/wheatstone_bridge.py)
 
+## File Handling
+  * [Read File](file_handling/read_file.py)
+
 ## File Transfer
   * [Receive File](file_transfer/receive_file.py)
   * [Send File](file_transfer/send_file.py)
