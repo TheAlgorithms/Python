@@ -228,7 +228,7 @@ def del_node(root: MyNode | None, data: Any) -> MyNode | None:
         elif root.get_right() is None:
             return root.get_left()
         right_child = root.get_right()
-        assert right_child is not None 
+        assert right_child is not None
         temp = get_min_value_node(right_child)
         root.set_data(temp.get_data())
         root.set_right(del_node(root.get_right(), temp.get_data()))
@@ -256,6 +256,7 @@ def del_node(root: MyNode | None, data: Any) -> MyNode | None:
         return left_rotation(root)
 
     return root
+
 
 class AVLtree:
     """
