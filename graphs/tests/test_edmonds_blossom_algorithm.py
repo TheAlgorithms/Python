@@ -10,7 +10,6 @@ from graphs.edmonds_blossom_algorithm import (
 
 
 class TestEdmondsBlossomAlgorithm(unittest.TestCase):
-
     def test_maximum_matching(self):
         # Test case: Basic matching in a simple graph
         edges = [(0, 1), (1, 2), (2, 3)]
@@ -68,5 +67,5 @@ class TestEdmondsBlossomAlgorithm(unittest.TestCase):
         assert aux_data.in_queue[1]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

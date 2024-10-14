@@ -241,8 +241,9 @@ class BlossomData:
     BlossomData class with reduced parameters.
     """
 
-    def __init__(self, aux_data: BlossomAuxData, vertex_u: int,
-                 vertex_v: int, lca: int) -> None:
+    def __init__(
+        self, aux_data: BlossomAuxData, vertex_u: int, vertex_v: int, lca: int
+    ) -> None:
         """
         Initialize BlossomData with auxiliary data, two vertices,
         and the lowest common ancestor.
@@ -256,4 +257,3 @@ class BlossomData:
         self.vertex_u = vertex_u
         self.vertex_v = vertex_v
         self.lca = lca
-
