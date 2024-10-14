@@ -5,7 +5,19 @@ class BlossomAuxData:
     """Class to hold auxiliary data during the blossom algorithm's execution."""
 
     def __init__(self, queue: deque, parent: list[int], base: list[int],
-                 in_blossom: list[bool], match: list[int], in_queue: list[bool]):
+                 in_blossom: list[bool],
+                 match: list[int], in_queue: list[bool]) -> None:
+        """
+        Initializes the BlossomAuxData instance.
+
+        Args:
+            queue: A deque for BFS processing.
+            parent: List of parent vertices in the augmenting path.
+            base: List of base vertices for each vertex.
+            in_blossom: Boolean list indicating if a vertex is in a blossom.
+            match: List of matched vertices.
+            in_queue: Boolean list indicating if a vertex is in the queue.
+        """
         self.queue = queue
         self.parent = parent
         self.base = base
@@ -17,11 +29,22 @@ class BlossomAuxData:
 class BlossomData:
     """Class to encapsulate data related to a blossom in the graph."""
 
-    def __init__(self, aux_data: BlossomAuxData, u: int, v: int, lca: int):
+    def __init__(self, aux_data: BlossomAuxData,
+                 vertex_u: int, vertex_v: int,
+                 lowest_common_ancestor: int) -> None:
+        """
+        Initializes the BlossomData instance.
+
+        Args:
+            aux_data: The auxiliary data related to the blossom.
+            vertex_u: One vertex in the blossom.
+            vertex_v: The other vertex in the blossom.
+            lowest_common_ancestor: The lowest common ancestor of vertex_u and vertex_v.
+        """
         self.aux_data = aux_data
-        self.u = u
-        self.v = v
-        self.lca = lca
+        self.vertex_u = vertex_u
+        self.vertex_v = vertex_v
+        self.lowest_common_ancestor = lowest_common_ancestor
 
 
 class EdmondsBlossomAlgorithm:
@@ -40,7 +63,7 @@ class EdmondsBlossomAlgorithm:
             A list of matched pairs in the form of a list of lists.
         """
         # Create an adjacency list for the graph
-        graph = [[] for _ in range(vertex_count)]
+        graph: list[list[int]] = [[] for _ in range(vertex_count)]
 
         # Populate the graph with the edges
         for edge in edges:
@@ -49,11 +72,13 @@ class EdmondsBlossomAlgorithm:
             graph[v].append(u)
 
         # All vertices are initially unmatched
-        match = [EdmondsBlossomAlgorithm.UNMATCHED] * vertex_count
-        parent = [EdmondsBlossomAlgorithm.UNMATCHED] * vertex_count
-        base = list(range(vertex_count))  # Each vertex is its own base initially
-        in_blossom = [False] * vertex_count
-        in_queue = [False] * vertex_count  # Tracks vertices in the BFS queue
+        match: list[int] = [EdmondsBlossomAlgorithm.UNMATCHED] * vertex_count
+        parent: list[int] = [EdmondsBlossomAlgorithm.UNMATCHED] * vertex_count
+        # Each vertex is its own base initially
+        base: list[int] = list(range(vertex_count))
+        in_blossom: list[bool] = [False] * vertex_count
+        # Tracks vertices in the BFS queue
+        in_queue: list[bool] = [False] * vertex_count
 
         # Main logic for finding maximum matching
         for u in range(vertex_count):
@@ -82,7 +107,8 @@ class EdmondsBlossomAlgorithm:
                             continue
 
                         if parent[y] == EdmondsBlossomAlgorithm.UNMATCHED:
-                            # Case 1: y is unmatched; we've found an augmenting path
+                            # Case 1: y is unmatched;
+                            # we've found an augmenting path
                             if match[y] == EdmondsBlossomAlgorithm.UNMATCHED:
                                 parent[y] = current  # Update the parent
                                 augmenting_path_found = True
@@ -92,7 +118,8 @@ class EdmondsBlossomAlgorithm:
                                                                         y)
                                 break
 
-                            # Case 2: y is matched; add y's match to the queue
+                            # Case 2: y is matched;
+                            # add y's match to the queue
                             z = match[y]
                             parent[y] = current
                             parent[z] = y
@@ -102,10 +129,8 @@ class EdmondsBlossomAlgorithm:
                         else:
                             # Case 3: Both current and y have a parent;
                             # check for a cycle/blossom
-                            base_u = EdmondsBlossomAlgorithm.find_base(base,
-                                                                       parent,
-                                                                       current,
-                                                                       y)
+                            base_u = EdmondsBlossomAlgorithm.find_base(base, parent,
+                                                                       current, y)
                             if base_u != EdmondsBlossomAlgorithm.UNMATCHED:
                                 EdmondsBlossomAlgorithm.contract_blossom(BlossomData(
                                     BlossomAuxData(queue, parent,
@@ -114,66 +139,72 @@ class EdmondsBlossomAlgorithm:
                                     current, y, base_u))
 
         # Create result list of matched pairs
-        matching_result = []
+        matching_result: list[list[int]] = []
         for v in range(vertex_count):
-            # Ensure pairs are unique
-            if match[v] != EdmondsBlossomAlgorithm.UNMATCHED and v < match[v]:
+            if (match[v] != EdmondsBlossomAlgorithm.UNMATCHED
+                    and v < match[v]):  # Ensure pairs are unique
                 matching_result.append([v, match[v]])
 
         return matching_result
 
     @staticmethod
-    def update_matching(match: list[int], parent: list[int], u: int):
+    def update_matching(match: list[int],
+                        parent: list[int],
+                        matched_vertex: int) -> None:
         """
         Updates the matching based on the augmenting path found.
 
         Args:
             match: The current match list.
             parent: The parent list from BFS traversal.
-            u: The vertex where the augmenting path ends.
+            matched_vertex: The vertex where the augmenting path ends.
         """
-        while u != EdmondsBlossomAlgorithm.UNMATCHED:
-            v = parent[u]  # Get the parent vertex
+        while matched_vertex != EdmondsBlossomAlgorithm.UNMATCHED:
+            v = parent[matched_vertex]  # Get the parent vertex
             next_match = match[v]  # Store the next match
-            match[v] = u  # Update match for v
-            match[u] = v  # Update match for u
-            u = next_match  # Move to the next vertex
+            match[v] = matched_vertex  # Update match for v
+            match[matched_vertex] = v  # Update match for matched_vertex
+            matched_vertex = next_match  # Move to the next vertex
 
     @staticmethod
-    def find_base(base: list[int], parent: list[int], u: int, v: int) -> int:
+    def find_base(base: list[int],
+                  parent: list[int],
+                  vertex_u: int, vertex_v: int) -> int:
         """
         Finds the base of the blossom.
 
         Args:
             base: The base array for each vertex.
             parent: The parent array from BFS.
-            u: One endpoint of the blossom.
-            v: The other endpoint of the blossom.
+            vertex_u: One endpoint of the blossom.
+            vertex_v: The other endpoint of the blossom.
 
         Returns:
-            The lowest common ancestor of u and v in the blossom.
+            The lowest common ancestor of vertex_u and vertex_v in the blossom.
         """
-        visited = [False] * len(base)
+        visited: list[bool] = [False] * len(base)
 
-        # Mark ancestors of u
-        current_u = u
+        # Mark ancestors of vertex_u
+        current_vertex_u = vertex_u
         while True:
-            current_u = base[current_u]
-            visited[current_u] = True  # Mark this base as visited
-            if parent[current_u] == EdmondsBlossomAlgorithm.UNMATCHED:
+            current_vertex_u = base[current_vertex_u]
+            # Mark this base as visited
+            visited[current_vertex_u] = True
+            if parent[current_vertex_u] == EdmondsBlossomAlgorithm.UNMATCHED:
                 break
-            current_u = parent[current_u]
+            current_vertex_u = parent[current_vertex_u]
 
-        # Find the common ancestor of v
-        current_v = v
+        # Find the common ancestor of vertex_v
+        current_vertex_v = vertex_v
         while True:
-            current_v = base[current_v]
-            if visited[current_v]:  # Check if we've already visited this base
-                return current_v
-            current_v = parent[current_v]
+            current_vertex_v = base[current_vertex_v]
+            # Check if we've already visited this base
+            if visited[current_vertex_v]:
+                return current_vertex_v
+            current_vertex_v = parent[current_vertex_v]
 
     @staticmethod
-    def contract_blossom(blossom_data: BlossomData):
+    def contract_blossom(blossom_data: BlossomData) -> None:
         """
         Contracts a blossom found during the matching process.
 
@@ -181,16 +212,18 @@ class EdmondsBlossomAlgorithm:
             blossom_data: The data related to the blossom to be contracted.
         """
         # Mark vertices in the blossom
-        for x in range(blossom_data.u,
-                       blossom_data.aux_data.base[blossom_data.u] != blossom_data.lca):
+        for x in range(blossom_data.vertex_u,
+                       blossom_data.aux_data.base
+                       [blossom_data.vertex_u] != blossom_data.lowest_common_ancestor):
             base_x = blossom_data.aux_data.base[x]
             match_base_x = blossom_data.aux_data.base[blossom_data.aux_data.match[x]]
             # Mark the base as in a blossom
             blossom_data.aux_data.in_blossom[base_x] = True
             blossom_data.aux_data.in_blossom[match_base_x] = True
 
-        for x in range(blossom_data.v,
-                       blossom_data.aux_data.base[blossom_data.v] != blossom_data.lca):
+        for x in range(blossom_data.vertex_v,
+                       blossom_data.aux_data.base
+                       [blossom_data.vertex_v] != blossom_data.lowest_common_ancestor):
             base_x = blossom_data.aux_data.base[x]
             match_base_x = blossom_data.aux_data.base[blossom_data.aux_data.match[x]]
             # Mark the base as in a blossom
@@ -201,7 +234,7 @@ class EdmondsBlossomAlgorithm:
         for i in range(len(blossom_data.aux_data.base)):
             if blossom_data.aux_data.in_blossom[blossom_data.aux_data.base[i]]:
                 # Contract to the lowest common ancestor
-                blossom_data.aux_data.base[i] = blossom_data.lca
+                blossom_data.aux_data.base[i] = blossom_data.lowest_common_ancestor
                 if not blossom_data.aux_data.in_queue[i]:
                     # Add to queue if not already present
                     blossom_data.aux_data.queue.append(i)
