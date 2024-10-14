@@ -19,6 +19,7 @@ def partition(arr, low, high):
     # Return the partition point
     return i + 1
 
+
 # Function to implement Quick Sort
 def quick_sort(arr, low, high):
     if low < high:
@@ -28,6 +29,7 @@ def quick_sort(arr, low, high):
         # Recursively sort the elements before and after partition
         quick_sort(arr, low, pi - 1)  # Before partition
         quick_sort(arr, pi + 1, high)  # After partition
+
 
 # Driver code to take user-defined input and sort
 if __name__ == "__main__":

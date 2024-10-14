@@ -2,7 +2,7 @@
 class Graph:
     def __init__(self, vertices):
         self.V = vertices  # Number of vertices
-        self.graph = []    # List to store graph edges (u, v, w)
+        self.graph = []  # List to store graph edges (u, v, w)
 
     # Function to add an edge to the graph (u -> v with weight w)
     def add_edge(self, u, v, w):
@@ -73,10 +73,13 @@ class Graph:
         for u, v, w in result:
             print(f"{u} -- {v} == {w}")
 
+
 # Example usage
 if __name__ == "__main__":
-    V = int(input("Enter the number of vertices: "))  # Ask user for the number of vertices
-    E = int(input("Enter the number of edges: "))     # Ask user for the number of edges
+    V = int(
+        input("Enter the number of vertices: ")
+    )  # Ask user for the number of vertices
+    E = int(input("Enter the number of edges: "))  # Ask user for the number of edges
 
     g = Graph(V)  # Create a graph with V vertices
 
