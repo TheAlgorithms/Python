@@ -13,14 +13,14 @@ def draw_face_detections(img, detections):
     if detections:
         for detection in detections:
             # Extract bounding box information
-            bboxC = detection.location_data.relative_bounding_box
+            bbox = detection.location_data.relative_bounding_box
             ih, iw, _ = img.shape
-            bbox = (
-                int(bboxC.xmin * iw), int(bboxC.ymin * ih),
-                int(bboxC.width * iw), int(bboxC.height * ih)
+            box = (
+                int(bbox.xmin * iw), int(bbox.ymin * ih),
+                int(bbox.width * iw), int(bbox.height * ih)
             )
             # Draw the bounding box
-            cv2.rectangle(img, bbox, (17, 219, 13), 2)
+            cv2.rectangle(img, box, (17, 219, 13), 2)
 
 def main(video_path):
     # Initialize video capture
@@ -30,11 +30,11 @@ def main(video_path):
         return
 
     # Mediapipe Face Detection setup
-    mpFaceDetection = mp.solutions.face_detection
-    mpDraw = mp.solutions.drawing_utils
-    faceDetection = mpFaceDetection.FaceDetection(0.75)
+    mp_face_detection = mp.solutions.face_detection
+    mp_draw = mp.solutions.drawing_utils
+    face_detection = mp_face_detection.FaceDetection(0.75)
 
-    pTime = 0  # Previous time for FPS calculation
+    prev_time = 0  # Previous time for FPS calculation
 
     while True:
         success, img = cap.read()
@@ -46,16 +46,16 @@ def main(video_path):
         img = resize_image(img)
 
         # Convert image to RGB for face detection
-        imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-        result = faceDetection.process(imgRGB)
+        img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        result = face_detection.process(img_rgb)
 
         # Draw face detections
         draw_face_detections(img, result.detections)
 
         # FPS calculation
-        cTime = time.time()
-        fps = 1 / (cTime - pTime)
-        pTime = cTime
+        current_time = time.time()
+        fps = 1 / (current_time - prev_time)
+        prev_time = current_time
 
         # Display FPS on the video
         cv2.putText(img, f"FPS: {int(fps)}", (20, 70), cv2.FONT_HERSHEY_PLAIN, 3, (0, 255, 0), 2)
