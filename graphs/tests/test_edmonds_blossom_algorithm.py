@@ -1,71 +1,73 @@
 import unittest
-from collections import deque
 
-from graphs.edmonds_blossom_algorithm import (
-    UNMATCHED,
-    BlossomAuxData,
-    BlossomData,
-    EdmondsBlossomAlgorithm,
-)
+from graphs.edmonds_blossom_algorithm import EdmondsBlossomAlgorithm
 
 
-class TestEdmondsBlossomAlgorithm(unittest.TestCase):
-    def test_maximum_matching(self):
-        # Test case: Basic matching in a simple graph
-        edges = [(0, 1), (1, 2), (2, 3)]
-        vertex_count = 4
-        result = EdmondsBlossomAlgorithm.maximum_matching(edges, vertex_count)
-        expected_result = [(0, 1), (2, 3)]
-        assert result == expected_result
+class EdmondsBlossomAlgorithmTest(unittest.TestCase):
 
-        # Test case: Graph with no matching
-        edges = []
-        vertex_count = 4
-        result = EdmondsBlossomAlgorithm.maximum_matching(edges, vertex_count)
-        expected_result = []
-        assert result == expected_result
+    def convert_matching_to_array(self, matching):
+        """ Helper method to convert a
+        list of matching pairs into a sorted 2D array.
+        """
+        # Convert the list of pairs into a list of lists
+        result = [list(pair) for pair in matching]
 
-    def test_update_matching(self):
-        # Test case: Update matching on a simple augmenting path
-        match = [UNMATCHED, UNMATCHED, UNMATCHED]
-        parent = [1, 0, UNMATCHED]
-        current_vertex = 2
-        EdmondsBlossomAlgorithm.update_matching(match, parent, current_vertex)
-        expected_result = [1, 0, UNMATCHED]
-        assert match == expected_result
+        # Sort each individual pair for consistency
+        for pair in result:
+            pair.sort()
 
-    def test_find_base(self):
-        # Test case: Find base of blossom
-        base = [0, 1, 2, 3]
-        parent = [1, 0, UNMATCHED, UNMATCHED]
-        vertex_u = 2
-        vertex_v = 3
-        result = EdmondsBlossomAlgorithm.find_base(base, parent, vertex_u, vertex_v)
-        expected_result = 2
-        assert result == expected_result
+        # Sort the array of pairs to ensure consistent order
+        result.sort(key=lambda x: x[0])
+        return result
 
-    def test_contract_blossom(self):
-        # Test case: Contracting a simple blossom
-        queue = deque()
-        parent = [UNMATCHED, UNMATCHED, UNMATCHED]
-        base = [0, 1, 2]
-        in_blossom = [False] * 3
-        match = [UNMATCHED, UNMATCHED, UNMATCHED]
-        in_queue = [False] * 3
-        aux_data = BlossomAuxData(queue, parent, base, in_blossom, match, in_queue)
-        blossom_data = BlossomData(aux_data, 0, 1, 2)
+    def test_case_1(self):
+        """ Test Case 1: A triangle graph where vertices 0, 1, and 2 form a cycle. """
+        edges = [[0, 1], [1, 2], [2, 0]]
+        matching = EdmondsBlossomAlgorithm.maximum_matching(edges, 3)
 
-        # Contract the blossom
-        EdmondsBlossomAlgorithm.contract_blossom(blossom_data)
+        expected = [[0, 1]]
+        assert expected == self.convert_matching_to_array(matching)
 
-        # Ensure base is updated correctly
-        assert aux_data.base == [2, 2, 2]
-        # Check that the queue has the contracted vertices
-        assert 0 in aux_data.queue
-        assert 1 in aux_data.queue
-        assert aux_data.in_queue[0]
-        assert aux_data.in_queue[1]
+    def test_case_2(self):
+        """ Test Case 2: A disconnected graph with two components. """
+        edges = [[0, 1], [1, 2], [3, 4]]
+        matching = EdmondsBlossomAlgorithm.maximum_matching(edges, 5)
+
+        expected = [[0, 1], [3, 4]]
+        assert expected == self.convert_matching_to_array(matching)
+
+    def test_case_3(self):
+        """ Test Case 3: A cycle graph with an additional edge outside the cycle. """
+        edges = [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5]]
+        matching = EdmondsBlossomAlgorithm.maximum_matching(edges, 6)
+
+        expected = [[0, 1], [2, 3], [4, 5]]
+        assert expected == self.convert_matching_to_array(matching)
+
+    def test_case_no_matching(self):
+        """ Test Case 4: A graph with no edges. """
+        edges = []  # No edges
+        matching = EdmondsBlossomAlgorithm.maximum_matching(edges, 3)
+
+        expected = []
+        assert expected == self.convert_matching_to_array(matching)
+
+    def test_case_large_graph(self):
+        """ Test Case 5: A complex graph with multiple cycles and extra edges. """
+        edges = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0], [1, 4], [2, 5]]
+        matching = EdmondsBlossomAlgorithm.maximum_matching(edges, 6)
+
+        # Check if the size of the matching is correct (i.e., 3 pairs)
+        assert len(matching) == 3
+
+        # Check that the result contains valid pairs (any order is fine)
+        possible_matching_1 = [[0, 1], [2, 5], [3, 4]]
+        possible_matching_2 = [[0, 1], [2, 3], [4, 5]]
+        result = self.convert_matching_to_array(matching)
+
+        # Assert that the result is one of the valid maximum matchings
+        assert result in (possible_matching_1, possible_matching_2)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()
