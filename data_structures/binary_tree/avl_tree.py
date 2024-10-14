@@ -220,12 +220,11 @@ def del_node(root: MyNode, data: Any) -> MyNode | None:
             return root
         else:
             root.set_left(del_node(left_child, data))
+    elif right_child is None:
+        print(f"No such data ({data}) exists in the right subtree.")
+        return root
     else:
-        if right_child is None:
-            print(f"No such data ({data}) exists in the right subtree.")
-            return root
-        else:
-            root.set_right(del_node(right_child, data))
+        root.set_right(del_node(right_child, data))
 
     # Update the height of the node
     root.set_height(
