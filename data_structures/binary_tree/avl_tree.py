@@ -201,13 +201,14 @@ def get_balance(node: MyNode | None) -> int:
     return get_height(node.get_left()) - get_height(node.get_right())
 
 
-def get_min_value_node(node: MyNode | None) -> MyNode | None:
-    if node is None:
-        return None
-    current_node = node
-    while current_node.get_left() is not None:
-        current_node = current_node.get_left()
-    return current_node
+def get_min_value_node(node: MyNode) -> MyNode:
+    # Function get_left_most is not used here because it returns the value of the node
+    while True:
+        left_child = node.get_left()
+        if left_child is None:
+            break
+        node = left_child
+    return node
 
 
 def del_node(root: MyNode | None, data: Any) -> MyNode | None:
@@ -216,19 +217,20 @@ def del_node(root: MyNode | None, data: Any) -> MyNode | None:
         return None
 
     if root.get_data() > data:
-        root.set_left(del_node(root.get_left(), data))
+        left_child = del_node(root.get_left(), data)
+        root.set_left(left_child)
     elif root.get_data() < data:
-        root.set_right(del_node(root.get_right(), data))
+        right_child = del_node(root.get_right(), data)
+        root.set_right(right_child)
     else:
         if root.get_left() is None:
             return root.get_right()
         elif root.get_right() is None:
             return root.get_left()
         right_child = root.get_right()
-        assert right_child is not None
+        assert right_child is not None 
         temp = get_min_value_node(right_child)
-        if temp is not None:
-            root.set_data(temp.get_data())
+        root.set_data(temp.get_data())
         root.set_right(del_node(root.get_right(), temp.get_data()))
 
     root.set_height(
@@ -242,29 +244,18 @@ def del_node(root: MyNode | None, data: Any) -> MyNode | None:
         assert left_child is not None
         if get_balance(left_child) >= 0:
             return right_rotation(root)
-
-    if balance > 1:
-        left_child = root.get_left()
-        assert left_child is not None
-        if get_balance(left_child) < 0:
-            root.set_left(left_rotation(left_child))
-            return right_rotation(root)
+        root.set_left(left_rotation(left_child))
+        return right_rotation(root)
 
     if balance < -1:
         right_child = root.get_right()
         assert right_child is not None
         if get_balance(right_child) <= 0:
             return left_rotation(root)
-
-    if balance < -1:
-        right_child = root.get_right()
-        assert right_child is not None
-        if get_balance(right_child) > 0:
-            root.set_right(right_rotation(right_child))
-            return left_rotation(root)
+        root.set_right(right_rotation(right_child))
+        return left_rotation(root)
 
     return root
-
 
 class AVLtree:
     """
