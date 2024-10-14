@@ -1,5 +1,6 @@
 import doctest
 
+
 # https://leetcode.com/problems/monotonic-array/
 def is_monotonic(nums: list[int]) -> bool:
     """
