@@ -2,11 +2,13 @@ import cv2
 import mediapipe as mp
 import time
 
+
 def resize_image(img, max_width=1000, max_height=800):
     """Resizes the image while maintaining aspect ratio."""
     height, width, _ = img.shape
     scale = min(max_width / width, max_height / height)
     return cv2.resize(img, None, fx=scale, fy=scale)
+
 
 def draw_face_detections(img, detections):
     """Draws bounding boxes around detected faces."""
@@ -16,11 +18,14 @@ def draw_face_detections(img, detections):
             bbox = detection.location_data.relative_bounding_box
             ih, iw, _ = img.shape
             box = (
-                int(bbox.xmin * iw), int(bbox.ymin * ih),
-                int(bbox.width * iw), int(bbox.height * ih)
+                int(bbox.xmin * iw),
+                int(bbox.ymin * ih),
+                int(bbox.width * iw),
+                int(bbox.height * ih),
             )
             # Draw the bounding box
             cv2.rectangle(img, box, (17, 219, 13), 2)
+
 
 def main(video_path):
     # Initialize video capture
@@ -58,19 +63,22 @@ def main(video_path):
         prev_time = current_time
 
         # Display FPS on the video
-        cv2.putText(img, f"FPS: {int(fps)}", (20, 70), cv2.FONT_HERSHEY_PLAIN, 3, (0, 255, 0), 2)
+        cv2.putText(
+            img, f"FPS: {int(fps)}", (20, 70), cv2.FONT_HERSHEY_PLAIN, 3, (0, 255, 0), 2
+        )
 
         # Show the output image
         cv2.imshow("Face Detection", img)
 
         # Break the loop on 'q' key press
-        if cv2.waitKey(10) & 0xFF == ord('q'):
+        if cv2.waitKey(10) & 0xFF == ord("q"):
             break
 
     # Release video capture and destroy all windows
     cap.release()
     cv2.destroyAllWindows()
 
+
 if __name__ == "__main__":
-    video_path = 'path/to/your/video.mp4'  # Update with the actual video path
+    video_path = "path/to/your/video.mp4"  # Update with the actual video path
     main(video_path)
