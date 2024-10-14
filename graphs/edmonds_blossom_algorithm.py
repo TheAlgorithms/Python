@@ -173,7 +173,7 @@ class EdmondsBlossomAlgorithm:
         >>> EdmondsBlossomAlgorithm.contract_blossom(blossom_data)
         """
         # Mark all vertices in the blossom
-        current_vertex_u = blossom_data.u
+        current_vertex_u = blossom_data.vertex_u
         while blossom_data.aux_data.base[current_vertex_u] != blossom_data.lca:
             base_u = blossom_data.aux_data.base[current_vertex_u]
             match_base_u = blossom_data.aux_data.base[blossom_data.aux_data.match
@@ -185,7 +185,7 @@ class EdmondsBlossomAlgorithm:
                 blossom_data.aux_data.match[current_vertex_u]
             ]
 
-        current_vertex_v = blossom_data.v
+        current_vertex_v = blossom_data.vertex_v
         while blossom_data.aux_data.base[current_vertex_v] != blossom_data.lca:
             base_v = blossom_data.aux_data.base[current_vertex_v]
             match_base_v = blossom_data.aux_data.base[blossom_data.aux_data.match
@@ -228,9 +228,18 @@ class BlossomData:
     BlossomData class with reduced parameters.
     """
 
-    def __init__(self, aux_data: BlossomAuxData, u: int, v: int, lca: int) -> None:
-        self.aux_data = aux_data
-        self.u = u
-        self.v = v
-        self.lca = lca
+    def __init__(self, aux_data: BlossomAuxData, vertex_u: int,
+                 vertex_v: int, lca: int) -> None:
+        """
+        Initialize BlossomData with auxiliary data, two vertices,
+        and the lowest common ancestor.
 
+        :param aux_data: Auxiliary data used in the algorithm
+        :param vertex_u: First vertex involved in the blossom
+        :param vertex_v: Second vertex involved in the blossom
+        :param lca: Lowest common ancestor (base) of the two vertices
+        """
+        self.aux_data = aux_data
+        self.vertex_u = vertex_u
+        self.vertex_v = vertex_v
+        self.lca = lca
