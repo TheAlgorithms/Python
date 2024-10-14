@@ -1,35 +1,60 @@
-# Function to perform partition of the array
-def partition(arr, low, high):
-    # Choose the last element as the pivot
-    pivot = arr[high]
-
-    # Pointer for greater element
-    i = low - 1  # index of smaller element
-
-    # Traverse through all elements
-    for j in range(low, high):
-        # If the current element is smaller than or equal to the pivot
-        if arr[j] <= pivot:
-            i = i + 1  # Increment the index of smaller element
-            arr[i], arr[j] = arr[j], arr[i]  # Swap
-
-    # Swap the pivot element with the element at i+1
-    arr[i + 1], arr[high] = arr[high], arr[i + 1]
-
-    # Return the partition point
-    return i + 1
-
+from typing import List
 
 # Function to implement Quick Sort
-def quick_sort(arr, low, high):
+def quick_sort(arr: List[int], low: int, high: int) -> None:
+    """
+    Perform quick sort on the given array in-place.
+
+    Parameters:
+    arr (List[int]): The list of integers to sort.
+    low (int): The starting index of the portion of the array to sort.
+    high (int): The ending index of the portion of the array to sort.
+
+    Returns:
+    None: The function sorts the array in-place.
+
+    Doctest:
+    >>> arr = [10, 7, 8, 9, 1, 5]
+    >>> quick_sort(arr, 0, len(arr) - 1)
+    >>> arr
+    [1, 5, 7, 8, 9, 10]
+
+    >>> arr = [4, 3, 2, 1]
+    >>> quick_sort(arr, 0, len(arr) - 1)
+    >>> arr
+    [1, 2, 3, 4]
+    """
+
     if low < high:
-        # Find the partition index
+        # Partitioning index
         pi = partition(arr, low, high)
 
-        # Recursively sort the elements before and after partition
-        quick_sort(arr, low, pi - 1)  # Before partition
-        quick_sort(arr, pi + 1, high)  # After partition
+        # Recursively sort elements before and after partition
+        quick_sort(arr, low, pi - 1)
+        quick_sort(arr, pi + 1, high)
 
+def partition(arr: List[int], low: int, high: int) -> int:
+    """
+    Partition function to place the pivot element at its correct position.
+
+    Parameters:
+    arr (List[int]): The list of integers to partition.
+    low (int): The starting index for the partition.
+    high (int): The ending index for the partition.
+
+    Returns:
+    int: The partitioning index.
+    """
+    pivot = arr[high]  # Pivot
+    i = low - 1  # Index of smaller element
+
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]  # Swap
+
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]  # Swap pivot
+    return i + 1
 
 # Driver code to take user-defined input and sort
 if __name__ == "__main__":

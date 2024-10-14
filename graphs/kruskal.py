@@ -1,85 +1,145 @@
 # Class to represent a graph
 class Graph:
-    def __init__(self, vertices):
-        self.V = vertices  # Number of vertices
+    def __init__(self, vertices: int) -> None:
+        """
+        Initialize the graph with the given number of vertices.
+
+        Parameters:
+        vertices (int): The number of vertices in the graph.
+
+        Returns:
+        None
+        """
+        self.vertices = vertices
         self.graph = []  # List to store graph edges (u, v, w)
 
     # Function to add an edge to the graph (u -> v with weight w)
-    def add_edge(self, u, v, w):
-        self.graph.append([u, v, w])
+    def add_edge(self, from_vertex: int, to_vertex: int, weight: float) -> None:
+        """
+        Add an edge to the graph.
 
-    # Utility function to find set of an element i (uses path compression)
-    def find(self, parent, i):
-        if parent[i] == i:
-            return i
-        return self.find(parent, parent[i])
+        Parameters:
+        from_vertex (int): The starting vertex of the edge.
+        to_vertex (int): The ending vertex of the edge.
+        weight (float): The weight of the edge.
+
+        Returns:
+        None
+
+        Doctest:
+        >>> g = Graph(3)
+        >>> g.add_edge(0, 1, 5.0)
+        >>> g.add_edge(1, 2, 3.5)
+        >>> g.graph
+        [(0, 1, 5.0), (1, 2, 3.5)]
+        """
+        self.graph.append((from_vertex, to_vertex, weight))
+
+    # Utility function to find set of an element index (uses path compression)
+    def find(self, parent: list, vertex_index: int) -> int:
+        """
+        Find the set of an element (vertex) using path compression.
+
+        Parameters:
+        parent (list): The list representing the parent of each vertex.
+        vertex_index (int): The index of the vertex whose set is to be found.
+
+        Returns:
+        int: The representative (root) of the set containing the vertex.
+
+        Doctest:
+        >>> parent = [-1, 0, 0, 1]
+        >>> g = Graph(4)
+        >>> g.find(parent, 3)
+        0
+        >>> g.find(parent, 1)
+        0
+        """
+        if parent[vertex_index] == -1:
+            return vertex_index
+        # Path compression
+        parent[vertex_index] = self.find(parent, parent[vertex_index])
+        return parent[vertex_index]
 
     # Function that does union of two sets of x and y (uses union by rank)
-    def union(self, parent, rank, x, y):
-        root_x = self.find(parent, x)
-        root_y = self.find(parent, y)
+    def union(self, parent: list, rank: list, set_a: int, set_b: int) -> None:
+        """
+        Union of two sets of set_a and set_b (uses union by rank).
 
-        # Attach smaller rank tree under the root of the high-rank tree
-        if rank[root_x] < rank[root_y]:
-            parent[root_x] = root_y
-        elif rank[root_x] > rank[root_y]:
-            parent[root_y] = root_x
-        else:
-            parent[root_y] = root_x
-            rank[root_x] += 1
+        Parameters:
+        parent (list): The list representing the parent of each vertex.
+        rank (list): The list representing the rank of each vertex.
+        set_a (int): The representative of the first set.
+        set_b (int): The representative of the second set.
+
+        Returns:
+        None
+
+        Doctest:
+        >>> parent = [0, 0, -1, -1]
+        >>> rank = [1, 0, 0, 0]
+        >>> g = Graph(4)
+        >>> g.union(parent, rank, 0, 1)
+        >>> parent
+        [0, 0, -1, -1]
+        >>> g.union(parent, rank, 2, 3)
+        >>> parent
+        [0, 0, 2, 2]
+        """
+        root_a = self.find(parent, set_a)
+        root_b = self.find(parent, set_b)
+
+        if root_a != root_b:
+            if rank[root_a] < rank[root_b]:
+                parent[root_a] = root_b
+            elif rank[root_a] > rank[root_b]:
+                parent[root_b] = root_a
+            else:
+                parent[root_b] = root_a
+                rank[root_a] += 1
 
     # Main function to construct MST using Kruskal's algorithm
-    def kruskal_mst(self):
-        # This will store the resultant Minimum Spanning Tree (MST)
-        result = []
+    def kruskal_mst(self) -> list:
+        """
+        Construct Minimum Spanning Tree (MST) using Kruskal's algorithm.
 
-        # Step 1: Sort all edges in non-decreasing order of their weight
-        # If we are using a greedy algorithm, we need to sort the edges first
+        Returns:
+        list: A list of edges included in the MST.
+
+        Doctest:
+        >>> g = Graph(4)
+        >>> g.add_edge(0, 1, 10)
+        >>> g.add_edge(0, 2, 6)
+        >>> g.add_edge(0, 3, 5)
+        >>> g.add_edge(1, 3, 15)
+        >>> g.add_edge(2, 3, 4)
+        >>> mst_edges = g.kruskal_mst()
+        >>> mst_edges
+        [(0, 3, 5), (2, 3, 4), (0, 1, 10)]
+        """
+        # Sort the edges based on their weights
         self.graph = sorted(self.graph, key=lambda item: item[2])
+        parent = [-1] * self.vertices
+        rank = [0] * self.vertices
+        mst_edges = []
 
-        # Allocate memory for creating V subsets (for the disjoint-set)
-        parent = []
-        rank = []
+        for edge in self.graph:
+            u, v, w = edge
+            root_u = self.find(parent, u)
+            root_v = self.find(parent, v)
 
-        # Create V subsets with single elements
-        for node in range(self.V):
-            parent.append(node)
-            rank.append(0)
+            # If including this edge does not cause a cycle
+            if root_u != root_v:
+                mst_edges.append((u, v, w))
+                self.union(parent, rank, root_u, root_v)
 
-        # Number of edges in MST is V-1, so we will stop once we have V-1 edges
-        e = 0  # Initialize result edges count
-        i = 0  # Initialize the index for sorted edges
-
-        # Loop until MST has V-1 edges
-        while e < self.V - 1:
-            # Step 2: Pick the smallest edge and increment the index for the next iteration
-            u, v, w = self.graph[i]
-            i = i + 1
-
-            # Step 3: Find sets of both vertices u and v (to check if adding this edge will form a cycle)
-            x = self.find(parent, u)
-            y = self.find(parent, v)
-
-            # If adding this edge doesn't cause a cycle, include it in the result
-            if x != y:
-                result.append([u, v, w])
-                e = e + 1  # Increment the count of edges in the MST
-                self.union(parent, rank, x, y)
-
-            # Else, discard the edge (it would create a cycle)
-
-        # Print the constructed Minimum Spanning Tree
-        print("Following are the edges in the constructed MST:")
-        for u, v, w in result:
-            print(f"{u} -- {v} == {w}")
+        return mst_edges
 
 
 # Example usage
 if __name__ == "__main__":
-    V = int(
-        input("Enter the number of vertices: ")
-    )  # Ask user for the number of vertices
-    E = int(input("Enter the number of edges: "))  # Ask user for the number of edges
+    V = int(input("Enter the number of vertices: "))  # Ask user for the number of vertices
+    E = int(input("Enter the number of edges: "))     # Ask user for the number of edges
 
     g = Graph(V)  # Create a graph with V vertices
 
@@ -90,4 +150,7 @@ if __name__ == "__main__":
         g.add_edge(u, v, w)
 
     # Print the constructed MST
-    g.kruskal_mst()
+    mst_result = g.kruskal_mst()
+    print("Minimum Spanning Tree (MST) edges:")
+    for edge in mst_result:
+        print(edge)
