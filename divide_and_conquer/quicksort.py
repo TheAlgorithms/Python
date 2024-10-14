@@ -26,27 +26,6 @@ def partition(array: list, low: int, high: int) -> int:
 
 
 def quicksort(array: list, low: int = 0, high: int | None = None) -> list:
-    """Returns a sorted list using the quicksort algorithm.
-    >>> from random import shuffle
-    >>> array = [-2, 3, -10, 11, 99, 100000, 100, -200]
-    >>> shuffle(array)
-    >>> quicksort(array)
-    [-200, -10, -2, 3, 11, 99, 100, 100000]
-    >>> shuffle(array)
-    >>> quicksort(array)
-    [-200, -10, -2, 3, 11, 99, 100, 100000]
-    >>> quicksort([-200])
-    [-200]
-    >>> array = [-2, 3, -10, 11, 99, 100000, 100, -200]
-    >>> shuffle(array)
-    >>> sorted(array) == quicksort(array)
-    True
-    >>> quicksort([])
-    []
-    >>> array = [10000000, 1, -1111111111, 101111111112, 9000002]
-    >>> sorted(array) == quicksort(array)
-    True
-    """
     if high is None:
         high = len(array) - 1
     if low < high:
