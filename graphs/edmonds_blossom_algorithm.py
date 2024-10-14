@@ -5,8 +5,9 @@ UNMATCHED = -1  # Constant to represent unmatched vertices
 
 class EdmondsBlossomAlgorithm:
     @staticmethod
-    def maximum_matching(edges: list[tuple[int, int]], vertex_count: int) \
-            -> list[tuple[int, int]]:
+    def maximum_matching(
+        edges: list[tuple[int, int]], vertex_count: int
+    ) -> list[tuple[int, int]]:
         """
         Finds the maximum matching in a general graph using Edmonds' Blossom Algorithm.
 
@@ -84,10 +85,16 @@ class EdmondsBlossomAlgorithm:
                                 EdmondsBlossomAlgorithm.contract_blossom(
                                     BlossomData(
                                         BlossomAuxData(
-                                            queue, parent, base, in_blossom,
-                                            match, in_queue
+                                            queue,
+                                            parent,
+                                            base,
+                                            in_blossom,
+                                            match,
+                                            in_queue,
                                         ),
-                                        current_vertex, neighbor, base_vertex
+                                        current_vertex,
+                                        neighbor,
+                                        base_vertex,
                                     )
                                 )
 
@@ -100,8 +107,9 @@ class EdmondsBlossomAlgorithm:
         return matching_result
 
     @staticmethod
-    def update_matching(match: list[int],
-                        parent: list[int], current_vertex: int) -> None:
+    def update_matching(
+        match: list[int], parent: list[int], current_vertex: int
+    ) -> None:
         """
         Updates the matching along the augmenting path found.
 
@@ -160,7 +168,7 @@ class EdmondsBlossomAlgorithm:
             current_vertex_v = parent[current_vertex_v]
 
     @staticmethod
-    def contract_blossom(blossom_data: 'BlossomData') -> None:
+    def contract_blossom(blossom_data: "BlossomData") -> None:
         """
         Contracts a blossom in the graph, modifying the base array
         and marking the vertices involved.
@@ -176,9 +184,9 @@ class EdmondsBlossomAlgorithm:
         current_vertex_u = blossom_data.u
         while blossom_data.aux_data.base[current_vertex_u] != blossom_data.lca:
             base_u = blossom_data.aux_data.base[current_vertex_u]
-            match_base_u = blossom_data.aux_data.base[blossom_data.aux_data.match
-                                        [current_vertex_u]
-                                        ]
+            match_base_u = blossom_data.aux_data.base[
+                blossom_data.aux_data.match[current_vertex_u]
+            ]
             blossom_data.aux_data.in_blossom[base_u] = True
             blossom_data.aux_data.in_blossom[match_base_u] = True
             current_vertex_u = blossom_data.aux_data.parent[
@@ -188,9 +196,9 @@ class EdmondsBlossomAlgorithm:
         current_vertex_v = blossom_data.v
         while blossom_data.aux_data.base[current_vertex_v] != blossom_data.lca:
             base_v = blossom_data.aux_data.base[current_vertex_v]
-            match_base_v = blossom_data.aux_data.base[blossom_data.aux_data.match
-                                                [current_vertex_v]
-                                                ]
+            match_base_v = blossom_data.aux_data.base[
+                blossom_data.aux_data.match[current_vertex_v]
+            ]
             blossom_data.aux_data.in_blossom[base_v] = True
             blossom_data.aux_data.in_blossom[match_base_v] = True
             current_vertex_v = blossom_data.aux_data.parent[
@@ -212,8 +220,13 @@ class BlossomAuxData:
     """
 
     def __init__(
-        self, queue: deque, parent: list[int], base: list[int], in_blossom: list[bool],
-        match: list[int], in_queue: list[bool]
+        self,
+        queue: deque,
+        parent: list[int],
+        base: list[int],
+        in_blossom: list[bool],
+        match: list[int],
+        in_queue: list[bool],
     ) -> None:
         self.queue = queue
         self.parent = parent
@@ -233,4 +246,3 @@ class BlossomData:
         self.u = u
         self.v = v
         self.lca = lca
-
