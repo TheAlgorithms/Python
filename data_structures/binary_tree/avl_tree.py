@@ -150,6 +150,8 @@ def rl_rotation(node: MyNode) -> MyNode:
 def insert_node(node: MyNode | None, data: Any) -> MyNode | None:
     if node is None:
         return MyNode(data)
+    if data == node.get_data():  # No duplicates allowed
+        return node
     if data < node.get_data():
         node.set_left(insert_node(node.get_left(), data))
         if (
@@ -163,7 +165,7 @@ def insert_node(node: MyNode | None, data: Any) -> MyNode | None:
                 node = right_rotation(node)
             else:
                 node = lr_rotation(node)
-    else:
+    elif data > node.get_data():
         node.set_right(insert_node(node.get_right(), data))
         if get_height(node.get_right()) - get_height(node.get_left()) == 2:
             right_child = node.get_right()
@@ -202,6 +204,7 @@ def get_balance(node: MyNode | None) -> int:
 
 
 def get_min_value_node(node: MyNode) -> MyNode:
+    # Returns the node with the minimum value in the tree that is leftmost node
     # Function get_left_most is not used here because it returns the value of the node
     while True:
         left_child = node.get_left()
