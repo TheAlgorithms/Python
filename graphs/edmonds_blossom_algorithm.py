@@ -1,4 +1,4 @@
-from collections import defaultdict, deque
+from collections import deque, defaultdict
 
 UNMATCHED = -1  # Constant to represent unmatched vertices
 
@@ -6,7 +6,7 @@ UNMATCHED = -1  # Constant to represent unmatched vertices
 class EdmondsBlossomAlgorithm:
     @staticmethod
     def maximum_matching(
-            edges: list[tuple[int, int]], vertex_count: int
+        edges: list[tuple[int, int]], vertex_count: int
     ) -> list[tuple[int, int]]:
         """
         Finds the maximum matching in a general graph using Edmonds' Blossom Algorithm.
@@ -57,8 +57,7 @@ class EdmondsBlossomAlgorithm:
                             continue  # Avoid self-loops
 
                         if parent[neighbor] == UNMATCHED:
-                            # Case 1: neighbor is unmatched, we've found
-                            # an augmenting path
+                            # Case 1: neighbor is unmatched, we've found an augmenting path
                             if match[neighbor] == UNMATCHED:
                                 parent[neighbor] = current_vertex
                                 augmenting_path_found = True
@@ -67,8 +66,7 @@ class EdmondsBlossomAlgorithm:
                                 )
                                 break
 
-                            # Case 2: neighbor is matched, add neighbor's
-                            # match to the queue
+                            # Case 2: neighbor is matched, add neighbor's match to the queue
                             matched_vertex = match[neighbor]
                             parent[neighbor] = current_vertex
                             parent[matched_vertex] = neighbor
@@ -76,8 +74,7 @@ class EdmondsBlossomAlgorithm:
                                 queue.append(matched_vertex)
                                 in_queue[matched_vertex] = True
                         else:
-                            # Case 3: Both current_vertex and neighbor
-                            # have a parent; check for a cycle/blossom
+                            # Case 3: Both current_vertex and neighbor have a parent; check for a cycle/blossom
                             base_vertex = EdmondsBlossomAlgorithm.find_base(
                                 base, parent, current_vertex, neighbor
                             )
@@ -85,10 +82,16 @@ class EdmondsBlossomAlgorithm:
                                 EdmondsBlossomAlgorithm.contract_blossom(
                                     BlossomData(
                                         BlossomAuxData(
-                                            queue, parent, base, in_blossom,
-                                            match, in_queue
+                                            queue,
+                                            parent,
+                                            base,
+                                            in_blossom,
+                                            match,
+                                            in_queue,
                                         ),
-                                        current_vertex, neighbor, base_vertex
+                                        current_vertex,
+                                        neighbor,
+                                        base_vertex,
                                     )
                                 )
 
@@ -102,7 +105,7 @@ class EdmondsBlossomAlgorithm:
 
     @staticmethod
     def update_matching(
-            match: list[int], parent: list[int], current_vertex: int
+        match: list[int], parent: list[int], current_vertex: int
     ) -> None:
         """
         Updates the matching along the augmenting path found.
@@ -162,7 +165,7 @@ class EdmondsBlossomAlgorithm:
             current_vertex_v = parent[current_vertex_v]
 
     @staticmethod
-    def contract_blossom(blossom_data: 'BlossomData') -> None:
+    def contract_blossom(blossom_data: "BlossomData") -> None:
         """
         Contracts a blossom in the graph, modifying the base array
         and marking the vertices involved.
@@ -214,8 +217,13 @@ class BlossomAuxData:
     """
 
     def __init__(
-        self, queue: deque, parent: list[int], base: list[int], in_blossom: list[bool],
-        match: list[int], in_queue: list[bool]
+        self,
+        queue: deque,
+        parent: list[int],
+        base: list[int],
+        in_blossom: list[bool],
+        match: list[int],
+        in_queue: list[bool],
     ) -> None:
         self.queue = queue
         self.parent = parent
