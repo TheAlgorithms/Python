@@ -2,8 +2,15 @@ from collections import deque
 
 
 class BlossomAuxData:
-    def __init__(self, queue: deque, parent: list[int], base: list[int],
-                 in_blossom: list[bool], match: list[int], in_queue: list[bool]):
+    def __init__(
+        self,
+        queue: deque,
+        parent: list[int],
+        base: list[int],
+        in_blossom: list[bool],
+        match: list[int],
+        in_queue: list[bool],
+    ):
         self.queue = queue
         self.parent = parent
         self.base = base
@@ -11,12 +18,14 @@ class BlossomAuxData:
         self.match = match
         self.in_queue = in_queue
 
+
 class BlossomData:
     def __init__(self, aux_data: BlossomAuxData, u: int, v: int, lca: int):
         self.aux_data = aux_data
         self.u = u
         self.v = v
         self.lca = lca
+
 
 class EdmondsBlossomAlgorithm:
     UNMATCHED = -1  # Constant to represent unmatched vertices
@@ -72,8 +81,11 @@ class EdmondsBlossomAlgorithm:
                                 parent[y] = current
                                 augmenting_path_found = True
                                 # Augment along this path
-                                (EdmondsBlossomAlgorithm
-                                 .update_matching(match, parent, y))
+                                (
+                                    EdmondsBlossomAlgorithm.update_matching(
+                                        match, parent, y
+                                    )
+                                )
                                 break
 
                             # Case 2: y is matched, add y's match to the queue
@@ -86,17 +98,25 @@ class EdmondsBlossomAlgorithm:
                         else:
                             # Case 3: Both current and y have a parent;
                             # check for a cycle/blossom
-                            base_u = EdmondsBlossomAlgorithm.find_base(base,
-                                                        parent, current, y)
+                            base_u = EdmondsBlossomAlgorithm.find_base(
+                                base, parent, current, y
+                            )
                             if base_u != EdmondsBlossomAlgorithm.UNMATCHED:
-                                EdmondsBlossomAlgorithm.contract_blossom(BlossomData(
-                                    BlossomAuxData(queue,
-                                                   parent,
-                                                   base,
-                                                   in_blossom,
-                                                   match,
-                                                   in_queue),
-                                    current, y, base_u))
+                                EdmondsBlossomAlgorithm.contract_blossom(
+                                    BlossomData(
+                                        BlossomAuxData(
+                                            queue,
+                                            parent,
+                                            base,
+                                            in_blossom,
+                                            match,
+                                            in_queue,
+                                        ),
+                                        current,
+                                        y,
+                                        base_u,
+                                    )
+                                )
 
         # Create result list of matched pairs
         matching_result = []
@@ -138,15 +158,19 @@ class EdmondsBlossomAlgorithm:
 
     @staticmethod
     def contract_blossom(blossom_data: BlossomData):
-        for x in range(blossom_data.u,
-                       blossom_data.aux_data.base[blossom_data.u] != blossom_data.lca):
+        for x in range(
+            blossom_data.u,
+            blossom_data.aux_data.base[blossom_data.u] != blossom_data.lca,
+        ):
             base_x = blossom_data.aux_data.base[x]
             match_base_x = blossom_data.aux_data.base[blossom_data.aux_data.match[x]]
             blossom_data.aux_data.in_blossom[base_x] = True
             blossom_data.aux_data.in_blossom[match_base_x] = True
 
-        for x in range(blossom_data.v,
-                       blossom_data.aux_data.base[blossom_data.v] != blossom_data.lca):
+        for x in range(
+            blossom_data.v,
+            blossom_data.aux_data.base[blossom_data.v] != blossom_data.lca,
+        ):
             base_x = blossom_data.aux_data.base[x]
             match_base_x = blossom_data.aux_data.base[blossom_data.aux_data.match[x]]
             blossom_data.aux_data.in_blossom[base_x] = True
