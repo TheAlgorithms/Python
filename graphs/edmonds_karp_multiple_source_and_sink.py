@@ -1,193 +1,211 @@
-class FlowNetwork:
-    def __init__(self, graph, sources, sinks):
-        self.source_index = None
-        self.sink_index = None
-        self.graph = graph
-
-        self._normalize_graph(sources, sinks)
-        self.vertices_count = len(graph)
-        self.maximum_flow_algorithm = None
-
-    # make only one source and one sink
-    def _normalize_graph(self, sources, sinks):
-        if sources is int:
-            sources = [sources]
-        if sinks is int:
-            sinks = [sinks]
-
-        if len(sources) == 0 or len(sinks) == 0:
-            return
-
-        self.source_index = sources[0]
-        self.sink_index = sinks[0]
-
-        # make fake vertex if there are more
-        # than one source or sink
-        if len(sources) > 1 or len(sinks) > 1:
-            max_input_flow = 0
-            for i in sources:
-                max_input_flow += sum(self.graph[i])
-
-            size = len(self.graph) + 1
-            for room in self.graph:
-                room.insert(0, 0)
-            self.graph.insert(0, [0] * size)
-            for i in sources:
-                self.graph[0][i + 1] = max_input_flow
-            self.source_index = 0
-
-            size = len(self.graph) + 1
-            for room in self.graph:
-                room.append(0)
-            self.graph.append([0] * size)
-            for i in sinks:
-                self.graph[i + 1][size - 1] = max_input_flow
-            self.sink_index = size - 1
-
-    def find_maximum_flow(self):
-        if self.maximum_flow_algorithm is None:
-            raise Exception("You need to set maximum flow algorithm before.")
-        if self.source_index is None or self.sink_index is None:
-            return 0
-
-        self.maximum_flow_algorithm.execute()
-        return self.maximum_flow_algorithm.getMaximumFlow()
-
-    def set_maximum_flow_algorithm(self, algorithm):
-        self.maximum_flow_algorithm = algorithm(self)
+from collections import deque, defaultdict
+from typing import List, Tuple, Dict
 
 
-class FlowNetworkAlgorithmExecutor:
-    def __init__(self, flow_network):
-        self.flow_network = flow_network
-        self.verticies_count = flow_network.verticesCount
-        self.source_index = flow_network.sourceIndex
-        self.sink_index = flow_network.sinkIndex
-        # it's just a reference, so you shouldn't change
-        # it in your algorithms, use deep copy before doing that
-        self.graph = flow_network.graph
-        self.executed = False
-
-    def execute(self):
-        if not self.executed:
-            self._algorithm()
-            self.executed = True
-
-    # You should override it
-    def _algorithm(self):
-        pass
+UNMATCHED = -1  # Constant to represent unmatched vertices
 
 
-class MaximumFlowAlgorithmExecutor(FlowNetworkAlgorithmExecutor):
-    def __init__(self, flow_network):
-        super().__init__(flow_network)
-        # use this to save your result
-        self.maximum_flow = -1
+class EdmondsBlossomAlgorithm:
+    @staticmethod
+    def maximum_matching(edges: List[Tuple[int, int]], vertex_count: int) -> List[Tuple[int, int]]:
+        """
+        Finds the maximum matching in a general graph using Edmonds' Blossom Algorithm.
 
-    def get_maximum_flow(self):
-        if not self.executed:
-            raise Exception("You should execute algorithm before using its result!")
+        :param edges: List of edges in the graph.
+        :param vertex_count: Number of vertices in the graph.
+        :return: A list of matched pairs of vertices.
 
-        return self.maximum_flow
+        >>> EdmondsBlossomAlgorithm.maximum_matching([(0, 1), (1, 2), (2, 3)], 4)
+        [(0, 1), (2, 3)]
+        """
+        graph: Dict[int, List[int]] = defaultdict(list)
+
+        # Populate the graph with the edges
+        for vertex_u, vertex_v in edges:
+            graph[vertex_u].append(vertex_v)
+            graph[vertex_v].append(vertex_u)
+
+        # Initial matching array and auxiliary data structures
+        match = [UNMATCHED] * vertex_count
+        parent = [UNMATCHED] * vertex_count
+        base = list(range(vertex_count))
+        in_blossom = [False] * vertex_count
+        in_queue = [False] * vertex_count
+
+        # Main logic for finding maximum matching
+        for vertex_u in range(vertex_count):
+            if match[vertex_u] == UNMATCHED:
+                # BFS initialization
+                parent = [UNMATCHED] * vertex_count
+                base = list(range(vertex_count))
+                in_blossom = [False] * vertex_count
+                in_queue = [False] * vertex_count
+
+                queue = deque([vertex_u])
+                in_queue[vertex_u] = True
+
+                augmenting_path_found = False
+
+                # BFS to find augmenting paths
+                while queue and not augmenting_path_found:
+                    current_vertex = queue.popleft()
+                    for neighbor in graph[current_vertex]:
+                        if match[current_vertex] == neighbor:
+                            continue
+
+                        if base[current_vertex] == base[neighbor]:
+                            continue  # Avoid self-loops
+
+                        if parent[neighbor] == UNMATCHED:
+                            # Case 1: neighbor is unmatched, we've found an augmenting path
+                            if match[neighbor] == UNMATCHED:
+                                parent[neighbor] = current_vertex
+                                augmenting_path_found = True
+                                EdmondsBlossomAlgorithm.update_matching(match, parent, neighbor)
+                                break
+
+                            # Case 2: neighbor is matched, add neighbor's match to the queue
+                            matched_vertex = match[neighbor]
+                            parent[neighbor] = current_vertex
+                            parent[matched_vertex] = neighbor
+                            if not in_queue[matched_vertex]:
+                                queue.append(matched_vertex)
+                                in_queue[matched_vertex] = True
+                        else:
+                            # Case 3: Both current_vertex and neighbor have a parent; check for a cycle/blossom
+                            base_vertex = EdmondsBlossomAlgorithm.find_base(base, parent, current_vertex, neighbor)
+                            if base_vertex != UNMATCHED:
+                                EdmondsBlossomAlgorithm.contract_blossom(BlossomData(
+                                    BlossomAuxData(queue, parent, base, in_blossom, match, in_queue),
+                                    current_vertex, neighbor, base_vertex
+                                ))
+
+        # Create result list of matched pairs
+        matching_result = []
+        for vertex in range(vertex_count):
+            if match[vertex] != UNMATCHED and vertex < match[vertex]:
+                matching_result.append((vertex, match[vertex]))
+
+        return matching_result
+
+    @staticmethod
+    def update_matching(match: List[int], parent: List[int], current_vertex: int) -> None:
+        """
+        Updates the matching along the augmenting path found.
+
+        :param match: The matching array.
+        :param parent: The parent array used during the BFS.
+        :param current_vertex: The starting node of the augmenting path.
+
+        >>> match = [UNMATCHED, UNMATCHED, UNMATCHED]
+        >>> parent = [1, 0, UNMATCHED]
+        >>> EdmondsBlossomAlgorithm.update_matching(match, parent, 2)
+        >>> match
+        [1, 0, -1]
+        """
+        while current_vertex != UNMATCHED:
+            matched_vertex = parent[current_vertex]
+            next_vertex = match[matched_vertex]
+            match[matched_vertex] = current_vertex
+            match[current_vertex] = matched_vertex
+            current_vertex = next_vertex
+
+    @staticmethod
+    def find_base(base: List[int], parent: List[int], vertex_u: int, vertex_v: int) -> int:
+        """
+        Finds the base of a node in the blossom.
+
+        :param base: The base array.
+        :param parent: The parent array.
+        :param vertex_u: One end of the edge.
+        :param vertex_v: The other end of the edge.
+        :return: The base of the node or UNMATCHED.
+
+        >>> base = [0, 1, 2, 3]
+        >>> parent = [1, 0, UNMATCHED, UNMATCHED]
+        >>> EdmondsBlossomAlgorithm.find_base(base, parent, 2, 3)
+        2
+        """
+        visited = [False] * len(base)
+
+        # Mark ancestors of vertex_u
+        current_vertex_u = vertex_u
+        while True:
+            current_vertex_u = base[current_vertex_u]
+            visited[current_vertex_u] = True
+            if parent[current_vertex_u] == UNMATCHED:
+                break
+            current_vertex_u = parent[current_vertex_u]
+
+        # Find the common ancestor of vertex_v
+        current_vertex_v = vertex_v
+        while True:
+            current_vertex_v = base[current_vertex_v]
+            if visited[current_vertex_v]:
+                return current_vertex_v
+            current_vertex_v = parent[current_vertex_v]
+
+    @staticmethod
+    def contract_blossom(blossom_data: 'BlossomData') -> None:
+        """
+        Contracts a blossom in the graph, modifying the base array
+        and marking the vertices involved.
+
+        :param blossom_data: An object containing the necessary data
+        to perform the contraction.
+
+        >>> aux_data = BlossomAuxData(deque(), [], [], [], [], [])
+        >>> blossom_data = BlossomData(aux_data, 0, 1, 2)
+        >>> EdmondsBlossomAlgorithm.contract_blossom(blossom_data)
+        """
+        # Mark all vertices in the blossom
+        current_vertex_u = blossom_data.u
+        while blossom_data.aux_data.base[current_vertex_u] != blossom_data.lca:
+            base_u = blossom_data.aux_data.base[current_vertex_u]
+            match_base_u = blossom_data.aux_data.base[blossom_data.aux_data.match[current_vertex_u]]
+            blossom_data.aux_data.in_blossom[base_u] = True
+            blossom_data.aux_data.in_blossom[match_base_u] = True
+            current_vertex_u = blossom_data.aux_data.parent[blossom_data.aux_data.match[current_vertex_u]]
+
+        current_vertex_v = blossom_data.v
+        while blossom_data.aux_data.base[current_vertex_v] != blossom_data.lca:
+            base_v = blossom_data.aux_data.base[current_vertex_v]
+            match_base_v = blossom_data.aux_data.base[blossom_data.aux_data.match[current_vertex_v]]
+            blossom_data.aux_data.in_blossom[base_v] = True
+            blossom_data.aux_data.in_blossom[match_base_v] = True
+            current_vertex_v = blossom_data.aux_data.parent[blossom_data.aux_data.match[current_vertex_v]]
+
+        # Update the base for all marked vertices
+        for i in range(len(blossom_data.aux_data.base)):
+            if blossom_data.aux_data.in_blossom[blossom_data.aux_data.base[i]]:
+                blossom_data.aux_data.base[i] = blossom_data.lca
+                if not blossom_data.aux_data.in_queue[i]:
+                    blossom_data.aux_data.queue.append(i)
+                    blossom_data.aux_data.in_queue[i] = True
 
 
-class PushRelabelExecutor(MaximumFlowAlgorithmExecutor):
-    def __init__(self, flow_network):
-        super().__init__(flow_network)
+class BlossomAuxData:
+    """
+    Auxiliary data class to encapsulate common parameters for the blossom operations.
+    """
 
-        self.preflow = [[0] * self.verticies_count for i in range(self.verticies_count)]
-
-        self.heights = [0] * self.verticies_count
-        self.excesses = [0] * self.verticies_count
-
-    def _algorithm(self):
-        self.heights[self.source_index] = self.verticies_count
-
-        # push some substance to graph
-        for nextvertex_index, bandwidth in enumerate(self.graph[self.source_index]):
-            self.preflow[self.source_index][nextvertex_index] += bandwidth
-            self.preflow[nextvertex_index][self.source_index] -= bandwidth
-            self.excesses[nextvertex_index] += bandwidth
-
-        # Relabel-to-front selection rule
-        vertices_list = [
-            i
-            for i in range(self.verticies_count)
-            if i not in {self.source_index, self.sink_index}
-        ]
-
-        # move through list
-        i = 0
-        while i < len(vertices_list):
-            vertex_index = vertices_list[i]
-            previous_height = self.heights[vertex_index]
-            self.process_vertex(vertex_index)
-            if self.heights[vertex_index] > previous_height:
-                # if it was relabeled, swap elements
-                # and start from 0 index
-                vertices_list.insert(0, vertices_list.pop(i))
-                i = 0
-            else:
-                i += 1
-
-        self.maximum_flow = sum(self.preflow[self.source_index])
-
-    def process_vertex(self, vertex_index):
-        while self.excesses[vertex_index] > 0:
-            for neighbour_index in range(self.verticies_count):
-                # if it's neighbour and current vertex is higher
-                if (
-                    self.graph[vertex_index][neighbour_index]
-                    - self.preflow[vertex_index][neighbour_index]
-                    > 0
-                    and self.heights[vertex_index] > self.heights[neighbour_index]
-                ):
-                    self.push(vertex_index, neighbour_index)
-
-            self.relabel(vertex_index)
-
-    def push(self, from_index, to_index):
-        preflow_delta = min(
-            self.excesses[from_index],
-            self.graph[from_index][to_index] - self.preflow[from_index][to_index],
-        )
-        self.preflow[from_index][to_index] += preflow_delta
-        self.preflow[to_index][from_index] -= preflow_delta
-        self.excesses[from_index] -= preflow_delta
-        self.excesses[to_index] += preflow_delta
-
-    def relabel(self, vertex_index):
-        min_height = None
-        for to_index in range(self.verticies_count):
-            if (
-                self.graph[vertex_index][to_index]
-                - self.preflow[vertex_index][to_index]
-                > 0
-            ) and (min_height is None or self.heights[to_index] < min_height):
-                min_height = self.heights[to_index]
-
-        if min_height is not None:
-            self.heights[vertex_index] = min_height + 1
+    def __init__(self, queue: deque, parent: List[int], base: List[int],
+                 in_blossom: List[bool], match: List[int], in_queue: List[bool]) -> None:
+        self.queue = queue
+        self.parent = parent
+        self.base = base
+        self.in_blossom = in_blossom
+        self.match = match
+        self.in_queue = in_queue
 
 
-if __name__ == "__main__":
-    entrances = [0]
-    exits = [3]
-    # graph = [
-    #     [0, 0, 4, 6, 0, 0],
-    #     [0, 0, 5, 2, 0, 0],
-    #     [0, 0, 0, 0, 4, 4],
-    #     [0, 0, 0, 0, 6, 6],
-    #     [0, 0, 0, 0, 0, 0],
-    #     [0, 0, 0, 0, 0, 0],
-    # ]
-    graph = [[0, 7, 0, 0], [0, 0, 6, 0], [0, 0, 0, 8], [9, 0, 0, 0]]
+class BlossomData:
+    """
+    BlossomData class with reduced parameters.
+    """
 
-    # prepare our network
-    flow_network = FlowNetwork(graph, entrances, exits)
-    # set algorithm
-    flow_network.set_maximum_flow_algorithm(PushRelabelExecutor)
-    # and calculate
-    maximum_flow = flow_network.find_maximum_flow()
-
-    print(f"maximum flow is {maximum_flow}")
+    def __init__(self, aux_data: BlossomAuxData, u: int, v: int, lca: int) -> None:
+        self.aux_data = aux_data
+        self.u = u
+        self.v = v
+        self.lca = lca
