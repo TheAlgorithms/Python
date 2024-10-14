@@ -52,12 +52,12 @@ class Graph:
 
         # Loop until MST has V-1 edges
         while e < self.V - 1:
-            # Step 2: Pick the smallest edge 
-            #increment the index for the next iteration
+            # Step 2: Pick the smallest edge
+            # increment the index for the next iteration
             u, v, w = self.graph[i]
             i = i + 1
 
-            # Step 3: Find sets of both vertices u and v 
+            # Step 3: Find sets of both vertices u and v
             x = self.find(parent, u)
             y = self.find(parent, v)
 
