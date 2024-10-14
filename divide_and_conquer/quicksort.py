@@ -1,5 +1,6 @@
 from typing import List
 
+
 # Function to implement Quick Sort
 def quick_sort(arr: List[int], low: int, high: int) -> None:
     """
@@ -33,6 +34,7 @@ def quick_sort(arr: List[int], low: int, high: int) -> None:
         quick_sort(arr, low, pi - 1)
         quick_sort(arr, pi + 1, high)
 
+
 def partition(arr: List[int], low: int, high: int) -> int:
     """
     Partition function to place the pivot element at its correct position.
@@ -55,6 +57,7 @@ def partition(arr: List[int], low: int, high: int) -> int:
 
     arr[i + 1], arr[high] = arr[high], arr[i + 1]  # Swap pivot
     return i + 1
+
 
 # Driver code to take user-defined input and sort
 if __name__ == "__main__":
