@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-
 def quicksort(array: list) -> list:
     """
     Returns a sorted list using the quicksort algorithm.
@@ -36,10 +35,8 @@ def quicksort(array: list) -> list:
     left = [x for x in array[:-1] if x <= pivot]
     right = [x for x in array[:-1] if x > pivot]
 
-    return quicksort(left) + [pivot] + quicksort(right)
-
+    return [*quicksort(left), pivot, *quicksort(right)]
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
