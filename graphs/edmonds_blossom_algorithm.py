@@ -4,9 +4,15 @@ from collections import deque
 class BlossomAuxData:
     """Class to hold auxiliary data during the blossom algorithm's execution."""
 
-    def __init__(self, queue: deque, parent: list[int], base: list[int],
-                 in_blossom: list[bool],
-                 match: list[int], in_queue: list[bool]) -> None:
+    def __init__(
+        self,
+        queue: deque,
+        parent: list[int],
+        base: list[int],
+        in_blossom: list[bool],
+        match: list[int],
+        in_queue: list[bool],
+    ) -> None:
         """
         Initializes the BlossomAuxData instance.
 
@@ -29,9 +35,13 @@ class BlossomAuxData:
 class BlossomData:
     """Class to encapsulate data related to a blossom in the graph."""
 
-    def __init__(self, aux_data: BlossomAuxData,
-                 vertex_u: int, vertex_v: int,
-                 lowest_common_ancestor: int) -> None:
+    def __init__(
+        self,
+        aux_data: BlossomAuxData,
+        vertex_u: int,
+        vertex_v: int,
+        lowest_common_ancestor: int,
+    ) -> None:
         """
         Initializes the BlossomData instance.
 
@@ -152,16 +162,17 @@ class EdmondsBlossomAlgorithm:
         # Create result list of matched pairs
         matching_result: list[list[int]] = []
         for v in range(vertex_count):
-            if (match[v] != EdmondsBlossomAlgorithm.UNMATCHED
-                    and v < match[v]):  # Ensure pairs are unique
+            if (
+                match[v] != EdmondsBlossomAlgorithm.UNMATCHED and v < match[v]
+            ):  # Ensure pairs are unique
                 matching_result.append([v, match[v]])
 
         return matching_result
 
     @staticmethod
-    def update_matching(match: list[int],
-                        parent: list[int],
-                        matched_vertex: int) -> None:
+    def update_matching(
+        match: list[int], parent: list[int], matched_vertex: int
+    ) -> None:
         """
         Updates the matching based on the augmenting path found.
 
@@ -178,9 +189,9 @@ class EdmondsBlossomAlgorithm:
             matched_vertex = next_match  # Move to the next vertex
 
     @staticmethod
-    def find_base(base: list[int],
-                  parent: list[int],
-                  vertex_u: int, vertex_v: int) -> int:
+    def find_base(
+        base: list[int], parent: list[int], vertex_u: int, vertex_v: int
+    ) -> int:
         """
         Finds the base of the blossom.
 
@@ -223,18 +234,22 @@ class EdmondsBlossomAlgorithm:
             blossom_data: The data related to the blossom to be contracted.
         """
         # Mark vertices in the blossom
-        for x in range(blossom_data.vertex_u,
-                       blossom_data.aux_data.base
-                       [blossom_data.vertex_u] != blossom_data.lowest_common_ancestor):
+        for x in range(
+            blossom_data.vertex_u,
+            blossom_data.aux_data.base[blossom_data.vertex_u]
+            != blossom_data.lowest_common_ancestor,
+        ):
             base_x = blossom_data.aux_data.base[x]
             match_base_x = blossom_data.aux_data.base[blossom_data.aux_data.match[x]]
             # Mark the base as in a blossom
             blossom_data.aux_data.in_blossom[base_x] = True
             blossom_data.aux_data.in_blossom[match_base_x] = True
 
-        for x in range(blossom_data.vertex_v,
-                       blossom_data.aux_data.base
-                       [blossom_data.vertex_v] != blossom_data.lowest_common_ancestor):
+        for x in range(
+            blossom_data.vertex_v,
+            blossom_data.aux_data.base[blossom_data.vertex_v]
+            != blossom_data.lowest_common_ancestor,
+        ):
             base_x = blossom_data.aux_data.base[x]
             match_base_x = blossom_data.aux_data.base[blossom_data.aux_data.match[x]]
             # Mark the base as in a blossom
