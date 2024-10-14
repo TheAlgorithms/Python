@@ -1314,6 +1314,7 @@
   * [Prefix Function](strings/prefix_function.py)
   * [Rabin Karp](strings/rabin_karp.py)
   * [Remove Duplicate](strings/remove_duplicate.py)
+  * [Replace](strings/replace.py)
   * [Reverse Letters](strings/reverse_letters.py)
   * [Reverse Words](strings/reverse_words.py)
   * [Snake Case To Camel Pascal Case](strings/snake_case_to_camel_pascal_case.py)
