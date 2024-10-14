@@ -1,13 +1,10 @@
-from typing import List
-
-
 # Function to implement Quick Sort
-def quick_sort(arr: List[int], low: int, high: int) -> None:
+def quick_sort(arr: list[int], low: int, high: int) -> None:
     """
     Perform quick sort on the given array in-place.
 
     Parameters:
-    arr (List[int]): The list of integers to sort.
+    arr (list[int]): The list of integers to sort.
     low (int): The starting index of the portion of the array to sort.
     high (int): The ending index of the portion of the array to sort.
 
@@ -34,13 +31,12 @@ def quick_sort(arr: List[int], low: int, high: int) -> None:
         quick_sort(arr, low, pi - 1)
         quick_sort(arr, pi + 1, high)
 
-
-def partition(arr: List[int], low: int, high: int) -> int:
+def partition(arr: list[int], low: int, high: int) -> int:
     """
     Partition function to place the pivot element at its correct position.
 
     Parameters:
-    arr (List[int]): The list of integers to partition.
+    arr (list[int]): The list of integers to partition.
     low (int): The starting index for the partition.
     high (int): The ending index for the partition.
 
@@ -57,7 +53,6 @@ def partition(arr: List[int], low: int, high: int) -> int:
 
     arr[i + 1], arr[high] = arr[high], arr[i + 1]  # Swap pivot
     return i + 1
-
 
 # Driver code to take user-defined input and sort
 if __name__ == "__main__":
