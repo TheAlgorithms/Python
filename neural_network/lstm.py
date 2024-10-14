@@ -221,10 +221,14 @@ class LSTM:
 data = """Long Short-Term Memory (LSTM) networks are a type of recurrent neural network (RNN) capable of learning order dependence in sequence prediction problems. This behavior is required in complex problem domains like machine translation, speech recognition, and more. LSTMs are well-suited to classifying, processing, and making predictions based on time series data, since there can be lags of unknown duration between important events in a time series. LSTMs were introduced by Hochreiter and Schmidhuber in 1997, and were refined and popularized by many people in following work. They work by maintaining a cell state that is updated by gates: the forget gate, the input gate, and the output gate. These gates control the flow of information, allowing the network to remember or forget information as needed."""
 
 # Initialize Network
-lstm = LSTM(data=data, hidden_dim=25, epochs=1000, lr=0.05)
+# lstm = LSTM(data=data, hidden_dim=25, epochs=1000, lr=0.05)
 
 ##### Training #####
-lstm.train()
+# lstm.train()
 
 ##### Testing #####
-lstm.test()
+# lstm.test()
+
+
+
+# testing can be done by uncommenting the above lines of code.
