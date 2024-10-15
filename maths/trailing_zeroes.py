@@ -1,12 +1,12 @@
 """
-    https://en.wikipedia.org/wiki/Trailing_zero
+https://en.wikipedia.org/wiki/Trailing_zero
 """
 
 
 def trailing_zeroes(num: int) -> int:
     """
     Finding the Trailing Zeroes i.e. zeroes present at the end of number
-    
+
     Args:
         num: A integer.
 
@@ -23,19 +23,18 @@ def trailing_zeroes(num: int) -> int:
     0
     """
     ans = 0
-    
-    if(num == 0) :
+
+    if num == 0:
         return 1
-    
-    while(num > 0) :
-        
-        if(num%10 == 0) :
-            ans+=1
-        else : 
+
+    while num > 0:
+        if num % 10 == 0:
+            ans += 1
+        else:
             break
-        
+
         num /= 10
-        
+
     return ans
 
 
