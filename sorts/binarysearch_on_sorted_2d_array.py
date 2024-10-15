@@ -33,14 +33,14 @@ def binary_search_2d(matrix: list[list[int]], target: int) -> tuple[int, int]:
     """
     if not matrix or not matrix[0]:
         raise ValueError("matrix must not be empty")
-    
+
     rows = len(matrix)
     cols = len(matrix[0])
-    
+
     for row in matrix:
         if len(row) != cols:
             raise ValueError("matrix must be rectangular")
-    
+
     left, right = 0, rows * cols - 1
 
     while left <= right:
