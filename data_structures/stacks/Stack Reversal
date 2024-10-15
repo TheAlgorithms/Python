@@ -1,0 +1,56 @@
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        if not self.is_empty():
+            return self.items.pop()
+        return None
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+    def peek(self):
+        if not self.is_empty():
+            return self.items[-1]
+        return None
+
+    def size(self):
+        return len(self.items)
+
+    def reverse(self):
+        if not self.is_empty():
+            # Remove the top element
+            top = self.pop()
+            # Reverse the remaining stack
+            self.reverse()
+            # Insert the removed element at the bottom
+            self.insert_at_bottom(top)
+
+    def insert_at_bottom(self, item):
+        if self.is_empty():
+            self.push(item)
+        else:
+            # Remove all items
+            top = self.pop()
+            # Insert item at the bottom
+            self.insert_at_bottom(item)
+            # Put the removed items back
+            self.push(top)
+
+    def __str__(self):
+        return str(self.items)
+
+# Example usage
+stack = Stack()
+stack.push(1)
+stack.push(2)
+stack.push(3)
+stack.push(4)
+
+print("Original stack:", stack)
+stack.reverse()
+print("Reversed stack:", stack)
