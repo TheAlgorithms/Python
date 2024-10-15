@@ -59,6 +59,45 @@ def maximum_kinetic_energy(
     if in_ev:
         return max(PLANCK_CONSTANT_EVS * frequency - work_function, 0)
     return max(PLANCK_CONSTANT_JS * frequency - work_function, 0)
+    
+def work_function(
+    frequency: float, kinetic_energy: float, in_ev: bool = False
+) -> float:
+    """
+    Calculates the work function of a surface using the given 
+    frequency and kinetic energy.
+
+    Parameters:
+        frequency (float): Frequency of the electromagnetic wave.
+        kinetic_energy (float): Kinetic energy of emitted electron.
+        in_ev (bool, optional): True if frequency and 
+        kinetic energy are in eV.
+
+    Returns:
+        float: The calculated work function of the surface.
+
+    Raises:
+        ValueError: If the frequency is negative.
+
+    Usage example:
+    >>> work_function(1e6, 2)
+    -6.62607015e-28
+    >>> work_function(1e6, 2, True)
+    -8.271335392e-09
+    >>> work_function(1e16, 39.357, True)
+    24.542
+    >>> work_function(-9, 20)
+    Traceback (most recent call last):
+        ...
+    ValueError: Frequency can't be negative.
+    """
+
+    if frequency < 0:
+        raise ValueError("Frequency can't be negative.")
+
+    if in_ev:
+        return PLANCK_CONSTANT_EVS * frequency - kinetic_energy
+    return PLANCK_CONSTANT_JS * frequency - kinetic_energy
 
 
 if __name__ == "__main__":
