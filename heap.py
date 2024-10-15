@@ -43,6 +43,7 @@ class MaxHeap:
         self.heapify_down(0)
         return deleted_item
 
+
 def heap_sort(arr):
     heap = MaxHeap()
 
@@ -55,6 +56,7 @@ def heap_sort(arr):
         arr[i] = heap.delete_max()
 
     return arr
+
 
 arr = [4, 10, 3, 5, 1]
 arr = heap_sort(arr)
