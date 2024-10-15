@@ -7,8 +7,10 @@ Detail: Total 3 layers neural network
 * Output layer
 Author: Shashank Tyagi
 Github: LEVII007
-Date: [Current Date]
+link : https://www.kaggle.com/code/navjindervirdee/lstm-neural-network-from-scratch
 """
+
+
 
 ##### Explanation #####
 # This script implements a Long Short-Term Memory (LSTM) network to learn and predict sequences of characters.
