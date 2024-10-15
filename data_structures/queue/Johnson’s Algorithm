@@ -1,0 +1,92 @@
+import sys
+from collections import defaultdict
+
+class Graph:
+    def __init__(self, vertices):
+        self.V = vertices
+        self.graph = defaultdict(list)
+
+    def add_edge(self, u, v, w):
+        self.graph[u].append((v, w))
+
+    def bellman_ford(self, src):
+        dist = {v: float('inf') for v in range(self.V)}
+        dist[src] = 0
+
+        for _ in range(self.V - 1):
+            for u in range(self.V):
+                for v, w in self.graph[u]:
+                    if dist[u] + w < dist[v]:
+                        dist[v] = dist[u] + w
+
+        # Check for negative-weight cycles
+        for u in range(self.V):
+            for v, w in self.graph[u]:
+                if dist[u] + w < dist[v]:
+                    raise ValueError("Graph contains a negative weight cycle")
+
+        return dist
+
+    def dijkstra(self, src, h):
+        dist = {v: float('inf') for v in range(self.V)}
+        dist[src] = 0
+        pq = [(0, src)]
+
+        while pq:
+            d, u = heapq.heappop(pq)
+            if d > dist[u]:
+                continue
+
+            for v, w in self.graph[u]:
+                weight = w + h[u] - h[v]
+                if dist[u] + weight < dist[v]:
+                    dist[v] = dist[u] + weight
+                    heapq.heappush(pq, (dist[v], v))
+
+        return dist
+
+    def johnson(self):
+        # Step 1: Add a new vertex 'q'
+        for u in range(self.V):
+            self.graph[self.V].append((u, 0))
+
+        # Step 2: Run Bellman-Ford from vertex 'q'
+        h = self.bellman_ford(self.V)
+
+        # Step 3: Remove vertex 'q'
+        del self.graph[self.V]
+
+        # Step 4: Reweight the edges
+        for u in range(self.V):
+            for index in range(len(self.graph[u])):
+                v, w = self.graph[u][index]
+                self.graph[u][index] = (v, w + h[u] - h[v])
+
+        # Step 5: Run Dijkstra for each vertex
+        all_pairs_distances = {}
+        for u in range(self.V):
+            all_pairs_distances[u] = self.dijkstra(u, h)
+
+        return all_pairs_distances
+
+import heapq
+
+# Example usage
+if __name__ == "__main__":
+    g = Graph(5)
+    g.add_edge(0, 1, -1)
+    g.add_edge(0, 2, 4)
+    g.add_edge(1, 2, 3)
+    g.add_edge(1, 3, 2)
+    g.add_edge(1, 4, 2)
+    g.add_edge(3, 1, 1)
+    g.add_edge(3, 4, 5)
+    g.add_edge(4, 3, -3)
+
+    try:
+        distances = g.johnson()
+        print("All pairs shortest path distances:")
+        for u in distances:
+            print(f"From vertex {u}: {distances[u]}")
+    except ValueError as e:
+        print(e)
