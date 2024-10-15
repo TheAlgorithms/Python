@@ -37,9 +37,10 @@ def array_to_linked_list(arr: list[int]) -> Node:
 # Example usage
 if __name__ == "__main__":
     # Input: a list of integers
-    input_array = list(map(int, input("Enter array elements separated by space: ").strip().split()))
+    input_array = list(
+        map(int, input("Enter array elements separated by space: ").strip().split())
+    )
     linked_list_head = array_to_linked_list(input_array)
-
 
     # Function to print the linked list for demonstration
     def print_linked_list(head: Node):
@@ -49,7 +50,6 @@ if __name__ == "__main__":
             print(n.data, end=" -> ")
             n = n.next
         print("None")
-
 
     # Print the resulting linked list
     print_linked_list(linked_list_head)
