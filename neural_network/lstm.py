@@ -364,6 +364,7 @@ if __name__ == "__main__":
         iter and Schmidhuber in 1997, and were refined and "
         "popularized by many people in following work."""
     import doctest
+
     doctest.testmod()
 
     # lstm = LSTM(data=data, hidden_dim=25, epochs=10, lr=0.05)
