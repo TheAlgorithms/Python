@@ -14,7 +14,6 @@ Date: [Current Date]
 
 import numpy as np
 from numpy.random import Generator
-# from tqdm import tqdm
 
 
 class LSTM:
