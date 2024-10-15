@@ -7,42 +7,46 @@ Detail: Total 3 layers neural network
 * Output layer
 Author: Shashank Tyagi
 Github: LEVII007
-link : https://www.kaggle.com/code/navjindervirdee/lstm-neural-network-from-scratch
+Date: [Current Date]
 """
 
-##### Explanation #####
-# This script implements a Long Short-Term Memory (LSTM) network to learn
-# and predict sequences of characters.
+#### Explanation #####
+# This script implements a Long Short-Term Memory (LSTM)
+# network to learn and predict sequences of characters.
 # It uses numpy for numerical operations and tqdm for progress visualization.
 
-# The data is a paragraph about LSTM, converted to lowercase and split into
-# characters. Each character is one-hot encoded for training.
+# The data is a paragraph about LSTM, converted to
+# lowercase and split into characters.
+# Each character is one-hot encoded for training.
 
-# The LSTM class initializes weights and biases for the forget, input, candidate,
-# and output gates. It also initializes weights and biases for the final output layer.
+# The LSTM class initializes weights and biases for the
+# forget, input, candidate, and output gates.
+# It also initializes weights and biases for the final output layer.
 
-# The forward method performs forward propagation through the LSTM network,
-# computing hidden and cell states. It uses sigmoid and tanh activation
-# functions for the gates and cell states.
+# The forward method performs forward propagation
+# through the LSTM network, computing hidden and cell states.
+# It uses sigmoid and tanh activation functions for the gates and cell states.
 
-# The backward method performs backpropagation through time, computing gradients
-# for the weights and biases. It updates the weights and biases using
-# the computed gradients and the learning rate.
+# The backward method performs backpropagation
+# through time, computing gradients for the weights and biases.
+# It updates the weights and biases using the
+# computed gradients and the learning rate.
 
-# The train method trains the LSTM network on the input data for a specified
-# number of epochs. It uses one-hot encoded inputs and computes errors
-# using the softmax function.
+# The train method trains the LSTM network on
+# the input data for a specified number of epochs.
+# It uses one-hot encoded inputs and computes
+#  errors using the softmax function.
 
-# The test method evaluates the trained LSTM network on the input data,
-# computing accuracy based on predictions.
+# The test method evaluates the trained LSTM
+# network on the input data, computing accuracy based on predictions.
 
-# The script initializes the LSTM network with specified hyperparameters
-# and trains it on the input data. Finally, it tests the trained network
-# and prints the accuracy of the predictions.
+# The script initializes the LSTM network with
+# specified hyperparameters and trains it on the input data.
+# Finally, it tests the trained network and prints the accuracy of the predictions.
 
 ##### Imports #####
-from tqdm import tqdm
 import numpy as np
+from tqdm import tqdm
 
 
 class LSTM:
@@ -68,7 +72,7 @@ class LSTM:
         print(f"Data size: {self.data_size}, Char Size: {self.char_size}")
 
         self.char_to_idx = {c: i for i, c in enumerate(self.chars)}
-        self.idx_to_char = {i: c for i, c in enumerate(self.chars)}
+        self.idx_to_char = dict(enumerate(self.chars))
 
         self.train_X, self.train_y = self.data[:-1], self.data[1:]
 
@@ -90,30 +94,42 @@ class LSTM:
         """
         Initialize the weights and biases for the LSTM network.
         """
-        self.wf = self.init_weights(self.char_size + self.hidden_dim, self.hidden_dim)
+        rng = np.random.default_rng()
+        self.wf = self.init_weights(
+            self.char_size + self.hidden_dim, self.hidden_dim, rng
+        )
         self.bf = np.zeros((self.hidden_dim, 1))
 
-        self.wi = self.init_weights(self.char_size + self.hidden_dim, self.hidden_dim)
+        self.wi = self.init_weights(
+            self.char_size + self.hidden_dim, self.hidden_dim, rng
+        )
         self.bi = np.zeros((self.hidden_dim, 1))
 
-        self.wc = self.init_weights(self.char_size + self.hidden_dim, self.hidden_dim)
+        self.wc = self.init_weights(
+            self.char_size + self.hidden_dim, self.hidden_dim, rng
+        )
         self.bc = np.zeros((self.hidden_dim, 1))
 
-        self.wo = self.init_weights(self.char_size + self.hidden_dim, self.hidden_dim)
+        self.wo = self.init_weights(
+            self.char_size + self.hidden_dim, self.hidden_dim, rng
+        )
         self.bo = np.zeros((self.hidden_dim, 1))
 
-        self.wy = self.init_weights(self.hidden_dim, self.char_size)
+        self.wy = self.init_weights(self.hidden_dim, self.char_size, rng)
         self.by = np.zeros((self.char_size, 1))
 
-    def init_weights(self, input_dim: int, output_dim: int) -> np.ndarray:
+    def init_weights(
+        self, input_dim: int, output_dim: int, rng: np.random.Generator
+    ) -> np.ndarray:
         """
         Initialize weights with random values.
 
         :param input_dim: The input dimension.
         :param output_dim: The output dimension.
+        :param rng: The random number generator.
         :return: A matrix of initialized weights.
         """
-        return np.random.uniform(-1, 1, (output_dim, input_dim)) * np.sqrt(
+        return rng.uniform(-1, 1, (output_dim, input_dim)) * np.sqrt(
             6 / (input_dim + output_dim)
         )
 
@@ -280,79 +296,95 @@ class LSTM:
             d_wc += np.dot(d_c, inputs[t].T)
             d_bc += d_c
 
-            # Update the next hidden and cell state errors
-            dh_next = (
+            # Concatenated Input Error (Sum of Error at Each Gate!)
+            d_z = (
                 np.dot(self.wf.T, d_f)
                 + np.dot(self.wi.T, d_i)
-                + np.dot(self.wo.T, d_o)
                 + np.dot(self.wc.T, d_c)
+                + np.dot(self.wo.T, d_o)
             )
-            dc_next = d_cs * self.forget_gates[t]
 
-        # Apply gradients to weights and biases
-        for param, grad in zip(
-            [self.wf, self.wi, self.wc, self.wo, self.wy],
-            [d_wf, d_wi, d_wc, d_wo, d_wy],
-        ):
-            param -= self.lr * grad
+            # Error of Hidden State and Cell State at Next Time Step
+            dh_next = d_z[: self.hidden_dim, :]
+            dc_next = self.forget_gates[t] * d_cs
 
-        for param, grad in zip(
-            [self.bf, self.bi, self.bc, self.bo, self.by],
-            [d_bf, d_bi, d_bc, d_bo, d_by],
-        ):
-            param -= self.lr * grad
+        for d_ in (d_wf, d_bf, d_wi, d_bi, d_wc, d_bc, d_wo, d_bo, d_wy, d_by):
+            np.clip(d_, -1, 1, out=d_)
+
+        self.wf += d_wf * self.lr
+        self.bf += d_bf * self.lr
+
+        self.wi += d_wi * self.lr
+        self.bi += d_bi * self.lr
+
+        self.wc += d_wc * self.lr
+        self.bc += d_bc * self.lr
+
+        self.wo += d_wo * self.lr
+        self.bo += d_bo * self.lr
+
+        self.wy += d_wy * self.lr
+        self.by += d_by * self.lr
 
     def train(self) -> None:
         """
-        Train the LSTM network on the input data for a specified number of epochs.
+        Train the LSTM network on the input data.
         """
-        for epoch in tqdm(range(self.epochs)):
-            inputs = [self.one_hot_encode(char) for char in self.train_X]
-            targets = [self.one_hot_encode(char) for char in self.train_y]
+        inputs = [self.one_hot_encode(char) for char in self.train_X]
 
-            # Forward pass
-            outputs = self.forward(inputs)
+        for _ in tqdm(range(self.epochs)):
+            predictions = self.forward(inputs)
 
-            # Compute error at each time step
-            errors = [output - target for output, target in zip(outputs, targets)]
+            errors = []
+            for t in range(len(predictions)):
+                errors.append(-self.softmax(predictions[t]))
+                errors[-1][self.char_to_idx[self.train_y[t]]] += 1
 
-            # Backward pass and weight updates
-            self.backward(errors, inputs)
-
-    def predict(self, inputs: list) -> str:
-        """
-        Predict the next character in the sequence.
-
-        :param inputs: The input data as a list of one-hot encoded vectors.
-        :return: The predicted character.
-        """
-        output = self.forward(inputs)[-1]
-        return self.idx_to_char[np.argmax(self.softmax(output))]
+            self.backward(errors, self.concat_inputs)
 
     def test(self) -> None:
         """
-        Test the LSTM network on the input data and compute accuracy.
+        Test the trained LSTM network on the input data and print the accuracy.
         """
-        inputs = [self.one_hot_encode(char) for char in self.train_X]
-        correct_predictions = sum(
-            self.idx_to_char[np.argmax(self.softmax(output))] == target
-            for output, target in zip(self.forward(inputs), self.train_y)
+        accuracy = 0
+        probabilities = self.forward(
+            [self.one_hot_encode(char) for char in self.train_X]
         )
 
-        accuracy = (correct_predictions / len(self.train_y)) * 100
-        print(f"Accuracy: {accuracy:.2f}%")
+        output = ""
+        for t in range(len(self.train_y)):
+            prediction = self.idx_to_char[
+                np.random.choice(
+                    range(self.char_size), p=self.softmax(probabilities[t].reshape(-1))
+                )
+            ]
+
+            output += prediction
+
+            if prediction == self.train_y[t]:
+                accuracy += 1
+
+        print(f"Ground Truth:\n{self.train_y}\n")
+        print(f"Predictions:\n{output}\n")
+
+        print(f"Accuracy: {round(accuracy * 100 / len(self.train_X), 2)}%")
 
 
 if __name__ == "__main__":
-    # Define the input data and hyperparameters
-    data = "LSTM Neural Networks are designed to handle sequences of data.This is just rantom test data"
-    # hidden_dim = 50
-    # epochs = 1000
-    # lr = 0.01
+    data = """Long Short-Term Memory (LSTM) networks are a type
+         of recurrent neural network (RNN) capable of learning "
+        "order dependence in sequence prediction problems.
+         This behavior is required in complex problem domains like "
+        "machine translation, speech recognition, and more.
+        iter and Schmidhuber in 1997, and were refined and "
+        "popularized by many people in following work."""
 
-    # # Initialize and train the LSTM network
-    # lstm = LSTM(data, hidden_dim, epochs, lr)
-    # lstm.train()
+    lstm = LSTM(data=data, hidden_dim=25, epochs=1000, lr=0.05)
 
-    # # Test the LSTM network and compute accuracy
-    # lstm.test()
+    ##### Training #####
+    lstm.train()
+
+    ##### Testing #####
+    lstm.test()
+
+# testing can be done by uncommenting the above lines of code.
