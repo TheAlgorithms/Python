@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+
+
 def binary_search_2d(matrix: list[list[int]], target: int) -> tuple[int, int]:
     """
     Searches for a target value in a 2D sorted array.
@@ -5,20 +8,39 @@ def binary_search_2d(matrix: list[list[int]], target: int) -> tuple[int, int]:
     The matrix is sorted such that each row is in ascending order, and the
     first element of each row is greater than the last element of the previous row.
 
-    :param matrix: A 2D list of integers sorted in ascending order.
-    :param target: The integer value to search for.
-    :return: A tuple (row_index, col_index) if found, otherwise (-1, -1).
+    Args:
+        matrix: A 2D list of integers sorted in ascending order.
+        target: The integer value to search for.
 
-    Examples:
+    Returns:
+        A tuple (row_index, col_index) if found, otherwise (-1, -1).
+
+    Raises:
+        ValueError: If matrix is empty or not rectangular.
+
     >>> binary_search_2d([[1, 3, 5], [7, 9, 11], [12, 13, 15]], 9)
     (1, 1)
     >>> binary_search_2d([[1, 3, 5], [7, 9, 11], [12, 13, 15]], 4)
     (-1, -1)
+    >>> binary_search_2d([], 1)  # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+        ...
+    ValueError: matrix must not be empty
+    >>> binary_search_2d([[1, 2], [3, 4, 5]], 3)  # doctest: +ELLIPSIS
+    Traceback (most recent call last):
+        ...
+    ValueError: matrix must be rectangular
     """
     if not matrix or not matrix[0]:
-        return -1, -1
-
-    rows, cols = len(matrix), len(matrix[0])
+        raise ValueError("matrix must not be empty")
+    
+    rows = len(matrix)
+    cols = len(matrix[0])
+    
+    for row in matrix:
+        if len(row) != cols:
+            raise ValueError("matrix must be rectangular")
+    
     left, right = 0, rows * cols - 1
 
     while left <= right:
