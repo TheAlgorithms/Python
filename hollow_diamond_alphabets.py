@@ -1,10 +1,10 @@
 def hollow_diamond_alphabet(n):
    '''
    Prints a hollow diamond pattern using alphabet characters.
-    
+
     Parameters:
     n (int): The size of the diamond. Determines the number of rows.
-    
+
     Example:
     >>> hollow_diamond_alphabet(5)
             A
@@ -17,7 +17,7 @@ def hollow_diamond_alphabet(n):
            B C
             A    '''
 
-  
+
 
 
   alpha=64
@@ -29,7 +29,7 @@ def hollow_diamond_alphabet(n):
       else:
         print(left_spaces+chr(alpha)+hollow_spaces+chr(alpha+1))
       alpha+=2
-  alpha-=2  
+  alpha-=2
   for i in range(n-1,0,-1):
       left_spaces=" "*(n-i)
       hollow_spaces=" "*(((i-1)*2)-1)
@@ -37,8 +37,8 @@ def hollow_diamond_alphabet(n):
         print(left_spaces+chr(alpha-1))
       else:
         print(left_spaces+chr(alpha-2)+hollow_spaces+chr(alpha-1))
-      alpha-=2  
-      
+      alpha-=2
+
 
 
 n=int(input())
