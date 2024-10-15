@@ -31,23 +31,23 @@ def decrypt(message: str) -> None:
     Decryption using Key #24: VOFGVWZ ROFXW
     Decryption using Key #25: UNEFUVY QNEWV
     """
-    for key in range(len(string.ascii_uppercase)):
-        translated = ""
+
+    alphabet = string.ascii_uppercase
+    alphabet_len = len(alphabet)
+
+    for key in range(alphabet_len):
+        translated = []
         for symbol in message:
-            if symbol in string.ascii_uppercase:
-                num = string.ascii_uppercase.find(symbol)
-                num = num - key
-                if num < 0:
-                    num = num + len(string.ascii_uppercase)
-                translated = translated + string.ascii_uppercase[num]
+            if symbol in alphabet:
+                num = alphabet.find(symbol) - key
+                translated.append(alphabet[num % alphabet_len])
             else:
-                translated = translated + symbol
-        print(f"Decryption using Key #{key}: {translated}")
+                translated.append(symbol)
+        print(f"Decryption using Key #{key}: {''.join(translated)}")
 
 
 def main() -> None:
-    message = input("Encrypted message: ")
-    message = message.upper()
+    message = input("Encrypted message: ").upper()
     decrypt(message)
 
 
