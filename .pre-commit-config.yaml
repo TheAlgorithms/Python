@@ -29,7 +29,7 @@ repos:
           - tomli
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: "2.2.4"
+    rev: "2.3.0"
     hooks:
       - id: pyproject-fmt
 
