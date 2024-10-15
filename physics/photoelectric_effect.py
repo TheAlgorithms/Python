@@ -59,6 +59,8 @@ def maximum_kinetic_energy(
     if in_ev:
         return max(PLANCK_CONSTANT_EVS * frequency - work_function, 0)
     return max(PLANCK_CONSTANT_JS * frequency - work_function, 0)
+
+
 def work_function(
     frequency: float, kinetic_energy: float, in_ev: bool = False
 ) -> float:
@@ -97,6 +99,7 @@ def work_function(
     if in_ev:
         return PLANCK_CONSTANT_EVS * frequency - kinetic_energy
     return PLANCK_CONSTANT_JS * frequency - kinetic_energy
+
 
 if __name__ == "__main__":
     import doctest
