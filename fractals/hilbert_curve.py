@@ -106,7 +106,10 @@ def hilbert_curve(
 def plot_hilbert_curve(points: list[tuple[float, float]]) -> None:
     """
     Plots the hilbert curve using mtplotlib
-    No doctest implemented ( returns None )
+
+    Example
+    --------
+    >>> plot_hilbert_curve([(-0.25, 0.25), (-0.25, -0.25), (0.25, -0.25), (0.25, 0.25)])
     """
     x_coords = [p[0] for p in points]
     y_coords = [p[1] for p in points]
