@@ -1,0 +1,45 @@
+class Stack:
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        if not self.is_empty():
+            return self.items.pop()
+        return None
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+    def peek(self):
+        if not self.is_empty():
+            return self.items[-1]
+        return None
+
+    def size(self):
+        return len(self.items)
+
+    def __str__(self):
+        return str(self.items)
+
+def sort_stack(original_stack):
+    aux_stack = Stack()
+
+    while not original_stack.is_empty():
+        # Pop the top element from the original stack
+        temp = original_stack.pop()
+
+        # While the auxiliary stack is not empty and the top element
+        # of the auxiliary stack is greater than temp
+        while not aux_stack.is_empty() and aux_stack.peek() > temp:
+            original_stack.push(aux_stack.pop())
+
+        # Push temp in the auxiliary stack
+        aux_stack.push(temp)
+
+    # Transfer elements back to the original stack
+    while not aux_stack.is_empty():
+        original_stack.push(aux_stack.pop())
+
