@@ -1,5 +1,5 @@
 """
-    https://en.wikipedia.org/wiki/Trailing_zero
+https://en.wikipedia.org/wiki/Trailing_zero
 """
 
 
