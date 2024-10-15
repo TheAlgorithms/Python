@@ -1,6 +1,6 @@
 def greedy_knapsack(n, w, p, m):
     ratio = [0] * n
-    
+
     # Calculate the ratio of profit/weight
     for i in range(n):
         ratio[i] = p[i] / w[i]
@@ -31,5 +31,5 @@ if __name__ == "__main__":
     w = list(map(int, input("Enter the object weights: ").split()))
     p = list(map(int, input("Enter the profit: ").split()))
     m = int(input("Enter maximum capacity: "))
-    
+
     greedy_knapsack(n, w, p, m)
