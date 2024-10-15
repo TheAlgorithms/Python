@@ -380,7 +380,6 @@ class LongShortTermMemory:
         return output
 
 
-
 if __name__ == "__main__":
     sample_data = """Long Short-Term Memory (LSTM) networks are a type
          of recurrent neural network (RNN) capable of learning "
