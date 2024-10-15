@@ -345,7 +345,7 @@ class LSTM:
 
 if __name__ == "__main__":
     # Define the input data and hyperparameters
-    # data = "LSTM Neural Networks are designed to handle sequences of data.This is just rantom test data"
+    data = "LSTM Neural Networks are designed to handle sequences of data.This is just rantom test data"
     # hidden_dim = 50
     # epochs = 1000
     # lr = 0.01
