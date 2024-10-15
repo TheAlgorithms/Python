@@ -39,6 +39,7 @@ def getFloorAndCeil(arr, n, x):
     c = findCeil(arr, n, x)
     return (f, c)
 
+
 # sample test cas
 # arr = [3, 4, 4, 7, 8, 10]
 # n = 6
