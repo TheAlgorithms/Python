@@ -345,14 +345,14 @@ class LSTM:
 
 if __name__ == "__main__":
     # Define the input data and hyperparameters
-    data = "LSTM Neural Networks are designed to handle sequences of data."
-    hidden_dim = 50
-    epochs = 1000
-    lr = 0.01
+    # data = "LSTM Neural Networks are designed to handle sequences of data.This is just rantom test data"
+    # hidden_dim = 50
+    # epochs = 1000
+    # lr = 0.01
 
-    # Initialize and train the LSTM network
-    lstm = LSTM(data, hidden_dim, epochs, lr)
-    lstm.train()
+    # # Initialize and train the LSTM network
+    # lstm = LSTM(data, hidden_dim, epochs, lr)
+    # lstm.train()
 
-    # Test the LSTM network and compute accuracy
-    lstm.test()
+    # # Test the LSTM network and compute accuracy
+    # lstm.test()
