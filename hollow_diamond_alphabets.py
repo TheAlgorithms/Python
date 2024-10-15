@@ -13,7 +13,7 @@ def hollow_diamond_alphabet(n):
          F     G
           D   E
            B C
-            A                
+            A
    '''
   alpha=64
   for i in range(1,n+1):
