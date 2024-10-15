@@ -14,7 +14,7 @@ Date: [Current Date]
 
 import numpy as np
 from numpy.random import Generator
-from tqdm import tqdm
+# from tqdm import tqdm
 
 
 class LSTM:
@@ -285,7 +285,7 @@ class LSTM:
         """
         inputs = [self.one_hot_encode(char) for char in self.train_X]
 
-        for _ in tqdm(range(self.epochs)):
+        for _ in range(self.epochs):
             predictions = self.forward(inputs)
 
             errors = []
