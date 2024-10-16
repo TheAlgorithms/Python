@@ -1,4 +1,4 @@
-def hollow_diamond_alphabet(diamond_size: int):
+def hollow_diamond_alphabet(diamond_size: int) -> None:
     """
     Prints a hollow diamond pattern using alphabet characters.
 
