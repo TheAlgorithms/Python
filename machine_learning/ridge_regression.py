@@ -1,6 +1,7 @@
 import numpy as np
 import requests
 
+
 def collect_dataset():
     """Collect dataset of CSGO
     The dataset contains ADR vs Rating of a Player
@@ -20,6 +21,7 @@ def collect_dataset():
     dataset = np.matrix(data)
     return dataset
 
+
 def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta, lambda_reg):
     """Run steep gradient descent and updates the Feature vector accordingly
     :param data_x   : contains the dataset
@@ -36,7 +38,7 @@ def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta, lambda_re
     prod = np.dot(theta, data_x.transpose())
     prod -= data_y.transpose()
     sum_grad = np.dot(prod, data_x)
-    
+
     # Add regularization to the gradient
     theta_regularized = np.copy(theta)
     theta_regularized[0, 0] = 0  # Don't regularize the bias term
@@ -44,6 +46,7 @@ def run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta, lambda_re
 
     theta = theta - (alpha / n) * sum_grad
     return theta
+
 
 def sum_of_square_error(data_x, data_y, len_data, theta, lambda_reg):
     """Return sum of square error for error calculation
@@ -57,11 +60,14 @@ def sum_of_square_error(data_x, data_y, len_data, theta, lambda_reg):
     prod = np.dot(theta, data_x.transpose())
     prod -= data_y.transpose()
     sum_elem = np.sum(np.square(prod))
-    
+
     # Add regularization to the cost function
-    regularization_term = lambda_reg * np.sum(np.square(theta[:, 1:]))  # Don't regularize the bias term
+    regularization_term = lambda_reg * np.sum(
+        np.square(theta[:, 1:])
+    )  # Don't regularize the bias term
     error = (sum_elem / (2 * len_data)) + (regularization_term / (2 * len_data))
     return error
+
 
 def run_ridge_regression(data_x, data_y, lambda_reg=1.0):
     """Implement Ridge Regression over the dataset
@@ -79,11 +85,14 @@ def run_ridge_regression(data_x, data_y, lambda_reg=1.0):
     theta = np.zeros((1, no_features))
 
     for i in range(iterations):
-        theta = run_steep_gradient_descent(data_x, data_y, len_data, alpha, theta, lambda_reg)
+        theta = run_steep_gradient_descent(
+            data_x, data_y, len_data, alpha, theta, lambda_reg
+        )
         error = sum_of_square_error(data_x, data_y, len_data, theta, lambda_reg)
         print(f"At Iteration {i + 1} - Error is {error:.5f}")
 
     return theta
+
 
 def mean_absolute_error(predicted_y, original_y):
     """Return mean absolute error for error calculation
@@ -93,6 +102,7 @@ def mean_absolute_error(predicted_y, original_y):
     """
     total = sum(abs(y - predicted_y[i]) for i, y in enumerate(original_y))
     return total / len(original_y)
+
 
 def main():
     """Driver function"""
@@ -104,12 +114,12 @@ def main():
 
     lambda_reg = 1.0  # Set your desired regularization parameter
     theta = run_ridge_regression(data_x, data_y, lambda_reg)
-    
+
     len_result = theta.shape[1]
     print("Resultant Feature vector : ")
     for i in range(len_result):
         print(f"{theta[0, i]:.5f}")
 
+
 if __name__ == "__main__":
     main()
-
