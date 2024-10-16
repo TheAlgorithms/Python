@@ -1,15 +1,16 @@
 """
 Project Euler Problem: https://projecteuler.net/problem=95
 
-An amicable chain is a sequence of numbers where each number is the sum of the 
-proper divisors of the previous one, and the chain eventually returns to the 
-starting number. The problem is to find the smallest member of the longest 
+An amicable chain is a sequence of numbers where each number is the sum of the
+proper divisors of the previous one, and the chain eventually returns to the
+starting number. The problem is to find the smallest member of the longest
 amicable chain under a given limit.
 
-In this implementation, we aim to identify all amicable chains and find the 
-one with the maximum length, while also returning the smallest member of that 
+In this implementation, we aim to identify all amicable chains and find the
+one with the maximum length, while also returning the smallest member of that
 chain.
 """
+
 
 def sum_of_proper_divisors(number: int) -> int:
     """Calculate the sum of proper divisors of the given number.
@@ -37,6 +38,7 @@ def sum_of_proper_divisors(number: int) -> int:
 
     return total
 
+
 def find_longest_amicable_chain(limit: int) -> int:
     """Find the smallest member of the longest amicable chain under a given limit.
 
@@ -47,7 +49,9 @@ def find_longest_amicable_chain(limit: int) -> int:
     """
     sum_divisors = {}  # Dictionary to store the sum of proper divisors for each number
     for i in range(1, limit + 1):
-        sum_divisors[i] = sum_of_proper_divisors(i)  # Calculate and store sum of proper divisors
+        sum_divisors[i] = sum_of_proper_divisors(
+            i
+        )  # Calculate and store sum of proper divisors
 
     longest_chain = []  # To store the longest amicable chain found
     seen = {}  # Dictionary to track numbers already processed
@@ -62,7 +66,9 @@ def find_longest_amicable_chain(limit: int) -> int:
         while current <= limit and current not in chain:
             chain.append(current)  # Add the current number to the chain
             seen[current] = True  # Mark this number as seen
-            current = sum_divisors.get(current, 0)  # Move to the next number in the chain
+            current = sum_divisors.get(
+                current, 0
+            )  # Move to the next number in the chain
 
         # Check if we form a cycle and validate the chain
         if current in chain and current != start:
@@ -73,7 +79,10 @@ def find_longest_amicable_chain(limit: int) -> int:
                 if len(chain) > len(longest_chain):
                     longest_chain = chain  # Update longest chain if this one is longer
 
-    return min(longest_chain) if longest_chain else None  # Return the smallest member of the longest chain
+    return (
+        min(longest_chain) if longest_chain else None
+    )  # Return the smallest member of the longest chain
+
 
 def solution() -> int:
     """Return the smallest member of the longest amicable chain under one million.
@@ -82,6 +91,7 @@ def solution() -> int:
     14316
     """
     return find_longest_amicable_chain(10**6)
+
 
 if __name__ == "__main__":
     smallest_member = solution()  # Call the solution function
