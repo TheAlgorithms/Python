@@ -1,12 +1,10 @@
 from typing import List
 
 
-def area_of_polygon(
-    xs: List[float], ys: List[float]
-) -> float:
+def area_of_polygon(xs: List[float], ys: List[float]) -> float:
     """
     Compute the area of a polygon. The polygon has to be planar and simple
-    (not self-intersecting). The vertices have to be ordered in the 
+    (not self-intersecting). The vertices have to be ordered in the
     counter-clockwise direction.
     https://en.wikipedia.org/wiki/Shoelace_formula
 
@@ -24,9 +22,10 @@ def area_of_polygon(
     """
 
     return 0.5 * sum(
-        (ys[i] + ys[(i+1)%len(ys)]) * (xs[i] - xs[(i+1)%len(xs)])
+        (ys[i] + ys[(i + 1) % len(ys)]) * (xs[i] - xs[(i + 1) % len(xs)])
         for i in range(len(xs))
     )
+
 
 if __name__ == "__main__":
     import doctest
