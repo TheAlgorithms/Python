@@ -1,22 +1,16 @@
 """
 Project Euler Problem: https://projecteuler.net/problem=95
 
-An amicable chain is a sequence of numbers where each number is the sum of the
-proper divisors of the previous one, and the chain eventually returns to the
-starting number. The problem is to find the smallest member of the longest
+An amicable chain is a sequence of numbers where each number is the sum of the 
+proper divisors of the previous one, and the chain eventually returns to the 
+starting number. The problem is to find the smallest member of the longest 
 amicable chain under a given limit.
 
-In this implementation, we aim to identify all amicable chains and find the
-one with the maximum length, while also returning the smallest member of that
+In this implementation, we aim to identify all amicable chains and find the 
+one with the maximum length, while also returning the smallest member of that 
 chain.
 """
 
-<<<<<<< HEAD
-=======
-
-def sum_of_proper_divisors(number: int) -> int:
-    """Calculate the sum of proper divisors of the given number.
->>>>>>> 89e57b63f62908f575161ca2c077f02c189a363c
 
 def sum_of_proper_divisors(n):
     """Calculate the sum of proper divisors of n."""
@@ -34,12 +28,6 @@ def sum_of_proper_divisors(n):
 
     return total
 
-<<<<<<< HEAD
-=======
-
-def find_longest_amicable_chain(limit: int) -> int:
-    """Find the smallest member of the longest amicable chain under a given limit.
->>>>>>> 89e57b63f62908f575161ca2c077f02c189a363c
 
 def find_longest_amicable_chain(limit):
     """Find the smallest member of the longest amicable chain under a given limit."""
@@ -78,10 +66,6 @@ def find_longest_amicable_chain(limit):
     return (
         min(longest_chain) if longest_chain else None
     )  # Return the smallest member of the longest chain
-<<<<<<< HEAD
-=======
-
->>>>>>> 89e57b63f62908f575161ca2c077f02c189a363c
 
 
 def solution():
