@@ -36,26 +36,6 @@ class LongShortTermMemory:
         >>> lstm.learning_rate
         0.01
         """
-        self.input_data: str
-        self.hidden_layer_size: int
-        self.training_epochs: int
-        self.learning_rate: float
-        self.unique_chars: set[str]
-        self.data_length: int
-        self.vocabulary_size: int
-        self.char_to_index: dict[str, int]
-        self.index_to_char: dict[int, str]
-        self.input_sequence: str
-        self.target_sequence: str
-        self.random_generator: Generator
-        self.combined_inputs: dict[int, np.ndarray]
-        self.hidden_states: dict[int, np.ndarray]
-        self.cell_states: dict[int, np.ndarray]
-        self.forget_gate_activations: dict[int, np.ndarray]
-        self.input_gate_activations: dict[int, np.ndarray]
-        self.cell_state_candidates: dict[int, np.ndarray]
-        self.output_gate_activations: dict[int, np.ndarray]
-        self.network_outputs: dict[int, np.ndarray]
 
         self.input_data: str = input_data.lower()
         self.hidden_layer_size: int = hidden_layer_size
