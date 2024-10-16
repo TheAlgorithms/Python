@@ -71,7 +71,7 @@ def main():
         size = get_valid_input()
         if size is None:
             print(
-                "Thank you for using the Hollow Diamond Alphabet Pattern generator. Goodbye!"
+                "Thank you!"
             )
             break
 
