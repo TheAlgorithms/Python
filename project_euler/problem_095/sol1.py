@@ -1,13 +1,13 @@
 """
 Project Euler Problem: https://projecteuler.net/problem=95
 
-An amicable chain is a sequence of numbers where each number is the sum of the 
-proper divisors of the previous one, and the chain eventually returns to the 
-starting number. The problem is to find the smallest member of the longest 
+An amicable chain is a sequence of numbers where each number is the sum of the
+proper divisors of the previous one, and the chain eventually returns to the
+starting number. The problem is to find the smallest member of the longest
 amicable chain under a given limit.
 
-In this implementation, we aim to identify all amicable chains and find the 
-one with the maximum length, while also returning the smallest member of that 
+In this implementation, we aim to identify all amicable chains and find the
+one with the maximum length, while also returning the smallest member of that
 chain.
 """
 
