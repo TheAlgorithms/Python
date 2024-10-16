@@ -1,4 +1,4 @@
-    def adaptive_merge_sort(sequence: list) -> list:
+def adaptive_merge_sort(sequence: list) -> list:
     """
     Sorts a list using the Adaptive Merge Sort algorithm.
 
