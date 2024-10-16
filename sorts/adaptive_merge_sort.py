@@ -1,7 +1,7 @@
 def adaptive_merge_sort(sequence: list) -> list:
     """
     Sorts a list using the Adaptive Merge Sort algorithm.
-    
+
     >>> adaptive_merge_sort([4, 3, 1, 2])
     Initial sequence: [4, 3, 1, 2]
     Sorting: array[0:2] and array[2:4]
@@ -22,10 +22,11 @@ def adaptive_merge_sort(sequence: list) -> list:
     print(f"Sorted sequence: {sequence}")
     return sequence
 
+
 def adaptive_merge_sort_helper(array: list, aux: list, low: int, high: int) -> None:
     """
     Helper function for Adaptive Merge Sort algorithm.
-    
+
     >>> adaptive_merge_sort_helper([4, 3, 1, 2], [4, 3, 1, 2], 0, 3)
     Sorting: array[0:2] and array[2:4]
     Sorting: array[0:1] and array[1:2]
@@ -46,6 +47,7 @@ def adaptive_merge_sort_helper(array: list, aux: list, low: int, high: int) -> N
         array[low : high + 1] = aux[low : high + 1]
         return
     merge(array, aux, low, mid, high)
+
 
 def merge(array: list, aux: list, low: int, mid: int, high: int) -> None:
     """
