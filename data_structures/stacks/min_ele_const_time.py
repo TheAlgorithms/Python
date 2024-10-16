@@ -15,14 +15,15 @@ def push(value: int) -> None:
     If the value to insert < minimum, then push to min stack
     Returns None
 
-    >>> 
+    >>> push(10)
     """
     if len(stack) == 0:
+        # print("nothing here")
         min_stack.append(value)
         stack.append(value)
         return
 
-    if value < min_stack[-1]:
+    if len(min_stack) > 0 and value < min_stack[-1]:
         min_stack.append(value)
     stack.append(value)
 
@@ -35,7 +36,7 @@ def pop() -> None:
 
     Returns None
 
-    >>> 
+    >>> pop()
     """
     if len(stack) == 0:
         print("Nothing on stack")
