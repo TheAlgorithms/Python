@@ -24,6 +24,7 @@ def adaptive_merge_sort(sequence: list) -> list:
     print(f"Sorted sequence: {sequence}")
     return sequence
 
+
 def adaptive_merge_sort_helper(array: list, aux: list, low: int, high: int) -> None:
     """
     Helper function for Adaptive Merge Sort algorithm.
@@ -50,6 +51,7 @@ def adaptive_merge_sort_helper(array: list, aux: list, low: int, high: int) -> N
         return
     merge(array, aux, low, mid, high)
 
+
 def merge(array: list, aux: list, low: int, mid: int, high: int) -> None:
     """
     Merges two sorted subarrays of the main array.
@@ -73,5 +75,7 @@ def merge(array: list, aux: list, low: int, mid: int, high: int) -> None:
         else:
             aux[k] = array[i]
             i += 1
-    array[low:high + 1] = aux[low:high + 1]  # Update the main array with merged values
+    array[low : high + 1] = aux[
+        low : high + 1
+    ]  # Update the main array with merged values
     print(f"After merge: {aux[low:high + 1]}")
