@@ -175,12 +175,20 @@ class LongShortTermMemory:
         :param input_dim: The input dimension.
         :param output_dim: The output dimension.
         :return: A matrix of initialized weights.
+
+        Example:
+        >>> lstm = LongShortTermMemory("abcde" * 50, hidden_layer_size=10)
+        >>> weights = lstm.init_weights(5, 10)
+        >>> isinstance(weights, np.ndarray)
+        True
+        >>> weights.shape
+        (10, 5)
         """
         return self.random_generator.uniform(-1, 1, (output_dim, input_dim)) * np.sqrt(
             6 / (input_dim + output_dim)
         )
 
-    def sigmoid(self, x: np.ndarray, derivative: bool = False) -> np.ndarray:
+    def sigmoid(self, input_array: np.ndarray, derivative: bool = False) -> np.ndarray:
         """
         Sigmoid activation function.
 
@@ -199,10 +207,10 @@ class LongShortTermMemory:
         array([[0.197, 0.105, 0.045]])
         """
         if derivative:
-            return x * (1 - x)
-        return 1 / (1 + np.exp(-x))
+            return input_array * (1 - input_array)
+        return 1 / (1 + np.exp(-input_array))
 
-    def tanh(self, x: np.ndarray, derivative: bool = False) -> np.ndarray:
+    def tanh(self, input_array: np.ndarray, derivative: bool = False) -> np.ndarray:
         """
         Tanh activation function.
 
@@ -221,10 +229,10 @@ class LongShortTermMemory:
         array([[0.42 , 0.071, 0.01 ]])
         """
         if derivative:
-            return 1 - x**2
-        return np.tanh(x)
+            return 1 - input_array**2
+        return np.tanh(input_array)
 
-    def softmax(self, x: np.ndarray) -> np.ndarray:
+    def softmax(self, input_array: np.ndarray) -> np.ndarray:
         """
         Softmax activation function.
 
@@ -238,7 +246,7 @@ class LongShortTermMemory:
         >>> np.round(output, 3)
         array([0.09 , 0.245, 0.665])
         """
-        exp_x = np.exp(x - np.max(x))
+        exp_x = np.exp(input_array - np.max(input_array))
         return exp_x / exp_x.sum(axis=0)
 
     def reset_network_state(self) -> None:
@@ -270,17 +278,14 @@ class LongShortTermMemory:
 
     def forward_pass(self, inputs: list[np.ndarray]) -> list[np.ndarray]:
         """
-        Perform forward propagation through the LSTM network.
+        Perform a forward pass through the LSTM network for the given inputs.
 
-        :param inputs: The input data as a list of one-hot encoded vectors.
-        :return: The outputs of the network.
-        """
-        """
-        Forward pass through the LSTM network.
+        :param inputs: A list of input arrays (sequences).
+        :return: A list of network outputs.
 
-        >>> lstm = LongShortTermMemory(input_data="abcde", hidden_layer_size=10,
-        training_epochs=1, learning_rate=0.01)
-        >>> inputs = [lstm.one_hot_encode(char) for char in lstm.input_sequence]
+        Example:
+        >>> lstm = LongShortTermMemory("abcde" * 50, hidden_layer_size=10)
+        >>> inputs = [np.random.rand(5, 1) for _ in range(5)]
         >>> outputs = lstm.forward_pass(inputs)
         >>> len(outputs) == len(inputs)
         True
@@ -326,6 +331,21 @@ class LongShortTermMemory:
         return outputs
 
     def backward_pass(self, errors: list[np.ndarray], inputs: list[np.ndarray]) -> None:
+        """
+        Perform the backward pass for the LSTM model, adjusting weights and biases.
+
+        :param errors: A list of errors computed from the output layer.
+        :param inputs: A list of input one-hot encoded vectors.
+
+        Example:
+        >>> lstm = LongShortTermMemory("abcde" * 50, hidden_layer_size=10)
+        >>> inputs = [lstm.one_hot_encode(char) for char in lstm.input_sequence]
+        >>> predictions = lstm.forward_pass(inputs)
+        >>> errors = [-lstm.softmax(predictions[t]) for t in range(len(predictions))]
+        >>> for t in range(len(predictions)):
+        ...     errors[t][lstm.char_to_index[lstm.target_sequence[t]]] += 1
+        >>> lstm.backward_pass(errors, inputs)  # Should run without any errors
+        """
         d_forget_gate_weights, d_forget_gate_bias = 0, 0
         d_input_gate_weights, d_input_gate_bias = 0, 0
         d_cell_candidate_weights, d_cell_candidate_bias = 0, 0
@@ -422,6 +442,13 @@ class LongShortTermMemory:
         self.output_layer_bias += d_output_layer_bias * self.learning_rate
 
     def train(self) -> None:
+        """
+        Train the LSTM model.
+
+        Example:
+        >>> lstm = LongShortTermMemory("abcde" * 50, hidden_layer_size=10)
+        >>> lstm.train()
+        """
         inputs = [self.one_hot_encode(char) for char in self.input_sequence]
 
         for _ in range(self.training_epochs):
@@ -434,12 +461,20 @@ class LongShortTermMemory:
 
             self.backward_pass(errors, inputs)
 
-    def test(self):
+    def test(self) -> None:
         """
         Test the LSTM model.
 
         Returns:
             str: The output predictions.
+
+        Example:
+        >>> lstm = LongShortTermMemory("abcde" * 50, hidden_layer_size=10)
+        >>> output = lstm.test()
+        >>> isinstance(output, str)
+        True
+        >>> len(output) == len(lstm.input_sequence)
+        True
         """
         accuracy = 0
         probabilities = self.forward_pass(
@@ -461,9 +496,9 @@ class LongShortTermMemory:
             if prediction == self.target_sequence[t]:
                 accuracy += 1
 
-        print(f"Ground Truth:\n{self.target_sequence}\n")
-        print(f"Predictions:\n{output}\n")
-        print(f"Accuracy: {round(accuracy * 100 / len(self.input_sequence), 2)}%")
+        # print(f"Ground Truth:\n{self.target_sequence}\n")
+        # print(f"Predictions:\n{output}\n")
+        # print(f"Accuracy: {round(accuracy * 100 / len(self.input_sequence), 2)}%")
 
         return output
 
