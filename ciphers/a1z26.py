@@ -8,13 +8,14 @@ http://bestcodes.weebly.com/a1z26.html
 
 from __future__ import annotations
 
+ALPHABET_OFFSET = 96
 
 def encode(plain: str) -> list[int]:
     """
     >>> encode("myname")
     [13, 25, 14, 1, 13, 5]
     """
-    return [ord(elem) - 96 for elem in plain]
+    return [ord(elem) - ALPHABET_OFFSET for elem in plain]
 
 
 def decode(encoded: list[int]) -> str:
@@ -22,7 +23,7 @@ def decode(encoded: list[int]) -> str:
     >>> decode([13, 25, 14, 1, 13, 5])
     'myname'
     """
-    return "".join(chr(elem + 96) for elem in encoded)
+    return "".join(chr(elem + ALPHABET_OFFSET) for elem in encoded)
 
 
 def main() -> None:
