@@ -136,7 +136,7 @@ def base64_decode(encoded_data: str) -> bytes:
     return bytes(data)
 
 
-#TO run/ dry run.. Add the following lines
+# TO run/ dry run.. Add the following lines
 # encoded = base64_encode(b"Hello, World!")
 # print(f"Encoded: {encoded}")
 
