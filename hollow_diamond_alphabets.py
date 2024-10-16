@@ -37,6 +37,7 @@ def hollow_diamond_alphabet(diamond_size: int) -> None:
             print(left_spaces + chr(alpha - 2) + hollow_spaces + chr(alpha - 1))
         alpha -= 2
 
+
 # Example usage
 diamond_size = int(input("Enter the diamond size: "))
 hollow_diamond_alphabet(diamond_size)
