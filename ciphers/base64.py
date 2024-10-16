@@ -136,8 +136,6 @@ def base64_decode(encoded_data: str) -> bytes:
     return bytes(data)
 
 
-
-
 if __name__ == "__main__":
     import doctest
 
