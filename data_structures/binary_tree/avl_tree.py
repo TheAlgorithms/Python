@@ -150,7 +150,7 @@ def rl_rotation(node: MyNode) -> MyNode:
 def insert_node(node: MyNode | None, data: Any) -> MyNode | None:
     if node is None:
         return MyNode(data)
-    if data == node.get_data():  # No duplicates allowed
+    if data == node.get_data():
         return node
     if data < node.get_data():
         node.set_left(insert_node(node.get_left(), data))
@@ -165,7 +165,7 @@ def insert_node(node: MyNode | None, data: Any) -> MyNode | None:
                 node = right_rotation(node)
             else:
                 node = lr_rotation(node)
-    elif data > node.get_data():
+    else:
         node.set_right(insert_node(node.get_right(), data))
         if get_height(node.get_right()) - get_height(node.get_left()) == 2:
             right_child = node.get_right()
@@ -216,7 +216,7 @@ def get_min_value_node(node: MyNode) -> MyNode:
 
 def del_node(root: MyNode | None, data: Any) -> MyNode | None:
     if root is None:
-        print("Nothing to delete")
+        print(f"{data} not found in the tree")
         return None
 
     if root.get_data() > data:
@@ -287,7 +287,7 @@ class AVLtree:
     *************************************
     >>> t.get_height()
     2
-    >>> t.del_node(3)
+    >>> t.delete(3)
     delete:3
     >>> print(str(t).replace(" \\n","\\n").replace(" \\n","\\n"))
       4
@@ -305,7 +305,7 @@ class AVLtree:
         print("insert:" + str(data))
         self.root = insert_node(self.root, data)
 
-    def del_node(self, data: Any) -> None:
+    def delete(self, data: Any) -> None:
         print("delete:" + str(data))
         if self.root is None:
             print("Tree is empty!")
@@ -364,5 +364,5 @@ if __name__ == "__main__":
         print(str(t))
     random.shuffle(lst)
     for i in lst:
-        t.del_node(i)
+        t.delete(i)
         print(str(t))
