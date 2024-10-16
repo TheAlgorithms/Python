@@ -1,11 +1,14 @@
 """
 Project Euler Problem: https://projecteuler.net/problem=95
 
-An amicable chain is a sequence of numbers where each number is the sum of the proper divisors of the previous one, and the chain eventually returns to the starting number.
+An amicable chain is a sequence of numbers where each number is the sum of the 
+proper divisors of the previous one, and the chain eventually returns to the 
+starting number. The problem is to find the smallest member of the longest 
+amicable chain under a given limit.
 
-The problem is to find the smallest member of the longest amicable chain under a given limit.
-
-In this implementation, we aim to identify all amicable chains and find the one with the maximum length, while also returning the smallest member of that chain.
+In this implementation, we aim to identify all amicable chains and find the 
+one with the maximum length, while also returning the smallest member of that 
+chain.
 """
 
 def sum_of_proper_divisors(n):
@@ -14,14 +17,14 @@ def sum_of_proper_divisors(n):
         return 0  # Proper divisors of 0 and 1 are none.
     total = 1  # Start with 1, since it is a proper divisor of any n > 1
     sqrt_n = int(n**0.5)  # Calculate the integer square root of n.
-    
+
     # Loop through possible divisors from 2 to the square root of n
     for i in range(2, sqrt_n + 1):
         if n % i == 0:  # Check if i is a divisor of n
             total += i  # Add the divisor
             if i != n // i:  # Avoid adding the square root twice
                 total += n // i  # Add the corresponding divisor (n/i)
-    
+
     return total
 
 def find_longest_amicable_chain(limit):
