@@ -70,9 +70,7 @@ def main():
     while True:
         size = get_valid_input()
         if size is None:
-            print(
-                "Thank you!"
-            )
+            print("Thank you!")
             break
 
         if hollow_diamond_alphabet(size):
