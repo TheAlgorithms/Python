@@ -10,6 +10,7 @@ from __future__ import annotations
 
 ALPHABET_OFFSET = 96
 
+
 def encode(plain: str) -> list[int]:
     """
     >>> encode("myname")
