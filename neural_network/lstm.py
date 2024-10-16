@@ -57,7 +57,6 @@ class LongShortTermMemory:
         self.output_gate_activations: dict[int, np.ndarray]
         self.network_outputs: dict[int, np.ndarray]
 
-
         self.input_data: str = input_data.lower()
         self.hidden_layer_size: int = hidden_layer_size
         self.training_epochs: int = training_epochs
