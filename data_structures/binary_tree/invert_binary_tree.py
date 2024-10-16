@@ -41,6 +41,10 @@ class MirrorBinaryTree:
         0
         20
         10
+        >>> tree2 = TreeNode(9)
+        >>> result_tree2 = MirrorBinaryTree().mirror_binary_tree(tree2)
+        >>> print_preorder(result_tree2)
+        9
         """ 
         
         if not root:
