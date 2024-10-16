@@ -461,7 +461,7 @@ class LongShortTermMemory:
 
             self.backward_pass(errors, inputs)
 
-    def test(self) -> None:
+    def test(self) -> str:
         """
         Test the LSTM model.
 
