@@ -27,7 +27,7 @@ class TreeNode:
     
 
 class MirrorBinaryTree:
-    def mirror_binary_tree(self, root : TreeNode):
+    def invert_binary_tree(self, root : TreeNode):
         """
         Invert a binary tree and return the new root.
 
@@ -36,13 +36,13 @@ class MirrorBinaryTree:
         >>> tree = TreeNode(0)
         >>> tree.left = TreeNode(10)
         >>> tree.right = TreeNode(20)
-        >>> result_tree = MirrorBinaryTree().mirror_binary_tree(tree)
+        >>> result_tree = MirrorBinaryTree().invert_binary_tree(tree)
         >>> print_preorder(result_tree)
         0
         20
         10
         >>> tree2 = TreeNode(9)
-        >>> result_tree2 = MirrorBinaryTree().mirror_binary_tree(tree2)
+        >>> result_tree2 = MirrorBinaryTree().invert_binary_tree(tree2)
         >>> print_preorder(result_tree2)
         9
         """ 
@@ -51,10 +51,10 @@ class MirrorBinaryTree:
             return None 
 
         if root.left:
-            self.mirror_binary_tree(root.left)
+            self.invert_binary_tree(root.left)
         
         if root.right:
-            self.mirror_binary_tree(root.right)
+            self.invert_binary_tree(root.right)
         
         root.left, root.right = root.right, root.left 
 
