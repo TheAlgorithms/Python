@@ -1,34 +1,34 @@
-'''
-Principal Component Analysis (PCA) is a linear dimensionality reduction technique used 
-commonly as a data preprocessing step in unsupervised and supervised machine learning pipelines. 
-The principle behind PCA is the reduction in the number of variables in the dataset, while 
-preserving as much as information as possible. 
+"""
+Principal Component Analysis (PCA) is a linear dimensionality reduction technique used
+commonly as a data preprocessing step in unsupervised and supervised machine learning pipelines.
+The principle behind PCA is the reduction in the number of variables in the dataset, while
+preserving as much as information as possible.
 
-Here, the  principal components represent the directions of the data that explain a 
-maximal amount of variance. Here, the data is projected onto a new coordinate system 
-such that the direction cqpturing the largest variation in data can be easily identified. 
+Here, the  principal components represent the directions of the data that explain a
+maximal amount of variance. Here, the data is projected onto a new coordinate system
+such that the direction cqpturing the largest variation in data can be easily identified.
 
 This implementation of PCA consists of the following steps:
 1. Data Standardization (Z-score Normalization): This step involved the centering of the
-data by subtracting the mean and dividing it by the standard deviation 
+data by subtracting the mean and dividing it by the standard deviation
 so that it has unit variance.
 
-2. Covariance Matrix Calculation: This step involved the calculation of the covariance matrix 
-of the standardized data. The covariance matrix allows us to measure how different 
+2. Covariance Matrix Calculation: This step involved the calculation of the covariance matrix
+of the standardized data. The covariance matrix allows us to measure how different
 features vary together, capturing the relationships between them.
 
-3. Singular Value Decomposition: In this step, we use Singular Value Decomposition or SVD to 
+3. Singular Value Decomposition: In this step, we use Singular Value Decomposition or SVD to
 Decomposes the covariance matrix into its singular eignvectors and singular eigenvalues,
  which help identify the principal components.
 
-4. Selection of Principal Components: Here, we choose the top k principal components 
+4. Selection of Principal Components: Here, we choose the top k principal components
 that explain the most variance in the data.
 
-5. Projection of Data: Here, we transform the original standardized data into 
+5. Projection of Data: Here, we transform the original standardized data into
 the new lower-dimensional space defined by the selected principal components.
 
 REFERENCE: en.wikipedia.org/wiki/Principal_component_analysis
-'''
+"""
 
 import numpy as np
 
@@ -60,7 +60,8 @@ def svd(matrix):
 
     return u, s, vt
 
-def main(data: list[int], k:int):
+
+def main(data: list[int], k: int):
     """
     Perform Principal Component Analysis (PCA) on the given data.
 
@@ -77,7 +78,7 @@ def main(data: list[int], k:int):
            [ 0.        ],
            [ 2.82842712]])
     """
-    z_score = (data - data.mean(axis=0) / data.std(axis=0))
+    z_score = data - data.mean(axis=0) / data.std(axis=0)
     cov_matrix = np.cov(z_score, ddof=1, rowvar=False)
 
     u, s, vt = svd(cov_matrix)
@@ -85,7 +86,8 @@ def main(data: list[int], k:int):
     transformed_data = np.dot(z_score, principal_components.T)
     return transformed_data
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     import numpy as np
     import matplotlib.pyplot as plt
     from sklearn.datasets import make_blobs
@@ -97,19 +99,24 @@ if __name__ == '__main__':
     print("Transformed Data:")
     print(transformed_data)
 
-    assert transformed_data.shape == (data.shape[0], k), "The transformed data does not have the expected shape."
+    assert transformed_data.shape == (
+        data.shape[0],
+        k,
+    ), "The transformed data does not have the expected shape."
 
     # Visualize the original data and the transformed data
     plt.figure(figsize=(12, 6))
 
     plt.subplot(1, 2, 1)
-    plt.scatter(data[:, 0], data[:, 1], c='blue', edgecolor='k', s=50)
+    plt.scatter(data[:, 0], data[:, 1], c="blue", edgecolor="k", s=50)
     plt.title("Original Data")
     plt.xlabel("Feature 1")
     plt.ylabel("Feature 2")
 
     plt.subplot(1, 2, 2)
-    plt.scatter(transformed_data, np.zeros_like(transformed_data), c='red', edgecolor='k', s=50)
+    plt.scatter(
+        transformed_data, np.zeros_like(transformed_data), c="red", edgecolor="k", s=50
+    )
     plt.title("Transformed Data")
     plt.xlabel("Principal Component 1")
     plt.yticks([])
