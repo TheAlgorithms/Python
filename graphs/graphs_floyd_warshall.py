@@ -49,13 +49,13 @@ def floyd_warshall(graph, v):
     ...     [float('inf'), float('inf'), 0]
     ... ]
     >>> dist, _ = floyd_warshall(graph, num_vertices)
-    >>> dist == expected
 
     The shortest path matrix using Floyd Warshall algorithm
 
     0	2	INF
     1	0	INF
     INF	INF	0
+    >>> dist == expected
     True
     """
 
