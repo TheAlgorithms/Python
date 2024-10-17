@@ -7,11 +7,11 @@ def de_broglie_wavelength(momentum: float, in_ev: bool = False) -> str:
 
     Parameters:
         momentum (float): Momentum of the particle.
-        in_ev (bool, optional): True if momentum is in eV·s. 
+        in_ev (bool, optional): True if momentum is in eV·s.
                                 If False, momentum is in kg·m/s.
 
     Returns:
-        str: The calculated de Broglie wavelength of the particle in meters, 
+        str: The calculated de Broglie wavelength of the particle in meters,
         formatted in scientific notation.
 
     Raises:
@@ -37,7 +37,7 @@ def de_broglie_wavelength(momentum: float, in_ev: bool = False) -> str:
     if momentum <= 0:
         raise ValueError("Momentum can't be zero or negative.")
 
-   
+
     wavelength = PLANCK_CONSTANT_EVS / momentum if in_ev else PLANCK_CONSTANT_JS / momentum
     return f"{wavelength:.8e}"
 
