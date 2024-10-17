@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # floyd_warshall.py
 """
 The problem is to find the shortest distance between all pairs of vertices in a
@@ -31,6 +33,26 @@ def floyd_warshall(graph, v):
     4. The above is repeated for each vertex k in the graph.
     5. Whenever distance[i][j] is given a new minimum value, next vertex[i][j] is
         updated to the next vertex[i][k].
+
+
+    >>> num_vertices = 3
+    >>> graph = [
+    ...     [float('inf'), float('inf'), float('inf')],
+    ...     [float('inf'), float('inf'), float('inf')],
+    ...     [float('inf'), float('inf'), float('inf')]
+    ... ]
+    >>> for i in range(num_vertices):
+    ...     graph[i][i] = 0.0
+    >>> graph[0][1] = 2
+    >>> graph[1][0] = 1
+    >>> expected = [
+    ...     [0, 2, float('inf')],
+    ...     [1, 0, float('inf')],
+    ...     [float('inf'), float('inf'), 0]
+    ... ]
+    >>> dist, _ = floyd_warshall(graph, num_vertices)
+    >>> dist == expected
+    True
     """
 
     dist = [[float("inf") for _ in range(v)] for _ in range(v)]
