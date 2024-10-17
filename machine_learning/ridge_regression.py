@@ -12,6 +12,7 @@ from typing import Tuple
 import numpy as np
 import pandas as pd
 
+
 def load_data(file_path: str) -> Tuple[np.ndarray, np.ndarray]:
     """
     Load data from a CSV file and return features and target arrays.
@@ -30,13 +31,17 @@ def load_data(file_path: str) -> Tuple[np.ndarray, np.ndarray]:
     True
     """
     data = pd.read_csv(file_path)
-    X = data[['Rating']].to_numpy()  # Use .to_numpy() instead of .values (PD011)
-    y = data['ADR'].to_numpy()
+    X = data[["Rating"]].to_numpy()  # Use .to_numpy() instead of .values (PD011)
+    y = data["ADR"].to_numpy()
     return X, y
 
+
 def ridge_gradient_descent(
-    X: np.ndarray, y: np.ndarray, reg_lambda: float, learning_rate: float,
-    num_iters: int = 1000
+    X: np.ndarray,
+    y: np.ndarray,
+    reg_lambda: float,
+    learning_rate: float,
+    num_iters: int = 1000,
 ) -> np.ndarray:
     """
     Perform Ridge Regression using gradient descent.
@@ -68,6 +73,7 @@ def ridge_gradient_descent(
 
     return weights
 
+
 def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
     Calculate the Mean Absolute Error (MAE) between true and predicted values.
@@ -85,8 +91,10 @@ def mean_absolute_error(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     """
     return np.mean(np.abs(y_true - y_pred))
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
 
     # Load the data
