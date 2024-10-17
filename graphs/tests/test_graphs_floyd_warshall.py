@@ -18,7 +18,7 @@ def test_no_edges():
     assert dist == expected
 
 
-def test_example_input():
+def test_example_input(capsys):
     num_vertices = 3
     graph = [
         [float("inf"), float("inf"), float("inf")],
@@ -35,11 +35,8 @@ def test_example_input():
         [float("inf"), float("inf"), 0],
     ]
     dist, _ = floyd_warshall(graph, num_vertices)
+    _ = capsys.readouterr()
     assert dist == expected
-
-
-if __name__ == "__main__":
-    pytest.main()
 
 
 def test_unreachable_vertices():
