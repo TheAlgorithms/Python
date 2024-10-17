@@ -4,9 +4,9 @@ def min_window(search_str: str, target_letters: str) -> str:
     return the smallest substring of the search string that contains
     all target char_dict.
 
-    >>> is_contains_unique_chars("Hello World", "lWl")
+    >>> min_window("Hello World", "lWl")
     "llo W"
-    >>> is_contains_unique_chars("Hello World", "f")
+    >>> min_window("Hello World", "f")
     ""
 
     This solution uses a sliding window, alternating between shifting
