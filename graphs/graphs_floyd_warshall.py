@@ -44,7 +44,7 @@ def floyd_warshall(graph, v):
     ...     [2, 0, float('inf')],
     ...     [9, 7, 0]
     ... ]
-    >>> dist, _ = floyd_warshall(graph, num_vertices)
+    >>> dist, _ = floyd_warshall(graph, 3)
     >>> dist == expected
     True
     """
