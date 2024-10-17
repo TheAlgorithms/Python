@@ -32,7 +32,7 @@ def min_window(search_str: str, target_letters: str) -> str:
 
     # Return if not possible due to string lengths.
     if search_len < target_count:
-        return ''
+        return ""
 
     # Build dictionary with counts for each letter in target_letters
     char_dict = {}
@@ -86,4 +86,4 @@ def min_window(search_str: str, target_letters: str) -> str:
     if exists:
         return search_str[min_window[0] : min_window[1]]
     else:
-        return ''
+        return ""
