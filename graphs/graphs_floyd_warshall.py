@@ -39,17 +39,13 @@ def floyd_warshall(graph, v):
     ...     [float('inf'), float('inf'), float('inf')],
     ...     [float('inf'), float('inf'), float('inf')]
     ... ]
-    >>> for i in range(num_vertices):
-    ...     graph[i][i] = 0.0
-    >>> graph[0][1] = 2
-    >>> graph[1][0] = 1
+
     >>> expected = [
     ...     [0, 2, float('inf')],
     ...     [1, 0, float('inf')],
     ...     [float('inf'), float('inf'), 0]
     ... ]
     >>> dist, _ = floyd_warshall(graph, num_vertices)
-
     The shortest path matrix using Floyd Warshall algorithm
 
     0	2	INF
