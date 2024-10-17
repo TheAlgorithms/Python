@@ -18,24 +18,10 @@ def test_no_edges():
     assert dist == expected
 
 
-def test_example_input(capsys):
-    num_vertices = 3
-    graph = [
-        [float("inf"), float("inf"), float("inf")],
-        [float("inf"), float("inf"), float("inf")],
-        [float("inf"), float("inf"), float("inf")],
-    ]
-    for i in range(num_vertices):
-        graph[i][i] = 0.0
-    graph[0][1] = 2
-    graph[1][0] = 1
-    expected = [
-        [0, 2, float("inf")],
-        [1, 0, float("inf")],
-        [float("inf"), float("inf"), 0],
-    ]
-    dist, _ = floyd_warshall(graph, num_vertices)
-    _ = capsys.readouterr()
+def test_with_edges():
+    graph = [[0, 3, float("inf")], [2, 0, float("inf")], [float("inf"), 7, 0]]
+    expected = [[0, 3, float("inf")], [2, 0, float("inf")], [9, 7, 0]]
+    dist, _ = floyd_warshall(graph, 3)
     assert dist == expected
 
 

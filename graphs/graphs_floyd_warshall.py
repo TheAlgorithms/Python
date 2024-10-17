@@ -33,17 +33,16 @@ def floyd_warshall(graph, v):
         updated to the next vertex[i][k].
 
 
-    >>> num_vertices = 3
     >>> graph = [
-    ...     [float('inf'), float('inf'), float('inf')],
-    ...     [float('inf'), float('inf'), float('inf')],
-    ...     [float('inf'), float('inf'), float('inf')]
+    ...     [0, 3, float('inf')],
+    ...     [2, 0, float('inf')],
+    ...     [float('inf'), 7, 0]
     ... ]
 
     >>> expected = [
-    ...     [0, 2, float('inf')],
-    ...     [1, 0, float('inf')],
-    ...     [float('inf'), float('inf'), 0]
+    ...     [0, 3, float('inf')],
+    ...     [2, 0, float('inf')],
+    ...     [9, 7, 0]
     ... ]
     >>> dist, _ = floyd_warshall(graph, num_vertices)
     >>> dist == expected
