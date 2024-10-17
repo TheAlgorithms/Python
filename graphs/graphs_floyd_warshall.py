@@ -10,9 +10,9 @@ def _print_dist(dist, v):
     for i in range(v):
         for j in range(v):
             if dist[i][j] != float("inf"):
-                print(int(dist[i][j]), end="\t")
+                print(int(dist[i][j]), end=" ")
             else:
-                print("INF", end="\t")
+                print("INF", end=" ")
         print()
 
 
