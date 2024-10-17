@@ -46,7 +46,7 @@ def floyd_warshall(graph, v):
     ... ]
     >>> dist, _ = floyd_warshall(graph, 3)
     The shortest path matrix using Floyd Warshall algorithm
-
+    <BLANKLINE>
     0	3	INF
     2	0	INF
     9	7	0
