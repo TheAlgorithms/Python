@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 # floyd_warshall.py
 """
 The problem is to find the shortest distance between all pairs of vertices in a

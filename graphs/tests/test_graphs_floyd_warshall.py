@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import pytest
 
 from graphs.graphs_floyd_warshall import floyd_warshall
