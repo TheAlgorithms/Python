@@ -5,9 +5,9 @@ def min_window(search_str: str, target_letters: str) -> str:
     all target char_dict.
 
     >>> min_window("Hello World", "lWl")
-    "llo W"
+    'llo W'
     >>> min_window("Hello World", "f")
-    ""
+    ''
 
     This solution uses a sliding window, alternating between shifting
     the end of the window right until all target char_dict are contained
@@ -28,7 +28,7 @@ def min_window(search_str: str, target_letters: str) -> str:
 
     # Return if not possible due to string lengths.
     if search_len < target_count:
-        return ""
+        return ''
 
     # Build dictionary with counts for each letter in target_letters
     char_dict = {}
@@ -82,4 +82,4 @@ def min_window(search_str: str, target_letters: str) -> str:
     if exists:
         return search_str[min_window[0] : min_window[1]]
     else:
-        return ""
+        return ''
