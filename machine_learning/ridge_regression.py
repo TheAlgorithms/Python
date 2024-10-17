@@ -1,12 +1,12 @@
 """
-Ridge Regression is a type of linear regression that includes an L2 regularization term 
-to prevent overfitting and improve generalization. It is commonly used when multicollinearity 
-occurs, as it helps to reduce the model's complexity by penalizing large coefficients, 
+Ridge Regression is a type of linear regression that includes an L2 regularization term
+to prevent overfitting and improve generalization. It is commonly used when multicollinearity
+occurs, as it helps to reduce the model's complexity by penalizing large coefficients,
 resulting in better prediction performance on unseen data.
 
-This implementation uses gradient descent to optimize the weights, with an L2 penalty to 
-regularize the feature vector. The code reads a dataset with Average Damage per Round (ADR) 
-and player ratings, processes the data, and applies ridge regression to predict ADR 
+This implementation uses gradient descent to optimize the weights, with an L2 penalty to
+regularize the feature vector. The code reads a dataset with Average Damage per Round (ADR)
+and player ratings, processes the data, and applies ridge regression to predict ADR
 based on player ratings.
 
 WIKI: https://en.wikipedia.org/wiki/Ridge_regression
@@ -15,6 +15,7 @@ WIKI: https://en.wikipedia.org/wiki/Ridge_regression
 import numpy as np
 import pandas as pd
 from sklearn.metrics import mean_absolute_error
+
 
 class RidgeRegression:
     """
@@ -27,7 +28,10 @@ class RidgeRegression:
         weights (np.ndarray): Feature weights.
         bias (float): Bias term for the regression model.
     """
-    def __init__(self, learning_rate=0.01, regularization_param=0.1, num_iterations=1000):
+
+    def __init__(
+        self, learning_rate=0.01, regularization_param=0.1, num_iterations=1000
+    ):
         self.learning_rate = learning_rate
         self.regularization_param = regularization_param
         self.num_iterations = num_iterations
@@ -57,7 +61,9 @@ class RidgeRegression:
             error = y_pred - y
 
             # Calculate gradients with L2 regularization
-            dw = (1 / num_samples) * (X.T.dot(error) + self.regularization_param * self.weights)
+            dw = (1 / num_samples) * (
+                X.T.dot(error) + self.regularization_param * self.weights
+            )
             db = (1 / num_samples) * np.sum(error)
 
             # Update weights and bias
@@ -124,10 +130,11 @@ class RidgeRegression:
         y_pred = self.predict(X)
         return mean_absolute_error(y, y_pred)
 
+
 # Load data
 def load_data(filepath):
     """
-    Loads data from a CSV file, extracting 'PlayerRating' as the feature 
+    Loads data from a CSV file, extracting 'PlayerRating' as the feature
     and 'ADR' as the target variable.
 
     Args:
@@ -141,17 +148,18 @@ def load_data(filepath):
     True
     """
     data = pd.read_csv(filepath)
-    X = data[['PlayerRating']].values  # Feature
-    y = data['ADR'].values  # Target
+    X = data[["PlayerRating"]].values  # Feature
+    y = data["ADR"].values  # Target
     return X, y
+
 
 # Example usage
 if __name__ == "__main__":
     """
     Ridge Regression model for predicting Average Damage per Round (ADR) based on player ratings.
 
-    The model is initialized with a learning rate, regularization parameter, and a specified 
-    number of gradient descent iterations. After training, it outputs the optimized weights 
+    The model is initialized with a learning rate, regularization parameter, and a specified
+    number of gradient descent iterations. After training, it outputs the optimized weights
     and bias, and displays the Mean Squared Error (MSE) and Mean Absolute Error (MAE).
 
     >>> model = RidgeRegression(learning_rate=0.01, regularization_param=0.5, num_iterations=1000)
@@ -165,17 +173,19 @@ if __name__ == "__main__":
     doctest.testmod()
 
     # Load and preprocess the data
-    filepath = 'player_data.csv'  # Replace with actual file path
+    filepath = "player_data.csv"  # Replace with actual file path
     X, y = load_data(filepath)
 
     # Initialize and train the model
-    model = RidgeRegression(learning_rate=0.01, regularization_param=0.5, num_iterations=1000)
+    model = RidgeRegression(
+        learning_rate=0.01, regularization_param=0.5, num_iterations=1000
+    )
     model.fit(X, y)
 
     # Calculate and display errors
     mse = model.calculate_error(X, y)
     mae = model.calculate_mae(X, y)
-    
+
     print(f"Optimized weights: {model.weights}")
     print(f"Bias: {model.bias}")
     print(f"Mean Squared Error: {mse}")
