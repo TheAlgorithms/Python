@@ -4,6 +4,10 @@ def min_window(search_str: str, target_letters: str) -> str:
     return the smallest substring of the search string that contains
     all target char_dict.
 
+    This is somewhat modified from my solution to the problem
+    "Minimum Window Substring" on leetcode.
+    https://leetcode.com/problems/minimum-window-substring/description/
+
     >>> min_window("Hello World", "lWl")
     'llo W'
     >>> min_window("Hello World", "f")
