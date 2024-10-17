@@ -19,7 +19,7 @@ def min_window(search_str: str, target_letters: str) -> str:
         in search_str.
 
     Space complexity: O(search_len) ->
-        The primary contributer to additional space is the building of a
+        The primary contributor to additional space is the building of a
         dictionary using the search string.
     """
 
