@@ -14,15 +14,15 @@ def min_window(search_str: str, target_letters: str) -> str:
     in the window, and shifting the start of the window right until the
     window no longer contains every target character.
 
-    Time complexity: O(target_count + search_len) -> 
-        The algorithm checks a dictionary at most twice for each character 
+    Time complexity: O(target_count + search_len) ->
+        The algorithm checks a dictionary at most twice for each character
         in search_str.
 
-    Space complexity: O(search_len) -> 
-        The primary contributer to additional space is the building of a 
+    Space complexity: O(search_len) ->
+        The primary contributer to additional space is the building of a
         dictionary using the search string.
     """
-    
+
     target_count = len(target_letters)
     search_len = len(search_str)
 
