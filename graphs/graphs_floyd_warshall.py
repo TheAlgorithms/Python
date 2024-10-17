@@ -9,7 +9,7 @@ def _print_dist(dist, v):
     print("The shortest path matrix using Floyd Warshall algorithm\n")
     for i in range(v):
         for j in range(v):
-            end_char = "" if j == v - 1 else "\t"
+            end_char = "" if j == v - 1 else "  "
             if dist[i][j] != float("inf"):
                 print(int(dist[i][j]), end=end_char)
             else:
@@ -48,9 +48,9 @@ def floyd_warshall(graph, v):
     >>> dist, _ = floyd_warshall(graph, 3)
     The shortest path matrix using Floyd Warshall algorithm
     <BLANKLINE>
-    0	3	INF
-    2	0	INF
-    9	7	0
+    0  3  INF
+    2  0  INF
+    9  7  0
     >>> dist == expected
     True
     """
