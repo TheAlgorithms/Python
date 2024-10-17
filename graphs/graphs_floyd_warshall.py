@@ -6,7 +6,7 @@ weighted directed graph that can have negative edge weights.
 
 
 def _print_dist(dist, v):
-    print("\nThe shortest path matrix using Floyd Warshall algorithm\n")
+    print("The shortest path matrix using Floyd Warshall algorithm\n")
     for i in range(v):
         for j in range(v):
             if dist[i][j] != float("inf"):
@@ -45,6 +45,11 @@ def floyd_warshall(graph, v):
     ...     [9, 7, 0]
     ... ]
     >>> dist, _ = floyd_warshall(graph, 3)
+    The shortest path matrix using Floyd Warshall algorithm
+
+    0	3	INF
+    2	0	INF
+    9	7	0
     >>> dist == expected
     True
     """
@@ -68,7 +73,7 @@ def floyd_warshall(graph, v):
                 ):
                     dist[i][j] = dist[i][k] + dist[k][j]
 
-    # _print_dist(dist, v)
+    _print_dist(dist, v)
     return dist, v
 
 
