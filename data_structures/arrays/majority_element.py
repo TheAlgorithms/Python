@@ -19,6 +19,7 @@ APPROACH:
    is majority element i.e 1 where n is size of array.
 """
 
+
 # function to find majority element
 def majority_element(array: list) -> int:
     """
@@ -30,4 +31,5 @@ def majority_element(array: list) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
