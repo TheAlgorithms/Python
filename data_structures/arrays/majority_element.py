@@ -31,4 +31,5 @@ def majority_element(array: list) -> int:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
