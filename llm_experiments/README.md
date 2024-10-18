@@ -1,9 +1,9 @@
 
 
 
-# Mixtral-Experiment Series
+# LLM-Experiment Series
 
-Welcome to the Mixtral-Experiment series! This series of notebooks and scripts aims to provide a comprehensive guide on investigating the internal workings of Large Language Models (LLMs), understanding how they process inputs, and experimenting with their architectures.
+Welcome to the LL-Experiment series! This series of notebooks and scripts aims to provide a comprehensive guide on investigating the internal workings of Large Language Models (LLMs), understanding how they process inputs, and experimenting with their architectures.
 
 ## Table of Contents
 
@@ -20,11 +20,11 @@ Large Language Models (LLMs) have revolutionized the field of natural language p
 
 ## Series Overview
 
-The Mixtral-Experiment series will cover the following topics:
+The LLM-Experiment series will cover the following topics:
 
 1. **Understanding LLM Architectures**:
-   - An overview of popular LLM architectures like Transformers, BERT, and Mixtral.
-   - Detailed explanations of key components such as embedding layers, self-attention mechanisms, and Mixture of Experts (MoE) layers.
+   - An overview of popular open source LLM architectures like Whisper, Llama, and Mixtral.
+   - Key trouble shooting during experimentation
 
 2. **Investigating Input Processing**:
    - How inputs are tokenized and embedded.
