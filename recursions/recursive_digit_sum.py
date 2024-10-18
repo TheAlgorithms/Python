@@ -1,63 +1,57 @@
 """
-We define super digit of an integer x using the following rules:
+The super digit problem is defined as follows:
+Given an integer represented as a string and an integer k, 
+the goal is to find the super digit of the number formed by concatenating 
+the integer n k times.
 
-Given an integer, we need to find the super digit of the integer.
+The super digit of a number is defined recursively:
+- If the number has only one digit, that digit is the super digit.
+- Otherwise, the super digit is the super digit of the sum of its digits.
 
-If  has only 1 digit, then its super digit is x .
-Otherwise, the super digit of x is equal to the super digit of the sum of the digits of .
-For example, the super digit 9875 of  will be calculated as:
-
-        super_digit(9875)   	9+8+7+5 = 29
-        super_digit(29) 	2 + 9 = 11
-        super_digit(11)		1 + 1 = 2
-        super_digit(2)		= 2
-
-
- ex -2:
- Here n=148  and k=3 , so p=148148148 .
-
-super_digit(P) = super_digit(148148148)
-               = super_digit(1+4+8+1+4+8+1+4+8)
-               = super_digit(39)
-               = super_digit(3+9)
-               = super_digit(12)
-               = super_digit(1+2)
-               = super_digit(3)
-               = 3
+For example, for n = "9875" and k = 4, the concatenated number is:
+super_digit(9875987598759875), which can be reduced by summing its digits.
 """
 
-"""
+from __future__ import annotations
 
-Sample Input 0
-148 3
+def superDigit(n: str, k: int) -> int:
+    """
+    Computes the super digit of a number formed by concatenating n k times.
 
-Sample Output 0
+    Parameters:
+    n (str): The string representation of the integer.
+    k (int): The number of times to concatenate n.
 
-3
+    Returns:
+    int: The super digit of the concatenated number.
 
-"""
+    >>> superDigit("148", 3)
+    3
+    >>> superDigit("9875", 4)
+    8
+    >>> superDigit("123", 3)
+    9
+    """
 
-
-def superDigit(n, k):
     # Calculate the initial sum of the digits in n
     digit_sum = sum(int(digit) for digit in n)
-
+    
     # Multiply the sum by k
     total_sum = digit_sum * k
-
+    
     # Recursive function to find the super digit
     while total_sum >= 10:
         total_sum = sum(int(digit) for digit in str(total_sum))
-
+    
     return total_sum
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
+    # Read input and split it into n and k
     first_multiple_input = input().rstrip().split()
-
-    n = first_multiple_input[0]
-    k = int(first_multiple_input[1])
-
+    
+    n = first_multiple_input[0]  # n as a string
+    k = int(first_multiple_input[1])  # k as an integer
+    
+    # Call the superDigit function and print the result
     result = superDigit(n, k)
-
     print(result)
