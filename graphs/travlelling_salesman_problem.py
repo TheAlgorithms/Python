@@ -63,7 +63,7 @@ def travelling_salesman_brute_force(
 
     >>> graph = {"A": [10, 20], "B": [30, 21], "C": [15, 35]}
     >>> travelling_salesman_brute_force(graph)
-    (['A', 'B', 'C', 'A'], 65.52370249788875)
+    (['A', 'C', 'B', 'A'], 56.35465722402587)
     >>> travelling_salesman_brute_force({})
     Traceback (most recent call last):
     ...
@@ -107,7 +107,7 @@ def travelling_salesman_dynamic_programming(
 
     >>> graph = {"A": [10, 20], "B": [30, 21], "C": [15, 35]}
     >>> travelling_salesman_dynamic_programming(graph)
-    (['A', 'B', 'C', 'A'], 65.52370249788875)
+    (['A', 'C', 'B', 'A'], 56.35465722402587)
     >>> travelling_salesman_dynamic_programming({})
     Traceback (most recent call last):
     ...
@@ -167,6 +167,7 @@ def travelling_salesman_dynamic_programming(
 
     path.append(nodes[0])
     path.reverse()
+    path.append(nodes[0])
 
     return path, min_cost
 
