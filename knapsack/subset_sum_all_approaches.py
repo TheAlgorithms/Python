@@ -1,5 +1,5 @@
 """
-Given a set of integers and a target sum, determine if there exists a subset whose sum equals the target. 
+Given a set of integers and a target sum, determine if there exists a subset whose sum equals the target.
 Return True if such a subset exists, otherwise return False.
 """
 ------------------------------------------------------Recursion-Approach-------------------------------------------------------------------------
