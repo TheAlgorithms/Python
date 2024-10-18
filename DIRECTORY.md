@@ -178,6 +178,9 @@
   * [Volume Conversions](conversions/volume_conversions.py)
   * [Weight Conversion](conversions/weight_conversion.py)
 
+## CPU Scheduling Algorithms
+  * [FCFS](cpu_scheduling_algorithms/fcfs.py)
+
 ## Data Structures
   * Arrays
     * [Equilibrium Index In Array](data_structures/arrays/equilibrium_index_in_array.py)
