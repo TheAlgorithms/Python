@@ -1,11 +1,5 @@
-"""
-Author  : Alexander Pantyukhin
-Date    : November 3, 2022
 
 Implement the class of prefix sum with useful functions based on it.
-
-"""
-
 
 class PrefixSum:
     def __init__(self, array: list[int]) -> None:
@@ -22,7 +16,7 @@ class PrefixSum:
         """
         The function returns the sum of array from the start to the end indexes.
         Runtime : O(1)
-        Space: O(1)
+        Space: O(n) (due to the prefix sum array)
 
         >>> PrefixSum([1,2,3]).get_sum(0, 2)
         6
@@ -35,6 +29,9 @@ class PrefixSum:
         ...
         IndexError: list index out of range
         """
+        if start > end or end >= len(self.prefix_sum):
+            raise IndexError("Invalid range specified.")
+
         if start == 0:
             return self.prefix_sum[end]
 
@@ -42,7 +39,7 @@ class PrefixSum:
 
     def contains_sum(self, target_sum: int) -> bool:
         """
-        The function returns True if array contains the target_sum,
+        The function returns True if any subarray contains the target_sum,
         False otherwise.
 
         Runtime : O(n)
@@ -64,7 +61,7 @@ class PrefixSum:
 
         sums = {0}
         for sum_item in self.prefix_sum:
-            if sum_item - target_sum in sums:
+            if sum_item == target_sum or sum_item - target_sum in sums:
                 return True
 
             sums.add(sum_item)
@@ -76,3 +73,10 @@ if __name__ == "__main__":
     import doctest
 
     doctest.testmod()
+
+       
+        
+        
+
+       
+  
