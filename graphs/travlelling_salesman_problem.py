@@ -1,66 +1,93 @@
-"""
-title : Travelling Sales man Problem
-references : https://en.wikipedia.org/wiki/Travelling_salesman_problem
-author : SunayBhoyar
-"""
-
+#!/usr/bin/env python3
 import itertools
 import math
 
-demo_graph_points = {
-    "A": [10, 20],
-    "B": [30, 21],
-    "C": [15, 35],
-    "D": [40, 10],
-    "E": [25, 5],
-    "F": [5, 15],
-    "G": [50, 25],
-}
+
+class InvalidGraphError(ValueError):
+    """Custom error for invalid graph inputs."""
 
 
-# Euclidean distance - shortest distance between 2 points
-def distance(point1, point2):
+def euclidean_distance(point1: list[float], point2: list[float]) -> float:
     """
-    Calculate the Euclidean distance between two points.
-    @input: point1, point2 (coordinates of two points as lists [x, y])
-    @return: Euclidean distance between point1 and point2
-    @example:
-    >>> distance([0, 0], [3, 4])
+    Calculate the Euclidean distance between two points in 2D space.
+
+    :param point1: Coordinates of the first point [x, y]
+    :param point2: Coordinates of the second point [x, y]
+    :return: The Euclidean distance between the two points
+
+    >>> euclidean_distance([0, 0], [3, 4])
     5.0
+    >>> euclidean_distance([1, 1], [1, 1])
+    0.0
+    >>> euclidean_distance([1, 1], ['a', 1])
+    Traceback (most recent call last):
+    ...
+    ValueError: Invalid input: Points must be numerical coordinates
     """
-    return math.sqrt((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2)
+    try:
+        return math.sqrt((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2)
+    except TypeError:
+        raise ValueError("Invalid input: Points must be numerical coordinates")
 
 
-"""
-Brute force
-Time Complexity - O(n!×n)
-Space Complexity - O(n)
-"""
-
-
-def travelling_sales_man_problem_brute_force(graph_points):
+def validate_graph(graph_points: dict[str, list[float]]) -> None:
     """
-    Solve the Travelling Salesman Problem using brute force (permutations).
-    @input: graph_points (dictionary with node names as keys and coordinates as values)
-    @return: shortest path, total distance (list of nodes representing the shortest path and the distance of that path)
-    @example:
-    >>> travelling_sales_man_problem_brute_force({'A': [0, 0], 'B': [0, 1], 'C': [1, 0]})
-    (['A', 'B', 'C', 'A'], 3.414)
+    Validate the input graph to ensure it has valid nodes and coordinates.
+
+    :param graph_points: A dictionary where the keys are node names,
+                         and values are 2D coordinates as [x, y]
+    :raises InvalidGraphError: If the graph points are not valid
     """
+    if not isinstance(graph_points, dict):
+        raise InvalidGraphError(
+            "Graph must be a dictionary with node names and coordinates"
+        )
+
+    for node, coordinates in graph_points.items():
+        if (
+            not isinstance(node, str)
+            or not isinstance(coordinates, list)
+            or len(coordinates) != 2
+        ):
+            raise InvalidGraphError("Each node must have a valid 2D coordinate [x, y]")
+
+
+def travelling_salesman_brute_force(
+    graph_points: dict[str, list[float]],
+) -> tuple[list[str], float]:
+    """
+    Solve the Travelling Salesman Problem using brute force.
+
+    :param graph_points: A dictionary of nodes and their coordinates {node: [x, y]}
+    :return: The shortest path and its total distance
+
+    >>> graph = {"A": [10, 20], "B": [30, 21], "C": [15, 35]}
+    >>> travelling_salesman_brute_force(graph)
+    (['A', 'B', 'C', 'A'], 65.52370249788875)
+    >>> travelling_salesman_brute_force({})
+    Traceback (most recent call last):
+    ...
+    InvalidGraphError: Graph must have at least two nodes
+    """
+    validate_graph(graph_points)
+
     nodes = list(graph_points.keys())
+    if len(nodes) < 2:
+        raise InvalidGraphError("Graph must have at least two nodes")
 
-    min_path = None
+    min_path = []
     min_distance = float("inf")
 
-    # Considering the first Node as the start position
     start_node = nodes[0]
     other_nodes = nodes[1:]
 
     for perm in itertools.permutations(other_nodes):
-        path = [start_node] + list(perm) + [start_node]
-        total_distance = 0
+        path = [start_node, *list(perm), start_node]
+        total_distance = 0.0
         for i in range(len(path) - 1):
-            total_distance += distance(graph_points[path[i]], graph_points[path[i + 1]])
+            total_distance += euclidean_distance(
+                graph_points[path[i]], graph_points[path[i + 1]]
+            )
 
         if total_distance < min_distance:
             min_distance = total_distance
@@ -69,36 +96,42 @@ def travelling_sales_man_problem_brute_force(graph_points):
     return min_path, min_distance
 
 
-"""
-dynamic_programming
-Time Complexity - O(n^2×2^n)
-Space Complexity - O(n×2^n)
-"""
-
-
-def travelling_sales_man_problem_dp(graph_points):
+def travelling_salesman_dynamic_programming(
+    graph_points: dict[str, list[float]],
+) -> tuple[list[str], float]:
     """
     Solve the Travelling Salesman Problem using dynamic programming.
-    @input: graph_points (dictionary with node names as keys and coordinates as values)
-    @return: shortest path, total distance (list of nodes representing the shortest path and the distance of that path)
-    @example:
-    >>> travelling_sales_man_problem_dp({'A': [0, 0], 'B': [0, 1], 'C': [1, 0]})
-    (['A', 'B', 'C', 'A'], 3.414)
+
+    :param graph_points: A dictionary of nodes and their coordinates {node: [x, y]}
+    :return: The shortest path and its total distance
+
+    >>> graph = {"A": [10, 20], "B": [30, 21], "C": [15, 35]}
+    >>> travelling_salesman_dynamic_programming(graph)
+    (['A', 'B', 'C', 'A'], 65.52370249788875)
+    >>> travelling_salesman_dynamic_programming({})
+    Traceback (most recent call last):
+    ...
+    InvalidGraphError: Graph must have at least two nodes
     """
+    validate_graph(graph_points)
+
     n = len(graph_points)
+    if n < 2:
+        raise InvalidGraphError("Graph must have at least two nodes")
+
     nodes = list(graph_points.keys())
 
-    # Precompute distances between every pair of nodes
-    dist = [[0] * n for _ in range(n)]
+    # Initialize distance matrix with float values
+    dist = [[0.0] * n for _ in range(n)]
     for i in range(n):
         for j in range(n):
-            dist[i][j] = distance(graph_points[nodes[i]], graph_points[nodes[j]])
+            dist[i][j] = euclidean_distance(
+                graph_points[nodes[i]], graph_points[nodes[j]]
+            )
 
-    # dp[mask][i] represents the minimum distance to visit all nodes in the 'mask' set, ending at node i
     dp = [[float("inf")] * n for _ in range(1 << n)]
-    dp[1][0] = 0  # Start at node 0
+    dp[1][0] = 0
 
-    # Iterate over all subsets of nodes (represented by mask)
     for mask in range(1 << n):
         for u in range(n):
             if mask & (1 << u):
@@ -109,18 +142,15 @@ def travelling_sales_man_problem_dp(graph_points):
                             dp[next_mask][v], dp[mask][u] + dist[u][v]
                         )
 
-    # Reconstruct the path and find the minimum distance to return to the start
     final_mask = (1 << n) - 1
     min_cost = float("inf")
     end_node = -1
 
-    # Find the minimum distance from any node back to the starting node
     for u in range(1, n):
         if min_cost > dp[final_mask][u] + dist[u][0]:
             min_cost = dp[final_mask][u] + dist[u][0]
             end_node = u
 
-    # Reconstruct the path using the dp table
     path = []
     mask = final_mask
     while end_node != 0:
@@ -142,14 +172,20 @@ def travelling_sales_man_problem_dp(graph_points):
 
 
 if __name__ == "__main__":
-    print(f"Travelling salesman problem solved using Brute Force:")
-    path, distance_travelled = travelling_sales_man_problem_brute_force(
-        demo_graph_points
-    )
-    print(f"Shortest path: {path}")
-    print(f"Total distance: {distance_travelled:.2f}")
+    demo_graph = {
+        "A": [10.0, 20.0],
+        "B": [30.0, 21.0],
+        "C": [15.0, 35.0],
+        "D": [40.0, 10.0],
+        "E": [25.0, 5.0],
+        "F": [5.0, 15.0],
+        "G": [50.0, 25.0],
+    }
 
-    print(f"\nTravelling salesman problem solved using Dynamic Programming:")
-    path, distance_travelled = travelling_sales_man_problem_dp(demo_graph_points)
-    print(f"Shortest path: {path}")
-    print(f"Total distance: {distance_travelled:.2f}")
+    # Example usage for brute force
+    brute_force_result = travelling_salesman_brute_force(demo_graph)
+    print(f"Brute force result: {brute_force_result}")
+
+    # Example usage for dynamic programming
+    dp_result = travelling_salesman_dynamic_programming(demo_graph)
+    print(f"Dynamic programming result: {dp_result}")
