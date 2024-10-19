@@ -17,7 +17,8 @@ from __future__ import annotations
 
 def super_digit(n_str: str, repetitions: int) -> int:
     """
-    Computes the super digit of a number formed by concatenating n_str repetitions times.
+    Computes the super digit of a number formed by concatenating
+    n_str repetitions times.
 
     Parameters:
     n_str (str): The string representation of the integer.
@@ -33,6 +34,7 @@ def super_digit(n_str: str, repetitions: int) -> int:
     >>> super_digit("123", 3)
     9
     """
+
 
     # Calculate the initial sum of the digits in n_str
     digit_sum = sum(int(digit) for digit in n_str)
