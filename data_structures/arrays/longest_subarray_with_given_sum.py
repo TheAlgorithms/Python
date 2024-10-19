@@ -32,7 +32,7 @@ class LongestSubarrayWithGivenSum:
         >>> LongestSubarrayWithGivenSum([2, 4, 6, 8]).find_longest_subarray(7)
         0
         """
-        prefix_sum_map = {}
+        prefix_sum_map: dict[int, int] = {}
         longest_length = 0
         current_sum = 0
 
