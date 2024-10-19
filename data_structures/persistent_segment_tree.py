@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+
 class Node:
     def __init__(self, value: int = 0) -> None:
         self.value: int = value
         self.left: Node | None = None
         self.right: Node | None = None
+
 
 class PersistentSegmentTree:
     def __init__(self, arr: list[int]) -> None:
@@ -52,7 +54,9 @@ class PersistentSegmentTree:
         self.roots.append(new_root)
         return len(self.roots) - 1
 
-    def _update(self, node: Node | None, start: int, end: int, index: int, value: int) -> Node:
+    def _update(
+        self, node: Node | None, start: int, end: int, index: int, value: int
+    ) -> Node:
         if node is None:
             raise ValueError("Cannot update a None node")
 
@@ -69,7 +73,9 @@ class PersistentSegmentTree:
             new_node.left = node.left
             new_node.right = self._update(node.right, mid + 1, end, index, value)
 
-        new_node.value = new_node.left.value + (new_node.right.value if new_node.right else 0)
+        new_node.value = new_node.left.value + (
+            new_node.right.value if new_node.right else 0
+        )
 
         return new_node
 
@@ -90,7 +96,9 @@ class PersistentSegmentTree:
         """
         return self._query(self.roots[version], 0, self.n - 1, left, right)
 
-    def _query(self, node: Node | None, start: int, end: int, left: int, right: int) -> int:
+    def _query(
+        self, node: Node | None, start: int, end: int, left: int, right: int
+    ) -> int:
         if node is None:
             return 0
 
@@ -99,12 +107,15 @@ class PersistentSegmentTree:
         if left <= start and right >= end:
             return node.value
         mid = (start + end) // 2
-        return (self._query(node.left, start, mid, left, right) +
-                self._query(node.right, mid + 1, end, left, right))
+        return self._query(node.left, start, mid, left, right) + self._query(
+            node.right, mid + 1, end, left, right
+        )
+
 
 # Running the doctests
 if __name__ == "__main__":
     import doctest
+
     print("Running doctests...")
     result = doctest.testmod()
     print(f"Ran {result.attempted} tests, {result.failed} failed.")
