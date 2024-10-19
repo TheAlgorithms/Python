@@ -21,13 +21,15 @@ class SuffixArray:
         [5, 3, 1, 0, 4, 2]
         """
         n = len(self.text)
-        suffixes = sorted(range(n), key=lambda i: self.text[i:])
-        return suffixes
+        # Create a list of suffix indices sorted by the suffixes they point to
+        sorted_suffix_indices = sorted(range(n), key=lambda suffix_index: self.text[suffix_index:])
+        return sorted_suffix_indices
 
     def build_lcp_array(self) -> List[int]:
         """
         Builds the LCP (Longest Common Prefix) array for the suffix array.
-        LCP[i] gives the length of the longest common prefix of the suffixes starting at suffix_array[i] and suffix_array[i-1].
+        LCP[i] gives the length of the longest common prefix of the suffixes
+        starting at suffix_array[i] and suffix_array[i-1].
 
         Example:
         >>> sa = SuffixArray("banana")
@@ -40,20 +42,18 @@ class SuffixArray:
         lcp = [0] * n
 
         # Build the rank array where rank[i] gives the position of the suffix starting at index i
-        for i, suffix in enumerate(suffix_array):
-            rank[suffix] = i
+        for rank_index, suffix in enumerate(suffix_array):
+            rank[suffix] = rank_index
 
         h = 0
         for i in range(n):
             if rank[i] > 0:
-                j = suffix_array[rank[i] - 1]
-                while (
-                    (i + h < n) and (j + h < n) and self.text[i + h] == self.text[j + h]
-                ):
+                j = suffix_array[rank[i] - 1]  # Previous suffix in the sorted order
+                while (i + h < n) and (j + h < n) and self.text[i + h] == self.text[j + h]:
                     h += 1
                 lcp[rank[i]] = h
                 if h > 0:
-                    h -= 1
+                    h -= 1  # Decrease h for the next suffix comparison
         return lcp
 
     def display(self) -> None:
@@ -71,26 +71,15 @@ class SuffixArray:
         4: na
         2: nana
 
-        LCP Array:
-        LCP between a and ana: 1
-        LCP between ana and anana: 3
-        LCP between anana and banana: 0
-        LCP between banana and na: 0
-        LCP between na and nana: 2
         """
         print("Suffix Array:")
-        for idx in self.suffix_array:
-            print(f"{idx}: {self.text[idx:]}")
+        for suffix_index in self.suffix_array:
+            print(f"{suffix_index}: {self.text[suffix_index:]}")
 
-        print("\nLCP Array:")
-        for i in range(1, len(self.lcp_array)):
-            print(
-                f"LCP between {self.text[self.suffix_array[i - 1]:]} and {self.text[self.suffix_array[i]:]}: {self.lcp_array[i]}"
-            )
 
 
 # Example usage:
 if __name__ == "__main__":
     text = "banana"
     sa = SuffixArray(text)
-    sa.display()
+    sa.display()  # Contribution for Hacktoberfest 2024
