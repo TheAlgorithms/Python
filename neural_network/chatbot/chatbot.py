@@ -83,11 +83,13 @@ class Chatbot:
         self.conversation_history.append({"role": "user", "content": user_input})
 
         if user_input == "/stop":
+            bot_response = "conversation-terminated"
+            # print(f"Bot: {bot_response}")
             self.end_chat()
-            return "conversation-terminated"
+            return bot_response
         else:
             bot_response = self.llm_service.generate_response(self.conversation_history)
-            print(f"Bot : ", bot_response)
+            # print(f"Bot: {bot_response}")
             self.conversation_history.append(
                 {"role": "assistant", "content": bot_response}
             )
@@ -120,7 +122,6 @@ class Chatbot:
         try:
             user_input = "/stop"
             bot_response = "conversation-terminated"
-            print(f"Bot : ", bot_response)
             self.db.insert_chat_data(self.chat_id_pk, user_input, bot_response)
             self.db.insert_chat_history(current_time, is_stream)
         except Exception as e:
