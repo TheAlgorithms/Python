@@ -30,10 +30,10 @@ This project is a simple chatbot application built using Python, integrating a d
 ```
   # Together API key
   TOGETHER_API_KEY="YOUR_API_KEY"
-  
+
   # Groq API key
   GROQ_API_KEY = "YOUR_API_KEY"
-  
+
   # MySQL connectionDB (if you're running locally)
   DB_USER = "<DB_USER_NAME>"
   DB_PASSWORD = "<DB_USER_NAME>"

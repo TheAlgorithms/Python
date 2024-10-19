@@ -156,7 +156,7 @@ class ChatDatabase:
         cursor = conn.cursor()
         cursor.execute(
             """
-            SELECT chat_id FROM ChatDB.Chat_history WHERE 
+            SELECT chat_id FROM ChatDB.Chat_history WHERE
             chat_id=(SELECT MAX(chat_id) FROM ChatDB.Chat_history)
         """
         )
