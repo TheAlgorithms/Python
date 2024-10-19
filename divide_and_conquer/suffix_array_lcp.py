@@ -2,6 +2,7 @@
 
 import doctest
 
+
 def build_suffix_array(input_string: str) -> list[int]:
     """
     Build the suffix array for the given string.
@@ -21,6 +22,7 @@ def build_suffix_array(input_string: str) -> list[int]:
     suffixes.sort()  # Sort the suffixes lexicographically
     suffix_array = [suffix[1] for suffix in suffixes]
     return suffix_array
+
 
 def build_lcp_array(input_string: str, suffix_array: list[int]) -> list[int]:
     """
@@ -51,12 +53,17 @@ def build_lcp_array(input_string: str, suffix_array: list[int]) -> list[int]:
     for i in range(n):
         if rank[i] > 0:
             j = suffix_array[rank[i] - 1]
-            while (i + h < n) and (j + h < n) and (input_string[i + h] == input_string[j + h]):
+            while (
+                (i + h < n)
+                and (j + h < n)
+                and (input_string[i + h] == input_string[j + h])
+            ):
                 h += 1
             lcp[rank[i]] = h
             if h > 0:
                 h -= 1  # Decrease h for the next suffix
     return lcp
+
 
 # Example usage
 if __name__ == "__main__":
@@ -70,8 +77,10 @@ if __name__ == "__main__":
 
     print("\nLCP Array:")
     for i in range(1, len(lcp_array)):
-        lcp_info = (f"LCP between {s[suffix_array[i - 1]:]} and "
-                    f"{s[suffix_array[i]]}: {lcp_array[i]}")
+        lcp_info = (
+            f"LCP between {s[suffix_array[i - 1]:]} and "
+            f"{s[suffix_array[i]]}: {lcp_array[i]}"
+        )
         print(lcp_info)
 
 # Run doctests
