@@ -35,7 +35,6 @@ def super_digit(n_str: str, repetitions: int) -> int:
     9
     """
 
-
     # Calculate the initial sum of the digits in n_str
     digit_sum = sum(int(digit) for digit in n_str)
 
