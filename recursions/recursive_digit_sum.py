@@ -14,6 +14,7 @@ super_digit(9875987598759875), which can be reduced by summing its digits.
 
 from __future__ import annotations
 
+
 def super_digit(n_str: str, repetitions: int) -> int:
     """
     Computes the super digit of a number formed by concatenating n_str repetitions times.
@@ -56,4 +57,3 @@ if __name__ == "__main__":
     # Call the super_digit function and print the result
     result = super_digit(n_str, repetitions)
     print(result)
-
