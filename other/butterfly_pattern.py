@@ -12,5 +12,5 @@ def print_butterfly(n):  # defining the function
 
 n = int(
     input("Enter the value of n: ")
-)  # asking the user to enter the value of n and converting the n from string to int data type
+)  # asking the user to enter the value of n
 print_butterfly(n)
