@@ -6,6 +6,7 @@ This module finds the longest subarray with a given sum.
 The algorithm uses a hash map to track cumulative sums and efficiently find subarrays.
 """
 
+
 class LongestSubarrayWithGivenSum:
     def __init__(self, array: list[int]) -> None:
         self.array = array
@@ -42,7 +43,9 @@ class LongestSubarrayWithGivenSum:
                 longest_length = i + 1  # If sum equals target from index 0
 
             if current_sum - target_sum in prefix_sum_map:
-                longest_length = max(longest_length, i - prefix_sum_map[current_sum - target_sum])
+                longest_length = max(
+                    longest_length, i - prefix_sum_map[current_sum - target_sum]
+                )
 
             if current_sum not in prefix_sum_map:
                 prefix_sum_map[current_sum] = i
@@ -52,4 +55,5 @@ class LongestSubarrayWithGivenSum:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
