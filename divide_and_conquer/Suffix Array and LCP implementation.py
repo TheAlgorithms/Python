@@ -47,7 +47,9 @@ class SuffixArray:
         for i in range(n):
             if rank[i] > 0:
                 j = suffix_array[rank[i] - 1]
-                while (i + h < n) and (j + h < n) and self.text[i + h] == self.text[j + h]:
+                while (
+                    (i + h < n) and (j + h < n) and self.text[i + h] == self.text[j + h]
+                ):
                     h += 1
                 lcp[rank[i]] = h
                 if h > 0:
@@ -83,7 +85,8 @@ class SuffixArray:
         print("\nLCP Array:")
         for i in range(1, len(self.lcp_array)):
             print(
-                f"LCP between {self.text[self.suffix_array[i - 1]:]} and {self.text[self.suffix_array[i]:]}: {self.lcp_array[i]}")
+                f"LCP between {self.text[self.suffix_array[i - 1]:]} and {self.text[self.suffix_array[i]:]}: {self.lcp_array[i]}"
+            )
 
 
 # Example usage:
