@@ -4,5 +4,5 @@ def is_string_palindrome(words: str) -> bool:
 
 
 if __name__ == "__main__":
-    word = input("Enter a word:-")
-    print(is_string_palindrome(word))
+    import doctest
+    doctest.testmod()
