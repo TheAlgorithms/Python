@@ -148,4 +148,3 @@ if __name__ == "__main__":
     # Querying the updated version
     assert pst.query(new_version, 0, 4) == 22  # sum of [1, 2, 10, 4, 5]
     assert pst.query(0, 0, 4) == 15  # original version unchanged
-

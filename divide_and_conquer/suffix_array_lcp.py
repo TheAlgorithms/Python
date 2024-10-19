@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+
 def build_suffix_array(s: str) -> list[int]:
     """
     Build the suffix array for the given string.
@@ -15,6 +16,7 @@ def build_suffix_array(s: str) -> list[int]:
     suffixes.sort()  # Sort the suffixes lexicographically
     suffix_array = [suffix[1] for suffix in suffixes]
     return suffix_array
+
 
 def build_lcp_array(s: str, suffix_array: list[int]) -> list[int]:
     """
@@ -47,6 +49,7 @@ def build_lcp_array(s: str, suffix_array: list[int]) -> list[int]:
                 h -= 1  # Decrease h for the next suffix
     return lcp
 
+
 # Example usage
 if __name__ == "__main__":
     s = "banana"
@@ -59,4 +62,6 @@ if __name__ == "__main__":
 
     print("\nLCP Array:")
     for i in range(1, len(lcp_array)):
-        print(f"LCP between {s[suffix_array[i - 1]:]} and {s[suffix_array[i]]}: {lcp_array[i]}")
+        print(
+            f"LCP between {s[suffix_array[i - 1]:]} and {s[suffix_array[i]]}: {lcp_array[i]}"
+        )
