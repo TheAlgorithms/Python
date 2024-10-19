@@ -1,12 +1,10 @@
 from __future__ import annotations
 
-
 class Node:
     def __init__(self, value: int = 0) -> None:
         self.value: int = value
         self.left: Node | None = None
         self.right: Node | None = None
-
 
 class PersistentSegmentTree:
     def __init__(self, arr: list[int]) -> None:
@@ -78,14 +76,12 @@ class PersistentSegmentTree:
 
         if index <= mid:
             new_node.left = self._update(node.left, start, mid, index, value)
-            new_node.right = node.right
+            new_node.right = node.right  # Ensure right node is the same as the original
         else:
-            new_node.left = node.left
+            new_node.left = node.left  # Ensure left node is the same as the original
             new_node.right = self._update(node.right, mid + 1, end, index, value)
 
-        new_node.value = (new_node.left.value if new_node.left else 0) + (
-            new_node.right.value if new_node.right else 0
-        )
+        new_node.value = new_node.left.value + (new_node.right.value if new_node.right else 0)
 
         return new_node
 
@@ -101,7 +97,7 @@ class PersistentSegmentTree:
         >>> version_1 = pst.update(0, 1, 5)  # Update index 1 to 5
         >>> pst.query(version_1, 0, 3)  # Sum of all elements in new version
         13
-        >>> pst.query(version_1, 1, 2)  # Sum of elements at index 1 and 2 in new version
+        >>> pst.query(version_1, 1, 2)  # Sum of elements at index 1 and 2 
         8
         """
         return self._query(self.roots[version], 0, self.n - 1, left, right)
@@ -119,20 +115,17 @@ class PersistentSegmentTree:
         >>> pst._query(root, 0, 3, 2, 3)  # Sum of elements at index 2 and 3
         7
         """
-        if left > end or right < start:
+        if node is None or left > end or right < start:
             return 0
         if left <= start and right >= end:
             return node.value
         mid = (start + end) // 2
-        return self._query(node.left, start, mid, left, right) + self._query(
-            node.right, mid + 1, end, left, right
-        )
-
+        return (self._query(node.left, start, mid, left, right) +
+                self._query(node.right, mid + 1, end, left, right))
 
 # Running the doctests
 if __name__ == "__main__":
     import doctest
-
     print("Running doctests...")
     result = doctest.testmod()
     print(f"Ran {result.attempted} tests, {result.failed} failed.")
