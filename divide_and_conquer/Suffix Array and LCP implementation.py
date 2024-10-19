@@ -22,7 +22,9 @@ class SuffixArray:
         """
         n = len(self.text)
         # Create a list of suffix indices sorted by the suffixes they point to
-        sorted_suffix_indices = sorted(range(n), key=lambda suffix_index: self.text[suffix_index:])
+        sorted_suffix_indices = sorted(
+            range(n), key=lambda suffix_index: self.text[suffix_index:]
+        )
         return sorted_suffix_indices
 
     def build_lcp_array(self) -> List[int]:
@@ -49,7 +51,9 @@ class SuffixArray:
         for i in range(n):
             if rank[i] > 0:
                 j = suffix_array[rank[i] - 1]  # Previous suffix in the sorted order
-                while (i + h < n) and (j + h < n) and self.text[i + h] == self.text[j + h]:
+                while (
+                    (i + h < n) and (j + h < n) and self.text[i + h] == self.text[j + h]
+                ):
                     h += 1
                 lcp[rank[i]] = h
                 if h > 0:
@@ -75,7 +79,6 @@ class SuffixArray:
         print("Suffix Array:")
         for suffix_index in self.suffix_array:
             print(f"{suffix_index}: {self.text[suffix_index:]}")
-
 
 
 # Example usage:
