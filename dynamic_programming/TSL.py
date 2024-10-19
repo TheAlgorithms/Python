@@ -1,7 +1,8 @@
 from itertools import combinations
 
+
 def tsp_dynamic_programming(dist_matrix):
-    n = len(dist_matrix) # number of cities
+    n = len(dist_matrix)  # number of cities
 
     # Initialize a dictionary to store the costs of visiting a subset of cities ending at city i
     # dp[subset][i] will store the minimum cost to visit all cities in 'subset' and end at city i
@@ -30,15 +31,11 @@ def tsp_dynamic_programming(dist_matrix):
     final_mask = (1 << n) - 2  # All cities visited except city 0
     return min(dp[(final_mask, i)] + dist_matrix[i][0] for i in range(1, n))
 
+
 # Example usage
 if __name__ == "__main__":
     # Example distance matrix (symmetric matrix where dist_matrix[i][j] is the distance between city i and city j)
-    dist_matrix = [
-        [0, 10, 15, 20],
-        [10, 0, 35, 25],
-        [15, 35, 0, 30],
-        [20, 25, 30, 0]
-    ]
+    dist_matrix = [[0, 10, 15, 20], [10, 0, 35, 25], [15, 35, 0, 30], [20, 25, 30, 0]]
 
     result = tsp_dynamic_programming(dist_matrix)
     print(f"The minimum travel cost is: {result}")
