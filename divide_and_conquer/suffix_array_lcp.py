@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import doctest
 
 def build_suffix_array(s: str) -> list[int]:
     """
@@ -11,12 +12,15 @@ def build_suffix_array(s: str) -> list[int]:
     Returns:
         list[int]: The suffix array (a list of starting indices of
                     suffixes in sorted order).
+
+    Examples:
+        >>> build_suffix_array("banana")
+        [5, 3, 1, 0, 4, 2]
     """
     suffixes = [(s[i:], i) for i in range(len(s))]
     suffixes.sort()  # Sort the suffixes lexicographically
     suffix_array = [suffix[1] for suffix in suffixes]
     return suffix_array
-
 
 def build_lcp_array(s: str, suffix_array: list[int]) -> list[int]:
     """
@@ -28,6 +32,11 @@ def build_lcp_array(s: str, suffix_array: list[int]) -> list[int]:
 
     Returns:
         list[int]: The LCP array.
+
+    Examples:
+        >>> suffix_array = build_suffix_array("banana")
+        >>> build_lcp_array("banana", suffix_array)
+        [0, 1, 3, 0, 0, 2]
     """
     n = len(s)
     rank = [0] * n
@@ -49,7 +58,6 @@ def build_lcp_array(s: str, suffix_array: list[int]) -> list[int]:
                 h -= 1  # Decrease h for the next suffix
     return lcp
 
-
 # Example usage
 if __name__ == "__main__":
     s = "banana"
@@ -62,6 +70,10 @@ if __name__ == "__main__":
 
     print("\nLCP Array:")
     for i in range(1, len(lcp_array)):
-        print(
-            f"LCP between {s[suffix_array[i - 1]:]} and {s[suffix_array[i]]}: {lcp_array[i]}"
-        )
+        lcp_info = (f"LCP between {s[suffix_array[i - 1]:]} and "
+                    f"{s[suffix_array[i]]}: {lcp_array[i]}")
+        print(lcp_info)
+
+# Run doctests
+if __name__ == "__main__":
+    doctest.testmod()
