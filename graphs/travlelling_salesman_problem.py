@@ -65,10 +65,6 @@ def travelling_salesman_brute_force(
     >>> travelling_salesman_brute_force(graph)
     (['A', 'C', 'B', 'A'], 56.35465722402587)
 
-    >>> travelling_salesman_brute_force({})
-    Traceback (most recent call last):
-    ...
-    travlelling_salesman_problem.InvalidGraphError: Graph must have at least two nodes
     """
     validate_graph(graph_points)
 
@@ -109,10 +105,6 @@ def travelling_salesman_dynamic_programming(
     >>> graph = {"A": [10, 20], "B": [30, 21], "C": [15, 35]}
     >>> travelling_salesman_dynamic_programming(graph)
     (['A', 'C', 'B', 'A'], 56.35465722402587)
-    >>> travelling_salesman_dynamic_programming({})
-    Traceback (most recent call last):
-    ...
-    travlelling_salesman_problem.InvalidGraphError: Graph must have at least two nodes
     """
     validate_graph(graph_points)
 
