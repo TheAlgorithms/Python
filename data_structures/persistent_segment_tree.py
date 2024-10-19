@@ -4,6 +4,7 @@ class Node:
         self.left = None
         self.right = None
 
+
 class PersistentSegmentTree:
     def __init__(self, arr: list[int]) -> None:
         self.n = len(arr)
@@ -13,7 +14,7 @@ class PersistentSegmentTree:
     def _build(self, arr: list[int], start: int, end: int) -> Node:
         """
         Builds a segment tree from the provided array.
-        
+
         >>> pst = PersistentSegmentTree([1, 2, 3])
         >>> root = pst._build([1, 2, 3], 0, 2)
         >>> root.value  # Sum of the whole array
@@ -31,7 +32,7 @@ class PersistentSegmentTree:
     def update(self, version: int, index: int, value: int) -> int:
         """
         Updates the segment tree with a new value at the specified index.
-        
+
         >>> pst = PersistentSegmentTree([1, 2, 3])
         >>> version_1 = pst.update(0, 1, 5)
         >>> pst.query(version_1, 0, 2)  # Query sum from index 0 to 2
@@ -59,7 +60,7 @@ class PersistentSegmentTree:
     def query(self, version: int, left: int, right: int) -> int:
         """
         Queries the sum in the given range for the specified version.
-        
+
         >>> pst = PersistentSegmentTree([1, 2, 3])
         >>> version_1 = pst.update(0, 1, 5)
         >>> pst.query(version_1, 0, 1)  # Query sum from index 0 to 1
@@ -75,5 +76,6 @@ class PersistentSegmentTree:
         if left <= start and right >= end:
             return node.value
         mid = (start + end) // 2
-        return (self._query(node.left, start, mid, left, right) +
-                self._query(node.right, mid + 1, end, left, right))
+        return self._query(node.left, start, mid, left, right) + self._query(
+            node.right, mid + 1, end, left, right
+        )
