@@ -92,13 +92,15 @@ class PersistentSegmentTree:
         if left <= start and right >= end:
             return node.value
         mid = (start + end) // 2
-        return (self._query(node.left, start, mid, left, right) +
-                self._query(node.right, mid + 1, end, left, right))
+        return self._query(node.left, start, mid, left, right) + self._query(
+            node.right, mid + 1, end, left, right
+        )
 
 
 # Running the doctests
 if __name__ == "__main__":
     import doctest
+
     print("Running doctests...")
     result = doctest.testmod()
     print(f"Ran {result.attempted} tests, {result.failed} failed.")
