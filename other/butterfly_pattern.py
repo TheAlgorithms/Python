@@ -10,7 +10,5 @@ def print_butterfly(n):  # defining the function
         print("*" * i)  # for right wing of the butterfly
 
 
-n = int(
-    input("Enter the value of n: ")
-)  # asking the user to enter the value of n
+n = int(input("Enter the value of n: "))  # asking the user to enter the value of n
 print_butterfly(n)
