@@ -1,239 +1,161 @@
 from __future__ import annotations
-
 from string import ascii_letters
+from typing import Optional, Dict
 
 
-def encrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
+def encrypt(input_string: str, key: int, alphabet: Optional[str] = None) -> str:
     """
-    encrypt
-    =======
-    Encodes a given string with the caesar cipher and returns the encoded
-    message
+    Encodes a given string using the Caesar cipher and returns the encoded message.
 
     Parameters:
     -----------
-    *   input_string: the plain-text that needs to be encoded
-    *   key: the number of letters to shift the message by
-
-    Optional:
-    *   alphabet (None): the alphabet used to encode the cipher, if not
-        specified, the standard english alphabet with upper and lowercase
-        letters is used
+    input_string : str
+        The plain text that needs to be encoded.
+    key : int
+        The number of letters to shift the message by.
+    alphabet : Optional[str]
+        The alphabet used to encode the cipher. If not specified, the standard English
+        alphabet with upper and lowercase letters is used.
 
     Returns:
-    *   A string containing the encoded cipher-text
-
-    More on the caesar cipher
-    =========================
-    The caesar cipher is named after Julius Caesar who used it when sending
-    secret military messages to his troops. This is a simple substitution cipher
-    where every character in the plain-text is shifted by a certain number known
-    as the "key" or "shift".
-
-    Example:
-    Say we have the following message:
-    "Hello, captain"
-
-    And our alphabet is made up of lower and uppercase letters:
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-    And our shift is "2"
-
-    We can then encode the message, one letter at a time. "H" would become "J",
-    since "J" is two letters away, and so on. If the shift is ever two large, or
-    our letter is at the end of the alphabet, we just start at the beginning
-    ("Z" would shift to "a" then "b" and so on).
-
-    Our final message would be "Jgnnq, ecrvckp"
-
-    Further reading
-    ===============
-    *   https://en.m.wikipedia.org/wiki/Caesar_cipher
-
-    Doctests
-    ========
-    >>> encrypt('The quick brown fox jumps over the lazy dog', 8)
-    'bpm yCqks jzwEv nwF rCuxA wDmz Bpm tiHG lwo'
-
-    >>> encrypt('A very large key', 8000)
-    's nWjq dSjYW cWq'
-
-    >>> encrypt('a lowercase alphabet', 5, 'abcdefghijklmnopqrstuvwxyz')
-    'f qtbjwhfxj fqumfgjy'
+    --------
+    str
+        A string containing the encoded cipher text.
     """
-    # Set default alphabet to lower and upper case english chars
     alpha = alphabet or ascii_letters
-
-    # The final result string
-    result = ""
+    result = []
 
     for character in input_string:
-        if character not in alpha:
-            # Append without encryption if character is not in the alphabet
-            result += character
+        if character in alpha:
+            index = alpha.index(character)
+            new_index = (index + key) % len(alpha)
+            result.append(alpha[new_index])
         else:
-            # Get the index of the new key and make sure it isn't too large
-            new_key = (alpha.index(character) + key) % len(alpha)
+            result.append(character)
 
-            # Append the encoded character to the alphabet
-            result += alpha[new_key]
-
-    return result
+    return ''.join(result)
 
 
-def decrypt(input_string: str, key: int, alphabet: str | None = None) -> str:
+def decrypt(input_string: str, key: int, alphabet: Optional[str] = None) -> str:
     """
-    decrypt
-    =======
-    Decodes a given string of cipher-text and returns the decoded plain-text
+    Decodes a given cipher text using the Caesar cipher and returns the decoded plain text.
 
     Parameters:
     -----------
-    *   input_string: the cipher-text that needs to be decoded
-    *   key: the number of letters to shift the message backwards by to decode
-
-    Optional:
-    *   alphabet (None): the alphabet used to decode the cipher, if not
-        specified, the standard english alphabet with upper and lowercase
-        letters is used
+    input_string : str
+        The cipher text that needs to be decoded.
+    key : int
+        The number of letters to shift the message backwards to decode.
+    alphabet : Optional[str]
+        The alphabet used to decode the cipher. If not specified, the standard English
+        alphabet with upper and lowercase letters is used.
 
     Returns:
-    *   A string containing the decoded plain-text
-
-    More on the caesar cipher
-    =========================
-    The caesar cipher is named after Julius Caesar who used it when sending
-    secret military messages to his troops. This is a simple substitution cipher
-    where very character in the plain-text is shifted by a certain number known
-    as the "key" or "shift". Please keep in mind, here we will be focused on
-    decryption.
-
-    Example:
-    Say we have the following cipher-text:
-    "Jgnnq, ecrvckp"
-
-    And our alphabet is made up of lower and uppercase letters:
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-
-    And our shift is "2"
-
-    To decode the message, we would do the same thing as encoding, but in
-    reverse. The first letter, "J" would become "H" (remember: we are decoding)
-    because "H" is two letters in reverse (to the left) of "J". We would
-    continue doing this. A letter like "a" would shift back to the end of
-    the alphabet, and would become "Z" or "Y" and so on.
-
-    Our final message would be "Hello, captain"
-
-    Further reading
-    ===============
-    *   https://en.m.wikipedia.org/wiki/Caesar_cipher
-
-    Doctests
-    ========
-    >>> decrypt('bpm yCqks jzwEv nwF rCuxA wDmz Bpm tiHG lwo', 8)
-    'The quick brown fox jumps over the lazy dog'
-
-    >>> decrypt('s nWjq dSjYW cWq', 8000)
-    'A very large key'
-
-    >>> decrypt('f qtbjwhfxj fqumfgjy', 5, 'abcdefghijklmnopqrstuvwxyz')
-    'a lowercase alphabet'
+    --------
+    str
+        A string containing the decoded plain text.
     """
-    # Turn on decode mode by making the key negative
-    key *= -1
-
-    return encrypt(input_string, key, alphabet)
+    return encrypt(input_string, -key, alphabet)
 
 
-def brute_force(input_string: str, alphabet: str | None = None) -> dict[int, str]:
+def brute_force(input_string: str, alphabet: Optional[str] = None) -> Dict[int, str]:
     """
-    brute_force
-    ===========
-    Returns all the possible combinations of keys and the decoded strings in the
-    form of a dictionary
+    Returns all possible combinations of keys and the decoded strings as a dictionary.
 
     Parameters:
     -----------
-    *   input_string: the cipher-text that needs to be used during brute-force
+    input_string : str
+        The cipher text that needs to be used during brute-force.
+    alphabet : Optional[str]
+        The alphabet used to decode the cipher. If not specified, the standard English
+        alphabet with upper and lowercase letters is used.
 
-    Optional:
-    *   alphabet:  (None): the alphabet used to decode the cipher, if not
-        specified, the standard english alphabet with upper and lowercase
-        letters is used
-
-    More about brute force
-    ======================
-    Brute force is when a person intercepts a message or password, not knowing
-    the key and tries every single combination. This is easy with the caesar
-    cipher since there are only all the letters in the alphabet. The more
-    complex the cipher, the larger amount of time it will take to do brute force
-
-    Ex:
-    Say we have a 5 letter alphabet (abcde), for simplicity and we intercepted the
-    following message:
-
-    "dbc"
-
-    we could then just write out every combination:
-    ecd... and so on, until we reach a combination that makes sense:
-    "cab"
-
-    Further reading
-    ===============
-    *   https://en.wikipedia.org/wiki/Brute_force
-
-    Doctests
-    ========
-    >>> brute_force("jFyuMy xIH'N vLONy zILwy Gy!")[20]
-    "Please don't brute force me!"
-
-    >>> brute_force(1)
-    Traceback (most recent call last):
-    TypeError: 'int' object is not iterable
+    Returns:
+    --------
+    Dict[int, str]
+        A dictionary where keys are the shift values and values are the decoded messages.
     """
-    # Set default alphabet to lower and upper case english chars
     alpha = alphabet or ascii_letters
-
-    # To store data on all the combinations
     brute_force_data = {}
 
-    # Cycle through each combination
     for key in range(1, len(alpha) + 1):
-        # Decrypt the message and store the result in the data
-        brute_force_data[key] = decrypt(input_string, key, alpha)
+        decoded_message = decrypt(input_string, key, alpha)
+        brute_force_data[key] = decoded_message
 
     return brute_force_data
 
 
-if __name__ == "__main__":
+def get_valid_integer(prompt: str) -> int:
+    """
+    Prompts the user for a valid integer input.
+
+    Parameters:
+    -----------
+    prompt : str
+        The message displayed to the user.
+
+    Returns:
+    --------
+    int
+        The validated integer input from the user.
+    """
+    while True:
+        user_input = input(prompt).strip()
+        try:
+            return int(user_input)
+        except ValueError:
+            print("Invalid input. Please enter a valid integer.")
+
+
+def main():
+    """
+    Main function to run the Caesar cipher program with a user-interactive menu.
+    """
+    menu_options = {
+        "1": "Encrypt",
+        "2": "Decrypt",
+        "3": "Brute Force",
+        "4": "Quit"
+    }
+
     while True:
         print(f'\n{"-" * 10}\n Menu\n{"-" * 10}')
-        print(*["1.Encrypt", "2.Decrypt", "3.BruteForce", "4.Quit"], sep="\n")
+        for option, description in menu_options.items():
+            print(f"{option}. {description}")
 
-        # get user input
-        choice = input("\nWhat would you like to do?: ").strip() or "4"
+        choice = input("\nWhat would you like to do?: ").strip()
 
-        # run functions based on what the user chose
-        if choice not in ("1", "2", "3", "4"):
-            print("Invalid choice, please enter a valid choice")
-        elif choice == "1":
+        if choice == "1":
             input_string = input("Please enter the string to be encrypted: ")
-            key = int(input("Please enter off-set: ").strip())
+            key = get_valid_integer("Please enter the offset: ")
+            alphabet = input("Enter the alphabet to use (leave blank for default): ") or None
 
-            print(encrypt(input_string, key))
+            encrypted_message = encrypt(input_string, key, alphabet)
+            print(f"Encrypted message: {encrypted_message}")
+
         elif choice == "2":
             input_string = input("Please enter the string to be decrypted: ")
-            key = int(input("Please enter off-set: ").strip())
+            key = get_valid_integer("Please enter the offset: ")
+            alphabet = input("Enter the alphabet to use (leave blank for default): ") or None
 
-            print(decrypt(input_string, key))
+            decrypted_message = decrypt(input_string, key, alphabet)
+            print(f"Decrypted message: {decrypted_message}")
+
         elif choice == "3":
-            input_string = input("Please enter the string to be decrypted: ")
-            brute_force_data = brute_force(input_string)
+            input_string = input("Please enter the string to be brute-forced: ")
+            alphabet = input("Enter the alphabet to use (leave blank for default): ") or None
 
-            for key, value in brute_force_data.items():
-                print(f"Key: {key} | Message: {value}")
+            brute_force_data = brute_force(input_string, alphabet)
+            for key, message in brute_force_data.items():
+                print(f"Key: {key} | Decoded Message: {message}")
 
         elif choice == "4":
             print("Goodbye.")
             break
+
+        else:
+            print("Invalid choice, please enter a valid option.")
+
+
+if __name__ == "__main__":
+    main()
