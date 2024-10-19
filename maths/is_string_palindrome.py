@@ -1,4 +1,6 @@
 import re
+
+
 def is_string_palindrome(words: str) -> bool:
     """
     Returns whether `words` is a palindrome or not.
@@ -37,8 +39,8 @@ def is_string_palindrome(words: str) -> bool:
     True
     """
     words = str(words)
-    cleaned_phrase = re.sub(r'[^a-zA-Z0-9]', '', words).lower()
-    if words.startswith('-'):
+    cleaned_phrase = re.sub(r"[^a-zA-Z0-9]", "", words).lower()
+    if words.startswith("-"):
         return False
 
     return cleaned_phrase == cleaned_phrase[::-1]
@@ -46,4 +48,5 @@ def is_string_palindrome(words: str) -> bool:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
