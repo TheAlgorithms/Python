@@ -76,5 +76,6 @@ class PersistentSegmentTree:
         if left <= start and right >= end:
             return node.value
         mid = (start + end) // 2
-        return (self._query(node.left, start, mid, left, right) +
-                self._query(node.right, mid + 1, end, left, right))
+        return self._query(node.left, start, mid, left, right) + self._query(
+            node.right, mid + 1, end, left, right
+        )
