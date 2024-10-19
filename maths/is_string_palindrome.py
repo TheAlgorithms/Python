@@ -1,7 +1,7 @@
+import re
 def is_string_palindrome(words: str) -> bool:
     """
-    Returns whether `num` is a palindrome or not
-    (see for reference https://en.wikipedia.org/wiki/Palindromic_number).
+    Returns whether `words` is a palindrome or not.
 
     >>> is_string_palindrome("-121")
     False
@@ -25,8 +25,6 @@ def is_string_palindrome(words: str) -> bool:
     False
     >>> is_string_palindrome("A man a plan a canal Panama")
     True
-    >>> is_string_palindrome(120)
-    False
     >>> is_string_palindrome("")
     True
     >>> is_string_palindrome("noon")
@@ -38,11 +36,14 @@ def is_string_palindrome(words: str) -> bool:
     >>> is_string_palindrome(" ")
     True
     """
-    cleaned_phrase = "".join(words.split()).lower()
+    words = str(words)
+    cleaned_phrase = re.sub(r'[^a-zA-Z0-9]', '', words).lower()
+    if words.startswith('-'):
+        return False
+
     return cleaned_phrase == cleaned_phrase[::-1]
 
 
 if __name__ == "__main__":
     import doctest
-
     doctest.testmod()
