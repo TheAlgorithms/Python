@@ -114,7 +114,7 @@ def get_latest_chat_id() -> int:
         cursor = conn.cursor()
         cursor.execute(
             """
-            SELECT chat_id FROM ChatDB.Chat_history 
+            SELECT chat_id FROM ChatDB.Chat_history
             ORDER BY chat_id DESC LIMIT 1
         """
         )
@@ -241,6 +241,6 @@ def chat_session() -> None:
             conversation_history = conversation_history[-3:]
 
 
-# starting a chat session 
+# starting a chat session
 create_tables()
 chat_session()
