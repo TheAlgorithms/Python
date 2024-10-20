@@ -107,7 +107,7 @@ def get_latest_chat_id() -> int:
         cursor = conn.cursor()
         cursor.execute(
             """
-            SELECT chat_id FROM ChatDB.Chat_history 
+            SELECT chat_id FROM ChatDB.Chat_history
             ORDER BY chat_id DESC LIMIT 1
         """
         )
