@@ -1,7 +1,7 @@
 """
  - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
 Name - - sliding_window_attention.py
-Goal - - Implement a neural network architecture using sliding window attention for sequence 
+Goal - - Implement a neural network architecture using sliding window attention for sequence
         modeling tasks.
 Detail: Total 5 layers neural network
         * Input layer
@@ -12,9 +12,9 @@ Author: Stephen Lee
 Github: 245885195@qq.com
 Date: 2024.10.20
 References:
-    1. Choromanska, A., et al. (2020). "On the Importance of Initialization and Momentum in 
+    1. Choromanska, A., et al. (2020). "On the Importance of Initialization and Momentum in
        Deep Learning." *Proceedings of the 37th International Conference on Machine Learning*.
-    2. Dai, Z., et al. (2020). "Transformers are RNNs: Fast Autoregressive Transformers 
+    2. Dai, Z., et al. (2020). "Transformers are RNNs: Fast Autoregressive Transformers
        with Linear Attention." *arXiv preprint arXiv:2006.16236*.
     3. [Attention Mechanisms in Neural Networks](https://en.wikipedia.org/wiki/Attention_(machine_learning))
  - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
@@ -52,7 +52,7 @@ class SlidingWindowAttention:
         Forward pass for the sliding window attention.
 
         Args:
-            input_tensor (np.ndarray): Input tensor of shape (batch_size, seq_length, 
+            input_tensor (np.ndarray): Input tensor of shape (batch_size, seq_length,
                                        embed_dim).
 
         Returns:
@@ -93,7 +93,9 @@ if __name__ == "__main__":
 
     # usage
     rng = np.random.default_rng()
-    x = rng.standard_normal((2, 10, 4))  # Batch size 2, sequence length 10, embedding dimension 4
+    x = rng.standard_normal(
+        (2, 10, 4)
+    )  # Batch size 2, sequence length 10, embedding dimension 4
     attention = SlidingWindowAttention(embed_dim=4, window_size=3)
     output = attention.forward(x)
     print(output)
