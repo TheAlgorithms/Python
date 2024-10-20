@@ -21,8 +21,8 @@ def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[st
     # add current to visited
     visited.append(current)
     neighbors = edges[current]
-    #as we are traversing in from top to down in tree like graph (direction not given) we consider direction from top to down
-    #as the current node encounter add it to the topo sort list
+    # direction not given so consider from top to bottom
+    # as the current node encounter add it to the topo sort list
     sort.append(current)
     for neighbor in neighbors:
         # if neighbor not in visited, visit
