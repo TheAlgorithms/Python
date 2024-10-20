@@ -17,11 +17,11 @@ vertices: list[str] = ["a", "b", "c", "d", "e"]
 
 def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[str]:
     """Perform topological sort on a directed acyclic graph."""
+    # consider edge direction from top to bottom
     current = start
     # add current to visited
     visited.append(current)
     neighbors = edges[current]
-    # direction not given so consider from top to bottom
     # as the current node encounter add it to the topo sort list
     sort.append(current)
     for neighbor in neighbors:
