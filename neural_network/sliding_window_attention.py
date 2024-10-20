@@ -1,7 +1,8 @@
 """
  - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
 Name - - sliding_window_attention.py
-Goal - - Implement a neural network architecture using sliding window attention for sequence modeling tasks.
+Goal - - Implement a neural network architecture using sliding window attention for sequence 
+        modeling tasks.
 Detail: Total 5 layers neural network
         * Input layer
         * Sliding Window Attention Layer
@@ -11,8 +12,10 @@ Author: Stephen Lee
 Github: 245885195@qq.com
 Date: 2024.10.20
 References:
-    1. Choromanska, A., et al. (2020). "On the Importance of Initialization and Momentum in Deep Learning." *Proceedings of the 37th International Conference on Machine Learning*.
-    2. Dai, Z., et al. (2020). "Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention." *arXiv preprint arXiv:2006.16236*.
+    1. Choromanska, A., et al. (2020). "On the Importance of Initialization and Momentum in 
+       Deep Learning." *Proceedings of the 37th International Conference on Machine Learning*.
+    2. Dai, Z., et al. (2020). "Transformers are RNNs: Fast Autoregressive Transformers 
+       with Linear Attention." *arXiv preprint arXiv:2006.16236*.
     3. [Attention Mechanisms in Neural Networks](https://en.wikipedia.org/wiki/Attention_(machine_learning))
  - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
 """
@@ -31,7 +34,7 @@ class SlidingWindowAttention:
         embed_dim (int): The dimensionality of the input embeddings.
     """
 
-    def __init__(self, embed_dim: int, window_size: int):
+    def __init__(self, embed_dim: int, window_size: int) -> None:
         """
         Initialize the SlidingWindowAttention module.
 
@@ -41,14 +44,16 @@ class SlidingWindowAttention:
         """
         self.window_size = window_size
         self.embed_dim = embed_dim
-        self.attention_weights = np.random.randn(embed_dim, embed_dim)
+        rng = np.random.default_rng()
+        self.attention_weights = rng.standard_normal((embed_dim, embed_dim))
 
-    def forward(self, x: np.ndarray) -> np.ndarray:
+    def forward(self, input_tensor: np.ndarray) -> np.ndarray:
         """
         Forward pass for the sliding window attention.
 
         Args:
-            x (np.ndarray): Input tensor of shape (batch_size, seq_length, embed_dim).
+            input_tensor (np.ndarray): Input tensor of shape (batch_size, seq_length, 
+                                       embed_dim).
 
         Returns:
             np.ndarray: Output tensor of shape (batch_size, seq_length, embed_dim).
@@ -61,8 +66,8 @@ class SlidingWindowAttention:
         >>> (output.sum() != 0).item()  # Check if output is non-zero
         True
         """
-        batch_size, seq_length, _ = x.shape
-        output = np.zeros_like(x)
+        batch_size, seq_length, _ = input_tensor.shape
+        output = np.zeros_like(input_tensor)
 
         for i in range(seq_length):
             # Define the window range
@@ -70,7 +75,7 @@ class SlidingWindowAttention:
             end = min(seq_length, i + self.window_size // 2 + 1)
 
             # Extract the local window
-            local_window = x[:, start:end, :]
+            local_window = input_tensor[:, start:end, :]
 
             # Compute attention scores
             attention_scores = np.matmul(local_window, self.attention_weights)
@@ -86,10 +91,9 @@ if __name__ == "__main__":
 
     doctest.testmod()
 
-    # Example usage
-    x = np.random.randn(
-        2, 10, 4
-    )  # Batch size 2, sequence length 10, embedding dimension 4
+    # usage
+    rng = np.random.default_rng()
+    x = rng.standard_normal((2, 10, 4))  # Batch size 2, sequence length 10, embedding dimension 4
     attention = SlidingWindowAttention(embed_dim=4, window_size=3)
     output = attention.forward(x)
     print(output)
