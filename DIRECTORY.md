@@ -1215,6 +1215,7 @@
   * [Jump Search](searches/jump_search.py)
   * [Linear Search](searches/linear_search.py)
   * [Median Of Medians](searches/median_of_medians.py)
+  * [Meta Binary Search](searches/meta_binary_search.py)
   * [Quick Select](searches/quick_select.py)
   * [Sentinel Linear Search](searches/sentinel_linear_search.py)
   * [Simple Binary Search](searches/simple_binary_search.py)
