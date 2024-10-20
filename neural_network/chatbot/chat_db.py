@@ -1,3 +1,7 @@
+"""
+credits : https://medium.com/google-developer-experts/beyond-live-sessions-building-persistent-memory-chatbots-with-langchain-gemini-pro-and-firebase-19d6f84e21d3
+"""
+
 import os
 import datetime
 import mysql.connector
