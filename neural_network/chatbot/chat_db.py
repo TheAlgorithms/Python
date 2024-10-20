@@ -1,7 +1,12 @@
+"""
+credits : https://medium.com/google-developer-experts/beyond-live-sessions-building-persistent-memory-chatbots-with-langchain-gemini-pro-and-firebase-19d6f84e21d3
+
+"""
+
 import os
-import mysql.connector
 import datetime
 from dotenv import load_dotenv
+import mysql.connector
 from together import Together
 from groq import Groq
 
@@ -20,8 +25,9 @@ api_service = os.environ.get("API_SERVICE")
 
 def create_tables() -> None:
     """
-    Create the ChatDB.Chat_history and ChatDB.Chat_data tables if they do not exist.
-    Also, create a trigger to update is_stream in Chat_data when Chat_history.is_stream is updated.
+    Create the ChatDB.Chat_history and ChatDB.Chat_data tables
+    if they do not exist.Also, create a trigger to update is_stream
+    in Chat_data when Chat_history.is_stream is updated.
     """
     try:
         conn = mysql.connector.connect(**db_config)
@@ -77,7 +83,8 @@ def insert_chat_history(start_time: datetime.datetime, is_stream: int) -> None:
     """
     Insert a new row into the ChatDB.Chat_history table.
     :param start_time: Timestamp of when the chat started
-    :param is_stream: Indicator of whether the conversation is ongoing, starting, or ending
+    :param is_stream: Indicator of whether the conversation is
+                                 ongoing, starting, or ending
     """
     try:
         conn = mysql.connector.connect(**db_config)
@@ -107,7 +114,7 @@ def get_latest_chat_id() -> int:
         cursor = conn.cursor()
         cursor.execute(
             """
-            SELECT chat_id FROM ChatDB.Chat_history
+            SELECT chat_id FROM ChatDB.Chat_history 
             ORDER BY chat_id DESC LIMIT 1
         """
         )
@@ -115,7 +122,7 @@ def get_latest_chat_id() -> int:
         return chat_id if chat_id else None
     except mysql.connector.Error as err:
         print(f"Error: {err}")
-        return None
+        return 0
     finally:
         cursor.close()
         conn.close()
@@ -151,8 +158,10 @@ def generate_llm_response(
 ) -> str:
     """
     Generate a response from the LLM based on the conversation history.
-    :param conversation_history: List of dictionaries representing the conversation so far
-    :param api_service: Choose between "Together" or "Groq" as the API service
+    :param conversation_history: List of dictionaries representing
+                                                        the conversation so far
+    :param api_service: Choose between "Together" or "Groq" as the
+                                        API service
     :return: Assistant's response as a string
     """
     bot_response = ""
@@ -194,7 +203,8 @@ def chat_session() -> None:
     print("Welcome to the chatbot! Type '/stop' to end the conversation.")
 
     conversation_history = []
-    start_time = datetime.datetime.now()
+    start_time = datetime.datetime.now(datetime.timezone.utc)
+
     chat_id_pk = None
     api_service = "Groq"  # or "Together"
 
@@ -215,7 +225,7 @@ def chat_session() -> None:
         else:
             if user_input.lower() == "/stop":
                 is_stream = 2  # End of conversation
-                current_time = datetime.datetime.now()
+                current_time = datetime.datetime.now(datetime.timezone.utc)
                 insert_chat_history(current_time, is_stream)
                 break
 
@@ -223,7 +233,7 @@ def chat_session() -> None:
             conversation_history.append({"role": "assistant", "content": bot_response})
 
             is_stream = 0  # Continuation of conversation
-            current_time = datetime.datetime.now()
+            current_time = datetime.datetime.now(datetime.timezone.utc)
             insert_chat_history(current_time, is_stream)
             insert_chat_data(chat_id_pk, user_input, bot_response)
 
@@ -231,6 +241,6 @@ def chat_session() -> None:
             conversation_history = conversation_history[-3:]
 
 
-# Example of starting a chat session
+# starting a chat session 
 create_tables()
 chat_session()
