@@ -3,6 +3,7 @@ Disjoint Set (Union-Find) Data Structure.
 Reference: https://en.wikipedia.org/wiki/Disjoint-set_data_structure
 """
 
+
 class Node:
     """
     Node class representing elements of a disjoint set.
