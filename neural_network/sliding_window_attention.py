@@ -1,6 +1,6 @@
 """
  - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
-Name - - Sliding Window Attention Mechanism
+Name - - sliding_window_attention.py
 Goal - - Implement a neural network architecture using sliding window attention for sequence modeling tasks.
 Detail: Total 5 layers neural network
         * Input layer
@@ -13,6 +13,7 @@ Date: 2024.10.20
 References:
     1. Choromanska, A., et al. (2020). "On the Importance of Initialization and Momentum in Deep Learning." *Proceedings of the 37th International Conference on Machine Learning*.
     2. Dai, Z., et al. (2020). "Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention." *arXiv preprint arXiv:2006.16236*.
+    3. [Attention Mechanisms in Neural Networks](https://en.wikipedia.org/wiki/Attention_(machine_learning))
  - - - - - -- - - - - - - - - - - - - - - - - - - - - - -
 """
 
