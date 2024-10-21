@@ -33,9 +33,14 @@ class BinarySearchTree:
         Empties the tree
 
         >>> t = BinarySearchTree()
-        >>> assert t.root is None
         >>> t.put(8)
-        >>> assert t.root is not None
+        >>> t.put(10)
+        >>> t.put(5)
+        >>> t.root is None
+        False
+        >>> t.empty()
+        >>> t.root is None
+        True
         """
         self.root = None
 
@@ -49,6 +54,9 @@ class BinarySearchTree:
         >>> t.put(8)
         >>> t.is_empty()
         False
+        >>> t.remove(8)
+        >>> t.is_empty()
+        True
         """
         return self.root is None
 
@@ -58,16 +66,37 @@ class BinarySearchTree:
 
         >>> t = BinarySearchTree()
         >>> t.put(8)
-        >>> assert t.root.parent is None
-        >>> assert t.root.label == 8
+        >>> t.root.parent is None
+        True
+        >>> t.root.label == 8
+        True
 
         >>> t.put(10)
-        >>> assert t.root.right.parent == t.root
-        >>> assert t.root.right.label == 10
+        >>> t.root.right.parent == t.root
+        True
+        >>> t.root.right.label == 10
+        True
 
         >>> t.put(3)
-        >>> assert t.root.left.parent == t.root
-        >>> assert t.root.left.label == 3
+        >>> t.root.left.parent == t.root
+        True
+        >>> t.root.left.label == 3
+        True
+
+        >>> t.put(5)
+        >>> t.root.left.right.parent == t.root.left
+        True
+        >>> t.root.left.right.label == 5
+        True
+
+        >>> inorder = [node.label for node in t.inorder_traversal()]
+        >>> inorder == sorted(inorder)
+        True
+
+        >>> t.put(5)
+        Traceback (most recent call last):
+        ...
+        ValueError: Node with label 5 already exists
         """
         self.root = self._put(self.root, label)
 
@@ -91,8 +120,16 @@ class BinarySearchTree:
         >>> t = BinarySearchTree()
         >>> t.put(8)
         >>> t.put(10)
-        >>> node = t.search(8)
-        >>> assert node.label == 8
+        >>> t.put(5)
+        >>> t.put(7)
+        >>> t.search(8).label
+        8
+        >>> t.search(5).label
+        5
+        >>> t.search(7).label
+        7
+        >>> t.search(10).label
+        10
 
         >>> node = t.search(3)
         Traceback (most recent call last):
@@ -119,8 +156,43 @@ class BinarySearchTree:
         >>> t = BinarySearchTree()
         >>> t.put(8)
         >>> t.put(10)
+        >>> t.put(5)
+        >>> t.put(3)
+        >>> t.put(7)
+        >>> t.put(9)
+        >>> t.put(15)
+
+        >>> t.exists(3)
+        True
+        >>> t.remove(3)
+        >>> t.exists(3)
+        False
+
+        >>> t.exists(5)
+        True
+        >>> t.remove(5)
+        >>> t.exists(5), t.exists(7)
+        (False, True)
+
+        >>> t.exists(8)
+        True
         >>> t.remove(8)
-        >>> assert t.root.label == 10
+        >>> t.exists(8), t.exists(7), t.exists(10)
+        (False, True, True)
+        >>> t.root.label
+        9
+
+        >>> t.remove(10)
+        >>> t.remove(15)
+        >>> t.remove(9)
+        >>> t.exists(9)
+        False
+        >>> t.root.label
+        7
+
+        >>> t.remove(7)
+        >>> t.root == None
+        True
 
         >>> t.remove(3)
         Traceback (most recent call last):
@@ -144,6 +216,9 @@ class BinarySearchTree:
             self._reassign_nodes(node, None)
 
     def _reassign_nodes(self, node: Node, new_children: Node | None) -> None:
+        """
+        Reassigns 'new_children' in place of 'node' in tree.
+        """
         if new_children:
             new_children.parent = node.parent
 
@@ -156,6 +231,10 @@ class BinarySearchTree:
             self.root = new_children
 
     def _get_lowest_node(self, node: Node) -> Node:
+        """
+        Removes node with minimum label from tree, reassigning
+        children if necessary and returns it.
+        """
         if node.left:
             lowest_node = self._get_lowest_node(node.left)
         else:
@@ -221,6 +300,10 @@ class BinarySearchTree:
         >>> t.put(10)
         >>> t.get_min_label()
         8
+        >>> t.put(5)
+        >>> t.put(3)
+        >>> t.get_min_label()
+        3
         """
         if self.root is None:
             raise ValueError("Binary search tree is empty")
