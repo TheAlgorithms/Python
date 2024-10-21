@@ -2,7 +2,7 @@
 def kadanes_algorithm(arr):
     # Initializing variables
     max_current = arr[0]  # This will store the current max sum
-    max_global = arr[0]   # This will store the global max sum
+    max_global = arr[0]  # This will store the global max sum
 
     # Loop through the array starting from the second element
     for i in range(1, len(arr)):
@@ -15,6 +15,7 @@ def kadanes_algorithm(arr):
             max_global = max_current
 
     return max_global
+
 
 # Example usage
 arr = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
