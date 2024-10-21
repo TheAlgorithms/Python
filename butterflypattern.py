@@ -1,4 +1,4 @@
-def butterflyPattern(n):
+def butterflypattern(n):
     for i in range(n // 2):
         print("* " * (i + 1), end="")
         print(" " * (((n + 1) // 2 - 2) * 4 - 4 * i + 1), end="")
@@ -12,4 +12,4 @@ def butterflyPattern(n):
 
 
 n = int(input())
-butterflyPattern(n)
+butterflypattern(n)
