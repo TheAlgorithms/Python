@@ -204,6 +204,14 @@ class LinkedList:
         >>> linked_list.insert_nth(3, "fifth")
         >>> linked_list
         first -> fourth -> second -> fifth -> third
+        >>> linked_list.insert_nth(-1, 'first')
+        Traceback (most recent call last):
+            ...
+        IndexError: list index out of range
+        >>> linked_list.insert_nth(6, 'sixth')
+        Traceback (most recent call last):
+            ...
+        IndexError: list index out of range
         """
         if not 0 <= index <= len(self):
             raise IndexError("list index out of range")
@@ -227,7 +235,7 @@ class LinkedList:
         >>> linked_list.insert_tail("first")
         >>> linked_list.insert_tail("second")
         >>> linked_list.insert_tail("third")
-        >>> linked_list
+        >>> linked_list.print_list()
         first -> second -> third
         """
         print(self)
