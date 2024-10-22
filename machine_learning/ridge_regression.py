@@ -47,47 +47,73 @@ class RidgeRegression:
         scaled_features = (features - mean) / std
         return scaled_features, mean, std
 
-    def fit(self, x: np.ndarray, y: np.ndarray) -> None:
+    def fit(self, features: np.ndarray, target: np.ndarray) -> None:
         """
         Fit the Ridge Regression model to the training data.
 
-        :param x: Input features, shape (m, n)
-        :param y: Target values, shape (m,)
+        :param features: Input features, shape (m, n)
+        :param target: Target values, shape (m,)
+
+        Example:
+        >>> rr = RidgeRegression(alpha=0.01, lambda_=0.1, iterations=10)
+        >>> features = np.array([[1, 2], [2, 3], [4, 6]])
+        >>> target = np.array([1, 2, 3])
+        >>> rr.fit(features, target)
+        >>> rr.theta is not None
+        True
         """
-        x_scaled, mean, std = self.feature_scaling(x)  # Normalize features
-        m, n = x_scaled.shape
+        features_scaled, mean, std = self.feature_scaling(features)  # Normalize features
+        m, n = features_scaled.shape
         self.theta = np.zeros(n)  # Initialize weights to zeros
 
-        for _ in range(self.iterations):
-            predictions = x_scaled.dot(self.theta)
-            error = predictions - y
+        for i in range(self.iterations):
+            predictions = features_scaled.dot(self.theta)
+            error = predictions - target
 
             # Compute gradient with L2 regularization
-            gradient = (x_scaled.T.dot(error) + self.lambda_ * self.theta) / m
+            gradient = (features_scaled.T.dot(error) + self.lambda_ * self.theta) / m
             self.theta -= self.alpha * gradient  # Update weights
 
-    def predict(self, x: np.ndarray) -> np.ndarray:
+    def predict(self, features: np.ndarray) -> np.ndarray:
         """
         Predict values using the trained model.
 
-        :param x: Input features, shape (m, n)
+        :param features: Input features, shape (m, n)
         :return: Predicted values, shape (m,)
-        """
-        x_scaled, _, _ = self.feature_scaling(x)  # Scale features using training data
-        return x_scaled.dot(self.theta)
 
-    def compute_cost(self, x: np.ndarray, y: np.ndarray) -> float:
+        Example:
+        >>> rr = RidgeRegression(alpha=0.01, lambda_=0.1, iterations=10)
+        >>> features = np.array([[1, 2], [2, 3], [4, 6]])
+        >>> target = np.array([1, 2, 3])
+        >>> rr.fit(features, target)
+        >>> predictions = rr.predict(features)
+        >>> predictions.shape == target.shape
+        True
+        """
+        features_scaled, _, _ = self.feature_scaling(features)  # Scale features using training data
+        return features_scaled.dot(self.theta)
+    
+    def compute_cost(self, features: np.ndarray, target: np.ndarray) -> float:
         """
         Compute the cost function with regularization.
 
-        :param x: Input features, shape (m, n)
-        :param y: Target values, shape (m,)
+        :param features: Input features, shape (m, n)
+        :param target: Target values, shape (m,)
         :return: Computed cost
+
+        Example:
+        >>> rr = RidgeRegression(alpha=0.01, lambda_=0.1, iterations=10)
+        >>> features = np.array([[1, 2], [2, 3], [4, 6]])
+        >>> target = np.array([1, 2, 3])
+        >>> rr.fit(features, target)
+        >>> cost = rr.compute_cost(features, target)
+        >>> isinstance(cost, float)
+        True
         """
-        x_scaled, _, _ = self.feature_scaling(x)  # Scale features using training data
-        m = len(y)
-        predictions = x_scaled.dot(self.theta)
-        cost = (1 / (2 * m)) * np.sum((predictions - y) ** 2) + (
+        features_scaled, _, _ = self.feature_scaling(features)  # Scale features using training data
+        m = len(target)
+        predictions = features_scaled.dot(self.theta)
+        cost = (1 / (2 * m)) * np.sum((predictions - target) ** 2) + (
             self.lambda_ / (2 * m)
         ) * np.sum(self.theta**2)
         return cost
@@ -99,6 +125,14 @@ class RidgeRegression:
         :param y_true: Actual target values, shape (m,)
         :param y_pred: Predicted target values, shape (m,)
         :return: MAE
+
+        Example:
+        >>> rr = RidgeRegression(alpha=0.01, lambda_=0.1, iterations=10)
+        >>> y_true = np.array([1, 2, 3])
+        >>> y_pred = np.array([1.1, 2.1, 2.9])
+        >>> mae = rr.mean_absolute_error(y_true, y_pred)
+        >>> isinstance(mae, float)
+        True
         """
         return np.mean(np.abs(y_true - y_pred))
 
