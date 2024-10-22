@@ -68,7 +68,7 @@ class RidgeRegression:
         m, n = features_scaled.shape
         self.theta = np.zeros(n)  # Initialize weights to zeros
 
-        for i in range(self.iterations):
+        for _ in range(self.iterations):
             predictions = features_scaled.dot(self.theta)
             error = predictions - target
 
@@ -149,21 +149,21 @@ if __name__ == "__main__":
     data = pd.read_csv(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/master/Week1/ADRvsRating.csv"
     )
-    x = data[["Rating"]].to_numpy()  # Feature: Rating
-    y = data["ADR"].to_numpy()  # Target: ADR
-    y = (y - np.mean(y)) / np.std(y)
+    data_x = data[["Rating"]].to_numpy()  # Feature: Rating
+    data_y = data["ADR"].to_numpy()  # Target: ADR
+    data_y = (data_y - np.mean(data_y)) / np.std(data_y)
 
     # Add bias term (intercept) to the feature matrix
-    x = np.c_[np.ones(X.shape[0]), x]  # Add intercept term
+    data_x = np.c_[np.ones(data_x.shape[0]), data_x]  # Add intercept term
 
     # Initialize and train the Ridge Regression model
     model = RidgeRegression(alpha=0.01, lambda_=0.1, iterations=1000)
-    model.fit(x, y)
+    model.fit(data_x, data_y)
 
     # Predictions
-    predictions = model.predict(x)
+    predictions = model.predict(data_x)
 
     # Results
     print("Optimized Weights:", model.theta)
-    print("Cost:", model.compute_cost(x, y))
-    print("Mean Absolute Error:", model.mean_absolute_error(y, predictions))
+    print("Cost:", model.compute_cost(data_x, data_y))
+    print("Mean Absolute Error:", model.mean_absolute_error(data_y, predictions))
