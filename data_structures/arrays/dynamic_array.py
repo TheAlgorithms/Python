@@ -3,6 +3,8 @@ Author  : Yashwanth Adimulam
 Date    : October 22, 2024
 
 Implement the class of DynamicArray with useful functions based on it.
+References: https://en.wikipedia.org/wiki/Dynamic_array
+            https://www.geeksforgeeks.org/how-do-dynamic-arrays-work/
 
 """
 
