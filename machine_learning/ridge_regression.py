@@ -62,7 +62,9 @@ class RidgeRegression:
         >>> rr.theta is not None
         True
         """
-        features_scaled, mean, std = self.feature_scaling(features)  # Normalize features
+        features_scaled, mean, std = self.feature_scaling(
+            features
+        )  # Normalize features
         m, n = features_scaled.shape
         self.theta = np.zeros(n)  # Initialize weights to zeros
 
@@ -90,9 +92,11 @@ class RidgeRegression:
         >>> predictions.shape == target.shape
         True
         """
-        features_scaled, _, _ = self.feature_scaling(features)  # Scale features using training data
+        features_scaled, _, _ = self.feature_scaling(
+            features
+        )  # Scale features using training data
         return features_scaled.dot(self.theta)
-    
+
     def compute_cost(self, features: np.ndarray, target: np.ndarray) -> float:
         """
         Compute the cost function with regularization.
@@ -110,7 +114,9 @@ class RidgeRegression:
         >>> isinstance(cost, float)
         True
         """
-        features_scaled, _, _ = self.feature_scaling(features)  # Scale features using training data
+        features_scaled, _, _ = self.feature_scaling(
+            features
+        )  # Scale features using training data
         m = len(target)
         predictions = features_scaled.dot(self.theta)
         cost = (1 / (2 * m)) * np.sum((predictions - target) ** 2) + (
