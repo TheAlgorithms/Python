@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from typing import Optional, Tuple
 
 
 class RidgeRegression:
@@ -15,7 +16,7 @@ class RidgeRegression:
         self.alpha = alpha
         self.lambda_ = lambda_
         self.iterations = iterations
-        self.theta = None
+        self.theta: Optional[np.ndarray] = None  # Initialize as None, later will be ndarray
 
     def feature_scaling(
         self, features: np.ndarray
@@ -92,6 +93,9 @@ class RidgeRegression:
         >>> predictions.shape == target.shape
         True
         """
+        if self.theta is None:
+            raise ValueError("Model is not trained yet. Call the `fit` method first.")
+        
         features_scaled, _, _ = self.feature_scaling(
             features
         )  # Scale features using training data
@@ -114,6 +118,9 @@ class RidgeRegression:
         >>> isinstance(cost, float)
         True
         """
+        if self.theta is None:
+            raise ValueError("Model is not trained yet. Call the `fit` method first.")
+        
         features_scaled, _, _ = self.feature_scaling(
             features
         )  # Scale features using training data
