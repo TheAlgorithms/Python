@@ -3,7 +3,9 @@ import pandas as pd
 
 
 class RidgeRegression:
-    def __init__(self, alpha: float = 0.001, lambda_: float = 0.1, iterations: int = 1000) -> None:
+    def __init__(
+        self, alpha: float = 0.001, lambda_: float = 0.1, iterations: int = 1000
+    ) -> None:
         """
         Ridge Regression Constructor
         :param alpha: Learning rate for gradient descent
@@ -15,7 +17,9 @@ class RidgeRegression:
         self.iterations = iterations
         self.theta = None
 
-    def feature_scaling(self, features: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    def feature_scaling(
+        self, features: np.ndarray
+    ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
         """
         Normalize features to have mean 0 and standard deviation 1.
 
