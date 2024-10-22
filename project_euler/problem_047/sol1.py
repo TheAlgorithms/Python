@@ -69,7 +69,7 @@ def equality(iterable: list) -> bool:
     return len(set(iterable)) in (0, 1)
 
 
-def run(n: int) -> list:[int]
+def run(n: int) -> list[int]:
     """
     Runs core process to find problem solution.
     >>> run(3)
