@@ -180,6 +180,7 @@
 
 ## Data Structures
   * Arrays
+    * [Dynamic Array](data_structures/arrays/dynamic_array.py)
     * [Equilibrium Index In Array](data_structures/arrays/equilibrium_index_in_array.py)
     * [Find Triplets With 0 Sum](data_structures/arrays/find_triplets_with_0_sum.py)
     * [Index 2D Array In 1D](data_structures/arrays/index_2d_array_in_1d.py)
