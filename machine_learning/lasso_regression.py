@@ -23,7 +23,7 @@ import numpy as np
 
 
 class LassoRegression:
-    __slots__ = "alpha", "params"
+    __slots__ = "alpha", "params", "tol", "max_iter"
 
     def __init__(
         self, alpha: float = 1.0, tol: float = 1e-4, max_iter: int = 1000
@@ -55,32 +55,32 @@ class LassoRegression:
         """
         return np.sign(rho) * max(0, abs(rho) - alpha)
 
-    def fit(self, X: np.ndarray, y: np.ndarray) -> None:
+    def fit(self, x: np.ndarray, y: np.ndarray) -> None:
         """
         Fits the Lasso regression model to the data.
 
-        @param X: the design matrix (features)
+        @param x: the design matrix (features)
         @param y: the response vector (target)
-        @raises ArithmeticError: if X isn't full rank, can't compute coefficients
+        @raises ArithmeticError: if x isn't full rank, can't compute coefficients
         """
-        n_samples, n_features = X.shape
+        n_samples, n_features = x.shape
         self.params = np.zeros(n_features)
 
         for _ in range(self.max_iter):
             params_old = self.params.copy()
             for j in range(n_features):
                 # Compute the residual
-                residual = y - X @ self.params + X[:, j] * self.params[j]
+                residual = y - x @ self.params + x[:, j] * self.params[j]
                 # Update the j-th coefficient using soft thresholding
                 self.params[j] = self._soft_thresholding(
-                    X[:, j].T @ residual / n_samples, self.alpha / n_samples
+                    x[:, j].T @ residual / n_samples, self.alpha / n_samples
                 )
 
             # Check for convergence
             if np.linalg.norm(self.params - params_old, ord=1) < self.tol:
                 break
 
-    def predict(self, X: np.ndarray) -> np.ndarray:
+    def predict(self, x: np.ndarray) -> np.ndarray:
         """
         Predicts the response values for the given input data.
 
@@ -91,7 +91,7 @@ class LassoRegression:
         if self.params is None:
             raise ArithmeticError("Predictor hasn't been fit yet")
 
-        return X @ self.params
+        return x @ self.params
 
 
 def main() -> None:
