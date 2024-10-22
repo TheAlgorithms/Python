@@ -16,7 +16,9 @@ class RidgeRegression:
         self.alpha = alpha
         self.lambda_ = lambda_
         self.iterations = iterations
-        self.theta: Optional[np.ndarray] = None  # Initialize as None, later will be ndarray
+        self.theta: Optional[np.ndarray] = (
+            None  # Initialize as None, later will be ndarray
+        )
 
     def feature_scaling(
         self, features: np.ndarray
@@ -95,7 +97,7 @@ class RidgeRegression:
         """
         if self.theta is None:
             raise ValueError("Model is not trained yet. Call the `fit` method first.")
-        
+
         features_scaled, _, _ = self.feature_scaling(
             features
         )  # Scale features using training data
@@ -120,7 +122,7 @@ class RidgeRegression:
         """
         if self.theta is None:
             raise ValueError("Model is not trained yet. Call the `fit` method first.")
-        
+
         features_scaled, _, _ = self.feature_scaling(
             features
         )  # Scale features using training data
