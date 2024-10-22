@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 
+
 class RidgeRegression:
     def __init__(
         self, alpha: float = 0.001, lambda_: float = 0.1, iterations: int = 1000
@@ -14,7 +15,9 @@ class RidgeRegression:
         self.alpha = alpha
         self.lambda_ = lambda_
         self.iterations = iterations
-        self.theta: np.ndarray | None = None  # Initialize as None, later will be ndarray
+        self.theta: np.ndarray | None = (
+            None  # Initialize as None, later will be ndarray
+        )
 
     def feature_scaling(
         self, features: np.ndarray
