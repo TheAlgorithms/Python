@@ -3,7 +3,7 @@ import pandas as pd
 
 
 class RidgeRegression:
-    def __init__(self, alpha=0.001, lambda_=0.1, iterations=1000):
+    def __init__(self, alpha: float = 0.001, lambda_: float = 0.1, iterations: int = 1000) -> None:
         """
         Ridge Regression Constructor
         :param alpha: Learning rate for gradient descent
@@ -15,24 +15,38 @@ class RidgeRegression:
         self.iterations = iterations
         self.theta = None
 
-    def feature_scaling(self, X):
+    def feature_scaling(self, features: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
         """
-        Normalize features to have mean 0 and standard deviation 1
-        :param X: Input features, shape (m, n)
-        :return: Scaled features, mean, and std for each feature
+        Normalize features to have mean 0 and standard deviation 1.
+
+        :param features: Input features, shape (m, n)
+        :return: Tuple containing:
+            - Scaled features
+            - Mean of each feature
+            - Standard deviation of each feature
+
+        Example:
+        >>> rr = RidgeRegression()
+        >>> features = np.array([[1, 2], [2, 3], [4, 6]])
+        >>> scaled_features, mean, std = rr.feature_scaling(features)
+        >>> np.allclose(scaled_features.mean(axis=0), 0)
+        True
+        >>> np.allclose(scaled_features.std(axis=0), 1)
+        True
         """
-        mean = np.mean(X, axis=0)
-        std = np.std(X, axis=0)
+        mean = np.mean(features, axis=0)
+        std = np.std(features, axis=0)
 
         # Avoid division by zero for constant features (std = 0)
         std[std == 0] = 1  # Set std=1 for constant features to avoid NaN
 
-        X_scaled = (X - mean) / std
-        return X_scaled, mean, std
+        scaled_features = (features - mean) / std
+        return scaled_features, mean, std
 
-    def fit(self, X, y):
+    def fit(self, X: np.ndarray, y: np.ndarray) -> None:
         """
-        Fit the Ridge Regression model to the training data
+        Fit the Ridge Regression model to the training data.
+
         :param X: Input features, shape (m, n)
         :param y: Target values, shape (m,)
         """
@@ -48,18 +62,20 @@ class RidgeRegression:
             gradient = (X_scaled.T.dot(error) + self.lambda_ * self.theta) / m
             self.theta -= self.alpha * gradient  # Update weights
 
-    def predict(self, X):
+    def predict(self, X: np.ndarray) -> np.ndarray:
         """
-        Predict values using the trained model
+        Predict values using the trained model.
+
         :param X: Input features, shape (m, n)
         :return: Predicted values, shape (m,)
         """
         X_scaled, _, _ = self.feature_scaling(X)  # Scale features using training data
         return X_scaled.dot(self.theta)
 
-    def compute_cost(self, X, y):
+    def compute_cost(self, X: np.ndarray, y: np.ndarray) -> float:
         """
-        Compute the cost function with regularization
+        Compute the cost function with regularization.
+
         :param X: Input features, shape (m, n)
         :param y: Target values, shape (m,)
         :return: Computed cost
@@ -72,9 +88,10 @@ class RidgeRegression:
         ) * np.sum(self.theta**2)
         return cost
 
-    def mean_absolute_error(self, y_true, y_pred):
+    def mean_absolute_error(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
         """
-        Compute Mean Absolute Error (MAE) between true and predicted values
+        Compute Mean Absolute Error (MAE) between true and predicted values.
+
         :param y_true: Actual target values, shape (m,)
         :param y_pred: Predicted target values, shape (m,)
         :return: MAE
