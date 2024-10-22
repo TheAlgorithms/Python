@@ -1,7 +1,5 @@
 import numpy as np
 import pandas as pd
-from typing import Optional, Tuple
-
 
 class RidgeRegression:
     def __init__(
@@ -16,9 +14,7 @@ class RidgeRegression:
         self.alpha = alpha
         self.lambda_ = lambda_
         self.iterations = iterations
-        self.theta: Optional[np.ndarray] = (
-            None  # Initialize as None, later will be ndarray
-        )
+        self.theta: np.ndarray | None = None  # Initialize as None, later will be ndarray
 
     def feature_scaling(
         self, features: np.ndarray
