@@ -1,7 +1,7 @@
 """
 Lasso regression is a type of linear regression that adds a regularization term to the
-ordinary least squares (OLS) objective function. This regularization term is the 
-L1 norm of the coefficients, which encourages sparsity in the model parameters. The 
+ordinary least squares (OLS) objective function. This regularization term is the
+L1 norm of the coefficients, which encourages sparsity in the model parameters. The
 objective function for Lasso regression is given by:
 
 minimize ||y - Xβ||² + λ||β||₁
@@ -12,7 +12,7 @@ where:
 - β is the vector of coefficients,
 - λ (lambda) is the regularization parameter controlling the strength of the penalty.
 
-Lasso regression can be solved using coordinate descent or other optimization techniques. 
+Lasso regression can be solved using coordinate descent or other optimization techniques.
 
 References:
     - https://en.wikipedia.org/wiki/Lasso_(statistics)
@@ -25,7 +25,9 @@ import numpy as np
 class LassoRegression:
     __slots__ = "alpha", "params"
 
-    def __init__(self, alpha: float = 1.0, tol: float = 1e-4, max_iter: int = 1000) -> None:
+    def __init__(
+        self, alpha: float = 1.0, tol: float = 1e-4, max_iter: int = 1000
+    ) -> None:
         """
         Initializes the Lasso regression model.
 
@@ -36,7 +38,7 @@ class LassoRegression:
         """
         if alpha <= 0:
             raise ValueError("Regularization strength must be positive")
-        
+
         self.alpha = alpha
         self.tol = tol
         self.max_iter = max_iter
@@ -70,7 +72,9 @@ class LassoRegression:
                 # Compute the residual
                 residual = y - X @ self.params + X[:, j] * self.params[j]
                 # Update the j-th coefficient using soft thresholding
-                self.params[j] = self._soft_thresholding(X[:, j].T @ residual / n_samples, self.alpha / n_samples)
+                self.params[j] = self._soft_thresholding(
+                    X[:, j].T @ residual / n_samples, self.alpha / n_samples
+                )
 
             # Check for convergence
             if np.linalg.norm(self.params - params_old, ord=1) < self.tol:
@@ -109,7 +113,7 @@ def main() -> None:
     plt.xlabel("True Values")
     plt.ylabel("Predicted Values")
     plt.title("Lasso Regression Predictions")
-    plt.plot([y.min(), y.max()], [y.min(), y.max()], color='red', linewidth=2)
+    plt.plot([y.min(), y.max()], [y.min(), y.max()], color="red", linewidth=2)
     plt.show()
 
 
