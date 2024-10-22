@@ -47,46 +47,46 @@ class RidgeRegression:
         scaled_features = (features - mean) / std
         return scaled_features, mean, std
 
-    def fit(self, X: np.ndarray, y: np.ndarray) -> None:
+    def fit(self, x: np.ndarray, y: np.ndarray) -> None:
         """
         Fit the Ridge Regression model to the training data.
 
-        :param X: Input features, shape (m, n)
+        :param x: Input features, shape (m, n)
         :param y: Target values, shape (m,)
         """
-        X_scaled, mean, std = self.feature_scaling(X)  # Normalize features
-        m, n = X_scaled.shape
+        x_scaled, mean, std = self.feature_scaling(x)  # Normalize features
+        m, n = x_scaled.shape
         self.theta = np.zeros(n)  # Initialize weights to zeros
 
-        for i in range(self.iterations):
-            predictions = X_scaled.dot(self.theta)
+        for _ in range(self.iterations):
+            predictions = x_scaled.dot(self.theta)
             error = predictions - y
 
             # Compute gradient with L2 regularization
-            gradient = (X_scaled.T.dot(error) + self.lambda_ * self.theta) / m
+            gradient = (x_scaled.T.dot(error) + self.lambda_ * self.theta) / m
             self.theta -= self.alpha * gradient  # Update weights
 
-    def predict(self, X: np.ndarray) -> np.ndarray:
+    def predict(self, x: np.ndarray) -> np.ndarray:
         """
         Predict values using the trained model.
 
-        :param X: Input features, shape (m, n)
+        :param x: Input features, shape (m, n)
         :return: Predicted values, shape (m,)
         """
-        X_scaled, _, _ = self.feature_scaling(X)  # Scale features using training data
-        return X_scaled.dot(self.theta)
+        x_scaled, _, _ = self.feature_scaling(x)  # Scale features using training data
+        return x_scaled.dot(self.theta)
 
-    def compute_cost(self, X: np.ndarray, y: np.ndarray) -> float:
+    def compute_cost(self, x: np.ndarray, y: np.ndarray) -> float:
         """
         Compute the cost function with regularization.
 
-        :param X: Input features, shape (m, n)
+        :param x: Input features, shape (m, n)
         :param y: Target values, shape (m,)
         :return: Computed cost
         """
-        X_scaled, _, _ = self.feature_scaling(X)  # Scale features using training data
+        x_scaled, _, _ = self.feature_scaling(x)  # Scale features using training data
         m = len(y)
-        predictions = X_scaled.dot(self.theta)
+        predictions = x_scaled.dot(self.theta)
         cost = (1 / (2 * m)) * np.sum((predictions - y) ** 2) + (
             self.lambda_ / (2 * m)
         ) * np.sum(self.theta**2)
@@ -106,24 +106,24 @@ class RidgeRegression:
 # Example usage
 if __name__ == "__main__":
     # Load dataset
-    df = pd.read_csv(
+    data = pd.read_csv(
         "https://raw.githubusercontent.com/yashLadha/The_Math_of_Intelligence/master/Week1/ADRvsRating.csv"
     )
-    X = df[["Rating"]].values  # Feature: Rating
-    y = df["ADR"].values  # Target: ADR
+    x = data[["Rating"]].to_numpy()  # Feature: Rating
+    y = data["ADR"].to_numpy()  # Target: ADR
     y = (y - np.mean(y)) / np.std(y)
 
     # Add bias term (intercept) to the feature matrix
-    X = np.c_[np.ones(X.shape[0]), X]  # Add intercept term
+    x = np.c_[np.ones(X.shape[0]), x]  # Add intercept term
 
     # Initialize and train the Ridge Regression model
     model = RidgeRegression(alpha=0.01, lambda_=0.1, iterations=1000)
-    model.fit(X, y)
+    model.fit(x, y)
 
     # Predictions
-    predictions = model.predict(X)
+    predictions = model.predict(x)
 
     # Results
     print("Optimized Weights:", model.theta)
-    print("Cost:", model.compute_cost(X, y))
+    print("Cost:", model.compute_cost(x, y))
     print("Mean Absolute Error:", model.mean_absolute_error(y, predictions))
