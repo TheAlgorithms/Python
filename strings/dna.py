@@ -23,7 +23,6 @@ def dna(dna: str) -> str:
 
     return dna.translate(dna.maketrans("ATCG", "TAGC"))
 
-
 if __name__ == "__main__":
     import doctest
 
