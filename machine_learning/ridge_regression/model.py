@@ -45,7 +45,7 @@ class RidgeRegression:
 
 <<<<<<< HEAD
     def compute_cost(self, X:np.ndarray, y:np.ndarray) -> float:
-        X_scaled, _, _ = self.feature_scaling(X)  
+        X_scaled, _, _ = self.feature_scaling(X)
 =======
     def compute_cost(self, X, y):
         X_scaled, _, _ = self.feature_scaling(X)
@@ -71,7 +71,7 @@ if __name__ == "__main__":
 
 <<<<<<< HEAD
     # added bias term to the feature matrix
-    X = np.c_[np.ones(X.shape[0]), X] 
+    X = np.c_[np.ones(X.shape[0]), X]
 =======
     # Add bias term (intercept) to the feature matrix
     X = np.c_[np.ones(X.shape[0]), X]
