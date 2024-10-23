@@ -9,12 +9,8 @@ class RidgeRegression:
         self.num_iterations:int = num_iterations
         self.theta:np.ndarray = None
 
-<<<<<<< HEAD
 
     def feature_scaling(self, X:np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
-=======
-    def feature_scaling(self, X):
->>>>>>> d4fc2bf852ec4a023380f4ef367edefa88fd6881
         mean = np.mean(X, axis=0)
         std = np.std(X, axis=0)
 
@@ -43,13 +39,8 @@ class RidgeRegression:
         X_scaled, _, _ = self.feature_scaling(X)
         return X_scaled.dot(self.theta)
 
-<<<<<<< HEAD
     def compute_cost(self, X:np.ndarray, y:np.ndarray) -> float:
         X_scaled, _, _ = self.feature_scaling(X)  
-=======
-    def compute_cost(self, X, y):
-        X_scaled, _, _ = self.feature_scaling(X)
->>>>>>> d4fc2bf852ec4a023380f4ef367edefa88fd6881
         m = len(y)
 
         predictions = X_scaled.dot(self.theta)
@@ -69,13 +60,8 @@ if __name__ == "__main__":
     y = df["ADR"].values
     y = (y - np.mean(y)) / np.std(y)
 
-<<<<<<< HEAD
     # added bias term to the feature matrix
     X = np.c_[np.ones(X.shape[0]), X] 
-=======
-    # Add bias term (intercept) to the feature matrix
-    X = np.c_[np.ones(X.shape[0]), X]
->>>>>>> d4fc2bf852ec4a023380f4ef367edefa88fd6881
 
     # initialize and train the ridge regression model
     model = RidgeRegression(alpha=0.01, regularization_param=0.1, num_iterations=1000)
