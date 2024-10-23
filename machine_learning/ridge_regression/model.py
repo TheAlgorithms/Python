@@ -3,11 +3,12 @@ import pandas as pd
 
 
 class RidgeRegression:
-    def __init__(self,
-            alpha: float = 0.001,
-            regularization_param: float = 0.1,
-            num_iterations: int = 1000,
-            ) -> None:
+    def __init__(
+        self,
+        alpha: float = 0.001,
+        regularization_param: float = 0.1,
+        num_iterations: int = 1000,
+    ) -> None:
         self.alpha: float = alpha
         self.regularization_param: float = regularization_param
         self.num_iterations: int = num_iterations
@@ -49,10 +50,9 @@ class RidgeRegression:
         m = len(y)
 
         predictions = x_scaled.dot(self.theta)
-        cost = (
-            1 / (2 * m)) * np.sum((predictions - y) ** 2) + (
-                self.regularization_param / (2 * m)
-                ) * np.sum(self.theta**2)
+        cost = (1 / (2 * m)) * np.sum((predictions - y) ** 2) + (
+            self.regularization_param / (2 * m)
+        ) * np.sum(self.theta**2)
         return cost
 
     def mean_absolute_error(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
