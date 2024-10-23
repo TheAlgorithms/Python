@@ -20,10 +20,12 @@ class RidgeRegression:
         X_scaled = (X - mean) / std
         return X_scaled, mean, std
 
+
     def fit(self, X:np.ndarray, y:np.ndarray) -> None:
         X_scaled, mean, std = self.feature_scaling(X)
         m, n = X_scaled.shape
         self.theta = np.zeros(n)  # initializing weights to zeros
+
 
         for i in range(self.num_iterations):
             predictions = X_scaled.dot(self.theta)
@@ -35,12 +37,14 @@ class RidgeRegression:
             ) / m
             self.theta -= self.alpha * gradient  # updating weights
 
+
     def predict(self, X:np.ndarray) -> np.ndarray:
         X_scaled, _, _ = self.feature_scaling(X)
         return X_scaled.dot(self.theta)
 
+
     def compute_cost(self, X:np.ndarray, y:np.ndarray) -> float:
-        X_scaled, _, _ = self.feature_scaling(X)  
+        X_scaled, _, _ = self.feature_scaling(X)
         m = len(y)
 
         predictions = X_scaled.dot(self.theta)
@@ -48,6 +52,7 @@ class RidgeRegression:
             self.regularization_param / (2 * m)
         ) * np.sum(self.theta**2)
         return cost
+
 
     def mean_absolute_error(self, y_true:np.ndarray, y_pred:np.ndarray) -> float:
         return np.mean(np.abs(y_true - y_pred))
