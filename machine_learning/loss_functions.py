@@ -659,7 +659,10 @@ def kullback_leibler_divergence(y_true: np.ndarray, y_pred: np.ndarray) -> float
     if len(y_true) != len(y_pred):
         raise ValueError("Input arrays must have the same length.")
 
-    kl_loss = y_true * np.log(y_true / y_pred)
+    kl_loss = 0
+    if y_true != 0:
+        kl_loss = y_true * np.log(y_true / y_pred)
+
     return np.sum(kl_loss)
 
 
