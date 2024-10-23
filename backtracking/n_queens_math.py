@@ -102,14 +102,24 @@ def depth_first_search(
         return
 
     for col in range(n):
-        if col in possible_board or (row - col) in diagonal_right_collisions or (row + col) in diagonal_left_collisions:
+        if (
+            col in possible_board
+            or (row - col) in diagonal_right_collisions
+            or (row + col) in diagonal_left_collisions
+        ):
             continue
 
         possible_board.append(col)
         diagonal_right_collisions.add(row - col)
         diagonal_left_collisions.add(row + col)
 
-        depth_first_search(possible_board, diagonal_right_collisions, diagonal_left_collisions, boards, n)
+        depth_first_search(
+            possible_board,
+            diagonal_right_collisions,
+            diagonal_left_collisions,
+            boards,
+            n,
+        )
 
         # Backtracking
         possible_board.pop()
