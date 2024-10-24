@@ -85,23 +85,25 @@ def largestRectangleArea(self, heights: List[int]) -> int:
     stack = []  
     
     # Iterate over each bar in the histogram with its index
-    for i, h in enumerate(heights):
+    for in_, ht in enumerate(heights):
         # Set the starting index for the rectangle to the current index
-        start = i  
+        st = in_  
 
         # While the stack is not empty and the height of the bar at the top of the stack is greater than the current height
-        while stack and stack[-1][-1] > h:
+        while len(stack)>0 and stack[-1][-1] > ht:
             # Pop the top element from the stack to get the index and height of that bar
-            index, ph = stack.pop()
+            top=stack.pop()
+            ind=top[0]
+            height = top[1]
             
             # Calculate the area with the height of the popped bar and the width from the current index to the popped index
-            max_area = max(max_area, ph * (i - index))
+            max_area = max(max_area, height * (in_ - ind))
             
             # Update the starting index to the index of the popped bar
-            start = index  
+            st = ind  
 
         # Push the current height and the starting index onto the stack
-        stack.append([start, h])
+        stack.append([st, ht])
 
     # After processing all bars, calculate areas for remaining bars in the stack
     for i, h in stack:
