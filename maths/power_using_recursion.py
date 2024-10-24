@@ -17,6 +17,14 @@ def power(base: int, exponent: int) -> float:
     """
     Calculate the power of a base raised to an exponent.
 
+    Args:
+    base (int): Base number 
+    exponent (int): Exponent to apply to base number
+
+    Returns:
+    A float is returned that is the base number to the power of the exponent number
+
+    Examples:
     >>> power(3, 4)
     81
     >>> power(2, 0)
@@ -43,13 +51,6 @@ def power(base: int, exponent: int) -> float:
 
 
 if __name__ == "__main__":
-    from doctest import testmod
+    import doctest
 
-    testmod()
-    print("Raise base to the power of exponent using recursion...")
-    base = int(input("Enter the base: ").strip())
-    exponent = int(input("Enter the exponent: ").strip())
-    result = power(base, abs(exponent))
-    if exponent < 0:  # power() does not properly deal w/ negative exponents
-        result = 1 / result
-    print(f"{base} to the power of {exponent} is {result}")
+    doctest.testmod()
