@@ -1,7 +1,7 @@
 def largest_rectangle_area(heights: list[int]) -> int:
     """
-    Given an array of integers representing the heights of bars,
-    this function returns the area of the largest rectangle that can be formed
+    Inputs an array of integers representing the heights of bars,
+    and returns the area of the largest rectangle that can be formed
 
     >>> largest_rectangle_area([2, 1, 5, 6, 2, 3])
     10
