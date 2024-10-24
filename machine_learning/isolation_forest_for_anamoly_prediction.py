@@ -7,6 +7,10 @@ def isolation_forest(features: np.ndarray, test_features: np.ndarray) -> np.ndar
     """
     This function trains an Isolation Forest algorithm and predicts anomalies.
 
+    More on Isolation Forest:
+    https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html
+    https://en.wikipedia.org/wiki/Isolation_forest
+    
     Parameters:
     features (np.ndarray): The training data (features) on which the Isolation Forest model will be trained.
     test_features (np.ndarray): The test data (features) to predict whether they are anomalies or not.
@@ -50,8 +54,6 @@ def main() -> None:
     
     test_features = np.array([[1, 1], [5, 5], [10, 10], [6, 6], [-1, -1]])
     predictions = isolation_forest(x_train, test_features)
-    
-    return predictions
 
 if __name__ == "__main__":
   import doctest
