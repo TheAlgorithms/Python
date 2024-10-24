@@ -44,10 +44,22 @@ def hilbert_curve(order, x0=0, y0=0, xi=1, xj=0, yi=0, yj=1):
         order - 1, x0 + xi / 2, y0 + xj / 2, xi / 2, xj / 2, yi / 2, yj / 2
     )
     points += hilbert_curve(
-        order - 1, x0 + xi / 2 + yi / 2, y0 + xj / 2 + yj / 2, xi / 2, xj / 2, yi / 2, yj / 2
+        order - 1,
+        x0 + xi / 2 + yi / 2,
+        y0 + xj / 2 + yj / 2,
+        xi / 2,
+        xj / 2,
+        yi / 2,
+        yj / 2,
     )
     points += hilbert_curve(
-        order - 1, x0 + xi / 2 + yi, y0 + xj / 2 + yj, -yi / 2, -yj / 2, -xi / 2, -xj / 2
+        order - 1,
+        x0 + xi / 2 + yi,
+        y0 + xj / 2 + yj,
+        -yi / 2,
+        -yj / 2,
+        -xi / 2,
+        -xj / 2,
     )
 
     return points
@@ -60,7 +72,7 @@ def plot_hilbert_curve(points):
     x, y = zip(*points)
     plt.plot(x, y)
     plt.title("Hilbert Curve")
-    plt.gca().set_aspect('equal', adjustable='box')
+    plt.gca().set_aspect("equal", adjustable="box")
     plt.show()
 
 
