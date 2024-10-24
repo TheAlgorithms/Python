@@ -11,7 +11,7 @@ To run these tests, use the following command:
     python -m doctest test_ridge_regression.py -v
 """
 
-# from ridge_regression import RidgeRegression
+# from machine_learning.ridge_regression import RidgeRegression
 
 
 def test_feature_scaling():
