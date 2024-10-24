@@ -1,7 +1,7 @@
 """
 Barnsley Fern
 
-The Barnsley fern is a fractal that uses an iterated function system (IFS) 
+The Barnsley fern is a fractal that uses an iterated function system (IFS)
 to generate a realistic-looking fern shape.
 
 Reference:
@@ -12,8 +12,8 @@ Requirements:
     - numpy
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def barnsley_farn(n_points=100000):
@@ -23,8 +23,10 @@ def barnsley_farn(n_points=100000):
     x, y = 0, 0
     points = np.zeros((n_points, 2))
 
+    rng = np.random.default_rng()
+
     for i in range(n_points):
-        r = np.random.random()
+        r = rng.random()
         if r < 0.01:
             x, y = 0, 0.16 * y
         elif r < 0.86:
@@ -43,7 +45,7 @@ def plot_barnsley_farn(points):
     Plots the Barnsley fern using matplotlib.
     """
     x, y = points[:, 0], points[:, 1]
-    plt.scatter(x, y, s=0.1, color='green')
+    plt.scatter(x, y, s=0.1, color="green")
     plt.title("Barnsley Fern")
     plt.show()
 
