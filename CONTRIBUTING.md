@@ -6,6 +6,14 @@ Welcome to [TheAlgorithms/Python](https://github.com/TheAlgorithms/Python)! Befo
 
 ## Contributing
 
+
+## Contributing
+
+  ## Rushikesh Kotkar
+
+  Contibuted for largest rectangle histogram with best time complexity with great example and explaination.
+  You can check and learn the algorithm from that
+
 ### Contributor
 
 We are delighted that you are considering implementing algorithms and data structures for others! This repository is referenced and used by learners from all over the globe. By being one of our contributors, you agree and confirm that:
