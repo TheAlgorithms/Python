@@ -14,6 +14,7 @@ To run these tests, use the following command:
 # from ridge_regression import RidgeRegression
 
 
+
 def test_feature_scaling():
     """
        Tests the feature_scaling function of RidgeRegression.
@@ -30,6 +31,7 @@ def test_feature_scaling():
        >>> np.round(std, 2)
        array([0.82, 0.82])
     """
+
 
 
 def test_fit():
@@ -52,6 +54,7 @@ def test_fit():
     >>> np.round(model.theta, decimals=2)
     array([0.  , 0.79])
     """
+
 
 
 def test_predict():
@@ -77,6 +80,7 @@ def test_predict():
     """
 
 
+
 def test_mean_absolute_error():
     """
     Tests the mean_absolute_error function of RidgeRegression
@@ -88,6 +92,7 @@ def test_mean_absolute_error():
     >>> float(np.round(mae, 2))
     0.07
     """
+
 
 
 if __name__ == "__main__":
