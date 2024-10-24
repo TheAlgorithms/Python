@@ -23,9 +23,9 @@ def test_feature_scaling():
        Tests the feature_scaling function of RidgeRegression.
     --------
        >>> model = RidgeRegression()
-       >>> X = np.array([[1, 2], [2, 3], [3, 4]])
-       >>> X_scaled, mean, std = model.feature_scaling(X)
-       >>> np.round(X_scaled, 2)
+       >>> features = np.array([[1, 2], [2, 3], [3, 4]])
+       >>> features_scaled, mean, std = model.feature_scaling(features)
+       >>> np.round(features_scaled, 2)
        array([[-1.22, -1.22],
               [ 0.  ,  0.  ],
               [ 1.22,  1.22]])
@@ -43,14 +43,14 @@ def test_fit():
     >>> model = RidgeRegression(alpha=0.01,
     ...                          regularization_param=0.1,
     ...                          num_iterations=1000)
-    >>> X = np.array([[1], [2], [3]])
-    >>> y = np.array([2, 3, 4])
+    >>> features = np.array([[1], [2], [3]])
+    >>> target = np.array([2, 3, 4])
 
     # Adding a bias term
-    >>> X = np.c_[np.ones(X.shape[0]), X]
+    >>> features = np.c_[np.ones(features.shape[0]), features]
 
     # Fit the model
-    >>> model.fit(X, y)
+    >>> model.fit(features, target)
 
     # Check if the weights have been updated
     >>> np.round(model.theta, decimals=2)
@@ -65,17 +65,17 @@ def test_predict():
     >>> model = RidgeRegression(alpha=0.01,
     ...                          regularization_param=0.1,
     ...                          num_iterations=1000)
-    >>> X = np.array([[1], [2], [3]])
-    >>> y = np.array([2, 3, 4])
+    >>> features = np.array([[1], [2], [3]])
+    >>> target = np.array([2, 3, 4])
 
     # Adding a bias term
-    >>> X = np.c_[np.ones(X.shape[0]), X]
+    >>> features = np.c_[np.ones(features.shape[0]), features]
 
     # Fit the model
-    >>> model.fit(X, y)
+    >>> model.fit(features, target)
 
     # Predict with the model
-    >>> predictions = model.predict(X)
+    >>> predictions = model.predict(features)
     >>> np.round(predictions, decimals=2)
     array([-0.97,  0.  ,  0.97])
     """
@@ -86,9 +86,9 @@ def test_mean_absolute_error():
     Tests the mean_absolute_error function of RidgeRegression
     --------
     >>> model = RidgeRegression()
-    >>> y_true = np.array([2, 3, 4])
-    >>> y_pred = np.array([2.1, 3.0, 3.9])
-    >>> mae = model.mean_absolute_error(y_true, y_pred)
+    >>> target = np.array([2, 3, 4])
+    >>> predictions = np.array([2.1, 3.0, 3.9])
+    >>> mae = model.mean_absolute_error(target, predictions)
     >>> float(np.round(mae, 2))
     0.07
     """
