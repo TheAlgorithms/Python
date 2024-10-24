@@ -14,23 +14,25 @@ To run these tests, use the following command:
 import numpy as np
 from ridge_regression import RidgeRegression
 
+
 def test_feature_scaling():
     """
-    Tests the feature_scaling function of RidgeRegression.
- --------
-    >>> model = RidgeRegression()
-    >>> X = np.array([[1, 2], [2, 3], [3, 4]])
-    >>> X_scaled, mean, std = model.feature_scaling(X)
-    >>> np.round(X_scaled, 2)
-    array([[-1.22, -1.22],
-           [ 0.  ,  0.  ],
-           [ 1.22,  1.22]])
-    >>> np.round(mean, 2)
-    array([2., 3.])
-    >>> np.round(std, 2)
-    array([0.82, 0.82])
+       Tests the feature_scaling function of RidgeRegression.
+    --------
+       >>> model = RidgeRegression()
+       >>> X = np.array([[1, 2], [2, 3], [3, 4]])
+       >>> X_scaled, mean, std = model.feature_scaling(X)
+       >>> np.round(X_scaled, 2)
+       array([[-1.22, -1.22],
+              [ 0.  ,  0.  ],
+              [ 1.22,  1.22]])
+       >>> np.round(mean, 2)
+       array([2., 3.])
+       >>> np.round(std, 2)
+       array([0.82, 0.82])
     """
     pass
+
 
 def test_fit():
     """
@@ -39,18 +41,19 @@ def test_fit():
     >>> model = RidgeRegression(alpha=0.01, regularization_param=0.1, num_iterations=1000)
     >>> X = np.array([[1], [2], [3]])
     >>> y = np.array([2, 3, 4])
-    
+
     # Adding a bias term
     >>> X = np.c_[np.ones(X.shape[0]), X]
-    
+
     # Fit the model
     >>> model.fit(X, y)
-    
+
     # Check if the weights have been updated
     >>> np.round(model.theta, decimals=2)
     array([0.  , 0.79])
     """
     pass
+
 
 def test_predict():
     """
@@ -59,19 +62,20 @@ def test_predict():
     >>> model = RidgeRegression(alpha=0.01, regularization_param=0.1, num_iterations=1000)
     >>> X = np.array([[1], [2], [3]])
     >>> y = np.array([2, 3, 4])
-    
+
     # Adding a bias term
     >>> X = np.c_[np.ones(X.shape[0]), X]
-    
+
     # Fit the model
     >>> model.fit(X, y)
-    
+
     # Predict with the model
     >>> predictions = model.predict(X)
     >>> np.round(predictions, decimals=2)
     array([-0.97,  0.  ,  0.97])
     """
     pass
+
 
 def test_mean_absolute_error():
     """
@@ -86,6 +90,8 @@ def test_mean_absolute_error():
     """
     pass
 
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
