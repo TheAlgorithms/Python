@@ -12,7 +12,10 @@ To run these tests, use the following command:
 """
 
 import numpy as np  # noqa: F401
-from ridge_regression import RidgeRegression  # noqa: F401
+
+from machine_learning.ridge_regression.ridge_regression import (
+    RidgeRegression,  # noqa: F401
+)
 
 
 def test_feature_scaling():
