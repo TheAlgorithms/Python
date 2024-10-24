@@ -1,5 +1,3 @@
-
-
 def house_robber(houses: list[int]) -> int:
     """
     Solves the House Robber problem using memoization (caching).
@@ -48,5 +46,3 @@ def house_robber(houses: list[int]) -> int:
         return memo[n]
 
     return dp(0)
-
-
