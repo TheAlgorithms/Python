@@ -1,6 +1,6 @@
 
 """
-    Intuition
+  Intuition
 The problem involves finding the largest rectangle that can be formed in a histogram of different heights. The approach is to iteratively process the histogram's bars while keeping track of the maximum area found so far.
 
 Approach
