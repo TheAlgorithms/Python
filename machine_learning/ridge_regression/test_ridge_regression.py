@@ -11,7 +11,8 @@ To run these tests, use the following command:
     python -m doctest test_ridge_regression.py -v
 """
 
-# from machine_learning.ridge_regression import RidgeRegression
+import numpy as np  # noqa: F401
+from ridge_regression import RidgeRegression  # noqa: F401
 
 
 def test_feature_scaling():
@@ -37,8 +38,8 @@ def test_fit():
     Tests the fit function of RidgeRegression
     --------
     >>> model = RidgeRegression(alpha=0.01,
-                                regularization_param=0.1,
-                                num_iterations=1000)
+    ...                          regularization_param=0.1,
+    ...                          num_iterations=1000)
     >>> X = np.array([[1], [2], [3]])
     >>> y = np.array([2, 3, 4])
 
@@ -59,8 +60,8 @@ def test_predict():
     Tests the predict function of RidgeRegression
     --------
     >>> model = RidgeRegression(alpha=0.01,
-                                regularization_param=0.1,
-                                num_iterations=1000)
+    ...                          regularization_param=0.1,
+    ...                          num_iterations=1000)
     >>> X = np.array([[1], [2], [3]])
     >>> y = np.array([2, 3, 4])
 
