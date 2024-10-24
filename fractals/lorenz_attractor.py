@@ -13,9 +13,8 @@ Requirements:
     - numpy
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
 
 
 def lorenz(x, y, z, s=10, r=28, b=2.667):
@@ -29,7 +28,7 @@ def lorenz(x, y, z, s=10, r=28, b=2.667):
 
 
 def generate_lorenz_attractor(
-    num_steps=10000, dt=0.01, initial_values=(0., 1., 1.05)
+    num_steps=10000, dt=0.01, initial_values=(0.0, 1.0, 1.05)
 ):
     """
     Generates the points for the Lorenz attractor based on initial conditions.
@@ -57,7 +56,7 @@ def plot_lorenz(xs, ys, zs):
     Plot the Lorenz attractor using matplotlib in 3D space.
     """
     fig = plt.figure()
-    ax = fig.add_subplot(111, projection='3d')
+    ax = fig.add_subplot(111, projection="3d")
     ax.plot(xs, ys, zs, lw=0.5)
     ax.set_title("Lorenz Attractor")
     plt.show()
