@@ -18,7 +18,7 @@ def power(base: int, exponent: int) -> float:
     Calculate the power of a base raised to an exponent.
 
     Args:
-    base (int): Base number 
+    base (int): Base number
     exponent (int): Exponent to apply to base number
 
     Returns:
