@@ -42,11 +42,11 @@ def hilbert_curve(
     - A list of (x, y) coordinates representing the Hilbert curve.
 
     >>> len(hilbert_curve(1))
-    5
+    4
     >>> len(hilbert_curve(2))
-    17
+    16
     >>> len(hilbert_curve(3))
-    65
+    64
     """
     if order == 0:
         return [(x0 + (xi + yi) / 2, y0 + (xj + yj) / 2)]
