@@ -1,5 +1,6 @@
 import math
 
+
 def minimax(depth, node_index, is_maximizing_player, scores, height):
     """
     Minimax algorithm to determine the optimal move for a player in a two-player zero-sum game.
@@ -25,7 +26,9 @@ def minimax(depth, node_index, is_maximizing_player, scores, height):
         for i in range(2):
             # Recursive call for the next level of depth
             val = minimax(depth + 1, node_index * 2 + i, False, scores, height)
-            best_score = max(best_score, val)  # Maximizer chooses the highest score available
+            best_score = max(
+                best_score, val
+            )  # Maximizer chooses the highest score available
         return best_score
 
     # Minimizing player's move
@@ -34,8 +37,11 @@ def minimax(depth, node_index, is_maximizing_player, scores, height):
         for i in range(2):
             # Recursive call for the next level of depth
             val = minimax(depth + 1, node_index * 2 + i, True, scores, height)
-            best_score = min(best_score, val)  # Minimizer chooses the lowest score available
+            best_score = min(
+                best_score, val
+            )  # Minimizer chooses the lowest score available
         return best_score
+
 
 def main():
     # Scores array representing the leaf nodes of a binary tree (depth = 3)
@@ -44,7 +50,10 @@ def main():
     height = math.ceil(math.log2(len(scores)))
 
     # Print the optimal outcome for the maximizing player
-    print("Optimal value for the maximizing player:", minimax(0, 0, True, scores, height))
+    print(
+        "Optimal value for the maximizing player:", minimax(0, 0, True, scores, height)
+    )
+
 
 if __name__ == "__main__":
     main()
