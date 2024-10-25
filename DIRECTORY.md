@@ -259,8 +259,9 @@
   * Linked List
     * [Circular Linked List](data_structures/linked_list/circular_linked_list.py)
     * [Deque Doubly](data_structures/linked_list/deque_doubly.py)
-    * [Doubly Linked List](data_structures/linked_list/doubly_linked_list.py)
-    * [Doubly Linked List Two](data_structures/linked_list/doubly_linked_list_two.py)
+    * Doubly Linked List
+      * [Doubly Linked List](data_structures/linked_list/doubly_linked_list/doubly_linked_list.py)
+      * [Doubly Linked List Two](data_structures/linked_list/doubly_linked_list/doubly_linked_list_two.py)
     * [Floyds Cycle Detection](data_structures/linked_list/floyds_cycle_detection.py)
     * [From Sequence](data_structures/linked_list/from_sequence.py)
     * [Has Loop](data_structures/linked_list/has_loop.py)
