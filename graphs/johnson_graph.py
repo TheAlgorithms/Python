@@ -1,8 +1,9 @@
-from collections import deque
 import heapq
 import sys
 
 #First implementation of johnson algorithm
+#Steps followed to implement this algorithm is given in the below link:
+#https://brilliant.org/wiki/johnsons-algorithm/
 class JohnsonGraph:
     def __init__(self):
         self.edges = []
@@ -19,7 +20,6 @@ class JohnsonGraph:
 
     #perform a dijkstra algorithm on a directed graph
     def dijkstra(self, s):
-        no_v = len(self.graph)
         distances = {vertex: sys.maxsize-1 for vertex in self.graph}
         pq = [(0,s)]
         
@@ -38,7 +38,6 @@ class JohnsonGraph:
 
     #carry out the bellman ford algorithm for a node and estimate its distance vector
     def bellman_ford(self, s): 
-        no_v = len(self.graph)
         distances = {vertex: sys.maxsize-1 for vertex in self.graph}
         distances[s] = 0
         
@@ -49,7 +48,8 @@ class JohnsonGraph:
 
         return distances
  
-    #perform the johnson algorithm to handle the negative weights that could not be handled by either the dijkstra
+    #perform the johnson algorithm to handle the negative weights that 
+    # could not be handled by either the dijkstra
     #or the bellman ford algorithm efficiently
     def johnson_algo(self):
         
