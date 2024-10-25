@@ -1,7 +1,15 @@
 import math
 
-def minimax_with_pruning(depth: int, node_index: int, is_maximizing_player: bool, 
-            scores: list, height: int, alpha: int, beta: int) -> int:
+
+def minimax_with_pruning(
+    depth: int,
+    node_index: int,
+    is_maximizing_player: bool,
+    scores: list,
+    height: int,
+    alpha: int,
+    beta: int,
+) -> int:
     """
     Minimax algorithm with alpha-beta pruning to determine the optimal
     move with improved efficiency.
