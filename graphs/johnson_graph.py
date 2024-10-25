@@ -1,9 +1,10 @@
 import heapq
 import sys
 
-#First implementation of johnson algorithm
-#Steps followed to implement this algorithm is given in the below link:
-#https://brilliant.org/wiki/johnsons-algorithm/
+
+# First implementation of johnson algorithm
+# Steps followed to implement this algorithm is given in the below link:
+# https://brilliant.org/wiki/johnsons-algorithm/
 class JohnsonGraph:
     def __init__(self):
         self.edges = []
@@ -20,9 +21,9 @@ class JohnsonGraph:
 
     # perform a dijkstra algorithm on a directed graph
     def dijkstra(self, s):
-        distances = {vertex: sys.maxsize-1 for vertex in self.graph}
-        pq = [(0,s)]
-        
+        distances = {vertex: sys.maxsize - 1 for vertex in self.graph}
+        pq = [(0, s)]
+
         distances[s] = 0
         while pq:
             weight, v = heapq.heappop(pq)
@@ -36,9 +37,9 @@ class JohnsonGraph:
                     heapq.heappush(pq, (distances[node], node))
         return distances
 
-    #carry out the bellman ford algorithm for a node and estimate its distance vector
-    def bellman_ford(self, s): 
-        distances = {vertex: sys.maxsize-1 for vertex in self.graph}
+    # carry out the bellman ford algorithm for a node and estimate its distance vector
+    def bellman_ford(self, s):
+        distances = {vertex: sys.maxsize - 1 for vertex in self.graph}
         distances[s] = 0
 
         for u in self.graph:
@@ -47,10 +48,10 @@ class JohnsonGraph:
                     distances[v] = distances[u] + w
 
         return distances
- 
-    #perform the johnson algorithm to handle the negative weights that 
+
+    # perform the johnson algorithm to handle the negative weights that
     # could not be handled by either the dijkstra
-    #or the bellman ford algorithm efficiently
+    # or the bellman ford algorithm efficiently
     def johnson_algo(self):
         self.add_vertices("#")
         for v in self.graph:
