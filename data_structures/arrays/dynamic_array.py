@@ -1,14 +1,3 @@
-"""
-Author  : Yashwanth Adimulam
-Date    : October 22, 2024
-
-Implement the class of DynamicArray with useful functions based on it.
-References: https://en.wikipedia.org/wiki/Dynamic_array
-            https://www.geeksforgeeks.org/how-do-dynamic-arrays-work/
-
-"""
-
-
 class DynamicArray:
     def __init__(self) -> None:
         self.size = 0  # Number of elements in the array
@@ -28,6 +17,12 @@ class DynamicArray:
         >>> arr.append(3)
         >>> arr.array[:arr.size]  # Display only the filled part of the array
         [1, 2, 3]
+        >>> arr.append(4)
+        >>> arr.array[:arr.size]
+        [1, 2, 3, 4]
+        >>> arr.append(5)
+        >>> arr.array[:arr.size]
+        [1, 2, 3, 4, 5]
         """
         if self.size == self.capacity:
             self._resize(2 * self.capacity)  # Double the capacity
@@ -45,10 +40,11 @@ class DynamicArray:
         >>> arr = DynamicArray()
         >>> arr.append(1)
         >>> arr.append(2)
-        >>> arr.append(3)
         >>> arr._resize(10)
         >>> arr.capacity
         10
+        >>> arr.array[:arr.size]
+        [1, 2]
         """
         new_array = [None] * new_capacity
         for i in range(self.size):
@@ -71,6 +67,10 @@ class DynamicArray:
         >>> arr.get(1)
         2
         >>> arr.get(2)
+        Traceback (most recent call last):
+        ...
+        IndexError: index out of range
+        >>> arr.get(-1)
         Traceback (most recent call last):
         ...
         IndexError: index out of range
@@ -98,6 +98,9 @@ class DynamicArray:
         >>> arr.append(2)
         >>> len(arr)
         2
+        >>> arr.append(3)
+        >>> len(arr)
+        3
         """
         return self.size
 
@@ -111,6 +114,9 @@ class DynamicArray:
         >>> arr.append(3)
         >>> str(arr)
         '[1, 2, 3]'
+        >>> arr.append(4)
+        >>> str(arr)
+        '[1, 2, 3, 4]'
         """
         return "[" + ", ".join(str(self.array[i]) for i in range(self.size)) + "]"
 
