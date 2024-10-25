@@ -5,24 +5,23 @@ import sys
 #Steps followed to implement this algorithm is given in the below link:
 #https://brilliant.org/wiki/johnsons-algorithm/
 class JohnsonGraph:
-    def __init__(self):
+    def __init__(self) -> None:
         self.edges = []
         self.graph = {}
 
     # add vertices for a graph
-    def add_vertices(self, u):
+    def add_vertices(self, u) -> None:
         self.graph[u] = []
 
     # assign weights for each edges formed of the directed graph
-    def add_edge(self, u, v, w):
+    def add_edge(self, u, v, w) -> None:
         self.edges.append((u, v, w))
         self.graph[u].append((v, w))
 
     # perform a dijkstra algorithm on a directed graph
-    def dijkstra(self, s):
+    def dijkstra(self, s) -> dict:
         distances = {vertex: sys.maxsize-1 for vertex in self.graph}
         pq = [(0,s)]
-        
         distances[s] = 0
         while pq:
             weight, v = heapq.heappop(pq)
@@ -37,7 +36,7 @@ class JohnsonGraph:
         return distances
 
     #carry out the bellman ford algorithm for a node and estimate its distance vector
-    def bellman_ford(self, s): 
+    def bellman_ford(self, s) -> dict: 
         distances = {vertex: sys.maxsize-1 for vertex in self.graph}
         distances[s] = 0
 
@@ -51,7 +50,7 @@ class JohnsonGraph:
     #perform the johnson algorithm to handle the negative weights that 
     # could not be handled by either the dijkstra
     #or the bellman ford algorithm efficiently
-    def johnson_algo(self):
+    def johnson_algo(self) -> dict:
         self.add_vertices("#")
         for v in self.graph:
             if v != "#":
