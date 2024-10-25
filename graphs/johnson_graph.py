@@ -3,7 +3,6 @@ from typing import Dict, List
 import sys
 
 
-
 # First implementation of johnson algorithm
 # Steps followed to implement this algorithm is given in the below link:
 # https://brilliant.org/wiki/johnsons-algorithm/
