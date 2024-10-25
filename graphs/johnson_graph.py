@@ -1,9 +1,10 @@
 import heapq
 import sys
 
-#First implementation of johnson algorithm
-#Steps followed to implement this algorithm is given in the below link:
-#https://brilliant.org/wiki/johnsons-algorithm/
+
+# First implementation of johnson algorithm
+# Steps followed to implement this algorithm is given in the below link:
+# https://brilliant.org/wiki/johnsons-algorithm/
 class JohnsonGraph:
     def __init__(self) -> None:
         self.edges = []
@@ -46,8 +47,8 @@ class JohnsonGraph:
                     distances[v] = distances[u] + w
 
         return distances
- 
-    #perform the johnson algorithm to handle the negative weights that 
+
+    # perform the johnson algorithm to handle the negative weights that
     # could not be handled by either the dijkstra
     #or the bellman ford algorithm efficiently
     def johnson_algo(self) -> dict:
