@@ -3,18 +3,18 @@ import math
 
 def minimax(depth, node_index, is_maximizing_player, scores, height):
     """
-    Minimax algorithm to determine the optimal move for a player in a two-player 
+    Minimax algorithm to determine the optimal move for a player in a two-player
     zero-sum game.
 
     Parameters:
     - depth (int): Current depth in the game tree. Used to track recursion level.
-    - node_index (int): Index of the current node in the scores array, representing 
+    - node_index (int): Index of the current node in the scores array, representing
     leaf nodes.
     - is_maximizing_player (bool): True if the current player is the maximizing player
     , False otherwise.
-    - scores (list): A list of integers representing the scores at the leaf nodes 
+    - scores (list): A list of integers representing the scores at the leaf nodes
     of the game tree.
-    - height (int): The maximum depth of the game tree, based on the number of leaf 
+    - height (int): The maximum depth of the game tree, based on the number of leaf
     nodes in a binary structure.
 
     Returns:
@@ -56,8 +56,7 @@ def main():
 
     # Print the optimal outcome for the maximizing player
     print(
-        "Optimal value for the maximizing player:", 
-        minimax(0, 0, True, scores, height)
+        "Optimal value for the maximizing player:", minimax(0, 0, True, scores, height)
     )
 
 
