@@ -1,9 +1,8 @@
 import math
+from typing import List
 
-
-def minimax_with_pruning(
-    depth, node_index, is_maximizing_player, scores, height, alpha, beta
-):
+def minimax_with_pruning(depth: int, node_index: int, is_maximizing_player: bool, 
+            scores: List[int], height: int, alpha: int, beta: int) -> int:
     """
     Minimax algorithm with alpha-beta pruning to determine the optimal
     move with improved efficiency.

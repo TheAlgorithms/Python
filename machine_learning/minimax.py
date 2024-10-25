@@ -1,7 +1,8 @@
 import math
+from typing import List
 
-
-def minimax(depth, node_index, is_maximizing_player, scores, height):
+def minimax(depth: int, node_index: int, is_maximizing_player: bool, 
+            scores: List[int], height: int) -> int:
     """
     Minimax algorithm to determine the optimal move for a player in a two-player
     zero-sum game.
