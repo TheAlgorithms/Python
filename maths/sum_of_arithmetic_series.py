@@ -1,9 +1,9 @@
-#Reeka
+# Reeka
 def sum_of_ap_series(a: int, d: int, n: int) -> int:
     """
     Calculates the sum of the first 'n' terms of an arithmetic progression (AP)
     series with the first term 'a' and common difference 'd'.
-    
+
     Parameters:
     a (int): The first term of the AP.
     d (int): The common difference between terms.
@@ -34,7 +34,9 @@ def sum_of_ap_series(a: int, d: int, n: int) -> int:
     """
     if n <= 0:
         raise ValueError("Number of terms 'n' must be a positive integer")
-    
+
     # Formula for the sum of an AP series: S_n = n/2 * (2a + (n-1) * d)
     return n * (2 * a + (n - 1) * d) // 2
-#Reeka
+
+
+# Reeka
