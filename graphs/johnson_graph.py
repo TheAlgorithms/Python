@@ -21,8 +21,8 @@ class JohnsonGraph:
 
     # perform a dijkstra algorithm on a directed graph
     def dijkstra(self, s) -> dict:
-        distances = {vertex: sys.maxsize-1 for vertex in self.graph}
-        pq = [(0,s)]
+        distances = {vertex: sys.maxsize - 1 for vertex in self.graph}
+        pq = [(0, s)]
         distances[s] = 0
         while pq:
             weight, v = heapq.heappop(pq)
@@ -36,9 +36,9 @@ class JohnsonGraph:
                     heapq.heappush(pq, (distances[node], node))
         return distances
 
-    #carry out the bellman ford algorithm for a node and estimate its distance vector
-    def bellman_ford(self, s) -> dict: 
-        distances = {vertex: sys.maxsize-1 for vertex in self.graph}
+    # carry out the bellman ford algorithm for a node and estimate its distance vector
+    def bellman_ford(self, s) -> dict:
+        distances = {vertex: sys.maxsize - 1 for vertex in self.graph}
         distances[s] = 0
 
         for u in self.graph:
@@ -50,7 +50,7 @@ class JohnsonGraph:
 
     # perform the johnson algorithm to handle the negative weights that
     # could not be handled by either the dijkstra
-    #or the bellman ford algorithm efficiently
+    # or the bellman ford algorithm efficiently
     def johnson_algo(self) -> dict:
         self.add_vertices("#")
         for v in self.graph:
