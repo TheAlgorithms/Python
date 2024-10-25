@@ -7,9 +7,9 @@ def minimax_with_pruning(
     is_maximizing_player: bool,
     scores: list,
     height: int,
-    alpha: int,
-    beta: int,
-) -> int:
+    alpha: float,
+    beta: float,
+) -> float:
     """
     Minimax algorithm with alpha-beta pruning to determine the optimal
     move with improved efficiency.

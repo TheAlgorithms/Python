@@ -3,7 +3,7 @@ import math
 
 def minimax(
     depth: int, node_index: int, is_maximizing_player: bool, scores: list, height: int
-) -> int:
+) -> float:
     """
     Minimax algorithm to determine the optimal move for a player in a two-player
     zero-sum game.
