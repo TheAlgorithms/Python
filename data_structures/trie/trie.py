@@ -5,6 +5,7 @@ making it impractical in practice. It however provides O(max(search_string, leng
 longest word)) lookup time making it an optimal approach when space is not an issue.
 """
 
+## This can be changed
 
 class TrieNode:
     def __init__(self) -> None:
