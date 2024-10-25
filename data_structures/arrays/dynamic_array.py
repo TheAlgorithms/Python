@@ -78,6 +78,11 @@ class DynamicArray:
         if index < 0 or index >= self.size:
             raise IndexError("index out of range")
         return self.array[index]
+                
+    def __setitem__(self, index: int, value: int) -> None:
+        if index < 0 or index >= self.size:
+            raise IndexError("index out of range")
+        self.array[index] = value
 
     def __len__(self) -> int:
         """
