@@ -1,5 +1,4 @@
 import heapq
-from typing import Dict, List
 import sys
 
 
@@ -9,8 +8,8 @@ import sys
 # https://brilliant.org/wiki/johnsons-algorithm/
 class JohnsonGraph:
     def __init__(self) -> None:
-        self.edges: List[str] = []
-        self.graph: Dict[str, int] = {}
+        self.edges: list[str] = []
+        self.graph: dict[str, int] = {}
 
     # add vertices for a graph
     def add_vertices(self, u) -> None:
