@@ -74,7 +74,7 @@ class Graph:
                 if neighbor not in visited or visited[neighbor] > cost + edge_cost:
                     pq.put((cost + edge_cost, neighbor, path + [neighbor]))
 
-        return float('inf'), []  # If no path found
+        return float("inf"), []  # If no path found
 
 
 if __name__ == "__main__":
