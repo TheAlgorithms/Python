@@ -1,14 +1,8 @@
 import math
 from typing import List
 
-
-def minimax(
-    depth: int,
-    node_index: int,
-    is_maximizing_player: bool,
-    scores: List[int],
-    height: int,
-) -> int:
+def minimax(depth: int, node_index: int, is_maximizing_player: bool, 
+            scores: list, height: int) -> int:
     """
     Minimax algorithm to determine the optimal move for a player in a two-player
     zero-sum game.
@@ -55,7 +49,7 @@ def minimax(
         return best_score
 
 
-def main():
+def main() -> None:
     # Scores array representing the leaf nodes of a binary tree (depth = 3)
     scores = [3, 5, 2, 9, 12, 5, 23, 23]
     # Calculate the height of the binary tree based on the number of leaf nodes

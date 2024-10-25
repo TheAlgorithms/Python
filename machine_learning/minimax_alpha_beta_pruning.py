@@ -1,16 +1,7 @@
 import math
-from typing import List
 
-
-def minimax_with_pruning(
-    depth: int,
-    node_index: int,
-    is_maximizing_player: bool,
-    scores: List[int],
-    height: int,
-    alpha: int,
-    beta: int,
-) -> int:
+def minimax_with_pruning(depth: int, node_index: int, is_maximizing_player: bool, 
+            scores: list, height: int, alpha: int, beta: int) -> int:
     """
     Minimax algorithm with alpha-beta pruning to determine the optimal
     move with improved efficiency.
@@ -64,7 +55,7 @@ def minimax_with_pruning(
         return best_score
 
 
-def main():
+def main() -> None:
     # Scores array representing the leaf nodes of a binary tree (depth = 3)
     scores = [3, 5, 2, 9, 12, 5, 23, 23]
     # Calculate the height of the binary tree based on the number of leaf nodes
