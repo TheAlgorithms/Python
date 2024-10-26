@@ -1,10 +1,3 @@
-"""Topological Sort."""
-
-#     a
-#    / \
-#   b  c
-#  / \
-# d  e
 edges: dict[str, list[str]] = {
     "a": ["c", "b"],
     "b": ["d", "e"],
@@ -14,28 +7,16 @@ edges: dict[str, list[str]] = {
 }
 vertices: list[str] = ["a", "b", "c", "d", "e"]
 
-
 def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[str]:
-    """Perform topological sort on a directed acyclic graph."""
+    visited.append(start)
     current = start
-    # add current to visited
-    visited.append(current)
-    neighbors = edges[current]
-    for neighbor in neighbors:
-        # if neighbor not in visited, visit
+    for neighbor in edges[start]:
         if neighbor not in visited:
-            sort = topological_sort(neighbor, visited, sort)
-    # if all neighbors visited add current to sort
+            topological_sort(neighbor, visited, sort)
     sort.append(current)
-    # if all vertices haven't been visited select a new one to visit
-    if len(visited) != len(vertices):
-        for vertice in vertices:
-            if vertice not in visited:
-                sort = topological_sort(vertice, visited, sort)
-    # return sort
     return sort
-
 
 if __name__ == "__main__":
     sort = topological_sort("a", [], [])
+    sort.reverse() #Top down approach
     print(sort)
