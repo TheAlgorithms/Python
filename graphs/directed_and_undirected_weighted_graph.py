@@ -10,11 +10,11 @@ Useful Links: https://www.geeksforgeeks.org/applications-advantages-and-disadvan
               https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)
 """
 
-
 from collections import deque
 from math import floor
 from random import random
 from time import time
+
 
 class DirectedGraph:
     def __init__(self):
