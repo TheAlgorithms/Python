@@ -1,8 +1,13 @@
 """
-Author  : Your Name
-Date    : Your Date
+Author  : Yashwanth Adimulam
+Date    : 26th Oct 2024
 
 Implement the class of Graphs with useful functions based on it.
+
+Useful Links: https://www.geeksforgeeks.org/applications-advantages-and-disadvantages-of-weighted-graph/
+              https://www.tutorialspoint.com/applications-advantages-and-disadvantages-of-unweighted-graph
+              https://www.baeldung.com/cs/weighted-vs-unweighted-graphs
+              https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)
 """
 
 from collections import deque
