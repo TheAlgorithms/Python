@@ -16,6 +16,7 @@ edges: dict[str, list[str]] = {
 
 vertices: list[str] = ["a", "b", "c", "d", "e"]
 
+
 # Perform topological sort on a DAG starting from the specified node
 def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[str]:
     current = start
@@ -42,11 +43,12 @@ def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[st
     # Return sorted list
     return sort
 
+
 if __name__ == "__main__":
     # Topological Sorting from node "a" (Returns the order in bottom up approach)
     sort = topological_sort("a", [], [])
 
     # Reversing the list to get the correct topological order (Top down approach)
-    sort.reverse()  
+    sort.reverse()
 
     print(sort)
