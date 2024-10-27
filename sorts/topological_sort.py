@@ -16,7 +16,7 @@ edges: dict[str, list[str]] = {
 
 vertices: list[str] = ["a", "b", "c", "d", "e"]
 
-"""Perform topological sort on a directed acyclic graph(DAG) starting from the specified node"""
+# Perform topological sort on a DAG starting from the specified node
 def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[str]:
     current = start
     # Mark the current node as visited
