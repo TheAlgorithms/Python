@@ -1,6 +1,6 @@
 """
 This is a pure Python implementation of the Stalin Sort algorithm.
-Stalin Sort removes any elements that are out of ascending order, 
+Stalin Sort removes any elements that are out of ascending order,
 leaving only a sorted subsequence of the original list.
 
 For doctests run following command:
@@ -10,6 +10,7 @@ python3 -m doctest -v stalin_sort.py
 For manual testing run:
 python stalin_sort.py
 """
+
 
 def stalin_sort(collection: list) -> list:
     """
@@ -40,6 +41,7 @@ def stalin_sort(collection: list) -> list:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     try:
         user_input = input("Enter numbers separated by a comma:\n").strip()

@@ -10,6 +10,7 @@ For manual testing run:
 python adaptive_merge_sort.py
 """
 
+
 def adaptive_merge_sort(collection: list) -> list:
     """
     Sorts a list using an adaptive merge sort algorithm.
@@ -32,13 +33,16 @@ def adaptive_merge_sort(collection: list) -> list:
     def find_run(collection: list, start: int) -> int:
         """
         Detects and returns the length of a naturally occurring run starting from 'start'.
-        
+
         :param collection: The list to detect runs in.
         :param start: The starting index for finding the run.
         :return: Length of the detected run.
         """
         run_length = 1
-        while start + run_length < len(collection) and collection[start + run_length - 1] <= collection[start + run_length]:
+        while (
+            start + run_length < len(collection)
+            and collection[start + run_length - 1] <= collection[start + run_length]
+        ):
             run_length += 1
         return run_length
 
@@ -65,7 +69,7 @@ def adaptive_merge_sort(collection: list) -> list:
     # Step 1: Identify naturally occurring runs and store them in 'runs'
     while i < len(collection):
         run_length = find_run(collection, i)
-        runs.append(collection[i:i + run_length])
+        runs.append(collection[i : i + run_length])
         i += run_length
 
     # Step 2: Iteratively merge runs until one sorted collection remains
@@ -83,6 +87,7 @@ def adaptive_merge_sort(collection: list) -> list:
 
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     try:
         user_input = input("Enter numbers separated by a comma:\n").strip()
