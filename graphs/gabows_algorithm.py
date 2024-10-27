@@ -1,7 +1,7 @@
 """
-This is a pure Python implementation of 
+This is a pure Python implementation of
 Gabow's algorithm for finding
-strongly connected components (SCCs) 
+strongly connected components (SCCs)
 in a directed graph.
 
 For doctests run:
@@ -14,22 +14,24 @@ For manual testing run:
 
 from collections import defaultdict
 from typing import List, Dict
+
+
 class Graph:
     """
-    Graph data structure to represent 
+    Graph data structure to represent
     a directed graph and find SCCs
     using Gabow's algorithm.
 
     Attributes:
-        vertices (int): Number of 
+        vertices (int): Number of
         vertices in the graph.
-        graph (Dict[int, List[int]]): 
+        graph (Dict[int, List[int]]):
         Adjacency list of the graph.
 
     Methods:
-        add_edge(u, v): Adds an edge 
+        add_edge(u, v): Adds an edge
         from vertex u to vertex v.
-        find_sccs(): Finds and returns 
+        find_sccs(): Finds and returns
         all SCCs in the graph.
 
     Examples:
@@ -42,6 +44,7 @@ class Graph:
     >>> sorted(g.find_sccs())
     [[0, 1, 2], [3], [4]]
     """
+
     def __init__(self, vertices: int) -> None:
         self.vertices = vertices
         self.graph: Dict[int, List[int]] = defaultdict(list)
@@ -50,6 +53,7 @@ class Graph:
         self.stack_p = []  # Stack P
         self.visited = [False] * vertices
         self.result = []
+
     def add_edge(self, u: int, v: int) -> None:
         """
         Adds a directed edge from vertex u to vertex v.
@@ -61,7 +65,7 @@ class Graph:
 
     def _dfs(self, v: int) -> None:
         """
-        Depth-first search helper function to 
+        Depth-first search helper function to
         process each vertex and identify SCCs.
         :param v: The current vertex to process in DFS.
         """
@@ -84,19 +88,23 @@ class Graph:
                     break
             self.stack_p.pop()
             self.result.append(scc)
+
     def find_sccs(self) -> List[List[int]]:
         """
-        Finds all strongly connected components 
+        Finds all strongly connected components
         in the directed graph.
-        :return: List of SCCs, where each SCC 
+        :return: List of SCCs, where each SCC
         is represented as a list of vertices.
         """
         for v in range(self.vertices):
             if not self.visited[v]:
                 self._dfs(v)
         return self.result
+
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     # Example usage for manual testing
     try:
