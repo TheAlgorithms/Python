@@ -21,16 +21,16 @@ def topological_sort(start: str, visited: list[str], sort: list[str]) -> list[st
     current = start
     # Mark the current node as visited
     visited.append(current)
-    # List of all neighbours of current node
+    # List of all neighbors of current node
     neighbors = edges[current]
 
-    # Traverse all neighbours of the current node
+    # Traverse all neighbors of the current node
     for neighbor in neighbors:
-        # Recursively visit each unvisited neighbour
+        # Recursively visit each unvisited neighbor
         if neighbor not in visited:
             sort = topological_sort(neighbor, visited, sort)
 
-    # After visiting all neigbours, add the current node to the sorted list
+    # After visiting all neigbors, add the current node to the sorted list
     sort.append(current)
 
     # If there are some nodes that were not visited (disconnected components)
