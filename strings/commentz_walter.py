@@ -1,11 +1,11 @@
 """
-This is a pure Python implementation 
+This is a pure Python implementation
 of the Commentz-Walter algorithm
 for searching multiple patterns in a single text.
 
-The algorithm combines Boyer-Moore's and 
+The algorithm combines Boyer-Moore's and
 Aho-Corasick's techniques for
-efficiently searching multiple patterns 
+efficiently searching multiple patterns
 by using pattern shifts and suffix automata.
 
 For doctests run:
@@ -18,23 +18,25 @@ For manual testing run:
 
 from typing import List, Dict, Set, Tuple
 from collections import defaultdict
+
+
 class CommentzWalter:
     """
-    Class to represent the Commentz-Walter algorithm 
+    Class to represent the Commentz-Walter algorithm
     for multi-pattern string searching.
 
     Attributes:
         patterns (List[str]): List of patterns to search for.
         alphabet (Set[str]): Unique characters in the patterns.
-        shift_table (Dict[str, int]): Table to store 
+        shift_table (Dict[str, int]): Table to store
         the shift values for characters.
-        automaton (Dict[int, Dict[str, int]]): 
+        automaton (Dict[int, Dict[str, int]]):
         Automaton used for state transitions.
 
     Methods:
-        preprocess(): Builds the shift table 
+        preprocess(): Builds the shift table
         and automaton for pattern matching.
-        search(text: str) -> List[Tuple[int, str]]: 
+        search(text: str) -> List[Tuple[int, str]]:
         Searches patterns in the given text.
 
     Examples:
@@ -42,15 +44,17 @@ class CommentzWalter:
     >>> cw.search("ahishers")
     [(1, 'his'), (4, 'she'), (5, 'hers')]
     """
+
     def __init__(self, patterns: List[str]) -> None:
         self.patterns = patterns
         self.alphabet: Set[str] = set("".join(patterns))
         self.shift_table: Dict[str, int] = {}
         self.automaton: Dict[int, Dict[str, int]] = {}
         self.preprocess()
+
     def preprocess(self) -> None:
         """
-        Builds the shift table and automaton required 
+        Builds the shift table and automaton required
         for the Commentz-Walter algorithm.
         """
         # Build the shift table for the rightmost occurrence of characters in patterns
@@ -102,14 +106,17 @@ class CommentzWalter:
                         break
                 else:
                     for pattern in self.patterns:
-                        if text[i:i + len(pattern)] == pattern:
+                        if text[i : i + len(pattern)] == pattern:
                             results.append((i, pattern))
                 i += self.shift_table.get(text[i + m - 1], m)
             else:
                 i += self.shift_table.get(text[i + j], m)
         return results
+
+
 if __name__ == "__main__":
     import doctest
+
     doctest.testmod()
     # Example usage for manual testing
     patterns = ["abc", "bcd", "cde"]
