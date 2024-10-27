@@ -1,7 +1,7 @@
 """
 This is a pure Python implementation of an adaptive merge sort algorithm.
-This implementation detects and merges presorted runs for better performance on partially sorted data.
-
+This implementation detects and merges presorted runs for better 
+performance on partially sorted data.
 For doctests run following command:
 python -m doctest -v adaptive_merge_sort.py
 or
@@ -14,13 +14,12 @@ python adaptive_merge_sort.py
 def adaptive_merge_sort(collection: list) -> list:
     """
     Sorts a list using an adaptive merge sort algorithm.
-
-    :param collection: A mutable ordered collection with comparable items.
-    :return: The same collection ordered in ascending order.
-
+    :param collection: A mutable ordered collection 
+    with comparable items.
+    :return: The same collection ordered in 
+    ascending order.
     Time Complexity: O(n log n) in the average case,
                      O(n) for nearly sorted input.
-
     Examples:
     >>> adaptive_merge_sort([0, 5, 3, 2, 2])
     [0, 2, 2, 3, 5]
@@ -32,8 +31,8 @@ def adaptive_merge_sort(collection: list) -> list:
 
     def find_run(collection: list, start: int) -> int:
         """
-        Detects and returns the length of a naturally occurring run starting from 'start'.
-
+        Detects and returns the length of a naturally occurring
+        run starting from 'start'.
         :param collection: The list to detect runs in.
         :param start: The starting index for finding the run.
         :return: Length of the detected run.
