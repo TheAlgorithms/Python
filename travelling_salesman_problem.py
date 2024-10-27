@@ -1,10 +1,12 @@
-""" Travelling Salesman Problem (TSP) """
+"""Travelling Salesman Problem (TSP)"""
 
 import itertools
 import math
 
+
 class InvalidGraphError(ValueError):
     """Custom error for invalid graph inputs."""
+
 
 def euclidean_distance(point1: list[float], point2: list[float]) -> float:
     """
@@ -28,6 +30,7 @@ def euclidean_distance(point1: list[float], point2: list[float]) -> float:
     except TypeError:
         raise ValueError("Invalid input: Points must be numerical coordinates")
 
+
 def validate_graph(graph_points: dict[str, list[float]]) -> None:
     """
     Validate the input graph to ensure it has valid nodes and coordinates.
@@ -41,12 +44,12 @@ def validate_graph(graph_points: dict[str, list[float]]) -> None:
     Traceback (most recent call last):
     ...
     InvalidGraphError: Each node must have a valid 2D coordinate [x, y]
-    
+
     >>> validate_graph([10, 20])  # Invalid input type
     Traceback (most recent call last):
     ...
     InvalidGraphError: Graph must be a dictionary with node names and coordinates
-    
+
     >>> validate_graph({"A": [10, 20], "B": [30, 21], "C": [15]})  # Missing coordinate
     Traceback (most recent call last):
     ...
@@ -65,6 +68,7 @@ def validate_graph(graph_points: dict[str, list[float]]) -> None:
             or not all(isinstance(c, (int, float)) for c in coordinates)
         ):
             raise InvalidGraphError("Each node must have a valid 2D coordinate [x, y]")
+
 
 # TSP in Brute Force Approach
 def travelling_salesman_brute_force(
@@ -89,7 +93,7 @@ def travelling_salesman_brute_force(
         raise InvalidGraphError("Graph must have at least two nodes")
 
     min_path = []  # List that stores shortest path
-    min_distance = float("inf") # Initialize minimum distance to infinity
+    min_distance = float("inf")  # Initialize minimum distance to infinity
 
     start_node = nodes[0]
     other_nodes = nodes[1:]
@@ -111,6 +115,7 @@ def travelling_salesman_brute_force(
 
     return min_path, min_distance
 
+
 # TSP in Dynamic Programming approach
 def travelling_salesman_dynamic_programming(
     graph_points: dict[str, list[float]],
@@ -127,20 +132,26 @@ def travelling_salesman_dynamic_programming(
     """
     validate_graph(graph_points)
 
-    n = len(graph_points)    # Extracting the node names (keys)
+    n = len(graph_points)  # Extracting the node names (keys)
 
     # There shoukd be atleast 2 nodes for a valid TSP
     if n < 2:
         raise InvalidGraphError("Graph must have at least two nodes")
 
-    nodes = list(graph_points.keys())    # Extracting the node names (keys)
+    nodes = list(graph_points.keys())  # Extracting the node names (keys)
 
     # Initialize distance matrix with float values
-    dist = [[euclidean_distance(graph_points[nodes[i]], graph_points[nodes[j]]) for j in range(n)] for i in range(n)]
+    dist = [
+        [
+            euclidean_distance(graph_points[nodes[i]], graph_points[nodes[j]])
+            for j in range(n)
+        ]
+        for i in range(n)
+    ]
 
-    # Initialize a dynamic programming table with infinity 
+    # Initialize a dynamic programming table with infinity
     dp = [[float("inf")] * n for _ in range(1 << n)]
-    dp[1][0] = 0     # Only visited node is the starting point at node 0
+    dp[1][0] = 0  # Only visited node is the starting point at node 0
 
     # Iterate through all masks of visited nodes
     for mask in range(1 << n):
@@ -149,14 +160,16 @@ def travelling_salesman_dynamic_programming(
             if mask & (1 << u):
                 # Traverse nodes 'v' such that u->v
                 for v in range(n):
-                    if mask & (1 << v) == 0:   # If v is not visited
-                        next_mask = mask | (1 << v)     # Upodate mask to include 'v'
+                    if mask & (1 << v) == 0:  # If v is not visited
+                        next_mask = mask | (1 << v)  # Upodate mask to include 'v'
                         # Update dynamic programming table with minimum distance
-                        dp[next_mask][v] = min(dp[next_mask][v], dp[mask][u] + dist[u][v])
+                        dp[next_mask][v] = min(
+                            dp[next_mask][v], dp[mask][u] + dist[u][v]
+                        )
 
     final_mask = (1 << n) - 1
     min_cost = float("inf")
-    end_node = -1    # Track the last node in the optimal path
+    end_node = -1  # Track the last node in the optimal path
 
     for u in range(1, n):
         if min_cost > dp[final_mask][u] + dist[u][0]:
@@ -175,7 +188,7 @@ def travelling_salesman_dynamic_programming(
                 == dp[mask ^ (1 << end_node)][u] + dist[u][end_node]
             ):
                 mask ^= 1 << end_node  # Update mask to remove end node
-                end_node = u    # Set the previous node as end node
+                end_node = u  # Set the previous node as end node
                 break
 
     path.append(nodes[0])  # Bottom-up Order
