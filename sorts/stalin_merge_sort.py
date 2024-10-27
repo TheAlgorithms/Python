@@ -9,9 +9,11 @@ python3 -m doctest -v stalin_sort.py
 For manual testing run:
 python stalin_sort.py
 """
+
+
 def stalin_sort(collection: list) -> list:
     """
-    Sorts a list by removing elements that are out of order, 
+    Sorts a list by removing elements that are out of order,
     leaving a sorted subsequence.
     :param collection: A list of comparable items.
     :return: A list containing only elements that maintain ascending order.
@@ -33,6 +35,7 @@ def stalin_sort(collection: list) -> list:
         if element >= sorted_list[-1]:
             sorted_list.append(element)
     return sorted_list
+
 
 if __name__ == "__main__":
     import doctest
