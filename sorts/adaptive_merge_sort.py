@@ -1,6 +1,6 @@
 """
 This is a pure Python implementation of an adaptive merge sort algorithm.
-This implementation detects and merges presorted runs for better 
+This implementation detects and merges presorted runs for better
 performance on partially sorted data.
 For doctests run following command:
 python -m doctest -v adaptive_merge_sort.py
@@ -14,9 +14,9 @@ python adaptive_merge_sort.py
 def adaptive_merge_sort(collection: list) -> list:
     """
     Sorts a list using an adaptive merge sort algorithm.
-    :param collection: A mutable ordered collection 
+    :param collection: A mutable ordered collection
     with comparable items.
-    :return: The same collection ordered in 
+    :return: The same collection ordered in
     ascending order.
     Time Complexity: O(n log n) in the average case,
                      O(n) for nearly sorted input.
